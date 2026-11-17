@@ -7,15 +7,20 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { deriveRuntimeDirFromStatePath, deriveSchedulerProofPathFromStatePath, getActionMode, getAllSourceEntries, getGitHubArtifactModes, getGitHubRequirementText, repairOpenClawCronDeliveryStore, shouldAutoCreateGitHubArtifact, } from './openclaw-growth-shared.mjs';
 import { applyOpenClawSecretRefs, loadOpenClawGrowthSecrets } from './openclaw-growth-env.mjs';
+import { buildDiscordSocialPayload, buildSlackSocialPayload, humanizeConnectorDiagnostic, humanizeNotificationIdentifier, renderSocialNotificationMarkdown, socialNotificationEventId as canonicalSocialNotificationEventId, socialNotificationSummary, } from './openclaw-notification-ux.mjs';
 const DEFAULT_CONFIG_PATH = 'data/openclaw-growth-engineer/config.json';
 const DEFAULT_STATE_PATH = 'data/openclaw-growth-engineer/state.json';
 const DEFAULT_SCHEDULER_PROOF_PATH = 'data/openclaw-growth-engineer/runtime/scheduler-proof.jsonl';
 const DEFAULT_CONNECTOR_HEALTH_INTERVAL_MINUTES = 360;
 const DEFAULT_DAILY_ISSUE_EVENT_GROWTH_MULTIPLIER = 2;
 const DEFAULT_DAILY_ISSUE_EVENT_GROWTH_MIN_DELTA = 10;
+const DEFAULT_DAILY_ISSUE_HISTORY_RETENTION_DAYS = 365;
 const DEFAULT_DAILY_RUNNER_FAILURE_RETENTION_DAYS = 14;
 const SELF_UPDATE_INTERVAL_MS = 24 * 60 * 60 * 1000;
 const SELF_UPDATE_SKILL_SLUG_CANDIDATES = ['growth-engineer', 'openclaw-growth-engineer'];
+const CONNECTOR_NOTIFICATION_STATE_VERSION = 2;
+const CONNECTOR_PROBE_INCIDENT_KEY = 'connectorProbe';
+const SOURCE_COLLECTION_INCIDENT_KEY = 'sourceCollection';
 const RUNTIME_DIR = path.dirname(fileURLToPath(import.meta.url));
 let schedulerProofPath = path.resolve(DEFAULT_SCHEDULER_PROOF_PATH);
 const DEFAULT_CADENCES = [
@@ -96,6 +101,7 @@ function parseArgs(argv) {
         state: DEFAULT_STATE_PATH,
         loop: false,
         noSelfUpdate: false,
+        validateNotificationState: false,
     };
     for (let i = 0; i < argv.length; i += 1) {
         const token = argv[i];
@@ -116,6 +122,9 @@ function parseArgs(argv) {
         }
         else if (token === '--no-self-update') {
             args.noSelfUpdate = true;
+        }
+        else if (token === '--validate-notification-state') {
+            args.validateNotificationState = true;
         }
         else if (token === '--help' || token === '-h') {
             printHelpAndExit(0);
@@ -138,6 +147,8 @@ Usage:
 
 Options:
   --no-self-update   Skip the ClawHub skill update check for this run
+  --validate-notification-state
+                     Validate connector incident migration and transitions, then exit
 
 Default config: ${DEFAULT_CONFIG_PATH}
 Default state:  ${DEFAULT_STATE_PATH}
@@ -201,6 +212,20 @@ async function readJsonOptional(filePath, fallback) {
     }
     catch {
         return fallback;
+    }
+}
+let atomicWriteSequence = 0;
+async function writeJsonAtomic(filePath, value) {
+    await fs.mkdir(path.dirname(filePath), { recursive: true });
+    atomicWriteSequence += 1;
+    const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.${atomicWriteSequence}.tmp`;
+    try {
+        await fs.writeFile(temporaryPath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+        await fs.rename(temporaryPath, filePath);
+    }
+    catch (error) {
+        await fs.unlink(temporaryPath).catch(() => { });
+        throw error;
     }
 }
 async function ensureDir(dirPath) {
@@ -644,10 +669,12 @@ function markCadencesRan(state, cadences, ranAt) {
 function getConnectorEntries(statusPayload) {
     return Object.entries(statusPayload?.connectors || {}).map(([key, value]) => ({
         key,
+        label: String(value?.label || key),
         status: String(value?.status || 'unknown'),
         detail: String(value?.detail || ''),
         nextAction: typeof value?.nextAction === 'string' ? value.nextAction : null,
         accounts: Array.isArray(value?.accounts) ? value.accounts : [],
+        failureCount: Math.max(0, Number(value?.failureCount || 0)),
     }));
 }
 function getUnhealthyConfiguredConnectors(statusPayload) {
@@ -660,10 +687,544 @@ function getConnectedConnectorKeys(statusPayload) {
         .sort();
 }
 function buildConnectorHealthFingerprint(unhealthyConnectors) {
+    const normalizeDiagnostic = (entry) => humanizeConnectorDiagnostic(entry?.detail)
+        .replace(/\b\d{4}-\d{2}-\d{2}(?:T|\s)\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?\b/gi, '[timestamp]')
+        .replace(/\b(?:request|trace|correlation)[-_ ]?id\s*[:=]\s*\S+/gi, 'request-id=[id]')
+        .replace(/\b\d+(?:\.\d+)?\s*(?:ms|milliseconds?|seconds?|minutes?)\b/gi, '[duration]')
+        .replace(/\s+/g, ' ')
+        .trim();
+    const actionCategory = (entry) => {
+        const text = `${entry?.detail || ''} ${entry?.nextAction || ''}`.toLowerCase();
+        if (/transient|upstream|network|timeout|retry/.test(text))
+            return 'retry';
+        if (/auth|credential|token|secret|permission/.test(text))
+            return 'credentials';
+        if (/setup|wizard|disabled|missing|create/.test(text))
+            return 'setup';
+        return 'review';
+    };
     return sha256(unhealthyConnectors
-        .map((entry) => `${entry.key}|${entry.status}|${entry.detail}|${entry.nextAction || ''}`)
+        .map((entry) => `${entry.key}|${entry.status}|${normalizeDiagnostic(entry)}|${actionCategory(entry)}|${Number(entry.failureCount || 0)}`)
         .sort()
         .join('\n'));
+}
+function blankConnectorNotificationIncident(kind) {
+    return {
+        kind,
+        status: 'recovered',
+        activeFingerprint: null,
+        lastObservedFingerprint: null,
+        recoveredFingerprint: null,
+        occurrenceCount: 0,
+        firstSeenAt: null,
+        lastSeenAt: null,
+        lastTransitionAt: null,
+        lastRecoveredAt: null,
+        lastNotifiedFingerprint: null,
+        lastNotificationAt: null,
+        lastNotificationDeliveries: [],
+        lastNotificationEventId: null,
+        lastNotificationReceipts: {},
+        lastNotificationAllChannelsSent: false,
+        lastNotificationExternalSent: false,
+        lastExternalAlertedFingerprint: null,
+        lastExternalAlertedAt: null,
+    };
+}
+function normalizeConnectorNotificationIncident(value, kind) {
+    const fallback = blankConnectorNotificationIncident(kind);
+    if (!value || typeof value !== 'object')
+        return fallback;
+    const activeFingerprint = String(value.activeFingerprint || '').trim() || null;
+    const storedStatus = String(value.status || '').trim().toLowerCase();
+    const status = activeFingerprint
+        ? storedStatus === 'new'
+            ? 'new'
+            : 'ongoing'
+        : 'recovered';
+    const lastExternalAlertedFingerprint = String(value.lastExternalAlertedFingerprint || '').trim() || null;
+    const lastNotificationExternalSent = typeof value.lastNotificationExternalSent === 'boolean'
+        ? value.lastNotificationExternalSent
+        : Boolean(lastExternalAlertedFingerprint);
+    const lastNotificationAllChannelsSent = typeof value.lastNotificationAllChannelsSent === 'boolean'
+        ? value.lastNotificationAllChannelsSent
+        : lastNotificationExternalSent;
+    return {
+        ...fallback,
+        ...value,
+        kind,
+        status,
+        activeFingerprint,
+        lastObservedFingerprint: String(value.lastObservedFingerprint || value.lastFingerprint || '').trim() || activeFingerprint,
+        recoveredFingerprint: String(value.recoveredFingerprint || '').trim() || null,
+        occurrenceCount: Math.max(0, Number(value.occurrenceCount || 0)),
+        lastNotifiedFingerprint: String(value.lastNotifiedFingerprint || value.lastAlertedFingerprint || '').trim() || null,
+        lastNotificationExternalSent,
+        lastNotificationAllChannelsSent,
+        lastExternalAlertedFingerprint,
+        lastNotificationEventId: String(value.lastNotificationEventId || '').trim() || null,
+        lastNotificationReceipts: value.lastNotificationReceipts &&
+            typeof value.lastNotificationReceipts === 'object'
+            ? value.lastNotificationReceipts
+            : {},
+        lastNotificationDeliveries: Array.isArray(value.lastNotificationDeliveries)
+            ? value.lastNotificationDeliveries
+            : Array.isArray(value.lastAlertDeliveries)
+                ? value.lastAlertDeliveries
+                : [],
+    };
+}
+function getPersistedSourceCollectionFailures(state) {
+    if (Array.isArray(state?.lastSourceCollectionFailures)) {
+        return state.lastSourceCollectionFailures;
+    }
+    if (Array.isArray(state?.lastSourceFailures)) {
+        return state.lastSourceFailures;
+    }
+    return [];
+}
+/**
+ * Migrates the original shared connectorHealth alert fields into one incident
+ * stream. Existing source failures identify the source-collection stream;
+ * otherwise the legacy state belongs to the scheduled connector probe.
+ *
+ * Once version 2 exists, missing streams are initialized independently and the
+ * ambiguous legacy fields are never used again.
+ */
+function getConnectorNotificationIncidents(state) {
+    const healthState = state?.connectorHealth || {};
+    const stored = healthState.incidents;
+    if (stored &&
+        typeof stored === 'object' &&
+        Number(stored.version || 0) >= CONNECTOR_NOTIFICATION_STATE_VERSION) {
+        return {
+            ...stored,
+            version: CONNECTOR_NOTIFICATION_STATE_VERSION,
+            [CONNECTOR_PROBE_INCIDENT_KEY]: normalizeConnectorNotificationIncident(stored[CONNECTOR_PROBE_INCIDENT_KEY], 'connector_probe'),
+            [SOURCE_COLLECTION_INCIDENT_KEY]: normalizeConnectorNotificationIncident(stored[SOURCE_COLLECTION_INCIDENT_KEY], 'source_collection'),
+        };
+    }
+    const sourceFailures = getPersistedSourceCollectionFailures(state);
+    const legacyKind = sourceFailures.length > 0 ? SOURCE_COLLECTION_INCIDENT_KEY : CONNECTOR_PROBE_INCIDENT_KEY;
+    const legacyActiveFingerprint = String(healthState.activeIncidentFingerprint ||
+        (healthState.lastStatusOk === false ? healthState.lastFingerprint : '') ||
+        '').trim() || null;
+    const legacyIncident = normalizeConnectorNotificationIncident({
+        status: legacyActiveFingerprint ? 'ongoing' : 'recovered',
+        activeFingerprint: legacyActiveFingerprint,
+        lastObservedFingerprint: healthState.lastFingerprint || legacyActiveFingerprint,
+        recoveredFingerprint: legacyActiveFingerprint ? null : healthState.lastFingerprint || null,
+        occurrenceCount: legacyActiveFingerprint ? 1 : 0,
+        firstSeenAt: healthState.lastAlertedAt || healthState.lastCheckedAt || null,
+        lastSeenAt: healthState.lastCheckedAt || null,
+        lastTransitionAt: healthState.lastAlertedAt || healthState.lastCheckedAt || null,
+        lastRecoveredAt: healthState.lastRecoveredAt || null,
+        lastNotifiedFingerprint: healthState.lastAlertedFingerprint ||
+            healthState.lastExternalAlertedFingerprint ||
+            legacyActiveFingerprint,
+        lastNotificationAt: healthState.lastAlertedAt || healthState.lastExternalAlertedAt || null,
+        lastNotificationDeliveries: healthState.lastAlertDeliveries || [],
+        lastNotificationExternalSent: typeof healthState.lastAlertExternalSent === 'boolean'
+            ? healthState.lastAlertExternalSent
+            : Boolean(healthState.lastExternalAlertedFingerprint),
+        lastExternalAlertedFingerprint: healthState.lastExternalAlertedFingerprint || null,
+        lastExternalAlertedAt: healthState.lastExternalAlertedAt || null,
+        migratedFromLegacyConnectorHealth: true,
+    }, legacyKind === SOURCE_COLLECTION_INCIDENT_KEY
+        ? 'source_collection'
+        : 'connector_probe');
+    return {
+        version: CONNECTOR_NOTIFICATION_STATE_VERSION,
+        migratedAt: new Date().toISOString(),
+        [CONNECTOR_PROBE_INCIDENT_KEY]: legacyKind === CONNECTOR_PROBE_INCIDENT_KEY
+            ? legacyIncident
+            : blankConnectorNotificationIncident('connector_probe'),
+        [SOURCE_COLLECTION_INCIDENT_KEY]: legacyKind === SOURCE_COLLECTION_INCIDENT_KEY
+            ? legacyIncident
+            : blankConnectorNotificationIncident('source_collection'),
+    };
+}
+function transitionConnectorNotificationIncident(previousValue, kind, fingerprint, observedAt) {
+    const previous = normalizeConnectorNotificationIncident(previousValue, kind);
+    const currentFingerprint = String(fingerprint || '').trim() || null;
+    if (currentFingerprint) {
+        const unchanged = previous.activeFingerprint === currentFingerprint;
+        return {
+            ...previous,
+            kind,
+            status: unchanged ? 'ongoing' : 'new',
+            activeFingerprint: currentFingerprint,
+            lastObservedFingerprint: currentFingerprint,
+            recoveredFingerprint: null,
+            occurrenceCount: Number(previous.occurrenceCount || 0) + 1,
+            firstSeenAt: unchanged ? previous.firstSeenAt || observedAt : observedAt,
+            lastSeenAt: observedAt,
+            lastTransitionAt: unchanged
+                ? previous.lastTransitionAt || observedAt
+                : observedAt,
+        };
+    }
+    const recoveredFingerprint = previous.activeFingerprint || previous.recoveredFingerprint || null;
+    return {
+        ...previous,
+        kind,
+        status: 'recovered',
+        activeFingerprint: null,
+        recoveredFingerprint,
+        lastSeenAt: observedAt,
+        lastTransitionAt: previous.activeFingerprint
+            ? observedAt
+            : previous.lastTransitionAt || observedAt,
+        lastRecoveredAt: previous.activeFingerprint
+            ? observedAt
+            : previous.lastRecoveredAt || null,
+    };
+}
+function connectorIncidentNotificationEventId(incident) {
+    const fingerprint = incident?.status === 'recovered'
+        ? incident?.recoveredFingerprint
+        : incident?.activeFingerprint;
+    const phase = incident?.status === 'recovered' ? 'recovered' : 'active';
+    return `${incident?.kind || 'connector_probe'}:${phase}:${fingerprint || 'healthy'}`;
+}
+function pendingConnectorIncidentChannelKeys(previousValue, nextValue, channelKeys) {
+    const uniqueKeys = Array.from(new Set((Array.isArray(channelKeys) ? channelKeys : []).map((key) => String(key))));
+    const eventId = connectorIncidentNotificationEventId(nextValue);
+    if (previousValue?.lastNotificationEventId !== eventId) {
+        const legacyEventAlreadyDelivered = !previousValue?.lastNotificationEventId &&
+            previousValue?.lastNotificationExternalSent === true &&
+            String(previousValue?.lastNotifiedFingerprint || '') ===
+                String(nextValue?.status === 'recovered'
+                    ? nextValue?.recoveredFingerprint || ''
+                    : nextValue?.activeFingerprint || '');
+        return legacyEventAlreadyDelivered ? [] : uniqueKeys;
+    }
+    const receipts = previousValue?.lastNotificationReceipts &&
+        typeof previousValue.lastNotificationReceipts === 'object'
+        ? previousValue.lastNotificationReceipts
+        : {};
+    return uniqueKeys.filter((key) => receipts[key]?.sent !== true);
+}
+function shouldNotifyConnectorIncident(previousValue, nextValue, channelKeys = null) {
+    const previousActiveFingerprint = String(previousValue?.activeFingerprint || '').trim() || null;
+    if (nextValue?.status === 'new') {
+        return nextValue.activeFingerprint !== previousActiveFingerprint;
+    }
+    if (nextValue?.status === 'ongoing') {
+        if (Array.isArray(channelKeys)) {
+            return (pendingConnectorIncidentChannelKeys(previousValue, nextValue, channelKeys).length > 0);
+        }
+        if (typeof previousValue?.lastNotificationAllChannelsSent === 'boolean') {
+            return previousValue.lastNotificationAllChannelsSent !== true;
+        }
+        return previousValue?.lastNotificationExternalSent !== true;
+    }
+    if (nextValue?.status === 'recovered') {
+        if (previousActiveFingerprint)
+            return true;
+        if (Array.isArray(channelKeys)) {
+            return (pendingConnectorIncidentChannelKeys(previousValue, nextValue, channelKeys).length > 0);
+        }
+        return Boolean(previousValue?.lastNotificationAt &&
+            previousValue?.recoveredFingerprint &&
+            previousValue?.lastNotificationAllChannelsSent !== true);
+    }
+    return false;
+}
+function markConnectorIncidentNotification(incident, deliveries, notifiedAt, configuredChannelKeys = null) {
+    const fingerprint = incident.status === 'recovered'
+        ? incident.recoveredFingerprint
+        : incident.activeFingerprint;
+    const eventId = connectorIncidentNotificationEventId(incident);
+    const sameEvent = incident.lastNotificationEventId === eventId;
+    const receipts = sameEvent &&
+        incident.lastNotificationReceipts &&
+        typeof incident.lastNotificationReceipts === 'object'
+        ? { ...incident.lastNotificationReceipts }
+        : {};
+    for (const delivery of deliveries) {
+        const channelKey = String(delivery?.channelKey || delivery?.target || '').trim();
+        if (!channelKey || channelKey === 'external_notification')
+            continue;
+        receipts[channelKey] = {
+            sent: delivery?.sent === true,
+            external: delivery?.external === true,
+            target: delivery?.target || channelKey,
+            detail: delivery?.detail || null,
+            retryable: delivery?.retryable !== false,
+            attemptCount: Number(delivery?.attemptCount || 1),
+            updatedAt: notifiedAt,
+        };
+    }
+    const channelKeys = Array.isArray(configuredChannelKeys)
+        ? [...new Set(configuredChannelKeys)]
+        : Object.keys(receipts);
+    const allChannelsSent = channelKeys.length === 0 ||
+        channelKeys.every((key) => receipts[key]?.sent === true);
+    const externalSent = Object.values(receipts).some((receipt) => receipt?.sent === true && receipt?.external === true);
+    return {
+        ...incident,
+        lastNotifiedFingerprint: fingerprint || null,
+        lastNotificationAt: notifiedAt,
+        lastNotificationDeliveries: deliveries,
+        lastNotificationEventId: eventId,
+        lastNotificationReceipts: receipts,
+        lastNotificationAllChannelsSent: allChannelsSent,
+        lastNotificationExternalSent: externalSent,
+        ...(externalSent
+            ? {
+                lastExternalAlertedFingerprint: fingerprint || null,
+                lastExternalAlertedAt: notifiedAt,
+            }
+            : {}),
+    };
+}
+function incidentLabel(kind) {
+    return kind === 'source_collection' ? 'source collection' : 'connector probe';
+}
+function buildConnectorRecoveryAlert(kind) {
+    return `${kind === 'source_collection' ? 'Data collection' : 'Connector health'} recovered.\n`;
+}
+function assertNotificationStateValidation(condition, message) {
+    if (!condition) {
+        throw new Error(`Notification-state validation failed: ${message}`);
+    }
+}
+function validateConnectorNotificationStateModel() {
+    const firstAt = '2026-07-23T10:00:00.000Z';
+    const secondAt = '2026-07-23T10:05:00.000Z';
+    const recoveredAt = '2026-07-23T10:10:00.000Z';
+    const legacyFingerprint = 'legacy-source-fingerprint';
+    const migrated = getConnectorNotificationIncidents({
+        connectorHealth: {
+            lastStatusOk: false,
+            lastFingerprint: legacyFingerprint,
+            activeIncidentFingerprint: legacyFingerprint,
+            lastAlertedFingerprint: legacyFingerprint,
+            lastExternalAlertedFingerprint: legacyFingerprint,
+            lastAlertedAt: firstAt,
+        },
+        lastSourceCollectionFailures: [
+            {
+                key: 'analytics',
+                detail: 'upstream unavailable',
+            },
+        ],
+    });
+    assertNotificationStateValidation(migrated.version === CONNECTOR_NOTIFICATION_STATE_VERSION, 'legacy state did not migrate to the current version');
+    assertNotificationStateValidation(migrated[SOURCE_COLLECTION_INCIDENT_KEY].activeFingerprint === legacyFingerprint, 'legacy source incident was not assigned to source collection');
+    assertNotificationStateValidation(migrated[CONNECTOR_PROBE_INCIDENT_KEY].activeFingerprint === null, 'legacy source incident leaked into connector-probe state');
+    const newProbe = transitionConnectorNotificationIncident(migrated[CONNECTOR_PROBE_INCIDENT_KEY], 'connector_probe', 'probe-fingerprint', firstAt);
+    const notifiedProbe = markConnectorIncidentNotification(newProbe, [{ sent: true, external: true, target: 'validator' }], firstAt);
+    const ongoingProbe = transitionConnectorNotificationIncident(notifiedProbe, 'connector_probe', 'probe-fingerprint', secondAt);
+    assertNotificationStateValidation(newProbe.status === 'new', 'new probe incident not modeled');
+    assertNotificationStateValidation(ongoingProbe.status === 'ongoing', 'unchanged probe incident not modeled as ongoing');
+    assertNotificationStateValidation(!shouldNotifyConnectorIncident(notifiedProbe, ongoingProbe), 'successfully delivered unchanged probe incident would be sent again');
+    assertNotificationStateValidation(ongoingProbe.lastTransitionAt === notifiedProbe.lastTransitionAt, 'ongoing observation overwrote the original transition timestamp');
+    assertNotificationStateValidation(ongoingProbe.occurrenceCount === notifiedProbe.occurrenceCount + 1, 'ongoing observation did not increment occurrenceCount');
+    const failedProbeDelivery = markConnectorIncidentNotification(newProbe, [{ sent: false, external: true, target: 'validator' }], firstAt);
+    const retryableOngoingProbe = transitionConnectorNotificationIncident(failedProbeDelivery, 'connector_probe', 'probe-fingerprint', secondAt);
+    assertNotificationStateValidation(shouldNotifyConnectorIncident(failedProbeDelivery, retryableOngoingProbe), 'failed external delivery would not be retried for ongoing incident');
+    const mixedProbeDelivery = markConnectorIncidentNotification(newProbe, [
+        {
+            sent: true,
+            external: true,
+            target: 'discord',
+            channelKey: 'discord:bridge',
+        },
+        {
+            sent: false,
+            external: true,
+            target: 'slack',
+            channelKey: 'slack:SLACK_WEBHOOK_URL',
+        },
+    ], firstAt, ['discord:bridge', 'slack:SLACK_WEBHOOK_URL']);
+    const mixedOngoingProbe = transitionConnectorNotificationIncident(mixedProbeDelivery, 'connector_probe', 'probe-fingerprint', secondAt);
+    const mixedPendingKeys = pendingConnectorIncidentChannelKeys(mixedProbeDelivery, mixedOngoingProbe, ['discord:bridge', 'slack:SLACK_WEBHOOK_URL']);
+    assertNotificationStateValidation(mixedPendingKeys.length === 1 &&
+        mixedPendingKeys[0] === 'slack:SLACK_WEBHOOK_URL', 'successful channels would be retried together with a failed channel');
+    const completedMixedDelivery = markConnectorIncidentNotification(mixedOngoingProbe, [
+        {
+            sent: true,
+            external: true,
+            target: 'slack',
+            channelKey: 'slack:SLACK_WEBHOOK_URL',
+        },
+    ], secondAt, ['discord:bridge', 'slack:SLACK_WEBHOOK_URL']);
+    assertNotificationStateValidation(completedMixedDelivery.lastNotificationAllChannelsSent === true &&
+        completedMixedDelivery.lastNotificationReceipts['discord:bridge']?.sent === true, 'channel receipts were not merged after a selective retry');
+    const growthSnapshot = {
+        issuesPayload: { issue_count: 1, issues: [{ title: 'Example finding' }] },
+        activeCadences: [],
+        sourceFiles: {},
+        createdGitHubArtifact: false,
+        chartManifestPath: null,
+    };
+    const failedGrowthDelivery = markGrowthRunNotificationState({
+        previousState: null,
+        fingerprint: 'growth-fingerprint',
+        deliveries: [
+            {
+                sent: true,
+                external: true,
+                target: 'discord',
+                channelKey: 'discord:bridge',
+            },
+            {
+                sent: false,
+                external: true,
+                target: 'slack',
+                channelKey: 'slack:SLACK_WEBHOOK_URL',
+            },
+        ],
+        configuredChannelKeys: ['discord:bridge', 'slack:SLACK_WEBHOOK_URL'],
+        snapshot: growthSnapshot,
+        attemptedAt: firstAt,
+    });
+    assertNotificationStateValidation(failedGrowthDelivery.allChannelsSent === false &&
+        failedGrowthDelivery.snapshot === growthSnapshot &&
+        pendingGrowthRunChannelKeys(failedGrowthDelivery, 'growth-fingerprint', ['discord:bridge', 'slack:SLACK_WEBHOOK_URL']).join(',') === 'slack:SLACK_WEBHOOK_URL', 'failed growth delivery would be lost or retried on successful channels');
+    const deduplicatedChannels = mergeNotificationChannelsWithDeliveries([
+        {
+            type: 'slack',
+            enabled: true,
+            label: 'primary',
+            webhookEnv: 'SLACK_WEBHOOK_URL',
+        },
+    ], [
+        {
+            type: 'slack',
+            enabled: true,
+            label: 'legacy-fallback',
+            webhookEnv: 'SLACK_WEBHOOK_URL',
+        },
+    ]);
+    const disabledFallbackChannels = mergeNotificationChannelsWithDeliveries([{ type: 'slack', enabled: false }], [
+        {
+            type: 'slack',
+            enabled: true,
+            webhookEnv: 'SLACK_WEBHOOK_URL',
+        },
+    ]);
+    const defaultChannelOverride = mergeNotificationChannelsWithDeliveries([{ type: 'openclaw-chat', enabled: true }], [
+        {
+            type: 'openclaw-chat',
+            enabled: true,
+            markdownPath: '.openclaw/chat/latest.md',
+            jsonPath: '.openclaw/chat/latest.json',
+        },
+    ]);
+    assertNotificationStateValidation(deduplicatedChannels.length === 1 &&
+        disabledFallbackChannels.length === 0 &&
+        defaultChannelOverride.length === 1, 'channel identity or explicit fallback suppression is not deterministic');
+    const sourceIncident = transitionConnectorNotificationIncident(blankConnectorNotificationIncident('source_collection'), 'source_collection', 'source-fingerprint', firstAt);
+    const notifiedSource = markConnectorIncidentNotification(sourceIncident, [{ sent: true, external: true, target: 'validator' }], firstAt);
+    assertNotificationStateValidation(notifiedProbe.lastExternalAlertedFingerprint === 'probe-fingerprint', 'probe external fingerprint was not retained');
+    assertNotificationStateValidation(notifiedSource.lastExternalAlertedFingerprint === 'source-fingerprint', 'source external fingerprint was not retained independently');
+    const independentStore = {
+        ...migrated,
+        [CONNECTOR_PROBE_INCIDENT_KEY]: notifiedProbe,
+        [SOURCE_COLLECTION_INCIDENT_KEY]: notifiedSource,
+    };
+    const sourceAfterAnotherObservation = transitionConnectorNotificationIncident(independentStore[SOURCE_COLLECTION_INCIDENT_KEY], 'source_collection', 'source-fingerprint', secondAt);
+    const storeAfterSourceObservation = {
+        ...independentStore,
+        [SOURCE_COLLECTION_INCIDENT_KEY]: sourceAfterAnotherObservation,
+    };
+    assertNotificationStateValidation(storeAfterSourceObservation[CONNECTOR_PROBE_INCIDENT_KEY]
+        .lastExternalAlertedFingerprint === 'probe-fingerprint', 'source observation overwrote the connector-probe fingerprint');
+    const recoveredSource = transitionConnectorNotificationIncident(notifiedSource, 'source_collection', null, recoveredAt);
+    assertNotificationStateValidation(recoveredSource.status === 'recovered', 'source recovery transition not modeled');
+    assertNotificationStateValidation(shouldNotifyConnectorIncident(notifiedSource, recoveredSource), 'first recovery would not be emitted');
+    const notifiedRecovery = markConnectorIncidentNotification(recoveredSource, [{ sent: true, external: true, target: 'validator' }], recoveredAt);
+    const stillRecoveredSource = transitionConnectorNotificationIncident(notifiedRecovery, 'source_collection', null, '2026-07-23T10:15:00.000Z');
+    assertNotificationStateValidation(!shouldNotifyConnectorIncident(notifiedRecovery, stillRecoveredSource), 'successfully delivered recovery would be emitted more than once');
+    const failedRecovery = markConnectorIncidentNotification(recoveredSource, [{ sent: false, external: true, target: 'validator' }], recoveredAt);
+    const retryableRecovery = transitionConnectorNotificationIncident(failedRecovery, 'source_collection', null, '2026-07-23T10:15:00.000Z');
+    assertNotificationStateValidation(shouldNotifyConnectorIncident(failedRecovery, retryableRecovery), 'failed external recovery delivery would not be retried');
+    const recurringSource = transitionConnectorNotificationIncident(notifiedRecovery, 'source_collection', 'source-fingerprint', '2026-07-23T10:20:00.000Z');
+    assertNotificationStateValidation(recurringSource.status === 'new' &&
+        shouldNotifyConnectorIncident(notifiedRecovery, recurringSource), 'same incident fingerprint did not become new after recovery');
+    assertNotificationStateValidation(buildConnectorRecoveryAlert('source_collection').trim() ===
+        'Data collection recovered.', 'recovery output is not compact');
+    const recoveryNotification = buildConnectorSocialNotification({ generatedAt: recoveredAt }, [], 'source-fingerprint', { kind: 'source_collection', status: 'recovered' });
+    const recoveryDiscordPayload = buildDiscordSocialPayload(recoveryNotification);
+    const recoveryDiscordEmbed = recoveryDiscordPayload.embeds?.[0];
+    assertNotificationStateValidation(recoveryDiscordPayload.embeds?.length === 1 &&
+        recoveryDiscordEmbed &&
+        Array.isArray(recoveryDiscordEmbed.fields) &&
+        recoveryDiscordEmbed.fields.length <= 2, 'Discord recovery output is not a compact single embed');
+    const timeoutFingerprintA = buildConnectorHealthFingerprint([
+        {
+            key: 'asc_cli',
+            status: 'partial',
+            detail: 'Timed out after 120000ms; request id first-123',
+            nextAction: 'Retry later.',
+        },
+    ]);
+    const timeoutFingerprintB = buildConnectorHealthFingerprint([
+        {
+            key: 'asc_cli',
+            status: 'partial',
+            detail: 'Timed out after 180000ms; request id second-456',
+            nextAction: 'Retry later.',
+        },
+    ]);
+    assertNotificationStateValidation(timeoutFingerprintA === timeoutFingerprintB, 'volatile timeout/request diagnostics changed the incident fingerprint');
+    const groupedSourceFailures = buildSourceFailureStatusPayload('/host/config.json', [
+        {
+            key: 'glitchtip',
+            service: 'sentry',
+            detail: 'first account failed',
+        },
+        {
+            key: 'glitchtip',
+            service: 'sentry',
+            detail: 'second account failed',
+        },
+    ]);
+    const groupedSourceConnectors = groupedSourceFailures.connectors;
+    assertNotificationStateValidation(Object.keys(groupedSourceConnectors).length === 1 &&
+        groupedSourceConnectors.sentry?.failureCount === 2 &&
+        groupedSourceConnectors.sentry?.failures?.length === 2, 'multiple failures for one provider overwrote one another');
+    const migratedDeliveredIncident = normalizeConnectorNotificationIncident({
+        activeFingerprint: 'legacy-delivered',
+        lastNotifiedFingerprint: 'legacy-delivered',
+        lastNotificationExternalSent: true,
+    }, 'connector_probe');
+    const migratedOngoingIncident = transitionConnectorNotificationIncident(migratedDeliveredIncident, 'connector_probe', 'legacy-delivered', secondAt);
+    assertNotificationStateValidation(pendingConnectorIncidentChannelKeys(migratedDeliveredIncident, migratedOngoingIncident, ['discord:migrated']).length === 0, 'legacy delivered incident would emit a surprise migration alert');
+    const firstSlackEnv = 'ANALYTICSCLI_VALIDATION_SLACK_A';
+    const secondSlackEnv = 'ANALYTICSCLI_VALIDATION_SLACK_B';
+    process.env[firstSlackEnv] = 'https://hooks.example.test/same-target';
+    process.env[secondSlackEnv] = 'https://hooks.example.test/same-target';
+    const firstTargetKey = notificationChannelKey({
+        type: 'slack',
+        webhookEnv: firstSlackEnv,
+    });
+    const aliasTargetKey = notificationChannelKey({
+        type: 'slack',
+        webhookEnv: secondSlackEnv,
+    });
+    process.env[secondSlackEnv] = 'https://hooks.example.test/rotated-target';
+    const rotatedTargetKey = notificationChannelKey({
+        type: 'slack',
+        webhookEnv: secondSlackEnv,
+    });
+    delete process.env[firstSlackEnv];
+    delete process.env[secondSlackEnv];
+    assertNotificationStateValidation(firstTargetKey === aliasTargetKey &&
+        firstTargetKey !== rotatedTargetKey, 'channel receipts did not follow the resolved transport target');
+    return {
+        ok: true,
+        version: CONNECTOR_NOTIFICATION_STATE_VERSION,
+        transitions: ['new', 'ongoing', 'recovered'],
+        retryPolicy: 'per-channel until every configured delivery succeeds',
+        independentIncidentKeys: [
+            CONNECTOR_PROBE_INCIDENT_KEY,
+            SOURCE_COLLECTION_INCIDENT_KEY,
+        ],
+    };
 }
 function humanConnectorName(key) {
     if (key === 'analyticscli')
@@ -710,18 +1271,72 @@ function conciseConnectorDetail(entry) {
         return 'needs attention.';
     return detail.length > 180 ? `${detail.slice(0, 177)}...` : detail;
 }
-function buildConnectorHealthAlert(statusPayload, unhealthyConnectors) {
-    const configPath = statusPayload?.configPath || DEFAULT_CONFIG_PATH;
-    const lines = [`OpenClaw connector health: ${unhealthyConnectors.length} issue(s)`];
-    for (const entry of unhealthyConnectors) {
-        lines.push(`- ${humanConnectorName(entry.key)}: ${entry.status} - ${conciseConnectorDetail(entry)}`);
-        const command = buildConnectorWizardCommand(configPath, entry);
-        if (command) {
-            lines.push(`  Fix: \`${command}\``);
+function connectorNotificationAction(entry, incidentKind) {
+    const connector = humanizeNotificationIdentifier(entry?.key);
+    if (incidentKind === 'source_collection') {
+        if (/transient|upstream|network|retry/i.test(`${entry?.detail || ''} ${entry?.nextAction || ''}`)) {
+            return 'Growth Engineer will retry automatically. If this repeats, check provider availability and credentials.';
         }
+        return `Check the ${connector} credentials or source setup in the host terminal.`;
     }
-    lines.push('Secrets stay in the host terminal or secret store.');
-    return `${lines.join('\n')}\n`;
+    return `Complete the ${connector} connector setup in the host terminal.`;
+}
+function buildConnectorSocialNotification(statusPayload, unhealthyConnectors, fingerprint, incident = { kind: 'connector_probe', status: 'new' }) {
+    const generatedAt = String(statusPayload?.generatedAt || new Date().toISOString());
+    const sourceCollection = incident.kind === 'source_collection';
+    const recovered = incident.status === 'recovered';
+    const count = unhealthyConnectors.length;
+    const blocked = unhealthyConnectors.some((entry) => String(entry?.status || '').toLowerCase() === 'blocked');
+    if (recovered) {
+        return {
+            schema: 'analyticscli.social-notification',
+            version: 1,
+            kind: 'recovery',
+            state: 'recovered',
+            severity: 'success',
+            title: sourceCollection ? 'Data collection recovered' : 'Connector health recovered',
+            summary: sourceCollection
+                ? 'All configured sources are responding again.'
+                : 'All configured connections are healthy again.',
+            items: [],
+            nextStep: 'No action needed.',
+            automation: 'Monitoring continues automatically.',
+            generatedAt,
+            fingerprint: String(fingerprint || '') || undefined,
+            scope: String(statusPayload?.configPath || '') || undefined,
+        };
+    }
+    return {
+        schema: 'analyticscli.social-notification',
+        version: 1,
+        kind: sourceCollection ? 'source_collection' : 'connector_health',
+        state: incident.status === 'ongoing' ? 'ongoing' : 'new',
+        severity: blocked ? 'critical' : 'warning',
+        title: sourceCollection ? 'Data collection degraded' : 'Connector setup incomplete',
+        summary: `${count} ${sourceCollection ? (count === 1 ? 'source is' : 'sources are') : count === 1 ? 'connection is' : 'connections are'} affected.`,
+        impact: sourceCollection
+            ? 'This analysis may be incomplete; healthy sources were still processed.'
+            : 'Data from affected connections may be missing until setup is complete.',
+        items: unhealthyConnectors.map((entry) => ({
+            id: String(entry?.key || ''),
+            label: humanizeNotificationIdentifier(entry?.label || entry?.key),
+            status: humanizeNotificationIdentifier(entry?.status || 'needs attention'),
+            summary: humanizeConnectorDiagnostic(entry?.detail),
+            action: connectorNotificationAction(entry, incident.kind),
+        })),
+        nextStep: sourceCollection
+            ? 'Review the affected sources; automatic collection will retry on the next scheduled run.'
+            : 'Finish the affected connector setup in the host terminal.',
+        automation: sourceCollection
+            ? 'Growth Engineer keeps processing healthy sources and retries failed collection.'
+            : 'Growth Engineer will verify coverage again automatically.',
+        generatedAt,
+        fingerprint: String(fingerprint || '') || undefined,
+        scope: String(statusPayload?.configPath || '') || undefined,
+    };
+}
+function buildConnectorHealthAlert(statusPayload, unhealthyConnectors, incidentKind = 'connector_probe') {
+    return renderSocialNotificationMarkdown(buildConnectorSocialNotification(statusPayload, unhealthyConnectors, buildConnectorHealthFingerprint(unhealthyConnectors), { kind: incidentKind, status: 'new' }));
 }
 function sourceFailureConnectorKey(failure) {
     const service = String(failure?.service || '').toLowerCase();
@@ -770,13 +1385,29 @@ function getSentryAccountTargets(config) {
 }
 function buildSourceFailureStatusPayload(configPath, sourceFailures, config = null) {
     const connectors = {};
+    const groupedFailures = new Map();
     for (const failure of sourceFailures) {
         const key = sourceFailureConnectorKey(failure);
-        const detail = `Source collection failed during scheduled run: ${failure.detail}`;
-        const retryable = Boolean(failure.retryable || failure.transient);
+        const current = groupedFailures.get(key) || [];
+        current.push(failure);
+        groupedFailures.set(key, current);
+    }
+    for (const [key, failures] of groupedFailures.entries()) {
+        const retryable = failures.every((failure) => Boolean(failure.retryable || failure.transient));
+        const detail = failures.length === 1
+            ? `Source collection failed during scheduled run: ${failures[0].detail}`
+            : `${failures.length} ${humanizeNotificationIdentifier(key)} source/account collections failed during the scheduled run.`;
         connectors[key] = {
+            label: humanizeNotificationIdentifier(key),
             status: 'partial',
             detail,
+            failureCount: failures.length,
+            failures: failures.map((failure) => ({
+                key: failure.key || failure.source || key,
+                service: failure.service || null,
+                detail: failure.detail,
+                retryable: Boolean(failure.retryable || failure.transient),
+            })),
             accounts: key === 'sentry' ? getSentryAccountTargets(config) : [],
             nextAction: retryable
                 ? 'Provider returned a transient upstream/network error after retry. Rerun the Growth Engineer later; if it repeats, check the provider status page and connector credentials.'
@@ -791,60 +1422,83 @@ function buildSourceFailureStatusPayload(configPath, sourceFailures, config = nu
     };
 }
 async function recordSourceCollectionFailures({ config, configPath, state, statePath, runtimeDir, sourceFailures }) {
-    if (sourceFailures.length === 0) {
-        return {
-            ...state,
-            lastSourceCollectionFailures: [],
-        };
-    }
     const healthState = state?.connectorHealth || {};
     const checkedAt = new Date().toISOString();
     const statusPayload = buildSourceFailureStatusPayload(configPath, sourceFailures, config);
     const unhealthyConnectors = getUnhealthyConfiguredConnectors(statusPayload);
-    const fingerprint = buildConnectorHealthFingerprint(unhealthyConnectors);
-    const previousExternallyDeliveredFingerprint = healthState.lastExternalAlertedFingerprint || null;
-    let alertTriggered = false;
-    let alertDeliveries = [];
-    const nextHealthState = {
-        ...healthState,
-        lastCheckedAt: checkedAt,
-        lastStatusOk: false,
-        lastFingerprint: fingerprint,
-        activeIncidentFingerprint: fingerprint,
-        lastError: sourceFailures.map((failure) => `${failure.key || failure.source}: ${failure.detail}`).join('\n'),
-    };
-    if (previousExternallyDeliveredFingerprint !== fingerprint) {
-        const message = buildConnectorHealthAlert(statusPayload, unhealthyConnectors);
-        const paths = await writeConnectorHealthAlert(runtimeDir, message, statusPayload, unhealthyConnectors, fingerprint);
-        const deliveries = await deliverConnectorHealthAlert({
+    const fingerprint = unhealthyConnectors.length > 0
+        ? buildConnectorHealthFingerprint(unhealthyConnectors)
+        : null;
+    const incidents = getConnectorNotificationIncidents(state);
+    const previousIncident = incidents[SOURCE_COLLECTION_INCIDENT_KEY];
+    let nextIncident = transitionConnectorNotificationIncident(previousIncident, 'source_collection', fingerprint, checkedAt);
+    const configuredChannelKeys = getConnectorHealthChannelKeys(config);
+    const pendingChannelKeys = pendingConnectorIncidentChannelKeys(previousIncident, nextIncident, configuredChannelKeys);
+    const shouldNotify = config?.notifications?.connectorHealth?.enabled !== false &&
+        shouldNotifyConnectorIncident(previousIncident, nextIncident, configuredChannelKeys);
+    let notificationTriggered = false;
+    let notificationDeliveries = [];
+    let alertPaths = null;
+    if (shouldNotify) {
+        const notificationFingerprint = nextIncident.activeFingerprint || nextIncident.recoveredFingerprint;
+        const socialNotification = buildConnectorSocialNotification(statusPayload, unhealthyConnectors, notificationFingerprint, {
+            kind: 'source_collection',
+            status: nextIncident.status,
+        });
+        const message = renderSocialNotificationMarkdown(socialNotification);
+        alertPaths = await writeConnectorHealthAlert(runtimeDir, message, statusPayload, unhealthyConnectors, notificationFingerprint, {
+            kind: 'source_collection',
+            status: nextIncident.status,
+        }, socialNotification);
+        notificationDeliveries = await deliverConnectorHealthAlert({
             config,
             configPath,
             message,
             statusPayload,
             unhealthyConnectors,
-            fingerprint,
+            fingerprint: notificationFingerprint,
+            incident: {
+                kind: 'source_collection',
+                status: nextIncident.status,
+            },
+            notification: socialNotification,
+            onlyChannelKeys: pendingChannelKeys,
         });
-        alertTriggered = true;
-        alertDeliveries = deliveries;
-        nextHealthState.lastAlertedAt = checkedAt;
-        nextHealthState.lastAlertedFingerprint = fingerprint;
-        nextHealthState.lastAlertMarkdownPath = paths.markdownPath;
-        nextHealthState.lastAlertJsonPath = paths.jsonPath;
-        nextHealthState.lastAlertDeliveries = deliveries;
-        nextHealthState.lastAlertExternalSent = hasSuccessfulExternalDelivery(deliveries);
-        if (nextHealthState.lastAlertExternalSent) {
-            nextHealthState.lastExternalAlertedAt = checkedAt;
-            nextHealthState.lastExternalAlertedFingerprint = fingerprint;
-        }
+        notificationTriggered = true;
+        nextIncident = {
+            ...markConnectorIncidentNotification(nextIncident, notificationDeliveries, checkedAt, configuredChannelKeys),
+            lastAlertMarkdownPath: alertPaths.markdownPath,
+            lastAlertJsonPath: alertPaths.jsonPath,
+        };
     }
+    const nextHealthState = {
+        ...healthState,
+        incidents: {
+            ...incidents,
+            version: CONNECTOR_NOTIFICATION_STATE_VERSION,
+            [SOURCE_COLLECTION_INCIDENT_KEY]: nextIncident,
+        },
+        sourceCollectionLastCheckedAt: checkedAt,
+        sourceCollectionLastStatusOk: sourceFailures.length === 0,
+        sourceCollectionLastFingerprint: fingerprint,
+        sourceCollectionLastError: sourceFailures.length > 0
+            ? sourceFailures
+                .map((failure) => `${failure.key || failure.source}: ${failure.detail}`)
+                .join('\n')
+            : null,
+    };
     const nextState = {
         ...state,
         connectorHealth: nextHealthState,
         lastSourceCollectionFailures: sourceFailures,
     };
     await fs.mkdir(path.dirname(statePath), { recursive: true });
-    await fs.writeFile(statePath, JSON.stringify(nextState, null, 2), 'utf8');
-    await appendSchedulerProof('source_collection_degraded', {
+    await writeJsonAtomic(statePath, nextState);
+    await appendSchedulerProof(sourceFailures.length > 0
+        ? 'source_collection_degraded'
+        : previousIncident.activeFingerprint
+            ? 'source_collection_recovered'
+            : 'source_collection_healthy', {
         configPath,
         statePath,
         checkedAt,
@@ -858,54 +1512,227 @@ async function recordSourceCollectionFailures({ config, configPath, state, state
             status: entry.status,
             detail: entry.detail,
         })),
-        alertTriggered,
-        deliveryCount: alertDeliveries.length,
-        externalDeliverySent: alertTriggered ? hasSuccessfulExternalDelivery(alertDeliveries) : false,
-        socialOutput: alertTriggered ? 'CONNECTOR_HEALTH_ALERT' : 'HEARTBEAT_OK',
-        socialReason: alertTriggered
-            ? 'new or changed source-collection connector incident'
-            : 'source-collection connector incident unchanged',
+        incidentStatus: nextIncident.status,
+        activeIncidentFingerprint: nextIncident.activeFingerprint,
+        notificationTriggered,
+        alertTriggered: notificationTriggered,
+        deliveryCount: notificationDeliveries.length,
+        externalDeliverySent: notificationTriggered
+            ? hasSuccessfulExternalDelivery(notificationDeliveries)
+            : false,
+        socialOutput: notificationTriggered
+            ? nextIncident.status === 'recovered'
+                ? 'CONNECTOR_HEALTH_RECOVERED'
+                : 'CONNECTOR_HEALTH_ALERT'
+            : 'HEARTBEAT_OK',
+        socialReason: notificationTriggered
+            ? nextIncident.status === 'recovered'
+                ? 'source-collection incident recovered'
+                : nextIncident.status === 'ongoing'
+                    ? 'retrying unchanged source-collection incident after failed external delivery'
+                    : 'new or changed source-collection connector incident'
+            : sourceFailures.length > 0
+                ? 'source-collection connector incident ongoing and unchanged'
+                : 'source collection remains healthy',
     });
     return nextState;
 }
-async function writeConnectorHealthAlert(runtimeDir, message, statusPayload, unhealthyConnectors, fingerprint) {
+async function writeConnectorHealthAlert(runtimeDir, message, statusPayload, unhealthyConnectors, fingerprint, incident = { kind: 'connector_probe', status: 'new' }, notification = null) {
     const alertDir = path.join(runtimeDir, 'connector-health');
     await ensureDir(alertDir);
-    const markdownPath = path.join(alertDir, 'latest.md');
-    const jsonPath = path.join(alertDir, 'latest.json');
+    const filePrefix = incident.kind === 'source_collection' ? 'source-collection-latest' : 'latest';
+    const markdownPath = path.join(alertDir, `${filePrefix}.md`);
+    const jsonPath = path.join(alertDir, `${filePrefix}.json`);
     await fs.writeFile(markdownPath, message, 'utf8');
     await fs.writeFile(jsonPath, JSON.stringify({
         generatedAt: new Date().toISOString(),
         fingerprint,
+        incident,
+        ...(notification
+            ? { notification: socialNotificationSummary(notification) }
+            : {}),
         unhealthyConnectors,
         status: statusPayload,
     }, null, 2), 'utf8');
     return { markdownPath, jsonPath };
 }
 function notificationChannelKey(channel) {
-    const type = String(channel?.type || 'openclaw-chat');
-    if (type === 'openclaw-chat')
-        return 'openclaw-chat';
+    const type = String(channel?.type || 'openclaw-chat').trim().toLowerCase();
+    if (type === 'openclaw-chat') {
+        const markdownPath = String(channel?.markdownPath || '').trim();
+        const jsonPath = String(channel?.jsonPath || '').trim();
+        return `openclaw-chat:path-${sha256(`${markdownPath}|${jsonPath}`).slice(0, 16)}`;
+    }
+    if (type === 'slack') {
+        const envName = String(channel?.webhookEnv || 'SLACK_WEBHOOK_URL').trim();
+        const target = process.env[envName] || `env:${envName}`;
+        return `slack:target-${sha256(target).slice(0, 16)}`;
+    }
+    if (type === 'webhook') {
+        const envName = String(channel?.urlEnv || channel?.webhookEnv || 'OPENCLAW_WEBHOOK_URL').trim();
+        const target = process.env[envName] || `env:${envName}`;
+        const method = String(channel?.method || 'POST').trim().toUpperCase();
+        const headers = stableStringify(channel?.headers || {});
+        return `webhook:target-${sha256(`${target}|${method}|${headers}`).slice(0, 16)}`;
+    }
+    if (type === 'discord') {
+        return `discord:command-${sha256(String(channel?.command || '').trim()).slice(0, 16)}`;
+    }
+    if (type === 'command') {
+        return `command:${sha256(String(channel?.command || '').trim()).slice(0, 16)}`;
+    }
+    return `${type}:${sha256(String(channel?.command || channel?.urlEnv || channel?.webhookEnv || '').trim()).slice(0, 16)}`;
+}
+function notificationChannelHasExplicitIdentity(channel) {
+    const type = String(channel?.type || 'openclaw-chat').trim().toLowerCase();
+    if (type === 'openclaw-chat') {
+        return Boolean(String(channel?.markdownPath || '').trim() ||
+            String(channel?.jsonPath || '').trim());
+    }
     if (type === 'slack')
-        return `slack:${channel?.label || channel?.webhookEnv || 'slack'}`;
-    if (type === 'webhook')
-        return `webhook:${channel?.label || channel?.urlEnv || channel?.webhookEnv || 'webhook'}`;
-    if (type === 'discord')
-        return `discord:${channel?.label || channel?.command || 'discord'}`;
-    if (type === 'command')
-        return `command:${channel?.label || channel?.command || 'command'}`;
-    return `${type}:${channel?.label || type}`;
+        return Boolean(String(channel?.webhookEnv || '').trim());
+    if (type === 'webhook') {
+        return Boolean(String(channel?.urlEnv || channel?.webhookEnv || '').trim());
+    }
+    if (type === 'discord' || type === 'command') {
+        return Boolean(String(channel?.command || '').trim());
+    }
+    return false;
 }
 function mergeNotificationChannelsWithDeliveries(configuredChannels, deliveryChannels) {
     const configured = Array.isArray(configuredChannels) ? configuredChannels : [];
-    const seen = new Set(configured.map((channel) => notificationChannelKey(channel)));
-    const channels = configured.filter((channel) => channel?.enabled !== false);
-    for (const channel of deliveryChannels) {
-        if (!seen.has(notificationChannelKey(channel))) {
-            channels.push(channel);
+    const disabledKeys = new Set(configured
+        .filter((channel) => channel?.enabled === false &&
+        notificationChannelHasExplicitIdentity(channel))
+        .map((channel) => notificationChannelKey(channel)));
+    const disabledTypes = new Set(configured
+        .filter((channel) => channel?.enabled === false &&
+        !notificationChannelHasExplicitIdentity(channel))
+        .map((channel) => String(channel?.type || 'openclaw-chat')));
+    const configuredTypeOverrides = new Set(configured
+        .filter((channel) => channel?.enabled !== false &&
+        !notificationChannelHasExplicitIdentity(channel))
+        .map((channel) => String(channel?.type || 'openclaw-chat')));
+    const channels = [];
+    const seen = new Set();
+    const appendChannel = (channel) => {
+        const key = notificationChannelKey(channel);
+        const type = String(channel?.type || 'openclaw-chat');
+        if (seen.has(key) ||
+            disabledKeys.has(key) ||
+            disabledTypes.has(type)) {
+            return;
         }
+        channels.push(channel);
+        seen.add(key);
+    };
+    for (const channel of configured.filter((entry) => entry?.enabled !== false)) {
+        appendChannel(channel);
+    }
+    for (const channel of deliveryChannels) {
+        const type = String(channel?.type || 'openclaw-chat');
+        if (configuredTypeOverrides.has(type))
+            continue;
+        appendChannel(channel);
     }
     return channels;
+}
+function socialNotificationEventId(notification) {
+    return canonicalSocialNotificationEventId(notification);
+}
+function notificationScope(config, configPath = '') {
+    return String(config?.project?.githubRepo ||
+        config?.project?.repoRoot ||
+        config?.project?.name ||
+        configPath ||
+        'growth-engineer').trim();
+}
+function safeDeliveryErrorDetail(error) {
+    const value = error instanceof Error ? error.message : String(error || 'delivery failed');
+    return value
+        .replace(/https?:\/\/[^\s]+/gi, '[endpoint]')
+        .replace(/(?:token|secret|authorization|api[-_ ]?key)\s*[:=]\s*\S+/gi, '$1=[redacted]')
+        .replace(/\/(?:home|Users|private|tmp|var|opt)\/[^\s)"'`]+/g, '[host path]')
+        .slice(0, 320);
+}
+function discordDeliveryEnvironment(notification) {
+    return {
+        OPENCLAW_DISCORD_DELIVERY_FORMAT: 'embed',
+        OPENCLAW_NOTIFICATION_EVENT_ID: socialNotificationEventId(notification),
+        OPENCLAW_DISCORD_RECEIPT_PATH: path.join(path.dirname(schedulerProofPath), 'discord-delivery-receipts.json'),
+    };
+}
+function sanitizeOutboundPayload(value, key = '') {
+    if (/(?:authorization|password|private.?key|api.?key|access.?token|refresh.?token|secret)/i.test(key) &&
+        !/(?:env|name)$/i.test(key)) {
+        return '[redacted]';
+    }
+    if (typeof value === 'string') {
+        return value
+            .replace(/\bBearer\s+[A-Za-z0-9._~+/=-]+/gi, 'Bearer [redacted]')
+            .replace(/\b(token|secret|password|authorization|api[-_ ]?key)\s*[:=]\s*["']?[^\s"',;}]+/gi, '$1=[redacted]')
+            .replace(/\/(?:home|Users|private|tmp|var|opt)\/[^\s)"'`]+/g, '[host path]');
+    }
+    if (Array.isArray(value)) {
+        return value.map((entry) => sanitizeOutboundPayload(entry));
+    }
+    if (value && typeof value === 'object') {
+        return Object.fromEntries(Object.entries(value).map(([entryKey, entryValue]) => [
+            entryKey,
+            sanitizeOutboundPayload(entryValue, entryKey),
+        ]));
+    }
+    return value;
+}
+async function sendNotificationHttpRequest(url, init, maxAttempts = 2) {
+    let lastStatus = null;
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        try {
+            const response = await fetch(url, {
+                ...init,
+                signal: AbortSignal.timeout(15_000),
+            });
+            lastStatus = response.status;
+            if (response.ok) {
+                return {
+                    sent: true,
+                    detail: `HTTP ${response.status}`,
+                    attemptCount: attempt,
+                };
+            }
+            const retryable = response.status === 429 || response.status >= 500;
+            if (!retryable || attempt >= maxAttempts) {
+                return {
+                    sent: false,
+                    detail: `HTTP ${response.status}`,
+                    attemptCount: attempt,
+                    retryable,
+                };
+            }
+            const retryAfterSeconds = Number(response.headers.get('retry-after'));
+            const delayMs = Number.isFinite(retryAfterSeconds)
+                ? Math.min(5_000, Math.max(250, retryAfterSeconds * 1_000))
+                : 750 * attempt;
+            await new Promise((resolvePromise) => setTimeout(resolvePromise, delayMs));
+        }
+        catch (error) {
+            if (attempt >= maxAttempts) {
+                return {
+                    sent: false,
+                    detail: safeDeliveryErrorDetail(error),
+                    attemptCount: attempt,
+                    retryable: true,
+                };
+            }
+            await new Promise((resolvePromise) => setTimeout(resolvePromise, 500 * attempt));
+        }
+    }
+    return {
+        sent: false,
+        detail: lastStatus ? `HTTP ${lastStatus}` : 'delivery failed',
+        attemptCount: maxAttempts,
+        retryable: true,
+    };
 }
 function getDeliveryNotificationChannels(config, kind) {
     const channels = [];
@@ -915,12 +1742,17 @@ function getDeliveryNotificationChannels(config, kind) {
         channels.push({
             type: 'openclaw-chat',
             label: 'openclaw_chat',
+            legacyCompatible: true,
             markdownPath: isConnectorHealth
                 ? deliveries.openclawChat.connectorHealthMarkdownPath || deliveries.openclawChat.markdownPath
-                : deliveries.openclawChat.growthRunMarkdownPath || '.openclaw/chat/growth-summary.md',
+                : deliveries.openclawChat.growthRunMarkdownPath ||
+                    deliveries.openclawChat.markdownPath ||
+                    '.openclaw/chat/growth-summary.md',
             jsonPath: isConnectorHealth
                 ? deliveries.openclawChat.connectorHealthJsonPath || deliveries.openclawChat.jsonPath
-                : deliveries.openclawChat.growthRunJsonPath || '.openclaw/chat/growth-summary.json',
+                : deliveries.openclawChat.growthRunJsonPath ||
+                    deliveries.openclawChat.jsonPath ||
+                    '.openclaw/chat/growth-summary.json',
         });
     }
     if (deliveries.slack?.enabled) {
@@ -928,6 +1760,7 @@ function getDeliveryNotificationChannels(config, kind) {
             type: 'slack',
             label: 'slack',
             webhookEnv: deliveries.slack.webhookEnv || 'SLACK_WEBHOOK_URL',
+            username: deliveries.slack.username,
         });
     }
     if (deliveries.webhook?.enabled) {
@@ -961,57 +1794,94 @@ function getConnectorHealthChannels(config) {
         : [];
     return mergeNotificationChannelsWithDeliveries(configuredChannels, getDeliveryNotificationChannels(config, 'connectorHealth'));
 }
+function getConnectorHealthChannelKeys(config) {
+    if (config?.notifications?.connectorHealth?.enabled === false)
+        return [];
+    return getConnectorHealthChannels(config).map((channel) => notificationChannelKey(channel));
+}
 function resolveOpenClawChatDeliveryPath(channelPath, fallbackPath) {
     const targetPath = String(channelPath || fallbackPath || '').trim();
     if (!targetPath)
         return path.resolve(process.cwd(), fallbackPath);
     return path.isAbsolute(targetPath) ? targetPath : path.resolve(process.cwd(), targetPath);
 }
-async function writeConfiguredOpenClawChatAlert(configPath, channel, message, statusPayload, unhealthyConnectors, fingerprint) {
+async function writeConfiguredOpenClawChatAlert(configPath, channel, message, statusPayload, unhealthyConnectors, fingerprint, incident, notification) {
     const markdownPath = resolveOpenClawChatDeliveryPath(channel.markdownPath, '.openclaw/chat/connector-health.md');
     const jsonPath = resolveOpenClawChatDeliveryPath(channel.jsonPath, '.openclaw/chat/connector-health.json');
-    await fs.mkdir(path.dirname(markdownPath), { recursive: true });
-    await fs.mkdir(path.dirname(jsonPath), { recursive: true });
-    await fs.writeFile(markdownPath, message, 'utf8');
-    await fs.writeFile(jsonPath, JSON.stringify({
+    const payload = {
         channel: channel.label || 'openclaw_chat',
         generatedAt: new Date().toISOString(),
         fingerprint,
+        incident,
+        schemaVersion: 1,
+        eventId: socialNotificationEventId(notification),
+        notification: socialNotificationSummary(notification),
         unhealthyConnectors,
         status: statusPayload,
-    }, null, 2), 'utf8');
+    };
+    await fs.mkdir(path.dirname(markdownPath), { recursive: true });
+    await fs.mkdir(path.dirname(jsonPath), { recursive: true });
+    await fs.writeFile(markdownPath, message, 'utf8');
+    await writeJsonAtomic(jsonPath, payload);
+    const incidentBaseName = incident?.kind === 'source_collection'
+        ? 'source-collection'
+        : 'connector-health';
+    const incidentMarkdownPath = path.join(path.dirname(markdownPath), `${incidentBaseName}.md`);
+    const incidentJsonPath = path.join(path.dirname(jsonPath), `${incidentBaseName}.json`);
+    if (incidentMarkdownPath !== markdownPath ||
+        incidentJsonPath !== jsonPath) {
+        await fs.mkdir(path.dirname(incidentMarkdownPath), { recursive: true });
+        await fs.mkdir(path.dirname(incidentJsonPath), { recursive: true });
+        await fs.writeFile(incidentMarkdownPath, message, 'utf8');
+        await writeJsonAtomic(incidentJsonPath, payload);
+    }
     return {
         sent: true,
         external: false,
         target: channel.label || 'openclaw_chat',
-        detail: `wrote local OpenClaw chat outbox ${markdownPath} and ${jsonPath}`,
+        detail: `wrote local OpenClaw chat outbox and ${incidentBaseName} incident snapshot`,
     };
 }
-async function sendSlackConnectorHealthAlert(channel, message) {
+async function sendSlackConnectorHealthAlert(channel, notification) {
     const webhookEnv = channel.webhookEnv || 'SLACK_WEBHOOK_URL';
     const webhookUrl = process.env[webhookEnv];
     if (!webhookUrl) {
-        return { sent: false, target: channel.label || 'slack', detail: `${webhookEnv} not set` };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'slack',
+            detail: `${webhookEnv} not set`,
+            retryable: false,
+        };
     }
-    const response = await fetch(webhookUrl, {
+    const payload = {
+        ...buildSlackSocialPayload(notification),
+        ...(channel.username ? { username: channel.username } : {}),
+    };
+    const result = await sendNotificationHttpRequest(webhookUrl, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ text: message }),
+        body: JSON.stringify(payload),
     });
     return {
-        sent: response.ok,
+        ...result,
         external: true,
         target: channel.label || 'slack',
-        detail: response.ok ? `HTTP ${response.status}` : `HTTP ${response.status}: ${await response.text()}`,
     };
 }
-async function sendWebhookConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint) {
+async function sendWebhookConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint, incident, notification) {
     const urlEnv = channel.urlEnv || channel.webhookEnv || 'OPENCLAW_WEBHOOK_URL';
     const webhookUrl = process.env[urlEnv];
     if (!webhookUrl) {
-        return { sent: false, target: channel.label || 'webhook', detail: `${urlEnv} not set` };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'webhook',
+            detail: `${urlEnv} not set`,
+            retryable: false,
+        };
     }
-    const response = await fetch(webhookUrl, {
+    const result = await sendNotificationHttpRequest(webhookUrl, {
         method: channel.method || 'POST',
         headers: {
             'content-type': 'application/json',
@@ -1019,47 +1889,184 @@ async function sendWebhookConnectorHealthAlert(channel, message, statusPayload, 
         },
         body: JSON.stringify({
             type: 'openclaw.connector_health',
+            schemaVersion: 1,
+            eventId: socialNotificationEventId(notification),
             generatedAt: new Date().toISOString(),
             text: message,
             fingerprint,
-            unhealthyConnectors,
-            status: statusPayload,
+            incident,
+            notification: socialNotificationSummary(notification),
+            unhealthyConnectors: sanitizeOutboundPayload(unhealthyConnectors),
+            status: sanitizeOutboundPayload(statusPayload),
         }),
     });
     return {
-        sent: response.ok,
+        ...result,
         external: true,
         target: channel.label || 'webhook',
-        detail: response.ok ? `HTTP ${response.status}` : `HTTP ${response.status}: ${await response.text()}`,
     };
 }
 async function sendCommandConnectorHealthAlert(channel, message) {
     if (!channel.command) {
-        return { sent: false, target: channel.label || 'command', detail: 'command not configured' };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'command',
+            detail: 'command not configured',
+            retryable: false,
+        };
     }
     const result = await runShellCommand(String(channel.command), 60_000, { input: message });
     return {
         sent: result.ok,
         external: true,
         target: channel.label || 'command',
-        detail: result.ok ? 'sent' : result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`,
+        detail: result.ok
+            ? 'sent'
+            : safeDeliveryErrorDetail(result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`),
     };
 }
-async function sendDiscordConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint) {
+async function sendDiscordConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint, incident, notification) {
     if (!channel.command) {
-        return { sent: false, target: channel.label || 'discord', detail: 'discord command not configured' };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'discord',
+            detail: 'discord command not configured',
+            retryable: false,
+        };
     }
-    const payload = buildDiscordConnectorHealthPayload(message, statusPayload, unhealthyConnectors, fingerprint);
+    const payload = buildDiscordSocialPayload(notification);
     const result = await runShellCommand(String(channel.command), 60_000, {
         input: JSON.stringify(payload),
-        env: { OPENCLAW_DISCORD_DELIVERY_FORMAT: 'embed' },
+        env: discordDeliveryEnvironment(notification),
     });
     return {
         sent: result.ok,
         external: true,
         target: channel.label || 'discord',
-        detail: result.ok ? 'sent' : result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`,
+        detail: result.ok
+            ? 'sent'
+            : safeDeliveryErrorDetail(result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`),
     };
+}
+function getRunnerFailureChannels(config) {
+    const candidates = [];
+    if (config?.notifications?.connectorHealth?.enabled !== false) {
+        candidates.push(...getConnectorHealthChannels(config));
+    }
+    if (config?.notifications?.growthRun?.enabled !== false) {
+        candidates.push(...getGrowthRunChannels(config));
+    }
+    const byKey = new Map();
+    for (const channel of candidates) {
+        byKey.set(notificationChannelKey(channel), channel);
+    }
+    return [...byKey.values()];
+}
+async function deliverRunnerFailureNotification({ config, configPath, notification, onlyChannelKeys = null, }) {
+    const message = renderSocialNotificationMarkdown(notification);
+    const selectedChannelKeys = Array.isArray(onlyChannelKeys)
+        ? new Set(onlyChannelKeys)
+        : null;
+    const channels = getRunnerFailureChannels(config).filter((channel) => !selectedChannelKeys ||
+        selectedChannelKeys.has(notificationChannelKey(channel)));
+    const results = [];
+    for (const channel of channels) {
+        const channelKey = notificationChannelKey(channel);
+        try {
+            let result;
+            if (channel.type === 'openclaw-chat') {
+                const configuredMarkdownPath = resolveOpenClawChatDeliveryPath(channel.markdownPath, '.openclaw/chat/growth-summary.md');
+                const configuredJsonPath = resolveOpenClawChatDeliveryPath(channel.jsonPath, '.openclaw/chat/growth-summary.json');
+                const markdownPath = path.join(path.dirname(configuredMarkdownPath), 'runner-failure.md');
+                const jsonPath = path.join(path.dirname(configuredJsonPath), 'runner-failure.json');
+                await fs.mkdir(path.dirname(markdownPath), { recursive: true });
+                await fs.mkdir(path.dirname(jsonPath), { recursive: true });
+                await fs.writeFile(markdownPath, message, 'utf8');
+                await writeJsonAtomic(jsonPath, {
+                    channel: channel.label || 'openclaw_chat',
+                    generatedAt: notification.generatedAt,
+                    schemaVersion: 1,
+                    eventId: socialNotificationEventId(notification),
+                    notification: socialNotificationSummary(notification),
+                });
+                result = {
+                    sent: true,
+                    external: false,
+                    target: channel.label || 'openclaw_chat',
+                    detail: 'wrote local runner-failure outbox',
+                };
+            }
+            else if (channel.type === 'slack') {
+                result = await sendSlackConnectorHealthAlert(channel, notification);
+            }
+            else if (channel.type === 'webhook') {
+                const urlEnv = channel.urlEnv ||
+                    channel.webhookEnv ||
+                    'OPENCLAW_WEBHOOK_URL';
+                const webhookUrl = process.env[urlEnv];
+                result = webhookUrl
+                    ? {
+                        ...(await sendNotificationHttpRequest(webhookUrl, {
+                            method: channel.method || 'POST',
+                            headers: {
+                                'content-type': 'application/json',
+                                ...(channel.headers || {}),
+                            },
+                            body: JSON.stringify({
+                                type: 'openclaw.runner_failure',
+                                schemaVersion: 1,
+                                eventId: socialNotificationEventId(notification),
+                                generatedAt: notification.generatedAt,
+                                text: message,
+                                notification: socialNotificationSummary(notification),
+                            }),
+                        })),
+                        external: true,
+                        target: channel.label || 'webhook',
+                    }
+                    : {
+                        sent: false,
+                        external: true,
+                        target: channel.label || 'webhook',
+                        detail: `${urlEnv} not set`,
+                        retryable: false,
+                    };
+            }
+            else if (channel.type === 'discord') {
+                result = await sendDiscordConnectorHealthAlert(channel, message, null, [], notification.fingerprint, { kind: 'runner_failure', status: 'new' }, notification);
+            }
+            else if (channel.type === 'command') {
+                result = await sendCommandConnectorHealthAlert(channel, message);
+            }
+            else {
+                result = {
+                    sent: false,
+                    external: channel.type !== 'openclaw-chat',
+                    target: channel.label || String(channel.type || 'unknown'),
+                    detail: 'unsupported channel type',
+                    retryable: false,
+                };
+            }
+            results.push({
+                ...result,
+                channelKey,
+                notification: socialNotificationSummary(notification),
+            });
+        }
+        catch (deliveryError) {
+            results.push({
+                sent: false,
+                external: channel.type !== 'openclaw-chat',
+                target: channel.label || String(channel.type || 'unknown'),
+                channelKey,
+                detail: safeDeliveryErrorDetail(deliveryError),
+                notification: socialNotificationSummary(notification),
+            });
+        }
+    }
+    return results;
 }
 function hasExternalNotificationChannel(channels) {
     return channels.some((channel) => channel?.type && channel.type !== 'openclaw-chat');
@@ -1085,7 +2092,23 @@ function connectorStatusColor(unhealthyConnectors) {
         ? 0xd92d20
         : 0xf79009;
 }
-function buildDiscordConnectorHealthPayload(message, statusPayload, unhealthyConnectors, fingerprint) {
+function buildDiscordConnectorHealthPayload(message, statusPayload, unhealthyConnectors, fingerprint, incident = { kind: 'connector_probe', status: 'new' }) {
+    if (incident.status === 'recovered') {
+        return {
+            content: '',
+            embeds: [
+                {
+                    title: `OpenClaw ${incidentLabel(incident.kind)} recovered`,
+                    color: 0x12b76a,
+                    footer: {
+                        text: `CONNECTOR_HEALTH_RECOVERED • ${String(fingerprint || '').slice(0, 12)}`,
+                    },
+                    timestamp: statusPayload?.generatedAt || new Date().toISOString(),
+                },
+            ],
+            fallbackText: message,
+        };
+    }
     const fields = unhealthyConnectors.slice(0, 10).map((entry) => {
         const command = buildConnectorWizardCommand(statusPayload?.configPath || DEFAULT_CONFIG_PATH, entry);
         const parts = [
@@ -1102,12 +2125,14 @@ function buildDiscordConnectorHealthPayload(message, statusPayload, unhealthyCon
         content: '',
         embeds: [
             {
-                title: `OpenClaw connector health: ${unhealthyConnectors.length} issue(s)`,
+                title: incident.kind === 'source_collection'
+                    ? `OpenClaw source collection: ${unhealthyConnectors.length} issue(s)`
+                    : `OpenClaw connector health: ${unhealthyConnectors.length} issue(s)`,
                 description: 'Secrets stay in the host terminal or secret store.',
                 color: connectorStatusColor(unhealthyConnectors),
                 fields,
                 footer: {
-                    text: `CONNECTOR_HEALTH_ALERT • ${String(fingerprint || '').slice(0, 12)}`,
+                    text: `CONNECTOR_HEALTH_ALERT • ${incident.status.toUpperCase()} • ${String(fingerprint || '').slice(0, 12)}`,
                 },
                 timestamp: statusPayload?.generatedAt || new Date().toISOString(),
             },
@@ -1137,6 +2162,34 @@ function formatIssueSummaryLine(issue, maxTitleLength = 92) {
     const url = issueSourceUrl(issue);
     return url ? `${title} (${url})` : title;
 }
+function issueOccurredAt(issue) {
+    const directCandidates = [
+        issue?.occurredAt,
+        issue?.occurred_at,
+        issue?.lastSeenAt,
+        issue?.last_seen_at,
+        issue?.lastSeen,
+        issue?.latestEventAt,
+        issue?.latest_event_at,
+        issue?.timestamp,
+    ];
+    for (const candidate of directCandidates) {
+        const value = String(candidate || '').trim();
+        if (value && Number.isFinite(Date.parse(value)))
+            return new Date(value).toISOString();
+    }
+    const text = [
+        ...(Array.isArray(issue?.evidence) ? issue.evidence : []),
+        issue?.body,
+    ]
+        .filter(Boolean)
+        .join('\n');
+    const timestampMatch = text.match(/(?:Last seen|Latest sampled event|Latest event|Occurred at):\s*([^\n]+)/i);
+    if (!timestampMatch?.[1])
+        return null;
+    const value = timestampMatch[1].replace(/^[`'"\s]+|[`'"\s]+$/g, '');
+    return Number.isFinite(Date.parse(value)) ? new Date(value).toISOString() : null;
+}
 function groupIssuesByProject(issues, maxIssues = 4) {
     const grouped = new Map();
     for (const issue of issues.slice(0, maxIssues)) {
@@ -1151,6 +2204,7 @@ function getDailyIssueDedupeConfig(config) {
     const raw = config?.schedule?.dailyIssueDedupe || config?.notifications?.growthRun?.dailyIssueDedupe || {};
     const multiplier = Number(raw.eventGrowthMultiplier ?? raw.multiplier);
     const minDelta = Number(raw.eventGrowthMinDelta ?? raw.minDelta);
+    const historyRetentionDays = Number(raw.historyRetentionDays ?? raw.retentionDays);
     return {
         enabled: raw.enabled !== false,
         eventGrowthMultiplier: Number.isFinite(multiplier) && multiplier > 1
@@ -1159,6 +2213,9 @@ function getDailyIssueDedupeConfig(config) {
         eventGrowthMinDelta: Number.isFinite(minDelta) && minDelta > 0
             ? minDelta
             : DEFAULT_DAILY_ISSUE_EVENT_GROWTH_MIN_DELTA,
+        historyRetentionDays: Number.isFinite(historyRetentionDays) && historyRetentionDays > 0
+            ? historyRetentionDays
+            : DEFAULT_DAILY_ISSUE_HISTORY_RETENTION_DAYS,
     };
 }
 function getDailyRunnerFailureDedupeConfig(config) {
@@ -1216,7 +2273,7 @@ function parseFailureArgs(argv) {
     return args;
 }
 async function recordRunnerFailure({ configPath, statePath, error, argv = [], now = new Date() }) {
-    const errorMessage = truncateDiagnosticText(error instanceof Error ? error.message : String(error));
+    const errorMessage = truncateDiagnosticText(String(sanitizeOutboundPayload(error instanceof Error ? error.message : String(error))));
     const config = await readJsonOptional(configPath, {});
     const state = await readJsonOptional(statePath, {
         sourceHashes: {},
@@ -1237,7 +2294,63 @@ async function recordRunnerFailure({ configPath, statePath, error, argv = [], no
         : {};
     const failures = pruneDailyRunnerFailures(previousFailures, now, dedupeConfig.retentionDays);
     const previousEntry = failures[fingerprint] || null;
-    const suppressed = dedupeConfig.enabled && Boolean(previousEntry);
+    const notification = {
+        schema: 'analyticscli.social-notification',
+        version: 1,
+        kind: 'runner_failure',
+        state: 'new',
+        severity: 'critical',
+        title: 'Growth Engineer run failed',
+        summary: 'The scheduled analysis did not complete.',
+        impact: 'Connector checks or growth findings from this run may be incomplete.',
+        items: [
+            {
+                id: 'runner',
+                label: 'Automation',
+                status: 'Failed',
+                summary: safeDeliveryErrorDetail(errorMessage),
+                action: 'Review the sanitized runner diagnostics on the host; the next scheduled run will retry automatically.',
+            },
+        ],
+        nextStep: 'Check the runner diagnostics and connector availability on the host.',
+        automation: 'The next scheduled run will retry automatically.',
+        generatedAt: nowIso,
+        fingerprint,
+        scope: notificationScope(config, configPath),
+    };
+    const configuredChannels = getRunnerFailureChannels(config);
+    const configuredChannelKeys = configuredChannels.map((channel) => notificationChannelKey(channel));
+    const previousReceipts = previousEntry?.notificationReceipts &&
+        typeof previousEntry.notificationReceipts === 'object'
+        ? previousEntry.notificationReceipts
+        : {};
+    const pendingChannelKeys = configuredChannelKeys.filter((key) => previousReceipts[key]?.sent !== true);
+    const allConfiguredChannelsPreviouslySent = configuredChannelKeys.length === 0 || pendingChannelKeys.length === 0;
+    const suppressed = dedupeConfig.enabled &&
+        Boolean(previousEntry) &&
+        allConfiguredChannelsPreviouslySent;
+    const notificationDeliveries = suppressed
+        ? []
+        : await deliverRunnerFailureNotification({
+            config,
+            configPath,
+            notification,
+            onlyChannelKeys: pendingChannelKeys,
+        });
+    const notificationReceipts = { ...previousReceipts };
+    for (const delivery of notificationDeliveries) {
+        const channelKey = String(delivery?.channelKey || delivery?.target || '').trim();
+        if (!channelKey)
+            continue;
+        notificationReceipts[channelKey] = {
+            sent: delivery?.sent === true,
+            external: delivery?.external === true,
+            target: delivery?.target || channelKey,
+            detail: delivery?.detail || null,
+            updatedAt: nowIso,
+        };
+    }
+    const externalDeliverySent = Object.values(notificationReceipts).some((receipt) => receipt?.sent === true && receipt?.external === true);
     const nextEntry = {
         ...(previousEntry || {}),
         fingerprint,
@@ -1245,6 +2358,12 @@ async function recordRunnerFailure({ configPath, statePath, error, argv = [], no
         normalizedError: normalizeRunnerFailureForFingerprint(errorMessage),
         firstSeenAt: previousEntry?.firstSeenAt || nowIso,
         lastSeenAt: nowIso,
+        notification: socialNotificationSummary(notification),
+        notificationDeliveries,
+        notificationReceipts,
+        notificationAllChannelsSent: configuredChannelKeys.length === 0 ||
+            configuredChannelKeys.every((key) => notificationReceipts[key]?.sent === true),
+        externalDeliverySent,
     };
     if (suppressed) {
         nextEntry.suppressedCount = Number(previousEntry?.suppressedCount || 0) + 1;
@@ -1267,10 +2386,13 @@ async function recordRunnerFailure({ configPath, statePath, error, argv = [], no
             error: errorMessage,
             failedAt: nowIso,
             suppressed,
+            notification: socialNotificationSummary(notification),
+            notificationDeliveries,
+            externalDeliverySent,
         },
     };
     await fs.mkdir(path.dirname(statePath), { recursive: true });
-    await fs.writeFile(statePath, JSON.stringify(nextState, null, 2), 'utf8');
+    await writeJsonAtomic(statePath, nextState);
     await appendSchedulerProof(suppressed ? 'runner_failed_suppressed' : 'runner_failed', {
         configPath,
         statePath,
@@ -1282,7 +2404,17 @@ async function recordRunnerFailure({ configPath, statePath, error, argv = [], no
         suppressed,
         reportCount: nextEntry.reportCount || 0,
         suppressedCount: nextEntry.suppressedCount || 0,
-        socialOutput: suppressed ? 'HEARTBEAT_OK' : 'RUNNER_FAILED',
+        notification: socialNotificationSummary(notification),
+        notificationEnabled: true,
+        externalDeliverySent,
+        deliveryFailed: !suppressed &&
+            configuredChannelKeys.length > 0 &&
+            !notificationDeliveries.some((delivery) => delivery?.sent === true),
+        socialOutput: suppressed
+            ? 'HEARTBEAT_OK'
+            : externalDeliverySent
+                ? 'EXTERNAL_NOTIFICATION_SENT'
+                : 'RUNNER_FAILED',
         socialReason: suppressed
             ? 'runner failure unchanged and already reported today'
             : 'new runner failure for current day',
@@ -1386,6 +2518,13 @@ function isDrasticDailyIssueEventGrowth(currentEvents, previousEntry, dedupeConf
     const requiredEvents = Math.max(previousEvents * dedupeConfig.eventGrowthMultiplier, previousEvents + dedupeConfig.eventGrowthMinDelta);
     return currentEvents >= requiredEvents;
 }
+function pruneDailyIssueHistory(issues, now, retentionDays) {
+    const cutoffMs = now.getTime() - retentionDays * 24 * 60 * 60 * 1000;
+    return Object.fromEntries(Object.entries(issues || {}).filter(([, entry]) => {
+        const lastSeenMs = Date.parse(String(entry?.lastSeenAt || entry?.lastReportedAt || ''));
+        return !Number.isFinite(lastSeenMs) || lastSeenMs >= cutoffMs;
+    }));
+}
 function applyDailyIssueDedupe(issuesPayload, state, config, activeCadences, now = new Date()) {
     const issues = Array.isArray(issuesPayload?.issues) ? issuesPayload.issues : [];
     const dedupeConfig = getDailyIssueDedupeConfig(config);
@@ -1401,10 +2540,10 @@ function applyDailyIssueDedupe(issuesPayload, state, config, activeCadences, now
     const timeZone = resolveDailyIssueDedupeTimeZone(config);
     const date = formatDateInTimeZone(now, timeZone);
     const nowIso = now.toISOString();
-    const previousState = state?.dailyIssueReports?.date === date ? state.dailyIssueReports : null;
-    const previousIssues = previousState?.issues && typeof previousState.issues === 'object'
+    const previousState = state?.dailyIssueReports || null;
+    const previousIssues = pruneDailyIssueHistory(previousState?.issues && typeof previousState.issues === 'object'
         ? previousState.issues
-        : {};
+        : {}, now, dedupeConfig.historyRetentionDays);
     const nextIssues = { ...previousIssues };
     const reportableIssues = [];
     let suppressedCount = 0;
@@ -1422,6 +2561,7 @@ function applyDailyIssueDedupe(issuesPayload, state, config, activeCadences, now
             sourceUrl: issueSourceUrl(issue) || previousEntry?.sourceUrl || null,
             lastSeenAt: nowIso,
             lastSeenEvents: events ?? previousEntry?.lastSeenEvents ?? null,
+            occurredAt: issueOccurredAt(issue) || previousEntry?.occurredAt || null,
         };
         if (shouldReport) {
             reportableIssues.push(issue);
@@ -1451,6 +2591,7 @@ function applyDailyIssueDedupe(issuesPayload, state, config, activeCadences, now
                 reportedCount: reportableIssues.length,
                 eventGrowthMultiplier: dedupeConfig.eventGrowthMultiplier,
                 eventGrowthMinDelta: dedupeConfig.eventGrowthMinDelta,
+                historyRetentionDays: dedupeConfig.historyRetentionDays,
             },
         },
         dailyIssueReports: {
@@ -1464,41 +2605,63 @@ function applyDailyIssueDedupe(issuesPayload, state, config, activeCadences, now
         hasDrasticEventGrowth,
     };
 }
-async function deliverConnectorHealthAlert({ config, configPath, message, statusPayload, unhealthyConnectors, fingerprint }) {
-    const channels = getConnectorHealthChannels(config);
+async function deliverConnectorHealthAlert({ config, configPath, message, statusPayload, unhealthyConnectors, fingerprint, incident = { kind: 'connector_probe', status: 'new' }, notification, onlyChannelKeys = null, }) {
+    const allChannels = getConnectorHealthChannels(config);
+    const selectedChannelKeys = Array.isArray(onlyChannelKeys)
+        ? new Set(onlyChannelKeys)
+        : null;
+    const channels = selectedChannelKeys
+        ? allChannels.filter((channel) => selectedChannelKeys.has(notificationChannelKey(channel)))
+        : allChannels;
     if (config?.notifications?.connectorHealth?.enabled === false) {
         return [{ sent: false, target: 'notifications', detail: 'connector health notifications disabled' }];
     }
-    if (channels.length === 0) {
+    if (allChannels.length === 0) {
         return [{ sent: false, target: 'none', detail: 'no connector health notification channels configured' }];
     }
+    if (channels.length === 0)
+        return [];
     const results = [];
     for (const channel of channels) {
+        const channelKey = notificationChannelKey(channel);
         try {
+            let result;
             if (channel.type === 'openclaw-chat') {
-                results.push(await writeConfiguredOpenClawChatAlert(configPath, channel, message, statusPayload, unhealthyConnectors, fingerprint));
+                result = await writeConfiguredOpenClawChatAlert(configPath, channel, message, statusPayload, unhealthyConnectors, fingerprint, incident, notification);
             }
             else if (channel.type === 'slack') {
-                results.push(await sendSlackConnectorHealthAlert(channel, message));
+                result = await sendSlackConnectorHealthAlert(channel, notification);
             }
             else if (channel.type === 'webhook') {
-                results.push(await sendWebhookConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint));
+                result = await sendWebhookConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint, incident, notification);
             }
             else if (channel.type === 'discord') {
-                results.push(await sendDiscordConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint));
+                result = await sendDiscordConnectorHealthAlert(channel, message, statusPayload, unhealthyConnectors, fingerprint, incident, notification);
             }
             else if (channel.type === 'command') {
-                results.push(await sendCommandConnectorHealthAlert(channel, message));
+                result = await sendCommandConnectorHealthAlert(channel, message);
             }
             else {
-                results.push({ sent: false, target: channel.label || String(channel.type || 'unknown'), detail: 'unsupported channel type' });
+                result = {
+                    sent: false,
+                    target: channel.label || String(channel.type || 'unknown'),
+                    detail: 'unsupported channel type',
+                };
             }
+            results.push({
+                ...result,
+                channelKey,
+                notification: socialNotificationSummary(notification),
+            });
         }
         catch (error) {
             results.push({
                 sent: false,
+                external: channel.type !== 'openclaw-chat',
                 target: channel.label || String(channel.type || 'unknown'),
-                detail: error instanceof Error ? error.message : String(error),
+                channelKey,
+                detail: safeDeliveryErrorDetail(error),
+                notification: socialNotificationSummary(notification),
             });
         }
     }
@@ -1520,6 +2683,60 @@ function getGrowthRunChannels(config) {
         : [];
     return mergeNotificationChannelsWithDeliveries(configuredChannels, getDeliveryNotificationChannels(config, 'growthRun'));
 }
+function getGrowthRunChannelKeys(config) {
+    if (config?.notifications?.growthRun?.enabled === false)
+        return [];
+    return getGrowthRunChannels(config).map((channel) => notificationChannelKey(channel));
+}
+function growthRunNotificationEventId(fingerprint) {
+    return `growth_findings:summary:${String(fingerprint || 'no-fingerprint')}`;
+}
+function pendingGrowthRunChannelKeys(previousState, fingerprint, channelKeys) {
+    const uniqueKeys = Array.from(new Set((Array.isArray(channelKeys) ? channelKeys : []).map((key) => String(key))));
+    if (previousState?.eventId !== growthRunNotificationEventId(fingerprint)) {
+        return uniqueKeys;
+    }
+    const receipts = previousState?.receipts && typeof previousState.receipts === 'object'
+        ? previousState.receipts
+        : {};
+    return uniqueKeys.filter((key) => receipts[key]?.sent !== true);
+}
+function markGrowthRunNotificationState({ previousState, fingerprint, deliveries, configuredChannelKeys, snapshot, attemptedAt, }) {
+    const eventId = growthRunNotificationEventId(fingerprint);
+    const receipts = previousState?.eventId === eventId &&
+        previousState?.receipts &&
+        typeof previousState.receipts === 'object'
+        ? { ...previousState.receipts }
+        : {};
+    for (const delivery of deliveries) {
+        const channelKey = String(delivery?.channelKey || delivery?.target || '').trim();
+        if (!channelKey || channelKey === 'external_notification')
+            continue;
+        receipts[channelKey] = {
+            sent: delivery?.sent === true,
+            external: delivery?.external === true,
+            target: delivery?.target || channelKey,
+            detail: delivery?.detail || null,
+            retryable: delivery?.retryable !== false,
+            attemptCount: Number(receipts[channelKey]?.attemptCount || 0) +
+                Number(delivery?.attemptCount || 1),
+            updatedAt: attemptedAt,
+        };
+    }
+    const channelKeys = Array.from(new Set((Array.isArray(configuredChannelKeys) ? configuredChannelKeys : []).map((key) => String(key))));
+    const allChannelsSent = channelKeys.length === 0 ||
+        channelKeys.every((key) => receipts[key]?.sent === true);
+    return {
+        version: 1,
+        eventId,
+        fingerprint,
+        receipts,
+        allChannelsSent,
+        lastAttemptAt: attemptedAt,
+        completedAt: allChannelsSent ? attemptedAt : null,
+        snapshot: allChannelsSent ? null : snapshot,
+    };
+}
 async function readChartAttachments(chartManifestPath) {
     if (!chartManifestPath)
         return [];
@@ -1539,82 +2756,107 @@ async function readChartAttachments(chartManifestPath) {
         return [];
     }
 }
-function buildGrowthRunSummaryMessage({ issuesPayload, activeCadences, sourceFiles, createdGitHubArtifact, charts = [] }) {
-    const issueCount = Number(issuesPayload?.issue_count || 0);
-    const cadenceNames = activeCadences.length > 0
-        ? activeCadences.map((cadence) => cadence.title || cadence.key).join(', ')
-        : 'ad-hoc growth pass';
-    const sourceNames = Object.keys(sourceFiles || {}).sort().join(', ') || 'none';
-    const issues = Array.isArray(issuesPayload?.issues) ? issuesPayload.issues : [];
-    if (isShortOperationalCadence(activeCadences)) {
-        const heading = activeCadences.some((cadence) => String(cadence?.key) === 'healthcheck')
-            ? 'OpenClaw healthcheck'
-            : 'OpenClaw daily';
-        const lines = [
-            `${heading}: ${issueCount > 0 ? `${issueCount} finding(s)` : 'OK'}`,
-        ];
-        if (issueCount > 0) {
-            const groupedIssues = groupIssuesByProject(issues, 4);
-            if (groupedIssues.length > 0) {
-                lines.push('Top by project:');
-                for (const [project, projectIssues] of groupedIssues) {
-                    const formatted = projectIssues.map((issue) => formatIssueSummaryLine(issue, 84)).filter(Boolean);
-                    if (formatted.length > 0)
-                        lines.push(`- ${project}: ${formatted.join(' | ')}`);
-                }
-            }
-            lines.push(createdGitHubArtifact
-                ? 'Action: GitHub artifact attempted.'
-                : 'Action: external alert only.');
-        }
-        const suppressedIssueCount = Number(issuesPayload?.suppressed_issue_count || 0);
-        if (suppressedIssueCount > 0) {
-            lines.push(`Suppressed today: ${suppressedIssueCount} previously reported finding(s).`);
-        }
-        if (charts.length > 0) {
-            lines.push(`Charts: ${charts.length}`);
-        }
-        return `${lines.join('\n')}\n`;
-    }
-    const lines = [
-        `OpenClaw Growth run finished (${new Date().toISOString()}).`,
-        `Cadence: ${cadenceNames}`,
-        `Sources inspected: ${sourceNames}`,
-        `Generated proposals: ${issueCount}`,
+function issueNotificationAction(issue) {
+    const directCandidates = [
+        issue?.next_step,
+        issue?.nextStep,
+        issue?.recommendation,
+        issue?.proposed_action,
+        issue?.proposedAction,
     ];
-    if (issuesPayload?.summary) {
-        lines.push(`Summary: ${issuesPayload.summary}`);
+    for (const candidate of directCandidates) {
+        const value = Array.isArray(candidate) ? candidate[0] : candidate;
+        if (String(value || '').trim())
+            return String(value).trim();
     }
-    if (createdGitHubArtifact) {
-        lines.push('GitHub artifact creation was attempted for the generated proposals.');
+    const body = String(issue?.body || '');
+    const proposedImplementation = body.match(/## Proposed Implementation\s*\n+\s*-\s*([^\n]+)/i);
+    if (proposedImplementation?.[1])
+        return proposedImplementation[1].trim();
+    return 'Review the evidence and assign an owner before changing production.';
+}
+function growthNotificationTitle(activeCadences, issueCount) {
+    if (activeCadences.some((cadence) => String(cadence?.key) === 'healthcheck')) {
+        return issueCount > 0 ? 'Production findings' : 'Production health check';
     }
-    if (charts.length > 0) {
-        lines.push(`Charts generated: ${charts.length}`);
-        for (const chart of charts.slice(0, 5)) {
-            lines.push(`- ${chart.caption}: ${chart.filePath}`);
-        }
+    if (activeCadences.some((cadence) => String(cadence?.key) === 'daily')) {
+        return issueCount > 0 ? 'Daily product signals' : 'Daily product check';
     }
-    const topIssues = issues.slice(0, isDeepAnalysisCadence(activeCadences) ? 5 : 3);
-    if (topIssues.length > 0) {
-        lines.push('');
-        lines.push(isDeepAnalysisCadence(activeCadences) ? 'App-by-app findings and next steps:' : 'Top findings:');
-        for (const issue of topIssues) {
-            lines.push(`- ${issue.title} (${issue.priority || 'medium'}, ${issue.area || 'general'})`);
-            if (isDeepAnalysisCadence(activeCadences)) {
-                for (const evidence of firstEvidenceLines(issue, 2)) {
-                    lines.push(`  Evidence: ${evidence}`);
-                }
-                if (issue.expected_impact) {
-                    lines.push(`  Impact: ${issue.expected_impact}`);
-                }
+    if (isDeepAnalysisCadence(activeCadences))
+        return 'Growth review';
+    return 'Growth Engineer summary';
+}
+function buildGrowthSocialNotification({ issuesPayload, activeCadences, fingerprint, createdGitHubArtifact, charts = [], scope = '', timeZone = 'UTC', }) {
+    const issues = Array.isArray(issuesPayload?.issues) ? issuesPayload.issues : [];
+    const issueCount = Number(issuesPayload?.issue_count || 0);
+    const highestPriority = issues.some((issue) => ['critical', 'urgent'].includes(String(issue?.priority || '').toLowerCase()));
+    const suppressedIssueCount = Number(issuesPayload?.suppressed_issue_count || 0);
+    const summary = String(issuesPayload?.summary || '').trim();
+    return {
+        schema: 'analyticscli.social-notification',
+        version: 1,
+        kind: 'growth_findings',
+        state: 'summary',
+        severity: issueCount === 0 ? 'success' : highestPriority ? 'critical' : 'warning',
+        title: growthNotificationTitle(activeCadences, issueCount),
+        summary: summary ||
+            (issueCount > 0
+                ? `${issueCount} ${issueCount === 1 ? 'finding needs' : 'findings need'} review.`
+                : 'No new actionable findings.'),
+        impact: issueCount > 0
+            ? 'Prioritized production, product, and growth risks may affect users or conversion.'
+            : undefined,
+        items: issues.slice(0, 8).map((issue) => ({
+            id: String(issue?.signal_id || issue?.id || ''),
+            label: humanizeNotificationIdentifier(issueProjectLabel(issue)),
+            status: [
+                humanizeNotificationIdentifier(issue?.priority || 'medium'),
+                humanizeNotificationIdentifier(issue?.area || 'general'),
+            ].join(' · '),
+            summary: String(issue?.title || 'Untitled finding').trim(),
+            action: issueNotificationAction(issue),
+            url: issueSourceUrl(issue) || undefined,
+            occurredAt: issueOccurredAt(issue) || undefined,
+        })),
+        nextStep: issueCount > 0
+            ? createdGitHubArtifact
+                ? 'Review the generated GitHub work item and assign an owner.'
+                : 'Review the top finding and assign an owner before changing production.'
+            : 'No action needed.',
+        automation: createdGitHubArtifact
+            ? 'GitHub work-item creation was requested; no production change was made automatically.'
+            : issueCount > 0
+                ? 'Alert only; no repository or production change was made.'
+                : 'Monitoring continues automatically.',
+        ...(charts.length > 0
+            ? {
+                evidence: {
+                    count: charts.length,
+                    chartCount: charts.length,
+                    files: charts.map((chart) => chart.filePath),
+                },
             }
-        }
-    }
-    lines.push('');
-    lines.push(isDeepAnalysisCadence(activeCadences)
-        ? 'No secrets were included. Full details are in the generated issue drafts, charts, and OpenClaw chat handoff.'
-        : 'No secrets were included.');
-    return `${lines.join('\n')}\n`;
+            : {}),
+        ...(suppressedIssueCount > 0
+            ? {
+                nextRetryAt: undefined,
+                summary: `${summary ? `${summary} ` : ''}${suppressedIssueCount} previously reported ${suppressedIssueCount === 1 ? 'finding was' : 'findings were'} omitted.`.trim(),
+            }
+            : {}),
+        generatedAt: new Date().toISOString(),
+        fingerprint: String(fingerprint || '') || undefined,
+        scope: String(scope || '') || undefined,
+        timeZone: String(timeZone || 'UTC'),
+    };
+}
+function buildGrowthRunSummaryMessage({ issuesPayload, activeCadences, sourceFiles, createdGitHubArtifact, charts = [] }) {
+    return renderSocialNotificationMarkdown(buildGrowthSocialNotification({
+        issuesPayload,
+        activeCadences,
+        fingerprint: buildIssueFingerprint(issuesPayload),
+        createdGitHubArtifact,
+        charts,
+    }));
 }
 function growthRunTitle(activeCadences) {
     if (isShortOperationalCadence(activeCadences)) {
@@ -1641,7 +2883,7 @@ function buildDiscordGrowthRunPayload(message, issuesPayload, activeCadences, so
     }
     const suppressedIssueCount = Number(issuesPayload?.suppressed_issue_count || 0);
     if (suppressedIssueCount > 0) {
-        fields.push(discordField('Suppressed today', `${suppressedIssueCount} previously reported finding(s).`, true));
+        fields.push(discordField('Omitted', `${suppressedIssueCount} previously reported finding(s).`, true));
     }
     if (charts.length > 0) {
         fields.push(discordField('Charts', String(charts.length), true));
@@ -1677,16 +2919,53 @@ function buildDiscordGrowthRunPayload(message, issuesPayload, activeCadences, so
         fallbackText: message,
     };
 }
-async function writeConfiguredOpenClawChatGrowthSummary(configPath, channel, message, issuesPayload, activeCadences, fingerprint, charts) {
+function buildLegacyOpenClawGrowthMarkdown(issuesPayload) {
+    const issues = Array.isArray(issuesPayload?.issues)
+        ? issuesPayload.issues
+        : [];
+    const sections = [
+        '# OpenClaw Proposal Outbox',
+        '',
+        `Generated: ${issuesPayload?.generated_at || issuesPayload?.generatedAt || new Date().toISOString()}`,
+        `Repo: ${issuesPayload?.repo_root || issuesPayload?.repoRoot || ''}`,
+        `Proposals: ${Number(issuesPayload?.issue_count || 0)}`,
+        '',
+        'This detailed handoff is kept for existing OpenClaw and doc-feeding integrations. The compact social notification is available in growth-summary.md and in the JSON notification field.',
+    ];
+    for (const [index, issue] of issues.entries()) {
+        sections.push('', `## ${index + 1}. ${issue?.title || 'Untitled finding'}`);
+        sections.push(`- Priority: ${issue?.priority || 'medium'}`);
+        sections.push(`- Area: ${issue?.area || 'general'}`);
+        if (issue?.source)
+            sections.push(`- Source: ${issue.source}`);
+        if (issue?.expected_impact) {
+            sections.push(`- Expected impact: ${issue.expected_impact}`);
+        }
+        if (issue?.confidence)
+            sections.push(`- Confidence: ${issue.confidence}`);
+        if (Array.isArray(issue?.files) && issue.files.length > 0) {
+            sections.push(`- Candidate files: ${issue.files.map((file) => `\`${file}\``).join(', ')}`);
+        }
+        if (String(issue?.body || '').trim()) {
+            sections.push('', String(issue.body).trim());
+        }
+    }
+    return `${sections.join('\n')}\n`;
+}
+async function writeConfiguredOpenClawChatGrowthSummary(configPath, channel, message, issuesPayload, activeCadences, fingerprint, charts, notification) {
     const markdownPath = resolveOpenClawChatDeliveryPath(channel.markdownPath, '.openclaw/chat/growth-summary.md');
     const jsonPath = resolveOpenClawChatDeliveryPath(channel.jsonPath, '.openclaw/chat/growth-summary.json');
-    await fs.mkdir(path.dirname(markdownPath), { recursive: true });
-    await fs.mkdir(path.dirname(jsonPath), { recursive: true });
-    await fs.writeFile(markdownPath, message, 'utf8');
-    await fs.writeFile(jsonPath, JSON.stringify({
+    const generatedAt = issuesPayload?.generated_at ||
+        issuesPayload?.generatedAt ||
+        new Date().toISOString();
+    const outboxPayload = {
         channel: channel.label || 'openclaw_chat',
-        generatedAt: new Date().toISOString(),
+        generatedAt,
         fingerprint,
+        repoRoot: issuesPayload?.repo_root || issuesPayload?.repoRoot || null,
+        schemaVersion: 1,
+        eventId: socialNotificationEventId(notification),
+        notification: socialNotificationSummary(notification),
         activeCadences,
         issueCount: Number(issuesPayload?.issue_count || 0),
         issues: Array.isArray(issuesPayload?.issues) ? issuesPayload.issues : [],
@@ -1696,39 +2975,71 @@ async function writeConfiguredOpenClawChatGrowthSummary(configPath, channel, mes
             path: chart.filePath,
             caption: chart.caption,
         })),
-    }, null, 2), 'utf8');
+    };
+    await fs.mkdir(path.dirname(markdownPath), { recursive: true });
+    await fs.mkdir(path.dirname(jsonPath), { recursive: true });
+    await fs.writeFile(markdownPath, channel.legacyCompatible
+        ? buildLegacyOpenClawGrowthMarkdown(issuesPayload)
+        : message, 'utf8');
+    await writeJsonAtomic(jsonPath, outboxPayload);
+    const compactMarkdownPath = path.join(path.dirname(markdownPath), 'growth-summary.md');
+    const compactJsonPath = path.join(path.dirname(jsonPath), 'growth-summary.json');
+    if (channel.legacyCompatible &&
+        (compactMarkdownPath !== markdownPath || compactJsonPath !== jsonPath)) {
+        await fs.mkdir(path.dirname(compactMarkdownPath), { recursive: true });
+        await fs.mkdir(path.dirname(compactJsonPath), { recursive: true });
+        await fs.writeFile(compactMarkdownPath, message, 'utf8');
+        await writeJsonAtomic(compactJsonPath, outboxPayload);
+    }
     return {
         sent: true,
         external: false,
         target: channel.label || 'openclaw_chat',
-        detail: `wrote local OpenClaw chat outbox ${markdownPath} and ${jsonPath}`,
+        detail: channel.legacyCompatible
+            ? `wrote legacy OpenClaw handoff ${markdownPath} and compact social outbox ${compactMarkdownPath}`
+            : `wrote local OpenClaw chat outbox ${markdownPath} and ${jsonPath}`,
     };
 }
-async function sendSlackGrowthSummary(channel, message) {
+async function sendSlackGrowthSummary(channel, notification) {
     const webhookEnv = channel.webhookEnv || 'SLACK_WEBHOOK_URL';
     const webhookUrl = process.env[webhookEnv];
     if (!webhookUrl) {
-        return { sent: false, target: channel.label || 'slack', detail: `${webhookEnv} not set` };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'slack',
+            detail: `${webhookEnv} not set`,
+            retryable: false,
+        };
     }
-    const response = await fetch(webhookUrl, {
+    const payload = {
+        ...buildSlackSocialPayload(notification),
+        ...(channel.username ? { username: channel.username } : {}),
+    };
+    const result = await sendNotificationHttpRequest(webhookUrl, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ text: message }),
+        body: JSON.stringify(payload),
     });
     return {
-        sent: response.ok,
+        ...result,
         external: true,
         target: channel.label || 'slack',
-        detail: response.ok ? `HTTP ${response.status}` : `HTTP ${response.status}: ${await response.text()}`,
     };
 }
-async function sendWebhookGrowthSummary(channel, message, issuesPayload, activeCadences, fingerprint, charts) {
+async function sendWebhookGrowthSummary(channel, message, issuesPayload, activeCadences, fingerprint, charts, notification) {
     const urlEnv = channel.urlEnv || channel.webhookEnv || 'OPENCLAW_WEBHOOK_URL';
     const webhookUrl = process.env[urlEnv];
     if (!webhookUrl) {
-        return { sent: false, target: channel.label || 'webhook', detail: `${urlEnv} not set` };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'webhook',
+            detail: `${urlEnv} not set`,
+            retryable: false,
+        };
     }
-    const response = await fetch(webhookUrl, {
+    const result = await sendNotificationHttpRequest(webhookUrl, {
         method: channel.method || 'POST',
         headers: {
             'content-type': 'application/json',
@@ -1736,105 +3047,251 @@ async function sendWebhookGrowthSummary(channel, message, issuesPayload, activeC
         },
         body: JSON.stringify({
             type: 'openclaw.growth_run',
+            schemaVersion: 1,
+            eventId: socialNotificationEventId(notification),
             generatedAt: new Date().toISOString(),
             text: message,
             fingerprint,
-            activeCadences,
+            notification: socialNotificationSummary(notification),
+            activeCadences: sanitizeOutboundPayload(activeCadences),
             issueCount: Number(issuesPayload?.issue_count || 0),
-            issues: Array.isArray(issuesPayload?.issues) ? issuesPayload.issues : [],
-            charts,
-            attachments: charts.map((chart) => ({
+            issues: sanitizeOutboundPayload(Array.isArray(issuesPayload?.issues) ? issuesPayload.issues : []),
+            charts: sanitizeOutboundPayload(charts),
+            attachments: sanitizeOutboundPayload(charts.map((chart) => ({
                 type: 'image/png',
-                path: chart.filePath,
+                fileName: path.basename(String(chart.filePath || 'chart.png')),
                 caption: chart.caption,
-            })),
+                availableLocally: true,
+            }))),
         }),
     });
     return {
-        sent: response.ok,
+        ...result,
         external: true,
         target: channel.label || 'webhook',
-        detail: response.ok ? `HTTP ${response.status}` : `HTTP ${response.status}: ${await response.text()}`,
     };
 }
 async function sendCommandGrowthSummary(channel, message) {
     if (!channel.command) {
-        return { sent: false, target: channel.label || 'command', detail: 'command not configured' };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'command',
+            detail: 'command not configured',
+            retryable: false,
+        };
     }
     const result = await runShellCommand(String(channel.command), 60_000, { input: message });
     return {
         sent: result.ok,
         external: true,
         target: channel.label || 'command',
-        detail: result.ok ? 'sent' : result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`,
+        detail: result.ok
+            ? 'sent'
+            : safeDeliveryErrorDetail(result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`),
     };
 }
-async function sendDiscordGrowthSummary(channel, message, issuesPayload, activeCadences, sourceFiles, fingerprint, createdGitHubArtifact, charts) {
+async function sendDiscordGrowthSummary(channel, message, notification) {
     if (!channel.command) {
-        return { sent: false, target: channel.label || 'discord', detail: 'discord command not configured' };
+        return {
+            sent: false,
+            external: true,
+            target: channel.label || 'discord',
+            detail: 'discord command not configured',
+            retryable: false,
+        };
     }
-    const payload = buildDiscordGrowthRunPayload(message, issuesPayload, activeCadences, sourceFiles, fingerprint, createdGitHubArtifact, charts);
+    const payload = buildDiscordSocialPayload(notification);
     const result = await runShellCommand(String(channel.command), 60_000, {
         input: JSON.stringify(payload),
-        env: { OPENCLAW_DISCORD_DELIVERY_FORMAT: 'embed' },
+        env: discordDeliveryEnvironment(notification),
     });
     return {
         sent: result.ok,
         external: true,
         target: channel.label || 'discord',
-        detail: result.ok ? 'sent' : result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`,
+        detail: result.ok
+            ? 'sent'
+            : safeDeliveryErrorDetail(result.stderr.trim() || result.stdout.trim() || `exit ${result.code}`),
     };
 }
-async function deliverGrowthRunSummary({ config, configPath, issuesPayload, activeCadences, sourceFiles, fingerprint, createdGitHubArtifact, chartManifestPath, }) {
+async function deliverGrowthRunSummary({ config, configPath, issuesPayload, activeCadences, sourceFiles, fingerprint, createdGitHubArtifact, chartManifestPath, onlyChannelKeys = null, }) {
     if (config?.notifications?.growthRun?.enabled === false) {
         return [{ sent: false, target: 'notifications', detail: 'growth run notifications disabled' }];
     }
-    const channels = getGrowthRunChannels(config);
-    if (channels.length === 0) {
+    const allChannels = getGrowthRunChannels(config);
+    const selectedChannelKeys = Array.isArray(onlyChannelKeys)
+        ? new Set(onlyChannelKeys)
+        : null;
+    const channels = selectedChannelKeys
+        ? allChannels.filter((channel) => selectedChannelKeys.has(notificationChannelKey(channel)))
+        : allChannels;
+    if (allChannels.length === 0) {
         return [{ sent: false, target: 'none', detail: 'no growth run notification channels configured' }];
     }
+    if (channels.length === 0)
+        return [];
     const charts = await readChartAttachments(chartManifestPath);
-    const message = buildGrowthRunSummaryMessage({
+    const notification = buildGrowthSocialNotification({
         issuesPayload,
         activeCadences,
-        sourceFiles,
+        fingerprint,
         createdGitHubArtifact,
         charts,
+        scope: notificationScope(config, configPath),
+        timeZone: resolveDailyIssueDedupeTimeZone(config),
     });
+    const message = renderSocialNotificationMarkdown(notification);
     const results = [];
     for (const channel of channels) {
+        const channelKey = notificationChannelKey(channel);
         try {
+            let result;
             if (channel.type === 'openclaw-chat') {
-                results.push(await writeConfiguredOpenClawChatGrowthSummary(configPath, channel, message, issuesPayload, activeCadences, fingerprint, charts));
+                result = await writeConfiguredOpenClawChatGrowthSummary(configPath, channel, message, issuesPayload, activeCadences, fingerprint, charts, notification);
             }
             else if (channel.type === 'slack') {
-                results.push(await sendSlackGrowthSummary(channel, message));
+                result = await sendSlackGrowthSummary(channel, notification);
             }
             else if (channel.type === 'webhook') {
-                results.push(await sendWebhookGrowthSummary(channel, message, issuesPayload, activeCadences, fingerprint, charts));
+                result = await sendWebhookGrowthSummary(channel, message, issuesPayload, activeCadences, fingerprint, charts, notification);
             }
             else if (channel.type === 'discord') {
-                results.push(await sendDiscordGrowthSummary(channel, message, issuesPayload, activeCadences, sourceFiles, fingerprint, createdGitHubArtifact, charts));
+                result = await sendDiscordGrowthSummary(channel, message, notification);
             }
             else if (channel.type === 'command') {
-                results.push(await sendCommandGrowthSummary(channel, message));
+                result = await sendCommandGrowthSummary(channel, message);
             }
             else {
-                results.push({ sent: false, target: channel.label || String(channel.type || 'unknown'), detail: 'unsupported channel type' });
+                result = {
+                    sent: false,
+                    target: channel.label || String(channel.type || 'unknown'),
+                    detail: 'unsupported channel type',
+                };
             }
+            results.push({
+                ...result,
+                channelKey,
+                notification: socialNotificationSummary(notification),
+            });
         }
         catch (error) {
             results.push({
                 sent: false,
+                external: channel.type !== 'openclaw-chat',
                 target: channel.label || String(channel.type || 'unknown'),
-                detail: error instanceof Error ? error.message : String(error),
+                channelKey,
+                detail: safeDeliveryErrorDetail(error),
+                notification: socialNotificationSummary(notification),
             });
         }
     }
     return results;
 }
+async function retryPendingGrowthRunNotification({ config, configPath, state, statePath, }) {
+    let previous = state?.growthRunNotification;
+    if (!previous?.snapshot) {
+        const legacyDeliveries = Array.isArray(state?.lastGrowthRunNotifications)
+            ? state.lastGrowthRunNotifications
+            : [];
+        const legacyDeliveryFailed = legacyDeliveries.some((delivery) => delivery?.sent === false &&
+            delivery?.external !== false &&
+            !/suppressed|unchanged|disabled|no connector/i.test(String(delivery?.detail || '')));
+        const legacyFingerprint = String(state?.lastIssueFingerprint || '').trim();
+        const legacyOutFile = String(state?.lastOutFile || '').trim();
+        if (legacyDeliveryFailed && legacyFingerprint && legacyOutFile) {
+            const issuesPayload = await readJsonOptional(legacyOutFile, null);
+            if (issuesPayload && typeof issuesPayload === 'object') {
+                previous = {
+                    version: 1,
+                    eventId: growthRunNotificationEventId(legacyFingerprint),
+                    fingerprint: legacyFingerprint,
+                    receipts: {},
+                    allChannelsSent: false,
+                    lastAttemptAt: null,
+                    completedAt: null,
+                    migratedFromLegacyDeliveryState: true,
+                    snapshot: {
+                        issuesPayload,
+                        activeCadences: [],
+                        sourceFiles: {},
+                        createdGitHubArtifact: false,
+                        chartManifestPath: null,
+                    },
+                };
+            }
+        }
+    }
+    const snapshot = previous?.snapshot;
+    if (!previous || previous.allChannelsSent === true || !snapshot)
+        return state;
+    const configuredChannelKeys = getGrowthRunChannelKeys(config);
+    const pendingChannelKeys = pendingGrowthRunChannelKeys(previous, previous.fingerprint, configuredChannelKeys);
+    if (pendingChannelKeys.length === 0) {
+        const completedAt = new Date().toISOString();
+        const completedNotificationState = markGrowthRunNotificationState({
+            previousState: previous,
+            fingerprint: previous.fingerprint,
+            deliveries: [],
+            configuredChannelKeys,
+            snapshot,
+            attemptedAt: completedAt,
+        });
+        const nextState = {
+            ...state,
+            growthRunNotification: completedNotificationState,
+        };
+        await fs.mkdir(path.dirname(statePath), { recursive: true });
+        await writeJsonAtomic(statePath, nextState);
+        return nextState;
+    }
+    const attemptedAt = new Date().toISOString();
+    const deliveries = await deliverGrowthRunSummary({
+        config,
+        configPath,
+        issuesPayload: snapshot.issuesPayload,
+        activeCadences: snapshot.activeCadences || [],
+        sourceFiles: snapshot.sourceFiles || {},
+        fingerprint: previous.fingerprint,
+        createdGitHubArtifact: Boolean(snapshot.createdGitHubArtifact),
+        chartManifestPath: snapshot.chartManifestPath || null,
+        onlyChannelKeys: pendingChannelKeys,
+    });
+    const growthRunNotification = markGrowthRunNotificationState({
+        previousState: previous,
+        fingerprint: previous.fingerprint,
+        deliveries,
+        configuredChannelKeys,
+        snapshot,
+        attemptedAt,
+    });
+    const nextState = {
+        ...state,
+        growthRunNotification,
+        lastGrowthRunNotifications: deliveries,
+    };
+    await fs.mkdir(path.dirname(statePath), { recursive: true });
+    await writeJsonAtomic(statePath, nextState);
+    await appendSchedulerProof('growth_notification_retry', {
+        configPath,
+        statePath,
+        fingerprint: previous.fingerprint,
+        attemptedAt,
+        pendingChannelKeys,
+        completed: growthRunNotification.allChannelsSent,
+        deliveries: deliveries.map((delivery) => ({
+            channelKey: delivery.channelKey || null,
+            target: delivery.target,
+            sent: delivery.sent === true,
+            detail: delivery.detail || null,
+        })),
+    });
+    return nextState;
+}
 async function maybeRunConnectorHealthCheck({ config, configPath, state, statePath, runtimeDir }) {
     const healthState = state?.connectorHealth || {};
+    const incidents = getConnectorNotificationIncidents(state);
+    const previousIncident = incidents[CONNECTOR_PROBE_INCIDENT_KEY];
     const intervalMinutes = getConnectorHealthIntervalMinutes(config);
     if (!isDue(healthState.lastCheckedAt, intervalMinutes)) {
         await appendSchedulerProof('connector_health_not_due', {
@@ -1843,7 +3300,8 @@ async function maybeRunConnectorHealthCheck({ config, configPath, state, statePa
             intervalMinutes,
             lastCheckedAt: healthState.lastCheckedAt || null,
             persistedLastStatusOk: healthState.lastStatusOk !== false,
-            activeIncidentFingerprint: healthState.activeIncidentFingerprint || null,
+            incidentStatus: previousIncident.status,
+            activeIncidentFingerprint: previousIncident.activeFingerprint,
             socialOutput: 'HEARTBEAT_OK',
             socialReason: 'connector health was not due; persisted unhealthy state is not a new event',
         });
@@ -1860,74 +3318,113 @@ async function maybeRunConnectorHealthCheck({ config, configPath, state, statePa
     ].join(' ');
     const checkedAt = new Date().toISOString();
     const statusResult = await runShellCommand(statusCommand, 90_000);
-    const statusPayload = parseJsonFromStdout(statusResult.stdout);
+    let statusPayload = parseJsonFromStdout(statusResult.stdout);
+    let statusCheckError = null;
     if (!statusPayload) {
-        const nextState = {
-            ...state,
-            connectorHealth: {
-                ...healthState,
-                lastCheckedAt: checkedAt,
-                lastError: statusResult.stderr.trim() || statusResult.stdout.trim() || 'connector status returned no JSON',
+        statusCheckError = safeDeliveryErrorDetail(statusResult.stderr.trim() ||
+            statusResult.stdout.trim() ||
+            'connector status returned no JSON');
+        statusPayload = {
+            generatedAt: checkedAt,
+            configPath,
+            connectors: {
+                connector_status: {
+                    label: 'Connector status check',
+                    status: 'partial',
+                    detail: 'The scheduled connector status check failed; connector coverage could not be verified.',
+                    nextAction: 'Review the sanitized runner diagnostics on the host. The next scheduled check will retry automatically.',
+                },
             },
         };
-        await fs.mkdir(path.dirname(statePath), { recursive: true });
-        await fs.writeFile(statePath, JSON.stringify(nextState, null, 2), 'utf8');
         await appendSchedulerProof('connector_health_check_failed', {
             configPath,
             statePath,
             intervalMinutes,
             checkedAt,
-            error: nextState.connectorHealth.lastError,
+            error: statusCheckError,
+            notificationEnabled: config?.notifications?.connectorHealth?.enabled !== false,
         });
-        return nextState;
     }
     const unhealthyConnectors = getUnhealthyConfiguredConnectors(statusPayload);
     const connectedConnectors = getConnectedConnectorKeys(statusPayload);
-    const fingerprint = buildConnectorHealthFingerprint(unhealthyConnectors);
-    const nextHealthState = {
-        ...healthState,
-        lastCheckedAt: checkedAt,
-        lastStatusOk: unhealthyConnectors.length === 0,
-        lastFingerprint: fingerprint,
-        connectedConnectors,
-        lastError: null,
-    };
-    const previousExternallyDeliveredFingerprint = healthState.lastExternalAlertedFingerprint || null;
-    let alertTriggered = false;
-    let alertDeliveries = [];
-    if (unhealthyConnectors.length === 0) {
-        nextHealthState.activeIncidentFingerprint = null;
-        nextHealthState.lastExternalAlertedFingerprint = null;
-        if (healthState.lastStatusOk === false) {
-            nextHealthState.lastRecoveredAt = checkedAt;
-        }
-    }
-    else {
-        nextHealthState.activeIncidentFingerprint = fingerprint;
-    }
-    if (unhealthyConnectors.length > 0 &&
-        previousExternallyDeliveredFingerprint !== fingerprint) {
-        const message = buildConnectorHealthAlert(statusPayload, unhealthyConnectors);
-        const paths = await writeConnectorHealthAlert(runtimeDir, message, statusPayload, unhealthyConnectors, fingerprint);
-        const deliveries = await deliverConnectorHealthAlert({
+    const fingerprint = unhealthyConnectors.length > 0
+        ? buildConnectorHealthFingerprint(unhealthyConnectors)
+        : null;
+    let nextIncident = transitionConnectorNotificationIncident(previousIncident, 'connector_probe', fingerprint, checkedAt);
+    const configuredChannelKeys = getConnectorHealthChannelKeys(config);
+    const pendingChannelKeys = pendingConnectorIncidentChannelKeys(previousIncident, nextIncident, configuredChannelKeys);
+    const shouldNotify = config?.notifications?.connectorHealth?.enabled !== false &&
+        shouldNotifyConnectorIncident(previousIncident, nextIncident, configuredChannelKeys);
+    let notificationTriggered = false;
+    let notificationDeliveries = [];
+    let alertPaths = null;
+    if (shouldNotify) {
+        const notificationFingerprint = nextIncident.activeFingerprint || nextIncident.recoveredFingerprint;
+        const socialNotification = buildConnectorSocialNotification(statusPayload, unhealthyConnectors, notificationFingerprint, {
+            kind: 'connector_probe',
+            status: nextIncident.status,
+        });
+        const message = renderSocialNotificationMarkdown(socialNotification);
+        alertPaths = await writeConnectorHealthAlert(runtimeDir, message, statusPayload, unhealthyConnectors, notificationFingerprint, {
+            kind: 'connector_probe',
+            status: nextIncident.status,
+        }, socialNotification);
+        notificationDeliveries = await deliverConnectorHealthAlert({
             config,
             configPath,
             message,
             statusPayload,
             unhealthyConnectors,
-            fingerprint,
+            fingerprint: notificationFingerprint,
+            incident: {
+                kind: 'connector_probe',
+                status: nextIncident.status,
+            },
+            notification: socialNotification,
+            onlyChannelKeys: pendingChannelKeys,
         });
-        alertTriggered = true;
-        alertDeliveries = deliveries;
+        notificationTriggered = true;
+        nextIncident = {
+            ...markConnectorIncidentNotification(nextIncident, notificationDeliveries, checkedAt, configuredChannelKeys),
+            lastAlertMarkdownPath: alertPaths.markdownPath,
+            lastAlertJsonPath: alertPaths.jsonPath,
+        };
+    }
+    const nextHealthState = {
+        ...healthState,
+        incidents: {
+            ...incidents,
+            version: CONNECTOR_NOTIFICATION_STATE_VERSION,
+            [CONNECTOR_PROBE_INCIDENT_KEY]: nextIncident,
+        },
+        lastCheckedAt: checkedAt,
+        lastStatusOk: unhealthyConnectors.length === 0,
+        lastFingerprint: fingerprint,
+        activeIncidentFingerprint: nextIncident.activeFingerprint,
+        connectedConnectors,
+        lastError: statusCheckError,
+    };
+    if (nextIncident.status === 'recovered') {
+        nextHealthState.lastExternalAlertedFingerprint = null;
+        if (previousIncident.activeFingerprint) {
+            nextHealthState.lastRecoveredAt = checkedAt;
+        }
+    }
+    if (notificationTriggered) {
         nextHealthState.lastAlertedAt = checkedAt;
-        nextHealthState.lastAlertedFingerprint = fingerprint;
-        nextHealthState.lastAlertMarkdownPath = paths.markdownPath;
-        nextHealthState.lastAlertJsonPath = paths.jsonPath;
-        nextHealthState.lastAlertDeliveries = deliveries;
-        nextHealthState.lastAlertExternalSent = hasSuccessfulExternalDelivery(deliveries);
+        nextHealthState.lastAlertedFingerprint =
+            nextIncident.activeFingerprint || nextIncident.recoveredFingerprint;
+        nextHealthState.lastAlertMarkdownPath = alertPaths?.markdownPath || null;
+        nextHealthState.lastAlertJsonPath = alertPaths?.jsonPath || null;
+        nextHealthState.lastAlertDeliveries = notificationDeliveries;
+        nextHealthState.lastAlertExternalSent =
+            hasSuccessfulExternalDelivery(notificationDeliveries);
         if (nextHealthState.lastAlertExternalSent) {
             nextHealthState.lastExternalAlertedAt = checkedAt;
-            nextHealthState.lastExternalAlertedFingerprint = fingerprint;
+            nextHealthState.lastExternalAlertedFingerprint =
+                nextIncident.status === 'recovered'
+                    ? null
+                    : nextIncident.lastExternalAlertedFingerprint;
         }
     }
     const nextState = {
@@ -1935,7 +3432,7 @@ async function maybeRunConnectorHealthCheck({ config, configPath, state, statePa
         connectorHealth: nextHealthState,
     };
     await fs.mkdir(path.dirname(statePath), { recursive: true });
-    await fs.writeFile(statePath, JSON.stringify(nextState, null, 2), 'utf8');
+    await writeJsonAtomic(statePath, nextState);
     await appendSchedulerProof('connector_health_checked', {
         configPath,
         statePath,
@@ -1948,35 +3445,59 @@ async function maybeRunConnectorHealthCheck({ config, configPath, state, statePa
             status: entry.status,
             detail: entry.detail,
         })),
+        incidentStatus: nextIncident.status,
         alertMarkdownPath: nextHealthState.lastAlertMarkdownPath || null,
-        alertTriggered,
-        deliveryCount: alertDeliveries.length,
-        externalDeliverySent: alertTriggered ? hasSuccessfulExternalDelivery(alertDeliveries) : false,
-        socialOutput: alertTriggered ? 'CONNECTOR_HEALTH_ALERT' : 'HEARTBEAT_OK',
-        socialReason: alertTriggered
-            ? 'new or changed connector-health incident'
+        notificationTriggered,
+        alertTriggered: notificationTriggered,
+        deliveryCount: notificationDeliveries.length,
+        externalDeliverySent: notificationTriggered
+            ? hasSuccessfulExternalDelivery(notificationDeliveries)
+            : false,
+        socialOutput: notificationTriggered
+            ? nextIncident.status === 'recovered'
+                ? 'CONNECTOR_HEALTH_RECOVERED'
+                : 'CONNECTOR_HEALTH_ALERT'
+            : 'HEARTBEAT_OK',
+        socialReason: notificationTriggered
+            ? nextIncident.status === 'recovered'
+                ? 'connector-health incident recovered'
+                : nextIncident.status === 'ongoing'
+                    ? 'retrying unchanged connector-health incident after failed external delivery'
+                    : 'new or changed connector-health incident'
             : unhealthyConnectors.length > 0
-                ? 'connector-health incident unchanged'
-                : healthState.lastStatusOk === false
-                    ? 'connector health recovered'
-                    : 'connector health unchanged healthy',
+                ? 'connector-health incident ongoing and unchanged'
+                : 'connector health remains healthy',
     });
-    if (unhealthyConnectors.length > 0 && !alertTriggered) {
+    if (unhealthyConnectors.length > 0 && !notificationTriggered) {
         await appendSchedulerProof('connector_health_unchanged', {
             configPath,
             statePath,
             checkedAt,
             fingerprint,
+            incidentStatus: nextIncident.status,
             socialOutput: 'HEARTBEAT_OK',
         });
     }
     return nextState;
 }
 function buildIssueFingerprint(issuesPayload) {
-    const titles = Array.isArray(issuesPayload?.issues)
-        ? issuesPayload.issues.map((issue) => `${issue.title}|${issue.priority}|${issue.area}`).sort()
+    const issues = Array.isArray(issuesPayload?.issues)
+        ? issuesPayload.issues
+            .map((issue) => [
+            issue?.signal_id || issue?.signalId || issue?.id || '',
+            issueProjectLabel(issue),
+            issue?.source || '',
+            issue?.title || '',
+            issue?.priority || '',
+            issue?.area || '',
+            issue?.expected_impact || issue?.expectedImpact || '',
+            issueSourceUrl(issue) || '',
+        ]
+            .map((value) => String(value || '').replace(/\s+/g, ' ').trim())
+            .join('|'))
+            .sort()
         : [];
-    return sha256(titles.join('\n'));
+    return sha256(issues.join('\n'));
 }
 function isShortOperationalCadence(cadences) {
     if (!Array.isArray(cadences) || cadences.length === 0)
@@ -2338,11 +3859,17 @@ async function runOnce(configPath, statePath) {
         lastRunAt: null,
         sourceCursors: {},
     });
+    const stateAfterGrowthNotificationRetry = await retryPendingGrowthRunNotification({
+        config,
+        configPath,
+        state,
+        statePath,
+    });
     const runtimeDir = path.resolve(deriveRuntimeDirFromStatePath(statePath));
     const stateAfterHealthCheck = await maybeRunConnectorHealthCheck({
         config,
         configPath,
-        state,
+        state: stateAfterGrowthNotificationRetry,
         statePath,
         runtimeDir,
     });
@@ -2360,8 +3887,7 @@ async function runOnce(configPath, statePath) {
     if (activeCadences.length === 0) {
         process.stdout.write(`[${new Date().toISOString()}] No scheduled cadence due. Skip run.\n`);
         const completedAt = new Date().toISOString();
-        await fs.mkdir(path.dirname(statePath), { recursive: true });
-        await fs.writeFile(statePath, JSON.stringify({
+        await writeJsonAtomic(statePath, {
             ...stateAfterHealthCheck,
             ...stateAfterSourceCollection,
             sourceHashes: currentHashes,
@@ -2369,7 +3895,7 @@ async function runOnce(configPath, statePath) {
             lastSourceFailures: sourceFailures,
             lastRunAt: completedAt,
             skippedReason: 'cadence_not_due',
-        }, null, 2), 'utf8');
+        });
         await appendSchedulerProof('runner_completed', {
             configPath,
             statePath,
@@ -2412,8 +3938,7 @@ async function runOnce(configPath, statePath) {
         dailyIssueDedupe.suppressedCount > 0) {
         process.stdout.write(`[${new Date().toISOString()}] All findings were already reported today. Skip GitHub creation and external growth notification.\n`);
         const completedAt = new Date().toISOString();
-        await fs.mkdir(path.dirname(statePath), { recursive: true });
-        await fs.writeFile(statePath, JSON.stringify({
+        await writeJsonAtomic(statePath, {
             ...stateAfterHealthCheck,
             ...stateAfterSourceCollection,
             sourceHashes: currentHashes,
@@ -2432,7 +3957,7 @@ async function runOnce(configPath, statePath) {
                 },
             ],
             skippedReason: 'daily_issue_dedupe',
-        }, null, 2), 'utf8');
+        });
         await appendSchedulerProof('runner_completed', {
             configPath,
             statePath,
@@ -2452,8 +3977,7 @@ async function runOnce(configPath, statePath) {
         config.schedule?.skipIfIssueSetUnchanged !== false) {
         process.stdout.write(`[${new Date().toISOString()}] Issue set unchanged. Skip GitHub creation and external growth notification.\n`);
         const completedAt = new Date().toISOString();
-        await fs.mkdir(path.dirname(statePath), { recursive: true });
-        await fs.writeFile(statePath, JSON.stringify({
+        await writeJsonAtomic(statePath, {
             ...stateAfterHealthCheck,
             ...stateAfterSourceCollection,
             sourceHashes: currentHashes,
@@ -2472,7 +3996,7 @@ async function runOnce(configPath, statePath) {
                 },
             ],
             skippedReason: 'issue_set_unchanged',
-        }, null, 2), 'utf8');
+        });
         await appendSchedulerProof('runner_completed', {
             configPath,
             statePath,
@@ -2509,8 +4033,55 @@ async function runOnce(configPath, statePath) {
         process.stdout.write(`[${new Date().toISOString()}] Drafts generated only (${getActionMode(config)} auto-create disabled).\n`);
     }
     const completedAt = new Date().toISOString();
-    await fs.mkdir(path.dirname(statePath), { recursive: true });
-    await fs.writeFile(statePath, JSON.stringify({
+    const growthRunNotificationSnapshot = {
+        issuesPayload: deliverableIssuesPayload,
+        activeCadences,
+        sourceFiles,
+        createdGitHubArtifact: shouldCreateGitHubArtifact,
+        chartManifestPath,
+    };
+    const growthNotificationsEnabled = config?.notifications?.growthRun?.enabled !== false;
+    const suppressCleanOperationalNotification = Number(deliverableIssuesPayload?.issue_count || 0) === 0 &&
+        isShortOperationalCadence(activeCadences);
+    const shouldDeliverGrowthRunNotification = growthNotificationsEnabled && !suppressCleanOperationalNotification;
+    const growthRunNotificationDeliveries = shouldDeliverGrowthRunNotification
+        ? await deliverGrowthRunSummary({
+            config,
+            configPath,
+            issuesPayload: deliverableIssuesPayload,
+            activeCadences,
+            sourceFiles,
+            fingerprint: issueFingerprint,
+            createdGitHubArtifact: shouldCreateGitHubArtifact,
+            chartManifestPath,
+        })
+        : [
+            {
+                sent: false,
+                external: false,
+                target: 'growth_run',
+                detail: growthNotificationsEnabled
+                    ? 'clean operational run; social notification suppressed'
+                    : 'growth run notifications disabled',
+                retryable: false,
+            },
+        ];
+    const growthRunNotification = markGrowthRunNotificationState({
+        previousState: stateAfterSourceCollection.growthRunNotification,
+        fingerprint: issueFingerprint,
+        deliveries: growthRunNotificationDeliveries,
+        configuredChannelKeys: shouldDeliverGrowthRunNotification
+            ? getGrowthRunChannelKeys(config)
+            : [],
+        snapshot: growthRunNotificationSnapshot,
+        attemptedAt: completedAt,
+    });
+    const externalDeliverySent = hasSuccessfulExternalDelivery(growthRunNotificationDeliveries);
+    const localDeliveryWritten = growthRunNotificationDeliveries.some((delivery) => delivery?.sent === true && delivery?.external !== true);
+    const anyDeliverySent = growthRunNotificationDeliveries.some((delivery) => delivery?.sent === true);
+    const structuredNotification = growthRunNotificationDeliveries.find((delivery) => delivery?.notification)
+        ?.notification || null;
+    await writeJsonAtomic(statePath, {
         ...stateAfterHealthCheck,
         ...stateAfterSourceCollection,
         sourceHashes: currentHashes,
@@ -2521,18 +4092,10 @@ async function runOnce(configPath, statePath) {
         lastRunAt: completedAt,
         lastOutFile: dryRun.outFile,
         cadences: markCadencesRan(stateAfterSourceCollection, activeCadences, completedAt),
-        lastGrowthRunNotifications: await deliverGrowthRunSummary({
-            config,
-            configPath,
-            issuesPayload: deliverableIssuesPayload,
-            activeCadences,
-            sourceFiles,
-            fingerprint: issueFingerprint,
-            createdGitHubArtifact: shouldCreateGitHubArtifact,
-            chartManifestPath,
-        }),
+        lastGrowthRunNotifications: growthRunNotificationDeliveries,
+        growthRunNotification,
         skippedReason: null,
-    }, null, 2), 'utf8');
+    });
     await appendSchedulerProof('runner_completed', {
         configPath,
         statePath,
@@ -2543,17 +4106,116 @@ async function runOnce(configPath, statePath) {
         issueCount: Number(dryRun.issuesPayload?.issue_count || 0),
         sourceFailures,
         createdGitHubArtifact: shouldCreateGitHubArtifact,
+        notificationEnabled: growthNotificationsEnabled,
+        notificationSuppressed: !shouldDeliverGrowthRunNotification,
+        externalDeliverySent,
+        localDeliveryWritten,
+        deliveryFailed: shouldDeliverGrowthRunNotification && !anyDeliverySent,
+        notification: structuredNotification,
+        socialOutput: !shouldDeliverGrowthRunNotification
+            ? 'HEARTBEAT_OK'
+            : externalDeliverySent
+                ? 'EXTERNAL_NOTIFICATION_SENT'
+                : localDeliveryWritten
+                    ? 'GROWTH_RUN_ALERT'
+                    : 'NOTIFICATION_DELIVERY_FAILED',
+        socialReason: !growthNotificationsEnabled
+            ? 'growth notifications disabled'
+            : suppressCleanOperationalNotification
+                ? 'clean operational run'
+                : externalDeliverySent
+                    ? 'notification already delivered by the runner'
+                    : localDeliveryWritten
+                        ? 'structured notification is available for native-agent delivery'
+                        : 'configured notification delivery did not succeed',
     });
 }
+function isProcessAlive(pid) {
+    const numericPid = Number(pid);
+    if (!Number.isInteger(numericPid) || numericPid <= 0)
+        return false;
+    try {
+        process.kill(numericPid, 0);
+        return true;
+    }
+    catch (error) {
+        return error?.code === 'EPERM';
+    }
+}
+async function acquireRunnerLock(statePath) {
+    const lockPath = `${statePath}.runner.lock`;
+    await fs.mkdir(path.dirname(lockPath), { recursive: true });
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+        const token = `${process.pid}:${Date.now()}:${attempt}`;
+        try {
+            const handle = await fs.open(lockPath, 'wx');
+            await handle.writeFile(`${JSON.stringify({
+                version: 1,
+                pid: process.pid,
+                token,
+                acquiredAt: new Date().toISOString(),
+                statePath,
+            })}\n`, 'utf8');
+            return {
+                lockPath,
+                async release() {
+                    await handle.close().catch(() => { });
+                    const current = await readJsonOptional(lockPath, null);
+                    if (current?.token === token) {
+                        await fs.unlink(lockPath).catch(() => { });
+                    }
+                },
+            };
+        }
+        catch (error) {
+            if (error?.code !== 'EEXIST')
+                throw error;
+            const existing = await readJsonOptional(lockPath, null);
+            if (isProcessAlive(existing?.pid))
+                return null;
+            let stale = Boolean(existing?.pid);
+            if (!stale) {
+                const stats = await fs.stat(lockPath).catch(() => null);
+                stale = Boolean(stats && Date.now() - stats.mtimeMs > 2 * 60 * 60 * 1000);
+            }
+            if (!stale)
+                return null;
+            await fs.unlink(lockPath).catch(() => { });
+        }
+    }
+    return null;
+}
+async function runOnceWithLock(configPath, statePath) {
+    const lock = await acquireRunnerLock(statePath);
+    if (!lock) {
+        process.stdout.write(`[${new Date().toISOString()}] Another Growth Engineer run owns this state; duplicate run skipped.\n`);
+        await appendSchedulerProof('runner_skipped_lock_held', {
+            configPath,
+            statePath,
+        });
+        return false;
+    }
+    try {
+        await runOnce(configPath, statePath);
+        return true;
+    }
+    finally {
+        await lock.release();
+    }
+}
 async function main() {
-    await loadOpenClawGrowthSecrets();
     const args = parseArgs(process.argv.slice(2));
+    if (args.validateNotificationState) {
+        process.stdout.write(`${JSON.stringify(validateConnectorNotificationStateModel(), null, 2)}\n`);
+        return;
+    }
+    await loadOpenClawGrowthSecrets();
     await maybeSelfUpdateFromClawHub(args);
     const configPath = path.resolve(args.config);
     const statePath = path.resolve(args.state);
     useSchedulerProofPathForStatePath(statePath);
     if (!args.loop) {
-        await runOnce(configPath, statePath);
+        await runOnceWithLock(configPath, statePath);
         return;
     }
     const config = await readJson(configPath);
@@ -2562,7 +4224,7 @@ async function main() {
     while (true) {
         try {
             await maybeSelfUpdateFromClawHub(args);
-            await runOnce(configPath, statePath);
+            await runOnceWithLock(configPath, statePath);
         }
         catch (error) {
             const failureDecision = await recordRunnerFailure({

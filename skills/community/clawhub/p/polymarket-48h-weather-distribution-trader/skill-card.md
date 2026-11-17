@@ -1,44 +1,63 @@
-## Description: <br>
-Trades mispricings in weather temperature-bin markets by reconstructing the implied probability distribution across bins for the same city and date, detecting sum violations and monotonicity breaks on cumulative markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades mispricings in weather temperature-bin markets by reconstructing the implied probability distribution across bins for the same city and date, detecting sum violations and monotonicity breaks on cumulative markets.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading-system developers use this skill to analyze Polymarket weather temperature-bin markets, identify distribution-sum or cumulative monotonicity violations, and produce paper or live trade actions through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and calls for human review before installation. <br>
-Mitigation: Review the artifact and scan evidence before deployment, and install only when the trading workflow and requested permissions are intentional. <br>
-Risk: The skill requires SIMMER_API_KEY, a high-value credential with trading authority. <br>
-Mitigation: Use scoped credentials where possible, keep secrets out of prompts and logs, and rotate the key if exposure is suspected. <br>
-Risk: Running with --live can place real Polymarket trades with USDC exposure. <br>
-Mitigation: Keep the default paper mode until strategy behavior is reviewed, then set conservative position, spread, volume, and open-position tunables before live use. <br>
+## Use Case:
 
+External developers and trading agents use this skill to scan Polymarket weather temperature-bin markets, detect distribution-sum and monotonicity inconsistencies, and place paper or explicitly live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-48h-weather-distribution-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Console text with Simmer market queries and trade API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket execution requires SIMMER_API_KEY and the --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata; artifact frontmatter says 1.0.0 and clawhub.json says 0.0.2) <br>
+Risk: Autonomous trading can create unintended real-money exposure if live mode is used or if the live/paper boundary behaves unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in paper mode until the live/paper client caching issue is reviewed and fixed, and require an explicit operator check before using --live.
+
+Risk: Trading safeguards may not fail closed when market context, slippage checks, or supporting services fail.
+
+Mitigation: Treat safeguard errors as trade blockers, test failure paths, and keep position limits small until the fail-closed behavior is verified.
+
+Risk: A high-value SIMMER_API_KEY can authorize trades beyond the intended release scope.
+
+Mitigation: Use a limited trading credential, rotate it regularly, and configure conservative SIMMER_MAX_POSITION, SIMMER_MIN_TRADE, and SIMMER_MAX_POSITIONS values.
+
+Risk: Unpinned dependencies can change trading behavior across installations.
+
+Mitigation: Pin and review simmer-sdk versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-48h-weather-distribution-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Console logs and trade requests produced by a Python trading script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and configurable trading limits; defaults to paper mode unless run with --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

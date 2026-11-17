@@ -1,47 +1,61 @@
-## Description: <br>
-Provision and manage production-grade databases on Kubernetes using KubeBlocks, including setup, scaling, backup, restore, monitoring, and troubleshooting for common database engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision and manage production-grade databases on Kubernetes using KubeBlocks for MySQL, PostgreSQL, Redis, MongoDB, Kafka, Elasticsearch, Milvus, Qdrant, RabbitMQ, and other data infrastructure.
 
-## Publisher: <br>
-[earayu](https://clawhub.ai/user/earayu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earayu](https://clawhub.ai/user/earayu)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to provision and operate KubeBlocks-managed databases on Kubernetes across relational, NoSQL, streaming, vector, and search workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce commands that mutate or delete Kubernetes database resources. <br>
-Mitigation: Confirm kubeconfig context, namespace, target cluster, environment, terminationPolicy, and dry-run output before approving apply, delete, uninstall, restore, scale, patch, or expose commands. <br>
-Risk: Credential-retrieval workflows may expose database secrets in chat, logs, or shared terminals. <br>
-Mitigation: Require explicit approval before credential retrieval and avoid pasting decoded secrets into chat, logs, or shared terminals. <br>
-Risk: Database operations can affect production availability or data durability. <br>
-Mitigation: Review the generated plan, backups, restore target, and success conditions before executing mutating operations. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to route database requests to KubeBlocks workflows for provisioning, scaling, backup, restore, monitoring, security, and troubleshooting on Kubernetes.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/earayu/kubeblocks-skills) <br>
-- [KubeBlocks Official Docs](https://kubeblocks.io/docs/preview/user_docs/overview/introduction) <br>
-- [KubeBlocks LLM Doc Index](https://kubeblocks.io/llms-full.txt) <br>
-- [KubeBlocks Supported Addons](https://kubeblocks.io/docs/preview/user_docs/overview/supported-addons) <br>
-- [KubeBlocks GitHub Repository](https://github.com/apecloud/kubeblocks) <br>
-- [Safety Patterns Reference](artifact/references/safety-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Kubernetes YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Kubernetes access through kubeconfig and commonly uses kubectl and helm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can guide an agent through broad Kubernetes database operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege kubeconfig scoped to the intended cluster and namespace, and review planned operations before execution.
+
+Risk: Installer, uninstall, apply, and delete commands can change cluster state or remove resources.
+
+Mitigation: Pin and review downloaded installers, require explicit approval for sudo, kubectl apply/delete, uninstall, and production changes, and test outside production first.
+
+Risk: Credential retrieval and external service exposure can reveal secrets or increase network exposure.
+
+Mitigation: Require explicit approval before password retrieval or external exposure, protect secret output, and review LoadBalancer or NodePort settings before applying them.
+
+## Reference(s):
+
+- [KubeBlocks Official Docs](https://kubeblocks.io/docs/preview/user_docs/overview/introduction)
+- [KubeBlocks GitHub Repository](https://github.com/apecloud/kubeblocks)
+- [KubeBlocks LLM Index](https://kubeblocks.io/llms-full.txt)
+- [Supported Addons](https://kubeblocks.io/docs/preview/user_docs/overview/supported-addons)
+- [Safety Patterns](references/safety-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML manifests and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Kubernetes manifests, Helm commands, kubectl commands, operational checklists, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

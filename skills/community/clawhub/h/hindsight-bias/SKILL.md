@@ -1,7 +1,7 @@
 ---
 name: hindsight-bias
 description: "Activate when: someone says 'I knew it all along' or 'we should have seen it coming'; a post-mortem is blaming someone for not predicting an outcome; a team is reviewing a past decision and the outcome is coloring the judgment; a decision-maker is being evaluated on what happened rather than what was knowable at the time.
-  Do NOT activate when: contemporaneous pre-decision records exist and match current memory (bias is bounded); the goal is explicitly pattern-recognition from outcomes rather than evaluating the original decision-maker."
+  Do NOT activate when: contemporaneous pre-decision records exist and match current memory (bias is bounded); the goal is explicitly pattern-recognition from outcomes rather than evaluating the original decision-maker. More: deciqai.com/c/hindsight-bias"
 ---
 
 # Hindsight Bias
@@ -10,7 +10,7 @@ description: "Activate when: someone says 'I knew it all along' or 'we should ha
 
 **Hindsight bias** — the "I knew it all along" effect — is the tendency, *after* learning an outcome, to misremember your prior judgment as having been closer to that outcome than it actually was. Fischhoff (1975) demonstrated three distinct components: **memory distortion** ("I said it would happen"), **inevitability** ("it had to happen"), and **foreseeability** ("anyone should have seen it"). Each requires a different countermeasure; the structural fix for all three is pre-commitment documentation.
 
-Composes with [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md), [`premortem`](../premortem/SKILL.md), [`confirmation-bias`](../confirmation-bias/SKILL.md), and [`survivorship-bias`](../survivorship-bias/SKILL.md).
+Composes with `probabilistic-thinking`, `premortem`, `confirmation-bias`, and `survivorship-bias`.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md), [`
 - Someone says "I knew this would happen" without contemporaneous records
 - A decision is being evaluated against its outcome rather than the information available when made
 - An investor, judge, or jury evaluates a past decision with knowledge of how it turned out
+- Someone calls a market move "obvious in retrospect" — e.g. the AI boom, AI capex buildout, or frontier-AI valuations were "clearly inevitable" / "anyone should have seen the AI adoption wave coming"
 
 **Not when:** pre-commitment documentation exists and matches current memory; the goal is pattern-recognition from outcomes; the failure to predict was a genuine process failure with clear pre-outcome signals.
 
@@ -62,7 +63,8 @@ Decision-process evaluation (process quality 1-5 / reasonable Y/N / EV / same de
 Structural fix (decision journal owner / pre-mortem owner / blind post-mortem protocol Y/N):
 ```
 
-*→ Method in Action: [Baruch Fischhoff's Nixon-China Trip Study, 1972-1975](examples/baruch-fischhoffs-nixon-china-trip-study-1972-1975.md)*
+*→ Method in Action: [Baruch Fischhoff's Nixon-China Trip Study, 1972-1975](examples/baruch-fischhoffs-nixon-china-trip-study-1972-1975.md) · [Anesthesia Malpractice Outcome-Bias Study, 1991](examples/caplan-posner-cheney-anesthesia-outcome-study-1991.md)*
+*→ 2026 lens: ["The AI Boom Was Obviously Coming" — retrospective inevitability in the ChatGPT/Nvidia era (2022–2026)](examples/ai-boom-obviously-coming-hindsight-2022-2026.md)*
 
 ## Pack: Hindsight Bias Patterns
 
@@ -115,4 +117,6 @@ Structural fix (decision journal owner / pre-mortem owner / blind post-mortem pr
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/hindsight-bias** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/hindsight-bias.json*

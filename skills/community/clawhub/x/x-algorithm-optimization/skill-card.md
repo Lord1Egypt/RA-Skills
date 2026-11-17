@@ -1,47 +1,60 @@
-## Description: <br>
-Provides actionable guidance for optimizing X content strategy using documented and inferred mechanics of the X For You feed algorithm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides actionable guidance for optimizing X For You feed content strategy and evaluating post drafts against inferred engagement, ranking, and quality signals.
 
-## Publisher: <br>
-[sergeo01](https://clawhub.ai/user/sergeo01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergeo01](https://clawhub.ai/user/sergeo01)
 
-## Use Case: <br>
-Developers, social media agents, and content strategists use this skill to draft, evaluate, and improve X posts, threads, videos, and posting cadence for stronger reach and engagement while avoiding negative signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content strategy advice may be mistaken for a guaranteed description of X's current ranking system. <br>
-Mitigation: Treat recommendations as hypotheses, keep human review over public posts, and validate against current account analytics. <br>
-Risk: Over-optimization for engagement can encourage manipulative, spammy, or brand-unsafe posting tactics. <br>
-Mitigation: Avoid clickbait, misleading claims, spammy mentions, and other tactics likely to trigger negative user or platform signals. <br>
-Risk: The optional Python evaluator may be run on sensitive draft content. <br>
-Mitigation: Review the local script before use and avoid processing sensitive unpublished content in untrusted environments. <br>
+## Use Case:
 
+Developers, social media managers, and content agents use this skill to turn X For You feed mechanics into practical post strategy, draft evaluation, cadence planning, and A/B testing guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sergeo01/x-algorithm-optimization) <br>
-- [README](artifact/README.md) <br>
-- [Source References](artifact/REFERENCES.md) <br>
-- [Agent Usage Guide](artifact/AGENT_USAGE.md) <br>
-- [Quick Reference](artifact/QUICK_REFERENCE.md) <br>
-- [Grok-1 Announcement](https://x.ai/blog/grok-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional terminal text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional local Python evaluator scores draft X posts and prints strengths, weaknesses, recommendations, and estimated engagement potential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may apply the strategy as spam, deceptive engagement bait, irrelevant tagging, or harassment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for authentic content improvement and testing, and reject tactics that violate X rules or damage audience trust.
+
+Risk: The skill includes inferred algorithm weights, thresholds, and ranking implications that may be incomplete or become outdated.
+
+Mitigation: Treat recommendations as hypotheses, validate them with account analytics and controlled A/B tests, and review current platform guidance before high-impact campaigns.
+
+Risk: Draft scoring can overstate expected reach because it is a heuristic evaluator rather than a live X ranking model.
+
+Mitigation: Use evaluator output as qualitative guidance alongside human review, audience context, and observed post performance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergeo01/skills/x-algorithm-optimization)
+- [xai-org/x-algorithm technical reference](https://github.com/xai-org/x-algorithm)
+- [Grok-1 announcement](https://x.ai/blog/grok-1)
+- [REFERENCES.md](artifact/REFERENCES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command output from a local Python draft evaluator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces heuristic scores, strengths, weaknesses, recommendations, and engagement-potential estimates; it does not access X accounts, credentials, or external systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

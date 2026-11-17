@@ -1,44 +1,54 @@
-## Description: <br>
-Explains common medical lab report indicators in plain language and highlights abnormal values for general health education. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains common Chinese medical lab reports in plain language, including indicator meanings, reference ranges, abnormal-result flags, and general educational health suggestions.
 
-## Publisher: <br>
-[hikaruhuimin](https://clawhub.ai/user/hikaruhuimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hikaruhuimin](https://clawhub.ai/user/hikaruhuimin)
 
-## Use Case: <br>
-General users can ask an agent to explain blood count, urinalysis, liver and kidney function, lipid, glucose, and thyroid report values in accessible language. The skill is for education and reference, not diagnosis, treatment, medication advice, or a substitute for a clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share personal health information or identifiers from lab reports. <br>
-Mitigation: Remove names, ID numbers, addresses, hospital numbers, and other identifiers before using the skill. <br>
-Risk: Plain-language report explanations may be mistaken for medical diagnosis or treatment advice. <br>
-Mitigation: Treat outputs as general education only and consult a qualified clinician for health concerns or care decisions. <br>
-Risk: The artifact includes an optional external commercial link that is not required to use the skill. <br>
-Mitigation: Use the skill without following optional marketing links unless they are independently trusted and needed. <br>
+## Use Case:
 
+External users use this skill to better understand common medical test reports such as blood count, urinalysis, liver and kidney function, blood lipids, blood glucose, and thyroid function. It is an educational aid and not a substitute for professional diagnosis, medication, treatment decisions, or urgent medical care.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hikaruhuimin/medical-report-reader) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-language Markdown explanations with cautions and reference ranges when provided] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include indicator explanations, normal reference ranges, abnormal-result cautions, and general health suggestions; outputs are not medical diagnosis or treatment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake educational report explanations for professional diagnosis or treatment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that outputs are for reference only and direct users with health concerns, abnormal results, urgent symptoms, or treatment questions to a qualified medical professional.
+
+Risk: Medical reports can contain identifiable health information.
+
+Mitigation: Advise users to avoid sharing identifiable health details unless they are comfortable providing them to the host agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hikaruhuimin/skills/medical-report-reader)
+- [Publisher profile](https://clawhub.ai/user/hikaruhuimin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text explanations in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational medical-report explanations; no diagnosis, treatment recommendation, medication recommendation, persistence, code execution, or data exfiltration is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Security Gate Check",
+  "version": "1.0.0",
+  "description": "Tier A (fileEdited): Verifies auth declarations on endpoint files. Fires immediately on every save — security-critical.",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["{DERIVE: presentation layer controller file patterns from tech-stack.md}"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "## Package Territory Check (MANDATORY — evaluate FIRST)\nBefore performing any checks below, verify the triggering file path.\n\nEXCLUDED ZONES (package infrastructure — NOT compliance subjects):\n• .kiro/hooks/ — AI-GCE hook infrastructure\n• .kiro/steering/ — AI-DWG/AI-GCE steering infrastructure\n• .kiro/agents/ — AI-GCE agent infrastructure\n• .governance/ — AI-GCE governance rules/agents/logs\n• compliance-log/ — AI-GCE audit trail\n• project-initiation/ — AI-PILC output\n• architecture/ — AI-ADLC output\n• management_framework/ — Shared governance spine\n• docs/compliance-* — AI-GCE generated dashboards\n• templates/ — AI-DWG planning templates\n\nIf the triggering file's path starts with ANY of the above prefixes:\n→ EXIT SILENTLY. Do NOT check, do NOT log, do NOT warn.\n\nIf the file is NOT in an excluded zone → proceed with checks below.\n\n---\n\nSECURITY CHECK (Tier A — immediate enforcement):\n\n1. AUTH DECLARATION: Does this endpoint file have explicit auth? Every endpoint MUST have [Authorize] or explicit [AllowAnonymous] (or framework equivalent). No endpoint without an auth decision.\n2. INPUT VALIDATION: If this is a controller/endpoint with request parameters, verify validation rules exist for the DTOs.\n3. INJECTION PREVENTION: Scan for string concatenation in queries or commands (SQL injection, command injection risk).\n\nIf any security rule is violated, warn IMMEDIATELY with rule ID and remediation.\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks, append to `compliance-log/events/{today-date}.jsonl`:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"security-gate-check\", \"trigger\": \"fileEdited\", \"ruleId\": \"{primary-rule-checked}\", \"ruleSeverity\": \"critical\", \"result\": \"{pass|fail|warn}\", \"message\": \"{finding}\", \"sessionDedup\": true}\n\nIf a previous log entry exists for the same hook + file path within this session, OVERWRITE it (keep only the latest result)."
+  }
+}

@@ -1,42 +1,52 @@
-## Description: <br>
-Saas Decomposer analyzes SaaS products to identify functions replaceable by AI agents and generate internalization roadmaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saas Decomposer analyzes SaaS products, identifies functions that AI agents could replace, and generates internalization roadmaps.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers, operators, and business planners use this skill to decompose public SaaS offerings, compare AI replaceability, and draft internalization plans, skill specs, timelines, and cost comparisons. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analysis may rely on public web pages and pricing estimates that are incomplete, stale, or unavailable. <br>
-Mitigation: Review cited service pages and validate cost assumptions before using the output for business decisions. <br>
-Risk: Generated SaaS analysis results may be saved and reused by planning workflows. <br>
-Mitigation: Avoid private strategy data, authenticated pages, internal-network URLs, and sensitive customer details unless the generated files are reviewed and controlled. <br>
-Risk: Referenced memory files can influence decomposition and internalization recommendations. <br>
-Mitigation: Review relevant memory files before using the skill for sensitive strategy work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Saas Decomposer on ClawHub](https://clawhub.ai/mupengi-bot/saas-decomposer) <br>
-- [mupengi-bot Publisher Profile](https://clawhub.ai/user/mupengi-bot) <br>
+## Use Case:
 
+Developers and business operators use this skill to analyze SaaS products, estimate which features could be replaced by AI agent skills, and create an internalization roadmap with timelines and cost comparisons.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, roadmap sections, skill specification drafts, and optional JSON event records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save SaaS analysis events under events/saas-analysis-YYYY-MM-DD.json when an analysis completes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may crawl arbitrary SaaS pages or user-provided URLs, which can expose private or credential-bearing information if targets are not constrained.
+
+Mitigation: Use explicit public HTTPS URLs or SaaS names only, and avoid internal, private, or credential-bearing pages.
+
+Risk: The skill references memory/persona files and event outputs that could share context with later planning workflows.
+
+Mitigation: Do not allow access to memory or persona files, and disable event writes unless that context is intended for downstream planning.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mupengi-bot/skills/saas-decomposer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, scored lists, roadmap sections, and optional JSON event records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI replaceability scores, new skill requirements, development timelines, and cost comparison estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

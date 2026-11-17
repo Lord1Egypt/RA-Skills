@@ -1,0 +1,75 @@
+{
+  "name": "portrait-talk-theme-kit",
+  "displayName": "9:16 口播视频配色与底图系统",
+  "version": "1.1.0",
+  "entrypoints": {
+    "preview": "index.html",
+    "interactiveDemo": "examples/single.html",
+    "themeTokens": "tokens/themes.json",
+    "layoutTokens": "tokens/layouts.json",
+    "themeCss": "tokens/themes.css",
+    "componentCss": "components/portrait-talk-card.css",
+    "componentJs": "components/portrait-talk-card.js",
+    "codexInstructions": "AGENTS.md"
+  },
+  "assets": {
+    "backgroundSvgDirectory": "assets/backgrounds",
+    "safeAreaOverlay": "assets/overlays/safe-area.svg",
+    "speakerMask": "assets/overlays/speaker-placeholder.svg"
+  },
+  "generatedAssets": {
+    "backgroundPngDirectory": "assets/backgrounds-png",
+    "demoPosterDirectory": "assets/demo-posters",
+    "contactSheet": "preview/contact-sheet.png"
+  },
+  "themes": [
+    {
+      "id": "deep-space-blue",
+      "name": "深空蓝",
+      "layout": "diagonal-tech",
+      "backgroundAsset": "assets/backgrounds/01-deep-space-blue.svg"
+    },
+    {
+      "id": "emerald-gold",
+      "name": "墨绿金",
+      "layout": "executive-split",
+      "backgroundAsset": "assets/backgrounds/02-emerald-gold.svg"
+    },
+    {
+      "id": "warm-gray-orange",
+      "name": "暖灰橙",
+      "layout": "centered-editorial",
+      "backgroundAsset": "assets/backgrounds/03-warm-gray-orange.svg"
+    },
+    {
+      "id": "midnight-purple",
+      "name": "午夜紫",
+      "layout": "orbit-focus",
+      "backgroundAsset": "assets/backgrounds/04-midnight-purple.svg"
+    },
+    {
+      "id": "minimal-black-white",
+      "name": "极简黑白",
+      "layout": "minimal-column",
+      "backgroundAsset": "assets/backgrounds/05-minimal-black-white.svg"
+    },
+    {
+      "id": "sea-salt-cyan",
+      "name": "海盐青",
+      "layout": "fresh-frame",
+      "backgroundAsset": "assets/backgrounds/06-sea-salt-cyan.svg"
+    },
+    {
+      "id": "earth-brown",
+      "name": "大地棕",
+      "layout": "earth-bands",
+      "backgroundAsset": "assets/backgrounds/07-earth-brown.svg"
+    },
+    {
+      "id": "vitality-lime",
+      "name": "活力青柠",
+      "layout": "playful-corner",
+      "backgroundAsset": "assets/backgrounds/08-vitality-lime.svg"
+    }
+  ]
+}

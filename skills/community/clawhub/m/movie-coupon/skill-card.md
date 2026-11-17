@@ -1,44 +1,55 @@
-## Description: <br>
-Fetches movie ticket coupon information for platforms such as Taopiaopiao and Maoyan, returning redemption links and QR code image URLs for users to redeem via WeChat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find movie-ticket coupons and provides redemption links or QR code image links with instructions for claiming them.
 
-## Publisher: <br>
-[moooai](https://clawhub.ai/user/moooai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moooai](https://clawhub.ai/user/moooai)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current movie ticket coupon offers, then present the coupon title, redemption link, QR code image URL, and usage guidance. It is intended for movie-ticket discount requests and follow-up questions about opening coupon links or scanning QR codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may be directed to external redemption links or QR code destinations. <br>
-Mitigation: Check the destination before opening a coupon link or scanning a QR code, especially when a broad movie-related request triggers coupon output. <br>
-Risk: The skill depends on a live coupon API, so returned offers, URLs, or availability can change. <br>
-Mitigation: Present coupon data as returned by the API and give a retry or fallback message when the API is unavailable or returns unexpected data. <br>
+## Use Case:
 
+Moviegoers can request available ticket discounts and receive coupon links, QR code image links, and redemption guidance for Chinese movie-ticket platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moooai/movie-coupon) <br>
-- [Publisher profile](https://clawhub.ai/user/moooai) <br>
-- [Project homepage from metadata](https://github.com/moooai/movie-coupon) <br>
-- [API documentation](references/api_documentation.md) <br>
-- [Movie coupon API endpoint](https://agskills.moontai.top/coupon/movie) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with coupon title, redemption URL, QR code image URL, and usage guidance; helper script output may be formatted text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to the coupon API and presents external redemption URLs and QR code image URLs exactly as returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Running the helper sends a persistent anonymous install identifier to the coupon service for attribution, without a clear opt-out.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this tracking behavior before installing or running the helper; avoid running it if persistent attribution is unacceptable.
+
+Risk: Returned coupon links and QR codes lead to third-party destinations and a WeChat-based redemption flow.
+
+Mitigation: Inspect destinations and only open links or scan QR codes when you trust the coupon provider and redemption flow.
+
+## Reference(s):
+
+- [ClawHub movie-coupon release](https://clawhub.ai/moooai/skills/movie-coupon)
+- [Publisher-provided project homepage (not verified provenance)](https://github.com/moooai/movie-coupon)
+- [Movie coupon API documentation](references/api_documentation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with coupon links and QR code image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coupon titles and redemption instructions; availability and destinations depend on the coupon provider.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

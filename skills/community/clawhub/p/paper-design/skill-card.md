@@ -1,44 +1,58 @@
-## Description: <br>
-Design UI screens in Paper, a professional design tool running locally on macOS, by creating artboards, writing HTML into designs, taking screenshots, and iterating visually. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design UI screens in Paper, a local macOS design tool, by creating artboards, writing styled HTML, capturing screenshots, and iterating visually.
 
-## Publisher: <br>
-[CandooLabs](https://clawhub.ai/user/CandooLabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[candoolabs](https://clawhub.ai/user/candoolabs)
 
-## Use Case: <br>
-Developers and designers use this skill to control a local Paper design file from an agent workflow, create or modify UI artboards, inspect design structure, and capture screenshots for visual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent control of the currently open Paper design file, including operations that can edit, replace, duplicate, or delete design content. <br>
-Mitigation: Review targets before replace or delete operations and keep backups or version history for important designs. <br>
-Risk: Screenshot and session artifacts may be written under temporary local paths on the machine. <br>
-Mitigation: Clean up /tmp/paper-screenshots and /tmp/paper-mcp-session on shared machines. <br>
-Risk: Changing the Paper MCP URL could direct design operations to an unintended or untrusted endpoint. <br>
-Mitigation: Keep PAPER_MCP_URL on the default localhost endpoint unless another server is intentionally trusted. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to inspect and modify Paper design files on macOS, create UI artboards, insert styled HTML, and review screenshots during iterative interface design.
 
-## Reference(s): <br>
-- [Paper Design website](https://paper.design) <br>
-- [ClawHub Paper Design skill page](https://clawhub.ai/CandooLabs/paper-design) <br>
-- [Publisher profile](https://clawhub.ai/user/CandooLabs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON arguments; screenshot operations save JPEG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Paper on macOS, curl, python3, and access to the local Paper MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The configurable Paper MCP endpoint could connect the bridge to an untrusted server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default local Paper endpoint or set PAPER_MCP_URL only to a trusted local Paper server.
+
+Risk: Screenshot saving and explicit save paths can write files to local storage, including sensitive or existing paths.
+
+Mitigation: Use non-sensitive temporary paths, avoid --save for sensitive or existing files, and review generated files before sharing.
+
+Risk: The workflow reads and modifies open Paper design files.
+
+Mitigation: Install and run it only for trusted Paper workflows, and keep sensitive design files closed unless they are intended for editing.
+
+## Reference(s):
+
+- [Paper](https://paper.design)
+- [Paper Design on ClawHub](https://clawhub.ai/candoolabs/skills/paper-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON arguments, and local screenshot file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Paper running locally on macOS with curl and python3 available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

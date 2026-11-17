@@ -1,42 +1,58 @@
-## Description: <br>
-Integrates with the macOS Notes app to create, list, read, update, delete, and search notes through a Node.js CLI that bridges to AppleScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with the macOS Notes app so an agent can create, list, read, update, append, delete, and search Apple Notes through a Node.js CLI.
 
-## Publisher: <br>
-[swancho](https://clawhub.ai/user/swancho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[swancho](https://clawhub.ai/user/swancho)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to let an agent manage Apple Notes through explicit CLI commands for note creation, retrieval, editing, deletion, and search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, update, append to, and delete Apple Notes, including notes that may contain sensitive personal or business information. <br>
-Mitigation: Install only when Notes access is intended, use folder-scoped commands where possible, and require explicit approval before update, append, or delete actions. <br>
-Risk: Apple Notes does not expose stable IDs, and duplicated note titles can cause actions to target the most recently created matching note. <br>
-Mitigation: Use folder and title together when locating notes, review the target note before mutation, and avoid destructive actions when duplicate titles are present. <br>
-Risk: Broad searches can expose snippets from sensitive notes. <br>
-Mitigation: Prefer folder-scoped searches and avoid broad queries across all notes unless the user has approved the scope. <br>
+## Use Case:
 
+Developers and agent users on macOS use this skill to manage Apple Notes from an agent workflow, including creating notes, retrieving note content, appending updates, and searching existing notes.
 
-## Reference(s): <br>
-- [Mac Notes Agent ClawHub Listing](https://clawhub.ai/swancho/mac-notes-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from CLI commands, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on the default Apple Notes account and may be folder-scoped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Update and delete commands can alter or remove Apple Notes without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Read the target note before changing it, keep backups, and avoid using the skill on folders that contain important or sensitive notes unless the action is reviewed.
+
+Risk: Duplicate note titles can cause the skill to operate on the wrong note.
+
+Mitigation: Use a specific folder and unique note titles before running update, append, or delete actions.
+
+Risk: The skill requires access to local Apple Notes through macOS automation.
+
+Mitigation: Install and run it only on trusted macOS systems where Apple Notes automation access is appropriate.
+
+## Reference(s):
+
+- [Mac Notes Agent on ClawHub](https://clawhub.ai/swancho/skills/mac-notes-agent)
+- [Publisher profile](https://clawhub.ai/user/swancho)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS with Apple Notes, Node.js, and osascript available.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

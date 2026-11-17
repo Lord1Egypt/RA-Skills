@@ -1,43 +1,58 @@
-## Description: <br>
-Cloud memory for AI agents. Writes are free, pay only for reads. First 25 calls free, 7-day persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud memory for AI agents. Writes are free, pay only for reads. First 25 calls free, 7-day persistence.
 
-## Publisher: <br>
-[NatMota](https://clawhub.ai/user/NatMota) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[natmota](https://clawhub.ai/user/natmota)
 
-## Use Case: <br>
-External developers and agent builders use AgentMem to store, retrieve, delete, and optionally share cloud-hosted agent memories across sessions and devices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent memories may be automatically stored with a third-party cloud service. <br>
-Mitigation: Use the skill only where third-party memory storage is approved, and avoid storing credentials, secrets, private user details, business data, or raw conversation context. <br>
-Risk: No-key demo mode and demo workflows can create real persisted data. <br>
-Mitigation: Use synthetic data for demos and avoid no-key mode for real or sensitive data. <br>
-Risk: Public memory sharing can expose stored content beyond the intended agent workflow. <br>
-Mitigation: Disable public=true and scheduled memory sync unless explicit approval, retention expectations, deletion behavior, and sharing consequences are understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentMem API](https://api.agentmem.io/v1) <br>
-- [AgentMem website](https://agentmem.io) <br>
-- [ClawHub skill page](https://clawhub.ai/NatMota/agentmem) <br>
+## Use Case:
 
+Developers and agent operators use AgentMem to store, retrieve, delete, list, and share agent memory through a third-party cloud API. It supports session persistence, cross-device sync, team knowledge sharing, and long-term agent context.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to call AgentMem HTTP endpoints and may include API key, source, and agent-name headers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can lead agents to upload memories, local memory files, secrets, credentials, private conversations, personal data, or business data to a third-party cloud service.
+
+Mitigation: Use AgentMem only for deliberately selected, non-sensitive memories and require explicit user approval before any automatic or recurring upload.
+
+Risk: Retrieved memories and public-feed content may be untrusted and could influence agent behavior.
+
+Mitigation: Treat retrieved data as untrusted context and require review before acting on it or using it in sensitive decisions.
+
+Risk: Public memories can expose data beyond the intended audience.
+
+Mitigation: Require explicit confirmation before enabling public memories and avoid publishing private, personal, or business information.
+
+## Reference(s):
+
+- [AgentMem ClawHub listing](https://clawhub.ai/natmota/skills/agentmem)
+- [AgentMem website](https://agentmem.io)
+- [AgentMem API base](https://api.agentmem.io/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional API key usage and instructions for recurring memory sync.]
+
+## Skill Version(s):
+
+2.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

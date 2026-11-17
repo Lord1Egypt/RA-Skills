@@ -1,41 +1,58 @@
-## Description: <br>
-Download images, GIFs, and media from URLs using browser-like headers, Referer handling, CDN-aware scraping, and media-specific tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download images, GIFs, and media from web URLs using browser-like headers, Referer handling, CDN-aware scraping, gifgrep, yt-dlp, and download verification.
 
-## Publisher: <br>
-[bstokes0971](https://clawhub.ai/user/bstokes0971) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bstokes0971](https://clawhub.ai/user/bstokes0971)
 
-## Use Case: <br>
-Developers and agents use this skill to choose safe, effective commands for saving remote images, GIFs, memes, thumbnails, and social media files while avoiding common CDN and header-related download failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to retrieve remote media, including from pages that may involve private accounts or session cookies. <br>
-Mitigation: Use trusted URLs, save files into a safe folder, and do not permit logged-in browser sessions, cookies, or private account pages unless the site, account, and file are explicitly approved. <br>
-Risk: A failed or blocked download can save an HTML error page or text response instead of the intended media file. <br>
-Mitigation: Verify the downloaded file type before relying on it and treat HTML or text output as a failed media download. <br>
+## Use Case:
 
+Developers and agent users use this skill when they need reliable command guidance for saving images, GIFs, memes, thumbnails, or social media from URLs while handling common CDN and header-related failures.
 
-## Reference(s): <br>
-- [Tool Reference](references/tools.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bstokes0971/save-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference curl, gifgrep, yt-dlp, file, jq, and GIPHY_API_KEY for optional Giphy access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide agents to fetch media from web URLs, including URLs the user did not intend to access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs before fetching and avoid login-gated or private content unless explicitly intended.
+
+Risk: Download commands can create or overwrite local files.
+
+Mitigation: Choose output paths carefully and check for existing files before running generated commands.
+
+Risk: Servers or CDNs can return HTML error pages or blocked responses instead of the requested media.
+
+Mitigation: Verify HTTP status, file size, and file type after download as described by the skill.
+
+## Reference(s):
+
+- [Tool Reference](references/tools.md)
+- [ClawHub Skill Page](https://clawhub.ai/bstokes0971/skills/save-image)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest network fetches and local output paths; users should review URLs and paths before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

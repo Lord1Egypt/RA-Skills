@@ -1,0 +1,163 @@
+[
+  {
+    "id": "PIP-01",
+    "group": "pipeline",
+    "desc": "domain 自动检测 - 含 uploader 时正确推断交易领域",
+    "fn": "speaker_knowledge._guess_domain",
+    "input": {
+      "video_title": "机构订单原理培训",
+      "uploader": "张聚贤"
+    },
+    "expected": "trading"
+  },
+  {
+    "id": "PIP-02",
+    "group": "pipeline",
+    "desc": "domain 自动检测 - 含 uploader 时正确推断技术领域",
+    "fn": "speaker_knowledge._guess_domain",
+    "input": {
+      "video_title": "SKILL到底是什么？精读Google论文",
+      "uploader": "慢学AI"
+    },
+    "expected": "general"
+  },
+  {
+    "id": "PIP-03",
+    "group": "pipeline",
+    "desc": "domain 自动检测 - 空标题和 uploader 返回空字符串",
+    "fn": "speaker_knowledge._guess_domain",
+    "input": {
+      "video_title": "",
+      "uploader": ""
+    },
+    "expected": ""
+  },
+  {
+    "id": "PIP-04",
+    "group": "pipeline",
+    "desc": "domain 默认值守卫 - 空字符串为 truthy-false，触发自动检测",
+    "fn": "speaker_knowledge._guess_domain",
+    "input": {
+      "video_title": "2021交易公开课",
+      "uploader": "胖杰克"
+    },
+    "expected": "trading"
+  },
+  {
+    "id": "PIP-05",
+    "group": "pipeline",
+    "desc": "说话人归一化 - 张聚贤=胖杰克=张扬",
+    "fn": "speaker_knowledge._normalize_speaker",
+    "input": {
+      "uploader": "胖杰克"
+    },
+    "expected_contains": [
+      "张聚贤",
+      "张扬",
+      "胖杰克"
+    ]
+  },
+  {
+    "id": "PIP-06",
+    "group": "pipeline",
+    "desc": "说话人归一化 - 同名返回原值",
+    "fn": "speaker_knowledge._normalize_speaker",
+    "input": {
+      "uploader": "慢学AI"
+    },
+    "expected": "慢学AI"
+  },
+  {
+    "id": "PIP-07",
+    "group": "pipeline",
+    "desc": "资源评估 - 短音频走 local",
+    "fn": "__manual__",
+    "input": {
+      "duration_s": 300,
+      "transcript_len": 500
+    },
+    "expected_mode_in": [
+      "local",
+      "cloud"
+    ],
+    "notes": "assess_and_route 是 py 函数不可直接 import，手动验证"
+  },
+  {
+    "id": "PIP-08",
+    "group": "pipeline",
+    "desc": "资源评估 - 空音频返回 None",
+    "fn": "__manual__",
+    "input": {
+      "path": "/tmp/nonexistent.wav"
+    },
+    "expected": {
+      "mode": null
+    },
+    "notes": "assess_audio() 需要 duration_s，手动验证"
+  },
+  {
+    "id": "PIP-09",
+    "group": "pipeline",
+    "desc": "缓存命中 - 同 BVID+domain+speaker 返回一致",
+    "fn": "_get_cached",
+    "input": {
+      "bvid": "TEST_CACHE_UNIT"
+    },
+    "expected_type": "dict_or_none",
+    "notes": "函数非公开接口，手动验证"
+  },
+  {
+    "id": "PIP-10",
+    "group": "pipeline",
+    "desc": "缓存拆分 - raw 缓存存在",
+    "fn": "_get_raw_cached",
+    "input": {
+      "bvid": "TEST_RAW_CACHE"
+    },
+    "expected_type": "dict_or_none",
+    "notes": "函数非公开接口，手动验证"
+  },
+  {
+    "id": "PIP-11",
+    "group": "pipeline",
+    "desc": "合集检测 - 有ugc_season返回episodes列表",
+    "fn": "__manual__",
+    "input": {
+      "bvid": "BV1uZCFBdEs4"
+    },
+    "expected_count": 13,
+    "notes": "list_collection() 验证，需B站API正常响应"
+  },
+  {
+    "id": "PIP-12",
+    "group": "pipeline",
+    "desc": "合集检测 - 非合集返回空列表",
+    "fn": "__manual__",
+    "input": {
+      "bvid": "BV1wT41177aD"
+    },
+    "expected_count": 0,
+    "notes": "list_collection() 验证"
+  },
+  {
+    "id": "PIP-13",
+    "group": "pipeline",
+    "desc": "知识归档 - 去重（相同摘要不重复写入）",
+    "fn": "__manual__",
+    "input": {},
+    "notes": "运行多次同BVID的pipeline，第二次应skip"
+  },
+  {
+    "id": "PIP-14",
+    "group": "pipeline",
+    "desc": "知识归档 - 文件名按说话人归一化",
+    "fn": "__manual__",
+    "input": {
+      "speaker": "张聚贤说交易"
+    },
+    "expected_file_in": [
+      "张聚贤说交易"
+    ],
+    "notes": "speaker名→knowledge/{sanitized}.md"
+  }
+]

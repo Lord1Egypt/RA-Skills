@@ -1,42 +1,52 @@
-## Description: <br>
-Eridian Carapace provides OpenClaw agent security hardening guidance for prompt injection defense, credential protection, data exfiltration prevention, URL allowlisting, approval flows, and security audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eridian Carapace provides OpenClaw agent hardening guidance for prompt injection defense, data leak prevention, credential protection, browser allowlisting, security audits, and sensitive-operation approvals.
 
-## Publisher: <br>
-[iampaulpatterson-boop](https://clawhub.ai/user/iampaulpatterson-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iampaulpatterson-boop](https://clawhub.ai/user/iampaulpatterson-boop)
 
-## Use Case: <br>
-Developers and operators use this skill to harden OpenClaw agent configurations, add defensive AGENTS.md patterns, audit security posture, and reduce prompt injection, credential leakage, and unauthorized operation risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Copied AGENTS.md security patterns may introduce incorrect or overly broad operational guidance if applied without review. <br>
-Mitigation: Review each copied section before deployment and adapt it to the agent's actual tools, trust boundaries, and approval model. <br>
-Risk: Attack examples and credential-related snippets may be misunderstood as live instructions if pasted into persistent agent rules without clear labels. <br>
-Mitigation: Keep examples clearly labeled as examples, use redacted or presence-only checks for secrets, and avoid storing credential values in instructions. <br>
+## Use Case:
 
+Developers and agent operators use Eridian Carapace to harden OpenClaw agent configurations, audit security posture, and apply runtime guardrails against prompt injection, credential exposure, data leaks, unsafe browser navigation, and unapproved sensitive operations.
 
-## Reference(s): <br>
-- [Attack Vectors & Defenses](references/attack-vectors.md) <br>
-- [Security Audit Template](references/audit-template.md) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes copy-ready AGENTS.md security patterns, audit checklist items, and browser allowlist configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Credential-handling examples can permit an agent to display plaintext API keys, private keys, tokens, .env contents, or secret-bearing config files when the owner asks directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revise the patterns before use so agents provide only redacted status checks or direct users to retrieve secrets from a password manager, secret manager, or provider console.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iampaulpatterson-boop/skills/eridian-carapace)
+- [Security Patterns Reference](references/security-patterns.md)
+- [Attack Vectors & Defenses](references/attack-vectors.md)
+- [Security Audit Template](references/audit-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Code]
+
+**Output Format:** [Markdown guidance with copy-paste AGENTS.md patterns, audit checklists, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; review credential-handling exceptions before adopting patterns.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

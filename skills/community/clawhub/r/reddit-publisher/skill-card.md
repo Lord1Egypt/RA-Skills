@@ -1,48 +1,63 @@
-## Description: <br>
-Researches subreddits, drafts Reddit-native posts, and publishes or schedules them through Late API with ScrapeCreators-based Reddit reading and an anti-AI-slop drafting pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research subreddits, draft Reddit-native posts, and publish or schedule Reddit posts via Late API, with ScrapeCreators-powered reading tools and an anti-AI-slop drafting pass.
 
-## Publisher: <br>
-[nirusan](https://clawhub.ai/user/nirusan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nirusan](https://clawhub.ai/user/nirusan)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to research Reddit communities, draft subreddit-aware posts, and publish or schedule reviewed posts through a connected Late/Reddit account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or schedule Reddit posts through a connected Late/Reddit account. <br>
-Mitigation: Manually review the account, subreddit, title, body, flair, and schedule before every posting command. <br>
-Risk: The skill includes guidance to make AI-written posts sound human. <br>
-Mitigation: Follow subreddit disclosure and promotion rules, and avoid using the drafting workflow to misrepresent identity or intent. <br>
-Risk: The workflow depends on ScrapeCreators and Late API keys. <br>
-Mitigation: Store keys only in the documented environment variables or config files, restrict file permissions, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to research Reddit communities, draft posts that fit subreddit norms, validate posting details, and publish or schedule Reddit content through connected ScrapeCreators and Late accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skills/reddit-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/nirusan) <br>
-- [ScrapeCreators](https://scrapecreators.com) <br>
-- [Late](https://getlate.dev) <br>
-- [Stop-slop phrases reference](references/stop-slop/phrases.md) <br>
-- [Stop-slop structures reference](references/stop-slop/structures.md) <br>
-- [Stop-slop examples reference](references/stop-slop/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON returned by helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCRAPECREATORS_API_KEY and LATE_API_KEY or matching local config files for API-backed workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can publish public Reddit posts through a connected Late account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the final subreddit, title, body, flair, scheduling choice, and publish mode, then obtain explicit user approval before running create-post or using --publish-now.
+
+Risk: Stored API keys grant access to ScrapeCreators and Late workflows.
+
+Mitigation: Use environment variables or a secret manager where possible, keep file-based keys chmod 600, and restrict the connected Reddit account to the minimum authority needed.
+
+Risk: Posts can fail or be removed because subreddit rules, flair requirements, and account limits vary.
+
+Mitigation: Check subreddit details, validate the subreddit, list available flairs, and review subreddit-specific rules before posting.
+
+## Reference(s):
+
+- [Reddit Publisher ClawHub skill page](https://clawhub.ai/skills/reddit-publisher)
+- [Reddit Publisher release page](https://clawhub.ai/nirusan/skills/reddit-publisher)
+- [ScrapeCreators](https://scrapecreators.com)
+- [Late](https://getlate.dev)
+- [Phrases to Remove](references/stop-slop/phrases.md)
+- [Structures to Avoid](references/stop-slop/structures.md)
+- [Before/After Examples](references/stop-slop/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCRAPECREATORS_API_KEY for Reddit research and LATE_API_KEY for Reddit posting workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

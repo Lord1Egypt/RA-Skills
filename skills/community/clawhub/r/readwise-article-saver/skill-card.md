@@ -1,45 +1,61 @@
-## Description: <br>
-Saves article URLs to Readwise Reader and applies content-based tags, with support for WeChat Official Account articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves article URLs to Readwise Reader and uses an LLM to apply content-based tags, with specialized handling for WeChat Official Account articles.
 
-## Publisher: <br>
-[zz123-awef](https://clawhub.ai/user/zz123-awef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zz123-awef](https://clawhub.ai/user/zz123-awef)
 
-## Use Case: <br>
-Users who collect articles use this skill to save one or more article URLs to Readwise Reader and receive automatic tags based on article content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically fetch and save pasted URLs with broad triggers and little user control. <br>
-Mitigation: Require explicit Readwise save intent, confirm ambiguous or batch saves, and disable automatic triggering when reviewing sensitive links. <br>
-Risk: Article URLs, fetched content or HTML, metadata, and generated tags may be sent to Readwise and an LLM provider. <br>
-Mitigation: Use only with content acceptable for those services, strip sensitive URL parameters, and prefer URL-only handling when full content sharing is not appropriate. <br>
-Risk: The skill requires a Readwise token and broad command execution to run helper scripts. <br>
-Mitigation: Scope and rotate the Readwise token, restrict allowed tools to the minimum required, and review the bundled scripts before enabling the skill. <br>
+## Use Case:
 
+External users and developers use this skill to save one or more article links into Readwise Reader and receive consistent content-based tags for later retrieval. It is especially intended for article links that Readwise may not parse reliably on its own, such as WeChat Official Account articles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zz123-awef/readwise-article-saver) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai/) <br>
-- [Readwise Reader](https://readwise.io/read) <br>
-- [Readwise Save API](https://readwise.io/api/v3/save/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON status objects from helper scripts plus concise text or Markdown user reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, curl, READWISE_TOKEN, and OPENROUTER_API_KEY; can process multiple URLs sequentially.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may fetch and send saved URLs, article metadata, and article text to Readwise and the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for links intended for saving, avoid private or sensitive URLs, and confirm that the chosen LLM provider is acceptable for the article content.
+
+Risk: The security guidance flags unsafe command and URL handling.
+
+Mitigation: Require explicit save intent, validate URLs before execution, avoid localhost or intranet targets, and pass arguments safely when invoking bundled scripts.
+
+Risk: Automatic processing can act on pasted links without confirmation.
+
+Mitigation: Configure the agent to ask before processing sensitive contexts or disable automatic URL handling where accidental saves would be unacceptable.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zz123-awef/skills/readwise-article-saver)
+- [Publisher profile](https://clawhub.ai/user/zz123-awef)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [Readwise Reader](https://readwise.io/read)
+- [Readwise Save API endpoint](https://readwise.io/api/v3/save/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON script results and concise Markdown or plain-text status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires READWISE_TOKEN and OPENROUTER_API_KEY. Article text previews may include up to about 8000 characters for tagging.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

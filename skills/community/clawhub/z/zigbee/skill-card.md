@@ -1,37 +1,53 @@
-## Description: <br>
-Deploy and troubleshoot Zigbee mesh networks for home automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and troubleshoot Zigbee mesh networks for home automation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, developers, and home automation operators use this skill to plan, deploy, and troubleshoot Zigbee mesh networks, including coordinator placement, interference, pairing, routing, binding, and device compatibility issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Factory resets, firmware flashing, coordinator migration, or Zigbee channel changes can disrupt device pairings. <br>
-Mitigation: Verify steps against the specific hardware and back up coordinator or network state before applying disruptive troubleshooting changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Zigbee skill page](https://clawhub.ai/ivangdavila/zigbee) <br>
+## Use Case:
 
+External users, developers, and home automation maintainers use this skill to troubleshoot Zigbee mesh routing, coordinator, interference, pairing, compatibility, binding, and battery-device issues.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; no executable behavior or hidden access requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Zigbee recommendations may be too general for a specific device, hub, firmware, or ecosystem.
+
+Mitigation: Check device-specific compatibility lists and vendor instructions before buying, flashing, pairing, or resetting hardware.
+
+Risk: Network changes such as Zigbee channel changes, coordinator migration, factory reset, or battery replacement can disrupt pairings or require re-pairing.
+
+Mitigation: Back up coordinator data where supported and plan re-pairing or route rebuilding before making disruptive changes.
+
+## Reference(s):
+
+- [ClawHub Zigbee skill page](https://clawhub.ai/ivangdavila/skills/zigbee)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; guidance should be checked against device compatibility and vendor instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

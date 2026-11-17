@@ -1,53 +1,66 @@
-## Description: <br>
-Guides analysis of Java, Maven, and Spring dependency security risks, including vulnerability scanning, affected-version verification, transitive dependency review, embedded JAR inspection, CVE impact review, and remediation reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze dependency security risks in Java, Maven, Gradle, and Spring ecosystem projects, including vulnerability matching, transitive dependency review, embedded JAR inspection, and remediation reporting.
 
-## Publisher: <br>
-[qiushuizy](https://clawhub.ai/user/qiushuizy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiushuizy](https://clawhub.ai/user/qiushuizy)
 
-## Use Case: <br>
-Developers and security engineers use this skill to analyze Java dependency risk, confirm whether specific versions are affected by known vulnerabilities, inspect Maven or Gradle dependency paths, and produce prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Build and scanner commands may inspect project files, download dependency metadata, query public vulnerability APIs, and generate reports that include private dependency names or repository details. <br>
-Mitigation: Run the suggested Maven, Gradle, and vulnerability scanning commands only in repositories you trust, and review generated reports before sharing them outside the project team. <br>
-Risk: Scanner output can include false positives or incomplete findings when dependency versions, scopes, exclusions, or runtime paths are not fully resolved. <br>
-Mitigation: Use lockfiles, dependency trees, affected-version ranges, and official advisories to confirm findings before treating a dependency as vulnerable. <br>
+## Use Case:
 
+Developers and security engineers use this skill to investigate Java dependency vulnerabilities, confirm affected versions against dependency evidence, and prepare prioritized remediation reports.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Execution Principles and Environment](references/01-principles.md) <br>
-- [Maven Project Analysis](references/02-maven.md) <br>
-- [Gradle Project Analysis](references/03-gradle.md) <br>
-- [Vulnerability Scanning Tools](references/04-tools.md) <br>
-- [Command Examples](references/05-commands.md) <br>
-- [Output and Remediation Templates](references/06-output.md) <br>
-- [Reference and FAQ](references/07-reference.md) <br>
-- [Maven Dependency Mechanism](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html) <br>
-- [Gradle Viewing Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html) <br>
-- [CVE](https://www.cve.org/) <br>
-- [Spring Security Advisories](https://spring.io/security) <br>
-- [OSV API Documentation](https://osv.dev/docs/) <br>
-- [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include vulnerability summaries, dependency evidence, remediation priorities, and uncertainty labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can lead an agent to run Maven or Gradle commands that may execute project-controlled build logic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before executing build-tool or scanner commands, inspect static files and lockfiles first, and use a disposable environment without unrelated secrets or broad filesystem access for untrusted repositories.
+
+Risk: Scanner output or declared dependency versions can produce misleading vulnerability conclusions when effective runtime versions are not confirmed.
+
+Mitigation: Treat scanner results as leads, verify effective versions with dependency trees or lockfiles, and cross-check affected ranges against authoritative advisories before reporting confirmed findings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qiushuizy/skills/java-dependency-security-scan)
+- [Execution Principles and Environment](references/01-principles.md)
+- [Maven Project Analysis](references/02-maven.md)
+- [Gradle Project Analysis](references/03-gradle.md)
+- [Vulnerability Scanning Tools](references/04-tools.md)
+- [Command Examples](references/05-commands.md)
+- [Output and Remediation Templates](references/06-output.md)
+- [Reference and FAQ](references/07-reference.md)
+- [Maven Dependency Mechanism](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html)
+- [Gradle Viewing Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html)
+- [CVE Database](https://www.cve.org/)
+- [Spring Security Advisories](https://spring.io/security)
+- [OSV Documentation](https://osv.dev/docs/)
+- [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with dependency findings, remediation guidance, shell commands, and optional Maven or Gradle snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes evidence-backed vulnerability status, uncertainty labels, runtime relevance, and prioritized fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

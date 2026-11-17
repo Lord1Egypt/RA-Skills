@@ -1,43 +1,56 @@
-## Description: <br>
-从抖音视频学习 AI 工作流和 2026 Coze 扣子工作流智能体搭建，面向零基础 AI 新手提供无代码实操 guidance。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language tutorial skill that guides beginners through AI workflow concepts and building a Coze workflow agent from referenced video learning material.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and AI workflow learners use this skill to get concise guidance for building a Coze workflow agent from video-derived examples. It is intended to help beginners understand workflow concepts, identify setup steps, and iterate on simple no-code agent designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may invoke the skill for general AI workflow or Coze questions where the user did not intend this specific video-derived guidance. <br>
-Mitigation: Review activation behavior before deployment and narrow triggers to the intended Coze workflow-agent setup scenario when possible. <br>
-Risk: The skill is based on video-derived learning notes and may include incomplete or stale guidance. <br>
-Mitigation: Validate recommendations against current Coze documentation and review outputs before applying them in production workflows. <br>
+## Use Case:
 
+External learners and agent users use this skill to receive Chinese-language guidance for understanding AI workflows, learning Coze workflow-agent setup concepts, and finding related practice references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/ai-43de14) <br>
-- [ThinkBook14 2026 AI evaluation video](https://www.bilibili.com/video/BV1FsVf6ME9D) <br>
-- [AI workplace impact video](https://www.bilibili.com/video/BV13b96BPEPo) <br>
-- [Dell XPS14 2026 AI laptop evaluation video](https://www.bilibili.com/video/BV1LKoEBnEJp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, MCP tools, or shell-command execution were detected in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad AI workflow triggers may activate this skill on generic requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants Chinese Coze or AI workflow tutorial guidance before applying the skill.
+
+Risk: Referenced external video links may be stale, unavailable, or not independently verified by the skill.
+
+Mitigation: Treat video links as learning references and verify their content before relying on them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/ai-43de14)
+- [Bilibili reference: ThinkBook14 2026 AI laptop review](https://www.bilibili.com/video/BV1FsVf6ME9D)
+- [Bilibili reference: Future of work and AI](https://www.bilibili.com/video/BV13b96BPEPo)
+- [Bilibili reference: Dell XPS14 2026 AI business laptop review](https://www.bilibili.com/video/BV1LKoEBnEJp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance in Chinese with external reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or hidden authority; broad AI workflow triggers may activate on generic requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

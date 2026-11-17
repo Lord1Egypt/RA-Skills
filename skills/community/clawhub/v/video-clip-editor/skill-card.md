@@ -1,44 +1,60 @@
-## Description: <br>
-Video clip editing skill for automatically analyzing video content and generating CapCut draft templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clip Editor helps agents analyze videos, plan narrated or speech-based clips, produce aligned narration, subtitles, video segments, and generate CapCut/JianYing draft JSON.
 
-## Publisher: <br>
-[riclinccc](https://clawhub.ai/user/riclinccc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riclinccc](https://clawhub.ai/user/riclinccc)
 
-## Use Case: <br>
-External users and developers use this skill to turn source videos into narrated highlight clips, dialogue jump cuts, subtitles, and CapCut/JianYing draft files. It is suited for workflows that need an agent to plan clips, request approval, and then generate aligned video, audio, subtitle, and draft outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter the host Python environment during dependency installation. <br>
-Mitigation: Review before installing, use an isolated virtual environment or container, and preinstall pinned dependencies instead of allowing runtime package installation. <br>
-Risk: Video-derived data, transcripts, frames, and narration text may be sent to configured cloud providers. <br>
-Mitigation: Run it only on media and text approved for those providers, and require explicit confirmation before cloud processing. <br>
-Risk: The workflow can save generated media and CapCut/JianYing draft files. <br>
-Mitigation: Require explicit confirmation before saving drafts or outputs, and review generated files before importing or publishing them. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to turn source videos into short narrated clips or jump-cut dialogue edits with synchronized media assets and CapCut/JianYing draft files.
 
-## Reference(s): <br>
-- [CapCut MCP Server Reference](references/capcut-mcp.md) <br>
-- [vectcut-api Reference](references/vectcut-api.md) <br>
-- [FFmpeg Download](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; generated workflow artifacts include MP3, SRT, MP4, and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow expects explicit user approval before generating files and enforces timing alignment between narration audio, video clips, subtitles, and draft_content.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Videos, transcripts, narration prompts, or clip metadata may be sent to external AI or media services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media approved for external processing, avoid confidential videos, and confirm remote-service behavior before use.
+
+Risk: The workflow uses broad local and network authority to run media tooling, create files, and interact with editing services.
+
+Mitigation: Run the skill in an isolated environment, review generated plans before execution, and require explicit approval before draft creation or uploads.
+
+Risk: Runtime package installation using --break-system-packages can modify the host Python environment.
+
+Mitigation: Install dependencies in a dedicated virtual environment or container and avoid --break-system-packages on shared systems.
+
+## Reference(s):
+
+- [CapCut MCP Server Reference](references/capcut-mcp.md)
+- [vectcut-api Reference](references/vectcut-api.md)
+- [FFmpeg Download](https://ffmpeg.org/download.html)
+- [ClawHub Skill Page](https://clawhub.ai/riclinccc/skills/video-clip-editor)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, shell commands, JSON draft files, SRT subtitles, MP3 narration files, and MP4 clip files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected generated files include narration MP3s, subtitles.srt, clip MP4s, and draft_content.json with timing aligned to measured narration duration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

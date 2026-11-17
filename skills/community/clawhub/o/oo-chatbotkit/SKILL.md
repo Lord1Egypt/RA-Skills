@@ -1,11 +1,11 @@
 ---
 name: oo-chatbotkit
-description: "ChatBotKit (chatbotkit.com). Use this skill for ANY ChatBotKit request — reading, creating, and updating data. Whenever a task involves ChatBotKit, use this skill instead of calling the API directly."
+description: "ChatBotKit (chatbotkit.com). Use this skill for ANY ChatBotKit request — reading, creating, updating, and deleting data. Whenever a task involves ChatBotKit, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "ChatBotKit"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["chatbotkit"]
   icon: "https://static.oomol.com/logo/third-party/Chatbotkit.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `attach_dataset_file` — Attach an existing ChatBotKit file to a dataset.
+- `attach_dataset_file` — Attach an existing ChatBotKit file to a dataset. [write]
 - `complete_conversation` — Send a message to a ChatBotKit conversation and receive the next assistant reply. [write]
 - `create_bot` — Create a new ChatBotKit bot. [write]
 - `create_conversation` — Create a new ChatBotKit conversation with either a bot reference or inline bot configuration. [write]
@@ -45,7 +45,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_dataset` — Create a new ChatBotKit dataset for knowledge retrieval. [write]
 - `create_dataset_record` — Create a new record inside a ChatBotKit dataset. [write]
 - `create_file` — Create a new ChatBotKit file resource. [write]
-- `detach_dataset_file` — Detach a ChatBotKit file from a dataset.
+- `detach_dataset_file` — Detach a ChatBotKit file from a dataset. [destructive]
 - `download_file` — Fetch the download URL for an existing ChatBotKit file.
 - `fetch_bot` — Fetch a single ChatBotKit bot by ID.
 - `fetch_conversation` — Fetch a single ChatBotKit conversation by ID.
@@ -94,11 +94,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — ChatBotKit is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=chatbotkit
+  https://console.oomol.com/connections/chatbotkit
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - ChatBotKit homepage: https://chatbotkit.com
+- API documentation: https://chatbotkit.com/docs/api

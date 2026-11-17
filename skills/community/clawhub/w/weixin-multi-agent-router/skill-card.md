@@ -1,44 +1,65 @@
-## Description: <br>
-Design or implement single-entry multi-agent routing for OpenClaw Weixin setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design or implement single-entry multi-agent routing for OpenClaw Weixin setups with configurable backend agents, per-agent session isolation, and summary-based handoff, reset, and status commands.
 
-## Publisher: <br>
-[zeqiulee](https://clawhub.ai/user/zeqiulee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeqiulee](https://clawhub.ai/user/zeqiulee)
 
-## Use Case: <br>
-Developers and engineers use this skill to design or implement a Weixin plugin or extension that routes one account across configurable backend agents while preserving per-agent session isolation. It supports switching, status, reset, and summary-based handoff patterns for chat-facing multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Loose natural-language command parsing could switch agents or reset context unexpectedly. <br>
-Mitigation: Use exact or prefixed command matching and require confirmation for reset commands before applying state changes. <br>
-Risk: Recent-history retention and handoff summaries could expose context across agents. <br>
-Mitigation: Limit retained recent history and explicitly tell users when summaries are shared between agents. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or implement a Weixin plugin, extension, or reusable skill that routes one Weixin account to a configurable set of backend agents while keeping agent sessions isolated.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zeqiulee/weixin-multi-agent-router) <br>
-- [Architecture](artifact/references/architecture.md) <br>
-- [Commands](artifact/references/commands.md) <br>
-- [Configurability](artifact/references/configurability.md) <br>
-- [Validation](artifact/references/validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with configuration examples and implementation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable design/reference skill; recommendations should be reviewed before live Weixin router deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Ambiguous natural-language command matching could switch agents or reset context unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep command matching explicit and conservative, and consider confirmation for reset actions before deployment.
+
+Risk: Agent context could mix if a deployment uses a shared session instead of agent-scoped session identity.
+
+Mitigation: Include the agent ID and session version in session keys, and validate that switching agents preserves separate memory.
+
+Risk: Handoff behavior could expose more conversation history than intended.
+
+Mitigation: Use compact summaries for handoff and avoid sharing raw transcripts between backend agents by default.
+
+Risk: Public deployments could overfit commands to one locale or private alias set.
+
+Mitigation: Document supported locales and aliases, keep agent maps configurable, and validate with at least two different agent maps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zeqiulee/skills/weixin-multi-agent-router)
+- [Architecture](references/architecture.md)
+- [Commands](references/commands.md)
+- [Configurability](references/configurability.md)
+- [Validation](references/validation.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON configuration examples, command patterns, validation checklists, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include router architecture, command maps, session-key guidance, handoff rules, reset behavior, and validation scenarios.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

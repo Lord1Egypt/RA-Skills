@@ -1,41 +1,58 @@
-## Description: <br>
-Intelligent workplace inspection system with guided setup, configurable inspection tasks, AI-powered image analysis, and Feishu alerting. Use when you need to monitor employee presence, conduct security patrols, or perform automated visual inspections of workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent workplace inspection system with guided setup, configurable inspection tasks, AI-powered image analysis, and Feishu alerting.
 
-## Publisher: <br>
-[wsygcn](https://clawhub.ai/user/wsygcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wsygcn](https://clawhub.ai/user/wsygcn)
 
-## Use Case: <br>
-Developers, operations teams, and workplace administrators use this skill to configure camera-based inspections, analyze images against user-defined criteria, and send alerts for employee presence, security patrol, or facility inspection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workplace camera monitoring can involve employee privacy, notice, consent, retention, and local legal requirements. <br>
-Mitigation: Deploy only in authorized environments with documented employee notice and consent, approved retention practices, and local legal review. <br>
-Risk: Camera access tokens and Feishu recipients can expose sensitive images or alerts if stored or shared carelessly. <br>
-Mitigation: Use least-privilege camera tokens, restrict alert recipients, confirm config-file storage, and rotate any token that may have been saved in plaintext. <br>
+## Use Case:
 
+Facilities, security, and operations teams use this skill to configure camera-based workplace inspections, request AI analysis of captured images, and send Feishu alerts for employee presence, patrol, or facility-check scenarios.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wsygcn/intelligent-inspection) <br>
-- [EZVIZ Cloud capture API endpoint](https://open.ys7.com/api/open/cloud/v1/capture/save) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, JSON, Text] <br>
-**Output Format:** [Text guidance with JSON configuration and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local camera configuration, inspection prompts, AI analysis status, and alerting instructions for Feishu or configured channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Workplace camera monitoring may create privacy, consent, or compliance obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after confirming that monitoring is approved for the environment and aligned with applicable workplace policies and regulations.
+
+Risk: Camera access tokens or credentials may be stored in local JSON configuration.
+
+Mitigation: Treat camera tokens as sensitive secrets, restrict host and directory permissions, and avoid storing real tokens on shared or unmanaged systems.
+
+Risk: Captured images or analysis results may be sent to AI providers or Feishu.
+
+Mitigation: Review configured providers and alert channels before use and limit captured data to the minimum necessary inspection scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wsygcn/skills/intelligent-inspection)
+- [EZVIZ Cloud capture API endpoint](https://open.ys7.com/api/open/cloud/v1/capture/save)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include camera configuration prompts, inspection task guidance, AI analysis text, and alerting instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

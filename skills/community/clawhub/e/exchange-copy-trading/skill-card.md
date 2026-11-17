@@ -1,42 +1,54 @@
-## Description: <br>
-Guides OpenClaw to open a browser and complete exchange copy trading by navigating to a supported venue, entering a follow amount, and confirming after user checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw through browser-based exchange copy trading by opening a supported venue, entering a follow amount, and confirming the follow-trader flow.
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-External users with an already logged-in exchange browser session use this skill to guide OpenClaw through Bitget copy-trading setup, including amount entry, confirmation, and fallback to manual guidance when page controls are unreliable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through a real exchange copy-trading commitment using a logged-in financial account. <br>
-Mitigation: Use a verified official exchange URL, keep limited funds in the session, verify the trader and amount, and require explicit user approval before final confirmation. <br>
-Risk: Exchange page layout, domain, verification, or legal terms may differ from the artifact steps. <br>
-Mitigation: Stop automation when controls cannot be reliably identified, when verification challenges appear, or before accepting terms the user has not explicitly approved. <br>
+## Use Case:
 
+External users use this skill with an already logged-in exchange browser session to guide OpenClaw through a Bitget copy-trading follow flow, including amount entry, confirmation, and stopping for manual review when legal or risk acceptance is required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/exchange-copy-trading) <br>
-- [Exchange copy trading reference](reference.md) <br>
-- [Bitget copy-trading settings example](https://www.bitget.fit/zh-CN/copy-trading/setting/bfb7477187b73155a395/futures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown instructions and browser-action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an already logged-in browser session and user confirmation for exchange URL, trader, amount, and final commitment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The security evidence flags that the skill can automate a real financial follow-trader action using a packaged default strategy URL and loose URL validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user to independently verify the exchange domain, trader, and strategy before automation, and do not treat the packaged default URL as a recommendation.
+
+Risk: The workflow may encounter transaction confirmations, legal acknowledgements, risk prompts, captcha checks, or changed page controls.
+
+Mitigation: Keep final confirmation, legal acknowledgement, and risk acceptance under direct user control, and switch to manual guidance when page controls cannot be reliably located.
+
+## Reference(s):
+
+- [Exchange Copy Trading Reference](artifact/reference.md)
+- [ClawHub skill release page](https://clawhub.ai/luyao-inc/skills/exchange-copy-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with browser automation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an already logged-in exchange browser session, sufficient USDT, user-provided amount, and user control over legal acknowledgements and final risk acceptance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

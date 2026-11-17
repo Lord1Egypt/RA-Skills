@@ -29,15 +29,15 @@
 ## 执行步骤
 
 ```
-Step 1: smartbi list --domain push --agent
+Step 1: smartbi list --profile <PROFILE> --domain push --agent
    ↓    确认 push 接口可用，记录 operationKey
-Step 2: smartbi describe push.sendMessage --agent
+Step 2: smartbi describe push.sendMessage --profile <PROFILE> --agent
    ↓    理解 config 参数结构，加载关联文档
 Step 3: 按渠道 + 内容构造 JSON 请求体
    ↓
-Step 4: smartbi call push.sendMessage -d @body.json --agent
+Step 4: smartbi call push.sendMessage --profile <PROFILE> -d @body.json --agent
    ↓    返回 {"ok":true, "data": {"platformTaskId": "..."}}
-Step 5 (可选): smartbi call push.getSendProgress -d @progress.json --agent
+Step 5 (可选): smartbi call push.getSendProgress --profile <PROFILE> -d @progress.json --agent
         查询推送结果
 ```
 
@@ -46,7 +46,7 @@ Step 5 (可选): smartbi call push.getSendProgress -d @progress.json --agent
 ### 发送消息
 
 ```
-POST /api/v1/push/send-message
+POST /api/v1/push/push/send-message
 ```
 
 **企微群机器人**：
@@ -153,7 +153,7 @@ POST /api/v1/push/get-send-progress
 
 - 企微群机器人和钉钉群机器人的 webhookUrl 需用户提供——Agent 应主动询问"请提供企微/钉钉群机器人 webhook 地址"
 - `WECHAT_WORK` 和 `DINGTALK` 通过 `config` 内容区分群机器人/企业应用模式，无需用户手动选择子类型
-- 推送是异步的——`sendMessage` 返回 `platformTaskId` 后，可通过 `getSendProgress` 查询最终结果
+- 当前接口说明为同步等待送达反馈（最多等待 30 秒）。先检查 `sendMessage` 的业务结果；若返回待处理状态且包含 `platformTaskId`，再用 `getSendProgress` 查询。历史版本可能异步返回，以当前 `describe` 契约为准。不能把请求受理成功直接当成送达成功，也不能因超时盲目重复发送。
 - content 默认 Markdown 格式，也可指定 TEXT（纯文本）或 HTML（仅邮件渠道推荐）
 
 ## 在定时任务脚本中调用（S1 场景）
@@ -163,5 +163,5 @@ POST /api/v1/push/get-send-progress
 核心差异：
 - 认证：脚本中复用 `TOKEN`（环境变量或 RMI `generateTempToken`），无需重新鉴权
 - 序列化：使用 `Packages.smartbi.net.sf.json.JSONObject.fromObject(payload).toString()`
-- 路径：sdk-server 为 `/api/v1/push/push/send-message`（双 push），Smartbi 直连为 `/api/v1/push/send-message`
+- 路径以当前 `describe push.sendMessage` 为准；已核实 SDK 路径为 `/api/v1/push/push/send-message`。sdk-server 使用配置根地址；SmartBI 使用配置 baseUrl 加 `/sdk` 作为 SDK 根地址，不省略 operation 路径中的第二个 push。
 - 邮件渠道：脚本中优先用 `sendToMail` 内置 Routine（更简洁），非邮件渠道才走 push API

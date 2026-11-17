@@ -1,53 +1,71 @@
-## Description: <br>
-Amazon product research and seller analytics for FBA and FBM businesses, including product selection, ASIN lookup, BSR analysis, competitor tracking, review analysis, pricing strategy, listing optimization, and market opportunity assessment using APIClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon product research and seller analytics for FBA and FBM businesses, including product selection, competitor tracking, BSR monitoring, review analysis, monthly sales estimates, listing optimization, and market opportunity assessment using the APIClaw API.
 
-## Publisher: <br>
-[christine-srp](https://clawhub.ai/user/christine-srp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christine-srp](https://clawhub.ai/user/christine-srp)
 
-## Use Case: <br>
-External Amazon FBA and FBM sellers, ecommerce operators, and their AI agents use this skill to research product opportunities, compare competitors, assess risks, estimate sales, analyze reviews, and draft or optimize listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys could be exposed if pasted into chat or stored in local configuration without controlled file permissions. <br>
-Mitigation: Use the APICLAW_API_KEY environment variable, avoid sharing secrets in chat, and only use config.json when local file permissions are controlled. <br>
-Risk: Seller-origin workflows could produce nationality-based profiling or unsupported inferences. <br>
-Mitigation: Limit seller-origin analysis to verified sellerLocation fields and avoid inferring nationality from names, brands, categories, or stereotypes. <br>
-Risk: Broad activation guidance or bulk workflows could trigger unnecessary external API calls. <br>
-Mitigation: Run API calls only for clear Amazon seller-research tasks and confirm with the user before bulk ASIN lookups. <br>
-Risk: Snapshot or delayed data could be mistaken for historical trends or current live values. <br>
-Mitigation: Disclose API source, date range, filters, and known data freshness limits; use realtime/product for current price, BSR, and rating fields where available. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and agent users use this skill to research Amazon products, compare competitors, assess market risk, estimate sales, plan pricing, and draft or optimize listings.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/christine-srp/amazon-seller-research) <br>
-- [APIClaw API reference](references/reference.md) <br>
-- [Amazon seller comprehensive analysis and case studies](references/scenarios-composite.md) <br>
-- [Amazon product evaluation and risk assessment](references/scenarios-eval.md) <br>
-- [Amazon listing optimization and content creation](references/scenarios-listing.md) <br>
-- [Amazon seller daily operations and monitoring](references/scenarios-ops.md) <br>
-- [Amazon product expansion and market trends](references/scenarios-expand.md) <br>
-- [Amazon pricing strategy and profit estimation](references/scenarios-pricing.md) <br>
-- [APIClaw OpenAPI spec](https://apiclaw.io/api/v1/openapi-spec) <br>
-- [APIClaw API key setup](https://apiclaw.io/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown responses with tables, inline shell commands, and JSON from API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APICLAW_API_KEY; Full-mode analyses include data-source conditions and API usage summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Plaintext credential handling may expose the APIClaw API key if users ask an agent to save it to config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer APICLAW_API_KEY as an environment variable or managed secret, and avoid writing API keys to disk.
+
+Risk: Product research queries and business-sensitive criteria are sent to APIClaw.
+
+Mitigation: Share only the product, category, and marketplace details needed for the task, and review APIClaw data handling expectations before use.
+
+Risk: The Chinese-seller workflow can encourage nationality-based seller profiling beyond ordinary competitor research.
+
+Mitigation: Avoid that workflow or rewrite it around neutral competitor-performance criteria such as pricing, fulfillment, reviews, and sales signals.
+
+Risk: The README's npx installer is unpinned.
+
+Mitigation: Use a reviewed package version or manual installation path when deploying in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/christine-srp/skills/amazon-seller-research)
+- [APIClaw API](https://apiclaw.io)
+- [APIClaw API key setup](https://apiclaw.io/api-keys)
+- [APIClaw OpenAPI specification](https://apiclaw.io/api/v1/openapi-spec)
+- [APIClaw API Reference](references/reference.md)
+- [Amazon Seller Comprehensive Analysis & Case Studies](references/scenarios-composite.md)
+- [Amazon Product Evaluation & Risk Assessment](references/scenarios-eval.md)
+- [Amazon Pricing Strategy & Profit Estimation](references/scenarios-pricing.md)
+- [Amazon Seller Daily Operations & Monitoring](references/scenarios-ops.md)
+- [Amazon Product Expansion & Market Trends](references/scenarios-expand.md)
+- [Amazon Listing Optimization & Content Creation](references/scenarios-listing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables and inline shell commands; API command results are JSON inputs to the agent's analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APICLAW_API_KEY and sends product research queries to the APIClaw API.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter reports 1.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,50 +10,46 @@ mkdir -p ~/react
 
 ## Step 2: Initialize Memory
 
-Copy the template to your memory file:
-
-```bash
-cp memory-template.md ~/react/memory.md
-```
+Copy `memory-template.md` (in this skill's folder) to `~/Clawic/data/react/memory.md`. Fill in the Stack Decisions table on first use — every later session reads it instead of re-asking.
 
 ## Step 3: Verify Setup
 
-The skill is ready when `~/react/memory.md` exists.
+The skill is ready when `~/Clawic/data/react/memory.md` exists.
 
 ## Project Structure
 
-For new React projects, use this structure:
+Feature folders, not type folders (→ SKILL.md, Where Experts Disagree):
 
 ```
 src/
 ├── app/                 # Routes (Next.js App Router)
-├── features/            # Feature modules
+├── features/            # One folder per feature
 │   └── [feature]/
-│       ├── components/  # Feature components
-│       ├── hooks/       # Feature hooks
-│       ├── api/         # API calls + types
-│       └── index.ts     # Public exports
-├── shared/              # Cross-feature code
+│       ├── components/
+│       ├── hooks/
+│       ├── api/         # Fetchers + query key factory + types
+│       └── index.ts     # Public exports — other features import ONLY from here
+├── shared/              # Used by 2+ features (move here at second consumer, not before)
 │   ├── components/ui/   # Primitives (Button, Input)
-│   └── hooks/           # Shared hooks
-└── providers/           # Context providers
+│   └── hooks/
+└── providers/           # Context providers, QueryClient
 ```
+
+The `index.ts` barrel is the enforcement point: if a cross-feature import bypasses it, the dependency graph is already tangled.
 
 ## Recommended Stack
 
-| Layer | Tool | Why |
-|-------|------|-----|
-| Framework | Next.js 15 | SSR, App Router, Server Actions |
-| Styling | Tailwind CSS | Utility-first, fast |
-| Components | shadcn/ui | Accessible, customizable |
-| Server state | TanStack Query | Caching, sync, devtools |
-| Client state | Zustand | Simple, tiny, selectors |
-| Forms | React Hook Form + Zod | Validation, performance |
-| Testing | Vitest + Testing Library | Fast, user-centric |
+| Layer | Tool | Why this over alternatives |
+|-------|------|----------------------------|
+| Framework | Next.js 15 | Server Components + Actions with zero config; pick Vite instead for login-gated SPAs (→ SKILL.md, Where Experts Disagree) |
+| Styling | Tailwind CSS | Styles colocated with markup; no naming layer to maintain |
+| Components | shadcn/ui | Copied into your repo — you own and edit the code, no library API to fight |
+| Server state | TanStack Query | Cache lifecycle, dedupe, devtools; SWR only if you need nothing but GET |
+| Client state | Zustand | Selectors without providers; no boilerplate ceremony |
+| Forms | React Hook Form + Zod | Uncontrolled inputs (no rerender per keystroke); one Zod schema validates client and server |
+| Testing | Vitest + Testing Library | Queries by role/label — tests survive refactors that don't change behavior |
 
 ## TypeScript Config
-
-Enable strict mode in `tsconfig.json`:
 
 ```json
 {
@@ -64,6 +60,8 @@ Enable strict mode in `tsconfig.json`:
   }
 }
 ```
+
+`noUncheckedIndexedAccess` is the one teams skip and regret: it makes `array[0]` typed `T | undefined`, surfacing empty-state crashes at compile time (→ SKILL.md, Core Rule 7).
 
 ## Common Commands
 
@@ -77,12 +75,6 @@ npm create vite@latest my-app -- --template react-ts
 # Add shadcn/ui
 npx shadcn@latest init
 
-# Add TanStack Query
-npm install @tanstack/react-query
-
-# Add Zustand
-npm install zustand
-
-# Add React Hook Form + Zod
-npm install react-hook-form zod @hookform/resolvers
+# Data + state + forms
+npm install @tanstack/react-query zustand react-hook-form zod @hookform/resolvers
 ```

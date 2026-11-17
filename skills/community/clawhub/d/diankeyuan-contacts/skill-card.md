@@ -1,42 +1,53 @@
-## Description: <br>
-管理电科院人员信息和科室关系的技能。支持添加、查询、更新电科院工作人员、科室、办公室等信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Power Research Institute contact, department, role, and office information, including add, search, update, and delete workflows.
 
-## Publisher: <br>
-[HumbleBin](https://clawhub.ai/user/HumbleBin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[humblebin](https://clawhub.ai/user/humblebin)
 
-## Use Case: <br>
-Employees or external users who need a lightweight local directory can record and look up Diankeyuan staff, departments, roles, and office locations during contact-management workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores identifiable staff records in a local JSON file. <br>
-Mitigation: Use it only for personnel data approved for local storage, restrict filesystem access where possible, and document where the data is stored. <br>
-Risk: Delete operations can remove contact records. <br>
-Mitigation: Make backups before delete workflows and prefer a version that requires confirmation before removing records. <br>
-Risk: The security review found insufficient disclosed controls for personnel data. <br>
-Mitigation: Review before installing and prefer an updated version that declares file permissions and data-handling behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HumbleBin/diankeyuan-contacts) <br>
-- [HumbleBin publisher profile](https://clawhub.ai/user/HumbleBin) <br>
+## Use Case:
 
+Employees or operators who maintain Diankeyuan contact records use this skill to record staff, find people by name or department, look up office locations, and update local contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and local JSON data operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, query, and delete locally stored personnel records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenClaw metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Contact records may include phone numbers, email addresses, WeChat IDs, or sensitive notes stored in a local plaintext JSON file.
+
+Mitigation: Restrict local file permissions, avoid storing unnecessary sensitive details, and back up the JSON file before update or delete operations.
+
+Risk: The bundled manager script writes to a fixed local storage path, which may not exist or may point to the wrong workspace on another machine.
+
+Mitigation: Confirm or adapt the storage path before running the script in a new environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/humblebin/skills/diankeyuan-contacts)
+- [Publisher profile](https://clawhub.ai/user/humblebin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with command examples and local JSON data records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores contact records in a local plaintext JSON file at a fixed local path when the bundled manager script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, OpenClaw metadata, and artifact version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

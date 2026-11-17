@@ -1,44 +1,64 @@
-## Description: <br>
-Monitor, budget, and optimize AI API spending across any provider. Tracks every call, enforces budgets, detects waste, provides optimization recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Tamer helps agents monitor, budget, and optimize AI API spending across providers by tracking calls, enforcing budgets, detecting waste, and recommending optimizations.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and engineers use this skill to add local AI API cost tracking, budget checks, waste detection, and reporting to projects that call LLM providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local usage JSON file and generated reports can reveal provider usage, business activity, task names, sessions, or metadata. <br>
-Mitigation: Set the usage file path to a private location, restrict file permissions, avoid sensitive values in task/session/metadata fields, and review reports before sharing. <br>
-Risk: Budget status and cost calculations depend on manually logged calls and manually maintained model pricing. <br>
-Mitigation: Centralize API calls through a wrapper that logs every request, periodically compare totals with provider dashboards, and update model pricing when providers change rates. <br>
-Risk: The kill switch is application-level and only works when integrated into the caller's workflow. <br>
-Mitigation: Call the pre-call budget check before every API request and persist or re-check budget state if restart behavior matters. <br>
+## Use Case:
 
+Developers, teams, and researchers use this skill to add local AI API cost tracking, budget checks, reporting, and waste detection to provider-agnostic API workflows.
 
-## Reference(s): <br>
-- [Token Tamer README](artifact/README.md) <br>
-- [Token Tamer Limitations](artifact/LIMITATIONS.md) <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/token-tamer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; JSON or text reports when the bundled scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python scripts and a configurable JSON usage file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Budget controls may under-report spending, so the skill should not be the only hard spending limit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep provider-side budgets or billing alerts enabled and reconcile Token Tamer totals against provider dashboards before relying on enforcement.
+
+Risk: The kill switch is application-level and advisory unless every API path calls the check and accounting issues are fixed.
+
+Mitigation: Wrap all AI API calls with the pre-call budget check and treat provider-side controls as the authoritative backstop.
+
+Risk: The local JSON usage file and task, session, or metadata fields may expose usage details or sensitive context.
+
+Mitigation: Protect the usage file with appropriate filesystem permissions and avoid storing secrets, customer data, or sensitive prompts in logged fields.
+
+Risk: Manual pricing data and self-reported token counts can become stale or incomplete.
+
+Mitigation: Update model pricing regularly and compare logged totals with provider billing dashboards to identify drift.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/theshadowrose/skills/token-tamer)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; the bundled scripts can also emit text or JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON usage data and user-configured model pricing; the artifact requires no external Python dependencies.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

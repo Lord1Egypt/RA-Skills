@@ -1,52 +1,61 @@
-## Description: <br>
-Assists Chinese-language study conversations about Chapter 14, "Maintaining and Repairing Relationships," from Rowland S. Miller's Intimate Relationships, 6th edition, using progressive disclosure and chapter reference files for concepts, examples, research evidence, prevention, and couple-therapy comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study assistant for Chapter 14, "Maintaining and Repairing Relationships," from Rowland S. Miller's Intimate Relationships, Sixth Edition.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External learners and agents use this skill as a study aid for understanding, reviewing, and applying textbook concepts from Chapter 14 on relationship maintenance, prevention, and repair. It supports concise Chinese explanations, concept differentiation, textbook examples, and bounded guidance toward professional help when safety or therapy needs arise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake textbook-based relationship explanations for professional therapy, emergency support, legal advice, or a personal safety plan. <br>
-Mitigation: Keep responses framed as study assistance and direct users describing abuse, threats, self-harm, or personal danger to local emergency services, trusted people, or qualified professional support. <br>
-Risk: The skill relies on chapter-specific reference files and may be incomplete outside Miller's Intimate Relationships, 6th edition, Chapter 14. <br>
-Mitigation: State scope limits when users ask about other chapters or unsupported details, and avoid inventing studies, percentages, therapy steps, or table contents not present in the artifact. <br>
-Risk: Textbook-derived material may not be appropriate for every intended commercial or educational use. <br>
-Mitigation: Review the source material, license, and intended deployment context before using the skill in learner-facing or relationship-advice workflows. <br>
+## Use Case:
 
+External learners use this skill to study and apply Chapter 14 concepts about relationship maintenance, prevention, and repair in Chinese. It supports concept explanations, comparison of maintenance mechanisms and couple-therapy models, research recall, and bounded application to study scenarios.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/junwugit/intimate-ch14-maintenance-repair) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Applications and common misunderstandings](artifact/references/applications.md) <br>
-- [Couple therapy](artifact/references/couple-therapy.md) <br>
-- [Textbook example anchors](artifact/references/examples.md) <br>
-- [Key terms](artifact/references/key-terms.md) <br>
-- [Commitment and relationship maintenance mechanisms](artifact/references/maintenance-mechanisms.md) <br>
-- [Theories and models](artifact/references/models.md) <br>
-- [Prevention and self-help](artifact/references/prevention-and-self-help.md) <br>
-- [Research, years, and textbook data](artifact/references/research.md) <br>
-- [Satisfaction strategies](artifact/references/satisfaction-strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses in Chinese with English terms on first mention when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses concise, progressively disclosed study chunks and points to emergency or professional support for abuse, threats, self-harm, personal danger, therapy, legal, or safety-plan needs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake textbook-based relationship explanations for professional therapy, diagnosis, legal advice, or safety planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as educational support and direct situations involving abuse, threats, self-harm, or physical danger to local emergency services, trusted people, or qualified professionals.
+
+Risk: The skill is intentionally Chinese-language and limited to one textbook chapter, so it may be unsuitable for other languages, broader relationship topics, or other editions without review.
+
+Mitigation: Use it for Chinese study support for Chapter 14; choose another resource or a publisher-approved language or scope override for other needs.
+
+## Reference(s):
+
+- [Applications and Common Misunderstandings](references/applications.md)
+- [Couple Therapy](references/couple-therapy.md)
+- [Textbook Example Anchors](references/examples.md)
+- [Key Terms](references/key-terms.md)
+- [Commitment and Relationship Maintenance Mechanisms](references/maintenance-mechanisms.md)
+- [Theories and Models](references/models.md)
+- [Self-Practice and Preventive Maintenance](references/prevention-and-self-help.md)
+- [Research, Years, and Textbook Data](references/research.md)
+- [Maintaining Satisfaction: Canary & Stafford Strategies](references/satisfaction-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose, usually in Chinese, with English source terms introduced when relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure and chapter-scoped references; not professional therapy, diagnosis, legal advice, or safety planning.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

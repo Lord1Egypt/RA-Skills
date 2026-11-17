@@ -1,44 +1,56 @@
-## Description: <br>
-Generates polished responsive single-page HTML introduction and analysis pages for literary and media works, with theme colors, interactive components, and multiple content sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates responsive single-page HTML introduction and analysis pages for literary and media works, with theme color guidance, interactive sections, and structured content blocks.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers and content creators use this skill to draft self-contained HTML pages that introduce and analyze novels, films, anime, games, and similar works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pages may be Chinese-oriented or trigger for broader literary and media page requests than intended. <br>
-Mitigation: Review the generated page and adjust the request or skill trigger behavior when a different language or narrower scope is required. <br>
-Risk: Generated HTML may load fonts from the disclosed external mirror at fonts.loli.net. <br>
-Mitigation: Replace the font URL with an approved CDN, local font assets, or system font fallbacks when external font requests are not acceptable. <br>
-Risk: Generated literary or media analysis can include incorrect details or unsuitable quoted material. <br>
-Mitigation: Review factual claims, quotes, and source-specific details before publishing the generated page. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate polished, self-contained HTML pages that introduce, summarize, and analyze novels, films, anime, games, and similar works.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouchang1988/page-gen) <br>
-- [README](README.md) <br>
-- [Google Fonts mirror](https://fonts.loli.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Text, Guidance] <br>
-**Output Format:** [Self-contained HTML with embedded CSS and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses responsive layout guidance, theme color selection, interactive navigation, scroll progress, and a disclosed external font mirror.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The default trigger wording and page guidance are Chinese-oriented, which may route or shape output differently than expected in multilingual deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust trigger phrases, default language expectations, and font defaults before deployment in non-Chinese or tightly routed environments.
+
+Risk: Generated pages may include external font loading through the documented Google Fonts mirror.
+
+Mitigation: Review external asset loading requirements and replace the font source with an approved internal or regional source when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouchang1988/skills/page-gen)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Google Fonts mirror](https://fonts.loli.net)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for a single self-contained responsive HTML page.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

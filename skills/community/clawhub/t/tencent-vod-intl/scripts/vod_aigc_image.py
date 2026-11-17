@@ -35,7 +35,7 @@ except ImportError:
 
 
 def get_credential():
-    """Get Tencent Cloud credentials"""
+    """Get Tencent Cloud credentials. Falls back to loading from dotenv files when environment variables are missing."""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
 
@@ -76,9 +76,9 @@ MODEL_VERSIONS = {
     "Hunyuan": ["3.0", "3d_2.0"],
     "Vidu": ["q2"],
     "Kling": ["2.1", "3.0", "3.0-Omni", "O1"],
-    "MJ": ["v8.1", "v7"],
-    "GG": ["2.5", "3.0", "3.1"],
-    "SI": ["4.0", "4.5", "5.0-lite"],
+    "MJ": ["v8.1", "v7", "v8.2", "niji_7"],
+    "GG": ["2.5", "3.0", "3.1", "3.1-lite"],
+    "SI": ["4.0", "4.5", "5.0-lite", "5.0-pro"],
     "OG": ["image2_low", "image2_medium", "image2_high"],
     "Jimeng": ["4.0"],
 }
@@ -448,7 +448,7 @@ Examples:
 
     # Other parameters
     create_parser.add_argument('--scene-type',
-                               help='Scene type (when ModelName is Hunyuan: 3d_panorama for panoramic image; not supported for other models)')
+                               help='Scene type: Hunyuan uses 3d_panorama for panoramic image; Kling uses image_expand for outpainting (requires --model-version scene); not supported for other models')
     create_parser.add_argument('--seed', type=int, help='Model random seed (specify to reproduce results)')
     create_parser.add_argument('--input-region', choices=['Mainland', 'Oversea'],
                                help='Input file region: Mainland (default) / Oversea (use for overseas addresses)')

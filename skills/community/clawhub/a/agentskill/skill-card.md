@@ -1,48 +1,62 @@
-## Description: <br>
-Let any agent produce code indistinguishable from the existing codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let any agent produce code indistinguishable from the existing codebase.
 
-## Publisher: <br>
-[airscripts](https://clawhub.ai/user/airscripts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airscripts](https://clawhub.ai/user/airscripts)
 
-## Use Case: <br>
-Developers and engineers use Agentskill to inspect code repositories, extract project conventions, and produce AGENTS.md guidance that helps coding agents follow the existing codebase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated AGENTS.md guidance may be incorrect, incomplete, or too broad for a repository. <br>
-Mitigation: Review generated files before relying on them or sharing them with other agents. <br>
-Risk: Remote references can influence the generated guidance. <br>
-Mitigation: Use remote references only from repositories and publishers you trust. <br>
+## Use Case:
 
+Developers and engineers use Agentskill to analyze repositories and produce AGENTS.md guidance that helps coding agents match the target codebase's structure, conventions, workflows, and review expectations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/airscripts/agentskill) <br>
-- [README](README.md) <br>
-- [System Specification](SYSTEM.md) <br>
-- [API Reference Index](docs/reference/README.md) <br>
-- [CLI Reference](docs/reference/cli.md) <br>
-- [Command Modules](docs/reference/commands.md) <br>
-- [Gotchas](references/GOTCHAS.md) <br>
-- [PyPI Package](https://pypi.org/project/agsk) <br>
-- [Turning Repository Knowledge Into Usable Agent Context](https://dev.to/airscript/turning-repository-knowledge-into-usable-agent-context-4pe4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON, with optional shell commands and configuration excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update AGENTS.md and companion markdown files when the user requests file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: release evidence, pyproject.toml, CHANGELOG) <br>
+Risk: The skill inspects repositories named by the user, which can expose local project structure and source conventions to the active agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on repositories you are comfortable having the agent inspect, and review the generated AGENTS.md before sharing it.
+
+Risk: User-supplied remote references can influence the generated guidance.
+
+Mitigation: Use remote references only from trusted sources and review any imported conventions before adopting the output.
+
+Risk: Generated AGENTS.md guidance can be incorrect or too broad for the repository if evidence is incomplete.
+
+Mitigation: Review the draft against the repository before relying on it for coding-agent behavior.
+
+## Reference(s):
+
+- [Agentskill ClawHub listing](https://clawhub.ai/airscripts/skills/agentskill)
+- [Agentskill package on PyPI](https://pypi.org/project/agsk)
+- [Turning Repository Knowledge Into Usable Agent Context](https://dev.to/airscript/turning-repository-knowledge-into-usable-agent-context-4pe4)
+- [API Reference](docs/reference/README.md)
+- [CLI Reference](docs/reference/cli.md)
+- [Generation Gotchas](references/GOTCHAS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown AGENTS.md documentation, with optional split or multifile markdown layouts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Skill mode authors AGENTS.md from analyzer evidence; CLI mode can emit deterministic markdown directly.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence, pyproject.toml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

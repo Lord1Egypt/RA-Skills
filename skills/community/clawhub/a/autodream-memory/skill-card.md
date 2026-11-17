@@ -1,44 +1,59 @@
-## Description: <br>
-AutoDream Memory periodically organizes MEMORY.md and local memory files by deduplicating, merging, pruning stale entries, and producing consolidation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoDream Memory is an automatic memory consolidation agent skill that periodically organizes MEMORY.md and related memory files by deduplicating, merging, pruning stale entries, and converting relative dates.
 
-## Publisher: <br>
-[bigkingcn](https://clawhub.ai/user/bigkingcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigkingcn](https://clawhub.ai/user/bigkingcn)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep a workspace's long-term memory files organized, bounded, and easier for agents to load across repeated sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite persistent agent memory, which may remove or alter useful long-term context. <br>
-Mitigation: Review or back up MEMORY.md and the memory directory before running, then inspect the generated report and pruned entries afterward. <br>
-Risk: The documented dry-run safety control may not prevent all file writes. <br>
-Mitigation: Test in a copied workspace or disposable memory directory before using it on active agent memory. <br>
-Risk: The setup script can configure recurrence and also run the memory cycle immediately. <br>
-Mitigation: Run the main cycle manually first and enable the setup script only after confirming recurring execution is desired. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep a local OpenClaw workspace memory index and topic memory files concise, current, and easier for future agent sessions to load. It is intended for workspaces where automated memory rewriting and report generation are acceptable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bigkingcn/autodream-memory) <br>
-- [AutoDream skill definition](artifact/SKILL.md) <br>
-- [AutoDream README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, JSON state and report files, configuration files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes workspace memory files such as MEMORY.md and memory/autodream/*.json when run without dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and package.json) <br>
+Risk: The skill can rewrite persistent workspace memory, including MEMORY.md and generated memory reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where memory rewriting is intended; review generated changes and keep backups enabled before routine use.
+
+Risk: The setup script can create recurring execution configuration and immediately start a consolidation run.
+
+Mitigation: Review the scheduler path and run the cycle manually or with dry-run behavior in a test workspace before enabling recurring execution.
+
+Risk: Server security evidence reports that some promised safety controls are missing or inaccurate.
+
+Mitigation: Confirm backup, locking, dry-run, and scheduler behavior before installing in a workspace that contains important or sensitive memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigkingcn/skills/autodream-memory)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON files, terminal status text, and shell commands for manual or scheduled execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill updates workspace memory files and reports; the setup script can also write scheduler configuration and run the consolidation cycle.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

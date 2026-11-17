@@ -1,48 +1,71 @@
-## Description: <br>
-Solana Funding Rate Arbitrage helps agents scan Solana perpetual DEX funding rates, compare Drift and Flash Trade opportunities, simulate and backtest strategies, and configure dry-run or live funding-arbitrage workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana perpetual DEX funding rate arbitrage scanner and auto-trader that compares funding rates across Drift and Flash Trade to find cross-DEX opportunities, with simulation and backtesting support.
 
-## Publisher: <br>
-[Zedit42](https://clawhub.ai/user/Zedit42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zedit42](https://clawhub.ai/user/zedit42)
 
-## Use Case: <br>
-Developers and traders use this skill to scan Solana perpetual DEX funding rates, compare cross-exchange spreads, simulate strategies, backtest expected outcomes, and configure dry-run or live funding-arbitrage workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide or run live trading workflows that may use wallet secrets and real funds. <br>
-Mitigation: Review the code first, run dry-run mode without wallet secrets, and use a dedicated low-balance wallet only after verifying behavior. <br>
-Risk: Advertised yields and delta-neutral claims may not hold under live market conditions, stale data, slippage, or rate reversals. <br>
-Mitigation: Independently validate data freshness, spreads, fees, liquidation exposure, and position sizing before enabling automated execution. <br>
-Risk: Cron or unattended live trading can repeatedly act on incorrect configuration or market data. <br>
-Mitigation: Keep cron and live trading disabled until scan outputs, data sources, risk limits, and alerting have been tested in dry-run mode. <br>
+## Use Case:
 
+External developers and traders use this skill to scan Solana perpetual DEX funding rates, review delta-neutral funding arbitrage opportunities, run simulations or backtests, and configure dry-run or live auto-trading workflows.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/Zedit42/solana-funding-arb) <br>
-- [Publisher Profile](https://clawhub.ai/user/Zedit42) <br>
-- [API Reference](references/api.md) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Strategy Guide](references/strategies.md) <br>
-- [Drift Protocol Docs](https://docs.drift.trade) <br>
-- [Flash Trade](https://flash.trade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, TypeScript code paths, JSON configuration examples, CLI output, and dashboard/API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate trading scans, dry-run plans, backtest and Monte Carlo summaries, web dashboard data, cron configuration, and live-trading setup guidance when explicitly configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+Risk: Live auto-trading safeguards are weak enough that users should review the skill carefully before installing or running it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit and modify the trading code before live use, keep dry_run enabled while testing, and begin with minimal position limits only after review.
+
+Risk: Raw private keys may be stored in or loaded from a sourced shell environment file for wallet initialization.
+
+Mitigation: Avoid storing raw private keys in sourced shell files; prefer a secured wallet file or hardened secret management with restricted local permissions.
+
+Risk: Cron execution can repeatedly run the auto-trader with environment variables loaded from user secrets.
+
+Mitigation: Do not add the cron job until environment loading is hardened and dry-run behavior, logging, and failure handling are verified.
+
+Risk: A failed second trading leg can leave an unmatched first leg because rollback is not complete.
+
+Mitigation: Require complete two-leg execution handling with rollback or fail-closed behavior before enabling live trading.
+
+Risk: Bad or fallback market data can influence automated trading decisions.
+
+Mitigation: Validate live market data sources and require the trader to fail closed when fresh, trustworthy data is unavailable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zedit42/skills/solana-funding-arb)
+- [API Reference](references/api.md)
+- [Setup Guide](references/setup.md)
+- [Strategy Guide](references/strategies.md)
+- [Drift Protocol Docs](https://docs.drift.trade)
+- [Flash Trade](https://flash.trade)
+- [CoinGecko Derivatives API](https://api.coingecko.com/api/v3/derivatives)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI output summaries, dashboard setup guidance, dry-run trading instructions, and references to local state or configuration files.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

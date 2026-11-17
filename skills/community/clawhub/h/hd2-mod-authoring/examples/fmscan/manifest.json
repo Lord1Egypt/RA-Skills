@@ -1,0 +1,15 @@
+{
+  "Version": 1,
+  "Guid": "7c5d9e1f-3a4b-4c6d-8e0f-2a3b4c5d6e7f",
+  "Name": "FMScan - Dominator fire-mode scan",
+  "Description": "READ-ONLY diagnostic. Value-scans memory for the Dominator's fire-mode record (mode array [single, burst, none] plus TertiaryFireMode) and dumps each candidate record to %LOCALAPPDATA%/Hd2ProjRecon/fmscan_records.txt. Writes nothing to game memory. Used to map the full-auto write (TertiaryFireMode +0x7C) and the cyclic-rate field.",
+  "IconPath": "thumbnail.png",
+  "Options": [
+    {
+      "Name": "FMScan",
+      "Description": "Read-only fire-mode value-scan. Run one mission, then check Hd2ProjRecon for fmscan_records.txt.",
+      "Include": ["Addon"],
+      "Image": "thumbnail.png"
+    }
+  ]
+}

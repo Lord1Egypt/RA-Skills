@@ -1,41 +1,57 @@
-## Description: <br>
-C+ service demand matching skill that analyzes a real Excel service ledger, extracts tenant needs from visit records, and recommends matching C+ services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Matches C+ service opportunities by reading tenant visit records and customer profiles from an Excel ledger, extracting tenant needs, and preparing service recommendations for property managers.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Property service teams and tenant managers use this skill to analyze C+ service visit records, match tenant profiles and stated needs to service offerings, and prepare recommendations for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a tenant Excel ledger containing business, contact, contract, and follow-up information. <br>
-Mitigation: Use the skill only with authorized workbooks, restrict file access, and redact tenant or contact details that are not needed for the task. <br>
-Risk: The skill can save follow-up status and notes back into the workbook. <br>
-Mitigation: Back up the workbook and require approval before any save or update operation. <br>
-Risk: The skill can send tenant service recommendations to a configured WeCom webhook. <br>
-Mitigation: Restrict webhook destinations, verify the recipient channel before sending, and require approval before outbound notifications. <br>
+## Use Case:
 
+Property management and tenant service teams use this skill to analyze recent tenant visit records, identify service needs, match C+ service resources, and prepare follow-up recommendations for manager confirmation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text with structured service recommendations and optional JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tenant service recommendations, follow-up reminders, effectiveness summaries, and WeCom notification text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill reads identifiable tenant and business records from an Excel ledger and may include tenant or contact details in recommendations or notifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after business-owner approval, minimize or mask tenant and contact details, and restrict access to approved operators and recipients.
+
+Risk: The skill can send recommendations through a WeCom webhook.
+
+Mitigation: Configure webhook recipients carefully and verify destination and content before enabling scheduled or automated notifications.
+
+Risk: The skill includes scheduled daily analysis and Excel write-back follow-up behavior.
+
+Mitigation: Require explicit operator approval before updating source records and verify the ledger path and write-back fields before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/service-matching)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with structured recommendation lists and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations may include tenant profile details, service priorities, suggested discounts, follow-up status, and notification content.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

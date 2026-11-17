@@ -1,0 +1,91 @@
+{
+  "_comment": "content-template 扩展参考数据",
+  "template_format": {
+    "id": "tpl_video_001",
+    "name": "日常Vlog模板",
+    "type": "video",
+    "category": "vlog",
+    "version": "1.0",
+    "content": "大家好，今天是{date}，今天我们来{topic}...",
+    "variables": {
+      "date": {"type": "string", "required": true, "description": "日期"},
+      "topic": {"type": "string", "required": true, "description": "主题"},
+      "mood": {"type": "string", "required": false, "default": "开心", "description": "心情"}
+    },
+    "usage_count": 15,
+    "created_at": "2026-04-01T10:00:00Z",
+    "updated_at": "2026-04-05T14:00:00Z"
+  },
+  "hook_template_format": {
+    "id": "tpl_hook_001",
+    "name": "科创少年体验课钩子",
+    "type": "hook",
+    "category": "education",
+    "hook_type": "service",
+    "content_keywords": ["少儿编程", "科创", "编程启蒙"],
+    "hook_content": {
+      "title": "免费少儿编程体验课1节",
+      "description": "适合6-12岁零基础孩子，1对1在线教学",
+      "cta": "私信回复'体验课'预约",
+      "link_type": "service_booking",
+      "link_url": ""
+    },
+    "platform_tags": {
+      "strong_guide": ["wechat_official"],
+      "limited_guide": ["xiaohongshu", "douyin", "bilibili", "zhihu"],
+      "strict_prohibit": ["kuaishou", "toutiao"]
+    },
+    "parent_template_id": "tpl_article_edu_001",
+    "variables": {"child_age": {"type": "string", "required": false, "default": "6-12岁"}}
+  },
+  "template_types": [
+    {"type": "video", "desc": "视频文案模板", "scene": "短视频、Vlog"},
+    {"type": "article", "desc": "图文文案模板", "scene": "小红书图文"},
+    {"type": "reply", "desc": "回复话术模板", "scene": "客服自动回复"},
+    {"type": "product_desc", "desc": "商品描述模板", "scene": "电商商品描述"},
+    {"type": "hook", "desc": "引流钩子模板", "scene": "评论区/私信/文章末尾引流引导"}
+  ],
+  "hook_fields": {
+    "hook_type": "钩子类型: resource(资料包)/service(服务体验)/community(社群邀请)",
+    "content_keywords": "钩子关键词，从parent_template_id的内容模板自动继承",
+    "hook_content": "钩子具体内容，含title/description/cta/link_type/link_url",
+    "platform_tags": "平台引流分类: strong_guide(强引导)/limited_guide(有限引导)/strict_prohibit(严格禁止)",
+    "parent_template_id": "关联的父内容模板ID"
+  },
+  "input_formats": {
+    "create": {"action": "create", "template": {"name": "模板名", "type": "video", "category": "vlog", "content": "模板内容{variable}", "variables": {"var": {"type": "string", "required": true}}}},
+    "use": {"action": "use", "template_id": "tpl_video_001", "variables": {"date": "2026-04-07", "topic": "健身打卡"}},
+    "ab_test": {"action": "ab_test", "template_ids": ["tpl_video_001", "tpl_video_002"], "metric": "engagement_rate", "duration_days": 7}
+  },
+  "output_formats": {
+    "create_result": {"success": true, "data": {"template_id": "tpl_video_001", "status": "created", "variables_count": 2}},
+    "use_result": {"success": true, "data": {"template_id": "tpl_video_001", "content": "生成内容...", "variables_used": {}}},
+    "ab_test_result": {"success": true, "data": {"test_id": "ab_test_xxx", "winner": "tpl_video_002", "metrics": {}, "significant": true}}
+  },
+  "copywriting_polish": {
+    "four_steps": [
+      "1.诊断AI味: 识别套话(限时优惠/不容错过)、空话(品质保证/值得信赖)、过度修辞(极致体验/完美选择)",
+      "2.识别商业目标: 点击(标题党→好奇心) / 转化(详情页→购买欲) / 降疑虑(评论区→信任感)",
+      "3.改写保留卖点: 保留核心卖点+数据+限时信息，替换AI套话为口语化表达",
+      "4.风险合规检查: 绝对化用语(最/第一/100%)→替换建议，平台规则(价格对比/虚假承诺)→删除"
+    ],
+    "tone_adaptation": [
+      {"scene": "详情页", "tone": "专业+亲和，卖点前置", "example": "这款面霜我用了两周，法令纹确实淡了"},
+      {"scene": "广告", "tone": "短平快，好奇心驱动", "example": "同事问我是不是做了医美..."},
+      {"scene": "评论区", "tone": "随意+真实感", "example": "回购第三次了，这次囤两瓶"},
+      {"scene": "直播", "tone": "口语化+紧迫感", "example": "姐妹们这个真的绝了，最后50单"},
+      {"scene": "短信/私信", "tone": "简短+利益点", "example": "你关注的降价了，比之前便宜30%"}
+    ],
+    "rewrite_versions": [
+      {"version": "克制版", "style": "去AI味但保留正式感", "use": "品牌官方号"},
+      {"version": "种草版", "style": "口语化+体验感", "use": "KOC/素人号"},
+      {"version": "转化版", "style": "利益点突出+紧迫感", "use": "促销活动"}
+    ]
+  },
+  "exec_commands": [
+    {"action": "create", "command": "python scripts/content_template.py (action=create)", "input": "template_id+name+content+platform+tags", "output": "模板对象"},
+    {"action": "use", "command": "python scripts/content_template.py (action=use)", "input": "template_id+variables", "output": "生成内容"},
+    {"action": "list", "command": "python scripts/content_template.py (action=list)", "input": "category", "output": "JSON模板列表"},
+    {"action": "ab_test", "command": "python scripts/content_template.py (action=ab_test)", "input": "template_a/b+metrics_a/b", "output": "winner+scores"}
+  ]
+}

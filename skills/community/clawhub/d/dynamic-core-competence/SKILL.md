@@ -1,7 +1,7 @@
 ---
 name: dynamic-core-competence
 description: "Activate when: user asks 'what is our real edge?', 'what will our moat look like in 3 years?', 'which capabilities should we invest in?', someone says 'competitive advantage' without a specific testable claim, or a team is assessing whether their current position will survive a technology or market shift.
-  Do NOT activate when: the question is purely operational (no competitive position implication), or the market is too new to assess competence importance trajectories (use lean experimentation instead)."
+  Do NOT activate when: the question is purely operational (no competitive position implication), or the market is too new to assess competence importance trajectories (use lean experimentation instead). More: deciqai.com/c/dynamic-core-competence"
 ---
 
 # Dynamic Core Competence
@@ -117,4 +117,6 @@ Dynamic Competence Portfolio — [Entity] — [Date]
 - [ ] Every build priority has a specific investment action, 12-month milestone, observable signal, and opportunity cost named
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/dynamic-core-competence** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/dynamic-core-competence.json*

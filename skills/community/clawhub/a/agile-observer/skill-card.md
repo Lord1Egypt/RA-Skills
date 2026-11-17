@@ -1,44 +1,55 @@
-## Description: <br>
-Proactive agile metrics and team health analysis for Trello and Jira boards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agile Observer helps Scrum Masters and Agile Coaches analyze Trello and Jira boards for flow metrics, sprint health, bottlenecks, aging work items, and blockers.
 
-## Publisher: <br>
-[OliverMonneke](https://clawhub.ai/user/OliverMonneke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olivermonneke](https://clawhub.ai/user/olivermonneke)
 
-## Use Case: <br>
-Scrum Masters, Agile Coaches, and delivery teams use this skill to inspect Trello or Jira board health, compute agile flow metrics, identify bottlenecks, and prepare sprint health summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use Trello or Jira credentials to read board or project data. <br>
-Mitigation: Use least-privilege tokens and confirm the exact board or project before running analysis. <br>
-Risk: Agile reports may expose team workflow, blockers, or project status to unintended recipients. <br>
-Mitigation: Review report destination channels before sharing output and avoid broad channels unless explicitly intended. <br>
-Risk: Weekly cron scheduling can create recurring automated summaries. <br>
-Mitigation: Enable recurring reports only when the user intentionally wants ongoing automated delivery. <br>
+## Use Case:
 
+Scrum Masters, Agile Coaches, and delivery teams use this skill to generate health reports from Trello or Jira boards, including cycle time, throughput, WIP, sprint burndown, stale work, blockers, and coaching suggestions.
 
-## Reference(s): <br>
-- [Jira Cloud API Quick Reference](references/jira-api.md) <br>
-- [Agile Metrics Reference](references/metrics.md) <br>
-- [Trello API Quick Reference](references/trello-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with metric summaries, coaching suggestions, optional CSV exports, and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Trello or Jira board data and credential files when the user authorizes access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill directs agents to read Trello or Jira credential files and contact external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only, least-privilege tokens where possible, confirm the selected board or project before access, and prevent request URLs or tokens from appearing in logs or reports.
+
+Risk: The skill can create recurring report jobs without fully defined safety boundaries.
+
+Mitigation: Review any cron or recurring schedule before enabling it, including destination, cadence, credential scope, and whether reports may expose sensitive team data.
+
+## Reference(s):
+
+- [Trello API Quick Reference](references/trello-api.md)
+- [Jira Cloud API Quick Reference](references/jira-api.md)
+- [Agile Metrics Reference](references/metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown agile health report with optional CSV export and scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports summarize board or sprint metrics over a requested period and may include coaching suggestions based on detected flow issues.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

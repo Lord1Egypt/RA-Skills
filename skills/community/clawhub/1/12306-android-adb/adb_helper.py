@@ -2,7 +2,9 @@
 """ADB UI automation helper for Android apps.
 
 Provides element finding and interaction via uiautomator dump + XML parsing.
-For WebView content that ignores ADB touches, see book_12306.py (uses uiautomator2).
+For WebView content that ignores ADB touches, use the OCR loop
+(appium-android-adb skill: ocr_bridge.py — direct uiautomator2 + RapidOCR).
+Proven on a real 12306 booking 2026-08-30.
 
 Usage:
     from adb_helper import ADB
@@ -133,12 +135,6 @@ class ADB:
     def tap_el(self, el: UIElement):
         self.tap(*el.center)
 
-    def tap_motion(self, x: int, y: int, press_ms: int = 150):
-        """Tap using motionevent (works on some WebViews that reject input tap)."""
-        self.shell(f"input motionevent DOWN {x} {y}")
-        time.sleep(press_ms / 1000.0)
-        self.shell(f"input motionevent UP {x} {y}")
-
     def swipe(self, x1: int, y1: int, x2: int, y2: int, ms: int = 500):
         self.shell(f"input swipe {x1} {y1} {x2} {y2} {ms}")
 
@@ -149,9 +145,6 @@ class ADB:
 
     def press_back(self):
         self.shell("input keyevent 4")
-
-    def launch_app(self, package: str):
-        self.shell(f"monkey -p {package} -c android.intent.category.LAUNCHER 1")
 
     def screenshot(self, path: str = "/tmp/adb_screenshot.png"):
         self.shell("screencap -p /sdcard/adb_scr.png")
@@ -164,11 +157,11 @@ class ADB:
     def input_unicode(self, text: str) -> bool:
         """Input Unicode text (Chinese, etc.) using the best available method.
 
-        Tries these strategies in order:
-        1. Write to /sdcard/, use uiautomator2 ACTION_SET_TEXT (no IME needed)
-        2. uiautomator2 send_keys (requires fastinput IME)
-        3. Clipboard paste (may not work on all devices)
-        4. ADBKeyboard broadcast (if installed)
+        Tries these strategies in order (proven order on Realme/12306,
+        2026-08-30 — IME switching was blocked, clipboard+paste worked):
+        1. uiautomator2 ACTION_SET_TEXT on focused EditText (no IME needed)
+        2. uiautomator2 set_clipboard + long-press paste (proven winner)
+        3. uiautomator2 send_keys (requires fastinput IME — blocked on Realme)
 
         NOTE: For many 12306 flows, typing is NOT needed — the station picker
         and passenger selector use tap-on-suggestion. Only use this method
@@ -178,19 +171,15 @@ class ADB:
         if self._u2_set_text(text):
             return True
 
-        # Strategy 2: uiautomator2 send_keys
+        # Strategy 2: uiautomator2 set_clipboard + long-press paste
+        if self._u2_clipboard_paste(text):
+            return True
+
+        # Strategy 3: uiautomator2 send_keys
         if self._u2_send_keys(text):
             return True
 
-        # Strategy 3: clipboard + paste
-        if self._clipboard_paste(text):
-            return True
-
-        # Strategy 4: ADBKeyboard broadcast
-        if self._adbkeyboard_input(text):
-            return True
-
-        # Strategy 5: fallback — only works for ASCII
+        # ASCII fallback — only works for plain text
         escaped = text.replace(" ", "%s")
         try:
             result = self.shell(f"input text '{escaped}'")
@@ -202,17 +191,37 @@ class ADB:
         """Use uiautomator2 ACTION_SET_TEXT — no IME switching needed."""
         try:
             import uiautomator2 as u2
-            # Kill stale process first
-            self.shell("am force-stop com.github.uiautomator 2>/dev/null")
-            self.shell("am force-stop com.github.uiautomator.test 2>/dev/null")
-            time.sleep(0.5)
-
             d = u2.connect()
             edit = d(className="android.widget.EditText", focused=True)
             if not edit.exists:
                 edit = d(className="android.widget.EditText")
             if edit.exists:
                 edit.set_text(text)
+                return True
+            return False
+        except Exception:
+            return False
+
+    def _u2_clipboard_paste(self, text: str) -> bool:
+        """uiautomator2 set_clipboard, then long-press the focused field so the
+        paste menu (粘贴) appears. Proven on 12306 station search 2026-08-30
+        (Realme blocks IME switching, but d.set_clipboard works).
+
+        Returns True after the clipboard is set and the field long-pressed;
+        the caller should then tap 粘贴 (via OCR) and verify the text landed.
+        """
+        try:
+            import uiautomator2 as u2
+            d = u2.connect()
+            d.set_clipboard(text)
+            time.sleep(0.5)
+            edit = d(className="android.widget.EditText", focused=True)
+            if not edit.exists:
+                edit = d(className="android.widget.EditText")
+            if edit.exists:
+                x, y = edit.center()
+                d.long_click(x, y, duration=1.2)
+                time.sleep(1.5)
                 return True
             return False
         except Exception:
@@ -226,30 +235,6 @@ class ADB:
             d.set_input_ime(True)
             d.send_keys(text)
             d.set_input_ime(False)
-            return True
-        except Exception:
-            return False
-
-    def _clipboard_paste(self, text: str) -> bool:
-        """Write text to /sdcard/, attempt clipboard set + paste."""
-        try:
-            # Write Chinese text to file (base64 avoids encoding issues)
-            import base64
-            encoded = base64.b64encode(text.encode("utf-8")).decode()
-            self.shell(f"echo '{encoded}' | base64 -d > /sdcard/_input.txt")
-            # Some devices support cmd clipboard
-            self.shell("cmd clipboard set \"$(cat /sdcard/_input.txt)\" 2>/dev/null")
-            time.sleep(0.1)
-            self.shell("input keyevent 279")  # KEYCODE_PASTE
-            time.sleep(0.2)
-            return True
-        except Exception:
-            return False
-
-    def _adbkeyboard_input(self, text: str) -> bool:
-        """Use ADBKeyboard IME broadcast (if installed)."""
-        try:
-            self.shell(f"am broadcast -a ADB_INPUT_TEXT --es msg '{text}' 2>/dev/null")
             return True
         except Exception:
             return False

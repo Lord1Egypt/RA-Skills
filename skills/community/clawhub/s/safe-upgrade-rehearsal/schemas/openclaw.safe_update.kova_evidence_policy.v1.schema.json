@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.kova_evidence_policy.v1.schema.json",
+  "title": "OpenClaw Safe Update Kova Evidence Policy",
+  "type": "object",
+  "required": ["schema", "policy_id", "supported_receipt_schemas", "supported_report_schemas", "required_mode", "target_binding", "reject_publication_omissions", "scenarios"],
+  "properties": {
+    "schema": {"const": "openclaw.safe_update.kova_evidence_policy.v1"},
+    "policy_id": {"type": "string", "minLength": 1},
+    "supported_receipt_schemas": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "supported_report_schemas": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "required_mode": {"const": "execution"},
+    "target_binding": {
+      "type": "object",
+      "required": ["component_id", "artifact_kind", "artifact_ref", "accepted_identity_kinds"],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "artifact_kind": {"const": "npm_package"},
+        "artifact_ref": {"type": "string", "minLength": 1},
+        "accepted_identity_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"const": "npm_integrity"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "reject_publication_omissions": {"const": true},
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["id", "gate_ids", "required_evidence"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "gate_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"enum": ["lifecycle-download-evidence", "state-migration-rehearsal", "rollback-evidence", "plugin-sdk-contract", "launcher-service-contract", "permissions-contract", "protocol-contract", "channel-crypto-contract", "environment-matched-rehearsal"]}
+          },
+          "required_evidence": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "required": ["id", "category"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "category": {"enum": ["command", "invariant", "collector"]}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

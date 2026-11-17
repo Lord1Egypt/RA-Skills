@@ -1,50 +1,65 @@
-## Description: <br>
-DCA orders for crypto. Split buys over time, gasless, oracle-protected, 8 EVM chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DCA orders for crypto. Split buys over time, gasless, oracle-protected, 8 EVM chains.
 
-## Publisher: <br>
-[eranp-orbs](https://clawhub.ai/user/eranp-orbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eranp-orbs](https://clawhub.ai/user/eranp-orbs)
 
-## Use Case: <br>
-External users and developers use this skill to translate wallet intent into normalized DCA order parameters, EIP-712 typed data, approval guidance, a signed relay payload, and follow-up query or cancellation steps for supported EVM chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags the release as suspicious because its documentation may cover broader crypto order-building behavior than the stated DCA scope. <br>
-Mitigation: Review supported order types before use, keep the workflow scoped to the user's requested DCA behavior, and use demo or test mode before handling real funds. <br>
-Risk: The skill requires wallet signing and can produce payloads that affect crypto assets. <br>
-Mitigation: Require explicit user confirmation before live submission and validate every address, amount, chain, timing value, approval, and signature. <br>
-Risk: The helper token addressbook is a convenience list and may not cover every token or user-provided address. <br>
-Mitigation: Treat explicit user-provided addresses as authoritative and verify token decimals or addresses onchain when uncertain. <br>
+## Use Case:
 
+External users and developers use this skill to translate crypto trading intent into normalized Spot DCA, TWAP, limit, stop-loss, take-profit, delayed-start, or cancellation workflows on supported EVM chains. It guides local parameter preparation, EIP-712 typed-data population, approval decisions, signing, relay submission, and order status follow-up.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/eranp-orbs/dca-order) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Parameters](references/params.md) <br>
-- [Template, Sign, And Submit](references/sign.md) <br>
-- [Lifecycle](references/lifecycle.md) <br>
-- [Examples](references/examples.md) <br>
-- [Common Token Addressbook](assets/token-addressbook.md) <br>
-- [RePermit typed-data template](assets/repermit.template.json) <br>
-- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces order-building guidance and payloads; live submission requires user wallet signing and explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide broader crypto trading actions than DCA buys, including approvals, signatures, order submission, and cancellation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each order as an advanced crypto trade and confirm the chain, token addresses, recipient, amounts, slippage, deadlines, and order type before approval or signature.
+
+Risk: Standing maximum token approvals can grant repeat-use spend authority beyond a single order.
+
+Mitigation: Prefer exact approvals for input.maxAmount unless the user deliberately chooses a standing approval for repeated use.
+
+Risk: Typed data and signatures are sensitive and can authorize real token movement through the configured relay and contracts.
+
+Mitigation: Keep populated typedData and signatures private, submit only the final signed payload, and reuse the exact populated typedData when resolving ambiguous retries or cancellations.
+
+## Reference(s):
+
+- [Quickstart](references/quickstart.md)
+- [Params](references/params.md)
+- [Template, Sign, And Submit](references/sign.md)
+- [Lifecycle](references/lifecycle.md)
+- [Examples](references/examples.md)
+- [Common Token Addressbook](assets/token-addressbook.md)
+- [RePermit Typed-Data Template](assets/repermit.template.json)
+- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf)
+- [ClawHub Skill Page](https://clawhub.ai/eranp-orbs/skills/dca-order)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload shapes, EIP-712 typed-data configuration, and optional shell or JavaScript command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; the agent prepares order data locally and submits only the final signed payload when directed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

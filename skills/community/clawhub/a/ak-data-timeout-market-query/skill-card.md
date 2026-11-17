@@ -1,41 +1,53 @@
-## Description: <br>
-Query timeout status and market timeout ranking for any single job type on huge sharded job tables (job_a~job_d) without index changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query timeout status and market timeout ranking for any single job type on huge sharded job tables (job_a~job_d) without index changes.
 
-## Publisher: <br>
-[leehoo29](https://clawhub.ai/user/leehoo29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leehoo29](https://clawhub.ai/user/leehoo29)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate timeout behavior for a single AK Data job type across sharded job tables. It guides daily SQL analysis, market ranking, duration summaries, sample extraction, and chart-ready reporting without changing database indexes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security scan marked the release suspicious and warns that related helper behavior can bypass normal sandbox controls or route diffs to external reviewer CLIs. <br>
-Mitigation: Install only in trusted maintainer environments, prefer non-yolo review settings when available, and manually review moderation, PR publishing, or role-change commands before execution. <br>
-Risk: The skill generates SQL for very large sharded job tables, which can be expensive or incomplete if run outside its stated single-day and single-job-type constraints. <br>
-Mitigation: Keep each SQL request to one job type and one 24-hour Beijing-time window, use the specified created_at index, and merge multi-day results outside the database. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to generate read-only, single-job-type timeout diagnostics for AK Data job shards, including timeout totals, market rankings, duration statistics, representative samples, and chart-ready report sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leehoo29/ak-data-timeout-market-query) <br>
-- [Publisher profile](https://clawhub.ai/user/leehoo29) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with SQL code blocks, JSON-style result contracts, and chart configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are scoped to one tenant, one job type, and single-day SQL windows; recent queries are split by day and merged outside the database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reports may expose operational identifiers such as req_ssn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only for users with legitimate read access to the referenced job tables and handle report outputs according to internal data-access controls.
+
+Risk: Large sharded job-table queries can create operational load if scope limits are ignored.
+
+Mitigation: Keep execution read-only, use one jobType at a time, limit each SQL query to a single-day window, and rely on the documented existing index strategy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leehoo29/skills/ak-data-timeout-market-query)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, JSON, Guidance]
+
+**Output Format:** [Markdown report with SQL templates and chart-ready JSON blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single job type and single-day query windows; recent requests are split into two single-day runs before application-level aggregation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

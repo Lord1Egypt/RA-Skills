@@ -1,39 +1,57 @@
-## Description: <br>
-Interact with Flowise AI workflows via REST API to list chatflows, inspect flows, send predictions, and manage conversation sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Flowise AI workflows via REST API. Use when user mentions Flowise, chatflows, or wants to send messages to Flowise bots/agents. Supports listing flows, sending predictions, and managing conversations.
 
-## Publisher: <br>
-[tianmu](https://clawhub.ai/user/tianmu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tianmu](https://clawhub.ai/user/tianmu)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to configured Flowise servers, select chatflows, send user messages, and return Flowise responses with optional session context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, files, API keys, and action-style script or device parameters to a configured Flowise server. <br>
-Mitigation: Install only when the Flowise server and configured flows are trusted, keep API keys in protected secret storage, and require explicit user approval before uploads or script/device actions. <br>
-Risk: Incorrect or overly broad flow mappings could route user requests to an unintended Flowise workflow. <br>
-Mitigation: Review TOOLS.md flow mappings carefully and verify the selected flow before sending sensitive prompts, files, or custom variables. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Flowise skill page](https://clawhub.ai/tianmu/openclaw-flowise-skill) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to configured Flowise chatflows, list available flows, retrieve flow details, send prediction requests, and maintain conversation sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Flowise API responses, curl commands, configuration guidance, and error summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, uploaded files, flow metadata, session identifiers, and API credentials may be sent to a user-configured Flowise server.
+
+Mitigation: Install only when the configured Flowise server is trusted, prefer HTTPS for non-local endpoints, and avoid sending sensitive data unless the workflow is approved for that data.
+
+Risk: API keys may be exposed if stored in shared project files or shell history.
+
+Mitigation: Use least-privilege credentials and keep live API keys out of shared files and command history.
+
+Risk: Some Flowise workflows may accept script or device form inputs that can cause actions on other systems.
+
+Mitigation: Use script/device form flows only when that behavior is intentional and the target system is authorized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianmu/skills/openclaw-flowise-skill)
+- [Publisher profile](https://clawhub.ai/user/tianmu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Flowise flow identifiers, session identifiers, API request examples, and parsed Flowise response data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

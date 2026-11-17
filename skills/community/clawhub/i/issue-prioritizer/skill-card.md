@@ -1,40 +1,51 @@
-## Description: <br>
-Prioritizes GitHub issues by ROI, solution sanity, and architectural impact to identify quick wins, over-engineered proposals, and actionable bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prioritizes issues from a named GitHub repository or supplied issue set by ROI, solution sanity, architectural impact, and actionability without modifying repositories.
 
-## Publisher: <br>
-[Glucksberg](https://clawhub.ai/user/Glucksberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[glucksberg](https://clawhub.ai/user/glucksberg)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to triage open GitHub issues, rank them by adjusted priority, identify quick wins, and avoid duplicating work already covered by open pull requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs under the user's authenticated GitHub CLI session and may access repositories available to that account. <br>
-Mitigation: Use a fine-grained or read-only GitHub token and avoid running the skill against sensitive private issue trackers unless that access is intended. <br>
-Risk: The allowed GitHub command surface is broader than a read-only issue analyzer needs. <br>
-Mitigation: Prefer narrowing allowed commands to read-only issue and pull request operations such as `gh issue list/view` and `gh pr list/view`. <br>
+## Use Case:
 
+Developers, maintainers, and contributors use this skill to rank GitHub issues, identify quick wins, filter non-actionable items, and match work to contributor skill levels before deciding what to work on.
 
-## Reference(s): <br>
-- [Issue Prioritizer on ClawHub](https://clawhub.ai/Glucksberg/issue-prioritizer) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with issue rankings, category summaries, recommendations, and optional JSON or Markdown table output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only GitHub issue and pull request analysis using an authenticated gh CLI session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: History cleanup can delete unrelated local directories if --history-dir points at a broad or shared path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated empty state directory for --history-dir, avoid home directories, project roots, /tmp, and shared directories, and keep --retain conservative until cleanup logic is constrained.
+
+## Reference(s):
+
+- [Issue Prioritizer on ClawHub](https://clawhub.ai/glucksberg/skills/issue-prioritizer)
+- [GitHub CLI](https://cli.github.com/)
+- [jq](https://jqlang.github.io/jq/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown issue prioritization report with optional JSON summaries and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only ranking and recommendations; no repository mutations.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

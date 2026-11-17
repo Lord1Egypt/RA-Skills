@@ -1,44 +1,56 @@
-## Description: <br>
-Complete academic paper writing pipeline with integrity checks and multi-agent review system. Optimized prompts for Methods/Results/Discussion sections. Features self-counterargument framework, bias matrix, and overclaim self-audit. Use when writing research papers, need citation verification, anti-hallucination checks, multi-perspective review, or auditable process records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jason Academic Writing runs an academic paper pipeline that gathers literature, drafts manuscript sections, performs citation and integrity checks, runs multi-role review, revises drafts, and records process summaries.
 
-## Publisher: <br>
-[ithacajason](https://clawhub.ai/user/ithacajason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ithacajason](https://clawhub.ai/user/ithacajason)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to run a staged manuscript workflow that gathers literature evidence, drafts paper sections, checks citations, reviews the manuscript, revises content, and records a process summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, citation metadata, evidence summaries, manuscript text, and revision content may be sent to the configured OpenAI-compatible provider and public literature APIs. <br>
-Mitigation: Use only with content that may be shared with those services, configure approved providers, and avoid entering confidential, embargoed, or sensitive manuscript material unless that sharing is permitted. <br>
-Risk: The skill claims 100% integrity and claim verification, but those checks should not be treated as proof that all claims, statistics, PRISMA counts, registration IDs, and citations are correct. <br>
-Mitigation: Manually verify citations, numerical claims, study counts, registration identifiers, and source support before using generated manuscript text. <br>
+## Use Case:
 
+Developers, researchers, and academic writers use this skill to run an LLM-assisted workflow for literature collection, manuscript drafting, integrity checks, peer-review-style feedback, revision, and process reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ithacajason/jason-academic-writing) <br>
-- [Review Rubric](references/review_rubric.md) <br>
-- [API Reference](references/api_reference.md) <br>
-- [Semantic Scholar API](https://api.semanticscholar.org) <br>
-- [CrossRef DOI API](https://api.crossref.org/works/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON files with shell-command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY and OPENAI_BASE_URL; writes research, draft, review, revision, integrity-check, and summary artifacts under the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Confidential or unpublished manuscripts may be sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with material approved for the configured OpenAI-compatible endpoint and public scholarly APIs; review OPENAI_API_KEY and OPENAI_BASE_URL settings before running.
+
+Risk: Integrity reports may not prove that claims, statistics, methods, or citations were actually verified.
+
+Mitigation: Treat integrity results as advisory and manually verify citations, methods, statistics, and evidence before submission or publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ithacajason/skills/jason-academic-writing)
+- [Review Rubric](references/review_rubric.md)
+- [Semantic Scholar API](https://api.semanticscholar.org)
+- [Crossref Works API](https://api.crossref.org/works/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown manuscripts and summary reports, JSON evidence and review reports, and command-line guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes stage artifacts under an output working directory and requires configured OPENAI_API_KEY and OPENAI_BASE_URL values for LLM-backed stages.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

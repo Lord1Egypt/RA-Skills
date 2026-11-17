@@ -1,39 +1,51 @@
-## Description: <br>
-Generate QR codes for text, URLs, WiFi connections, and business cards (vCard), with optional custom output paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates QR codes locally for text, URLs, WiFi connections, and vCard business cards, with optional custom PNG output paths.
 
-## Publisher: <br>
-[ouyangAbel](https://clawhub.ai/user/ouyangAbel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouyangabel](https://clawhub.ai/user/ouyangabel)
 
-## Use Case: <br>
-Developers and users use this skill to generate local PNG QR codes for URLs, arbitrary text, WiFi credentials, and vCard contact details without making API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: WiFi QR codes can expose network credentials to anyone who can scan or access the generated image. <br>
-Mitigation: Generate and share WiFi QR codes only when the network password is intended to be shared with the recipient. <br>
-Risk: The utility writes PNG files to user-provided output paths. <br>
-Mitigation: Save generated QR codes only in ordinary user-controlled folders and verify the destination path before running the command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouyangAbel/qr-code-gen) <br>
+## Use Case:
+
+External users and developers use this skill to create QR code PNG files for websites, arbitrary text, WiFi sharing, and digital business cards without relying on an external API.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: WiFi QR codes encode the network password and can expose it through saved PNG files, shell history, terminal logs, or shared images.
+
+Mitigation: Treat WiFi QR outputs as secrets, store them only where intended recipients can access them, and remove command history or generated files when they are no longer needed.
+
+Risk: Dependency installation can affect the local Python or operating-system environment.
+
+Mitigation: Install dependencies in a virtual environment where possible and avoid sudo-based package installation unless the OS repository and environment are trusted.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated QR artifacts are PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local qrcode Python package with Pillow support or the system python3-qrcode package.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands; generated QR codes are PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are saved locally, with a default output path of ~/qrcode_output.png when no path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

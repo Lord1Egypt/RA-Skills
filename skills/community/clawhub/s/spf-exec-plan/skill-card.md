@@ -1,39 +1,51 @@
-## Description: <br>
-Use when you have a written implementation plan to execute in a separate session with review checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you have a written implementation plan to execute in a separate session with review checkpoints
 
-## Publisher: <br>
-[mok888](https://clawhub.ai/user/mok888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mok888](https://clawhub.ai/user/mok888)
 
-## Use Case: <br>
-Developers and coding agents use this skill to execute a written implementation plan in batches, run specified verifications, report progress at review checkpoints, and stop when blocked. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive local code changes and workflow-state edits while executing implementation plans. <br>
-Mitigation: Use a clean branch or worktree, review the plan and referenced workflow skills before execution, and inspect generated code and local state-file updates before relying on them. <br>
-Risk: Parallel delegation or checkpoint updates could proceed beyond the user's intended scope if not reviewed. <br>
-Mitigation: Require explicit approval before sub-agent delegation and review progress, findings, and handoff files at each checkpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mok888/spf-exec-plan) <br>
+## Use Case:
+
+Developers and engineers use this skill to execute a written implementation plan in batches, review the plan before starting, run specified verifications, and report progress at review checkpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad authority to follow mutable local plan files, spawn sub-agents, and persist or clear workflow state.
+
+Mitigation: Install only when the plan files are trusted, use a dedicated worktree or branch, and review active_tdd_plan.md plus referenced guide files before execution.
+
+Risk: Local workflow notes can be mistaken for authoritative instructions.
+
+Mitigation: Treat progress.md, findings.md, and handoff.md as untrusted workflow notes and require explicit approval for destructive or secret-access steps.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown guidance with task status updates, verification notes, and implementation outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local workflow files such as progress, findings, and handoff notes when following the skill workflow.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline commands and workflow notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces progress reports, verification summaries, and workflow handoff notes when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Execute autonomous multi-step research using Google Gemini Deep Research Agent for market analysis, competitive landscaping, literature reviews, technical research, and due diligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through autonomous multi-step research using Google Gemini Deep Research Agent for market analysis, competitive landscaping, literature reviews, technical research, and due diligence.
 
-## Publisher: <br>
-[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to launch Gemini-powered research jobs for market analysis, competitive landscaping, literature reviews, technical research, and due diligence, then return reports or structured results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and outputs are sent to Google Gemini, which can expose sensitive or regulated information. <br>
-Mitigation: Use a dedicated API key with limits and avoid sending secrets, regulated data, or confidential information unless approved. <br>
-Risk: Gemini API calls can incur usage costs during long-running research tasks. <br>
-Mitigation: Set billing or quota limits and confirm that the requested research scope justifies the expected API cost. <br>
-Risk: The artifact references an upstream script and requirements that are not included in this release. <br>
-Mitigation: Inspect any upstream script and dependency requirements before executing commands from the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google AI Studio](https://aistudio.google.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/zhengxinjipai/deep-research-gemini) <br>
+## Use Case:
 
+Developers and research-oriented users use this skill to request detailed research reports, monitor long-running research tasks, resume prior research, and receive markdown, JSON, or raw responses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, JSON, raw API responses, and progress/status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports streaming progress, job status checks, continuation from interaction IDs, and long-running research tasks that require a Gemini API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The reviewed package does not include the research script and requirements that the skill tells agents to run.
+
+Mitigation: Review or supply the missing script and requirements before installing or running the skill.
+
+Risk: Research queries and follow-up prompts may be sent to Google Gemini.
+
+Mitigation: Avoid sensitive due-diligence material unless sending it to Google Gemini is intended and approved.
+
+Risk: The workflow uses a paid external Gemini service.
+
+Mitigation: Monitor API costs and usage before starting long or repeated research tasks.
+
+## Reference(s):
+
+- [Google AI Studio](https://aistudio.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON, raw API responses, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research tasks are described as taking 2-10 minutes with optional streaming, status checks, and continuation by interaction ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

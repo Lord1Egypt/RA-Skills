@@ -1,41 +1,58 @@
-## Description: <br>
-整理MiniMax大模型公开页面信息，提供模型能力、定价与文档目录的摘要与链接汇总。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public MiniMax model pages into concise information about model capabilities, pricing, documentation, and related links.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill to gather concise summaries and link lists from public MiniMax product, pricing, announcement, and documentation pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MiniMax public pages, pricing, and model details may change or load dynamically, which can make summaries incomplete or stale. <br>
-Mitigation: Wait for pages to finish loading, cite the source links used, and verify current public pages before relying on extracted details. <br>
-Risk: The skill is intended for public-information lookup and could be misused if expanded into account operations or private-data handling. <br>
-Mitigation: Keep use limited to public pages, avoid credentials and account actions, and do not store or output sensitive information. <br>
+## Use Case:
 
+Developers, researchers, and business users can use this skill to gather public MiniMax product, documentation, pricing, quota, and service-status information into concise summaries and link lists. It is scoped to public pages and excludes account operations, API calls, permission bypass, and private data handling.
 
-## Reference(s): <br>
-- [MiniMax homepage](https://www.minimax.com.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/minimax-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on public webpage content and should avoid account actions, API calls, private data, or sensitive information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Public product details such as pricing, quotas, model capabilities, and service status can change after a summary is generated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important details directly on MiniMax pages before relying on them for purchasing, integration, or operational decisions.
+
+Risk: Automated collection from public pages may conflict with platform rules or overload pages if performed aggressively.
+
+Mitigation: Respect MiniMax platform rules, use frequency control, and limit the skill to public-page information gathering.
+
+Risk: The skill is not intended for private data, account operations, API calls, or permission bypass.
+
+Mitigation: Use it only for public information summaries and avoid supplying credentials, account data, or sensitive content.
+
+## Reference(s):
+
+- [MiniMax homepage](https://www.minimax.com.cn/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/minimax-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on public MiniMax pages and should be checked against current MiniMax pages before business or integration decisions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

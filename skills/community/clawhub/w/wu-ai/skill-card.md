@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents analyze AI trends, industry disruption, and investment opportunities using Wu Jun-inspired AI wave and checklist frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes AI trends, industry disruption, and AI investment opportunities using a Wu Jun-inspired checklist focused on data advantage, application scenarios, commercial closure, and technical barriers.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to structure AI trend, company, or industry analysis and produce checklist-based investment research prompts. It should be treated as research support, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI trend and investment outputs may be incomplete, outdated, or unsuitable as personalized financial advice. <br>
-Mitigation: Treat outputs as research prompts and verify current market facts, fundamentals, and suitability independently before acting. <br>
-Risk: Search-enabled analysis may send the requested topic to a local search helper outside the reviewed skill logic. <br>
-Mitigation: Use search only with trusted local uv and searxng tooling, and avoid submitting sensitive or confidential topics. <br>
+## Use Case:
 
+External users and agents use this skill to structure Chinese-language AI trend analysis, assess AI investment opportunities, and produce checklist-style reasoning for companies or industries. It is intended as a research framework and does not replace financial due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/wu-ai) <br>
-- [Skill definition](SKILL.md) <br>
-- [AI trend analysis template](templates/ai-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally use a local search helper when invoked with search-enabled analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: AI trend and investment outputs could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a research checklist and pair them with independent due diligence, current market data, fundamentals analysis, and qualified financial review.
+
+Risk: Technical forecasts and AI wave classifications can become outdated or uncertain.
+
+Mitigation: Verify conclusions against current sources and revise assumptions before relying on the analysis.
+
+Risk: Running the helper with --search may query an external searxng-based search tool if the sibling skill exists.
+
+Mitigation: Use --search only when sending the topic to the configured search service is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/wu-ai)
+- [Publisher profile](https://clawhub.ai/user/lj22503)
+- [AI trend analysis template](artifact/templates/ai-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown checklists, investment-analysis guidance, and optional terminal text output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script can optionally use --search to query a sibling searxng-based search tool when that dependency exists.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

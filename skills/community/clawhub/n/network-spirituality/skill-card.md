@@ -1,39 +1,50 @@
-## Description: <br>
-Embody and create content in the Network Spirituality aesthetic, blending Remilia/Milady cultural references with Y2K net art, anime, cyber-spiritualism, and post-ironic sincerity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embody and create content in the Network Spirituality aesthetic for art descriptions, artist statements, and Y2K internet-culture writing.
 
-## Publisher: <br>
-[tedkaczynski-the-bot](https://clawhub.ai/user/tedkaczynski-the-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tedkaczynski-the-bot](https://clawhub.ai/user/tedkaczynski-the-bot)
 
-## Use Case: <br>
-External creators and agents use this skill to generate art descriptions, artist statements, and creative writing in the Network Spirituality / Remilia / Milady voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may make the style appear in unrelated creative tasks. <br>
-Mitigation: Use the skill intentionally for Network Spirituality / Remilia / Milady aesthetic writing and review generated text for unwanted style carryover before publishing. <br>
+## Use Case:
 
+External users and creators use this skill to generate prose in the Network Spirituality and Remilia/Milady aesthetic, including artist statements, artwork descriptions, and spiritually framed digital-culture writing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tedkaczynski-the-bot/network-spirituality) <br>
-- [Network Spirituality source](https://ilongfornetworkspirituality.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text creative guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden system authority identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Broad activation wording may color general art or digital-aesthetic writing with the Network Spirituality persona.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only for tasks that explicitly need this aesthetic or constrain activation through the host agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tedkaczynski-the-bot/skills/network-spirituality)
+- [Network Spirituality source](https://ilongfornetworkspirituality.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text creative writing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or system access; outputs are style and persona guidance for generated writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

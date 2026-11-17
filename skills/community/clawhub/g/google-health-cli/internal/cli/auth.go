@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -43,12 +44,16 @@ func newAuthLoginCmd(app *App) *cobra.Command {
 				))
 			}
 
+			if err := auth.CheckTokenCacheWritable(cfg.TokenCache); err != nil {
+				return withCode(tokenCacheExitCode(err), fmt.Errorf("cannot cache a token: %w", err))
+			}
+
 			oauthCfg := auth.OAuthConfig(cfg.ClientID, cfg.ClientSecret, cfg.Scopes)
 			stderr := cmd.ErrOrStderr()
 			open := func(url string) error {
 				fprintln(stderr, "Opening your browser to authorize read-only Google Health access.")
 				fprintln(stderr, "If it doesn't open automatically, visit:\n  "+url)
-				return auth.OpenBrowser(url)
+				return openBrowser(url)
 			}
 
 			res, err := auth.Login(cmd.Context(), oauthCfg, open, app.logger)
@@ -56,7 +61,7 @@ func newAuthLoginCmd(app *App) *cobra.Command {
 				return withCode(ExitAuth, fmt.Errorf("login failed: %w", err))
 			}
 			if err := auth.SaveToken(cfg.TokenCache, res.Token); err != nil {
-				return withCode(ExitFailure, fmt.Errorf("cache token: %w", err))
+				return withCode(tokenCacheExitCode(err), fmt.Errorf("cache token: %w", err))
 			}
 
 			fprintf(cmd.OutOrStdout(), "Logged in. Token cached to %s\n", cfg.TokenCache)
@@ -67,6 +72,8 @@ func newAuthLoginCmd(app *App) *cobra.Command {
 }
 
 // newAuthLogoutCmd deletes the token cache (GOAL.md §8).
+var openBrowser = auth.OpenBrowser
+
 func newAuthLogoutCmd(app *App) *cobra.Command {
 	return &cobra.Command{
 		Use:   "logout",
@@ -78,7 +85,7 @@ func newAuthLogoutCmd(app *App) *cobra.Command {
 				return err
 			}
 			if err := auth.DeleteToken(cfg.TokenCache); err != nil {
-				return withCode(ExitFailure, err)
+				return withCode(tokenCacheExitCode(err), err)
 			}
 			fprintf(cmd.OutOrStdout(), "Logged out. Token cache removed: %s\n", cfg.TokenCache)
 			return nil
@@ -116,7 +123,7 @@ func newAuthStatusCmd(app *App) *cobra.Command {
 			report := authStatusReport{TokenPath: cfg.TokenCache}
 			if tok != nil {
 				report.Present = true
-				report.Valid = tok.Valid() // non-empty access token AND not expired.
+				report.Valid = tok.Valid()
 				if !tok.Expiry.IsZero() {
 					report.Expiry = tok.Expiry.UTC().Format(time.RFC3339)
 				}
@@ -144,4 +151,11 @@ func newAuthStatusCmd(app *App) *cobra.Command {
 	}
 	cmd.Flags().BoolVar(&asJSON, "json", false, "machine-readable output")
 	return cmd
+}
+
+func tokenCacheExitCode(err error) int {
+	if errors.Is(err, auth.ErrNotTokenCache) {
+		return ExitConfig
+	}
+	return ExitFailure
 }

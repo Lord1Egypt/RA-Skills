@@ -1,41 +1,58 @@
-## Description: <br>
-OpenClaw Troubleshooter helps diagnose and propose repairs for common OpenClaw Gateway, configuration, port conflict, and risky-skill issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw troubleshooting and repair guidance for Gateway status, configuration errors, port conflicts, risky skill code, and security misconfigurations.
 
-## Publisher: <br>
-[345968504](https://clawhub.ai/user/345968504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[345968504](https://clawhub.ai/user/345968504)
 
-## Use Case: <br>
-Developers and operators use this skill to troubleshoot OpenClaw installations, review diagnostic findings, and receive guided repair commands for Gateway, configuration, and skill security issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repair guidance can force-stop processes, overwrite OpenClaw configuration, or uninstall named skills. <br>
-Mitigation: Run check-only diagnostics first, review each proposed repair, back up openclaw.json, and allow forced process kills or --yes uninstalls only when explicitly intended. <br>
-Risk: Security claims about other installed skills may be stale or environment-specific. <br>
-Mitigation: Verify any dangerous-skill finding with a current scan before uninstalling or changing the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw Gateway, Control UI, configuration, port, log, and skill-security issues and to receive prioritized repair commands or configuration changes.
 
-## Reference(s): <br>
-- [Openclaw Troubleshooter on ClawHub](https://clawhub.ai/345968504/openclaw-troubleshooter) <br>
-- [Publisher profile: 345968504](https://clawhub.ai/user/345968504) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with PowerShell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized diagnostic findings and proposed repair steps for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact metadata, and SKILL.md frontmatter) <br>
+Risk: Repair flows can force-stop processes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use check-only mode first and verify each process name and command line before stopping a PID.
+
+Risk: Configuration repair can overwrite openclaw.json.
+
+Mitigation: Back up openclaw.json and manually review proposed allowedOrigins, trustedProxies, and denyCommands changes before applying them.
+
+Risk: Skill-removal guidance can uninstall skills without sufficient confirmation.
+
+Mitigation: Avoid --yes uninstall or fix-all flows unless the exact target skills have been confirmed.
+
+## Reference(s):
+
+- [Openclaw Troubleshooter on ClawHub](https://clawhub.ai/345968504/skills/openclaw-troubleshooter)
+- [Publisher profile](https://clawhub.ai/user/345968504)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnostic reports with inline PowerShell, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized diagnosis, repair recommendations, check-only guidance, and configuration edits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact metadata, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

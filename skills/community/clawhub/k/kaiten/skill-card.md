@@ -1,40 +1,59 @@
-## Description: <br>
-Manage Kaiten.ru project boards through the Kaiten REST API, including cards, spaces, boards, columns, tags, comments, checklists, and time tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Kaiten.ru project boards through the Kaiten REST API, including cards, spaces, boards, columns, tags, comments, checklists, and time tracking.
 
-## Publisher: <br>
-[nixprosoft](https://clawhub.ai/user/nixprosoft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nixprosoft](https://clawhub.ai/user/nixprosoft)
 
-## Use Case: <br>
-Developers and teams use this skill to let an agent inspect and operate Kaiten project-management workspaces, including reading boards and cards, creating or updating tasks, moving work across lanes, and managing comments, tags, members, checklists, and time logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Kaiten token to change or delete live board data. <br>
-Mitigation: Use a limited Kaiten token where possible, keep the secrets file private, verify saved default board and state before acting, and require explicit confirmation before deletes, moves, member removals, tag removals, or broad updates. <br>
+## Use Case:
 
+External users and developers use this skill to manage Kaiten project-management workspaces from an agent, including viewing boards and cards, creating or updating tasks, adding comments, managing tags and members, working with checklists, and logging time.
 
-## Reference(s): <br>
-- [Kaiten API Reference](references/api-reference.md) <br>
-- [Kaiten Developer Documentation](https://developers.kaiten.ru) <br>
-- [Kaiten](https://kaiten.ru) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Kaiten REST API operations through curl or the bundled shell helper when the required Kaiten token and domain are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can modify or delete live Kaiten project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Kaiten token and require confirmation of the exact card, board, and operation before create, update, move, delete, membership, tag, checklist, comment, or time-log actions.
+
+Risk: A wrong Kaiten domain can direct authenticated requests to the wrong tenant.
+
+Mitigation: Check KAITEN_DOMAIN carefully and prefer the expected tenant hostname before running commands.
+
+Risk: Persisted last-used board and space context can make ambiguous phrases such as current board or same board resolve incorrectly.
+
+Mitigation: Inspect the stored state and ask for explicit board, space, column, and lane identifiers when the request is ambiguous.
+
+## Reference(s):
+
+- [Kaiten API Reference](artifact/references/api-reference.md)
+- [Kaiten Developer Documentation](https://developers.kaiten.ru)
+- [ClawHub Skill Page](https://clawhub.ai/nixprosoft/skills/kaiten)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute authenticated Kaiten REST API reads and writes when configured with a Kaiten token and domain.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

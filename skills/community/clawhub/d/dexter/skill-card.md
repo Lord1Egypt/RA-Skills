@@ -1,46 +1,63 @@
-## Description: <br>
-Autonomous financial research agent for stock analysis, financial statements, metrics, prices, SEC filings, and crypto data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous financial research agent for stock analysis, financial statements, metrics, prices, SEC filings, and crypto data.
 
-## Publisher: <br>
-[igorhvr](https://clawhub.ai/user/igorhvr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[igorhvr](https://clawhub.ai/user/igorhvr)
 
-## Use Case: <br>
-Developers, analysts, and external users use Dexter to ask financial research questions about stocks, crypto, company fundamentals, market data, SEC filings, analyst estimates, insider trades, and company news. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs a separate upstream project with Bun and local dependencies. <br>
-Mitigation: Review the project before execution and install only in an environment appropriate for running third-party code. <br>
-Risk: The skill stores LLM, financial-data, and web-search API keys in a local .env file. <br>
-Mitigation: Use least-privilege API keys, keep .env out of git, restrict file permissions such as with chmod 600, and rotate keys if exposed. <br>
-Risk: Financial research questions may be sent to third-party LLM, financial-data, and web-search providers. <br>
-Mitigation: Avoid entering confidential watchlists, internal investment research, or other sensitive financial data unless those providers are approved for that data. <br>
-Risk: Financial Datasets API coverage is primarily for US stocks, with international coverage relying on web search fallback. <br>
-Mitigation: Check source coverage and verify answers for international securities before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Dexter listing](https://clawhub.ai/igorhvr/dexter) <br>
-- [Financial Datasets API](https://financialdatasets.ai) <br>
-- [Tavily](https://tavily.com) <br>
-- [Anthropic Console](https://console.anthropic.com/) <br>
+## Use Case:
 
+Developers and analysts use Dexter to answer financial research questions about stocks, crypto, company fundamentals, filings, estimates, insider trades, news, and market data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented guidance with shell commands and generated financial research answers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local environment variables for Anthropic, Financial Datasets, Tavily, and OpenAI API keys; complex queries may take 30-60 seconds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation runs mutable third-party code from the Dexter repository.
+
+Mitigation: Review before installing, pin the Dexter repository to a trusted commit, use frozen dependency installs where possible, and avoid running setup as root.
+
+Risk: API keys may be stored in plaintext configuration.
+
+Mitigation: Store API keys with restrictive permissions or inject them at runtime, and add .env to ignore rules.
+
+Risk: Confidential research queries may be sent to Tavily when web search fallback is enabled.
+
+Mitigation: Disable or omit Tavily when queries are confidential.
+
+Risk: The skill installs and executes financial research tooling with external API access.
+
+Mitigation: Use a least-privileged or containerized environment and review generated answers before relying on them.
+
+## Reference(s):
+
+- [Dexter skill page](https://clawhub.ai/igorhvr/skills/dexter)
+- [Financial Datasets API](https://financialdatasets.ai)
+- [Tavily](https://tavily.com)
+- [Anthropic Console](https://console.anthropic.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and financial analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use external financial data, web search, and LLM APIs when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

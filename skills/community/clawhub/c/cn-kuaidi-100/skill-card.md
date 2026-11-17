@@ -1,41 +1,50 @@
-## Description: <br>
-中文快递追踪助手，可根据快递单号自动识别快递公司并查询实时物流状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese courier tracking assistant that identifies carriers from tracking numbers, queries current shipment status through Kuaidi100, and helps manage a local tracking list.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Chinese-speaking external users can add, query, list, and delete courier tracking numbers for common domestic and international carriers. The skill is useful for checking parcel status through Kuaidi100 and keeping a small local tracking list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parcel tracking numbers are sent to Kuaidi100 for lookup. <br>
-Mitigation: Install only when this data sharing is acceptable for the intended shipments. <br>
-Risk: Saved tracking numbers and statuses are retained in a local JSON file. <br>
-Mitigation: Use the documented delete or clear commands, or remove the JSON file, when retained shipment history is no longer wanted. <br>
+## Use Case:
 
+External users and agents use this skill to add, query, list, and remove parcel tracking numbers for common Chinese and international couriers. It is useful for routine shipment-status checks when sharing tracking numbers with Kuaidi100 is acceptable.
 
-## Reference(s): <br>
-- [Kuaidi100](https://www.kuaidi100.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-kuaidi-100) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Markdown-style text with courier status lines and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores tracked shipment numbers and last known statuses in a local JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shipment numbers are sent to Kuaidi100 and recent status details may be retained locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for shipments where that sharing and local retention are acceptable, and clear saved entries when they are no longer needed.
+
+## Reference(s):
+
+- [中文快递追踪 on ClawHub](https://clawhub.ai/freedompixels/skills/cn-kuaidi-100)
+- [Kuaidi100](https://www.kuaidi100.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with command examples and courier status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local saved tracking entries and recent courier status details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

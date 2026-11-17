@@ -1,41 +1,55 @@
-## Description: <br>
-Structure an OpenClaw agent's memory like a computer, using a cache hierarchy, a YAML fact store for directly addressable data, a lookup index for fast retrieval, and prose files only for narrative and behavioral context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures an OpenClaw agent's memory into hot, warm, and cold layers using concise prose, YAML facts, lookup indexes, project files, and daily logs.
 
-## Publisher: <br>
-[kimmi2ue](https://clawhub.ai/user/kimmi2ue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kimmi2ue](https://clawhub.ai/user/kimmi2ue)
 
-## Use Case: <br>
-Developers and agent operators use this skill to restructure OpenClaw long-term memory, migrate prose-only memory into structured storage, reduce token usage, and improve retrieval of facts and project context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration can overwrite or misplace existing long-term memory content. <br>
-Mitigation: Back up current memory files before migration and review proposed MEMORY.md, facts.yaml, and lookup-index.md changes before accepting them. <br>
-Risk: Structured memory can retain secrets or sensitive personal details if they are copied into facts.yaml. <br>
-Mitigation: Avoid storing secrets or sensitive personal data unless intentional, and review facts.yaml before committing or sharing memory files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reorganize OpenClaw memory files, reduce context-window token usage, and make facts easier for agents to retrieve. It is suited for migrations from prose-only memory into structured fact stores, lookup indexes, project notes, and cold session logs.
 
-## Reference(s): <br>
-- [facts-yaml-template.md](references/facts-yaml-template.md) <br>
-- [lookup-index-template.md](references/lookup-index-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with YAML and Markdown templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed memory structure, migration steps, and template content for local memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can centralize sensitive personal, health, account, system, and credential-location information into persistent plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, opt in only to necessary sensitive categories, minimize stored data, and exclude raw secrets, tokens, passwords, private keys, recovery codes, and exact credential paths.
+
+Risk: Structured lookup indexes and fact stores can make private information easier to retrieve or expose if memory files are shared or committed.
+
+Mitigation: Keep generated memory files private, review them before sharing or committing, and store only non-secret pointers when referencing sensitive systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kimmi2ue/skills/agent-memory-hierarchy)
+- [facts-yaml-template.md](artifact/references/facts-yaml-template.md)
+- [lookup-index-template.md](artifact/references/lookup-index-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with YAML and Markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to create or reorganize persistent plaintext memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

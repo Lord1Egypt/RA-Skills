@@ -1,122 +1,129 @@
 ---
 name: fec-implement-from-design
-description: Use when implementing UI from Figma, Sketch, MasterGo, Pixso, Modao, MockingBot, screenshots, design selections, design tokens, or design-to-code tasks for production frontend components/pages; Chinese triggers include 设计稿, 按设计实现.
+description: Use when implementing UI from Figma, Sketch, MasterGo, Pixso, Modao, MockingBot, screenshots, design selections, design tokens, or design-to-code tasks for production frontend components/pages; Chinese triggers include design draft, implementation by design.
 ---
 
-# 按设计稿实现
+# Implement according to design draft
 
 ## Purpose
 
-基于设计工具（Figma、Sketch、MasterGo、Pixso、墨刀、摹客）的设计上下文，高保真实现页面或组件，强调组件复用、设计 Token 映射、可访问性和面向生产的前端实现。
+Based on the design context of design tools (Figma, Sketch, MasterGo, Pixso, Mokou, Mock), high-fidelity implementation of pages or components emphasizes component reuse, design token mapping, accessibility, and production-oriented front-end implementation.
 
-## 支持的设计工具
+## Supported design tools
 
-| 工具     | MCP 集成                  | 获取设计数据方式                          |
+| Tools | MCP Integration | How to obtain design data |
 | -------- | ------------------------- | ----------------------------------------- |
-| Figma    | `figma` / `figma-desktop` | API 获取设计结构、变量定义                |
-| Sketch   | `sketch`                  | MCP 获取设计选区截图                      |
-| MasterGo | `mastergo`                | API 获取 DSL 结构数据                     |
-| Pixso    | `pixso`                   | 本地 MCP 获取帧数据和代码                 |
-| 墨刀     | `modao`                   | MCP 获取原型数据、生成设计描述            |
-| 摹客     | 无 MCP                    | 通过用户提供的截图、标注或导出的 CSS 获取 |
+| Figma | `figma` / `figma-desktop` | API to obtain design structure and variable definitions |
+| Sketch | `sketch` | MCP Get screenshot of design selection |
+| MasterGo | `mastergo` | API to get DSL structure data |
+| Pixso | `pixso` | Local MCP gets frame data and code |
+| Mo Dao | `modao` | MCP obtains prototype data and generates design descriptions |
+| Mocke | No MCP | Acquired via user-provided screenshots, annotations, or exported CSS |
 
-## 目标
+## Target
 
-- 尽量高还原地实现设计稿
-- 在创建新组件前优先复用现有项目组件
-- 尽可能把设计变量映射到现有 Token
-- 保持实现结果可维护、类型明确、可测试且具备可访问性
-- 避免引入重复的基础组件或并行设计系统
+- Realize the design draft as accurately as possible
+- Prioritize reusing existing project components before creating new ones
+- Map design variables to existing Tokens as much as possible
+- Keep implementations maintainable, well-typed, testable, and accessible
+- Avoid introducing duplication of basic components or parallel design systems
 
-## 必需工作流
+## Procedure
 
-### 1. 识别设计来源
+### 1. Identify design sources
 
-按优先级选择设计数据获取方式：
+Select the design data acquisition method according to priority:
 
-- `figma` — Figma API 集成
-- `figma-desktop` — Figma 桌面端集成
-- `mastergo` — MasterGo DSL 数据
-- `pixso` — Pixso 本地 MCP
-- `modao` — 墨刀原型数据
-- `sketch` — Sketch 选区截图
-- 如以上 MCP 均不可用，请求用户提供设计截图或标注（适用于摹客等无 MCP 工具）
+- `figma` — Figma API integration
+- `figma-desktop` — Figma desktop integration
+- `mastergo` — MasterGo DSL data
+- `pixso` — Pixso local MCP
+- `modao` — Ink knife prototype data
+- `sketch` — Sketch selection screenshot
+- If none of the above MCPs are available, ask the user to provide design screenshots or annotations (applicable to tools without MCP such as Mocke)
+- If there is no authoritative design draft, but the task clearly requires a visual website, brand page, portfolio or high-aesthetic redesign, user-provided or locally generated section-level reference images can be used as a temporary source of visual truth; this source must be analyzed first and then implemented, and marked in the plan as not an authoritative design system.
 
-### 2. 读取设计上下文
+### 2. Read the design context
 
-通过 MCP 或用户提供的设计数据读取设计上下文：
+Read the design context from the MCP or user-supplied design data:
 
-- 检查布局结构
-- 检查间距、字体、颜色、变量、状态、图标和组件层级
-- 如果 MCP 提供了资源文件或 SVG / 图片源，直接使用
-- 如果 MCP 已提供真实资源，不要自行造占位资源
-- 如果用户提供截图而非 MCP 数据，从截图中推断布局、颜色、字体等视觉信息
+- Check layout structure
+- Check spacing, fonts, colors, variables, states, icons and component hierarchy
+- If MCP provides resource files or SVG/image sources, use them directly
+- If MCP has provided real resources, do not create placeholder resources by yourself
+- If the user provides screenshots instead of MCP data, infer visual information such as layout, color, font, etc. from the screenshots
+- If using images/screenshots for reference, first extract block structure, visual hierarchy, main and functional colors, font temperament, spacing rhythm, media position, interaction status hints and responsive risks before writing code.
+- Prioritize the use of clear section-level reference images or local detail images for multi-section pages; do not guess buttons, font sizes, spacing and component status from compressed long images.
+- Unreadable text, fake screenshots, uninspectable materials or conflict status in visual references cannot be copied directly; they need to be translated into the real content, real status or clear placeholder description of the project.
 
-### 3. 搜索可复用组件
+### 3. Search for reusable components
 
-在创建新组件前先搜索代码库中的可复用组件，重点检查：
+Before creating a new component, search the code base for reusable components, focusing on:
 
 - Button
 - Input / Select / Checkbox / Radio / Switch
 - Modal / Drawer / Dialog
 - Table / List / Card
 - Tabs / Breadcrumb / Pagination
-- 页面容器 / 区块容器 / 空状态 / Loading 状态
+- Page Container/Block Container/Empty State/Loading State
 
-### 4. 产出实现计划
+### 4. Output realization plan
 
-在改文件前先产出一份简短实现计划，计划必须包含：
+Before revising the document, produce a short implementation plan. The plan must include:
 
-- 需要改动的文件列表
-- 组件拆分方案
-- 状态 / 数据流
-- 响应式行为
-- 复用还是新建的决策
-- 设计缺口或歧义点
+- List of files that need to be changed
+- Component splitting plan
+- Status/data flow
+- Responsive behavior
+- The decision to reuse or create a new one
+- Design gaps or points of ambiguity
+- The authenticity of the source of the image/screenshot, and what visual details are covered by project tokens, component conventions, or accessibility requirements
 
-### 5. 按框架实现
+### 5. Implementation by framework
 
-按仓库当前使用的前端框架进行实现：
+Implement according to the front-end framework currently used by the warehouse:
 
-- 严格遵循仓库现有约定
-- 优先使用明确类型的 props 和 interfaces/types
-- 保持组件小而可组合
-- 将重复逻辑提取为 hooks / composables / utilities
+- Strictly follow the existing agreements in the warehouse
+- Prefer explicitly typed props and interfaces/types
+- Keep components small and composable
+- Extract duplicate logic into hooks/composables/utilities
 
-### 6. 设计 Token 映射
+### 6. Design Token Mapping
 
-- 优先使用现有 design token、CSS 变量、主题变量或工具类
-- 除非确实没有对应 Token，否则不要硬编码颜色、圆角和间距
-- 如果设计使用了新 Token，要明确指出，不要悄悄到处硬编码
+- Prefer using existing design tokens, CSS variables, theme variables or tool classes
+- Do not hardcode colors, rounded corners and spacing unless there is no corresponding token
+- If the design uses a new Token, make it clear and don’t quietly hardcode it everywhere
 
-### 7. 可访问性保障
+### 7. Accessibility guarantee
 
-- 优先使用语义化 HTML
-- 确保交互控件具有可访问名称
-- 保留可见的焦点样式
-- 检查对话框、菜单、标签页、表单控件的键盘可操作性
+- Prioritize the use of semantic HTML
+- Make sure interactive controls have accessible names
+- Preserve visible focus styles
+- Check the keyboard operability of dialog boxes, menus, tabs, and form controls
 
-### 8. 编码后验证
+### 8. Verify after encoding
 
-- 如有 lint，执行 lint
-- 如有测试，执行测试
-- 如果缺少测试，说明建议补充的最小测试范围
+- If there is lint, execute lint
+- If there are tests, execute them
+- If testing is missing, indicate the recommended minimum testing range
 
-## Detailed References
+## Detailed reference
 
-撰写实现计划报告时，加载 [references/design-plan-template.md](references/design-plan-template.md)。
+When writing the implementation plan report, load [references/design-plan-template.md](references/design-plan-template.md).
 
 ## Constraints
 
-- 如果已有设计上下文（MCP 或截图），不要靠猜来实现 UI
-- 如果项目已有 UI 体系，不要再引入一套新的 UI Kit
-- 除非有合理理由，不要用硬编码替代已 Token 化的样式
-- 不要忽略 hover、active、disabled、loading、empty、error 等状态
-- 摹客等无 MCP 工具场景下，主动向用户索要关键截图和标注信息，不要凭空编造视觉数据
+- If you already have a design context (MCP or screenshots), don’t rely on guesswork to implement the UI
+- If the project already has a UI system, do not introduce a new UI Kit
+- Do not replace tokenized styles with hard-coding unless there is a valid reason
+- Don't ignore statuses such as hover, active, disabled, loading, empty, error, etc.
+- In scenarios where MCP tools are not available, such as Mocke, proactively ask users for key screenshots and annotation information, and do not make up visual data out of thin air.
+- Do not treat the generated image as a directly reproducible code specification; it only provides visual evidence, and the final implementation must obey the current project components, tokens, accessibility and performance boundaries
+- Do not replace section analysis with an unreadable full-page image; key sections, CTAs, forms, navigation and status must be inspectable
 
 ## Expected Output
 
-- 设计实现计划报告保存为 `reports/design-plan-YYYY-MM-DD-HHmmss.md`，包含实现概要、组件拆分方案、状态/数据流、变更文件清单
-- 代码实现高保真还原设计稿，组件复用率最大化
-- 设计变量映射到现有 Token，无硬编码颜色/间距/圆角
-- 交互元素具备可访问名称和键盘支持，焦点样式可见
+- The design implementation plan report is saved as `reports/design-plan-YYYY-MM-DD-HHmmss.md`, including implementation summary, component splitting plan, status/data flow, and change file list
+- The code realizes high-fidelity restoration of the design draft, maximizing component reuse rate
+- Design variables map to existing Tokens, no hard-coded colors/spacing/rounded corners
+- Interactive elements have accessible names and keyboard support, and focus styles are visible

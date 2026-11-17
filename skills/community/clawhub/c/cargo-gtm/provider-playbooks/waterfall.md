@@ -15,15 +15,15 @@ Multi-source enrichment with built-in fallback across multiple underlying provid
 | `verifyEmail` | **0.1** | `email` | Email verification. **Cheapest tier in the priority stack.** |
 | `enrichCompany` | 1 | `linkedin, domain, name` | Fallback for unmatched cargo companies; also useful when LinkedIn is the only known identifier. |
 | `enrichContact` | 2 | `linkedin, full_name, first_name, last_name, domain, email, include_extra_fields` | Multi-source contact enrichment. |
-| `detectJobChange` | 3 | `professional_email, personal_email, company_domain, company_linkedin, contact_linkedin` | **Unique action.** Returns `MOVED / LEFT / NO_CHANGE / UNKNOWN` plus updated person info. |
-| `searchProspects` | 3 | `domain, company_name, linkedin, title_filter, location_country, …` | People search; alternative to salesNavigator when LinkedIn-anchored search isn't enough. |
+| `detectJobChange` | 3 | `professional_email, personal_email, company_domain, company_linkedin, contact_linkedin` | **Unique action.** Returns `job_change_status` (`moved` / `left` / `no_change` / `unknown`) plus updated info under `person`. |
+| `searchProspects` | 3 per prospect | `domain` (required), `company_name, linkedin, title_filter, location_country, limit, …` | People search at one company; alternative to salesNavigator when LinkedIn-anchored search isn't enough. |
 | `findPhone` | 7 | `linkedin, full_name, first_name, last_name, domain, email, include_extra_fields` | Phone number lookup. Premium pricing — escalate from `prospeo.findPhone` (3) only when needed. |
 
 ## What it's for
 
 - ✅ **Email verification at the cheapest tier** (0.1) — default for any verify step in the spine.
-- ✅ **Job change signal** — `detectJobChange` is the only credits-based action of its kind in the entire 120-integration catalog. Cargo-unique strength.
-- ✅ **Fallback contact / company enrichment** — when cargo native + FullEnrich miss, waterfall is the next stop before the heavyweight peopleDataLabs.
+- ✅ **Job change signal** — `detectJobChange` is the only credits-based action of its kind in the entire 136-integration catalog. Cargo-unique strength.
+- ✅ **Fallback contact / company enrichment** — when aiArk + FullEnrich miss, waterfall is the next stop before the heavyweight peopleDataLabs.
 - ✅ **Multi-identifier enrichment** — accepts LinkedIn URL, domain, name, or email. Useful when the input is weakly identified.
 
 ## Patterns
@@ -32,7 +32,7 @@ Multi-source enrichment with built-in fallback across multiple underlying provid
 
 ```bash
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"verifyEmail","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"verifyEmail"}' \
   --records '[{"email":"alice@acme.com"},{"email":"bob@globex.com"}, ...]' \
   --wait-until-finished
 ```
@@ -43,7 +43,7 @@ At 0.1 cred/email, 1,000 emails = 100 credits. Default verify step in any prospe
 
 ```bash
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"detectJobChange","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"detectJobChange"}' \
   --records '[
     {"professional_email":"alice@acme.com","contact_linkedin":"https://linkedin.com/in/alicesmith"},
     {"professional_email":"bob@globex.com","contact_linkedin":"https://linkedin.com/in/bobjones"},
@@ -52,20 +52,20 @@ cargo-ai orchestration action execute-batch \
   --wait-until-finished
 ```
 
-Pass any combination of identifiers; multi-identifier inputs improve coverage. Result statuses:
-- `MOVED` — person changed company; new role + company returned.
-- `LEFT` — person left and current state unknown.
-- `NO_CHANGE` — same role / company.
-- `UNKNOWN` — no signal available.
+Pass any combination of identifiers; multi-identifier inputs improve coverage. The status is in `job_change_status`, lowercase:
+- `moved` — person changed company; new role + company returned under `person` (`person.company_name`, `person.company_domain`, `person.title`).
+- `left` — person left and current state unknown.
+- `no_change` — same role / company.
+- `unknown` — no signal available.
 
-Filter to `MOVED` for outbound timing. See [`../recipes/job-change-monitoring.md`](../recipes/job-change-monitoring.md) for the full pattern including segment write-back.
+Filter to `job_change_status = 'moved'` for outbound timing (an uppercase `MOVED` comparison matches nothing). See [`../recipes/job-change-monitoring.md`](../recipes/job-change-monitoring.md) for the full pattern including segment write-back.
 
 ### Pattern C — Fallback contact enrichment
 
 ```bash
-# Only run on rows where cargo.matchProspect / enrichProspectDetails returned no data
+# Only run on rows where aiArk.enrichPerson returned no data
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"enrichContact","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"enrichContact"}' \
   --records '[
     {"linkedin":"https://linkedin.com/in/alice","include_extra_fields":true},
     {"first_name":"Bob","last_name":"Jones","domain":"globex.com"}
@@ -78,9 +78,27 @@ cargo-ai orchestration action execute-batch \
 ## Common pitfalls
 
 - **Don't use `findPhone` first.** At 7 credits, it's the most expensive phone action in the priority stack. Try `prospeo.findPhone` (3) first; escalate to waterfall only when prospeo misses.
-- **`detectJobChange` requires at least one identifier**. Best coverage: LinkedIn URL + company domain. Email-only inputs often return UNKNOWN.
-- **`searchProspects` is 3 credits/record** — comparable to peopleDataLabs but with less rich filtering. Default to salesNavigator.searchLeads (0.02) unless you need waterfall's specific filter combinations.
+- **`detectJobChange` requires at least one identifier**. Best coverage: LinkedIn URL + company domain. Email-only inputs often return `unknown`.
+- **`searchProspects` is 3 credits per returned prospect** and needs a company `domain` — comparable to peopleDataLabs but with less rich filtering. Default to salesNavigator.searchLeads (0.2) unless you need waterfall's specific filter combinations.
+
+## Anti-patterns
+
+- **camelCase field names.** waterfall inputs are **snake_case**: `first_name`, `last_name`, `full_name`, `company_domain`, `professional_email`, `contact_linkedin`. Do NOT reuse FullEnrich's `firstName`/`lastName`/`domainName` shape here — `action execute` refuses it (`Unknown field: firstName`), and inside a workflow node the field is silently ignored.
+- **Trusting a finder's own "verified" flag.** `verifyEmail` exists precisely because providers grade their own homework — run it on every found email regardless of what the finder claimed (see [`../references/waterfall-strategy.md`](../references/waterfall-strategy.md), verification hard rules).
+- **`detectJobChange` on a fresh cadence.** At 3 credits/record, re-running the same segment weekly re-bills rows whose status can't have changed — every 2 weeks is the right default (see [`../recipes/save-as-play.md`](../recipes/save-as-play.md) cadence table).
+
+## Position in the waterfall
+
+- `verifyEmail` — **always the last step** of any email chain; never skipped.
+- `enrichContact` / `enrichCompany` — **second rung**, after aiArk, before peopleDataLabs.
+- `findPhone` — **last rung** of the phone chain (after prospeo, FullEnrich). Demote any rung that misses on the pilot's first ~10 rows for the rest of the batch.
+
+## Recurring use
+
+- **`detectJobChange` is the canonical recurring signal** — save it as a play over the tracked-contact segment at the every-2-weeks default; the fresh-cadence anti-pattern above explains why tighter is pure re-billing at 3 credits/record. Cadence table: [`../recipes/save-as-play.md`](../recipes/save-as-play.md); full pattern: [`../recipes/job-change-monitoring.md`](../recipes/job-change-monitoring.md).
+- **`verifyEmail` recurs as verify-before-send** — a node at the top of each send-wave play, gated to rows entering the wave with a missing or stale verdict; never a standing timer over the whole model.
+- **In-play gate for enrichment:** `enrichContact` / `enrichCompany` (1–2 credits) gate on the target enrichment column being empty — segment re-evaluation must not re-bill filled rows; the underlying person/company data is stable enough that a blanket refresh buys nothing.
 
 ## Action shape
 
-`{"kind":"connector","integrationSlug":"waterfall","actionSlug":"<slug>","config":{}}`. **No `connectorUuid` in `config`.**
+`{"kind":"connector","integrationSlug":"waterfall","actionSlug":"<slug>"}`. **No `connectorUuid` in `config`.**

@@ -19,8 +19,7 @@ from urllib.parse import quote
 from _spapi_aplus_common import (
     APLUS_PATH_PREFIX,
     ensure_auth_skill_available,
-    get_store_tokens,
-    developer_proxy_post,
+        developer_proxy_post,
     resolve_marketplace_id,
     encode_path_segment,
     merge_success_json,
@@ -85,13 +84,8 @@ def main() -> None:
     seller_id = str(params["sellerId"])
     region = str(params["region"])
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
     proxy = developer_proxy_post(
-        region, path, tokens["accessToken"], query_string=query_string, body_obj=body
+        region, path, seller_id, query_string=query_string, body_obj=body
     )
     out: dict = {
         "developerProxy": proxy,

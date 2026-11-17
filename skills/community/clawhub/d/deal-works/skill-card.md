@@ -1,46 +1,61 @@
-## Description: <br>
-AI agent infrastructure for deals, escrow, attestations, and autonomous agents. 39 tools across 9 engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent infrastructure for deals, escrow, attestations, and autonomous agents. 39 tools across 9 engines.
 
-## Publisher: <br>
-[swgoettelman](https://clawhub.ai/user/swgoettelman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[swgoettelman](https://clawhub.ai/user/swgoettelman)
 
-## Use Case: <br>
-External users and developers use this MCP server to let agents manage deal workflows, escrow, wallet operations, attestations, dispute workflows, marketplace listings, and autonomous agent deployment through the deal.works platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes high-impact transfers, cash-outs, escrow changes, and agent funding actions. <br>
-Mitigation: Constrain DEAL_WORKS_API_KEY to minimum necessary permissions and require human approval for recipients, amounts, wallet addresses, and deal IDs before execution. <br>
-Risk: The skill can deploy and control autonomous agents. <br>
-Mitigation: Treat agent deployment, funding, start, stop, restart, and scale operations as human-approved actions with explicit budget and permission review. <br>
-Risk: Dispute filing, vault sealing, and attestation actions can affect deal records and governance workflows. <br>
-Mitigation: Verify evidence, deal IDs, dispute details, and vault contents before allowing an agent to submit or seal records. <br>
+## Use Case:
 
+External developers and agent operators use this MCP server to connect agents to deal.works workflows for deal management, escrow, wallet operations, marketplace actions, autonomous agent deployment, attestations, disputes, learning resources, and dashboard checks.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/swgoettelman/deal-works) <br>
-- [deal.works](https://deal.works) <br>
-- [deal.works Documentation](https://docs.deal.works) <br>
-- [deal.works API Reference](https://docs.deal.works/api) <br>
-- [npm Package](https://www.npmjs.com/package/@swgoettelman/deal-works-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON tool and resource results with Markdown prompts and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and DEAL_WORKS_API_KEY; exposes MCP tools, resources, and prompts over stdio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Money-moving and agent-management tools can initiate transfers, cashouts, escrow funding, agent deployment or funding, marketplace publishing, voting, deal state changes, and vault sealing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before each high-impact mutation and disable unused mutation tools where the host client supports tool filtering.
+
+Risk: The skill requires a deal.works API key for authenticated access.
+
+Mitigation: Use a dedicated, revocable, least-privilege API key and rotate it if it appears in shared logs, prompts, or configuration files.
+
+Risk: Some installation examples may use an incorrect package name or an unpinned npm invocation.
+
+Mitigation: Verify the package name is @swgoettelman/deal-works-mcp and pin a trusted version before installing or running the MCP server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swgoettelman/skills/deal-works)
+- [deal.works homepage](https://deal.works)
+- [deal.works documentation](https://docs.deal.works)
+- [deal.works API reference](https://docs.deal.works/api)
+- [npm package](https://www.npmjs.com/package/@swgoettelman/deal-works-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [JSON tool and resource responses, Markdown prompt guidance, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a DEAL_WORKS_API_KEY for authenticated deal.works access.]
+
+## Skill Version(s):
+
+0.1.1 (source: SKILL.md frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

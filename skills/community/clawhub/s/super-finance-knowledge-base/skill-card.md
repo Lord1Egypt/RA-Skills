@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a bilingual reference framework for organizing financial institution knowledge bases, including document organization, knowledge graphs, semantic search, and intelligent Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A financial knowledge-base reference skill for organizing institutional documents, mapping knowledge relationships, supporting semantic search, and framing advisory Q&A.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and analysts can use this skill to draft knowledge-base structures, search patterns, and Q&A workflows for finance, banking, insurance, and securities reference material. Outputs are advisory-only and require qualified human review before operational, legal, regulatory, financial, or insurance use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, legal, regulatory, or insurance outputs may be incomplete, outdated, or unsuitable for a specific institution. <br>
-Mitigation: Treat generated content as draft guidance and require review by qualified professionals before real-world use. <br>
-Risk: Users may mistake reference structures or illustrative search logic for deployed systems or advice. <br>
-Mitigation: Use the skill as a knowledge-base planning framework only; validate any implementation, data source, and answer workflow separately. <br>
+## Use Case:
 
+Financial operations, compliance, product, and market-research teams use this skill as an advisory knowledge-management framework for organizing documents, improving search, and preparing reference answers that require human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-finance-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with illustrative Python and structured reference material] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only bilingual content; no executable code, persistence, credential collection, or network access is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat the reference template as a working RAG system or as financial, legal, or insurance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as advisory knowledge-management guidance, review outputs before use, and consult qualified professionals for regulated decisions.
+
+Risk: Broad trigger keywords may cause the skill to appear in non-finance knowledge-base discussions.
+
+Mitigation: Confirm that the active task is finance knowledge management before applying the skill's guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-finance-knowledge-base)
+- [Publisher profile](https://clawhub.ai/user/subaru0573)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with illustrative Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory-only reference content; outputs require human review and are not financial, legal, or insurance advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Enterprise-grade API for generating optimized Active Directory security configuration files with hardening best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade API for generating optimized Active Directory security configuration files with hardening best practices.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security architects, system administrators, and compliance teams use this skill to call an API that generates Active Directory hardening configurations, deployment scripts, and audit metadata from selected hardening options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Active Directory configurations or PowerShell scripts may make security-sensitive changes to identity infrastructure. <br>
-Mitigation: Review generated output with a qualified administrator, test changes in a non-production domain, use change control, and prepare rollback and backups before production use. <br>
-Risk: Requests can include session identifiers, timestamps, optional user identifiers, and hardening choices sent to a third-party API provider. <br>
-Mitigation: Avoid sending secrets or unnecessary real user identifiers, and limit request data to what is required for configuration generation. <br>
+## Use Case:
 
+Security architects, system administrators, and AD operations teams use this skill to request hardening profiles, available hardening options, deployment scripts, and audit details for Active Directory environments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-active-directory-hardening) <br>
-- [Active Directory Hardening API Documentation](https://api.mkkpro.com:8127/docs) <br>
-- [Active Directory Hardening API Route](https://api.mkkpro.com/hardening/active-directory) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated API responses may include Active Directory configuration settings, PowerShell deployment script content, and audit log metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends Active Directory hardening requests to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit real user identifiers or detailed environment data unless the provider's privacy, retention, and security practices meet organizational requirements.
+
+Risk: Generated deployment scripts or configuration changes could disrupt domain services, service accounts, or legacy compatibility.
+
+Mitigation: Treat output as advisory, test it in a non-production domain, run change control, verify compatibility, and establish rollback steps before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-active-directory-hardening)
+- [Publisher profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+- [API documentation](https://api.mkkpro.com:8127/docs)
+- [API route](https://api.mkkpro.com/hardening/active-directory)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown guidance that may include deployable configuration content, PowerShell script content, and audit metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed before applying changes to a production Active Directory domain.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

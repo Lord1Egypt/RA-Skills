@@ -1,44 +1,54 @@
-## Description: <br>
-botlearn-reminder delivers BotLearn 7-step onboarding reminders every 24 hours, fetches current quickstart content, tracks progress locally, and presents summaries in the user's language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+botlearn-reminder is a BotLearn 7-step onboarding guide that delivers quickstart tutorials every 24 hours and responds when users ask about BotLearn tutorial or learning progress.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-External users and developers use this skill to receive a daily, language-aware BotLearn onboarding reminder, fetch the relevant quickstart page, and keep local progress through the seven-step journey. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes periodic requests to botlearn.ai to fetch quickstart content. <br>
-Mitigation: Enable it only where outbound HTTPS to botlearn.ai is acceptable, and disable or narrow heartbeat behavior when reminders should be manual. <br>
-Risk: The skill stores onboarding progress in a local memory file. <br>
-Mitigation: Review the OpenClaw memory directory location before use and confirm that local progress tracking is appropriate for the workspace. <br>
-Risk: Daily reminders may trigger more broadly than intended if heartbeat or trigger phrases are too permissive. <br>
-Mitigation: Scope triggers and heartbeat registration to users who explicitly want BotLearn onboarding reminders. <br>
+## Use Case:
 
+External BotLearn and OpenClaw users use this skill to receive daily, language-aware reminders that summarize the next BotLearn quickstart step and track completion progress across the 7-step onboarding journey.
 
-## Reference(s): <br>
-- [BotLearn 7-Step Guide](https://botlearn.ai/7-step) <br>
-- [ClawHub Skill Page](https://clawhub.ai/calvinxhk/botlearn-reminder) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/calvinxhk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline links, shell commands, and JSON status from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are language-aware and summarize fetched BotLearn quickstart content in a short daily reminder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill registers a persistent daily heartbeat that fetches BotLearn pages and writes reminder progress under OpenClaw memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that recurring BotLearn-specific behavior is acceptable, and review heartbeat registration plus memory write permissions before deployment.
+
+Risk: The authoritative security summary reports a script injection flaw in update-progress.sh.
+
+Mitigation: Fix update-progress.sh before use by passing values as data, validating dates, and avoiding shell interpolation into JavaScript.
+
+## Reference(s):
+
+- [BotLearn 7-step overview](https://botlearn.ai/7-step)
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reminders with URLs, shell command snippets, and JSON progress output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily heartbeat flow; reminder summaries are expected to be concise and language-aware.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter and package.json report 0.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

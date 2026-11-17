@@ -1,43 +1,58 @@
-## Description: <br>
-Zero-token real-time Discord monitoring dashboard for OpenClaw. Displays system health, cron jobs, sessions, and performance analytics via persistent Discord messages updated every 2 minutes with no LLM token cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-token real-time Discord monitoring dashboard for OpenClaw that displays system health, cron jobs, sessions, and performance analytics via persistent Discord messages.
 
-## Publisher: <br>
-[keylimesoda](https://clawhub.ai/user/keylimesoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[keylimesoda](https://clawhub.ai/user/keylimesoda)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw activity, cron jobs, sessions, system health, and performance trends through live Discord dashboard messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can send local system and OpenClaw activity data to configured Discord destinations. <br>
-Mitigation: Replace all hardcoded Discord user, channel, and message IDs; confirm the target destination and telemetry content before enabling scheduled updates. <br>
-Risk: A direct Discord REST variant can read a local Discord bot token for API writes. <br>
-Mitigation: Avoid the direct token-reading REST script unless that path is intentionally required, and keep Discord bot tokens out of repository artifacts. <br>
-Risk: Continuous cron-based updates can keep publishing monitoring data until the job is disabled. <br>
-Mitigation: Test updates manually first and confirm how to disable the OpenClaw cron job before enabling continuous monitoring. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain an OpenClaw Discord dashboard for activity, system health, cron status, session state, and performance trends. It is suited for monitoring an OpenClaw environment where publishing host and workflow status to Discord is acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/keylimesoda/tommy-monitoring-dashboard) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown dashboard content, shell commands, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Discord dashboard updates and local performance data; requires configured OpenClaw and Discord message destinations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: Hard-coded Discord channel, message, guild, or user IDs can publish monitoring data to an unintended destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all Discord destination IDs with verified values before enabling posting or scheduled updates.
+
+Risk: Direct bot-token handling can expose Discord credentials or grant broader access than needed.
+
+Mitigation: Avoid zero-token-dashboard-v2.sh unless direct bot-token handling is acceptable, and use a least-privilege bot scoped to the intended channel.
+
+Risk: Scheduled automation can repeatedly publish host activity and OpenClaw metadata outside the user's control.
+
+Mitigation: Run local-only dry tests first, review the scheduled task, and add the cron job only after confirming the data and destination are appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keylimesoda/skills/tommy-monitoring-dashboard)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown dashboard text, shell command invocations, and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent Discord dashboard updates and local performance tracking data when configured.]
+
+## Skill Version(s):
+
+2.0.0 (source: package.json and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

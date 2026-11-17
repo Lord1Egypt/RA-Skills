@@ -1,43 +1,54 @@
-## Description: <br>
-Plan, build, troubleshoot, and optimize Minecraft worlds, commands, redstone, mods, and servers without mixing Java and Bedrock advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, build, troubleshoot, and optimize Minecraft worlds, commands, redstone, mods, and servers without mixing Java and Bedrock advice.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External players, server admins, and agent users use this skill to plan Minecraft builds, debug redstone and command issues, shape survival routes, and handle server or modpack tasks with edition-aware safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local memory could capture private server details or account-related information if the user stores too much context. <br>
-Mitigation: Store only compact Minecraft preferences and avoid credentials, private server tokens, paid account details, and sensitive server information. <br>
-Risk: World-changing commands, destructive edits, modpack migrations, or server changes can damage live worlds or make rollback difficult. <br>
-Mitigation: Use backups, test copies, bounded command scopes, and explicit user confirmation before irreversible actions. <br>
-Risk: Minecraft advice can be wrong when Java and Bedrock mechanics, versions, permissions, or server settings are mixed. <br>
-Mitigation: Gate guidance on edition, approximate version, play surface, and user authority before giving commands, farm layouts, or admin steps. <br>
+## Use Case:
 
+External players and server operators use this skill to get edition-aware Minecraft help for builds, survival progression, commands, redstone, modpacks, and server troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/minecraft) <br>
-- [Skill Homepage](https://clawic.com/skills/minecraft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline commands, checklists, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Edition-, version-, and authority-gated guidance; optional local memory notes only with user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional local notes can capture sensitive server or account details if the user puts them there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for consent before persistence and keep notes limited to reusable Minecraft context; avoid credentials, paid account details, private server tokens, and other sensitive data.
+
+Risk: Edition or permission mistakes can lead to broken commands, incompatible redstone or farm advice, or risky world changes.
+
+Mitigation: Confirm edition, version, play surface, and authority before mechanics-heavy steps, and require backups or test worlds before destructive commands or major modpack changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/minecraft)
+- [Skill homepage](https://clawic.com/skills/minecraft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose optional local notes under ~/minecraft/ only with user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

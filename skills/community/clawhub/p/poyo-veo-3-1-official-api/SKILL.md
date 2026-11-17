@@ -1,10 +1,16 @@
 ---
 name: poyo-veo-3-1-official-api
 description: Veo 3.1 Official video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `veo3.1-fast-official`, `veo3.1-lite-official`, `veo3.1-quality-official`, text-to-video, image-to-video, first/last-frame video, reference video, audio control, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/veo-3-1-official","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/veo-3-1-official","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Veo 3.1 Official Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/veo-3-1-official>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/veo-3-1-official>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Veo 3.1 Official jobs on PoYo. It helps agents prepare text-to-video, image-to-video, first/last-frame, and reference-guided video payloads, then submit async tasks and explain polling or webhook follow-up.
 

@@ -1,44 +1,59 @@
-## Description: <br>
-Byted Data Search helps agents query and analyze public business, company, industry-chain, and A-share market datasets through Volcengine datasource tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries and analyzes public business, company, industry-chain, and A-share datasets through Volcengine data-source discovery and query tools.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Analysts, developers, and business users can use this skill to look up company registrations, listed-company details, industry-chain participants, regional metrics, and grouped statistics from supported public datasets. It guides the agent to inspect datasource metadata before building precise filters, aggregations, sorting, and pagination queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Volcengine credentials and query contents are sent to a remote Volcengine gateway. <br>
-Mitigation: Install only if the publisher and endpoint are trusted, use least-privilege Volcengine keys, and prefer environment variables over command-line secrets. <br>
-Risk: Overriding the gateway URL could send credentials or business queries to an untrusted host. <br>
-Mitigation: Use the default trusted endpoint unless there is a reviewed operational reason to change it. <br>
-Risk: Business investigations may include confidential or sensitive context. <br>
-Mitigation: Avoid sending confidential investigations through the skill unless the data handling path has been approved. <br>
+## Use Case:
 
+Developers and analysts use this skill to discover available Volcengine data sources, inspect field definitions and enum values, and run filtered, grouped, aggregated, or paginated queries for company and industry-chain research.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volcengine-skills/byted-data-search) <br>
-- [Volcengine high-quality dataset console](https://console.volcengine.com/high-quality-dataset) <br>
-- [Volcengine Access Key documentation](https://www.volcengine.com/docs/6291/65568?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Volcengine credentials; remote query results depend on selected datasource, filters, and rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The security scan reports that cloud access keys can be exposed to a caller-supplied gateway URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved HTTPS Volcengine gateway, avoid overriding --url unless reviewed, and rotate any key that may have been used with an untrusted endpoint.
+
+Risk: The skill requires cloud credentials for data access.
+
+Mitigation: Provision credentials with the minimum required permissions and prefer environment variables instead of command-line secrets.
+
+Risk: Returned public data is described as reference material and may be unsuitable as the sole basis for decisions.
+
+Mitigation: Review important query results against authoritative sources before using them for business, legal, financial, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-data-search)
+- [Volcengine AK/SK user guide](https://www.volcengine.com/docs/6291/65568?lang=zh)
+- [Volcengine high-quality dataset console](https://console.volcengine.com/high-quality-dataset)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-formatted query results from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Volcengine access credentials; query results depend on the selected data source, filters, aggregation, grouping, sorting, and pagination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

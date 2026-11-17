@@ -1,44 +1,59 @@
-## Description: <br>
-Use when asked to safely inspect, sandbox, detonate, run, or dynamically observe untrusted release artifacts, closed-source binaries, JARs, installers, wallet/private-key software, crypto trading bots, or suspicious GitHub releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when asked to safely inspect, sandbox, detonate, run, or dynamically observe untrusted release artifacts, closed-source binaries, JARs, installers, wallet/private-key software, crypto trading bots, or suspicious GitHub releases.
 
-## Publisher: <br>
-[remixmm](https://clawhub.ai/user/remixmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[remixmm](https://clawhub.ai/user/remixmm)
 
-## Use Case: <br>
-Developers, security reviewers, and operators use this skill to plan staged static and dynamic observation of untrusted binaries, installers, wallet tools, and trading bots before deciding whether further testing or deployment is appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running untrusted binaries can expose host secrets, wallet material, or funded accounts. <br>
-Mitigation: Use a disposable VM or tightly restricted container, and never mount real wallets, SSH keys, browser profiles, cloud credentials, production .env files, or funded accounts. <br>
-Risk: Dynamic execution can contact undeclared endpoints, download payloads, or behave differently when network access is available. <br>
-Mitigation: Start with static analysis and offline or mock-network tiers, then use controlled egress with explicit allowlists and logging only after approval. <br>
-Risk: Docker containment alone may be insufficient for hostile samples, kernel exploit risk, or live-fund testing. <br>
-Mitigation: Use a sacrificial VM or disposable VPS for hostile samples and any live tiny-fund tier. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to plan staged static and dynamic observation of untrusted binaries, installers, JARs, wallet software, trading bots, and suspicious releases. It helps capture evidence, constrain execution, and report confirmed behavior, risks, unknowns, and wallet/key exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/remixmm/untrusted-binary-sandbox) <br>
-- [Docker And VM Sandbox Reference](references/docker-sandbox.md) <br>
-- [Observation Checklist And Report Template](references/observation-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and structured findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sandbox scaffolding commands, Docker configuration, evidence checklists, and go/no-go recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Generated sandbox files can be mistaken for a complete malware-analysis boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated scaffolds as a starting point, pin container images by digest where possible, and use a disposable VM or VPS for hostile samples.
+
+Risk: Dynamic execution of untrusted artifacts can expose host secrets, funded wallets, cloud credentials, or production environment files.
+
+Mitigation: Require explicit approval before running any sample, use non-production environments, and keep real secrets, browser profiles, SSH keys, cloud credentials, and funded wallets out of the sandbox.
+
+Risk: Network-enabled observation can allow unexpected egress, payload download, or transaction activity.
+
+Mitigation: Start with offline or internal-only tiers, enable controlled egress only after earlier tiers are clean, and log DNS, endpoints, files, processes, and wallet/key behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/remixmm/skills/untrusted-binary-sandbox)
+- [Docker and VM sandbox reference](artifact/references/docker-sandbox.md)
+- [Observation checklist and report template](artifact/references/observation-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Docker, Docker Compose, mock RPC, and runbook files when scaffolding is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scaffold script writes files but does not execute the sample by default; dynamic execution and network access require explicit approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

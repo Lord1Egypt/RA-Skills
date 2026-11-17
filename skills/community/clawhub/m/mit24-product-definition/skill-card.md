@@ -1,39 +1,53 @@
-## Description: <br>
-Guides MIT 24 Steps Phase 3 product definition work, including pricing strategy, customer lifetime value, MVP design, and customer purchase decision criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through MIT 24 Steps phase 3 product definition tasks: pricing strategy, customer lifetime value, MVP design, and customer purchase decision criteria.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External founders, product teams, and agents use this skill to turn market and value-proposition work into a product definition report covering pricing, CLV, MVP scope, and buying criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may involve sensitive pricing, customer, or product strategy information. <br>
-Mitigation: Use only in an agent environment approved for that business data, and avoid entering confidential details otherwise. <br>
+## Use Case:
 
+Entrepreneurs, product managers, and startup teams use this skill to turn completed market segmentation and value proposition work into a product definition report covering pricing, CLV, MVP scope, and customer purchase criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/mit24-product-definition) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/earthwalking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured business-planning guidance and a product definition report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill provides business-planning guidance that may be inaccurate or incomplete if user-supplied market, pricing, CAC, or customer interview data is weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review pricing, CLV, MVP scope, and purchase-criteria outputs against current customer evidence and financial assumptions before relying on them.
+
+Risk: The skill content is written in Chinese and may be unsuitable for teams expecting an English-language planning aid.
+
+Mitigation: Confirm the intended language and translate or localize outputs when the audience requires another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/mit24-product-definition)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables, calculations, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pricing comparisons, CLV calculations, MVP specifications, user stories, development milestones, and purchase decision matrices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

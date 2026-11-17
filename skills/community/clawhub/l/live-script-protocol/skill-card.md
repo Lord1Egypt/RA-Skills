@@ -1,41 +1,53 @@
-## Description: <br>
-Provides a structured livestream sales-script framework for generating staged scripts and metadata that support engagement, trust, urgency, and conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured live-streaming script framework using psychological principles across four stages to boost engagement, trust, urgency, and conversions.
 
-## Publisher: <br>
-[chuan916](https://clawhub.ai/user/chuan916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuan916](https://clawhub.ai/user/chuan916)
 
-## Use Case: <br>
-Livestream hosts, sales teams, and agent builders use this skill to draft repeatable livestream selling scripts from product, audience, pricing, and trust inputs. It is aimed at producing staged talk tracks plus metadata for engagement and conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated livestream scripts may include incorrect viewer counts, sales numbers, rankings, certificates, scarcity claims, or product claims. <br>
-Mitigation: Verify that all marketing numbers and product claims are truthful, current, and allowed by the relevant platform and advertising rules before publication. <br>
-Risk: Sales urgency and persuasion patterns can create non-compliant or misleading promotional language. <br>
-Mitigation: Review outputs against platform policy, applicable advertising rules, and the skill's prohibited-word guidance before use. <br>
+## Use Case:
 
+Developers and agents use this skill to draft livestream sales scripts from product, audience, pricing, and trust signals. The skill structures copy into opening, product-shaping, closing, and engagement stages with accompanying metadata for review.
 
-## Reference(s): <br>
-- [LiveScript Protocol on ClawHub](https://clawhub.ai/chuan916/live-script-protocol) <br>
-- [chuan916 publisher profile](https://clawhub.ai/user/chuan916) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown containing staged livestream script text and JSON metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be checked for truthful marketing claims, platform compliance, and prohibited words before public use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated urgency, scarcity, audience counts, testimonials, or authority claims could be misleading if treated as factual.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each claim against product and campaign evidence before use, and replace placeholders with accurate numbers, credentials, and offer limits.
+
+Risk: Persuasive livestream copy could be misused for prohibited product claims or vulnerable-audience targeting.
+
+Mitigation: Apply compliance review for the product category, avoid medical efficacy claims and banned superlatives, and do not target vulnerable audiences.
+
+## Reference(s):
+
+- [LiveScript Protocol on ClawHub](https://clawhub.ai/chuan916/skills/live-script-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown script draft with a structured JSON metadata block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing copy and metadata only; no code execution or shell commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

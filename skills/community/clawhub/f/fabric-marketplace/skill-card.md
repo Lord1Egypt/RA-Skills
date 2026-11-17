@@ -1,47 +1,67 @@
-## Description: <br>
-Teaches agents how to trade on the Fabric marketplace through search strategy, negotiation, offer lifecycle management, trust rules, and creative deal composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches agents how to trade on the Fabric marketplace - search strategy, negotiation, offer lifecycle, trust rules, and creative deal composition.
 
-## Publisher: <br>
-[pilsang](https://clawhub.ai/user/pilsang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pilsang](https://clawhub.ai/user/pilsang)
 
-## Use Case: <br>
-External agents and developers use this skill to integrate with Fabric marketplace workflows, including discovery, listing publication, offer construction, negotiation, contact reveal after mutual acceptance, and error handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides high-impact marketplace actions involving trading, spending, offer acceptance, contact sharing, off-platform payments, and credential or access transfers. <br>
-Mitigation: Require explicit human approval before purchases, public listings, offer acceptance, contact reveal, off-platform payments, or credential and access transfers. <br>
-Risk: Off-platform settlement and counterparty contact details can expose users to unverified parties and irreversible payment methods. <br>
-Mitigation: Verify counterparties, set spending limits, avoid irreversible payment methods with untrusted parties, and use approved settlement channels. <br>
-Risk: API keys, delegated access, and webhook integrations may expose sensitive access if handled loosely. <br>
-Mitigation: Use scoped, time-limited, revocable credentials and approved delegation mechanisms; store keys securely and verify signed webhooks when configured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pilsang/fabric-marketplace) <br>
-- [Publisher Profile](https://clawhub.ai/user/pilsang) <br>
-- [Getting Started](getting-started.md) <br>
-- [Search Playbook](search-playbook.md) <br>
-- [Negotiation Playbook](negotiation-playbook.md) <br>
-- [Offer Lifecycle](offer-lifecycle.md) <br>
-- [Trust and Safety](trust-safety.md) <br>
+## Use Case:
 
+External developers and agents use this skill to plan Fabric marketplace participation, search for listings or requests, construct offers, handle negotiation lifecycle states, and apply trust and safety rules before off-platform settlement.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP examples and JSON payload snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing marketplace guidance; require human approval for high-impact trading, spending, contact reveal, payment, and credential-transfer actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent toward financial, legal, account, purchase, subscription, posting, offer-acceptance, contact-reveal, or settlement actions.
+
+Mitigation: Require explicit human approval before taking any action that creates an account, accepts legal terms, spends credits or money, posts marketplace content, accepts an offer, reveals contact details, or coordinates settlement.
+
+Risk: Marketplace trades may involve credentials, delegated access, dormant accounts, API keys, SSH access, or other sensitive account material.
+
+Mitigation: Use scoped, temporary, revocable access only; do not share long-lived credentials, primary account access, or dormant accounts; verify provider terms before any off-platform deal.
+
+Risk: Off-platform settlement and revealed counterparty contact details are outside Fabric fulfillment controls.
+
+Mitigation: Verify counterparties and terms independently, limit storage and sharing of contact details, and keep settlement steps under human-reviewed operating procedures.
+
+Risk: Searches, retries, and pagination can consume marketplace credits or create abusive marketplace behavior.
+
+Mitigation: Set explicit search budgets, avoid deep pagination and mass holds, use bounded retry logic, and stop or escalate when rate limits, low credits, or suspicious conditions appear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pilsang/skills/fabric-marketplace)
+- [Getting Started](getting-started.md)
+- [Search Playbook](search-playbook.md)
+- [Negotiation Playbook](negotiation-playbook.md)
+- [Offer Lifecycle](offer-lifecycle.md)
+- [Failure Taxonomy](failure-taxonomy.md)
+- [Trust & Safety](trust-safety.md)
+- [Trading Scenarios](trading-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before account, purchase, legal, contact-sharing, credential, offer-acceptance, or settlement actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

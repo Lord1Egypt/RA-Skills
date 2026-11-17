@@ -1,51 +1,68 @@
-## Description: <br>
-Ai Video Pro converts creative video descriptions into cinematic video-generation prompts and can optionally route confirmed prompts to video providers such as LumaAI, Runway, Replicate, or ComfyUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Video Pro converts creative video descriptions into cinematic, provider-adapted prompts and can optionally route approved prompts to video generation providers such as LumaAI, Runway, Replicate, or ComfyUI.
 
-## Publisher: <br>
-[aaalenwow](https://clawhub.ai/user/aaalenwow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaalenwow](https://clawhub.ai/user/aaalenwow)
 
-## Use Case: <br>
-Creators, developers, and agent users use this skill to turn rough scene ideas into structured cinematic prompts, compare provider-specific prompt formats, and optionally generate or prepare videos for publishing after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes installers and optional dependency setup beyond prompt generation. <br>
-Mitigation: Use prompt-only mode by default and require explicit human confirmation before running dependency installation scripts. <br>
-Risk: Generation mode may send prompts to external video providers and use paid API credentials. <br>
-Mitigation: Confirm the selected provider, estimated cost, and prompt contents before making API calls; configure only the minimum required API key. <br>
-Risk: Publishing and cloud-upload paths may use social platform tokens, cookies, or broad cloud credentials. <br>
-Mitigation: Avoid setting social cookies or cloud credentials unless publishing is required, and require manual review before uploads or public posts. <br>
-Risk: The package was classified as suspicious by the authoritative security evidence. <br>
-Mitigation: Review the scripts and security summary before deployment, and restrict execution to the specific mode needed for the task. <br>
+## Use Case:
 
+Developers and content creators use Ai Video Pro to turn rough video ideas into cinematic prompts with shot, motion, lighting, color, and timing structure. With explicit configuration, they can also generate, preview, transcode, or prepare videos for social publishing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaalenwow/ai-video-pro) <br>
-- [Cinematic vocabulary reference](references/cinematic_vocabulary.md) <br>
-- [Provider matrix](references/provider_matrix.md) <br>
-- [Platform publishing specifications](references/platform_specs.md) <br>
-- [LumaAI Dream Machine API endpoint](https://api.lumalabs.ai/dream-machine/v1/generations) <br>
-- [Runway API endpoint](https://api.dev.runwayml.com/v1) <br>
-- [Weibo Open API](https://api.weibo.com/2/) <br>
-- [Douyin Open Platform](https://open.douyin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style prompt structures with optional shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only mode requires no external service; generation and publishing modes may use local tools, API credentials, cloud uploads, or platform tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and openclaw metadata) <br>
+Risk: Generated prompts or videos may be sent to third-party generation providers or publishing destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use prompt-only mode for sensitive ideas; before generation or publishing, review the selected provider or destination and confirm that external transfer is intended.
+
+Risk: Publishing and cloud upload features can expose videos through user accounts or storage buckets.
+
+Mitigation: Treat these modes as account actions, use draft or manual review flows where available, and publish only with explicit user authorization.
+
+Risk: Provider, social, and cloud credentials are required for optional high-impact modes.
+
+Mitigation: Use scoped throwaway API tokens where possible, provide credentials through environment variables, and revoke tokens after testing or one-time use.
+
+Risk: Dependency installation can modify the local environment and install large video-generation toolchains.
+
+Mitigation: Run install_deps.py only in an isolated environment after reviewing the selected backend and required packages.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaalenwow/skills/ai-video-pro)
+- [Cinematic Vocabulary](references/cinematic_vocabulary.md)
+- [Platform Publishing Specifications](references/platform_specs.md)
+- [Video Generation Provider Matrix](references/provider_matrix.md)
+- [Douyin Developer Documentation](https://developer.open-douyin.com/)
+- [Weibo Open Platform Documentation](https://open.weibo.com/wiki/)
+- [LumaAI Dream Machine API Endpoint](https://api.lumalabs.ai/dream-machine/v1/generations)
+- [Runway API Endpoint](https://api.dev.runwayml.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON prompt structures and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default prompt mode is zero-dependency; generation and publishing modes may create local video files or upload media through configured providers.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

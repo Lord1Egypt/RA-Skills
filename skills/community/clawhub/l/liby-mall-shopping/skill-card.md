@@ -1,43 +1,58 @@
-## Description: <br>
-立白龙虾购是立白官方商城服务，支持获得立乐家积分、商品搜索、下单、订单管理、物流查询等操作，还能解答洗衣清洁问题（如咖啡渍、油渍、梅雨天衣物护理等），提供立白产品购买渠道和优惠信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+立白龙虾购是立白官方商城服务，支持获得立乐家积分、商品搜索、下单、订单管理、物流查询等操作，还能解答洗衣清洁问题（如咖啡渍、油渍、梅雨天衣物护理等），提供立白产品购买渠道和优惠信息。
 
-## Publisher: <br>
-[softgoto](https://clawhub.ai/user/softgoto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softgoto](https://clawhub.ai/user/softgoto)
 
-## Use Case: <br>
-External users use this skill to browse Liby mall products, manage points, place confirmed orders, check orders and logistics, contact customer service, and receive laundry-care guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive login, address, order, and payment-related actions are routed through an unpinned external npm command with unclear provenance. <br>
-Mitigation: Install only after trusting the publisher and verifying `@libydic/mall` is the legitimate Liby mall tool. <br>
-Risk: Mall actions may involve personal details, phone codes, address information, points, cash payments, and order creation. <br>
-Mitigation: Confirm products, prices, points and cash requirements, addresses, and orders before payment; avoid sharing phone codes or address details unless the login flow and package provenance are clear. <br>
-Risk: Broad activation triggers can start shopping or account workflows in ordinary conversations. <br>
-Mitigation: Use the skill intentionally for mall tasks and keep the user involved before login, address changes, order creation, or payment. <br>
+## Use Case:
 
+External shoppers use this skill to browse Liby mall products, check points, manage delivery addresses, place confirmed orders, and query orders or logistics. It also helps users with laundry and cleaning questions tied to Liby products, purchasing channels, and promotions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/softgoto/liby-mall-shopping) <br>
-- [Publisher profile](https://clawhub.ai/user/softgoto) <br>
+### Deployment Geography for Use:
 
+Mainland China for shopping and fulfillment; general product and laundry guidance may be used more broadly.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or short text responses with shell command invocations and media-send guidance when images are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce login, order, address, points, logistics, payment, and customer-service guidance based on tool results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill runs an unpinned npm package for login, address, order, and points operations, so runtime behavior may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or otherwise govern the package version, review the package before installation, and run it in a sandboxed runtime.
+
+Risk: The skill handles sensitive account, phone, address, order, payment, and points data.
+
+Mitigation: Require explicit user confirmation before login, address access, address creation, and order creation; clear session-related data when users switch or exit accounts.
+
+Risk: Shopping actions can create orders or payment flows if the agent proceeds without enough user confirmation.
+
+Mitigation: Confirm the selected product, address, delivery rules, and combined points-plus-cash price before creating an order.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/softgoto/skills/liby-mall-shopping)
+- [Publisher profile](https://clawhub.ai/user/softgoto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with inline shell command examples and JSON media payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return user-facing shopping, points, order, logistics, customer-service, payment, and image-response guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

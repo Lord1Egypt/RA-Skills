@@ -1,42 +1,56 @@
-## Description: <br>
-Create, schedule, list, edit, and delete Typefully drafts, including single posts, threads, and multi-platform posts for X, LinkedIn, Threads, Bluesky, and Mastodon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, schedules, lists, edits, and deletes Typefully drafts, including single posts, threads, and multi-platform posts for X, LinkedIn, Threads, Bluesky, and Mastodon.
 
-## Publisher: <br>
-[chapati23](https://clawhub.ai/user/chapati23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chapati23](https://clawhub.ai/user/chapati23)
 
-## Use Case: <br>
-Developers and social media operators use this skill to have an agent manage Typefully drafts through the Typefully API for drafting, editing, scheduling, listing, or deleting posts and threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete drafts or publish immediately when those actions are invoked. <br>
-Mitigation: Before delete or publish actions, have the agent show the draft ID, content, platform list, and scheduled time; avoid immediate publishing unless explicitly requested. <br>
-Risk: The skill requires a Typefully API key that can manage drafts. <br>
-Mitigation: Install only when comfortable granting draft-management access, and provide the key through the documented environment variable or password-store mechanism. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage Typefully social media drafts and schedules through the Typefully API.
 
-## Reference(s): <br>
-- [ClawHub Typefully Skill Page](https://clawhub.ai/chapati23/typefully-drafts) <br>
-- [Typefully](https://typefully.com) <br>
-- [Typefully API v2 Endpoint](https://api.typefully.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [JSON responses with Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TYPEFULLY_API_KEY and optionally TYPEFULLY_SOCIAL_SET_ID; operations can create, edit, schedule, publish, or delete Typefully drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.2.0) <br>
+Risk: The skill can create, edit, schedule, publish immediately, and delete social-media drafts through a Typefully API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Typefully key scoped to the intended account or social set, protect it as a secret, and supervise delete and publish-now actions.
+
+Risk: The security scan reports a request-construction safety issue for schedule values.
+
+Mitigation: Avoid passing schedule values derived from untrusted text until the JSON construction issue is fixed.
+
+## Reference(s):
+
+- [ClawHub Typefully Skill release page](https://clawhub.ai/chapati23/skills/typefully-drafts)
+- [Typefully](https://typefully.com)
+- [Typefully API endpoint](https://api.typefully.com/v2)
+- [Unix password store](https://www.passwordstore.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [JSON API responses and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TYPEFULLY_API_KEY; TYPEFULLY_SOCIAL_SET_ID is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

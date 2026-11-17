@@ -1,43 +1,58 @@
-## Description: <br>
-Use when an OpenClaw-style or local autonomous computer-use agent needs a single Neura Relay preflight workflow for messages, file changes, browser submits, shell commands, package or publisher changes, workflow state, memory writes, or data exports before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an OpenClaw-style or local autonomous computer-use agent needs a single Neura Relay preflight workflow for messages, file changes, browser submits, shell commands, package or publisher changes, workflow state, memory writes, or data exports before execution.
 
-## Publisher: <br>
-[neurarelay](https://clawhub.ai/user/neurarelay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neurarelay](https://clawhub.ai/user/neurarelay)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare refs-only preflight Action Cards and interpret Relay Decision Receipts before an OpenClaw-style or local autonomous agent performs consequential actions. It is intended for workflows involving messages, file changes, browser submits, shell commands, package or publisher changes, memory writes, and data exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for consequential local-agent actions, so using it without review or a trusted receipt path could lead to unauthorized execution. <br>
-Mitigation: Require an accepted Relay Decision Receipt or explicit local policy acceptance before the developer-owned runtime executes the proposed action. <br>
-Risk: Action Cards could expose sensitive material if raw payloads, secrets, credentials, customer data, or private workspace contents are included. <br>
-Mitigation: Use refs-only Action Cards and reject raw message bodies, file contents, form values, command strings, package credentials, tokens, passwords, and private payloads. <br>
-Risk: The security evidence reports no harmful behavior in supplied scan data, but notes that artifact files were unavailable during that adjudication. <br>
-Mitigation: Review the bundled skill contents and confirm file hashes before granting sensitive access or relying on the skill in a privileged workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare refs-only Action Cards and interpret Relay Decision Receipts before consequential local agent actions. It is intended for external and developer-facing workflows that need a governed checkpoint before execution.
 
-## Reference(s): <br>
-- [Neura Relay OpenClaw Scenario Corpus](references/scenario-corpus.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/neurarelay/neura-openclaw-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text containing a refs-only Action Card draft, missing-reference checklist, receipt interpretation, and runtime next step.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should avoid raw payloads, secrets, credentials, private data, and executable local actions until the receipt path is accepted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The workflow depends on the user environment trusting the Neura Relay package and route.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected package, route, publisher handle, and local policy before operational use.
+
+Risk: The skill is a community example and could be mistaken for an official OpenClaw or ClawHub integration.
+
+Mitigation: Preserve the no-official-claim boundary and require explicit authority refs for package, publisher, and ClawHub-facing actions.
+
+Risk: Consequential actions could expose private payloads if raw content is placed in an Action Card.
+
+Mitigation: Use refs-only Action Cards and omit message bodies, file contents, raw commands, credentials, customer data, secrets, tokens, passwords, and private payloads.
+
+## Reference(s):
+
+- [Neura Relay OpenClaw Scenario Corpus](references/scenario-corpus.md)
+- [ClawHub skill page](https://clawhub.ai/neurarelay/skills/neura-openclaw-core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text with refs-only Action Card fields and Decision Receipt interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute local actions; returns developer-owned next steps and missing refs.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

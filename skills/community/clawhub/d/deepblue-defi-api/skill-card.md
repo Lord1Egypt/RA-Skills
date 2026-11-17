@@ -1,45 +1,51 @@
-## Description: <br>
-Use when an agent needs live DeFi data from Base, including ETH prices, trending pools, token scores, and wallet scans without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs live DeFi data from Base, including ETH prices, trending pools, token scores, or wallet scans; no auth required.
 
-## Publisher: <br>
-[error403agent](https://clawhub.ai/user/error403agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[error403agent](https://clawhub.ai/user/error403agent)
 
-## Use Case: <br>
-Developers and agents use this skill to query live read-only DeFi research data for the Base network, including ETH pricing, pool discovery, token scoring, and wallet ERC20 holdings valuation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet lookups and DeFi queries are sent to an external API, so wallet addresses should be treated as visible to deepbluebase.xyz despite no-logging claims. <br>
-Mitigation: Use wallet scans only for addresses the user is comfortable sending to the external API. <br>
-Risk: Deposit, withdrawal, claim, payment, or trading endpoints could affect assets if used outside the read-only research posture. <br>
-Mitigation: Do not use any write, payment, trading, deposit, withdrawal, or claim endpoint unless it has separate review and explicit user direction. <br>
-Risk: Live DeFi scores and market data can be incorrect, stale, or misleading if used as financial advice. <br>
-Mitigation: Treat returned scores and market data as research signals only and verify important decisions against independent sources. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve live Base DeFi research data, including ETH/USD price, trending pools, token scoring, and wallet ERC20 holdings. It supports research and integration workflows that need read-only JSON data and should not be used for trading execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/error403agent/deepblue-defi-api) <br>
-- [DeepBlue API Homepage](https://deepbluebase.xyz) <br>
-- [DeepBlue Interactive API Docs](https://deepbluebase.xyz/docs) <br>
-- [DeepBlue Pricing and Tiers](https://deepbluebase.xyz/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, API Calls] <br>
-**Output Format:** [Markdown with REST endpoint examples, curl commands, Python snippets, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are read-only DeFi data requests and guidance for Base network API usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: release evidence) <br>
+Risk: Wallet-scan or holder-tier requests may associate wallet addresses with requester network metadata because the service has IP-based limits and possible wallet-to-IP tier handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the operator's privacy policy or source before use, and avoid submitting wallet addresses that should not be linked to an IP address until logging, retention, and rate-limit storage are clearly documented.
+
+## Reference(s):
+
+- [DeepBlue API Homepage](https://deepbluebase.xyz)
+- [Interactive API Docs](https://deepbluebase.xyz/docs)
+- [ClawHub Skill Page](https://clawhub.ai/error403agent/skills/deepblue-defi-api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with inline REST, curl, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only GET requests to Base DeFi data endpoints; free tier is rate-limited.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Game rules, strategy guide, and API reference for DopeWars Online. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game rules, strategy guide, and API reference for DopeWars Online.
 
-## Publisher: <br>
-[treadon](https://clawhub.ai/user/treadon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[treadon](https://clawhub.ai/user/treadon)
 
-## Use Case: <br>
-External users and agent developers use this skill to understand DopeWars Online rules, plan gameplay strategy, and interact with the game's HTTP API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward live third-party game API actions that change game state, account keys, messages, forum posts, trades, or combat outcomes. <br>
-Mitigation: Review proposed API requests before execution and restrict the agent to approved game actions. <br>
-Risk: DopeWars account credentials and API keys are sensitive and may be shown only once during signup. <br>
-Mitigation: Use a dedicated password, avoid credential reuse, and store API keys in secure secret storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DopeWars Online homepage](https://www.treadon.us) <br>
-- [ClawHub skill page](https://clawhub.ai/treadon/dopewars-online) <br>
+## Use Case:
 
+External developers and agents use this skill to understand DopeWars Online rules, strategy, and API endpoints for gameplay, account setup, forum participation, and player actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown with HTTP API examples and JSON request or response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe live third-party game actions that mutate account, gameplay, forum, messaging, or API-key state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide authenticated actions that change game account or player state.
+
+Mitigation: Require clear user approval before public posts, messages, key changes, or irreversible gameplay actions.
+
+Risk: The skill references DopeWars API keys used for authenticated gameplay.
+
+Mitigation: Keep API keys private and avoid exposing them in prompts, logs, forum posts, or shared configuration.
+
+## Reference(s):
+
+- [DopeWars Online homepage](https://www.treadon.us)
+- [ClawHub skill page](https://clawhub.ai/treadon/skills/dopewars-online)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API examples, JSON snippets, and endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include authenticated API action guidance that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and changelog; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

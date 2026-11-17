@@ -1,41 +1,58 @@
-## Description: <br>
-Azure Data Studio is a local Bash-based data utility for querying, importing, exporting, transforming, validating, and summarizing flat-file records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Azuredatastudio provides a local Bash-based command interface for querying, importing, exporting, transforming, validating, and summarizing flat-file data records.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to run lightweight local data operations from an agent-assisted shell workflow, including quick queries, file import/export, schema checks, and simple record summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command arguments may be written to a local history log. <br>
-Mitigation: Avoid passing secrets, tokens, sensitive queries, or private filenames as command arguments, and remove the local history log if sensitive data is entered. <br>
-Risk: The executed azuredatastudio command may not be the intended local script. <br>
-Mitigation: Verify which azuredatastudio executable is on PATH before relying on command output. <br>
+## Use Case:
 
+Developers and data practitioners can use this skill to run lightweight local data-management commands without a database server. It is most appropriate for simple flat-file workflows where command output to stdout or generated files is sufficient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/azuredatastudio) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output is written to stdout; the bundled scripts can create local data and history files under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill is marketed like Azure Data Studio but the security evidence describes it as a local demo or stub CLI rather than Microsoft-backed functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this is the intended package before installation and do not rely on it as a replacement for the official Azure Data Studio application.
+
+Risk: Command history is saved under the configured Azuredatastudio data directory and may include user-provided command arguments.
+
+Mitigation: Avoid passing secrets or sensitive SQL as command arguments, choose an appropriate data directory, and review or clear local history files when needed.
+
+Risk: The scripts create and write local files in the default or configured data directory.
+
+Mitigation: Set AZUREDATASTUDIO_DIR to a controlled location before running the skill when file placement or cleanup matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/azuredatastudio)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and stdout-oriented shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local data and history files under the configured Azuredatastudio data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

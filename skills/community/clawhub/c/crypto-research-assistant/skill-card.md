@@ -1,36 +1,56 @@
-## Description: <br>
-Helps agents provide informational crypto and DeFi project research, market trend tracking, basic price analysis, and risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides objective informational support for researching cryptocurrency and DeFi projects, including whitepapers, tokenomics, market trends, basic technical analysis, and investment risk factors.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Users and agents use this skill to answer crypto and DeFi questions with objective project information, basic fundamental and technical analysis, and risk context. Outputs are informational research support, not financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto research can drift into investment advice or rely on fast-changing market data. <br>
-Mitigation: Treat outputs as informational support, distinguish facts from opinion, verify current market data from reliable sources, and require independent review before investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and agents use this skill to gather concise research context on crypto and DeFi projects, market news, technical signals, and risk considerations. Outputs are informational research support and not financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research summaries and answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; not financial advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer command can resolve a mutable package version.
+
+Mitigation: Prefer installing a pinned and reviewed ClawHub package version instead of @latest.
+
+Risk: Crypto and DeFi outputs may be mistaken for investment advice.
+
+Mitigation: Treat outputs as research support, request clearly scoped analysis, and make independent financial decisions.
+
+Risk: The crypto trigger is broad and may produce generic or insufficiently scoped analysis.
+
+Mitigation: Ask for a specific project, asset, timeframe, or risk question before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/crypto-research-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text research summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational only; not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

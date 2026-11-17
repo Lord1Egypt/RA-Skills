@@ -1,48 +1,63 @@
-## Description: <br>
-MaskClaw provides on-device privacy protection tools for visual masking, behavior monitoring, and self-evolving privacy rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MaskClaw is an on-device privacy guard skill suite that detects and masks sensitive UI content, monitors agent behavior, and evolves privacy rules from user feedback.
 
-## Publisher: <br>
-[theodora-y](https://clawhub.ai/user/theodora-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theodora-y](https://clawhub.ai/user/theodora-y)
 
-## Use Case: <br>
-Developers and agent builders use MaskClaw to add an on-device privacy guard between agents and mobile or desktop UI workflows. It identifies and masks sensitive visual content, records user corrections, and evolves user-specific privacy rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can record detailed local behavior traces and sensitive image-derived content. <br>
-Mitigation: Require explicit opt-in, disable raw OCR/content logging by default, and add retention, deletion, and encryption controls before deployment. <br>
-Risk: Trace-derived prompts are sent to a local model endpoint and may contain sensitive user context. <br>
-Mitigation: Keep model calls local, redact prompt inputs where possible, and review endpoint access controls before use. <br>
-Risk: The evolution workflow can generate and publish active per-user rules. <br>
-Mitigation: Require human approval and security review before generated rules or skills are activated. <br>
+## Use Case:
 
+Developers and agent builders use MaskClaw to add a privacy-protection layer between cloud agents and phone or desktop UI workflows. It supports sensitive-content masking, behavior monitoring, and user-specific privacy rule evolution for agent-operated interfaces.
 
-## Reference(s): <br>
-- [MaskClaw ClawHub release page](https://clawhub.ai/theodora-y/maskclaw) <br>
-- [MaskClaw homepage](https://github.com/your-org/maskclaw) <br>
-- [Architecture](references/ARCHITECTURE.md) <br>
-- [Skills API](references/SKILLS_API.md) <br>
-- [RAG Schema](references/RAG_SCHEMA.md) <br>
-- [Prompt Templates](references/PROMPT_TEMPLATES.md) <br>
-- [Self Evolution](references/SELF_EVOLUTION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python/API examples and JSON-style result structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create masked image files, JSONL behavior traces, ChromaDB-backed rule records, and user-specific SOP or skill drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive behavior records and correction values may be stored while the skill monitors agent actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use controlled deployment, remove raw previews and correction values from logs, and add retention, deletion, and encryption controls before processing real user data.
+
+Risk: The skill can automatically generate and publish persistent user skills from model output.
+
+Mitigation: Disable or gate automatic publishing and review generated rules in a sandbox before deployment.
+
+Risk: The privacy guard depends on local model access and file-path handling.
+
+Mitigation: Restrict MiniCPM access to a trusted local endpoint and fix path validation before using the skill with real user data.
+
+## Reference(s):
+
+- [MaskClaw ClawHub Skill Page](https://clawhub.ai/theodora-y/skills/maskclaw)
+- [Project Homepage](https://github.com/your-org/maskclaw)
+- [Architecture](references/ARCHITECTURE.md)
+- [Skills API](references/SKILLS_API.md)
+- [RAG Schema](references/RAG_SCHEMA.md)
+- [Prompt Templates](references/PROMPT_TEMPLATES.md)
+- [Self Evolution](references/SELF_EVOLUTION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets, JSON API responses, and generated SOP or rule files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce masked image file paths, behavior log records, and generated privacy-rule skill drafts when used in an agent workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

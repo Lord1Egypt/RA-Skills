@@ -1,45 +1,58 @@
-## Description: <br>
-智能投资研究工作流 coordinates multi-source research, market sentiment analysis, portfolio risk calculation, and PDF report generation for investment research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能投资研究工作流 coordinates multi-source investment research, sentiment analysis, portfolio risk metrics, and PDF report generation for structured investment research reports.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Investment managers, analysts, fund researchers, and individual investors use this workflow to gather public research, summarize sentiment, calculate simulated risk metrics, and assemble a shareable investment research report. Outputs are research support and do not constitute financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment research outputs may be mistaken for financial advice. <br>
-Mitigation: Present the report as research support only and require users to make their own investment decisions. <br>
-Risk: Public news, social media, and market sources may be stale, incomplete, or misleading. <br>
-Mitigation: Review cited sources, check freshness, and validate important claims before relying on the report. <br>
-Risk: Generated PDFs and report links may expose confidential portfolio details if shared or stored outside the user's control. <br>
-Mitigation: Avoid entering confidential holdings or client information unless the storage and sharing behavior is understood. <br>
-Risk: Risk metrics are based on simulated inputs and may not reflect real trading constraints or current market conditions. <br>
-Mitigation: Treat VaR, Sharpe ratio, drawdown, and position suggestions as scenario analysis that requires professional review. <br>
+## Use Case:
 
+Investment managers, analysts, fund researchers, and individual investors use this workflow to gather public research, assess market sentiment, calculate portfolio risk metrics, and produce client-ready PDF investment reports. Outputs are for research support and do not constitute investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/smart-investor-research-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, PDF, guidance] <br>
-**Output Format:** [Structured investment research report content with optional downloadable PDF output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cited research summaries, sentiment scores, risk metrics such as VaR and Sharpe ratio, position suggestions, and Chinese-language PDF formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: workflow.json and server release evidence) <br>
+Risk: The workflow may query public web, news, and social sources through dependent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide confidential client data, private holdings, or nonpublic investment theses unless the dependent skills' data handling has been reviewed.
+
+Risk: Investment research outputs may be incomplete, stale, or mistaken for investment advice.
+
+Mitigation: Use the reports as research support only, verify material claims against authoritative sources, and make investment decisions independently.
+
+Risk: PDF report generation depends on the runtime environment, including Chinese font support.
+
+Mitigation: Validate PDF rendering in the target environment before relying on generated reports for external delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/smart-investor-research-workflow)
+- [ClawHub publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Structured Markdown research content and generated PDF investment reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public-source citations, sentiment scores, portfolio risk metrics, position guidance, and a PDF download link.]
+
+## Skill Version(s):
+
+1.0.0 (source: workflow.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

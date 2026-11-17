@@ -1,41 +1,53 @@
-## Description: <br>
-根据教案、教材或课件生成交互式教学HTML网页. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据教案、教材或课件生成交互式教学HTML网页。
 
-## Publisher: <br>
-[erich1566](https://clawhub.ai/user/erich1566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erich1566](https://clawhub.ai/user/erich1566)
 
-## Use Case: <br>
-Educators, instructional designers, and developers use this skill to convert lesson material into interactive standalone HTML teaching pages with formulas, animations, and subject-specific presentation options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated teaching pages can load browser libraries from jsDelivr. <br>
-Mitigation: Use the skill only where outbound CDN loading is acceptable, or bundle local vetted copies of the required libraries for offline or high-assurance classroom use. <br>
-Risk: Lesson source text is inserted into generated HTML. <br>
-Mitigation: Use trusted lesson files and add HTML escaping before publishing generated pages. <br>
+## Use Case:
 
+Educators and instructional content creators use this skill to convert lesson plans, textbooks, slide content, or Markdown into interactive HTML teaching pages for math, physics, and chemistry lessons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erich1566/teach-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/erich1566) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, code, configuration] <br>
-**Output Format:** [Standalone HTML file generated from lesson source content and CLI options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages may load browser libraries from jsDelivr unless the user bundles local vetted copies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated HTML may execute untrusted lesson content in the browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted input files, review generated pages before sharing, and prefer a revised version that escapes lesson content or sanitizes any allowed HTML.
+
+Risk: Generated pages may contact third-party CDNs and run remote browser scripts without clear disclosure.
+
+Mitigation: Review online dependency behavior before deployment and prefer bundling, integrity-pinning, or clearly documenting external dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erich1566/skills/teach-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands]
+
+**Output Format:** [Standalone HTML file with concise CLI status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports subject, grade, theme, and output path options; generated pages may execute browser code and load third-party CDN scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

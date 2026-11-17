@@ -1,0 +1,4 @@
+interface:
+  display_name: "Immersive Presentations"
+  short_description: "Create cinematic, interactive narrative web presentations"
+  default_prompt: "Create an immersive narrative web presentation from this briefing:"

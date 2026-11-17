@@ -1,47 +1,64 @@
-## Description: <br>
-Fetches Douyin hot-search and trending-board data, including titles, popularity values, detail links, labels, content types, and cover image URLs when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Douyin hot trend and hot search data, including ranked titles, popularity values, links, labels, content types, and cover image URLs when available.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers, analysts, and social-media operators use this skill to retrieve current Douyin trending topics for monitoring, reporting, and content planning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive SkillBoss API key. <br>
-Mitigation: Use a limited-scope key, store it only in the runtime environment, and rotate it if logs or generated files may have exposed execution context. <br>
-Risk: Automation artifacts include Telegram-style delivery metadata and a fixed chat_id in generated JSON. <br>
-Mitigation: Do not connect generated JSON to any messaging tool unless the destination chat_id is yours and intentionally configured. <br>
-Risk: Helper scripts invoke Node through an execSync command wrapper. <br>
-Mitigation: Avoid untrusted arguments and replace command-string execution with safer argument passing before broader deployment. <br>
-Risk: The Douyin web endpoint and returned data structure may change or rate-limit frequent access. <br>
-Mitigation: Handle empty or changed responses, limit request frequency, and review output before using it for operational decisions. <br>
+## Use Case:
 
+External developers, social media operators, and marketing analysts use this skill to retrieve current Douyin hot-list items for trend monitoring, content analysis, and campaign planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-douyin-hot-trend) <br>
-- [Publisher profile](https://clawhub.ai/user/marjoriebroad) <br>
-- [Douyin hot search endpoint](https://www.douyin.com/aweme/v1/hot/search/list/) <br>
-- [SkillBoss API base](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Console text, Markdown trend summaries, and JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and SKILLBOSS_API_KEY; default trend limit is 50 for the direct script and 10 for automation helpers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.1.0) <br>
+Risk: The skill sends requests through the SkillBoss/HeyBoss API service using SKILLBOSS_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where that service is trusted with the key, scope the key narrowly when possible, and rotate it after testing or incident response.
+
+Risk: Automation scripts include unsafe command execution when arguments are not trusted.
+
+Mitigation: Do not pass user-controlled arguments to scripts/get-hot-trend.js; constrain trend limits to validated numeric values before execution.
+
+Risk: A Telegram chat_id is hard-coded in generated automation output.
+
+Mitigation: Remove or replace the chat_id before connecting automation to messaging tools or publishing generated output.
+
+Risk: Douyin web endpoint structure and access controls may change or throttle frequent requests.
+
+Mitigation: Monitor failed fetches, handle empty or changed response shapes, and avoid high-frequency polling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-douyin-hot-trend)
+- [ClawHub publisher profile](https://clawhub.ai/user/marjoriebroad)
+- [Douyin hot search endpoint](https://www.douyin.com/aweme/v1/hot/search/list/)
+- [HeyBoss API endpoint](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, files]
+
+**Output Format:** [Plain text and Markdown summaries with JSON trend records emitted by Node.js commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and SKILLBOSS_API_KEY; the default command returns up to 50 ranked trend items unless a limit is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and package.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

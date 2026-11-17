@@ -1,41 +1,59 @@
-## Description: <br>
-Run academies with enrollment, scheduling, staffing, billing, retention, and student outcome systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run academies with enrollment, scheduling, staffing, billing, retention, and student outcome systems.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Academy founders, managers, admissions staff, and operators use this skill to run enrollment, scheduling, staffing, student success, billing, retention, and weekly operating rhythms for education businesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local academy memory could accidentally include identifiable student details, payment card data, passwords, health information, or other sensitive records. <br>
-Mitigation: Keep ~/academy/ limited to operational summaries and avoid storing student dossiers, raw payment details, credentials, health information, or other highly sensitive data. <br>
-Risk: Operating recommendations may be inaccurate when academy model, capacity, staffing, finance, or student-risk context is incomplete. <br>
-Mitigation: Confirm the current academy model and constraints before acting on recommendations, and review proposed changes before applying them to admissions, scheduling, staffing, billing, or retention workflows. <br>
+## Use Case:
 
+Academy founders, managers, admissions staff, and academic leads use this skill to operate training centers, cohort schools, tutoring businesses, membership learning programs, and similar education businesses. It helps connect admissions, scheduling, staffing, delivery quality, collections, retention, and reporting into practical operating workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/academy) <br>
-- [Skill Homepage](https://clawic.com/skills/academy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with operational checklists, templates, and local memory setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update scoped local notes under ~/academy/ when the user explicitly wants persistent academy memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Local academy notes may contain operational details about students, staff, finances, or retention risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only non-sensitive operating summaries and avoid raw private records, health information, payment card data, passwords, or other secrets.
+
+Risk: Persistent academy guidance could be applied when the user does not want proactive business-operation advice.
+
+Mitigation: Clarify activation preferences early and make persistent behavior user-controlled before recording it in local memory.
+
+Risk: Generated recommendations can affect admissions, billing, staffing, and student-support decisions.
+
+Mitigation: Review recommendations against local policy, capacity, contracts, and applicable education or privacy obligations before acting.
+
+## Reference(s):
+
+- [Academy Skill Page](https://clawhub.ai/ivangdavila/skills/academy)
+- [Publisher Profile: ivangdavila](https://clawhub.ai/user/ivangdavila)
+- [Academy Homepage](https://clawic.com/skills/academy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, structured checklists, operating plans, and local memory templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or use local academy notes under ~/academy/ when the user opts into memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

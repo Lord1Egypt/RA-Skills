@@ -1,38 +1,56 @@
-## Description: <br>
-Capture photos from MacBook webcams using documented ffmpeg commands for Brio and FaceTime HD camera views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture photos from MacBook webcams. Use when user asks to take a photo, picture, snapshot, or see them. Two cameras available - Brio (front-facing on monitor) and FaceTime (side angle from MacBook).
 
-## Publisher: <br>
-[therohitdas](https://clawhub.ai/user/therohitdas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[therohitdas](https://clawhub.ai/user/therohitdas)
 
-## Use Case: <br>
-Users ask an agent to capture front, side, or multi-angle photos from local MacBook-connected webcams for inspection or visual context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate local Mac cameras and save captured media to /tmp. <br>
-Mitigation: Use only when the user explicitly asks for photos, and review or delete /tmp/brio.jpg, /tmp/facetime.jpg, and warmup MP4 files after use if the media should not be retained. <br>
-Risk: Camera capture may fail or capture the wrong angle if another camera app is open or the FaceTime camera command omits its required pixel format. <br>
-Mitigation: Close other camera applications before capture and use the documented FaceTime command with -pixel_format nv12. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to have an agent capture webcam snapshots from configured MacBook cameras with ffmpeg commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JPEG photos in /tmp and temporary warmup MP4 files when the documented commands are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can activate webcams and capture privacy-sensitive images or short warmup videos.
+
+Mitigation: Use only after explicit user intent and require confirmation before activating a camera.
+
+Risk: Captured photos and warmup videos are written to predictable /tmp paths.
+
+Mitigation: Use private per-run temporary directories where possible and delete warmup videos after capture.
+
+Risk: Other camera applications can conflict with capture commands.
+
+Mitigation: Close other camera applications before running capture commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/therohitdas/skills/camera)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces JPEG photo files in /tmp and temporary warmup videos that can be deleted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Task Tracker maintains a concise local task state file so agents can resume requested work, background processes, progress, completions, and failures across session resets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Tracker maintains a compact task state file so agents can track active work, background processes, progress, completion, and failure across session resets.
 
-## Publisher: <br>
-[rikouu](https://clawhub.ai/user/rikouu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rikouu](https://clawhub.ai/user/rikouu)
 
-## Use Case: <br>
-External developers and agents use this skill to keep a compact memory/tasks.md state snapshot of active tasks, background work, progress notes, and recent completions so work can resume after session resets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local task state file may retain sensitive task details across sessions. <br>
-Mitigation: Review or clear memory/tasks.md for sensitive tasks, especially when notes include server names, commands, links, or error details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rikouu/agent-task-tracker) <br>
+## Use Case:
 
+Agents and their operators use this skill to maintain a compact memory/tasks.md state snapshot for active work, background processes, and recent completed tasks so work can resume after compaction or session resets.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown task state file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains memory/tasks.md under 50 lines / 2KB, collapses completed tasks to one-line summaries, and prunes completed tasks older than 3 days.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent task notes may capture sensitive commands, links, server names, or confidential task outputs.
+
+Mitigation: Use the skill only where persistent task tracking is acceptable, and redact secrets, private commands, authenticated links, sensitive server names, and confidential outputs before storing task state.
+
+Risk: Automatic write-first tracking can preserve more operational detail than a user expects across session resets.
+
+Mitigation: Review memory/tasks.md regularly, keep entries concise, compress completed work, and prune stale completed tasks as described by the artifact.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rikouu/skills/agent-task-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance]
+
+**Output Format:** [Markdown task-state snapshot in memory/tasks.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps active task state under 50 lines / 2KB and compresses recent completed tasks to one-line summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

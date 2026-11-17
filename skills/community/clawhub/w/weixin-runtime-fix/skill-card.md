@@ -1,42 +1,55 @@
-## Description: <br>
-Fixes two OpenClaw Weixin plugin issues affecting runtime startup and Content-Length handling so the Weixin channel can send and receive messages normally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fixes two critical @tencent-weixin/openclaw-weixin@2.4.1 issues on OpenClaw 2026.5.4+: a waitForWeixinRuntime timeout caused by runtime module isolation and rejected manual Content-Length headers in undici 8.2.0.
 
-## Publisher: <br>
-[johnsonxuan](https://clawhub.ai/user/johnsonxuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsonxuan](https://clawhub.ai/user/johnsonxuan)
 
-## Use Case: <br>
-Developers and operators using @tencent-weixin/openclaw-weixin 2.4.1 on OpenClaw 2026.5.4+ use this skill to patch local plugin files and restore Weixin message send and receive behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies a local patch to installed OpenClaw Weixin plugin files, which can fail or leave the plugin in an unexpected state if the target version does not match. <br>
-Mitigation: Install only for the affected Weixin plugin version, review install.sh before running it, keep the .bak backups, and restore or reinstall the plugin if the patch does not apply cleanly. <br>
-Risk: Reinstalling the Weixin plugin can overwrite the patched files. <br>
-Mitigation: Run the fix again after reinstalling the plugin and verify the channel with openclaw health --json. <br>
+## Use Case:
 
+Developers and operators maintaining OpenClaw Weixin integrations use this skill to patch a local @tencent-weixin/openclaw-weixin@2.4.1 installation so Weixin channels can start, receive messages, send replies, and upload files on OpenClaw 2026.5.4+.
 
-## Reference(s): <br>
-- [OpenClaw GitHub Issue 78376](https://github.com/openclaw/openclaw/issues/78376) <br>
-- [@tencent-weixin/openclaw-weixin npm package](https://www.npmjs.com/package/@tencent-weixin/openclaw-weixin) <br>
-- [Weixin Fix Report](https://github.com/user-attachments/files/27447892/openclaw-weixin-fix-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and patch guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify local OpenClaw Weixin plugin files and create .bak backups when the installation script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.2 (source: frontmatter and release evidence) <br>
+Risk: The installer persistently edits an installed OpenClaw Weixin messaging plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before execution, keep separate copies of original plugin files, and run it only against the stated @tencent-weixin/openclaw-weixin@2.4.1 target.
+
+Risk: Validation and rollback safeguards are limited for local plugin patching.
+
+Mitigation: Verify the patched plugin manually after installation and use the generated .bak files or a clean plugin reinstall to recover if behavior is unexpected.
+
+## Reference(s):
+
+- [OpenClaw Issue 78376](https://github.com/openclaw/openclaw/issues/78376)
+- [OpenClaw Weixin Fix Report](https://github.com/user-attachments/files/27447892/openclaw-weixin-fix-report.md)
+- [@tencent-weixin/openclaw-weixin npm Package](https://www.npmjs.com/package/@tencent-weixin/openclaw-weixin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with shell commands and patch guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local plugin patch instructions and an installer script that edits installed OpenClaw Weixin plugin files.]
+
+## Skill Version(s):
+
+2.4.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

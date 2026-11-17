@@ -552,6 +552,6 @@ for metric, value in summary.items():
 
 ## Resources
 
-- [Risk Management and Financial Institutions (John Hull)](https://www.amazon.com/Risk-Management-Financial-Institutions-5th/dp/1119448115)
-- [Quantitative Risk Management (McNeil, Frey, Embrechts)](https://www.amazon.com/Quantitative-Risk-Management-Techniques-Princeton/dp/0691166277)
+- [Risk Management and Financial Institutions (John Hull)](https://www.amazon.com/RiREDACTED-SECRET/dp/1119448115)
+- [Quantitative Risk Management (McNeil, Frey, Embrechts)](https://www.amazon.com/Quantitative-RiREDACTED-SECRET/dp/0691166277)
 - [pyfolio Documentation](https://quantopian.github.io/pyfolio/)

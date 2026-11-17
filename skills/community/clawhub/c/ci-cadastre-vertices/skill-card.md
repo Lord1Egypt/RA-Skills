@@ -1,42 +1,59 @@
-## Description: <br>
-Find or verify parcel vertex coordinates on the Cote d'Ivoire Mining Cadastre Map Portal/Landfolio site when a user provides an official parcel or license code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find or verify parcel vertex coordinates on the Cote d'Ivoire Mining Cadastre Map Portal/Landfolio site.
 
-## Publisher: <br>
-[jeromeex](https://clawhub.ai/user/jeromeex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeromeex](https://clawhub.ai/user/jeromeex)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to retrieve current parcel boundary vertices from the Cote d'Ivoire cadastre portal, convert Web Mercator geometry to WGS84, and report decimal-degree and DMS coordinates with the evidence source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to control a browser, evaluate in-page JavaScript, and possibly inspect network responses on the cadastre portal. <br>
-Mitigation: Use the workflow only for intended parcel or license lookups, keep outputs tied to visible portal details or extracted geometry, and avoid treating prior lookup results as stable. <br>
-Risk: Visually reconstructed coordinates may be less reliable than official in-page Esri geometry. <br>
-Mitigation: Prefer official in-page Esri geometry when available, label visual reconstruction clearly, and verify reconstructed coordinates against portal evidence before relying on them. <br>
+## Use Case:
 
+External users, developers, and GIS analysts use this skill to retrieve current parcel boundary vertices for a Cote d'Ivoire mining cadastre parcel or license code. The workflow reports portal result details, geometry source, coordinate system, coordinate format, and vertices in decimal degrees and DMS when requested.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeromeex/skills/ci-cadastre-vertices) <br>
-- [Cote d'Ivoire Mining Cadastre Map Portal](https://portals.landfolio.com/CoteDIvoire/en/) <br>
-- [Active Licences ArcGIS MapServer](https://mines.gouv.ci.cadastreminier.org/arcgis/rest/services/MapPortal/ActiveLicences/MapServer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports parcel code, visible portal details, coordinate source, coordinate system, coordinate format, and vertices; includes both DMS and decimal degrees unless the user asks for only one format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Portal-derived parcel status, geometry, and existence can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Re-query the live cadastre portal during each run and report the visible portal result details and geometry source with the coordinates.
+
+Risk: Visual reconstruction may be less reliable than official in-page Esri geometry.
+
+Mitigation: Prefer exact-code Esri geometry from the loaded portal page, use visual reconstruction only as a fallback, and clearly label visually reconstructed coordinates as non-survey evidence.
+
+Risk: Coordinate lookup output may be mistaken for legal survey data.
+
+Mitigation: State that results are portal-derived evidence and should be independently verified before legal, operational, or boundary-sensitive use.
+
+## Reference(s):
+
+- [CI Cadastre Vertices ClawHub Skill Page](https://clawhub.ai/jeromeex/skills/ci-cadastre-vertices)
+- [Cote d'Ivoire Mining Cadastre Map Portal](https://portals.landfolio.com/CoteDIvoire/en/)
+- [Active Licences ArcGIS MapServer](https://mines.gouv.ci.cadastreminier.org/arcgis/rest/services/MapPortal/ActiveLicences/MapServer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with portal evidence, coordinate tables, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports coordinate source and avoids treating visually reconstructed coordinates as surveyed boundary data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

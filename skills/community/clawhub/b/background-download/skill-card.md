@@ -1,45 +1,53 @@
-## Description: <br>
-Asynchronous background download with retry, status tracking via Ontology, notifications to original channel. Supports resume on broken connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asynchronous background download with retry, status tracking via Ontology, notifications to original channel. Supports resume on broken connections.
 
-## Publisher: <br>
-[hansponddg](https://clawhub.ai/user/hansponddg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hansponddg](https://clawhub.ai/user/hansponddg)
 
-## Use Case: <br>
-Developers and automation agents use this skill to start and monitor background file downloads, retry interrupted transfers, store task state in OpenClaw Ontology, and notify the original request channel when work completes or fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Caller-controlled URLs and save paths can write untrusted content to local filesystem locations. <br>
-Mitigation: Use only trusted callers and non-sensitive URLs; constrain downloads to an approved directory and validate URL schemes and paths before use. <br>
-Risk: Shell command construction uses caller-controlled values for ontology, download, and notification operations. <br>
-Mitigation: Harden command execution by avoiding shell=True or passing arguments as arrays, and reject unsafe URL, path, task ID, and channel values. <br>
-Risk: Download URLs and local paths may be exposed in logs or completion and failure notifications. <br>
-Mitigation: Redact sensitive URL and path details in messages and logs before broader deployment. <br>
-Risk: Detached background tasks can linger, fail silently, or be difficult to cancel. <br>
-Mitigation: Run zombie cleanup and archiving regularly, and add explicit cancellation or cleanup controls before use in higher-risk environments. <br>
+## Use Case:
 
+Developers and automation agents use this skill to start, monitor, and maintain background file downloads with retries, resume support, ontology-backed status, and notifications to the originating channel.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hansponddg/background-download) <br>
-- [Publisher Profile](https://clawhub.ai/user/hansponddg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Notifications] <br>
-**Output Format:** [CLI text, JSON task records, downloaded files, and channel notifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw Ontology and curl or wget; writes downloaded content to caller-provided filesystem paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The implementation can run attacker-controlled shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly controlled environment with trusted inputs, and replace shell=True command construction with argument lists before broader use.
+
+Risk: Downloads can be written to arbitrary local paths.
+
+Mitigation: Restrict downloads to approved HTTPS URLs and a dedicated download directory with path validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hansponddg/skills/background-download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets, plus JSON task and status output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates DownloadTask records and may emit completion or failure notifications to the original channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Fetch and send Hacker News front-page posts on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Hacker News front-page posts on demand, filters or boosts them by topic, excludes crypto, and sends a concise digest with links.
 
-## Publisher: <br>
-[cpojer](https://clawhub.ai/user/cpojer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cpojer](https://clawhub.ai/user/cpojer)
 
-## Use Case: <br>
-External users and developers use this skill to request concise Hacker News front-page digests by count or topic, with crypto-related posts excluded. The skill sends each selected post as a separate text message and then attaches a generated mood image inspired by the digest. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically generates an AI image after each digest and may consume Gemini/Nano Banana API quota. <br>
-Mitigation: Use a separate limited API key for this skill, monitor quota usage, or make the image step opt-in before deployment. <br>
-Risk: The image-generation helper installs Python dependencies at runtime. <br>
-Mitigation: Review and pin the required dependencies in a controlled environment before using the skill in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [HN Digest on ClawHub](https://clawhub.ai/cpojer/hn-digest) <br>
-- [Hacker News](https://news.ycombinator.com/) <br>
-- [HN Algolia API front-page endpoint](https://hn.algolia.com/api/v1/search?tags=front_page) <br>
+## Use Case:
 
+Users ask an agent for a Hacker News front-page digest, optionally specifying a count, offset, or topic such as tech, health, hacking, or lifehacks. The skill returns selected posts as individual messages and generates a mood image inspired by the digest.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Media] <br>
-**Output Format:** [Plain text post messages plus a PNG image attachment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default count is 5 posts; supports count, offset, and topic filtering for tech, health, hacking, and lifehacks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automatically runs an image-generation workflow that uses Gemini or OpenClaw credentials, which is broader than the user-facing digest description.
+
+Mitigation: Disclose the image-generation step and required credentials before deployment, or make image generation opt-in with explicit user confirmation.
+
+Risk: The image workflow installs Python packages at runtime and makes outbound API calls.
+
+Mitigation: Pin and review dependencies, run the skill in a constrained environment, and allow outbound network access only to the services required for Hacker News retrieval and image generation.
+
+Risk: The workflow writes a virtual environment and generated image files under ./tmp.
+
+Mitigation: Run it only in workspaces where temporary file writes are acceptable and periodically remove generated artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cpojer/skills/hn-digest)
+- [Hacker News front page](https://news.ycombinator.com/)
+- [Algolia Hacker News Search API](https://hn.algolia.com/api/v1/search?tags=front_page)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files]
+
+**Output Format:** [Individual text messages with post title, age, comment count, Hacker News comment link, plus a generated PNG image attachment.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Post count is bounded by the script, topics are selected from the supported topic list, crypto-related posts are excluded, and image generation may write files under ./tmp.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

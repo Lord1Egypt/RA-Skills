@@ -182,7 +182,7 @@ ACTION_MAP = {
     "delete-recurring-template": "erpclaw-journals",
     "journals-status": "erpclaw-journals",
 
-    # === Payments (14 actions) ===
+    # === Payments (15 actions) ===
     "add-payment": "erpclaw-payments",
     "update-payment": "erpclaw-payments",
     "get-payment": "erpclaw-payments",
@@ -191,6 +191,7 @@ ACTION_MAP = {
     "cancel-payment": "erpclaw-payments",
     "delete-payment": "erpclaw-payments",
     "create-payment-ledger-entry": "erpclaw-payments",
+    "write-off-invoice": "erpclaw-payments",
     "get-outstanding": "erpclaw-payments",
     "get-unallocated-payments": "erpclaw-payments",
     "allocate-payment": "erpclaw-payments",
@@ -305,6 +306,8 @@ ACTION_MAP = {
     "add-material-request": "erpclaw-buying",
     "submit-material-request": "erpclaw-buying",
     "list-material-requests": "erpclaw-buying",
+    "get-material-request": "erpclaw-buying",
+    "create-po-from-material-request": "erpclaw-buying",
     "add-rfq": "erpclaw-buying",
     "submit-rfq": "erpclaw-buying",
     "list-rfqs": "erpclaw-buying",
@@ -331,6 +334,9 @@ ACTION_MAP = {
     "create-debit-note": "erpclaw-buying",
     "update-purchase-outstanding": "erpclaw-buying",
     "add-landed-cost-voucher": "erpclaw-buying",
+    "list-landed-cost-vouchers": "erpclaw-buying",
+    "get-landed-cost-voucher": "erpclaw-buying",
+    "cancel-landed-cost-voucher": "erpclaw-buying",
     "import-suppliers": "erpclaw-buying",
     "buying-status": "erpclaw-buying",
     "close-purchase-order": "erpclaw-buying",
@@ -365,6 +371,9 @@ ACTION_MAP = {
     "list-stock-entries": "erpclaw-inventory",
     "submit-stock-entry": "erpclaw-inventory",
     "cancel-stock-entry": "erpclaw-inventory",
+    # RETIRED (M103, 2026-08-13) but routable on purpose: both answer with a
+    # steer to the stock-entry flow and write nothing. See the retirement block
+    # in erpclaw-inventory/db_query.py.
     "create-stock-ledger-entries": "erpclaw-inventory",
     "reverse-stock-ledger-entries": "erpclaw-inventory",
     "get-stock-balance": "erpclaw-inventory",
@@ -433,11 +442,17 @@ ACTION_MAP = {
     "create-billing-period": "erpclaw-billing",
     "run-billing": "erpclaw-billing",
     "generate-invoices": "erpclaw-billing",
+    "sync-billing-period-status": "erpclaw-billing",
+    "link-billing-period-invoice": "erpclaw-billing",
+    "unlink-billing-period-invoice": "erpclaw-billing",
     "add-billing-adjustment": "erpclaw-billing",
     "list-billing-periods": "erpclaw-billing",
     "get-billing-period": "erpclaw-billing",
     "add-prepaid-credit": "erpclaw-billing",
     "get-prepaid-balance": "erpclaw-billing",
+    "list-billing-runs": "erpclaw-billing",
+    "get-billing-run": "erpclaw-billing",
+    "resume-billing-run": "erpclaw-billing",
     "billing-status": "erpclaw-billing",
 
     # === Advanced Accounting — Revenue Recognition / ASC 606 (17 actions) ===
@@ -494,6 +509,9 @@ ACTION_MAP = {
     "add-currency-translation": "erpclaw-accounting-adv",
     "consolidation-trial-balance-report": "erpclaw-accounting-adv",
     "consolidation-summary": "erpclaw-accounting-adv",
+    # M114: surface + correct the pre-M95 elimination-duplication surplus.
+    "list-elimination-surplus": "erpclaw-accounting-adv",
+    "remove-elimination-surplus": "erpclaw-accounting-adv",
 
     # === Advanced Accounting — Reports (1 action) ===
     "standards-compliance-dashboard": "erpclaw-accounting-adv",
@@ -526,7 +544,8 @@ ACTION_MAP = {
     "update-expense-claim-status": "erpclaw-hr",
     "list-expense-claims": "erpclaw-hr",
     "record-lifecycle-event": "erpclaw-hr",
-    "hr-status": "erpclaw-hr",
+    # hr-status routed via ALIASES (-> erpclaw-hr 'status'); a bare ACTION_MAP
+    # entry forwarded the literal 'hr-status', which erpclaw-hr rejects.
     "add-shift-type": "erpclaw-hr",
     "list-shift-types": "erpclaw-hr",
     "update-shift-type": "erpclaw-hr",
@@ -561,7 +580,8 @@ ACTION_MAP = {
     "update-garnishment": "erpclaw-payroll",
     "list-garnishments": "erpclaw-payroll",
     "get-garnishment": "erpclaw-payroll",
-    "payroll-status": "erpclaw-payroll",
+    # payroll-status routed via ALIASES (-> erpclaw-payroll 'status'); a bare
+    # ACTION_MAP entry forwarded the literal 'payroll-status', which is rejected.
     "add-state-tax-slab": "erpclaw-payroll",
     "update-employee-state-config": "erpclaw-payroll",
     "add-overtime-policy": "erpclaw-payroll",
@@ -614,6 +634,50 @@ ACTION_MAP = {
     "list-feature-matrix": "erpclaw-os",
     "research-business-rule": "erpclaw-os",
     "get-implementation-guide": "erpclaw-os",
+
+    # === M31 router union (2026-07-02) ===
+    # These 27 actions were defined + tested in their domain sub-script ACTIONS
+    # dicts but were missing from this map, so the NL router returned
+    # "Unknown action" for shipped, SKILL-documented features. Derived
+    # mechanically as (union of every foundation sub-script ACTIONS dict) minus
+    # (ACTION_MAP ∪ ALIASES ∪ MODULE_ACTIONS ∪ ONBOARDING_ACTIONS); zero
+    # cross-domain collisions. Each resolves to the single domain whose ACTIONS
+    # dict owns it. The L0 dispatchability gate
+    # (testing/unit/constitution/test_router_dispatchability.py) now guards
+    # against this class of drift: defined ⇒ routable.
+    # Setup — account-type / voucher-type / custom-field registries, advance
+    # account config, schema migrate, registry completeness check.
+    "add-account-type": "erpclaw-setup",
+    "deactivate-account-type": "erpclaw-setup",
+    "list-account-types": "erpclaw-setup",
+    "add-voucher-type": "erpclaw-setup",
+    "deactivate-voucher-type": "erpclaw-setup",
+    "list-voucher-types": "erpclaw-setup",
+    "add-custom-field": "erpclaw-setup",
+    "remove-custom-field": "erpclaw-setup",
+    "list-custom-fields": "erpclaw-setup",
+    "set-custom-field-value": "erpclaw-setup",
+    "get-custom-field-values": "erpclaw-setup",
+    "set-advance-account": "erpclaw-setup",
+    "migrate": "erpclaw-setup",
+    "validate-registry-completeness": "erpclaw-setup",
+    # GL — accounting dimensions CRUD.
+    "add-dimension": "erpclaw-gl",
+    "update-dimension": "erpclaw-gl",
+    "deactivate-dimension": "erpclaw-gl",
+    "list-dimensions": "erpclaw-gl",
+    # Selling — credit control + dunning.
+    "check-credit-limit": "erpclaw-selling",
+    "place-customer-on-hold": "erpclaw-selling",
+    "add-dunning-level": "erpclaw-selling",
+    "run-dunning-cycle": "erpclaw-selling",
+    "list-dunning-runs": "erpclaw-selling",
+    # Payments — advance handling.
+    "apply-advance-to-invoice": "erpclaw-payments",
+    "list-open-advances": "erpclaw-payments",
+    # Reports — multi-dimensional reporting.
+    "multi-dim-trial-balance": "erpclaw-reports",
+    "dimension-balance-report": "erpclaw-reports",
 }
 
 # Aliases: actions that need to be forwarded with a different --action name
@@ -630,6 +694,11 @@ ALIASES = {
     "inventory-status": ("erpclaw-inventory", "status"),
     "billing-status": ("erpclaw-billing", "status"),
     "accounting-adv-status": ("erpclaw-accounting-adv", "status"),
+    # hr / payroll status: were bare ACTION_MAP entries that forwarded the
+    # literal name (rejected by the sub-script, whose action is `status`). Moved
+    # here to match the 10 sibling domain-status aliases so they actually route.
+    "hr-status": ("erpclaw-hr", "status"),
+    "payroll-status": ("erpclaw-payroll", "status"),
     # Selling recurring template aliases (journals owns the base names)
     "add-recurring-invoice-template": ("erpclaw-selling", "add-recurring-template"),
     "update-recurring-invoice-template": ("erpclaw-selling", "update-recurring-template"),
@@ -687,10 +756,24 @@ DANGEROUS_ACTIONS = frozenset({
     "delete-recurring-template",
     # Payments
     "submit-payment", "cancel-payment", "delete-payment",
+    # Bad-debt write-off (Wave G F17). Posts GL and permanently forgives a
+    # receivable — the transaction-class definition exactly (ADR-0018 dec. 1:
+    # everything gated that is not one of the five ratified destructive actions
+    # is transaction-class, so the agent may pass the flag on a clear request
+    # without re-asking). Gating them closes a real asymmetry: submitting the
+    # invoice is gated and cancelling it — the only undo — is gated, while
+    # forgiving the same debt was not. `legal-write-off-invoice` is listed with
+    # it because the two are one operation across the delegation hop.
+    "write-off-invoice", "legal-write-off-invoice",
     # Tax
     "delete-tax-template",
-    # Reports / consolidation that mutate
-    "run-elimination", "run-consolidation",
+    # Reports / consolidation that mutate. `run-elimination` left this set when
+    # it was retired (M63-C): it writes nothing now, and a confirmation prompt in
+    # front of a steer message is friction with no decision behind it.
+    "run-consolidation",
+    # M114: deletes consolidation-layer elimination rows (audited, report-only
+    # until --confirm) — financial-mutation class, gated like its siblings.
+    "remove-elimination-surplus",
     # Selling lifecycle
     "submit-quotation", "submit-sales-order", "cancel-sales-order",
     "submit-delivery-note", "cancel-delivery-note",
@@ -718,6 +801,9 @@ DANGEROUS_ACTIONS = frozenset({
     "generate-w2-data", "generate-nacha-file",
     # Setup destructive
     "restore-database",
+    # Deletes backup FILES per the retention policy (7 daily / 4 weekly /
+    # 12 monthly) — irreversible, gated like its restore sibling (M36 R-c)
+    "cleanup-backups",
     # RBAC + identity changes
     "set-password", "add-role", "assign-role", "revoke-role", "seed-permissions",
     "update-user",
@@ -729,6 +815,9 @@ DANGEROUS_ACTIONS = frozenset({
     "update-foundation", "rollback-foundation",
     # Schema migrations
     "schema-apply", "schema-rollback",
+    # Foundation migration runner (DDL-executing; gated like its schema-* siblings
+    # — ADR-0028 / BDFL checkpoint-② condition c, M31 H1)
+    "migrate",
     # Initialize-database --force
     "initialize-database",
 })

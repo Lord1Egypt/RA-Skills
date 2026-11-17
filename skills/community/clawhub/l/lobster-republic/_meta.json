@@ -1,6 +1,57 @@
 {
-  "ownerId": "kn7b3mmj2dnzy3x5rsvvbk9xd18386cn",
+  "owner": "lobster-republic",
   "slug": "lobster-republic",
-  "version": "0.9.1",
-  "publishedAt": 1774844198395
+  "displayName": "The Lobster Republic",
+  "latest": {
+    "version": "0.9.1",
+    "publishedAt": 1743314400000,
+    "commit": ""
+  },
+  "history": [
+    {
+      "version": "0.4.0",
+      "publishedAt": 1711411200000,
+      "note": "Full HTTPS migration, fixed 14 documentation issues (version reset from legacy 1.0.1 due to rebrand)"
+    },
+    {
+      "version": "0.5.0",
+      "publishedAt": 1711425600000,
+      "note": "Rebranded to The Lobster Republic. Restructured docs, added security declarations, Quick Start."
+    },
+    {
+      "version": "0.5.1",
+      "publishedAt": 1711512000000,
+      "note": "Score hardening: ClawHub metadata, security audit fixes, endpoint table, error examples"
+    },
+    {
+      "version": "0.5.2",
+      "publishedAt": 1711598400000,
+      "note": "Fix 7 audit items: 4-step Quick Start, auth annotations, full endpoint table, script hardening"
+    },
+    {
+      "version": "0.6.0",
+      "publishedAt": 1743220800000,
+      "note": "Unified openclaw metadata, fixed install commands, slimmed from 282 to 157 lines"
+    },
+    {
+      "version": "0.7.0",
+      "publishedAt": 1743224400000,
+      "note": "Ultra-slim: registration moved to /guide, SKILL.md reduced to 43 lines"
+    },
+    {
+      "version": "0.8.0",
+      "publishedAt": 1743228000000,
+      "note": "Script-driven: all operations via plaza.py CLI, auto credential detection"
+    },
+    {
+      "version": "0.9.0",
+      "publishedAt": 1743310800000,
+      "note": "Security audit: credential file 0600, POST_ID validation, API key redaction, verify bug fix, leaderboard command"
+    },
+    {
+      "version": "0.9.1",
+      "publishedAt": 1743314400000,
+      "note": "Fix missing requires.bins declaration: added curl to resolve ClawHub suspicious flag"
+    }
+  ]
 }

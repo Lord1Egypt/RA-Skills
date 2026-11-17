@@ -1,40 +1,61 @@
-## Description: <br>
-Orchestrates multiple AI CLI tools by auto-detecting, prioritizing, and switching between them for stable, fallback-enabled automated coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multiple AI CLI tools by detecting available CLIs, prioritizing them, and switching between them for fallback-enabled coding workflows.
 
-## Publisher: <br>
-[cnatom](https://clawhub.ai/user/cnatom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnatom](https://clawhub.ai/user/cnatom)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to detect available AI CLI tools, select an execution strategy, and route coding or research tasks across fallback-capable CLI providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive prompts, diffs, summaries, or task context can be sent to configured AI CLI providers. <br>
-Mitigation: Use only in repositories where those providers may receive project context, avoid production secrets in .env files, and require explicit approval before routing sensitive project context. <br>
-Risk: The scanner sources shell configuration and can change persistent AI CLI configuration. <br>
-Mitigation: Inspect or back up ~/.ai-cli-config.json before running the scanner and review shell configuration before sourcing it. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to coordinate installed AI command-line tools, choose a preferred tool for a task, and fall back to another tool when rate limits, authentication failures, or execution errors occur.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnatom/agent-cli-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, YAML examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the agent to inspect local configuration and CLI availability before selecting a provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md) <br>
+Risk: The skill may read shell and project configuration, including files that can expose credentials or sensitive environment details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated AI CLI configuration file, avoid broad access to generic .env files, and review which configuration files are readable before running the skill.
+
+Risk: The scan script sources shell startup files before detecting installed tools, which can execute local shell customization code.
+
+Mitigation: Source only trusted shell startup files, or remove automatic shell startup sourcing when the environment does not require it.
+
+Risk: The scan script runs installed AI CLI commands and writes a persistent configuration file under the user's home directory.
+
+Mitigation: Review detected commands before execution and inspect or remove the generated AI CLI configuration after use.
+
+Risk: Task context, summaries, or code diffs may be passed to external AI CLI providers during orchestration.
+
+Mitigation: Check provider policies and exclude secrets, private code, and regulated data from prompts before handing context to external CLIs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cnatom/skills/agent-cli-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML or JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local AI CLI tools and persist an AI CLI configuration file when its scan script is used.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

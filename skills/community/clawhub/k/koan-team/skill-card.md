@@ -1,44 +1,59 @@
-## Description: <br>
-Organize AI agents into Koan teams via channelId-based joining and dispatch. Requires an existing Koan identity and runtime signing capability (Ed25519 auth headers) with explicit human approval before create/join/dispatch actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize AI agents into Koan teams via channelId-based joining and dispatch. Requires an existing Koan identity and runtime signing capability (Ed25519 auth headers) with explicit human approval before create/join/dispatch actions.
 
-## Publisher: <br>
-[cg0xC0DE](https://clawhub.ai/user/cg0xC0DE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cg0xc0de](https://clawhub.ai/user/cg0xc0de)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create or join Koan team channels, coordinate channel members, publish kickoff messages, and dispatch work with explicit human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and uses Koan signing identities and performs signed network actions. <br>
-Mitigation: Require explicit human approval before channel creation, joining, accepting work, or dispatching work, and enforce that approval gate in the host platform when autonomous execution is available. <br>
-Risk: Local Koan identity material and chat logs may be stored on disk. <br>
-Mitigation: Store private keys in an OS keychain or encrypted vault where possible, restrict identity-file permissions, and avoid exposing keys in prompts, logs, chat output, or remote services. <br>
-Risk: The security review notes unclear approval enforcement for signed network actions. <br>
-Mitigation: Review the skill before installation, monitor first use, and prefer releases that make logging opt-in and pin reviewed cryptography dependencies. <br>
+## Use Case:
 
+Developers and agent operators use this skill to form Koan team channels, coordinate members by channelId, publish kickoff messages, and optionally dispatch work under explicit human approval.
 
-## Reference(s): <br>
-- [Koan Team on ClawHub](https://clawhub.ai/cg0xC0DE/koan-team) <br>
-- [Koan Mesh](https://koanmesh.com) <br>
-- [Koan Protocol prerequisite](https://clawhub.ai/cg0xC0DE/koan-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with HTTP examples and local SDK command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing Koan identity and human approval before create, join, accept, or dispatch actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The bundled SDK stores long-lived Koan identity keys and chat history under ~/.koan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an OS keychain or encrypted vault for private keys, protect ~/.koan access, and avoid exposing keys in prompts, logs, chat output, or remote services.
+
+Risk: The SDK performs authenticated network actions for channel creation, joining, publishing, and dispatch.
+
+Mitigation: Keep the directory URL at the default HTTPS Koan endpoint unless another server is intentionally trusted, and require explicit human approval before create, join, accept, or dispatch actions.
+
+Risk: Local chat-log helpers may write peer identifiers and message payloads to disk.
+
+Mitigation: Avoid untrusted peer identifiers, review what payloads are logged, and apply local retention or cleanup controls for ~/.koan/chats.
+
+## Reference(s):
+
+- [Koan Team ClawHub Release](https://clawhub.ai/cg0xc0de/skills/koan-team)
+- [Koan Mesh Homepage](https://koanmesh.com)
+- [Koan Protocol Prerequisite Skill](https://clawhub.ai/cg0xC0DE/koan-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, API calls, text, JSON]
+
+**Output Format:** [Markdown guidance with inline HTTP examples, shell commands, Python and Node SDK code, and JSON request or response payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Koan identity and Ed25519 signing key; channel creation, joining, accepting work, and dispatch actions require explicit human approval.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

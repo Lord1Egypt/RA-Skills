@@ -1,40 +1,58 @@
-## Description: <br>
-Hanlon's Razor helps agents evaluate hostile-seeming actions by first testing whether mistakes, miscommunication, or missing context explain the evidence before escalating to malice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users test a non-malice explanation before attributing harmful or hostile behavior to intent, while treating that explanation as a revisable prior.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, developers, and teams use this skill when a conflict or bad outcome is being interpreted as intentional harm. It guides the agent through a structured mistake-first analysis, clarifying conversation, and override signal for updating toward malice when evidence changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply the mistake-first prior where there is documented malice, serious power imbalance, abuse risk, or high consequence from underestimating intent. <br>
-Mitigation: Use the skill only as a reasoning aid, avoid it in those contexts, and update away from non-malice when concrete override evidence appears. <br>
+## Use Case:
 
+Individuals and teams use this reasoning guide to examine perceived harmful actions, compare mistake-based explanations with evidence of intent, and choose a proportionate first response. It is not intended for situations with concrete evidence of malice or catastrophic costs of wrongly assuming non-malice.
 
-## Reference(s): <br>
-- [Primary sources](references/sources.md) <br>
-- [Method in Action: Hanlon's Submission, 1980; Heinlein's 1941 Articulation](examples/hanlons-submission-1980-heinleins-1941-articulation.md) <br>
-- [Quote Investigator: Hanlon's Razor](https://quoteinvestigator.com/2016/12/30/not-malice/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with concise structured fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reasoning aid; no files, credentials, tools, or persistent background behavior requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A mistake-first lens could minimize harm or delay protection in abusive, safety-critical, or strongly asymmetric situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's fit check; prioritize safety and protective action in high-stakes contexts, and update the attribution when evidence changes.
+
+Risk: Reusable incident examples could expose identifiable details.
+
+Mitigation: Avoid recording identifiable incident details in reusable examples.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [Hanlon's Razor skill overview](https://www.deciqai.com/c/hanlons-razor)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/hanlons-razor.json)
+- [Quote Investigator: Hanlon's Razor](https://quoteinvestigator.com/2016/12/30/not-malice/)
+- [Google: Gemini image generation got it wrong. We'll do better.](https://blog.google/products/gemini/gemini-image-generation-issue/)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/hanlons-razor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured incident analysis and stepwise coaching prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive coaching pauses for user input between steps; includes a revisable prior and override signals.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

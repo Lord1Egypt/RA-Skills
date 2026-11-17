@@ -1,40 +1,57 @@
-## Description: <br>
-Kubernetes backup and restore with Velero. Use when creating backups, restoring applications, managing disaster recovery, or migrating workloads between clusters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kubernetes backup and restore with Velero. Use when creating backups, restoring applications, managing disaster recovery, or migrating workloads between clusters.
 
-## Publisher: <br>
-[rohitg00](https://clawhub.ai/user/rohitg00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rohitg00](https://clawhub.ai/user/rohitg00)
 
-## Use Case: <br>
-Developers, platform engineers, and SREs use this skill to plan and operate Velero backups, restores, scheduled backups, disaster recovery, and workload migration for Kubernetes clusters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Velero operations use the active Kubernetes context and may target the wrong cluster or namespace. <br>
-Mitigation: Verify the target cluster, namespace mappings, backup name, and included or excluded resources before creating backups or restores. <br>
-Risk: Restores and backup storage may include Kubernetes Secrets or other credentials. <br>
-Mitigation: Confirm whether Secrets should be restored and protect access to backup storage. <br>
-Risk: Backup schedules can create recurring changes with storage and retention impact. <br>
-Mitigation: Review schedule timing, TTL, and namespace scope before applying schedule manifests. <br>
+## Use Case:
 
+Developers and Kubernetes operators use this skill to create, inspect, schedule, and restore Velero backups for application recovery, disaster recovery, and workload migration between clusters.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review Kubernetes cluster context, namespace mappings, backup names, included resources, and restore behavior before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Backup and restore actions can affect the wrong cluster or namespaces, or write to an unsuitable destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target cluster, namespaces, and backup destination before running operations.
+
+Risk: Backups may contain credentials and application data and may be exposed through storage permissions.
+
+Mitigation: Protect the backup storage and verify encryption settings and storage permissions.
+
+Risk: A restore or recurring schedule may cause unintended changes to production workloads.
+
+Mitigation: Test restores outside production and review scheduled backups before creating them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/rohitg00/skills/k8s-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with tool-call examples, shell commands, and YAML manifests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operational examples for Velero backup, restore, and schedule workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Drive Axle guides Chinese-language users through a drive-axle CAD workflow that collects design parameters, calls jixietools.com APIs, creates a guest production sheet, and monitors drawing generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive Axle guides users through generating drive-axle CAD drawings with the JXT/JixieTools production-sheet workflow.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-Mechanical design users and agents use this skill to collect drive-axle configuration parameters, request remote CAD calculations, review returned values, and create a guest-access production sheet for generated drawings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drive-axle design parameters are sent to jixietools.com and results are exposed through a shareable guest progress/result link. <br>
-Mitigation: Before creating a production sheet, confirm the user is comfortable with the remote record and unauthenticated guest URL. <br>
+## Use Case:
 
+External users and developers use this skill to collect drive-axle design parameters, submit them to the JXT/JixieTools API, review calculated values, create a guest production sheet, and monitor CAD drawing generation.
 
-## Reference(s): <br>
-- [ClawHub Drive Axle Skill Page](https://clawhub.ai/liv09370/drive-axle) <br>
-- [JixieTools API Base](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls] <br>
-**Output Format:** [Markdown with Chinese-language prompts, tables, inline shell commands, and API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a guest production-sheet URL and status updates when the remote service returns them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Drive-axle design parameters are sent to jixietools.com for calculation and drawing generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sharing those parameters with the external service, and avoid submitting confidential specifications without authorization.
+
+Risk: The skill includes shell command templates that can incorporate user-provided product IDs, parameter names, and values.
+
+Mitigation: Build HTTP requests with structured JSON serialization, validate product IDs and parameter names, and avoid direct shell-string substitution.
+
+Risk: Generated filename, guest_code, and production-sheet URLs behave like sensitive sharing links.
+
+Mitigation: Treat these values as sensitive, share them only with intended recipients, and avoid exposing them in logs or public messages.
+
+## Reference(s):
+
+- [Drive Axle Skill on ClawHub](https://clawhub.ai/liv09370/skills/drive-axle)
+- [JixieTools API Base](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls]
+
+**Output Format:** [Markdown conversation with tables, JSON examples, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language interaction flow; may produce unauthenticated production-sheet links and output file lists from the external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

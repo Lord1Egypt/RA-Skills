@@ -1,47 +1,57 @@
-## Description: <br>
-AI Product Manager daily intelligence digest that fetches news from 16+ curated RSS sources, translates results to Chinese, deduplicates articles, filters by date, and requires no API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI DeepNews creates a daily AI product-management intelligence digest by fetching curated public AI RSS feeds, filtering and deduplicating recent items, translating content to Chinese, and outputting a Markdown report.
 
-## Publisher: <br>
-[Janettbella69](https://clawhub.ai/user/Janettbella69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[janettbella69](https://clawhub.ai/user/janettbella69)
 
-## Use Case: <br>
-AI product managers, technical teams, and individual practitioners use this skill to collect recent AI news from media, lab blogs, research feeds, developer communities, and podcasts, then produce a Chinese Markdown digest for daily or weekly intelligence workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts multiple public RSS sources and Google Translate, so fetched article content and summaries leave the local environment during normal use. <br>
-Mitigation: Run it only in environments where outbound requests to the listed sources and translation service are acceptable. <br>
-Risk: Generated article text and links may contain misleading, stale, or untrusted news content. <br>
-Mitigation: Review digest entries and source links before using them in agent workflows, reports, or automated downstream actions. <br>
-Risk: The skill writes a local Markdown digest and seen-article cache. <br>
-Mitigation: Review local file retention expectations and clear latest_digest.md or seen_articles.json when cached news history should not persist. <br>
+## Use Case:
 
+AI product managers, technical teams, and individual practitioners use this skill to collect recent AI news from curated public feeds and generate Chinese Markdown digest material for daily briefings, weekly reports, or personal tracking.
 
-## Reference(s): <br>
-- [AI DeepNews ClawHub listing](https://clawhub.ai/Janettbella69/ai-deepnews) <br>
-- [TechCrunch AI RSS](https://techcrunch.com/category/artificial-intelligence/feed/) <br>
-- [OpenAI Blog RSS](https://openai.com/blog/rss.xml) <br>
-- [Google AI Blog RSS](https://blog.google/technology/ai/rss/) <br>
-- [arXiv cs.AI RSS](https://rss.arxiv.org/rss/cs.AI) <br>
-- [Hugging Face Blog RSS](https://huggingface.co/blog/feed.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown digest printed to stdout and written to latest_digest.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches up to 30 recent articles, limits each feed to 5 articles, filters articles older than 3 days, and stores a local seen_articles.json cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill contacts public RSS feeds and Google Translate, so article text, summaries, links, and translated output may contain untrusted external content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated text and links as untrusted, review links before opening them, and avoid feeding the digest directly into privileged automated workflows.
+
+Risk: Repeated or automated use depends on third-party Python packages and external network services.
+
+Mitigation: Run the skill in an isolated virtual environment, pin dependencies before scheduled use, and monitor failures from feed or translation services.
+
+## Reference(s):
+
+- [AI DeepNews ClawHub skill page](https://clawhub.ai/janettbella69/skills/ai-deepnews)
+- [janettbella69 ClawHub publisher profile](https://clawhub.ai/user/janettbella69)
+- [OpenAI Blog RSS feed](https://openai.com/blog/rss.xml)
+- [Hugging Face Blog RSS feed](https://huggingface.co/blog/feed.xml)
+- [arXiv cs.AI RSS feed](https://rss.arxiv.org/rss/cs.AI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest printed to stdout and written to a local latest_digest.md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The digest groups recent items by source, includes translated Chinese titles and summaries when translation succeeds, and preserves original article links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

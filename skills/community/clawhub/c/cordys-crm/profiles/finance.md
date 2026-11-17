@@ -21,25 +21,75 @@
 | 本月合同统计 | `crm page contract '{"combineSearch":{"conditions":[{"operator":"DYNAMICS","name":"signTime","value":"MONTH","type":"TIME_RANGE_PICKER"}]}}'` |
 | 发票列表 | `crm page invoice` |
 | 工商抬头 | `crm page contract/business-title` |
+| 新增/修改回款计划 | `crm form contract/payment-plan` → `crm add/update contract/payment-plan <JSON>` |
+| 新增/修改回款记录 | `crm form contract/payment-record` → `crm add/update contract/payment-record <JSON>` |
+| 新增/修改发票记录 | `crm form invoice` → `crm add/update invoice <JSON>` |
 | 合同金额统计 | `crm search contract '{"combineSearch":{"conditions":[{"operator":"DYNAMICS","name":"signTime","value":"MONTH","type":"TIME_RANGE_PICKER"}]}}'` + 遍历分页求和 |
 | 未来7天到期回款 | `crm page contract/payment-plan '{"combineSearch":{"conditions":[{"value":[now,now+7d],"operator":"BETWEEN","name":"planPayTime","type":"DATE_TIME"}]}}'` |
 | 逾期回款 | `crm page contract/payment-plan` + 筛选到期日已过+未回款 |
 
 ## L2C 典型工作流
 
-> 详细流程见 `core/workflow-engine.md` §3
-
 ### 日常
-1. **回款日报**："今天回款情况" → 今日回款到账 + 今日到期计划 + 逾期汇总
-2. **审批处理**："批一下" → 合同/发票待审批列表
+
+#### 回款日报（"今天回款情况"）
+```
+执行流程：
+  1. cordys.sh crm page contract/payment-record '{
+       "combineSearch":{"conditions":[
+         {"value":"TODAY","operator":"DYNAMICS","name":"paymentTime","type":"TIME_RANGE_PICKER"}
+       ]}
+     }'
+     → 今日回款记录
+  2. 今日到期回款计划
+  3. 逾期回款汇总
+输出：今日回款 + 到期提醒 + 逾期汇总
+```
 
 ### 周常
-3. **应收全景**："欠款情况" → 总应收/已逾期/即将到期/正常 分层展示
-4. **开票检查**："开票情况" → 已签约未开票合同列表
+
+#### 应收账款全景（"欠款情况"）
+```
+执行流程：
+  1. cordys.sh crm page contract/payment-plan → 全部回款计划
+  2. 筛选状态为"未回款"或"部分回款"
+  3. 按到期日排序，逾期优先
+  4. 汇总：总应收、已逾期、即将到期（7天内）、正常
+输出：AR 全景 + 逾期列表 + 催收优先级
+```
+
+#### 开票检查（"开票情况"）
+```
+执行流程：
+  1. cordys.sh crm page invoice
+  2. 筛选已签约未开票的合同
+  3. 汇总开票缺口金额
+输出：已开票列表 + 未开票合同 + 缺口汇总
+```
 
 ### 月常
-5. **月度财报**："本月财报" → 签约/回款/开票汇总 + 环比
-6. **合同→现金链**："某合同回款进度" → 合同→计划→实际回款→发票 四维对照
+
+#### 合同→现金全链路（"合同回款进度"）
+```
+执行流程（对指定合同）：
+  1. cordys.sh crm get contract {id} → 合同详情
+  2. cordys.sh crm page contract/payment-plan → 回款计划
+  3. cordys.sh crm page contract/payment-record → 实际回款
+  4. cordys.sh crm page invoice → 开票记录
+  5. 对比：计划金额 vs 实际回款 vs 开票金额
+输出：合同→现金链路图 + 缺口分析
+```
+
+#### 月度财报数据
+```
+执行流程：
+  1. 本月签约合同数 + 总金额
+  2. 本月回款总额
+  3. 本月开票总额
+  4. 应收账款余额
+  5. 环比数据（本月 vs 上月）
+输出：月度财报摘要
+```
 
 ## KPI 基准线
 | 指标 | 正常 | 警戒 | 严重 |
@@ -66,6 +116,7 @@
 |------|--------|
 | 查看所有合同和回款数据 | 修改线索/商机数据 |
 | 查看所有发票和开票状态 | 审批非财务类审批（如报价审批） |
+| 创建、修改回款计划、回款记录和发票记录 | 批量编辑回款、发票或工商抬头 |
 | 审批财务相关审批（金额、付款） | 查看销售跟进记录和客户沟通内容 |
 | 查看工商抬头 | 创建/修改合同条款 |
 

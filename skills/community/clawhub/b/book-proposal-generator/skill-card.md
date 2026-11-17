@@ -1,44 +1,52 @@
-## Description: <br>
-Generates a professional nonfiction book proposal in four sections: hook, market analysis, chapter outline, and marketing plan with an agent-ready query letter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a professional nonfiction book proposal in four modular sections: hook and overview, market analysis, chapter outline, and author platform with pitch materials.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gitflopez](https://clawhub.ai/user/gitflopez)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External authors, consultants, coaches, executives, journalists, and writing professionals use this skill to draft nonfiction book proposal sections and pitch materials for agent or publisher review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated market-size numbers, Amazon ranks, comparable-title details, platform statistics, and agency expectations may be inaccurate or become outdated.
+
+Mitigation: Review and verify all factual claims, rankings, dates, platform numbers, and market data before using the proposal professionally.
+
+Risk: The workflow asks users to provide author background, platform metrics, client context, and other potentially sensitive business or personal information.
+
+Mitigation: Avoid entering private client, business, or personal information unless the user is comfortable using it in the proposal process.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Nonfiction authors, thought leaders, coaches, consultants, executives, and journalists use this skill to draft the core sections of a book proposal for literary agent or publisher submissions. It guides users through proposal positioning, comparable-title analysis, chapter structure, author platform, marketing plans, and query materials. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposal content may include inaccurate market claims, comparable-title details, rankings, or publisher positioning. <br>
-Mitigation: Fact-check market data, comparable titles, platform metrics, and publishing claims before submitting materials to agents or publishers. <br>
-Risk: Users may enter confidential book ideas, client names, unpublished business information, or private platform metrics. <br>
-Mitigation: Avoid providing sensitive or private information unless comfortable sharing it with the AI service or any optional done-for-you provider. <br>
-Risk: The artifact includes optional paid and done-for-you services outside the prompt pack. <br>
-Mitigation: Review pricing, scope, turnaround, and provider terms before purchasing optional services. <br>
+**Output Format:** [Markdown proposal sections and prompt-guided drafting instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Book Proposal Generator on ClawHub](https://clawhub.ai/gitflopez/book-proposal-generator) <br>
-- [README](artifact/README.md) <br>
-- [Example proposal](artifact/example/example-proposal.md) <br>
+**Other Properties Related to Output:** [Produces modular proposal content including title options, hook, overview, market analysis, chapter outline, author bios, marketing plan, query letter, and publisher pitch email.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal sections and prompt-generated publishing materials] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Four modular prompt outputs; no executable output.] <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

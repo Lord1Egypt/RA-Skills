@@ -1,44 +1,54 @@
-## Description: <br>
-Provides Chinese stock K-line data retrieval, KDJ, MACD, BOLL, and MA technical indicators, capital-flow rankings, and summarized buy/sell signal analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides stock K-line data retrieval, KDJ, MACD, BOLL, and moving-average technical indicators, capital-flow rankings, and concise buy, hold, or watch-style analysis.
 
-## Publisher: <br>
-[zaferliu](https://clawhub.ai/user/zaferliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaferliu](https://clawhub.ai/user/zaferliu)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve Eastmoney market data, compute common technical indicators, inspect capital-flow rankings, and generate text or JSON technical-analysis reports for Chinese stock symbols. Outputs are informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependencies are declared with lower bounds rather than pinned or locked versions. <br>
-Mitigation: Install in an isolated environment, pin or lock dependency versions before production use, and run dependency scanning in the target environment. <br>
-Risk: Market data and technical indicators can be delayed, incomplete, or unavailable from the upstream data service. <br>
-Mitigation: Validate important outputs against a trusted market-data source before relying on them for decisions. <br>
-Risk: Technical-analysis reports and buy/sell signal summaries may be mistaken for financial advice. <br>
-Mitigation: Present outputs as informational analysis only and require human financial review before any trading or investment action. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch public market data, calculate common technical indicators, and generate informational stock-analysis summaries. The generated analysis is intended as technical reference material and not as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zaferliu/eastmoney-tech-analysis) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reports, JSON objects, Python examples, and command-line usage snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market data, calculated indicators, trading-signal summaries, and risk notices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Dependency versions are specified as minimums, which can allow future package changes to affect behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in an isolated Python environment and pin or lock dependencies before operational use.
+
+Risk: Generated buy, hold, or watch-style analysis may be mistaken for investment advice.
+
+Mitigation: Present the output as informational technical analysis only and require human review before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaferliu/skills/eastmoney-tech-analysis)
+- [Publisher profile](https://clawhub.ai/user/zaferliu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown, Python examples, command-line output, and optional JSON analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Eastmoney market-data endpoints and Python dependencies for requests, pandas, and numpy.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

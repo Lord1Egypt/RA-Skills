@@ -1,43 +1,59 @@
-## Description: <br>
-Guides agents and developers through deploying and managing an OpenClaw-based AI agent on WSL2/Linux, including GitHub Copilot authentication, gateway startup, workspace initialization, port configuration, and common recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent deployment and management guidance for installing OpenClaw on WSL2/Linux, configuring GitHub Copilot authentication, starting the gateway, initializing workspace files, handling multi-agent ports, and troubleshooting authentication.
 
-## Publisher: <br>
-[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install OpenClaw, authenticate GitHub Copilot, configure and start a local gateway, initialize workspace documentation, and troubleshoot common deployment issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup commands download and execute third-party installation tooling. <br>
-Mitigation: Inspect the remote nvm install script and confirm the OpenClaw npm package before installing. <br>
-Risk: Gateway access can be exposed if tokens are leaked or the service is bound beyond localhost without controls. <br>
-Mitigation: Keep gateway tokens private and leave the gateway bound to localhost unless remote access is intentionally secured. <br>
-Risk: Workspace markdown files can accidentally capture secrets or sensitive personal data. <br>
-Mitigation: Avoid putting secrets or sensitive personal data in USER.md, SOUL.md, TASKS.md, COLLABORATION.md, or related workspace files. <br>
+## Use Case:
 
+Developers and operators use this skill to set up or restart OpenClaw-based agents on WSL2/Linux, configure GitHub Copilot authentication, select gateway ports and models, and initialize workspace coordination documents.
 
-## Reference(s): <br>
-- [nvm install script](https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/mirowangl-ops/xiaozhua-agent-deployment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash code blocks and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholders for local port and token values that users replace for their environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs users to run a remote installer and install OpenClaw globally without pinning every dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download and inspect installers before execution, pin npm package versions where possible, and perform installation in a controlled WSL2/Linux environment.
+
+Risk: The skill involves Copilot authentication tokens and gateway configuration that could expose credentials if copied into logs, screenshots, or repositories.
+
+Mitigation: Do not share Copilot tokens or gateway details, and keep ~/.openclaw/openclaw.json out of screenshots, logs, and source control.
+
+Risk: Port and gateway configuration mistakes can interrupt existing agents or expose unintended local services.
+
+Mitigation: Use a unique gateway port for each agent and review the gateway configuration after startup because the skill notes that configuration can be overwritten.
+
+## Reference(s):
+
+- [NVM install script referenced by the skill](https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh)
+- [ClawHub skill page](https://clawhub.ai/mirowangl-ops/skills/xiaozhua-agent-deployment)
+- [Publisher profile](https://clawhub.ai/user/mirowangl-ops)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes placeholders for local ports, tokens, model names, and workspace document names.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Mp Tdd guides agents through test-driven development using a red-green-refactor loop with one behavior-focused test and implementation slice at a time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through test-driven development using a one-test-at-a-time red-green-refactor loop focused on observable behavior.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and coding agents use this skill to plan and execute TDD workflows around user-facing behavior. It helps them confirm interfaces and priority behaviors, write one failing test at a time, implement the minimum passing code, and refactor only after tests are green. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can add planning and user-confirmation overhead before implementation begins. <br>
-Mitigation: Use it when TDD is requested or appropriate, and keep confirmations scoped to public interfaces and the highest-priority behaviors. <br>
-Risk: The skill references supporting markdown files that are not included in the artifact, which may reduce detail for interface design, module depth, and refactoring guidance. <br>
-Mitigation: Treat missing referenced files as unavailable and rely on project conventions, local documentation, and user confirmation before applying those practices. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when adding or changing code so tests are planned around user-facing behavior and implementation proceeds in vertical TDD slices.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with checklists and code-block examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; does not run code or request sensitive access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill may activate for general unit or integration test requests and add planning confirmation steps before code changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a strict TDD loop is desired, and confirm the target interface and priority behaviors before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/mp-tdd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with checklists and inline code or shell command examples when applying the workflow.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable artifact output; the skill shapes agent planning, testing, implementation, and refactoring responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

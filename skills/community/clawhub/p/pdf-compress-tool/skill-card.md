@@ -1,42 +1,56 @@
-## Description: <br>
-Compress PDF files to a target size or by percentage, using a Ghostscript + pikepdf + QPDF multi-stage pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress PDF files to a target size or by percentage, using a Ghostscript, pikepdf, and QPDF multi-stage pipeline.
 
-## Publisher: <br>
-[johnsonklose](https://clawhub.ai/user/johnsonklose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsonklose](https://clawhub.ai/user/johnsonklose)
 
-## Use Case: <br>
-Developers and document workflows use this skill to reduce PDF file size for sharing, upload limits, or storage while choosing a target size, reduction percentage, output path, and quality level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install the pikepdf Python package during normal use. <br>
-Mitigation: Preinstall dependencies in a managed virtual environment before running the skill. <br>
-Risk: The skill writes compressed PDFs and can process whole directories. <br>
-Mitigation: Use explicit output paths and keep backups before compressing important files or batches. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to reduce PDF file sizes for sharing, storage, or upload limits while selecting either a target size or percentage reduction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsonklose/pdf-compress-tool) <br>
-- [Ghostscript downloads](https://ghostscript.com/releases/gsdnld.html) <br>
-- [QPDF releases](https://github.com/qpdf/qpdf/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands] <br>
-**Output Format:** [Compressed PDF files with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output PDFs for single-file or batch compression; compression results depend on installed PDF tools and selected quality settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill automatically installs an unpinned Python package during normal use without a consent gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated virtual environment or container, preinstall reviewed and pinned dependencies, and avoid automatic pip installation on systems with sensitive files or credentials.
+
+Risk: PDF compression can degrade document image quality when aggressive quality settings are used.
+
+Mitigation: Keep the default or high quality floor for print-sensitive documents and review compressed outputs before replacing originals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsonklose/skills/pdf-compress-tool)
+- [Publisher profile](https://clawhub.ai/user/johnsonklose)
+- [Ghostscript downloads](https://ghostscript.com/releases/gsdnld.html)
+- [QPDF releases](https://github.com/qpdf/qpdf/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Compressed PDF files with terminal status text and Markdown-style usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file and batch PDF compression with target-size, percentage, and quality-floor options.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

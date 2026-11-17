@@ -1,45 +1,60 @@
-## Description: <br>
-Blockchain analytics and DeFi intelligence via Einstein's x402 micropayment services for on-chain market analysis, token research, whale tracking, smart money tracking, rug pull scanning, launchpad monitoring, portfolio analysis, MEV detection, cross-chain arbitrage, and Polymarket data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blockchain analytics and DeFi intelligence via Einstein's x402 micropayment services for on-chain market analysis, token research, whale tracking, smart money tracking, rug pull scanning, launchpad monitoring, portfolio analysis, MEV detection, cross-chain arbitrage, and Polymarket data.
 
-## Publisher: <br>
-[ChuXo](https://clawhub.ai/user/ChuXo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chuxo](https://clawhub.ai/user/chuxo)
 
-## Use Case: <br>
-External users and developers use this skill to run paid blockchain analytics queries through Einstein x402 services, including market, wallet, token security, launchpad, DeFi, NFT, and prediction-market analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a crypto private key and can sign real USDC payments. <br>
-Mitigation: Use a dedicated, low-balance Base USDC wallet and prefer the EINSTEIN_X402_PRIVATE_KEY environment variable over config.json. <br>
-Risk: Automated confirmation can allow paid queries without an interactive payment review. <br>
-Mitigation: Avoid --yes, EINSTEIN_AUTO_CONFIRM, or global auto-confirm in agent workflows unless spending limits and query scope are controlled. <br>
-Risk: The free epstein-search command sends search terms to DugganUSA rather than the Einstein x402 service. <br>
-Mitigation: Do not submit sensitive search terms to epstein-search unless that third-party routing is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ChuXo/einstein) <br>
-- [Einstein Homepage](https://emc2ai.io) <br>
-- [Einstein x402 Services Catalog](references/services-catalog.md) <br>
-- [Einstein x402 Payment Guide](references/payment-guide.md) <br>
-- [Einstein x402 Usage Examples](references/examples.md) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to run paid and free blockchain intelligence queries across supported chains, including market movement, token risk, wallet, launchpad, MEV, arbitrage, NFT, and prediction-market analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and service-response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid queries may return structured data or AI-generated analysis; use requires Node.js, curl, and an Einstein x402 private key for USDC payments on Base.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles wallet payments and private keys, and the authoritative security verdict requires careful human review before installation.
+
+Mitigation: Review before installing, use only a dedicated low-balance wallet, and prefer EINSTEIN_X402_PRIVATE_KEY over saved config files.
+
+Risk: A configured endpoint controls the payment challenge that the wallet signs.
+
+Mitigation: Use only a trusted endpoint, keep payment confirmation enabled, verify the displayed cost for each paid query, and avoid autoConfirm for routine use.
+
+Risk: Command-line private-key entry and saved config can expose wallet credentials through local process, shell, or file handling.
+
+Mitigation: Avoid --key and --save-config unless necessary; if config.json is used, restrict file permissions and keep it out of version control.
+
+## Reference(s):
+
+- [Einstein homepage](https://emc2ai.io)
+- [ClawHub skill page](https://clawhub.ai/chuxo/skills/einstein)
+- [Einstein x402 Services Catalog](artifact/references/services-catalog.md)
+- [Einstein x402 Payment Guide](artifact/references/payment-guide.md)
+- [Einstein x402 Usage Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid queries can return raw structured data or AI-analyzed blockchain intelligence; free service commands may return JSON search results.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and skill frontmatter; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-北京天气早安助手：获取今日北京天气并给出穿衣和饮食建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+北京天气早安助手：获取今日北京天气并给出穿衣和饮食建议。
 
-## Publisher: <br>
-[Tieemo](https://clawhub.ai/user/Tieemo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tieemo](https://clawhub.ai/user/tieemo)
 
-## Use Case: <br>
-External users asking in Chinese for a Beijing morning briefing use this skill to get current weather, air-quality context when available, clothing suggestions, and food or drink guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Beijing, China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on generic morning greetings when the user did not want a Beijing weather briefing. <br>
-Mitigation: Use the skill when the user explicitly asks for Beijing weather, clothing, diet, or weather-based morning advice; narrow trigger wording if generic greetings should remain conversational. <br>
-Risk: Weather, wind, precipitation, and air-quality data can be stale, unavailable, or inconsistent across sources. <br>
-Mitigation: Prefer live weather tooling, use cautious wording such as approximate ranges, and clearly label fallback advice as not based on the day's exact weather. <br>
+## Use Case:
 
+External users can use this Chinese-language assistant to get a concise Beijing morning briefing with current weather, clothing suggestions, and food or drink advice for commuting, school, exercise, or daily planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tieemo/beijing-morning-weather) <br>
-- [examples.md](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown briefing with weather, clothing, and diet sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current weather data when available and falls back to clearly labeled general seasonal advice when tools or network access fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate from generic morning greetings even when the user did not intend to request a Beijing weather briefing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Installers should narrow the trigger or require an explicit Beijing weather, clothing, or diet intent if generic greetings should not launch weather lookups.
+
+Risk: Weather and air quality data can be unavailable, delayed, or inconsistent across public sources.
+
+Mitigation: The response should state uncertainty, avoid claiming sensor-grade real-time data, and provide only general seasonal guidance when current data cannot be fetched.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tieemo/skills/beijing-morning-weather)
+- [Artifact examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Chinese Markdown weather briefing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes weather summary, clothing recommendations, diet suggestions, and uncertainty language when exact current weather is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

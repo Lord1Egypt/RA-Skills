@@ -1,44 +1,63 @@
-## Description: <br>
-Website Pickpocket helps agents clone website pages into offline static copies or framework projects with localized resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Website Pickpocket helps agents guide authorized website copying into offline static sites or React, Vue, Angular, Svelte, or Tailwind project outputs.
 
-## Publisher: <br>
-[zhenyangze](https://clawhub.ai/user/zhenyangze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenyangze](https://clawhub.ai/user/zhenyangze)
 
-## Use Case: <br>
-Developers and engineers use this skill to capture authorized website pages, localize their resources, and produce offline HTML or framework-specific project outputs for backup, migration, or review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support copying websites without adequate authorization. <br>
-Mitigation: Use it only on sites the user owns or is explicitly allowed to copy, and avoid anti-scraping workarounds unless authorized. <br>
-Risk: Authenticated crawling can expose cookies, localStorage, or other session material. <br>
-Mitigation: Treat cookies and localStorage values as credentials and avoid sharing generated outputs that contain sensitive session-derived content. <br>
-Risk: Broad crawl settings can capture more pages or resources than intended. <br>
-Mitigation: Keep crawl depth, page limits, and concurrency conservative, especially for unfamiliar sites. <br>
-Risk: Generated JavaScript and downloaded resources may contain unsafe or unsuitable content. <br>
-Mitigation: Review generated JavaScript and downloaded assets before publishing, running, or redistributing the output. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan authorized website capture, offline browsing, backup migration, and conversion of crawled pages into common frontend project structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhenyangze/website-pickpocket-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown with inline shell commands, YAML configuration examples, and generated project file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide crawling, resource localization, and framework-specific project generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can be used to copy websites without proper authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for sites the user owns or has explicit permission to copy, and check site terms before crawling or republishing content.
+
+Risk: Session cookies or localStorage examples can place active credentials into plaintext configuration.
+
+Mitigation: Avoid real session tokens in configuration; if credentials are required, store them as protected secrets, limit their scope, and rotate them after use.
+
+Risk: Crawler settings can collect more pages or resources than intended.
+
+Mitigation: Keep depth, page limit, concurrency, and resource-size limits conservative, and write output to a dedicated directory.
+
+Risk: Anti-crawling bypass advice can encourage inappropriate access attempts.
+
+Mitigation: Do not bypass access controls or site protections; stop when authorization, robots guidance, or rate limits are unclear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenyangze/skills/website-pickpocket-skill)
+- [Server-Resolved GitHub Source](https://github.com/zhenyangze/website-pickpocket-skill)
+- [Publisher Profile](https://clawhub.ai/user/zhenyangze)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, and generated project/file structure descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose crawler limits, framework selections, output directories, and resource-handling options.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

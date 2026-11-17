@@ -1,6 +1,6 @@
 """Migration 024: Displace the hardcoded opportunity.stage CHECK + add pipeline_stage_id (Wave 1B F3).
 
-Per ADR-0023 (planning/decisions/ADR-0023-foundation-fk-columns-for-addon-owned-entities.md),
+Per ADR-0023 (foundation FK columns for addon-owned entities),
 foundation `opportunity` gains a nullable FK column `pipeline_stage_id` pointing at the
 addon-owned `crm_pipeline_stage` table (owning addon: erpclaw-growth). The hardcoded
 7-value `stage` CHECK is dropped so customizable pipelines can introduce novel stage
@@ -47,6 +47,23 @@ import argparse
 import os
 import sqlite3
 import uuid
+
+# M102: rebuilds a table and copies every row verbatim; backfills a column it
+# adds in the same run; seeds the shipped pipeline catalog rows (see the
+# exemptions below) — nothing a row held before this run is different
+# afterwards.
+MIGRATION_DATA_CLASS = "none"
+# Statements the classifier flags that this file's own shape explains.
+# Keyed per statement, never per file, so anything it does not name
+# still fails the gate.
+MIGRATION_DATA_EXEMPTIONS = {
+    ("INSERT", "crm_pipeline"):
+        "the shipped default 'Standard Sales' pipeline — a fixed catalog row, "
+        "identical on every install, in a table without the _registry suffix "
+        "the classifier keys on",
+    ("INSERT", "crm_pipeline_stage"):
+        "its seven shipped stages, same reason",
+}
 
 DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 

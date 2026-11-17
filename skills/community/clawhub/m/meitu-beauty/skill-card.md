@@ -1,41 +1,56 @@
-## Description: <br>
-Meitu Beauty enhances single-person portrait photos with AI beautification such as skin smoothing, whitening, and facial refinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meitu Beauty helps an agent run Meitu's CLI to apply AI portrait beautification, including skin smoothing, whitening, and facial refinement, for single-person photos.
 
-## Publisher: <br>
-[meitu](https://clawhub.ai/user/meitu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[meitu](https://clawhub.ai/user/meitu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to validate a single-person portrait photo, choose a natural or enhanced beautification strength, run the Meitu CLI, and deliver the processed image file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Portrait photos may be sent to Meitu for beautification.
+
+Mitigation: Use the skill only when the user is comfortable sending the selected portrait photo to Meitu.
+
+Risk: The skill requires Meitu API credentials and may read ~/.meitu/credentials.json.
+
+Mitigation: Prefer environment variables or managed secrets, and grant credential-file access only when necessary.
+
+Risk: CLI install and execution steps can be unsafe when filenames, paths, or URLs are untrusted.
+
+Mitigation: Pin and verify the Meitu CLI version, and pass user-provided paths or URLs as safely escaped or structured arguments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent operators use this skill to validate a single-person portrait, choose a natural or enhanced beautification strength, run the Meitu CLI, and deliver one processed image. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Meitu API credentials and sends portrait photos through Meitu tooling for processing. <br>
-Mitigation: Use only when external processing by Meitu and account usage are acceptable; avoid sensitive facial images unless that processing is approved. <br>
-Risk: The skill is limited to single-person portrait photos and may fail or produce poor results for images without a clear single face. <br>
-Mitigation: Perform the documented preflight checks for no face, multiple people, small faces, or blurry faces before execution, and stop or ask for a better image when checks fail. <br>
+**Output Format:** [Markdown guidance with shell commands and a generated image file path or image URL]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meitu/meitu-beauty) <br>
-- [Publisher profile](https://clawhub.ai/user/meitu) <br>
+**Other Properties Related to Output:** [Produces one beautified portrait image, preserving the original image format when supported.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one beautified single-person portrait image, usually preserving the source image format.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

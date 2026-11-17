@@ -1,40 +1,49 @@
-## Description: <br>
-Checks SSL/TLS certificates for hostnames, including expiry dates, issuer, SANs, protocol version, and cipher suite, and alerts on expired or soon-to-expire certificates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check SSL/TLS certificates for hostnames, including expiry dates, issuer, subject alternative names, protocol version, and cipher suite.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers, operators, and security-minded users use this skill to inspect HTTPS certificate health for hostnames they provide, including expiry status, issuer, subject alternative names, TLS protocol, and cipher details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes user-directed network connections to supplied hostnames and ports. <br>
-Mitigation: Run it only against systems you own or have permission to test, and keep host and port lists narrowly scoped. <br>
-Risk: Certificate status output can influence monitoring or operational decisions. <br>
-Mitigation: Confirm unexpected expiry, issuer, or connection-failure results before taking disruptive operational action. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect SSL/TLS certificate health for public or internal hostnames, including expiry monitoring and TLS detail checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rogue-agent1/ssl-certcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text certificate report or JSON array, with command examples in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connects to user-specified hostnames and ports; exits nonzero when certificates are expired or within the warning threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The checker opens outbound TLS connections to user-specified hostnames and ports, including internal hostnames if provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run checks only against intended hosts and ports, and avoid submitting sensitive internal hostnames unless that network access is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/ssl-certcheck)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make outbound TLS connections to user-specified hostnames and ports when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-A skill to lookup video game information, prices, compatibility, and duration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to look up video game information, prices, compatibility, and duration.
 
-## Publisher: <br>
-[ivanheral](https://clawhub.ai/user/ivanheral) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ivanheral](https://clawhub.ai/user/ivanheral)
 
-## Use Case: <br>
-External users and developers use this skill to look up video game details, store prices, Steam Deck or Linux compatibility, player activity, news, reviews, achievements, and playtime guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Game names and Steam app IDs queried through the skill are sent to public gaming services. <br>
-Mitigation: Use public game titles or app IDs, and avoid submitting sensitive internal project names or unreleased game information. <br>
-Risk: Recent API responses may be cached locally for about 24 hours. <br>
-Mitigation: Clear the skill cache when cached lookup results should not persist on the local machine. <br>
+## Use Case:
 
+External users and developers use this skill to query game details, compare prices, check Steam Deck and Linux compatibility, view playtime estimates, and retrieve Steam-related game data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivanheral/videogames) <br>
-- [Steam](https://store.steampowered.com/) <br>
-- [CheapShark](https://www.cheapshark.com/) <br>
-- [ProtonDB](https://www.protondb.com/) <br>
-- [HowLongToBeat](https://howlongtobeat.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with command examples and external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include game names, Steam app IDs, prices, compatibility summaries, news, reviews, achievements, playtime links, and locally cached API results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill contacts public game-data services and stores cached API responses locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before use and clear the local skill cache when cached game data should not persist.
+
+Risk: Installing with an @latest command can resolve to a newer release than the reviewed version.
+
+Mitigation: Prefer a pinned or trusted ClawHub installer command for environments that require reproducible skill versions.
+
+Risk: Default language, currency, and region settings may not match the user's locale.
+
+Mitigation: Set STEAM_LANGUAGE, STEAM_CURRENCY, and STEAM_CC or pass the documented command-line options before running lookups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivanheral/skills/videogames)
+- [Steam](https://store.steampowered.com/)
+- [CheapShark](https://www.cheapshark.com/)
+- [ProtonDB](https://www.protondb.com/)
+- [HowLongToBeat](https://howlongtobeat.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown-oriented guidance with command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live public game-data results and links; no external Python packages are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

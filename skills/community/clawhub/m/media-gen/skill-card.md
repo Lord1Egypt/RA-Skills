@@ -1,42 +1,55 @@
-## Description: <br>
-Media Gen helps agents generate AI images or videos through AIsa for creative drafts, media assets, and quick generation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images or videos through AIsa for creative generation, asset drafts, and media workflows.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to request AIsa-backed image or video generation, create draft media assets, and run quick creative media workflows from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AISA_API_KEY authorizes AIsa-backed media-generation requests. <br>
-Mitigation: Use a scoped or limited API key where possible and avoid exposing the key in prompts, shared logs, or generated output. <br>
-Risk: Prompts and media-generation requests are sent to AIsa. <br>
-Mitigation: Install and use the skill only when the requester trusts AIsa with the submitted prompts and generation requests. <br>
-Risk: Generated media may be downloaded from service-returned URLs and saved locally. <br>
-Mitigation: Choose output paths deliberately and review saved files before reuse or redistribution. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for AIsa-backed image and video generation workflows, including prompt-based image drafts, short video tasks, task polling, and optional media downloads.
 
-## Reference(s): <br>
-- [ClawHub Media Gen listing](https://clawhub.ai/bibaofeng/media-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell command examples, plus JSON command responses and generated media files from the bundled client.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY. Generated media may be saved to user-selected local output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Prompts and AISA_API_KEY are used with the AIsa service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and AIsa service are trusted; prefer the AISA_API_KEY environment variable over passing secrets on the command line.
+
+Risk: Returned media URLs can be fetched and written to local output paths without host or size checks.
+
+Mitigation: Run the script from a limited workspace, avoid sensitive --out paths, and review download behavior before enabling automatic downloads.
+
+## Reference(s):
+
+- [Media Gen ClawHub page](https://clawhub.ai/bibaofeng/skills/media-gen)
+- [AIsa API base](https://api.aisa.one/v1)
+- [AIsa video API base](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; bundled CLI emits JSON status and can write image or video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; generated media may be returned as base64 data or downloaded from service-provided URLs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

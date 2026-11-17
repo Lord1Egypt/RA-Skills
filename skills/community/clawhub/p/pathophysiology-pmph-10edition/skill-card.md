@@ -1,45 +1,59 @@
-## Description: <br>
-Pathophysiology-PMPH-10edition provides 145 pathophysiology skills based on PMPH Pathophysiology 10th Edition, covering acid-base disorders, shock and MODS, electrolyte abnormalities, inflammation and immunity, cell signaling, tumor mechanisms, and related medical education topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A medical education skill pack with 145 pathophysiology skills based on the 10th edition of Pathophysiology from People's Medical Publishing House, covering mechanisms such as acid-base disorders, shock, inflammation, cell signaling, tumorigenesis, and organ dysfunction.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Medical students, pathophysiology educators, clinicians, and basic medical researchers use this skill collection for education, curriculum support, and clinician-reviewed reference on disease mechanisms, diagnostic reasoning, and treatment principles. It should not be used as an independent basis for patient care decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical guidance may be mistaken for independent clinical decision support, including high-risk procedure or treatment decisions. <br>
-Mitigation: Use only as educational or clinician-reviewed reference material; verify against current official guidelines, local institutional protocols, and qualified medical oversight. <br>
-Risk: Some included skills cover emergency, invasive, or life-support-related topics where incorrect application could cause serious harm. <br>
-Mitigation: Do not use for self-treatment, emergency decisions, brain-death determination, withdrawal of life support, drug administration, dialysis decisions, vasoactive therapy, or invasive support decisions without qualified medical oversight. <br>
+## Use Case:
 
+Medical students, pathophysiology educators, clinicians, and biomedical researchers use this skill pack as educational or clinician-reviewed reference material for studying disease mechanisms, diagnostic reasoning, and intervention principles. It should not be used as standalone clinical decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/pathophysiology-pmph-10edition) <br>
-- [Artifact README](README_EN.md) <br>
-- [Skill matrix](index.md) <br>
-- [People's Medical Publishing House](https://www.ipmph.com) <br>
-- [PMPH digital resources](https://zengzhi.ipmph.com) <br>
-- [PMPH medical education](https://medu.pmph.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown educational analysis and structured clinical-reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Medical education content that requires review against current guidelines, local protocols, and qualified clinical oversight before clinical use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: Medical education content may be mistaken for standalone clinical decision support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as study material or clinician-reviewed reference material, and verify any clinical recommendation against current official guidelines, local protocols, and qualified medical professionals.
+
+Risk: Some included skills discuss high-stakes treatment, emergency care, ICU care, brain-death determination, or withdrawal of life support.
+
+Mitigation: Do not rely on this skill pack alone for diagnosis, treatment, medication selection, invasive procedures, emergency care, end-of-life decisions, or other high-stakes medical decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/pathophysiology-pmph-10edition)
+- [Skill registry](artifact/SKILL.md)
+- [English README](artifact/README_EN.md)
+- [Skill index](artifact/index.md)
+- [Oxygen toxicity mechanisms and formulas](artifact/oxygen-toxicity-riREDACTED-SECRET/references/oxygen-toxicity-mechanisms-and-formulas.md)
+- [Heart failure classification details](artifact/heart-failure-classification-by-ejection-fraction/references/classification-details.md)
+- [Blood buffer system details](artifact/blood-buffer-system-acid-base-balance/references/buffer-system-details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown educational explanations, structured analyses, and reference-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only content; no executable scripts or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

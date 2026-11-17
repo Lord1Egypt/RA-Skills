@@ -1,45 +1,58 @@
-## Description: <br>
-Full memory stack for OpenClaw on Windows. Includes LanceDB semantic memory, git-notes decision memory, and memory hygiene workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full memory stack for OpenClaw on Windows. Includes LanceDB semantic memory, git-notes decision memory, and memory hygiene workflow.
 
-## Publisher: <br>
-[Sea2049](https://clawhub.ai/user/Sea2049) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sea2049](https://clawhub.ai/user/sea2049)
 
-## Use Case: <br>
-Developers and engineers use this skill to add persistent memory to OpenClaw on Windows, including LanceDB-backed semantic recall, branch-aware git-notes decision memory, and maintenance guidance for memory quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and reuse user or project context silently in local memory. <br>
-Mitigation: Use it only in repositories where silent local memory is acceptable, disable or limit auto-capture when appropriate, and avoid storing secrets or regulated data. <br>
-Risk: The git-notes workflow can modify repository metadata. <br>
-Mitigation: Review git-notes commands before use and run them only in repositories where git metadata changes are acceptable. <br>
-Risk: The memory hygiene workflow includes wipe commands that can delete local memory data. <br>
-Mitigation: Back up important memory data and confirm storage paths before running cleanup or wipe commands. <br>
-Risk: The LanceDB backend depends on third-party Python packages. <br>
-Mitigation: Pin and audit dependencies before installing them in production or sensitive environments. <br>
+## Use Case:
 
+Developers and engineers use this bundle to add local memory to OpenClaw on Windows, including semantic recall, git-notes decision history, and memory hygiene guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Sea2049/vector-memory-windows) <br>
-- [Memory Hygiene reference](https://github.com/xdylanbaker/memory-hygiene) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python APIs, JSON examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or modifies local LanceDB storage and git notes when an agent follows the workflows; destructive cleanup commands require review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: Persistent local memory may store and reuse sensitive user or project context without explicit user prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the bundle only when persistent local memory is intended; remove or override silent-operation rules and avoid storing secrets, credential locations, account inventories, or personal contacts.
+
+Risk: Maintenance guidance includes destructive memory wipe commands and a monthly wipe cron example.
+
+Mitigation: Review the exact LanceDB path before running wipe commands and do not install recurring wipe automation unless backup and reseed behavior has been approved.
+
+Risk: Local memory quality and dependency behavior can drift over time.
+
+Mitigation: Use a pinned virtual environment for dependencies and review Git notes and LanceDB contents regularly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sea2049/skills/vector-memory-windows)
+- [Memory Hygiene Reference](https://github.com/xdylanbaker/memory-hygiene)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python code references, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory setup, retrieval, branch-aware persistence, and maintenance guidance for OpenClaw.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, artifact/clawhub.json, and artifact release notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

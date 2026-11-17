@@ -51,6 +51,14 @@ description: Temu 欧洲站订单管理 API，经 LinkFox 网关转发 Partner E
 | [partner-eu-catalog.md](./references/partner-eu-catalog.md) | 接口目录 + Partner URL + 脚本（随接入更新） |
 | [apis/README.md](./references/apis/README.md) | **按接口分文件**（`apis/<type-slug>.md`） |
 
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
 ## 默认参数
 
 | 字段 | 默认 | 说明 |
@@ -201,3 +209,6 @@ python scripts/eu_order_verification_upload.py '{
 
 授权说明：[references/access-token.md](./references/access-token.md)
 
+## 积分消耗规则
+
+不消耗积分。

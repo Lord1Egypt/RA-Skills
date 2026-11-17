@@ -1,46 +1,66 @@
-## Description: <br>
-Searches Google Scholar through SerpAPI, parses academic paper metadata, and can download available PDF files for literature review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Scholar API helps agents search Google Scholar through SerpAPI, extract academic paper metadata and citation details, and optionally download available PDFs.
 
-## Publisher: <br>
-[rutianze](https://clawhub.ai/user/rutianze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rutianze](https://clawhub.ai/user/rutianze)
 
-## Use Case: <br>
-External developers and research-focused agents use this skill to search Google Scholar via SerpAPI, parse paper metadata such as titles, authors, years, abstracts, and citation counts, and optionally save available PDFs for literature review tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SerpAPI keys can be exposed through examples that print, echo, hardcode, or back up credentials. <br>
-Mitigation: Use environment variables or a secret manager, avoid logging secrets, and rotate the key immediately if exposure is suspected. <br>
-Risk: Search results and downloaded PDFs are saved locally and may include copyrighted or sensitive research material. <br>
-Mitigation: Scope downloads to a chosen folder, use --no-download when only search results are needed, and review copyright and access terms before bulk downloading. <br>
-Risk: Research queries are sent to SerpAPI as a third-party service. <br>
-Mitigation: Install and use the skill only when sending those queries to SerpAPI is acceptable for the intended workflow. <br>
+## Use Case:
 
+Developers, researchers, and research assistants use this skill to perform targeted literature searches, collect paper metadata such as authors, year, citations, and snippets, and optionally save available PDFs for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rutianze/google-scholar-api) <br>
-- [API Guide](artifact/references/api_guide.md) <br>
-- [Usage Examples](artifact/references/usage_examples.md) <br>
-- [SerpAPI Google Scholar API](https://serpapi.com/google-scholar-api) <br>
-- [SerpAPI Search API](https://serpapi.com/search-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance, Python code snippets, shell commands, JSON search results, and optional downloaded PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SerpAPI key supplied through environment variables or an equivalent secret-management mechanism.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: SerpAPI keys may be exposed through plaintext configuration, logs, or backup commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or tightly scoped SerpAPI key, provide it through environment variables or a secret manager, and avoid printing, committing, or backing up the key in plaintext.
+
+Risk: PDF download behavior can retrieve files from external sources with weak safeguards.
+
+Mitigation: Prefer search-only mode by default, download only after reviewing the PDF source, and write files to a dedicated output directory.
+
+Risk: Dependencies are version-ranged rather than pinned for reproducible shared or production use.
+
+Mitigation: Pin and review dependencies before deploying the skill in shared, commercial, or production environments.
+
+Risk: Academic content access and bulk downloading may implicate publisher terms, copyright, or rate limits.
+
+Mitigation: Use modest request volumes, respect access terms and copyright, and avoid large-scale PDF downloads.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rutianze/skills/google-scholar-api)
+- [API Guide](references/api_guide.md)
+- [Usage Examples](references/usage_examples.md)
+- [SerpAPI Search API](https://serpapi.com/search-api)
+- [SerpAPI Google Scholar API](https://serpapi.com/google-scholar-api)
+- [Google Scholar Help](https://scholar.google.com/intl/en/scholar/help.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown reports with optional JSON result files, Python snippets, shell commands, and downloaded PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local PDF downloads and search_results.json in the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

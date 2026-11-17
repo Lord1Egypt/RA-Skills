@@ -1,53 +1,69 @@
-## Description: <br>
-服务行业（餐饮、电商、家政、教育等）企业投资并购孵化前的商业尽职调查工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+服务行业（餐饮、电商、家政、教育等）企业投资并购孵化前的商业尽职调查工具
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External analysts, investors, and operators use this skill to structure service-business due diligence for investment, M&A, or incubation decisions. It guides assessment of service capability, customer assets, monetization, brand, moat, maturity, standardization, AI adoption, labor efficiency, and operational risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses review of sensitive CRM, finance, employee, customer, call, chat, or video-monitoring data. <br>
-Mitigation: Use it only with authorization, apply legal and privacy review, minimize data, restrict access, and set retention limits before using real company materials. <br>
-Risk: Due-diligence conclusions can be misleading when source materials are incomplete or unverified. <br>
-Mitigation: Keep missing data marked as unavailable, avoid fabricating estimates, and require human review before making investment, M&A, or incubation decisions. <br>
+## Use Case:
 
+Investors, acquirers, incubators, and service-business operators use this skill to structure commercial due diligence for service-industry companies. It guides service capability, customer asset, monetization, brand, moat, maturity, standardization, AI adoption, labor efficiency, and compliance-risk analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-service-dd) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [服务能力评估框架](artifact/references/服务能力评估框架.md) <br>
-- [客户资产评估框架](artifact/references/客户资产评估框架.md) <br>
-- [变现模式分析框架](artifact/references/变现模式分析框架.md) <br>
-- [品牌资产评估框架](artifact/references/品牌资产评估框架.md) <br>
-- [服务护城河分析框架](artifact/references/服务护城河分析框架.md) <br>
-- [服务成熟度对标体系](artifact/references/服务成熟度对标体系.md) <br>
-- [标准化程度评估框架](artifact/references/标准化程度评估框架.md) <br>
-- [AI化程度评估框架](artifact/references/AI化程度评估框架.md) <br>
-- [人效比评估框架](artifact/references/人效比评估框架.md) <br>
-- [合规风险清单](artifact/references/合规风险清单.md) <br>
-- [行业对标案例库](artifact/references/行业对标案例库.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown due-diligence reports, scorecards, risk matrices, and action-oriented recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses structured report sections, required tables, Mermaid diagrams, and explicit handling for missing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill is intended to work with sensitive customer, CRM, financial, bank-flow, and operational records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with proper authorization, prefer aggregated or anonymized inputs, redact unnecessary personal information, and treat generated reports as confidential business documents.
+
+Risk: Due diligence conclusions can be misleading when source data is missing, unaudited, or inconsistent.
+
+Mitigation: Cross-check key claims against authorized records, mark unavailable data explicitly, and preserve follow-up verification items for human review.
+
+Risk: The artifact is a Chinese-language due-diligence template with service-industry and compliance assumptions.
+
+Mitigation: Confirm reviewers can evaluate Chinese-language outputs and adapt legal or market assumptions to the target company and jurisdiction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-service-dd)
+- [OPC platform](https://opc.cn)
+- [服务能力评估框架](references/服务能力评估框架.md)
+- [客户资产评估框架](references/客户资产评估框架.md)
+- [变现模式分析框架](references/变现模式分析框架.md)
+- [品牌资产评估框架](references/品牌资产评估框架.md)
+- [服务护城河分析框架](references/服务护城河分析框架.md)
+- [服务成熟度对标体系](references/服务成熟度对标体系.md)
+- [标准化程度评估框架](references/标准化程度评估框架.md)
+- [AI化程度评估框架](references/AI化程度评估框架.md)
+- [人效比评估框架](references/人效比评估框架.md)
+- [行业对标案例库](references/行业对标案例库.md)
+- [合规风险清单](references/合规风险清单.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with tables, Mermaid diagrams, scorecards, risk checklists, and follow-up diligence questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorized input data; missing data should be labeled rather than fabricated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

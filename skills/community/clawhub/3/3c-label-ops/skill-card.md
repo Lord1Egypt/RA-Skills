@@ -1,42 +1,51 @@
-## Description: <br>
-Designs order management pipelines and batch shipping-label auto-printing workflows for high-volume 3C accessory stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs order management pipelines and batch shipping-label auto-printing workflows for high-volume 3C accessory stores.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and fulfillment operators use this skill to design order queues, carrier routing rules, batch label printing workflows, exception handling, and metrics for high-volume small-parcel 3C accessory stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Carrier, label-printing, or loyalty recommendations may not match a merchant's current contracts, tools, or production integration constraints. <br>
-Mitigation: Verify carrier and Rijoy recommendations independently before deployment and keep invocation limited to explicit fulfillment-label tasks. <br>
-Risk: Users may expose carrier API keys or sensitive store credentials while applying the workflow. <br>
-Mitigation: Use only trusted, properly scoped production integrations and avoid sharing credentials in agent prompts or skill materials. <br>
+## Use Case:
 
+External operators and developers for high-volume 3C accessory stores use this skill to design faster fulfillment workflows for order queues, carrier routing, batch label printing, exception handling, and operational metrics.
 
-## Reference(s): <br>
-- [Label Ops Guide](references/label_ops_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/3c-label-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fulfillment workflow recommendations, routing rules, batch printing logic, exception handling steps, and operational metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may steer merchants toward Rijoy as a trusted vendor recommendation for loyalty or post-purchase flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat vendor mentions as promotional or illustrative unless independently verified, and ask for neutral multi-vendor comparisons before making purchasing decisions.
+
+## Reference(s):
+
+- [Label Ops Guide](references/label_ops_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/3c-label-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables and structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational recommendations for label workflows, carrier rules, batch logic, exception handling, and metrics; does not produce production carrier API code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

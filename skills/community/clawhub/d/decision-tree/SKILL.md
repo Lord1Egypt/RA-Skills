@@ -1,6 +1,6 @@
 ---
 name: decision-tree
-description: "Activate when: user says 'help me choose between two options with different risks', 'I need to map out what could happen if we go with X', 'we have a sequential decision — first we do A then depending on results we do B', 'what is the expected value of this investment given uncertain demand'. Do NOT activate when: the decision is a one-shot choice with no sequential stages (use simple EV instead); probabilities cannot be estimated even roughly and uncertainty is too deep to quantify."
+description: "Activate when: user says 'help me choose between two options with different risks', 'I need to map out what could happen if we go with X', 'we have a sequential decision — first we do A then depending on results we do B', 'what is the expected value of this investment given uncertain demand'. Do NOT activate when: the decision is a one-shot choice with no sequential stages (use simple EV instead); probabilities cannot be estimated even roughly and uncertainty is too deep to quantify. More: deciqai.com/c/decision-tree"
 ---
 
 # Decision Tree
@@ -9,7 +9,7 @@ description: "Activate when: user says 'help me choose between two options with 
 
 A **decision tree** maps a multi-stage decision: decision nodes (squares) for choices you control, chance nodes (circles) for outcomes you don't, probabilities on every branch, payoffs at the leaves — then rollback right-to-left to get expected value at the root. First systematized by John F. Magee (HBR, 1964); formalized by Howard Raiffa (1968). Its biggest value: converting "I feel we should expand" into "what probability do you assign to high demand?" — making every assumption explicit and contestable.
 
-Composes with [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md) (EV scaffold + bet sizing), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md) (calibration per node), [`inversion`](../inversion/SKILL.md) (rollback = working outcomes backward), [`mece`](../mece/SKILL.md) (branches must be MECE so probabilities sum to 1.0).
+Composes with `expected-value-and-kelly` (EV scaffold + bet sizing), `probabilistic-thinking` (calibration per node), `inversion` (rollback = working outcomes backward), `mece` (branches must be MECE so probabilities sum to 1.0).
 
 ## When to Use
 
@@ -17,6 +17,7 @@ Composes with [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md)
 - Outcomes uncertain; probabilities can be estimated (even roughly)
 - Payoffs quantifiable (NPV, revenue, cost, lives saved)
 - Multiple stakeholders need a shared visual model to align on assumptions
+- Sizing a big irreversible bet under AI uncertainty — build vs. buy vs. wait on AI capex, a fab investment, or committing while AI adoption / AI valuations are unproven
 
 **Not when:** one-shot choice with no stages; probabilities unestimable; payoffs purely qualitative; branch set too large (use scenario planning instead).
 
@@ -62,7 +63,8 @@ Sensitivity: flips when p([key branch]) > [threshold]  |  EVPI=
 Recommendation: [option] — holds if [condition]; flips if [condition]
 ```
 
-*→ Method in Action: [Magee 1964 — Chemical Plant Investment (HBR)](examples/magee-1964-chemical-plant-investment-hbr.md)*
+*→ Method in Action: [Magee 1964 — Chemical Plant Investment (HBR)](examples/magee-1964-chemical-plant-investment-hbr.md) · [Eisenhower's D-Day Weather Decision](examples/eisenhower-1944-d-day-weather-decision.md)*
+*→ 2026 lens: [A Chipmaker's Leading-Edge Fab Investment Under AI Uncertainty (2024–2026)](examples/chipmaker-leading-edge-fab-investment-2024-2026.md)*
 
 ## Pack: Decision Tree by Domain
 
@@ -115,4 +117,6 @@ Recommendation: [option] — holds if [condition]; flips if [condition]
 - [ ] EVPI calculated; data-gathering decision made
 - [ ] Missing-branch audit performed; recommendation states conditions it holds and flips
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/decision-tree** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/decision-tree.json*

@@ -1,39 +1,54 @@
-## Description: <br>
-Search Z-Library for books, download them, and send them to your Kindle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Z-Library for books, download them, and send to your Kindle.
 
-## Publisher: <br>
-[semihum](https://clawhub.ai/user/semihum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[semihum](https://clawhub.ai/user/semihum)
 
-## Use Case: <br>
-External users and developers use this skill to search Z-Library, download EPUB-preferred books, and email downloaded files to a configured Kindle address. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run an unpinned external package that handles Z-Library credentials, SMTP or Gmail app-password credentials, cached sessions, email sending, and file deletion. <br>
-Mitigation: Install only after trusting or inspecting the package, prefer a dedicated or revocable app password, verify the Kindle recipient before sending, and delete cached sessions on shared or untrusted machines. <br>
-Risk: Authentication sessions are cached on disk and could persist after the workflow completes. <br>
-Mitigation: Remove cached session files when the workflow is finished, especially on shared systems. <br>
+## Use Case:
 
+External users and developers use this skill to search for books on Z-Library, download EPUB files, and send selected files to a whitelisted Kindle email address.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that authenticate with Z-Library, download files to /tmp/zlibrary2kindle/downloads, send email through SMTP, and delete a file after sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The workflow runs unpinned third-party command-line code with Z-Library and email credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified zlibrary2kindle version, prefer revocable app-specific passwords, and avoid exporting long-lived credentials into broad shell environments.
+
+Risk: Session cookies and downloaded files are handled locally before email delivery.
+
+Mitigation: Review where session cookies are stored, confirm downloaded files may be emailed, and verify local deletion behavior matches the user's expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/semihum/skills/zlibrary2kindle)
+- [Publisher profile](https://clawhub.ai/user/semihum)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that invoke zlibrary2kindle via uvx, pip, or z2k and use user-provided service and email credentials.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

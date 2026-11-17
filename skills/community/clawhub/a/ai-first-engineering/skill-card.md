@@ -1,40 +1,56 @@
-## Description: <br>
-Engineering operating model for teams shipping with AI-assisted code generation, including process shifts, architecture requirements, code review, and testing standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Engineering operating model for teams shipping with AI-assisted code generation, covering process shifts, architecture requirements, code review, and testing standards.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide AI-assisted software delivery practices, including clearer planning, behavior-focused code review, explicit architecture boundaries, and stronger regression testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Teams may treat the opinionated testing and review recommendations as mandatory for every project regardless of risk level. <br>
-Mitigation: Use the guidance as team-process input and adapt it to the project's risk, compliance, and delivery context. <br>
+## Use Case:
 
+Developers and engineering leaders use this skill to guide AI-assisted software delivery, with emphasis on clear planning, explicit architecture, higher regression coverage, and risk-focused review.
 
-## Reference(s): <br>
-- [Process Shifts for AI-First Teams](references/process-shifts.md) <br>
-- [Architecture for AI-Generated Code](references/architecture-guide.md) <br>
-- [Testing Standards for AI-Generated Code](references/testing-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with checklists and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable install steps, required binaries, required environment variables, or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat the skill as an automated enforcement mechanism for engineering controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply it as process guidance and pair it with separate tests, scanners, reviews, and release controls.
+
+Risk: AI-generated implementation guidance can be incomplete for security, data integrity, failure handling, or rollout safety.
+
+Mitigation: Require human review for behavioral risk areas and add regression, edge-case, and integration tests for touched domains.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/ai-first-engineering)
+- [Process Shifts for AI-First Teams](references/process-shifts.md)
+- [Architecture for AI-Generated Code](references/architecture-guide.md)
+- [Testing Standards for AI-Generated Code](references/testing-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with checklists and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no commands, credentials, or runtime access requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

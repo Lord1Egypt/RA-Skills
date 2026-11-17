@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Facebook Ad Library Research"
+  short_description: "Collect and analyze public Facebook Ad Library data"
+  default_prompt: "Use $socq-facebook-ad-library to collect and analyze this public Facebook Ad Library research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Facebook Ad Library data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=facebook-ad-library"

@@ -1,38 +1,49 @@
-## Description: <br>
-Evaluate math expressions, compute statistics, and calculate percentages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate math expressions, compute statistics, and calculate percentages.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate math expressions, compute descriptive statistics, and perform percentage calculations through an external math API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Calculation inputs are sent to an external API for processing. <br>
-Mitigation: Use the skill for non-sensitive calculations and avoid sending secrets, personal data, confidential financial figures, or proprietary datasets unless the external service's processing and privacy practices are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Math Evaluate on ClawHub](https://clawhub.ai/CutTheMustard/math-evaluate) <br>
-- [Math Evaluate service homepage](https://math.agentutil.net) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to evaluate math expressions with variables, compute descriptive statistics, and calculate percentages through an external math service.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external API for calculation requests; free tier allows 10 queries per day without authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Math expressions, variables, and datasets are sent to an external service.
+
+Mitigation: Use the skill only for inputs you are comfortable sending to that service; avoid proprietary formulas, confidential business metrics, personal data, and regulated data unless the service's privacy and retention claims have been independently accepted.
+
+## Reference(s):
+
+- [Math Evaluate service homepage](https://math.agentutil.net)
+- [ClawHub skill listing](https://clawhub.ai/cutthemustard/skills/math-evaluate)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill calls an external math API and returns calculation results with request metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

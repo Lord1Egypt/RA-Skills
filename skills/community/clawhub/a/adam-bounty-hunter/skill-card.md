@@ -1,43 +1,59 @@
-## Description: <br>
-Autonomous agent guidance for managing Adam's side-income workflows across AI services, packaged skill publishing, automated trading, and personal finance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous agent managing Dr. Wang's side income through AI services, packaged skill sales, automated trading, and personal financial management.
 
-## Publisher: <br>
-[adamwgp](https://clawhub.ai/user/adamwgp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamwgp](https://clawhub.ai/user/adamwgp)
 
-## Use Case: <br>
-External users and agents use this skill to coordinate a side-business operating system for service sales, ClawHub skill publishing, trading workflows, and personal finance reminders. It is intended as operational guidance rather than a standalone executable tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact exposes live-looking secrets, wallet details, and wallet backup paths. <br>
-Mitigation: Rotate or revoke exposed keys, remove secrets and wallet paths from the skill text, and avoid granting the skill access to secret stores by default. <br>
-Risk: The skill asks an agent to make autonomous trading, publishing, marketplace, and personal finance decisions. <br>
-Mitigation: Require explicit approval gates before trading, publishing, marketplace actions, spending, or access to personal financial data. <br>
-Risk: Financial and trading guidance may cause monetary loss if executed without review. <br>
-Mitigation: Treat outputs as proposals, review them manually, and enforce conservative limits before any financial action is taken. <br>
+## Use Case:
 
+External users can use this agent as an operations guide for coordinating side-business workflows across marketplace services, skill publishing, trading status, and personal finance tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adamwgp/adam-bounty-hunter) <br>
-- [Soul.Markets service page](https://soul.mds.markets/gellycat-adam-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with command tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose operational, publishing, trading, and finance actions that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill exposes sensitive-looking keys and a wallet address in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove exposed secrets before installation, rotate affected credentials, and replace embedded credentials with environment variables or a secret manager.
+
+Risk: The skill gives an agent broad authority over trading, marketplace, publishing, and finance actions with limited fresh approval.
+
+Mitigation: Require explicit per-action approval for trades, orders, price changes, public posts, package publishing, payments, wallet use, and financial reallocations.
+
+Risk: The artifact includes an npx publishing workflow whose CLI source and version are not pinned.
+
+Mitigation: Pin and verify the publishing CLI version and source before running any publishing command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamwgp/skills/adam-bounty-hunter)
+- [Publisher profile](https://clawhub.ai/user/adamwgp)
+- [Soul.Markets service page](https://soul.mds.markets/gellycat-adam-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command tables and inline shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational commands and financial workflow guidance; review before using with real accounts, publishing systems, wallets, or trading actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

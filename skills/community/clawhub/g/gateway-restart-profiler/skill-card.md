@@ -1,41 +1,61 @@
-## Description: <br>
-Profiles OpenClaw Gateway restart performance, diagnoses slow startup phases, and generates reports with optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Profiles OpenClaw Gateway restart performance by restarting the gateway, parsing startup logs, and generating timing reports with optimization suggestions.
 
-## Publisher: <br>
-[tstj007](https://clawhub.ai/user/tstj007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tstj007](https://clawhub.ai/user/tstj007)
 
-## Use Case: <br>
-Developers and operators use this skill to restart OpenClaw Gateway, monitor startup logs, identify slow phases, and produce performance reports for troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stop and restart OpenClaw Gateway, which may interrupt active work. <br>
-Mitigation: Run it during a maintenance window and explicitly approve the restart before execution. <br>
-Risk: The documented agent invocation uses elevated execution for the profiler. <br>
-Mitigation: Avoid elevated mode unless it is necessary for the local OpenClaw installation. <br>
-Risk: Generated reports may contain operational timing and log-derived details. <br>
-Mitigation: Review generated text and HTML reports before sharing them outside the operating team. <br>
+## Use Case:
 
+Developers and operators use this skill to measure OpenClaw Gateway restart phases, identify slow startup stages, and produce text and HTML reports for troubleshooting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, files, guidance] <br>
-**Output Format:** [Console text plus generated text and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Restarts OpenClaw Gateway, monitors logs for up to about three minutes, and writes reports under the OpenClaw logs directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Running the profiler restarts OpenClaw Gateway and can interrupt active work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only during an approved maintenance or troubleshooting window after confirming that a restart is acceptable.
+
+Risk: The skill text asks agents to run commands with elevated privileges.
+
+Mitigation: Prefer running the Linux profiler without elevation as the OpenClaw user, and grant additional privileges only after reviewing the command and local environment.
+
+Risk: The documented Windows PowerShell profiler is not included in the artifact for review.
+
+Mitigation: Do not use the advertised Windows command unless the missing PowerShell script is supplied and reviewed.
+
+Risk: Generated HTML reports load Chart.js from a CDN.
+
+Mitigation: Open reports only in environments where external network loading is acceptable, or replace the CDN dependency with a reviewed local asset.
+
+## Reference(s):
+
+- [Gateway Restart Profiler on ClawHub](https://clawhub.ai/tstj007/skills/gateway-restart-profiler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Console text plus generated TXT and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include phase timing data, visual charts, and optimization suggestions.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

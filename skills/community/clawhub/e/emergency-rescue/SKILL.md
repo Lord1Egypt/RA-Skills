@@ -170,7 +170,7 @@ A credential is in the git history. Every second counts — automated scrapers m
 # The credential is already compromised the moment it was pushed publicly.
 
 # AWS keys:
-aws iam delete-access-key --access-key-id AKIAXXXXXXXXXXXXXXXX --user-name <user>
+aws iam delete-access-key --access-key-id REDACTED-SECRET --user-name <user>
 # Then create a new key pair
 
 # GitHub tokens:

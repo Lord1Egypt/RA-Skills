@@ -1,37 +1,52 @@
-## Description: <br>
-Creates documents, generates PDFs, uploads them to a target Discord channel, and posts reciprocal links between the command channel and destination channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Factory guides Korean-language document creation, PDF generation, and Discord cross-channel posting with reciprocal source and target channel links.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent operators use this skill to produce Korean-language documents or PDFs and publish them to a target Discord channel while notifying the command channel with a return link.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documents or completion messages may be posted to the wrong Discord channel.
+
+Mitigation: Confirm the source command channel, target channel, reciprocal channel links, and posting permissions before publishing.
+
+Risk: Generated document contents may be sent before they are ready for the intended audience.
+
+Mitigation: Review the document contents and generated PDF before uploading or notifying the command channel.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Discord workflow operators use this skill to turn document requests into PDF files and deliver them to the correct channel while preserving bidirectional links for review and feedback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to create PDFs and post files or messages into Discord channels. <br>
-Mitigation: Confirm the document contents, source channel, and destination channel before posting, and limit the Discord bot or account to the intended channels. <br>
+**Output Format:** [Markdown or text guidance with shell command examples and generated document/PDF files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Discord channel links and generated filenames should be reviewed before posting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell command examples and generated PDF file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Discord message text, channel links, filenames, HTML-to-PDF guidance, and PDF files.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

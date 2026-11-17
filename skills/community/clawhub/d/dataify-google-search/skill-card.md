@@ -1,44 +1,54 @@
-## Description: <br>
-Dataify Google Search helps an agent prepare confirmed Google Search requests for the Dataify Scraper API and return the raw API response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a general Google web or SERP search and return structured SERP results through Dataify.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and external users use this skill to convert a requested Google web search or SERP crawl into confirmed Dataify Scraper API parameters, execute the request with a Dataify token, and receive the raw search response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search requests and query parameters are sent to Dataify's API. <br>
-Mitigation: Install and use the skill only when sending search requests to Dataify is acceptable for the intended data and workflow. <br>
-Risk: API tokens may be exposed if passed on the command line or stored plainly in shell startup files. <br>
-Mitigation: Provide DATAIFY_API_TOKEN through a secure secret mechanism and avoid echoing or committing token values. <br>
-Risk: The skill returns raw API output without summarization or filtering. <br>
-Mitigation: Review the raw response before sharing, storing, or using it in downstream decisions. <br>
+## Use Case:
 
+Developers and external users use this skill to run Google web or SERP searches, map search parameters to the Dataify Scraper API, and receive compact search results or raw JSON/HTML when requested.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-google-search) <br>
-- [Dataify Google Search API Reference](references/google_search_api.md) <br>
-- [Dataify Scraper API Endpoint](https://scraperapi.dataify.com/request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, text] <br>
-**Output Format:** [Markdown confirmation table, shell command invocation, and raw API response body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DATAIFY_API_TOKEN or an explicitly supplied token before real API calls; returns raw API output without summarization or reshaping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Search queries are sent to Dataify and may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries appropriate to share with Dataify, and avoid confidential or personal data in search terms.
+
+Risk: The Dataify API token can be exposed or made persistent through command-line arguments or shell startup configuration.
+
+Mitigation: Prefer a session-scoped environment variable or credential manager, avoid passing tokens with --token, and review any persistent shell changes before applying them.
+
+## Reference(s):
+
+- [Dataify Google Search API Reference](references/google_search_api.md)
+- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown summaries with optional raw JSON or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Dataify API token and sends form-encoded Google Search parameters to Dataify.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

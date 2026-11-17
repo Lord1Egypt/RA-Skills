@@ -1,40 +1,50 @@
-## Description: <br>
-A Chinese-language branding and content-planning assistant that helps users shape personal IP, platform strategy, content systems, short-video scripts, copy, and crisis-PR responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activates a Chinese-language brand IP marketing advisor that helps with personal IP positioning, brand planning, content strategy, short-video scripts, copywriting, community operations, communication strategy, and crisis-response drafts.
 
-## Publisher: <br>
-[lanxy32](https://clawhub.ai/user/lanxy32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanxy32](https://clawhub.ai/user/lanxy32)
 
-## Use Case: <br>
-Creators, founders, marketers, and brand operators use this skill to plan Chinese-language personal-brand and brand-IP positioning, social-platform strategy, content topics, scripts, and campaign messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing, brand, or crisis-PR text could be inaccurate, misleading, or poorly suited to the user's audience. <br>
-Mitigation: Review and adapt all generated copy and response plans before publishing or using them in public communications. <br>
-Risk: Broad trigger wording may cause the skill to appear for general reputation, visibility, or content-planning questions. <br>
-Mitigation: Confirm that the requested task is actually about branding, personal IP, social content, or public communication before relying on the skill output. <br>
+## Use Case:
 
+External users and teams use this skill for Chinese-language personal brand and content marketing planning, including IP positioning, multi-platform publishing strategy, short-video outlines, campaign copy, community growth, and crisis-response messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxy32/huohuo-ip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured plans, tables, templates, scripts, and messaging drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language brand and content recommendations should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill has an overly broad activation rule that may affect neutral writing or non-marketing communication requests involving public awareness, traffic, content, or brand terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a Chinese brand/IP marketing persona is desired, and narrow the trigger if neutral communication support should remain unaffected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanxy32/skills/huohuo-ip)
+- [ClawHub publisher profile](https://clawhub.ai/user/lanxy32)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured plain text with plans, templates, scripts, and messaging drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are Chinese-language marketing guidance and draft content; no shell commands, code, credentials, or system access are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

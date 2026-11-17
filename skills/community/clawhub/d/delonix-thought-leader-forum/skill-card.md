@@ -1,44 +1,59 @@
-## Description: <br>
-德胧思想领袖论坛 v3.0 helps an agent simulate labeled thought-leader discussions, single-person opinions, and meeting participation for internal strategy brainstorming. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Chinese-language skill for simulating clearly labeled public-figure viewpoints in multi-person discussions, single-person opinions, and meeting commentary for internal brainstorming around Delonix AI Native strategy.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Employees and internal strategy teams use this skill to run AI-simulated discussions, opinion prompts, and meeting commentary using predefined public-figure personas. It is intended for internal reference and brainstorming, with every persona output labeled as AI simulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-simulation output could be mistaken for a real public figure's statement. <br>
-Mitigation: Keep the required AI-simulation labels and do not publish outputs as real statements. <br>
-Risk: Meeting notes or strategy prompts may contain confidential information. <br>
-Mitigation: Avoid pasting confidential meeting notes unless the agent environment is approved for that data. <br>
-Risk: Supplemental search or background expansion can introduce unsupported claims. <br>
-Mitigation: Ask for sources or explicit confirmation before relying on supplemental search results. <br>
+## Use Case:
 
+Employees and authorized users can use this skill for internal strategy brainstorming by generating labeled simulated viewpoints from a predefined pool of AI, hotel, and venture-capital personas or by distilling new personas interactively.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chaoliuzhu/delonix-thought-leader-forum) <br>
-- [德胧 AI Native background guide](artifact/guides/dezhang-ai-native.md) <br>
-- [德胧 AI Native competitive background](artifact/guides/background-de-zhang.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and labeled persona-simulation responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve the required AI-simulation labels and legal disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Generated persona text may be mistaken for real or authorized statements from named public figures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the required viewpoint-simulation labels and report disclaimers, and do not present outputs as real statements.
+
+Risk: Public, promotional, or media reuse of simulated public-figure viewpoints can create legal or reputational risk.
+
+Mitigation: Use outputs for internal brainstorming unless separate authorization and review permit broader use.
+
+Risk: Background facts or time-sensitive public claims used in a discussion may be stale or inaccurate.
+
+Mitigation: Require citations or independent confirmation before relying on searched or time-sensitive facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/delonix-thought-leader-forum)
+- [德胧AI Native战略背景资料](artifact/guides/dezhang-ai-native.md)
+- [德胧AI Native竞争格局与背景资料](artifact/guides/background-de-zhang.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports and structured Chinese-language discussion or opinion text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should retain viewpoint-simulation labels and legal disclaimers for each generated persona statement.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-ORF fetches German-language ORF news headlines focused on Austrian and international politics, excludes sports, sends each item as title, age, and link, and generates a cartoon ZiB studio image from the selected stories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ORF fetches German ORF news items, formats a non-sport digest, and generates a cartoon ZiB studio image reflecting the selected stories.
 
-## Publisher: <br>
-[cpojer](https://clawhub.ai/user/cpojer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cpojer](https://clawhub.ai/user/cpojer)
 
-## Use Case: <br>
-External users and agents use ORF to pull a short German-language ORF news digest, prioritize politics and major headlines, and produce a companion ZiB-style generated image. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a Gemini/Nano Banana API key from the environment or a local OpenClaw config file. <br>
-Mitigation: Prefer setting GEMINI_API_KEY explicitly and review local credential access before installing or running the skill. <br>
-Risk: The image-generation helper installs unpinned Python packages at runtime into ./tmp/orf-venv. <br>
-Mitigation: Verify the dependencies before use and remove or rebuild the generated virtual environment when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ORF News](https://news.orf.at/) <br>
-- [ORF RSS Feeds](https://rss.orf.at/) <br>
-- [ORF News RSS](https://rss.orf.at/news.xml) <br>
-- [ORF Austria RSS](https://rss.orf.at/oesterreich.xml) <br>
-- [ClawHub ORF Skill Page](https://clawhub.ai/cpojer/orf) <br>
+## Use Case:
 
+External users and agents use this skill to request a concise German ORF news digest focused on Austrian and international politics, excluding sports. It returns individual headline messages with age and source link, then produces a related ZiB-style generated image.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Image, Shell commands] <br>
-**Output Format:** [Plain text news-item messages plus a generated PNG image; helper scripts can emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [News count is capped at 15; output excludes sports and uses ORF RSS/news links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts ORF RSS endpoints and a Google/Gemini image-generation service.
+
+Mitigation: Review and document external network use before installation or deployment.
+
+Risk: The image-generation script reads a Gemini API key from GEMINI_API_KEY or OpenClaw configuration.
+
+Mitigation: Use scoped credentials, keep keys out of shared logs and files, and confirm the configured account is approved for this use.
+
+Risk: The setup script downloads unpinned Python packages when first run.
+
+Mitigation: Pin and review package versions before use in controlled or commercial environments.
+
+## Reference(s):
+
+- [ClawHub ORF skill page](https://clawhub.ai/cpojer/skills/orf)
+- [ORF News](https://news.orf.at/)
+- [ORF RSS feeds](https://rss.orf.at/)
+- [ORF News RSS](https://rss.orf.at/news.xml)
+- [ORF Austria RSS](https://rss.orf.at/oesterreich.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, image file, guidance]
+
+**Output Format:** [Individual plain-text news messages followed by an image file/media response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default count is 5 items, maximum count is 15, with optional inland or ausland focus.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

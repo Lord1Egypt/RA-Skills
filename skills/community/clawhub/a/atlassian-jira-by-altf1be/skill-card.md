@@ -1,42 +1,59 @@
-## Description: <br>
-Atlassian Jira Cloud CRUD skill - manage issues, comments, attachments, workflow transitions, and JQL search via Jira REST API v3 with email and API token authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atlassian Jira Cloud CRUD skill - manage issues, comments, attachments, workflow transitions, and JQL search via Jira REST API v3 with email and API token auth.
 
-## Publisher: <br>
-[Abdelkrim](https://clawhub.ai/user/Abdelkrim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abdelkrim](https://clawhub.ai/user/abdelkrim)
 
-## Use Case: <br>
-Developers, project administrators, and support teams use this skill to let an agent inspect and manage Jira Cloud issues, comments, attachments, workflow transitions, and JQL searches from a configured Jira account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Jira email and API-token credentials to read and modify Jira data, including write, delete, attachment, and workflow-transition actions. <br>
-Mitigation: Use a least-privileged Jira account or token, verify JIRA_HOST points to the intended Atlassian site, keep tokens out of shared files, and require review before write, delete, attachment, or transition commands. <br>
-Risk: Incorrect issue keys, JQL queries, project defaults, or workflow transition selections can affect the wrong Jira records. <br>
-Mitigation: Review generated commands and query scope before execution, especially when using default projects, delete confirmations, or transition names. <br>
+## Use Case:
 
+Developers and teams use this skill to manage Jira Cloud issues, comments, attachments, workflow transitions, and JQL searches from an agent-assisted command workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdelkrim/atlassian-jira-by-altf1be) <br>
-- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
-- [Jira Cloud](https://www.atlassian.com/software/jira) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can trigger Jira REST API reads and writes through user-provided credentials; command output depends on Jira permissions and API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and package.json) <br>
+Risk: Jira API credentials and issue data can be sent to an untrusted or plaintext host if JIRA_HOST is configured unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JIRA_HOST only to a trusted Jira Cloud tenant such as yourtenant.atlassian.net, avoid http:// URLs, and review configuration before use.
+
+Risk: The skill can create, modify, transition, and delete Jira content.
+
+Mitigation: Use a least-privilege Jira API token, rotate it as needed, and review commands before running destructive operations.
+
+Risk: Attachment commands can upload files passed by the user.
+
+Mitigation: Upload only intended files and keep JIRA_MAX_FILE_SIZE set to an appropriate limit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdelkrim/skills/atlassian-jira-by-altf1be)
+- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+- [Atlassian Jira Cloud](https://www.atlassian.com/software/jira)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Jira host, email, and API token environment variables; optional settings include default project, max results, and max file size.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

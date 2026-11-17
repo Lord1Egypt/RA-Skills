@@ -1,45 +1,58 @@
-## Description: <br>
-Generates structured daily work reports from CSV, JSON, or Git activity and can output Markdown, HTML, or PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When asked to generate a daily work report, this skill collects work data from CSV, JSON, or Git sources, categorizes items, and produces a structured report in Markdown, HTML, or PDF format.
 
-## Publisher: <br>
-[mizhimin](https://clawhub.ai/user/mizhimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mizhimin](https://clawhub.ai/user/mizhimin)
 
-## Use Case: <br>
-Employees, managers, and developers use this skill to collect daily work items from local CSV/JSON files or Git commits, classify them into report sections, and generate a shareable daily status report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git repository paths can trigger command injection because the Git integration runs a shell command. <br>
-Mitigation: Use only trusted repository paths without shell metacharacters, or disable Git input until the command is changed to avoid shell=True. <br>
-Risk: The skill has broad file, execution, and network permissions and can write reports or send email. <br>
-Mitigation: Review inputs, output paths, recipients, and generated report contents before enabling email delivery or running in sensitive environments. <br>
-Risk: CSV and JSON inputs may contain untrusted or misleading work-report content. <br>
-Mitigation: Use trusted source files and review generated reports before sharing them. <br>
+## Use Case:
 
+Employees and teams use this skill to turn daily task data, work logs, and recent Git activity into a structured end-of-day report. It is intended for work-status summaries that may be reviewed locally, exported, or sent through configured email workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mizhimin/enterprise-daily-report) <br>
-- [Publisher profile](https://clawhub.ai/user/mizhimin) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML, PDF, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads CSV, JSON, or Git repository inputs; may write report files and optionally send email when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Unsafe Git path handling could allow shell command execution when Git integration is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the Git workflow only with trusted repository paths in a restricted workspace until command execution is made argument-safe.
+
+Risk: Generated HTML may include unsanitized report content from CSV, JSON, or Git commit messages.
+
+Mitigation: Avoid HTML, PDF, and email workflows with untrusted input until output escaping and validation are added.
+
+Risk: Email sending can distribute report contents beyond the local workspace.
+
+Mitigation: Require explicit recipient review and send confirmation before enabling email delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mizhimin/skills/enterprise-daily-report)
+- [Publisher profile](https://clawhub.ai/user/mizhimin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, or PDF report content with optional command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report content is derived from user-provided CSV, JSON, or Git activity sources; email delivery and HTML/PDF output depend on configuration and optional tooling.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

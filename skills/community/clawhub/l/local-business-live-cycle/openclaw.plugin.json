@@ -1,0 +1,45 @@
+{
+  "name": "local-business-live-cycle",
+  "version": "1.0.0",
+  "description": "AI operations advisor for local business stores — store diagnosis, short-video scripts, livestream acquisition, data review, content iteration.",
+  "author": {
+    "name": "李鑫",
+    "email": ""
+  },
+  "displayName": {
+    "en": "Local Biz Growth Advisor",
+    "zh": "本地生活运营顾问"
+  },
+  "profession": {
+    "en": "Local Store Operations Consultant",
+    "zh": "本地生活门店运营顾问"
+  },
+  "displayDescription": {
+    "en": "Focus on local business growth with AI-powered store diagnosis, short-video scriptwriting, livestream customer acquisition, and data-driven content iteration for Douyin.",
+    "zh": "本地生活门店AI运营顾问，覆盖门店诊断、口播文案、直播获客与数据复盘，一站帮店做火。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "05-MarketingGrowth",
+  "defaultInitPrompt": {
+    "zh": "帮我诊断门店，看看问题在哪",
+    "en": "Diagnose my store, find out what's wrong"
+  },
+  "tags": [
+    { "en": "Store Diagnosis", "zh": "门店诊断" },
+    { "en": "Video Scripts", "zh": "口播文案" },
+    { "en": "Local Biz Growth", "zh": "本地生活获客" },
+    { "en": "Livestream", "zh": "直播运营" },
+    { "en": "Content Iteration", "zh": "内容迭代" }
+  ],
+  "quickPrompts": [
+    { "en": "Diagnose my store", "zh": "帮我诊断门店" },
+    { "en": "Write a video script", "zh": "帮我写口播文案" },
+    { "en": "Review my livestream data", "zh": "复盘直播数据" }
+  ],
+  "hosts": ["workbuddy", "openclaw", "claude-code"],
+  "homepage": "https://github.com/1027399464-tech/local-business-live-skills",
+  "issues": "https://app.notion.com/p/3a28278657fa81a796e8fc39dd5d5055",
+  "license": "MIT",
+  "openclaw.compat.pluginApi": "1.0.0",
+  "openclaw.build.openclawVersion": "2.0.0"
+}

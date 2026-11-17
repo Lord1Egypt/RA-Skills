@@ -88,7 +88,7 @@ Notes:
 - A few types are **rollup/reconcile-only** and cannot be listed (e.g. `total-calories`,
   `time-in-heart-rate-zone`). `data list` rejects them with a clear message; `types list` marks the
   listable ones with `*`. Read them with **`rollup daily <type>`** instead.
-- If a type rejects server-side filtering, re-run with `--all` and filter client-side.
+- If a type rejects server-side filtering, diagnose the filter first; use `--all` only when the task authorizes an unbounded read.
 - **`rollup daily <type>`** returns one server-reconciled value per civil day (a `dailyRollUp` query) —
   the cheap way to get daily totals and the only way to reach the rollup-only types. The value is
   reconciled across data sources, so it is *not* a naive sum of `data list` points.
@@ -108,12 +108,13 @@ looked.
 |---|---|---|
 | `client_id` | `""` | `GOOGLE_HEALTH_CLIENT_ID` |
 | `client_secret` | `""` | `GOOGLE_HEALTH_CLIENT_SECRET` |
-| `base_url` | `https://health.googleapis.com` | `GOOGLE_HEALTH_BASE_URL` |
+| `base_url` | `https://health.googleapis.com` (the only accepted value) | `GOOGLE_HEALTH_BASE_URL` |
 | `user` | `users/me` | — |
 | `token_cache` | `<user cache dir>/google-health-cli/token.json` (non-roaming) | `GOOGLE_HEALTH_TOKEN_CACHE` |
-| `scopes` | the six read-only Google Health scopes (see below) | — |
+| `scopes` | the six read-only Google Health scopes (see below); a subset is allowed, anything else is rejected | — |
 
-`config.json` and the token cache hold credentials — they are written `0600` and must never be committed.
+`config.json` and the token cache hold credentials and must never be committed. The CLI writes the token cache
+`0600`; it never creates `config.json`, so restrict that yourself (`chmod 600 config.json`).
 The token cache lives under the **user cache dir** (`%LocalAppData%` on Windows, `~/.cache` on Linux), not
 the config dir: a token is regenerable state, not config, and the cache dir does not roam across machines.
 A token left at the older `<user config dir>` location is migrated forward automatically on first run, so
@@ -128,9 +129,9 @@ upgrading users keep their session without re-authenticating.
   stored on disk in plaintext — keep them `0600`, gitignored, and out of shared folders, backups, and logs.
   Every data-emitting command prints a one-line privacy notice to stderr at run time, and `api get` is
   constrained to read-only `/v4/` paths (a non-`v4/` path, absolute URL, or `..` traversal is rejected).
-  See **[SKILL.md](SKILL.md)** and **[AGENTS.md](AGENTS.md)** for the full guidance.
+  See **[SKILL.md](SKILL.md)** and **[docs/MACHINE_CONTRACT.md](docs/MACHINE_CONTRACT.md)** for the full guidance.
 - **Read-only.** The tool requests only read scopes and never mutates your data. The six scopes are the
   read-only forms of: profile, settings, activity & fitness, health metrics & measurements, sleep, nutrition.
 - The OAuth token is cached locally (`0600`) and auto-refreshed; the refreshed token is re-persisted so it
   stays valid between runs. The only network calls are Google OAuth + the Health API.
-- For agent/automation consumers, see **[AGENTS.md](AGENTS.md)** for the `--json` shapes and exit codes.
+- For agent/automation consumers, see **[docs/MACHINE_CONTRACT.md](docs/MACHINE_CONTRACT.md)** for the `--json` shapes and exit codes.

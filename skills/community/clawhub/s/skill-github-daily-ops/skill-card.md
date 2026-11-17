@@ -1,43 +1,53 @@
-## Description: <br>
-Daily GitHub repo health check + safe Dependabot auto-merge. Outputs markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily GitHub repo health check + safe Dependabot auto-merge. Outputs markdown report.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to review GitHub repository health, summarize open PRs and issues, and optionally auto-merge eligible Dependabot PRs after configured gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can merge GitHub pull requests and change repositories. <br>
-Mitigation: Run report-only mode first and use a fine-grained GitHub token limited to the intended repositories. <br>
-Risk: Scheduled auto-merge can apply dependency updates without direct human review. <br>
-Mitigation: Avoid scheduling --merge-dependabot until CI and severity gates are reviewed and match the repository policy. <br>
-Risk: daily-ops.sh can push local workspace commits. <br>
-Mitigation: Do not run daily-ops.sh unless workspace push behavior is explicitly intended and accepted. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to generate daily GitHub health reports for organization repositories and optionally automate Dependabot PR handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-github-daily-ops) <br>
-- [Publisher profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report and console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a GitHub token for GitHub API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Dependabot automation may merge pull requests without sufficiently strict severity and CI safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped GitHub token, restrict execution to intended repositories, and avoid unattended --merge-dependabot runs until the merge policy fails closed on unknown severity, missing CI, and pending CI.
+
+Risk: The shell daily-ops script can push unpushed commits from its configured workspace.
+
+Mitigation: Do not run the shell daily-ops script unless that workspace and remote are intended for automated pushes and local changes have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-github-daily-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with console status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and a GitHub token; can target an organization or comma-separated repositories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

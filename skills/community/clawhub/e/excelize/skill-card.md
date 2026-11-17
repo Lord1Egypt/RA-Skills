@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents read and write Excel-compatible spreadsheet files, including XLAM, XLSM, XLSX, XLTM, and XLTX workbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need to reading and writing Microsoft Excel™ (XLAM / XLSM / XLSX / XLTM / XLTX) spreadsheets.
 
-## Publisher: <br>
-[xuri](https://clawhub.ai/user/xuri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuri](https://clawhub.ai/user/xuri)
 
-## Use Case: <br>
-Developers and agents use this skill to install and apply the excelize Python package for creating, reading, modifying, charting, and embedding images in Excel-compatible spreadsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the referenced PyPI package may introduce dependency or supply-chain risk in sensitive environments. <br>
-Mitigation: Trust and pin the excelize package version before installation. <br>
-Risk: Generated spreadsheet operations may overwrite files if an agent uses an unintended output path. <br>
-Mitigation: Provide explicit input and output paths and keep backups for important spreadsheets. <br>
+## Use Case:
 
+Developers and engineers use this skill to install excelize-py and generate, read, and modify spreadsheet files, including charts and images, from agent-authored Python examples.
 
-## Reference(s): <br>
-- [Excelize Python Documentation](https://xuri.me/excelize-py/) <br>
-- [excelize-py Source Code](https://github.com/xuri/excelize-py) <br>
-- [excelize-py Docs Repository](https://github.com/xuri/excelize-py-docs) <br>
-- [excelize PyPI Package](https://pypi.org/project/excelize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local spreadsheet files when the generated code is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The installation command does not pin the excelize package version, which can reduce reproducibility and supply-chain review confidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin a reviewed excelize version for reproducible or higher-assurance use.
+
+Risk: The examples can read, create, save, or overwrite spreadsheet files at user-provided paths.
+
+Mitigation: Review target file paths and run examples on copies or disposable files before using them with important spreadsheets.
+
+## Reference(s):
+
+- [Excelize-py API docs](https://xuri.me/excelize-py/)
+- [Excelize-py source code](https://github.com/xuri/excelize-py)
+- [Excelize-py docs repository](https://github.com/xuri/excelize-py-docs)
+- [Excelize package on PyPI](https://pypi.org/project/excelize)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands]
+
+**Output Format:** [Markdown with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples may create, read, modify, or overwrite spreadsheet files at paths chosen by the user.]
+
+## Skill Version(s):
+
+0.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

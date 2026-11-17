@@ -1,43 +1,58 @@
-## Description: <br>
-Memory augmentation and LLM call interception using the Memori Python library with optional Zhipu API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory augmentation and LLM call interception using the Memori Python library with optional Zhipu API integration.
 
-## Publisher: <br>
-[ian-at](https://clawhub.ai/user/ian-at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[ian-at](https://clawhub.ai/user/ian-at)
 
-## Use Case: <br>
-Developers and agents use this skill to search local Memori-backed memories, augment prompts with retrieved context, and optionally intercept LLM calls for memory-aware responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain sensitive conversation content or secrets in the SQLite database. <br>
-Mitigation: Avoid storing secrets, keep the memory database in a controlled path, and apply local filesystem permissions appropriate to the deployment. <br>
-Risk: Setting ZHIPUAI_API_KEY can send conversation content to Zhipu AI for augmentation. <br>
-Mitigation: Start without ZHIPUAI_API_KEY for local-only operation and enable it only after confirming that external data sharing is acceptable. <br>
-Risk: A configurable technical-terms file can influence when LLM interception happens. <br>
-Mitigation: Keep MEMORI_TECH_TERMS_FILE in a trusted location and review updates before using persistent term changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local memory search, prompt augmentation, and optional LLM-call interception to an agent workflow. It can also call Zhipu AI for conversation analysis when explicitly configured with an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ian-at/memori-extension) <br>
-- [Memori library repository](https://github.com/MemoriLabs/Memori) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python return values and Markdown documentation with inline shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return retrieved memory objects, augmented prompt text, or modified message lists depending on the helper function used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: LLM interception can replace original system instructions with retrieved memory content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after review in agents that rely on strong system or tool-use policies; preserve original system messages and treat retrieved memories as untrusted reference material.
+
+Risk: Setting ZHIPUAI_API_KEY enables external transmission of conversation text to Zhipu AI.
+
+Mitigation: Leave ZHIPUAI_API_KEY unset by default, enable it only with explicit consent, and test external API behavior in a sandbox or restricted environment.
+
+Risk: The skill reads and writes a local SQLite memory database and optional technical-terms file that may retain sensitive content.
+
+Mitigation: Use a dedicated MEMORI_DB_PATH, apply appropriate file permissions, and avoid storing sensitive or untrusted text unless retention is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ian-at/skills/memori-extension)
+- [Memori library repository](https://github.com/MemoriLabs/Memori)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python API results and Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write a local SQLite memory database and optional technical-terms file; optional Zhipu AI augmentation requires ZHIPUAI_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

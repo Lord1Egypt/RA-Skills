@@ -1,41 +1,53 @@
-## Description: <br>
-Uses Ollama's local vision/OCR models to recognize text from images without relying on cloud APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Ollama's vision/OCR models to recognize text from images. Supports glm-ocr, llava, moondream, and llama3.2-vision models. Ideal when you need local offline OCR without relying on cloud APIs.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract text from local image files, screenshots, and sensitive images through a locally controlled Ollama vision model instead of a cloud OCR service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images are sent to the configured local HTTP Ollama endpoint. <br>
-Mitigation: Confirm that 172.17.0.2:11434 reaches a trusted local Ollama instance before processing sensitive images. <br>
-Risk: Model tags such as latest can change behavior over time. <br>
-Mitigation: Pin trusted model versions when repeatable OCR behavior is required. <br>
-Risk: OCR output can be inaccurate or repetitive depending on the selected vision model and image quality. <br>
-Mitigation: Review extracted text before using it in downstream decisions or records. <br>
+## Use Case:
 
+Developers and external users use this skill to extract text from screenshots, photos, receipts, and other images through locally hosted Ollama vision/OCR models. It is especially relevant when image content should stay within a trusted local environment instead of being sent to cloud OCR APIs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Plain text OCR results, with optional Markdown guidance and Python or shell examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running local Ollama endpoint and a downloaded vision/OCR model; the bundled helper uses a 120 second request timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md metadata) <br>
+Risk: Images are sent to the configured Ollama HTTP endpoint rather than processed entirely inside the skill process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming that 172.17.0.2:11434 resolves to the intended trusted local Ollama instance in the deployment environment.
+
+Risk: Highly sensitive images may be exposed if the configured Docker or network path is not trusted.
+
+Mitigation: Avoid highly sensitive images unless the local Ollama service, container networking, and host access controls have been verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/skills/ollama-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text OCR output with optional Python API usage and command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable local Ollama HTTP endpoint and a downloaded vision/OCR model.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

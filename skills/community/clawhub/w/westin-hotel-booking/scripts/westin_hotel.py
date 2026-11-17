@@ -15,10 +15,8 @@ import sys
 BRAND_NAME = "威斯汀"
 
 # ===== 代理配置 =====
-PROXY_URL = os.environ.get("PROXY_URL", "")
+PROXY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
-
-
 def _request(api_type, params, timeout=30):
     """调用fliggy-proxy统一请求函数"""
     body = json.dumps({"type": api_type, "params": params}, ensure_ascii=False)
@@ -44,23 +42,23 @@ def _request(api_type, params, timeout=30):
         return {"success": False, "error": str(e)}
 
 
-def search_westin_hotels(dest_name, check_in=None, check_out=None,
-                                  keyword=None, max_price=None, sort=None, limit=10):
+def search_westin_hotels(destName, checkInDate=None, checkOutDate=None,
+                                  keyword=None, maxPrice=None, sort=None, limit=10):
     """
     搜索威斯汀酒店（万豪集团旗下）
     自动注入品牌关键词"威斯汀"，用户只需提供城市即可
     """
-    params = {"destName": dest_name}
-    if check_in:
-        params["checkInDate"] = check_in
-    if check_out:
-        params["checkOutDate"] = check_out
+    params = {"destName": destName}
+    if checkInDate:
+        params["checkInDate"] = checkInDate
+    if checkOutDate:
+        params["checkOutDate"] = checkOutDate
     brand_kw = BRAND_NAME
     if keyword:
         brand_kw = f"{BRAND_NAME} {keyword}"
     params["keyWords"] = brand_kw
-    if max_price:
-        params["maxPrice"] = int(max_price)
+    if maxPrice:
+        params["maxPrice"] = int(maxPrice)
     if sort:
         params["sort"] = sort
 
@@ -68,14 +66,14 @@ def search_westin_hotels(dest_name, check_in=None, check_out=None,
     if not result["success"]:
         return f"搜索失败: {result['error']}"
 
-    items = result["data"].get("itemList", [])
+    items = (result.get("data") or {}).get("itemList", [])
     if not items:
-        return f"未找到{dest_name}的{BRAND_NAME}酒店，建议调整搜索条件"
+        return f"未找到{destName}的{BRAND_NAME}酒店，建议调整搜索条件"
 
     items = items[:limit]
 
     lines = []
-    lines.append(f"🏨 {dest_name}{BRAND_NAME}酒店搜索结果（{len(items)}家）\n")
+    lines.append(f"🏨 {destName}{BRAND_NAME}酒店搜索结果（{len(items)}家）\n")
 
     for i, item in enumerate(items, 1):
         name = item.get("name", "")
@@ -104,26 +102,26 @@ def search_westin_hotels(dest_name, check_in=None, check_out=None,
     return "\n".join(lines)
 
 
-def get_westin_hotel_info(shid=None, hotel_name=None, review_keyword=None):
+def get_westin_hotel_info(shid=None, hotelName=None, reviewKeyword=None):
     """
     查询威斯汀酒店详情（交通/景点/设施/政策/房型）
     """
-    if not shid and not hotel_name:
-        return "请提供shid（从搜索结果获取）或hotel_name"
+    if not shid and not hotelName:
+        return "请提供shid（从搜索结果获取）或hotelName"
 
     params = {}
     if shid:
         params["shid"] = int(shid)
-    if hotel_name:
-        params["hotelName"] = hotel_name
-    if review_keyword:
-        params["reviewKeyword"] = review_keyword
+    if hotelName:
+        params["hotelName"] = hotelName
+    if reviewKeyword:
+        params["reviewKeyword"] = reviewKeyword
 
     result = _request("get_marriott_hotel_info", params, timeout=20)
     if not result["success"]:
         return f"查询失败: {result['error']}"
 
-    items = result["data"].get("itemList", [])
+    items = (result.get("data") or {}).get("itemList", [])
     if not items:
         return "未找到酒店详情"
 
@@ -214,8 +212,8 @@ def get_westin_hotel_info(shid=None, hotel_name=None, review_keyword=None):
     return "\n".join(lines)
 
 
-def search_westin_packages(keyword=None, hotel_name=None,
-                                    province_or_city=None, sort=None, limit=10):
+def search_westin_packages(keyword=None, hotelName=None,
+                                    provinceOrCity=None, sort=None, limit=10):
     """
     搜索威斯汀酒店套餐优惠（含早/连住/门票等打包产品）
     自动注入品牌关键词"威斯汀"
@@ -223,15 +221,15 @@ def search_westin_packages(keyword=None, hotel_name=None,
     params = {}
     if keyword:
         params["keyword"] = f"{BRAND_NAME} {keyword}"
-    elif hotel_name:
-        params["hotelName"] = hotel_name
-    elif province_or_city:
-        params["keyword"] = f"{BRAND_NAME} {province_or_city}"
-        params["provinceOrCity"] = province_or_city
+    elif hotelName:
+        params["hotelName"] = hotelName
+    elif provinceOrCity:
+        params["keyword"] = f"{BRAND_NAME} {provinceOrCity}"
+        params["provinceOrCity"] = provinceOrCity
     else:
         params["keyword"] = BRAND_NAME
-    if province_or_city and "provinceOrCity" not in params:
-        params["provinceOrCity"] = province_or_city
+    if provinceOrCity and "provinceOrCity" not in params:
+        params["provinceOrCity"] = provinceOrCity
     if sort:
         params["sortType"] = sort
 
@@ -239,14 +237,14 @@ def search_westin_packages(keyword=None, hotel_name=None,
     if not result["success"]:
         return f"搜索失败: {result['error']}"
 
-    items = result["data"].get("itemList", [])
+    items = (result.get("data") or {}).get("itemList", [])
     if not items:
         return f"未找到{BRAND_NAME}套餐"
 
     items = items[:limit]
 
     lines = []
-    search_kw = keyword or hotel_name or province_or_city or BRAND_NAME
+    search_kw = keyword or hotelName or provinceOrCity or BRAND_NAME
     lines.append(f"🎁 {search_kw}{BRAND_NAME}套餐搜索结果（{len(items)}个）\n")
 
     for i, item in enumerate(items, 1):
@@ -276,7 +274,7 @@ def main():
     if len(sys.argv) < 3:
         print("用法: python westin_hotel.py <tool> <args_json>")
         print("  tool: search | detail | packages")
-        print('  示例: python westin_hotel.py search \'{"dest_name":"上海"}\'')
+        print('  示例: python westin_hotel.py search \'{"destName":"上海"}\'')
         return
 
     tool = sys.argv[1]

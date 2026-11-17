@@ -1,44 +1,58 @@
-## Description: <br>
-Fetch the latest Nasdaq-100 futures quote (default NQ=F) via Yahoo Finance chart API using Node.js and return price, change, percent change, and timestamp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Nasdaq-100 futures quote data from the Yahoo Finance chart API and returns price, change, percent change, timestamp, and a human-readable summary.
 
-## Publisher: <br>
-[lbl581581](https://clawhub.ai/user/lbl581581) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbl581581](https://clawhub.ai/user/lbl581581)
 
-## Use Case: <br>
-Agents and developers use this skill to retrieve the latest Nasdaq-100 futures quote, or another Yahoo Finance symbol, and return price, change, percent change, timestamp, and a concise summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Yahoo Finance with the requested ticker symbol. <br>
-Mitigation: Install only when outbound access to Yahoo Finance is acceptable for the deployment environment. <br>
-Risk: Returned quotes are market data and may depend on market hours, provider availability, or delayed upstream data. <br>
-Mitigation: Treat the output as informational market data for display or analysis, not as financial advice. <br>
-Risk: The default summary message is in Chinese. <br>
-Mitigation: Confirm that Chinese output is appropriate for the agent's users or adjust the skill before deployment. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve Nasdaq-100 futures quote metrics, or another Yahoo Finance symbol, for market-aware responses.
 
-## Reference(s): <br>
-- [OpenClaw runtime notes](references/openclaw.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lbl581581/nasdaq100-futures) <br>
-- [Yahoo Finance chart API endpoint](https://query1.finance.yahoo.com/v8/finance/chart/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, api calls] <br>
-**Output Format:** [JSON object with string-formatted market values and a human-readable Chinese summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts an optional Yahoo Finance symbol parameter and defaults to NQ=F.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The requested ticker symbol is sent to Yahoo Finance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only symbols that are acceptable to disclose to the external data provider, or restrict allowed symbols before deployment.
+
+Risk: Responses are formatted in Chinese, which may not match all user locales.
+
+Mitigation: Review or modify the message formatting before use in English-only or localized deployments.
+
+Risk: Quote results depend on Yahoo Finance data availability, market hours, and network access.
+
+Mitigation: Treat returned prices as external market data and verify critical financial decisions against an authoritative market data source.
+
+## Reference(s):
+
+- [OpenClaw runtime details](references/openclaw.md)
+- [Yahoo Finance chart API endpoint](https://query1.finance.yahoo.com/v8/finance/chart/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
+
+**Output Format:** [JSON object with string-formatted quote fields and a human-readable message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns Chinese-formatted success and failure messages; results depend on Yahoo Finance availability, market hours, and network access.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

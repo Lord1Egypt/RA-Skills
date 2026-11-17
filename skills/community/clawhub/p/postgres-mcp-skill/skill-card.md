@@ -1,51 +1,65 @@
-## Description: <br>
-PostgreSQL database management and optimization assistant that supports health checks, index optimization, query plan analysis, schema queries, and SQL execution through postgres-mcp MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Postgres MCP helps agents manage and optimize PostgreSQL databases with health checks, index optimization, query plan analysis, schema queries, and SQL execution through postgres-mcp tools.
 
-## Publisher: <br>
-[victorzhou123](https://clawhub.ai/user/victorzhou123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[victorzhou123](https://clawhub.ai/user/victorzhou123)
 
-## Use Case: <br>
-Developers and database engineers use this skill to configure postgres-mcp access, inspect PostgreSQL health and schema, analyze slow queries, recommend indexes, and execute SQL with explicit safeguards for write operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad live-database access and SQL execution through postgres-mcp. <br>
-Mitigation: Use a dedicated least-privilege PostgreSQL account, enable read-only mode by default, and keep production credentials out of command lines and persistent config files. <br>
-Risk: Write operations, DDL, index creation, scheduled tasks, and backend cancellation or termination can alter data, schema, performance, or availability. <br>
-Mitigation: Require explicit user confirmation, show the exact SQL or operational action before execution, and prefer transactions or off-peak maintenance windows for high-impact changes. <br>
-Risk: Unpinned postgres-mcp packages or container images can change behavior across installs. <br>
-Mitigation: Pin the postgres-mcp package or image version during installation and review updates before deployment. <br>
+## Use Case:
 
+Developers and database operators use this skill to route PostgreSQL administration requests, configure postgres-mcp access, inspect database health, analyze query plans, tune indexes, query schemas, generate SQL, and execute database operations with user confirmation for writes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/victorzhou123/postgres-mcp-skill) <br>
-- [README](README.md) <br>
-- [setup-postgres-mcp](reference/setup-postgres-mcp/setup-postgres-mcp.md) <br>
-- [pg-health](reference/pg-health/pg-health.md) <br>
-- [pg-index-tuning](reference/pg-index-tuning/pg-index-tuning.md) <br>
-- [pg-query-plan](reference/pg-query-plan/pg-query-plan.md) <br>
-- [pg-schema](reference/pg-schema/pg-schema.md) <br>
-- [pg-execute](reference/pg-execute/pg-execute.md) <br>
-- [postgres-mcp project](https://github.com/crystaldba/postgres-mcp) <br>
-- [Agent Skills Open Standard](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL, shell command, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run PostgreSQL operations through available postgres-mcp tools after connection checks and required confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can connect agents to live PostgreSQL databases through credential-bearing configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege database role, prefer read-only mode, and avoid placing production credentials directly in command lines or client configuration files.
+
+Risk: The skill may rely on unpinned third-party postgres-mcp packages or container images.
+
+Mitigation: Pin package and image versions and install only from a postgres-mcp source the user trusts.
+
+Risk: SQL writes, DDL, index creation, backend termination, and scheduled automation can change data or disrupt service.
+
+Mitigation: Require explicit review and confirmation before high-impact operations, show the exact SQL or command first, and use transactions or off-peak execution where appropriate.
+
+## Reference(s):
+
+- [Postgres MCP Skill README](artifact/README.md)
+- [Postgres MCP](https://github.com/crystaldba/postgres-mcp)
+- [Agent Skills Open Standard](https://agentskills.io)
+- [Setup Postgres MCP](artifact/reference/setup-postgres-mcp/setup-postgres-mcp.md)
+- [PostgreSQL Health Checks](artifact/reference/pg-health/pg-health.md)
+- [PostgreSQL Index Tuning](artifact/reference/pg-index-tuning/pg-index-tuning.md)
+- [PostgreSQL Query Plan Analysis](artifact/reference/pg-query-plan/pg-query-plan.md)
+- [PostgreSQL Schema Queries](artifact/reference/pg-schema/pg-schema.md)
+- [PostgreSQL SQL Execution](artifact/reference/pg-execute/pg-execute.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL, shell, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database reports, SQL statements, execution plans, index recommendations, setup snippets, and confirmation prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

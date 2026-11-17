@@ -1,46 +1,65 @@
-## Description: <br>
-Use the we-promise/sure REST API with X-Api-Key auth for accounts, transactions, categories, tags, merchants, imports, holdings, trades, valuations, chats, official docs URLs, self-update workflow from upstream OpenAPI, and ClawHub publish readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the we-promise/sure REST API with X-Api-Key auth. Covers accounts, transactions, categories, tags, merchants, imports, holdings, trades, valuations, chats, official docs URLs, self-update workflow from upstream OpenAPI, and ClawHub publish readiness.
 
-## Publisher: <br>
-[ashanzzz](https://clawhub.ai/user/ashanzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashanzzz](https://clawhub.ai/user/ashanzzz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect and operate Sure financial resources through documented API endpoints, with wrapped commands for common flows and raw endpoint access for official endpoints that are not yet wrapped. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write to and delete Sure financial/account data. <br>
-Mitigation: Prefer wrapped CLI commands, review current state first, use dry-run where supported, and require explicit approval before any write or delete. <br>
-Risk: The raw request helper can reach destructive official endpoints, including account reset or deletion paths. <br>
-Mitigation: Avoid raw helper calls for destructive paths unless the operator has reviewed the endpoint, payload, and account impact. <br>
-Risk: The skill requires access to a Sure API key for a financial account. <br>
-Mitigation: Load credentials only from secure environment configuration and do not paste API keys into chat or non-secure files. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and operate Sure financial-account resources through authenticated REST API calls, including accounts, transactions, categories, tags, merchants, imports, holdings, trades, valuations, and chats. It supports common CLI wrappers plus raw official endpoint access for less-common Sure API operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ashanzzz/sure-api) <br>
-- [Sure API endpoint summary](references/api_endpoints_summary.md) <br>
-- [Sure OpenAPI snapshot](references/openapi.yaml) <br>
-- [Sure upstream repository](https://github.com/we-promise/sure) <br>
-- [Sure upstream API docs](https://github.com/we-promise/sure/tree/main/docs/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SURE_BASE_URL and SURE_API_KEY from secure environment configuration; write-capable wrapped commands require explicit confirmation flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose broad financial-account actions through the Sure API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a restricted Sure API key and review write requests before execution.
+
+Risk: Credential-forwarding paths can expose Sure API access if secrets are placed in prompts, command-line arguments, or non-secure files.
+
+Mitigation: Keep SURE_API_KEY in secure environment storage and do not pass it as a command-line argument or paste it into chat.
+
+Risk: The raw request wrapper can reach destructive endpoints such as account deletion, reset, auth, or other sensitive API paths.
+
+Mitigation: Avoid raw wrapper calls for destructive or auth endpoints unless the exact method, path, and body have been explicitly reviewed and approved.
+
+Risk: Untrusted prompts could redirect requests through a malicious base URL or arbitrary curl options.
+
+Mitigation: Use a trusted SURE_BASE_URL and do not allow untrusted content to choose base URLs or extra curl arguments.
+
+## Reference(s):
+
+- [Sure OpenAPI specification](references/openapi.yaml)
+- [Sure API endpoint summary](references/api_endpoints_summary.md)
+- [Official Sure API docs directory](https://github.com/we-promise/sure/tree/main/docs/api)
+- [Official Sure OpenAPI page](https://github.com/we-promise/sure/blob/main/docs/api/openapi.yaml)
+- [ClawHub skill page](https://clawhub.ai/ashanzzz/skills/sure-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request bodies, and API response summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live Sure API calls when the agent executes bundled scripts; secrets are expected from secure environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-购物助手 helps agents provide coupon lookup, multi-platform price comparison, price protection, price history, and price-drop reminder guidance for Taobao/Tmall, JD, and Pinduoduo shopping links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+购物助手 is a shopping assistant that helps an agent look up coupons, compare prices across Taobao, JD, and Pinduoduo, review price history, and suggest lower-cost purchase options.
 
-## Publisher: <br>
-[wuhaichao87](https://clawhub.ai/user/wuhaichao87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhaichao87](https://clawhub.ai/user/wuhaichao87)
 
-## Use Case: <br>
-External users and shopping-focused agents use this skill to inspect product links, find coupons, compare prices across supported Chinese e-commerce platforms, and produce purchase guidance. It is suited to shopping assistance workflows where current prices, coupon availability, and platform-specific limitations need to be shown clearly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping links may be converted into affiliate or tracking links without clear user-facing consent. <br>
-Mitigation: Review the skill before installation and disclose or disable affiliate conversion where users require direct destination links. <br>
-Risk: Affiliate and commerce API credentials may grant access beyond the skill's shopping-assistance workflow. <br>
-Mitigation: Use dedicated low-privilege credentials for Zhetaoke, JD Union, and Taobao Union integrations, and rotate them if exposed. <br>
-Risk: The artifact references helper scripts that are not included in the submitted files. <br>
-Mitigation: Do not run referenced helper scripts unless their source is included, reviewed, and scanned in the deployment environment. <br>
+## Use Case:
 
+External shoppers and shopping agents use this skill to evaluate product links, find available coupons, compare marketplace prices, and produce purchase suggestions. It is most useful when users want concise shopping guidance across Chinese e-commerce platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wuhaichao87/shopping-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/wuhaichao87) <br>
-- [Taobao](https://www.taobao.com) <br>
-- [JD.com](https://www.jd.com) <br>
-- [Pinduoduo](https://www.pinduoduo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured shopping results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include coupon links, price comparisons, price-protection guidance, historical price notes, and purchase recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill may silently rewrite shopping links into affiliate-tracked links that can generate commissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label affiliate links clearly, ask for opt-in consent before conversion, and offer a direct-link mode when users do not want tracking.
+
+Risk: Affiliate credentials are requested in a shared OpenClaw environment file.
+
+Mitigation: Store credentials in a scoped secret store or a locked-down file with least-privilege access rather than a broadly shared environment file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhaichao87/skills/shopping-assistant)
+- [Taobao](https://www.taobao.com)
+- [JD.com](https://www.jd.com)
+- [Pinduoduo](https://www.pinduoduo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured coupon, price comparison, and purchase recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned prices, coupons, and product availability may be time-sensitive; purchase links may be affiliate-tracked.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

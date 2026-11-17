@@ -1,42 +1,60 @@
-## Description: <br>
-The X Platform Agent helps businesses, researchers, and marketers collect and analyze public X posts, profiles, engagement, sentiment, and network signals through the Teneo Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The X Platform Agent provides public X/Twitter social listening, post analytics, profile extraction, and network intelligence through the Teneo Protocol SDK.
 
-## Publisher: <br>
-[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to access public X social listening, post analytics, profile and timeline extraction, and audience intelligence through Teneo Protocol. The skill is relevant for brand monitoring, competitor research, community analysis, and structured public social-data retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires wallet authentication and automatic USDC payments, and the security scan notes insufficient detail about spending limits and approvals. <br>
-Mitigation: Use a limited-funds wallet, verify the external SDK and publisher, and approve transactions only after confirming payment amounts, limits, and service data flow. <br>
+## Use Case:
 
+External developers, agents, businesses, researchers, and marketers use this skill to retrieve and analyze public X/Twitter posts, profiles, engagement, sentiment, trends, and network data.
 
-## Reference(s): <br>
-- [Teneo Protocol](https://teneo-protocol.ai) <br>
-- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk) <br>
-- [Teneo Agent SDK NPM Package](https://www.npmjs.com/package/@teneo-protocol/sdk) <br>
-- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk) <br>
-- [Agent Console](https://agent-console.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include wallet setup, supported networks, USDC payment configuration, and SDK connection details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: Wallet payment flows and spending limits can expose users to unintended USDC transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, confirm every payment prompt, and verify spending limits before connecting.
+
+Risk: The npm dependency supply chain can introduce package or version risks.
+
+Mitigation: Pin and review npm dependency versions before installing or running the SDK.
+
+Risk: Private keys or seed phrases could be exposed if entered into an unsafe runtime or configuration flow.
+
+Mitigation: Do not expose seed phrases or private keys to the SDK process; use wallet signing flows and environment isolation.
+
+## Reference(s):
+
+- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk)
+- [Teneo Protocol](https://teneo-protocol.ai)
+- [Teneo Agent SDK NPM Package](https://www.npmjs.com/package/@teneo-protocol/sdk)
+- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require wallet signing and USDC payment configuration for Base, Peaq, or Avalanche.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

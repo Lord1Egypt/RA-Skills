@@ -1,45 +1,60 @@
-## Description: <br>
-Top-level Linux computer-use skill with a bundled standalone runtime that bootstraps itself without any local Claude installation, private native modules, or extracted app assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Top-level Linux computer-use skill with a bundled standalone runtime that bootstraps itself without any local Claude installation, private native modules, or extracted app assets.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add Linux desktop control through a standalone MCP server, including screenshots, mouse and keyboard input, app and window inspection, app launch, and clipboard workflows on trusted local Linux sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose unredacted screen contents and operate mouse, keyboard, app launch, and clipboard functions in a local desktop session. <br>
-Mitigation: Use it only on trusted Linux desktops, avoid sensitive apps and private data during sessions, and keep requested app and clipboard access narrowly scoped. <br>
-Risk: The standalone runtime auto-grants powerful screen, input, app, and clipboard permissions without a real user approval step. <br>
-Mitigation: Review or change the auto-approval behavior before use, especially in shared, production, or sensitive environments. <br>
-Risk: First run can create a Python virtual environment and install runtime dependencies. <br>
-Mitigation: Review the bundled dependency list and run installation in an environment where first-run package installation is expected and permitted. <br>
+## Use Case:
 
+Developers and external agent users use this skill to build and run a standalone Linux MCP server for screenshots, mouse and keyboard input, app discovery, window and display mapping, and clipboard operations on a trusted local desktop.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wimi321/computer-use-linux) <br>
-- [Publisher profile](https://clawhub.ai/user/wimi321) <br>
-- [Bundled README](artifact/project/README.md) <br>
-- [MCP configuration example](artifact/project/examples/mcp-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces build and run guidance for a Linux-only standalone MCP server that may bootstrap a Python virtual environment on first launch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Screenshots and clipboard access can expose sensitive local information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted Linux desktop session, close sensitive windows, and keep sensitive clipboard contents out of view before enabling the skill.
+
+Risk: Broad app, input, clipboard, and system-key permissions can allow unintended desktop actions.
+
+Mitigation: Supervise sessions and prefer releases or configurations that require explicit user approval before screenshots, input, clipboard access, app control, or system-key combinations.
+
+Risk: The runtime reports no native screenshot filtering, so sensitive screen content may be captured if visible.
+
+Mitigation: Rely on MCP-layer gating and keep private applications or documents hidden before requesting screen inspection.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wimi321/skills/computer-use-linux)
+- [Skill Instructions](SKILL.md)
+- [Project README](project/README.md)
+- [MCP Configuration Example](project/examples/mcp-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is Linux-only and assumes a trusted local desktop session.]
+
+## Skill Version(s):
+
+0.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

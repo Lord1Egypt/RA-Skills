@@ -1,39 +1,52 @@
-## Description: <br>
-Create a user story map that lays out activities, steps, tasks, and release slices. Use when planning a workflow, backlog, or MVP around the user journey. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a user story map that lays out activities, steps, tasks, and release slices. Use when planning a workflow, backlog, or MVP around the user journey.
 
-## Publisher: <br>
-[divyamprusty](https://clawhub.ai/user/divyamprusty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[divyamprusty](https://clawhub.ai/user/divyamprusty)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, designers, engineers, and other planning stakeholders use this skill to map a user journey into activities, steps, tasks, priorities, and release slices for workflow, backlog, or MVP planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill references companion persona and jobs-to-be-done skills that may not be available in the installed environment.
+
+Mitigation: Use equivalent persona and jobs-to-be-done inputs when those companion skills are unavailable.
+
+Risk: The skill references template and example files that are not included in this package.
+
+Mitigation: Provide a local story-map template or example structure before relying on the output for team planning.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, designers, engineers, and other product teams use this skill to create shared user story maps for workflow planning, backlog prioritization, MVP scoping, and release slicing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced companion templates, examples, or skills may not be installed in the user's environment. <br>
-Mitigation: Use the included story-mapping steps directly and verify local references before relying on them. <br>
-Risk: A generated story map can reflect incomplete or outdated assumptions about users and workflows. <br>
-Mitigation: Review the map with product, design, engineering, and relevant user research before using it for prioritization or release planning. <br>
+**Output Format:** [Markdown with structured headings, lists, and story-map sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces a planning artifact; no code, shell commands, credentials, persistence, or network behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown story-map outline with activities, steps, tasks, and release slices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only output with no executable code or sensitive access] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Loop"
+  short_description: "Bounded delegated review and fix loop"
+  default_prompt: "Use $review-loop to run a bounded loop with fresh, read-only reviewer subagents, verify findings, apply accepted fixes, rerun relevant tests, and summarize."
+
+policy:
+  allow_implicit_invocation: false

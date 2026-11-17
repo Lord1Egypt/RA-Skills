@@ -1,6 +1,6 @@
 ---
-name: yescan-transoffice-universal
-description: 由夸克扫描王提供的专业的文件格式转换工具。能够接收用户上传的图片、截图或扫描件，根据用户指令智能转换为 Office 文档（Word/Excel）或 PDF 格式。具备行业领先的信息结构化提取与版面还原能力，能精准识别复杂表格、合同文书及图文排版，将图片转化为可编辑、高保真的数字化文档
+name: alibaba-quark-transoffice
+description: 由夸克扫描王提供的文件格式转换工具。当用户需要将图片、截图或扫描件转换为 Office 文档（Word/Excel）或 PDF 时，使用此技能。适用于包含复杂表格、合同或图文混排内容的图片或扫描件，可尽量还原原始版式并生成可编辑文档。即使用户未明确提到格式转换，只要用户的需求涉及将图片内容转换为可编辑文档（如 .docx、.xlsx 或 .pdf），也应触发此技能。请勿用于提取纯文本或识别文字内容、图像增强处理或从零创建文档
 metadata: {"openclaw":{"emoji":"🔍︎","requires":{"bins":["python3"],"env":["SCAN_WEBSERVICE_KEY"]},"primaryEnv":"SCAN_WEBSERVICE_KEY"},"homepage":"https://scan.quark.cn/business"}
 ---
 
@@ -17,7 +17,7 @@ metadata: {"openclaw":{"emoji":"🔍︎","requires":{"bins":["python3"],"env":["
 
 配置 `SCAN_WEBSERVICE_KEY` 环境变量到 OpenClaw：
 ```bash
-openclaw config set skills.entries.yescan-transoffice-universal.env.SCAN_WEBSERVICE_KEY "your_scan_webservice_key_here"
+openclaw config set skills.entries.alibaba-quark-transoffice.env.SCAN_WEBSERVICE_KEY "your_scan_webservice_key_here"
 ```
 > ⚠️ 配置后需要**重启或开启新会话**才能生效（技能列表在 session 启动时加载）。
 

@@ -1,0 +1,29 @@
+{
+  "name": "OpenClaw Knowledge Base Retriever",
+  "version": "1.0.14",
+  "category": "Retrieval / Local Knowledge Base",
+  "description": "OpenClaw local knowledge-base retriever with progressive search. Navigates layered data_structure.md indexes, enforces learn-before-process for PDF and Excel, bounds retrieval to at most five rounds, and answers with sources. Retrieval is read-only and bounded: every scanned entry is resolved to its real path and must stay inside the knowledge-base root, and entries that escape it (symlinked files or folders) are skipped and counted rather than read. The PDF helpers only accept real (non-symlinked) source paths — any symlink in the path is refused, never followed. Three optional maintenance scripts write only inside the knowledge base (data_structure.md indexes, derived .txt from PDFs, page PNGs for the OCR path) and run only on explicit request with confirmation; every write target is real-path checked the same way, and symlinked folders are never traversed. Windows & macOS ready. 中文：本地知识库检索器——分层索引 + 渐进式检索，核心零依赖；检索只读且受知识库边界约束（跟随符号链接后会越出根目录的条目一律跳过，不读库外文件；待处理 PDF 必须是真实路径，含符号链接直接拒绝），三个可选维护脚本（建索引 / PDF 转文本 / PDF 转图片）只写知识库内的文件，需用户点名并确认。",
+  "homepage": "https://github.com/dtsola/xiaoyaoclaw-kb-retriever",
+  "compat": [
+    "openclaw",
+    "claude-code",
+    "claude-ai",
+    "cursor",
+    "codex-cli",
+    "gemini-cli",
+    "opencode"
+  ],
+  "permissions": {
+    "read": [
+      "knowledge base directory (md/txt/pdf/xlsx and other documents) — reads are real-path checked and confined to the knowledge-base root"
+    ],
+    "write": [
+      "data_structure.md index files inside the knowledge base (optional, on request)",
+      "derived .txt files from PDFs inside the knowledge base (optional, on request)",
+      "page_N.png images for the optional PDF-to-image/OCR path inside the knowledge base (optional, on request)"
+    ],
+    "network": "none",
+    "environment": "none",
+    "notes": "No cron/daemons/state files. Reads and writes both go through one real-path containment gate (scripts/pathguard.py): targets are resolved to their real path, symlinks cannot redirect a read or a write outside the knowledge-base root, escaped entries are skipped and counted, and symlinked folders are never traversed. Source documents handed to the PDF helpers must be real paths — any symlink in the path is refused outright rather than followed. No file is deleted. Env vars and credentials are never read."
+  }
+}

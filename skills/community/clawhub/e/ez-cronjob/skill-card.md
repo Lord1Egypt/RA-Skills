@@ -1,45 +1,60 @@
-## Description: <br>
-Fix common cron job failures in Clawdbot/Moltbot - message delivery issues, tool timeouts, timezone bugs, and model fallback problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix common cron job failures in Clawdbot/Moltbot - message delivery issues, tool timeouts, timezone bugs, and model fallback problems.
 
-## Publisher: <br>
-[ProMadGenius](https://clawhub.ai/user/ProMadGenius) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[promadgenius](https://clawhub.ai/user/promadgenius)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose and fix Clawdbot/Moltbot scheduled-message failures, including delivery gaps, timeout behavior, timezone errors, and model fallback issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: An agent or user may create persistent cron jobs with the wrong schedule, timezone, recipient, or message. <br>
-Mitigation: Review job names, cron expressions, timezones, recipients, and message text before running the provided commands, then keep job IDs so unwanted jobs can be removed. <br>
-Risk: Troubleshooting commands may expose private messages, chat IDs, or operational details in logs. <br>
-Mitigation: Redact sensitive log content before sharing or storing diagnostic output. <br>
-Risk: Shell examples can modify scheduled jobs or restart services when executed. <br>
-Mitigation: Inspect each command and run only the commands that match the intended Clawdbot/Moltbot environment and recovery step. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose Clawdbot/Moltbot cron job failures, create more reliable scheduled messages, and apply safe troubleshooting steps for delivery, timezone, timeout, and fallback-model issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ProMadGenius/ez-cronjob) <br>
-- [Clawdbot Cron Documentation](https://docs.molt.bot/tools/cron) <br>
-- [Timezone Database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) <br>
-- [Cron Expression Generator](https://crontab.guru/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes troubleshooting checklists and command examples for cron job setup, inspection, testing, and recovery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Cron job deletion, immediate runs, or gateway restarts can remove scheduled work, send messages unexpectedly, or briefly disrupt service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the job ID, target service, and intended action with the user before running destructive, immediate-execution, or restart commands.
+
+Risk: Telegram delivery commands can send scheduled messages to the wrong chat or channel.
+
+Mitigation: Confirm the destination channel and chat ID before creating or testing delivery-enabled jobs.
+
+Risk: Log inspection can expose local operational data.
+
+Mitigation: Limit log review to cron-relevant lines and avoid sharing unrelated local log contents.
+
+## Reference(s):
+
+- [Clawdbot Cron Documentation](https://docs.molt.bot/tools/cron)
+- [Timezone Database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+- [Cron Expression Generator](https://crontab.guru/)
+- [EZ Cronjob ClawHub Page](https://clawhub.ai/promadgenius/skills/ez-cronjob)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

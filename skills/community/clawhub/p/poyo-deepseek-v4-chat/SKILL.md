@@ -1,10 +1,17 @@
 ---
 name: poyo-deepseek-v4-chat
 description: DeepSeek V4 chat on PoYo / poyo.ai via `https://api.poyo.ai/v1/chat/completions`; use for `deepseek-v4-flash`, `deepseek-v4-pro`, OpenAI-compatible chat payloads, system prompts, multi-turn messages, streaming chat, coding assistance, long-context analysis, and server-side chat integration.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/chat-series/chat-completions","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/deepseek-v4-flash","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo DeepSeek V4 Chat
+
+## PoYo Links
+
+- Flash model page: <https://poyo.ai/models/deepseek-v4-flash>
+- Pro model page: <https://poyo.ai/models/deepseek-v4-pro>
+- API docs: <https://docs.poyo.ai/api-manual/chat-series/chat-completions>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for DeepSeek V4 chat completion requests on PoYo. It helps agents choose the Flash or Pro model id, prepare OpenAI-compatible chat payloads, choose synchronous or streaming response handling, and keep API keys server-side.
 

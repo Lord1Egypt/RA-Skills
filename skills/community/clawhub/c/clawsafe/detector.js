@@ -338,7 +338,7 @@ if (require.main === module) {
     { input: 'http://127.0.0.1/admin', expected: false, layer: 'web' },
     
     // API 层测试
-    { input: 'const apiKey = "sk-1234567890abcdefghij";', expected: false, layer: 'api' },
+    { input: 'const apiKey = "REDACTED-SECRET";', expected: false, layer: 'api' },
     { input: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9', expected: false, layer: 'api' },
     
     // 代码扫描测试

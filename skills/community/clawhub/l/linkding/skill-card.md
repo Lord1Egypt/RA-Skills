@@ -1,40 +1,56 @@
-## Description: <br>
-Manage bookmarks with Linkding via the Linkding REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage bookmarks with Linkding by listing, searching, creating, updating, archiving, deleting, tagging, checking URLs, and creating bundles through the Linkding REST API.
 
-## Publisher: <br>
-[jmagar](https://clawhub.ai/user/jmagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[jmagar](https://clawhub.ai/user/jmagar)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers use this skill to let an agent manage a Linkding bookmark collection through authenticated API calls, including bookmark search, creation, updates, archiving, deletion, tags, and bundles.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent receives broad token-backed read, write, and delete access to the user's Linkding account.
+
+Mitigation: Use this skill only with a Linkding account and token scope you are comfortable exposing to the agent, and rotate or revoke the token if access is no longer needed.
+
+Risk: Destructive bookmark or bundle actions may remove saved data if the agent targets the wrong item.
+
+Mitigation: Require the agent to show the target bookmark or bundle and get explicit confirmation before any delete operation.
+
+Risk: Credentials may be exposed on shared machines or over insecure transport.
+
+Mitigation: Use HTTPS only, store the credentials file with restrictive permissions, and avoid shared machines for this token.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to search, create, update, archive, delete, tag, and organize bookmarks in a Linkding instance from an agent workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Linkding API token that can access the user's bookmark data. <br>
-Mitigation: Install only if the publisher is trusted, use the narrowest Linkding token available, and store credentials only in the documented config file or environment variables. <br>
-Risk: Update, archive, delete, and bundle-delete commands can change or remove bookmark data. <br>
-Mitigation: Confirm bookmark or bundle IDs before executing mutating commands, and review returned JSON where available. <br>
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Linkding Skill Page](https://clawhub.ai/jmagar/linkding) <br>
+**Other Properties Related to Output:** [Requires a Linkding base URL and API token supplied through a credentials file or environment variables.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; Linkding API helper responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Linkding base URL and API token. Some commands modify or delete server-side bookmark data.] <br>
+1.0.1 (source: SKILL.md frontmatter and server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

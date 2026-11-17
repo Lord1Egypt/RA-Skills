@@ -1,48 +1,66 @@
-## Description: <br>
-Nuwa Dual Mode helps an agent distill a person or theme into a runnable perspective skill with Persona, Toolkit, or single-mode behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nuwa Dual Mode helps an agent distill a person or theme into a runnable perspective skill with Persona, Toolkit, or single-mode behavior.
 
-## Publisher: <br>
-[shallinta](https://clawhub.ai/user/shallinta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shallinta](https://clawhub.ai/user/shallinta)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate or update perspective skills that model a public figure, character, or theme as a structured Persona, Toolkit, or dual-mode assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask users for private chats, internal company material, unpublished drafts, third-party personal data, or confidential sources. <br>
-Mitigation: Provide only materials you are authorized to use, and review generated skill files before installing or sharing them. <br>
-Risk: The skill can create, overwrite, or delete installed agent skills. <br>
-Mitigation: Review the target skill directory, overwrite prompt, and uninstall path before approving file changes. <br>
-Risk: Generated persona or toolkit skills may contain misleading, stale, or overconfident representations of a person or theme. <br>
-Mitigation: Review generated source policies, time-bound statements, care boundaries, and validation results before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or update perspective skills that model a public figure, fictional character, historical person, or methodology as Persona and/or Toolkit modes. The workflow guides source gathering, mode selection, skill structure, checkpoints, validation, and delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shallinta/nuwa-dual-mode) <br>
-- [Publisher profile](https://clawhub.ai/user/shallinta) <br>
-- [Extraction framework](artifact/references/extraction-framework.md) <br>
-- [Mode detection logic](artifact/references/mode-detection-logic.md) <br>
-- [Dual-mode template](artifact/references/dual-mode-template.md) <br>
-- [Single-mode template](artifact/references/single-mode-template.md) <br>
-- [Validation tests](artifact/references/validation-tests.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, generated skill files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local skill directories and associated reference files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can request private or sensitive source material and preserve it in generated skill artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only material you are authorized to use, avoid confidential or third-party personal data, and review generated files before sharing or installing them.
+
+Risk: Generated Persona rules may obscure that responses are AI-generated or may create emotional-companionship concerns.
+
+Mitigation: Review identity-disclosure, attribution, emotional-support, and crisis-support rules in every generated Persona before use.
+
+Risk: The workflow can create and install other skills and package source materials.
+
+Mitigation: Inspect the generated skill directory, run available validation or scanning steps, and confirm uninstall behavior before deployment.
+
+## Reference(s):
+
+- [Checkpoint Protocol](references/checkpoint-protocol.md)
+- [Dual Mode Skill Template](references/dual-mode-template.md)
+- [Extraction Framework](references/extraction-framework.md)
+- [Intent Inference](references/intent-inference.md)
+- [Mode Detection Logic](references/mode-detection-logic.md)
+- [Single Mode Skill Template](references/single-mode-template.md)
+- [Update Existing Skill](references/update-existing-skill.md)
+- [Validation Tests](references/validation-tests.md)
+- [Workflow Phases](references/workflow-phases.md)
+- [Workflow Types](references/workflow-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated skill files, code snippets, shell commands, and configuration notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local skill directories, research notes, templates, and validation reports when the host agent executes the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

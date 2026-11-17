@@ -1,0 +1,4 @@
+llm-behave[semantic]
+pyyaml
+requests
+python-dotenv

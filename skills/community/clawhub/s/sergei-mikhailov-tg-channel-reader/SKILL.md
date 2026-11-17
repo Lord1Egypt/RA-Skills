@@ -152,18 +152,66 @@ tg-reader fetch @channel_name --since 7d --all
 tg-reader fetch @channel_name --since 24h --state-file /path/to/state.json
 ```
 
-### `tg-reader auth` — First-time Authentication
+### `tg-reader auth` — Authentication / Onboarding
+
+Logs a Telegram account into the skill (needed once). A first-time login needs
+three things only a human can supply: the **phone number**, the **login code**
+Telegram sends, and — if the account has one — the **cloud 2FA password**.
+
+There are two ways to do it.
+
+#### For an AI agent: onboard the user (with their consent)
+
+The agent can run the whole login *for* the user, asking only for what Telegram
+requires. The command emits one JSON object per line (`stage` + `next_action`);
+the agent reacts to each stage and asks the user the corresponding thing:
 
 ```bash
-tg-reader auth
+# Agent starts it (single live process). Provide code/password via files.
+tg-reader auth --phone +79991234567 --code-file /tmp/tgcode --password-file /tmp/tg2fa
 ```
 
-Creates a session file. Only needed once. If a session file already exists it is
-backed up first (timestamped `.bak-*`, last 3 kept), and the fresh session is
-verified with `get_me()`.
+Stages:
 
-**Interactive only** — Telegram sends a login code to the user. Never run `auth`
-from a scheduled/background task.
+| stage | what the agent does |
+|---|---|
+| `need_phone` | ask the user for the account phone, re-run with `--phone` |
+| `code_sent` (`code_type: app`/`sms`) | tell the user a code was sent; ask for it; write it to the `--code-file` |
+| `need_2fa` | ask the user for their cloud password; write it to the `--password-file` |
+| `authorized` | tell the user it works |
+| `already_authorized` | session is fine already (use `--force` to re-login) |
+| `error` (`reason`) | `phone_invalid` / `code_invalid` / `code_expired` / `timeout_*` — act on it |
+
+What to tell the user (reassurances the agent should relay):
+
+- **The session is stored locally on this machine (OpenClaw)**, in
+  `~/.tg-reader-session.session`. It never leaves the machine and is not uploaded
+  anywhere.
+- **The login code and password are handled securely** — passed to the tool via a
+  file or stdin, never on the command line, so they don't leak into process lists
+  or logs. Delete the code/password files after (`--code-file`/`--password-file`).
+- From the user you need only: **phone number**, the **code** Telegram sends, and
+  (if enabled) the **2FA password**.
+
+Notes: never passes secrets on argv; reads the code/password from `--code-file` /
+`--password-file` (polled) or stdin. An existing session is backed up first
+(`.bak-*`, last 3 kept); a dead/unauthorized one is moved aside (`.dead-*`, never
+deleted) so the fresh login starts clean. Runs under the session lock. `TG_AUTH_PROGRESS=/path`
+also mirrors stages to a file if stdout is buffered through wrapper layers.
+
+#### For the user: do it yourself
+
+If the user would rather not have the agent drive it, print step-by-step
+instructions they can follow in their own terminal:
+
+```bash
+tg-reader auth --guide
+```
+
+Then the user runs `tg-reader auth --phone +7…` themselves and enters the code
+(and 2FA password) when asked.
+
+**Never run `auth` from a scheduled/background task** — it needs live input.
 
 ### `tg-reader restore-session` — Recover a Broken Session
 
@@ -208,6 +256,27 @@ export TG_READ_UNREAD=true
 Env vars take priority over the config file. This lets you enable read_unread via `openclaw.json` Docker `env` alongside `TG_API_ID`/`TG_API_HASH`.
 
 State is stored in `~/.tg-reader-state.json` (configurable via `"state_file"` in config, `TG_STATE_FILE` env var, or `--state-file` flag).
+
+### SOCKS5 proxy (for hosts that block direct MTProto)
+
+Some networks/hosts filter direct MTProto (TCP 443 to Telegram DCs), which shows
+up as `Connection timed out` even when the internet works. Route the client
+through a local SOCKS5 proxy:
+
+```json
+{
+  "api_id": 12345,
+  "api_hash": "...",
+  "socks_proxy": "127.0.0.1:1080"
+}
+```
+
+Accepted forms: `host:port` (SOCKS5 by default), `socks5://host:port`, or
+`socks5://user:pass@host:port`. Env var `TG_PROXY` overrides the config value
+(handy for setting the proxy via `openclaw.json` without editing the file).
+When unset, the client connects directly (unchanged behavior). Applies to both
+backends (Pyrogram/Telethon) and to `tg-reader-check`, which reports the
+resolved proxy in `credentials.proxy`.
 
 ### Behavior
 

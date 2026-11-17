@@ -1,43 +1,55 @@
-## Description: <br>
-根据 IP 查归属地与运营商类型。当用户说：这个 IP 是哪里的？是不是机房 IP？或类似 IP 归属问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据 IP 查归属地与运营商类型。当用户说：这个 IP 是哪里的？是不是机房 IP？或类似 IP 归属问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to look up an IP address and summarize its location and operator type using JisuAPI data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried IP addresses are sent to JisuAPI. <br>
-Mitigation: Avoid querying confidential internal, customer, or security-sensitive IP addresses unless sharing them with JisuAPI is acceptable for the environment. <br>
-Risk: The skill requires a JisuAPI key. <br>
-Mitigation: Provide JISU_API_KEY through the agent environment and avoid exposing it in prompts, logs, or shared command examples. <br>
+## Use Case:
 
+External users and agents use this skill to query an IP address and summarize its reported geographic attribution and operator type. It is intended for IP attribution questions, including whether an IP appears to be associated with a data center.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/ip) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI IP query documentation](https://www.jisuapi.com/api/ip/) <br>
-- [JisuAPI IP location endpoint](https://api.jisuapi.com/ip/location) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON returned by a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable; queried IP addresses are sent to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Queried IP addresses are sent to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive internal or private IPs unless disclosure to JisuAPI is acceptable.
+
+Risk: The JISU_API_KEY is stored in the environment and may be exposed if request URLs or process environments are logged.
+
+Mitigation: Use a dedicated, restricted, quota-limited key and rotate it if logs may have captured request details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/ip)
+- [JisuAPI IP Query API documentation](https://www.jisuapi.com/api/ip/)
+- [JisuAPI website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the lookup script with concise natural-language guidance for the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, outbound HTTPS access to JisuAPI, and a JISU_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

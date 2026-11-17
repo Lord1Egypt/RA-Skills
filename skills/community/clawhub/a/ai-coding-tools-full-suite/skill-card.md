@@ -1,49 +1,62 @@
-## Description: <br>
-Provides structured analysis, comparison, selection guidance, agent-design references, and prompt-engineering support for Cursor, Claude Code, Devin, Windsurf, and other AI coding tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language reference guidance for comparing AI coding tools, analyzing coding-agent designs, selecting tools, and improving coding prompts.
 
-## Publisher: <br>
-[wt865143010](https://clawhub.ai/user/wt865143010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wt865143010](https://clawhub.ai/user/wt865143010)
 
-## Use Case: <br>
-Developers, engineering leads, product evaluators, and AI researchers use this skill to compare AI coding assistants, choose tools for teams or projects, design agent workflows, and improve coding prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad routing can trigger large analysis flows when user intent is ambiguous. <br>
-Mitigation: Use explicit commands such as /ai-tools compare, /ai-tools analyze, /ai-tools design, or /ai-tools prompt when possible. <br>
-Risk: Reference material describes file-write, shell, browser, and context-persistence capabilities of other AI coding tools. <br>
-Mitigation: Treat those descriptions as analysis references only; separately approve any local tool access before an agent uses those capabilities. <br>
+## Use Case:
 
+Developers, technical leads, product managers, and AI practitioners use this skill to compare AI coding assistants, study agent workflows, design coding-agent systems, and draft or improve coding prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wt865143010/ai-coding-tools-full-suite) <br>
-- [AI coding assistant comparison reference](artifact/references/01-comparison.md) <br>
-- [Cursor prompt analysis reference](artifact/references/02-cursor.md) <br>
-- [Claude Code prompt analysis reference](artifact/references/03-claude-code.md) <br>
-- [Devin AI agent loop analysis reference](artifact/references/04-devin.md) <br>
-- [Windsurf prompt analysis reference](artifact/references/05-windsurf.md) <br>
-- [AI agent design best practices reference](artifact/references/06-agent-design.md) <br>
-- [Spec-driven development reference](artifact/references/07-spec-driven.md) <br>
-- [AI coding tool definitions reference](artifact/references/08-tools-reference.md) <br>
-- [Coding prompt engineering reference](artifact/references/09-prompt-engineering.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with comparison tables, command examples, prompt templates, and structured guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can route requests through /ai-tools, /aitools, @ai-coding-tools-full-suite, or natural-language prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The skill includes examples and comparisons involving shell commands, deployment, file modification, indexing, and persistent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those examples as informational guidance and keep normal user review before any coding agent runs commands, changes files, or deploys software.
+
+Risk: The server quality metadata marks the publisher trust tier as low.
+
+Mitigation: Review the skill content and bundled references before using it for procurement, production-tool selection, or agent-design decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wt865143010/skills/ai-coding-tools-full-suite)
+- [AI Coding Assistant Comparison Reference](references/01-comparison.md)
+- [Cursor Prompt Analysis Reference](references/02-cursor.md)
+- [Claude Code System Prompt Analysis Reference](references/03-claude-code.md)
+- [Devin AI Agent Loop Analysis Reference](references/04-devin.md)
+- [Windsurf Prompt Analysis Reference](references/05-windsurf.md)
+- [AI Agent Design Best Practices Reference](references/06-agent-design.md)
+- [Spec-Driven Development Methodology Reference](references/07-spec-driven.md)
+- [AI Coding Tool Definitions Reference](references/08-tools-reference.md)
+- [Coding Prompt Engineering Reference](references/09-prompt-engineering.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with tables, templates, examples, and occasional code or shell-command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference output; no direct execution is required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

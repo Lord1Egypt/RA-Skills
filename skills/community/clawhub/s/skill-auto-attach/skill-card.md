@@ -1,38 +1,53 @@
-## Description: <br>
-Monitors an OpenClaw workspace and automatically sends changed files to Telegram as attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors an OpenClaw workspace for file changes and automatically sends changed files to Telegram as attachments.
 
-## Publisher: <br>
-[elodyzen](https://clawhub.ai/user/elodyzen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elodyzen](https://clawhub.ai/user/elodyzen)
 
-## Use Case: <br>
-OpenClaw users can use this skill to forward newly created or modified workspace files to Telegram without manually attaching each file. It is best suited for controlled workspaces where automatic file sharing is expected. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic Telegram uploads from the watched workspace can expose files that were not intended to be shared. <br>
-Mitigation: Use a strict path and file-extension allowlist, exclude secrets and configuration directories, and confirm which Telegram chat or channel receives files before enabling the skill. <br>
-Risk: The security review notes that the skill may send any changed workspace file, not only documentation files. <br>
-Mitigation: Review the watched directory and add confirmation or filtering controls before using it in workspaces that contain private, credential-bearing, or regulated content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to watch a workspace and send newly created or modified files to a Telegram channel as attachments.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text] <br>
-**Output Format:** [Telegram file attachments with short text messages and local log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatically copies changed files to a temporary directory before sending and removes each temporary copy after delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The watcher can automatically send changed workspace files to Telegram without per-file approval.
+
+Mitigation: Install only in a controlled workspace that excludes secrets, credentials, private source, and sensitive files.
+
+Risk: Security evidence reports that the implementation may transmit more than the documented .html, .md, and .txt file types.
+
+Mitigation: Prefer a revised version with an explicit file-type allowlist and a confirmation step before sending each file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elodyzen/skills/skill-auto-attach)
+- [Publisher profile](https://clawhub.ai/user/elodyzen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration]
+
+**Output Format:** [Telegram file attachments with short status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a workspace watcher and sends detected files through the OpenClaw message tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

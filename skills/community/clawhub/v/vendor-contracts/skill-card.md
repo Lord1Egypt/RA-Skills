@@ -1,37 +1,54 @@
-## Description: <br>
-Pragmatic review of software contracts: IP, liability, SLAs. Use when triaging vendor agreements (not legal advice). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pragmatic review of software contracts: IP, liability, SLAs. Use when triaging vendor agreements (not legal advice).
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers, procurement teams, and business stakeholders use this skill to structure software vendor contract triage, identify red flags, prepare questions, and coordinate legal, security, and procurement follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat contract triage output as legal advice or a final decision for unusual, high-value, or high-risk agreements. <br>
-Mitigation: Use the skill as review support and involve qualified counsel for final decisions, unusual risk terms, or high-value agreements. <br>
+## Use Case:
 
+Employees, external reviewers, developers, and business stakeholders use this skill to triage software vendor agreements, structure red flags, and prepare questions for legal, security, procurement, and business owners.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown with checklists, staged review notes, red-flag summaries, and question lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review support only; final legal decisions should involve qualified counsel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users could mistake workflow support for legal advice or final contract approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill to organize triage, red flags, and questions, then involve appropriate legal or business owners for contract decisions.
+
+Risk: Contract risks may be under-specified when deal type, data handling, or risk appetite is missing.
+
+Mitigation: Clarify context and goals before making strong recommendations, including deal type, risk appetite, deadlines, and required owners.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/vendor-contracts)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with structured checklists and review summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides workflow support only; it does not produce legal advice or definitive legal conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

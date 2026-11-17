@@ -1,44 +1,63 @@
-## Description: <br>
-Bilingual meme token risk radar for Binance Web3 data that scans newly launched or fast-rising meme tokens from Meme Rush, enriches them with token audit and token info, produces normalized risk reports in Chinese or English, and supports SkillPay billing hooks for paid scan and audit calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilingual meme token risk radar for Binance Web3 data that scans newly launched or fast-rising meme tokens from Meme Rush, enriches them with token audit and token info, and produces normalized risk reports in Chinese or English.
 
-## Publisher: <br>
-[2663629531](https://clawhub.ai/user/2663629531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2663629531](https://clawhub.ai/user/2663629531)
 
-## Use Case: <br>
-External traders, researchers, alpha communities, and content operators use this skill to turn Binance Web3 meme token discovery data into bilingual, risk-ranked shortlists for further research. The skill is a read-only risk-filtering workflow and does not execute trades. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scan and audit commands can contact Binance Web3 and SkillPay, including paid SkillPay calls. <br>
-Mitigation: Use noop billing for testing, confirm required SkillPay environment variables before paid use, and run only in an environment where Binance Web3 and SkillPay network access is acceptable. <br>
-Risk: Billing URL and API-key environment variables can affect paid calls. <br>
-Mitigation: Set billing URL and API-key variables only in trusted environments and avoid hard-coding secrets. <br>
-Risk: Risk scores are point-in-time screening signals and may be misleading if treated as investment advice. <br>
-Mitigation: Use the output for risk triage and further research only; do not treat LOW risk as safe or as a trading recommendation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/2663629531/meme-risk-radar-skill) <br>
-- [ClawHub Listing Copy](artifact/references/clawhub_listing.md) <br>
-- [Binance Web3](https://web3.binance.com) <br>
-- [SkillPay](https://skillpay.me) <br>
+## Use Case:
 
+External traders, researchers, alpha communities, and content operators use this skill to turn Binance Web3 meme token discovery data into an explainable risk-ranked shortlist for further review. It supports scan, audit, and health-check workflows without placing trades.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-style structured risk reports with bilingual Chinese or English text and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token risk scores, risk levels, visible risk signals, metrics, audit enrichment, links, and timestamps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, CHANGELOG.md, VERSION.txt) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment handling could leak a billing key or charge more than once during failures.
+
+Mitigation: Review billing behavior before paid installation, use noop billing for local testing, avoid custom billing endpoints unless fully trusted, and require idempotency fixes before production paid use.
+
+Risk: Billing configuration documentation and implementation use inconsistent environment variable names.
+
+Mitigation: Confirm the required billing variables in a controlled test environment before enabling SkillPay mode.
+
+Risk: PaxHeader metadata files are included in the package.
+
+Mitigation: Remove archive metadata files from the release package before redistribution.
+
+Risk: Risk scores are point-in-time screening signals and can be mistaken for safety or investment advice.
+
+Mitigation: Treat reports as research inputs only, preserve the no-investment-advice disclaimer, and require independent review before any trading decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2663629531/skills/meme-risk-radar-skill)
+- [ClawHub listing copy](references/clawhub_listing.md)
+- [Binance Web3 endpoint](https://web3.binance.com)
+- [SkillPay service](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON risk report with bilingual text fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan results include chain, stage, language, timestamp, billing status, sorted token entries, risk scores, visible signals, metrics, audit data, links, and a risk-filtering disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, VERSION.txt, README, CHANGELOG released 2026-03-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

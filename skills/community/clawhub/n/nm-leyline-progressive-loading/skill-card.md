@@ -1,43 +1,50 @@
-## Description: <br>
-Implements hub-and-spoke lazy loading to minimize token usage in large skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements hub-and-spoke lazy loading to minimize token usage in large skills
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design modular agent skills that load relevant guidance based on user intent, artifacts, platform, language, and token budget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause automatic activation in environments with many skills installed. <br>
-Mitigation: Review trigger wording before relying on automatic activation. <br>
-Risk: Legacy Python snippets may be unsuitable if copied directly into Python 3.8-3.10 projects. <br>
-Mitigation: Review and correct legacy Python examples for the target Python version before reuse. <br>
-Risk: Documentation examples include code and shell-command patterns that may not fit a specific repository or workflow. <br>
-Mitigation: Review examples as guidance before applying them to project files or running related commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to design modular agent skills that load only the guidance relevant to the current task and available token budget.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-progressive-loading) <br>
-- [Clawdis homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Modules are intended to be loaded on demand to conserve context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence; artifact frontmatter lists 1.9.8) <br>
+Risk: The release is marked suspicious because it contains many unrelated capabilities and some referenced content was only partially inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unrelated module content, risky publishing and logging guidance, and partially inspected references before installation or use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-progressive-loading)
+- [Plugin details linked in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code examples and module-loading instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects relevant modules on demand based on task context and token budget.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

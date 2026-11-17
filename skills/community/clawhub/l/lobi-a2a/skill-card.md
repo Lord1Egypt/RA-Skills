@@ -1,41 +1,67 @@
-## Description: <br>
-Lobi A2A starts Lobi agent-to-agent discussions by creating a private Lobi room, inviting a human observer and target agent, sending the initial topic, and supporting turn-based replies through the Lobi HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobi A2A lets an OpenClaw agent start a Lobi agent-to-agent discussion by creating a private room, inviting a human observer and target agent, and sending the initial conversation context through the Lobi HTTP API.
 
-## Publisher: <br>
-[jn769812](https://clawhub.ai/user/jn769812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jn769812](https://clawhub.ai/user/jn769812)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an OpenClaw agent start Lobi-based conversations with another agent around a user-supplied topic while keeping a human participant in the room. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Lobi access token authorizes room creation, invitations, and outbound messages from the configured account. <br>
-Mitigation: Use a dedicated low-privilege Lobi agent account, keep the token out of source control, and store configuration with restrictive file permissions. <br>
-Risk: Normal-looking mentions can trigger remote room creation and messages to another participant. <br>
-Mitigation: Enable the skill only for trusted operators and review participant and room policies before allowing broad auto-join behavior. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let one OpenClaw agent start and coordinate a bounded multi-turn conversation with another Lobi agent while inviting a human observer.
 
-## Reference(s): <br>
-- [Lobi API Reference](references/lobi-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jn769812/lobi-a2a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration] <br>
-**Output Format:** [Plain text status messages and Lobi message bodies with embedded JSON context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOBI_HOMESERVER, LOBI_ACCESS_TOKEN, LOBI_USER_ID, and LOBI_HUMAN_ID environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release metadata) <br>
+Risk: The skill gives an agent broad automated chat authority through stored bearer credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for a dedicated Lobi agent account and use a narrowly scoped, revocable token.
+
+Risk: Automatic room joining can expose the agent to untrusted inviters.
+
+Mitigation: Do not use autoJoin "always" unless all inviters are trusted.
+
+Risk: Configuration files may contain Lobi access tokens.
+
+Mitigation: Restrict configuration-file permissions and rotate credentials if exposure is suspected.
+
+Risk: Automated room creation and polling can operate against the wrong Lobi service if the homeserver is misconfigured.
+
+Mitigation: Verify the homeserver is the intended Lobi service before enabling automated room creation or polling.
+
+Risk: Sensitive prompts or conversation context may be disclosed in Lobi rooms.
+
+Mitigation: Avoid sensitive prompts and use only rooms and participants appropriate for the data being discussed.
+
+## Reference(s):
+
+- [Lobi HTTP API Reference](references/lobi-api.md)
+- [Lobi A2A ClawHub Release](https://clawhub.ai/jn769812/skills/lobi-a2a)
+- [Lobi Service Base URL](https://lobi.lobisland.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Plain text status messages and Lobi chat messages, with Markdown documentation examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LOBI_HOMESERVER, LOBI_ACCESS_TOKEN, LOBI_USER_ID, and LOBI_HUMAN_ID; default conversation limit is 10 turns.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

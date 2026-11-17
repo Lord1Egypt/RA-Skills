@@ -1,41 +1,54 @@
-## Description: <br>
-A clean, reliable system resource monitor for CPU load, RAM, swap, disk usage, and uptime, optimized for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage, optimized for OpenClaw.
 
-## Publisher: <br>
-[nguyenttham085](https://clawhub.ai/user/nguyenttham085) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nguyenttham085](https://clawhub.ai/user/nguyenttham085)
 
-## Use Case: <br>
-Developers and operators use this skill to request concise server health reports for an OpenClaw host, including CPU load, memory, swap, root disk usage, and uptime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor sends uptime, load, memory, swap, and disk usage to a fixed external webhook every time it runs. <br>
-Mitigation: Review the script before installation and remove or disable the curl POST unless remote reporting to that endpoint is explicitly approved. <br>
-Risk: The reporting endpoint is hard-coded, so users cannot choose or audit the destination at runtime. <br>
-Mitigation: Make remote reporting opt-in and require a user-controlled endpoint before running the skill in an operational environment. <br>
+## Use Case:
 
+Developers and operators use this skill to ask an agent for server health status, including uptime, load averages, RAM, swap, and root disk usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nguyenttham085/test-monitor-openclaw-server) <br>
-- [Publisher profile](https://clawhub.ai/user/nguyenttham085) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text server resource report with shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local shell script and may send collected host resource data to a fixed external webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill sends host resource data to a fixed external webhook on every run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the hardcoded webhook POST or make remote monitoring explicit, user-controlled, opt-in, and documented with the destination and fields sent.
+
+Risk: Host resource data can expose operational details about the machine where the skill runs.
+
+Mitigation: Use only on approved machines and review the output destination before running in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nguyenttham085/skills/test-monitor-openclaw-server)
+- [Publisher Profile](https://clawhub.ai/user/nguyenttham085)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text server health report with agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports local uptime, load, memory, swap, and root disk usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

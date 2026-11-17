@@ -1,40 +1,56 @@
-## Description: <br>
-Navigate Bucharest as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Bucharest as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Visitors, residents, students, tech workers, and entrepreneurs use this skill to get practical Bucharest guidance on neighborhoods, transit, costs, visas, local services, safety, food, culture, and relocation planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Visa, residency, business tax, and healthcare guidance can become outdated or depend on individual circumstances. <br>
-Mitigation: Confirm current requirements with official Romanian, EU, tax, immigration, or healthcare sources before making decisions. <br>
-Risk: Severe-allergy or medical advice may be incomplete for a user's condition or venue-specific risks. <br>
-Mitigation: Use the skill as planning support only and verify safety practices with qualified professionals or the relevant venue. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/bucharest) <br>
-- [Skill homepage](https://clawic.com/skills/bucharest) <br>
+## Use Case:
 
+External users ask the agent for practical Bucharest guidance when visiting, relocating, studying, working in tech, starting a business, or comparing neighborhoods. The skill directs the agent to topic-specific markdown references for travel, housing, transport, costs, visas, safety, healthcare, education, food, business, and local lifestyle questions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with practical recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational city guidance; no commands, tools, or external service access are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may rely on general immigration, work authorization, tax, healthcare, or severe dietary guidance for decisions that require current professional advice.
+
+Mitigation: Treat the skill as a general Bucharest reference and verify those topics with official authorities or qualified professionals before acting.
+
+Risk: Visa workaround guidance may be mistaken for legal advice.
+
+Mitigation: Review visa-related answers carefully and do not rely on tourist visa hopping or enforcement comments for long-term residency planning.
+
+## Reference(s):
+
+- [Bucharest ClawHub skill page](https://clawhub.ai/ivangdavila/skills/bucharest)
+- [Bucharest skill homepage](https://clawic.com/skills/bucharest)
+- [Skill definition](artifact/SKILL.md)
+- [Visas and residency guide](artifact/visas.md)
+- [Safety and laws guide](artifact/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Topic-specific city guidance; no external binaries are required by the release metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

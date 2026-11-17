@@ -1,43 +1,56 @@
-## Description: <br>
-Design high-converting ecommerce landing page structures with headline copy, hero sections, and CTA placement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design high-converting ecommerce landing page structures with headline copy, hero sections, and CTA placement.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce marketers, founders, and landing-page builders use this skill to plan conversion-focused product landing pages with message-matched headlines, hero sections, benefit blocks, social proof, CTA placement, mobile adaptations, and A/B test priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated landing-page copy may include unsupported product claims, review counts, urgency, endorsements, or guarantee language. <br>
-Mitigation: Verify all claims, statistics, testimonials, permissions, deadlines, stock levels, refund terms, and endorsements before publishing. <br>
-Risk: Marketing guidance may lead to tracking pixels or lead-capture flows that require privacy disclosures. <br>
-Mitigation: Review tracking, consent, privacy policy, and data-use disclosures with the merchant's compliance process before launch. <br>
+## Use Case:
 
+External ecommerce sellers, marketers, and conversion teams use this skill to plan product landing pages for paid traffic, email, search, and social campaigns. It helps produce page structure, headline variants, CTA placement, social proof guidance, mobile adaptations, and A/B testing priorities.
 
-## Reference(s): <br>
-- [Landing Page Blueprint Template](references/output-template.md) <br>
-- [Headline Frameworks for Ecommerce Landing Pages](references/headline-frameworks.md) <br>
-- [Landing Page Conversion Checklist](assets/conversion-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/aes-landing-page-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown landing-page blueprint with tables, section copy, CTA strategy, image direction, mobile notes, and testing roadmap] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for claim accuracy, permissioned social proof, lawful urgency statements, and campaign-specific compliance before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Tracking-pixel and analytics checklist items could be applied without adequate privacy notice or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm analytics, advertising pixels, cookie consent, and privacy disclosures meet applicable requirements before launch.
+
+Risk: Generated landing page claims, urgency, scarcity, endorsements, or performance metrics could be misleading if copied without verification.
+
+Mitigation: Review all claims against product evidence, live inventory, offer terms, customer reviews, and approved brand or legal guidance before publishing.
+
+## Reference(s):
+
+- [Landing Page Builder ClawHub Page](https://clawhub.ai/leooooooow/skills/aes-landing-page-builder)
+- [Output Template](references/output-template.md)
+- [Headline Frameworks](references/headline-frameworks.md)
+- [Conversion Checklist](assets/conversion-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown landing page blueprint with tables, checklists, copy variants, CTA guidance, and testing roadmap]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product-specific assumptions, image direction, mobile layout notes, tracking-pixel checklist items, and campaign-specific optimization guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

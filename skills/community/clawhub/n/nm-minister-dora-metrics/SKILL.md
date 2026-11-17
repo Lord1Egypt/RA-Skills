@@ -1,7 +1,7 @@
 ---
 name: dora-metrics
 description: Computes DORA delivery-performance metrics from git and GitHub API
-version: 1.9.8
+version: 1.10.3
 triggers:
   - dora
   - metrics
@@ -16,7 +16,7 @@ source: claude-night-market
 source_plugin: minister
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/minister](https://github.com/athola/claude-night-market/tree/master/plugins/minister). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/minister](https://github.com/athola/claude-night-market/tree/master/plugins/minister). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # DORA Metrics
@@ -30,7 +30,7 @@ each metric into Elite, High, Medium, or Low using thresholds from
 DORA's State of DevOps research, and surface the single weakest
 dimension as the next improvement target.
 
-## When to Use
+## When To Use
 
 - Engineering management retrospectives and quarterly reviews.
 - Auditing whether agentic workflows (AI-assisted PRs, automated
@@ -120,7 +120,7 @@ and verify the `bug` (or chosen) label is correct on each.
 
 ## Testing
 
-Unit tests live in
+Unit tests are in
 `plugins/minister/tests/unit/test_dora_metrics.py`. Each tier
 boundary is exercised at the threshold, so future contributors who
 adjust an inequality (`>` vs `>=`) trigger a failure rather than a

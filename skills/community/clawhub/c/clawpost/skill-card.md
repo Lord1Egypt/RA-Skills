@@ -1,45 +1,53 @@
-## Description: <br>
-Guides agents to post social content through the Claw Post API across X, LinkedIn, Facebook, and TikTok, including Facebook group search, join, membership checks, and group posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to publish social posts, manage comments and replies, check notifications, and respond to LinkedIn messages across supported platforms through Claw Post.
 
-## Publisher: <br>
-[daydreamnationtechlabs](https://clawhub.ai/user/daydreamnationtechlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daydreamnationtechlabs](https://clawhub.ai/user/daydreamnationtechlabs)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure agents to publish approved social posts, upload media, poll job status, and manage Facebook group discovery, join, and posting workflows through Claw Post. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause real public posts, media uploads, and Facebook group joins through the user's logged-in browser session. <br>
-Mitigation: Require explicit user approval for each post, target platform, media upload, and Facebook group join before making the corresponding API request. <br>
-Risk: The paired browser extension acts through social accounts already logged in to the browser. <br>
-Mitigation: Review extension permissions and Claw Post terms before installation, and use the extension only with accounts intended for agent-assisted posting. <br>
-Risk: The CLAWPOST_API_KEY grants access to Claw Post actions for the account. <br>
-Mitigation: Store the key only in an environment variable or secret store, never commit it to skill files, and rotate it when access is no longer needed. <br>
-Risk: Uploaded media may carry sensitive content or metadata. <br>
-Mitigation: Avoid sensitive media unless the user accepts the metadata and retention implications for the upload and posting workflow. <br>
+## Use Case:
 
+External users and developers can use this skill to publish posts, comment or reply, check notifications, and respond to LinkedIn messages from social accounts logged into their paired Chrome profile.
 
-## Reference(s): <br>
-- [Claw Post API Docs](https://clawpost.net/api-docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/daydreamnationtechlabs/clawpost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, code] <br>
-**Output Format:** [Markdown with HTTP request snippets and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the CLAWPOST_API_KEY environment variable and a paired browser extension for external posting actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release metadata) <br>
+Risk: Checking LinkedIn messages involves handling private message content through Claw Post; the security scan was partial, so some local references were not assessed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling message checks, confirm what content and metadata Claw Post stores, its retention and deletion practices, and use only the platform the user requested.
+
+## Reference(s):
+
+- [Claw Post API documentation](https://clawpost.net/api-docs)
+- [Claw Post MCP endpoint](https://mcp.clawpost.net/mcp)
+- [Claw Post MCP discovery metadata](https://clawpost.net/.well-known/mcp.json)
+- [Claw Post support FAQ](https://clawpost.net/faq)
+- [ClawHub release page](https://clawhub.ai/daydreamnationtechlabs/skills/clawpost)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Notification summaries, Platform actions]
+
+**Output Format:** [Social post, comment, or reply text and notification summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts and replies can include platform-specific details and uploaded media.]
+
+## Skill Version(s):
+
+2.3.0 (source: changelog, released 2026-11-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

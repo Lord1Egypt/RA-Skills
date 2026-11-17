@@ -1,39 +1,53 @@
-## Description: <br>
-Identifies and tracks speakers in multi-person conversations, mapping speaker labels to names and managing voice command authorization levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies and tracks speakers in multi-person conversations, mapping speaker labels to names and managing voice-command authorization levels.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Developers and Percept users use this skill to attribute multi-person conversation transcripts to known speakers and control which speakers may trigger voice commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local speaker identity and authorization records may expose sensitive information or grant command access to the wrong person if mishandled. <br>
-Mitigation: Restrict access to the Percept dashboard and percept/data/speakers.json, and review owner and approved entries carefully. <br>
-Risk: Outdated or incorrect speaker mappings can misattribute speech or authorization status. <br>
-Mitigation: Delete or correct stale speaker mappings and periodically review the speaker registry. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jarvis563/percept-speaker-id) <br>
+## Use Case:
 
+Developers and agents use this skill to attribute transcript segments to speakers, maintain a local speaker registry, and decide which speakers may trigger voice commands in Percept and Omi multi-person conversations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helps maintain local speaker identity, owner, and authorization records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local speaker registry may contain real names, ownership or approval status, and speaker activity timestamps.
+
+Mitigation: Confirm this data handling is acceptable before installation and restrict access to the local registry and dashboard settings.
+
+Risk: Speaker authorization settings affect who can trigger voice commands.
+
+Mitigation: Review who can edit Percept dashboard speaker settings and audit owner or approved status changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarvis563/skills/percept-speaker-id)
+- [Percept project repository](https://github.com/GetPercept/percept)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference speaker labels, speaker profile fields, authorization states, and dashboard settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

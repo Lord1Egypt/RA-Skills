@@ -1,46 +1,61 @@
-## Description: <br>
-Creates standardized setup flows for installed OpenClaw skills, including directory structure, configuration templates, core file updates, and setup logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates standardized setup flows for installed OpenClaw skills, including directory structures, configuration templates, core file integration guidance, and setup logs.
 
-## Publisher: <br>
-[tengcareergmail](https://clawhub.ai/user/tengcareergmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tengcareergmail](https://clawhub.ai/user/tengcareergmail)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initialize or enable installed skills through repeatable setup steps, configuration and state templates, setup logs, quick references, and proposed updates to core agent files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make lasting changes to core agent behavior and memory files such as SOUL.md, AGENTS.md, MEMORY.md, and TOOLS.md. <br>
-Mitigation: Require the agent to show each proposed file creation and edit before applying changes, and review the setup log after execution. <br>
-Risk: Using the skill on untrusted skill packages could propagate misleading setup instructions into persistent configuration or memory files. <br>
-Mitigation: Review and scan the target skill before setup, and limit use to skills from trusted sources. <br>
-Risk: Configuration templates and setup logs may encourage storing secrets in markdown files. <br>
-Mitigation: Keep API keys and other secrets out of markdown configuration and logs; reference approved secret storage instead. <br>
+## Use Case:
 
+Developers and OpenClaw users use this meta-skill to initialize installed skills with consistent setup steps, configuration and state templates, setup logs, and integration guidance for core agent files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tengcareergmail/skill-setup-flow) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [Setup template](artifact/setup-template.md) <br>
-- [Self-improving setup example](artifact/examples/self-improving-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent edits to core agent files and create setup logs or configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill may guide agents to edit persistent core behavior, memory, or tool files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview of every planned change and approve updates before writing to SOUL.md, AGENTS.md, MEMORY.md, or TOOLS.md.
+
+Risk: Setup templates can encourage storing sensitive configuration values in Markdown files.
+
+Mitigation: Keep secrets out of generated Markdown templates and use dedicated secret storage for credentials or tokens.
+
+Risk: A mistyped or ambiguous target skill name can lead to setup files being created or integrated for the wrong skill.
+
+Mitigation: Validate the target skill name and path before creating directories, templates, logs, or integration notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tengcareergmail/skills/skill-setup-flow)
+- [README.md](artifact/README.md)
+- [QUICKSTART.md](artifact/QUICKSTART.md)
+- [setup-template.md](artifact/setup-template.md)
+- [Self-improving setup example](artifact/examples/self-improving-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent edits to core behavior, memory, or tool files; review planned changes before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

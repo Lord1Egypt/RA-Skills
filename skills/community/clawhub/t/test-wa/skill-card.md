@@ -1,40 +1,57 @@
-## Description: <br>
-Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats).
 
-## Publisher: <br>
-[fianabates1](https://clawhub.ai/user/fianabates1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fianabates1](https://clawhub.ai/user/fianabates1)
 
-## Use Case: <br>
-Agents use this skill when a user explicitly asks them to contact someone on WhatsApp, send a file, or sync and search WhatsApp chat history with wacli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send WhatsApp messages or files to third parties. <br>
-Mitigation: Confirm the recipient, message text, and file path with the user before sending. <br>
-Risk: Synced WhatsApp history may contain sensitive personal data stored under ~/.wacli. <br>
-Mitigation: Treat the wacli store as sensitive and only sync or search chat history when the user explicitly requests it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fianabates1/test-wa) <br>
-- [wacli homepage](https://wacli.sh) <br>
+## Use Case:
 
+External users and agent operators use this skill to send WhatsApp messages to explicitly specified recipients and to sync, search, or backfill WhatsApp chat history through the wacli CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use JSON output from wacli when parsing chat and message results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use wacli with access to WhatsApp login state and message history.
+
+Mitigation: Install and authenticate wacli only when that level of WhatsApp access is acceptable for the user and environment.
+
+Risk: The skill can send WhatsApp messages to direct chats or groups.
+
+Mitigation: Require an explicit recipient and message text, and confirm both before sending.
+
+Risk: The provided brew and go install methods can resolve to mutable wacli versions.
+
+Mitigation: Review or pin the wacli version before deployment in environments that require reproducible dependencies.
+
+## Reference(s):
+
+- [wacli homepage](https://wacli.sh)
+- [ClawHub skill page](https://clawhub.ai/fianabates1/skills/test-wa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wacli commands, recipient confirmation guidance, sync/search commands, and JSON-output parsing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

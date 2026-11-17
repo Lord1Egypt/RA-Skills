@@ -1,45 +1,52 @@
-## Description: <br>
-Email service for AI agents with wallet authentication and crypto payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email service for AI agents with wallet authentication and crypto payments.
 
-## Publisher: <br>
-[patrickshuff](https://clawhub.ai/user/patrickshuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[patrickshuff](https://clawhub.ai/user/patrickshuff)
 
-## Use Case: <br>
-External developers and agent operators use this skill to give AI agents ClawMail inboxes, authenticate with wallet signatures, and manage mailbox messages through MCP or REST workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet authentication and USDC payment prompts can authorize identity or paid mailbox actions. <br>
-Mitigation: Use a dedicated wallet where practical and require explicit review of wallet signatures and payment prompts before approval. <br>
-Risk: Mailbox session tokens can grant access to list, read, or delete messages. <br>
-Mitigation: Keep JWT tokens private and avoid exposing them in shared logs, prompts, or configuration files. <br>
-Risk: The delete message tool can permanently remove mailbox content. <br>
-Mitigation: Require explicit approval before allowing an agent to delete messages. <br>
-Risk: The npm package and linked source repository are not verified by server-resolved provenance for this release. <br>
-Mitigation: Before installing, verify the npm package and linked source repository through trusted channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawMail website](https://clawmail.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/patrickshuff/clawmail-xyz) <br>
-- [Publisher profile](https://clawhub.ai/user/patrickshuff) <br>
+## Use Case:
 
+External developers and agent operators use this skill to give AI agents a clawmail.xyz email inbox, authenticate with an Ethereum wallet, and manage messages through MCP or REST APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes MCP tools for mailbox availability, wallet login, message listing, message reading, and message deletion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs or runs the npm package clawmail without a pinned version.
+
+Mitigation: Pin and review the package version before use, and run it in a low-privilege environment.
+
+Risk: The skill handles wallet signatures, session tokens, message reading, and message deletion.
+
+Mitigation: Avoid exposing unrelated wallet or credential data and require explicit confirmation before deleting messages.
+
+## Reference(s):
+
+- [ClawMail homepage](https://clawmail.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports mailbox availability checks, wallet login, listing messages, reading messages, and deleting messages through MCP-style tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

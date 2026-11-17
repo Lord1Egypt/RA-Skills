@@ -1,37 +1,48 @@
-## Description: <br>
-Guide for parsing structured text input files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for parsing structured text input files.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to parse simple structured text input into key-value data for filling PDF fields.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Input files may contain personal form data or other sensitive text.
+
+Mitigation: Only point the agent at files it is authorized to read, and review extracted fields before using them to fill PDFs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to parse key-value text files and extract fields that can be mapped into PDF form labels. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: Input text files may contain secrets or sensitive personal data. <br>
-Mitigation: Choose input files deliberately and avoid parsing sensitive content unless the agent is allowed to process it locally. <br>
+**Output Format:** [Markdown with inline Python code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces key-value field mappings from structured text for downstream PDF filling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces parsing guidance for colon-separated key-value text formats.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

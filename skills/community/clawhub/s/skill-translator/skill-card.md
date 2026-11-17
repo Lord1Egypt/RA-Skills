@@ -1,40 +1,49 @@
-## Description: <br>
-Translates an existing SKILL.md document into Chinese while preserving Markdown structure and most YAML frontmatter, then writes the translation as SKILL(1).md in the same directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates a user-specified SKILL.md document into Chinese while preserving Markdown structure and writes the translated copy as SKILL(1).md in the same folder.
 
-## Publisher: <br>
-[JEyeshield](https://clawhub.ai/user/JEyeshield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeyeshield](https://clawhub.ai/user/jeyeshield)
 
-## Use Case: <br>
-Developers and skill authors use this skill to produce a Chinese translation of a SKILL.md file for review, localization, or sharing with Chinese-speaking users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads from a user-provided path, so an incorrect path could translate the wrong SKILL.md file. <br>
-Mitigation: Confirm the target directory is the intended skill directory before running the translation. <br>
-Risk: The skill may overwrite an existing SKILL(1).md file in the target directory. <br>
-Mitigation: Check for an existing SKILL(1).md and preserve any prior translation or manual edits before running the skill. <br>
+## Use Case:
 
+Developers and skill authors use this skill to translate SKILL.md documentation into Chinese while retaining Markdown formatting and frontmatter structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JEyeshield/skill-translator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes SKILL(1).md beside the source SKILL.md and may overwrite an existing file with that name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated SKILL(1).md file may overwrite an existing file in the target skill folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target folder and whether SKILL(1).md already exists before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeyeshield/skills/skill-translator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, guidance]
+
+**Output Format:** [Markdown file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes SKILL(1).md in the same folder as the source SKILL.md; an existing SKILL(1).md may be overwritten.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

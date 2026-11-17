@@ -1,0 +1,15 @@
+{
+  "doc": "gasket.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "extrude", "name": "Gasket", "height": 2, "comment": "outline with rounded corners, a central slot and four bolt holes in one sketch",
+     "shapes": [
+       {"rect": [0, 0, 90, 60], "corner_radius": 8},
+       {"slot": [[30, 30], [60, 30]], "radius": 9},
+       {"circle": [10, 10], "radius": 3.5}, {"circle": [80, 10], "radius": 3.5},
+       {"circle": [10, 50], "radius": 3.5}, {"circle": [80, 50], "radius": 3.5}
+     ],
+     "expect": {"bbox_size": [90, 60, 2], "solids": 1}},
+    {"op": "export", "filename": "gasket.step"}
+  ]
+}

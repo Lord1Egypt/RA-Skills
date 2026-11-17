@@ -1,41 +1,54 @@
-## Description: <br>
-Generates Word documents in Chinese official-document style from Markdown or JSON input, including headings, fonts, paragraph formatting, page numbers, and Chinese punctuation handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese official-document DOCX files from Markdown or JSON with standardized title, heading, font, paragraph, page-number, and punctuation formatting.
 
-## Publisher: <br>
-[liujiang817](https://clawhub.ai/user/liujiang817) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujiang817](https://clawhub.ai/user/liujiang817)
 
-## Use Case: <br>
-Developers and agents use this skill to create formatted .docx files for formal Chinese documents such as reports, summaries, plans, and official materials from Markdown or structured JSON content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the formatter to run for general document requests. <br>
-Mitigation: Confirm the user wants Chinese official-document-style Word output and use explicit input and output paths before running the formatter. <br>
-Risk: The install script installs python-docx into a local virtual environment. <br>
-Mitigation: Review the install script before first use and run it only in the intended skill directory. <br>
+## Use Case:
 
+Agents use this skill when a user needs a Chinese official-style Word document, report, summary, speech material, or similar formal document generated or reformatted from Markdown or structured JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujiang817/my-docx-formatter) <br>
-- [Publisher profile](https://clawhub.ai/user/liujiang817) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands that produce .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local input and output paths; generated documents are saved as .docx files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger wording may cause the formatter to run for ordinary reports, summaries, or materials that do not need Chinese official-document formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ambiguous user requests before invoking the skill and confirm that official-document formatting is desired.
+
+Risk: The install script installs python-docx without a pinned version.
+
+Mitigation: Use a locked dependency workflow or pin python-docx before running the install script in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujiang817/skills/my-docx-formatter)
+- [Publisher profile](https://clawhub.ai/user/liujiang817)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [DOCX files generated from Markdown or JSON inputs, with Markdown usage examples and shell commands for invocation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local .docx files and may install python-docx into a local virtual environment before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

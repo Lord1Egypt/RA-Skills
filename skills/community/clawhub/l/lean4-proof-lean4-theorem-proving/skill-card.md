@@ -1,62 +1,73 @@
-## Description: <br>
-Use when working with Lean 4 (.lean files), writing mathematical proofs, seeing "failed to synthesize instance" errors, managing sorry/axiom elimination, or searching mathlib for lemmas - provides build-first workflow, haveI/letI patterns, compiler-guided repair, and LSP integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for Lean 4 proof development, including mathematical proofs, compiler-guided repair, type class instance issues, sorry and axiom management, mathlib search, and LSP-assisted workflows.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and engineers use this skill for Lean 4 theorem proving, mathlib search, proof repair, tactic selection, type class troubleshooting, and management of sorries or custom axioms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Lean patches or proof-repair suggestions may be incorrect or incomplete. <br>
-Mitigation: Review proposed patches before applying them, run repair work from version control, and verify results with Lean build checks. <br>
-Risk: External search workflows may expose private theorem statements or proof states. <br>
-Mitigation: Use local search first and send private proof context to external services only when that is acceptable for the project. <br>
-Risk: The skill is focused on Lean 4 assistance and should not be treated as broad automation authority. <br>
-Mitigation: Install and use it only for Lean 4 proof-assistance workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill when creating, maintaining, or repairing Lean 4 proofs. It supports build-first proof work, mathlib discovery, tactic selection, compiler-error diagnosis, proof refactoring, and elimination of temporary sorries or custom axioms.
 
-## Reference(s): <br>
-- [Axiom Elimination Reference](references/axiom-elimination.md) <br>
-- [Calc Chain Patterns](references/calc-patterns.md) <br>
-- [Common Compilation Errors in Lean 4](references/compilation-errors.md) <br>
-- [Compiler-Guided Proof Repair](references/compiler-guided-repair.md) <br>
-- [Domain-Specific Patterns for Lean 4](references/domain-patterns.md) <br>
-- [Guide: Avoiding Instance Pollution in Lean 4](references/instance-pollution.md) <br>
-- [Lean LSP Server](references/lean-lsp-server.md) <br>
-- [Lean LSP Tools API Reference](references/lean-lsp-tools-api.md) <br>
-- [Lean 4 Phrasebook](references/lean-phrasebook.md) <br>
-- [Mathlib Integration Guide](references/mathlib-guide.md) <br>
-- [Mathlib Style Guide for Lean 4](references/mathlib-style.md) <br>
-- [Measure Theory Reference](references/measure-theory.md) <br>
-- [Performance Optimization in Lean 4](references/performance-optimization.md) <br>
-- [Proof Golfing Patterns](references/proof-golfing-patterns.md) <br>
-- [Proof Golfing Safety and Workflow](references/proof-golfing-safety.md) <br>
-- [Proof Golfing](references/proof-golfing.md) <br>
-- [Refactoring Long Proofs](references/proof-refactoring.md) <br>
-- [Sorry Filling Reference](references/sorry-filling.md) <br>
-- [Subagent Workflows for Lean 4 Development](references/subagent-workflows.md) <br>
-- [Lean 4 Tactics Reference](references/tactics-reference.md) <br>
-- [APOLLO compiler-guided repair paper](https://arxiv.org/abs/2505.05758) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Lean code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Lean proof edits, search workflows, build commands, and repair steps; users should inspect generated patches and run Lean builds before relying on results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Proposed proof edits or repair steps may introduce incorrect Lean code or leave misleading proof scaffolding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review patches before applying them, run `lake build`, and verify that completed results have no remaining sorries or custom axioms.
+
+Risk: Proof goals, identifiers, or repair logs may expose sensitive project details when external search or remote tools are used.
+
+Mitigation: Keep repair logs local for sensitive projects and prefer local search or LSP-assisted workflows when confidentiality matters.
+
+## Reference(s):
+
+- [Axiom Elimination Reference](references/axiom-elimination.md)
+- [Calc Chain Patterns](references/calc-patterns.md)
+- [Common Compilation Errors in Lean 4](references/compilation-errors.md)
+- [Compiler-Guided Proof Repair](references/compiler-guided-repair.md)
+- [Lean 4 Domain-Specific Patterns](references/domain-patterns.md)
+- [Guide: Avoiding Instance Pollution in Lean 4](references/instance-pollution.md)
+- [Lean LSP Server](references/lean-lsp-server.md)
+- [Lean LSP Tools API](references/lean-lsp-tools-api.md)
+- [Lean 4 Phrasebook](references/lean-phrasebook.md)
+- [Mathlib Guide](references/mathlib-guide.md)
+- [Mathlib Style Guide](references/mathlib-style.md)
+- [Measure Theory Reference](references/measure-theory.md)
+- [Performance Optimization](references/performance-optimization.md)
+- [Proof Golfing](references/proof-golfing.md)
+- [Proof Golfing Patterns](references/proof-golfing-patterns.md)
+- [Proof Golfing Safety](references/proof-golfing-safety.md)
+- [Proof Refactoring](references/proof-refactoring.md)
+- [Sorry Filling](references/sorry-filling.md)
+- [Subagent Workflows](references/subagent-workflows.md)
+- [Tactics Reference](references/tactics-reference.md)
+- [APOLLO compiler-guided repair paper](https://arxiv.org/abs/2505.05758)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Lean code snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose proof edits, Lean commands, build checks, search strategies, and local workflow steps for agent review.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

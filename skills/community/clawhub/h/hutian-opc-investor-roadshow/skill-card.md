@@ -1,47 +1,59 @@
-## Description: <br>
-A professional OPC mentor toolkit for company screening, due diligence, policy matching, investor roadshow preparation, negotiation support, and follow-up management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向OPC导师的专业招商引流工具包，服务于园区社区招商，帮助企业投资路演展示与对接.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External OPC mentors, investment-attraction teams, and business development operators use this skill to evaluate candidate companies, prepare diligence and roadshow materials, match policies and resources, and manage outreach follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle contact, CRM, and company information during outreach and roadshow workflows. <br>
-Mitigation: Define consent or another lawful basis, collect only necessary fields, restrict CRM access, set retention periods, and delete or redact contact and business data when no longer needed. <br>
-Risk: Policy, company, financial, and diligence outputs may become inaccurate if source data is stale or unverified. <br>
-Mitigation: Verify company facts, financial information, patent status, and policy eligibility against official or current sources before using outputs in investment-attraction decisions. <br>
+## Use Case:
 
+External OPC mentors, park operators, government investment-promotion teams, and business development users use this skill to evaluate candidate companies, prepare due-diligence materials, match policy incentives, draft investment attraction plans, support negotiation, and manage follow-up.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/hutian-opc-investor-roadshow) <br>
-- [Publisher profile](https://clawhub.ai/user/golngod) <br>
-- [Enterprise screening score model](references/企业筛选评分模型.md) <br>
-- [Due diligence checklist template](references/尽职调查清单模板.md) <br>
-- [Investment attraction proposal framework](references/招商方案生成框架.md) <br>
-- [Policy matching database](references/政策匹配数据库.md) <br>
-- [Negotiation script library](references/洽谈话术库.md) <br>
-- [Follow-up management toolkit](references/跟进管理工具包.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and templates, with optional Python-generated plain text and JSON scoring outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes enterprise scoring, diligence checklists, policy matching, negotiation scripts, and CRM-style follow-up templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can collect or structure confidential business, contact, financial, contract, banking, and technical material during investment-promotion and due-diligence workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized work, store collected material in approved systems, limit access and retention, and treat sensitive fields as confidential.
+
+Risk: Enterprise scores, policy matches, and due-diligence outputs may be incomplete or misleading if source data is stale, inaccurate, or unverified.
+
+Mitigation: Verify scoring inputs, policy eligibility, and diligence conclusions against authoritative records before making business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/hutian-opc-investor-roadshow)
+- [企业筛选评分模型](artifact/references/企业筛选评分模型.md)
+- [尽职调查清单模板](artifact/references/尽职调查清单模板.md)
+- [招商方案生成框架](artifact/references/招商方案生成框架.md)
+- [政策匹配数据库](artifact/references/政策匹配数据库.md)
+- [洽谈话术库](artifact/references/洽谈话术库.md)
+- [跟进管理工具包](artifact/references/跟进管理工具包.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured templates, checklists, scoring outputs, JSON-like data, and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include enterprise scores, policy matches, due-diligence checklists,招商方案 drafts, negotiation scripts, and follow-up records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

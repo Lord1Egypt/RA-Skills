@@ -1,42 +1,49 @@
-## Description: <br>
-Generates content, including articles and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI-assisted content, including articles and images.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and content teams use this skill to generate articles, images, videos, titles, and content-review assistance for content creation, marketing copy, news writing, and social media workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact references an external GitHub repository whose code and requirements are not included in the submitted files. <br>
-Mitigation: Review the external repository and requirements file before installation or execution. <br>
-Risk: Author attribution differs between the artifact text and server-resolved package metadata. <br>
-Mitigation: Treat the OpenClaw Skills Team attribution as unverified and rely on the server-resolved publisher handle for ownership. <br>
+## Use Case:
 
+Content creators, marketers, and developers can use this skill to generate Chinese-language articles and image content, with supporting workflows for video generation, title optimization, and content review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-content-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
-- [External repository listed by artifact](https://github.com/openclaw-skills/ai-intelligent-content-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text, with inline shell commands when installation steps are requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submitted artifact contains no embedded executable code; external repository review is recommended before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The security evidence flags the release as suspicious because its install instructions run unreviewed code from a mutable remote GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact repository and dependencies before use, pin to a trusted commit or signed release, and run in an isolated environment without sensitive credentials or administrator privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-content-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup and run instructions for the referenced content-generation application.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

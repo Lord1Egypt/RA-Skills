@@ -1,48 +1,63 @@
-## Description: <br>
-Self-reflection, correction logging, persistent memory, WAL protocol, cold-boot recovery, and automated daily review with self-healing cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides correction logging, persistent agent memory, cold-boot recovery, and scheduled daily review guidance so an agent can retain explicit lessons across sessions.
 
-## Publisher: <br>
-[joelsalespossible](https://clawhub.ai/user/joelsalespossible) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joelsalespossible](https://clawhub.ai/user/joelsalespossible)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add correction logging, persistent working memory, cold-boot recovery, and recurring review behavior to an OpenClaw-style agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent agent instructions and recurring automation that can rewrite core workspace control files. <br>
-Mitigation: Install only when that behavior is intended; back up SOUL.md, AGENTS.md, IDENTITY.md, HEARTBEAT.md, SESSION-STATE.md, and ~/self-improving/ before use, and verify how to disable the cron and remove injected hooks. <br>
-Risk: Persistent memory can capture sensitive or unwanted information if the agent records inappropriate content. <br>
-Mitigation: Follow the documented security boundaries: do not store credentials or sensitive personal data, keep memory visible to the user, and support audit and deletion requests. <br>
-Risk: Recurring review behavior may keep applying stale or incorrect lessons after context changes. <br>
-Mitigation: Review proposed memory changes, keep self-inferred rules revisable, and remove or demote stale patterns during maintenance. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and operate a local memory workflow that records corrections, maintains session state, and recovers context across restarts. It is intended for agents where persistent learning from explicit corrections is desired.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joelsalespossible/self-maturing) <br>
-- [Setup](setup.md) <br>
-- [Security Boundaries](references/boundaries.md) <br>
-- [Learning Mechanics](references/learning.md) <br>
-- [Memory Operations](references/operations.md) <br>
-- [Scaling Rules](references/scaling.md) <br>
-- [Heartbeat Rules](heartbeat-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local memory files, workspace hook files, and cron setup guidance when initialized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact manifest reports 3.2.0 and SKILL.md frontmatter reports 3.2) <br>
+Risk: Persistent memory may retain sensitive or regulated information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the memory boundaries before installation, avoid use in sensitive workspaces unless persistence is intentionally enabled, and audit or clear stored memory on demand.
+
+Risk: Scheduled automation can rewrite core workspace instruction files without per-change approval.
+
+Mitigation: Review the generated cron prompt and workspace hooks before enabling the schedule, keep backups of affected Markdown files, and disable or manually review scheduled rewrites when tighter change control is required.
+
+Risk: Workspace hooks and session-state files can influence future agent behavior.
+
+Mitigation: Inspect SOUL.md, AGENTS.md, IDENTITY.md, HEARTBEAT.md, SESSION-STATE.md, and the self-improving memory files after setup and after daily reviews.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joelsalespossible/skills/self-maturing)
+- [Setup](setup.md)
+- [Heartbeat Rules](heartbeat-rules.md)
+- [Learning Mechanics](references/learning.md)
+- [Security Boundaries](references/boundaries.md)
+- [Memory Operations](references/operations.md)
+- [Scaling Rules](references/scaling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a Python helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, verification, dry-run, cron-prompt, and memory status commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

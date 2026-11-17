@@ -1,39 +1,52 @@
-## Description: <br>
-Monitors portfolio risk, R-multiples, and position limits while helping create hedging strategies, expectancy calculations, and stop-loss guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors portfolio risk, R-multiples, and position limits while supporting hedging strategies, expectancy calculations, and stop-loss planning.
 
-## Publisher: <br>
-[cry779](https://clawhub.ai/user/cry779) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cry779](https://clawhub.ai/user/cry779)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and finance-focused agents use this skill to assess portfolio risk, size positions, track R-multiples, and plan hedges or stop-losses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad finance conversations could produce personalized trading advice without clear inputs and user direction.
+
+Mitigation: Require clear user goals, constraints, and inputs before applying the skill, and frame outputs as advisory analysis for user review.
+
+Risk: Hedging, stop-loss, and position-sizing recommendations may be unsuitable for a user's financial situation.
+
+Mitigation: Treat these outputs as analysis to review independently or with a qualified professional before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and portfolio operators use this skill for risk assessment, trade tracking, portfolio protection workflows, and templates for position sizing, correlation review, expectancy, and drawdown analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial risk guidance could be mistaken for authorization to place, modify, or cancel trades through another tool. <br>
-Mitigation: Use the skill for analysis, checklists, calculators, and recommendations only; require explicit user request, confirmation, and separate review before any trade execution by other automation. <br>
-Risk: Broad activation wording may cause the skill to be used outside a risk-management context. <br>
-Mitigation: Confirm the user's goals, constraints, inputs, and risk-management scope before applying its portfolio or trading guidance. <br>
+**Output Format:** [Markdown reports, tables, calculators, and templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Advisory finance outputs requiring user review; no executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, reports, templates, and calculator specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only finance risk-management output; no broker access, credentials, code execution, or hidden data access is included in the release evidence.] <br>
+1.0.0 (source: evidence.release.version, artifact/skill.json, artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

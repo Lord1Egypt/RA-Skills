@@ -1,48 +1,62 @@
-## Description: <br>
-This skill helps agents compress PowerPoint (.pptx) files by reducing embedded video and large image size, using ffmpeg for video, Pillow for images, and repackaging the result as a valid .pptx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses embedded videos and large images in PowerPoint (.pptx) files, then repackages the presentation as a valid compressed .pptx file.
 
-## Publisher: <br>
-[TsingCode](https://clawhub.ai/user/TsingCode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsingcode](https://clawhub.ai/user/tsingcode)
 
-## Use Case: <br>
-External users and productivity-focused agents use this skill to shrink large PowerPoint presentations before sharing, emailing, or archiving them. It is most useful for .pptx files that contain embedded videos or large images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download executable ffmpeg binaries without integrity checks. <br>
-Mitigation: Prefer a trusted system ffmpeg package or verify downloaded ffmpeg binaries before use. <br>
-Risk: The compression script may install Pillow into the active Python environment. <br>
-Mitigation: Run the skill in a virtual environment and install dependencies explicitly before execution. <br>
-Risk: Command templates using python -c can be unsafe if built from untrusted filenames or pasted message text. <br>
-Mitigation: Validate the .pptx path first and avoid executing commands assembled from untrusted text. <br>
-Risk: Video and image compression can reduce media quality or affect playback compatibility. <br>
-Mitigation: Keep the original presentation, use dry-run or conservative quality settings for important files, and review the compressed output before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to reduce PowerPoint file size for sharing by compressing embedded videos and large images while preserving a usable .pptx output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TsingCode/ppt-compress-master) <br>
-- [ffmpeg Windows builds](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip) <br>
-- [ffmpeg macOS builds](https://evermeet.cx/ffmpeg/getrelease/ffmpeg/zip) <br>
-- [ffprobe macOS builds](https://evermeet.cx/ffmpeg/getrelease/ffprobe/zip) <br>
-- [ffmpeg Linux static builds](https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated .pptx file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a compressed PowerPoint file, typically named with a _compressed suffix, and reports size changes when execution completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can download and run ffmpeg executables from external sources when bundled binaries are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted preinstalled ffmpeg or independently verify downloaded binaries before use.
+
+Risk: The compression script may install Pillow during normal use.
+
+Mitigation: Preinstall Pillow from trusted package channels in the target environment.
+
+Risk: Generated Python commands may include user-provided file paths.
+
+Mitigation: Use only trusted .pptx files, validate the path before execution, and avoid unusual filenames or untrusted message text in commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsingcode/skills/ppt-compress-master)
+- [Publisher Profile](https://clawhub.ai/user/tsingcode)
+- [FFmpeg Windows Build Source](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip)
+- [FFmpeg macOS ffmpeg Build Source](https://evermeet.cx/ffmpeg/getrelease/ffmpeg/zip)
+- [FFmpeg macOS ffprobe Build Source](https://evermeet.cx/ffmpeg/getrelease/ffprobe/zip)
+- [FFmpeg Linux Static Build Source](https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell commands; local execution can produce a compressed .pptx file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports original size, compressed size, compression ratio, and output file path when compression runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

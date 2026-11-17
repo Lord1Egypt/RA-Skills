@@ -1,44 +1,63 @@
-## Description: <br>
-Use this skill when the user asks to manage Binance assets, check account security, scan for arbitrage opportunities, or perform automated dust sweeps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks to manage Binance assets, check account security, scan for arbitrage opportunities, or perform automated dust sweeps.
 
-## Publisher: <br>
-[hyy2099](https://clawhub.ai/user/hyy2099) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyy2099](https://clawhub.ai/user/hyy2099)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Binance account security, scan idle assets and dust balances, monitor funding-rate arbitrage opportunities, execute dust sweeps, and generate account reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use live Binance credentials and its dust-sweep command can change account balances by converting assets to BNB. <br>
-Mitigation: Use testnet first, run only on a dedicated low-balance sub-account, and execute dust sweeps only when the user explicitly intends to convert those assets. <br>
-Risk: API secrets may be supplied through chat commands or command-line parameters in environments that retain logs. <br>
-Mitigation: Prefer environment variables or a local .env file, avoid sending secrets through chat, and rotate any key that may have been exposed. <br>
-Risk: Overly broad Binance API permissions can increase financial exposure if the key is misused. <br>
-Mitigation: Create a least-privilege API key, disable withdrawals and futures unless explicitly needed, enable IP restrictions, and run the included security check before asset operations. <br>
+## Use Case:
 
+External users and developers use this skill to inspect Binance account security, scan idle balances and dust assets, monitor funding-rate arbitrage opportunities, execute dust conversion, and generate account activity reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hyy2099/aegisclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/hyy2099) <br>
-- [Project homepage from metadata](https://github.com/hyy2099/aegisclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown and plain text responses with command examples, status reports, scan summaries, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Binance APIs, persist SQLite snapshots and trade records, and return security, balance, arbitrage, dust-sweep, and weekly-report summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, target metadata, and artifact metadata) <br>
+Risk: The skill asks for live Binance API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Binance sub-account with small balances, no withdrawal permission, IP allowlisting, and testnet or read-only credentials before considering live use.
+
+Risk: The `/aegisclaw dust` command can perform immediate asset conversion.
+
+Mitigation: Treat dust conversion as a real trading action and review target assets, account permissions, and expected value before running it.
+
+Risk: The release security verdict is suspicious because the skill can automate financial account actions while overstating safety.
+
+Mitigation: Review the code and configuration carefully before installing, keep funds limited, and monitor account activity after use.
+
+Risk: Remote installer commands can execute code from the network.
+
+Mitigation: Avoid remote `curl | sh` installation paths unless independently verified; prefer inspecting the artifact and installing dependencies locally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyy2099/skills/aegisclaw)
+- [Publisher profile](https://clawhub.ai/user/hyy2099)
+- [Repository homepage from release metadata](https://github.com/hyy2099/aegisclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text and Markdown reports with CLI or OpenClaw command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Binance account status, balance summaries, arbitrage opportunity summaries, dust conversion status, and weekly report text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

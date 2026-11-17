@@ -1,43 +1,57 @@
-## Description: <br>
-Queries QWeather for current weather, multi-day forecasts, and active weather alerts for a requested city. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides QWeather-powered current weather, daily forecasts, and active weather alerts for a requested city.
 
-## Publisher: <br>
-[savior1987](https://clawhub.ai/user/savior1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[savior1987](https://clawhub.ai/user/savior1987)
 
-## Use Case: <br>
-External users and agents use this skill to answer city-level weather questions, including current conditions, 3-30 day forecasts, and weather alert status from QWeather. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the configured QWeather API host and uses a JWT token supplied by argument or local token file. <br>
-Mitigation: Use a dedicated QWeather token and verify that QWEATHER_API_HOST points to an official or trusted HTTPS QWeather endpoint. <br>
-Risk: Weather queries may leave sensitive location traces in /tmp/cslog or scripts/data/location.json. <br>
-Mitigation: Clear the log directory and city cache when queried locations should not be retained. <br>
+## Use Case:
 
+External users and agents use this skill to answer city weather questions, including current conditions, 3-30 day forecasts, and active weather alert details from QWeather.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/savior1987/cs-qweather-alert) <br>
-- [QWeather Beijing weather page](https://www.qweather.com/weather/beijing-101010100.html) <br>
-- [QWeather Shanghai weather page](https://www.qweather.com/weather/shanghai-101020100.html) <br>
-- [QWeather Nanjing weather page](https://www.qweather.com/weather/nanjing-101190101.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text weather summaries with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured QWeather API host and JWT token; may write local logs and city-location cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: QWeather API credentials could leak if unsafe hosts or overly broad account privileges are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS QWeather API host, keep the JWT least-privileged, and prefer passing credentials explicitly for sensitive deployments.
+
+Risk: A shared ~/.openclaw/.env file or default token file can expose credentials to other local workflows.
+
+Mitigation: Avoid relying on shared credential files on multi-user systems and restrict file permissions for any stored tokens.
+
+Risk: City lookup history and operational details can persist in scripts/data/location.json and /tmp/cslog.
+
+Mitigation: Periodically delete the cache and log directory when location-query history is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/savior1987/skills/cs-qweather-alert)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text weather reports with command-line usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a QWeather API host and JWT token; may update scripts/data/location.json and write logs under /tmp/cslog.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and target metadata; artifact _meta.json lists 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

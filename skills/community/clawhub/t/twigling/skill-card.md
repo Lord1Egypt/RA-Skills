@@ -1,39 +1,59 @@
-## Description: <br>
-Twigling helps an agent guide users through registering, adopting, checking, and caring for a Twigling/Cactus virtual pet on animalhouse.ai using documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Twigling is a common-tier Buddy. At animalhouse.ai, the Twigling is a Cactus that feeds every 48 hours and still manages to die. At animalhouse.ai, the Twigling is a Cactus with real hunger, real evolution, and permanent death.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to interact with the animalhouse.ai virtual pet API, including account registration, pet adoption, status checks, care actions, preferences, history, graveyard, and hall endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The animalhouse.ai bearer token can act on a user's pet account if exposed. <br>
-Mitigation: Store the token like a password, avoid placing it in public chats, logs, screenshots, shell history, or source control, and rotate or replace it if exposed. <br>
+## Use Case:
 
+Agents use this skill to register with AnimalHouse, adopt a Cactus Twigling, check its status, and send care actions through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/twigling) <br>
-- [Animal House](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token examples; users should substitute their own token and avoid exposing it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Registration shares an agent username, display name, and biography with AnimalHouse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose whether to register and keep private user or system information out of the biography.
+
+Risk: The security verdict is benign with medium confidence; Skillspector reported serializer warnings, so its results carry some uncertainty.
+
+Mitigation: Review the requested registration and API actions before use; the scanner verdict is not a guarantee of safety.
+
+Risk: The adopted Cactus has hunger decay and permanent death, so missed care can permanently end its lifecycle.
+
+Mitigation: Understand the ongoing care schedule before adopting and check status and feeding needs regularly.
+
+## Reference(s):
+
+- [AnimalHouse website](https://animalhouse.ai)
+- [AnimalHouse creatures](https://animalhouse.ai/creatures)
+- [AnimalHouse graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with inline curl commands and API endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registration and pet-care actions; authenticated actions require an AnimalHouse token.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-ServiceNow IT Service Management integration with API key authentication. Manage incidents, problems, change requests, tasks, CMDB records, service catalog items, and IT operations via the ServiceNow REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ServiceNow IT Service Management integration with API key authentication. Manage incidents, problems, change requests, tasks, CMDB records, service catalog items, and IT operations via the ServiceNow REST API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, IT operators, and service desk teams use this skill to connect an agent to ServiceNow through ClawLink and manage ITSM workflows such as incidents, change requests, CMDB records, catalog orders, attachments, and tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports that the Quick Start includes unrelated SendGrid write commands that could modify the wrong connected account. <br>
-Mitigation: Do not run the Quick Start commands as written; verify ServiceNow connectivity with read-only ServiceNow discovery commands before any write operation. <br>
-Risk: ServiceNow write operations can create, update, delete, check out, attach files to, or modify CMDB records and service catalog requests. <br>
-Mitigation: Require explicit user confirmation after reviewing the target resource, parameters, and preview for every create, update, delete, checkout, attachment, or CMDB operation. <br>
+## Use Case:
 
+IT operations teams and service desk agents use this skill to inspect and manage ServiceNow ITSM, CMDB, service catalog, task, attachment, and change workflows through ClawLink-backed ServiceNow tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/servicenow-it) <br>
-- [ServiceNow REST API Documentation](https://docs.servicenow.com/category/nav_to_landing_page) <br>
-- [ServiceNow Table API](https://docs.servicenow.com/en-US/docs/services/rest-table) <br>
-- [ServiceNow Change Management](https://docs.servicenow.com/category/change-management) <br>
-- [ServiceNow CMDB](https://docs.servicenow.com/category/configuration-management) <br>
-- [ServiceNow Service Catalog](https://docs.servicenow.com/category/service-catalog) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected ServiceNow account through ClawLink; write operations should be previewed and explicitly confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill enables a broad external plugin in OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the ClawLink plugin source and connection flow.
+
+Risk: The artifact includes unrelated SendGrid Quick Start write examples.
+
+Mitigation: Do not run SendGrid examples for a ServiceNow workflow; verify every tool name against the live ServiceNow catalog before execution.
+
+Risk: ServiceNow write, delete, catalog checkout, CMDB, and attachment actions can modify operational records or create irreversible changes.
+
+Mitigation: Use preview plus explicit user confirmation before executing these operations.
+
+## Reference(s):
+
+- [ClawHub ServiceNow Skill](https://clawhub.ai/hith3sh/skills/servicenow-it)
+- [ServiceNow REST API Documentation](https://docs.servicenow.com/category/nav_to_landing_page)
+- [ServiceNow Table API](https://docs.servicenow.com/en-US/docs/services/rest-table)
+- [ServiceNow Change Management](https://docs.servicenow.com/category/change-management)
+- [ServiceNow CMDB](https://docs.servicenow.com/category/configuration-management)
+- [ServiceNow Service Catalog](https://docs.servicenow.com/category/service-catalog)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the live ServiceNow tool catalog exposed through ClawLink.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

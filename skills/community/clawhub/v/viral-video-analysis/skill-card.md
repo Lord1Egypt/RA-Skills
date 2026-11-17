@@ -1,44 +1,59 @@
-## Description: <br>
-Analyze video ad performance and provide actionable feedback to creators across YouTube, TikTok, Instagram Reels, and Twitter using transcripts, visual analysis, and performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes short-form video ad transcripts and performance data to produce creator coaching feedback for improving pacing, word count, openings, and ROI.
 
-## Publisher: <br>
-[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx)
 
-## Use Case: <br>
-Marketing teams, creator managers, and agents use this skill to evaluate short-form video ad performance, identify pacing and word-count issues, and draft creator coaching feedback. It can also compare high- and low-ROI videos or summarize local spreadsheet performance data into a report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Video URLs are sent to Memories.ai for transcription. <br>
-Mitigation: Use a dedicated API key, submit only videos you have permission to analyze, and review the Memories.ai privacy policy before use. <br>
-Risk: Batch analysis reads local spreadsheets that may contain creator and ROI data. <br>
-Mitigation: Use the minimum necessary spreadsheet data, keep files local, and remove sensitive fields that are not needed for the analysis. <br>
-Risk: Creator coaching sections are template-guided recommendations rather than independent proof from spreadsheet data. <br>
-Mitigation: Review the generated feedback against the source video, transcript, and business context before sharing it with creators. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Creator Video Feedback Framework](references/creator-feedback-framework.md) <br>
-- [Viral Video Analysis on ClawHub](https://clawhub.ai/shawnshenopeninterx/viral-video-analysis) <br>
-- [Memories.ai API Tools](https://api-tools.memories.ai) <br>
-- [Memories.ai Privacy Policy](https://memories.ai/privacy) <br>
+## Use Case:
 
+Marketing teams, creator managers, and agents use this skill to analyze social video URLs or Excel performance data and draft concise creator feedback. It is best treated as lightweight transcript and ROI coaching rather than full visual ad analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown feedback, terminal analysis output, and optional PDF reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMORIES_API_KEY; may send video URLs to Memories.ai for transcription and may read local Excel files with creator ROI data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Video URLs are sent to Memories.ai for transcription, and the security guidance flags third-party processing as a review point.
+
+Mitigation: Use only video URLs that are approved for Memories.ai processing; avoid unpublished, client-confidential, or highly sensitive campaign URLs unless that processing is acceptable.
+
+Risk: The security summary says the real behavior is narrower than advertised and should be treated as lightweight transcript and ROI coaching.
+
+Mitigation: Review generated advice before sharing it with creators and avoid relying on it as complete visual ad analysis.
+
+Risk: The artifact depends on Python packages such as fpdf2, pandas, and openpyxl for report generation.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions where possible.
+
+## Reference(s):
+
+- [Creator Video Feedback Framework](references/creator-feedback-framework.md)
+- [Memories.ai API Tools](https://api-tools.memories.ai)
+- [Memories.ai Privacy Policy](https://memories.ai/privacy)
+- [ClawHub Skill Page](https://clawhub.ai/shawnshenopeninterx/skills/viral-video-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, plain-text console summaries, Python code snippets, and generated PDF reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMORIES_API_KEY for transcript retrieval and may read Excel performance data for batch reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

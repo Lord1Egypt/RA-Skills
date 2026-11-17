@@ -1,41 +1,59 @@
-## Description: <br>
-Get instructions for funding an Agnic wallet with USDC on Base, including authentication, wallet address lookup, dashboard funding, direct USDC transfer, bridging, and balance verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get instructions for funding an Agnic wallet with USDC, including wallet address lookup, Base network transfer guidance, and balance verification.
 
-## Publisher: <br>
-[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog)
 
-## Use Case: <br>
-External users and developers use this skill when they need agent guidance for adding USDC to an Agnic wallet, checking the wallet address, choosing a funding path, and confirming the balance on Base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives wallet-funding guidance where an incorrect network, token, or destination address can lead to lost funds. <br>
-Mitigation: Confirm the funding applies to the Agnic wallet and independently verify the Base network, USDC token, and destination address before sending funds. <br>
-Risk: The skill may require wallet authentication through a browser session or AGNIC_TOKEN in headless environments. <br>
-Mitigation: Use the documented Agnic authentication flow, keep tokens out of shared logs and prompts, and avoid exposing AGNIC_TOKEN beyond the active agent environment. <br>
+## Use Case:
 
+External users and developers use this skill when they need agent guidance for adding USDC to an Agnic wallet on Base, checking authentication, retrieving the wallet address, and verifying the resulting balance.
 
-## Reference(s): <br>
-- [Agnic Dashboard](https://app.agnic.ai) <br>
-- [Base Bridge](https://bridge.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes funding instructions, network warnings, authentication notes, and balance verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: The skill supports a financial workflow through a mutable CLI package reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed Agnic CLI version before using the commands for wallet funding.
+
+Risk: Credential handling guidance can expose tokens if tokens are passed on the command line or included in chats or logs.
+
+Mitigation: Use AGNIC_TOKEN through a protected environment and keep tokens out of command history, chats, and logs.
+
+Risk: Sending USDC to an unverified or incorrect wallet address can result in loss of funds.
+
+Mitigation: Verify the wallet address through an independent trusted Agnic channel before sending USDC.
+
+## Reference(s):
+
+- [Agnic Dashboard](https://app.agnic.ai)
+- [Base Bridge](https://bridge.base.org)
+- [ClawHub Skill Page](https://clawhub.ai/agnicpay-prog/skills/agnicpay-fund-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet funding steps, authentication notes, network warnings, and balance verification commands.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

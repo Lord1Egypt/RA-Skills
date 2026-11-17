@@ -1,33 +1,37 @@
 ---
-name: ai-content-creator
-description: All-in-one AI content creation agent — write blog posts, social media, newsletters, scripts, and product copy. Generate images, video, and voiceovers. Research topics, extract web content, and produce multimedia from a single workflow via x402.
-version: 1.0.0
-homepage: https://github.com/plagtech/ai-content-creator-skill
+name: ai-content-creator-x402
+description: "AI content creation via Spraay x402 — blog posts, social media, newsletters, scripts, product copy, image gen, video, TTS, STT, web research. Sends prompts to external paid LLM/media APIs. USDC micropayments on Base/Solana. No API keys needed."
+version: 1.1.0
 metadata:
   openclaw:
-    primaryEnv: RESEARCH_API_KEY
-    envVars:
-      - name: RESEARCH_API_KEY
-        required: true
-        description: API key or x402 subscription key for the gateway.
-      - name: RESEARCH_GATEWAY_URL
-        required: false
-        description: Gateway URL. Defaults to https://gateway.spraay.app
     requires:
       bins:
+        - bash
         - curl
-        - python3
 ---
 
 # AI Content Creator
 
-End-to-end content creation agent. Research a topic, write copy, generate images, create voiceovers, and produce video — all in one workflow. 14 endpoints spanning text generation, image generation, video, TTS, speech-to-text, web research, and content extraction. Each call is a real x402 micropayment.
+End-to-end content creation agent. Research a topic, write copy, generate images, create voiceovers, and produce video — all in one workflow. 14 endpoints spanning text generation, image generation, video, TTS, speech-to-text, web research, and content extraction. Each call is a real x402 micropayment settled on Base or Solana mainnet.
+
+## ⚠️ Before you install
+
+> **This skill sends your content to external paid APIs** via the Spraay x402 gateway (`gateway.spraay.app`).
+>
+> - **Your content leaves the local environment.** Every call transmits your prompts, text, URLs, audio files, or other inputs to third-party AI providers (Chutes AI, Bittensor, OpenRouter, Replicate, and others) through the gateway. This includes drafts, research queries, web URLs, audio recordings, and any text you provide.
+> - **Real money:** Each call costs USDC via the x402 payment protocol. Your agent's wallet is debited per request. Costs range from $0.001 (model listing) to $0.50 (video generation).
+> - **Privacy and confidentiality:** Do not send proprietary drafts, customer data, unpublished marketing plans, legal documents, or sensitive recordings through this skill unless you accept that the gateway operator and upstream AI providers will process (and may retain) that content.
+> - **Billing risk:** Multi-step workflows (e.g., research + write + image + voiceover) chain several paid calls. Estimate total cost before starting a workflow.
+>
+> **Install only if you are comfortable with paid external API calls.** Use non-sensitive inputs for testing. Confirm costs before large workflows. Use a dedicated wallet with limited funds.
 
 ## How to call endpoints
 
 ```bash
 bash {baseDir}/scripts/create.sh METHOD ENDPOINT '{"key":"value"}'
 ```
+
+The script requires `bash` and `curl`. All calls go to `https://gateway.spraay.app`.
 
 ## Content workflows
 
@@ -88,68 +92,86 @@ Follow these workflows depending on what the user needs. Each workflow chains mu
 
 ### Writing & Text
 
+> These endpoints send your prompts and text to external LLM providers.
+
 **Text Inference** — $0.003–$0.10
 Generate any written content — blog posts, social copy, scripts, emails, product descriptions. Supports 11 models, system prompts, temperature control.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/compute/text-inference '{"model":"llama-3.1-70b","prompt":"Write a LinkedIn post about AI agents in supply chain management. Professional tone, under 300 words.","max_tokens":500}'
 ```
 
 **Chat Completions** — $0.04
 Multi-turn creative brainstorming. Use for ideation, outlining, and iterating on drafts.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/chat/completions '{"messages":[{"role":"system","content":"You are a creative director at a content agency."},{"role":"user","content":"Give me 5 angles for a blog post about remote work productivity."}]}'
 ```
 
 ### Visual Content
 
+> These endpoints send your image prompts to external image generation providers.
+
 **Image Generation** — $0.02–$0.08
 AI image generation via FLUX and SDXL. Blog headers, social media graphics, product shots, thumbnails, cover art.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/compute/image-generation '{"prompt":"minimalist flat illustration of a person working at a laptop with floating holographic screens, soft blue and purple gradient background","model":"flux"}'
 ```
 
 **Bittensor Image Gen** — $0.05
 Alternative image generation via decentralized Bittensor network. Different aesthetic from FLUX/SDXL.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /bittensor/v1/images/generations '{"prompt":"abstract geometric pattern for newsletter header, corporate blue and white"}'
 ```
 
 ### Audio & Video
 
+> Audio endpoints transmit text or audio files to external providers. Video generation is async and costs $0.40–$0.50 per clip.
+
 **Text to Speech** — $0.03–$0.05
 Convert scripts to natural voiceovers. Multiple voices available. Use for podcasts, video narration, audio articles.
+
 ```bash
-bash {baseDir}/scripts/create.sh POST /api/v1/compute/text-to-speech '{"text":"Welcome to this week's deep dive into the world of AI agents and how they're reshaping content creation.","voice":"alloy"}'
+bash {baseDir}/scripts/create.sh POST /api/v1/compute/text-to-speech '{"text":"Welcome to this week deep dive into the world of AI agents and how they are reshaping content creation.","voice":"alloy"}'
 ```
 
 **Speech to Text** — $0.02
 Transcribe audio or video to text. Use for repurposing podcasts, interviews, or meetings into written content.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/compute/speech-to-text '{"audio_url":"https://example.com/podcast-episode.mp3"}'
 ```
 
 **Video Generation** — $0.40–$0.50
-AI video from text prompts. Short clips for social teasers, intros, B-roll, and product demos.
+AI video from text prompts. Short clips for social teasers, intros, B-roll, and product demos. Async — poll for completion.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/compute/video-generation '{"prompt":"aerial drone shot of a modern office building at golden hour, cinematic","duration":5}'
 ```
 
 ### Research & Inspiration
 
+> These endpoints send your queries and URLs to external services and return results.
+
 **Web Search** — $0.02
 Search the web for trending topics, competitor content, statistics, and angles.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/search/web '{"query":"AI content creation trends 2026"}'
 ```
 
 **Web Extract** — $0.02
 Pull clean readable content from any URL. Use to analyze competitor articles, extract quotes, or gather source material.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/search/extract '{"urls":["https://example.com/competitor-blog-post"]}'
 ```
 
 **Web Q&A** — $0.03
 Quick factual answers from the live web. Use for fact-checking claims before publishing.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/search/qna '{"query":"What percentage of marketers use AI for content creation in 2026?"}'
 ```
@@ -158,39 +180,43 @@ bash {baseDir}/scripts/create.sh POST /api/v1/search/qna '{"query":"What percent
 
 **Embeddings** — $0.005
 Generate text embeddings for finding similar content, clustering topics, or building recommendation systems.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /api/v1/compute/embeddings '{"text":"AI-powered content creation workflow automation"}'
 ```
 
 **Bittensor Chat** — $0.03
 Alternative AI for a different creative voice. Useful for A/B testing copy or getting a second perspective.
+
 ```bash
 bash {baseDir}/scripts/create.sh POST /bittensor/v1/chat/completions '{"messages":[{"role":"user","content":"Rewrite this headline to be more engaging: AI Tools Save Time"}]}'
 ```
 
 **Available Models** — $0.001
 List available AI models and their strengths for choosing the right one per task.
+
 ```bash
 bash {baseDir}/scripts/create.sh GET /api/v1/models '{}'
 ```
 
 **GPU Models** — FREE
 List available GPU model shortcuts including image and video models.
+
 ```bash
 bash {baseDir}/scripts/create.sh GET /api/v1/gpu/models '{}'
 ```
 
 ## Cost estimates by workflow
 
-| Workflow | Typical Calls | Estimated Cost |
-|----------|--------------|----------------|
-| Blog post + header image | 4-5 | $0.07–$0.15 |
-| Social media post + image | 2 | $0.03–$0.12 |
-| Newsletter (3 sections + images) | 6-8 | $0.10–$0.25 |
-| Podcast script + audio + cover | 3 | $0.06–$0.18 |
-| Video script + thumbnail + clip + VO | 4 | $0.48–$0.70 |
-| Product description + images | 4-5 | $0.07–$0.20 |
-| Content repurpose (audio → 3 formats) | 4-5 | $0.07–$0.18 |
+| Workflow                              | Typical Calls | Estimated Cost |
+| ------------------------------------- | ------------- | -------------- |
+| Blog post + header image              | 4-5           | $0.07–$0.15    |
+| Social media post + image             | 2             | $0.03–$0.12    |
+| Newsletter (3 sections + images)      | 6-8           | $0.10–$0.25    |
+| Podcast script + audio + cover        | 3             | $0.06–$0.18    |
+| Video script + thumbnail + clip + VO  | 4             | $0.48–$0.70    |
+| Product description + images          | 4-5           | $0.07–$0.20    |
+| Content repurpose (audio → 3 formats) | 4-5           | $0.07–$0.18    |
 
 ## Tips for best results
 
@@ -199,3 +225,25 @@ bash {baseDir}/scripts/create.sh GET /api/v1/gpu/models '{}'
 - **Use different models** — `llama-3.1-70b` for long-form, `llama-3.1-8b` for quick social copy, Bittensor for a different creative voice.
 - **Generate multiple images** — create 2-3 variations and let the user pick.
 - **Specify dimensions** — square for Instagram, 16:9 for YouTube thumbnails, landscape for blog headers.
+- **Check cost first** — use the free `gpu/models` and `models` endpoints to see available options, and `compute/estimate` (from the Spraay Compute skill) to estimate cost before committing.
+
+## Changelog
+
+### v1.1.0
+
+- **Added YAML frontmatter permissions** — declared `bins: [bash, curl]` under `metadata.openclaw.requires`. Fixes "MCP Least Privilege" audit finding.
+- **Added external data transmission disclosure** — prominent warning that prompts, text, URLs, and media leave the local environment and are sent to third-party AI providers. Fixes "Missing User Warnings" for external data.
+- **Added paid API billing disclosure** — clear notice that all calls cost real USDC and multi-step workflows chain costs. Fixes "Missing User Warnings" for paid operations.
+- **Added per-section privacy notes** — each endpoint category now states what data is sent externally.
+- **Updated description** — explicitly states "sends prompts to external paid APIs" so the scanner sees no hidden network behavior. Within 300-char limit.
+
+### v1.0.0
+
+- Initial release with 14 content creation endpoints.
+
+## Related terms
+
+AI content creation, blog writing agent, social media copy, newsletter generator,
+image generation, video generation, text-to-speech, speech-to-text, voiceover,
+web research, content extraction, FLUX, SDXL, Whisper, LLM inference,
+x402 payments, USDC micropayments, agent content tools, keyless AI API

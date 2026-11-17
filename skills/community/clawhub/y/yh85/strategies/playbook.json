@@ -1,0 +1,319 @@
+{
+  "_meta": {
+    "version": 17,
+    "created": "2026-07-10T14:20+08",
+    "evolved_from": "v4",
+    "description": "YH8.5 v3.58 — BB20+RSI极值过滤 + MACD动量对齐",
+    "updated": "2026-09-28T00:33:08.307783+00:00"
+  },
+  "strategies": {
+    "st_pure_trend": {
+      "name": "ST(10,3) 纯信号趋势",
+      "enabled": true,
+      "params": {
+        "st_period": 10,
+        "st_mult": 2.0,
+        "atr_trend_threshold": 60,
+        "tp_risk_ratio": 4.0,
+        "sl_mode": "supertrend_band",
+        "atr_percentile_trending": 70,
+        "tp_pct": 0.02,
+        "sl_pct": 0.01,
+        "size_mult": 0.5,
+        "volume_ratio_min": 1.0,
+        "acf_pacf_filter": false,
+        "acf1_threshold": 0.05,
+        "pacf2_max": 0.0
+      },
+      "scenario_params": {
+        "bull": {
+          "atr_percentile_trending": 50,
+          "tp_pct": 0.025,
+          "sl_pct": 0.015,
+          "size_mult": 1.2
+        },
+        "base": {
+          "atr_percentile_trending": 60,
+          "tp_pct": 0.02,
+          "sl_pct": 0.015,
+          "size_mult": 1.0
+        },
+        "bear": {
+          "atr_percentile_trending": 70,
+          "tp_pct": 0.015,
+          "sl_pct": 0.01,
+          "size_mult": 0.6
+        }
+      },
+      "do_rules": [
+        "ST(10,3)转向→开仓",
+        "TP=3%/SL=1.5% (2026-08-21 量比放量过滤回测最优)",
+        "量比>=1.2 放量过滤风控 (缩量信号不可信, 降回撤)",
+        "BTC/AAVE专用",
+        "ACF(1)>0.05 & PACF(2)<0 自相关过滤 (2026-08-27 回测60/90天双窗口: 胜率36-38%→51%+, 盈亏比1.15→2.2, 回撤73-88%→16-18%)"
+      ],
+      "avoid_rules": [
+        "ATR<40%横盘不参与",
+        "DOGE/FIL disabled 2026-08-12 (0% WR chronic losers)",
+        "SOL disabled 2026-09-28 (震荡市趋势2连SL, 单笔-5.44U>1%本金)"
+      ],
+      "evolution_bounds": {
+        "st_period": [
+          8,
+          14
+        ],
+        "st_mult": [
+          2.0,
+          4.0
+        ],
+        "tp_risk_ratio": [
+          2.0,
+          6.0
+        ]
+      }
+    },
+    "bb20_range": {
+      "name": "BB(20,2) 均值回归(震荡) + EMA453方向过滤",
+      "enabled": true,
+      "params": {
+        "bb_period": 20,
+        "bb_std": 2.0,
+        "bb_decay_bars": 5,
+        "bb_decay_weight": 1.5,
+        "atr_trend_threshold": 60,
+        "tp_atr_ratio": 2.0,
+        "sl_atr_ratio": 1.5,
+        "rsi_bb_oversold": 30,
+        "rsi_bb_overbought": 70,
+        "bb_short_pullback": false,
+        "bb_short_pullback_pct": 0.01
+      },
+      "scenario_params": {
+        "bull": {
+          "atr_percentile_trending": 50,
+          "tp_pct": 0.025,
+          "sl_pct": 0.015,
+          "size_mult": 1.2
+        },
+        "base": {
+          "atr_percentile_trending": 60,
+          "tp_pct": 0.02,
+          "sl_pct": 0.015,
+          "size_mult": 1.0
+        },
+        "bear": {
+          "atr_percentile_trending": 70,
+          "tp_pct": 0.015,
+          "sl_pct": 0.01,
+          "size_mult": 0.6
+        }
+      },
+      "do_rules": [
+        "ATR%≤60%→震荡市→均值回归",
+        "BB(20,2.0) 价格触及布林带→触发信号",
+        "RSI极值确认: 碰下轨→RSI<35才做多, 碰上轨→RSI>65才做空 (v3.58)",
+        "EMA453方向过滤: 逆势半仓放行(2026-07-21放宽)",
+        "TP=3×ATR, SL=2.5×ATR",
+        "做空回落确认(2026-09-16): 前一根触碰上轨+当前回落到上轨下方(回落<1%)才做空, 避免强势突破位逆势接刀"
+      ],
+      "avoid_rules": [
+        "趋势市不参与",
+        "逆EMA453方向不参与",
+        "VANRY/SENT已退役(2026-07-13)",
+        "DOGE/FIL disabled 2026-08-12 (0% WR chronic losers)",
+        "ETC disabled 2026-08-16 (5连亏 -6.65U 0%胜率 chronic loser)",
+        "META/SOXL/SOXS disabled 2026-09-15 (META做空-5.00U/0.55h单笔巨亏; 美股+3x杠杆ETF不适用加密bb20均值回归)",
+        "STRK disabled 2026-09-22 (2连SL -1.40做空/-1.36做多 0%胜率 双向失败)",
+        "INTC disabled 2026-09-28 (美股不适用bb20, 2连SL -1.18/-1.85共-3.03U)"
+      ],
+      "evolution_bounds": {
+        "bb_period": [
+          14,
+          26
+        ],
+        "bb_std": [
+          2.0,
+          2.5
+        ],
+        "tp_atr_ratio": [
+          2.0,
+          4.0
+        ],
+        "sl_atr_ratio": [
+          1.5,
+          3.0
+        ],
+        "rsi_bb_oversold": [
+          25,
+          45
+        ],
+        "rsi_bb_overbought": [
+          55,
+          75
+        ]
+      }
+    }
+  },
+  "coin_assignments": {
+    "BTC/USDT": {
+      "trend": "st_pure_trend",
+      "range": "bb20_range"
+    },
+    "ETH/USDT": {
+      "trend": "st_pure_trend",
+      "range": "bb20_range"
+    },
+    "BNB/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "AAVE/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "SOL/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "AVAX/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "ARB/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "UNI/USDT": {
+      "trend": "st_pure_trend",
+      "range": null
+    },
+    "XRP/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "DOGE/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "NEAR/USDT": {
+      "trend": "st_pure_trend",
+      "range": "bb20_range"
+    },
+    "RENDER/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "APT/USDT": {
+      "trend": "st_pure_trend",
+      "range": null
+    },
+    "HYPE/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "SUI/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "INJ/USDT": {
+      "trend": "st_pure_trend",
+      "range": "bb20_range"
+    },
+    "ETC/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "STRK/USDT": {
+      "trend": "st_pure_trend",
+      "range": null
+    },
+    "ENA/USDT": {
+      "trend": "st_pure_trend",
+      "range": "bb20_range"
+    },
+    "SEI/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "TIA/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "FET/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "LDO/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "ROSE/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "MANA/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "QNT/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "ZRO/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "OP/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "MAGMA/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "SOXL/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "SOXS/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "ATOM/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "LTC/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "INTC/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "BABA/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "UBER/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "SMCI/USDT": {
+      "trend": null,
+      "range": "bb20_range"
+    },
+    "GOOGL/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "MRVL/USDT": {
+      "trend": null,
+      "range": null
+    },
+    "META/USDT": {
+      "trend": null,
+      "range": null
+    }
+  }
+}

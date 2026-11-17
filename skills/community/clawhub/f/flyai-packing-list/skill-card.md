@@ -1,52 +1,61 @@
-## Description: <br>
-场景化智能行李清单生成器。根据目的地、出行日期、出行目的和同行人，结合 FlyAI 实时搜索目的地信息，生成个性化分类行李清单。当用户提到"行李清单"、"带什么"、"打包"、"收拾行李"、"出行准备"时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+行李清单 Pro generates personalized travel packing lists from destination, travel dates, trip purpose, companions, and FlyAI travel search results.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External travelers use this skill to collect trip details and generate a destination-aware packing checklist. It can incorporate FlyAI travel search results and saved travel preferences when those tools or files are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install or upgrade a global FlyAI npm package. <br>
-Mitigation: Install the CLI only after reviewing and trusting the package source, and avoid granting elevated privileges such as sudo. <br>
-Risk: The skill text directs FlyAI commands to bypass TLS certificate validation. <br>
-Mitigation: Keep certificate validation enabled and do not run commands that set NODE_TLS_REJECT_UNAUTHORIZED=0. <br>
-Risk: The skill can save travel, budget, family, and preference details in memory or ~/.flyai/user-profile.md. <br>
-Mitigation: Review, edit, or delete saved profile data if those details should not be reused later. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to collect trip details and produce categorized packing lists with must-bring items, recommended items, locally purchasable items, and destination-specific reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-packing-list) <br>
-- [FlyAI tool reference](reference/tools.md) <br>
-- [POI / Attraction Search](reference/search-poi.md) <br>
-- [Keyword Search](reference/keyword-search.md) <br>
-- [AI Search](reference/ai-search.md) <br>
-- [Flight Search](reference/search-flight.md) <br>
-- [Hotel Search](reference/search-hotel.md) <br>
-- [Marriott Hotel Search](reference/search-marriott-hotel.md) <br>
-- [Marriott Package Search](reference/search-marriott-package.md) <br>
-- [Train Search](reference/search-train.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown checklist with inline shell commands and travel guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Categorizes packing items by priority and may include destination-specific reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks agents to install or upgrade a global npm package and suggests sudo when permissions fail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid sudo and global installs where possible, and use a pinned, verified CLI version in an isolated environment.
+
+Risk: The skill directs FlyAI commands to bypass TLS certificate validation.
+
+Mitigation: Keep TLS validation enabled and resolve certificate or network issues instead of setting NODE_TLS_REJECT_UNAUTHORIZED=0.
+
+Risk: The skill can read and update persistent travel profile data from memory or ~/.flyai/user-profile.md.
+
+Mitigation: Make profile use opt-in, store only necessary preferences, and provide clear review and deletion controls before writing profile data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-packing-list)
+- [FlyAI tool reference](reference/tools.md)
+- [POI and attraction search reference](reference/search-poi.md)
+- [Keyword search reference](reference/keyword-search.md)
+- [User profile storage reference](reference/user-profile-storage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown checklist with categorized sections and occasional inline shell commands for travel search]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate destination search results and saved travel preferences when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

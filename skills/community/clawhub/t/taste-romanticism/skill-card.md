@@ -1,41 +1,51 @@
-## Description: <br>
-Taste Romanticism gives agents a concise Romanticism aesthetic reference for writing, UI design, and branding, with style tokens, anti-tokens, palette guidance, and evaluation criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Romanticism-inspired visual and literary style tokens, anti-tokens, and creative direction for writing, interface design, and branding.
 
-## Publisher: <br>
-[johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu)
 
-## Use Case: <br>
-Creative practitioners, designers, writers, and agents use this skill to steer outputs toward Romanticism's visual and literary language while avoiding classical restraint, social conformity, and rationalist order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Romanticism aesthetic can conflict with outputs that require neutrality, restraint, or procedural clarity. <br>
-Mitigation: Use the skill for expressive creative direction and review generated outputs against the target brand, audience, and task requirements. <br>
-Risk: The UI guidance prioritizes emotional impact, which may be unsuitable for safety-critical or dense operational interfaces. <br>
-Mitigation: Keep task clarity, accessibility, and usability requirements authoritative when applying the style to interface work. <br>
+## Use Case:
 
+Creative agents use this skill to apply Romanticism's visual and literary language when developing prose, interface concepts, and brand direction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnnyzijianwu/taste-romanticism) <br>
-- [Source skill package](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown style guidance and concise creative direction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code, shell commands, data access, credentials, persistence, or install-time behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Optional InspiredHub links open a separate service where personal information may be entered.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review InspiredHub's privacy terms before entering personal information; use of the Personal Taste Brief is optional and user-controlled.
+
+## Reference(s):
+
+- [Taste Romanticism on ClawHub](https://clawhub.ai/johnnyzijianwu/skills/taste-romanticism)
+- [InspiredHub live demo](https://inspiredhub.ai/demo?skill=romanticism)
+- [Optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-romanticism)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Creative guidance]
+
+**Output Format:** [Markdown or natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Style tokens, anti-tokens, and evaluation criteria for Romanticism-inspired creative work.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

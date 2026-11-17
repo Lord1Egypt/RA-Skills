@@ -1,45 +1,56 @@
-## Description: <br>
-Create local chat rooms for AI agents with channels, mentions, task claims, and durable summaries in the workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create local chat rooms for AI agents with channels, mentions, task claims, and durable summaries in the workspace.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multiple AI agents through local workspace room files, including channels, directed mentions, task claims, jobs, and handoff summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Room files can accumulate operational context that should not be treated as private storage. <br>
-Mitigation: Keep secrets, tokens, and unrelated personal data out of room logs; periodically review summaries, inbox entries, and saved defaults. <br>
-Risk: Stale summaries, jobs, or claims can misdirect later agents or block shared work. <br>
-Mitigation: Refresh summaries when work pauses or changes, release stale claims, and keep handoffs tied to an explicit next owner. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ivangdavila/chat-rooom) <br>
-- [Skill homepage](https://clawic.com/skills/chat-rooom) <br>
-- [Setup process](artifact/setup.md) <br>
-- [Room protocol](artifact/protocol.md) <br>
-- [Daily operations](artifact/operations.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
-- [Example room patterns](artifact/patterns.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill when multiple AI agents need a shared local room for coordination, mentions, lightweight task claims, handoffs, and concise durable summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local room, channel, inbox, claim, job, summary, and durable preference files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Room logs and preference files may retain sensitive operational context on the user's machine.
+
+Mitigation: Decide before installation whether local .chat-rooom/ and ~/chat-rooom/ files are acceptable, and do not store secrets, tokens, credentials, or unrelated private data in room files.
+
+Risk: Stale claims, jobs, or summaries can mislead collaborating agents during handoffs.
+
+Mitigation: Keep summaries current, clear or expire claims when work ends or blocks, and archive noisy rooms instead of relying on outdated coordination state.
+
+## Reference(s):
+
+- [Chat Rooom ClawHub page](https://clawhub.ai/ivangdavila/skills/chat-rooom)
+- [Chat Rooom homepage](https://clawic.com/skills/chat-rooom)
+- [Setup guide](artifact/setup.md)
+- [Room protocol](artifact/protocol.md)
+- [Operations guide](artifact/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with local file templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local room files under .chat-rooom/ in the active workspace and optional preference files under ~/chat-rooom/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

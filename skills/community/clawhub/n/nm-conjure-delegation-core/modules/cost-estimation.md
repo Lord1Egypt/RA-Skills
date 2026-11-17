@@ -5,22 +5,22 @@ parent_skill: conjure:delegation-core
 category: delegation-framework
 estimated_tokens: 250
 dependencies:
-  - leyline:quota-management
-  - leyline:usage-logging
+  - leyline:service-registry
 ---
 
 # Cost Estimation and Budget Guidelines
 
 ## Service Cost Comparisons
 
-**Gemini 2.0 Models (per 1M tokens):**
-- Input: $0.50, Output: $1.50 (Pro version)
-- Input: $0.075, Output: $0.30 (Flash version)
-- Context: Up to 1M tokens
+**Gemini models (per 1M tokens):** see
+`Skill(conjure:gemini-delegation)` module `gemini-specifics.md`.
+- `gemini-3.8-flash`: $0.75 input, $3.75 output (rising 2027-01-01)
+- `gemini-3.1-pro-preview`: $2.00 input, $12.00 output up to 200K
+- Context: 1M tokens
 
-**Qwen Models (per 1M tokens):**
-- Input: $0.20-0.50, Output: $0.60-1.20 (varies by provider)
-- Context: Up to 100K+ tokens
+**Qwen models:** the service uses Qwen OAuth, which has no per-token
+price. See `Skill(conjure:qwen-delegation)` module `qwen-specifics.md`
+for API-key rates.
 - Sandbox execution: Typically $0.001-0.01 per request
 
 ## Cost Decision Framework
@@ -66,8 +66,8 @@ Delegate if: Benefit > Cost * 3 (safety margin for quality risks)
 ### Cheapest-Capable Model Selection
 
 When dispatching subagents, select the cheapest model
-that can handle the task. This is a recommendation,
-not a mandate; override when judgment dictates.
+that can handle the task. This is a recommendation.
+Override it when judgment dictates.
 
 | Task Type | Has Detailed Plan? | Recommended Model |
 |-----------|-------------------|-------------------|
@@ -92,7 +92,7 @@ output to prevent downstream model downgrade.
 task type is ambiguous, default to sonnet.
 
 **Rationale**: Implementation tasks with detailed plans
-are well-scoped and predictable; haiku handles these
+are well-scoped and predictable. Haiku handles these
 effectively. Planning and security tasks require
 reasoning depth that cheaper models may lack.
 
@@ -117,7 +117,7 @@ reasoning depth that cheaper models may lack.
 
 ```python
 from leyline.quota_tracker import QuotaTracker
-from leyline.usage_logger import UsageLogger
+from leyline.usage_logger import UsageEvent, UsageLogger
 
 # Initialize for your service
 tracker = QuotaTracker(service="gemini")
@@ -130,5 +130,5 @@ if level == "critical":
     pass
 
 # Log after operation
-logger.log_usage("analyze_files", tokens=5000, success=True, duration=2.5)
+logger.log_usage(UsageEvent("analyze_files", tokens=5000, duration=2.5))
 ```

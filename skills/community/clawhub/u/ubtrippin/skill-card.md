@@ -1,42 +1,58 @@
-## Description: <br>
-Manages travel through UBTRIPPIN, including trips, itinerary items, loyalty programs, family sharing, city guides, events, notifications, webhooks, and billing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a user's UBTRIPPIN travel data, including trips, itinerary items, loyalty programs, family sharing, city guides, events, notifications, webhooks, and billing-related links.
 
-## Publisher: <br>
-[fistfulayen](https://clawhub.ai/user/fistfulayen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fistfulayen](https://clawhub.ai/user/fistfulayen)
 
-## Use Case: <br>
-External users and agents use this skill to read and manage UBTRIPPIN travel records, add bookings, retrieve loyalty details, and coordinate family or trip-sharing workflows through the UBTRIPPIN API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive travel records, loyalty numbers, booking emails, ticket PDFs, family/collaborator information, and related account data. <br>
-Mitigation: Install only when the user trusts UBTRIPPIN with this data, and store API keys only in protected secrets or configuration. <br>
-Risk: The skill can trigger consequential actions such as forwarding booking emails, exporting loyalty data, deleting or merging records, sharing trips or family access, creating webhooks or calendar links, and starting billing or checkout flows. <br>
-Mitigation: Require explicit user confirmation before performing these actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [UBTRIPPIN API documentation](https://www.ubtrippin.xyz/api/v1/docs) <br>
-- [UBTRIPPIN website](https://www.ubtrippin.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/fistfulayen/ubtrippin) <br>
-- [Publisher profile](https://clawhub.ai/user/fistfulayen) <br>
+## Use Case:
 
+External users and their agents use this skill to view and manage UBTRIPPIN travel plans, booking details, loyalty information, family sharing, city guides, notifications, webhooks, and account-related travel workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a UBTRIPPIN API key and registered sender email for authenticated account actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can manage sensitive travel data, loyalty numbers, family sharing, collaborators, notifications, webhooks, and billing-related links.
+
+Mitigation: Grant access only when the user accepts this scope, keep the API key in a protected secret store or environment variable, and avoid placing secrets in TOOLS.md or example scripts.
+
+Risk: Delete operations, sharing changes, webhook setup, checkout actions, calendar-token regeneration, and email forwarding can have lasting account or privacy impact.
+
+Mitigation: Require explicit user confirmation before these actions and summarize the affected trip, item, family member, collaborator, webhook, billing action, or email attachment before proceeding.
+
+Risk: Forwarding booking emails and attachments may expose personal itinerary, ticket, and payment-adjacent information.
+
+Mitigation: Use only the user's registered sender address, confirm which email and attachments will be forwarded, and verify the imported result after processing.
+
+## Reference(s):
+
+- [UBTRIPPIN API documentation](https://www.ubtrippin.xyz/api/v1/docs)
+- [UBTRIPPIN website](https://www.ubtrippin.xyz)
+- [ClawHub skill page](https://clawhub.ai/fistfulayen/skills/ubtrippin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with REST API examples, JSON request and response snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a UBTRIPPIN API key and registered sender email for authenticated operations.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

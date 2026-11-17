@@ -1,42 +1,57 @@
-## Description: <br>
-Dunbar's Number helps agents analyze organizational size breakpoints and recommend whether to split teams, formalize coordination, or add management structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams diagnose coordination strain against Dunbar's group-size layers and choose organizational structures as headcount grows.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, founders, operators, and organizational designers use this skill to diagnose coordination breakdowns near Dunbar-size thresholds and choose whether to split teams, formalize process, or add management layers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Organizational recommendations can influence significant structure and management decisions. <br>
-Mitigation: Use the skill as an advisory thinking aid and review recommendations with human judgment and local business context. <br>
-Risk: The skill may over-attribute interpersonal or incentive problems to group-size limits when the activation criteria do not fit. <br>
-Mitigation: Check headcount, coordination mechanisms, and root cause before applying structural prescriptions. <br>
+## Use Case:
 
+Employees and organizational leaders use this skill to assess whether coordination problems relate to team size and to plan when to split, formalize, or add management structure. It produces a structured diagnosis and suggested review thresholds for the organization's circumstances.
 
-## Reference(s): <br>
-- [Dunbar's Number on ClawHub](https://clawhub.ai/deciqai/skills/dunbars-number) <br>
-- [Sources](references/sources.md) <br>
-- [Method in Action: Dunbar 1992 + W.L. Gore & Associates](examples/dunbar-1992-wl-gore-associates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown organizational analysis with a structured output template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user input in coach mode before producing the final analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Headcount thresholds may not fit an organization's circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate suggested thresholds against the organization's structure and context before acting.
+
+Risk: Saved examples could expose sensitive employee details.
+
+Mitigation: Omit sensitive employee details when saving observed examples.
+
+## Reference(s):
+
+- [Sources cited by the skill](references/sources.md)
+- [Dunbar and W.L. Gore example](examples/dunbar-1992-wl-gore-associates.md)
+- [AI-native startup scaling example](examples/ai-native-startup-scaling-2023-2026.md)
+- [Dunbar's Number on ClawHub](https://clawhub.ai/deciqai/skills/dunbars-number)
+- [Dunbar's Number skill information](https://www.deciqai.com/s/dunbars-number.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured organizational analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's headcount and coordination context; recommendations are planning guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Self-evolving Polymarket trading bot. Design strategy with user, run paper trading, auto-improve until edge target met, then ask to switch to live. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-evolving Polymarket trading bot. Design strategy with user, run paper trading, auto-improve until edge target met, then ask to switch to live.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and developers use this skill to create, run, and review Polymarket trading strategies with paper trading first and live trading only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores wallet secrets locally and can use configured credentials for Polymarket trading if the host is compromised. <br>
-Mitigation: Use only a dedicated low-balance wallet, protect local credential files, and avoid sharing hosts with untrusted users. <br>
-Risk: Persistent cron jobs can run automated trades, including real-money trades after dry-run is disabled. <br>
-Mitigation: Keep dry_run enabled until live-trading risk is intentionally accepted, inspect crontab entries before adding them, and require explicit user confirmation before enabling live trading. <br>
-Risk: Untrusted or path-like USER_ID values could affect where local credential and state files are read or written. <br>
-Mitigation: Use simple trusted user identifiers and avoid path separators or externally supplied USER_ID values. <br>
+## Use Case:
 
+External users and developers use this skill to configure and operate a Polymarket trading workflow: create user-confirmed market strategies, run dry-run signal scans, review performance, and activate live trading only after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patches429/storyclaw-polymarket-trading) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and POLYMARKET_PRIVATE_KEY or per-user credential JSON for authenticated trading operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles wallet credentials for Polymarket automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds, keep credentials isolated per user, and do not share private keys or generated credential files.
+
+Risk: Scheduled workflows can run repeated signal scans and may execute live trades after a strategy is activated.
+
+Mitigation: Keep dry-run enabled until results are personally inspected, avoid cron setup unless removal is understood, and require explicit confirmation before activating live trading.
+
+Risk: Untrusted USER_ID or strategy IDs can affect which local credential, strategy, and state files are used.
+
+Mitigation: Use trusted, expected user and strategy identifiers only, and run the skill in an isolated environment with pinned dependencies.
+
+Risk: Server security evidence reports unsafe scoping and persistence gaps for live-trading workflows.
+
+Mitigation: Review the skill carefully before installing, limit wallet funds, and inspect state, strategy, and cron configuration before any live use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/patches429/skills/storyclaw-polymarket-trading)
+- [Polymarket CLOB API endpoint](https://clob.polymarket.com)
+- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON credential, strategy, and performance state files when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

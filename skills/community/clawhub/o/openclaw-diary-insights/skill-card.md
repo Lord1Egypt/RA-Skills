@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts thought cards, mood timelines, growth-dimension scores, and knowledge-graph data from local diary files, then generates an interactive local visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured insights from journal entries and generates an interactive local visualization with thought cards, mood timelines, growth dimensions, and a knowledge graph.
 
-## Publisher: <br>
-[smorzandos](https://clawhub.ai/user/smorzandos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smorzandos](https://clawhub.ai/user/smorzandos)
 
-## Use Case: <br>
-Journal users and personal knowledge-management users use this skill to analyze local diary Markdown files, extract personal insights and mood trends, and produce local HTML and JSON outputs for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads diary folders and optional identity files, then creates derived summaries that may contain sensitive personal information. <br>
-Mitigation: Install only if you are comfortable with that access, review the configured storage.path before running, and treat generated HTML, data.js, and JSON outputs as sensitive. <br>
-Risk: The generated visualization may load third-party CDN scripts or fonts when opened in a browser. <br>
-Mitigation: Avoid opening the generated page online unless you accept those CDN requests; use local assets or an offline review flow for stronger privacy. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to analyze personal diary files and turn recurring reflections, moods, growth signals, and topic relationships into local reports. It is suited for users who already keep journal markdown files and want a generated insight dashboard.
 
-## Reference(s): <br>
-- [OpenClaw Diary Insights on ClawHub](https://clawhub.ai/smorzandos/openclaw-diary-insights) <br>
-- [Diary System homepage](https://github.com/openclaw-community/diary-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance plus generated JavaScript, JSON, and HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local diary Markdown and optional identity files; writes local insights HTML, data.js, and JSON backup files under ~/write_me/02notes/insights/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may contain private diary-derived content in persistent local HTML, JavaScript, and JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated outputs before sharing, keep the output directory access-restricted, and remove or redact sensitive journal content when needed.
+
+Risk: The security review reports unsafe browser-script behavior and remote CDN/font loading in reports that may contain sensitive diary content.
+
+Mitigation: Do not open sensitive generated reports until user content is safely escaped and remote dependencies are bundled locally or explicitly gated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smorzandos/skills/openclaw-diary-insights)
+- [Project Homepage](https://github.com/openclaw-community/diary-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated JavaScript, JSON, and local HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent local diary insight outputs under ~/write_me/02notes/insights/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

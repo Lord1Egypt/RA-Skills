@@ -1,40 +1,59 @@
-## Description: <br>
-Provides real-time cryptocurrency prices in USD for requested coins using the CoinGecko API, with a stated cost of 0.001 USDT per call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cryptocurrency prices in USD using the CoinGecko API, with SkillPay billing for each call.
 
-## Publisher: <br>
-[loverun321](https://clawhub.ai/user/loverun321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loverun321](https://clawhub.ai/user/loverun321)
 
-## Use Case: <br>
-Agents and developers use this skill to answer cryptocurrency price queries, including individual coin prices and top-coin lists. The skill is intended for normal ClawHub release use and includes a stated per-call billing model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ordinary price lookups may trigger billing that is not clearly disclosed or confirmed. <br>
-Mitigation: Review carefully before installing and use only after the publisher documents pricing, the billing provider, shared user data, and explicit confirmation before any charge attempt. <br>
+## Use Case:
 
+External users and agents use this skill to request current USD prices, 24-hour changes, or top cryptocurrency listings. It is intended for paid price lookups rather than financial advice or trading execution.
 
-## Reference(s): <br>
-- [Crypto Price Skill on ClawHub](https://clawhub.ai/loverun321/crypto-price-skill) <br>
-- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price) <br>
-- [SkillPay](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [JSON-compatible object with cryptocurrency price, 24-hour change, top-coin list, error, and payment status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns live external API data when available; results can include payment status metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Billing implementation exposes an API key in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed key and move billing credentials out of distributed skill files.
+
+Risk: Billing trusts caller-provided identities and may charge before delivering a result.
+
+Mitigation: Bind charges to authenticated platform identity, validate requests before charging, and fail closed on billing errors.
+
+Risk: The security verdict is suspicious and recommends review before installation.
+
+Mitigation: Review the skill carefully before installing and verify the billing path before production use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/loverun321/skills/crypto-price-skill)
+- [CoinGecko API endpoint](https://api.coingecko.com/api/v3/simple/price)
+- [SkillPay billing endpoint](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, guidance]
+
+**Output Format:** [JSON responses with price, 24-hour change, listing, payment status, or error fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact CoinGecko and SkillPay during execution; output is not financial advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

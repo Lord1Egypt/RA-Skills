@@ -2,7 +2,7 @@
 name: stack-push
 description: |
   Pushes all branches in a stack and opens or updates one dependent PR per slice. Use after stack-create to publish the stack or after adding commits to a slice
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - stacked-diffs
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Stack Push
@@ -22,13 +22,19 @@ source_plugin: sanctum
 Push all branches in a stack and open (or update) one PR
 per slice, with each PR targeting its parent branch as base.
 
-## When to Use
+## When To Use
 
 Run `stack-push` after `stack-create` has initialized the
 branch topology and at least one commit exists on each
 slice branch.
 Also run it after adding commits to any slice to update
 open PRs.
+
+## When NOT To Use
+
+- No stack exists yet (use `sanctum:stack-create`)
+- The base merged and the stack must catch up (use
+  `sanctum:stack-rebase`)
 
 ## Prerequisites
 
@@ -38,7 +44,7 @@ open PRs.
 
 ## Required Progress Tracking
 
-Create `TodoWrite` items before starting:
+Create progress items before starting:
 
 1. `stack-push:branches-listed`
 2. `stack-push:branches-pushed`
@@ -93,7 +99,7 @@ jj git push --all
 ## Step 3: Open or Update PRs (`prs-opened`)
 
 Create one PR per slice, targeting its parent branch.
-For the first slice the parent is `master`; for subsequent
+For the first slice the parent is `master`. For subsequent
 slices the parent is the previous slice's branch.
 
 ```bash
@@ -165,3 +171,17 @@ gh pr comment "${ROOT_PR}" --body "$(printf "${BODY}")"
   `git push --force-with-lease` (never `--force`)
 - When a base PR merges, run `Skill(sanctum:stack-rebase)`
   to cascade the rebase before updating the next PR's base
+
+## Exit Criteria
+
+- [ ] All 4 progress items (`stack-push:branches-listed` through
+      `stack-push:stack-summary-posted`) are created before pushing
+      starts and marked complete in order
+- [ ] Each slice branch confirmed to have ≥ 1 commit beyond its base
+      before `git push` is called; branches with 0 commits are blocked
+- [ ] One draft PR opened per slice, each targeting its parent branch
+      as base (root slice targets `master`/`main`)
+- [ ] Root PR receives a `## Stack` comment containing a table with
+      columns `#`, `Branch`, and `PR` listing all slices
+- [ ] `gh pr list --head <branch>` returns a PR number for each
+      pushed branch after the step completes

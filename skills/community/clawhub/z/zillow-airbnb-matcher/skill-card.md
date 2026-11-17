@@ -1,46 +1,56 @@
-## Description: <br>
-Find properties for sale that are already generating Airbnb income. Cross-references Zillow listings with active Airbnb rentals using geo-matching and calculates investment metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find properties for sale that are already generating Airbnb income. Cross-references Zillow listings with active Airbnb rentals using geo-matching and calculates investment metrics.
 
-## Publisher: <br>
-[Freemountaindeer](https://clawhub.ai/user/Freemountaindeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-UNLICENSED <br>
+## Publisher:
 
+[freemountaindeer](https://clawhub.ai/user/freemountaindeer)
 
-## Use Case: <br>
-Real estate investors, operators, and agents use this skill to compare US for-sale property listings with nearby active short-term rental listings and review revenue estimates, match confidence, and investment metrics before deeper due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+UNLICENSED
 
-## Known Risks and Mitigations: <br>
-Risk: Live searches send search locations and the user's RapidAPI key to third-party listing APIs. <br>
-Mitigation: Use a protected .env file for RAPIDAPI_KEY, keep it out of version control, and monitor RapidAPI usage. <br>
-Risk: Investment reports may contain estimates or nearby-property matches rather than verified exact-property income. <br>
-Mitigation: Independently verify listing matches, revenue assumptions, local short-term rental rules, and financial conclusions before acting. <br>
-Risk: Installation runs a Node/npm-based setup script. <br>
-Mitigation: Review the skill and scan results before deployment, then install only in an environment where running npm dependencies is acceptable. <br>
+## Use Case:
 
+External users and real estate analysts use this skill to search U.S. ZIP codes or cities, compare for-sale properties with nearby active Airbnb rentals, and review estimated short-term rental investment metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Freemountaindeer/zillow-airbnb-matcher) <br>
-- [Freemountaindeer publisher profile](https://clawhub.ai/user/Freemountaindeer) <br>
-- [RapidAPI](https://rapidapi.com) <br>
-- [Airbnb13 API on RapidAPI](https://rapidapi.com/3b-data-3b-data-default/api/airbnb13) <br>
-- [US Property Market API on RapidAPI](https://rapidapi.com/SwongF/api/us-property-market1) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown reports with links, investment metrics, setup commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live searches require Node.js and a RAPIDAPI_KEY; demo mode can run without an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: frontmatter and server release evidence) <br>
+Risk: RapidAPI search requests disclose searched locations to RapidAPI-backed Zillow and Airbnb services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use live search only when sharing those locations with the API providers is acceptable; use demo mode when validating the skill without sending external requests.
+
+Risk: RapidAPI keys may be stored in a local .env file or exposed through command-line setup patterns.
+
+Mitigation: Store the key in a protected secret store or environment variable, restrict .env permissions to the owner, avoid passing secrets on the command line, and rotate any key already used that way.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freemountaindeer/skills/zillow-airbnb-matcher)
+- [RapidAPI Airbnb13 API](https://rapidapi.com/3b-data-3b-data-default/api/airbnb13)
+- [RapidAPI US Property Market API](https://rapidapi.com/SwongF/api/us-property-market1)
+- [Setup guide](GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text property match report with listing links and investment metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live searches require RAPIDAPI_KEY and send search locations to RapidAPI-backed Zillow and Airbnb services; demo mode uses sample data.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release and SKILL.md frontmatter; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

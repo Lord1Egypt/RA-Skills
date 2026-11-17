@@ -1,42 +1,53 @@
-## Description: <br>
-Hotel and hospitality operations management: reservations, guest services, housekeeping, maintenance, revenue, F&B, events, and staff coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotel and hospitality operations management for reservations, guest services, housekeeping, maintenance, revenue, food and beverage, events, and staff coordination.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Hospitality teams use this skill to coordinate day-to-day hotel operations, including reservations, guest communications, room readiness, housekeeping, maintenance, pricing recommendations, events, inventory, loyalty workflows, and staff scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guest, stay, payment, loyalty, and complaint details are sensitive and may be mishandled if copied into unmanaged tools. <br>
-Mitigation: Use approved PMS, CRM, messaging, and payment systems; avoid storing payment details outside compliant systems; redact personal or stay-specific details from public replies. <br>
-Risk: Generated guest messages, review replies, refunds, credits, or compensation recommendations could be sent or applied without proper approval. <br>
-Mitigation: Require staff approval before sending external messages or issuing compensation, and follow property policies for refunds, credits, and guest recovery. <br>
-Risk: Operational recommendations for room assignment, overbooking, pricing, maintenance priority, or scheduling may be incorrect for a specific property. <br>
-Mitigation: Treat recommendations as drafts for manager review and adapt them to local procedures, legal requirements, staffing rules, and current system data. <br>
+## Use Case:
 
+Hospitality teams and property operators use this agent to coordinate daily hotel workflows across reservations, guest service, housekeeping, maintenance, revenue, food and beverage, events, and staffing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rithythul/koompi-hospitality) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, tables, templates, operational recommendations, and short status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include guest communication drafts, room and task status guidance, escalation notes, pricing suggestions, and HEARTBEAT_OK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Guest personal data or payment details could be exposed through reservation, messaging, or integration workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the minimum guest data needed, avoid payment and identity details in generated messages, use approved hotel systems, and require secure handling of API credentials and webhooks.
+
+Risk: Guest marketing, review outreach, or service messages could be sent without appropriate consent or staff approval.
+
+Mitigation: Require staff review before sending outbound messages and confirm consent for marketing or review requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rithythul/skills/koompi-hospitality)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with checklists, tables, templates, and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft guest communications, operational escalations, pricing recommendations, and task prioritization guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

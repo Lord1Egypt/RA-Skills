@@ -1,42 +1,54 @@
-## Description: <br>
-Export the agent core from supported framework repositories into a small source-only zip for AI migration or cross-framework analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports agent-defining source files from supported framework repositories into a small source-only zip for AI migration or cross-framework analysis.
 
-## Publisher: <br>
-[Moshiii](https://clawhub.ai/user/Moshiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moshiii](https://clawhub.ai/user/moshiii)
 
-## Use Case: <br>
-Developers and engineers use this skill to detect supported agent repositories, extract only agent-defining files, and package those files for migration, portability review, or cross-framework analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated archives may include private agent instructions, memory or context files, configuration details, and absolute local source paths. <br>
-Mitigation: Review the generated zip, README.txt, and MANIFEST.txt before sharing or using the export outside the local workflow. <br>
-Risk: Running the exporter against unintended repositories can package source files that were not meant for migration or analysis. <br>
-Mitigation: Use explicit --base-dir, --repos, and --output-dir values and confirm the target repositories before running the export script. <br>
+## Use Case:
 
+Developers and engineers use this skill to detect supported agent framework repositories, extract the files that define agent behavior, and package them into portable source-only archives for migration or analysis.
 
-## Reference(s): <br>
-- [Agent Core Design](references/AGENT_CORE.md) <br>
-- [AgentPearl homepage](https://github.com/moshiwei/AgentPearl) <br>
-- [ClawHub skill page](https://clawhub.ai/Moshiii/agent-core-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled script produces a source-only zip archive with README.txt and MANIFEST.txt.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local repository paths and the zip command when building export archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, target metadata, skill frontmatter, and manifest.yaml) <br>
+Risk: The export may package sensitive agent configuration such as secrets, local paths, allowlists, or private policy files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated archive, README.txt, MANIFEST.txt, and included configuration files before sharing or using the pack in another workflow.
+
+Risk: Crafted path-like values in archive or repository inputs can cause writes outside the intended output area.
+
+Mitigation: Use simple archive names and repository names, avoid path-like values in --name and --repos, and run the exporter on repositories and output directories you control.
+
+## Reference(s):
+
+- [Agent Core Design](references/AGENT_CORE.md)
+- [Project homepage from metadata](https://github.com/moshiwei/AgentPearl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated source-only zip archives containing README.txt and MANIFEST.txt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the zip command for archive creation; exported packs are intended for review before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

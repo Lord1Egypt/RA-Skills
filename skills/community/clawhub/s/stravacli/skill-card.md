@@ -1,41 +1,53 @@
-## Description: <br>
-Use the stravacli terminal tool to access Strava data and perform limited activity update or upload actions when users request Strava metrics, history, exports, or CLI automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the stravacli terminal tool to access Strava data (athlete profile, activities, streams, routes, segments, clubs, gear, uploads) and perform limited write actions (activity update/upload).
 
-## Publisher: <br>
-[Brainsoft-Raxat](https://clawhub.ai/user/Brainsoft-Raxat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brainsoft-raxat](https://clawhub.ai/user/brainsoft-raxat)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Strava CLI authentication, read Strava profile and activity data, export routes, and perform confirmed activity updates or uploads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external stravacli project that can access a user's Strava account. <br>
-Mitigation: Install only if the external project is trusted and review Strava permissions during login. <br>
-Risk: The skill supports limited write actions such as activity updates and uploads. <br>
-Mitigation: Require explicit user confirmation before running any activity update or upload command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Brainsoft-Raxat/stravacli) <br>
-- [strava-cli source repository](https://github.com/Brainsoft-Raxat/strava-cli) <br>
-- [strava-cli latest release](https://github.com/Brainsoft-Raxat/strava-cli/releases/latest) <br>
+## Use Case:
 
+External users and developers use this skill to query Strava profile, activity, route, segment, club, gear, and upload data through stravacli, and to automate confirmed activity updates or uploads.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers --json for reusable command output; activity updates and uploads require explicit confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.98 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an unpinned third-party stravacli executable that can access private fitness and location data.
+
+Mitigation: Use a pinned reviewed release, verify checksums or signatures when available, and authenticate only after reviewing the requested Strava access.
+
+Risk: The skill supports limited Strava write actions such as activity updates and uploads.
+
+Mitigation: Require explicit user confirmation before write commands and review command arguments before execution.
+
+## Reference(s):
+
+- [stravacli source repository](https://github.com/Brainsoft-Raxat/strava-cli)
+- [stravacli latest release](https://github.com/Brainsoft-Raxat/strava-cli/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers --json for parseable Strava command results; write actions require user confirmation.]
+
+## Skill Version(s):
+
+2.2.98 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

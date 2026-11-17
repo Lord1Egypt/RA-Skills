@@ -38,7 +38,7 @@ x-i18n:
   - [如何在 Linux 上安装 OpenClaw？](#how-do-i-install-openclaw-on-linux)
   - [如何在 VPS 上安装 OpenClaw？](#how-do-i-install-openclaw-on-a-vps)
   - [云/VPS 安装指南在哪里？](#where-are-the-cloudvps-install-guides)
-  - [可以让 OpenClaw 自行更新吗？](#can-i-ask-openclaw-to-update-itself)
+  - [可以让 OpenClaw 自行更新吗？](#can-i-aREDACTED-SECRET)
   - [新手引导向导具体做了什么？](#what-does-the-onboarding-wizard-actually-do)
   - [运行 OpenClaw 需要 Claude 或 OpenAI 订阅吗？](#do-i-need-a-claude-or-openai-subscription-to-run-this)
   - [能否使用 Claude Max 订阅而不需要 API 密钥？](#can-i-use-claude-max-subscription-without-an-api-key)

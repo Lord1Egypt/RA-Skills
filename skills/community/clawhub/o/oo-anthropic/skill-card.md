@@ -1,45 +1,56 @@
-## Description: <br>
-Operate Anthropic through an OOMOL-connected account using the oo CLI connector for message creation, token counting, and model metadata actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OOMOL account to Anthropic for model discovery, token counting, and message creation through the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Anthropic connector schemas, run supported Anthropic actions through OOMOL, count message tokens, create non-streaming messages, and retrieve model information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Anthropic prompts and payloads may be sent through OOMOL and Anthropic when connector actions run. <br>
-Mitigation: Install and use the skill only when that intermediary flow is acceptable, and review payload content before approving actions. <br>
-Risk: The create_message action can consume account credits and send user-provided prompt content. <br>
-Mitigation: Confirm the exact payload and intended effect with the user before running create_message. <br>
-Risk: Broad Anthropic-related wording could cause general discussion or documentation requests to be treated as connector actions. <br>
-Mitigation: Use the connector only for explicit Anthropic account actions and answer general Anthropic questions without running oo commands. <br>
+## Use Case:
 
+Developers use the oo CLI to inspect Anthropic action schemas, list or retrieve models, count message tokens, and create messages through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-anthropic) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Anthropic homepage](https://www.anthropic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and meta.executionId fields when actions run successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and skill metadata) <br>
+Risk: The setup directs the agent to run remote installers without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the installer and CLI source separately, then approve installation before execution.
+
+Risk: Requests pass through OOMOL using the connected account.
+
+Mitigation: Review submitted content and verify the connected account before running actions; retain required message-payload confirmations.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-anthropic)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Anthropic](https://www.anthropic.com)
+- [Anthropic API documentation](https://platform.claude.com/docs/en/api/overview)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to inspect each action schema before constructing a request.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

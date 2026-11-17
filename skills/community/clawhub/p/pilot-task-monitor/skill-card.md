@@ -1,41 +1,54 @@
-## Description: <br>
-Real-time dashboard for task status and polo score tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time dashboard for task status and polo score tracking.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor Pilot Protocol task queues, submitted task status, completion counts, and polo score changes from a local terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a local Pilot Protocol daemon and external pilotctl binary that expose task, requester, target, queue, and score information. <br>
-Mitigation: Install and run it only in environments where you trust the Pilot Protocol daemon and pilotctl binary, and avoid exposing terminal output that contains sensitive task metadata. <br>
-Risk: The monitoring examples poll local command output through jq and watch, so missing dependencies or an unavailable daemon can produce incomplete or stale status views. <br>
-Mitigation: Confirm pilotctl, jq, and watch are installed and verify the daemon is running before relying on dashboard results. <br>
+## Use Case:
 
+Developers and operators using Pilot Protocol use this skill to monitor active task queues, submitted task status, completion metrics, and polo score changes across agents.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub listing](https://clawhub.ai/teoslayer/pilot-task-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local pilotctl JSON output with jq and optional watch-based polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Monitoring commands can display task IDs, requesters, targets, statuses, and polo score information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in Pilot Protocol environments where the agent is authorized to view task and score metadata.
+
+Risk: The dashboard workflow depends on local pilotctl, jq, watch, and a running Pilot daemon.
+
+Mitigation: Confirm those dependencies are installed and use the disclosed read-only commands before relying on the dashboard output.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-task-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, markdown, guidance]
+
+**Output Format:** [Markdown with bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, watch, and a running Pilot daemon; commands use read-only monitoring output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

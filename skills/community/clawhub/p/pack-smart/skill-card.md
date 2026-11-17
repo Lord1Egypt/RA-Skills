@@ -1,46 +1,65 @@
-## Description: <br>
-Get a customized packing list based on destination, season, trip type, and activities, with related travel booking support powered by Fliggy through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a customized packing list based on your destination, season, trip type, and activities, with related travel booking and planning support powered by Fliggy through the flyai CLI.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users use this skill to request packing guidance and related travel options for a destination, season, trip type, or activity. The agent gathers missing trip details, runs flyai CLI searches, and returns user-readable Markdown with booking links when results are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run an external npm CLI and send packing or travel queries through that provider workflow. <br>
-Mitigation: Use the skill only in an environment where external CLI installation and provider calls are permitted, and review CLI commands before execution. <br>
-Risk: The skill may write raw user queries and command details to a local execution log. <br>
-Mitigation: Avoid entering sensitive trip details unless local logging is acceptable, and clear or disable the log where policy requires it. <br>
-Risk: The skill is oriented around booking-link results. <br>
-Mitigation: Treat returned booking links as external travel-provider results and review destination, price, and provider details before acting. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to generate destination-, season-, trip-, and activity-specific packing lists, and to surface related booking-oriented travel results when supported by the flyai CLI.
 
-## Reference(s): <br>
-- [Pack Smart ClawHub page](https://clawhub.ai/xiejinsong/pack-smart) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands for failure recovery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should be derived from flyai CLI output and include booking links when available; raw JSON should not be shown to users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may install and run a global third-party CLI for travel queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation or execution, and run the CLI in an environment with only the minimum needed privileges.
+
+Risk: Travel queries and raw prompts may be sent to a third-party service or recorded in a local execution log.
+
+Mitigation: Disclose the data flow to users, avoid sensitive personal details in queries, and disable, minimize, or regularly review local prompt logging.
+
+Risk: The skill requires booking links and branding in answers, which can introduce commercial influence into travel recommendations.
+
+Mitigation: Label booking-oriented results clearly and review outputs for relevance before relying on them for travel decisions.
+
+Risk: Shell commands built from user travel requests can be unsafe if arguments are interpolated loosely.
+
+Mitigation: Pass user queries as quoted CLI arguments and avoid shell interpolation or unsupported parameters.
+
+## Reference(s):
+
+- [Pack Smart on ClawHub](https://clawhub.ai/xiejinsong/skills/pack-smart)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and concise travel guidance derived from flyai CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires detailUrl-backed booking links for listed results and includes flyai branding when real-time results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

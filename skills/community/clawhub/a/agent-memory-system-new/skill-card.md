@@ -1,45 +1,57 @@
-## Description: <br>
-Helps OpenClaw agents maintain persistent local memory with hot, warm, and cold storage, scheduled archiving, nightly reflection, and skill extraction from lessons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a long-term memory system for OpenClaw agents with hot, warm, and cold memory tiers, automatic archiving, nightly reflection, and reusable skill extraction from lessons.
 
-## Publisher: <br>
-[Tomor1984](https://clawhub.ai/user/Tomor1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tomor1984](https://clawhub.ai/user/tomor1984)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a local memory workspace for OpenClaw agents, keep daily logs and lessons organized, archive older memory files, and generate reusable skill scaffolds from recorded lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can add recurring background jobs for garbage collection and nightly reflection. <br>
-Mitigation: Review the proposed crontab entries before enabling automation, and skip or remove scheduled jobs when persistent background maintenance is not desired. <br>
-Risk: Maintenance scripts can move or replace local workspace memory files. <br>
-Mitigation: Run garbage collection with --dry-run first, confirm the WORKSPACE path, and keep backups of important memory files before enabling scheduled runs. <br>
-Risk: Persistent memory files may expose sensitive personal or business information to future agents. <br>
-Mitigation: Avoid storing sensitive data in the memory directory unless future agent access is intended and acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up and maintain persistent OpenClaw memory files, daily logs, lessons, decisions, reflections, archives, and reusable skill drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tomor1984/agent-memory-system-new) <br>
-- [Tomor1984 publisher profile](https://clawhub.ai/user/Tomor1984) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples, shell scripts, and memory template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local memory files, archive reports, reflection records, and generated skill scaffolds in the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill installs recurring scheduled jobs and manages persistent OpenClaw memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation, keep cron disabled until approved, monitor scheduled-job logs, and back up memory data before running install, GC, reflection, or uninstall flows.
+
+Risk: Unsafe path handling can write or delete outside intended memory or skills folders.
+
+Mitigation: Do not pass lesson or skill names containing slashes, dots, or path components, and run the skill only in a backed-up workspace until the path traversal issue is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomor1984/skills/agent-memory-system-new)
+- [Publisher profile](https://clawhub.ai/user/tomor1984)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [MEMORY template](artifact/templates/MEMORY-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, shell scripts, generated skill package scaffolds, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and modifies local OpenClaw memory, archive, reflection, lesson, and skill files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "saas-landing-page-generator",
+  "schema_version": "1",
+  "name": "saas-landing-page-generator",
   "version": "1.0.0",
-  "publishedAt": 1772440424023
+  "description": "生成专业 SaaS Landing Page，一键生成可直接部署的代码",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["saas", "landing-page", "generator", "website", "marketing"],
+  "license": "MIT"
 }

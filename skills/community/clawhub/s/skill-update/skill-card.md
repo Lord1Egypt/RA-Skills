@@ -1,41 +1,59 @@
-## Description: <br>
-Safely update skills with preview, migration support, and user validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Updates installed agent skills safely: version check, diff preview, backup, approval, data migration, and rollback.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent users use this skill to preview, explain, approve, back up, apply, verify, migrate, and roll back skill updates while keeping user-controlled workflows intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to change local skill files, including moves or deletions during updates. <br>
-Mitigation: Review the preview and migration plan, approve only the intended skill and version, and confirm a backup exists before allowing file changes. <br>
-Risk: Incomplete review of update differences could lead to broken workflows or data loss. <br>
-Mitigation: Use the documented check, preview, explain, confirm, backup, update, and verify flow before applying an update. <br>
+## Use Case:
 
+Developers and agent users use this skill to update installed skills with previews, backups, explicit approval, data migration checks, and rollback paths. It is especially useful when skill behavior, local edits, or multi-agent installations make a simple update risky.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skill-update) <br>
-- [Preview Changes](preview.md) <br>
-- [Migration Strategies](migrate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no executable code files are included in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses an unpinned external updater that can modify installed skills and change future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified `clawic` CLI or locked local install, review the preview diff, and require explicit approval before applying updates.
+
+Risk: `update --all` can apply changes to multiple skills after a broad request.
+
+Mitigation: Separate major versions, breaking changes, migrations, local edits, and pinned skills from the batch, then require per-skill approval for those cases.
+
+Risk: Data migrations during updates can alter or lose user state if they are based on assumed formats or fail midway.
+
+Mitigation: Back up the skill and its data folder first, read actual user data before mapping, copy and verify instead of moving, and restore from the same backup if migration fails.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/skill-update)
+- [Clawic Skill Page](https://clawic.com/skills/skill-update)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, file paths, and update reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backup paths, diff summaries, migration plans, rollback steps, and per-skill update status.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

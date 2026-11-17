@@ -1,44 +1,57 @@
-## Description: <br>
-Fetches real hot-search and trending-topic data from Baidu Hot Search, Toutiao Hot Board, and GitHub Trending for trend analysis, market insight, and demand discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real public trending data from Baidu Hot Search, Toutiao Hot Board, and GitHub Trending for demand discovery, trend analysis, and market insight.
 
-## Publisher: <br>
-[embracex1998](https://clawhub.ai/user/embracex1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[embracex1998](https://clawhub.ai/user/embracex1998)
 
-## Use Case: <br>
-Developers, analysts, and market researchers use this skill to retrieve current public trend data and filter it by platform, keyword, or GitHub language for demand discovery and market insight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound network requests to Baidu, Toutiao, and GitHub when trend data is requested. <br>
-Mitigation: Use explicit prompts for the intended source, and run it only in environments where those public network requests are acceptable. <br>
-Risk: Generic trigger words such as 'trending' or '趋势' could activate the skill unintentionally. <br>
-Mitigation: Prefer source-specific prompts such as 'show GitHub Trending' or 'fetch Baidu hot search'. <br>
+## Use Case:
 
+External users, developers, and market analysts use this skill to collect current public trend lists and filter them by platform, programming language, or keyword for opportunity discovery and market monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/embracex1998/hot-trends) <br>
-- [Publisher profile](https://clawhub.ai/user/embracex1998) <br>
-- [Baidu Hot Search API](https://top.baidu.com/api/board?platform=wise&tab=realtime&offset=0&limit=30) <br>
-- [Toutiao Hot Board API](https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc) <br>
-- [GitHub Trending](https://github.com/trending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text suitable for Markdown summaries or follow-up analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns ranked trend items with titles and optional heat, language, and description fields depending on the selected source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes outbound requests to public Baidu, Toutiao, and GitHub endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where those network requests are allowed, and narrow trigger phrases if agents auto-load skills aggressively.
+
+Risk: Trend data and third-party page structures can change or become unavailable.
+
+Mitigation: Treat results as time-sensitive public signals and rerun the skill or verify important findings against the source sites before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/embracex1998/skills/hot-trends)
+- [Publisher profile](https://clawhub.ai/user/embracex1998)
+- [Baidu Hot Search endpoint](https://top.baidu.com/api/board?platform=wise&tab=realtime&offset=0&limit=30)
+- [Toutiao hot board endpoint](https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc)
+- [GitHub Trending](https://github.com/trending)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text trend listings with ranks, titles, heat indicators, optional language labels, and short repository descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on live public websites and may vary by time, network availability, keyword filter, platform, and GitHub language option.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

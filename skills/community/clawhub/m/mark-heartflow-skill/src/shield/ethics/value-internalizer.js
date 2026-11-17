@@ -17,7 +17,7 @@
 
 'use strict';
 
-const fs = require('fs');
+const fs = require('../../utils/safe-fs');
 const path = require('path');
 
 // ============================================================================
@@ -54,6 +54,7 @@ const ErrorType = {
 /**
  * 结构化错误工厂
  */
+
 function makeError(type, message, context = {}) {
   const err = new Error(message);
   err.code = type;

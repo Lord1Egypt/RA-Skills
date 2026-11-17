@@ -1,42 +1,50 @@
-## Description: <br>
-Write compelling UX copy, marketing content, and product messaging. Use when writing button labels, error messages, landing pages, emails, CTAs, empty states, tooltips, or any user-facing text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write compelling UX copy, marketing content, and product messaging. Use when writing button labels, error messages, landing pages, emails, CTAs, empty states, tooltips, or any user-facing text.
 
-## Publisher: <br>
-[killerapp](https://clawhub.ai/user/killerapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[killerapp](https://clawhub.ai/user/killerapp)
 
-## Use Case: <br>
-Product teams, designers, marketers, and developers use this skill to draft and refine user-facing UX copy, marketing messages, product announcements, emails, CTAs, empty states, tooltips, and error messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing or UX copy may include unsupported claims, excessive urgency, or tone that does not match the product brand. <br>
-Mitigation: Review generated claims, urgency language, CTAs, and brand voice before publishing. <br>
-Risk: Payment, security, or account-related messages may affect user trust if they are unclear or misleading. <br>
-Mitigation: Human-review transactional, security, and payment copy for accuracy, clarity, and policy fit before use. <br>
+## Use Case:
 
+Developers, product teams, marketers, and other external users use this skill to draft and refine UX writing, product messaging, landing page copy, CTAs, emails, and other user-facing text.
 
-## Reference(s): <br>
-- [UX Writing Patterns](references/ux-patterns.md) <br>
-- [Marketing Copy Patterns](references/marketing-copy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/killerapp/copywriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text with optional inline UI and email examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated copy should be reviewed before public use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact metadata version 1.1) <br>
+Risk: Generated marketing claims, urgency language, social proof, or trust claims may be inaccurate or unsuitable for the brand.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated copy for truthfulness, authorization, brand fit, and tone before publication.
+
+## Reference(s):
+
+- [UX Writing Patterns](references/ux-patterns.md)
+- [Marketing Copy Patterns](references/marketing-copy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown or plain text with optional short interface copy and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; review generated copy for factual claims, brand fit, and tone before publication.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

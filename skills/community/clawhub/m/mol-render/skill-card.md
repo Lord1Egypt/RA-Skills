@@ -1,41 +1,59 @@
-## Description: <br>
-Generate high-quality 3D ball-and-stick molecular renderings from SMILES strings or PDB structures using POV-Ray ray tracing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality 3D ball-and-stick molecular renderings from SMILES strings or PDB structures using POV-Ray ray tracing.
 
-## Publisher: <br>
-[Zhao-Zehua](https://clawhub.ai/user/Zhao-Zehua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhao-zehua](https://clawhub.ai/user/zhao-zehua)
 
-## Use Case: <br>
-Developers, researchers, and scientific visualization users can use this skill to generate PNG ball-and-stick molecular renderings from SMILES strings or PDB structures. It supports small-molecule rendering, PDB chain or residue filtering, ligand-only views, and configurable rendering options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: PDB IDs are downloaded from RCSB and cached in the system temp directory, which may expose queried structures or leave local copies. <br>
-Mitigation: Use local PDB files for private structures and clear temporary cached files according to the deployment environment's data-handling policy. <br>
-Risk: The skill depends on local Python packages and POV-Ray execution. <br>
-Mitigation: Install dependencies from trusted sources in a virtual environment or container before running the rendering scripts. <br>
+## Use Case:
 
+Developers, researchers, and technical users use this skill to render molecular structures as ball-and-stick PNG images from SMILES strings, local PDB files, or RCSB PDB IDs. It is useful for generating molecule visuals with configurable backgrounds, views, residue filters, and rendering resolution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zhao-Zehua/mol-render) <br>
-- [RCSB PDB file download endpoint](https://files.rcsb.org/download/{pdb_id}.pdb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1200x1200 PNG renderings by default, with options for background color, hydrogen display, molecule subset selection, viewing angle, and resolution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Using a 4-character PDB ID triggers a network request to RCSB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local PDB files when network access is not desired, and review or cache downloaded structures before use in controlled environments.
+
+Risk: The skill invokes POV-Ray and relies on Python chemistry dependencies.
+
+Mitigation: Install and run the skill in a virtual environment as a non-privileged user, and prefer pinned dependency versions.
+
+Risk: Default PDB caching may use the system temporary directory on shared or multi-user systems.
+
+Mitigation: Avoid relying on shared temporary caches; use reviewed local PDB files or a private cache location where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhao-zehua/skills/mol-render)
+- [Publisher profile](https://clawhub.ai/user/zhao-zehua)
+- [RCSB PDB download endpoint](https://files.rcsb.org/download/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated scripts produce PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default rendered images are 1200x1200 PNG files, with command-line options for background, view, molecule filters, hydrogen and water handling, and resolution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

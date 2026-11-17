@@ -1,43 +1,54 @@
-## Description: <br>
-Hash Health supports personal nutrition tracking, meal logging, medication management, and daily health dashboard workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hash Health supports personal nutrition tracking, meal logging, medication management, and daily health dashboards for food, meal, nutrition, calorie, macro, medication, and health-tracking requests.
 
-## Publisher: <br>
-[devak208](https://clawhub.ai/user/devak208) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devak208](https://clawhub.ai/user/devak208)
 
-## Use Case: <br>
-External users use this skill to log meals from text or food images, review nutrition history, manage medication records, and ask nutrition questions through their Hash Health account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send food photos, meal details, medication details, and account requests to the hosted Hash Health service. <br>
-Mitigation: Install only if the user trusts Hash Health with this data and has configured HASH_HEALTH_TOKEN through environment settings rather than chat. <br>
-Risk: Broad triggers can log or save health and meal data sooner than a user expects. <br>
-Mitigation: Use explicit wording for save, log, or track actions, and avoid invoking the skill during casual food or health discussion when data should not be sent or stored. <br>
-Risk: Meal and medication deletion actions can remove account records. <br>
-Mitigation: Confirm the exact meal or medication record before deletion and look up the record identifier instead of guessing it. <br>
+## Use Case:
 
+External users use this skill to connect an agent to their Hash Health account for meal logging from text or images, daily nutrition review, meal history, medication management, and nutrition chat.
 
-## Reference(s): <br>
-- [Hash Health ClawHub page](https://clawhub.ai/devak208/hash-health) <br>
-- [Hash Health homepage](https://hash-claude-mcp.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown text with JSON-RPC tool call guidance and nutrition or medication summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HASH_HEALTH_TOKEN and sends requested health, meal, image, and medication data to the user's Hash Health account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill can send and save sensitive food, nutrition, health, and medication-related data through the configured Hash Health endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users are comfortable with that data flow and configure the token through OpenClaw environment settings rather than chat.
+
+Risk: Casual food or health statements may be processed or logged without a separate confirmation step.
+
+Mitigation: Review the skill behavior before deployment and inform users which phrases trigger immediate logging or processing.
+
+## Reference(s):
+
+- [Hash Health homepage](https://hash-claude-mcp.vercel.app)
+- [Hash Health skill page](https://clawhub.ai/devak208/skills/hash-health)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with request examples and concise user-facing summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HASH_HEALTH_TOKEN and sends food, meal, nutrition, and medication-related data to the configured Hash Health endpoint.]
+
+## Skill Version(s):
+
+1.0.9 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

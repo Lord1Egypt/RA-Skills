@@ -1,47 +1,62 @@
-## Description: <br>
-分析红利类指数投资机会，基于打分算法判断超买超卖状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分析红利类指数投资机会，基于打分算法判断超买超卖状态，并生成包含风险提示的结构化投资分析报告。
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users use this skill to analyze dividend-index timing opportunities, compare supported dividend indexes, and generate strategy-specific buy, hold, or reduce-position guidance from DaxiAPI score data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a DaxiAPI token that could be exposed through chat, shell history, or CLI configuration. <br>
-Mitigation: Treat the token as a secret, avoid pasting real tokens into shared contexts, and rotate the token if it is exposed. <br>
-Risk: Generated dividend-index analysis may be mistaken for financial advice. <br>
-Mitigation: Present analysis as informational, include the report disclaimer, and have users make investment decisions independently. <br>
-Risk: The skill depends on DaxiAPI and the daxiapi-cli package for data retrieval. <br>
-Mitigation: Install and use the skill only when the user trusts DaxiAPI and the CLI package. <br>
+## Use Case:
 
+External users and agents use this skill to analyze dividend index timing opportunities, compare supported dividend indexes, and produce differentiated strategy guidance based on DaxiAPI score, CS, and RSI data. It is intended for informational analysis reports, not personalized financial advice or automated trading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-dividend-analysis) <br>
-- [DaxiAPI](https://daxiapi.com) <br>
-- [CLI command reference](references/cli-commands.md) <br>
-- [Field descriptions](references/field-descriptions.md) <br>
-- [Token setup guide](references/token-setup.md) <br>
-- [Report template](assets/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with supporting shell commands and analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DaxiAPI score data and should include a financial-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill asks users to run mutable npm code through daxiapi-cli@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed daxiapi-cli version before execution.
+
+Risk: The skill handles an API token for DaxiAPI access.
+
+Mitigation: Avoid pasting tokens directly into shell commands and verify where the CLI stores credentials.
+
+Risk: The skill can produce concrete investment actions from technical indicators.
+
+Mitigation: Treat outputs as informational analysis, include disclaimers, and require human review before making financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-dividend-analysis)
+- [DaxiAPI](https://daxiapi.com)
+- [CLI command reference](references/cli-commands.md)
+- [Field descriptions](references/field-descriptions.md)
+- [Token setup guide](references/token-setup.md)
+- [Report template](assets/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and tabular analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DaxiAPI dividend score data and should include risk disclaimers for investment-related output.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

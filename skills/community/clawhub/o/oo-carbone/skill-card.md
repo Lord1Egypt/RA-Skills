@@ -1,45 +1,56 @@
-## Description: <br>
-Carbone (carbone.io) enables agents to read, create, update, and delete Carbone data through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read and manage Carbone templates through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Carbone templates from an agent through their OOMOL-connected Carbone account, including listing templates and safely managing template metadata or deletion actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill lets an agent use an OOMOL-connected Carbone account. <br>
-Mitigation: Install and use it only when the agent should be allowed to operate that Carbone account. <br>
-Risk: Template metadata updates and template deletion actions can change or remove Carbone data. <br>
-Mitigation: Require explicit user confirmation of the target, payload, and expected effect before any write or destructive action. <br>
-Risk: First-time setup may involve installing the remote oo CLI. <br>
-Mitigation: Allow remote CLI installation only when the user trusts the OOMOL CLI source. <br>
+## Use Case:
 
+Developers and other Carbone users can list templates, categories, and tags, update template metadata, or delete templates through their connected account. The skill requires checking each action's schema and approval for changes.
 
-## Reference(s): <br>
-- [Carbone homepage](https://carbone.io) <br>
-- [oo CLI repository](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub Carbone skill page](https://clawhub.ai/oomol/skills/oo-carbone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce oo CLI schema and connector-run commands; write and destructive actions require explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup path may make broader changes to the agent environment, and the remote installers were unavailable for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before enabling the skill, prefer a reviewed CLI release, and decide whether to disable automatic skill synchronization before first use.
+
+Risk: Connecting Carbone entrusts OOMOL with the connected account's credentials and requested operations.
+
+Mitigation: Connect only an account you intend to use through OOMOL, inspect each action schema, and approve account changes before execution.
+
+## Reference(s):
+
+- [Carbone homepage](https://carbone.io)
+- [Carbone API documentation](https://carbone.io/documentation/developer/http-api/introduction.html)
+- [oo CLI project referenced by the skill (not release provenance)](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-carbone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Text summaries and structured JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results reflect the connected Carbone account and requested action.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

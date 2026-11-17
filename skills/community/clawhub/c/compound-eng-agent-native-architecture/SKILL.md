@@ -3,11 +3,21 @@ name: ia-agent-native-architecture
 class: meta
 description: >-
   Design agent-native applications where agents replace UI users as the primary
-  actor. Use when designing MCP tools, agent-loop architectures, shared-workspace
-  file patterns, or self-modifying agent systems.
+  actor. Use when designing MCP tools, agent-loop architectures, system prompt
+  design, hooks policy, shared-workspace file patterns, or self-modifying agent
+  systems.
 ---
 
 # Agent-Native Architecture
+
+## Working rules
+
+- Keep authority, scope, approval, and runtime isolation in trusted orchestration; prompts alone cannot enforce them.
+- Provide explicit completion and partial-progress signals, durable state, and observable action results.
+- Validate capabilities with real tasks, including failure and interruption paths; do not infer improvement from elapsed usage.
+- **Evaluate discovery from original inputs.** Replaying fixed candidates measures classification and cannot reveal candidates a changed search would miss or invent. Compare each discovery variant with a fresh baseline on the same complete inputs in isolation. Independently adjudicate unmatched outputs from the complete result sets, including outputs from clean tasks.
+- **Calibrate decision gates per model.** A replacement model's confidence scores do not preserve the previous model's cutoff, even when ranking accuracy improves. Fit thresholds on a separate calibration set. Verify false-positive and false-negative behavior through the production decision path on untouched representative cases.
+- Use the selected topic's references and the architecture checklist to produce a concrete design with evidence and unresolved constraints.
 
 ## Core Principles
 
@@ -16,10 +26,11 @@ Five principles govern agent-native design. For detailed explanations, examples,
 | Principle | One-line test |
 |-----------|--------------|
 | **Parity** | Can the agent achieve every outcome the UI allows? |
-| **Granularity** | To change behavior, do you edit prose or refactor code? |
-| **Composability** | Can you add a feature by writing a new prompt, without new code? |
-| **Emergent Capability** | Can the agent handle open-ended requests you didn't design for? |
+| **Granularity** | Changing behavior means editing prose, not refactoring code |
+| **Composability** | Can a feature be added by writing a new prompt, without new code? |
+| **Emergent Capability** | Can the agent handle open-ended requests it wasn't designed for? |
 | **Improvement Over Time** | Does the app work better after a month, even without code changes? |
+
 
 ## Focus Area Selection
 
@@ -39,14 +50,17 @@ Five principles govern agent-native design. For detailed explanations, examples,
 14. **Anti-patterns** - Common mistakes and how to avoid them
 15. **Success criteria** - Verify your architecture is agent-native
 16. **Hooks patterns** - Hook events, decision control, MCP matchers, async hooks
+17. **CLI interface** - Design a CLI that agents invoke: output channels, exit codes, self-description, safety tiers
+18. **Approval loop** - Durable human approval for agent-drafted external sends: content binding, single-winner claim, unknown outcomes
 
-**Wait for response before proceeding.**
+Route directly when the request or delegated task identifies the topic. When a material focus remains unresolved, present the relevant options using `AskUserQuestion` in Claude Code (load it with `ToolSearch` if needed), `request_user_input` in Codex, or numbered options in chat when no question tool is available. Wait only for the answer needed to resolve that choice.
+
 
 ## Reference Routing
 
 | Response | Action |
 |----------|--------|
-| 1, "design", "architecture", "plan" | Read [architecture-patterns.md](./references/architecture-patterns.md), then apply Architecture Checklist below |
+| 1, "design", "architecture", "plan" | Read [architecture-patterns.md](./references/architecture-patterns.md), then apply [architecture-review-checklist.md](./references/architecture-review-checklist.md) |
 | 2, "files", "workspace", "filesystem" | Read [files-universal-interface.md](./references/files-universal-interface.md) and [shared-workspace-architecture.md](./references/shared-workspace-architecture.md) |
 | 3, "tool", "mcp", "primitive", "crud" | Read [mcp-tool-design.md](./references/mcp-tool-design.md) |
 | 4, "domain tool", "when to add" | Read [from-primitives-to-domain-tools.md](./references/from-primitives-to-domain-tools.md) |
@@ -64,66 +78,21 @@ Five principles govern agent-native design. For detailed explanations, examples,
 | 13, "review", "refactor", "existing" | Read [refactoring-to-prompt-native.md](./references/refactoring-to-prompt-native.md) |
 | 14, "anti-pattern", "mistake", "wrong" | Read [anti-patterns.md](./references/anti-patterns.md) |
 | 15, "success", "criteria", "verify", "checklist" | Read [success-criteria.md](./references/success-criteria.md) |
-| 16, "hook", "hooks", "PreToolUse", "decision control", "async hook" | Read [hooks-patterns.md](./references/hooks-patterns.md) |
+| 16, "hook", "hooks", "PreToolUse", "decision control", "async hook", "permissionDecision" | Read [hooks-patterns.md](./references/hooks-patterns.md) |
+| 17, "cli", "command line", "stdout", "exit code", "--format", "--dry-run" | Read [cli-agent-interface.md](./references/cli-agent-interface.md) |
+| 18, "approval", "approve before send", "outbound", "ledger", "double-send" | Read [operator-approval-loop.md](./references/operator-approval-loop.md) |
 | 0, "quick start", "getting started", "overview", "introduction" | Read [quick-start.md](./references/quick-start.md) |
 
 **After reading the reference, apply those patterns to the user's specific context.**
 
-## Architecture Review Checklist
 
-When designing an agent-native system, verify these **before implementation**:
+## Task-specific references
 
-### Core Principles
-- [ ] **Parity:** Every UI action has a corresponding agent capability
-- [ ] **Granularity:** Tools are primitives; features are prompt-defined outcomes
-- [ ] **Composability:** New features can be added via prompts alone
-- [ ] **Emergent Capability:** Agent can handle open-ended requests in your domain
+Read the relevant reference before implementing or reviewing the matching behavior:
 
-### Tool Design
-- [ ] **Dynamic vs Static:** For external APIs where agent should have full access, use Dynamic Capability Discovery
-- [ ] **CRUD Completeness:** Every entity has create, read, update, AND delete
-- [ ] **Primitives over Workflows:** Tools expose atomic capabilities; compose workflows in prompts
-- [ ] **API as Validator:** Use `z.string()` inputs when the API validates, not `z.enum()`
-- [ ] **Eval Gate:** 10 Q/A pairs in CI (read-only, multi-hop, closed-data), 9/10 pass threshold. See [mcp-tool-design.md](./references/mcp-tool-design.md) Evaluation section.
+- Before implementing an agent-native architecture, address every applicable architecture checklist item: [architecture-review-checklist.md](./references/architecture-review-checklist.md).
 
-### Files & Workspace
-- [ ] **Shared Workspace:** Agent and user work in same data space
-- [ ] **context.md Pattern:** Agent reads/updates context file for accumulated knowledge
-- [ ] **File Organization:** Entity-scoped directories with consistent naming
-- [ ] **Context Durability:** Incremental progress writes (WAL pattern) so interrupted tasks resume from last checkpoint
+Existing specialized references, when the corresponding topic applies:
 
-### Agent Execution
-- [ ] **Completion Signals:** Agent has explicit `complete_task` tool (not heuristic detection)
-- [ ] **Partial Completion:** Multi-step tasks track progress for resume
-- [ ] **Context Limits:** Designed for bounded context from the start
-- [ ] **Validate-Before-Run:** Agent previews planned actions before executing destructive operations
-
-### Context Injection
-- [ ] **Available Resources:** System prompt includes what exists (files, data, types)
-- [ ] **Available Capabilities:** System prompt documents tools with user vocabulary
-- [ ] **Dynamic Context:** Context refreshes for long sessions (or provide `refresh_context` tool)
-- [ ] **Trust levels for loaded content:** System prompt distinguishes trusted (developer-authored) from untrusted (user input, retrieved docs, tool outputs); untrusted text is data, never instructions. See [dynamic-context-injection.md](./references/dynamic-context-injection.md) Trust Levels section for the prompt-injection defense details.
-
-### UI Integration
-- [ ] **Agent -> UI:** Agent changes reflect in UI (shared service, file watching, or event bus)
-- [ ] **No Silent Actions:** Agent writes trigger UI updates immediately
-- [ ] **Capability Discovery:** Users can learn what agent can do
-
-### Governance
-- [ ] **Approval Gates:** Destructive or irreversible actions require user confirmation
-- [ ] **Audit Trail:** Agent actions logged with timestamp, tool, and outcome
-- [ ] **Scope Boundaries:** Agent cannot access resources outside its designated workspace
-
-### Hooks & Governance Automation
-- [ ] **Event Coverage:** Only 6 hook events fire in agent context (PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop/SubagentStop); session lifecycle logic lives in the orchestrator
-- [ ] **Decision Gates:** PreToolUse hooks enforce tool-level policy (allow/deny/ask/defer) instead of hardcoded checks
-- [ ] **Completion Gating:** SubagentStop hooks block premature completion when verification steps remain
-- [ ] **MCP Matchers:** Regex patterns target tools by server and operation for capability-based security
-- [ ] **Two-Tier Config:** Shared policy committed, personal overrides git-ignored, per-hook disable toggles
-
-### Mobile (if applicable)
-- [ ] **Checkpoint/Resume:** Handle iOS app suspension gracefully
-- [ ] **iCloud Storage:** iCloud-first with local fallback for multi-device sync
-- [ ] **Cost Awareness:** Model tier selection (Haiku/Sonnet/Opus)
-
-**When designing architecture, explicitly address each checkbox in your plan.**
+- [durability-and-attestation.md](./references/durability-and-attestation.md).
+- For controlled evaluations of hooks, skills, or prompt rules, read [intervention-evaluation.md](./references/intervention-evaluation.md).

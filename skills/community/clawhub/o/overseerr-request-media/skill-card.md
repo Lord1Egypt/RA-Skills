@@ -1,41 +1,53 @@
-## Description: <br>
-Request movies or TV shows on Overseerr by title and optional season, checking availability before forwarding the request to Sonarr or Radarr. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Request movies or TV shows on a user's Overseerr instance by searching titles, checking availability or prior requests, and submitting movie, series, or season-specific requests.
 
-## Publisher: <br>
-[trialskid](https://clawhub.ai/user/trialskid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trialskid](https://clawhub.ai/user/trialskid)
 
-## Use Case: <br>
-Users with an Overseerr instance use this skill to ask an agent to search for movies or TV shows, resolve ambiguous matches, check whether media is already available or requested, and submit new Overseerr requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Overseerr API key to submit media requests. <br>
-Mitigation: Store the API key securely and use the least-privileged key available for the intended Overseerr workflow. <br>
-Risk: Ambiguous search results could lead to requesting the wrong movie or TV show. <br>
-Mitigation: Review ambiguous title matches and have the agent ask the user to choose before submitting a request. <br>
-Risk: The skill may create duplicate or unintended requests if availability or request status is unclear. <br>
-Mitigation: Check Overseerr availability and request indicators before posting, and treat duplicate-request failures as already requested. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trialskid/overseerr-request-media) <br>
+## Use Case:
 
+Users with an Overseerr instance use this skill to ask an agent to request movies or TV shows, including specific seasons, after checking whether the media is already available or already requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Plain text confirmations or clarification prompts, with shell command examples in the skill guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OVERSEERR_URL and OVERSEERR_API_KEY environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented TV-season request example repeats the request endpoint and may submit the same authenticated request incorrectly or twice if followed literally.
+
+Mitigation: Review or correct the season-specific request command before use so only one Overseerr request endpoint is sent.
+
+Risk: The skill sends media search and request data to the user's configured Overseerr service using an API key.
+
+Mitigation: Use a trusted Overseerr URL, protect OVERSEERR_API_KEY, and confirm users are comfortable with the media data sent to that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trialskid/skills/overseerr-request-media)
+- [ClawHub publisher profile](https://clawhub.ai/user/trialskid)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Short Markdown confirmations, clarification prompts, and request-status messages with shell command examples in the source guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's OVERSEERR_URL and OVERSEERR_API_KEY environment variables to search and submit requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Iris Lite scans the last 25 Gmail emails, ranks urgency, lists priorities, and drafts two quick replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iris Lite scans the last 25 Gmail emails, shows urgency scores and a priority list, and drafts 2 quick replies.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-External users and employees can use this skill to perform a quick Gmail inbox triage, identify higher-priority recent messages, and prepare a small number of draft replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires IMAP access to the configured Gmail inbox through a Gmail app password. <br>
-Mitigation: Use a dedicated Gmail app password, store it only in the required environment variable, and revoke it when access is no longer needed. <br>
-Risk: Recent email headers, short snippets, urgency scores, and draft reply text may be displayed locally during triage. <br>
-Mitigation: Run the skill only in a trusted local environment and review displayed summaries and draft replies before acting on them. <br>
+## Use Case:
 
+External users can run this skill to triage a small Gmail inbox sample, prioritize recent messages, and generate quick reply drafts. It is suited for lightweight personal productivity workflows that can tolerate manual review before acting on results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/iris-lite) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/occupythemilkyway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and Python code blocks; runtime terminal text with priority summaries and draft replies.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gmail address and app password environment variables; scans up to 25 recent inbox messages and drafts up to 2 replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires sensitive Gmail mailbox credentials and reads message headers and snippets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Gmail app password that can be revoked, and review the mailbox access implications before running the skill.
+
+Risk: The documented dependency install targets the system Python environment.
+
+Mitigation: Install and run the dependency in an isolated virtual environment instead of using the system Python environment.
+
+Risk: The release includes advertising links for a separate Pro component.
+
+Mitigation: Treat the Pro install and purchase links as separate from the Lite inbox scan and review them independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/iris-lite)
+- [ClawHub metadata homepage](https://clawhub.ai/occupythemilkyway/iris-lite)
+- [Publisher profile](https://clawhub.ai/user/occupythemilkyway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces a priority table, urgency scores, summary counts, and up to 2 draft replies for human review.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

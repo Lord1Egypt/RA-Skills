@@ -1,46 +1,66 @@
-## Description: <br>
-提供基于 DolphinDB 的金融场景流式计算能力，支持实时行情、因子计算、风控及订单簿等实时数据流处理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides DolphinDB streaming-computation guidance for real-time financial market data, factor calculation, risk monitoring, and order-book workflows.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and quantitative engineering teams use this skill to design DolphinDB streaming workflows for real-time market data processing, factor calculation, order book processing, and risk monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples repeatedly use weak sample DolphinDB admin credentials. <br>
-Mitigation: Replace sample admin/123456 credentials with a least-privileged DolphinDB account before use. <br>
-Risk: The artifact includes an automated trading execution pipeline example without clear user controls. <br>
-Mitigation: Keep execution-related examples disabled or paper-trading until approvals, limits, monitoring, and rollback procedures are in place. <br>
+## Use Case:
 
+Developers and quantitative engineering teams use this skill to create DolphinDB streaming tables, engines, subscriptions, real-time factors, market-data views, and risk-monitoring workflows for financial data pipelines.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ugpoor/dolphindb-streaming) <br>
-- [DolphinDB website](https://www.dolphindb.cn/) <br>
-- [DolphinDB documentation center](https://docs.dolphindb.cn/zh/) <br>
-- [Streaming data tutorial](https://docs.dolphindb.cn/zh/stream/str_intro.html) <br>
-- [Streaming financial factor implementation](https://docs.dolphindb.cn/zh/tutorials/str_comp_fin_quant_2.html) <br>
-- [Real-time high-frequency factors](https://docs.dolphindb.cn/zh/tutorials/hf_factor_streaming_2.html) <br>
-- [Order book engine](https://docs.dolphindb.cn/zh/tutorials/orderBookSnapshotEngine.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python, DolphinDB, and bash code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance for agent-assisted DolphinDB streaming workflows; examples require environment setup and credential review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata, released 2026-04-02) <br>
+Risk: The release depends on DolphinDB helper skills or setup scripts that are not pinned in the evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the referenced helper skills and scripts before installation, pin trusted versions where possible, and review changes before updating.
+
+Risk: Examples show privileged default DolphinDB credentials for financial automation workflows.
+
+Mitigation: Replace sample credentials with least-privilege accounts, secret management, and environment-specific access controls before running in a real environment.
+
+Risk: Alerting and order-execution examples could affect production financial workflows if copied directly.
+
+Mitigation: Treat these examples as illustrative until dry-run mode, human approvals, audit logging, and production separation are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/dolphindb-streaming)
+- [DolphinDB official site](https://www.dolphindb.cn/)
+- [DolphinDB documentation center](https://docs.dolphindb.cn/zh/)
+- [DolphinDB streaming tutorial](https://docs.dolphindb.cn/zh/stream/str_intro.html)
+- [Financial factor streaming implementation](https://docs.dolphindb.cn/zh/tutorials/str_comp_fin_quant_2.html)
+- [Real-time high-frequency factors](https://docs.dolphindb.cn/zh/tutorials/hf_factor_streaming_2.html)
+- [Streaming capital flow calculation](https://docs.dolphindb.cn/zh/tutorials/streaming_capital_flow_order_by_order_2.html)
+- [Real-time stock price increase calculation](https://docs.dolphindb.cn/zh/tutorials/rt_stk_price_inc_calc_2.html)
+- [Level-2 stock data processing](https://docs.dolphindb.cn/zh/tutorials/l2_stk_data_proc_2.html)
+- [Order book snapshot engine](https://docs.dolphindb.cn/zh/tutorials/orderBookSnapshotEngine.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the user to adapt dependencies, credentials, DolphinDB connection settings, and operational safeguards before use.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

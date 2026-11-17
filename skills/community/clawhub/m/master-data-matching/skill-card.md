@@ -1,43 +1,57 @@
-## Description: <br>
-Production-ready Master Data Intelligent Matching System for matching vendor, customer, employee, and OCR-extracted records, deduplicating master data, and resolving entities across procurement, finance, sales, and HR domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-ready Master Data Intelligent Matching System for matching vendor, customer, employee, and other records across procurement, finance, sales, and HR domains.
 
-## Publisher: <br>
-[woaim65](https://clawhub.ai/user/woaim65) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woaim65](https://clawhub.ai/user/woaim65)
 
-## Use Case: <br>
-Developers and data operations teams use this skill to reconcile OCR-extracted entities with master data records, identify duplicates, route uncertain matches for human review, and produce learning payloads for future threshold tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive vendor, finance, sales, and HR records, including identifiers that may be confidential or personal. <br>
-Mitigation: Use it only with data you are authorized to process, minimize or mask sensitive identifiers in review and learning payloads, and define retention and access controls before storing active-learning data. <br>
-Risk: Low-confidence matches, field mismatches, or new information can lead to incorrect master-data updates if applied without review. <br>
-Mitigation: Keep the human-in-the-loop review flow enabled for uncertain results and require reviewers to confirm, reject, create, or update records before downstream application. <br>
-Risk: Active-learning threshold adjustments may drift if trained on sparse or incorrect human feedback. <br>
-Mitigation: Monitor per-field error rates, require enough observations before accepting threshold changes, and periodically review adjusted thresholds against domain quality requirements. <br>
+## Use Case:
 
+Employees, data stewards, and developers use this skill to reconcile OCR-extracted entities against master-data records, deduplicate records, verify field-level differences, and route uncertain matches to human review.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/woaim65/master-data-matching) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, JSON-like matching payloads, human review requests, learning statistics, and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces confidence scores, color-coded OCR-to-schema mappings, four-state field verification results, and human-in-the-loop review actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill handles sensitive business, HR, tax, bank, and employee identifier data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only inside a controlled matching workflow with appropriate access controls, data-handling review, and explicit human approval before creating or updating master records.
+
+Risk: Evidence.security reports an unsafe active-learning dynamic-key handling issue.
+
+Mitigation: Fix or isolate active-learning updates before processing untrusted OCR fields or review payloads, and validate allowed domains, events, and field names.
+
+Risk: The artifact supports a skipHitl option and confidence-based auto decisions can affect match review behavior.
+
+Mitigation: Disable HITL bypass for production record changes and require reviewer approval for low-confidence matches, mismatches, new information, and create/update actions.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JavaScript module results, JSON-like objects, and text or Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns confidence scores, color labels, field verification states, human-review payloads, and active-learning statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Adds an execution-focused agent persona that structures missions into quantified goals, next actions, progress updates, lessons learned, and follow-up steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms an OpenClaw agent into an assertive execution persona that plans missions, tracks progress, records lessons, and proposes next actions.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External ClawHub users can use this skill to have an OpenClaw agent organize productivity or business-building tasks into a persistent execution loop with status, learning notes, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tries to make the agent adopt an always-on, self-updating execution persona without clear limits or reset controls. <br>
-Mitigation: Use it only for clearly bounded missions, keep normal safety and stop instructions in force, and do not allow permanent memory or behavior-rule updates unless review and reset controls are available. <br>
-Risk: The skill can push the agent toward actions affecting external systems or money. <br>
-Mitigation: Require user confirmation before any tool use or recommendation that affects external systems, spending, payments, accounts, or revenue operations. <br>
+## Use Case:
 
+External users and developers use Evolver to activate a high-energy OpenClaw persona for goal planning, entrepreneurial ideation, progress tracking, and iterative lesson logging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/relentless-evolver) <br>
-- [Publisher profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational responses with bullets, mission status, learning notes, and next actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill asks for broad, persistent control over agent behavior without enough user scoping or review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with intentional activation, user-reviewed learning, and clear ability to pause, reset, or disable the mode.
+
+Risk: Its assertive execution posture may produce overconfident or misleading guidance.
+
+Mitigation: Review proposed actions before execution and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshimaw-svg/skills/relentless-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational responses with bullets and status sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes mission status, evolution log entries, learned rules, and next actions; no tool or credential requirements are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

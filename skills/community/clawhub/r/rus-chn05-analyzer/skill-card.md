@@ -1,47 +1,55 @@
-## Description: <br>
-Analyzes hand or wrist X-ray images with the HuiLingYun RUS-CHN05 bone-age service to estimate bone age, support height prediction, and draft a Chinese bone-age assessment report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes left-wrist X-rays using the Chinese-05 RUS-CHN05 method to estimate bone age and optionally predict adult height.
 
-## Publisher: <br>
-[povoss](https://clawhub.ai/user/povoss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[povoss](https://clawhub.ai/user/povoss)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to a third-party bone-age analysis workflow for children and adolescents, collect required inputs, upload X-ray images, interpret returned scores, and draft a non-diagnostic Chinese report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send children's X-ray images and personal data to a third-party medical analysis service. <br>
-Mitigation: Use it only with authority to submit the data, confirm guardian consent, prefer the lightweight path when possible, and avoid real phone numbers or identifiers unless required. <br>
-Risk: Service credentials and tokens are required for API calls. <br>
-Mitigation: Keep credentials scoped to the HuiLingYun service, store them outside prompts and reports, and rotate or revoke them if exposed. <br>
-Risk: History lookup may expose patient records associated with the service account. <br>
-Mitigation: Avoid history lookup unless the account is known to contain only the intended patient records. <br>
-Risk: Bone-age and height-prediction outputs may be mistaken for a medical diagnosis. <br>
-Mitigation: Present results as AI-assisted reference material and direct users to qualified clinicians for medical decisions. <br>
+## Use Case:
 
+An agent uses this skill to guide a bone-age assessment request, submit a wrist X-ray to the Huiling Cloud service, and present the returned estimates and report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/povoss/rus-chn05-analyzer) <br>
-- [HuiLingYun bone-age service](https://www.pipitu.net) <br>
-- [API protocol reference](references/api-protocol.md) <br>
-- [Python API client](scripts/bone_age_api_client.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report guidance with JSON API request examples, Python helper code, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for Chinese-language bone-age reporting and API integration; execution can require service credentials and transmission of medical images and personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: ClawScan marks this release suspicious because it reports handling of children's medical and identifying information without a clear privacy and consent warning, along with behavior outside the stated bone-age purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, verify the recipient, purpose, retention, and guardian-consent process, and share only necessary data. Do not use the estimates as a basis for medical decisions; consult a qualified clinician.
+
+Risk: Missing references prevented full analysis, so the scan does not establish that all referenced material or behavior is safe.
+
+Mitigation: Review the referenced materials and verify the service behavior before installation and use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/povoss/skills/rus-chn05-analyzer)
+- [API protocol](references/api-protocol.md)
+- [Huiling Cloud API service](https://www.pipitu.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Chinese-language assessment report in text or Markdown, with structured result fields when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated bone age, scoring details, annotated-image links, and optional adult-height estimates; reports include an informational-use disclaimer.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

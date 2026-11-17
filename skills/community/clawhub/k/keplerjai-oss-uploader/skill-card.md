@@ -1,45 +1,56 @@
-## Description: <br>
-Upload local files to Alibaba Cloud OSS and return an accessible URL under the configured bindHost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local files to Alibaba Cloud OSS and returns an accessible URL under the configured bindHost.
 
-## Publisher: <br>
-[renjicode](https://clawhub.ai/user/renjicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renjicode](https://clawhub.ai/user/renjicode)
 
-## Use Case: <br>
-Developers and agent operators use this skill to upload selected local assets to Alibaba Cloud OSS and share the resulting public URL. It also supports configured object keys, dry runs, and optional lifecycle setup for expiring objects under the upload prefix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files to a configured Alibaba OSS bucket. <br>
-Mitigation: Install it only for agents that should upload to that bucket, and use least-privilege RAM credentials scoped to the intended bucket and operations. <br>
-Risk: AccessKey credentials are required for upload and lifecycle operations. <br>
-Mitigation: Inject credentials through environment variables or SecretRef and avoid placing secrets in skill text, chat transcripts, logs, or repository files. <br>
-Risk: The optional lifecycle feature can expire objects under the configured upload prefix. <br>
-Mitigation: Enable --sync-lifecycle or KEPLERJAI_OSS_SYNC_LIFECYCLE_ON_UPLOAD only when automatic deletion after the configured number of days is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to upload selected local files to a configured Aliyun OSS bucket, return a public URL, and optionally apply lifecycle expiration for the upload prefix.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renjicode/keplerjai-oss-uploader) <br>
-- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw Skills config documentation](https://docs.openclaw.ai/tools/skills-config) <br>
-- [Alibaba Cloud OSS lifecycle rules](https://help.aliyun.com/zh/oss/user-guide/overview-13) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and OSS URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns readable download links after successful uploads; dry-run mode prints the planned object key, content type, and public URL without uploading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uploads selected local files to the configured Aliyun OSS bucket.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege AccessKey limited to the intended bucket and prefix, avoid sharing credentials in prompts or logs, and run dry-run before uploading.
+
+Risk: Optional lifecycle synchronization can modify bucket lifecycle rules for the upload prefix.
+
+Mitigation: Grant lifecycle permissions only when needed, review prefix, days, and rule ID with dry-run, and avoid enabling automatic lifecycle sync unless expiration is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renjicode/skills/keplerjai-oss-uploader)
+- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw Skills config documentation](https://docs.openclaw.ai/tools/skills-config)
+- [Aliyun OSS lifecycle rules](https://help.aliyun.com/zh/oss/user-guide/overview-13)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown link plus shell command output lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns object_key and public_url when configured; dry-run prints the planned key, content type, and URL without uploading.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

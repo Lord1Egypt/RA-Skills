@@ -1,40 +1,56 @@
-## Description: <br>
-Buy and return items on Amazon using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy and return items on Amazon using browser automation for purchasing, reordering, checking order history, and processing returns.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-External users can use this skill to guide an agent through Amazon order history searches, reorders, new purchases, and return submissions in a browser session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent control over credentials, purchases, and returns without enough user confirmation. <br>
-Mitigation: Require manual login and explicit approval before every order or return submission, including item, price or refund, address, payment or refund method, return reason, condition answers, and drop-off details. <br>
-Risk: A persistent browser profile may retain Amazon account access after use. <br>
-Mitigation: Use a dedicated browser profile and log out or clear the profile when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BrennerSpear/amazon-ordering) <br>
-- [Publisher profile](https://clawhub.ai/user/BrennerSpear) <br>
+## Use Case:
 
+External users can use this skill to let an agent operate an authenticated Amazon browser session for purchases, reorders, order-history lookup, and returns. It is intended for browser-assisted shopping workflows that still require user oversight for payment, ordering, returns, and account access.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and browser workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in browser profile, agent-browser CLI, Chrome DevTools Protocol access, and user verification of purchase and return details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent operates inside an authenticated Amazon browser profile and can affect purchases, returns, payments, and account activity.
+
+Mitigation: Use a dedicated browser profile, monitor the session, and require explicit approval before every order or return submission.
+
+Risk: The skill can encourage credential access through the browser profile workflow.
+
+Mitigation: Require manual login and do not allow the agent to read passwords or retrieve credentials from a password manager.
+
+Risk: Return condition answers can affect refund eligibility and accuracy.
+
+Mitigation: Require the user to provide or confirm product-condition answers directly before submitting a return.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brennerspear/skills/amazon-ordering)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser-operation guidance, screenshots for user confirmation, order or return summaries, and setup commands for Chrome remote debugging.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

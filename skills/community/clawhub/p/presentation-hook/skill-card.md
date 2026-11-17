@@ -1,41 +1,54 @@
-## Description: <br>
-Creates engaging opening statements and powerful closings for medical presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates engaging opening statements and memorable closings for medical presentations.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External presenters, clinicians, and medical communication teams use this skill to draft concise opening hooks or closing statements for a specified topic and audience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated medical presentation wording may be inaccurate or inappropriate for the audience. <br>
-Mitigation: Review all generated wording for medical accuracy, appropriateness, and presentation context before use. <br>
-Risk: The skill is a drafting aid and is not a source for medical facts, citations, or full slide content. <br>
-Mitigation: Use verified medical sources for facts and citations, and limit this skill to opening or closing text. <br>
+## Use Case:
 
+Medical presenters, educators, and agents supporting them use this skill to draft audience-specific openings or closings from a topic, audience, and requested hook type.
 
-## Reference(s): <br>
-- [Presentation Hook ClawHub Page](https://clawhub.ai/aipoch-ai/presentation-hook) <br>
-- [Presentation Hook Guidelines](references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object containing a hook string, alternative_hooks array, and hook type] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated medical wording should be reviewed for accuracy, appropriateness, and audience fit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated hooks for medical presentations may imply clinical claims or overstate certainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated openings and closings for medical accuracy, evidence alignment, and audience appropriateness before use.
+
+Risk: The skill is a drafting helper and does not validate medical facts.
+
+Mitigation: Provide only the topic, audience, and hook type, then verify any factual or clinical content through separate review.
+
+## Reference(s):
+
+- [Presentation Hook References](references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/presentation-hook)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object with hook, alternative_hooks, and type fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires topic, audience, and opening or closing type.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

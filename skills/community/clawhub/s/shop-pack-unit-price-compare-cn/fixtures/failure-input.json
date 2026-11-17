@@ -1,0 +1,8 @@
+{
+  "target_unit": "g",
+  "display_quantity": 100,
+  "items": [
+    {"name": "液体装", "price": 12, "currency": "CNY", "quantity": 500, "unit": "ml", "price_date": "2026-10-04", "shipping_included": true},
+    {"name": "固体装", "price": 10, "currency": "USD", "quantity": 400, "unit": "g", "price_date": "2026-10-04", "shipping_included": true}
+  ]
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Structured triage and handoff for customer support ticket queues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured triage and handoff for customer support ticket queues.
 
-## Publisher: <br>
-[JiaranI](https://clawhub.ai/user/JiaranI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiarani](https://clawhub.ai/user/jiarani)
 
-## Use Case: <br>
-Support operations teams and agents use this skill to prioritize backlog cleanup, classify tickets, assign owners, and prepare handoff or post-shift reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow assumes support and workflow commands are available and appropriate for the deployment environment. <br>
-Mitigation: Confirm those commands exist before installation and restrict use to agents allowed to classify or hand off support tickets. <br>
-Risk: A bundled healthcheck script reports a mismatched package label, which may confuse package validation or operator review. <br>
-Mitigation: Ask the publisher to correct the healthcheck label before broad rollout, or document the mismatch during review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JiaranI/support-queue-operations) <br>
-- [Operations checklist template](templates/checklist.md) <br>
-- [Support shift report template](templates/report.md) <br>
+## Use Case:
 
+Support teams and operations staff use this skill to triage elevated ticket backlogs, assign owners, prioritize urgent customer issues, and prepare concise handoff and report artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklist/report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve concise timeline notes and saved handoff artifacts for audit.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Suggested support queue commands could be applied to real ticket queues without enough review or ownership clarity.
+
+Mitigation: Review the proposed commands and confirm owner assignment, priority, and handoff details before acting on live queues.
+
+Risk: The bundled healthcheck uses a misleading component name and weak static validation.
+
+Mitigation: Do not rely on the healthcheck for deployment confidence until its component name and validation logic are corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiarani/skills/support-queue-operations)
+- [Operations Checklist Template](templates/checklist.md)
+- [Support Shift Report Template](templates/report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and checklist/report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise ticket triage, handoff notes, and audit-oriented report artifacts.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

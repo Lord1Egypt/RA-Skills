@@ -1,0 +1,37 @@
+Skill Gate Report — huawei-cloud-asm-fuzzy-list
+Timestamp: 2026-08-06
+Target: skills/huawei-cloud-asm-fuzzy-list
+
+1) validate-skill.sh (华为云Skill检查规范)
+   Result: PASS 27 / FAIL 0 / WARN 3
+   Warnings: (a) One-PR-one-Skill check needs git worktree (verified at PR time);
+            (b) No concrete CLI commands (expected — SDK-based skill);
+            (c) Skill path layout check needs git worktree (verified at PR time).
+
+2) skillcheck (agentskills.io spec)
+   Result: PASS (1 passed, 0 failed, 1 warning)
+   Warning: disclosure.metadata-budget — frontmatter ~282 tokens (>~100). Accepted
+            (descriptive frontmatter required by 华为云Skill检查规范; no ERROR).
+
+3) markdownlint-cli2
+   Result: PASS — 0 issues in 0 files (config: .markdownlint.json).
+
+4) hwcloud-spec
+   Result: 0 errors, 1 warning.
+   Warning: frontmatter.missing.version — 'version' field recommended by hwcloud-spec
+            but REQUIRED to be absent by 华为云Skill检查规范 v1.0 (validate-skill.sh
+            checks 'version field absent'). Accepted as intentional.
+
+5) skillspector (builtin, 47 rules)
+   Result: 0 ERROR / 0 CRITICAL / 1 WARNING / 6 INFO.
+   Warning: MP2 Context Window Stuffing — false positive on the secure credential
+            pattern os.environ["HUAWEICLOUD_SDK_SK"] in scripts/test-cli-commands.sh
+            (reading AK/SK from env vars is the mandated secure approach).
+   Info: SC1 Unpinned Dependencies (6) — pip dependency pinning advisory; accepted
+            (SDK dependency version is managed by the runtime environment).
+
+6) gitleaks
+   Result: PASS — 0 findings (no credential leaks).
+
+Overall verdict: PASS. No ERROR/CRITICAL findings. All WARNINGs accepted and
+documented above.

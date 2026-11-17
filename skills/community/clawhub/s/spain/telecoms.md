@@ -1,49 +1,44 @@
 # Telecoms — Spain
 
-## Si Vienes de la UE
+## Decision Table
 
-**Roaming incluido.** Tu tarifa funciona igual que en casa (límites de uso justo aplican si estás mucho tiempo).
+| Situation | Do |
+|-----------|----|
+| EU/EEA SIM | Nothing — roaming included. Fair-use surcharges only kick in after ~4 months mostly abroad. |
+| Non-EU, stay under 2 weeks | eSIM bought before flying (Airalo, Holafly, Ubigi; €15-40) — working the moment you land |
+| Non-EU, 2+ weeks or heavy data | Spanish prepaid SIM (€10-20) — cheapest per GB |
+| UK SIM | Post-Brexit roaming varies by carrier — check YOUR plan before assuming EU rules |
+| Default | eSIM — no shop hunt, no passport queue |
 
-## Si Vienes de Fuera de la UE
+## Prepaid Carriers
 
-### Opciones
-
-| Opción | Precio | Dónde |
-|--------|--------|-------|
-| SIM prepago | €10-20 | Tiendas operador, estancos, supermercados |
-| eSIM (Holafly, Airalo) | €15-40 | Online antes de viajar |
-| Roaming de tu operador | Caro | Evitar |
-
-### Operadores Prepago
-
-| Operador | Red | Nota |
+| Carrier | Network | Note |
 |----------|-----|------|
-| Vodafone Yu | Vodafone | Buena cobertura |
-| Orange Prepago | Orange | Fácil encontrar |
-| Lycamobile | Varias | Barato, llamadas internacionales |
-| Digi | Propia | Muy barato, cobertura limitada rural |
+| Vodafone Yu | Vodafone | Good coverage |
+| Orange Prepago | Orange | Easy to find |
+| Lycamobile | Various | Cheap international calls |
+| Digi | Own | Cheapest data; weaker rural coverage |
 
-**Comprar:** Tiendas de operadores en aeropuertos o centros comerciales. Necesitas pasaporte.
+- **Passport required by law** to register any Spanish SIM — there are no anonymous SIMs. Bring it to the shop.
+- **Airport carrier shops charge tourist markups** — a city carrier shop or supermarket sells the identical plan for less. If you land needing data immediately, that's what the eSIM is for.
 
 ## WiFi
 
-- **Muy común** en hoteles, cafés, restaurantes
-- **Calidad variable** — hoteles baratos a veces lento
-- **Aeropuertos:** WiFi gratis limitado (30-60 min)
+- Common in hotels, cafes, restaurants; quality varies (cheap hotels can be slow)
+- Airports: free WiFi usually capped at 30-60 min
 
-## Cobertura
+## Coverage
 
-- **Ciudades:** Excelente 4G/5G
-- **Costa:** Buena
-- **Montaña/rural:** Puede fallar. Si vas a hacer senderismo serio, no dependas del móvil
+- **Cities:** Excellent 4G/5G
+- **Coast:** Good
+- **Mountains/rural:** Drops out. For any real hiking, download offline maps before leaving town — don't rely on signal (→ apps.md)
 
-## Llamadas de Emergencia
+## Emergency Calls
 
-**112** funciona siempre, incluso sin SIM, incluso con móvil bloqueado.
+**112** always works: no SIM, no credit, locked phone.
 
 ## Tips
 
-1. **eSIM antes de viajar** — activas al aterrizar, sin buscar tienda
-2. **Datos suficientes** — 5-10GB para una semana está bien
-3. **WhatsApp** es el estándar aquí — todo el mundo lo usa
-4. **Google Maps offline** — descarga mapas por si acaso
+1. **WhatsApp is the national standard** — restaurants and guesthouses answer WhatsApp faster than phone or email; use it for reservations
+2. **5-10GB covers a normal week** (maps + messaging + photo uploads)
+3. **Google Maps offline** for any village or mountain day

@@ -1,0 +1,18 @@
+# 论衡流程真源 · 第二部分：节点 t7_audit（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t7_audit
+  phase: "Phase 4"
+  phase_seq: 14
+  kind: agent
+  agent: T7
+  role: T7
+  write_authority: owner   # v2.12.51 D-3：只读档报告由主控 write 落盘，本节点不授写权
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  audited_artifact: drafts/current_draft.md
+  precondition: t6_done OR skip_in_lite_tier
+  input: drafts/current_draft.md
+  output: audits/审计报告-vN.md
+  output_chars_max: 10000
+  next: audit_revision

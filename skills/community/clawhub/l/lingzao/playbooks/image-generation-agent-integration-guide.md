@@ -3,9 +3,9 @@
 Use this guide when Lingzao needs to expose image generation to domestic Agent
 runtimes, CLI wrappers, or other non-OpenAI-native environments.
 
-This guide is model-agnostic on purpose. Do not expose the provider/model name
-to ordinary users unless the product explicitly decides to make it public. The
-user-facing promise is:
+This guide is model-agnostic on purpose. Keep engine/model details behind
+Lingzao's user-facing flow unless the product explicitly decides to make them
+public. The user-facing promise is:
 
 - Lingzao can make Xiaohongshu covers and graphic notes.
 - Lingzao can make WeChat article image packs.
@@ -16,14 +16,14 @@ user-facing promise is:
 ## What Should Be Added To PR / Implementation
 
 Implementers should wire image generation as a stable Lingzao capability, not as
-a raw prompt field.
+a prompt-only field.
 
 Minimum Agent-facing capability:
 
 - command/tool name: `generate-image` or equivalent
 - input: structured generation brief
 - output: image URLs/files plus metadata and repair notes
-- errors: friendly user-facing guidance, not provider stack traces
+- errors: friendly user-facing guidance
 
 Minimum supported user flows:
 
@@ -41,6 +41,24 @@ Minimum supported user flows:
 10. room/desk/home-scene material + life-stage topic -> room-as-identity
     lifestyle cover and series direction
 
+## Queued Requests and Retry Recovery
+
+A queued response means Lingzao accepted the work; it is not a completed image.
+Creation reserves credits for the full requested count; successful images
+settle their reservations and failed images release them. `remaining_credits`
+is the live available balance. Multiple intents may queue concurrently.
+Keep each generation intent's `client_request_id` when retrying.
+
+- If `GENERATION_IN_PROGRESS` has no `poll_url` and returns
+  `retryable=true`, `billing_effect=no_charge` and
+  `agent_action=retry_after_short_delay`, the request was not accepted.
+  Wait briefly and retry the same request with the same ID; do not create
+  another intent or claim that this attempt joined the queue.
+- For compatibility with older deployments, if an error includes a `poll_url`,
+  it identifies an earlier intent.
+  Poll only to wait for capacity, then retry the current intent with its original
+  ID. Never deliver or bind that earlier batch as the current request's result.
+
 ## Stable Agent Call Contract
 
 Domestic Agents should not have to understand model parameters. They should
@@ -50,7 +68,7 @@ pass a compact, structured brief.
 
 Domestic Agent wrappers must not treat a one-sentence poster request as a ready
 generation brief. If the user only says "给我做一张某某海报图", "帮我做个封面",
-or "做一张好看的图", the wrapper should pause before creating a paid
+or "做一张好看的图", the wrapper should pause before creating an
 generation job and ask for visual anchors.
 
 Ask these first:
@@ -61,7 +79,7 @@ Ask these first:
 If those are missing, ask at most one additional route-changing question:
 platform/size, exact on-image text, people/no-people, or material/product photo.
 Do not expose this as a long design form. The goal is to prevent low-information
-prompts from producing generic or ugly paid images.
+prompts from producing generic or unusable images.
 
 Minimum viable brief before generation:
 
@@ -90,7 +108,7 @@ Recommended input fields:
 - `on_image_text`: short title, subtitle, labels, page text
 - `materials`: optional reference image, face photo, product photo, food/place
   photo, screenshot, logo, article draft
-- `reference_mode`: `structure`, `style`, `layout`, `color`, `none`
+- `reference_role`: `structure`, `style`, `layout`, `color`, `none`
 - `negative_constraints`
 - `quality_gate`: whether to review and repair after generation
 
@@ -106,8 +124,8 @@ Recommended output fields:
 - `keywords`: 10 publishing keywords when relevant
 - `next_action`: post, regenerate, send reference image, or send 24h data
 
-If the provider returns only a raw image URL, Lingzao should wrap it with the
-metadata above before showing the result to the Agent/user.
+If the generation result contains only a plain image URL, Lingzao should wrap it
+with the metadata above before showing the result to the Agent/user.
 
 ## Good Image Standards
 
@@ -237,7 +255,7 @@ Reject or repair these:
   discussing it.
 - It gets comments but gives the user no follow-up content path.
 - It turns text-dense screenshot style into an unreadable wall of words.
-- It uses raw screenshots without extracting keywords or rebuilding the first
+- It uses unedited screenshots without extracting keywords or rebuilding the first
   page for 1-2 second scanning.
 - It hides the actual topic in paragraph three instead of making the keyword
   visible on page one.
@@ -293,7 +311,7 @@ Good user-facing wording:
 
 ## Known Image Generation Bugs / Limits
 
-Treat these as normal provider limitations and route around them.
+Treat these as normal generation limitations and route around them.
 
 ### 1. Chinese Text Instability
 
@@ -348,7 +366,7 @@ Symptoms:
 
 Mitigation:
 
-- specify `reference_mode`: structure/style/layout/color
+- specify `reference_role`: structure/style/layout/color
 - state which parts to borrow and which parts to change
 - avoid asking for "same style" without decomposition
 
@@ -413,7 +431,7 @@ Mitigation:
 Symptoms:
 
 - users cannot tell the topic in the first 1-2 seconds
-- page 1 looks like a raw screenshot or cropped article with no designed entry
+- page 1 looks like an unedited screenshot or cropped article with no designed entry
 - too much body text has the same weight
 - no keywords are bolded, highlighted, or placed where eyes naturally land
 - page 2 does not deepen the promise; it repeats page 1 or becomes generic
@@ -481,22 +499,22 @@ Mitigation:
 - keep safe margins around title and logo
 - use Xiaohongshu vertical 3:4/4:5 and WeChat wide 900:383 or 1080:460
 
-### 12. Provider/Network/Permission Failure
+### 12. Service/Network/Permission Failure
 
 Symptoms:
 
 - missing image URL
 - expired asset
-- provider timeout
-- missing API key/credits
+- generation timeout
+- missing API key or unavailable account access
 
 Mitigation:
 
 - return a friendly message and the prepared image brief
-- never expose provider stack traces
-- tell the user how to open Lingzao web setup/recharge/API Key entry
-- if a generation job fails before producing an image, clarify whether credits
-  were consumed according to backend truth
+- keep failure messages concise and user-facing
+- tell the user how to open the Lingzao web setup and API Key entry
+- if a generation job fails before producing an image, preserve the prepared
+  brief, report the failed state, and do not retry automatically
 
 ## Domestic Agent Experience Rules
 
@@ -515,7 +533,7 @@ Do:
 Do not:
 
 - ask users to write prompts
-- expose model name, provider params, stack traces, signed URLs, or raw payloads
+- expose details the user does not need
 - force users to choose from many styles
 - ask long design questionnaires
 - keep regenerating blindly
@@ -547,6 +565,7 @@ When A Tian wants to strengthen this system, collect examples in this shape:
    - female growth
    - AI tools/tutorials
    - local life/food/travel
+   - travel handdrawn route maps / food maps / city-walk maps
    - face-led口播/视频封面
    - interaction prompt covers / 互动帖
    - text-dense screenshot graphic notes / 长文截图式图文

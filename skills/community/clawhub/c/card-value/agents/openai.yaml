@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Value"
+  short_description: "Estimate first-year value for one US card"
+  default_prompt: "Use $card-value to estimate the first-year value of Chase Sapphire Preferred."

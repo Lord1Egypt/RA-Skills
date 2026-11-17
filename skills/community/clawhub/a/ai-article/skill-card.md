@@ -1,46 +1,58 @@
-## Description: <br>
-Generates Chinese article drafts with platform-aware structure, suggested actions, and accompanying images or cover assets from a topic, audience, keywords, and brand requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动图文助手根据主题、受众、关键词、平台和品牌要求生成中文图文文章、正文配图、封面素材和可下载交付包。
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-Content creators, operators, copywriters, and technical content teams use this skill to turn a topic or campaign brief into a publishable Chinese article package. It is intended for content planning and drafting across platforms such as Xiaohongshu, WeChat, blogs, and Zhihu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, drafts, audience details, keywords, brand requirements, and profile context to the AI Skills API using the caller's API key. <br>
-Mitigation: Use only with approved content for that provider, avoid confidential drafts, customer data, regulated personal data, secrets, or proprietary brand material, and confirm before execution when sensitive context may be included. <br>
-Risk: Broad implicit invocation can cause the skill to run when a user asks for article or seeded-content generation. <br>
-Mitigation: Prefer explicit confirmation before running the skill or disable implicit invocation in environments that handle sensitive planning or brand material. <br>
-Risk: Generated articles and images may need editorial, factual, brand, and platform-policy review before publication. <br>
-Mitigation: Review title, opening, structure, claims, images, watermark settings, and platform fit before publishing or handing off deliverables. <br>
+## Use Case:
 
+Content creators, operations teams, and content media users use this skill to turn a topic or keyword brief into publishable Chinese long-form and social content with suggested structure, Markdown article output, generated images, and next-step recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/ai-article) <br>
-- [AI Skills quick start](https://github.com/allinherog-star/ai-skills/tree/main#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B) <br>
-- [AI Skills website](https://ai-skills.ai) <br>
-- [Form schema](references/form-schema.json) <br>
-- [Skill definition](references/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [JSON response envelope containing Markdown article artifacts, generated image files, and download links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run asynchronously and return article Markdown, WebP image artifacts, cover assets, and an archive URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided topics, audience details, keywords, and brand requirements are sent to the AI Skills API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved API keys and avoid confidential drafts, customer data, or unreleased business plans unless ai-skills.ai is approved for that data.
+
+Risk: Generated article text and images may need editorial and brand review before publication.
+
+Mitigation: Review titles, structure, factual claims, imagery, watermark choices, and brand fit before publishing or distributing the generated artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allinherog-star/skills/ai-article)
+- [Publisher profile](https://clawhub.ai/user/allinherog-star)
+- [AI Skills quick start](https://github.com/allinherog-star/ai-skills/tree/main#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
+- [AI Skills](https://ai-skills.ai)
+- [form-schema.json](references/form-schema.json)
+- [skill.json](references/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Images, Files, API Calls, Configuration]
+
+**Output Format:** [JSON response envelope containing Markdown and image artifact references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISKILLS_API_KEY; accepts JSON parameters including topic, tone, audience, keywords, platform, wordCount, imageCount, watermark settings, and brand requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

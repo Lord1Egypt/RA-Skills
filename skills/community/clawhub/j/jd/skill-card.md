@@ -1,39 +1,48 @@
-## Description: <br>
-Provides a Chinese-language overview of JD.com, including its history, business lines, subsidiaries, founder, logistics system, business model, culture, strategy, social responsibility, and public financial context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jd is a Chinese-language static reference skill that summarizes JD Group history, business units, subsidiaries, logistics, business model, culture, financial highlights, strategy, and public-service topics.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and business researchers use this skill to get a concise Chinese-language overview of JD.com, its operating model, logistics network, business segments, and company background. It is informational and should be checked against current official sources before business, financial, or investment use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business, executive, financial, or investment-related details may become outdated. <br>
-Mitigation: Verify current facts against official JD.com reports, filings, or other authoritative sources before relying on them. <br>
-Risk: Informational company background may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as general background information and consult qualified professionals for investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/jd) <br>
+## Use Case:
 
+External users, employees, and agents use this skill to answer Chinese-language reference questions about JD Group's history, business lines, logistics system, commercial model, culture, and public-interest activities.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational content; no executable code or external tool calls were identified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: JD Group facts in this static reference may become outdated, especially financial, executive, investment-related, or other time-sensitive information.
+
+Mitigation: Treat the content as reference material, verify current facts against official JD Group sources or annual reports, and seek qualified professional advice for investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/jd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference material; no tool execution, credential access, persistence, or system changes are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+requests>=2.31
+imageio-ffmpeg>=0.5
+faster-whisper>=1.0
+yt-dlp>=2024.0
+playwright>=1.40

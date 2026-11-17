@@ -1,42 +1,49 @@
-## Description: <br>
-根据采集的市场数据，直接生成每日金融市场 Word 日报（无模板依赖版）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据采集的市场数据，生成结构化的每日金融市场 Word 日报，不依赖外部 Word 模板。
 
-## Publisher: <br>
-[szrw1825](https://clawhub.ai/user/szrw1825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szrw1825](https://clawhub.ai/user/szrw1825)
 
-## Use Case: <br>
-Employees or analysts use this skill to turn prepared financial-market data into a structured daily Word report covering global market performance, policy updates, technology-sector events, and key economic data to watch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a local config.py and market_data.json path being present and correct. <br>
-Mitigation: Confirm the configured input, output, and log paths before running the skill. <br>
-Risk: Broad trigger phrases such as "生成报告" could activate the skill for unrelated report requests. <br>
-Mitigation: Use the skill only for daily financial-market Word report requests, or narrow the activation wording before deployment. <br>
-Risk: The generated report reflects the contents and freshness of the local market_data.json file. <br>
-Mitigation: Review the source data date and key market figures before distributing the report. <br>
+## Use Case:
 
+Financial-market analysts and operators use this skill to turn collected market data into a formatted daily Word report covering global markets, policy, technology events, other markets, and upcoming economic data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szrw1825/generate-word-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, text] <br>
-**Output Format:** [DOCX Word document plus execution status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated financial-market report file named 金融市场日报_{YYYYMMDD}.docx to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The report script loads executable configuration from a hard-coded external workspace path before generating the document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the external configuration directory before installation; prefer a packaged or non-executable configuration file and narrower trigger wording before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szrw1825/skills/generate-word-report)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Word document generated from Python scripts and market_data.json inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a .docx daily financial market report at the configured output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

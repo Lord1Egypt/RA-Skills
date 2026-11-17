@@ -1,44 +1,61 @@
-## Description: <br>
-High-ticket lead qualification agent for realtors and property managers that handles inbound Zillow/Realtor.com inquiries, qualifies budget and timeline, schedules viewings, and uses ThumbGate guardrails for Fair Housing safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real Estate Lead Qualifier helps realtors and property managers respond to portal inquiries, qualify leads by budget, pre-approval, and timeline, schedule viewings, and apply ThumbGate Fair Housing guardrails.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-External realtors and property managers use this agent to respond to inbound property portal leads, check pre-approval, budget, and move-in timing, and schedule qualified viewings. It is intended for commercial lead handling workflows where human operators configure calendars, lead sources, document handling, and Fair Housing guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automate customer replies and viewing bookings across lead sources and calendars without enough clear operational controls. <br>
-Mitigation: Use limited-permission lead source and calendar accounts, start with human approval for replies and bookings, and confirm exactly which systems the agent can access before deployment. <br>
-Risk: The skill handles pre-approval PDF uploads, which can contain sensitive financial or personal information. <br>
-Mitigation: Define where pre-approval documents are stored, who can access them, retention periods, and deletion procedures before enabling the workflow. <br>
-Risk: Fair Housing safety claims depend on correct ThumbGate setup and may fail if the rules are not active or tested. <br>
-Mitigation: Verify ThumbGate rules before relying on the skill and test blocked topics such as neighborhood safety, schools, and demographics before production use. <br>
+## Use Case:
 
+External real estate teams use this skill to manage inbound Zillow/Realtor.com inquiries, qualify buyer readiness, and coordinate viewing appointments. It is intended for customer-facing lead response workflows that need Fair Housing-sensitive guardrails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igorganapolsky/real-estate-lead-qualifier) <br>
-- [Twilio](https://twilio.com) <br>
-- [Calendly](https://calendly.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with setup steps, policy rules, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent operating guidance for lead responses, qualification checks, calendar booking, and Fair Housing guardrail setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: An unpinned ThumbGate installer can change behavior between installs or introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install ThumbGate only from a verified, pinned version and test enforcement before using live lead traffic.
+
+Risk: Automated Fair Housing-sensitive replies, budget exceptions, or pre-approval handling can create compliance or customer harm if guardrails fail.
+
+Mitigation: Require manual review for sensitive replies, budget exceptions, and pre-approval documents before confirming appointments.
+
+Risk: Calendar and SMS integrations can expose lead data or trigger unintended customer outreach.
+
+Mitigation: Use test accounts first and avoid production calendars or SMS accounts until booking and response controls are verified.
+
+## Reference(s):
+
+- [Real Estate Lead Qualifier on ClawHub](https://clawhub.ai/igorganapolsky/skills/real-estate-lead-qualifier)
+- [Setup guide](artifact/setup-guide.md)
+- [ThumbGate prevention rules](artifact/thumbgate-rules.md)
+- [Twilio](https://twilio.com)
+- [Calendly](https://calendly.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce lead qualification recommendations, booking guidance, Fair Housing redirects, and setup steps for related portal, calendar, SMS, and ThumbGate integrations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Monitor blogs and RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor blogs and RSS feeds.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and external users use this skill to monitor RSS feeds and blogs, fetch web content, and receive summarized guidance or responses based on feed activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad command and file tool authority without explaining why that authority is needed. <br>
-Mitigation: Review each proposed command, file read, or file write before execution and allow it only when the agent gives a clear, task-specific reason. <br>
-Risk: Broad blog or RSS monitoring tasks can fetch unexpected web content or follow ambiguous sources. <br>
-Mitigation: Prefer explicit RSS or feed URLs and restrict monitoring to sources the user has identified. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to monitor blogs and RSS feeds, assess the user's request, and return helpful updates or guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/terrycarter1985/tc-blogwatcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with plain-text guidance and optional command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search, web fetch, file reads, file writes, and shell command proposals when the agent determines they are relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill is lightly documented and may fetch feeds or web pages and write files when the agent is asked to perform broad monitoring tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the feeds, web pages, and files involved before execution, and review any proposed file writes or shell commands.
+
+## Reference(s):
+
+- [Blog Watcher ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/tc-blogwatcher)
+- [terrycarter1985 ClawHub publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on agent web fetch, web search, file read, file write, and shell tools depending on the user's monitoring task.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

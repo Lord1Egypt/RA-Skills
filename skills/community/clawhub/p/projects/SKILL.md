@@ -1,14 +1,25 @@
 ---
 name: Projects
+slug: projects
+version: 1.0.1
 description: Build a personal project management system that scales from simple lists to structured planning.
-metadata: {"clawdbot":{"emoji":"📁","os":["linux","darwin","win32"]}}
+homepage: https://clawic.com/skills/projects
+changelog: "Clearer disclosure of what is stored and where"
+metadata:
+  clawdbot:
+    emoji: 📁
+    os:
+    - linux
+    - darwin
+    - win32
+    displayName: Projects
 ---
 
 ## Core Behavior
 - User mentions a project → help define scope, create folder
 - User adds tasks → capture in project context
 - Regular review prompts → surface stalled projects
-- Create `~/projects/` as workspace
+- Create `~/Clawic/data/projects/` as workspace Everything this skill reads or writes is a plain local note under the folders declared in `configPaths` — nothing leaves the machine and no credential is ever written. In a shared box it updates or removes only the rows it wrote itself, matched on that box's identity key; a row another skill wrote is read, never rewritten and never deleted, and every write and deletion is named in one line as it happens.
 
 ## First Question
 - "What does done look like?" — define success before starting
@@ -23,7 +34,7 @@ metadata: {"clawdbot":{"emoji":"📁","os":["linux","darwin","win32"]}}
 - Creative: writing, art, building — process matters as much as output
 
 ## Minimal Project Structure
-- Folder with project name: `~/projects/kitchen-renovation/`
+- Folder with project name: `~/Clawic/data/projects/kitchen-renovation/`
 - README.md: what, why, done criteria, deadline if any
 - tasks.md: simple checklist, add as discovered
 - notes.md: decisions made, research, reference material
@@ -49,7 +60,7 @@ metadata: {"clawdbot":{"emoji":"📁","os":["linux","darwin","win32"]}}
 ## Phase/Milestone Structure
 For larger projects:
 ```
-~/projects/kitchen-renovation/
+~/Clawic/data/projects/kitchen-renovation/
 ├── README.md
 ├── phase-1-planning/
 │   ├── tasks.md
@@ -62,7 +73,7 @@ For larger projects:
 ## Active Project Limits
 - Suggest maximum 3-5 active projects — more means nothing progresses
 - Distinguish active (working this week) from someday (parked intentionally)
-- Parked projects go in `~/projects/_someday/`
+- Parked projects go in `~/Clawic/data/projects/_someday/`
 - Review someday quarterly — activate, archive, or delete
 
 ## Weekly Project Review
@@ -80,7 +91,7 @@ For larger projects:
 ## Project Completion
 - Define done checklist in README from start
 - When complete: review what went well, what didn't
-- Archive to `~/projects/_archive/year/`
+- Archive to `~/Clawic/data/projects/_archive/year/`
 - Celebrate completion — don't just move to next thing
 
 ## Client/Work Projects

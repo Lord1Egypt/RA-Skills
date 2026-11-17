@@ -1,44 +1,56 @@
-## Description: <br>
-AppVeyor helps agents query AppVeyor CI/CD data through OOMOL's AppVeyor connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read AppVeyor data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect AppVeyor projects, build job artifacts, deployment environments, team roles, and team users through a connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting AppVeyor through OOMOL and can read AppVeyor projects, users, roles, environments, and build artifacts. <br>
-Mitigation: Grant only the AppVeyor token scopes needed for the intended read-only queries and use an account appropriate for CI/CD visibility. <br>
-Risk: Build artifacts and team metadata may contain sensitive project or organization information. <br>
-Mitigation: Request only the specific project, build job, role, environment, or user data needed for the task and avoid sharing connector results outside the intended context. <br>
-Risk: First-time setup may require installing or authenticating the oo CLI. <br>
-Mitigation: Use only OOMOL's documented CLI installation source and run authentication or connection steps only after a command fails with the matching setup error. <br>
+## Use Case:
 
+Developers and teams use this skill to read AppVeyor projects, environments, build artifacts, users, and roles through their connected account. It requires the OOMOL `oo` CLI and an AppVeyor connection.
 
-## Reference(s): <br>
-- [AppVeyor homepage](https://www.appveyor.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [AppVeyor skill on ClawHub](https://clawhub.ai/oomol/oo-appveyor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before running actions; action responses include data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server-resolved release metadata) <br>
+Risk: First-time setup may execute an unverified CLI installer and introduce persistent agent skill changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a verified CLI release, and explicitly control the agent-skill synchronization scope.
+
+Risk: AppVeyor access passes through OOMOL, while remote installer behavior and server-side credential handling are unverified.
+
+Mitigation: Use the narrowest available read permissions and review the service connection and setup steps before use.
+
+## Reference(s):
+
+- [AppVeyor](https://www.appveyor.com)
+- [AppVeyor API documentation](https://www.appveyor.com/docs/api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [AppVeyor skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-appveyor)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON data from AppVeyor actions, with concise explanatory text as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-oriented results for projects, environments, build artifacts, users, and roles]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

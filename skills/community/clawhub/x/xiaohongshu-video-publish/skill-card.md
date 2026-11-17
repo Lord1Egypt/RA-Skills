@@ -1,42 +1,57 @@
-## Description: <br>
-Guides an agent through publishing video posts on the Xiaohongshu creator web platform with browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用浏览器自动化在网页版小红书创作者服务平台发布视频笔记。
 
-## Publisher: <br>
-[Johnnyxu820](https://clawhub.ai/user/Johnnyxu820) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnnyxu820](https://clawhub.ai/user/johnnyxu820)
 
-## Use Case: <br>
-External creators and operators use this skill to publish prepared video notes to a logged-in Xiaohongshu creator account, including upload, title, topic tags, cover selection, location selection, publish confirmation, and post-publish verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content from the currently logged-in Xiaohongshu account. <br>
-Mitigation: Require manual confirmation of the account, video, title, body, tags, cover, and final publish action before posting. <br>
-Risk: The skill includes a fixed location selection of Suzhou Center. <br>
-Mitigation: Confirm, remove, or change the location before publishing unless that location is intentionally required. <br>
-Risk: Repeated execution could duplicate a published video note. <br>
-Mitigation: Check local logs and the Xiaohongshu content management page before retrying, and stop once publishing succeeds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Xiaohongshu creator video publish page](https://creator.xiaohongshu.com/publish/publish?source=official&from=tab_switch&target=video) <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnyxu820/xiaohongshu-video-publish) <br>
+## Use Case:
 
+Creators and agents use this skill to publish video notes to a logged-in Xiaohongshu creator account, including upload, title and body entry, cover setup, location selection, and post-publish verification.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, browser automation steps] <br>
-**Output Format:** [Markdown instructions and checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw Chrome extension access and a logged-in Xiaohongshu creator account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automates publishing to a live Xiaohongshu creator account.
+
+Mitigation: Require final confirmation of the account, video, cover, title, body, location, and intent to publish before clicking the publish button.
+
+Risk: The skill includes a fixed location value of 苏州中心.
+
+Mitigation: Remove or override the location unless it is accurate for the post.
+
+Risk: A repeated run could publish duplicate content.
+
+Mitigation: Check local logs and the platform content management page before retrying, and stop after a successful publish confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnyxu820/skills/xiaohongshu-video-publish)
+- [Xiaohongshu creator video publish page](https://creator.xiaohongshu.com/publish/publish?source=official&from=tab_switch&target=video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw Chrome extension access and a logged-in Xiaohongshu creator account.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

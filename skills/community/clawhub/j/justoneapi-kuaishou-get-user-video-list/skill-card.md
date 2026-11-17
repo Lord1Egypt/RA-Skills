@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/kuaishou/get-user-video-list/v2 for Kuaishou User Published Videos through JustOneAPI with userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/kuaishou/get-user-video-list/v2 for Kuaishou User Published Videos through JustOneAPI with userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to fetch Kuaishou published-video data by userId through JustOneAPI. It supports creator monitoring and content performance analysis with covers, publish times, and engagement metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive JustOneAPI token. <br>
-Mitigation: Keep JUST_ONE_API_TOKEN in the environment and avoid pasting token values into chats, screenshots, logs, command histories, or URLs. <br>
-Risk: The skill sends requests to api.justoneapi.com. <br>
-Mitigation: Install and use it only if you trust JustOneAPI and are comfortable sending the token and request parameters to that service. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve a Kuaishou user's published video metadata through JustOneAPI for creator monitoring and content performance analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-kuaishou-get-user-video-list) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_user_video_list&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_user_video_list&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a Kuaishou userId; optional pcursor supports pagination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token is passed through the command line and URL query string, where it may appear in logs or process metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped or disposable tokens when available, avoid sharing command output or process listings, and rotate the token if exposure is suspected.
+
+Risk: The skill retrieves third-party Kuaishou creator video metadata and returns backend response JSON.
+
+Mitigation: Confirm the requested userId is appropriate for the task and avoid sharing response JSON beyond the intended workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-kuaishou-get-user-video-list)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_user_video_list&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_user_video_list&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Short Markdown summary followed by raw JSON from the JustOneAPI response.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; userId is required and pcursor is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

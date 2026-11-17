@@ -1,41 +1,57 @@
-## Description: <br>
-Mupeng Evolve provides agent self-evolution, file-based memory, revenue tracking, communication gating, and identity calibration guidance with no external runtime dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mupeng Evolve guides agents through self-evolution, file-based memory, revenue tracking, communication policy gates, and identity calibration without external dependencies.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-External developers and agent operators use this skill to structure an autonomous agent's memory, behavior updates, communication policies, business task tracking, and calibration routines. It is intended as operational guidance for agents that can edit local files and maintain logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad authority to change agent behavior and working memory. <br>
-Mitigation: Restrict writable paths and require human approval for changes to tools, skills, heartbeat files, identity files, and permanent memory. <br>
-Risk: Business-facing automation may affect invoices, proposals, public posts, or third-party messages. <br>
-Mitigation: Require human approval before sending external communications, publishing public posts, issuing invoices, or submitting proposals. <br>
-Risk: Self-evolution and calibration changes can become hard to audit over time. <br>
-Mitigation: Regularly review generated logs and scan proposed behavior changes before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-evolve) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a structured autonomy loop for memory maintenance, self-improvement proposals, revenue workflow tracking, communication gating, and identity calibration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API keys, databases, or package dependencies are declared; behavior depends on the installing agent applying the guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to repeatedly modify memory, tools, skills, heartbeat routines, SOUL.md, AGENTS.md, and permanent memory with insufficient approval boundaries.
+
+Mitigation: Keep tool, skill, heartbeat, SOUL.md, AGENTS.md, and permanent memory changes approval-only, and review diffs before writes.
+
+Risk: Autonomous memory, identity, and routine changes can persist unwanted behavior across sessions.
+
+Mitigation: Document how to disable hooks and roll back memory or identity changes before installing the skill.
+
+Risk: Running the skill on untrusted messages may amplify prompt-injection or unsafe automation requests.
+
+Mitigation: Avoid running it on untrusted messages and require human review for external communication or automation changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/mupeng-evolve)
+- [ClawHub publisher profile](https://clawhub.ai/user/mupengi-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, YAML, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; advises file-based memory, logging, communication policy gates, and approval controls for sensitive agent changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

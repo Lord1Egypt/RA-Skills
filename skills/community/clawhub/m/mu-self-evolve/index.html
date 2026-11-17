@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mu-self-evolve — AI Agent Continuous Self-Evolution</title>
+<meta name="description" content="A continuous self-evolution system for AI Agents — daily experience sedimentation + weekly error reflection. VFM verification, score-based decay eviction, WHERE×WHY pathology archiving, active Skill synthesis.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<meta name="color-scheme" content="light only">
+<style>
+:root{
+  --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+  --border:#e8e2db;--border-light:#f0ebe5;
+  --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+  --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+  --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;--red:#c0705a;
+  --radius:12px;--radius-sm:8px;
+  --transition:0.25s ease;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-serif:'Georgia','Noto Serif SC','Source Han Serif SC',serif;
+  --font-mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:light only}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7}
+.container{max-width:960px;margin:0 auto;padding:0 28px}
+em{font-style:normal;color:var(--accent)}
+a{color:inherit;text-decoration:none}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-0.02em}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:color var(--transition)}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:0.78rem;cursor:pointer;user-select:none}
+.lang-switch span{padding:5px 11px;transition:all var(--transition);color:var(--text-muted)}
+.lang-switch span.active{background:var(--accent);color:#fff}
+.lang-switch span:hover:not(.active){color:var(--text);background:var(--bg-warm)}
+.nav-cta{padding:7px 18px;border-radius:7px;font-size:0.82rem;font-weight:600;background:var(--text);color:var(--bg);transition:all var(--transition)}
+.nav-cta:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+/* Hero */
+.hero{padding:100px 0 60px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;background:var(--accent-bg);border:1px solid var(--accent-light);font-size:0.82rem;color:var(--accent);font-weight:600;margin-bottom:28px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-family:var(--font-serif);font-size:2.8rem;line-height:1.3;margin-bottom:20px;letter-spacing:-0.03em}
+.hero-sub{font-size:1.1rem;color:var(--text-secondary);max-width:600px;margin:0 auto 32px}
+.hero-actions{display:flex;gap:12px;justify-content:center;margin-bottom:40px}
+.btn{padding:12px 28px;border-radius:var(--radius-sm);font-size:0.9rem;font-weight:600;transition:all var(--transition);display:inline-block}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--text);transform:translateY(-2px);box-shadow:0 4px 20px rgba(201,100,66,0.2)}
+.btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light)}
+.stat{padding:20px 12px;text-align:center;background:var(--bg-card);border-right:1px solid var(--border-light)}
+.stat:last-child{border-right:none}
+.stat-num{font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.stat-label{font-size:0.75rem;color:var(--text-muted)}
+
+/* Section */
+section.block{padding:64px 0}
+section.block.warm{background:var(--bg-warm)}
+.section-label{text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.section-title{text-align:center;font-family:var(--font-serif);font-size:1.8rem;margin-bottom:8px;letter-spacing:-0.02em}
+.section-sub{text-align:center;color:var(--text-secondary);font-size:0.92rem;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
+
+/* Cards Grid */
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:28px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:16px;background:var(--bg-warm)}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.card p{font-size:0.85rem;color:var(--text-secondary);line-height:1.7}
+.card-tag{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:4px;font-size:0.68rem;font-weight:600;background:var(--accent-bg);color:var(--accent)}
+
+/* Workflow Cards */
+.workflow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.workflow-card{padding:24px 20px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+.workflow-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+.workflow-icon{font-size:1.3rem;margin-bottom:12px}
+.workflow-card h3{font-size:0.95rem;font-weight:700;margin-bottom:6px}
+.workflow-card p{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
+.workflow-trigger{display:inline-block;margin-top:10px;padding:2px 8px;border-radius:4px;font-size:0.68rem;font-weight:500;background:var(--bg-warm);color:var(--text-muted)}
+
+/* Comparison Table */
+.comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light)}
+.comparison-table th,.comparison-table td{padding:14px 18px;text-align:left;font-size:0.85rem;border-bottom:1px solid var(--border-light)}
+.comparison-table thead th{background:var(--bg-warm);font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+.comparison-table thead th:nth-child(2){color:var(--accent)}
+.comparison-table tbody tr{background:var(--bg-card);transition:background var(--transition)}
+.comparison-table tbody tr:hover{background:var(--bg-warm)}
+.comparison-table tbody tr:last-child td{border-bottom:none}
+.comparison-table td:first-child{font-weight:600}
+.check{color:var(--green);font-weight:700}
+.cross{color:var(--red)}
+.partial{color:#c9a44e}
+
+/* CTA */
+.cta-section{padding:72px 0;text-align:center;background:var(--bg-warm)}
+.cta-section h2{font-family:var(--font-serif);font-size:2.2rem;line-height:1.3;margin-bottom:16px;letter-spacing:-0.03em}
+.cta-section p{color:var(--text-secondary);font-size:1rem;margin-bottom:32px}
+
+/* Footer */
+footer{padding:40px 0;border-top:1px solid var(--border-light);background:var(--bg)}
+.footer-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+
+/* Responsive */
+@media(max-width:768px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards-grid{grid-template-columns:1fr}
+  .workflow-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:120px 0 60px}
+  .hero h1{font-size:2rem}
+  .hero-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+<div class="nav-logo">🧬 mu-self-evolve</div>
+<ul class="nav-links">
+<li><a href="#highlights"><span data-en="Highlights" data-zh="核心亮点">核心亮点</span></a></li>
+<li><a href="#workflows"><span data-en="Workflows" data-zh="工作流">工作流</span></a></li>
+<li><a href="#comparison"><span data-en="Comparison" data-zh="对比">对比</span></a></li>
+<li><a href="#start"><span data-en="Quick Start" data-zh="快速开始">快速开始</span></a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch" id="langSwitch">
+<span data-lang="zh" class="active">中文</span>
+<span data-lang="en">EN</span>
+</div>
+<a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta" target="_blank"><span data-en="Skill Hub" data-zh="Skill合集">Skill合集</span></a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<div class="hero-badge">
+<span class="dot"></span>
+<span data-en="v3.1 · Open Source · MIT License" data-zh="v3.1 · 开源发布 · MIT 协议">v3.1 · 开源发布 · MIT 协议</span>
+</div>
+<h1><span data-en="Agents that don't learn from mistakes,<br>are <em>doomed to repeat them</em>." data-zh="不从错误中学习的 Agent，<br><em>注定重蹈覆辙</em>。">不从错误中学习的 Agent，<br><em>注定重蹈覆辙</em>。</span></h1>
+<p class="hero-sub"><span data-en="A continuous self-evolution system for AI Agents — daily experience sedimentation + weekly error reflection. No fine-tuning, no API calls, just structured markdown." data-zh="AI Agent 持续进化系统 — 每日经验沉淀 + 每周错误反思。无需微调，无需 API，纯 Markdown 结构化记忆。">AI Agent 持续进化系统 — 每日经验沉淀 + 每周错误反思。无需微调，无需 API，纯 Markdown 结构化记忆。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-self-evolve" class="btn btn-primary" target="_blank"><span data-en="⭐ View on GitHub" data-zh="⭐ 在 GitHub 上查看">⭐ 在 GitHub 上查看</span></a>
+<a href="https://github.com/muippt/mu-self-evolve/archive/refs/heads/main.zip" class="btn btn-secondary"><span data-en="📦 Download ZIP" data-zh="📦 下载 ZIP">📦 下载 ZIP</span></a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-num">🧠 4</div><div class="stat-label"><span data-en="Scripts" data-zh="确定性脚本">确定性脚本</span></div></div>
+<div class="stat"><div class="stat-num">📊 30d</div><div class="stat-label"><span data-en="Half-life" data-zh="衰减半衰期">衰减半衰期</span></div></div>
+<div class="stat"><div class="stat-num">🏷️ 21</div><div class="stat-label"><span data-en="Pathology Tags" data-zh="病理标签">病理标签</span></div></div>
+<div class="stat"><div class="stat-num">📚 7</div><div class="stat-label"><span data-en="References" data-zh="学术参考">学术参考</span></div></div>
+</div>
+</div>
+</section>
+
+<section class="block" id="highlights">
+<div class="container">
+<div class="section-label">⚡ <span data-en="Core Highlights" data-zh="核心亮点">核心亮点</span></div>
+<div class="section-title"><span data-en="What makes it different" data-zh="凭什么不一样">凭什么不一样</span></div>
+<div class="section-sub"><span data-en="Four mechanisms that separate mu-self-evolve from raw memory files and API-based solutions." data-zh="四项机制让 mu-self-evolve 区别于裸记忆文件和基于 API 的方案。">四项机制让 mu-self-evolve 区别于裸记忆文件和基于 API 的方案。</span></div>
+<div class="cards-grid">
+<div class="card">
+<div class="card-icon">🔍</div>
+<h3><span data-en="Don't Trust, Verify" data-zh="别光听 AI 自己说">别光听 AI 自己说</span></h3>
+<p><span data-en="The agent says “I learned this!” — but a Python script checks actual data first: how many times did this recur? Across how many tasks? Only verified rules enter permanent memory." data-zh="Agent 说「我学到了！」——但 Python 脚本先查实际数据：复现了几次？跨了几个任务？只有验过的规则才能进永久记忆。">Agent 说「我学到了！」——但 Python 脚本先查实际数据：复现了几次？跨了几个任务？只有验过的规则才能进永久记忆。</span></p>
+<div class="card-tag"><span data-en="Data-verified" data-zh="数据验证">数据验证</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🪶</div>
+<h3><span data-en="Memories Fade Like a Brain" data-zh="记忆会像人脑一样遗忘">记忆会像人脑一样遗忘</span></h3>
+<p><span data-en="Memories nobody touches for 30 days lose half their score. Memories referenced regularly stay fresh. Proven-useful ones are permanently exempt — they've earned their place." data-zh="30 天没人碰的记忆分数减半。被引用的记忆保持新鲜。证明有用的记忆永久豁免——它们已赢得自己的位置。">30 天没人碰的记忆分数减半。被引用的记忆保持新鲜。证明有用的记忆永久豁免——它们已赢得自己的位置。</span></p>
+<div class="card-tag"><span data-en="Auto-forgetting" data-zh="自动遗忘">自动遗忘</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🏷️</div>
+<h3><span data-en="Every Mistake Gets a Diagnosis" data-zh="每个错误都有病历">每个错误都有病历</span></h3>
+<p><span data-en="Not just “something failed” — each error is tagged with WHERE (which step?) and WHY (root cause?). Spot patterns at a glance: “80% of errors are in API calls, caused by token expiration.”" data-zh="不只是「出错了」——每条错误标注 WHERE（哪一步？）和 WHY（为什么？）。一眼看出规律：「80% 的错误都在 API 调用，根因都是 token 过期。」">不只是「出错了」——每条错误标注 WHERE（哪一步？）和 WHY（为什么？）。一眼看出规律：「80% 的错误都在 API 调用，根因都是 token 过期。」</span></p>
+<div class="card-tag"><span data-en="21 tags + custom" data-zh="21标签+自定义">21标签+自定义</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🧪</div>
+<h3><span data-en="The Garbage Collector Tests Itself" data-zh="清道夫会给自己做体检">清道夫会给自己做体检</span></h3>
+<p><span data-en="What if the cleaning mechanism itself is broken, silently deleting good memories? Fake test entries with known properties are injected to verify the system handles each correctly. Any mismatch = bug found." data-zh="如果清理机制本身坏了，在默默删好记忆呢？注入已知属性的假测试条目，验证系统是否正确处理每条。任何不匹配 = 发现 bug。">如果清理机制本身坏了，在默默删好记忆呢？注入已知属性的假测试条目，验证系统是否正确处理每条。任何不匹配 = 发现 bug。</span></p>
+<div class="card-tag"><span data-en="5/5 PASS guarantee" data-zh="5/5 PASS 保障">5/5 PASS 保障</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="block warm" id="workflows">
+<div class="container">
+<div class="section-label">🔀 <span data-en="Workflows" data-zh="工作流">工作流</span></div>
+<div class="section-title"><span data-en="Six paths to evolution" data-zh="六条进化路径">六条进化路径</span></div>
+<div class="section-sub"><span data-en="From daily sedimentation to weekly reflection to on-demand verification." data-zh="从每日沉淀到每周反思到按需验算。">从每日沉淀到每周反思到按需验算。</span></div>
+<div class="workflow-grid">
+<div class="workflow-card">
+<div class="workflow-icon">🔗</div>
+<h3><span data-en="Broken-Loop Protection" data-zh="断链防护">断链防护</span></h3>
+<p><span data-en="New in v3.1: trigger signals are written to the daily diary the moment they occur; when the diary is missing, the cron rebuilds it from real traces (cron logs, same-day memory entries, workspace changes) — no fabrication, no empty loop." data-zh="v3.1 新增：触发信号当场写入日记；日记缺失时，cron 从当日真实痕迹（cron 留痕、长期记忆当日新增、工作区变更）重建日记——严禁编造，闭环永不断流。">v3.1 新增：触发信号当场写入日记；日记缺失时，cron 从当日真实痕迹（cron 留痕、长期记忆当日新增、工作区变更）重建日记——严禁编造，闭环永不断流。</span></p>
+<div class="workflow-trigger"><span data-en="v3.1 · Both ends" data-zh="v3.1 · 双端防护">v3.1 · 双端防护</span></div>
+</div>
+<div class="workflow-card">
+<div class="workflow-icon">🧠</div>
+<h3><span data-en="Daily Evolution" data-zh="每日进化">每日进化</span></h3>
+<p><span data-en="6-step workflow: read diary → classify entries → VFM verify → update memory → quality review → send summary." data-zh="六步流程：读日记 → 分类录入 → VFM验算 → 更新记忆 → 质量回顾 → 发摘要。">六步流程：读日记 → 分类录入 → VFM验算 → 更新记忆 → 质量回顾 → 发摘要。</span></p>
+<div class="workflow-trigger"><span data-en="Daily cron" data-zh="每日定时">每日定时</span></div>
+</div>
+<div class="workflow-card">
+<div class="workflow-icon">📅</div>
+<h3><span data-en="Weekly Reflection" data-zh="周度反思">周度反思</span></h3>
+<p><span data-en="6a-6g: error scanning, narrative generation, rule proposal, memory distillation, archive, score-based eviction, active Skill synthesis." data-zh="6a-6g：错误扫描、叙事生成、规则提议、记忆蒸馏、归档、评分淘汰、主动Skill合成。">6a-6g：错误扫描、叙事生成、规则提议、记忆蒸馏、归档、评分淘汰、主动Skill合成。</span></p>
+<div class="workflow-trigger"><span data-en="Friday" data-zh="每周五">每周五</span></div>
+</div>
+<div class="workflow-card">
+<div class="workflow-icon">⚡</div>
+<h3><span data-en="On-Demand Recording" data-zh="即时记录">即时记录</span></h3>
+<p><span data-en="Auto-detects correction, error, feature request, and positive feedback signals from conversations in real-time." data-zh="实时自动检测对话中的纠正、错误、功能需求、正向反馈信号。">实时自动检测对话中的纠正、错误、功能需求、正向反馈信号。</span></p>
+<div class="workflow-trigger"><span data-en="Real-time" data-zh="实时触发">实时触发</span></div>
+</div>
+<div class="workflow-card">
+<div class="workflow-icon">🔍</div>
+<h3><span data-en="Manual Verification" data-zh="手动验算">手动验算</span></h3>
+<p><span data-en="Run vfm_verify.py with a pattern-key to get confidence score 0-100 based on recurrence, cross-task scope, resolution rate." data-zh="用 pattern-key 运行 vfm_verify.py，获取基于复现、跨任务、解决率的置信度评分。">用 pattern-key 运行 vfm_verify.py，获取基于复现、跨任务、解决率的置信度评分。</span></p>
+<div class="workflow-trigger"><span data-en="On-demand" data-zh="按需触发">按需触发</span></div>
+</div>
+<div class="workflow-card">
+<div class="workflow-icon">🧪</div>
+<h3><span data-en="Eviction Audit" data-zh="淘汰审计">淘汰审计</span></h3>
+<p><span data-en="Run bias_audit.py (defect injection test) + eviction_score.py (score-based cleanup) to keep the system healthy." data-zh="运行 bias_audit.py（缺陷注入测试）+ eviction_score.py（评分清理），保持系统健康。">运行 bias_audit.py（缺陷注入测试）+ eviction_score.py（评分清理），保持系统健康。</span></p>
+<div class="workflow-trigger"><span data-en="Weekly" data-zh="每周">每周</span></div>
+</div>
+<div class="workflow-card">
+<div class="workflow-icon">🛠️</div>
+<h3><span data-en="Active Skill Synthesis" data-zh="主动 Skill 合成">主动 Skill 合成</span></h3>
+<p><span data-en="When ≥3 entries cluster in the same domain, auto-generate a Skill draft (skeleton + script framework) for human review." data-zh="当同一领域≥3条经验聚类时，自动生成 Skill 草案（骨架+脚本框架），交人工确认。">当同一领域≥3条经验聚类时，自动生成 Skill 草案（骨架+脚本框架），交人工确认。</span></p>
+<div class="workflow-trigger"><span data-en="Friday 6g" data-zh="周五6g">周五6g</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="block" id="comparison">
+<div class="container">
+<div class="section-label">📊 <span data-en="Comparison" data-zh="对比">对比</span></div>
+<div class="section-title"><span data-en="How it stacks up" data-zh="横向对比">横向对比</span></div>
+<div class="section-sub"><span data-en="Compared with raw memory files, cloud memory APIs, and vector databases." data-zh="与裸记忆文件、云端记忆 API、向量数据库对比。">与裸记忆文件、云端记忆 API、向量数据库对比。</span></div>
+<div style="overflow-x:auto">
+<table class="comparison-table">
+<thead><tr>
+<th><span data-en="Feature" data-zh="能力">能力</span></th>
+<th>mu-self-evolve</th>
+<th>Raw Memory</th>
+<th>Cloud API</th>
+<th>Vector DB</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><span data-en="Daily auto-sedimentation" data-zh="每日自动沉淀">每日自动沉淀</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Deterministic verification" data-zh="确定性验算">确定性验算</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">✌️</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Time-decay eviction" data-zh="时间衰减淘汰">时间衰减淘汰</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">✌️</span></td>
+<td><span class="partial">✌️</span></td>
+</tr>
+<tr>
+<td><span data-en="Pathology archiving" data-zh="病理归档">病理归档</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Bias audit" data-zh="评委偏差审计">评委偏差审计</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Active Skill synthesis" data-zh="主动 Skill 合成">主动 Skill 合成</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Cross-environment support" data-zh="跨环境支持">跨环境支持</span></td>
+<td><span class="check">✅</span></td>
+<td>N/A</td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="No external API required" data-zh="无需外部 API">无需外部 API</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="block warm" id="start">
+<div class="container">
+<div class="section-label">🛠️ <span data-en="Quick Start" data-zh="快速开始">快速开始</span></div>
+<div class="section-title"><span data-en="Three steps to evolution" data-zh="三步开始进化">三步开始进化</span></div>
+<div class="section-sub"><span data-en="Clone, initialize, schedule. That's it." data-zh="克隆、初始化、设置定时。就这样。">克隆、初始化、设置定时。就这样。</span></div>
+<div class="cards-grid" style="grid-template-columns:1fr;max-width:640px;margin:0 auto">
+<div class="card">
+<div class="card-icon">📦</div>
+<h3><span data-en="Step 1: Clone" data-zh="步骤1：克隆">步骤1：克隆</span></h3>
+<p><code style="background:var(--bg-code);padding:2px 6px;border-radius:4px;font-size:0.82rem">git clone https://github.com/muippt/mu-self-evolve.git</code></p>
+</div>
+<div class="card">
+<div class="card-icon">🔧</div>
+<h3><span data-en="Step 2: Initialize" data-zh="步骤2：初始化">步骤2：初始化</span></h3>
+<p><code style="background:var(--bg-code);padding:2px 6px;border-radius:4px;font-size:0.82rem">cd mu-self-evolve && python3 scripts/env_detect.py --init</code></p>
+<p style="margin-top:8px"><span data-en="Auto-detects OpenClaw, Claude Code, or other environments." data-zh="自动检测 OpenClaw、Claude Code 或其他环境。">自动检测 OpenClaw、Claude Code 或其他环境。</span></p>
+</div>
+<div class="card">
+<div class="card-icon">⏰</div>
+<h3><span data-en="Step 3: Schedule" data-zh="步骤3：定时">步骤3：定时</span></h3>
+<p><code style="background:var(--bg-code);padding:2px 6px;border-radius:4px;font-size:0.82rem">openclaw cron add --name "🧬 Daily Evolution" --cron "30 19 * * *"</code></p>
+<p style="margin-top:8px"><span data-en="Or use system crontab for Claude Code." data-zh="Claude Code 用系统 crontab。">Claude Code 用系统 crontab。</span></p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="container">
+<h2><span data-en="Stop repeating mistakes.<br><em>Start evolving.</em>" data-zh="别再重复犯错了。<br><em>开始进化。</em>">别再重复犯错了。<br><em>开始进化。</em></span></h2>
+<p><span data-en="An AI Agent that learns from its own mistakes — no fine-tuning required." data-zh="一个会从自己的错误中学习的 AI Agent — 无需微调。">一个会从自己的错误中学习的 AI Agent — 无需微调。</span></p>
+<div class="hero-actions">
+<a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-primary"><span data-en="mu-skillhub" data-zh="mu-skill集合">mu-skill集合</span></a>
+<a href="https://github.com/muippt/mu-self-evolve/archive/refs/heads/main.zip" class="btn btn-secondary"><span data-en="Download ZIP" data-zh="下载 ZIP">下载 ZIP</span></a>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-badges">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+  var sw=document.getElementById('langSwitch');
+  var spans=sw.querySelectorAll('span');
+  function applyLang(lang){
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      el.innerHTML=el.getAttribute('data-'+lang);
+    });
+    document.querySelectorAll('img[data-'+lang+'-src]').forEach(function(img){
+      var s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;
+    });
+    spans.forEach(function(s){s.classList.toggle('active',s.getAttribute('data-lang')===lang)});
+    document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+  }
+  spans.forEach(function(s){s.addEventListener('click',function(){applyLang(s.getAttribute('data-lang'))})});
+  /* Always start in Chinese + light mode on every page load.
+     No localStorage / navigator.language / prefers-color-scheme restore. */
+  applyLang('zh');
+})();
+</script>
+</body>
+</html>

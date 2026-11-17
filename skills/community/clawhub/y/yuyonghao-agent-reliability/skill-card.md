@@ -1,41 +1,57 @@
-## Description: <br>
-Provides error monitoring, fallback execution, confidence evaluation, reporting, and multi-agent voting utilities for maintaining reliability in multi-step agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides error monitoring, automatic fallback, confidence evaluation, and multi-agent voting to help maintain accuracy in multi-step workflows.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add reliability monitoring, retry/fallback behavior, confidence tracking, reporting, and voting consensus checks to multi-step workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Execution details, error messages, vote metadata, or confidence factors may be written to console when default logging is enabled. <br>
-Mitigation: Avoid passing secrets or sensitive metadata into records, votes, and errors, or set enableLogging to false where supported. <br>
-Risk: Fallback and retry behavior can mask repeated failures if callers do not review emitted events and returned state. <br>
-Mitigation: Track fallback usage, failed executions, and alert events as operational signals rather than treating fallback success as full task success. <br>
+## Use Case:
 
+Developers and engineers use this skill to add reliability monitoring, fallback execution, confidence scoring, voting consensus, and reliability reports to agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuyonghao-123/yuyonghao-agent-reliability) <br>
-- [Publisher profile](https://clawhub.ai/user/yuyonghao-123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JavaScript modules, emitted events, JSON-like result objects, console logs, and markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces in-memory reliability metrics, fallback results, confidence histories, consensus decisions, and generated reports; logging is enabled by default in several utilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Untrusted callers or high-impact decisions could supply unreliable votes, confidence values, weights, IDs, or metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication and validate vote decisions, confidence values, weights, identifiers, and metadata sizes before using results for important actions.
+
+Risk: Dissent reasons and monitoring metadata may contain sensitive information.
+
+Mitigation: Disable or limit dissent recording when sensitive reasons may be present, and configure cleanup or hard retention limits for stored records.
+
+Risk: The library improves workflow resilience but is not a hardened security control.
+
+Mitigation: Use it as a developer reliability layer and pair it with application-level security, authorization, and review controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-agent-reliability)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Markdown, JSON, Guidance]
+
+**Output Format:** [JavaScript library APIs with Markdown or JSON reliability reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-memory monitoring, fallback, confidence, voting, and reporting utilities for Node.js agent workflows]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

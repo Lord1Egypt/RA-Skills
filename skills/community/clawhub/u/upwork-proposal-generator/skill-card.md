@@ -1,42 +1,56 @@
-## Description: <br>
-Automatically analyzes Upwork job posts and drafts personalized, professional proposals with an introduction, past work, pricing, and timeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically analyzes Upwork job posts and creates personalized, professional proposals with an introduction, relevant past work, fit, pricing, and timeline.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Freelancers and proposal writers use this skill to turn an Upwork job post link or pasted job text into a concise, job-specific proposal draft. The user should review the generated proposal before submitting it. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated proposal text may be inaccurate, overstate experience, or fail to match the user's actual qualifications. <br>
-Mitigation: Review and edit every proposal before submitting it to ensure it is accurate, specific, and appropriate for the job. <br>
-Risk: Job posts or proposal drafts may contain private client details or sensitive personal information. <br>
-Mitigation: Avoid pasting sensitive information unless the user is comfortable having the agent process that text. <br>
-Risk: The skill may be invoked too broadly when the user shares job-related text. <br>
-Mitigation: Use explicit requests such as 'generate an Upwork proposal for this job post' when proposal drafting is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Katrina-jpg/upwork-proposal-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/Katrina-jpg) <br>
+## Use Case:
 
+Freelancers and proposal writers use this skill to turn an Upwork job post URL or pasted job text into a concise proposal tailored to that specific opportunity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown proposal draft with concise analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Proposal drafts are intended to be no more than 300 words and should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented npx install command uses a mutable @latest package version.
+
+Mitigation: Use a pinned and reviewed ClawHub installer version or verify package provenance before installation.
+
+Risk: The skill may activate broadly on job-post links or pasted job text.
+
+Mitigation: Constrain when the skill should run and review generated proposals before sending them to clients.
+
+Risk: Generated proposals may contain inaccurate claims about past work, pricing, timeline, or fit.
+
+Mitigation: Verify all proposal details against the freelancer's real experience and intended offer before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/upwork-proposal-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text proposal content with a brief job-post analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposal text is capped at 300 words according to the artifact guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

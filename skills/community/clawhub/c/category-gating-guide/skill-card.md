@@ -1,44 +1,57 @@
-## Description: <br>
-Navigate Amazon category approval and gating requirements with step-by-step ungating procedures, required documentation checklists, and common rejection solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Amazon category approval and gating requirements with step-by-step ungating procedures, required documentation checklists, and common rejection solutions.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External Amazon sellers use this skill to evaluate gated category requirements, prepare ungating applications, organize supporting documentation, and respond to rejections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Seller Central account IDs, invoices, supplier contacts, and business documents may contain sensitive business information. <br>
-Mitigation: Treat these materials as sensitive, avoid sharing Seller Central login credentials with an agent, and redact only fields that are not required for Amazon review. <br>
-Risk: Amazon marketplace category and ungating requirements can change over time. <br>
-Mitigation: Verify current Amazon marketplace requirements before submitting applications or appeals. <br>
+## Use Case:
 
+External Amazon sellers use this skill to understand gated category requirements, prepare ungating applications, organize supporting documents, and respond to application rejections.
 
-## Reference(s): <br>
-- [Category Gating Guide Skill Page](https://clawhub.ai/leooooooow/category-gating-guide) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Ungating Requirements Guide](artifact/ungating-requirements-guide.md) <br>
-- [Appeal Letter Guide](artifact/appeal-letter-guide.md) <br>
-- [Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, templates] <br>
-**Output Format:** [Markdown guidance, checklists, and document templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no code execution or account access is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Amazon category approval requirements, review thresholds, and timelines may change before a seller submits an application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Seller Central requirements and category-specific policies before acting on the guidance.
+
+Risk: Ungating applications can involve Seller Central IDs, invoices, supplier contacts, and other sensitive business documents.
+
+Mitigation: Share application documents only with Amazon or trusted parties, and avoid exposing supplier or account details in public channels.
+
+## Reference(s):
+
+- [Category Ungating Application Output Template](output-template.md)
+- [Ungating Requirements Guide](ungating-requirements-guide.md)
+- [Appeal Letter Guide](appeal-letter-guide.md)
+- [Quality Checklist](quality-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/category-gating-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, checklists, and application templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable business guidance for Amazon seller category ungating workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

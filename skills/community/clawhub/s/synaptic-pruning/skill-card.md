@@ -1,37 +1,52 @@
-## Description: <br>
-Identifies vestigial code, including dead feature branches, stale configurations, orphaned tests, and architectural remnants that no longer serve the codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies vestigial code, including dead feature branches, stale configuration, orphaned tests, and old architectural remnants, and produces a pruning report.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review codebases for vestigial features, stale configuration, ineffective tests, compatibility shims, unreachable defenses, outdated documentation, and abandoned modules before planning removal work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend removing code that appears vestigial but still supports rare, legacy, or undocumented workflows. <br>
-Mitigation: Treat pruning recommendations as review input, confirm reachability with tests and production signals, and apply removals in small changes with rollback paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Synaptic Pruning on ClawHub](https://clawhub.ai/jcools1977/synaptic-pruning) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to examine a codebase for stale features, fossilized configuration, orphaned tests, compatibility shims, defensive fossils, outdated documentation, and abandoned subsystems before planning removals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with analysis, scores, metrics, and recommended pruning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces codebase maturity and vestigial burden findings for human review before code removal.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to recommend code or documentation removal when production usage, reachability, or feature-flag history is incomplete.
+
+Mitigation: Treat pruning recommendations as review candidates and confirm telemetry, ownership, tests, and release history before deleting or disabling anything.
+
+Risk: Large-repository inspection can produce broad findings that mix high-confidence dead code with uncertain architectural context.
+
+Mitigation: Prioritize low-risk findings first and require human review for borderline, user-facing, or recently changed components.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/synaptic-pruning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces vitality scoring, vestigial-code classifications, pruning order, safety notes, and maturity metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

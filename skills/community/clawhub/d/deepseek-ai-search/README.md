@@ -54,7 +54,7 @@ Or add them to your `~/.claude/settings.json`:
 
 A free public API key is available for testing:
 ```
-sk-5AgmPI8AvsgsR5nYktz8Bs5D7xhrmFiPpQU6feh0XH0QPjCa
+REDACTED-SECRET
 ```
 
 > Note: The public key may have limited availability for search models. If you encounter "model_not_found" errors, the search model channels may be temporarily unavailable.

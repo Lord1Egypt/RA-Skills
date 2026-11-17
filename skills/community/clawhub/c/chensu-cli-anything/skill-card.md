@@ -1,42 +1,54 @@
-## Description: <br>
-Helps OpenClaw build, refine, test, and validate CLI-Anything harnesses for GUI applications or source repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, refines, tests, and validates CLI-Anything harnesses for GUI applications or source repositories in OpenClaw.
 
-## Publisher: <br>
-[chensu1234](https://clawhub.ai/user/chensu1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chensu1234](https://clawhub.ai/user/chensu1234)
 
-## Use Case: <br>
-Developers and engineers use this skill to create or improve Python CLI harnesses around GUI applications and repositories, including command design, packaging, testing, and validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify repository files and guide local install or test commands. <br>
-Mitigation: Use version control and review diffs before accepting generated harness changes; run installs and tests in a virtual environment or disposable workspace. <br>
-Risk: Harnesses built for third-party repositories may wrap local executables, APIs, or GUI backends with project-specific behavior. <br>
-Mitigation: Inspect the target project and generated backend wrapper before execution, and document any backend limitations or unsupported operations in the final report. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, improve, test, or validate Click-based CLI harnesses for GUI applications and repositories. It is intended for OpenClaw workflows that need generated harness code, packaging guidance, tests, and validation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chensu1234/chensu-cli-anything) <br>
-- [Publisher profile](https://clawhub.ai/user/chensu1234) <br>
-- [CLI-Anything homepage](https://github.com/HKUDS/CLI-Anything) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file paths, Python code, shell commands, test plans, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated or modified harness files, setup.py packaging, README updates, TEST.md, and unit or end-to-end test instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may direct the agent to treat ../cli-anything-plugin/HARNESS.md as authoritative when present, even though that file is outside the packaged skill evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review that external methodology file before use and do not run build, test, or install steps in an untrusted source tree without approval.
+
+Risk: Generated harness work may include local test runs and editable package installation commands.
+
+Mitigation: Inspect generated files and proposed commands before execution, especially commands such as pip install -e . or subprocess-based end-to-end tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chensu1234/skills/chensu-cli-anything)
+- [Publisher profile](https://clawhub.ai/user/chensu1234)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown progress reports with file lists, validation commands, risks, and generated Python project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local test and installation commands when the agent is permitted to execute them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CLAWHUB.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

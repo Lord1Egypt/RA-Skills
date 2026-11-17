@@ -1,40 +1,54 @@
-## Description: <br>
-Phy Post Forensics analyzes batches of social media posts and engagement data to identify structural content patterns associated with higher and lower performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes batches of social media posts and engagement data to extract structural features, compare top and bottom performers, and generate a data-backed content blueprint.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Content strategists, marketers, and developers use this skill to run a local Python analysis over exported post data, compare top and bottom engagement tiers, and generate a data-backed content blueprint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes user-provided post text and engagement metrics locally. <br>
-Mitigation: Use a limited JSON export containing only the posts and metrics intended for analysis, and exclude unrelated private data. <br>
+## Use Case:
 
+Content creators, marketers, and social media teams use this skill to analyze their own posts after publication and identify linguistic or structural patterns associated with higher engagement.
 
-## Reference(s): <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-post-forensics) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Plain text report or JSON, with post-tier summaries, extracted feature metrics, insights, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided JSON from a file or stdin and prints the analysis locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Input posts may contain private drafts, confidential campaign material, or third-party personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only analyze posts the user is allowed to process, and avoid supplying confidential or sensitive post data unless the environment is approved for it.
+
+Risk: JSON output includes short previews of the input posts.
+
+Mitigation: Review JSON exports before sharing them and redact previews when they could expose private or sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-post-forensics)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain-text report by default, with optional JSON output for pipelines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON mode includes post-level feature summaries, short text previews, insights, and recommendations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

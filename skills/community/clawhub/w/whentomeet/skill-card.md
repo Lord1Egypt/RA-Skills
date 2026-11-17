@@ -1,45 +1,62 @@
-## Description: <br>
-WhenToMeet group scheduling via public REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WhenToMeet group scheduling via public REST API.
 
-## Publisher: <br>
-[felixwortmann](https://clawhub.ai/user/felixwortmann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felixwortmann](https://clawhub.ai/user/felixwortmann)
 
-## Use Case: <br>
-Developers and agents use this skill to create, list, inspect, and delete WhenToMeet scheduling events through the authenticated public REST API. It also guides access to bookings, calendar connections, and event analytics where the API key permits it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use a WhenToMeet API key with access to private scheduling, participant availability, bookings, and connected calendar account metadata. <br>
-Mitigation: Install only when this API access is intended, keep API keys secret, and treat scheduling and calendar data as private. <br>
-Risk: Some documented actions can delete events, cancel bookings, or expose account and calendar details. <br>
-Mitigation: Require explicit user confirmation before destructive actions or before showing account, calendar, booking, or participant metadata. <br>
-Risk: Requests may be rejected or throttled when the API key is missing, invalid, lacks permissions, or exceeds rate limits. <br>
-Mitigation: Handle documented HTTP errors and rate-limit headers, and avoid retry loops that could consume quota. <br>
+## Use Case:
 
+Developers and external users use this skill to create, list, inspect, and manage WhenToMeet group scheduling events through the authenticated public API.
 
-## Reference(s): <br>
-- [WhenToMeet API Reference](references/API_REFERENCE.md) <br>
-- [WhenToMeet OpenAPI Specification](https://whentomeet.io/api/openapi.json) <br>
-- [WhenToMeet API Documentation](https://docs.whentomeet.io/api-docs) <br>
-- [WhenToMeet Skill Page](https://clawhub.ai/felixwortmann/whentomeet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Bearer API-key authentication and plain JSON request and response bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Agents using this skill can delete events or cancel scheduling records through documented API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before deletion or cancellation and verify the target resource identifier before issuing the request.
+
+Risk: API calls can retrieve participant availability, booking details, and connected-calendar account information.
+
+Mitigation: Retrieve sensitive scheduling or account details only when the user specifically requests them, and avoid storing or repeating unnecessary personal data.
+
+Risk: Bearer API keys can allow account-level API access.
+
+Mitigation: Use a scoped API key if available, keep credentials out of generated output, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [WhenToMeet API Reference](references/API_REFERENCE.md)
+- [Interactive API Docs](https://docs.whentomeet.io/api-docs)
+- [OpenAPI Spec](https://whentomeet.io/api/openapi.json)
+- [LLM-Friendly Product Overview](https://whentomeet.io/llms.txt)
+- [WhenToMeet Main Site](https://whentomeet.io)
+- [ClawHub Skill Page](https://clawhub.ai/felixwortmann/skills/whentomeet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a WhenToMeet Bearer API key.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

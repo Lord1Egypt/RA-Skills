@@ -1,44 +1,65 @@
-## Description: <br>
-Drillr gives agents access to financial research, market signals, analyst articles, and account-backed watchlists through MCP, REST, or CLI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drillr gives agents access to financial research, market signals, published analyst articles, and per-user watchlists through MCP, REST, and CLI workflows.
 
-## Publisher: <br>
-[little-grebe](https://clawhub.ai/user/little-grebe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-grebe](https://clawhub.ai/user/little-grebe)
 
-## Use Case: <br>
-External users and agents use this skill to answer market research questions, review company fundamentals and signals, read Drillr articles, and manage Drillr watchlists after configuring a dedicated API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dedicated Drillr API key, and the security evidence notes that users may paste live keys into chat. <br>
-Mitigation: Configure the key through a local secret store or environment managed outside chat, avoid pasting raw keys into conversations or shell history, and use a revocable least-privilege key when available. <br>
-Risk: The skill can access or change persistent account-backed Drillr watchlists. <br>
-Mitigation: Require explicit user confirmation before deleting watchlists or making bulk watchlist changes. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to onboard a Drillr API key and research equities, filings, earnings, market signals, articles, and watchlists. It is intended for agent-assisted financial research workflows that can call Drillr through MCP, REST, or a CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/little-grebe/drillr-agent) <br>
-- [Drillr homepage](https://drillr.ai) <br>
-- [Drillr developer portal](https://drillr.ai/developer) <br>
-- [Drillr API reference](https://drillr.ai/developer/docs) <br>
-- [Create or manage Drillr API keys](https://drillr.ai/developer/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, YAML, and shell command examples; Drillr API responses may be JSON or markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-specific Drillr API key and may access or change persistent per-user Drillr watchlists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can ask users to paste a live Drillr API key into chat during onboarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local secret storage or environment injection, avoid ordinary chat for live keys, mask any confirmation, and revoke any key that was exposed in chat.
+
+Risk: The skill stores long-lived credentials for later Drillr access.
+
+Mitigation: Store the key only in the documented local config with restrictive permissions or an equivalent secret store, and rotate or revoke the key when access is no longer needed.
+
+Risk: The CLI setup path installs a global npm package.
+
+Mitigation: Pin and verify the intended drillr-cli package version before installation instead of installing the latest global package blindly.
+
+Risk: The skill depends on Drillr as an external finance-data service.
+
+Mitigation: Use it only when the user accepts sending requests to Drillr, and treat returned financial research as decision support rather than investment advice.
+
+## Reference(s):
+
+- [Drillr](https://drillr.ai)
+- [Drillr Developer Portal](https://drillr.ai/developer)
+- [Drillr API Reference](https://drillr.ai/developer/docs)
+- [Drillr API Keys](https://drillr.ai/developer/keys)
+- [ClawHub Skill Listing](https://clawhub.ai/little-grebe/skills/drillr-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API call guidance and configuration snippets for MCP, REST, and CLI access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

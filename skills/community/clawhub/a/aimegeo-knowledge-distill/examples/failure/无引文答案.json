@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "Q001",
+      "question": "存储空间有限制吗？",
+      "status": "answered",
+      "claims": [
+        {
+          "text": "所有客户都享有无限存储空间。",
+          "refs": []
+        }
+      ],
+      "issue_ids": []
+    }
+  ],
+  "issues": []
+}

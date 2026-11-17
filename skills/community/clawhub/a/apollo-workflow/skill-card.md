@@ -1,50 +1,69 @@
-## Description: <br>
-Apollo Workflow turns coding ideas into working code through a gated five-phase workflow for brainstorming, planning, subagent development, debugging, and branch finishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo Workflow is a Chinese-language coding workflow that turns ideas into usable code through gated phases for brainstorming, planning, subagent development, debugging, and branch finishing.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Developers and engineering agents use Apollo Workflow to structure feature work, bug fixing, planning, implementation, review, testing, and branch handoff with explicit phase gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly activate for coding, planning, debugging, and branch completion requests and may modify repositories or spawn agents. <br>
-Mitigation: Install it only when an agent should follow this workflow, require user approval at phase gates, and review diffs, tests, commits, and branch actions before handoff. <br>
-Risk: Workflow scripts run shell commands, manage state files, and interact with git. <br>
-Mitigation: Review the shell scripts before use, avoid untrusted task values, keep secrets out of workflow topics and result files, and confirm branch, remote, diff, and test status before merge, push, PR creation, or deletion. <br>
-Risk: The security summary reports a packaged metadata identity mismatch with the registry identity. <br>
-Mitigation: Verify the publisher and resolve the _meta.json identity mismatch before relying on this release in sensitive workspaces. <br>
+## Use Case:
 
+Developers and coding agents use this skill to structure feature development, bug fixing, implementation planning, and branch completion with hard phase gates, TDD, subagent review, and workflow state tracking.
 
-## Reference(s): <br>
-- [Apollo Workflow on ClawHub](https://clawhub.ai/nic-yuan/apollo-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
-- [Brainstorming reference](references/brainstorming.md) <br>
-- [Writing plans reference](references/writing-plans.md) <br>
-- [Subagent development reference](references/subagent-development.md) <br>
-- [Systematic debugging reference](references/systematic-debugging.md) <br>
-- [Finishing branch reference](references/finishing-branch.md) <br>
-- [TDD reference](references/tdd.md) <br>
-- [Testing reference](references/testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file paths, JSON gate files, and code changes when implementing tasks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workflow state and gate files under .workflow and may modify repository files during approved coding workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata; artifact frontmatter states 3.0.0) <br>
+Risk: The skill has broad activation triggers and can steer normal coding requests into a stateful workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger behavior before installation and enable it only where a Chinese-language gated coding workflow is desired.
+
+Risk: Bundled shell scripts accept task IDs, result paths, or phase names that the security evidence flags as unsafe until heredoc injection issues are fixed.
+
+Mitigation: Do not run the helper scripts with untrusted inputs; inspect or patch the scripts before operational use.
+
+Risk: Workflow helpers write state under a fixed global workflow directory.
+
+Mitigation: Prefer a project-local workflow directory or isolate the runtime environment before using the scripts.
+
+Risk: The testing reference recommends a --break-system-packages install command.
+
+Mitigation: Use a virtual environment or other isolated Python environment instead of modifying a shared or system Python installation.
+
+## Reference(s):
+
+- [Apollo Workflow Skill Page](https://clawhub.ai/nic-yuan/skills/apollo-workflow)
+- [Publisher Profile](https://clawhub.ai/user/nic-yuan)
+- [Brainstorming Reference](references/brainstorming.md)
+- [Writing Plans Reference](references/writing-plans.md)
+- [Subagent-Driven Development Reference](references/subagent-development.md)
+- [Systematic Debugging Reference](references/systematic-debugging.md)
+- [Finishing a Development Branch Reference](references/finishing-branch.md)
+- [Test-Driven Development Reference](references/tdd.md)
+- [Testing Reference](references/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON gate/state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow instructions; may create or update plans, tests, commits, workflow state, gate files, and task result files.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence; artifact frontmatter shows 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

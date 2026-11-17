@@ -1,0 +1,14 @@
+{
+  "name": "lygo-pure-data-witness",
+  "version": "1.3.0",
+  "description": "Pure-Data Witness digests + register portal training + safety + Star Chart fork log (consent-hardened fetch/all)",
+  "tags": ["lygo", "pure-data", "archive", "portal", "star-chart", "safety", "consent"],
+  "permissions": {
+    "network": "optional_https_get_with_i_authorize_fetch",
+    "subprocess": false,
+    "shell": false,
+    "publish": false
+  },
+  "security_audit": "https://clawhub.ai/deepseekoracle/skills/lygo-pure-data-witness/security-audit",
+  "hardening": "v1.3.0 closes Description-Behavior Mismatch on fetch/all; all requires --i-confirm-chain"
+}

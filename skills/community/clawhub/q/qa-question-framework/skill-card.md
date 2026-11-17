@@ -1,40 +1,54 @@
-## Description: <br>
-Provides Chinese-language structured question templates for QA requirement discovery, boundary clarification, rule exploration, technical follow-up, test case review, bug reporting, and retrospective analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured questions for clarifying requirements, boundaries, business rules, and technical details before designing software tests.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, testers, and product-facing development teams use this skill when requirements are incomplete or unclear and they need structured prompts for gathering context before test design. It helps organize questions for product managers and developers across requirement clarification, case review, bug reporting, and retrospectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad clarification or communication requests when the user does not need QA requirement-question templates. <br>
-Mitigation: Confirm the task is a QA requirements, test review, bug report, or retrospective clarification workflow before applying the framework. <br>
-Risk: The skill content is primarily Chinese-language, which may limit clarity for non-Chinese users. <br>
-Mitigation: Ask for translation or request responses in the user's preferred language when working outside Chinese-language QA workflows. <br>
+## Use Case:
 
+Testers and QA engineers use this skill to ask product managers and developers targeted questions when requirements are incomplete, test cases need review, or a bug report needs clarification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-question-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured question lists and QA guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing QA clarification prompts; no executable code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Real customer, payment, identity, or production details could be exposed in prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use masked or synthetic examples instead of sensitive production data.
+
+Risk: The optional broader install command uses an unpinned source.
+
+Mitigation: Verify the source before running it, and prefer a pinned version or trusted package reference.
+
+## Reference(s):
+
+- [Question scenario templates](references/question-scenarios.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-question-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured question list with exploration areas and clarification needs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scopes coverage to the supplied requirements and identifies uncovered areas; does not assign unique IDs.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

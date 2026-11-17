@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Web Search"
+  short_description: "Search web, shopping, news, or scholarly sources"
+  default_prompt: "Use $ai-web-search to run the requested AI Web search mode and return the results."
+
+policy:
+  allow_implicit_invocation: true

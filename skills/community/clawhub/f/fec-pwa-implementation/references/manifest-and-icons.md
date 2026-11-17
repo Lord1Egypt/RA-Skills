@@ -1,16 +1,16 @@
-# Manifest、图标与安装入口
+# Manifest, icon and installation entrance
 
-## Manifest 示例
+## Manifest Example
 
 ```json
 {
-  "name": "我的应用",
-  "short_name": "应用",
+  "name": "My App",
+  "short_name": "Application",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0052cc",
-  "description": "应用描述",
+"description": "Application description",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -36,7 +36,7 @@
 }
 ```
 
-## HTML 引用
+## HTML Quote
 
 ```html
 <link rel="manifest" href="/manifest.json" />
@@ -44,10 +44,10 @@
 <link rel="apple-touch-icon" href="/icon-192.png" />
 ```
 
-## 检查要点
+## Check Points
 
-- `display: "standalone"` 才有接近原生应用的启动体验。
-- `purpose: "any maskable"` 避免 Android 自适应图标被裁剪。
-- `start_url` 应指向登录后或游客可安全进入的入口。
-- `screenshots` 会影响安装对话框质量。
-- iOS 仍依赖 `apple-touch-icon`，安装提示也通常需要用户手动完成。
+- `display: "standalone"` will have a startup experience close to native applications.
+- `purpose: "any maskable"` prevents Android adaptive icons from being cropped.
+- `start_url` should point to a login or entry point that is safe for visitors.
+- `screenshots` can affect the quality of the installation dialog.
+- iOS still relies on `apple-touch-icon`, and installation prompts usually require users to complete it manually.

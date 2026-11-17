@@ -1,42 +1,54 @@
-## Description: <br>
-Lifecycle Hooks guides agents in simulating OpenClaw lifecycle events with heartbeat polling, subagent session callbacks, cron-based session-end checks, and behavior-level task completion detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent lifecycle hook system for OpenClaw that uses heartbeat polling and subagent patterns to simulate key lifecycle event triggers.
 
-## Publisher: <br>
-[sipoon](https://clawhub.ai/user/sipoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipoon](https://clawhub.ai/user/sipoon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to plan lifecycle automation for OpenClaw sessions, including subagent lifecycle logging, session-end memory updates, and task-completion checks. It is most useful when teams need hook-like behavior while recognizing that tool-level hooks depend on explicit agent behavior conventions rather than automatic interception. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lifecycle automation may schedule session-end checks, spawn subagents, and write memory or heartbeat state. <br>
-Mitigation: Install only when that behavior is desired, prefer explicit commands, and confirm before enabling persistent hook behavior. <br>
-Risk: Pre-tool-use and post-tool-use hooks are not automatically intercepted by the OpenClaw kernel. <br>
-Mitigation: Use explicit agent behavior rules for high-risk operations, including confirmation before destructive actions. <br>
-Risk: Behavior-level task-completion detection can miss events or produce misleading hook signals. <br>
-Mitigation: Review proposed lifecycle behavior before deployment and scan the skill as part of release validation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reason about OpenClaw lifecycle hooks, configure practical event-triggered behaviors, and understand which hook types require convention-based handling instead of kernel interception.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sipoon/sipoon-lifecycle-hooks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python-like pseudocode, trigger phrases, and configuration patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose heartbeat, cron, subagent, and memory-writing patterns; does not provide kernel-level tool interception.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may lead an agent to create session-end cron tasks, run heartbeat-driven checks, spawn subagents, or write memory logs automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable lifecycle hooks only after review, keep scheduling and memory-write scopes explicit, and provide a clear way to disable or audit the automation.
+
+Risk: Tool-level pre-use and post-use hooks are described as convention-based rather than kernel-enforced.
+
+Mitigation: Treat destructive-operation checks as agent behavior guidance that still requires user review and confirmation before risky actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sipoon/skills/sipoon-lifecycle-hooks)
+- [Publisher profile](https://clawhub.ai/user/sipoon)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose lifecycle automation patterns, cron scheduling, subagent coordination, and memory-log writes for review before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

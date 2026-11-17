@@ -1,45 +1,59 @@
-## Description: <br>
-DeepTrip helps agents answer travel requests through Tongcheng Travel, including hotel search, transportation options, attraction recommendations, itinerary planning, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepTrip is a travel assistant skill for hotel search, transportation options, attraction recommendations, and itinerary planning, with product links for booking flows.
 
-## Publisher: <br>
-[tclxhai-lv](https://clawhub.ai/user/tclxhai-lv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tclxhai-lv](https://clawhub.ai/user/tclxhai-lv)
 
-## Use Case: <br>
-External users and agents use DeepTrip to handle travel planning requests for hotels, flights, trains, attractions, and itineraries, returning recommendations with product links for booking. Developers can configure an optional API key when higher service limits are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel requests may include destinations, dates, budgets, preferences, and other personal trip context that is sent to Tongcheng/DeepTrip. <br>
-Mitigation: Share only the minimum trip context needed for recommendations and avoid sending sensitive personal details unless required for the travel task. <br>
-Risk: The skill prompts users to sign in through a WeChat/Tongcheng link for booking continuity. <br>
-Mitigation: Sign in only when booking or account continuity is needed, and confirm the user intends to enter the third-party account flow. <br>
-Risk: The DeepTrip API does not preserve multi-turn memory for the agent. <br>
-Mitigation: Include the relevant prior recommendations and updated constraints in each follow-up query. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search hotels, compare transportation choices, get destination recommendations, and produce trip plans with booking links.
 
-## Reference(s): <br>
-- [ClawHub DeepTrip skill page](https://clawhub.ai/tclxhai-lv/tc-deeptrip) <br>
-- [DeepTrip chat API endpoint](https://dtgw.ly.com/deeptrip/claw/chat) <br>
-- [Tongcheng Travel AI API key page](https://deeptrip.ly.com/#/shareLand?searchText=%E6%BF%80%E6%B4%BB%E7%A0%81) <br>
-- [Tongcheng Travel WeChat login](https://open.weixin.qq.com/connect/qrconnect?appid=wx3827070276e49e30&redirect_uri=http%3a%2f%2fwx.17u.cn%2fflight%2fgetwxuserinfo.html%3furl%3dhttps%253a%252f%252fpassport.ly.com%252fThirdParty%252fWeChatLogin%253fpageUrl%253dhttps%25253a%25252f%25252fdeeptrip.ly.com%25252f%252523%25252f%2526state%253d0abb2c15e81f4da2906cf7222c57dbb7&response_type=code&scope=snsapi_login#wechat_redirect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown-style travel recommendations with product links, plus optional JSON API response data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests are independent; the agent must include needed prior context in each query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Detailed travel requests are sent to Tongcheng's remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users before sending travel details to the external service and avoid including sensitive itinerary, identity, contact, or payment information unless the user explicitly accepts that sharing.
+
+Risk: The skill promotes Tongcheng login or app usage as part of the travel booking flow.
+
+Mitigation: Present login as optional for a smoother booking experience and let users continue with non-login travel information requests when possible.
+
+Risk: API keys passed directly on the command line can be exposed through shell history or process inspection.
+
+Mitigation: Prefer the skill's configuration-file flow or another secret-handling mechanism, and avoid pasting real API keys into shared terminals or logs.
+
+## Reference(s):
+
+- [DeepTrip ClawHub Skill Page](https://clawhub.ai/tclxhai-lv/skills/tc-deeptrip)
+- [DeepTrip API Endpoint](https://dtgw.ly.com/deeptrip/claw/chat)
+- [Tongcheng Login Link](https://open.weixin.qq.com/connect/qrconnect?appid=wx3827070276e49e30&redirect_uri=http%3a%2f%2fwx.17u.cn%2fflight%2fgetwxuserinfo.html%3furl%3dhttps%253a%252f%252fpassport.ly.com%252fThirdParty%252fWeChatLogin%253fpageUrl%253dhttps%25253a%25252f%25252fdeeptrip.ly.com%25252f%252523%25252f%2526state%253d0abb2c15e81f4da2906cf7222c57dbb7&response_type=code&scope=snsapi_login#wechat_redirect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or plain text travel recommendations with product links; the script also consumes and returns JSON from the remote API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include PC and mobile booking links. Each request is independent and should include the needed travel context.]
+
+## Skill Version(s):
+
+1.0.4 (source: server evidence release.version and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

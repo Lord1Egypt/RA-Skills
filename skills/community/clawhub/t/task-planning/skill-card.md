@@ -1,39 +1,54 @@
-## Description: <br>
-Plan and organize software development tasks by breaking down features into user stories, acceptance criteria, prioritized backlog items, and sprint plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and organize software development tasks effectively. Use when breaking down features, creating user stories, or planning sprints. Handles task breakdown, user stories, acceptance criteria, and backlog management.
 
-## Publisher: <br>
-[YumoeZhung](https://clawhub.ai/user/YumoeZhung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yumoezhung](https://clawhub.ai/user/yumoezhung)
 
-## Use Case: <br>
-Developers, product managers, and delivery teams use this skill to turn feature ideas into INVEST user stories, acceptance criteria, epic-story-task breakdowns, MoSCoW priorities, and sprint backlogs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated plans, estimates, priorities, or team assignments may be inaccurate for a specific project. <br>
-Mitigation: Review generated planning artifacts before using them for sprint commitments, estimates, or team assignments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YumoeZhung/task-planning) <br>
-- [User Story Guide](https://www.atlassian.com/agile/project-management/user-stories) <br>
-- [MoSCoW Prioritization](https://www.productplan.com/glossary/moscow-prioritization/) <br>
+## Use Case:
 
+Developers, product managers, and agile teams use this skill to break features into user stories, acceptance criteria, prioritized backlog items, and sprint plans.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown templates, checklists, task boards, and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning artifacts for review; does not execute code or access external systems.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated planning guidance may be incomplete or misaligned with a team's delivery process if adopted without review.
+
+Mitigation: Review user stories, acceptance criteria, estimates, dependencies, and priorities with project stakeholders before committing them to a sprint.
+
+Risk: Much of the source guidance is written in Korean, which can make review harder for teams that do not read Korean.
+
+Mitigation: Use a Korean-reading reviewer or a verified translation when evaluating the skill's planning guidance and generated outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yumoezhung/skills/task-planning)
+- [User Story Guide](https://www.atlassian.com/agile/project-management/user-stories)
+- [MoSCoW Prioritization](https://www.productplan.com/glossary/moscow-prioritization/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown planning guidance, user stories, acceptance criteria, backlog structures, and sprint plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guide; no tool execution or persistent changes indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

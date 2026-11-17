@@ -1,41 +1,55 @@
-## Description: <br>
-Professional career roadmap platform that generates personalized forensic audit learning paths and specialization recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform that generates personalized forensic audit learning paths and specialization recommendations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External security professionals, compliance teams, incident response teams, and organizations use this skill to request personalized forensic audit career roadmaps, specialization recommendations, and learning paths from an external API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external API request may include career assessment details, session identifiers, optional user identifiers, and professional background data. <br>
-Mitigation: Use pseudonymous or short-lived session identifiers, omit the optional userId unless persistent profile tracking is needed, and avoid submitting confidential employer, client, incident, or investigation details. <br>
+## Use Case:
 
+Security professionals, compliance officers, incident response teams, and aspiring forensic auditors use this skill to request personalized forensic audit learning roadmaps, specialization recommendations, certification-aligned learning paths, and next milestones.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-forensic-audit-roadmap) <br>
-- [Forensic Audit API docs](https://api.mkkpro.com:8114/docs) <br>
-- [Forensic Audit API route](https://api.mkkpro.com/compliance/forensic-audit) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap responses may include current-level assessment, identified skill gaps, phased learning plans, learning resources, and next milestones.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Users may submit confidential employer data, client names, investigation details, or unnecessary personal identifiers to a third-party API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the minimum profile and assessment data needed for roadmap generation, avoid sensitive case details, and use the optional userId only when persistent profile tracking is required.
+
+Risk: The artifact does not show privacy, retention, or deletion terms for submitted assessment data.
+
+Mitigation: Review the publisher's privacy, retention, and deletion terms before using the service with organizational or personally identifiable data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-forensic-audit-roadmap)
+- [Forensic Audit Roadmap API Docs](https://api.mkkpro.com:8114/docs)
+- [Forensic Audit Roadmap API Route](https://api.mkkpro.com/compliance/forensic-audit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, API calls]
+
+**Output Format:** [JSON responses containing roadmap recommendations, learning resources, specializations, learning paths, and milestone guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires assessment data with session identifiers and timestamps; optional userId enables persistent profile tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

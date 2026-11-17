@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# mixuebingcheng-cli 启动器
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PY="${MIXUE_PYTHON:-python3}"
+exec "$PY" "$DIR/mixuebingcheng_cli.py" "$@"

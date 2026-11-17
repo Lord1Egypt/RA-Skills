@@ -1,44 +1,56 @@
-## Description: <br>
-Monitor Polymarket prediction markets for price movements, volume spikes, new listings, order book depth, and trending contract probabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Polymarket prediction markets for price movements, volume spikes, and new listings. Track specific markets, check order book depth, and surface trending predictions. Use when asked about Polymarket, prediction market prices, market volume, or contract probabilities.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and agents use this skill to inspect public Polymarket market data, including trending markets, current probabilities, volume, liquidity, and order book depth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public web requests to Polymarket APIs, which may be inappropriate in restricted network environments. <br>
-Mitigation: Install and run it only where outbound public API requests to Polymarket are acceptable. <br>
-Risk: Market data and probabilities may be incomplete, stale, or mistaken for financial advice. <br>
-Mitigation: Treat results as informational market data and verify important values directly before making decisions. <br>
+## Use Case:
 
+External users and developers use this skill to monitor Polymarket markets, prices, volume, liquidity, and new listings through public Polymarket APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rsquaredsolutions2026/agentbets-polymarket-monitor) <br>
-- [AgentBets Polymarket Monitor tutorial](https://agentbets.ai/guides/openclaw-polymarket-monitor-skill/) <br>
-- [OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
-- [Polymarket Gamma API market query](https://gamma-api.polymarket.com/markets?closed=false&active=true&order=volume24hr&ascending=false&limit=10) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; makes read-only public web requests to Polymarket APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Returned Polymarket prices, liquidity, or volume can influence financial or betting decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important prices, liquidity, and market conditions against Polymarket or another reliable source before acting on them.
+
+Risk: The skill depends on external Polymarket API responses for market data.
+
+Mitigation: Treat unavailable, incomplete, or unexpected API responses as a reason to retry or cross-check rather than as definitive market state.
+
+## Reference(s):
+
+- [Polymarket Gamma API markets endpoint](https://gamma-api.polymarket.com/markets?closed=false&active=true&order=volume24hr&ascending=false&limit=10)
+- [AgentBets OpenClaw Polymarket Monitor tutorial](https://agentbets.ai/guides/openclaw-polymarket-monitor-skill/)
+- [OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-formatted API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq for the documented command examples.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

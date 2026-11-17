@@ -1,0 +1,11 @@
+name: selfmedia-remotion-render
+slug: selfmedia-remotion-render
+display_name: Remotion 渲染
+description: 在用户指定的 Remotion 项目中使用现有工具链渲染指定 Composition，并按合同核验输出；不依赖私有工作台。
+version: 1.0.0
+license: MIT-0
+tags:
+  - remotion
+  - video-rendering
+  - ffmpeg
+self_test: python3 scripts/self_test.py

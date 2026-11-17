@@ -1,46 +1,63 @@
-## Description: <br>
-SVG-based PPT generator with 9 themes, 8 layouts, 30+ charts, and 600+ icons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SVG-based PPT generator with 9 themes, 8 layouts, 30+ charts, and 600+ icons.
 
-## Publisher: <br>
-[ddpie](https://clawhub.ai/user/ddpie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ddpie](https://clawhub.ai/user/ddpie)
 
-## Use Case: <br>
-Presentation authors and agents use this skill to turn topics, outlines, or source content into editable PowerPoint decks. The workflow guides topic, duration, style, and outline choices before generating SVG slides and converting them into native DrawingML PPTX output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local PPT generation writes temporary and project files and may run local converters. <br>
-Mitigation: Run the skill in a controlled workspace and review output paths before generation. <br>
-Risk: Optional external AI image generation can disclose prompt content to the selected provider. <br>
-Mitigation: Use external image generation only with an explicit provider choice and non-sensitive prompts. <br>
-Risk: SVG, image, and document helpers may process files supplied by the user. <br>
-Mitigation: Avoid running the image-processing helpers on untrusted files. <br>
+## Use Case:
 
+Developers and agents use this skill to turn presentation requests, outlines, source documents, or data into styled SVG slides and editable PowerPoint decks. It guides topic, duration, style, outline confirmation, generation, and optional review.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/ddpie/svg-ppt-generator) <br>
-- [PPT Master Assets Index](artifact/ppt-master-assets/INDEX.md) <br>
-- [Shared SVG Standards](artifact/ppt-master-assets/references/shared-standards.md) <br>
-- [SVG Image Embedding](artifact/ppt-master-assets/references/svg-image-embedding.md) <br>
-- [SVG to PPTX Conversion Script](artifact/ppt-master-assets/scripts/svg_to_pptx.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Conversational guidance plus generated SVG slide files and editable PPTX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local temporary/project files for SVG generation, PPTX conversion, and optional visual review artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Included tooling can fetch arbitrary URLs insecurely when processing source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a sandboxed workspace with restricted outbound network access, especially for untrusted URLs or documents.
+
+Risk: SVG image references can embed local files without enough containment.
+
+Mitigation: Avoid untrusted SVG image references and review or sanitize SVG inputs before conversion.
+
+Risk: Project environment files may expose unrelated secrets during processing.
+
+Mitigation: Use an isolated project .env and do not store unrelated credentials in the workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ddpie/skills/svg-ppt-generator)
+- [PPT Master Assets Index](ppt-master-assets/INDEX.md)
+- [PPT Master Toolset README](ppt-master-assets/scripts/README.md)
+- [Shared SVG Standards](ppt-master-assets/references/shared-standards.md)
+- [SVG Image Embedding](ppt-master-assets/references/svg-image-embedding.md)
+- [SVG Pipeline Tools](ppt-master-assets/scripts/docs/svg-pipeline.md)
+- [Conversion Tools](ppt-master-assets/scripts/docs/conversion.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SVG, Python, shell command, and PowerPoint file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create 16:9 SVG slide files and convert them into native editable PPTX decks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

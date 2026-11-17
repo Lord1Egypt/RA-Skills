@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "tools/build_opencode_bundle.py SCAN_SPECS",
+  "note": "元信装前扫描例外表；绑定 skill+version+treeHash(fail-closed)，仅供已审查的检测规则/文档说明类命中豁免。",
+  "skippedSkills": [
+    "yotta-dev-mcp"
+  ],
+  "skills": {
+    "yotta-anti-shallow": {
+      "version": "1.4.4",
+      "treeHash": "sha256:259c5d63a97bfc2ac24bca1b15e78056d3f921dbf7f62b7f779683c78c5d68be",
+      "files": 8,
+      "bytes": 223460,
+      "mode": "strict",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-001",
+          "path": "README.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": false,
+          "reason": "user-control-documentation"
+        }
+      ]
+    },
+    "yotta-chain": {
+      "version": "0.1.7",
+      "treeHash": "sha256:ecc0bbe664f6032239bb2400d3590f79e4ff308a48aa6797fd6e7f36c13d334c",
+      "files": 9,
+      "bytes": 275586,
+      "mode": "strict",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "HIS-001E",
+          "path": "scripts/yotta_chain.py",
+          "action": "allow",
+          "category": "sensitive-read",
+          "detection": false,
+          "reason": "dependency-manifest-analysis"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "HIS-002",
+          "path": "scripts/yotta_chain.py",
+          "action": "allow",
+          "category": "data-exfiltration",
+          "detection": false,
+          "reason": "dependency-manifest-analysis"
+        }
+      ]
+    },
+    "yotta-guardian": {
+      "version": "0.1.10",
+      "treeHash": "sha256:a3a65ecc44e5a21160d8a7fe0e3ecb8e94eda8b30d97c2117bb4e999fa77c659",
+      "files": 13,
+      "bytes": 268084,
+      "mode": "detection",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "README.zh-CN.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "SKILL.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "NET-008",
+          "path": "SKILL.md",
+          "action": "allow",
+          "category": "network-call",
+          "detection": true,
+          "reason": "detection-rule"
+        }
+      ]
+    },
+    "yotta-logwatch": {
+      "version": "0.3.3",
+      "treeHash": "sha256:ba9351d02a7429c57e600cb1db593434a912267f15bca29874f25391b3034119",
+      "files": 13,
+      "bytes": 268251,
+      "mode": "detection",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "SKILL.md",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "README.zh-CN.md",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "references/powershell-log-rules.md",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "OBF-001",
+          "path": "references/web-log-rules.md",
+          "action": "allow",
+          "category": "obfuscation",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "scripts/yotta_logwatch.py",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "references/powershell-log-rules.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-028",
+          "path": "scripts/yotta_logwatch.py",
+          "action": "allow",
+          "category": "credential-harvest",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "scripts/test_yotta_logwatch.py",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": false,
+          "reason": "logwatch-test-fixture"
+        }
+      ]
+    },
+    "yotta-memory": {
+      "version": "0.24.3",
+      "treeHash": "sha256:f1c5114659913129643ed85365085340d6590e3c1da462e9c4c1bc9f91518048",
+      "files": 18,
+      "bytes": 1433986,
+      "mode": "strict",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-002",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-007",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-009",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-012",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-022",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-026",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "memory-store-scanner-rule-table"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "HIS-002",
+          "path": "bin/yotta-memory.js",
+          "action": "allow",
+          "category": "data-exfiltration",
+          "detection": false,
+          "reason": "config-dir-read-and-local-http-server-are-separated"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-001",
+          "path": "test/memory-scan.test.js",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": false,
+          "reason": "memory-scan-test-fixture"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-001",
+          "path": "test/memory-scan.test.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": false,
+          "reason": "memory-scan-test-fixture"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-002",
+          "path": "test/memory-scan.test.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": false,
+          "reason": "memory-scan-test-fixture"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-012",
+          "path": "test/memory-scan.test.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": false,
+          "reason": "memory-scan-test-fixture"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-022",
+          "path": "test/memory-scan.test.js",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": false,
+          "reason": "memory-scan-test-fixture"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "PRI-001",
+          "path": "test/memory-scan.test.js",
+          "action": "allow",
+          "category": "privilege-escalation",
+          "detection": false,
+          "reason": "memory-scan-test-fixture"
+        }
+      ]
+    },
+    "yotta-recon": {
+      "version": "0.1.10",
+      "treeHash": "sha256:85252b09f0746b0170682b48cb09819489e00e50c32a2a0c7cfdab714bf09797",
+      "files": 11,
+      "bytes": 276466,
+      "mode": "detection",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "NET-004",
+          "path": "references/protocol-probes.md",
+          "action": "allow",
+          "category": "network-call",
+          "detection": false,
+          "reason": "authorized-scan-capability"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "NET-004",
+          "path": "scripts/yotta_recon.py",
+          "action": "allow",
+          "category": "network-call",
+          "detection": false,
+          "reason": "authorized-scan-capability"
+        }
+      ]
+    },
+    "yotta-security-audit": {
+      "version": "0.3.3",
+      "treeHash": "sha256:de930dfe97fae6a4be337463d0e4971a51790e2d0989e4ccaebf0eb070575568",
+      "files": 15,
+      "bytes": 356803,
+      "mode": "detection",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "README.zh-CN.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "SKILL.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-020",
+          "path": "references/threat-patterns.md",
+          "action": "allow",
+          "category": "prompt-injection",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "PIJ-028",
+          "path": "README.zh-CN.md",
+          "action": "allow",
+          "category": "credential-harvest",
+          "detection": true,
+          "reason": "detection-rule"
+        }
+      ]
+    },
+    "yotta-triage": {
+      "version": "0.1.6",
+      "treeHash": "sha256:ff6445525b6ba316f8acc325f2e7d3dab7057b7cf006d7fcd5adb060ec357d10",
+      "files": 10,
+      "bytes": 234723,
+      "mode": "detection",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "references/risk-model.md",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "references/triage-spec.md",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "scripts/yotta_triage.py",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "OBF-003",
+          "path": "scripts/yotta_triage.py",
+          "action": "allow",
+          "category": "obfuscation",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "NET-008",
+          "path": "references/triage-spec.md",
+          "action": "allow",
+          "category": "network-call",
+          "detection": true,
+          "reason": "detection-rule"
+        },
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "DEX-007",
+          "path": "scripts/test_yotta_triage.py",
+          "action": "allow",
+          "category": "remote-download",
+          "detection": false,
+          "reason": "triage-test-fixture"
+        }
+      ]
+    },
+    "yotta-vetter": {
+      "version": "0.2.9",
+      "treeHash": "sha256:82aa9e3f8951ed64102c7893fcabc972901df0ff316d3609eb3aa87fc18d6d26",
+      "files": 11,
+      "bytes": 223361,
+      "mode": "strict",
+      "exceptions": [
+        {
+          "scanners": [
+            "yotta-verify",
+            "yotta-agent-hardening"
+          ],
+          "rule": "NET-006",
+          "path": "scripts/yotta_vetter.py",
+          "action": "allow",
+          "category": "network-call",
+          "detection": false,
+          "reason": "documented-source-check"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "CRE-002",
+          "path": "CHANGELOG.md",
+          "action": "allow",
+          "category": "credential-access",
+          "detection": false,
+          "reason": "detection-changelog"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "CRE-003",
+          "path": "CHANGELOG.md",
+          "action": "allow",
+          "category": "credential-access",
+          "detection": false,
+          "reason": "detection-changelog"
+        },
+        {
+          "scanners": [
+            "yotta-agent-hardening"
+          ],
+          "rule": "CRE-005",
+          "path": "CHANGELOG.md",
+          "action": "allow",
+          "category": "credential-access",
+          "detection": false,
+          "reason": "detection-changelog"
+        }
+      ]
+    }
+  }
+}

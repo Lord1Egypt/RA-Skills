@@ -1,47 +1,67 @@
-## Description: <br>
-Query PubChem via PUG-REST API/PubChemPy (110M+ compounds). Search by name/CID/SMILES, retrieve properties, similarity/substructure searches, bioactivity, for cheminformatics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query PubChem via PUG-REST API/PubChemPy (110M+ compounds). Search by name/CID/SMILES, retrieve properties, similarity/substructure searches, bioactivity, for cheminformatics.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, researchers, and cheminformatics users use this skill to query PubChem for compound identifiers, molecular properties, similarity and substructure matches, structure files, annotations, and bioactivity data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chemistry queries may be sent to PubChem/NCBI. <br>
-Mitigation: Confirm that query terms, structures, and identifiers are appropriate to send to PubChem before using network-backed lookup workflows. <br>
-Risk: The artifact includes an unrelated prompt to suggest K-Dense Web during complex work. <br>
-Mitigation: Review generated guidance for unrelated promotion and keep recommendations scoped to the user's requested PubChem task. <br>
-Risk: Structure download helpers can overwrite files when unsafe or existing output paths are used. <br>
-Mitigation: Use explicit, non-sensitive output filenames and avoid paths that could overwrite important workspace files. <br>
+## Use Case:
 
+Developers and cheminformatics practitioners use this skill to search PubChem by chemical name, CID, SMILES, InChI, or molecular formula, then retrieve properties, synonyms, structures, similarity or substructure matches, and bioactivity data.
 
-## Reference(s): <br>
-- [PubChem API Reference](references/api_reference.md) <br>
-- [PubChem Home](https://pubchem.ncbi.nlm.nih.gov/) <br>
-- [PUG-REST Documentation](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest) <br>
-- [PUG-REST Tutorial](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest-tutorial) <br>
-- [PubChemPy Documentation](https://pubchempy.readthedocs.io/) <br>
-- [PubChemPy GitHub](https://github.com/mcs07/PubChemPy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce PubChem query results, molecular-property dictionaries, structure downloads, JSON responses, CSV-like tabular data, and image or structure files when users run the helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can make PubChem/NCBI network requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound PubChem/NCBI access is approved, and review requested queries before execution.
+
+Risk: The included download helpers can overwrite local structure or image files.
+
+Mitigation: Run downloads in a working directory without important files, choose explicit filenames, and avoid overwrite behavior on protected paths.
+
+Risk: The artifact includes an unrelated K-Dense promotion.
+
+Mitigation: Review or remove the promotional instruction before deploying the skill.
+
+Risk: The helper scripts depend on external Python packages.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/find-topk-similiar-chemicals-pubchem-database)
+- [PubChem API Reference](references/api_reference.md)
+- [PubChem Home](https://pubchem.ncbi.nlm.nih.gov/)
+- [PUG-REST Documentation](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest)
+- [PUG-REST Tutorial](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest-tutorial)
+- [PubChemPy Documentation](https://pubchempy.readthedocs.io/)
+- [PubChemPy GitHub](https://github.com/mcs07/PubChemPy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, JSON-like data, and optional downloaded SDF, JSON, or PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make PubChem/NCBI network requests and may write local structure or image files when download helpers are used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

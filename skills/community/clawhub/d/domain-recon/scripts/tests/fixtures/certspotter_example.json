@@ -1,0 +1,32 @@
+[
+  {
+    "id": "9990001",
+    "tbs_sha256": "aaaa1111",
+    "dns_names": ["example.com", "www.example.com"],
+    "pubkey_sha256": "bbbb2222",
+    "issuer": {"name": "C=US, O=Let's Encrypt, CN=R3"},
+    "not_before": "2026-01-01T00:00:00-00:00",
+    "not_after": "2026-04-01T00:00:00-00:00",
+    "revoked": false
+  },
+  {
+    "id": "9990002",
+    "tbs_sha256": "cccc3333",
+    "dns_names": ["api.example.com", "*.example.com"],
+    "pubkey_sha256": "dddd4444",
+    "issuer": {"name": "C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1"},
+    "not_before": "2026-02-01T00:00:00-00:00",
+    "not_after": "2026-05-01T00:00:00-00:00",
+    "revoked": false
+  },
+  {
+    "id": "9990003",
+    "tbs_sha256": "eeee5555",
+    "dns_names": ["mail.example.com", "unrelated.attacker.test"],
+    "pubkey_sha256": "ffff6666",
+    "issuer": {"name": "C=US, O=Let's Encrypt, CN=R3"},
+    "not_before": "2026-03-01T00:00:00-00:00",
+    "not_after": "2026-06-01T00:00:00-00:00",
+    "revoked": false
+  }
+]

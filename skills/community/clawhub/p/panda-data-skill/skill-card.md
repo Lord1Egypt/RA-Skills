@@ -1,47 +1,57 @@
-## Description: <br>
-Panda Data Skill wraps PandaAI financial data APIs as LLM-callable tools for market data, fundamentals, futures, indexes, calendars, and related financial datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Panda Data Skill wraps PandaAI financial data APIs as LLM-callable tools for querying equities, indices, futures, market reference data, financial reports, trading calendars, and related factors.
 
-## Publisher: <br>
-[pandaai-tech](https://clawhub.ai/user/pandaai-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pandaai-tech](https://clawhub.ai/user/pandaai-tech)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent query PandaAI financial datasets through documented tool calls after installing the required Python packages and configuring PandaAI credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PandaAI account credentials could be exposed if users paste a real username or password into chat or public logs. <br>
-Mitigation: Configure PANDA_DATA_USERNAME and PANDA_DATA_PASSWORD directly in a local environment, .env file, or secret manager instead of sharing credentials with the agent. <br>
-Risk: Financial query parameters and research inputs may be sent to PandaAI's API when tools are called. <br>
-Mitigation: Avoid confidential trading research inputs unless the user accepts that those parameters are sent to PandaAI. <br>
-Risk: The skill depends on external PyPI packages for execution. <br>
-Mitigation: Install only after reviewing and accepting the PandaAI and required PyPI package dependencies in the target environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to help agents call PandaAI market-data tools for financial data lookup, including price history, fundamentals, index data, futures data, trading calendars, and formatted query results.
 
-## Reference(s): <br>
-- [Panda Data Skill on ClawHub](https://clawhub.ai/pandaai-tech/panda-data-skill) <br>
-- [PandaAI-Tech publisher profile](https://clawhub.ai/user/pandaai-tech) <br>
-- [panda-data-tools on PyPI](https://pypi.org/project/panda-data-tools/) <br>
-- [PandaAI website](https://www.pandaai.online) <br>
-- [Installation guide](artifact/INSTALL_GUIDE.md) <br>
-- [API reference](artifact/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; tool calls return formatted table text or JSON error text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PandaAI credentials and the panda_data and panda-data-tools Python packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: The skill requires PandaAI account credentials, and setup guidance can lead users to expose a username and password to an assistant or local .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste credentials into chat; prefer securely set environment variables or a restricted local secret store and keep .env files out of unrelated projects.
+
+Risk: Runtime packages that handle credentials are external and unpinned in the artifact setup guidance.
+
+Mitigation: Install the skill in a dedicated virtual environment, pin and review panda_data and panda-data-tools before use, and update only after review.
+
+## Reference(s):
+
+- [Panda Data Skill on ClawHub](https://clawhub.ai/pandaai-tech/skills/panda-data-skill)
+- [Panda Data Tools on PyPI](https://pypi.org/project/panda-data-tools/)
+- [PandaAI website](https://www.pandaai.online)
+- [Installation guide](INSTALL_GUIDE.md)
+- [API reference](api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; tool calls return formatted table strings or JSON error text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PandaAI credentials and the external panda_data and panda-data-tools Python packages at runtime.]
+
+## Skill Version(s):
+
+4.0.0 (source: release evidence; artifact frontmatter says 3.0.0 and artifact README/CHANGELOG mention 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

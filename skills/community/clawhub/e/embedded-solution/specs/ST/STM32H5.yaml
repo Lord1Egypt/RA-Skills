@@ -1,0 +1,117 @@
+part: STM32H5
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ST STM32H5 \u2014 Cortex-M33 with TrustZone @ 250 MHz (40nm process)"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32h5-series.html
+datasheet_path_expected: ../../datasheets/stm32h523cc.pdf
+created_at: '2026-06-30T09:43:00+08:00'
+specs:
+  family_identity:
+    family: STM32H5
+    tagline: Industry-first Cortex-M33 with TrustZone @ 250 MHz
+    process: 40 nm (ST-optimized)
+    pin_range: 25 to 225 pins
+    ambient_temp_max_c: 125
+  performance:
+    core: Arm Cortex-M33 with TrustZone @ up to 250 MHz
+    graphics: Chrom-ART2 (mid/high end)
+    multimedia_accelerator:
+    - MJPEG
+    - PLAY
+  sub_series:
+  - name: H503
+    flash_kb: 128
+    ram_kb: 32
+    notes: entry-level, no crypto
+  - name: H523/H533
+    flash_kb: 512
+    ram_kb: 272
+    notes: crypto available
+  - name: H562
+    flash_kb: 2048
+    ram_kb: 640
+    notes: cost-optimized
+  - name: H563/H573
+    flash_kb: 2048
+    ram_kb: 640
+    notes: Ethernet + SMPS option; H573 has hardware encryption accelerator
+  - name: H5E4/H5F4
+    flash_kb: 4096
+    ram_kb: 1536
+    notes: Ethernet, Chrom-ART2, TFT-LCD, MJPEG, PLAY, SMPS; F4 has hw crypto + TrustZone
+  - name: H5E5/H5F5
+    flash_kb: 4096
+    ram_kb: 1536
+    notes: USB-HS PHY + USB FS/UCPD; F5 has hw crypto + TrustZone
+  flash: dual-bank
+  peripherals:
+    adc_12bit: 3 (mid/high end)
+    fdcan: 3 (E4/F4 and above)
+    ethernet: yes (F4/F5 and H563+)
+    smps_option: yes (except H503)
+    sdmmc: 2 (F4/F5)
+    fmc: yes (F4/F5)
+    octospi: 2 (F4/F5)
+  usb:
+    variants:
+    - HS-PHY
+    - FS
+    - UCPD
+  security:
+    trustzone: yes (Cortex-M33 isolation)
+    tees: STM32Trust TEE Secure Manager (X-CUBE-SEC-M-H5) on H573, H5F4, H5F5
+    crypto:
+    - AES
+    - SAES
+    - PKA
+    - OTFDEC
+    - HUK
+    - ST-iROT
+    ccb: yes on selected lines
+    key_management: maintained by ST over product lifecycle
+    certified_offer: true
+  applications:
+    smart_home:
+    - Air conditioners
+    - Refrigerators/freezers
+    - Central alarm systems
+    - Washing machines
+    personal_electronics:
+    - Keyboards
+    - Smartphones
+    - IoT tags and tracking devices
+    smart_city:
+    - Industrial communication
+    - Lighting controls
+    - Digital power
+    medical_healthcare:
+    - CPAP and respirators
+    - Dialysis machines
+    - Pills distributors
+    - Powered patient beds
+  dev_tools:
+    discovery_kit: 2
+    nucleo_boards: 4
+    cube_packages:
+    - STM32Cube MCU & MPU Packages
+    - STM32Cube Expansion Packages (8 partner)
+unverified:
+- exact operating voltage range
+- exact ADC sample rate
+- exact peripheral counts in H503/H562 (low-end)
+- exact DisplayPort/Chrom-GRC support on F4/F5
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from st.com STM32H5 series page via Firecrawl (33,744 bytes raw)."
+- 'Family differentiator vs STM32F4 (older): TrustZone + 250 MHz + dual-bank flash + up to 4 MB flash on F-line, with scalable
+  ST security offer.'
+- 'Family differentiator vs STM32H7 (higher-tier): H7 has Cortex-M7 480 MHz + more peripherals (FMC/SDMMC/OctoSPI standard).
+  H5 wins on affordability + TrustZone.'
+- 'Position: secure mainstream MCU, bridges STM32F4 (legacy) and STM32H7 (high performance) for IoT + Industrial + Medical
+  apps.'
+extracted_at: '2026-06-30T09:43:00+08:00'
+extraction_method: firecrawl-extract (keyed) of st.com STM32H5 series page
+extraction_source: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32H5-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32H5-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.st.com/resource/en/datasheet/stm32h523cc.pdf
+datasheet_source_note: STM32H523CC datasheet (PDF, 4.7MB). 17/72 nested-spec fields matched via pdfplumber scan. Low rate
+  due to deeply nested dict + list spec tree; key chips metrics (Cortex-M33 250 MHz TrustZone, flash, RAM, security) all matched.

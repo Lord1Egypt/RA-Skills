@@ -1,41 +1,52 @@
-## Description: <br>
-Query Ile-de-France Mobilites (IDFM) PRIM/Navitia for Paris and suburbs public transport, including place resolution, journey planning, and disruption or incident checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Ile-de-France Mobilites (IDFM) PRIM/Navitia for Paris and suburban public transport place resolution, journey planning, and disruption or incident checks.
 
-## Publisher: <br>
-[anthonymq](https://clawhub.ai/user/anthonymq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anthonymq](https://clawhub.ai/user/anthonymq)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to resolve Ile-de-France transit places, plan routes, and check metro or RER disruptions through the IDFM PRIM/Navitia API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The IDFM PRIM API key can be exposed or sent to an untrusted endpoint if it is committed, printed, or used with an untrusted --base-url. <br>
-Mitigation: Use a dedicated IDFM PRIM API key, keep it out of logs and source control, rotate it if exposed, and only use --base-url with trusted destinations. <br>
+## Use Case:
 
+Developers and agents use this skill to resolve stops or stations, plan public transport routes, and check RER or metro disruptions in Ile-de-France using an IDFM PRIM API key.
 
-## Reference(s): <br>
-- [IDFM PRIM / Navitia quick notes](references/idfm-prim.md) <br>
-- [IDFM PRIM developer portal](https://prim.iledefrance-mobilites.fr/) <br>
-- [IDFM PRIM Navitia API base](https://prim.iledefrance-mobilites.fr/marketplace/v2/navitia) <br>
-- [ClawHub skill page](https://clawhub.ai/anthonymq/idfm-journey-skill) <br>
+### Deployment Geography for Use:
 
+Global; service coverage is Ile-de-France, France.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, JSON, Configuration] <br>
-**Output Format:** [Plain text route and disruption summaries, with optional raw JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IDFM_PRIM_API_KEY; --base-url can redirect requests to another endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence and frontmatter) <br>
+Risk: The --base-url option can cause the IDFM PRIM API key to be sent to a server other than the official IDFM PRIM/Navitia endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the official IDFM PRIM/Navitia endpoint, restrict who can invoke the skill, and prefer a version that removes or validates --base-url before sending the API key.
+
+## Reference(s):
+
+- [IDFM PRIM / Navitia quick notes](artifact/references/idfm-prim.md)
+- [IDFM PRIM developer portal](https://prim.iledefrance-mobilites.fr/)
+- [IDFM PRIM Navitia API base endpoint](https://prim.iledefrance-mobilites.fr/marketplace/v2/navitia)
+- [ClawHub skill release page](https://clawhub.ai/anthonymq/skills/idfm-journey-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IDFM_PRIM_API_KEY for live API calls.]
+
+## Skill Version(s):
+
+0.1.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

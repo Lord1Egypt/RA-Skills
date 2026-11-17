@@ -1,43 +1,57 @@
-## Description: <br>
-Use when needing to search the web in AI coding tools or OpenClaw. Uses DuckDuckGo API without API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when needing to search the web in AI coding tools or OpenClaw. Uses DuckDuckGo API without API key.
 
-## Publisher: <br>
-[bird-frank](https://clawhub.ai/user/bird-frank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bird-frank](https://clawhub.ai/user/bird-frank)
 
-## Use Case: <br>
-Developers and agents use this skill to run DuckDuckGo web or news searches from coding tools and OpenClaw workflows. It supports text or JSON output with configurable result count, region, safe search, time window, backend, and proxy settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to DuckDuckGo/ddgs backends and may also pass through a configured proxy. <br>
-Mitigation: Avoid searching secrets or proprietary data, and use only trusted proxies when proxy settings are enabled. <br>
-Risk: Installer and shell-command examples can execute package installation or external commands. <br>
-Mitigation: Review commands before running them and prefer trusted package sources. <br>
-Risk: Embedding user-supplied query text directly in shell workflows can create command-injection risk. <br>
-Mitigation: Escape or pass query strings as structured arguments when integrating the tool into shell workflows. <br>
+## Use Case:
 
+Developers and coding agents use this skill to run DuckDuckGo web or news searches from the command line, with text or JSON output for automation. It supports result limits, region, safe search, time range, backend, and proxy options.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bird-frank/ddgs-search-api) <br>
-- [Publisher profile](https://clawhub.ai/user/bird-frank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text or JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, URL, and body text; news results may also include date and source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence) <br>
+Risk: Installation examples can lead users to run installer commands or install dependencies without pinning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before use and prefer trusted, pinned, or lockfile-based installation of uv and ddgs.
+
+Risk: Search queries and proxy URLs may expose secrets, credentials, private project names, or sensitive internal text to external services or proxies.
+
+Mitigation: Avoid sending sensitive content in queries or proxy URLs, and use only trusted proxy endpoints.
+
+Risk: The OpenClaw bash workflow example may be unsafe if a query is interpolated directly into a shell command.
+
+Mitigation: Pass queries as command arguments or otherwise escape and validate them before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bird-frank/skills/ddgs-search-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON search results, with Markdown command examples and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search behavior is controlled by query, result limit, region, safe search, time limit, backend, news mode, JSON mode, verbosity, and proxy settings.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-Remote Windows desktop control from WSL/Linux via screenshot + mouse/keyboard simulation. Use when the user asks to control their PC, click something, open an app, interact with a GUI program, take a screenshot, or perform desktop automation that has no CLI alternative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote Windows desktop control from WSL/Linux via screenshots plus mouse and keyboard simulation for GUI tasks that have no suitable CLI alternative.
 
-## Publisher: <br>
-[zeron-G](https://clawhub.ai/user/zeron-G) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zeron-g](https://clawhub.ai/user/zeron-g)
 
-## Use Case: <br>
-Developers and automation agents use this skill to operate a local Windows desktop from WSL/Linux for GUI-only tasks, using screenshots to inspect state and mouse or keyboard actions to interact with applications. It is not intended for tasks that have a reliable CLI or PowerShell alternative. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad live Windows desktop control and can expose the active screen through screenshots. <br>
-Mitigation: Install only when this capability is intended, close sensitive windows first, verify each action with a follow-up screenshot, and stop the server when finished. <br>
-Risk: Authentication tokens and temporary screenshots can grant access to desktop control context or screen contents if mishandled. <br>
-Mitigation: Keep the service bound to localhost, protect or delete the token and temporary screenshots, and avoid using the skill while sensitive content is visible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zeron-G/pc-control) <br>
-- [Publisher profile](https://clawhub.ai/user/zeron-G) <br>
+## Use Case:
 
+Developers and agents operating from WSL/Linux use this skill to inspect and control a Windows desktop when a GUI workflow has no practical command-line or PowerShell alternative.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; runtime use may produce screenshot file paths and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshots are scaled by default; action coordinates must be adjusted to the chosen screenshot scale.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can view and operate the user's Windows desktop, including visible sensitive information and active applications.
+
+Mitigation: Run it only on a trusted local machine, close sensitive windows before use, and stop the server when finished.
+
+Risk: Screenshots and authentication material may remain on disk after a session.
+
+Mitigation: Delete leftover screenshot temporary files and the .auth_token file after use.
+
+Risk: Mouse and keyboard automation can perform unintended actions if screen state or coordinates are wrong.
+
+Mitigation: Take and review a screenshot after each action before continuing with further desktop control.
+
+Risk: The security summary says the powerful desktop access is not tightly contained or cleaned up.
+
+Mitigation: Prefer a version that pins dependencies, protects token storage, enforces timeouts, and reduces command-construction risk.
+
+## Reference(s):
+
+- [PC Control on ClawHub](https://clawhub.ai/zeron-g/skills/pc-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local screenshot file paths and structured action results while operating the desktop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

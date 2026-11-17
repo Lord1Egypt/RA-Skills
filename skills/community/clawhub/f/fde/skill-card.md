@@ -1,42 +1,57 @@
-## Description: <br>
-AI时代前沿部署工程师(FDE)全流程助手。覆盖审计(Audit)评估(Evals)部署(Deployment)三大阶段，提供客户需求挖掘、技术方案设计、快速原型开发、业务价值量化、产品化抽象等全链路支持。融合Palantir Echo-Delta模式与AI Agent落地方法论。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an FDE workflow assistant for customer audit, technical evaluation, and deployment planning so teams can move enterprise AI projects from discovery to business-value delivery.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, engineers, and customer deployment teams use this skill to plan and execute AI forward-deployed engineering work across customer audit, technical evaluation, and deployment stages. It helps turn business pain points into technical plans, audit questionnaires, ROI/risk analysis, prototypes, integration plans, and reusable product insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer audit and deployment planning can involve sensitive business, personal, or regulated data. <br>
-Mitigation: Confirm authorization before use, avoid collecting secrets or regulated data unless approved, and use desensitized data for prototypes. <br>
-Risk: The audit script writes to a user-specified report path and could overwrite an existing report. <br>
-Mitigation: Use a fresh output path or back up existing reports before running the script. <br>
+## Use Case:
 
+Developers, forward deployed engineers, and AI solution teams use this skill to plan customer discovery, translate business needs into technical evaluations, design deployment paths, and generate industry-specific audit questionnaires for enterprise AI rollouts.
 
-## Reference(s): <br>
-- [FDE 方法论详解](references/fde-framework.md) <br>
-- [FDE 技术工具包](references/fde-toolkit.md) <br>
-- [FDE 行业案例库](references/fde-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional Python-generated questionnaire reports and code or command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer audit questionnaires, deployment checklists, ROI and risk matrices, technical plans, and prototype implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill supports enterprise deployment planning in regulated or customer environments, where poor authorization or data handling can create compliance and privacy risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm written authorization, collect only necessary metadata, use desensitized test data, protect secrets, and require normal security, compliance, change approval, and rollback reviews before production use.
+
+Risk: The methodology can influence production AI architecture and deployment decisions without independently validated evaluation artifacts.
+
+Mitigation: Treat generated plans and questionnaires as review inputs, validate assumptions with stakeholders, run scoped POCs, and document acceptance criteria before deployment.
+
+## Reference(s):
+
+- [FDE methodology framework](references/fde-framework.md)
+- [FDE technical toolkit](references/fde-toolkit.md)
+- [FDE industry case library](references/fde-cases.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/fde)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline commands and generated questionnaire text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate customer audit questionnaires to stdout or a user-specified Markdown file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

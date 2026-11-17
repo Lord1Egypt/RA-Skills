@@ -1,43 +1,55 @@
-## Description: <br>
-上市公司审计追踪与风险检测技能包，自动化分析往来账龄、标记异常交易、检测重复付款、监控大额异常预警。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上市公司审计追踪与风险检测技能包，自动化分析往来账龄、标记异常交易、检测重复付款、监控大额异常预警。
 
-## Publisher: <br>
-[aolikeji](https://clawhub.ai/user/aolikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolikeji](https://clawhub.ai/user/aolikeji)
 
-## Use Case: <br>
-Finance and audit teams use this skill to analyze accounts receivable and payable aging, identify unusual transactions, detect duplicate payments, review bank reconciliation exceptions, and draft audit findings. It supports audit review and risk triage rather than replacing professional judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive finance, banking, payroll, tax, customer, or vendor information. <br>
-Mitigation: Use it only in approved workspaces and avoid sharing confidential records unless the workspace is authorized for that data. <br>
-Risk: Audit flags, remediation suggestions, and tax-risk conclusions may be incomplete or unsuitable for a specific organization. <br>
-Mitigation: Require review by qualified audit, finance, compliance, or tax personnel before acting on the results. <br>
-Risk: Broad trigger terms may activate the skill more often than intended. <br>
-Mitigation: Confirm that finance or audit-analysis assistance is desired before applying the skill to user-provided data. <br>
+## Use Case:
 
+Finance, audit, compliance, and risk teams use this skill to analyze receivable and payable aging, detect anomalous transactions, flag duplicate payments, review bank reconciliation issues, assess expense and tax risks, and draft audit findings for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-audit-tracker) <br>
-- [Project homepage](https://github.com/AOLIKEJI/finance-audit-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Code, Guidance] <br>
-**Output Format:** [Markdown reports and JSON-style audit finding summaries with example code and formulas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk ratings, audit finding tables, remediation suggestions, and audit workpaper templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may process sensitive finance, audit, tax, and transaction data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data the user is authorized to process, minimize shared datasets, and follow the organization's confidentiality controls.
+
+Risk: Broad finance and audit triggers may cause the skill to activate in contexts where automated risk labels could be over-read.
+
+Mitigation: Review outputs carefully and treat freezes, collections, tax actions, and risk ratings as recommendations requiring professional human review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-audit-tracker)
+- [Project homepage](https://github.com/AOLIKEJI/finance-audit-tracker)
+- [Publisher profile](https://clawhub.ai/user/aolikeji)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown reports, tables, JSON examples, and audit-rule pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as audit assistance and reviewed by qualified finance, audit, tax, or compliance personnel before action.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

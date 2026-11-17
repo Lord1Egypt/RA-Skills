@@ -1,42 +1,55 @@
-## Description: <br>
-Writes complete, formatted BSc graduation research papers and projects for the College of Computer Science and Mathematics at Tikrit University, including required structure, bilingual abstracts, references, and Word document conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to write complete, formatted academic graduation research papers and projects for the College of Computer Science and Mathematics at Tikrit University.
 
-## Publisher: <br>
-[bio-colab](https://clawhub.ai/user/bio-colab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bio-colab](https://clawhub.ai/user/bio-colab)
 
-## Use Case: <br>
-Students, educators, and writing assistants use this skill to draft Tikrit University College of Computer Science and Mathematics graduation papers with the expected five-chapter structure, bilingual abstract placement, citation style, and Word document formatting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated research papers may contain inaccurate citations, unsupported facts, or content that does not satisfy local academic policy. <br>
-Mitigation: Independently verify citations, factual claims, and university requirements before submitting or distributing generated work. <br>
-Risk: The skill strongly applies Tikrit University CS/Math graduation-paper conventions even when a user wants a narrower section, different institution, or single-language output. <br>
-Mitigation: State the desired scope, institution format, and language requirements explicitly before generation. <br>
+## Use Case:
 
+External users, students, and academic writers use this skill to draft Tikrit University College of Computer Science and Mathematics BSc graduation research papers with the required five-chapter structure, bilingual abstracts, front matter, references, figures, tables, and Word-oriented formatting conventions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bio-colab/research-tikrit) <br>
-- [Arabic Abstract Phrasing Templates](artifact/references/arabic-abstracts.md) <br>
-- [Topic Templates for CS and Math Research](artifact/references/topic-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Structured academic prose and document-generation guidance, optionally resulting in a formatted .docx file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Tikrit University-specific structure, bilingual abstract conventions, IEEE-style references, and Word formatting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may impose Tikrit University CS/Math structure, bilingual abstracts, Arabic front matter, and .docx-oriented conventions on unrelated academic writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when that institutional format is desired, and explicitly override the structure, language policy, and output conventions when another style guide applies.
+
+Risk: Generated academic content may include incorrect references, metrics, institutional details, or project claims if the user does not provide verified source material.
+
+Mitigation: Require human review of citations, results, tables, supervisor titles, institutional identity, and final formatting before academic submission.
+
+## Reference(s):
+
+- [Topic Templates - CS & Math Research (Tikrit University)](artifact/references/topic-templates.md)
+- [Arabic Abstract Phrasing Templates](artifact/references/arabic-abstracts.md)
+- [ClawHub Skill Page](https://clawhub.ai/bio-colab/skills/research-tikrit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and document-generation instructions, with optional code or configuration for .docx generation when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are tailored to Tikrit University CS/Math graduation research structure and may include bilingual English/Arabic academic sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

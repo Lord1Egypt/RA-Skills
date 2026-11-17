@@ -1,42 +1,58 @@
-## Description: <br>
-Create and manage batch inference jobs using the Doubleword API for asynchronous JSONL-based AI inference workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, submit, monitor, and retrieve asynchronous batch AI inference jobs via the Doubleword API using JSONL files for large or cost-sensitive workloads.
 
-## Publisher: <br>
-[pjb157](https://clawhub.ai/user/pjb157) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pjb157](https://clawhub.ai/user/pjb157)
 
-## Use Case: <br>
-Developers and engineers use this skill to create JSONL batch request files, upload them to Doubleword, create asynchronous batch jobs, poll progress, retrieve results, and retry failed requests for large or cost-sensitive inference workloads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Batch files may contain prompts or request bodies that are sent to the external Doubleword API. <br>
-Mitigation: Review and redact JSONL files before upload, and confirm that Doubleword is the intended provider for the workload. <br>
-Risk: API-key use and submitted jobs may affect account usage or cost. <br>
-Mitigation: Use the intended Doubleword API key, choose the appropriate completion window, and monitor request counts, batch status, and output or error files. <br>
-Risk: Invalid or oversized JSONL input can fail validation or require retries. <br>
-Mitigation: Validate each JSONL line locally, keep files under the documented 200MB limit, and split large workloads into multiple batches. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Doubleword Batch API Reference](references/api_reference.md) <br>
-- [Doubleword API skill page](https://clawhub.ai/pjb157/doubleword-api) <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare JSONL batch request files, submit them to Doubleword's external API, monitor asynchronous batch jobs, and download result or error files.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown with JSON, Python, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on JSONL request files, Doubleword API keys, curl commands, batch IDs, file IDs, and result or error JSONL files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Batch JSONL files may contain sensitive prompts or other data uploaded to Doubleword's external API.
+
+Mitigation: Review files before upload and avoid secrets, regulated data, or confidential data unless Doubleword processing is approved.
+
+Risk: The DOUBLEWORD_API_KEY credential could be exposed through shell history, logs, or shared configuration.
+
+Mitigation: Manage DOUBLEWORD_API_KEY as a sensitive API credential and avoid embedding it directly in files or shared command transcripts.
+
+Risk: Downloaded result and error JSONL files may contain sensitive model outputs or request context.
+
+Mitigation: Store and share downloaded output and error files according to the data sensitivity of the submitted batch.
+
+## Reference(s):
+
+- [Doubleword Batch API Reference](references/api_reference.md)
+- [Doubleword API base URL](https://api.doubleword.ai/v1)
+- [ClawHub skill page](https://clawhub.ai/pjb157/skills/doubleword-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JSONL, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for external API use; it does not execute API calls by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

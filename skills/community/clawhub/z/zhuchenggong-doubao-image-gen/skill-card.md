@@ -1,40 +1,50 @@
-## Description: <br>
-豆包AI图片生成技能 - 视觉设计师专用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+豆包AI图片生成技能 - 视觉设计师专用.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Visual designers use this skill to guide an agent through Doubao web image generation, including prompt confirmation, aspect-ratio selection, preview sharing, user selection, and saving confirmed images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated images are sent through Doubao and the message channel. <br>
-Mitigation: Install only when this data handling is acceptable, and avoid entering sensitive prompts or sharing sensitive generated images. <br>
-Risk: Confirmed generated images are saved under D:\OpenClaw\downloads\images\. <br>
-Mitigation: Manually delete saved images when they are no longer needed. <br>
+## Use Case:
 
+External visual designers use this skill to guide an agent through collecting image requirements, generating images on Doubao's web image-creation page, presenting generated options for user selection, and saving confirmed outputs.
 
-## Reference(s): <br>
-- [Doubao image creation page](https://www.doubao.com/chat/create-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Images, Files, Shell commands] <br>
-**Output Format:** [Markdown guidance with user-visible image previews and saved local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Confirmed downloads are copied to D:\OpenClaw\downloads\images\.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Confirmed generated images are saved and copied to a persistent local D drive folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or proprietary prompts and images unless persistent local storage is acceptable, and delete saved outputs manually when no longer needed.
+
+## Reference(s):
+
+- [Doubao image creation page](https://www.doubao.com/chat/create-image)
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/zhuchenggong-doubao-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selected images are saved locally and copied to a persistent D drive folder after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

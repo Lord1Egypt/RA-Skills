@@ -1,43 +1,55 @@
-## Description: <br>
-Track hours saved by AI-assisted work and calculate value using category-based hourly rates for ROI summaries and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track hours saved and calculate ROI with category-based rates to measure and prove the value an AI assistant generates over time.
 
-## Publisher: <br>
-[sergirostoll-coder](https://clawhub.ai/user/sergirostoll-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sergirostoll-coder](https://clawhub.ai/user/sergirostoll-coder)
 
-## Use Case: <br>
-Individuals, teams, and operators use this skill to log AI-assisted tasks, estimate hours saved, and produce value summaries that support business-case reporting. It is useful when an agent needs to maintain a local task-value ledger and export summaries as human-readable reports or dashboard-ready JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled data.json contains existing task history that may make reports reflect prior sample or publisher data rather than the user's own work. <br>
-Mitigation: Review, clear, or replace data.json before first use when a clean ledger is required. <br>
-Risk: Task descriptions and notes are persisted locally and may appear in Markdown reports or JSON exports. <br>
-Mitigation: Avoid recording secrets, credentials, or highly sensitive business details in logged tasks or notes. <br>
+## Use Case:
 
+Developers, operators, and business users use this skill to log AI-assisted work, estimate hours saved, calculate value by task category, and produce summaries for reporting or dashboards.
 
-## Reference(s): <br>
-- [Value Tracker ClawHub release](https://clawhub.ai/sergirostoll-coder/value-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/sergirostoll-coder) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [CLI text summaries, Markdown reports, JSON exports, and local JSON configuration/data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task entries locally in data.json and reads category rates from config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Logged task descriptions and notes are stored locally and may be included in exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording sensitive business, customer, credential, or personal information unless local retention and export are acceptable.
+
+Risk: The release ships with populated operational history in data.json.
+
+Mitigation: Review or clear bundled data.json before use, especially before sharing reports or JSON exports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sergirostoll-coder/skills/value-tracker)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [CLI text summaries, Markdown reports, JSON exports, and local JSON data/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes task history to data.json and reads configurable rates from config.json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

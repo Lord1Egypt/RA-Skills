@@ -1,0 +1,30 @@
+{
+  "skill_name": "huawei-cloud-apig-instance-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "APIG ListInstancesV2 — dedicated instance list (read-only GET)",
+      "command": "hcloud APIG ListInstancesV2 --cli-region={region} --limit=10 --offset=0",
+      "expected": "JSON with total/size/instances[] (GET /v2/{project_id}/apigw/instances)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "APIG ListInstancesV2 — server-side status filter",
+      "command": "hcloud APIG ListInstancesV2 --cli-region={region} --status=Running --limit=10 --offset=0",
+      "expected": "running instances or an empty instances[] array",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "APIG ListInstancesV2 — exact instance name lookup",
+      "command": "hcloud APIG ListInstancesV2 --cli-region={region} --instance_name=apig-skill-test --limit=10 --offset=0",
+      "expected": "matching instance or an empty instances[] array",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

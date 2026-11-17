@@ -9,7 +9,7 @@ from typing import Any
 
 from bbc import SCHEMA_VERSION
 
-# Exit codes — see references/agent-contract.md
+# Exit codes — see DESIGN.md §3.1
 EXIT_OK = 0
 EXIT_RUNTIME = 1
 EXIT_AUTH = 2

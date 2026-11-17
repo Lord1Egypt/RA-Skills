@@ -1,0 +1,32 @@
+{
+  "batch_id": "double11_earphone_2026",
+  "title": "双11 降噪耳机广告系列",
+  "engine": "libTV",
+  "default_style": "电商高饱和·快节奏",
+  "items": [
+    {
+      "slug": "high_end_concept",
+      "seed_theme": "高端概念向：降噪耳机如黑色艺术品悬浮于星空中，光影流转",
+      "episode_count": 1,
+      "duration_sec": 20,
+      "style": "电影感·暗调·产品悬浮",
+      "output_name": "高端概念_耳机"
+    },
+    {
+      "slug": "shout_sales",
+      "seed_theme": "双11喊麦口播：主播手持耳机激情喊价，红金促销氛围",
+      "episode_count": 1,
+      "duration_sec": 15,
+      "style": "电商快节奏·高饱和·真人出镜口播",
+      "output_name": "喊麦口播_耳机"
+    },
+    {
+      "slug": "daily_life",
+      "seed_theme": "生活场景：通勤地铁上戴上耳机世界瞬间安静，人物惬意微笑",
+      "episode_count": 1,
+      "duration_sec": 18,
+      "style": "明亮生活感·真实光·第一人称",
+      "output_name": "生活场景_耳机"
+    }
+  ]
+}

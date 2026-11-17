@@ -1,39 +1,53 @@
-## Description: <br>
-Design chaos engineering experiments to test system resilience. Generate failure injection scenarios, define steady-state hypotheses, blast radius controls, and rollback procedures for services, networks, and infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design chaos engineering experiments to test system resilience. Generate failure injection scenarios, define steady-state hypotheses, blast radius controls, and rollback procedures for services, networks, and infrastructure.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to plan chaos engineering experiments, game days, readiness audits, and post-experiment reports for services, networks, and infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chaos experiments and commands can disrupt production services if run without authorization or controls. <br>
-Mitigation: Treat outputs as plans for review; confirm authorization, cluster and namespace, blast radius, abort criteria, rollback, and least-privilege Kubernetes credentials before execution. <br>
-Risk: Production examples may be copied directly into sensitive environments. <br>
-Mitigation: Start in staging or a sandbox and adapt targets, durations, thresholds, and rollback actions to the current system before any production run. <br>
+## Use Case:
 
+Developers and site reliability engineers use this skill to design chaos experiments, game days, readiness audits, and result reports for services, networks, and infrastructure.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed experiment definitions, safety controls, rollback steps, readiness scores, and findings reports for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Production-targeted failure examples can cause service disruption if copied directly into live environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated commands as design drafts; require explicit non-production defaults, dry runs, rollback readiness, health checks, and human approval before failure injection.
+
+Risk: Broad Kubernetes discovery can inspect more namespaces than intended.
+
+Mitigation: Limit Kubernetes context and namespace scope before use, and only inspect cluster resources that are authorized for the exercise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/chaos-test-designer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include chaos experiment definitions, game day plans, readiness scores, rollback procedures, and remediation recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

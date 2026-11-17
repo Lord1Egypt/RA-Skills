@@ -1,43 +1,61 @@
-## Description: <br>
-Gugu Gaga analyzes pharmaceutical regulatory and guidance documents from PDF, DOCX, DOC, or TXT inputs and turns them into structured analysis reports for training presentations or study-sharing PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gugu Gaga converts pharmaceutical regulatory PDF, DOCX, DOC, or TXT files into structured analysis reports and generates training PPTX or study PDF outputs.
 
-## Publisher: <br>
-[gxpcode-hezhong](https://clawhub.ai/user/gxpcode-hezhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxpcode-hezhong](https://clawhub.ai/user/gxpcode-hezhong)
 
-## Use Case: <br>
-Regulatory, quality, and pharmaceutical professionals use this skill to break down pharmaceutical regulations or guidance into element collection, characterization, key content, lifecycle diagrams, and red-yellow-green-blue compliance summaries. It helps create reviewable training decks or study PDFs from local source documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Packaged preview assets and conversion code may load third-party resources or otherwise behave more broadly than the document-analysis workflow suggests. <br>
-Mitigation: Review generated HTML before conversion, block unexpected external network access in sensitive environments, and use local source documents only. <br>
-Risk: Document conversion can expose local files or content to broader converter behavior if optional cloud or plugin features are enabled. <br>
-Mitigation: Use only local PDF, DOC, DOCX, or TXT inputs and avoid enabling MarkItDown cloud or plugin flags unless separately reviewed. <br>
+## Use Case:
 
+Pharmaceutical regulatory professionals and supporting analysts use this skill to turn source regulations and guidance into structured review notes, compliance-level summaries, lifecycle diagrams, and presentation or PDF materials.
 
-## Reference(s): <br>
-- [Server-resolved GitHub repository](https://github.com/Gxpcode-hezhong/Regulatory-Guidance-Analysis-Tool) <br>
-- [ClawHub skill page](https://clawhub.ai/gxpcode-hezhong/skills/regulatory-guidance-analysis-tool) <br>
-- [Microsoft MarkItDown documentation](https://github.com/microsoft/markitdown) <br>
-- [MarkItDown security considerations](https://github.com/microsoft/markitdown#security-considerations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis files, generated HTML previews, and final PPTX or PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are selected by the user as either a training presentation PPTX or a study-sharing PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact frontmatter reports 2.5.2) <br>
+Risk: Required setup installs mutable dependencies from a third-party package mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment or container, and prefer pinned, hash-verified dependencies from a trusted source.
+
+Risk: Regulatory files may contain sensitive or confidential content.
+
+Mitigation: Use local regulatory files, avoid MarkItDown plugin or cloud options unless that data flow is intended, and review generated HTML before conversion.
+
+Risk: Generated regulatory analysis may be incomplete or misleading if treated as final advice.
+
+Mitigation: Have a qualified regulatory reviewer confirm the structured analysis, traffic-light classifications, and final PPTX or PDF before relying on them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gxpcode-hezhong/skills/regulatory-guidance-analysis-tool)
+- [Server-resolved source repository](https://github.com/Gxpcode-hezhong/Regulatory-Guidance-Analysis-Tool)
+- [Server-resolved source commit](https://github.com/Gxpcode-hezhong/Regulatory-Guidance-Analysis-Tool/tree/84bb568adf16af19ba8a098815fe06a8a3136879)
+- [Microsoft MarkItDown](https://github.com/microsoft/markitdown)
+- [Microsoft MarkItDown security considerations](https://github.com/microsoft/markitdown#security-considerations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown analysis files, HTML decks, PPTX presentations, and PDF documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local document inputs and user review before final PPTX or PDF conversion.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter reports 2.5.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

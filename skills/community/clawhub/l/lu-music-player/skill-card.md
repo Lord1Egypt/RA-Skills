@@ -1,40 +1,55 @@
-## Description: <br>
-Manage and control a Mopidy music service on a NAS, including playback, volume, playlists, and local music scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a Mopidy music service on a NAS, including playback status, playback controls, volume changes, playlist viewing, and local library scans.
 
-## Publisher: <br>
-[jesson1222-ship-it](https://clawhub.ai/user/jesson1222-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jesson1222-ship-it](https://clawhub.ai/user/jesson1222-ship-it)
 
-## Use Case: <br>
-Users who run Mopidy on a NAS use this skill to check player status, open the Iris web UI, control playback and volume, review playlists, and scan a local music library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes environment-specific Mopidy URLs, container names, and NAS music paths that may not match the user's setup. <br>
-Mitigation: Update the Mopidy URL, public URL, Docker container or service name, and music path before use. <br>
-Risk: Some suggested actions can restart containers, scan the music library, or change file permissions. <br>
-Mitigation: Require explicit user confirmation and review command targets before running Docker, scan, or permission-changing commands. <br>
+## Use Case:
 
+Users managing a Mopidy-backed NAS music service use this skill to check player state, control playback workflows, adjust volume, inspect playlists, and scan a local music library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jesson1222-ship-it/lu-music-player) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mopidy URLs, Docker commands, local music paths, and service-management guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, _meta.json, SKILL.md) <br>
+Risk: Unsafe recursive permission guidance could weaken NAS music directory access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid chmod -R 777; use owner/group-specific permissions for the Mopidy container.
+
+Risk: Restart and local scan commands affect the running Mopidy service.
+
+Mitigation: Run administrative commands only when you intend to affect that service and have confirmed the target container.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jesson1222-ship-it/skills/lu-music-player)
+- [Publisher profile](https://clawhub.ai/user/jesson1222-ship-it)
+- [Source homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and service URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include administrative Docker commands for the configured Mopidy service.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/_meta.json, artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-RTK (Rust Token Kit) is a CLI proxy that reduces LLM token consumption by compressing verbose command output from development tools such as git, file readers, search, tests, linters, Docker, and kubectl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RTK (Rust Token Kit) is a CLI proxy that reduces LLM token consumption by compressing output from common development commands such as git, file search, tests, linters, Docker, and Kubernetes.
 
-## Publisher: <br>
-[radicalgeek](https://clawhub.ai/user/radicalgeek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[radicalgeek](https://clawhub.ai/user/radicalgeek)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when and how to prefix verbose development commands with rtk so command output is compressed before entering model context. It is suited for repeated shell workflows such as repository inspection, test runs, linting, build diagnostics, container logs, and Kubernetes output review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external rtk binary that is not contained in the artifact. <br>
-Mitigation: Install and use rtk only from a trusted source, and verify the available binary before relying on its output. <br>
-Risk: RTK can wrap mutating commands such as commits, pushes, deployments, Docker, and kubectl actions. <br>
-Mitigation: Treat rtk as an output display layer; review command intent and permissions before executing mutating operations. <br>
-Risk: Environment variables, logs, and retained tee files may expose secrets to terminal output, model context, local storage, or command history. <br>
-Mitigation: Avoid running secret-bearing environment or log commands through rtk unless disclosure is acceptable, and manage tee-log retention according to local policy. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to choose token-efficient RTK wrappers for verbose shell commands during code navigation, testing, linting, build, container, and log workflows.
 
-## Reference(s): <br>
-- [RTK Full Docs](references/rtk-full-docs.md) <br>
-- [RTK GitHub Repository](https://github.com/rtk-ai/rtk) <br>
-- [RTK Documentation](https://www.rtk-ai.app) <br>
-- [RTK Troubleshooting](https://github.com/rtk-ai/rtk/blob/master/docs/TROUBLESHOOTING.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/radicalgeek/rtk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on compressed terminal output; failed commands may reference retained full-output tee logs when RTK is configured to save them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan flags that RTK guidance includes displaying environment variables with filters such as AWS, which could expose secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using environment-variable filters on secret-bearing prefixes such as AWS, TOKEN, GCP, or AZURE unless values are redacted before display.
+
+Risk: RTK tee logs and command-history analytics can retain command output on the local machine.
+
+Mitigation: Review local RTK log and history retention settings, avoid capturing sensitive command output, and inspect full tee logs only when troubleshooting requires it.
+
+## Reference(s):
+
+- [RTK Full Docs](references/rtk-full-docs.md)
+- [RTK GitHub Repository](https://github.com/rtk-ai/rtk)
+- [RTK Documentation](https://www.rtk-ai.app)
+- [RTK Troubleshooting](https://github.com/rtk-ai/rtk/blob/master/docs/TROUBLESHOOTING.md)
+- [ClawHub Skill Page](https://clawhub.ai/radicalgeek/skills/rtk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance focuses on compressed command output, optional configuration, and paths to raw tee logs when full output is needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

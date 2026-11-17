@@ -14,6 +14,17 @@ A conversational OpenClaw skill that manages the entire college application proc
 - **Multi-Student** -- track multiple kids through the process simultaneously
 - **Proactive Nudges** -- flags approaching deadlines, unfiled FAFSA, and incomplete applications
 
+## Privacy and Data Handling
+
+This skill keeps an ongoing record about students, who are often minors, including grades, test scores, and financial-aid details. Here's how it's handled:
+
+- **Local only.** Everything is saved in one file, `college-data.json`, in the skill's data directory. The skill makes no network calls. The file isn't encrypted, so anyone with access to the computer or its backups can read it.
+- **You're told before anything is saved.** The first time you add a student, the assistant says what it will store and where.
+- **Only what's needed.** First names only. For financial aid it keeps filing status, deadlines, and aid amounts, never FSA IDs, passwords, tax returns, account numbers, or detailed household finances.
+- **See it or delete it anytime.** Ask to see everything saved about a student, delete one student's data, or clear the whole tracker. After decisions are final, the assistant offers once to clear the record.
+- **Not shared.** Tracker contents aren't sent to other people, services, or skills unless you ask for that specific thing.
+- **Only when you're tracking.** The skill is meant to activate when you're setting up or updating a specific student's tracker, not on general college questions.
+
 ## Example Usage
 
 **Set up a student:**

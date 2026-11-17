@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Product Research"
+  short_description: "GitHub 产品调研与机会发现 · Product research"
+  default_prompt: "使用 $github-product-research 调研 GitHub 产品机会。Research product opportunities on GitHub."

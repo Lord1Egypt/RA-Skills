@@ -1,40 +1,53 @@
-## Description: <br>
-Desktop GUI automation toolkit for browser, mobile device, screenshot, and native Windows application workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desktop GUI automation toolkit for browser, mobile devices, and native applications.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to guide browser interaction, paired-device control, screenshots, and native Windows GUI automation with Python examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad browser, paired-device, screenshot, local Python execution, and system-wide input automation. <br>
-Mitigation: Use only on devices and accounts you own or administer, confirm each sensitive action before execution, and avoid use around sensitive windows or production accounts without clear controls. <br>
-Risk: Desktop and mobile automation can capture camera, screen, location, or account context beyond the intended task. <br>
-Mitigation: Check device pairing and visible windows before running actions, limit recordings and screenshots to the minimum needed, and review outputs before sharing. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to guide browser automation, paired mobile device actions, desktop screenshots, and Windows native application control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/systiger/desktop-automation-pro-systiger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide screen capture, command execution, paired-device actions, and system-wide input simulation when the host agent has those tools available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Broad GUI automation guidance can affect browsers, active desktop windows, paired devices, screenshots, location, screen recording, camera capture, global input, and remote command actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when broad automation is intended, confirm each sensitive action before execution, keep sensitive windows closed, and avoid administrator sessions unless strictly necessary.
+
+Risk: The artifact recommends installing and running Python automation dependencies that can control desktop input and capture screens.
+
+Mitigation: Install pinned dependencies in an isolated virtual environment and review proposed scripts before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/systiger/skills/desktop-automation-pro-systiger)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands]
+
+**Output Format:** [Markdown with inline code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser, mobile-device, screenshot, and Python automation examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

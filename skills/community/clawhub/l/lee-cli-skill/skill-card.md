@@ -1,45 +1,60 @@
-## Description: <br>
-Lee-CLI Skill helps an agent run the lee-cli personal assistant for weather jokes, news digests, work summaries, AI learning resource recommendations, and smart todo lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lee-CLI Skill helps Claude Code users run a local personal assistant CLI for weather jokes, news digests, work summaries, AI learning recommendations, and smart todo planning.
 
-## Publisher: <br>
-[leeking001](https://clawhub.ai/user/leeking001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeking001](https://clawhub.ai/user/leeking001)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for personal productivity assistance, including daily briefings, work review, learning recommendations, and task planning. The skill is most useful when the lee-cli binary is installed and the required API credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Claude Code activity records and may use calendar or work context. <br>
-Mitigation: Install and run it only when the lee-cli binary is trusted, and keep invocation scoped to explicit user requests. <br>
-Risk: Weather, news, and Anthropic API calls may share request data with external services. <br>
-Mitigation: Avoid including sensitive work details in prompts or command arguments, and treat command execution as external data sharing unless runtime documentation proves otherwise. <br>
-Risk: API-key troubleshooting can expose secrets if an agent prints environment variables. <br>
-Mitigation: Do not ask the agent to echo API keys; verify credential presence without displaying secret values. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to select and run lee-cli commands for daily personal-assistant workflows, including news updates, work review, learning-resource discovery, and task planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leeking001/lee-cli-skill) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Security notice](artifact/SECURITY.md) <br>
-- [User guide](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output may summarize or interpret lee-cli command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill may run a separate local lee-cli executable with access to API keys, activity logs, calendar or task data, and network services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only after verifying the exact lee-cli package and version, and review commands before execution.
+
+Risk: Troubleshooting steps can reveal API keys or other sensitive environment values if printed directly.
+
+Mitigation: Check that required variables are present without displaying secret values in logs, chat, or shared terminals.
+
+Risk: Summary and todo workflows may process local work records or calendar data and may send derived content to configured APIs.
+
+Mitigation: Use those workflows only when the user accepts that data processing path and limit requests to the needed date range or task scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leeking001/skills/lee-cli-skill)
+- [Skill usage guide](artifact/SKILL.md)
+- [Security notice](artifact/SECURITY.md)
+- [lee-cli npm package](https://www.npmjs.com/package/@leeking001/lee-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and summarized CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on local lee-cli installation, network access, configured API keys, and available local activity or calendar data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

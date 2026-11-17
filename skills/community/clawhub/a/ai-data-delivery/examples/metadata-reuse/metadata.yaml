@@ -1,0 +1,50 @@
+version: synthetic
+custom:
+  keep:
+  - 3
+  - 5
+datasets:
+- name: vehicles
+  source: vehicles
+  grain: 一辆车
+  primary_key:
+  - id
+  temporal:
+    kind: current
+  fields:
+  - name: id
+    role: pk
+  - name: company_id
+    role: dim
+    cn: 企业标识
+- name: companies
+  source: companies
+  grain: 一家企业
+  primary_key:
+  - id
+  temporal:
+    kind: current
+  fields:
+  - name: id
+    role: pk
+relationships:
+- id: vehicle_company
+  from: vehicles
+  to: companies
+  from_columns:
+  - company_id
+  to_columns:
+  - id
+  cardinality: N:1
+  traversable: true
+metrics:
+- id: total
+  dataset: companies
+  type: count
+  expr: COUNT(*)
+  caliber:
+    note: 当前企业记录数
+  unit: 条
+  name: 当前企业记录数
+  time_requirement: current
+  structured: true

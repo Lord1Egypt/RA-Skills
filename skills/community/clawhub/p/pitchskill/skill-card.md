@@ -1,47 +1,61 @@
-## Description: <br>
-A competitive pitch preparation skill for advertising and marketing agencies that coordinates six agents to analyze briefs, stakeholders, competitor gaps, strategy, decision dynamics, pitch expression, and final delivery packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pitch Skill coordinates six agents to help advertising and marketing agencies turn competitive briefs into structured win strategy, decision analysis, pitch narrative, Q&A preparation, and AIGC demo prompts.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-External agency strategists, pitch leads, and marketing teams use this skill to prepare for competitive client presentations, RFP responses, and agency-selection pitches. It helps structure the brief, infer stakeholder priorities, identify competitor strategy gaps, calculate win probability, rehearse Q&A, and package the final pitch materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for competitive pitch strategy and stakeholder persuasion, which may encourage overconfident or manipulative recommendations if inputs are weak or speculative. <br>
-Mitigation: Require users to distinguish public evidence from assumptions, review win-rate and stakeholder claims before use, and avoid presenting inferred decision dynamics as facts. <br>
-Risk: Requests may include confidential client information, NDA-covered materials, insider information, or private personal details. <br>
-Mitigation: Do not provide sensitive or improperly obtained information to the skill; prefer public sources, role-level assumptions, and sanitized brief excerpts. <br>
-Risk: The trigger scope may be broad for vague pitch-related phrases and could activate for generic proposals, internal presentations, investor pitches, or ordinary marketing plans. <br>
-Mitigation: Confirm that the request involves a competitive client-facing pitch or RFP before using the full workflow; disable or override the skill for non-competitive proposal tasks. <br>
+## Use Case:
 
+External agency teams use this skill to prepare for competitive advertising or marketing pitches, especially RFP responses and agency-selection presentations. It structures the workflow from brief intake through intelligence gathering, strategy, decision simulation, expression, and final pitch package delivery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qomob/pitchskill) <br>
-- [README](artifact/README.md) <br>
-- [Decision Engine Methodology](artifact/references/decision-engine.md) <br>
-- [Pitch Structure Templates](artifact/references/pitch-structure.md) <br>
-- [Strategy Frameworks Library](artifact/references/strategy-frameworks.md) <br>
-- [Bilingual Templates](artifact/references/bilingual-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured pitch analysis, decision reports, win-rate scoring, Q&A preparation, AIGC demo prompts, and final pitch-package guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence, SKILL.md frontmatter, version.json) <br>
+Risk: Evaluator profiling and stakeholder mapping may encourage use of private, confidential, or unlawfully obtained information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only lawful public information or user-authorized business context, and do not provide confidential insider information or private evaluator details.
+
+Risk: AIGC demo visuals may be mistaken for completed work or validated campaign assets.
+
+Mitigation: Label generated visuals as concept mockups and review them before client presentation.
+
+Risk: Win-rate percentages can overstate certainty in subjective pitch decisions.
+
+Mitigation: Treat percentages as rough heuristics, require evidence chains for scores, and review business judgment before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qomob/skills/pitchskill)
+- [Decision Engine Methodology](references/decision-engine.md)
+- [Pitch Structure Templates](references/pitch-structure.md)
+- [Strategy Frameworks Library](references/strategy-frameworks.md)
+- [Bilingual Templates](references/bilingual-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown pitch package with structured analysis, deck outline, Q&A responses, win-rate scoring, and image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be Chinese or English depending on the user and client presentation language; win-rate scores require evidence review.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence, SKILL.md frontmatter, version.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

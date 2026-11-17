@@ -1,39 +1,51 @@
-## Description: <br>
-ProposalKit turns a brief project or service description into a coordinated business proposal package with a proposal document, pitch deck, pricing sheet, and executive one-pager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProposalKit turns a brief project or service description into a coordinated business proposal package with a proposal document, pitch deck, pricing sheet, and executive one-pager.
 
-## Publisher: <br>
-[EthAgent](https://clawhub.ai/user/EthAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ethagent](https://clawhub.ai/user/ethagent)
 
-## Use Case: <br>
-External users, freelancers, agencies, consultants, and small businesses use this skill to generate client-ready proposal packages for bids, quotes, RFP responses, project scopes, SOWs, and investor or partner pitches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated proposal content may contain inaccurate pricing, timelines, payment terms, legal or IP language, client names, or claims about capabilities and past results. <br>
-Mitigation: Review the proposal, pitch deck, pricing sheet, and one-pager before sending them to a client, investor, or partner. <br>
-Risk: Broad activation around proposals, bids, quotes, and pitches may cause the skill to generate business deliverables from incomplete briefs. <br>
-Mitigation: Confirm critical inputs such as the project or service, client name, scope, pricing approach, and timeline before relying on the generated package. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ProposalKit ClawHub listing](https://clawhub.ai/EthAgent/proposal-kit) <br>
+## Use Case:
+
+External users, freelancers, agencies, and small businesses use this skill to draft ready-to-send proposal packages for client, investor, partner, quote, bid, SOW, and RFP-response workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated proposals may contain inaccurate legal, healthcare, pricing, or client-facing claims.
+
+Mitigation: Review all regulated, pricing, and client-facing content before sending the generated documents.
+
+Risk: The skill may activate on broad sales, pitching, quote, bid, or proposal-related requests.
+
+Mitigation: Confirm that the user intends to create a proposal package before producing deliverable files when the request is ambiguous.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Proposal package files (.docx, .pptx, .xlsx, .pdf) with a brief delivery message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents are generated from a unified content plan and should be reviewed for business accuracy before sending.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: release metadata) <br>
+**Output Type(s):** [Files, Text, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Proposal package files (.docx, .pptx, .xlsx, .pdf) with a short delivery message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates coordinated proposal, deck, pricing workbook, and one-page summary content from a user brief.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

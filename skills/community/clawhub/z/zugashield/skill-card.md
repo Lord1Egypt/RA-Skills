@@ -1,47 +1,57 @@
-## Description: <br>
-ZugaShield Security Scanner scans OpenClaw messages, tool calls, model outputs, and recalled memory to help block prompt injection, SSRF, command injection, data leakage, and memory poisoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZugaShield Security Scanner is an OpenClaw plugin that scans messages, tool calls, responses, and memory for prompt injection, SSRF, command injection, data leakage, and memory poisoning.
 
-## Publisher: <br>
-[Zuga-luga](https://clawhub.ai/user/Zuga-luga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zuga-luga](https://clawhub.ai/user/zuga-luga)
 
-## Use Case: <br>
-Developers and operators use this plugin to add security scanning to OpenClaw deployments across connected channels and to inspect scanner status and threat reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin relies on a separate Python scanner that can inspect broad OpenClaw traffic, including messages, tool arguments, model outputs, and recalled memory. <br>
-Mitigation: Review the plugin and the zugashield Python package before installing, and deploy only where that traffic inspection is approved. <br>
-Risk: The security evidence notes package and source ambiguity around the OpenClaw plugin and Python MCP package. <br>
-Mitigation: Verify package names, publisher identity, and repository provenance before installation, and consider pinning package versions. <br>
-Risk: Fail-closed behavior can block activity when the scanner is unavailable. <br>
-Mitigation: Test the scanner in the target environment, monitor scanner status, tune timeouts, and choose fail-closed settings deliberately. <br>
+## Use Case:
 
+Developers and operators use this skill to add gateway-level security scanning to OpenClaw deployments before requests, tool calls, responses, and memory recalls reach or leave the agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zuga-luga/zugashield) <br>
-- [Publisher profile](https://clawhub.ai/user/Zuga-luga) <br>
-- [Project homepage](https://github.com/Zuga-luga/ZugaShield) <br>
-- [npm package](https://www.npmjs.com/package/zugashield-openclaw-plugin) <br>
-- [PyPI package](https://pypi.org/project/zugashield/) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text command responses and JSON-compatible plugin configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May block OpenClaw requests or tool executions when scans detect threats or when fail-closed scanner availability rules apply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: package.json, openclaw.plugin.json, server release metadata) <br>
+Risk: The plugin installs and runs an external Python scanner engine that can receive OpenClaw messages, tool calls, responses, and memory content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin exact npm and PyPI versions, verify the Python scanner package provenance, and run it under a low-privilege, sandboxed account.
+
+Risk: If the scanner is unavailable, protection for non-tool traffic depends on fail-closed configuration.
+
+Mitigation: Keep fail_closed enabled for normal deployments, monitor /shield status after startup and updates, and treat disconnected scanner status as an operational incident.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zuga-luga/skills/zugashield)
+- [ZugaShield GitHub Homepage](https://github.com/Zuga-luga/ZugaShield)
+- [ZugaShield OpenClaw Plugin on npm](https://www.npmjs.com/package/zugashield-openclaw-plugin)
+- [ZugaShield on PyPI](https://pypi.org/project/zugashield/)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with shell and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May block unsafe requests or tool calls before execution depending on scanner verdict and configuration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, package.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Orchestrates structured multi-agent debates with configurable roles, rounds, local archiving, and multi-voter scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debate Arena helps a host agent orchestrate configurable multi-agent debates with chat commands, role assignment, round progression, local archiving, and multi-voter scoring.
 
-## Publisher: <br>
-[updatedb](https://clawhub.ai/user/updatedb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[updatedb](https://clawhub.ai/user/updatedb)
 
-## Use Case: <br>
-Developers and team facilitators use this skill to run structured debates in chat, configure participant roles and rounds, archive arguments, and collect votes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debate state, archives, logs, votes, and optional defaults are stored locally. <br>
-Mitigation: Avoid confidential debate content unless local retention is acceptable, and clean up ~/.openclaw/debate-arena or configured state/archive paths when retention is no longer needed. <br>
-Risk: Saved defaults can persist participant and account settings. <br>
-Mitigation: Review settings before running debate conf, and remove default-config.json when defaults should no longer be reused. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run structured debate workflows in group chats, including setup of pros, cons, host, judge, voters, rounds, prompts, and persisted debate records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/updatedb/debate-arena) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with chat commands and Node.js API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces debate orchestration instructions and local state-management guidance for agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Participant or user-provided debate text can influence later agents that are asked to send group messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict spawned agents to the intended group-message capability, bind channel and target outside the model prompt where possible, and review host integration before installation.
+
+Risk: Debate transcripts, votes, logs, and default configuration are retained as local records.
+
+Mitigation: Avoid sensitive debate topics unless local retention is acceptable, and configure state and archive paths with appropriate access controls and cleanup procedures.
+
+Risk: Debater and judge agents could gain unnecessary local capabilities if the host exposes broad tools.
+
+Mitigation: Do not expose shell, filesystem, or broad messaging tools to debaters; use the direct content-recording helpers and keep file-import helpers disabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/updatedb/skills/debate-arena)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text chat responses with JSON-like command results and Node.js API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local state, log, default configuration, and archive files under the configured Debate Arena data paths.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

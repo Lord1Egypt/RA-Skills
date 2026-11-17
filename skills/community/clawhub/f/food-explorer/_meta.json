@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7a2dgrdddw9s49saazzcj5fd83mayg",
+  "ownerId": "local-dev",
   "slug": "food-explorer",
   "version": "1.0.0",
-  "publishedAt": 1777015819611
+  "publishedAt": 0,
+  "author": "zhoulinbin",
+  "tags": ["美食", "探店", "餐厅推荐", "生活助手"]
 }

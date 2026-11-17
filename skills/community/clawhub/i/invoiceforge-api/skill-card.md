@@ -1,41 +1,53 @@
-## Description: <br>
-Generates, manages, and downloads professional PDF invoices through the InvoiceForge API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional PDF invoices using InvoiceForge API.
 
-## Publisher: <br>
-[Jbennett111](https://clawhub.ai/user/Jbennett111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbennett111](https://clawhub.ai/user/jbennett111)
 
-## Use Case: <br>
-Freelancers, agencies, consultants, small businesses, SaaS teams, and contractors use this skill to create invoices, download invoice PDFs, track invoice status, and automate billing workflows through InvoiceForge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Invoice workflows can send seller, buyer, email, address, line-item, tax, due-date, and note data to the third-party InvoiceForge service. <br>
-Mitigation: Confirm the invoice payload and obtain user consent before each invoice creation, batch operation, or status update. <br>
-Risk: InvoiceForge API keys grant access to invoice operations and could expose billing workflows if stored insecurely. <br>
-Mitigation: Store the API key only in a trusted secret manager and avoid placing it in chat history, source files, or shell history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [InvoiceForge API](https://invoiceforge.vosscg.com) <br>
-- [InvoiceForge API key endpoint](https://invoiceforge.vosscg.com/v1/keys) <br>
-- [InvoiceForge invoices endpoint](https://invoiceforge.vosscg.com/v1/invoices) <br>
+## Use Case:
 
+Developers, freelancers, agencies, consultants, contractors, SaaS companies, and small businesses use this skill to create, list, download, and update invoices through InvoiceForge after collecting billing details and confirming API actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce invoice API requests, invoice status updates, PDF download commands, and API-key setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Invoice creation and management sends seller, buyer, invoice, email, and payment-status information to the third-party InvoiceForge service.
+
+Mitigation: Confirm the intended account, invoice contents, recipients, and status changes before allowing the agent to call the API.
+
+Risk: The skill requires an InvoiceForge API key that could expose billing operations if stored or shared improperly.
+
+Mitigation: Store the API key only in an approved secret store and avoid placing it in chat logs, source files, or generated documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jbennett111/skills/invoiceforge-api)
+- [InvoiceForge API Base URL](https://invoiceforge.vosscg.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, files]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API key storage and produce invoice PDF downloads when the generated API calls are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

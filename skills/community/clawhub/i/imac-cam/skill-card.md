@@ -1,40 +1,52 @@
-## Description: <br>
-Captures an iMac camera view from the Photo Booth window when a user asks to open or view the camera or monitor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures the iMac camera view from the Photo Booth window, crops the window borders, and provides a captured image for viewing.
 
-## Publisher: <br>
-[uni-huang](https://clawhub.ai/user/uni-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[uni-huang](https://clawhub.ai/user/uni-huang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and operators use this skill when they want an agent to open Photo Booth on an iMac, capture the camera view, and return a viewable capture.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Webcam imagery can be captured and exposed through an unauthenticated network server.
+
+Mitigation: Require explicit user confirmation before capture and restrict viewing to authenticated or localhost-only access.
+
+Risk: Serving /tmp can expose unrelated temporary files on shared or networked machines.
+
+Mitigation: Serve only a private directory containing the intended capture file and shut the server down automatically after use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and end users can use this skill on macOS to capture the current Photo Booth camera view, crop the window frame, and receive a local URL for viewing the captured image. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, files, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill captures camera output from Photo Booth and saves it under /tmp. <br>
-Mitigation: Require explicit consent before capture, store the image in a dedicated private location, and delete it after use. <br>
-Risk: The skill starts an unauthenticated HTTP server on port 8765 that may expose the captured image or other /tmp files to the local network. <br>
-Mitigation: Serve only a dedicated private directory or localhost-only URL, and stop the server when sharing is complete. <br>
+**Output Format:** [Plain text status and a PNG image file served over HTTP]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uni-huang/imac-cam) <br>
+**Other Properties Related to Output:** [Creates /tmp/cam_capture.png and may start an unauthenticated HTTP server on port 8765 rooted at /tmp.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Text] <br>
-**Output Format:** [PNG image file with terminal text containing a local HTTP URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the capture to /tmp/cam_capture.png and may start a background HTTP server on port 8765.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

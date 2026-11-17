@@ -1,0 +1,13 @@
+{
+  "module": "午饭判官",
+  "route": "lunch-receipt",
+  "time_label": "12:00",
+  "title": "判了：热饭上升",
+  "reason": "下午要稳，先吃热的",
+  "action": "选10分钟内热饭",
+  "tags": ["热饭", "少排队"],
+  "corner": "重判",
+  "footer": "今天先这么过。",
+  "alt_text": "午饭判官。判了：热饭上升。下午要稳，先吃热的。现在做：选10分钟内热饭。",
+  "share_safe": true
+}

@@ -33,9 +33,9 @@ logging:
 # ── Git 同步 ───────────────────────────────────
 # ⚠️ 警告：git 功能会调用系统 git 命令向远程仓库推送变更，默认关闭。
 git:
-  enabled: true                 # 本地 eva-shared-memory remote 已配置
+  enabled: false                # 改为 true 并配置 remote 后开启
   auto_commit: true
-  auto_push: true
+  auto_push: false              # 推送前请确认 remote 已配置
   commit_prefix: "[heartbeat]"
 
 # ── 网站监控 (v1.1.0) ──────────────────────────
@@ -44,7 +44,7 @@ git:
 monitoring:
   canvas:
     enabled: true
-    base_url: "https://jhu.instructure.com"
+    base_url: "https://canvas.instructure.com"  # 替换为你的机构 Canvas URL
     lookahead_days: 30
   fsp:
     enabled: true
@@ -52,11 +52,3 @@ monitoring:
 
 # ── 工作区 ─────────────────────────────────────
 workspace_dir: workspace
-
-# ── 心跳看门狗 (v1.2.0) ───────────────────────────
-# 配合 */15 * * * * cron 使用
-# 每次触发先检查距上次心跳时间，未到间隔则静默跳过
-watchdog:
-  enabled: true
-  interval_seconds: 1800    # 期望间隔（30 分钟）
-  tolerance_seconds: 90     # 容差（防止边界跳过）

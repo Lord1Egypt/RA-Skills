@@ -1,42 +1,50 @@
-## Description: <br>
-Generate Chinese and English marketing copy using AIDA and A/B frameworks for ads, product descriptions, email campaigns, A/B variants, and brand slogans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Chinese and English marketing copy using AIDA and A/B frameworks for ads, product descriptions, email campaigns, and brand slogans.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Marketing writers, founders, and product teams use this skill to draft bilingual Chinese and English campaign copy, product descriptions, email frameworks, AIDA copy, A/B test variants, and slogan ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated copy can include unverified testimonials, user counts, time limits, discounts, or other factual and legal claims. <br>
-Mitigation: Review all generated claims before publication and replace placeholders or sample figures with verified, approved information. <br>
-Risk: Some helper commands may fail because of ordinary unset shell variable bugs. <br>
-Mitigation: Run the relevant command with sample inputs before relying on it in a workflow, and fix or wrap failing commands if operational reliability is required. <br>
+## Use Case:
 
+Marketing writers, founders, and developers can use this skill to draft structured Chinese or English marketing copy for ads, products, emails, A/B tests, AIDA funnels, and slogans. Generated copy should be reviewed and customized before publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/loutai0307-prog/bytesagain-copywriter-cn) <br>
-- [Publisher Profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style copywriting templates emitted from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include placeholders for claims, testimonials, discounts, deadlines, CTAs, and metrics that require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated marketing copy may include placeholder claims such as user counts, discounts, testimonials, or performance results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace placeholders with truthful, substantiated claims before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-copywriter-cn)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-like plain text with command examples and structured copy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable copy frameworks with placeholders for claims, discounts, testimonials, and calls to action.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

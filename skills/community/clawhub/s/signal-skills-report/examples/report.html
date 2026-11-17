@@ -1,0 +1,322 @@
+<title>Example report (hand-written payload)</title>
+<style>
+/* Token structure is load-bearing: keep these blocks self-contained.
+   Each one redefines the FULL set of tokens — never mix values across
+   blocks, that's how a light-on-light bug happens.
+
+   Do NOT default to warm-cream-bg + serif-headline + terracotta-accent.
+   That's the AI-generated cliché default. Pick a palette and type
+   pairing grounded in the report's actual subject instead — see
+   SKILL.md rule 5 and the worked "signal intercept" example there. The
+   dark, high-contrast "signal" palette below is one workable option,
+   not the mandatory one — swap the hex values, keep the block shape. */
+:root {
+  --void: #101210;
+  --panel: #191C18;
+  --line: #2B302A;
+  --ink: #E5E4DA;
+  --ink-dim: #83887A;
+  --sig: #8FC26E;
+  --sig-bg: rgba(143,194,110,0.14);
+  --mid: #D6A94A;
+  --mid-bg: rgba(214,169,74,0.14);
+  --alert: #E07257;
+  --alert-bg: rgba(224,114,87,0.14);
+  --off: #565A50;
+  --off-bg: rgba(86,90,80,0.16);
+}
+:root[data-theme="light"] {
+  --void: #E4E4DC;
+  --panel: #F6F6F1;
+  --line: #CFD0C5;
+  --ink: #1B1D17;
+  --ink-dim: #676B5D;
+  --sig: #3F7A2C;
+  --sig-bg: rgba(63,122,44,0.10);
+  --mid: #96700F;
+  --mid-bg: rgba(150,112,15,0.10);
+  --alert: #A83E23;
+  --alert-bg: rgba(168,62,35,0.10);
+  --off: #8A8E80;
+  --off-bg: rgba(138,142,128,0.14);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --void: #E4E4DC;
+    --panel: #F6F6F1;
+    --line: #CFD0C5;
+    --ink: #1B1D17;
+    --ink-dim: #676B5D;
+    --sig: #3F7A2C;
+    --sig-bg: rgba(63,122,44,0.10);
+    --mid: #96700F;
+    --mid-bg: rgba(150,112,15,0.10);
+    --alert: #A83E23;
+    --alert-bg: rgba(168,62,35,0.10);
+    --off: #8A8E80;
+    --off-bg: rgba(138,142,128,0.14);
+  }
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--void);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.wrap { max-width: 800px; margin: 0 auto; padding: 2.8rem 1.5rem 4rem; }
+.eyebrow {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sig);
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.5rem, 3.8vw, 2.1rem);
+  line-height: 1.18;
+  margin: 0 0 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.query {
+  font-size: 0.98rem;
+  color: var(--ink-dim);
+  margin: 0 0 2rem;
+  max-width: 66ch;
+}
+.tier-head {
+  margin: 2.6rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.bars { display: flex; gap: 3px; flex: none; }
+.bars i { display: block; width: 5px; height: 16px; border-radius: 1px; background: var(--line); }
+.bars i.on { background: var(--bar-color, var(--sig)); }
+.tier-head .titles { flex: 1; min-width: 0; }
+.tier-head .label {
+  font-family: ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.tier-head .name { font-size: 1.12rem; font-weight: 700; margin: 0.1rem 0 0; letter-spacing: -0.01em; }
+.item-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.item {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.2rem 1.1rem;
+}
+.item-top { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.35rem 0.5rem; margin-bottom: 0.5rem; }
+.item h3 { font-size: 1rem; font-weight: 700; margin: 0; line-height: 1.35; flex: 1 1 100%; text-wrap: balance; }
+.tag {
+  font-family: ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex: none;
+}
+.tag.sig { color: var(--sig); background: var(--sig-bg); }
+.tag.mid { color: var(--mid); background: var(--mid-bg); }
+.tag.alert { color: var(--alert); background: var(--alert-bg); }
+.tag.off { color: var(--off); background: var(--off-bg); }
+.item p { font-size: 0.93rem; margin: 0 0 0.5rem; color: var(--ink); }
+.item .src { font-family: ui-monospace, monospace; font-size: 0.72rem; color: var(--ink-dim); }
+footer {
+  margin-top: 2.8rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: ui-monospace, monospace;
+  font-size: 0.66rem;
+  color: var(--ink-dim);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---- filter/sort toolbar (rendered by render_report.py, not hand-authored
+   per report) ---- */
+.control-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--void) 92%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0.9rem 0 0.85rem;
+  margin: 0 0 1.8rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.control-row.chips { gap: 0.4rem; }
+.chip {
+  font-family: ui-monospace, monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink-dim);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s, border-color 0.12s, transform 0.08s;
+}
+.chip:hover { border-color: var(--chip-color, var(--sig)); color: var(--ink); transform: translateY(-1px); }
+.chip:active { transform: translateY(0); }
+.chip.active { background: var(--chip-bg, var(--sig-bg)); border-color: var(--chip-color, var(--sig)); color: var(--chip-color, var(--sig)); }
+.field { position: relative; display: flex; align-items: center; }
+.field-label {
+  position: absolute;
+  left: 0.6rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  top: -0.5rem;
+  background: var(--void);
+  padding: 0 0.3rem;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.control-select, .control-text {
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0.42rem 1.7rem 0.42rem 0.65rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2383887A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  transition: border-color 0.12s, box-shadow 0.12s;
+  min-width: 8.5rem;
+}
+.control-text { cursor: text; background-image: none; padding-right: 0.65rem; min-width: 11rem; }
+.control-select:hover, .control-text:hover { border-color: var(--sig); }
+.control-select:focus, .control-text:focus {
+  outline: none;
+  border-color: var(--sig);
+  box-shadow: 0 0 0 3px var(--sig-bg);
+}
+.control-reset {
+  font-family: ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--ink-dim);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.control-reset:hover { color: var(--alert); border-color: var(--alert); }
+.control-count {
+  font-family: ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--ink-dim);
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.topic-pill {
+  font-family: ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-dim);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.12rem 0.45rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.12s, color 0.12s;
+}
+.topic-pill:hover { border-color: var(--sig); color: var(--sig); }
+.item .src b.show-link { cursor: pointer; }
+.item .src b.show-link:hover { text-decoration: underline; }
+.is-hidden { display: none !important; }
+@media (max-width: 560px) {
+  .control-select, .control-text { min-width: 0; flex: 1 1 auto; }
+  .control-count { margin-left: 0; flex-basis: 100%; }
+}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">2 fictional shows, 5 episodes, hand-written example</p>
+  <h1>Build CSV export first; the pricing complaint is one source so far</h1>
+  <p class="query">What should we build next, based on what the shows say users want?</p>
+
+  <div class="tier-head">
+    <div class="bars" style="--bar-color: var(--sig)"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <div class="titles">
+      <div class="label">Ship next: raised independently more than once</div>
+      <h2 class="name">Do now</h2>
+    </div>
+  </div>
+  <div class="item-list">
+    <div class="item" style="border-left-color: var(--sig)">
+      <div class="item-top">
+        <h3>Users want to export their data to CSV</h3>
+        <span class="tag sig">confirmed twice</span>
+      </div>
+      <p>Raised by two different guests on two shows without prompting.</p>
+      <div class="src">Example Show A ep12; Example Show B ep4 (fictional)</div>
+    </div>
+  </div>
+
+  <div class="tier-head">
+    <div class="bars" style="--bar-color: var(--mid)"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="titles">
+      <div class="label">Watch: one source, worth a second look</div>
+      <h2 class="name">Watch</h2>
+    </div>
+  </div>
+  <div class="item-list">
+    <div class="item" style="border-left-color: var(--mid)">
+      <div class="item-top">
+        <h3>Per-seat pricing is pushing small teams to a competitor</h3>
+        <span class="tag mid">anecdotal</span>
+      </div>
+      <p>One guest&#x27;s story, no numbers; look for it in reviews before acting.</p>
+      <div class="src">Example Show A ep14 (fictional)</div>
+    </div>
+    <div class="item" style="border-left-color: var(--alert)">
+      <div class="item-top">
+        <h3>Offline mode will matter within a year</h3>
+        <span class="tag alert">prediction, unresolved</span>
+      </div>
+      <p>A falsifiable prediction; the ledger will mark it confirmed, failed or stale.</p>
+      <div class="src">Example Show B ep5 (fictional)</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Hand-written payload, not from a run</span>
+    <span>plugins/signal-report/examples/payload.json</span>
+  </footer>
+</div>

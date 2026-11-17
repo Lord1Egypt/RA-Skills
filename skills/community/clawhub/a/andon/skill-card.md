@@ -1,43 +1,58 @@
-## Description: <br>
-Andon is a local alert and production status-board tracker for adding, listing, searching, removing, exporting, and summarizing status entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Andon alert and production status board for JSON and CSV Andon tasks and status checks.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Operations teams and agents use Andon to maintain a simple local status board for production alerts, task records, and operational notes. It supports command-line workflows for checking current status, managing entries, exporting records, and viewing basic statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local status records may contain operational or sensitive notes and are written to a user-controlled data directory. <br>
-Mitigation: Keep ANDON_DIR pointed at a dedicated private folder and limit access to directories that are appropriate for operational records. <br>
-Risk: The remove command deletes a selected entry from the local JSONL data file. <br>
-Mitigation: Confirm the entry number before using remove and keep backups when records must be retained. <br>
-Risk: Exports can create JSON or CSV files in the current working directory. <br>
-Mitigation: Export only to directories where operational records can safely be stored and shared. <br>
+## Use Case:
 
+Developers and operations teams can use this skill to manage a local Andon-style production status log, including adding, listing, searching, removing, exporting, and summarizing entries.
 
-## Reference(s): <br>
-- [ClawHub Andon skill page](https://clawhub.ai/xueyetianya/andon) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes JSONL status records under ANDON_DIR or ~/.andon by default and can export JSON or CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores and mutates local data under ~/.andon by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured ANDON_DIR before use and avoid running the skill in environments where local data mutation is not acceptable.
+
+Risk: Security evidence reports unsafe shell and serialization handling.
+
+Mitigation: Do not use untrusted arguments or allow another agent to supply arguments until the config, JSON, CSV, and deletion behavior is fixed and documented.
+
+Risk: The remove and export commands can delete entries or write local export files.
+
+Mitigation: Review command arguments before execution and keep backups of operational log data when retention matters.
+
+## Reference(s):
+
+- [Andon ClawHub skill page](https://clawhub.ai/xueyetianya/skills/andon)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe generated local JSONL, CSV, or JSON files created by the shell script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

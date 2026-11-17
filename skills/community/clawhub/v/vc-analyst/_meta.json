@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn76b71hdvjbaetmpr601b967x82bz18",
-  "slug": "vc-analyst",
   "version": "1.2.0",
-  "publishedAt": 1780965252064
+  "updatedAt": "2026-06-09",
+  "changelog": "V1.2.0: Comps Analysis Engine(项目对比) + Sensitivity Analysis(敏感性分析) + Analysis History(历史记录) + Export Engine(多格式报告) + 5层数据获取Checklist + xbrowser集成 + 完整文件同步(soul.md/agents.md)",
+  "author": "perrykono-debug"
 }

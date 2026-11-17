@@ -1,44 +1,61 @@
-## Description: <br>
-Buy AI services, crypto data, and digital goods on Pactum marketplace. Supports credit card, Alipay, WeChat Pay, and USDC payments. Register with email, search items, place orders, track delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy AI services, crypto data, and digital goods on Pactum marketplace. Supports credit card, Alipay, WeChat Pay, and USDC payments. Register with email, search items, place orders, track delivery.
 
-## Publisher: <br>
-[fredm45](https://clawhub.ai/user/fredm45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredm45](https://clawhub.ai/user/fredm45)
 
-## Use Case: <br>
-External users and agents use this skill to browse Pactum marketplace listings, register for an account, place free or paid orders, track fulfillment, and handle post-delivery actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide account, payment, escrow, order, dispute, message, and shipping-address actions on the user's behalf. <br>
-Mitigation: Require explicit user approval before every purchase, credit top-up, escrow deposit, payment release, dispute, message, and shipping-address change. <br>
-Risk: The skill asks users to handle API keys and JWTs that can grant account access. <br>
-Mitigation: Do not paste API keys or JWTs into chat logs or third-party bots unless the user fully trusts the service and understands how to revoke or rotate credentials. <br>
+## Use Case:
 
+External users and agents use this skill to browse Pactum marketplace listings, register with email verification, place free or paid orders, track delivery, and manage post-delivery actions such as retries, messages, disputes, and file downloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fredm45/pactum) <br>
-- [Publisher profile](https://clawhub.ai/user/fredm45) <br>
-- [Pactum marketplace](https://www.pactum.cc) <br>
-- [Pactum API gateway](https://api.pactum.cc) <br>
-- [Pactum orders](https://www.pactum.cc/orders) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with Python requests examples and REST API parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and user-provided account, payment, order, and shipping details when the selected marketplace action needs them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles powerful Pactum API keys and JWTs, and the security evidence warns that credentials may be exposed unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not share credentials through chat, Telegram, logs, or transcripts; store API keys and tokens only in a secure secret manager and rotate them if exposure is suspected.
+
+Risk: Marketplace actions can spend funds, top up credit, deposit USDC escrow, release payment, or open disputes.
+
+Mitigation: Require explicit user confirmation before purchases, credit top-ups, escrow deposits, payment release, disputes, or retries that could affect funds or orders.
+
+Risk: Physical-item flows may submit shipping-address details.
+
+Mitigation: Collect shipping information only when the selected item requires it, confirm the destination with the user, and avoid retaining address data after the transaction workflow is complete.
+
+## Reference(s):
+
+- [Pactum Marketplace Skill Page](https://clawhub.ai/fredm45/skills/pactum)
+- [Pactum](https://www.pactum.cc)
+- [Pactum Gateway API](https://api.pactum.cc)
+- [Pactum Orders Web UI](https://www.pactum.cc/orders)
+- [Pactum Telegram Bot](https://t.me/Pactum_Market_Bot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python requests examples and REST workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to make marketplace API calls, handle credentials, submit payments, provide shipping details, and download delivered files.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

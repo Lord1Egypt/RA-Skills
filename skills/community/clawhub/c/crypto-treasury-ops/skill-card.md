@@ -1,44 +1,57 @@
-## Description: <br>
-Safely manage EVM treasury operations and native Hyperliquid trading for OpenClaw agents, including wallet balance checks, guarded token transfers, cross-chain USDC bridging, Hyperliquid deposits, destination gas top-ups, trading safety, and structured quoting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely manage EVM treasury operations and native Hyperliquid trading for OpenClaw agents, including wallet balance checks, guarded token transfers, cross-chain USDC bridging, Hyperliquid deposits, destination gas top-ups, trading safety, and structured quoting.
 
-## Publisher: <br>
-[fiowind](https://clawhub.ai/user/fiowind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fiowind](https://clawhub.ai/user/fiowind)
 
-## Use Case: <br>
-Developers and treasury operators use this skill to let OpenClaw agents quote, validate, and execute guarded EVM, Solana bridge-source, and Hyperliquid perpetual workflows with structured JSON responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move funds, sign transactions, and place trades when configured with wallet keys. <br>
-Mitigation: Use a dedicated treasury wallet or limited hot wallet, keep large balances elsewhere, set strict allowlists and max single/daily limits, and keep DRY_RUN_DEFAULT enabled until reviewed. <br>
-Risk: External swap, bridge, and approval flows can expose assets to unwanted routing, fees, or approvals. <br>
-Mitigation: Review route quotes, fee and slippage details, and token approvals before real execution; use quote_operation and dryRun=true immediately before state-changing calls. <br>
-Risk: Multi-stage bridge and Hyperliquid deposit flows can partially complete before an error is returned. <br>
-Mitigation: Re-check source and destination balances after any partial execution, then re-run quote_operation with the remaining balance before retrying. <br>
+## Use Case:
 
+Developers and operators use this skill to let OpenClaw agents quote, validate, and execute guarded treasury actions across Ethereum, Polygon, Arbitrum, Base, Solana bridge-source flows, and Hyperliquid perpetual accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fiowind/crypto-treasury-ops) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON responses with CLI invocation examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [State-changing tools support dry-run and quote-first workflows; responses include request status, timestamps, data, warnings, or errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: package.json and server release evidence) <br>
+Risk: The skill can sign high-impact crypto transactions from hot-wallet keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance dedicated wallet, strict allowlists, small limits, dry runs, and preferably a vault, KMS, HSM, or delegated signer.
+
+Risk: Treasury actions may rely on third-party transaction payloads and provider routes.
+
+Mitigation: Review provider URLs, use fresh quotes, require explicit operator approval, and avoid primary treasury keys until transaction decoding, exact allowances, and endpoint allowlists are added.
+
+Risk: Multi-stage bridge and Hyperliquid deposit flows can partially complete before an error.
+
+Mitigation: Re-check source and destination balances, then re-run quote_operation with the remaining balance instead of replaying a stale amount.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fiowind/skills/crypto-treasury-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON responses and Markdown documentation with CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing operations support quote and dry-run flows before execution.]
+
+## Skill Version(s):
+
+0.1.7 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

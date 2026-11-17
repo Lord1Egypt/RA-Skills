@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function(){try{var t=localStorage.getItem("aurs-theme")||"system";if(t&&t!=="system"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();
+    </script>
+    <title>Workbuddy使用情况报告</title>
+    <style>
+
+        :root {
+            --bg: #ffffff; --fg: #333333; --muted: #6c757d;
+            --card-bg: #f8f9fa; --card-border: #dee2e6; --table-border: #dee2e6;
+            --th-bg: #f8f9fa; --accent: #3498db; --accent-fg: #2c3e50;
+            --chart-bg: #f8f9fa; --bar-track: #e9ecef; --bar-fill: #3498db;
+            --link: #3498db;
+            --disclaimer-bg: #fff8e6; --disclaimer-border: #e0a800; --disclaimer-fg: #b8860b;
+        }
+        /* 显式深色：通过 <html data-theme="dark"> 强制 */
+        :root[data-theme="dark"] {
+            --bg: #16181d; --fg: #e6e6e6; --muted: #9aa0a6;
+            --card-bg: #21242b; --card-border: #343a45; --table-border: #343a45;
+            --th-bg: #262a32; --accent: #58b6ec; --accent-fg: #9fd3f3;
+            --chart-bg: #21242b; --bar-track: #343a45; --bar-fill: #58b6ec;
+            --link: #58b6ec;
+            --disclaimer-bg: #3a2f12; --disclaimer-border: #c79a2e; --disclaimer-fg: #f0c75a;
+        }
+        /* 系统深色：未显式选择「浅色」时跟随系统配色 */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #16181d; --fg: #e6e6e6; --muted: #9aa0a6;
+                --card-bg: #21242b; --card-border: #343a45; --table-border: #343a45;
+                --th-bg: #262a32; --accent: #58b6ec; --accent-fg: #9fd3f3;
+                --chart-bg: #21242b; --bar-track: #343a45; --bar-fill: #58b6ec;
+                --link: #58b6ec;
+                --disclaimer-bg: #3a2f12; --disclaimer-border: #c79a2e; --disclaimer-fg: #f0c75a;
+            }
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: var(--fg); background: var(--bg); max-width: 1200px; margin: 0 auto; padding: 20px; transition: background .3s ease, color .3s ease; }
+        .header { background: var(--card-bg); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--card-border); transition: background .3s ease, border-color .3s ease; }
+        .section { margin-bottom: 30px; }
+        .section-title { color: var(--accent-fg); border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid var(--table-border); padding: 8px 12px; text-align: left; }
+        th { background-color: var(--th-bg); font-weight: 600; }
+        .chart-pie { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; background: var(--chart-bg); padding: 15px; border-radius: 5px; }
+        .chart-pie svg { flex-shrink: 0; }
+        .chart-pie .legend { font-size: 13px; line-height: 1.5; color: var(--fg); }
+        .chart-pie .legend-item { display: flex; align-items: center; margin: 4px 0; }
+        .chart-pie .swatch { width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; display: inline-block; }
+        .chart-pie .pct { color: var(--muted); margin-left: 4px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 15px 0; }
+        .stat-card { background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); }
+        .stat-value { font-size: 24px; font-weight: bold; color: var(--accent-fg); }
+        .stat-label { color: var(--muted); font-size: 14px; }
+        .chart-bars { background: var(--chart-bg); padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .bar-row { display: flex; align-items: center; gap: 10px; margin: 6px 0; font-size: 13px; }
+        .bar-label { width: 220px; text-align: right; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .bar-track { flex: 1; background: var(--bar-track); border-radius: 4px; height: 14px; overflow: hidden; min-width: 60px; }
+        .bar-fill { display: block; height: 100%; background: var(--bar-fill); }
+        .bar-val { width: 80px; text-align: right; font-family: monospace; }
+        .disclaimer { color: var(--disclaimer-fg); font-size: 13px; background: var(--disclaimer-bg); border-left: 4px solid var(--disclaimer-border); padding: 8px 12px; border-radius: 4px; margin: 12px 0; }
+        .warn-box { color: var(--disclaimer-fg); background: var(--disclaimer-bg); border: 1px solid var(--disclaimer-border); border-left: 4px solid var(--disclaimer-border); padding: 10px 14px; border-radius: 6px; margin: 12px 0; font-size: 13px; }
+        .disclaimer-box { color: var(--disclaimer-fg); background: var(--disclaimer-bg); border: 1px solid var(--disclaimer-border); border-left: 4px solid var(--disclaimer-border); padding: 10px 14px; border-radius: 6px; margin: 12px 0; font-size: 13px; }
+        .disclaimer-box p { margin: 6px 0 0; }
+        a { color: var(--link); }
+        /* 主题切换控件 */
+        .theme-toggle { display: inline-flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+        .theme-toggle button {
+            font-size: 13px; padding: 6px 14px; border-radius: 999px;
+            border: 1px solid var(--table-border); background: var(--bg);
+            color: var(--fg); cursor: pointer; transition: all .2s ease;
+        }
+        .theme-toggle button:hover { border-color: var(--accent); color: var(--accent-fg); }
+        .theme-toggle button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    
+    </style>
+</head>
+<body>
+    <!-- 隐私提醒：本报告聚合本机会话标题/提示词/项目路径/Token成本等敏感数据，分享前请脱敏 -->
+    <div class="warn-box">
+        <strong>⚠️ 隐私提醒：</strong>本报告聚合了本机 Agent 的可敏感活动数据（会话标题、提示词内容、项目路径、Token/成本数值等）。对外分享、截图或提交前，请先审阅并脱敏（如遮蔽项目路径、会话 ID、API Key 等），避免泄露本地活动信息。
+    </div>
+    <div class="header">
+        <h1>Workbuddy使用情况报告</h1>
+        <p><strong>报告类型</strong>：周报 · 2026-W36（2026-08-31/2026-09-06）</p>
+        <p><strong>报告周期</strong>：2026-08-31 至 2026-09-06</p>
+        <p><strong>生成时间</strong>：2026/09/04 22:05:28 (UTC+08:00)</p>
+        <p><strong>数据来源</strong>：WorkBuddy 会话历史、Traces、workbuddy.db、技能使用记录、自动化配置</p>
+        <div class="theme-toggle" role="group" aria-label="主题切换">
+            <button type="button" data-set-theme="light">☀ 浅色</button>
+            <button type="button" data-set-theme="dark">🌙 深色</button>
+            <button type="button" data-set-theme="system">🖥 系统</button>
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="section-title">一、概览统计</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">7</div>
+                <div class="stat-label">活跃天数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">29</div>
+                <div class="stat-label">会话总数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">40</div>
+                <div class="stat-label">调用次数（0 未解析）</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">8</div>
+                <div class="stat-label">使用技能</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">11</div>
+                <div class="stat-label">自动化任务运行</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">0</div>
+                <div class="stat-label">实际消耗 Token</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">¥0.00</div>
+                <div class="stat-label">实际成本</div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="section-title">二、Token 消耗可视化</h2>
+        <table>
+            <tr><th>指标</th><th>数值</th></tr>
+            <tr><td>原始总 Token（含缓存命中）</td><td>20.13M</td></tr>
+            <tr><td>实际消耗 Token（计费等效）</td><td>0</td></tr>
+            <tr><td>输入 Token</td><td>5.96M</td></tr>
+            <tr><td>输出 Token</td><td>8.95M</td></tr>
+            <tr><td>缓存命中 Token</td><td>5.22M</td></tr>
+            <tr><td>缓存占比</td><td>87.5%</td></tr>
+            <tr><td>实际成本（计费等效）</td><td>¥0.00</td></tr>
+            <tr><td>原始总成本（含缓存全价）</td><td>¥0.00</td></tr>
+        </table>
+    </div>
+    <div class="section">
+        <h2 class="section-title">每日 Token 消耗趋势</h2>
+        <div class="chart-bars">
+            <p><strong>每日 Token 消耗（原始总计）</strong></p>
+        <div class="bar-row"><span class="bar-label" title="2026-08-31">2026-08-31</span><span class="bar-track"><span class="bar-fill" style="width:108px"></span></span><span class="bar-val">1.74M</span></div>
+        <div class="bar-row"><span class="bar-label" title="2026-09-01">2026-09-01</span><span class="bar-track"><span class="bar-fill" style="width:220px"></span></span><span class="bar-val">3.54M</span></div>
+        <div class="bar-row"><span class="bar-label" title="2026-09-02">2026-09-02</span><span class="bar-track"><span class="bar-fill" style="width:89px"></span></span><span class="bar-val">1.44M</span></div>
+        <div class="bar-row"><span class="bar-label" title="2026-09-03">2026-09-03</span><span class="bar-track"><span class="bar-fill" style="width:108px"></span></span><span class="bar-val">1.74M</span></div>
+        <div class="bar-row"><span class="bar-label" title="2026-09-04">2026-09-04</span><span class="bar-track"><span class="bar-fill" style="width:98px"></span></span><span class="bar-val">1.58M</span></div>
+        <div class="bar-row"><span class="bar-label" title="2026-09-05">2026-09-05</span><span class="bar-track"><span class="bar-fill" style="width:147px"></span></span><span class="bar-val">2.38M</span></div>
+        <div class="bar-row"><span class="bar-label" title="2026-09-06">2026-09-06</span><span class="bar-track"><span class="bar-fill" style="width:154px"></span></span><span class="bar-val">2.49M</span></div>
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="section-title">五、任务类型统计</h2>
+        <p style="font-size:.85em;opacity:.75;margin:.4em 0">统计口径：仅含本期有 trace（token 活动）的会话；历史空会话（无 token 活动）不计入，避免虚高。</p>
+        <table>
+            <tr><th>任务类型</th><th>会话数</th><th>占比</th></tr>
+            <tr><td colspan='3'>暂无任务数据</td></tr>
+        </table>
+        <p style="font-size:.85em;opacity:.75;margin:.4em 0">ℹ️ 「其他」= 无法自动归类到已知任务类型的会话（含无标题且对话内容缺失的会话）。</p>
+    </div>
+    <div class="section">
+        <h2 class="section-title">六、任务 Token 消耗统计</h2>
+        <p>按任务类型聚合的 Token 消耗，排名按「实际消耗（计费等效）」排序；缓存命中 token 按约 1/10 价计费，不虚高。缓存占比高说明该任务大量复用同一段上下文。</p>
+        <p>本周无任务 Token 消耗数据</p>
+    </div>
+    <div class="section">
+        <h2 class="section-title">七、技能使用统计</h2>
+        <table>
+            <tr><th>技能名称</th><th>使用次数</th><th>最近使用</th></tr>
+            <tr><td>git-push-sandbox</td><td>9</td><td>2026-09-02</td></tr>
+            <tr><td>skill-creator</td><td>7</td><td>2026-09-02</td></tr>
+            <tr><td>github</td><td>7</td><td>2026-09-05</td></tr>
+            <tr><td>agent-analytics-report</td><td>7</td><td>2026-09-05</td></tr>
+            <tr><td>skillhub-publish</td><td>7</td><td>2026-09-05</td></tr>
+            <tr><td>ai-weekly</td><td>5</td><td>2026-09-04</td></tr>
+            <tr><td>recommend-experts</td><td>3</td><td>2026-09-01</td></tr>
+            <tr><td>ta[REDACTED_SK_KEY]</td><td>3</td><td>2026-09-04</td></tr>
+        </table>
+    </div>
+    <div class="section">
+        <h2 class="section-title">八、自动化任务运行情况</h2>
+        <table>
+            <tr><th>任务名称</th><th>状态</th><th>运行次数</th><th>成功</th><th>失败</th><th>最近一次结果</th><th>最近一次运行日期</th></tr>
+            <tr><td>unknown</td><td>未知</td><td>11</td><td>10</td><td>1</td><td>成功</td><td>-</td></tr>
+        </table>
+    </div>
+    <div class="section">
+        <h2 class="section-title">九、产出物清单</h2>
+        <table>
+            <tr><th>文件</th><th>类型</th><th>日期</th><th>大小</th></tr>
+            <tr><td>-</td><td>-</td><td>2026-09-06</td><td>0B</td></tr>
+            <tr><td>-</td><td>-</td><td>2026-08-31</td><td>0B</td></tr>
+            <tr><td>-</td><td>-</td><td>2026-09-06</td><td>0B</td></tr>
+            <tr><td>-</td><td>-</td><td>2026-09-06</td><td>0B</td></tr>
+        </table>
+    </div>
+    <div class="section">
+        <h2 class="section-title">十、核心洞察与建议</h2>
+        <h3>💰 花费速览</h3>
+        <p>本期实际花费 <strong>¥0.00</strong>（原始口径 ¥0.00），缓存复用为你节省约 <strong>¥0.00</strong>。</p>
+        <h3>✅ 省钱成就</h3>
+        <p>缓存命中率达 <strong>87.5%</strong>，按原始全价计费你本应付约 ¥0.00，实际仅 ¥0.00——<strong>缓存为你省下 ¥0.00</strong>，是实际成本远低于原始账单的主因。</p>
+    </div>
+    <div class="section">
+        <h2 class="section-title">十一、下周展望</h2>
+        <p>基于本周实际数据，先预测下期用量，再按优先级给出行动建议：</p>
+        <ul>
+            <li>使用趋势平稳，建议继续保持并关注高峰时段任务调度。</li>
+        </ul>
+    </div>
+    <footer>
+        <p style="text-align: center; color: var(--muted); margin-top: 40px;">*本报告基于 WorkBuddy 数据自动生成。</p>
+    </footer>
+    <script>
+        (function(){
+            var root = document.documentElement;
+            var btns = document.querySelectorAll(".theme-toggle button");
+            function applyTheme(t){
+                if(t==="system"){ root.removeAttribute("data-theme"); }
+                else { root.setAttribute("data-theme", t); }
+                try { localStorage.setItem("aurs-theme", t); } catch(e){}
+                btns.forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-set-theme")===t); });
+            }
+            btns.forEach(function(b){ b.addEventListener("click", function(){ applyTheme(b.getAttribute("data-set-theme")); }); });
+            var saved = "system";
+            try { saved = localStorage.getItem("aurs-theme") || "system"; } catch(e){}
+            applyTheme(saved);
+        })();
+    </script>
+</body>
+</html>

@@ -1,38 +1,52 @@
-## Description: <br>
-统一处理电商售后客户咨询回复。用于消费者提出退换货、物流查询、商品使用问题三类常见售后场景时，快速生成品牌亲和、专业、高效、可直接发送的中文回复，适用于店铺客服、平台客服、在线IM与私聊售后场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+统一处理电商售后客户咨询回复。用于消费者提出退换货、物流查询、商品使用问题三类常见售后场景时，快速生成品牌亲和、专业、高效、可直接发送的中文回复，适用于店铺客服、平台客服、在线IM与私聊售后场景。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External ecommerce support teams and store operators use this skill to draft concise Simplified Chinese after-sales replies for returns or exchanges, logistics checks, and product-use questions. It helps produce consumer-ready responses while requiring human review against actual store policy, order facts, logistics status, and product details.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated replies may conflict with actual store policies, order records, logistics status, or product details.
+
+Mitigation: Review each reply against confirmed business facts and customer context before sending.
+
+Risk: After-sales replies could imply unsupported commitments about refunds, exchanges, compensation, delivery timing, or product capabilities.
+
+Mitigation: Provide verified context to the agent and keep uncertain outcomes framed as pending review or follow-up.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Store and platform customer-service teams use this skill to draft concise Simplified Chinese replies for after-sales questions about returns or exchanges, logistics checks, and product usage problems. It helps produce direct customer-facing wording while asking for missing order, logistics, product, or evidence details when needed. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may be inaccurate if they assume order status, logistics progress, refund terms, store policy, or product details that were not provided. <br>
-Mitigation: Verify the reply against the actual order record, store policy, logistics status, refund terms, and product details before sending it to a customer. <br>
+**Output Format:** [Plain text in Simplified Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ecommerce-after-sales-customer-reply) <br>
+**Other Properties Related to Output:** [Default replies target 90-180 Chinese characters; complex cases may be up to 220 characters, and optional multi-version output can include standard, warmer, and shorter variants.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Simplified Chinese customer-service reply text, optionally with multiple variants when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default response length is 90-180 Chinese characters, with complex cases up to 220 Chinese characters.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

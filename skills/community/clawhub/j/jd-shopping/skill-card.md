@@ -1,45 +1,60 @@
-## Description: <br>
-JD.com shopping assistant. Input a JD product name or link; output self-operated/flagship trust checks, visible price, review risks, SKU recommendation, and cart-ready summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JD.com shopping assistant. Input a JD product name or link; output self-operated/flagship trust checks, visible price, review risks, SKU recommendation, and cart-ready summary.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External shoppers and shopping agents use this skill to research JD.com products, compare seller trust and visible prices, select SKUs, and prepare a cart while leaving login, checkout, order confirmation, and payment to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance flags workflow helpers that can affect accounts, public content, production data, or send code diffs to configured AI providers when explicitly invoked. <br>
-Mitigation: Install only when those ClawHub, Convex, moderation, email, migration, or autoreview workflows are expected, and review those actions before use. <br>
-Risk: Shopping browser workflows may expose account, address, invoice, payment, or checkout surfaces. <br>
-Mitigation: Keep login, identity checks, address selection, checkout, order confirmation, and payment user-only; stop at the product page or cart page and redact personal details in summaries by default. <br>
-Risk: Visible prices, coupons, stock, delivery, and seller terms can change before settlement. <br>
-Mitigation: Treat public and cart-visible values as decision inputs, and require the user to recheck final payable amount, eligibility, address-dependent delivery, and payment terms during manual checkout. <br>
+## Use Case:
 
+External users use this skill to compare JD.com products, assess seller trust and review risks, choose SKUs, and prepare cart contents before they personally handle checkout and payment.
 
-## Reference(s): <br>
-- [Browser Workflow Guide](artifact/references/browser-workflow.md) <br>
-- [Output Patterns](artifact/references/output-patterns.md) <br>
-- [Platform Fit](artifact/references/platform-fit.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/jd-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with product comparison tables, recommendation summaries, caveats, and cart-ready handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize browser-visible prices, seller signals, review risks, SKU selections, and cart contents; final price, checkout, order confirmation, and payment remain user-controlled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: The skill may browse JD.com and change cart contents in a logged-in user session after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before SKU, coupon, quantity, cart-add, cart-remove, or other account-state changes.
+
+Risk: Checkout, payment, address, invoice, coupon eligibility, stock, delivery, and final payable amount can change after cart preparation.
+
+Mitigation: Stop before checkout and direct the user to personally review login, CAPTCHA, address, invoice, settlement, final confirmation, payment, and final price.
+
+Risk: Logged-in shopping pages may expose personal account, address, cart, or payment information.
+
+Mitigation: Avoid storing cookies, credentials, account data, payment data, addresses, cart data, or order data outside the active browser session and redact personal details in summaries by default.
+
+## Reference(s):
+
+- [Platform Fit](references/platform-fit.md)
+- [Output Patterns](references/output-patterns.md)
+- [Browser Workflow Guide](references/browser-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/jd-shopping)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown with comparison tables, recommendations, caveats, and cart-ready summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses visible JD.com and user-provided information; final price, stock, delivery, coupons, and payment remain user-verified.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata; package.json and clawhub.json list 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

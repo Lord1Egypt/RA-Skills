@@ -1,0 +1,47 @@
+[00:07.1-00:18.2] Uh, so in my job as the spacecraft science phase lead, I get to work hand-in-hand with the scientists and the navigation team to plan out this mission and how OSIRIS-REx is going to execute this.
+[00:18.9-00:21.0] For me, personally, this is an ideal combination.
+[00:21.5-00:24.7] I've always loved deep space exploration and the science behind it.
+[00:25.0-00:36.4] So I get to work one-on-one with the science teams to identify really what their science goal is and translate that for the spacecraft team to something that we can actually execute piece by piece as the spacecraft goes through its commanding.
+[00:36.4-00:36.9] So,
+[00:46.7-00:52.4] one of the challenges that Cyrus Rex has been facing is the microgravity environment that we are in when we orbit Bennu.
+[00:53.0-01:00.8] We don't have the strong pull of gravity below us, so instead, the non-gravitational forces in the spacecraft affect our trajectory a lot more than what we're used to.
+[01:01.3-01:11.4] So over the course of a few weeks, we could end up on a number of different trajectories, and that means our uncertainty in planning and our responsibility to keep the spacecraft safe is very challenging.
+[01:11.4-01:25.2] So, we have to constantly update our pointing on board the spacecraft, both for maneuvers and for science-pointing purposes, and we have to constantly reanalyze the sun angles on the spacecraft to make sure that the power and thermal and telecom attitudes are safe for
+[01:25.2-01:26.2] the spacecraft to navigate.
+[01:31.8-01:39.5] So, when we're orbiting around Bennu, the force of gravity on the spacecraft is about one millionth what the force of gravity at Mars is for our spacecraft.
+[01:39.7-01:52.1] So, that's a significant change in the forces that spacecraft feels, and it That means that the non-gravitational forces, such as solar radiation pressure, are within the magnitude of gravity, which is a very new environment for us to be operating in.
+[01:58.4-02:02.9] So OsirisRx comes with an instrument suite that was uniquely designed to observe the asteroid.
+[02:03.3-02:06.8] But the spacecraft itself was also designed to observe this asteroid.
+[02:07.3-02:13.4] Our science mission requires us to observe and map all over the surface of the asteroid under a number of different conditions.
+[02:14.2-02:17.7] To support that, all of our subsystems have been tuned for this purpose.
+[02:17.7-02:26.3] So, our solar arrays are gimbled so we can continue to keep a power positive margin as we look at different sun angles and different sites around the surface of the asteroid.
+[02:26.9-02:33.4] Our thruster suites, we have very low thrust engines that allow us to do very tiny precision pointing maneuvers around the asteroid.
+[02:34.1-02:45.2] On board, our software, for instance, has a targeting software that allows us to load up a list of targets from the science teams and tell the spacecraft to execute them autonomously as it maps out the surface of Bennu for us.
+[02:45.2-02:50.7] And additionally, we have an engineering camera, which we use to support the optical navigation that this mission needs.
+[02:55.0-03:01.7] So before launch, we expected that the surface of Bennu would be covered in a fine-grain material, much like the lunar regolith on the surface of the moon.
+[03:02.3-03:07.7] This was supported by the observations that the science teams had done of Bennu before launch.
+[03:07.9-03:15.9] They used ground-based astronomy, radio astronomy, and infrared imaging to deduce the thermal inertia of the surface material on Bennu.
+[03:15.9-03:23.8] When we got to Bennu, we found to our surprise that instead it's covered in a lot of rocky material and it's a much rougher surface than we were expecting.
+[03:24.2-03:30.0] We've had to adapt our science plan and our sample acquisition plan to this new rocky surface of Bennu instead.
+[03:34.8-03:39.1] Before launched, we had developed two methods to guide ourselves in for TAG.
+[03:39.4-03:46.6] We had a primary method which was to use our LiDAR to do arranging acquisition as we approach the TAG site and guide ourselves in.
+[03:46.7-03:49.8] And that was our primary method that we did the majority of our development on.
+[03:49.8-03:59.5] We developed a backup method using natural feature tracking, which is an optical navigation used on board autonomously to image the site, compare it to a catalog, and guide ourselves in.
+[04:00.5-04:05.7] When we got to Bennu, the rocky surface of Bennu really changed our entire approach to TAG.
+[04:06.4-04:18.3] Originally, we had expected to be able to find a 25-meter radius site that could be safe to TAG in, that would be full of this fine-grained material and wouldn't have uneven surfaces that could be dangerous for the spacecraft.
+[04:18.3-04:18.5] draft.
+[04:19.1-04:22.4] Unfortunately, Benu did not know about our expectations for it.
+[04:22.6-04:26.6] And when we got there, we found that there weren't sites large enough to meet that need.
+[04:27.4-04:32.7] Without that large site, the LiDAR approach could no longer support the increased performance that we needed.
+[04:33.2-04:42.1] And the natural feature tracking with its higher precision targeting could get us to a site that was smaller and could fit within the smaller smooth surfaces of Benu.
+[04:49.2-04:57.5] So we've just completed our match point rehearsal and we got to see a second demonstration of how well NFT has been used to predict our tag profile.
+[04:58.0-05:03.5] And in our last rehearsal, we saw NFT come in within two meters of the tag site, which is really impressive.
+[05:03.5-05:07.6] You consider that our original design was to come within 25 meters of a tag site.
+[05:07.9-05:19.6] So NFTs on board performance and the tuning that our ground team has done to perfect NFT over the last few years has allowed us to get an order of magnitude better performance out of the spacecraft than it was designed for.
+[05:19.8-05:24.3] And that's what we need to be able to tag successfully on this small tag site that Bennu has for us.
+[05:29.7-05:34.3] For me, the most exciting part about OSIRIS-REx has been the same thing that caused the challenges.
+[05:34.5-05:39.8] It's the dynamic nature of this mission and how much we are dependent on what we learn from the asteroid.
+[05:40.4-05:48.7] Every few weeks, our trajectory has to change, and we're having to redesign the mission as we fly it, which gives us a whole new challenge for mission operations we haven't had before.
+[05:49.5-05:57.7] Traditionally, in mission operations from a spacecraft engineer point of view, we operate the spacecraft, and we don't always see the results data we're taking for a long time.
+[05:58.7-06:06.7] On Bennu, the science observations and the results we're getting out of that feed right back into the spacecraft trajectory and our overall proximity operations phase.
+[06:07.2-06:14.9] So we get to see firsthand what we're learning about this asteroid with the science teams, which has been a really rewarding experience for our team and for me personally.

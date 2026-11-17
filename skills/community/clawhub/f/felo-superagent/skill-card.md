@@ -1,45 +1,61 @@
-## Description: <br>
-Felo SuperAgent lets agents run Felo Open Platform SuperAgent conversations with SSE responses, LiveDoc continuity, style-library selection, and optional outputs such as images, documents, PPT, HTML, and X search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Felo SuperAgent lets agents run Felo Open Platform SuperAgent conversations with SSE streaming, persistent LiveDoc context, follow-up threads, brand styles, and generated assets.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to connect an agent session to Felo SuperAgent for multi-turn chat, LiveDoc-backed workspace continuity, and generated assets or research artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, relevant conversation context, selected resource IDs, style data, thread IDs, and LiveDoc IDs may be sent to Felo. <br>
-Mitigation: Use a dedicated Felo API key and avoid sending secrets, regulated data, or sensitive internal context. <br>
-Risk: Broad reuse of thread and LiveDoc identifiers can mix separate workstreams or carry prior context into later requests. <br>
-Mitigation: Start a new LiveDoc for separate or sensitive work and track thread and LiveDoc IDs deliberately. <br>
-Risk: FELO_API_BASE overrides can redirect API traffic away from the default Felo endpoint. <br>
-Mitigation: Use the default Felo API endpoint unless a trusted override is required, and inspect the environment before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to Felo SuperAgent for multi-turn chat, LiveDoc-associated work, logo or product image generation, and tool-augmented answers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangzhiming1999/felo-superagent) <br>
-- [Felo SuperAgent API documentation](https://openapi.felo.ai/docs/api-reference/v2/superagent.html) <br>
-- [Felo Open Platform documentation](https://openapi.felo.ai/docs/) <br>
-- [Felo API key setup](https://felo.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text or JSON responses, with Markdown links for generated assets and shell commands for setup and usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FELO_API_KEY; may return thread and LiveDoc IDs, LiveDoc URLs, image URLs, generated artifact titles, and X search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Prompts, prior conversation context, LiveDoc/thread IDs, selected resources, and style data may be sent to Felo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, and start a new LiveDoc or thread when switching projects or sensitive topics.
+
+Risk: The FELO_API_KEY credential can be exposed if stored permanently in a shared or synced shell profile.
+
+Mitigation: Prefer temporary environment configuration on shared systems and rotate the key if exposure is suspected.
+
+Risk: Setting FELO_API_BASE can redirect requests, prompts, credentials, and state to a non-default endpoint.
+
+Mitigation: Do not set FELO_API_BASE unless the exact endpoint is fully trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/felo-superagent)
+- [SuperAgent API Documentation](https://openapi.felo.ai/docs/api-reference/v2/superagent.html)
+- [Felo Open Platform](https://openapi.felo.ai/docs/)
+- [Get API Key](https://felo.ai)
+- [Felo Skills Repository](https://github.com/Felo-Inc/felo-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON with answer text, LiveDoc/thread state, image URLs, and generated artifact titles.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include LiveDoc links, image URLs, research/document/PPT/HTML titles, and Twitter/X search results; requires FELO_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

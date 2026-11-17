@@ -1,47 +1,59 @@
-## Description: <br>
-OpenClaw Gateway Resilience Guard helps keep OpenClaw Gateway, channels, diagnostics, logs, and optional model-provider probes observable after network changes, sleep or resume events, session expiry, provider timeouts, or partial outages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Gateway Resilience Guard keeps Gateway, channels, logs, and optional model-provider probes observable after Wi-Fi changes, WSL sleep/resume, session expiry, provider timeouts, or partial outages.
 
-## Publisher: <br>
-[zc-kama](https://clawhub.ai/user/zc-kama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zc-kama](https://clawhub.ai/user/zc-kama)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw continuously use this skill to install and operate a local watchdog for Gateway, channel, network, diagnostic, and optional model-provider health. The skill provides guarded recovery workflows, dashboard access, service management commands, and configuration guidance for Linux, WSL, macOS, and Windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent local watchdog that can restart OpenClaw Gateway and expose a localhost dashboard. <br>
-Mitigation: Install with no auto-start first when reviewing, inspect the generated watchdog configuration, and enable dashboard actions only when the operator needs local control. <br>
-Risk: Dashboard actions and restart paths can execute local commands when explicitly enabled or configured. <br>
-Mitigation: Keep diagnostic and model-probe actions in log-only mode unless the configuration file is controlled and reviewed; avoid custom command actions for untrusted configurations. <br>
-Risk: The optional model-provider probe sends real OpenClaw model requests and may consume provider quota or cost. <br>
-Mitigation: Leave model probing disabled by default; when enabled, use the documented low-volume diagnostic settings and keep the action set to log. <br>
-Risk: Diagnostic logs and exports may include local paths, service names, channel URLs, provider or model names, timing, exit status, and error snippets. <br>
-Mitigation: Review logs and exported diagnostic bundles before sharing them outside the local operator environment. <br>
+## Use Case:
 
+Developers and operators use this skill to install and run a persistent local watchdog for OpenClaw Gateway, channel health, diagnostics, and recovery workflows on Linux, WSL, macOS, or Windows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zc-kama/gateway-resilience-guard) <br>
-- [README.md](README.md) <br>
-- [Tencent/openclaw-weixin issue 141](https://github.com/Tencent/openclaw-weixin/issues/141) <br>
-- [Tencent/openclaw-weixin issue 155](https://github.com/Tencent/openclaw-weixin/issues/155) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with shell and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install, dashboard, service-management, diagnostic, and safety guidance for a local OpenClaw watchdog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.4 (source: server release, CHANGELOG.md, package.json, OpenClaw plugin manifest) <br>
+Risk: The watchdog installs persistent user-level services and can restart OpenClaw Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent local monitoring is intended, review the generated service or scheduled task, and keep restart limits enabled.
+
+Risk: Dashboard token and command settings create local command-execution exposure if actions or custom commands are enabled without review.
+
+Mitigation: Keep the dashboard bound to 127.0.0.1, avoid custom command settings, disable dashboard actions where possible, and protect config and state directories.
+
+Risk: Diagnostics and exported logs can expose local paths, operational details, channel URLs, or provider metadata.
+
+Mitigation: Review diagnostic exports and logs before sharing them outside the local operator environment.
+
+## Reference(s):
+
+- [OpenClaw Gateway Resilience Guard on ClawHub](https://clawhub.ai/zc-kama/skills/gateway-resilience-guard)
+- [Tencent/openclaw-weixin issue 141](https://github.com/Tencent/openclaw-weixin/issues/141)
+- [Tencent/openclaw-weixin issue 155](https://github.com/Tencent/openclaw-weixin/issues/155)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with shell, PowerShell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operator guidance for installing, configuring, monitoring, and uninstalling the watchdog and optional OpenClaw plugin bridge.]
+
+## Skill Version(s):
+
+1.4.4 (source: server evidence release metadata, CHANGELOG, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

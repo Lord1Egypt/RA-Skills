@@ -1,43 +1,60 @@
-## Description: <br>
-Bailian TTS helps agents synthesize text into speech audio with Alibaba Bailian/DashScope Qwen TTS models, selectable voices, and file output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bailian TTS helps agents generate Chinese and multilingual speech audio with Alibaba Bailian/DashScope Qwen TTS models, selectable voices, and file output.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-Developers, content creators, and agents use this skill to generate spoken audio from text through Alibaba Bailian/DashScope. It supports voice selection, model selection, command-line use, and Python API use for Chinese, dialect, and multilingual speech generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to Alibaba Bailian/DashScope under the user's account. <br>
-Mitigation: Use a dedicated API key and do not submit secrets or regulated personal data unless the deployment has approval for that provider. <br>
-Risk: The skill downloads provider-returned audio URLs, which can create risk if network egress is unrestricted. <br>
-Mitigation: Run with appropriate network restrictions and review provider URL handling before production deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to convert supplied text into speech audio through Bailian/DashScope TTS models, choose supported voices, and save the resulting audio file.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dadaniya99/xiaolongxia-bailian-tts) <br>
-- [Alibaba Cloud Qwen TTS Documentation](https://help.aliyun.com/zh/model-studio/qwen-tts) <br>
-- [Alibaba Cloud Qwen TTS Voice Cloning](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-cloning) <br>
-- [Alibaba Cloud Qwen TTS Voice Design](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples and Python snippets; runtime output is an Opus audio file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key and network access to Alibaba Bailian/DashScope; default audio output is an .opus file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Cloud TTS requests may expose submitted text or sensitive data to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets or regulated personal data, and follow the evidence guidance to run the skill in an isolated environment.
+
+Risk: The script writes downloaded audio to a user-selected output path.
+
+Mitigation: Choose output paths deliberately and avoid overwriting important files.
+
+Risk: The skill requires a DashScope API key.
+
+Mitigation: Protect the API key, prefer environment-based secret handling, and avoid committing credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dadaniya99/skills/xiaolongxia-bailian-tts)
+- [Qwen TTS official documentation](https://help.aliyun.com/zh/model-studio/qwen-tts)
+- [Qwen TTS voice cloning documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-cloning)
+- [Qwen TTS voice design documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration guidance, Files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated audio is written as an Opus file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DashScope API key and network access to the cloud TTS service.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

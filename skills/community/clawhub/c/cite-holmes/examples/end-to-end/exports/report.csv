@@ -1,0 +1,2 @@
+﻿index,title,verdict,tier,http_status,needs_human_check,year,source,url,doi,pmid,arxiv,note
+1,Nanometre-scale thermometry in a living cell,partial,official,200,False,2013,,https://doi.org/10.1038/nature12373,10.1038/nature12373,,,DOI 元数据核验一致（相似度 1.00）；HEAD 200；学界评价：被引 ≥30 次（语境覆盖率 43%）；后续文献如是以引用：《Geometric estimation of NV charge-state contributions from a low-dimensional spe》；缺字段 来源(source)；磁盘缓存命中（0h 前验证；--refresh-cache 强制重验）

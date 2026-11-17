@@ -1,49 +1,58 @@
-## Description: <br>
-Generates automotive marketing content for dealers and service shops, including inventory campaigns, service outreach, review management, digital ads, and lead nurture materials with compliance-oriented notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates automotive marketing drafts for dealerships and service shops, including inventory campaigns, service outreach, review responses, digital ads, lead nurture, and compliance checklists.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Dealership operators, automotive service businesses, and marketing agencies use this skill to draft campaign copy, review responses, service scripts, ad briefs, and lead nurture sequences for automotive customers. Outputs are draft marketing materials that should be reviewed against current legal, platform, and brand requirements before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review request flows can become review-gating if only satisfied customers are routed to public review links. <br>
-Mitigation: Remove gating language, avoid incentives, and use a neutral review request process for all customers. <br>
-Risk: Email, SMS, CRM, custom-audience, and retargeting workflows can create consent, opt-out, or privacy compliance issues. <br>
-Mitigation: Confirm consent, opt-out language, suppression lists, and platform policy requirements before sending or uploading audiences. <br>
-Risk: Advertising, financing, vehicle, service, or comparative claims may be inaccurate or incomplete for a specific jurisdiction, dealer, offer, or platform. <br>
-Mitigation: Have qualified legal or compliance staff review all public ads, financing claims, service claims, disclosures, and retargeting workflows before publishing. <br>
+## Use Case:
 
+Dealership operators, automotive service businesses, and marketing agencies use this skill to draft campaign copy, outreach sequences, ad briefs, scripts, review responses, and disclosure checklists for automotive sales and service workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/gitflopez/auto-dealership-car-service-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Vehicle Inventory and Promotion Campaigns](artifact/prompts/prompt1-inventory-campaigns.md) <br>
-- [Service Department and Fixed Ops Marketing](artifact/prompts/prompt2-service-department.md) <br>
-- [Reputation and Review Management System](artifact/prompts/prompt3-reputation-reviews.md) <br>
-- [Digital Advertising and Lead Nurture System](artifact/prompts/prompt4-digital-lead-nurture.md) <br>
-- [Worked example](artifact/examples/henderson-toyota-las-vegas.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with labeled sections, quoted copy, scripts, campaign briefs, checklists, and compliance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft marketing outputs may include outreach, review request, advertising, and disclosure language that requires human legal or compliance review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Automotive advertising outputs may include regulated price, APR, financing, EV range, or service claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all drafts with qualified legal or compliance staff before publication, especially disclosures for APR, offer expiration, stock numbers, Buyers Guide references, and state DMV requirements.
+
+Risk: SMS, email, custom-audience, and competitor-owner targeting workflows may create privacy, consent, or platform-policy exposure.
+
+Mitigation: Confirm opt-in status, opt-out language, audience-source permissions, and ad-platform rules before using generated outreach or targeting recommendations.
+
+Risk: The security review warns that review-gating language should not be used as written.
+
+Mitigation: Use a neutral review request flow that does not route only satisfied customers to public review links, and review the final process against FTC and platform guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/auto-dealership-car-service-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with labeled sections, quoted draft copy, checklists, scripts, and compliance notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft marketing materials that require legal, privacy, platform-policy, and advertising-disclosure review before live use.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

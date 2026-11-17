@@ -1,47 +1,65 @@
-## Description: <br>
-Google Search Console API integration with managed OAuth for querying search performance analytics, inspecting URL indexing status, reviewing sitemaps, and managing verified site properties. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Search Console API integration with managed OAuth. Query search performance analytics, inspect URL indexing status, review sitemaps, and manage verified site properties. Use this skill when users want to monitor SEO performance or troubleshoot indexing issues.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, site owners, and SEO operators use this skill to connect an agent to Google Search Console through ClawLink, review verified site data, query search analytics, inspect URL indexing status, and manage sitemaps or site properties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access to a Google account and Search Console data through ClawLink. <br>
-Mitigation: Review the Google account and Search Console permissions during OAuth, and install only when the user intends to connect Google Search Console through ClawLink. <br>
-Risk: Write actions such as adding or removing a property or submitting a sitemap can affect Search Console configuration. <br>
-Mitigation: Confirm the exact site URL and intended effect with the user before executing any write action. <br>
-Risk: Tool calls depend on exact verified Search Console property URLs. <br>
-Mitigation: List verified sites first and use the returned site URL exactly, including protocol, subdomain, and trailing slash where applicable. <br>
+## Use Case:
 
+Developers, site owners, and SEO operators use this skill to connect an agent to Google Search Console through ClawLink, query search performance, inspect indexing status, review sitemaps, and manage verified site properties.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hith3sh/google-search-console-seo) <br>
-- [Google Search Console API Overview](https://developers.google.com/webmaster-tools/search-console-api-original) <br>
-- [Search Analytics API Reference](https://developers.google.com/webmaster-tools/search-console-api-original/v3/searchanalytics) <br>
-- [Sites API Reference](https://developers.google.com/webmaster-tools/search-console-api-original/v3/sites) <br>
-- [Sitemaps API Reference](https://developers.google.com/webmaster-tools/search-console-api-original/v3/sitemaps) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Google account through ClawLink; write operations require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill asks users to install and allowlist an unpinned external ClawLink plugin that may expose a changing live tool catalog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin before installation, confirm the visible Google Search Console tool catalog in a fresh chat, and proceed only if the publisher and plugin are trusted.
+
+Risk: ClawLink stores and uses OAuth access for the connected Google Search Console account.
+
+Mitigation: Connect only accounts and verified properties appropriate for the task, and confirm trust in ClawLink's credential handling before use.
+
+Risk: Write operations can add or delete site properties or submit sitemaps.
+
+Mitigation: Require clear previews and explicit user confirmation before any site addition, site deletion, or sitemap submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/google-search-console-seo)
+- [Publisher Profile](https://clawhub.ai/user/hith3sh)
+- [Search Console API Overview](https://developers.google.com/webmaster-tools/search-console-api-original)
+- [Search Analytics Reference](https://developers.google.com/webmaster-tools/search-console-api-original/v3/searchanalytics)
+- [Sites Reference](https://developers.google.com/webmaster-tools/search-console-api-original/v3/sites)
+- [Sitemaps Reference](https://developers.google.com/webmaster-tools/search-console-api-original/v3/sitemaps)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=google-search-console-seo)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authenticated Google Search Console API actions through a live ClawLink tool catalog.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "小说时间线约束核对"
+  short_description: "核对小说事件时间、年龄与行程约束并给出最小修订选项"
+  default_prompt: "使用 $novel-timeline-audit-cn 根据我提供的章节或场景事件核对故事时间线约束；保留明确闪回，并列出缺项与未定区间。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

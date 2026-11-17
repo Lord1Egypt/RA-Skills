@@ -1,46 +1,58 @@
-## Description: <br>
-Helps agents split staged Git changes into focused commits and generate Conventional Commit messages while leaving push, merge, PR, and issue-closing decisions to a separate Git workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents split staged Git changes into focused commits, generate conventional commit messages, and optionally prompt for explicitly confirmed post-commit sync or subtree-push workflows when the repository is configured for them.
 
-## Publisher: <br>
-[cat-xierluo](https://clawhub.ai/user/cat-xierluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cat-xierluo](https://clawhub.ai/user/cat-xierluo)
 
-## Use Case: <br>
-Developers and engineers use this skill when staged changes span multiple logical categories and they want an agent to propose grouped commits, generate commit messages, and optionally run the included commit helper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt for ClawHub publishing or sync-state changes when a `skills/clawhub-sync/` workflow is present. <br>
-Mitigation: Approve sync or publish prompts only after inspecting the publish directory, confirming no secrets or private files are included, and intentionally accepting allowlist or sync-record updates. <br>
-Risk: The helper creates Git commits and can reorganize the staged state through local Git commands. <br>
-Mitigation: Review proposed groups first, use dry-run mode when uncertain, and keep only intended files staged before creating commits. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to organize staged repository changes into multiple logical commits with standardized commit messages. It is intended for commit preparation and local Git history hygiene, not for branch, PR, merge, push, or issue-closing decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cat-xierluo/git-batch-commit) <br>
-- [Publisher profile](https://clawhub.ai/user/cat-xierluo) <br>
-- [Homepage](https://github.com/cat-xierluo/legal-skills) <br>
-- [Commit Types](references/commit-types.md) <br>
-- [Conventional Commits](references/conventional-commits.md) <br>
-- [ClawHub Sync Check](references/clawhub-sync-check.md) <br>
-- [Subtree Push Check](references/subtree-push-check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated commit message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Python helper scripts and Git commands after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Git path handling can mis-handle specially named repository files and mutate the repository in unintended ways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted repositories, review proposed groups before committing, prefer dry-run or interactive review, and avoid --yes until Git path handling uses -- separators and NUL-delimited filename parsing.
+
+Risk: Optional sync or subtree workflows can upload skill contents or push to remotes after commits when repository configuration enables those paths.
+
+Mitigation: Proceed with sync, publish, or subtree push prompts only after explicit confirmation, and review the affected files and destination before confirming.
+
+## Reference(s):
+
+- [Skill homepage](https://github.com/cat-xierluo/legal-skills)
+- [Commit Types Reference](references/commit-types.md)
+- [Conventional Commits Reference](references/conventional-commits.md)
+- [ClawHub Sync Check](references/clawhub-sync-check.md)
+- [Subtree Push Check](references/subtree-push-check.md)
+- [Message Data](references/message-data.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with conventional commit messages, grouped file summaries, and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Git commits and, only after explicit user confirmation and matching repository configuration, may prompt for publishing or subtree push follow-up actions.]
+
+## Skill Version(s):
+
+1.4.2 (source: server release evidence, SKILL.md frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

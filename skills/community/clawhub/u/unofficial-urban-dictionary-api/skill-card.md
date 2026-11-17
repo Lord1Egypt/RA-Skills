@@ -1,43 +1,53 @@
-## Description: <br>
-Query the Unofficial Urban Dictionary API for slang definitions. Use when asked to define slang/phrases, fetch random Urban Dictionary entries, browse by letter/new, or get entries by author/date. Supports endpoints /api/search, /api/random, /api/browse, /api/author, and /api/date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the Unofficial Urban Dictionary API for slang definitions. Use when asked to define slang/phrases, fetch random Urban Dictionary entries, browse by letter/new, or get entries by author/date. Supports endpoints /api/search, /api/random, /api/browse, /api/author, and /api/date.
 
-## Publisher: <br>
-[dougbtv](https://clawhub.ai/user/dougbtv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougbtv](https://clawhub.ai/user/dougbtv)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Urban Dictionary-style slang definitions, random entries, browse results, and entries by author or date through an unofficial third-party API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup terms are sent to an unofficial third-party API. <br>
-Mitigation: Use the skill only when sending the requested slang lookup terms to the external API is acceptable. <br>
-Risk: Returned entries may include offensive or NSFW user-generated content. <br>
-Mitigation: Present results neutrally, avoid adding extra offensive language, and summarize only the entries needed for the user request. <br>
-Risk: The third-party API may fail, return bad responses, or return no entries. <br>
-Mitigation: Retry once on bad responses, broaden overly strict searches when appropriate, and clearly report API or network failures. <br>
+## Use Case:
 
+Developers and agents use this skill to look up slang terms, random entries, browse views, author entries, or date-filtered entries from the Unofficial Urban Dictionary API and return concise definitions with examples and ratings when available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dougbtv/unofficial-urban-dictionary-api) <br>
-- [Unofficial Urban Dictionary API endpoint](https://unofficialurbandictionaryapi.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON, guidance] <br>
-**Output Format:** [Markdown summaries of API results, with optional JSON output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Top entries are summarized by default; long entries should be truncated cleanly with an offer to provide the full output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Lookup terms and related query parameters are sent to unofficialurbandictionaryapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external slang lookup requests are acceptable, and avoid sending sensitive or private terms.
+
+Risk: Returned slang definitions may include offensive or NSFW content.
+
+Mitigation: Report results neutrally, limit output to relevant entries, and avoid adding extra offensive language beyond what is necessary to answer the user.
+
+## Reference(s):
+
+- [Unofficial Urban Dictionary API base endpoint](https://unofficialurbandictionaryapi.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls]
+
+**Output Format:** [Markdown summaries and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default reporting shows the top 3-5 entries with term, short definition, example, ratings, and permalink when present.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

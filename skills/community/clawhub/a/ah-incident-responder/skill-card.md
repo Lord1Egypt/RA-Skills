@@ -1,40 +1,58 @@
-## Description: <br>
-Assists agents with production incident response, including severity assessment, log analysis, debugging, root cause analysis, mitigation planning, recovery validation, and post-mortem documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are an incident response expert specializing in production debugging, log analysis, root cause analysis, and rapid system recovery.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to triage production incidents, analyze logs, metrics, and traces, and prepare mitigation, recovery, and post-mortem guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose high-impact production operations such as remediation, rollback, debugger attachment, packet capture, pod exec, cache changes, or log cleanup. <br>
-Mitigation: Use least-privilege credentials, verify the target host or cluster, and require explicit human approval before running any production-changing command. <br>
-Risk: Incident guidance can be incomplete or mismatched to the live environment during an outage. <br>
-Mitigation: Validate recommendations against current telemetry and local runbooks, apply changes incrementally, monitor the four golden signals, and document actions for review. <br>
+## Use Case:
 
+Developers, SREs, and on-call operators use this skill to triage production incidents, analyze logs and traces, identify root causes, propose mitigations, and document incident response.
 
-## Reference(s): <br>
-- [Incident Responder code examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline command, code, SQL, YAML, and incident-report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose diagnostic and remediation commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes high-impact production commands and automatic remediation examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before executing production changes, rollbacks, cache clearing, cleanup, or remediation commands.
+
+Risk: Debug containers and operational commands can broaden access to production systems.
+
+Mitigation: Pin and restrict debug container images and limit command execution to authorized operators and scoped environments.
+
+Risk: Cleanup or rollback actions can remove evidence needed for diagnosis.
+
+Mitigation: Preserve relevant logs, traces, metrics, and incident notes before cleanup or rollback actions.
+
+## Reference(s):
+
+- [Incident Responder Code Examples](references/examples.md)
+- [ClawHub Skill Release](https://clawhub.ai/mtsatryan/skills/ah-incident-responder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with incident assessments, runbook steps, diagnostic commands, code examples, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory incident-response material; production changes should require human approval]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

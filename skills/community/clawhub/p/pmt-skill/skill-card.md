@@ -1,44 +1,59 @@
-## Description: <br>
-Predict pump.fun token graduations (YES/NO) on Solana mainnet via PumpMarket parimutuel betting markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict pump.fun token graduations (YES/NO) on Solana mainnet via PumpMarket parimutuel betting markets.
 
-## Publisher: <br>
-[notKing0](https://clawhub.ai/user/notKing0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[notking0](https://clawhub.ai/user/notking0)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect PumpMarket markets, construct Solana mainnet transactions, and place or claim YES/NO bets on pump.fun token graduation outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to sign Solana mainnet transactions that spend real SOL. <br>
-Mitigation: Use a dedicated low-balance wallet, require explicit approval before signing, and enforce a strict SOL cap for each transaction. <br>
-Risk: Wallet private keys may be exposed if loaded carelessly for automated signing. <br>
-Mitigation: Never hardcode private keys; use environment variables, encrypted keyfiles, or a secrets manager with restricted access. <br>
-Risk: Transactions may execute against live PumpMarket markets before the operator understands the outcome and fee mechanics. <br>
-Mitigation: Run the documented dry-run simulation first, verify market data immediately before signing, and start with the minimum practical balance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/notKing0/pmt-skill) <br>
-- [PumpMarket Homepage](https://pumpmarket.fun) <br>
-- [PumpMarket Program IDL](https://pumpmarket.fun/skill.json) <br>
-- [PumpMarket API](https://pumpbet-mainnet.up.railway.app) <br>
+## Use Case:
 
+External developers and agents use this skill to inspect PumpMarket markets, construct Solana mainnet transactions, and place or manage YES/NO bets on pump.fun token graduation outcomes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mainnet API, WebSocket, wallet, transaction-construction, simulation, and claim workflow guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can help an agent spend real SOL on Solana mainnet betting markets.
+
+Mitigation: Use a dedicated wallet with limited funds and require explicit approval before every createMarket or placeBet transaction.
+
+Risk: The security evidence flags a privileged emergency withdrawal path that users should review before depositing meaningful funds.
+
+Mitigation: Review the program's emergency withdrawal behavior and keep funds limited until the risk is acceptable.
+
+Risk: Dependency or transaction behavior may differ from expectations during live mainnet use.
+
+Mitigation: Pin dependencies and simulate transactions before submitting them on mainnet.
+
+## Reference(s):
+
+- [PumpMarket homepage](https://pumpmarket.fun)
+- [PumpMarket IDL](https://pumpmarket.fun/skill.json)
+- [PumpMarket mainnet API](https://pumpbet-mainnet.up.railway.app)
+- [ClawHub skill page](https://clawhub.ai/notking0/skills/pmt-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides API, WebSocket, Solana transaction, wallet setup, and dry-run simulation guidance for PumpMarket.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

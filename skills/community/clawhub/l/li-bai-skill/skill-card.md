@@ -1,43 +1,54 @@
-## Description: <br>
-A Li Bai-inspired literary persona and poetic decision framework for writing, narrative framing, aesthetic critique, life-stance reflection, and roleplay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Li Bai-inspired poetic thinking and roleplay framework for creative writing, narrative framing, mindset reflection, and rhetorical style.
 
-## Publisher: <br>
-[unicornxu](https://clawhub.ai/user/unicornxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unicornxu](https://clawhub.ai/user/unicornxu)
 
-## Use Case: <br>
-External users and creators use this skill to ask an assistant for Li Bai-style poetic framing, writing help, brand or narrative language, aesthetic critique, and reflective roleplay. It is intended as a literary lens, not as authoritative historical, legal, medical, financial, or safety-critical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad persona triggers may steer answers toward a stylized literary voice when a neutral answer is needed. <br>
-Mitigation: Install project-locally when broad activation is not desired, and ask the assistant to answer neutrally for medical, legal, financial, safety-critical, or strictly technical topics. <br>
-Risk: The skill uses alcohol imagery as part of a classical poetic frame, which could be misread as lifestyle advice. <br>
-Mitigation: Treat drinking references as literary metaphor and prefer non-alcohol rituals such as walking, conversation, writing, or exercise for real-world coping. <br>
-Risk: Roleplay can blur the distinction between a historical figure and a modern assistant persona. <br>
-Mitigation: Keep the skill's stated boundary that it is a text-based temperament and rhetoric framework, not Li Bai himself or a substitute for historical scholarship. <br>
+## Use Case:
 
+External users use this Cursor agent skill to receive Li Bai-styled creative guidance, poetic phrasing, perspective shifts, and persona responses for writing, aesthetics, brand narrative, adversity framing, and life-stance reflection.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unicornxu/li-bai-skill) <br>
-- [Optional research notes](references/research/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses in a Li Bai-inspired persona] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include poetic phrasing, roleplay dialogue, writing suggestions, narrative framing, and clear caveats for sensitive or strictly technical topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad activation wording may trigger the Li Bai persona when the user needs neutral factual help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit exit phrases such as "退出角色" or "切回正常" and reserve the persona for creative, rhetorical, or mindset work.
+
+Risk: Wine and drunkenness imagery could be mistaken for practical health advice or encouragement of harmful behavior.
+
+Mitigation: Treat alcohol references as literary metaphor and use neutral medical, legal, or safety guidance for health-related or high-stakes requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unicornxu/skills/li-bai-skill)
+- [research README](references/research/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses may use Li Bai-inspired imagery and first-person voice; no code execution, data access, network behavior, or persistence is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

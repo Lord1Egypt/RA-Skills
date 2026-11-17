@@ -1,0 +1,52 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:53.027039+00:00",
+  "input": {
+    "bytes": 10049,
+    "path": "examples/visual-architecture-auto.json",
+    "sha256": "fb45bcba4cb9f2e1c188f392dab68770b389d8213e0f4b08035ea4539140a94a"
+  },
+  "mode": "architecture",
+  "output": {
+    "bytes": 17180,
+    "path": "examples/visual-architecture-auto.svg",
+    "sha256": "1f60400ccef8d0d89fc2992f80c827aef2f76c85435120c9acc334b905dfe188"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 8,
+      "evidenceItems": 17,
+      "mode": "architecture",
+      "nodeKinds": [
+        "agent",
+        "memory",
+        "service"
+      ],
+      "nodes": 9,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": true,
+      "sourceConfidence": {
+        "high": 17,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "showcase"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

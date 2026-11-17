@@ -1,45 +1,56 @@
-## Description: <br>
-Automates rough cuts for single-person talking-to-camera video by detecting silence, scoring candidate segments, removing duplicate content, clipping the best takes, and generating reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates rough editing for single-person talking-head videos by detecting silence, scoring speech segments, removing duplicate takes, and producing selected clips with reports.
 
-## Publisher: <br>
-[gilbertwuu](https://clawhub.ai/user/gilbertwuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL v3 <br>
+## Publisher:
 
+[gilbertwuu](https://clawhub.ai/user/gilbertwuu)
 
-## Use Case: <br>
-Content creators and video engineers use this skill to automate first-pass editing of single-person A'Roll footage, including candidate segment selection, cross-take deduplication, final clip or batch concatenation, and Markdown reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local media processing can expose private speech in Whisper transcripts and generated Markdown reports. <br>
-Mitigation: Process videos in a dedicated local work directory and review or delete generated reports when source videos contain private speech. <br>
-Risk: The workflow invokes FFmpeg and openai-whisper on user-provided file paths, with path-handling cautions noted by the security evidence. <br>
-Mitigation: Use trusted FFmpeg and openai-whisper installations, keep videos in a dedicated folder, and avoid filenames containing quotes or newlines. <br>
-Risk: Batch mode removes intermediate clips and temporary audio after concatenation, which can discard review artifacts. <br>
-Mitigation: Run on copied source media and use a disposable work directory when intermediate files may need later inspection. <br>
+## Use Case:
 
+Video creators and production teams use this skill to automate first-pass rough cuts for A'Roll footage, especially Chinese monologue-style vlogs, tutorials, podcasts, and knowledge-sharing videos. It supports single-video clipping and batch deduplication with concatenated output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gilbertwuu/video-aroll-auto-editor) <br>
-- [README.md](artifact/README.md) <br>
-- [CODE_DOCUMENTATION.md](artifact/CODE_DOCUMENTATION.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the skill runtime produces MP4 video files and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python 3.8+, FFmpeg with ffprobe, and openai-whisper; intended for .MTS, .mp4, and .mov inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata); artifact documentation describes Video Auto Editor v4.7 <br>
+Risk: Batch cleanup can recursively delete a user-supplied work directory without sufficient guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a fresh dedicated temporary work directory, avoid privileged execution, and review batch-mode paths before starting processing.
+
+Risk: Video filenames and input directories from untrusted sources may interact with shell-adjacent media tooling and cleanup behavior.
+
+Mitigation: Use trusted local media files, keep inputs separate from important directories, and inspect output and work directory arguments before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gilbertwuu/skills/video-aroll-auto-editor)
+- [README](artifact/README.md)
+- [Technical Documentation](artifact/CODE_DOCUMENTATION.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples; generated runtime artifacts include MP4 clips and Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8+, FFmpeg/ffprobe, and openai-whisper for transcription-aware scoring; supports .MTS, .mp4, and .mov inputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

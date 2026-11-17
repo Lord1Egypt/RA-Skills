@@ -1,0 +1,15 @@
+{
+  "name": "composer-optimizer",
+  "version": "1.0.0",
+  "description": "Optimizes Composer.trade symphony allocations using Score^3 weighting and correlation penalties. De-duplicates copies, applies mean-variance optimization, and outputs rebalanced weights. Supports DD caps and max single-strategy limits.",
+  "category": "Finance, Legal & Accounting",
+  "price": 29,
+  "tags": [
+    "portfolio-optimization",
+    "composer-trade",
+    "mean-variance",
+    "allocation",
+    "correlation",
+    "trading"
+  ]
+}

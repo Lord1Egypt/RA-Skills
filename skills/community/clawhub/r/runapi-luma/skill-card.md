@@ -1,43 +1,56 @@
-## Description: <br>
-Generate and edit video with Luma through RunAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query historical Luma tasks with the RunAPI CLI for one-off status lookup; this model is retired and cannot create new tasks.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to create, edit, or transform video with Luma through RunAPI. The skill is suited for one-off CLI-driven video tasks and for identifying when SDK integration is the better path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, request JSON, task metadata, and input media may be sent to RunAPI/Luma for video generation or editing. <br>
-Mitigation: Avoid submitting confidential, regulated, private, or copyrighted media unless the user has permission and accepts the provider's retention and data-use policies. <br>
-Risk: RunAPI authentication through RUNAPI_API_KEY, CLI login, or saved CLI configuration grants access to the user's RunAPI account. <br>
-Mitigation: Use only user-approved credentials, avoid exposing tokens in logs or generated files, and prefer scoped or disposable keys where available. <br>
+## Use Case:
 
+Developers and other RunAPI users can check the status of existing Luma task IDs without submitting new tasks for this retired model.
 
-## Reference(s): <br>
-- [RunAPI Luma model documentation](https://runapi.ai/models/luma.md) <br>
-- [RunAPI Luma homepage](https://runapi.ai/models/luma) <br>
-- [RunAPI Luma provider comparison](https://runapi.ai/providers/luma.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include request JSON guidance and RunAPI task identifiers when an agent executes CLI workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: Creating a new Luma task fails because the model is retired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only check existing task IDs; do not retry creation or substitute another model automatically.
+
+Risk: Installing the RunAPI CLI and handling its API key introduce external software and credential exposure.
+
+Mitigation: Install the CLI only if needed, and use environment authentication or saved CLI configuration carefully.
+
+## Reference(s):
+
+- [Luma model overview](https://runapi.ai/models/luma.md)
+- [Luma provider overview](https://runapi.ai/providers/luma.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [Luma SDK integration](https://github.com/runapi-ai/luma-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Status lookup requires an existing task ID; new Luma task creation is not supported.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

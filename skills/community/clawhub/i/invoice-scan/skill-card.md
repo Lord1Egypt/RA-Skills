@@ -1,42 +1,56 @@
-## Description: <br>
-Invoice Scan extracts structured invoice and receipt data from images, scanned documents, and PDFs, validates arithmetic and document type, and exports results as JSON, CSV, or Excel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoice Scan helps agents extract, validate, and export structured invoice and receipt data from images, scanned documents, and PDFs.
 
-## Publisher: <br>
-[mr-muddle](https://clawhub.ai/user/mr-muddle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-muddle](https://clawhub.ai/user/mr-muddle)
 
-## Use Case: <br>
-Employees, external users, developers, and finance operations teams use this skill to extract invoice fields, classify financial documents, validate totals, and prepare structured outputs for review or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CLI mode sends full invoice images and extracted financial details, including potentially sensitive business and personal data, to Anthropic. <br>
-Mitigation: Use agent-native mode when external processing is not approved; use CLI mode only after organizational approval for Anthropic processing. <br>
-Risk: CLI mode depends on user-provided API credentials and npm dependencies. <br>
-Mitigation: Use dedicated API credentials with appropriate limits and review the npm dependencies before installation in regulated or confidential environments. <br>
+## Use Case:
 
+Developers, finance teams, and agent users use this skill to read invoice or receipt documents, classify document type, extract canonical fields, check arithmetic and business rules, and produce exportable invoice data.
 
-## Reference(s): <br>
-- [Canonical Invoice Schema](references/canonical-schema.md) <br>
-- [Validation Rules](references/validation-rules.md) <br>
-- [Anthropic API endpoint (CLI mode)](https://api.anthropic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, Excel, files, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional JSON, CSV, and Excel exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-native mode can format local exports; CLI mode requires an Anthropic API key and can save outputs to files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata and scripts/package.json) <br>
+Risk: The skill handles sensitive invoice documents and CLI mode sends full invoice images and extracted business data to an external AI provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved documents and credentials, review before installing or using on confidential invoices, and confirm external processing is acceptable for the workflow.
+
+Risk: Security evidence identifies flaws around retry merging, CSV export, remote upload scoping, input size limits, endpoint restrictions, and dependency pinning.
+
+Mitigation: Avoid exposing the package as a long-running service until these areas are reviewed and addressed; scan and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mr-muddle/skills/invoice-scan)
+- [Canonical Invoice Schema](references/canonical-schema.md)
+- [Validation Rules](references/validation-rules.md)
+- [Anthropic API endpoint](https://api.anthropic.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, Excel files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with optional JSON, CSV, or Excel export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-native mode performs local formatting only; CLI mode can send base64 invoice images and sensitive invoice fields to Anthropic.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

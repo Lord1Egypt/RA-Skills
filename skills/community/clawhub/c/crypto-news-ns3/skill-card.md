@@ -1,45 +1,60 @@
-## Description: <br>
-Crypto News Ranked by AI helps agents fetch NS3 crypto news feeds, ranked stories, daily briefings, and breaking headlines with structured market context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto News Ranked by AI helps an agent retrieve, rank, and summarize NS3 crypto news feeds, including top stories, daily market briefings, breaking headlines, and coin-specific updates.
 
-## Publisher: <br>
-[assembleai-crypto](https://clawhub.ai/user/assembleai-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assembleai-crypto](https://clawhub.ai/user/assembleai-crypto)
 
-## Use Case: <br>
-External users, developers, trading workflow builders, and agent operators use this skill to retrieve crypto market news, coin-specific updates, top story rankings, daily briefings, and breaking headlines from NS3 feeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends requested coin symbols, language choices, and feed filters to NS3. <br>
-Mitigation: Use it only for crypto news and market briefings when that external API contact is acceptable. <br>
-Risk: Users may include sensitive wallet, account, balance, or private portfolio details in requests. <br>
-Mitigation: Avoid sharing wallet addresses, account details, balances, or private portfolio data when asking the agent to use the skill. <br>
-Risk: Crypto news and market context can be mistaken for trading, investment, tax, or financial advice. <br>
-Mitigation: Present outputs as informational news summaries and preserve the artifact's disclaimer that users are responsible for their own decisions. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to answer crypto news, portfolio update, market briefing, breaking headline, top story, and coin-specific news requests from NS3 feeds.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/assembleai-crypto/crypto-news-ns3) <br>
-- [NS3 homepage](https://ns3.ai) <br>
-- [NS3 RSS documentation](https://docs.ns3.ai/ns3-rss) <br>
-- [NS3 API documentation](https://docs.ns3.ai/ns3-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with RSS-derived text and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses NS3 RSS endpoints; News RSS responses can be large, so the artifact recommends limit and filter parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and release evidence) <br>
+Risk: Crypto-news queries, coin symbols, or portfolio tickers supplied by the user may be sent to NS3.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those query terms with NS3 is acceptable, and avoid sending sensitive portfolio details unless necessary.
+
+Risk: Responses may include NS3 attribution or suggestions to use related NS3 feeds.
+
+Mitigation: Review generated responses for required attribution and adjust deployment instructions if a stricter neutrality policy is needed.
+
+Risk: Crypto market news and analysis may be mistaken for financial or investment advice.
+
+Mitigation: Present outputs as informational news summaries and preserve the artifact's no-investment-advice posture.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/assembleai-crypto/skills/crypto-news-ns3)
+- [NS3 homepage](https://ns3.ai)
+- [NS3 API documentation](https://docs.ns3.ai/ns3-api)
+- [NS3 RSS documentation](https://docs.ns3.ai/ns3-rss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and briefings derived from RSS/API feed responses, with optional inline curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl. Feed requests may include language, coin, news type, source, category, and limit filters.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

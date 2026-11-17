@@ -1,17 +1,17 @@
-# 路由保护
+# Route protection
 
-Frontend Craft skill for 路由保护.
+Implement and review frontend auth guards, permission routes, redirects, and middleware.
 
 ## Skill
 
 - ID: `fec-route-protection`
 - Category: `implementation-capability`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-route-protection/SKILL.md`
 
 ## Description
 
-Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include 路由保护, 权限路由, 登录态.
+Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include route protection, permission routing, login state.
 
 ## Usage
 

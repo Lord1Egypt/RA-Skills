@@ -102,28 +102,6 @@ def _print_human(result):
         print("知识库中未找到相关信息。")
 
 
-def _print_human_enhanced(result, show_routing=False):
-    """增强的人类可读输出（含路由信息）"""
-    print(f"问题: {result['question']}")
-    routing = result.get("routing_info", {})
-    if show_routing and routing:
-        print(f"路由方法: {routing.get('method', '?')}")
-        print(f"目标 KB: {routing.get('kb_names', [])}")
-    else:
-        kbs = routing.get("kb_names", [])
-        if kbs:
-            print(f"检索自: {', '.join(kbs)}")
-    print(f"检索片段: {result['source_count']} 个")
-    print()
-    if result["context"]:
-        print("=" * 50)
-        print("检索到的上下文:")
-        print("=" * 50)
-        print(result["context"])
-    else:
-        print("知识库中未找到相关信息。")
-
-
 def _print_error(msg, json_output):
     if json_output:
         print(json.dumps({"error": msg, "success": False}, ensure_ascii=False))
@@ -142,12 +120,6 @@ if __name__ == "__main__":
     parser.add_argument("--template", type=str, help="自定义 prompt 模板（含 {context} {question}）")
     parser.add_argument("--import-file", type=str, dest="import_file", help="导入文件到知识库")
     parser.add_argument("--kb-list", action="store_true", help="列出知识库")
-    parser.add_argument("--no-router", action="store_true", dest="no_router",
-                        help="禁用路由层（直接检索指定 KB）")
-    parser.add_argument("--no-reranker", action="store_true", dest="no_reranker",
-                        help="禁用 rerank 层（不重排序）")
-    parser.add_argument("--show-routing", action="store_true", dest="show_routing",
-                        help="显示路由决策信息")
     parser.add_argument("--json", action="store_true", help="JSON 格式输出")
 
     args = parser.parse_args()
@@ -159,47 +131,7 @@ if __name__ == "__main__":
         sys.exit(run_kb_list(args.json))
 
     if args.query:
-        from rag_core import retrieve_context
-        use_router = not args.no_router
-        use_reranker = not args.no_reranker
-
-        try:
-            embeddings = get_embeddings()
-            if use_router or use_reranker:
-                # 使用增强检索
-                result = retrieve_context(
-                    args.query, kb_name=args.kb, k=args.k,
-                    score_threshold=args.threshold,
-                    embeddings=embeddings,
-                    use_router=use_router,
-                    use_reranker=use_reranker,
-                )
-                # 如果不需要 template，直接输出检索结果
-                if args.json:
-                    output = dict(result)
-                    if not args.show_routing:
-                        output.pop("routing_info", None)
-                    print(json.dumps(output, ensure_ascii=False, indent=2, default=str))
-                else:
-                    _print_human_enhanced(result, args.show_routing)
-            else:
-                result = format_skill_output(
-                    args.query, kb_name=args.kb, k=args.k,
-                    score_threshold=args.threshold,
-                    embeddings=embeddings,
-                    template=args.template,
-                )
-                if args.json:
-                    print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
-                else:
-                    _print_human(result)
-            sys.exit(0)
-        except ValueError as e:
-            _print_error(f"配置错误: {e}", args.json)
-            sys.exit(1)
-        except Exception as e:
-            _print_error(f"检索失败: {e}", args.json)
-            sys.exit(1)
+        sys.exit(run_query(args.query, args.kb, args.k, args.threshold, args.template, args.json))
 
     parser.print_help()
     sys.exit(1)

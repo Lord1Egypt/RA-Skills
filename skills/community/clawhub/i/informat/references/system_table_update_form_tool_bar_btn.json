@@ -1,0 +1,93 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_table_update_form_tool_bar_btn",
+    "description": "Update a form toolbar button configuration of the data table. Must call _table_list_form_tool_bar_btn first to get button ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        },
+        "buttonId": {
+          "type": "string",
+          "description": "Button ID to update (obtained via _table_list_form_tool_bar_btn)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Button display name"
+        },
+        "action": {
+          "type": "string",
+          "description": "Button trigger behavior type. Options: CallScript, CallAutomatic"
+        },
+        "actionSetting": {
+          "type": "object",
+          "description": "Button behavior configuration. When action is CallScript, func, scriptId and args are needed; when action is CallAutomatic, automaticId is needed, varList is optional.",
+          "properties": {
+            "func": {
+              "type": "string",
+              "description": "Execution function name (required for CallScript)"
+            },
+            "scriptId": {
+              "type": "string",
+              "description": "Script ID to call (required for CallScript)"
+            },
+            "args": {
+              "type": "array",
+              "description": "Parameter list passed to the script (used for CallScript)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "valueVar": {
+                    "type": "string",
+                    "description": "Parameter variable expression. Supported variables: current user: ${user} (user object has id, name, roleList, departmentList properties, use ${user.id} for current user id); form record: ${formRecord}; form module identifier: ${formModuleKey}"
+                  }
+                },
+                "required": ["valueVar"]
+              }
+            },
+            "automaticId": {
+              "type": "string",
+              "description": "Automation ID to call (required for CallAutomatic)"
+            },
+            "varList": {
+              "type": "array",
+              "description": "Variable list passed to the automation (optional for CallAutomatic)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "Variable value. Supported variables: current user: ${user} (user object has id, name, roleList, departmentList properties, use ${user.id} for current user id); form record: ${formRecord}; form module identifier: ${formModuleKey}"
+                  }
+                },
+                "required": ["value"]
+              }
+            }
+          }
+        },
+        "buttonSetting": {
+          "type": "object",
+          "description": "Button style configuration",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Button style type. Options: default, primary, success, warning, danger"
+            }
+          }
+        },
+        "hideExpression": {
+          "type": "string",
+          "description": "Hide button when expression condition is met. Button is hidden when expression evaluates to true. Note: visibleRoleList is deprecated. Use hideExpression and disableExpression for button permission control."
+        },
+        "disableExpression": {
+          "type": "string",
+          "description": "Disable button when expression condition is met. Button is disabled when expression evaluates to true."
+        }
+      },
+      "required": ["tableId", "buttonId"]
+    }
+  }
+}

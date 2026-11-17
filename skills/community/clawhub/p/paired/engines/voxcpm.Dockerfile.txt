@@ -1,0 +1,26 @@
+# VoxCPM2 voice-cloning service for paired
+# Build:  docker build -t paired-voxcpm:latest -f voxcpm.Dockerfile.txt .   # .txt is a ClawHub packaging suffix; -f takes any filename
+# Run:    docker run -d --name paired-voxcpm --gpus all --restart unless-stopped \
+#           -p 8056:8056 \
+#           -v /path/to/your/refs:/refs \
+#           -v paired-hf-cache:/root/.cache/huggingface \
+#           paired-voxcpm:latest
+
+FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg git wget curl build-essential gcc g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir voxcpm fastapi uvicorn soundfile
+
+WORKDIR /app
+RUN mkdir -p /refs /tmp/output /root/.cache/huggingface
+
+COPY voxcpm-server.py /app/server.py
+
+EXPOSE 8056
+
+ENV CC=gcc CXX=g++ TORCH_COMPILE_DISABLE=1
+
+CMD ["python", "/app/server.py"]

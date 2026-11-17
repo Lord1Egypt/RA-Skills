@@ -1,6 +1,64 @@
 {
-  "ownerId": "kn7ec270zqg66x6r2mhc002gz98382h2",
-  "slug": "reportgama2",
+  "name": "Report-gama",
   "version": "1.0.0",
-  "publishedAt": 1775456512334
+  "description": "🎯 深度市场调研报告生成技能 —— 目标国家+目标品类，一键生成专业长篇报告，支持PDF导出。整合多语种搜索、新闻监控、竞争分析、电商价格、广告投放、海关数据等模块。",
+  "author": "WorkBuddy Custom",
+  "homepage": "https://github.com/workbuddy/report-gama",
+  "categories": [
+    "research",
+    "market-intelligence",
+    "multilingual",
+    "report-generation",
+    "pdf-export"
+  ],
+  "tags": [
+    "市场调研",
+    "俄罗斯市场",
+    "医疗器械",
+    "多语种",
+    "PDF报告",
+    "电商数据",
+    "海关数据",
+    "竞争分析"
+  ],
+  "emoji": "📊",
+  "license": "MIT",
+  "requires": {
+    "bins": ["python3", "pip3"],
+    "python_pkgs": [
+      "requests",
+      "beautifulsoup4",
+      "lxml",
+      "matplotlib",
+      "reportlab",
+      "pillow"
+    ]
+  },
+  "install": {
+    "pip": "pip3 install requests beautifulsoup4 lxml fake-useragent matplotlib reportlab pillow"
+  },
+  "trigger_words": [
+    "生成俄罗斯市场报告",
+    "生成某国家某品类报告",
+    "深度市场调研报告",
+    "俄罗斯医疗器械报告",
+    "俄罗斯血糖仪报告",
+    "市场调研报告PDF",
+    "一键生成市场调研",
+    "竞品分析报告",
+    "海关数据报告",
+    "电商价格调研",
+    "广告投放分析",
+    "市场调研"
+  ],
+  "skills_used": [
+    "multi-search-engine",
+    "deep-research-pro",
+    "market-research",
+    "ru-en-search",
+    "daily-hot-news",
+    "data-analyst"
+  ],
+  "platforms": ["win32", "linux", "darwin"],
+  "language": "zh-CN"
 }

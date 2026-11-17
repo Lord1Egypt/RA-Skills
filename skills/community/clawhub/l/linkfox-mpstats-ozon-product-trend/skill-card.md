@@ -1,42 +1,62 @@
-## Description: <br>
-Returns daily MPSTATS time-series data for one Ozon Russia SKU, including sales, price, stock, ratings, and optional search-visibility signals for trend, seasonality, and anomaly checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Returns daily time-series data for a single Ozon Russia SKU, including sales, price, stock, rating, comments, and optional search visibility signals.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External agents and e-commerce analysts use this skill to inspect one Ozon SKU's day-by-day sales, price, inventory, rating, and visibility behavior. It is intended for factual trend review, stockout detection, and anomaly checks, not automated buying advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Ozon SKU queries and a LinkFox API key to LinkFox services. <br>
-Mitigation: Install only when that data flow is acceptable, keep the API key in LINKFOXAGENT_API_KEY, and avoid exposing credentials in prompts, logs, or feedback text. <br>
-Risk: The artifact instructs agents to submit feedback to a separate LinkFox endpoint without clearly requiring user consent. <br>
-Mitigation: Require explicit user approval before submitting feedback and exclude credentials, private prompts, customer data, and confidential business context. <br>
+## Use Case:
 
+E-commerce analysts, operators, and agents use this skill to inspect one Ozon SKU over time and identify sales, price, stock, rating, or visibility changes. It supports trend validation, seasonality checks, and factual anomaly reporting without making purchasing recommendations.
 
-## Reference(s): <br>
-- [MPSTATS Ozon Product Trend API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-mpstats-ozon-product-trend) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses or table-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY and returns a single-SKU daily time series with possible missing days; the helper script can print raw JSON or a terminal summary table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires a LinkFox API key and may guide users through phone/SMS login or payment flows when access or billing errors occur.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer self-service key setup, avoid sharing API keys in chat or persistent shell profile files on shared machines, and review authentication or payment steps before proceeding.
+
+Risk: Endpoint environment variables can redirect requests to non-default LINKFOX_* hosts.
+
+Mitigation: Verify LINKFOX_* endpoint variables are unset or point only to trusted LinkFox hosts before running the scripts.
+
+Risk: Full API responses, cache files, and possible QR-code images may be written to local linkfox directories.
+
+Mitigation: Run the skill in an appropriate workspace and review or delete local response, cache, and payment QR artifacts when they are no longer needed.
+
+Risk: The security verdict is suspicious and the security summary flags sensitive account, payment, credential, persistence, and automatic feedback behaviors.
+
+Mitigation: Review the skill and scan results before installation, and install only when those behaviors are acceptable for the intended environment.
+
+## Reference(s):
+
+- [MPSTATS Ozon Product Trend API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses, tables, file paths, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes full API responses and cache files under a local linkfox workspace path; large responses are summarized unless inline output is requested.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

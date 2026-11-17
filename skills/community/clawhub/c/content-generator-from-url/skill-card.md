@@ -1,44 +1,60 @@
-## Description: <br>
-All-in-one content generation, social media publishing, video creation, and image template design via the GenerateBot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one content generation, social media publishing, video creation, and image template design via the GenerateBot API.
 
-## Publisher: <br>
-[osaket](https://clawhub.ai/user/osaket) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[osaket](https://clawhub.ai/user/osaket)
 
-## Use Case: <br>
-External users, marketers, and developers use this skill to search topics or URLs, generate articles, social posts, scripts, images, and videos, manage generated content, and publish through GenerateBot-connected CMS or social accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GenerateBot API key and may access connected GenerateBot, CMS, and social accounts. <br>
-Mitigation: Install only when the user trusts GenerateBot and intends to let an agent operate those connected accounts. <br>
-Risk: The skill can publish, delete, bulk-clear, update, or otherwise change account content. <br>
-Mitigation: Before any destructive or publishing action, require the agent to show the exact target account, content, destination, and requested change, then get explicit confirmation. <br>
-Risk: Paid generation actions can consume GenerateBot credits. <br>
-Mitigation: Before any paid generation, require the agent to show the credit cost and receive explicit confirmation. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to search for content ideas, generate articles and social posts from URLs or topics, create short-form videos, render image templates, and publish to connected CMS or social media accounts through GenerateBot.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/osaket/content-generator-from-url) <br>
-- [GenerateBot Homepage](https://generatebot.com) <br>
-- [GenerateBot API Base URL](https://generatebot.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GENERATEBOT_API_KEY; some operations consume credits and can publish, update, or delete connected account content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Publishing and scheduling can act through connected social or CMS accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation that names the destination platform, account, content item, and schedule before making publishing or scheduling API calls.
+
+Risk: Content deletion, RSS clearing, and template deletion can remove saved account data.
+
+Mitigation: Require explicit confirmation of the exact resource ID or feed set before destructive API calls, and show the target back to the user before proceeding.
+
+Risk: Pipeline, video, image, enrichment, and template-render operations may spend GenerateBot credits.
+
+Mitigation: State the expected credit cost and get user confirmation before starting credit-consuming workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/osaket/skills/content-generator-from-url)
+- [Publisher profile](https://clawhub.ai/user/osaket)
+- [GenerateBot homepage](https://generatebot.com)
+- [GenerateBot API base URL](https://generatebot.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON request and response examples, API endpoint references, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GENERATEBOT_API_KEY bearer token; some workflows consume GenerateBot credits and may operate on connected social or CMS accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

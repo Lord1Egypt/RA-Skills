@@ -1,40 +1,52 @@
-## Description: <br>
-RegexAssistant helps users test, debug, and generate regular expressions, including match tests, capture groups, full-text extraction, and replacement operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RegexAssistant helps agents test, debug, and generate regular expressions, including match checks, capture groups, extraction, and replacement workflows.
 
-## Publisher: <br>
-[crossallen](https://clawhub.ai/user/crossallen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crossallen](https://clawhub.ai/user/crossallen)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate regex patterns against sample text, inspect captured groups, extract matches, preview replacements, and generate common regex patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-supplied patterns or text can be misread by the shell when passed through command lines. <br>
-Mitigation: Use careful quoting or direct argv execution when passing patterns and sample text. <br>
-Risk: Very large input text or complex regular expressions can slow the local Python process. <br>
-Mitigation: Test complex or untrusted expressions on bounded sample input before applying them to larger text. <br>
-Risk: Regex testing may expose sensitive sample data in command history or terminal output. <br>
-Mitigation: Avoid pasting sensitive data unless it is necessary and appropriate for the local environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use RegexAssistant to validate regex behavior, inspect matches and capture groups, extract matched content, perform regex replacements, and retrieve common regex patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python regular expression behavior; no external service is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted or very complex regular expressions can stall execution through catastrophic backtracking on large input.
+
+Mitigation: Test unfamiliar patterns on small inputs first, bound input size, and stop the process if evaluation stalls.
+
+Risk: The CLI output is localized in Chinese, which may be unsuitable for workflows that require English-only operator output or logs.
+
+Mitigation: Install only where Chinese-language command output is acceptable, or wrap and translate output before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crossallen/skills/regex-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Localized Chinese CLI output; regex runtime depends on pattern complexity and input size.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

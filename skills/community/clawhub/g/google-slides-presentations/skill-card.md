@@ -1,43 +1,62 @@
-## Description: <br>
-Google Slides API integration with managed OAuth. Inspect presentations, create or update slide content, manage layouts, and coordinate presentation workflows. Use this skill when users want to work with Google Slides decks programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Slides API integration with managed OAuth for inspecting presentations, creating or updating slide content, managing layouts, and coordinating presentation workflows.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect Google Slides presentations, create or update slides and presentation elements, and manage deck workflows through a connected Google account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a suspicious security verdict tied to an autoreview helper that can run with sandbox-bypass authority. <br>
-Mitigation: Install only in trusted ClawHub-maintenance workflows, prefer --no-yolo or AUTOREVIEW_YOLO=0 for autoreview, and review commands that can post to GitHub, change moderation state, or send diffs to external reviewer CLIs. <br>
-Risk: The skill uses OAuth-backed access to a user's Google Slides data and can perform write operations. <br>
-Mitigation: Use the connected account intentionally, verify the target presentation and requested change, preview write operations when available, and require explicit user confirmation before create, update, or delete actions. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to Google Slides, inspect decks, create and update slide content, manage layouts, and coordinate presentation workflows through ClawLink-managed OAuth.
 
-## Reference(s): <br>
-- [Google Slides API Overview](https://developers.google.com/slides) <br>
-- [Google Slides Presentations Reference](https://developers.google.com/slides/reference/rest/v1/presentations) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for authenticated Google Slides API operations through ClawLink-managed tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill depends on the ClawLink plugin and hosted OAuth service for access to Google Slides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user trusts ClawLink with Google Slides account access and reviews Google's requested permissions before connecting.
+
+Risk: Write and destructive actions can change or delete presentation content.
+
+Mitigation: Confirm the target presentation, slide or element and intended effect before creating, updating or deleting content.
+
+Risk: Presentation sharing settings can expose edited content to unintended viewers.
+
+Mitigation: Review presentation sharing permissions before making changes.
+
+## Reference(s):
+
+- [Google Slides Skill Page](https://clawhub.ai/hith3sh/skills/google-slides-presentations)
+- [Google Slides API Overview](https://developers.google.com/slides)
+- [Google Slides Presentations API Reference](https://developers.google.com/slides/reference/rest/v1/presentations)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=google-slides-presentations)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ClawLink tool-call instructions; write or destructive Google Slides changes should be previewed and confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

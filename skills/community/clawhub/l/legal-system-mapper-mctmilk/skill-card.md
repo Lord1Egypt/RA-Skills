@@ -1,38 +1,53 @@
-## Description: <br>
-以某个法条为核心节点，构建其上下游法条关联网络，包括上位规范、并列条款、下位细化、程序衔接、竞合分析。当用户想了解某个法条在法律体系中的位置时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+以某个法条为核心节点，构建其上下游法条关联网络，包括上位规范、并列条款、下位细化、程序衔接、竞合分析。
 
-## Publisher: <br>
-[mctmilk](https://clawhub.ai/user/mctmilk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mctmilk](https://clawhub.ai/user/mctmilk)
 
-## Use Case: <br>
-Chinese-language legal researchers, practitioners, and students use this skill to map a cited legal provision into its surrounding legal system, including superior norms, parallel provisions, downstream interpretations, procedural links, and concurrence choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incomplete or incorrect legal analysis if the cited provision, judicial interpretation, limitation period, or burden-of-proof rule is outdated or jurisdiction-specific. <br>
-Mitigation: Treat outputs as research support, verify important conclusions against authoritative legal sources, and consult a qualified professional before relying on them. <br>
+## Use Case:
 
+External users and legal researchers use this skill to place a cited legal article within a broader legal system, including higher-level norms, parallel provisions, implementing interpretations, procedural issues, and claim concurrence considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mctmilk/legal-system-mapper-mctmilk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tree-structured legal relationship maps, comparison tables, and analytical recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language legal research support; conclusions should be verified against authoritative legal sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce legal-system research that may be incomplete, outdated, or mismatched to the user's jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current law, jurisdiction fit, statute of limitations, burden of proof, and cited authorities independently before relying on the analysis.
+
+Risk: The skill is prompt-only and defaults to Chinese legal-research output, which may not match every user's language or legal-system expectations.
+
+Mitigation: Ask for a different language or jurisdictional framing when needed, and treat the result as research assistance rather than legal advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mctmilk/skills/legal-system-mapper-mctmilk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with tree-structured legal relationship maps, comparison tables, and practical concurrence guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese output by default; legal conclusions require independent verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

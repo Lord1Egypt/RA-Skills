@@ -90,11 +90,14 @@ def ensure_auth_skill_available() -> None:
 # ---------- LinkFox gateway plumbing ----------
 
 def get_api_key() -> str:
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和积分问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "❌ LINKFOX_AGENT_API_KEY not configured. Please set:\n"
-            "  export LINKFOX_AGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -115,7 +118,7 @@ def call_gateway(endpoint: str, payload: dict) -> dict:
         method="POST",
     )
     try:
-        with urlopen(req, timeout=60) as resp:
+        with urlopen(req, timeout=150) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -125,13 +128,9 @@ def call_gateway(endpoint: str, payload: dict) -> dict:
 
 
 def get_access_token(profile_id: int) -> str:
-    """Fetch access token for the given profileId via /amazonAds/storeTokens."""
-    print(f"🔑 Fetching access token for profileId={profile_id}…", file=sys.stderr)
-    result = call_gateway(STORE_TOKENS_ENDPOINT, {"profileId": int(profile_id)})
-    if "error" in result or "accessToken" not in result:
-        print(f"❌ Failed to get access token: {result}", file=sys.stderr)
-        sys.exit(1)
-    return result["accessToken"]
+    """Legacy no-op: developerProxy resolves token server-side from profileId."""
+    print(f"Using server-side token resolution for profileId={profile_id}", file=sys.stderr)
+    return ""
 
 
 def _developer_proxy_call(region: str, path: str, method: str, access_token: str,
@@ -141,9 +140,10 @@ def _developer_proxy_call(region: str, path: str, method: str, access_token: str
         "region": region,
         "path": path,
         "method": method,
-        "amzAccessToken": access_token,
         "profileId": int(profile_id),
     }
+    if access_token:
+        payload["amzAccessToken"] = access_token
     if body is not None:
         payload["body"] = body
     if content_type:
@@ -155,10 +155,11 @@ def _developer_proxy_call(region: str, path: str, method: str, access_token: str
 
 # ---------- SP list (POST, v3, nextToken paginated) ----------
 
-def list_sp_entities(region: str, profile_id: int, access_token: str,
+def list_sp_entities(region: str, profile_id: int,
                      entity_path: str, entity_content_type: str, response_key: str,
                      request_body: dict, fetch_all: bool = True,
-                     max_pages: int = DEFAULT_MAX_PAGES) -> dict:
+                     max_pages: int = DEFAULT_MAX_PAGES,
+                     access_token: str = "") -> dict:
     """
     POST a SP v3 list endpoint and optionally auto-paginate via nextToken.
 
@@ -523,13 +524,14 @@ def build_sd_query(params: dict, filter_keys: list[str]):
     return query, use_extended_path, client_filters
 
 
-def list_sd_entities(region: str, profile_id: int, access_token: str,
+def list_sd_entities(region: str, profile_id: int,
                      entity_path: str,
                      response_key: str,
                      server_query: dict,
                      fetch_all: bool = True,
                      max_pages: int = DEFAULT_MAX_PAGES,
-                     page_size: int = DEFAULT_PAGE_SIZE) -> dict:
+                     page_size: int = DEFAULT_PAGE_SIZE,
+                     access_token: str = "") -> dict:
     """GET 一个 Sponsored Display v3 list endpoint，并按 startIndex + count 自动翻页。
 
     Sponsored Display 响应顶层是数组（非 `{<entityKey>:[...]}` 结构）；本函数对两种形态都兼容。
@@ -621,9 +623,10 @@ def list_sd_entities(region: str, profile_id: int, access_token: str,
 
 # ---------- Mutation (POST create / PUT update) ----------
 
-def mutate_entity(region: str, profile_id: int, access_token: str,
+def mutate_entity(region: str, profile_id: int,
                   path: str, method: str, content_type: str,
-                  payload) -> dict:
+                  payload,
+                  access_token: str = "") -> dict:
     """POST (create) or PUT (update) an entity batch via developerProxy.
 
     Returns either:

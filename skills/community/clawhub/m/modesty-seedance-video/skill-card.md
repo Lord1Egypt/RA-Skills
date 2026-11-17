@@ -1,43 +1,55 @@
-## Description: <br>
-Generate AI videos from text prompts or images with Seedance 2.0 on SkillBoss. Best for short ads, product demos, launch clips, and social videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos from text prompts or images with Seedance 2.0 on SkillBoss. Best for short ads, product demos, launch clips, and social videos.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers, creators, and marketing teams use this skill to generate short AI videos from text prompts or reference images through SkillBoss, especially for ads, product demos, launch clips, and social video formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference image URLs are sent to SkillBoss for paid video generation. <br>
-Mitigation: Use the skill only when third-party SkillBoss processing is approved, and avoid submitting secrets, confidential media, internal URLs, or personal data unless policy allows it. <br>
-Risk: The skill uses a SkillBoss API key and can incur pay-as-you-go generation charges. <br>
-Mitigation: Use a scoped SkillBoss API key where possible and confirm duration, aspect ratio, and request intent before running paid generations. <br>
+## Use Case:
 
+External users and developers use this skill to generate short Seedance 2.0 videos through SkillBoss from text prompts, first-frame images, or reference images for ads, product demos, launch clips, and social videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-seedance-video) <br>
-- [SkillBoss Seedance Video page](https://skillboss.co/skills/seedance-video) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss run endpoint](https://api.skillboss.co/v1/run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request payloads, curl examples, and generated video URLs or task payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes prompt, duration, and aspect ratio; reports API errors with retry guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Prompts and reference image URLs are sent to SkillBoss for video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private media, or sensitive personal data unless the user's SkillBoss account and data-handling expectations cover that use.
+
+Risk: Video generation uses a pay-as-you-go API key and can incur usage costs.
+
+Mitigation: Confirm requested duration, aspect ratio, and reference images before running generation, and use the smallest useful retry change after API errors.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/modesty-seedance-video)
+- [SkillBoss Seedance Video](https://skillboss.co/skills/seedance-video)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns generated video URLs or task payloads, summarizes prompt, duration, and aspect ratio, and reports API errors with retry guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

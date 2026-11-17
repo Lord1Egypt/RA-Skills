@@ -1,44 +1,58 @@
-## Description: <br>
-Launch tokens on Streme (streme.fun) - the streaming token platform on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch tokens on Streme (streme.fun), the streaming token platform on Base, for SuperToken deployments with staking rewards, Uniswap V3 liquidity, and optional vesting vaults.
 
-## Publisher: <br>
-[clawrencestreme](https://clawhub.ai/user/clawrencestreme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawrencestreme](https://clawhub.ai/user/clawrencestreme)
 
-## Use Case: <br>
-Developers and token launch operators use this skill to prepare and run Streme SuperToken deployments on Base with Uniswap V3 liquidity, optional staking rewards, optional vesting vaults, and hosted token images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch public blockchain tokens using a raw wallet private key. <br>
-Mitigation: Use a dedicated low-balance wallet and require manual approval of the exact deployment transaction before execution. <br>
-Risk: Incorrect contract addresses, dependencies, or token parameters can affect deployed assets. <br>
-Mitigation: Verify contract addresses and dependencies, and set token parameters explicitly before deployment. <br>
-Risk: Image hosting workflows may use third-party credentials. <br>
-Mitigation: Use scoped image-hosting credentials and avoid reusing broad account credentials for token image uploads. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Streme Contract Reference](references/contracts.md) <br>
-- [Streme API token search](https://api.streme.fun/api/tokens) <br>
-- [Streme token page pattern](https://streme.fun/token/{tokenAddress}) <br>
-- [ClawHub skill page](https://clawhub.ai/clawrencestreme/streme-launcher) <br>
+## Use Case:
 
+Developers and token launch operators use this skill to prepare and execute Streme SuperToken launches on Base, including image hosting, allocation setup, and deployment commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment parameters, environment variable names, contract addresses, image hosting instructions, and blockchain transaction guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deployment helper can submit Base mainnet wallet transactions.
+
+Mitigation: Use a dedicated low-value deployment wallet, verify Base mainnet, confirm contract addresses, and inspect token parameters before signing.
+
+Risk: The upload helper can read a local file and send it to an external image hosting provider.
+
+Mitigation: Run the helper only on the intended public token image and avoid paths that may contain sensitive or private files.
+
+Risk: The scripts rely on wallet and provider credentials supplied through environment variables.
+
+Mitigation: Review dependencies, add pinned dependencies and a lockfile, and provide PRIVATE_KEY or provider API credentials only after local review.
+
+## Reference(s):
+
+- [Streme Contract Reference](artifact/references/contracts.md)
+- [ClawHub skill listing](https://clawhub.ai/clawrencestreme/skills/streme-launcher)
+- [Streme token API](https://api.streme.fun/api/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment parameters, contract addresses, hosted image URLs, transaction hashes, and post-deployment links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

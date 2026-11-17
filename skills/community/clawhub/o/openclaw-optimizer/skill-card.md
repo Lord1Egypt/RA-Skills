@@ -1,50 +1,64 @@
-## Description: <br>
-OpenClaw Optimizer helps users optimize and troubleshoot OpenClaw workspaces for cost-aware model routing, provider configuration, context management, cron automation, multi-agent architecture, skills, and agent identity audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes and troubleshoots OpenClaw setups for cost, model routing, provider configuration, context management, cron automation, sub-agent architecture, skills, and identity file audits.
 
-## Publisher: <br>
-[jacob-bd](https://clawhub.ai/user/jacob-bd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacob-bd](https://clawhub.ai/user/jacob-bd)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit, optimize, and troubleshoot OpenClaw deployments. It focuses on provider setup, model routing, cost and context reduction, cron automation, backups, rollback planning, and identity-file reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad OpenClaw administration reach, including guidance around profile writes, cron and config mutations, identity files, repairs, and resets. <br>
-Mitigation: Require explicit user confirmation before each write, mutation, repair, reset, or persistent setting change. <br>
-Risk: The skill may persist sensitive deployment knowledge in profile or configuration files. <br>
-Mitigation: Do not store full secrets, token fragments, or unnecessary network details; review profile and configuration diffs before applying changes. <br>
-Risk: Remote sync, self-update, and destructive repair workflows can affect local or remote environments. <br>
-Mitigation: Review exact commands, diffs, remote destinations, expected impact, and rollback steps before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to audit, optimize, and troubleshoot OpenClaw workspaces. It produces prioritized plans, exact CLI commands, configuration patches, and rollback steps while requiring approval before persistent changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacob-bd/openclaw-optimizer) <br>
-- [OpenClaw Optimizer - Provider Reference](references/providers.md) <br>
-- [OpenClaw Optimizer - Troubleshooting Reference](references/troubleshooting.md) <br>
-- [OpenClaw Optimizer - CLI Reference](references/cli-reference.md) <br>
-- [OpenClaw Optimizer - Agent Identity Optimizer Reference](references/identity-optimizer.md) <br>
-- [OpenClaw Optimizer - Update Log](metadata/update-log.md) <br>
-- [System Profile Template](systems/TEMPLATE.md) <br>
-- [OpenClaw issue 8663](https://github.com/openclaw/openclaw/issues/8663) <br>
-- [OpenClaw issue 21494](https://github.com/openclaw/openclaw/issues/21494) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with prioritized findings, exact CLI commands, configuration patches, and rollback steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory by default; the skill proposes changes and rollback steps before approved mutations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.19.0 (source: server release metadata and SKILL.md header; aligned with OpenClaw v2026.3.8) <br>
+Risk: The skill asks agents to collect and retain detailed OpenClaw deployment notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review profile content before retention, limit sensitive deployment details, and treat profile notes as untrusted operational context.
+
+Risk: The skill can propose profile writes, SCP syncs, config changes, cron changes, SKILL.md edits, git commits, or pushes.
+
+Mitigation: Require explicit approval for each persistent change and review the exact command, expected impact, and rollback before execution.
+
+Risk: Templates or configuration examples may contain token-like prefixes.
+
+Mitigation: Remove token prefixes from templates and avoid storing secrets in skill files, notes, or shared configuration examples.
+
+## Reference(s):
+
+- [OpenClaw Optimizer Provider Reference](artifact/references/providers.md)
+- [OpenClaw Optimizer Troubleshooting Reference](artifact/references/troubleshooting.md)
+- [OpenClaw Optimizer CLI Reference](artifact/references/cli-reference.md)
+- [OpenClaw Optimizer Agent Identity Optimizer Reference](artifact/references/identity-optimizer.md)
+- [OpenClaw Provider Documentation](https://docs.openclaw.ai/providers/index.md)
+- [OpenClaw CLI Documentation](https://docs.openclaw.ai/cli)
+- [OpenClaw Troubleshooting Documentation](https://docs.openclaw.ai/troubleshooting)
+- [OpenClaw Release Notes](https://github.com/openclaw/openclaw/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes prioritized plans, approval-gated change proposals, and rollback commands.]
+
+## Skill Version(s):
+
+1.19.0 (source: server release metadata and SKILL.md heading; aligned with OpenClaw v2026.3.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-OpenClaw configuration management best practices and common pitfalls for modifying configuration, checking paths and structure, resolving configuration errors, adding providers or channels, and avoiding unsafe direct JSON edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and developers through safe OpenClaw configuration changes, including reading current settings, applying incremental patches, verifying results, and avoiding common path mistakes.
 
-## Publisher: <br>
-[JackTian010105](https://clawhub.ai/user/JackTian010105) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jacktian010105](https://clawhub.ai/user/jacktian010105)
 
-## Use Case: <br>
-Developers and operators use this skill to safely inspect, patch, and verify OpenClaw configuration for providers, channels, gateway settings, and agent defaults. It helps avoid common configuration mistakes such as guessing paths, directly editing JSON files, or replacing the full configuration unintentionally. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configuration output may contain API keys, bot tokens, or gateway tokens. <br>
-Mitigation: Mask secrets before sharing `gateway config.get` output. <br>
-Risk: A broad configuration replacement can unintentionally remove existing settings. <br>
-Mitigation: Review any `config.patch` before applying it and avoid full config replacement unless intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw 配置路径速查表](references/common-paths.md) <br>
+## Use Case:
 
+Developers, operators, and agents use this skill when modifying OpenClaw configuration, adding providers or channels, resolving configuration errors, or checking correct config paths before making changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reading complete OpenClaw configuration can expose API keys, bot tokens, and gateway tokens.
+
+Mitigation: Prefer scoped configuration reads when possible, redact secrets from outputs, and treat any full configuration output as sensitive.
+
+Risk: Configuration patches can unintentionally change credentials, providers, channels, or gateway behavior.
+
+Mitigation: Review and confirm each patch before applying it, then verify the resulting configuration.
+
+## Reference(s):
+
+- [OpenClaw configuration path quick reference](references/common-paths.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command examples and configuration path examples for OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

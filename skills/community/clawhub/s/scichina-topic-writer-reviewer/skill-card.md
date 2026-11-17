@@ -1,41 +1,53 @@
-## Description: <br>
-科普智创审校助手。当用户提到「科普中国热点创作」「科普工作」「热点采集与科普写作」或类似意图时激活。执行以下流程：(1) 监控 kepuchina.cn 整理热门文章与关键字；(2) 根据关键字为用户拟写科普文章；(3) 执行科学性审查与引用来源核查，防止大模型幻觉。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+科普智创审校助手帮助代理采集科普中国热点内容，提炼主题关键词，撰写科普文章，并执行科学性、引用来源和事实核查审校。
 
-## Publisher: <br>
-[binhuatochina](https://clawhub.ai/user/binhuatochina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binhuatochina](https://clawhub.ai/user/binhuatochina)
 
-## Use Case: <br>
-Science communication writers and editors use this skill to gather recent Kepu China topics, draft public-facing science articles, verify claims and references, and prepare reviewed content for Feishu publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create and share Feishu documents and retain document links locally. <br>
-Mitigation: Confirm the Feishu workspace, parent node, account, sharing permissions, content format, and local link-retention behavior before running the full workflow; use preview-only mode when remote document creation is not desired. <br>
-Risk: Science or health article drafts can include incorrect facts, unverifiable claims, or fabricated references if review steps are skipped. <br>
-Mitigation: Require the built-in scientific review, citation verification, and fact-checking steps before publishing or writing content to Feishu. <br>
+## Use Case:
 
+External creators, editors, and science communication teams use this skill to turn current KepuChina topics into public-facing science articles with source checks and an audit-style review report before publishing.
 
-## Reference(s): <br>
-- [科普中国](https://www.kepuchina.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/binhuatochina/scichina-topic-writer-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown article draft, reference list, review report, Feishu document link, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a Feishu document and record the resulting document link locally when the full workflow is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can publish generated content to a fixed Feishu location, grant edit access, and store document links locally without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and require explicit confirmation of the destination workspace, document permissions, and external write action before any Feishu document is created or shared.
+
+Risk: Science or medical content may contain unsupported claims if source verification is skipped or incomplete.
+
+Mitigation: Use the built-in scientific, citation, and fact-check review steps, mark unverifiable references as pending verification, and avoid publishing until authoritative sources support the claims.
+
+## Reference(s):
+
+- [科普中国](https://www.kepuchina.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown articles, reference lists, review reports, Feishu document content, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Feishu documents, grant edit access, and save document links locally when the configured tools are available.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

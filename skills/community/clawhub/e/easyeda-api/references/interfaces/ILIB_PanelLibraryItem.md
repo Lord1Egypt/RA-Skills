@@ -1,11 +1,11 @@
 # ILIB\_PanelLibraryItem interface
 
-面板库属性
+Panel library property
 
 ## Signature
 
 ```typescript
-interface ILIB_PanelLibraryItem 
+interface ILIB_PanelLibraryItem
 ```
 
 ## Properties
@@ -14,137 +14,109 @@ interface ILIB_PanelLibraryItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [classification?](./ILIB_PanelLibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_ClassificationIndex](./ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 [description?](./ILIB_PanelLibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [libraryType](./ILIB_PanelLibraryItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [ELIB\_LibraryType.PANEL\_LIBRARY](../enums/ELIB_LibraryType.md)
 
-
 </td><td>
 
-库类型
-
+Library type
 
 </td></tr>
 <tr><td>
 
 [libraryUuid](./ILIB_PanelLibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属库 UUID
-
+UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [name](./ILIB_PanelLibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库名称
-
+Panel library name
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_PanelLibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 </tbody></table>
@@ -157,7 +129,7 @@ string
 
 # ILIB\_PanelLibraryItem.classification property
 
-分类
+Classification
 
 ## Signature
 
@@ -169,7 +141,7 @@ classification?: ILIB_ClassificationIndex | Array<string>;
 
 # ILIB\_PanelLibraryItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -181,7 +153,7 @@ description?: string;
 
 # ILIB\_PanelLibraryItem.libraryType property
 
-库类型
+Library type
 
 ## Signature
 
@@ -193,7 +165,7 @@ readonly libraryType: ELIB_LibraryType.PANEL_LIBRARY;
 
 # ILIB\_PanelLibraryItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 
@@ -205,7 +177,7 @@ libraryUuid: string;
 
 # ILIB\_PanelLibraryItem.name property
 
-面板库名称
+Panel library name
 
 ## Signature
 
@@ -217,7 +189,7 @@ name: string;
 
 # ILIB\_PanelLibraryItem.uuid property
 
-面板库 UUID
+Panel library UUID
 
 ## Signature
 

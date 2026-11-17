@@ -1,37 +1,49 @@
-## Description: <br>
-介绍36氪（36kr）公司概况、业务范围、企业文化等信息 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise company background, business scope, and culture information about 36kr.
 
-## Publisher: <br>
-[36kr-com](https://clawhub.ai/user/36kr-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[36kr-com](https://clawhub.ai/user/36kr-com)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to answer general questions about 36kr's company background, business scope, enterprise information, and culture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company details included in the skill may become outdated or incomplete. <br>
-Mitigation: Verify important or current 36kr facts with reliable public sources before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to answer general questions about 36kr's company background, business areas, and culture. It is suited for informational responses and should verify recent company changes before presenting them as current facts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend checking reliable public sources when current 36kr facts are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Static company details can become outdated or incomplete for current company facts, financial status, or recent business changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current 36kr facts with up-to-date search before presenting them as current information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/36kr-com/skills/36kr-intro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include up-to-date search guidance when users ask for current facts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

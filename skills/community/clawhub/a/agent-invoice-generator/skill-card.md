@@ -1,43 +1,62 @@
-## Description: <br>
-Generates professional invoices from natural language or structured invoice data, including line items, tax, discounts, currencies, recurring invoice setup, payment tracking, and PDF or HTML output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates invoice files and status summaries from structured inputs, with PDF output when ReportLab is available and HTML fallback otherwise.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-External users, freelancers, and business operators use this skill to create invoices, record payment status, and manage local invoice data through an agent-driven command workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores business contact details, client names, invoice notes, amounts, and payment status in local files under the user's home directory. <br>
-Mitigation: Use it only on trusted machines, protect the home directory, and avoid entering sensitive client information unless local storage is acceptable. <br>
-Risk: Invoice amounts, taxes, discounts, due dates, and payment status may be incorrect if natural-language input is parsed incorrectly or source data is incomplete. <br>
-Mitigation: Review generated invoice records and files before sending them to clients or recording payment status. <br>
-Risk: Recurring invoices or email delivery can automate business actions beyond simple local file generation. <br>
-Mitigation: Require explicit user confirmation before configuring cron-based recurring invoices or using any separate email skill to send invoices. <br>
+## Use Case:
 
+External users and business operators use this skill to create invoice records, generate invoice documents, and track paid or unpaid invoice status from agent-provided billing details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnywang2001/agent-invoice-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/Johnnywang2001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown summary with shell commands; generated invoice records as JSON and invoices as PDF or HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores configuration under ~/.openclaw and invoice outputs under ~/Documents/Invoices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive invoices and business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled workspace and review invoice content before sharing generated files.
+
+Risk: File writes are under-scoped and use fixed paths in the user's home directory.
+
+Mitigation: Run with an isolated home directory or inspect ~/.openclaw and ~/Documents/Invoices outputs before relying on them.
+
+Risk: Fallback HTML output may include untrusted client, item, or notes text without sufficient escaping.
+
+Mitigation: Avoid untrusted billing text until HTML escaping is fixed, and prefer reviewed PDF output when available.
+
+Risk: Some advertised recurring, receipt, and view capabilities are not fully implemented.
+
+Mitigation: Do not rely on those features without additional implementation review and approval controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/agent-invoice-generator)
+- [Publisher profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [PDF or HTML invoice files, JSON invoice records, and Markdown-style command summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes configuration and invoice data under ~/.openclaw and invoice documents under ~/Documents/Invoices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

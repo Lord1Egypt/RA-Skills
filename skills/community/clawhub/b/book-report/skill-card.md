@@ -1,41 +1,58 @@
-## Description: <br>
-Generates Chinese-language HTML book research reports and Markdown conversation kits from a book title, using public web sources and optional text-based PDF extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Report helps an agent generate structured book research deliverables, including an HTML study report and a Markdown conversation note kit from a book title, optional author, language mode, or text PDF.
 
-## Publisher: <br>
-[alzero-t](https://clawhub.ai/user/alzero-t) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alzero-t](https://clawhub.ai/user/alzero-t)
 
-## Use Case: <br>
-External users and developers use this skill to create structured reading material for books, especially Chinese and English classics. It produces a self-study HTML report and a Markdown conversation kit with source-aware caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied PDFs are read locally, and cached source data plus generated reports are stored under the skill directory. <br>
-Mitigation: Invoke the skill explicitly, avoid sensitive PDFs unless local storage is acceptable, and review generated files before sharing. <br>
-Risk: Public book sources can be incomplete, unstable, or blocked, which may leave generated report sections sparse or unverified. <br>
-Mitigation: Keep unsupported details omitted or marked as unverified, and verify important claims against primary sources before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to research books for self-study or conversation, especially Chinese and English literary works. It organizes summaries, themes, characters, relationships, awards, author context, and quotes into reusable report artifacts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alzero-t/book-report) <br>
-- [Publisher Profile](https://clawhub.ai/user/alzero-t) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [HTML report file plus Markdown conversation kit, with concise file-path guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports are written under the skill's reports directory; optional PDF input is limited to text-based PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Crafted book titles can cause report files to be written outside the intended reports folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize report filenames and enforce directory-containment checks before writing generated files.
+
+Risk: Private PDFs may be processed and persisted in generated report artifacts.
+
+Mitigation: Use only PDFs the user is comfortable processing, and run the skill in an isolated environment when handling sensitive content.
+
+Risk: Network-sourced book data can be incomplete or unavailable, which may reduce report accuracy.
+
+Mitigation: Review generated reports before use and keep uncertainty labels for information that was not source-confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alzero-t/skills/book-report)
+- [Publisher Profile](https://clawhub.ai/user/alzero-t)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [HTML report files, Markdown note kits, shell commands, and generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports are written as files; optional PDF input is limited to text-based PDFs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

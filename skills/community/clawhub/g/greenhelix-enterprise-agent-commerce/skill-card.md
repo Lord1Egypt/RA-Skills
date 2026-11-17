@@ -1,41 +1,54 @@
-## Description: <br>
-Enterprise Agent Commerce Playbook: Fortune 500 Adoption Guide for Autonomous B2B Transactions. Comprehensive enterprise playbook for adopting agent commerce: C-suite business case, procurement integration, compliance framework (SOC2/GDPR/EU AI Act), vendor risk assessment, multi-vendor strategy, identity federation, audit requirements, SLA design, cost modeling, phased rollout, organizational change management, and ROI measurement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive enterprise playbook for adopting agent commerce, covering C-suite business case, procurement integration, compliance, vendor risk, multi-vendor strategy, identity federation, audit requirements, SLA design, cost modeling, phased rollout, organizational change management, and ROI measurement.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Enterprise technology, procurement, compliance, and security leaders use this skill as a playbook for evaluating and planning autonomous B2B agent-commerce adoption. It provides business-case framing, procurement integration guidance, compliance considerations, vendor risk assessment, identity federation, audit planning, SLA design, cost modeling, rollout planning, and ROI measurement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The playbook includes procurement, payment, escrow, SIEM, credential, and compliance examples that could affect sensitive enterprise workflows if copied directly into production. <br>
-Mitigation: Use the material as guidance only; run examples in a sandbox or reviewed enterprise environment with approved credentials, spending limits, logging policy, and privacy/compliance review. <br>
-Risk: Production secrets or sensitive business data could be exposed if inserted into illustrative examples during experimentation. <br>
-Mitigation: Do not paste production secrets into examples; use sandbox credentials, secret-management controls, and non-production data during evaluation. <br>
+## Use Case:
 
+Enterprise technology, procurement, compliance, finance, and security leaders use this guide to plan and govern autonomous B2B transaction adoption across procurement systems, agent identity, audit trails, SLAs, vendor risk, and rollout governance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-enterprise-agent-commerce) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guide with illustrative code examples and implementation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only playbook; examples should be adapted and reviewed before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: API, SIEM, credential, marketplace, and real-money transaction examples may be unsafe if copied directly into production workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as templates, require security, privacy, legal, procurement, and finance review, and add strict endpoint and data controls before operational use.
+
+Risk: Autonomous purchasing patterns can create financial exposure if spending limits, approvals, or emergency controls are missing.
+
+Mitigation: Use sandbox testing first, enforce spending caps and human approval gates, and document emergency shutdown procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-enterprise-agent-commerce)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guide with illustrative code blocks, checklists, tables, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable educational guide; examples require enterprise review before operational use.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

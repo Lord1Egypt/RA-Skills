@@ -1,47 +1,61 @@
-## Description: <br>
-Provides curated exploitation payloads for authorized security testing, including anti-virus test files, malicious files, and file name exploits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides curated exploitation payloads for authorized security testing, including anti-virus test files, malicious files, and file name exploits.
 
-## Publisher: <br>
-[PandaAI-1337](https://clawhub.ai/user/PandaAI-1337) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pandaai-1337](https://clawhub.ai/user/pandaai-1337)
 
-## Use Case: <br>
-Developers and security engineers use this skill to retrieve payload samples for authorized anti-virus testing, file upload testing, path traversal testing, and security control validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payload samples can be misused against systems without permission. <br>
-Mitigation: Use only for authorized security testing, bug bounty scopes, CTFs, education, or controlled research environments. <br>
-Risk: The EICAR test file may be flagged or quarantined by antivirus tools. <br>
-Mitigation: Handle it in an approved test environment and expect endpoint protection controls to alert or remove the file. <br>
-Risk: Filename payloads include shell metacharacters, null-byte patterns, and PHP snippets that can create unsafe handling paths. <br>
-Mitigation: Review filenames before copying, executing, archiving, or passing them through shell commands and test only in isolated systems. <br>
+## Use Case:
 
+Security testers, developers, and engineers use this skill to access curated payload examples for authorized anti-virus, file upload, path traversal, and security control validation tests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PandaAI-1337/payloads) <br>
-- [Publisher profile](https://clawhub.ai/user/PandaAI-1337) <br>
-- [SecLists Payloads source](https://github.com/danielmiessler/SecLists/tree/master/Payloads) <br>
-- [SecLists repository](https://github.com/danielmiessler/SecLists) <br>
-- [Payloads reference README](references/Payloads/README.md) <br>
-- [File-name payload README](references/Payloads/File-Names/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline code, file paths, and payload text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference payload files that antivirus tools can flag or quarantine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dual-use payloads could be applied outside an authorized test scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on systems where testing is permitted and align activity with the documented engagement scope.
+
+Risk: The EICAR file is expected to trigger anti-virus and security monitoring alerts.
+
+Mitigation: Coordinate with system owners before testing and isolate the payload in controlled test locations.
+
+Risk: Null-byte and command-substitution filenames can cause unsafe behavior when copied into shell commands or upload tests.
+
+Mitigation: Quote file paths, avoid evaluating filenames as commands, and run tests in disposable or controlled workspaces.
+
+## Reference(s):
+
+- [ClawHub Payloads skill page](https://clawhub.ai/pandaai-1337/skills/payloads)
+- [Payloads README](references/Payloads/README.md)
+- [File-Names README](references/Payloads/File-Names/README.md)
+- [SecLists Payloads](https://github.com/danielmiessler/SecLists/tree/master/Payloads)
+- [SecLists repository](https://github.com/danielmiessler/SecLists)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline file paths and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes static payload files and human-readable guidance for authorized security testing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

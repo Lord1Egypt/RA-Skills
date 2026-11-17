@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn79sf80bp2nycqa3ry3yaz4rx83z7zc",
-  "slug": "nate-metacognition",
-  "version": "1.0.0",
-  "publishedAt": 1774926768189
+  "owner": "meimakes",
+  "slug": "metacognition",
+  "displayName": "Metacognition",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1771975812305,
+    "commit": "https://github.com/openclaw/skills/commit/ab4f2ca95b321612a2133640982f15932b8dc799"
+  },
+  "history": []
 }

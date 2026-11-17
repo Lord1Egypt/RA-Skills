@@ -1,40 +1,57 @@
-## Description: <br>
-Monitor specific X/Twitter accounts and surface noteworthy tweets on a configurable schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor specific X/Twitter accounts and surface noteworthy technology and trend posts on a configurable schedule.
 
-## Publisher: <br>
-[vmathur](https://clawhub.ai/user/vmathur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vmathur](https://clawhub.ai/user/vmathur)
 
-## Use Case: <br>
-Users monitor a configured list of X/Twitter accounts for high-value technology and trend posts, then receive scheduled or manual summaries filtered against their criteria. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an X API bearer token for scheduled polling. <br>
-Mitigation: Use a limited token where possible, restrict permissions on credentials.json, and keep it out of version control and backups. <br>
-Risk: Fetched tweet text is retained in a local history file. <br>
-Mitigation: Delete tweet_history.json periodically if a retained local archive is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vmathur/x-monitor) <br>
-- [X API recent search endpoint](https://api.x.com/2/tweets/search/recent) <br>
+## Use Case:
 
+External users use this skill to track selected X/Twitter accounts, manage monitored handles, run manual checks, and receive scheduled summaries of posts that match configurable noteworthy criteria.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON-backed tweet data and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured handles, schedule, timezone, API credentials, and noteworthy criteria.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores an X API bearer token locally.
+
+Mitigation: Use the minimum required X API scopes and restrict the credentials file to private permissions before running scheduled checks.
+
+Risk: The skill can create recurring scheduled agent runs.
+
+Mitigation: Review the schedule configuration and confirm the tools available to scheduled agentTurn jobs before enabling cron jobs.
+
+Risk: Tweet content is external, untrusted text processed by the agent.
+
+Mitigation: Treat tweet text as quoted data and add clear rules that it must not override the user's or agent's instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vmathur/skills/x-monitor)
+- [X API recent search endpoint](https://api.x.com/2/tweets/search/recent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON tweet data, and configuration guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled runs can create recurring reports from configured handles and criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

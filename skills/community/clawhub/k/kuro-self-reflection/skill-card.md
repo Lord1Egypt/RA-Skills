@@ -1,45 +1,63 @@
-## Description: <br>
-三省吾身 guides an agent through structured self-reflection, improvement planning, execution tracking, verification, and habit or process solidification using role theory, systems thinking, and cognitive-bias checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+三省吾身 - 深度自我审视与进化系统。基于角色理论、系统思维、认知偏差三大框架，通过五阶段闭环（反思→计划→执行→验证→固化）实现真正的自我进化。适用于任何需要深度反思的场景：项目复盘、工作改进、能力提升、习惯养成。
 
-## Publisher: <br>
-[demo112](https://clawhub.ai/user/demo112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[demo112](https://clawhub.ai/user/demo112)
 
-## Use Case: <br>
-Employees, creators, and agent users use this skill to conduct project retrospectives, analyze repeated mistakes, respond to feedback, improve work quality, and turn lessons learned into concrete plans, checklists, or updated practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad activation language around reflection and retrospectives. <br>
-Mitigation: Configure the agent to ask for confirmation before entering the workflow on vague reflection language. <br>
-Risk: The workflow can lead to creating documents or updating durable process artifacts such as personal principles, checklists, SOUL.md, SKILL.md, or team practices. <br>
-Mitigation: Require explicit user approval before creating files, modifying existing documents, changing other skills, or sharing outputs with others. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to guide structured self-reflection after project reviews, negative feedback, repeated mistakes, skill gaps, habit issues, or work-quality concerns. It helps produce reflection reports, improvement plans, execution records, verification reports, and durable checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/demo112/kuro-self-reflection) <br>
-- [README.en.md](README.en.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Reflection report template](templates/reflection-report.md) <br>
-- [Optimization plan template](templates/optimization-plan.md) <br>
-- [Checklist template](templates/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown reports, plans, checklists, and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose document updates or new process artifacts when the user approves them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact skill.json) <br>
+Risk: The workflow can auto-start and steer a session into self-reflection without clear user intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user invocation before activating the workflow.
+
+Risk: The workflow can propose lasting updates to agent memory, skills, or shared workflow standards.
+
+Mitigation: Review the exact path and diff before allowing edits to SOUL.md, SKILL.md, other skills, or shared workflow standards.
+
+Risk: Reflection outputs can become misleading if proposed conclusions or action plans are accepted without review.
+
+Mitigation: Review generated reports, plans, and checklists before using them to change behavior, documentation, or workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/demo112/skills/kuro-self-reflection)
+- [README.en.md](artifact/README.en.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Reflection report template](artifact/templates/reflection-report.md)
+- [Optimization plan template](artifact/templates/optimization-plan.md)
+- [Checklist template](artifact/templates/checklist.md)
+- [Cognitive War Room example](artifact/examples/cognitive-war-room-case.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, reports, plans, logs, verification summaries, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-oriented workflow with reusable markdown templates and optional durable workflow updates]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

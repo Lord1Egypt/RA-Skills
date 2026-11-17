@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.dev/schemas/v4/production-request.schema.json",
+  "title": "PPT Smith v4 Production Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "request_id", "route", "page_contract"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "request_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9-]*[a-z0-9])?$"},
+    "route": {"enum": ["standard", "bespoke", "template"]},
+    "delivery_scope": {"enum": ["single_page", "chapter", "complete_deck"]},
+    "audience": {"type": "string", "minLength": 1, "maxLength": 500},
+    "goal": {"type": "string", "minLength": 1, "maxLength": 1000},
+    "page_contract": {"$ref": "#/$defs/pageContract"},
+    "template": {"$ref": "#/$defs/templateContract"}
+  },
+  "$defs": {
+    "pageContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "overflow_policy", "underflow_policy"],
+      "properties": {
+        "mode": {"enum": ["auto", "target", "range", "exact"]},
+        "target_pages": {"type": "integer", "minimum": 1, "maximum": 500},
+        "tolerance_pages": {"type": "integer", "minimum": 0, "maximum": 100},
+        "min_pages": {"type": "integer", "minimum": 1, "maximum": 500},
+        "max_pages": {"type": "integer", "minimum": 1, "maximum": 500},
+        "exact_pages": {"type": "integer", "minimum": 1, "maximum": 500},
+        "overflow_policy": {"enum": ["ask", "appendix", "split_deck", "compress", "reduce_scope"]},
+        "underflow_policy": {"enum": ["ask", "fewer_pages"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"mode": {"const": "auto"}}},
+          "then": {
+            "not": {"anyOf": [
+              {"required": ["target_pages"]}, {"required": ["tolerance_pages"]},
+              {"required": ["min_pages"]}, {"required": ["max_pages"]},
+              {"required": ["exact_pages"]}
+            ]}
+          }
+        },
+        {
+          "if": {"properties": {"mode": {"const": "target"}}},
+          "then": {
+            "required": ["target_pages"],
+            "not": {"anyOf": [
+              {"required": ["min_pages"]}, {"required": ["max_pages"]},
+              {"required": ["exact_pages"]}
+            ]}
+          }
+        },
+        {
+          "if": {"properties": {"mode": {"const": "range"}}},
+          "then": {
+            "required": ["min_pages", "max_pages"],
+            "not": {"anyOf": [
+              {"required": ["target_pages"]}, {"required": ["tolerance_pages"]},
+              {"required": ["exact_pages"]}
+            ]}
+          }
+        },
+        {
+          "if": {"properties": {"mode": {"const": "exact"}}},
+          "then": {
+            "required": ["exact_pages"],
+            "not": {"anyOf": [
+              {"required": ["target_pages"]}, {"required": ["tolerance_pages"]},
+              {"required": ["min_pages"]}, {"required": ["max_pages"]}
+            ]}
+          }
+        }
+      ]
+    },
+    "templateContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["use_mode", "source_sha256", "required"],
+      "properties": {
+        "use_mode": {"enum": ["strict", "style_transfer", "inspiration"]},
+        "source_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "required": {"type": "boolean"},
+        "preferred_slide_indices": {
+          "type": "array", "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 1}
+        }
+      }
+    }
+  }
+}

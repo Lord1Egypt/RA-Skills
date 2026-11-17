@@ -14,7 +14,6 @@ const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const { ensureWenyanReady } = require('./wenyan_runner');
 const {
     DEFAULT_THEME_ID,
     GALLERY_HTML_PATH,
@@ -27,7 +26,6 @@ const {
 // ─── 默认配置 ─────────────────────────────────────────────────
 const DEFAULT_HIGHLIGHT = 'solarized-light';
 const TOOLS_MD_PATHS = [
-    path.join(os.homedir(), '.openclaw', 'workspace-writer-test', 'TOOLS.md'),
     path.join(os.homedir(), '.openclaw', 'workspace-xina-gongzhonghao', 'TOOLS.md'),
     path.join(os.homedir(), '.openclaw', 'workspace', 'TOOLS.md'),
 ];
@@ -40,8 +38,20 @@ const color = {
     yellow: (s) => supportsColor ? `\x1b[33m${s}\x1b[0m` : s,
 };
 
+// ─── 检查 wenyan-cli ──────────────────────────────────────────
 function checkWenyan() {
-    return ensureWenyanReady();
+    try {
+        execFileSync('wenyan', ['--version'], { stdio: 'pipe' });
+    } catch {
+        console.log(color.yellow('⚠️  wenyan-cli 未安装，正在安装...'));
+        try {
+            execFileSync('npm', ['install', '-g', '@wenyan-md/cli'], { stdio: 'inherit' });
+            console.log(color.green('✅ wenyan-cli 安装成功！'));
+        } catch (e) {
+            console.error(color.red('❌ 安装失败！请手动运行: npm install -g @wenyan-md/cli'));
+            process.exit(1);
+        }
+    }
 }
 
 // ─── 从 TOOLS.md 读取凭证 ────────────────────────────────────
@@ -101,11 +111,9 @@ function publish(file, theme, appId, secret) {
     console.log('');
 
     const env = { ...process.env, WECHAT_APP_ID: appId, WECHAT_APP_SECRET: secret };
-    const runner = ensureWenyanReady();
-    console.log(`  Wenyan: ${runner.label}`);
 
     try {
-        execFileSync(runner.command, [...runner.prefixArgs, ...buildPublishArgs(file, theme)], {
+        execFileSync('wenyan', buildPublishArgs(file, theme), {
             env,
             stdio: 'inherit',
         });

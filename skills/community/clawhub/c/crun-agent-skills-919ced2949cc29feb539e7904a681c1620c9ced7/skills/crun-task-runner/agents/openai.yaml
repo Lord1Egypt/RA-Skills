@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Task Runner"
+  short_description: "Run and monitor asynchronous Crun media tasks"
+  default_prompt: "Use $crun-task-runner to create one Crun task, preserve its ID, and monitor it without duplicate submission."

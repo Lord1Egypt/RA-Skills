@@ -1,45 +1,61 @@
-## Description: <br>
-NutriCoach helps users record body metrics and meals, analyze nutrition trends, manage pantry inventory, identify foods from images, and generate diet and recipe recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal health data management and intelligent diet recommendation system for tracking body metrics, meals, nutrition trends, pantry inventory, OCR food recognition, and recipe recommendations.
 
-## Publisher: <br>
-[rainbowlion0320](https://clawhub.ai/user/rainbowlion0320) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rainbowlion0320](https://clawhub.ai/user/rainbowlion0320)
 
-## Use Case: <br>
-Individuals and agent-assisted workflows use this skill to manage personal nutrition records, weight history, pantry inventory, and meal planning. It supports local tracking, reporting, OCR-assisted food entry, exports, backups, and a local dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health and diet records in local plaintext SQLite files. <br>
-Mitigation: Use it only on trusted machines, restrict local file access, and encrypt or otherwise protect exported data and backups. <br>
-Risk: The local web dashboard is unauthenticated. <br>
-Mitigation: Run the dashboard only on a trusted machine and network, and avoid exposing it beyond localhost. <br>
-Risk: Cloud OCR can send food or packaging photos to the configured provider. <br>
-Mitigation: Prefer local OCR for private images, and use cloud OCR only when the user consents to sharing those images with the provider. <br>
+## Use Case:
 
+External users and developers use this skill to manage personal nutrition and health data locally: set profiles, log body metrics and meals, analyze nutrition trends, manage pantry inventory, scan food labels, and generate recipe or diet recommendations.
 
-## Reference(s): <br>
-- [Architecture](references/ARCHITECTURE.md) <br>
-- [Database Schema](references/DATABASE_SCHEMA.md) <br>
-- [Feature Guide](references/FEATURE_GUIDE.md) <br>
-- [Developer Guide](references/DEVELOPER_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local database records, reports, JSON or CSV exports, backups, and local dashboard views when the referenced scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Sensitive health and nutrition data may be exposed or modified if the dashboard is run on an untrusted network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the dashboard to 127.0.0.1, add authentication before network exposure, and keep exported or backed-up database files secured.
+
+Risk: Cloud OCR can send private food packaging images or nutrition data to a third-party provider.
+
+Mitigation: Use local OCR for private images when available, or configure cloud OCR only with a provider the user trusts.
+
+Risk: Per-user local data depends on user-selected names and generated files.
+
+Mitigation: Use simple usernames and avoid sharing generated database, export, or backup files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rainbowlion0320/skills/nutricoach)
+- [Architecture](references/ARCHITECTURE.md)
+- [Database Schema](references/DATABASE_SCHEMA.md)
+- [Feature Guide](references/FEATURE_GUIDE.md)
+- [Developer Guide](references/DEVELOPER_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Executing the guided commands can create local SQLite databases, JSON/CSV exports, backups, and a local dashboard.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

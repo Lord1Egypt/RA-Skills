@@ -1,0 +1,31 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 3,
+    "pageCount": 2,
+    "list": [
+      {
+        "id": 201,
+        "title": "北京市第一医院实验室设备采购意向公告",
+        "publishTime": "2026-06-20",
+        "budgetAmount": "1800000.00",
+        "planPurchaseDate": "2026-08",
+        "purchasingUnit": "北京市第一医院",
+        "areaName": "北京市-北京市-东城区",
+        "url": "https://www.qianlima.com/purchase-201.html"
+      },
+      {
+        "id": 202,
+        "title": "北京市第二医院检验设备采购意向公告",
+        "publishTime": "2026-06-21",
+        "budgetAmount": "950000.00",
+        "planPurchaseDate": "2026-09",
+        "purchasingUnit": "北京市第二医院",
+        "areaName": "北京市-北京市-西城区",
+        "url": "https://www.qianlima.com/purchase-202.html"
+      }
+    ]
+  },
+  "success": true
+}

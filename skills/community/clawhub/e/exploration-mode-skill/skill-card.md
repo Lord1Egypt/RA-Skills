@@ -1,40 +1,49 @@
-## Description: <br>
-Guides an agent to enter an autonomous exploration mode for idle-time research, maintenance, security review, reflection, knowledge capture, and optimization tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Exploration Mode Skill enables an agent to autonomously perform research, maintenance, security review, reflection, knowledge, and optimization tasks during idle time.
 
-## Publisher: <br>
-[YZH0916](https://clawhub.ai/user/YZH0916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzh0916](https://clawhub.ai/user/yzh0916)
 
-## Use Case: <br>
-Agent users use this skill to switch between collaboration mode and an autonomous exploration mode that can perform broad idle-time project research, cleanup, review, reflection, and optimization activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to run broad autonomous idle-time maintenance and optimization tasks without clear user controls. <br>
-Mitigation: Install only when autonomous idle mode is intended, restrict the agent to approved folders and tools, and require confirmation before writes, deletes, cleanup, optimization, or system changes. <br>
-Risk: Autonomous reflection or knowledge-capture behavior may store information in ways users do not expect. <br>
-Mitigation: Clarify whether knowledge or self-reflection data is stored and how it can be reviewed or deleted before enabling the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an OpenClaw-based agent switch between user collaboration and idle-time autonomous exploration tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YZH0916/exploration-mode-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown guidance with natural-language mode commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no structured output contract is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Autonomous idle-time work can cover broad maintenance, cleanup, security review, and optimization tasks without sufficiently documented controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define local rules before use: read-only exploration by default, explicit approval for file writes, cleanup, installs, configuration changes, security changes, memory updates, and clear limits on paths, time, tools, and cancellation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yzh0916/skills/exploration-mode-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text responses, potentially with inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode switching prompts, status responses, and autonomous task proposals; execution should follow local approval limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

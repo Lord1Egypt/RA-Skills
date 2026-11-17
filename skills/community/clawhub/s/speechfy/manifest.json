@@ -1,0 +1,37 @@
+{
+  "name": "speechfy-tts",
+  "version": "1.1.0",
+  "description": "Multi-provider Text-to-Speech: Speechify API (primary) + Edge TTS (fallback). Generates .ogg (Opus) voice messages. / Texto-para-fala multi-provider: Speechify API (primária) + Edge TTS (fallback). Gera voice messages .ogg (Opus).",
+  "author": "Rickk Barbosa",
+  "license": "MIT",
+  "tags": ["tts", "speech", "speechify", "edge-tts", "voice", "audio", "telegram", "messaging"],
+  "platforms": ["hermes", "openclaw", "generic"],
+  "requires": {
+    "bins": ["python3", "ffmpeg"],
+    "python": "3.10+"
+  },
+  "metadata": {
+    "hermes": {
+      "category": "messaging",
+      "related_skills": ["voice-speech-config"],
+      "requires_toolsets": ["terminal"]
+    },
+    "openclaw": {
+      "os": ["linux", "darwin"],
+      "requires": {
+        "bins": ["python3", "ffmpeg"],
+        "optional_bins": ["edge-tts", "vault-resolver"]
+      },
+      "install": {
+        "pip": null
+      }
+    }
+  },
+  "files": {
+    "skill": "SKILL.md",
+    "scripts": ["scripts/speechfy-tts.py"],
+    "references": ["references/voices.md"],
+    "examples": ["examples/ssml-emotions.sh", "examples/ssml-pitch-rate.sh", "examples/usage-basic.sh"]
+  },
+  "entrypoint": "SKILL.md"
+}

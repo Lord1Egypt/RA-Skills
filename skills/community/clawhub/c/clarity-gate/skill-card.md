@@ -1,45 +1,53 @@
-## Description: <br>
-Pre-ingestion verification for epistemic quality in RAG systems, producing Clarity-Gated Documents and validating Source of Truth files before knowledge-base use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-ingestion verification for epistemic quality in RAG systems that qualifies documents before knowledge-base ingestion and produces CGD files while validating SOT files.
 
-## Publisher: <br>
-[frmoretto](https://clawhub.ai/user/frmoretto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-4.0 <br>
+## Publisher:
 
+[frmoretto](https://clawhub.ai/user/frmoretto)
 
-## Use Case: <br>
-Developers, documentation owners, and RAG system operators use this skill to review documents for unclear claims, missing uncertainty markers, temporal inconsistencies, and human verification needs before ingestion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill checks whether claims are clearly qualified, but it does not independently prove that the claims are true. <br>
-Mitigation: Complete and review the HITL verification record before treating generated CGD output as ready for RAG ingestion. <br>
-Risk: Generated CGD or HITL outputs may be added to a knowledge base without sufficient review. <br>
-Mitigation: Review generated outputs before ingestion and use explicit invocations for document review workflows. <br>
-Risk: Bundled helper scripts operate on local files supplied by the user. <br>
-Mitigation: Run the helper scripts only on files intentionally selected for Clarity Gate analysis. <br>
+## Use Case:
 
+Developers, knowledge-base maintainers, and AI workflow reviewers use this skill before RAG ingestion or AI handoff to identify unqualified claims, enforce uncertainty markers, produce Clarity-Gated Documents, and route claims to human verification.
 
-## Reference(s): <br>
-- [Clarity Gate release page](https://clawhub.ai/frmoretto/clarity-gate) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [claim_id.py](artifact/scripts/claim_id.py) <br>
-- [document_hash.py](artifact/scripts/document_hash.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, CGD markdown files, validation findings, HITL review tables, and helper-script command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce .cgd.md documents with Clarity Gate frontmatter, document hashes, HITL claims, and end markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill verifies document form and epistemic qualification, not factual truth.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human-in-the-loop confirmation before treating CGD or SOT outputs as verified or ready for RAG ingestion.
+
+Risk: The security evidence reports a document_hash.py validation weakness and cautions against treating it as strong authenticity protection.
+
+Mitigation: Use document_hash.py only as a deterministic helper and pair it with independent review or stronger integrity controls until the issue is fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/frmoretto/skills/clarity-gate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown review reports and CGD Markdown files, with optional plain-text output from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CGD outputs use .cgd.md structure with HITL status fields and document hash metadata.]
+
+## Skill Version(s):
+
+2.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "academic-pdf-translation"
+version = "1.2.1"
+description = "Translate academic PDFs into readable, searchable PDFs while preserving document structure and research meaning."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "Ezra-Y" }]
+
+# 运行依赖与 requirements.txt 保持一致。
+# 这三个是 Skill 真正需要的全部运行依赖；开发工具单列在下面的 optional 组，
+# 不进入用户安装路径。
+dependencies = [
+    "PyMuPDF>=1.26.7,<2",
+    "Pillow>=12.3,<13",
+    "reportlab>=4.5.1,<6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.6",
+    "pytest>=8",
+    "coverage[toml]>=7",
+]
+
+[project.urls]
+Homepage = "https://github.com/Ezra-Y/academic-pdf-translation"
+Repository = "https://github.com/Ezra-Y/academic-pdf-translation"
+
+[tool.setuptools.packages.find]
+include = ["academic_pdf_translation*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+src = ["scripts", "benchmarks"]
+extend-exclude = [".venv", "Workspace", "benchmarks/jobs", "benchmarks/papers"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+ignore = [
+    # 生产脚本大量使用中文错误信息，行宽以可读为准，不做硬性截断。
+    "E501",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# 自测夹具允许使用合成常量与长表达式。
+"scripts/self_test.py" = ["B", "C4", "SIM"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["scripts/self_test.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true

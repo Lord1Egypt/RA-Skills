@@ -1,42 +1,57 @@
-## Description: <br>
-Prepares customer visit materials from a customer name, context, and visit goal, including a research summary, visit strategy, talking points, and cautions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Customer Visit Prep helps sales users prepare for customer meetings by turning a customer name, background, and visit goal into a customer brief, visit strategy, talk tracks, objections, and preparation checklist.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Sales teams use this skill before customer meetings to turn customer context, prior interactions, and visit objectives into a focused brief, MEDDIC-informed discovery questions, objection handling, and materials to bring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer names, visit context, and sales objectives may be used during web research. <br>
-Mitigation: Confirm that the user is comfortable sharing the provided sales context before researching, and avoid including confidential details unless explicitly approved. <br>
-Risk: Customer memory files may be read or updated with visit-preparation content. <br>
-Mitigation: Require explicit user approval before writing to customer memory, and show the proposed update before saving it. <br>
-Risk: Prepared documents may be sent through Enterprise WeChat. <br>
-Mitigation: Require manual approval before sending any external message or document, and verify recipients and attachments before transmission. <br>
+## Use Case:
 
+Sales teams and account managers use this skill to prepare customer visits with customer-specific research, MEDDIC-based discovery questions, FABE value framing, usable talk tracks, anticipated objections, and materials to bring to the meeting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/customer-visit-prep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown response with optional Word or Markdown document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a web-researched customer overview, MEDDIC questions, FABE value framing, objection handling, and a reference-material checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Persistent customer memory may contain sensitive business or account information without clear confirmation or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before reading or writing customer memory, preview saved content, and apply retention controls appropriate for customer and sales data.
+
+Risk: Customer names may be used in memory paths.
+
+Mitigation: Constrain and sanitize customer-name paths before accessing or appending customer memory files.
+
+Risk: Generated visit documents may be sent through enterprise messaging to unintended recipients.
+
+Mitigation: Confirm recipients and content before sending generated documents through enterprise messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/skills/customer-visit-prep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown text in chat, with optional Markdown or Word documents when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer research summaries, visit strategy tables, talk tracks, objection handling, and preparation material lists.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

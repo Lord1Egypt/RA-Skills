@@ -1,42 +1,51 @@
-## Description: <br>
-CPU-based autonomous optimization loop for skill quality improvement. Runs experiments, evaluates results, keeps improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CPU-based autonomous optimization loop for skill quality improvement that runs experiments, evaluates results, and keeps improvements.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-Developers and skill authors use this agent skill to run local optimization loops that modify experiment code, execute tests, compare results, and keep improvements after review. It is intended for skill package optimization, strategy backtesting, and content-creation testing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to edit experiment code and run local subprocesses in a target directory. <br>
-Mitigation: Use a clean branch or disposable worktree, review diffs at each checkpoint, and install only when comfortable with local code execution. <br>
-Risk: External run_loop.py implementations could perform behavior beyond the instruction-only skill text. <br>
-Mitigation: Do not run any external implementation unless it is trusted and reviewed. <br>
+## Use Case:
 
+Developers and skill authors use this skill to run a local, checkpointed optimization loop over experiments for skill packages, strategy backtests, or content-creation tests.
 
-## Reference(s): <br>
-- [Karpathy Autoresearch](https://github.com/karpathy/autoresearch) <br>
-- [OpenClaw Skills](https://github.com/openclaw/skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sjj2026/shike-autoresearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file edits, experiment commands, git commands, and appended result records for a local optimization loop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide an agent through local experiments, proposed file edits, result logging, commits, and reverts in the working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in repositories where that workflow is acceptable, and review diffs at the documented checkpoints before allowing experiment runs, commits, or reverts.
+
+## Reference(s):
+
+- [Karpathy autoresearch](https://github.com/karpathy/autoresearch)
+- [OpenClaw Skills](https://github.com/openclaw/skills)
+- [ClawHub skill page](https://clawhub.ai/sjj2026/skills/shike-autoresearch)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and code-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file edits, experiment runs, result logging, commits, or reverts behind user-confirmable checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

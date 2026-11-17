@@ -1,42 +1,60 @@
-## Description: <br>
-Emailable (emailable.com). Use this skill for ANY Emailable request, including searching and reading data, instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emailable (emailable.com). Use this skill for ANY Emailable request — reading, creating, and updating data. Whenever a task involves Emailable, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Emailable through an OOMOL-connected account, including checking account details, verifying individual email addresses, and managing batch verification jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch email verification creates remote Emailable jobs and may consume account credits. <br>
-Mitigation: Require explicit confirmation of the exact email list and expected credit or billing impact before running verify_batch_emails. <br>
-Risk: The skill uses a connected Emailable account through OOMOL and therefore depends on sensitive account credentials managed outside the agent. <br>
-Mitigation: Install only when the user is comfortable allowing agent actions through the connected Emailable account, and run setup or reconnection steps only after an authentication or connection failure. <br>
+## Use Case:
 
+Developers and operators use this skill to verify individual email addresses, submit batch verification jobs, inspect batch status, and check account information through Emailable.
 
-## Reference(s): <br>
-- [Emailable homepage](https://emailable.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-emailable) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses may include JSON data and an execution id under meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The setup instructions use a remote installer, and the installer contents and installed CLI version are not verified in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve a verified, pinned CLI installation before setup, and verify the installed version.
+
+Risk: The CLI may make changes to other agent skills during use.
+
+Mitigation: Consider setting OO_SKILLS_SYNC_DISABLED=1 before using the CLI.
+
+Risk: Email addresses are sent to Emailable for verification, and verification can consume account credits.
+
+Mitigation: Only verify addresses you are authorized to send through OOMOL to Emailable, and check applicable credit costs.
+
+## Reference(s):
+
+- [Emailable website](https://emailable.com/)
+- [Emailable API documentation](https://emailable.com/docs/api#authentication)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions, shell commands with JSON payloads, and JSON action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action and payload depend on the selected account, single-address, or batch-verification operation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

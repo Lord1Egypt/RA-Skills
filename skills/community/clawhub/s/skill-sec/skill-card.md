@@ -1,44 +1,55 @@
-## Description: <br>
-Security agent that inventories installed OpenClaw skills, analyzes them for threats, and syncs results to your Clawned dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security agent that inventories installed OpenClaw skills, analyzes them for threats, and syncs results to your Clawned dashboard.
 
-## Publisher: <br>
-[uttamnest](https://clawhub.ai/user/uttamnest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[uttamnest](https://clawhub.ai/user/uttamnest)
 
-## Use Case: <br>
-Developers and OpenClaw users use this agent to inventory installed skills, check their security posture, and sync scan results to a Clawned dashboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent connects to a remote Clawned service and syncs installed-skill metadata plus hostname and operating-system registration data. <br>
-Mitigation: Install only if you trust the Clawned service, use a dedicated API key, and point CLAWNED_SERVER only at the intended service. <br>
-Risk: Explicit scan operations can send selected skill file contents to the Clawned server for analysis. <br>
-Mitigation: Run scan only on skill directories you intend to submit for analysis and review local data-handling expectations before scanning. <br>
-Risk: Cron or watch-style sync can create continuing dashboard updates from the local environment. <br>
-Mitigation: Enable scheduled or watch-based sync only when ongoing updates are desired, and disable it when periodic reporting is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawned homepage](https://clawned.io) <br>
-- [ClawHub skill page](https://clawhub.ai/uttamnest/skill-sec) <br>
-- [Detection patterns](references/detection-patterns.md) <br>
-- [Threat model](references/threat-model.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inventory installed skills, run explicit security scans, and sync security results to a Clawned dashboard.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Command-line text with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and CLAWNED_API_KEY; CLAWNED_SERVER is optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sync and watch operations send installed-skill inventory and host registration metadata to a configurable Clawned server.
+
+Mitigation: Install only if that data sharing is acceptable, keep CLAWNED_SERVER on the default HTTPS Clawned API unless you control the replacement endpoint, and avoid watch or scheduled sync when ongoing uploads are not desired.
+
+Risk: Explicit scan submissions can send source file contents to Clawned, and symlinks in untrusted skill directories may cause out-of-scope local files to be read.
+
+Mitigation: Scan only trusted skill directories, inspect scan targets for symlinks or sensitive files, and avoid scanning worktrees that contain private data.
+
+## Reference(s):
+
+- [Clawned homepage](https://clawned.io)
+- [ClawHub skill page](https://clawhub.ai/uttamnest/skills/skill-sec)
+- [Detection Patterns](references/detection-patterns.md)
+- [Threat Model](references/threat-model.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status and inventory output, JSON scan responses, and Markdown setup guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and CLAWNED_API_KEY; CLAWNED_SERVER is optional and defaults to the Clawned API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

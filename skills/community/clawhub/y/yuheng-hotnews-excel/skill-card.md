@@ -1,42 +1,53 @@
-## Description: <br>
-Processes uploaded hot-news Excel files by parsing worksheets, saving structured JSON, and producing categorized Markdown summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes uploaded hotspot-news Excel files by parsing sheets, extracting and summarizing topical news, saving JSON data, and producing categorized Markdown summaries.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-External users and agents use this skill to process uploaded hotspot-news Excel workbooks, extract worksheet-level categories, and generate concise daily news summaries with a saved JSON record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes a local parser script for uploaded Excel content. <br>
-Mitigation: Install or run it only after reviewing and trusting /workspace/scripts/read_hotnews.py and the uploaded workbook source. <br>
-Risk: Parsed Excel contents may be persisted under /workspace/data and logs may be written under /workspace/logs. <br>
-Mitigation: Keep only necessary generated JSON and log files, and delete them when they are no longer needed. <br>
-Risk: The documented cron entry enables recurring background processing. <br>
-Mitigation: Disable or omit the cron configuration unless daily automated processing is intentional. <br>
+## Use Case:
 
+External users and analysts use this skill to process Excel files whose names contain hotspot-news indicators, convert sheet data into retained JSON, and receive categorized summaries of key topics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/horizoncove/yuheng-hotnews-excel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with categorized bullet lists, plus a saved JSON data file and optional shell or cron commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save complete parsed data under /workspace/data and append cron output under /workspace/logs when recurring processing is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes persistent daily cron execution of an unaudited script outside the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for scheduling and verify that /workspace/scripts/read_hotnews.py is controlled and reviewed before enabling it.
+
+Risk: Recurring processing can retain generated output and logs beyond the user's immediate request.
+
+Mitigation: Define output and log retention locations before use, and provide a clear way to disable the scheduled task and delete generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horizoncove/skills/yuheng-hotnews-excel)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown summaries and JSON files with bash and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save dated JSON output under /workspace/data and can configure recurring cron execution when explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

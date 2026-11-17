@@ -5,6 +5,24 @@ Scans ~/.openclaw/media/inbound for new images dropped by the WhatsApp bridge,
 classifies them by caption/filename keywords, dedupes by content hash, and
 returns structured data.
 
+STATUS (2026-08-31): the directory scanner below has no scheduled caller.
+It lived on an OpenClaw cron job; cron was emptied on 2026-08-17 and no
+launchd runner replaced it. `scan_and_process()` still works — run it with
+`.venv/bin/python -m features.dining.media_watcher` — and the code is kept
+deliberately. Nothing is broken; there is simply no timer.
+
+The in-chat path is unaffected and is how photos actually get handled today:
+the family sends a photo to WhatsApp, the OpenClaw agent reads it with its
+native vision, and calls `log_restaurant_visit` or `save_snack_schedule`
+directly. This module is the *batch* alternative to that, for images that
+arrived without anyone talking to the agent.
+
+Note it is not receipts-only, despite living under features/dining/. Receipts
+are the largest bucket, but `classify_image()` also routes school snack
+calendar photos to the snack bucket (`_SNACK_TRIGGERS` → `save_snack_schedule`),
+and `scan_and_process()` additionally surfaces pending rating reminders. Weigh
+all three before ever cutting it.
+
 Architecture:
   Python returns *data*. It does NOT call any LLM and does NOT deliver messages.
   Image classification beyond keyword matching is the agent's job — the agent
@@ -25,17 +43,15 @@ import fcntl
 import hashlib
 import json
 import os
-import tempfile
 from datetime import datetime
 from typing import Any, Dict, List
 
-from core.keychain_secrets import load_google_secrets
+from utils import write_json_atomic, locked_file
 
-# Best-effort credential warm-up. Tests stub this; production may no-op.
-try:
-    load_google_secrets()
-except Exception:
-    pass
+# The best-effort Google credential warm-up that stood here is gone
+# (2026-09-07). This module reads receipt photos and writes restaurant state;
+# it never touched Google, and the import-time `load_google_secrets()` was
+# inherited boilerplate. gog owns those credentials now regardless.
 
 # Resolve skill root: features/dining/media_watcher.py → ../../
 SKILL_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -68,28 +84,20 @@ def load_state() -> Dict[str, Any]:
 
 
 def save_state(state: Dict[str, Any]) -> None:
-    """Atomic write: tempfile in same dir → fsync → os.replace."""
-    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
-    dir_path = os.path.dirname(STATE_FILE)
-    fd, tmp_path = tempfile.mkstemp(prefix=".media_state.", suffix=".tmp", dir=dir_path)
-    try:
-        with os.fdopen(fd, "w") as tmp:
-            json.dump(state, tmp, indent=2)
-            tmp.flush()
-            os.fsync(tmp.fileno())
-        os.replace(tmp_path, STATE_FILE)
-    except Exception:
-        try:
-            os.unlink(tmp_path)
-        except OSError:
-            pass
-        raise
+    write_json_atomic(STATE_FILE, state)
 
 
 def file_hash(path: str) -> str:
-    """Deterministic MD5 of file bytes — used for image dedup."""
+    """Deterministic MD5 of file bytes — used for image dedup.
+
+    Chunked: images are capped at MAX_IMAGE_BYTES (20 MB), and reading that
+    into memory to hash it is needless when the digest streams.
+    """
+    digest = hashlib.md5()
     with open(path, "rb") as f:
-        return hashlib.md5(f.read()).hexdigest()
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 # ─── Caption sidecar parsing ─────────────────────────────────────────────────
@@ -198,8 +206,11 @@ def get_pending_rating_reminders() -> List[Dict[str, Any]]:
 
 def send_rating_reminders() -> List[Dict[str, Any]]:
     """
-    Compatibility shim. Returns the pending reminders without sending anything;
-    the agent handles delivery.
+    Returns the pending reminders without sending anything; the caller
+    delivers. The name is a leftover from before the architecture flip, when
+    Python sent WhatsApp messages itself — kept because `scan_and_process`
+    calls it, and renaming it is a change to this module's only public
+    surface. It sends nothing, and per CLAUDE.md #7 it never will.
     """
     return get_pending_rating_reminders()
 
@@ -234,76 +245,81 @@ def scan_and_process() -> Dict[str, Any]:
         result["errors"].append(f"reminders: {e}")
         result["pending_reminders"] = []
 
-    state = load_state()
-    processed = set(state.get("processed", []))
-    new_hashes: List[str] = []
+    # Held for the full load → scan → save cycle: an overlapping run (a
+    # manual debug run during the scheduled cron, or a slow run overrunning
+    # into the next tick) must not read a stale `processed` set and then
+    # clobber the other run's newly-processed hashes on save.
+    with locked_file(STATE_FILE):
+        state = load_state()
+        processed = set(state.get("processed", []))
+        new_hashes: List[str] = []
 
-    images: List[tuple] = []
-    try:
-        for fname in os.listdir(MEDIA_DIR):
-            if os.path.splitext(fname)[1].lower() in IMAGE_EXTENSIONS:
-                full_path = os.path.join(MEDIA_DIR, fname)
+        images: List[tuple] = []
+        try:
+            for fname in os.listdir(MEDIA_DIR):
+                if os.path.splitext(fname)[1].lower() in IMAGE_EXTENSIONS:
+                    full_path = os.path.join(MEDIA_DIR, fname)
+                    try:
+                        images.append((os.path.getmtime(full_path), full_path))
+                    except OSError:
+                        continue
+        except OSError as e:
+            result["status"] = "scan_failed"
+            result["errors"].append(f"listdir: {e}")
+            return result
+
+        images.sort()
+        result["scanned"] = len(images)
+
+        skip_snacks = should_skip_snacks_this_month()
+
+        for _, image_path in images:
+            try:
                 try:
-                    images.append((os.path.getmtime(full_path), full_path))
+                    if os.path.getsize(image_path) > MAX_IMAGE_BYTES:
+                        result["skipped"].append(
+                            {"file": os.path.basename(image_path), "reason": "too_large"}
+                        )
+                        continue
                 except OSError:
                     continue
-    except OSError as e:
-        result["status"] = "scan_failed"
-        result["errors"].append(f"listdir: {e}")
-        return result
 
-    images.sort()
-    result["scanned"] = len(images)
-
-    skip_snacks = should_skip_snacks_this_month()
-
-    for _, image_path in images:
-        try:
-            try:
-                if os.path.getsize(image_path) > MAX_IMAGE_BYTES:
-                    result["skipped"].append(
-                        {"file": os.path.basename(image_path), "reason": "too_large"}
-                    )
+                fhash = file_hash(image_path)
+                if fhash in processed:
                     continue
-            except OSError:
-                continue
 
-            fhash = file_hash(image_path)
-            if fhash in processed:
-                continue
+                new_hashes.append(fhash)
+                kind = classify_image(image_path)
+                entry = {
+                    "file": os.path.basename(image_path),
+                    "path": image_path,
+                    "caption": get_caption(image_path),
+                }
 
-            new_hashes.append(fhash)
-            kind = classify_image(image_path)
-            entry = {
-                "file": os.path.basename(image_path),
-                "path": image_path,
-                "caption": get_caption(image_path),
-            }
-
-            if kind == "receipt":
-                result["receipts"].append(entry)
-            elif kind == "snack":
-                if not skip_snacks:
-                    result["snacks"].append(entry)
+                if kind == "receipt":
+                    result["receipts"].append(entry)
+                elif kind == "snack":
+                    if not skip_snacks:
+                        result["snacks"].append(entry)
+                    else:
+                        result["skipped"].append(
+                            {"file": entry["file"], "reason": "snack_month_full"}
+                        )
+                elif kind == "skip":
+                    result["skipped"].append({"file": entry["file"], "reason": "skip_keyword"})
                 else:
-                    result["skipped"].append(
-                        {"file": entry["file"], "reason": "snack_month_full"}
-                    )
-            elif kind == "skip":
-                result["skipped"].append({"file": entry["file"], "reason": "skip_keyword"})
-            else:
-                result["unclassified"].append(entry)
+                    result["unclassified"].append(entry)
 
+            except Exception as e:  # noqa: BLE001
+                result["errors"].append(f"{os.path.basename(image_path)}: {e}")
+
+        if new_hashes:
+            state["processed"] = (list(processed) + new_hashes)[-MAX_PROCESSED_HASHES:]
+
+        try:
+            save_state(state)
         except Exception as e:  # noqa: BLE001
-            result["errors"].append(f"{os.path.basename(image_path)}: {e}")
-
-    if new_hashes:
-        state["processed"] = (list(processed) + new_hashes)[-MAX_PROCESSED_HASHES:]
-
-    try:
-        save_state(state)
-    except Exception as e:  # noqa: BLE001
-        result["errors"].append(f"save_state: {e}")
+            result["errors"].append(f"save_state: {e}")
 
     result["new_images"] = len(new_hashes)
     return result

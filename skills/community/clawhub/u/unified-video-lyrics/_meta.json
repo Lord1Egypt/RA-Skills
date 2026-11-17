@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bskr3fx67aeakarb0sb9mp182xk0k",
-  "slug": "unified-video-lyrics",
+  "name": "unified-video-lyrics",
   "version": "1.2.0",
-  "publishedAt": 1773516027616
+  "description": "短视频创作全能工具 - 参照首个视频统一角色画风+二次元萌系风格",
+  "keywords": ["短视频", "剧本", "歌词", "视频生成", "角色一致性", "二次元", "赛璐璐", "FFmpeg"],
+  "trigger_words": ["写剧本", "写歌词", "创作视频", "制作短视频", "动画脚本", "写歌", "统一风格", "参照视频", "二次元", "萌系"]
 }

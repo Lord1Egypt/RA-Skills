@@ -1,0 +1,71 @@
+{
+  "type": "button",
+  "label": "Import",
+  "level": "primary",
+  "icon": "fa fa-upload",
+  "actionType": "dialog",
+  "dialog": {
+    "title": "Import",
+    "actions": [
+      { "type": "button", "label": "Cancel", "actionType": "close" },
+      {
+        "type": "button",
+        "label": "Confirm Import",
+        "level": "primary",
+        "actionType": "submit",
+        "close": false
+      }
+    ],
+    "body": {
+      "type": "form",
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            { "actionType": "reload", "componentId": "mainCrud" },
+            { "actionType": "closeDialog" }
+          ]
+        }
+      },
+      "api": {
+        "method": "post",
+        "url": "/XXX/XXXX/import",
+        "dataType": "form-data"
+      },
+      "body": [
+        { "type": "alert", "body": "Import rules here.", "level": "warning" },
+        {
+          "type": "input-file",
+          "name": "file",
+          "label": "Excel File",
+          "accept": ".xlsx,.xls",
+          "asBlob": true,
+          "required": true,
+          "hint": "Template columns: code / type / remark",
+          "btnText": "Select File",
+          "reUploadBtnText": "Re-upload"
+        },
+        {
+          "type": "button",
+          "label": "Download Template",
+          "level": "link",
+          "icon": "fa fa-download",
+          "loadingOn": "${templateDownloading}",
+          "onEvent": {
+            "click": {
+              "actions": [
+                { "actionType": "setValue", "componentId": "pageStateService", "args": { "value": { "templateDownloading": true } } },
+                {
+                  "actionType": "download",
+                  "args": {
+                    "api": { "method": "get", "url": "/XXX/XXXX/downloadTemplate" }
+                  }
+                },
+                { "actionType": "setValue", "componentId": "pageStateService", "args": { "value": { "templateDownloading": false } } }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

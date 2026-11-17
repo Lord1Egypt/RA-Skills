@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280">
+  <defs>
+    <linearGradient id="bgD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentD" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" fill="url(#bgD)" rx="16"/>
+  <text x="60" y="100" font-family="Georgia, 'Noto Serif SC', serif" font-size="52" font-weight="bold" fill="#f1f5f9">🔍 novel-bug-checker</text>
+  <text x="60" y="150" font-family="Georgia, 'Noto Serif SC', serif" font-size="22" fill="#94a3b8">出版级小说质量审查 · AI 辅助叙事 Bug 检测工具</text>
+  <rect x="60" y="175" width="520" height="3" rx="1.5" fill="url(#accentD)"/>
+  <text x="60" y="215" font-family="'Segoe UI', sans-serif" font-size="15" fill="#64748b">▸ 逻辑漏洞 · 角色一致 · 节奏分析 · 伏笔追踪 · 分级报告 · 修复策略</text>
+  <text x="60" y="245" font-family="'Segoe UI', sans-serif" font-size="13" fill="#475569">SKILL.md + 4 references + 3 scripts · MIT License</text>
+</svg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="192" height="192" viewBox="0 0 192 192">
+  <title>Infoseek</title>
+  <image x="0" y="0" width="192" height="192"
+         preserveAspectRatio="xMidYMid meet"
+         xlink:href="icon.png"
+         href="icon.png"/>
+</svg>

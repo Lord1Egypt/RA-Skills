@@ -1,47 +1,61 @@
-## Description: <br>
-Auto-generated skill for google-search tools via OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generated skill for google-search tools via OneKey Gateway.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to run Google Search queries through OneKey Gateway and retrieve search results for automation or research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and payload fields are sent to OneKey Gateway and Google. <br>
-Mitigation: Avoid sensitive or confidential search payloads unless that data sharing is approved for the deployment. <br>
-Risk: The scripts include a shared demo API key fallback when DEEPNLP_ONEKEY_ROUTER_ACCESS is not set. <br>
-Mitigation: Set DEEPNLP_ONEKEY_ROUTER_ACCESS to an owned key before normal, sensitive, or production use. <br>
-Risk: The skill depends on third-party npm and Python packages. <br>
-Mitigation: Review and pin the required packages in higher-trust environments before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to run Google Custom Search queries through OneKey Gateway from CLI or Python workflows, returning configurable search results with pagination.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AI-Hub-Admin/google-search-onekey-gateway) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [Google Custom Search API](https://www.googleapis.com/customsearch/v1) <br>
-- [AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell examples and JSON search-result responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS for normal use; query, num, start, and return_fields control Google Search requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Installation uses unpinned third-party npm and Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, avoid global npm installation where possible, and pin and review dependencies before deployment.
+
+Risk: The script can fall back to a shared built-in gateway key.
+
+Mitigation: Provide a user-controlled DEEPNLP_ONEKEY_ROUTER_ACCESS key and do not rely on the demo fallback for normal use.
+
+Risk: Search queries and JSON payload files are sent to an external gateway and search service.
+
+Mitigation: Avoid sending sensitive, confidential, or regulated data in search queries or payload files.
+
+## Reference(s):
+
+- [ClawHub Google Search Skill](https://clawhub.ai/ai-hub-admin/skills/google-search-onekey-gateway)
+- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router)
+- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys)
+- [Google Custom Search JSON API](https://www.googleapis.com/customsearch/v1)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Code, Configuration]
+
+**Output Format:** [JSON search results and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS for normal use; the artifact documents a demo key fallback.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品 Listing 差距"
+  short_description: "对照竞品商品页字段识别 Listing 表达差距"
+  default_prompt: "使用 $amazon-competitor-listing-gap 对照主 ASIN 与竞品商品页，整理 Listing 表达差距和改进项。"

@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# 临时产物 / 编辑器残留
+.tmp_pdf/
+*.tmp
+*~
+~$*
+*.bak
+
+# 项目中产生的实际 docx / json（不进入版本库，用 .workbuddy/<项目> 的资料库）
+*.docx
+!tools/**/*.docx
+!examples/**/*.docx
+
+# 用户/凭据
+.env
+*.token
+*.pem
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store

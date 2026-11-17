@@ -1,49 +1,62 @@
-## Description: <br>
-Affiliate Skills helps agents research affiliate programs, compare commission details, plan affiliate funnels, create marketing content, build landing assets, distribute campaigns, and review performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and evaluate the best affiliate programs to promote from openaffiliate.dev.
 
-## Publisher: <br>
-[sonpiaz](https://clawhub.ai/user/sonpiaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[affitor](https://clawhub.ai/user/affitor)
 
-## Use Case: <br>
-External affiliate marketers, creators, and developers use this skill suite to select affiliate programs, generate compliant promotional content, create landing pages, schedule distribution, and analyze optimization opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installed package includes a full affiliate-marketing suite, which is broader than a simple affiliate-program lookup helper. <br>
-Mitigation: Install only when the full suite is intended, and review which bundled skills and scripts are relevant before enabling them in an agent workflow. <br>
-Risk: Generated blog posts, social posts, landing pages, and Reddit guidance may create public-facing content with inaccurate claims, inadequate disclosure, or platform-policy concerns. <br>
-Mitigation: Review all generated content before publication, keep affiliate disclosures visible, and avoid using guidance for stealth promotion or ban evasion. <br>
-Risk: The affiliate-check helper can run a persistent local daemon and use an optional AFFITOR_API_KEY. <br>
-Mitigation: Set AFFITOR_API_KEY only when needed, avoid exposing it in prompts or logs, and stop the daemon when finished. <br>
-Risk: Distribution and publishing scripts may deploy or publish assets beyond local drafting. <br>
-Mitigation: Run deployment or publishing scripts only when intentionally maintaining or publishing the package. <br>
+## Use Case:
 
+Affiliate marketers, content creators, and growth teams use this skill to discover, compare, score, and choose affiliate programs by niche, commission model, audience, and promotion platform.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sonpiaz/affiliate-skills) <br>
-- [list.affitor.com API Reference](API.md) <br>
-- [Quick Start Guide](QUICKSTART.md) <br>
-- [Skill Registry](registry.json) <br>
-- [Affiliate Funnel Overview](docs/affiliate-funnel-overview.md) <br>
-- [FTC Compliance Reference](shared/references/ftc-compliance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, shell commands, and generated HTML or configuration files depending on the selected skill] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use AFFITOR_API_KEY for expanded affiliate-program search results and may generate public-facing marketing assets that require human review before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and root SKILL.md frontmatter) <br>
+Risk: The skill may use external web or API lookups when researching affiliate programs, which can expose private strategy details through search terms or requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing confidential business strategy, unpublished campaign plans, or sensitive audience data unless those lookups are acceptable.
+
+Risk: Affiliate program terms, commission rates, cookie windows, and product reputation can change after the directory data is fetched.
+
+Mitigation: Verify commission, cookie, payout, and eligibility terms on the program's official site before making business decisions or publishing recommendations.
+
+Risk: Broad activation wording may cause the skill to run on general promotion, niche, or product-selection questions.
+
+Mitigation: Use explicit prompts when affiliate-program research is intended, and review recommendations before acting on them.
+
+## Reference(s):
+
+- [Affiliate Program Search on ClawHub](https://clawhub.ai/affitor/skills/affiliate-skills)
+- [openaffiliate.dev](https://openaffiliate.dev)
+- [openaffiliate.dev API](https://openaffiliate.dev/api)
+- [openaffiliate.dev Data Access](references/openaffiliate-api.md)
+- [Program Scoring Framework](references/scoring-criteria.md)
+- [Platform-Specific Affiliate Rules](references/platform-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown recommendations with comparison tables, scorecards, next steps, and optional structured JSON fields for downstream agent use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores programs across earning potential, content potential, market demand, competition, and trust factor; recommendations may depend on live external search and API results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

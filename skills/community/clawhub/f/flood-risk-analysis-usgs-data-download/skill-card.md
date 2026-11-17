@@ -1,41 +1,53 @@
-## Description: <br>
-Download water level data from USGS using the dataretrieval package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download water level, gage height, discharge, and station data from USGS with the Python dataretrieval NWIS package.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve real-time or historical USGS stream gage data, including gage height, discharge measurements, site metadata, and station-based downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to install and use the dataretrieval Python package. <br>
-Mitigation: Install it in a virtual environment and pin or review the dataretrieval package version before use. <br>
-Risk: Large station lists or long date ranges can trigger many outbound requests to USGS, rate limits, or large downloads. <br>
-Mitigation: Break large requests into smaller date ranges or station batches, add retry handling, and expect USGS availability or rate-limit responses. <br>
+## Use Case:
 
+Developers, analysts, and flood-risk workflows use this skill to retrieve USGS water-level, streamflow, and station metadata for specified stations and date ranges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/flood-risk-analysis-usgs-data-download) <br>
-- [Publisher profile](https://clawhub.ai/user/wu-uk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example station IDs, USGS parameter codes, NWIS function guidance, and common download troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Installing an unpinned dataretrieval package can introduce unreviewed dependency changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin dataretrieval to a reviewed version for production or regulated workflows.
+
+Risk: USGS requests can return empty data, connection errors, or rate limiting for large or unsupported requests.
+
+Mitigation: Validate non-empty responses, handle exceptions, retry appropriately, and split large station or date-range requests into smaller batches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/flood-riREDACTED-SECRET)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes station ID, date range, USGS parameter-code, DataFrame-column, and retry guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,59 @@
-## Description: <br>
-Yicai helps an agent access and summarize public financial news from Yicai, including keyword-based headlines, industry statistics, and company event timelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and summarize public financial news from Yicai, providing keyword-based headlines, industry statistics, and company event timelines without bulk scraping.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and analysts use this skill to guide an agent through light analysis of public Yicai news pages, including keyword summaries, channel trend statistics, and company-event timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-news summaries may be incomplete or inaccurate if the source page changes or the agent misses page context. <br>
-Mitigation: Verify important financial details against the original Yicai links before relying on the summary. <br>
-Risk: Automated collection could exceed the intended light-use boundary for public pages. <br>
-Mitigation: Keep prompts specific, respect platform rules, and do not use the skill for bulk scraping or automated collection. <br>
+## Use Case:
 
+External users and analysts use this skill to search, summarize, and monitor public Yicai financial news by keyword, channel, industry, or company event.
 
-## Reference(s): <br>
-- [Yicai website](https://www.yicai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with source links and timestamps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should identify source links, collection time, and any important financial details that need verification against the original page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may browse live Yicai pages and summarize changing public news content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated summaries against source links and timestamps before using them for decisions.
+
+Risk: Page automation or repeated access could exceed appropriate use of the source site.
+
+Mitigation: Use light, rate-limited access only, avoid bulk collection, and follow the site's rules.
+
+Risk: The skill is intended for public content and should not process private or sensitive data.
+
+Mitigation: Provide only public search terms or public URLs and exclude private data from prompts and outputs.
+
+## Reference(s):
+
+- [Yicai homepage](https://www.yicai.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/yicai)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, lists, statistics, and timelines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links and collection timestamps for extracted public news items.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

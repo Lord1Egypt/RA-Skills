@@ -1,48 +1,65 @@
-## Description: <br>
-Combined home repair, plumbing, and cooking survival skills covering common home fixes, detailed plumbing troubleshooting, weekly budget meal prep on $50/week, and foundational cooking techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combined home repair, plumbing, and cooking survival skills covering common home fixes, plumbing troubleshooting, weekly budget meal prep, and foundational cooking techniques.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill for practical self-sufficiency guidance on basic home repair, plumbing troubleshooting, affordable meal planning, and foundational cooking. The skill is intended for everyday household tasks and should defer gas, major electrical, structural, or unsafe plumbing issues to qualified professionals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist budget, dietary, household, and food-security details across sessions. <br>
-Mitigation: Store only details needed for the current planning task and clear saved state when reuse is no longer desired. <br>
-Risk: Home repair, plumbing, food safety, and limited electrical guidance can be unsafe if applied beyond the skill's boundaries. <br>
-Mitigation: Follow the skill's safety rules, shut off water or power before relevant work, and use qualified professionals for gas lines, main electrical panels, structural work, major leaks, or unclear hazards. <br>
+## Use Case:
 
+External users use this skill to get practical self-sufficiency guidance for basic home repairs, plumbing triage, budget meal planning, and cooking from scratch. It helps an agent provide step-by-step household and food guidance while prompting for safety, budget, equipment, and dietary constraints.
 
-## Reference(s): <br>
-- [ClawHub Survival Basics skill page](https://clawhub.ai/howtousehumans/survival-basics) <br>
-- [This Old House](https://www.thisoldhouse.com) <br>
-- [Family Handyman](https://www.familyhandyman.com) <br>
-- [EPA WaterSense](https://www.epa.gov/watersense) <br>
-- [HUD Healthy Homes Program](https://www.hud.gov/program_offices/healthy_homes) <br>
-- [FoodSafety.gov](https://www.foodsafety.gov) <br>
-- [USDA SNAP-Ed Connection](https://snaped.fns.usda.gov) <br>
-- [USDA MyPlate](https://www.myplate.gov) <br>
-- [Feeding America food bank locator](https://www.feedingamerica.org/find-your-local-foodbank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, step-by-step instructions, meal plans, and YAML state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist household repair status, meal-planning preferences, equipment, dietary restrictions, and pantry details across sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installation supply-chain risk from installing a community skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted or pinned installer where possible before installing the skill.
+
+Risk: Sensitive household, budget, dietary, or food-insecurity details could be retained if the agent stores them permanently.
+
+Mitigation: Avoid persistent storage of household locations, budget details, dietary restrictions, or food-insecurity information unless the user explicitly wants that remembered.
+
+Risk: DIY home repair, plumbing, electrical, or food-safety guidance can cause harm if applied outside the user's situation or beyond safe scope.
+
+Mitigation: Keep safety warnings visible, turn off water or breakers before relevant work, defer gas lines, main electrical panels, structural work, shared building issues, and uncertain toilet resets to qualified professionals, and include safe food cooling guidance.
+
+## Reference(s):
+
+- [Survival Basics on ClawHub](https://clawhub.ai/howtousehumans/skills/survival-basics)
+- [This Old House](https://www.thisoldhouse.com/)
+- [Family Handyman](https://www.familyhandyman.com/)
+- [EPA WaterSense](https://www.epa.gov/watersense)
+- [HUD Healthy Homes Program](https://www.hud.gov/program_offices/healthy_homes)
+- [USDA FoodSafety.gov](https://www.foodsafety.gov/)
+- [USDA SNAP-Ed Connection](https://snaped.fns.usda.gov/)
+- [USDA MyPlate](https://www.myplate.gov/)
+- [Feeding America Food Bank Locator](https://www.feedingamerica.org/find-your-local-foodbank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklists, step-by-step instructions, safety notes, meal plans, and optional YAML agent state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask follow-up questions about budget, dietary restrictions, cooking equipment, skill level, rental status, and household repair context before giving tailored guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

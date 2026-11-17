@@ -1,40 +1,60 @@
-## Description: <br>
-Look up concert setlists and live-music history via setlist.fm for artist, venue, city, date, tour, and live performance questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up concert setlists and live-music history via setlist.fm.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and use a read-only MCP server for setlist.fm lookups, including artist setlists, venue histories, tour searches, and concert disambiguation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [setlist-mcp npm package](https://www.npmjs.com/package/setlist-mcp) <br>
-- [setlist.fm API key settings](https://www.setlist.fm/settings/api) <br>
-- [setlist.fm API terms](https://www.setlist.fm/help/api-terms) <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/setlist-mcp) <br>
+Agents use this skill to answer user questions about concert setlists, tour histories, venues, artists, dates, and live-performance records through the setlist.fm MCP server.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SETLIST_API_KEY; setlist.fm results should include source links and respect API-key, caching, and commercial-use requirements.] <br>
+Global
 
-## Skill Version(s): <br>
-0.7.3 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Installing an unpinned npm package can change the MCP server code between installs.
+
+Mitigation: Pin setlist-mcp to a reviewed package version or commit before deployment.
+
+Risk: SETLIST_API_KEY can be exposed if it is committed to source control or placed in an overly broad MCP configuration.
+
+Mitigation: Store the API key outside committed files and prefer project-level MCP configuration unless global availability is intentional.
+
+Risk: setlist.fm data use is governed by API terms, including source attribution and commercial-use requirements.
+
+Mitigation: Cite setlist.fm result URLs in user-facing answers and confirm that the deployment has any required setlist.fm permission for commercial use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/setlist-mcp)
+- [setlist-mcp npm package](https://www.npmjs.com/package/setlist-mcp)
+- [setlist.fm API terms](https://www.setlist.fm/help/api-terms)
+- [setlist.fm API key settings](https://www.setlist.fm/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and source-linked setlist answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only setlist.fm lookups; responses should cite setlist.fm result URLs and keep API keys out of outputs.]
+
+## Skill Version(s):
+
+0.7.4 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,94 @@
+{
+  "mode": "workflow",
+  "title": "Agent Runtime Proof Loop",
+  "summary": "A local agent turns a task brief into a checked artifact with verifier feedback and durable lessons.",
+  "show_grid": false,
+  "nodes": [
+    {
+      "id": "brief",
+      "label": "Task Brief",
+      "subtitle": "Scoped ACs",
+      "kind": "service",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "builder",
+      "label": "Builder Agent",
+      "subtitle": "Implements slice",
+      "kind": "agent",
+      "x": 360,
+      "y": 160
+    },
+    {
+      "id": "artifact",
+      "label": "Artifact",
+      "subtitle": "SVG or HTML",
+      "kind": "service",
+      "x": 600,
+      "y": 160
+    },
+    {
+      "id": "validator",
+      "label": "Validator",
+      "subtitle": "Checks contract",
+      "kind": "agent",
+      "x": 600,
+      "y": 320
+    },
+    {
+      "id": "receipt",
+      "label": "Receipt",
+      "subtitle": "Hashes + metrics",
+      "kind": "memory",
+      "x": 360,
+      "y": 320
+    },
+    {
+      "id": "lessons",
+      "label": "Lessons",
+      "subtitle": "Future corrections",
+      "kind": "memory",
+      "x": 120,
+      "y": 320
+    }
+  ],
+  "edges": [
+    {
+      "from": "brief",
+      "to": "builder",
+      "kind": "control",
+      "label": "execute",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "builder",
+      "to": "artifact",
+      "kind": "primary-data",
+      "label": "deliver",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "artifact",
+      "to": "validator",
+      "kind": "control",
+      "label": "validate"
+    },
+    {
+      "from": "validator",
+      "to": "receipt",
+      "kind": "memory-write",
+      "label": "proof",
+      "source_side": "left",
+      "target_side": "right"
+    },
+    {
+      "from": "receipt",
+      "to": "lessons",
+      "kind": "memory-write",
+      "label": "capture",
+      "source_side": "left",
+      "target_side": "right"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "theme": {"style": "highlight", "strip": "black"},
+  "slides": [
+    {"text": "habit apps when you miss ONE day:", "image": "photos/bed-phone.jpg", "position": "center"},
+    {"text": "fell asleep once.\nstreak: 0", "image": "photos/bed-asleep.jpg", "position": "center"},
+    {"text": "plodd: miss a day,\nnothing resets", "image": "screens/plodd-today.png", "layout": "fullscreen"},
+    {"text": "5 out of 7 days still counts", "image": "photos/bed-morning.jpg", "position": "bottom"},
+    {"text": "be honest. how many habit apps have you deleted?", "image": "photos/bed-scrolling.jpg", "position": "bottom"}
+  ]
+}

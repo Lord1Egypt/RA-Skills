@@ -1,0 +1,7 @@
+{
+  "auto_approve_endpoints": [
+    "https://ct-samplesize.coze.site/run",
+    "https://ct-bugreport.coze.site/run"
+  ],
+  "_comment": "出站授权白名单（ct-base §5 安全模型 / governance-redlines）。公共端点由技能作者预置，已预置端点永不弹确认；用户自定义端点（env CTSS_COZE_ENDPOINT）首次出站须用户确认后方可加入。agent 绝不自行改写本文件。"
+}

@@ -1,0 +1,22 @@
+# Optional GitHub Actions template; copy to .github/workflows/audit.yml explicitly.
+name: Audit validation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python tests/validate.py --strict
+      - run: python -m pytest tests/ -v
+# For a separate asset audit, supply explicit client roots then use
+# python scripts/audit_skill_plugin_issues.py --scope installed --json --fail-on critical
+# No agent execution, installation, PR comments or credential-dependent calls.

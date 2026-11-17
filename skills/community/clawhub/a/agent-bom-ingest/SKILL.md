@@ -5,15 +5,15 @@ description: >-
   GCP, Snowflake, CMDB, or endpoint collectors. Use when a user has canonical
   inventory JSON and wants local findings, graph, policy, provenance, or
   auditor-ready exports without giving agent-bom direct cloud credentials.
-version: 0.91.0
+version: 0.115.3
 license: Apache-2.0
 compatibility: >-
   Requires Python 3.11+ and agent-bom 0.84.4+. Inventory must conform to the
   packaged inventory.schema.json contract.
 metadata:
   author: msaad00
-  homepage: https://github.com/msaad00/agent-bom
-  source: https://github.com/msaad00/agent-bom
+  homepage: https://github.com/koda-ai-studio/agent-bom
+  source: https://github.com/koda-ai-studio/agent-bom
   pypi: https://pypi.org/project/agent-bom/
   openclaw:
     requires:
@@ -27,8 +27,8 @@ metadata:
       - AGENT_BOM_PUSH_URL
     optional_bins: []
     emoji: "inbox"
-    homepage: https://github.com/msaad00/agent-bom
-    source: https://github.com/msaad00/agent-bom
+    homepage: https://github.com/koda-ai-studio/agent-bom
+    source: https://github.com/koda-ai-studio/agent-bom
     license: Apache-2.0
     os:
       - darwin
@@ -91,7 +91,7 @@ agent-bom mcp validate inventory.json
 Scan locally:
 
 ```bash
-agent-bom agents --inventory inventory.json --format json --output agent-bom-findings.json
+agent-bom scan --inventory inventory.json --format json --output agent-bom-findings.json
 ```
 
 Choose output by consumer:

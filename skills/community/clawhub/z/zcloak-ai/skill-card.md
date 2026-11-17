@@ -1,46 +1,63 @@
-## Description: <br>
-Use this skill for zCloak.ai workflows, including agent identity creation, AI Name (.ai/.agent) lookup and registration, owner binding with passkey/WebAuthn, on-chain signing and verification, document manifests, 2FA-protected file deletion, VetKey encryption/decryption, Kind5 access grants, and zMail encrypted messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for zCloak.ai workflows, including agent identity creation, AI Name (.ai/.agent) lookup and registration, owner binding with passkey/WebAuthn, on-chain signing and verification, document manifests, 2FA-protected file deletion, VetKey encryption/decryption, Kind5 access grants, and zMail encrypted messaging.
 
-## Publisher: <br>
-[zcloak-ai](https://clawhub.ai/user/zcloak-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcloak-ai](https://clawhub.ai/user/zcloak-ai)
 
-## Use Case: <br>
-Developers and external users use this skill to manage zCloak.ai agent identities, name registration and lookup, signing, verification, encrypted messaging, VetKey encryption, access grants, and owner-confirmed protected actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad signing, public social actions, access grants, zMail policy changes, and owner-confirmed file deletion. <br>
-Mitigation: Require explicit user approval before signing, posting, following, granting or revoking access, changing zMail policy, or confirming deletion. <br>
-Risk: The skill uses a persistent local identity key for agent identity and signing workflows. <br>
-Mitigation: Use the dedicated zCloak identity path, disclose the active PEM and AI ID when identity matters, and ask before creating a new identity key. <br>
-Risk: Automatic CLI update behavior and @latest installation can change the executable used for sensitive workflows. <br>
-Mitigation: Install only when the zCloak npm package is trusted and avoid unattended @latest or automatic update behavior for sensitive workflows. <br>
+## Use Case:
 
+External developers and agent operators use this skill to manage zCloak identities, AI Names, passkey-backed owner binding, signing and verification, encrypted VetKey workflows, protected deletion, and zMail messaging through the zcloak-ai CLI.
 
-## Reference(s): <br>
-- [Onboarding, Identity, and Name Management](references/onboarding.md) <br>
-- [Signing, Verification, Feed, and Document Tools](references/signing-and-docs.md) <br>
-- [Binding and 2FA Delete](references/binding-and-delete.md) <br>
-- [VetKey Encryption and Access Control](references/vetkey.md) <br>
-- [zMail Encrypted Messaging](references/zmail.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with CLI command guidance, IDs, hashes, profile links, event URLs, authentication URLs, and JSON excerpts when relevant.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require internet access, the zcloak-ai CLI, a persistent local identity PEM, and browser-based passkey/WebAuthn confirmation for protected flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.49 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill relies on an unpinned, automatically updating CLI for identity, signing, messaging, encryption, and deletion workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed CLI version where possible, review or disable automatic updates, and install only from a trusted zCloak CLI update channel.
+
+Risk: The CLI may access a persistent identity key and perform high-impact actions such as signing content, sending encrypted messages, granting decryption access, or deleting files.
+
+Mitigation: Confirm the active identity path and exact action before execution, protect the identity PEM, and require user confirmation for signing, grants, message delivery, and protected deletion flows.
+
+Risk: Protected deletion and owner binding depend on browser-based passkey/WebAuthn confirmation.
+
+Mitigation: Do not complete deletion until the passkey challenge is authorized, and clearly separate agent-side preparation from user-side browser confirmation.
+
+## Reference(s):
+
+- [zCloak AI Skill](SKILL.md)
+- [Onboarding, Identity, and Name Management](references/onboarding.md)
+- [Signing, Verification, Feed, and Document Tools](references/signing-and-docs.md)
+- [Binding and 2FA Delete](references/binding-and-delete.md)
+- [VetKey Encryption and Access Control](references/vetkey.md)
+- [zMail Encrypted Messaging](references/zmail.md)
+- [ClawHub Skill Page](https://clawhub.ai/zcloak-ai/skills/zcloak-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-language summaries with Markdown links, inline shell commands, URLs, event IDs, hashes, and JSON CLI results when relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI IDs, AI Names, profile URLs, authentication URLs, event IDs, manifest or file hashes, encrypted message identifiers, and local file paths.]
+
+## Skill Version(s):
+
+1.0.49 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

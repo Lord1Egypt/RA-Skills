@@ -1,42 +1,59 @@
-## Description: <br>
-Use the MCPHero Meta-MCP server inside AI clients such as Claude Desktop and Cursor to create, deploy, and manage MCP servers through the wizard pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the MCPHero Meta-MCP server inside AI clients such as Claude Desktop and Cursor to create, deploy, and manage MCP servers through the wizard pipeline.
 
-## Publisher: <br>
-[arterialist](https://clawhub.ai/user/arterialist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arterialist](https://clawhub.ai/user/arterialist)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an MCP-compatible client to MCPHero's Meta-MCP service, walk through the hosted wizard flow, and configure deployed MCP servers for reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an AI client to a persistent hosted MCP service that may receive prompts, requirements, generated tool definitions, and deployment credentials. <br>
-Mitigation: Use the skill only with trusted MCPHero accounts and data, and avoid sending sensitive production requirements unless that use is approved. <br>
-Risk: Generated server configurations may include Authorization headers or bearer tokens. <br>
-Mitigation: Use least-privilege or short-lived secrets, protect MCP client config files, and rotate exposed tokens. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect the MCPHero Meta-MCP server to MCP-compatible clients and walk through the wizard flow for creating, deploying, and registering hosted MCP servers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arterialist/meta-mcp-creator) <br>
-- [MCPHero](https://mcphero.app) <br>
-- [Meta-MCP endpoint](https://api.mcphero.app/mcp/meta/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and tool-call sequencing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP client configuration examples, polling guidance, and credential-handling reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may send requirements, environment-variable secrets, generated code, and deployed tool behavior to an external hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MCPHero's trust, privacy, retention, and secret-handling practices before installing, and avoid production or long-lived credentials unless they are required.
+
+Risk: Generated or regenerated MCP server code may be used against sensitive systems.
+
+Mitigation: Review generated code before relying on deployed tools, especially for internal APIs or production systems.
+
+Risk: MCP client configuration files may contain bearer tokens in Authorization headers.
+
+Mitigation: Protect client configuration files and use least-privilege, revocable credentials.
+
+## Reference(s):
+
+- [MCPHero](https://mcphero.app)
+- [Meta-MCP endpoint](https://api.mcphero.app/mcp/meta/mcp)
+- [ClawHub skill page](https://clawhub.ai/arterialist/skills/meta-mcp-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code, Markdown]
+
+**Output Format:** [Markdown with JSON configuration examples and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP client configuration snippets, wizard tool sequencing, polling guidance, and bearer-token setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

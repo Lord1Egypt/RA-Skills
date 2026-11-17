@@ -1,43 +1,56 @@
-## Description: <br>
-Audit and maintain workspace file structure, memory quality, and project documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and maintain workspace file structure, memory quality, and project documentation.
 
-## Publisher: <br>
-[SteveMichael001](https://clawhub.ai/user/SteveMichael001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevemichael001](https://clawhub.ai/user/stevemichael001)
 
-## Use Case: <br>
-Developers and workspace maintainers use this skill to audit OpenClaw workspaces for file placement, memory hygiene, and missing project documentation. It produces a prioritized hygiene report and can optionally consolidate timestamped memory files when explicitly run with --fix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local workspace memory, project folders, and documentation. <br>
-Mitigation: Run it only against the intended workspace and review the generated hygiene report before acting on recommendations. <br>
-Risk: The optional --fix mode can merge timestamped memory-file content into date-based files. <br>
-Mitigation: Use --fix only when local memory-file consolidation is acceptable; review retained source files and the reported fixes afterward. <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to audit OpenClaw-style workspaces, identify misplaced files, check memory-log health, and generate a prioritized hygiene report.
 
-## Reference(s): <br>
-- [Workspace Hygiene Publish on ClawHub](https://clawhub.ai/SteveMichael001/workspace-hygiene-publish) <br>
-- [Audit Rules](audit.md) <br>
-- [Memory Format](memory-format.md) <br>
-- [RAG Index](rag-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with terminal summary and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a hygiene report under projects/system; optional --fix mode appends timestamped memory content into date-based files while retaining source files for manual cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A crafted or untrusted workspace may cause reads or writes outside the selected workspace because of filesystem handling weaknesses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted workspaces and review its behavior before installation.
+
+Risk: Running with --fix can modify workspace files before symlink containment, backup, and clearer dry-run behavior are added.
+
+Mitigation: Run report-only audits first and avoid --fix until those safeguards are present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevemichael001/skills/workspace-hygiene-publish)
+- [Audit rules](artifact/audit.md)
+- [Memory format](artifact/memory-format.md)
+- [RAG index guidance](artifact/rag-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with command-line summary text and suggested remediation actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated hygiene report under the selected workspace and may consolidate timestamped memory files when run with --fix.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

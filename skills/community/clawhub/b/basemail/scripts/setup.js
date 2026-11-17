@@ -6,6 +6,7 @@
  * Usage: 
  *   node setup.js              # Show help
  *   node setup.js --managed    # Generate wallet (always encrypted ✅)
+ *   node setup.js --managed --yes   # Non-interactive (agents): confirmations assumed, password from BASEMAIL_PASSWORD
  * 
  * ⚠️ SECURITY: This is optional! Recommended to use existing wallet via
  *    environment variable BASEMAIL_PRIVATE_KEY instead.
@@ -24,47 +25,58 @@ const WALLET_FILE = path.join(CONFIG_DIR, 'wallet.json');
 const MNEMONIC_FILE = path.join(CONFIG_DIR, 'mnemonic.backup');
 const AUDIT_FILE = path.join(CONFIG_DIR, 'audit.log');
 
+const NON_INTERACTIVE = !process.stdin.isTTY;
+const ASSUME_YES = process.argv.includes('--yes') || process.argv.includes('-y');
+
 function prompt(question) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
+  if (NON_INTERACTIVE) {
+    // Agents usually run without a TTY: never hang on a question.
+    if (ASSUME_YES) return Promise.resolve('yes');
+    console.error(`\n❌ 需要互動確認但目前沒有 TTY。請加上 --yes（例如: node scripts/setup.js --managed --yes）`);
+    process.exit(1);
+  }
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   return new Promise(resolve => {
-    rl.question(question, answer => {
-      rl.close();
-      resolve(answer.trim());
-    });
+    rl.question(question, answer => { rl.close(); resolve(answer.trim()); });
   });
 }
 
 function promptPassword(question) {
+  // Non-interactive (piped stdin / agent): read one line, unmasked, or use BASEMAIL_PASSWORD.
+  if (NON_INTERACTIVE) {
+    if (process.env.BASEMAIL_PASSWORD) return Promise.resolve(process.env.BASEMAIL_PASSWORD);
+    return new Promise((resolve) => {
+      const rl = readline.createInterface({ input: process.stdin, terminal: false });
+      rl.once('line', (line) => { rl.close(); resolve(line.trim()); });
+      rl.once('close', () => resolve(''));
+    });
+  }
   return new Promise((resolve) => {
     process.stdout.write(question);
     const stdin = process.stdin;
     const wasRaw = stdin.isRaw;
-    if (stdin.isTTY) {
-      stdin.setRawMode(true);
-    }
+    stdin.setRawMode(true);
     stdin.resume();
     stdin.setEncoding('utf8');
     let password = '';
-    const onData = (ch) => {
-      if (ch === '\n' || ch === '\r' || ch === '\u0004') {
-        stdin.removeListener('data', onData);
-        if (stdin.isTTY) stdin.setRawMode(wasRaw);
-        stdin.pause();
-        process.stdout.write('\n');
-        resolve(password.trim());
-      } else if (ch === '\u0003') {
-        process.exit();
-      } else if (ch === '\u007F' || ch === '\b') {
-        if (password.length > 0) {
-          password = password.slice(0, -1);
-          process.stdout.write('\b \b');
+    const finish = () => {
+      stdin.removeListener('data', onData);
+      stdin.setRawMode(wasRaw);
+      stdin.pause();
+      process.stdout.write('\n');
+      resolve(password.trim());
+    };
+    const onData = (chunk) => {
+      // A pasted password or some terminals deliver several characters per chunk: walk them one by one.
+      for (const ch of chunk) {
+        if (ch === '\n' || ch === '\r' || ch === '\u0004') { finish(); return; }
+        if (ch === '\u0003') process.exit();
+        if (ch === '\u007F' || ch === '\b') {
+          if (password.length > 0) { password = password.slice(0, -1); process.stdout.write('\b \b'); }
+        } else {
+          password += ch;
+          process.stdout.write('*');
         }
-      } else {
-        password += ch;
-        process.stdout.write('*');
       }
     };
     stdin.on('data', onData);
@@ -180,8 +192,8 @@ async function main() {
   // ❌ 不輸出 mnemonic 到終端！
   
   // Always encrypt
-  const password = await promptPassword('\nSet encryption password (min 8 chars, letter + number): ');
-  const confirmPwd = await promptPassword('Confirm password: ');
+  const password = process.env.BASEMAIL_PASSWORD || await promptPassword('\nSet encryption password (min 8 chars, letter + number): ');
+  const confirmPwd = process.env.BASEMAIL_PASSWORD || await promptPassword('Confirm password: ');
   
   if (password !== confirmPwd) {
     console.error('❌ Passwords do not match');
@@ -233,7 +245,7 @@ async function main() {
   const walletInfo = {
     address: wallet.address,
     created_at: new Date().toISOString(),
-    encrypted: isEncrypt,
+    encrypted: true,
     note: 'Private key stored separately',
   };
   fs.writeFileSync(WALLET_FILE, JSON.stringify(walletInfo, null, 2), { mode: 0o600 });
@@ -243,12 +255,10 @@ async function main() {
 
   console.log('\n' + '═'.repeat(50));
   console.log('\n⚠️  重要安全提醒：');
-  console.log('   1. 請立即備份 mnemonic 檔案到安全的地方');
-  console.log('   2. 備份後建議刪除 mnemonic 檔案');
-  console.log('   3. 永遠不要分享你的私鑰或 mnemonic');
-  if (isEncrypt) {
-    console.log('   4. 請牢記你的加密密碼，遺失將無法恢復');
-  }
+  console.log('   1. 助記詞只顯示這一次，請立刻抄寫到安全的地方');
+  console.log('   2. 請牢記你的加密密碼，遺失將無法解開私鑰');
+  console.log('   3. 永遠不要分享你的私鑰、助記詞或密碼');
+  console.log('   4. 非互動環境可用 BASEMAIL_PASSWORD 環境變數提供密碼');
 
   console.log('\n📋 下一步：');
   console.log('   node scripts/register.js');

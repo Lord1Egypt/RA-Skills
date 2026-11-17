@@ -1,39 +1,54 @@
-## Description: <br>
-Agent Decision Engine provides local decision-support utilities for multi-objective optimization, risk assessment, decision trees, and Q-learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous decision engine for AI agents with multi-objective optimization, risk assessment, decision trees, and reinforcement learning capabilities.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local scoring, prioritization, risk review, decision-tree evaluation, and simple reinforcement-learning behavior to agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optimization, risk, and Q-learning outputs can be mistaken for final decisions in important or irreversible workflows. <br>
-Mitigation: Treat results as advisory, review inputs and assumptions, and require human validation before acting on high-impact choices. <br>
-Risk: The documented high-level API may not exactly match the exported JavaScript modules. <br>
-Mitigation: Verify the installed API surface against the source files and tests before integrating it into an agent workflow. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local decision-model utilities for ranking options, scoring risks, building decision trees, and experimenting with Q-learning behavior.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Guidance] <br>
-**Output Format:** [JavaScript objects, API results, and concise decision-support guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and returns advisory decision outputs rather than executing system actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The documented DecisionEngine facade is not exported by src/index.js, which may cause integration failures for users following the README-style usage example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Import and test the exported classes directly, or add and verify a DecisionEngine facade before relying on the documented API.
+
+Risk: The reinforcement learner reset path sets epsilon back to a fixed value, which can override a caller's custom exploration setting.
+
+Mitigation: Check epsilon after reset in workflows that tune exploration, and restore the desired value before continuing training.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-agent-decision-engine)
+- [Publisher profile](https://clawhub.ai/user/yuyonghao-123)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [JavaScript modules and Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local execution with no network, persistence, or hidden data-access behavior reported by security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

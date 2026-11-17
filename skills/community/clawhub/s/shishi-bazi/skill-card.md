@@ -1,43 +1,57 @@
-## Description: <br>
-通过交互收集姓名、出生日期、时辰、性别、出生地等信息，排出四柱八字并结合传统命理典籍进行分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过交互收集出生信息，使用四柱八字排盘工具和传统命理参考资料生成排盘、五行与十神分析、大运流年解读及文化娱乐性质的建议。
 
-## Publisher: <br>
-[howtimeschange](https://clawhub.ai/user/howtimeschange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtimeschange](https://clawhub.ai/user/howtimeschange)
 
-## Use Case: <br>
-External users use this skill to request a Chinese traditional Bazi reading from birth details, including chart generation, five-element and ten-god analysis, major-luck and annual-flow interpretation, and culturally framed suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for identifying birth details and optional life-history information. <br>
-Mitigation: Share only the details needed for the reading, prefer a nickname or initials, and avoid former-name or historical-event details unless you intentionally choose to provide them. <br>
-Risk: Bazi readings can be mistaken for reliable predictions or professional life, health, or financial advice. <br>
-Mitigation: Treat results as cultural or entertainment reference, avoid using them as the sole basis for important decisions, and consult qualified professionals for medical, financial, or legal matters. <br>
+## Use Case:
 
+External users can use this skill for a Chinese Bazi birth-chart reading that collects birth details, generates a four-pillar chart, and summarizes traditional interpretations. Outputs should be treated as cultural entertainment and reference material, not medical, financial, or life-planning advice.
 
-## Reference(s): <br>
-- [五行、天干地支、十神参考表](references/wuxing-tables.md) <br>
-- [时辰对照表](references/shichen-table.md) <br>
-- [大运规则详解](references/dayun-rules.md) <br>
-- [经典命理典籍核心知识摘要](references/classical-texts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown narrative with tables and optional JSON from the included charting tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask follow-up questions for birth details and may propose local Python commands for chart calculation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for identifying personal history, including names, birth details, gender, birthplace, and life status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum details needed for a chart and avoid real names or former names unless the user specifically wants that style of reading.
+
+Risk: Users may treat fortune-telling output as authoritative guidance for health, finance, relationships, or life planning.
+
+Mitigation: Present the output as cultural entertainment and remind users to rely on qualified professionals and their own judgment for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtimeschange/skills/shishi-bazi)
+- [五行、天干地支、十神参考表](references/wuxing-tables.md)
+- [时辰对照表](references/shichen-table.md)
+- [大运规则详解](references/dayun-rules.md)
+- [经典命理典籍核心知识摘要](references/classical-texts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown narrative with tables and optional parsed JSON from the bundled Bazi CLI tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include four-pillar chart data, Ten Gods, hidden stems, five-element counts, dayun and liunian summaries, historical-event calibration prompts, and a cultural-reference disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

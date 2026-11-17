@@ -1,40 +1,54 @@
-## Description: <br>
-Formats uploaded Word documents into Chinese official-document layouts with template selection, GB/T 9704-2012 styling, official title and header fonts, and Times New Roman for Western text and numbers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides professional Chinese official document formatting using specified fonts and styles for titles, red headings, body text, and alphanumeric characters.
 
-## Publisher: <br>
-[Erich1566](https://clawhub.ai/user/Erich1566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erich1566](https://clawhub.ai/user/erich1566)
 
-## Use Case: <br>
-Employees, external users, and document-preparation staff use this skill to convert DOCX drafts into Chinese official-document formats, optionally applying a named template, document number, and issuing organization header. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The formatter reads user-supplied DOCX files and optional local templates, so untrusted or unintended files could be processed. <br>
-Mitigation: Use trusted DOCX files and templates, and keep inputs in a controlled workspace. <br>
-Risk: The skill writes to a caller-provided output path, which could overwrite an important document if pointed at the wrong location. <br>
-Mitigation: Direct outputs to a controlled workspace and review the destination path before execution. <br>
+## Use Case:
 
+OpenClaw users and document automation developers use this skill to format uploaded Chinese official Word documents against configurable templates and GB/T 9704-2012-style typography rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Erich1566/official-layout-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Configuration, Guidance] <br>
-**Output Format:** [Formatted DOCX file with a status object containing the output path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python-docx, user-supplied DOCX input and output paths, optional DOCX templates, and the expected local fonts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read and overwrite caller-selected local files without path containment or overwrite safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated working folder with explicit input and output paths, limited filesystem access, and confirmation before overwriting files.
+
+Risk: Template names are used to select local DOCX templates and may be unsafe if package validation does not constrain basenames.
+
+Mitigation: Validate template names as basenames, restrict template lookup to the intended templates directory, and reject path traversal or unexpected extensions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erich1566/skills/official-layout-pro)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [Formatted DOCX file with JSON status and output path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires caller-provided input and output paths, optional template name, document code, and issuing organization name.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

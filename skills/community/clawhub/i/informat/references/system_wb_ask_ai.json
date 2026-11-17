@@ -1,0 +1,17 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_ask_ai",
+		"description": "Retrieve documentation from the Informat knowledge base to answer questions about features such as data tables, scripts, dashboards, workflows, APIs, expressions, automation, websites, scheduled tasks, etc.\n\n[Prerequisites]\nYou must first call _wb_get_login_info to obtain login information. If systemConfig.systemKbEnable is false, calling this tool is prohibited.\n\n[Invocation Strategy — Must Be Followed]\n1. When the user's question contains multiple independent information points (e.g., asking about both A and B simultaneously, doing X first then Y, or the difference between A and B), you must call this tool separately for each information point. Do not merge multiple questions into a single query.\n2. After receiving the retrieval results, you must self-check: Did every information point yield concrete content (steps/parameters/examples), rather than merely being mentioned? Are key terms defined? If there are gaps, immediately call again using the missing part as a new question.\n3. If the retrieval results contain unfamiliar new terms, and understanding those terms is necessary to answer the user, you should call this tool again to query those terms.\n4. Within a single conversation turn, this tool may be called at most 5 times. If the limit is reached and the required information has still not been obtained, explicitly tell the user \"No content about XX was found in the knowledge base.\" Fabricating specific operations of the Informat system using general knowledge is prohibited.\n5. It is strictly forbidden to make repeated calls with a question nearly identical to the previous one (merely adjusting word order or adding/removing one or two characters does not count as a new call).",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"question": {
+					"type": "string",
+					"description": "A single, focused retrieval question. Requirements:\n- Ask only one thing at a time. Do not use \"and\", \"as well as\", or \"respectively\" to connect multiple questions\n- Include sufficient domain context (e.g., do not just ask \"how to configure\"; ask \"how to configure field permissions for a data table\")\n- Use Informat system terminology (data table / script / dashboard / workflow / trigger / expression, etc.); avoid vague phrasing\n- If it is a follow-up based on previous retrieval results, use the specific terms that appeared in those results as keywords directly. Do not use pronouns like \"that one just now\" or \"the one mentioned above\"\n\nGood examples:\n  \"How to configure a scheduled trigger in a workflow\"\n  \"How to call a data table's query API from within a script\"\n  \"Parameter specifications for the formatDate expression\"\n\nBad examples:\n  \"How to use workflows and scripts\" (multiple information points merged)\n  \"How to configure\" (missing context)\n  \"What are its parameters\" (uses a pronoun)"
+				}
+			},
+			"required": ["question"]
+		}
+	}
+}

@@ -1,12 +1,12 @@
 | allowed-tools | description |
 |---|---|
-| Bash(gh issue*), Bash(gh pr*), Bash(gh api*), Read, Glob, Grep, Task | Analyze GitHub issues with parallel Sonnet agents (up to 7x speed) |
+| Bash(*fetch-issues.sh*), Bash(gh issue list *), Bash(gh issue view *), Bash(gh pr list *), Bash(gh pr view *), Bash(jq *), Bash(cat *manifest*), Read, Glob, Grep, Task | Read-only analysis of issues from an explicitly named GitHub repository |
 
 # Issue Prioritizer Skill (Parallel Edition)
 
 Analyze issues from a GitHub repository and rank them by **Adjusted Score** (ROI penalized by Tripping Scale).
 
-**Performance:** Uses up to 7 parallel Sonnet agents for fast analysis.
+**Performance:** Batch-size-based splitting + wave processing. Scales to 1000+ issues.
 
 ## Modes
 
@@ -18,126 +18,137 @@ This is a **read-only skill**. It analyzes and presents information. YOU make al
 
 If the user didn't specify a repository, ask which repository to analyze (format: `owner/repo`).
 
-### Step 2: Fetch ALL Issues First
+### Step 2: Fetch and Prepare Issues
 
-Use `gh issue list` to fetch open issues:
+Use the `fetch-issues.sh` script to fetch issues, detect linked PRs (via GitHub GraphQL closingIssuesReferences + regex fallback), and split into fixed-size batches — all without loading raw data into your context.
 
+**Find the script:**
+Use Glob to find `**/issue-prioritizer/**/fetch-issues.sh`.
+
+**Run it:**
 ```bash
-gh issue list --repo {owner/repo} --state open --limit {limit} --json number,title,body,labels,createdAt,comments,url
+bash <path-to-script> {owner/repo} \
+  --limit {limit} \
+  --batch-size {batch_size} \
+  --max-concurrency {concurrency} \
+  [--truncate {chars}] \
+  [--topic {topic}] [--search {query}] [--label {label}] \
+  [--include-with-prs] [--full-body] \
+  [--history-dir {path}] [--retain 20]
+
+# Resume from existing run (no refetch)
+bash <path-to-script> --resume {run_id_or_path} [--batch-size 20] [--truncate 500]
+
+# Incremental mode: reuse cached scores for unchanged issues
+bash <path-to-script> {owner/repo} --limit {limit} --diff-from latest
+bash <path-to-script> {owner/repo} --limit {limit} --diff-from {run_id_or_path}
 ```
 
-Default limit is 30. Store the full JSON response - you'll distribute it to agents.
+**Key parameters:**
+- `--limit N` — Issues to fetch (default: 30)
+- `--batch-size N` — Issues per batch file (default: 20). Keep at 15-25 for optimal agent quality.
+- `--max-concurrency N` — Max parallel agents per wave (default: 30)
+- `--truncate N` — Body truncation in chars (default: 500). Use `--full-body` for 2000 chars.
+- `--topic`, `--search`, `--label` — Filtering (combinable)
+- `--include-with-prs` — Skip PR exclusion
+- `--history-dir <path>` — Persist runs (default: `${XDG_STATE_HOME:-~/.local/state}/issue-prioritizer/runs`)
+- `--retain N` — Keep only latest N runs in history dir (default: 20, 0 = keep only current run)
+- `--resume <run_id|path>` — Resume from prior run without fetching issues again
+- `--diff-from <ref>` — Incremental mode: fetch fresh issues but reuse cached scores for unchanged ones. `<ref>` = `latest`, run_id, or full path. Mutually exclusive with `--resume`.
+
+**Scale guidance:**
+| Issues  | Batch Size | Batches | Waves (at concurrency 30) |
+|---------|-----------|---------|---------------------------|
+| 30      | 20        | 2       | 1                         |
+| 100     | 20        | 5       | 1                         |
+| 200     | 20        | 10      | 1                         |
+| 500     | 20        | 25      | 1                         |
+| 1000    | 20        | 50      | 2                         |
+
+The script outputs a single JSON line to stdout with the summary:
+```json
+{"status":"ok","repo":"owner/repo","runId":"20260222-113000_owner_repo","filter":"latest","source":"list","linkingMode":"github_link","totalFetched":200,"excluded":48,"remaining":152,"batches":8,"waves":1,"batchSize":20,"concurrency":30,"workdir":"~/.local/state/issue-prioritizer/runs/20260222-113000_owner_repo"}
+```
+
+**Parse the summary** from stdout. Extract `workdir`, `batches`, `waves`.
+
+**Read the manifest** for full details:
+```bash
+cat {workdir}/manifest.json
+```
+
+The manifest contains:
+- `stats`: totalFetched, excludedWithPRs, remaining, batchSize, totalBatches, maxConcurrency, wavesNeeded, truncateChars, truncatedCount
+- `source`: "list" or "search" (warns if search hit GitHub's 1000-result ceiling)
+- `linkingMode`: "github_link" | "partial_github_link" | "regex_only" | "disabled" | "skipped"
+- `runId`, `paths` (batches/results/summary locations)
+- `generatedAt`, `ghVersion`
+- `batches[]`: file name, issue count, first/last issue number per batch
+- `excluded[]`: issues with linked PRs (issue number, title, PR number, title, URL, detection method: "github_link" or "regex_keyword")
+- `diffMode`: true if `--diff-from` was used and baseline was valid
+- `diffFrom`: baseline run path (or null)
+- `diffStats`: `{ cached, new, modified, removed }` (or null)
+- `paths.cachedScores`: "cached-scores.json" when in diff mode (or null)
 
 **Error Handling:**
-- If `gh` returns an authentication error, tell user to run `gh auth login`
-- If rate limited, inform user: "GitHub API rate limit reached. Try again in a few minutes or reduce --limit"
-- If repository not found, display: "Repository not found. Check the format: owner/repo"
-- If no issues returned, report "No open issues found in {repo}" and exit gracefully
+- `status: "error"` → display error and exit
+- `status: "empty"` → "No open issues found" and exit
+- `remaining: 0` → all issues have PRs; report that and exit
+- `diffMode: true` AND `remaining: 0` → all issues unchanged; skip agent analysis entirely. Copy `{workdir}/cached-scores.json` to `{workdir}/results/merged.json` as the full result.
+- If `source: "search"` and `totalFetched: 1000` → warn user about GitHub's 1000-result ceiling, suggest date-range slicing
 
-### Step 2.5: Filter Issues with Existing PRs
+### Step 3: Report Excluded Issues
 
-**IMPORTANT:** Before analyzing issues, check for open PRs that already address them to avoid duplicate work.
+Before analysis, report issues excluded by PR detection:
 
-**Fetch open PRs:**
-```bash
-gh pr list --repo {owner/repo} --state open --json number,title,body,url
-```
-
-**Detect linked issues** using MULTIPLE detection methods (apply ALL):
-
-**Method 1 - Explicit Keywords** (high confidence):
-Scan PR title and body for these patterns (case-insensitive):
-- `fixes #123`, `fix #123`, `fixed #123`
-- `closes #123`, `close #123`, `closed #123`
-- `resolves #123`, `resolve #123`, `resolved #123`
-
-**Method 2 - Issue References** (medium confidence):
-Scan PR title and body for any mention of issue numbers:
-- `#123` anywhere in text (even without keywords)
-- `issue 123`, `issue #123`
-- `related to #123`, `addresses #123`, `for #123`
-
-**Method 3 - Title Similarity** (fuzzy matching):
-Compare PR title with issue titles for high similarity:
-- Normalize both titles: lowercase, remove punctuation, remove common words (fix, add, update, bug, feature)
-- If 70%+ word overlap OR PR title contains issue number → likely duplicate
-- Example: Issue "Login crashes on empty password" ↔ PR "Fix login crash with empty password"
-
-**Method 4 - Semantic Matching** (for ambiguous cases):
-If issue title contains distinctive keywords, search PR bodies:
-- Extract key terms from issue (error names, function names, component names)
-- Check if PR body discusses same components/errors
-
-**Build a map** of issue numbers to linked PRs (track detection method):
-```
-linkedPRs = {
-  123: { prNumber: 456, prTitle: "Fix login bug", prUrl: "...", method: "explicit keyword" },
-  789: { prNumber: 101, prTitle: "Add validation", prUrl: "...", method: "title similarity" }
-}
-```
-
-**Confidence Reporting:**
-- 🔗 Explicit link (fixes/closes/resolves)
-- 📎 Referenced (#123 mentioned)
-- 🔍 Similar title (fuzzy match)
-- 💡 Semantic match (same components)
-
-**Filter the issues list:**
-1. Remove any issue whose number appears in `linkedPRs`
-2. Track the filtered issues for reporting
-
-**Report filtered issues** (show before analysis begins):
 ```
 ═══════════════════════════════════════════════════════════════
   ISSUES WITH EXISTING PRs (excluded from ranking)
 ═══════════════════════════════════════════════════════════════
 
   #123: Login crashes on empty password
-        └─ 🔗 PR #456: "Fix login validation" (explicit: fixes #123)
+        └─ 🔗 PR #456: "Fix login validation" (github_link)
            https://github.com/owner/repo/pull/456
 
   #789: Add email validation
-        └─ 📎 PR #101: "Add form validation" (referenced: #789 in body)
+        └─ 🔑 PR #101: "Add form validation" (regex_keyword: fixes #789)
            https://github.com/owner/repo/pull/101
-
-  #555: Button styling broken
-        └─ 🔍 PR #202: "Fix button styles" (title similarity: 85%)
-           https://github.com/owner/repo/pull/202
 
   {N} issues excluded. Analyzing remaining {M} issues...
 ═══════════════════════════════════════════════════════════════
 ```
 
-**If all issues have PRs:** Report "All {N} issues already have open PRs addressing them. Nothing to prioritize." and exit gracefully.
+Detection method icons:
+- 🔗 `github_link` — GitHub's own closingIssuesReferences (high fidelity)
+- 🔑 `regex_keyword` — Regex fallback (fixes/closes/resolves #N)
 
-**Continue with filtered list** - pass only the remaining issues to Step 3.
+The excluded data is in `manifest.excluded[]`.
 
-### Step 3: Parallel Analysis with Sonnet Agents
+### Step 4: Wave-Based Parallel Analysis
 
-**CRITICAL: This is the parallel processing step.**
+**CRITICAL: This is the parallel processing step. Each agent reads its batch from disk.**
 
-1. **Count issues** fetched from Step 2
-2. **Calculate batches**: Divide issues into batches
-3. **Spawn up to 7 Sonnet agents in parallel** using the Task tool
+Use the manifest to determine wave processing:
 
-**Agent Distribution Strategy:**
+1. Read `stats.wavesNeeded` and `batches[]` from the manifest
+2. For each wave, spawn up to `maxConcurrency` agents in parallel
+3. Wait for all agents in a wave to complete before starting the next wave
 
-| Total Issues | Agents to Spawn | Issues per Agent | Waves |
-|--------------|-----------------|------------------|-------|
-| 1-7          | N (one per issue) | 1              | 1     |
-| 8-14         | 7               | 1-2              | 1     |
-| 15-35        | 7               | 2-5              | 1     |
-| 36-70        | 7               | 5-10             | 1     |
-| 71-140       | 7               | 10               | 2     |
-| 141+         | 7               | 10               | 3+    |
+**Wave Processing:**
 
-**Batch Calculation Formula:**
 ```
-batch_size = ceil(total_issues / 7)
-num_agents = min(7, total_issues)
+Wave 1: Spawn agents for batches 1..min(maxConcurrency, totalBatches)
+         → Wait for all to complete
+Wave 2: Spawn agents for batches (maxConcurrency+1)..min(2*maxConcurrency, totalBatches)
+         → Wait for all to complete
+...repeat until all batches processed
 ```
 
-**IMPORTANT:** Launch ALL agents in a SINGLE message with multiple Task tool calls for maximum parallelism.
+**Report progress between waves:**
+- "Processing Wave 1/3: batches 1-7 (140 issues)..."
+- "Wave 1 complete. Processing Wave 2/3: batches 8-14 (140 issues)..."
+
+**IMPORTANT:** Within each wave, launch ALL agents in a SINGLE message with multiple Task tool calls for maximum parallelism.
 
 **Task Tool Parameters:**
 ```
@@ -150,18 +161,18 @@ Task tool call:
 
 **Agent Prompt Template:**
 
-For each batch of issues, create a Task with this prompt (fill in the placeholders):
+For each batch, create a Task with this prompt (fill in the placeholders):
 
 ```
-You are an issue analysis agent. Analyze the following GitHub issues and return ONLY a valid JSON array.
+You are an issue analysis agent. Read and analyze GitHub issues from a batch file.
 
 REPOSITORY: {owner/repo}
 BATCH: {batch_number} of {total_batches}
 
-ISSUES TO ANALYZE (JSON):
-{paste the JSON array for this batch - truncate issue bodies longer than 2000 chars}
+STEP 1: Read the batch file at {workdir}/batches/batch-{N}.json using the Read tool.
+It contains a JSON array of GitHub issues (bodies truncated to {truncateChars} chars).
 
-For EACH issue, analyze and score:
+STEP 2: For EACH issue in the file, analyze and score:
 
 ## 1. Difficulty Score (1-10)
 Base score: 5
@@ -194,7 +205,7 @@ Green Flags (decrease score): standard, minimal change, backward compatible, wel
 
 ## 3.5. Architectural Impact (1-5) - How Much Does This Change Structure?
 
-IMPORTANT: Always ask "Is there a simpler way?" before scoring. Prefer minimal-change solutions.
+IMPORTANT: Always ask "Is there a simpler way?" before scoring.
 
 1 = Surgical (isolated fix, touches 1-2 files, no new abstractions)
 2 = Localized (small addition, follows existing patterns exactly, no new concepts)
@@ -231,7 +242,7 @@ Example: Don't create a "validation framework" when a single if-check suffices.
 5 = PR Ready (solution is clear, just implement)
 
 Blockers (decrease): questions in title, "how do I?", duplicate label, wontfix label, missing repro
-Ready signals (increase): "fix:", "add:" in title, proposed solution, repro steps, good-first-issue label
+Ready signals (increase): "fix:", "add:" in title, proposed solution, repro steps, good-first-issue label, active maintainer interaction (recent comments/updates), issue not currently assigned
 
 ## 5. Derived Values
 - issueType: "bug" | "feature" | "docs" | "other"
@@ -295,16 +306,17 @@ Return ONLY a valid JSON array. No markdown fences. No explanation. Just the arr
     "tripMultiplier": 0.85,
     "archMultiplier": 0.90,
     "actionMultiplier": 0.90,
-    "adjustedScore": 0.96
+    "adjustedScore": 0.96,
+    "deepReason": ["critical_bug", "top20_score"]
   }
 ]
 
 IMPORTANT: Return ONLY the JSON array. No other text.
 ```
 
-### Step 4: Collect and Merge Results
+### Step 5: Collect and Merge Results
 
-Wait for all agents to complete. For each agent response:
+After each wave completes, collect results. For each agent response:
 
 1. **Clean the response:**
    - If wrapped in markdown code fences (```json ... ```), extract the content
@@ -318,6 +330,7 @@ Wait for all agents to complete. For each agent response:
 3. **Merge results:**
    - Combine all successful arrays into a single array
    - Deduplicate by issue number (if same issue appears twice, keep first occurrence)
+   - **If `diffMode: true`:** After merging agent results, also read `{workdir}/cached-scores.json` and combine: `agentResults + cachedScores`. Agent results take priority (dedup by number, keep agent result if both exist).
 
 4. **Track failures:**
    - Note which batches failed to parse
@@ -325,7 +338,28 @@ Wait for all agents to complete. For each agent response:
 
 **If ALL agents fail:** Report error and suggest user retry with smaller --limit.
 
-### Step 5: Categorize
+### Step 5.5: Deep Analysis Pass (Optional — for large repos)
+
+For repos with 100+ issues, consider a 2-pass pipeline to maximize quality while controlling cost:
+
+**Pass 1 (already done):** All issues analyzed with truncated bodies (default 500 chars). This gives preliminary scores.
+
+**Pass 2 (optional deep dive):**
+1. From the merged Pass 1 results, select the **top K issues** worth deeper analysis:
+   - All Quick Wins (ROI ≥ 1.5, Difficulty ≤ 5, Trip ≤ 3, Arch ≤ 2, Action ≥ 4)
+   - All Critical Bugs (type = "bug", Importance ≥ 8)
+   - Top 20 by AdjustedScore that aren't in the above
+   - Typical K: 50-80 issues
+2. For each selected issue, read its full body from `{workdir}/issues.json` (untruncated)
+3. Spawn a smaller set of agents (2-4) to re-analyze these issues with full context
+4. For each selected issue, add `deepReason` (array of tags explaining why it entered Top K), e.g. `["critical_bug","quick_win","top20_score"]`
+5. Merge Pass 2 results over Pass 1 results (Pass 2 overrides)
+
+**When to use:** When `--limit` > 100 and accuracy matters. Skip for quick triage or small repos.
+
+**When NOT to use:** When `--full-body` was already passed (bodies already at 2000 chars).
+
+### Step 6: Categorize
 
 From the merged results, categorize issues:
 
@@ -337,7 +371,7 @@ From the merged results, categorize issues:
 
 Sort all issues by AdjustedScore descending.
 
-### Step 6: Present Results
+### Step 7: Present Results
 
 Output a formatted report:
 
@@ -345,8 +379,11 @@ Output a formatted report:
 ═══════════════════════════════════════════════════════════════
   ISSUE PRIORITIZATION REPORT
   Repository: {owner/repo}
-  Analyzed: {count} issues (via {N} parallel Sonnet agents)
+  Filter: {filter} | Source: {source}
+  Analyzed: {count} issues (via {N} agents, {W} wave(s))
   Excluded: {excluded} issues with existing PRs
+  Batch size: {batchSize} | Truncation: {truncateChars} chars
+  {IF diffMode: "Incremental: Reused {diffCached} cached scores | Re-analyzed {diffNew + diffModified} (new: {diffNew}, modified: {diffModified}) | Removed: {diffRemoved}"}
 ═══════════════════════════════════════════════════════════════
 
   Quick Wins: {n} | Critical Bugs: {n} | Tripping: {n} | Over-Engineered: {n} | Not Actionable: {n}
@@ -362,13 +399,6 @@ Output a formatted report:
   ├─ Act: ✅ PR Ready (5/5) | Level: beginner
   └─ https://github.com/owner/repo/issues/123
 
-  #456 [Adj: 1.89]
-  Add input validation to login form
-  ├─ Difficulty: 4/10 | Importance: 7/10 | ROI: 1.75
-  ├─ Trip: ✅ Grounded (2/5) | Arch: ✅ Localized (2/5)
-  ├─ Act: ✅ Ready to Work (4/5) | Level: intermediate
-  └─ https://github.com/owner/repo/issues/456
-
   ...
 
 ═══════════════════════════════════════════════════════════════
@@ -378,16 +408,12 @@ Output a formatted report:
   #123: Fix typo in README [Adj: 3.50]
         Difficulty: 1 | Importance: 4 | beginner
 
-  #789: Update deprecated API call [Adj: 2.80]
-        Difficulty: 2 | Importance: 5 | beginner
-
 ═══════════════════════════════════════════════════════════════
   RECOMMENDATIONS BY LEVEL
 ═══════════════════════════════════════════════════════════════
 
   BEGINNER (Difficulty 1-3, no security/architecture):
   - #123: Fix typo - Low risk, good first contribution
-  - #789: Update API - Clear scope, well-documented
 
   INTERMEDIATE (Difficulty 4-6):
   - #456: Add validation - Medium complexity, clear requirements
@@ -415,11 +441,6 @@ Output a formatted report:
   ├─ Adjusted Score: 0.12 (heavily penalized)
   └─ Consider: Is this complexity really needed?
 
-  #888 [Trip: ⚠️ 4/5 - Wild Adventure]
-  Replace REST API with GraphQL + real-time subscriptions
-  ├─ Red Flags: "breaking change", "migration required"
-  └─ Consider: Worth the migration effort?
-
 ═══════════════════════════════════════════════════════════════
   OVER-ENGINEERED (Arch ≥ 4 - Simpler Solution Likely Exists)
 ═══════════════════════════════════════════════════════════════
@@ -427,16 +448,8 @@ Output a formatted report:
   #777 [Arch: 🏗️ 5/5 - Transformational]
   Add form validation
   ├─ Proposed: New validation framework with schema definitions
-  ├─ Red Flags: "new abstraction layer", "introduces patterns"
   ├─ Simpler Alternative: Single validation function, 20 lines
   └─ Ask: Why create a framework for one form?
-
-  #666 [Arch: ⚠️ 4/5 - Significant]
-  Fix button click not working
-  ├─ Proposed: Refactor entire event system
-  ├─ Red Flags: "affects multiple modules", "new event bus"
-  ├─ Simpler Alternative: Fix the event handler directly
-  └─ Ask: Is the event system actually the problem?
 
   💡 TIP: Maintainers often reject PRs that change architecture
      unnecessarily. Always start with the simplest fix.
@@ -447,30 +460,20 @@ Output a formatted report:
 
   - #222: "How do I deploy to Kubernetes?" (Act: 1/5 - question)
   - #333: Duplicate of #111 (Act: 1/5 - duplicate)
-  - #444: "Thoughts on adding feature X?" (Act: 2/5 - discussion)
 
 ═══════════════════════════════════════════════════════════════
   EXCLUDED - EXISTING PRs ({excluded} issues)
 ═══════════════════════════════════════════════════════════════
 
   #123: Login crashes on empty password
-        └─ 🔗 PR #456: "Fix login validation" (explicit: fixes #123)
+        └─ 🔗 PR #456: "Fix login validation" (github_link)
            https://github.com/owner/repo/pull/456
 
   #789: Add email validation
-        └─ 📎 PR #101: "Add form validation" (referenced: #789 in body)
+        └─ 🔑 PR #101: "Add form validation" (regex_keyword: fixes #789)
            https://github.com/owner/repo/pull/101
 
-  #555: Button styling broken
-        └─ 🔍 PR #202: "Fix button styles" (title similarity: 85%)
-           https://github.com/owner/repo/pull/202
-
-  Detection Methods:
-  🔗 Explicit link (fixes/closes/resolves #N)
-  📎 Referenced (mentions #N in text)
-  🔍 Similar title (fuzzy match ≥70%)
-
-  (These issues already have open PRs - review/merge them instead)
+  Detection: 🔗 github_link | 🧩 partial_github_link | 🔑 regex_keyword
 
 ═══════════════════════════════════════════════════════════════
   SCALE LEGEND
@@ -493,7 +496,7 @@ Output a formatted report:
      refactor is wrong. Always ask "is there a simpler way?"
 
 ═══════════════════════════════════════════════════════════════
-  Performance: {N} parallel Sonnet agents, {W} wave(s)
+  Performance: {N} agents, {W} wave(s), batch size {B}
   Mode: SKILL (read-only) - This shows info. YOU decide and act.
 ═══════════════════════════════════════════════════════════════
 ```
@@ -506,43 +509,39 @@ Command flags:
 - `--quick-wins`: Show only quick wins section
 - `--level beginner|intermediate|advanced`: Filter recommendations by level
 - `--limit N`: Analyze N issues (default: 30)
-- `--include-with-prs`: Include issues that already have open PRs (skip Step 2.5 filtering)
-
-## Multi-Wave Processing
-
-For large repositories (>70 issues):
-
-1. **Wave 1:** Spawn 7 agents for first 70 issues
-2. **Wait** for all Wave 1 agents to complete
-3. **Wave 2:** Spawn agents for next batch (up to 70 more)
-4. **Repeat** until all issues processed
-5. **Merge** all wave results before presenting
-
-Track progress:
-- "Processing Wave 1/2: issues #1-#70..."
-- "Processing Wave 2/2: issues #71-#100..."
-
-If a wave partially fails:
-- Continue with successful batches
-- Report which issue ranges failed
-- Don't retry automatically (user can re-run with specific range if needed)
+- `--batch-size N`: Issues per batch (default: 20, keep 15-25 for quality)
+- `--max-concurrency N`: Parallel agents per wave (default: 30)
+- `--truncate N`: Body truncation in chars (default: 500)
+- `--full-body`: Use 2000 char truncation for deeper analysis
+- `--topic <keywords>`: Search issues by topic
+- `--search <query>`: Raw GitHub search query
+- `--label <name>`: Filter by GitHub label
+- `--include-with-prs`: Include issues that already have open PRs
+- `--history-dir <path>`: Persist runs in a stable location
+- `--retain N`: Keep only latest N runs in history dir (0 = keep only current run)
+- `--resume <run_id|path>`: Resume from an existing run without new fetch
+- `--diff-from <ref>`: Incremental mode — fetch fresh issues, reuse cached scores for unchanged ones. `<ref>` = `latest`, run_id, or full path. Mutually exclusive with `--resume`.
 
 ## Important
 
 - This is a **READ-ONLY** skill - never create PRs, write code, or modify repositories
 - Present information objectively - let the user decide what to work on
 - Flag "tripping" solutions but don't dismiss them outright - user has final say
-- **Launch parallel agents in a SINGLE message** for maximum speed
-- **Truncate long issue bodies** (>2000 chars) before sending to agents
+- **Launch parallel agents in a SINGLE message** within each wave for maximum speed
+- Each agent reads its batch file from disk — do NOT embed issue JSON in the agent prompt
 - Always use **model: "sonnet"** for Task agents
+- PR detection uses GitHub GraphQL `closingIssuesReferences` (primary) + regex fallback — no manual heuristics needed
 
 ## Example Usage
 
 ```
-/issue-prioritizer:issue-prioritizer anthropics/claude-code
-/issue-prioritizer:issue-prioritizer owner/repo --quick-wins
-/issue-prioritizer:issue-prioritizer owner/repo --level beginner
-/issue-prioritizer:issue-prioritizer owner/repo --limit 50
-/issue-prioritizer:issue-prioritizer owner/repo --limit 100   # 2 waves
-/issue-prioritizer:issue-prioritizer owner/repo --json        # Raw data
+/issue-prioritizer anthropics/claude-code
+/issue-prioritizer owner/repo --quick-wins
+/issue-prioritizer owner/repo --level beginner
+/issue-prioritizer owner/repo --limit 50
+/issue-prioritizer owner/repo --limit 500 --batch-size 20
+/issue-prioritizer owner/repo --limit 1000 --full-body
+/issue-prioritizer owner/repo --json
+/issue-prioritizer owner/repo --topic telegram
+/issue-prioritizer owner/repo --search "label:bug in:title crash"
 ```

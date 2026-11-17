@@ -1,44 +1,58 @@
-## Description: <br>
-Stock Query helps agents retrieve real-time and historical quotes for stocks, ETFs, funds, and market indexes, including optional portfolio watchlist management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Query helps agents retrieve and format real-time market quotes, historical K-line data, and portfolio watchlist views for stocks, ETFs, mutual funds, and indexes across A-share, Hong Kong, and U.S. markets.
 
-## Publisher: <br>
-[asfamilybank](https://clawhub.ai/user/asfamilybank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asfamilybank](https://clawhub.ai/user/asfamilybank)
 
-## Use Case: <br>
-External users and agents use this skill to query stock, ETF, fund, and index prices, inspect historical K-line data, and manage a local watchlist or portfolio CSV on explicit request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call external finance data providers for quote and fund data. <br>
-Mitigation: Install only when outbound requests to the disclosed finance providers are acceptable, and verify important market data with authoritative sources before acting on it. <br>
-Risk: The local portfolio.csv may contain holdings and reference prices. <br>
-Mitigation: Keep portfolio.csv limited to non-secret holdings data; do not store passwords, API keys, brokerage credentials, tokens, or account numbers in it. <br>
-Risk: Fund estimates from HTTP-backed sources may be informational rather than final values. <br>
-Mitigation: Treat fund estimates as informational and confirm final net asset values through official or brokerage sources. <br>
+## Use Case:
 
+External users and agents use this skill to answer stock, fund, index, historical price, and watchlist valuation requests. It is intended for market-data lookup and formatting, not for cryptocurrency, futures, options, or foreign-exchange workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asfamilybank/stock-query) <br>
-- [Publisher profile](https://clawhub.ai/user/asfamilybank) <br>
-- [Repository](https://github.com/asfamilybank/stock-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and concise text, with shell commands or CSV updates when the user explicitly requests portfolio management.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform outbound finance data lookups and may read or update a local portfolio.csv containing non-secret holdings data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release metadata and skill.yaml) <br>
+Risk: Unsafe input handling in shell-based portfolio and history commands may enable local code execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use only with trusted prompts until the shell/Python injection paths are fixed.
+
+Risk: Portfolio data is stored in portfolio.csv and may be modified during explicit portfolio-management requests.
+
+Mitigation: Keep portfolio.csv limited to stock codes, names, quantities, and reference prices; do not store credentials, API keys, tokens, or account passwords in it.
+
+Risk: Queried symbols are sent to external market-data services.
+
+Mitigation: Avoid querying sensitive or confidential watchlists if disclosure of symbols to external providers is unacceptable.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/asfamilybank/skills/stock-query)
+- [Source repository listed in metadata](https://github.com/asfamilybank/stock-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown tables, JSON arrays or objects, CSV, and concise error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, iconv, and python3 on macOS or Linux; queried symbols may be sent to external market-data services.]
+
+## Skill Version(s):
+
+2.6.0 (source: server release metadata, skill.yaml, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

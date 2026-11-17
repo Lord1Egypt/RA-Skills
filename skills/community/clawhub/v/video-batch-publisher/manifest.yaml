@@ -1,0 +1,33 @@
+name: 短视频多平台批量自动发布器
+slug: video-batch-publisher
+version: 1.0.0
+author: chenc
+category: 效率工具
+subcategory: 自媒体运营
+description: >-
+  本地运行的短视频批量发布工具，支持抖音/视频号/快手/B站。从 Excel 读取任务，
+  自动上传视频、填封面/标题/描述/合集/标签，按发布日期自动判断立即或定时发布。运行全程不修改你的 Excel，发布结果实时显示在界面与日志。
+  纯本地、无需平台开发者资质，首次登录一次后自动复用。
+trigger_words:
+  - 批量发布视频
+  - 多平台一键发布
+  - 短视频矩阵发布
+  - 自动发抖音快手B站
+  - 视频批量上传定时发布
+  - 自媒体批量发布工具
+tags:
+  - 短视频
+  - 批量发布
+  - 自媒体
+  - 矩阵运营
+  - 自动化
+  - Playwright
+license: MIT-0
+pricing:
+  model: free
+  free_tier: 完整功能：抖音/视频号/快手/B站 4 平台批量发布 + 定时 + 草稿 + Excel 纯只读（不修改原文件）
+requirements:
+  - Python 3.8+
+  - playwright
+  - pandas / openpyxl / pyyaml / requests
+  - 首次需手动登录各平台账号

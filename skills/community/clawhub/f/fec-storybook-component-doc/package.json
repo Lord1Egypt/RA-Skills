@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-storybook-component-doc",
-  "version": "2.6.0",
-  "description": "Use when setting up or reviewing Storybook component documentation, design-system presentation, isolated component state previews, stories, addons, decorators, MDX docs, component-state interaction checks, visual baselines, or Chromatic. For real-browser cross-page journeys or broader coverage planning, choose the matching testing workflow first; Chinese triggers include Storybook, 组件文档, Design System, 视觉回归.",
+  "version": "2.9.0",
+  "description": "Use when setting up or reviewing Storybook component documentation, design-system presentation, isolated component state previews, stories, addons, decorators, MDX docs, component-state interaction checks, visual baselines, or Chromatic. For real-browser cross-page journeys or broader coverage planning, choose the matching testing workflow first; Chinese triggers include Storybook, component documentation, Design System, visual regression.",
   "type": "module",
   "license": "MIT",
   "author": {

@@ -1,47 +1,62 @@
-## Description: <br>
-Generates videos with Model Studio DashScope SDK using Wan video generation models and standardizes video.generate request and response handling for video-agent pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with Alibaba Cloud Model Studio DashScope SDK using Wan text-to-video and image-to-video models while normalizing video.generate requests and responses.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and video-agent builders use this skill to call Alibaba Cloud DashScope Wan text-to-video and image-to-video models, normalize video.generate parameters, poll asynchronous jobs, and save generated video outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference images, generated media URLs, and output files may contain sensitive content. <br>
-Mitigation: Use scoped DashScope credentials, avoid submitting sensitive inputs unless approved, and clean generated output files and logs when they contain sensitive content. <br>
-Risk: Video generation sends requests and local reference images to Alibaba Cloud DashScope. <br>
-Mitigation: Confirm the intended region, model, and data handling requirements before running generation jobs. <br>
-Risk: Asynchronous video generation can run for several minutes and fail or time out. <br>
-Mitigation: Use bounded polling, progress reporting, retry or resume behavior, and preserve task IDs for troubleshooting. <br>
+## Use Case:
 
+Developers and agents use this skill to generate Alibaba Wan text-to-video or image-to-video assets through DashScope, map normalized video.generate parameters, and save output videos and response evidence for a video-agent pipeline.
 
-## Reference(s): <br>
-- [DashScope SDK Reference (Wan Video)](references/api_reference.md) <br>
-- [Source List](references/sources.md) <br>
-- [Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [Wan Text-to-Video Guide](https://help.aliyun.com/zh/model-studio/text-to-video-guide) <br>
-- [Wan First-Frame Image-to-Video Guide](https://help.aliyun.com/zh/model-studio/first-frame-image-to-video) <br>
-- [Model Studio Model List](https://help.aliyun.com/zh/model-studio/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON request and response shapes, and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces normalized video_url, duration, fps, and seed values; scripts may download MP4 outputs and optional reference images to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Prompts, reference images, generated URLs, task IDs, logs, images, and videos can be sent to Alibaba DashScope or saved locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content approved for DashScope, keep outputs and logs in controlled storage, and remove sensitive artifacts when they are no longer needed.
+
+Risk: The artifact recommends installing dashscope without a pinned version, so SDK behavior or dependency contents can change over time.
+
+Mitigation: Install in a dedicated virtual environment, pin and review the dashscope version before production use, and avoid running as root.
+
+Risk: Video generation is asynchronous and may expose task IDs or generated media URLs during polling and troubleshooting.
+
+Mitigation: Use bounded polling with timeouts, restrict access to task IDs and media URLs, and keep only the logs required for operational troubleshooting.
+
+## Reference(s):
+
+- [DashScope SDK Reference (Wan Video)](artifact/references/api_reference.md)
+- [Artifact Source List](artifact/references/sources.md)
+- [Alibaba Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [Alibaba Model Studio Text-to-Video Guide](https://help.aliyun.com/zh/model-studio/text-to-video-guide)
+- [Alibaba Model Studio First-Frame Image-to-Video Guide](https://help.aliyun.com/zh/model-studio/first-frame-image-to-video)
+- [Alibaba Model Studio Model List](https://help.aliyun.com/zh/model-studio/models)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks, JSON request/response shapes, and generated video files when scripts run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DashScope credentials; scripts write videos and optional response logs under output paths such as output/aliyun-wan-video or OUTPUT_DIR.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

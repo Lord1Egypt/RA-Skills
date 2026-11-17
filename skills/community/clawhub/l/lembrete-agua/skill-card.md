@@ -1,39 +1,51 @@
-## Description: <br>
-Skill de hidratação que lembra o usuário de beber água a cada 2 horas. Registra consumo, calcula meta diária, motiva com dicas de saúde e adapta alertas ao clima de Goiânia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill de hidratação que lembra o usuário de beber água a cada 2 horas, registra consumo, calcula meta diária, motiva com dicas de saúde e adapta alertas ao clima de Goiânia.
 
-## Publisher: <br>
-[PEDROHENRIQUE202525](https://clawhub.ai/user/PEDROHENRIQUE202525) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pedrohenrique202525](https://clawhub.ai/user/pedrohenrique202525)
 
-## Use Case: <br>
-External users use this Portuguese-language skill to set hydration reminders, calculate a daily water goal from approximate weight, log water intake, and request weekly hydration summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for approximate weight, wake time, and water-intake entries that may remain in chat history. <br>
-Mitigation: Share only approximate personal details and water-intake entries that are acceptable to keep in the conversation record. <br>
-Risk: The Goiânia heat and dry-season guidance may not fit users in other locations. <br>
-Mitigation: Adjust climate-based prompts for the user's actual location and avoid treating Goiânia-specific guidance as universally applicable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PEDROHENRIQUE202525/lembrete-agua) <br>
+## Use Case:
+
+External users who want Portuguese hydration support use this skill to schedule water reminders, calculate a daily intake target from weight, log water consumption, and request weekly progress summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Hydration targets may be unsuitable for users with medical conditions or fluid restrictions.
+
+Mitigation: Present intake targets as general wellness guidance and tell users with health conditions or fluid restrictions to follow clinician guidance.
+
+Risk: Goiania climate assumptions may not match the user's actual location or conditions.
+
+Mitigation: Confirm whether the user wants Goiania-based heat, humidity, and dry-season adjustments before applying those reminders.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Portuguese Markdown-style conversational reminders, progress updates, hydration tips, and weekly summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses approximate weight, wake time, water-intake entries, and Goiânia-oriented heat or dry-season context when provided.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Portuguese Markdown-style chat messages with hydration reminders, intake logs, progress summaries, and hydration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided weight, wake time, water-entry confirmations, and Goiania climate assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

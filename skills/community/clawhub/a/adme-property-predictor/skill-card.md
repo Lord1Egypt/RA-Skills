@@ -1,41 +1,57 @@
-## Description: <br>
-Predict ADME (Absorption, Distribution, Metabolism, Excretion) properties for drug candidates using cheminformatics models and molecular descriptors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict ADME (Absorption, Distribution, Metabolism, Excretion) properties for drug candidates using cheminformatics models and molecular descriptors.
 
-## Publisher: <br>
-[renhaosu2024](https://clawhub.ai/user/renhaosu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renhaosu2024](https://clawhub.ai/user/renhaosu2024)
 
-## Use Case: <br>
-Developers, cheminformatics practitioners, and drug discovery teams use this skill to estimate small-molecule ADME properties, drug-likeness, and candidate prioritization signals before experimental validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ADME predictions are computational screening estimates and may be unsuitable for clinical, regulatory, or other high-stakes drug-development decisions. <br>
-Mitigation: Treat outputs as preliminary prioritization signals and require independent in vitro, in vivo, or other appropriate experimental validation before decision making. <br>
-Risk: Scientific results may vary across environments because dependencies are not pinned to exact versions. <br>
-Mitigation: Install in a controlled Python environment and pin dependency versions for reproducible work. <br>
-Risk: Predictions may be unreliable for molecules outside the documented applicability domain, invalid SMILES, biologics, salts, or unusual chemotypes. <br>
-Mitigation: Validate input structures, remove salts where appropriate, check applicability-domain warnings, and restrict use to suitable small molecules. <br>
+## Use Case:
 
+Developers, computational chemists, and drug discovery teams use this skill to estimate small-molecule ADME properties, drug-likeness, and prioritization signals before experimental validation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON or table-formatted ADME prediction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write JSON result files for single-compound or batch predictions when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Unpinned dependencies can change across installs and may introduce supply-chain or reproducibility risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin dependencies with hashes from trusted package sources before operational use.
+
+Risk: The shipped script uses heuristic descriptor rules while the skill text describes more mature model behavior.
+
+Mitigation: Present outputs as rough prioritization signals and require expert review plus experimental validation before research, regulatory, or clinical decisions.
+
+Risk: ADME predictions can be unreliable for invalid structures, biologics, unusual chemotypes, salt forms, or molecules outside the model domain.
+
+Mitigation: Validate and standardize SMILES inputs, remove salts when appropriate, check applicability domain, and route unsupported molecule classes to specialized workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renhaosu2024/skills/adme-property-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; the bundled script emits JSON or plain-text table reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local prediction reports intended as prioritization signals, not validated pharmacokinetic evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

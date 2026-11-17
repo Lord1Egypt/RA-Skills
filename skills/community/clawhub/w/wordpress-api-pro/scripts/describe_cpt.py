@@ -10,6 +10,7 @@ Env: WP_URL/WP_SITE_URL, WP_USERNAME/WP_USER, WP_APP_PASSWORD
 """
 import argparse, json, os, sys, urllib.request
 from base64 import b64encode
+from security import require_secure_wp_url, urlopen_authenticated
 
 
 def _auth(u, p): return 'Basic ' + b64encode(f"{u}:{p}".encode()).decode()
@@ -18,7 +19,7 @@ def _auth(u, p): return 'Basic ' + b64encode(f"{u}:{p}".encode()).decode()
 def _get(url, auth):
     req = urllib.request.Request(url, method='GET')
     req.add_header('Authorization', auth)
-    with urllib.request.urlopen(req) as r:
+    with urlopen_authenticated(req) as r:
         return json.loads(r.read().decode())
 
 
@@ -58,6 +59,7 @@ def main():
     a = p.parse_args()
     if not all([a.url, a.username, a.app_password]):
         print(json.dumps({"error": "Missing required credentials"}), file=sys.stderr); sys.exit(1)
+    require_secure_wp_url(a.url)
     try:
         print(json.dumps(describe_cpt(a.url, a.username, a.app_password, a.post_type), indent=2))
     except Exception as e:

@@ -1,42 +1,60 @@
-## Description: <br>
-FOC motor-parameter identification assistant for measuring and identifying stator resistance, dq inductance, back-EMF or flux constant, pole pairs, and inertia using practical methods such as step response tests, high-frequency injection, and DC decay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FOC motor parameter identification assistant that helps measure and identify stator resistance, dq-axis inductance, back-EMF or flux constants, pole pairs, and inertia using practical methods such as step response, high-frequency injection, and DC decay.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Developers and motor-control engineers use this skill to plan FOC motor-parameter measurements, process measured data, and generate controller configuration examples for STM32 and Arduino FOC workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill involves electrical measurements and rotating machinery, so incorrect setup or unsafe test conditions can damage equipment or injure users. <br>
-Mitigation: Treat the skill as engineering guidance, secure and guard the motor and load, keep clear of rotating parts, use rated instruments, set conservative voltage, current, and speed limits, account for back-EMF and bus overvoltage, and keep an emergency stop available. <br>
-Risk: Parameter calculations and generated controller settings can be wrong if measurement data is noisy, incomplete, or collected with incorrect assumptions. <br>
-Mitigation: Review results before applying them to hardware, repeat measurements where practical, and validate controller limits conservatively before increasing power or speed. <br>
+## Use Case:
 
+Developers and motor-control engineers use this skill to plan and interpret FOC motor parameter measurements, generate parameter reports, and draft STM32 or Arduino FOC controller configuration snippets. It is most relevant before commissioning a new motor, when manual parameter identification is needed, or when existing controller parameters appear incorrect.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yongjie666888/foc-parameter-identifier) <br>
-- [FOC platform examples](references/foc_platform_examples.md) <br>
-- [Measurement tips](references/measurement_tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, formulas, generated reports, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python-assisted calculations and generated STM32 or Arduino FOC parameter examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Live-motor procedures and generated FOC code can create hardware hazards if used without adequate operating limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as an engineering reference, secure the motor and load, set conservative current, voltage, and speed limits, and verify emergency-stop behavior before running hardware.
+
+Risk: Generated controller parameters and code snippets may be incomplete for a specific motor, inverter, sensor, or bench setup.
+
+Mitigation: Review all formulas and generated configuration against measured data and the target controller documentation before deployment.
+
+Risk: Regenerated voltage and rotating parts can create electrical and mechanical safety exposure during measurement.
+
+Mitigation: Keep clear of moving parts, plan for regenerated voltage handling, and use a documented bench safety checklist for every live test.
+
+## Reference(s):
+
+- [FOC parameter measurement tips](references/measurement_tips.md)
+- [STM32 and Arduino FOC parameter configuration examples](references/foc_platform_examples.md)
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/foc-parameter-identifier)
+- [Publisher profile](https://clawhub.ai/user/yongjie666888)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python-generated text reports, and C/C++ configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include motor measurement formulas, parameter checklists, troubleshooting guidance, and controller tuning suggestions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

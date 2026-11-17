@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brief Yourself 1.0.1｜认识自己"
+  short_description: "Brief Yourself 1.0.1：按用途调用受控 Personal Context"
+  default_prompt: "Use $brief-yourself to build, update, or apply my user-approved Personal Context with a frozen View and pending Patch."

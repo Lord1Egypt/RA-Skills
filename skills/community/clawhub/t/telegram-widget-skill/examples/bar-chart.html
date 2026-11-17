@@ -1,0 +1,54 @@
+<style>
+body{margin:0;padding:12px 14px max(10px,env(safe-area-inset-bottom))}
+h3{margin:0;font-size:1.05em}
+.sub{color:var(--tg-theme-hint-color);font-size:.85em;margin:2px 0 8px}
+svg{display:block;width:100%;height:auto}
+.bar{fill:var(--tg-theme-hint-color);fill-opacity:.45}
+.max{fill:var(--tg-theme-button-color);fill-opacity:1}
+.lbl{fill:var(--tg-theme-hint-color);font-size:11px;text-anchor:middle}
+.val{fill:var(--tg-theme-text-color);font-size:11px;text-anchor:middle;font-variant-numeric:tabular-nums}
+.axis{fill:var(--tg-theme-section-separator-color)}
+</style>
+<h3 id="title">Chart</h3>
+<div class="sub" id="sub"></div>
+<svg id="chart" viewBox="0 0 300 160"></svg>
+<script>
+const TW = window.TelegramWidget;
+const NS = 'http://www.w3.org/2000/svg';
+const W = 300, H = 160, TOP = 16, BOTTOM = 20;
+function node(tag, cls, x, y, text) {
+  const e = document.createElementNS(NS, tag);
+  e.setAttribute('class', cls);
+  e.setAttribute('x', x);
+  e.setAttribute('y', y);
+  if (text != null) e.textContent = text;
+  return e;
+}
+function short(v) {
+  return new Intl.NumberFormat(navigator.language, {notation: 'compact', maximumFractionDigits: 1}).format(v);
+}
+function draw() {
+  let s = null;
+  try { s = JSON.parse(TW && TW.chatData); } catch (e) {}
+  if (!s || !Array.isArray(s.v) || !s.v.length) return;
+  document.getElementById('title').textContent = s.t || '';
+  document.getElementById('sub').textContent = s.s || '';
+  const n = s.v.length, max = Math.max(...s.v, 0) || 1, slot = W / n, bw = Math.min(36, slot * 0.64);
+  const axis = node('rect', 'axis', 0, H - BOTTOM);
+  axis.setAttribute('width', W);
+  axis.setAttribute('height', 1);
+  const kids = [axis];
+  s.v.forEach((v, i) => {
+    const h = Math.max(1, v / max * (H - TOP - BOTTOM)), x = i * slot + (slot - bw) / 2, y = H - BOTTOM - h;
+    const bar = node('rect', v === max ? 'bar max' : 'bar', x, y);
+    bar.setAttribute('width', bw);
+    bar.setAttribute('height', h);
+    bar.setAttribute('rx', 3);
+    kids.push(bar, node('text', 'val', x + bw / 2, y - 4, short(v) + (s.u || '')),
+      node('text', 'lbl', x + bw / 2, H - 6, (s.l && s.l[i]) || ''));
+  });
+  document.getElementById('chart').replaceChildren(...kids);
+}
+if (TW) TW.onEvent('chatDataChanged', draw);
+draw();
+</script>

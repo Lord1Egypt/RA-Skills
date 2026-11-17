@@ -1,0 +1,41 @@
+{
+    "domains": {
+        "enabled": [
+            "food",
+            "restaurants",
+            "hotels",
+            "music"
+        ],
+        "disabled": []
+    },
+    "decay": {
+        "halflife_days": 180
+    },
+    "email_scan": {
+        "sources": [
+            {
+                "name": "DoorDash",
+                "sender_patterns": [
+                    "*@dash.door",
+                    "*@dashdoor"
+                ],
+                "domain": "food",
+                "source_type": "delivery_order"
+            },
+            {
+                "name": "Instacart",
+                "sender_patterns": [
+                    "*@instacart.com"
+                ],
+                "domain": "food",
+                "source_type": "delivery_order"
+            }
+        ]
+    },
+    "user_preferences": {
+        "dietary_restrictions": [],
+        "dietary_preferences": [],
+        "cuisine_dislikes": [],
+        "notes": ""
+    }
+}

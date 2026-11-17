@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw • Agent Factory Enterprise Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="glass-header">
+      <div class="logo-area">
+        <div class="logo-badge">⚡</div>
+        <div>
+          <h1>OpenClaw <span>Agent Factory Enterprise</span></h1>
+          <p class="subtitle">Self-Evolving Multi-Agent Mesh, DAG Orchestration & FinOps</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-trigger-cycle" class="btn btn-primary">
+          <span class="btn-icon">⚡</span> Trigger Factory Cycle
+        </button>
+        <button id="btn-refresh" class="btn btn-secondary">
+          <span class="btn-icon">🔄</span> Refresh
+        </button>
+      </div>
+    </header>
+
+    <!-- Stat Cards with FinOps Monetary Savings -->
+    <section class="stats-grid">
+      <div class="card stat-card">
+        <div class="stat-icon icon-cyan">🤖</div>
+        <div>
+          <div class="stat-label">Active Sub-Agents</div>
+          <div class="stat-val" id="stat-agents">--</div>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon icon-purple">🧬</div>
+        <div>
+          <div class="stat-label">Detected Clusters</div>
+          <div class="stat-val" id="stat-clusters">--</div>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon icon-green">⚡</div>
+        <div>
+          <div class="stat-label">Tokens Saved</div>
+          <div class="stat-val" id="stat-tokens">--</div>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon icon-gold">💰</div>
+        <div>
+          <div class="stat-label">FinOps Savings ($ / €)</div>
+          <div class="stat-val" id="stat-savings">$0.00</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Mesh Topology Canvas -->
+    <section class="card mesh-canvas-card">
+      <div class="panel-header">
+        <h2>🕸️ Real-Time Mesh Network Topology & Graph</h2>
+        <span class="badge badge-info" id="mesh-nodes-count">Orchestrator Ready</span>
+      </div>
+      <div class="canvas-wrapper">
+        <canvas id="mesh-canvas" width="1200" height="260"></canvas>
+      </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <div class="content-grid">
+      <!-- Left Column: Active Sub-Agents & Clusters -->
+      <div class="left-col">
+        <!-- Active Agents Mesh -->
+        <div class="card panel">
+          <div class="panel-header">
+            <h2>🛡️ Active Sub-Agent Mesh Registry</h2>
+            <span class="badge badge-success" id="badge-mesh-status">Mesh Operational</span>
+          </div>
+          <div class="agents-list" id="agents-container">
+            <div class="empty-state">No active sub-agents yet (Ready for real production tasks).</div>
+          </div>
+        </div>
+
+        <!-- Detected Clusters -->
+        <div class="card panel">
+          <div class="panel-header">
+            <h2>📊 Workload Clusters & Specialization Candidates</h2>
+          </div>
+          <div class="clusters-list" id="clusters-container">
+            <div class="empty-state">Awaiting incoming telemetry logs...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Multi-Tool Console -->
+      <div class="right-col">
+        <div class="card panel test-panel">
+          <div class="panel-header">
+            <h2>🧭 Execution Console & Semantic Routing</h2>
+          </div>
+          <form id="routing-form">
+            <label for="prompt-input">Enter a real task to route & execute:</label>
+            <textarea id="prompt-input" rows="4" placeholder="Enter task prompt for OpenClaw orchestrator..."></textarea>
+            <button type="submit" id="btn-submit-route" class="btn btn-primary full-width">
+              Route & Execute
+            </button>
+          </form>
+
+          <!-- Routing Result Display -->
+          <div class="result-area" id="result-box" style="display: none;">
+            <div class="result-header">
+              <span id="result-source-badge" class="badge">--</span>
+              <span id="result-latency">-- ms</span>
+            </div>
+            <pre><code id="result-json"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

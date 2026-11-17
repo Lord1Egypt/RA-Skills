@@ -1,47 +1,62 @@
-## Description: <br>
-Apple Silicon Ai helps agents guide users through running LLM inference, image generation, speech-to-text, and embeddings on a local fleet of Apple Silicon Macs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Silicon AI helps agents guide users through running LLMs, image generation, speech-to-text, and embeddings across Apple Silicon Macs as a local AI fleet.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, run, and operate a local Apple Silicon AI routing service for private inference, transcription, image generation, embeddings, and fleet monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to install and run an external local AI routing service. <br>
-Mitigation: Review the external `ollama-herd` package before installing and run it only when a local Apple Silicon AI router is intended. <br>
-Risk: The router accepts local API requests for inference, transcription, image generation, and embeddings. <br>
-Mitigation: Expose the router only on trusted networks and avoid making it reachable from untrusted clients. <br>
-Risk: The skill references local state files for routing metrics and structured logs. <br>
-Mitigation: Treat `~/.fleet-manager/latency.db` and `~/.fleet-manager/logs/herd.jsonl` as operational state and review before modifying or deleting them. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate local AI inference across Apple Silicon Macs, including routing requests for chat, image generation, speech-to-text, embeddings, and fleet monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/apple-silicon-ai) <br>
-- [ollama-herd project homepage](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
-- [Troubleshooting](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, API examples, configuration notes, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable setup and operations guidance; it does not execute code itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence; artifact frontmatter lists 1.0.2) <br>
+Risk: The skill recommends installing the unpinned ollama-herd package with pip.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin or verify the package version before installing, especially for multi-Mac deployments.
+
+Risk: The referenced tool starts a local HTTP service on port 11435 and discovers nodes on the local network.
+
+Mitigation: Run it only on trusted local networks and review host firewall exposure before deployment.
+
+Risk: The tool writes local logs and routing metrics under ~/.fleet-manager.
+
+Mitigation: Review retention and access expectations for ~/.fleet-manager/latency.db and ~/.fleet-manager/logs/herd.jsonl before operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/apple-silicon-ai)
+- [ollama-herd Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [Troubleshooting](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, HTTP, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local setup steps, endpoint examples, hardware recommendations, monitoring commands, and guardrails.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

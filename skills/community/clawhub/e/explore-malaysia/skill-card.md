@@ -1,44 +1,62 @@
-## Description: <br>
-Book Malaysia flight and travel options through the flyai CLI, including Kuala Lumpur, Penang, Kota Kinabalu, hotels, tickets, itinerary planning, visa information, insurance, and car rental. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to Malaysia, including Kuala Lumpur, Penang, and Kota Kinabalu, with support for related travel planning outputs powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to collect flight-search parameters, run flyai CLI travel searches for Malaysia routes, and format returned results into readable booking guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to globally install and run the third-party @fly-ai/flyai-cli package for travel searches. <br>
-Mitigation: Review and install the CLI manually where possible, and avoid elevated privileges unless they are required and approved. <br>
-Risk: Returned booking links may lead users to enter payment or personal travel details. <br>
-Mitigation: Verify booking links and provider pages before entering payment, identity, or itinerary information. <br>
+## Use Case:
 
+External travel users and agent operators use this skill to collect flight-search parameters, run the flyai CLI, and present Malaysia travel options with booking links. It is intended for real-time flight-search workflows rather than general travel advice from model knowledge.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/dingtom336-gif/explore-malaysia) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output as the data source; should not emit raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can install a global third-party npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve installation manually and prefer running the skill in an isolated environment.
+
+Risk: Flight-search details are sent to a third-party service.
+
+Mitigation: Share only the itinerary details needed for the search and avoid unnecessary personal data.
+
+Risk: Outputs are routed through commercial booking links and FlyAI branding.
+
+Mitigation: Treat booking links as commercial output and compare results before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/explore-malaysia)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown travel results with comparison tables, booking links, and inline shell commands when setup or execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for factual flight data and requires booking links for each included result.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Provides international buyers with consumer electronics sourcing intelligence for China, including manufacturing clusters, supply chain structure, subsector trends, supplier evaluation guidance, and industry data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive consumer electronics industry suppliers guide for international buyers, providing information about China's smartphone, wearable, audio, smart home, and AR/VR manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's consumer electronics manufacturing regions, product subsectors, supply chain structure, and supplier evaluation practices before engaging vendors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a structured factory contact list even though the skill text says it contains no individual supplier contacts. <br>
-Mitigation: Treat all contact details as unverified reference data, confirm suppliers through official channels, and avoid spam, bulk outreach, or sensitive profiling. <br>
-Risk: The sourcing data is static and may become stale for procurement decisions. <br>
-Mitigation: Verify current policy, certification, capacity, pricing, and supplier status with authoritative sources before relying on the guidance commercially. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to research China's consumer electronics manufacturing clusters, understand relevant subsectors, and prepare supplier evaluation questions before outreach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-consumer-electronics-suppliers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Natural-language guidance and structured Python dictionary results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled static JSON data and local read-only Python helper functions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Supplier contact emails and market figures may be stale, incomplete, or under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify contact details, company status, certifications, and market figures independently before making sourcing decisions or outreach.
+
+Risk: Cluster-level sourcing guidance may not capture supplier-specific quality, compliance, sanctions, or commercial risks.
+
+Mitigation: Use this skill for preliminary research, then perform supplier due diligence, sample validation, audits, and contract review through appropriate business processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-consumer-electronics-suppliers)
+- [Publisher profile: findhappy7](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text responses; Python API functions return dictionaries and lists from bundled JSON data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only China-focused supplier research; data and contact details should be independently verified before outreach.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

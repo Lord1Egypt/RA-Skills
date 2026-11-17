@@ -1,43 +1,62 @@
-## Description: <br>
-Looks up current weather for a requested city or place, supporting Chinese, English, and pinyin input with Beijing as the default location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up current weather for cities worldwide using Chinese, English, or pinyin city names and returns temperature, conditions, wind, daytime status, and update time.
 
-## Publisher: <br>
-[maomaoshuo](https://clawhub.ai/user/maomaoshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maomaoshuo](https://clawhub.ai/user/maomaoshuo)
 
-## Use Case: <br>
-External users and agents use this skill to answer current-weather questions for global cities and to summarize temperature, conditions, wind speed, wind direction, and update time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The city or place name requested by the user is sent to Open-Meteo for geocoding and weather lookup. <br>
-Mitigation: Avoid submitting sensitive private locations when that disclosure would be inappropriate, and review outbound network policy before deployment. <br>
-Risk: The skill runs a bundled Python helper and may require the requests package. <br>
-Mitigation: Install dependencies in a controlled environment and review the helper script before enabling Bash execution. <br>
-Risk: Geocoding can choose an unintended location when a city name is ambiguous. <br>
-Mitigation: Use more specific city, region, or country names when location precision matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [天气查询详细指南](references/weather_details.md) <br>
-- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+## Use Case:
 
+External users and developers use this skill to answer weather questions for a named city, including default Beijing lookup when no city is supplied. It is useful for current conditions, not forecasts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text weather report with a concise summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes city, temperature, weather condition, wind speed, wind direction, day/night state, and update time when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weather query locations are sent to Open-Meteo services.
+
+Mitigation: Use the skill only when location disclosure to Open-Meteo is acceptable, and avoid entering sensitive or private locations.
+
+Risk: Generic dependency installation guidance may be unsuitable for sensitive environments.
+
+Mitigation: Install dependencies through an approved package process with pinned versions before deployment.
+
+Risk: City matching may select an unintended location when multiple cities have similar names.
+
+Mitigation: Provide explicit city names, country suffixes, or Chinese city suffixes when precise location matching matters.
+
+Risk: Weather data may be delayed and the skill reports current conditions only.
+
+Mitigation: Do not use the output for time-critical decisions or forecast-dependent planning without checking an authoritative weather source.
+
+## Reference(s):
+
+- [Weather Details](references/weather_details.md)
+- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+- [ClawHub Skill Page](https://clawhub.ai/maomaoshuo/skills/maomao-weather)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Formatted plain text weather report with a concise summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current weather only; city matching may choose the highest-scoring location when multiple matches exist.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

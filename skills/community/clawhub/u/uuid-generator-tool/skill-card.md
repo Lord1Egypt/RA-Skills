@@ -1,40 +1,50 @@
-## Description: <br>
-Generate and parse UUIDs (v1, v4, v5), including batch generation, validation, and format conversion with the Python standard library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and parse UUIDs (v1, v4, v5), with batch generation, validation, format conversion, and no API key requirement.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to generate UUIDs, validate UUID strings, parse UUID components, and convert UUID formatting for application identifiers and scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UUID v1 values can reveal timestamp and machine-related metadata. <br>
-Mitigation: Prefer UUID v4 for public, shared, or privacy-sensitive identifiers; use UUID v1 only when time-based identifiers are specifically needed. <br>
-Risk: The reviewed artifacts do not require credentials, so providing secrets would create unnecessary exposure. <br>
-Mitigation: Do not provide API keys, tokens, passwords, or other credentials when using this skill. <br>
+## Use Case:
 
+Developers and automation agents use this skill to generate, validate, parse, and reformat UUID values in local workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/uuid-generator-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates UUID strings and validation or parsing summaries; no external services are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: UUID v1 values can include timestamp and host-identifying metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer UUID v4 for general identifiers, and use UUID v1 only when that metadata is acceptable for the storage or sharing context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/uuid-generator-tool)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces UUID strings, validation status, and parsed UUID components using Python standard library behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

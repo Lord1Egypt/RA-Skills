@@ -1,45 +1,61 @@
-## Description: <br>
-Send and receive WhatsApp messages, manage groups, contacts, and instances via GREEN-API MCP gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive WhatsApp messages, manage groups, contacts, and instances via GREEN-API MCP gateway.
 
-## Publisher: <br>
-[support-greenapi](https://clawhub.ai/user/support-greenapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[support-greenapi](https://clawhub.ai/user/support-greenapi)
 
-## Use Case: <br>
-External users and developers use this skill to connect a GREEN-API WhatsApp instance to OpenClaw so an agent can send messages, read chat history, manage contacts and groups, and administer instances through the GREEN-API MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose WhatsApp messages, contacts, group membership, files, and account state to an agent. <br>
-Mitigation: Install only when the GREEN-API MCP endpoint and connected WhatsApp account are trusted; use least-privilege or non-production credentials where possible and avoid sharing API tokens in ordinary chat. <br>
-Risk: The skill can perform high-impact actions such as sending, forwarding, editing, deleting, changing settings, logging out, rebooting, modifying groups, and deleting instances. <br>
-Mitigation: Require explicit user confirmation before mutating chats, groups, settings, authorization state, or partner instances. <br>
-Risk: Broad chat history and notification reads can reveal more personal or business data than needed. <br>
-Mitigation: Limit history and notification reads to specific chats and small counts, and review requests before retrieving recent inbound or outbound messages. <br>
+## Use Case:
 
+Developers and external teams use this skill to let an agent operate a GREEN-API WhatsApp instance for messaging, files, contacts, groups, chat history, and instance administration.
 
-## Reference(s): <br>
-- [GREEN-API ClawHub Skill Page](https://clawhub.ai/support-greenapi/green-api) <br>
-- [GREEN-API](https://green-api.com) <br>
-- [GREEN-API Documentation](https://green-api.com/en/docs/) <br>
-- [GREEN-API Console](https://console.green-api.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke GREEN-API MCP tools to send messages, read history, manage groups, contacts, files, notifications, settings, and instances.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill can expose private WhatsApp messages and account data through chat history, contact, and notification tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted GREEN-API accounts and require explicit user confirmation before reading histories or retrieving message data.
+
+Risk: Instance and partner tokens can grant access to WhatsApp account operations.
+
+Mitigation: Treat tokens as secrets and use a safer secret store instead of pasting real credentials into general chat when available.
+
+Risk: Messaging, group, settings, logout, reboot, and instance-deletion actions can change account state or affect recipients.
+
+Mitigation: Require explicit confirmation before sending, deleting, forwarding, changing groups or settings, logging out, rebooting, or deleting instances.
+
+## Reference(s):
+
+- [GREEN-API Documentation](https://green-api.com/en/docs/)
+- [GREEN-API Console](https://console.green-api.com)
+- [GREEN-API](https://green-api.com)
+- [ClawHub Skill Page](https://clawhub.ai/support-greenapi/skills/green-api)
+- [Publisher Profile](https://clawhub.ai/user/support-greenapi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown, Configuration]
+
+**Output Format:** [Agent guidance and tool calls for GREEN-API WhatsApp operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connected GREEN-API instance and valid instance credentials before most WhatsApp operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

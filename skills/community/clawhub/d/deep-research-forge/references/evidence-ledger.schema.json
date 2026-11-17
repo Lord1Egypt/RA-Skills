@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deep Research Forge Evidence Ledger",
+  "type": "object",
+  "required": ["research_object", "generated_at", "entries"],
+  "properties": {
+    "research_object": {
+      "type": "string"
+    },
+    "research_question": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO date or datetime when the ledger was created."
+    },
+    "evidence_window": {
+      "type": "string",
+      "description": "Time window covered by the evidence, such as 2024-2026 or checked through 2026-05-14."
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim", "status", "source_type", "reliability", "implication"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "lane_id": {
+            "type": "string",
+            "description": "Parallel lane or research stream that produced this entry."
+          },
+          "agent_role": {
+            "type": "string",
+            "enum": ["lead-integrator", "source-scout", "timeline-analyst", "competitive-analyst", "user-signal-analyst", "dissent-reviewer", "decision-analyst", "single-agent", "unknown"]
+          },
+          "claim": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["confirmed_fact", "reported_claim", "user_signal", "inference", "gap"]
+          },
+          "source_title": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "upstream_source_id": {
+            "type": "string",
+            "description": "Evidence entry or source identifier that this claim traces back to, used to avoid counting repeated reports as independent confirmation."
+          },
+          "corroboration_group": {
+            "type": "string",
+            "description": "Shared group ID for claims that corroborate, duplicate, or depend on the same upstream evidence."
+          },
+          "source_type": {
+            "type": "string",
+            "enum": ["official", "public_record", "paper", "media", "community", "review", "social", "aggregator", "user_provided", "analysis"]
+          },
+          "published_at": {
+            "type": "string"
+          },
+          "accessed_at": {
+            "type": "string"
+          },
+          "evidence_window": {
+            "type": "string"
+          },
+          "reliability": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "unknown"]
+          },
+          "citation_strength": {
+            "type": "string",
+            "enum": ["direct-primary", "indirect-primary", "independent-corroborated", "single-secondary", "user-signal-only", "unsupported-gap"]
+          },
+          "formal_status_label": {
+            "type": "string",
+            "enum": ["final-in-force", "applicable-obligation", "adopted-not-yet-applicable", "delegated-or-implementing-act", "official-guidance-final", "official-guidance-draft", "political-agreement", "pilot-or-trial", "institution-policy", "voluntary-code", "third-party-interpretation", "status-unclear"]
+          },
+          "effective_date": {
+            "type": "string"
+          },
+          "application_date": {
+            "type": "string"
+          },
+          "formal_adoption_step_remaining": {
+            "type": "string"
+          },
+          "conflicts_with": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "implication": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

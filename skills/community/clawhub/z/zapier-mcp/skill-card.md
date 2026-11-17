@@ -1,44 +1,62 @@
-## Description: <br>
-Connect 8,000+ apps via Zapier MCP. Includes full UI integration for Clawdbot Gateway dashboard. Use when setting up Zapier integration, connecting apps, or using Zapier tools via mcporter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect 8,000+ apps via Zapier MCP. Includes full UI integration for Clawdbot Gateway dashboard. Use when setting up Zapier integration, connecting apps, or using Zapier tools via mcporter.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a Clawdbot environment to Zapier MCP, configure a personal MCP URL, inspect available Zapier tools, and call those tools through mcporter. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Zapier MCP URL functions as a secret and can authorize actions across connected apps. <br>
-Mitigation: Treat the URL like a password, keep it out of shared logs or screenshots, and regenerate it in Zapier if exposure is suspected. <br>
-Risk: Zapier actions can send messages, spend money, or modify business data depending on which actions are exposed. <br>
-Mitigation: Limit exposed actions in Zapier and require confirmation before high-impact operations. <br>
-Risk: Loose endpoint validation may accept any HTTPS URL during setup. <br>
-Mitigation: Verify the MCP URL begins with the official Zapier MCP domain before saving it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zapier MCP release page](https://clawhub.ai/maverick-software/zapier-mcp) <br>
-- [Zapier MCP](https://zapier.com/mcp) <br>
-- [Zapier Help](https://help.zapier.com) <br>
-- [Zapier MCP reference files](artifact/reference/README.md) <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to configure and test a Zapier MCP URL, browse available Zapier actions, and call those tools through mcporter.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and TypeScript reference code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and Clawdbot Gateway v2026.1.0 or later.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Zapier MCP URL carries authentication material and is stored in local mcporter configuration.
+
+Mitigation: Treat the URL like a password, restrict dashboard and RPC access, mask it in UI and logs, and regenerate it in Zapier if it is exposed.
+
+Risk: The reference backend accepts user-supplied HTTPS URLs for server-side MCP requests.
+
+Mitigation: Validate saved MCP URLs against the exact Zapier host and expected MCP path before testing, storing, or using them.
+
+Risk: Configured Zapier actions can let an agent affect external services such as messaging, email, spreadsheets, or calendars.
+
+Mitigation: Limit which Zapier actions are exposed to the agent and review high-impact actions before use in shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/zapier-mcp)
+- [Zapier MCP](https://zapier.com/mcp)
+- [Zapier Help](https://help.zapier.com)
+- [Reference README](reference/README.md)
+- [Backend Reference](reference/zapier-backend.ts)
+- [Controller Reference](reference/zapier-controller.ts)
+- [Views Reference](reference/zapier-views.ts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the user's configured Zapier actions and the connected MCP tool schemas.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-A Chinese-language multi-agent workflow skill for planning, drafting, reviewing, and refining web-novel projects with reusable templates, quality rules, and shell workflow scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language multi-agent workflow for planning, drafting, reviewing, and refining long-form fiction projects.
 
-## Publisher: <br>
-[micromsf](https://clawhub.ai/user/micromsf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[micromsf](https://clawhub.ai/user/micromsf)
 
-## Use Case: <br>
-Writers, editors, and agent operators use this skill to set up a structured novel project, coordinate specialized writing agents, generate planning documents and chapter drafts, and review output against quality and content rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enforces strict editorial content redlines and quality gates that may reject otherwise acceptable creative choices. <br>
-Mitigation: Review and adapt the bundled content redline, workflow, and scoring rules before using the skill for a specific publication context. <br>
-Risk: The workflow includes AI-style cleanup and production guidance for generated fiction. <br>
-Mitigation: Represent AI assistance honestly in any commercial or disclosure-sensitive publication process. <br>
-Risk: The shell scripts create and overwrite project template files in the target project directory. <br>
-Mitigation: Run the scripts in a dedicated project directory and review generated files before integrating them into an existing manuscript workspace. <br>
+## Use Case:
 
+Writers and agent builders use this skill to coordinate a serial novel workflow: project setup, worldbuilding, character design, chapter outlining, draft generation, quality review, and revision planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/micromsf/novel-multi-agent-skill) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [Content review redlines](artifact/rules/内容审查红线.md) <br>
-- [Quality scoring standard](artifact/rules/质量评分标准.md) <br>
-- [Collaboration workflow standard](artifact/rules/协作流程规范.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown project documents, shell workflow commands, and agent coordination guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project setup files, planning templates, chapter draft templates, review report templates, and workflow prompts for configured OpenClaw agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: Chapter range arguments in local shell scripts can lead to unintended command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before use, run them only in a fresh version-controlled project directory, and pass simple numeric ranges such as 1-10 until safer input validation is added.
+
+Risk: The workflow writes generated project files into a user-supplied directory.
+
+Mitigation: Use a dedicated project directory and review generated Markdown files before publishing or reusing their content.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/micromsf/skills/novel-multi-agent-skill)
+- [Artifact README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Skill overview](artifact/SKILL.md)
+- [Collaboration workflow rules](artifact/rules/协作流程规范.md)
+- [Quality scoring rules](artifact/rules/质量评分标准.md)
+- [Content review rules](artifact/rules/内容审查红线.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, shell command snippets, and structured workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates project scaffolding and staged writing artifacts such as outlines, drafts, review reports, and final manuscript files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

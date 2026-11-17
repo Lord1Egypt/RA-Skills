@@ -1,13 +1,12 @@
 {
-    "name": "wechat-search-skill",
-    "version": "1.0.1",
-    "description": "微信搜一搜数据获取工具。支持公众号、视频、图片等入口的数据获取，适用于短视频营销、竞品分析和热点监控，助力爆款内容策划与流量追踪。",
+    "name": "wechat-search-sou",
+    "version": "1.1.1",
+    "description": "微信搜一搜公开数据只读技能。按关键词搜微信文章、微信视频，输出结构化 JSON。用于选题、竞品与热点监控。",
     "keywords": [
         "wechat",
         "search",
         "video",
         "article",
-        "channel",
         "content-analysis",
         "competitor-analysis"
     ],

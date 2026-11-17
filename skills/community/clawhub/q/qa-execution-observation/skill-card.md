@@ -1,39 +1,55 @@
-## Description: <br>
-Guides QA testers through systematic execution observation across functional behavior, interface responses, logs, UI rendering, data consistency, performance signals, and dependency behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides QA testers through observing six signals during test execution and recording factual results, outcomes, anomalies, and follow-up items.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers and testers use this skill to improve test execution quality by recording observed results, anomalies, environment issues, and follow-up questions while executing test cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording is broad and may activate for generic requests about observing or paying attention. <br>
-Mitigation: Use the skill when the user intent is QA or test execution, and narrow trigger wording to testing-specific phrases if maintaining the skill. <br>
-Risk: The guidance may lead agents to inspect logs, browser diagnostics, or data stores during testing. <br>
-Mitigation: Use read-only access where possible and avoid exposing sensitive data in the final execution report. <br>
+## Use Case:
 
+QA testers and developers use this Chinese-language workflow to observe functional behavior, performance, logs, data, UI, and dependencies while executing test cases, then document actual results and classify anomalies.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with structured execution report sections and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces execution reports, observed results, anomaly lists, and environment issue notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Log, database, monitoring, or screenshot checks may expose sensitive data or affect systems outside the intended test scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Perform these checks only in an authorized test environment and handle captured information appropriately.
+
+Risk: The optional companion installation may introduce code from a separately maintained source.
+
+Mitigation: Install the companion only after verifying that its source and version are trusted.
+
+## Reference(s):
+
+- [Observation guide](references/observation-guide.md)
+- [Execution record template](assets/execution-record.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-execution-observation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown execution-record tables and per-round observation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves test-case IDs; records observed results, pass/fail/blocked conclusions, signal coverage, and follow-up items.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

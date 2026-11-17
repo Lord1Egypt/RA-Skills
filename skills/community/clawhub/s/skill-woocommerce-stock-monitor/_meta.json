@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-woocommerce-stock-monitor",
-  "version": "1.0.1",
-  "publishedAt": 1773962277800
+  "name": "skill-woocommerce-stock-monitor",
+  "version": "1.0.0",
+  "description": "Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. Run daily via cron.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

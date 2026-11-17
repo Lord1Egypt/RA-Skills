@@ -1,43 +1,58 @@
-## Description: <br>
-Unified CLI gateway to search, install, authenticate, and invoke enterprise and AI platform tools including WeCom, DingTalk, Lark/Feishu, and Dreamina for messaging, calendars, documents, meetings, and AI media generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified CLI gateway to search, install, authenticate, and invoke enterprise and AI platform tools (WeCom, DingTalk, Lark/Feishu, Dreamina) covering 91+ operations.
 
-## Publisher: <br>
-[lxyd-ai](https://clawhub.ai/user/lxyd-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxyd-ai](https://clawhub.ai/user/lxyd-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need an agent to find the right CLI operation, inspect its parameters, and run provider tools for enterprise workflows or AI image and video creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install tools, authenticate to work accounts, and perform account-changing actions across connected providers. <br>
-Mitigation: Use isolated installation methods such as pipx or uv, authenticate only the needed provider, and require the agent to show the exact command before sending messages, changing business data, or spending generation credits. <br>
-Risk: Provider operations can fail or target the wrong action if the agent guesses command IDs or parameters. <br>
-Mitigation: Require the documented search and info workflow before each run so the agent confirms the tool ID, schema, and example invocation. <br>
-Risk: Dreamina generation can consume paid credits and returns asynchronous job results. <br>
-Mitigation: Warn the user before generation, run one task at a time, and query the submitted job result before continuing. <br>
+## Use Case:
 
+Employees, developers, and enterprise operators use this skill to discover and run CLI actions for WeCom, DingTalk, Lark/Feishu, and Dreamina workflows such as messaging, calendars, todos, documents, meetings, and AI image or video generation.
 
-## Reference(s): <br>
-- [agent-cli-hub PyPI project](https://pypi.org/project/agent-cli-hub/) <br>
-- [cli-hub source repository](https://github.com/agentrix-ai/clihub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON argument examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce provider-specific command invocations, authentication steps, and generated media job follow-up guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill documents a remote curl-to-bash installer path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with pipx or uv from the package index and avoid the curl-to-bash convenience command.
+
+Risk: The skill can trigger broad business-account actions such as sending messages, changing enterprise data, and authenticating accounts.
+
+Mitigation: Search for the operation, inspect the parameter schema, and review each command before execution.
+
+Risk: Dreamina generation workflows may spend AI-generation credits and run asynchronously.
+
+Mitigation: Install only the needed provider, confirm credit-spending actions before submission, and check async job results explicitly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxyd-ai/skills/cli-hub)
+- [PyPI package: agent-cli-hub](https://pypi.org/project/agent-cli-hub/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include interactive authentication steps and command review guidance before invoking enterprise or AI-generation providers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

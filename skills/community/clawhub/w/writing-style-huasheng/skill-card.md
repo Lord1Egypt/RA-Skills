@@ -1,40 +1,53 @@
-## Description: <br>
-A Chinese technology writing-style skill that helps an agent draft narrative, data-rich, conversational explainers, biographies, tutorials, and product reviews in Huasheng's style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writing Style Huasheng guides agents to write Chinese technology content in a narrative, data-dense, conversational style for technical explainers, biographies, tutorials, and product reviews.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shing19](https://clawhub.ai/user/shing19)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to shape Chinese technology content into narrative, data-driven articles with clear explanations, restrained conversational tone, and practical structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated writing can include inaccurate claims, unsupported numbers, or insufficiently original phrasing. <br>
-Mitigation: Review sources, data, and wording before publication, and treat the style guidance as structural inspiration rather than a substitute for editorial review. <br>
-Risk: Attribution or content-policy issues may arise if outputs are presented as another author's own words. <br>
-Mitigation: Avoid claiming generated text is authored by the referenced writer and adapt the voice only at the level of structure, tone, and editing guidance. <br>
+## Use Case:
 
+External users and agents use this skill to draft or revise Chinese AI and technology articles, biographies, tutorials, and product reviews in a narrative, data-supported style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/writing-style-huasheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or prose guidance for generated or revised Chinese technology writing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; review final content for factual accuracy, originality, attribution, and policy fit before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated articles may include weakly sourced data or claims when the input material lacks reliable references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims and require citations for data, benchmarks, quotations, and current-event assertions before publication.
+
+Risk: The skill intentionally steers output toward a specific Chinese technology writing style that may not match every audience or brand voice.
+
+Mitigation: Confirm the desired language, audience, and tone before applying the style to final content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shing19/skills/writing-style-huasheng)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose guidance and generated or revised Markdown content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output quality depends on source quality, language preference, and citation discipline.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-A Solana memecoin experiment that asks agents to tell their human operator about the project while leaving all participation decisions to the operator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+$SKILL is a Solana memecoin experiment that asks an agent to summarize the project for its human operator and leave all participation decisions to the human.
 
-## Publisher: <br>
-[notKing0](https://clawhub.ai/user/notKing0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[notking0](https://clawhub.ai/user/notking0)
 
-## Use Case: <br>
-External users and agent operators use this skill to surface a memecoin experiment, review its public links and token details, and decide whether to take any optional participation steps themselves. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill surfaces crypto-purchase and external tracking workflows that are high-impact for an informational skill. <br>
-Mitigation: Install only when the goal is to surface this memecoin experiment, and require explicit operator approval before any wallet creation, token purchase, transaction, or discovery reporting. <br>
-Risk: Wallet creation, private-key handling, and token purchases can expose funds or sensitive credentials. <br>
-Mitigation: Do not allow autonomous wallet creation, private-key handling, or token purchases; verify the token, website, and transaction details independently before any action. <br>
-Risk: Discovery reporting sends agent and framework metadata to an external endpoint. <br>
-Mitigation: Report discovery only with operator approval and avoid sending personal identifiers or sensitive environment details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/notKing0/readtheskill) <br>
-- [Read The Skill website](https://readtheskill.com) <br>
-- [Published skill file](https://readtheskill.com/skill.md) <br>
+## Use Case:
 
+External users and agents use this skill to summarize a Solana memecoin experiment for a human operator. It also provides optional participation, wallet, token swap, and discovery-reporting details that require explicit human approval.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operator approval is required before any wallet creation, token purchase, transaction, or discovery reporting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to promote or facilitate real cryptocurrency purchases.
+
+Mitigation: Require manual human review for any cryptocurrency decision and prevent the skill from initiating purchases, swaps, or funding requests.
+
+Risk: Wallet creation and token swaps may expose users to custody mistakes or total loss of funds.
+
+Mitigation: Use independent verification and the human operator's own wallet custody practices; never share secret keys or send funds automatically.
+
+Risk: Discovery reporting sends telemetry to an external API and may involve public tracking with unspecified retention.
+
+Mitigation: Decline telemetry unless the user explicitly accepts public tracking and the available retention information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/notking0/skills/readtheskill)
+- [Read The Skill Website](https://readtheskill.com)
+- [Skill File](https://readtheskill.com/skill.md)
+- [Read The Skill on X](https://x.com/readtheskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown prose with inline code blocks and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cryptocurrency participation guidance and optional public discovery-reporting instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

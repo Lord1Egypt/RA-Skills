@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:skill-hub:deep-research-forge:conflict-resolution-report.schema",
+  "title": "Conflict Resolution Report",
+  "description": "Conflict resolution report from Conflict Arbiter, resolving evidence conflicts systematically",
+  "type": "object",
+  "required": [
+    "task_id",
+    "arbiter_role",
+    "cycle_number",
+    "conflicts_analyzed"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "Research task ID with conflicts"
+    },
+    "arbiter_role": {
+      "type": "string",
+      "enum": ["conflict-arbiter", "lead-integrator"],
+      "description": "Role performing conflict arbitration"
+    },
+    "cycle_number": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Current cycle number"
+    },
+    "conflicts_analyzed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conflict_id", "conflict_type", "resolution_decision"],
+        "properties": {
+          "conflict_id": {
+            "type": "string",
+            "description": "Unique conflict identifier"
+          },
+          "conflict_type": {
+            "type": "string",
+            "enum": [
+              "time_difference",
+              "observation_angle",
+              "methodology",
+              "interest_bias",
+              "source_genealogy"
+            ],
+            "description": "Type of evidence conflict"
+          },
+          "claim_a": {
+            "type": "object",
+            "required": ["statement", "source", "reliability"],
+            "properties": {
+              "statement": {
+                "type": "string",
+                "description": "First conflicting claim"
+              },
+              "source": {
+                "type": "string",
+                "description": "Source of claim A"
+              },
+              "source_url": {
+                "type": "string"
+              },
+              "reliability": {
+                "type": "string",
+                "enum": ["very_high", "high", "medium", "low", "very_low"]
+              },
+              "timestamp": {
+                "type": "string",
+                "description": "When this claim was made (e.g., '2023-05', '2024-03')"
+              }
+            }
+          },
+          "claim_b": {
+            "type": "object",
+            "required": ["statement", "source", "reliability"],
+            "properties": {
+              "statement": {
+                "type": "string",
+                "description": "Second conflicting claim"
+              },
+              "source": {
+                "type": "string",
+                "description": "Source of claim B"
+              },
+              "source_url": {
+                "type": "string"
+              },
+              "reliability": {
+                "type": "string",
+                "enum": ["very_high", "high", "medium", "low", "very_low"]
+              },
+              "timestamp": {
+                "type": "string",
+                "description": "When this claim was made"
+              }
+            }
+          },
+          "resolution_decision": {
+            "type": "object",
+            "required": ["strategy", "reasoning"],
+            "properties": {
+              "strategy": {
+                "type": "string",
+                "enum": [
+                  "prefer_latest",
+                  "prefer_most_reliable",
+                  "preserve_both_with_context",
+                  "prefer_independent_source",
+                  "methodology_difference",
+                  "unresolvable"
+                ],
+                "description": "Resolution strategy applied"
+              },
+              "reasoning": {
+                "type": "string",
+                "description": "Explanation of why this strategy was chosen"
+              },
+              "confidence_before": {
+                "type": "string",
+                "enum": ["very_high", "high", "medium", "low", "very_low"]
+              },
+              "confidence_after_resolution": {
+                "type": "string",
+                "enum": ["very_high", "high", "medium", "low", "very_low"]
+              }
+            }
+          },
+          "output_format": {
+            "type": "string",
+            "description": "How to present this resolved conflict in final output"
+          },
+          "monitoring_recommendation": {
+            "type": "object",
+            "properties": {
+              "what_to_watch": {
+                "type": "string",
+                "description": "What should be monitored"
+              },
+              "check_frequency": {
+                "type": "string",
+                "description": "How often to check (e.g., '每半年', 'monthly')"
+              },
+              "trigger_events": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Events that should trigger immediate recheck"
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "List of conflicts and their resolutions"
+    },
+    "unresolved_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conflict_id", "reason"],
+        "properties": {
+          "conflict_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why this conflict cannot be auto-resolved"
+          },
+          "recommendation": {
+            "type": "string",
+            "description": "Recommended next steps"
+          }
+        }
+      },
+      "description": "Conflicts that require human escalation"
+    },
+    "confidence_impact_summary": {
+      "type": "string",
+      "description": "Overall impact on research confidence after conflict resolution"
+    },
+    "escalation_needed": {
+      "type": "boolean",
+      "description": "Whether human escalation is needed"
+    },
+    "escalation_reason": {
+      "type": "string",
+      "description": "Reason for escalation (if escalation_needed is true)"
+    },
+    "resolution_statistics": {
+      "type": "object",
+      "properties": {
+        "total_conflicts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "auto_resolved": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "preserved_both": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "escalated": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "resolved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resolution_duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

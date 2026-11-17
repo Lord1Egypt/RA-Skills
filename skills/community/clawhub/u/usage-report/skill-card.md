@@ -1,40 +1,53 @@
-## Description: <br>
-Generate cost and token usage reports from OpenClaw session logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates cost and token usage reports from OpenClaw session JSONL logs by reading per-turn usage data for API costs, billing, spending, and daily or session summaries.
 
-## Publisher: <br>
-[directorvector](https://clawhub.ai/user/directorvector) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[directorvector](https://clawhub.ai/user/directorvector)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to summarize API cost, token usage, billing, spending, and daily or session-level usage from local OpenClaw session JSONL logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session logs, which may reveal private session names or usage patterns. <br>
-Mitigation: Run it only on session logs you intend to inspect, keep generated reports local when usage details are sensitive, and use OPENCLAW_SESSIONS_DIR to point at an appropriate log directory. <br>
-Risk: The report depends on local jq and bc binaries. <br>
-Mitigation: Install jq and bc before running the script and review any command output before sharing it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to summarize local session usage, token counts, and estimated costs across all sessions or a selected date.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/directorvector/usage-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text or JSON usage report with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can cover all sessions, today, or a specific UTC date; totals include turns, cost, token counts, and cache read/write tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill reads local OpenClaw session logs, which may contain usage and cost information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on session directories the user intends to summarize, and set OPENCLAW_SESSIONS_DIR when a narrower log location is needed.
+
+Risk: Usage reports may expose operational spending or token-volume information if shared broadly.
+
+Mitigation: Review generated text or JSON before sharing it outside the intended audience.
+
+## Reference(s):
+
+- [Usage Report on ClawHub](https://clawhub.ai/directorvector/skills/usage-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text usage report or JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can cover all sessions, today, or a YYYY-MM-DD date filter; totals include turns, cost, output tokens, and cache read/write tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

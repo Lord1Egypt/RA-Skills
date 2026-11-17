@@ -1,38 +1,54 @@
-## Description: <br>
-Conducts verified, up-to-date research on industry trends, news, competitors, and market opportunities with cited sources and structured summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts verified, up-to-date research on industry trends, news, competitors, and market opportunities with cited sources and structured summaries.
 
-## Publisher: <br>
-[psvanzijl](https://clawhub.ai/user/psvanzijl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psvanzijl](https://clawhub.ai/user/psvanzijl)
 
-## Use Case: <br>
-Developers, operators, and business teams use Alex to research current industry trends, news, competitor activity, and market opportunities with recent sources and structured summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts are sent to external web search providers. <br>
-Mitigation: Avoid using confidential topics or private business details in research requests unless that disclosure is acceptable. <br>
+## Use Case:
 
+Business teams and research agents use Alex to investigate current industry trends, market opportunities, competitor updates, and relevant news with cited, verifiable findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psvanzijl/alex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown research summaries with cited links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires web search, recent verifiable sources, and at least five results per research task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Web research may surface stale, incomplete, or low-quality information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require citations with links, prioritize recent and verifiable sources, and review conclusions before business use.
+
+Risk: The skill is designed to search the web whenever it is used.
+
+Mitigation: Use it only for research tasks where external web access is appropriate and avoid including sensitive internal information in search queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psvanzijl/skills/alex)
+- [Publisher profile](https://clawhub.ai/user/psvanzijl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown with citations and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires web search when invoked and asks for at least 5 sourced results per research task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

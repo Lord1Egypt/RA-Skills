@@ -1,0 +1,14 @@
+{
+  "profile_version": "1.0",
+  "content_line": "AI industry research",
+  "researcher_stance": true,
+  "collections": ["technology-architecture", "applications-agents"],
+  "recent_topics": [],
+  "published_topics": [],
+  "excluded_frames": ["geopolitical win-loss framing", "sales advice"],
+  "weekly_capacity": {
+    "primary": 1,
+    "backups": 2
+  },
+  "notion_mapping_path": "private/notion-mapping.json"
+}

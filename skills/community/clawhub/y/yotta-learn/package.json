@@ -1,0 +1,47 @@
+{
+  "name": "@yottameta/yotta-learn",
+  "version": "0.6.6",
+  "description": "Yuanxi — a cross-agent knowledge-base skill: turns reusable experience, methods, pitfalls and tutorials into categorized, indexed, keyword-searchable KB entries (draft → review → verified) that any agent can read and write via CLI, MCP (stdio), or the local-only web console (view); guides first-run activation and auto-connects MCP. Triggers when knowledge should be captured (command failure / user correction / a better approach / stale knowledge / a missing capability / an external-interface failure) or queried (before starting work / before solving a non-obvious problem). Boundaries: private or sensitive info never goes into the shared KB (use yotta-memory); project-specific experience goes into the project's own files; never auto-modifies system files.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-learn",
+    "learning",
+    "self-improvement",
+    "memory",
+    "knowledge-base",
+    "yottaskills"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "hooks",
+    "assets",
+    "bin",
+    "README.zh-CN.md",
+    "!scripts/test_*.py",
+    "!scripts/__pycache__",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-learn.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-learn": "bin/yotta-learn.js",
+    "yotta-learn-install": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" && python scripts/test_yotta_learn.py && python scripts/test_yotta_learn_help.py && python scripts/test_yotta_kb.py && python scripts/test_yotta_learn_mcp.py && python scripts/test_yotta_learn_view.py"
+  }
+}

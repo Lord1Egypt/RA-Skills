@@ -1,0 +1,33 @@
+# dlt_expert_input.txt —— 由智能体(本系统宿主)用 WebSearch 真实抓取全网专家推荐后填写。
+# 格式: 专家名：前区 X X X X X + 后区 X X  (每行一个, # 开头为注释不解析)
+# 诚信原则: 仅填写【真实检索到】的公开推荐号与口径, 不虚构号码。
+# 本次(2026-08-24 更新)真实检索来源(均含可核验公开URL, 来自新浪体育/新浪彩票/一定牛/彩吧助手):
+#   威哥   https://sports.sina.com.cn/l/2026-08-23/doc-iniphnkv0647293.shtml
+#   刘星   https://sports.sina.com.cn/l/2026-08-23/doc-iniphwyw3600098.shtml (新浪名家汇总)
+#   江宏   https://sports.sina.com.cn/l/2026-08-23/doc-iniphnky7015549.shtml
+#   王守礼 https://sports.sina.com.cn/l/2026-08-23/doc-iniphnma3788087.shtml
+#   铁观音 https://www.ydniu.com/info/dlt/cpyc/365620260823.html
+#   胡亚楠 https://sports.sina.com.cn/l/2026-08-24/doc-inipkriy6233907.shtml
+#   王天财 https://sports.sina.com.cn/l/2026-08-24/doc-inipkrka3006452.shtml
+#   高财   https://sports.sina.com.cn/l/2026-08-24/doc-inipkriw2046238.shtml
+#   安队   https://lotto.sina.cn/2026-08-24/detail-inipkriv0096707.d.html
+#   春夏秋冬 https://www.ydniu.com/info/dlt/zjtj/374120260824.html
+#   蕉太狼 https://www.ydniu.com/info/dlt/zjtj/596620260824.html
+#   三少   https://www.55128.cn/zx/tcdlt/10314988.html
+#   老顽童 https://www.55128.cn/zx/tcdlt/10314638.html
+# 说明: 专家推荐在数学上无 proven 预测优势(no_edge), 本文件仅作"观察市场共识/逆向避开热门"
+#   的趣味参考, 不视为任何选号依据。以下号码为专家公开自述, 未经独立核实。
+# 目标期号: 大乐透 第26096期(2026-08-24 周一开奖) —— 为当前最新待预测期(26095已于2026-08-22开出 04 06 08 10 14 + 04 05)。
+威哥：前区 02 11 12 22 27 + 后区 04 07
+刘星：前区 03 15 18 19 22 23 30 31 32 + 后区 02 05 08
+江宏：前区 07 11 14 22 34 + 后区 01 03
+王守礼：前区 02 09 25 28 32 + 后区 01 12
+铁观音：前区 02 11 25 29 31 + 后区 04 07
+胡亚楠：前区 01 11 20 23 29 + 后区 05 09
+王天财：前区 06 21 22 26 30 + 后区 04 11
+高财：前区 05 06 09 10 30 + 后区 11 12
+安队：前区 01 05 22 25 33 + 后区 06 08
+春夏秋冬：前区 01 03 11 12 19 + 后区 02 07
+蕉太狼：前区 03 05 19 22 24 + 后区 02 07
+三少：前区 02 11 14 17 18 29 31 + 后区 02 07
+老顽童：前区 05 18 23 29 33 + 后区 01 07

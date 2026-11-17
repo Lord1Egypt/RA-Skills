@@ -1,45 +1,58 @@
-## Description: <br>
-爬取抖音搜索结果和热榜数据，使用 Playwright 自动化浏览器操作，支持自然语言搜索、关键词搜索、获取热榜和提取视频信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Douyin search results and trending-search data with Playwright browser automation, natural-language keyword extraction, and JSON or CSV export.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to search Douyin by natural-language or keyword prompts, retrieve hot-list entries, and export public video metadata for analysis or workflow handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation that visits Douyin may trigger anti-bot checks, CAPTCHA, platform-rate limits, or IP blocking. <br>
-Mitigation: Use the skill only for explicit Douyin search or hot-list requests, keep result limits modest, add delays between requests, and stop when anti-bot controls appear. <br>
-Risk: Using a logged-in personal account during scraping could expose the account to platform risk controls. <br>
-Mitigation: Run the skill without logging into personal Douyin accounts. <br>
-Risk: Rendered-page extraction may return incomplete or stale results if Douyin changes its page structure or blocks the request. <br>
-Mitigation: Treat returned metadata as best-effort public web data and verify important results against Douyin before relying on them. <br>
+## Use Case:
 
+External users, developers, and content analysts use this skill to search Douyin by keyword or natural-language request, retrieve hot-list entries, and export structured video metadata for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/douyin-search-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
-- [Douyin web search](https://www.douyin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, CSV, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scraper results can be emitted as JSON or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result fields include title, description, author, counts, URL, tags, and publish time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Browser automation against Douyin may run with weakened browser isolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated, non-root environment and remove sandbox-disabling launch flags where possible.
+
+Risk: Mutable dependency and browser downloads can change the runtime behavior after installation.
+
+Mitigation: Pin Playwright and browser versions, prefer trusted download sources, and verify any third-party mirrors before use.
+
+Risk: Automated scraping can trigger captcha, rate limits, IP restrictions, or platform-rule issues.
+
+Mitigation: Confirm each scraping request, keep limits and request frequency low, avoid logging into personal accounts, and follow Douyin platform rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-search-v2)
+- [Playwright documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Console text with optional JSON or CSV result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output may include titles, descriptions, authors, engagement counts, URLs, tags, and publish dates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

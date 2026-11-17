@@ -1,0 +1,11 @@
+interface:
+  display_name: "Cospark"
+  short_description: "Create end-to-end AI video ads from chat"
+  default_prompt: "Use $cospark to create a UGC ad from my reference images and script."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cospark"
+      description: "Cospark ad research, media generation, inspection, voiceover, and project tools"
+      transport: "streamable_http"
+      url: "https://api.cospark.so/mcp"

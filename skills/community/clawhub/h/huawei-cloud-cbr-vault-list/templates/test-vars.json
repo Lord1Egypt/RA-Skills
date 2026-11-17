@@ -1,0 +1,89 @@
+{
+  "skill_name": "huawei-cloud-cbr-vault-list",
+  "region": "cn-north-4",
+  "vault_id": "8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "List CBR vaults via KooCLI (read-only, limit 1)",
+      "command": "hcloud CBR ListVault --cli-region=cn-north-4 --limit=1 --offset=0",
+      "expected": "JSON with a vaults list (name/id/billing.status/billing.size/billing.charging_mode) and count",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "Vault name list (script, names mode)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --names-only",
+      "expected": "Header + one '- <name>  (id: <id>, charging_mode: <mode>)' line per vault, or a friendly empty message",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Vault list as JSON (script)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --json",
+      "expected": "JSON array of vault objects",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Default full-field table output (script)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4",
+      "expected": "Aligned table with name/id/status/size/used/allocated/charging_mode/object_type/protect_type columns",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Status filter (server-side + client-side)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --status available --names-only",
+      "expected": "Only vaults whose status is 'available'",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "Object-type filter (KooCLI native --object_type)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --object-type server --names-only",
+      "expected": "Only vaults whose object_type is 'server' (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "Protection-type filter (KooCLI native --protect_type)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --protect-type backup --names-only",
+      "expected": "Only vaults whose protect_type is 'backup' (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "Vault ID filter (KooCLI native --id.1)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --vault-id 8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d --json",
+      "expected": "Only the vault with the given ID (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-09",
+      "name": "Enterprise project filter (KooCLI native --enterprise_project_id)",
+      "command": "python3 scripts/list_cbr_vaults.py --region cn-north-4 --enterprise-project-id 0 --json",
+      "expected": "Only vaults in the given enterprise project (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-10",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_cbr_vaults.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "只读操作（CBR ListVault），无资源创建/修改/删除风险。CLI 路径使用 hcloud CBR ListVault（单数；ListVaults 不被支持）；SDK 回退使用 huaweicloudsdkcbr v1 CbrClient.list_vault。名称/状态/对象类型/保护类型/企业项目/存储库 ID 过滤为 ListVault 原生查询参数（KooCLI 下划线形态 --object_type/--protect_type/--enterprise_project_id；vault ID 用数组形态 --id.1=），脚本同时做客户端复核过滤。vault_id 为示例值，可替换为真实存储库 ID。读取成功需要账号具备 cbr:vaults:list 权限。"
+}

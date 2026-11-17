@@ -1,48 +1,65 @@
-## Description: <br>
-Fetches YouTube transcripts for summarization and content extraction, and provides SkillBoss API examples for media generation, chat, search, document parsing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pub Youtube gives agents YouTube transcript retrieval guidance and broad SkillBoss API examples for chat, media generation, speech, search, document processing, email, and SMS.
 
-## Publisher: <br>
-[AbelTennyson](https://clawhub.ai/user/AbelTennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agent users can use this skill to fetch YouTube transcript content and to draft SkillBoss API calls for chat, media generation, search, document parsing, email, SMS, and related model tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad SkillBoss API access beyond YouTube transcript tasks, including paid model use and externally visible actions. <br>
-Mitigation: Use a restricted or spending-limited API key when available, and require explicit confirmation before paid model calls or actions outside transcript retrieval. <br>
-Risk: Email, SMS, scraping, document upload, audio upload, and media generation examples may send data to external services or contact third parties. <br>
-Mitigation: Review destinations and inputs before execution, avoid sensitive data unless approved, and require confirmation before email, SMS, upload, scraping, or generation actions. <br>
+## Use Case:
 
+External developers and agent operators use this skill to fetch YouTube transcript content and call SkillBoss models for chat, media, search, scraping, document parsing, email, and SMS tasks. Review it as a broad third-party API gateway, not only as a YouTube transcript helper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AbelTennyson/youtube-watchers) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [Chat Models](chat-models.md) <br>
-- [Search and Scraping Models](search-models.md) <br>
-- [Tool Models](tools-models.md) <br>
-- [Audio Models](audio-models.md) <br>
-- [Image Models](image-models.md) <br>
-- [Video Models](video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for live API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The package is labeled as a YouTube transcript helper but documents broad SkillBoss API capabilities including model calls, search, scraping, email, SMS, and media generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when broad SkillBoss API access is intended, and review requested actions as external API calls rather than transcript-only operations.
+
+Risk: Prompts, documents, audio, image URLs, email addresses, and phone numbers may be sent to third-party services through SkillBoss API calls.
+
+Mitigation: Avoid sensitive inputs unless the deployment has appropriate data handling controls and user consent for third-party processing.
+
+Risk: Email and SMS actions can contact external recipients.
+
+Mitigation: Require explicit user approval and verify recipients before allowing communication actions.
+
+## Reference(s):
+
+- [Pub Youtube on ClawHub](https://clawhub.ai/abeltennyson/skills/youtube-watchers)
+- [SkillBoss API](https://api.heybossai.com/v1)
+- [SkillBoss](https://www.skillboss.co)
+- [Audio Models](artifact/audio-models.md)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Search & Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+- [Video Models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated SkillBoss API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

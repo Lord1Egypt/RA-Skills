@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7br8gqsj0qna82nxt8waw4nh83kst6",
+  "name": "Autonomous Research Loop",
   "slug": "autonomous-research-loop",
   "version": "1.0.0",
-  "publishedAt": 1775095017063
+  "status": "active",
+  "created": "2026-04-02T09:00:00+08:00",
+  "files": {
+    "SKILL.md": "技能说明",
+    "research_pool.json": "主题池配置",
+    "research_loop.md": "架构说明"
+  },
+  "cron_job": {
+    "id": "274198b3-ca0c-456c-b55f-d94ce0049121",
+    "name": "🦞 自主研究无限循环",
+    "interval_minutes": 5,
+    "next_run": "2026-04-02T10:00:00+08:00"
+  },
+  "stats": {
+    "total_completed": 30,
+    "started_at": "2026-04-02T09:00:00+08:00"
+  }
 }

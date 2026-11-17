@@ -133,7 +133,7 @@ H3: [Feature]: Why It Matters for [Use Case or Value]
 H4: [Variant A] vs [Variant B]: Key Differences for Collectors
 ```
 
-**Examples for JBV Foto listings**:
+**Examples for Brand-Example listings**:
 ```
 H1: Leica M6 TTL 0.72 Chrome (Type 10434) — 2000 Production, User-Grade with Light Brassing
 H2: What Collectors Look for in an M6 TTL: Authenticity Checklist

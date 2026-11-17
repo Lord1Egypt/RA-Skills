@@ -1,0 +1,13 @@
+# Reusable research principles
+
+- **Treat listed prices as references, not transaction evidence.** Listings can be stale, conditional, negotiated, bundled, regional, or based on different units. Record the date, scope, billing basis, and source; compare like with like where possible.
+- **Verify what an offer includes.** Marketing language is not proof of delivery. Prefer current documentation, terms, observed workflows, and multiple independent sources. Record uncertainty and distinguish an absent attribute from one that could not be verified.
+- **Do not extrapolate silently.** Models describe the observed data and assumptions. Report coverage, uncertainty, sensitivity, and limits; avoid interpreting predictions outside the observed range as facts.
+- **Association is not causation.** A price premium that co-occurs with an attribute does not show that the attribute caused the premium. Control for confounding where possible and describe the result as associational unless the research design supports causal inference.
+- **Separate direct value from enabling conditions.** Some attributes create an outcome directly; others make it possible or reduce friction. Model dependencies and avoid double-counting the same outcome across drivers.
+- **Make behavior explicit.** Value estimates may depend on adoption, use, action, realization, substitution, and capture assumptions. State each assumption, source it where possible, and test a plausible range.
+- **Simulated respondents are exploratory.** They can help surface hypotheses and improve question design, but their stated preferences are not representative demand or actual willingness to pay. Calibrate against relevant human research when available and validate material claims with real buyers or observed behavior.
+- **Include the full cost to serve.** Consider variable delivery, labor, onboarding, support, fulfilment, returns, payment or channel costs, and the allocation of fixed costs where relevant. Separate measured costs from estimates and unknowns.
+- **Test the commercial mechanism.** Billing unit, period, thresholds, minimums, overages, scope, renewal, cancellation, and package fences can change buyer response and delivery economics. Include the terms that matter to the decision.
+- **Show sensitivity, not just a point estimate.** Identify which assumptions move the result, use defensible ranges, and report scenarios or intervals. A precise-looking output does not make uncertain inputs precise.
+- **Validate pricing hypotheses with real customers.** Use research or market tests appropriate to the decision, define decision rules before seeing results, and revisit assumptions when behavior differs from stated preference.

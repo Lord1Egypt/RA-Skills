@@ -1,45 +1,62 @@
-## Description: <br>
-Comprehensive Open Build Service (OBS) management with API support for projects, packages, repositories, builds, submit requests, files, users, and search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Open Build Service (OBS) management with API support for projects, packages, repositories, builds, submit requests, files, users, and search.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and release engineers use this skill to manage Open Build Service packaging workflows, including projects, packages, repositories, builds, submit requests, file operations, users, and search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful OBS credentials and may expose tokens through shell startup files, configuration files, logs, or support transcripts. <br>
-Mitigation: Use a dedicated least-privilege OBS token, keep oscrc permissions restricted, avoid shell startup files for secrets, rotate tokens regularly, and do not paste full oscrc or OBS_* output into chats or logs. <br>
-Risk: The skill can guide destructive or high-impact OBS actions such as delete, upload, rebuild, permission changes, and submit request accept, reject, or revoke. <br>
-Mitigation: Manually review and approve each high-impact OBS command, prefer a test or non-production OBS namespace first, and verify target project, package, repository, architecture, and request IDs before execution. <br>
+## Use Case:
 
+Developers and release engineers use this skill to manage Open Build Service projects, packages, files, builds, submit requests, and related search or user lookup workflows from an agent-assisted command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weidongkl/obs) <br>
-- [OBS API Docs](https://api.opensuse.org/apidocs/index) <br>
-- [OBS Official Docs](https://openbuildservice.org/help/) <br>
-- [osc Command Reference](https://openbuildservice.org/help/manuals/obs-user-guide/cha.obs.osc.html) <br>
-- [openSUSE Packaging Guide](https://en.opensuse.org/openSUSE:Packaging_guidelines) <br>
-- [OBS API helper library](references/obs-lib.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash, INI, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide credential setup and OBS API operations that affect projects, packages, builds, files, permissions, and submit requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill uses OBS credentials for remote API calls that can alter projects and packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege OBS token, store credentials outside committed files, rotate tokens regularly, and avoid persisting OBS_TOKEN in shell startup files when possible.
+
+Risk: OBS operations can delete projects, delete packages, upload files, trigger rebuilds, or accept, reject, and revoke submit requests.
+
+Mitigation: Test against a sandbox project first and review every target project, package, file, build, and request ID before executing state-changing commands.
+
+Risk: The authoritative security review marks this release as suspicious because it handles credentials and remote destructive actions with unsafe shell implementation and limited warnings.
+
+Mitigation: Review the generated shell commands before running them, avoid untrusted parameter values, and restrict execution to a controlled shell environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidongkl/skills/obs)
+- [OBS API Docs](https://api.opensuse.org/apidocs/index)
+- [OBS Official Docs](https://openbuildservice.org/help/)
+- [osc Command Reference](https://openbuildservice.org/help/manuals/obs-user-guide/cha.obs.osc.html)
+- [openSUSE Packaging Guide](https://en.opensuse.org/openSUSE:Packaging_guidelines)
+- [OBS API library](references/obs-lib.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that call remote OBS APIs and modify projects, packages, files, builds, or submit requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

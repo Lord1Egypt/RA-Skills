@@ -1,53 +1,58 @@
-## Description: <br>
-Create, optimize, and scale Apple Search Ads campaigns with API automation, attribution integration, and bid strategy recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans, launches, and optimizes Apple Search Ads campaigns for iOS apps, including bids, keywords, budgets, CPA, attribution, API automation, reporting, troubleshooting, and scaling strategy.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External developers and growth teams use this skill to plan, automate, report on, and optimize Apple Search Ads campaigns for iOS apps. It supports campaign management, attribution integration, bid strategy, and performance analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to a real Apple Search Ads account, including campaign, keyword, bid, budget, and status changes. <br>
-Mitigation: Require explicit human approval before any mutation to live campaigns or account configuration. <br>
-Risk: The skill depends on Apple API credentials and private key material. <br>
-Mitigation: Use least-privilege Apple credentials, keep private keys in a protected file or secret manager, and avoid storing secrets in shell startup files or logs. <br>
-Risk: The skill can persist business context and reports under ~/apple-search-ads/. <br>
-Mitigation: Review and clear local memory and generated reports as needed, and protect files that contain campaign or performance data. <br>
-Risk: Attribution workflows may involve advertising and attribution data. <br>
-Mitigation: Do not enable IDFA or log attribution payloads unless the app has the required consent, disclosure, and privacy controls. <br>
+## Use Case:
 
+External developers, marketers, and growth teams use this skill to plan and operate paid iOS user acquisition through Apple Search Ads, including campaign structure, keyword workflows, attribution setup, reporting, and API-assisted campaign changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/apple-search-ads) <br>
-- [Skill source overview](artifact/SKILL.md) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [API reference](artifact/api-reference.md) <br>
-- [iOS integration guide](artifact/ios-integration.md) <br>
-- [Scripts and automation](artifact/scripts.md) <br>
-- [Strategy playbook](artifact/strategy.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
-- [Apple Search Ads API certificates settings](https://app.searchads.apple.com/cm/app/settings/apicertificates) <br>
-- [Apple Ads API base endpoint](https://api.searchads.apple.com/api/v5) <br>
-- [Apple AdServices attribution endpoint](https://api-adservices.apple.com/api/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON, Swift, JavaScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign recommendations, API request examples, local memory templates, and shell commands for Apple Search Ads workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Provided mutation scripts can change live Apple Ads spend without enforcing the confirmation gate promised by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated campaign, bid, budget, status, and keyword changes before execution; keep confirmation enabled and treat mutation scripts as unsafe until they add explicit confirmations, JSON-safe payload construction, input validation, and safer defaults such as creating campaigns paused.
+
+Risk: Apple private keys, client secrets, and access tokens may be exposed through local workspaces, shell history, logs, or source control.
+
+Mitigation: Keep credentials in a secure secret store or environment variables, avoid writing secrets to skill memory or reports, and rotate credentials if accidental exposure occurs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/apple-search-ads)
+- [Clawic Skill Page](https://clawic.com/skills/apple-search-ads)
+- [Apple Search Ads Campaign Management API v5](https://api.searchads.apple.com/api/v5)
+- [Apple OAuth Token Endpoint](https://appleid.apple.com/auth/oauth2/token)
+- [Apple AdServices API](https://api-adservices.apple.com/api/v1/)
+- [Apple Search Ads API Certificates](https://app.searchads.apple.com/cm/app/settings/apicertificates)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, API payload examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute Apple Search Ads API calls when the user provides credentials; campaign mutations should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

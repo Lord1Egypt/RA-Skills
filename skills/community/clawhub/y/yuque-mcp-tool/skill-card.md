@@ -1,42 +1,55 @@
-## Description: <br>
-Read Yuque documents in AI clients via MCP, including rendered content, Markdown conversion, and knowledge-base document listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Yuque documents in AI clients via MCP protocol, including rendered content, Markdown conversion, and knowledge base document listings.
 
-## Publisher: <br>
-[andy8663](https://clawhub.ai/user/andy8663) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy8663](https://clawhub.ai/user/andy8663)
 
-## Use Case: <br>
-Developers and AI-client users use this skill to connect Claude Desktop, Cursor, WorkBuddy, or another MCP client to Yuque so an agent can read, convert, and list knowledge-base documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Yuque session cookie, which can grant access to documents reachable by that account. <br>
-Mitigation: Store the session carefully, avoid sharing MCP configuration files, use the least-privileged Yuque account practical, and rotate or remove the session if the configuration may have been exposed. <br>
-Risk: Connected AI agents can read Yuque documents available to the configured session. <br>
-Mitigation: Install only for trusted MCP clients and use an account whose document access is appropriate for the intended workflow. <br>
+## Use Case:
 
+Developers and AI-client users use this skill to let agents read Yuque technical documents, product requirements, meeting notes, and knowledge base trees without manual copy-paste. It also supports converting Yuque documents to Markdown for downstream agent workflows.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/andy8663/yuque-mcp-tool) <br>
-- [ClawHub skill page](https://clawhub.ai/andy8663/yuque-mcp-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/andy8663) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, text, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Yuque document content reachable by the configured session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: A Yuque session cookie can expose account and document access if it is copied into chats, screenshots, repositories, or shared configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat `_yuque_session` and `YUQUE_SESSION` like passwords, keep them out of shared material, prefer a scoped read-only credential if Yuque supports one, and rotate or log out the session if exposure is possible.
+
+Risk: The MCP client runs external code that can read Yuque documents using the provided session credential.
+
+Mitigation: Install only after trusting the package source and MCP client, and review the MCP configuration before enabling the tool.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/andy8663/yuque-mcp-tool)
+- [ClawHub skill page](https://clawhub.ai/andy8663/skills/yuque-mcp-tool)
+- [Yuque documentation platform](https://www.yuque.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration]
+
+**Output Format:** [Rendered document text, Markdown, document listings, and MCP client configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Yuque session cookie for authenticated document access; optional Playwright rendering may be used for JavaScript-rendered pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

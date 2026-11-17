@@ -1,42 +1,61 @@
-## Description: <br>
-【青岛火一五信息科技有限公司】基于 Karpathy LLM Knowledge Base 三层架构（Data Ingest → Compilation → Active Maintenance）的知识捕获与管理技能。将知识点写入 memory/ 目录并同步到公司 Odoo 知识库。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+【青岛火一五信息科技有限公司】基于 Karpathy LLM Knowledge Base 三层架构（Data Ingest → Compilation → Active Maintenance）的知识捕获与管理技能。将知识点写入 memory/ 目录并同步到公司 Odoo 知识库。
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Employees and knowledge-management users use this skill to capture selected conversation, document, or email knowledge into structured local Markdown entries and synchronize appropriate entries into a company Odoo knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist selected user content into local memory and synchronize it to a company Odoo knowledge base. <br>
-Mitigation: Review content before syncing and install only where local memory persistence and Odoo knowledge-base writes are intended. <br>
-Risk: Broad trigger phrases and maintenance instructions could cause unintended creation, merging, updating, or deletion of knowledge entries. <br>
-Mitigation: Require explicit confirmation before creating, merging, updating, syncing, or deleting knowledge entries. <br>
-Risk: Odoo synchronization can expose or modify company knowledge-base content. <br>
-Mitigation: Use a least-privilege Odoo account scoped only to the intended knowledge-base operations. <br>
+## Use Case:
 
+Business, product, technical, and customer-feedback teams use this skill to capture knowledge from conversations, documents, and email into structured Markdown files and sync selected entries to a company Odoo knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-karpathy-kb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown knowledge entries with optional Odoo knowledge-base article content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist selected content under memory/ and may create, merge, update, sync, or delete knowledge entries when connected to Odoo tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Captured conversation, document, email, business, product, or customer-feedback content may be saved under memory/ and synced to Odoo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each write or sync, and disclose the destination before persisting content.
+
+Risk: Broad trigger phrases can cause unintended knowledge capture or synchronization.
+
+Mitigation: Clarify accepted trigger phrases and ask for confirmation when intent is ambiguous.
+
+Risk: Generated HTML for Odoo articles may include unsanitized content.
+
+Mitigation: Sanitize or escape HTML before creating Odoo knowledge-base articles.
+
+Risk: Active maintenance behavior may mark, merge, or delete knowledge that a user still needs.
+
+Mitigation: Limit maintenance deletion or merge actions to user-approved changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-karpathy-kb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown files, Markdown guidance, and HTML content snippets for Odoo knowledge articles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write structured knowledge files under memory/ and prepare Odoo knowledge-base article content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

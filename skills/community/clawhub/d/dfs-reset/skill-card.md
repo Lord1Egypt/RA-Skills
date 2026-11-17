@@ -1,46 +1,58 @@
-## Description: <br>
-Detect DFS radar events and reset Ubiquiti airOS devices to restore configured frequencies, managed by UISP NMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect DFS radar events and reset Ubiquiti airOS devices to restore configured frequencies, managed by UISP NMS.
 
-## Publisher: <br>
-[drodecker](https://clawhub.ai/user/drodecker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drodecker](https://clawhub.ai/user/drodecker)
 
-## Use Case: <br>
-WISP operators and network engineers use this skill to inspect UISP-managed Ubiquiti airOS access points for DFS channel shifts, AP health issues, connected-client signal quality, and operator-approved resets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: reset_device can disrupt service for clients connected to the selected access point. <br>
-Mitigation: Confirm the exact AP identity and expected client disruption with the operator before approving any reset. <br>
-Risk: A reset may be used for non-DFS symptoms without enough diagnosis. <br>
-Mitigation: Check DFS status, AP health, and client impact first, then verify recovery with a follow-up detect_dfs call after the reset. <br>
-Risk: The skill depends on an external MCP server and UISP credentials. <br>
-Mitigation: Install only with a trusted MCP server and least-privilege UISP credentials. <br>
+## Use Case:
 
+WISP network operators and support engineers use this skill to inspect UISP-managed Ubiquiti airOS access points, identify DFS-related frequency shifts, audit client signal quality, and reboot an affected AP only after explicit operator confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drodecker/dfs-reset) <br>
-- [Referenced MCP server project](https://github.com/wispnet/wisp-reset-airos-mcp/) <br>
-- [DFS Detection & Reset Example](examples/dfs_investigation.md) <br>
-- [Device Reset Workflow Example](examples/reboot_workflow.md) <br>
-- [Signal Audit Example](examples/signal_audit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted MCP endpoint, an initialized session, and operator confirmation before reset_device.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A reset can temporarily disconnect clients on the affected access point.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator confirmation, confirm device identity and customer impact before rebooting, and verify recovery with a follow-up DFS check.
+
+Risk: AP, client, and signal audit outputs can expose sensitive operational network data.
+
+Mitigation: Install only with a trusted MCP server and treat generated audits and telemetry summaries as restricted operational information.
+
+Risk: Network-wide sweeps may return partial results when some APs are unreachable.
+
+Mitigation: Report unreachable APs separately and avoid combining broad sweep actions with reset actions in one step.
+
+## Reference(s):
+
+- [DFS Reset Skill Page](https://clawhub.ai/drodecker/skills/dfs-reset)
+- [Source project for the MCP server](https://github.com/wispnet/wisp-reset-airos-mcp/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown operator reports with MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AP frequency comparisons, device health summaries, client signal audits, reset confirmation prompts, and follow-up verification notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

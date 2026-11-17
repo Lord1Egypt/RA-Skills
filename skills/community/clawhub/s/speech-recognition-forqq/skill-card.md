@@ -1,42 +1,58 @@
-## Description: <br>
-Converts QQ voice messages and AMR/SILK audio files to text using pysilk decoding and faster-whisper transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts QQ voice messages and AMR/SILK audio files to text using pysilk decoding and faster-whisper transcription.
 
-## Publisher: <br>
-[yvanboyang](https://clawhub.ai/user/yvanboyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yvanboyang](https://clawhub.ai/user/yvanboyang)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe QQ voice messages and AMR/SILK audio into text as part of speech recognition workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes dependency installation, model download, local file access, and audio transcription steps. <br>
-Mitigation: Review the visible skill page and files before enabling it, confirm that install commands and model sources match expectations, and run it only with audio files intended for transcription. <br>
-Risk: The security evidence reports a clean verdict but notes that a full artifact coherence check was not available to the scanner. <br>
-Mitigation: Validate the artifact contents against the release page and expected behavior before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to add speech-to-text handling for QQ voice messages and AMR/SILK audio files, including dependency setup, model download, and a simple Python transcription call.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yvanboyang/speech-recognition-forqq) <br>
-- [Publisher profile](https://clawhub.ai/user/yvanboyang) <br>
-- [Systran faster-whisper-base model](https://huggingface.co/Systran/faster-whisper-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks; runtime transcription returns text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local audio files, Python dependencies, and a faster-whisper model directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing unpinned packages and downloading the faster-whisper model can introduce dependency, supply-chain, or policy review risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment, pin reviewed package versions, and confirm HuggingFace model downloads are allowed by network and data policies before running commands.
+
+Risk: The skill processes user-provided voice files that may contain sensitive spoken content.
+
+Mitigation: Handle audio files according to the user's data handling requirements and avoid sending protected audio to environments that are not approved for that data.
+
+Risk: The provided setup instructions are partly Chinese-language and environment-specific.
+
+Mitigation: Translate and review the instructions before execution, and adjust paths and environment names to the target system.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yvanboyang/skills/speech-recognition-forqq)
+- [Systran faster-whisper-base Model](https://huggingface.co/Systran/faster-whisper-base)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers local audio decoding, WAV conversion, faster-whisper transcription, dependency installation, and model download requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

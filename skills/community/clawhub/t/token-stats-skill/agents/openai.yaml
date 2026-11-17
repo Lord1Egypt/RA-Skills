@@ -1,0 +1,4 @@
+interface:
+  display_name: "token-stats-skill"
+  short_description: "Private token history for local agents and Trae CN"
+  default_prompt: "Use $token-stats-skill to analyze token history with the pinned CLI, distinguish local usage from Trae CN account data, and preview any requested scheduler changes before applying them."

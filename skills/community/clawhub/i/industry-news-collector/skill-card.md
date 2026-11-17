@@ -1,41 +1,59 @@
-## Description: <br>
-Collects, verifies, and ranks current news for a specified industry, then outputs Chinese summaries sorted by popularity with original source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects, validates, ranks, and summarizes recent news for a requested industry, with Chinese-language summaries and source links.
 
-## Publisher: <br>
-[alpzhang](https://clawhub.ai/user/alpzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alpzhang](https://clawhub.ai/user/alpzhang)
 
-## Use Case: <br>
-External users, researchers, analysts, and industry teams use this skill to gather recent public news for a target industry, filter out adjacent-industry noise, and prioritize stories by heat. It is especially suited to Chinese-language news digests that need source links, coverage counts, and transparent search coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public news pages can be incomplete, paywalled, outdated, or inaccurate. <br>
-Mitigation: Verify important summaries against the original sources before relying on them. <br>
-Risk: The workflow performs multiple web searches and page fetches for each request. <br>
-Mitigation: Use it when current public-news collection is intended and review the final source list for coverage gaps. <br>
+## Use Case:
 
+Employees, external users, and analysts use this skill to gather recent industry news across product, business, research, policy, and market dimensions, then receive a heat-ranked Chinese summary with links.
 
-## Reference(s): <br>
-- [Recommended Industry News Sources](references/sources.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alpzhang/industry-news-collector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown news digest with ranked sections, source links, and collection statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 15-25 deduplicated public-news items sorted by heat, with brief summaries and original links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Search-heavy workflows can consume time and tool quota or return uneven coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a clear industry, region, and time window before running the skill; review the coverage statistics in the final digest.
+
+Risk: The skill favors Chinese-language sources and summaries, which may miss or down-rank non-Chinese coverage.
+
+Mitigation: Ask explicitly for another language, market, or source mix when the target industry is not China-focused.
+
+Risk: Public-web news can be duplicated, stale, paywalled, or sourced from outlets with varying reliability.
+
+Mitigation: Use the skill's cross-source validation, deduplication, HTTPS preference, and source links to review high-impact items before acting on them.
+
+## Reference(s):
+
+- [Recommended Industry News Sources](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/alpzhang/skills/industry-news-collector)
+- [ClawHub publisher profile](https://clawhub.ai/user/alpzhang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown news digest in Chinese with ranked items, short summaries, source links, and collection statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically 15-25 deduplicated news items sorted by heat after at least eight searches across the documented dimensions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

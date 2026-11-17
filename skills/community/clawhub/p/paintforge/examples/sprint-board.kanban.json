@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "diagram_type": "kanban",
+  "meta": {
+    "title": "Sprint Board",
+    "output": "examples/kanban-sprint-board-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "in-flight", "label": "In flight", "focus": ["t-1", "t-2", "t-3"], "note": "Work being actively done." },
+      { "id": "done", "label": "Done", "focus": ["t-6", "t-7"], "note": "Completed this sprint." }
+    ]
+  },
+  "columns": [
+    { "id": "todo", "label": "To Do" },
+    { "id": "doing", "label": "In Progress" },
+    { "id": "review", "label": "Review" },
+    { "id": "done", "label": "Done" }
+  ],
+  "cards": [
+    { "id": "t-1", "label": "Auth flow", "column": "doing", "tag": "P1", "note": "OAuth login" },
+    { "id": "t-2", "label": "API rate limit", "column": "doing", "tag": "P1" },
+    { "id": "t-3", "label": "Search indexing", "column": "review", "tag": "P2" },
+    { "id": "t-4", "label": "Dark mode", "column": "todo", "tag": "P3" },
+    { "id": "t-5", "label": "i18n", "column": "todo", "tag": "P3" },
+    { "id": "t-6", "label": "Onboarding", "column": "done", "tag": "P2" },
+    { "id": "t-7", "label": "Export CSV", "column": "done", "tag": "P2" }
+  ],
+  "notes": [
+    {
+      "dot": "emerald",
+      "title": "Sprint status",
+      "items": [
+        "Two tasks in flight, one in review",
+        "Two tasks landed in done this sprint",
+        "Two tasks still queued in the backlog"
+      ]
+    }
+  ]
+}

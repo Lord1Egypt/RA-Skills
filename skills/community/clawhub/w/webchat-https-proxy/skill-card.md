@@ -1,43 +1,58 @@
-## Description: <br>
-HTTPS/WSS reverse proxy for OpenClaw WebChat Control UI that serves the Control UI over HTTPS, manages TLS certificates, proxies WebSocket connections to the gateway, and forwards /transcribe requests to the local faster-whisper endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTPS/WSS reverse proxy for the OpenClaw WebChat Control UI that serves the UI over HTTPS, proxies gateway WebSocket connections, forwards local transcription requests, manages self-signed TLS certificates, and runs as a user systemd service.
 
-## Publisher: <br>
-[neldar](https://clawhub.ai/user/neldar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neldar](https://clawhub.ai/user/neldar)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy and manage a local HTTPS/WSS proxy for OpenClaw WebChat Control UI, including TLS setup, gateway origin configuration, WebSocket proxying, and transcription request forwarding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an always-on user-level HTTPS/WSS proxy service for OpenClaw WebChat. <br>
-Mitigation: Install it only when a persistent local proxy is needed, and remove or disable the user service with uninstall.sh or systemctl --user disable --now openclaw-voice-https.service when it is no longer required. <br>
-Risk: LAN exposure can make the proxy reachable beyond localhost if the bind host is changed. <br>
-Mitigation: Keep the default localhost binding unless trusted LAN access is intentional, and review VOICE_HOST and VOICE_ALLOWED_ORIGIN before redeploying. <br>
-Risk: Gateway tokens may appear in URLs, logs, screenshots, or shell history during setup and troubleshooting. <br>
-Mitigation: Avoid sharing URLs, logs, screenshots, or command history that contain gateway tokens. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to deploy and manage a local HTTPS/WSS proxy for the WebChat Control UI, gateway WebSocket traffic, and local transcription requests.
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/neldar/webchat-https-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-level systemd service setup, local proxy runtime files, TLS certificate paths, status checks, and uninstall guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Weak authentication can expose the local transcription service when LAN access is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep VOICE_HOST bound to 127.0.0.1 unless LAN exposure is required and understood; fix the authentication weakness before using the proxy on a shared network.
+
+Risk: The skill creates a persistent user systemd service and changes OpenClaw allowed origins.
+
+Mitigation: Review the deployment changes before installation and use the bundled uninstall script to remove the service, runtime file, certificates, and allowed origin when no longer needed.
+
+Risk: Gateway tokens may be exposed if placed in URLs or shell commands that can be logged.
+
+Mitigation: Avoid passing gateway tokens in URLs or command histories; prefer safer token handling appropriate for the deployment environment.
+
+## Reference(s):
+
+- [WebChat HTTPS Proxy on ClawHub](https://clawhub.ai/neldar/skills/webchat-https-proxy)
+- [Troubleshooting - HTTPS Proxy](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment, status, uninstall, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

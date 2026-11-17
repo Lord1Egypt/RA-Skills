@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7181r53fac58czdw6sb30c5182yk1h",
-  "slug": "miknas-ai-business-hierarchies",
+  "name": "ai-business-hierarchies",
   "version": "1.0.0",
-  "publishedAt": 1773549284269
+  "description": "Build and operate autonomous AI businesses using hierarchical agent systems with CEO, Managers, Supervisors, and Workers that run 24/7 with daily tracking, auto-optimization, and self-healing capabilities",
+  "author": "miknasbh-stack",
+  "tags": ["business", "automation", "agents", "hierarchy", "management", "scaling", "autonomous", "workflows"],
+  "category": "Business Automation",
+  "license": "MIT",
+  "clawhub": {
+    "published": false,
+    "visibility": "public"
+  },
+  "features": [
+    "5-layer agent hierarchy",
+    "Folder-based company structures",
+    "Daily reporting and tracking",
+    "Auto-optimization workflows",
+    "Self-healing capabilities",
+    "Department-specific templates",
+    "Cron job automation",
+    "Scalable from solo to empire"
+  ],
+  "dependencies": {
+    "openclaw": ">=1.0.0"
+  }
 }

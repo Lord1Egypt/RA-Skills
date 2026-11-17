@@ -1,0 +1,13 @@
+{
+  "$schema": "https://gofastmcp.com/public/schemas/fastmcp.json/v1.json",
+  "source": {
+    "type": "filesystem",
+    "path": "src/agentsafe/server.py",
+    "entrypoint": "create_app"
+  },
+  "environment": {
+    "project": ".",
+    "python": "3.12",
+    "dependencies": []
+  }
+}

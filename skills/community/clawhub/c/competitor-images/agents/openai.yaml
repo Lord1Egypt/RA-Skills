@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品图片差距"
+  short_description: "对比商品页图片信息与评论反馈的表达缺口"
+  default_prompt: "使用 $amazon-competitor-image-gap 对比主 ASIN 与竞品商品页图片信息，整理表达差距。"

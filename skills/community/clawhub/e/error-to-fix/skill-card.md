@@ -1,40 +1,61 @@
-## Description: <br>
-Explains programming errors, stack traces, and bug reports in plain language with root-cause analysis, targeted fixes, and prevention guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains pasted programming errors, stack traces, or bug descriptions in plain language with likely root cause, targeted fixes, and prevention guidance.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand programming errors, identify likely root causes, and get minimal, targeted fixes without rewriting unrelated code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, tokens, or sensitive system details in logs and stack traces. <br>
-Mitigation: Review and redact sensitive values before submitting error text for analysis. <br>
+## Use Case:
 
+Developers and engineers use this skill when they paste an error message, stack trace, exception, or bug description and need a concise explanation, root-cause analysis, minimal fix, and prevention advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/error-to-fix) <br>
-- [Source listed in skill metadata](https://github.com/MiniMax-AI/skills) <br>
-- [Error to Fix references index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides explanatory guidance and proposed fixes; it does not execute code or modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog, released 2026-05-18) <br>
+Risk: Suggested install commands, shell commands, or code edits may be inappropriate for the user's local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands and changes before running them, and apply only the smallest fix relevant to the reported error.
+
+Risk: Root-cause guidance may be incomplete when the submitted error lacks surrounding code, version details, or environment context.
+
+Mitigation: Ask for the relevant snippet, dependency versions, or runtime context before giving a high-confidence diagnosis.
+
+Risk: Stale names in tests and reference documentation may confuse maintainers during review.
+
+Mitigation: Package maintainers should reconcile stale skill names in tests and reference docs before relying on them for release checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/error-to-fix)
+- [Publisher profile](https://clawhub.ai/user/wangjipeng977)
+- [Metadata source link](https://github.com/MiniMax-AI/skills)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown explanation with optional code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; suggested commands and dependency changes should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and changelog, released 2026-05-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

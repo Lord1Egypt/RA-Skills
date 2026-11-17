@@ -1,45 +1,59 @@
-## Description: <br>
-调用本地安装的 vRain 工具，将 Markdown 或纯文本中文古籍转换为古籍刻本风格的直排 PDF 电子书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent in using a local vRain installation to convert Markdown or plain-text Chinese classical texts into vertically typeset PDF ebooks in a traditional printed-book style.
 
-## Publisher: <br>
-[shanleiguang](https://clawhub.ai/user/shanleiguang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanleiguang](https://clawhub.ai/user/shanleiguang)
 
-## Use Case: <br>
-Developers, editors, and digital humanities users use this skill to prepare Chinese classic texts as vertically typeset PDF ebooks with traditional book-page styling. It provides local command guidance for installing vRain, configuring book and canvas assets, testing layout, and generating final PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a separately installed local vRain repository and Perl modules. <br>
-Mitigation: Install only from trusted sources and prefer non-sudo dependency installation when possible. <br>
-Risk: Large batch runs can overwrite existing generated PDFs or produce many local files. <br>
-Mitigation: Use the documented test mode before large runs, confirm output paths, and back up existing generated PDFs before rerunning commands. <br>
+## Use Case:
 
+External users and developers use this skill to prepare Chinese classical-text projects, configure vRain book assets, and run commands that generate vertically arranged classical-style PDFs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shanleiguang/vrain) <br>
-- [vRain GitHub repository](https://github.com/shanleiguang/vRain) <br>
-- [vYinn GitHub repository](https://github.com/shanleiguang/vYinn) <br>
-- [vQi GitHub repository](https://github.com/shanleiguang/vQi) <br>
-- [vModou GitHub repository](https://github.com/shanleiguang/vModou) <br>
-- [vBorder GitHub repository](https://github.com/shanleiguang/vBorder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and configuration code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workflow guidance for creating PDF files with vRain; it does not include the vRain code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The workflow asks users to install and run unpinned third-party vRain and Perl dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated unprivileged environment, and pin or verify the vRain checkout and Perl dependency versions where possible.
+
+Risk: The documented Perl dependency path includes an optional privileged `sudo cpan` install.
+
+Mitigation: Prefer an unprivileged `cpanm` installation path and avoid privileged package installation unless a trusted administrator has reviewed it.
+
+Risk: Rerunning generation commands may replace previously generated PDFs or images.
+
+Mitigation: Confirm output paths before reruns and use the skill's test-page workflow before batch generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shanleiguang/skills/vrain)
+- [ClawHub publisher profile](https://clawhub.ai/user/shanleiguang)
+- [vRain upstream repository](https://github.com/shanleiguang/vRain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent produces instructions and commands; generated PDFs and images are produced by the user's local vRain tools.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

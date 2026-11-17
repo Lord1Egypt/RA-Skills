@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "ingest-paper",
+  "name": "ingest_paper",
   "version": "2.1.1",
-  "publishedAt": 1781363766501
+  "description": "paper-kb 资料入库（全类型，v2.1）：六类资料统一入库，wikilink 只写文件名（Obsidian 跳转/图谱友好），飞书表格字段与 init_user 对齐",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "current_user_open_id"
+    ],
+    "feishu_tools": [
+      "feishu_bitable_app_table_record"
+    ],
+    "skills": [
+      "init_user"
+    ]
+  },
+  "part_of": "paper-kb",
+  "related_skills": [
+    "init_user",
+    "query_papers"
+  ]
 }

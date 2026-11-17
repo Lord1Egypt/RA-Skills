@@ -1,0 +1,66 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_department_update",
+    "description": "Update an existing department in the company. Must specify the department ID and list the fields to be updated in updateFieldList. Only fields listed in updateFieldList will be modified.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Department ID (required)."
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "List of field names to be updated in this operation. Only fields listed here will be modified; other fields will remain unchanged.",
+          "items": {
+            "type": "string",
+            "enum": ["oid", "name", "shortName", "parentId", "remark", "rowNumber", "ownerIdList", "isDisable"]
+          }
+        },
+        "oid": {
+          "type": "string",
+          "description": "Department external identifier. Must be unique within the company if provided."
+        },
+        "name": {
+          "type": "string",
+          "description": "Department name. Must be unique within the same parent department.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Department short name or abbreviation.",
+          "maxLength": 50
+        },
+        "parentId": {
+          "type": "string",
+          "description": "Parent department ID. If empty, the department becomes a top-level department."
+        },
+        "remark": {
+          "type": "string",
+          "description": "Department description or remarks.",
+          "maxLength": 500
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number. Lower numbers appear first."
+        },
+        "ownerIdList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "User ID of department owner."
+          },
+          "description": "List of user IDs who are designated as department owners."
+        },
+        "isDisable": {
+          "type": "boolean",
+          "description": "Whether to disable the department. Disabled departments are hidden in some contexts."
+        }
+      },
+      "required": ["id", "updateFieldList"],
+      "additionalProperties": false
+    }
+  }
+}

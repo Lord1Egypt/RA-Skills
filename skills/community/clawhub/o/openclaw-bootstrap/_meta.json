@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn78dedcyhehw9ss5k74ev44jn82frp6",
-  "slug": "openclaw-bootstrap",
+  "name": "openclaw-bootstrap",
   "version": "1.0.0",
-  "publishedAt": 1772852459807
+  "description": "One-command bootstrap for new OpenClaw installations with self-evolution system",
+  "author": "community",
+  "license": "MIT",
+  "keywords": ["bootstrap", "setup", "self-improvement", "memory", "automation"]
 }

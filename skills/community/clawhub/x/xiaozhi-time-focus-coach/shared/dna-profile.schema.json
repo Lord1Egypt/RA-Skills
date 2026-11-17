@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/dna-profile.schema.json",
+  "title": "LearningDNAProfile",
+  "x-distributed-to": "xiaozhi-time-focus-coach",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-time-focus-coach 分发，已按其 SKILL.md 裁剪：只保留正文在非否定语境下提到的字段（共 1 项，删去 12 个顶层字段）。完整定义在归属技能处。读/写权限与授权位以 SKILL.md 为准。",
+    "paths": [
+      "extensions.focus"
+    ]
+  },
+  "description": "学习DNA 档案结构——随 xiaozhi-time-focus-coach 分发的裁剪副本，只含 extensions.focus；完整定义见归属技能 xiaozhi-learning-dna 的 dna-profile.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "通用扩展档案：notes 由康奈尔笔记写入，focus 由时间与专注力教练写入，plans 由 30 天学习计划制定师写入，projects 由跨学科侦探周写入，understanding 由费曼学习法写入。各分支只由对应 SKILL 写入，写入一律经 handover 的 subject_profile_writeback",
+      "properties": {
+        "focus": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "goldenSlots": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 30,
+                "description": "粗粒度时段，如‘晚饭后 1 小时’"
+              }
+            },
+            "commonDistractions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 30
+              }
+            },
+            "avgFocusMinutes": {
+              "type": "integer",
+              "minimum": 5,
+              "maximum": 90
+            },
+            "confidenceLevel": {
+              "$ref": "#/$defs/confidenceLevel"
+            },
+            "lastUpdated": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [],
+  "$defs": {
+    "confidenceLevel": {
+      "description": "结论置信度标签（shared/vocab.md §7）：防止数据不足时给出误导性结论。样本不足（insufficient_sample）只作输出标签，不可写入本档案，故不在枚举内。凡是基于'连续N次'得出的AI结论必须附带此标签。data_sufficient=🟢数据充分（≥3 次独立观察且方向一致）；preliminary_trend=🟡初步趋势（2 次观察或方向基本一致）；insufficient_sample=🔴样本不足（单次观察或互相矛盾，不写入长期档案）",
+      "type": "string",
+      "enum": [
+        "data_sufficient",
+        "preliminary_trend"
+      ]
+    }
+  }
+}

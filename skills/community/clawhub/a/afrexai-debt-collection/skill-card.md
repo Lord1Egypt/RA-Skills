@@ -1,42 +1,54 @@
-## Description: <br>
-Generates debt recovery strategies, collection letter sequences, payment plan frameworks, aging analyses, skip tracing checklists, statute references, and write-off guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates debt collection and recovery templates for collection letter sequences, payment plans, aging analysis, skip tracing checklists, statute references, and write-off decisions.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Accounts receivable teams, small business owners, finance teams, and fractional CFOs use this skill to draft collection communications, structure payment plans, prioritize overdue accounts, and evaluate write-off or escalation options. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Collection letters, scripts, statute references, or escalation workflows can be legally incorrect for a specific debt type, jurisdiction, or timing. <br>
-Mitigation: Have a qualified legal or compliance reviewer verify the wording and process before contacting debtors or taking action. <br>
-Risk: Debt collection communications can violate consumer-rights, privacy, or authority requirements if used without case-specific review. <br>
-Mitigation: Confirm debtor status, contact permissions, privacy obligations, and the collector's authority before using generated communications. <br>
-Risk: The playbook is text-only and does not validate account facts, balances, dates, or state-specific legal changes. <br>
-Mitigation: Check all facts against current records and applicable law before relying on any recovery, write-off, or statute-of-limitations guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-debt-collection) <br>
-- [Publisher Profile](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+B2B accounts receivable teams, small business owners, finance teams, and fractional CFOs use this skill to draft debtor communications and analyze collection priorities. Outputs should be reviewed for current jurisdiction-specific legal and compliance requirements before use.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown playbook content with letter templates, tables, checklists, formulas, and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are business and legal-compliance guidance; review all wording, jurisdictional references, and debtor-specific recommendations before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Collection letters, late-fee language, credit-reporting statements, and statute-of-limitations references may be inaccurate or noncompliant for a specific jurisdiction or debtor context.
+
+Mitigation: Treat generated material as templates and require current jurisdiction-specific legal or compliance review before use.
+
+Risk: Promotional links in the artifact are outside the core skill function.
+
+Mitigation: Review external links separately before relying on or purchasing related services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-debt-collection)
+- [README](artifact/README.md)
+- [Skill Source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted drafting and analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no code execution, persistence, credential use, or hidden system behavior was identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-02-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

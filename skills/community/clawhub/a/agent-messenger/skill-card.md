@@ -1,42 +1,59 @@
-## Description: <br>
-Send batch messages to OpenClaw agents across Telegram, Discord, or other channels with delivery tracking and retry logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send batch messages with delivery tracking to OpenClaw agents via Telegram or other channels, supporting scheduling, templating, and fallback routing.
 
-## Publisher: <br>
-[cheben77](https://clawhub.ai/user/cheben77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheben77](https://clawhub.ai/user/cheben77)
 
-## Use Case: <br>
-Developers and operators use this skill to broadcast messages, health checks, and workflow triggers to OpenClaw agents through Telegram-oriented helper scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses stored Telegram bot credentials and a hardcoded Telegram user ID by default. <br>
-Mitigation: Change or remove the hardcoded user ID, verify bot tokens in /data/.openclaw/openclaw.json, and avoid sending secrets or sensitive operational details. <br>
-Risk: The cron installer can create recurring outbound heartbeat messages. <br>
-Mitigation: Run the cron installer only when recurring messages are intended, and confirm the schedule, logs, and removal steps before deployment. <br>
-Risk: Outbound agent messages may reach unintended recipients if agent bindings or channel accounts are misconfigured. <br>
-Mitigation: Review recipient agent IDs, Telegram account bindings, and message content before sending batch messages. <br>
+## Use Case:
 
+Developers and operators maintaining OpenClaw agent deployments use this skill to broadcast messages, trigger agent workflows, schedule heartbeat checks, and review delivery status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cheben77/agent-messenger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with bash and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can send outbound Telegram messages and can install a recurring heartbeat cron job when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Messages are sent through local Telegram bot tokens to a built-in Telegram user ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or remove the built-in recipient ID, require an explicit approved recipient, and run the skill only with Telegram tokens you control.
+
+Risk: The heartbeat installer can create recurring Telegram sends through cron and write logs under /tmp.
+
+Mitigation: Review the schedule, log path, and removal process before installing the cron heartbeat.
+
+Risk: Message templates or triggered broadcasts could disclose sensitive operational data through Telegram.
+
+Mitigation: Review messages and template variables before dispatch, and do not send secrets or private operational data.
+
+## Reference(s):
+
+- [Agent Messenger ClawHub page](https://clawhub.ai/cheben77/skills/agent-messenger)
+- [cheben77 publisher profile](https://clawhub.ai/user/cheben77)
+- [Telegram Bot API endpoint used by scripts](https://api.telegram.org/bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local scripts that read OpenClaw Telegram bot tokens, send Telegram messages, and optionally install a cron heartbeat.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

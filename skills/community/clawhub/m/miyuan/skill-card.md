@@ -1,39 +1,52 @@
-## Description: <br>
-蜜源社交电商CPS导购工具，以淘宝天猫为核心平台，提供优惠券查找和返利推广服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+蜜源社交电商CPS导购工具，以淘宝天猫为核心平台，提供优惠券查找和返利推广服务。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers and promoters use this skill to ask about 蜜源 coupon discovery, Taobao/Tmall rebate estimates, promotional copy, commission tracking, and team-related rebate information.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on brief mentions of the 蜜源 brand or pinyin name.
+
+Mitigation: Use it when the user is intentionally asking about 蜜源 coupons, rebates, commissions, or related promotional material.
+
+Risk: Coupon availability, rebate percentages, prices, commission status, and withdrawal details can become inaccurate if not checked against current platform data.
+
+Mitigation: Verify transaction-sensitive details with the applicable commerce or rebate platform before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External shoppers and affiliate promoters use this skill to ask an agent for Taobao and Tmall coupon, rebate, promotional copy, order rebate status, withdrawal, and team-summary guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions or workflows may request login, order inspection, referral link generation, commission withdrawal, or other account-impacting actions. <br>
-Mitigation: Confirm the destination service and require explicit approval before any account-impacting action. <br>
+**Output Format:** [Markdown-style rebate query summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/miyuan) <br>
-- [ClawHub publisher profile: fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+**Other Properties Related to Output:** [May include product name, platform, price, coupon details, rebate percentage, estimated rebate amount, promotional copy, share links, order rebate status, and withdrawal-related guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown rebate query summary with product, platform, price, coupon, rebate rate, and estimated rebate fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese shopping rebate copy, sharing guidance, and estimated coupon or rebate amounts.] <br>
+0.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

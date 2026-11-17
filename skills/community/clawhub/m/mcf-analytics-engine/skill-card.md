@@ -1,41 +1,55 @@
-## Description: <br>
-Event tracking, funnel analysis, cohort retention, multi-touch attribution, revenue metrics, and real-time analytics - built for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Event tracking, funnel analysis, cohort retention, multi-touch attribution, revenue metrics, and real-time analytics for AI agents.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect AI agents to paid analytics endpoints for tracking events, analyzing funnels and cohorts, monitoring attribution, and retrieving revenue metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics requests may send sensitive prompts, regulated data, secrets, or direct personal identifiers to an external paid service. <br>
-Mitigation: Avoid sending secrets, raw prompts, regulated data, or direct personal identifiers unless a policy, consent basis, and data handling review are in place. <br>
-Risk: Each endpoint uses x402 payment, so frequent analytics calls can accumulate USDC costs. <br>
-Mitigation: Monitor x402 payment usage and set agent-side limits or approval gates for high-frequency calls. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to paid analytics endpoints for event tracking, funnel and cohort analysis, attribution, revenue metrics, and real-time monitoring.
 
-## Reference(s): <br>
-- [Analytics Engine Gateway](https://gateway.mcfagentic.com) <br>
-- [ClawHub listing](https://clawhub.ai/cameron48/mcf-analytics-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents x402-paid analytics endpoints and request paths for agent integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Tracked event payloads could include secrets, credentials, prompts, regulated personal data, or other sensitive internal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider's privacy and retention terms and avoid sending sensitive payload data unless explicitly approved.
+
+Risk: The skill routes analytics requests through a disclosed external paid gateway.
+
+Mitigation: Install only when the paid gateway and x402 payment flow are acceptable for the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cameron48/skills/mcf-analytics-engine)
+- [Publisher profile](https://clawhub.ai/user/cameron48)
+- [Analytics gateway](https://gateway.mcfagentic.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint paths, request guidance, pricing notes, and analytics workflow recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

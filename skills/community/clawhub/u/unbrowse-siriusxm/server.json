@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.unbrowse-ai/siriusxm",
+  "title": "Unbrowse for Siriusxm (unofficial)",
+  "description": "siriusxm.com as MCP tools: Search SiriusXM. Unofficial.",
+  "version": "1.0.1",
+  "websiteUrl": "https://unbrowse.ai/sites/siriusxm.com",
+  "repository": {
+    "url": "https://github.com/unbrowse-ai/unbrowse",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://unbrowse.ai/mcp/siriusxm.com"
+    }
+  ]
+}

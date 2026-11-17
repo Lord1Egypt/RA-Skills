@@ -1,41 +1,53 @@
-## Description: <br>
-根据财务数据生成精美的ECharts HTML图表页面，支持折线图、饼图、柱状图、K线图等 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据财务数据生成精美的ECharts HTML图表页面，支持折线图、饼图、柱状图、K线图等
 
-## Publisher: <br>
-[novaair026-dev](https://clawhub.ai/user/novaair026-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[novaair026-dev](https://clawhub.ai/user/novaair026-dev)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to turn financial datasets and chart preferences into polished HTML visualizations for trend, composition, comparison, relationship, and candlestick-style financial analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart HTML loads ECharts from a public CDN when opened. <br>
-Mitigation: Avoid highly sensitive financial data unless you review the generated output, use a locally bundled ECharts copy, or open the file in a restricted or offline environment. <br>
-Risk: The skill writes local HTML files from user-provided financial data. <br>
-Mitigation: Review generated files before sharing or opening them in a less trusted environment. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn supplied financial datasets and chart preferences into a styled, responsive HTML chart page. It supports trend, composition, comparison, relationship, and candlestick-style financial visualizations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/novaair026-dev/financial-charts) <br>
-- [Publisher profile](https://clawhub.ai/user/novaair026-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [HTML file with supporting shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated chart pages load ECharts from jsDelivr when opened unless the output is modified to use a local ECharts copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Generated HTML can execute unsafe user-supplied title or data content when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted chart titles and financial datasets until generated HTML and script data are escaped safely.
+
+Risk: Generated chart pages load unverified third-party JavaScript from jsDelivr.
+
+Mitigation: Bundle ECharts locally or use integrity-checked dependencies before deploying generated charts in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/novaair026-dev/skills/financial-charts)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML file plus command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated chart pages load ECharts from jsDelivr when opened.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

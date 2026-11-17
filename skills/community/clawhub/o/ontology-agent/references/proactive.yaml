@@ -1,0 +1,75 @@
+# proactive.yaml — Proactive behavior rules (added in Phase 10; purely additive)
+# Ontology Agent · Autonomous monitoring and proactive behavior layer
+# Bilingual note: the Chinese counterpart of this file is `proactive.zh.yaml`.
+# Design principle: describe "how proactive logic flows", reusing the PII / compliance red lines of
+# decision.yaml and the Layer-D delegation boundaries of the persona; it does not modify
+# decision/roles/semantic/logic, nor the 24-department template and the action library.
+# NOTE: the authorization keys below (`key_confirmation` / `full_delegation`) correspond to the values
+# of owner.authorization in instance.yaml; keep them consistent with the language edition in use.
+meta:
+  layer: proactive
+  version: 0.5.0
+  description: Proactive behavior trigger pipeline + four-tier grading + authorization gate (reuses decision.yaml guardrails)
+
+# Trigger pipeline: signal → relevance → value/urgency → authorization check → decision → audit trail
+pipeline:
+  - step: relevance
+    desc: Whether the signal is relevant to this enterprise and within its own domain; if not → discard or L0
+  - step: value_urgency
+    desc: Score the value and urgency to the owner (high / medium / low)
+  - step: authorization
+    desc: Compare against the Layer-D delegation boundary + decision.yaml governance red lines to decide whether automatic execution is allowed
+  - step: decide
+    desc: Produce draft / notify / execute according to the grading table
+  - step: audit
+    desc: Any proactive action writes an audit log (actor / action / target / timestamp)
+
+# Four-tier grading (core principle: do not disturb)
+grading:
+  L0_observe:
+    label: Silent observation
+    condition: irrelevant / low value / noise
+    action: record into the signals table only; no push, no reminder
+  L1_notice:
+    label: Light reminder
+    condition: relevant but not urgent
+    action: roll into the periodic brief; no separate interruption
+  L2_draft:
+    label: Draft + await confirmation (default tier)
+    condition: high value / requires owner decision
+    action: draft the action points, wait for owner confirmation before executing
+  L3_auto:
+    label: Automatic execution within delegation
+    condition: low-risk routine action AND Layer-D delegation = full delegation AND not on a decision.yaml red line
+    action: execute automatically and leave an audit trail
+
+# Authorization gate (anything beyond authority is downgraded)
+authorization:
+  # Reuses decision.yaml: tax_filing_confirm (tax filing requires owner confirmation)
+  block_to_owner_confirm:
+    - "tax filing / invoicing / major external contracts / fund transfers"
+  # Layer-D delegation boundary (instance.yaml owner.authorization)
+  if_owner_authorization_is_key_confirmation:
+    L3_disabled: true      # key operations are always L2 draft + await confirmation
+    default_level: L2
+  if_owner_authorization_is_full_delegation:
+    L3_disabled: false     # only low-risk routine actions may be L3
+    default_level: L2
+  # PII / compliance red lines (reuse decision.yaml, see that file for details)
+  pii_guardrails_ref: decision.yaml#pii_guardrails
+  compliance_redlines_ref: decision.yaml#compliance_redlines
+  rule: Any trigger hitting the red lines above → downgrade to L2 and notify the owner; never L3
+
+# Intelligence brief (unified deliverable, the experience touchpoint)
+brief:
+  window_days: 3            # aggregate and push every 1-3 days
+  aggregate_levels: [L1, L2]
+  exclude: [L0]
+  format: |
+    # Enterprise Intelligence Brief ({date})
+    ## Policy dividends
+    ## Competitor / market movements
+    ## Risk warnings
+    ## Customer signals
+    ## Operations reminders
+  note: Major risks (L1/L2 and urgent) may be pushed immediately without waiting for the aggregation window

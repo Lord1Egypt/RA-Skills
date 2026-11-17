@@ -1,4 +1,1 @@
-- feat: implement importer account auto-detection and validation mismatch checks
-- docs: clarify CLI-based querying of unmatched reimbursements in SKILL.md
-- feat: enhance manual-match and manual-unmatch command input flexibility and safety
-- perf: optimize transaction categorization with batch commits and rule caching
+- fix: keep genuinely identical transactions instead of collapsing them

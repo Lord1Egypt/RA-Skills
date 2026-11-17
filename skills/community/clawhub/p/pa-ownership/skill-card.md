@@ -1,42 +1,57 @@
-## Description: <br>
-Autonomous task tracking with retry loops, proactive updates, completion reporting, and heartbeat checks for stale tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous task tracking with retry loops and proactive updates. Use when Heleni takes ownership of a task that needs to be tracked, retried on failure, and reported when complete or stuck. Integrates with heartbeat to surface stale tasks.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Personal assistant operators use this skill to register owned tasks, persist task state, retry blocked work on a schedule, and close the loop with the person or group that initiated the task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad ongoing authority to store task details, retry work, and send WhatsApp status messages. <br>
-Mitigation: Use only where persistent task ownership is desired, narrow the trigger phrases, and require confirmation for high-impact tasks and retries. <br>
-Risk: Task records and memory updates may retain sensitive task context. <br>
-Mitigation: Define retention, redaction, deletion, and sensitivity limits for task details before deployment. <br>
-Risk: The artifact sources a local .context shell file during setup. <br>
-Mitigation: Remove or constrain local context sourcing so only expected, non-sensitive configuration values are loaded. <br>
+## Use Case:
 
+Developers and personal-agent operators use this skill to have Heleni persist owned tasks, retry blocked work, surface stale tasks through heartbeat checks, and report completion or failure to the task initiator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/pa-ownership) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON task records, Markdown notes, short status messages, and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists task status changes and retry metadata; may produce completion, blocked, or failure notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad automatic execution, retry, messaging, memory-writing, and heartbeat persistence authority may act on unintended or untrusted task requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted task initiators, gate group-triggered tasks, and require confirmation before sensitive actions.
+
+Risk: Task content may be written to memory files or outbound reports, exposing sensitive details.
+
+Mitigation: Minimize or redact sensitive task content before writing memory or sending status reports.
+
+Risk: Shell-sourcing the local .context file can execute unintended content if the file is modified or untrusted.
+
+Mitigation: Do not shell-source .context unless it is controlled and reviewed; prefer a parsed configuration format for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/pa-ownership)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task status records, retry guidance, heartbeat snippets, and human-facing progress or failure reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

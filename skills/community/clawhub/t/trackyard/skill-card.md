@@ -1,41 +1,53 @@
-## Description: <br>
-Search and download licensed music from Trackyard's AI-powered catalog, including natural-language search, filtering, and optional clip trimming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and download licensed music from Trackyard's AI-powered catalog for videos, social content, podcasts, and other projects needing royalty-free tracks, with natural-language search, smart audio trimming, and filters for genre, mood, BPM, vocals, energy, and instruments.
 
-## Publisher: <br>
-[benny-conn](https://clawhub.ai/user/benny-conn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benny-conn](https://clawhub.ai/user/benny-conn)
 
-## Use Case: <br>
-External creators, media teams, advertisers, podcasters, and developers use this skill to search for licensed background music, inspect track metadata, and download full or trimmed MP3 files for online content workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Trackyard API key and uses it to make authenticated API requests. <br>
-Mitigation: Use a revocable API key, monitor credit usage, and avoid sharing logs or command output that may expose credentials. <br>
-Risk: Download commands write MP3 files to the local working directory and may overwrite an existing file if the same output name is reused. <br>
-Mitigation: Run downloads from a dedicated folder or pass an explicit output filename for each download. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trackyard](https://trackyard.com) <br>
-- [Trackyard ClawHub Skill](https://clawhub.ai/benny-conn/trackyard) <br>
-- [Trackyard API Endpoint](https://api.trackyard.com/api/external/v1) <br>
+## Use Case:
 
+Developers, creators, and media-production teams use this skill to search Trackyard's licensed catalog, select tracks that match a content brief, and download full or trimmed MP3 clips for social videos, ads, podcasts, demos, and related content workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Shell commands that return JSON account, usage, and search data or save MP3 downloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and TRACKYARD_API_KEY; downloads write MP3 files locally and may consume Trackyard credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires network access to Trackyard using a Trackyard API key.
+
+Mitigation: Install only when Trackyard API access is expected, provide the API key through the TRACKYARD_API_KEY environment variable, and avoid exposing the key in shared logs or shell history.
+
+Risk: The download command can write to a caller-supplied writable path without containment or overwrite protection.
+
+Mitigation: Run downloads from a safe working directory, prefer the default filename, avoid absolute or parent-directory output paths, and review downloaded file destinations before execution.
+
+## Reference(s):
+
+- [Trackyard](https://trackyard.com)
+- [Trackyard ClawHub Skill](https://clawhub.ai/benny-conn/skills/trackyard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; Trackyard API responses as JSON; downloaded music as MP3 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and TRACKYARD_API_KEY. Search and download operations consume Trackyard credits; account and usage checks return JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

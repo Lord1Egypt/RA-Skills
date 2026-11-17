@@ -1,45 +1,64 @@
-## Description: <br>
-Agent Link Local Agent helps OpenClaw agents on different machines communicate through a relay server with signed messages, reconnect support, and local message handlers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Link Local Agent helps OpenClaw agents connect to a relay server to send and receive cross-device messages.
 
-## Publisher: <br>
-[ericshpych](https://clawhub.ai/user/ericshpych) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericshpych](https://clawhub.ai/user/ericshpych)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure a local OpenClaw agent client that connects to a trusted relay, sends messages to local or remote agents, and registers handlers for incoming messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relay traffic and message delivery depend on the configured relay server, so a malicious or misconfigured relay can expose or alter communication behavior. <br>
-Mitigation: Use only trusted relays, prefer wss:// with valid TLS certificates, and avoid sending sensitive content unless end-to-end encryption is added. <br>
-Risk: The local client uses a shared secret for message signing and relay registration. <br>
-Mitigation: Keep the shared secret out of version control, rotate it when exposed, and store it in an appropriate secret manager or protected local configuration. <br>
-Risk: Incoming relay messages may trigger local agent handlers. <br>
-Mitigation: Review message handlers before deployment and validate sender, target, and message content before performing local actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a local OpenClaw agent client for relay-based communication with agents on other devices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericshpych/agent-link-local-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/ericshpych) <br>
-- [Local agent installation guide](docs/install-agent.md) <br>
-- [Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with Python snippets, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, OpenClaw, and a trusted WebSocket relay configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: The relay-based client may expose messages or metadata if used with an untrusted relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a relay you control or trust, and prefer wss:// with valid TLS.
+
+Risk: Sensitive message contents may be visible to relay infrastructure because the guidance does not establish end-to-end encryption.
+
+Mitigation: Avoid sending sensitive content unless end-to-end encryption is added.
+
+Risk: Shared secrets can be exposed through shell history or world-readable configuration files.
+
+Mitigation: Store shared secrets outside shell history and world-readable files.
+
+Risk: Inbound agent messages may be spoofed or replayed if signature verification and replay prevention are incomplete.
+
+Mitigation: Treat inbound agent messages as untrusted unless the client is updated to verify signatures and prevent replay.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericshpych/skills/agent-link-local-agent)
+- [Publisher profile](https://clawhub.ai/user/ericshpych)
+- [README](artifact/README.md)
+- [Local Agent installation guide](artifact/docs/install-agent.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is oriented around a local WebSocket relay client and configuration file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,36 @@
 ---
+
+
 name: chat-learnings-extractor
 description: "Extract structured learnings (lessons, decisions, patterns, dead ends) from AI conversation exports using a local Ollama model or any OpenAI-compatible API. Pairs with chat-history-importer. Trigger phrases: extract learnings from conversations, analyze chat exports, mine conversation insights, extract lessons from chats, chat learnings extractor."
-metadata: {"clawdbot":{"emoji":"🧠","requires":{"bins":["python3"],"env":[]},"os":["linux","darwin","win32"]}}
+metadata: {"clawdbot":{"emoji":"\ud83e\udde0","requires":{"bins":["python3"],"env":[]},"os":["linux","darwin","win32"],"envVars":[{"name":"OPENAI_API_KEY","required":false,"description":"OpenAI-compatible API key. Enables remote model mode. Leave unset to use local Ollama."},{"name":"OPENAI_BASE_URL","required":false,"description":"OpenAI-compatible endpoint base URL. Only set this to a trusted HTTPS provider you control."},{"name":"OLLAMA_BASE_URL","required":false,"description":"Ollama endpoint. Defaults to http://127.0.0.1:11434 (loopback)."},{"name":"OPENCLAW_WORKSPACE","required":false,"description":"Agent workspace path. Defaults to ~/.openclaw/workspace."}],"version":"1.0.4"}}
 ---
+
+
 
 # Conversation Learnings Extractor
 
 Extract structured learnings (lessons, decisions, patterns, dead ends) from exported AI conversations using either a local Ollama model or any OpenAI-compatible API. This skill is designed to work with exports from OpenAI and Anthropic, and pairs well with the [chat-history-importer](https://clawhub.ai/djc00p/chat-history-importer) skill for a complete conversation analysis workflow.
+
+## Data Handling and Safety
+
+This skill reads private conversation exports and writes model-generated output into
+your agent's persistent memory. Treat both directions as sensitive.
+
+- **Dry run first.** Always start with `--dry-run` and read the output before letting
+  it write anything to memory.
+- **Prefer local processing.** The default Ollama path runs against
+  `http://127.0.0.1:11434` on loopback, so export contents never leave your machine.
+- **Remote endpoints send your exports.** When `OPENAI_API_KEY` is set, conversation
+  content and the API key are sent to the configured endpoint. Only set
+  `OPENAI_BASE_URL` to a trusted HTTPS provider you control.
+- **Review before you trust.** Model output is unreviewed text written into persistent
+  agent memory. Read the generated learnings before relying on them.
+- **Scope the input.** Narrow `--dir` and `--since` so you import only what you intend.
+
+See `references/model-modes-and-categories.md` for the OpenAI-compatible API setup and the full extraction category list.
+
+Configuration, model modes, and the full output format are documented in `references/model-modes-and-categories.md`.
 
 ## Quick Start
 
@@ -18,13 +42,6 @@ python3 scripts/extract.py --file single-conversation.json
 python3 scripts/extract.py --dir /path/to/exports --since 2026-04-01
 ```
 
-### Using OpenAI-compatible API (e.g., OpenAI, Anthropic Bedrock, etc.)
-
-```bash
-export OPENAI_API_KEY=sk-...
-export OPENAI_BASE_URL=https://api.openai.com/v1  # optional, defaults to OpenAI
-python3 scripts/extract.py --dir /path/to/exports --model gpt-4o-mini
-```
 
 ## How It Works
 
@@ -43,44 +60,6 @@ This skill pairs with `chat-history-importer`:
 
 This workflow keeps raw conversation logs separate from actionable insights, enabling better knowledge organization.
 
-## Configuration
-
-### Using Ollama (Local)
-
-**Prerequisites:** Ollama running at `http://127.0.0.1:11434` (default)
-
-```bash
-# Use default model (gemma4:26b)
-python3 scripts/extract.py --dir /path/to/exports
-
-# Use a different local model
-python3 scripts/extract.py --dir /path/to/exports --model llama2
-
-# Custom Ollama endpoint
-export OLLAMA_BASE_URL=http://ollama.example.com:11434
-python3 scripts/extract.py --dir /path/to/exports
-```
-
-**Environment Variables:**
-- `OLLAMA_BASE_URL` — Ollama API endpoint (default: `http://127.0.0.1:11434`)
-
-### Using OpenAI-compatible API
-
-Any API supporting the OpenAI `/chat/completions` endpoint (OpenAI, Bedrock, LM Studio, etc.)
-
-```bash
-export OPENAI_API_KEY=sk-...
-export OPENAI_BASE_URL=https://api.openai.com/v1  # optional
-python3 scripts/extract.py --dir /path/to/exports --model gpt-4o-mini
-```
-
-**Environment Variables:**
-- `OPENAI_API_KEY` — API key (required to enable this mode; if set, OpenAI mode is used instead of Ollama)
-- `OPENAI_BASE_URL` — API base URL (default: `https://api.openai.com/v1`)
-
-**Model auto-selection:**
-- If `OPENAI_API_KEY` is set → defaults to `gpt-4o-mini`
-- If `OPENAI_API_KEY` is not set → defaults to `gemma4:26b` (Ollama)
 
 ## Flags
 
@@ -91,34 +70,11 @@ python3 scripts/extract.py --dir /path/to/exports --model gpt-4o-mini
 - `--model MODEL` — Override default model name
 - `--dry-run` — Print output without writing to disk or updating dedup state
 
-## Output Format
 
-Results are appended to `memory/semantic/learnings-from-exports.md` with this structure:
-
-```markdown
-## Chat Title (YYYY-MM-DD)
-
-### Lessons Learned
-
-- [bullet points]
-
-### Decisions Made
-
-- [bullet points]
-
-### Patterns Noticed
-
-- [bullet points]
-
-### Dead Ends
-
-- [bullet points]
-```
-
-Each category is optional — if a conversation doesn't have notable insights for a category, it will show "None".
 
 ## References
 
+- `references/model-modes-and-categories.md` — Configuration, model modes, output format
 - `references/prompt-template.md` — The extraction prompt sent to the model
 - `scripts/extract.py` — Main script (reuses parsers from sibling skill)
 

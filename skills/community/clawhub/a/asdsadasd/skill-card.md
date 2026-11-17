@@ -1,47 +1,71 @@
-## Description: <br>
-An end-to-end AI Content Pipeline that crawls articles, rewrites them using Google Gemini, and automatically publishes to Facebook Fanpage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An end-to-end AI content pipeline that crawls articles, rewrites them using Google Gemini, and can publish the generated content to a Facebook Page.
 
-## Publisher: <br>
-[YunneeToiChoi](https://clawhub.ai/user/YunneeToiChoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunneetoichoi](https://clawhub.ai/user/yunneetoichoi)
 
-## Use Case: <br>
-Developers and content operators use this skill to crawl article or public Facebook URLs, generate localized social media copy, optionally create image assets, and publish or schedule posts to a Facebook Page. It supports single-URL, batch analysis, dry-run, and publish workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships live-looking API keys and Facebook tokens. <br>
-Mitigation: Remove bundled credentials before installation, rotate any exposed keys or tokens, and provide secrets through a local environment manager. <br>
-Risk: The publish and test-post commands can post directly to a Facebook Page. <br>
-Mitigation: Keep dry-run mode as the default during testing, verify the Page ID is owned by the operator, and run publish commands only after human review. <br>
-Risk: Facebook Page permissions can grant broad posting or engagement access. <br>
-Mitigation: Use least-privilege Facebook permissions and review token scopes before connecting the skill to production Pages. <br>
+## Use Case:
 
+Developers and social media operators use this skill to crawl news or public Facebook URLs, rewrite content with AI, optionally generate imagery, and publish, schedule, or dry-run posts for a Facebook Page.
 
-## Reference(s): <br>
-- [Facebook Graph API Overview](skills/facebook/references/graph-api-overview.md) <br>
-- [Page Posting Guide](skills/facebook/references/page-posting.md) <br>
-- [Permissions and Tokens](skills/facebook/references/permissions-and-tokens.md) <br>
-- [HTTP Request Templates](skills/facebook/references/http-request-templates.md) <br>
-- [Comments and Moderation](skills/facebook/references/comments-moderation.md) <br>
-- [Webhooks](skills/facebook/references/webhooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, API Calls] <br>
-**Output Format:** [CLI output, saved JSON reports, generated image files, and Facebook Graph API post responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can publish immediately, schedule posts, or run in dry-run mode depending on command options and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The release ships live-looking credentials and token material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled .env before installation, rotate every exposed credential, and replace it with a placeholder .env.example.
+
+Risk: Publish mode can post AI-generated content to a Facebook Page without a required approval step.
+
+Mitigation: Use dry-run by default and require explicit human approval before every Facebook publish or scheduled publish action.
+
+Risk: Facebook Page tokens can grant broad posting permissions.
+
+Mitigation: Limit token scopes to the minimum required Page permissions and rotate tokens when users or deployment environments change.
+
+Risk: The crawler processes external URLs and may reach unintended destinations.
+
+Mitigation: Run crawling in an isolated environment that cannot access private or internal network resources.
+
+Risk: Dependencies are specified with lower bounds rather than exact pinned versions.
+
+Mitigation: Pin dependencies and review updates before deployment.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/yunneetoichoi/skills/asdsadasd)
+- [Facebook Graph API Overview](artifact/skills/facebook/references/graph-api-overview.md)
+- [Page Posting Guide](artifact/skills/facebook/references/page-posting.md)
+- [Permissions and Tokens](artifact/skills/facebook/references/permissions-and-tokens.md)
+- [HTTP Request Templates](artifact/skills/facebook/references/http-request-templates.md)
+- [Comments and Moderation](artifact/skills/facebook/references/comments-moderation.md)
+- [Webhooks](artifact/skills/facebook/references/webhooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [CLI output, generated Facebook post text, image prompts, and optional JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save analysis results and run results under output/; publish mode may call Facebook Graph API unless dry-run is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

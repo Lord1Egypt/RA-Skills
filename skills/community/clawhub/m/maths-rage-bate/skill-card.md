@@ -1,41 +1,53 @@
-## Description: <br>
-Generate satirical math ragebait formulas that connect famous constants in trivially true but profound-looking LaTeX equations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates satirical math slop ragebait formulas that connect famous constants in trivially true but profound-looking LaTeX equations.
 
-## Publisher: <br>
-[0xMugen](https://clawhub.ai/user/0xMugen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xmugen](https://clawhub.ai/user/0xmugen)
 
-## Use Case: <br>
-Developers, educators, and meme creators use this skill to generate humorous LaTeX formulas for math jokes or satirical posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Using an online LaTeX renderer can send generated formulas to a third-party service. <br>
-Mitigation: Use a local renderer when formulas should remain private, or review the renderer's terms before using it. <br>
-Risk: The generated formulas are satirical and can look more meaningful than they are. <br>
-Mitigation: Review outputs before sharing and label them as humor or satire when context matters. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to generate satirical LaTeX math formulas for memes, social posts, or lightweight mathematical humor.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xMugen/maths-rage-bate) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and LaTeX text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate one formula or multiple formulas when a count is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release evidence) <br>
+Risk: The README install command does not match the skill name, which could confuse package identity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the ClawHub page, publisher handle, slug, and version before installing.
+
+Risk: The skill runs a local Node script that prints randomized LaTeX formulas.
+
+Mitigation: Review the script and generated formulas before using the output in public or automated contexts.
+
+## Reference(s):
+
+- [Math Slop on ClawHub](https://clawhub.ai/0xmugen/skills/maths-rage-bate)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [LaTeX text, optionally shown as command output or Markdown inline code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Randomized single-line formulas; --count can produce multiple output lines.]
+
+## Skill Version(s):
+
+0.3.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Manage OpenClaw sessions by naming, listing, switching, creating, renaming, saving, and deleting them to persist and recover context by name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw sessions by naming, listing, switching, creating, renaming, saving, and deleting them to persist and recover context by name.
 
-## Publisher: <br>
-[detain](https://clawhub.ai/user/detain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[detain](https://clawhub.ai/user/detain)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to assign memorable names to local work sessions, list saved sessions, and switch back to prior context without searching for session IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad plain-English triggers could accidentally create, switch, or restore persistent work sessions. <br>
-Mitigation: Prefer explicit /sessmgr commands for create, save, delete, rename, and switch actions. <br>
-Risk: The skill manages persistent local session name mappings, which may matter for users who rely on strict workspace separation. <br>
-Mitigation: Review before installing in strict-separation environments and confirm the intended session name before switching or restoring context. <br>
+## Use Case:
 
+Developers and OpenClaw users use Sessmgr to organize named conversation sessions, switch back to prior context, and manage local session-name metadata without deleting transcripts.
 
-## Reference(s): <br>
-- [Sessmgr on ClawHub](https://clawhub.ai/detain/sessmgr) <br>
-- [Publisher profile](https://clawhub.ai/user/detain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text status messages, tabular session listings, and session control tokens.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes local OpenClaw session name mappings under ~/.openclaw/agents/main/sessions/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A session-creation path can emit agent control output before validating the requested session name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid untrusted or unusual session names until the validation gap is fixed.
+
+Risk: The skill writes persistent local session-name metadata.
+
+Mitigation: Use trusted names and descriptions, and review stored session mappings when managing sensitive work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/detain/skills/sessmgr)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with command examples and agent control tokens]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit RELOAD_SESSION:<sessionId> or NEW_SESSION:<name> control text for the host agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

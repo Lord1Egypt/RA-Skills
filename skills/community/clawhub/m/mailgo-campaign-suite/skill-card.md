@@ -1,41 +1,54 @@
-## Description: <br>
-This deprecated Mailgo campaign skill release tells users to migrate from @cailumin to the replacement @leadsnaviDeveloper ClawHub skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This release is a deprecation notice for mailgo-coldmail-marketing, directing users from the @cailumin package to the replacement ClawHub publisher.
 
-## Publisher: <br>
-[cailumin](https://clawhub.ai/user/cailumin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cailumin](https://clawhub.ai/user/cailumin)
 
-## Use Case: <br>
-Agents and developers use this release as a migration notice for a deprecated Mailgo cold email campaign skill. It provides the replacement publisher account and uninstall/install commands rather than campaign automation behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may follow a migration command without confirming that the replacement publisher is the intended maintainer. <br>
-Mitigation: Confirm that @leadsnaviDeveloper is the intended new maintainer and review the replacement skill independently before installing it. <br>
-Risk: Users may assume this deprecated version still receives updates or provides the original Mailgo campaign behavior. <br>
-Mitigation: Treat this version as a deprecation notice only and install a reviewed replacement before relying on campaign workflows. <br>
+## Use Case:
 
+External users and developers who previously installed @cailumin/mailgo-coldmail-marketing use this notice to identify that the package is deprecated and migrate to the successor publisher after review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cailumin/mailgo-campaign-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/cailumin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown deprecation notice with bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contains migration guidance and ClawHub uninstall/install commands for the replacement skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Users may migrate to a replacement skill under a different publisher without verifying that it is the intended successor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that @leadsnaviDeveloper is the intended successor publisher and review the replacement skill's contents and permissions before installing it.
+
+Risk: The deprecated @cailumin release will no longer receive updates.
+
+Mitigation: Use a pinned or reviewed replacement version when ClawHub supports that workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cailumin/skills/mailgo-campaign-suite)
+- [Publisher profile](https://clawhub.ai/user/cailumin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with bash code block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecation and migration guidance only.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

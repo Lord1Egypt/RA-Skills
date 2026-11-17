@@ -1,48 +1,72 @@
-## Description: <br>
-Manages Alibaba Cloud DataWorks data sources, compute resources, serverless resource groups, connectivity tests, and resource group bindings through aliyun CLI commands for dataworks-public OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataWorks Infrastructure Management helps agents create and query Alibaba Cloud DataWorks data sources, compute resources, and serverless resource groups, including connectivity testing and resource group binding or unbinding through aliyun CLI calls to dataworks-public OpenAPI (2024-05-18).
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect and initialize DataWorks workspace infrastructure, create supported data sources and compute resources, manage serverless resource group bindings, and test connectivity while following documented confirmation and security gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide cloud infrastructure write operations and references permissions for billing, resource groups, and workspace members beyond some routine DataWorks tasks. <br>
-Mitigation: Use a least-privilege RAM policy, exclude workspace member APIs unless explicitly needed, and grant BSS payment permissions only when creating billable resource groups. <br>
-Risk: Commands may run against the wrong Alibaba Cloud account, region, workspace, VPC, VSwitch, or resource group if context is assumed. <br>
-Mitigation: Confirm the active Aliyun profile, account, region, workspace, and all user-selectable networking or resource group parameters before every write. <br>
-Risk: Database credentials, access keys, or tokens could be exposed through chat, command lines, logs, or committed files. <br>
-Mitigation: Use configured Aliyun profiles and credential files, avoid pasting secrets into chat or shell history, and never print or echo AK/SK values. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud DataWorks infrastructure setup from an agent, including workspace-related data sources, compute resources, resource groups, and connectivity checks. It is intended for guided operational workflows where users confirm parameters before cloud write actions.
 
-## Reference(s): <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [DataWorks Infrastructure RAM Policies](references/ram-policies.md) <br>
-- [DataWorks Infrastructure Related APIs](references/related-apis.md) <br>
-- [DataWorks Data Sources Reference](references/data-sources/README.md) <br>
-- [Compute Resource ConnectionProperties Reference](references/compute-resources/README.md) <br>
-- [Cross-Account Data Source Configuration](references/cross-account-datasources.md) <br>
-- [Alibaba Cloud CLI Documentation](https://help.aliyun.com/zh/cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, JSON parameter examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Aliyun CLI commands, DataWorks OpenAPI parameter templates, RAM permission guidance, pre-execution confirmations, connectivity troubleshooting, and follow-up steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill can guide cloud operations that require broad DataWorks, VPC, billing, and resource-group permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped RAM role for the intended tasks and avoid the Full Access policy except in controlled review environments.
+
+Risk: Data source and CLI examples involve credentials, passwords, access keys, refresh tokens, or bearer tokens.
+
+Mitigation: Do not paste real secrets into chat or shell commands; configure credentials through trusted Aliyun CLI or credential-file flows and only check status with credential listing commands.
+
+Risk: Automatic CLI plugin installation and global or sudo installs can introduce supply-chain and host-level exposure.
+
+Mitigation: Verify CLI and plugin integrity through trusted vendor channels, avoid sudo or global installs where possible, and enable automatic plugin installation only when the deployment accepts that risk.
+
+Risk: Some reference examples use HTTP, FTP, no-SSL, or anonymous connection patterns that may be unsafe for production data access.
+
+Mitigation: Treat those patterns as non-production examples unless explicitly approved by the organization's security team.
+
+Risk: Creating PostPaid resource groups can incur cloud charges.
+
+Mitigation: Confirm cost impact and resource-group parameters before creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-dataworks-infra-manage)
+- [Aliyun CLI installation guide](references/cli-installation-guide.md)
+- [Data source type and connection properties](references/data-sources/README.md)
+- [Compute resource connection properties](references/compute-resources/README.md)
+- [Cross-account data source configuration guide](references/cross-account-datasources.md)
+- [DataWorks infrastructure RAM policies](references/ram-policies.md)
+- [DataWorks infrastructure related APIs](references/related-apis.md)
+- [Alibaba Cloud CLI official documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to use the AlibabaCloud-Agent-Skills user agent, confirm user-customizable parameters, and verify state after write operations.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pendle maturity planner"
+  short_description: "Pendle maturity planner workflow and evidence"
+  default_prompt: "Use $galleon-pendle-maturity to perform the requested protocol workflow and return its decision record."

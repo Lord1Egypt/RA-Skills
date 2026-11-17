@@ -1,43 +1,57 @@
-## Description: <br>
-A股客户会前准备助手 helps professional investors prepare for A-share company meetings by organizing company background, recent developments, competitive context, financial indicators, institutional holdings, agendas, and discussion points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股客户会前准备助手针对已覆盖或潜在客户的投资者会议、调研拜访、路演和反向路演等场景，整理公司概况、近期动态、行业竞争格局、财务关键指标、机构持仓变化，并生成个性化会议议程与谈论要点。
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-Professional investors, fund managers, analysts, and investment managers use this skill to generate structured pre-meeting briefs for listed-company research visits, investor events, roadshows, reverse roadshows, earnings calls, and one-on-one meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial data or market context may be incorrect, stale, or inconsistently sourced. <br>
-Mitigation: Verify all cited financial data, dates, company identifiers, and sources before relying on or sharing the brief. <br>
-Risk: Generated meeting briefs may be mistaken for investment advice or may include sensitive discussion topics. <br>
-Mitigation: Review the brief for compliance, keep it factual and source-backed, and confirm suggested topics before sending it to shared workspaces. <br>
-Risk: Sharing outputs through Tencent Docs, email, WeChat, DingTalk, or similar tools can expose customer or meeting context. <br>
-Mitigation: Review recipients and remove unnecessary customer-specific details before publishing or forwarding the brief. <br>
+## Use Case:
 
+External professional investors, fund managers, researchers, and investment managers use this skill to prepare structured A-share company meeting briefs before investor meetings, research visits, roadshows, reverse roadshows, earnings calls, and one-on-one discussions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/a-share-meeting-preparer) <br>
-- [Publisher profile](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown brief, with optional Word document output and Tencent Docs sharing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typical briefs are 5-8 pages and should include cited sources, dated financial data, risk markers, agenda items, and suggested questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad finance-related triggers may activate the skill for nearby research requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target company, meeting type, and desired brief format before producing the final meeting preparation output.
+
+Risk: Generated briefs depend on public market data, announcements, research reports, and news that may be incomplete, stale, or inconsistent.
+
+Mitigation: Label sources and dates for key figures, cross-check important financial and holdings data, and avoid presenting unverified estimates as facts.
+
+Risk: Sharing or syncing a generated brief to Tencent Docs or a team workspace may expose meeting context or customer-specific details.
+
+Mitigation: Ask for explicit confirmation before syncing or sharing and avoid storing sensitive customer meeting details.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yinfeihaaaaaaaaaaa/skills/a-share-meeting-preparer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or Word (.docx) meeting brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 5-8 page brief with company profile, financial snapshot, recent developments, competitive landscape, institutional activity, agenda suggestions, discussion questions, source labels, and risk markers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

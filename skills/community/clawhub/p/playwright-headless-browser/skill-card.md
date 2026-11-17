@@ -1,39 +1,56 @@
-## Description: <br>
-Sets up Playwright-managed Chromium for Clawdbot headless browser automation in WSL/Linux environments, including browser installation, system dependencies, and Clawdbot configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures Clawdbot for headless browser automation with Playwright-managed Chromium on WSL/Linux.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Clawdbot browser tooling for headless Chromium automation on WSL/Linux systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup may invoke package managers with sudo and download Playwright Chromium. <br>
-Mitigation: Review the scripts before running them and execute setup only in an environment where system package changes and browser downloads are acceptable. <br>
-Risk: The configured browser uses no-sandbox mode for WSL or container compatibility. <br>
-Mitigation: Use no-sandbox only where required by the runtime environment and avoid using that browser configuration for sensitive browsing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/playwright-headless-browser) <br>
+## Use Case:
 
+Developers and engineers use this skill to install Chromium dependencies, configure Clawdbot's browser executable, and enable headless browser automation in WSL/Linux or container-like environments.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and script-driven setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install Playwright Chromium, install system libraries, and update Clawdbot browser configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Future browser sessions may run with Chromium sandboxing disabled.
+
+Mitigation: Enable sandboxing when the host supports it and run browser automation under a low-privilege account.
+
+Risk: Setup may run unpinned npm/Playwright code and privileged package-manager commands.
+
+Mitigation: Pin the Playwright version and review package-manager commands before running setup.
+
+Risk: The skill can persistently change Clawdbot browser configuration.
+
+Mitigation: Inspect the proposed configuration patch and keep a restorable copy of the previous Clawdbot browser settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/playwright-headless-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; matches target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

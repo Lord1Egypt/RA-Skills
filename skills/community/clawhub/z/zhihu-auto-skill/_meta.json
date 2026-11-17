@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn73qbrbqs4s8t2nh8pm22wxbd84vm7r",
-  "slug": "zhihu-auto-skill",
-  "version": "2.0.8",
-  "publishedAt": 1779179952004
+  "name": "zhihu-automation",
+  "version": "2.0.1",
+  "description": "知乎自动化 — 文章/想法/问答/互动/数据提取，双通道架构",
+  "slug": "zhihu",
+  "author": "Hermes + WorkBuddy",
+  "requires": {
+    "env": ["ZHIHU_COOKIE_KEY"],
+    "tools": ["node", "python3", "playwright"]
+  },
+  "publishedAt": 1746762000000
 }

@@ -193,6 +193,284 @@ $Script:RemediationGuidance = @{
             'Require PAW (Privileged Access Workstation) for all administrative access to the asset.'
         )
     }
+
+    # ── v1.0.2: object-control factors previously unscored ──
+    WriteOwner = @{
+        title   = 'Remove WriteOwner Permissions'
+        steps   = @(
+            'Identify the principal holding WriteOwner using `dsacls "<TargetDN>"`.'
+            'Reset the object owner to Domain Admins or the approved Tier 0 owner.'
+            'Remove the WriteOwner ACE and re-apply delegation from the approved model.'
+            'Audit Event ID 5136 for owner changes on protected objects.'
+        )
+    }
+    GenericWrite = @{
+        title   = 'Restrict GenericWrite Permissions'
+        steps   = @(
+            'Enumerate GenericWrite ACEs on the target: `(Get-Acl "AD:\<TargetDN>").Access`.'
+            'GenericWrite on a user permits SPN injection (targeted Kerberoasting) and shadow-credential attacks — treat as privilege escalation, not a write permission.'
+            'Replace with property-scoped write rights limited to the attributes actually required.'
+        )
+    }
+    AllExtendedRights = @{
+        title   = 'Remove AllExtendedRights'
+        steps   = @(
+            'AllExtendedRights includes ForceChangePassword and, at the domain root, DCSync — scope it out entirely.'
+            'Remove the ACE and grant only the specific extended right required.'
+            'Verify the object is not inheriting the right from AdminSDHolder.'
+        )
+    }
+    ForceChangePassword = @{
+        title   = 'Remove Password Reset Delegation'
+        steps   = @(
+            'Remove the User-Force-Change-Password extended right from the principal.'
+            'Route password resets through a PAM workflow rather than standing delegation.'
+            'Audit Event ID 4724 for password resets against privileged accounts.'
+        )
+    }
+    AddMember = @{
+        title   = 'Restrict Group Membership Write Rights'
+        steps   = @(
+            'Remove write access to the `member` attribute from the principal.'
+            'Move group membership changes into a JIT/PAM approval flow.'
+            'Alert on Event IDs 4728/4732/4756 for privileged group additions.'
+        )
+    }
+    AddSelf = @{
+        title   = 'Remove Self-Membership Rights'
+        steps   = @(
+            'Remove the Self-Membership ACE from the group.'
+            'Verify no distribution-to-security group conversions have inherited this right.'
+        )
+    }
+    WriteAccountRestrictions = @{
+        title   = 'Remove Account Restriction Write Rights'
+        steps   = @(
+            'This right allows setting msDS-AllowedToActOnBehalfOfOtherIdentity — i.e. configuring RBCD against the object.'
+            'Remove the ACE and audit msDS-AllowedToActOnBehalfOfOtherIdentity across all computer objects.'
+        )
+    }
+    WriteSPN = @{
+        title   = 'Remove SPN Write Rights'
+        steps   = @(
+            'Write access to servicePrincipalName enables targeted Kerberoasting against the account.'
+            'Remove the ACE; SPN management should be a Tier 0 function.'
+            'Alert on Event ID 5136 for servicePrincipalName modifications.'
+        )
+    }
+
+    # ── v1.0.2: credential-material factors ──
+    ShadowCredentials = @{
+        title   = 'Remediate Shadow Credential Exposure (AddKeyCredentialLink)'
+        steps   = @(
+            'Write access to msDS-KeyCredentialLink allows an attacker to add a device key and authenticate as the object via PKINIT — no password required.'
+            'Remove the ACE, then inspect existing values: `Get-ADObject -Filter * -Properties msDS-KeyCredentialLink | Where-Object { $_."msDS-KeyCredentialLink" }`.'
+            'Delete unrecognised key credentials from privileged objects.'
+            'Where Windows Hello for Business is not deployed, treat any populated msDS-KeyCredentialLink on a Tier 0 object as suspect.'
+        )
+    }
+    ReadGMSAPassword = @{
+        title   = 'Restrict gMSA Password Retrieval'
+        steps   = @(
+            'Review PrincipalsAllowedToRetrieveManagedPassword on the gMSA and remove principals that do not require it.'
+            'Command: `Set-ADServiceAccount -Identity <gMSA> -PrincipalsAllowedToRetrieveManagedPassword <approved-group>`.'
+            'Confirm the gMSA itself is not a member of any Tier 0 group.'
+        )
+    }
+    ReadLAPSPassword = @{
+        title   = 'Restrict LAPS Password Read Access'
+        steps   = @(
+            'Audit read access to ms-Mcs-AdmPwd (legacy LAPS) or msLAPS-Password / msLAPS-EncryptedPassword (Windows LAPS).'
+            'Remove All Extended Rights from non-Tier 0 principals on the affected computer OUs.'
+            'Migrate to Windows LAPS with encryption enabled so passwords are readable only by authorised groups.'
+            'Enable LAPS password read auditing (Event ID 4662 on the password attribute).'
+        )
+    }
+
+    # ── v1.0.2: delegation factors ──
+    RBCD = @{
+        title   = 'Remediate Resource-Based Constrained Delegation Abuse'
+        steps   = @(
+            'Inspect the attribute: `Get-ADComputer <target> -Properties msDS-AllowedToActOnBehalfOfOtherIdentity`.'
+            'Clear unauthorised entries: `Set-ADComputer <target> -Clear msDS-AllowedToActOnBehalfOfOtherIdentity`.'
+            'Remove the write permission that allowed the entry to be created in the first place — clearing the attribute alone does not close the path.'
+            'Reduce ms-DS-MachineAccountQuota to 0 so unprivileged users cannot create the computer accounts this attack typically relies on.'
+            'Add Tier 0 accounts to Protected Users and flag them as sensitive and cannot be delegated.'
+        )
+    }
+    ConstrainedDelegation = @{
+        title   = 'Review Constrained Delegation Configuration'
+        steps   = @(
+            'Enumerate msDS-AllowedToDelegateTo on the principal and confirm every target service is required.'
+            'Where protocol transition (TRUSTED_TO_AUTH_FOR_DELEGATION) is enabled, verify it is genuinely needed — it permits impersonation without the user ever authenticating.'
+            'Prefer resource-based constrained delegation so control sits with the resource owner.'
+        )
+    }
+
+    # ── v1.0.2: AD CS factors ──
+    ADCSESC1 = @{
+        title   = 'Remediate ESC1 — Enrollee-Supplied Subject on a Client Auth Template'
+        steps   = @(
+            'The template permits the requester to specify the subject and issues a client-authentication certificate — any enrollee can request a certificate as a domain administrator.'
+            'Disable CT_FLAG_ENROLLEE_SUPPLIES_SUBJECT on the template, or remove the client-authentication EKU.'
+            'Require manager approval (CT_FLAG_PEND_ALL_REQUESTS) or authorised signatures where the flag must remain.'
+            'Restrict enrollment rights: remove Domain Users / Authenticated Users from the template ACL.'
+            'Audit issued certificates for anomalous SANs before assuming the template was never abused.'
+        )
+    }
+    ADCSESC3 = @{
+        title   = 'Remediate ESC3 — Enrollment Agent Template Abuse'
+        steps   = @(
+            'The template grants the Certificate Request Agent EKU, allowing enrollment on behalf of any other principal.'
+            'Remove the Certificate Request Agent EKU where it is not required.'
+            'Restrict enrollment agents on the CA (Enrollment Agent Restrictions) to specific templates and target groups.'
+            'Require manager approval for enrollment agent certificate issuance.'
+        )
+    }
+    ADCSESC4 = @{
+        title   = 'Remediate ESC4 — Write Access to a Certificate Template'
+        steps   = @(
+            'A non-privileged principal can modify the template and convert it into an ESC1 condition at will.'
+            'Remove Write / GenericAll / WriteDacl / WriteOwner from non-Tier 0 principals on the template object under CN=Certificate Templates,CN=Public Key Services,CN=Services,CN=Configuration.'
+            'Re-baseline template ACLs and monitor Event ID 5136 for template modifications.'
+        )
+    }
+    ADCSESC6 = @{
+        title   = 'Remediate ESC6 — EDITF_ATTRIBUTESUBJECTALTNAME2 on the CA'
+        steps   = @(
+            'The CA honours requester-supplied SANs on every template, which reproduces ESC1 conditions regardless of template configuration.'
+            'Check: `certutil -config "<CA>" -getreg policy\EditFlags`.'
+            'Remove the flag: `certutil -config "<CA>" -setreg policy\EditFlags -EDITF_ATTRIBUTESUBJECTALTNAME2`, then restart certsvc.'
+            'Confirm the May 2022 certificate-mapping hardening (KB5014754) is deployed in Full Enforcement mode.'
+        )
+    }
+    ADCSESC7 = @{
+        title   = 'Remediate ESC7 — Excessive CA Permissions'
+        steps   = @(
+            'ManageCA or ManageCertificates on the CA allows an attacker to enable EDITF_ATTRIBUTESUBJECTALTNAME2 or approve their own pending requests.'
+            'Review CA security: `certsrv.msc` > CA properties > Security.'
+            'Remove Manage CA and Issue and Manage Certificates from all non-Tier 0 principals.'
+            'Audit CA permission changes and certificate issuance events.'
+        )
+    }
+    ADCSESC9 = @{
+        title   = 'Remediate ESC9 — No Security Extension on the Template'
+        steps   = @(
+            'CT_FLAG_NO_SECURITY_EXTENSION suppresses the SID security extension, enabling certificate-mapping abuse when combined with account UPN control.'
+            'Remove the flag from the template.'
+            'Deploy KB5014754 and move to Full Enforcement so weak certificate mappings are rejected.'
+        )
+    }
+    ADCSESC10 = @{
+        title   = 'Remediate ESC10 — Weak Certificate Mapping on Domain Controllers'
+        steps   = @(
+            'Inspect StrongCertificateBindingEnforcement and CertificateMappingMethods on domain controllers.'
+            'Set StrongCertificateBindingEnforcement to 2 (Full Enforcement).'
+            'Remove UPN-based and other weak mapping methods from CertificateMappingMethods.'
+            'Ensure no non-privileged principal can write the userPrincipalName attribute of other accounts.'
+        )
+    }
+    ADCSESC13 = @{
+        title   = 'Remediate ESC13 — Issuance Policy Linked to a Privileged Group'
+        steps   = @(
+            'An issuance policy with an msDS-OIDToGroupLink to a privileged group grants that group membership to anyone who enrolls.'
+            'Enumerate OID objects with msDS-OIDToGroupLink under the Configuration partition.'
+            'Remove the group link, or restrict enrollment on every template carrying that issuance policy.'
+        )
+    }
+    GoldenCert = @{
+        title   = 'Remediate CA Private Key Compromise (Golden Certificate)'
+        steps   = @(
+            'Control of the CA private key allows forging authentication certificates for any principal — this is a full PKI compromise, not a misconfiguration.'
+            'Treat as an incident: the CA must be rebuilt and the key rotated; revocation alone does not invalidate forged certificates already issued.'
+            'Protect CA keys in an HSM going forward.'
+            'Review NTAuth store contents and remove any unexpected CA certificates.'
+        )
+    }
+    ManageCA = @{
+        title   = 'Restrict Certification Authority Management Rights'
+        steps   = @(
+            'Remove Manage CA / Issue and Manage Certificates from non-Tier 0 principals.'
+            'Treat the CA as a Tier 0 asset: administrative access only from a PAW.'
+            'Enable CA auditing and forward events to the SIEM.'
+        )
+    }
+    PKITemplateAbuse = @{
+        title   = 'Remove PKI Template Flag Write Rights'
+        steps   = @(
+            'WritePKIEnrollmentFlag and WritePKINameFlag permit an attacker to introduce ESC1 conditions on demand.'
+            'Remove these rights from non-Tier 0 principals on all certificate templates.'
+            'Baseline template flags and alert on changes.'
+        )
+    }
+    EnrollmentAgent = @{
+        title   = 'Restrict Delegated Enrollment Agents'
+        steps   = @(
+            'Configure Enrollment Agent Restrictions on the CA to bound which templates and which target principals an agent may act for.'
+            'Remove enrollment agent certificates that are no longer required.'
+        )
+    }
+    Enroll = @{
+        title   = 'Review Certificate Template Enrollment Rights'
+        steps   = @(
+            'Enrollment alone is low risk; it becomes an escalation path when combined with a misconfigured template.'
+            'Remove Domain Users / Authenticated Users from enrollment ACLs on templates issuing authentication certificates.'
+        )
+    }
+
+    # ── v1.0.2: lateral movement ──
+    LateralAccess = @{
+        title   = 'Reduce Remote Execution Exposure'
+        steps   = @(
+            'Remove CanRDP / CanPSRemote / ExecuteDCOM / SQLAdmin rights that are not operationally required.'
+            'Enforce tier isolation so lower-tier principals cannot execute against higher-tier hosts.'
+            'Restrict Remote Desktop Users and Remote Management Users group membership.'
+        )
+    }
+    LateralChain = @{
+        title   = 'Break the Lateral Movement Chain'
+        steps   = @(
+            'Local admin rights combined with an active privileged session allow credential theft from LSASS.'
+            'Enforce tier isolation: privileged accounts must never log on to lower-tier hosts.'
+            'Deploy Credential Guard and LSASS protection (RunAsPPL).'
+            'Restrict logon types via User Rights Assignment GPO for privileged accounts.'
+        )
+    }
+
+    # ── v1.0.2: data quality ──
+    UnparseablePwdLastSet = @{
+        title   = 'Data Quality: Unparseable pwdlastset'
+        steps   = @(
+            'The source account pwdlastset value could not be parsed, so password age was not assessed for this path.'
+            'Re-run the BloodHound collection, or verify the export was not hand-edited.'
+            'Assess this account password age manually before signing off the finding.'
+        )
+    }
+}
+
+# Factors that are scoring signals only and carry no standalone remediation.
+$Script:NonRemediationFactors = @('Tier0Target', 'ShortPath', 'MediumPath')
+
+function Resolve-RemediationKey {
+    <#
+    .SYNOPSIS
+        Maps a factor name to a remediation guidance key.
+    .DESCRIPTION
+        v1.0.2 fix: the classifier emits Tier 0-qualified factors such as
+        'GenericAllOnTier0'. Prior versions looked those up verbatim, found
+        nothing, and silently omitted remediation from the highest-severity
+        findings. Strip the suffix and fall back to the base factor.
+    #>
+    param([Parameter(Mandatory)][string]$Factor)
+
+    if ($Script:RemediationGuidance.ContainsKey($Factor)) { return $Factor }
+
+    if ($Factor -like '*OnTier0') {
+        $base = $Factor -replace 'OnTier0$', ''
+        if ($Script:RemediationGuidance.ContainsKey($base)) { return $base }
+    }
+
+    return $null
 }
 
 function Get-TechnicalRemediation {
@@ -205,12 +483,22 @@ function Get-TechnicalRemediation {
     $lines.Add("**Severity:** $($Script:SeverityLabels[$ClassifiedPath.Severity]) (Score: $($ClassifiedPath.Score)) | **Chain:** ``$($ClassifiedPath.EdgeChain)```n")
 
     $coveredFactors = @{}
+    $unmapped       = [System.Collections.Generic.List[string]]::new()
 
     foreach ($factor in $ClassifiedPath.Factors) {
-        if ($coveredFactors.ContainsKey($factor)) { continue }
-        $coveredFactors[$factor] = $true
 
-        $guide = $Script:RemediationGuidance[$factor]
+        $key = Resolve-RemediationKey -Factor $factor
+        if (-not $key) {
+            if ($factor -notin $Script:NonRemediationFactors -and $factor -notin $unmapped) {
+                $unmapped.Add($factor)
+            }
+            continue
+        }
+
+        if ($coveredFactors.ContainsKey($key)) { continue }
+        $coveredFactors[$key] = $true
+
+        $guide = $Script:RemediationGuidance[$key]
         if (-not $guide) { continue }
 
         $lines.Add("#### $($guide.title)`n")
@@ -224,6 +512,10 @@ function Get-TechnicalRemediation {
 
     if ($coveredFactors.Count -eq 0) {
         $lines.Add("_No specific automated remediation mapped for the factors in this path. Manual review recommended._`n")
+    }
+
+    if ($unmapped.Count -gt 0) {
+        $lines.Add("_Unmapped scoring factors requiring manual review: $($unmapped -join ', ')._`n")
     }
 
     $lines -join "`n"

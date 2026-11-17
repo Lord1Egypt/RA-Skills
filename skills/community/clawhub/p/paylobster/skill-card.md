@@ -1,49 +1,63 @@
-## Description: <br>
-PayLobster helps agents use payment infrastructure on Base for treasuries, escrow, token swaps, cross-chain bridges, fiat ramps, identity, reputation, disputes, streaming payments, mandates, and USDC payment workflows through hosted MCP, SDK, CLI, and REST interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent payment infrastructure on Base for hosted MCP, SDK, CLI, and REST workflows covering escrow, treasuries, token swaps, bridges, fiat ramps, identity, reputation, disputes, streaming payments, subscriptions, and USDC payments.
 
-## Publisher: <br>
-[itsgustav](https://clawhub.ai/user/itsgustav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itsgustav](https://clawhub.ai/user/itsgustav)
 
-## Use Case: <br>
-External developers and agent builders use PayLobster to connect agents to real-money payment workflows on Base, including escrows, merchant payments, token swaps, bridges, fiat on/off ramps, identity, reputation, and treasury operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through real-money payment, treasury, escrow, swap, bridge, stream, merchant, subscription, and spend-permission workflows. <br>
-Mitigation: Use a dedicated low-balance wallet or testnet first, require explicit confirmation for every transaction, and verify recipient, token, amount, chain, fees, contract address, merchant terms, and subscription terms before execution. <br>
-Risk: Prompts, logs, shared configuration, or screenshots could expose private keys or sk_live-style merchant secrets. <br>
-Mitigation: Keep private keys and live secrets out of prompts, logs, shared configs, and screenshots. <br>
-Risk: Long-lived permissions, streams, subscriptions, treasury roles, and API keys can continue to create financial exposure after setup. <br>
-Mitigation: Confirm revocation procedures for spend permissions, streams, subscriptions, treasury roles, and API keys before granting access. <br>
+## Use Case:
 
+Developers and agent builders use PayLobster to connect agents to Base payment workflows, including USDC transfers, escrow, subscriptions, service discovery, swaps, bridges, treasury management, and reputation-aware payment checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/itsgustav/paylobster) <br>
-- [PayLobster Website](https://paylobster.com) <br>
-- [PayLobster Documentation](https://paylobster.com/docs) <br>
-- [Hosted MCP Server](https://paylobster.com/mcp-server) <br>
-- [npm SDK: pay-lobster](https://www.npmjs.com/package/pay-lobster) <br>
-- [npm CLI: @paylobster/cli](https://www.npmjs.com/package/@paylobster/cli) <br>
-- [npm MCP Server: @paylobster/mcp-server](https://www.npmjs.com/package/@paylobster/mcp-server) <br>
-- [npm Agent Toolkit: @paylobster/agent-toolkit](https://www.npmjs.com/package/@paylobster/agent-toolkit) <br>
+### Deployment Geography for Use:
 
+Global, subject to supported chain, wallet, and fiat-ramp availability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce transaction, payment, treasury, escrow, bridge, swap, and merchant workflow instructions that require explicit user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.6.0 (source: server release metadata) <br>
+Risk: The skill supports real wallet authority and financial transfers, including payments, swaps, bridges, subscriptions, fiat ramps, and escrow release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use low-value dedicated wallets, require manual confirmation for every value-moving action, and prefer hosted or hardware-backed signing instead of raw private keys.
+
+Risk: Private keys, merchant secrets, and payment credentials could be exposed through chat, shell history, logs, or client-side code.
+
+Mitigation: Never place real keys or merchant secrets in prompts, logs, shell history, or browser-delivered code; use secret managers or wallet-backed signing flows.
+
+Risk: Installing or running npm packages can execute third-party code in the agent environment.
+
+Mitigation: Pin package versions, review package provenance and changes before installation, and run payment tooling in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itsgustav/skills/paylobster)
+- [PayLobster website](https://paylobster.com)
+- [PayLobster documentation](https://paylobster.com/docs)
+- [PayLobster MCP server](https://paylobster.com/mcp-server)
+- [pay-lobster npm package](https://www.npmjs.com/package/pay-lobster)
+- [@paylobster/cli npm package](https://www.npmjs.com/package/@paylobster/cli)
+- [@paylobster/mcp-server npm package](https://www.npmjs.com/package/@paylobster/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON, TypeScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce payment API calls, MCP tool inputs, CLI commands, and integration guidance for financial workflows.]
+
+## Skill Version(s):
+
+4.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

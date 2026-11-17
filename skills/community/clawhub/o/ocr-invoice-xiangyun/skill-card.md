@@ -1,44 +1,60 @@
-## Description: <br>
-This skill uses Xiangyun NetOCR APIs to recognize Chinese invoice images or PDFs, verify supported invoice types online, and optionally export invoice data to Excel templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes, verifies, batch-processes, and optionally exports Chinese invoice data using Xiangyun/NetOCR APIs.
 
-## Publisher: <br>
-[liudengkui](https://clawhub.ai/user/liudengkui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liudengkui](https://clawhub.ai/user/liudengkui)
 
-## Use Case: <br>
-External users and finance operations teams use this skill to extract structured data from Chinese invoices, verify invoice authenticity where supported, and generate invoice ledger, deduction, goods detail, transport deduction, or booking spreadsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice images, verification responses, exported spreadsheets, and local result files may contain sensitive financial or taxpayer data. <br>
-Mitigation: Use the skill only for invoices you are authorized to process, store generated files in access-controlled locations, and delete outputs when they are no longer needed. <br>
-Risk: OCR and verification require sending invoice content and NetOCR credentials to netocr.com. <br>
-Mitigation: Use dedicated NetOCR credentials where possible, keep config.json private, and request recognition-only processing when online verification is not desired. <br>
+## Use Case:
 
+Finance, accounting, tax, and operations users can use this skill through an agent to OCR Chinese invoice files, verify supported invoice types, process folders in batch, and create invoice workbooks when export is explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liudengkui/ocr-invoice-xiangyun) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/liudengkui) <br>
-- [NetOCR service](https://netocr.com) <br>
-- [NetOCR invoice recognition API](https://netocr.com/api/v2/recogInvoiveBase64.do) <br>
-- [NetOCR invoice verification API](https://netocr.com/verapi/v2/verInvoice.do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Console text, JSON result files, and optional XLSX spreadsheets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NetOCR credentials and writes invoice recognition, verification, and export outputs that may contain sensitive financial data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: Invoice contents and NetOCR API credentials are sent to netocr.com for OCR and verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that third-party processing is acceptable for the invoice data involved.
+
+Risk: Local config.json or generated result files may expose credentials or invoice data if shared or committed.
+
+Mitigation: Keep the skill directory private, do not commit config.json or generated JSON/XLSX files, and rotate credentials if exposure is suspected.
+
+Risk: Exported spreadsheets may contain untrusted invoice field values.
+
+Mitigation: Treat generated workbooks as untrusted and sanitize formula-like fields before sharing or opening them in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liudengkui/skills/ocr-invoice-xiangyun)
+- [NetOCR service](https://netocr.com)
+- [NetOCR invoice OCR API](https://netocr.com/api/v2/recogInvoiveBase64.do)
+- [NetOCR invoice verification API](https://netocr.com/verapi/v2/verInvoice.do)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with CLI commands; JSON API results and optional XLSX exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NetOCR key/secret; sends selected invoice files to netocr.com; export runs only when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

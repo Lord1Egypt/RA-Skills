@@ -1,39 +1,54 @@
-## Description: <br>
-One-click install curated skill packs for new OpenClaw users, with Essential, Developer, and Full tiers for quickly setting up recommended skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click install curated Essential, Developer, or Full OpenClaw skill packs for new users who want a fast baseline setup.
 
-## Publisher: <br>
-[ironmanc2014](https://clawhub.ai/user/ironmanc2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironmanc2014](https://clawhub.ai/user/ironmanc2014)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to install curated starter packs of ClawHub skills for daily agent work, coding workflows, browser automation, GitHub operations, and advanced agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk installation of unpinned skills can materially change an agent's behavior. <br>
-Mitigation: Start with the Essential pack, review the exact skills, verify publishers and versions where possible, and understand how to disable or uninstall higher-risk skills before enabling Developer or Full. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to install curated starter packs of ClawHub skills for general productivity, coding workflows, browser automation, memory, search, and agent assistance.
 
-## Reference(s): <br>
-- [Skill Pack Details](references/skill-packs.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ironmanc2014/skill-starter-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and install progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces pack selection guidance, install commands, success or failure summaries, retry suggestions, and restart reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk installation can add many agent-changing skills through unpinned tooling with limited user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each listed skill, confirm its publisher, permissions, and setup requirements, and use a trusted, version-checked clawhub CLI before activation.
+
+Risk: Optional extra skill names supplied to the installer can expand installation beyond the curated packs.
+
+Mitigation: Avoid passing extra skill names unless each additional skill has been reviewed and approved for the target environment.
+
+## Reference(s):
+
+- [Skill Pack Details](artifact/references/skill-packs.md)
+- [ClawHub Skill Page](https://clawhub.ai/ironmanc2014/skills/skill-starter-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and installer status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke clawhub or npx clawhub to install multiple ClawHub skills sequentially.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

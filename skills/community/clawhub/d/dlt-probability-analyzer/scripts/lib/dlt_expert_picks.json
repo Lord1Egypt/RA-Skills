@@ -1,0 +1,308 @@
+{
+  "_meta": {
+    "description": "大乐透专家推荐数据 - 由WebSearch实时检索公开来源(新浪体育/新浪彩票/55128彩吧助手/一定牛/彩宝贝等)得到, 未经核实。",
+    "target_period": "26117",
+    "last_updated": "2026-10-14 12:19",
+    "auto_scraped": true,
+    "source": "WebSearch: 新浪体育(sports.sina.com.cn)/新浪彩票(lotto.sina.cn)/55128彩吧助手(55128.cn)/一定牛(ydniu.com)/彩宝贝(78500.cn)",
+    "note": "诚信说明: 专家推荐号由WebSearch实时检索公开来源得到, 未经核实, 质量参差。大乐透近似完全随机, 任一5+2组合中奖概率恒为1/21,425,712, 专家推荐无预测力(no_edge), 仅作描述性/逆向信号, 绝不可据其认为某号更可能中奖。"
+  },
+  "experts": [
+    {
+      "expert": "林必立",
+      "front": [
+        4,
+        5,
+        6,
+        10,
+        34
+      ],
+      "back": [
+        7,
+        11
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "新浪体育",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "刘星",
+      "front": [
+        1,
+        7,
+        17,
+        18,
+        27
+      ],
+      "back": [
+        7,
+        9
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "新浪体育",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "山哥",
+      "front": [
+        4,
+        16,
+        17,
+        26,
+        31
+      ],
+      "back": [
+        5,
+        7
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "新浪体育",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "高财",
+      "front": [
+        11,
+        15,
+        18,
+        21,
+        23
+      ],
+      "back": [
+        6,
+        9
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "新浪体育",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "元宝",
+      "front": [
+        5,
+        12,
+        22,
+        28,
+        34
+      ],
+      "back": [
+        4,
+        11
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "新浪体育",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "彩鱼",
+      "front": [
+        3,
+        6,
+        15,
+        20,
+        24
+      ],
+      "back": [
+        3,
+        4
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "新浪彩票",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "人民胆王",
+      "front": [
+        7,
+        20,
+        29,
+        32,
+        34
+      ],
+      "back": [
+        1,
+        8
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "乐彩网",
+      "specialty": "本期分析"
+    },
+    {
+      "expert": "狂沙漫卷",
+      "front": [
+        8,
+        9,
+        21,
+        26,
+        29
+      ],
+      "back": [
+        3,
+        10
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "乐彩论坛",
+      "specialty": "本期分析"
+    }
+  ],
+  "updated_at": "2026-10-14 12:19",
+  "auto_scraped": true,
+  "source_count": 8,
+  "_catalog": {
+    "authoritative": [
+      {
+        "name": "林必立",
+        "platform": "新浪体育",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "三区比分析: 前区一位看偶04、二位奇05、三位偶06、四位偶10、五位偶34(全偶回补); 后区07-11。5+2单注04,05,06,10,34+07,11"
+      },
+      {
+        "name": "刘星",
+        "platform": "新浪体育",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "和值走势: 奇偶比看4:1; 012路0路温冷、1路走冷; 龙头凤尾01-27; 杀前08,09,12,14,25,29,30,32。单挑01,07,17,18"
+      },
+      {
+        "name": "山哥",
+        "platform": "新浪体育",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "后区分析: 前区一位04/二位16/三位17/四位26/五位31; 后区看小大组合05-07; 小复式04,06,08,16,17,19,26,31,35+05"
+      },
+      {
+        "name": "高财",
+        "platform": "新浪体育",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "跨度分析: 012路比看3:0:2; 一/二/三/四/五位精选11/15/18/21/23; 后区二区三区06-09。单注11,15,18,21,23+06,0"
+      },
+      {
+        "name": "元宝",
+        "platform": "新浪体育",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "三区比分析: 龙头一区05、凤尾三区34; 一区2个(05,12)/二区1个(22)/三区2个(28,34); 后区热热组合04-11。单挑05,12,22,2"
+      },
+      {
+        "name": "彩鱼",
+        "platform": "新浪彩票",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "小复式参考: 一位奇03/二位偶06/三位奇15/四位偶20/五位偶24; 后区和值看7、小尾跨度回补。单注03,06,15,20,24+03,04。"
+      },
+      {
+        "name": "人民胆王",
+        "platform": "乐彩网",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "7注推荐(第一注07,20,29,32,34+01,08); 文章可查26099-26101逐期推荐与开奖对照, 均标注'错'未中头奖——印证无稳定预测力。"
+      },
+      {
+        "name": "狂沙漫卷",
+        "platform": "乐彩论坛",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "选号思路: 12前02,06,09,10,12,14,19,20,21,25,27,35; 前3胆21,25,27; 杀3前03,08,18; 5注第一注08,"
+      },
+      {
+        "name": "刘雪日常",
+        "platform": "一定牛",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "杀号定胆: 前区五胆04,08,17,28,32、独胆32; 后区定一09; 杀前六码10,13,14,15,18,22。仅胆拖/杀号分析, 非5+2单注。"
+      },
+      {
+        "name": "独胆散人",
+        "platform": "一定牛",
+        "specialty": "本期分析",
+        "followers": "—",
+        "verified": true,
+        "note": "杀号定胆: 前区五胆02,08,11,12,34、独胆08; 后区定一06; 杀前六码09,17,24,25,30,31。仅胆拖/杀号分析, 非5+2单注。"
+      }
+    ],
+    "grassroots": [],
+    "data_sources": [
+      {
+        "name": "中国体彩网",
+        "url": "https://www.lottery.gov.cn/zst/dlt/",
+        "type": "官方数据",
+        "note": "官方开奖史+走势+遗漏, 唯一真源"
+      },
+      {
+        "name": "体彩开奖接口",
+        "url": "https://webapi.sporttery.cn",
+        "type": "官方数据",
+        "note": "getHistoryPageListV1 返回JSON, 最适合程序化拉取(参数待核实)"
+      },
+      {
+        "name": "北京体彩网",
+        "url": "https://www.bjlot.com.cn/dlt/dlt_history.shtml",
+        "type": "官方数据",
+        "note": "省中心镜像, 结构简单易抓"
+      },
+      {
+        "name": "新浪彩票走势图",
+        "url": "https://view.lottery.sina.com.cn/lotto/pc_zst/index?lottoType=dlt",
+        "type": "官方数据",
+        "note": "带连线高清走势图"
+      },
+      {
+        "name": "彩吧助手",
+        "url": "https://kjh.55128.cn/dlt-history-120.htm",
+        "type": "官方数据",
+        "note": "已算好和值/奇偶/跨度, 表格规整"
+      },
+      {
+        "name": "中彩网图表",
+        "url": "https://tubiao.zhcw.com",
+        "type": "官方数据",
+        "note": "可按年份取, 含遗漏分层"
+      },
+      {
+        "name": "彩宝贝",
+        "url": "https://www.78500.cn/dlt/",
+        "type": "官方数据",
+        "note": "大乐透专家排行榜/杀号榜常客, 结构化易抓"
+      },
+      {
+        "name": "500彩票网",
+        "url": "https://datachart.500.com/dlt/",
+        "type": "官方数据",
+        "note": "带遗漏/和值/跨度历史表, 表格规整"
+      },
+      {
+        "name": "双彩网",
+        "url": "https://www.shuangcw.com/dlt/",
+        "type": "官方数据",
+        "note": "大乐透开奖+走势+专家点评聚合"
+      }
+    ]
+  }
+}

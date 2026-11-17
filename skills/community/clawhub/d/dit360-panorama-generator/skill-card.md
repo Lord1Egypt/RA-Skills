@@ -1,44 +1,59 @@
-## Description: <br>
-Generates 360-degree panorama images with the DiT360 model, converts outputs to JPG, and creates an interactive viewer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 360-degree panoramas with Insta360 DiT360, converts outputs to JPG, and creates an interactive viewer.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Developers and creative users can use this skill to generate equirectangular 360-degree panorama images from text prompts and preview them in a browser-based panorama viewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Panorama prompts are sent to the Hugging Face DiT360 Space. <br>
-Mitigation: Do not include secrets, personal data, or proprietary prompt text. <br>
-Risk: The launcher installs the gradio_client Python dependency at runtime. <br>
-Mitigation: Review the dependency install command and run it only in an environment where runtime package installation is acceptable. <br>
-Risk: The generated viewer loads Pannellum assets from jsdelivr and may leave a local server running on port 8899. <br>
-Mitigation: Use the viewer only where external CDN assets are acceptable and stop the local server after viewing if the port should not remain open. <br>
+## Use Case:
 
+Developers and creators use this skill to generate AI-based 360-degree panorama images from text prompts, convert the generated image to JPG, and open it in a local interactive Pannellum viewer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/dit360-panorama-generator) <br>
-- [DiT360 GitHub repository](https://github.com/Insta360-Research-Team/DiT360) <br>
-- [DiT360 Hugging Face Space](https://huggingface.co/spaces/Insta360-Research/DiT360) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates WebP and JPG panorama files plus a viewer.html file, and may start a local HTTP server on port 8899.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports that the skill automatically installs an unpinned Python dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or modify the skill before deployment to pin dependencies and run it in an isolated virtual environment.
+
+Risk: The release evidence reports that the skill sends prompts to Hugging Face.
+
+Mitigation: Avoid entering sensitive prompts unless the intended Hugging Face Space and data handling are acceptable for the use case.
+
+Risk: The release evidence reports that the skill starts a background local file server with broader network exposure than users are told.
+
+Mitigation: Bind the server to 127.0.0.1, add a clear shutdown path, and review local network exposure before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hongjiahao371-pixel/skills/dit360-panorama-generator)
+- [DiT360 GitHub Repository](https://github.com/Insta360-Research-Team/DiT360)
+- [DiT360 Hugging Face Space](https://huggingface.co/spaces/Insta360-Research/DiT360)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Generated WebP and JPG image files, an HTML viewer file, local viewer URL, and command-line status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact describes 2048x1024 panorama images, prompt/seed/step parameters, and a local viewer served on port 8899.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

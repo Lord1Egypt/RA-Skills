@@ -1,41 +1,55 @@
-## Description: <br>
-Use when the user wants to interact with YoudaoNote (Youdao Cloud Notes) by listing, reading, creating, searching, clipping web pages, or saving Markdown and mindmap notes via the youdaonote CLI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to interact with YoudaoNote (Youdao Cloud Notes) by listing, reading, creating, searching, clipping, or saving Markdown and mindmap notes via the youdaonote CLI tool.
 
-## Publisher: <br>
-[huangcheng](https://clawhub.ai/user/huangcheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangcheng](https://clawhub.ai/user/huangcheng)
 
-## Use Case: <br>
-External users and developers use this skill to operate YoudaoNote from an agent-assisted terminal workflow, including managing notes, searching content, saving Markdown or mindmap notes, and clipping webpages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow runs a remote installer through a shell with full execution privileges. <br>
-Mitigation: Download and inspect the installer before running it, and install only from a trusted YoudaoNote CLI source. <br>
-Risk: The skill requires a YoudaoNote API key and can access note contents. <br>
-Mitigation: Use a limited or revocable API key when possible, keep the key out of shared terminals, logs, and repositories, and avoid storing secrets or confidential CI artifacts in notes. <br>
+## Use Case:
 
+Developers, engineers, and YoudaoNote users use this skill to operate YoudaoNote from an agent-assisted command-line workflow, including note lookup, note creation, web clipping, and JSON-based save operations.
 
-## Reference(s): <br>
-- [YoudaoNote CLI installer](https://artifact.lx.netease.com/download/youdaonote-cli/install.sh) <br>
-- [YoudaoNote API dashboard](https://mopen.163.com/#/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with command examples, configuration steps, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include commands that read, create, search, clip, or save notes through the youdaonote CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The setup flow pipes a remote installer directly into Bash, so users may execute installer code without reviewing or verifying it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download the installer separately, inspect it, and verify an official checksum or signature when available before execution.
+
+Risk: The skill can send note contents, clipped web pages, URLs, searches, and API credentials through YoudaoNote services.
+
+Mitigation: Use a dedicated YoudaoNote API key where possible and avoid uploading secrets, regulated data, or other sensitive content.
+
+## Reference(s):
+
+- [ClawHub YoudaoNote release](https://clawhub.ai/huangcheng/skills/youdao-note)
+- [YoudaoNote CLI installer](https://artifact.lx.netease.com/download/youdaonote-cli/install.sh)
+- [YoudaoNote Open Platform dashboard](https://mopen.163.com/#/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that read, create, search, clip, or save notes through the youdaonote CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

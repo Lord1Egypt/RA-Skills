@@ -1,43 +1,62 @@
-## Description: <br>
-Sets up a project-local .claude/ AI collaboration layer for Claude Code with project instructions, rules, context files, reusable skills, and prompt templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up a production-grade .claude/ AI collaboration layer for projects using Claude Code.
 
-## Publisher: <br>
-[EaveLuo](https://clawhub.ai/user/EaveLuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eaveluo](https://clawhub.ai/user/eaveluo)
 
-## Use Case: <br>
-Developers and engineers use this skill when starting Claude Code work in a project that needs a structured .claude/ configuration. It helps initialize and maintain project instructions, coding rules, project context, reusable workflows, and review prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated .claude/ files can influence future Claude Code sessions and may encode assumptions that do not fit the target project. <br>
-Mitigation: Review generated .claude/ files before relying on them, then adjust project instructions, rules, context, and prompts to match the repository. <br>
-Risk: Running the setup from the wrong working directory can create .claude/ in the wrong project. <br>
-Mitigation: Identify and switch to the intended project root before running the skill. <br>
-Risk: Using --force can replace existing .claude/ files. <br>
-Mitigation: Avoid --force unless intentionally refreshing the configuration and after reviewing existing files. <br>
+## Use Case:
 
+Developers and engineers use this skill to bootstrap and supervise project-level Claude Code configuration, including project instructions, rule files, context files, reusable prompts, and project-private skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EaveLuo/claude-code-setup) <br>
-- [Publisher profile](https://clawhub.ai/user/EaveLuo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, project-local configuration files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates files under the target project's .claude/ directory and skips existing non-empty configurations unless --force is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad trigger wording may cause an agent to create persistent .claude/ configuration files when the user did not clearly ask for setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only for explicit Claude Code setup work or after confirming that persistent project instructions are wanted.
+
+Risk: Generated CLAUDE.md, rules, context, skills, and prompt files can influence later agent behavior in the project.
+
+Mitigation: Review generated .claude/ files before future development work and edit or remove guidance that does not match the project.
+
+Risk: Running setup in the wrong directory can place .claude/ configuration in a workspace root instead of the intended project.
+
+Mitigation: Confirm the target project directory before running setup and create .claude/ only inside that project.
+
+Risk: Force mode can replace existing generated files in an established .claude/ directory.
+
+Mitigation: Avoid force mode unless overwriting existing Claude Code configuration is intentional and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eaveluo/skills/claude-code-setup)
+- [Publisher profile](https://clawhub.ai/user/eaveluo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash snippets and generated project configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates .claude/ project files and skips an existing nonempty .claude/ directory unless force mode is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

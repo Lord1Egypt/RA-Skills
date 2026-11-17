@@ -1,43 +1,54 @@
-## Description: <br>
-Search the web with AI-powered answers via Perplexity API. Returns grounded responses with citations. Supports batch queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web with AI-powered answers, returning grounded responses with citations and supporting single or batch queries.
 
-## Publisher: <br>
-[mrnicholasbcarter-code](https://clawhub.ai/user/mrnicholasbcarter-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrnicholasbcarter-code](https://clawhub.ai/user/mrnicholasbcarter-code)
 
-## Use Case: <br>
-Developers and agents use this skill to run single or batch web-search queries through OpenRouter and return grounded results with citations when available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are shared with OpenRouter and may include sensitive information. <br>
-Mitigation: Avoid entering secrets or sensitive private information in queries. <br>
-Risk: OpenRouter API usage may affect account usage or billing. <br>
-Mitigation: Monitor OpenRouter API usage and billing for the configured API key. <br>
-Risk: The release wording may confuse users by referring to both Perplexity and OpenRouter. <br>
-Mitigation: Clarify for users that the skill requires OpenRouter credentials and sends requests to OpenRouter. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrnicholasbcarter-code/openrouter-perplexity) <br>
-- [OpenRouter](https://openrouter.ai/) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
+## Use Case:
 
+Developers and agents use this skill to run single or batch web searches and receive concise, cited results. Raw JSON output is available when downstream automation needs structured search responses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Markdown-style search results by default, or raw JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and accepts one or more query strings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and the OPENROUTER_API_KEY authorization token are sent to OpenRouter.
+
+Mitigation: Install only where sending those queries and credentials to OpenRouter is acceptable, and use a dedicated key that can be rotated if needed.
+
+Risk: The skill documentation describes Perplexity, while the executable sends requests to OpenRouter.
+
+Mitigation: Review publisher clarification and endpoint behavior before deployment, and describe the OpenRouter dependency to users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mrnicholasbcarter-code/skills/openrouter-perplexity)
+- [OpenRouter](https://openrouter.ai/)
+- [OpenRouter API Endpoint](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Markdown-formatted search summaries with citations, or raw JSON when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Displays up to five result items per response branch and truncates long snippets for readable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

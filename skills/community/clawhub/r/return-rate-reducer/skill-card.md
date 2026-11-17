@@ -1,43 +1,58 @@
-## Description: <br>
-Reduce e-commerce return rates through data-driven root-cause analysis, product-page fixes, and policy optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce e-commerce return rates through data-driven root-cause analysis, product-page fixes, and policy optimization.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-E-commerce operators, merchandisers, and growth teams use this skill to diagnose high return rates from return data, customer reviews, product pages, and policy details, then create prioritized fixes and measurement plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Return exports, product-page text, customer reviews, and policy details may contain sensitive business or customer information. <br>
-Mitigation: Provide only data intended for analysis and remove unnecessary personal, customer, or account details before sharing. <br>
-Risk: Policy recommendations may affect customer experience, account treatment, or refund eligibility if applied without review. <br>
-Mitigation: Review recommended policy changes with the responsible business, legal, or customer-support owner before applying them to customers or accounts. <br>
-Risk: The optional local scripts analyze supplied files and may produce incomplete results if CSV columns, total-order counts, or product-page content are missing or inconsistent. <br>
-Mitigation: Check input files for the expected fields and validate script outputs against source data before using them for business decisions. <br>
+## Use Case:
 
+E-commerce operators, merchandising teams, CX teams, and analysts use this skill to diagnose high return rates, identify top return drivers, and prioritize product-page, policy, and measurement fixes across retail categories.
 
-## Reference(s): <br>
-- [Return Reduction Playbook](references/return_reduction_playbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/return-rate-reducer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized recommendations, return-rate reports, PDP lint findings, policy guidance, and measurement plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Returns CSVs, product-page files, and generated reports may contain sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat inputs and generated Markdown as business data, and review reports before sharing them outside the intended team.
+
+Risk: Return-rate calculations can be misleading if the total order count is missing or inaccurate.
+
+Mitigation: Provide the total order count explicitly when using the analyzer so rates are calculated against the correct denominator.
+
+Risk: Generated Markdown reports from untrusted CSV content may be unsafe in permissive Markdown viewers.
+
+Mitigation: Review generated Markdown before rendering or publishing it, especially when source CSVs come from untrusted locations.
+
+## Reference(s):
+
+- [Return Reduction Playbook](artifact/references/return_reduction_playbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/return-rate-reducer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, tables, prioritized recommendations, and local script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May analyze user-provided returns CSVs and product-page Markdown; accurate return-rate calculations require explicit total order counts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

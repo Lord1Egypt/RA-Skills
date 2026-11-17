@@ -1,44 +1,55 @@
-## Description: <br>
-This skill helps agents prepare and publish video or text content across Douyin, Xiaohongshu, WeChat Channels, Bilibili, Weibo, and similar platforms with platform-specific adaptation, SEO tags, scheduling guidance, and publication status reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan and prototype multi-platform content distribution by adapting content for Douyin, Xiaohongshu, WeChat Channels, Bilibili, and Weibo, optimizing titles and tags, recommending publishing times, and summarizing publishing status.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Content operators, marketers, and developers use this skill to adapt a content package for multiple social platforms, run the provided publishing flow, and review publication statuses and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved actions may publish content publicly or modify logged-in social media accounts. <br>
-Mitigation: Review the exact accounts, platforms, content, and schedule before approval; test with drafts or a single account before broad distribution. <br>
-Risk: Publishing credentials or API keys could expose social accounts if handled carelessly. <br>
-Mitigation: Keep required secrets such as PUSH_API_KEY in local environment or secret files and do not commit or paste them into shared logs. <br>
-Risk: Automation-backed platform publishing can be less stable on services without official APIs. <br>
-Mitigation: Check the generated status report and links after each run, and manually verify failed, pending, or review-state posts. <br>
+## Use Case:
 
+External content creators, operators, and developers use this skill to prepare platform-specific publishing commands, title and description adaptations, hashtag guidance, posting-time recommendations, and publishing summaries for Chinese social platforms.
 
-## Reference(s): <br>
-- [Platform Rules](references/platform-rules.md) <br>
-- [SEO Optimization](references/seo-optimization.md) <br>
-- [Best Posting Time](references/best-posting-time.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; the publishing script prints text status and writes a JSON publication record.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pre-configured platform accounts; publishing can be immediate or scheduled and failed attempts are retried up to 3 times.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary says the skill can overstate real posting capability and report fake publication success.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat publishing results and generated links as unverified prototype output until real platform adapters, confirmation checks, and operator review are in place.
+
+Risk: The security guidance warns against using production account credentials with the current implementation.
+
+Mitigation: Test only in a private working directory with non-production accounts or dummy inputs, and add credential handling plus explicit confirmation controls before production use.
+
+## Reference(s):
+
+- [Platform Rules](artifact/references/platform-rules.md)
+- [SEO Optimization Rules](artifact/references/seo-optimization.md)
+- [Best Posting Times](artifact/references/best-posting-time.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and publishing-status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script may write timestamped JSON publishing records; security evidence says reported success and links should be treated as prototype outputs unless real platform adapters and confirmation controls are added.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

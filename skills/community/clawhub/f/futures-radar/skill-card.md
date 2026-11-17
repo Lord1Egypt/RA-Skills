@@ -1,44 +1,59 @@
-## Description: <br>
-Futures Radar helps agents fetch Yahoo Finance futures and commodity quotes for energy, metals, agricultural contracts, U.S. Treasury futures, and the DXY index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Futures Radar helps agents fetch and summarize live futures and commodity market data from Yahoo Finance for energy, metals, agricultural contracts, Treasury futures, and DXY.
 
-## Publisher: <br>
-[gold3bear](https://clawhub.ai/user/gold3bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gold3bear](https://clawhub.ai/user/gold3bear)
 
-## Use Case: <br>
-External users and analysts use this skill to retrieve current futures and commodity market snapshots, compare key ratios such as gold-silver and oil-gold, and frame market commentary from public Yahoo Finance data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Yahoo Finance when used for futures or commodity questions. <br>
-Mitigation: Install and use it only in environments where outbound requests to Yahoo Finance are acceptable. <br>
-Risk: Market commentary and quote-derived signals can be incorrect, delayed, or unsuitable for trading decisions. <br>
-Mitigation: Treat outputs as informational market context, not financial advice, and verify prices before acting. <br>
-Risk: The example command includes a local Windows path from the publisher's environment. <br>
-Mitigation: Adjust the script path and Python dependency setup for the user's own environment before running commands. <br>
+## Use Case:
 
+External users and agents use this skill to monitor commodity and futures markets, retrieve current Yahoo Finance quotes, and frame high-level signals such as gold-silver and oil-gold ratios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gold3bear/futures-radar) <br>
-- [Publisher profile](https://clawhub.ai/user/gold3bear) <br>
-- [Yahoo Finance chart API endpoint](https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with optional Python and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market data depends on live Yahoo Finance responses and may be unavailable or delayed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill makes live network requests to Yahoo Finance for market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound requests for public market data are allowed and expected.
+
+Risk: Market data may be delayed, unavailable, or unsuitable as the sole basis for financial decisions.
+
+Mitigation: Treat outputs as informational market context and verify important quotes with an authoritative source before acting.
+
+Risk: The artifact is written for Chinese-language output and broad commodity or futures activation terms.
+
+Mitigation: Deploy where Chinese-language market summaries are appropriate, and review activation behavior if narrower routing is required.
+
+## Reference(s):
+
+- [Futures Radar ClawHub listing](https://clawhub.ai/gold3bear/skills/futures-radar)
+- [Publisher profile: gold3bear](https://clawhub.ai/user/gold3bear)
+- [Yahoo Finance chart API endpoint used by the skill](https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Chinese-language terminal text and Markdown guidance with optional Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live market data depends on Yahoo Finance availability and network access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

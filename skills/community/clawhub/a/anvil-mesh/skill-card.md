@@ -1,43 +1,56 @@
-## Description: <br>
-Query the Anvil mesh network for live BSV data feeds, SPV transaction verification, and HTTP 402 micropayment service discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the Anvil mesh network for live BSV data feeds, SPV transaction verification, and HTTP 402 micropayment service discovery.
 
-## Publisher: <br>
-[BSVanon](https://clawhub.ai/user/BSVanon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bsvanon](https://clawhub.ai/user/bsvanon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover Anvil nodes, query signed BSV data feeds, inspect HTTP 402 payment manifests, and request SPV transaction proofs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plain-HTTP node or payment endpoints can expose users to tampered payment metadata, prices, addresses, or transaction proofs. <br>
-Mitigation: Prefer HTTPS endpoints and independently verify endpoint identity, payment address, quoted price, and proof metadata before relying on results. <br>
-Risk: HTTP 402 flows may initiate payment-capable workflows against third-party services. <br>
-Mitigation: Only use trusted endpoints and confirm exact payment amount and recipient before creating or submitting a BSV transaction. <br>
+## Use Case:
 
+Developers and agents use this skill to discover Anvil mesh node capabilities, query live BSV data feeds, inspect SPV proof data, and understand HTTP 402 payment flows. Any real payment or transaction action should remain user-approved and constrained.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/BSVanon/anvil-mesh) <br>
-- [Anvil GitHub repository](https://github.com/BSVanon/Anvil) <br>
-- [Anvil Mesh SDK](https://www.npmjs.com/package/anvil-mesh) <br>
-- [SendBSV profile](https://x.com/SendBSV) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples; payment-capable requests may require independent verification of endpoint, price, address, and proof metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent toward real BSV payment and transaction workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before creating or broadcasting any transaction, with recipient, amount, and spending-limit verification.
+
+Risk: Returned prices, payment addresses, or proofs may come from under-protected endpoints.
+
+Mitigation: Prefer authenticated HTTPS endpoints and verify returned payment details or proofs before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bsvanon/skills/anvil-mesh)
+- [Anvil GitHub Repository](https://github.com/BSVanon/Anvil)
+- [anvil-mesh SDK](https://www.npmjs.com/package/anvil-mesh)
+- [@SendBSV](https://x.com/SendBSV)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for command examples; no credential environment variables are declared.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

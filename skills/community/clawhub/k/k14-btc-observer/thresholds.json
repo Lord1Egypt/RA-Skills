@@ -1,0 +1,19 @@
+{
+ "month": "2026-10",
+ "signal": "K14",
+ "window_days": 90,
+ "calibration_from_utc": "2026-07-03 00:00:00",
+ "calibration_to_utc": "2026-10-01 00:00:00",
+ "rows": 8640,
+ "q": 0.05,
+ "lower": -0.8729887622348522,
+ "upper": 0.8851861020141072,
+ "reference_q03": {
+  "lower": -0.9287918226927799,
+  "upper": 0.9358251476790782
+ },
+ "rule": "K14 < lower -> buy Up; K14 > upper -> buy Down; ties abstain",
+ "source": "Binance spot BTCUSDT 15m official archive",
+ "provisional": false,
+ "data_end_utc": "2026-10-22T23:59Z"
+}

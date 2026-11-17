@@ -1,41 +1,54 @@
-## Description: <br>
-Automation for TikTok Live shopping, including monitoring pinned products, adding to cart, and preparing for checkout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automation for TikTok Live shopping, including monitoring pinned products, adding to cart, and preparing for checkout.
 
-## Publisher: <br>
-[kritsanan1](https://clawhub.ai/user/kritsanan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kritsanan1](https://clawhub.ai/user/kritsanan1)
 
-## Use Case: <br>
-External users and developers use this skill to monitor TikTok Live streams for pinned products, add detected items to a cart, and prepare checkout while leaving final order placement to manual confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act in a logged-in TikTok shopping account without enough built-in user controls. <br>
-Mitigation: Review before installing, use a separate TikTok or browser profile, keep the browser visible, avoid saved payment methods, and set external product, quantity, and price limits. <br>
-Risk: Shopping automation may add detected products to a cart and prepare checkout before the user has reviewed the purchase. <br>
-Mitigation: Require manual confirmation for final order placement and review cart contents before any purchase action. <br>
+## Use Case:
 
+External users and developers can use this skill to monitor TikTok Live streams for pinned products, collect cart data, and prepare checkout steps while retaining manual final purchase confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kritsanan1/tiktok-live-cart-automation) <br>
-- [ChromeDriver](https://chromedriver.chromium.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts and JSON cart data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TikTok username, optional monitoring duration, and optional headless browser mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The release is framed as TikTok shopping automation, while the authoritative security summary says the shipped code is mostly simulation and still points users toward real account, cart, checkout, and unofficial dependency use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; treat it as a prototype or simulator unless the publisher clearly separates simulation from production use and documents exact browser and account permissions.
+
+Risk: Optional Selenium, ChromeDriver, and unofficial TikTokLive dependency use may affect browser sessions and account activity.
+
+Mitigation: Pin and verify dependencies, use an isolated browser profile, and keep final checkout or purchase confirmation manual.
+
+## Reference(s):
+
+- [ChromeDriver](https://chromedriver.chromium.org/)
+- [ClawHub skill page](https://clawhub.ai/kritsanan1/skills/tiktok-live-cart-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; scripts emit console logs and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TikTok username and supports optional duration and headless-mode parameters; final checkout confirmation remains manual.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

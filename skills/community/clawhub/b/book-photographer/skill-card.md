@@ -1,38 +1,57 @@
-## Description: <br>
-Book photographer services through Lokuli MCP when a user wants to find or book a photographer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent search for photographers, check availability, and create bookings through Lokuli's MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-People looking for photographer services use this skill to search providers, check availability, and create bookings through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking may send personal contact and scheduling details to Lokuli. <br>
-Mitigation: Confirm the provider, date, time, price or commitment terms, and user consent before sending personal details or creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/book-photographer) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to find photographer services, check appointment availability, and prepare or create a booking through Lokuli. It is most relevant when the user has provided enough location, service, date, and contact details for a booking workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes search, availability, and booking request examples for a Lokuli MCP server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send location and contact details to an external booking service.
+
+Mitigation: Confirm the user wants to share those details with Lokuli before sending booking or contact information.
+
+Risk: The skill can create bookings without clearly requiring user consent first.
+
+Mitigation: Require explicit user confirmation of provider, service, date, time, and contact details before creating a booking.
+
+Risk: Generic photographer-search requests may route through Lokuli.
+
+Mitigation: Use this skill only when the user is comfortable using Lokuli for photographer search and booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-photographer)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown with JSON-RPC MCP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send user location and contact details to Lokuli and may create bookings through an external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

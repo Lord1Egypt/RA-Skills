@@ -1,45 +1,57 @@
-## Description: <br>
-Provides multi-dimensional A-share stock analysis across financial metrics, technical indicators, valuation, shareholder holdings, market sentiment, brokerage forecasts, K-line charts, filings, announcements, news, and exchange Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive A-share stock analysis skill covering core financials, technical indicators, valuation analysis, shareholder holdings, market sentiment, brokerage forecasts, K-line charts, financial reports, announcements, news, and exchange Q&A.
 
-## Publisher: <br>
-[luokeer52](https://clawhub.ai/user/luokeer52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luokeer52](https://clawhub.ai/user/luokeer52)
 
-## Use Case: <br>
-External users and agents use this skill to request A-share stock analysis and related market context through a Prana/Claw wrapper. Developers can run it through the provided Python or Node client when they need an agent-callable stock-analysis capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-analysis prompts are sent to a remote Prana/Claw service for processing. <br>
-Mitigation: Use service-specific credentials and avoid putting unrelated secrets or sensitive personal information in prompts. <br>
-Risk: The wrapper can store its API credentials in config/api_key.txt. <br>
-Mitigation: Keep config/api_key.txt private and set PRANA_SKILL_SKIP_WRITE_API_KEY=1 when credentials should not be written to disk. <br>
-Risk: Generated stock analysis may be incomplete, stale, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Review results against authoritative market sources and apply human judgment before acting on investment-related output. <br>
+## Use Case:
 
+External users and developers use this skill to request multi-dimensional analysis of A-share stocks through a ClawHub/Prana remote runner. It helps agents return stock-analysis results that may include financial, technical, valuation, sentiment, forecast, chart, disclosure, news, and exchange-interaction context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luokeer52/getmeastock) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [skill.yaml](skill.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text stock-analysis response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market analysis returned from the remote Prana/Claw service and threaded follow-up context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends credentials and user prompts to a configurable remote endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the intended Prana/Claw endpoint and avoid passing a custom base URL unless it has been reviewed.
+
+Risk: API keys may be stored locally in config/api_key.txt.
+
+Mitigation: Prefer environment variables or a secret manager, set PRANA_SKILL_SKIP_WRITE_API_KEY=1 when auto-fetching keys, and keep config/api_key.txt out of public repositories.
+
+Risk: Stock-analysis output may be incomplete, delayed, or unsuitable for investment decisions.
+
+Mitigation: Review generated analysis against authoritative market and issuer sources before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luokeer52/skills/getmeastock)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown or JSON returned by the remote skill runner, with setup guidance expressed as shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ClawHub/Prana API credentials and network access; Python and Node runners are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,65 @@
+{
+  "name": "lygo-continuum",
+  "displayName": "LYGO Continuum",
+  "version": "1.0.1",
+  "description": "Falsifiable work capsules: seal done-claims, re-verify, detect drift, hand off. Pure local stdlib. Paths confined under --base. Optional portal is separate (not opened by skill).",
+  "slug": "lygo-continuum",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-continuum",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-continuum",
+  "portal_optional": "https://chatagent.ca/lygo-continuum.html",
+  "signature": "Delta9Phi963-CONTINUUM-v1.0.1",
+  "tags": [
+    "latest",
+    "lygo",
+    "continuum",
+    "receipts",
+    "claims",
+    "handoff",
+    "drift",
+    "verify",
+    "openclaw",
+    "agent-done",
+    "falsifiable",
+    "delta9",
+    "security"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "seal": "scripts/continuum.py seal",
+    "verify": "scripts/continuum.py verify",
+    "drift": "scripts/continuum.py drift",
+    "handoff": "scripts/continuum.py handoff",
+    "card": "scripts/continuum.py card",
+    "demo": "scripts/continuum.py demo",
+    "kinds": "scripts/continuum.py kinds",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "∞",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-continuum",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "claim paths relative to --base",
+      "write": "--out under --base; state/ with --i-consent"
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network": true,
+    "path_confinement": true,
+    "version": "1.0.1"
+  }
+}

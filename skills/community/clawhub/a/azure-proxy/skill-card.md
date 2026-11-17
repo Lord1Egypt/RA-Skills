@@ -1,44 +1,62 @@
-## Description: <br>
-Azure OpenAI Proxy enables OpenClaw to use Azure OpenAI through a lightweight local proxy that adds the required deployment path and api-version parameter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable Azure OpenAI integration with OpenClaw via a lightweight local proxy.
 
-## Publisher: <br>
-[BenediktSchackenberg](https://clawhub.ai/user/BenediktSchackenberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[benediktschackenberg](https://clawhub.ai/user/benediktschackenberg)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a local proxy that forwards OpenClaw chat-completion requests to their Azure OpenAI deployment and to configure OpenClaw with the proxy endpoint and API key header. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw prompts and Azure API keys pass through this local proxy to the configured Azure OpenAI resource. <br>
-Mitigation: Install only when that routing is intended, protect the OpenClaw configuration that contains the API key, and use a dedicated Azure OpenAI key with appropriate access controls. <br>
-Risk: Changing the bind address from the default localhost setting can expose the proxy on a network. <br>
-Mitigation: Keep AZURE_PROXY_BIND set to 127.0.0.1 unless network exposure is deliberate and separately protected. <br>
-Risk: Enabling the optional systemd user service can keep the proxy running beyond the current shell session. <br>
-Mitigation: Enable the service only when persistent operation is desired and review the service environment before starting it. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw to send chat completion requests to Azure OpenAI through a local proxy that adds Azure's deployment path and api-version query parameter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BenediktSchackenberg/azure-proxy) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON configuration, and JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Binding the proxy beyond localhost can expose Azure OpenAI traffic and credentials to other clients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the proxy bound to 127.0.0.1 unless separate access controls are added and reviewed.
+
+Risk: The Azure API key used in OpenClaw configuration is sensitive.
+
+Mitigation: Store the key only in the intended local configuration, restrict access to that file, and rotate the key if it is exposed.
+
+Risk: The optional systemd setup can keep the proxy running persistently if enabled.
+
+Mitigation: Review or create the service file yourself before enabling the user service.
+
+Risk: Incorrect Azure endpoint, deployment name, API version, or API key values can cause setup and availability failures.
+
+Mitigation: Validate these values against the Azure portal and use the local health check before routing agent traffic through the proxy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/benediktschackenberg/skills/azure-proxy)
+- [Publisher profile](https://clawhub.ai/user/benediktschackenberg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local proxy setup guidance and Node.js execution/configuration instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

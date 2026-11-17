@@ -1,0 +1,14 @@
+{
+  "doc": "mounting_plate.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "set_params", "values": {"plate_t": 6, "hole_r": 3.25}},
+    {"op": "box", "name": "Plate", "length": 80, "width": 50, "height": "=Params.plate_t"},
+    {"op": "cylinder", "name": "Hole", "radius": "=Params.hole_r", "height": "=Params.plate_t + 2", "position": [10, 10, -1]},
+    {"op": "grid_array", "name": "Holes", "target": "Hole", "count_x": 2, "count_y": 2, "step_x": 60, "step_y": 30, "fuse": false},
+    {"op": "cut", "name": "Drilled", "base": "Plate", "tool": "Holes"},
+    {"op": "fillet", "name": "MountingPlate", "target": "Drilled", "radius": 5, "edges": "|Z and %LINE",
+     "expect": {"bbox_size": [80, 50, 6], "solids": 1}},
+    {"op": "export", "filename": "mounting_plate.step"}
+  ]
+}

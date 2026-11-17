@@ -12,11 +12,11 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 ## 通用工具说明
 
 ### 腾讯文档
-- **创建文档**: 使用 `qclaw_tdoc_mcp_call` 工具
-- **管理文档**: 使用 `mcporter` CLI
+- **创建文档**: 使用 `tencent-docs` MCP 工具（如 `mcp__tencent-docs__manage.create_file`）
+- **管理文档**: 使用 `tencent-docs` MCP 工具（如 `mcp__tencent-docs__manage.move_file`）
 
 ### 定时任务
-- **使用技能**: `qclaw-cron-skill`
+- **定时任务**: 使用 WorkBuddy 的 `automation_update` 工具
 - **用途**: 定时提醒和自动报告
 
 ## What Goes Here

@@ -1,0 +1,5 @@
+[
+  {"name":"SYNTHETIC Maple Studio","rent":1950,"monthly_fees":85,"deposit":1950,"laundry":"shared","source_url":"fixture:maple","retrieved_at":"2026-11-01T20:00:00Z","synthetic":true},
+  {"name":"SYNTHETIC Cedar One Bedroom","rent":2100,"monthly_fees":75,"deposit":2100,"laundry":"in-unit","source_url":"fixture:cedar","retrieved_at":"2026-11-01T20:00:00Z","synthetic":true},
+  {"name":"SYNTHETIC Oak Apartment","rent":2000,"monthly_fees":null,"deposit":null,"source_url":"fixture:oak","retrieved_at":"2026-11-01T20:00:00Z","synthetic":true}
+]

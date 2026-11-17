@@ -1,49 +1,62 @@
-## Description: <br>
-Wall Street Quant Team provides a multi-agent AI investment analysis workflow for stock research, trend analysis, quantitative modeling, behavioral finance, and risk review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wall Street Quant Team is a multi-agent quantitative investment analysis skill for stock research, trend analysis, behavior-finance review, risk assessment, and AI-assisted strategy development.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External users and investment-oriented agents use this skill as decision-support content to coordinate seven specialist roles for stock analysis, quantitative strategy discussion, trend review, and risk reporting. It should not be used as an autonomous trading bot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment-analysis outputs may be mistaken for financial advice or trading instructions. <br>
-Mitigation: Use outputs only as decision-support content, require human review, and keep the skill disconnected from brokerage accounts or automated order entry. <br>
-Risk: Artifact behavior describes automatic monitoring, stop-loss execution, broad logging, and cross-skill loading. <br>
-Mitigation: Do not enable scheduled monitoring, automatic stop-losses, advisor skill loading, or retention of raw portfolio and strategy logs unless explicitly approved and controlled. <br>
+## Use Case:
 
+External users and developers use this skill to coordinate specialist agent roles for investment research, stock and market analysis, quantitative strategy exploration, and risk review. It produces analysis-oriented outputs and should be controlled carefully before any connection to brokerage, account, automation, file, or external-skill tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/e2e5g/wall-street-quant-team) <br>
-- [Investment Analysis Guide](references/investment-analysis-guide.md) <br>
-- [Workflow Orchestration](references/workflow-orchestration.md) <br>
-- [AI Quant Guide](references/ai-quant-guide.md) <br>
-- [Trend Analysis](references/trend-analysis.md) <br>
-- [Stock Data Usage](references/stock-data-usage.md) <br>
-- [Behavior Finance](references/behavior-finance.md) <br>
-- [Monitoring System](references/monitoring-system.md) <br>
-- [Advisor Invitation](references/advisor-invitation.md) <br>
-- [Cost Control](references/cost-control.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown investment-analysis reports and role/workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision-support only; reports include risk notices and should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Investment-analysis outputs could be mistaken for trade instructions or used with brokerage, account, automation, or file tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as analysis-only unless explicit controls prohibit live orders, require per-action confirmation, and redact logs and traces.
+
+Risk: External advisor skills could add unverified behavior or advice.
+
+Mitigation: Load only reviewed advisor skills and require explicit user confirmation before using them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/e2e5g/skills/wall-street-quant-team)
+- [Investment Analysis Guide](references/investment-analysis-guide.md)
+- [Workflow Orchestration Guide](references/workflow-orchestration.md)
+- [Stock Data Usage Guide](references/stock-data-usage.md)
+- [Trend Analysis Guide](references/trend-analysis.md)
+- [AI Quant Guide](references/ai-quant-guide.md)
+- [Behavior Finance Guide](references/behavior-finance.md)
+- [Advisor Invitation Guide](references/advisor-invitation.md)
+- [Cost Control Strategy](references/cost-control.md)
+- [Monitoring System Guide](references/monitoring-system.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown investment-analysis reports and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk notices and analysis-only recommendations; no live trade execution is evidenced.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

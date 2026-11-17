@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn77v51abc0pz5zg2nzd7gpnrs80b477",
-  "slug": "skills-finder",
+  "name": "skills-finder",
   "version": "1.6.0",
-  "publishedAt": 1773239452985
+  "description": "Intelligent skill matcher - searches ClawHub & Skills.sh in real-time. Supports ANY language input, multi-step skill chaining, and one-click installation.",
+  "author": "wenew",
+  "tags": ["skill", "finder", "matcher", "discovery", "clawhub", "skills.sh", "search", "install", "chain", "automation", "global", "multilingual", "universal"],
+  "homepage": "https://github.com/wenew/skills-finder",
+  "license": "MIT",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🔗",
+      "requires": {
+        "bins": ["npx", "jq"]
+      },
+      "install": [
+        {
+          "id": "node",
+          "kind": "node",
+          "package": "clawhub",
+          "bins": ["clawhub"],
+          "label": "Install ClawHub CLI (npm)"
+        },
+        {
+          "id": "node-skills",
+          "kind": "node", 
+          "package": "skills",
+          "bins": ["skills"],
+          "label": "Install Skills CLI (npm)"
+        }
+      ]
+    }
+  }
 }

@@ -1,42 +1,54 @@
-## Description: <br>
-Weread Digest helps agents turn local WeRead highlights and notes into reading statistics, periodic digests, book summaries, cross-book themes, and Markdown knowledge-base archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered reading note digestion for WeRead that turns local highlights and notes into reading stats, periodic digests, book summaries, cross-book themes, and knowledge-base archive drafts.
 
-## Publisher: <br>
-[ben61405](https://clawhub.ai/user/ben61405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ben61405](https://clawhub.ai/user/ben61405)
 
-## Use Case: <br>
-External users and reading-workflow builders use this skill to summarize exported WeRead notes, generate weekly or monthly reading reports, identify cross-book themes, and archive selected concepts into a local Markdown or Obsidian knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads exported WeRead notes that may contain private reading history and personal annotations. <br>
-Mitigation: Use it only in environments where the agent may access the local WeRead export directory, and avoid sharing generated reports unless their contents have been reviewed. <br>
-Risk: Knowledge-base archiving can write Markdown files into a configured folder. <br>
-Mitigation: Review the proposed file list and concept extraction plan before confirming archive actions, as required by the skill workflow. <br>
+## Use Case:
 
+Readers and knowledge-management users use this skill to analyze locally exported WeRead highlights and notes, generate reading reports and book summaries, and prepare confirmed Markdown archive entries for an Obsidian or plain Markdown knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ben61405/weread-digest) <br>
-- [Publisher profile](https://clawhub.ai/user/ben61405) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, summaries, confirmation prompts, shell commands, and optional Markdown knowledge-base files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local WeRead exports and asks for confirmation before knowledge-base archive writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Archive mode can create or update local knowledge-base files in a configured Obsidian or Markdown folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the configured knowledge-base path and review the proposed file changes before confirming archive operations.
+
+Risk: The skill depends on a separate weread skill for exported reading data and Cookie setup.
+
+Mitigation: Install and trust the companion weread skill before use, and rerun or refresh its export flow when local data is missing or stale.
+
+## Reference(s):
+
+- [Weread Digest on ClawHub](https://clawhub.ai/ben61405/skills/weread-digest)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and tables, shell command snippets, JSON configuration examples, and proposed Markdown knowledge-base file changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses locally exported WeRead data; knowledge-base archive writes are gated by configuration and explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

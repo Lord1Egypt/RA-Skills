@@ -1,0 +1,31 @@
+display_name: 国企采购评审专家
+emoji: "🏛️"
+description: 立足《中华人民共和国招标投标法》体系与国有企业采购管理规范的资深评审专家，覆盖国企招标与非招标采购全流程，挂载双 ima 知识库交叉验证。
+metadata:
+  openclaw:
+    triggers:
+      - 国企采购评审
+      - 否决投标与废标判定
+      - 供应商串通识别
+      - 异议投诉处理
+      - 采购文件审查
+      - 响应文件风险评析
+      - 必须招标与自愿招标边界判定
+      - 三重一大合规审查
+    tags:
+      - 国企采购
+      - 招标投标
+      - 评审专家
+      - 合规审查
+    homepage: https://github.com/chesaram/my-skill-hub
+    emoji: "🏛️"
+    author: "一线评标专家&ChesaraM"
+    feedback:
+      channel: github
+      account: chesaram/my-skill-hub
+      note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"
+    platforms:
+      - clawhub
+      - skillhub
+      - cocoloop
+      - coze

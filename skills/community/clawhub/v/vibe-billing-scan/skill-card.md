@@ -1,41 +1,54 @@
-## Description: <br>
-Scans OpenClaw logs to identify costly runs, sessions, retry storms, and looped tool calls that may be driving API spend higher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans OpenClaw API logs to identify costly runs, sessions, retry storms, large context windows, and repeated tool calls that may be driving higher API spend.
 
-## Publisher: <br>
-[shinertx](https://clawhub.ai/user/shinertx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinertx](https://clawhub.ai/user/shinertx)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local API usage logs, find unusually expensive runs or sessions, and identify retry storms, context growth, or repeated tool calls that increase costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run an unpinned external npm package against sensitive local API logs. <br>
-Mitigation: Review the vibe-billing npm package and its documentation before running it, treat logs and scan output as sensitive, and avoid sharing results without redaction. <br>
-Risk: The optional setup command may install a persistent proxy without enough artifact detail about its traffic scope, storage, transmission, or removal process. <br>
-Mitigation: Avoid npx vibe-billing setup unless you understand what the proxy observes, where data is stored or sent, and how to disable or uninstall it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local API usage data, find high-cost sessions or retry loops, and understand where API spend is concentrated.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shinertx/vibe-billing-scan) <br>
-- [Vibe Billing landing page](https://api.jockeyvc.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local npx commands for scanning existing logs, checking status, or optionally setting up ongoing monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill asks users to run unpinned remote commands against sensitive billing and log data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed version of the billing package and run it in a restricted local environment before sharing or acting on results.
+
+Risk: The optional setup command may install or configure a monitoring proxy whose changes are underdocumented in the artifact.
+
+Mitigation: Do not enable proxy setup unless the publisher documents what it changes, what data it observes, and how to disable or uninstall it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinertx/skills/vibe-billing-scan)
+- [Vibe Billing landing page](https://api.jockeyvc.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and scan interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional setup guidance for ongoing monitoring; scan results depend on local OpenClaw logs and API proxy data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

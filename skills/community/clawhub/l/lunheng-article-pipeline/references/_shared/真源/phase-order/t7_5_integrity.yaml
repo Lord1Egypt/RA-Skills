@@ -1,0 +1,20 @@
+# 论衡流程真源 · 第二部分：节点 t7_5_integrity（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t7_5_integrity
+  phase: "T7.5 完整性门"
+  phase_seq: 17
+  kind: mechanical_checkpoint
+  verdict_scale: four_tier   # v2.12.40：结论落四档；审计报告缺失 = 路径或参数错误（不触发修订）
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 审计报告 + 本轮 M 门记录已落盘；不得用预跑/上轮记录
+  audited_artifact_required: true   # v2.12.49 M-8：以下游只读档报告必须声明 audited_artifact 三元组（path / bytes / sha256）；t7_5_integrity 校验集合相等（下游报告与 current_draft_sync 同步的版本一致）
+  owner: 主控
+  write_authority: owner
+  input: audits/审计报告-vN.md   # v2.12.41 修依赖倒置：本闸**不得**读 final/M-Gate-Report（那是本闸的**产出**；v2.12.33 已定「T7.5 不 check T8 产物」），改读本轮章节级 M 门记录（status.md）
+  output: final/M-Gate-Report-*.json   # v2.12.41 补生产者：M 门报告由本闸汇总产出，供 T8 读（原全库无生产者 → 孤儿输入）
+  output_schema:
+    paragraph_density_map: "段号 -> {paragraph_chars, hit_count, density_per_10000, hit_classes}"
+    paragraph_density_top5: "按 density_per_10000 降序的前五段，含段号、预览和原文位置"
+    paragraph_density_weighted_score: "Σ(段密度 × 段字数) / 总字数"
+    note: "v2.14.0 C3：G14 段落级密度是定位工具，不替代 9 类总判定；纯外语或 G14 n/a 时记录 paragraph_density_map: n/a。"
+  next: g14_style_gate   # v2.12.40：G14 风格闸迁至此处（定稿前唯一一次）；原直连 phase4_4_figures

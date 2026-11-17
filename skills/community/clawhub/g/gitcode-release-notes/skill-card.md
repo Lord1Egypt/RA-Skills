@@ -1,41 +1,55 @@
-## Description: <br>
-Generate release notes for GitCode repositories from commits by tag range or since-date, grouped as feat/fix/docs/other, and output Markdown for Release pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate release notes for GitCode repositories from commits by tag range or since-date, grouped as feat/fix/docs/other, and output Markdown for Release pages.
 
-## Publisher: <br>
-[autoxj](https://clawhub.ai/user/autoxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autoxj](https://clawhub.ai/user/autoxj)
 
-## Use Case: <br>
-Developers and release managers use this skill to fetch GitCode commit history for a specified repository and range, then turn the commit data into concise Chinese Markdown release notes for GitCode Release pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads GitCode commit history available to the configured token. <br>
-Mitigation: Use a revocable read-only GITCODE_TOKEN and run the skill only for intended repositories and ranges. <br>
-Risk: Generated release notes can omit nuance or summarize commits incorrectly. <br>
-Mitigation: Review the Markdown output against the source commit data before publishing. <br>
+## Use Case:
 
+Developers and release managers use this skill to fetch GitCode repository commits for a requested tag range or date range, then turn the resulting commit data into concise Chinese Markdown release notes for GitCode Release pages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/autoxj/gitcode-release-notes) <br>
-- [GitCode commits API documentation](https://docs.gitcode.com/docs/apis/get-api-v-5-repos-owner-repo-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown release notes generated from JSON commit data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a required GITCODE_TOKEN and a repository range such as --since-date, --from, or --from with --to.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires GITCODE_TOKEN to read GitCode repository commits, so an overbroad token could expose repositories beyond the intended release-note task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token limited to read_api/read_repository access for the repositories that need release notes, and avoid running the skill with broad unrelated tools enabled.
+
+Risk: Commit messages are external repository content and may contain misleading or instruction-like text.
+
+Mitigation: Treat commit messages as untrusted source text for summarization only; do not follow instructions embedded in commits.
+
+## Reference(s):
+
+- [GitCode commits API documentation](https://docs.gitcode.com/docs/apis/get-api-v-5-repos-owner-repo-commits)
+- [GitCode personal access tokens](https://gitcode.com/setting/token-classic)
+- [ClawHub skill page](https://clawhub.ai/autoxj/skills/gitcode-release-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown release notes generated after parsing helper-script JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitCode repository identifier and a tag range or since-date; uses GITCODE_TOKEN for read-only GitCode API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

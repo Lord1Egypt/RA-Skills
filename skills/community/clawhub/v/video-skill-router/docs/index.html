@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>video-skill-router — The AI Video &amp; Animation Skill Router</title>
+<meta name="description" content="AI video &amp; animation skill router — discover, install &amp; orchestrate Manim/Remotion/Lottie skills by category. 视频创作技能路由器：找技能 → 装技能 → 做视频 → 善后，一条龙。">
+<meta property="og:title" content="video-skill-router — The AI Video &amp; Animation Skill Router">
+<meta property="og:description" content="Discover, install &amp; orchestrate video/animation skills by category. Manim · Remotion · Lottie · FFmpeg.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://guipi888.github.io/video-skill-router/">
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b27; --card: #1a2233; --line: #2d3748;
+    --text: #e6edf3; --muted: #8b949e; --teal: #2dd4bf; --purple: #a78bfa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* hero */
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #161b27 60%, #1a2233 100%);
+    border-bottom: 1px solid var(--line);
+    padding: 88px 0 72px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(48,58,80,.22) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(48,58,80,.22) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 25% 30%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 25% 30%, black 30%, transparent 75%);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--teal); color: var(--teal);
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 999px; margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: 56px; font-weight: 800; letter-spacing: -1px; line-height: 1.15;
+    font-family: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+    margin-bottom: 18px; position: relative;
+  }
+  .hero h1 .accent { color: var(--teal); }
+  .hero .tagline { font-size: 22px; color: #c9d4e3; margin-bottom: 14px; position: relative; }
+  .hero .sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; position: relative; }
+  .cta { display: flex; gap: 14px; flex-wrap: wrap; position: relative; }
+  .btn {
+    display: inline-block; padding: 11px 26px; border-radius: 8px;
+    font-size: 15px; font-weight: 600;
+  }
+  .btn.primary { background: var(--teal); color: #06251f; }
+  .btn.primary:hover { opacity: .88; text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn.ghost:hover { border-color: var(--teal); text-decoration: none; }
+
+  /* sections */
+  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+  h2 .zh { font-size: 18px; color: var(--muted); font-weight: 400; margin-left: 12px; }
+  .lead { color: var(--muted); margin-bottom: 36px; max-width: 720px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px;
+  }
+  .card h3 { font-size: 17px; margin-bottom: 8px; color: var(--text); }
+  .card h3 .dot { color: var(--teal); margin-right: 8px; }
+  .card p { font-size: 14px; color: var(--muted); }
+
+  /* pipeline */
+  .pipeline { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 28px 0 8px; }
+  .step {
+    background: var(--card); border: 1px solid var(--teal); color: var(--teal);
+    font-family: Consolas, monospace; font-size: 14px; font-weight: 600; letter-spacing: 1px;
+    padding: 10px 18px; border-radius: 8px;
+  }
+  .arrow { color: var(--muted); font-size: 18px; }
+  .pipeline-note { color: var(--muted); font-size: 14px; margin-top: 14px; }
+
+  /* table */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--teal); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  pre {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px; overflow-x: auto; font-size: 13.5px; line-height: 1.7;
+    font-family: "Cascadia Code", Consolas, monospace; color: #c9d4e3;
+  }
+  pre .c { color: #6e7a8f; }
+  pre .k { color: var(--teal); }
+
+  .links { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 24px; font-size: 15px; }
+  footer { padding: 36px 0 48px; color: var(--muted); font-size: 13.5px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 38px; }
+    .hero .tagline { font-size: 18px; }
+    h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge">▶ WorkBuddy Skill</div>
+    <h1>video-skill-<span class="accent">router</span></h1>
+    <p class="tagline">The AI Video &amp; Animation Skill Router</p>
+    <p class="sub">视频创作技能路由器 — 找技能 → 装技能 → 做视频 → 善后，一条龙。<br>
+    You describe the video. It detects the category, matches local skills, discovers &amp; installs from GitHub when needed, orchestrates production, then asks keep-or-uninstall.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/guipi888/video-skill-router">View on GitHub</a>
+      <a class="btn ghost" href="https://github.com/guipi888/video-skill-router#readme">README (中文)</a>
+      <a class="btn ghost" href="https://github.com/guipi888/video-skill-router/blob/main/README.en.md">English README</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The problem <span class="zh">解决什么问题</span></h2>
+    <p class="lead">想做视频却不知道用什么工具？想让 AI 帮你全自动完成？这个元技能把「发现 → 安装 → 编排 → 善后」整条链路自动化。</p>
+    <div class="cards">
+      <div class="card"><h3><span class="dot">●</span>Don't know which skill to use</h3>
+        <p>内置 11 个 GitHub 实证技能包精选目录（manim_skill 1201★、motion-design-skill 2441★、OpenMontage 70908★、herk-edit-kit 2017★ 等），按视频类别自动匹配，零网络成本。</p></div>
+      <div class="card"><h3><span class="dot">●</span>No local capability</h3>
+        <p>按类别走不同渠道——商业宣传类淘动效/模板/广告技能，知识科普类淘数学动画/数据可视化，其他类淘剪辑/字幕/配音，GitHub + 网络双通道兜底。</p></div>
+      <div class="card"><h3><span class="dot">●</span>Can't orchestrate after install</h3>
+        <p>下载完成后自动通读并调用所装技能，按其工作流执行，缺环用 FFmpeg 补齐，直接产出成片。</p></div>
+      <div class="card"><h3><span class="dot">●</span>Skills piling up</h3>
+        <p>每次生成后输出安装清单（技能/作用/来源），一键卸载走 git rm 或回收站机制，可回滚、零残留。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it works <span class="zh">五步流水线</span></h2>
+    <p class="lead">安装后直接对 Agent 说需求即可，例如「把勾股定理的证明做成讲解动画」。路由器自动完成：</p>
+    <div class="pipeline">
+      <span class="step">DETECT 类别判定</span><span class="arrow">→</span>
+      <span class="step">MATCH 本地匹配</span><span class="arrow">→</span>
+      <span class="step">DISCOVER 渠道发现</span><span class="arrow">→</span>
+      <span class="step">INSTALL 安全安装</span><span class="arrow">→</span>
+      <span class="step">ORCHESTRATE 编排出片</span>
+    </div>
+    <p class="pipeline-note">最后输出善后报告：本次安装清单表 + 保留（回复 1）或卸载（回复 2）的交互询问。安装/卸载全程走安全协议：git 快照可回滚、frontmatter 强校验、多技能包需明确选择、禁 rm -rf。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Use cases <span class="zh">适用场景</span></h2>
+    <table>
+      <tr><th>Scenario</th><th>Example request</th><th>Channel</th></tr>
+      <tr><td>Math/science explainer</td><td>「把勾股定理的证明做成讲解动画」</td><td>Educational → manim_skill</td></tr>
+      <tr><td>Product demo &amp; promo</td><td>「给我的 APP 做个产品演示宣传视频」</td><td>Commercial → motion-design</td></tr>
+      <tr><td>Talking-head editing</td><td>「剪掉这段口播的口误和静音」</td><td>Other → herk-edit-kit</td></tr>
+      <tr><td>Data visualization video</td><td>「把这份销售数据做成动态图表视频」</td><td>Educational → data animation</td></tr>
+      <tr><td>Subtitle &amp; whiteboard</td><td>「把 SRT 字幕做成白板手绘动画」</td><td>Other → subtitle animation</td></tr>
+      <tr><td>E-commerce video</td><td>「给这款商品做个带货短视频」</td><td>Commercial → ad template</td></tr>
+      <tr><td>Lottie web animation</td><td>「网页加载 lottie 动画」</td><td>Commercial → motion-design-skill</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Install &amp; scripts <span class="zh">安装与脚本</span></h2>
+    <p class="lead">WorkBuddy 技能市场搜索「视频创作技能路由器」一键安装；或手动 clone（Python 3.8+ 纯标准库，零第三方依赖）：</p>
+<pre><span class="c"># manual install</span>
+git clone https://github.com/guipi888/video-skill-router.git \
+  ~/.workbuddy/skills/video-skill-router
+
+<span class="c"># 1. match (local skills + curated catalog)</span>
+<span class="k">python3</span> scripts/match_skill.py --query <span class="c">"做数学公式讲解动画"</span>
+
+<span class="c"># 2. discover (category-based GitHub channel)</span>
+<span class="k">python3</span> scripts/search_anim.py --category education --query <span class="c">"math animation"</span>
+
+<span class="c"># 3. install / list / uninstall</span>
+<span class="k">python3</span> scripts/manage_skill.py install --repo shuyicc/MathLens --reason <span class="c">"数学讲解"</span>
+<span class="k">python3</span> scripts/manage_skill.py list
+<span class="k">python3</span> scripts/manage_skill.py uninstall --name MathLens</pre>
+    <div class="links">
+      <a href="https://github.com/guipi888/video-skill-router">GitHub 仓库</a>
+      <a href="https://github.com/guipi888/video-skill-router/releases">Releases</a>
+      <a href="https://t.zsxq.com/guSUk">知识星球 · AI超级个体</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>video-skill-router · MIT License · by 桂皮 Guipi</span>
+    <span><a href="https://github.com/guipi888">github.com/guipi888</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

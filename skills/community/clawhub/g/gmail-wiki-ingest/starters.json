@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "title": "Email",
+  "icon": "envelope",
+  "starters": [
+    {
+      "id": "gmail-ingest",
+      "label": "Sort today's email into my wiki",
+      "prompt": "ingest my email",
+      "source": "inbox",
+      "requires": ["google_connected"],
+      "order": 30
+    }
+  ]
+}

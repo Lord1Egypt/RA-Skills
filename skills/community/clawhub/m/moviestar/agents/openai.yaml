@@ -1,0 +1,4 @@
+interface:
+  display_name: "MovieStar"
+  short_description: "Plan, edit, and verify videos with MovieStar"
+  default_prompt: "Use $moviestar to edit this video and verify the result."

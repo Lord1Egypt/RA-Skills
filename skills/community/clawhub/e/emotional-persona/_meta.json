@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7a9jwt1zs62f7tbnzfm8yfg982ajmx",
-  "slug": "emotional-persona",
+  "name": "emotional-persona",
+  "description": "Give any AI agent a living emotional personality with dynamic moods, emotional memory, and personality traits that evolve through interaction.",
+  "author": "moodanchor-team",
   "version": "1.0.0",
-  "publishedAt": 1772791080871
+  "license": "MIT",
+  "tags": [
+    "emotion",
+    "personality",
+    "companion",
+    "wellness",
+    "mental-health",
+    "mood",
+    "empathy"
+  ],
+  "homepage": "https://github.com/moodanchor/emotional-persona"
 }

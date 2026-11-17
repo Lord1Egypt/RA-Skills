@@ -1,41 +1,54 @@
-## Description: <br>
-A Chinese-language internal accounting guide for listed-company accounting staff covering internal entries, profit calculations, cost allocation, cash-flow tracking, reconciliation, management reports, and Excel automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上市公司内账管理技能包 - 面向内账会计人员，提供内账记账规则、内部利润核算、成本分摊、资金流水管理、内外账对账、管理报表生成及Excel自动化等全流程支持。
 
-## Publisher: <br>
-[aolikeji](https://clawhub.ai/user/aolikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolikeji](https://clawhub.ai/user/aolikeji)
 
-## Use Case: <br>
-Finance and internal-accounting staff use this skill to draft internal bookkeeping rules, templates, reconciliation workflows, management-accounting reports, and Excel formulas for operational analysis. Outputs should be reviewed before use in financial, tax, audit, or legal workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives high-risk internal accounting guidance involving private accounts, undocumented transactions, and differences between internal and statutory books. <br>
-Mitigation: Install only after finance, legal, tax, or internal-audit review, and treat those flows as compliance exceptions requiring approved controls and documentation. <br>
-Risk: Outputs may be used to shape internal financial records, reports, formulas, or reconciliation workflows. <br>
-Mitigation: Review generated templates, formulas, and accounting guidance before operational use, especially where they affect statutory books, tax filings, or audit evidence. <br>
+## Use Case:
 
+Finance and accounting employees use this skill for internal management accounting workflows, including internal ledger rules, profit calculations, cost allocation, cash-flow tracking, internal/external ledger reconciliation, management reporting, and Excel automation. Installers should use it only after finance, tax, legal, or compliance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-internal-accounts) <br>
-- [ClawHub China skill homepage](https://clawhub.cn/skills/finance-internal-accounts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, formulas, and Excel/VBA code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable integration; outputs require finance, legal, tax, or internal-audit review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The skill covers off-book internal accounting, personal-card business payments, and internal/external ledger differences that could be misused for noncompliant financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after finance, tax, legal, or compliance review, and use discrepancy analysis to correct and escalate issues in official records.
+
+Risk: Guidance about uninvoiced revenue, uninvoiced expenses, kickbacks, commissions, or personal accounts could normalize improper accounting practices if used without controls.
+
+Mitigation: Do not use the skill to run off-book ledgers, route company funds through personal accounts, conceal revenue or expenses, or normalize kickbacks or commissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-internal-accounts)
+- [ClawHub CN skill homepage](https://clawhub.cn/skills/finance-internal-accounts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with tables, formulas, accounting templates, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Excel formulas, VBA snippets, reconciliation checklists, and management accounting report templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

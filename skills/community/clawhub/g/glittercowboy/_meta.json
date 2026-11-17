@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77zxey34tq4aft1qp6xt9edn812v2z",
-  "slug": "glittercowboy",
-  "version": "1.0.0",
-  "publishedAt": 1771011237446
+  "owner": "glittercowboy",
+  "slug": "gsd",
+  "displayName": "gsd",
+  "latest": {
+    "version": "1.1.0",
+    "publishedAt": 1769804057549,
+    "commit": "https://github.com/clawdbot/skills/commit/8259809127dfe2a1ccc98089efc172657a9f4096"
+  },
+  "history": []
 }

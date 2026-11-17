@@ -1,7 +1,7 @@
 ---
 name: "pet-detection-feeder-analysis"
 description: "Based on computer vision, automatically detects and recognizes cats and dogs appearing in the target area from the perspective of feeder/IPC cameras, and supports pet identity recognition and database entry, suitable for pet identification management in smart feeding scenarios. | 智能喂食器宠物检测识别技能，基于计算机视觉从喂食器/IPC摄像头视角自动检测识别目标区域出现的猫、狗宠物，并支持宠物身份识别和底库录入，适用于智能喂养场景的宠物识别管理"
-version: "1.0.7"
+version: "1.0.26"
 license: "MIT-0"
 ---
 

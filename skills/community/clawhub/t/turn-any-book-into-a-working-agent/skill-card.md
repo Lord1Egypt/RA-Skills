@@ -1,40 +1,57 @@
-## Description: <br>
-Converts an uploaded book into a generated AI employee skill by extracting core knowledge, methods, workflows, and role instructions from the book. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns an uploaded book into a book-specific AI employee skill by extracting text, analyzing core concepts and workflows, and generating a ready-to-review SKILL.md.
 
-## Publisher: <br>
-[shenshuo-03](https://clawhub.ai/user/shenshuo-03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenshuo-03](https://clawhub.ai/user/shenshuo-03)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn a PDF, TXT, EPUB, or similar book file into a reusable AI employee role. It produces analysis artifacts and a generated SKILL.md that should be reviewed before use or publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create persistent skill files using names derived from book content. <br>
-Mitigation: Run it in a clean folder and rename generated agents to a simple safe name without slashes, dot-dot paths, shell metacharacters, or instruction-like text. <br>
-Risk: The generated SKILL.md may contain incorrect, unsafe, or overly broad instructions from the source book analysis. <br>
-Mitigation: Review the generated SKILL.md before using or publishing it. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn a trusted book into a domain-specific AI employee role for answering questions, applying the book's frameworks, and producing structured guidance. Generated skills should be reviewed before being added to a real skill library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenshuo-03/turn-any-book-into-a-working-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash, Python, and Windows batch code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local files such as extracted_text.txt, agent_definition.json, and a generated SKILL.md when the documented workflow is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted book text may be transformed into persistent agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted books or run the conversion in a sandbox, and inspect every generated SKILL.md before installing it.
+
+Risk: Book-derived names may be used as filesystem paths.
+
+Mitigation: Replace generated book or agent names with safe slugs before creating directories or copying files.
+
+Risk: Generated skills and dependencies could be installed or activated without enough human review.
+
+Mitigation: Pin dependencies in a virtual environment and require human approval before adding generated skills to a real skill library.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenshuo-03/skills/turn-any-book-into-a-working-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python, bash, and batch code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces extracted text, an agent definition JSON, and a generated SKILL.md for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

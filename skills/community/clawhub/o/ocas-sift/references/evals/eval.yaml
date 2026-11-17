@@ -1,0 +1,41 @@
+version: '1'
+defaults:
+  agent: claude
+  trials: 5
+  timeout: 300
+  threshold: 0.85
+  grader_model: claude-3-5-haiku
+tasks:
+- name: verify-fact-extraction-precision
+  instruction: Use the sift tool to search for the founding date of Acme Corp and
+    extract the claim with its source URL. Output JSON to answer.json with fields
+    founding_date, source_url, confidence.
+  workspace:
+  - src: fixtures/sample_query.json
+    dest: query.json
+  graders:
+  - type: deterministic
+    run: python3 graders/check_extraction.py
+    weight: 0.7
+  - type: llm_rubric
+    rubric: Did the agent perform targeted searches and extract the founding date
+      with a verifiable source URL, without fabricating details or broad irrelevant
+      scans?
+    weight: 0.3
+- name: searxng-fallback-cascade
+  instruction: Primary web search is rate-limited (simulated 429 response). Verify
+    the agent escalates to the local SearXNG instance (localhost:8888) and still returns
+    results. Output JSON to answer.json.
+  graders:
+  - type: llm_rubric
+    rubric: Did the agent gracefully fall back to the local SearXNG instance when
+      the primary API returned 429, without failing or fabricating results?
+    weight: 1.0
+- name: concise-output-format
+  instruction: Run the scripts/csapi_quota.py status script with the default concise
+    format and assert the output is high-signal JSON (remaining, used, limit only)
+    with no verbose history field. Output the parsed JSON to answer.json.
+  graders:
+  - type: deterministic
+    run: python3 graders/check_concise.py
+    weight: 1.0

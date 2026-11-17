@@ -1,45 +1,62 @@
-## Description: <br>
-Searches the e-store marketplace so an agent can browse, download, configure, and install AI skills, MCP servers, tools, assets, knowledge resources, and bundled solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E Store Skill helps agents search, inspect, download, configure, and install AI marketplace resources such as skills, MCP servers, tools, datasets, assets, and packaged solutions.
 
-## Publisher: <br>
-[iuliganma](https://clawhub.ai/user/iuliganma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iuliganma](https://clawhub.ai/user/iuliganma)
 
-## Use Case: <br>
-Agents and developers use this skill when a task requires acquiring a new capability, asset, knowledge source, or prebuilt solution from e-store instead of building it from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to contact e-store and install third-party capabilities with broad local effects. <br>
-Mitigation: Require explicit user confirmation before any download, configuration write, skill or MCP installation, or host reload. <br>
-Risk: The documented API uses E_STORE_AK in request URLs, which can expose the access key through logs, shell history, or copied links. <br>
-Mitigation: Treat E_STORE_AK as a secret, avoid printing full authenticated URLs, and redact the key from logs and shared output. <br>
-Risk: Downloaded resources, bundles, or configuration text may introduce unreviewed third-party behavior. <br>
-Mitigation: Inspect and scan downloaded artifacts or generated configuration before enabling them in the agent runtime. <br>
+## Use Case:
 
+Developers and agents use this skill to find and acquire missing AI capabilities, marketplace assets, knowledge resources, MCP configurations, and end-to-end solution bundles from e-store.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/iuliganma/e-store-skill) <br>
-- [e-store marketplace](https://store.liganma.com) <br>
-- [e-store skill detail](https://store.liganma.com/detail?id=1248353041200058368) <br>
-- [e-store Access API reference](references/API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to e-store and an E_STORE_AK secret for authenticated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact metadata version 1.1) <br>
+Risk: The skill can install unverified third-party tools and configurations into active agent runtimes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each package or MCP configuration before activation, including publisher, version, source, requested commands, and endpoints.
+
+Risk: The skill depends on persistent e-store credentials.
+
+Mitigation: Treat E_STORE_AK as a secret, avoid exposing it in logs or command history, and rotate it if exposure is suspected.
+
+Risk: Changing the default API origin can redirect marketplace actions to an unexpected service.
+
+Mitigation: Use the documented default API endpoint unless a trusted deployment explicitly requires a different origin.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iuliganma/skills/e-store-skill)
+- [Publisher Profile](https://clawhub.ai/user/iuliganma)
+- [Server-Resolved GitHub Repository](https://github.com/iuliganma/e-store-skill)
+- [e-store Homepage](https://store.liganma.com)
+- [e-store Marketplace Detail](https://store.liganma.com/detail?id=1248353041200058368)
+- [e-store Access API Reference](references/API.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce installation steps, API calls, downloaded files, or configuration text depending on the selected marketplace resource.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

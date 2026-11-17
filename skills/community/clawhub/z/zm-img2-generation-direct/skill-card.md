@@ -1,45 +1,60 @@
-## Description: <br>
-ZM IMG2 直接生图执行。用于通过 happy/gpt-image-2 执行文生图和参考图生图，保留输入、输出、日志和结果 JSON，作为正式视觉生产证据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZM IMG2 直接生图执行用于通过 happy/gpt-image-2 执行文生图和参考图生图，并保留输入、输出、日志和结果 JSON 作为正式视觉生产证据。
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers and content production agents use this skill to run prompt-only or reference-based image generation through the configured Happy provider and retain image paths, result JSON, logs, and proof fields for visual acceptance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The queue can run arbitrary task-supplied shell commands through command or mock_command paths. <br>
-Mitigation: Install and run only in a sandbox or trusted workspace unless those execution paths are removed or strongly gated. <br>
-Risk: Prompts, reference image paths, logs, result files, and reference images may be stored locally or sent to the configured Happy image provider. <br>
-Mitigation: Avoid sensitive prompts and images unless provider use is approved, and review local artifacts before sharing or retaining them. <br>
-Risk: The server security verdict is suspicious and requires human review before installation. <br>
-Mitigation: Review the skill, scan it before deployment, and verify result JSON proof fields before accepting generated images. <br>
+## Use Case:
 
+Developers and visual-production operators use this skill to generate text-to-image and reference-image outputs through a configured Happy OpenAI-compatible image provider while retaining review evidence for acceptance decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-img2-generation-direct) <br>
-- [AI readiness checklist](checklists/ai_readiness_checklist.md) <br>
-- [Minimum required fields](templates/minimum_required_fields.md) <br>
-- [Subagent execution prompt](templates/subagent_execution_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime artifacts are PNG images, JSON result files, and logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, node, and a configured Happy image provider; reference-image tasks support up to five input images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Security evidence flags under-disclosed task-controlled shell execution in queue inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted task submitters, avoid command and mock_command fields for normal use, and run the skill in a tightly scoped sandbox.
+
+Risk: Security evidence flags broad local file and network handling.
+
+Mitigation: Restrict provider configuration to approved endpoints, scope state and output directories, and treat prompts, input paths, logs, and generated artifacts as retained local records.
+
+Risk: Security evidence gives a suspicious verdict and says the skill needs review before installation.
+
+Mitigation: Review the skill before deployment and accept generated images only when result evidence proves ok status, provider, model, mode, input images, and output bytes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-img2-generation-direct)
+- [AI readiness checklist](artifact/checklists/ai_readiness_checklist.md)
+- [Minimum required fields template](artifact/templates/minimum_required_fields.md)
+- [Subagent execution prompt template](artifact/templates/subagent_execution_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON, Logs, Shell commands, Guidance]
+
+**Output Format:** [Generated image files with result JSON, request records, state files, and stdout/stderr logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the configured happy/gpt-image-2 provider, supports text-to-image and up to five reference images per task, and includes bounded batch and queue wrappers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and target metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Chinese thesis formatting checker that parses school DOCX templates, compares thesis documents against extracted formatting rules, and generates difference and risk reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文论文格式检查工具，解析学校模板 DOCX、提取格式规则，并对比论文生成差异报告。
 
-## Publisher: <br>
-[yeyeeyeeee](https://clawhub.ai/user/yeyeeyeeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeyeeyeeee](https://clawhub.ai/user/yeyeeyeeee)
 
-## Use Case: <br>
-Students, researchers, thesis editors, and academic writing support teams use this skill to check Chinese Word thesis documents against school templates before submission. It helps extract template rules, compare document formatting, and produce Markdown or JSON reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs access to user-selected thesis and template DOCX files, which may contain private academic content. <br>
-Mitigation: Install and run it only when comfortable granting access to those files, and avoid providing unrelated sensitive documents. <br>
-Risk: Document-editing or auto-formatting workflows can alter thesis files if the user chooses those paths. <br>
-Mitigation: Use the documented check and report commands for review first, and keep backups before using repair or auto-formatting workflows. <br>
+## Use Case:
 
+Students, academic writers, and agents assisting them use this skill to check Chinese thesis DOCX formatting against a school template and produce reviewable difference and risk reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yeyeeyeeee/thesis-format-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/yeyeeyeeee) <br>
-- [Format rules reference](artifact/references/format_rules.md) <br>
-- [Citation cross-reference reference](artifact/references/citation_crossref.md) <br>
-- [Thesis formatting roadmap](artifact/references/作战地图.md) <br>
-- [python-docx styles documentation](https://python-docx.readthedocs.io/en/latest/user/styles-understanding.html) <br>
-- [python-docx-template](https://github.com/elapouya/python-docx-template) <br>
-- [Python-Redlines](https://github.com/JSv4/Python-Redlines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON rule or diff data, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected DOCX and template files locally and writes user-requested report outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.json release.version) <br>
+Risk: Processing DOCX files from untrusted sources can expose the local parser and file system workflow to unsafe or malformed input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on documents you trust, and run it in a constrained environment when processing DOCX files from other people.
+
+Risk: Generated reports or formatted DOCX outputs may miss issues or contain formatting guidance that still needs academic review.
+
+Mitigation: Review generated reports and any formatted outputs before submitting academic work.
+
+Risk: Using the same path for input and output can overwrite or confuse source documents.
+
+Mitigation: Keep separate input and output paths and preserve original DOCX files.
+
+## Reference(s):
+
+- [论文排版规范参考](references/format_rules.md)
+- [参考文献交叉引用体系](references/citation_crossref.md)
+- [论文排版作战地图](references/作战地图.md)
+- [python-docx styles documentation](https://python-docx.readthedocs.io/en/latest/user/styles-understanding.html)
+- [python-docx-template documentation](https://docxtpl.readthedocs.io/)
+- [Python-Redlines](https://github.com/JSv4/Python-Redlines)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown and JSON reports with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local DOCX files and writes local report files; users should review generated reports before relying on them.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Use when working with QJZD Nav CLI login, bearer token auth, profile setup, profile switching, current profile inspection, or fixing missing keyring credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when working with QJZD Nav CLI login, bearer token auth, profile setup, profile switching, current profile inspection, or fixing missing keyring credentials.
 
-## Publisher: <br>
-[nqdy666](https://clawhub.ai/user/nqdy666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nqdy666](https://clawhub.ai/user/nqdy666)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and troubleshoot QJZD Nav CLI authentication, manage auth profiles, inspect current credentials, and prepare the CLI for content or operations commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The login flow may expose a real password if it is placed directly in a shell command. <br>
-Mitigation: Prefer an interactive, stdin, or secret-manager workflow when available, and avoid storing passwords in shell history or shared logs. <br>
-Risk: Profile deletion and profile switching can affect production CLI access. <br>
-Mitigation: Confirm the current profile and target environment before deleting, forcing, or switching profiles. <br>
-Risk: Authentication depends on the qjzd-nav CLI and the configured QJZD Nav server. <br>
-Mitigation: Install and use this skill only when the CLI and configured server URL are trusted. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and inspect QJZD Nav CLI authentication, bearer token access, profiles, and keyring-backed credentials.
 
-## Reference(s): <br>
-- [QJZD Nav service](https://nav.qjzd.online) <br>
-- [ClawHub skill page](https://clawhub.ai/nqdy666/qjzd-nav-cli-auth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: Password login examples can lead users to put real passwords directly in shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer interactive login or a secret manager based path when available, and avoid placing real passwords in shell history or shared automation logs.
+
+Risk: Forced profile deletion can remove saved access material for the wrong or production profile.
+
+Mitigation: Confirm the exact profile name and impact before using forced deletion, especially for production profiles.
+
+## Reference(s):
+
+- [Qjzd Nav Cli Auth on ClawHub](https://clawhub.ai/nqdy666/skills/qjzd-nav-cli-auth)
+- [QJZD Nav service endpoint](https://nav.qjzd.online)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-mode command guidance when another tool needs structured CLI output.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Candidate xmlns="http://www.europass.eu/1.0" xmlns:oa="http://www.openapplications.org/oagis/9" xmlns:eures="http://www.europass_eures.eu/1.0" xmlns:hr="http://www.hr-xml.org/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.europass.eu/1.0 Candidate.xsd">
+  <hr:DocumentID schemeID="example" schemeName="DocumentIdentifier" schemeAgencyName="EUROPASS" schemeVersionID="4.0"/>
+  <CandidateSupplier>
+    <hr:PartyID schemeID="example" schemeName="PartyID" schemeAgencyName="EUROPASS" schemeVersionID="1.0"/>
+    <hr:PartyName>Owner</hr:PartyName>
+    <PersonContact>
+      <PersonName>
+        <oa:GivenName>Giulia</oa:GivenName>
+        <hr:FamilyName>Rossi</hr:FamilyName>
+      </PersonName>
+      <Communication>
+        <ChannelCode>Email</ChannelCode>
+        <oa:URI>giulia.rossi.test@example.com</oa:URI>
+      </Communication>
+    </PersonContact>
+    <hr:PrecedenceCode>1</hr:PrecedenceCode>
+  </CandidateSupplier>
+  <CandidatePerson>
+    <PersonName>
+      <oa:GivenName>Giulia</oa:GivenName>
+      <hr:FamilyName>Rossi</hr:FamilyName>
+    </PersonName>
+    <Communication>
+      <ChannelCode>Email</ChannelCode>
+      <oa:URI>giulia.rossi.test@example.com</oa:URI>
+    </Communication>
+    <Communication>
+      <ChannelCode>Social Media</ChannelCode>
+      <UseCode>linkedin</UseCode>
+      <oa:URI>https://www.linkedin.com/in/giulia-rossi-test</oa:URI>
+    </Communication>
+    <Communication>
+      <ChannelCode>Web</ChannelCode>
+      <oa:URI>https://github.com/giulia-test</oa:URI>
+    </Communication>
+    <Communication>
+      <ChannelCode>Telephone</ChannelCode>
+      <UseCode>mobile</UseCode>
+      <CountryDialing>39</CountryDialing>
+      <oa:DialNumber>3330000000</oa:DialNumber>
+      <CountryCode>it</CountryCode>
+    </Communication>
+    <Communication>
+      <UseCode>home</UseCode>
+      <Address type="home">
+        <oa:AddressLine>Via di Prova 1</oa:AddressLine>
+        <oa:CityName>Bologna</oa:CityName>
+        <CountryCode>it</CountryCode>
+        <oa:PostalCode>40100</oa:PostalCode>
+      </Address>
+    </Communication>
+    <NationalityCode>it</NationalityCode>
+    <hr:BirthDate>1990-05-12</hr:BirthDate>
+    <PrimaryLanguageCode name="NORMAL">ita</PrimaryLanguageCode>
+  </CandidatePerson>
+  <CandidateProfile languageCode="it">
+    <hr:ID schemeID="example" schemeName="CandidateProfileID" schemeAgencyName="EUROPASS" schemeVersionID="1.0">example-0001</hr:ID>
+    <hr:ExecutiveSummary>&lt;p&gt;&lt;strong&gt;Impiegata amministrativo-contabile&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Sono un'impiegata amministrativo-contabile con 9 anni di esperienza nel settore metalmeccanico. Gestisco fatture attive e passive, riconciliazioni bancarie e scadenzari.&lt;/p&gt;</hr:ExecutiveSummary>
+    <EmploymentHistory>
+      <EmployerHistory>
+        <hr:OrganizationName>Meccanica Padana Srl</hr:OrganizationName>
+        <OrganizationContact>
+          <Communication>
+            <Address>
+              <oa:CityName>Bologna</oa:CityName>
+              <CountryCode>it</CountryCode>
+            </Address>
+          </Communication>
+        </OrganizationContact>
+        <hr:IndustryCode>C</hr:IndustryCode>
+        <PositionHistory>
+          <PositionTitle typeCode="FREETEXT">Impiegata amministrativo-contabile</PositionTitle>
+          <eures:EmploymentPeriod>
+            <eures:StartDate>
+              <hr:FormattedDateTime>2019-09</hr:FormattedDateTime>
+            </eures:StartDate>
+            <hr:CurrentIndicator>true</hr:CurrentIndicator>
+          </eures:EmploymentPeriod>
+          <oa:Description>&lt;ul&gt;&lt;li&gt;Registrare la prima nota e le fatture attive e passive.&lt;/li&gt;&lt;li&gt;Riconciliare gli estratti conto bancari ogni mese.&lt;/li&gt;&lt;li&gt;Preparare la documentazione per la chiusura del bilancio.&lt;/li&gt;&lt;/ul&gt;</oa:Description>
+          <City>Bologna</City>
+          <Country>it</Country>
+        </PositionHistory>
+      </EmployerHistory>
+      <EmployerHistory>
+        <hr:OrganizationName>Studio Bianchi &amp; Associati</hr:OrganizationName>
+        <OrganizationContact>
+          <Communication>
+            <Address>
+              <oa:CityName>Modena</oa:CityName>
+              <CountryCode>it</CountryCode>
+            </Address>
+          </Communication>
+        </OrganizationContact>
+        <PositionHistory>
+          <PositionTitle typeCode="FREETEXT">Addetta alla contabilità</PositionTitle>
+          <eures:EmploymentPeriod>
+            <eures:StartDate>
+              <hr:FormattedDateTime>2015-03</hr:FormattedDateTime>
+            </eures:StartDate>
+            <eures:EndDate>
+              <hr:FormattedDateTime>2019-08</hr:FormattedDateTime>
+            </eures:EndDate>
+            <hr:CurrentIndicator>false</hr:CurrentIndicator>
+          </eures:EmploymentPeriod>
+          <oa:Description>&lt;ul&gt;&lt;li&gt;Gestire lo scadenzario clienti e fornitori.&lt;/li&gt;&lt;li&gt;Predisporre le liquidazioni IVA trimestrali.&lt;/li&gt;&lt;/ul&gt;</oa:Description>
+          <City>Modena</City>
+          <Country>it</Country>
+        </PositionHistory>
+      </EmployerHistory>
+    </EmploymentHistory>
+    <EducationHistory>
+      <EducationOrganizationAttendance>
+        <hr:OrganizationName>Università di Bologna</hr:OrganizationName>
+        <OrganizationContact>
+          <Communication>
+            <Address>
+              <oa:CityName>Bologna</oa:CityName>
+              <CountryCode>it</CountryCode>
+            </Address>
+          </Communication>
+        </OrganizationContact>
+        <AttendancePeriod>
+          <StartDate>
+            <hr:FormattedDateTime>2010</hr:FormattedDateTime>
+          </StartDate>
+          <EndDate>
+            <hr:FormattedDateTime>2014</hr:FormattedDateTime>
+          </EndDate>
+          <Ongoing>false</Ongoing>
+        </AttendancePeriod>
+        <EducationDegree>
+          <hr:DegreeName>Laurea triennale in Economia aziendale</hr:DegreeName>
+          <FinalGrade>
+            <hr:ScoreText>105/110</hr:ScoreText>
+          </FinalGrade>
+          <Thesis>controllo di gestione nelle PMI</Thesis>
+        </EducationDegree>
+        <EducationLevelCode>6</EducationLevelCode>
+      </EducationOrganizationAttendance>
+      <EducationOrganizationAttendance>
+        <hr:OrganizationName>ITC Rosa Luxemburg</hr:OrganizationName>
+        <OrganizationContact>
+          <Communication>
+            <Address>
+              <oa:CityName>Bologna</oa:CityName>
+              <CountryCode>it</CountryCode>
+            </Address>
+          </Communication>
+        </OrganizationContact>
+        <AttendancePeriod>
+          <EndDate>
+            <hr:FormattedDateTime>2010</hr:FormattedDateTime>
+          </EndDate>
+          <Ongoing>false</Ongoing>
+        </AttendancePeriod>
+        <EducationDegree>
+          <hr:DegreeName>Diploma di ragioneria</hr:DegreeName>
+        </EducationDegree>
+        <EducationLevelCode>4</EducationLevelCode>
+      </EducationOrganizationAttendance>
+    </EducationHistory>
+    <eures:Licenses>
+      <eures:License>
+        <hr:LicenseTypeCode>B</hr:LicenseTypeCode>
+      </eures:License>
+    </eures:Licenses>
+    <Certifications/>
+    <PublicationHistory/>
+    <PersonQualifications>
+      <PersonCompetency>
+        <CompetencyID schemeName="NORMAL">eng</CompetencyID>
+        <hr:TaxonomyID>language</hr:TaxonomyID>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Understanding-Listening</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>B2</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Understanding-Reading</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>B2</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Speaking-Interaction</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>B1</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Speaking-Production</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>B1</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Writing-Production</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>B2</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+      </PersonCompetency>
+      <PersonCompetency>
+        <CompetencyID schemeName="NORMAL">fra</CompetencyID>
+        <hr:TaxonomyID>language</hr:TaxonomyID>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Understanding-Listening</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>A2</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Understanding-Reading</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>A2</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+        <eures:CompetencyDimension>
+          <hr:CompetencyDimensionTypeCode>CEF-Writing-Production</hr:CompetencyDimensionTypeCode>
+          <eures:Score>
+            <hr:ScoreText>A2</hr:ScoreText>
+          </eures:Score>
+        </eures:CompetencyDimension>
+      </PersonCompetency>
+    </PersonQualifications>
+    <EmploymentReferences/>
+    <CreativeWorks/>
+    <Projects/>
+    <SocialAndPoliticalActivities/>
+    <Skills>
+      <PersonCompetency>
+        <hr:TaxonomyID>Digital_Skill</hr:TaxonomyID>
+        <hr:CompetencyName>Excel avanzato (tabelle pivot, cerca.vert)</hr:CompetencyName>
+      </PersonCompetency>
+      <PersonCompetency>
+        <hr:TaxonomyID>Digital_Skill</hr:TaxonomyID>
+        <hr:CompetencyName>SAP FI</hr:CompetencyName>
+      </PersonCompetency>
+      <PersonCompetency>
+        <hr:TaxonomyID>Digital_Skill</hr:TaxonomyID>
+        <hr:CompetencyName>TeamSystem</hr:CompetencyName>
+      </PersonCompetency>
+      <PersonCompetency>
+        <hr:TaxonomyID>Digital_Skill</hr:TaxonomyID>
+        <hr:CompetencyName>Posta elettronica e PEC</hr:CompetencyName>
+      </PersonCompetency>
+    </Skills>
+    <NetworksAndMemberships/>
+    <ConferencesAndSeminars/>
+    <VoluntaryWorks/>
+    <CourseCertifications/>
+    <Others>
+      <Title>Competenze personali</Title>
+      <Other>
+        <Title>Competenze professionali</Title>
+        <Description>&lt;p&gt;Prima nota, riconciliazioni bancarie, scadenzari, liquidazioni IVA, chiusure di bilancio.&lt;/p&gt;</Description>
+      </Other>
+    </Others>
+    <Others>
+      <Title>Competenze personali</Title>
+      <Other>
+        <Title>Competenze comunicative</Title>
+        <Description>&lt;p&gt;Rapporto quotidiano con fornitori e commercialista; spiego i numeri a chi non è del mestiere.&lt;/p&gt;</Description>
+      </Other>
+    </Others>
+    <Others>
+      <Title>Competenze personali</Title>
+      <Other>
+        <Title>Competenze organizzative e gestionali</Title>
+        <Description>&lt;p&gt;Tengo lo scadenzario di 120 fornitori senza ritardi di pagamento da tre anni.&lt;/p&gt;</Description>
+      </Other>
+    </Others>
+    <Others>
+      <Title>Ulteriori informazioni</Title>
+      <Other>
+        <Title>Ulteriori informazioni</Title>
+        <Description>&lt;p&gt;Disponibile a trasferte in Emilia-Romagna.&lt;/p&gt;</Description>
+      </Other>
+    </Others>
+  </CandidateProfile>
+  <RenderingInformation>
+    <Design>
+      <Template>Template1</Template>
+      <Color>Default</Color>
+      <FontSize>Medium</FontSize>
+      <Logo>FirstPage</Logo>
+      <PageNumbers>true</PageNumbers>
+      <SectionsOrder>
+        <Section>
+          <Title>work-experience</Title>
+        </Section>
+        <Section>
+          <Title>education-training</Title>
+        </Section>
+        <Section>
+          <Title>language</Title>
+        </Section>
+        <Section>
+          <Title>profile-skills</Title>
+        </Section>
+        <Section>
+          <Title>driving-licence</Title>
+        </Section>
+      </SectionsOrder>
+    </Design>
+  </RenderingInformation>
+</Candidate>

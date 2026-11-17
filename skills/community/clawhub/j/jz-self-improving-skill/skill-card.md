@@ -1,42 +1,57 @@
-## Description: <br>
-Helps writing-style skills learn from human edits by recording original and final drafts, extracting recurring rules, and updating a target SKILL.md for Claude Code or OpenClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Improving Skill helps agents record AI drafts and human-approved final versions, extract recurring edits as improvement rules, and update a target SKILL.md.
 
-## Publisher: <br>
-[jzocb](https://clawhub.ai/user/jzocb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzocb](https://clawhub.ai/user/jzocb)
 
-## Use Case: <br>
-Developers and writing-skill maintainers use this skill to record AI-generated originals and human-approved finals, identify recurring edit patterns, and turn those patterns into proposed or applied updates for a target skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores full draft and final text locally, which can include sensitive content. <br>
-Mitigation: Use explicit per-project log directories, avoid secret-bearing content, and review stored logs before sharing or syncing them. <br>
-Risk: The improve workflow can automatically rewrite another skill's instructions on disk. <br>
-Mitigation: Run extract, show, and apply manually first; review proposals and diffs before enabling auto mode or scheduled execution. <br>
-Risk: Automatically generated improvement rules can introduce incorrect or misleading guidance. <br>
-Mitigation: Apply only reviewed proposals, rely on backups for rollback, and test rollback behavior before unattended use. <br>
+## Use Case:
 
+Developers and content teams use this skill to improve writing-style or similar agent skills by pairing AI-generated originals with human-final versions, producing reviewable improvement proposals, and applying selected changes to target skill files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jzocb/jz-self-improving-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown proposals, CLI status text, JSONL observation logs, and updated skill instruction files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local logs, proposal files, backups, and target SKILL.md updates when the user runs the included scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, release metadata) <br>
+Risk: The skill is openly self-modifying and automatic mode can persist LLM-generated changes to other SKILL.md files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid cron or auto mode unless changes receive human diff review before deployment; keep backups enabled and use rollback when needed.
+
+Risk: Original and final drafts are retained locally and may be submitted to the configured LLM provider during rule extraction.
+
+Mitigation: Use the skill only with content approved for local storage and provider submission; define retention and redaction rules for logs.
+
+Risk: A configured LLM command can influence generated improvement proposals and applied skill changes.
+
+Mitigation: Restrict IMPROVE_LLM_CMD to trusted commands and pin installation dependencies before scheduled use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jzocb/skills/jz-self-improving-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts create JSONL logs, markdown proposals, backups, and updated SKILL.md files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [observe.py stores original and final drafts locally; improve.py may call a configured LLM CLI and can write changes to a target SKILL.md.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

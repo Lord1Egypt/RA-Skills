@@ -1,6 +1,24 @@
 {
   "ownerId": "kn74a3t0gfk89z2690dn2d6q4s82w4en",
-  "slug": "alarm",
-  "version": "1.0.2",
-  "publishedAt": 1773771781510
+  "slug": "feishu-smart-alarm",
+  "version": "1.0.1",
+  "publishedAt": 1773736700021,
+  "requiredEnvVars": [
+    "FEISHU_APP_ID",
+    "FEISHU_APP_SECRET",
+    "SENSEAUDIO_API_KEY"
+  ],
+  "optionalEnvVars": [
+    "FEISHU_BASE_URL",
+    "SENSEAUDIO_BASE_URL",
+    "REMINDER_DB_PATH",
+    "TIMEZONE"
+  ],
+  "networkBehavior": {
+    "senseaudio_asr_upload": "ASR uploads the provided local audio file to the configured SenseAudio endpoint.",
+    "feishu_message_send": "Confirmation and due reminders are sent via the configured Feishu API endpoint."
+  },
+  "persistence": {
+    "sqlite": "Reminder content and status are stored in a local SQLite database by default."
+  }
 }

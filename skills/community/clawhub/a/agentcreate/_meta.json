@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn73r85a0kteac1nzm220qh3ts82j96d",
-  "slug": "agentcreate",
-  "version": "1.0.4",
-  "publishedAt": 1773792564501
+  "name": "agentCreate",
+  "version": "1.0.3",
+  "description": "AI-powered OpenClaw agent creator - 用AI创作AI",
+  "author": "user",
+  "tags": ["agent", "create", "orchestration", "feishu", "ai-creates-ai"],
+  "license": "MIT"
 }

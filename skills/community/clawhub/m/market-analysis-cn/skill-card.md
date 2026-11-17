@@ -1,40 +1,53 @@
-## Description: <br>
-Market Analysis CN provides bilingual market trend, competitor, and user behavior analysis guidance for business decision-making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+市场分析服务 | Market Analysis Service for enterprise market trend analysis, competitor analysis, and user behavior insights.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-External business users and analysts can use this skill to request market trend, competitor, user behavior, and deeper strategic analysis in Chinese or English. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive business, market, or customer-behavior data when requesting analysis. <br>
-Mitigation: Only provide data that is intentionally approved for analysis, and confirm provider and pricing before installation or use. <br>
-Risk: Broad trigger terms such as market analysis, competitor analysis, or trends may activate the skill in general business conversations. <br>
-Mitigation: Review whether the skill is appropriate before relying on generated analysis in unrelated or sensitive conversations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/market-analysis-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/guohongbin-git) <br>
+## Use Case:
 
+External business users, analysts, and market researchers use this skill to request market trend, competitor, user behavior, and strategic analysis reports, especially for China-oriented market questions.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown or text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market trends, competitor analysis, user behavior insights, SWOT analysis, strategic recommendations, and action plans.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes paid analysis tiers, so users may incur service costs when requesting reports.
+
+Mitigation: Confirm the requested analysis scope and pricing tier before asking the agent to produce a specialized report.
+
+Risk: Broad market-analysis triggers may activate the skill in general trend, competitor, or market conversations.
+
+Mitigation: Confirm that the user wants this China-oriented market-analysis service before relying on its specialized guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/market-analysis-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API Calls]
+
+**Output Format:** [Markdown or structured text, with example API request payloads when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid service tiers are described in the skill metadata and artifact documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

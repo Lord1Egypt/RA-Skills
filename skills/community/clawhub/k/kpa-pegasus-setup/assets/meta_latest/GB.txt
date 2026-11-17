@@ -1,0 +1,4925 @@
+collection: GB
+sort-by: 10
+shortname: gb
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mgba_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: DX马券王Z
+file: DX马券王Z.gb
+assets.box_front: Imgs/DX马券王Z.png
+description: 《DX马券王Z》，由 Asmik Ace Entertainment 出品，1992 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik Ace Entertainment
+release: 1992
+genre: Sports with Animals
+players: 1
+game: F1灵魂
+file: F1灵魂.gb
+assets.box_front: Imgs/F1灵魂.png
+description: 《F1灵魂》，由 Konami 出品，1991 年发行，竞速类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Konami
+release: 1991
+genre: Racing
+players: 4
+game: F1男孩
+file: F1男孩.gb
+assets.box_front: Imgs/F1男孩.png
+description: 《F1男孩》，由 Sunsoft 出品，1990 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+release: 1990
+genre: Racing
+players: 1
+game: F1竞赛
+file: F1竞赛.gb
+assets.box_front: Imgs/F1竞赛.png
+description: 《F1竞赛》，由 Nintendo 出品，竞速类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Nintendo
+genre: Racing
+players: 4
+game: GB原人
+file: GB原人.gb
+assets.box_front: Imgs/GB原人.png
+description: 《GB原人》，由 Hudson 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Platform
+players: 1
+game: GB原人2
+file: GB原人2.gb
+assets.box_front: Imgs/GB原人2.png
+description: 《GB原人2》，由 Hudson 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1994
+genre: Platform
+players: 1
+game: GB原人大陆-万岁!王国
+file: GB原人大陆-万岁!王国.gb
+assets.box_front: Imgs/GB原人大陆-万岁!王国.png
+description: 《GB原人大陆-万岁!王国》，由 Hudson 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1994
+genre: Platform
+players: 1
+game: GB战争-加强版
+file: GB战争-加强版.gb
+assets.box_front: Imgs/GB战争-加强版.png
+description: 《GB战争-加强版》，由 Nintendo 出品，1997 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+    本作为原作的加强版版本。
+publisher: Nintendo
+release: 1997
+genre: Strategy
+players: 2
+game: GB战争
+file: GB战争.gb
+assets.box_front: Imgs/GB战争.png
+description: 《GB战争》，由 Nintendo 出品，1991 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+release: 1991
+genre: Strategy
+players: 2
+game: GB柏青嫂必胜法Jr
+file: GB柏青嫂必胜法Jr.gb
+assets.box_front: Imgs/GB柏青嫂必胜法Jr.png
+description: 《GB柏青嫂必胜法Jr》，由 Sammy Studios 出品，1994 年发行，Gambling类游戏，Game Boy 平台，单人游玩。
+publisher: Sammy Studios
+release: 1994
+genre: Gambling
+players: 1
+game: GB游戏4合1
+file: GB游戏4合1.gb
+assets.box_front: Imgs/GB游戏4合1.png
+description: 《GB游戏4合1》，由 Interplay 出品，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Interplay
+genre: Board
+players: 2
+game: GB游戏集锦
+file: GB游戏集锦.gb
+assets.box_front: Imgs/GB游戏集锦.png
+description: 《GB游戏集锦》，由 Nintendo 出品，1997 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1997
+genre: Compilation
+players: 1
+game: GB游戏集锦2
+file: GB游戏集锦2.gb
+assets.box_front: Imgs/GB游戏集锦2.png
+description: 《GB游戏集锦2》，由 Nintendo 出品，1999 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1999
+genre: Compilation
+players: 1
+game: GB篮球
+file: GB篮球.gb
+assets.box_front: Imgs/GB篮球.png
+description: 《GB篮球》，由 Imagineer 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Imagineer
+release: 1993
+genre: Sports
+players: 2
+game: GI之王-三匹的预想屋
+file: GI之王-三匹的预想屋.gb
+assets.box_front: Imgs/GI之王-三匹的预想屋.png
+description: 《GI之王-三匹的预想屋》，由 Vic Tokai 出品，1993 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Vic Tokai
+release: 1993
+genre: Sports
+players: 1
+game: J杯足球赛
+file: J杯足球赛.gb
+assets.box_front: Imgs/J杯足球赛.png
+description: 《J杯足球赛》，由 Jaleco 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Jaleco
+release: 1993
+genre: Sports
+players: 2
+game: J联盟大波足球
+file: J联盟大波足球.gb
+assets.box_front: Imgs/J联盟大波足球.png
+description: 《J联盟大波足球》，由 Tomy 出品，1995 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Tomy
+release: 1995
+genre: Sports
+players: 1
+game: J联盟实况足球95
+file: J联盟实况足球95.gb
+assets.box_front: Imgs/J联盟实况足球95.png
+description: 《J联盟实况足球95》，由 Electronic Arts 出品，1995 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+release: 1995
+genre: Sports
+players: 2
+game: J联盟战斗足球-射手之王
+file: J联盟战斗足球-射手之王.gb
+assets.box_front: Imgs/J联盟战斗足球-射手之王.png
+description: 《J联盟战斗足球-射手之王》，由 IGS 出品，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: IGS
+genre: Sports
+players: 2
+game: J联盟胜利足球
+file: J联盟胜利足球.gb
+assets.box_front: Imgs/J联盟胜利足球.png
+description: 《J联盟胜利足球》，由 Electronic Arts 出品，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Electronic Arts
+genre: Sports
+players: 1
+game: NBA全明星挑战2
+file: NBA全明星挑战2.gb
+assets.box_front: Imgs/NBA全明星挑战2.png
+description: 《NBA全明星挑战2》，由 LJN 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: LJN
+release: 1993
+genre: Sports
+players: 2
+game: NBA大灌篮-联赛版
+file: NBA大灌篮-联赛版.gb
+assets.box_front: Imgs/NBA大灌篮-联赛版.png
+description: 《NBA大灌篮-联赛版》，由 Acclaim 出品，1995 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1995
+genre: Sports
+players: 1
+game: NFL四分卫俱乐部
+file: NFL四分卫俱乐部.gb
+assets.box_front: Imgs/NFL四分卫俱乐部.png
+description: 《NFL四分卫俱乐部》，由 LJN 出品，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: LJN
+genre: Sports
+players: 2
+game: Q千兆
+file: Q千兆.gb
+assets.box_front: Imgs/Q千兆.png
+description: 《Q千兆》，由 SETA Corporation 出品，1989 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: SETA Corporation
+release: 1989
+genre: Strategy
+players: 2
+game: Q版沙罗曼蛇
+file: Q版沙罗曼蛇.gb
+assets.box_front: Imgs/Q版沙罗曼蛇.png
+description: 《Q版沙罗曼蛇》，由 Konami 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1991
+genre: Action
+players: 1
+game: SD战国传-国盗物语
+file: SD战国传-国盗物语.gb
+assets.box_front: Imgs/SD战国传-国盗物语.png
+description: 《SD战国传-国盗物语》，由 Bandai 出品，策略类游戏，Game Boy 平台。
+publisher: Bandai
+genre: Strategy
+game: SD战国传2-天下统一篇
+file: SD战国传2-天下统一篇.gb
+assets.box_front: Imgs/SD战国传2-天下统一篇.png
+description: 《SD战国传2-天下统一篇》，由 Bandai Namco 出品，1992 年发行，策略类游戏，Game Boy 平台。
+publisher: Bandai Namco
+release: 1992
+genre: Strategy
+game: SD战国传3-地上最强篇
+file: SD战国传3-地上最强篇.gb
+assets.box_front: Imgs/SD战国传3-地上最强篇.png
+description: 《SD战国传3-地上最强篇》，由 Bandai 出品，1992 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 1992
+genre: Strategy
+players: 2
+game: SD飞龙之拳外传
+file: SD飞龙之拳外传.gb
+assets.box_front: Imgs/SD飞龙之拳外传.png
+description: 《SD飞龙之拳外传》，由 Culture Brain 出品，格斗类游戏，Game Boy 平台。
+publisher: Culture Brain
+genre: Fighting
+game: SD飞龙之拳外传2
+file: SD飞龙之拳外传2.gb
+assets.box_front: Imgs/SD飞龙之拳外传2.png
+description: 《SD飞龙之拳外传2》，1996 年发行，Game Boy 平台。
+release: 1996
+game: SD高达G
+file: SD高达G.gb
+assets.box_front: Imgs/SD高达G.png
+description: 《SD高达G》，由 Bandai Namco 出品，动作类游戏，Game Boy 平台。
+publisher: Bandai Namco
+genre: Action
+game: SD高达外传-兰卡英雄
+file: SD高达外传-兰卡英雄.gb
+assets.box_front: Imgs/SD高达外传-兰卡英雄.png
+description: 《SD高达外传-兰卡英雄》，1990 年发行，Game Boy 平台。
+release: 1990
+game: SD鲁邦三世-破坏金库大作战
+file: SD鲁邦三世-破坏金库大作战.gb
+assets.box_front: Imgs/SD鲁邦三世-破坏金库大作战.png
+description: 《SD鲁邦三世-破坏金库大作战》，由 Banpresto 出品，益智类游戏，Game Boy 平台。
+publisher: Banpresto
+genre: Puzzle
+game: TAITO公路追击HQ
+file: TAITO公路追击HQ.gb
+assets.box_front: Imgs/TAITO公路追击HQ.png
+description: 《TAITO公路追击HQ》，由 Taito 出品，1991 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+release: 1991
+genre: Racing
+players: 1
+game: TAITO游戏合集
+file: TAITO游戏合集.gb
+assets.box_front: Imgs/TAITO游戏合集.png
+description: 《TAITO游戏合集》，由 Taito 出品，合集类游戏，Game Boy 平台，单人游玩。
+    本作为原作的合集版本。
+publisher: Taito
+genre: Compilation
+players: 1
+game: TECMO橄榄球
+file: TECMO橄榄球.gb
+assets.box_front: Imgs/TECMO橄榄球.png
+description: 《TECMO橄榄球》，由 Tecmo 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Tecmo
+genre: Action
+players: 1
+game: VS英雄-格斗王之道
+file: VS英雄-格斗王之道.gb
+assets.box_front: Imgs/VS英雄-格斗王之道.png
+description: 《VS英雄-格斗王之道》，由 Banpresto 出品，格斗类游戏，Game Boy 平台。
+publisher: Banpresto
+genre: Fighting
+game: WWF冠军之戒
+file: WWF冠军之戒.gb
+assets.box_front: Imgs/WWF冠军之戒.png
+description: 《WWF冠军之戒》，由 LJN 出品，1994 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: LJN
+release: 1994
+genre: Sports
+players: 2
+game: WWF超级之星
+file: WWF超级之星.gb
+assets.box_front: Imgs/WWF超级之星.png
+description: 《WWF超级之星》，由 LJN 出品，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: LJN
+genre: Sports
+players: 2
+game: WWF超级之星2
+file: WWF超级之星2.gb
+assets.box_front: Imgs/WWF超级之星2.png
+description: 《WWF超级之星2》，由 LJN 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: LJN
+release: 1993
+genre: Sports
+players: 2
+game: X战机
+file: X战机.gb
+assets.box_front: Imgs/X战机.png
+description: 《X战机》，由 Nintendo 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1992
+genre: Action
+players: 1
+game: 一发逆转-DX马券王
+file: 一发逆转-DX马券王.gb
+assets.box_front: Imgs/一发逆转-DX马券王.png
+description: 《一发逆转-DX马券王》，由 Asmik 出品，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik
+genre: Sports with Animals
+players: 1
+game: 三丁目大冒险
+file: 三丁目大冒险.gb
+assets.box_front: Imgs/三丁目大冒险.png
+description: 《三丁目大冒险》，由 B-AI 出品，1994 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: B-AI
+release: 1994
+genre: Adventure
+players: 1
+game: 三丽鸥嘉年华
+file: 三丽鸥嘉年华.gb
+assets.box_front: Imgs/三丽鸥嘉年华.png
+description: 《三丽鸥嘉年华》，由 Character Soft 出品，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Character Soft
+genre: Puzzle
+players: 2
+game: 三丽鸥嘉年华2
+file: 三丽鸥嘉年华2.gb
+assets.box_front: Imgs/三丽鸥嘉年华2.png
+description: 《三丽鸥嘉年华2》，由 Character Soft 出品，益智类游戏，Game Boy 平台。
+publisher: Character Soft
+genre: Puzzle
+game: 三丽鸥派对
+file: 三丽鸥派对.gb
+assets.box_front: Imgs/三丽鸥派对.png
+description: 《三丽鸥派对》，由 Imagineer 出品，Game Boy 平台。
+publisher: Imagineer
+game: 上帝也疯狂
+file: 上帝也疯狂.gb
+assets.box_front: Imgs/上帝也疯狂.png
+description: 《上帝也疯狂》，由 Electronic Arts 出品，1993 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Electronic Arts
+release: 1993
+genre: Strategy
+players: 1
+game: 上海
+file: 上海.gb
+assets.box_front: Imgs/上海.png
+description: 《上海》，由 HAL Laboratory 出品，1989 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: HAL Laboratory
+release: 1989
+genre: Board
+players: 2
+game: 上海口袋版
+file: 上海口袋版.gb
+assets.box_front: Imgs/上海口袋版.png
+description: 《上海口袋版》，由 Sunsoft 出品，1998 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+release: 1998
+genre: Board
+players: 2
+game: 不可思议的迷宫-风来之西林GB-月影村的怪物
+file: 不可思议的迷宫-风来之西林GB-月影村的怪物.gb
+assets.box_front: Imgs/不可思议的迷宫-风来之西林GB-月影村的怪物.png
+description: 《不可思议的迷宫-风来之西林GB-月影村的怪物》，由 Chunsoft 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Chunsoft
+genre: Role-playing (RPG)
+players: 1
+game: 世界保龄球
+file: 世界保龄球.gb
+assets.box_front: Imgs/世界保龄球.png
+description: 《世界保龄球》，由 Romstar Incorporated 出品，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Romstar Incorporated
+genre: Sports
+players: 1
+game: 世界冰球
+file: 世界冰球.gb
+assets.box_front: Imgs/世界冰球.png
+description: 《世界冰球》，由 Athena 出品，1991 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Athena
+release: 1991
+genre: Sports
+players: 1
+game: 世界杯前锋
+file: 世界杯前锋.gb
+assets.box_front: Imgs/世界杯前锋.png
+description: 《世界杯前锋》，由 GameTek 出品，1994 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: GameTek
+release: 1994
+genre: Sports
+players: 1
+game: 世界沙滩排球-1991GB杯
+file: 世界沙滩排球-1991GB杯.gb
+assets.box_front: Imgs/世界沙滩排球-1991GB杯.png
+description: 《世界沙滩排球-1991GB杯》，由 Taito 出品，1991 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+release: 1991
+genre: Sports
+players: 1
+game: 世界足球GB
+file: 世界足球GB.gb
+assets.box_front: Imgs/世界足球GB.png
+description: 《世界足球GB》，由 Konami 出品，1998 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1998
+genre: Sports
+players: 1
+game: 丛林大战
+file: 丛林大战.gb
+assets.box_front: Imgs/丛林大战.png
+description: 《丛林大战》，由 Pony Canyon 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Pony Canyon
+genre: Role-playing (RPG)
+players: 1
+game: 东京迪斯尼乐园-幻想之旅
+file: 东京迪斯尼乐园-幻想之旅.gb
+assets.box_front: Imgs/东京迪斯尼乐园-幻想之旅.png
+description: 《东京迪斯尼乐园-幻想之旅》，由 Tomy 出品，1998 年发行，Game Boy 平台。
+publisher: Tomy
+release: 1998
+game: 中岛悟F1英雄GB-世界锦标赛91
+file: 中岛悟F1英雄GB-世界锦标赛91.gb
+assets.box_front: Imgs/中岛悟F1英雄GB-世界锦标赛91.png
+description: 《中岛悟F1英雄GB-世界锦标赛91》，由 Varie Corporation 出品，1991 年发行，竞速类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Varie Corporation
+release: 1991
+genre: Racing
+players: 4
+game: 中岛悟F1英雄GB92
+file: 中岛悟F1英雄GB92.gb
+assets.box_front: Imgs/中岛悟F1英雄GB92.png
+description: 《中岛悟F1英雄GB92》，由 Ubisoft 出品，1992 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Ubisoft
+release: 1992
+genre: Racing
+players: 1
+game: 主役战队
+file: 主役战队.gb
+assets.box_front: Imgs/主役战队.png
+description: 《主役战队》，由 Irem 出品，1993 年发行，策略类游戏，Game Boy 平台。
+publisher: Irem
+release: 1993
+genre: Strategy
+game: 乔丹VS伯德-一对一
+file: 乔丹VS伯德-一对一.gb
+assets.box_front: Imgs/乔丹VS伯德-一对一.png
+description: 《乔丹VS伯德-一对一》，由 Electronic Arts 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+release: 1993
+genre: Sports
+players: 2
+game: 乱马1／2-斗剧问答
+file: 乱马1／2-斗剧问答.gb
+assets.box_front: Imgs/乱马1／2-斗剧问答.png
+description: 《乱马1／2-斗剧问答》，由 Banpresto 出品，1993 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+release: 1993
+genre: Role-playing (RPG)
+players: 1
+game: 乱马1／2-热烈格斗编
+file: 乱马1／2-热烈格斗编.gb
+assets.box_front: Imgs/乱马1／2-热烈格斗编.png
+description: 《乱马1／2-热烈格斗编》，由 Banpresto 出品，1992 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+release: 1992
+genre: Adventure
+players: 1
+game: 乱马1／2
+file: 乱马1／2.gb
+assets.box_front: Imgs/乱马1／2.png
+description: 《乱马1／2》，由 Banpresto 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Banpresto
+release: 1990
+genre: Puzzle
+players: 2
+game: 云彩君大冒险
+file: 云彩君大冒险.gb
+assets.box_front: Imgs/云彩君大冒险.png
+description: 《云彩君大冒险》，由 Irem 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1992
+genre: Platform
+players: 1
+game: 人生游戏
+file: 人生游戏.gb
+assets.box_front: Imgs/人生游戏.png
+description: 《人生游戏》，1995 年发行，Game Boy 平台。
+release: 1995
+game: 人生游戏传说
+file: 人生游戏传说.gb
+assets.box_front: Imgs/人生游戏传说.png
+description: 《人生游戏传说》，由 Takara 出品，Board类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Takara
+genre: Board
+players: 4
+game: 仓库番
+file: 仓库番.gb
+assets.box_front: Imgs/仓库番.png
+description: 《仓库番》，由 FCI 出品，1989 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: FCI
+release: 1989
+genre: Strategy
+players: 1
+game: 仓库番2
+file: 仓库番2.gb
+assets.box_front: Imgs/仓库番2.png
+description: 《仓库番2》，由 Pony Canyon 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Pony Canyon
+release: 1990
+genre: Puzzle
+players: 1
+game: 企鹅大陆
+file: 企鹅大陆.gb
+assets.box_front: Imgs/企鹅大陆.png
+description: 《企鹅大陆》，由 Pony Canyon 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Pony Canyon
+release: 1990
+genre: Platform
+players: 1
+game: 企鹅战争VS
+file: 企鹅战争VS.gb
+assets.box_front: Imgs/企鹅战争VS.png
+description: 《企鹅战争VS》，由 ASCII Corporation 出品，1990 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: ASCII Corporation
+release: 1990
+genre: Sports
+players: 2
+game: 企鹅推冰
+file: 企鹅推冰.gb
+assets.box_front: Imgs/企鹅推冰.png
+description: 《企鹅推冰》，由 Natsume 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Natsume
+release: 1990
+genre: Action
+players: 1
+game: 企鹅离家记
+file: 企鹅离家记.gb
+assets.box_front: Imgs/企鹅离家记.png
+description: 《企鹅离家记》，由 B-AI 出品，1993 年发行，Game Boy 平台，单人游玩。
+publisher: B-AI
+release: 1993
+players: 1
+game: 优胜之马
+file: 优胜之马.gb
+assets.box_front: Imgs/优胜之马.png
+description: 《优胜之马》，由 NCS Corporation 出品，1991 年发行，Sports with Animals类游戏，Game Boy 平台。
+publisher: NCS Corporation
+release: 1991
+genre: Sports with Animals
+game: 优诺纸牌-小世界
+file: 优诺纸牌-小世界.gb
+assets.box_front: Imgs/优诺纸牌-小世界.png
+description: 《优诺纸牌-小世界》，由 Tomy Corporation 出品，Card类游戏，Game Boy 平台。
+publisher: Tomy Corporation
+genre: Card
+game: 优诺纸牌2-小世界
+file: 优诺纸牌2-小世界.gb
+assets.box_front: Imgs/优诺纸牌2-小世界.png
+description: 《优诺纸牌2-小世界》，由 Tomy Corporation 出品，Card类游戏，Game Boy 平台。
+publisher: Tomy Corporation
+genre: Card
+game: 传说
+file: 传说.gb
+assets.box_front: Imgs/传说.png
+description: 《传说》，由 Funsoft 出品，1991 年发行，动作类游戏，Game Boy 平台。
+publisher: Funsoft
+release: 1991
+genre: Action
+game: 体育收藏
+file: 体育收藏.gb
+assets.box_front: Imgs/体育收藏.png
+description: 《体育收藏》，由 Starbyte Software 出品，1996 年发行，合集类游戏，Game Boy 平台。
+publisher: Starbyte Software
+release: 1996
+genre: Compilation
+game: 俄罗斯方块加强版
+file: 俄罗斯方块加强版.gb
+assets.box_front: Imgs/俄罗斯方块加强版.png
+description: 《俄罗斯方块加强版》，Game Boy 平台，支持 2-2 人游玩。
+    本作为《俄罗斯方块》的加强版版本。
+publisher: Jaleco
+release: 1996
+genre: Action
+players: 2
+game: 信长之野望GB
+file: 信长之野望GB.gb
+assets.box_front: Imgs/信长之野望GB.png
+description: 《信长之野望GB》，由 Koei 出品，1990 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Koei
+release: 1990
+genre: Strategy
+players: 2
+game: 假面骑士SD-强力骑士
+file: 假面骑士SD-强力骑士.gb
+assets.box_front: Imgs/假面骑士SD-强力骑士.png
+description: 《假面骑士SD-强力骑士》，由 Yutaka 出品，1993 年发行，竞速类游戏，Game Boy 平台。
+publisher: Yutaka
+release: 1993
+genre: Racing
+game: 偏头痛
+file: 偏头痛.gb
+assets.box_front: Imgs/偏头痛.png
+description: 《偏头痛》，由 Gremlin Interactive 出品，1992 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Gremlin Interactive
+release: 1992
+genre: Puzzle
+players: 1
+game: 傻瓜男孩
+file: 傻瓜男孩.gb
+assets.box_front: Imgs/傻瓜男孩.png
+description: 《傻瓜男孩》，由 Nichibutsu 出品，1993 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nichibutsu
+release: 1993
+genre: Action
+players: 1
+game: 元气爆发-伏魔金刚
+file: 元气爆发-伏魔金刚.gb
+assets.box_front: Imgs/元气爆发-伏魔金刚.png
+description: 《元气爆发-伏魔金刚》，由 Tomy 出品，1992 年发行，格斗类游戏，Game Boy 平台，单人游玩。
+publisher: Tomy
+release: 1992
+genre: Fighting
+players: 1
+game: 元祖快杰洋枪
+file: 元祖快杰洋枪.gb
+assets.box_front: Imgs/元祖快杰洋枪.png
+description: 《元祖快杰洋枪》，由 Irem 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1991
+genre: Platform
+players: 1
+game: 克瑞丝蒂世界
+file: 克瑞丝蒂世界.gb
+assets.box_front: Imgs/克瑞丝蒂世界.png
+description: 《克瑞丝蒂世界》，由 Acclaim 出品，1994 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1994
+genre: Puzzle
+players: 1
+game: 克鲁克鲁方块
+file: 克鲁克鲁方块.gb
+assets.box_front: Imgs/克鲁克鲁方块.png
+description: 《克鲁克鲁方块》，由 Victor 出品，1994 年发行，益智类游戏，Game Boy 平台。
+publisher: Victor
+release: 1994
+genre: Puzzle
+game: 兔八哥和愉快的伙伴们
+file: 兔八哥和愉快的伙伴们.gb
+assets.box_front: Imgs/兔八哥和愉快的伙伴们.png
+description: 《兔八哥和愉快的伙伴们》，由 Sunsoft 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+genre: Platform
+players: 1
+game: 兔八哥收藏
+file: 兔八哥收藏.gb
+assets.box_front: Imgs/兔八哥收藏.png
+description: 《兔八哥收藏》，由 Kemco 出品，1997 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Kemco
+release: 1997
+genre: Action
+players: 1
+game: 兔宝宝历险记-心跳的运动节
+file: 兔宝宝历险记-心跳的运动节.gb
+assets.box_front: Imgs/兔宝宝历险记-心跳的运动节.png
+description: 《兔宝宝历险记-心跳的运动节》，由 Konami 出品，1994 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1994
+genre: Sports
+players: 2
+game: 兔宝宝历险记
+file: 兔宝宝历险记.gb
+assets.box_front: Imgs/兔宝宝历险记.png
+description: 《兔宝宝历险记》，由 Konami 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+genre: Platform
+players: 1
+game: 兔宝宝历险记2
+file: 兔宝宝历险记2.gb
+assets.box_front: Imgs/兔宝宝历险记2.png
+description: 《兔宝宝历险记2》，由 Konami 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1993
+genre: Platform
+players: 1
+game: 全日本职业摔角
+file: 全日本职业摔角.gb
+assets.box_front: Imgs/全日本职业摔角.png
+description: 《全日本职业摔角》，1994 年发行，Game Boy 平台。
+release: 1994
+game: 兴奋黑巴斯
+file: 兴奋黑巴斯.gb
+assets.box_front: Imgs/兴奋黑巴斯.png
+description: 《兴奋黑巴斯》，由 Hot-B 出品，1992 年发行，Hunting and Fishing类游戏，Game Boy 平台，单人游玩。
+publisher: Hot-B
+release: 1992
+genre: Hunting and Fishing
+players: 1
+game: 兴奋黑巴斯95
+file: 兴奋黑巴斯95.gb
+assets.box_front: Imgs/兴奋黑巴斯95.png
+description: 《兴奋黑巴斯95》，由 BLACKLABEL 出品，1995 年发行，Hunting and Fishing类游戏，Game Boy 平台，单人游玩。
+publisher: BLACKLABEL
+release: 1995
+genre: Hunting and Fishing
+players: 1
+game: 兵蜂
+file: 兵蜂.gb
+assets.box_front: Imgs/兵蜂.png
+description: 《兵蜂》，由 Konami 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1990
+genre: Action
+players: 2
+game: 冒险!解迷之路
+file: 冒险!解迷之路.gb
+assets.box_front: Imgs/冒险!解迷之路.png
+description: 《冒险!解迷之路》，由 Vic Tokai 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Vic Tokai
+release: 1990
+genre: Puzzle
+players: 1
+game: 冲冲恶魔君
+file: 冲冲恶魔君.gb
+assets.box_front: Imgs/冲冲恶魔君.png
+description: 《冲冲恶魔君》，由 Banpresto 出品，1995 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+release: 1995
+genre: Action
+players: 1
+game: 冲锋坦克
+file: 冲锋坦克.gb
+assets.box_front: Imgs/冲锋坦克.png
+description: 《冲锋坦克》，由 Electro Brain Corp. 出品，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Electro Brain Corp.
+genre: Strategy
+players: 2
+game: 凯迪拉克2
+file: 凯迪拉克2.gb
+assets.box_front: Imgs/凯迪拉克2.png
+description: 《凯迪拉克2》，由 DTMC 出品，1990 年发行，Gambling类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: DTMC
+release: 1990
+genre: Gambling
+players: 2
+game: 刚果洞窟
+file: 刚果洞窟.gb
+assets.box_front: Imgs/刚果洞窟.png
+description: 《刚果洞窟》，由 Konami 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 创世纪-神秘的美德
+file: 创世纪-神秘的美德.gb
+assets.box_front: Imgs/创世纪-神秘的美德.png
+description: 《创世纪-神秘的美德》，由 FCI 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: FCI
+release: 1991
+genre: Role-playing (RPG)
+players: 2
+game: 创世纪-神秘的美德2
+file: 创世纪-神秘的美德2.gb
+assets.box_front: Imgs/创世纪-神秘的美德2.png
+description: 《创世纪-神秘的美德2》，由 Pony Canyon 出品，Role-playing (RPG)类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Pony Canyon
+genre: Role-playing (RPG)
+players: 2
+game: 剑勇传说-铁刃
+file: 剑勇传说-铁刃.gb
+assets.box_front: Imgs/剑勇传说-铁刃.png
+description: 《剑勇传说-铁刃》，由 Banpresto 出品，1994 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Banpresto
+release: 1994
+genre: Role-playing (RPG)
+game: 剪草人
+file: 剪草人.gb
+assets.box_front: Imgs/剪草人.png
+description: 《剪草人》，由 Time Warner Interactive 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Time Warner Interactive
+release: 1994
+genre: Platform
+players: 1
+game: 力量任务
+file: 力量任务.gb
+assets.box_front: Imgs/力量任务.png
+description: 《力量任务》，由 NTV International Corporation 出品，策略类游戏，Game Boy 平台，单人游玩。
+publisher: NTV International Corporation
+genre: Strategy
+players: 1
+game: 动物饲育者
+file: 动物饲育者.gb
+assets.box_front: Imgs/动物饲育者.png
+description: 《动物饲育者》，由 J-Wing 出品，1997 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: J-Wing
+release: 1997
+genre: Strategy
+players: 1
+game: 动物饲育者2
+file: 动物饲育者2.gb
+assets.box_front: Imgs/动物饲育者2.png
+description: 《动物饲育者2》，由 J-Wing 出品，1998 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: J-Wing
+release: 1998
+genre: Strategy
+players: 1
+game: 化石创世
+file: 化石创世.gb
+assets.box_front: Imgs/化石创世.png
+description: 《化石创世》，由 Starfish 出品，1997 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Starfish
+release: 1997
+genre: Role-playing (RPG)
+game: 北斗神拳-凄绝十番胜负
+file: 北斗神拳-凄绝十番胜负.gb
+assets.box_front: Imgs/北斗神拳-凄绝十番胜负.png
+description: 《北斗神拳-凄绝十番胜负》，由 Taxan USA Corp. 出品，1989 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Taxan USA Corp.
+release: 1989
+genre: Action
+players: 2
+game: 南国少年帕普瓦君-R团之野望
+file: 南国少年帕普瓦君-R团之野望.gb
+assets.box_front: Imgs/南国少年帕普瓦君-R团之野望.png
+description: 《南国少年帕普瓦君-R团之野望》，由 Enix 出品，1994 年发行，益智类游戏，Game Boy 平台。
+publisher: Enix
+release: 1994
+genre: Puzzle
+game: 南梦宫美术馆1
+file: 南梦宫美术馆1.gb
+assets.box_front: Imgs/南梦宫美术馆1.png
+description: 《南梦宫美术馆1》，由 Namco 出品，1996 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1996
+genre: Compilation
+players: 1
+game: 南梦宫美术馆2
+file: 南梦宫美术馆2.gb
+assets.box_front: Imgs/南梦宫美术馆2.png
+description: 《南梦宫美术馆2》，由 Namco 出品，1996 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1996
+genre: Compilation
+players: 1
+game: 南梦宫美术馆3
+file: 南梦宫美术馆3.gb
+assets.box_front: Imgs/南梦宫美术馆3.png
+description: 《南梦宫美术馆3》，由 Namco 出品，1997 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1997
+genre: Compilation
+players: 1
+game: 卡拉姆镇的大事件
+file: 卡拉姆镇的大事件.gb
+assets.box_front: Imgs/卡拉姆镇的大事件.png
+description: 《卡拉姆镇的大事件》，由 Starfish 出品，1997 年发行，动作类游戏，Game Boy 平台。
+publisher: Starfish
+release: 1997
+genre: Action
+game: 卡杜比赛车
+file: 卡杜比赛车.gb
+assets.box_front: Imgs/卡杜比赛车.png
+description: 《卡杜比赛车》，由 Namco 出品，1993 年发行，竞速类游戏，Game Boy 平台。
+publisher: Namco
+release: 1993
+genre: Racing
+game: 卡牌游戏
+file: 卡牌游戏.gb
+assets.box_front: Imgs/卡牌游戏.png
+description: 《卡牌游戏》，由 Coconuts Japan 出品，1990 年发行，Card类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Coconuts Japan
+release: 1990
+genre: Card
+players: 2
+game: 卡美拉-大怪兽空中大决战
+file: 卡美拉-大怪兽空中大决战.gb
+assets.box_front: Imgs/卡美拉-大怪兽空中大决战.png
+description: 《卡美拉-大怪兽空中大决战》，由 Angel 出品，1995 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Angel
+release: 1995
+genre: Strategy
+players: 1
+game: 印第安纳琼斯-圣战奇兵
+file: 印第安纳琼斯-圣战奇兵.gb
+assets.box_front: Imgs/印第安纳琼斯-圣战奇兵.png
+description: 《印第安纳琼斯-圣战奇兵》，由 Ubisoft 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Ubisoft
+release: 1994
+genre: Platform
+players: 1
+game: 原人可特苏
+file: 原人可特苏.gb
+assets.box_front: Imgs/原人可特苏.png
+description: 《原人可特苏》，由 B-AI 出品，1995 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: B-AI
+release: 1995
+genre: Action
+players: 2
+game: 原人合集
+file: 原人合集.gb
+assets.box_front: Imgs/原人合集.png
+description: 《原人合集》，由 Hudson 出品，1996 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+    本作为原作的合集版本。
+publisher: Hudson
+release: 1996
+genre: Platform
+players: 1
+game: 原始公主
+file: 原始公主.gb
+assets.box_front: Imgs/原始公主.png
+description: 《原始公主》，由 Sunsoft 出品，1990 年发行，益智类游戏，Game Boy 平台。
+publisher: Sunsoft
+release: 1990
+genre: Puzzle
+game: 原子机器童
+file: 原子机器童.gb
+assets.box_front: Imgs/原子机器童.png
+description: 《原子机器童》，由 Taito 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+genre: Platform
+players: 1
+game: 原子机器童2
+file: 原子机器童2.gb
+assets.box_front: Imgs/原子机器童2.png
+description: 《原子机器童2》，由 King Record Co. Ltd. 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: King Record Co. Ltd.
+release: 1992
+genre: Platform
+players: 1
+game: 厨房大战
+file: 厨房大战.gb
+assets.box_front: Imgs/厨房大战.png
+description: 《厨房大战》，由 Panther Software 出品，1991 年发行，动作类游戏，Game Boy 平台。
+publisher: Panther Software
+release: 1991
+genre: Action
+game: 双胞胎
+file: 双胞胎.gb
+assets.box_front: Imgs/双胞胎.png
+description: 《双胞胎》，由 Athena 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Athena
+release: 1992
+genre: Role-playing (RPG)
+game: 双重役满
+file: 双重役满.gb
+assets.box_front: Imgs/双重役满.png
+description: 《双重役满》，由 VAP 出品，1993 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: VAP
+release: 1993
+genre: Board
+players: 2
+game: 双重役满2
+file: 双重役满2.gb
+assets.box_front: Imgs/双重役满2.png
+description: 《双重役满2》，由 VAP 出品，1993 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: VAP
+release: 1993
+genre: Board
+players: 2
+game: 双重役满少年
+file: 双重役满少年.gb
+assets.box_front: Imgs/双重役满少年.png
+description: 《双重役满少年》，由 Vap Inc. 出品，1993 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Vap Inc.
+release: 1993
+genre: Board
+players: 2
+game: 口袋声纳
+file: 口袋声纳.gb
+assets.box_front: Imgs/口袋声纳.png
+description: 《口袋声纳》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 口袋家族
+file: 口袋家族.gb
+assets.box_front: Imgs/口袋家族.png
+description: 《口袋家族》，由 Hudson 出品，1998 年发行，策略类游戏，Game Boy 平台。
+publisher: Hudson
+release: 1998
+genre: Strategy
+game: 口袋将棋
+file: 口袋将棋.gb
+assets.box_front: Imgs/口袋将棋.png
+description: 《口袋将棋》，由 Bottom Up Interactive 出品，1998 年发行，Board类游戏，Game Boy 平台。
+publisher: Bottom Up Interactive
+release: 1998
+genre: Board
+game: 口袋小可罗
+file: 口袋小可罗.gb
+assets.box_front: Imgs/口袋小可罗.png
+description: 《口袋小可罗》，由 Tomy 出品，1998 年发行，Game Boy 平台。
+publisher: Tomy
+release: 1998
+game: 口袋巴斯垂钓
+file: 口袋巴斯垂钓.gb
+assets.box_front: Imgs/口袋巴斯垂钓.png
+description: 《口袋巴斯垂钓》，由 Bottom Up Interactive 出品，1998 年发行，Hunting and Fishing类游戏，Game Boy 平台。
+publisher: Bottom Up Interactive
+release: 1998
+genre: Hunting and Fishing
+game: 口袋恋爱
+file: 口袋恋爱.gb
+assets.box_front: Imgs/口袋恋爱.png
+description: 《口袋恋爱》，由 Kindle Imagine Develop 出品，1997 年发行，模拟类游戏，Game Boy 平台。
+publisher: Kindle Imagine Develop
+release: 1997
+genre: Simulation
+game: 口袋恋爱2
+file: 口袋恋爱2.gb
+assets.box_front: Imgs/口袋恋爱2.png
+description: 《口袋恋爱2》，由 Kindle Imagine Develop 出品，1998 年发行，模拟类游戏，Game Boy 平台。
+publisher: Kindle Imagine Develop
+release: 1998
+genre: Simulation
+game: 口袋战役
+file: 口袋战役.gb
+assets.box_front: Imgs/口袋战役.png
+description: 《口袋战役》，由 Sigma 出品，1992 年发行，策略类游戏，Game Boy 平台。
+publisher: Sigma
+release: 1992
+genre: Strategy
+game: 口袋汉字郎
+file: 口袋汉字郎.gb
+assets.box_front: Imgs/口袋汉字郎.png
+description: 《口袋汉字郎》，由 Shingakusha 出品，1998 年发行，Game Boy 平台。
+publisher: Shingakusha
+release: 1998
+game: 口袋游戏收藏
+file: 口袋游戏收藏.gb
+assets.box_front: Imgs/口袋游戏收藏.png
+description: 《口袋游戏收藏》，由 Naxat Soft 出品，1997 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Naxat Soft
+release: 1997
+genre: Compilation
+players: 1
+game: 口袋炸弹人
+file: 口袋炸弹人.gb
+assets.box_front: Imgs/口袋炸弹人.png
+description: 《口袋炸弹人》，由 Nintendo 出品，1997 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1997
+genre: Action
+players: 1
+game: 口袋照相机
+file: 口袋照相机.gb
+assets.box_front: Imgs/口袋照相机.png
+description: 《口袋照相机》，Game Boy 平台。
+game: 口袋电车
+file: 口袋电车.gb
+assets.box_front: Imgs/口袋电车.png
+description: 《口袋电车》，由 Coconuts Japan 出品，1998 年发行，模拟类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1998
+genre: Simulation
+game: 口袋运动场
+file: 口袋运动场.gb
+assets.box_front: Imgs/口袋运动场.png
+description: 《口袋运动场》，由 Atlus 出品，1990 年发行，体育类游戏，Game Boy 平台。
+publisher: Atlus
+release: 1990
+genre: Sports
+game: 可乐骰子
+file: 可乐骰子.gb
+assets.box_front: Imgs/可乐骰子.png
+description: 《可乐骰子》，由 King Records 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: King Records
+release: 1990
+genre: Puzzle
+players: 1
+game: 史努比-魔术表演
+file: 史努比-魔术表演.gb
+assets.box_front: Imgs/史努比-魔术表演.png
+description: 《史努比-魔术表演》，由 Kemco 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Kemco
+release: 1990
+genre: Puzzle
+players: 1
+game: 史努比之路
+file: 史努比之路.gb
+assets.box_front: Imgs/史努比之路.png
+description: 《史努比之路》，由 Kemco 出品，1996 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Kemco
+release: 1996
+genre: Puzzle
+players: 1
+game: 吃豆小精灵
+file: 吃豆小精灵.gb
+assets.box_front: Imgs/吃豆小精灵.png
+description: 《吃豆小精灵》，由 Namco 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Namco
+release: 1990
+genre: Action
+players: 2
+game: 吃豆小精灵方块
+file: 吃豆小精灵方块.gb
+assets.box_front: Imgs/吃豆小精灵方块.png
+description: 《吃豆小精灵方块》，由 Namco 出品，1994 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1994
+genre: Puzzle
+players: 1
+game: 吃豆小精灵时代
+file: 吃豆小精灵时代.gb
+assets.box_front: Imgs/吃豆小精灵时代.png
+description: 《吃豆小精灵时代》，1995 年发行，Game Boy 平台。
+release: 1995
+game: 合格小子系列-99年度版英单语中心1500
+file: 合格小子系列-99年度版英单语中心1500.gb
+assets.box_front: Imgs/合格小子系列-99年度版英单语中心1500.png
+description: 《合格小子系列-99年度版英单语中心1500》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-Z会-中学英单语1132
+file: 合格小子系列-Z会-中学英单语1132.gb
+assets.box_front: Imgs/合格小子系列-Z会-中学英单语1132.png
+description: 《合格小子系列-Z会-中学英单语1132》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-Z会-究极之古文单语
+file: 合格小子系列-Z会-究极之古文单语.gb
+assets.box_front: Imgs/合格小子系列-Z会-究极之古文单语.png
+description: 《合格小子系列-Z会-究极之古文单语》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-Z会-究极之英单语1500
+file: 合格小子系列-Z会-究极之英单语1500.gb
+assets.box_front: Imgs/合格小子系列-Z会-究极之英单语1500.png
+description: 《合格小子系列-Z会-究极之英单语1500》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 合格小子系列-Z会-究极之英熟语1017
+file: 合格小子系列-Z会-究极之英熟语1017.gb
+assets.box_front: Imgs/合格小子系列-Z会-究极之英熟语1017.png
+description: 《合格小子系列-Z会-究极之英熟语1017》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 合格小子系列-Z会-究极之英语构文285
+file: 合格小子系列-Z会-究极之英语构文285.gb
+assets.box_front: Imgs/合格小子系列-Z会-究极之英语构文285.png
+description: 《合格小子系列-Z会-究极之英语构文285》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 合格小子系列-学研-历史512
+file: 合格小子系列-学研-历史512.gb
+assets.box_front: Imgs/合格小子系列-学研-历史512.png
+description: 《合格小子系列-学研-历史512》，Game Boy 平台。
+game: 合格小子系列-学研-四字熟语288
+file: 合格小子系列-学研-四字熟语288.gb
+assets.box_front: Imgs/合格小子系列-学研-四字熟语288.png
+description: 《合格小子系列-学研-四字熟语288》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-学研-国语惯用句及谚语210
+file: 合格小子系列-学研-国语惯用句及谚语210.gb
+assets.box_front: Imgs/合格小子系列-学研-国语惯用句及谚语210.png
+description: 《合格小子系列-学研-国语惯用句及谚语210》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-山川一问一答-世界史B用语问题集
+file: 合格小子系列-山川一问一答-世界史B用语问题集.gb
+assets.box_front: Imgs/合格小子系列-山川一问一答-世界史B用语问题集.png
+description: 《合格小子系列-山川一问一答-世界史B用语问题集》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-山川一问一答-日本史B用语问题集
+file: 合格小子系列-山川一问一答-日本史B用语问题集.gb
+assets.box_front: Imgs/合格小子系列-山川一问一答-日本史B用语问题集.png
+description: 《合格小子系列-山川一问一答-日本史B用语问题集》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-日本史目标201
+file: 合格小子系列-日本史目标201.gb
+assets.box_front: Imgs/合格小子系列-日本史目标201.png
+description: 《合格小子系列-日本史目标201》，Game Boy 平台。
+game: 合格小子系列-桐原书店频出英文法语法问题1000
+file: 合格小子系列-桐原书店频出英文法语法问题1000.gb
+assets.box_front: Imgs/合格小子系列-桐原书店频出英文法语法问题1000.png
+description: 《合格小子系列-桐原书店频出英文法语法问题1000》，Game Boy 平台。
+game: 合格小子系列-英检2级会话表现333
+file: 合格小子系列-英检2级会话表现333.gb
+assets.box_front: Imgs/合格小子系列-英检2级会话表现333.png
+description: 《合格小子系列-英检2级会话表现333》，由 Imagineer 出品，1997 年发行，教育类游戏，Game Boy 平台。
+publisher: Imagineer
+release: 1997
+genre: Educational
+game: 合格小子系列-英语单词目标1900
+file: 合格小子系列-英语单词目标1900.gb
+assets.box_front: Imgs/合格小子系列-英语单词目标1900.png
+description: 《合格小子系列-英语单词目标1900》，由 Imagineer 出品，1996 年发行，教育类游戏，Game Boy 平台，单人游玩。
+publisher: Imagineer
+release: 1996
+genre: Educational
+players: 1
+game: 合格小子系列-英语熟语目标1000
+file: 合格小子系列-英语熟语目标1000.gb
+assets.box_front: Imgs/合格小子系列-英语熟语目标1000.png
+description: 《合格小子系列-英语熟语目标1000》，Game Boy 平台。
+game: 合格小子系列-顽固头脑变灵活-国语战斗篇
+file: 合格小子系列-顽固头脑变灵活-国语战斗篇.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-国语战斗篇.png
+description: 《合格小子系列-顽固头脑变灵活-国语战斗篇》，1999 年发行，Game Boy 平台。
+release: 1999
+game: 合格小子系列-顽固头脑变灵活-图形达人
+file: 合格小子系列-顽固头脑变灵活-图形达人.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-图形达人.png
+description: 《合格小子系列-顽固头脑变灵活-图形达人》，2000 年发行，Game Boy 平台。
+release: 2000
+game: 合格小子系列-顽固头脑变灵活-常识之书
+file: 合格小子系列-顽固头脑变灵活-常识之书.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-常识之书.png
+description: 《合格小子系列-顽固头脑变灵活-常识之书》，2000 年发行，Game Boy 平台。
+release: 2000
+game: 合格小子系列-顽固头脑变灵活-数字算术篇
+file: 合格小子系列-顽固头脑变灵活-数字算术篇.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-数字算术篇.png
+description: 《合格小子系列-顽固头脑变灵活-数字算术篇》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 合格小子系列-顽固头脑变灵活-汉字达人
+file: 合格小子系列-顽固头脑变灵活-汉字达人.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-汉字达人.png
+description: 《合格小子系列-顽固头脑变灵活-汉字达人》，2001 年发行，Game Boy 平台。
+release: 2001
+game: 合格小子系列-顽固头脑变灵活-理科战斗篇
+file: 合格小子系列-顽固头脑变灵活-理科战斗篇.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-理科战斗篇.png
+description: 《合格小子系列-顽固头脑变灵活-理科战斗篇》，1999 年发行，Game Boy 平台。
+release: 1999
+game: 合格小子系列-顽固头脑变灵活-社会战斗篇
+file: 合格小子系列-顽固头脑变灵活-社会战斗篇.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-社会战斗篇.png
+description: 《合格小子系列-顽固头脑变灵活-社会战斗篇》，1999 年发行，Game Boy 平台。
+release: 1999
+game: 合格小子系列-顽固头脑变灵活-算术战斗篇
+file: 合格小子系列-顽固头脑变灵活-算术战斗篇.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-算术战斗篇.png
+description: 《合格小子系列-顽固头脑变灵活-算术战斗篇》，1999 年发行，Game Boy 平台。
+release: 1999
+game: 合格小子系列-顽固头脑变灵活-计算达人
+file: 合格小子系列-顽固头脑变灵活-计算达人.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-计算达人.png
+description: 《合格小子系列-顽固头脑变灵活-计算达人》，2001 年发行，Game Boy 平台。
+release: 2001
+game: 合格小子系列-顽固头脑变灵活-难问之书
+file: 合格小子系列-顽固头脑变灵活-难问之书.gb
+assets.box_front: Imgs/合格小子系列-顽固头脑变灵活-难问之书.png
+description: 《合格小子系列-顽固头脑变灵活-难问之书》，2000 年发行，Game Boy 平台。
+release: 2000
+game: 合格小子系列-高校入学考试-中学英语单词1700
+file: 合格小子系列-高校入学考试-中学英语单词1700.gb
+assets.box_front: Imgs/合格小子系列-高校入学考试-中学英语单词1700.png
+description: 《合格小子系列-高校入学考试-中学英语单词1700》，由 Imagineer 出品，1997 年发行，教育类游戏，Game Boy 平台。
+publisher: Imagineer
+release: 1997
+genre: Educational
+game: 合格小子系列-高校入学考试-中学英语熟语350
+file: 合格小子系列-高校入学考试-中学英语熟语350.gb
+assets.box_front: Imgs/合格小子系列-高校入学考试-中学英语熟语350.png
+description: 《合格小子系列-高校入学考试-中学英语熟语350》，Game Boy 平台。
+game: 合格小子系列-高校入学考试-历史240
+file: 合格小子系列-高校入学考试-历史240.gb
+assets.box_front: Imgs/合格小子系列-高校入学考试-历史240.png
+description: 《合格小子系列-高校入学考试-历史240》，Game Boy 平台。
+game: 合格小子系列-高校入学考试-汉字问题的征服
+file: 合格小子系列-高校入学考试-汉字问题的征服.gb
+assets.box_front: Imgs/合格小子系列-高校入学考试-汉字问题的征服.png
+description: 《合格小子系列-高校入学考试-汉字问题的征服》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 合格小子系列-高校入学考试-理科250
+file: 合格小子系列-高校入学考试-理科250.gb
+assets.box_front: Imgs/合格小子系列-高校入学考试-理科250.png
+description: 《合格小子系列-高校入学考试-理科250》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 名侦探柯南-地下游园地杀人事件
+file: 名侦探柯南-地下游园地杀人事件.gb
+assets.box_front: Imgs/名侦探柯南-地下游园地杀人事件.png
+description: 《名侦探柯南-地下游园地杀人事件》，由 Bandai Namco 出品，冒险类游戏，Game Boy 平台。
+publisher: Bandai Namco
+genre: Adventure
+game: 名侦探柯南-疑惑之豪华列车
+file: 名侦探柯南-疑惑之豪华列车.gb
+assets.box_front: Imgs/名侦探柯南-疑惑之豪华列车.png
+description: 《名侦探柯南-疑惑之豪华列车》，由 Bandai 出品，冒险类游戏，Game Boy 平台。
+publisher: Bandai
+genre: Adventure
+game: 名侦探福尔摩斯之骑士道
+file: 名侦探福尔摩斯之骑士道.gb
+assets.box_front: Imgs/名侦探福尔摩斯之骑士道.png
+description: 《名侦探福尔摩斯之骑士道》，由 ASK Kodansha 出品，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: ASK Kodansha
+genre: Adventure
+players: 1
+game: 哆啦A梦-10种华丽乐趣
+file: 哆啦A梦-10种华丽乐趣.gb
+assets.box_front: Imgs/哆啦A梦-10种华丽乐趣.png
+description: 《哆啦A梦-10种华丽乐趣》，由 Epoch 出品，1998 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Epoch
+release: 1998
+genre: Action
+players: 1
+game: 哆啦A梦-秘密道具对决
+file: 哆啦A梦-秘密道具对决.gb
+assets.box_front: Imgs/哆啦A梦-秘密道具对决.png
+description: 《哆啦A梦-秘密道具对决》，由 Epoch 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Epoch
+release: 1991
+genre: Action
+players: 1
+game: 哆啦A梦2-动物行星传说
+file: 哆啦A梦2-动物行星传说.gb
+assets.box_front: Imgs/哆啦A梦2-动物行星传说.png
+description: 《哆啦A梦2-动物行星传说》，由 Epoch 出品，1992 年发行，动作类游戏，Game Boy 平台。
+publisher: Epoch
+release: 1992
+genre: Action
+game: 哆啦A梦赛车
+file: 哆啦A梦赛车.gb
+assets.box_front: Imgs/哆啦A梦赛车.png
+description: 《哆啦A梦赛车》，由 Epoch 出品，1998 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Epoch
+release: 1998
+genre: Racing
+players: 1
+game: 哈德森之鹰
+file: 哈德森之鹰.gb
+assets.box_front: Imgs/哈德森之鹰.png
+description: 《哈德森之鹰》，由 Sony Electronic Publishing 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sony Electronic Publishing
+genre: Platform
+players: 1
+game: 哥斯拉君-怪兽大行进
+file: 哥斯拉君-怪兽大行进.gb
+assets.box_front: Imgs/哥斯拉君-怪兽大行进.png
+description: 《哥斯拉君-怪兽大行进》，由 Toho Company 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Toho Company
+release: 1990
+genre: Action
+players: 2
+game: 四川省
+file: 四川省.gb
+assets.box_front: Imgs/四川省.png
+description: 《四川省》，由 Irem 出品，1990 年发行，益智类游戏，Game Boy 平台。
+publisher: Irem
+release: 1990
+genre: Puzzle
+game: 国际象棋大师
+file: 国际象棋大师.gb
+assets.box_front: Imgs/国际象棋大师.png
+description: 《国际象棋大师》，由 Hi Tech Expressions 出品，1994 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Hi Tech Expressions
+release: 1994
+genre: Board
+players: 2
+game: 圣剑传说
+file: 圣剑传说.gb
+assets.box_front: Imgs/圣剑传说.png
+description: 《圣剑传说》，由 Square Enix 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Square Enix
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 圣斗士天堂-最强的战士们
+file: 圣斗士天堂-最强的战士们.gb
+assets.box_front: Imgs/圣斗士天堂-最强的战士们.png
+description: 《圣斗士天堂-最强的战士们》，由 Bandai 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Bandai
+genre: Role-playing (RPG)
+game: 圣经外传
+file: 圣经外传.gb
+assets.box_front: Imgs/圣经外传.png
+description: 《圣经外传》，由 Atlus 出品，1995 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Atlus
+release: 1995
+genre: Role-playing (RPG)
+players: 1
+game: 在游戏中发现-鸡蛋仔-电子宠物
+file: 在游戏中发现-鸡蛋仔-电子宠物.gb
+assets.box_front: Imgs/在游戏中发现-鸡蛋仔-电子宠物.png
+description: 《在游戏中发现-鸡蛋仔-电子宠物》，由 Bandai 出品，1998 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai
+release: 1998
+genre: Strategy
+players: 1
+game: 在游戏中发现-鸡蛋仔
+file: 在游戏中发现-鸡蛋仔.gb
+assets.box_front: Imgs/在游戏中发现-鸡蛋仔.png
+description: 《在游戏中发现-鸡蛋仔》，由 Bandai Namco 出品，1997 年发行，模拟类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1997
+genre: Simulation
+players: 1
+game: 在游戏中发现-鸡蛋仔2
+file: 在游戏中发现-鸡蛋仔2.gb
+assets.box_front: Imgs/在游戏中发现-鸡蛋仔2.png
+description: 《在游戏中发现-鸡蛋仔2》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 地城领主
+file: 地城领主.gb
+assets.box_front: Imgs/地城领主.png
+description: 《地城领主》，由 Enix 出品，1992 年发行，Card类游戏，Game Boy 平台，单人游玩。
+publisher: Enix
+release: 1992
+genre: Card
+players: 1
+game: 地球解放军ZAS
+file: 地球解放军ZAS.gb
+assets.box_front: Imgs/地球解放军ZAS.png
+description: 《地球解放军ZAS》，由 T&E Soft 出品，1992 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: T&E Soft
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 地鼠大作战
+file: 地鼠大作战.gb
+assets.box_front: Imgs/地鼠大作战.png
+description: 《地鼠大作战》，由 Nintendo 出品，1996 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+release: 1996
+genre: Action
+players: 2
+game: 坦克大战
+file: 坦克大战.gb
+assets.box_front: Imgs/坦克大战.png
+description: 《坦克大战》，由 Nova Co 出品，1991 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nova Co
+release: 1991
+genre: Action
+players: 2
+game: 垄断
+file: 垄断.gb
+assets.box_front: Imgs/垄断.png
+description: 《垄断》，由 Parker Brothers 出品，1991 年发行，Board类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Parker Brothers
+release: 1991
+genre: Board
+players: 4
+game: 堡垒
+file: 堡垒.gb
+assets.box_front: Imgs/堡垒.png
+description: 《堡垒》，由 Jaleco 出品，1992 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Jaleco
+release: 1992
+genre: Action
+players: 2
+game: 塔斯马尼亚传奇
+file: 塔斯马尼亚传奇.gb
+assets.box_front: Imgs/塔斯马尼亚传奇.png
+description: 《塔斯马尼亚传奇》，由 FCI 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: FCI
+release: 1990
+genre: Platform
+players: 1
+game: 塞尔达传说-梦见岛
+file: 塞尔达传说-梦见岛.gb
+assets.box_front: Imgs/塞尔达传说-梦见岛.png
+description: 《塞尔达传说-梦见岛》，由 Nintendo 出品，1993 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1993
+genre: Role-playing (RPG)
+players: 1
+game: 复仇女神
+file: 复仇女神.gb
+assets.box_front: Imgs/复仇女神.png
+description: 《复仇女神》，由 Ultra Games 出品，1990 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Ultra Games
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 复仇女神2
+file: 复仇女神2.gb
+assets.box_front: Imgs/复仇女神2.png
+description: 《复仇女神2》，由 Konami 出品，1991 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 多基欧战鬼-英雄列传
+file: 多基欧战鬼-英雄列传.gb
+assets.box_front: Imgs/多基欧战鬼-英雄列传.png
+description: 《多基欧战鬼-英雄列传》，由 Human 出品，1992 年发行，策略类游戏，Game Boy 平台。
+publisher: Human
+release: 1992
+genre: Strategy
+game: 多鲁亚加塔
+file: 多鲁亚加塔.gb
+assets.box_front: Imgs/多鲁亚加塔.png
+description: 《多鲁亚加塔》，由 Angel 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Angel
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 大力工头问答冒险
+file: 大力工头问答冒险.gb
+assets.box_front: Imgs/大力工头问答冒险.png
+description: 《大力工头问答冒险》，由 Irem 出品，1992 年发行，Quiz类游戏，Game Boy 平台。
+publisher: Irem
+release: 1992
+genre: Quiz
+game: 大力工头阿源君-幽灵建筑公司
+file: 大力工头阿源君-幽灵建筑公司.gb
+assets.box_front: Imgs/大力工头阿源君-幽灵建筑公司.png
+description: 《大力工头阿源君-幽灵建筑公司》，由 Irem 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1992
+genre: Platform
+players: 1
+game: 大力工头阿源君-机器人帝国的野望
+file: 大力工头阿源君-机器人帝国的野望.gb
+assets.box_front: Imgs/大力工头阿源君-机器人帝国的野望.png
+description: 《大力工头阿源君-机器人帝国的野望》，由 Irem 出品，1994 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1994
+genre: Action
+players: 1
+game: 大嘴鸟乐园
+file: 大嘴鸟乐园.gb
+assets.box_front: Imgs/大嘴鸟乐园.png
+description: 《大嘴鸟乐园》，由 Triffix 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Triffix
+release: 1992
+genre: Platform
+players: 1
+game: 大战略
+file: 大战略.gb
+assets.box_front: Imgs/大战略.png
+description: 《大战略》，由 Hiro Co., Ltd. 出品，1991 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Hiro Co., Ltd.
+release: 1991
+genre: Strategy
+players: 2
+game: 大盗伍佑卫门-再见惠比寿丸
+file: 大盗伍佑卫门-再见惠比寿丸.gb
+assets.box_front: Imgs/大盗伍佑卫门-再见惠比寿丸.png
+description: 《大盗伍佑卫门-再见惠比寿丸》，由 Konami 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1991
+genre: Action
+players: 1
+game: 大盗伍佑卫门-宝船党之迷
+file: 大盗伍佑卫门-宝船党之迷.gb
+assets.box_front: Imgs/大盗伍佑卫门-宝船党之迷.png
+description: 《大盗伍佑卫门-宝船党之迷》，由 Konami 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1998
+genre: Role-playing (RPG)
+players: 1
+game: 大脚车赛
+file: 大脚车赛.gb
+assets.box_front: Imgs/大脚车赛.png
+description: 《大脚车赛》，由 Varie Corporation 出品，1990 年发行，竞速类游戏，Game Boy 平台。
+publisher: Varie Corporation
+release: 1990
+genre: Racing
+game: 大贝兽物语-神奇地带
+file: 大贝兽物语-神奇地带.gb
+assets.box_front: Imgs/大贝兽物语-神奇地带.png
+description: 《大贝兽物语-神奇地带》，由 Hudson 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1998
+genre: Role-playing (RPG)
+players: 1
+game: 天使之翼J-全国制霸的挑战
+file: 天使之翼J-全国制霸的挑战.gb
+assets.box_front: Imgs/天使之翼J-全国制霸的挑战.png
+description: 《天使之翼J-全国制霸的挑战》，由 Bandai Namco 出品，1995 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1995
+genre: Sports
+players: 1
+game: 天使之翼VS
+file: 天使之翼VS.gb
+assets.box_front: Imgs/天使之翼VS.png
+description: 《天使之翼VS》，由 Tecmo 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Tecmo
+release: 1992
+genre: Sports
+players: 1
+game: 天神怪战
+file: 天神怪战.gb
+assets.box_front: Imgs/天神怪战.png
+description: 《天神怪战》，由 Meldac 出品，1990 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Meldac
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 太空侵略者
+file: 太空侵略者.gb
+assets.box_front: Imgs/太空侵略者.png
+description: 《太空侵略者》，由 Nintendo 出品，射击类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Shooter
+players: 2
+game: 太空战斗机
+file: 太空战斗机.gb
+assets.box_front: Imgs/太空战斗机.png
+description: 《太空战斗机》，由 Taito 出品，1991 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 太空模拟战
+file: 太空模拟战.gb
+assets.box_front: Imgs/太空模拟战.png
+description: 《太空模拟战》，由 Hudson 出品，1998 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1998
+genre: Strategy
+players: 1
+game: 太阳勇者
+file: 太阳勇者.gb
+assets.box_front: Imgs/太阳勇者.png
+description: 《太阳勇者》，由 Irem 出品，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+genre: Shoot'em Up
+players: 1
+game: 太阳天使
+file: 太阳天使.gb
+assets.box_front: Imgs/太阳天使.png
+description: 《太阳天使》，由 Technos Japan Corp. 出品，1994 年发行，益智类游戏，Game Boy 平台。
+publisher: Technos Japan Corp.
+release: 1994
+genre: Puzzle
+game: 太阳能战机
+file: 太阳能战机.gb
+assets.box_front: Imgs/太阳能战机.png
+description: 《太阳能战机》，由 Nintendo 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+genre: Action
+players: 1
+game: 头文字D外传
+file: 头文字D外传.gb
+assets.box_front: Imgs/头文字D外传.png
+description: 《头文字D外传》，由 Kodansha 出品，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Kodansha
+genre: Racing
+players: 1
+game: 奇天烈大百科-冒险大江户侏罗纪
+file: 奇天烈大百科-冒险大江户侏罗纪.gb
+assets.box_front: Imgs/奇天烈大百科-冒险大江户侏罗纪.png
+description: 《奇天烈大百科-冒险大江户侏罗纪》，由 Video System 出品，1994 年发行，动作类游戏，Game Boy 平台。
+publisher: Video System
+release: 1994
+genre: Action
+game: 奥特曼-超斗士激传
+file: 奥特曼-超斗士激传.gb
+assets.box_front: Imgs/奥特曼-超斗士激传.png
+description: 《奥特曼-超斗士激传》，由 Angel 出品，动作类游戏，Game Boy 平台。
+publisher: Angel
+genre: Action
+game: 奥特曼-问答明星
+file: 奥特曼-问答明星.gb
+assets.box_front: Imgs/奥特曼-问答明星.png
+description: 《奥特曼-问答明星》，由 Bandai Namco 出品，1993 年发行，Quiz类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1993
+genre: Quiz
+players: 1
+game: 奥特曼
+file: 奥特曼.gb
+assets.box_front: Imgs/奥特曼.png
+description: 《奥特曼》，由 Banpresto 出品，格斗类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+genre: Fighting
+players: 1
+game: 奥特曼俱乐部-发现敌怪兽
+file: 奥特曼俱乐部-发现敌怪兽.gb
+assets.box_front: Imgs/奥特曼俱乐部-发现敌怪兽.png
+description: 《奥特曼俱乐部-发现敌怪兽》，由 Bandai Namco 出品，策略类游戏，Game Boy 平台。
+publisher: Bandai Namco
+genre: Strategy
+game: 奥特曼滚球
+file: 奥特曼滚球.gb
+assets.box_front: Imgs/奥特曼滚球.png
+description: 《奥特曼滚球》，由 Nintendo 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1994
+genre: Platform
+players: 1
+game: 女神转生外传
+file: 女神转生外传.gb
+assets.box_front: Imgs/女神转生外传.png
+description: 《女神转生外传》，由 SEGA 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: SEGA
+genre: Role-playing (RPG)
+players: 1
+game: 女神转生外传2
+file: 女神转生外传2.gb
+assets.box_front: Imgs/女神转生外传2.png
+description: 《女神转生外传2》，1993 年发行，Game Boy 平台。
+release: 1993
+game: 子猫物语
+file: 子猫物语.gb
+assets.box_front: Imgs/子猫物语.png
+description: 《子猫物语》，由 Kemco 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Kemco
+release: 1990
+genre: Role-playing (RPG)
+game: 孤身冒险-料理传说
+file: 孤身冒险-料理传说.gb
+assets.box_front: Imgs/孤身冒险-料理传说.png
+description: 《孤身冒险-料理传说》，由 Vap Inc. 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Vap Inc.
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 宇宙战舰大和号
+file: 宇宙战舰大和号.gb
+assets.box_front: Imgs/宇宙战舰大和号.png
+description: 《宇宙战舰大和号》，由 BEC 出品，策略类游戏，Game Boy 平台。
+publisher: BEC
+genre: Strategy
+game: 宇宙骑士
+file: 宇宙骑士.gb
+assets.box_front: Imgs/宇宙骑士.png
+description: 《宇宙骑士》，由 Yutaka 出品，平台跳跃类游戏，Game Boy 平台。
+publisher: Yutaka
+genre: Platform
+game: 家庭赛马
+file: 家庭赛马.gb
+assets.box_front: Imgs/家庭赛马.png
+description: 《家庭赛马》，由 Namco 出品，1991 年发行，Sports with Animals类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Namco
+release: 1991
+genre: Sports with Animals
+players: 2
+game: 家庭赛马2-名马血统
+file: 家庭赛马2-名马血统.gb
+assets.box_front: Imgs/家庭赛马2-名马血统.png
+description: 《家庭赛马2-名马血统》，由 Namco 出品，Sports with Animals类游戏，Game Boy 平台，支持 6-6 人游玩。
+publisher: Namco
+genre: Sports with Animals
+players: 6
+game: 对局连珠
+file: 对局连珠.gb
+assets.box_front: Imgs/对局连珠.png
+description: 《对局连珠》，由 Towa Chiki 出品，Board类游戏，Game Boy 平台。
+publisher: Towa Chiki
+genre: Board
+game: 射击方块
+file: 射击方块.gb
+assets.box_front: Imgs/射击方块.png
+description: 《射击方块》，由 Ultra Games 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Ultra Games
+release: 1990
+genre: Puzzle
+players: 2
+game: 将棋
+file: 将棋.gb
+assets.box_front: Imgs/将棋.png
+description: 《将棋》，由 Pony Canyon 出品，1989 年发行，Board类游戏，Game Boy 平台。
+publisher: Pony Canyon
+release: 1989
+genre: Board
+game: 将棋最强
+file: 将棋最强.gb
+assets.box_front: Imgs/将棋最强.png
+description: 《将棋最强》，由 Mahou 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Mahou
+release: 1994
+genre: Board
+game: 小主人-莱克班传说
+file: 小主人-莱克班传说.gb
+assets.box_front: Imgs/小主人-莱克班传说.png
+description: 《小主人-莱克班传说》，由 Tokuma Shoten 出品，1991 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Tokuma Shoten
+release: 1991
+genre: Strategy
+players: 1
+game: 小主人2-雷光骑士
+file: 小主人2-雷光骑士.gb
+assets.box_front: Imgs/小主人2-雷光骑士.png
+description: 《小主人2-雷光骑士》，由 Tokuma Shoten 出品，1992 年发行，策略类游戏，Game Boy 平台。
+publisher: Tokuma Shoten
+release: 1992
+genre: Strategy
+game: 小吃问答-蘑菇蘑菇Q
+file: 小吃问答-蘑菇蘑菇Q.gb
+assets.box_front: Imgs/小吃问答-蘑菇蘑菇Q.png
+description: 《小吃问答-蘑菇蘑菇Q》，由 Starfish 出品，Quiz类游戏，Game Boy 平台。
+publisher: Starfish
+genre: Quiz
+game: 小红帽恰恰
+file: 小红帽恰恰.gb
+assets.box_front: Imgs/小红帽恰恰.png
+description: 《小红帽恰恰》，由 Tomy 出品，1995 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Tomy
+release: 1995
+genre: Role-playing (RPG)
+game: 小蜜蜂+大蜜蜂
+file: 小蜜蜂+大蜜蜂.gb
+assets.box_front: Imgs/小蜜蜂+大蜜蜂.png
+description: 《小蜜蜂+大蜜蜂》，由 Nintendo 出品，1995 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Compilation
+players: 1
+game: 小马竞技场
+file: 小马竞技场.gb
+assets.box_front: Imgs/小马竞技场.png
+description: 《小马竞技场》，由 Tomy Corporation 出品，竞速类游戏，Game Boy 平台。
+publisher: Tomy Corporation
+genre: Racing
+game: 小鬼当家
+file: 小鬼当家.gb
+assets.box_front: Imgs/小鬼当家.png
+description: 《小鬼当家》，由 THQ 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: THQ
+release: 1992
+genre: Platform
+players: 1
+game: 小魔怪2
+file: 小魔怪2.gb
+assets.box_front: Imgs/小魔怪2.png
+description: 《小魔怪2》，由 Sunsoft 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+genre: Platform
+players: 1
+game: 小魔星达鲁鲁
+file: 小魔星达鲁鲁.gb
+assets.box_front: Imgs/小魔星达鲁鲁.png
+description: 《小魔星达鲁鲁》，由 Bandai 出品，1991 年发行，Game Boy 平台。
+publisher: Bandai
+release: 1991
+game: 小魔星达鲁鲁2
+file: 小魔星达鲁鲁2.gb
+assets.box_front: Imgs/小魔星达鲁鲁2.png
+description: 《小魔星达鲁鲁2》，由 Bandai 出品，1992 年发行，Game Boy 平台。
+publisher: Bandai
+release: 1992
+game: 小鸡艾列佛
+file: 小鸡艾列佛.gb
+assets.box_front: Imgs/小鸡艾列佛.png
+description: 《小鸡艾列佛》，由 Sunsoft 出品，1995 年发行，平台跳跃类游戏，Game Boy 平台。
+publisher: Sunsoft
+release: 1995
+genre: Platform
+game: 小鸡跷跷板
+file: 小鸡跷跷板.gb
+assets.box_front: Imgs/小鸡跷跷板.png
+description: 《小鸡跷跷板》，由 Kaneko 出品，1991 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Kaneko
+release: 1991
+genre: Puzzle
+players: 1
+game: 少年西贝大冒险
+file: 少年西贝大冒险.gb
+assets.box_front: Imgs/少年西贝大冒险.png
+description: 《少年西贝大冒险》，由 Takara 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Takara
+release: 1991
+genre: Role-playing (RPG)
+game: 屠龙记-眠之王冠
+file: 屠龙记-眠之王冠.gb
+assets.box_front: Imgs/屠龙记-眠之王冠.png
+description: 《屠龙记-眠之王冠》，由 Epoch 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Epoch
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 屠龙记
+file: 屠龙记.gb
+assets.box_front: Imgs/屠龙记.png
+description: 《屠龙记》，由 Epoch 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Epoch
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 川之垂钓3
+file: 川之垂钓3.gb
+assets.box_front: Imgs/川之垂钓3.png
+description: 《川之垂钓3》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 巨龙之末
+file: 巨龙之末.gb
+assets.box_front: Imgs/巨龙之末.png
+description: 《巨龙之末》，由 Data East 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Data East
+release: 1990
+genre: Action
+players: 1
+game: 巫术外传-女王之受难
+file: 巫术外传-女王之受难.gb
+assets.box_front: Imgs/巫术外传-女王之受难.png
+description: 《巫术外传-女王之受难》，由 ASCII Corporation 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: ASCII Corporation
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 巫术外传2-古代皇帝之咒
+file: 巫术外传2-古代皇帝之咒.gb
+assets.box_front: Imgs/巫术外传2-古代皇帝之咒.png
+description: 《巫术外传2-古代皇帝之咒》，由 ASCII Corporation 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: ASCII Corporation
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 巫术外传3-暗之圣典
+file: 巫术外传3-暗之圣典.gb
+assets.box_front: Imgs/巫术外传3-暗之圣典.png
+description: 《巫术外传3-暗之圣典》，由 ASCII Corporation 出品，1993 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: ASCII Corporation
+release: 1993
+genre: Role-playing (RPG)
+players: 1
+game: 巴斯钓鱼达人手帐
+file: 巴斯钓鱼达人手帐.gb
+assets.box_front: Imgs/巴斯钓鱼达人手帐.png
+description: 《巴斯钓鱼达人手帐》，由 Starfish 出品，1996 年发行，Hunting and Fishing类游戏，Game Boy 平台，单人游玩。
+publisher: Starfish
+release: 1996
+genre: Hunting and Fishing
+players: 1
+game: 巴特的生存训练营
+file: 巴特的生存训练营.gb
+assets.box_front: Imgs/巴特的生存训练营.png
+description: 《巴特的生存训练营》，由 Acclaim 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1993
+genre: Platform
+players: 1
+game: 帕拉穆德斯方块
+file: 帕拉穆德斯方块.gb
+assets.box_front: Imgs/帕拉穆德斯方块.png
+description: 《帕拉穆德斯方块》，由 Hot-B 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Hot-B
+release: 1990
+genre: Puzzle
+players: 2
+game: 帽子方块
+file: 帽子方块.gb
+assets.box_front: Imgs/帽子方块.png
+description: 《帽子方块》，由 Bullet Proof Software 出品，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Bullet Proof Software
+genre: Puzzle
+players: 2
+game: 平安京异形
+file: 平安京异形.gb
+assets.box_front: Imgs/平安京异形.png
+description: 《平安京异形》，由 Meldac 出品，1990 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Meldac
+release: 1990
+genre: Strategy
+players: 2
+game: 平成天才学校
+file: 平成天才学校.gb
+assets.box_front: Imgs/平成天才学校.png
+description: 《平成天才学校》，由 Namco 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1992
+genre: Action
+players: 1
+game: 幸运猴子
+file: 幸运猴子.gb
+assets.box_front: Imgs/幸运猴子.png
+description: 《幸运猴子》，由 Natsume 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Natsume
+release: 1991
+genre: Platform
+players: 1
+game: 幸运超人
+file: 幸运超人.gb
+assets.box_front: Imgs/幸运超人.png
+description: 《幸运超人》，由 Bandai 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Bandai
+release: 1994
+genre: Board
+game: 幻影
+file: 幻影.gb
+assets.box_front: Imgs/幻影.png
+description: 《幻影》，由 Jaleco 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Jaleco
+release: 1992
+genre: Platform
+players: 1
+game: 幽冥城
+file: 幽冥城.gb
+assets.box_front: Imgs/幽冥城.png
+description: 《幽冥城》，由 SETA Corporation 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: SETA Corporation
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 幽游白书
+file: 幽游白书.gb
+assets.box_front: Imgs/幽游白书.png
+description: 《幽游白书》，由 Tomy Corporation 出品，格斗类游戏，Game Boy 平台。
+publisher: Tomy Corporation
+genre: Fighting
+game: 幽游白书4-魔界统
+file: 幽游白书4-魔界统.gb
+assets.box_front: Imgs/幽游白书4-魔界统.png
+description: 《幽游白书4-魔界统》，由 Tomy Corporation 出品，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tomy Corporation
+genre: Action
+players: 2
+game: 异形3
+file: 异形3.gb
+assets.box_front: Imgs/异形3.png
+description: 《异形3》，由 LJN 出品，1993 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: LJN
+release: 1993
+genre: Shooter
+players: 1
+game: 异形大战铁血战士
+file: 异形大战铁血战士.gb
+assets.box_front: Imgs/异形大战铁血战士.png
+description: 《异形大战铁血战士》，由 Activision 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Activision
+release: 1993
+genre: Platform
+players: 1
+game: 异形战机
+file: 异形战机.gb
+assets.box_front: Imgs/异形战机.png
+description: 《异形战机》，由 Irem 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1991
+genre: Action
+players: 1
+game: 异形战机2
+file: 异形战机2.gb
+assets.box_front: Imgs/异形战机2.png
+description: 《异形战机2》，由 Irem 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1992
+genre: Action
+players: 1
+game: 弗朗肯博士
+file: 弗朗肯博士.gb
+assets.box_front: Imgs/弗朗肯博士.png
+description: 《弗朗肯博士》，由 Kemco 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Kemco
+release: 1992
+genre: Platform
+players: 1
+game: 弗莱匹特别版
+file: 弗莱匹特别版.gb
+assets.box_front: Imgs/弗莱匹特别版.png
+description: 《弗莱匹特别版》，由 Victor Entertainment 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Victor Entertainment
+release: 1990
+genre: Puzzle
+players: 1
+game: 弹跳兔
+file: 弹跳兔.gb
+assets.box_front: Imgs/弹跳兔.png
+description: 《弹跳兔》，由 Information Global Service 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Information Global Service
+release: 1990
+genre: Platform
+players: 1
+game: 彭塔之龙
+file: 彭塔之龙.gb
+assets.box_front: Imgs/彭塔之龙.png
+description: 《彭塔之龙》，由 Yanoman Games 出品，1992 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Yanoman Games
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 役满
+file: 役满.gb
+assets.box_front: Imgs/役满.png
+description: 《役满》，由 Nintendo 出品，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Board
+players: 2
+game: 徽章机器人-收藏版
+file: 徽章机器人-收藏版.gb
+assets.box_front: Imgs/徽章机器人-收藏版.png
+description: 《徽章机器人-收藏版》，由 Imagineer 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Imagineer
+genre: Role-playing (RPG)
+game: 徽章机器人-收藏版2
+file: 徽章机器人-收藏版2.gb
+assets.box_front: Imgs/徽章机器人-收藏版2.png
+description: 《徽章机器人-收藏版2》，由 Imagineer 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Imagineer
+genre: Role-playing (RPG)
+game: 徽章机器人-甲冑版
+file: 徽章机器人-甲冑版.gb
+assets.box_front: Imgs/徽章机器人-甲冑版.png
+description: 《徽章机器人-甲冑版》，Game Boy 平台。
+game: 徽章机器人-鍬型虫版
+file: 徽章机器人-鍬型虫版.gb
+assets.box_front: Imgs/徽章机器人-鍬型虫版.png
+description: 《徽章机器人-鍬型虫版》，由 Imagineer 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Imagineer
+genre: Role-playing (RPG)
+players: 1
+game: 心理问答
+file: 心理问答.gb
+assets.box_front: Imgs/心理问答.png
+description: 《心理问答》，由 Visit 出品，1994 年发行，冒险类游戏，Game Boy 平台。
+publisher: Visit
+release: 1994
+genre: Adventure
+game: 心理问答2-大阪篇
+file: 心理问答2-大阪篇.gb
+assets.box_front: Imgs/心理问答2-大阪篇.png
+description: 《心理问答2-大阪篇》，由 Visit 出品，1994 年发行，Game Boy 平台。
+publisher: Visit
+release: 1994
+game: 忍空
+file: 忍空.gb
+assets.box_front: Imgs/忍空.png
+description: 《忍空》，由 Tomy 出品，1995 年发行，Game Boy 平台。
+publisher: Tomy
+release: 1995
+game: 忍空2-忍空战争篇
+file: 忍空2-忍空战争篇.gb
+assets.box_front: Imgs/忍空2-忍空战争篇.png
+description: 《忍空2-忍空战争篇》，由 Tomy 出品，1995 年发行，Game Boy 平台。
+publisher: Tomy
+release: 1995
+game: 忍者乱太郎GB-拼图挑战赛
+file: 忍者乱太郎GB-拼图挑战赛.gb
+assets.box_front: Imgs/忍者乱太郎GB-拼图挑战赛.png
+description: 《忍者乱太郎GB-拼图挑战赛》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 忍者乱太郎GB
+file: 忍者乱太郎GB.gb
+assets.box_front: Imgs/忍者乱太郎GB.png
+description: 《忍者乱太郎GB》，由 Culture Brain 出品，1995 年发行，益智类游戏，Game Boy 平台。
+publisher: Culture Brain
+release: 1995
+genre: Puzzle
+game: 忍者乱太郎方块
+file: 忍者乱太郎方块.gb
+assets.box_front: Imgs/忍者乱太郎方块.png
+description: 《忍者乱太郎方块》，由 Culture Brain 出品，1995 年发行，益智类游戏，Game Boy 平台。
+publisher: Culture Brain
+release: 1995
+genre: Puzzle
+game: 忍者剑豪传-武藏之路
+file: 忍者剑豪传-武藏之路.gb
+assets.box_front: Imgs/忍者剑豪传-武藏之路.png
+description: 《忍者剑豪传-武藏之路》，由 Yutaka 出品，1991 年发行，动作类游戏，Game Boy 平台。
+publisher: Yutaka
+release: 1991
+genre: Action
+game: 忍者神龟
+file: 忍者神龟.gb
+assets.box_front: Imgs/忍者神龟.png
+description: 《忍者神龟》，由 Konami 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1990
+genre: Platform
+players: 1
+game: 忍者神龟2
+file: 忍者神龟2.gb
+assets.box_front: Imgs/忍者神龟2.png
+description: 《忍者神龟2》，由 Konami 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1991
+genre: Platform
+players: 1
+game: 忍者神龟3-海龟们千钧一发
+file: 忍者神龟3-海龟们千钧一发.gb
+assets.box_front: Imgs/忍者神龟3-海龟们千钧一发.png
+description: 《忍者神龟3-海龟们千钧一发》，由 Konami 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1993
+genre: Platform
+players: 1
+game: 忍者蛙
+file: 忍者蛙.gb
+assets.box_front: Imgs/忍者蛙.png
+description: 《忍者蛙》，由 Tradewest 出品，清版动作类游戏，Game Boy 平台，单人游玩。
+publisher: Tradewest
+genre: Beat'em Up
+players: 1
+game: 忍者龙剑传-摩天楼决战
+file: 忍者龙剑传-摩天楼决战.gb
+assets.box_front: Imgs/忍者龙剑传-摩天楼决战.png
+description: 《忍者龙剑传-摩天楼决战》，由 Tecmo 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Tecmo
+release: 1991
+genre: Platform
+players: 1
+game: 怒之要塞
+file: 怒之要塞.gb
+assets.box_front: Imgs/怒之要塞.png
+description: 《怒之要塞》，由 Jaleco 出品，1991 年发行，射击类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Jaleco
+release: 1991
+genre: Shooter
+players: 2
+game: 怒之要塞2
+file: 怒之要塞2.gb
+assets.box_front: Imgs/怒之要塞2.png
+description: 《怒之要塞2》，由 Jaleco 出品，1992 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Jaleco
+release: 1992
+genre: Shooter
+players: 1
+game: 怪兽制造者-条码英雄
+file: 怪兽制造者-条码英雄.gb
+assets.box_front: Imgs/怪兽制造者-条码英雄.png
+description: 《怪兽制造者-条码英雄》，由 Namco 出品，1993 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1993
+genre: Strategy
+players: 1
+game: 怪兽制造者
+file: 怪兽制造者.gb
+assets.box_front: Imgs/怪兽制造者.png
+description: 《怪兽制造者》，由 Sofel 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Sofel
+release: 1990
+genre: Role-playing (RPG)
+game: 怪兽制造者2-乌尔的密剑
+file: 怪兽制造者2-乌尔的密剑.gb
+assets.box_front: Imgs/怪兽制造者2-乌尔的密剑.png
+description: 《怪兽制造者2-乌尔的密剑》，由 Sofel 出品，1993 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Sofel
+release: 1993
+genre: Role-playing (RPG)
+game: 怪兽对机器人
+file: 怪兽对机器人.gb
+assets.box_front: Imgs/怪兽对机器人.png
+description: 《怪兽对机器人》，由 Electro Brain Corp. 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Electro Brain Corp.
+release: 1990
+genre: Action
+players: 1
+game: 怪兽王哥斯拉
+file: 怪兽王哥斯拉.gb
+assets.box_front: Imgs/怪兽王哥斯拉.png
+description: 《怪兽王哥斯拉》，由 Bandai 出品，1993 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai
+release: 1993
+genre: Action
+players: 1
+game: 怪兽竞走特别版
+file: 怪兽竞走特别版.gb
+assets.box_front: Imgs/怪兽竞走特别版.png
+description: 《怪兽竞走特别版》，由 Koei 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Koei
+release: 1998
+genre: Role-playing (RPG)
+players: 1
+game: 怪兽竟走
+file: 怪兽竟走.gb
+assets.box_front: Imgs/怪兽竟走.png
+description: 《怪兽竟走》，1999 年发行，Game Boy 平台。
+release: 1999
+game: 恐龙猎人
+file: 恐龙猎人.gb
+assets.box_front: Imgs/恐龙猎人.png
+description: 《恐龙猎人》，由 Acclaim 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+genre: Platform
+players: 1
+game: 恐龙饲养员
+file: 恐龙饲养员.gb
+assets.box_front: Imgs/恐龙饲养员.png
+description: 《恐龙饲养员》，Game Boy 平台。
+game: 恐龙饲养员2
+file: 恐龙饲养员2.gb
+assets.box_front: Imgs/恐龙饲养员2.png
+description: 《恐龙饲养员2》，1998 年发行，模拟类游戏，Game Boy 平台。
+release: 1998
+genre: Simulation
+game: 恶劣赛车
+file: 恶劣赛车.gb
+assets.box_front: Imgs/恶劣赛车.png
+description: 《恶劣赛车》，由 Jaleco 出品，1993 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Jaleco
+release: 1993
+genre: Racing
+players: 1
+game: 恶魔城-漆黑前奏曲
+file: 恶魔城-漆黑前奏曲.gb
+assets.box_front: Imgs/恶魔城-漆黑前奏曲.png
+description: 《恶魔城-漆黑前奏曲》，由 Konami 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+genre: Platform
+players: 1
+game: 恶魔城传说
+file: 恶魔城传说.gb
+assets.box_front: Imgs/恶魔城传说.png
+description: 《恶魔城传说》，由 Konami 出品，1989 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1989
+genre: Action
+players: 1
+game: 恶魔城传说2
+file: 恶魔城传说2.gb
+assets.box_front: Imgs/恶魔城传说2.png
+description: 《恶魔城传说2》，由 Konami 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1991
+genre: Platform
+players: 1
+game: 恶魔城外传-王子传奇
+file: 恶魔城外传-王子传奇.gb
+assets.box_front: Imgs/恶魔城外传-王子传奇.png
+description: 《恶魔城外传-王子传奇》，由 Konami 出品，1993 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1993
+genre: Adventure
+players: 1
+game: 恺撒皇宫
+file: 恺撒皇宫.gb
+assets.box_front: Imgs/恺撒皇宫.png
+description: 《恺撒皇宫》，由 Arcadia Systems 出品，1992 年发行，Gambling类游戏，Game Boy 平台，单人游玩。
+publisher: Arcadia Systems
+release: 1992
+genre: Gambling
+players: 1
+game: 惊奇地带
+file: 惊奇地带.gb
+assets.box_front: Imgs/惊奇地带.png
+description: 《惊奇地带》，由 SNK 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: SNK
+release: 1990
+genre: Puzzle
+players: 1
+game: 愤怒擂台
+file: 愤怒擂台.gb
+assets.box_front: Imgs/愤怒擂台.png
+description: 《愤怒擂台》，由 Natsume 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Natsume
+release: 1993
+genre: Sports
+players: 2
+game: 战国忍者君
+file: 战国忍者君.gb
+assets.box_front: Imgs/战国忍者君.png
+description: 《战国忍者君》，由 Sammy 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Sammy
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 战斗乒乓
+file: 战斗乒乓.gb
+assets.box_front: Imgs/战斗乒乓.png
+description: 《战斗乒乓》，由 Quest 出品，1990 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Quest
+release: 1990
+genre: Sports
+players: 2
+game: 战斗公牛
+file: 战斗公牛.gb
+assets.box_front: Imgs/战斗公牛.png
+description: 《战斗公牛》，由 SETA Corporation 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: SETA Corporation
+release: 1990
+genre: Action
+players: 2
+game: 战斗空间
+file: 战斗空间.gb
+assets.box_front: Imgs/战斗空间.png
+description: 《战斗空间》，由 Akson Software 出品，1992 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Akson Software
+release: 1992
+genre: Action
+players: 2
+game: 战斗粉碎机
+file: 战斗粉碎机.gb
+assets.box_front: Imgs/战斗粉碎机.png
+description: 《战斗粉碎机》，由 Banpresto 出品，1995 年发行，格斗类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Banpresto
+release: 1995
+genre: Fighting
+players: 2
+game: 战斗舰队-深海之蓝
+file: 战斗舰队-深海之蓝.gb
+assets.box_front: Imgs/战斗舰队-深海之蓝.png
+description: 《战斗舰队-深海之蓝》，由 Mindscape 出品，1989 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Mindscape
+release: 1989
+genre: Strategy
+players: 2
+game: 战斗装置
+file: 战斗装置.gb
+assets.box_front: Imgs/战斗装置.png
+description: 《战斗装置》，由 Jaleco 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Jaleco
+release: 1990
+genre: Action
+players: 1
+game: 战斗躲避球
+file: 战斗躲避球.gb
+assets.box_front: Imgs/战斗躲避球.png
+description: 《战斗躲避球》，由 Banpresto 出品，1992 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Banpresto
+release: 1992
+genre: Sports
+players: 2
+game: 战斗领域
+file: 战斗领域.gb
+assets.box_front: Imgs/战斗领域.png
+description: 《战斗领域》，由 Meldac 出品，1991 年发行，Card类游戏，Game Boy 平台，单人游玩。
+publisher: Meldac
+release: 1991
+genre: Card
+players: 1
+game: 所罗门俱乐部
+file: 所罗门俱乐部.gb
+assets.box_front: Imgs/所罗门俱乐部.png
+description: 《所罗门俱乐部》，由 Tecmo 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Tecmo
+release: 1991
+genre: Action
+players: 1
+game: 打地鼠
+file: 打地鼠.gb
+assets.box_front: Imgs/打地鼠.png
+description: 《打地鼠》，由 Athena 出品，动作类游戏，Game Boy 平台。
+publisher: Athena
+genre: Action
+game: 打砖块
+file: 打砖块.gb
+assets.box_front: Imgs/打砖块.png
+description: 《打砖块》，由 Nintendo 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+genre: Action
+players: 1
+game: 扫雷艇
+file: 扫雷艇.gb
+assets.box_front: Imgs/扫雷艇.png
+description: 《扫雷艇》，由 Pack In Video 出品，1991 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Pack In Video
+release: 1991
+genre: Puzzle
+players: 2
+game: 扭曲空间-外星冒险
+file: 扭曲空间-外星冒险.gb
+assets.box_front: Imgs/扭曲空间-外星冒险.png
+description: 《扭曲空间-外星冒险》，由 Sony 出品，1991 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Sony
+release: 1991
+genre: Puzzle
+players: 1
+game: 投掷大赛
+file: 投掷大赛.gb
+assets.box_front: Imgs/投掷大赛.png
+description: 《投掷大赛》，由 Takara 出品，1996 年发行，Game Boy 平台。
+publisher: Takara
+release: 1996
+game: 拳击
+file: 拳击.gb
+assets.box_front: Imgs/拳击.png
+description: 《拳击》，由 Activision 出品，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Sports
+players: 2
+game: 拼图-似颜绘15游戏
+file: 拼图-似颜绘15游戏.gb
+assets.box_front: Imgs/拼图-似颜绘15游戏.png
+description: 《拼图-似颜绘15游戏》，由 Imagineer 出品，1993 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Imagineer
+release: 1993
+genre: Puzzle
+players: 1
+game: 捉鬼大师
+file: 捉鬼大师.gb
+assets.box_front: Imgs/捉鬼大师.png
+description: 《捉鬼大师》，由 Sunsoft 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+release: 1992
+genre: Platform
+players: 2
+game: 捕捉器天国-谍对谍
+file: 捕捉器天国-谍对谍.gb
+assets.box_front: Imgs/捕捉器天国-谍对谍.png
+description: 《捕捉器天国-谍对谍》，由 Kemco 出品，1992 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Kemco
+release: 1992
+genre: Action
+players: 2
+game: 搭车旅行
+file: 搭车旅行.gb
+assets.box_front: Imgs/搭车旅行.png
+description: 《搭车旅行》，由 J-Wing 出品，1998 年发行，Board类游戏，Game Boy 平台。
+publisher: J-Wing
+release: 1998
+genre: Board
+game: 携带竞马特别版
+file: 携带竞马特别版.gb
+assets.box_front: Imgs/携带竞马特别版.png
+description: 《携带竞马特别版》，由 Imagineer 出品，1994 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: Imagineer
+release: 1994
+genre: Sports with Animals
+players: 1
+game: 摇滚怪兽方块
+file: 摇滚怪兽方块.gb
+assets.box_front: Imgs/摇滚怪兽方块.png
+description: 《摇滚怪兽方块》，由 Hori 出品，1994 年发行，益智类游戏，Game Boy 平台。
+publisher: Hori
+release: 1994
+genre: Puzzle
+game: 摩登原始人
+file: 摩登原始人.gb
+assets.box_front: Imgs/摩登原始人.png
+description: 《摩登原始人》，由 Titus 出品，1995 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Titus
+release: 1995
+genre: Platform
+players: 1
+game: 播磨滩相扑
+file: 播磨滩相扑.gb
+assets.box_front: Imgs/播磨滩相扑.png
+description: 《播磨滩相扑》，由 ASK Kodansha 出品，1993 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: ASK Kodansha
+release: 1993
+genre: Action
+players: 2
+game: 敞蓬车
+file: 敞蓬车.gb
+assets.box_front: Imgs/敞蓬车.png
+description: 《敞蓬车》，由 Tonkin House 出品，1990 年发行，竞速类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tonkin House
+release: 1990
+genre: Racing
+players: 2
+game: 敲击方块
+file: 敲击方块.gb
+assets.box_front: Imgs/敲击方块.png
+description: 《敲击方块》，由 Banpresto 出品，1991 年发行，Game Boy 平台。
+publisher: Banpresto
+release: 1991
+game: 新SD高达外传-骑士物语
+file: 新SD高达外传-骑士物语.gb
+assets.box_front: Imgs/新SD高达外传-骑士物语.png
+description: 《新SD高达外传-骑士物语》，由 Bandai 出品，1994 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Bandai
+release: 1994
+genre: Role-playing (RPG)
+game: 新世纪GPX高智能方程式赛车
+file: 新世纪GPX高智能方程式赛车.gb
+assets.box_front: Imgs/新世纪GPX高智能方程式赛车.png
+description: 《新世纪GPX高智能方程式赛车》，由 Takara 出品，1992 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Takara
+release: 1992
+genre: Racing
+players: 1
+game: 新国际象棋大师
+file: 新国际象棋大师.gb
+assets.box_front: Imgs/新国际象棋大师.png
+description: 《新国际象棋大师》，由 Altron 出品，1998 年发行，Board类游戏，Game Boy 平台，单人游玩。
+publisher: Altron
+release: 1998
+genre: Board
+players: 1
+game: 新日本职业摔角-斗魂三统士
+file: 新日本职业摔角-斗魂三统士.gb
+assets.box_front: Imgs/新日本职业摔角-斗魂三统士.png
+description: 《新日本职业摔角-斗魂三统士》，由 Varie Corporation 出品，1991 年发行，体育类游戏，Game Boy 平台。
+publisher: Varie Corporation
+release: 1991
+genre: Sports
+game: 新竞马贵族
+file: 新竞马贵族.gb
+assets.box_front: Imgs/新竞马贵族.png
+description: 《新竞马贵族》，由 King Records 出品，1998 年发行，Sports with Animals类游戏，Game Boy 平台。
+publisher: King Records
+release: 1998
+genre: Sports with Animals
+game: 旅行世界
+file: 旅行世界.gb
+assets.box_front: Imgs/旅行世界.png
+description: 《旅行世界》，由 Sunsoft 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+release: 1992
+genre: Platform
+players: 1
+game: 旅鼠总动员
+file: 旅鼠总动员.gb
+assets.box_front: Imgs/旅鼠总动员.png
+description: 《旅鼠总动员》，由 Ocean 出品，1993 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Ocean
+release: 1993
+genre: Strategy
+players: 1
+game: 无赖战士-豪华版
+file: 无赖战士-豪华版.gb
+assets.box_front: Imgs/无赖战士-豪华版.png
+description: 《无赖战士-豪华版》，由 Taxan USA Corp. 出品，1990 年发行，Shoot'em Up类游戏，Game Boy 平台，单人游玩。
+publisher: Taxan USA Corp.
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 日刊-贝鲁托莫俱乐部
+file: 日刊-贝鲁托莫俱乐部.gb
+assets.box_front: Imgs/日刊-贝鲁托莫俱乐部.png
+description: 《日刊-贝鲁托莫俱乐部》，由 IMax 出品，1998 年发行，Game Boy 平台。
+publisher: IMax
+release: 1998
+game: 日本代表队-荣光十一人
+file: 日本代表队-荣光十一人.gb
+assets.box_front: Imgs/日本代表队-荣光十一人.png
+description: 《日本代表队-荣光十一人》，由 Tomy 出品，1998 年发行，体育类游戏，Game Boy 平台。
+publisher: Tomy
+release: 1998
+genre: Sports
+game: 日本对法国-J联盟人气足球
+file: 日本对法国-J联盟人气足球.gb
+assets.box_front: Imgs/日本对法国-J联盟人气足球.png
+description: 《日本对法国-J联盟人气足球》，由 J-Wing 出品，1998 年发行，体育类游戏，Game Boy 平台。
+publisher: J-Wing
+release: 1998
+genre: Sports
+game: 早押问答-王座决定战
+file: 早押问答-王座决定战.gb
+assets.box_front: Imgs/早押问答-王座决定战.png
+description: 《早押问答-王座决定战》，由 Jaleco 出品，1998 年发行，Quiz类游戏，Game Boy 平台，支持 3-3 人游玩。
+publisher: Jaleco
+release: 1998
+genre: Quiz
+players: 3
+game: 时空战记
+file: 时空战记.gb
+assets.box_front: Imgs/时空战记.png
+description: 《时空战记》，由 Hudson 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+genre: Role-playing (RPG)
+players: 1
+game: 昆虫博士
+file: 昆虫博士.gb
+assets.box_front: Imgs/昆虫博士.png
+description: 《昆虫博士》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 星之卡比
+file: 星之卡比.gb
+assets.box_front: Imgs/星之卡比.png
+description: 《星之卡比》，由 Nintendo 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1992
+genre: Platform
+players: 1
+game: 星之卡比2
+file: 星之卡比2.gb
+assets.box_front: Imgs/星之卡比2.png
+description: 《星之卡比2》，由 Nintendo 出品，1995 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Platform
+players: 1
+game: 星之卡比打砖块
+file: 星之卡比打砖块.gb
+assets.box_front: Imgs/星之卡比打砖块.png
+description: 《星之卡比打砖块》，由 Nintendo 出品，1995 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Action
+players: 1
+game: 星之卡比方块
+file: 星之卡比方块.gb
+assets.box_front: Imgs/星之卡比方块.png
+description: 《星之卡比方块》，由 Nintendo 出品，1997 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+release: 1997
+genre: Puzzle
+players: 2
+game: 星星大清扫
+file: 星星大清扫.gb
+assets.box_front: Imgs/星星大清扫.png
+description: 《星星大清扫》，由 Axela 出品，1997 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Axela
+release: 1997
+genre: Puzzle
+players: 2
+game: 普里克拉口袋-不完全女子校便览
+file: 普里克拉口袋-不完全女子校便览.gb
+assets.box_front: Imgs/普里克拉口袋-不完全女子校便览.png
+description: 《普里克拉口袋-不完全女子校便览》，由 Atlus 出品，1997 年发行，冒险类游戏，Game Boy 平台。
+publisher: Atlus
+release: 1997
+genre: Adventure
+game: 普里克拉口袋2-彼氏改造大作战
+file: 普里克拉口袋2-彼氏改造大作战.gb
+assets.box_front: Imgs/普里克拉口袋2-彼氏改造大作战.png
+description: 《普里克拉口袋2-彼氏改造大作战》，由 Atlus 出品，1997 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Atlus
+release: 1997
+genre: Adventure
+players: 1
+game: 普里克拉口袋3-艺人出道大作战
+file: 普里克拉口袋3-艺人出道大作战.gb
+assets.box_front: Imgs/普里克拉口袋3-艺人出道大作战.png
+description: 《普里克拉口袋3-艺人出道大作战》，由 Atlus 出品，1998 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Atlus
+release: 1998
+genre: Adventure
+players: 1
+game: 智囊流失
+file: 智囊流失.gb
+assets.box_front: Imgs/智囊流失.png
+description: 《智囊流失》，由 Acclaim 出品，1998 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1998
+genre: Puzzle
+players: 1
+game: 暴力刑警外传-破坏神加鲁马
+file: 暴力刑警外传-破坏神加鲁马.gb
+assets.box_front: Imgs/暴力刑警外传-破坏神加鲁马.png
+description: 《暴力刑警外传-破坏神加鲁马》，由 Irem 出品，Board类游戏，Game Boy 平台，单人游玩。
+publisher: Irem
+genre: Board
+players: 1
+game: 最后的忍道
+file: 最后的忍道.gb
+assets.box_front: Imgs/最后的忍道.png
+description: 《最后的忍道》，由 Irem 出品，1993 年发行，Game Boy 平台，单人游玩。
+publisher: Irem
+release: 1993
+players: 1
+game: 最终逆转
+file: 最终逆转.gb
+assets.box_front: Imgs/最终逆转.png
+description: 《最终逆转》，由 Toei Animation 出品，Shoot'em Up类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Toei Animation
+genre: Shoot'em Up
+players: 2
+game: 最速单圈
+file: 最速单圈.gb
+assets.box_front: Imgs/最速单圈.png
+description: 《最速单圈》，由 NTV International Corporation 出品，竞速类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: NTV International Corporation
+genre: Racing
+players: 4
+game: 本命赛马
+file: 本命赛马.gb
+assets.box_front: Imgs/本命赛马.png
+description: 《本命赛马》，由 Nichibutsu 出品，1994 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: Nichibutsu
+release: 1994
+genre: Sports with Animals
+players: 1
+game: 本将棋
+file: 本将棋.gb
+assets.box_front: Imgs/本将棋.png
+description: 《本将棋》，由 Imagineer 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Imagineer
+release: 1994
+genre: Board
+game: 机兽传说
+file: 机兽传说.gb
+assets.box_front: Imgs/机兽传说.png
+description: 《机兽传说》，由 Tomy 出品，1990 年发行，Shoot'em Up类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tomy
+release: 1990
+genre: Shoot'em Up
+players: 2
+game: 机动警察-被狙击之街1990
+file: 机动警察-被狙击之街1990.gb
+assets.box_front: Imgs/机动警察-被狙击之街1990.png
+description: 《机动警察-被狙击之街1990》，由 Yutaka 出品，1990 年发行，冒险类游戏，Game Boy 平台。
+publisher: Yutaka
+release: 1990
+genre: Adventure
+game: 机动警察杰克
+file: 机动警察杰克.gb
+assets.box_front: Imgs/机动警察杰克.png
+description: 《机动警察杰克》，由 Atlus 出品，1992 年发行，策略类游戏，Game Boy 平台。
+publisher: Atlus
+release: 1992
+genre: Strategy
+game: 机械战警
+file: 机械战警.gb
+assets.box_front: Imgs/机械战警.png
+description: 《机械战警》，由 Ocean 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Ocean
+release: 1991
+genre: Platform
+players: 1
+game: 机械战警2
+file: 机械战警2.gb
+assets.box_front: Imgs/机械战警2.png
+description: 《机械战警2》，由 Ocean 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Ocean
+release: 1992
+genre: Platform
+players: 1
+game: 杀人番茄的袭击
+file: 杀人番茄的袭击.gb
+assets.box_front: Imgs/杀人番茄的袭击.png
+description: 《杀人番茄的袭击》，由 THQ 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: THQ
+release: 1993
+genre: Platform
+players: 1
+game: 杰德传说
+file: 杰德传说.gb
+assets.box_front: Imgs/杰德传说.png
+description: 《杰德传说》，由 Tokai Engineering 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Tokai Engineering
+release: 1991
+genre: Role-playing (RPG)
+game: 杰德传说2-伪神之领域
+file: 杰德传说2-伪神之领域.gb
+assets.box_front: Imgs/杰德传说2-伪神之领域.png
+description: 《杰德传说2-伪神之领域》，由 Tokai Engineering 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Tokai Engineering
+release: 1992
+genre: Role-playing (RPG)
+game: 板斧传说-金太郎动作篇
+file: 板斧传说-金太郎动作篇.gb
+assets.box_front: Imgs/板斧传说-金太郎动作篇.png
+description: 《板斧传说-金太郎动作篇》，由 Tonkin House 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Tonkin House
+release: 1992
+genre: Action
+players: 1
+game: 板斧传说-金太郎角色扮演篇
+file: 板斧传说-金太郎角色扮演篇.gb
+assets.box_front: Imgs/板斧传说-金太郎角色扮演篇.png
+description: 《板斧传说-金太郎角色扮演篇》，由 Tonkin House 出品，1994 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Tonkin House
+release: 1994
+genre: Role-playing (RPG)
+game: 果酱男孩
+file: 果酱男孩.gb
+assets.box_front: Imgs/果酱男孩.png
+description: 《果酱男孩》，1995 年发行，Game Boy 平台。
+release: 1995
+game: 柏青哥CR-大力工头阿源君GB
+file: 柏青哥CR-大力工头阿源君GB.gb
+assets.box_front: Imgs/柏青哥CR-大力工头阿源君GB.png
+description: 《柏青哥CR-大力工头阿源君GB》，由 Telenet 出品，1998 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Telenet
+release: 1998
+genre: Gambling
+game: 柏青哥数据卡
+file: 柏青哥数据卡.gb
+assets.box_front: Imgs/柏青哥数据卡.png
+description: 《柏青哥数据卡》，由 Boss Communications 出品，1999 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Boss Communications
+release: 1999
+genre: Gambling
+game: 柏青哥时间
+file: 柏青哥时间.gb
+assets.box_front: Imgs/柏青哥时间.png
+description: 《柏青哥时间》，由 Coconuts Japan 出品，1989 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1989
+genre: Gambling
+game: 柏青哥物语外传
+file: 柏青哥物语外传.gb
+assets.box_front: Imgs/柏青哥物语外传.png
+description: 《柏青哥物语外传》，由 KSS 出品，1995 年发行，Gambling类游戏，Game Boy 平台。
+publisher: KSS
+release: 1995
+genre: Gambling
+game: 柏青哥辉夜姬
+file: 柏青哥辉夜姬.gb
+assets.box_front: Imgs/柏青哥辉夜姬.png
+description: 《柏青哥辉夜姬》，由 Coconuts Japan 出品，1992 年发行，Gambling类游戏，Game Boy 平台，单人游玩。
+publisher: Coconuts Japan
+release: 1992
+genre: Gambling
+players: 1
+game: 柏青夫君-游戏长廊
+file: 柏青夫君-游戏长廊.gb
+assets.box_front: Imgs/柏青夫君-游戏长廊.png
+description: 《柏青夫君-游戏长廊》，由 Coconuts Japan 出品，1996 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1996
+genre: Gambling
+game: 柏青夫君-解迷城堡
+file: 柏青夫君-解迷城堡.gb
+assets.box_front: Imgs/柏青夫君-解迷城堡.png
+description: 《柏青夫君-解迷城堡》，由 Coconuts Japan 出品，1994 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Coconuts Japan
+release: 1994
+genre: Puzzle
+players: 2
+game: 柏青夫君
+file: 柏青夫君.gb
+assets.box_front: Imgs/柏青夫君.png
+description: 《柏青夫君》，由 Coconuts Japan 出品，1993 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1993
+genre: Gambling
+game: 柏青夫君2
+file: 柏青夫君2.gb
+assets.box_front: Imgs/柏青夫君2.png
+description: 《柏青夫君2》，由 Coconuts Japan 出品，1994 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1994
+genre: Gambling
+game: 柏青夫君3
+file: 柏青夫君3.gb
+assets.box_front: Imgs/柏青夫君3.png
+description: 《柏青夫君3》，由 Coconuts Japan 出品，1995 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1995
+genre: Gambling
+game: 柏青嫂世界杯94
+file: 柏青嫂世界杯94.gb
+assets.box_front: Imgs/柏青嫂世界杯94.png
+description: 《柏青嫂世界杯94》，由 IMax 出品，1994 年发行，Gambling类游戏，Game Boy 平台。
+publisher: IMax
+release: 1994
+genre: Gambling
+game: 柏青嫂小子
+file: 柏青嫂小子.gb
+assets.box_front: Imgs/柏青嫂小子.png
+description: 《柏青嫂小子》，由 Coconuts Japan 出品，1993 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1993
+genre: Gambling
+game: 柏青嫂小子2
+file: 柏青嫂小子2.gb
+assets.box_front: Imgs/柏青嫂小子2.png
+description: 《柏青嫂小子2》，由 Coconuts Japan 出品，1994 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1994
+genre: Gambling
+game: 柏青嫂小子3
+file: 柏青嫂小子3.gb
+assets.box_front: Imgs/柏青嫂小子3.png
+description: 《柏青嫂小子3》，由 Coconuts Japan 出品，1995 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+release: 1995
+genre: Gambling
+game: 柏青嫂必胜GB
+file: 柏青嫂必胜GB.gb
+assets.box_front: Imgs/柏青嫂必胜GB.png
+description: 《柏青嫂必胜GB》，由 Magifact 出品，1995 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Magifact
+release: 1995
+genre: Gambling
+game: 查波55-超级难题行动
+file: 查波55-超级难题行动.gb
+assets.box_front: Imgs/查波55-超级难题行动.png
+description: 《查波55-超级难题行动》，由 Japan System Supply 出品，1997 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Japan System Supply
+release: 1997
+genre: Platform
+players: 1
+game: 柯纳米冰球
+file: 柯纳米冰球.gb
+assets.box_front: Imgs/柯纳米冰球.png
+description: 《柯纳米冰球》，由 Ultra Games 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Ultra Games
+release: 1992
+genre: Sports
+players: 1
+game: 柯纳米巴塞罗那运动会
+file: 柯纳米巴塞罗那运动会.gb
+assets.box_front: Imgs/柯纳米巴塞罗那运动会.png
+description: 《柯纳米巴塞罗那运动会》，由 Konami 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1992
+genre: Sports
+players: 1
+game: 柯纳米游戏集1
+file: 柯纳米游戏集1.gb
+assets.box_front: Imgs/柯纳米游戏集1.png
+description: 《柯纳米游戏集1》，由 Konami 出品，1997 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1997
+genre: Compilation
+players: 1
+game: 柯纳米游戏集2
+file: 柯纳米游戏集2.gb
+assets.box_front: Imgs/柯纳米游戏集2.png
+description: 《柯纳米游戏集2》，由 Konami 出品，1997 年发行，合集类游戏，Game Boy 平台。
+publisher: Konami
+release: 1997
+genre: Compilation
+game: 柯纳米游戏集3
+file: 柯纳米游戏集3.gb
+assets.box_front: Imgs/柯纳米游戏集3.png
+description: 《柯纳米游戏集3》，由 Konami 出品，1998 年发行，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1998
+genre: Compilation
+players: 1
+game: 柯纳米游戏集4
+file: 柯纳米游戏集4.gb
+assets.box_front: Imgs/柯纳米游戏集4.png
+description: 《柯纳米游戏集4》，由 Konami 出品，1998 年发行，合集类游戏，Game Boy 平台。
+publisher: Konami
+release: 1998
+genre: Compilation
+game: 柯纳米篮球
+file: 柯纳米篮球.gb
+assets.box_front: Imgs/柯纳米篮球.png
+description: 《柯纳米篮球》，由 Konami 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1992
+genre: Sports
+players: 1
+game: 桃太郎传说外传
+file: 桃太郎传说外传.gb
+assets.box_front: Imgs/桃太郎传说外传.png
+description: 《桃太郎传说外传》，由 Hudson 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Hudson
+genre: Role-playing (RPG)
+game: 桃太郎合集
+file: 桃太郎合集.gb
+assets.box_front: Imgs/桃太郎合集.png
+description: 《桃太郎合集》，由 Hudson 出品，合集类游戏，Game Boy 平台。
+    本作为原作的合集版本。
+publisher: Hudson
+genre: Compilation
+game: 桃太郎合集2
+file: 桃太郎合集2.gb
+assets.box_front: Imgs/桃太郎合集2.png
+description: 《桃太郎合集2》，由 Hudson 出品，合集类游戏，Game Boy 平台。
+    本作为原作的合集版本。
+publisher: Hudson
+genre: Compilation
+game: 桃太郎电剧
+file: 桃太郎电剧.gb
+assets.box_front: Imgs/桃太郎电剧.png
+description: 《桃太郎电剧》，由 Hudson 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+genre: Action
+players: 1
+game: 桃太郎电剧2
+file: 桃太郎电剧2.gb
+assets.box_front: Imgs/桃太郎电剧2.png
+description: 《桃太郎电剧2》，由 Hudson 出品，动作类游戏，Game Boy 平台。
+publisher: Hudson
+genre: Action
+game: 桃太郎电铁Jr-环游全国卷
+file: 桃太郎电铁Jr-环游全国卷.gb
+assets.box_front: Imgs/桃太郎电铁Jr-环游全国卷.png
+description: 《桃太郎电铁Jr-环游全国卷》，由 Hudson 出品，Card类游戏，Game Boy 平台。
+publisher: Hudson
+genre: Card
+game: 森林王子
+file: 森林王子.gb
+assets.box_front: Imgs/森林王子.png
+description: 《森林王子》，由 Bandai 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai
+genre: Action
+players: 1
+game: 樱桃兔子公园
+file: 樱桃兔子公园.gb
+assets.box_front: Imgs/樱桃兔子公园.png
+description: 《樱桃兔子公园》，由 Bandai 出品，1994 年发行，Game Boy 平台，单人游玩。
+publisher: Bandai
+release: 1994
+players: 1
+game: 樱桃小丸子-金鱼豪华剧场
+file: 樱桃小丸子-金鱼豪华剧场.gb
+assets.box_front: Imgs/樱桃小丸子-金鱼豪华剧场.png
+description: 《樱桃小丸子-金鱼豪华剧场》，由 Takara 出品，1995 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Takara
+release: 1995
+genre: Adventure
+players: 1
+game: 樱桃小丸子-零用钱大作战
+file: 樱桃小丸子-零用钱大作战.gb
+assets.box_front: Imgs/樱桃小丸子-零用钱大作战.png
+description: 《樱桃小丸子-零用钱大作战》，由 Takara 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Takara
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 樱桃小丸子2
+file: 樱桃小丸子2.gb
+assets.box_front: Imgs/樱桃小丸子2.png
+description: 《樱桃小丸子2》，由 Takara 出品，1991 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Takara
+release: 1991
+genre: Adventure
+players: 1
+game: 樱桃小丸子3
+file: 樱桃小丸子3.gb
+assets.box_front: Imgs/樱桃小丸子3.png
+description: 《樱桃小丸子3》，由 Takara 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Takara
+release: 1992
+genre: Action
+players: 1
+game: 樱桃小丸子4
+file: 樱桃小丸子4.gb
+assets.box_front: Imgs/樱桃小丸子4.png
+description: 《樱桃小丸子4》，由 Takara 出品，1992 年发行，Board类游戏，Game Boy 平台，单人游玩。
+publisher: Takara
+release: 1992
+genre: Board
+players: 1
+game: 正气大侠
+file: 正气大侠.gb
+assets.box_front: Imgs/正气大侠.png
+description: 《正气大侠》，由 NCS Corporation 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: NCS Corporation
+genre: Action
+players: 1
+game: 正面冲击
+file: 正面冲击.gb
+assets.box_front: Imgs/正面冲击.png
+description: 《正面冲击》，由 Tecmo 出品，1990 年发行，竞速类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tecmo
+release: 1990
+genre: Racing
+players: 2
+game: 武田信宏足球
+file: 武田信宏足球.gb
+assets.box_front: Imgs/武田信宏足球.png
+description: 《武田信宏足球》，由 Jaleco 出品，1993 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Jaleco
+release: 1993
+genre: Sports
+players: 2
+game: 死亡狂热争夺
+file: 死亡狂热争夺.gb
+assets.box_front: Imgs/死亡狂热争夺.png
+description: 《死亡狂热争夺》，由 Electro Brain Corp. 出品，1990 年发行，竞速类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Electro Brain Corp.
+release: 1990
+genre: Racing
+players: 2
+game: 氙星战机2
+file: 氙星战机2.gb
+assets.box_front: Imgs/氙星战机2.png
+description: 《氙星战机2》，由 The Bitmap Brothers 出品，1992 年发行，Shoot'em Up类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: The Bitmap Brothers
+release: 1992
+genre: Shoot'em Up
+players: 2
+game: 水管守护者汤姆
+file: 水管守护者汤姆.gb
+assets.box_front: Imgs/水管守护者汤姆.png
+description: 《水管守护者汤姆》，1995 年发行，Game Boy 平台。
+release: 1995
+game: 永远的蝙蝠侠
+file: 永远的蝙蝠侠.gb
+assets.box_front: Imgs/永远的蝙蝠侠.png
+description: 《永远的蝙蝠侠》，由 Acclaim 出品，清版动作类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+genre: Beat'em Up
+players: 1
+game: 汉堡时光-豪华版
+file: 汉堡时光-豪华版.gb
+assets.box_front: Imgs/汉堡时光-豪华版.png
+description: 《汉堡时光-豪华版》，由 Data East 出品，平台跳跃类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Data East
+genre: Platform
+players: 2
+game: 污点-彩色冒险
+file: 污点-彩色冒险.gb
+assets.box_front: Imgs/污点-彩色冒险.png
+description: 《污点-彩色冒险》，由 Virgin 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Virgin
+release: 1994
+genre: Platform
+players: 1
+game: 污点
+file: 污点.gb
+assets.box_front: Imgs/污点.png
+description: 《污点》，由 Arcadia Systems 出品，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Arcadia Systems
+genre: Puzzle
+players: 2
+game: 沙加-魔界塔士
+file: 沙加-魔界塔士.gb
+assets.box_front: Imgs/沙加-魔界塔士.png
+description: 《沙加-魔界塔士》，由 Square Enix 出品，1989 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Square Enix
+release: 1989
+genre: Role-playing (RPG)
+players: 1
+game: 沙加2-秘宝传说
+file: 沙加2-秘宝传说.gb
+assets.box_front: Imgs/沙加2-秘宝传说.png
+description: 《沙加2-秘宝传说》，由 Square Enix 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Square Enix
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 沙加3-时空霸者
+file: 沙加3-时空霸者.gb
+assets.box_front: Imgs/沙加3-时空霸者.png
+description: 《沙加3-时空霸者》，Game Boy 平台。
+game: 沙滩排球
+file: 沙滩排球.gb
+assets.box_front: Imgs/沙滩排球.png
+description: 《沙滩排球》，由 Activision 出品，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Sports
+players: 2
+game: 法拉利大赛车
+file: 法拉利大赛车.gb
+assets.box_front: Imgs/法拉利大赛车.png
+description: 《法拉利大赛车》，由 Acclaim 出品，1992 年发行，竞速类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Acclaim
+release: 1992
+genre: Racing
+players: 4
+game: 泡泡小精灵
+file: 泡泡小精灵.gb
+assets.box_front: Imgs/泡泡小精灵.png
+description: 《泡泡小精灵》，由 FCI 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: FCI
+release: 1990
+genre: Action
+players: 1
+game: 泡泡龙
+file: 泡泡龙.gb
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，由 Taito 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+release: 1990
+genre: Platform
+players: 1
+game: 泡泡龙GB
+file: 泡泡龙GB.gb
+assets.box_front: Imgs/泡泡龙GB.png
+description: 《泡泡龙GB》，由 Acclaim 出品，1998 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1998
+genre: Puzzle
+players: 1
+game: 泡泡龙少年
+file: 泡泡龙少年.gb
+assets.box_front: Imgs/泡泡龙少年.png
+description: 《泡泡龙少年》，由 Taito 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+release: 1993
+genre: Platform
+players: 1
+game: 波斯王子
+file: 波斯王子.gb
+assets.box_front: Imgs/波斯王子.png
+description: 《波斯王子》，由 Virgin 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Virgin
+release: 1992
+genre: Platform
+players: 1
+game: 海之垂钓2
+file: 海之垂钓2.gb
+assets.box_front: Imgs/海之垂钓2.png
+description: 《海之垂钓2》，1998 年发行，Game Boy 平台。
+release: 1998
+game: 海格力斯的荣光-出动的众神
+file: 海格力斯的荣光-出动的众神.gb
+assets.box_front: Imgs/海格力斯的荣光-出动的众神.png
+description: 《海格力斯的荣光-出动的众神》，由 Data East 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Data East
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 游戏王
+file: 游戏王.gb
+assets.box_front: Imgs/游戏王.png
+description: 《游戏王》，由 Konami 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+genre: Role-playing (RPG)
+players: 1
+game: 激情壁纸
+file: 激情壁纸.gb
+assets.box_front: Imgs/激情壁纸.png
+description: 《激情壁纸》，由 LOZC G. Amusements 出品，1993 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: LOZC G. Amusements
+release: 1993
+genre: Puzzle
+players: 1
+game: 灌篮高手
+file: 灌篮高手.gb
+assets.box_front: Imgs/灌篮高手.png
+description: 《灌篮高手》，1994 年发行，Game Boy 平台。
+release: 1994
+game: 灌篮高手2
+file: 灌篮高手2.gb
+assets.box_front: Imgs/灌篮高手2.png
+description: 《灌篮高手2》，由 Bandai Namco 出品，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Bandai Namco
+genre: Sports
+players: 2
+game: 火焰射击
+file: 火焰射击.gb
+assets.box_front: Imgs/火焰射击.png
+description: 《火焰射击》，由 Toei Animation 出品，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Toei Animation
+genre: Shooter
+players: 1
+game: 炎之斗球儿-弹平
+file: 炎之斗球儿-弹平.gb
+assets.box_front: Imgs/炎之斗球儿-弹平.png
+description: 《炎之斗球儿-弹平》，由 Hudson 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Sports
+players: 1
+game: 炸弹王-系列2
+file: 炸弹王-系列2.gb
+assets.box_front: Imgs/炸弹王-系列2.png
+description: 《炸弹王-系列2》，由 Sunsoft 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+release: 1991
+genre: Action
+players: 1
+game: 炸弹男孩
+file: 炸弹男孩.gb
+assets.box_front: Imgs/炸弹男孩.png
+description: 《炸弹男孩》，由 Hudson 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1990
+genre: Puzzle
+players: 1
+game: 炸弹超人GB
+file: 炸弹超人GB.gb
+assets.box_front: Imgs/炸弹超人GB.png
+description: 《炸弹超人GB》，1994 年发行，Game Boy 平台。
+release: 1994
+game: 炸弹超人GB2
+file: 炸弹超人GB2.gb
+assets.box_front: Imgs/炸弹超人GB2.png
+description: 《炸弹超人GB2》，由 Nintendo 出品，1995 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Action
+players: 1
+game: 炸弹超人GB3
+file: 炸弹超人GB3.gb
+assets.box_front: Imgs/炸弹超人GB3.png
+description: 《炸弹超人GB3》，由 Hudson 出品，1996 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1996
+genre: Action
+players: 1
+game: 炸弹超人合集
+file: 炸弹超人合集.gb
+assets.box_front: Imgs/炸弹超人合集.png
+description: 《炸弹超人合集》，由 Hudson 出品，1996 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+    本作为原作的合集版本。
+publisher: Hudson
+release: 1996
+genre: Action
+players: 2
+game: 热恋四驱
+file: 热恋四驱.gb
+assets.box_front: Imgs/热恋四驱.png
+description: 《热恋四驱》，由 Pony Canyon 出品，1991 年发行，益智类游戏，Game Boy 平台。
+publisher: Pony Canyon
+release: 1991
+genre: Puzzle
+game: 热斗威力战士
+file: 热斗威力战士.gb
+assets.box_front: Imgs/热斗威力战士.png
+description: 《热斗威力战士》，由 Capcom 出品，1998 年发行，格斗类游戏，Game Boy 平台，单人游玩。
+publisher: Capcom
+release: 1998
+genre: Fighting
+players: 1
+game: 爆发
+file: 爆发.gb
+assets.box_front: Imgs/爆发.png
+description: 《爆发》，由 Konami 出品，1993 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1993
+genre: Action
+players: 2
+game: 爆裂之后
+file: 爆裂之后.gb
+assets.box_front: Imgs/爆裂之后.png
+description: 《爆裂之后》，由 Masaya Games 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Masaya Games
+release: 1990
+genre: Action
+players: 1
+game: 爆裂战士-武士
+file: 爆裂战士-武士.gb
+assets.box_front: Imgs/爆裂战士-武士.png
+description: 《爆裂战士-武士》，由 NEXOFT Corporation 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: NEXOFT Corporation
+release: 1990
+genre: Puzzle
+players: 2
+game: 爆转陀螺
+file: 爆转陀螺.gb
+assets.box_front: Imgs/爆转陀螺.png
+description: 《爆转陀螺》，由 Hudson 出品，1998 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1998
+genre: Adventure
+players: 1
+game: 爆钓!烈传翔
+file: 爆钓!烈传翔.gb
+assets.box_front: Imgs/爆钓!烈传翔.png
+description: 《爆钓!烈传翔》，由 Starfish 出品，1998 年发行，Hunting and Fishing类游戏，Game Boy 平台，单人游玩。
+publisher: Starfish
+release: 1998
+genre: Hunting and Fishing
+players: 1
+game: 爆钓!钓鱼王
+file: 爆钓!钓鱼王.gb
+assets.box_front: Imgs/爆钓!钓鱼王.png
+description: 《爆钓!钓鱼王》，由 Konami 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1998
+genre: Role-playing (RPG)
+players: 1
+game: 爱天使传说
+file: 爱天使传说.gb
+assets.box_front: Imgs/爱天使传说.png
+description: 《爱天使传说》，由 KSS 出品，1995 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: KSS
+release: 1995
+genre: Puzzle
+players: 1
+game: 牧场物语GB
+file: 牧场物语GB.gb
+assets.box_front: Imgs/牧场物语GB.png
+description: 《牧场物语GB》，由 Natsume 出品，1997 年发行，模拟类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Natsume
+release: 1997
+genre: Simulation
+players: 2
+game: 特警判官
+file: 特警判官.gb
+assets.box_front: Imgs/特警判官.png
+description: 《特警判官》，由 Acclaim 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+genre: Platform
+players: 1
+game: 狂热跳跃
+file: 狂热跳跃.gb
+assets.box_front: Imgs/狂热跳跃.png
+description: 《狂热跳跃》，由 Bandai 出品，1993 年发行，Quiz类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai
+release: 1993
+genre: Quiz
+players: 1
+game: 狸猫太子-珍道中友情篇
+file: 狸猫太子-珍道中友情篇.gb
+assets.box_front: Imgs/狸猫太子-珍道中友情篇.png
+description: 《狸猫太子-珍道中友情篇》，由 Naxat Soft 出品，1990 年发行，Game Boy 平台。
+publisher: Naxat Soft
+release: 1990
+game: 猎杀红色十月
+file: 猎杀红色十月.gb
+assets.box_front: Imgs/猎杀红色十月.png
+description: 《猎杀红色十月》，由 HiTech Software 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: HiTech Software
+release: 1992
+genre: Action
+players: 1
+game: 猫和老鼠
+file: 猫和老鼠.gb
+assets.box_front: Imgs/猫和老鼠.png
+description: 《猫和老鼠》，由 HiTech Software 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: HiTech Software
+genre: Platform
+players: 1
+game: 猫和老鼠2
+file: 猫和老鼠2.gb
+assets.box_front: Imgs/猫和老鼠2.png
+description: 《猫和老鼠2》，由 HiTech Software 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: HiTech Software
+release: 1994
+genre: Platform
+players: 1
+game: 王牌小子
+file: 王牌小子.gb
+assets.box_front: Imgs/王牌小子.png
+description: 《王牌小子》，由 Pack-In-Video 出品，1990 年发行，Game Boy 平台。
+publisher: Pack-In-Video
+release: 1990
+game: 王牌小子2
+file: 王牌小子2.gb
+assets.box_front: Imgs/王牌小子2.png
+description: 《王牌小子2》，由 Pack-In-Video 出品，1990 年发行，Game Boy 平台。
+publisher: Pack-In-Video
+release: 1990
+game: 王牌收藏品GB
+file: 王牌收藏品GB.gb
+assets.box_front: Imgs/王牌收藏品GB.png
+description: 《王牌收藏品GB》，由 Bottom Up 出品，1997 年发行，Game Boy 平台。
+publisher: Bottom Up
+release: 1997
+game: 珍品宝石
+file: 珍品宝石.gb
+assets.box_front: Imgs/珍品宝石.png
+description: 《珍品宝石》，由 Vic Tokai 出品，1991 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Vic Tokai
+release: 1991
+genre: Puzzle
+players: 1
+game: 田径运动会-目标!巴塞罗那
+file: 田径运动会-目标!巴塞罗那.gb
+assets.box_front: Imgs/田径运动会-目标!巴塞罗那.png
+description: 《田径运动会-目标!巴塞罗那》，由 Interplay 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Interplay
+release: 1992
+genre: Sports
+players: 1
+game: 电梯大战
+file: 电梯大战.gb
+assets.box_front: Imgs/电梯大战.png
+description: 《电梯大战》，由 Taito 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+release: 1991
+genre: Platform
+players: 1
+game: 电视冠军挑战赛
+file: 电视冠军挑战赛.gb
+assets.box_front: Imgs/电视冠军挑战赛.png
+description: 《电视冠军挑战赛》，1994 年发行，Game Boy 平台。
+release: 1994
+game: 男孩与软泥怪
+file: 男孩与软泥怪.gb
+assets.box_front: Imgs/男孩与软泥怪.png
+description: 《男孩与软泥怪》，由 Imagineer 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Imagineer
+release: 1990
+genre: Platform
+players: 1
+game: 画线
+file: 画线.gb
+assets.box_front: Imgs/画线.png
+description: 《画线》，由 Nintendo 出品，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Action
+players: 2
+game: 疾风无敌银堡垒
+file: 疾风无敌银堡垒.gb
+assets.box_front: Imgs/疾风无敌银堡垒.png
+description: 《疾风无敌银堡垒》，由 Bandai 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai
+release: 1994
+genre: Platform
+players: 1
+game: 登月飞行器
+file: 登月飞行器.gb
+assets.box_front: Imgs/登月飞行器.png
+description: 《登月飞行器》，由 Pack In Video 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Pack In Video
+release: 1990
+genre: Action
+players: 2
+game: 的中竞马
+file: 的中竞马.gb
+assets.box_front: Imgs/的中竞马.png
+description: 《的中竞马》，由 Nippon Clary Business 出品，Sports with Animals类游戏，Game Boy 平台。
+publisher: Nippon Clary Business
+genre: Sports with Animals
+game: 相似方块
+file: 相似方块.gb
+assets.box_front: Imgs/相似方块.png
+description: 《相似方块》，由 Hudson 出品，益智类游戏，Game Boy 平台。
+publisher: Hudson
+genre: Puzzle
+game: 相扑战士-东海道场所
+file: 相扑战士-东海道场所.gb
+assets.box_front: Imgs/相扑战士-东海道场所.png
+description: 《相扑战士-东海道场所》，由 DTMC 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: DTMC
+release: 1991
+genre: Platform
+players: 1
+game: 相等循环
+file: 相等循环.gb
+assets.box_front: Imgs/相等循环.png
+description: 《相等循环》，由 Mindscape 出品，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Mindscape
+genre: Puzzle
+players: 2
+game: 真人快打
+file: 真人快打.gb
+assets.box_front: Imgs/真人快打.png
+description: 《真人快打》，由 Acclaim 出品，1993 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1993
+genre: Action
+players: 1
+game: 真人快打1+2
+file: 真人快打1+2.gb
+assets.box_front: Imgs/真人快打1+2.png
+description: 《真人快打1+2》，由 Starfish 出品，合集类游戏，Game Boy 平台，单人游玩。
+publisher: Starfish
+genre: Compilation
+players: 1
+game: 真人快打2
+file: 真人快打2.gb
+assets.box_front: Imgs/真人快打2.png
+description: 《真人快打2》，由 Acclaim 出品，1994 年发行，格斗类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1994
+genre: Fighting
+players: 1
+game: 石田芳夫围棋形势判断
+file: 石田芳夫围棋形势判断.gb
+assets.box_front: Imgs/石田芳夫围棋形势判断.png
+description: 《石田芳夫围棋形势判断》，由 Pony Canyon 出品，1990 年发行，Card类游戏，Game Boy 平台，单人游玩。
+publisher: Pony Canyon
+release: 1990
+genre: Card
+players: 1
+game: 石道
+file: 石道.gb
+assets.box_front: Imgs/石道.png
+description: 《石道》，由 ASCII Corporation 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: ASCII Corporation
+release: 1990
+genre: Puzzle
+players: 2
+game: 矿工
+file: 矿工.gb
+assets.box_front: Imgs/矿工.png
+description: 《矿工》，由 Asmik 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik
+release: 1990
+genre: Puzzle
+players: 1
+game: 神仙车
+file: 神仙车.gb
+assets.box_front: Imgs/神仙车.png
+description: 《神仙车》，由 Jaleco 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Jaleco
+release: 1991
+genre: Platform
+players: 1
+game: 神秘物质
+file: 神秘物质.gb
+assets.box_front: Imgs/神秘物质.png
+description: 《神秘物质》，由 Asmik 出品，1993 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Asmik
+release: 1993
+genre: Action
+players: 2
+game: 福尔曼真实拳击
+file: 福尔曼真实拳击.gb
+assets.box_front: Imgs/福尔曼真实拳击.png
+description: 《福尔曼真实拳击》，由 Acclaim 出品，1995 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Acclaim
+release: 1995
+genre: Sports
+players: 2
+game: 福星小子
+file: 福星小子.gb
+assets.box_front: Imgs/福星小子.png
+description: 《福星小子》，由 Yanoman Games 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Yanoman Games
+genre: Role-playing (RPG)
+players: 1
+game: 秘传阴阳气功法-华佗
+file: 秘传阴阳气功法-华佗.gb
+assets.box_front: Imgs/秘传阴阳气功法-华佗.png
+description: 《秘传阴阳气功法-华佗》，由 Yonezawa 出品，1991 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Yonezawa
+release: 1991
+genre: Puzzle
+players: 1
+game: 究极打砖块GB
+file: 究极打砖块GB.gb
+assets.box_front: Imgs/究极打砖块GB.png
+description: 《究极打砖块GB》，由 Pow 出品，1995 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Pow
+release: 1995
+genre: Action
+players: 1
+game: 空想科学世界-格列佛小子
+file: 空想科学世界-格列佛小子.gb
+assets.box_front: Imgs/空想科学世界-格列佛小子.png
+description: 《空想科学世界-格列佛小子》，由 Bandai 出品，1995 年发行，益智类游戏，Game Boy 平台。
+publisher: Bandai
+release: 1995
+genre: Puzzle
+game: 空手道高手
+file: 空手道高手.gb
+assets.box_front: Imgs/空手道高手.png
+description: 《空手道高手》，由 Shinsei 出品，1989 年发行，格斗类游戏，Game Boy 平台，单人游玩。
+publisher: Shinsei
+release: 1989
+genre: Fighting
+players: 1
+game: 突击坦克
+file: 突击坦克.gb
+assets.box_front: Imgs/突击坦克.png
+description: 《突击坦克》，由 Electro Brain Corp. 出品，1991 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Electro Brain Corp.
+release: 1991
+genre: Action
+players: 2
+game: 立体跳方块
+file: 立体跳方块.gb
+assets.box_front: Imgs/立体跳方块.png
+description: 《立体跳方块》，由 Parker Brothers 出品，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Parker Brothers
+genre: Puzzle
+players: 1
+game: 竞速之魂
+file: 竞速之魂.gb
+assets.box_front: Imgs/竞速之魂.png
+description: 《竞速之魂》，由 Irem 出品，1991 年发行，竞速类游戏，Game Boy 平台。
+publisher: Irem
+release: 1991
+genre: Racing
+game: 童话大战
+file: 童话大战.gb
+assets.box_front: Imgs/童话大战.png
+description: 《童话大战》，由 Yojigen 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Yojigen
+genre: Role-playing (RPG)
+game: 第2次超级机器人大战G
+file: 第2次超级机器人大战G.gb
+assets.box_front: Imgs/第2次超级机器人大战G.png
+description: 《第2次超级机器人大战G》，1995 年发行，SLG类游戏，Game Boy 平台。
+release: 1995
+genre: SLG
+game: 筋肉人-梦幻竞赛
+file: 筋肉人-梦幻竞赛.gb
+assets.box_front: Imgs/筋肉人-梦幻竞赛.png
+description: 《筋肉人-梦幻竞赛》，由 Yutaka 出品，1992 年发行，体育类游戏，Game Boy 平台。
+publisher: Yutaka
+release: 1992
+genre: Sports
+game: 管道之梦
+file: 管道之梦.gb
+assets.box_front: Imgs/管道之梦.png
+description: 《管道之梦》，由 Bullet Proof Software 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Bullet Proof Software
+release: 1990
+genre: Puzzle
+players: 2
+game: 紫禁城
+file: 紫禁城.gb
+assets.box_front: Imgs/紫禁城.png
+description: 《紫禁城》，由 Toei Animation 出品，1991 年发行，Board类游戏，Game Boy 平台，单人游玩。
+publisher: Toei Animation
+release: 1991
+genre: Board
+players: 1
+game: 纳诺记事本
+file: 纳诺记事本.gb
+assets.box_front: Imgs/纳诺记事本.png
+description: 《纳诺记事本》，由 Konami 出品，1992 年发行，Game Boy 平台。
+publisher: Konami
+release: 1992
+game: 纸牌游戏
+file: 纸牌游戏.gb
+assets.box_front: Imgs/纸牌游戏.png
+description: 《纸牌游戏》，由 American Video Entertainment 出品，1992 年发行，益智类游戏，Game Boy 平台。
+publisher: American Video Entertainment
+release: 1992
+genre: Puzzle
+game: 终结者2-街机版
+file: 终结者2-街机版.gb
+assets.box_front: Imgs/终结者2-街机版.png
+description: 《终结者2-街机版》，由 Midway 出品，1994 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Midway
+release: 1994
+genre: Shooter
+players: 1
+game: 绝对无敌雷神王
+file: 绝对无敌雷神王.gb
+assets.box_front: Imgs/绝对无敌雷神王.png
+description: 《绝对无敌雷神王》，由 Tomy 出品，1991 年发行，格斗类游戏，Game Boy 平台。
+publisher: Tomy
+release: 1991
+genre: Fighting
+game: 维生素王国物语
+file: 维生素王国物语.gb
+assets.box_front: Imgs/维生素王国物语.png
+description: 《维生素王国物语》，由 Namco 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 维里斯-罗兰魔兽王
+file: 维里斯-罗兰魔兽王.gb
+assets.box_front: Imgs/维里斯-罗兰魔兽王.png
+description: 《维里斯-罗兰魔兽王》，由 Sammy 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Sammy
+release: 1990
+genre: Action
+players: 2
+game: 维里斯2-复仇之邪神
+file: 维里斯2-复仇之邪神.gb
+assets.box_front: Imgs/维里斯2-复仇之邪神.png
+description: 《维里斯2-复仇之邪神》，由 Sammy 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Sammy
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 绿茵传奇-射门
+file: 绿茵传奇-射门.gb
+assets.box_front: Imgs/绿茵传奇-射门.png
+description: 《绿茵传奇-射门》，1995 年发行，体育类游戏，Game Boy 平台。
+release: 1995
+genre: Sports
+game: 罐头怪兽
+file: 罐头怪兽.gb
+assets.box_front: Imgs/罐头怪兽.png
+description: 《罐头怪兽》，由 I'Max 出品，1998 年发行，模拟类游戏，Game Boy 平台。
+publisher: I'Max
+release: 1998
+genre: Simulation
+game: 罗罗大冒险
+file: 罗罗大冒险.gb
+assets.box_front: Imgs/罗罗大冒险.png
+description: 《罗罗大冒险》，由 Nintendo 出品，1995 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Action
+players: 1
+game: 美国世界杯94
+file: 美国世界杯94.gb
+assets.box_front: Imgs/美国世界杯94.png
+description: 《美国世界杯94》，由 U.S. Gold 出品，1994 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: U.S. Gold
+release: 1994
+genre: Sports
+players: 1
+game: 美国横断问答
+file: 美国横断问答.gb
+assets.box_front: Imgs/美国横断问答.png
+description: 《美国横断问答》，由 Tomy 出品，1990 年发行，Quiz类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Tomy
+release: 1990
+genre: Quiz
+players: 4
+game: 美国横断问答2
+file: 美国横断问答2.gb
+assets.box_front: Imgs/美国横断问答2.png
+description: 《美国横断问答2》，由 Tomy 出品，1991 年发行，Quiz类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tomy
+release: 1991
+genre: Quiz
+players: 2
+game: 美国横断问答3
+file: 美国横断问答3.gb
+assets.box_front: Imgs/美国横断问答3.png
+description: 《美国横断问答3》，由 Tomy 出品，1992 年发行，Quiz类游戏，Game Boy 平台，单人游玩。
+publisher: Tomy
+release: 1992
+genre: Quiz
+players: 1
+game: 美国横断问答4
+file: 美国横断问答4.gb
+assets.box_front: Imgs/美国横断问答4.png
+description: 《美国横断问答4》，由 Tomy 出品，1993 年发行，Quiz类游戏，Game Boy 平台，单人游玩。
+publisher: Tomy
+release: 1993
+genre: Quiz
+players: 1
+game: 翻转忍者
+file: 翻转忍者.gb
+assets.box_front: Imgs/翻转忍者.png
+description: 《翻转忍者》，由 Epoch 出品，1992 年发行，益智类游戏，Game Boy 平台。
+publisher: Epoch
+release: 1992
+genre: Puzzle
+game: 职业摔角
+file: 职业摔角.gb
+assets.box_front: Imgs/职业摔角.png
+description: 《职业摔角》，由 HAL Laboratory 出品，1990 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: HAL Laboratory
+release: 1990
+genre: Sports
+players: 2
+game: 职业足球
+file: 职业足球.gb
+assets.box_front: Imgs/职业足球.png
+description: 《职业足球》，由 U.S. Gold 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: U.S. Gold
+release: 1992
+genre: Sports
+players: 1
+game: 肥瘦双鼠
+file: 肥瘦双鼠.gb
+assets.box_front: Imgs/肥瘦双鼠.png
+description: 《肥瘦双鼠》，由 Elite Systems 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Elite Systems
+release: 1994
+genre: Platform
+players: 1
+game: 胜马预想-竞马贵族
+file: 胜马预想-竞马贵族.gb
+assets.box_front: Imgs/胜马预想-竞马贵族.png
+description: 《胜马预想-竞马贵族》，由 King Records 出品，1993 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: King Records
+release: 1993
+genre: Sports with Animals
+players: 1
+game: 胜马预想-竞马贵族EX94
+file: 胜马预想-竞马贵族EX94.gb
+assets.box_front: Imgs/胜马预想-竞马贵族EX94.png
+description: 《胜马预想-竞马贵族EX94》，由 King Records 出品，1994 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: King Records
+release: 1994
+genre: Sports with Animals
+players: 1
+game: 胜马预想-竞马贵族EX95
+file: 胜马预想-竞马贵族EX95.gb
+assets.box_front: Imgs/胜马预想-竞马贵族EX95.png
+description: 《胜马预想-竞马贵族EX95》，由 King Records 出品，1995 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: King Records
+release: 1995
+genre: Sports with Animals
+players: 1
+game: 自由搏击
+file: 自由搏击.gb
+assets.box_front: Imgs/自由搏击.png
+description: 《自由搏击》，由 Electro Brain Corp. 出品，1993 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Electro Brain Corp.
+release: 1993
+genre: Sports
+players: 1
+game: 舰队指挥官对战
+file: 舰队指挥官对战.gb
+assets.box_front: Imgs/舰队指挥官对战.png
+description: 《舰队指挥官对战》，由 ASCII Corporation 出品，1991 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: ASCII Corporation
+release: 1991
+genre: Strategy
+players: 2
+game: 艾斯帕克斯的奇迹冒险
+file: 艾斯帕克斯的奇迹冒险.gb
+assets.box_front: Imgs/艾斯帕克斯的奇迹冒险.png
+description: 《艾斯帕克斯的奇迹冒险》，由 Tomy Corporation 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Tomy Corporation
+genre: Platform
+players: 1
+game: 花式撞球
+file: 花式撞球.gb
+assets.box_front: Imgs/花式撞球.png
+description: 《花式撞球》，由 Data East 出品，模拟类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Data East
+genre: Simulation
+players: 2
+game: 花花鱼
+file: 花花鱼.gb
+assets.box_front: Imgs/花花鱼.png
+description: 《花花鱼》，由 SOFEL Co., Ltd. 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: SOFEL Co., Ltd.
+release: 1990
+genre: Action
+players: 1
+game: 苏格兰场
+file: 苏格兰场.gb
+assets.box_front: Imgs/苏格兰场.png
+description: 《苏格兰场》，由 Cryo Interactive 出品，1990 年发行，Game Boy 平台。
+publisher: Cryo Interactive
+release: 1990
+game: 茶茶丸-世界大冒险
+file: 茶茶丸-世界大冒险.gb
+assets.box_front: Imgs/茶茶丸-世界大冒险.png
+description: 《茶茶丸-世界大冒险》，由 Jaleco 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Jaleco
+release: 1990
+genre: Platform
+players: 1
+game: 茶茶丸冒险记3-阿比斯之塔
+file: 茶茶丸冒险记3-阿比斯之塔.gb
+assets.box_front: Imgs/茶茶丸冒险记3-阿比斯之塔.png
+description: 《茶茶丸冒险记3-阿比斯之塔》，由 Human 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Human
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 茶茶丸大恐慌
+file: 茶茶丸大恐慌.gb
+assets.box_front: Imgs/茶茶丸大恐慌.png
+description: 《茶茶丸大恐慌》，由 Human Entertainment 出品，1991 年发行，动作类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Human Entertainment
+release: 1991
+genre: Action
+players: 4
+game: 蓝色海军90
+file: 蓝色海军90.gb
+assets.box_front: Imgs/蓝色海军90.png
+description: 《蓝色海军90》，由 Use Corporation 出品，1990 年发行，策略类游戏，Game Boy 平台。
+publisher: Use Corporation
+release: 1990
+genre: Strategy
+game: 蓝色海军98
+file: 蓝色海军98.gb
+assets.box_front: Imgs/蓝色海军98.png
+description: 《蓝色海军98》，由 Shouei 出品，1998 年发行，策略类游戏，Game Boy 平台。
+publisher: Shouei
+release: 1998
+genre: Strategy
+game: 蜡笔小新-我和小白是朋友
+file: 蜡笔小新-我和小白是朋友.gb
+assets.box_front: Imgs/蜡笔小新-我和小白是朋友.png
+description: 《蜡笔小新-我和小白是朋友》，由 Bandai Namco 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1993
+genre: Platform
+players: 1
+game: 蜡笔小新-我的心情收集
+file: 蜡笔小新-我的心情收集.gb
+assets.box_front: Imgs/蜡笔小新-我的心情收集.png
+description: 《蜡笔小新-我的心情收集》，由 Bandai Namco 出品，1996 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1996
+genre: Action
+players: 1
+game: 蜡笔小新2
+file: 蜡笔小新2.gb
+assets.box_front: Imgs/蜡笔小新2.png
+description: 《蜡笔小新2》，由 Banalex 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Banalex
+release: 1993
+genre: Platform
+players: 1
+game: 蜡笔小新3-我的健康运动
+file: 蜡笔小新3-我的健康运动.gb
+assets.box_front: Imgs/蜡笔小新3-我的健康运动.png
+description: 《蜡笔小新3-我的健康运动》，由 Bandai Namco 出品，1994 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1994
+genre: Action
+players: 1
+game: 蜡笔小新4-我的淘气大变身
+file: 蜡笔小新4-我的淘气大变身.gb
+assets.box_front: Imgs/蜡笔小新4-我的淘气大变身.png
+description: 《蜡笔小新4-我的淘气大变身》，由 Bandai Namco 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1994
+genre: Platform
+players: 1
+game: 蝙蝠侠-小丑归来
+file: 蝙蝠侠-小丑归来.gb
+assets.box_front: Imgs/蝙蝠侠-小丑归来.png
+description: 《蝙蝠侠-小丑归来》，由 Sunsoft 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+release: 1992
+genre: Platform
+players: 1
+game: 蝙蝠侠
+file: 蝙蝠侠.gb
+assets.box_front: Imgs/蝙蝠侠.png
+description: 《蝙蝠侠》，由 Sunsoft 出品，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+genre: Platform
+players: 1
+game: 蟑螂大战GB版
+file: 蟑螂大战GB版.gb
+assets.box_front: Imgs/蟑螂大战GB版.png
+description: 《蟑螂大战GB版》，由 Koei 出品，1994 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Koei
+release: 1994
+genre: Strategy
+players: 1
+game: 街头赛车
+file: 街头赛车.gb
+assets.box_front: Imgs/街头赛车.png
+description: 《街头赛车》，由 Ubisoft 出品，1996 年发行，竞速类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Ubisoft
+release: 1996
+genre: Racing
+players: 2
+game: 解迷小子
+file: 解迷小子.gb
+assets.box_front: Imgs/解迷小子.png
+description: 《解迷小子》，由 Nintendo 出品，1989 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1989
+genre: Puzzle
+players: 1
+game: 解迷小子2
+file: 解迷小子2.gb
+assets.box_front: Imgs/解迷小子2.png
+description: 《解迷小子2》，由 Atlus 出品，1991 年发行，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Atlus
+release: 1991
+genre: Strategy
+players: 1
+game: 诘围棋系列1-藤泽秀行名誉槙圣
+file: 诘围棋系列1-藤泽秀行名誉槙圣.gb
+assets.box_front: Imgs/诘围棋系列1-藤泽秀行名誉槙圣.png
+description: 《诘围棋系列1-藤泽秀行名誉槙圣》，由 Magical Company LTD 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Magical Company LTD
+release: 1994
+genre: Board
+game: 诘将棋-吉五段
+file: 诘将棋-吉五段.gb
+assets.box_front: Imgs/诘将棋-吉五段.png
+description: 《诘将棋-吉五段》，由 Magical Company LTD 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Magical Company LTD
+release: 1994
+genre: Board
+game: 诘将棋-百番胜负
+file: 诘将棋-百番胜负.gb
+assets.box_front: Imgs/诘将棋-百番胜负.png
+description: 《诘将棋-百番胜负》，由 Imagineer 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Imagineer
+release: 1994
+genre: Board
+game: 诘将棋-问题提供将棋世界
+file: 诘将棋-问题提供将棋世界.gb
+assets.box_front: Imgs/诘将棋-问题提供将棋世界.png
+description: 《诘将棋-问题提供将棋世界》，由 IMax 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: IMax
+release: 1994
+genre: Board
+game: 读本梦五誉身-天神怪战2
+file: 读本梦五誉身-天神怪战2.gb
+assets.box_front: Imgs/读本梦五誉身-天神怪战2.png
+description: 《读本梦五誉身-天神怪战2》，由 Meldac 出品，冒险类游戏，Game Boy 平台。
+publisher: Meldac
+genre: Adventure
+game: 调制噪声
+file: 调制噪声.gb
+assets.box_front: Imgs/调制噪声.png
+description: 《调制噪声》，由 Viacom New Media 出品，1997 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Viacom New Media
+release: 1997
+genre: Action
+players: 2
+game: 贪吃蛇
+file: 贪吃蛇.gb
+assets.box_front: Imgs/贪吃蛇.png
+description: 《贪吃蛇》，由 Taxan USA Corp. 出品，1990 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Taxan USA Corp.
+release: 1990
+genre: Action
+players: 2
+game: 超料理传说
+file: 超料理传说.gb
+assets.box_front: Imgs/超料理传说.png
+description: 《超料理传说》，由 Bandai 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Bandai
+genre: Role-playing (RPG)
+game: 超级中国人
+file: 超级中国人.gb
+assets.box_front: Imgs/超级中国人.png
+description: 《超级中国人》，由 Culture Brain 出品，1990 年发行，冒险类游戏，Game Boy 平台，单人游玩。
+publisher: Culture Brain
+release: 1990
+genre: Adventure
+players: 1
+game: 超级中国人1+2+3
+file: 超级中国人1+2+3.gb
+assets.box_front: Imgs/超级中国人1+2+3.png
+description: 《超级中国人1+2+3》，由 Culturebrain 出品，1996 年发行，合集类游戏，Game Boy 平台。
+publisher: Culturebrain
+release: 1996
+genre: Compilation
+game: 超级中国人2
+file: 超级中国人2.gb
+assets.box_front: Imgs/超级中国人2.png
+description: 《超级中国人2》，由 Culture Brain 出品，1991 年发行，冒险类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Culture Brain
+release: 1991
+genre: Adventure
+players: 2
+game: 超级中国人3
+file: 超级中国人3.gb
+assets.box_front: Imgs/超级中国人3.png
+description: 《超级中国人3》，由 Culture Brain 出品，1995 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Culture Brain
+release: 1995
+genre: Role-playing (RPG)
+players: 1
+game: 超级中国人格斗GB
+file: 超级中国人格斗GB.gb
+assets.box_front: Imgs/超级中国人格斗GB.png
+description: 《超级中国人格斗GB》，由 Culture Brain 出品，格斗类游戏，Game Boy 平台。
+publisher: Culture Brain
+genre: Fighting
+game: 超级口袋黑巴斯
+file: 超级口袋黑巴斯.gb
+assets.box_front: Imgs/超级口袋黑巴斯.png
+description: 《超级口袋黑巴斯》，由 Hot-B 出品，1996 年发行，Hunting and Fishing类游戏，Game Boy 平台，单人游玩。
+publisher: Hot-B
+release: 1996
+genre: Hunting and Fishing
+players: 1
+game: 超级口袋黑巴斯2
+file: 超级口袋黑巴斯2.gb
+assets.box_front: Imgs/超级口袋黑巴斯2.png
+description: 《超级口袋黑巴斯2》，由 Starfish 出品，Hunting and Fishing类游戏，Game Boy 平台。
+publisher: Starfish
+genre: Hunting and Fishing
+game: 超级弹珠人-战斗凤凰
+file: 超级弹珠人-战斗凤凰.gb
+assets.box_front: Imgs/超级弹珠人-战斗凤凰.png
+description: 《超级弹珠人-战斗凤凰》，由 Hudson 出品，1997 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1997
+genre: Action
+players: 2
+game: 超级彩蛇方块
+file: 超级彩蛇方块.gb
+assets.box_front: Imgs/超级彩蛇方块.png
+description: 《超级彩蛇方块》，由 Yojigen 出品，1994 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Yojigen
+release: 1994
+genre: Puzzle
+players: 2
+game: 超级机器人大战
+file: 超级机器人大战.gb
+assets.box_front: Imgs/超级机器人大战.png
+description: 《超级机器人大战》，1991 年发行，SLG类游戏，Game Boy 平台。
+release: 1991
+genre: SLG
+game: 超级柏青哥大战
+file: 超级柏青哥大战.gb
+assets.box_front: Imgs/超级柏青哥大战.png
+description: 《超级柏青哥大战》，由 Banpresto 出品，1995 年发行，Gambling类游戏，Game Boy 平台。
+publisher: Banpresto
+release: 1995
+genre: Gambling
+game: 超级桃太郎电铁
+file: 超级桃太郎电铁.gb
+assets.box_front: Imgs/超级桃太郎电铁.png
+description: 《超级桃太郎电铁》，由 Hudson 出品，Board类游戏，Game Boy 平台，支持 4-4 人游玩。
+publisher: Hudson
+genre: Board
+players: 4
+game: 超级桃太郎电铁2
+file: 超级桃太郎电铁2.gb
+assets.box_front: Imgs/超级桃太郎电铁2.png
+description: 《超级桃太郎电铁2》，由 Hudson 出品，Card类游戏，Game Boy 平台。
+publisher: Hudson
+genre: Card
+game: 超级比卡鲁超人-传说之石板
+file: 超级比卡鲁超人-传说之石板.gb
+assets.box_front: Imgs/超级比卡鲁超人-传说之石板.png
+description: 《超级比卡鲁超人-传说之石板》，由 Tom Create 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Tom Create
+release: 1992
+genre: Platform
+players: 1
+game: 超级街头篮球
+file: 超级街头篮球.gb
+assets.box_front: Imgs/超级街头篮球.png
+description: 《超级街头篮球》，由 Vap Inc 出品，1992 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Vap Inc
+release: 1992
+genre: Sports
+players: 1
+game: 超级街头篮球2
+file: 超级街头篮球2.gb
+assets.box_front: Imgs/超级街头篮球2.png
+description: 《超级街头篮球2》，由 VAP 出品，1994 年发行，体育类游戏，Game Boy 平台。
+publisher: VAP
+release: 1994
+genre: Sports
+game: 超级驼背人
+file: 超级驼背人.gb
+assets.box_front: Imgs/超级驼背人.png
+description: 《超级驼背人》，由 Ocean 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Ocean
+release: 1992
+genre: Platform
+players: 1
+game: 超魔神英雄传
+file: 超魔神英雄传.gb
+assets.box_front: Imgs/超魔神英雄传.png
+description: 《超魔神英雄传》，由 Banpresto 出品，1997 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Banpresto
+release: 1997
+genre: Role-playing (RPG)
+game: 超魔神英雄传2
+file: 超魔神英雄传2.gb
+assets.box_front: Imgs/超魔神英雄传2.png
+description: 《超魔神英雄传2》，由 Banpresto 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+release: 1998
+genre: Role-playing (RPG)
+players: 1
+game: 趣味方块
+file: 趣味方块.gb
+assets.box_front: Imgs/趣味方块.png
+description: 《趣味方块》，由 SibGame 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: SibGame
+release: 1990
+genre: Puzzle
+players: 2
+game: 足球
+file: 足球.gb
+assets.box_front: Imgs/足球.png
+description: 《足球》，由 GameTek 出品，1991 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: GameTek
+release: 1991
+genre: Sports
+players: 1
+game: 足球小子
+file: 足球小子.gb
+assets.box_front: Imgs/足球小子.png
+description: 《足球小子》，由 Sony Electronic Publishing 出品，1990 年发行，体育类游戏，Game Boy 平台，单人游玩。
+publisher: Sony Electronic Publishing
+release: 1990
+genre: Sports
+players: 1
+game: 转转棒
+file: 转转棒.gb
+assets.box_front: Imgs/转转棒.png
+description: 《转转棒》，由 Vic Tokai Corporation 出品，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Vic Tokai Corporation
+genre: Puzzle
+players: 1
+game: 轻功小子
+file: 轻功小子.gb
+assets.box_front: Imgs/轻功小子.png
+description: 《轻功小子》，由 Tonkin House 出品，1991 年发行，体育类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tonkin House
+release: 1991
+genre: Sports
+players: 2
+game: 辛普森一家-巴特与魔豆
+file: 辛普森一家-巴特与魔豆.gb
+assets.box_front: Imgs/辛普森一家-巴特与魔豆.png
+description: 《辛普森一家-巴特与魔豆》，由 Acclaim 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Acclaim
+release: 1994
+genre: Platform
+players: 1
+game: 达菲鸭
+file: 达菲鸭.gb
+assets.box_front: Imgs/达菲鸭.png
+description: 《达菲鸭》，由 Sunsoft 出品，1994 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+release: 1994
+genre: Action
+players: 1
+game: 迅雷机甲
+file: 迅雷机甲.gb
+assets.box_front: Imgs/迅雷机甲.png
+description: 《迅雷机甲》，由 Nichibutsu 出品，1991 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Nichibutsu
+release: 1991
+genre: Shooter
+players: 1
+game: 连对王
+file: 连对王.gb
+assets.box_front: Imgs/连对王.png
+description: 《连对王》，由 Visit 出品，1994 年发行，Sports with Animals类游戏，Game Boy 平台。
+publisher: Visit
+release: 1994
+genre: Sports with Animals
+game: 连珠俱乐部
+file: 连珠俱乐部.gb
+assets.box_front: Imgs/连珠俱乐部.png
+description: 《连珠俱乐部》，由 Hect 出品，1996 年发行，Board类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Hect
+release: 1996
+genre: Board
+players: 2
+game: 连锁方块
+file: 连锁方块.gb
+assets.box_front: Imgs/连锁方块.png
+description: 《连锁方块》，由 Taito 出品，1990 年发行，策略类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Taito
+release: 1990
+genre: Strategy
+players: 2
+game: 迷你四男孩
+file: 迷你四男孩.gb
+assets.box_front: Imgs/迷你四男孩.png
+description: 《迷你四男孩》，1996 年发行，Game Boy 平台。
+release: 1996
+game: 迷你四男孩2-最终进化
+file: 迷你四男孩2-最终进化.gb
+assets.box_front: Imgs/迷你四男孩2-最终进化.png
+description: 《迷你四男孩2-最终进化》，由 J-Wing 出品，策略类游戏，Game Boy 平台。
+publisher: J-Wing
+genre: Strategy
+game: 迷你四驱车兄弟GB-全明星大战斗
+file: 迷你四驱车兄弟GB-全明星大战斗.gb
+assets.box_front: Imgs/迷你四驱车兄弟GB-全明星大战斗.png
+description: 《迷你四驱车兄弟GB-全明星大战斗》，由 ASCII Corporation 出品，策略类游戏，Game Boy 平台。
+publisher: ASCII Corporation
+genre: Strategy
+game: 迷你四驱车兄弟GB
+file: 迷你四驱车兄弟GB.gb
+assets.box_front: Imgs/迷你四驱车兄弟GB.png
+description: 《迷你四驱车兄弟GB》，由 ASCII Corporation 出品，策略类游戏，Game Boy 平台。
+publisher: ASCII Corporation
+genre: Strategy
+game: 迷宫组曲
+file: 迷宫组曲.gb
+assets.box_front: Imgs/迷宫组曲.png
+description: 《迷宫组曲》，由 Hudson 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1993
+genre: Platform
+players: 1
+game: 迷魂方块
+file: 迷魂方块.gb
+assets.box_front: Imgs/迷魂方块.png
+description: 《迷魂方块》，由 Tonkin House 出品，1990 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Tonkin House
+release: 1990
+genre: Puzzle
+players: 2
+game: 选择-被选者
+file: 选择-被选者.gb
+assets.box_front: Imgs/选择-被选者.png
+description: 《选择-被选者》，由 Kemco 出品，1989 年发行，Game Boy 平台。
+publisher: Kemco
+release: 1989
+game: 选择1+2
+file: 选择1+2.gb
+assets.box_front: Imgs/选择1+2.png
+description: 《选择1+2》，由 Kemco 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Kemco
+release: 1998
+genre: Role-playing (RPG)
+game: 选择2-黑暗的封印
+file: 选择2-黑暗的封印.gb
+assets.box_front: Imgs/选择2-黑暗的封印.png
+description: 《选择2-黑暗的封印》，由 Kemco 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Kemco
+genre: Role-playing (RPG)
+players: 1
+game: 都市坦克
+file: 都市坦克.gb
+assets.box_front: Imgs/都市坦克.png
+description: 《都市坦克》，由 Asuka Technologies, Inc. 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Asuka Technologies, Inc.
+release: 1990
+genre: Action
+players: 1
+game: 金属机器人战记
+file: 金属机器人战记.gb
+assets.box_front: Imgs/金属机器人战记.png
+description: 《金属机器人战记》，由 Asmik 出品，1991 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik
+release: 1991
+genre: Puzzle
+players: 1
+game: 金钱游戏
+file: 金钱游戏.gb
+assets.box_front: Imgs/金钱游戏.png
+description: 《金钱游戏》，由 Athena 出品，1997 年发行，益智类游戏，Game Boy 平台。
+publisher: Athena
+release: 1997
+genre: Puzzle
+game: 金鱼注意报-娃娃的火热印章拉力
+file: 金鱼注意报-娃娃的火热印章拉力.gb
+assets.box_front: Imgs/金鱼注意报-娃娃的火热印章拉力.png
+description: 《金鱼注意报-娃娃的火热印章拉力》，由 Yutaka 出品，1991 年发行，竞速类游戏，Game Boy 平台。
+publisher: Yutaka
+release: 1991
+genre: Racing
+game: 金鱼注意报2-寻找小巧比
+file: 金鱼注意报2-寻找小巧比.gb
+assets.box_front: Imgs/金鱼注意报2-寻找小巧比.png
+description: 《金鱼注意报2-寻找小巧比》，由 B-AI 出品，1992 年发行，Game Boy 平台。
+publisher: B-AI
+release: 1992
+game: 钓鱼先生
+file: 钓鱼先生.gb
+assets.box_front: Imgs/钓鱼先生.png
+description: 《钓鱼先生》，由 J-Wing 出品，1998 年发行，Hunting and Fishing类游戏，Game Boy 平台。
+publisher: J-Wing
+release: 1998
+genre: Hunting and Fishing
+game: 钓鱼王武藏RV
+file: 钓鱼王武藏RV.gb
+assets.box_front: Imgs/钓鱼王武藏RV.png
+description: 《钓鱼王武藏RV》，由 Bandai 出品，1998 年发行，Hunting and Fishing类游戏，Game Boy 平台。
+publisher: Bandai
+release: 1998
+genre: Hunting and Fishing
+game: 钟为谁而鸣
+file: 钟为谁而鸣.gb
+assets.box_front: Imgs/钟为谁而鸣.png
+description: 《钟为谁而鸣》，由 Nintendo 出品，1992 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1992
+genre: Action
+players: 1
+game: 钻石小子
+file: 钻石小子.gb
+assets.box_front: Imgs/钻石小子.png
+description: 《钻石小子》，由 Nintendo 出品，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Action
+players: 2
+game: 铁球大战-英雄大战外传
+file: 铁球大战-英雄大战外传.gb
+assets.box_front: Imgs/铁球大战-英雄大战外传.png
+description: 《铁球大战-英雄大战外传》，由 Banpresto 出品，1993 年发行，动作类游戏，Game Boy 平台。
+publisher: Banpresto
+release: 1993
+genre: Action
+game: 铁钩船长
+file: 铁钩船长.gb
+assets.box_front: Imgs/铁钩船长.png
+description: 《铁钩船长》，由 Sony Electronic Publishing 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sony Electronic Publishing
+release: 1992
+genre: Platform
+players: 1
+game: 铃木亚久里F1超级赛车
+file: 铃木亚久里F1超级赛车.gb
+assets.box_front: Imgs/铃木亚久里F1超级赛车.png
+description: 《铃木亚久里F1超级赛车》，由 LOZC G. Amusements 出品，1993 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: LOZC G. Amusements
+release: 1993
+genre: Racing
+players: 1
+game: 银河
+file: 银河.gb
+assets.box_front: Imgs/银河.png
+description: 《银河》，由 Hot-B 出品，1990 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Hot-B
+release: 1990
+genre: Puzzle
+players: 1
+game: 银河战士2-萨姆回归
+file: 银河战士2-萨姆回归.gb
+assets.box_front: Imgs/银河战士2-萨姆回归.png
+description: 《银河战士2-萨姆回归》，由 Nintendo 出品，1991 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1991
+genre: Platform
+players: 1
+game: 问答世界
+file: 问答世界.gb
+assets.box_front: Imgs/问答世界.png
+description: 《问答世界》，由 Takara 出品，Quiz类游戏，Game Boy 平台。
+publisher: Takara
+genre: Quiz
+game: 阳伞变兵卫-彩虹大冒险
+file: 阳伞变兵卫-彩虹大冒险.gb
+assets.box_front: Imgs/阳伞变兵卫-彩虹大冒险.png
+description: 《阳伞变兵卫-彩虹大冒险》，由 Epoch 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Epoch
+genre: Action
+players: 1
+game: 阿弥陀
+file: 阿弥陀.gb
+assets.box_front: Imgs/阿弥陀.png
+description: 《阿弥陀》，由 Coconuts Japan 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Coconuts Japan
+release: 1990
+genre: Action
+players: 1
+game: 阿斯米君世界
+file: 阿斯米君世界.gb
+assets.box_front: Imgs/阿斯米君世界.png
+description: 《阿斯米君世界》，由 Asmik 出品，1989 年发行，动作类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Asmik
+release: 1989
+genre: Action
+players: 2
+game: 阿斯米君世界2
+file: 阿斯米君世界2.gb
+assets.box_front: Imgs/阿斯米君世界2.png
+description: 《阿斯米君世界2》，由 Asmik 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik
+release: 1991
+genre: Action
+players: 1
+game: 阿达一族
+file: 阿达一族.gb
+assets.box_front: Imgs/阿达一族.png
+description: 《阿达一族》，由 Ocean 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Ocean
+release: 1992
+genre: Platform
+players: 1
+game: 阿雷莎
+file: 阿雷莎.gb
+assets.box_front: Imgs/阿雷莎.png
+description: 《阿雷莎》，由 Yanoman Games 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Yanoman Games
+release: 1990
+genre: Role-playing (RPG)
+players: 2
+game: 阿雷莎2
+file: 阿雷莎2.gb
+assets.box_front: Imgs/阿雷莎2.png
+description: 《阿雷莎2》，由 Yanoman Games 出品，1991 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Yanoman Games
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 阿雷莎3
+file: 阿雷莎3.gb
+assets.box_front: Imgs/阿雷莎3.png
+description: 《阿雷莎3》，由 Yanoman Games 出品，1992 年发行，Role-playing (RPG)类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Yanoman Games
+release: 1992
+genre: Role-playing (RPG)
+players: 2
+game: 随时!猫狗饲养
+file: 随时!猫狗饲养.gb
+assets.box_front: Imgs/随时!猫狗饲养.png
+description: 《随时!猫狗饲养》，由 Banpresto 出品，策略类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 1
+game: 雀卓小子
+file: 雀卓小子.gb
+assets.box_front: Imgs/雀卓小子.png
+description: 《雀卓小子》，由 Namco 出品，1992 年发行，Card类游戏，Game Boy 平台，单人游玩。
+publisher: Namco
+release: 1992
+genre: Card
+players: 1
+game: 雀四郎
+file: 雀四郎.gb
+assets.box_front: Imgs/雀四郎.png
+description: 《雀四郎》，由 Sammy Studios 出品，Card类游戏，Game Boy 平台，单人游玩。
+publisher: Sammy Studios
+genre: Card
+players: 1
+game: 雀四郎2-世界最强之雀士
+file: 雀四郎2-世界最强之雀士.gb
+assets.box_front: Imgs/雀四郎2-世界最强之雀士.png
+description: 《雀四郎2-世界最强之雀士》，由 Sammy Studios 出品，Card类游戏，Game Boy 平台，单人游玩。
+publisher: Sammy Studios
+genre: Card
+players: 1
+game: 雷达使命
+file: 雷达使命.gb
+assets.box_front: Imgs/雷达使命.png
+description: 《雷达使命》，1990 年发行，Game Boy 平台。
+release: 1990
+game: 雷鸟惊航
+file: 雷鸟惊航.gb
+assets.box_front: Imgs/雷鸟惊航.png
+description: 《雷鸟惊航》，由 Universal 出品，1993 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Universal
+release: 1993
+genre: Action
+players: 1
+game: 青空之星
+file: 青空之星.gb
+assets.box_front: Imgs/青空之星.png
+description: 《青空之星》，由 Vic Tokai 出品，1991 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Vic Tokai
+release: 1991
+genre: Action
+players: 1
+game: 音乐方块
+file: 音乐方块.gb
+assets.box_front: Imgs/音乐方块.png
+description: 《音乐方块》，由 Hudson 出品，1990 年发行，益智类游戏，Game Boy 平台。
+publisher: Hudson
+release: 1990
+genre: Puzzle
+game: 顽皮狗天国
+file: 顽皮狗天国.gb
+assets.box_front: Imgs/顽皮狗天国.png
+description: 《顽皮狗天国》，由 J-Wing 出品，1995 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: J-Wing
+release: 1995
+genre: Puzzle
+players: 1
+game: 顽皮狗赛车
+file: 顽皮狗赛车.gb
+assets.box_front: Imgs/顽皮狗赛车.png
+description: 《顽皮狗赛车》，由 Altus 出品，1992 年发行，竞速类游戏，Game Boy 平台，单人游玩。
+publisher: Altus
+release: 1992
+genre: Racing
+players: 1
+game: 飞毛腿冈萨雷斯
+file: 飞毛腿冈萨雷斯.gb
+assets.box_front: Imgs/飞毛腿冈萨雷斯.png
+description: 《飞毛腿冈萨雷斯》，由 Sunsoft 出品，1994 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Sunsoft
+release: 1994
+genre: Platform
+players: 1
+game: 飞飞鼠
+file: 飞飞鼠.gb
+assets.box_front: Imgs/飞飞鼠.png
+description: 《飞飞鼠》，由 Kemco 出品，1997 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Kemco
+release: 1997
+genre: Puzzle
+players: 1
+game: 飞龙之拳外传
+file: 飞龙之拳外传.gb
+assets.box_front: Imgs/飞龙之拳外传.png
+description: 《飞龙之拳外传》，由 Culture Brain 出品，1990 年发行，平台跳跃类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Culture Brain
+release: 1990
+genre: Platform
+players: 2
+game: 食鬼先生
+file: 食鬼先生.gb
+assets.box_front: Imgs/食鬼先生.png
+description: 《食鬼先生》，由 Data East 出品，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Data East
+genre: Action
+players: 1
+game: 香港
+file: 香港.gb
+assets.box_front: Imgs/香港.png
+description: 《香港》，由 Tokuma Shoten 出品，1990 年发行，Board类游戏，Game Boy 平台，单人游玩。
+publisher: Tokuma Shoten
+release: 1990
+genre: Board
+players: 1
+game: 马券王
+file: 马券王.gb
+assets.box_front: Imgs/马券王.png
+description: 《马券王》，由 Asmik 出品，1993 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik
+release: 1993
+genre: Sports with Animals
+players: 1
+game: 马券王TV94
+file: 马券王TV94.gb
+assets.box_front: Imgs/马券王TV94.png
+description: 《马券王TV94》，由 Asmik 出品，1994 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: Asmik
+release: 1994
+genre: Sports with Animals
+players: 1
+game: 马券的中术
+file: 马券的中术.gb
+assets.box_front: Imgs/马券的中术.png
+description: 《马券的中术》，由 Taito 出品，1994 年发行，策略类游戏，Game Boy 平台。
+publisher: Taito
+release: 1994
+genre: Strategy
+game: 马晨俱乐部
+file: 马晨俱乐部.gb
+assets.box_front: Imgs/马晨俱乐部.png
+description: 《马晨俱乐部》，由 Naxat Soft 出品，1992 年发行，策略类游戏，Game Boy 平台。
+publisher: Naxat Soft
+release: 1992
+genre: Strategy
+game: 马番俱乐部
+file: 马番俱乐部.gb
+assets.box_front: Imgs/马番俱乐部.png
+description: 《马番俱乐部》，由 HectorSoft 出品，1992 年发行，Sports with Animals类游戏，Game Boy 平台，单人游玩。
+publisher: HectorSoft
+release: 1992
+genre: Sports with Animals
+players: 1
+game: 马赫冲冲冲
+file: 马赫冲冲冲.gb
+assets.box_front: Imgs/马赫冲冲冲.png
+description: 《马赫冲冲冲》，1997 年发行，Game Boy 平台。
+release: 1997
+game: 马铃薯冒险
+file: 马铃薯冒险.gb
+assets.box_front: Imgs/马铃薯冒险.png
+description: 《马铃薯冒险》，由 Atlus 出品，1991 年发行，益智类游戏，Game Boy 平台，单人游玩。
+publisher: Atlus
+release: 1991
+genre: Puzzle
+players: 1
+game: 骑士冒险
+file: 骑士冒险.gb
+assets.box_front: Imgs/骑士冒险.png
+description: 《骑士冒险》，由 Taito 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Taito
+genre: Role-playing (RPG)
+players: 1
+game: 高桥名人之冒险岛2
+file: 高桥名人之冒险岛2.gb
+assets.box_front: Imgs/高桥名人之冒险岛2.png
+description: 《高桥名人之冒险岛2》，由 Hudson 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Platform
+players: 1
+game: 高桥名人之冒险岛3
+file: 高桥名人之冒险岛3.gb
+assets.box_front: Imgs/高桥名人之冒险岛3.png
+description: 《高桥名人之冒险岛3》，由 Hudson 出品，1993 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Hudson
+release: 1993
+genre: Platform
+players: 1
+game: 高气压男孩
+file: 高气压男孩.gb
+assets.box_front: Imgs/高气压男孩.png
+description: 《高气压男孩》，由 Konami 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Konami
+release: 1998
+genre: Role-playing (RPG)
+game: 鬼太郎-妖怪创造主出现
+file: 鬼太郎-妖怪创造主出现.gb
+assets.box_front: Imgs/鬼太郎-妖怪创造主出现.png
+description: 《鬼太郎-妖怪创造主出现》，由 Bandai Namco 出品，1996 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1996
+genre: Role-playing (RPG)
+players: 1
+game: 鬼岛柏青哥
+file: 鬼岛柏青哥.gb
+assets.box_front: Imgs/鬼岛柏青哥.png
+description: 《鬼岛柏青哥》，由 Coconuts Japan 出品，Gambling类游戏，Game Boy 平台。
+publisher: Coconuts Japan
+genre: Gambling
+game: 鬼神降临-鬼忍降魔录
+file: 鬼神降临-鬼忍降魔录.gb
+assets.box_front: Imgs/鬼神降临-鬼忍降魔录.png
+description: 《鬼神降临-鬼忍降魔录》，由 Banpresto 出品，1990 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 鬼神降临3-暗黑破坏神
+file: 鬼神降临3-暗黑破坏神.gb
+assets.box_front: Imgs/鬼神降临3-暗黑破坏神.png
+description: 《鬼神降临3-暗黑破坏神》，由 Banpresto 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+genre: Role-playing (RPG)
+players: 1
+game: 鬼神降临4-鬼神之血族
+file: 鬼神降临4-鬼神之血族.gb
+assets.box_front: Imgs/鬼神降临4-鬼神之血族.png
+description: 《鬼神降临4-鬼神之血族》，由 Banpresto 出品，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Banpresto
+genre: Role-playing (RPG)
+players: 1
+game: 魁!男塾
+file: 魁!男塾.gb
+assets.box_front: Imgs/魁!男塾.png
+description: 《魁!男塾》，由 Yutaka 出品，动作类游戏，Game Boy 平台。
+publisher: Yutaka
+genre: Action
+game: 魂斗罗
+file: 魂斗罗.gb
+assets.box_front: Imgs/魂斗罗.png
+description: 《魂斗罗》，由 Ultra Games 出品，1991 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Ultra Games
+release: 1991
+genre: Shooter
+players: 1
+game: 魂斗罗精神
+file: 魂斗罗精神.gb
+assets.box_front: Imgs/魂斗罗精神.png
+description: 《魂斗罗精神》，由 Konami 出品，1994 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1994
+genre: Shooter
+players: 1
+game: 魔法气泡
+file: 魔法气泡.gb
+assets.box_front: Imgs/魔法气泡.png
+description: 《魔法气泡》，由 Banpresto 出品，1994 年发行，益智类游戏，Game Boy 平台，支持 2-2 人游玩。
+publisher: Banpresto
+release: 1994
+genre: Puzzle
+players: 2
+game: 魔法气泡2
+file: 魔法气泡2.gb
+assets.box_front: Imgs/魔法气泡2.png
+description: 《魔法气泡2》，由 Compile 出品，1996 年发行，益智类游戏，Game Boy 平台。
+publisher: Compile
+release: 1996
+genre: Puzzle
+game: 魔法油刷工
+file: 魔法油刷工.gb
+assets.box_front: Imgs/魔法油刷工.png
+description: 《魔法油刷工》，由 Sigma Enterprises 出品，1990 年发行，动作类游戏，Game Boy 平台，单人游玩。
+publisher: Sigma Enterprises
+release: 1990
+genre: Action
+players: 1
+game: 魔法阵咕噜咕噜
+file: 魔法阵咕噜咕噜.gb
+assets.box_front: Imgs/魔法阵咕噜咕噜.png
+description: 《魔法阵咕噜咕噜》，由 Takara 出品，Role-playing (RPG)类游戏，Game Boy 平台。
+publisher: Takara
+genre: Role-playing (RPG)
+game: 魔法骑士
+file: 魔法骑士.gb
+assets.box_front: Imgs/魔法骑士.png
+description: 《魔法骑士》，由 Tomy 出品，1995 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Tomy
+release: 1995
+genre: Role-playing (RPG)
+players: 1
+game: 魔法骑士2-消失的颜色
+file: 魔法骑士2-消失的颜色.gb
+assets.box_front: Imgs/魔法骑士2-消失的颜色.png
+description: 《魔法骑士2-消失的颜色》，1995 年发行，Role-playing (RPG)类游戏，Game Boy 平台。
+release: 1995
+genre: Role-playing (RPG)
+game: 魔鬼克星2
+file: 魔鬼克星2.gb
+assets.box_front: Imgs/魔鬼克星2.png
+description: 《魔鬼克星2》，由 Activision 出品，1990 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: Activision
+release: 1990
+genre: Shooter
+players: 1
+game: 鱼雷射程
+file: 鱼雷射程.gb
+assets.box_front: Imgs/鱼雷射程.png
+description: 《鱼雷射程》，由 SETA Corporation 出品，1991 年发行，射击类游戏，Game Boy 平台，单人游玩。
+publisher: SETA Corporation
+release: 1991
+genre: Shooter
+players: 1
+game: 鳄鱼龙
+file: 鳄鱼龙.gb
+assets.box_front: Imgs/鳄鱼龙.png
+description: 《鳄鱼龙》，由 Natsume 出品，1992 年发行，平台跳跃类游戏，Game Boy 平台，单人游玩。
+publisher: Natsume
+release: 1992
+genre: Platform
+players: 1
+game: 麦迪森之神-幻想世界的诞生-复刻版
+file: 麦迪森之神-幻想世界的诞生-复刻版.gb
+assets.box_front: Imgs/麦迪森之神-幻想世界的诞生-复刻版.png
+description: 《麦迪森之神-幻想世界的诞生-复刻版》，由 Konami 出品，1993 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+    本作为原作的复刻版版本。
+publisher: Konami
+release: 1993
+genre: Role-playing (RPG)
+players: 1
+game: 麦迪森之神-幻想世界的诞生
+file: 麦迪森之神-幻想世界的诞生.gb
+assets.box_front: Imgs/麦迪森之神-幻想世界的诞生.png
+description: 《麦迪森之神-幻想世界的诞生》，由 Konami 出品，1993 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Konami
+release: 1993
+genre: Role-playing (RPG)
+players: 1
+game: 黑白棋
+file: 黑白棋.gb
+assets.box_front: Imgs/黑白棋.png
+description: 《黑白棋》，由 Kawada, Co. Ltd 出品，1990 年发行，Board类游戏，Game Boy 平台，单人游玩。
+publisher: Kawada, Co. Ltd
+release: 1990
+genre: Board
+players: 1
+game: 黑白棋世界
+file: 黑白棋世界.gb
+assets.box_front: Imgs/黑白棋世界.png
+description: 《黑白棋世界》，由 Tsukuda Original 出品，1994 年发行，Board类游戏，Game Boy 平台。
+publisher: Tsukuda Original
+release: 1994
+genre: Board
+game: 龙珠Z-悟空激斗传
+file: 龙珠Z-悟空激斗传.gb
+assets.box_front: Imgs/龙珠Z-悟空激斗传.png
+description: 《龙珠Z-悟空激斗传》，由 Bandai 出品，1995 年发行，Role-playing (RPG)类游戏，Game Boy 平台，单人游玩。
+publisher: Bandai
+release: 1995
+genre: Role-playing (RPG)
+players: 1

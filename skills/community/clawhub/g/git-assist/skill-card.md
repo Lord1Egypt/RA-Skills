@@ -1,41 +1,59 @@
-## Description: <br>
-Generate commit messages from diffs, write PR descriptions, create changelogs, and suggest branch names for Git workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate commit messages from diffs, write PR descriptions, create changelogs, suggest branch names. Every git workflow, automated.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft conventional commit messages, pull request summaries, changelog groupings, and branch names from local Git repository context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads staged diffs and commit history, which may include sensitive repository content. <br>
-Mitigation: Use it only in repositories where that context is appropriate to expose to the local or configured model. <br>
-Risk: Generated commit messages, PR descriptions, changelogs, or branch names may be inaccurate or incomplete. <br>
-Mitigation: Review generated text before committing, publishing, or opening a pull request. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft Git workflow text from local repository changes, including commit messages, pull request descriptions, changelogs, and branch names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/git-assist) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with Git command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from local repository diffs, commit history, and user-provided branch descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Local Git diffs and commit history may contain proprietary code or sensitive changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in repositories where local diff and history access is acceptable, and confirm any configured AI provider before sending sensitive content outside the local environment.
+
+Risk: Generated commit messages, pull request descriptions, changelogs, or branch names may be incomplete or misleading.
+
+Mitigation: Review generated Git workflow text before committing, publishing pull requests, or sharing release notes.
+
+Risk: The skill reads repository state through Git commands and depends on the current working tree and branch context.
+
+Mitigation: Run it from the intended repository and branch, and verify staged changes or base branches before using generated output.
+
+## Reference(s):
+
+- [GitAssist ClawHub skill page](https://clawhub.ai/theshadowrose/skills/git-assist)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text, Markdown, and JSON-formatted CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from local Git diffs, branch history, and user-provided branch descriptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "meta": { "title": "目标人群重合", "subtitle": "谁在为结果付费" },
+  "layout": "venn",
+  "blocks": [
+    { "id": "v1", "title": "开发者", "text": "要结果" },
+    { "id": "v2", "title": "知识工作者", "text": "要省时间" },
+    { "id": "v3", "title": "企业团队", "text": "要合规" }
+  ]
+}

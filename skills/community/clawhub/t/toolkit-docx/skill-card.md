@@ -1,42 +1,53 @@
-## Description: <br>
-Helps agents create, read, edit, convert, validate, and analyze Microsoft Word .docx documents, including document structure, formatting, tracked changes, comments, images, tables, and XML repair guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DOCX Toolkit helps agents create, read, edit, and analyze Word .docx documents, including formatted document generation, existing document edits, and content extraction or reorganization, while excluding PDF, spreadsheet, and Google Docs workflows.
 
-## Publisher: <br>
-[sougannkyou](https://clawhub.ai/user/sougannkyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[sougannkyou](https://clawhub.ai/user/sougannkyou)
 
-## Use Case: <br>
-Developers and agents use this skill to produce guidance, code snippets, and shell-command workflows for creating, inspecting, editing, converting, and validating .docx files. It is suited to Word document work such as reports, memos, letters, tracked changes, comments, tables, images, and document XML repair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: DOCX editing, conversion, and validation commands can modify local files or expose sensitive tracked changes and comments. <br>
-Mitigation: Review commands before execution, work on copies of important documents, and inspect tracked changes or comments before sharing outputs. <br>
-Risk: Globally installed document tooling, including npm dependencies, may change behavior or introduce supply-chain risk. <br>
-Mitigation: Vet and pin dependencies where possible before installing or using them in a workflow. <br>
-Risk: Manual DOCX XML edits can produce invalid or corrupted documents. <br>
-Mitigation: Validate generated or repacked DOCX files and retain the original document until the edited output is confirmed. <br>
+## Use Case:
 
+Developers and document automation agents use this skill to create, inspect, convert, validate, and edit Word .docx files for reports, memos, letters, and similar business documents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sougannkyou/toolkit-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file operations and document conversion or validation steps that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.21.4 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill recommends a global unpinned npm install for the DOCX generation library, which can change dependency behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned local dependency before relying on the skill for repeatable or sensitive document workflows.
+
+Risk: DOCX workflows may process sensitive documents and unpack document XML into the workspace.
+
+Mitigation: Run the skill in an isolated workspace and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sougannkyou/skills/toolkit-docx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JavaScript, XML, and command-line snippets for DOCX creation, inspection, conversion, validation, and repair.]
+
+## Skill Version(s):
+
+0.21.4 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn76b71hdvjbaetmpr601b967x82bz18",
-  "slug": "agent-publish",
   "version": "1.0.0",
-  "publishedAt": 1780722355793
+  "updatedAt": "2026-06-06",
+  "changelog": "初始版本：Agent 发布到 ClawHub + GitHub 的标准技能",
+  "author": "perrykono-debug"
 }

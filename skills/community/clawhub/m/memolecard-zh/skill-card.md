@@ -1,41 +1,58 @@
-## Description: <br>
-Automates MocCard website workflows to turn long article content into styled card images and return a ZIP download link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the MocCard article-to-card workflow by opening the website, submitting a title and article content, selecting a card style, splitting the content into cards, and returning a ZIP download link.
 
-## Publisher: <br>
-[moccard](https://clawhub.ai/user/moccard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moccard](https://clawhub.ai/user/moccard)
 
-## Use Case: <br>
-Developers, operators, or content creators use this skill to drive a browser session on MocCard, submit a long article with style choices, generate card images, and retrieve a ZIP or file download path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fallback download path can send live browser cookies to a configured backup server. <br>
-Mitigation: Run only with a trusted backup server and a non-sensitive browser session, or remove/restrict the cookie-forwarding fallback to a verified first-party endpoint with explicit consent. <br>
-Risk: Automated browser actions depend on live MocCard UI selectors and configured server values. <br>
-Mitigation: Review input parameters and validate the workflow in a disposable session before using it on valuable content. <br>
+## Use Case:
 
+Content creators and operators use this skill to turn long articles into downloadable MocCard image-card packages through an automated browser workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moccard/memolecard-zh) <br>
-- [MocCard website](https://www.moccard.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration] <br>
-**Output Format:** [Bash execution output with a ZIP download URL or file URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires title, article content, style category, style index, and optional backup server URL inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Article content may be submitted to moccard.com during the card-generation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content that is appropriate to send to the MocCard service and allowed by the user's data-handling requirements.
+
+Risk: Fallback download behavior can send readable browser cookies and card identifiers to the configured backup server.
+
+Mitigation: Use the fallback path only with a trusted backup endpoint, or disable or review that configuration before running the skill.
+
+Risk: The download workflow can remove matching ZIP files from the Downloads directory.
+
+Mitigation: Run the skill with a dedicated download directory or preserve existing matching ZIP files before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moccard/skills/memolecard-zh)
+- [MocCard website](https://www.moccard.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Shell execution output with a ZIP download URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download a ZIP archive to the configured browser download directory.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI agents from task-followers into proactive partners that anticipate needs, preserve working context, improve over time, and apply security hardening patterns.
 
-## Publisher: <br>
-[eathon](https://clawhub.ai/user/eathon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eathon](https://clawhub.ai/user/eathon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure an AI agent for proactive planning, persistent memory, self-improvement routines, security checks, and user onboarding. It provides operating rules, reference files, and audit guidance for agents that monitor context and propose useful work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables a persistent proactive agent with broad memory, monitoring, cleanup, self-editing, and delegation authority without enough user control. <br>
-Mitigation: Install only when a persistent proactive agent is intended, and require explicit approval before enabling email or calendar access, browser or app cleanup, file deletion, spawned agents, autonomous cron work, or edits to core agent files. <br>
-Risk: The skill stores and updates personal context in memory and profile files. <br>
-Mitigation: Define what personal data may be stored, how long it is retained, and how the user can review, correct, or delete it. <br>
-Risk: Autonomous routines and self-improvement behavior can change agent behavior over time. <br>
-Mitigation: Keep self-improvement changes reviewable, scan skill and configuration changes before deployment, and require approval for security-related changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a proactive, persistent assistant with onboarding files, memory routines, heartbeat checks, recovery protocols, and security guardrails. It is intended for agents that should anticipate user needs while preserving human approval for sensitive, external, or irreversible actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/eathon/proactive-agent-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/eathon) <br>
-- [Onboarding Flow Reference](references/onboarding-flow.md) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
-- [Creator profile](https://x.com/halthelobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with reference files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent operating guidance, starter memory files, onboarding prompts, heartbeat checklists, and a local security-audit script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 3.1.0) <br>
+Risk: Persistent memory and local profile files can retain sensitive personal data or secrets longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make memory and profile writes opt-in, exclude secrets and sensitive personal data, and review or delete generated memory files on a regular schedule.
+
+Risk: Self-modifying operating rules and autonomous maintenance can change agent behavior or cleanup files without enough user control.
+
+Mitigation: Require explicit approval for rule changes, cleanup actions, security changes, public actions, and irreversible operations.
+
+Risk: Proactive background behavior can blur the line between helpful local work and actions that affect external systems or other people.
+
+Mitigation: Allow local drafts and analysis, but require human approval before sending, publishing, purchasing, deleting, or connecting to external agent networks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eathon/skills/proactive-agent-v2)
+- [Publisher Profile](https://clawhub.ai/user/eathon)
+- [Onboarding Flow Reference](references/onboarding-flow.md)
+- [Security Patterns Reference](references/security-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with starter Markdown files and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable workspace files for onboarding, memory, heartbeat checks, operating rules, user profile notes, tool notes, and a local security audit script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version: 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

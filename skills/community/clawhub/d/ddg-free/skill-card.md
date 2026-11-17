@@ -1,40 +1,53 @@
-## Description: <br>
-A free web search skill that queries Bing and returns structured search results without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides free Bing-backed web search results without requiring an API key.
 
-## Publisher: <br>
-[ipdoctor961051-cyber](https://clawhub.ai/user/ipdoctor961051-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ipdoctor961051-cyber](https://clawhub.ai/user/ipdoctor961051-cyber)
 
-## Use Case: <br>
-External users and agents use this skill to run ordinary public web searches, find current information, and retrieve title, URL, and snippet results as JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Bing and may expose sensitive content if users include secrets or private records. <br>
-Mitigation: Use the skill only for ordinary public web searches and do not include passwords, tokens, private records, or sensitive personal details in queries. <br>
-Risk: The helper depends on a local Python script and third-party Python packages. <br>
-Mitigation: Verify the installed script path and install any missing Python dependencies from trusted sources before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ipdoctor961051-cyber/ddg-free) <br>
-- [Bing Search](https://www.bing.com) <br>
+## Use Case:
 
+Agents and users use this skill to search the web for current information, documents, and general research material, then consume structured result summaries for follow-up work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON printed to stdout, with errors printed to stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include the original query and an array of title, URL, and snippet objects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms are sent to Bing.
+
+Mitigation: Avoid submitting secrets, private documents, sensitive personal details, or confidential business information as search queries.
+
+Risk: The documented command path is author-local and may not match the installed path.
+
+Mitigation: Adjust the command path to the installed artifact location before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ipdoctor961051-cyber/skills/ddg-free)
+- [Bing Search](https://www.bing.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [JSON object containing the original query and an array of result titles, URLs, and snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result count is controlled by the max-results argument; network access to Bing is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

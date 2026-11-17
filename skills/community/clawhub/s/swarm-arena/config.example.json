@@ -1,0 +1,97 @@
+{
+  "_readme": "swarmArena configuration. Copy to config.json and edit. Credentials are NEVER stored here; they come from environment variables (LIGHTER_API_PRIVATE_KEY, LIGHTER_API_KEY_INDEX, LIGHTER_ACCOUNT_INDEX, LIGHTER_L1_ADDRESS). Keys starting with '_' are annotations and are ignored by validators.",
+  "mode": "paper",
+  "_comment_mode": "paper = full simulation on real market data, zero order writes | approval = builds PENDING_APPROVAL proposals, no writes | live = real orders, optional per-trade approval gate | autonomous_live = real orders 24/7 with no per-trade gate (requires autonomous_live_consent=true).",
+  "autonomous_live_consent": false,
+  "_comment_autonomous_live_consent": "One-way consent latch. Can ONLY be set true by a human physically typing ACCEPT during onboarding (scripts/onboarding.py). No script, agent, or API call may set it. Delete config.json and re-onboard to revoke.",
+  "base_url": "https://mainnet.zklighter.elliot.ai",
+  "_comment_base_url": "Lighter API base URL. Overridable via the LIGHTER_BASE_URL environment variable.",
+  "allowed_symbols": [
+    "ETH",
+    "BTC",
+    "SOL"
+  ],
+  "_comment_allowed_symbols": "Lighter perp market symbols. Mapped to market_id at runtime via orderBookDetails (1h cache). Never hardcode market ids.",
+  "base_value_per_trade": 100,
+  "_comment_base_value_per_trade": "Reference USD size per trade used for display/proposal context. Actual sizing is risk-based (see risk_pct_per_trade).",
+  "risk_pct_per_trade": 0.01,
+  "_comment_risk_pct_per_trade": "Fraction of equity risked per trade (0.01 = 1%). risk_usd = equity * risk_pct; notional = risk_usd / stop_distance_pct.",
+  "min_leverage": 10,
+  "_comment_min_leverage": "Lowest client-side leverage the recommender may pick. NOTE: Lighter has no leverage endpoint; leverage is a CLIENT-SIDE SIZING CAP only (effective_leverage = notional / margin). Nothing is sent to the exchange.",
+  "max_leverage": 25,
+  "_comment_max_leverage": "Absolute client-side leverage ceiling. The learning loop can only lower the effective cap below this, never raise it.",
+  "max_notional_per_trade": 25000,
+  "_comment_max_notional_per_trade": "Hard USD cap on a single order's notional. Oversized orders are scaled down to this, then blocked if still above.",
+  "max_total_exposure": 75000,
+  "_comment_max_total_exposure": "Hard USD cap on summed notional of all open positions. New trades must keep exposure below 90% of this to pass confluence.",
+  "max_concurrent_positions": 3,
+  "_comment_max_concurrent_positions": "Maximum simultaneously open positions (one per symbol).",
+  "max_daily_loss": 100,
+  "_comment_max_daily_loss": "USD. When realized daily loss reaches this, all new entries are blocked until the next UTC day. Set 0 to disable (not recommended).",
+  "allow_short": true,
+  "_comment_allow_short": "When false, short signals are journaled as blocked_by=config and never executed.",
+  "require_stop_loss": true,
+  "_comment_require_stop_loss": "Hard rule. Every trade (paper or real) must carry a stop-loss. Cannot be removed by learning.",
+  "require_take_profit": true,
+  "_comment_require_take_profit": "Hard rule. Every trade must carry a take-profit. Cannot be removed by learning.",
+  "min_reward_risk": 1.5,
+  "_comment_min_reward_risk": "Minimum reward:risk ratio for a valid setup. ATR defaults (SL 1.5xATR / TP 2.5xATR) give ~1.67 naturally.",
+  "cooldown_after_close_sec": 120,
+  "_comment_cooldown_after_close_sec": "Per-symbol cooldown after a position closes before a new entry is allowed.",
+  "minimum_hold_sec": 60,
+  "_comment_minimum_hold_sec": "Positions younger than this are not trailed or force-managed; avoids acting on unconfirmed fills.",
+  "cron": {
+    "enabled": true,
+    "scan_interval_minutes": 2,
+    "review_interval_minutes": 30,
+    "daily_summary_hour": 0,
+    "_comment_cron": "Drives cron-templates.json / register_crons.py. scan: runner every N min (paper scan suggestion: 5 min). review: outcomes+review+metrics. daily_summary_hour is UTC."
+  },
+  "sentiment": {
+    "enabled": false,
+    "weight": 0.1,
+    "_comment_sentiment": "Reserved hook for an external sentiment score. When enabled, a 'sentiment' field (-1..1) in the scan input nudges confidence by +/- weight before thresholding. Off by default; no provider is bundled."
+  },
+  "execution": {
+    "cancel_on_halt": true,
+    "flatten_on_emergency_stop": false,
+    "require_human_approval_for_live_orders": false,
+    "_comment_execution": "cancel_on_halt: halt.py cancels all open orders when invoked with --cancel-orders (or by default in live modes). flatten_on_emergency_stop: halt.py --flatten also market-closes all positions (dangerous; off by default). require_human_approval_for_live_orders: in live mode each order emits an approval prompt instead of sending immediately."
+  },
+  "gateway": {
+    "enabled": true,
+    "url": "http://127.0.0.1:8080",
+    "token_env": "MANTIS_AGENT_TOKEN",
+    "timeout_sec": 10,
+    "required": true,
+    "_comment_gateway": "Gateway mode (default): ALL exchange traffic flows through the swarm-arena-backend. REST reads POST to {url}/gw/rest (Bearer token from the env var named by token_env); the SDK signer is initialized with {url} so its /api/v1/* calls (nonce, auth token, sendTx) are proxied verbatim and journaled server-side (orders.jsonl). required=true: an unreachable backend fails the cycle and feeds the circuit breaker; required=false warns and falls back to direct venue access."
+  },
+  "arena": {
+    "start_equity": 10000,
+    "cycle_interval_minutes": 5,
+    "endpoint": "https://api.openai.com",
+    "api_key_env": "OPENAI_API_KEY",
+    "_comment_arena": "Multi-model competition. endpoint + api_key_env live HERE: any OpenAI-compatible base URL (OpenAI, xAI, DeepSeek, Qwen compatible mode, local proxies) and the env var holding its key. Model entries only need id + model \u2014 they inherit endpoint and api_key_env; override per model with base_url / api_key_env / provider (anthropic|openai|gemini|xai|deepseek|qwen) when mixing providers. Keys NEVER live in this file. Every model gets its own account state (state.<id>.json) and journal (trades.<id>.json) beside config.json, seeded with start_equity USD. Start the loop with scripts/bot.py (no flags needed \u2014 it reads this block), or schedule arena_runner.py via cron. The backend exposes /api/arena/* and frontend/arena.html renders the public board.",
+    "models": [
+      {
+        "id": "alpha",
+        "model": "gpt-5",
+        "_comment": "Minimal entry: inherits arena.endpoint and arena.api_key_env. Add \"api_key_env\": \"OTHER_KEY\" for a per-model key, \"base_url\" for a different endpoint, or \"provider\": \"anthropic\" (+ its key env) to mix providers."
+      },
+      {
+        "id": "beta",
+        "model": "deepseek-chat"
+      },
+      {
+        "id": "gamma",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5",
+        "api_key_env": "ANTHROPIC_API_KEY",
+        "env": {
+          "LIGHTER_ACCOUNT_INDEX": "LIGHTER_ACCOUNT_INDEX_GAMMA",
+          "_comment_env": "Optional per-model venue credentials: each key names a canonical env var, each value names the per-model env var it is read from for the duration of this model's cycle. Without this block all models share the operator account."
+        }
+      }
+    ]
+  }
+}

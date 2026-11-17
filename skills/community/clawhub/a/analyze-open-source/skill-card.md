@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze and explain open-source project code logic, architecture, data flows, APIs, and algorithms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and explain open-source project code logic, architecture, data flows, APIs, and algorithms.
 
-## Publisher: <br>
-[ttet](https://clawhub.ai/user/ttet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ttet](https://clawhub.ai/user/ttet)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze open-source repositories and produce a Chinese technical walkthrough of architecture, data flow, public APIs, and key algorithms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository files during analysis, which may expose private source code or secrets if aimed at sensitive repositories. <br>
-Mitigation: Use it only on repositories the user is authorized to analyze, and avoid private repositories containing secrets unless that analysis is intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand an open-source repository's structure, entry points, architecture, data flows, APIs, and important algorithms. It produces a concise Chinese-language technical walkthrough with Mermaid diagrams and code references.
 
-## Reference(s): <br>
-- [Report template](template.md) <br>
-- [ClawHub release page](https://clawhub.ai/ttet/analyze-open-source) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report in Chinese with Mermaid diagrams and annotated code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes at least two Mermaid diagrams and concise code references; intended to be readable in under 15 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs an agent to inspect and summarize repository files, which may expose information from repositories the user did not intend to analyze.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on repositories the user intentionally provides for inspection.
+
+Risk: Architecture and code-flow explanations can be incomplete or misleading if important files are missed or project behavior is inferred incorrectly.
+
+Mitigation: Review generated reports against cited files and line references before relying on conclusions.
+
+## Reference(s):
+
+- [Report template](artifact/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code references, Guidance]
+
+**Output Format:** [Chinese-language Markdown report with Mermaid diagrams and cited code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report is designed to be readable in under 15 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

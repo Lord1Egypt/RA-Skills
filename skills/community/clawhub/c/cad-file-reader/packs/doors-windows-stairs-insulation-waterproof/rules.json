@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "confidence": {"direct_label": 0.95, "pattern_match": 0.78, "geometry_pattern": 0.86, "inferred": 0.5},
+  "view_rules": [
+    {"type": "door_window_schedule", "patterns": ["门窗表", "门窗统计", "DOOR SCHEDULE", "WINDOW SCHEDULE"]},
+    {"type": "window_plan", "patterns": ["窗平面", "门窗平面", "WINDOW PLAN"]},
+    {"type": "stair_detail", "patterns": ["楼梯详图", "梯段", "踏步", "STAI", "STAIR"]},
+    {"type": "insulation_plan", "patterns": ["保温平面", "外墙保温", "保温做法", "INSULATION"]},
+    {"type": "waterproof_detail", "patterns": ["防水做法", "屋面防水", "卫生间防水", "WATERPROOF"]}
+  ],
+  "system_rules": [
+    {"system": "door", "patterns": ["门", "防火门", "入户门", "DOOR"]},
+    {"system": "window", "patterns": ["窗", "幕墙窗", "WINDOW"]},
+    {"system": "stair", "patterns": ["楼梯", "梯段", "踏步", "扶手", "STAI"]},
+    {"system": "insulation", "patterns": ["保温", "挤塑板", "岩棉", "聚苯", "INSULATION"]},
+    {"system": "waterproof", "patterns": ["防水", "防潮", "卷材", "涂料", "WATERPROOF"]}
+  ],
+  "component_rules": [
+    {"category": "door", "system": "door", "patterns": ["门", "M", "FM", "入户门", "DOOR"]},
+    {"category": "window", "system": "window", "patterns": ["窗", "C1", "WC", "WINDOW"]},
+    {"category": "stair_flight", "system": "stair", "patterns": ["梯段", "踏步", "楼梯", "STAI"]},
+    {"category": "stair_landing", "system": "stair", "patterns": ["休息平台", "梯平台", "LANDING"]},
+    {"category": "railing", "system": "stair", "patterns": ["扶手", "栏杆", "RAILING"]},
+    {"category": "insulation_layer", "system": "insulation", "patterns": ["保温层", "外墙保温", "挤塑板", "岩棉", "INSULATION"]},
+    {"category": "waterproof_layer", "system": "waterproof", "patterns": ["防水层", "卷材", "防水涂料", "WATERPROOF"]}
+  ],
+  "reference_patterns": {
+    "door_no": "(?<![A-Za-z0-9])(?:M|FM|RM|GM)\\d{1,3}(?:[A-Za-z]{0,2})?(?![A-Za-z0-9])",
+    "window_no": "(?<![A-Za-z0-9])(?:C|TC|BYC|ZXC)\\d{1,3}(?:[A-Za-z]{0,2})?(?![A-Za-z0-9])",
+    "elevation": "(?<![A-Za-z0-9])标高\\s*[-+]?\\d+(?:\\.\\d+)?"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,4}",
+  "unit_patterns": {"mm": ["单位\\s*[:：]?\\s*mm", "mm"], "m": ["单位\\s*[:：]?\\s*m"]},
+  "layer_rules": [
+    {"category": "door", "system": "door", "patterns": ["门", "DOOR"]},
+    {"category": "window", "system": "window", "patterns": ["窗", "WINDOW"]},
+    {"category": "stair", "system": "stair", "patterns": ["楼梯", "STAI"]},
+    {"category": "insulation", "system": "insulation", "patterns": ["保温", "INSULATION"]},
+    {"category": "waterproof", "system": "waterproof", "patterns": ["防水", "WATERPROOF"]}
+  ]
+}

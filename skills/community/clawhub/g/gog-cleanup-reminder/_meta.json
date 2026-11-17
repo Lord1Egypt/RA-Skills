@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "gog-cleanup-reminder",
+  "name": "gog-cleanup-reminder",
   "version": "0.1.0",
-  "publishedAt": 1775670919731
+  "entry": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "scripts/gog_cleanup_reminder.py",
+    "references/sample-cron.txt"
+  ]
 }

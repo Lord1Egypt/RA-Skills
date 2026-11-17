@@ -1,45 +1,56 @@
-## Description: <br>
-面向 AI 从业者的企业研究技能，适用于企业画像、竞品扫描、融资与团队分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 企业画像 helps AI practitioners build structured company profiles, competitor scans, financing summaries, team analyses, and comparison conclusions using the /api/v1/enterprises query interface.
 
-## Publisher: <br>
-[jiqizhixin](https://clawhub.ai/user/jiqizhixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiqizhixin](https://clawhub.ai/user/jiqizhixin)
 
-## Use Case: <br>
-AI industry practitioners, investment researchers, business development teams, marketers, and strategy teams use this skill to build structured company profiles, compare competitors, summarize financing and team signals, and form company or sector-level conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enterprise research queries are sent to the Jiqizhixin API with the user's JQZX_API_TOKEN. <br>
-Mitigation: Treat the token as secret and avoid submitting confidential acquisition, investment, or competitive targets unless disclosure to that API is acceptable. <br>
-Risk: The skill's broad trigger language may cause it to be used for general AI questions beyond enterprise research. <br>
-Mitigation: Narrow local trigger or routing language so the skill is used for AI-company research, competitor scans, financing analysis, and related enterprise profiling tasks. <br>
-Risk: Company, financing, team, and competitive information may be incomplete or time-sensitive. <br>
-Mitigation: State coverage boundaries when samples are sparse and supplement with appropriate recent-news or public-source checks for current events. <br>
+## Use Case:
 
+AI researchers, investors, BD teams, market analysts, and strategy teams use this skill to research individual AI companies or compare companies across sectors. It supports structured profiles covering basic company facts, teams, products, financing, operating status, competitive position, and risk signals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiqizhixin/ai-enterprise-profiler) <br>
-- [Jiqizhixin Data Service](https://www.jiqizhixin.com/data-service) <br>
-- [api-v1-enterprises.md](references/api-v1-enterprises.md) <br>
-- [keyword_reference.md](references/keyword_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, structured tables, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JQZX_API_TOKEN for authenticated enterprise search through the disclosed Jiqizhixin API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The query script can send JQZX_API_TOKEN to a BASE_URL override or redirected endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep BASE_URL unset unless the endpoint is trusted, avoid shared environments where others can control variables, and validate redirect destinations before sending credentials.
+
+Risk: Company research results may be incomplete when the API returns too few candidates or narrow filters miss aliases.
+
+Mitigation: Expand company aliases or query terms, disclose coverage boundaries, and use consistent fields when comparing companies.
+
+## Reference(s):
+
+- [/api/v1 enterprise interface strategy](references/api-v1-enterprises.md)
+- [Search keyword synonym reference](references/keyword_reference.md)
+- [Jiqizhixin data service](https://www.jiqizhixin.com/data-service)
+- [Jiqizhixin enterprise API endpoint](https://mcp.applications.jiqizhixin.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, structured tables, JSON API request examples, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JQZX_API_TOKEN plus curl and jq when using the bundled query script.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Guides agents through Faktum News Android app development using Google Android CLI skills, Kotlin, Jetpack Compose, and the existing Faktum web API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Faktum Android helps agents build the Faktum News Android app with Android CLI, Kotlin, Jetpack Compose, Navigation 3, edge-to-edge UI, and the existing Faktum web API.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create and validate a Kotlin and Jetpack Compose Android client for Faktum News. It guides project setup, Android CLI usage, official Android skill chaining, and reuse of the existing Faktum web API.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requires broad reads from private local project, vault, and memory paths.
+
+Mitigation: Require the agent to list each external path before access, get explicit approval, and skip unrelated vault or memory content.
+
+Risk: The skill can alter Android CLI skill or tooling state without clear version pinning.
+
+Mitigation: Pin Android CLI skills and updates to reviewed versions before use.
+
+Risk: The skill discusses distributing updated skills across multiple agent directories.
+
+Mitigation: Avoid cross-agent skill distribution unless the operator explicitly intends it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold and iterate on the Faktum News Android app with Kotlin, Jetpack Compose, Navigation 3, edge-to-edge UI, and the existing Faktum web API. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may trigger the skill outside the intended Faktum Android project context. <br>
-Mitigation: Confirm the active project and intended Android task before applying the skill. <br>
-Risk: The skill directs agents to read private vault, memory, and project source paths. <br>
-Mitigation: Use it only where access to those local files is expected, and ask for explicit confirmation before reading sensitive project notes. <br>
-Risk: Android SDK installs, project creation, skill additions, or skill updates can modify the local development environment or shared AI tool directories. <br>
-Mitigation: Require explicit approval before running install, creation, update, or shared-directory modification commands. <br>
+**Output Format:** [Markdown with inline shell commands, Kotlin/Compose guidance, and configuration instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Agent-facing development guidance for Android project creation, SDK setup, emulator execution, API integration, and implementation workflow.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Android CLI commands, project configuration, Kotlin and Compose implementation steps, and local source reads for the Faktum Android project.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

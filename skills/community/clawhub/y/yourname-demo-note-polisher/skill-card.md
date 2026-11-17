@@ -1,39 +1,54 @@
-## Description: <br>
-Turn rough notes, bullet lists, chat fragments, meeting takeaways, and mixed-language drafts into polished writing without changing the underlying facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Demo Note Polisher turns rough notes, bullet lists, chat fragments, meeting takeaways, and mixed-language drafts into clearer messages, emails, status updates, announcements, summaries, or short memos without changing underlying facts.
 
-## Publisher: <br>
-[jin935150450-ctrl](https://clawhub.ai/user/jin935150450-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jin935150450-ctrl](https://clawhub.ai/user/jin935150450-ctrl)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn rough notes, bullet lists, meeting takeaways, chat fragments, or mixed-language drafts into concise messages, emails, status updates, announcements, summaries, or short memos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided notes may contain passwords, API keys, or highly sensitive personal or business information. <br>
-Mitigation: Remove secrets and highly sensitive details before asking the skill to polish text. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn rough notes, meeting takeaways, chat fragments, and drafts into concise polished writing while preserving the user's intent, facts, and certainty level.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jin935150450-ctrl/yourname-demo-note-polisher) <br>
-- [Publisher profile](https://clawhub.ai/user/jin935150450-ctrl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the user's facts, stance, certainty level, and requested language unless the user asks for a change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Polished wording may make inaccurate or uncertain source notes sound more definitive than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for factual accuracy and preserve or mark uncertainty before sending.
+
+Risk: Sensitive, legal, medical, financial, or business-critical notes may require domain review before reuse.
+
+Mitigation: Have an appropriate human reviewer check high-impact content before publication or action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jin935150450-ctrl/skills/yourname-demo-note-polisher)
+- [Publisher profile](https://clawhub.ai/user/jin935150450-ctrl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Polished prose, optionally structured as messages, emails, status updates, meeting summaries, announcements, summaries, or short memos]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source facts and uncertainty; asks at most one clarifying question when missing context would materially change the output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

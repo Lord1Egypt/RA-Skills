@@ -1,43 +1,63 @@
-## Description: <br>
-Text-to-speech conversion using the node-edge-tts npm package for generating audio from text with multiple voices, languages, speed adjustment, pitch control, and subtitle generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text into speech audio with Microsoft Edge neural voices through node-edge-tts, with configurable language, voice, speed, pitch, volume, output format, and subtitle generation.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and external users use this skill to convert requested text into spoken audio or MP3 files, including accessibility, multitasking, and customized voice output workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text is sent to an online TTS provider. <br>
-Mitigation: Use only with text appropriate for an external online TTS service and review privacy requirements before converting sensitive content. <br>
-Risk: Persistent voice, proxy, and output preferences may remain in the user's TTS configuration file. <br>
-Mitigation: Review or reset ~/.tts-config.json when changing environments or when persistent preferences are no longer desired. <br>
-Risk: Standalone trigger words such as tts may be omitted from generated audio. <br>
-Mitigation: Review the generated text and audio when exact narration is required. <br>
+## Use Case:
 
+External users and developers use this skill to turn requested text into spoken MP3 audio with selected voices and languages, and to configure TTS preferences or subtitles when needed.
 
-## Reference(s): <br>
-- [node-edge-tts Reference](references/node_edge_tts_guide.md) <br>
-- [Voice Testing](https://tts.travisvn.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline JavaScript and bash examples; generated audio is returned as media paths or MP3 files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate JSON subtitles and persistent TTS configuration when the bundled scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Text may be sent to Microsoft Edge's online TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, credentials, private business data, or sensitive personal content unless the data-handling implications have been reviewed.
+
+Risk: Broad TTS triggers may cause unintended text to be converted to speech.
+
+Mitigation: Confirm user intent before conversion and remove trigger words from the text that is sent for synthesis.
+
+Risk: Generated MP3 and subtitle JSON files can remain on disk.
+
+Mitigation: Clean up generated files from the temporary directory or use an explicit managed output path.
+
+Risk: The skill depends on npm packages and carries supply-chain risk.
+
+Mitigation: Review or update dependencies before use and prefer pinned, reproducible installs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/edge-tts-cn)
+- [node-edge-tts Reference](references/node_edge_tts_guide.md)
+- [Voice Testing Preview](https://tts.travisvn.com/)
+
+## Skill Output:
+
+**Output Type(s):** [audio files, subtitle JSON, shell commands, configuration, guidance]
+
+**Output Format:** [MP3 audio files, optional JSON subtitles, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Microsoft Edge's online TTS service; generated media may be written to temporary or user-specified output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, target metadata, and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

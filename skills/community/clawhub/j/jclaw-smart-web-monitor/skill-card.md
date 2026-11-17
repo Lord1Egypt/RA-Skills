@@ -1,42 +1,57 @@
-## Description: <br>
-Smart Web Monitor watches web pages for keyword, regex, CSS, JSONPath, or agent-judged natural-language matches and helps report or pause monitors after a match. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Web Monitor lets an agent monitor web pages using keyword, regex, CSS, JSONPath, or LLM-based natural-language matching, with commands to create, run, fetch, pause, resume, enable, disable, and delete monitors.
 
-## Publisher: <br>
-[skywalker-lili](https://clawhub.ai/user/skywalker-lili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skywalker-lili](https://clawhub.ai/user/skywalker-lili)
 
-## Use Case: <br>
-Developers and automation users use this skill to create scheduled web monitors that fetch public pages, evaluate configured matching rules, and surface relevant changes or extracted page text for agent review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LLM-mode monitors can place extracted page text into the agent's reasoning context and local reports or logs. <br>
-Mitigation: Use LLM mode only for public or low-sensitivity pages, and avoid private dashboards, authenticated pages, secrets, personal data, or proprietary content. <br>
-Risk: Cron jobs can repeatedly fetch monitored pages and trigger agent review without direct user interaction. <br>
-Mitigation: Review each cron job before enabling it and confirm the monitored URLs and notification behavior are intended. <br>
+## Use Case:
 
+Developers and agent users use this skill to watch public web pages for matching content, summarize matches, and manage monitor state through local configuration and OpenClaw cron jobs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skywalker-lili/jclaw-smart-web-monitor) <br>
-- [Hacker News example monitor](https://news.ycombinator.com/) <br>
-- [HKMA vacancies example monitor](https://www.hkma.gov.hk/chi/about-us/join-us/current-vacancies/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON monitor configuration, JSON fetch output, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch output caps extracted page text at about 20000 characters per URL before agent review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can fetch arbitrary user-configured URLs and process untrusted page text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use monitors only with trusted public URLs and avoid authenticated, private, or internal dashboards.
+
+Risk: LLM-based monitors feed web page content to a command-capable cron agent.
+
+Mitigation: Add strong confirmation and prompt-injection safeguards before scheduling LLM-based monitors.
+
+Risk: Scheduled monitors can create recurring tasks, local files, and outbound summaries.
+
+Mitigation: Review cron messages, destination channels, and generated monitor configuration before enabling recurring execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skywalker-lili/skills/jclaw-smart-web-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON monitor data, and Markdown alert reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetch output caps extracted page text at about 20000 characters per URL for LLM review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

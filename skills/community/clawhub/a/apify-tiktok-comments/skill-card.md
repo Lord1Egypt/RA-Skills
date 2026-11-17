@@ -1,46 +1,55 @@
-## Description: <br>
-Guides agents through collecting TikTok post comments and threaded replies with the futurizerush Apify TikTok comment scraper actor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract comments and replies from TikTok video and photo posts using the futurizerush/tiktok-comment-scraper Apify Actor.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to start Apify runs for public TikTok posts, poll for completion, and retrieve comment and reply datasets for engagement analysis or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TikTok URLs and scraped comment or profile metadata are sent to Apify and the named third-party actor. <br>
-Mitigation: Use only when that third-party data flow is acceptable, avoid adding sensitive context to requests, and review the actor's pricing and trustworthiness before use. <br>
-Risk: Apify API tokens can authorize account activity if exposed. <br>
-Mitigation: Store APIFY_API_TOKEN in a secret store or environment manager and do not paste it into shared logs, prompts, or files. <br>
-Risk: Collected datasets may retain comment and profile metadata after the agent finishes its task. <br>
-Mitigation: Review and clean up Apify datasets when the extracted data is no longer needed. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to run an Apify scraper for public TikTok posts and retrieve comments and replies for engagement analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/apify-tiktok-comments) <br>
-- [Publisher profile](https://clawhub.ai/user/futurizerush) <br>
-- [Apify actor page](https://apify.com/futurizerush/tiktok-comment-scraper?fpr=rush) <br>
-- [Apify API documentation](https://docs.apify.com/api/v2) <br>
-- [Apify API token settings](https://console.apify.com/account/integrations?fpr=rush) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash examples plus JSON result schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_API_TOKEN and sends TikTok URLs to Apify for asynchronous actor runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Apify API tokens placed in request URLs can be exposed through logs, shell history, proxies, or copied examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow, revocable Apify token and prefer Authorization headers or other non-URL credential handling when adapting the examples.
+
+Risk: TikTok URLs, scraping settings, and collected comment data are processed by Apify.
+
+Mitigation: Confirm that sending the requested TikTok inputs and outputs to Apify is acceptable for the user's privacy, policy, and data-handling requirements before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futurizerush/skills/apify-tiktok-comments)
+- [Apify TikTok Comment Scraper Actor](https://apify.com/futurizerush/tiktok-comment-scraper?fpr=rush)
+- [Apify API v2 documentation](https://docs.apify.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash examples that produce JSON results from Apify datasets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe Apify API calls, polling behavior, input parameters, and returned TikTok comment and reply fields.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

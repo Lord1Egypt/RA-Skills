@@ -1,42 +1,59 @@
-## Description: <br>
-Prepare and publish an OpenClaw skill to ClawHub with checks for sensitive content, generalization steps, directory scaffolding, git setup, and a confirmed ClawHub publish command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare and publish an OpenClaw skill to ClawHub, including PII and secret auditing, content generalization, environment variable extraction, directory scaffolding, git initialization, and ClawHub publishing.
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-Developers and skill authors use this skill to prepare new or updated OpenClaw skills for ClawHub publication. It guides them through auditing, creating a publishable copy, generalizing configuration, verifying the clean state, and publishing only after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing can make skill contents public. <br>
-Mitigation: Review generated files and approve the final `npx clawhub@latest publish` command only after confirming no sensitive content remains. <br>
-Risk: The skill asks an agent to inspect skill directories for secrets, PII, hardcoded paths, and other sensitive content. <br>
-Mitigation: Use it only on skill directories the user intends to prepare for publication and review the audit findings before creating a publishable copy. <br>
+## Use Case:
 
+Developers and skill authors use this skill to prepare OpenClaw skills for ClawHub publication by auditing sensitive content, creating a clean publishable copy, and confirming publish metadata before release.
 
-## Reference(s): <br>
-- [ClawdHub Publish Helper on ClawHub](https://clawhub.ai/cdmichaelb/clawhub-publish-helper) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [Audit Checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and checklist-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review and confirmation before any publish command is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The workflow uses unpinned `npx clawhub@latest` commands for login and publishing in a sensitive release path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the command with a pinned, reviewed ClawHub CLI version before authenticating or publishing.
+
+Risk: The assistant reads the target skill directory and creates a publishable copy, so missed secrets or personal data could be carried into a public release.
+
+Mitigation: Complete the PII and secret audit checklist, inspect the publishable copy, and confirm the exact directory before publishing.
+
+Risk: Publishing with the wrong slug, version, or directory can release unintended content.
+
+Mitigation: Confirm the absolute directory path, public slug, version, and changelog before running the publish command.
+
+## Reference(s):
+
+- [Audit Checklist](references/checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/cdmichaelb/skills/clawhub-publish-helper)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, checklists, and code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a publishable skill directory plan and ClawHub CLI publish command after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

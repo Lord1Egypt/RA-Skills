@@ -1,44 +1,60 @@
-## Description: <br>
-Agent Vision Scraper packages a Docker-based browser automation tool for agents to navigate websites, scrape data, and use vision to handle graphical CAPTCHA challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Vision Scraper runs a Dockerized Playwright browser with virtual display support for vision-assisted web automation, scraping, and CAPTCHA-handling tasks.
 
-## Publisher: <br>
-[Tedtalk](https://clawhub.ai/user/Tedtalk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tedtalk](https://clawhub.ai/user/tedtalk)
 
-## Use Case: <br>
-Developers and automation engineers can use this skill to run browser-based web automation and data extraction tasks in a containerized environment. It is intended only for authorized workflows on systems the user owns or has explicit permission to test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates stealth web scraping, CAPTCHA handling, and credentialed login flows. <br>
-Mitigation: Install and run it only for authorized testing or automation on systems you own or have explicit permission to test; do not use it to bypass third-party anti-bot protections or CAPTCHAs. <br>
-Risk: Runtime configuration may expose credentials, API keys, screenshots, or browser sessions. <br>
-Mitigation: Avoid passing real credentials in command arguments, restrict API keys, assume screenshots may leave the machine, and secure or disable VNC rather than exposing port 5900 without a password. <br>
-Risk: The release evidence notes that the Dockerfile should be inspected or obtained before running the container. <br>
-Mitigation: Review the container build inputs before execution and run the skill in an isolated environment with only the permissions required for the authorized task. <br>
+## Use Case:
 
+Developers and operators use this skill to run browser automation and data extraction workflows in Docker, especially when the task requires visual page interpretation. Users should only apply it to sites they are authorized to automate.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Tedtalk/agent-vision-scraper) <br>
-- [Artifact README](artifact/README.md) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Tedtalk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console text with shell commands, configuration snippets, and extracted task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit browser automation results, extracted data, status logs, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, README.md) <br>
+Risk: The security review flags anti-bot automation and CAPTCHA bypass capability as suspicious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only when you have explicit permission to automate the target site and the task complies with applicable terms and policies.
+
+Risk: The skill may expose browser activity through VNC and can use credentials or API keys from a .env file.
+
+Mitigation: Bind VNC to localhost or require authentication, avoid shared .env files, and isolate real account credentials.
+
+Risk: Screenshots or page data may be sent to external AI services during vision-assisted browsing.
+
+Mitigation: Avoid sensitive pages unless the external AI service, data handling, and network/container isolation are approved for the data involved.
+
+## Reference(s):
+
+- [Agent Vision Scraper ClawHub listing](https://clawhub.ai/tedtalk/skills/agent-vision-scraper)
+- [Tedtalk publisher profile](https://clawhub.ai/user/tedtalk)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime output may include text logs and JSON task results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs through Docker with environment-variable configuration and optional VNC viewing on port 5900.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata, package.json, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Price options, compute Greeks, solve implied volatility, and generate payoff, option-chain, breakeven, and P/L tables in a terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Price options, compute Greeks, and plot P&L diagrams with exercise analysis.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users, developers, and finance-oriented analysts use this skill for command-line Black-Scholes option pricing, Greeks, implied volatility, payoff, option-chain, breakeven, and position P/L calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted inputs can make the calculator run local code. <br>
-Mitigation: Use only trusted, manually typed numeric inputs; maintainers should validate numeric arguments safely and pass values to Python without source interpolation. <br>
-Risk: Pricing history may be stored automatically in $HOME/.option-calculator/history.log. <br>
-Mitigation: Avoid entering sensitive pricing data unless local history retention is acceptable; maintainers should make history logging opt-in with clear delete and disable controls. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to calculate Black-Scholes option prices, Greeks, implied volatility, payoff tables, breakeven points, option chains, and position P/L from terminal inputs.
 
-## Reference(s): <br>
-- [Option Calculator on ClawHub](https://clawhub.ai/xueyetianya/option-calculator) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with numeric tables and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Price commands append calculation history to $HOME/.option-calculator/history.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Crafted calculator arguments can execute commands through unsafe Python heredoc interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted numeric inputs until the interpolation is fixed, and review the script before installing or running it.
+
+Risk: Price command inputs and results may be written to $HOME/.option-calculator/history.log.
+
+Mitigation: Set OPTION_CALCULATOR_DIR to an appropriate directory or clear the history log when command history should not persist.
+
+## Reference(s):
+
+- [Option Calculator on ClawHub](https://clawhub.ai/xueyetianya/skills/option-calculator)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bash and Python 3 standard library calculations; price commands may be logged under the configured option calculator data directory.]
+
+## Skill Version(s):
+
+2.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

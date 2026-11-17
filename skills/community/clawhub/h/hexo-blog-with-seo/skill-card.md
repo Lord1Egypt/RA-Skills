@@ -1,43 +1,56 @@
-## Description: <br>
-Draft and publish Hexo posts end-to-end with front matter, SEO polish, and deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft and publish Hexo posts end-to-end with front matter, SEO polish, and deployment support.
 
-## Publisher: <br>
-[Jarxi](https://clawhub.ai/user/Jarxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarxi](https://clawhub.ai/user/jarxi)
 
-## Use Case: <br>
-Developers and blog maintainers use this skill to draft unpublished Hexo posts, polish existing Markdown for SEO, and publish approved updates through the Hexo deployment workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can deploy live Hexo blog updates using configured credentials. <br>
-Mitigation: Require explicit approval for the target repository, changed files, and deploy intent before allowing npx hexo deploy. <br>
-Risk: Removing published: false can make a draft visible on the public site. <br>
-Mitigation: Keep published: false for draft-only work and confirm with the user before removing it. <br>
-Risk: The skill edits Markdown and generated output inside a user-selected Hexo repository. <br>
-Mitigation: Confirm the repository path before editing and review changed files before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jarxi/hexo-blog-with-seo) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+## Use Case:
 
+Developers and content maintainers use this skill to draft unpublished Hexo posts, polish existing Markdown for SEO, and publish through the Hexo deployment workflow after explicit approval.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with front matter and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Hexo post files and propose or run Hexo clean, generate, and deploy commands after user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can deploy live site changes using configured git or hosting credentials.
+
+Mitigation: Require fresh explicit approval after reviewing the target remote and pending changes before running deployment.
+
+Risk: The workflow uses unpinned npx Hexo commands.
+
+Mitigation: Prefer a pinned, lockfile-backed local Hexo command or a vetted repository script.
+
+Risk: The skill may edit existing Markdown, configuration, or generated output in a Hexo repository.
+
+Mitigation: Review diffs before publishing and keep changes scoped to the requested post or deployment step.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarxi/skills/hexo-blog-with-seo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown posts with YAML front matter, status updates, and Hexo shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify Hexo blog files and run deployment commands when explicitly approved.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Effect Templates"
+  short_description: "Discover and apply Crun video effect templates"
+  default_prompt: "Use $crun-effect-template to find and apply a Kling, Vidu, or ByteDance effect template."

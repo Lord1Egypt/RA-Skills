@@ -1,39 +1,55 @@
-## Description: <br>
-A multimodal emotional perception and Hanzi-based ambient art rendering engine that helps an OpenClaw agent translate conversational emotion cues into narrated Hanzi-themed ambient art. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2 Hanzi Empathic Resonance guides an OpenClaw agent to infer conversational emotional cues and narrate ambient Hanzi art transformations using stroke, rhythm, color, and display-effect language.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and OpenClaw agent operators use this skill to have the agent respond to mood, energy, or room-atmosphere prompts with creative Hanzi visualizations and calming narration. It is best understood as wellness-art narration, not clinical emotion assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make emotional assumptions from conversational context and frame them as perception. <br>
-Mitigation: Treat outputs as creative narration rather than real emotion detection or mental-health assessment. <br>
-Risk: Narrated display changes may imply that smart panels, holographic displays, or other spatial hardware actually changed. <br>
-Mitigation: Confirm any physical display action through separate device integrations; this skill itself only produces text. <br>
+## Use Case:
 
+External OpenClaw users use this skill to receive mood-aware, artistic responses that narrate Hanzi-based ambient display concepts for fatigue, anxiety, joy, or room atmosphere. Developers and reviewers can use it as a documentation-only skill that changes response style without installing code or requesting local permissions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational text with narrated visual descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona behavior; no tools, code execution, dependencies, API calls, or persistent data access are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may infer a user's emotional state without a clear opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where mood-aware artistic responses are desired, and review outputs for overconfident or intrusive emotion labels.
+
+Risk: The skill may describe therapeutic effects or display changes it cannot actually perform.
+
+Mitigation: Frame outputs as creative narration unless a real renderer or device integration is separately installed and confirmed, and avoid medical claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-hanzi-empathic-resonance)
+- [Project homepage listed in skill metadata](https://github.com/SpaceSQ/s2-os-core)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Narrative ambient-art descriptions; no code execution, local tools, or device-control output declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

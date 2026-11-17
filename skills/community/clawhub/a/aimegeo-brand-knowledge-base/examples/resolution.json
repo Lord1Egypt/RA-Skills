@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "kb": {"id": "demo-brand-kb", "name": "示例组织 A 品牌资料库"},
+  "as_of": "2026-10-21",
+  "records": [
+    {
+      "id": "fact-export-confirmed", "entity_id": "product-a", "category": "product", "key": "delivery_formats",
+      "value": "Markdown+JSON+CSV", "text": "本资料库按第二版整理结果记录：Markdown 正文、JSON 索引以及 CSV 事实表。旧版交付记录保留为历史。",
+      "status": "supported", "project_ids": ["content-demo"],
+      "sources": [{"source_id": "release-v2", "locator": "正文第2段", "quote": "第二版整理结果包含 Markdown 正文、JSON 索引以及 CSV 事实表。"}],
+      "supersedes": ["fact-export-intro", "fact-export-faq", "fact-export-v2"]
+    }
+  ]
+}

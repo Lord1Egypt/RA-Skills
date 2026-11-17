@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-seedance2-video-generator",
-  "version": "1.0.3",
-  "publishedAt": 1775132191468
+  "name": "IMA Seedance 2.0 Video Generator",
+  "description": "Seedance 2.0 video generator for text-to-video, image-to-video, first-last-frame, and reference-media workflows including image, video, and audio references.",
+  "version": "1.0.0",
+  "publishedAt": 1741277713337
 }

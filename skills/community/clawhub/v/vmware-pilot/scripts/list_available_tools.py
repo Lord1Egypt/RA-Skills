@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """List all available VMware tools grouped by skill for workflow design.
 
-Quick reference for designing workflows — shows every skill and its tools
-with risk levels and brief descriptions.
+Quick reference for designing workflows — shows a curated set of tools per
+skill with risk levels and brief descriptions. The approval-gate check does not
+read this table; it reads pilot's skill catalog (get_skill_catalog), so where
+the two differ the catalog decides whether a step needs a require_approval gate.
 
 Usage:
     python3 list_available_tools.py          # All skills
@@ -20,21 +22,21 @@ SKILLS: dict[str, dict[str, Any]] = {
     "aiops": {
         "description": "VM lifecycle and operations (power, clone, deploy, reconfigure, guest ops)",
         "tools": {
-            "vm_power_on":               {"risk": "medium", "desc": "Power on a VM"},
-            "vm_power_off":              {"risk": "medium", "desc": "Power off a VM (graceful or force)"},
+            "power_on_vm":               {"risk": "medium", "desc": "Power on a VM"},
+            "power_off_vm":              {"risk": "high",   "desc": "Power off a VM (graceful or force)"},
             "deploy_linked_clone":       {"risk": "medium", "desc": "Clone a VM from snapshot"},
-            "vm_create_plan":            {"risk": "low",    "desc": "Create a batch operation plan (dry-run)"},
-            "vm_apply_plan":             {"risk": "high",   "desc": "Execute a batch operation plan"},
-            "vm_rollback_plan":          {"risk": "high",   "desc": "Rollback a batch operation plan"},
-            "vm_guest_exec":             {"risk": "medium", "desc": "Run command inside guest OS"},
-            "vm_guest_exec_output":      {"risk": "medium", "desc": "Run command inside guest OS and capture output"},
-            "vm_guest_upload":           {"risk": "medium", "desc": "Upload file to guest OS"},
-            "vm_guest_provision":        {"risk": "medium", "desc": "Bootstrap/provision a new VM"},
+            "create_vm_plan":            {"risk": "low",    "desc": "Create a batch operation plan (dry-run)"},
+            "apply_vm_plan":             {"risk": "high",   "desc": "Execute a batch operation plan"},
+            "rollback_vm_plan":          {"risk": "high",   "desc": "Rollback a batch operation plan"},
+            "run_vm_guest_command":             {"risk": "high",   "desc": "Run command inside guest OS"},
+            "run_vm_guest_command_with_output":      {"risk": "high",   "desc": "Run command inside guest OS and capture output"},
+            "upload_vm_guest_file":           {"risk": "high",   "desc": "Upload file to guest OS"},
+            "provision_vm_guest":        {"risk": "high",   "desc": "Bootstrap/provision a new VM"},
             "batch_clone_vms":           {"risk": "high",   "desc": "Clone multiple VMs at once"},
-            "vm_clean_slate":            {"risk": "high",   "desc": "Revert VM to snapshot (destructive)"},
+            "restore_vm_clean_slate":            {"risk": "high",   "desc": "Revert VM to snapshot (destructive)"},
             "acknowledge_vcenter_alarm": {"risk": "low",    "desc": "Acknowledge a vCenter alarm"},
             "reset_vcenter_alarm":       {"risk": "low",    "desc": "Reset a vCenter alarm"},
-            "cluster_create":            {"risk": "high",   "desc": "Create a new vSphere cluster"},
+            "create_cluster":            {"risk": "high",   "desc": "Create a new vSphere cluster"},
             "deploy_vm_from_ova":        {"risk": "medium", "desc": "Deploy VM from OVA file"},
             "deploy_vm_from_template":   {"risk": "medium", "desc": "Deploy VM from vCenter template"},
         },
@@ -48,7 +50,7 @@ SKILLS: dict[str, dict[str, Any]] = {
             "list_all_clusters":     {"risk": "low", "desc": "List all clusters"},
             "get_alarms":            {"risk": "low", "desc": "Get active alarms"},
             "get_events":            {"risk": "low", "desc": "Get recent events (filterable by severity/hours)"},
-            "vm_info":               {"risk": "low", "desc": "Detailed VM information"},
+            "get_vm_info":               {"risk": "low", "desc": "Detailed VM information"},
         },
     },
     "nsx": {
@@ -94,18 +96,19 @@ SKILLS: dict[str, dict[str, Any]] = {
             "create_tkc_cluster": {"risk": "medium", "desc": "Deploy TKC cluster"},
             "scale_tkc_cluster":  {"risk": "medium", "desc": "Scale TKC worker nodes"},
             "delete_tkc_cluster": {"risk": "high",   "desc": "Delete TKC cluster"},
-            "get_tkc_kubeconfig": {"risk": "low",    "desc": "Retrieve kubeconfig for TKC cluster"},
+            "issue_tkc_kubeconfig": {"risk": "high",   "desc": "Live credential - gate it"},
+            "issue_supervisor_kubeconfig": {"risk": "high", "desc": "Live credential - gate it"},
         },
     },
     "storage": {
         "description": "Storage management (datastores, iSCSI, vSAN)",
         "tools": {
             "list_all_datastores":     {"risk": "low",    "desc": "List all datastores"},
-            "storage_iscsi_enable":    {"risk": "medium", "desc": "Enable iSCSI adapter on host"},
-            "storage_iscsi_add_target": {"risk": "medium", "desc": "Add iSCSI target to host"},
-            "storage_rescan":          {"risk": "low",    "desc": "Rescan storage adapters"},
-            "vsan_health":             {"risk": "low",    "desc": "Check vSAN health"},
-            "vsan_capacity":           {"risk": "low",    "desc": "Check vSAN capacity"},
+            "enable_iscsi":    {"risk": "medium", "desc": "Enable iSCSI adapter on host"},
+            "add_iscsi_target": {"risk": "medium", "desc": "Add iSCSI target to host"},
+            "rescan_storage":          {"risk": "low",    "desc": "Rescan storage adapters"},
+            "get_vsan_health":             {"risk": "low",    "desc": "Check vSAN health"},
+            "get_vsan_capacity":           {"risk": "low",    "desc": "Check vSAN capacity"},
         },
     },
     "pilot": {

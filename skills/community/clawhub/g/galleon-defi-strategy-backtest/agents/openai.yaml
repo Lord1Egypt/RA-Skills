@@ -1,0 +1,4 @@
+interface:
+  display_name: Daily strategy research
+  short_description: Test daily rules with costs, drawdown and a benchmark
+  default_prompt: Use $galleon-defi-strategy-backtest to test a supported daily rule against dated evidence and report accounting, benchmark and limitations.

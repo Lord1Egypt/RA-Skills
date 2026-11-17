@@ -1,42 +1,57 @@
-## Description: <br>
-Agent token usage optimizer that analyzes usage logs, transcript excerpts, model bills, or runtime traces to produce token and cost breakdowns, waste patterns, compaction opportunities, caching suggestions, and before/after optimization actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent token usage optimizer. Input usage logs, transcript excerpts, model bills, or runtime traces; output token/cost breakdown, waste patterns, context compaction opportunities, caching suggestions, and before/after optimization actions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to understand where token usage and model cost are going, then reduce waste without hurting task quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Usage logs, billing exports, transcripts, and tool traces may contain API keys, credentials, personal identifiers, or private customer data. <br>
-Mitigation: Redact secrets and private data before analysis, and review supplied logs or transcripts for sensitive material. <br>
-Risk: Cost estimates can be misleading when based on partial traces or unofficial billing data. <br>
-Mitigation: Treat estimates as approximate unless official billing exports or complete runtime traces are provided. <br>
-Risk: Uploading logs or transcripts to external services can expose confidential data. <br>
-Mitigation: Do not upload logs or transcripts externally unless the user explicitly chooses that route. <br>
+## Use Case:
 
+Developers, engineers, and operations teams use this skill to analyze token usage, model costs, runtime logs, transcripts, and prompt templates, then identify practical ways to reduce waste while preserving task quality.
 
-## Reference(s): <br>
-- [Token Optimizer Pro on ClawHub](https://clawhub.ai/harrylabsj/token-optimizer-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured recommendations and estimates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cost and token breakdowns, waste-pattern findings, optimization checklists, caching or compaction suggestions, and approximate before/after estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Usage logs, transcripts, runtime traces, and billing artifacts may contain secrets, personal data, or customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact API keys, credentials, private customer data, and personal identifiers before using the skill.
+
+Risk: External service use could disclose sensitive logs or transcripts if selected without review.
+
+Mitigation: Use external service routes only after an explicit user choice and after sensitive data has been removed.
+
+Risk: Cost estimates can be misleading when based on partial logs or unofficial billing summaries.
+
+Mitigation: Treat estimates as approximate unless official billing exports are provided, and review recommendations before changing production routing or budgets.
+
+## Reference(s):
+
+- [Token Optimizer Pro on ClawHub](https://clawhub.ai/harrylabsj/skills/token-optimizer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with cost and token breakdowns, waste patterns, optimization checklists, and before/after estimates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost estimates are approximate unless official billing exports are provided; users should redact secrets, customer data, and personal identifiers before analysis.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

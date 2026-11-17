@@ -1,46 +1,61 @@
-## Description: <br>
-Design customer service chatbot conversation flows for ecommerce — order status, returns, product recommendations, and escalation rules — that reduce ticket volume while maintaining satisfaction scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design customer service chatbot conversation flows for ecommerce - order status, returns, product recommendations, and escalation rules - that reduce ticket volume while maintaining satisfaction scores.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Support, ecommerce, and chatbot designers use this skill to create customer-service chatbot flows for order tracking, returns, product questions, billing, cancellations, and human escalation. The skill helps teams map intents, write response logic, define handoff rules, and prepare launch quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Escalation handoffs may expose full conversation transcripts, customer details, and order context. <br>
-Mitigation: Collect explicit user consent before escalation, redact sensitive fields, and share only the minimum ticket context needed by the support team. <br>
-Risk: Cancellation-related flows may act on ambiguous or unverified order requests. <br>
-Mitigation: Require clear order identification and customer confirmation before any cancellation-related action. <br>
-Risk: Handoff data may be visible to more staff or systems than necessary. <br>
-Mitigation: Restrict access to handoff data and review the skill before using it in a live support workflow. <br>
+## Use Case:
 
+External ecommerce support teams and chatbot builders use this skill to design customer service chatbot flows, intent maps, escalation rules, response copy, and measurement plans for order status, returns, product questions, billing issues, and human handoff.
 
-## Reference(s): <br>
-- [Chatbot Designer Skill Page](https://clawhub.ai/leooooooow/chatbot-designer) <br>
-- [Output Template](output-template.md) <br>
-- [Intent Library](intent-library.md) <br>
-- [Escalation Playbook](escalation-playbook.md) <br>
-- [Quality Checklist](quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, checklists, and conversation-flow outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include intent maps, escalation logic, response copy, KPI recommendations, and pre-launch review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill recommends sharing full conversation transcripts during escalation, which may expose unnecessary customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimized and redacted handoff summaries unless the privacy policy, consent flow, retention rules, and support access controls explicitly allow broader transcript sharing.
+
+Risk: Automated cancellations, refunds, replacements, return labels, and claims can affect customer accounts or orders if triggered without confirmation.
+
+Mitigation: Require explicit customer confirmation before any account, order, refund, replacement, return-label, or claim action is executed.
+
+Risk: Broad single-word intent triggers can route customers into order-data flows too easily.
+
+Mitigation: Use contextual intent matching and confirmation prompts before collecting order data or initiating account-specific workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/chatbot-designer)
+- [Output Template](artifact/output-template.md)
+- [Intent Library](artifact/intent-library.md)
+- [Escalation Playbook](artifact/escalation-playbook.md)
+- [Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with flow templates, decision tables, checklist items, and conversation copy examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces chatbot flow design documents, intent mappings, escalation protocols, quality checklists, and response templates for ecommerce support workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

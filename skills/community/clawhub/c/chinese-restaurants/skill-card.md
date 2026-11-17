@@ -1,40 +1,48 @@
-## Description: <br>
-Find nearby Chinese restaurants for users who ask for Chinese food near them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby Chinese restaurants when users ask for Chinese food near them.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to ask an agent for nearby Chinese restaurant options based on an authorized location, radius, limit, and optional filters such as open now, rating, price level, or keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Precise user location could be exposed or retained longer than needed during restaurant search.
+
+Mitigation: Request location permission, use location only for the stated restaurant search, avoid retaining precise coordinates, and limit any caching to short-term location-category-radius data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to ask an agent for nearby Chinese restaurant options around an authorized location, city, or neighborhood. It supports bounded restaurant lookup with filters such as open status, rating, price level, and keywords. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Precise location may expose sensitive user information during restaurant lookup. <br>
-Mitigation: Ask for location permission, prefer a city, neighborhood, or approximate location unless precise nearby results are needed, and avoid retaining exact coordinates. <br>
-Risk: Restaurant lookup providers may be unavailable, rate limited, or unable to satisfy an excessive radius. <br>
-Mitigation: Handle invalid location, excessive radius, provider unavailability, and rate limiting with clear bounded-result behavior. <br>
+**Output Format:** [Structured POI list with standardized fields and error codes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikeclaw007/chinese-restaurants) <br>
+**Other Properties Related to Output:** [Requires user-authorized location input; supports radius, result limit, and optional restaurant filters.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Structured data, Guidance] <br>
-**Output Format:** [Markdown or standardized POI list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location, radius, limit, and optional filters; maximum listed result limit is 50.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and target metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

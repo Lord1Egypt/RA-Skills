@@ -1,43 +1,59 @@
-## Description: <br>
-API gateway for personal data with human-in-the-loop write approval. Connects agents to GitHub, Bluesky, Google Calendar, Home Assistant, and more - all through a single API with safety controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API gateway for personal data with human-in-the-loop write approval, connecting agents to GitHub, Bluesky, Google Calendar, Home Assistant, and other services through a single API with safety controls.
 
-## Publisher: <br>
-[monteslu](https://clawhub.ai/user/monteslu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[monteslu](https://clawhub.ai/user/monteslu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an OpenClaw agent to an agentgate server for controlled access to personal services, service discovery, queued writes, inter-agent messaging, and persistent memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose broad personal-data and write access through connected services. <br>
-Mitigation: Install it only for intentionally operated agentgate servers, restrict the API token to least privilege, and review connected services before use. <br>
-Risk: Approval-bypass mode can allow writes to execute immediately. <br>
-Mitigation: Keep write approval enabled unless there is a tightly scoped and audited reason to use bypass mode. <br>
-Risk: Memory and inter-agent messaging may carry sensitive personal or account data. <br>
-Mitigation: Review the memory and messaging configuration before allowing sensitive data through the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/monteslu/agentgate) <br>
-- [Agentgate documentation](https://agentgate.org) <br>
-- [Agentgate skills documentation](https://agentgate.org/docs/skills) <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure agents to access an agentgate API gateway, discover configured services, read data, submit write requests for human approval, exchange agent messages, and store or retrieve mementos.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown with inline HTTP examples, shell commands, and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENT_GATE_URL and AGENT_GATE_TOKEN for a configured agentgate server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bearer-token access can expose personal-service access if used over plain HTTP or an untrusted network.
+
+Mitigation: Use HTTPS or a private encrypted tunnel for non-local connections and scope the API key tightly.
+
+Risk: Bypass mode can allow immediate writes to connected services without human approval.
+
+Mitigation: Leave write bypass disabled unless the operator has explicitly accepted immediate changes to connected services.
+
+Risk: The skill connects agents to personal services through an agentgate server.
+
+Mitigation: Install only if you control the agentgate server and keep the server separated from the agent host as documented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/monteslu/skills/agentgate)
+- [Agentgate documentation](https://agentgate.org)
+- [Agentgate skills documentation](https://agentgate.org/docs/skills)
+- [Agentgate GitHub repository](https://github.com/monteslu/agentgate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and environment-variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENT_GATE_TOKEN and AGENT_GATE_URL for the target agentgate instance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

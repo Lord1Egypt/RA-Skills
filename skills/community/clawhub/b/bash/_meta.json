@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "bash",
-  "version": "1.0.2",
-  "publishedAt": 1771105473271
+  "displayName": "Bash",
+  "latest": {
+    "version": "1.0.6",
+    "publishedAt": 1785068764922
+  },
+  "history": [
+    {
+      "version": "1.0.5",
+      "publishedAt": 1784974785951
+    },
+    {
+      "version": "1.0.4",
+      "publishedAt": 1784845855135
+    },
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784815236772
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1771105473271
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770681527979
+    }
+  ]
 }

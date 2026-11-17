@@ -10,7 +10,9 @@ const {
   notionRequest,
   extractTitle,
   stripTokenArg,
+  parsePageSizeLimit,
   hasJsonFlag,
+  hasHelpFlag,
   log,
 } = require('./notion-utils.js');
 
@@ -40,7 +42,7 @@ async function searchNotion(query, filter = null, pageSize = 10) {
 async function main() {
   const args = stripTokenArg(process.argv.slice(2));
 
-  if (args.length === 0 || args[0] === '--help') {
+  if (args.length === 0 || hasHelpFlag()) {
     console.log('Usage: search-notion.js <query> [options]');
     console.log('');
     console.log('Options:');
@@ -59,12 +61,23 @@ async function main() {
   let filter = null;
   let limit = 10;
 
-  for (let i = 1; i < args.length; i++) {
-    if (args[i] === '--filter' && args[i + 1]) { filter = args[++i]; }
-    else if (args[i] === '--limit' && args[i + 1]) { limit = parseInt(args[++i]); }
-  }
-
   try {
+    for (let i = 1; i < args.length; i++) {
+      if (args[i] === '--filter') {
+        if (!args[i + 1]) throw new Error('--filter requires page or database');
+        filter = args[++i];
+        if (!['page', 'database'].includes(filter)) {
+          throw new Error('--filter must be page or database');
+        }
+      } else if (args[i] === '--limit') {
+        limit = parsePageSizeLimit(args[++i]);
+      } else if (args[i].startsWith('-')) {
+        throw new Error(`Unknown option: ${args[i]}`);
+      } else {
+        throw new Error(`Unexpected argument: ${args[i]}`);
+      }
+    }
+
     const results = await searchNotion(query, filter, limit);
     console.log(JSON.stringify(results, null, 2));
     log(`\n✓ Found ${results.length} result(s)`);

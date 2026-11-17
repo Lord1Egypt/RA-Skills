@@ -1,47 +1,57 @@
-## Description: <br>
-Fetches Superinvestors' 13F portfolio holdings and buy/sell activity from ValueSider (valuesider.com). Use when the user asks for guru portfolio, 13F holdings, superinvestor positions, ValueSider data, or which stocks a fund/manager is buying or selling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Superinvestors' 13F portfolio holdings and buy/sell activity from ValueSider for portfolio, holdings, and trading-activity questions.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to retrieve public ValueSider 13F portfolio holdings and buy/sell activity for named superinvestors or funds, then summarize the parsed results. Outputs should be treated as data reporting, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact ValueSider to retrieve public portfolio and activity pages. <br>
-Mitigation: Use it only in environments where outbound requests to ValueSider are acceptable, and disclose ValueSider as the data source in user-facing summaries. <br>
-Risk: The optional direct-fetch script depends on local Python packages and network behavior that may vary by environment. <br>
-Mitigation: Run the scripts in an isolated Python environment and review or pin dependency versions before operational use. <br>
-Risk: Parsed 13F holdings and activity can be mistaken for investment advice or fully current positions. <br>
-Mitigation: Present results as public ValueSider-derived data reporting, include the reporting period when available, and avoid framing outputs as financial advice. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to fetch and parse public ValueSider 13F portfolio holdings and recent buy/sell activity for named superinvestors, managers, or funds. Results should be presented as sourced portfolio data, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laimiaohua/gi-valuesider-superinvestor-data) <br>
-- [Publisher profile](https://clawhub.ai/user/laimiaohua) <br>
-- [ValueSider](https://valuesider.com) <br>
-- [ValueSider superinvestor list](https://valuesider.com/value-investors) <br>
-- [ValueSider portfolio URL pattern](https://valuesider.com/guru/{guru_slug}/portfolio) <br>
-- [ValueSider activity URL pattern](https://valuesider.com/guru/{guru_slug}/portfolio-activity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON parser output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Portfolio output includes summary and holdings; activity output includes activities with quarter, ticker, stock name, activity type, share change, portfolio percentage change, reported price, and portfolio percentage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Live use can make outbound requests to valuesider.com and may fetch third-party financial data for an ambiguous finance request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested manager, fund, or guru before live fetching when the request is ambiguous, and label results as ValueSider 13F portfolio data rather than financial advice.
+
+Risk: Dependency versions are specified as minimums, which can reduce reproducibility across installs.
+
+Mitigation: Install in a least-privileged Python environment and use pinned dependencies or a lockfile when reproducible execution matters.
+
+## Reference(s):
+
+- [ValueSider](https://valuesider.com)
+- [ValueSider Value Investors](https://valuesider.com/value-investors)
+- [ValueSider Guru Portfolio URL Template](https://valuesider.com/guru/{guru_slug}/portfolio)
+- [ValueSider Guru Activity URL Template](https://valuesider.com/guru/{guru_slug}/portfolio-activity)
+- [ClawHub Skill Page](https://clawhub.ai/laimiaohua/skills/gi-valuesider-superinvestor-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with optional JSON produced by parser scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include portfolio summaries, holdings, activity rows, source URLs, and command snippets for fetching or parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

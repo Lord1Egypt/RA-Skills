@@ -1,41 +1,59 @@
-## Description: <br>
-医学科普、文档摘要、术语释义、教学案例与诊疗文书辅助生成。通过 --task 选择类型；仅含 `scripts/run.py`，可独立拷贝部署。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates medical education content, clinical-document summaries, terminology explanations, teaching cases, and draft clinical note text through selectable task modes.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External developers and medical content teams use this skill to send medical questions or source documents to a configured medical LLM for plain-language explanations, popular science content, clinical summaries, teaching cases, and draft clinical documentation. Outputs are auxiliary material and are not a substitute for clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical prompts and source documents are sent to the configured medical LLM API. <br>
-Mitigation: Use only approved endpoints and keys, and submit patient information only after de-identification and organizational approval. <br>
-Risk: Generated medical explanations, summaries, teaching cases, or draft documentation may be incomplete or clinically incorrect. <br>
-Mitigation: Treat outputs as auxiliary material and require qualified clinical review before use in care, documentation, or patient-facing communication. <br>
+## Use Case:
 
+Healthcare content teams, educators, and integrators use this skill to turn a supplied medical question or document excerpt into auxiliary explanatory, educational, summarization, or draft documentation output. Use only de-identified medical content and human review because outputs are not clinical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-content-generation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [JSON by default, text-only answer output when requested, and NDJSON for batch results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports task selection, JSON/JSONL/text/stdin inputs, dry-run parsing, output files, and configurable API URL, model, temperature, timeout, and system prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive medical text may be sent to a configurable remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified medical content and verify that the configured endpoint is a trusted HTTPS service approved for the workflow.
+
+Risk: Bearer app keys may be exposed to untrusted custom endpoints or command-line handling.
+
+Mitigation: Treat app keys as sensitive, avoid production keys with custom endpoints, and keep keys out of logs, shell history, and shared scripts.
+
+Risk: Generated medical content may be inaccurate or unsuitable for clinical use.
+
+Mitigation: Require qualified human review and follow institutional procedures before using outputs in education, documentation, or patient-facing material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-content-generation)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files]
+
+**Output Format:** [JSON by default, plain text with --text-only, and NDJSON for batch output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save full JSON or NDJSON to --output; dry-run returns parsed input without calling the model.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-EU AI Act automation: risk classification, Article 11 documentation, bias testing, conformity assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate EU AI Act compliance for organizations. Classify AI systems by risk level, generate Article 11 documentation, implement bias testing in CI/CD, and prepare for the August 2026 deadline with conformity assessments.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-Compliance teams, developers, and AI governance reviewers use this skill to classify AI systems under the EU AI Act, prepare Article 11 technical documentation, plan bias testing, and assemble audit-ready remediation and conformity-assessment materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated EU AI Act classifications, documentation, and remediation plans may be incomplete or inaccurate for a specific organization or jurisdiction. <br>
-Mitigation: Use outputs as planning and documentation drafts only, then have qualified legal or compliance reviewers validate them before relying on them. <br>
-Risk: Applying the skill to real systems may expose sensitive repositories, CI/CD workflows, or internal compliance documents if connected tools are added. <br>
-Mitigation: Define the permitted systems, repositories, CI/CD access, and documents before use, and use least-privilege credentials for any connected tools. <br>
-Risk: Regulatory monitoring and deadline guidance can become stale as EU member-state transpositions and implementation guidance change. <br>
-Mitigation: Check current official regulatory sources and update generated compliance plans before audits, filings, or production governance decisions. <br>
+## Use Case:
 
+Legal, compliance, governance, and engineering teams use this skill to classify AI systems under the EU AI Act, generate compliance documentation, prepare conformity assessment materials, and plan remediation work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuwanito/nexus-eu-ai-compliance) <br>
-- [Skill homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-eu-ai-compliance) <br>
+### Deployment Geography for Use:
 
+European Union compliance contexts
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, compliance checklists, documentation templates, gap analyses, and remediation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; generated compliance outputs require qualified legal or compliance review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: EU AI Act compliance guidance can be incomplete, outdated, or unsuitable for a specific organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have legal or compliance professionals verify deadlines, obligations, classifications, and generated documentation before relying on the output.
+
+Risk: Applying the skill outside the relevant compliance workspace can expose unrelated files or produce irrelevant findings.
+
+Mitigation: Scope the skill to the files and systems needed for the compliance assessment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/shuwanito/skills/nexus-eu-ai-compliance)
+- [ClawHub publisher profile](https://clawhub.ai/user/shuwanito)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with compliance analyses, documentation templates, CI/CD testing steps, and remediation plans.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed by legal or compliance professionals before use for regulatory decisions.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

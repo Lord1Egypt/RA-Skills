@@ -1,0 +1,5 @@
+{
+  "api_key": "your-api-key-here",
+  "model": "agnes-2.0-flash",
+  "endpoint": "https://apihub.agnes-ai.com/v1/chat/completions"
+}

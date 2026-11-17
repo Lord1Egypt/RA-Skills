@@ -1,43 +1,59 @@
-## Description: <br>
-discava helps agents search local businesses worldwide through the discava API and return structured business data with confidence scores and demand rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for local businesses worldwide via the discava API, returning structured business data with confidence scores and demand rankings.
 
-## Publisher: <br>
-[sebastian1747](https://clawhub.ai/user/sebastian1747) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastian1747](https://clawhub.ai/user/sebastian1747)
 
-## Use Case: <br>
-Agents and users use discava to find local businesses, services, restaurants, doctors, craftsmen, and other local providers by query, city, country, or category. It supports search, detailed business lookup, demand rankings, autocomplete suggestions, and data-quality feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, locations, optional coordinates, and feedback comments are sent to discava.ai. <br>
-Mitigation: Avoid private personal, medical, legal, or confidential details, and send only the minimum location or feedback data needed for the search. <br>
-Risk: Interactive HTML cards may include click tracking for phone, email, website, and navigation actions. <br>
-Mitigation: Prefer JSON output for ordinary searches and use HTML cards only when an interactive display is needed. <br>
+## Use Case:
 
+External users and agents use this skill to find local businesses, service providers, restaurants, doctors, and tradespeople worldwide. It supports search, business details, rankings, autocomplete suggestions, and data-quality feedback workflows.
 
-## Reference(s): <br>
-- [discava API](https://discava.ai/api/v1) <br>
-- [discava ClawHub page](https://clawhub.ai/sebastian1747/discava) <br>
-- [OpenStreetMap](https://www.openstreetmap.org) <br>
-- [Open Data Commons Open Database License](https://opendatacommons.org/licenses/odbl/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON or HTML API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include confidence scores, demand scores, relevance scores, pagination metadata, contact details, opening hours, and optional interactive HTML cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Interactive HTML cards may include third-party click tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer JSON responses and local rendering unless the user specifically needs HTML cards and understands the tracking behavior.
+
+Risk: Precise latitude and longitude can expose sensitive location context.
+
+Mitigation: Use city or country filters by default and send coordinates only when they are necessary for distance-based results.
+
+Risk: Feedback comments are stored free text and may accidentally include sensitive personal details.
+
+Mitigation: Keep feedback factual and minimal, and omit personal, confidential, or unnecessary identifying information.
+
+## Reference(s):
+
+- [discava Skill on ClawHub](https://clawhub.ai/sebastian1747/skills/discava)
+- [discava API](https://discava.ai/api/v1)
+- [OpenStreetMap](https://www.openstreetmap.org)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses may include business contact details, location data, rankings, suggestions, and optional HTML cards; service use is rate limited to 500 requests per hour per IP.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

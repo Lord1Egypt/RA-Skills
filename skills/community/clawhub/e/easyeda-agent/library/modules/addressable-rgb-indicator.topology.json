@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.addressable_rgb_indicator_live",
+    "title": "可寻址 RGB 指示灯",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "LED",
+        "lcsc": "C2843785",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "c6462aca46ff4f8c9d87799dfb8a5942",
+          "name": "XL-5050RGBC-2812B"
+        },
+        "footprint": "LED-SMD_4P-L5.0-W5.0-BL_XL-5050RGBC",
+        "pins": [
+          {
+            "number": "1",
+            "name": "VDD",
+            "net": "port.POWER"
+          },
+          {
+            "number": "2",
+            "name": "DOU",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "3",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "4",
+            "name": "DIN",
+            "net": "port.DATA_IN"
+          }
+        ]
+      },
+      {
+        "role": "DECOUP",
+        "lcsc": "C14663",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "96b39256cc3f4d80bd3b503deb4f3328",
+          "name": "CC0603KRX7R9BB104"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "port.POWER",
+        "members": [
+          "DECOUP.2",
+          "LED.1"
+        ],
+        "port": "POWER"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "DECOUP.1",
+          "LED.3"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.DATA_IN",
+        "members": [
+          "LED.4"
+        ],
+        "port": "DATA_IN"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

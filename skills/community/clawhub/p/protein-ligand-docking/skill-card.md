@@ -1,43 +1,58 @@
-## Description: <br>
-Run a protein-ligand docking workflow for research questions about target binding, selectivity, and structural plausibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a protein-ligand docking workflow for research questions about target binding, selectivity, and structural plausibility.
 
-## Publisher: <br>
-[zackz2025](https://clawhub.ai/user/zackz2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zackz2025](https://clawhub.ai/user/zackz2025)
 
-## Use Case: <br>
-External researchers, developers, and computational biology teams use this skill to assess whether a ligand may plausibly bind a protein target, compare homolog selectivity, and decide whether docking evidence is strong enough to continue. It guides sequence retrieval, structure search, AlphaFold quality checks, AutoDock Vina docking, and cautious interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scientific tools and external executables such as OpenBabel and AutoDock Vina can affect the reliability and safety of execution if paths or binaries are untrusted. <br>
-Mitigation: Use trusted executable paths, run the workflow in a dedicated project directory, and install only when comfortable running local scientific analysis tools. <br>
-Risk: Protein, ligand, and project data may be sensitive when sent to external services such as UniProt, RCSB, or Google Colab. <br>
-Mitigation: Avoid sending confidential protein, ligand, or project data to external services unless that sharing is acceptable. <br>
-Risk: Docking and AlphaFold-derived results can be misleading if model quality, interface confidence, or docking poses are weak. <br>
-Mitigation: Review generated reports before relying on them, stop when confidence is poor, and separate computational plausibility from experimental validation. <br>
+## Use Case:
 
+Developers, researchers, and scientific analysts use this skill to plan and interpret protein-ligand docking workflows for binding plausibility, homolog selectivity, and structure-quality decisions. It helps decide when to continue with sequence checks, structure search, AlphaFold/Colab modeling, AutoDock Vina docking, or a structured report.
 
-## Reference(s): <br>
-- [Decision Guide](references/decision-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zackz2025/protein-ligand-docking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell and Python commands plus JSON, structure, report, and figure files when the workflow reaches those stages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include FASTA files, selected PDB IDs or modeled structures, alignment summaries, model-quality JSON, docking-summary JSON, short written conclusions, Summary.md, Summary.docx, and figures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Risk: The docking helper can execute an AutoDock Vina binary path supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted absolute path for AutoDock Vina and avoid attacker-controlled --vina_path values.
+
+Risk: The report generator writes Markdown and DOCX files using a caller-provided output name.
+
+Mitigation: Run reports in a dedicated least-privilege workspace and avoid output names that could overwrite unintended .md or .docx files.
+
+Risk: Docking and AlphaFold-derived results can be scientifically misleading when structure confidence, interface confidence, or pose quality is poor.
+
+Mitigation: Apply the documented pLDDT, PAE, grid-box, pose, and binding-score checks, and state that experimental assays remain the standard for validation.
+
+## Reference(s):
+
+- [Decision Guide](references/decision-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/zackz2025/skills/protein-ligand-docking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus generated JSON, Markdown, DOCX, and docking output files when helper scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce FASTA files, selected structure IDs, alignment JSON, model-quality JSON, docking summary JSON, Summary.md, Summary.docx, and figure output depending on the workflow stage reached.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

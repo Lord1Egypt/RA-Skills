@@ -1,42 +1,55 @@
-## Description: <br>
-Linea is a local blockchain reference skill that provides command-based summaries, formulas, regulatory notes, risk notes, tools, strategies, glossary terms, and checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linea reference tool. Use when working with linea in blockchain contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and blockchain practitioners use this skill for quick local reference material when working with Linea-related concepts, checklists, and risk prompts. Its guidance is generic and should be checked against current primary Linea documentation before operational, wallet, bridge, compliance, or financial decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic Linea, blockchain, regulatory, and financial reference text that may be incomplete or outdated for real operations. <br>
-Mitigation: Use it only as a lightweight local reference and verify operational, wallet, bridge, compliance, financial, and security decisions against current primary Linea documentation and trusted sources. <br>
-Risk: The publisher trust tier is low in the server evidence even though security scanning reports a clean verdict. <br>
-Mitigation: Review the artifact contents and scan results before deployment, and install only when a simple static reference helper is appropriate. <br>
+## Use Case:
 
+External users and developers can use this skill for quick Linea-oriented blockchain reference prompts, including checklists, glossary material, risk summaries, formulas, and compliance topics.
 
-## Reference(s): <br>
-- [Linea skill page](https://clawhub.ai/ckchzh/linea) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference sections such as intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may present generic placeholder content as Linea blockchain, finance, or compliance guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate any blockchain, compliance, or financial conclusions against authoritative Linea and regulatory sources before use.
+
+Risk: The security verdict is suspicious even though no malware-like behavior or sensitive-data access was reported.
+
+Mitigation: Review the static shell script before installation and limit use to reference output that can be independently verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/linea)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown sections printed as command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no credentials, API keys, MCP tools, or external service calls were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, server release metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

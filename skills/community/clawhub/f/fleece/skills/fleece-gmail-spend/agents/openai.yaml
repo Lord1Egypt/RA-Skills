@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gmail Spend Optimizer"
+  short_description: "Match Gmail spending patterns to your cards"
+  default_prompt: "Use $fleece-gmail-spend to analyze my recent purchase emails and compare my spending with my Fleece wallet."

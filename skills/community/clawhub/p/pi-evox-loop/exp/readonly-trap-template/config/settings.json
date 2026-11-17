@@ -1,0 +1,5 @@
+{
+  "max_retries": 3,
+  "timeout_seconds": 30,
+  "log_level": "info"
+}

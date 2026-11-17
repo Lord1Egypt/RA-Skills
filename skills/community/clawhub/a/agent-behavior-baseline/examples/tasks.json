@@ -1,0 +1,35 @@
+[
+  {
+    "id": "E01",
+    "name": "skill file exists",
+    "kind": "file_exists",
+    "path": "SKILL.md"
+  },
+  {
+    "id": "E02",
+    "name": "shell echo",
+    "kind": "command",
+    "cmd": "echo hello",
+    "expect_contains": "hello"
+  },
+  {
+    "id": "E03",
+    "name": "python available",
+    "kind": "command",
+    "cmd": "python3 --version",
+    "expect_contains": "Python"
+  },
+  {
+    "id": "E04",
+    "name": "no false positive",
+    "kind": "command",
+    "cmd": "echo ok",
+    "expect_not_contains": "error"
+  },
+  {
+    "id": "E05",
+    "name": "true exits zero",
+    "kind": "command",
+    "cmd": "true"
+  }
+]

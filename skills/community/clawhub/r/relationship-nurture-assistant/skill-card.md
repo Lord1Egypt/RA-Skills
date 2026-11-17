@@ -1,40 +1,54 @@
-## Description: <br>
-Assists users with intimate and family relationship communication by identifying relationship types, emotions, and practical nurturing advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users work through intimate, family, and intergenerational relationship communication issues by identifying relationship context, emotion, and practical next steps.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users can use this skill to analyze partner, parent-child, or intergenerational relationship conflicts and receive Chinese communication tips, example phrases, and longer-term relationship nurturing plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship communication advice may be inappropriate for professional therapy, legal, crisis, or other high-stakes personal situations. <br>
-Mitigation: Treat outputs as supportive communication suggestions and seek qualified professional or crisis support when the situation requires it. <br>
-Risk: The skill primarily provides Chinese-language relationship guidance, which may not match every user's language expectations. <br>
-Mitigation: Set language expectations before use and review or translate outputs before applying them in sensitive conversations. <br>
+## Use Case:
 
+External users can use this skill for Chinese-language relationship communication support, including de-escalating arguments, reframing difficult conversations, and creating practical nurture plans for partner, parent-child, and intergenerational relationships.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/relationship-nurture-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON object containing Chinese text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected fields include relationshipType, detectedEmotion, practicalTips, examplePhrases, and note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Users may mistake relationship advice for professional therapy, legal, medical, or safety advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as general communication support and direct users to qualified professionals or emergency resources for clinical, legal, medical, abuse, or safety concerns.
+
+Risk: Broad relationship triggers may activate the skill for sensitive interpersonal situations.
+
+Mitigation: Ask clarifying questions, avoid definitive judgments about people, and keep guidance focused on non-coercive communication and user safety.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/relationship-nurture-assistant)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Chinese-language relationship guidance, often structured as JSON or Markdown examples with practical tips and example phrases]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include relationshipType, detectedEmotion, practicalTips, examplePhrases, and a note; not professional therapy, legal, medical, or safety advice.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

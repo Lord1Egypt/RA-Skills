@@ -1,41 +1,54 @@
-## Description: <br>
-TuanziGuardianClaw provides advisory security-policy guidance for reviewing skill actions, protecting secrets, identifying data exfiltration risks, and prompting for user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+It serves as the ultimate defense layer, monitoring, intercepting, and blocking dangerous actions taken by other skills.
 
-## Publisher: <br>
-[sawyerzm](https://clawhub.ai/user/sawyerzm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sawyerzm](https://clawhub.ai/user/sawyerzm)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill as an advisory policy layer for reviewing requested actions by other skills and applying conservative responses to secret access, network use, and data export attempts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents itself as an always-on security kernel, but the server security summary identifies it as prompt-only and not a real sandbox or enforcement layer. <br>
-Mitigation: Use it as advisory guidance only; rely on platform permissions, sandboxing, and human review for actual enforcement. <br>
-Risk: Its blocking, override, and audit-log behavior may interfere with requested work or record sensitive file paths and attempted actions. <br>
-Mitigation: Review the skill before allowing it to override other skills, block work, or create audit logs; avoid storing secrets or unnecessary sensitive details in logs. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill as a defensive policy layer for reviewing skill behavior, protecting secrets and personal data, and flagging risky file, network, command, or prompt-injection activity.
 
-## Reference(s): <br>
-- [Project homepage](https://claw.mytuanzi.com) <br>
-- [ClawHub skill page](https://clawhub.ai/sawyerzm/tuanziguardianclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown policy guidance and decision prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce block, warning, confirmation, or audit-log style guidance; it does not provide platform-enforced sandboxing by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The security scan marks the release suspicious because the prompt claims broad, immutable control over other skills and every action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and deploy only where the host platform can keep the guardrail scoped to intended workflows.
+
+Risk: The prompt may cause an agent to block or redirect unrelated work if treated as a global controller.
+
+Mitigation: Use it only when a broad defensive policy layer is desired, and monitor blocked actions for overreach.
+
+## Reference(s):
+
+- [Project homepage](https://claw.mytuanzi.com)
+- [ClawHub skill page](https://clawhub.ai/sawyerzm/skills/tuanziguardianclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Configuration]
+
+**Output Format:** [Markdown policy guidance and risk decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only guardrail content; no bundled tools, scripts, or detected credential variables.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

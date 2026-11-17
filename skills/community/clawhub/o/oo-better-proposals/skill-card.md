@@ -1,47 +1,60 @@
-## Description: <br>
-Use this Better Proposals skill for reading, creating, and updating data through a connected Better Proposals account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Better Proposals (betterproposals.io). Use this skill for ANY Better Proposals request — searching and reading data. Whenever a task involves Better Proposals, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to work with a connected Better Proposals account through OOMOL, including reading account, brand, company, currency, proposal, quote, and template data and performing supported update actions when confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through a connected Better Proposals account. <br>
-Mitigation: Install and use it only when you intend to let the agent access that account through OOMOL. <br>
-Risk: Read and list actions may expose proposal, company, quote, template, and account settings data. <br>
-Mitigation: Run actions only for authorized tasks and review returned data before sharing or persisting it. <br>
-Risk: Write-tagged actions can change Better Proposals account state. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running any write-tagged action. <br>
-Risk: CLI installer and login steps affect the local environment and account connection. <br>
-Mitigation: Run setup steps only when the oo CLI or account connection is missing and the OOMOL setup is trusted. <br>
+## Use Case:
 
+People who manage proposals in Better Proposals can use this skill to search and read proposals, quotes, companies, currencies, templates, and account settings through their connected account.
 
-## Reference(s): <br>
-- [Better Proposals](https://betterproposals.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-better-proposals) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the oo CLI and return connector JSON responses that include data and an executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The setup provides remote CLI installers whose full effects were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately before running it.
+
+Risk: The CLI may synchronize or otherwise change agent skills at startup.
+
+Mitigation: Review the CLI's skill changes; set OO_SKILLS_SYNC_DISABLED=1 to disable startup synchronization.
+
+Risk: Proposal data and connection credentials are handled through OOMOL's connected account.
+
+Mitigation: Consider whether OOMOL should handle this data and these credentials before connecting the service.
+
+## Reference(s):
+
+- [Better Proposals](https://betterproposals.io)
+- [Better Proposals API documentation](https://betterproposals.io/resources/api/)
+- [oo CLI controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-better-proposals)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON data and text summaries from Better Proposals read actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Better Proposals account and the selected read action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

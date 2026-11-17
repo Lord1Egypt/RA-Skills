@@ -1,36 +1,48 @@
-## Description: <br>
-Monitors n8n containers through Docker commands for status, health, recent logs, and CPU and memory usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors n8n Docker containers by checking container status, recent logs, health, and CPU and memory usage.
 
-## Publisher: <br>
-[Smitti7971](https://clawhub.ai/user/Smitti7971) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smitti7971](https://clawhub.ai/user/smitti7971)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect n8n Docker container status, health, recent logs, and resource use during operational monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Docker visibility into the n8n container can expose recent logs that contain workflow payloads, URLs, tokens, or operational details. <br>
-Mitigation: Install only where the agent is intended to inspect Docker state for n8n, and review returned logs before sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to inspect operational state for n8n containers through Docker status, log, health, and resource usage checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with simple tables and clear status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Docker command output summaries for n8n container status, logs, health, and resource usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Inspecting Docker status and n8n logs may expose workflow details or secrets present in container output.
+
+Mitigation: Install only where the agent is authorized to inspect Docker and n8n logs, and review log output before sharing it outside the operating environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smitti7971/skills/n8n-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with simple tables and inline Docker commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Status-focused operational summaries for n8n Docker containers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

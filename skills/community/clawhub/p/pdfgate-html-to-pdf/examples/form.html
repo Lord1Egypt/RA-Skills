@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>PDFGate Fillable Form Sample</title>
+<style>
+  body { font: 15px/1.5 Arial, sans-serif; color: #17263b; padding: 24px; }
+  h1 { color: #1769ba; }
+  label { display: block; margin-top: 14px; font-weight: bold; }
+  input[type="text"], input[type="date"], select, textarea { width: 320px; padding: 6px; border: 1px solid #9fb0c6; border-radius: 4px; font-size: 14px; }
+  textarea { height: 70px; }
+</style>
+</head>
+<body>
+  <h1>Service request</h1>
+  <p>Run this file with <code>--fillable</code> to get real PDF form fields.</p>
+  <label for="full_name">Full name</label>
+  <input type="text" id="full_name" name="full_name" />
+  <label for="request_date">Date</label>
+  <input type="date" id="request_date" name="request_date" />
+  <label for="service">Service</label>
+  <select id="service" name="service">
+    <option>Consulting</option>
+    <option>Support</option>
+    <option>Training</option>
+  </select>
+  <label>Priority</label>
+  <input type="radio" name="priority" value="normal" checked /> Normal
+  <input type="radio" name="priority" value="urgent" /> Urgent
+  <label for="notes">Notes</label>
+  <textarea id="notes" name="notes"></textarea>
+  <label><input type="checkbox" name="agree" /> I agree to the terms</label>
+</body>
+</html>

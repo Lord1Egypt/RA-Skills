@@ -1,45 +1,56 @@
-## Description: <br>
-Connect to Presage prediction market terminal on Solana (powered by Kalshi). Analyze live markets, find trading opportunities, and get AI-powered insights on YES/NO outcomes for sports, crypto, politics, and more. Use when you want market analysis, opportunity discovery, or portfolio tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to the Presage prediction market terminal on Solana to analyze live YES/NO markets, identify opportunities, and review portfolio data.
 
-## Publisher: <br>
-[Seenfinity](https://clawhub.ai/user/Seenfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[seenfinity](https://clawhub.ai/user/seenfinity)
 
-## Use Case: <br>
-External users and developers use this skill to analyze live Presage prediction markets, inspect market detail, find possible pricing opportunities, and review portfolio data for a provided agent ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts presage.market for market and portfolio data. <br>
-Mitigation: Install and use it only when that external network access is acceptable for the deployment environment. <br>
-Risk: Agent IDs and returned portfolio or trade-history data may be sensitive. <br>
-Mitigation: Treat agent IDs and returned portfolio data as sensitive and avoid sharing them beyond the intended agent workflow. <br>
-Risk: The bundled API reference documents register and trade endpoints even though the implemented skill behavior is read-only. <br>
-Mitigation: Do not use trading or registration endpoints unless they are separately verified as intended, authorized, and gated by explicit user approval. <br>
+## Use Case:
 
+Developers and external users use this skill to let compatible agents query Presage market data, surface trading-opportunity analysis, and inspect agent portfolio balances and positions.
 
-## Reference(s): <br>
-- [Presage API Reference](references/api-docs.md) <br>
-- [Presage Market](https://presage.market) <br>
-- [Presage API](https://presage.market/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Seenfinity/presage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON-like analysis objects and Markdown guidance with JavaScript and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market and portfolio outputs depend on live responses from presage.market.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: ClawHub release evidence) <br>
+Risk: Market queries, agent IDs, portfolio results, balances, positions, P&L, and trade reasoning may expose sensitive trading or performance information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only agent IDs and portfolio data appropriate to share with Presage and downstream agent context; avoid submitting confidential account identifiers or sensitive portfolio details.
+
+Risk: Market analysis and opportunity recommendations can be incorrect, stale, or misleading for trading decisions.
+
+Mitigation: Treat outputs as decision support rather than trading instructions, and require human review before acting on recommendations.
+
+## Reference(s):
+
+- [Presage API Reference](references/api-docs.md)
+- [Presage Market](https://presage.market)
+- [Presage API](https://presage.market/api)
+- [ClawHub Skill Page](https://clawhub.ai/seenfinity/skills/presage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown or JSON-style analysis summaries, depending on the calling agent workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only market, opportunity, and portfolio analysis based on Presage API responses]
+
+## Skill Version(s):
+
+1.3.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

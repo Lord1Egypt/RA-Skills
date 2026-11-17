@@ -1,44 +1,55 @@
-## Description: <br>
-Provides agent-accessible Aliyun OSS object storage operations, including upload, download, listing, deletion, object metadata lookup, object copy or move, and URL generation through the ali-oss Node.js SDK with ossutil as a documented fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+aliyun-oss helps agents manage Alibaba Cloud Object Storage (OSS) objects, including upload, download, listing, deletion, metadata inspection, moves, copies, and signed URL generation.
 
-## Publisher: <br>
-[aohoyo](https://clawhub.ai/user/aohoyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[langhuachuanshi](https://clawhub.ai/user/langhuachuanshi)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Aliyun OSS credentials and ask an agent to manage bucket objects, inspect stored files, generate public or signed URLs, and automate storage workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist Aliyun cloud credentials and add ALIYUN_* values to shell startup files. <br>
-Mitigation: Use least-privilege or temporary credentials, review local shell startup files after setup, and remove any credentials that should not persist. <br>
-Risk: Delete operations can remove remote OSS objects without effective interactive safeguards. <br>
-Mitigation: Avoid production buckets until deletion confirmation is fixed, restrict credentials to the minimum bucket and actions needed, and review delete commands before execution. <br>
-Risk: Generated private object URLs can grant temporary access to bucket objects. <br>
-Mitigation: Treat signed URLs as secrets, keep expiration windows short, and avoid sharing them in logs or persistent chat transcripts. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent manage files in Alibaba Cloud OSS buckets through the ali-oss Node.js SDK, with ossutil described as a fallback path. It supports common storage workflows such as backup upload, object discovery, signed URL creation, and object cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aohoyo/aliyun-oss-skill) <br>
-- [Aliyun OSS Node.js SDK documentation](https://help.aliyun.com/document_detail/32068.html) <br>
-- [Aliyun ossutil documentation](https://help.aliyun.com/document_detail/120075.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with shell commands, JSON configuration, and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate signed private URLs that should be treated as temporary secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The setup flow can persist Alibaba Cloud access keys in shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped RAM or STS credentials, avoid entering secrets in reusable shell history, remove generated exports from shell startup files, and rotate any credentials already exposed this way.
+
+Risk: Delete operations may proceed even when the documented interactive confirmation is expected.
+
+Mitigation: Review delete commands before execution, avoid relying on the prompt as a safeguard, and require a fixed confirmation implementation before using destructive operations in routine workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/langhuachuanshi/skills/aliyun-oss-skill)
+- [Aliyun OSS Node.js SDK documentation](https://help.aliyun.com/document_detail/32068.html)
+- [Aliyun ossutil documentation](https://help.aliyun.com/document_detail/120075.html)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, text]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the ali-oss package; operates on user-provided Alibaba Cloud OSS credentials and bucket configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, released 2026-03-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

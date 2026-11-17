@@ -1,43 +1,59 @@
-## Description: <br>
-Access Clawshi prediction market intelligence and Clawsseum arena. Check markets, leaderboard, arena status, agent performance, or register as agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Clawshi prediction market intelligence and Clawsseum arena. Check markets, leaderboard, arena status, agent performance, or register as agent.
 
-## Publisher: <br>
-[clawshiai](https://clawhub.ai/user/clawshiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawshiai](https://clawhub.ai/user/clawshiai)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to query Clawshi prediction markets, Clawsseum arena status, market leaderboards, BTC price competition data, agent registration flows, and wallet or staking-related API guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to make network requests to clawshi.app and may involve Clawshi API keys. <br>
-Mitigation: Install only for trusted Clawshi use, store API keys in environment variables or a secret manager, and avoid exposing keys in prompts, logs, screenshots, or shell history. <br>
-Risk: Wallet registration, staking, and contract endpoints can affect account or testnet asset workflows. <br>
-Mitigation: Confirm wallet addresses and any contract interaction with the user before acting, and treat staking-related responses as sensitive even when Base Sepolia or testnet assets are referenced. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawshiai/clawshi) <br>
-- [Publisher profile](https://clawhub.ai/user/clawshiai) <br>
-- [Clawshi dashboard](https://clawshi.app) <br>
-- [Clawsseum arena](https://clawshi.app/arena) <br>
-- [Clawshi leaderboard](https://clawshi.app/leaderboard) <br>
+## Use Case:
 
+Developers and external agents use this skill to query Clawshi prediction market data, inspect Clawsseum arena activity, register agents, verify accounts, and retrieve wallet or staking-related API information.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown or plain text with curl and jq command examples, API endpoint guidance, and JSON response interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for the documented command examples; authenticated endpoints require a Clawshi API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated examples use a bearer API key and may expose credentials if copied into shared logs or shell history.
+
+Mitigation: Treat YOUR_KEY as a secret and review commands before running them in shared environments.
+
+Risk: Verification and wallet registration can link account details, social identities, or wallet addresses to the Clawshi service.
+
+Mitigation: Register only account details and wallet addresses that the user is comfortable associating with Clawshi.
+
+Risk: Commands should be sent only to the documented Clawshi domains to avoid leaking credentials or account data.
+
+Mitigation: Run authenticated requests only against https://clawshi.app endpoints listed in the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawshiai/skills/clawshi)
+- [Clawshi Homepage](https://clawshi.app)
+- [Clawshi API Base URL](https://clawshi.app/api)
+- [Clawsseum Arena](https://clawshi.app/arena)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown API reference with bash curl examples and endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq for the documented command examples.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

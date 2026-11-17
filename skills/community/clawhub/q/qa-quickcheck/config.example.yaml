@@ -10,6 +10,3 @@ base_url: "http://localhost:3000"
 
 # 单次 HTTP 请求超时时间（毫秒）
 test_timeout: 30000
-
-# 是否在 Standard 模式报告末尾自动显示升级引导
-show_upgrade_hint: true

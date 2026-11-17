@@ -1,42 +1,55 @@
-## Description: <br>
-Query Claude API usage and cost reports from the command line with secure macOS Keychain storage for an Admin API key and table or JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Claude API usage and cost reports from the command line. Secure macOS Keychain storage for Admin API key. Table/JSON output.
 
-## Publisher: <br>
-[cyberash-dev](https://clawhub.ai/user/cyberash-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cyberash-dev](https://clawhub.ai/user/cyberash-dev)
 
-## Use Case: <br>
-Developers, engineering teams, and operations users use this skill to install and run a CLI for reviewing Anthropic Claude Admin API usage and cost reports from macOS. It supports day-to-day spend tracking, token usage review, JSON export, and scripted reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs a global npm package that handles an Anthropic Admin API key. <br>
-Mitigation: Confirm the package name and publisher, review the linked source repository when needed, and only provide an Admin API key appropriate for use with this CLI. <br>
-Risk: Usage and cost reports may expose organization-level operational or billing information. <br>
-Mitigation: Run the CLI in trusted environments and limit access to users who are authorized to view Anthropic usage and cost data. <br>
+## Use Case:
 
+Developers and operations teams use this skill to install and run a macOS CLI that reports Anthropic Claude Admin API usage and cost data for monitoring, scripting, and spend review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cyberash-dev/claude-cost-cli) <br>
-- [Source repository](https://github.com/cyberash-dev/claude-cost-cli) <br>
-- [Anthropic Admin API usage and cost documentation](https://platform.claude.com/docs/en/build-with-claude/usage-cost-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI produces tabular stdout or JSON reports for usage and cost queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill instructs users to globally install an unpinned third-party CLI that handles an Anthropic Admin API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the exact package version or source commit before installing, verify provenance or signatures where possible, and consider using an isolated environment.
+
+Risk: A compromised package or workstation could expose an Admin API key used for organization usage and cost reporting.
+
+Mitigation: Use the least-privileged Admin API key available and rotate it if compromise is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberash-dev/skills/claude-cost-cli)
+- [claude-cost-cli source](https://github.com/cyberash-dev/claude-cost-cli)
+- [Anthropic usage and cost API documentation](https://platform.claude.com/docs/en/build-with-claude/usage-cost-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with inline bash command examples and CLI output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe terminal commands for installation, key management, usage reports, and cost reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

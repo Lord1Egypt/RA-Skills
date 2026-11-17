@@ -1,40 +1,52 @@
-## Description: <br>
-Creates professional invoices, quotes, receipts, and billing documents with calculated subtotals, tax, totals, and PDF, DOCX, or plain text output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional invoices, quotes, and billing documents.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business operators use this skill to draft invoices, quotes, and receipts from billing details, line items, tax rates, dates, and notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated billing documents may contain incorrect invoice numbers, tax rates, due dates, or totals.
+
+Mitigation: Verify invoice numbers, tax rates, due dates, line-item amounts, subtotals, taxes, and totals before sending or relying on the document.
+
+Risk: Client, business, or payment details entered into the skill may appear in the generated document.
+
+Mitigation: Provide only the sensitive client or payment information that is necessary for the intended billing document.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external service providers, and small business operators use this skill to draft invoices, quotes, and receipts from billing details, line items, tax rates, and payment terms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice generation can expose client names, addresses, emails, rates, taxes, and payment terms. <br>
-Mitigation: Provide only the billing details needed for the document and keep delivery in a trusted workflow. <br>
-Risk: Incorrect totals, tax rates, due dates, or recipient details could create billing errors. <br>
-Mitigation: Review calculations, dates, and recipient information before sending or collecting payment. <br>
+**Output Format:** [Markdown or plain text billing document drafts, with optional structured examples for invoice data.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/di5cip1e/director-invoice-generator) <br>
+**Other Properties Related to Output:** [Supports invoice, quote, and receipt formats; users should independently verify calculations and document details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text invoice, quote, or receipt content; the source skill also describes PDF and DOCX delivery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes calculated subtotal, tax, total, due-date, recipient, sender, item, and notes fields when supplied.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

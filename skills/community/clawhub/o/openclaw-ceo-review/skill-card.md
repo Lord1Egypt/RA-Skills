@@ -1,39 +1,50 @@
-## Description: <br>
-CEO-perspective plan review and strategy upgrader supporting expansion, selective expansion, hold-scope, and scope-reduction modes before development work begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CEO-perspective plan review and strategy upgrader supporting four modes: expansion, selective expansion, hold scope, and scope reduction.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers, product leads, and technical reviewers use this skill to challenge plans before implementation, compare implementation approaches, map failure modes, and identify observability and test gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews repository history, diffs, TODOs, and project documentation, which may include sensitive local project context. <br>
-Mitigation: Use it only in projects where that local context is appropriate for the active agent session, and review generated findings before sharing them outside the project. <br>
-Risk: Strategic review output can be incomplete or misleading if treated as approval rather than critique. <br>
-Mitigation: Have a human reviewer validate the premise challenges, alternatives, failure modes, observability gaps, and testing recommendations before implementation. <br>
+## Use Case:
 
+Developers, engineering leads, and product owners use this skill to review implementation plans from a CEO-style strategic perspective before development. It helps challenge assumptions, compare implementation approaches, map failure modes, identify observability gaps, and choose whether to expand, hold, or reduce scope.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with inline shell commands and structured checklist sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces premise challenges, alternatives, failure-mode mapping, observability gaps, edge cases, test coverage notes, and status guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks the agent to inspect local project context, which may expose commit history, TODOs, architecture documents, or design notes during the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on projects where sharing that repository context with the active agent session is acceptable.
+
+## Reference(s):
+
+- [Openclaw Ceo Review on ClawHub](https://clawhub.ai/x-rayluan/skills/openclaw-ceo-review)
+- [x-rayluan ClawHub publisher profile](https://clawhub.ai/user/x-rayluan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured review sections and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include premise challenges, implementation alternatives, failure-mode maps, observability checklists, edge-case analysis, and a final review status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

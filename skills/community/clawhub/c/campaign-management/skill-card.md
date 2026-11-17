@@ -1,39 +1,54 @@
-## Description: <br>
-Read campaign packages, manage campaign state, generate intelligence reports. Entry point for all campaign operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads campaign packages, manages campaign state, and generates intelligence reports as the entry point for campaign operations.
 
-## Publisher: <br>
-[nadavnaveh](https://clawhub.ai/user/nadavnaveh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nadavnaveh](https://clawhub.ai/user/nadavnaveh)
 
-## Use Case: <br>
-Campaign operators and developers use this skill to structure marketing campaign packages, track campaign progress, and generate intelligence reports before deciding whether to proceed with outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous outreach workflows can send email, LinkedIn, X, Reddit, or other campaign actions without enough explicit approval controls. <br>
-Mitigation: Use intelligence or draft-only workflows unless explicit human approval gates are added before any outbound or autonomous campaign action. <br>
-Risk: Campaign lead collection can expose contact data and campaign intelligence if folders are shared too broadly or retained indefinitely. <br>
-Mitigation: Keep campaign folders private and define retention and deletion rules for lead data, intelligence files, outbox drafts, reports, and logs. <br>
+## Use Case:
 
+Campaign operators and go-to-market teams use this skill to validate campaign packages, track campaign progress, generate lead intelligence reports, and manage outreach or autonomous campaign workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, CSV, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and message drafts, JSON campaign state, YAML configuration, and CSV lead files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized under campaign folders such as state.json, report.md, enriched-leads.csv, intel files, outbox drafts, and logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Outreach or autonomous modes could send email, LinkedIn messages, or social posts without sufficient review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval before any message or post is sent, and confirm the sending account or domain before enabling outreach.
+
+Risk: Lead enrichment and campaign reports can involve personal contact data.
+
+Mitigation: Define consent, privacy, retention, and deletion rules for lead files, enriched contact data, intelligence notes, and logs before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nadavnaveh/skills/campaign-management)
+- [ClawHub publisher profile](https://clawhub.ai/user/nadavnaveh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with example YAML, JSON, CSV, and report structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe generated campaign files including enriched leads, intelligence notes, outbox drafts, state tracking, logs, and reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Design Prometheus alerting rules and recording rules, analyze PromQL queries, set meaningful thresholds, reduce alert fatigue, and build multi-window multi-burn-rate SLO alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Prometheus alerting rules and recording rules - analyze PromQL queries, set meaningful thresholds, reduce alert fatigue, and build multi-window multi-burn-rate SLO alerts.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and observability teams use this skill to design or review Prometheus alerting rules, recording rules, Alertmanager routing, and SLO burn-rate alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated alert, routing, or deletion recommendations could disrupt production monitoring if applied without review. <br>
-Mitigation: Manually review generated Prometheus and Alertmanager changes, test alert rules with promtool, and apply changes through normal change-control processes. <br>
-Risk: Analysis against live Prometheus or Alertmanager systems may expose operational data or require credentials. <br>
-Mitigation: Use read-only credentials for analysis and avoid sharing sensitive metric labels, endpoint details, or incident context beyond the intended reviewers. <br>
+## Use Case:
 
+Developers, SREs, and observability teams use this skill to design or review Prometheus alerting rules, recording rules, SLO burn-rate alerts, and Alertmanager routing that reduce alert fatigue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/prometheus-alert-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML configuration blocks and review findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PromQL expressions, Prometheus rule YAML, Alertmanager routing configuration, audit findings, and testing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incorrect alert thresholds, routing rules, or paging severity can cause noisy alerts or missed incidents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated alert and routing rules before deployment, validate PromQL and YAML with Prometheus tooling, and confirm receiver targets and escalation paths.
+
+Risk: Providing broad monitoring access can expose more operational data than the alert design task requires.
+
+Mitigation: Provide only the Prometheus, Grafana, or Alertmanager access needed for the specific review or design task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/prometheus-alert-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and PromQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recording rules, alert rules, Alertmanager routing guidance, audit findings, and testing plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

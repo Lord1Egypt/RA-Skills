@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality-gate:
+    name: Phase A 质量门
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 仓库边界检查（敏感产物不得入库）
+        run: |
+          if git ls-files | grep -qE '^projects/'; then
+            echo "::error::projects/ 不得入库（含用户敏感数据）"
+            exit 1
+          fi
+          grep -qE '^projects/' .gitignore || { echo "::error::.gitignore 缺少 projects/ 规则"; exit 1; }
+          echo "ok：projects/ 已忽略且未入库"
+
+      - name: 契约 + 渲染 + 结构自检
+        run: python scripts/verify_repo.py

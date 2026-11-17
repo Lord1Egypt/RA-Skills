@@ -1,40 +1,51 @@
-## Description: <br>
-Projects revenue and net profit for OpenClaw sub-agent monetization strategies with annual and monthly projections, sensitivity analysis, and break-even estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Projects revenue and net profit for OpenClaw sub-agent monetization strategies with sensitivity and break-even analysis.
 
-## Publisher: <br>
-[Twood2024](https://clawhub.ai/user/Twood2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[twood2024](https://clawhub.ai/user/twood2024)
 
-## Use Case: <br>
-Developers, operators, and marketplace publishers use this skill to estimate monetization outcomes for agent or skill strategies from user counts, prices, conversion rates, churn, and cost assumptions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Revenue projections may be incorrect or misleading if formulas or input assumptions do not match the business model. <br>
-Mitigation: Treat outputs as estimates, review the formulas before making business decisions, and provide only the assumptions needed for the calculation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pricing Models Reference](references/pricing-models.md) <br>
-- [Reference Documentation for Revenue Calculator](references/api_reference.md) <br>
-- [Revenue Projection Report Template](assets/report-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Twood2024/revenue-calculator) <br>
+## Use Case:
 
+Developers and skill publishers use this skill to estimate revenue, net profit, sensitivity, and break-even points for OpenClaw sub-agent monetization strategies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and optional JSON from the bundled calculator script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Revenue projections are estimates based on user-provided assumptions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Revenue projections can mislead business decisions if user counts, conversion rates, churn, pricing, or costs are unrealistic.
+
+Mitigation: Review the input assumptions and sensitivity scenarios before relying on the projections for monetization decisions.
+
+## Reference(s):
+
+- [Pricing Models Reference](references/pricing-models.md)
+- [Revenue Calculator API Reference](references/api_reference.md)
+- [Revenue Projection Report Template](assets/report-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/twood2024/skills/revenue-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with optional JSON calculation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tables, sensitivity scenarios, break-even estimates, and next-step recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

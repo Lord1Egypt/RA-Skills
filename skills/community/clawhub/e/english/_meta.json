@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "english",
-  "version": "1.0.1",
-  "publishedAt": 1770744571885
+  "displayName": "English",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785140325482
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1785112998123
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1770744571885
+    }
+  ]
 }

@@ -1,41 +1,53 @@
-## Description: <br>
-Generates warm, humorous Chinese Shan Hai Jing fairy-tale scripts from user prompts and creates matching solo podcast audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates warm, humorous Chinese Shan Hai Jing fairy-tale scripts from user prompts and creates matching podcast-style audio.
 
-## Publisher: <br>
-[bob8512](https://clawhub.ai/user/bob8512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bob8512](https://clawhub.ai/user/bob8512)
 
-## Use Case: <br>
-Parents, educators, and Chinese-language content creators use this skill to turn a prompt into an age-appropriate Shan Hai Jing-inspired fairy tale and a narrated audio version for children. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or generated story scripts may be passed to the podcast audio-generation tool. <br>
-Mitigation: Avoid private, sensitive, or proprietary details in prompts and review story text before requesting audio generation. <br>
-Risk: The skill allows mild mysterious or scary atmosphere in child-focused stories. <br>
-Mitigation: Keep suspense non-graphic, resolve it warmly, and review outputs for age appropriateness before sharing with children. <br>
+## Use Case:
 
+External users use this skill to turn prompts about Shan Hai Jing characters, scenes, or themes into age-appropriate Chinese story scripts for children around age 8. It also requests podcast-style narration audio so the story can be heard as well as read.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bob8512/shanhai-story-teller) <br>
-- [Publisher profile](https://clawhub.ai/user/bob8512) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Chinese prose story script, podcast-generation request, and brief user-facing status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Story scripts are normally 1500-2500 Chinese characters and use solo podcast mode with a warm storytelling voice when audio generation is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Normal use may generate playable audio intended for children.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the story script and generated audio before sharing it, especially when the prompt requests suspenseful content.
+
+Risk: The skill is tuned for Chinese-language stories for children around age 8.
+
+Mitigation: Specify a different language, age range, or tone when the intended audience differs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bob8512/skills/shanhai-story-teller)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Audio, Guidance]
+
+**Output Format:** [Chinese story script with podcast audio generation feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate playable podcast audio as part of normal use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

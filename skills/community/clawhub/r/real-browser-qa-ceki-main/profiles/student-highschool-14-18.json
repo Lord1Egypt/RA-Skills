@@ -1,0 +1,41 @@
+{
+  "id": "student-highschool-14-18",
+  "label": "High School Student 14-18",
+  "emoji": "📚",
+  "demographics": {
+    "gender": "any",
+    "age_range": [14, 18],
+    "tier": "gen-z"
+  },
+  "active_hours": {
+    "description": "After school + homework, social late evening",
+    "peak": [15, 18, 20, 23],
+    "off_peak_min": 5
+  },
+  "typing": {
+    "description": "Fast social, variable academic — Google Docs familiarity",
+    "wpm": { "min": 80, "max": 120 },
+    "profile": "natural",
+    "think_prob": 0.008,
+    "think_ms": [300, 1000],
+    "backspace_freq": 0.03
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Skim-heavy — reads first lines, decides to stay or go",
+    "speed_px_per_ms": { "min": 30, "max": 70 },
+    "pause_between_passes_ms": { "min": 200, "max": 800 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 400, "max": 1800 },
+    "pre_click_pause_ms": { "min": 100, "max": 400 },
+    "inter_action_pause_ms": { "min": 150, "max": 600 }
+  },
+  "mouse": {
+    "speed": 1.15,
+    "curvature": 0.22,
+    "jitter": 0.4,
+    "description": "Moderate-fast, trackpad native"
+  }
+}

@@ -1,40 +1,49 @@
-## Description: <br>
-GitLab operations including creating and cloning repositories, listing projects, managing issues, merge requests, branches, commits, and pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides GitLab operations for creating and cloning repositories, listing projects, and managing issues, merge requests, branches, commits, and pipelines.
 
-## Publisher: <br>
-[pickbert](https://clawhub.ai/user/pickbert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pickbert](https://clawhub.ai/user/pickbert)
 
-## Use Case: <br>
-Developers and engineers use this skill to work with GitLab projects through API and git operations, including repository creation, project browsing, issue and merge request workflows, branch and commit inspection, and pipeline status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitLab access tokens may be exposed during normal use, especially when credentials are stored in files or embedded in HTTPS clone URLs. <br>
-Mitigation: Use a dedicated least-privilege token, prefer environment variables or a chmod 600 user config file, avoid storing real credentials in scripts/config.json, and avoid the private HTTPS clone helper until token-in-URL handling is fixed. <br>
-Risk: TLS verification can be bypassed for internal GitLab instances, which can expose authenticated traffic on untrusted networks. <br>
-Mitigation: Do not use the insecure mode on untrusted networks; fix certificate trust and keep TLS verification enabled for normal use. <br>
+## Use Case:
 
+Developers and engineers use this skill to interact with GitLab projects from an agent, including repository discovery, issue and merge request workflows, branch and commit inspection, pipeline checks, and project creation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pickbert/gitlab-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, links, confirmations, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute authenticated GitLab API calls and git commands when invoked by an agent with configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: GitLab access tokens could be exposed through insecure TLS, unvalidated hosts, token-bearing HTTPS remotes, persistent local credential files, shared terminal logs, or CI logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled environment with a trusted HTTPS GitLab host, short-lived least-privilege tokens, environment variables or a user config file with restrictive permissions, and avoid --insecure mode, token-bearing remotes, clone helpers, and commands that print tokens or credential files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pickbert/skills/gitlab-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, links, JSON snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform GitLab API and git operations using configured credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

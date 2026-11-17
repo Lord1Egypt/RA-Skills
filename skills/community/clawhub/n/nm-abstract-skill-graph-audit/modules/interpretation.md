@@ -15,7 +15,8 @@ roles produce zero edges:
 
 Skills consumed via `dependencies:` frontmatter from other skills
 or via Python imports rather than `Skill()` calls. Example:
-`abstract:shared-patterns`. **Action**: confirm `dependencies:` field
+`abstract:skills-eval`, which `rules-eval` and `plugin-review` list
+under `dependencies:`. **Action**: confirm `dependencies:` field
 in callers.
 
 ### 2. Entrypoint skills
@@ -55,21 +56,42 @@ The current top-5 hubs (as of 2026-04-25) are:
 
 | Class | Default action |
 |-------|----------------|
-| bugs | Fix in the same PR; do not merge with bugs > 0 |
+| bugs | Fix in the same PR. Do not merge with bugs > 0 |
 | external | Confirm external plugin is documented in plugin.json |
 | placeholders | Annotate with `<!-- template -->` to suppress |
 
 ## Cross-Plugin Coupling
 
 A high count of cross-plugin edges (src plugin != dst plugin) is
-healthy ecosystem behaviour, not a problem. A high count of
+healthy ecosystem behavior. A high count of
 intra-plugin edges (src plugin == dst plugin) suggests a
 plugin-internal federation worth documenting in the plugin's
 README.
 
+## Neither Reference Count Is Trustworthy Alone
+
+An August 2026 triage of 209 skills ran the count two ways and got two
+different answers. Both are wrong, and the way each fails is what a
+reader of this skill's output needs:
+
+| Measure | Result | How it fails |
+|---------|-------:|--------------|
+| Qualified `plugin:skill` outside its own directory | 21 skills at zero | Undercounts. A router naming its targets by bare name scores all of them zero while they are demonstrably reachable |
+| Bare directory name as a whole word outside its own directory | 0 skills at zero | Overcounts, badly. Short names collide with ordinary English |
+
+The overcount is not marginal. `tome:papers` scored 10,571
+"references", `tome:research` 5,315, `gauntlet:extract` 4,818. Those
+are occurrences of the words *papers*, *research* and *extract*.
+
+Read a zero as a prompt to look, never as a verdict. Before acting on
+one, check whether a router or a command names the skill by bare name,
+and whether the name is a common word. A skill whose name is a common
+English word cannot be measured this way at all, and the audit should
+say so instead of reporting a number.
+
 ## Common False Positives
 
-- Skill names in code blocks demonstrating example usage are still
+- Skill names in code blocks that show example usage are still
   parsed. If documenting a hypothetical skill, use `<plugin>:<name>`
   without backticks or surround with `<!-- example -->`.
 - Skill names mentioned in `docs/decisions/` outside SKILL.md files

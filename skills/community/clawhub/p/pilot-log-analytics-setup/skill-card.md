@@ -1,43 +1,54 @@
-## Description: <br>
-Deploy a log analytics system with four agents for collection, parsing, alerting, and visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a log analytics system with 4 agents for collection, parsing, alerting, and visualization.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to set up a four-agent log analytics workflow for centralized collection, parsing, anomaly alerting, dashboards, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Child skills installed by the setup, especially webhook and Slack bridge skills, may forward log data to external destinations. <br>
-Mitigation: Review the installed child skills before use and configure only Slack channels or webhook destinations the operator controls. <br>
-Risk: Log reports and examples may include secrets, personal data, or sensitive operational details. <br>
-Mitigation: Redact secrets and personal data from logs, alerts, reports, and sample payloads before sharing or forwarding them. <br>
-Risk: The setup writes a local manifest at ~/.pilot/setups/log-analytics.json, which may overwrite an existing setup file. <br>
-Mitigation: Check whether the manifest path already exists before running the manifest creation step. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to configure a four-agent Pilot Protocol log analytics deployment for centralized log collection, parsing, anomaly alerting, and dashboard reporting.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-log-analytics-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with bash commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup installs multiple dependent skills and creates persistent Pilot trust and configuration state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependent skills before installation, restrict deployments to approved peers, verify peer identities before handshakes, and back up any existing ~/.pilot setup file.
+
+Risk: Log reports may contain sensitive raw logs or secrets and can be forwarded to Slack or webhooks.
+
+Mitigation: Limit approved log sources and outbound destinations, redact secrets before forwarding, and avoid sending raw logs to external channels.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-log-analytics-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides role selection, dependent skill installation, Pilot hostname setup, manifest creation, peer handshakes, and example log event publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

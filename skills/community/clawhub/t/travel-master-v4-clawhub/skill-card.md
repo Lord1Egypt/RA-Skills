@@ -1,46 +1,57 @@
-## Description: <br>
-TravelMaster V4 helps agents collect travel requirements, converge on a plan, and generate responsive HTML travel guides with merchant and navigation links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Master V4 helps an agent collect travel requirements, generate itinerary options, and produce responsive HTML travel guides with travel-provider links.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to gather trip preferences, compare local plan options, and produce an HTML itinerary-style guide with travel, venue, and merchant links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated merchant or payment links could be incorrect or unsafe to use directly. <br>
-Mitigation: Manually verify every merchant, booking, payment, and navigation link before booking, paying, or sharing the output. <br>
-Risk: The release includes real API and travel-service claims that may require credentials and operational review. <br>
-Mitigation: Use limited-scope API keys, avoid unnecessary sensitive travel details, and validate third-party API behavior in a controlled environment before deployment. <br>
-Risk: Background-start or watchdog-style service instructions may create unmanaged long-running processes. <br>
-Mitigation: Do not run watchdog commands unless the supplied script is present and reviewed; use an explicitly managed service such as systemd or supervisor when deployment is needed. <br>
+## Use Case:
 
+External users and developers use this skill to turn travel preferences such as destination, dates, party size, transport, and budget into itinerary guidance and an HTML trip plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timo2026/travel-master-v4-clawhub) <br>
-- [Amap location services](https://lbs.amap.com) <br>
-- [FlyAI](https://flyai.com) <br>
-- [Tencent location services](https://lbs.qq.com) <br>
-- [Meituan Open Platform](https://open.meituan.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated HTML travel-report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include merchant, navigation, and API-backed travel links that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The release security summary reports mismatched claims, unsafe HTML handling, and risky install or startup guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installation, run it in a restricted environment, and fix HTML rendering and startup guidance before using valuable API keys.
+
+Risk: The security guidance warns against adding valuable API keys until dependencies, privacy controls, delivery controls, and startup instructions are clarified.
+
+Mitigation: Use limited-scope test credentials first, pin dependencies, document data handling, and add clear delivery controls before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/travel-master-v4-clawhub)
+- [Amap developer documentation](https://lbs.amap.com)
+- [FlyAI](https://flyai.com)
+- [Tencent Map developer documentation](https://lbs.qq.com)
+- [Meituan Open Platform](https://open.meituan.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text and responsive HTML travel guide content, with setup commands and configuration guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided API keys for external travel and map services.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

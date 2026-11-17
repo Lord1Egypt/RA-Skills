@@ -1,0 +1,14 @@
+{
+  "slug": "mind",
+  "version": "1.0.4",
+  "compiler_release": "0.10.2",
+  "publisher": "star-ga",
+  "author": "STARGA Inc.",
+  "changelog": "Distinguish the Apache-2.0 compiler license from the ClawHub skill package license.",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "metadata.json"
+  ],
+  "compiler_license": "Apache-2.0"
+}

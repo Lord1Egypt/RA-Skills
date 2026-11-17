@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7c8nm3z5bgwtq0zb1ddfn2nd87z743",
-  "slug": "video-review",
+  "name": "video-review",
   "version": "1.0.0",
-  "publishedAt": 1780485230714
+  "description": "视频基础质量审核技能，对视频进行批量或单条的基础问题检测，包括画面质量、构图、音频、黑边、分辨率等，输出审核报告。",
+  "trigger": ["视频初审", "审核视频", "视频质量检测", "检测视频", "批量审核视频", "视频基础问题"]
 }

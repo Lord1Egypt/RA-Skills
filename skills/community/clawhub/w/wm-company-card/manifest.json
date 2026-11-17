@@ -1,0 +1,75 @@
+{
+  "id": "wm-company-card",
+  "name": "公司卡片",
+  "version": "1.2.9",
+  "tier": 1,
+  "visibility": "opt_in",
+  "description": "公司一页纸摸底（行情+身份+估值成长）。深度研读/备忘请走 Role；全行业比价走 wm-industry-members。",
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "symbol": {
+        "type": "string",
+        "description": "单票证券代码；与 symbols 二选一，symbols 优先"
+      },
+      "symbols": {
+        "type": "array",
+        "description": "批量证券代码，最多 50；非空时优先于 symbol",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 50
+      },
+      "include": {
+        "type": "string",
+        "default": "default",
+        "description": "default|full|quote,kline|… 模块 csv：quote,kline,identity,valuation,growth,quality,shareholder"
+      }
+    }
+  },
+  "runtime": {
+    "mode": "skill_run",
+    "script_ref": "scr_wm_company_card",
+    "path": "xs/skillhub/wm_company_card.xs"
+  },
+  "required_scopes": [
+    "analysis:skills:run"
+  ],
+  "icon": "公",
+  "category": "行情与公司",
+  "author": "赢麻了官方",
+  "official": true,
+  "summary": "公司一页纸画像：行情、估值、成长、质量、股东，可按模块裁剪，也支持批量。",
+  "sample_prompts": [
+    "给我某某公司的一页纸画像：估值、成长、质量要点。",
+    "批量看这几只股票的公司卡片对比。",
+    "只要行情和估值模块，帮我快速扫一眼某某。"
+  ],
+  "expertise_tags": [
+    "公司画像",
+    "估值",
+    "成长"
+  ],
+  "outputs_schema": {
+    "type": "object",
+    "x-envelope": "skills_run",
+    "description": "Dual-read: prefer flat data.<field> after skills/run flatten; compat data.result.<field>. x-envelope skills_run means relative to either.",
+    "x-primary_path": "card",
+    "properties": {
+      "card": {
+        "type": "object",
+        "description": "HTTP: data.result.card.*"
+      },
+      "freshness": {
+        "type": "object"
+      },
+      "deeplinks": {
+        "type": "array"
+      },
+      "items": {
+        "type": "array",
+        "description": "batch mode"
+      }
+    }
+  }
+}

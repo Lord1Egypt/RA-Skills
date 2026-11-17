@@ -1,0 +1,4 @@
+interface:
+  display_name: "AideNote for Hermes"
+  short_description: "Pair AideNote with Hermes and query real recording data."
+  default_prompt: "Use $aidenote-hermes to pair and install my AideNote mobile connection with a one-time App approval, then retrieve real recordings or action items when requested."

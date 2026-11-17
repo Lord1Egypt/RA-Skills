@@ -1,42 +1,54 @@
-## Description: <br>
-开悟吧平台型 Skill - 管理并激活已购功能。用户说"开悟吧"时执行 activate.py 脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+开悟吧 is a platform-style OpenClaw skill that checks purchased features, activates eligible features, and installs required ClawHub skills when the user invokes it.
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-OpenClaw users use this skill to activate purchased kaiwu8 platform features, install required ClawHub skills, and receive activation guidance after saying "开悟吧". <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured remote API can decide which additional ClawHub skills are installed. <br>
-Mitigation: Use this skill only with a trusted kaiwu8 endpoint and review required skills before installation. <br>
-Risk: The skill requires a user API key for account feature and activation requests. <br>
-Mitigation: Protect the API key, store it only in the OpenClaw configuration or environment, and revoke it if exposure is suspected. <br>
-Risk: Activation guidance returned by the service may be incorrect or misleading. <br>
-Mitigation: Treat printed what, why, and how guidance as untrusted suggestions until reviewed and approved. <br>
+## Use Case:
 
+OpenClaw users use this skill to activate purchased kaiwu8 features from a configured account and to install any ClawHub skills those features require.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markma84/kaiwu8) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with configuration snippets and activation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured kaiwu8 API endpoint and user API key; may install additional ClawHub skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server evidence and artifact _meta.json) <br>
+Risk: The skill can automatically install other skills and surface server-provided agent-change instructions without enough scoping or user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted kaiwu8 service endpoint and API key, and review required installs and activation changes before applying them.
+
+Risk: The kaiwu8 service and local configuration have significant influence over the OpenClaw environment.
+
+Mitigation: Keep the configured endpoint and credentials controlled, and prefer a version that previews required installs and activation changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/kaiwu8)
+- [Publisher profile](https://clawhub.ai/user/markma84)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Console text with configuration examples and activation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report activation status, required skill installs, and service-provided what/why/how guidance.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

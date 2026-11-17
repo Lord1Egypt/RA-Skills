@@ -1,0 +1,28 @@
+[
+  {
+    "KbCartItemId": 10315,
+    "CreatedDataTime": "2021-09-08 10:23:19Z",
+    "RosterLineId": "d57cb2a5-710d-4558-a58f-b29e58ba1a64",
+    "ProductName": "HC2",
+    "DesignName": "HC2FG3",
+    "DesignColor": "",
+    "SelectedLeadTime": {"LeadTimeId": "EX", "LeadTimeName": "EMBROIDERY Express", "LeadTimeDays": 10},
+    "SelectedFabric": "",
+    "AvailableLeadTimes": [
+      {"LeadTimeId": "EX", "LeadTimeName": "EMBROIDERY Express", "LeadTimeDays": 10}
+    ],
+    "Quantity": 12,
+    "Teams": [
+      {
+        "TeamLineId": "290af7b0-a302-414e-8c67-4b41fd27125b",
+        "TeamName": "",
+        "Quantity": 3,
+        "Players": [
+          {"PlayerName": "Alex", "PlayerNumber": "77", "PlayerSize": "S/M", "Quantity": 1, "SKU": null},
+          {"PlayerName": "John", "PlayerNumber": "78", "PlayerSize": "S/M", "Quantity": 1, "SKU": null},
+          {"PlayerName": "Jack", "PlayerNumber": "79", "PlayerSize": "S/M", "Quantity": 1, "SKU": null}
+        ]
+      }
+    ]
+  }
+]

@@ -1,43 +1,49 @@
-## Description: <br>
-QuiverAI helps agents generate SVG vector graphics from text prompts or convert reference images into SVG outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native SVG vector graphics generation tool for generating SVG graphics from text prompts or converting images to SVG with optional reference images, streaming progress, and SVG, PNG, JPEG, or WebP export guidance.
 
-## Publisher: <br>
-[charmmm718](https://clawhub.ai/user/charmmm718) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[charmmm718](https://clawhub.ai/user/charmmm718)
 
-## Use Case: <br>
-Developers, designers, and external users use this skill to create logos, illustrations, typography, animations, and other vector assets through QuiverAI's web interface or REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and optional reference images are sent to QuiverAI. <br>
-Mitigation: Do not upload sensitive, personal, regulated, confidential, or proprietary images unless authorized. <br>
-Risk: QuiverAI API credentials may be needed for programmatic access. <br>
-Mitigation: Keep API keys private and pass them only through authorized credential-handling mechanisms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QuiverAI API Reference](references/api.md) <br>
-- [QuiverAI web app](https://app.quiver.ai/creations) <br>
-- [QuiverAI API base URL](https://api.quiver.ai) <br>
-- [ClawHub release page](https://clawhub.ai/charmmm718/quiver-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/charmmm718) <br>
+## Use Case:
 
+External users, designers, and developers use this skill to create vector graphics such as logos, illustrations, typography, and animations from text prompts or reference images through QuiverAI's web interface or REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with REST API examples and generated SVG, PNG, JPEG, or WebP assets from QuiverAI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a QuiverAI account, API key, prompts, image URLs, and optional reference images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, reference image URLs, and uploaded images may be sent to QuiverAI during web or API use.
+
+Mitigation: Avoid submitting sensitive material unless the user's privacy, account, and data-handling requirements allow it.
+
+## Reference(s):
+
+- [QuiverAI API Reference](references/api.md)
+- [QuiverAI Web Interface](https://app.quiver.ai/creations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with REST API examples and workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts, reference image URLs, API-key usage instructions, and export-format guidance for SVG, PNG, JPEG, or WebP.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

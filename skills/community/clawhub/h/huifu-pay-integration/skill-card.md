@@ -1,49 +1,62 @@
-## Description: <br>
-Helps developers integrate Huifu Pay across first-time builds, existing-system changes, aggregation payments, hosted payments, checkout-js, SDK examples, webhooks, troubleshooting, go-live checks, and version updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through Huifu payment, balance, delayed transaction, account, payout, settlement, checkout, and notification integrations and troubleshooting.
 
-## Publisher: <br>
-[huifu](https://clawhub.ai/user/huifu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huifu](https://clawhub.ai/user/huifu)
 
-## Use Case: <br>
-External developers and engineers use this skill to choose a Huifu Pay integration path, review payment parameters and callbacks, generate SDK-oriented guidance for PHP, Java, and Python, troubleshoot integration errors, and prepare for launch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Merchant credentials, RSA keys, openids, buyer IDs, certificate numbers, order numbers, and transaction logs may be exposed while using the skill. <br>
-Mitigation: Keep secrets server-side, store them in secret managers or environment variables, mask logs, and avoid sharing real production values with the model. <br>
-Risk: Payment and personal data may be mishandled during integration troubleshooting or launch preparation. <br>
-Mitigation: Use masked or sandbox data when possible, review generated changes before deployment, and confirm merchant-specific configuration outside the model. <br>
+## Use Case:
 
+Developers use this skill to select and implement Huifu payment and payout APIs, troubleshoot integrations, and handle SDK, request, notification, and transaction status details.
 
-## Reference(s): <br>
-- [Shared Overview](references/shared-overview.md) <br>
-- [Copilot Onboarding](references/copilot-onboarding.md) <br>
-- [Solution Selection](references/copilot-solution-selection.md) <br>
-- [Existing System Integration](references/copilot-existing-system.md) <br>
-- [Troubleshooting Playbooks](references/copilot-troubleshooting-playbooks.md) <br>
-- [Go-Live Checklist](references/copilot-go-live-checklist.md) <br>
-- [Credential Boundary](references/shared-credential-boundary.md) <br>
-- [Webhook Signing](references/shared-webhook-signing.md) <br>
-- [Official Service Source Index](references/official-service-source-index.md) <br>
-- [Huifu AI Skill Support](https://paas.huifu.com/docs/devtools/#/skillsv1_0?id=support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown responses with checklists, code snippets, configuration notes, and local reference lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes each answer to a small set of local references and treats merchant credentials, keys, transaction identifiers, and payment logs as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The security review reports disabled TLS checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep certificate-chain and hostname verification enabled; review the selected SDK and deployment configuration before live requests.
+
+Risk: Sensitive information handling may expose credentials in source code or logs.
+
+Mitigation: Keep keys in server-side secret storage, disable SDK debug logging before initialization, redact logs, and keep credentials out of frontends and repositories.
+
+Risk: Security analysis is incomplete for some referenced content.
+
+Mitigation: Review unresolved or parser-limited references and confirm applicable API and SDK details against official Huifu documentation before production use.
+
+## Reference(s):
+
+- [Payment integration overview](references/shared-overview.md)
+- [Server SDK matrix and transport guidance](references/shared-server-sdk-matrix.md)
+- [Payment notification handling](references/shared-async-notify.md)
+- [Credential use and storage boundaries](references/shared-credential-boundary.md)
+- [Huifu official API documentation](https://paas.huifu.com/partners/api/doc/)
+- [Huifu developer integration guide](https://paas.huifu.com/open/service/develop/#/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, Shell commands, API request examples]
+
+**Output Format:** [Markdown with explanations, tables, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include language-specific integration examples and configuration placeholders.]
+
+## Skill Version(s):
+
+1.6.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

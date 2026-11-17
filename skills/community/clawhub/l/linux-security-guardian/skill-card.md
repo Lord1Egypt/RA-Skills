@@ -1,48 +1,64 @@
-## Description: <br>
-Autonomous Linux server security management skill for multi-client SSH audits, CVE scanning, controlled hardening actions, and security reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous multi-client Linux server security management via SSH MCP, with scheduled audits, CVE scanning, hardening checks, confirmation-gated critical actions, and email reporting.
 
-## Publisher: <br>
-[cyber-bye](https://clawhub.ai/user/cyber-bye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyber-bye](https://clawhub.ai/user/cyber-bye)
 
-## Use Case: <br>
-System administrators and security engineers use this skill to run recurring Linux server audits across client server fleets, review findings, and manage confirm-gated remediation. It is intended for environments where the operator is prepared to grant administrative SSH access and review sensitive security reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run recurring administrative SSH audits and approved actions across multiple servers. <br>
-Mitigation: Install only where that access is intended, restrict the auto-action whitelist, remove or constrain broad approval language, and keep confirmation required for critical, patching, and firewall changes. <br>
-Risk: Security findings, reports, caches, and emails may contain sensitive server and vulnerability details. <br>
-Mitigation: Protect report and cache directories, verify per-client email recipients before enabling reports, and limit access to generated findings. <br>
-Risk: External CVE lookups may disclose package and version data to vulnerability data providers. <br>
-Mitigation: Decide before deployment whether CISA, OSV.dev, and NVD lookups are permitted for the environment, and disable or constrain external sources where policy requires it. <br>
-Risk: Automated remediation can cause outages if actions are too broad or rollback handling is incomplete. <br>
-Mitigation: Review rollback-script handling, test changes on non-critical systems, and require explicit approval for disruptive service, package, kernel, and network changes. <br>
+## Use Case:
 
+Developers, operators, and security administrators use this skill to audit and manage Linux server fleets through SSH MCP, generate findings and reports, and queue higher-risk changes for explicit approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyber-bye/linux-security-guardian) <br>
-- [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) <br>
-- [CISA KEV JSON feed](https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json) <br>
-- [OSV.dev API documentation](https://google.github.io/osv.dev/) <br>
-- [NVD API documentation](https://nvd.nist.gov/developers/start-here) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, pending-action records, configuration notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized by client and server and may include audit findings, CVE advisories, proposed changes, rollback notes, and email-ready reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: release evidence and skill frontmatter) <br>
+Risk: The skill requests broad scheduled root-level control over server fleets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test in isolation first and replace the shared root key with per-host or per-client least-privilege credentials before production use.
+
+Risk: Approval safeguards may be weak for critical or high-impact changes.
+
+Mitigation: Authenticate approval replies through a trusted channel and remove or heavily restrict any APPROVE ALL workflow.
+
+Risk: Client and server identifiers are used to write audit, action, CVE, and report files.
+
+Mitigation: Validate client and server identifiers before file writes to prevent path or scope mistakes.
+
+Risk: Some checks may expose sensitive account or package-inventory data.
+
+Mitigation: Use derived-only outputs and redaction controls where possible, especially for /etc/shadow-derived checks and local CVE inventory fallback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyber-bye/skills/linux-security-guardian)
+- [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+- [OSV.dev API documentation](https://google.github.io/osv.dev/)
+- [NVD developer documentation](https://nvd.nist.gov/developers/start-here)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown reports, findings, action proposals, advisories, configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SSH MCP tools and local binaries listed in release metadata; email delivery depends on a separate email plugin or skill.]
+
+## Skill Version(s):
+
+1.6.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Video analysis: object detection, scene classification, activity recognition, and summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video analysis: object detection, scene classification, activity recognition, and summarization.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and operators use this skill to send a video URL to ntriq's external service for object detection, scene classification, activity recognition, and summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends referenced video content to an external ntriq service. <br>
-Mitigation: Use only videos you are authorized to share, and avoid confidential, regulated, internal-only, or surveillance footage unless retention and logging practices are acceptable. <br>
-Risk: Calls use a paid x402 micropayment endpoint. <br>
-Mitigation: Confirm payment authorization, network, and expected per-call cost before invoking the service. <br>
+## Use Case:
 
+Developers and teams use this skill to send video URLs to a remote video-intelligence service and receive object detections, scene labels, activity recognition, and narrative summaries. Typical uses include incident review, content moderation triage, and highlight identification.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ntriq-gh/ntriq-video-intelligence-mcp) <br>
-- [ntriq x402 homepage](https://x402.ntriq.co.kr) <br>
-- [ntriq service catalog](https://x402.ntriq.co.kr/services) <br>
-- [Video intelligence endpoint](https://x402.ntriq.co.kr/video-intel-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON analysis results with labels, timestamps, confidence scores, activities, and summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Inputs include a video URL, optional task selection, confidence threshold, and frame sample rate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Video URLs are sent to an external paid service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved video sources and confirm the provider's data handling terms before submitting confidential, regulated, surveillance, or personal footage.
+
+Risk: Each analysis call may incur the stated per-call fee.
+
+Mitigation: Confirm payment authorization and expected usage volume before deploying the skill in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-video-intelligence-mcp)
+- [Ntriq x402 service homepage](https://x402.ntriq.co.kr)
+- [Video Intelligence MCP endpoint](https://x402.ntriq.co.kr/video-intel-mcp)
+- [Ntriq service catalog](https://x402.ntriq.co.kr/services)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Text]
+
+**Output Format:** [Structured JSON with timestamped detections, scene labels, activity lists, and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require payment to the external x402 service; output depends on the submitted video URL and selected analysis tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

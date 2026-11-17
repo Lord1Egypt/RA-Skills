@@ -1,7 +1,8 @@
 ---
 name: cyber-girlfriend
 description: Build or customize an owner-only proactive companion system with a cyber-girlfriend persona, Markdown private-life context, lightweight relationship memory, and OpenClaw presence cron delivery.
-version: 2.1.9
+metadata:
+  version: "2.2.0"
 ---
 
 # Cyber Girlfriend
@@ -20,9 +21,9 @@ This skill gives the owner:
 
 This skill is meant to be set up by an agent, not by hand.
 
-If the user wants the default setup, the simplest path is:
+If the user wants the default setup, the simplest explicit invocation is:
 
-> Help me set up cyber girlfriend.
+> Use $cyber-girlfriend to help me set up a cyber girlfriend.
 
 The agent should then gather the minimum inputs, create or update the local files, wire the default cron jobs, and validate the install before claiming success.
 
@@ -43,7 +44,7 @@ The user should not need to:
 
 The recommended starter setup is:
 - one daily schedule builder job that writes `day-schedule.md`
-- one `companion-presence` cron that runs a deterministic tick wrapper from an isolated cron session
+- one `companion-presence` automation that runs the deterministic tick wrapper as an exact Gateway command payload
 - 1-4 optional life anchors that are written into `day-schedule.md`
 
 Those anchors are life facts, not guaranteed sends.
@@ -54,7 +55,7 @@ The current default active path has two small steps:
 - `scripts/companion_presence_tick.py --config <CONFIG>`
 - inside that wrapper, `scripts/companion_run.py --stage prepare --no-record-pending`
 
-The wrapper reads local state through the prepare runner and exits quietly when no current event should send. Only when prepare returns `status = "ok"` does it start the stable companion session with the prepared contract. The stable session writes the first-person story, but text delivery goes through `companion_presence_tick.py --send-story --story-stdin`, which reloads the saved delivery contract from the dispatch lock, sends with the external OpenClaw CLI, and commits state only after successful text delivery. If the matched event asks for media, media generation starts after `--send-story` succeeds and finishes asynchronously. The wrapper also starts a deterministic recent-media watcher for the stable companion session, so generated media is delivered through the prepared delivery contract even if the native completion turn falls back to Codex internal UI.
+On OpenClaw versions that support command automations, cron invokes the wrapper directly with an exact argv payload; no model turn is used merely to launch the script. The wrapper reads local state through the prepare runner and exits quietly when no current event should send. Only when prepare returns `status = "ok"` does it derive a fresh dispatch-scoped companion session from the prepared run id. That session writes the first-person story, but text delivery goes through `companion_presence_tick.py --send-story --story-stdin`, which reloads the saved delivery contract from the dispatch lock, sends with the external OpenClaw CLI, and commits state only after successful text delivery. If the matched event asks for media, media generation starts after `--send-story` succeeds and finishes asynchronously. The wrapper also starts a deterministic recent-media watcher for the same dispatch session, so generated media is delivered through the prepared delivery contract even if the native completion turn falls back to Codex internal UI. Cross-event continuity comes only from the local state files, so archived runtime sessions are never reused.
 
 The default local files are:
 - `character-profile.md`
@@ -66,15 +67,20 @@ Legacy 1.x inputs such as `persona`, `month-plan.json`, `day-context.json`, and 
 
 ## Hard Rules
 
+- Do not run this skill through implicit discovery; the user must explicitly invoke `$cyber-girlfriend`.
 - Never hardcode secrets.
 - Keep proactive behavior owner-only unless the user explicitly wants broader scope.
 - Keep runtime-specific values in `config.local.json` or environment variables, not published defaults.
 - Keep the companion's core persona in `character-profile.md`; treat `config.local.json -> persona` as deprecated migration data.
 - Keep presence cron payloads thin; the cron should call `companion_presence_tick.py`, not duplicate long writing instructions in runtime configuration.
+- Prefer an exact argv command payload for `companion-presence`; do not spend an isolated model turn only to run the wrapper. Use the legacy thin agent-turn payload only when the installed OpenClaw does not support command automations.
+- Run `companion-build-day-schedule` with lightweight bootstrap context because its payload explicitly names every required project input.
 - User-defined required events are life anchors, not guaranteed message sends.
 - Day schedule events must keep `媒体信息`; leave it empty unless the matched event should produce photo, audio, video, or similar media.
 - Final user-visible companion text must be first person from the companion's perspective.
 - Do not expose internal JSON, code blocks, step names, debug output, local paths, account ids, channel ids, or session ids in owner-facing messages.
+- Before writing local config or state, running public-web search, creating/updating/enabling recurring jobs, or sending the first controlled verification message, preview the exact scope and wait for explicit user confirmation.
+- Pause is reversible: disable the exact builder and presence jobs without deleting local config or state. Permanently remove jobs only after a separate explicit request.
 - Do not claim setup or upgrade is complete before a real validation command passes.
 
 ## Read This First For Real Setup Or Upgrade
@@ -103,6 +109,12 @@ Always read:
   - [references/script-contract-v2-migration.md](./references/script-contract-v2-migration.md)
 
 ## Version Notes
+
+### 2.2.0
+
+Version 2.2.0 adapts the scheduled runtime to OpenClaw command automations and archived-session enforcement. `companion-presence` now runs `companion_presence_tick.py` as an exact argv Gateway command instead of starting a full isolated model turn whose only job was to execute the wrapper and reply `NO_REPLY`. Each matched event uses a fresh dispatch-scoped companion session so OpenClaw never has to resume an archived long-lived runtime session. If the external CLI cannot resolve the configured WeChat plugin channel, the fixed send entrypoint uses its existing explicit-contract direct fallback and keeps a failed delivery retryable. The model-backed `companion-build-day-schedule` job keeps its generation workflow but enables lightweight bootstrap context because its payload already lists the required inputs.
+
+中文说明：2.2.0 把 `companion-presence` 改成 OpenClaw 原生 command automation，用精确 argv 直接运行 wrapper，不再每 15 分钟先启动一次 Codex turn。命中事件后为本轮派生新的 dispatch session，不再复用可能已归档的长期 session；如果外部 CLI 也找不到自定义微信渠道，固定发送入口会按同一 delivery contract 使用既有直连兜底，并把失败发送保留为可重试。这样可以同时避开 `turn-accepted` 卡住、归档会话拒绝启动和空转模型上下文；每日 日程 builder 仍使用模型，但启用轻量上下文，只加载任务明确要求的项目输入。
 
 ### 2.1.9
 

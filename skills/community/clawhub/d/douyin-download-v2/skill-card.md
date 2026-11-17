@@ -1,45 +1,59 @@
-## Description: <br>
-抖音无水印视频下载和文案提取工具 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads watermark-free Douyin videos and extracts speech transcripts with optional semantic segmentation.
 
-## Publisher: <br>
-[whille](https://clawhub.ai/user/whille) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whille](https://clawhub.ai/user/whille)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Douyin share links, download watermark-free video files, extract audio transcripts, and optionally format transcripts into semantic Markdown sections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audio is sent to Silicon Flow for transcription when extraction is used. <br>
-Mitigation: Use extraction only for videos whose audio may be shared with that external service, and set SILI_FLOW_API_KEY only when transcription is intended. <br>
-Risk: Transcript text may be sent to MiniMax for semantic segmentation when MINIMAX_API_KEY is available. <br>
-Mitigation: Unset MINIMAX_API_KEY or run extraction with --no-segment when transcript text should not be shared with MiniMax. <br>
-Risk: The security scan verdict is suspicious because transcript sharing is under-disclosed. <br>
-Mitigation: Review the skill and its external service disclosures before installation or deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whille/douyin-download-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/whille) <br>
-- [Silicon Flow console](https://cloud.siliconflow.cn/) <br>
-- [Silicon Flow transcription API](https://api.siliconflow.cn/v1/audio/transcriptions) <br>
-- [MiniMax API endpoint](https://api.minimaxi.com) <br>
+## Use Case:
 
+Developers and content workflows use this skill to inspect Douyin video information, download video media, and extract speech transcripts. It can write transcript Markdown and optionally segment transcript text.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Console text plus optional downloaded MP4 files and transcript.md Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and SILI_FLOW_API_KEY for transcription; MINIMAX_API_KEY enables optional semantic segmentation unless --no-segment is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Transcript and audio content may be sent to external transcription or segmentation services.
+
+Mitigation: Use only media appropriate for those services, and pass --no-segment or remove MINIMAX_API_KEY when MiniMax transcript segmentation is not wanted.
+
+Risk: The skill accepts broad network targets and downloads media from resolved URLs.
+
+Mitigation: Run it in a constrained network environment and use an output directory you control.
+
+Risk: The skill writes downloaded media, audio intermediates, and transcript Markdown files.
+
+Mitigation: Review generated files before sharing and avoid using shared or sensitive output locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whille/skills/douyin-download-v2)
+- [SiliconFlow Cloud](https://cloud.siliconflow.cn/)
+- [SiliconFlow transcription endpoint](https://api.siliconflow.cn/v1/audio/transcriptions)
+- [MiniMax API endpoint](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [CLI text output and Markdown transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg and SILI_FLOW_API_KEY for transcription; MINIMAX_API_KEY enables optional semantic segmentation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

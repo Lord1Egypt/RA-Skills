@@ -1,42 +1,63 @@
-## Description: <br>
-Discord archive: search, sync freshness, DMs, channel slices, SQL counts, and Discrawl repo work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discrawl helps agents search local Discord archives, check archive freshness, inspect DMs and channel slices, run SQL counts, and support Discrawl repository work.
 
-## Publisher: <br>
-[openclaw](https://clawhub.ai/user/openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclaw](https://clawhub.ai/user/openclaw)
 
-## Use Case: <br>
-Developers and agents use Discrawl to inspect local Discord archive data, check archive freshness, search DMs or channel slices, and report exact counts, date spans, and known gaps before relying on live Discord APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Discord archives and DMs may contain sensitive conversations. <br>
-Mitigation: Install only when archive search is intended, treat exported snapshots as private, and do not include secrets or private DM rows in shared snapshots. <br>
-Risk: Discord synchronization can require bot credentials or access to local Discord Desktop artifacts. <br>
-Mitigation: Use least-privilege bot credentials, do not provide Discord user tokens, and do not write to Discord storage. <br>
-Risk: Unsafe SQL mutations could alter archive data. <br>
-Mitigation: Keep SQL read-only unless the user explicitly approves a reviewed mutation. <br>
+## Use Case:
 
+Developers and operators use Discrawl to answer questions from local Discord archive data before using live Discord APIs, including freshness checks, bounded searches, DM or channel inspection, and read-only SQL counts.
 
-## Reference(s): <br>
-- [Discrawl repository](https://github.com/openclaw/discrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and query snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include absolute date spans, channel or DM names, counts, and known gaps from local Discord archive data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The skill can inspect private DMs and local Discord artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for datasets and workspaces the user is authorized to inspect, and avoid sharing git snapshots that contain secrets or @me DM rows.
+
+Risk: The install metadata uses a mutable Go module target.
+
+Mitigation: Prefer a pinned Discrawl version before deployment.
+
+Risk: Bot-backed sync can require Discord bot credentials.
+
+Mitigation: Configure only authorized bot credentials and do not extract user tokens, call Discord as the user, or write to Discord storage.
+
+Risk: Database mutation is possible when unsafe flags are explicitly used.
+
+Mitigation: Use read-only SQL for counts and rankings, and require explicit user request and review before any --unsafe --confirm mutation.
+
+## Reference(s):
+
+- [Discrawl homepage](https://github.com/openclaw/discrawl)
+- [ClawHub Discrawl skill page](https://clawhub.ai/openclaw/skills/discrawl)
+- [OpenClaw publisher profile](https://clawhub.ai/user/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise archive findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports absolute date spans, channel or DM names, counts, and known gaps when archive evidence supports them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/fake-session-suite.schema.json",
+  "title": "Fake ChatCut regression suite",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "scenarios"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/fake-session-suite.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.fake-suite.v1"},
+    "scenarios": {"type": "array", "minItems": 10, "items": {"$ref": "fake-session.schema.json"}}
+  }
+}

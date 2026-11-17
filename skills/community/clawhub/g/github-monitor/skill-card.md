@@ -1,39 +1,56 @@
-## Description: <br>
-Monitor one or more GitHub repositories and send low-noise alerts with configurable policy modes (major_only, balanced, verbose). Use when setting up recurring repo watch, release/security monitoring, PR merge tracking, and daily digest workflows via OpenClaw cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor one or more GitHub repositories and send low-noise alerts with configurable policy modes (major_only, balanced, verbose). Use when setting up recurring repo watch, release/security monitoring, PR merge tracking, and daily digest workflows via OpenClaw cron.
 
-## Publisher: <br>
-[samwei12](https://clawhub.ai/user/samwei12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samwei12](https://clawhub.ai/user/samwei12)
 
-## Use Case: <br>
-Developers and operators use this skill to configure recurring monitoring for one or more GitHub repositories, covering releases, recent commits, merged pull requests, security signals, breaking-change signals, and daily digests through OpenClaw cron. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A recurring monitor can continue checking repositories and sending alerts until its scheduled job is changed or removed. <br>
-Mitigation: Before installing, confirm the repository list, cron interval, notification destination, and state-file path, and update or remove the scheduled job when monitoring is no longer needed. <br>
-Risk: Incorrect cursor or state-file setup can create noisy alerts, duplicate notifications, or historical backfill. <br>
-Mitigation: Initialize installed_at, last_checked_at, and last_notified_at to the first-run time, persist state after successful scans, and keep the state file stable across restarts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samwei12/github-monitor) <br>
+## Use Case:
 
+Developers and operators use this skill to set up recurring monitoring for one or more GitHub repositories, with low-noise alerts for releases, security-relevant changes, merged PRs, and daily digests.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration guidance] <br>
-**Output Format:** [Markdown brief impact summaries with on-demand event details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configurable policy modes, stateful deduplication, daily digest queues, and concise impact-first notifications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An incorrect repository list, notification target, schedule, timezone, or state-file path could create unwanted monitoring behavior or alerts.
+
+Mitigation: Confirm these installation parameters before deployment and update them deliberately when repositories or recipients change.
+
+Risk: Recurring checks rely on stored monitoring cursors to avoid resending old events.
+
+Mitigation: Use a persistent state-file path and inspect or reset the state intentionally if alert history or deduplication behavior needs to change.
+
+Risk: The artifact defaults to Chinese headings and trigger phrases for brief and detailed output modes.
+
+Mitigation: Adjust the output instructions before use when another language is required.
+
+## Reference(s):
+
+- [GitHub Monitor on ClawHub](https://clawhub.ai/samwei12/skills/github-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown brief impact summaries with on-demand event details and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default responses are concise and impact-first; detailed event lists are produced only when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

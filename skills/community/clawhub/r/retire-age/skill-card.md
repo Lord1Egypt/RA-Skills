@@ -1,39 +1,57 @@
-## Description: <br>
-Calculates a user's retirement time and retirement age under China's gradual retirement policy from birth year, birth month, and role. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates a China-specific retirement date and retirement age from a person's role, birth year, and birth month.
 
-## Publisher: <br>
-[ACFFF](https://clawhub.ai/user/ACFFF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acfff](https://clawhub.ai/user/acfff)
 
-## Use Case: <br>
-Agents and users use this skill to calculate retirement month and retirement age for China policy scenarios using a birth year, birth month, and one of the supported role categories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The command echoes birth year, birth month, and role before the JSON result, which may expose personal data in logs or break automation that expects clean JSON. <br>
-Mitigation: Avoid logging command output with real user data, and remove or suppress the status print before using the script in strict JSON pipelines. <br>
+## Use Case:
 
+External users and agents use this skill to estimate retirement timing under China's gradual retirement policy by supplying a supported role and birth date.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ACFFF/retire-age) <br>
-- [Publisher profile](https://clawhub.ai/user/ACFFF) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text] <br>
-**Output Format:** [Command-line text with a JSON result object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and Python >=3.10; accepts birth year, birth month, and role.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The calculator is specific to China's retirement policy and Chinese-only role inputs, so use outside that scope may produce misleading results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user scenario is China-specific and use one of the documented role values before relying on the output.
+
+Risk: Retirement-policy rules may change after the 2024 policy reflected in the artifact.
+
+Mitigation: Review current authoritative policy before using results for planning, legal, or benefits decisions.
+
+Risk: The skill requires uv and may prompt installation through Homebrew before running the local calculation script.
+
+Mitigation: Install uv from a trusted source and review the local script before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acfff/skills/retire-age)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and accepts Chinese role values: 男性, 女职工, 女干部.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

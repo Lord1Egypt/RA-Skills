@@ -1,10 +1,21 @@
 ---
 name: camoufox-browse
-description: Stealth / anti-fingerprinting browser for AI agents (Camoufox + Playwright) — for reaching sites that block the built-in browser tool. Use only for authorized automated access.
+description: Anti-detection browsing with a real Firefox (Camoufox) when Cloudflare, Datadome, or fingerprinting blocks the built-in browser tool. Node + Python entry points, session persistence, residential proxies, human-like input. Use for authorized access to sites that flag standard automation.
 user-invocable: true
 metadata:
   openclaw:
     homepage: https://camoufox.com
+    keywords:
+      - anti-detection
+      - bot-detection
+      - cloudflare
+      - datadome
+      - fingerprinting
+      - camoufox
+      - firefox
+      - scraping
+      - playwright
+      - stealth-browser
     requires:
       anyBins: ["node", "python3"]
 ---

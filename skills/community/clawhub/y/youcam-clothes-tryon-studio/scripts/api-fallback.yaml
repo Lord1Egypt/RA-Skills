@@ -1,0 +1,247 @@
+snapshot_date: 2026-11-02 06:21
+base_url: https://yce-api-01.makeupar.com
+credit:
+  balance_path: /s2s/v1.0/client/credit
+  history_path: /s2s/v1.0/client/credit/history
+  feature_cost_path: /s2s/v2.0/credit/feature-cost
+  api_spendable_prefix: Api
+features:
+  cloth-v4:
+    api_name: AI Clothes Virtual Try-On
+    version: v2.0
+    task_path: /s2s/v2.0/task/cloth-v4
+    doc: https://docs.perfectcorp.com/reference/ai_clothes.md
+    body_schema:
+      anyOf:
+      - title: Run task with src file url & ref file url
+        required:
+        - garment_category
+        - ref_file_url
+        - src_file_url
+        type: object
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+          ref_file_url:
+            type: string
+            description: Url of the reference file to run task. The url should be publicly accessible.
+            example: https://example.com/reference.jpg
+          garment_category:
+            type: string
+            enum:
+            - full_body
+            - lower_body
+            - upper_body
+            - shoes
+            - auto
+            - outer
+            description: The category of garment of reference image. It's required if reference image provided. Utilize the "auto" parameter to allow the AI engine to automatically identify and classify garment categories.
+      - title: Run task with src file url & ref file ID
+        required:
+        - garment_category
+        - ref_file_id
+        - src_file_url
+        type: object
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+          ref_file_id:
+            type: string
+            description: ID of the reference file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          garment_category:
+            type: string
+            enum:
+            - full_body
+            - lower_body
+            - upper_body
+            - shoes
+            - auto
+            - outer
+            description: The category of garment of reference image. It's required if reference image provided. Utilize the "auto" parameter to allow the AI engine to automatically identify and classify garment categories.
+      - title: Run task with src file ID & ref file url
+        required:
+        - garment_category
+        - ref_file_url
+        - src_file_id
+        type: object
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          ref_file_url:
+            type: string
+            description: Url of the reference file to run task. The url should be publicly accessible.
+            example: https://example.com/reference.jpg
+          garment_category:
+            type: string
+            enum:
+            - full_body
+            - lower_body
+            - upper_body
+            - shoes
+            - auto
+            - outer
+            description: The category of garment of reference image. It's required if reference image provided. Utilize the "auto" parameter to allow the AI engine to automatically identify and classify garment categories.
+      - title: Run task with src file ID & ref file ID
+        required:
+        - garment_category
+        - ref_file_id
+        - src_file_id
+        type: object
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          ref_file_id:
+            type: string
+            description: ID of the reference file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          garment_category:
+            type: string
+            enum:
+            - full_body
+            - lower_body
+            - upper_body
+            - shoes
+            - auto
+            - outer
+            description: The category of garment of reference image. It's required if reference image provided. Utilize the "auto" parameter to allow the AI engine to automatically identify and classify garment categories.
+      properties:
+        change_shoes:
+          type: boolean
+          default: true
+          description: 'Control whether shoes should be swapped when a full body reference image with shoes is available for processing.
+
+            <br> Have effect when `garment_category` is `full_body` or `lower_body`
+
+            '
+        filter_multi_person:
+          type: string
+          enum:
+          - 'off'
+          - normal
+          - strict
+          default: 'off'
+          description: 'Filter out multi-person cases in the source image and the human reference image.
+
+            <br> `off` - No filtering. The engine uses the largest person in the image.
+
+            <br> `normal` - Reject when another person is comparable in size to the main subject, or is clearly visible on the same plane, such as standing nearby with a sharp, recognizable face. Typical group or two-person photos. Distant or blurry background people are ignored.
+
+            <br> `strict` - Reject when any additional person is visible, including small, distant, background, or blurry / out-of-focus people.
+
+            '
+  bg-replace:
+    api_name: AI Photo Background Change
+    version: v2.0
+    task_path: /s2s/v2.0/task/bg-replace
+    template_list: /s2s/v2.0/task/template/bg-replace
+    doc: https://docs.perfectcorp.com/reference/ai_photo_background_change.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - prompt
+          - template
+          default: prompt
+          description: How the background is generated. With `prompt` (the default), the background is generated from `prompt`. With `template`, the background is generated from the predefined template specified by `template_id`, and `prompt` is ignored.
+        prompt:
+          type: string
+          description: Prompt to generate image background.
+          example: A sunny beach with palm trees.
+        template_id:
+          type: string
+          description: ID of the template. List predefined templates first, and use the id of a template.
+          example: nature_cherryblossom
+  image-to-video:
+    api_name: AI Video Generator
+    version: v2.0
+    task_path: /s2s/v2.0/task/image-to-video/youcam
+    doc: https://docs.perfectcorp.com/reference/ai_video_generator.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      required:
+      - resolution
+      - dst_duration
+      properties:
+        resolution:
+          type: string
+          description: To select the output resolution used in inference.
+          enum:
+          - 480
+          - 720
+          - 1080
+          example: 480
+        dst_duration:
+          type: integer
+          description: To select the output duration used in inference.
+          enum:
+          - 5
+          - 10
+          example: 5
+        prompt:
+          minLength: 1
+          maxLength: 1500
+          type: string
+          description: Can be in any language. Will be automatically enhanced and output as English using Gemini API. Short prompts are ideal.
+          example: その女性は微笑んで、カメラを見ています
+        negative_prompt:
+          minLength: 1
+          maxLength: 1500
+          type: string
+          description: The negative prompt.
+          example: worst quality, low quality, JPEG compression residue, ugly.
+        model:
+          type: string
+          description: Model name.
+          enum:
+          - youcam-video-v2

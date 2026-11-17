@@ -1980,6 +1980,9 @@ class ContextOrchestrator:
         # 收集所有上下文块
         blocks: list[ContextBlock] = []
 
+        # 收集整轮上下文的警告信息（供 provider 异常等场景累积）
+        warnings: list[str] = []
+
         # 1. 系统指令（最高优先级）
         if system_instruction:
             block = self._create_block(
@@ -2018,15 +2021,16 @@ class ContextOrchestrator:
             try:
                 provider_blocks = provider()
                 blocks.extend(provider_blocks)
-            except Exception:
-                pass
+            except Exception as e:
+                warnings.append(f"提供者 [{name}] 执行失败: {str(e)}")
 
         # 7. 额外的上下文块
         if additional_blocks:
             blocks.extend(additional_blocks)
 
-        # 应用预算和压缩
-        final_blocks, warnings = self._apply_budget(blocks)
+        # 应用预算和压缩（合并预算裁剪产生的警告）
+        final_blocks, budget_warnings = self._apply_budget(blocks)
+        warnings.extend(budget_warnings)
 
         # 组装最终上下文
         content, total_tokens = self._assemble_context(final_blocks)
@@ -2452,6 +2456,37 @@ class ContextOrchestrator:
             for block in by_source[ContextSource.USER_INPUT]:
                 sections.append(f"[用户输入]\n{block.content}")
                 total_tokens += block.token_count
+
+        # 长期记忆
+        if ContextSource.LONG_TERM_MEMORY in by_source:
+            sections.append("[长期记忆]")
+            for block in by_source[ContextSource.LONG_TERM_MEMORY]:
+                sections.append(f"- {block.content}")
+                total_tokens += block.token_count
+            sections.append("")
+
+        # 反思信息
+        if ContextSource.REFLECTION in by_source:
+            sections.append("[系统反思]")
+            for block in by_source[ContextSource.REFLECTION]:
+                sections.append(f"- {block.content}")
+                total_tokens += block.token_count
+            sections.append("")
+
+        # 其他来源（catch-all：确保不会遗漏任何来源的块）
+        known_sources = {
+            ContextSource.SYSTEM, ContextSource.USER_INPUT,
+            ContextSource.SHORT_TERM_MEMORY, ContextSource.LONG_TERM_MEMORY,
+            ContextSource.RETRIEVAL, ContextSource.TOOL_RESULT,
+            ContextSource.INSIGHT, ContextSource.REFLECTION,
+        }
+        for source, source_blocks in by_source.items():
+            if source not in known_sources:
+                sections.append(f"[{source.value}]")
+                for block in source_blocks:
+                    sections.append(f"- {block.content}")
+                    total_tokens += block.token_count
+                sections.append("")
 
         return "\n".join(sections), total_tokens
 

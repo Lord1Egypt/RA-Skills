@@ -1,39 +1,59 @@
-## Description: <br>
-Get current weather and forecasts for a requested location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts. Use when user needs to check current weather, get forecast for travel planning, or monitor weather conditions.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current weather and short forecasts for a named location, including travel planning or monitoring weather conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill disables normal HTTPS certificate verification when contacting the weather service. <br>
-Mitigation: Review before installing and restore standard HTTPS verification before relying on the skill for precise, sensitive, or operational weather lookups. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current weather conditions and short multi-day forecasts for named locations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/weather-tool) <br>
-- [wttr.in weather service](https://wttr.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text weather summaries or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current conditions or 1-7 day forecasts; supports Celsius or Fahrenheit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather lookups disable HTTPS certificate and hostname verification, so responses should be treated as untrusted until the implementation is fixed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-stakes weather checks, review results before acting on them, and restore normal HTTPS verification before relying on it in production workflows.
+
+Risk: Location names entered by users are sent to the external wttr.in service.
+
+Mitigation: Avoid submitting sensitive or precise personal locations unless that disclosure is acceptable for the deployment context.
+
+Risk: Weather results may be unsuitable for safety-critical travel, emergency, or automated decisions.
+
+Mitigation: Confirm important forecasts with an authoritative weather source before making consequential decisions.
+
+## Reference(s):
+
+- [wttr.in weather service](https://wttr.in)
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/weather-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Plain text or JSON command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecast range is documented as 1-7 days; location names are sent to wttr.in.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

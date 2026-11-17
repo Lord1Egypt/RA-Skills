@@ -1,42 +1,59 @@
-## Description: <br>
-A local CCPA/CPRA compliance helper for checking California consumer privacy obligations, consumer rights workflows, opt-out mechanisms, service-provider requirements, and compliance documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CCPA-Compliance is a local CCPA/CPRA compliance assistant that helps organizations assess privacy obligations, consumer rights handling, opt-out mechanisms, data sale or sharing practices, service provider controls, and compliance documentation.
 
-## Publisher: <br>
-[wwumit](https://clawhub.ai/user/wwumit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwumit](https://clawhub.ai/user/wwumit)
 
-## Use Case: <br>
-External users, employees, and developers use this skill as a local checklist and report generator for preliminary CCPA/CPRA self-assessment, consumer rights review, opt-out mechanism review, and compliance documentation support. It is not a substitute for professional legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States (California) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents checklist and pass/fail-style outputs that may be mistaken for legal compliance verification. <br>
-Mitigation: Treat outputs as preliminary guidance only and require independent legal review before making CCPA/CPRA compliance decisions. <br>
-Risk: Local reports or configuration inputs may contain sensitive personal or business details. <br>
-Mitigation: Run the skill locally, restrict access to generated files, and avoid entering sensitive details unless local storage is appropriately protected. <br>
+## Use Case:
 
+Developers, privacy teams, and compliance staff use this skill to run CCPA/CPRA self-checks, review consumer rights and opt-out controls, evaluate data sale or sharing scenarios, and generate initial reports or templates. Its outputs are compliance guidance and should not be treated as legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwumit/ccpa-comliance) <br>
-- [CCPA law reference](references/ccpa-law.md) <br>
-- [Security check guide](SECURITY_CHECK_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global, for organizations assessing obligations related to California consumers under CCPA/CPRA.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local script outputs in JSON or text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard library scripts; generated reports may be written to local files when output paths are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence, CHANGELOG, package.json) <br>
+Risk: The main command imports an adjacent compliance_core module outside the skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the adjacent compliance_core module before installation, or run the skill in an isolated controlled environment.
+
+Risk: The skill provides compliance guidance that may be incomplete or unsuitable for a specific legal situation.
+
+Mitigation: Use outputs as preliminary guidance only and have qualified legal counsel validate material CCPA/CPRA decisions.
+
+Risk: The tools can write generated reports or templates to user-specified file paths.
+
+Mitigation: Use explicit safe output locations and review generated files before sharing or relying on them.
+
+## Reference(s):
+
+- [CCPA/CPRA law summary](references/ccpa-law.md)
+- [Security check guide](SECURITY_CHECK_GUIDE.md)
+- [ClawHub skill page](https://clawhub.ai/wwumit/skills/ccpa-comliance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, HTML, Guidance, Shell commands, Configuration]
+
+**Output Format:** [CLI output and report files in text, JSON, Markdown, HTML, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write reports or templates to user-specified output paths; the main command depends on an adjacent compliance_core module.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

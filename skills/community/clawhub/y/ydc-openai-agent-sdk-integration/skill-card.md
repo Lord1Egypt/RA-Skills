@@ -1,47 +1,62 @@
-## Description: <br>
-Integrate OpenAI Agents SDK with You.com MCP server - Hosted and Streamable HTTP support for Python and TypeScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers configure the OpenAI Agents SDK with You.com's MCP server using Hosted MCP or Streamable HTTP in Python or TypeScript.
 
-## Publisher: <br>
-[EdwardIrby](https://clawhub.ai/user/EdwardIrby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edwardirby](https://clawhub.ai/user/edwardirby)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenAI Agents SDK projects in Python or TypeScript to connect to You.com's MCP server through hosted MCP or streamable HTTP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated examples use OpenAI and You.com API keys to make external MCP requests. <br>
-Mitigation: Review the MCP destination and keep API keys out of source control and logs before running the generated examples. <br>
-Risk: Automatic tool calls may be inappropriate for some deployments. <br>
-Mitigation: Decide whether automatic tool execution is acceptable for the target environment before using configurations that disable approval. <br>
-Risk: Unpinned dependencies can change behavior in production. <br>
-Mitigation: Pin OpenAI Agents SDK package versions for production use. <br>
+## Use Case:
 
+Developers use this skill to add You.com MCP search and content tools to OpenAI Agents SDK projects. It supports new files and existing integrations with setup guidance, environment variables, and ready-to-run Python or TypeScript templates.
 
-## Reference(s): <br>
-- [OpenAI Agents SDK for Python](https://openai.github.io/openai-agents-python/) <br>
-- [OpenAI Agents SDK for TypeScript](https://openai.github.io/openai-agents-js/) <br>
-- [OpenAI Agents SDK MCP for Python](https://openai.github.io/openai-agents-python/mcp/) <br>
-- [OpenAI Agents SDK MCP for TypeScript](https://openai.github.io/openai-agents-js/guides/mcp/) <br>
-- [You.com MCP Server](https://documentation.you.com/developer-resources/mcp-server) <br>
-- [ClawHub Skill Page](https://clawhub.ai/EdwardIrby/ydc-openai-agent-sdk-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python, TypeScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces integration templates and setup checklists for OpenAI and You.com API key configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated or updated files can contain incorrect integration details if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated file before running it and test with non-production API keys where possible.
+
+Risk: Configured agents may send prompts or tool queries to You.com MCP and OpenAI services.
+
+Mitigation: Confirm that prompts, tool queries, and retrieved content are appropriate for those external services before deployment.
+
+Risk: Unpinned package versions can change behavior over time.
+
+Mitigation: Pin package versions for production use and re-test the integration after dependency updates.
+
+## Reference(s):
+
+- [OpenAI Agents SDK for Python](https://openai.github.io/openai-agents-python/)
+- [OpenAI Agents SDK for TypeScript](https://openai.github.io/openai-agents-js/)
+- [OpenAI Agents SDK MCP Configuration for Python](https://openai.github.io/openai-agents-python/mcp/)
+- [OpenAI Agents SDK MCP Configuration for TypeScript](https://openai.github.io/openai-agents-js/guides/mcp/)
+- [You.com MCP Server Documentation](https://documentation.you.com/developer-resources/mcp-server)
+- [ClawHub Skill Page](https://clawhub.ai/edwardirby/skills/ydc-openai-agent-sdk-integration)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python, TypeScript, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces integration instructions and templates for either Hosted MCP or Streamable HTTP.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

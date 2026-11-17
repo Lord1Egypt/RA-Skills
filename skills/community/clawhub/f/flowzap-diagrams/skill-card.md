@@ -1,41 +1,62 @@
-## Description: <br>
-Generate, validate and publish workflow, sequence and architecture diagrams using FlowZap Code DSL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, validate, and publish workflow, sequence, and architecture diagrams using the FlowZap Code DSL.
 
-## Publisher: <br>
-[flowzap-xyz](https://clawhub.ai/user/flowzap-xyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowzap-xyz](https://clawhub.ai/user/flowzap-xyz)
 
-## Use Case: <br>
-Developers and other agent users use this skill to turn natural-language workflow, sequence, process, and architecture requests into FlowZap Code diagrams and shareable playground links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated diagram text may be sent to FlowZap for validation or playground link creation. <br>
-Mitigation: Avoid submitting secrets, tokens, private infrastructure details, or sensitive logs when using the MCP server. <br>
+## Use Case:
 
+Developers and external users use this skill to turn natural-language requests, HTTP logs, OpenAPI specs, or code snippets into FlowZap workflow, sequence, process, and architecture diagrams. With the FlowZap MCP server configured, agents can validate FlowZap Code, create playground URLs, diff diagram versions, and apply structured diagram changes.
 
-## Reference(s): <br>
-- [FlowZap Code full spec](https://flowzap.xyz/flowzap-code) <br>
-- [FlowZap MCP server docs](https://flowzap.xyz/docs/mcp) <br>
-- [FlowZap Code syntax schema](https://flowzap.xyz/api/flowzap-code-schema.json) <br>
-- [FlowZap Code syntax reference](references/syntax.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with FlowZap Code, installation commands, MCP configuration snippets, and shareable playground URLs when tools are available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [FlowZap Code should be returned as raw .fz content when showing the diagram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.6 (source: ClawHub release metadata) <br>
+Risk: Using flowzap-mcp through npx introduces normal third-party package supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the pinned flowzap-mcp@1.3.6 package, verify published integrity values, and prefer a reviewed or pinned install source.
+
+Risk: Generated or agent-provided FlowZap Code is sent to flowzap.xyz when validation or playground creation is requested.
+
+Mitigation: Redact secrets, credentials, private URLs, and proprietary process details before creating playground links.
+
+Risk: Playground URLs expose submitted diagram code to anyone with the link until the short-lived session expires.
+
+Mitigation: Share playground URLs only with intended recipients and avoid placing sensitive content in generated diagrams.
+
+## Reference(s):
+
+- [FlowZap Code full spec](https://flowzap.xyz/flowzap-code)
+- [FlowZap MCP server docs](https://flowzap.xyz/docs/mcp)
+- [FlowZap Code JSON syntax schema](https://flowzap.xyz/api/flowzap-code-schema.json)
+- [FlowZap LLM context file](https://flowzap.xyz/llms-full.txt)
+- [flowzap-mcp npm package](https://www.npmjs.com/package/flowzap-mcp/v/1.3.6)
+- [FlowZap Code syntax reference](references/syntax.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with raw .fz FlowZap Code, install/configuration snippets, validation results, and playground URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can use the FlowZap MCP server to validate diagrams, create shareable playground URLs, export structured graph JSON, diff diagram versions, and apply structured changes.]
+
+## Skill Version(s):
+
+1.3.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

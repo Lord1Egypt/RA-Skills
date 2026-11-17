@@ -1,42 +1,53 @@
-## Description: <br>
-Guides developers through using Claude Code with OpenClaw for coding, debugging, refactoring, and PR review via ACP or PTY workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents in using Claude Code for coding, debugging, refactoring, and pull request review through ACP integration or PTY-backed CLI sessions.
 
-## Publisher: <br>
-[xwz119](https://clawhub.ai/user/xwz119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwz119](https://clawhub.ai/user/xwz119)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw to delegate coding tasks to Claude Code, manage ACP or PTY sessions, and apply cost-control practices for coding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can grant broad unattended coding permissions that may modify project files without enough user checkpoints. <br>
-Mitigation: Use a sandbox or disposable branch, keep the working directory narrow, prefer explicit approval modes, and avoid approve-all for normal use. <br>
-Risk: Persistent or background sessions may continue working after the user stops actively monitoring them. <br>
-Mitigation: Monitor session logs, cancel or close sessions when finished, and add explicit completion or wake-up commands for long-running tasks. <br>
-Risk: API keys and model usage can create credential exposure or unexpected spend. <br>
-Mitigation: Protect API keys, set provider spending limits, and use per-task budget caps where supported. <br>
+## Use Case:
 
+Developers and operators use this skill to route programming requests from OpenClaw to Claude Code, configure ACP or CLI sessions, and manage coding workflows such as debugging, refactoring, and pull request review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwz119/claude-code-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational guidance for ACP sessions, PTY execution, API key setup, model selection, and budget controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Always-approved coding-agent access can allow Claude Code to act beyond the intended task scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated, low-privilege workspace, review diffs and logs, and use tighter approval settings when interactive approval is available.
+
+Risk: Persistent or background sessions can continue work with broad workspace or credential access.
+
+Mitigation: Avoid production checkouts and broad credentials, prefer pinned plugin versions where possible, and close sessions when the coding task is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xwz119/skills/claude-code-dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include background session commands, approval settings, and budget controls for Claude Code workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

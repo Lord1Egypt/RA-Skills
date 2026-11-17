@@ -1,40 +1,52 @@
-## Description: <br>
-Read, write, append, and manage Google Sheets via the Google Sheets API using a Node.js CLI and a Google Cloud service account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, write, append, and manage Google Sheets via the Google Sheets API (Node.js SDK). Use when you need to interact with spreadsheets - reading data, writing/updating cells, appending rows, clearing ranges, formatting cells, managing sheets. Requires a Google Cloud service account with Sheets API enabled.
 
-## Publisher: <br>
-[longmaba](https://clawhub.ai/user/longmaba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[longmaba](https://clawhub.ai/user/longmaba)
 
-## Use Case: <br>
-Developers and agents use this skill to read spreadsheet data, update cells, append rows, clear ranges, format sheets, and manage Google Sheets tabs through command-line operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete Google Sheets data when given write, clear, delete, merge, or formatting commands. <br>
-Mitigation: Use a dedicated service account, share only the specific spreadsheets it should access, and review spreadsheet IDs, ranges, and sheet names before running modifying commands. <br>
-Risk: Google service account JSON keys can expose spreadsheet access if stored in version control or shared folders. <br>
-Mitigation: Keep credential files outside source control and shared folders, and provide them through a controlled environment variable or protected local configuration path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longmaba/google-sheet) <br>
-- [Google Sheets API authorization scope](https://www.googleapis.com/auth/spreadsheets) <br>
+## Use Case:
 
+Developers and agents use this skill to automate Google Sheets tasks such as reading ranges, writing or appending rows, formatting cells, adjusting sheet layout, and managing sheet tabs through a Node.js CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Google service account key and spreadsheet sharing permissions before commands can run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Google service-account key with spreadsheet read/write access.
+
+Mitigation: Store the key outside the skill directory when possible, keep it out of source control, limit spreadsheet sharing to the minimum required access, and rotate or revoke the key if exposed.
+
+Risk: Commands such as clear and deleteSheet can remove spreadsheet data or sheet tabs.
+
+Mitigation: Review destructive commands before execution and confirm the target spreadsheet ID, sheet name, and range for important sheets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/longmaba/skills/google-sheet)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON arguments; CLI commands return JSON or text results from Google Sheets operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Google Cloud service account with the Google Sheets API enabled and access to the target spreadsheets.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

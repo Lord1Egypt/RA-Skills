@@ -1,45 +1,59 @@
-## Description: <br>
-Hire TikTok livestreamers for live shopping sessions, product demonstrations, flash sales, and real-time interactive commerce to drive immediate purchases and high conversion rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire TikTok livestreamers for live shopping sessions, product demonstrations, flash sales, and real-time interactive commerce to drive immediate purchases and high conversion rates.
 
-## Publisher: <br>
-[realRoc](https://clawhub.ai/user/realRoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[realroc](https://clawhub.ai/user/realroc)
 
-## Use Case: <br>
-External developers and commerce operators use this skill to guide agents through finding TikTok livestream hosts, posting paid live-commerce tasks, coordinating sessions, and reviewing performance through PingHuman. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens for PingHuman could be exposed in prompts, chats, shell history, or logs. <br>
-Mitigation: Use a scoped, revocable API token and avoid pasting real tokens into chats or reusable shell commands. <br>
-Risk: The skill includes paid hiring, task approval, commission, and tipping flows that can create financial commitments. <br>
-Mitigation: Require explicit human approval, a budget limit, and confirmation of the exact action before posting paid tasks, approving work, paying commissions, or adding tips. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/realRoc/tiktok-live-commerce) <br>
-- [PingHuman](https://www.pinghuman.ai) <br>
-- [PingHuman API Base](https://www.pinghuman.ai/api/v1) <br>
-- [PingHuman Agent Registration](https://www.pinghuman.ai/skill.md#getting-started-agent-registration) <br>
-- [PingHuman Live Commerce Dashboard](https://www.pinghuman.ai/dashboard/tiktok-live) <br>
-- [PingHuman Live Commerce Hosting Guide](https://www.pinghuman.ai/docs/live-commerce-hosting) <br>
-- [TikTok Live Shopping](https://www.tiktok.com/business/en/blog/live-shopping) <br>
+## Use Case:
 
+External brands, commerce teams, and agents use this skill to find TikTok live commerce hosts, create PingHuman task requests for live shopping sessions, and evaluate livestreamer performance using GMV, conversion, and engagement metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example API requests for searching hosts, posting tasks, messaging hosts, approving work, rating work, and adding tips.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: PingHuman API calls can share business, product, campaign, and commerce performance data with an external service.
+
+Mitigation: Use trusted or pinned reviewed versions, send only necessary business data, and review applicable terms before use.
+
+Risk: The skill includes workflows for task creation, approval, ratings, tips, commissions, and other payment-related actions.
+
+Mitigation: Store API tokens outside chat and shell history, use least-privilege credentials, and manually review payment, approval, tip, or commission requests before sending them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realroc/skills/tiktok-live-commerce)
+- [PingHuman Skill File](https://www.pinghuman.ai/skills/tiktok-live-commerce/skill.md)
+- [PingHuman API Base](https://www.pinghuman.ai/api/v1)
+- [PingHuman Registration Guide](https://www.pinghuman.ai/skill.md#getting-started-agent-registration)
+- [PingHuman Live Commerce Dashboard](https://www.pinghuman.ai/dashboard/tiktok-live)
+- [TikTok Live Selling Center](https://seller.tiktok.com/university/essay?knowledge_id=10015329)
+- [TikTok Shop](https://seller.tiktok.com)
+- [TikTok Business Live Shopping](https://www.tiktok.com/business/en/blog/live-shopping)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes external API examples for host search, task creation, messaging, submission review, approvals, ratings, tips, and commission workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,12 +3,31 @@
 EVE ESI uses OAuth 2.0 Authorization Code flow via EVE SSO (Single Sign-On).
 
 Base SSO URL: `https://login.eveonline.com`
+Endpoint discovery: <https://login.eveonline.com/.well-known/oauth-authorization-server>
+
+> **Everything on this page is a secret.** Authorization codes, access tokens,
+> refresh tokens, client IDs and PKCE verifiers are all bearer credentials —
+> whoever holds one can act as the character. The refresh token is the one that
+> matters most: access tokens expire in ~20 minutes, refresh tokens do not
+> expire on their own and grant continued access until revoked at
+> <https://community.eveonline.com/support/third-party/>.
+>
+> Do not paste them into shell history, log files, CI output, config files under
+> version control, or agent chat transcripts. In normal use you never handle
+> them yourself: `auth_flow.py` writes them to `~/.openclaw/eve-tokens.json`
+> (chmod 600) and `esi_query.py --char <name>` resolves them in-process without
+> ever printing one. The examples below are the raw protocol, shown so the flow
+> is auditable — not the recommended way to work with it.
 
 ## Prerequisites
 
 1. Register an application at <https://developers.eveonline.com/applications>
 2. Note your **Client ID** and **Secret Key**
-3. Set a **Callback URL** (e.g. `http://localhost:8080/callback`)
+3. Set the **Callback URL** to exactly `http://localhost:8080/callback` — this is
+   what `auth_flow.py` sends, and SSO matches redirect URLs as literal strings.
+   The developer portal accepts the `http` scheme *only* for the host
+   `localhost`; an IP address such as `127.0.0.1` is rejected when you save the
+   application. Using a different `--port`? Register that port's URL instead.
 4. Select required **Scopes** for the endpoints you need
 
 ## Authorization Code Flow
@@ -60,10 +79,17 @@ curl -X POST https://login.eveonline.com/v2/oauth/token \
 
 ```bash
 curl -H "Authorization: Bearer <ACCESS_TOKEN>" \
-  https://login.eveonline.com/oauth/verify
+  -H "User-Agent: <your app>/<version> (+<your repo>)" \
+  https://login.eveonline.com/v2/oauth/verify
 ```
 
 Response includes `CharacterID`, `CharacterName`, `Scopes`.
+
+The access token is also a JWT, so the same claims can be read without a round
+trip: `sub` holds `CHARACTER:EVE:<character-id>`, `name` the character name and
+`scp` the granted scopes. To verify a token you did not fetch yourself, check
+its signature against the JWKS URL published in the SSO metadata document, and
+confirm `iss` is `login.eveonline.com` and `aud` contains your client ID.
 
 ## Using tokens with ESI
 
@@ -71,8 +97,14 @@ Pass the access token as a Bearer header:
 
 ```bash
 curl -H "Authorization: Bearer <ACCESS_TOKEN>" \
-  "https://esi.evetech.net/latest/characters/<CHARACTER_ID>/wallet/"
+  -H "X-Compatibility-Date: 2026-08-04" \
+  -H "User-Agent: <your app>/<version> (+<your repo>)" \
+  "https://esi.evetech.net/characters/<CHARACTER_ID>/wallet/"
 ```
+
+Note there is no version segment in the path: ESI selects behaviour from the
+`X-Compatibility-Date` header. Prefer `esi_query.py --char <name>`, which sets
+both headers and keeps the token out of your command line entirely.
 
 ## PKCE (Proof Key for Code Exchange)
 

@@ -1,5 +1,7 @@
 # 决策 Bug Report 模板
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：只处理反复出现的行为或判断循环。遇到“如果当年……”这类岔路复盘，转入 `templates/life-fork-simulation-report.md`。
 
 ## 一句话判定

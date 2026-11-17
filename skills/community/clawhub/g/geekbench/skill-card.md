@@ -1,44 +1,57 @@
-## Description: <br>
-Provides real-time searches and verified Geekbench scores for the latest officially released flagship smartphones by brand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time searches and verified Geekbench scores for the latest officially released flagship smartphones by brand.
 
-## Publisher: <br>
-[dingqing404](https://clawhub.ai/user/dingqing404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dingqing404](https://clawhub.ai/user/dingqing404)
 
-## Use Case: <br>
-Developers, analysts, and device researchers use this skill to find current flagship smartphone releases, look up Geekbench results, and summarize benchmark distributions without relying on stale model knowledge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can contact Geekbench and depend on live public web pages, so results may be incomplete or change over time. <br>
-Mitigation: Confirm benchmark links and device release status before using the output for purchasing, publication, or comparison decisions. <br>
-Risk: Helper scripts can write reports and raw data under a fixed local workspace path. <br>
-Mitigation: Review or adjust output paths before running scripts in a shared, sandboxed, or production environment. <br>
-Risk: The monitor script can delete old archive files in its configured archive directory. <br>
-Mitigation: Back up or redirect the archive directory before enabling cleanup behavior. <br>
-Risk: The monitor script can send a report to a fixed Feishu recipient through OpenClaw messaging. <br>
-Mitigation: Verify the recipient and message content before running notification workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Geekbench release](https://clawhub.ai/dingqing404/geekbench) <br>
-- [Geekbench Browser](https://browser.geekbench.com) <br>
+## Use Case:
 
+Developers and device analysts use this skill to identify current flagship smartphones, fetch Geekbench CPU benchmark records, and produce concise score reports grouped by device and Geekbench version.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, textual summaries, JSON data files, and shell commands for optional helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include benchmark URLs, score statistics, device metadata, saved local report paths, and monitor notifications when helper scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill fetches Geekbench data from the web, so benchmark availability and device naming can change between runs.
+
+Mitigation: Re-run searches at the time of use and verify results against current Geekbench pages and official device release status.
+
+Risk: The monitor script can send reports through an OpenClaw Feishu messaging setup to an embedded recipient.
+
+Mitigation: Review or disable notification behavior before running the monitor, and make the recipient explicit in the local deployment.
+
+Risk: Reports and archives are written to fixed local paths, and report filenames can be derived from device names.
+
+Mitigation: Configure output directories before use and sanitize device-derived filenames when adapting the scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingqing404/skills/geekbench)
+- [Geekbench Browser](https://browser.geekbench.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or plain-text reports with links to Geekbench benchmark records, plus optional JSON data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include device names, Geekbench versions, single-core and multi-core scores, benchmark URLs, local report paths, and monitor summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Provides static travel and city information about Kunming, including attractions, food, festivals, weather, transportation, and general visitor guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kunming City Skill provides concise information about Kunming tourism, culture, food, weather, transportation, events, accommodations, and travel tips.
 
-## Publisher: <br>
-[58](https://clawhub.ai/user/58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[58](https://clawhub.ai/user/58)
 
-## Use Case: <br>
-External users and travel planners use this skill to ask natural-language questions about Kunming attractions, local food, festivals, climate, transportation, and practical trip planning topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat bundled travel guidance as current information for weather, events, accommodations, or local conditions. <br>
-Mitigation: Treat responses as static background guidance and verify time-sensitive travel details with current authoritative sources before acting. <br>
+## Use Case:
 
+External users and travel planners use this skill to learn about Kunming, plan visits, and get practical city guidance. It can also support agents that answer general questions about Kunming attractions, food, festivals, climate, and local transportation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline, static responses selected from bundled city information; not a live source for current weather, events, lodging, or local conditions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: Weather, events, and recommendation content may be static or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat time-sensitive guidance as a starting point and verify details against current local sources before travel or booking decisions.
+
+Risk: Responses may include mixed English and Chinese wording.
+
+Mitigation: Review generated text for audience-appropriate language before presenting it in polished public materials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/58/skills/kunming)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational responses; weather, events, and recommendations may not reflect live conditions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

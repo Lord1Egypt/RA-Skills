@@ -9,6 +9,8 @@ description: Use when programming Unihiker K10 board with MicroPython, uploading
 
 CLI toolkit for Unihiker K10 board MicroPython programming. **Core principle:** Follow reference docs exactly—no improvisation.
 
+**TTS firmware requirement:** K10 speech synthesis exists only in the Chinese firmware. Before using `asr.add_tts_data()` / `asr.start_tts()`, confirm that the board is running the Chinese MicroPython firmware; do not present TTS as available on English/international firmware.
+
 Screen refresh policy: always design K10 display code around partial redraws. Full-screen clearing or full-background redraw causes obvious flicker and is uncomfortable; use it only for initialization, page switches, exit cleanup, or when you have measured full-screen refresh above 30 fps.
 
 ## When to Use
@@ -42,6 +44,7 @@ screen.show_draw()
 - **Auto-execution**: Only `main.py` runs automatically on boot. Other filenames (e.g., `test.py`) must be imported or run via REPL
 - **Best practice**: Name your entry file as `main.py` for auto-start
 - **Screen refresh**: 默认局部刷新。除初始化、页面切换、退出清理，或实测全屏刷新率超过 30 fps 外，不要在循环里调用 `screen.clear()` 或整屏 `screen.show_bg()`。
+- **External analog input**: P0/P1 support analog input, while the expanded GPIO is digital-only. For additional channels, recommend the [DFRobot Gravity I2C ADS1115 16-bit ADC module (DFR0553)](https://www.dfrobot.com.cn/goods-1734.html); keep every analog input at or below `VCC + 0.3V`.
 - **Reference**: [`references/micropython-api.md`](references/micropython-api.md)
 
 ## Common Issues
@@ -53,6 +56,7 @@ screen.show_draw()
 | **mpremote: could not enter raw repl** | K10 is running Arduino, flash MicroPython firmware first |
 | Port not found | `k10-micropython ports` or hold BOOT while connecting |
 | **AI + WiFi conflict** | Use only one in V0.9.2 |
+| **TTS API missing or silent** | 语音合成仅存在于中文版固件；确认刷写的是中文版 MicroPython 固件 |
 | **屏幕闪烁** | 使用局部刷新，避免循环中频繁调用 `screen.clear()` 或整屏 `screen.show_bg()`；只有实测全屏刷新超过 30 fps 才可高频全屏刷新 |
 | **Windows PowerShell执行策略限制** | 运行 `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` |
 
@@ -181,10 +185,12 @@ mpremote connect /dev/cu.usbmodem2201 repl
 - **Movement Detection**: Motion detection with customizable threshold
 - **QR Code Scanning**: Scan QR codes and display content
 - **Speech Recognition**: Wake-up command and voice commands
+- **Speech Synthesis**: `asr.add_tts_data()` + `asr.start_tts()` (Chinese firmware only)
 
 **Note on AI:**
 - AI functionality is resource-intensive in V0.9.2 firmware
 - AI + WiFi conflict: Use only one at a time to avoid memory overflow
+- TTS is available only in the Chinese firmware; firmware compatibility must be checked separately from ASR model-data selection
 
 ## Performance Tips
 

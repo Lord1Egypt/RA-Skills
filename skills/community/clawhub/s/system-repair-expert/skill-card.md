@@ -1,44 +1,57 @@
-## Description: <br>
-System Repair Expert guides agents through cautious, priority-ordered troubleshooting for system, software, configuration, and error-resolution problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Repair Expert guides agents through a strict, prioritized troubleshooting workflow for system, software, configuration, and error-repair tasks.
 
-## Publisher: <br>
-[xqicxx](https://clawhub.ai/user/xqicxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xqicxx](https://clawhub.ai/user/xqicxx)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to diagnose system, software, configuration, and runtime errors through a structured workflow that prioritizes complete problem understanding, official documentation, existing ClawdHub skills, and verified community fixes before one-off scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting details may expose secrets, private hostnames, customer data, or sensitive configuration through external search or memory-based workflows. <br>
-Mitigation: Scrub logs and configuration before use, avoid sharing secrets or private identifiers, and ask the agent not to save troubleshooting details unless persistence is intended. <br>
-Risk: Repair commands, generated scripts, or newly proposed skills may make incorrect or unsafe changes if accepted without review. <br>
-Mitigation: Manually review proposed commands, scripts, and skill changes before running them; prefer official fixes and require explicit approval before one-off repair scripts. <br>
+## Use Case:
 
+Developers, operators, and support engineers use this skill to diagnose system and software failures, gather missing context, prioritize official fixes, and evaluate lower-priority community or scripted repair options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xqicxx/system-repair-expert) <br>
-- [README](artifact/README.md) <br>
-- [Usage Guide](artifact/USAGE_GUIDE.md) <br>
-- [Release Notes](artifact/RELEASE_NOTES.md) <br>
-- [Usage Examples](artifact/examples/usage_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with step-by-step troubleshooting guidance, source-oriented recommendations, and inline command or code examples when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence labels, requests for missing diagnostic information, and risk-aware review prompts before repair commands or scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagnostic details may be sent to search tools or stored in memory without enough scoping, consent, or redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact secrets, full logs, configuration files, hostnames, tokens, and private paths before using web search or memory features.
+
+Risk: Recommended third-party skills, GitHub results, or repair commands may be unverified.
+
+Mitigation: Check source trust, permissions, and command impact before installation or execution, and prefer official vendor guidance when available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xqicxx/skills/system-repair-expert)
+- [README](artifact/README.md)
+- [Usage Guide](artifact/USAGE_GUIDE.md)
+- [Usage Examples](artifact/examples/usage_examples.md)
+- [Release Notes](artifact/RELEASE_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with structured troubleshooting steps and inline command or code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence ratings, source-priority notes, and requests for missing diagnostic information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

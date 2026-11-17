@@ -1,41 +1,51 @@
-## Description: <br>
-A standalone command-line skill that lets an agent query and control a Plex Media Server, including library search, playback-device discovery, and playback controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A standalone command-line skill to interact with and manage Plex Media Server directly, featuring playback controls and secured temporary caching.
 
-## Publisher: <br>
-[ymgenc](https://clawhub.ai/user/ymgenc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ymgenc](https://clawhub.ai/user/ymgenc)
 
-## Use Case: <br>
-External users and agents use this skill to operate a Plex Media Server from command-line actions, including server information lookup, media search, active-client listing, playback control, and Continue Watching retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Plex token can expose library data, viewing activity, active clients, and playback control. <br>
-Mitigation: Install only when that access is acceptable, provide the token through environment variables, and review playback-changing actions such as play, pause, resume, and stop before execution. <br>
-Risk: The search cache stores media names, genres, and artist names in the system temporary directory. <br>
-Mitigation: Delete plex_media_cache.json from the temporary directory if local media metadata is sensitive or after using the skill on shared systems. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent query a Plex Media Server, search cached library metadata, list active clients and sessions, and control playback from command-line actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ymgenc/plex-control) <br>
-- [Skill metadata](artifact/metadata.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Structured JSON from CLI actions, with Markdown instructions for setup and command usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PLEX_URL and PLEX_TOKEN environment variables; uses uv, python3, and the plexapi Python dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and metadata.json) <br>
+Risk: Private Plex library metadata may be cached in a predictable shared temporary file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Plex token where possible, avoid running the skill on shared machines, and clear or relocate the cache until it uses a private per-user cache directory with restrictive permissions and clear retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ymgenc/skills/plex-control)
+- [Publisher profile](https://clawhub.ai/user/ymgenc)
+- [Skill metadata](artifact/metadata.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Structured JSON from a Python command-line script, with Markdown guidance in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PLEX_URL and PLEX_TOKEN; uses uv, python3, and the plexapi dependency; search cache is stored in the OS temporary directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

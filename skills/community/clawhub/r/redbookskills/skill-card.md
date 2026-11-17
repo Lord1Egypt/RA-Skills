@@ -1,48 +1,64 @@
-## Description: <br>
-Automates Xiaohongshu (XHS) browser workflows for publishing image or video posts, checking login state, searching content, commenting, and retrieving account-facing content data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes image/text or video content to Xiaohongshu (XHS), supports content search and account interactions, and can launch a test browser without publishing.
 
-## Publisher: <br>
-[Viv888-AI](https://clawhub.ai/user/Viv888-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viv888-ai](https://clawhub.ai/user/viv888-ai)
 
-## Use Case: <br>
-Content operators and developers use this skill to prepare confirmed Xiaohongshu posts, run browser-based publishing commands, inspect login state, search notes, post comments, and retrieve content or notification data from a logged-in account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a logged-in Xiaohongshu browser session and can take real account actions. <br>
-Mitigation: Use a dedicated or test account and Chrome profile, and review the account state before running publish, comment, notification, or analytics commands. <br>
-Risk: Publishing and commenting workflows can post public content from the account. <br>
-Mitigation: Require manual confirmation of the final title, body, media, and comment text, and prefer preview mode before allowing an automated post. <br>
-Risk: Remote Chrome DevTools Protocol access can expose browser control to an untrusted host. <br>
-Mitigation: Keep CDP bound to localhost unless the remote host is fully controlled and network access is restricted. <br>
-Risk: Notification capture and content analytics can expose account or audience data. <br>
-Mitigation: Limit use to accounts intended for automation and avoid exporting or sharing data that is not needed for the task. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare, preview, publish, search, and interact with Xiaohongshu content through a controlled browser session. It is intended for workflows that need user confirmation before posting and careful account handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viv888-AI/redbookskills) <br>
-- [Publisher profile](https://clawhub.ai/user/Viv888-AI) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
-- [Xiaohongshu creator publishing page](https://creator.xiaohongshu.com/publish/publish) <br>
-- [Claude Code integration guide](docs/claude-code-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with shell commands and structured command results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include success or failure status, publishing details, search result fields, notification data, analytics fields, or exported CSV paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can operate a logged-in Xiaohongshu account, including publishing posts, posting comments, reading notifications and analytics, clearing cookies, and managing persistent Chrome profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test Xiaohongshu account unless those actions are acceptable, require user confirmation before posting, and prefer preview mode for publish workflows.
+
+Risk: Remote CDP browser control can expose an authenticated browser session if used over an untrusted connection.
+
+Mitigation: Keep CDP local or use only a trusted local tunnel, and avoid exposing the debugging port on shared or public networks.
+
+Risk: Security evidence reports an unsafe profile-deletion bug.
+
+Mitigation: Do not use profile deletion until account-name validation and path-containment checks are fixed.
+
+Risk: Publishing from private or internal media URLs may leak content or access patterns to external services.
+
+Mitigation: Use local media files or public media URLs intended for publication, and avoid private or internal URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viv888-ai/skills/redbookskills)
+- [README](artifact/README.md)
+- [Claude Code integration guide](artifact/docs/claude-code-integration.md)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local title/content files and invoke browser automation scripts when the user confirms an action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

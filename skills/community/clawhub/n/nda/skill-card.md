@@ -1,46 +1,61 @@
-## Description: <br>
-Draft and fill NDA templates, including mutual NDAs, one-way NDAs, and confidentiality agreements, producing signable DOCX files from Common Paper and Bonterms standard forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft and fill NDA templates, including mutual NDAs, one-way NDAs, and confidentiality agreements, using Common Paper and Bonterms standard forms.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-External users, developers, and business teams use this skill to choose a standard NDA template, collect required agreement fields, and generate a signable DOCX or markdown preview for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote MCP rendering can transmit confidential NDA field values to the hosted Open Agreements service. <br>
-Mitigation: Tell the user what data will be sent, obtain explicit consent, and offer the local CLI path for highly sensitive agreements. <br>
-Risk: The local CLI path constructs shell commands from user-provided values, including an output filename. <br>
-Mitigation: Enforce the documented DOCX filename pattern, reject shell metacharacters and control characters, write values to a chmod 600 mktemp file, and clean it up after use. <br>
-Risk: Generated NDAs may be legally insufficient or inappropriate for a specific transaction. <br>
-Mitigation: Review the generated DOCX with counsel before signing, especially for non-standard agreements or edits outside template fields. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to collect NDA details, choose an appropriate mutual or one-way NDA template, and produce a signable DOCX or preview.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevenobiajulu/nda) <br>
-- [Open Agreements](https://openagreements.org) <br>
-- [Open Agreements Remote MCP](https://openagreements.org/api/mcp) <br>
-- [open-agreements npm package](https://www.npmjs.com/package/open-agreements) <br>
-- [Open Agreements local CLI README](https://github.com/open-agreements/open-agreements#use-with-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands; DOCX files or markdown previews when executed by an agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote MCP returns a time-limited download URL; local CLI writes a DOCX file and should use a secure temporary JSON values file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server evidence and frontmatter) <br>
+Risk: Remote MCP use can transmit confidential NDA details to a hosted third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the user what data will be sent, get explicit informed consent, and offer the local CLI path for highly sensitive NDAs.
+
+Risk: Local CLI use passes user-provided values into shell-driven document generation.
+
+Mitigation: Pin open-agreements@0.7.5, allowlist the DOCX output filename, reject unsafe characters, and store values in a chmod 600 per-run temp file.
+
+Risk: Generated NDA documents may not fit the user's legal needs.
+
+Mitigation: Require review of the generated document before signing and recommend attorney review for non-standard terms.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stevenobiajulu/skills/nda)
+- [Open Agreements](https://openagreements.org)
+- [Open Agreements Remote MCP](https://openagreements.org/api/mcp)
+- [open-agreements on npm](https://www.npmjs.com/package/open-agreements)
+- [Open Agreements README](https://github.com/open-agreements/open-agreements#use-with-claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [DOCX files or download URLs, with Markdown preview output when rendering is unavailable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit confirmation before filling templates; local CLI use requires sanitized inputs and secure temporary files.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

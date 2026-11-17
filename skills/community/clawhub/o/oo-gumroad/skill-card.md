@@ -1,45 +1,52 @@
-## Description: <br>
-Gumroad (gumroad.com). Use this skill for Gumroad requests that read, create, or update data through the OOMOL-connected Gumroad connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to a user's Gumroad account to retrieve product, subscriber, and sales data and perform supported account actions.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate a Gumroad account through the oo CLI, including retrieving user, product, sale, subscriber, and sales data and performing supported sale operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected Gumroad account. <br>
-Mitigation: Install only when the user is comfortable granting the connector access to that account. <br>
-Risk: Refund, shipment update, and receipt resend actions can affect money, fulfillment, or customers. <br>
-Mitigation: Require explicit confirmation of the target sale and exact effect before running those actions. <br>
-Risk: The first-time setup guidance includes one-line CLI installer commands. <br>
-Mitigation: Review the installer source or use a safer installation path before running those commands. <br>
+## Use Case:
 
+Gumroad account owners and developers can retrieve account, product, subscriber, and sales information, and carry out supported shipment, refund, and receipt actions.
 
-## Reference(s): <br>
-- [ClawHub Gumroad skill page](https://clawhub.ai/oomol/oo-gumroad) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Gumroad](https://gumroad.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce oo CLI commands that return JSON connector responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: First-time setup directs the agent to run remote installers whose behavior has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified oo CLI release yourself, or explicitly approve setup after reviewing its local changes, including agent-skill synchronization.
+
+## Reference(s):
+
+- [Gumroad](https://gumroad.com)
+- [Gumroad API documentation](https://gumroad.com/api)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill listing](https://clawhub.ai/oomol/skills/oo-gumroad)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action results and shell commands described in Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports read actions and confirmed account actions.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

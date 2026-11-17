@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents add or optimize Twitter Card metadata for X/Twitter link previews, including card type, title, description, image, site, creator, and accessibility tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to add or optimize Twitter Card metadata for X/Twitter link previews, including card type, title, description, image, handle, and accessibility tags.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, content teams, and SEO practitioners use this skill to generate or review X/Twitter preview metadata for web pages. It helps choose appropriate Twitter Card tags, image requirements, common implementation patterns, and preview testing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Twitter/X preview metadata can be inaccurate, incomplete, or misaligned with page content. <br>
-Mitigation: Review generated tags before publishing and test the final page with the X Card Validator. <br>
-Risk: Relative, inaccessible, oversized, or unsupported image URLs can prevent preview images from rendering correctly. <br>
-Mitigation: Use absolute HTTPS image URLs that meet the documented size, aspect ratio, file size, and format constraints. <br>
+## Use Case:
 
+Developers, marketers, and site maintainers use this skill to generate or review Twitter/X card metadata so shared links display accurate titles, descriptions, images, and account attribution.
 
-## Reference(s): <br>
-- [X Card Validator](https://cards-dev.twitter.com/validator) <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/twitter-cards) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with HTML and framework metadata examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Twitter/X meta tag recommendations, image constraints, common mistakes, and testing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated metadata can publish inaccurate titles, descriptions, handles, image URLs, or alt text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Twitter Card fields and public image links before publishing changes.
+
+Risk: Public preview images may fail if URLs are relative, inaccessible, too small, too large, or in an unsupported format.
+
+Mitigation: Use absolute HTTPS image URLs and validate previews with the X Card Validator before release.
+
+## Reference(s):
+
+- [X Card Validator](https://cards-dev.twitter.com/validator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with HTML and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended image dimensions, tag length limits, absolute image URL requirements, and testing guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

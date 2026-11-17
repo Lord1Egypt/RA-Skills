@@ -1,43 +1,53 @@
-## Description: <br>
-Copies files from remote Windows, macOS, or Linux machines to a local Mac over SSH/SCP, with path conversion, connection diagnostics, and troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote Copy helps an agent copy files from remote Windows, macOS, or Linux machines to a local Mac using SSH, SCP, rsync, or tar-based transfer guidance.
 
-## Publisher: <br>
-[taogehengq](https://clawhub.ai/user/taogehengq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taogehengq](https://clawhub.ai/user/taogehengq)
 
-## Use Case: <br>
-Developers and technical users use this skill to generate SSH/SCP transfer commands, convert remote paths across Windows, macOS, and Linux conventions, and diagnose failed remote-copy attempts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SSH commands may use unsafe defaults that weaken host authenticity checks. <br>
-Mitigation: Review generated commands before execution and prefer verified host keys instead of disabling strict host key checking. <br>
-Risk: Password-based examples can expose credentials when passwords are passed on the command line. <br>
-Mitigation: Prefer key-based authentication and use interactive or otherwise secure credential handling when passwords are unavoidable. <br>
-Risk: Remote SSH setup and firewall guidance can broaden access to the remote machine. <br>
-Mitigation: Apply restricted firewall rules, enable SSH only where needed, and confirm the remote account and destination paths before transferring data. <br>
+## Use Case:
 
+Developers and operators use this skill to transfer files or directories from a remote computer to a local Mac, including Windows path conversion, SSH connection diagnostics, and OS-specific setup guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taogehengq/remote-copy) <br>
-- [Publisher profile](https://clawhub.ai/user/taogehengq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SSH diagnostics, OS-specific setup steps, SCP/rsync/tar command variants, and local destination paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact version section) <br>
+Risk: The skill may suggest insecure SSH practices, including disabling host-key verification or using password-based examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every SSH command before execution, avoid password examples, and disable host-key verification only after independently verifying the remote server.
+
+Risk: SSH setup guidance can create persistent system changes such as enabling SSH services, opening firewall rules, or adding keys.
+
+Mitigation: Apply persistent SSH, firewall, and key changes only when long-term access is explicitly intended and approved.
+
+## Reference(s):
+
+- [ClawHub Remote Copy skill page](https://clawhub.ai/taogehengq/skills/remote-copy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SSH, SCP, rsync, tar pipeline, firewall, service, and key-setup commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version information)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

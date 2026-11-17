@@ -1,7 +1,7 @@
 ---
 name: additive-bias-defense
 description: Inverts burden of proof for code additions
-version: 1.9.8
+version: 1.10.3
 triggers:
   - additive-bias
   - burden-of-proof
@@ -16,7 +16,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 > The default answer to "should we add this?" is no.
@@ -27,10 +27,15 @@ source_plugin: leyline
 > **Note (#444):** Frontmatter declares ``provides.guidance``, not
 > ``provides.contract``. The scrutiny questions are consumed by
 > partner skills (``pensive:code-refinement``, ``conserve:unbloat``,
-> ``imbue:scope-guard``) that voluntarily embed them; no validator or
+> ``imbue:scope-guard``) that voluntarily embed them. No validator or
 > hook in leyline enforces them directly. If a future contributor
 > adds enforcement, restore the ``contract`` label and link the
 > validator path here.
+
+## When NOT To Use
+
+- Removing bloat that already landed (use `conserve:bloat-detector`)
+- Scoring whether a feature is worth building (use `imbue:scope-guard`)
 
 ## The Problem
 
@@ -41,8 +46,8 @@ contract provides a systemic defense.
 
 ## The Scrutiny Questions
 
-Applied to every proposed addition -- code, files,
-abstractions, error handling, configuration:
+Applied to every proposed addition (code, files,
+abstractions, error handling, configuration):
 
 1. **Priority alignment**: Is this a deviation from the
    current priority?
@@ -113,3 +118,18 @@ Review-oriented skills MUST consult this contract by:
 Before accepting any addition, ask: "Could I achieve
 this by removing code instead of adding it?" If yes,
 prefer the subtractive approach.
+
+## Exit Criteria
+
+- [ ] All 5 scrutiny questions applied to every proposed addition;
+  questions 4 (evidence) and 5 (consequence) answered with
+  concrete evidence, not assumptions
+- [ ] All 6 anti-patterns scanned (wheel reinvention, hallucinated
+  issues, test manipulation, complexity creep, priority deviation,
+  gold plating); any match named with the pattern label
+- [ ] A burden-of-proof verdict produced for each addition:
+  `justified`, `needs_evidence`, or `unjustified`; the verdict
+  appears in the consuming skill's output
+- [ ] Subtraction principle applied: at least one check for
+  "could this be achieved by removing code instead?" before
+  accepting any net-positive line-count change

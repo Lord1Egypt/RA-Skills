@@ -1,40 +1,56 @@
-## Description: <br>
-Integrates ChromaDB with Ollama embeddings for long-term memory and auto-recalls relevant context to enhance conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates ChromaDB with Ollama embeddings for long-term memory and auto-recalls relevant context to enhance conversations.
 
-## Publisher: <br>
-[Broedkrummen](https://clawhub.ai/user/Broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect OpenClaw to a ChromaDB memory collection and Ollama embeddings so agents can manually search and automatically recall relevant long-term context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remembered content can be automatically added to future prompts. <br>
-Mitigation: Disable autoRecall for sensitive sessions and review or delete stored memories periodically. <br>
-Risk: Memory and embedding requests depend on configured ChromaDB and Ollama endpoints. <br>
-Mitigation: Keep ChromaDB and Ollama endpoints local or otherwise trusted, and avoid storing secrets in the collection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Broedkrummen/memory-chromadb) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to a configured ChromaDB collection and Ollama embedding service for searchable long-term memory and optional automatic context recall.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown-formatted text and prepended context blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual search returns filtered ChromaDB results; auto-recall may prepend relevant remembered context before agent turns when enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts may be sent to configured ChromaDB and embedding endpoints.
+
+Mitigation: Use trusted endpoints, keep them local unless remote services are intentional, and avoid sending secrets or private transcripts.
+
+Risk: Stored memories can be injected into future turns through auto-recall.
+
+Mitigation: Review whether autoRecall should be disabled and apply controls for reviewing, filtering, and deleting indexed content.
+
+Risk: Untrusted indexed documents may influence future agent context.
+
+Mitigation: Index only trusted sources or review retrieved memory content before relying on it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/broedkrummen/skills/memory-chromadb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-formatted text responses and prepended context snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable ChromaDB URL, collection ID or name, Ollama URL, embedding model, auto-recall behavior, result count, and minimum similarity score.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Verify evidence URLs are real and accessible. Check that artifact links resolve to actual content, not placeholders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify evidence URLs are real and accessible. Check that artifact links resolve to actual content, not placeholders.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and reviewers use this skill to verify that evidence URLs and local artifact references resolve to substantive, expected content before completing or auditing a task. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Checking private tokenized URLs, internal network addresses, or sensitive local paths can disclose limited reachability or existence information. <br>
-Mitigation: Only verify sensitive links or paths when that disclosure is acceptable, and avoid logging full URL contents. <br>
-Risk: Repeated URL checks can create unnecessary load or violate rate limits. <br>
-Mitigation: Respect the skill's rate-limit guidance of no more than one request per second. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Dalomeve/evidence-url-verifier) <br>
-- [Dalomeve Publisher Profile](https://clawhub.ai/user/Dalomeve) <br>
+## Use Case:
 
+Developers and auditors use this skill to check that evidence URLs and local artifact paths are accessible, substantive, and aligned with the claimed content before completing or reviewing a task.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline PowerShell examples and verification criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces validation steps, example commands, warnings, and completion criteria for URL and artifact checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fetching untrusted evidence URLs can expose an agent to unsafe redirects, private network targets, or unexpectedly large downloads.
+
+Mitigation: Use trusted URLs where possible, prefer HTTPS, block private and metadata IP ranges, validate redirects, and limit downloaded content size.
+
+Risk: Evidence responses or URLs may contain sensitive information if logged verbatim.
+
+Mitigation: Avoid logging full response contents and redact sensitive data in status reports.
+
+Risk: Aggressive URL checking can create avoidable load on external services.
+
+Mitigation: Respect rate limits such as the skill's documented maximum of one request per second.
+
+## Reference(s):
+
+- [Evidence URL Verifier on ClawHub](https://clawhub.ai/dalomeve/skills/evidence-url-verifier)
+- [dalomeve publisher profile](https://clawhub.ai/user/dalomeve)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Analysis]
+
+**Output Format:** [Markdown guidance with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include URL status, content type, placeholder warnings, and local artifact existence checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

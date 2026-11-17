@@ -1,0 +1,1 @@
+In this repo there is data/events.jsonl: one JSON object per line with fields ts (ISO 8601 timestamp) and value (integer). Write analyze.py that prints: number of events, sum of all values as an integer, and the earliest timestamp. Run it and verify the output is correct.

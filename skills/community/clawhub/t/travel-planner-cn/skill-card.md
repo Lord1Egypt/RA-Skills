@@ -1,42 +1,56 @@
-## Description: <br>
-Plans day-by-day trips for Chinese travelers, including itineraries, accommodation and restaurant recommendations, budget estimates, visa notes, and packing lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create Chinese-language travel plans with day-by-day itineraries, lodging and restaurant suggestions, budget estimates, visa prompts, and packing checklists for domestic or international trips.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to create Chinese-language domestic or international trip plans with daily schedules, lodging strategy, budget estimates, practical tips, and packing checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel plans may rely on outdated visa rules, prices, exchange rates, insurance terms, or safety guidance. <br>
-Mitigation: Verify current official travel requirements, live prices, exchange rates, insurance terms, and safety guidance before booking or departure. <br>
-Risk: Travel planning prompts can expose sensitive personal or payment information. <br>
-Mitigation: Avoid sharing passport images, payment details, or other sensitive documents in prompts. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to gather trip requirements and draft Chinese-language itineraries, accommodation strategies, budget estimates, practical checklists, and travel tips for Chinese travelers.
 
-## Reference(s): <br>
-- [Travel Budget Planning and Savings Tips](references/budget-tips.md) <br>
-- [Travel Destination Quick Reference Guide](references/destinations-guide.md) <br>
-- [Travel Itinerary Template Library](references/itinerary-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes itineraries, budget estimates, travel tips, and packing checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Visa rules, prices, safety advisories, exchange rates, and travel conditions can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm nationality, visa requirements, prices, safety advisories, exchange rates, and local conditions at planning time before relying on the itinerary.
+
+Risk: The skill is optimized for Chinese travelers and may include region-specific assumptions.
+
+Mitigation: Collect traveler nationality, origin city, travel documents, accessibility needs, payment constraints, and destination-specific requirements before finalizing recommendations.
+
+## Reference(s):
+
+- [旅行预算规划与省钱技巧](artifact/references/budget-tips.md)
+- [旅行目的地快速参考指南](artifact/references/destinations-guide.md)
+- [旅行行程模板库](artifact/references/itinerary-templates.md)
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/travel-planner-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown travel plans, checklists, budget tables, and destination summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output optimized for Chinese travelers; travel facts should be confirmed at planning time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

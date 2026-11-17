@@ -1,0 +1,923 @@
+# ⚠️ 装配视图（生成物）—— 禁止手改；真源 = phase-order/ 目录（index.yaml + 节点切片）
+# 重新生成 = 维护者侧生成器（phase-order-slice.py）；一致性由门 AA 校验
+
+# 论衡阶段真源（版本随 SKILL.md 同步）
+# 产出语言由 Phase 0「目标语言」字段显式选择（不设默认）；本文件中文注释/产物名不构成对使用者的语言限制。
+# 这是流程顺序与阻断关系的唯一真源；运行时由主控使用 read/write/edit 执行。
+# agent 报告节点含 output_chars_max（**双上限**：`output_chars_max` = 报告**写盘**上限；**回传**上限恒为平台硬上限 4096 字符，见 执行韧化协议-exec.md § 报告长度上限与分块协议）
+# 平台事实（官方文档）：completion 回传 findings ≤ 4096 字符 / 单条结果 ≤ 512 / 路由通知 ≤ 1024 —— 超限即被截断，不报错
+# 别名映射（文档层 → 本文件符号 id）：**Phase 1 后置 = post_phase1_dispatch_verify（v2.15.7 新增）**；Phase 3.6 = t6_critique；**Phase 3.7 = t5_feedback_revision**；Phase 4 = t7_audit；Phase 4.2 = audit_revision；**Phase 4.3 = t1b_targeted_review**；**Phase 4.4 前置 = g14_style_gate**；**Phase 4.4 = phase4_4_figures**；Phase 4.5 = t9_review
+# ⚠️ v2.12.40（业主定案 A1/A2）：G14 由「Phase 3.6 与 T6 同批、且每轮修订后复检」迁至「**Phase 4.4 前置**」，语义变为
+#   「**定稿前的最后一道闸；风格修订后全文复检 ≤2 轮（v2.13.0 P0-2）**」；不再是可选项（按 Phase 0「目标语言」字段客观适用）。
+#   **执行前提 = 「已可定稿」**：前置修订尚未收敛（还不能定稿）时**不执行 G14**；G14 检查后由 T5 做**最后一次**（仅风格层）修订。
+#   详见 `g14_style_gate` / `t5_style_revision` 节点注，以及 references/gates/14-中文AI痕迹-gate.md §四。
+# ⚠️ v2.12.27：本映射表是**进度标签的唯一真源** —— 主控呈现 Phase 标签时必须取自此处，**不得自创**（实测教训：无编号节点曾被误标为「Phase 4.2」，导致整段跳过 T7 审计）
+# ⚠️ 结构约束 ①-⑬（v2.12.30 起由构建侧流程检查机械校验）：**约束全文已迁至维护者侧 `维护者校验.py`**
+#   （docstring 之后）。这些是**真源编写 / 构建期校验**规则，而该构建脚本本身不随包分发
+#   （开发者脚本整目录排除）；留在随包的本文件里，会让包内用户读到一份「无法执行的校验规则」。
+#   N-2（2026-10-08）：本文件已顶到棘轮上限（§四-3 铁律禁止第 3 次上调），内容必须外移。
+#   **改本文件任何节点前，先读维护者侧 维护者校验.py 中的约束全文。**
+version: 2.18.1
+
+# ⚠️ 判定结果分档（v2.12.40）：本文件的 condition / mechanical_checkpoint 节点，结论一律落以下四档之一
+#   （替代「退出码」语义；真源 = references/_shared/真源/M-Gate-核心.md §判定结果分档）。
+#   关键纪律：`路径或参数错误` 与 `无法判定` 均**不触发内容修订轮**——前者修路径/参数后重跑，
+#   后者补证据或在人环裁决后重跑。把「产物不存在」当内容缺陷会白烧一轮修订。
+# v2.12.40 修 P0-1：原写法把档位表直接挂在 `verdict_scale.tiers`，而节点引用的是**名称** `four_tier`
+#   —— 全文件无同名定义，且各节点无分档处置分支 → 非「通过」档沿无条件 `next` fail-open。
+#   现改为「名称 → 定义」结构：节点写 `verdict_scale: four_tier`，定义在 `verdict_scale.four_tier`。
+verdict_scale:
+  four_tier:
+    tiers:
+      - id: pass
+        label: 通过
+        blocks_pipeline: false
+        triggers_revision: false
+        action: 放行至下一节点
+      - id: fail
+        label: 不通过
+        blocks_pipeline: true
+        triggers_revision: true
+        action: 触发对应修订（T5/T7 独立写手）或补检索
+      - id: undecidable
+        label: 无法判定
+        blocks_pipeline: true
+        triggers_revision: false
+        action: 补证据或在人环裁决后重跑同一判定
+      - id: path_or_param_error
+        label: 路径或参数错误
+        blocks_pipeline: true
+        triggers_revision: false
+        not_content_defect: true
+        action: 修正路径/参数/前置产物后重跑同一判定；不得当作内容缺陷
+    # 默认处置（v2.12.40 新增，修 P0-1 的「零分档处置」）：节点未写 `verdict_handling` 时按此表解析。
+    # **禁止 fail-open**：只有 `pass` 沿 `next` 放行；其余三档一律 halt 或走显式出口（如 `on_fail:`）。
+    default_handling:
+      pass: continue_to_next
+      fail: halt_then_revision_outlet
+      undecidable: halt_pending_evidence_or_owner_ruling
+      path_or_param_error: halt_fix_inputs_then_rerun_same_node
+  report_after_rerun_doctrine: >
+    凡 condition 依赖他角色报告、或 mechanical_checkpoint 前置为「相关报告/产物已落盘」者，
+    必须在报告落盘后重跑；主控预跑的结果不得直接当作闸门输入。节点级标注 = rerun_after_report: true。
+
+# ⚠️ 跨状态机共享不变式（v2.12.65 新增，修 P2-2「同侧只活在散文」）
+#   `owner_timeout_policy`（主人无应答）与 `provider_silence_escalation`（同 provider 连续静默）
+#   共享同一不变式 —— **静默/无应答 ≠ 有效决策 ⇒ 挂起等主人 + 无默认继续**。
+#   此前该不变式只用散文声明「与 `owner_timeout_policy` 同侧」，**无任何机械门**：任一侧被改成
+#   自动继续，另一侧不会报红。现收敛为单一真源 + 维护者机制 双向投影校验。
+silence_doctrine:
+  invariant: silence_is_not_valid_decision
+  halt_kinds: [pending_owner_halt]                       # 「挂起等主人」类处置的**唯一枚举**
+  forbidden_kinds: [auto_continue, silent_proceed, degrade_and_continue]  # 禁止的 fail-open 处置
+  applies_to: [owner_timeout_policy, provider_silence_escalation]
+
+# ⚠️ 人在环节点无应答处置的**唯一真源**（v2.12.49 新增，修 P2-2）
+#   已删除的旧语义（防回潮）：「Phase 5 复用『不答 = 接受当前定稿』」。
+#     该写法使 Phase 5 成为**全流程唯一 fail-open 人环节点** —— 静默 60 分钟即等于主人拍板「接受」；
+#     且它只活在散文（`glossary-full.md` §十二 / `00-主控-扩展职责.md` §二十一），真源 yaml 未表达，
+#     与「无明确决策 = 未通过」正面张力。
+#   现口径：四个 owner_checkpoint **一律 fail-closed**，无例外。无应答 = 写 status `pending_owner`
+#     + 告警挂起。静默、主控推断、子代理回执、「产物文件已存在」**均不得记为 accepted**。
+#   Phase 5 虽为终态节点（无下游 Phase 可推进），但「接受」仍是主人决策：定稿文件已在磁盘，
+#     挂起不丢任何产物；主人事后一句 accepted 即可收口。恢复旧行为须经主人明确裁决并在此登记。
+owner_timeout_policy:
+  no_answer_minutes: 60
+  fallback_kinds:
+    pending_owner_halt: 写 status.md `pending_owner` + 告警挂起，不静默推进（四节点统一，无例外）
+  default_fallback: pending_owner_halt
+  doctrine: >
+    无明确决策 = 未通过。主人 N 分钟（no_answer_minutes）无应答 → 主控写 status.md `pending_owner`
+    并告警挂起，不静默推进。任何「主人未回复」「主控代为判断」「子代理说已确认」「产物文件已存在」
+    都不是有效决策，不得据此推进下一节点，也不得记为 accepted。
+
+# ⚠️ 终态冻结真源（v2.12.49 新增，修 M-2「终态后修改直接出门」）
+#   `phase5_acceptance.terminal = accepted` 标记后，下列对受管产物的写入**必须回到 g14_style_gate 重跑**，
+#   且 `rerun_after_post_acceptance` 必须为 true：
+#   1. `final/` 子树（含定稿/图件/交付说明/证据包）
+#   2. `drafts/current_draft.md`（「当前权威稿」指针）
+#   未重跑就标 accepted = 假绿灯；维护者机制 在 `phase5_acceptance` 与 `g14_style_gate` 两处做双向校验。
+#   G14 「只审一次」语义**仅适用未越出终态的场景**；跨过终态后**必须重跑**（防止补图/补占位等未审计修改出厂）。
+
+# ⚠️ 同 provider 连续静默升级的**唯一真源**（v2.12.55 S-3 新增，修 P1「同 provider 连续 4 次静默无升级规则」）
+#   实测背景（2026-09-18 论文实跑）：T6 / T7 / G14 / T9 四个顶配档节点**全为同一 provider**，
+#     连续 4 次静默（spawn 返回成功、随后既无产物落盘也无交接回执），全程**无任何升级动作** ——
+#     因 `top_tier_liveness_gate` 只做 spawn **前**探活，**管不到 accepted 之后不产出**。
+#   规则：同一 provider 连续 ≥3 次静默 ⇒ **强制暂停 + 呈现主人三选**，**不再静默继续**。
+#     三项**无默认**；静默**永不**等于有效决策（「同侧」真源 = 顶层 `silence_doctrine`，规则 40 机械校验）。
+#   计数口径：一次「静默」= 该次 spawn 既无产物落盘、又无交接回执
+#     （与「心跳缺失」区分：心跳仍在续 = 未静默，不计数）。
+#   归零：换族或换档并成功产出后计数归零（status.md 记 `resolved_by`）。
+provider_silence_escalation:
+  trigger: consecutive_silent_runs
+  scope: same_provider          # 仅统计同一 provider 内的连续静默；换 provider 即重新计数
+  threshold: 3
+  on_threshold: pause_owner_three_choice
+  owner_choices:                # 三选一（无默认；主人拍板）
+    - id: switch_provider_family
+      label: 换 provider 族
+      requires: "停下当前节点，改派不同 provider 族的模型（族级独立性真源 = 模型候选池.md §三）"
+    - id: switch_capability_tier
+      label: 换能力档
+      requires: "在候选池内换能力档（顶配档不可用 ⇒ 显式降档并披露审计/批判深度影响）"
+    - id: accept_same_source_with_disclosure
+      label: 接受同源并披露
+      requires: "主人接受同源继续 ⇒ final/交付说明.md 必须披露「审稿独立性与模型同源」局限"
+  no_default_option: true       # 不得「按最保守项自动继续」，也不得静默重派同 provider
+  halt_pending_owner: true      # 到阈值即挂起等主人，不自动继续
+  reset_condition: switch_then_successful_output   # 换族/换档且成功产出 ⇒ 计数归零
+  record: status.md 模型分配表（含「静默计数」列）
+  doctrine: >
+    同 provider 连续静默 ≥3 次 ⇒ 强制呈现主人三选，不再静默继续。本规则与 `top_tier_liveness_gate` 互补：
+    后者管 spawn **前**探活（attempts / min_interval / staleness），本规则管 **accepted 之后不产出**。
+    回传口径：主控在 status.md 记静默计数，并在 Phase 0 后置与每轮派发后更新；达阈即暂停。
+terminal_freeze:
+  protected_paths:
+    - final/
+    - drafts/current_draft.md
+  freeze_state: accepted
+  reopen_required_gates: [g14_style_gate, t9_review]   # 重跑顺序：先风格、后同行
+  rerun_after_post_acceptance: true
+  enforcement: flow_check_rule_15 + t8_assertion
+  doctrine: >
+    终态后任何写入受保护路径 ⇒ 主控必须 (1) 状态机 status.md 记 post_acceptance_reopen + 原因，
+    (2) 按**依赖序**重跑：current_draft_sync（权威稿有改时）→ g14_style_gate → phase4_4_figures /
+    final_assembly（含 g14_caption_recheck）→ t9_review → t8_technical_final，
+    (3) 重新取主人在 phase5_acceptance 拍板（仍走 owner_checkpoint，不得默认保留旧 accepted）。
+    ⚠️ 2026-10-08 审计 R-6 修：原序为 g14_style_gate / t9_review / final_assembly / t8_technical_final，
+    但 t9_review.input = final/定稿.md（phase_seq 21 > final_assembly 的 20）—— 按原序执行等于让盲审读
+    **旧版定稿**，重跑形同虚设。T9 的受审对象必须与重开后的 final/定稿.md 指纹一致（t9_review.fingerprint
+    + audited_artifact_required 已提供校验位）。
+# ⚠️ v2.12.46（业主定案）：论衡**只有一个标准架构 = 多 Agent 九角色流水线**。
+#   T1-T7 / T9 / G14 = worker 角色，各自写自己的正式角色产物；主控（T0/T8）负责流程状态、
+#   权威稿同步、配图、定稿组装、终检与交付裁决。**不存在与多 Agent 并列的「单主控模式」**：
+#   worker 不可用/失败属**单节点故障**，只对失败节点做主控接管（on_worker_failure），强制披露
+#   独立性影响；不改变整条流水线、不跳过任何质量门、不得声称等价于独立角色复核。
+#   宿主不存在「架构上不兼容多 Agent」的常态 —— OpenClaw 原生支持子代理；实际可能发生的是
+#   策略拒绝 / 超时 / 失败 / 无产物 / 配额不可用等运行故障。
+# ⚠️ v2.12.46：**Phase 编号为第一类真源字段** —— 每个节点必须声明 `phase`（文档层标签）与
+#   `phase_seq`（流水线序号，唯一且沿 next 边单调不减）。主控呈现 Phase 标签时必须取自本文件，
+#   不得自创（教训：无编号节点曾被误标为「Phase 4.2」导致整段跳过 T7 审计）；维护者校验 机械校验。
+
+phase_order:
+  - seq: 0
+    phase: Phase 0
+    node: phase0_definition
+  - seq: 1
+    phase: Phase 0 后置（spawn 前核验）
+    node: pre_spawn_enforcement
+  - seq: 2
+    phase: Phase 1
+    node: retrieval
+  - seq: 3
+    phase: Phase 1 后置（派发硬验证闸门）
+    node: post_phase1_dispatch_verify
+  - seq: 4
+    phase: Phase 1.5
+    node: phase1_5_targeted_review
+  - seq: 5
+    phase: T2.5 完整性门
+    node: t2_5_integrity
+  - seq: 6
+    phase: Phase 1.5 后置（T2.5 红数据窗口）
+    node: phase1_5b_post_t2_5_review
+  - seq: 7
+    phase: Phase 2
+    node: t4_analysis
+  - seq: 8
+    phase: Phase 2.5
+    node: phase2_5_outline
+  - seq: 9
+    phase: Phase 3
+    node: t5_draft_v1
+  - seq: 10
+    phase: Phase 3.5
+    node: phase3_5_insight
+  - seq: 11
+    phase: Phase 3.6 前置
+    node: current_draft_sync
+  - seq: 12
+    phase: Phase 3.6
+    node: t6_critique
+  - seq: 13
+    phase: Phase 3.7
+    node: t5_feedback_revision
+  - seq: 14
+    phase: Phase 4
+    node: t7_audit
+  - seq: 15
+    phase: Phase 4.2
+    node: audit_revision
+  - seq: 16
+    phase: Phase 4.3 定向回查（T1b）
+    node: t1b_targeted_review
+  - seq: 17
+    phase: T7.5 完整性门
+    node: t7_5_integrity
+  - seq: 18
+    phase: Phase 4.4 前置（G14 风格闸）
+    node: g14_style_gate
+  - seq: 19
+    phase: Phase 4.4 前置·风格修订
+    node: t5_style_revision
+  - seq: 20
+    phase: Phase 4.4
+    node: phase4_4_figures
+  - seq: 21
+    phase: Phase 4.4 后置（定稿组装）
+    node: final_assembly
+  - seq: 22
+    phase: Phase 4.5
+    node: t9_review
+  - seq: 23
+    phase: Phase 4.5 后置（压力测试轮）
+    node: t9b_stress_test
+  - seq: 24
+    phase: Phase 5 终检
+    node: t8_technical_final
+  - seq: 25
+    phase: Phase 5 终检后置（方法论留档）
+    node: methodology_snapshot
+  - seq: 26
+    phase: Phase 5 验收
+    node: phase5_acceptance
+
+architecture:
+  standard: multi_agent_role_pipeline
+  worker_roles: [T1, T2, T3, T4, T5, T6, T7, T9, G14]
+  owner_roles: [T0, T8]
+  owner_nodes: [phase0_definition, phase2_5_outline, phase3_5_insight, pre_spawn_enforcement, t2_5_integrity, current_draft_sync, t7_5_integrity, phase4_4_figures, final_assembly, t9b_stress_test, t8_technical_final, methodology_snapshot, phase5_acceptance]
+  worker_failure_policy: owner_takeover_with_disclosure
+  fallback_is_not_equivalent: true
+  worker_terminal_states: [worker_not_started, worker_running, worker_failed, worker_empty_output, worker_timeout, main_controller_takeover, owner_decision_required, not_executed]
+  worker_state_rules: {empty_output_is_success: false, takeover_preserves_original_role_done: false, takeover_requires_disclosure: true, t9_takeover: forbidden}
+# ⚠️ P0-3：版本号 vN 只随闸门里程碑推进；minor 自修走 vN.m；风格修订走 vN-style。
+version_numbering:
+  milestone_rule: vN 整数位只由闸门节点推进（phase3_5_insight / t5_feedback_revision / audit_revision）
+  minor_patch: vN.m           # 字数/图位/AI味/M门/术语 → 只推进小数位，不推进整数位
+  style_revision: vN-style    # G14 风格修订 → 独立标识，不进 vN 序列
+  milestones: [v1|t5_draft_v1, v2|phase3_5_insight, v3|t5_feedback_revision, v4|audit_revision, v5|audit_revision]
+  detail: pipeline-overview.md『修订回环仲裁规则』   # 判定口径真源
+condition_definitions:
+# ⚠️ v2.12.54 R-4：每条条件定义必须登记生产方（producer + producer_marker），否则构建期校验不通过（规则 25）。
+#   实测：t9_review 依赖 owner_peer_review_consent 而全仓无生产方 ⇒ 节点静默不触发。
+#   规则：字段名无生产方 ≠ 保守失败，而是断链——条件永远取假，节点在认知层与执行层同时消失。
+  owner_peer_review_opt_out:         # 默认启用 + 主人 opt-out；本键语义 = 主人已显式 opt-out 同行评审
+    requires: [owner_peer_review_opt_out]
+    producer: references/templates/任务简报-template-lite.md
+    producer_marker: "同行评审"
+  methodology_snapshot_opt_out:      # 默认触发 + 主人 opt-out；本键语义 = 主人已显式 opt-out
+    requires: [owner_methodology_snapshot_opt_out]
+    producer: references/templates/任务简报-template-lite.md
+    producer_marker: "方法论留档"
+  phase1_5_brief_flag_trigger:    # 2026-10-08 审计 R-1（B1）：原 `phase1_5_targeted_review_any_trigger_hit` 含两项触发（简报标记 + T2.5 红数据），但承载它的节点 seq=4 **早于** t2_5_integrity(5) ⇒ 红数据项首次到达恒为假、且被 on_not_triggered 静默吞掉。拆分后本键**只认简报标记**
+    requires: [phase0_review_flags]
+    producer: references/templates/任务简报-template-lite.md
+    producer_marker: "待复核关键 Dxx"
+  phase1_5b_red_data_trigger:     # 2026-10-08 审计 R-1（B1）：T2.5 判定报 🔴 二手转引未回溯时触发定向回查；由 phase1_5b_post_t2_5_review(6) 承担，**排在 t2_5_integrity(5) 之后**（时序可达）
+    requires: [t2_5_red_data_flag]
+    producer: references/_shared/真源/M-Gate-核心.md
+    producer_marker: "M-Form-6"
+  t5_t7_report_unverified_references:   # v2.13.0 P0-1（ECS 实战反馈）：T5 修订说明/初稿或 T7 审计报告出现「待人工核验」标记 ⇒ t1b_targeted_review 定向回查；T9 发现的引用问题走 Phase 5 主人拍板（时序在后，不回流）
+    requires: [t5_report_marker, t7_report_marker]
+    producer: references/agents/05-写作-writer.md
+    producer_marker: "待人工核验"
+  T6_requires_revision:
+    requires: [t6_report_p0_or_p1]
+    producer: references/agents/06-批判-critical-companion.md
+    producer_marker: "否决项清单"   # P1-1：高可攻击性/砍论点 ⇒ 视为 P0/P1 否决项
+  T7_P0_or_P1:
+    requires: [t7_report_p0_or_p1]
+    producer: references/dispatch/T7-审计.md
+    producer_marker: "P0"
+  target_language_includes_zh:
+    requires: [owner_target_language]
+    producer: references/templates/任务简报-template-lite.md
+    producer_marker: "目标语言"
+  G14_requires_style_revision:
+    requires: [g14_report_style_fail]
+    producer: references/gates/14-中文AI痕迹-gate.md
+    producer_marker: "Fail"
+  figures_approved_by_owner:
+    requires: [owner_figure_decision]
+    producer: references/templates/任务简报-template-lite.md
+    producer_marker: "figure_decision"
+  owner_stress_test_opt_in:     # 2026-10-05：T9b 由「默认触发 + 主人 opt-out」改为「默认不跑 + 主人 opt-in」（架构评审 v3 R2 附带裁决：实跑 40+ 项目零产出、产出无下游消费方、主控重读定稿全文成本高；三剧本本身保留，冲刺投稿时开）
+    requires: [owner_stress_test_opt_in]
+    producer: references/templates/任务简报-template-lite.md
+    producer_marker: "压力测试轮"
+
+m_gate_criterion_fields:
+# v2.12.65 P0-1：M 门判据字段须登记生产方（同 R-4 断链治理）
+  data_requirements_in_brief:
+    producer: references/templates/任务简报-template.md
+    producer_marker: "需找数据点"
+
+owner_checkpoints:
+  - phase0_definition
+  - phase2_5_outline
+  - phase3_5_insight
+  - phase5_acceptance
+
+pipeline:
+  - id: phase0_definition
+    phase: "Phase 0"
+    phase_seq: 0
+    kind: owner_checkpoint
+    blocking: true        # v2.12.49：人环闸门 —— 无明确决策不得推进（真源 = owner_timeout_policy）
+    owner_visible: true   # v2.12.49：必须按 checkpoint-card-template 向主人呈现
+    decisions: [approved, revision_requested]   # v2.12.61：Phase 0 **进线**二态（approved=开始 / revision_requested=补充信息后重出简报）。
+    #   「暂停 / 拒绝」= **未进线出口**（流水线外前置门），不进本词表 → 记 status.md `pre_pipeline_exit`。
+    #   原 restart_phase 系 v2.12.28「与其余人工节点结构对齐」复制而来：Phase 0 即定题，无更早节点可回退，
+    #   该值在本节点自指不可达 ⇒ 移除（避免「真源声明了、卡与 status 却无从落到」）。
+    timeout_fallback: pending_owner_halt
+    blocks: [retrieval]   # v2.15.13 FB-12：局部阻塞 —— 本检查点只阻塞检索层；允许「呈现但不等」的并行准备（如顶配/三档路由探活、模板加载）可在等待期进行，全局停摆非本节点语义
+    output: 01-任务简报.md
+    next: pre_spawn_enforcement
+  - id: pre_spawn_enforcement
+    phase: "Phase 0 后置（spawn 前核验）"
+    phase_seq: 1
+    kind: mode_declaration
+    owner: 主控
+    blocking: true
+    input: 01-任务简报.md
+    output: status.md（Phase 0 同意记录与标准架构声明）
+    precondition: Phase 0 外发同意记录 + 目标语言 + 项目名 + 模型路由记录（01-任务简报.md §模型映射 的 phase0_route 段，且 selected_by=owner；真源 = route_tier.md §三）均已写入 01-任务简报.md；phase0_route 缺记录或 selected_by 为空 = 本节点未过，判 path_or_param_error（2026-10-08 审计 R-5：取消 route_tier「无记录走默认」fail-open 尾巴）
+    write_authority: owner
+    top_tier_liveness_gate:                 # v2.12.49 T-3：Phase 0 后置顶配档探活门（在任何 worker spawn 之前）
+      target: 顶配档（批判审计：T6 / T7 / T9 / G14）
+      attempts: 3
+      min_interval_seconds: 10
+      on_failure: pause_owner_three_choice   # 换 provider 族 / 换能力档 / 接受同源（+ 披露独立性不成立）
+      record: 01-任务简报.md §模型映射（含探活时间戳）
+      staleness_minutes: 60                  # 超 1 小时需重探
+    context_budget_gate:                  # v2.12.72 E：主控上下文预算门，防窗口压缩导致的话术复制造成漂移
+      position: Phase 0 后置（本节点内，任何 worker spawn 之前）
+      estimate_by_tier: true               # Phase 0 按字数档位预估总 token
+      estimate_model: references/_shared/真源/performance-benchmarks.md §五
+      margin_threshold_pct: 30             # 余量低于 30% ⇒ 必须给出落盘减负建议
+      overspend_alert_pct: 150             # 实测超过预算 150% ⇒ 超支预警
+      on_low_margin: emit_offload_suggestions_and_continue
+      offload_actions:
+        - 中间产物全文指针化（只留路径与结论）
+        - dispatch 只读当前要 spawn 的角色话术（不得凭记忆复制）
+        - 已完成产物按需局部 read，不全文重读
+      recheck: every_phase_boundary
+      record: status.md §4.8（预算估算、实测消耗、余量、落盘减负动作）
+      doctrine: >
+        主控窗口余量属运行期自观测，构建期无法机械校验；本门只锁协议与留痕不得从载体静默消失。
+        余量低于阈值必须写落盘减负建议；实测超过预算阈值必须写超支预警，不得静默继续或臆测精确值。
+    note: "标准架构 = 多 Agent 九角色流水线（无需勾选、不设总开关）。本节点只做 spawn 前前置核验（同意记录 / 目标语言 / 项目名 / 派发角色清单）**+ v2.12.49 T-3 顶配档探活门**（≤3 次、间隔 ≥10s；失败 ⇒ 当场与主人确认降档含换族；结果含时间戳写入简报 §模型映射，超 1 小时重探）**+ v2.12.72 E 主控上下文预算门**（按档位预估、余量低时落盘减负、运行中每个阶段边界复核）；**不再决定「是否启用多 Agent」**；worker 不可用属单节点故障，走 on_worker_failure 主控接管，不改架构、不跳质量门。"
+    next: retrieval
+  - id: retrieval
+    phase: "Phase 1"
+    phase_seq: 2
+    input: 01-任务简报.md（+ owner 已确认的语言/同意记录）
+    kind: parallel_agents
+    role: T1/T2/T3
+    agents: [T1, T2, T3]
+    write_authority: executor
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    output:
+      T1: literature/文献卡.md
+      T2: data/数据卡.md
+      T3: cases/案例卡.md
+    next: post_phase1_dispatch_verify   # v2.15.7：先过派发硬验证闸门再进 Phase 1.5
+  - id: post_phase1_dispatch_verify
+    phase: "Phase 1 后置（派发硬验证闸门）"
+    phase_seq: 3
+    # v2.15.7 新增：T1/T2/T3 全部 spawn 完成后，主控亲完成「派发清单硬验证」
+    # 阻止「主控口头说已派发但实际无 sessions_spawn 返回值」的静默推进（ECS 2026-10-02 反馈）
+    input: status.md 派发清单段（含 T1 / T2 / T3 三行 spawn 记录）
+    kind: mechanical_checkpoint
+    role: 主控
+    owner: 主控
+    write_authority: owner
+    verification_authority: 主控
+    check:
+      - 必须存在 3 条派发行（对应 T1 / T2 / T3，每个一行）
+      - 每行必含 runId + childSessionKey + resolvedModel 三字段（判据真源 = 00-主控-扩展职责.md §十六点五；字段名经 2026-10-02 实测校准）
+      - 三条 runId 必须互不相同（防重复派发同一 session）
+      - 三条 childSessionKey 必须互不相同且可解析为 sessions_history 可见记录
+    verdict_scale: four_tier   # 与 v2.12.40 一致：通过 / 不通过 / 无法判定 / 路径或参数错误
+    rerun_after_report: true   # v2.12.40「报告后激活」+ v2.15.8 债务补标：前提 = status.md 派发清单段已落盘；不得用预跑/上轮记录
+    # 失败处置（不走 on_fail 路由键；两个失败档位都是 halt，不路由到其它节点）：
+    #   路径或参数错误（派发清单缺失/字段空）⇒ halt + 报 post_dispatch_verify_path_error + 主控亲补 spawn
+    #   不通过（runId/childSessionKey 重复或不可解析）⇒ halt + 报 post_dispatch_verify_conflict + 主人拍板
+    output: status.md（追加「post_phase1_dispatch_verify 验证记录」段；行格式见 00-主控-扩展职责.md §十六点五）
+    terminal_state_rules: {allowed: [passed, path_error, conflict, pending_owner], empty_output_is_success: false, halt_on_fail: true}
+    recheck_record: status.md
+    note: |
+      v2.15.7 ECS 反馈：主控 spawn 后立即 yield，子代理实际从未启动 ⇒ 主控以「已派发」措辞回报，主人误判。
+      本节点不 spawn；主控用 read 工具自检 status.md 派发清单段，符合所有 check ⇒ 写通过；任意 check 失败 ⇒ halt。
+      与 00-主控-扩展职责.md §十六点五「派发硬验证」配对：那是 spawn 当次的判定；本节点是 yield 前的批量再确认。
+    next: phase1_5_targeted_review
+  - id: phase1_5_targeted_review
+    phase: "Phase 1.5"
+    phase_seq: 4
+    kind: conditional_review_window
+    verdict_scale: four_tier   # v2.12.40：结论落四档（通过/不通过/无法判定/路径或参数错误），不用退出码
+    rerun_after_report: false   # 2026-10-08 审计 R-1：触发依据收窄为**任务简报标记**（Phase 0 输入，非下游报告）⇒ 无「报告后重判」需求；红数据触发项已移至 phase1_5b_post_t2_5_review（该节点排在 t2_5_integrity 之后）
+    input: literature/文献卡.md + data/数据卡.md + cases/案例卡.md
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：条件证据不可判定 ⇒ 呈主人 + 按安全侧（触发）继续，禁止静默按 on_not_triggered 吞掉
+    condition: phase1_5_brief_flag_trigger   # 激活逻辑：下方 trigger_conditions 命中即触发；全部未命中 → 走 on_not_triggered（v2.12.28 对齐）。2026-10-08 审计 R-1：本节点**只认简报标记**
+    on_not_triggered: record_not_triggered_in_status
+    owner_visible: true
+    blocking: false
+    trigger_conditions:
+      - brief_marked_Dxx_for_review       # 命中定义：任务简报「需找数据点」段任一条目标注 [Dxx 待复核]（未标 = 不命中）
+      - brief_marked_Lxx_for_review       # v2.13.0 P0-1：任务简报「待复核关键」段任一条目标注 [Lxx 待复核]（与 Dxx 同窗口；未标 = 不命中）
+      # 2026-10-08 审计 R-1（B1）：`t2_5_red_data_unresolved` 已**移出本节点** —— 本节点 phase_seq=4 早于
+      #   t2_5_integrity(5)，红数据在本时点不可得，恒为假且被 on_not_triggered 静默吞掉。现由
+      #   phase1_5b_post_t2_5_review(6) 承担（排在该闸门之后）。
+      # （已移除 t9_evidence_score_low：Phase 1.5 时点不可达，属占位条件 —— T9 评分低触发的回查在 Phase 4.5 后单独执行，见 phase-1-details.md）
+    decisions: [triggered, not_triggered]
+    output_if_triggered: literature/回查报告-vN.md
+    required_record: status.md
+    after_trigger: rerun_t2_5_integrity   # 动作名（非节点 id）：触发后重跑 t2_5_integrity 闸门
+    next: t2_5_integrity
+  - id: t2_5_integrity
+    phase: "T2.5 完整性门"
+    phase_seq: 5
+    kind: mechanical_checkpoint
+    verdict_scale: four_tier   # v2.12.40：结论落四档；「产物不存在」= 路径或参数错误（非内容缺陷、不触发修订）
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = data/数据卡.md 已落盘；数据卡被补写后必须重跑
+    owner: 主控
+    write_authority: owner
+    input: data/数据卡.md + cases/案例卡.md + literature/文献卡.md   # v2.12.40 补 P1-5：本闸门的判据对象必须显式声明（原未声明 input → 前置产物无人核对）
+    next: phase1_5b_post_t2_5_review   # R-1(B1)：闸门后先过红数据求值点，未命中才进 T4；不得跳（否则 seq 6 不可达，门 S 断链）
+  - id: phase1_5b_post_t2_5_review   # 别名：文档层「Phase 1.5 后置（T2.5 红数据窗口）」（非独立 Phase 标签，主控呈现时归入 Phase 1.5）
+    phase: "Phase 1.5 后置（T2.5 红数据窗口）"
+    phase_seq: 6
+    kind: conditional_review_window
+    verdict_scale: four_tier   # v2.12.40：结论落四档（通过/不通过/无法判定/路径或参数错误），不用退出码
+    rerun_after_report: true   # 「报告后激活」：前提 = t2_5_integrity 判定已落盘；**必须在该判定写出之后**取数（预跑结果不得充当闸门输入）
+    input: literature/文献卡.md + data/数据卡.md + cases/案例卡.md
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：条件证据不可判定 ⇒ 呈主人 + 按安全侧（触发）继续，禁止静默按 on_not_triggered 吞掉
+    condition: phase1_5b_red_data_trigger   # 激活逻辑：下方 trigger_conditions 命中即触发；未命中 → on_not_triggered 留痕
+    on_not_triggered: record_not_triggered_in_status
+    owner_visible: true
+    blocking: false
+    trigger_conditions:
+      - t2_5_red_data_unresolved          # 命中定义：t2_5_integrity 闸门报 🔴 二手转引未回溯到原始来源（M-Form-6 判定；未报红 = 不命中）
+    decisions: [triggered, not_triggered]
+    output_if_triggered: literature/回查报告-vN.md
+    required_record: status.md
+    after_trigger: rerun_t2_5_integrity   # 动作名（非节点 id）：触发后重跑 t2_5_integrity 闸门（回查改数后必须复判）
+    note: 2026-10-08 审计 R-1（B1）：原单节点承载「简报标记 + T2.5 红数据」两类触发，却排在 t2_5_integrity 之前 ⇒ 红数据项首次到达**恒为假**、且被 on_not_triggered 记成「未触发」（与「闸门真没跑」不可分）。现拆两个求值点：简报标记留 seq 4、红数据入本节点（seq 6，排在闸门后）；各记一次 evaluated_against，命中出口同为 after_trigger。理由全文见 pipeline-overview.md 版本注记
+    next: t4_analysis
+  - id: t4_analysis
+    phase: "Phase 2"
+    phase_seq: 7
+    input: literature/文献卡.md + data/数据卡.md + cases/案例卡.md
+    kind: agent
+    agent: T4
+    role: T4
+    write_authority: executor
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    output: analysis/分析大纲.md + analysis/T5-写作上下文.md   # T5 写作上下文包由 T4 产出（v2.12.37 审计 P1-1：原仅散落角色卡/派发话术，未入真源）
+    output_chars_max: 12000   # 写盘上限（回传另受平台 4096 字符硬上限约束）
+    next: phase2_5_outline
+  - id: phase2_5_outline
+    phase: "Phase 2.5"
+    phase_seq: 8
+    kind: owner_checkpoint
+    blocking: true        # v2.12.49：无明确决策不得推进（改方向成本最低的关卡，尤其不得自动放行）
+    owner_visible: true
+    decisions: [approved, revision_requested, restart_phase]
+    timeout_fallback: pending_owner_halt
+    blocks: [t5_draft_v1]   # v2.15.13 FB-12：局部阻塞 —— 只阻塞写作层；Phase 1.5 定向回查（t1b_targeted_review）可与本等待并行（实测 2026-10-06：主控自行并行才没白等，规则化之）
+    next: t5_draft_v1
+  - id: t5_draft_v1
+    phase: "Phase 3"
+    phase_seq: 9
+    input: analysis/分析大纲.md + analysis/T5-写作上下文.md
+    kind: agent
+    agent: T5
+    role: T5
+    write_authority: executor
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    output: drafts/初稿-v1.md
+    next: phase3_5_insight
+  - id: phase3_5_insight
+    phase: "Phase 3.5"
+    phase_seq: 10
+    kind: owner_checkpoint
+    blocking: true        # v2.12.49：「无补充」也是决策，必须留痕；静默不得当作无补充
+    owner_visible: true
+    decisions: [insight, direction_correction, no_insight]
+    decision_contract: "direction_correction = 方向纠偏；记录 correction_scope，回 T5 重定向后才可进 current_draft_sync；不得把它降格为普通补充洞察。"
+    timeout_fallback: pending_owner_halt
+    blocks: [current_draft_sync, t6_critique]   # v2.15.13 FB-12：局部阻塞 —— 阻塞下游同步/批判层；上游产物整理（归档/心跳核对）可并行
+    next: current_draft_sync
+  - id: current_draft_sync   # 别名：文档层「Phase 3.6 前置」（非独立 Phase 标签，主控呈现时归入 Phase 3.6）
+    phase: "Phase 3.6 前置"
+    phase_seq: 11
+    kind: mechanical_checkpoint
+    verdict_scale: four_tier   # v2.12.40：结论落四档（本节点最常见失败 = 上游稿不存在 → 路径或参数错误档）
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 上游最新稿已在磁盘；上游改写后必须重刷
+    owner: 主控
+    write_authority: owner
+    output: drafts/current_draft.md
+    note: 主控亲为（不 spawn）：同步当前权威稿至 drafts/current_draft.md，保留 draft_id / draft_version；下游默认只取指针与增量清单
+    draft_ref_contract: {path: drafts/current_draft.md, required: [draft_id, draft_version, sha256, section_manifest, changed_sections], sha256_status: verified | unavailable, section_manifest_fields: [section, chars_or_bytes, locator], changed_sections_source: previous_synced_version, hash_mismatch: stop_and_request_resync, full_read_exceptions: [final_assembly, cross_section_audit, owner_explicit_request, incremental_validation_failed]}
+    context_metrics: {required: [raw_input_bytes, structured_output_bytes, context_reduction_ratio, critical_evidence_preserved, locator_preserved, false_negative_count], compression_is_not_evidence: true}
+    precondition: 上游最新稿（drafts/初稿-vN.md 或修订稿）+ Phase 3.5 洞察记录已在磁盘
+    next: t6_critique
+  - id: t6_critique   # 别名：文档层「Phase 3.6」（v2.12.40：G14 迁出至 Phase 4.4 前置，本节点仅 T6）
+    phase: "Phase 3.6"
+    phase_seq: 12
+    kind: agent
+    verdict_scale: four_tier
+    agent: T6
+    role: T6
+    write_authority: owner   # v2.12.51 D-3：只读档报告由主控 write 落盘，本节点不授写权
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    degrade: skip_in_lite_tier   # P1-5 修复：轻量档 T6「必跳」在此声明（原键名 `t6_degrade`，v2.12.40 统一为标准键
+                                 # `degrade`；真源缺声明时曾致各文件「必跳」/「可跳过」/「已声明为否」三种读法并存）
+    input: drafts/current_draft.md
+    output: analysis/批判报告-vN.md
+    output_chars_max: 12000   # 批判报告（**写盘**上限；回传另受平台 4096 字符硬上限约束，超出走分块协议）
+    next: t5_feedback_revision
+  - id: t5_feedback_revision   # 别名：文档层「Phase 3.7」（T6/G14 否决后的预审计修订；本轮修完才进 Phase 4）
+    phase: "Phase 3.7"
+    phase_seq: 13
+    input: drafts/初稿-v{N}.md + analysis/批判报告-v{N}.md
+    kind: conditional_agent
+    verdict_scale: four_tier   # v2.12.40：T6 报告判定落四档
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 批判报告已落盘；必须在报告写入后重跑判定
+    agent: T5
+    role: T5
+    write_authority: executor   # T5 = 正式写手：初稿/修订稿由本角色直接落盘
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    output: drafts/初稿-v{N+1}.md + drafts/修订说明-v{N+1}.md
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：T6 报告不可读/缺失 ⇒ 呈主人（不得静默按未触发跳过）
+    condition: T6_requires_revision   # 命中 = 报告头部「P0/P1 否决项清单」非空（高可攻击性/砍论点 ⇒ 否决项）
+    on_not_triggered: record_not_triggered_in_status   # v2.12.28：未触发也必须在 status.md 留痕（防「未触发」与「漏跑」不可分）
+    after_each: [current_draft_sync]   # P2-1：本节点非 bounded_loop，`after_each` = 单次执行后刷新。产出 v{N+1} 后必须刷新 current_draft.md，否则 T7 读旧稿。
+    next: t7_audit
+  - id: t7_audit
+    phase: "Phase 4"
+    phase_seq: 14
+    kind: agent
+    agent: T7
+    role: T7
+    write_authority: owner   # v2.12.51 D-3：只读档报告由主控 write 落盘，本节点不授写权
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    audited_artifact: drafts/current_draft.md
+    precondition: t6_done OR skip_in_lite_tier
+    input: drafts/current_draft.md
+    output: audits/审计报告-vN.md
+    output_chars_max: 10000
+    next: audit_revision
+  - id: audit_revision   # 别名：文档层「Phase 4.2」
+    phase: "Phase 4.2"
+    phase_seq: 15
+    kind: bounded_loop
+    verdict_scale: four_tier   # v2.12.40：T7 审计报告判定落四档（「本轮无 P0/P1」= 通过，非失败）
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 审计报告已落盘；不得沿用审计进行中的中间态
+    max_rounds: 2
+    rounds_carrier: overview-arbitration   # 轮次契约载体 = pipeline-overview.md「修订回环仲裁规则」generated 块（T5 dispatch 明文不复述轮次数字；架构评审 v3 R2③ 收口）
+    # v2.12.49 M-6：轮次耗尽出口改「三选一」（废「默认走最保守项」fail-open）
+    # 原状：`max_rounds` 用尽且仍有未决 P0/P1/P2（非豁免项）⇒ 程序性资源耗尽被当质量结论
+    #   ⇒ 流水线自动 GO。**对比 G14 Warning 出口（主控暂停 + 3 选 1）设计正确却未复制**。
+    # 现口径：未决 P0/P1/P2（非豁免项）+ max_rounds 用尽 ⇒ **主控暂停 + 主人三选一**（fail-closed，无默认）：
+    #   A. **接受现状 + Acknowledged Limitations**（交付说明必填局限性段）
+    #   B. **破例追加 1 轮**（显式授权，超 max_rounds 上限）
+    #   C. **主人手工润色**（退出论衡流水线）
+    #   三项**无默认**；不得「按最保守项自动继续」；也不得「P2=1 ⇒ 自动接受」。
+    rounds_exhausted_outlet:
+      trigger: max_rounds_used AND has_unresolved_defects
+      unresolved_levels: [P0, P1]   # P2 移除（归 T8 inline 亲修，不触发修订）
+      owner_decision:
+        - id: accept_with_limitations
+          label: 接受现状 + Acknowledged Limitations
+          requires: deliverables.md 加局限性段 + status.md 记 accepted_under_owner_decision
+        - id: extend_one_round
+          label: 破例追加 1 轮
+          requires: 主人在 phase4 节点拍板「授权追加」，不计 max_rounds 上限
+        - id: manual_polish
+          label: 主人手工润色
+          requires: 流水线暂停，退出论衡 agent，主人手动改稿
+      no_default_option: true   # 不得「P2=1 ⇒ 自动接受」 / 不得「按最保守项继续」
+      halt_pending_owner: true
+    input: audits/审计报告-vN.md + drafts/current_draft.md
+    output: drafts/初稿-v{N+1}.md + drafts/修订说明-v{N+1}.md
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：T7 报告不可读/缺失 ⇒ 呈主人（不得静默按未触发跳过）
+    condition: T7_P0_or_P1   # 命中定义：T7 审计报告存在 P0 或 P1 级发现（全 P2/无发现 = 不命中）
+    on_not_triggered: record_not_triggered_in_status   # v2.12.37 门：有 condition 必须声明未触发处置（防「未触发」与「漏跑」不可分）
+    # after_each：`current_draft_sync` 是**真节点 id**（每轮修订后必须重写 current_draft.md，否则 T7/T9 读旧稿 —— 2026-09-12 审计 P0-3）；
+    # `rerun_t7` 为动作名（非节点 id）：重跑 t7_audit。
+    # v2.12.40（业主定案 A1）：**删除 `rerun_g14_if_enabled`** —— G14 不再在每轮修订后复检，改为定稿前只审一次（见 g14_style_gate）。
+    # 机械搬运合并（v2.12.32，实测 P2）：`current_draft_sync` 属纯复制，与相邻实质节点合并可少一个 spawn 失败面（实测 sync 3 次各 52-74k tokens；T2 回填子会话 Agent run failed 零产物）。
+    after_each: [current_draft_sync, rerun_t7]
+    next: t1b_targeted_review   # v2.13.0 P0-1：审计修订退出后先过定向回查窗口，再进 T7.5
+  - id: t1b_targeted_review   # 别名：文档层「Phase 4.3 定向回查」（v2.13.0 P0-1，ECS 实战反馈新增）
+    phase: "Phase 4.3 定向回查（T1b）"
+    phase_seq: 16
+    kind: conditional_agent
+    verdict_scale: four_tier
+    rerun_after_report: true   # 前提 = T5 修订说明与 T7 审计报告均已落盘；必须在报告写入后取数（不得用修订进行中的中间态）
+    agent: T1b
+    role: T1                   # T1b = T1 文献检索员的定向回查子任务（口径同 T1 卡 T1b 段）——不新增独立角色，九角色架构不变；工具面 = research 档
+    phase_window: [phase1_5_targeted_review, t1b_targeted_review]
+    write_authority: executor
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    input: drafts/current_draft.md + drafts/修订说明-v{N}.md + audits/审计报告-vN.md
+    output: literature/回查报告-v{N}.md
+    output_chars_max: 8000
+    dispatch: references/dispatch/T1b-定向回查.md   # 派发话术合同块载体（max_rounds 随块入锚点）；合同面由生成器从本字段现算
+    condition_undecidable: report_to_owner   # 修订说明/审计报告不可读或缺失 ⇒ 呈主人（不得静默按未触发跳过）
+    condition: t5_t7_report_unverified_references   # 命中定义：T5 修订说明或 T7 审计报告出现「待人工核验」标记（真源 = condition_definitions；无标记 = 不命中）
+    on_not_triggered: record_not_triggered_in_status   # 无未核验引用 → status 记 not_triggered（防「未触发」与「漏跑」不可分）
+    boundary: 仅核验引用存在性与元数据（标题/作者/年份/DOI/URL），不重写正文、不改论证；核验失败条目标注后呈主人处置
+    max_rounds: 2   # v2.13.0 P0-1：T1b 回查 ≤2 轮（每轮 = 一次定向检索 + 一份回查报告）
+    rounds_exhausted_outlet:   # 轮次耗尽仍有未核验引用 ⇒ 主控暂停 + 主人三选一（fail-closed 无默认；写法同 audit_revision M-6）
+      trigger: max_rounds_used AND has_unverified_references
+      unresolved_levels: [P0, P1]
+      owner_decision:
+        - id: accept_with_limitations
+          label: 接受现状 + Acknowledged Limitations
+          requires: deliverables.md 加局限性段 + status.md 记 accepted_under_owner_decision
+        - id: manual_verify
+          label: 主人自行核验
+          requires: 流水线挂起，主人线下核验后回填结论（status 记 pending_owner）
+        - id: remove_references
+          label: 删除未核验引用
+          requires: 主人授权 T5 移除对应引用条目 → 重走 current_draft_sync + t7_5_integrity
+      no_default_option: true
+      halt_pending_owner: true
+    after_each: [rerun_t7_5_integrity]   # 动作名（非节点 id，写法同 rerun_t7）：文献卡/数据卡被回查更新 ⇒ 重跑完整性门
+    note: "v2.13.0 P0-1（ECS 实战反馈）：T5 修订轮新增 [Lxx]/[Dxx]/[Cxx] 标「待人工核验」而 T1 已结束 ⇒ 本窗口 spawn T1b 定向回查（复用 01-文献检索 角色卡铁律与 research 档工具面）。输出逐条：原检索信息 / 回查原始来源 / 评级（成功|部分成功|失败）+ 提升后信任级别；卡片更新由主控 write。派发话术 = dispatch/T1b-定向回查.md。"
+    next: t7_5_integrity
+  - id: t7_5_integrity
+    phase: "T7.5 完整性门"
+    phase_seq: 17
+    kind: mechanical_checkpoint
+    verdict_scale: four_tier   # v2.12.40：结论落四档；审计报告缺失 = 路径或参数错误（不触发修订）
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 审计报告 + 本轮 M 门记录已落盘；不得用预跑/上轮记录
+    audited_artifact_required: true   # v2.12.49 M-8：以下游只读档报告必须声明 audited_artifact 三元组（path / bytes / sha256）；t7_5_integrity 校验集合相等（下游报告与 current_draft_sync 同步的版本一致）
+    owner: 主控
+    write_authority: owner
+    input: audits/审计报告-vN.md   # v2.12.41 修依赖倒置：本闸**不得**读 final/M-Gate-Report（那是本闸的**产出**；v2.12.33 已定「T7.5 不 check T8 产物」），改读本轮章节级 M 门记录（status.md）
+    output: final/M-Gate-Report-*.json   # v2.12.41 补生产者：M 门报告由本闸汇总产出，供 T8 读（原全库无生产者 → 孤儿输入）
+    output_schema:
+      paragraph_density_map: "段号 -> {paragraph_chars, hit_count, density_per_10000, hit_classes}"
+      paragraph_density_top5: "按 density_per_10000 降序的前五段，含段号、预览和原文位置"
+      paragraph_density_weighted_score: "Σ(段密度 × 段字数) / 总字数"
+      note: "v2.14.0 C3：G14 段落级密度是定位工具，不替代 9 类总判定；纯外语或 G14 n/a 时记录 paragraph_density_map: n/a。"
+    next: g14_style_gate   # v2.12.40：G14 风格闸迁至此处（定稿前唯一一次）；原直连 phase4_4_figures
+  - id: g14_style_gate   # 别名：文档层「Phase 4.4 前置（G14 风格闸）」（非独立 Phase 标签，主控呈现时归入 Phase 4.4）
+    phase: "Phase 4.4 前置（G14 风格闸）"
+    phase_seq: 18
+    kind: agent
+    verdict_scale: four_tier
+    agent: G14
+    role: G14
+    write_authority: owner   # v2.12.51 D-3：只读档报告由主控 write 落盘，本节点不授写权
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    rerun_after_report: false   # 全流程仅 1 次（v2.12.40 A1）；例外 = t5_style_revision 后轻量复检（≤2 轮）
+    recheck_max_rounds: 2   # v2.13.0 P0-2 复检回环上限；真源级结构化字段——派发合同块唯一取数源（数字禁在代码/他处复述；架构评审 v3 R2② 收口）
+    rerun_after_post_acceptance: true   # v2.12.49 M-2：终态后改稿 ⇒ 必重跑 G14
+    # 执行前提（业主定案 A2：「T5 之前若有修订但还不能定稿，则 G14 还是不执行」）：
+    #   本闸是**定稿前最后一道闸**。前置修订尚未收敛（audit_revision 未退出 / 仍有未决 P0·P1 修订项 / 尚不能定稿）
+    #   → **不执行本闸**，先完成修订；只有进入「可定稿」状态才开闸。
+    precondition: 已可定稿（前置修订已收敛：audit_revision 已退出且无未决 P0/P1 修订项）
+    # 不再是可选项（业主定案「G14 不为可选功能」，替代原 `condition: g14_opt_in` 显式勾选）：
+    #   适用性由 Phase 0「目标语言」字段**客观决定** —— 含中文 → 必跑；纯外语 → n/a（客观不适用，非「关闭」）。
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：目标语言字段缺失 ⇒ 呈主人（不得静默跳过 G14）
+    condition: target_language_includes_zh   # 命中定义：任务简报「目标语言」字段含中文（纯外语 = 不命中）
+    on_not_triggered: record_not_triggered_in_status   # 纯外语 → n/a；未触发亦须入 status
+    degrade: selfcheck_in_lite_tier   # 轻量档（2000-3000 字，口径真源 = 字数判定表.md）→ 内置自检，不 spawn
+    exempt: owner_exempted_requires_disclosure   # 主人显式要求关闭 → 全项目不跑 + final/交付说明.md 披露
+    audited_artifact: drafts/current_draft.md
+    input: drafts/current_draft.md
+    output: audits/G14-检测报告-vN.md
+    output_chars_max: 6000   # AI 痕迹检测报告
+    dispatch: references/dispatch/G14-中文AI痕迹检测器.md   # 派发话术合同块载体；合同面由生成器从本字段现算（节点改名 ⇒ 改本切片即改合同面）
+    on_fail: t5_style_revision   # 业主定案：G14 检查后由 T5 做**最后一次**修订（仅风格层，不得动论证/数据/引用）
+    next: phase4_4_figures
+  - id: t5_style_revision   # 别名：文档层「Phase 4.4 前置·风格修订」（G14 Fail 的唯一出口）
+    phase: "Phase 4.4 前置·风格修订"
+    phase_seq: 19
+    kind: conditional_agent
+    verdict_scale: four_tier
+    rerun_after_report: true   # 前提 = G14 报告已落盘；必须在报告写入后取数
+    agent: T5
+    role: T5
+    write_authority: executor
+    verification_authority: 主控
+    on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+    input: drafts/current_draft.md + audits/G14-检测报告-vN.md
+    output: drafts/初稿-v{N+1}.md + drafts/修订说明-v{N+1}.md
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：G14 报告不可读/缺失 ⇒ 呈主人（不得静默按未触发跳过）
+    condition: G14_requires_style_revision   # 命中定义：G14 判定 5+ 类 Fail（其余档位 = 不命中）
+    on_not_triggered: record_not_triggered_in_status
+    boundary: 仅风格层改动（10 类 AI 痕迹清单）；不得改动论证结构、数据、引用、结论
+    style_recheck_rounds_max: 2   # v2.13.0 P0-2：风格复检 ≤2 轮；耗尽 ⇒ 主人三选一
+    rounds_carrier: overview-arbitration   # 轮次契约载体 = pipeline-overview.md「修订回环仲裁规则」generated 块（架构评审 v3 R2③ 收口）
+    after_each: [current_draft_sync, rerun_g14_style_recheck]   # P1-3：刷新后重跑轻量 G14 风格复检（动作名，同 rerun_t7；主控亲为、不 spawn）
+    next: phase4_4_figures
+  - id: phase4_4_figures   # 别名：文档层「Phase 4.4」
+    phase: "Phase 4.4"
+    phase_seq: 20
+    verdict_scale: four_tier   # v2.12.40：图位数拍板与图件核验结论落四档
+    input: drafts/current_draft.md + data/数据卡.md（图上数据源）
+    kind: owner_agent
+    agent: T0
+    write_authority: owner
+    output: final/图件/*.svg   # v2.12.49 M-10：路径归一「final/图件/*.svg」为唯一真源（全库 5 处引用一致：T6/T7/T8 dispatch / deliverables.md / 06-批判 / 05-写作 / 08-终检 / 任务简报）
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：图位拍板记录缺失 ⇒ 呈主人（不得静默按无图位跳过）
+    condition: figures_approved_by_owner   # 命中定义：Phase 2.5 大纲拍板记录的图位数 > 0（拍板 0 张 = 不命中）
+    on_not_triggered: record_not_triggered_in_status   # v2.12.37 审计 P1-3：图位=0 时必须留痕，防「未触发」与「漏跑」不可分
+    note: |
+      主控亲为（不 spawn）：按 Phase 2.5 拍板数手写 SVG（templates/图表-SVG-template.md），零外发。
+      **v2.12.49 M-11**（4 条语义锁）：
+      1. **拍板 N > 0 ⇒ 必产出 N 张 SVG**（零外发、零 exec）；拍板有图却未产出 = 不合格。
+      2. **output 仅 N 张**；图位超取（拍板 3 张写了 5 张）或图位不足（拍板 5 张写了 3 张）均不合格。
+      3. **T4 不取定 0**：「0」必须由主人在 Phase 2.5 显式拍板；T4 仅出「建议」不出一决定。
+      4. **status.md 必含 owner_figure_decision 记录**（采用 T4 建议 / 调整图位数 / 取消图表三选一）；缺失 = 不合格。
+      5. **图件生成/转换/去留**与 **SVG 写图** 是**两类不同职责**：生成与转换（PNG）主人手动（v2.12.49 零 exec 边界）；**写 SVG**仍是论衡职责（主控 write 纯文本），不得移出。
+      6. **v2.12.60 图件嵌入锁**（主人 2026-09-19 裁定「图件如果存在要机械嵌入」）：本节点产出的 N 张 SVG，**必须由 `final_assembly` 以 `![图N：标题](图件/图N_标题.svg)` 形态嵌入** `final/定稿.md`（嵌入计数 = 拍板 N）；只写纯文本 `[图N：标题]` 占位 = 不合格。嵌入属论衡职责（主控 `write`，零 exec）；PNG 转换仍归主人。
+    next: final_assembly
+  - id: final_assembly   # 别名：文档层「Phase 4.4 后置」/ 定稿组装（非独立 Phase 标签，主控呈现时归入 Phase 4）
+    phase: "Phase 4.4 后置（定稿组装）"
+    phase_seq: 21
+    input: drafts/current_draft.md + data/数据卡.md + final/图件/*.svg（图件存在时用于嵌入）
+    kind: mechanical_checkpoint
+    verdict_scale: four_tier   # v2.12.40：组装前置核验结论落四档（当前稿不存在 = 路径或参数错误）
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 当前权威稿已落盘；上游改写后必须重新组装
+    owner: 主控
+    write_authority: owner
+    output: final/定稿.md
+    fingerprint: required   # v2.12.49 M-1：产出后必须写 final/定稿.sha256（主控 read + 主人 host shell 补算 sha256sum 写入）；指纹真源
+    post_assembly_checks: [g14_caption_recheck]
+    post_assembly_recheck: required
+    recheck_record: status.md
+    note: 主控组装 final/定稿.md；图件存在时必须按 `![图N：标题](图件/图N_标题.svg)` 嵌入且计数等于拍板 N。组装后必做 `g14_caption_recheck`：核对最终图位数量、图注—数据卡对应关系、图注是否引入未登记新主张与 Markdown 嵌入形态，结果写 status.md；未完成/不可判定不得进入 t9_review。该复核只覆盖组装新增/变形的图注图位文本，不替代 G14 首审。
+    next: t9_review
+  - id: t9_review   # 别名：文档层「Phase 4.5」
+    phase: "Phase 4.5"
+    phase_seq: 22
+    kind: advisory_agent
+    verdict_scale: four_tier   # v2.12.40：T9 报告判定落四档
+    fingerprint: required   # v2.12.49 M-1：报告必填 audited_artifact.{path,bytes,sha256}
+    audited_artifact_required: true   # v2.12.49 M-1/M-8：以下游只读档报告必须声明三元组
+    # v2.12.40 业主定案 A2：输入由 `drafts/current_draft.md`（未定稿稿件）改为 **`final/定稿.md`（终稿）**——
+    #   T9 定位为「**终稿落成后模拟投递刊物编辑审稿**」。节点位于 final_assembly 之后，故「终稿落成后」已满足。
+    input: final/定稿.md
+    default: triggered                      # v2.12.54 S-1（Batch A 夹带的最小真源修复）：由 opt-in（owner_peer_review_consent，**全仓无生产方**）改为**默认启用**，写法同 methodology_snapshot
+    opt_out: owner_peer_review_opt_out      # 主人显式 opt-out 的条件键（真源 = condition_definitions）
+    on_opt_out: record_opt_out_in_status    # 主人显式退出 ⇒ 记 `opt_out`（**不得**记 `not_triggered`，两者语义不同）
+    recheck_max_rounds: 0   # T9 无复检回环（盲审仅一次、无重跑场景）；显式登记 0 = 派发合同块取数源（原为代码侧无源常量，架构评审 v3 R2② 收口）
+    condition_undecidable: report_to_owner  # v2.12.54 R-6：opt-out 记录缺失/不可判定 ⇒ 按默认启用继续 + 呈主人，不静默跳过整节点
+    # v2.12.46 口径修正：体裁不再机械门控，公众号亦可由主人显式开启（体裁仅供主人参考、非门控）。
+    # blocking:false = T9 是「建议性同行评审」，其评分/期刊/扩写建议不阻塞交付（采纳权在主人）；
+    # 但仍顺序排在 t8 之前，因 T8 终检需读 T9 报告做「T9 建议分流」（minor inline / major 呈主人拍板）。
+    blocking: false
+    role: T9
+    write_authority: owner   # v2.12.51 D-3：只读档报告由主控 write 落盘，本节点不授写权
+    verification_authority: 主控
+    # ⚠️ v2.12.55 S-2：本节点**不写** `on_worker_failure`（通用 fallback = 主控接管）——
+    #   盲审在结构上不可能由主控接管：主控已读遍全部内部材料，代笔即独立性归零且**事后不可修复**。
+    #   旧实况（v2.12.54 前）：通用 fallback 与下方 `independence_rules`「禁主控代笔」**两条互斥条款并存**，
+    #   实测被读成「主控代写审稿报告并给出编造精度」。失败处置**唯一出口** = `independence_failure_policy`。
+    # ↓ v2.12.40 业主定案 A2：T9 独立性**硬定义**（不是建议、不得自行放宽）——错一处即报告失效
+    independence: blind_review
+    independence_rules:
+      - 必须 spawn 为**独立子代理**（禁主控代笔；主控只做派发、收报告、落盘拼装）
+      - 输入白名单**仅两项**：final/定稿.md + 任务简报「投稿信息」子集（目标期刊 / 栏目 / 字数上限）
+      - 禁止读取内部过程材料（读取即独立性违反）：literature/文献卡.md、data/数据卡.md、cases/案例卡.md、
+        analysis/分析大纲.md、analysis/批判报告-vN.md、audits/G14-检测报告-vN.md、audits/审计报告-vN.md、final/M-Gate-Report-*.json
+      - 报告必须含必填字段「独立性声明」（声明未读上述任何材料 + 声明本文为盲审）
+      - 评分与判定**不得引用任何内部报告**（引用即报告降为无效，必须重跑）
+      - 不得以「参考 T7 的 G1 核验产物」为名回读内部报告（v2.12.40 删除了该旧口径）
+    required_report_field: 独立性声明
+    # ⚠️ v2.12.55 S-2：盲审失败处置的**唯一出口** —— 只能重试 spawn，禁主控代笔（与上条互斥条款一并删除）。
+    independence_failure_policy:
+      on_spawn_failure: retry_spawn_only        # 唯一合法恢复动作 = 重新 spawn 独立子代理（可同时换 provider 族 / 能力档）
+      retry_limit: 2                            # 可调（主人可上调）；**不得**降为 0 后改由主控代笔
+      quota_class_retry: not_homogeneous        # v2.15.13（反哺 FB-11，实测 2026-10-06）：429 quota / 402 余额类失败属资源层故障，**不计入 retry_limit**（换族重试优先，真源 = route_tier.md §四）；实测 T9 第 1 次 429 后跨族重试成功且独立性反而达成
+      cross_family_retry: first_class_action    # v2.15.13（反哺 FB-11）：跨 provider 族重试为一级动作（与 on_spawn_failure 同级可选），优先于同族重试（候选池 §三换族优先）
+      executor_takeover: forbidden              # 禁主控代笔：主控已读全部内部材料，代笔 = 盲审失效
+      forbidden_recovery: [owner_ghostwriting, owner_synthesized_report, digest_existing_internal_reports]
+      on_exhausted: record_missing_and_notify_owner   # 重试仍失败 ⇒ 记为缺失 + 显式告知主人
+      status_record: missing_blind_review       # status.md 记 missing_blind_review（**不得**记 Done / accepted）；T9 缺失时交付说明写法 = 显式「T9 未产出（missing_blind_review）+ 失败时间线 + 主人已知会」三要素，**不得**留空或写「已评审」（v2.15.13 补替代呈现格式，反哺 FB-11③）
+      downstream: 下游 t8_technical_final 必须显式标注「审稿报告缺失」，交付说明**不得**出现任何 T9 结论 / 评分 / 期刊匹配（无来源精度 = 编造）
+    terminal_state_rules: {allowed: [worker_running, worker_failed, worker_timeout, missing_blind_review, done], empty_output_is_success: false, executor_takeover: forbidden, missing_report_blocks_t9_claims: true}
+    output: audits/审稿报告-vN.md
+    output_chars_max: 15000
+    dispatch: references/dispatch/T9-同行评审.md   # 派发话术合同块载体；合同面由生成器从本字段现算
+    next: t9b_stress_test
+  - id: t9b_stress_test
+    phase: "Phase 4.5 后置（压力测试轮）"
+    phase_seq: 23
+    kind: owner_agent
+    owner: 主控
+    write_authority: owner
+    verification_authority: 主控
+    input: final/定稿.md + audits/审稿报告-vN.md
+    output: audits/压力测试报告-vN.md
+    # 2026-10-05（架构评审 v3 R2 附带裁决）：默认触发 → **opt-in**。
+    #   依据：实跑 40+ 项目零产出（管线越过该位置而报告不存在）；产出无下游消费方
+    #   （T8/交付说明/status 皆不读）；主控亲为 = 重读定稿全文 ≈20k tokens 压在最稀缺 agent 上。
+    #   保留节点（方法论审查者/立场与范围/跨语境三剧本有真实学术价值），改为冲刺投稿时显式开。
+    default: opt_in
+    condition: owner_stress_test_opt_in      # 条件键（真源 = condition_definitions）；opt-in 语义 = 仅主人 Phase 0 勾选才触发
+    condition_undecidable: report_to_owner
+    on_not_triggered: record_not_triggered_in_status   # 未开启 ≠ 漏跑（与 opt-out 语义分离，留痕口径一致）
+    contract_key_carriers: [references/templates/任务简报-template.md, references/agents/00-主控-扩展职责.md]   # owner 节点无派发文件：契约键的机械锚点载体清单（--check 逐文件验「键在」；极性中立，架构评审 v3 R2③）
+    verdict_scale: four_tier
+    independence: bounded_owner_pressure_test
+    note: "T9b 是主控亲完成的文本压力测试（**默认不跑**；主人冲刺投稿时 Phase 0 勾选 `owner_stress_test_opt_in` 开启），不是 T9 盲审，不读取 T7/证据卡/过程稿，不参与修订回环。"
+    next: t8_technical_final
+  - id: t8_technical_final
+    phase: "Phase 5 终检"
+    phase_seq: 24
+    verdict_scale: four_tier   # v2.12.40：终检结论落四档（通过/不通过/无法判定/路径或参数错误）
+    rerun_after_report: true   # v2.12.40「报告后激活」：前提 = M-Gate-Report + T9 审稿报告均已落盘；不得用缺位时的推断值
+    input: final/定稿.md + final/图件/*.svg + final/M-Gate-Report-*.json + audits/审稿报告-vN.md + audits/G14-检测报告-vN.md   # v2.12.37 审计 P1-2：T8 需读 T9 报告做「建议分流」；v2.12.41：G14 迁至 Phase 4.4 前置后，其报告核验职责由 T7 移交 T8
+    kind: owner_agent
+    agent: T8
+    role: T8
+    write_authority: owner
+    verification_authority: 主控
+    fingerprint: required   # v2.12.49 M-1：交付说明头部必填 final/定稿.sha256，与 T7/G14/T9 三方一致 ⇒ 合格；不一致 ⇒ 不合格（审计对象漂移）
+    audited_artifact_required: true   # v2.12.49 M-1/M-8：本节点报告必填 audited_artifact 三元组；与 T7/G14/T9 集合相等 ⇒ 合格
+    t9_missing_review_policy: {missing_blind_review_blocks_t9_claims: true, owner_acceptance_required_for_limited_delivery: true, complete_final_verdict_forbidden_without_t9_status: true}
+    # v2.12.13（方案 3.1）：显式声明输入含 SVG 图件——SVG 嵌入文本孤儿检查已从 T7 移交 T8
+    output: final/交付说明.md
+    output_chars_max: 10000
+    # v2.12.49 M-10：final/局限性.md 入真源（仅 Acknowledged Limitations 模式存在）
+    output_conditional:
+      acknowledged_limitations_mode: final/局限性.md
+    next: methodology_snapshot
+  - id: methodology_snapshot
+    phase: "Phase 5 终检后置（方法论留档）"
+    phase_seq: 25
+    kind: owner_agent
+    owner: 主控
+    write_authority: owner
+    input: status.md + final/交付说明.md
+    output: run/<项目名>/audits/methodology-footprint-{项目名}.md
+    verdict_scale: four_tier
+    default: triggered                      # v2.14.0 升级：默认触发（输出 4 节标准结构：研究设计 / 数据来源 / 分析方法 / 局限性），不再要求 Phase 0 opt-in
+    opt_out: methodology_snapshot_opt_out   # 主人显式 opt-out 的条件键（真源 = condition_definitions）
+    on_opt_out: record_opt_out_in_status
+    contract_key_carriers: [references/templates/任务简报-template.md]   # owner 节点无派发文件：契约键机械锚点载体（--check 逐文件验「键在」；极性中立）
+    condition_undecidable: report_to_owner   # v2.12.54 R-6：opt-out 记录缺失/不可判定 ⇒ 按默认触发继续 + 呈主人
+    note: "v2.14.0 升级：**默认触发**（含 4 节标准结构：研究设计 / 数据来源 / 分析方法 / 局限性）—— 替代 v2.12.49 T-6 的「≤2 节简版」。真源对照：[方法论-审计清单.md](../_shared/真源/方法论-审计清单.md) G18 12 项；模板：templates/方法论章节-template.md + walkthrough references/_shared/真源/方法论-落地示例.md。主人在 Phase 0 显式 opt-out ⇒ 不创建且记 `opt_out`（**不得**记 `not_triggered`，两者语义不同）。"
+    next: phase5_acceptance
+  - id: phase5_acceptance
+    phase: "Phase 5 验收"
+    phase_seq: 26
+    kind: owner_checkpoint
+    blocking: true        # v2.12.49：旧口径「不答 = 接受当前定稿」已删除 —— 静默不得记为 accepted
+    owner_visible: true
+    decisions: [accepted, revision_requested, restart_phase, deferred]
+    timeout_fallback: pending_owner_halt
+    blocks: [methodology_snapshot]   # v2.15.13 FB-12：局部阻塞 —— 只阻塞验收后置节点；产物已在盘，挂起不丢任何东西（owner_timeout_policy 同源）
+    terminal: accepted   # v2.12.49 M-2：终态标记真源；详见顶层 terminal_freeze 段
+    acceptance_reconciliation: required   # R-2(C1) 验收前置对账四项；判据 = 可发表性判定表.md §六；不符 ⇒ halt，不得记 accepted
+    delivery_readiness: [submission_ready, accepted_with_open_items]   # R-3(A1) 必填二态，判据同 §六
+
+  # ⚠️ v2.12.54 R-1：**全景载体收敛登记**（修 P0「派生全景与真源漂移」）
+  #   历史实况（2026-09-18 论文实测）：11 份文档各自维护全景，**无一与真源一致** ——
+  #     · pipeline-overview 缺 4 节点（pre_spawn_enforcement / g14_style_gate / t5_style_revision /
+  #       methodology_snapshot），且 T7.5 门被排在「定稿组装」之后（真源 seq 14 应在前）
+  #     · README 缺 7 节点 · pipeline-readme 缺 4 节点 · 设计文档-架构「共 6 个阶段」漏全部子阶段
+  #     · QUICKSTART 修订回环口径错 + 指针指向已外移章节
+  #   后果：**全景是主控与主人的默认认知** —— 缺节点等于该节点在认知层不存在（T9 被静默降级、
+  #     G14 风格修订被漏看，均发生在此认知环境下）。
+  #   现口径：**全景只保留一份派生视图**（canary），其余文档**必须删除全景段、只留指针**；
+  #     由 维护者机制 机械校验（缺节点 / 顺序倒置 / 镜像仍重列 = 构建期校验不通过）。
+
+panorama_sources:
+  canary: references/_shared/真源/pipeline-overview.md   # 唯一派生视图：必须完整承载全部节点且首现顺序 = phase_seq
+  section_marker: "## 流水线全景"                      # canary 必含；mirrors 必不含（= 全景段已删除）
+  pointer_target: _shared/真源/pipeline-overview.md       # mirrors 必含的指针串
+  mirrors:                                            # 已删除全景段的文档（只留指针）
+    - README.md
+    - QUICKSTART.md
+    - references/pipeline-readme.md
+    - references/设计文档-架构.md
+    - references/设计文档-哲学.md
+    - references/_shared/真源/glossary-full.md
+    - SKILL.md
+    - references/_shared/真源/dispatch-header.md
+  pointer_exempt:                                     # 不承载全景、但允许出现阶段枚举/步骤映射取值清单（免指针串 + id 计数上限，仍禁全景段）
+    - references/templates/status-template.md
+    # v2.12.54 T-5：人环卡 = 「13 步 ↔ 25 节点」映射表（非全景）→ 归 exempt；
+    #   其 id 合法性由 R-2（status 节点 id 取自 yaml / 禁自创）运行期目视守，卡内已声明「id 唯一真源 = phase-order.yaml」。
+    - references/templates/checkpoint-card-template.md
+    - references/_shared/真源/phase-1-details.md
+    - references/_shared/真源/phase-2-details.md
+    - references/_shared/真源/phase-3-details.md

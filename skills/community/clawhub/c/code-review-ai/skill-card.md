@@ -1,39 +1,54 @@
-## Description: <br>
-AI code review assistant that analyzes source code and produces review findings, performance suggestions, and security checks across multiple programming languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+代码审查助手 - 自动分析代码，提供审查意见、性能优化建议、安全漏洞检测。支持多种编程语言，生成详细的代码审查报告。
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Developers use this skill to review individual files or project directories and produce markdown code review reports with issue summaries, severity levels, and optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package documentation references node scripts/review.mjs, but the release artifact contains only markdown files and no review script. <br>
-Mitigation: Before running documented Node commands, confirm that the script exists in the installed skill location and review its contents. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to request automated code review, performance suggestions, security issue detection, and Markdown review reports across supported programming languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/code-review-ai) <br>
-- [Declared homepage](https://github.com/openclaw/code-review-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and generated review-report examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node for the documented review command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact references node scripts/review.mjs, but the inspected release does not include that script, so the skill may be incomplete or nonfunctional.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the installer supplies scripts/review.mjs or add the script before relying on the review commands.
+
+Risk: The documentation and examples are primarily in Chinese.
+
+Mitigation: Install only where Chinese-language documentation is acceptable for reviewers and operators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/skills/code-review-ai)
+- [Publisher profile](https://clawhub.ai/user/ryan-wuxl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node; the referenced review script is not included in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

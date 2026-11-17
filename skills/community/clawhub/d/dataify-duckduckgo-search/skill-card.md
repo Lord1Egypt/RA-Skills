@@ -1,42 +1,58 @@
-## Description: <br>
-Use when the user asks to search DuckDuckGo or fetch DuckDuckGo results through Dataify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a DuckDuckGo web search. Do not use when the user explicitly requests Google, Bing, or Yandex.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and agent users use this skill to preview DuckDuckGo search parameters, call the Dataify DuckDuckGo Search API after confirmation, and return the API response to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and a Dataify API token may be sent to a third-party service. <br>
-Mitigation: Install only when Dataify handling is acceptable, use a scoped token stored in a secret manager or environment variable, and avoid sensitive searches. <br>
-Risk: The API call can run with user-provided search parameters and return raw service output. <br>
-Mitigation: Preview the complete parameter table, obtain user confirmation before calling the API, and review returned content before relying on it. <br>
+## Use Case:
 
+Developers and agents use this skill to run DuckDuckGo searches through Dataify, map user search requests to supported parameters, and return result links or raw JSON/HTML when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-duckduckgo-search) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify DuckDuckGo Search API endpoint](https://scraperapi.dataify.com/request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, JSON, text] <br>
-**Output Format:** [Markdown preview table followed by raw API stdout when confirmed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Dataify API token; search_assist cannot be sent with m, and m is clamped to 1..50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Search queries and the Dataify API token are sent to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, secret, or private internal text in search requests, and install the skill only where Dataify token use is acceptable.
+
+Risk: The documented command pattern can allow shell command injection when untrusted request text is interpolated into a shell command.
+
+Mitigation: Pass arguments safely without shell interpolation, review commands before execution, or require the publisher to fix the invocation pattern.
+
+Risk: Token handling is broader than necessary.
+
+Mitigation: Use least-privilege token handling, avoid printing token values, and confirm credential storage practices before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-duckduckgo-search)
+- [Dataify search request endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML, shell commands, guidance]
+
+**Output Format:** [Markdown search results by default; raw JSON or HTML when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a search query and a Dataify API token; maximum result count is clamped to 50.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

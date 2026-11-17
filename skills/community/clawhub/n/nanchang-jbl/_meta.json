@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7bsfmdxvktxy8j4z09d6125587d9mx",
   "slug": "nanchang-jbl",
-  "version": "1.0.7",
-  "publishedAt": 1780044305772
+  "version": "1.0.9",
+  "author": "江西陶乐嘉实业有限公司",
+  "license": "MIT",
+  "description": "南昌嘉宝莉（嘉宝莉南昌总代）油漆涂料智能客服Skill",
+  "tags": ["客服", "油漆", "涂料", "嘉宝莉", "建材", "装修"],
+  "publishedAt": 1751856000000
 }

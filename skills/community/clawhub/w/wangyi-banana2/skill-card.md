@@ -1,47 +1,58 @@
-## Description: <br>
-Generate images and videos via WangYi Banana API (nano-banana, SORA2). Supports text-to-image, image-to-image, text-to-video, image-to-video, and character creation for short video production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos through the WangYi Banana API, including text-to-image, image-to-image, text-to-video, image-to-video, and character creation workflows.
 
-## Publisher: <br>
-[zxq790909-maker](https://clawhub.ai/user/zxq790909-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxq790909-maker](https://clawhub.ai/user/zxq790909-maker)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to generate and edit images and videos through the WangYi/T8 API for short video production, including character creation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if users paste paid credentials into chat. <br>
-Mitigation: Use an environment variable or local OpenClaw config file for WANGYI_API_KEY, and rotate any key already shared in a conversation. <br>
-Risk: Prompts and selected media are sent to an external WangYi/T8 service. <br>
-Mitigation: Avoid submitting sensitive personal, business, or private media unless that external sharing is acceptable for the use case. <br>
-Risk: Generation can consume paid API credits and video tasks may run for several minutes. <br>
-Mitigation: Confirm task, model, and parameters before generation, notify users before long video jobs, and report cost when the API returns it. <br>
+## Use Case:
 
+Developers and creators use this skill to generate or edit images, generate short videos, and create reusable video characters through WangYi Banana models. It is aimed at media-production workflows where an agent guides model selection, parameter choices, file delivery, and cost reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxq790909-maker/wangyi-banana2) <br>
-- [WangYi/T8 API service](https://ai.t8star.cn) <br>
-- [API Key Setup Guide](references/api-key-setup.md) <br>
-- [Image Generation Guide](references/image-generation.md) <br>
-- [Video Generation Guide](references/video-generation.md) <br>
-- [Output Delivery Guide](references/output-delivery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON status or error text, and generated image, video, or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is written under /tmp/openclaw/wangyi-output and should be delivered with the message tool; costs may be reported when returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API keys may be exposed if users paste credentials directly into chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use WANGYI_API_KEY or local OpenClaw configuration, and rotate any key already shared conversationally.
+
+Risk: Prompts, personal media, and generated outputs are handled by the WangYi Banana service.
+
+Mitigation: Avoid confidential prompts or personal media unless the service is trusted, and keep outputs in the default temporary directory unless another path is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxq790909-maker/skills/wangyi-banana2)
+- [WangYi Banana API homepage](https://ai.t8star.cn)
+- [API key setup guide](artifact/references/api-key-setup.md)
+- [Image generation guide](artifact/references/image-generation.md)
+- [Video generation guide](artifact/references/video-generation.md)
+- [Output delivery guide](artifact/references/output-delivery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated media or JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image and video files are delivered from the configured output directory; character creation can produce JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

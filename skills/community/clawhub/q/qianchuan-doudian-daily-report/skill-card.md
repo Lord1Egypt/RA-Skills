@@ -1,46 +1,58 @@
-## Description: <br>
-自动抓取巨量千川、抖店经营数据，写入飞书表格，并生成每日经营日报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically collects Ocean Engine Qianchuan and Douyin Shop operating metrics, writes them to Feishu Sheets, and prepares daily operations reports.
 
-## Publisher: <br>
-[zhitaog500-prog](https://clawhub.ai/user/zhitaog500-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhitaog500-prog](https://clawhub.ai/user/zhitaog500-prog)
 
-## Use Case: <br>
-Store operators, ad buyers, and live-commerce teams use this skill to collect OceanEngine and Douyin shop operating metrics, update Feishu spreadsheets, and prepare daily business reports. It reduces repetitive copying, pagination mistakes, and manual field matching in daily reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses authenticated OceanEngine session data to read business metrics. <br>
-Mitigation: Provide session state only in a controlled environment, prefer STORAGE_STATE_BASE64, and keep storage_state.json private if local storage state is explicitly enabled. <br>
-Risk: Feishu writes can modify the configured spreadsheet, worksheet, and cell ranges. <br>
-Mitigation: Verify spreadsheet tokens, sheet IDs, and ranges before running, and require CONFIRM_WRITE_FEISHU=1 for explicit write confirmation. <br>
-Risk: Optional local CSV and Markdown reports may contain sensitive operating data. <br>
-Mitigation: Leave generateReports disabled unless retained local copies are needed, and protect generated report files when enabled. <br>
-Risk: OceanEngine page changes or stale selectors can produce missing or misaligned report data. <br>
-Mitigation: Review scraped row counts and key totals after page or template changes, then update selectors and field mappings as needed. <br>
+## Use Case:
 
+Operations, advertising, and live-commerce teams use this skill to refresh daily Qianchuan and Douyin Shop metrics, write the results into Feishu Sheets, and archive CSV or Markdown reports when enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhitaog500-prog/skills/qianchuan-doudian-daily-report) <br>
-- [Publisher profile](https://clawhub.ai/user/zhitaog500-prog) <br>
-- [Artifact usage guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration; runtime output updates Feishu sheets and can optionally write CSV and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided OceanEngine session state and Feishu credentials. Local report files are opt-in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release and package.json) <br>
+Risk: The skill uses an authenticated Ocean Engine browser session and can expose sensitive business account data if session state or reports are shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep storage_state.json, STORAGE_STATE_BASE64, config.json, generated reports, and Feishu secrets private; prefer STORAGE_STATE_BASE64 over local session files.
+
+Risk: Feishu writes modify the configured spreadsheet and could affect the wrong workbook, sheet, or cell range if configuration is incorrect.
+
+Mitigation: Review spreadsheetToken, sheet IDs, and ranges before running, and require CONFIRM_WRITE_FEISHU=1 before writes are allowed.
+
+Risk: Exported table values may carry untrusted spreadsheet content before formula escaping is added.
+
+Mitigation: Avoid exporting untrusted table values and keep local CSV or Markdown report generation disabled unless a private archive is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhitaog500-prog/skills/qianchuan-doudian-daily-report)
+- [Publisher profile](https://clawhub.ai/user/zhitaog500-prog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; optional CSV and Markdown report files; Feishu Sheet updates when enabled.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, Playwright browser dependencies, an authenticated Ocean Engine session, and Feishu credentials supplied through environment variables.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

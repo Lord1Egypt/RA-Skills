@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件扫描看板 - 修复版</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        
+        .controls { padding: 30px; background: #f8f9fa; }
+        
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .upload-area:hover { background: #e9ecef; border-color: #764ba2; }
+        .upload-area.drag-over { background: #d4edda; border-color: #28a745; }
+        
+        .btn {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-success { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+        .btn-warning { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; }
+        
+        .action-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .action-bar .left { display: flex; align-items: center; gap: 15px; }
+        .action-bar .right { display: flex; align-items: center; gap: 15px; }
+        
+        .checkbox { width: 20px; height: 20px; cursor: pointer; }
+        
+        .dashboard { padding: 30px; display: none; }
+        
+        .file-table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; }
+        tr:hover { background: #f8f9fa; }
+        
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📁 文件扫描看板</h1>
+            <p>选择文件夹 → 扫描文件 → 选择文件 → 打包下载</p>
+        </div>
+        
+        <div class="controls">
+            <!-- 安全提示区域 -->
+            <div style="background: #e7f3ff; border: 1px solid #b8daff; border-radius: 10px; padding: 16px 20px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 24px;">🔒</span>
+                    <div>
+                        <strong>安全说明</strong>
+                        <p style="margin-top: 4px; color: #555; font-size: 0.9em; line-height: 1.5;">
+                            本工具完全在您的电脑本地运行，所有文件处理都在浏览器中完成，<strong>不会上传到任何服务器</strong>。
+                            点击下方按钮后，浏览器会弹出一次安全确认（这是浏览器的标准保护机制），直接点「上传」即可继续。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upload-area" id="dropArea">
+                <div style="font-size: 4em; margin-bottom: 20px;">📂</div>
+                <h3>点击选择要扫描的文件夹</h3>
+                <p style="color: #666; margin-top: 10px;">支持 PDF / Excel / Word / PPT 等常见办公文件类型</p>
+            </div>
+
+            <input type="file" id="fileInput" multiple webkitdirectory>
+
+            <!-- 文件加载状态提示（替代 alert） -->
+            <div id="loadStatus" style="display: none; margin-top: 15px; padding: 12px 20px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 10px; color: #155724; font-weight: 500;"></div>
+
+            <div style="margin-top: 20px; display: flex; gap: 15px;">
+                <button class="btn btn-primary" id="selectBtn">📂 选择文件夹</button>
+                <button class="btn btn-success" id="scanBtn" disabled>🔍 生成看板</button>
+            </div>
+        </div>
+        
+        <div class="dashboard" id="dashboard">
+            <div class="file-table-container">
+                <table id="fileTable">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" class="checkbox" id="selectAll"></th>
+                            <th>文件名</th>
+                            <th>类型</th>
+                            <th>大小</th>
+                            <th>修改时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fileTableBody"></tbody>
+                </table>
+            </div>
+            
+            <div class="action-bar" id="actionBar">
+                <div class="left">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" class="checkbox" id="selectAll2">
+                        <span>全选</span>
+                    </label>
+                    <span>共 <span id="totalCount">0</span> 个文件</span>
+                </div>
+                <div class="right">
+                    <span id="selectedInfo">已选中 0 个文件</span>
+                    <button class="btn btn-success" id="downloadBtn">⬇️ 打包下载</button>
+                    <button class="btn btn-warning" id="clearBtn">清除选择</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let allFiles = [];
+        let selectedFiles = new Set();
+        
+        // 格式化文件大小
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // 页面加载完成
+        window.addEventListener('load', () => {
+            const fileInput = document.getElementById('fileInput');
+            const dropArea = document.getElementById('dropArea');
+            const selectBtn = document.getElementById('selectBtn');
+            const scanBtn = document.getElementById('scanBtn');
+            
+            // 点击选择文件夹
+            selectBtn.addEventListener('click', () => fileInput.click());
+            dropArea.addEventListener('click', () => fileInput.click());
+            
+            // 文件选择完成
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length === 0) return;
+                
+                allFiles = [];
+                for (let i = 0; i < e.target.files.length; i++) {
+                    const file = e.target.files[i];
+                    const path = file.webkitRelativePath || file.name;
+                    allFiles.push({
+                        name: file.name,
+                        path: path,
+                        size: file.size,
+                        type: file.name.includes('.') ? file.name.split('.').pop().toLowerCase() : 'unknown',
+                        lastModified: file.lastModified,
+                        lastModifiedDate: new Date(file.lastModified).toLocaleString('zh-CN'),
+                        file: file
+                    });
+                }
+                
+                scanBtn.disabled = false;
+
+                // 页面内友好提示，替代 alert
+                const loadStatus = document.getElementById('loadStatus');
+                loadStatus.style.display = 'block';
+                loadStatus.innerHTML = '✅ 已成功加载 ' + allFiles.length + ' 个文件，点击「生成看板」查看详情';
+            });
+            
+            // 生成看板
+            scanBtn.addEventListener('click', () => {
+                generateTable();
+                document.getElementById('dashboard').style.display = 'block';
+                updateActionBar();
+            });
+            
+            // 全选
+            document.getElementById('selectAll').addEventListener('change', (e) => {
+                toggleSelectAll(e.target.checked);
+            });
+            
+            document.getElementById('selectAll2').addEventListener('change', (e) => {
+                toggleSelectAll(e.target.checked);
+            });
+            
+            // 清除选择
+            document.getElementById('clearBtn').addEventListener('click', () => {
+                selectedFiles.clear();
+                document.querySelectorAll('.file-checkbox').forEach(cb => cb.checked = false);
+                document.getElementById('selectAll').checked = false;
+                document.getElementById('selectAll2').checked = false;
+                updateActionBar();
+            });
+            
+            // 下载
+            document.getElementById('downloadBtn').addEventListener('click', downloadSelected);
+        });
+        
+        // 全选/取消全选
+        function toggleSelectAll(checked) {
+            document.getElementById('selectAll').checked = checked;
+            document.getElementById('selectAll2').checked = checked;
+            
+            document.querySelectorAll('.file-checkbox').forEach(cb => {
+                cb.checked = checked;
+                const index = parseInt(cb.dataset.index);
+                if (checked) {
+                    selectedFiles.add(index);
+                } else {
+                    selectedFiles.delete(index);
+                }
+            });
+            
+            updateActionBar();
+        }
+        
+        // 生成表格
+        function generateTable() {
+            const tbody = document.getElementById('fileTableBody');
+            tbody.innerHTML = '';
+            
+            allFiles.forEach((file, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="checkbox" class="checkbox file-checkbox" data-index="${index}"></td>
+                    <td>${file.name}</td>
+                    <td><span style="background: #667eea; color: white; padding: 2px 8px; border-radius: 4px;">${file.type}</span></td>
+                    <td>${formatFileSize(file.size)}</td>
+                    <td>${file.lastModifiedDate}</td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            // 绑定复选框事件
+            document.querySelectorAll('.file-checkbox').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    if (e.target.checked) {
+                        selectedFiles.add(index);
+                    } else {
+                        selectedFiles.delete(index);
+                    }
+                    updateActionBar();
+                });
+            });
+            
+            document.getElementById('totalCount').textContent = allFiles.length;
+        }
+        
+        // 更新操作栏
+        function updateActionBar() {
+            document.getElementById('selectedInfo').textContent = 
+                '已选中 ' + selectedFiles.size + ' 个文件';
+        }
+        
+        // 下载选中文件
+        async function downloadSelected() {
+            if (selectedFiles.size === 0) {
+                const loadStatus = document.getElementById('loadStatus');
+                loadStatus.style.display = 'block';
+                loadStatus.style.background = '#fff3cd';
+                loadStatus.style.borderColor = '#ffeeba';
+                loadStatus.style.color = '#856404';
+                loadStatus.innerHTML = '💡 请先在上方表格中勾选想要下载的文件';
+                return;
+            }
+            
+            const zip = new JSZip();
+            
+            selectedFiles.forEach(index => {
+                const fileInfo = allFiles[index];
+                zip.file(fileInfo.path, fileInfo.file);
+            });
+            
+            const content = await zip.generateAsync({type: 'blob'});
+            saveAs(content, 'selected_files.zip');
+        }
+    </script>
+</body>
+</html>

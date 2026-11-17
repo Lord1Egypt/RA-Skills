@@ -1,43 +1,56 @@
-## Description: <br>
-高考志愿填报AI参谋，支持AI初筛、数据查询、风险评估和志愿建议，覆盖全国31省市录取数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高考志愿填报AI参谋，AI初筛+数据查询+风险评估+真人级建议，全国31省市录取数据
 
-## Publisher: <br>
-[hjfl888](https://clawhub.ai/user/hjfl888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hjfl888](https://clawhub.ai/user/hjfl888)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External students and parents use this skill to compare gaokao college and major options, estimate admission risk, and structure a chong-wen-bao application plan. It also prompts users to verify results against official provincial exam authority and university admissions materials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may store sensitive student, admissions, and household financial profile data.
+
+Mitigation: Collect only information needed for the admissions task, avoid unnecessary financial detail, and review or clear memory records after use.
+
+Risk: Admissions recommendations can be incorrect or outdated if underlying score, rank, or enrollment data changes.
+
+Mitigation: Verify recommendations against current official provincial exam authority data, university admissions rules, and one-point-one-rank tables before making decisions.
+
+Risk: The skill may steer users toward a specific paid consulting provider.
+
+Mitigation: Disclose the commercial referral clearly and keep admissions analysis separable from paid-service recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External students and parents use this skill to plan Chinese gaokao applications by collecting profile details, comparing scores or rank against historical admissions data, and producing school, major, probability, and risk guidance. It is intended as an AI-assisted first pass, with final choices checked against official admissions materials and human judgment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist sensitive student, ranking, location, and family-income details in memory files. <br>
-Mitigation: Collect only needed details, obtain clear user consent before storing them, and clear or disable stored profile and search-history data when counseling is finished. <br>
-Risk: Admissions probabilities and recommendations can be wrong or outdated because score lines, rankings, plans, and policies change each year. <br>
-Mitigation: Verify every recommendation against current provincial exam-authority materials, official university admissions documents, and one-score-one-rank tables before making decisions. <br>
-Risk: Embedded consulting-service referrals may create perceived bias in guidance. <br>
-Mitigation: Keep recommendations data-based, clearly separate optional paid consulting from admissions analysis, and avoid presenting referral offers as required next steps. <br>
+**Output Format:** [Markdown advice with structured recommendations, probability estimates, and risk notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjfl888/gaokao-gaowei-counselor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hjfl888) <br>
+**Other Properties Related to Output:** [May persist student, family financial, and consultation history in memory JSON files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured recommendation sections and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for and persist student profile and search-history details in memory files.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

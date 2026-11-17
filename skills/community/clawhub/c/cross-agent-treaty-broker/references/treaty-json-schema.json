@@ -1,0 +1,257 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cross-Agent Treaty",
+  "description": "A JSON schema for cross-agent treaties between autonomous AI agents.",
+  "type": "object",
+  "properties": {
+    "treaty_id": {
+      "type": "string",
+      "description": "Unique identifier for the treaty (UUID v4 format)",
+      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "anchor_hash": {
+      "type": "string",
+      "description": "SHA256 hash of the treaty JSON for anchoring",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parties": {
+      "type": "object",
+      "description": "The parties involved in the treaty",
+      "properties": {
+        "agent_a": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for agent A"
+            },
+            "role": {
+              "type": "string",
+              "enum": ["proposer", "data_provider", "service_provider", "agent_a"]
+            },
+            "invariants": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Sovereignty invariants this agent must preserve"
+            },
+            "grants": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Capabilities or data this agent grants to the other party"
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Constraints or limitations on this agent's behavior"
+            }
+          },
+          "required": ["id", "role"]
+        },
+        "agent_b": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for agent B"
+            },
+            "role": {
+              "type": "string",
+              "enum": ["respondent", "data_consumer", "service_consumer", "agent_b"]
+            },
+            "invariants": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Sovereignty invariants this agent must preserve"
+            },
+            "grants": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Capabilities or data this agent grants to the other party"
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Constraints or limitations on this agent's behavior"
+            }
+          },
+          "required": ["id", "role"]
+        }
+      },
+      "required": ["agent_a", "agent_b"]
+    },
+    "terms": {
+      "type": "object",
+      "description": "The terms and conditions of the treaty",
+      "properties": {
+        "data_sharing": {
+          "type": "object",
+          "description": "Data sharing provisions",
+          "properties": {
+            "allowed_sources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Allowed data sources for sharing"
+            },
+            "sensitive_data_exclusions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Types of sensitive data to exclude"
+            },
+            "retention_period_days": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of days to retain shared data"
+            },
+            "encryption": {
+              "type": "string",
+              "description": "Encryption algorithm to use (e.g., AES-256-GCM)"
+            },
+            "transfer_protocol": {
+              "type": "string",
+              "description": "Secure transfer protocol to use"
+            }
+          }
+        },
+        "capability_access": {
+          "type": "object",
+          "description": "Capability access provisions",
+          "properties": {
+            "granted_to_other": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Capabilities granted to the other agent"
+            },
+            "granted_by_other": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Capabilities granted by the other agent"
+            },
+            "rate_limits": {
+              "type": "object",
+              "description": "Rate limiting configuration",
+              "properties": {
+                "requests_per_minute": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "batch_size": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        },
+        "escalation_path": {
+          "type": "object",
+          "description": "Dispute resolution and escalation provisions",
+          "properties": {
+            "dispute_resolution": {
+              "type": "string",
+              "enum": ["human_steward", "arbitration", "mutual_agreement", "pause_execution"]
+            },
+            "max_escalation_level": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "fallback_action": {
+              "type": "string"
+            }
+          }
+        },
+        "revocation_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["breach_of_terms", "mutual_agreement", "expiry_date", "single_party"]
+          },
+          "description": "Conditions under which the treaty can be revoked"
+        },
+        "expiry_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the treaty expires (ISO8601 format)"
+        }
+      }
+    },
+    "timeline": {
+      "type": "object",
+      "description": "Key timestamps in the treaty lifecycle",
+      "properties": {
+        "proposed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the treaty was first proposed"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the treaty was reviewed"
+        },
+        "signed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the treaty was signed"
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the treaty becomes effective"
+        }
+      }
+    },
+    "signatures": {
+      "type": "object",
+      "description": "Signatures from parties and humans",
+      "properties": {
+        "agent_a": {
+          "type": "object",
+          "properties": {
+            "signed_by": {
+              "type": "string",
+              "description": "Human who authorized agent A's signature"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "agent_b": {
+          "type": "object",
+          "properties": {
+            "signed_by": {
+              "type": "string",
+              "description": "Human who authorized agent B's signature"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["treaty_id", "parties", "terms", "timeline", "signatures"]
+}

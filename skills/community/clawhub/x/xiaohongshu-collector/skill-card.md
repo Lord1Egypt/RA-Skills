@@ -1,42 +1,57 @@
-## Description: <br>
-Work on Xiaohongshu post/comment collection, cookie handling, refresh flows, and browser plugin integration in the forbidden_company repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Xiaohongshu posts and comments, refresh single URLs, manage cookie updates, and support browser plugin integration.
 
-## Publisher: <br>
-[pengluday](https://clawhub.ai/user/pengluday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengluday](https://clawhub.ai/user/pengluday)
 
-## Use Case: <br>
-Developers and engineers use this skill to update or operate local Xiaohongshu post and comment collection, including cookie handling, single-URL refreshes, pagination, and browser plugin integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved Xiaohongshu cookies are private session credentials. <br>
-Mitigation: Read or update cookies only for the intended local workflow and do not share cookie values in chat or generated output. <br>
-Risk: Single-URL refresh can replace existing collected rows. <br>
-Mitigation: Confirm refresh targets and keep backups when preserving prior collected rows matters. <br>
-Risk: Collection workflows can be misapplied outside the intended local, user-driven model. <br>
-Mitigation: Keep usage scoped to the intended local collector repo and avoid shared-server mass collection patterns. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain local, user-driven Xiaohongshu post and comment collection workflows, including full comment pagination, single-URL refreshes, saved-cookie handling, and browser-plugin backend integration.
 
-## Reference(s): <br>
-- [Xiaohongshu Collector Workflow](references/collector-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code edits, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local collection or refresh guidance; should not echo private cookie values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: A saved Xiaohongshu session cookie could expose authenticated account access if it is disclosed or stored carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the cookie file private, never echo cookie values in user-facing output, and rotate or remove the cookie when it is no longer needed.
+
+Risk: Collection and refresh operations may use authenticated access and should reflect the user's explicit intent.
+
+Mitigation: Prefer explicit confirmation before running collection or refresh operations that use a saved or newly provided cookie.
+
+Risk: Centralized mass collection from a shared server could increase platform and compliance risk.
+
+Mitigation: Keep the workflow local-first and user-driven, and avoid proposing or implementing shared-server mass scraping.
+
+## Reference(s):
+
+- [Xiaohongshu Collector Workflow](references/collector-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code or configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation notes for CSV and JSON collection artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,304 @@
+version: mock-edu-assess-1.0
+domain: 高等教育·本科教学审核评估
+datasets:
+- name: dws_teaching_stats
+  source: dws_teaching_stats
+  cn: 教学基本状态宽表
+  grain: 一行一学院一学年
+  primary_key:
+  - college
+  - year
+  ai:
+    instructions: 能答生师比/高级职称占比/教授授课比例/生均教学经费等审核评估定量指标；必带学年围栏（stat_date）；汇总粒度无个体明细，个体问题去 graduates
+  fields:
+  - name: college
+    role: dim
+    cn: 学院
+    enum: &edu_assess_college
+    - 信息学院
+    - 机电学院
+    - 经管学院
+  - name: year
+    role: dim
+    cn: 学年
+    enum: &edu_assess_year
+    - 2023-2024
+    - 2024-2025
+    - 2025-2026
+  - name: student_cnt
+    role: measure
+    cn: 在校生数
+  - name: teacher_cnt
+    role: measure
+    cn: 专任教师数
+  - name: senior_title_cnt
+    role: measure
+    cn: 高级职称教师数
+  - name: professor_cnt
+    role: measure
+    cn: 教授数
+  - name: course_offered_cnt
+    role: measure
+    cn: 开设课程门数
+  - name: professor_taught_cnt
+    role: measure
+    cn: 教授主讲课程门数
+  - name: teach_fund_amount
+    role: measure
+    cn: 本科教学日常运行支出
+  - name: stat_date
+    role: time
+    cn: 统计截止日
+  ontology_ref: 学院
+- name: graduates
+  source: graduates
+  cn: 毕业生明细表
+  grain: 一行一名毕业生
+  primary_key: student_id
+  ai:
+    instructions: 能答学位授予率/毕业去向落实率统计与未落实名单明细；必带时间围栏（grad_date）；身份证号/手机号等隐私字段不存在于本表
+  fields:
+  - name: student_id
+    role: pk
+    cn: 学号
+  - name: college
+    role: dim
+    cn: 学院
+    enum: *edu_assess_college
+  - name: grad_year
+    role: dim
+    cn: 毕业届别
+    enum:
+    - '2025'
+    - '2026'
+  - name: degree_granted
+    role: dim
+    cn: 是否授予学位
+    enum: &edu_assess_yesno
+    - 是
+    - 否
+  - name: destination
+    role: dim
+    cn: 毕业去向
+    enum: &edu_assess_dest
+    - 协议就业
+    - 升学
+    - 灵活就业
+    - 未落实
+  - name: fitness_pass
+    role: dim
+    cn: 体质测试是否达标
+    enum: *edu_assess_yesno
+  - name: grad_date
+    role: time
+    cn: 毕业日期
+  ontology_ref: 学生
+relationships: []
+constraints:
+- {id: dws_pk, kind: unique, dataset: dws_teaching_stats, columns: [college, year], null_policy: forbid}
+- {id: dws_college_values, kind: allowed_values, dataset: dws_teaching_stats, field: college, values: [信息学院, 机电学院, 经管学院], null_policy: forbid}
+- {id: dws_year_values, kind: allowed_values, dataset: dws_teaching_stats, field: year, values: ['2023-2024', '2024-2025', '2025-2026'], null_policy: forbid}
+- {id: dws_student_nonnegative, kind: range, dataset: dws_teaching_stats, field: student_cnt, min: 0, null_policy: forbid}
+- {id: dws_fund_nonnegative, kind: range, dataset: dws_teaching_stats, field: teach_fund_amount, min: 0, null_policy: forbid}
+- {id: dws_stat_date_notnull, kind: not_null, dataset: dws_teaching_stats, field: stat_date, null_policy: forbid}
+- {id: grad_pk, kind: unique, dataset: graduates, columns: [student_id], null_policy: forbid}
+- {id: grad_destination_values, kind: allowed_values, dataset: graduates, field: destination, values: [协议就业, 升学, 灵活就业, 未落实], null_policy: forbid}
+- {id: grad_degree_values, kind: allowed_values, dataset: graduates, field: degree_granted, values: [是, 否], null_policy: forbid}
+- {id: grad_college_ref, kind: referential, dataset: graduates, columns: [college], references: {dataset: dws_teaching_stats, columns: [college]}, null_policy: forbid}
+- {id: grad_date_notnull, kind: not_null, dataset: graduates, field: grad_date, null_policy: forbid}
+concepts:
+- term: 毕业去向落实
+  synonyms:
+  - 去向已落实
+  expand:
+    dataset: graduates
+    field: destination
+    values:
+    - 协议就业
+    - 升学
+    - 灵活就业
+metrics:
+- id: student_teacher_ratio
+  name: 生师比
+  synonyms:
+  - 师生比
+  - 学生教师比
+  - 生师比例
+  type: ratio
+  dataset: dws_teaching_stats
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(student_cnt)
+  denominator:
+    expr: SUM(teacher_cnt)
+  time_field: stat_date
+  unit: '∶1'
+  caliber:
+    note: 在校生数合计 ÷ 专任教师数合计（SUM/SUM 加权，禁行级平均；真实口径为折合在校生数÷折合教师数，mock 简化）
+    basis: 教发[2004]2号《普通高等学校基本办学条件指标（试行）》；《中国教育监测与评价统计指标体系（2020年版）》（教发[2020]6号）
+  on_zero_denominator: 'null'
+- id: senior_title_ratio
+  name: 高级职称教师占比
+  synonyms:
+  - 高级职称占比
+  - 高级职称教师比例
+  - 副高以上教师占比
+  type: ratio
+  dataset: dws_teaching_stats
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(senior_title_cnt)
+  denominator:
+    expr: SUM(teacher_cnt)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 高级职称教师数合计 ÷ 专任教师数合计（SUM/SUM 加权）
+    basis: 《中国教育监测与评价统计指标体系（2020年版）》（教发[2020]6号）
+  on_zero_denominator: 'null'
+- id: professor_course_ratio
+  name: 教授授课比例
+  synonyms:
+  - 教授上课比例
+  - 教授主讲课程占比
+  - 教授给本科生上课比例
+  - 教授给本科生上课的比例
+  type: ratio
+  dataset: dws_teaching_stats
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(professor_taught_cnt)
+  denominator:
+    expr: SUM(course_offered_cnt)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 教授主讲本科课程门数 ÷ 开设课程总门数；审核评估口径为一门课全部课时由教授讲授计1、多人合授按学时比例折算，mock 简化为门数占比
+    basis: 教育部本科教育教学审核评估指标体系（2021-2025年）第二类定量指标
+  on_zero_denominator: 'null'
+- id: teach_fund_per_student
+  name: 生均本科教学日常运行支出
+  synonyms:
+  - 生均教学经费
+  - 生均教学日常运行支出
+  - 生均教学支出
+  type: ratio
+  dataset: dws_teaching_stats
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(teach_fund_amount)
+  denominator:
+    expr: SUM(student_cnt)
+  time_field: stat_date
+  unit: 元
+  caliber:
+    note: 本科教学日常运行支出合计 ÷ 在校生数合计；审核评估必选定量指标，达标线 1200 元
+    basis: 教发[2004]2号《普通高等学校基本办学条件指标（试行）》；教育部本科教育教学审核评估指标体系（2021-2025年）
+  on_zero_denominator: 'null'
+- id: degree_grant_rate
+  name: 学位授予率
+  synonyms:
+  - 学位授予比例
+  - 拿到学位的比例
+  - 学士学位授予率
+  type: ratio
+  dataset: graduates
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN degree_granted = '是' THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: grad_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 授予学位毕业生数 ÷ 毕业生总数
+    basis: 本科教学质量报告支撑数据口径
+  on_zero_denominator: 'null'
+- id: destination_rate
+  name: 毕业去向落实率
+  synonyms:
+  - 去向落实率
+  - 毕业落实率
+  - 就业落实率
+  type: ratio
+  dataset: graduates
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN destination != '未落实' THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: grad_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 分子含协议和合同就业、创业、升学、灵活就业；2021届起取代就业率称谓
+    basis: 教育部高校毕业生毕业去向统计口径（2021年起）
+  on_zero_denominator: 'null'
+ontology:
+  entities:
+  - name: 学院
+    attributes:
+    - name: 学年
+      value_type: enum
+      values: *edu_assess_year
+    note: 一行一学院一学年（教学基本状态宽表投影）
+    uid: ent_college
+    evidence:
+      source: user_provided
+  - name: 学生
+    attributes:
+    - name: 毕业去向
+      value_type: enum
+      values: *edu_assess_dest
+    - name: 是否授予学位
+      value_type: enum
+      values: *edu_assess_yesno
+    note: 一行一名毕业生（毕业生明细表投影）
+    uid: ent_student
+    evidence:
+      source: user_provided
+  - name: 教师
+    note: 本体需要教师实体承载师资结构语义，但本场景物理库仅有数量汇总
+    uid: ent_teacher
+    unprojected_reason: 教师人事明细未接入本场景物理库，宽表中仅有教师数量汇总列
+    evidence:
+      source: model_inferred
+  - name: 课程
+    note: 本体需要课程实体承载授课关系语义，但本场景物理库仅有门数汇总
+    uid: ent_course
+    unprojected_reason: 课程库明细未接入本场景物理库，宽表中仅有课程门数汇总列
+    evidence:
+      source: model_inferred
+  relations:
+  - from: 学院
+    to: 学生
+    predicate: 培养
+    mapping: semantic_only
+    note: dws 为学院×学年汇总粒度，graduates 为学生个体粒度，跨粒度无单一落地键；仅作语义声明不投影合同（无键关系不假装外键）
+templates:
+- id: unplaced_graduates
+  name: 毕业去向未落实学生名单
+  dataset: graduates
+  columns:
+  - student_id
+  - college
+  - grad_year
+  - destination
+  - grad_date
+  extra_where: destination = '未落实'
+  time_field: grad_date
+  synonyms:
+  - 未落实去向名单
+  - 未就业学生名单
+  - 待落实去向学生
+  note: 按 grad_date 倒序，默认最多 100 行
+  status: 已发布

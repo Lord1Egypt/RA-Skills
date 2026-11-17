@@ -1,44 +1,56 @@
-## Description: <br>
-Transform one long-form piece of content into platform-native posts for LinkedIn, Twitter/X, Email, Instagram, and Blog/DEV.to. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform long-form content into platform-native LinkedIn posts, Twitter/X threads, email newsletters, Instagram captions, and Blog/DEV.to articles.
 
-## Publisher: <br>
-[justgo1104](https://clawhub.ai/user/justgo1104) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justgo1104](https://clawhub.ai/user/justgo1104)
 
-## Use Case: <br>
-Content marketers, founders, newsletter writers, and creators use this skill to convert a long-form article, newsletter, video transcript, podcast transcript, case study, or research piece into platform-specific drafts and a reusable content calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may contain inaccurate claims, off-brand wording, or platform-policy issues if published without review. <br>
-Mitigation: Review and edit every generated draft for accuracy, brand voice, audience fit, and platform policy compliance before publishing. <br>
-Risk: The skill may activate during unrelated writing tasks because its trigger terms overlap with broad content-writing requests. <br>
-Mitigation: Ignore or disable the skill when the task is not content repurposing or multi-platform content planning. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to turn one long-form source into platform-native social posts, newsletter copy, blog drafts, and a reusable publishing calendar.
 
-## Reference(s): <br>
-- [Content Repurposing Engine Pro on ClawHub](https://clawhub.ai/justgo1104/content-repurposing-engine-pro) <br>
-- [LinkedIn Post Format](references/linkedin-format.md) <br>
-- [Twitter/X Thread Format](references/twitter-thread-format.md) <br>
-- [Email Newsletter Format](references/email-format.md) <br>
-- [30-Day Content Calendar Template](references/calendar-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown drafting guidance with platform-specific prompt templates and content calendar tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only prompt/template pack; does not run code, access accounts, or publish content automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated posts may contain inaccurate claims, weak source interpretation, or platform-inappropriate phrasing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each draft for factual accuracy, brand voice, platform policy fit, and audience context before publishing.
+
+Risk: Broad trigger phrases may activate the skill for general content planning requests.
+
+Mitigation: Confirm that the user wants content repurposing and identify the intended source content and target platforms before applying the templates.
+
+## Reference(s):
+
+- [LinkedIn Post Format](references/linkedin-format.md)
+- [Twitter/X Thread Format](references/twitter-thread-format.md)
+- [Email Newsletter Format](references/email-format.md)
+- [30-Day Content Calendar Template](references/calendar-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with reusable prompt templates and platform-specific content draft structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces content drafts, platform formatting rules, quality checks, and calendar planning guidance; no code execution is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

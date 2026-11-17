@@ -1,42 +1,58 @@
-## Description: <br>
-Finds profitable business opportunities in a niche by researching public demand signals, scoring opportunities, and generating a ranked recommendation report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find profitable business opportunities in any niche by scanning Twitter, web, Reddit, and Product Hunt for unmet needs and pain points, scoring each opportunity on demand, competition, feasibility, and monetization, and generating a ranked report with actionable recommendations.
 
-## Publisher: <br>
-[avnikulin35](https://clawhub.ai/user/avnikulin35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[avnikulin35](https://clawhub.ai/user/avnikulin35)
 
-## Use Case: <br>
-Developers, founders, product teams, and market researchers use this skill to scan public sources for unmet needs, compare opportunities, and decide what to build next. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill researches public markets and may expose confidential business plans, customer names, secrets, or private business details if those are included in the niche prompt. <br>
-Mitigation: Use only public or non-sensitive niche descriptions, and avoid entering confidential plans, customer data, credentials, or private business details. <br>
-Risk: The skill suggests running local CLI searches, so unsafe prompt handling could turn niche text into risky shell arguments. <br>
-Mitigation: Run only trusted local tools and pass niche text as quoted or structured arguments rather than interpolating raw user text into shell commands. <br>
-Risk: Market research reports can overstate demand or monetization when public signals are sparse or noisy. <br>
-Mitigation: Treat generated opportunities as decision support, verify evidence links and quotes, and validate promising ideas before committing significant resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Opportunity Scoring Guide](references/scoring-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/avnikulin35/opportunity-scout) <br>
+## Use Case:
 
+External users and developers use this skill to research a niche, identify repeated market pain points, score candidate product opportunities, and prepare a ranked build recommendation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with ranked opportunity tables, evidence summaries, scores, and recommendations; optional JSON opportunity templates or inputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores opportunities on demand, competition, feasibility, and monetization using a 1-5 scale for each criterion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: External market searches may surface incomplete, low-quality, or time-sensitive evidence.
+
+Mitigation: Review cited findings and validate important market claims before acting on recommendations.
+
+Risk: Generated reports may include attribution or publication text that is not appropriate for every destination.
+
+Mitigation: Review report output before publishing or sharing it externally.
+
+Risk: The documented interactive mode is not implemented in the bundled script.
+
+Mitigation: Use the supported score and template commands, or manually score opportunities using the scoring guide.
+
+## Reference(s):
+
+- [Opportunity Scoring Guide](references/scoring-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/avnikulin35/skills/opportunity-scout)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/avnikulin35)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with scored opportunity tables and recommendations; optional JSON opportunity template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores opportunities across demand, competition, feasibility, and monetization; generated reports should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

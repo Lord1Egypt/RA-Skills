@@ -1,42 +1,51 @@
-## Description: <br>
-Audit a game, feature, progression loop, return-player experience, metagame layer, or session structure for density of goals, immediacy of goals, safe stopping points, and return triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game, feature, progression loop, return-player experience, metagame layer, or session structure for density of goals, immediacy of goals, safe stopping points, and return triggers.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and design reviewers use this skill to evaluate whether a game gives players visible, meaningful goals across short, mid, and long time horizons. It helps diagnose weak session entry, goal density, safe stopping points, and return triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit framework may not fit every game genre, platform, or team design process. <br>
-Mitigation: Review the findings against the specific game context before using them for roadmap or design decisions. <br>
-Risk: Prompt-only design guidance can be incomplete or misleading if the input omits important player, economy, or session data. <br>
-Mitigation: Provide concrete evidence about the target game or feature and have designers validate recommendations before implementation. <br>
+## Use Case:
 
+Game designers, product teams, and developers use this skill to audit whether a game gives players meaningful goals across short, mid, and long time horizons, supports flexible sessions, and creates satisfying return triggers.
 
-## Reference(s): <br>
-- [Goal Density and Immediacy Notes](artifact/references/goal-density-notes.md) <br>
-- [Goal Density and Immediacy Failure Patterns](artifact/references/failure-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-goal-density-and-immediacy-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit with tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing design findings, failure-pattern diagnosis, and prioritized recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Design recommendations may be subjective or insufficient for final product decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the audit findings with game design, product, and research stakeholders before changing a live game.
+
+## Reference(s):
+
+- [Goal Density and Immediacy Notes](references/goal-density-notes.md)
+- [Goal Density and Immediacy Failure Patterns](references/failure-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/stanestane/skills/game-design-goal-density-and-immediacy-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown audit with structured findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable game design recommendations, not executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

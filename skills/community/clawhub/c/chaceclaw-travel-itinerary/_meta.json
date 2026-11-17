@@ -1,6 +1,55 @@
 {
-  "ownerId": "kn7exkvs9fr4ybh3yx6986mfw985c17g",
-  "slug": "chaceclaw-travel-itinerary",
+  "name": "travel-itinerary-planner",
   "version": "1.0.0",
-  "publishedAt": 1776929794650
+  "emoji": "🧳",
+  "description": "智能旅行行程规划系统 - 一键生成完整旅行计划，支持家庭/情侣/单人/团队多种场景，预算控制精准，包含实时天气、餐厅推荐、交通建议、紧急联系等12项功能。",
+  "author": "Chaceclaw",
+  "created": "2026-04-22",
+  "updated": "2026-04-23",
+  "license": "MIT",
+  "category": "lifestyle",
+  "tags": ["旅行", "行程规划", "旅游", "自由行", "家庭旅行", "情侣旅行", "背包客"],
+  "triggers": [
+    "旅行规划",
+    "travel plan",
+    "行程安排",
+    "trip itinerary",
+    "制定旅行计划",
+    "帮我规划旅行",
+    "travel planning",
+    "旅行计划",
+    "家庭旅行",
+    "亲子游"
+  ],
+  "platform": "xiaping",
+  "price": 2,
+  "install_count": "0",
+  "rating": 0,
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "travel_planner.py",
+    "travel_planner_extensions.py",
+    "user_trip_planner.py",
+    "complete_demo.py",
+    "requirements.txt"
+  ],
+  "requirements": {
+    "python": "3.9+",
+    "openclaw": "0.3.0+"
+  },
+  "features": [
+    "智能信息收集",
+    "每日行程规划",
+    "预算管理",
+    "行前检查清单",
+    "实时天气",
+    "餐厅推荐",
+    "交通建议",
+    "儿童友好活动",
+    "紧急联系",
+    "行程分享",
+    "费用追踪",
+    "旅行日记"
+  ]
 }

@@ -1,0 +1,10 @@
+{
+  "companyName": "Example Dental Group",
+  "website": "exampledental.com",
+  "city": "Orlando",
+  "state": "FL",
+  "customFields": {
+    "Business Category": "dentist",
+    "Company Description": "Family dentist in Orlando offering cleanings, whitening, and same-day crowns."
+  }
+}

@@ -1,46 +1,59 @@
-## Description: <br>
-Generates images and videos through the Yollomi API using a unified endpoint across multiple image and video models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images and videos through Yollomi's unified API across text-to-image, image-to-image, text-to-video, and image-to-video workflows.
 
-## Publisher: <br>
-[AniChikage](https://clawhub.ai/user/AniChikage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anichikage](https://clawhub.ai/user/anichikage)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to generate or transform images and create videos through Yollomi models from prompts, image URLs, and model-specific parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generation prompts, image URLs, and image or video inputs are sent to Yollomi or the configured YOLLOMI_BASE_URL. <br>
-Mitigation: Use the skill only with prompts and media that are appropriate to send to that service, and avoid untrusted base URL overrides. <br>
-Risk: Video and multi-output generation requests can consume substantial credits. <br>
-Mitigation: Confirm the selected model, generation type, and output count before running requests. <br>
-Risk: The skill requires a YOLLOMI_API_KEY for generation requests. <br>
-Mitigation: Keep the API key private and provide it through the environment rather than embedding it in prompts or files. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent to generate or transform images and videos with Yollomi models through one API interface.
 
-## Reference(s): <br>
-- [Yollomi skill page](https://clawhub.ai/AniChikage/yollomi) <br>
-- [AniChikage publisher profile](https://clawhub.ai/user/AniChikage) <br>
-- [Models reference](models-reference.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Yollomi service endpoint](https://yollomi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Generated images, Generated videos, JSON] <br>
-**Output Format:** [JSON responses containing image URL arrays, video URL strings, model lists, and remaining credit counts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YOLLOMI_API_KEY. YOLLOMI_BASE_URL may override the default Yollomi host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can send the YOLLOMI_API_KEY, prompts, and media references to a custom API host when YOLLOMI_BASE_URL is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave YOLLOMI_BASE_URL unset for the default Yollomi host, or set it only to a trusted HTTPS endpoint.
+
+Risk: Prompts, supplied image URLs, and video inputs are processed by a third-party service.
+
+Mitigation: Avoid secrets, private internal URLs, regulated data, and sensitive images unless organizational policy allows that processing.
+
+Risk: Server security evidence marks the release suspicious because configurable hosts can receive credentials and media data.
+
+Mitigation: Review the configured endpoint and environment variables before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anichikage/skills/yollomi)
+- [Yollomi API](https://yollomi.com)
+- [Yollomi API Models Reference](models-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Generated media links]
+
+**Output Format:** [JSON responses containing generated image or video URLs and remaining credit metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YOLLOMI_API_KEY; optional YOLLOMI_BASE_URL changes the API host.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

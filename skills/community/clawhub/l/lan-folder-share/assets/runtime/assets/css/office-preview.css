@@ -1,0 +1,275 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 知识库 PDF / Word / PPT 预览（office-viewer.js）—— 右侧内容区铺开 */
+
+.kb-office-page {
+  padding-top: 8px;
+}
+
+/* 头部：类型徽标 + 文件名 + 目录 / 下载入口 */
+.kb-office-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;     /* 内容区较窄时让按钮换行，避免下载入口被切 */
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.kb-office-badge {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e8edff;
+  color: #4a6ee0;
+}
+.kb-office-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 注意：按钮都渲染在 #main.markdown-section 内，docsify 主题的
+   .markdown-section a { color: var(--theme-color) }（特异性 0,1,1）会压过单类选择器
+   （0,1,0）。而本站 --theme-color: #4a6ee0 正好等于下载按钮底色，
+   会让「下载原文件」的文字与底色同色而隐形（hover 规则特异性更高，故悬停才可见）。
+   这里统一用 `.kb-office-page` 提升特异性到 0,2,0 以稳定覆盖主题链接色。 */
+.kb-office-page .kb-office-btn {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #4a6ee0;
+  text-decoration: none;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.kb-office-page .kb-office-btn:hover {
+  background: #e0e7ff;
+  border-color: #4a6ee0;
+}
+.kb-office-page .kb-office-download {
+  background: #4a6ee0;
+  color: #fff;
+  border-color: #4a6ee0;
+}
+.kb-office-page .kb-office-download:hover {
+  background: #3d5cc4;
+  border-color: #3d5cc4;
+  color: #fff;
+}
+
+/* PDF：内嵌浏览器自带阅读器 */
+.kb-office-frame {
+  display: block;
+  width: 100%;
+  height: 78vh;
+  min-height: 480px;
+  border: 1px solid #e3e8f0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* 加载 / 出错占位 */
+.kb-office-loading,
+.kb-office-error {
+  padding: 28px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+  background: #fff;
+  border: 1px dashed #dbe2ec;
+  border-radius: 8px;
+}
+.kb-office-error {
+  color: #b42318;
+  background: #fffbfa;
+  border-color: #fecdca;
+}
+.kb-office-error a {
+  color: #4a6ee0;
+}
+
+/* Word 正文：还原文档观感（白纸 + 版心） */
+.kb-office-doc {
+  padding: 32px 40px 44px;
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #1f2937;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.kb-office-doc > *:first-child {
+  margin-top: 0;
+}
+.kb-office-doc h1,
+.kb-office-doc h2,
+.kb-office-doc h3,
+.kb-office-doc h4,
+.kb-office-doc h5,
+.kb-office-doc h6 {
+  margin: 1.5em 0 0.6em;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #0f172a;
+}
+.kb-office-doc h1 {
+  font-size: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eef2f7;
+}
+.kb-office-doc h2 {
+  font-size: 20px;
+}
+.kb-office-doc h3 {
+  font-size: 17px;
+}
+.kb-office-doc h4,
+.kb-office-doc h5,
+.kb-office-doc h6 {
+  font-size: 15px;
+}
+.kb-office-doc .kb-office-doc-title {
+  font-size: 26px;
+  text-align: center;
+  border-bottom: 0;
+  margin-bottom: 0.2em;
+}
+.kb-office-doc .kb-office-subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+}
+.kb-office-doc p {
+  margin: 0.75em 0;
+}
+.kb-office-doc ul,
+.kb-office-doc ol {
+  margin: 0.75em 0;
+  padding-left: 1.6em;
+}
+.kb-office-doc li {
+  margin: 0.3em 0;
+}
+.kb-office-doc blockquote {
+  margin: 1em 0;
+  padding: 6px 14px;
+  color: #475569;
+  background: #f8fafc;
+  border-left: 3px solid #cbd5e1;
+}
+.kb-office-doc table {
+  display: table;
+  width: 100%;
+  margin: 1em 0;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.kb-office-doc td,
+.kb-office-doc th {
+  padding: 6px 10px;
+  border: 1px solid #dbe2ec;
+  vertical-align: top;
+}
+.kb-office-doc tr:nth-child(even) td {
+  background: #fafbfd;
+}
+.kb-office-doc img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.kb-office-doc a {
+  color: #4a6ee0;
+  text-decoration: none;
+}
+.kb-office-doc a:hover {
+  text-decoration: underline;
+}
+.kb-office-doc hr {
+  margin: 1.6em 0;
+  border: 0;
+  border-top: 1px solid #e3e8f0;
+}
+
+/* 无法在线解析的格式（.doc / .ppt / .pptx） */
+.kb-office-unsupported {
+  padding: 40px 24px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 8px;
+}
+.kb-office-unsupported-icon {
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.kb-office-unsupported-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+.kb-office-unsupported-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+.kb-office-unsupported .kb-office-download {
+  display: inline-block;
+}
+
+/* 目录页「文档附件」入口列表（auto-dir-index.js） */
+.kb-dir-office-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.kb-dir-office-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 8px;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kb-dir-office-item:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4a6ee0;
+}
+.kb-dir-office-ext {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4a6ee0;
+  background: #e8edff;
+  border-radius: 3px;
+}
+.kb-dir-office-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

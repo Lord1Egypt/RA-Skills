@@ -1,44 +1,60 @@
-## Description: <br>
-VN Skill helps agents process local video, audio, and image files on macOS with VN Video Editor, including captions, subtitles, denoising, extraction, compression, merging, and background removal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local video, audio, and image processing skill for macOS that uses VN Video Editor to generate captions, burn subtitles, denoise media, extract audio or frames, compress media, merge video clips, and remove portrait backgrounds.
 
-## Publisher: <br>
-[cawcut](https://clawhub.ai/user/cawcut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cawcut](https://clawhub.ai/user/cawcut)
 
-## Use Case: <br>
-External users and agents on macOS use this skill to run local VN Video Editor media workflows for local files, including subtitle generation, SRT burn-in, compression, denoising, extraction, merging, and portrait cutout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download, persist, and run a native helper executable on the user's Mac. <br>
-Mitigation: Review the helper source or release provenance, confirm the SHA-256 checksum from a trusted source, and approve the install before execution. <br>
-Risk: Caption engines or helper commands may trigger additional downloads before processing. <br>
-Mitigation: Ask for explicit approval before CLI or model downloads run, especially on first use. <br>
-Risk: Previews sent through chat platforms are uploads of derived media. <br>
-Mitigation: Confirm with the user before sending previews and keep sensitive media local when upload is not intended. <br>
+## Use Case:
 
+Developers and external users on macOS use this skill to have an agent prepare local VN Video Editor commands for media processing tasks such as captions, compression, denoising, extraction, merging, and background removal. It is intended for local files and requires VN Video Editor and the vnapp-cli bridge.
 
-## Reference(s): <br>
-- [vnapp-cli Reference](references/cli-reference.md) <br>
-- [VN Video Editor App Store Page](https://apps.apple.com/us/app/vn-video-editor/id1494451650) <br>
-- [vnapp-cli Helper Download](https://github.com/cawcut/skill-vn/releases/download/0.1.0/vnapp-cli-darwin-universal-v0.1.0.5.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-lines CLI status interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on local files and may create edited media files, captions, images, previews, or VN drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The release security summary says the skill installs and runs a downloaded third-party macOS bridge under ~/.openclaw/tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher, pinned SHA-256, and install source before enabling the skill, and prefer releases that ask before installing or updating executables.
+
+Risk: The release security guidance says media previews may be sent through remote chat platforms when used there.
+
+Mitigation: Confirm before transmitting previews and avoid sending sensitive media through remote chat channels.
+
+Risk: The release security guidance notes that removing quarantine can bypass normal Gatekeeper review.
+
+Mitigation: Preserve platform security checks where possible and only run the bridge after local review.
+
+## Reference(s):
+
+- [vnapp-cli Reference](artifact/references/cli-reference.md)
+- [VN Video Editor App Store Page](https://apps.apple.com/us/app/vn-video-editor/id1494451650)
+- [vnapp-cli Release Download](https://github.com/cawcut/skill-vn/releases/download/0.1.0/vnapp-cli-darwin-universal-v0.1.0.5.zip)
+- [ClawHub Skill Page](https://clawhub.ai/cawcut/skills/vn-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide local macOS media processing through VN Video Editor and may include command options, status checks, and result paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

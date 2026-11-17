@@ -1,44 +1,61 @@
-## Description: <br>
-Provides reusable templates, lifecycle patterns, naming conventions, and storage guidance for structured knowledge and documentation systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides templates and lifecycle patterns for storage and documentation systems.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, documentation maintainers, and knowledge-system builders use this skill to create consistent content templates, assign maturity stages, select storage backends, and plan promotion, retention, and archive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested commands or workflow examples could affect important repositories or private notes if applied without review. <br>
-Mitigation: Review generated commands and adapt paths, retention settings, and archive actions before running them on valuable content. <br>
-Risk: Broad triggers may cause the skill to load in loosely related conversations. <br>
-Mitigation: Confirm the requested task is about templates, storage organization, lifecycle stages, or documentation patterns before applying its guidance. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to choose reusable content templates, assign maturity lifecycle stages, and apply consistent storage and naming patterns for knowledge and documentation systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-storage-templates) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Template patterns](modules/template-patterns.md) <br>
-- [Storage patterns](modules/storage-patterns.md) <br>
-- [Lifecycle stages](modules/lifecycle-stages.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML frontmatter examples, tables, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no automatic execution or data access was found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Broad triggers could activate the skill when storage or template terminology is only incidental.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger behavior during deployment and narrow activation rules if accidental invocation matters.
+
+Risk: Copied storage examples that write files can become unsafe if callers pass untrusted identifiers or paths.
+
+Mitigation: Validate IDs, constrain paths to expected directories, and review write logic before using example code in production.
+
+Risk: The skill is documentation-only and does not provide a runnable command interface.
+
+Mitigation: Treat outputs as reference guidance and implementation examples rather than executable automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-storage-templates)
+- [OpenClaw metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Template patterns module](modules/template-patterns.md)
+- [Lifecycle stages module](modules/lifecycle-stages.md)
+- [Storage patterns module](modules/storage-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with YAML, shell, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution or data access reported by security evidence.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

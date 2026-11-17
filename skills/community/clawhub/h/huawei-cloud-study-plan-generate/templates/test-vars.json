@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-study-plan-generate",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/generate_study_plan.py --help",
+      "expected": "argparse help printed, exit 0; contains --days/--slots-per-day/--topics/--session-minutes/--seed/--format",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Default 7-day Markdown plan with a fixed seed",
+      "command": "python3 scripts/generate_study_plan.py --seed 20240501 --start-date 2026-10-24 --format markdown",
+      "expected": "Markdown table with header 日期|时段|学习主题|实践内容|时长(分钟) and 21 rows",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Plain-text plan output",
+      "command": "python3 scripts/generate_study_plan.py --seed 42 --format text --start-date 2026-10-24",
+      "expected": "Plain-text plan, one line per slot with topic, practice and minutes",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Custom days, slots per day and session length",
+      "command": "python3 scripts/generate_study_plan.py --seed 7 --days 3 --slots-per-day 2 --session-minutes 30 --start-date 2026-01-01 --format markdown",
+      "expected": "Only 3 days, 2 slots each; durations around 30 minutes",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Reproducible output for the same seed",
+      "command": "python3 scripts/generate_study_plan.py --seed 555 --format json --start-date 2026-01-01",
+      "expected": "JSON plan object; identical for repeated runs with the same seed",
+      "type": "readonly",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [],
+  "notes": "Pure local Python 3 skill: no Huawei Cloud credentials, CLI, SDK, or network access. All cases are read-only and only read the built-in topic pool. The smoke harness only executes hcloud/curl commands, so these script cases are reported as not-executed; the structural self-check plus the unit tests under tests/ cover the behaviour."
+}

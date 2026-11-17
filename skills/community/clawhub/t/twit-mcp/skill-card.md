@@ -1,46 +1,60 @@
-## Description: <br>
-Real-time X/Twitter data and write actions via x402 micropayments, including article, tweet, user, list, and community access plus posting, liking, reposting, bookmarking, and following actions paid per request in USDC on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time X/Twitter data and write actions via x402 micropayments. Fetch articles, tweets, users, lists, and communities; post tweets, like, retweet, bookmark, follow; pay per request in USDC on Base. No API keys required.
 
-## Publisher: <br>
-[etherlect](https://clawhub.ai/user/etherlect) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etherlect](https://clawhub.ai/user/etherlect)
 
-## Use Case: <br>
-Developers and agent users use this MCP server to let an agent retrieve real-time X/Twitter content and perform authenticated account actions. The skill is intended for users who explicitly want per-request USDC payments from a configured Base wallet and controlled access to a connected Twitter/X account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend USDC from the configured Base wallet for each tool call. <br>
-Mitigation: Use a dedicated low-balance wallet, keep approval enabled for paid actions, and avoid configuring a primary wallet. <br>
-Risk: Authenticated Twitter/X write and delete actions can change a connected account. <br>
-Mitigation: Connect only an account intended for agent use, approve write or delete actions explicitly, and disconnect the account after use. <br>
-Risk: Twitter/X session cookies are stored locally and sent for authenticated actions. <br>
-Mitigation: Use a trusted machine, protect the local credentials file, and revoke or disconnect the session when the skill is no longer needed. <br>
+## Use Case:
 
+External users and developers use this MCP server to let an agent retrieve current X/Twitter articles, posts, users, lists, and communities, and to perform authenticated X/Twitter write actions when an account is connected.
 
-## Reference(s): <br>
-- [twit.sh API reference and pricing](https://twit.sh) <br>
-- [npm package: twit-mcp](https://www.npmjs.com/package/twit-mcp) <br>
-- [x402 protocol documentation](https://x402.org) <br>
-- [Base network](https://base.org) <br>
-- [ClawHub skill page](https://clawhub.ai/etherlect/twit-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration] <br>
-**Output Format:** [MCP tool responses as text or formatted JSON, with article content available as Markdown and setup guidance as configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, WALLET_PRIVATE_KEY for a funded low-balance Base wallet, and a connected Twitter/X account for write or delete actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The MCP server requires a funded wallet private key for x402 payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and avoid reusing a primary wallet key.
+
+Risk: Connecting an X/Twitter account stores session cookies locally and enables account write actions.
+
+Mitigation: Use a low-risk account, confirm write actions before use, and clear or revoke the session after use.
+
+Risk: API_BASE can direct paid requests to a different remote service if overridden.
+
+Mitigation: Keep the default API endpoint unless an override has been reviewed and is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etherlect/skills/twit-mcp)
+- [twit.sh API reference and pricing](https://twit.sh)
+- [npm package: twit-mcp](https://www.npmjs.com/package/twit-mcp)
+- [x402 protocol documentation](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration]
+
+**Output Format:** [MCP tool responses containing JSON-formatted text and Markdown article content; setup guidance uses shell commands and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some tool calls spend USDC from the configured Base wallet and write actions require a connected X/Twitter account.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

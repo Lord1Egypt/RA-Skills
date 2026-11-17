@@ -1,0 +1,232 @@
+<!--
+  oh-my-ui-style / Mode A step 1: shell structure picker.
+  Fragment only: no doctype, html, head, or body.
+  Replace the five seed cards with shells that match the project's real menu depth.
+-->
+<div id="oh-my-ui-style-shell">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+#oh-my-ui-style-shell{
+  --bg:#0F141C; --panel:#18202F; --row:#111825; --line:#253347;
+  --ink:#E8EDF6; --ink2:#9AA9C0; --ink3:#66788F;
+  --accent:#22D3EE; --alert:#EF4444; --ok:#10B981;
+  font-family:"Space Grotesk","PingFang SC",sans-serif; color:var(--ink);
+}
+#oh-my-ui-style-shell .hint{ font-size:12px; color:var(--ink2); margin:0 0 10px; }
+#oh-my-ui-style-shell .grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+
+#oh-my-ui-style-shell .card{
+  display:flex; flex-direction:column; gap:8px; text-align:left; width:100%;
+  background:linear-gradient(180deg,var(--panel),#141C29);
+  border:1px solid var(--line); border-radius:10px; padding:10px;
+  color:inherit; font:inherit; cursor:pointer; transition:border-color .16s ease, box-shadow .16s ease;
+}
+#oh-my-ui-style-shell .card:hover{ border-color:#33455F; }
+#oh-my-ui-style-shell .card[aria-pressed="true"]{
+  border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent), 0 0 22px -12px var(--accent);
+}
+#oh-my-ui-style-shell .ch{ display:flex; align-items:center; gap:7px; }
+#oh-my-ui-style-shell .cid{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500; color:var(--accent);
+  border:1px solid color-mix(in srgb,var(--accent) 45%,transparent); border-radius:4px; padding:0 5px;
+}
+#oh-my-ui-style-shell .cname{ font-size:13px; font-weight:700; }
+#oh-my-ui-style-shell .selmark{ margin-left:auto; font-size:12px; color:var(--accent); opacity:0; }
+#oh-my-ui-style-shell .card[aria-pressed="true"] .selmark{ opacity:1; }
+
+/* wireframe shell */
+#oh-my-ui-style-shell .wf{
+  height:132px; display:grid; gap:5px; padding:6px;
+  background:var(--bg); border:1px solid var(--line); border-radius:7px; overflow:hidden;
+}
+#oh-my-ui-style-shell .wf-rail{ grid-template-columns:26px 1fr; }
+#oh-my-ui-style-shell .wf-side{ grid-template-columns:82px 1fr; }
+#oh-my-ui-style-shell .wf-top{ grid-template-rows:22px 1fr; }
+#oh-my-ui-style-shell .wf-group{ grid-template-columns:90px 1fr; }
+#oh-my-ui-style-shell .wf-hybrid{ grid-template-rows:20px 1fr; }
+
+#oh-my-ui-style-shell .col{ display:flex; flex-direction:column; gap:4px; min-height:0; }
+#oh-my-ui-style-shell .row{ display:flex; gap:4px; align-items:center; min-width:0; }
+#oh-my-ui-style-shell .ri{
+  height:18px; border-radius:4px; background:var(--row); border:1px solid var(--line); flex:none;
+}
+#oh-my-ui-style-shell .ri.on{ background:var(--accent); border-color:var(--accent); }
+#oh-my-ui-style-shell .bar{ height:8px; border-radius:3px; background:var(--row); border:1px solid var(--line); }
+#oh-my-ui-style-shell .bar.on{ background:var(--accent); border-color:var(--accent); }
+#oh-my-ui-style-shell .bar.sm{ width:60%; }
+#oh-my-ui-style-shell .gl{ height:5px; width:44%; border-radius:2px; background:#2A3852; }
+#oh-my-ui-style-shell .ind{ margin-left:7px; }
+#oh-my-ui-style-shell .blk{
+  flex:1; min-height:0; border-radius:5px; background:var(--row); border:1px solid var(--line);
+  position:relative; overflow:hidden;
+}
+#oh-my-ui-style-shell .blk .dot{
+  position:absolute; left:6px; top:6px; width:6px; height:6px; border-radius:2px; background:var(--accent);
+}
+#oh-my-ui-style-shell .blk .dot.alert{ left:auto; right:6px; background:var(--alert); }
+#oh-my-ui-style-shell .top-item{ height:100%; flex:1; border-radius:4px; background:var(--row); border:1px solid var(--line); }
+#oh-my-ui-style-shell .top-item.on{ background:var(--accent); border-color:var(--accent); }
+#oh-my-ui-style-shell .top-item.sm{ flex:.55; }
+
+#oh-my-ui-style-shell .fit{ font-size:11.5px; color:var(--ink2); line-height:1.45; }
+#oh-my-ui-style-shell .tok{ display:flex; gap:5px; flex-wrap:wrap; font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--ink3); }
+#oh-my-ui-style-shell .tok i{ width:9px; height:9px; border-radius:2px; display:inline-block; margin-right:3px; vertical-align:-1px; box-shadow:inset 0 0 0 1px rgba(140,155,180,.45); }
+
+/* selection bar */
+#oh-my-ui-style-shell .pickbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; padding:10px 12px;
+  border:1px dashed #33455F; border-radius:9px; background:#101724;
+}
+#oh-my-ui-style-shell .pkl{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink3); letter-spacing:.06em; }
+#oh-my-ui-style-shell .pkv{ font-size:13px; font-weight:600; }
+#oh-my-ui-style-shell .go{
+  margin-left:auto; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; border-radius:7px;
+  border:1px solid var(--accent); background:var(--accent); color:#04212A;
+}
+#oh-my-ui-style-shell .go:disabled{ background:transparent; color:var(--ink3); border-color:var(--line); cursor:not-allowed; }
+#oh-my-ui-style-shell .note{ margin:9px 0 0; font-size:11px; color:var(--ink3); line-height:1.5; }
+
+@media (max-width:640px){
+  #oh-my-ui-style-shell .grid{ grid-template-columns:1fr; }
+  #oh-my-ui-style-shell .wf{ height:150px; }
+}
+</style>
+
+<p class="hint">点选任意方案卡即选中（单选），底部显示你的选择。深色运维示例配色。</p>
+
+<div class="grid" role="group" aria-label="整体管理平台骨架方案" id="shellGrid">
+
+  <button type="button" class="card" data-key="a" data-name="图标式侧边栏" aria-pressed="false">
+    <span class="ch"><b class="cid">A</b><span class="cname">图标式侧边栏</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf wf-rail" aria-hidden="true">
+      <span class="col"><i class="ri on"></i><i class="ri"></i><i class="ri"></i><i class="ri"></i><i class="ri"></i></span>
+      <span class="col">
+        <span class="bar" style="width:62%"></span>
+        <span class="blk"><i class="dot"></i></span>
+        <span class="blk"><i class="dot alert"></i></span>
+      </span>
+    </span>
+    <span class="fit">折叠图标条，内容区最宽。适合信息密度高、菜单稳定的后台。</span>
+    <span class="tok"><i style="background:#0F141C"></i>#0F141C <i style="background:#22D3EE"></i>#22D3EE <i style="background:#EF4444"></i>#EF4444</span>
+  </button>
+
+  <button type="button" class="card" data-key="b" data-name="常规侧边栏" aria-pressed="false">
+    <span class="ch"><b class="cid">B</b><span class="cname">常规侧边栏</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf wf-side" aria-hidden="true">
+      <span class="col">
+        <span class="bar on" style="width:80%"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </span>
+      <span class="col">
+        <span class="bar" style="width:44%"></span>
+        <span class="blk"><i class="dot"></i></span>
+        <span class="blk"><i class="dot alert"></i></span>
+      </span>
+    </span>
+    <span class="fit">图标加文字，最通用。信息一目了然，功能多时最稳。</span>
+    <span class="tok"><i style="background:#0F141C"></i>#0F141C <i style="background:#22D3EE"></i>#22D3EE <i style="background:#EF4444"></i>#EF4444</span>
+  </button>
+
+  <button type="button" class="card" data-key="c" data-name="顶部导航" aria-pressed="false">
+    <span class="ch"><b class="cid">C</b><span class="cname">顶部导航</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf wf-top" aria-hidden="true">
+      <span class="row">
+        <span class="top-item on"></span><span class="top-item sm"></span><span class="top-item sm"></span><span class="top-item sm"></span>
+      </span>
+      <span class="col">
+        <span class="bar" style="width:50%"></span>
+        <span class="blk"><i class="dot"></i></span>
+        <span class="blk"><i class="dot alert"></i></span>
+      </span>
+    </span>
+    <span class="fit">一级菜单置顶，内容区最大化。适合菜单少、偏扁平的平台。</span>
+    <span class="tok"><i style="background:#0F141C"></i>#0F141C <i style="background:#22D3EE"></i>#22D3EE <i style="background:#EF4444"></i>#EF4444</span>
+  </button>
+
+  <button type="button" class="card" data-key="d" data-name="分组侧边栏" aria-pressed="false">
+    <span class="ch"><b class="cid">D</b><span class="cname">分组侧边栏</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf wf-group" aria-hidden="true">
+      <span class="col">
+        <span class="gl"></span>
+        <span class="bar on"></span><span class="bar"></span>
+        <span class="gl"></span>
+        <span class="bar"></span><span class="bar sm"></span>
+      </span>
+      <span class="col">
+        <span class="bar" style="width:58%"></span>
+        <span class="blk"><i class="dot"></i></span>
+        <span class="blk"><i class="dot alert"></i></span>
+      </span>
+    </span>
+    <span class="fit">按模块分组加二级缩进。适合功能多、层级深的平台。</span>
+    <span class="tok"><i style="background:#0F141C"></i>#0F141C <i style="background:#22D3EE"></i>#22D3EE <i style="background:#EF4444"></i>#EF4444</span>
+  </button>
+
+  <button type="button" class="card" data-key="e" data-name="混合导航" aria-pressed="false">
+    <span class="ch"><b class="cid">E</b><span class="cname">混合导航</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf wf-hybrid" aria-hidden="true">
+      <span class="row">
+        <span class="top-item on"></span><span class="top-item sm"></span><span class="top-item sm"></span>
+      </span>
+      <span class="wf" style="height:auto;border:0;padding:0;grid-template-columns:58px 1fr">
+        <span class="col"><span class="bar"></span><span class="bar"></span><span class="bar sm"></span></span>
+        <span class="col"><span class="bar" style="width:46%"></span><span class="blk"><i class="dot"></i></span><span class="blk"><i class="dot alert"></i></span></span>
+      </span>
+    </span>
+    <span class="fit">顶部一级加左侧二级。适合大型多模块平台，模块切换清晰。</span>
+    <span class="tok"><i style="background:#0F141C"></i>#0F141C <i style="background:#22D3EE"></i>#22D3EE <i style="background:#EF4444"></i>#EF4444</span>
+  </button>
+</div>
+
+<div class="pickbar">
+  <span class="pkl">当前选择</span>
+  <span class="pkv" id="shellPick">未选择（点上方方案卡挑选）</span>
+  <button type="button" class="go" id="shellGo" disabled>采用此方案</button>
+</div>
+<p class="note">交互说明：点击方案卡即选中（单选）；选中后点「采用此方案」，我会按该骨架加深色运维配色生成完整 admin 界面。需要更多骨架或换配色，直接说。</p>
+
+<script>
+(function(){
+  var root = document.getElementById('oh-my-ui-style-shell');
+  var cards = Array.prototype.slice.call(root.querySelectorAll('.card'));
+  var value = document.getElementById('shellPick');
+  var go = document.getElementById('shellGo');
+  var current = null;
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      current = { key: card.getAttribute('data-key'), name: card.getAttribute('data-name') };
+      cards.forEach(function(c){ c.setAttribute('aria-pressed', c === card ? 'true' : 'false'); });
+      value.textContent = current.name;
+      go.disabled = false;
+      if(window.openai && window.openai.setWidgetState){
+        window.openai.setWidgetState({ modelContent:{ mode:'platform', shell: current.key, shellName: current.name }, privateContent:null }).catch(function(){});
+      }
+    });
+  });
+
+  go.addEventListener('click', function(){
+    if(!current) return;
+    var tokens = '深色运维示例：底色 #0F141C、面板 #18202F、主色 #22D3EE、告警 #EF4444、正常 #10B981';
+    if(window.openai && window.openai.sendFollowUpMessage){
+      window.openai.sendFollowUpMessage({
+        title:'采用「' + current.name + '」骨架',
+        prompt:'我选定整体管理平台的「' + current.name + '」骨架（' + tokens + '）。请基于该骨架继续第二步：给出 3-4 套配色与字体方案，同样在对话里让我选。'
+      });
+    }else{
+      go.textContent = '已选择：' + current.name;
+    }
+  });
+
+  if(globalThis.Tweak){
+    var st = { accent:'#22D3EE' };
+    var grid = document.getElementById('shellGrid');
+    function render(){ root.style.setProperty('--accent', st.accent); }
+    render();
+    var tweak = new Tweak({ container: grid, onChange: render });
+    tweak.addColorPicker(st, 'accent', { label:'示例主色', reference:'--accent' });
+  }
+})();
+</script>
+</div>

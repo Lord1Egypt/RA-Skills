@@ -1,42 +1,66 @@
-## Description: <br>
-DataMaster Pro automates data fetching, cleaning, visualization, and report generation for data analysts and operations teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataMaster Pro helps agents fetch, clean, visualize, and report on tabular data for data analysts and operations teams.
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-External users, data analysts, operations staff, and business teams use this skill to collect data from web, API, and database sources; clean CSV or JSON datasets; create charts; and generate Markdown, HTML, or PDF analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: PDF report generation can run wkhtmltopdf through a shell command with user-controlled report names. <br>
-Mitigation: Avoid PDF output and untrusted report names until the conversion call uses a non-shell argument API; validate report names before execution. <br>
-Risk: Data fetching can use arbitrary URLs, API headers, and database connection strings. <br>
-Mitigation: Restrict fetch targets to approved sources and use least-privilege, short-lived API tokens and database credentials; avoid cookies or long-lived secrets in command arguments. <br>
+## Use Case:
 
+Data analysts, operations teams, and business users can use this skill to collect data from supported sources, clean structured datasets, generate charts, and draft analysis reports. It is intended for normal ClawHub release use with reviewer attention to the security findings.
 
-## Reference(s): <br>
-- [DataMaster Pro ClawHub page](https://clawhub.ai/gdp6539/datamaster-pro) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript command examples and generated CSV, JSON, SVG, PNG, HTML, Markdown, or PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes business, technical, and weekly report templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter declares 1.0.0) <br>
+Risk: Network and API inputs may fetch untrusted content or unexpected endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted datasets and trusted URLs, and prefer HTTPS-only public endpoints.
+
+Risk: Command-line headers or connection strings may expose secrets in shell history, logs, or process listings.
+
+Mitigation: Avoid passing secrets in command-line headers; use controlled environment variables or a secret manager when credentials are required.
+
+Risk: Generated reports and extracted datasets may contain sensitive data.
+
+Mitigation: Store generated files in a controlled directory and review reports before sharing or publishing them.
+
+Risk: PDF generation and report names can introduce unsafe file-output behavior when inputs are untrusted.
+
+Mitigation: Do not run PDF generation with untrusted report names, and review output paths before execution.
+
+Risk: The skill documentation overstates some capabilities relative to the provided scripts.
+
+Mitigation: Review the skill manually before installation and test the intended workflow on non-sensitive sample data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gdp6539/skills/datamaster-pro)
+- [DataMaster Pro README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration; generated artifacts may include CSV, JSON, SVG, HTML, Markdown, or PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local datasets, fetch trusted URLs or APIs, and write generated charts or reports to local output paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

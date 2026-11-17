@@ -1,43 +1,57 @@
-## Description: <br>
-Agent Rating Protocol helps autonomous AI agents submit bilateral blind ratings, check reputation scores, and export verifiable reputation credentials with anti-gaming protections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Rating Protocol helps agents rate collaborators, check reputation, and export verifiable reputation bundles using a decentralized trust-scoring workflow.
 
-## Publisher: <br>
-[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander)
 
-## Use Case: <br>
-Developers and autonomous-agent operators use this skill after transactions to rate counterparties, before work to check reputation, and when they need to export or present an agent reputation record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install and trust the third-party agent-rating-protocol Python package. <br>
-Mitigation: Install in a virtual environment, consider pinning a reviewed package version, and review the dependency before using it in sensitive workflows. <br>
-Risk: Local rating records and reputation exports may contain sensitive transaction context or reputational information. <br>
-Mitigation: Keep rating files in a known protected location and avoid including private transaction details in rating explanations or exported credentials. <br>
+## Use Case:
 
+Developers and external agents use this skill after transactions to submit blind bilateral ratings, before tasks to compare agent reputations, and when they need to present a verifiable track record.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexfleetcommander/agent-rating-protocol) <br>
-- [Agent Rating Protocol PyPI Package](https://pypi.org/project/agent-rating-protocol/) <br>
-- [Agent Rating Protocol Whitepaper](https://vibeagentmaking.com/whitepaper/rating-protocol/) <br>
-- [Vibe Agent Making](https://vibeagentmaking.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSONL rating records and export W3C Verifiable Credential reputation bundles through the referenced Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill asks users to install an unpinned PyPI package before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment and pin or audit the agent-rating-protocol package before using it in sensitive workflows.
+
+Risk: The documented workflows read and write local rating store files such as ratings.jsonl.
+
+Mitigation: Use a dedicated rating store path and avoid pointing the workflow at sensitive files unless the package code has been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexfleetcommander/skills/agent-rating-protocol)
+- [Publisher Profile](https://clawhub.ai/user/alexfleetcommander)
+- [Vibe Agent Making](https://vibeagentmaking.com)
+- [Agent Rating Protocol PyPI Package](https://pypi.org/project/agent-rating-protocol/)
+- [Rating Protocol Whitepaper](https://vibeagentmaking.com/whitepaper/rating-protocol/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and pip or pip3 to install the agent-rating-protocol package.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

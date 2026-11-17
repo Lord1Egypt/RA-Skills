@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>团队订餐拼单 · 产品原型与需求说明</title>
+<!-- deploy-cache-bust:2026-01-01T00:00:00 -->
+<style>
+:root{
+  --bg:#f5f6f8; --surface:#fff; --surface-2:#fcfcfd;
+  --ink:#0f172a; --ink-2:#1e293b; --text-sec:#64748b;
+  --border:#e6e9ef; --border-strong:#cdd3de;
+  --accent:#6366f1; --accent-strong:#4f46e5; --accent-soft:rgba(99,102,241,.18);
+  --accent-grad:linear-gradient(135deg,#6366f1,#8b5cf6);
+  --dark:#0f172a; --info-strong:#2563eb;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+  --shadow-md:0 4px 16px rgba(15,23,42,.10);
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --radius-card:14px; --radius-panel:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink-2);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ============ 顶栏 ============ */
+.top-bar{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(12px);
+  border-bottom:1px solid var(--border);padding:0 22px;height:58px}
+.brand-mark{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--ink);font-size:15px}
+.brand-mark img{height:26px;transform:scale(.88)} /* 原图基础上轻微缩放 */
+.tabs{position:relative;display:flex;gap:6px}
+.tab{padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:500;color:var(--text-sec);cursor:pointer;
+  border:none;background:none;transition:color .2s,background .2s}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--accent-strong);font-weight:600}
+.tab-indicator{position:absolute;bottom:-1px;height:2.5px;border-radius:3px;background:var(--accent-grad);
+  transition:left .32s cubic-bezier(.22,1,.36,1),width .32s cubic-bezier(.22,1,.36,1)}
+.author-chip{justify-self:end;display:flex;align-items:center;gap:10px}
+.author-chip .ava{width:31px;height:31px;border-radius:50%;object-fit:cover;
+  box-shadow:0 0 0 1px var(--border-strong),0 2px 6px rgba(15,23,42,.12)} /* 细环 + 投影 */
+.author-meta{display:flex;flex-direction:column;line-height:1.2}
+.author-meta .nm{font-size:12.5px;font-weight:600;color:var(--ink)}
+.author-meta .rl{font-size:10.5px;color:var(--text-sec)}
+.author-chip .badge{font-size:10px;color:var(--accent-strong);background:var(--accent-soft);
+  padding:2px 7px;border-radius:999px;font-weight:600}
+
+/* ============ Tab 内容切换 ============ */
+.tab-pane{display:none}
+.tab-pane.active{display:block;animation:fade-in-up .42s cubic-bezier(.22,1,.36,1)}
+@keyframes fade-in-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============ PRD 概览（左目录 + 右章节） ============ */
+.prd-wrap{max-width:1180px;margin:26px auto;padding:0 24px}
+.prd-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-panel);
+  padding:30px 34px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+.prd-hero h1{margin:0 0 6px;font-size:26px;letter-spacing:-.02em}
+.prd-hero p{margin:0;color:var(--text-sec);font-size:14px}
+.prd-layout{display:flex;gap:18px;align-items:flex-start}
+.prd-toc{flex:0 0 188px;position:sticky;top:74px;background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:14px 12px;box-shadow:var(--shadow-sm)}
+.prd-toc .grp{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-sec);
+  padding:10px 10px 5px}
+.prd-toc a{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;font-size:13px;
+  color:var(--text-sec);text-decoration:none;transition:background .15s,color .15s}
+.prd-toc a .dot{width:5px;height:5px;border-radius:50%;background:var(--border-strong);transition:background .2s}
+.prd-toc a:hover{background:#f1f3f7;color:var(--ink)}
+.prd-toc a.active{background:var(--accent-soft);color:var(--accent-strong);font-weight:600}
+.prd-toc a.active .dot{background:var(--accent)}
+.prd-body{flex:1;min-width:0}
+.prd-sec{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);
+  padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow-sm);scroll-margin-top:74px}
+.prd-sec h2{margin:0 0 12px;font-size:18px;letter-spacing:-.01em}
+.prd-sec p,.prd-sec li{font-size:13.5px;color:#475569}
+.prd-sec table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.prd-sec th,.prd-sec td{border:1px solid var(--border);padding:8px 10px;text-align:left}
+.prd-sec th{background:#f8fafc;color:var(--ink)}
+
+/* ============ 原型区通用 ============ */
+.proto-section{padding:24px}
+.proto-hint{text-align:center;color:var(--text-sec);font-size:12.5px;margin-bottom:14px}
+.mp-nav,.ad-nav-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.chip{padding:6px 13px;border:1px solid var(--border-strong);border-radius:999px;background:var(--surface);
+  font-size:12.5px;cursor:pointer;color:var(--text-sec)}
+.chip.active{background:var(--accent);color:#fff;border-color:transparent}
+
+/* 小程序手机框 */
+.phone-frame{width:340px;margin:0 auto;background:#0f172a;border-radius:38px;padding:12px;box-shadow:var(--shadow-md)}
+.mp-screen{background:var(--surface);border-radius:28px;overflow:hidden;min-height:620px}
+.mp-top{background:var(--dark);color:#fff;padding:18px 18px 14px}
+.mp-top h3{margin:0;font-size:16px}
+.mp-body{padding:16px}
+.mp-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px}
+.mp-card h4{margin:0 0 6px;font-size:14px;color:var(--accent-strong)}
+.mp-page{display:none}.mp-page:first-child{display:block}
+.mp-btn{margin-top:10px;padding:8px 14px;border:none;border-radius:9px;background:var(--accent);color:#fff;font-size:13px;cursor:pointer}
+.mp-btn:hover{filter:brightness(1.05)}
+.mp-line{margin-top:8px;font-weight:600;color:var(--accent-strong);font-size:14px}
+
+/* ============ 后台管理原型 ============ */
+.admin-layout{display:flex;flex:1 1 auto;min-height:640px;overflow:hidden;position:relative;
+  border-radius:var(--radius-panel);background:#eef1f5;box-shadow:var(--shadow-md)}
+.ad-sidebar{width:200px;background:linear-gradient(180deg,#141a2e,#0d1322);color:#aab2c5;
+  display:flex;flex-direction:column;padding:18px 0}
+.ad-sidebar h2{font-size:14px;color:#fff;padding:0 18px;margin:0 0 14px}
+.ad-nav{padding:10px 18px;font-size:13px;cursor:pointer;color:#aab2c5;border-left:3px solid transparent}
+.ad-nav.active{background:rgba(99,102,241,.16);color:#fff;border-left-color:var(--accent)}
+.ad-content{flex:1;min-width:0;padding:22px 26px;overflow-y:auto}
+.ad-mid{flex:0 0 100px;position:relative}
+.ad-mid svg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
+.ad-right{flex:0 0 410px;position:relative;height:100%;overflow-y:auto;background:#fff;
+  border:1px solid var(--border);border-radius:var(--radius-card);margin:16px 16px 16px 8px;box-shadow:var(--shadow-sm)}
+.ad-right-hd{background:var(--dark);color:#fff;padding:14px 18px;position:sticky;top:0;z-index:10;
+  border-radius:var(--radius-card) var(--radius-card) 0 0} /* ← 头部左上/右上补圆角 */
+.ad-right-hd h3{margin:0;font-size:14px}
+.ad-right-bd{padding:18px}
+.sp-block{margin-bottom:16px;border-left:3px solid var(--accent);padding:13px 16px;background:var(--surface);
+  border-radius:0 8px 8px 0;box-shadow:var(--shadow-sm)} /* 内部卡片：左紫条+右圆角（如需左右都圆角，去掉 border-left 并把 radius 改为 8px） */
+.sp-block h4{margin:0 0 8px;font-size:13px;color:var(--accent-strong)}
+.pg-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 18px;box-shadow:var(--shadow-sm)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);padding:18px;box-shadow:var(--shadow-sm)}
+
+/* ============ 交互说明悬浮面板 ============ */
+.ix-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:46px;height:46px;border-radius:50%;
+  background:var(--accent-grad);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:600;
+  box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center}
+.ix-fab:hover{filter:brightness(1.05)}
+.ix-panel{position:fixed;right:18px;bottom:74px;z-index:80;width:284px;max-height:62vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);padding:12px;display:none}
+.ix-panel.open{display:block;animation:fade-in-up .2s ease-out}
+.ix-panel h5{margin:0 0 8px;font-size:11px;color:var(--text-sec);text-transform:uppercase;letter-spacing:.5px}
+.ix-item{padding:8px 10px;border-radius:8px;margin-bottom:6px;background:var(--surface-2);border:1px solid var(--border);cursor:pointer;transition:background .15s}
+.ix-item:hover{background:#eef1f8}
+.ix-item b{display:block;color:var(--accent-strong);margin-bottom:2px;font-size:12.5px}
+.ix-item span{color:var(--text-sec);font-size:12px}
+.ix-empty{color:var(--text-sec);text-align:center;padding:14px;font-size:12.5px}
+</style>
+</head>
+<body>
+<header class="top-bar">
+  <div class="brand-mark"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' rx='9' fill='%236366f1'/></svg>" alt="logo">拼单</div>
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-i="0" data-ix="点击切换顶部标签，下方内容淡入切换" data-ix-title="切换 Tab">PRD 概览</button>
+    <button class="tab" data-i="1" data-ix="点击切换顶部标签，下方内容淡入切换" data-ix-title="切换 Tab">小程序原型</button>
+    <button class="tab" data-i="2" data-ix="点击切换顶部标签，下方内容淡入切换" data-ix-title="切换 Tab">后台管理原型</button>
+    <span class="tab-indicator" id="tabIndicator"></span>
+  </nav>
+  <div class="author-chip">
+    <img class="ava" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='20' cy='20' r='20' fill='%234f46e5'/><text x='20' y='26' font-size='16' fill='%23fff' text-anchor='middle' font-family='sans-serif'>然</text></svg>" alt="作者">
+    <div class="author-meta"><span class="nm">QQ 965621229</span><span class="rl">原型工具作者</span></div>
+    <span class="badge">v1.4</span>
+  </div>
+</header>
+
+<main>
+  <!-- ============ Tab 0：PRD 概览 ============ -->
+  <section class="tab-pane active" id="pane-0">
+    <div class="prd-wrap">
+      <div class="prd-hero"><h1>团队订餐拼单 · 产品原型与需求说明</h1><p>同事拼单点餐，统一结算分摊 · 版本 v1.0 · 最后更新 2026-08-06</p></div>
+      <div class="prd-layout">
+        <aside class="prd-toc" id="prdToc">
+          <div class="grp">需求说明</div>
+          <a href="#prd-hero" data-t="prd-hero">概览</a>
+          <a href="#prd-goal" data-t="prd-goal">背景与目标</a>
+          <a href="#prd-scope" data-t="prd-scope">范围</a>
+          <a href="#prd-kpi" data-t="prd-kpi">关键指标</a>
+          <a href="#prd-nfr" data-t="prd-nfr">非功能需求</a>
+          <a href="#prd-flow" data-t="prd-flow">核心流程与闭环</a>
+          <a href="#prd-api" data-t="prd-api">接口与数据契约</a>
+          <a href="#prd-launch" data-t="prd-launch">上线运营</a>
+          <a href="#prd-open" data-t="prd-open">风险与开放问题</a>
+          <a href="#prd-glossary" data-t="prd-glossary">术语表</a>
+          <a href="#prd-ix" data-t="prd-ix">交互说明</a>
+        </aside>
+        <div class="prd-body" id="prdBody">
+          <section class="prd-sec" id="prd-hero"><h2>概览</h2><p>为同事群体提供「发起拼单 → 各自选餐 → 统一支付分摊」的小程序，配合后台做订单与退款管理。本文件为产品原型与需求说明，含可交互原型。</p></section>
+          <section class="prd-sec" id="prd-goal"><h2>背景与目标</h2><p>午餐时段同事各自点外卖，价格高、难凑满减。目标：发起一次拼单，多人加入、统一结算，平均每人省 15%，店长/行政可看汇总。</p></section>
+          <section class="prd-sec" id="prd-scope"><h2>范围</h2><table><tr><th>范围内</th><th>范围外</th></tr><tr><td>发起/加入拼单</td><td>对接外卖平台下单</td></tr><tr><td>各自选餐、金额联动</td><td>商户对账财务系统</td></tr><tr><td>统一支付与 AA 分摊</td><td>发票管理</td></tr></table></section>
+          <section class="prd-sec" id="prd-kpi"><h2>关键指标 / 成功标准</h2><p>2026-08-20 完成内部试点上线；单笔拼单参与人数 ≥ 4 人；人均节省 ≥ 15%；支付成功率 ≥ 99%。</p></section>
+          <section class="prd-sec" id="prd-nfr"><h2>非功能性需求</h2><p>并发：午高峰 12:00–13:00 支持 500 单/分钟；安全：支付信息不落地；兼容：iOS 14+/Android 10+；合规：仅收集必要昵称与订单数据。</p></section>
+          <section class="prd-sec" id="prd-flow"><h2>核心流程与闭环</h2><p>发起拼单 → 分享链接 → 成员选餐 → 统一支付(AA) → 完成；逆向：支付后 10 分钟内可整单退款，部分成员退出自动重算分摊。</p></section>
+          <section class="prd-sec" id="prd-api"><h2>接口与数据契约</h2><p>POST /group/create 入参：ownerId；出参：groupId, shareUrl。订单状态机：<code>拼单中 → 待支付 → 已支付 / 已退款</code>。</p></section>
+          <section class="prd-sec" id="prd-launch"><h2>上线与运营计划</h2><p>内测 1 个部门 → 全公司灰度 → 全量；异常通过开关关闭支付入口回滚。</p></section>
+          <section class="prd-sec" id="prd-open"><h2>风险与开放问题</h2><p>退款与支付渠道回调一致性待确认；是否对接企业微信登录待定。</p></section>
+          <section class="prd-sec" id="prd-glossary"><h2>术语表</h2><p>拼单：多人合并的一笔订单；AA 分摊：按金额均摊到每人；开单：发起一次拼单。</p></section>
+          <section class="prd-sec" id="prd-ix"><h2>交互说明</h2><p>触发—行为—状态变化：①点击「模拟开单」→ 创建拼单并跳转选餐，状态 拼单中；②选餐 → 合计金额实时变化；③「确认支付」→ 调用支付，状态 待支付→已支付。详见右下角"交互"面板。</p></section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Tab 1：小程序原型 ============ -->
+  <section class="tab-pane" id="pane-1">
+    <div class="proto-section">
+      <div class="proto-hint">小程序原型（发起拼单 → 选餐 → 支付，可点击体验）</div>
+      <div class="mp-nav" id="mpNav">
+        <span class="chip active" data-i="0" data-ix="点击切换小程序页面：发起拼单 → 选餐 → 支付" data-ix-title="切换页面">页面1 · 发起拼单</span>
+        <span class="chip" data-i="1" data-ix="点击切换小程序页面：发起拼单 → 选餐 → 支付" data-ix-title="切换页面">页面2 · 挑选菜品</span>
+        <span class="chip" data-i="2" data-ix="点击切换小程序页面：发起拼单 → 选餐 → 支付" data-ix-title="切换页面">页面3 · 确认支付</span>
+      </div>
+      <div class="phone-frame"><div class="mp-screen">
+        <div class="mp-top"><h3 id="mpTitle">首页 / 扫码识别</h3></div>
+        <div class="mp-body" id="mpBody">
+          <div class="mp-page" data-p="0"><div class="mp-card"><h4>发起拼单</h4><p>点击「模拟开单」创建今日拼单，生成分享链接给同事。</p><button class="mp-btn" id="mpScan" data-ix="点击模拟开单：创建拼单并跳转到选餐页" data-ix-title="模拟开单">模拟开单</button></div></div>
+          <div class="mp-page" data-p="1"><div class="mp-card"><h4>挑选菜品</h4><p>勾选想吃的菜品，金额实时计算（状态联动示例）。</p><div class="mp-line">合计：¥<span id="mpTotal">0</span></div><button class="mp-btn" id="mpNext" data-ix="点击去支付：把已选金额带入支付页" data-ix-title="去支付">去支付</button></div></div>
+          <div class="mp-page" data-p="2"><div class="mp-card"><h4>确认支付（AA 分摊）</h4><p>金额 ¥<span id="mpPay">0</span>，点击确认完成支付并展示结果。</p><button class="mp-btn" id="mpPayBtn" data-ix="点击确认支付：调用支付接口并展示成功状态" data-ix-title="确认支付">确认支付</button></div></div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ============ Tab 2：后台管理原型 ============ -->
+  <section class="tab-pane" id="pane-2">
+    <div class="proto-section">
+      <div class="proto-hint">后台管理原型（左侧导航 → 中间连接线 → 右侧功能说明）</div>
+      <div class="admin-layout" id="adminLayout">
+        <aside class="ad-sidebar"><h2>后台管理</h2>
+          <div class="ad-nav active" data-i="0">仪表盘</div>
+          <div class="ad-nav" data-i="1">拼单订单</div>
+          <div class="ad-nav" data-i="2">退款处理</div>
+        </aside>
+        <div class="ad-content" id="adContent">
+          <div class="pg-hd"><div><div class="pg-title">仪表盘</div></div></div>
+          <div class="stat-grid">
+            <div class="stat-card">今日拼单 12</div><div class="stat-card">参与 48 人</div>
+            <div class="stat-card">GMV ¥526</div><div class="stat-card">退款率 2%</div>
+          </div>
+        </div>
+        <div class="ad-mid" id="adMid"><svg id="adLines"></svg></div>
+        <div class="ad-right">
+          <div class="ad-right-hd"><h3 id="adSpecTitle">仪表盘 - 功能说明</h3></div>
+          <div class="ad-right-bd"><div class="sp-block"><h4>仪表盘说明</h4><p>展示今日拼单数、参与人数、GMV、退款率；点击异常订单可下钻。</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ 交互说明悬浮面板 ============ -->
+<button class="ix-fab" id="ixFab" title="交互说明 / Interaction notes" aria-label="交互说明">交互</button>
+<div class="ix-panel" id="ixPanel"><h5>交互说明 / Interactions</h5></div>
+
+<script>
+/* ===== 顶栏 tab 切换（滑动下划线 + 淡入） ===== */
+const tabs=[...document.querySelectorAll('#tabs .tab')];
+const indicator=document.getElementById('tabIndicator');
+function moveIndicator(i){const t=tabs[i];indicator.style.left=t.offsetLeft+'px';indicator.style.width=t.offsetWidth+'px';}
+function switchTab(i){
+  tabs.forEach((t,k)=>t.classList.toggle('active',k===i));
+  document.querySelectorAll('.tab-pane').forEach((p,k)=>p.classList.toggle('active',k===i));
+  moveIndicator(i);
+  if(i===2) requestAnimationFrame(drawLines); // 切到后台时重绘连接线
+}
+tabs.forEach((t,i)=>t.addEventListener('click',()=>switchTab(i)));
+moveIndicator(0);
+
+/* ===== PRD 目录：平滑滚动（easeInOutCubic）+ 滚动高亮 ===== */
+const tocLinks=[...document.querySelectorAll('#prdToc a')];
+function easeInOutCubic(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+function scrollToPRD(id){
+  const el=document.getElementById(id);if(!el)return;
+  const top=el.getBoundingClientRect().top+window.scrollY-74;
+  const start=window.scrollY,dur=520,t0=performance.now();
+  function step(now){
+    const p=Math.min(1,(now-t0)/dur),e=easeInOutCubic(p);
+    window.scrollTo(0,start+(top-start)*e);
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+tocLinks.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();scrollToPRD(a.dataset.t);}));
+const secObserver=new IntersectionObserver(es=>{
+  es.forEach(en=>{if(en.isIntersecting){
+    tocLinks.forEach(a=>a.classList.toggle('active',a.dataset.t===en.target.id));
+  }});
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('.prd-sec').forEach(s=>secObserver.observe(s));
+
+/* ===== 小程序页面切换 + 简单数据联动（demo） ===== */
+const mpPages=[...document.querySelectorAll('#mpBody .mp-page')];
+const mpTitles=['首页 / 扫码识别','商品选择','确认支付'];
+function switchMp(i){
+  document.querySelectorAll('#mpNav .chip').forEach(x=>x.classList.toggle('active',+x.dataset.i===i));
+  mpPages.forEach((p,k)=>p.style.display=k===i?'block':'none');
+  const t=document.getElementById('mpTitle');if(t)t.textContent=mpTitles[i];
+}
+document.querySelectorAll('#mpNav .chip').forEach(c=>c.addEventListener('click',()=>switchMp(+c.dataset.i)));
+let mpAmount=0;
+const mpScan=document.getElementById('mpScan');
+if(mpScan)mpScan.addEventListener('click',()=>{
+  mpAmount=38; // 模拟选中后金额
+  const total=document.getElementById('mpTotal'),pay=document.getElementById('mpPay');
+  if(total)total.textContent=mpAmount; if(pay)pay.textContent=mpAmount;
+  switchMp(1); // 自动跳到选品页
+});
+const mpNext=document.getElementById('mpNext');
+if(mpNext)mpNext.addEventListener('click',()=>switchMp(2));
+const mpPayBtn=document.getElementById('mpPayBtn');
+if(mpPayBtn)mpPayBtn.addEventListener('click',()=>{mpPayBtn.textContent='支付成功 ✓';mpPayBtn.style.background='#16a34a';});
+document.querySelectorAll('.ad-sidebar .ad-nav').forEach(n=>n.addEventListener('click',()=>{
+  document.querySelectorAll('.ad-sidebar .ad-nav').forEach(x=>x.classList.toggle('active',x===n));
+  requestAnimationFrame(drawLines);
+}));
+
+/* ===== 后台连接线 drawLines =====
+   关键坑：SVG 用 position:fixed 全屏，但若祖先元素有 transform 动画（animation-fill-mode:both 残留 transform），
+   会劫持 fixed 的包含块，使 getBoundingClientRect 相对视口偏移 → 连线整体错位。
+   解决：坐标统一减去 svgRect.top/left；并在 animationend 时重绘。 */
+function drawLines(){
+  const svg=document.getElementById('adLines');if(!svg)return;
+  const svgRect=svg.getBoundingClientRect();
+  const W=window.innerWidth,H=window.innerHeight;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML='';
+  const sources=document.querySelectorAll('.ad-nav');      // 左侧导航节点
+  const targets=document.querySelectorAll('.sp-block, .pg-hd'); // 右侧说明锚点
+  sources.forEach((s,i)=>{
+    const t=targets[i];if(!t)return;
+    const a=s.getBoundingClientRect(),b=t.getBoundingClientRect();
+    const x1=a.right-svgRect.left, y1=a.top+a.height/2-svgRect.top;
+    const x2=b.left-svgRect.left,  y2=b.top+24-svgRect.top;
+    const mx=(x1+x2)/2;
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`);
+    path.setAttribute('stroke','#a5b4fc');path.setAttribute('stroke-width','1.6');
+    path.setAttribute('fill','none');path.setAttribute('opacity','.8');
+    svg.appendChild(path);
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x1);c.setAttribute('cy',y1);c.setAttribute('r','3');c.setAttribute('fill','#6366f1');
+    svg.appendChild(c);
+  });
+}
+window.addEventListener('resize',()=>{if(document.getElementById('pane-2').classList.contains('active'))drawLines();});
+document.querySelectorAll('.ad-content,.ad-right').forEach(el=>el.addEventListener('scroll',()=>{
+  if(document.getElementById('pane-2').classList.contains('active'))drawLines();
+},{passive:true}));
+// 动画结束后重绘，修 transform 劫持导致的偏移
+document.querySelectorAll('.tab-pane,.pg').forEach(el=>el.addEventListener('animationend',()=>{
+  if(document.getElementById('pane-2').classList.contains('active'))drawLines();
+}));
+
+/* ===== 交互说明面板：自动采集 [data-ix] 标注 ===== */
+(function(){
+  const fab=document.getElementById('ixFab'),panel=document.getElementById('ixPanel');
+  if(!fab||!panel)return;
+  const items=[...document.querySelectorAll('[data-ix]')];
+  const list=document.createElement('div');
+  if(items.length){
+    items.forEach((el,i)=>{
+      const d=document.createElement('div');
+      d.className='ix-item';
+      d.innerHTML='<b>'+(el.dataset.ixTitle||('交互 '+(i+1)))+'</b><span>'+el.dataset.ix+'</span>';
+      d.addEventListener('click',()=>{
+        el.scrollIntoView({behavior:'smooth',block:'center'});
+        const prev=el.style.outline;el.style.outline='2px solid var(--accent)';
+        setTimeout(()=>{el.style.outline=prev;},1200);
+      });
+      list.appendChild(d);
+    });
+  }else{
+    const e=document.createElement('div');e.className='ix-empty';
+    e.textContent='暂无标注交互，可给元素加 data-ix 属性';list.appendChild(e);
+  }
+  panel.appendChild(list);
+  fab.addEventListener('click',()=>panel.classList.toggle('open'));
+})();
+</script>
+</body>
+</html>

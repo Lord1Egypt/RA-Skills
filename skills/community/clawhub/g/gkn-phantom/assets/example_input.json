@@ -1,0 +1,39 @@
+{
+  "scope": {
+    "domains": ["staging.example.test", "*.staging.example.test"],
+    "ip_ranges": ["10.0.0.0/24"],
+    "allowed_paths": ["/", "/api", "/search", "/login", "/users"],
+    "blocked_paths": ["/admin/delete", "/admin/purge"]
+  },
+  "targets": [
+    "https://staging.example.test",
+    "https://api.staging.example.test"
+  ],
+  "credentials": {
+    "type": "cookie",
+    "value": "session=PTSKILLTEST-session-abc; Path=/; HttpOnly",
+    "verify_url": "https://api.staging.example.test/me"
+  },
+  "config": {
+    "rate_limit_rps": 3,
+    "safe_mode": true,
+    "require_human_approval": true,
+    "environment": "staging",
+    "ssrf_sink": "https://oob.authorized.test"
+  },
+  "tools": {
+    "runShell": "<bound function>",
+    "httpRequest": "<bound function>",
+    "browser": "<bound function>",
+    "logger": "<bound function>"
+  },
+  "state": {
+    "current": "INIT",
+    "history": [],
+    "session_ref": null
+  },
+  "memory": {
+    "prior_findings": [],
+    "asset_cache": {}
+  }
+}

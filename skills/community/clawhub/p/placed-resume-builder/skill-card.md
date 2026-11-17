@@ -1,44 +1,59 @@
-## Description: <br>
-This skill helps users build, update, template, export, download, and manage resumes through the Placed career platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and manages professional resumes through the Placed career platform, including creation, updates, template changes, and PDF, DOCX, JSON, and Markdown exports.
 
-## Publisher: <br>
-[ajitsingh25](https://clawhub.ai/user/ajitsingh25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajitsingh25](https://clawhub.ai/user/ajitsingh25)
 
-## Use Case: <br>
-External users and career-focused agents use this skill to create, edit, template, and export resumes through Placed. It is suited for resume management workflows that require authenticated API calls and optional PDF, DOCX, JSON, or Markdown exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume content is sent to the Placed service during authenticated API calls. <br>
-Mitigation: Use the skill only when the user trusts Placed with the resume data being created, updated, exported, or downloaded. <br>
-Risk: The skill can persist a Placed API key in ~/.config/placed/credentials. <br>
-Mitigation: Use a revocable API key and protect or delete the local credentials file if persistent access is not desired. <br>
-Risk: Resume updates, template changes, and visibility changes may affect user-facing career materials. <br>
-Mitigation: Review requested changes and visibility settings before submitting API calls. <br>
+## Use Case:
 
+External users and agents use this skill to create, update, template, list, and export resumes on placed.exidian.tech with a Placed API key. It supports resume section editing, template browsing, and export workflows for PDF, DOCX, JSON, and Markdown outputs.
 
-## Reference(s): <br>
-- [Placed Resume Builder API Reference](references/api-guide.md) <br>
-- [Placed Resume Builder on ClawHub](https://clawhub.ai/ajitsingh25/placed-resume-builder) <br>
-- [Placed homepage](https://placed.exidian.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return resume data, template details, expiring PDF or DOCX download URLs, JSON exports, or Markdown exports from the Placed API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive resume data and sends it to placed.exidian.tech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review resume contents before API calls and confirm before exporting, sharing, or making resumes public.
+
+Risk: The skill may store a long-lived API key in a local plaintext credentials file.
+
+Mitigation: Prefer a temporary or session-only API key, avoid plaintext credential files where possible, and confirm before writing credentials to disk.
+
+Risk: The server security summary flags unsafe shell practices around local credential loading and API calls.
+
+Mitigation: Review generated shell commands before execution and avoid sourcing or writing credential files unless the local exposure risk is acceptable.
+
+## Reference(s):
+
+- [Placed Resume Builder API Reference](references/api-guide.md)
+- [Placed homepage](https://placed.exidian.tech)
+- [ClawHub skill page](https://clawhub.ai/ajitsingh25/skills/placed-resume-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks; API responses may include resume JSON, Markdown exports, and PDF or DOCX download URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PDF download URLs expire after 15 minutes; API use requires a PLACED_API_KEY bearer token.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

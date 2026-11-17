@@ -1,38 +1,53 @@
-## Description: <br>
-Multi-agent coordination, spatial memory, and swarm navigation for connecting agents to an Eywa room so they can share memory, claim work, avoid conflicts, and converge toward a destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent coordination, spatial memory, and swarm navigation. Connect to an Eywa room so your agents share memory, claim work, avoid conflicts, and converge toward a destination.
 
-## Publisher: <br>
-[a-sumo](https://clawhub.ai/user/a-sumo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a-sumo](https://clawhub.ai/user/a-sumo)
 
-## Use Case: <br>
-Developers and agent operators use Eywa to coordinate concurrent agents in a shared room, track work claims and tasks, store shared knowledge, and keep activity aligned with a destination. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Coordination messages, task details, and stored knowledge may be shared with an external Eywa service. <br>
-Mitigation: Use only approved Eywa endpoints, avoid sending secrets or regulated data, and configure EYWA_URL to a trusted service when required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Eywa homepage](https://www.eywa-ai.dev) <br>
-- [ClawHub Eywa release](https://clawhub.ai/a-sumo/eywa) <br>
+## Use Case:
 
+Developers and agent operators use Eywa to coordinate concurrent agents in a shared room, including session state, task claims, work logs, persistent knowledge, conflict checks, and destination tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses environment variables for room, agent identity, and the Eywa endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send broad work context to an external Eywa service and persistent shared room.
+
+Mitigation: Use only a private, trusted Eywa endpoint and room; do not send secrets, credentials, customer data, sensitive file contents, or confidential deployment details through logs, tasks, or persistent knowledge.
+
+Risk: Shared room content returned by Eywa may include untrusted collaboration data.
+
+Mitigation: Treat Eywa responses as coordination context only, and do not let them override user, system, or security instructions.
+
+## Reference(s):
+
+- [Eywa homepage](https://www.eywa-ai.dev)
+- [ClawHub skill page](https://clawhub.ai/a-sumo/skills/eywa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill routes coordination data through an Eywa MCP endpoint configured by environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

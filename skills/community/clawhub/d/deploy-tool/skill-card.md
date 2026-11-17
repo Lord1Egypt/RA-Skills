@@ -1,43 +1,52 @@
-## Description: <br>
-Deploy Tool is a Bash command-line utility for recording, searching, summarizing, and exporting timestamped deployment-related notes in local flat files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy Tool is a Bash command-line utility for logging, searching, summarizing, and exporting deployment-related activity entries stored locally.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to record deployment-related command-line notes, inspect recent activity, search local history, and export logs for operational tracking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-entered deployment notes are saved as plaintext local logs and exports.
+
+Mitigation: Avoid entering API keys, passwords, tokens, private host details, or other secrets, and review exported files before sharing them.
+
+Risk: The skill may be mistaken for a PHP framework deployment or provisioning tool.
+
+Mitigation: Treat it as a local logging helper for deployment activity, not as an automated deployer or infrastructure provisioning system.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to keep a local command-line log of deployment activities, checks, status notes, and related operational entries. It supports searching recent activity, viewing summary statistics, and exporting stored notes as JSON, CSV, or TXT. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment notes may include sensitive operational details and remain searchable on local disk. <br>
-Mitigation: Do not enter passwords, tokens, private keys, or sensitive deployment details; periodically review or remove stored files under ~/.local/share/deploy-tool/. <br>
-Risk: The skill is a deployment-note logger, not a PHP deployment automation tool. <br>
-Mitigation: Use it for local tracking, summaries, and exports only; rely on separate reviewed deployment tooling for operational changes. <br>
-Risk: Exported JSON, CSV, or TXT files may contain deployment history that should not be broadly shared. <br>
-Mitigation: Review exported files before sharing and delete exports that are no longer needed. <br>
+**Output Format:** [Plain text terminal output with local log files and optional JSON, CSV, or TXT exports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/deploy-tool) <br>
-- [Publisher Profile](https://clawhub.ai/user/bytesagain3) <br>
+**Other Properties Related to Output:** [Stores entries under ~/.local/share/deploy-tool; no external services, databases, or API keys are required.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text command output with local log and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local flat-file logs and optional JSON, CSV, or TXT exports under ~/.local/share/deploy-tool/.] <br>
+2.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

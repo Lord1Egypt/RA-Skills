@@ -1,0 +1,20 @@
+{
+  "schema_version": "2.0",
+  "workbuddy": {
+    "native_member_launcher": "Agent",
+    "native_wait": "TaskOutput",
+    "native_message": "SendMessage",
+    "direct_bootstrap": ["TeamCreate"],
+    "deferred_bootstrap": ["ToolSearch", "DeferExecuteTool"],
+    "phase_management": ["TaskCreate", "TaskList", "TaskUpdate"],
+    "forbidden_tools": ["spawn_agent", "wait_agent", "send_message"]
+  },
+  "codex": {
+    "native_member_launcher": "spawn_agent",
+    "native_wait": "wait_agent",
+    "native_message": "send_message",
+    "required_tools": ["spawn_agent", "wait_agent"],
+    "optional_tools": ["send_message"],
+    "forbidden_tools": ["TeamCreate", "TaskCreate", "TaskList", "TaskUpdate", "ToolSearch", "DeferExecuteTool", "TaskOutput", "Agent", "SendMessage"]
+  }
+}

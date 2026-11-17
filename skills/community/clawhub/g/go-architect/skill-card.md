@@ -1,42 +1,55 @@
-## Description: <br>
-Go application architecture with net/http 1.22+ routing, project structure patterns, graceful shutdown, and dependency injection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Go application architecture with net/http 1.22+ routing, project structure patterns, graceful shutdown, and dependency injection.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, scaffold, and review Go web services that use standard-library routing, explicit dependency wiring, production shutdown handling, and maintainable project layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate API-routing and API-hardening guidance that may be incorrect for a specific production service. <br>
-Mitigation: Review generated code and recommendations before applying them to production. <br>
-Risk: Example handlers and configuration patterns may involve sensitive credentials or API keys. <br>
-Mitigation: Keep credentials loaded through explicit configuration or dependency injection, and avoid reading secrets directly inside handlers. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, scaffold, or review Go web servers with standard-library routing, explicit dependency injection, production shutdown behavior, and maintainable project structure.
 
-## Reference(s): <br>
-- [Go Project Structure](references/project-structure.md) <br>
-- [Graceful Shutdown](references/graceful-shutdown.md) <br>
-- [Dependency Injection in Go](references/dependency-injection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Go code examples, review criteria, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pass/fail review findings for Go version, composition root, graceful shutdown, and dependency injection patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release metadata) <br>
+Risk: Example API, database, email, and shutdown snippets could be copied into production without adapting routes, timeouts, secrets handling, or data-mutating behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test adapted code before deployment, especially routes that mutate or delete application data.
+
+Risk: Guidance that uses Go 1.22+ ServeMux features may be incompatible with projects pinned to older Go toolchains.
+
+Mitigation: Check `go version` before applying method-and-path patterns, `r.PathValue`, or wildcard routing, and use compatible routing patterns when the toolchain is older than Go 1.22.
+
+## Reference(s):
+
+- [Dependency Injection in Go](references/dependency-injection.md)
+- [Graceful Shutdown](references/graceful-shutdown.md)
+- [Go Project Structure](references/project-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Go code examples and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

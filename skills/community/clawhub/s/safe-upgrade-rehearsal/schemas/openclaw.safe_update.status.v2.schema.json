@@ -1,0 +1,406 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.status.v2.schema.json",
+  "title": "OpenClaw Safe Update Authoritative Preflight Status",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "phase",
+    "post_activation_e2e",
+    "verdict",
+    "reason",
+    "candidate_roots",
+    "evidence_bundle",
+    "next_step",
+    "decision_content",
+    "decision_digest",
+    "run_envelope",
+    "compatibility_view"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.status.v2"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "const": "read_only_openclaw_update_rehearsal"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "npm_registry_read_only"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "phase": {
+      "const": "preflight"
+    },
+    "post_activation_e2e": {
+      "const": "not_run"
+    },
+    "verdict": {
+      "enum": [
+        "blocked",
+        "ready_for_operator_plan"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidate_roots": {
+      "$ref": "#/$defs/candidateRoots"
+    },
+    "evidence_bundle": {
+      "$ref": "#/$defs/evidenceBundle"
+    },
+    "next_step": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision_content": {
+      "$ref": "#/$defs/decisionContent"
+    },
+    "decision_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "run_envelope": {
+      "type": "object",
+      "required": [
+        "generated_at",
+        "evidence_bundle"
+      ],
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_bundle": {
+          "$ref": "#/$defs/evidenceBundle"
+        }
+      },
+      "additionalProperties": false
+    },
+    "compatibility_view": {
+      "type": "object",
+      "required": [
+        "schema",
+        "authoritative",
+        "payload"
+      ],
+      "properties": {
+        "schema": {
+          "const": "openclaw.safe_update.compatibility_view.v1"
+        },
+        "authoritative": {
+          "const": false
+        },
+        "payload": {
+          "$ref": "#/$defs/legacyVerdict"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "evidenceBundle": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "candidateRoots": {
+      "type": "object",
+      "required": [
+        "current",
+        "target"
+      ],
+      "properties": {
+        "current": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "target": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "decisionContent": {
+      "type": "object",
+      "required": [
+        "schema",
+        "phase",
+        "verdict",
+        "reason_code",
+        "evidence_status",
+        "gate_decision",
+        "candidate_roots",
+        "production_apply_allowed",
+        "operator_approval",
+        "post_activation_e2e",
+        "next_step_code"
+      ],
+      "properties": {
+        "schema": {
+          "const": "openclaw.safe_update.decision.v1"
+        },
+        "phase": {
+          "const": "preflight"
+        },
+        "verdict": {
+          "enum": [
+            "blocked",
+            "ready_for_operator_plan"
+          ]
+        },
+        "reason_code": {
+          "enum": [
+            "required_evidence_failed",
+            "baseline_rehearsal_passed"
+          ]
+        },
+        "evidence_status": {
+          "type": "object",
+          "required": [
+            "runtime_truth",
+            "core_candidate_lock",
+            "installation_candidate_lock",
+            "installation_attestation",
+            "conservative_gates",
+            "synthetic_update",
+            "customization_compatibility",
+            "installation_coverage",
+            "post_upgrade_e2e_plan"
+          ],
+          "properties": {
+            "runtime_truth": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "core_candidate_lock": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "installation_candidate_lock": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "installation_attestation": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "conservative_gates": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "synthetic_update": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "customization_compatibility": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "installation_coverage": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            },
+            "post_upgrade_e2e_plan": {
+              "enum": [
+                "success",
+                "failed"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "gate_decision": {
+          "$ref": "#/$defs/gateDecision"
+        },
+        "candidate_roots": {
+          "$ref": "#/$defs/candidateRoots"
+        },
+        "production_apply_allowed": {
+          "const": false
+        },
+        "operator_approval": {
+          "const": false
+        },
+        "post_activation_e2e": {
+          "const": "not_run"
+        },
+        "next_step_code": {
+          "enum": [
+            "repair_and_rerun",
+            "prepare_operator_plan"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "gateDecision": {
+      "type": "object",
+      "required": [
+        "status",
+        "handling",
+        "required_gates",
+        "decision_digest"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "success",
+            "failed"
+          ]
+        },
+        "handling": {
+          "enum": [
+            "baseline",
+            "conservative",
+            "blocked"
+          ]
+        },
+        "required_gates": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "lifecycle-download-evidence",
+              "state-migration-rehearsal",
+              "rollback-evidence",
+              "plugin-sdk-contract",
+              "launcher-service-contract",
+              "permissions-contract",
+              "protocol-contract",
+              "channel-crypto-contract",
+              "environment-matched-rehearsal"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "decision_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "legacyVerdict": {
+      "type": "object",
+      "required": [
+        "schema",
+        "generated_at",
+        "effect",
+        "runtime_effect",
+        "external_effect",
+        "external_write_effect",
+        "production_apply_allowed",
+        "operator_approval",
+        "verdict",
+        "reason",
+        "evidence_bundle",
+        "next_step"
+      ],
+      "properties": {
+        "schema": {
+          "const": "openclaw.safe_update.verdict.v1"
+        },
+        "generated_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "const": "read_only_openclaw_update_rehearsal"
+        },
+        "runtime_effect": {
+          "const": "none"
+        },
+        "external_effect": {
+          "const": "npm_registry_read_only"
+        },
+        "external_write_effect": {
+          "const": "none"
+        },
+        "production_apply_allowed": {
+          "const": false
+        },
+        "operator_approval": {
+          "const": false
+        },
+        "verdict": {
+          "enum": [
+            "blocked",
+            "ready_for_operator_plan"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_bundle": {
+          "$ref": "#/$defs/evidenceBundle"
+        },
+        "next_step": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

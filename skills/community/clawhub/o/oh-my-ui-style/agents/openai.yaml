@@ -1,0 +1,5 @@
+interface:
+  display_name: "Oh My UI Style"
+  short_description: "先问整体平台还是单页，再在对话内出骨架与配色方案供点选"
+  brand_color: "#0E7490"
+  default_prompt: "用 $oh-my-ui-style 先问我是整体管理平台还是单个页面，再在对话里给出可点选的骨架与配色方案。"

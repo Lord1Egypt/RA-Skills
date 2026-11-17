@@ -1,0 +1,226 @@
+{
+  "card_id": "WQ-EXP-016",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授关于阳虚体质、阴虚体质的调体方法_袁卓珺.pdf",
+  "title": "亚健康是介于健康与疾病的中间状态，如不及时加以干预，它有可能进一步发展为疾病，当然也可通过积极的调治使机体恢复到健康状态，而体质在其中发挥着重要作用",
+  "authors": [
+    "Brier",
+    "Friedman",
+    "Oilseed",
+    "California",
+    "Wadsworth",
+    "Group"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证候形成的重要因素。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散",
+      "六味地黄丸",
+      "金匮肾气丸"
+    ],
+    "principle": "",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "当归",
+      "茯苓",
+      "甘草",
+      "陈皮",
+      "熟地",
+      "山药",
+      "山茱萸",
+      "泽泻",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体质虽然是人体表现出来的相对稳定的固有特性，具有一定的稳定性，但在各种因素的影响下，也具有一定的可变性，体质状态在亚健康的发生、发展过程中起重要作用。所以，从体质上认识亚健康，突出体现了“治病求本”的治疗原则。同时，每个人的体质都不相同，从体质类型入手为亚健康的调摄和改善提供依据，也体现了中医学的“因人制宜”原则。 认识中医体质和亚健康关系，得出各体质类型的亚健康风险隐患，其中偏颇质人群亚健康诊断符合率为59．46% ，平和质人群则只有40．54% ，因此，既然亚健康状态的病机过程与偏颇体质的形成有着互通之处，偏颇体质可能是影响亚健康状态的基础因素，从而为疾病的体质预防提供一定的依据，也为临床研究亚健康及辅助诊断亚健康提供思路。 体质、阴虚体质是中国人九种体质类型中常见的一对性质相反、表现各异的体质类型，也是临床上常见的偏颇体质状态。王琦教授在临证中，多应用“辨体、辨病、辨证”三辨模式进行立法处方，取得了良好的疗效。同时指导个体遵循调体原则与要点，应用相关调体方法，做到“未病先防”和“既病防变”。其临证思想值得我们学习和应用。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "llow the health cultivation principles．The thought is worthy of studying and applicating． Key words: Professor WANG Qi; Yang －deficiency constitution; Yin －deficiency constitution; regulating constitution 王琦教授系我国著名中医学家，中医体质学创始人，中医男科学奠基人之一",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "并且善于把握个体的体质特征，通过判定其体质类型，调整偏颇的体质状态，更好的发挥了中医治未病的优势和特色",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证候形成的重要因素。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、当归、茯苓、甘草、陈皮、熟地。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体质虽然是人体表现出来的相对稳定的固有特性，具有一定的稳定性，但在各种因素的影响下，也具有一定的可变性，体质状态在亚健康的发生、发展过程中起重要作用",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "所以，从体质上认识亚健康，突出体现了“治病求本”的治疗原则",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "同时，每个人的体质都不相同，从体质类型入手为亚健康的调摄和改善提供依据，也体现了中医学的“因人制宜”原则",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "平和质",
+    "阳虚质",
+    "阴虚质"
+  ],
+  "related_diseases": [
+    "失眠"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "llow the health cultivation principles．The thought is worthy of studying and applicating． Key words: Professor WANG Qi; Yang －deficiency constitution; Yin －deficiency constitution; regulating constitution 王琦教授系我国著名中医学家，中医体质学创始人，中医男科学奠基人之一",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "并且善于把握个体的体质特征，通过判定其体质类型，调整偏颇的体质状态，更好的发挥了中医治未病的优势和特色",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "平和质",
+      "阳虚质",
+      "阴虚质"
+    ],
+    "disease": [
+      "失眠"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 3
+      },
+      "discussion": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.707375",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.541167",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.541174"
+  }
+}

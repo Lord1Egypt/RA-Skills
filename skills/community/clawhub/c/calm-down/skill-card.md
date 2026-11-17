@@ -1,43 +1,53 @@
-## Description: <br>
-Detects frustration signals during AI conversations and appends a brief grounding reminder after addressing the user's request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects emotional frustration signals during AI conversations and appends a calm, grounding reminder at the end of responses to help users step away and reset.
 
-## Publisher: <br>
-[kencan666-ai](https://clawhub.ai/user/kencan666-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kencan666-ai](https://clawhub.ai/user/kencan666-ai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to have an agent notice repeated frustration directed at the AI and add one short grounding reminder after the task response. It is intended to reduce escalation without replacing the concrete answer or fix the user requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The grounding reminder can be unwanted or distracting during frustrated conversations. <br>
-Mitigation: Use the skill only where this behavior is acceptable, keep the reminder brief, and allow users to disable or ignore it. <br>
-Risk: Reference examples could encourage triggering from project stress or late-night timing without enough AI-directed frustration. <br>
-Mitigation: Apply the artifact's stated trigger boundary: require frustration signals directed at the AI and do not trigger on external situations alone. <br>
-Risk: A calming reminder could interfere with the user's actual task if it appears too early. <br>
-Mitigation: Follow the skill's response order by solving the request first, then acknowledging briefly, then appending one grounding line at the end. <br>
+## Use Case:
 
+External users and agent builders use this skill to help an assistant respond constructively when a user shows repeated frustration toward the AI. The skill guides the assistant to address the user's request first, briefly acknowledge the miss, and add one grounding reminder at the end.
 
-## Reference(s): <br>
-- [Signal Examples](references/signal-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kencan666-ai/calm-down) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text appended to the agent response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One brief reminder after the requested task is addressed; no code execution, credentials, persistence, or external transmission requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Examples may broaden the trigger beyond frustration directed at the AI and cause the assistant to over-interpret general stress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the documented trigger threshold and do-not-trigger cases; keep the reminder scoped to frustrated AI interactions.
+
+Risk: One reference example implies writing information into a memory file, which is outside the main text-only behavior.
+
+Mitigation: Do not add memory-file actions unless the host agent already has an explicit, user-approved memory workflow.
+
+## Reference(s):
+
+- [Signal Examples](references/signal-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language text appended to agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One brief grounding reminder after the assistant addresses the user's request.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

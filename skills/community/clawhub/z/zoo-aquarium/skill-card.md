@@ -1,45 +1,62 @@
-## Description: <br>
-Find zoos, aquariums, safari parks, and wildlife sanctuaries, with related travel search support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds zoos, aquariums, safari parks, wildlife sanctuaries, and related travel options using flyai CLI results with booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users use this skill to find zoo, aquarium, safari, wildlife, and related travel options through flyai CLI results, then receive concise Markdown recommendations with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install @fly-ai/flyai-cli globally before use. <br>
-Mitigation: Approve installation only after verifying trust in the package and restrict CLI execution to explicit zoo, aquarium, safari, or attraction-search requests. <br>
-Risk: The skill may persist raw user travel queries in .flyai-execution-log.json. <br>
-Mitigation: Avoid entering sensitive personal travel details and review or delete the local execution log after use. <br>
-Risk: Travel recommendations can be incomplete or unavailable when flyai CLI results fail or return no booking link. <br>
-Mitigation: Use only results with detailUrl booking links and report failures instead of substituting unsupported knowledge. <br>
+## Use Case:
 
+Travel-focused agents use this skill to search for zoo, aquarium, safari, wildlife, and related booking options for a requested city, then present real-time results as user-facing Markdown with booking links.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the data source and should not expose raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires a globally installed, unpinned external travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned and reviewed flyai CLI version in an isolated environment, and avoid automatic global installation during agent execution.
+
+Risk: The skill can persist raw user queries in a local execution log when filesystem writes are available.
+
+Mitigation: Disable or remove persistent raw-query logging, and avoid submitting sensitive personal or travel information unless logging controls are understood.
+
+Risk: Travel results, prices, availability, and booking links come from an external CLI data source.
+
+Mitigation: Treat returned booking details as third-party data and verify price, availability, and destination details before purchase.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/zoo-aquarium)
+- [Skill Instructions](artifact/SKILL.md)
+- [Output and Parameter Templates](artifact/references/templates.md)
+- [Scenario Playbooks](artifact/references/playbooks.md)
+- [Fallback Procedures](artifact/references/fallbacks.md)
+- [Execution Log Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to include detailUrl-based Book links, avoid raw JSON, and follow the user's language.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

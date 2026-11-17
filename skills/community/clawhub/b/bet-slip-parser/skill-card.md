@@ -1,43 +1,56 @@
-## Description: <br>
-Parses bet slips from text, natural language, or screenshots into structured JSON with stake, odds, bet type, selection, and sportsbook fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse bet slips from text, natural language, or screenshots into structured JSON with stake, odds, bet type, selection, sportsbook, and bet-leg details.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and agents use this skill to convert betting slip text, natural-language betting descriptions, or screenshots into reviewable structured JSON for logging and follow-up workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bet slips or screenshots can contain account numbers, balances, personal identifiers, or unrelated sensitive content. <br>
-Mitigation: Redact sensitive details before sharing inputs, and review the parsed JSON before using it for records. <br>
-Risk: Parsed betting details may be incomplete or inaccurate when the source text is ambiguous, cropped, blurry, or missing stake, odds, or sportsbook information. <br>
-Mitigation: Ask for missing critical fields, use null rather than guesses for unavailable values, and verify the result against the original slip before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to convert sportsbook confirmations, natural-language bet descriptions, or bet-slip screenshots into reviewable structured JSON before logging or downstream processing.
 
-## Reference(s): <br>
-- [Bet Slip Parser on ClawHub](https://clawhub.ai/rsquaredsolutions2026/bet-slip-parser) <br>
-- [AgentBets Bet Slip Parser Tutorial](https://agentbets.ai/guides/openclaw-bet-slip-parser-skill/) <br>
-- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Shell commands] <br>
-**Output Format:** [JSON object with optional clarification prompts and inline shell commands for validation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires vision-capable models for screenshots; asks for missing critical fields and asks the user to confirm parsed JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Bet slips can contain sensitive gambling details, including stake, odds, sportsbook, selections, and raw bet text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the parsed JSON before storing it, sharing it, or passing it to another skill.
+
+Risk: The skill may produce incomplete or ambiguous betting data when source text, screenshots, odds, stake, or sportsbook details are unclear.
+
+Mitigation: Use the skill's clarification flow and keep unavailable fields as null rather than guessing.
+
+## Reference(s):
+
+- [ClawHub Bet Slip Parser Skill Page](https://clawhub.ai/rsquaredsolutions2026/skills/bet-slip-parser)
+- [AgentBets OpenClaw Bet Slip Parser Tutorial](https://agentbets.ai/guides/openclaw-bet-slip-parser-skill/)
+- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON object with optional clarification prompts when critical fields are missing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes raw input, American odds, decimal odds, implied probability, per-leg entries for parlays, nulls for unavailable fields, and calculated payout when needed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, created 2026-03-24T23:11:12Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

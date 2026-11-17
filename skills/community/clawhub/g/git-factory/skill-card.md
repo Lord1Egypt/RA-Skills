@@ -1,39 +1,57 @@
-## Description: <br>
-Git Factory guides agents through provisioning and managing isolated Git worktrees for parallel coding tasks, branch cleanup, and pull request submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision and manage isolated git worktrees for individual coding tasks, enabling parallel branches and clean PR workflows without merge conflicts.
 
-## Publisher: <br>
-[spaztazim](https://clawhub.ai/user/spaztazim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spaztazim](https://clawhub.ai/user/spaztazim)
 
-## Use Case: <br>
-Developers and coding agents use this skill to isolate parallel repository changes in separate Git worktrees and branches, then stage, commit, push, and open pull requests from those branches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can use the operator's existing Git permissions to commit, push branches, and create pull requests. <br>
-Mitigation: Review the target repository, branch, and remote before running any supplied workflow scripts, and run them only in the intended worktree. <br>
-Risk: The referenced PowerShell scripts are not included in the package reviewed here. <br>
-Mitigation: Inspect any separately supplied provision, finish, list, or cleanup scripts before running them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to isolate coding tasks in per-task git worktrees, branches, and PR workflows so parallel changes can be reviewed and merged with fewer conflicts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with PowerShell and Git command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The referenced PowerShell scripts are not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the scripts come from a trusted source and review them before using this workflow.
+
+Risk: The documented workflow modifies git state and can push branches or open pull requests when those commands are selected.
+
+Mitigation: Run commands from the intended repository and review branch, commit, push, and pull request settings before execution.
+
+Risk: Multiple worktrees share the same git directory, and cleanup can be affected by branch reuse, lock contention, or open files.
+
+Mitigation: Use unique per-task branches, avoid concurrent heavy git operations when possible, and close processes before cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spaztazim/skills/git-factory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes worktree, branch, commit, PR, and cleanup conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

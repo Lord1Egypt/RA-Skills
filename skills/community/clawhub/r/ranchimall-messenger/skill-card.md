@@ -1,42 +1,61 @@
-## Description: <br>
-Provides command-line workflows for FLO blockchain messaging, contacts, mail, groups, public-key lookup, FLO and token transfers, transaction history, multisig operations, Bitcoin queries, cryptographic utilities, and local key-value storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RanchiMall Messenger lets an agent operate FLO messaging, contacts, mail, groups, public-key lookup, FLO and FLO-token transfers, Bitcoin queries, multisig workflows, and local key-value storage through Node.js CLI scripts.
 
-## Publisher: <br>
-[void-57](https://clawhub.ai/user/void-57) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[void-57](https://clawhub.ai/user/void-57)
 
-## Use Case: <br>
-External users and developers use this skill to operate a decentralized FLO messenger and related blockchain utilities from an agent workflow. It can read and send messages, manage local contacts and groups, query balances and history, and initiate real FLO, token, multisig, or pre-signed Bitcoin broadcast operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles wallet secrets and requires FLO_PRIVATE_KEY for most FLO messenger and transaction operations. <br>
-Mitigation: Set wallet keys only through secure environment variables, never paste private keys into chat, and use a dedicated low-value wallet until the reported secret-handling issues are fixed. <br>
-Risk: FLO, FLO token, and multisig send actions can move funds or write public on-chain data irreversibly. <br>
-Mitigation: Review recipient addresses, amounts, token names, memos, and transaction intent before approving any send, bulk transfer, multisig, broadcast, or destructive storage command. <br>
-Risk: The security summary reports unsafe logging, command-line secret handling, plaintext group-key cache, and broadcast confirmation gaps. <br>
-Mitigation: Avoid production keys or real funds for sensitive workflows until those gaps are remediated, and inspect local cache files and command output for exposed secrets. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage decentralized FLO messenger workflows and blockchain operations from a local Node.js environment. It is intended for deliberate wallet, messaging, token, multisig, and local-cache tasks where the operator controls the private key environment.
 
-## Reference(s): <br>
-- [RanchiMall Messenger on ClawHub](https://clawhub.ai/void-57/ranchimall-messenger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with command examples, transaction or query results, and local JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some actions require FLO_PRIVATE_KEY and may create or update contacts.json, groups_cache.json, multisig_cache.json, or idb_data JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: server release metadata; package.json reports 1.0.2) <br>
+Risk: The skill can handle FLO private keys and related secrets through environment variables, command arguments, and command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep FLO_PRIVATE_KEY out of chat, avoid commands that pass --privkey, --privkeys, --pin, --secret, or --shares, and treat secure-privkey output as sensitive.
+
+Risk: FLO, FLO-token, and multisig send operations can move funds or tokens irreversibly on-chain.
+
+Mitigation: Install and run the skill only when the operator deliberately wants an agent to perform wallet or transfer actions, and review transaction commands before execution.
+
+Risk: The skill writes local cache files and the security evidence flags JSON file access outside the stated storage area.
+
+Mitigation: Restrict access to local cache files and review or fix IDB path handling before using the skill with untrusted database names.
+
+Risk: On-chain memos and custom data are public once written.
+
+Mitigation: Do not include private, regulated, or sensitive content in transaction memos or blockchain data payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/void-57/skills/ranchimall-messenger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also initiate network API calls, local cache updates, signed messages, and blockchain transactions when an agent executes the described commands.]
+
+## Skill Version(s):
+
+1.0.21 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

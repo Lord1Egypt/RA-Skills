@@ -1,4 +1,4 @@
-# 项目吸收与原创化融合
+# Integration of project absorption and originality
 
 Project absorption workflow for extracting useful ideas from reference systems and redesigning them into original, project-native improvements.
 
@@ -6,7 +6,7 @@ Project absorption workflow for extracting useful ideas from reference systems a
 
 - ID: `fec-alchemy`
 - Category: `project-evolution`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-alchemy/SKILL.md`
 
 ## Description

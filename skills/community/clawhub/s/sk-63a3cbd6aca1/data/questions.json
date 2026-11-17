@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": 1, "group": "wood",
+      "text": "周五晚上，朋友临时放了鸽子，多出来一整个自由的夜晚。你会——",
+      "options": [
+        {"text": "太好了，正好把攒了很久的那部片看完，谁也别约我", "weights": {"oak": 3}},
+        {"text": "心血来潮，当场去搜最后一班夜车和还没打烊的摊子", "weights": {"maple": 3}},
+        {"text": "顺手约那个最近有点不对劲的朋友出来坐坐", "weights": {"cherry": 2, "hawthorn": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 2, "group": "wood",
+      "text": "群里两个人吵起来了，各有各的理。你会——",
+      "options": [
+        {"text": "把两边说过的话翻出来捋一遍，看看到底差在哪", "weights": {"walnut": 3}},
+        {"text": "看不下去了，直接说破：问题根本不在你们吵的这个", "weights": {"ash": 3}},
+        {"text": "一句话不说，但每个人的立场和底牌都记下来了", "weights": {"hawthorn": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 3, "group": "wood",
+      "text": "收拾东西时，翻出三年前自己写下的计划。你会——",
+      "options": [
+        {"text": "看很久，然后给三年后的自己再写一段", "weights": {"yew": 3}},
+        {"text": "拍照发到群里：看看我当年多敢想", "weights": {"cherry": 2, "birch": 1}},
+        {"text": "看完就收起来。翻篇", "weights": {"birch": 2, "ash": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 4, "group": "wood",
+      "text": "大考或交付的前一夜，你最像哪一种——",
+      "options": [
+        {"text": "计划早就拆好了，今晚只做清单上的第 7 项", "weights": {"oak": 3}},
+        {"text": "灵感偏偏这时候来，越夜越清醒", "weights": {"yew": 2, "hawthorn": 1}},
+        {"text": "边骂边写，骂完也就写完了", "weights": {"ash": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 5, "group": "wood",
+      "text": "朋友聚会，你通常是——",
+      "options": [
+        {"text": "张罗的那个：订位、对时间、记着谁不吃香菜", "weights": {"cherry": 3, "oak": 1}},
+        {"text": "话不多，但一开口就在点子上的那个", "weights": {"walnut": 3}},
+        {"text": "玩到一半不见了的那个——去看店里的猫了", "weights": {"maple": 2, "birch": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 6, "group": "wood",
+      "text": "你的备忘录里，最多的是——",
+      "options": [
+        {"text": "分类清晰的目标和清单", "weights": {"oak": 2, "yew": 1}},
+        {"text": "突然冒出来的点子，落灰也没删", "weights": {"walnut": 3}},
+        {"text": "别人随口提过的喜好和忌口", "weights": {"cherry": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 7, "group": "wood",
+      "text": "撞见不太公平的事，你的第一反应是——",
+      "options": [
+        {"text": "「这不对。」然后人已经站出去了", "weights": {"ash": 3}},
+        {"text": "先弄清规则的漏洞在哪，再决定从哪进去", "weights": {"walnut": 2, "yew": 1}},
+        {"text": "表面没动静，后手已经想到第三步", "weights": {"hawthorn": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 8, "group": "wood",
+      "text": "关于「十年后的自己」——",
+      "options": [
+        {"text": "有很具体的画面，具体到住在哪个城市", "weights": {"yew": 3}},
+        {"text": "想不了那么远，先把眼前这阵子过好", "weights": {"birch": 2, "oak": 1}},
+        {"text": "画面具体不了，但确定一件事：肯定不在原地", "weights": {"maple": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 9, "group": "wood",
+      "text": "低落的时候，哪种安慰对你最管用——",
+      "options": [
+        {"text": "什么都不问，就在旁边待着", "weights": {"hawthorn": 2}},
+        {"text": "直接跟我讲道理，讲透了我自己就好了", "weights": {"ash": 3}},
+        {"text": "拖我出去吃顿好的，走一走", "weights": {"cherry": 2, "maple": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 10, "group": "wood",
+      "text": "你的收藏夹或抽屉里，最多的是——",
+      "options": [
+        {"text": "用不着但舍不得扔的旧东西", "weights": {"yew": 3}},
+        {"text": "开了个头的半成品，全留着", "weights": {"birch": 2, "walnut": 1}},
+        {"text": "票根、包装纸这些没用的纪念品", "weights": {"maple": 2, "cherry": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 11, "group": "wood",
+      "text": "朋友这句形容，最像说你——",
+      "options": [
+        {"text": "「你答应了的事，就不会变」", "weights": {"oak": 3}},
+        {"text": "「你嘴上不说，心里门儿清」", "weights": {"hawthorn": 3}},
+        {"text": "「跟你出门，永远不会无聊」", "weights": {"maple": 2, "birch": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 12, "group": "core",
+      "text": "让你答应做一件没有报酬的事，真正说服你的是哪句——",
+      "options": [
+        {"text": "「这事做成了，会改变点什么」", "weights": {"star": 3}},
+        {"text": "「正好有人在等着用」", "weights": {"firefly": 3}},
+        {"text": "「到现在还没人做成过」", "weights": {"thunder": 2, "tide": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 13, "group": "core",
+      "text": "哪句话更容易把你点燃——",
+      "options": [
+        {"text": "「这不是你一直想要的吗」", "weights": {"star": 2, "thunder": 1}},
+        {"text": "「他们都说这不行」", "weights": {"thunder": 3}},
+        {"text": "「这个还没人试过」", "weights": {"tide": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 14, "group": "core",
+      "text": "半夜让你睡不着的，更可能是——",
+      "options": [
+        {"text": "白天那句话说错了一个词，还在脑子里回放", "weights": {"mist": 3}},
+        {"text": "想了半年的事，今晚突然想通了一步", "weights": {"tide": 2, "star": 1}},
+        {"text": "答应别人的那件事，还没做完", "weights": {"firefly": 2, "hearth": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 15, "group": "core",
+      "text": "只能留一样东西给十年后的人，你留——",
+      "options": [
+        {"text": "一件亲手做到最好的东西", "weights": {"hearth": 3}},
+        {"text": "一段认真写下来的想法", "weights": {"mist": 2, "star": 1}},
+        {"text": "一沓一起做过傻事的合照", "weights": {"firefly": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 16, "group": "core",
+      "text": "已经放弃的事，又被你捡了起来。通常是因为——",
+      "options": [
+        {"text": "突然想到了当年没想到的做法", "weights": {"tide": 2, "thunder": 1}},
+        {"text": "发现自己其实放不下", "weights": {"star": 2, "hearth": 1}},
+        {"text": "有人激你：「当时你要是继续就好了」", "weights": {"thunder": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 17, "group": "core",
+      "text": "一件事要你做很久。让你留下来的前提是——",
+      "options": [
+        {"text": "它每天都露一点新东西给你", "weights": {"tide": 3}},
+        {"text": "它在慢慢变成你想成为的样子", "weights": {"star": 2, "hearth": 1}},
+        {"text": "一起做的人还没散", "weights": {"firefly": 2, "hearth": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 18, "group": "core",
+      "text": "看到特别好的句子、画面或旋律，你会——",
+      "options": [
+        {"text": "存起来，想着有一天自己也做一个", "weights": {"mist": 2, "star": 1}},
+        {"text": "发给那个一定懂的人", "weights": {"firefly": 2, "mist": 1}},
+        {"text": "反复看很多遍，谁也不告诉", "weights": {"hearth": 2, "mist": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 19, "group": "core",
+      "text": "你最近一次熬夜，是因为——",
+      "options": [
+        {"text": "做出来的东西，自己越看越满意", "weights": {"mist": 2, "hearth": 2}},
+        {"text": "还有人在等我的东西", "weights": {"firefly": 3}},
+        {"text": "想弄明白下一件事，真的停不下来", "weights": {"tide": 3, "star": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 20, "group": "len",
+      "text": "把刚发生的一件事讲给朋友听，你通常——",
+      "options": [
+        {"text": "三句话讲完，细节等人来问", "weights": {"short": 3}},
+        {"text": "该讲的都讲到，不快不慢", "weights": {"mid": 3}},
+        {"text": "手舞足蹈，比当事人还激动", "weights": {"long": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 21, "group": "len",
+      "text": "在群聊里，你更像——",
+      "options": [
+        {"text": "半天不说话，一开口就是关键信息", "weights": {"short": 3}},
+        {"text": "该说说、该水水，节奏跟大家一起", "weights": {"mid": 3}},
+        {"text": "表情包管够、一刷一长串的那个", "weights": {"long": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 22, "group": "len",
+      "text": "你的开心或难过，别人——",
+      "options": [
+        {"text": "得很熟才看得出来", "weights": {"short": 3}},
+        {"text": "聊两句就能感觉到", "weights": {"mid": 3}},
+        {"text": "当场就看出来了，根本藏不住", "weights": {"long": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 23, "group": "len",
+      "text": "开会或上课的时候——",
+      "options": [
+        {"text": "能不发言就不发言，被点到才说，说了就在点上", "weights": {"short": 3}},
+        {"text": "有想法会说，没想法就安静听", "weights": {"mid": 3}},
+        {"text": "手举得比脑子快", "weights": {"long": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 24, "group": "flex",
+      "text": "计划被彻底打乱的那天——",
+      "options": [
+        {"text": "坏就坏了，顺势做点没安排的事", "weights": {"light": 3}},
+        {"text": "烦十分钟，然后把新计划改出来", "weights": {"supple": 3}},
+        {"text": "打乱的部分按原样补回来，一件都不能少", "weights": {"firm": 2, "hard": 1}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 25, "group": "flex",
+      "text": "被人当面否定的时候——",
+      "options": [
+        {"text": "「哦。」然后是真的翻篇了", "weights": {"light": 3}},
+        {"text": "当场没说话，回去把它做了出来", "weights": {"supple": 2, "firm": 1}},
+        {"text": "当场就顶回去了", "weights": {"hard": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 26, "group": "flex",
+      "text": "复盘一段失败的经历，你的结论更像——",
+      "options": [
+        {"text": "「本来也不是非这样不可」", "weights": {"light": 3}},
+        {"text": "「方法不对，下次换一个」", "weights": {"supple": 1, "firm": 2}},
+        {"text": "「说到底，还是我不够狠」", "weights": {"hard": 3}}
+      ],
+      "default": 1
+    },
+    {
+      "id": 27, "group": "flex",
+      "text": "一件做了很久的事，第 N 次失败之后——",
+      "options": [
+        {"text": "先放一放，缘分到了再捡起来", "weights": {"light": 3}},
+        {"text": "歇两天，换个姿势再来", "weights": {"supple": 3}},
+        {"text": "不换姿势，接着来", "weights": {"firm": 1, "hard": 2}}
+      ],
+      "default": 1
+    }
+  ]
+}

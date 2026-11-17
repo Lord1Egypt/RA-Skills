@@ -1,41 +1,57 @@
-## Description: <br>
-Extracts text from images through OpenRouter using the Baidu Qianfan OCR model, with support for image URLs, local files, and custom OCR prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from image URLs or local image files through OpenRouter using a configurable OCR model.
 
-## Publisher: <br>
-[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong)
 
-## Use Case: <br>
-Developers and agents use this skill to run OCR on selected images and receive extracted text, optionally with an image description for additional context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, prompts, and image URLs are sent to OpenRouter or the configured OCR API endpoint. <br>
-Mitigation: Use the skill only with data approved for third-party processing; avoid confidential documents, IDs, internal screenshots, internal URLs, and regulated data unless that processing is acceptable. <br>
-Risk: The skill requires an OpenRouter API key read from a documented local secrets path or environment variable. <br>
-Mitigation: Use a scoped API key you control, keep it out of version control, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+Developers and agent users can invoke this skill to run OCR on image URLs or local image files and receive extracted text, with optional prompt customization for the OCR request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/free-ocr-zc) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Console text with OCR results and optional image description] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenRouter API key and sends selected image content or image URLs to the configured OCR endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Local images and image URLs can be sent to OpenRouter or another configured provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images approved for that provider, and avoid sensitive documents unless the data handling has been reviewed.
+
+Risk: The API key is used when making remote OCR requests.
+
+Mitigation: Keep the key scoped and limited, store it outside source control, and rotate it if exposure is suspected.
+
+Risk: A configurable OCR_BASE_URL can redirect requests and credentials to an unexpected endpoint.
+
+Mitigation: Do not allow untrusted users or wrappers to set OCR_BASE_URL, and review the configured endpoint before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/skills/free-ocr-zc)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Plain text OCR output with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenRouter API key and may use a configurable OCR model and base URL.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

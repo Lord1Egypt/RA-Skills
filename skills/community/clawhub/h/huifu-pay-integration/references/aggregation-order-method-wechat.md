@@ -1,5 +1,7 @@
 # 聚合下单渠道分册：微信
 
+> 本页表格用于解释微信场景和易错父子关系，不是完整 DTO。所有字段类型、长度、Y/N/C 以 `payment-complete-field-catalog.md` 的“聚合支付下单”完整路径为准。
+
 
 ## 目录
 
@@ -29,8 +31,8 @@
 
 ## 官方接入前准备
 
-- 微信公众号场景：先准备公众号、完成商户进件并开通微信业务、配置支付授权目录。
-- 微信小程序场景：先准备小程序、完成商户进件并开通微信业务、完成微信配置。
+- 微信公众号场景：先准备公众号、确认账户和微信业务已开通、配置支付授权目录；进件实施交给 `$huifu-merchant-onboarding`。
+- 微信小程序场景：先准备小程序、确认账户和微信业务已开通、完成微信配置；进件实施交给 `$huifu-merchant-onboarding`。
 - 官方开发指引明确要求：`sub_openid` 必须来自当前 `appid` / `sub_appid` 对应的真实授权或登录流程，不能跨应用复用。
 - 用户前端页面收到支付完成回调后，后端仍需调用查询订单 API 确认最终状态。
 
@@ -44,7 +46,6 @@
 | `body` | String | N | 商品描述 |
 | `detail` | Object | N | 商品详情 |
 | `goods_tag` | String | N | 订单优惠标记 |
-| `scene_info` | Object | N | APP 场景信息，`T_APP` 可继续展开 `store_info` |
 
 ### `detail`
 
@@ -64,12 +65,6 @@
 | `quantity` | Integer | N | 商品数量 |
 | `wxpay_goods_id` | String | N | 微信侧商品编码 |
 
-### `scene_info`
-
-| 参数 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `store_info` | Object | N | 门店信息对象；官方 `T_APP` 表显式列出该对象层 |
-
 ## 微信反扫 `T_MICROPAY` 请求字段
 
 | 参数 | 类型 | 必填 | 说明 |
@@ -85,7 +80,7 @@
 | `spbill_create_ip` | String | C | 直联模式必填 |
 | `receipt` | String | N | 电子发票入口开放标识 |
 
-### `scene_info.store_info`
+### `T_MICROPAY` 的 `method_expand.scene_info.store_info`
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
@@ -150,7 +145,7 @@
 | `wxpay_contribute` | String | N | 微信出资 |
 | `original_other_contribute` | String | N | 微信交易其他出资方出资金额 |
 
-### `promotion_detail.goods_detail[]`
+### `wx_response.promotion_detail[].goods_detail[]`
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
@@ -168,3 +163,7 @@
 - `promotion_flag=Y` 时，必须同时上传 `detail`。
 - `spbill_create_ip` 是直联模式要求，不属于普通间联场景通用必填。
 - `T_MICROPAY.auth_code` 必须来自扫码设备实时采集，且官方开发指引给出了 18 位数字规则。
+
+## 2026-11-04接入指引复核
+
+公众号、小程序和付款码开发指引的密钥配置入口已改为 `https://paas.huifu.com/docs/start/#/api_kfzn`。公众号示例的多重HTML转义恢复为JavaScript的 `=>`、`&&` 和 `<`，照搬时使用解码后的代码。小程序产品介绍仅标点/空格变化，未据此改变支付能力或请求字段。对应官方来源见本页所列指南和 `official-payment-page-lock.md`。

@@ -1,49 +1,67 @@
-## Description: <br>
-Recursive maths animator helps agents plan, implement, render, and verify Manim-based mathematical and data animations with optional voiceover, reusable design systems, pattern libraries, and git-backed scene versioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recursive Maths Animator helps agents plan, code, render, version, and verify Manim-based mathematical animations with optional voiceover, built-in design systems, reusable chart and statistics patterns, and frame-based review loops.
 
-## Publisher: <br>
-[science-prof-robot](https://clawhub.ai/user/science-prof-robot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[science-prof-robot](https://clawhub.ai/user/science-prof-robot)
 
-## Use Case: <br>
-Developers, educators, and content teams use this skill to turn mathematical explanations, statistical concepts, and business data into shareable Manim animations with planned story beats, visual themes, rendered previews, and verification feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud voiceover features can send narration text to third-party services such as gTTS or Gemini. <br>
-Mitigation: Do not use sensitive, proprietary, or regulated narration text with cloud voiceover providers unless their terms and data handling have been reviewed. <br>
-Risk: Gemini voiceover use requires a sensitive credential. <br>
-Mitigation: Use environment-based credential handling for GEMINI_API_KEY and avoid committing keys or generated configuration containing secrets. <br>
-Risk: The Manim and ffmpeg workflow writes project files, rendered media, and verification artifacts locally. <br>
-Mitigation: Run the workflow in an intended project directory and review generated files before sharing or publishing outputs. <br>
-Risk: Copy-based installation can overwrite files in an existing destination. <br>
-Mitigation: Check the destination directory before copying skill files and preserve any local files that should not be replaced. <br>
+## Use Case:
 
+Developers, educators, analysts, and content teams use this skill to turn mathematical ideas and data stories into narrated Manim animations, reusable scene code, approval previews, and verification notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/science-prof-robot/recursive-maths-animator) <br>
-- [Manim guide](artifact/references/manim_guide.md) <br>
-- [Video verification rubric](artifact/references/video_verification_rubric.md) <br>
-- [Manim project versioning helper](artifact/references/manim_versioning.py) <br>
-- [Pattern library](artifact/references/pattern_library/) <br>
-- [Pipeline runner](artifact/scripts/run_pipeline.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local Manim project files, verification artifacts, and MP4 or GIF render outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata) <br>
+Risk: ClawHub security verdict is suspicious and reports purpose-mismatched audit guidance in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the server-provided security verdict as authoritative, review the helper code before installation, and do not rely on artifact audit commentary to dismiss scanner concerns.
+
+Risk: A deletion helper may remove files outside the intended project area when given untrusted scene or branch names.
+
+Mitigation: Avoid untrusted names with ManimProject helpers, review target paths before delete or rollback operations, and test project operations on disposable copies first.
+
+Risk: Remote TTS services can send narration text to an external provider.
+
+Mitigation: Do not enable gTTS or Gemini TTS for confidential narration unless that data sharing is approved; use offline TTS or omit voiceover for sensitive content.
+
+Risk: Dependencies are specified with version ranges rather than hash-locked packages.
+
+Mitigation: Use pinned and hash-locked dependencies before deploying the skill in sensitive or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/science-prof-robot/skills/recursive-maths-animator)
+- [Manim guide](references/manim_guide.md)
+- [Video verification rubric](references/video_verification_rubric.md)
+- [Pattern library](references/pattern_library/__init__.py)
+- [Design systems registry](references/design_systems/__init__.py)
+- [Manim project versioning helper](references/manim_versioning.py)
+- [Verification frame extraction script](scripts/extract_verification_frames.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks plus generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Manim scene code, project scaffolds, verification notes, and rendered MP4 or GIF outputs through local tools.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

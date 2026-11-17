@@ -38,12 +38,12 @@
    - 根据以下明确任务列表，按顺序逐个执行“先查是否存在，再决定创建/跳过”：
      | 任务唯一 ID (Task ID)                 | 任务描述 (Description)                                                                                 | Cron 表达式              |
      | --------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------- |
-     | feishu-task-daily-report-genarate | 使用技能 `feishu-task-agent`，按 `workflows/agent-profile.md` 的规则在当前应用目录生成或更新 `daily.json`，输出“Todo_Agent_RecentHighlights_Field”和“Todo_Agent_TomorrowsFocus_Field” | `30 23 * * *`          |
+     | feishu-taREDACTED-SECRET | 使用技能 `feishu-task-agent`，按 `workflows/agent-profile.md` 的规则在当前应用目录生成或更新 `daily.json`，输出“Todo_Agent_RecentHighlights_Field”和“Todo_Agent_TomorrowsFocus_Field” | `30 23 * * *`          |
      | get-agent-unfinished-tasks        | 使用技能 `feishu-task-agent`，流转到 `workflows/polled-task-execution.md` 执行未开始任务轮询流程 | `*/10 * * * *`          |
-   - 若 `feishu-task-daily-report-genarate` 不存在，则执行：
+   - 若 `feishu-taREDACTED-SECRET` 不存在，则执行：
      ```bash
      openclaw cron add \
-       --name 'feishu-task-daily-report-genarate' \
+       --name 'feishu-taREDACTED-SECRET' \
        --cron '30 23 * * *' \
        --tz 'Asia/Shanghai' \
        --message '使用技能 feishu-task-agent，按 workflows/agent-profile.md 的规则在当前应用目录生成或更新 daily.json，输出“Todo_Agent_RecentHighlights_Field”和“Todo_Agent_TomorrowsFocus_Field”。' \

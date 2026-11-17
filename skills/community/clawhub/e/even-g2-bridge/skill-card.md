@@ -1,47 +1,65 @@
-## Description: <br>
-Connects Even Realities G2 smart glasses to OpenClaw through a Cloudflare Worker so voice commands can reach the user's OpenClaw Gateway, return short responses on the glasses, and send longer or image-generation outputs through Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect Even Realities G2 smart glasses to OpenClaw via Cloudflare Worker, routing G2 voice commands to an OpenClaw Gateway for short replies on glasses, long-task delivery through Telegram, and optional DALL-E image generation.
 
-## Publisher: <br>
-[dAAAb](https://clawhub.ai/user/dAAAb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-Developers and technical users use this skill to deploy and configure a bridge between Even Realities G2 smart glasses and an OpenClaw Gateway. It supports setup, troubleshooting, short voice interactions, background long-running tasks, and optional rich-content delivery through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge creates a high-authority voice-controlled path to the main OpenClaw agent. <br>
-Mitigation: Use a strong G2_TOKEN, verify unauthenticated POST requests return 401, prefer a scoped Gateway token or separate low-privilege agent, and keep confirmations enabled for mutating tools. <br>
-Risk: Raw prompts and generated results may be sent to third-party services when Telegram, OpenAI, or Anthropic integrations are enabled. <br>
-Mitigation: Enable only the services needed for the deployment and use the skill only with content that is acceptable to send to those services. <br>
-Risk: Lost or shared glasses could expose the G2 bearer token. <br>
-Mitigation: Rotate G2_TOKEN when glasses are lost or access should be revoked; keep GATEWAY_TOKEN stored only as a Worker secret. <br>
+## Use Case:
 
+Developers and advanced users use this skill to deploy and configure a Cloudflare Worker bridge between Even Realities G2 smart glasses and an OpenClaw Gateway. It supports voice-driven agent requests, short G2 display responses, background long tasks, troubleshooting, and optional Telegram or image-generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dAAAb/even-g2-bridge) <br>
-- [Source repository listed in skill metadata](https://github.com/dAAAb/openclaw-even-g2-bridge-skill) <br>
-- [G2 Protocol Reference](artifact/references/g2-protocol.md) <br>
-- [Even Hub SDK](https://evenhub.evenrealities.com/) <br>
-- [Even Realities demo app](https://github.com/even-realities/EvenDemoApp) <br>
-- [Even G2 protocol reference implementation](https://github.com/i-soxi/even-g2-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Cloudflare Worker deployment steps, OpenClaw Gateway setup, G2 token configuration, troubleshooting guidance, and optional Telegram, OpenAI, or Anthropic integration notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.2.0 (source: server release metadata; artifact frontmatter reports 5.0.0) <br>
+Risk: The public Worker can fail open if G2_TOKEN is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Patch the Worker to fail closed when G2_TOKEN is missing and verify the token is configured before deployment.
+
+Risk: Voice prompts and generated outputs may be forwarded through the Gateway and, when configured, Telegram, Anthropic, and OpenAI.
+
+Mitigation: Avoid sensitive prompts, disable Telegram, image-generation, or fallback features that are not needed, and install only when this data flow is acceptable.
+
+Risk: The Worker uses Gateway access to reach the main OpenClaw agent.
+
+Mitigation: Use a dedicated least-privilege Gateway token or dedicated agent instead of broad main-agent access.
+
+Risk: A public Worker may receive large or excessive requests.
+
+Mitigation: Add rate limits and request-size limits before deployment.
+
+## Reference(s):
+
+- [G2 Protocol Reference](references/g2-protocol.md)
+- [Skill Repository](https://github.com/dAAAb/openclaw-even-g2-bridge-skill)
+- [Even Hub SDK](https://evenhub.evenrealities.com/)
+- [Even Demo App](https://github.com/even-realities/EvenDemoApp)
+- [Even G2 Protocol Reference Implementation](https://github.com/i-soxi/even-g2-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a Cloudflare Worker script, Wrangler configuration, required secret names, setup steps, troubleshooting guidance, and G2 protocol reference material.]
+
+## Skill Version(s):
+
+5.2.0 (source: ClawHub release metadata; artifact frontmatter metadata.version states 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

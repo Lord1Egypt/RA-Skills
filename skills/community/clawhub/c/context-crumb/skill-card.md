@@ -1,40 +1,57 @@
-## Description: <br>
-Context Crumb helps agents cheaply inspect, summarize, and load large prose-heavy local files before deciding what raw source text to read. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ContextCrumb helps agents cheaply inspect and summarize large local prose-heavy files before deciding what raw text to load into context.
 
-## Publisher: <br>
-[yuchen20](https://clawhub.ai/user/yuchen20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuchen20](https://clawhub.ai/user/yuchen20)
 
-## Use Case: <br>
-Developers and agents use Context Crumb to triage large local natural-language files, such as Markdown docs, notes, transcripts, issue threads, and prose-heavy logs, before loading raw text into LLM context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compressed output can omit exact wording, syntax, or commands and may mislead if treated as source text. <br>
-Mitigation: Use Context Crumb for orientation only, then inspect the original file before quoting, editing, copying commands, or making sensitive decisions. <br>
-Risk: The CLI processes local documents that may contain sensitive content. <br>
-Mitigation: Install and run it only when comfortable processing those documents locally, and rely on the original source for sensitive or exact text. <br>
+## Use Case:
 
+Developers and agent operators use this skill to triage large Markdown documents, notes, transcripts, issue threads, research dumps, and narrative logs before loading raw source text into an LLM context window.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuchen20/context-crumb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compressed output is for orientation; exact quoting, commands, and edits require checking the original source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Installing or running the ContextCrumb CLI from an unpinned package source could introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted source, pin ContextCrumb to a reviewed version when practical, and use a vetted environment.
+
+Risk: Compressed output may omit wording, punctuation, or details needed for exact edits, quotations, commands, or configuration changes.
+
+Mitigation: Use compressed output only for orientation, then inspect the raw source around relevant sections before quoting, editing, or copying exact syntax.
+
+Risk: Running the CLI with broad filesystem access can expose more local files than needed for the document being compressed.
+
+Mitigation: Run ContextCrumb with only the file access needed for the target document.
+
+## Reference(s):
+
+- [ContextCrumb ClawHub Skill Page](https://clawhub.ai/yuchen20/skills/context-crumb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compressed output is for orientation and triage, not authoritative quotation, exact syntax, or exact wording.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

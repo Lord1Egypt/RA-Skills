@@ -1,0 +1,27 @@
+{
+  "_note": "JSON API 型平台适配模板。复制本文件的内容到 sources.json 的 sources 数组，改掉 url / items_path / fields 即可。",
+  "_when": "适用于有公开 JSON 接口的平台（多数政务平台的分页列表接口）",
+  "_steps": [
+    "1. 打开目标平台的公告列表页，F12 → Network，翻页，找返回公告数据的 XHR 请求",
+    "2. 复制该请求 URL；若请求为 POST，改用 html 模式模板（本 skill 的 json 模式仅支持 GET）",
+    "3. 把日期参数替换成 {DATE}（本 skill 会自动替换为 YYYY-MM-DD）",
+    "4. 按返回 JSON 的实际层级填 items_path，如 data.list / result.records / rows",
+    "5. 按实际字段名填 fields 映射"
+  ],
+  "_compliance": "采集前请确认目标站点的 robots.txt 与内容版权声明；仅采集公开可访问页面，控制请求频率，不要绕过鉴权。",
+
+  "name": "my_platform_json",
+  "mode": "json",
+  "url": "https://YOUR-DOMAIN/api/notice/list?date={DATE}&pageSize=50",
+  "headers": {
+    "User-Agent": "Mozilla/5.0"
+  },
+  "items_path": "data.list",
+  "fields": {
+    "id": "id",
+    "title": "title",
+    "url": "url",
+    "publish_time": "publishTime"
+  },
+  "url_prefix": "https://YOUR-DOMAIN/notice/detail?id="
+}

@@ -1,39 +1,55 @@
-## Description: <br>
-Uses VolcEngine's AI video API to generate videos from text prompts and query video generation task status and results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VolcEngine Video lets agents submit text-to-video generation requests to VolcEngine and query task status and result URLs.
 
-## Publisher: <br>
-[ZzBpaq123](https://clawhub.ai/user/ZzBpaq123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzbpaq123](https://clawhub.ai/user/zzbpaq123)
 
-## Use Case: <br>
-Developers and creators use this skill to submit text-to-video prompts to VolcEngine and retrieve generated video task results through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: VolcEngine API credentials can be exposed if config.json is shared or committed with real keys. <br>
-Mitigation: Keep config.json private, store real keys outside shared repositories when possible, and rotate keys if they are exposed. <br>
-Risk: Video prompts and task identifiers are sent to a third-party API and may contain sensitive, personal, regulated, or confidential content. <br>
-Mitigation: Avoid sending sensitive content to VolcEngine unless it is approved for that service and use case. <br>
+## Use Case:
 
+Developers and agent users use this skill to create AI videos from text prompts through VolcEngine and to check submitted generation tasks for completion and output URLs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text and JSON API responses containing task IDs, task status, and video URLs when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VolcEngine access_key and secret_key configuration; sends prompts and task IDs to VolcEngine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can send prompts and task IDs to an external paid VolcEngine API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts before use and avoid sending private, proprietary, or personal information unless VolcEngine processing is intended.
+
+Risk: The skill asks users to store VolcEngine API credentials in a local config.json file.
+
+Mitigation: Use a dedicated low-privilege VolcEngine key with quotas, keep secrets out of the skill directory where possible, and do not commit or share config.json.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzbpaq123/skills/volcengine-video)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command-line usage and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns task IDs for submitted videos and task status or video URLs for completed jobs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

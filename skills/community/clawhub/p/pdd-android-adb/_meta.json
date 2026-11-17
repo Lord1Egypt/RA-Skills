@@ -1,0 +1,5 @@
+{
+  "slug": "pdd-android-adb",
+  "version": "1.0.4",
+  "description": "Buy products on the Pinduoduo (拼多多) Android app via USB ADB. Battle-tested 2026-08-30 (bought 健生大英语簿【5本】¥5.9 end-to-end incl. wallet payment and 直接免拼). Primary method: direct uiautomator2 + RapidOCR via ocr_bridge.py, shipped by the appium-android-adb base skill (install it alongside — ClawHub has no dependency resolver). Covers search-with-clear, spec selection & verification, FLAG_SECURE payment pages (a11y tree as the eye), PIN-pad typing, fingerprint handoff, and the 免拼 flow."
+}

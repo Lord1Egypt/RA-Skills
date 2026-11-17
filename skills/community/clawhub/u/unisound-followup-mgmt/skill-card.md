@@ -1,44 +1,59 @@
-## Description: <br>
-Generates structured post-health-exam follow-up plans, including timing, recheck items, departments, target values, health coaching points, and patient-facing follow-up notices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+检后随访管理。根据体检报告，生成结构化随访计划（时间节点/随访内容/健康指导），支撑体检闭环服务（JSON + 面向受检者的随访通知）。
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Health exam centers and health management organizations use this skill to turn exam reports into follow-up schedules and clear patient notifications. It supports post-exam care coordination while keeping final medical decisions with clinicians. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installed files may differ from the reviewed listing or expected artifact contents. <br>
-Mitigation: Inspect SKILL.md and scripts before use, and grant credentials, filesystem access, and network access only after confirming the files match the expected release. <br>
-Risk: The skill processes health exam information and sends prompts to the configured medical model endpoint. <br>
-Mitigation: De-identify direct personal identifiers before use and limit inputs to the minimum health data needed to create a follow-up plan. <br>
-Risk: Generated follow-up plans may be mistaken for definitive medical decisions. <br>
-Mitigation: Treat outputs as health management guidance and have clinicians confirm diagnosis, treatment, and visit decisions. <br>
+## Use Case:
 
+Health exam centers and health management organizations use this skill to turn a patient's exam report into a structured follow-up schedule, coaching points, alert conditions, and a recipient-facing follow-up notice. The generated plan supports post-exam tracking and should be reviewed within appropriate clinical and privacy controls.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/unisound-llm/unisound-followup-mgmt) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Internal medical model API base](https://maas-api.hivoice.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, guidance] <br>
-**Output Format:** [JSON followed by a human-readable follow-up notice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the generated follow-up plan to a user-specified output file or print it to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: The skill can send full health reports to a remote model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified reports unless explicit authorization and privacy controls are in place.
+
+Risk: A custom model base URL could route reports and API credentials to an untrusted service.
+
+Mitigation: Use trusted HTTPS endpoints only and provide a dedicated, scoped appkey.
+
+Risk: Generated follow-up guidance may be incomplete or clinically inappropriate for a specific patient.
+
+Mitigation: Require review by qualified staff before using the plan for patient communication or care coordination.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-followup-mgmt)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON followed by a plain-text follow-up notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write the generated follow-up plan to a caller-specified output file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

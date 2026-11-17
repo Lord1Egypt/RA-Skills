@@ -16,6 +16,8 @@
 # Usage:
 #   The agent will run this via exec. Review and approve when prompted.
 #   Change --tz to your timezone.
+#   More than one chat channel? Add: --channel discord --to "user:<your-discord-user-id>"
+#   (OpenClaw requires --channel for announce jobs on multi-channel hosts.)
 #   Remove --model opus if you prefer your default model.
 
 openclaw cron add \

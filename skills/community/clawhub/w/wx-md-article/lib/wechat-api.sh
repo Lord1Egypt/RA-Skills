@@ -1,48 +1,75 @@
-#!/bin/bash
-# 微信API封装
+#!/usr/bin/env bash
 
-CONFIG_FILE="$(dirname "$0")/../config.json"
+set -euo pipefail
 
-# 读取配置
-get_config() {
-    local key=$1
-    jq -r ".$key" "$CONFIG_FILE"
+require_wechat_credentials() {
+    local missing=()
+
+    [[ -n "${WECHAT_APP_ID:-}" ]] || missing+=("WECHAT_APP_ID")
+    [[ -n "${WECHAT_APP_SECRET:-}" ]] || missing+=("WECHAT_APP_SECRET")
+    [[ -n "${WECHAT_ACCOUNT_LABEL:-}" ]] || missing+=("WECHAT_ACCOUNT_LABEL")
+
+    if (( ${#missing[@]} > 0 )); then
+        printf 'Missing required secret-store/environment values: %s\n' "${missing[*]}" >&2
+        printf 'Do not paste credentials into chat or save them in this skill folder.\n' >&2
+        return 1
+    fi
 }
 
-# 获取 access_token
 get_access_token() {
-    local appid=$(get_config "appid")
-    local appsecret=$(get_config "appsecret")
-    
-    local response=$(curl -s "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret")
-    echo "$response" | jq -r '.access_token'
+    require_wechat_credentials
+
+    local response
+    response=$(
+        {
+            printf 'url = "https://api.weixin.qq.com/cgi-bin/token"\n'
+            printf 'silent\n'
+            printf 'show-error\n'
+            printf 'get\n'
+            printf 'data-urlencode = "grant_type=client_credential"\n'
+            printf 'data-urlencode = "appid=%s"\n' "$WECHAT_APP_ID"
+            printf 'data-urlencode = "secret=%s"\n' "$WECHAT_APP_SECRET"
+        } | curl --config -
+    )
+
+    local token
+    token=$(jq -r '.access_token // empty' <<<"$response")
+    if [[ -z "$token" ]]; then
+        printf 'Failed to obtain WeChat access token: %s\n' \
+            "$(jq -c '{errcode,errmsg}' <<<"$response")" >&2
+        return 1
+    fi
+
+    printf '%s' "$token"
 }
 
-# 上传图片素材
 upload_image() {
     local access_token=$1
     local image_path=$2
-    
-    curl -s "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=$access_token&type=image" \
-        -F "media=@$image_path"
+
+    local encoded_token
+    encoded_token=$(jq -rn --arg value "$access_token" '$value | @uri')
+
+    {
+        printf 'url = "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=%s&type=image"\n' "$encoded_token"
+        printf 'silent\n'
+        printf 'show-error\n'
+    } | curl --config - -F "media=@${image_path}"
 }
 
-# 添加草稿
 add_draft() {
     local access_token=$1
     local json_file=$2
-    
-    curl -s -X POST "https://api.weixin.qq.com/cgi-bin/draft/add?access_token=$access_token" \
-        -H "Content-Type: application/json" \
-        --data-binary @"$json_file"
-}
 
-# 删除草稿
-delete_draft() {
-    local access_token=$1
-    local media_id=$2
-    
-    curl -s -X POST "https://api.weixin.qq.com/cgi-bin/draft/delete?access_token=$access_token" \
+    local encoded_token
+    encoded_token=$(jq -rn --arg value "$access_token" '$value | @uri')
+
+    {
+        printf 'url = "https://api.weixin.qq.com/cgi-bin/draft/add?access_token=%s"\n' "$encoded_token"
+        printf 'silent\n'
+        printf 'show-error\n'
+    } | curl --config - \
+        -X POST \
         -H "Content-Type: application/json" \
-        -d "{\"media_id\":\"$media_id\"}"
+        --data-binary "@${json_file}"
 }

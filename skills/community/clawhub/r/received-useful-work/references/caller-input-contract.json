@@ -1,0 +1,108 @@
+{
+  "schema": "neomorphic.received-useful-work.caller-input.v1",
+  "skill": "received-useful-work",
+  "installedCommand": "scripts/dispatch.mjs",
+  "humanPage": false,
+  "paymentAuthority": "none",
+  "claimAuthority": "none",
+  "publicAcquisition": "Hash-pinned GET of public archives and descriptors. Caller task text, authority, credentials, signatures, purchases, and notes are not request fields.",
+  "outputScope": "Caller-supplied work directory and log. Child home and temp stay inside that work directory.",
+  "catalogMutation": false,
+  "publicationFlags": "unchanged until a real hosted readback; a local run does not set hostedAcquisitionVerified",
+  "modes": {
+    "contract_replay": {
+      "selection": "omitted executionMode, or executionMode contract_replay",
+      "behavior": "Fixed examples and negative controls already pinned to this skill. A caller label does not replace those examples."
+    },
+    "caller": {
+      "selection": "request.executionMode caller, or --mode caller when the request agrees",
+      "behavior": "The same executable passes the caller's supplied inputs to the received library command. A missing real input returns decision useful_refusal, reason missing_input, and nextAction. It does not load a bundled example, fixed date, fixed network, or fixed task."
+    }
+  },
+  "request": {
+    "schema": "neomorphic.received-useful-work.request.v1",
+    "executionMode": "caller",
+    "now": "ISO-8601 UTC timestamp. Required. The dispatcher does not substitute the wall clock or a fixture date.",
+    "task": "Must be one pinned task id. The label selects the library. It is not authority, demand, or a paid task.",
+    "expectedOutput": "Must be one expected output of that same library.",
+    "budget": "timeoutMs is one deadline from before acquisition through owned children. bodyBytes and outputBytes bound reads and captured child output. pay true is refused.",
+    "node": "NEOMORPHIC_NODE when that file exists, otherwise the Node that invoked this process. Required libraries still refuse a runtime older than their pin. This command does not search /home/ubuntu or reinstall Node."
+  },
+  "families": {
+    "no-spend-composition": {
+      "library": "caller-composition-delivery 0.1.0",
+      "command": "bin/compose.mjs",
+      "required": ["inputs.request"],
+      "requestDocument": "neomorphic.caller-composition.input.v1 with the caller's task, resource, now, and evidence.feed or evidence.routeLockRequest",
+      "optional": ["inputs.store", "inputs.compare"],
+      "missingEvidence": "nextAction asks for route evidence. examples/admissible.json is not loaded.",
+      "compare": "inputs.compare true runs compare against the caller-owned store. A changed task is the library refusal inherited_authority.",
+      "direct": "The same decide, retain, or compare argv on the same request file."
+    },
+    "compatibility-query": {
+      "library": "compatibility-envelope 0.0.1",
+      "command": "bin/cold.mjs",
+      "required": ["inputs.network", "inputs.observedAt", "inputs.expiresAt", "now", "inputs.body or inputs.source supported"],
+      "optional": ["inputs.laterTask"],
+      "source": "inputs.source supported selects the library file fixtures/supported-derived.json. Any other body must be a caller path. Neither is used when the field is absent.",
+      "laterTask": "Passed as --task. The fixture default client-registration-bind is not invented.",
+      "clock": "A caller now after expiresAt is the library stale result. The replay's fixed dates are not used.",
+      "install": "npm ci runs only when that extract has no node_modules. It is the library's documented install, not a Node reinstall.",
+      "direct": "The same decide and later argv."
+    },
+    "maintained-observation": {
+      "library": "maintained-operations 0.1.0",
+      "command": "experiments/maintained-operations-100184/bin/maintained-operations.mjs",
+      "required": ["inputs.owner", "inputs.source", "inputs.observation", "inputs.expiresAt", "inputs.intervalMs", "inputs.maxRuns", "inputs.maxUseful", "inputs.explicitOptIn", "now"],
+      "source": "Must already be a runner source: moltjobs, x402stats, or smithery_mcp. A new source name is not enrolled.",
+      "observation": "Path to the caller's projection file. examples/comparable-x402.json is not loaded unless that path is the caller's file.",
+      "controls": "inputs.receiverKind local-vm writes the runner's required closed-port receiver map. inputs.control cancel uses the runner cancel. inputs.home is the caller-owned enrollment directory. A continued enrollment keeps its sink inside that directory.",
+      "successor": "Frozen 0.1.0 already accepts these flags. Maintained-decision 0.2.0 at 5a1eafd58261c594a263b3f9b81552fddd422f75 is not copied and is not hosted.",
+      "direct": "The same opt-in and run or cancel argv."
+    },
+    "grantless-retained-read": {
+      "library": "customer-retained-operations 0.1.0",
+      "command": "experiments/customer-retained-operations-100256/bin/customer-retained-operations.mjs",
+      "required": ["inputs.continuationHome", "now"],
+      "continuation": "A directory the caller already owns. The grant stays in that directory's mode 0600 continuation file. It is not a request field, argv value, or event.",
+      "lost": "A home without continuation.json is the library code missing_continuation. A missing directory is missing_input and does not create an empty-home example.",
+      "publicLog": "Event lines and export-output omit the grant. Sixty-four hex characters in captured text are redacted.",
+      "direct": "read --home on that same directory."
+    },
+    "walletless-trial": {
+      "library": "funded-task-consumer 0.1.0 plus contributor-reuse-trial 0.1.2",
+      "command": "experiments/funded-task-consumer-100257/bin/consumer.mjs run",
+      "required": ["inputs.contributorId", "inputs.budget", "inputs.subject or inputs.subjectArchive true", "now"],
+      "qualifyingTask": "The task field inside the caller budget file. It is matched by the library. A dispatch label does not choose the envelope outcome.",
+      "outcome": "trial evaluate runs first. useful_negative is used only when that measurement records a concrete negative failure. useful_positive is used only when that measurement records release acceptance. Otherwise the result is outcome_not_measured. A request outcome string is ignored.",
+      "subjectArchive": "true selects the pinned public capability-preflight archive. A subject path that is missing is not replaced with that archive.",
+      "libraryTimeout": "The frozen trial client refuses a discover timeout above 8000 milliseconds. The library flag stays inside that bound. timeoutMs remains the whole-operation deadline.",
+      "direct": "The same run argv, including the outcome the evaluation already selected and a discover timeout of at most 8000 milliseconds."
+    }
+  },
+  "exports": {
+    "executedOutput": "export-output --log events.jsonl --request REQUEST [--attempt ATTEMPT] writes kind executed_output for one successful recorded attempt. useful stays null. settlement and laterUse stay null. A task id alone is legacy_task_export.",
+    "usefulness": "export-result remains caller-asserted feedback and is not inferred from exit 0.",
+    "qualification": "source_discovery and the qualification document stay separate from executed_output.",
+    "settlement": "This command does not settle, pay, or sign."
+  },
+  "linkedNativeClients": [
+    {
+      "id": "ein-protocol-continuation",
+      "repository": "epistemedeus/ein-llc-lean",
+      "commit": "683028effdae2b4f5679b10d9f43ed34843dab37",
+      "copied": false,
+      "role": "Existing native client. Not vendored and not a second workflow."
+    }
+  ],
+  "refusals": [
+    "missing_input",
+    "mode_conflict",
+    "node_runtime",
+    "outcome_not_measured",
+    "missing_continuation",
+    "task_not_covered",
+    "inherited_authority",
+    "enrollment_conflict"
+  ]
+}

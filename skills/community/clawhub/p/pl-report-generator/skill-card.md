@@ -1,42 +1,57 @@
-## Description: <br>
-Generates automated financial and business reports with PDF output, chart creation, and distribution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate automated financial and business reports with PDF output, chart creation, and distribution.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance teams, accounting firms, and business operators use this skill to turn batch financial data from CSV exports, spreadsheets, or finance systems into reviewed P&L, KPI, variance, and executive reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial source data and generated reports may contain sensitive client, payroll, or business information. <br>
-Mitigation: Use least-privilege access, keep raw data out of git, redact sensitive fields before sharing, and store source data only in controlled report directories. <br>
-Risk: Automated email or messaging distribution can send reports to unintended recipients or channels. <br>
-Mitigation: Review generated PDFs before sending and explicitly confirm recipients, channels, and approval before any email or Telegram distribution. <br>
-Risk: Spreadsheet or finance-system integrations may expose or modify source data if granted broad permissions. <br>
-Mitigation: Prefer read-only credentials for source tabs and write summaries to a separate output sheet when Google Sheets or similar systems are used. <br>
+## Use Case:
 
+Finance and accounting teams use this skill to turn period-end financial data into P&L, balance sheet, cash flow, KPI, variance, and business reports with charts and PDF deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/pl-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks; report artifacts may include PDFs, CSV or JSON data, and chart images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before distribution and careful handling of sensitive financial data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned reporting and charting dependencies may change behavior or introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a dedicated virtual environment and pin package versions before repeated or production use.
+
+Risk: Generated financial PDFs may contain incorrect, stale, or sensitive information if distributed without review.
+
+Mitigation: Review every generated PDF before sending and require explicit approval before external distribution.
+
+Risk: Financial source files, payroll details, or credentials may be exposed if unrelated secrets or production data are kept in the working directory.
+
+Mitigation: Keep raw client data scoped to the reporting workspace, redact sensitive payroll or PII fields from shared reports, and avoid storing unrelated secrets nearby.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/pl-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide creation of local report files such as CSV, JSON, chart images, PDFs, and distribution logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

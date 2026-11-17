@@ -1,0 +1,122 @@
+part: STM32C091
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "STM32C091 / STM32C092 \u2014 Cortex-M0+ 48 MHz, 256 KB Flash, PSA Level 3"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32c091cc.html
+datasheet_path_expected: ../../datasheets/stm32c091cb.pdf
+created_at: '2026-06-30T10:42:00+08:00'
+specs:
+  family_identity:
+    main_part: STM32C091 (without FDCAN)
+    sister_part: STM32C092 (with FDCAN)
+    marketing: STM32C091xB/xC STM32C092xB/xC mainstream MCUs, high-performance Cortex-M0+
+  cores:
+  - Arm Cortex-M0+ @ up to 48 MHz (32-bit RISC)
+  - MPU (memory protection unit)
+  memory:
+    flash_kb_max: 256
+    flash_protection:
+    - read protect
+    - write protect
+    - proprietary code
+    - securable area
+    sram_kb_max: 36
+    sram_parity_check: hardware
+  security:
+    sesip3: target
+    psa_cert_level: 3
+    unique_id: 96-bit
+    securable_memory_area: true
+  operating_conditions:
+    temperature_options:
+    - -40 to +85
+    - -40 to +105
+    - -40 to +125
+    voltage_v_min: 2.0
+    voltage_v_max: 3.6
+  power:
+    modes:
+    - Sleep
+    - Stop
+    - Standby
+    - Shutdown
+    por_pdr: true
+    programmable_bor: true
+  clock:
+    crystal_hf_mhz: 4-48
+    crystal_lf_khz: 32
+    int_rc_mhz: 48 (1% accuracy)
+    int_rc_khz: 32 (5% accuracy)
+  io:
+    fast_ios_max: 61
+    io_5v_tolerant: yes (all)
+    io_external_interrupt_mappable: true
+  dma:
+    channels: 7
+    flexible_mapping: true
+  analog:
+    adc_12bit_speed_us: 0.4
+    adc_ext_channels_max: 19
+    conversion_range_v:
+    - 0
+    - 3.6
+  timers:
+    count: 10
+    breakdown:
+    - 1x 16-bit advanced (motor control)
+    - 1x 32-bit general-purpose
+    - 5x 16-bit general-purpose
+    - 2x watchdog (WWDG + IWDG)
+    - 1x SysTick
+    rtc: calendar with alarm
+  communication:
+    i2c: 2
+    usart: 4
+    spi: 2 (24 Mbit/s) + 4 extra via USARTs
+    i2s_muxed_with_one_spi: true
+    fdcan_c092_only: 1
+  debug:
+  - SWD
+  - serial wire debug
+  package_options:
+  - TSSOP20
+  - LQFP48
+  - LQFP64
+  - UFBGA64
+  - UFQFPN
+  family_members:
+  - part: STM32C091
+    fdcan: false
+  - part: STM32C092
+    fdcan: true
+  use_cases:
+  - Smart home / IoT secure end nodes (PSA L3 target)
+  - Industrial control nodes (with FDCAN for C092)
+  - Home appliances
+  - USB peripherals
+  - Secure sensor hubs
+unverified:
+- exact peripheral mapping per package option
+- exact internal VREF count
+- exact DAC support (likely 2x channels but details in raw)
+- exact boot memory options
+- exact supply current per mode (Power saving in spec block)
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from st.com STM32C091CCT6 chip page via Firecrawl (610,260 bytes raw). Note:\
+  \ STM32C0 family URL (stm32c0-series.html) returned the same content; this chip-specific URL (stm32c091cc.html) returned\
+  \ full detailed datasheet."
+- 'Family differentiator vs STM32C0 family page (newly-added): C091CCT6 is the high-flash (256 KB) variant; C011-C071 are
+  lower flash (16-128 KB) + lower security (no PSA L3 target).'
+- 'Family differentiator vs STM32G0 (existing yaml): G0 is Cortex-M0+ @ 64 MHz with more peripherals (USB-C PD PHY, LCD IF,
+  etc.); C091 has higher security posture (PSA L3 target, SESIP3).'
+- 'Cross-reference: C092 (with FDCAN) is comparable to S32K1 entry-tier automotive MCUs in automotive/industrial CAN node
+  context.'
+- 'Use case: PSA Level 3 + SESIP3 makes C091 ideal for secure IoT end nodes where security certification is required (smart
+  locks, smart meters, secure sensors).'
+extracted_at: '2026-06-30T10:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of st.com chip-specific page
+extraction_source: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32C091-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32C091-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.st.com/resource/en/datasheet/stm32c091cb.pdf
+datasheet_source_note: STM32C091CB datasheet (PDF, 2.8MB). 42/58 spec fields matched (72%). Strong coverage of Cortex-M0+
+  48 MHz, FDCAN, flash/RAM ranges, security (SESIP3, PSA L3), package options.

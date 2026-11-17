@@ -1,41 +1,53 @@
-## Description: <br>
-LSP Novel Writer helps agents collect fiction requirements, draft Chinese web-novel outlines, confirm them with the user, and generate chapter-by-chapter Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LSP Novel Writer helps agents collect Chinese web-novel requirements, generate an outline, confirm it with the user, and draft chapters into separate Markdown files.
 
-## Publisher: <br>
-[156554395](https://clawhub.ai/user/156554395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[156554395](https://clawhub.ai/user/156554395)
 
-## Use Case: <br>
-External authors and agent users use this skill to plan Chinese web novels, refine outlines, and generate chapter drafts after approving the outline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local novel chapter files in ./novels/ within the current workspace. <br>
-Mitigation: Use it in a workspace where generated files are acceptable and review the save location before sharing or publishing outputs. <br>
-Risk: Generated outlines or chapters may need editorial review before publication. <br>
-Mitigation: Review the outline before confirming chapter generation and check completed chapters before publishing or sharing them. <br>
+## Use Case:
 
+External users and writers use this skill to plan and draft Chinese web novels across popular genres. The agent guides requirements collection, outline confirmation, chapter generation, and draft file creation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/156554395/lsp-novel-writer) <br>
-- [Writing Guide](references/writing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown outlines, progress text, and chapter files saved under ./novels/] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one Markdown file per chapter after user outline confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated chapter files may consume storage or collide with existing drafts in the selected novels folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose or monitor the output folder before generation, and review any existing ./novels/<novel title>/ directory before allowing chapter files to be written.
+
+Risk: Long-form generated fiction can contain continuity, pacing, or quality issues across chapters.
+
+Mitigation: Use the outline confirmation step and chapter self-checks for goals, plot logic, word count, hooks, and character consistency before accepting the generated draft.
+
+## Reference(s):
+
+- [Web Novel Writing Guide](references/writing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown chapter files and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates one Markdown file per chapter under ./novels/<novel title>/ when the agent follows the skill workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

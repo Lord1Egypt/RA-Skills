@@ -1,0 +1,41 @@
+{
+  "id": "teen-boys-16-19",
+  "label": "Teen Boys 16-19",
+  "emoji": "👦",
+  "demographics": {
+    "gender": "male",
+    "age_range": [16, 19],
+    "tier": "gen-z"
+  },
+  "active_hours": {
+    "description": "Late afternoon through very late night (gaming)",
+    "peak": [17, 2],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "description": "Fast, gaming-optimised, low backspace (impatient)",
+    "wpm": { "min": 100, "max": 140 },
+    "profile": "fast",
+    "think_prob": 0.003,
+    "think_ms": [100, 400],
+    "backspace_freq": 0.02
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Medium-fast, jumps directly to content",
+    "speed_px_per_ms": { "min": 40, "max": 100 },
+    "pause_between_passes_ms": { "min": 150, "max": 600 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 200, "max": 1200 },
+    "pre_click_pause_ms": { "min": 60, "max": 250 },
+    "inter_action_pause_ms": { "min": 80, "max": 400 }
+  },
+  "mouse": {
+    "speed": 1.4,
+    "curvature": 0.3,
+    "jitter": 0.5,
+    "description": "Fast, wider curves, impulsive clicks"
+  }
+}

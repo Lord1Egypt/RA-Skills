@@ -1,0 +1,131 @@
+{
+  "_comment": "ct-advisor → ct-search 端点 brief（速览）能力的唯一契约真相源。云端节点内嵌 PARAM_ALLOWLIST / DISCLAIMER / SUGGEST_TEXT 副本（禁跨技能运行时 import，ct-base §20.19.6），由 ct-advisor/scripts/test_cloud_brief.py 用 AST 断言逐字一致（§20.19.7 红线 3 契约同步范式）。改契约 = 改本文件 → 同步云端副本 → 跑 test_cloud_brief.py → 重生成 coze_contract.md。",
+  "version": "1.0.0",
+  "created": "2026-11-09",
+  "status": "implemented / opt-in (default off since 2026-11-09 evening)",
+  "design_note": "把 ct-advisor 后台调用 ct-registry / ct-safety / ct-literature 的执行位置从『本地技能 CLI』上移到 Coze ct-search 端点内的 3 个聚合 source。上移的是能力接口，不是产品：三个技能的交付物、SAFE PREVIEW 确认门、独立发布单元与合规边界原样保留。本地 need_tool 执行卡保留为兜底（ct-base §20.19.7 红线 2）。2026-11-09 晚间架构重评：客户端已可直接调用这三个技能本体，brief（非审计级速览、不产文件）不再是默认主链路，降为显式开启的降级/快答路径；默认主路径改为 handoff（见 tool_mapping.json 顶层 handoff 段）。",
+  "switch": {
+    "local_env": "CT_ADVISOR_CLOUD_BRIEF",
+    "enabled_default": false,
+    "on_values": ["1", "true", "yes", "on"],
+    "off_values": ["0", "false", "no", "off"],
+    "local_note": "2026-11-09 晚间架构重评：**默认关闭**。客户端已可直接调用 ct-registry / ct-safety / ct-literature 本体并拿到完整交付物，brief 只给非审计级速览，继续默认启用反而会把用户挡在技能本体能力之外。仅当用户显式设 CT_ADVISOR_CLOUD_BRIEF=1（或明确要快答/速览）时，handle_need_tool.execute_card 与 orchestrate._fire_prefetch 才先走 scripts/cloud_brief.py 直连；任何失败（无凭证 / 超时 / status=error / 契约违约）自动回落 handoff / 本地执行卡（§20.19.7 红线 2）。设 0 / 不设均为关闭。",
+    "cloud_field": null,
+    "cloud_note": "已废弃：Coze 云端**不持有任何共享凭据、不发起需凭据的外部调用**，不再有云端直连节点或开关。tool_router 命中后一律返回 need_tool 执行卡，由本地取数并缝合。",
+    "rollout_order": ["1. 部署 ct-search 0.5.00 云端包（纯代码检索/聚合，不含凭据）并 canary 三个 brief source", "2. 部署 ct-advisor 云端工作流（纯代码，不含凭据）", "3. 更新本地技能 / 工作台发布物（凭据仅在本地）", "4. 跑 scripts/canary_cloud_brief.py 线上回归；无需任何 Coze 控制台环境变量或输入变量配置"]
+  },
+  "endpoint": {
+    "run_url": "https://ct-search.coze.site/run",
+    "stream_url": "https://ct-search.coze.site/stream_run",
+    "credential_local": "ct-advisor/adapters/coze_token_embedded.py::get_search_token()（共享公开凭据，用 ct-advisor 自有 OBFUSCATION_KEY 重编码；env CT_ADVISOR_BRIEF_TOKEN 可覆盖）",
+    "credential_cloud": "🔴 无。Coze 云端包内不含任何 ct-search 共享凭据、不含读取凭据的代码、不发起需要凭据的外部调用（2026-11-09 用户拍板）。云端只保留纯代码判定与答案生成；调用点全部收敛到本地技能/工作台。",
+    "async": "响应 status=accepted + run_id 时轮询回收，见 ct-safety/adapters/coze_dispatch.py::_coze_async_poll；/stream_run 受 60s 网关钳制，仅作快速路径。",
+    "timeout_sec": 90,
+    "poll_deadline_sec": 300,
+    "per_source_timeout_sec": {
+      "advisor_safety_brief": 20,
+      "advisor_literature_brief": 35,
+      "advisor_registry_brief": 40
+    },
+    "timeout_note": "2026-11-09 性能 P0-1：按 source 分档替代统一 90s。Coze 网关 stgw 有 60s 硬超时（ct-base §20.17），统一 90s 永远等不到；分档值略高于各源稳态（safety<12s / literature~18s / registry~24s），超时立即回落本地 need_tool 执行卡。未登记的 source 回落到 timeout_sec。"
+  },
+  "cache": {
+    "enabled_default": true,
+    "env_off": "CT_ADVISOR_BRIEF_CACHE=0",
+    "ttl_sec": 600,
+    "key": "sha256(source + 规范化 keyword JSON)；不含 query_origin（每次调用不同，纳入会永不命中）",
+    "location": "系统临时目录 / ct-advisor-brief-cache/，不进技能发布物、不进 Coze 包",
+    "rule": "只缓存 status=ok 且 brief.partial_sources 为空的完整成功信封；error / accepted / 部分源失败一律不缓存。过期按 mtime 判断并原子覆盖，不删除历史文件。",
+    "note": "P0-2：给代码维护者的说明（非运行时用户提示）。Coze 端点自身已有结果缓存，本层是本地短 TTL 兜底，避免同一问答在 10 分钟内重复触发 18–24s 取数。关闭：设 CT_ADVISOR_BRIEF_CACHE=0。"
+  },
+  "envelope": {
+    "required_top_level": ["source", "keyword", "mode", "query_origin", "skill_version", "locale", "params"],
+    "mode": "search",
+    "keyword_channel": "JSON 字符串；键必须属于对应 source 的 param_allowlist，未知键 fail-closed 拒绝（护栏 1）。",
+    "query_origin": "ct-base §8.6：必须由客户端（技能安装设备）生成 sha256:<64hex>，服务端禁止兜底生成；本地透传 entry.py 已生成的值，云端工作流原样透传给 ct-search。",
+    "user_language": "唯一承载位 = 请求 params（顶层禁双写，ct-base coze_io_contract §1.1）。",
+    "doc_context": "🔴 禁止进入本通道。附件只走 ct-advisor.coze.site 的 doc_context，绝不与检索端点共用信封（F33 数据出域红线）。"
+  },
+  "credential_governance": {
+    "_note": "给代码维护者看的轮换提示（源码内注释同步维护，非运行时用户提示）。",
+    "location": "ct-search 共享公开凭据**只**保存在本地技能 ct-advisor/adapters/coze_token_embedded.py::EMBEDDED_SECRETS['ct_search_coze']（工作台同理）；真源为 ct-registry/adapters/endpoint_token.py::EMBEDDED_SECRETS['coze_unified']。",
+    "coze_package": "不含任何凭据 blob / 混淆密钥 / token 读取代码 / 需鉴权的外部 HTTP 调用；由 test_cloud_brief.py 与 precheck 断言。",
+    "rotation": "① 在真源 ct-registry endpoint_token.py 更新 coze_unified；② 用 store_token 重新生成 blob 并同步 ct-advisor coze_token_embedded.py 的 ct_search_coze；③ 跑 ct-advisor/scripts/test_cloud_brief.py；④ 更新本地技能/工作台发布物即可，**无需重新打包或重新发布 Coze 云端包**。",
+    "emergency_override": "本地 env CT_ADVISOR_BRIEF_TOKEN 可临时覆盖，无需改代码、无需重发任何包。",
+    "why": "公开共享凭据（XOR+base64 混淆非加密，2026-08-03 授权随本地技能发布）。放调用方是家族既有范式：本地技能持 ct_advisor_coze 调用 advisor Coze 端点，Coze 包内不持有该凭据。"
+  },
+  "response": {
+    "common_keys": ["projects", "status", "total_count"],
+    "brief_keys": ["brief", "brief_kind", "disclaimer", "suggest_skill", "suggest_text", "param_allowlist", "scope"],
+    "status_ok": "status=ok 且 disclaimer / suggest_skill / suggest_text 三者齐备才采信（护栏 2、3）；缺任一即视为契约违约 → 回落。",
+    "status_error": "status=error + error=CODE → 客户端静默回落本地执行卡，不把错误伪装成 0 命中。",
+    "project_list": "SearchNodeOutput.project_list 为 JSON 字符串，return_full=True 解析后合并进 final 顶层。"
+  },
+  "sources": {
+    "advisor_registry_brief": {
+      "skill": "ct-registry",
+      "node": "ct-registry/adapters/coze/src/graphs/nodes/advisor_brief_nodes.py::advisor_registry_brief",
+      "param_allowlist": ["cond", "intr", "sponsor", "status", "max", "drug", "with_cde", "cde_keyword"],
+      "required": ["cond"],
+      "upstream_sources": ["who", "chinadrugtrials (only when with_cde=true)"],
+      "response_keys": ["projects", "status", "total_count", "brief", "brief_kind", "disclaimer", "suggest_skill", "suggest_text", "param_allowlist", "scope"],
+      "local_fallback": "ct-advisor/scripts/tool_mapping.json::skills.ct-registry (engine=local)"
+    },
+    "advisor_safety_brief": {
+      "skill": "ct-safety",
+      "node": "ct-registry/adapters/coze/src/graphs/nodes/advisor_brief_nodes.py::advisor_safety_brief",
+      "param_allowlist": ["drug", "event", "top", "date_from", "date_to", "run"],
+      "required": ["drug"],
+      "upstream_sources": ["faers"],
+      "response_keys": ["projects", "status", "total_count", "brief", "brief_kind", "disclaimer", "suggest_skill", "suggest_text", "param_allowlist", "scope"],
+      "local_fallback": "ct-advisor/scripts/tool_mapping.json::skills.ct-safety (engine=local)"
+    },
+    "advisor_literature_brief": {
+      "skill": "ct-literature",
+      "node": "ct-registry/adapters/coze/src/graphs/nodes/advisor_brief_nodes.py::advisor_literature_brief",
+      "param_allowlist": ["topic", "year_from", "year_to", "safety", "max", "with_europepmc"],
+      "required": ["topic"],
+      "upstream_sources": ["openalex", "europepmc (default on)"],
+      "response_keys": ["projects", "status", "total_count", "brief", "brief_kind", "disclaimer", "suggest_skill", "suggest_text", "param_allowlist", "scope"],
+      "local_fallback": "ct-advisor/scripts/tool_mapping.json::skills.ct-literature (engine=local)"
+    }
+  },
+  "param_allowlist": {
+    "advisor_registry_brief": ["cond", "intr", "sponsor", "status", "max", "drug", "with_cde", "cde_keyword"],
+    "advisor_safety_brief": ["drug", "event", "top", "date_from", "date_to", "run"],
+    "advisor_literature_brief": ["topic", "year_from", "year_to", "safety", "max", "with_europepmc"]
+  },
+  "skill_to_source": {
+    "ct-registry": "advisor_registry_brief",
+    "ct-safety": "advisor_safety_brief",
+    "ct-literature": "advisor_literature_brief"
+  },
+  "disclaimer_text": "【速览，非审计级】本结果由公开数据一次性聚合，仅供问答参考；不含可复算交付物、未经人工复核，不得用于注册申报、信号判定或临床决策。需要 XLSX/HTML 报告、完整检索策略与多轮确认，请调用对应技能。",
+  "suggest_text": {
+    "ct-registry": "完整分析请调用 @skill:ct-registry（跨源注册库检索 · 竞品格局 · report.xlsx）。",
+    "ct-safety": "完整分析请调用 @skill:ct-safety（PRR/ROR/IC/EBGM 四种测量含 95%CI · L0–L4 分层 · faers_report.xlsx）。",
+    "ct-literature": "完整分析请调用 @skill:ct-literature（PICO 检索 · PRISMA · 全文 PDF · lit_report.xlsx）。"
+  },
+  "guardrails": {
+    "1_param_allowlist_locked": "brief 参数白名单锁死在现有 8/6/6 个，禁止随版本扩张到 L0–L4 / PICO / batch / 本地导入 / 文件产出等技能本体能力面。云端节点对未知键 fail-closed，本地客户端发送前二次过滤。这是『advisor 不替代三个技能』的可执行约束。",
+    "2_disclaimer_required": "每个 brief 响应强制携带 disclaimer，标注速览、非审计级、不产文件；缺失即判契约违约并回落。",
+    "3_suggest_footer_required": "每个 brief 响应强制携带 suggest_skill + suggest_text，缝合层原样附在答案末尾，把需要文件 / 审计 / 多轮深度分析的用户导回三个技能。",
+    "enforcement": "test_cloud_brief.py 断言：契约白名单 == 云端内嵌副本 == tool_mapping.json 对应 params 键；三份文案逐字一致；开关默认关闭。"
+  },
+  "fallback_chain": [
+    "1. 显式开启且 cloud brief status=ok 且三条护栏齐备 → 缝合速览（附 @skill 导流页脚）",
+    "2. 默认关闭 / 未部署 / 无凭证 / 超时 / status=error / 契约违约 → 默认主路径 handoff（@skill 卡片）；CT_ADVISOR_HANDOFF=0 时回落本地 need_tool 执行卡（§20.19.7 红线 2）",
+    "3. 技能本机未注册或执行失败 → 交付 Coze 草稿 + 明确标注『未取数』（既有行为，不改动）"
+  ],
+  "out_of_scope": [
+    "不改动三个技能的 SKILL.md / CLI / 报告层 / 独立发布单元",
+    "不生成、不回传 XLSX/HTML 文件；advisor 交付边界仍是纯文本",
+    "不把 doc_context 送入检索端点",
+    "不删除 handle_need_tool / tool_mapping / tiers 安装门控（全部降为兜底）",
+    "不做 ct-registry / advisor / literature / safety 跨族后端合并（ct-base §20.19.5 已判『不合』）；本改动是同一检索族端点内的 source 级扩展 + 端点间调用"
+  ],
+  "deferred_work": {
+    "p0_route_drift": "本地 route_tool.py 与云端 tool_router_node.py 两套规则表的完整收敛属独立工作项（check_route_drift.py 只检测不自动统一，统一属行为变更需人工决策）。本次仅新增 brief 白名单一致性门禁，不重构两套规则。",
+    "redline_2_conflict": "ct-safety v0.9.9 曾按用户要求移除本地降级路径，与 §20.19.7 红线 2『合并不取消本地引擎』口径不一致。本次按红线 2 保留本地执行卡兜底；如需改为无回退，须单独拍板。"
+  }
+}

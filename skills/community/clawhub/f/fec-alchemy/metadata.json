@@ -1,6 +1,6 @@
 {
   "id": "fec-alchemy",
-  "name": "项目吸收与原创化融合",
+  "name": "Integration of project absorption and originality",
   "category": "project-evolution",
   "tags": [
     "alchemy",
@@ -10,7 +10,7 @@
     "workflow"
   ],
   "summary": "Project absorption workflow for extracting useful ideas from reference systems and redesigning them into original, project-native improvements.",
-  "version": "2.6.0",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",

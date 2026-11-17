@@ -1,0 +1,26 @@
+; ============================================================
+; 网页划线对话 - webchat:// 协议注册表模板
+; ------------------------------------------------------------
+; 作用：让面板里的「🚀 启动后端」按钮无需终端即可拉起本地后端。
+; 用法：
+;   1) 把下面所有 __BACKEND_DIR__ 替换成你真实的 backend 目录绝对路径，
+;      例如  C:\Users\YourName\webchat-extension\backend
+;      （注意：路径里的每个反斜杠必须写成两个反斜杠 \\）
+;   2) 把本文件另存为 webchat-protocol.reg
+;   3) 双击导入，或在命令行执行：
+;      reg import webchat-protocol.reg
+; 仅写入当前用户(HKCU)，无需管理员权限。
+; ============================================================
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Classes\webchat]
+@="webchat Protocol"
+"URL Protocol"=""
+
+[HKEY_CURRENT_USER\Software\Classes\webchat\shell]
+
+[HKEY_CURRENT_USER\Software\Classes\webchat\shell\open]
+
+[HKEY_CURRENT_USER\Software\Classes\webchat\shell\open\command]
+@="\"C:\\Windows\\System32\\wscript.exe\" \"__BACKEND_DIR__\\launcher.vbs\" \"%1\""

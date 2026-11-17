@@ -1,46 +1,60 @@
-## Description: <br>
-智能录音笔记管理助手 - AI 自动转写和总结录音，支持知识库管理和语义搜索 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AideNote Skill helps an agent query, search, summarize, and inspect SlonAide/AiDeNote recording notes, with optional setup for an OpenClaw remote bridge.
 
-## Publisher: <br>
-[ajingmiao](https://clawhub.ai/user/ajingmiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajingmiao](https://clawhub.ai/user/ajingmiao)
 
-## Use Case: <br>
-External users and developers use this skill to query, search, summarize, and inspect AiDeNote/SlonAide recording notes through OpenClaw. It can also help install or check a local remote bridge so the AiDeNote mobile app can connect to the user's OpenClaw instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bridge setup executes downloaded installer scripts and creates a persistent local remote bridge. <br>
-Mitigation: Install only when the AiDeNote mobile app needs to connect to this computer's OpenClaw instance; review the installer source and confirm how to disable or uninstall the login-start service before enabling it. <br>
-Risk: Connection-test output may expose partial credential material. <br>
-Mitigation: Avoid sharing connection-test output and treat logs or screenshots from setup and testing as sensitive. <br>
-Risk: The skill requires sensitive API credentials to access private recording notes. <br>
-Mitigation: Use a dedicated AiDeNote/SlonAide API key, store it through OpenClaw configuration, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+External users and OpenClaw users use this skill to retrieve recording-note lists, inspect note details, view AI summaries, search note content, and check API connectivity. Users may also use it to install or inspect a local AiDeNote bridge that lets the mobile app connect to OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ajingmiao/aidenote) <br>
-- [AiDeNote web app](https://h5.aidenote.cn/) <br>
-- [SlonAide web app](https://h5.slonaide.cn/) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like text responses from OpenClaw tools, including note summaries, note details, status messages, setup guidance, and command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured API key for note access; bridge setup is limited to macOS and Windows in the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata; artifact frontmatter and package.json report 2.1.0) <br>
+Risk: Remote bridge setup can download and run installer code, pass the AideNote API key into that process, and create login persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source and URLs before running setup, avoid environments with unrelated secrets, and prefer releases that verify installer hashes or signatures and document uninstall steps.
+
+Risk: The AideNote API key may be exposed through installer behavior, process environments, or logs.
+
+Mitigation: Use a scoped key where possible, keep logs private, and rotate the key if it may have been exposed.
+
+Risk: Recording notes and transcripts can contain private or sensitive user information.
+
+Mitigation: Use the skill only in trusted agent sessions, avoid sharing full transcripts unnecessarily, and review outputs before sending them into shared channels.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ajingmiao/skills/aidenote)
+- [AiDeNote web app](https://h5.aidenote.cn/)
+- [SlonAide web app](https://h5.slonaide.cn/)
+- [AideNote API base URL](https://api.aidenote.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text responses with command snippets, status messages, and structured note summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Long transcripts may be truncated in responses, and API keys are masked in diagnostic output.]
+
+## Skill Version(s):
+
+1.0.10 (source: ClawHub release evidence; artifact frontmatter and package metadata report 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

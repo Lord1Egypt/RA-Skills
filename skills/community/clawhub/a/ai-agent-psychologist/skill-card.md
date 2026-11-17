@@ -1,42 +1,57 @@
-## Description: <br>
-AI Agent Psychologist is a manual-trigger skill for AI agents to run self-alignment checks, dialogue diagnosis, structured introspection, intervention prompts, health checkups, and local Markdown journals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Psychologist provides manually triggered self-alignment, diagnostic, journaling, checkup, and structured introspection workflows for AI agents using behavioral reflection protocols.
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prompt agents through structured self-checks and to generate local Markdown records for diagnosis, checkups, journals, and introspection logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter an agent's response style when a manual trigger phrase is used. <br>
-Mitigation: Use explicit trigger phrases intentionally and avoid broad trigger words in casual conversation. <br>
-Risk: Local diagnosis, checkup, journal, and introspection files may contain sensitive conversation details. <br>
-Mitigation: Periodically review, protect, or delete the local journal and log files according to the user's retention needs. <br>
-Risk: The skill relies on reflective prompting and conversation-context reasoning, not direct access to model internals. <br>
-Mitigation: Treat self-check reports as guidance for review rather than as authoritative measurements of internal model state. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prompt an AI agent through self-alignment checks, conversational diagnostics, structured introspection, growth journaling, and local health-check reports. It is intended for manual activation when reviewing agent behavior or calibrating communication patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moroiser/ai-agent-psychologist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and logs, shell-script output, and structured prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written under the local ai-agent-psychologist workspace directory when helper scripts are invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence, released 2026-04-08) <br>
+Risk: The skill can persist local alignment journals, diagnosis reports, checkup reports, and introspection logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review storage paths, retention expectations, and report contents before use, and avoid storing sensitive conversation details unless the operator has approved that retention.
+
+Risk: Generated health scores and reports may look authoritative even when they are fixed templates or require evidence-based analysis.
+
+Mitigation: Treat health scores as templates for review, not real security or alignment assessments, unless supported by current conversation evidence and reviewer judgment.
+
+Risk: Broad natural-language triggers may activate behavior-changing reflective modes unintentionally.
+
+Mitigation: Require explicit manual activation and user consent before entering diagnosis, therapy, checkup, journal, or introspection modes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moroiser/skills/ai-agent-psychologist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, journal entries, terminal text, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts can write local diagnosis, checkup, journal, and introspection Markdown files under the configured workspace path.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and changelog, released 2026-04-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

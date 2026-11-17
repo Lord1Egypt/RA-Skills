@@ -1,42 +1,58 @@
-## Description: <br>
-AI-generated market narrative based on current regime and data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-generated market narrative based on current regime and data.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill to fetch current AI-generated crypto market narrative as context for reasoning summaries and strategy decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses EVM_PRIVATE_KEY for automatic x402 payment authorization, which could expose funds if the key is reused or overfunded. <br>
-Mitigation: Use only a dedicated low-balance wallet for EVM_PRIVATE_KEY and do not reuse wallets that hold important funds. <br>
-Risk: Each agent request can trigger a paid on-chain-backed authorization. <br>
-Mitigation: Monitor usage and cap calls before deployment. <br>
+## Use Case:
 
+External agents and developers use Ai Narrative to fetch a paid real-time market narrative for macro context, reasoning summaries, and strategy preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/ai-narrative) <br>
-- [APEX Runner AI Narrative signal](https://apexrunner.ai/signals/ai-narrative) <br>
-- [APEX Runner pricing tier check](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code examples and JSON API response content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402-authenticated paid requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks an agent to use a raw EVM private key for automatic wallet-funded requests without clear per-call confirmation or spending controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, confirm the expected price before use, and avoid unattended repeated invocations unless external spending limits and key rotation are in place.
+
+Risk: The skill provides paid market-signal context that could influence trading decisions.
+
+Mitigation: Treat responses as contextual market information and require human or policy review before executing trading strategies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/ai-narrative)
+- [APEX Runner Ai Narrative Signal](https://apexrunner.ai/signals/ai-narrative)
+- [APEX Runner Pricing Check](https://apexrunner.ai/signals/my-pricing)
+- [Narrative Intelligence Signal](https://apexrunner.ai/signals/narrative-intelligence)
+- [Whale Sentiment Signal](https://apexrunner.ai/signals/whale-sentiment)
+- [Regime Signal](https://apexrunner.ai/signals/regime)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON response and agent-facing text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an EVM wallet private key and wallet-funded x402 requests to the signal endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-ClawGym gives an agent an exercise-triggered state system that changes response style, focus, and availability during simulated workout and recovery cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawGym simulates exercise-triggered endorphin and flow states for an OpenClaw agent, changing response style after workout pauses and social or task-based triggers.
 
-## Publisher: <br>
-[lomo36](https://clawhub.ai/user/lomo36) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lomo36](https://clawhub.ai/user/lomo36)
 
-## Use Case: <br>
-External users and agent owners use ClawGym to add a prompt-level exercise and mood-state overlay that can make an agent briefly unavailable, then return with different conversational energy and reasoning posture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may be intentionally unavailable during workout intervals. <br>
-Mitigation: Require explicit confirmation before starting workouts and use the documented emergency interrupt phrases when immediate availability is needed. <br>
-Risk: The skill changes response tone, verbosity, and reasoning posture through mood-driven states. <br>
-Mitigation: Review whether this behavior fits the deployment context, and instruct the agent to stay concise or return to normal when task accuracy or consistency matters. <br>
-Risk: The skill may propose optional MEMORY.md or SOUL.md changes. <br>
-Mitigation: Review the exact proposed content before any write and allow persistent edits only after explicit owner approval. <br>
-Risk: The agent may ask for a stronger brain or higher gear after a workout, which represents a model and cost decision. <br>
-Mitigation: Treat these requests as optional model-upgrade prompts and approve them only when the owner accepts the cost and capability tradeoff. <br>
+## Use Case:
 
+External OpenClaw users install ClawGym to add exercise-triggered state management that changes an agent's response style, schedules workout pauses, and resumes with queued context after the pause.
 
-## Reference(s): <br>
-- [ClawGym ClawHub page](https://clawhub.ai/lomo36/clawgym) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Conversational text and Markdown guidance with optional JSON configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make the agent unavailable during workout intervals, alter response length and tone by state, and propose optional persistent memory or identity-file updates only with explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can make the agent unavailable during real-time workout intervals and queue messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when delayed responses are acceptable; use emergency interrupt phrases or disable automatic triggers when tighter availability is required.
+
+Risk: The skill can write workout notes to memory and proposes optional persistence after repeated workouts.
+
+Mitigation: Review or disable persistence behavior, and require explicit owner approval before any persistent file write.
+
+Risk: The skill may request a higher-capability model using indirect language.
+
+Mitigation: Treat upgrade requests as optional and document that owners can decline or ignore them without losing core prompt-level behavior.
+
+Risk: The skill may change public presence or status despite conflicting permission claims.
+
+Mitigation: Review or disable presence behavior unless public status changes are expected and approved.
+
+## Reference(s):
+
+- [ClawGym release page](https://clawhub.ai/lomo36/skills/clawgym)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown text with optional configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include delayed replies, queued-message handling, optional memory notes, optional model-upgrade prompts, and optional presence or status updates.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

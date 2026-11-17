@@ -1,43 +1,59 @@
-## Description: <br>
-Transform any text into emotionally expressive audio with ambient soundscapes using ElevenLabs v3 audio tags and Sound Effects API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform any text into emotionally expressive audio with ambient soundscapes using ElevenLabs v3 audio tags and Sound Effects API
 
-## Publisher: <br>
-[ashutosh887](https://clawhub.ai/user/ashutosh887) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ashutosh887](https://clawhub.ai/user/ashutosh887)
 
-## Use Case: <br>
-External users, content creators, writers, podcasters, and developers use MoodCast to convert text, stories, scripts, articles, and briefings into emotionally expressive speech with optional ambient soundscapes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected text and sound prompts to ElevenLabs and uses the user's ElevenLabs API key and credits. <br>
-Mitigation: Use only with text and prompts that are acceptable to process through ElevenLabs, and configure the API key in an environment where its use can be monitored. <br>
-Risk: The script may automatically install the unpinned elevenlabs Python package at runtime if it is missing. <br>
-Mitigation: Install dependencies from the reviewed requirements file in an isolated Python environment before running the skill. <br>
+## Use Case:
 
+Developers, creators, writers, and agent users use MoodCast to convert supplied text into emotionally expressive spoken audio, optionally with matching ambient soundscapes.
 
-## Reference(s): <br>
-- [MoodCast ClawHub Page](https://clawhub.ai/ashutosh887/moodcast) <br>
-- [MoodCast Homepage](https://github.com/ashutosh887/moodcast) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [Moltbot](https://molt.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Files, Configuration] <br>
-**Output Format:** [Enhanced text, generated audio files, command-line output, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ELEVENLABS_API_KEY; can save speech and ambient audio as MP3 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can automatically install an unpinned Python package at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies from a pinned, trusted environment before use and review the resolved package version.
+
+Risk: The skill sends submitted text to ElevenLabs for text-to-speech or sound-effect generation.
+
+Mitigation: Do not submit confidential, regulated, or secret text unless ElevenLabs processing is acceptable for that data.
+
+Risk: The release uses mutable install paths.
+
+Mitigation: Install from a controlled path and avoid running the skill with elevated privileges.
+
+## Reference(s):
+
+- [MoodCast ClawHub page](https://clawhub.ai/ashutosh887/skills/moodcast)
+- [MoodCast homepage](https://github.com/ashutosh887/moodcast)
+- [ElevenLabs](https://elevenlabs.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands; generated outputs are enhanced text and MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ELEVENLABS_API_KEY; optional ambient sound generation is capped at 30 seconds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

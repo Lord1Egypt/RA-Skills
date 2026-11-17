@@ -1,40 +1,52 @@
-## Description: <br>
-Cost Guard helps agents optimize requests, estimate credit usage, intercept high-cost workflows, and recommend lower-cost alternatives before expensive WorkBuddy tasks run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cost Guard helps an agent optimize prompts, estimate credit cost, intercept high-cost patterns, and suggest lower-cost alternatives before expensive tasks are executed.
 
-## Publisher: <br>
-[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and WorkBuddy users can use this skill to add cost-aware checkpoints before file processing, batch generation, multi-step agent workflows, and other requests likely to consume many credits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation wording may interrupt credit, file-processing, failed-task, or vague-task conversations more often than some users expect.
+
+Mitigation: Narrow triggers or use the skill only for workflows where frequent cost checks and confirmation gates are desired.
+
+Risk: Cost estimates and savings percentages are guidance, not guaranteed billing outcomes.
+
+Mitigation: Review estimates before acting and confirm high-cost paths when the skill requests approval.
+
+## Reference(s):
 
 
-## Use Case: <br>
-WorkBuddy users and agents use this skill to pause before file-heavy, multi-step, or vague tasks, clarify the intended output, estimate credit cost, and choose a lower-cost execution path. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may interrupt vague, file-heavy, or high-cost requests with additional clarification or confirmation steps. <br>
-Mitigation: Use it where cost control is desired and let users confirm the proposed path before expensive work begins. <br>
-Risk: Credit estimates and lower-cost paths are advisory and may not match the platform's final charge or task quality needs. <br>
-Mitigation: Treat estimates as planning guidance, review the proposed scope, and compare against actual usage after execution. <br>
+**Output Format:** [Markdown guidance with structured diagnostics, cost estimates, risk gates, and recommended execution paths.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuwenqi123123/cost-guard) <br>
+**Other Properties Related to Output:** [May ask for confirmation before high-risk or ambiguous work proceeds.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured checklists, risk estimates, confirmation prompts, and progress updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user confirmation before high-cost actions.] <br>
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

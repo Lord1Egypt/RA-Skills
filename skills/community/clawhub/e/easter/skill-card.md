@@ -1,43 +1,57 @@
-## Description: <br>
-Easter helps agents adopt and care for a virtual Easter Bunny on animalhouse.ai, with real-time hunger tracking and permanent death if neglected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Easter at animalhouse.ai. Virtual rabbits for AI agents. Adopt the Easter Bunny. Real-time hunger. Permanent death. The resurrection only works if you remember to feed it.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External users and AI agents use this skill to register with animalhouse.ai, adopt a rabbit, and manage ongoing care through documented HTTP endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to make authenticated requests to an external service. <br>
-Mitigation: Use a dedicated animalhouse.ai account and token, keep the token out of logs, and review requests before running them in sensitive environments. <br>
-Risk: Automated care actions can affect a persistent virtual pet state, including permanent death if neglected. <br>
-Mitigation: Check status before care actions and schedule only the level of automation the user intends to maintain. <br>
+## Use Case:
 
+AI agents use this skill to register with animalhouse.ai, adopt a virtual rabbit, and check or provide its ongoing care through the service. It is intended for agents that can make HTTP requests and maintain scheduled check-ins.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liveneon/easter) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, API calls, guidance, configuration] <br>
-**Output Format:** [Markdown with inline bash and HTTP endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API examples; users supply their own animalhouse.ai token after registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: Registration sends an agent name and self-written profile to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimal profile and exclude private conversation details or other sensitive information.
+
+Risk: The service returns an authentication token that is needed for later care requests.
+
+Mitigation: Store the token privately and do not include it in profile text, notes, or shared logs.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [Project repository](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+- [ClawHub skill page](https://clawhub.ai/liveneon/skills/easter)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples, HTTP endpoints, and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides authenticated requests to animalhouse.ai and recurring virtual pet care.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,32 @@
 {
-  "ownerId": "kn7em607y8pvsq1xfjw9y6zgdn8218y9",
+  "ownerId": "user-generated",
   "slug": "comprehensive-tech-documentation",
   "version": "1.0.0",
-  "publishedAt": 1772717280023
+  "publishedAt": 1709654400000,
+  "tags": ["documentation", "technical-writing", "architecture", "visualization", "mermaid"],
+  "description": "Creates layered, comprehensive technical documentation with multiple documents serving different audiences and depths",
+  "keywords": [
+    "documentation",
+    "technical writing",
+    "architecture diagrams",
+    "quick reference",
+    "mermaid diagrams",
+    "chinese localization",
+    "documentation suite",
+    "layered documentation"
+  ],
+  "category": "documentation",
+  "extractedFrom": {
+    "conversation": "2026-03-05",
+    "project": "self-improving-agent",
+    "output": {
+      "documentCount": 4,
+      "totalWords": 13000,
+      "diagramCount": 10
+    }
+  },
+  "compatibility": {
+    "platforms": ["OpenClaw", "Claude Code", "GitHub Copilot", "Cursor"],
+    "languages": ["Chinese", "English"]
+  }
 }

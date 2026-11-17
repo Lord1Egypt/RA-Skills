@@ -1,42 +1,57 @@
-## Description: <br>
-Helps agents edit Word (.docx) files by enabling track changes, adding insertion and deletion revisions, and adding, removing, or viewing comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Word文档 (.docx) 处理，支持修订模式(Track Changes)和批注操作。使用场景：(1) 修订模式 - 添加插入/删除修订、红字标注；(2) 批注操作 - 添加、删除、查看批注；(3) 文档内容修改。当用户要求"修订"、"track changes"、"批注"、"红字修订"、"添加评论"、"添加注释"时触发此技能。
 
-## Publisher: <br>
-[HanselXie](https://clawhub.ai/user/HanselXie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanselxie](https://clawhub.ai/user/hanselxie)
 
-## Use Case: <br>
-Developers and coding agents use this skill when a user asks to revise Word documents, add redline edits, or manage comments in .docx files. It supports both scripted edits and XML-level guidance for local document workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Word documents can be changed or overwritten during scripted or manual editing. <br>
-Mitigation: Work on copies or explicit output files, and review the generated document before sharing it. <br>
-Risk: Manual cleanup commands can remove the wrong temporary directory if run from an unexpected location. <br>
-Mitigation: Verify the current directory and target path before running cleanup commands such as rm -rf. <br>
-Risk: The helper script depends on python-docx when used for scripted edits. <br>
-Mitigation: Install python-docx only from a trusted package source. <br>
+## Use Case:
 
+External users and developers use this skill to modify Word DOCX documents by enabling track changes, adding insertion or deletion revisions, and working with comments through OOXML-oriented guidance and helper commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HanselXie/docx-trackchanges-and-comments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown with inline bash, Python, and XML snippets; local .docx files when the script is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Works on local Word documents and may create or overwrite output .docx files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Revision and comment behavior may alter documents unexpectedly or give users an inaccurate impression of legally reliable Word comments or auditable Track Changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated DOCX files manually in Word-compatible software before relying on comments, revisions, or audit trails.
+
+Risk: The documented fixed temporary-directory workflow can overwrite or mix files when reused across documents.
+
+Mitigation: Use a fresh temporary directory per document and verify archive contents before repacking the DOCX.
+
+Risk: The helper script's comment path may insert visible inline text rather than a real Word comment.
+
+Mitigation: Treat script-added comment text as visible document content unless the final DOCX is inspected and confirmed to contain proper Word comments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanselxie/skills/docx-trackchanges-and-comments)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline XML, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance and commands for editing DOCX files; output documents should be manually checked in Word-compatible software.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

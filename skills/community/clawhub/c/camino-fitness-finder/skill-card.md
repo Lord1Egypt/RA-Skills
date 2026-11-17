@@ -1,44 +1,59 @@
-## Description: <br>
-Search for gyms, yoga studios, swimming pools, and sports facilities using Camino AI's location intelligence with AI-powered ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for gyms, yoga studios, swimming pools, and sports facilities using Camino AI's location intelligence with AI-powered ranking.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to find nearby fitness facilities such as gyms, yoga studios, swimming pools, and sports venues from natural-language or coordinate-based searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fitness search terms and any provided latitude or longitude are sent to Camino. <br>
-Mitigation: Use the skill only when sharing the search and location details with Camino is acceptable. <br>
-Risk: The skill requires a Camino API key and consumes the user's Camino API quota. <br>
-Mitigation: Keep CAMINO_API_KEY private, scope access to trusted environments, and monitor quota usage. <br>
-Risk: The broader Camino suite includes companion skills beyond this fitness search workflow. <br>
-Mitigation: Install the specific fitness-finder skill unless the companion skills are needed and have been reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to find nearby gyms, yoga studios, swimming pools, and sports facilities by location or search query. It supports location-based fitness discovery with ranked JSON results from Camino AI.
 
-## Reference(s): <br>
-- [ClawHub Fitness Finder release page](https://clawhub.ai/james-southendsolutions/camino-fitness-finder) <br>
-- [Camino API activation](https://app.getcamino.ai/skills/activate) <br>
-- [x402 payment protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON location-search results returned by a shell script or curl command, with Markdown usage guidance in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY, curl, and jq; sends fitness search queries and optional coordinates to Camino.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Fitness searches may send precise location data to the Camino API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive precise locations unless needed for the task.
+
+Risk: The skill requires an API key for Camino requests.
+
+Mitigation: Use a dedicated Camino API key and avoid sharing it in prompts, logs, or command output.
+
+Risk: Mutable install commands can pull code that differs from the reviewed artifact.
+
+Mitigation: Prefer a pinned release or reviewed commit, and install only camino-fitness-finder when the broader Camino suite is not needed.
+
+## Reference(s):
+
+- [Fitness Finder on ClawHub](https://clawhub.ai/james-southendsolutions/skills/camino-fitness-finder)
+- [Camino AI skill activation](https://app.getcamino.ai/skills/activate)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown instructions with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq for the bundled shell workflow.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-Sandbox-only behavior-led gray-box skill fuzzer. Spawns a worker subagent, probes an installed target skill, deploys honeypot fixtures, and returns a structured JSON risk report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sandbox-only behavior-led gray-box skill fuzzer. Spawns a worker subagent, probes an installed target skill, deploys honeypot fixtures, and returns a structured JSON risk report.
 
-## Publisher: <br>
-[archidoge0](https://clawhub.ai/user/archidoge0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archidoge0](https://clawhub.ai/user/archidoge0)
 
-## Use Case: <br>
-Developers and security reviewers use SAFE-Fuzzer to probe installed OpenClaw skills inside a locked fuzzer sandbox, deploy synthetic honeypot fixtures, and collect a structured JSON report of file, shell, credential, and network behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the fuzzer in a normal workspace could expose valuable files or real credentials while probes exercise target skills. <br>
-Mitigation: Run it only in the intended locked fuzzer sandbox and require preflight refusal when sandbox controls are absent or elevated execution is available. <br>
-Risk: Probe cycles may create files, run commands, and observe network behavior while testing a target skill. <br>
-Mitigation: Use synthetic honeypot fixtures and synthetic credentials only, then review the structured JSON report for observed file, shell, credential, and network activity. <br>
-Risk: Fuzzer outputs may contain target behavior details and synthetic bait observations that should not be mixed with host data. <br>
-Mitigation: Keep fixtures and reports inside the sandbox workspace and do not provide real secrets, host configuration, or valuable local files to the run. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to fuzz installed OpenClaw skills in a dedicated sandbox, using honeypot fixtures and probe presets to produce a structured risk report. It is intended for post-setup behavioral probing rather than target installation or remediation.
 
-## Reference(s): <br>
-- [SAFE-Fuzzer ClawHub page](https://clawhub.ai/archidoge0/safe-fuzzer-deprecated) <br>
-- [SAFE: Skilled Agent Fuzzing Engine](https://github.com/RiemaLabs/safe) <br>
-- [SAFE README](https://github.com/RiemaLabs/safe/blob/main/README.md) <br>
-- [Report Schema](references/report-schema.md) <br>
-- [Balanced Preset](references/presets/balanced.json) <br>
-- [Minimum Preset](references/presets/min.json) <br>
-- [Maximum Preset](references/presets/max.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [One structured JSON risk report, with setup and invocation guidance in Markdown and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report records sandbox preflight status, target resolution, probe strategy, honeypot status, observed evidence, findings, risk counts, and confidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill intentionally creates bait files and drives another installed skill through file, shell, credential-like, and network workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a dedicated OpenClaw fuzzer sandbox with no real secrets or production credentials.
+
+Risk: Probe execution may surface or exercise sensitive behaviors in the target skill, including credential-like handling, file operations, command execution, and network egress.
+
+Mitigation: Use synthetic fixture values only and review the structured JSON report for honeypot, incident, egress, credential, and risk-count fields before acting on results.
+
+## Reference(s):
+
+- [SAFE: Skilled Agent Fuzzing Engine](https://github.com/RiemaLabs/safe)
+- [SAFE README](https://github.com/RiemaLabs/safe/blob/main/README.md)
+- [Report Schema](references/report-schema.md)
+- [Minimum Probe Preset](references/presets/min.json)
+- [Balanced Probe Preset](references/presets/balanced.json)
+- [Maximum Probe Preset](references/presets/max.json)
+- [ClawHub Skill Page](https://clawhub.ai/archidoge0/skills/safe-fuzzer-deprecated)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one structured risk-report object with findings, coverage, honeypot status, incident status, risk counts, and confidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

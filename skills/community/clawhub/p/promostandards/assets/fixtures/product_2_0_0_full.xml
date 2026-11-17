@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:GetProductResponse
+        xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/"
+        xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/2.0.0/SharedObjects/">
+      <ns:Product>
+        <shar:productId>PC61</shar:productId>
+        <shar:productName>Essential Tee</shar:productName>
+        <shar:description>5.4-ounce, 100% cotton</shar:description>
+        <shar:description>Tag-free label</shar:description>
+        <shar:ProductKeywordArray>
+          <shar:ProductKeyword><shar:keyword>tee</shar:keyword></shar:ProductKeyword>
+          <shar:ProductKeyword><shar:keyword>cotton</shar:keyword></shar:ProductKeyword>
+        </shar:ProductKeywordArray>
+        <shar:productBrand>Port &amp; Company</shar:productBrand>
+        <shar:ProductCategoryArray>
+          <shar:ProductCategory>
+            <shar:category>Apparel</shar:category>
+            <shar:subCategory>T-Shirts</shar:subCategory>
+          </shar:ProductCategory>
+        </shar:ProductCategoryArray>
+        <shar:primaryImageUrl>https://example.invalid/pc61.jpg</shar:primaryImageUrl>
+        <ns:ProductPartArray>
+          <ns:ProductPart>
+            <shar:partId>PC61-BLK-S</shar:partId>
+            <shar:description>Black Small</shar:description>
+            <shar:countryOfOrigin>HN</shar:countryOfOrigin>
+            <shar:primaryColor><shar:colorName>Black</shar:colorName></shar:primaryColor>
+            <shar:ApparelSize><shar:labelSize>S</shar:labelSize></shar:ApparelSize>
+            <shar:gtin>00191265000015</shar:gtin>
+            <shar:leadTime>5</shar:leadTime>
+            <shar:isCloseout>false</shar:isCloseout>
+            <shar:isCaution>false</shar:isCaution>
+            <shar:isHazmat>false</shar:isHazmat>
+            <shar:isRushService>true</shar:isRushService>
+            <shar:Dimension>
+              <shar:dimensionUom>IN</shar:dimensionUom>
+              <shar:weightUom>LB</shar:weightUom>
+              <shar:weight>0.35</shar:weight>
+              <shar:height>28</shar:height>
+              <shar:width>18</shar:width>
+              <shar:depth>1</shar:depth>
+            </shar:Dimension>
+          </ns:ProductPart>
+        </ns:ProductPartArray>
+        <shar:lineName>Core Basics</shar:lineName>
+        <shar:isCloseout>false</shar:isCloseout>
+        <shar:lastChangeDate>2026-07-30T00:00:00Z</shar:lastChangeDate>
+      </ns:Product>
+    </ns:GetProductResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

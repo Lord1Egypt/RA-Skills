@@ -1,44 +1,59 @@
-## Description: <br>
-Validate OpenClaw installation safety by checking for common security misconfigurations and setup issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate OpenClaw installation safety by checking for common security misconfigurations and setup issues.
 
-## Publisher: <br>
-[marcusy2k](https://clawhub.ai/user/marcusy2k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcusy2k](https://clawhub.ai/user/marcusy2k)
 
-## Use Case: <br>
-Developers and operators use this skill to audit an OpenClaw setup for permission, plugin manifest, sandboxing, and dependency-version issues before or during ongoing local operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dependency check may contact npm while auditing the local OpenClaw version. <br>
-Mitigation: Run the skill deliberately in an environment where npm network access is acceptable, or perform dependency checks manually. <br>
-Risk: Suggested remediation commands may remove plugins, update packages, reset configuration, or change file permissions. <br>
-Mitigation: Review each suggested fix before running it and execute the skill as a normal user. <br>
-Risk: Optional cron or heartbeat scheduling can make setup checks recur automatically. <br>
-Mitigation: Use recurring scheduling only when continuous local setup auditing is intended. <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw installations for common setup issues such as broad file permissions, missing plugin manifests, absent configuration, sandboxing notes, and outdated OpenClaw versions.
 
-## Reference(s): <br>
-- [Setup Validator Checks](references/CHECKS.md) <br>
-- [Example Fixes for Common Issues](references/EXAMPLE_FIXES.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/marcusy2k/setup-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown documentation with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include actionable warnings and remediation commands for the user's local OpenClaw setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may overstate validation coverage and should not be treated as a complete security validator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use its findings as diagnostic prompts and confirm important results with manual review or an approved security process.
+
+Risk: Suggested fixes can include destructive or broad local changes such as plugin removal, configuration reset, or global package updates.
+
+Mitigation: Review each generated command before running it, especially commands that include plugin names or paths discovered from the local filesystem.
+
+Risk: Periodic execution through cron creates recurring local checks and command activity.
+
+Mitigation: Enable scheduled validation only after confirming the paths, commands, and cadence are appropriate for the target environment.
+
+## Reference(s):
+
+- [Setup Validator page](https://clawhub.ai/marcusy2k/skills/setup-validator)
+- [Setup Validator Checks](references/CHECKS.md)
+- [Example Fixes for Common Issues](references/EXAMPLE_FIXES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scripts report local diagnostic findings and suggested fixes for review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

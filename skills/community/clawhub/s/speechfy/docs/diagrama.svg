@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+    <linearGradient id="primary" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6c5ce7"/>
+      <stop offset="100%" stop-color="#a29bfe"/>
+    </linearGradient>
+    <linearGradient id="fallback" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00b894"/>
+      <stop offset="100%" stop-color="#55efc4"/>
+    </linearGradient>
+    <linearGradient id="output" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e17055"/>
+      <stop offset="100%" stop-color="#fab1a0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrowDown" markerWidth="7" markerHeight="10" refX="3.5" refY="10" orient="auto">
+      <polygon points="0 0, 7 0, 3.5 10" fill="#636e72"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="520" fill="url(#bg)" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#2d3436">Speechify TTS — Fluxo de Operação</text>
+
+  <!-- Input -->
+  <rect x="300" y="60" width="200" height="50" rx="10" fill="#636e72" filter="url(#shadow)"/>
+  <text x="400" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">📝 Texto (CLI / SSML)</text>
+  <text x="400" y="100" text-anchor="middle" font-size="10" fill="#dfe6e9">Argumento da linha de comando</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="110" x2="400" y2="145" stroke="#636e72" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="400,150 470,190 400,230 330,190" fill="#fdcb6e" stroke="#f39c12" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="188" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3436">API Key</text>
+  <text x="400" y="203" text-anchor="middle" font-size="10" fill="#2d3436">disponível?</text>
+
+  <!-- Yes path (Speechify) -->
+  <line x1="470" y1="190" x2="580" y2="190" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="525" y="182" text-anchor="middle" font-size="11" fill="#6c5ce7" font-weight="bold">Sim</text>
+  <line x1="580" y1="190" x2="580" y2="250" stroke="#6c5ce7" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- Speechify box -->
+  <rect x="460" y="255" width="240" height="100" rx="10" fill="url(#primary)" filter="url(#shadow)"/>
+  <text x="580" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">🔊 Speechify API</text>
+  <text x="580" y="305" text-anchor="middle" font-size="11" fill="#dfe6e9">POST /v1/audio/speech</text>
+  <text x="580" y="322" text-anchor="middle" font-size="10" fill="#dfe6e9">Voz: Cristiane · Modelo: simba-multilingual</text>
+  <text x="580" y="340" text-anchor="middle" font-size="10" fill="#dfe6e9">Retorna: .mp3 (base64) + char count</text>
+
+  <!-- No path (Edge TTS) -->
+  <line x1="330" y1="190" x2="220" y2="190" stroke="#00b894" stroke-width="2"/>
+  <text x="275" y="182" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">Não</text>
+  <line x1="220" y1="190" x2="220" y2="250" stroke="#00b894" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- Edge TTS box -->
+  <rect x="100" y="255" width="240" height="100" rx="10" fill="url(#fallback)" filter="url(#shadow)"/>
+  <text x="220" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">🔊 Edge TTS (fallback)</text>
+  <text x="220" y="305" text-anchor="middle" font-size="11" fill="#dfe6e9">Microsoft Cognitive Services</text>
+  <text x="220" y="322" text-anchor="middle" font-size="10" fill="#dfe6e9">Voz: FranciscaNeural (pt-BR)</text>
+  <text x="220" y="340" text-anchor="middle" font-size="10" fill="#dfe6e9">Gratuito · Ilimitado</text>
+
+  <!-- Arrows down from both -->
+  <line x1="220" y1="355" x2="220" y2="390" stroke="#00b894" stroke-width="2" marker-end="url(#arrowDown)"/>
+  <line x1="580" y1="355" x2="580" y2="390" stroke="#6c5ce7" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- Vault box (side) -->
+  <rect x="50" y="60" width="170" height="80" rx="8" fill="#74b9ff" filter="url(#shadow)"/>
+  <text x="135" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">🔐 Vaultwarden</text>
+  <text x="135" y="105" text-anchor="middle" font-size="10" fill="#dfe6e9">speechfy_key</text>
+  <text x="135" y="120" text-anchor="middle" font-size="10" fill="#dfe6e9">(opcional)</text>
+  <line x1="175" y1="140" x2="320" y2="170" stroke="#74b9ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Env var box (side) -->
+  <rect x="580" y="60" width="170" height="80" rx="8" fill="#fdcb6e" filter="url(#shadow)"/>
+  <text x="665" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#2d3436">⚙️ Env Vars</text>
+  <text x="665" y="105" text-anchor="middle" font-size="10" fill="#636e72">SPEECHIFY_API_KEY</text>
+  <text x="665" y="120" text-anchor="middle" font-size="10" fill="#636e72">SPEECHIFY_VOICE, etc.</text>
+  <line x1="580" y1="120" x2="468" y2="170" stroke="#fdcb6e" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- ffmpeg conversion box -->
+  <rect x="460" y="395" width="240" height="60" rx="8" fill="#dfe6e9" filter="url(#shadow)"/>
+  <text x="580" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3436">🔄 ffmpeg (mp3 → ogg)</text>
+  <text x="580" y="440" text-anchor="middle" font-size="10" fill="#636e72">libopus · 32kbps · Opus codec</text>
+
+  <!-- Both converge to output -->
+  <line x1="580" y1="455" x2="580" y2="470" stroke="#636e72" stroke-width="2" marker-end="url(#arrowDown)"/>
+  <line x1="220" y1="390" x2="580" y2="470" stroke="#636e72" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Output box -->
+  <rect x="460" y="472" width="240" height="35" rx="8" fill="url(#output)" filter="url(#shadow)"/>
+  <text x="580" y="495" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">✅ .ogg (Opus) — Pronto!</text>
+
+  <!-- Edge TTS direct output -->
+  <line x1="220" y1="355" x2="580" y2="472" stroke="#00b894" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="380" y="430" text-anchor="middle" font-size="9" fill="#636e72">Edge TTS gera .ogg direto</text>
+
+  <!-- Fail path -->
+  <line x1="580" y1="355" x2="700" y2="355" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="640" y="348" text-anchor="middle" font-size="10" fill="#e17055">HTTP 402/429</text>
+  <line x1="700" y1="355" x2="700" y2="230" stroke="#e17055" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="690" y="280" text-anchor="middle" font-size="9" fill="#e17055">fallback</text>
+  <polygon points="700,230 707,240 693,240" fill="#e17055"/>
+
+  <!-- Legend -->
+  <rect x="50" y="515" width="700" height="1" fill="#b2bec3"/>
+  <circle cx="100" cy="508" r="4" fill="#6c5ce7"/>
+  <text x="110" y="512" font-size="9" fill="#636e72">Fluxo principal</text>
+  <circle cx="280" cy="508" r="4" fill="#00b894"/>
+  <text x="290" y="512" font-size="9" fill="#636e72">Fallback</text>
+  <circle cx="450" cy="508" r="4" fill="#e17055"/>
+  <text x="460" y="512" font-size="9" fill="#636e72">Falha → fallback</text>
+  <circle cx="700" cy="508" r="4" fill="#74b9ff"/>
+  <text x="710" y="512" font-size="9" fill="#636e72">Config (opcional)</text>
+</svg>

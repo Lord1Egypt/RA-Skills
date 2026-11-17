@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_get_ai_model_list",
+    "description": "Get team AI model list.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+
+      }
+    }
+  }
+}

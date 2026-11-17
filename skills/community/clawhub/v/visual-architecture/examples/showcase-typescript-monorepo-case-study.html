@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public TypeScript Monorepo Case Study</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f172a;
+      --panel: #f8fafc;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #f8fafc;
+    }
+    main {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 18px;
+      padding: 28px;
+    }
+    header, footer {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+    p {
+      max-width: 760px;
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+    .artifact {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      align-self: center;
+      background: var(--panel);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: auto;
+      box-shadow: 0 24px 64px rgba(2, 6, 23, 0.28);
+    }
+    .artifact svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+    code {
+      color: #dbeafe;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(203, 213, 225, 0.24);
+      border-radius: 6px;
+      padding: 3px 6px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Public TypeScript Monorepo Case Study</h1>
+      <p>A sanitized case-study map showing how Visual Architecture turns a dense TypeScript repo into a reviewable artifact with evidence and receipts.</p>
+    </header>
+    <section class="artifact" aria-label="Architecture diagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1771.0" height="720.0" viewBox="-45.5 40.0 1771.0 720.0" role="img" aria-label="Public TypeScript Monorepo Case Study">
+        <defs>
+          <pattern id="grid" width="120" height="80" patternUnits="userSpaceOnUse">
+            <path d="M 120 0 L 0 0 0 80" fill="none" stroke="#1e293b" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect x="-45.5" y="40.0" width="1771.0" height="720.0" fill="#020617"/>
+        <g id="mode-backdrop">
+          <rect x="-45.5" y="40.0" width="590.3" height="720.0" fill="#07111f" opacity="0.55"/>
+          <line x1="544.8" y1="40.0" x2="544.8" y2="760.0" stroke="#1f3448" stroke-width="1" opacity="0.7"/>
+          <text x="-27.5" y="66.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#8fb5d9">ACTORS</text>
+          <rect x="544.8" y="40.0" width="590.3" height="720.0" fill="#0b1726" opacity="0.55"/>
+          <line x1="1135.2" y1="40.0" x2="1135.2" y2="760.0" stroke="#1f3448" stroke-width="1" opacity="0.7"/>
+          <text x="562.8" y="66.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#8fb5d9">RUNTIME</text>
+          <rect x="1135.2" y="40.0" width="590.3" height="720.0" fill="#07111f" opacity="0.55"/>
+          <line x1="1725.5" y1="40.0" x2="1725.5" y2="760.0" stroke="#1f3448" stroke-width="1" opacity="0.7"/>
+          <text x="1153.2" y="66.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#8fb5d9">PROOF</text>
+          <rect x="-35.5" y="726.0" width="95.0" height="22" rx="6" fill="#38bdf8" opacity="0.18" stroke="#38bdf8" stroke-width="1"/>
+          <text x="-22.5" y="741.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#38bdf8">SYSTEM MAP</text>
+        </g>
+        <g id="arrows">
+          <path d="M 120.0 362.0 L 120.0 80.0 L 240.0 80.0 L 240.0 160.0 L 369.5 160.0" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <polygon points="360.5,154.6 369.5,160.0 360.5,165.4" fill="#fbbf24"/>
+          <path d="M 245.5 400.0 L 366.0 400.0" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <polygon points="357.0,394.6 366.0,400.0 357.0,405.4" fill="#fbbf24"/>
+          <path d="M 120.0 438.0 L 120.0 720.0 L 240.0 720.0 L 240.0 640.0 L 372.5 640.0" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <polygon points="363.5,634.6 372.5,640.0 363.5,645.4" fill="#fbbf24"/>
+          <path d="M 590.5 160.0 L 722.0 160.0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="713.0,154.6 722.0,160.0 713.0,165.4" fill="#38bdf8"/>
+          <path d="M 594.0 400.0 L 600.0 400.0 L 600.0 160.0 L 722.0 160.0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="713.0,154.6 722.0,160.0 713.0,165.4" fill="#38bdf8"/>
+          <path d="M 587.5 640.0 L 720.0 640.0 L 720.0 720.0 L 840.0 720.0 L 840.0 198.0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="834.6,207.0 840.0,198.0 845.4,207.0" fill="#38bdf8"/>
+          <path d="M 594.0 400.0 L 714.5 400.0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="705.5,394.6 714.5,400.0 705.5,405.4" fill="#38bdf8"/>
+          <path d="M 965.5 400.0 L 1080.0 400.0 L 1080.0 160.0 L 1086.0 160.0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="1077.0,154.6 1086.0,160.0 1077.0,165.4" fill="#38bdf8"/>
+          <path d="M 965.5 400.0 L 1074.5 400.0" fill="none" stroke="#5eead4" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="10 8"/>
+          <polygon points="1065.5,394.6 1074.5,400.0 1065.5,405.4" fill="#5eead4"/>
+          <path d="M 1086.0 160.0 L 590.5 160.0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="599.5,165.4 590.5,160.0 599.5,154.6" fill="#38bdf8"/>
+          <path d="M 1325.5 400.0 L 1434.5 400.0" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <polygon points="1425.5,394.6 1434.5,400.0 1425.5,405.4" fill="#fbbf24"/>
+          <path d="M 1314.0 160.0 L 1320.0 160.0 L 1320.0 400.0 L 1434.5 400.0" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <polygon points="1425.5,394.6 1434.5,400.0 1425.5,405.4" fill="#fbbf24"/>
+        </g>
+        <g id="nodes">
+          <g class="node-shape" data-node-id="repo">
+          <rect x="-13.5" y="354.0" width="267.0" height="92.0" rx="18" fill="#5eead4" opacity="0.13"/>
+          <path d="M -5.5 374.0 A 125.5 12.0 0 0 1 245.5 374.0 L 245.5 426.0 A 125.5 12.0 0 0 1 -5.5 426.0 Z" fill="#052e2b" stroke="#5eead4" stroke-width="2"/>
+          <ellipse cx="120.0" cy="374.0" rx="125.5" ry="12.0" fill="#052e2b" stroke="#5eead4" stroke-width="2"/>
+          <path d="M -5.5 426.0 A 125.5 12.0 0 0 0 245.5 426.0" fill="none" stroke="#5eead4" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="client">
+          <rect x="361.5" y="114.0" width="237.0" height="92.0" rx="18" fill="#38bdf8" opacity="0.13"/>
+          <rect x="369.5" y="122.0" width="221.0" height="76.0" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="server">
+          <rect x="358.0" y="354.0" width="244.0" height="92.0" rx="18" fill="#38bdf8" opacity="0.13"/>
+          <rect x="366.0" y="362.0" width="228.0" height="76.0" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="extension">
+          <polygon points="388.5,596.0 571.5,596.0 595.5,640.0 571.5,684.0 388.5,684.0 364.5,640.0" fill="#fbbf24" opacity="0.13"/>
+          <polygon points="394.5,602.0 565.5,602.0 587.5,640.0 565.5,678.0 394.5,678.0 372.5,640.0" fill="#111827" stroke="#fbbf24" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="packages">
+          <rect x="714.0" y="114.0" width="252.0" height="92.0" rx="18" fill="#5eead4" opacity="0.13"/>
+          <path d="M 722.0 134.0 A 118.0 12.0 0 0 1 958.0 134.0 L 958.0 186.0 A 118.0 12.0 0 0 1 722.0 186.0 Z" fill="#052e2b" stroke="#5eead4" stroke-width="2"/>
+          <ellipse cx="840.0" cy="134.0" rx="118.0" ry="12.0" fill="#052e2b" stroke="#5eead4" stroke-width="2"/>
+          <path d="M 722.0 186.0 A 118.0 12.0 0 0 0 958.0 186.0" fill="none" stroke="#5eead4" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="backend">
+          <rect x="706.5" y="354.0" width="267.0" height="92.0" rx="18" fill="#38bdf8" opacity="0.13"/>
+          <rect x="714.5" y="362.0" width="251.0" height="76.0" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="realtime">
+          <rect x="1078.0" y="114.0" width="244.0" height="92.0" rx="18" fill="#c4b5fd" opacity="0.13"/>
+          <rect x="1086.0" y="122.0" width="228.0" height="76.0" rx="16" fill="#1e1b4b" stroke="#c4b5fd" stroke-width="2"/>
+          <rect x="1092.0" y="128.0" width="216.0" height="64.0" rx="12" fill="none" stroke="#c4b5fd" stroke-width="1.5"/>
+          </g>
+          <g class="node-shape" data-node-id="database">
+          <rect x="1066.5" y="354.0" width="267.0" height="92.0" rx="18" fill="#5eead4" opacity="0.13"/>
+          <path d="M 1074.5 374.0 A 125.5 12.0 0 0 1 1325.5 374.0 L 1325.5 426.0 A 125.5 12.0 0 0 1 1074.5 426.0 Z" fill="#052e2b" stroke="#5eead4" stroke-width="2"/>
+          <ellipse cx="1200.0" cy="374.0" rx="125.5" ry="12.0" fill="#052e2b" stroke="#5eead4" stroke-width="2"/>
+          <path d="M 1074.5 426.0 A 125.5 12.0 0 0 0 1325.5 426.0" fill="none" stroke="#5eead4" stroke-width="2"/>
+          </g>
+          <g class="node-shape" data-node-id="proof">
+          <polygon points="1450.5,356.0 1669.5,356.0 1693.5,400.0 1669.5,444.0 1450.5,444.0 1426.5,400.0" fill="#fbbf24" opacity="0.13"/>
+          <polygon points="1456.5,362.0 1663.5,362.0 1685.5,400.0 1663.5,438.0 1456.5,438.0 1434.5,400.0" fill="#111827" stroke="#fbbf24" stroke-width="2"/>
+          </g>
+        </g>
+        <g id="labels">
+          <rect x="83.5" y="209.0" width="73.0" height="24.0" rx="6" fill="#451a03" stroke="#92400e" stroke-width="2"/>
+          <text x="120.0" y="225.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fef3c7">contains</text>
+          <rect x="269.2" y="388.0" width="73.0" height="24.0" rx="6" fill="#451a03" stroke="#92400e" stroke-width="2"/>
+          <text x="305.8" y="404.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fef3c7">contains</text>
+          <rect x="83.5" y="567.0" width="73.0" height="24.0" rx="6" fill="#451a03" stroke="#92400e" stroke-width="2"/>
+          <text x="120.0" y="583.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fef3c7">contains</text>
+          <rect x="623.2" y="148.0" width="66.0" height="24.0" rx="6" fill="#082f49" stroke="#164e63" stroke-width="2"/>
+          <text x="656.2" y="164.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e0f2fe">imports</text>
+          <rect x="567.0" y="268.0" width="66.0" height="24.0" rx="6" fill="#082f49" stroke="#164e63" stroke-width="2"/>
+          <text x="600.0" y="284.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e0f2fe">imports</text>
+          <rect x="813.0" y="447.0" width="54.0" height="24.0" rx="6" fill="#082f49" stroke="#164e63" stroke-width="2"/>
+          <text x="840.0" y="463.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e0f2fe">uses</text>
+          <rect x="624.8" y="388.0" width="59.0" height="24.0" rx="6" fill="#082f49" stroke="#164e63" stroke-width="2"/>
+          <text x="654.2" y="404.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e0f2fe">routes</text>
+          <rect x="1040.0" y="268.0" width="80.0" height="24.0" rx="6" fill="#082f49" stroke="#164e63" stroke-width="2"/>
+          <text x="1080.0" y="284.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e0f2fe">publishes</text>
+          <rect x="983.5" y="388.0" width="73.0" height="24.0" rx="6" fill="#042f2e" stroke="#0f766e" stroke-width="2"/>
+          <text x="1020.0" y="404.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#ccfbf1">persists</text>
+          <rect x="805.2" y="148.0" width="66.0" height="24.0" rx="6" fill="#082f49" stroke="#164e63" stroke-width="2"/>
+          <text x="838.2" y="164.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e0f2fe">updates</text>
+          <rect x="1343.5" y="388.0" width="73.0" height="24.0" rx="6" fill="#451a03" stroke="#92400e" stroke-width="2"/>
+          <text x="1380.0" y="404.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fef3c7">receipts</text>
+          <rect x="1287.0" y="268.0" width="66.0" height="24.0" rx="6" fill="#451a03" stroke="#92400e" stroke-width="2"/>
+          <text x="1320.0" y="284.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fef3c7">gallery</text>
+          <text x="120.0" y="396.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#ecfeff">TypeScript Monorepo</text>
+          <text x="120.0" y="418.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#99f6e4">workspace packages and apps</text>
+          <rect x="187.5" y="370.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="211.5" y="383.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="480.0" y="156.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#f8fafc">Client App</text>
+          <text x="480.0" y="178.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#bfdbfe">routes, features, hooks</text>
+          <rect x="532.5" y="130.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="556.5" y="143.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="480.0" y="396.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#f8fafc">Server App</text>
+          <text x="480.0" y="418.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#bfdbfe">controllers and services</text>
+          <rect x="536.0" y="370.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="560.0" y="383.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="480.0" y="636.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#fffbeb">Editor Extension</text>
+          <text x="480.0" y="658.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#fde68a">local command surface</text>
+          <rect x="529.5" y="610.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="553.5" y="623.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="840.0" y="156.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#ecfeff">Shared Packages</text>
+          <text x="840.0" y="178.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#99f6e4">types, API client, config</text>
+          <rect x="900.0" y="130.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="924.0" y="143.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="840.0" y="396.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#f8fafc">Backend Modules</text>
+          <text x="840.0" y="418.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#bfdbfe">jobs, auth, domain services</text>
+          <rect x="907.5" y="370.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="931.5" y="383.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="1200.0" y="156.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#f5f3ff">Realtime Gateway</text>
+          <text x="1200.0" y="178.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#ddd6fe">events and collaboration</text>
+          <rect x="1256.0" y="130.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="1280.0" y="143.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="1200.0" y="396.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#ecfeff">Database Layer</text>
+          <text x="1200.0" y="418.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#99f6e4">migrations and repositories</text>
+          <rect x="1267.5" y="370.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="1291.5" y="383.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+          <text x="1560.0" y="396.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#fffbeb">Proof Bundle</text>
+          <text x="1560.0" y="418.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#fde68a">SVG, HTML, receipt, gallery</text>
+          <rect x="1627.5" y="370.0" width="48.0" height="18" rx="9" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+          <text x="1651.5" y="383.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#ccfbf1">SRC 1</text>
+        </g>
+      </svg>
+    </section>
+    <footer>
+      <span>Source spec</span>
+      <code>showcase-typescript-monorepo-case-study.json</code>
+      <span>Generated by visual-architecture.</span>
+    </footer>
+  </main>
+</body>
+</html>

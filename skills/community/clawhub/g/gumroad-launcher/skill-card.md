@@ -1,41 +1,55 @@
-## Description: <br>
-Research a digital product niche, generate the product (ebook, template, script, checklist, or skill), write high-converting Gumroad sales copy, and publish the product listing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a digital product niche, generate the product (ebook, template, script, checklist, or skill), write high-converting Gumroad sales copy, and publish the product listing.
 
-## Publisher: <br>
-[michelle447](https://clawhub.ai/user/michelle447) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michelle447](https://clawhub.ai/user/michelle447)
 
-## Use Case: <br>
-External creators and developers use this skill to research a sellable digital product niche, create product files, draft Gumroad sales copy, set pricing, and prepare or publish a Gumroad listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward live Gumroad publishing with unclear account credentials and no required final approval step. <br>
-Mitigation: Require the agent to show the exact product file, sales copy, price, and target account before creating or publishing any live listing. <br>
-Risk: Named account references could cause work to be prepared for or published under the wrong Gumroad account. <br>
-Mitigation: Remove or ignore named account references and use only the user's own limited-scope credentials. <br>
+## Use Case:
 
+External creators, developers, and operators use this skill to research a digital product niche, create deliverables such as guides, templates, scripts, checklists, or skills, prepare Gumroad sales copy, and publish a listing.
 
-## Reference(s): <br>
-- [Gumroad Sales Copy Examples](references/copy-examples.md) <br>
-- [Gumroad API endpoint](https://api.gumroad.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with product file paths, listing URLs, pricing guidance, sales copy, and API command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated product files and live publishing actions when the agent is given appropriate credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish live Gumroad products using named accounts without enough confirmation or account verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded account identifiers, require the user to choose and verify an authorized Gumroad store, and add an explicit preview-and-confirm step before any live API call.
+
+Risk: Gumroad credentials could be exposed or misused if tokens or account details are placed directly in skill text or generated commands.
+
+Mitigation: Keep Gumroad tokens out of the skill text and use only credentials for accounts the user is authorized to manage.
+
+## Reference(s):
+
+- [Gumroad Sales Copy Examples](references/copy-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/michelle447/skills/gumroad-launcher)
+- [Gumroad API v2 Endpoint](https://api.gumroad.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file paths, sales copy, pricing guidance, and API or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce product files and a live Gumroad listing URL when publishing is confirmed and authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

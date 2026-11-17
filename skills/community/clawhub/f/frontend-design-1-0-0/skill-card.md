@@ -1,37 +1,49 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[dc-acronym](https://clawhub.ai/user/dc-acronym) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[dc-acronym](https://clawhub.ai/user/dc-acronym)
 
-## Use Case: <br>
-Developers and designers use this skill to build web components, pages, and applications with distinctive visual direction, polished frontend code, and attention to typography, color, motion, and layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code can still introduce accessibility, dependency, performance, asset licensing, or project-standard issues. <br>
-Mitigation: Review any code the skill helps generate for accessibility, dependency choices, performance, asset and font licensing, and fit with project standards before production use. <br>
+## Use Case:
 
+Developers and product teams use this skill to guide agents toward polished frontend components, pages, and applications with a clear aesthetic direction, distinctive typography, committed visual themes, motion, and refined layout.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with frontend code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external tools, credentials, or runtime services are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated frontend work may emphasize bold aesthetics, animation, or distinctive typography in ways that do not match product, accessibility, performance, or brand requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code, assets, accessibility behavior, performance impact, and brand fit before shipping.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/dc-acronym/skills/frontend-design-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May influence generated frontends toward bold aesthetic choices, animations, and distinctive typography.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

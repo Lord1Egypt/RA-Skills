@@ -1,41 +1,50 @@
-## Description: <br>
-List and download all files from a Google Drive folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List and download all files from a Google Drive folder.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and Google Workspace users use this recipe to list every file in a Google Drive folder, download file media, and export Google Docs as PDFs through the gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can download or export the wrong Drive contents if folder IDs, file IDs, account context, or output paths are incorrect. <br>
-Mitigation: Verify the active Google account, folder and file IDs, and local destination before running the generated gws commands. <br>
-Risk: The skill depends on external tooling and a companion Drive skill. <br>
-Mitigation: Install and trust the gws CLI and load the gws-drive skill before executing the recipe. <br>
+## Use Case:
 
+External users and developers use this recipe to list a Google Drive folder's contents and download each file locally, including exporting Google Docs as PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-bulk-download-folder) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI, the gws-drive skill, valid Google account access, Drive folder IDs, file IDs, and local output filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The recipe downloads Google Drive folder contents to local storage, which may include sensitive files or unexpected filename collisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on folders you are authorized to access, choose a dedicated output directory, review the file list first, and watch for sensitive files or filename collisions.
+
+## Reference(s):
+
+- [Recipe Bulk Download Folder release page](https://clawhub.ai/googleworkspace-bot/skills/recipe-bulk-download-folder)
+- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require gws and the gws-drive skill, and they may write downloaded Drive files to local storage.]
+
+## Skill Version(s):
+
+1.0.12 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

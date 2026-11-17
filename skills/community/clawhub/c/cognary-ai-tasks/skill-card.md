@@ -1,40 +1,58 @@
-## Description: <br>
-Manage task lists via cognary-cli. Use for listing, adding, updating, completing, uncompleting, and deleting tasks. Triggers on any request about tasks, to-dos, task lists, reminders-as-tasks, or tracking action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage task lists via cognary-cli, including listing, adding, updating, completing, uncompleting, and deleting tasks.
 
-## Publisher: <br>
-[dboyne](https://clawhub.ai/user/dboyne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dboyne](https://clawhub.ai/user/dboyne)
 
-## Use Case: <br>
-External users and agents use this skill to manage Cognary task lists through cognary-cli, including listing, adding, updating, completing, reactivating, and deleting tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing cognary-cli from npm may install an unintended package if the package identity is not checked. <br>
-Mitigation: Verify that cognary-cli is the intended npm package before installation. <br>
-Risk: The skill requires a Cognary API key and can modify or delete user tasks. <br>
-Mitigation: Use a dedicated Cognary API key when possible and confirm the exact task ID and title before updates or deletion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cognary Tasks App](https://tasks.cognary.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/dboyne/cognary-ai-tasks) <br>
+## Use Case:
 
+External users and agents use this skill to manage Cognary task lists through cognary-cli, including viewing, creating, updating, completing, reactivating, and deleting tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Markdown, Text] <br>
-**Output Format:** [Markdown with inline shell commands and readable task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses cognary-cli JSON output internally and presents task title, status, priority, category, due date, and ID to the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install an unpinned global CLI.
+
+Mitigation: Install cognary-cli only from a version and publisher the user trusts.
+
+Risk: The skill requires an API key for Cognary task access.
+
+Mitigation: Configure COGNARY_API_KEY through a local secret mechanism rather than chat.
+
+Risk: The skill can mutate or delete external tasks.
+
+Mitigation: Require explicit user confirmation before update, completion, uncompletion, or deletion commands.
+
+## Reference(s):
+
+- [Cognary Tasks ClawHub listing](https://clawhub.ai/dboyne/skills/cognary-ai-tasks)
+- [dboyne ClawHub publisher profile](https://clawhub.ai/user/dboyne)
+- [Cognary Tasks web app](https://tasks.cognary.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown summaries with CLI commands and JSON-backed task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires cognary-cli and COGNARY_API_KEY for task API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

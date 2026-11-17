@@ -1,43 +1,60 @@
-## Description: <br>
-Guides agents in sending Feishu text, image, and file messages through OpenClaw, including recipient targeting and relative media paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Messenger helps an agent send Feishu text messages, images, and files to individual users or group chats using OpenClaw messaging commands.
 
-## Publisher: <br>
-[hanl754](https://clawhub.ai/user/hanl754) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanl754](https://clawhub.ai/user/hanl754)
 
-## Use Case: <br>
-Developers and operators use this skill to send Feishu notifications, screenshots, logs, and documents from an OpenClaw environment. It is suited for human-approved messaging workflows where an agent prepares or runs openclaw message send commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages or attached files may disclose secrets, personal data, logs, screenshots, or other confidential material to a Feishu recipient. <br>
-Mitigation: Verify the target user or chat before sending, redact sensitive content, and send only material approved for that Feishu destination. <br>
-Risk: Media and file examples depend on relative paths, so incorrect path handling may send the wrong file or cause delivery failures. <br>
-Mitigation: Place intended files in the OpenClaw workspace, use relative ./ paths, and inspect the selected file before sending. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent send Feishu notifications, screenshots, logs, reports, and other selected workspace files to known Feishu recipients. It is useful for operational updates and file handoff workflows where recipient IDs and outbound content are reviewed before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanl754/feishu-messenger) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [OpenClaw message documentation](https://docs.openclaw.ai/tools/message) <br>
-- [Feishu message API](https://open.feishu.cn/document/ukTMukTMukTM/uEjNwUjLxYDM14SM2ATN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require a Feishu target ID and may include a relative media path; media examples assume files are placed in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Messages or files may be sent to the wrong Feishu recipient if the target ID is incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the open_id or chat_id before sending, and test bulk sends with one recipient first.
+
+Risk: Screenshots, logs, documents, or reports may contain secrets, personal data, customer data, or internal details.
+
+Mitigation: Review and redact selected content before sending it through Feishu.
+
+Risk: Media sends may fail or behave unexpectedly when absolute paths or home-directory paths are used.
+
+Mitigation: Copy files into the OpenClaw workspace and use relative media paths such as ./file.ext.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanl754/skills/feishu-messenger)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [OpenClaw message documentation](https://docs.openclaw.ai/tools/message)
+- [Feishu message API](https://open.feishu.cn/document/ukTMukTMukTM/uEjNwUjLxYDM14SM2ATN)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional Python subprocess snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Feishu through OpenClaw and may include user-selected relative media paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

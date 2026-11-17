@@ -1,41 +1,53 @@
-## Description: <br>
-Interactive 3D head tapping ASMR synthesizer with material, position, and intensity controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive 3D head tapping ASMR synthesizer with material, position, and strength controls.
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-Creators and developers use this skill to build and run a browser-based ASMR workspace that generates spatial tapping sounds for sleep, focus, and relaxation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide local file writes and browser audio playback. <br>
-Mitigation: Review proposed commands and target paths before approving writes, run it in a sandboxed workspace, and keep browser volume at a comfortable level. <br>
-Risk: Optional natural-language control may use a user-supplied LLM endpoint or API key. <br>
-Mitigation: Use only trusted endpoints, avoid entering sensitive keys in shared browser profiles, and clear local browser storage after testing. <br>
+## Use Case:
 
+External users and developers use this skill to run a browser-based 3D ASMR sound generator, choose tapping regions and materials, arrange playback sequences, and export generated sleep-sound audio.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moroiser/asmr-sleep-sound-generator) <br>
-- [moroiser publisher profile](https://clawhub.ai/user/moroiser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with command snippets and project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update files under ~/.openclaw/workspace/projects/asmr-sleep-sound-generator/ and play browser audio when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The optional LLM feature asks users to store an API key in browser localStorage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted, low-quota, revocable API key and clear browser storage when finished.
+
+Risk: Running a local static server could expose unintended files if it is bound broadly or started from a sensitive directory.
+
+Mitigation: Bind the server to localhost, for example with --bind 127.0.0.1, and serve only the intended project directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moroiser/skills/asmr-sleep-sound-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline bash commands and browser usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local server startup commands, browser interaction steps, and LLM API configuration guidance.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

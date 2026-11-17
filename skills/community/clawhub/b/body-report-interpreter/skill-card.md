@@ -1,43 +1,53 @@
-## Description: <br>
-Interprets physical exam reports from uploaded images, PDFs, or pasted text by explaining indicators, identifying abnormal values, and giving plain-language health suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets physical exam reports from uploaded images, PDFs, or pasted text by explaining lab indicators, reference ranges, abnormal values, and follow-up suggestions.
 
-## Publisher: <br>
-[marson2016](https://clawhub.ai/user/marson2016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marson2016](https://clawhub.ai/user/marson2016)
 
-## Use Case: <br>
-External users can use this skill to understand body check and lab report values, compare results against report-provided or bundled reference ranges, and identify which abnormal results may warrant follow-up. It is educational guidance and not a medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive health information from medical reports. <br>
-Mitigation: Redact unnecessary identifiers before use and avoid sharing report content beyond the intended agent session. <br>
-Risk: The output could be mistaken for a diagnosis. <br>
-Mitigation: Treat interpretations as educational guidance and consult a clinician for serious, persistent, or clearly abnormal results. <br>
-Risk: Reference ranges vary by hospital and testing method. <br>
-Mitigation: Prefer the reference ranges printed on the uploaded report before using the bundled common ranges. <br>
+## Use Case:
 
+External users use this skill to understand physical exam and lab reports, including blood panels, liver function, lipids, kidney function, urinalysis, tumor markers, and historical comparisons. It provides plain-language explanations and flags abnormal values while avoiding diagnosis.
 
-## Reference(s): <br>
-- [Common Physical Exam Indicator Reference Ranges](references/ranges.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/marson2016/body-report-interpreter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, abnormal-value explanations, and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses report-provided reference ranges first, then bundled common ranges; avoids diagnosis and recommends clinician follow-up for clearly abnormal results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Uploaded medical reports may contain sensitive personal health information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary identifiers when possible before using the skill.
+
+Risk: Medical explanations of abnormal values could be mistaken for a diagnosis.
+
+Mitigation: Treat the output as explanatory guidance, rely on the report's own reference ranges first, and consult a clinician for significant abnormalities or follow-up decisions.
+
+## Reference(s):
+
+- [Common physical exam indicator reference ranges](references/ranges.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with summary tables and plain-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritizes the report's own reference ranges before bundled reference ranges; output is explanatory guidance, not a diagnosis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

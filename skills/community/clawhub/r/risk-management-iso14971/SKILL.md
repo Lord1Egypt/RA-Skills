@@ -1,5 +1,5 @@
 ---
-name: "risk-management-specialist"
+name: "riREDACTED-SECRET"
 description: Medical device risk management specialist implementing ISO 14971 throughout product lifecycle. Provides risk analysis, risk evaluation, risk control, and post-production information analysis. Use when user mentions risk management, ISO 14971, risk analysis, FMEA, fault tree analysis, hazard identification, risk control, risk matrix, benefit-risk analysis, residual risk, risk acceptability, or post-market risk.
 ---
 
@@ -11,12 +11,12 @@ ISO 14971:2019 risk management implementation throughout the medical device life
 
 ## Table of Contents
 
-- [Risk Management Planning Workflow](#risk-management-planning-workflow)
+- [Risk Management Planning Workflow](#riREDACTED-SECRET)
 - [Risk Analysis Workflow](#risk-analysis-workflow)
 - [Risk Evaluation Workflow](#risk-evaluation-workflow)
 - [Risk Control Workflow](#risk-control-workflow)
 - [Post-Production Risk Management](#post-production-risk-management)
-- [Risk Assessment Templates](#risk-assessment-templates)
+- [Risk Assessment Templates](#riREDACTED-SECRET)
 - [Decision Frameworks](#decision-frameworks)
 - [Tools and References](#tools-and-references)
 
@@ -360,7 +360,7 @@ Monitor and update risk management throughout product lifecycle.
 ---
 
 ## Risk Assessment Templates
-→ See references/risk-assessment-templates.md for details
+→ See references/riREDACTED-SECRET.md for details
 
 ## Decision Frameworks
 

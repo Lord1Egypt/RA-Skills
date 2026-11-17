@@ -1,0 +1,32 @@
+slug: shop-sku-normalizer-cn
+schema_version: 1
+name: shop-sku-normalizer-cn
+display_name: 商品规格与SKU整理
+version: 1.0.2
+short_description: 整理商品规格并输出统一命名、重复缺失报告与可复核导入草稿
+description: 整理商家提供的至多100行商品名称、颜色、尺寸和型号资料，输出统一命名表、重复与缺失规格报告及含待确认原因的CSV导入草稿；保留原字段和行顺序，重复组所有行均需确认，缺少关键值时先请求补齐，不读取店铺后台。
+repository: https://github.com/xxjrq/shop-sku-normalizer-cn
+license: MIT-0
+tags:
+  - ecommerce
+  - sku
+  - product-data
+  - chinese
+  - data-cleaning
+trigger_words:
+  - 商品规格整理
+  - SKU命名统一
+  - 商品重复规格
+  - 导入草稿
+platforms:
+  - github
+  - gitee
+  - skillhub
+entrypoint: SKILL.md
+icon: icon-512.png
+self_test: bash scripts/self-test.sh
+sources:
+  - url: https://github.com/frappe/erpnext
+    usage: 仅核对商品资料整理这一用途；本仓库说明、样例和实现均为原创。
+  - url: https://github.com/frappe/erpnext/blob/develop/README.md
+    usage: 仅核对公开项目说明与许可证信息；未复制源码或文案。

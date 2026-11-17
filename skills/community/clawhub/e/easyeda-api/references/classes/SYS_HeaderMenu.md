@@ -1,15 +1,14 @@
 # SYS\_HeaderMenu class
 
-系统 / 顶部菜单类
+System / header menu class
 
 ## Signature
 
 ```typescript
-declare class SYS_HeaderMenu 
+class SYS_HeaderMenu
 ```
 
 ## Remarks
-
 
 ## Methods
 
@@ -17,86 +16,68 @@ declare class SYS_HeaderMenu
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [insertHeaderMenus(headerMenus)](./SYS_HeaderMenu.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-导入顶部菜单数据
-
+Import top menu data
 
 </td></tr>
 <tr><td>
 
 [insertSystemHeaderMenuItem(env, id, props)](./SYS_HeaderMenu.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 在指定位置插入系统顶部菜单项
-
+**_(BETA)_** Insert a system header menu item at the specified position
 
 </td></tr>
 <tr><td>
 
 [removeHeaderMenus()](./SYS_HeaderMenu.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-移除顶部菜单数据
-
+Remove Top menu data
 
 </td></tr>
 <tr><td>
 
 [removeSystemHeaderMenuItem(id, props)](./SYS_HeaderMenu.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 移除系统顶部菜单项
-
+**_(BETA)_** Remove a system header menu item
 
 </td></tr>
 <tr><td>
 
 [replaceHeaderMenus(headerMenus)](./SYS_HeaderMenu.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-替换顶部菜单数据
-
+Replace top menu data
 
 </td></tr>
 </tbody></table>
@@ -109,12 +90,12 @@ Description
 
 # SYS\_HeaderMenu.insertHeaderMenus() method
 
-导入顶部菜单数据
+Import top menu data
 
 ## Signature
 
 ```typescript
-insertHeaderMenus(headerMenus: ISYS_HeaderMenus): Promise<void>;
+function insertHeaderMenus(headerMenus: ISYS_HeaderMenus): Promise<void>;
 ```
 
 ## Parameters
@@ -123,41 +104,56 @@ insertHeaderMenus(headerMenus: ISYS_HeaderMenus): Promise<void>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 headerMenus
 
-
 </td><td>
 
 [ISYS\_HeaderMenus](../interfaces/ISYS_HeaderMenus.md)
 
-
 </td><td>
 
-顶部菜单数据
-
+Top menu data
 
 </td></tr>
 </tbody></table>
 
-
-
 ## Returns
 
 Promise&lt;void&gt;
+
+## Example
+
+```javascript
+// 1. 组装菜单数据：环境键 → 一级菜单数组（title / id / menuItems）
+const headerMenus = {
+	blank: [
+		{
+			id: '嘉立创示例_菜单',
+			title: '嘉立创示例',
+			menuItems: [{ id: '嘉立创示例_子项', title: '打开示例面板' }],
+		},
+	],
+};
+
+// 2. 导入顶部菜单数据（blank 环境的顶部菜单被替换为上述内容）
+await eda.sys_HeaderMenu.insertHeaderMenus(headerMenus);
+console.log('已导入 blank 环境的顶部菜单数据');
+
+// 3. 还原：移除导入的数据，恢复系统默认菜单
+eda.sys_HeaderMenu.removeHeaderMenus();
+console.log('已还原系统默认菜单');
+```
 
 ### insertsystemheadermenuitem
 
@@ -165,20 +161,26 @@ Promise&lt;void&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-在指定位置插入系统顶部菜单项
+Insert a system header menu item at the specified position
 
 ## Signature
 
 ```typescript
-insertSystemHeaderMenuItem(env: ESYS_HeaderMenuEnvironment, id: Array<string>, props: {
-        title: string;
-        registerFn?: string;
-        menuItems?: Array<ISYS_HeaderMenuSub1MenuItem | ISYS_HeaderMenuSub2MenuItem | null>;
-        insertDividerBefore?: boolean;
-        insertDividerAfter?: boolean;
-        insertBefore?: string;
-        crossDividerWhenInsert?: boolean;
-    }): Promise<string | undefined>;
+function insertSystemHeaderMenuItem(
+	env: ESYS_HeaderMenuEnvironment,
+	id: Array<string>,
+	props: {
+		title: string;
+		registerFn?: string;
+		icon?: string;
+		shortcutKey?: TSYS_ShortcutKeys;
+		menuItems?: Array<ISYS_HeaderMenuSub1MenuItem | ISYS_HeaderMenuSub2MenuItem | null>;
+		insertDividerBefore?: boolean;
+		insertDividerAfter?: boolean;
+		insertBefore?: string;
+		crossDividerWhenInsert?: boolean;
+	},
+): Promise<string | undefined>;
 ```
 
 ## Parameters
@@ -187,108 +189,126 @@ insertSystemHeaderMenuItem(env: ESYS_HeaderMenuEnvironment, id: Array<string>, p
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 env
 
-
 </td><td>
 
 [ESYS\_HeaderMenuEnvironment](../enums/ESYS_HeaderMenuEnvironment.md)
 
-
 </td><td>
 
-环境
-
+Environment
 
 </td></tr>
 <tr><td>
 
 id
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-菜单项 ID 树，将会按照数组顺序按层级匹配菜单项，并将数组最后一位作为插入的菜单项的 ID
-
+Menu item ID tree. It will match menu items by hierarchy in array order and use the last element of the array as the ID of the menu item to insert
 
 </td></tr>
 <tr><td>
 
 props
 
+</td><td>
+
+{ title: string; registerFn?: string; icon?: string; shortcutKey?: [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)<!-- -->; menuItems?: Array&lt;[ISYS\_HeaderMenuSub1MenuItem](../interfaces/ISYS_HeaderMenuSub1MenuItem.md) \| [ISYS\_HeaderMenuSub2MenuItem](../interfaces/ISYS_HeaderMenuSub2MenuItem.md) \| null&gt;; insertDividerBefore?: boolean; insertDividerAfter?: boolean; insertBefore?: string; crossDividerWhenInsert?: boolean }
 
 </td><td>
 
-{ title: string; registerFn?: string; menuItems?: Array&lt;[ISYS\_HeaderMenuSub1MenuItem](../interfaces/ISYS_HeaderMenuSub1MenuItem.md) \| [ISYS\_HeaderMenuSub2MenuItem](../interfaces/ISYS_HeaderMenuSub2MenuItem.md) \| null&gt;; insertDividerBefore?: boolean; insertDividerAfter?: boolean; insertBefore?: string; crossDividerWhenInsert?: boolean; }
-
-
-</td><td>
-
-其它参数
-
+Other parameters
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;string \| undefined&gt;
 
-顶部菜单项的 ID 数组，分隔线是否插入并不会影响操作结果的返回值
+The ID of the header menu item. Whether a separator is inserted does not affect the return value of the operation. The IDs of sub-items in menuItems are not included
 
 ## Remarks
 
-系统顶部菜单一旦新增无法有效删除，需要重启嘉立创 EDA 软件才可以恢复
+This API adds a sub-menu under an existing system first-level menu. First-level menus cannot be added or modified. The `id` array should contain at least `2` values
 
-本接口需要在系统已有的系统一级菜单下新增子菜单，无法新增和修改一级菜单，`id` 数组请至少传递 `2` 个值
+This API forces the ID of the newly created system header menu to include the extension UUID. For example, an input `id = 'example'` will be automatically rewritten to `e143d88179874e7f851cc890cd22fc71|example`<!-- -->. To remove this menu later, enter the rewritten name
 
-本接口将会强制新建的系统顶部菜单的 ID 包含扩展 UUID，例如输入的 `id = 'example'`<!-- -->，将会被自动重写为 `e143d88179874e7f851cc890cd22fc71|example`<!-- -->，后续如需移除该菜单，请输入重写后的名称
+This API cannot add any sub-menu under the \*\*Advanced\*\* menu
 
-本接口不能在 \*\*高级\*\* 菜单下新增任何子菜单
+Sub-menus added by this API are placed at the end of the original menu by default, unless the `props.insertBefore` parameter is specified
 
-本接口新增的子菜单将默认排列在原菜单的结尾，除非指定了 `props.insertBefore` 参数
+Note: This API requires the user to enable the extension external interaction permission, if not enabled, it will always `throw Error`
 
-注意：本接口需要使用者启用扩展的外部交互权限，如若未启用将始终 `throw Error`
+Non-public API usage notice: This API is provided as-is without additional documentation for parameters. Parameters may be changed in a breaking manner in any version without notice.
 
-非公开接口使用提醒：本接口按原样提供，不提供参数的额外文档，参数可能在任何版本出现破坏性更改并不另行通知
+## Example
+
+```javascript
+// 1. 在 PCB 环境的 工具（Tools）菜单下插入子菜单项，并带上两个三级菜单项
+const menuId = await eda.sys_HeaderMenu.insertSystemHeaderMenuItem('pcb', ['Tools', '嘉立创示例_扩展工具'], {
+	title: '嘉立创示例 扩展工具',
+	menuItems: [
+		{ id: '嘉立创示例_打开面板', title: '打开扩展面板' },
+		{ id: '嘉立创示例_扩展设置', title: '扩展设置' },
+	],
+});
+
+// 2. 输出重写后的菜单 ID（真实扩展中通过 registerFn 指定点击回调）
+console.log('插入的菜单 ID：', menuId);
+
+// 3. 移除刚插入的菜单项还原菜单栏（同一 ID 重复插入会返回 undefined，
+// 自建自删保证案例可重复运行）
+const removed = await eda.sys_HeaderMenu.removeSystemHeaderMenuItem(['Tools', menuId]);
+console.log('移除结果：', removed);
+```
 
 ### removeheadermenus
 
 # SYS\_HeaderMenu.removeHeaderMenus() method
 
-移除顶部菜单数据
+Remove Top menu data
 
 ## Signature
 
 ```typescript
-removeHeaderMenus(): void;
+function removeHeaderMenus(): void;
 ```
-
 
 ## Returns
 
 void
+
+## Example
+
+```javascript
+// 1. 先导入一份菜单数据，让移除操作有实际对象
+await eda.sys_HeaderMenu.insertHeaderMenus({
+	blank: [{ id: '嘉立创示例_菜单', title: '嘉立创示例', menuItems: [{ id: '嘉立创示例_子项', title: '示例子项' }] }],
+});
+console.log('已导入菜单数据');
+
+// 2. 移除全部已导入的顶部菜单数据（同步方法，无需 await）
+eda.sys_HeaderMenu.removeHeaderMenus();
+console.log('已移除导入的顶部菜单数据');
+```
 
 ### removesystemheadermenuitem
 
@@ -296,15 +316,15 @@ void
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-移除系统顶部菜单项
+Remove a system header menu item
 
 ## Signature
 
 ```typescript
-removeSystemHeaderMenuItem(id: Array<string>, props?: {
-        removeTheBeforeDivider?: boolean;
-        removeTheAfterDivider?: boolean;
-    }): Promise<boolean>;
+function removeSystemHeaderMenuItem(
+	id: Array<string>,
+	props?: { removeTheBeforeDivider?: boolean; removeTheAfterDivider?: boolean },
+): Promise<boolean>;
 ```
 
 ## Parameters
@@ -313,84 +333,89 @@ removeSystemHeaderMenuItem(id: Array<string>, props?: {
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 id
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-菜单项 ID 树，将会按照数组顺序按层级匹配菜单项，并移除数组最后一位对应的菜单项
-
+Menu item ID tree. It will match menu items by hierarchy in array order and remove the menu item corresponding to the last element; when only one element is passed, the corresponding first-level menu is removed
 
 </td></tr>
 <tr><td>
 
 props
 
+</td><td>
+
+\{ removeTheBeforeDivider?: boolean; removeTheAfterDivider?: boolean \}
 
 </td><td>
 
-\{ removeTheBeforeDivider?: boolean; removeTheAfterDivider?: boolean; \}
-
-
-</td><td>
-
-_(Optional)_ 其它参数，是否移除菜单项之前、之后的分隔线
-
+_(Optional)_ Other parameters. Whether to remove the separators before and after the menu item (only takes effect when removing a sub-menu item)
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-移除操作是否成功，菜单已移除但分隔线未找到也会返回 `true` 的结果
+Whether the removal operation was successful. If the menu is removed but the separator is not found, `true` is also returned
 
 ## Remarks
 
-一旦菜单被移除，需要重启嘉立创 EDA 软件才可以恢复
+Once a menu is removed, restarting the EasyEDA software is required to restore it
 
-本接口无法移除  接口导入的系统顶部菜单项
+This API cannot remove the system header menu items imported by the  API
 
-本接口无法移除第一级菜单，`id` 数组请至少传递 `2` 个值
+When the `id` array contains only one element, the corresponding first-level menu is removed; when it contains multiple elements, the menu items are matched by hierarchy in array order, and the sub-menu item corresponding to the last element is removed
 
-本接口无法移除 \*\*高级\*\* 菜单下的任何子菜单
+This API cannot remove the \*\*Advanced\*\* menu itself or any sub-menu under it
 
-注意：本接口需要使用者启用扩展的外部交互权限，如若未启用将始终 `throw Error`
+Note 1: This API requires the user to enable the extension external interaction permission, if not enabled, it will always `throw Error`
 
-非公开接口使用提醒：本接口按原样提供，不提供参数的额外文档，参数可能在任何版本出现破坏性更改并不另行通知
+Note 2: The \*\*remove first-level menu\*\* function of this API is exclusive to the private deployment edition. Calling it in other editions will always `throw Error`
+
+Non-public API usage notice: This API is provided as-is without additional documentation for parameters. Parameters may be changed in a breaking manner in any version without notice.
+
+## Example
+
+```javascript
+// 1. 先插入一个待移除的子菜单项（id 树：[一级菜单 ID, 新项 ID]）
+const menuId = await eda.sys_HeaderMenu.insertSystemHeaderMenuItem('pcb', ['Tools', '嘉立创示例_待移除项'], {
+	title: '嘉立创示例 待移除项',
+});
+console.log('待移除的菜单 ID：', menuId);
+
+// 2. 移除该菜单项（id 树：[一级菜单 ID, insert 返回的重写 ID]）
+const removed = await eda.sys_HeaderMenu.removeSystemHeaderMenuItem(['Tools', menuId]);
+console.log('移除结果：', removed);
+```
 
 ### replaceheadermenus
 
 # SYS\_HeaderMenu.replaceHeaderMenus() method
 
-替换顶部菜单数据
+Replace top menu data
 
 ## Signature
 
 ```typescript
-replaceHeaderMenus(headerMenus: ISYS_HeaderMenus): Promise<void>;
+function replaceHeaderMenus(headerMenus: ISYS_HeaderMenus): Promise<void>;
 ```
 
 ## Parameters
@@ -399,37 +424,29 @@ replaceHeaderMenus(headerMenus: ISYS_HeaderMenus): Promise<void>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 headerMenus
 
-
 </td><td>
 
 [ISYS\_HeaderMenus](../interfaces/ISYS_HeaderMenus.md)
 
-
 </td><td>
 
-顶部菜单数据
-
+Top menu data
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
@@ -437,4 +454,24 @@ Promise&lt;void&gt;
 
 ## Remarks
 
-本接口相当于同时执行了 [移除](./SYS_HeaderMenu.md) 和 [导入](./SYS_HeaderMenu.md) 操作
+This API is equivalent to executing the [remove](./SYS_HeaderMenu.md) and [insert](./SYS_HeaderMenu.md) operations at the same time
+
+## Example
+
+```javascript
+// 1. 先导入一版菜单数据作为被替换对象（blank 空白页环境）
+await eda.sys_HeaderMenu.insertHeaderMenus({
+	blank: [{ id: '嘉立创示例_菜单A', title: '菜单 A', menuItems: [{ id: '嘉立创示例_子A', title: '子项 A' }] }],
+});
+console.log('已导入第一版菜单');
+
+// 2. 整体替换为第二版菜单数据
+await eda.sys_HeaderMenu.replaceHeaderMenus({
+	blank: [{ id: '嘉立创示例_菜单B', title: '菜单 B', menuItems: [{ id: '嘉立创示例_子B', title: '子项 B' }] }],
+});
+console.log('已替换为第二版菜单');
+
+// 3. 还原系统默认菜单
+eda.sys_HeaderMenu.removeHeaderMenus();
+console.log('已还原系统默认菜单');
+```

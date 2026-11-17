@@ -1,45 +1,58 @@
-## Description: <br>
-Read, search, and manage email through IMAP, and send email through SMTP with support for multiple accounts and attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, and manage email over IMAP and send email over SMTP, including multi-account support and attachments.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent check unread mail, fetch and search messages, manage mailbox state, download attachments, and send email through configured IMAP/SMTP accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured mailbox and SMTP accounts expose sensitive email contents and sending authority. <br>
-Mitigation: Install only when that access is intended, use app-specific passwords or provider authorization codes, and remove or rotate saved credentials when access is no longer needed. <br>
-Risk: Email fetch and search output can expose private message content in retained terminal or agent logs. <br>
-Mitigation: Avoid running mailbox commands in contexts where logs are retained or shared. <br>
-Risk: Attachment, body-file, and download operations can read from or write to local paths. <br>
-Mitigation: Keep ALLOWED_READ_DIRS and ALLOWED_WRITE_DIRS narrow and limited to directories needed for the current workflow. <br>
-Risk: SMTP sending can disclose information to unintended recipients. <br>
-Mitigation: Verify recipients, subject, body, and attachments before sending. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure standard IMAP/SMTP email accounts, inspect mailboxes, retrieve messages and attachments, mark messages, and send email from configured accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/super-imap-smtp-email) <br>
-- [Google Account app passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and JSON-style command output with Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, configured IMAP/SMTP credentials, and allowlisted read/write directories for local file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence, user changelog, package.json) <br>
+Risk: The skill receives direct access to configured email accounts and can read, modify, and send email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts intended for agent access, use provider app passwords or authorization codes where available, and rotate credentials if the skill is removed or reconfigured.
+
+Risk: The security evidence reports weak file access safeguards around selected local directories.
+
+Mitigation: Keep allowed read and write directories narrow, avoid shared or symlinked locations, and review attachment paths before use.
+
+Risk: The security evidence flags setup and temporary credential handling as requiring careful review.
+
+Mitigation: Review the setup script before entering credentials and prefer a release that addresses the path-validation and temporary-credential issues.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/subaru0573/skills/super-imap-smtp-email)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Command-line text with mailbox data, message content, status messages, and downloaded attachment files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured IMAP/SMTP credentials and optional allowlisted local directories for file reads and attachment downloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

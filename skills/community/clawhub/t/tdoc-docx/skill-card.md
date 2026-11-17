@@ -1,50 +1,57 @@
-## Description: <br>
-Complete Word document processing skill for creating, reading, editing, converting, comparing, commenting on, and analyzing .docx and .doc files, including Chinese official-document formats, tables, images, tracked changes, and comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TDOC Docx helps agents create, read, edit, convert, compare, annotate, and analyze Word documents, including DOCX/DOC files, Chinese official document formats, tables, images, comments, and tracked changes.
 
-## Publisher: <br>
-[WenRichard](https://clawhub.ai/user/WenRichard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenrichard](https://clawhub.ai/user/wenrichard)
 
-## Use Case: <br>
-Employees, external users, developers, and document automation agents use this skill to create, inspect, edit, convert, compare, annotate, and summarize Word documents. It is especially suited to workflows that need DOCX/DOC handling, Chinese official-document templates, tracked changes, document comments, and conversion to PDF, Markdown, or images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process and alter local Word documents, including tracked changes and comments. <br>
-Mitigation: Use a disposable workspace or sandbox, keep original copies, and manually verify documents after edits or after accepting tracked changes. <br>
-Risk: The install and conversion workflows may run host tools and install system packages such as LibreOffice, pandoc, Poppler, and antiword. <br>
-Mitigation: Review installation steps before use and install only in environments where those host-level dependencies are acceptable. <br>
-Risk: The artifact includes URL and SFTP file-fetching workflows, which can introduce untrusted remote document inputs. <br>
-Mitigation: Avoid remote inputs unless the source is trusted and scan fetched documents before processing them. <br>
-Risk: Template and advanced document workflows can involve generated Python or XML edits. <br>
-Mitigation: Review generated scripts and XML changes before execution or packaging. <br>
+## Use Case:
 
+Developers, document-heavy teams, and external users can use this skill to automate Word document creation, extraction, editing, conversion, diffing, review comments, tracked changes, and word-count analysis.
 
-## Reference(s): <br>
-- [TDOC Docx ClawHub release](https://clawhub.ai/WenRichard/tdoc-docx) <br>
-- [Publisher profile](https://clawhub.ai/user/WenRichard) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [OpenClaw metadata](artifact/_meta.json) <br>
-- [Python requirements](artifact/requirements.txt) <br>
-- [Official document template rules](artifact/templates/official_document/rules.md) <br>
-- [Red-head document template rules](artifact/templates/red_head/rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown, JSON, plain text, shell commands, Python code snippets, and generated document files such as DOCX, PDF, Markdown, images, and diff reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local Word-processing artifacts and may call local Python, LibreOffice, pandoc, Poppler, antiword, URL, or SFTP workflows when installed and requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, pyproject.toml, release metadata) <br>
+Risk: A template can steer the agent into web search and generated Python execution without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for web search and generated code execution, and review or disable the red-head template before deployment.
+
+Risk: Helper scripts can install system dependencies, fetch remote files, and use shared /tmp LibreOffice helpers.
+
+Mitigation: Run the skill in a constrained environment, review remote file sources before fetching, and avoid sensitive documents until shared /tmp helper behavior is remediated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wenrichard/skills/tdoc-docx)
+- [Skill Definition](artifact/SKILL.md)
+- [Official Document Template Rules](artifact/templates/official_document/rules.md)
+- [Red-Head Document Template Rules](artifact/templates/red_head/rules.md)
+- [Python Dependencies](artifact/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, JSON edit rules, and generated document files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify DOCX, DOC, PDF, Markdown, JSON, image, and diff-report files depending on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, pyproject.toml, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

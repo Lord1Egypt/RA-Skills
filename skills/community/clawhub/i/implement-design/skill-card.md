@@ -1,42 +1,55 @@
-## Description: <br>
-Translates Figma designs into production-ready code with 1:1 visual fidelity using a connected Figma MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates Figma designs into production-ready code with 1:1 visual fidelity.
 
-## Publisher: <br>
-[springer63](https://clawhub.ai/user/springer63) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[springer63](https://clawhub.ai/user/springer63)
 
-## Use Case: <br>
-Developers and design engineers use this skill to implement UI from Figma URLs, fetch design context, screenshots, and assets through the Figma MCP server, and translate the result into project conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can access Figma design content through a connected MCP server. <br>
-Mitigation: Use it only with Figma links or files the user is authorized to access. <br>
-Risk: Generated UI code may differ from the source design or introduce implementation defects. <br>
-Mitigation: Review generated changes and validate layout, typography, colors, assets, responsiveness, and accessibility against the Figma screenshot before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement UI from Figma links by fetching design context, screenshots, and assets through the Figma MCP server, then translating the result into the target project's conventions.
 
-## Reference(s): <br>
-- [Figma MCP Server Documentation](https://developers.figma.com/docs/figma-mcp-server/) <br>
-- [Figma MCP Server Tools and Prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/) <br>
-- [Figma Variables and Design Tokens](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, command, and configuration changes as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active Figma MCP server connection and a user-provided Figma URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on a connected Figma MCP server and may query Figma project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit Figma URLs the user intends to share, and confirm the Figma MCP server is connected before running design-context or screenshot tools.
+
+Risk: Assets may be loaded from localhost URLs returned by the Figma MCP server.
+
+Mitigation: Use only asset URLs returned by the Figma MCP server and verify that assets render correctly during UI validation.
+
+## Reference(s):
+
+- [Figma MCP Server Documentation](https://developers.figma.com/docs/figma-mcp-server/)
+- [Figma MCP Server Tools and Prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)
+- [Figma Variables and Design Tokens](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connected Figma MCP server and an explicit Figma URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

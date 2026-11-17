@@ -1,221 +1,223 @@
----
-name: headful-browser-vnc
-description: "Headful Chromium with VNC/noVNC operator UI and Chrome CDP exports (cookies, screenshots, outerHTML)."
-required_env:
-  - VNC_PASSFILE
-  - REMOTE_DEBUG_PORT
-  - PROXY_URL
-  - OUT_DIR
-  - ALLOW_CHROME_FORCE_RESTART
-  - CHROME_USER_DATA_DIR
-  - VNC_IMPLEMENTATION
----
+# Headful Browser (VNC)
 
-# headful-browser-vnc
+A persistent Linux Chrome session that an operator can view and control over VNC,
+with CDP capture of the **same existing tab**. Version 2.0.0 introduces an
+intentionally revised CLI; see migration and VALIDATION.md for testing limits.
 
-## Overview
+The runtime keeps Xvfb, optional fluxbox, x11vnc, optional noVNC/websockify and
+Chrome in one owned session. A Python standard-library manager tracks process
+identity and ports. Playwright attaches only for captures; it does not launch
+replacement browser contexts or navigate during a normal capture.
 
-`headful-browser-vnc` provides a controlled, auditable, headful Chromium browsing environment on a server for cases where full browser rendering and occasional human interaction are required. It combines `Xvfb`, a window manager, and `x11vnc` (optional noVNC) to present the server-side browser UI to an operator, while offering programmatic integration points (Chrome Remote Debugging / CDP) for automated capture of cookies, rendered HTML, and screenshots.
+## Install
 
-## Primary objective
-
-- Enable reliable, repeatable automation workflows that require the ability to escalate to a human operator for tasks that cannot be solved purely by automation (CAPTCHA solving, challenge pages, multi-factor authentication, manual login flows). The skill's intent is to: (1) run a headful Chrome instance in an isolated profile; (2) expose a secure operator-visible UI to the server browser (VNC/noVNC) so a human can intervene; (3) preserve and export the resulting browser session artifacts (cookies, outerHTML, screenshots) back into automated pipelines for continued processing.
-
-## Key capabilities
-
-- **Headful browser execution**: launch Google Chrome / Chromium with an isolated user data directory and configurable flags (proxy, remote-debugging-port, extra args) on a server X display provided by `Xvfb`.
-- **Operator UI**: present the running browser to an operator via `x11vnc` (or optional noVNC web proxy). Operators can connect over SSH-forwarded ports or noVNC with token gating to perform manual actions (solve CAPTCHAs, authenticate), then signal the system to capture artifacts.
-- **Programmatic capture**: export rendered `outerHTML`, full-page screenshots, and cookies using Chrome CDP (Playwright/Puppeteer compatible). Exports are intended for downstream automated analysis or storage.
-- **Safe restart and recovery**: helpers to restart Chrome when flags change, with explicit user confirmation required for any action that may terminate existing browser instances.
-- **Artifact hygiene**: captured artifacts are written to an artifacts directory with restrictive file permissions. The skill logs actions and writes diagnostic artifacts to facilitate debugging and comparison-based analysis.
-
-## Security, privacy, and operational notes
-
-- **VNC security**: the skill creates per-session passfiles (`rfbauth`) when possible; noVNC should be bound to loopback or token-gated. Do not expose VNC/noVNC endpoints to the public internet without additional access controls. Store passfiles with mode `600`.
-- **Sensitive artifacts**: cookies and rendered page artifacts are sensitive. They are stored under the skill's `out/` directory with restrictive permissions; users are responsible for secure storage and timely cleanup.
-- **Privileged operations**: installing system packages and enabling systemd units require `sudo` and explicit user consent. The scripts will not perform privileged actions automatically unless the operator explicitly enables the auto-install path (see below).
-
-## Supported VNC implementations
-
-The skill supports multiple VNC backends; behavior is controlled via the skill-local `.env` file (`VNC_IMPLEMENTATION`): `auto` (default), `tigervnc`, `tightvnc`, `realvnc`. When possible the skill prefers non-interactive `rfbauth` generation via `vncpasswd`; when unavailable it prompts the operator and documents fallback behavior.
-
-## Runtime files & usage
-
-This section documents each file included in the skill release branch, its purpose, usage examples, preconditions, and relations to other files. All script examples assume you run them from the workspace root unless noted.
-
-### `skills/headful-browser-vnc/scripts/setup.sh`
-- **Purpose**: interactive, documented installer and validator for the skill's runtime dependencies (`Xvfb`, `x11vnc`, Chrome/Chromium, node, tooling). Primarily guidance-only: prints distro-aware commands; only runs package-manager operations when explicitly allowed.
-- **Usage**:
-  ```bash
-  ./skills/headful-browser-vnc/scripts/setup.sh [--check-only] [--auto-install] [--yes] [--set-password]
-  ```
-- **Preconditions**: network access to package repositories; `sudo` available for host installs (not required inside containers when running as root). When running inside a container, auto-installs require either root or `CONTAINER_AUTO_OK=true`.
-- **Relations**: updates/creates `skills/headful-browser-vnc/.env`; generates VNC passfiles via `vncpasswd` when available; consults `templates/` for service unit guidance.
-
-### `skills/headful-browser-vnc/scripts/start_vnc.sh`
-- **Purpose**: start an `Xvfb` display, optional window manager, and `x11vnc` to expose the display. Emits a one-line summary with the VNC port and display id.
-- **Usage**:
-  ```bash
-  skills/headful-browser-vnc/scripts/start_vnc.sh <session_id> [--display=:99] [--resolution=1366x768] [--port=5901]
-  ```
-- **Preconditions**: `Xvfb` and `x11vnc` installed (or available in Docker image), `VNC_PASSFILE` permission `600` if provided.
-- **Relations**: `start_vnc.sh` creates the `DISPLAY` and user-data directory used by `start_chrome_debug.sh`; `stop_vnc.sh` undoes the session.
-
-### `skills/headful-browser-vnc/scripts/stop_vnc.sh`
-- **Purpose**: stop and clean up a running VNC/Xvfb session previously started by `start_vnc.sh`.
-- **Usage**:
-  ```bash
-  skills/headful-browser-vnc/scripts/stop_vnc.sh <session_id> [--display=:99]
-  ```
-- **Preconditions**: session id matches an active session created by `start_vnc.sh`.
-
-### `skills/headful-browser-vnc/scripts/start_chrome_debug.sh`
-- **Purpose**: launch a headful Chrome/Chromium instance attached to a session `DISPLAY` with a dedicated user-data dir and remote-debugging port for CDP access.
-- **Usage**:
-  ```bash
-  skills/headful-browser-vnc/scripts/start_chrome_debug.sh <session_id> [--proxy=http://...] [--remote-debug-port=9222]
-  ```
-- **Preconditions**: Chrome/Chromium binary available and readable; `DISPLAY` is set (`start_vnc.sh` must have run); user-data directory writable by the process owner.
-- **Relations**: other scripts (`export_page.sh`, `export_cookies.sh`) connect to the remote-debugging port started by this script.
-
-### `skills/headful-browser-vnc/scripts/export_page.sh`
-- **Purpose**: instruct Chrome to load a URL and export rendered `outerHTML` and a full-page screenshot for later analysis.
-- **Usage**:
-  ```bash
-  skills/headful-browser-vnc/scripts/export_page.sh <session_id> <url> [--devtools-port=9222]
-  ```
-- **Preconditions**: headful Chrome with remote-debugging port active and reachable (`start_chrome_debug.sh`).
-
-### `skills/headful-browser-vnc/scripts/export_cookies.sh`
-- **Purpose**: export cookies from a running Chrome instance via the Chrome DevTools Protocol.
-- **Usage**:
-  ```bash
-  skills/headful-browser-vnc/scripts/export_cookies.sh <session_id> [--devtools-port=9222]
-  ```
-
-### General Notes on Export Helpers
-- **Note**: these export helpers (`export_page.sh`, `export_cookies.sh`) are designed to be idempotent and safe to run after manual operator interventions. They place artifacts into `out/<session_id>/` with restrictive permissions.
-
-### Combined Script Usage Flow
-- **Flow**: `start_vnc.sh <id>` → `start_chrome_debug.sh <id>` → operator attaches via VNC → operator interacts → `export_page.sh` / `export_cookies.sh` → `stop_vnc.sh <id>`
-
-### `skills/headful-browser-vnc/docker/`
-- **Purpose**: reference `docker/` directory containing entrypoint and `docker-compose.yml` plus an embedded `Dockerfile` in `README.docker.md` for reproducible builds. ClawHub does not accept Dockerfile uploads, so the Dockerfile content has been included in `skills/headful-browser-vnc/README.docker.md` as a code block.
-- **Recommendation**: For reproducibility and security, build dependencies into the image (`Dockerfile`) rather than relying on runtime package installs inside a running container. If you must allow in-container auto-installs, see `setup.sh` gating (`CONTAINER_AUTO_OK` and `container_auto_allowed()`).
-
-### `skills/headful-browser-vnc/templates/`
-- **Purpose**: Jinja2-style templates for systemd unit files (`x11vnc`/`noVNC`). Use them as references; deploying them on a host requires `sudo` and careful service permissions.
-
-### `skills/headful-browser-vnc/tests/smoke_test.sh`
-- **Purpose**: non-privileged smoke test exercising start → launch → export → cleanup sequence to validate runtime behavior in CI-friendly environments.
-- **Usage**:
-  ```bash
-  ./skills/headful-browser-vnc/tests/smoke_test.sh
-  ```
-
-## Configuration (`.env`)
-
-Place a skill-local `skills/headful-browser-vnc/.env` (`chmod 600`) to persist runtime defaults. Key fields:
-
-- `VNC_PASSFILE`: path to passfile (e.g. `/home/user/.vnc/passwd` or `./vnc_passwd`)
-- `VNC_PORT`: optional explicit TCP port to bind `x11vnc` (if omitted the script will report the actual port in use)
-- `VNC_IMPLEMENTATION`: `auto`|`tigervnc`|`tightvnc`|`realvnc`
-- `VNC_DISPLAY`: X display (default `:99`)
-- `VNC_RESOLUTION`: screen resolution (default `1366x768`)
-- `REMOTE_DEBUG_PORT`: Chrome remote debugging port (default `9222`)
-- `PROXY_URL` / `HTTP_PROXY` / `HTTPS_PROXY`: optional proxy settings
-
-## Install and dependencies
-
-- `setup.sh` contains interactive guidance and optional prompts for installing Chrome, node, Playwright, and VNC helper tools. The installer will not run `sudo` operations without explicit consent.
-- Programmatic export paths prefer Node + Playwright; a Python fallback is available but optional.
-
-## Auto-install behaviour and safety (enforced)
-
-The installer supports an optional auto-install path but it is gated behind explicit confirmations and container-aware checks:
-- CLI flag: `--auto-install` (sets `AUTO_INSTALL=true` for the run).
-- Runtime confirmation: when the installer proposes a distro-specific command it will first ask for a `y/N` confirmation, then print the exact command and require the operator to type the full word `yes` (not `y`). Only if both confirmations are provided will the installer execute the command.
-- Container extra gate: inside a detected container (`/.dockerenv` or `/proc/1/cgroup` contains `docker/containerd/kubepods`), automatic package-manager operations will only run if the process is root (`id -u == 0`) or if `CONTAINER_AUTO_OK=true`.
-
-Default behaviour remains conservative: without `--auto-install` the installer only prints distro-appropriate commands and will not run package-manager commands automatically.
-
-## Templates and integration
-
-- `templates/x11vnc.service.j2` — systemd unit template for persistent sessions (requires `sudo` to install)
-- `templates/novnc.service.j2` — noVNC service template
-
-## Integration guidance for maintainers
-
-- Use Chrome CDP (devtools) for deterministic exports. Prefer attaching to an already-running headful Chrome instance rather than launching short-lived headless instances when reproducing a previously observed UI state.
-- Persist session artifacts and index them (timestamp, URL, session id, VNC port, devtools port) so comparison automation can operate on operator-validated examples.
-- When embedding into automated pipelines, clearly separate automated actions from operator interventions; require explicit human confirmation for destructive actions (Chrome restarts, service reconfiguration).
-
-## Testing
-
-A non-privileged smoke test is provided at `skills/headful-browser-vnc/tests/smoke_test.sh`. It performs a basic start → launch → export → cleanup sequence and is useful for CI verification.
-
-## Support and contribution
-
-The skill is maintained in this workspace. When contributing changes, follow the repository conventions: create backups before modifying scripts, run `bash -n` for syntax validation, and preserve audit logs and artifacts.
-
-## License
-
-Include an appropriate `LICENSE` file when publishing (e.g., MIT). Update author/maintainer fields in `SKILL.md` prior to external publication.
-
-## Example: safe auto-install run
-
-To allow the installer to perform distro package manager actions automatically, run with explicit `--auto-install` and be prepared to type the full confirmation word. Example:
+Supported runtime: Linux with /proc, Python >=3.10, Node >=22, Xvfb, xauth,
+xdpyinfo, x11vnc and Chrome/Chromium. Use a dedicated non-root OS user.
+Debian 12/13 host example (review package names for your distribution):
 
 ```bash
-AUTO_INSTALL=true ./skills/headful-browser-vnc/scripts/setup.sh --auto-install
+sudo apt-get update
+sudo apt-get install -y xvfb xauth x11vnc x11-utils fluxbox chromium fonts-noto-cjk
+# Optional noVNC operator UI:
+sudo apt-get install -y novnc websockify
+npm ci --omit=dev
 ```
 
-The script will: (1) detect your distro and print the exact command it plans to run; (2) ask for a normal `y/N` confirmation; (3) print the command and require you to type the exact word `yes` to proceed; (4) only then execute the command.
+Install Node >=22 using reviewed distribution/vendor packages. Ubuntu's
+chromium-browser package may use Snap; an installed Google Chrome vendor package
+is another option. The runtime discovers google-chrome, google-chrome-stable,
+chromium, or chromium-browser; CHROME_BIN can select an executable explicitly.
 
-If you prefer to always review and run commands manually, omit `--auto-install` and the script will only print distro-appropriate commands for you to run yourself.
+Generate a new binary VNC password file interactively. The parent directory must
+already exist and should be private. The helper refuses to overwrite an existing file:
 
----
-
-## Short example run transcript (what prompts look like)
-
-Below is a short, representative transcript demonstrating the installer flow when a few components are missing and the operator chooses the manual path (no auto-install). Prompts shown are exact prompts produced by the current `setup.sh`.
-
+```bash
+mkdir -p ~/.vnc
+chmod 700 ~/.vnc
+./scripts/setup.sh --set-password "$HOME/.vnc/headful.passwd"
+export VNC_PASSFILE="$HOME/.vnc/headful.passwd"
+./scripts/setup.sh --check-only
 ```
-$ ./skills/headful-browser-vnc/scripts/setup.sh
-Platform install hints (guidance-only — these commands will NOT be run automatically):
 
-Debian / Ubuntu (apt):
-  sudo apt-get update
-  sudo apt-get install -y --no-install-recommends \
-    xvfb x11vnc fluxbox x11-utils tigervnc-standalone-server tightvnc-tools \
-    fonts-noto-cjk fontconfig chromium-browser google-chrome-stable \
-    nodejs npm python3-pip
+Traditional VNC passwords use only the first eight characters. The VNC password
+is not transport encryption. Use SSH tunnels.
 
----
-Missing requirements: Xvfb x11vnc chrome node VNC_PASSFILE .env
---- Handling missing: Xvfb ---
-Install Xvfb? (y/N) n
-Skip. Manual: sudo apt-get install xvfb
-Press Enter when done...
---- Handling missing: x11vnc ---
-Install x11vnc? (y/N) y
-VNC Port [5901]: 5901
-Enter VNC passfile path [/home/user/vnc_passwd]: /home/user/.vnc/passwd
-Tool 'vncpasswd' found. Preparing automated generation...
-Enter VNC password (hidden): ********
-Confirm password: ********
-SUCCESS: rfbauth generated at /home/user/.vnc/passwd
---- Handling missing: chrome ---
-Select Chrome version:
-1) Google Chrome (Recommended)
-2) Chromium (Snap)
-3) Skip
-Choice [1-3] (default 1): 3
-Skipped.
---- Handling missing: node ---
-Install Node.js v22+ using suggested command? (y/N) n
-Skipped automatic install. Please run the printed command manually.
---- Handling missing: .env ---
-Create template .env? (y/N) y
-Created skills/headful-browser-vnc/.env
+## Quick start
+
+```bash
+./scripts/browser.sh start demo
+./scripts/browser.sh pages demo
+# Substitute the exact targetId returned by pages:
+./scripts/browser.sh capture demo --target TARGET_ID
+./scripts/browser.sh stop demo
 ```
+
+Commands print one JSON object to stdout. Successful operations exit 0.
+Failures exit nonzero; parse success and, for captures, individual artifact results.
+Lifecycle logs are private files in the session directory.
+
+The start output contains vncAddress and cdpEndpoint. With the returned VNC port:
+
+```bash
+ssh -N -L 5901:127.0.0.1:5901 user@server
+# Connect your local VNC viewer to 127.0.0.1:5901.
+```
+
+Ports default to the first available port in the ranges starting at 5901 (VNC)
+and 9222 (CDP); displays start at :99. Allocation is serialized across sessions
+in the same state root. Explicit occupied ports/displays fail; existing processes
+are never adopted. External allocation races fail readiness rather than attaching
+to another session. Use actual returned ports, not a display-to-port formula.
+
+## CLI
+
+```text
+browser.sh start SESSION [--display=:99] [--resolution=1366x768]
+  [--port=5901] [--passfile=/absolute/path] [--remote-debug-port=9222]
+  [--proxy=http://127.0.0.1:3128] [--novnc-port=6080]
+  [--novnc-web=/usr/share/novnc]
+
+browser.sh start-vnc SESSION [VNC options above]
+browser.sh start-chrome SESSION [--remote-debug-port=9222] [--proxy=URL]
+browser.sh status SESSION
+browser.sh pages SESSION
+browser.sh pause SESSION
+browser.sh resume SESSION
+browser.sh capture SESSION --target TARGET_ID
+browser.sh navigate-and-capture SESSION --target TARGET_ID --url https://example.com/
+browser.sh cookies SESSION --url https://example.com/account
+browser.sh storage-state SESSION --target TARGET_ID
+browser.sh stop SESSION
+browser.sh doctor
+```
+
+start creates VNC and Chrome together and rolls back owned processes if startup
+fails. start-vnc and start-chrome also support a split workflow; if Chrome fails
+in that workflow, the already running VNC session remains for diagnosis/retry.
+A second start reports an existing session rather than ignoring changed flags.
+Use status to inspect it, or stop before changing startup options.
+stop is idempotent, including for an unknown session, and retains profiles,
+logs, Xauthority and exports. No global pkill fallback exists.
+
+The compatibility script names remain available with the new named arguments:
+start_vnc.sh → start-vnc; start_chrome_debug.sh → start-chrome;
+stop_vnc.sh → stop; export_page.sh → capture; export_cookies.sh → cookies.
+
+## Operator handoff
+
+```text
+vnc-ready → running → paused → running → stopped
+startup failure → failed
+missing owned process → degraded (status)
+```
+
+Run pause before inviting the operator to take control. Pause blocks this CLI's
+navigate-and-capture; capture remains available for inspection. Stop remains
+available. The automation controller must suspend its own action loop, await the
+operator's completion signal, resume, list pages again and reread page state.
+The CLI does not physically block other CDP clients or VNC input.
+
+For optional noVNC, install both novnc and websockify and supply --novnc-port.
+The manager serves the installed noVNC assets and proxies to its own VNC port:
+
+```bash
+./scripts/browser.sh start demo --novnc-port=6080
+ssh -N -L 6080:127.0.0.1:6080 user@server
+# Open http://127.0.0.1:6080/vnc.html
+```
+
+There is no public HTTP gateway, token service or TLS termination in this release.
+
+## Capture and authentication state
+
+capture selects the exact CDP targetId from pages. It never creates a new tab or
+reloads the selected one. navigate-and-capture explicitly navigates that existing
+tab, waits for DOMContentLoaded, then captures. HTTP >=400 and navigation failures
+return nonzero. Neither command promises an application-specific readiness
+condition: wait for the expected application state in your controller first.
+
+Each export goes under OUT_DIR/SESSION/UTC-TIMESTAMP-RANDOM/ with directory mode
+0700 and file mode 0600. capture creates page.html, page.png and manifest.json.
+If one capture fails, the other artifact is retained and the manifest reports
+partial failure. Prior exports are never overwritten.
+
+page.html is a rendered DOM snapshot. It does not serialize every live form
+property, canvas contents, cross-origin iframe document, or offline resource.
+Screenshots and page HTML are sequential, not an atomic snapshot. A detected URL
+change during capture is reported as failure.
+
+cookies requires an explicit URL and exports matching cookies from the session's
+default browser context. It is never implicitly included in a page capture.
+storage-state exports matching cookies plus localStorage for the selected page's
+current origin in Playwright's cookies/origins format. The implementation reads
+the page directly because CDP attachment may not register previously visited
+origins for context.storageState(). IndexedDB, sessionStorage, service workers,
+passkeys and device-bound credentials are omitted. Reuse of exported state does
+not guarantee login restoration; keep using the original session when possible.
+
+## Configuration
+
+Copy config.example.env to .env, then chmod 600 .env. Only the skill-root .env is read.
+Environment variables override file values; command-line options override both.
+Values are literal KEY=value, optionally wrapped in matching quotes; no variable
+expansion, command substitution, export statements, or executable shell syntax.
+Unknown keys and insecure/symlink config files are rejected.
+
+| Key | Default / meaning |
+| --- | --- |
+| VNC_PASSFILE | Required on start; owned 8-byte rfbauth file, mode 0600 or 0400 |
+| VNC_DISPLAY | Auto-allocate from :99 |
+| VNC_RESOLUTION | 1366x768 |
+| VNC_PORT | Auto-allocate from 5901 |
+| REMOTE_DEBUG_PORT | Auto-allocate from 9222 |
+| PROXY_URL | Optional Chrome HTTP(S)/SOCKS5 proxy |
+| CHROME_BIN | Optional Chrome executable name or absolute path |
+| NOVNC_PORT | Disabled unless set |
+| NOVNC_WEB | /usr/share/novnc |
+| OUT_DIR | Skill directory/out |
+| BROWSER_STATE_DIR | XDG_STATE_HOME/headful-browser-vnc or ~/.local/state/headful-browser-vnc |
+
+Profiles always belong to a session under its private state directory.
+Per-process PID/start-time/group identity and a session token prevent broad
+process matching and PID-file reuse from terminating unrelated sessions.
+Xauthority protects each display; Xvfb TCP access is disabled.
+VNC, noVNC and CDP readiness checks verify loopback-only listeners owned by
+the launched process group. Chrome sandbox is kept enabled; root startup fails.
+
+Loopback services are accessible to other processes with access to the same
+host/network namespace, and CDP has no application authentication. Use a
+dedicated host/user or suitable isolation for untrusted local tenants.
+Sensitive outputs and profiles are retained until you deliberately delete them.
+
+## Tests
+
+```bash
+npm ci
+npm test
+python3 -m unittest discover -s tests -p 'test_*.py'
+# Real browser; requires installed Chrome/Chromium (sandbox enabled):
+TEST_CHROME_BIN=/usr/bin/google-chrome npm run test:browser
+# Full Linux start → capture → handoff → stop, including two-session isolation:
+./tests/smoke_test.sh
+```
+
+On macOS, the real CDP exporter test can use installed Google Chrome; the session
+manager still requires Linux. The full Linux test must run as non-root with all
+runtime dependencies. It fails on missing dependencies instead of suppressing
+errors. The source archive includes a GitHub Actions workflow; the complete Linux
+smoke test passed in CI. See VALIDATION.md for the run and remaining limits.
+
+## Migration from 1.0.2
+
+This is a major CLI revision. Old positional display/resolution/port arguments
+are replaced by named arguments. export_page.sh no longer accepts a URL:
+use --target for same-tab capture, or navigate-and-capture when navigation is intended.
+
+Recreate .env from the example. Remove VNC_IMPLEMENTATION (runtime is x11vnc),
+ALLOW_CHROME_FORCE_RESTART, CHROME_EXTRA_FLAGS, CHROME_USER_DATA_DIR and legacy
+TMP_* settings. setup.sh no longer supports --auto-install or --yes; dependency
+installation is a reviewed host step. The sourced shell .env loader is removed.
+State and output paths are now per session, and cookies require explicit export.
+
+The imported source version and file inventory are recorded in SOURCE.json.
+License: MIT-0, consistent with the published skill card.

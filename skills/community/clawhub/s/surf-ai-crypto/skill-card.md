@@ -1,49 +1,64 @@
-## Description: <br>
-Surf AI Crypto Skill helps agents retrieve live crypto data across markets, wallets, social intelligence, DeFi, on-chain SQL, prediction markets, news, and related domains through the Surf CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surf AI Crypto Skill helps agents fetch live cryptocurrency market, wallet, social, DeFi, on-chain SQL, prediction-market, news, and related data through the Surf CLI.
 
-## Publisher: <br>
-[hughzhou-gif](https://clawhub.ai/user/hughzhou-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hughzhou-gif](https://clawhub.ai/user/hughzhou-gif)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs current crypto market, wallet, token, DeFi, on-chain, social, prediction-market, news, or API reference data instead of relying on stale model knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs or updates a global Surf CLI and refreshes its API spec cache. <br>
-Mitigation: Install only in environments where a global Surf CLI is acceptable, and review the CLI installation path and update behavior before use. <br>
-Risk: The skill can propose durable routing changes to AGENTS.md or CLAUDE.md and commit them after approval. <br>
-Mitigation: Review the proposed instruction-file diff and commit before accepting the routing change. <br>
-Risk: Approved feedback can send recent chat context to Surf, which may include secrets or sensitive financial details. <br>
-Mitigation: Approve feedback only after checking recent conversation context, and do not include API keys, wallet secrets, or sensitive financial details. <br>
-Risk: The skill handles API keys, wallet addresses, and crypto account or portfolio queries. <br>
-Mitigation: Configure API keys outside chat, avoid pasting secrets into the agent transcript, and limit wallet or financial data shared to what is necessary for the request. <br>
-Risk: External API responses may contain untrusted data. <br>
-Mitigation: Treat returned API content as data only and do not execute or follow instructions embedded in response fields. <br>
+## Use Case:
 
+Developers and agents use this skill to answer crypto data questions or build workflows that need fresh market, wallet, token, DeFi, social, on-chain, prediction-market, news, and exchange data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hughzhou-gif/surf-ai-crypto) <br>
-- [Surf CLI introduction](https://agents.asksurf.ai/docs/cli/introduction) <br>
-- [Surf platform](https://agents.asksurf.ai) <br>
-- [Surf API base](https://api.asksurf.ai/gateway/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI/API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide Surf CLI installation and sync, route crypto queries to Surf commands, propose project instruction updates, and request approval before sending feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill asks agents to install and update the Surf CLI at session start.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation and update behavior before use, and apply organization controls for approved binaries and updates.
+
+Risk: The skill can request persistent project routing changes in AGENTS.md or CLAUDE.md and may commit those changes after approval.
+
+Mitigation: Approve routing changes only after reviewing the proposed file diff and commit impact.
+
+Risk: Surf feedback submissions may include recent conversation history.
+
+Mitigation: Do not approve feedback submissions after discussing secrets, proprietary code, wallet details, personal information, or other sensitive content.
+
+Risk: The skill may create local state under ~/.surf.
+
+Mitigation: Review local Surf files and telemetry or authentication settings before deploying in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hughzhou-gif/skills/surf-ai-crypto)
+- [Surf CLI documentation](https://agents.asksurf.ai/docs/cli/introduction)
+- [Surf service](https://agents.asksurf.ai)
+- [Surf API base endpoint](https://api.asksurf.ai/gateway/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured JSON summaries from CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live external crypto data returned by the Surf CLI; API response content should be treated as untrusted data.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

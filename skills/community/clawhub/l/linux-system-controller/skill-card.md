@@ -1,46 +1,62 @@
-## Description: <br>
-Linux System Controller lets an agent control Linux desktop windows, processes, hardware settings, serial devices, IoT endpoints, keyboard and mouse automation, screenshots, OCR, and visual recognition through bundled CLI scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux System Controller helps an agent propose and run Linux desktop, process, hardware, serial, IoT, mouse, keyboard, screenshot, OCR, and visual-recognition control commands.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers and power users use this skill when they intentionally want an agent to automate or inspect a Linux workstation, manage local processes and system settings, interact with serial devices, or call smart-home and HTTP APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local-control capability can affect windows, running processes, network state, power state, serial devices, screenshots, OCR, and IoT endpoints. <br>
-Mitigation: Install and run the skill only on systems where this level of agent control is intended, and review exact commands and target URLs before execution. <br>
-Risk: Screenshots and OCR may expose secrets or private data visible on the desktop. <br>
-Mitigation: Avoid using screenshot, OCR, or visual automation features while sensitive information is displayed. <br>
-Risk: IoT and HTTP actions may require tokens and can affect external devices or services. <br>
-Mitigation: Use least-privilege, short-lived tokens where possible and confirm the endpoint, entity, and requested action before use. <br>
-Risk: Power, process, window, and network commands can interrupt work or connectivity. <br>
-Mitigation: Follow the artifact's list-or-query-first workflow and require explicit confirmation before destructive actions such as shutdown, restart, process termination, window close, or disabling network adapters. <br>
+## Use Case:
 
+Developers, operators, and desktop automation users can use this skill to control Linux windows, processes, hardware settings, serial devices, IoT endpoints, and GUI workflows from an agent session. It is best suited to contained Linux environments where system-control actions can be reviewed before execution.
 
-## Reference(s): <br>
-- [Linux System Controller Command Reference](references/command_reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjiaocheng/linux-system-controller) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangjiaocheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-like command output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger local Linux commands, desktop automation, screenshots or OCR, serial I/O, and HTTP API calls when the host agent executes the described scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports verified command-injection flaws and broad local system control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden command construction before installing; use the skill only in a contained environment and avoid running it as root.
+
+Risk: The security evidence reports runtime package installation.
+
+Mitigation: Preinstall and pin dependencies through the deployment environment instead of allowing runtime pip installation.
+
+Risk: The skill can control local desktop state, power, network adapters, serial devices, and HTTP endpoints.
+
+Mitigation: Require explicit user confirmation for destructive actions, restrict HTTP destinations, and validate target windows, processes, devices, and ports before acting.
+
+Risk: Home Assistant and generic HTTP commands may expose tokens when passed on the command line.
+
+Mitigation: Avoid real long-lived tokens on command lines; prefer short-lived credentials or environment-level secret handling.
+
+## Reference(s):
+
+- [Command Reference](references/command_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangjiaocheng/skills/linux-system-controller)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with inline shell commands; script executions return JSON or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux system access, compatible desktop tooling, and explicit review before destructive or sensitive operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

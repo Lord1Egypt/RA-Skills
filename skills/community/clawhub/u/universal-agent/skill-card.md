@@ -1,44 +1,58 @@
-## Description: <br>
-Universal Agent automates end-to-end tasks by interpreting natural language, generating shell commands or Python scripts, executing them, retrying on errors, and summarizing results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Agent helps an agent interpret a natural language task, generate a shell command or Python script, execute it, retry after errors, and summarize the result.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers and technical users use this skill to delegate natural-language tasks that require generating and running shell commands or Python scripts, such as file operations, data processing, CLI workflows, API calls, and task-result summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad autonomous command-and-script executor and can affect files, accounts, external services, or connected systems. <br>
-Mitigation: Run it only in a disposable, low-privilege sandbox and inspect generated commands or scripts before execution. <br>
-Risk: Persistent memory and task context may retain sensitive information from prior work. <br>
-Mitigation: Disable memory or use a temporary memory file for sensitive work, and avoid placing secrets or production data in task prompts. <br>
-Risk: Dangerous mode can bypass confirmation for high-risk actions. <br>
-Mitigation: Keep dangerous mode disabled and avoid hardware control, account actions, financial or business mutations, and broad filesystem tasks without stronger containment and confirmation controls. <br>
+## Use Case:
 
+Developers and automation users can use this skill to delegate end-to-end local tasks that require command generation, Python scripting, execution, basic recovery, and human-readable result summaries.
 
-## Reference(s): <br>
-- [Universal Agent README](references/README.md) <br>
-- [ClawHub Universal Agent release page](https://clawhub.ai/wangjiaocheng/universal-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wangjiaocheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language summaries, generated command/script content, and structured JSON results in bridge mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute generated commands or Python scripts, write temporary files, persist memory, and call configured LLM-compatible APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may run AI-generated shell commands or Python code with the user's machine permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a disposable sandbox or restricted workspace, avoid confidential files and credentials, and review each generated command or script before execution.
+
+Risk: Optional dangerous mode can reduce the value of built-in confirmation checks for high-risk actions.
+
+Mitigation: Keep dangerous mode disabled for normal use and require explicit human approval before destructive or privileged operations.
+
+Risk: Standalone mode requires LLM API credentials and includes setup patterns that can expose secrets or install remote software.
+
+Mitigation: Provide credentials through controlled environment settings, do not commit real keys, and independently verify installers or remote setup commands before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjiaocheng/skills/universal-agent)
+- [Skill usage reference](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON status text with inline shell commands, Python code, configuration snippets, and natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute generated commands or scripts and return captured output, error details, retry status, and summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

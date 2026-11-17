@@ -1,56 +1,73 @@
-## Description: <br>
-Use when managing Alibaba Cloud ESA: deploy HTML/static sites via Pages, manage Edge Routines, use Edge KV, handle site management, DNS records, cache rules, and query traffic analytics via OpenAPI/SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in managing Alibaba Cloud ESA resources, including Pages deployments, Edge Routines, Edge KV, site and DNS configuration, cache rules, and traffic analytics through Alibaba Cloud OpenAPI and the official Python SDK.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to administer Alibaba Cloud ESA resources, including edge site deployment, serverless edge functions, distributed key-value storage, DNS and cache configuration, and traffic analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to publish, modify, or delete live Alibaba Cloud ESA resources. <br>
-Mitigation: Use a dedicated least-privilege RAM role and require explicit confirmation before production deployments, deletes, or configuration changes. <br>
-Risk: Incorrect target identifiers could affect the wrong site, routine, domain, namespace, or DNS record. <br>
-Mitigation: Review target site, routine, domain, namespace, and record IDs before executing cloud operations. <br>
-Risk: Analytics exports and inventory outputs can contain sensitive operational information. <br>
-Mitigation: Treat generated analytics and inventory files as sensitive and restrict where they are written or shared. <br>
-Risk: Unpinned cloud SDK dependencies may change behavior over time. <br>
-Mitigation: Pin Alibaba Cloud SDK versions in environments that use this skill for repeatable operations. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to plan and execute Alibaba Cloud ESA administration tasks such as deploying edge pages, managing Edge Routine functions and KV storage, configuring sites, DNS, and cache behavior, and querying analytics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-esa-manage) <br>
-- [Alibaba Cloud ESA API metadata](https://api.aliyun.com/meta/v1/products/ESA/versions/2024-09-10/api-docs.json) <br>
-- [Alibaba Cloud ESA endpoints](https://www.alibabacloud.com/help/en/esa/developer-reference/endpoints) <br>
-- [Pages Deployment Reference](references/pages.md) <br>
-- [Edge Routine Reference](references/er.md) <br>
-- [Edge KV Storage Reference](references/kv.md) <br>
-- [ESA OpenAPI Overview](references/api_overview.md) <br>
-- [DNS Records Reference](references/dns-records.md) <br>
-- [Cache Reference](references/cache.md) <br>
-- [Rule Expression Generation Guide](references/rule-generation-guide.md) <br>
-- [Time-Series Data API](references/time-series.md) <br>
-- [Top-N Data API](references/top-data.md) <br>
-- [Metrics and Dimensions Reference](references/fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Alibaba Cloud OpenAPI or Python SDK operations and may generate inventory or analytics output files when the user requests them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Examples can publish deployments to production ESA environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended targets before execution, prefer read-only checks first, and avoid production deployment defaults unless explicitly approved.
+
+Risk: Static deployment flows can expose local files if deployment directories include secrets or symlinks.
+
+Mitigation: Inspect deployment directories before packaging and exclude credentials, generated secrets, symlinks, and unrelated local files.
+
+Risk: Analytics exports may contain sensitive traffic or request data.
+
+Mitigation: Write exports only to approved locations, restrict permissions, and clean up files when they are no longer needed.
+
+Risk: Alibaba Cloud credentials may authorize broad changes to ESA resources.
+
+Mitigation: Use least-privilege RAM credentials and prefer scoped or read-only permissions for inventory and analytics tasks.
+
+## Reference(s):
+
+- [ESA OpenAPI Overview](references/api_overview.md)
+- [ESA Pages Deployment Reference](references/pages.md)
+- [Edge Routine Reference](references/er.md)
+- [Edge KV Storage Reference](references/kv.md)
+- [ESA Sites](references/sites.md)
+- [ESA DNS Records](references/dns-records.md)
+- [ESA Cache](references/cache.md)
+- [DescribeSiteTimeSeriesData API Reference](references/time-series.md)
+- [DescribeSiteTopData API Reference](references/top-data.md)
+- [Metrics and Dimensions Reference](references/fields.md)
+- [ESA Rule Expression Generation Guide](references/rule-generation-guide.md)
+- [ESA OpenAPI Metadata](https://api.aliyun.com/meta/v1/products/ESA/versions/2024-09-10/api-docs.json)
+- [Alibaba Cloud ESA Endpoints](https://www.alibabacloud.com/help/en/esa/developer-reference/endpoints)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline code, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run Alibaba Cloud SDK scripts and store inventory or analytics outputs under output/aliyun-esa-manage/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7794b830prxkrz3gze371pzx82v8p8",
-  "slug": "mysendemail",
-  "version": "1.0.1",
-  "publishedAt": 1773375268828
+  "id": "send_email",
+  "name": "ð§ send_email",
+  "description": "Send emails via SMTP. Use when: user asks to send an email, notify via email, or deliver messages to an email address. NOT for: bulk email sending or spam.",
+  "author": "custom",
+  "version": "1.0.0",
+  "type": "cli",
+  "executable": "python3",
+  "args": ["/root/.openclaw/workspace/skills/send_email/send_mail.py", "{receiver}", "{subject}", "{content}"],
+  "requires": ["python3", "smtplib"],
+  "tags": ["email", "notification", "smtp"],
+  "enabled": true
 }

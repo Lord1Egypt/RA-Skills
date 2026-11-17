@@ -1,41 +1,54 @@
-## Description: <br>
-Enables agents to help configure and use deBridge MCP for non-custodial cross-chain crypto swaps and transfers with route discovery, fee estimates, order creation, and status tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable AI agents to execute non-custodial cross-chain swaps and transfers through the deBridge protocol.
 
-## Publisher: <br>
-[aviclaw](https://clawhub.ai/user/aviclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aviclaw](https://clawhub.ai/user/aviclaw)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect agents to deBridge MCP so they can prepare cross-chain swap quotes, create orders after user confirmation, and monitor order status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real crypto swap workflows where mistaken chain, token, amount, recipient, fee, or slippage choices can cause financial loss. <br>
-Mitigation: Require explicit user review of the quote and wallet signature prompt, including chain, token, amount, recipient, fees, and slippage, and start with small test amounts. <br>
-Risk: The setup flow builds remote code without pinning a reviewed commit or package versions. <br>
-Mitigation: Use a reviewed and pinned source revision and dependency lockfile when supply-chain control matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aviclaw/debridge-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/aviclaw) <br>
-- [deBridge MCP server repository referenced by the artifact](https://github.com/debridge-finance/debridge-mcp) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure an agent-accessible deBridge MCP server for cross-chain crypto quotes, order creation, fee review, status checks, and supported-chain discovery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide MCP-backed quote, order, chain-listing, and status workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and persists remote code from an upstream MCP repository.
+
+Mitigation: Review and pin an audited upstream commit, use deterministic dependency installation, and install only when the repository is trusted.
+
+Risk: The connected MCP server can help create high-impact cryptocurrency orders.
+
+Mitigation: Require explicit review of quotes, fees, slippage, destination chain, and wallet-level spending limits before enabling order creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aviclaw/skills/debridge-mcp)
+- [Publisher profile](https://clawhub.ai/user/aviclaw)
+- [deBridge MCP repository used by setup](https://github.com/debridge-finance/debridge-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup and usage guidance for an MCP server that can quote swaps, create orders, check status, and list supported chains.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

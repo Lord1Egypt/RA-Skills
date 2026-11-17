@@ -26,7 +26,7 @@ Create a `.env` file:
 
 ```env
 # SiliconFlow API Key (Required, for video transcription feature)
-api_key=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api_key=REDACTED-SECRET
 # Video transcription model (default: FunAudioLLM/SenseVoiceSmall)
 model=FunAudioLLM/SenseVoiceSmall
 # Auto cleanup temporary files (true: auto cleanup, false: keep in tmp/ directory)

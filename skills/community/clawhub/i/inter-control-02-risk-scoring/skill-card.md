@@ -1,41 +1,58 @@
-## Description: <br>
-Scores logistics suppliers and Cainiao station operators, assigns risk levels, diagnoses key issues, and recommends follow-up actions from operational metrics and compliance records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores Cainiao logistics suppliers and pickup station operators, producing risk levels, issue diagnoses, and recommended actions from KPI, complaint, compliance, and operating data.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Internal control, supplier management, and operations teams use this skill to turn supplier or station KPI data, complaint history, and violation records into a structured risk scoring report for review and follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China-focused Cainiao logistics and station operations <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste raw sensitive business or customer details while providing complaint records, KPI reports, or case narratives. <br>
-Mitigation: Use aggregated metrics, redact customer identifiers and narratives, and avoid leaked records, contact details, addresses, credentials, or confidential complaint files unless an approved handling process exists. <br>
-Risk: The score can be misleading when inputs are incomplete, self-reported, or conflict with platform data. <br>
-Mitigation: Treat the score as an aid to human review, label missing data as gaps, prefer platform data over self-reported data, and manually review one-vote veto cases before action. <br>
+## Use Case:
 
+Internal control and supplier management teams use this skill to assess logistics suppliers or pickup station operators, identify risk drivers, and plan review or remediation actions. It is a decision-support template and does not replace human approval for suspension, termination, or other enforcement decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/inter-control-02-risk-scoring) <br>
-- [Continuation reference](references/continuation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown risk scoring report with score tables, issue diagnosis, recommendations, warnings, and review cadence.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask up to five clarifying data questions before scoring; marks missing inputs as data gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.7.0) <br>
+Risk: Operational records may contain customer names, contact details, case IDs, or other unnecessary identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact personal or case-identifying details before pasting records into the agent.
+
+Risk: Risk scores and recommendations could be mistaken for automated enforcement decisions.
+
+Mitigation: Keep suspension, termination, and one-vote veto outcomes under human review.
+
+Risk: The quality of scoring depends on the completeness and reliability of supplied KPI, complaint, and compliance data.
+
+Mitigation: Flag missing data as gaps and reconcile self-reported values against platform or authoritative records before action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/inter-control-02-risk-scoring)
+- [Continuation reference](references/continuation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown risk scoring report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scoring details, risk level, data gaps, issue diagnosis, recommended actions, special warnings, and review timing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn70bwwkb5kzg7xhbtyxem90kx82pys1",
-  "slug": "atopchaser",
-  "version": "1.0.2",
-  "publishedAt": 1773232794931
+  "name": "achaser",
+  "label": "A股 Top10 追涨分析",
+  "version": "0.1.0",
+  "description": "调用 scripts/list_top10.py 获取当天 A 股涨幅 Top10，并基于结果给出是否值得买入的逐只分析（非投资建议）。",
+  "entry_script": "scripts/list_top10.py",
+  "author": "auto-generated-by-assistant",
+  "tags": [
+    "stocks",
+    "china",
+    "a-share",
+    "market-top10",
+    "analysis"
+  ]
 }
+

@@ -14,7 +14,7 @@ dependencies:
     binary: codewiki
 ---
 
-# Skill: `codewiki`
+# Skill: Code Wiki
 
 ## When to trigger
 

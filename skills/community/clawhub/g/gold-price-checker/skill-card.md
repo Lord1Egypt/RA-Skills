@@ -1,37 +1,53 @@
-## Description: <br>
-Checks current domestic and international gold prices, bank gold bar prices, jewelry retail prices, recycling prices, and trend context from public web sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gold Price Checker helps users retrieve and summarize current domestic China gold prices, international gold prices, bank bullion prices, jewelry retail prices, recycling prices, and high-level trend context.
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and summarize public gold-price reference data for China-focused gold markets, bank bars, jewelry retail, recycling, and international gold indicators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Gold prices and trend commentary may be stale, incomplete, or different from actual transaction prices. <br>
-Mitigation: Treat outputs as informational reference material and verify prices with authoritative market, bank, or retailer sources before making financial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jinjia Gold Price Data](https://www.jinjia.com.cn/) <br>
+## Use Case:
 
+External users and agents use this skill to answer gold-price questions by extracting current data from jinjia.com.cn, organizing prices by market category, and adding brief trend context. It is intended for informational price lookup and should not be treated as financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with extracted price data and trend commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prices are reference data from external public sources and may differ from actual transaction prices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gold prices, bank bullion prices, jewelry retail prices, and recycling prices can change quickly or differ by transaction channel.
+
+Mitigation: Verify price values, timestamps, fees, and buy-sell spreads with authoritative or transaction-specific sources before acting on them.
+
+Risk: Trend commentary may be incomplete or mistaken if based only on extracted web content or search results.
+
+Mitigation: Treat trend analysis as informational context rather than financial advice and compare it with professional market sources.
+
+## Reference(s):
+
+- [Gold price data source](https://www.jinjia.com.cn/)
+- [ClawHub skill page](https://clawhub.ai/anmu14641/skills/gold-price-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown price summary with extracted source data and brief trend notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current prices depend on live web extraction and search results; values are informational and may differ from transaction prices.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, created 2026-03-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

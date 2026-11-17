@@ -1,5 +1,5 @@
 ---
-name: travel-cog
+name: travel-planning-cellcog
 description: "AI travel planning and itinerary generation powered by CellCog. Vacation planning, travel research, flight planning, hotel recommendations, visa requirements, weather patterns, local events. Complete itineraries as PDFs or interactive dashboards."
 metadata:
   openclaw:
@@ -12,11 +12,11 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Travel Cog - AI Travel Planner Powered by CellCog
+# Travel Planning - AI Travel Planner Powered by CellCog
 
 **Real travel planning needs real research — not recycled blog listicles.**
 
-#1 on DeepResearch Bench (Apr 2026) applied to travel. CellCog researches current prices, visa requirements, weather patterns, local events, and hidden gems — then delivers complete itineraries as beautiful PDFs or interactive dashboards. Every recommendation grounded in fresh data, not outdated travel guides.
+#1 on DeepResearch Bench (October 2026) applied to travel. CellCog researches current prices, visa requirements, weather patterns, local events, and hidden gems — then delivers complete itineraries as beautiful PDFs or interactive dashboards. Every recommendation grounded in fresh data, not outdated travel guides.
 
 ## How to Use
 
@@ -119,15 +119,16 @@ Specify your preferred format. CellCog defaults to PDF when no format is specifi
 
 ---
 
-## Chat Mode for Travel
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single trip itinerary | `"agent"` |
-| Quick destination research | `"agent"` |
-| Complex multi-country planning with deep research | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Itineraries and trip plans | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Complex multi-country planning | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most travel planning.**
+**The core tier is the default and handles most travel planning well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for travel planning.
 
 ---
 
@@ -149,6 +150,7 @@ Specify your preferred format. CellCog defaults to PDF when no format is specifi
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

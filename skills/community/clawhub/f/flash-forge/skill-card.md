@@ -1,41 +1,55 @@
-## Description: <br>
-Generate flashcards from any content. Paste notes, articles, or textbook pages. Get study-ready cards with spaced repetition scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate flashcards from any content. Paste notes, articles, or textbook pages. Get study-ready cards with spaced repetition scheduling.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Students, educators, and self-directed learners use this skill to turn notes, articles, or textbook pages into study-ready flashcards, run spaced-repetition reviews, manage decks, and export Anki-compatible CSV. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Study notes and generated cards can be retained locally in flashcards.json. <br>
-Mitigation: Avoid pasting highly sensitive notes unless local retention is acceptable, and manage, back up, or delete the deck file when it is no longer needed. <br>
-Risk: Generated flashcards may be incomplete or inaccurate for the source material. <br>
-Mitigation: Review generated cards before relying on them for study or exporting them to another tool. <br>
+## Use Case:
 
+External users and learners use this skill to turn notes, articles, or textbook material into study-ready flashcards, then review them with spaced repetition and progress tracking.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/flash-forge) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown flashcards and study-session summaries, with tab-separated Anki-compatible CSV export when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local flashcards.json deck file when the JavaScript helper is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Flashcard content, tags, and review history may be saved locally in a JSON deck file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering highly sensitive study material unless the local storage location and backup practices are acceptable for the user's environment.
+
+Risk: Generated cards may omit context or introduce inaccurate study prompts from the source material.
+
+Mitigation: Review generated flashcards against the original notes before relying on them for study or assessment preparation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/flash-forge)
+- [README](README.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Markdown study prompts, local JSON deck data, and tab-separated Anki-compatible export text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores flashcard fronts, backs, tags, and review history locally when used with the bundled JavaScript helper.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

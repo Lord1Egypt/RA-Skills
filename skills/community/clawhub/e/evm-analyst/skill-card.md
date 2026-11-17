@@ -1,45 +1,60 @@
-## Description: <br>
-Analyze Polygon EVM fund-flow patterns from seed addresses, transaction hashes, and Dune log outputs using fixed registered Dune queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Polygon EVM fund-flow patterns from seed addresses, tx hashes, and Dune log outputs. Use fixed registered Dune queries only.
 
-## Publisher: <br>
-[leon5876](https://clawhub.ai/user/leon5876) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leon5876](https://clawhub.ai/user/leon5876)
 
-## Use Case: <br>
-Developers, analysts, and investigators use this skill to reconstruct Polygon EVM fund flows, annotate event patterns, classify transactions, and identify follow-up Dune queries without fabricating missing blockchain facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Addresses, transaction hashes, or topic hashes submitted to external blockchain analytics or signature lookup services may disclose sensitive investigative interest. <br>
-Mitigation: Avoid submitting sensitive identifiers whose association with the work must remain private, and review the registered Dune queries before use. <br>
-Risk: Incomplete Dune query registration can prevent analysis or encourage unsupported assumptions. <br>
-Mitigation: Use only registered Dune query codes and return next_query_plan when required data is unavailable. <br>
-Risk: Blockchain event interpretation can be misleading when raw logs are incomplete or topic0 signatures are unknown. <br>
-Mitigation: Preserve raw evidence fields, mark unknown topic0 values as unknown_event_signature, and avoid fabricating amounts, labels, relationships, or transaction counts. <br>
+## Use Case:
 
+Developers, investigators, and analysts use this skill to reconstruct Polygon EVM fund flows from seed addresses, transaction hashes, decoded logs, raw polygon.logs rows, and Dune query results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leon5876/evm-analyst) <br>
-- [Dune Query Registry](references/dune_query_registry.md) <br>
-- [Topic0 Dictionary](references/topic0_dictionary.md) <br>
-- [OpenChain Signature Database Lookup API](https://api.openchain.xyz/signature-database/v1/lookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Concise structured Markdown tables such as addresses, patterns, flow_edges, log_annotations, tx_classification, accounting_summary, discovered_addresses, and next_query_plan.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses registered Dune query codes and preserves raw transaction evidence when available; emits next_query_plan when data is insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact package reports 0.2.1-slim) <br>
+Risk: Analysis may send public blockchain identifiers, transaction hashes, query parameters, and unknown topic0 hashes to Dune or OpenChain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when those external services may see the lookup pattern, and avoid sensitive private investigation context unless that exposure is acceptable.
+
+Risk: Unsupported or missing Dune queries could lead to invented query IDs, dynamic SQL, or incomplete data collection.
+
+Mitigation: Use only registered query IDs from the Dune Query Registry and emit next_query_plan when the needed query type is missing.
+
+Risk: Insufficient logs, unknown event signatures, or ambiguous protocol behavior can produce misleading fund-flow or accounting classifications.
+
+Mitigation: Preserve raw evidence in structured rows, mark unknown topic0 values explicitly, and output next_query_plan instead of guessing when data is insufficient.
+
+## Reference(s):
+
+- [Dune Query Registry](artifact/references/dune_query_registry.md)
+- [Topic0 Dictionary](artifact/references/topic0_dictionary.md)
+- [OpenChain Signature Database API](https://api.openchain.xyz/signature-database/v1/lookup)
+- [ClawHub Skill Page](https://clawhub.ai/leon5876/skills/evm-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured tables for addresses, patterns, pattern steps, flow edges, log annotations, transaction classification, accounting summaries, discovered addresses, and next query plans.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 0.2.1-slim)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

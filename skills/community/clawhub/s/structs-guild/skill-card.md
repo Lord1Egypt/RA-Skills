@@ -1,47 +1,61 @@
-## Description: <br>
-Manages guild operations in Structs. Covers creation, membership, settings, and Central Bank token operations. Use when creating a guild, joining or leaving a guild, managing guild settings, minting or redeeming guild tokens, managing Central Bank collateral, or coordinating guild membership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guilds in Structs - choosing and joining one, ranks and rank-permissions, membership flows, settings, UGC moderation, charter vs entitlement founding, and the Central Bank (mint/redeem/convert).
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-External Structs players and guild operators use this skill to plan and execute guild creation, membership, rank, permission, identity, and Central Bank token operations with the structsd CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps prepare wallet-signed on-chain guild actions, including rank, ownership, permission, and token operations that may be permanent or hard to reverse. <br>
-Mitigation: Before approving a transaction, confirm the signer, chain, entity IDs, permission bits, rank ranges, token amounts, collateral ratio, and reversibility. <br>
-Risk: Using non-interactive approval flags can suppress CLI confirmation prompts for sensitive transactions. <br>
-Mitigation: Use interactive TX_FLAGS by default and reserve prompt-suppressing approval flags for commander-approved actions. <br>
-Risk: Broad rank-based permissions can grant operational authority to many guild members at once. <br>
-Mitigation: Prefer narrow rank ranges or per-player grants, then verify permissions with guild-rank permission queries after changes. <br>
+## Use Case:
 
+External Structs players and operators use this skill to choose or join a guild, create and administer guilds, manage ranks and memberships, moderate member identity, and run guild token operations.
 
-## Reference(s): <br>
-- [Structs Guild on ClawHub](https://clawhub.ai/abstrct/structs-guild) <br>
-- [Structs Safety](https://structs.ai/SAFETY) <br>
-- [Structs guild banking](https://structs.ai/knowledge/economy/guild-banking) <br>
-- [Structs permissions](https://structs.ai/knowledge/mechanics/permissions) <br>
-- [Structs UGC moderation](https://structs.ai/knowledge/mechanics/ugc-moderation) <br>
-- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline structsd CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structsd on PATH and a configured signing key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server-resolved release metadata) <br>
+Risk: High-impact guild administration or token commands can change membership, ownership, moderation state, or guild-token balances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed rank changes, kicks, ownership transfers, UGC moderation, mint/redeem operations, and confiscate-and-burn commands before signing or broadcasting any transaction.
+
+Risk: The skill provides command guidance but does not execute transactions automatically.
+
+Mitigation: Use it only with an operator-controlled structsd setup and require explicit human approval for any generated transaction command.
+
+## Reference(s):
+
+- [Structs conventions](https://structs.ai/skills/conventions)
+- [Guild Charter hashing mechanics](https://structs.ai/knowledge/mechanics/hashing#guild-charter)
+- [Structs permissions](https://structs.ai/knowledge/mechanics/permissions)
+- [UGC moderation mechanics](https://structs.ai/knowledge/mechanics/ugc-moderation)
+- [Guild banking economy](https://structs.ai/knowledge/economy/guild-banking)
+- [Structs factions lore](https://structs.ai/knowledge/lore/factions)
+- [Guild war playbook](https://structs.ai/playbooks/situations/guild-war)
+- [structs-permissions skill](https://structs.ai/skills/structs-permissions/SKILL)
+- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output for Structs guild operations; transaction commands require a local structsd client, a signing key, and human review before signing or broadcasting.]
+
+## Skill Version(s):
+
+1.25.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

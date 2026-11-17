@@ -1,40 +1,56 @@
-## Description: <br>
-Configure AI personality using the AURA protocol (HEXACO-based). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure AI personality using the AURA protocol (HEXACO-based).
 
-## Publisher: <br>
-[phiro56](https://clawhub.ai/user/phiro56) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[phiro56](https://clawhub.ai/user/phiro56)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure a workspace personality profile, tune directness, autonomy, and response style, and persist those preferences in an AURA.yaml file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: High autonomy values or persistent personality settings could make an agent act with less confirmation than a workspace expects. <br>
-Mitigation: Review AURA.yaml before relying on it, choose autonomy values deliberately, and reset the profile when the workspace no longer needs those settings. <br>
-Risk: Adding the startup-loading rule to AGENTS.md makes personality settings persist across sessions in that workspace. <br>
-Mitigation: Only add the startup-loading rule in trusted workspaces and inspect the local AURA.yaml before applying it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub AURA package page](https://clawhub.ai/phiro56/aura) <br>
-- [AURA protocol specification](https://github.com/phiro56/AURA) <br>
+## Use Case:
 
+External users and developers use AURA to configure an agent's response personality, communication style, autonomy, and anti-sycophancy boundaries through a workspace AURA.yaml profile.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, reads, or removes a workspace AURA.yaml personality configuration when invoked by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0-beta.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A workspace-level AURA.yaml profile can change the agent's response style and autonomy.
+
+Mitigation: Review AURA.yaml before relying on the profile, especially in shared workspaces.
+
+Risk: An optional AGENTS.md startup rule can make the personality profile persist across sessions.
+
+Mitigation: Add startup rules only in trusted repositories and remove the rule manually if the profile should no longer load.
+
+Risk: /aura reset removes AURA.yaml but may not remove any startup rule the user added separately.
+
+Mitigation: After reset, check AGENTS.md or equivalent startup instructions for remaining AURA loading rules.
+
+## Reference(s):
+
+- [AURA protocol specification](https://github.com/phiro56/AURA)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with YAML configuration examples and a workspace AURA.yaml profile]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, display, or remove a local AURA.yaml personality profile; optional AGENTS.md startup guidance is user-applied.]
+
+## Skill Version(s):
+
+0.1.0-beta.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

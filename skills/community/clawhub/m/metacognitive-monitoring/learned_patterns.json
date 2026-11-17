@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "skill": "metacognitive-monitoring",
+  "totalOps": 1,
+  "totalErrors": 0,
+  "capabilityStats": {
+    "元认知监控": {
+      "count": 1,
+      "success": 1,
+      "fail": 0
+    }
+  },
+  "errorPatterns": {},
+  "preferences": {},
+  "recentOps": [
+    {
+      "t": "2026-07-23T01:39",
+      "cap": "元认知监控",
+      "ok": true,
+      "err": null,
+      "note": null
+    }
+  ],
+  "optimizations": {},
+  "lastUpdated": "2026-07-23T01:39"
+}

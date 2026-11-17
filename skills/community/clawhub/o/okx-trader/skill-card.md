@@ -1,43 +1,54 @@
-## Description: <br>
-Automated OKX trading skill with dual-grid strategies, auto-rescaling, and account reporting for managing exchange orders and monitoring performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OKX Trader helps an agent maintain OKX grid trading strategies, generate trading reports, and record account snapshots for configured instruments.
 
-## Publisher: <br>
-[esojourn](https://clawhub.ai/user/esojourn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[esojourn](https://clawhub.ai/user/esojourn)
 
-## Use Case: <br>
-External users and trading operators use this skill to maintain configured OKX grid strategies, generate PnL reports, and record daily account snapshots. It is intended for users who understand exchange API keys and the financial risks of automated crypto trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically place and cancel real OKX exchange orders, and live trading is the default when simulation is not enabled. <br>
-Mitigation: Start with OKX_IS_SIMULATION=true, verify grid_settings.json instruments and order sizes, and enable schedules only after testing behavior. <br>
-Risk: Exchange API credentials are required for account and trading operations. <br>
-Mitigation: Use a trade-only OKX subaccount API key with withdrawals disabled and rotate credentials if they may have been exposed. <br>
-Risk: Automated crypto grid strategies can lose money during volatile or trending markets. <br>
-Mitigation: Limit maxPosition and grid sizes, monitor reports and snapshots, and trade only funds the operator can afford to lose. <br>
+## Use Case:
 
+Crypto trading operators and agent developers use this skill to monitor configured OKX instruments, maintain limit-order grid strategies, and capture daily account state. It is intended for users who understand exchange API permissions, automated order placement, and cryptocurrency trading risk.
 
-## Reference(s): <br>
-- [OKX Trader on ClawHub](https://clawhub.ai/esojourn/okx-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/esojourn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON files, API calls] <br>
-**Output Format:** [Markdown and console text reports, with JSON snapshot and audit files written under okx_data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OKX API credentials and local grid_settings.json to read market/account state and place or cancel configured orders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and target metadata) <br>
+Risk: The skill can automatically place and cancel real OKX orders, and server security evidence flags unsafe live-trading defaults and weak order-scope controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simulation mode first, keep OKX API keys trade-only with withdrawals disabled, and avoid enabling five-minute live maintenance until live opt-in, order ownership, and exposure-limit issues are fixed.
+
+Risk: The local okx_data directory contains credentials, strategy settings, audit logs, and account snapshots.
+
+Mitigation: Restrict filesystem access to okx_data and treat generated snapshots and configuration files as sensitive account data.
+
+## Reference(s):
+
+- [ClawHub OKX Trader skill page](https://clawhub.ai/esojourn/skills/okx-trader)
+- [esojourn publisher profile](https://clawhub.ai/user/esojourn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown and console text from OKX reporting tools, plus JSON account snapshots and configuration updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call OKX APIs, place or cancel orders, update grid_settings.json, and write snapshots under the local okx_data directory.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

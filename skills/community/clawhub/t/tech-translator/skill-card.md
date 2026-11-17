@@ -1,41 +1,57 @@
-## Description: <br>
-Professional technical documentation translation expert, proficient in internet industry terminology. Translates user-provided files, preserves original formatting, and performs professional accuracy and format validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional technical documentation translation expert, proficient in internet industry terminology. Translates user-provided files, preserves original formatting, and performs professional accuracy and format validation.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, technical writers, and documentation maintainers use this skill to translate technical documentation, API references, READMEs, blogs, specifications, and structured documentation files while preserving formatting and protected technical content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translations are written to the workspace root and may overlap with existing language-suffixed files or folders. <br>
-Mitigation: Check the workspace destination before folder mode and review generated paths before relying on the output. <br>
-Risk: URL inputs require the agent to fetch external content. <br>
-Mitigation: Use trusted URLs and avoid URL mode when network access or external content handling is not acceptable. <br>
-Risk: Validation may identify terminology, format, or protected-content issues without automatically retranslating. <br>
-Mitigation: Review the validation summary and confirm flagged issues before publishing or using translated documentation. <br>
+## Use Case:
 
+Developers, technical writers, and documentation teams use this skill to translate technical documentation, API docs, READMEs, technical blogs, and specification files while preserving structure, code, links, placeholders, and terminology consistency.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Translated files in the workspace root plus a concise validation summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source structure for folders, writes language-suffixed outputs, and reports format, terminology, and professional-accuracy checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Folder mode may process sensitive files such as `.env`, credentials, private keys, or hidden configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run folder translation only on reviewed directories and exclude sensitive or hidden configuration files before use.
+
+Risk: URL mode may fetch internal systems or URLs that contain tokens.
+
+Mitigation: Use URL mode only with public or approved URLs and remove tokens or secrets from URLs before translation.
+
+Risk: Translated files are created in the workspace.
+
+Mitigation: Review output paths and generated files before committing, sharing, or deploying workspace contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/tech-translator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Translated files in the original or detected format, plus a concise text validation summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes translated outputs to the workspace root and preserves supported file structures where applicable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

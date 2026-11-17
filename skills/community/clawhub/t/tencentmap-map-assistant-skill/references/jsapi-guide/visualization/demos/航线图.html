@@ -8,7 +8,7 @@
   </head>
   <script
     charset="utf-8"
-    src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&libraries=visualization"
+    src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}&libraries=visualization"
   ></script>
   <style type="text/css">
     html,
@@ -36,7 +36,8 @@
           zoom: 5.5,
           mapStyleId: "style8",
           pitch: 30,
-          center: center, //设置地图中心点坐标baseMap: {
+          center: center, //设置地图中心点坐标
+          baseMap: {
             type: "vector",
             features: ["base", "building3d"], // 隐藏矢量文字
           },

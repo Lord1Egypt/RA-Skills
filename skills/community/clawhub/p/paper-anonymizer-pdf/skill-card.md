@@ -1,42 +1,59 @@
-## Description: <br>
-Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract PDF text and tables, create or modify PDFs, merge and split documents, handle OCR workflows, and fill PDF forms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: PDF repair, modification, form filling, decryption, and extraction commands can alter or expose sensitive document content. <br>
-Mitigation: Use the skill only with PDFs the user is authorized to process, work in a private folder, keep backups before modification or repair commands, and review outputs before sharing. <br>
-Risk: Temporary images, JSON files, text extracts, and decrypted PDF copies may retain sensitive information after processing. <br>
-Mitigation: Delete temporary processing outputs and decrypted copies when they are no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to process PDFs locally, including extracting content, creating or modifying documents, merging or splitting files, and completing PDF forms.
 
-## Reference(s): <br>
-- [PDF Processing Advanced Reference](reference.md) <br>
-- [PDF Form Filling Guide](forms.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/paper-anonymizer-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python, JavaScript, shell command, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate PDF outputs, temporary images, text extracts, JSON field data, and modified or decrypted PDF copies when the user executes the recommended commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: PDF processing can expose sensitive document contents through temporary files such as form JSON, rendered page images, extracted text, or generated PDFs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only authorized documents, choose output paths deliberately, and delete temporary JSON, image, and extracted-content files when they contain sensitive data.
+
+Risk: PDF modification, repair, password, merge, split, or form-fill operations can overwrite files or create incorrect documents if inputs or paths are wrong.
+
+Mitigation: Keep backups before destructive or in-place workflows, review generated commands before execution, and verify output PDFs before using or sharing them.
+
+Risk: Putting real passwords directly on command lines can expose credentials through shell history or process inspection.
+
+Mitigation: Avoid command-line password literals when possible and prefer safer secret handling supported by the chosen PDF tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/paper-anonymizer-pdf)
+- [PDF form workflow](artifact/forms.md)
+- [PDF processing advanced reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PDF files, extracted text, table data, images, form field JSON, or filled documents when the agent follows the guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

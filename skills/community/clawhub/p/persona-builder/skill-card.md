@@ -1,43 +1,55 @@
-## Description: <br>
-Guided interview to generate a complete agent workspace: SOUL.md, IDENTITY.md, MEMORY.md, AGENTS.md, USER.md with hierarchical memory structure, atomic facts, epistemic standards, anti-sycophancy rules, dissent protocol, and agent personality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guided interview to generate a complete agent workspace with SOUL.md, IDENTITY.md, MEMORY.md, AGENTS.md, and USER.md files that capture identity, goals, communication style, epistemic standards, anti-sycophancy rules, dissent protocol, and agent personality.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
 
-## Use Case: <br>
-Developers and OpenClaw users use Persona Builder to run a structured interview and generate local workspace files that define an agent's identity, memory structure, communication preferences, autonomy bounds, schedule, epistemic standards, and anti-sycophancy behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona, memory, and authority files can durably shape future agent behavior. <br>
-Mitigation: Review every generated file before use and remove or tighten any autonomy, sub-agent, background-loop, usage-tracking, or pruning instructions that are not intended. <br>
-Risk: Interview answers and generated files can contain sensitive personal details such as schedule, goals, risks, and operating preferences. <br>
-Mitigation: Do not enter unnecessary secrets or personal details, redact sensitive content, and avoid committing generated files to public or shared repositories. <br>
+## Use Case:
 
+External users and developers use this skill to interview a human and generate editable local workspace files that define an agent's identity, memory structure, operating preferences, autonomy bounds, and user context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/corbin-breton/persona-builder) <br>
-- [Interview blocks](artifact/references/interview-blocks.md) <br>
-- [Generation rules](artifact/references/generation-rules.md) <br>
-- [Research notes](artifact/references/research-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SOUL.md, IDENTITY.md, MEMORY.md, AGENTS.md, and USER.md in the current workspace for user review and customization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The generated files may persist sensitive profile details and personal operating preferences in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before use, redact sensitive details, and avoid committing persona or memory files to public repositories.
+
+Risk: Unvalidated user-provided interview text can shape future agent behavior through generated SOUL.md and AGENTS.md files.
+
+Mitigation: Do not paste untrusted prewritten answers, and review SOUL.md and AGENTS.md carefully before adopting them.
+
+## Reference(s):
+
+- [Interview Blocks](references/interview-blocks.md)
+- [Generation Rules](references/generation-rules.md)
+- [Research Notes](references/research-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five local, human-editable workspace files: SOUL.md, IDENTITY.md, MEMORY.md, AGENTS.md, and USER.md.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

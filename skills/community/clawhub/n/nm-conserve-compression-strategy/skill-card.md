@@ -1,41 +1,62 @@
-## Description: <br>
-Recommends context compression strategies for bloated or quota-heavy sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends context compression strategies for bloated or quota-heavy sessions.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze bloated or quota-heavy sessions, choose a context compression or delegation strategy, and estimate expected savings before continuing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session summaries or context archives may contain secrets, private logs, or customer data. <br>
-Mitigation: Review archived content before installing or using the skill in sensitive sessions, and avoid preserving confidential material unless it is needed for continuity. <br>
-Risk: Session-clearing, compacting, or delegation workflows can lose active task state if the handoff is incomplete. <br>
-Mitigation: Save critical decisions, active files, and next steps before clearing context or spawning a continuation agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess context bloat, choose a compression or delegation strategy, and reduce token pressure before or during long agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-compression-strategy) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and TodoWrite checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend saving session summaries or context archives under .claude before clearing, compacting, or delegating work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Clearing or compacting context can lose unsaved state or recent decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm critical session state is saved before /clear, and use catchup or an archive summary to reload active context.
+
+Risk: Pasted logs and archived session files can expose secrets or sensitive operational data.
+
+Mitigation: Filter and redact logs before pasting, and avoid archiving secrets into .claude files.
+
+Risk: Optional token counting can depend on third-party tooling availability and version drift.
+
+Mitigation: Prefer a pinned or preinstalled tiktoken environment before relying on token measurements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-conserve-compression-strategy)
+- [Conserve Plugin Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [Log Debugging Hygiene Module](modules/log-debugging-hygiene.md)
+- [Drain3](https://github.com/logpai/Drain3)
+- [logs-tokenizer](https://github.com/sergeivaskov/logs-tokenizer)
+- [LLMLingua](https://github.com/microsoft/LLMLingua)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with analysis, recommendations, estimates, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose manual session-state saves, context archiving, filtering, summarization, delegation, or continuation-agent handoff.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release evidence; artifact frontmatter lists 1.9.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

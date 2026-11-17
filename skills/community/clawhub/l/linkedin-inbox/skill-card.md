@@ -1,42 +1,54 @@
-## Description: <br>
-Manages LinkedIn inbox monitoring, message classification, user-style draft replies, approval workflows, and scheduled summaries through browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn inbox management with scheduled scanning, auto-draft responses following user's communication style, and approval workflows.
 
-## Publisher: <br>
-[dylanbaker24](https://clawhub.ai/user/dylanbaker24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dylanbaker24](https://clawhub.ai/user/dylanbaker24)
 
-## Use Case: <br>
-Employees and business operators use this skill to monitor LinkedIn messages, prepare replies that match their communication style, and send only approved responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can monitor private LinkedIn messages and expose message details through screenshots, logs, or notification channels. <br>
-Mitigation: Use a dedicated browser profile, close unrelated sensitive tabs, keep notification channels private, and review captured content handling. <br>
-Risk: Browser-control automation can send messages from a logged-in LinkedIn account. <br>
-Mitigation: Require explicit approval for each recipient and draft, avoid broad commands such as send all, and keep action limits enabled. <br>
-Risk: Scheduled monitoring may continue after it is no longer needed. <br>
-Mitigation: Remove heartbeat or cron entries when monitoring ends and keep scans within configured active hours. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Communication Style Extraction Guide](references/style-extraction.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dylanbaker24/linkedin-inbox) <br>
+## Use Case:
 
+People who manage LinkedIn messages use this skill to scan inbox activity, draft replies in their own communication style, and route proposed responses through approval before sending.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell command snippets, notification summaries, and draft reply text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human approval is required before sending messages; screenshots, logs, and notification summaries may contain private LinkedIn message content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read private LinkedIn messages through an active browser session.
+
+Mitigation: Use a dedicated browser profile or account, restrict notification channels, and avoid retaining inbox screenshots unless necessary.
+
+Risk: The included send workflow can send LinkedIn messages without strong built-in approval or recipient verification controls.
+
+Mitigation: Require an explicit approval token, verify the recipient before sending, apply rate limits, and use fail-closed UI checks before relying on the send script.
+
+## Reference(s):
+
+- [Communication Style Extraction Guide](references/style-extraction.md)
+- [LinkedIn Inbox Manager on ClawHub](https://clawhub.ai/dylanbaker24/skills/linkedin-inbox)
+- [LinkedIn Messaging](https://www.linkedin.com/messaging/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces inbox summaries, draft responses, approval prompts, and browser automation commands for an agent to execute with user oversight.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

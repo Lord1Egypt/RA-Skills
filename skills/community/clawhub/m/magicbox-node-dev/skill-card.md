@@ -1,46 +1,56 @@
-## Description: <br>
-Node.js + TypeScript 项目开发规范和最佳实践指南，用于指导 MagicBox Node 服务的开发、代码风格、目录结构、配置管理和容器部署。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Node.js + TypeScript 项目开发规范和最佳实践指南。用于指导 MagicBox Node 服务的开发、代码风格、目录结构、配置管理、容器部署等方面的规范。
 
-## Publisher: <br>
-[JinChunCheng123](https://clawhub.ai/user/JinChunCheng123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jinchuncheng123](https://clawhub.ai/user/jinchuncheng123)
 
-## Use Case: <br>
-Developers and engineers use this skill as a reference guide for building MagicBox Node services with Node.js, TypeScript, TypeORM, Docker, Kubernetes, and consistent project conventions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Deployment examples may include practices that are too permissive for production environments, such as broad file permissions or long-running auxiliary services. <br>
-Mitigation: Review and harden container snippets before use; remove sshd and cron unless explicitly required and avoid chmod 777. <br>
-Risk: Example package registry and deployment commands may target infrastructure that is not appropriate for the adopter's environment. <br>
-Mitigation: Use a trusted HTTPS npm registry and confirm Docker and Kubernetes targets before running commands. <br>
-Risk: Configuration examples include database settings that could be mishandled if copied directly. <br>
-Mitigation: Store real database passwords in Kubernetes Secrets or a vault rather than ConfigMaps or source-controlled configuration files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill definition](SKILL.md) <br>
-- [Code style guide](references/code-style.md) <br>
-- [Configuration management guide](references/config-management.md) <br>
-- [Container deployment guide](references/container-deployment.md) <br>
-- [Directory structure guide](references/directory-structure.md) <br>
-- [ClawHub skill page](https://clawhub.ai/JinChunCheng123/magicbox-node-dev) <br>
+## Use Case:
 
+Developers and engineers use this skill to get MagicBox Node service guidance for Node.js and TypeScript project structure, code style, configuration management, database conventions, API patterns, container deployment, logging, error handling, and review practices.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown reference guidance with code, shell, JSON, Dockerfile, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; snippets should be reviewed and hardened before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copyable deployment examples include unsafe production patterns such as broad file permissions, an HTTP npm registry, sshd/crond in the application container, ConfigMap database credentials, and permissive CORS.
+
+Mitigation: Review every deployment and configuration snippet before use; replace broad permissions, use trusted HTTPS registries, remove unnecessary daemons, store credentials in Secrets or a secret manager, and restrict CORS to known origins.
+
+Risk: The security verdict is suspicious because the skill is documentation-only but could weaken systems if its examples are followed as production templates.
+
+Mitigation: Treat the skill as rough internal documentation, adapt examples to local security standards, and run normal code, container, and infrastructure review before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinchuncheng123/skills/magicbox-node-dev)
+- [Code style guide](references/code-style.md)
+- [Configuration management guide](references/config-management.md)
+- [Container deployment guide](references/container-deployment.md)
+- [Directory structure guide](references/directory-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for Node.js and TypeScript service development; copyable deployment examples require review before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

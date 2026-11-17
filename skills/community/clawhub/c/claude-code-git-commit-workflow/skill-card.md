@@ -1,39 +1,48 @@
-## Description: <br>
-Helps an agent create one clean git commit from current changes with safe staging, concise message drafting, and non-interactive git usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants a single clean commit created from current changes with safe staging, message drafting, and non-interactive git usage.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wimi321](https://clawhub.ai/user/wimi321)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill when they want an agent to inspect current repository changes, stage only relevant files, draft an appropriate commit message, and create one non-amended git commit.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent may accidentally stage unrelated files or secrets while preparing the commit.
+
+Mitigation: Review the staged diff or resulting commit summary and keep staging scoped to relevant changes before accepting the commit.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill when they want an agent to inspect a working tree, stage only relevant changes, draft a concise message, and create one non-amended commit. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Unrelated work or secrets could be staged if the working tree is not reviewed before committing. <br>
-Mitigation: Inspect the working tree and staged files before commit creation, and keep unrelated or sensitive files unstaged. <br>
-Risk: The final commit message could misrepresent the change if accepted without review. <br>
-Mitigation: Review the drafted commit message against the staged diff before allowing the commit to be created. <br>
+**Output Format:** [Markdown or plain text with git command summaries and a commit result]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces one non-amended commit and a concise summary of the committed changes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and a commit summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one non-amended git commit when applicable; avoids empty commits, amend flows, hook bypasses, secrets, and unrelated files.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

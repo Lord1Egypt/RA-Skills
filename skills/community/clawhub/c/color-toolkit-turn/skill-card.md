@@ -1,38 +1,57 @@
-## Description: <br>
-A local color toolkit for converting color encodings, checking contrast, recommending palettes, and generating HTML previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides color code conversion, contrast calculation, palette recommendation, and optional HTML preview generation for UI design and accessibility workflows.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers, designers, and accessibility reviewers use this skill to convert HEX, RGB, HSL, HSV, and CMYK values, evaluate contrast, generate palette recommendations, and optionally create local HTML previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Preview generation can write HTML files to the selected output path. <br>
-Mitigation: Review the output path before running preview commands and avoid paths for files that should not be replaced. <br>
+## Use Case:
 
+Developers, designers, and accessibility reviewers use this skill to convert colors, compare contrast with WCAG/APCA and color-difference metrics, generate palettes from descriptions, and create preview artifacts for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/color-toolkit-turn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown responses with JSON snippets and optional generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [HTML preview generation can write to a selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, artifact metadata, server release evidence) <br>
+Risk: HTML preview generation may write files to unsafe or unintended paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Write previews only into a disposable directory, avoid elevated privileges, and prefer a fixed version that confines output to a safe directory with overwrite protection.
+
+Risk: Generated HTML previews may include unescaped text from color descriptions or preview titles.
+
+Mitigation: Use trusted color descriptions and preview titles, review generated HTML before sharing, and prefer a fixed version that escapes HTML text.
+
+## Reference(s):
+
+- [Color Toolkit Turn ClawHub Page](https://clawhub.ai/ldxs001/skills/color-toolkit-turn)
+- [Output Examples](references/examples.md)
+- [FAQ](references/faq.md)
+- [Permissions](references/permissions.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or JSON summaries, with optional generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview generation may write HTML files to a caller-selected output path.]
+
+## Skill Version(s):
+
+3.4.1 (source: ClawHub release metadata; artifact frontmatter and _meta.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Using agricultural camera images, this skill detects leaf curl direction and leaf-margin scorch patterns, optionally considers soil-moisture data, and returns likely causes such as drought stress, disease, pesticide damage, or fertilizer burn with directional recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes plant leaf images or video to identify curling direction and margin scorch patterns, optionally combining soil moisture data to rank likely causes such as drought stress, disease, pesticide damage, fertilizer burn, or cold stress.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and agricultural developers use this skill to analyze plant leaf images or videos for curl direction, scorch distribution, affected leaf layer, likely stress or disease causes, and practical next-step guidance. It can also query cloud-hosted historical diagnosis reports for the same scenario. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provided plant images, videos, or URLs are processed by a cloud service. <br>
-Mitigation: Use non-sensitive agricultural media, review the configured service endpoints before installation, and avoid sending private or regulated files. <br>
-Risk: The skill can silently create or reuse a service identity and store returned service tokens in the workspace data directory. <br>
-Mitigation: Install only in workspaces where local token storage is acceptable, restrict workspace access, and rotate or remove stored service credentials when no longer needed. <br>
-Risk: Diagnosis results are advisory and may confuse drought, disease, pesticide damage, fertilizer burn, or other similar symptoms. <br>
-Mitigation: Treat outputs as plant-stress screening guidance and confirm severe or high-impact findings with field inspection or professional crop-protection advice. <br>
+## Use Case:
 
+Farmers, agronomy advisors, and agricultural IoT operators use this skill to analyze plant leaf media for curling and margin scorch symptoms, then receive a structured diagnosis with likely causes and directional remediation guidance. It can also query cloud-hosted historical diagnosis reports associated with the internally resolved user identity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-leaf-curling-scorch-diagnosis-analysis) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown text with structured JSON analysis, report links, and optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The command-line interface accepts local image or video paths, public media URLs, a history-list mode, detail level, and an optional output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.4) <br>
+Risk: Plant images, videos, URLs, and report history are sent to a remote cloud service and associated with an internally resolved identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher and service endpoint before installation, obtain clear user consent for cloud analysis and history lookup, and confirm data retention and deletion expectations.
+
+Risk: The authoritative security summary flags silent identity and token management with insecure token storage or transport.
+
+Mitigation: Prefer a release that defaults to HTTPS production endpoints, avoids plaintext token storage, and documents token handling; rotate credentials if exposure is suspected.
+
+Risk: Visual plant-stress diagnosis can be uncertain because drought, disease, pesticide damage, fertilizer burn, and cold stress may share symptoms.
+
+Mitigation: Treat results as advisory, use clear images and optional soil-moisture context, and confirm severe or ambiguous cases through field inspection or professional plant-health consultation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-leaf-curling-scorch-diagnosis-analysis)
+- [Skill Demo](https://lifeemergence.com/sample.html)
+- [API Interface Documentation](references/api_doc.md)
+- [Shared Analysis API Documentation](skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown text with structured JSON-style diagnosis details, ranked likely causes, recommendations, and report links; optional saved file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cloud report history tables and report export links when history lookup is requested.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata; artifact frontmatter states 1.0.12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-自然语言转 SQL 查询助手将用户的自然语言描述转换为 SQL, connects to local or remote MySQL databases, executes SELECT/INSERT/UPDATE/DELETE and transaction workflows, and returns table, CSV, or JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts natural-language database requests into SQL, can execute them against local or remote MySQL databases, and returns results in table, CSV, or JSON formats.
 
-## Publisher: <br>
-[cyesky](https://clawhub.ai/user/cyesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyesky](https://clawhub.ai/user/cyesky)
 
-## Use Case: <br>
-Developers, analysts, and database operators use this skill to translate natural-language database requests into MySQL statements, inspect schemas, execute reads and writes, and present results while masking credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute real SQL reads and writes against MySQL databases. <br>
-Mitigation: Use a test database or least-privileged database account and review the exact SQL before execution. <br>
-Risk: Write, delete, schema-change, and transaction operations can alter or destroy data. <br>
-Mitigation: Require explicit approval for every INSERT, UPDATE, DELETE, DROP, TRUNCATE, schema change, or transaction before running it. <br>
-Risk: Database credentials may be exposed when passed through command-line flags or shown in assistant output. <br>
-Mitigation: Avoid root and production credentials, avoid command-line password flags when possible, and mask passwords in all displayed connection information. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to translate natural-language requests into MySQL queries, inspect schema, execute read and write statements, and return database results in a readable or exportable format.
 
-## Reference(s): <br>
-- [NL2SQL Reference Guide](artifact/references/guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cyesky/nl2sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL code blocks, shell commands, and table, CSV, or JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SQL should be shown before execution, database passwords should be masked, and large result sets may be summarized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can execute SQL against MySQL databases, including write, delete, drop, truncate, and transaction operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege database accounts and require review before any write, delete, drop, truncate, or transaction operation.
+
+Risk: Database passwords may be exposed through command lines, logs, transaction output, or user-facing replies.
+
+Mitigation: Avoid production credentials, avoid passing passwords on the command line, and mask passwords in all user-facing output.
+
+Risk: Generated SQL may not match user intent or may affect more rows than expected.
+
+Mitigation: Inspect schemas first, review generated SQL before execution, and confirm broad or destructive operations with the user.
+
+## Reference(s):
+
+- [NL2SQL Reference Guide](references/guide.md)
+- [ClawHub skill page](https://clawhub.ai/cyesky/skills/nl2sql)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL and bash code blocks plus table, CSV, or JSON query results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run MySQL helper scripts; passwords must be masked in any user-facing output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

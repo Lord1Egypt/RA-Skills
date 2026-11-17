@@ -1,44 +1,60 @@
-## Description: <br>
-Patent Assistant helps research and development users turn technical ideas into structured patent disclosure drafts and perform preliminary patent search analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists R&D users in turning technical ideas into structured patent disclosure drafts and searching patents for related prior art and novelty analysis.
 
-## Publisher: <br>
-[TY-teo](https://clawhub.ai/user/TY-teo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ty-teo](https://clawhub.ai/user/ty-teo)
 
-## Use Case: <br>
-Developers, inventors, and research and development teams use this skill to draft patent disclosure materials, extract search keywords, run patent searches, and summarize preliminary novelty signals before professional legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Patent search terms can be sent to public third-party search services. <br>
-Mitigation: For unpublished inventions or trade secrets, draft locally first, search with short non-confidential keywords, avoid all-platform searches when unnecessary, and do not use HTTP-based sources for sensitive queries. <br>
-Risk: Generated disclosures and patent search results may be incomplete or unsuitable for filing decisions. <br>
-Mitigation: Have inventors review and complete technical details, and use a patent professional or formal search provider for novelty checks and claim drafting. <br>
+## Use Case:
 
+Developers, engineers, and R&D teams use this skill to draft patent technical disclosures, identify missing invention details, run patent searches, compare related results, and prepare next steps for inventor or patent-agent review.
 
-## Reference(s): <br>
-- [Patent Assistant on ClawHub](https://clawhub.ai/TY-teo/patent-assistant) <br>
-- [Google Patents](https://patents.google.com/) <br>
-- [Lens.org Patent Search](https://www.lens.org/lens/search/patent/list) <br>
-- [Espacenet Patent Search](https://worldwide.espacenet.com/patent/search) <br>
-- [CNIPA Patent Search](https://pss-system.cponline.cnipa.gov.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown disclosure drafts, text or JSON patent-search results, and Python command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Disclosure generation can write Markdown or JSON files; patent search queries may be sent to public third-party search services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Patent search workflows can disclose sensitive invention keywords or unpublished technical details to external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit, narrow keywords instead of full confidential disclosures, and review search terms before running provider queries.
+
+Risk: The Innojoy provider uses a plaintext HTTP endpoint, which can expose query contents in transit.
+
+Mitigation: Do not use the Innojoy provider unless plaintext HTTP exposure is acceptable for the information being searched.
+
+Risk: Generated disclosure drafts and novelty analysis are preliminary and may be incomplete or legally insufficient.
+
+Mitigation: Have inventors and qualified patent professionals review drafts, search results, and claim strategy before filing or publication decisions.
+
+## Reference(s):
+
+- [Patent Assistant on ClawHub](https://clawhub.ai/ty-teo/skills/patent-assistant)
+- [Publisher profile: ty-teo](https://clawhub.ai/user/ty-teo)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Patent search commands may query external services and can return grouped patent-result summaries with optional similarity scores.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

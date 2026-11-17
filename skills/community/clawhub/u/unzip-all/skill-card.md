@@ -1,40 +1,57 @@
-## Description: <br>
-Recursively extracts nested ZIP, 7z, and RAR archives, including archives with Chinese filenames. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recursively extracts nested ZIP, 7z, and RAR archives from a file or folder, with handling for Chinese filenames.
 
-## Publisher: <br>
-[tang-dafa](https://clawhub.ai/user/tang-dafa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tang-dafa](https://clawhub.ai/user/tang-dafa)
 
-## Use Case: <br>
-External users, developers, and support staff use this skill to unpack a single archive or a folder of archives that may contain multiple nested ZIP, 7z, or RAR files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Archive extraction can write files outside the selected folder. <br>
-Mitigation: Run the skill only on trusted archives or copied test folders, and add path containment checks before using it on sensitive directories. <br>
-Risk: Successfully extracted source archives are deleted automatically. <br>
-Mitigation: Keep backups or require an explicit delete-original option before processing important archives. <br>
+## Use Case:
 
+Developers and end users use this skill to ask an agent to recursively unpack a single archive or all archives in a folder, including nested ZIP, 7z, and RAR files. It is especially useful when archives contain Chinese filenames that need GBK decoding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tang-dafa/unzip-all) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text or Markdown with shell commands and extraction status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create extracted files and folders, and may delete source archives after successful extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill performs broad recursive archive extraction and file writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted archives and inspect the destination folder before running it on important data.
+
+Risk: Source archives are automatically deleted after successful extraction.
+
+Mitigation: Keep backups or run the skill on copies when the original archives must be preserved.
+
+Risk: Crafted archives may overwrite files outside the intended target folder or exhaust disk or memory.
+
+Mitigation: Avoid untrusted archives, use a contained working directory, and monitor available disk space during extraction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tang-dafa/skills/unzip-all)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and extraction status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces extracted files on disk and reports failed or remaining archives.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,49 @@
+part: CH340C
+link_status: product-page-removed_2026-06-30 (no-datasheet, no-product-page)
+expected_family: WCH CH340 — USB-to-UART bridge IC
+main_page: https://www.wch-ic.com/products/CH340.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH340C_datasheet.pdf
+datasheet_source_note: 'CH340 product page returned 404 on 2026-06-30.
+  Datasheet PDF is not in catalog (only CH32V003/CH32V103/CH32V307 PDFs).
+  Specs below are from WCH general documentation and the CH340 product
+  registration in the catalog state table. CH340 is widely cloned; many
+  "CH340" chips on market are clones with buggy firmware.'
+specs:
+  function: USB-to-UART (and USB-to-Printer / USB-to-SPI / USB-to-I2C) bridge
+  usb:
+    version: USB 2.0 Full Speed (12 Mbps)
+    device_class: CDC-ACM (driver-free on Linux/macOS, needs driver on Windows)
+  uart:
+    baud_rate_max: 2 Mbps (typical up to 921600 stable)
+    signals: TX, RX, RTS, CTS (hardware flow control)
+  power:
+    supply_voltage_v: 3.3-5.0
+  package: SOP-16
+  variants:
+    CH340C: SOP-16, integrated 12 MHz crystal
+    CH340N: SOP-8, no crystal (uses external)
+    CH340E: ESSOP-10
+    CH340B: SOP-16, with USB hub + multiple serial
+    CH340G: SSOP-20
+unverified:
+- exact_baud_rate_max_per_variant
+- exact_io_voltage_tolerance
+- operating_temperature_c
+- exact_package_dimensions
+- exact_max_current_consumption
+notes:
+- 'Placeholder yaml created on 2026-06-30 — wch-ic.com has removed both
+  the product page (404) and the datasheet is not in our catalog.'
+- 'Use case: cheapest USB-UART bridge ($0.10 in qty 100). Default for
+  low-cost hobby / dev boards. WIDELY CLONED — buy from reputable
+  sources (LCSC, WCH direct, Adafruit) to avoid buggy clones that fail
+  on Windows drivers.'
+- 'Driver notes: macOS / Linux use built-in cdc_acm driver; Windows
+  needs vendor driver (downloadable from wch-ic.com). Some clones have
+  buggy USB descriptors that crash on Windows 10/11.'
+- 'Open gap: datasheet needs to be downloaded from wch-ic.com or a
+  reputable distributor. Until then, spec fields are placeholders.'
+extracted_at: '2026-06-30T00:55:00+08:00'
+extracted_from_pages: []
+extraction_method: catalog-registration (no datasheet / no product page)
+extraction_source: None (placeholder, awaiting datasheet re-acquisition)

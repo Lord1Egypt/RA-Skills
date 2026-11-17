@@ -37,7 +37,7 @@
 						},
 						"assignee": {
 							"type": "string",
-							"description": "Approver expression (only effective for UserTask nodes; gateway / event nodes do not support), corresponding to flowable:assignee attribute, such as: ${initiator}. The assignee field is only used for 【single approver】 scenarios, and its expression must satisfy: 1. Expression execution result type: String (single user ID) 2. Strictly prohibited to return: Array / List / multiple user IDs. You can use ${Array.first(User.superiorUsers(initiator))} like this. 3. If you need to use arrays, you cannot use array literals, but must use Array.of to construct arrays.\n\n❌ Error example (will definitely report an error):\n${Array.first(User.usersWithRole(['researcher']))}\n\n✅ Correct example:\n${Array.first(User.usersWithRole(Array.of('researcher')))}\n4.【User field reference rules】\n- If using user fields in the form:\n  - Single-select user field: ${form.projectManager.id}\n  - Multi-select user field: Must use Array.first(...) to get one user\n\n"
+							"description": "Approver expression (only effective for UserTask nodes; gateway / event nodes do not support), corresponding to flowable:assignee attribute, such as: ${initiator}. The assignee field is only used for 【single approver】 scenarios, and its expression must satisfy: 1. Expression execution result type: String (single user ID) 2. Strictly prohibited to return: Array / List / multiple user IDs. You can use ${Array.first(User.superiorUsers(initiator))} like this. 3. If you need to use arrays, you cannot use array literals, but must use Array.of to construct arrays.\n\n❌ Error example (will definitely report an error):\n${Array.first(User.usersWithRole(['researcher']))}\n\n✅ Correct example:\n${Array.first(User.usersWithRole(Array.of('researcher')))}\n4.【User field reference rules】\n- If using user fields in the form:\n  - Single-select user field: ${form.projectManager.id}\n  - Multi-select user field: Must use Array.first(...) to get one user\n\n5.【Assignee configuration rule for multi-instance (countersign/or-sign) scenarios】\n- When multiInstanceLoopCharacteristics is configured on the node, assignee MUST be set to ${elementVariable}, where elementVariable is the variable name defined in multiInstanceLoopCharacteristics.elementVariable.\n- For example: if elementVariable is manager, then assignee must be ${manager}.\n- Do NOT use collection expressions as assignee in multi-instance scenarios; collection expressions should be configured in multiInstanceLoopCharacteristics.collection.\n"
 						},
 						"multiInstanceLoopCharacteristics": {
 							"type": "object",
@@ -73,23 +73,7 @@
 								},
 								"completeAutomaticId": {
 									"type": "string",
-									"description": "Automatic completion configuration ID, used to associate AutomaticSetting."
-								},
-								"automaticSetting": {
-									"type": "object",
-									"description": "Automatic execution configuration (AutomaticSetting).",
-									"properties": {
-										"type": {
-											"type": "string",
-											"description": "Automatic execution type."
-										},
-										"config": {
-											"type": "object",
-											"description": "Specific configuration parameters for automatic execution.",
-											"additionalProperties": false
-										}
-									},
-									"additionalProperties": false
+									"description": "Configuration ID for invoking automation after task completion, used to associate AutomaticSetting."
 								},
 								"formSetting": {
 									"type": "object",
@@ -97,11 +81,11 @@
 									"properties": {
 										"tableId": {
 											"type": "string",
-											"description": "Bound data table ID (must be exactly the same as the process startup form tableId)"
+											"description": "Bound data table ID (must be exactly the same as the process startup form tableId)。taskSetting=>formSetting=>tableId"
 										},
 										"tableFieldSettingList": {
 											"type": "array",
-											"description": "In the current 【user task node (UserTask)】, the configuration list of data table fields that the approver can view and edit, used to define the operation form of the approval node.",
+											"description": "In the current 【user task node (UserTask)】, the configuration list of data table fields that the approver can view and edit, used to define the operation form of the approval node.taskSetting=>formSetting=>tableFieldSettingList",
 											"items": {
 												"type": "object",
 												"properties": {
@@ -236,6 +220,32 @@
 								}
 							},
 							"additionalProperties": false
+						},
+						"taskCopySetting": {
+							"type": "object",
+							"description": "CC (Carbon Copy) configuration (only effective for UserTask nodes). Used to send task information as a copy to specified users when a task is created or completed. CC users do not participate in approval, they only receive notifications.",
+							"properties": {
+								"copyUsers": {
+									"type": "string",
+									"description": "CC users expression, returns a list of user IDs. Supports Informat expressions, such as: ${User.usersWithRole(Array.of('admin'))} means CC to all admin role users; ${Array.of(form.pm.id)} means CC to the project manager in the form. The expression result should be an array/list of user IDs."
+								},
+								"copyType": {
+									"type": "string",
+									"description": "CC trigger timing.\nstart — CC immediately when the task is created (recommended, CC recipients receive notifications at the same time the approver receives the task);\nend — CC when the task is completed (notify CC recipients after the approver completes the approval).",
+									"enum": ["start", "end"]
+								}
+							},
+							"required": ["copyUsers", "copyType"],
+							"additionalProperties": false
+						}
+					,
+						"x": {
+							"type": "integer",
+							"description": "X coordinate of the node on the BPMN canvas (optional). Suggested: start node x=180, subsequent nodes increase left-to-right by ~200-300. Branch nodes should be offset vertically. If omitted, nodes are auto-arranged linearly left-to-right."
+						},
+						"y": {
+							"type": "integer",
+							"description": "Y coordinate of the node on the BPMN canvas (optional). Suggested: main flow y=120, upper branch y=0, lower branch y=240. Defaults to y=120 if omitted."
 						}
 					},
 					"required": [

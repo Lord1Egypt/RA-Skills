@@ -1,41 +1,57 @@
-## Description: <br>
-Audit and remove unused, test, or deprecated forms from HubSpot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and remove unused, test, or deprecated forms from HubSpot. Identifies forms with zero submissions, forms not embedded on any page, and test forms left over from development.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-HubSpot administrators and marketing operations teams use this skill to inventory forms, identify unused or test assets, and document cleanup decisions before deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HubSpot form deletion removes the form definition and deleted forms cannot be restored. <br>
-Mitigation: Generate an inventory, export form definitions before deletion, and manually approve every deletion. <br>
-Risk: A broadly scoped HubSpot token could allow unintended form administration. <br>
-Mitigation: Use a scoped HubSpot token only for the intended cleanup work. <br>
+## Use Case:
 
+Developers and operations teams use this skill to audit HubSpot forms, identify stale or test forms, and carry out a documented cleanup with manual checks before deletion.
 
-## Reference(s): <br>
-- [Cleanup Forms on ClawHub](https://clawhub.ai/tomgranot/cleanup-forms) <br>
-- [Publisher profile: tomgranot](https://clawhub.ai/user/tomgranot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with a Python code example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped HubSpot API token, inventory review, manual deletion approval, and cleanup logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An agent could recommend deleting a HubSpot form that is still used by a live page, workflow, pop-up, or slide-in CTA.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each deletion candidate manually against active pages, workflow enrollment triggers, and CTA usage before removal.
+
+Risk: Deleted HubSpot form definitions cannot be restored.
+
+Mitigation: Export form definitions before deleting any form with submissions and keep a cleanup log of every removed form.
+
+Risk: A broad HubSpot API token could expose more access than the cleanup task requires.
+
+Mitigation: Use the least-privileged HubSpot token available for form auditing and deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomgranot/skills/cleanup-forms)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with checklist-style instructions and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes manual review checkpoints before deletion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

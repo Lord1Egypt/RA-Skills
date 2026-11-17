@@ -1,42 +1,56 @@
-## Description: <br>
-Switch OpenClaw ElevenLabs TTS voices by updating ~/.openclaw/openclaw.json, keeping Chinese-safe defaults, and restarting the gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switch OpenClaw ElevenLabs TTS voices by updating ~/.openclaw/openclaw.json, keeping Chinese-safe defaults, and restarting the gateway.
 
-## Publisher: <br>
-[NowLoadY](https://clawhub.ai/user/NowLoadY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nowloady](https://clawhub.ai/user/nowloady)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to change the ElevenLabs voice used by OpenClaw Gateway built-in TTS, while preserving safe defaults for Chinese language output and multilingual model selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit local OpenClaw TTS configuration and restart the OpenClaw Gateway. <br>
-Mitigation: Review the target voice, language, and model before running the switch script, and keep the generated backup available for rollback. <br>
-Risk: The voice-listing workflow may use an ElevenLabs API key from configuration or environment variables. <br>
-Mitigation: Prefer an existing config entry or protected environment variable, and avoid pasting secrets into chat or command arguments. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to list ElevenLabs voices, switch the Gateway built-in TTS voice, and keep language and model settings aligned with the target voice.
 
-## Reference(s): <br>
-- [TTS Parameters](references/tts-parameters.md) <br>
-- [ClawHub skill page](https://clawhub.ai/NowLoadY/openclaw-tts-voice-switch) <br>
-- [ElevenLabs voices API](https://api.elevenlabs.io/v1/voices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update ~/.openclaw/openclaw.json, create a backup, and restart OpenClaw Gateway when its bundled scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can read or modify ~/.openclaw/openclaw.json and restart the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended configuration changes before running the scripts, keep the generated backup, and verify Gateway behavior after restart.
+
+Risk: The documented apiKey command-line argument can expose an ElevenLabs API key through shell history or process visibility.
+
+Mitigation: Do not pass the API key as a command-line argument; rely on an already protected config value or a safer secret-entry method, and rotate any key that was exposed.
+
+## Reference(s):
+
+- [TTS Parameters](references/tts-parameters.md)
+- [ElevenLabs Voices API](https://api.elevenlabs.io/v1/voices)
+- [ClawHub Skill Page](https://clawhub.ai/nowloady/skills/openclaw-tts-voice-switch)
+- [Publisher Profile](https://clawhub.ai/user/nowloady)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update ~/.openclaw/openclaw.json and restart the OpenClaw gateway when the provided scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-MCP client for Cerebrun - comprehensive personal context and memory management system. Retrieve user context layers (language, projects, identity, vault), perform semantic search, manage knowledge base, and interact with LLM Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cerebrun is an MCP client for retrieving layered personal context, searching and updating knowledge, and using a Cerebrun LLM gateway.
 
-## Publisher: <br>
-[niyoseris](https://clawhub.ai/user/niyoseris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[niyoseris](https://clawhub.ai/user/niyoseris)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an agent to Cerebrun for persistent personal context, knowledge-base search, project and goal management, and LLM Gateway conversation access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents may retrieve sensitive personal context, stored keys, vault fields, or prior LLM conversations. <br>
-Mitigation: Restrict agent access to higher-sensitivity context layers and require explicit confirmation before retrieving Layer 2, Layer 3, vault, identity, stored-key, or conversation-history data. <br>
-Risk: Sensitive prompts or stored context may be sent through the LLM Gateway. <br>
-Mitigation: Confirm the destination provider and prompt contents before using chat_with_llm, and avoid sending secrets or vault data through the gateway. <br>
-Risk: A broadly available API key can expose personal memory and knowledge-base data to any agent that can invoke the skill. <br>
-Mitigation: Configure CEREBRUN_API_KEY deliberately, scope runtime access to trusted agents, and avoid sharing the key in prompts, logs, or reusable command snippets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cerebrun MCP API Reference](references/REFERENCES.md) <br>
-- [Cerebrun MCP endpoint](https://cereb.run/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/niyoseris/cerebrun) <br>
-- [Publisher profile](https://clawhub.ai/user/niyoseris) <br>
+## Use Case:
 
+External developers and agents use Cerebrun to retrieve user preferences, project context, personal identity layers, knowledge-base entries, and conversation history. They can also update context, store knowledge, request vault access, or send LLM gateway messages when those actions are intended.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON-RPC examples, shell commands, and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Cerebrun API key supplied through CEREBRUN_API_KEY or an explicit --api-key argument.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access personal context, stored knowledge, conversation history, Layer 2 data, and vault-adjacent data.
+
+Mitigation: Install and use it only when Cerebrun is trusted with that data, and avoid sending secrets or retrieved private context unless explicitly intended.
+
+Risk: The update_context and push_knowledge operations can change persistent remote data.
+
+Mitigation: Review the target layer, content, category, and tags before invoking persistent write operations.
+
+Risk: Passing an API key as a command-line argument can expose credentials through local shell history or process inspection.
+
+Mitigation: Prefer the CEREBRUN_API_KEY environment variable over --api-key.
+
+## Reference(s):
+
+- [Cerebrun MCP API Reference](references/REFERENCES.md)
+- [ClawHub Cerebrun skill page](https://clawhub.ai/niyoseris/skills/cerebrun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON API responses]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Cerebrun API key; operations may read or change remote personal context, knowledge, conversation, and vault-adjacent data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

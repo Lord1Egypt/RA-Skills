@@ -1,46 +1,59 @@
-## Description: <br>
-ClawVault is a portable identity vault for OpenClaw that syncs agent knowledge, memory, package lists, and profiles across machines using user-selected storage providers or ClawVault Cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portable identity vault for OpenClaw that syncs knowledge, packages, and memory across machines using user-selected storage or ClawVault Cloud.
 
-## Publisher: <br>
-[getlighty](https://clawhub.ai/user/getlighty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[getlighty](https://clawhub.ai/user/getlighty)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to back up, sync, migrate, and restore agent environment state across multiple machines while keeping each machine on its own profile unless the user explicitly pulls another profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Synced vault contents can include sensitive agent knowledge, memory, package manifests, and migration state. <br>
-Mitigation: Treat vault contents as sensitive, review the skill before installation, keep backups before pull or profile restore, and avoid storing secrets unless separate trusted protection is in place. <br>
-Risk: Security evidence warns not to rely on the skill's encryption claims without real payload encryption from the publisher. <br>
-Mitigation: Use trusted storage, avoid depending on ClawVault as the sole confidentiality control, and require publisher-provided payload encryption before syncing highly sensitive data. <br>
-Risk: Provider setup and transport choices include external tooling and Git/SFTP host key concerns. <br>
-Mitigation: Install rclone from a trusted source yourself and avoid Git or SFTP providers until host key verification is fixed. <br>
-Risk: Package restore can propose install commands that affect the local system. <br>
-Mitigation: Inspect every package install command and approve only commands that match the intended migration plan. <br>
+## Use Case:
 
+External users and developers use this skill to initialize, sync, migrate, and restore an OpenClaw agent environment across machines while keeping per-machine identity files separate by default.
 
-## Reference(s): <br>
-- [ClawVault ClawHub Release](https://clawhub.ai/getlighty/getlighty-clawvault) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide setup, provider selection, sync operations, profile restore, package diff review, and key management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and clawvault.sh; SKILL.md frontmatter lists 2.0.0) <br>
+Risk: The skill syncs sensitive agent identity, memory, project, package, and skill data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured storage, synced paths, cloud enrollment, and encryption behavior before using it with confidential data.
+
+Risk: Package restore and setup paths can propose or run privileged or remotely influenced commands.
+
+Mitigation: Require human review of package diffs and generated install commands before execution.
+
+Risk: Security evidence reports under-disclosed encryption and unsafe high-impact paths.
+
+Mitigation: Treat the release as requiring careful review until content encryption, SSH verification, package restore validation, and rclone installation handling are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/getlighty/skills/getlighty-clawvault)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides provider setup, sync, migration, profile, package, and key-management workflows.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata; artifact CLI version agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

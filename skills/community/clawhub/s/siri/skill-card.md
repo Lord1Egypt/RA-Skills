@@ -1,40 +1,52 @@
-## Description: <br>
-Control devices, run automations, and help users get more from Siri with HomeKit, Shortcuts, and voice command guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control devices, run automations, and help users get more from Siri with HomeKit, Shortcuts, and voice command guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill as reference guidance for Siri voice commands, HomeKit control, Shortcuts automation, and SiriKit or App Intents integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share Apple credentials, HomeKit access, or personal device data while following voice-assistant guidance. <br>
-Mitigation: Treat the skill as reference material and provide sensitive device data only to a separate trusted integration that explicitly requires it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Siri Commands Reference](commands.md) <br>
-- [Siri HomeKit Control](homekit.md) <br>
-- [Siri Shortcuts](shortcuts.md) <br>
-- [SiriKit & App Intents Development](development.md) <br>
+## Use Case:
 
+External users, developers, and support agents use this skill to answer Siri usage questions, compose voice-command guidance, troubleshoot HomeKit and Shortcuts behavior, and reference SiriKit or App Intents integration patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with examples and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference material only; no executable behavior or privileged access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HomeKit guidance may involve presence automations, cameras, locks, or garage doors that reveal occupancy patterns or affect physical devices.
+
+Mitigation: Limit Home and location access to trusted household members, and review Apple Home and Location Services settings before using those features.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/siri)
+- [Siri command reference](artifact/commands.md)
+- [Siri HomeKit control](artifact/homekit.md)
+- [Siri Shortcuts](artifact/shortcuts.md)
+- [SiriKit and App Intents development](artifact/development.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, troubleshooting tables, and Swift code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable install path; output is generated from Markdown reference material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

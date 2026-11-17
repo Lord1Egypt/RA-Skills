@@ -1,43 +1,61 @@
-## Description: <br>
-团队任务管家 is a platform-neutral team task coordination skill that stores tasks in JSON files and supports natural-language task creation, reminders, overdue escalation, analytics, and multi-format export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-speaking teams manage a local task ledger, generate workday-aware reminders, and optionally mirror tasks to macOS Reminders.
 
-## Publisher: <br>
-[djoldwang](https://clawhub.ai/user/djoldwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djoldwang](https://clawhub.ai/user/djoldwang)
 
-## Use Case: <br>
-Teams and their agents use this skill to maintain shared task records, assign owners, send platform-neutral reminders, track progress, search tasks, produce statistics, and export task data. Host integrations provide member identity mapping, notification routing, and regional workday calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent task files, task history, exports, and reminders can expose team work details or personal assignment data. <br>
-Mitigation: Install only in workspaces where that storage and reminder behavior is acceptable; configure file permissions, retention expectations, export access, and notification routing before use. <br>
-Risk: Ambiguous natural-language requests can create the wrong task, assignee, priority, or notification target. <br>
-Mitigation: Require confirmation for ambiguous task creation, assignment, priority, deadline, and routing decisions, and use reliable member identity mapping from the host environment. <br>
-Risk: Local JSON task storage can become inconsistent if writes fail or if multiple actors modify files without coordination. <br>
-Mitigation: Use the documented read-modify-backup-write flow, preserve .bak files for recovery, scan archives when generating IDs, and avoid unsynchronized manual edits. <br>
+## Use Case:
 
+Chinese-speaking teams and their integration operators use this skill to track shared tasks, review progress and deadlines, and prepare reminders. Optional macOS Reminders mirroring requires explicit setup; identity checks, team notifications, and reminder delivery require a trusted external integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djoldwang/team-tasks) <br>
-- [Publisher profile](https://clawhub.ai/user/djoldwang) <br>
+### Deployment Geography for Use:
 
+Global (Chinese-language interface; built-in workday calendars cover mainland China)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, JSON data models, text templates, and export format specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local team task JSON files and can describe CSV, TXT, or JSON exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Optional Reminders mirroring and scheduled sync can change a dedicated local list and create user-level background scheduling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit initialization and enablement only for a user-selected dedicated list; review the planned changes first and disable scheduling when no longer needed.
+
+Risk: Local task records and synchronization state may contain sensitive team information.
+
+Mitigation: Keep task and state directories private to the user and restrict access to trusted integrations.
+
+Risk: The skill does not itself authenticate users or authorize team notifications and calendar web access.
+
+Mitigation: Use a trusted integration layer to enforce identity, permissions, notification authorization, and government-calendar web access.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/djoldwang/skills/team-tasks)
+- [Storage and integration guidance](references/storage.md)
+- [macOS Reminders setup](references/macos-reminders.md)
+- [Annual calendar maintenance](references/calendar-maintenance.md)
+- [Reminder adapter contract](references/reminder-adapters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Guidance]
+
+**Output Format:** [Chinese-language responses and reminders; task data and exports in JSON, CSV, or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local task data and optional macOS Reminders synchronization]
+
+## Skill Version(s):
+
+1.6.6 (source: SKILL.md metadata and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

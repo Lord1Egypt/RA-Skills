@@ -1,43 +1,58 @@
-## Description: <br>
-Semantic Cache helps agents cache LLM responses by meaning with Redis vector search so similar queries can reuse prior answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Cache helps agents cache LLM API responses by semantic similarity using Redis vector search, OpenAI embeddings, and a configurable similarity threshold.
 
-## Publisher: <br>
-[rylinjames](https://clawhub.ai/user/rylinjames) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rylinjames](https://clawhub.ai/user/rylinjames)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add Redis-backed semantic caching around repeated LLM prompts, reducing repeated API calls and improving response time for similar questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cached prompts and responses may contain secrets, regulated data, or other sensitive content. <br>
-Mitigation: Use a dedicated Redis database or namespace, avoid caching sensitive data unless policy permits it, and set an appropriate TTL. <br>
-Risk: Clear and test commands remove cached Redis entries and the search index used by the skill. <br>
-Mitigation: Run destructive commands only against a dedicated cache or test environment after confirming the target Redis connection. <br>
-Risk: Semantic matches can return a cached answer for a similar but not identical query. <br>
-Mitigation: Tune SEMANTIC_CACHE_THRESHOLD for the use case and review behavior before using cached responses in high-impact workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to reduce repeated LLM calls by checking a Redis semantic cache before making an API request and storing responses for similar future queries. It is suited to repetitive question-answering workflows such as support bots, FAQ agents, and internal assistants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rylinjames/semantic-cache) <br>
-- [OpenClaw homepage](https://github.com/openclaw/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses REDIS_URL and OPENAI_API_KEY; supports store, lookup, query, stats, clear, and test commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: A shared Redis cache can expose or overwrite cached prompts and responses across users or tenants.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Redis database or isolated namespace, and restrict use to non-sensitive prompts unless tenant-aware access controls are added.
+
+Risk: The clear command and stress test can delete broad cache data when pointed at shared or production Redis.
+
+Mitigation: Run destructive commands only against disposable or dedicated Redis instances, never against shared or production databases.
+
+Risk: Dependency behavior and security posture can change after installation.
+
+Mitigation: Review dependency updates before installation and maintain normal package scanning in the deployment pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rylinjames/skills/semantic-cache)
+- [OpenClaw ClawHub homepage](https://github.com/openclaw/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JavaScript-based CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses REDIS_URL, OPENAI_API_KEY, SEMANTIC_CACHE_THRESHOLD, and SEMANTIC_CACHE_TTL; produces cache hit, miss, stats, clear, and query behavior for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

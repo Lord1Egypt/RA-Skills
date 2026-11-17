@@ -1,43 +1,56 @@
-## Description: <br>
-Uses the Ollama Web Search API to search the web and fetch web page content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Ollama Web Search API to search the web and fetch webpage content.
 
-## Publisher: <br>
-[sunnydou](https://clawhub.ai/user/sunnydou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnydou](https://clawhub.ai/user/sunnydou)
 
-## Use Case: <br>
-Developers and agent users use this skill to run web searches or fetch page content through Ollama's web endpoints from OpenClaw or a shell. It requires an Ollama API key and the curl and python3 command-line tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and requested URLs are sent to Ollama under the user's API key. <br>
-Mitigation: Avoid secret-bearing URLs, internal-only links, personal data, regulated content, and confidential prompts. <br>
-Risk: Fetched page text is external web content and may be inaccurate, malicious, or prompt-injection content. <br>
-Mitigation: Treat fetched content as untrusted input and review it before using it to make decisions or change files. <br>
+## Use Case:
 
+Developers and agent users use this skill to run Ollama-backed web search queries and fetch webpage content from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sunnydou/ollama-web-search-tool) <br>
-- [Ollama Web Search API](https://docs.ollama.com/capabilities/web-search) <br>
-- [Ollama API Keys](https://ollama.com/settings/keys) <br>
-- [OpenClaw Slash Commands](https://docs.openclaw.ai/tools/slash-commands) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text with result titles, URLs, summaries, fetched page content, and page links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search returns up to 10 results; fetch prints up to 2,000 characters of page content and up to 10 links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact files report 1.0.1) <br>
+Risk: Search terms and fetched URLs are sent to Ollama.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, internal-only URLs, or confidential queries through this skill.
+
+Risk: The Ollama API key may be visible in curl process arguments while requests are running.
+
+Mitigation: Use a narrowly scoped or easily rotatable Ollama API key where available, and consider updating the script to pass authorization without exposing the token in process arguments.
+
+## Reference(s):
+
+- [Ollama Web Search API](https://docs.ollama.com/capabilities/web-search)
+- [Ollama API Keys](https://ollama.com/settings/keys)
+- [OpenClaw Slash Commands](https://docs.openclaw.ai/tools/slash-commands)
+- [OpenClaw Web Tools](https://docs.openclaw.ai/tools/web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with search results, fetched page excerpts, URLs, and inline configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are capped by the requested max_results value from 1 to 10; fetched content is truncated for terminal display.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

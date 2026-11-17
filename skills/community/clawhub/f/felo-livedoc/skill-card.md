@@ -1,44 +1,65 @@
-## Description: <br>
-Manage Felo LiveDocs, including creating and managing knowledge bases, adding documents or URLs, and retrieving relevant content with natural-language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Felo LiveDocs (knowledge bases) and their resources. Use when users want to create, manage, or query knowledge bases, upload documents, add URLs, or perform semantic retrieval over a knowledge base. Explicit commands: /felo-livedoc.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and external users use this skill to operate Felo LiveDocs from an agent, including creating knowledge bases, adding documents or URLs, managing resources, and searching stored content semantically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends knowledge-base content, uploaded files, URLs, and retrieval queries to the external Felo service. <br>
-Mitigation: Use an approved, revocable Felo API key and avoid uploading secrets, regulated data, or private documents unless approved for that service. <br>
-Risk: The skill can delete or bulk-update remote LiveDocs and resources without clear confirmation safeguards. <br>
-Mitigation: Require explicit confirmation before delete or bulk update commands and verify the target LiveDoc or resource IDs before execution. <br>
-Risk: The security verdict is suspicious because the skill is purpose-aligned but can modify remote knowledge-base data. <br>
-Mitigation: Review the bundled script before deployment and restrict use to environments where Felo is an intended external knowledge-base provider. <br>
+## Use Case:
 
+Developers and external users use this skill to manage Felo LiveDoc knowledge bases from an agent workflow, including creating LiveDocs, adding documents or URLs, retrieving relevant content, and managing resources.
 
-## Reference(s): <br>
-- [Felo LiveDoc ClawHub Page](https://clawhub.ai/wangzhiming1999/felo-livedoc) <br>
-- [Felo](https://felo.ai) <br>
-- [Felo OpenAPI Endpoint](https://openapi.felo.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown summaries, JSON API responses, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FELO_API_KEY; commands call the external Felo API and can upload or delete remote LiveDoc resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can delete LiveDocs and LiveDoc resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before delete and remove-resource commands, and verify the short_id and resource_id before execution.
+
+Risk: The skill can upload files, URLs, and text into a Felo knowledge base.
+
+Mitigation: Avoid uploading secrets, credentials, regulated data, or unapproved third-party content unless the user confirms the destination and data handling are acceptable.
+
+Risk: An API-base override could send the Felo API key and uploaded content to an unintended server.
+
+Mitigation: Keep FELO_API_BASE unset or confirm it points only to the legitimate Felo API before running the skill.
+
+Risk: The skill needs Felo API authority through FELO_API_KEY.
+
+Mitigation: Use a scoped or revocable API key where available and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/felo-livedoc)
+- [Publisher Profile](https://clawhub.ai/user/wangzhiming1999)
+- [Felo](https://felo.ai)
+- [Felo Skills Repository](https://github.com/Felo-Inc/felo-skills)
+- [Felo Skills Issues](https://github.com/Felo-Inc/felo-skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, JSON, Configuration guidance]
+
+**Output Format:** [Markdown summaries or raw JSON from Felo API responses, with shell commands for execution and setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FELO_API_KEY; supports optional JSON output and request timeout settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

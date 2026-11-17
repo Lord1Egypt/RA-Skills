@@ -1,44 +1,59 @@
-## Description: <br>
-Wind rose, wind speed/direction at a site; supports site and urban wind assessment (data only; detailed CFD is out of scope). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wind rose, wind speed/direction at a site; supports site and urban wind assessment (data only; detailed CFD is out of scope).
 
-## Publisher: <br>
-[QROST](https://clawhub.ai/user/QROST) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qrost](https://clawhub.ai/user/qrost)
 
-## Use Case: <br>
-Developers, architects, and site analysts use this skill to fetch current or recent wind speed and direction and generate wind rose diagrams for a specified latitude and longitude. It supplies site wind data for assessment context; detailed CFD or pedestrian comfort simulation remains out of scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python scripts and depends on third-party Python packages. <br>
-Mitigation: Install dependencies in a virtual environment or use a pinned dependency set when supply-chain reproducibility matters. <br>
-Risk: Queried latitude and longitude values are sent to Open-Meteo. <br>
-Mitigation: Avoid using sensitive private coordinates unless disclosure to the weather API is acceptable. <br>
-Risk: The skill provides wind data only and does not perform CFD or pedestrian comfort simulation. <br>
-Mitigation: Use the generated wind data as context or input for specialist CFD, wind-tunnel, or urban wind assessment tools. <br>
+## Use Case:
 
+External users, developers, architects, and site analysts use this skill to fetch current or recent wind speed and direction for coordinates and generate wind rose images for site wind context. It supports early site and urban wind assessment inputs, while detailed CFD and pedestrian comfort simulation remain out of scope.
 
-## Reference(s): <br>
-- [Wind & Site ClawHub listing](https://clawhub.ai/QROST/wind-site) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [Open-Meteo Historical Weather API](https://archive-api.open-meteo.com/v1/archive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown text with optional PNG image output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses latitude, longitude, optional days range, and optional PNG output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill sends requested coordinates and date ranges to Open-Meteo to fetch wind data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when sharing those location and time-range inputs with Open-Meteo is acceptable.
+
+Risk: Python dependencies may vary across environments if installed without version pins.
+
+Mitigation: Use a virtual environment or other isolation and prefer pinned dependency versions for reproducible installs.
+
+Risk: Wind rose and wind speed outputs are climate context only and do not model building-level or pedestrian wind effects.
+
+Mitigation: Use CFD, wind-tunnel studies, or specialist tools for detailed urban wind and comfort assessment.
+
+## Reference(s):
+
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [Open-Meteo Historical API](https://archive-api.open-meteo.com/v1/archive)
+- [ClawHub Skill Page](https://clawhub.ai/qrost/skills/wind-site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown summary with command output and optional PNG wind rose image]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on latitude, longitude, optional date range, and optional image output path.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, clawhub.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

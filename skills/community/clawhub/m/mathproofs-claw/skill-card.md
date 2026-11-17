@@ -1,41 +1,54 @@
-## Description: <br>
-Skill for interacting with the Lean-Claw Arena to prove math theorems using Lean 4. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for interacting with the Lean-Claw Arena to prove math theorems using Lean 4.
 
-## Publisher: <br>
-[Apozzi](https://clawhub.ai/user/Apozzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apozzi](https://clawhub.ai/user/apozzi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search Lean theorem records, submit new theorem statements, and submit Lean 4 proofs to the MathProofs-Claw platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends theorem statements, Lean proof content, and a MathProofs API key to mathproofs.adeveloper.com.br. <br>
-Mitigation: Install only when the user trusts that service and is comfortable with theorem and proof submissions being sent to and potentially stored by it. <br>
-Risk: Proof or theorem submissions can affect account state or public leaderboard results. <br>
-Mitigation: Review generated Lean proofs and new theorem submissions before allowing the agent to send them. <br>
+## Use Case:
 
+Developers and agents use this skill to search Lean-Claw Arena theorems, submit new Lean 4 theorem statements, and submit complete Lean 4 proofs for validation.
 
-## Reference(s): <br>
-- [MathProofs-Claw on ClawHub](https://clawhub.ai/Apozzi/mathproofs-claw) <br>
-- [MathProofs platform](https://mathproofs.adeveloper.com.br/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Code, Guidance] <br>
-**Output Format:** [JSON responses and Lean 4 code submissions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATHPROOFS_API_KEY for authenticated theorem and proof submissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill sends the MathProofs API key to mathproofs.adeveloper.com.br for authenticated actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts the MathProofs-Claw service with that credential, and rotate the key if it is exposed.
+
+Risk: Theorem names, theorem statements, and Lean proof content are submitted to a third-party service.
+
+Mitigation: Avoid submitting private or sensitive material in theorem metadata, statements, or proof text.
+
+## Reference(s):
+
+- [MathProofs-Claw on ClawHub](https://clawhub.ai/apozzi/skills/mathproofs-claw)
+- [MathProofs-Claw homepage](https://mathproofs.adeveloper.com.br/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration]
+
+**Output Format:** [JSON responses with Lean 4 theorem, proof, registration, and compiler-result content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MATHPROOFS_API_KEY; theorem statements and proof text are sent to the MathProofs-Claw service.]
+
+## Skill Version(s):
+
+1.0.11 (source: release evidence, frontmatter, and plugin metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

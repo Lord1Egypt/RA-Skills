@@ -1,39 +1,48 @@
-## Description: <br>
-Scan the internet for AI agent networks, hubs, and coordination platforms. Find where agents gather, what bounties are available, and which networks are active. Multi-protocol support (OADP, A2A, MCP). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans domains for AI agent network discovery signals across OADP, A2A, and MCP, including active hubs and bounty information.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and operators use this skill to check domains for agent-network discovery signals, known hub endpoints, and bounty-related API responses across OADP, A2A, and MCP patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's examples make outbound network requests and could be used against domains without authorization. <br>
-Mitigation: Run scans only against domains and services you own or are explicitly authorized to assess. <br>
-Risk: Broad internet scanning can create operational, legal, or abuse-reporting risk. <br>
-Mitigation: Avoid broad scans, validate target domains before execution, and use a small allowlist of approved targets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OADP spec](https://onlyflies.buzz/clawswarm/PROTOCOL.md) <br>
+## Use Case:
 
+Developers and operators use this skill to check domains for agent hub discovery signals, known network endpoints, and publicly listed bounty data. It provides command examples for scoped protocol checks and network discovery workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network requests are shown as examples and should be limited to authorized targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad internet reconnaissance can contact external websites and DNS services without clear authorization or scope limits.
+
+Mitigation: Run scans only against domains the user owns or is authorized to assess, with explicit target lists, timeouts, and rate limits.
+
+## Reference(s):
+
+- [OADP Specification](https://onlyflies.buzz/clawswarm/PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command snippets and scanning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may make external HTTP and DNS requests; users should scope targets and apply rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

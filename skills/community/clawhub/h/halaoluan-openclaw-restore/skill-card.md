@@ -1,42 +1,65 @@
-## Description: <br>
-Restores OpenClaw data from encrypted or unencrypted backups, including latest-backup selection, checksum validation, current-data backup, and OpenClaw health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restores OpenClaw data from plain or encrypted backups with checksum verification, current-state backup, and service restart guidance.
 
-## Publisher: <br>
-[halaoluan](https://clawhub.ai/user/halaoluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halaoluan](https://clawhub.ai/user/halaoluan)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to recover from data loss, device migration, failed upgrades, or disaster recovery events. It helps restore OpenClaw and ClawdBot state from selected backup archives and then verify that OpenClaw can restart successfully. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restoring a backup can replace active OpenClaw state, credentials, memories, skills, and configuration. <br>
-Mitigation: Install only from a trusted publisher, restore only trusted backups, and keep an extra copy of current ~/.openclaw and ~/.clawdbot data before running restore scripts. <br>
-Risk: A damaged or untrusted backup can cause a failed restore or reintroduce old credentials, sessions, memories, skills, and configuration. <br>
-Mitigation: Verify backup checksums from a trusted source before restore and review the restored OpenClaw state before relying on it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to recover or migrate OpenClaw state from backup archives after crashes, reinstalls, accidental deletion, failed upgrades, or device changes.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Disaster Recovery Guide](https://docs.openclaw.ai/guides/disaster-recovery) <br>
-- [ClawHub Skill Page](https://clawhub.ai/halaoluan/halaoluan-openclaw-restore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and checklist-style recovery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run restore scripts that move current OpenClaw state, copy backup contents into the user home directory, and restart the OpenClaw gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Restoring a backup can replace persistent OpenClaw memory, configuration, sessions, credentials, and installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the backup source and archive contents before restoring, and keep the automatic pre-restore backup until the restored environment has been verified.
+
+Risk: A backup from an untrusted source can introduce unsafe or unwanted OpenClaw state before the service is restarted.
+
+Mitigation: Use only trusted backups, verify checksums when available, inspect archive contents first, and run post-restore checks before normal use.
+
+Risk: Disaster-recovery instructions include a curl-to-shell installer pattern.
+
+Mitigation: Prefer pinned official installers and review install commands before execution.
+
+Risk: Providing backup passwords through shell environment variables can expose secrets through shell history, process environments, or local tooling.
+
+Mitigation: Enter backup passwords interactively where possible and avoid storing them in persistent shell configuration.
+
+## Reference(s):
+
+- [OpenClaw Restore README](README.md)
+- [OpenClaw Restore FAQ](FAQ.md)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw disaster recovery guide](https://docs.openclaw.ai/guides/disaster-recovery)
+- [OpenClaw Backup companion skill](https://github.com/halaoluan/openclaw-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and recovery instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include restore script selection, backup path handling, checksum verification, decryption steps, and post-restore checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

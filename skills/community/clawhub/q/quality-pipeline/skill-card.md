@@ -1,42 +1,55 @@
-## Description: <br>
-Runs a multi-layer cross-review pipeline for formal deliverables such as papers, official documents, and reports, using separate agents to check existence, authenticity, accuracy, subject-matter quality, and final readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language multi-layer quality assurance pipeline for cross-checking formal deliverables such as academic papers, official documents, and reports.
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-Developers, writers, and review agents use this skill to validate finished documents before delivery. It guides staged checks for missing files, placeholders, off-topic content, formatting errors, citation and data hallucinations, statistical table quality, and final pass-or-rework decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may read private or regulated target documents during quality review. <br>
-Mitigation: Limit the inspected files explicitly and use automatic post-task review only in an agent environment approved for that data. <br>
-Risk: Cross-agent review can still produce incorrect findings or miss hallucinated citations, data, or formatting issues. <br>
-Mitigation: Require concrete issue locations, source checks for data and references, and a final human review for high-stakes documents. <br>
+## Use Case:
 
+Developers and operators of Chinese-language writing workflows use this skill to run layered QA on formal deliverables, including existence checks, authenticity checks, formatting and citation review, hallucination review, expert-style review, and final delivery readiness.
 
-## Reference(s): <br>
-- [Anti-Hallucination Review Handbook](references/anti-hallucination.md) <br>
-- [Statistical Table Standards](references/statistical-tables.md) <br>
-- [Writing Standards](references/writing-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown review instructions, checklists, scores, issue lists, and pass-or-rework recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include per-layer pass/fail results, concrete issue locations, revision directions, and reviewer scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The workflow can trigger broad review steps and additional review agents, which may expose more files or consume more review effort than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target file scope, citation and style requirements, and whether multi-agent review should run before invoking the full pipeline.
+
+Risk: The skill is tuned for Chinese-language academic, document, and report QA, so results may be less useful for non-Chinese or unrelated deliverables.
+
+Mitigation: Use it for the documented Chinese-language deliverable types, or explicitly restate the expected standards when applying it elsewhere.
+
+## Reference(s):
+
+- [Anti-Hallucination Checklist](references/anti-hallucination.md)
+- [Statistical Tables Standard](references/statistical-tables.md)
+- [Writing Standards](references/writing-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style review results, checklists, scores, and revision instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask separate review agents to inspect deliverables and summarize pass/fail findings.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

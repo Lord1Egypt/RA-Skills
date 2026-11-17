@@ -1,40 +1,49 @@
-## Description: <br>
-Security vetting for agent skills before installation that scans skill code for dangerous Bash commands, sensitive file access, network exfiltration, obfuscated code, and other security risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security vetting for agent skills before installation, including checks for dangerous Bash commands, sensitive file access, network exfiltration, obfuscated code, and other security risks.
 
-## Publisher: <br>
-[hjshysst-dot](https://clawhub.ai/user/hjshysst-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjshysst-dot](https://clawhub.ai/user/hjshysst-dot)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan agent skill directories before installation or update. It helps identify critical, warning, and informational findings and produces an install verdict for local review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A clean scan result may miss risks outside the heuristic patterns this skill checks. <br>
-Mitigation: Treat clean results as useful signal rather than a guarantee, and review skill behavior before deployment. <br>
-Risk: Automatic install hooks can read files from configured skill paths. <br>
-Mitigation: Keep hooks scoped to incoming skill packages and scan explicit paths only. <br>
+## Use Case:
 
+Developers and agent operators use this skill to scan ClawHub or OpenClaw skills before installation or update and decide whether to block, warn, or proceed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hjshysst-dot/pangshu-skill-vetter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style security report with severity counts, findings, and a verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are grouped as critical, warning, or info; command exit codes reflect the highest observed severity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scanner is advisory and can miss risky skill instructions because it uses simple pattern checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pair scan results with manual review or a stronger scanner before installing untrusted skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjshysst-dot/skills/pangshu-skill-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown, including CLI reports and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes severity counts, findings, verdicts, and install guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

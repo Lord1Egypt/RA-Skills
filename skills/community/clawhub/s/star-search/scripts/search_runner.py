@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 57: search 独立 runner (multimodal 用, 避免 event loop 冲突)"""
+"""v20.57: search 独立 runner (multimodal 用, 避免 event loop 冲突)"""
 import sys
 import json
 import asyncio
@@ -8,11 +8,11 @@ sys.path.insert(0, '/home/ubuntu/star-search/scripts')
 def run():
     arg = json.loads(sys.argv[1])
     query = arg['query']
-    top = arg.get('top', 8)
+    num = arg.get('top', 8)  # 兼容 top 参数
     import search as _s
     loop = asyncio.new_event_loop()
     try:
-        out = loop.run_until_complete(_s.search_async(query, top=top))
+        out = loop.run_until_complete(_s.search_async(query, num=num))
     finally:
         loop.close()
     # 统一格式

@@ -1,48 +1,66 @@
-## Description: <br>
-Audits and improves existing Agent Skills (SKILL.md files) against the agentskills.io standard, including specification compliance, best-practices alignment, and description optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and improves existing Agent Skills (`SKILL.md` files) against the agentskills.io standard by running specification, best-practices, and description-optimization reviews and proposing concrete edits.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-Developers and skill authors use this skill to audit, polish, and refine existing Agent Skills before publication or iteration. It produces severity-ranked findings and proposed edits for SKILL.md files, while deferring new-skill creation and eval-driven measurement to skill-creator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose changes to Agent Skill files that may affect future agent behavior. <br>
-Mitigation: Review generated reports and diffs before approving edits or publishing an updated skill. <br>
-Risk: Broad target discovery can inspect home skill folders or plugin caches when that scope is not intended. <br>
-Mitigation: Provide an explicit SKILL.md or skill directory path and avoid broad searches unless the wider scope is deliberate. <br>
+## Use Case:
 
+Developers and skill authors use this skill to audit, polish, and refine existing Agent Skills before publication or reuse. It helps identify specification issues, improve instruction quality, optimize triggering descriptions, and prepare concrete `SKILL.md` edits for review.
 
-## Reference(s): <br>
-- [agentskills.io Specification](https://agentskills.io/specification) <br>
-- [agentskills.io Best Practices](https://agentskills.io/skill-creation/best-practices) <br>
-- [agentskills.io Optimizing Descriptions](https://agentskills.io/skill-creation/optimizing-descriptions) <br>
-- [OpenClaw skill-format](https://docs.openclaw.ai/clawhub/skill-format) <br>
-- [skill-creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator) <br>
-- [Specification checklist](references/specification-checklist.md) <br>
-- [Best practices checklist](references/best-practices-checklist.md) <br>
-- [Description guide](references/description-guide.md) <br>
-- [Common issues](references/common-issues.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, proposed diffs, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity-ranked findings, before-and-after edits, and validation results for Agent Skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can inspect and edit `SKILL.md` files, so proposed changes could alter how an agent behaves when the skill is later used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every proposed diff before approving writes, and run the bundled validation step before publishing or deploying the edited skill.
+
+Risk: The skill may search local agent skill or plugin areas when no target is provided.
+
+Mitigation: Provide an explicit target skill path for each audit to avoid unnecessary local discovery.
+
+Risk: Target skill files are untrusted text and may contain instructions unrelated to the audit.
+
+Mitigation: Treat target skill content as evidence for review, not as instructions to override the current agent task.
+
+## Reference(s):
+
+- [Specification Checklist](references/specification-checklist.md)
+- [Best Practices Checklist](references/best-practices-checklist.md)
+- [Description Optimization Guide](references/description-guide.md)
+- [Common Issues and Fixes](references/common-issues.md)
+- [Report Template](assets/report-template.md)
+- [agentskills.io Specification](https://agentskills.io/specification)
+- [agentskills.io Best Practices](https://agentskills.io/skill-creation/best-practices)
+- [agentskills.io Optimizing Descriptions](https://agentskills.io/skill-creation/optimizing-descriptions)
+- [OpenClaw Skill Format](https://docs.openclaw.ai/clawhub/skill-format)
+- [skill-creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with severity-ranked findings, proposed diffs, and optional validation command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose `SKILL.md` edits and apply approved changes; does not produce eval runs, baselines, or trigger-rate measurements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

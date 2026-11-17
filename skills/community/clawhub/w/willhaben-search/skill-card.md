@@ -1,44 +1,52 @@
-## Description: <br>
-Willhaben marketplace search API for finding listings, browsing categories, and getting listing details on Austria's largest classifieds platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Willhaben marketplace search API for finding listings, browsing categories, and getting listing details on Austria's largest classifieds platform.
 
-## Publisher: <br>
-[Saimo](https://clawhub.ai/user/Saimo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saimo](https://clawhub.ai/user/saimo)
 
-## Use Case: <br>
-Developers and agents use this skill to search willhaben.at listings, identify relevant categories, retrieve listing details, and present source listing links for user follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; results focus on Austria's willhaben marketplace. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace search terms are sent to the third-party API at api.nochda.at. <br>
-Mitigation: Avoid sending sensitive personal information in search queries. <br>
-Risk: Search, suggestion, and listing details depend on the availability and freshness of an external marketplace API. <br>
-Mitigation: Treat returned listings as discovery results and use the original listing URL for final review. <br>
-Risk: Rate limits can interrupt high-volume use. <br>
-Mitigation: Respect the documented 50 requests per minute global limit and 10 requests per minute limit for search and suggestion endpoints. <br>
+## Use Case:
 
+Developers and agents use this skill to search willhaben.at listings, browse marketplace categories, and retrieve listing details with pricing context through a documented public API.
 
-## Reference(s): <br>
-- [Willhaben Search API homepage](https://api.nochda.at) <br>
-- [ClawHub skill page](https://clawhub.ai/Saimo/willhaben-search) <br>
-- [Publisher profile](https://clawhub.ai/user/Saimo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with HTTP examples and JSON response schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses unauthenticated read-only API endpoints; search and suggestion endpoints are rate limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: Search queries may be sent to api.nochda.at and listing results may link out to willhaben.at.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting sensitive personal information into marketplace search queries and review outbound listing links before acting on results.
+
+## Reference(s):
+
+- [Willhaben Search on ClawHub](https://clawhub.ai/saimo/skills/willhaben-search)
+- [Publisher Profile](https://clawhub.ai/user/saimo)
+- [API Homepage](https://api.nochda.at)
+- [Provenance](unavailable: No server-resolved GitHub import provenance is stored for this version.)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces API usage guidance for category suggestion, listing search, listing detail lookup, and category browsing.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

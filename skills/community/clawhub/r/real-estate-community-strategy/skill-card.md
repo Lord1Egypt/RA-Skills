@@ -1,42 +1,61 @@
-## Description: <br>
-This Chinese-language skill helps real-estate teams design a community operations strategy, from user research and brand architecture through rollout planning, sustainability, and evaluation models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为房地产企业规划和导入社群运营体系的专业工具，输出系统性的地产品牌社群运营整体规划方案，并提供从需求调研、顶层设计、落地计划到评估模型的闭环策略咨询框架。
 
-## Publisher: <br>
-[luojiangyong](https://clawhub.ai/user/luojiangyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luojiangyong](https://clawhub.ai/user/luojiangyong)
 
-## Use Case: <br>
-Real-estate brand, marketing, customer operations, and community operations teams use this skill to plan owner/community engagement systems, including brand naming, space strategy, activity IP, online platform needs, rollout stages, and KPI evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to provide brand manuals, customer research, survey results, and business strategy details that may contain confidential or personal data. <br>
-Mitigation: Use redacted or synthetic inputs where possible, and avoid uploading unredacted customer research, personal data, confidential brand materials, or sensitive business strategy unless the deployment environment is approved for that data. <br>
-Risk: The skill references case-library files that are not included in this package. <br>
-Mitigation: Treat unavailable reference files as absent, verify case claims against accessible sources, and clearly label any assumptions in generated strategy outputs. <br>
-Risk: The workflow uses web search to supplement company and market research, which can introduce outdated or unreliable public information into recommendations. <br>
-Mitigation: Review cited sources, prefer official company and market sources, and validate material business recommendations before using the output in a commercial proposal. <br>
+## Use Case:
 
+External real-estate brand, marketing, customer operations, and property-service teams use this skill to design community operations strategy, owner engagement programs, community-space planning, online platform requirements, rollout plans, and evaluation models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luojiangyong/real-estate-community-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown, HTML report, or PPT-style strategy content with requested visual diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are customized consulting plans and may include web-research summaries, brand naming options, operating models, timelines, budget allocation models, KPI frameworks, and visualization instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow may request company, brand, or customer research materials that could contain confidential customer-level data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the minimum business context needed for the consulting task, remove unnecessary personal or customer-level data, and follow the security guidance before sharing sensitive material.
+
+Risk: The skill may use web search for company context, so market facts, rankings, recent news, or project details may be incomplete or stale.
+
+Mitigation: Verify externally sourced facts against authoritative company materials before using the strategy in planning, investment, or executive reporting.
+
+Risk: The output is strategic consulting guidance for real-estate community operations and may influence budgets, staffing, platform integration, or customer operations decisions.
+
+Mitigation: Have responsible business, legal, privacy, and operations stakeholders review recommendations before implementation.
+
+Risk: The artifact expects visual planning diagrams, so output quality may depend on whether the runtime provides a compatible visualization capability.
+
+Mitigation: If visualization tooling is unavailable, require an equivalent human-readable diagram or table before accepting the deliverable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luojiangyong/skills/real-estate-community-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown strategy report with optional HTML/PPT-style report guidance and visual planning diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web search for company context and may ask for company, brand, customer research, budget, team, and launch timing inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Supernal Coding CLI helps agents use sc for development workflows including task management, requirements tracking, testing, git automation, ralph loops, compliance, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supernal Coding CLI helps agents and developers work with task management, requirements tracking, testing, git automation, compliance checks, documentation, and autonomous ralph workflows.
 
-## Publisher: <br>
-[ianderrington](https://clawhub.ai/user/ianderrington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianderrington](https://clawhub.ai/user/ianderrington)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate Supernal Coding CLI for managing tasks, project health, traceability, specs, code quality checks, documentation, and autonomous ralph execution loops. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Autonomous ralph loops, git automation, initialization, cleanup, and scheduled heartbeat examples can change files or task state in a repository. <br>
-Mitigation: Run these commands only in the intended repository after reviewing the current task state, affected files, and planned automation scope. <br>
-Risk: The installation flow depends on a global npm package from a third-party publisher. <br>
-Mitigation: Install only when the npm package publisher is trusted and the package permissions and source are acceptable for the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ianderrington/sc) <br>
-- [Task workflow guide](docs/TASK_WORKFLOW.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to operate the sc CLI for project task tracking, health checks, requirements traceability, git workflow automation, compliance checks, documentation, and autonomous task execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may modify project task files, git state, compliance outputs, documentation, and knowledge indexes when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install example uses an unpinned global npm package.
+
+Mitigation: Pin the npm package to a reviewed version and avoid elevated privileges during installation.
+
+Risk: Autonomous, git automation, cleanup, reindexing, cron, or heartbeat examples may mutate repositories.
+
+Mitigation: Run these workflows only in repositories with backups, reviewable changes, and clear approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ianderrington/skills/sc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands for task state, project files, git workflows, health checks, compliance checks, and autonomous execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

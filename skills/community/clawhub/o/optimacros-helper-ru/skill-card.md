@@ -1,43 +1,61 @@
-## Description: <br>
-Помощь с Optimacros: синтаксис формул, проектирование модели, выбор между справочниками/свойствами/кубами, работа с версиями и временем, DCA, UAM/МДП, Workflow, доступы, скрипты и практические паттерны моделирования. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Russian-language assistance for Optimacros formulas, model design, access controls, scripts, and troubleshooting.
 
-## Publisher: <br>
-[qmaijo](https://clawhub.ai/user/qmaijo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qmaijo](https://clawhub.ai/user/qmaijo)
 
-## Use Case: <br>
-Optimacros modelers, analysts, and developers use this skill for Russian-language guidance on Optimacros formulas, model architecture, access control, scripts, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance could be incorrect or incomplete for production Optimacros access-control changes, scripts, or integrations. <br>
-Mitigation: Verify critical advice against official Optimacros documentation and the target model's permissions before applying changes. <br>
-Risk: Script or access-control recommendations can affect model security when applied with broad privileges or without reviewing locking, service accounts, and integration boundaries. <br>
-Mitigation: Use least-privilege service accounts, review script locking and resource limits, and separately control external integrations and secrets. <br>
+## Use Case:
 
+Optimacros modelers, administrators, and implementation consultants use this skill to draft and review formulas, design model structures, reason about access controls, and evaluate script automation choices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qmaijo/optimacros-helper-ru) <br>
-- [Optimacros formulas working notes](artifact/optimacros-formulas-notes.md) <br>
-- [Optimacros model objects working notes](artifact/optimacros-model-objects-notes.md) <br>
-- [Optimacros scripts, access, roles, and security notes](artifact/optimacros-scripts-access-security-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown responses with Optimacros formulas, examples, checklists, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Russian-language practical guidance; unverified edge cases should be labeled as assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill advises on Optimacros access rights, DCA, scripts, exports, and service accounts; incorrect application could expose data or disrupt a real model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed permission or automation changes with an Optimacros model owner before applying them, especially in production models.
+
+Risk: Formula and modeling suggestions may depend on model-specific dimensions, versions, time settings, and confirmed Optimacros behavior.
+
+Mitigation: Validate formulas and structural changes in a test view or non-production copy before deploying them broadly.
+
+Risk: Guidance covers integration scripts that may interact with FTP, DWH, OLTP, or external databases.
+
+Mitigation: Use least-privilege service accounts, separate secrets management, resource limits, and appropriate script locking for integration automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qmaijo/skills/optimacros-helper-ru)
+- [Skill instructions](artifact/SKILL.md)
+- [Optimacros formulas notes](artifact/optimacros-formulas-notes.md)
+- [Optimacros model objects notes](artifact/optimacros-model-objects-notes.md)
+- [Optimacros scripts, access, and security notes](artifact/optimacros-scripts-access-security-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Russian-language Markdown guidance with inline Optimacros formulas and occasional JavaScript or shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory responses should be checked against the user's Optimacros model, permissions, and platform documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

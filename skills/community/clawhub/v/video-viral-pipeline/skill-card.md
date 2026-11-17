@@ -1,44 +1,62 @@
-## Description: <br>
-Automates turning a foreign-language long video into Chinese or bilingual captioned output, viral-style vertical clips with covers, and optional publishing to WeChat Channels, Douyin, Xiaohongshu, and WeChat Official Account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将外语长视频转成中文字幕成片，并切成多条带钩子标题、封面和封面帧的 9:16 竖屏短片，可选择发布到微信视频号、抖音、小红书和公众号。
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-External creators and automation-focused operators use this skill to transform long-form foreign-language videos into captioned short-form clips, cover assets, publishing configurations, and guided posting workflows across Chinese social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Logged-in social-platform sessions can publish multiple posts immediately without a dry-run or final confirmation safeguard. <br>
-Mitigation: Review publish.json before use, run only one item with --idx first, use draft mode where available, and stop if platform errors or rate-limit signals appear. <br>
-Risk: AI cover generation sends cover prompts to Ofox and requires API credentials. <br>
-Mitigation: Use only non-sensitive prompt content, provide API keys through environment variables, and install only if this external API use is acceptable. <br>
-Risk: Untrusted configuration files can cause unintended media processing or posting behavior. <br>
-Mitigation: Review clips, covers, and publish JSON files before execution, keep backups of generated media, and avoid running configs from untrusted sources. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to repurpose long foreign-language videos into Chinese-subtitled long-form outputs, vertical short clips, cover images, and optional social-platform publishing batches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dizhu/video-viral-pipeline) <br>
-- [social-auto-upload dependency](https://github.com/dreammis/social-auto-upload.git) <br>
-- [Ofox image generation API endpoint](https://api.ofox.ai/v1/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create video, image, subtitle, and publishing configuration files when run with user-provided media and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can use browser automation and social-account session files for public posting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated browser profiles and social accounts, start with one test post, and publish only in small batches with spacing between posts.
+
+Risk: The workflow may use API credentials for external image generation.
+
+Mitigation: Keep credentials scoped to environment variables, prefer the intended Ofox key path, and avoid the OPENROUTER_API_KEY fallback unless it has been reviewed.
+
+Risk: Setup installs or clones media and publishing dependencies that affect local execution.
+
+Mitigation: Review or pin dependencies before setup and install only in an environment intended for this workflow.
+
+Risk: Some media-processing steps modify generated files in place.
+
+Mitigation: Keep backups of source media and intermediate outputs before running batch processing or cover-prepending steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dizhu/skills/video-viral-pipeline)
+- [social-auto-upload dependency](https://github.com/dreammis/social-auto-upload.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; generated artifacts include MP4 video clips and JPG/PNG cover images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local media files and optional API credentials or social-account session files.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

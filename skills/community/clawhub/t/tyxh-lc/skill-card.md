@@ -1,39 +1,54 @@
-## Description: <br>
-Queries patient information by patient number or ID through a curl-accessible API endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries patient details by patient number or ID through an external endpoint that requires no authentication.
 
-## Publisher: <br>
-[lc-nian](https://clawhub.ai/user/lc-nian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lc-nian](https://clawhub.ai/user/lc-nian)
 
-## Use Case: <br>
-Developers and authorized operators can use this skill to help an agent retrieve patient details when a user provides a patient identifier. Because the data is sensitive, use should be limited to approved patient-record lookup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query sensitive patient details from an unauthenticated external API. <br>
-Mitigation: Install only for authorized patient-system users after lawful approval, and require authentication, authorization, audit logging, rate limiting, data minimization, and explicit confirmation before patient-record lookups. <br>
+## Use Case:
 
+Developers or support agents use this skill to retrieve patient records when a user supplies a patient ID or number. It should only be used where the organization is authorized to access those records and has privacy controls outside the skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lc-nian/tyxh-lc) <br>
-- [Patient information API endpoint](https://kjcrmcs.tianyuxh.com:8107/task/agent_test/getPatientInfo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl with a patient_id query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may retrieve sensitive patient information from an external endpoint using only a patient ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit authorization to access those records and only after the service owner confirms authentication, authorization, logging, and privacy controls outside the skill.
+
+Risk: Use with real patient data may create medical privacy or compliance exposure.
+
+Mitigation: Do not use it with real patient data unless the deployment complies with applicable medical and privacy rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lc-nian/skills/tyxh-lc)
+- [Patient lookup API endpoint](https://kjcrmcs.tianyuxh.com:8107/task/agent_test/getPatientInfo)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a patient_id query parameter; endpoint responses may contain sensitive patient information.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

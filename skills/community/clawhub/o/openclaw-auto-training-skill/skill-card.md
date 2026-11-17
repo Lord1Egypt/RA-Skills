@@ -1,46 +1,63 @@
-## Description: <br>
-Autonomous QA evaluation loop — runs domain-specific tasks against yourself, scores responses with an LLM judge, installs missing skills, and logs knowledge gains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs domain-specific QA tasks for an OpenClaw agent, scores responses with an OpenRouter LLM judge, installs suggested skills, and logs knowledge gains.
 
-## Publisher: <br>
-[no7dw](https://clawhub.ai/user/no7dw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[no7dw](https://clawhub.ai/user/no7dw)
 
-## Use Case: <br>
-OpenClaw agent users and developers use this skill to run self-evaluation tasks, judge response quality, install suggested skills, and record learning outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can permanently install suggested skills during an evaluation run. <br>
-Mitigation: Require manual approval before any `clawhub install` action and review installed skills before using them. <br>
-Risk: Evaluation summaries may be shared through BotLearn when that skill is available. <br>
-Mitigation: Disable BotLearn posting or require per-run approval before sharing evaluation results. <br>
-Risk: Evaluation logs may contain private or sensitive task content. <br>
-Mitigation: Use the skill only on non-sensitive tasks and inspect or delete `memory/qa-eval-*` logs after each run. <br>
-Risk: The LLM judge requires an OpenRouter API key and can incur usage costs. <br>
-Mitigation: Use a restricted OpenRouter key with an explicit budget and do not log the full key. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to run autonomous QA self-evaluations, identify capability gaps, install suggested skills, and retain evaluation results in local memory logs.
 
-## Reference(s): <br>
-- [ClawHub skill homepage](https://clawhub.ai/skills/openclaw-auto-training-skill) <br>
-- [ClawHub release page](https://clawhub.ai/no7dw/openclaw-auto-training-skill) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown logs, command recommendations, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call an LLM judge, install suggested skills, append evaluation logs, and optionally post a summary when BotLearn is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and frontmatter) <br>
+Risk: An external LLM judge can influence skill suggestions and repeated evaluation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled test environment and review judge feedback before accepting follow-up actions.
+
+Risk: Suggested skills may be installed persistently during evaluation.
+
+Mitigation: Require manual approval for each installed skill and review or scan skills before deployment.
+
+Risk: The workflow reads local environment files for an OpenRouter key and writes QA logs.
+
+Mitigation: Provide the key through a scoped secret mechanism and avoid running the skill in workspaces with broad `.env` files or sensitive identity files.
+
+Risk: Evaluation summaries may be posted to BotLearn when available.
+
+Mitigation: Require approval for every external post and avoid sharing evaluation results publicly without user permission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/no7dw/skills/openclaw-auto-training-skill)
+- [ClawHub skill homepage](https://clawhub.ai/skills/openclaw-auto-training-skill)
+- [OpenRouter API endpoint](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown logs, task answers, JSON judge results, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist evaluation logs and install suggested skills; can optionally publish a BotLearn summary when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

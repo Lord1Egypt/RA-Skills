@@ -1,43 +1,57 @@
-## Description: <br>
-Convert narration audio plus slide decks into a narrated video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert narration audio plus slide decks into a narrated video.
 
-## Publisher: <br>
-[lzfxxx](https://clawhub.ai/user/lzfxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzfxxx](https://clawhub.ai/user/lzfxxx)
 
-## Use Case: <br>
-Developers and content producers use this skill to combine narration audio with slide decks, generate slide outlines and timing plans, and render a slide-based MP4 lecture video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated transcripts, slide outlines, timing CSVs, and rendered videos may contain private presentation content. <br>
-Mitigation: Use a dedicated local working directory and treat generated working files as private artifacts. <br>
-Risk: External dependencies and model downloads are required for transcription and media rendering. <br>
-Mitigation: Verify package and model provenance when integrity matters before running the workflow. <br>
-Risk: Rendering can overwrite existing output files when overwrite mode is used. <br>
-Mitigation: Choose output paths carefully or run the render script with --no-overwrite. <br>
+## Use Case:
 
+Developers and media production engineers use this skill to rebuild a slide-based lecture video from narration audio and a presentation deck by extracting slide text, planning slide timings, and rendering an MP4.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lzfxxx/ppt-audio-to-video) <br>
-- [whisper.cpp small multilingual model](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.bin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, CSV schemas, and generated working files such as transcripts, slide outlines, timing CSVs, ffconcat files, and MP4 video output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local media workflow; outputs may include private transcripts, slide outlines, timing plans, and rendered video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The workflow runs local media tools, may install optional dependencies, and may download a transcription model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, install dependencies intentionally, and run the workflow in a trusted local workspace.
+
+Risk: Untrusted slide decks, image directories, filenames, or generated CSV files can create local file-handling or spreadsheet-safety concerns.
+
+Mitigation: Use trusted media inputs, avoid attacker-controlled paths or filenames, and sanitize CSV files before opening them in spreadsheet software.
+
+Risk: ASR and timing alignment can place slide boundaries incorrectly.
+
+Mitigation: Review the transcript, slide outline, and timing CSV, then iterate on uncertain slide boundaries before treating the rendered video as final.
+
+## Reference(s):
+
+- [whisper.cpp ggml-small model download](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.bin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and CSV examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce working files such as slide outlines, transcripts, slide timing CSVs, ffconcat files, and rendered MP4 videos when the agent runs the described local tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

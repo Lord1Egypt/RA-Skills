@@ -1,6 +1,50 @@
 {
-  "ownerId": "kn7181r53fac58czdw6sb30c5182yk1h",
-  "slug": "miknas-council-of-wisdom",
+  "name": "council-of-wisdom",
   "version": "1.0.0",
-  "publishedAt": 1773548161181
+  "description": "A sophisticated multi-agent AI debate framework with structured voting, automatic cleanup, multi-LLM provider support, and enterprise-grade monitoring.",
+  "author": "miknasbh-stack",
+  "license": "MIT",
+  "tags": [
+    "multi-agent",
+    "debate",
+    "decision-making",
+    "ai-orchestration",
+    "monitoring",
+    "testing",
+    "enterprise"
+  ],
+  "categories": [
+    "Agents",
+    "Automation",
+    "Decision Support"
+  ],
+  "dependencies": {
+    "openclaw": ">=1.0.0",
+    "gh": ">=2.0.0 (optional)"
+  },
+  "openclaw": {
+    "runtime": "acp",
+    "requires": ["sessions_spawn"],
+    "optional": ["browser", "exec"]
+  },
+  "install": {
+    "type": "skill",
+    "location": "~/.openclaw/workspace/skills/council-of-wisdom",
+    "cli": "scripts/council-of-wisdom.sh",
+    "bin": "council-of-wisdom"
+  },
+  "features": [
+    "Structured multi-agent debate",
+    "Council of 9 expert analyzers",
+    "Automatic agent lifecycle management",
+    "Multi-LLM provider support",
+    "Enterprise-grade monitoring",
+    "Comprehensive testing framework",
+    "Feedback and optimization loops",
+    "GitHub repository integration"
+  ],
+  "documentation": "SKILL.md",
+  "changelog": [
+    "1.0.0 - Initial release with full framework"
+  ]
 }

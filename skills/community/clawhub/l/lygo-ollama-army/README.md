@@ -1,15 +1,12 @@
-# LYGO Ollama Army & Assistant Hub
+# LYGO Ollama Army v0.9.0
 
-Generic, self-building local Ollama bot army + official LYGO champion summoning.
+ClawHub-safe **local** multi-role Ollama helpers.
 
-Perfect utility companion for the LYGO RESONANCE skill:
-https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html
+```bash
+python scripts/self_check.py
+python ollama_army_launcher.py --roles hb-light,draft-simple --model llama3.2:1b
+python queue_task.py --role draft-simple --prompt "Hello"
+```
 
-Donation: https://paypal.com/paypalme/ExcavationPro
-
-See SKILL.md for complete instructions, capabilities, champion list, and integration details.
-
-Quick start:
-python ollama_army_launcher.py --roles resonance-analyst,draft-simple --champion SEPHRAEL --grow
-
-Then use resonance_utility.py to queue images for batch processing with the Resonance skill + champion analysis.
+FULL operator features (plant / idle / sentinel HTTPS / PS1): SkillHub  
+https://chatagent.ca/lygoskillhub.html#full-lygo

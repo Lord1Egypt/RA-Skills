@@ -1,43 +1,54 @@
-## Description: <br>
-费用催缴管理 helps property and enterprise-service teams classify overdue fees, generate collection reminders and reports, and send WeCom notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+费用催缴管理 supports fee-collection workflows by classifying overdue accounts, calculating overdue periods and combined amounts, generating reminder copy, and preparing WeCom notifications.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Property-management and enterprise-service staff use this skill to review fee collection data, calculate overdue tiers, create customer-facing reminder language, and prepare daily or monthly collection reports. When configured, it can send reminders through WeCom for routine and escalated collection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive billing and customer data may be read from the configured fee data source and included in generated reminders or reports. <br>
-Mitigation: Use only approved fee data sources, restrict file access to authorized staff, and define retention or deletion rules for generated report files. <br>
-Risk: Automated WeCom sends, especially escalated group or @all reminders, can notify the wrong audience or expose billing details too broadly. <br>
-Mitigation: Configure only approved webhook destinations, verify group IDs before use, and require dry-run or manual approval for bulk and @all sends. <br>
-Risk: Local report files can persist fee totals and overdue customer counts after the collection workflow completes. <br>
-Mitigation: Store reports in an access-controlled location and apply the organization's retention, audit, and deletion policy. <br>
+## Use Case:
 
+Property operations and finance teams use this skill to check fee-payment status from a configured Excel workbook, classify overdue records by age, generate customer-facing reminders, and prepare daily or monthly collection reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/perrykono-debug/fee-collection) <br>
-- [Reference Documentation for Fee Collection](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, API Calls, Configuration guidance] <br>
-**Output Format:** [Chinese text and Markdown reminders, JSON reports, and WeCom webhook payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local report files and send configured WeCom notifications, including escalated group reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package __version__) <br>
+Risk: Sensitive overdue-payment notices may be sent through WeCom without sufficient approval, scoping, or redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the webhook only to an approved corporate destination and require operator preview and approval before sending reminders or @all escalations.
+
+Risk: Billing workbooks, generated reports, and backups can contain customer and financial records.
+
+Mitigation: Restrict access to the intended Excel file and treat generated reports and backups as sensitive financial records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/fee-collection)
+- [Reference Documentation for Fee Collection](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration]
+
+**Output Format:** [Chinese reminder text, Markdown summaries, and JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes overdue-age classifications, fee totals, reminder messages, and report records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

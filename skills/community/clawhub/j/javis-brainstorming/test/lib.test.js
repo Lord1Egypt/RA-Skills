@@ -5,14 +5,18 @@ const assert = require('node:assert/strict');
 
 const {
   SEEN_TTL_DAYS,
+  SESSION_WINDOWS_MAX,
   resolveTz,
   toNaiveLocal,
   localAnchor,
   sessionWindow,
+  unionSessions,
   todoDedupKey,
   composePrompt,
   formatDigest,
+  pruneByTtl,
   pruneSeen,
+  capRecent,
 } = require('../scripts/lib');
 
 // ---- resolveTz: payload -> TZ env -> system ------------------------------
@@ -139,6 +143,90 @@ test('sessionWindow matches sessions by session_id or id', () => {
     [{ id: 's1', started_at: '2026-06-09T19:05:00.000Z', ended_at: '2026-06-09T19:30:00.000Z' }],
     ['s1'], TZ);
   assert.equal(viaId.start_at, '2026-06-09T12:05:00');
+});
+
+// ---- unionSessions: the remembered map + the piped sessions ---------------
+// Design 2026-09-11 §C: push resolves the window from the UNION of the
+// `sessionWindows` map fetch remembered (raw ISO instants) and whatever
+// `sessions` the agent piped, the piped copy overriding by session_id. The
+// union is an ARRAY of session-shaped objects — sessionWindow is unchanged.
+const WINDOWS = {
+  's1': {
+    started_at: '2026-06-09T19:05:00.000Z',
+    ended_at: '2026-06-09T19:30:00.000Z',
+    seen_at: '2026-06-09T20:00:00.000Z',
+  },
+};
+
+test('sessionWindow over a union built from the remembered map ALONE returns that window', () => {
+  assert.deepEqual(sessionWindow(unionSessions(WINDOWS, []), ['s1'], TZ), {
+    start_at: '2026-06-09T12:05:00',
+    end_at: '2026-06-09T12:30:00',
+  });
+  // A bare push pipes nothing at all — null/undefined must behave like [].
+  assert.deepEqual(sessionWindow(unionSessions(WINDOWS, null), ['s1'], TZ), {
+    start_at: '2026-06-09T12:05:00',
+    end_at: '2026-06-09T12:30:00',
+  });
+  assert.equal(unionSessions(WINDOWS, []).length, 1, 'one session-shaped object per remembered id');
+  assert.equal(unionSessions(WINDOWS, [])[0].session_id, 's1');
+});
+
+test('unionSessions lets the PIPED session win for a shared session_id', () => {
+  const piped = [
+    { session_id: 's1', started_at: '2026-06-09T21:00:00.000Z', ended_at: '2026-06-09T21:45:00.000Z' },
+  ];
+  const union = unionSessions(WINDOWS, piped);
+  assert.equal(union.length, 1, 'the shared id is not duplicated');
+  assert.deepEqual(sessionWindow(union, ['s1'], TZ), {
+    start_at: '2026-06-09T14:00:00',
+    end_at: '2026-06-09T14:45:00',
+  });
+});
+
+test('unionSessions keeps the remembered instants when the piped copy omits them', () => {
+  // The agent may echo a trimmed session; overriding is per-field, so a
+  // `{session_id, transcript}` copy must not cost the card its day.
+  const union = unionSessions(WINDOWS, [{ session_id: 's1', transcript: 'A' }]);
+  assert.deepEqual(sessionWindow(union, ['s1'], TZ), {
+    start_at: '2026-06-09T12:05:00',
+    end_at: '2026-06-09T12:30:00',
+  });
+  assert.deepEqual(sessionWindow(unionSessions(WINDOWS, [{ id: 's1', started_at: null }]), ['s1'], TZ), {
+    start_at: '2026-06-09T12:05:00',
+    end_at: '2026-06-09T12:30:00',
+  });
+});
+
+test('a card spanning one remembered and one piped session picks the EARLIEST of the two', () => {
+  // Remembered 's1' starts 19:05Z; the piped 's2' starts 22:00Z (epoch seconds,
+  // the live wire shape) — the earliest wins, with its OWN ended_at.
+  const piped = [{ session_id: 's2', started_at: 1781042400, ended_at: 1781046000 }];
+  assert.deepEqual(sessionWindow(unionSessions(WINDOWS, piped), ['s1', 's2'], TZ), {
+    start_at: '2026-06-09T12:05:00',
+    end_at: '2026-06-09T12:30:00',
+  });
+  // …and the other way round: a remembered session later than the piped one.
+  const earlierPiped = [{ session_id: 's2', started_at: '2026-06-09T17:00:00.000Z', ended_at: '2026-06-09T17:20:00.000Z' }];
+  assert.deepEqual(sessionWindow(unionSessions(WINDOWS, earlierPiped), ['s1', 's2'], TZ), {
+    start_at: '2026-06-09T10:00:00',
+    end_at: '2026-06-09T10:20:00',
+  });
+});
+
+test('unionSessions over a remembered window with no ended_at yields a start-only window', () => {
+  const startOnly = { 's1': { started_at: '2026-06-09T19:05:00.000Z', seen_at: '2026-06-09T20:00:00.000Z' } };
+  assert.deepEqual(sessionWindow(unionSessions(startOnly, []), ['s1'], TZ), {
+    start_at: '2026-06-09T12:05:00',
+  });
+});
+
+test('unionSessions on empty/missing inputs yields an empty union (no window, never invented)', () => {
+  assert.deepEqual(unionSessions(null, null), []);
+  assert.deepEqual(unionSessions({}, []), []);
+  assert.deepEqual(sessionWindow(unionSessions({}, []), ['s1'], TZ), {});
+  // Junk entries on either side are skipped rather than synthesized.
+  assert.deepEqual(unionSessions({ '': { started_at: 'x' }, 's1': null }, [null, 'x', { id: '  ' }]), []);
 });
 
 // ---- todoDedupKey --------------------------------------------------------
@@ -286,4 +374,53 @@ test('prune honors a custom ttlDays', () => {
   const tenDaysAgo = new Date(now - 10 * 86400 * 1000).toISOString();
   assert.deepEqual(pruneSeen({ k: tenDaysAgo }, 5), {});
   assert.deepEqual(Object.keys(pruneSeen({ k: tenDaysAgo }, 30)), ['k']);
+});
+
+// ---- the remembered sessionWindows map: TTL + size cap --------------------
+// Design 2026-09-11 §B: the map prunes with the EXISTING pruneByTtl keyed on
+// `seen_at` (the same 30 days as `seen`, no second TTL implementation), then
+// keeps at most its SESSION_WINDOWS_MAX most recent entries by `seen_at`.
+// pruneByTtl measures against the real Date.now(), so every fixture below is
+// built relative to it — never off a frozen literal date.
+test('pruneByTtl over sessionWindows drops an entry older than the TTL, keyed on seen_at', () => {
+  const now = Date.now();
+  const fresh = new Date(now - 1 * 86400 * 1000).toISOString();
+  const stale = new Date(now - (SEEN_TTL_DAYS + 1) * 86400 * 1000).toISOString();
+  const windows = {
+    keep: { started_at: '2026-06-09T19:05:00.000Z', ended_at: '2026-06-09T19:30:00.000Z', seen_at: fresh },
+    drop: { started_at: '2026-05-01T19:05:00.000Z', seen_at: stale },
+    bad: { started_at: '2026-06-09T19:05:00.000Z', seen_at: 'not-a-date' },
+    // A value with no seen_at at all is unparseable => dropped, never kept forever.
+    missing: { started_at: '2026-06-09T19:05:00.000Z' },
+  };
+  const out = pruneByTtl(windows, (w) => w && w.seen_at, SEEN_TTL_DAYS);
+  assert.deepEqual(Object.keys(out), ['keep']);
+  assert.deepEqual(out.keep, windows.keep, 'the surviving entry is kept verbatim (raw instants)');
+});
+
+test('capRecent keeps the SESSION_WINDOWS_MAX most recent entries by seen_at and drops the rest', () => {
+  assert.equal(SESSION_WINDOWS_MAX, 500);
+  const now = Date.now();
+  const windows = {};
+  // 501 entries, `s0` the oldest … `s500` the newest (minutes apart, all fresh).
+  for (let i = 0; i <= SESSION_WINDOWS_MAX; i++) {
+    windows[`s${i}`] = {
+      started_at: new Date(now - (SESSION_WINDOWS_MAX - i) * 60000).toISOString(),
+      seen_at: new Date(now - (SESSION_WINDOWS_MAX - i) * 60000).toISOString(),
+    };
+  }
+  const out = capRecent(windows, (w) => w.seen_at, SESSION_WINDOWS_MAX);
+  assert.equal(Object.keys(out).length, SESSION_WINDOWS_MAX);
+  assert.ok(!('s0' in out), 'the oldest entry by seen_at is the one dropped');
+  assert.ok('s1' in out && 's500' in out);
+});
+
+test('capRecent is a no-op under the cap and sorts an unparseable seen_at oldest', () => {
+  const now = Date.now();
+  const recent = new Date(now - 60000).toISOString();
+  const older = new Date(now - 86400 * 1000).toISOString();
+  const windows = { a: { seen_at: recent }, b: { seen_at: older }, c: { seen_at: 'junk' } };
+  assert.deepEqual(capRecent(windows, (w) => w.seen_at, 10), windows, 'unchanged under the cap');
+  assert.deepEqual(Object.keys(capRecent(windows, (w) => w.seen_at, 2)).sort(), ['a', 'b']);
+  assert.deepEqual(capRecent(null, (w) => w.seen_at, 2), {});
 });

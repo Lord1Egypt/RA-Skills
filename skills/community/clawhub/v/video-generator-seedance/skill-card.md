@@ -1,41 +1,59 @@
-## Description: <br>
-Generates videos through the Volcengine SD1.5pro API, supporting text-to-video and image-to-video requests with asynchronous task processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with the Volcengine SD1.5pro API from text prompts or image references, polls asynchronous tasks, and downloads the resulting MP4 file.
 
-## Publisher: <br>
-[aaronzoe](https://clawhub.ai/user/aaronzoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronzoe](https://clawhub.ai/user/aaronzoe)
 
-## Use Case: <br>
-Developers and external users use this skill to submit text or image prompts to Volcengine SD1.5pro, wait for generation jobs to complete, and download the resulting MP4 video files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and generated-video requests are sent to Volcengine's remote API. <br>
-Mitigation: Avoid submitting confidential prompts, private image URLs, proprietary media, or regulated personal data unless authorized and comfortable with the provider's handling of that data. <br>
-Risk: The skill requires a Volcengine API key in config.json. <br>
-Mitigation: Store config.json carefully, keep it out of version control, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and agent users can use this skill to submit text-to-video or image-to-video requests to Volcengine SeeDance-compatible SD1.5pro model endpoints and save the generated video locally.
 
-## Reference(s): <br>
-- [Volcengine Console](https://console.volcengine.com/) <br>
-- [Volcengine API Documentation](https://www.volcengine.com/docs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime output includes API status text and downloaded MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local config.json containing a Volcengine API key and model ID; generation is asynchronous and may take several minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Prompts, image URLs, and related generation metadata are sent to Volcengine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only inputs that are appropriate to share with Volcengine and review provider terms before use.
+
+Risk: The required config.json contains a live API key.
+
+Mitigation: Store config.json carefully, avoid committing or sharing it, and rotate the key if exposure is suspected.
+
+Risk: Generated MP4 files are written to the configured or default output path.
+
+Mitigation: Choose an explicit output path when you need control over where generated videos are saved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronzoe/skills/video-generator-seedance)
+- [Volcengine API documentation](https://www.volcengine.com/docs/)
+- [Volcengine console](https://console.volcengine.com/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, files, guidance]
+
+**Output Format:** [CLI output and local MP4 file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Volcengine API key and model ID in config.json; accepts a prompt, optional image URL, duration, output path, camera-fixed flag, and watermark flag.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

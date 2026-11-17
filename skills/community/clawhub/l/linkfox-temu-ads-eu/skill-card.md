@@ -1,47 +1,66 @@
-## Description: <br>
-Temu Ads EU helps agents work with LinkFox-gatewayed Temu Partner EU advertising APIs for ad creation, modification, reporting, ROAS prediction, operation logs, and signed file downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Temu EU Ads helps agents operate Temu Europe advertising workflows through LinkFox-provided tooling, including ad creation, ad details, reports, logs, ROAS prediction, eligible goods checks, and ad modification.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External developers and operators managing Temu EU storefront advertising can use this skill to prepare and run LinkFox-mediated API calls for campaign creation, budget or ROAS changes, ad status updates, reporting, and log queries. The skill is most relevant when the agent has an approved LinkFox API key and a Temu accessToken or storeKey for the target shop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe (Temu EU and Partner EU workflows) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live ad-spend or campaign-state changes through create and modify endpoints. <br>
-Mitigation: Confirm every create, delete, pause, budget, and ROAS change before execution, and prefer the narrower eu_ads_* scripts over the generic proxy when possible. <br>
-Risk: The skill requires sensitive LinkFox and Temu credentials and can optionally save Temu tokens locally. <br>
-Mitigation: Use environment variables or a protected token store, avoid saving tokens unless needed, and do not print raw tokens in shared terminals, logs, or agent transcripts. <br>
-Risk: The generic proxy can forward broader Temu requests than the named Ads helper scripts. <br>
-Mitigation: Restrict proxy use to the documented Temu EU Ads types and review the request payload against the Partner EU API reference before running it. <br>
+## Use Case:
 
+External Temu sellers, advertising operators, and developers use this skill to query, create, modify, and report on Temu EU search recommendation ads. It is intended for agent-assisted ad operations that require LinkFox authentication and Temu seller authorization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/linkfox-temu-ads-eu) <br>
-- [API reference](references/api.md) <br>
-- [Temu accessToken authorization](references/access-token.md) <br>
-- [Partner EU API catalog](references/partner-eu-catalog.md) <br>
-- [Ads endpoint index](references/apis/README.md) <br>
-- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=7289390cfd724be4a196f11ebe45a896) <br>
+### Deployment Geography for Use:
 
+Europe (Temu EU marketplace)
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LinkFox API credentials plus a Temu accessToken or storeKey; some scripts can call live advertising APIs or read/write a local token store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles LinkFox and Temu seller credentials and can persist Temu access tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, avoid production credentials unless the publisher and runtime are trusted, and keep token storage paths out of shared workspaces.
+
+Risk: Endpoint override environment variables can redirect gateway traffic.
+
+Mitigation: Check that LINKFOX_TOOL_GATEWAY, TEMU_API_BASE_URL, and STORE_API_BASE_URL are unset or intentionally configured before running scripts.
+
+Risk: Ad modification operations may pause ads, delete ads, or change budget and ROAS settings.
+
+Mitigation: Require explicit human confirmation before mutation operations, especially delete, pause, budget, ROAS, or payment-related actions.
+
+Risk: Token listing can expose full access tokens when mask=false is used.
+
+Mitigation: Keep token listing masked in shared logs and avoid printing unmasked credentials in agent transcripts.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [Temu accessToken Authorization](references/access-token.md)
+- [Onboarding](references/onboarding.md)
+- [Partner EU Ads Catalog](references/partner-eu-catalog.md)
+- [Ads API Documentation Index](references/apis/README.md)
+- [Temu Partner EU Documentation](https://partner-eu.temu.com/documentation?menu_code=7289390cfd724be4a196f11ebe45a896)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses saved to local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Large responses are summarized in stdout while full responses are written under a linkfox session data directory.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

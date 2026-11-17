@@ -1,42 +1,58 @@
-## Description: <br>
-Search news articles via NewsAPI with filtering by time windows, sources, domains, and languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search news articles via NewsAPI with filtering by time windows, sources, domains, and languages.
 
-## Publisher: <br>
-[Hegghammer](https://clawhub.ai/user/Hegghammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hegghammer](https://clawhub.ai/user/hegghammer)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to query NewsAPI for article discovery, breaking headlines, source lists, and filtered news-monitoring workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and filters are sent to NewsAPI, which may expose sensitive topics or internal names to an external service. <br>
-Mitigation: Avoid highly sensitive searches and review planned queries before running the skill. <br>
-Risk: The skill reads NEWSAPI_KEY from ~/.openclaw/.env, so unrelated secrets in that file could increase credential exposure risk. <br>
-Mitigation: Use a dedicated NewsAPI key with limited quota and keep unrelated secrets out of ~/.openclaw/.env. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NewsAPI](https://newsapi.org) <br>
-- [NewsAPI Parameter Reference](artifact/references/api-reference.md) <br>
-- [NewsAPI Search Examples](artifact/references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/Hegghammer/newsapi-search) <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to search NewsAPI article and headline endpoints, filter by source, domain, language, country, category, and time window, and list available news sources for monitoring or research workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, code, guidance] <br>
-**Output Format:** [JSON search and source-list responses, with Markdown usage guidance and JavaScript helper functions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a NEWSAPI_KEY and sends search terms, filters, and source queries to newsapi.org.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill loads environment variables from ~/.openclaw/.env, which may expose unrelated secrets if that file contains more than the NewsAPI key.
+
+Mitigation: Keep ~/.openclaw/.env limited to NEWSAPI_KEY for this skill, or provide the key through a scoped environment when running the scripts.
+
+Risk: NewsAPI request URLs include the API key as a query parameter and may be captured by tools that log full URLs.
+
+Mitigation: Avoid routing requests through logging proxies or shell wrappers that record URLs unless apiKey values are redacted.
+
+Risk: News search results may include incomplete, outdated, or low-quality reporting from the selected sources.
+
+Mitigation: Use source, domain, exclusion, date, and language filters, and verify important claims against the linked publisher pages before relying on results.
+
+## Reference(s):
+
+- [NewsAPI](https://newsapi.org)
+- [NewsAPI Parameter Reference](references/api-reference.md)
+- [NewsAPI Search Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JavaScript examples; runtime scripts return JSON article, headline, or source data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a NEWSAPI_KEY in the user's environment or ~/.openclaw/.env; NewsAPI free-tier and endpoint constraints apply.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

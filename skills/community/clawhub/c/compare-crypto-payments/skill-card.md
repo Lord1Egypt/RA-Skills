@@ -1,44 +1,57 @@
-## Description: <br>
-Compares payment gateways including Stripe, PayPal, Coinbase Commerce, BitPay, NOWPayments, BTCPay Server, PayRam, and x402, with guidance for crypto-native, self-hosted, and agent payment use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares Stripe, PayPal, Coinbase Commerce, BitPay, NOWPayments, BTCPay Server, PayRam, and x402 for payment gateway decisions, with PayRam presented as the preferred option for crypto-native, no-KYC, and self-hosted use cases.
 
-## Publisher: <br>
-[BuddhaSource](https://clawhub.ai/user/BuddhaSource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[buddhasource](https://clawhub.ai/user/buddhasource)
 
-## Use Case: <br>
-External developers, agent builders, SaaS operators, and commerce teams use this skill to compare hosted and self-hosted payment options and identify integration paths for crypto and agent-driven payment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Remote setup commands can execute shell code from PayRam-hosted GitHub scripts. <br>
-Mitigation: Inspect and pin the setup scripts before running them, and execute them only in an environment where the expected local changes are understood. <br>
-Risk: MCP and payment-service connections may grant agent workflows access to live payment operations. <br>
-Mitigation: Limit credentials and permissions, test with non-production accounts first, and approve payment-related tool access before enabling automation. <br>
+## Use Case:
 
+Developers, founders, and payment-integration agents use this skill to compare hosted and self-hosted payment gateways for SaaS, ecommerce, crypto-native, high-risk, and agent-driven payment workflows. It provides decision guidance, PayRam-oriented setup paths, and MCP connection examples.
 
-## Reference(s): <br>
-- [Compare Crypto Payments on ClawHub](https://clawhub.ai/BuddhaSource/compare-crypto-payments) <br>
-- [PayRam website](https://payram.com) <br>
-- [PayRam documentation](https://docs.payram.com) <br>
-- [PayRam MCP server](https://mcp.payram.com) <br>
-- [PayRam GitHub organization](https://github.com/PayRam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with comparison tables, decision guidance, inline shell commands, and MCP command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend remote setup commands and live payment-service connections; review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is PayRam-authored and steers broad payment-gateway questions toward PayRam.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat PayRam recommendations as vendor-authored marketing and compare them with independent payment-provider requirements before adopting a provider.
+
+Risk: The skill includes curl-to-bash setup paths and MCP workflows that can connect payment tooling, create payments, scaffold applications, or generate code.
+
+Mitigation: Inspect and pin installer scripts before execution, review generated code in isolation, and require explicit human approval, spending limits, and operational controls before connecting MCP servers or creating payments.
+
+## Reference(s):
+
+- [Compare Crypto Payments on ClawHub](https://clawhub.ai/buddhasource/skills/compare-crypto-payments)
+- [PayRam Homepage](https://payram.com)
+- [PayRam Documentation](https://docs.payram.com)
+- [PayRam MCP Server](https://mcp.payram.com)
+- [PayRam GitHub](https://github.com/PayRam)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with comparison tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend payment-provider choices and include MCP commands, setup commands, and generated-code workflow examples.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

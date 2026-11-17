@@ -1,41 +1,50 @@
-## Description: <br>
-Robot gripper reference — jaw types, force calculation, pneumatic vs electric, and end-effector selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Robot gripper reference - jaw types, force calculation, pneumatic vs electric, and end-effector selection for designing gripping systems, selecting actuators, and sizing grippers for robotic applications.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference when selecting robot gripper types, estimating grip force, comparing pneumatic, electric, and vacuum options, and commissioning robotic end-effectors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Robotics formulas, safety factors, and manufacturer examples may be incomplete for a specific production cell or safety-critical gripper design. <br>
-Mitigation: Verify designs against current vendor specifications, workplace safety requirements, and engineering review before deployment. <br>
-Risk: The skill is invoked through a local bash script. <br>
-Mitigation: Run it only in an environment where local script execution is acceptable; server security evidence reports a clean scan and static reference behavior. <br>
+## Use Case:
 
+Developers, robotics engineers, and automation teams use this skill as a quick reference for selecting robot gripper types, comparing actuation methods, calculating gripping force, and commissioning end effectors.
 
-## Reference(s): <br>
-- [ClawHub Gripper release page](https://clawhub.ai/bytesagain3/gripper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text reference guidance with Markdown command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no API calls or external tools are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Engineering quick-reference values may be misapplied to real robot design or safety decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify force calculations, safety factors, and end-effector choices against manufacturer specifications and the user's applicable robot safety process before deployment.
+
+## Reference(s):
+
+- [Gripper Skill on ClawHub](https://clawhub.ai/bytesagain3/skills/gripper)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference output from shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference sections for gripper fundamentals, types, force calculations, pneumatic systems, electric systems, vacuum systems, applications, and selection checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

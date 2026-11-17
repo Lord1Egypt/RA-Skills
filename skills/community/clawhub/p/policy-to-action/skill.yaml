@@ -1,0 +1,20 @@
+name: 政策翻译官
+version: 1.0.0
+description: 政策翻译官 —— 官话 → 人话 → 行动。把复杂政策条文转化为「能不能用、能省多少、该怎么做」的标准化报告，企业/个人通用，双输出 HTML + 可转发文本总览。
+author: Marvis Skill Community
+license: MIT
+tags:
+  - policy
+  - report
+  - enterprise
+  - personal
+  - analysis
+triggers:
+  - 政策解读
+  - 政策评估
+  - 落地方向
+  - 政策红利
+  - 对我们有什么影响
+outputs:
+  - html
+  - text

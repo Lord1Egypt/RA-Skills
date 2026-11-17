@@ -1,46 +1,64 @@
-## Description: <br>
-Contract Risk Analyzer reviews uploaded contract PDFs, extracts key terms, and produces a structured AI-assisted risk report with severity-ranked findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contract Risk Analyzer reviews contract PDFs by extracting text, detecting contract type and language, and producing structured AI-assisted risk reports.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-External users, procurement teams, HR teams, freelancers, and small businesses use this skill to triage Chinese or English contract PDFs before legal review. It extracts text, detects contract type, identifies key terms, grades risks, and returns an informational report that is not legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded contracts and extracted text may contain confidential or regulated information. <br>
-Mitigation: Process only contracts that are approved for the configured AI provider and delete /tmp/contracts outputs after use for confidential documents. <br>
-Risk: The workflow requires API credentials and may use paid-tier tokens. <br>
-Mitigation: Use a dedicated low-privilege API key and provide a paid-tier token only when needed. <br>
-Risk: The report is AI-assisted and may miss or misstate legal risks. <br>
-Mitigation: Treat the output as informational triage and have a qualified legal professional review contract decisions. <br>
-Risk: The tool stores report files and optional CSV exports under /tmp/contracts. <br>
-Mitigation: Confirm the exact PDF before analysis and remove generated reports and CSV files after delivery. <br>
+## Use Case:
 
+Procurement teams, HR teams, freelancers, small businesses, and agents use this skill to review Chinese or English contract PDFs, summarize key terms, and identify high, medium, and low risk clauses. Its output is informational and does not replace qualified legal advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qiji0802/contract-risk-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/qiji0802) <br>
-- [Commercial tier information](https://yk-global.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report, JSON command output, and optional CSV export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports summarize contract content, key terms, risk findings, severity levels, recommendations, extraction statistics, and optional CSV rows for paid tiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Contracts may contain personal data, signatures, bank details, trade secrets, or confidential terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider retention and compliance terms before use, and avoid highly sensitive contracts unless those terms are acceptable.
+
+Risk: The skill sends extracted contract text to a configurable external AI endpoint.
+
+Mitigation: Use only a trusted HTTPS endpoint and a dedicated low-privilege API key.
+
+Risk: Subscription tokens and API credentials can be exposed if passed directly on the command line.
+
+Mitigation: Prefer environment or session configuration for secrets and avoid command-line token arguments.
+
+Risk: Generated contract artifacts can remain in /tmp/contracts after analysis.
+
+Mitigation: Delete /tmp/contracts artifacts after reports are delivered.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub Listing Evidence](artifact/CLAWHUB.md)
+- [SkillHub Listing Evidence](artifact/SKILLHUB.md)
+- [ClawHub Skill Page](https://clawhub.ai/qiji0802/skills/contract-risk-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, files, guidance]
+
+**Output Format:** [Markdown risk report, JSON execution summary, and optional CSV export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include a contract summary, key terms when enabled by tier, risk findings grouped by severity, and a legal-advice disclaimer.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

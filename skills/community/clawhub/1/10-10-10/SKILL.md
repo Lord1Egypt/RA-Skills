@@ -3,6 +3,7 @@ name: 10-10-10
 description: >
   Activate when: someone is making a decision under emotional pressure and worries they'll regret it later; someone says "I know I should do X but it feels too scary right now"; someone is about to quit, accept an offer, end a relationship, or have a hard conversation and is stuck; someone mentions "regret minimization," "what would future me say," or "Suzy Welch."
   Do NOT activate when: the decision has no medium- or long-term consequences (e.g., which lunch to order); the decision belongs to someone else and the user is being asked to ratify it.
+  More: deciqai.com/c/10-10-10
 ---
 
 # 10-10-10
@@ -11,7 +12,7 @@ description: >
 
 Faced with a non-trivial decision, ask three questions: How will I feel in **10 minutes**? In **10 months**? In **10 years**? The three horizons are spaced an order of magnitude apart to surface the systematic bias toward the immediate — hyperbolic discounting — that makes decisions under stress go wrong. Coined by Suzy Welch (2009); the 10-year horizon is operationally identical to Jeff Bezos's regret-minimization framework (1994).
 
-Composes with [`regret-minimization`](../regret-minimization/SKILL.md), [`second-order-thinking`](../second-order-thinking/SKILL.md), [`first-principles`](../first-principles/SKILL.md), and [`metacognition`](../metacognition/SKILL.md).
+Composes with `regret-minimization`, `second-order-thinking`, `first-principles`, and `metacognition`.
 
 ## When to Use
 
@@ -117,4 +118,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/10-10-10** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/10-10-10.json*

@@ -1,51 +1,63 @@
-## Description: <br>
-Install and operate the AgentPay SDK for wallet setup, funding checks, funding instructions or QR generation, policy changes, manual approvals, transfers, approvals, broadcasts, x402 payments, MPP payments, and supported plugin-backed merchant payment flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentPay SDK helps agents install and operate the AgentPay CLI for wallet setup, funding, policy changes, transfers, approvals, broadcasts, x402 payments, MPP payments, and supported merchant payment flows.
 
-## Publisher: <br>
-[wlfi-dev1](https://clawhub.ai/user/wlfi-dev1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wlfi-dev1](https://clawhub.ai/user/wlfi-dev1)
 
-## Use Case: <br>
-Developers and operators use this skill to install and operate AgentPay workflows from an agent, including self-custodial wallet setup, funding guidance, policy configuration, manual approvals, crypto transfers, and paid API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install persistent payment tooling. <br>
-Mitigation: Install only after trusting the publisher and inspecting or verifying the wlfi.sh installer. <br>
-Risk: The skill can move crypto funds and authorize payments. <br>
-Mitigation: Use a dedicated wallet with limited funds, spending limits, and manual approvals before authorizing payment actions. <br>
-Risk: Sensitive wallet, backup, or plugin session material could be exposed in chat. <br>
-Mitigation: Keep vault passwords, backup passwords, and plugin session material out of chat; use secure local prompts for wallet and admin flows. <br>
-Risk: Under-scoped payment defaults can lead to unintended network, asset, recipient, spender, amount, or broadcast behavior. <br>
-Mitigation: Explicitly confirm network, asset, recipient, spender, amount, broadcast flag, and any MPP amount cap before approving payments. <br>
+## Use Case:
 
+Developers and operators use this skill to install AgentPay, set up or recover self-custodial local wallets, check funding, configure payment policies, and execute or approve EVM payment flows through the current agentpay CLI.
 
-## Reference(s): <br>
-- [AgentPay SDK ClawHub page](https://clawhub.ai/wlfi-dev1/agentpay-sdk) <br>
-- [Publisher profile](https://clawhub.ai/user/wlfi-dev1) <br>
-- [World Liberty Financial](https://worldlibertyfinancial.com) <br>
-- [Capabilities](references/capabilities.md) <br>
-- [Install And Workflows](references/install-and-workflows.md) <br>
-- [Intents And Policies](references/intents-and-policies.md) <br>
-- [MPP Services](references/mpp-services.md) <br>
-- [MPP service directory](https://mpp.dev/services/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON funding payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include funding addresses, network details, funding URIs, QR images or QR URLs, and local CLI approval steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: release evidence) <br>
+Risk: The documented one-click installer uses remote shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and prefer a local copy or verifiable release installation over curl-piped shell commands.
+
+Risk: Payment flows may accept server-selected charges or initiate outbound transactions.
+
+Mitigation: Require explicit confirmation of chain, token, recipient, amount, and broadcast intent before any payment, and use conservative wallet policies and manual approval limits.
+
+Risk: External QR fallback URLs can expose payment metadata.
+
+Mitigation: Avoid external QR fallback URLs when privacy matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wlfi-dev1/skills/agentpay-sdk)
+- [World Liberty Financial](https://worldlibertyfinancial.com)
+- [MPP Services Directory](https://mpp.dev/services/llms.txt)
+- [Capabilities](references/capabilities.md)
+- [Install And Workflows](references/install-and-workflows.md)
+- [Intents And Policies](references/intents-and-policies.md)
+- [MPP Services](references/mpp-services.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration guidance, and occasional JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should require explicit user confirmation for chain, token, recipient, amount, and broadcast intent before payment actions.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

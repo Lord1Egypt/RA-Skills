@@ -1,41 +1,56 @@
-## Description: <br>
-Crawdaddy helps agents assess repositories, smart contracts, and skill packages for post-quantum cryptography readiness, smart contract risks, and exposed credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous scanner detecting quantum-unsafe ECDSA, smart contract risks, and agent credential exposures with compliance-ready post-quantum security reports.
 
-## Publisher: <br>
-[mbennett-labs](https://clawhub.ai/user/mbennett-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbennett-labs](https://clawhub.ai/user/mbennett-labs)
 
-## Use Case: <br>
-Healthcare security leaders, blockchain developers, agent builders, and compliance teams use Crawdaddy to identify quantum-unsafe cryptography, smart contract exposure, and agent credential risks before planning remediation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit private source code, regulated data, smart contracts, or credentials to the scanning service. <br>
-Mitigation: Confirm authorization, provider terms, retention rules, and monitoring expectations before submitting sensitive targets. <br>
-Risk: The skill is instruction-only and depends on external service behavior for scanning and reporting. <br>
-Mitigation: Review generated findings and remediation guidance before making security or compliance decisions. <br>
+## Use Case:
 
+Developers, security teams, agent builders, healthcare security leaders, blockchain teams, and compliance officers use Crawdaddy to assess repositories, smart contracts, and agent packages for post-quantum cryptography readiness, credential exposure, and security-reporting needs.
 
-## Reference(s): <br>
-- [Crawdaddy on ClawHub](https://clawhub.ai/mbennett-labs/crawdaddy) <br>
-- [Quantum Shield Labs CrawDaddy](https://quantumshieldlabs.dev/agent/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Guidance] <br>
-**Output Format:** [Security assessment reports with risk scores and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PDF or HTML report exports when supported by the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and package.json) <br>
+Risk: Submitted repositories, skill packages, or credential-containing material may include sensitive code or secrets shared with an external security service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove secrets before submission or confirm the provider's handling terms for sensitive code and credentials.
+
+Risk: Security reports and post-quantum migration guidance may affect production cryptography, contract security, or compliance decisions.
+
+Mitigation: Have qualified security and compliance reviewers validate findings and remediation plans before production changes.
+
+## Reference(s):
+
+- [Crawdaddy ClawHub skill page](https://clawhub.ai/mbennett-labs/skills/crawdaddy)
+- [Crawdaddy service website](https://quantumshieldlabs.dev/agent/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Security scan reports and remediation guidance, with described JSON, PDF, and HTML report outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk scores, vulnerability inventory, remediation paths, post-quantum readiness checklist items, and compliance-oriented audit details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Records microphone audio and transcribes speech to text with local Whisper/faster-whisper models or an OpenAI-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech-to-text skill that records microphone audio and transcribes audio files locally with Whisper/faster-whisper or through an OpenAI-compatible API.
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-Developers and end users use this skill to capture short microphone recordings, transcribe existing audio files, and save transcripts using local or API-backed speech-to-text engines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture microphone audio and save speech recordings or transcripts to disk. <br>
-Mitigation: Use it only with clear user intent and consent, verify the output directory before recording, and delete recordings or transcripts that are no longer needed. <br>
-Risk: API mode can send audio to a remote OpenAI-compatible transcription service. <br>
-Mitigation: Prefer local-only transcription for sensitive speech and configure API URL and credentials deliberately when remote processing is acceptable. <br>
-Risk: Broad automatic triggers in shared or private environments could lead to unintended audio capture. <br>
-Mitigation: Keep invocation explicit and avoid enabling always-on or automatic use in environments where private conversation may be present. <br>
+## Use Case:
 
+Developers and end users can record speech or submit audio files for transcription, choosing local Whisper inference or an OpenAI-compatible API based on privacy, hardware, and connectivity needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moroiser/stt-recognizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime output is plain text transcripts and WAV recordings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May access microphone input, write recordings and transcripts under the OpenClaw workspace, and send audio to a configured remote API in API mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server evidence and _meta.json) <br>
+Risk: The skill can record microphone audio and upload audio to an OpenAI-compatible API, which may expose sensitive speech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get explicit user consent, prefer local transcription for sensitive audio, use only trusted HTTPS endpoints or intentional localhost endpoints, and delete recordings and transcripts when no longer needed.
+
+Risk: Dependency installation guidance uses broad version ranges and includes --break-system-packages.
+
+Mitigation: Install in a virtual environment and pin or lock dependencies before operational use.
+
+Risk: API keys can be passed through command-line options and may be exposed through shell history or process listings.
+
+Mitigation: Avoid passing API keys on the command line; use a secret manager or protected environment configuration and rotate keys if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moroiser/skills/stt-recognizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; runtime outputs include WAV recordings and text transcription files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcriptions may be saved as txt, srt, or vtt files; recorded audio and transcripts can remain on disk until deleted.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

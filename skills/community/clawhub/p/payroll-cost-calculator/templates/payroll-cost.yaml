@@ -1,0 +1,26 @@
+# Payroll Cost Calculator - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+company: ""
+prepared_by: ""
+prepared_on: ""
+pay_frequency: biweekly
+state: ""
+headcount: 0
+hours_per_period: 0
+gross_wages_per_period: 0
+employer_rates:
+  social_security_pct: 6.2
+  medicare_pct: 1.45
+  futa_pct: 0.6
+  state_unemployment_pct: 0
+  workers_comp_pct: 0
+  soc_sec_wage_base: 0
+benefits:
+  health_per_period: 0
+  retirement_match_per_period: 0
+  other_per_period: 0
+confirm_with_provider:
+  - state unemployment rate
+  - workers compensation rate
+  - current social security wage base
+notes: ""

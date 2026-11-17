@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents validate, repair, package, and publish OpenClaw or ClawHub skills through shell-based publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Publish Adapter Real helps developers validate, repair, and publish ClawHub/OpenClaw skill packages with guidance and shell-command workflows.
 
-## Publisher: <br>
-[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to inspect skill packages, get repair guidance, prepare archives, and run publishing workflows for ClawHub or GitHub releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious because its metadata presents a validator while its instructions describe publishing automation that can change files, download or run scripts, and publish to ClawHub or GitHub. <br>
-Mitigation: Install only when publishing automation is explicitly needed, and review the artifact, target directory, account, file changes, generated archives, and commands before execution. <br>
-Risk: The artifact describes remote shell-script installation, chmod changes, retries, archive generation, and deletion commands that may affect local repositories or publishing accounts. <br>
-Mitigation: Avoid running remote curl-installed scripts blindly; inspect scripts and proposed deletion or permission changes first, then run in a controlled workspace with the intended account. <br>
+## Use Case:
 
+Developers and release engineers use this skill to check skill package quality, repair common packaging issues, and prepare publishing workflows for ClawHub or GitHub. It is intended for normal ClawHub release workflows, with additional review required before using it in real projects or CI jobs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/puppetcat-fire/skill-publish-adapter-real) <br>
-- [Publisher Profile](https://clawhub.ai/user/puppetcat-fire) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local file changes, permission changes, archive creation, and publishing commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill asks users and CI jobs to run an unverified GitHub script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use, or require a bundled script pinned to an immutable commit with checksum or signature verification.
+
+Risk: The packaged metadata does not match the described adapter behavior.
+
+Mitigation: Compare the packaged files with the intended adapter before installation or release use.
+
+Risk: Publishing automation can accidentally package or expose sensitive files.
+
+Mitigation: Review the exact release package contents and exclude secrets, credentials, and local-only files before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/puppetcat-fire/skills/skill-publish-adapter-real)
+- [Publisher profile](https://clawhub.ai/user/puppetcat-fire)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and release workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, jq, tar, and git according to server-resolved ClawHub metadata.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

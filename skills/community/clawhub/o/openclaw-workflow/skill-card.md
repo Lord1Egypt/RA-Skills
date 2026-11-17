@@ -1,47 +1,63 @@
-## Description: <br>
-OC-Flow gives OpenClaw agents deterministic workflow control with YAML playbooks for conditional branches, loops, waits, state management, scripts, LLM calls, skill calls, subagents, HTTP requests, and messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Workflow gives OpenClaw agents deterministic YAML workflow control for branching, loops, waits, state management, scripts, HTTP calls, messaging, and agent or subagent steps.
 
-## Publisher: <br>
-[wlmh110](https://clawhub.ai/user/wlmh110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wlmh110](https://clawhub.ai/user/wlmh110)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to define, validate, execute, resume, and monitor deterministic YAML automation workflows for office, operations, assistant, research, notification, and integration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow YAML can run local code, make network requests, send messages, and access OpenClaw session files with the user's permissions. <br>
-Mitigation: Install and run only trusted workflows; review every script, code, HTTP, message, agent, skill, and subagent step before execution. <br>
-Risk: Workflows may expose sensitive environment variables or session data to scripts, network calls, agents, or messages. <br>
-Mitigation: Avoid running third-party YAML with sensitive environment variables or private session data available, and treat workflow files like executable code. <br>
-Risk: The security verdict is suspicious because this is a real automation skill with broad workflow actions and limited containment. <br>
-Mitigation: Use the skill only in environments where the workflow actions are expected, auditable, and acceptable for the user's data and account permissions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to validate, run, monitor, and resume YAML automation workflows for fixed multi-step tasks such as operations, data monitoring, notifications, and personal assistant routines.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wlmh110/openclaw-workflow) <br>
-- [OpenClaw Workflow reference](artifact/references/readme.md) <br>
-- [Basic workflow example](artifact/references/examples/basic_test.yaml) <br>
-- [Comprehensive workflow example](artifact/references/examples/comprehensive_test.yaml) <br>
-- [OpenClaw integration example](artifact/references/examples/openclaw_integration.yaml) <br>
-- [Subagent workflow example](artifact/references/examples/subagent_test.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, YAML workflow configuration, shell commands, terminal progress logs, and JSON run records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Run records include run_id, flow_id, status, step results, timings, retry counts, and start and finish timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Workflow YAML can drive local code, filesystem, environment, network, messaging, and session actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workflow files before execution, run them only from trusted sources, and use a low-privilege local account.
+
+Risk: Environment secrets could be exposed through script, code, HTTP, messaging, agent, or subagent nodes.
+
+Mitigation: Avoid running workflows in environments that hold sensitive secrets or API keys.
+
+Risk: HTTP, message, script, code, and subagent nodes can trigger external effects.
+
+Mitigation: Inspect those node types carefully and keep workflows limited to intended destinations and commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wlmh110/skills/openclaw-workflow)
+- [README](README.md)
+- [Skill Instructions](SKILL.md)
+- [Workflow Design Notes](references/readme.md)
+- [Basic Workflow Example](references/examples/basic_test.yaml)
+- [Comprehensive Workflow Example](references/examples/comprehensive_test.yaml)
+- [OpenClaw Integration Example](references/examples/openclaw_integration.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, YAML workflow examples, and JSON run records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Execution can create local workflow run records and may trigger configured HTTP, messaging, script, code, agent, or subagent actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

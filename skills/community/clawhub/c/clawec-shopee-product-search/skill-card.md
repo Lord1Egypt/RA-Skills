@@ -1,40 +1,56 @@
-## Description: <br>
-Searches Shopee products through the ClawEC API and returns product prices, sales, ratings, markets, links, and images for product research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Shopee products through the ClawEC API and returns product names, prices, sales, ratings, markets, links, and images for product research.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External users and ecommerce operators use this skill to search Shopee listings and compare products for Southeast Asia cross-border ecommerce product research, competitive analysis, and keyword-based sourcing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Shopee search keywords, region values, and the ClawEC API key to clawec.com. <br>
-Mitigation: Keep the API key in CLAWEC_API_KEY and avoid using sensitive private business terms unless that sharing is intended. <br>
+## Use Case:
 
+External sellers, marketplace researchers, and ecommerce operators use this skill to search Shopee listings by keyword and optional region, then compare products by price, sales, rating, rank, market, and link.
 
-## Reference(s): <br>
-- [Response Schema](references/response-schema.md) <br>
-- [ClawEC API Base URL](https://www.clawec.com/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anyunzhong/clawec-shopee-product-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown summaries and tables with JSON API responses when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Product results may include names, prices, sales, ratings, rankings, markets, links, image URLs, and API point information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Search keywords, selected regions, and the Clawec API key are sent to clawec.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, avoid sensitive search terms, and confirm Clawec account and API terms before operational use.
+
+Risk: Shopee search results may be incomplete, stale, unavailable, or returned with API errors such as invalid credentials.
+
+Mitigation: Check API status and credentials on failed requests, and review returned product data before making sourcing or marketplace decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-shopee-product-search)
+- [Shopee product search response schema](references/response-schema.md)
+- [ClawEC API base](https://www.clawec.com/api)
+- [Shopee search endpoint](https://www.clawec.com/api/aigc/ec/shopee_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and tables, with optional JSON API responses and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided CLAWEC_API_KEY and sends the keyword and optional region to Clawec.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

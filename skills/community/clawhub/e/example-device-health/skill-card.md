@@ -1,41 +1,56 @@
-## Description: <br>
-Cisco IOS-XE device health check and triage procedure for troubleshooting routers and switches, interpreting CPU, memory, interface, routing, and platform signals, and producing a structured handoff report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cisco IOS-XE device health check and triage procedure for troubleshooting routers or switches, checking CPU utilization, memory usage, interface errors, routing health, and producing structured handoff reports.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and operations teams use this skill to collect read-only IOS-XE health signals, classify device condition, and prepare a prioritized findings report during outages, audits, post-change checks, and incident response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized inspection of Cisco IOS-XE devices could expose operational details. <br>
-Mitigation: Use the skill only when authorized to inspect the target devices. <br>
-Risk: Recommended remediation actions such as reloads, filtering changes, QoS changes, or hardware replacement can affect production networks. <br>
-Mitigation: Treat remediation items as recommendations that require normal change control and explicit approval. <br>
+## Use Case:
 
+Network engineers and operations teams use this skill to collect read-only Cisco IOS-XE diagnostic commands, interpret device health thresholds, and produce a prioritized triage report during outages, audits, post-change checks, or incident response.
 
-## Reference(s): <br>
-- [IOS-XE Device Health CLI Reference](references/cli-reference.md) <br>
-- [Device Health Threshold Tables](references/threshold-tables.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with IOS-XE CLI command blocks and a structured device health report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only triage guidance; no executable code or hidden data flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The agent may connect to network devices and summarize operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorized Cisco IOS-XE devices and handle generated reports according to operational data handling rules.
+
+Risk: Suggested remediation may include disruptive operational actions such as reload planning, hardware replacement, or QoS and ACL changes.
+
+Mitigation: Have a qualified operator review recommendations and perform any changes manually through normal change-control procedures.
+
+## Reference(s):
+
+- [IOS-XE Device Health CLI Reference](references/cli-reference.md)
+- [Device Health Threshold Tables](references/threshold-tables.md)
+- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/skills/example-device-health)
+- [ClawHub publisher profile](https://clawhub.ai/user/vahagn-madatyan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with Cisco IOS-XE show commands, findings, severity labels, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only diagnostic workflow; requires authorized SSH or console access to the target Cisco IOS-XE device.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

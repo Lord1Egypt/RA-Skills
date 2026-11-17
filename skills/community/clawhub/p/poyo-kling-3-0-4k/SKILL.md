@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-3-0-4k
 description: Kling 3.0 4K video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-3.0/4K`, text-to-video, start-frame and optional end-frame image-to-video, multi_shots, multi_prompt, native audio flag, duration control, element references, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-3-0-4k","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-3-api","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling 3.0 4K Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-3-api>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-3-0-4k>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling 3.0 4K video jobs on PoYo. It helps agents prepare text-to-video, image-to-video, and multi-shot payloads, submit async tasks, and explain polling or webhook follow-up.
 

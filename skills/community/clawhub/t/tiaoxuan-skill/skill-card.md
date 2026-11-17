@@ -1,43 +1,55 @@
-## Description: <br>
-挑选Skill helps users and agents decide which AI skills are worth installing by comparing categories, recommendations, similar alternatives, workflows, and 13-dimension quality signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+挑选Skill helps users and agents decide which AI Skill is worth installing by providing category picks, search recommendations, similar alternatives, workflow suggestions, and 13-dimension quality analysis across a large skill catalog.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users, developers, and agents use 挑选Skill to choose AI skills for installation by reviewing curated top picks, search recommendations, similar alternatives, workflow suggestions, and quality details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may be mistaken for approval of third-party skills. <br>
-Mitigation: Treat recommendations as advice; review each recommended skill, its permissions, and its source before installing. <br>
-Risk: Some related workflows may require tokens or sensitive credentials when users run external development tooling. <br>
-Mitigation: Only provide tokens to trusted tools and environments that users intentionally choose to run outside this package. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to compare candidate AI skills, request recommendations, inspect alternatives, and choose workflow-specific skills before installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/tiaoxuan-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [English skill definition](artifact/SKILL_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and CLI text output with recommendation summaries, comparisons, workflow suggestions, and quality details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands can return top categories, search recommendations, similar alternatives, workflow recommendations, individual skill details, and quality reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.5.0 (source: server release evidence and artifact changelog, released 2026-05-01) <br>
+Risk: The skill recommends third-party skills and may print direct install URLs, including security or red-team tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each recommended skill and installation URL before installing or executing it.
+
+Risk: Development-mode local query logging can occur when a data directory is present.
+
+Mitigation: Remove or monitor artifact/data/search_log.jsonl when running from a development checkout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/tiaoxuan-skill)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [CLI text and markdown-style recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked skill recommendations, comparison notes, workflow picks, install URLs, and quality scores.]
+
+## Skill Version(s):
+
+6.5.0 (source: server release metadata and artifact changelog, released 2026-05-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

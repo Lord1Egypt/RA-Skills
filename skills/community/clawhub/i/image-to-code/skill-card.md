@@ -1,47 +1,65 @@
-## Description: <br>
-Converts images containing text, formulas, headings, and figures into structured code-style document output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts document images containing text, formulas, titles, and figures into structured code-style output with title markers, body lines, LaTeX formula calls, and image placeholders.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to convert screenshots or scanned technical documents into text output containing title calls, body text calls, formula calls, and image placeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images are uploaded to Baidu OCR by default, which can expose confidential, customer, regulated, or proprietary content. <br>
-Mitigation: Do not process sensitive images unless Baidu OCR is disabled or replaced with an approved provider; use the offline fallback where privacy requirements apply. <br>
-Risk: The artifact contains embedded Baidu OCR credentials. <br>
-Mitigation: Remove embedded credentials, rotate any exposed keys, and configure approved provider credentials outside source-controlled skill files. <br>
-Risk: Dependency versions are not fully pinned for reviewable installation. <br>
-Mitigation: Pin and review dependency versions before installing or deploying the skill. <br>
-Risk: OCR and formula recognition can produce incorrect text or LaTeX, especially for complex formulas or lower-quality images. <br>
-Mitigation: Review generated output before using it in downstream documents, reports, or automation. <br>
+## Use Case:
 
+Developers and document-automation users can use this skill to convert screenshots or scanned document images into formatted output for downstream document generation workflows. It is especially oriented toward Chinese technical documents with headings, body text, formulas, and chart placeholders.
 
-## Reference(s): <br>
-- [Baidu AI Console](https://console.bce.baidu.com/ai/) <br>
-- [Tesseract OCR Documentation](https://tesseract-ocr.github.io/) <br>
-- [pytesseract API](https://github.com/madmaze/pytesseract) <br>
-- [OpenCV Documentation](https://docs.opencv.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text containing code-style document calls, LaTeX formula strings, and Markdown image placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print converted output to the terminal or write it to a text file; OCR and formula output may require manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact/metadata.json) <br>
+Risk: The default OCR path may send complete images to Baidu OCR using embedded shared credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default path only when third-party OCR processing is approved; otherwise configure a local-only OCR engine and replace embedded credentials with securely supplied project credentials.
+
+Risk: Confidential screenshots, personal data, credentials, source code, or regulated documents could be exposed during OCR processing.
+
+Mitigation: Screen input images before processing and keep sensitive or regulated documents on approved local-only infrastructure.
+
+Risk: OCR, formula conversion, and title detection can produce incorrect output, especially for complex formulas or low-quality images.
+
+Mitigation: Manually review formulas, headings, and key values before using generated output in documents or code workflows.
+
+Risk: Unpinned dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin dependencies, install from trusted indexes, and scan the environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nidhov01/skills/image-to-code)
+- [Baidu AI Console](https://console.bce.baidu.com/ai/)
+- [Tesseract OCR documentation](https://tesseract-ocr.github.io/)
+- [pytesseract API](https://github.com/madmaze/pytesseract)
+- [OpenCV documentation](https://docs.opencv.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or UTF-8 text files containing PHP-style $word lines, LaTeX formula strings, and Markdown image placeholders.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on OCR engine availability, image quality, and manual review of formulas and headings.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-Design, execute, and evaluate quantitative trading strategies using historical price data and Fama-French factor attribution via the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, execute, and evaluate quantitative trading strategies using historical price data and Fama-French factor attribution via the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External developers, quantitative analysts, and trading strategy researchers use this skill to turn strategy hypotheses into historical backtest reports with performance metrics, benchmark comparison, factor attribution, walk-forward validation, and stress tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive FINSKILLS_API_KEY credential. <br>
-Mitigation: Store the key as a secret, avoid pasting it into chats or public files, and confirm plan or billing limits before use. <br>
-Risk: Generated backtests can be mistaken for investment advice or live-trading recommendations. <br>
-Mitigation: Treat the report as analytical support only and have qualified reviewers assess assumptions, risk, and suitability before any financial decision. <br>
-Risk: Historical backtests can be affected by survivorship bias, missing slippage, delayed factor data, or overfitting. <br>
-Mitigation: Review data assumptions, include realistic costs and slippage where possible, and use walk-forward and out-of-sample checks before relying on results. <br>
+## Use Case:
 
+Developers, analysts, and quantitatively oriented traders use this skill to turn strategy hypotheses into historical backtests with performance metrics, drawdown analysis, factor attribution, walk-forward validation, and stress tests.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/finskills/finskills-backtest-expert) <br>
-- [Finskills Backtest Expert homepage](https://github.com/finskills/backtest-expert) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills registration](https://finskills.net/register) <br>
-- [Historical OHLCV endpoint](https://finskills.net/v1/stocks/history/{SYMBOL}?period=5y&interval=1d) <br>
-- [Fama-French factor endpoint](https://finskills.net/v1/free/market/fama-french) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Structured Markdown backtest report with metrics, attribution, validation, stress-test results, and a strategy verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require FINSKILLS_API_KEY to retrieve Finskills market and factor data; generated backtests should be treated as analysis, not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill uses Finskills API queries for market data and may expose strategy details, symbols, or proprietary baskets to the provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user is comfortable with Finskills receiving those API queries and has reviewed the provider's privacy and retention practices.
+
+Risk: Backtest reports can be misleading when historical results are treated as trading advice or when bias, lagged factors, slippage, or overfitting are ignored.
+
+Mitigation: Review assumptions before acting, verify signal construction, account for execution costs and data limitations, and treat outputs as analytical support rather than a guarantee of future performance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/finskills-backtest-expert)
+- [Publisher profile](https://clawhub.ai/user/finskills)
+- [Skill homepage](https://github.com/finskills/backtest-expert)
+- [Finskills API](https://finskills.net)
+- [Finskills registration](https://finskills.net/register)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, analysis, guidance]
+
+**Output Format:** [Markdown report with structured strategy summary, performance metrics, factor attribution, walk-forward validation, stress tests, and verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and may use Finskills market data endpoints for historical prices and Fama-French factors.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

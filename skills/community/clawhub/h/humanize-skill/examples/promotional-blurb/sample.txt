@@ -1,0 +1,18 @@
+I write product copy for a small SaaS. I have been doing this for six years. The way I write: short sentences, a number when I have one, plain verbs. I never quote a study I have not read. I never use "delve" or "tapestry" or "in today's fast-paced world." I sign with my name, and I tell the customer what to do next.
+
+Things I keep doing:
+- Lead with what the product does for the user, not what it "is"
+- Use a real number when I have one ("30% faster" beats "lightning fast")
+- Cite by name and year when I quote a study
+- End with the next step
+- Write like I am talking to one person, not a segment
+
+Things I avoid:
+- "Great question!" and any chatbot residue
+- "Pivotal", "groundbreaking", "revolutionary", "game-changing", "cutting-edge", "seamless", "robust", "world-class", "best-in-class", "next-generation", "state-of-the-art"
+- "Not just X, but Y" parallelism
+- "Studies show" with no name
+- "Experts say" with no name
+- Em dashes in product copy (the executive team finds them hard to read)
+- Bullet lists in sales emails (one paragraph each is enough)
+- "In today's rapidly evolving landscape" and any time-cliché

@@ -1,43 +1,60 @@
-## Description: <br>
-Chat Summary organizes chat records and conversation history into topic-clustered structured summaries with multilingual support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat Summary organizes chat records and conversation histories into topic-clustered, structured summaries with multilingual support for Chinese, English, Traditional Chinese, Japanese, and Korean.
 
-## Publisher: <br>
-[GaryYinClaw](https://clawhub.ai/user/GaryYinClaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garyyinclaw](https://clawhub.ai/user/garyyinclaw)
 
-## Use Case: <br>
-External users and developers use this skill to summarize daily discussions, meeting conversations, long chats, and multi-topic archives into concise topic-based notes. It supports local Markdown or plain-text output and optional Notion export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads chat content selected for summarization, which can expose private or sensitive conversation data. <br>
-Mitigation: Use it only on chats appropriate for summarization, keep sensitive exports local by default, and avoid processing confidential or regulated content without approval. <br>
-Risk: Optional Notion export or translation services can send summaries or source-derived content to external services. <br>
-Mitigation: Review summaries before saving, use a limited Notion integration for export, and avoid third-party translation providers for confidential or regulated content unless approved. <br>
+## Use Case:
 
+External users, developers, and knowledge workers use this skill to summarize selected chat sessions into topic-based daily summaries, meeting notes, long-conversation digests, and archives. It can produce local Markdown or plain text output and optionally prepare Notion page content.
 
-## Reference(s): <br>
-- [Chat Summary ClawHub Page](https://clawhub.ai/GaryYinClaw/chat-summary) <br>
-- [Clustering Rules](references/clustering-rules.md) <br>
-- [Notion API Guide](references/notion-api.md) <br>
-- [Translation Integration Guide](references/translation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, api calls, guidance] <br>
-**Output Format:** [Markdown, plain text, or Notion page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Topic count and summary length are configurable by scenario; output language can follow the source language or be user-selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected chat history may contain sensitive or private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit session limits, avoid sensitive or private conversations, and follow the skill's guidance to omit sensitive content.
+
+Risk: Optional Notion or translation integrations can send summary text to external services.
+
+Mitigation: Enable Notion or translation providers only when external processing is intended and use the relevant API keys deliberately.
+
+Risk: Summaries may omit context or overstate conclusions from the original conversation.
+
+Mitigation: Preserve original conclusions, cite important message sources where available, and review summaries before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/garyyinclaw/skills/chat-summary)
+- [Topic clustering rules](references/clustering-rules.md)
+- [Notion API usage guide](references/notion-api.md)
+- [Translation integration guide](references/translation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown, plain text, or Notion page content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports topic limits, summary length targets, language selection, and optional Notion export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

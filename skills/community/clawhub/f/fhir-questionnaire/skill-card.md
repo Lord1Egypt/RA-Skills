@@ -1,50 +1,65 @@
-## Description: <br>
-Helps create FHIR-conformant Questionnaire definitions from plain requirements and supports LOINC and SNOMED CT lookup plus validation through local scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create FHIR-conforming Questionnaire definitions from requirement notes, with scripts for LOINC and SNOMED CT lookup and questionnaire validation.
 
-## Publisher: <br>
-[elmariachi111](https://clawhub.ai/user/elmariachi111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elmariachi111](https://clawhub.ai/user/elmariachi111)
 
-## Use Case: <br>
-Developers, clinical informatics teams, and healthcare workflow builders use this skill to draft, code, and validate FHIR Questionnaire JSON from requirements. It is especially useful when questionnaires need terminology-backed LOINC or SNOMED CT codes and answer options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Clinical terminology lookup terms may be sent to external terminology services. <br>
-Mitigation: Do not include patient identifiers or sensitive clinical narratives in lookup terms; use minimal generic terms. <br>
-Risk: Generated CodeSystem or ValueSet files may be created with unsuitable identifiers or in unintended locations. <br>
-Mitigation: Use simple safe IDs, choose output directories deliberately, and review generated JSON before reuse. <br>
-Risk: Questionnaire content may contain incorrect clinical codes if the lookup scripts are skipped or results are not checked. <br>
-Mitigation: Use the official search and query scripts for LOINC and SNOMED CT codes, then validate Questionnaire JSON before finalizing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elmariachi111/fhir-questionnaire) <br>
-- [FHIR Questionnaire Reference Documentation](REFERENCE.md) <br>
-- [FHIR Questionnaire Specification](references/fhir_questionnaire_spec.md) <br>
-- [FHIR Questionnaire Spec](https://hl7.org/fhir/questionnaire.html) <br>
-- [LOINC Coding Guide](references/loinc_guide.md) <br>
-- [LOINC Database](https://loinc.org) <br>
-- [SNOMED CT Guide](references/snomed_guide.md) <br>
-- [FHIR Questionnaire Best Practices](references/best_practices.md) <br>
-- [FHIR Questionnaire Examples](references/examples.md) <br>
-- [Questionnaire JSON Schema](references/schema/questionnaire.schema.json) <br>
+## Use Case:
 
+Developers and healthcare implementation teams use this skill to draft FHIR R4 Questionnaire JSON, identify terminology with official lookup scripts, choose answer options, and validate questionnaire structure before use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON FHIR resources and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths for generated or validated Questionnaire, CodeSystem, and ValueSet JSON files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Terminology lookups can send clinical search terms to remote terminology servers.
+
+Mitigation: Keep lookups limited to trusted HTTPS FHIR terminology servers and avoid patient-identifying details in search terms.
+
+Risk: Dependency installation is not pinned.
+
+Mitigation: Review and pin dependencies before running setup.sh.
+
+Risk: Incorrect clinical terminology could make generated questionnaires misleading.
+
+Mitigation: Use only codes returned by the official lookup scripts and validate questionnaire JSON before finalizing.
+
+## Reference(s):
+
+- [Complete Documentation](REFERENCE.md)
+- [FHIR Questionnaire Specification](references/fhir_questionnaire_spec.md)
+- [HL7 FHIR Questionnaire](https://hl7.org/fhir/questionnaire.html)
+- [LOINC Coding Guide](references/loinc_guide.md)
+- [LOINC Database](https://loinc.org)
+- [SNOMED CT Guide](references/snomed_guide.md)
+- [FHIR Questionnaire Best Practices](references/best_practices.md)
+- [FHIR Questionnaire Examples](references/examples.md)
+- [Questionnaire JSON Schema](references/schema/questionnaire.schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/elmariachi111/skills/fhir-questionnaire)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate user-directed local FHIR Questionnaire, ValueSet, or CodeSystem JSON files.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

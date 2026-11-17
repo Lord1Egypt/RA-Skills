@@ -1,0 +1,41 @@
+{
+  "name": "backtest-analyzer",
+  "version": "1.0.0",
+  "description": "回测分析工具。从交易记录CSV计算回测核心指标：胜率、盈亏比、最大回撤、夏普比率、获利因子、最佳/最差交易。支持JSON报告导出。",
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "keywords": [
+    "backtest",
+    "量化交易",
+    "回测分析",
+    "策略评估",
+    "trading"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "analyze": "python3 scripts/backtest_analyzer.py --file"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "data-analysis",
+    "region": "cn",
+    "dependencies": [],
+    "emoji": "📊"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cqdev-ai/backtest-analyzer"
+  }
+}

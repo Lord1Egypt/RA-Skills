@@ -1,0 +1,457 @@
+[
+  {
+    "id": "long-sentence",
+    "text": "Operators inspect cables, connectors, switches, panels, displays, sensors, relays, pumps, valves, filters, motors, batteries, fuses, alarms, lights, doors, seals, bolts, nuts, brackets, housings, pipes, tanks, vents, fans, gauges, levers, handles, labels, wires, ports, sockets, terminals, covers, and guards daily.",
+    "expect": {
+      "strict": [
+        "CLR001:error"
+      ],
+      "technical": [
+        "CLR001:warning"
+      ],
+      "natural": []
+    }
+  },
+  {
+    "id": "long-paragraph",
+    "text": "Open alpha. Close bravo. Inspect charlie. Clean delta. Test echo. Record foxtrot. Check golf. Select hotel. Remove india. Attach juliet. Store kilo.",
+    "expect": {
+      "strict": [
+        "CLR002:error"
+      ],
+      "technical": [
+        "CLR002:warning"
+      ]
+    }
+  },
+  {
+    "id": "semicolon",
+    "text": "Open the file; read the text.",
+    "expect": {
+      "strict": [
+        "CLR003:error"
+      ],
+      "technical": [
+        "CLR003:warning"
+      ],
+      "natural": []
+    }
+  },
+  {
+    "id": "contraction",
+    "text": "We can't save the file.",
+    "expect": {
+      "strict": [
+        "CLR004:error"
+      ],
+      "technical": []
+    }
+  },
+  {
+    "id": "passive",
+    "text": "The file was deleted by Ana.",
+    "expect": {
+      "strict": [
+        "CLR005:error"
+      ],
+      "technical": [
+        "CLR005:warning"
+      ]
+    }
+  },
+  {
+    "id": "progressive",
+    "text": "The service is processing requests.",
+    "expect": {
+      "strict": [
+        "CLR006:error"
+      ],
+      "technical": [
+        "CLR006:warning"
+      ],
+      "natural": []
+    }
+  },
+  {
+    "id": "nominalization",
+    "text": "We make a decision today.",
+    "expect": {
+      "strict": [
+        "CLR007:error"
+      ],
+      "technical": [
+        "CLR007:warning"
+      ]
+    }
+  },
+  {
+    "id": "phrasal-verb",
+    "text": "We spin up the server.",
+    "expect": {
+      "strict": [
+        "CLR008:error"
+      ],
+      "technical": [
+        "CLR008:warning"
+      ],
+      "natural": []
+    }
+  },
+  {
+    "id": "inflated-word",
+    "text": "We utilize the server.",
+    "expect": {
+      "strict": [
+        "WRD001:error"
+      ],
+      "technical": [
+        "WRD001:warning"
+      ]
+    }
+  },
+  {
+    "id": "promotional-word",
+    "text": "The robust server handles requests.",
+    "expect": {
+      "strict": [
+        "WRD002:error"
+      ],
+      "technical": [
+        "WRD002:error"
+      ]
+    }
+  },
+  {
+    "id": "common-ai-diction",
+    "text": "We will delve into this transformative realm.",
+    "expect": {
+      "strict": [
+        "WRD011:warning",
+        "WRD011:warning",
+        "WRD011:warning"
+      ],
+      "technical": [
+        "WRD011:warning",
+        "WRD011:warning",
+        "WRD011:warning"
+      ]
+    }
+  },
+  {
+    "id": "empty-lead-in",
+    "text": "It is worth noting that the server stopped.",
+    "expect": {
+      "strict": [
+        "WRD003:error"
+      ],
+      "technical": [
+        "WRD003:error"
+      ]
+    }
+  },
+  {
+    "id": "stale-expression",
+    "text": "This tool will move the needle.",
+    "expect": {
+      "strict": [
+        "WRD004:warning"
+      ],
+      "technical": [
+        "WRD004:warning"
+      ]
+    }
+  },
+  {
+    "id": "vague-intensifier",
+    "text": "The service is very slow.",
+    "expect": {
+      "strict": [
+        "WRD005:warning"
+      ],
+      "technical": [
+        "WRD005:warning"
+      ]
+    }
+  },
+  {
+    "id": "weasel-attribution",
+    "text": "Experts agree that the change works.",
+    "expect": {
+      "strict": [
+        "WRD006:error"
+      ],
+      "technical": [
+        "WRD006:error"
+      ]
+    }
+  },
+  {
+    "id": "importance-puffery",
+    "text": "This marks a pivotal moment.",
+    "expect": {
+      "strict": [
+        "WRD007:error"
+      ],
+      "technical": [
+        "WRD007:error"
+      ]
+    }
+  },
+  {
+    "id": "repeated-word",
+    "text": "Open the the file.",
+    "expect": {
+      "strict": [
+        "TXT001:error"
+      ],
+      "technical": [
+        "TXT001:error"
+      ]
+    }
+  },
+  {
+    "id": "em-dash-overuse",
+    "text": "One—two—three—four.",
+    "expect": {
+      "strict": [
+        "TXT002:warning",
+        "TXT002:warning"
+      ],
+      "technical": [
+        "TXT002:warning",
+        "TXT002:warning"
+      ]
+    }
+  },
+  {
+    "id": "clean-strict-procedure",
+    "text": "Open the console.\n\nSelect the worker.\n\nSelect Restart.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "markdown-protection",
+    "text": "---\ndescription: \"A robust workflow\"\n---\n\nUse `robust; seamless`.\n\n```text\nIt is important to note that this is powerful.\n```\n\nRead https://example.com/robust;seamless.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "passive-lookalike",
+    "text": "The advanced light is red.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "legitimate-repeat",
+    "text": "She said that that value was correct.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "possessive-not-contraction",
+    "text": "The user's file is ready.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "technical-robust-term",
+    "text": "Use robust regression for these outliers.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "formulaic-contrast",
+    "text": "This is not just a release but a revolution.",
+    "expect": {
+      "strict": [
+        "STR001:error",
+        "WRD008:warning"
+      ],
+      "technical": [
+        "STR001:error",
+        "WRD008:warning"
+      ]
+    }
+  },
+  {
+    "id": "generic-ending",
+    "text": "The journey has just begun.",
+    "expect": {
+      "strict": [
+        "WRD009:error"
+      ],
+      "technical": [
+        "WRD009:warning"
+      ]
+    }
+  },
+  {
+    "id": "participial-gloss",
+    "text": "The change creates momentum, highlighting our vision.",
+    "expect": {
+      "strict": [
+        "WRD010:warning"
+      ],
+      "technical": [
+        "WRD010:warning"
+      ]
+    }
+  },
+  {
+    "id": "evidenced-participial-clause",
+    "text": "The benchmark fell by 12%, demonstrating that the fix worked.",
+    "expect": {
+      "strict": [],
+      "technical": []
+    }
+  },
+  {
+    "id": "natural-binary-contrast",
+    "text": "This is not a model problem. It is an eval problem.",
+    "expect": {
+      "strict": ["STR001:error"],
+      "technical": ["STR001:error"]
+    }
+  },
+  {
+    "id": "natural-not-only-fragment",
+    "text": "The work is not only a database move.",
+    "expect": {
+      "strict": ["STR001:error"],
+      "technical": ["STR001:error"]
+    }
+  },
+  {
+    "id": "natural-faux-insight",
+    "text": "This is the part everyone misses.",
+    "expect": {
+      "strict": ["STR002:error"],
+      "technical": ["STR002:error"]
+    }
+  },
+  {
+    "id": "natural-colon-reveal",
+    "text": "The useful detail: a separate agent grades it.",
+    "expect": {
+      "strict": ["STR003:warning"],
+      "technical": ["STR003:warning"]
+    }
+  },
+  {
+    "id": "natural-negative-listing",
+    "text": "Not speed. Not scale. Evidence.",
+    "expect": {
+      "strict": ["STR004:error"],
+      "technical": ["STR004:error"]
+    }
+  },
+  {
+    "id": "natural-dramatic-stack",
+    "text": "Tests failed. And alerts fired. And workers stopped.",
+    "expect": {
+      "strict": ["STR005:error"],
+      "technical": ["STR005:error"],
+      "natural": ["STR005:warning"]
+    }
+  },
+  {
+    "id": "natural-question-answer",
+    "text": "What failed? The worker stopped.",
+    "expect": {
+      "strict": ["STR006:warning"],
+      "technical": ["STR006:warning"]
+    }
+  },
+  {
+    "id": "natural-synthesis",
+    "text": "Same problem, different angle.",
+    "expect": {
+      "strict": ["STR007:error"],
+      "technical": ["STR007:error"]
+    }
+  },
+  {
+    "id": "natural-generic-heading",
+    "text": "# Why this matters\n\nAlpha happened. Bravo followed. Charlie remains open.",
+    "expect": {
+      "strict": ["STR008:warning"],
+      "technical": ["STR008:warning"]
+    }
+  },
+  {
+    "id": "natural-heading-emoji",
+    "text": "# Release 🚀\n\nAlpha happened. Bravo followed. Charlie remains open.",
+    "expect": {
+      "strict": ["STR009:error"],
+      "technical": ["STR009:error"]
+    }
+  },
+  {
+    "id": "natural-bold",
+    "text": "The **worker** stopped.",
+    "expect": {
+      "strict": ["STR010:warning"],
+      "technical": ["STR010:warning"]
+    }
+  },
+  {
+    "id": "natural-short-section",
+    "text": "## Worker state\n\nThe worker stopped.",
+    "expect": {
+      "strict": ["STR011:warning"],
+      "technical": ["STR011:warning"]
+    }
+  },
+  {
+    "id": "natural-bullet-inflation",
+    "text": "- Alpha contains twelve ordinary words that would read more clearly as prose\n- Bravo contains twelve ordinary words that would read more clearly as prose\n- Charlie contains twelve ordinary words that would read more clearly as prose\n- Delta has a short label\n- Echo has a short label",
+    "expect": {
+      "strict": ["STR012:warning"],
+      "technical": ["STR012:warning"]
+    }
+  },
+  {
+    "id": "natural-repeated-opening",
+    "text": "The worker stopped. The worker restarted. The worker failed. The worker recovered.",
+    "expect": {
+      "strict": ["STR013:warning"],
+      "technical": ["STR013:warning"]
+    }
+  },
+  {
+    "id": "natural-concessive-loop",
+    "text": "Customer-side fixes will help, but any spike can restart the loop.",
+    "expect": {
+      "strict": ["STR014:error"],
+      "technical": ["STR014:error"]
+    }
+  },
+  {
+    "id": "natural-narrator-scaffolding",
+    "text": "The log sequence shows the loop.",
+    "expect": {
+      "strict": ["STR015:warning"],
+      "technical": ["STR015:warning"]
+    }
+  },
+  {
+    "id": "natural-abstract-evidence",
+    "text": "We have documented customer impact.",
+    "expect": {
+      "strict": ["STR016:error"],
+      "technical": ["STR016:error"]
+    }
+  }
+]

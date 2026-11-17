@@ -1,0 +1,52 @@
+{
+  "skill": "no-uv-filter-protection",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "要不要装UV镜保护镜头？",
+      "expected_behavior": "调用 no-uv-filter-protection，讲解UV镜对画质的影响和替代保护方案",
+      "notes": "正面场景：UV镜使用决策"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我的照片总有炫光，是什么原因？",
+      "expected_behavior": "调用 no-uv-filter-protection，检查是否因UV镜导致炫光",
+      "notes": "正面场景：炫光排查"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "should I keep a UV filter on my lens all the time?",
+      "expected_behavior": "调用 no-uv-filter-protection，讲解长期装UV镜的利弊",
+      "notes": "正面场景：UV镜长期使用"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "偏振镜怎么加深蓝天？",
+      "expected_behavior": "不应调用 no-uv-filter-protection，这是偏振镜的创意使用而非保护镜问题",
+      "notes": "诱饵：滤光镜创意使用"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "推荐一款好的UV镜",
+      "expected_behavior": "纯器材推荐，不应调用方法论 skill",
+      "notes": "诱饵：产品推荐"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "在海边拍照怎么保护镜头？",
+      "expected_behavior": "边界模糊——海边是UV镜有保护价值的恶劣环境。可调用但结论可能不同（建议装）",
+      "notes": "边界：恶劣环境保护需求"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

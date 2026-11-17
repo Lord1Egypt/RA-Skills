@@ -1,40 +1,52 @@
-## Description: <br>
-Analyzes a target company's technology stack and AI compute needs to produce a customer technical profile for AI compute sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a target company's technology stack and AI compute needs to produce a customer technical profile for AI compute sales.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dashiming](https://clawhub.ai/user/dashiming)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales engineers and technical account teams use this skill to profile a target company's public technology signals, estimate GPU demand, and prepare sales entry recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Network fetching can be directed at unintended internal targets.
+
+Mitigation: Use only trusted public company domains and avoid running the skill where localhost, private-network services, or cloud metadata endpoints are reachable.
+
+Risk: Advertised data-source coverage may be overstated.
+
+Mitigation: Treat the reported source coverage cautiously until the documentation or implementation is corrected.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales engineers, account teams, and AI infrastructure specialists use this skill to research a company from a name or domain and summarize its technology stack, GPU demand level, inference/training mix, signal sources, and sales entry points. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound web requests for the company or domain provided by the user. <br>
-Mitigation: Use only public company names or domains where that external lookup is acceptable, and avoid internal hostnames, private IPs, or confidential prospect lists. <br>
-Risk: Generated profiles and optional output files may contain business research data. <br>
-Mitigation: Store output files with appropriate access controls and clean them up when they are no longer needed. <br>
+**Output Format:** [Plain text, JSON, or Markdown company technical profile]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-tech-profile) <br>
+**Other Properties Related to Output:** [Can write the generated profile to a file when an output path is provided.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text, JSON, or Markdown company technical profile; optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a company name or domain, optional deep analysis, and an output path.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

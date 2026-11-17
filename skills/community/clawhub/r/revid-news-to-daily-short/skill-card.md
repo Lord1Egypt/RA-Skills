@@ -1,44 +1,59 @@
-## Description: <br>
-Generate a daily news short on a topic Revid researches itself for recurring news-of-the-day channels where the user supplies only the topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily news short on a topic Revid researches itself.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-Developers, creators, and automation teams use this skill to configure Revid to fetch fresh news for a topic, summarize it, and render a recurring short-form video. It is suited to daily channel workflows that schedule one render at a time and then review or publish the returned video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Revid API key and may be used with connected social accounts. <br>
-Mitigation: Store REVID_API_KEY in a trusted secret manager, scope connected accounts deliberately, and install only where Revid is trusted with those credentials. <br>
-Risk: Freshly generated news videos may contain inaccurate, stale, or off-brand summaries. <br>
-Mitigation: Use the render/status flow first and review each generated video for accuracy and brand fit before publishing. <br>
-Risk: Scheduled publishing can post generated videos without timely human review. <br>
-Mitigation: Keep public posting behind a deliberate approval step unless the account scope, topic, and review process are already controlled. <br>
+## Use Case:
 
+External creators and automation developers use this skill to generate recurring short-form daily news videos from a topic or niche. The skill is suited for scheduled news-of-the-day channels where Revid researches fresh news, writes the script, and produces the video.
 
-## Reference(s): <br>
-- [Daily News Short on ClawHub](https://clawhub.ai/api00/revid-news-to-daily-short) <br>
-- [Revid Render API endpoint](https://www.revid.ai/api/public/v3/render) <br>
-- [Revid Status API endpoint](https://www.revid.ai/api/public/v3/status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP, JSON, and Bash examples; Revid API responses are JSON and may include a videoUrl when rendering is ready.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY. The default example renders a 9:16, 45-second news short and polls status until completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Topics and prompts are sent to Revid through an outbound API request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when sharing those topics with Revid is acceptable for the intended workflow.
+
+Risk: The skill uses REVID_API_KEY for rendering and status checks.
+
+Mitigation: Store the key in managed configuration or secrets and avoid logging or committing it.
+
+Risk: Scheduled or publish-now workflows can push generated videos to public social accounts without timely review.
+
+Mitigation: Review generated videos before enabling cron jobs or public publishing, especially for regulated or sensitive topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/api00/skills/revid-news-to-daily-short)
+- [Revid render API endpoint](https://www.revid.ai/api/public/v3/render)
+- [Revid status API endpoint](https://www.revid.ai/api/public/v3/status)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVID_API_KEY and sends the supplied topic or prompt to Revid for video generation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

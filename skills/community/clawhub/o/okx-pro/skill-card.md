@@ -1,44 +1,59 @@
-## Description: <br>
-OKX Pro provides OKX exchange trading guidance and shell examples for spot trading, futures, leverage, take-profit and stop-loss orders, and position management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OKX exchange integration guidance for spot trading, futures trading, leverage, take-profit and stop-loss orders, and position management.
 
-## Publisher: <br>
-[IceNoodle](https://clawhub.ai/user/IceNoodle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icenoodle](https://clawhub.ai/user/icenoodle)
 
-## Use Case: <br>
-External developers and trading operators use this skill to configure OKX API credentials, inspect account and market data, and draft OKX V5 API calls for spot and futures trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading examples can affect live funds or close the wrong position if copied with the wrong side, amount, market, or account mode. <br>
-Mitigation: Start in OKX demo trading, verify side and amount before execution, and require confirmation for large or position-closing orders. <br>
-Risk: Signing and authentication examples may fail or produce rejected API requests if they drift from OKX V5 requirements. <br>
-Mitigation: Review the signing helper against the OKX API documentation before using it with real API keys. <br>
-Risk: API credentials with broad trading permissions increase the impact of mistakes or misuse. <br>
-Mitigation: Use API keys with the narrowest trading permissions available and avoid unnecessary withdrawal or administrative permissions. <br>
+## Use Case:
 
+Developers and trading operators use this skill to prepare OKX V5 API requests for account queries, market data, spot and futures orders, leverage settings, cancellations, and position management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/IceNoodle/okx-pro) <br>
-- [OKX API Documentation](https://www.okx.com/docs-v5/) <br>
-- [OKX Demo Trading](https://www.okx.com/market/trade/demo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, openssl, and user-provided OKX API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Live OKX API credentials could expose account access or trading capability if stored insecurely or granted excessive permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated OKX API key with minimum required permissions, no withdrawal permission, IP allowlisting where possible, and locked-down file permissions for any local credential file.
+
+Risk: Order placement, cancellation, leverage, margin, and position-closing commands can execute financial actions.
+
+Mitigation: Use OKX demo trading first and require explicit confirmation before any order, cancellation, leverage change, margin change, or position closure.
+
+Risk: Leveraged futures and margin actions can amplify losses if pair, size, direction, or risk controls are wrong.
+
+Mitigation: Verify instrument, quantity, side, and existing position before execution; keep leverage conservative and set stop-loss controls for leveraged trades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/icenoodle/skills/okx-pro)
+- [OKX V5 API Documentation](https://www.okx.com/docs-v5/)
+- [OKX Demo Trading](https://www.okx.com/market/trade/demo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, openssl, and user-provided OKX API credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter shows 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

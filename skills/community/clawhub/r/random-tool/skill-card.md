@@ -1,39 +1,53 @@
-## Description: <br>
-Generates random numbers, strings, UUIDs, choices, shuffled lines, and test passwords with configurable options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate random numbers, passwords, and strings with configurable length and character sets. Use for security tokens, testing data, and randomization.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to generate non-security random values for testing data, randomization tasks, simple selections, UUIDs, and shuffled text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises secure password or token generation while using non-secure randomness. <br>
-Mitigation: Use it only for testing data and non-security randomization; do not use it for real credentials, API keys, recovery codes, security tokens, or production passwords unless it is updated to use a cryptographically secure generator and the documentation is corrected. <br>
+## Use Case:
 
+Developers and other agent users can use this skill to generate random integers, floats, strings, UUIDs, choices, shuffled text, and passwords for testing data, demos, and lightweight randomization tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/random-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text values and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are single generated values or transformed input text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence reports that password, token, key, reset-link, or session-identifier outputs should not be treated as cryptographically secure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit current use to testing, demos, simple random choices, and shuffling unless the implementation is changed to use a cryptographically secure source such as Python's secrets module and the documentation is corrected.
+
+Risk: The skill advertises security-token and secure-password use while the security verdict is suspicious.
+
+Mitigation: Review the skill before installation for any security-sensitive workflow and avoid relying on generated security credentials until the risk is remediated.
+
+## Reference(s):
+
+- [Random Tool ClawHub skill page](https://clawhub.ai/dinghaibin/skills/random-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text values and Markdown with inline shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Random values may include integers, floats, strings, UUIDs, choices, shuffled lines, or passwords depending on selected options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

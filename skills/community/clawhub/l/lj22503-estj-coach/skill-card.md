@@ -1,45 +1,59 @@
-## Description: <br>
-Estj Coach helps ESTJ users work through growth, career, study, focus, and leadership challenges through either question-led coaching or direct action-oriented advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estj Coach provides ESTJ-focused coaching and advisor responses for growth, career, learning, focus, leadership, and interpersonal challenges.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as ESTJ use this skill for practical coaching around personal growth, career or study direction, focus, and action planning. The skill can switch between exploratory coaching questions and concise direct recommendations when the user asks for a plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to retain personal coaching details, which may include sensitive goals, emotional state, or work context. <br>
-Mitigation: Use it only where memory retention is controlled, disclose any persistence behavior to the user, and avoid storing sensitive personal details unless the user explicitly wants continuity. <br>
-Risk: The packaged content mixes ESTJ and INTP material, so the agent may provide advice intended for a different personality profile. <br>
-Mitigation: Review and align the README, reference files, examples, and tags before relying on the skill for ESTJ-specific coaching. <br>
-Risk: The skill is coaching-oriented and explicitly does not replace professional mental health support. <br>
-Mitigation: Route serious psychological distress or crisis content to appropriate professional or emergency support rather than continuing with personality coaching. <br>
+## Use Case:
 
+External users can use this skill for ESTJ-oriented coaching conversations that either ask clarifying questions or provide direct action plans for growth, career, learning, focus, leadership, and relationship challenges. It is not a substitute for professional mental health care or final decision-making by the user.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/lj22503-estj-coach) <br>
-- [Publisher Profile](https://clawhub.ai/user/lj22503) <br>
-- [ESTJ Traits Reference](references/estj-traits.md) <br>
-- [INTP Insights Reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text coaching responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are intended to be concise, with shorter coaching replies and slightly longer action-plan replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The release has inconsistent identity and installation materials across README, manifest, references, repository metadata, and version fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and align the README, manifest, references, repository metadata, install command, and version before installation or publication.
+
+Risk: The skill describes user records and session archives without clear opt-in memory, retention, or deletion controls.
+
+Mitigation: Document memory behavior clearly and require opt-in storage with retention and deletion controls before using persistent records.
+
+Risk: Users may treat coaching responses as professional mental health or decision-making advice.
+
+Mitigation: Keep the stated boundary that severe mental health concerns require professional help and that final decisions remain with the user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/lj22503-estj-coach)
+- [ESTJ Traits and Cognitive Functions](artifact/references/estj-traits.md)
+- [INTP Insights Reference](artifact/references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise conversational text or Markdown with coaching questions, action steps, options, and risk notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach mode responses are intended to stay under 200 Chinese characters; advisor mode responses are intended to stay under 400 Chinese characters.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release evidence; artifact frontmatter says 1.6.0 and manifest says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

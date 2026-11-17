@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts readable text from local PDF files with PyPDF2 for command-line processing, summarization, or archiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts clean, readable text from PDF files at the command line using PyPDF2.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to extract plain text from local PDFs for downstream processing, summarization, or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted text may contain sensitive content from the source PDF. <br>
-Mitigation: Treat generated text with the same sensitivity as the original PDF and choose output paths carefully. <br>
-Risk: The README examples use pdf_text_extract.py while the packaged artifact provides tool.py. <br>
-Mitigation: Run the packaged script as tool.py unless it is intentionally renamed. <br>
-Risk: Complex, scanned, or image-only PDFs may produce incomplete or poorly ordered text because the tool relies on PyPDF2 extraction. <br>
-Mitigation: Review extracted text before downstream use and use an OCR workflow for image-only PDFs. <br>
+## Use Case:
 
+Developers and operators use this skill to extract plain text from PDFs for downstream processing, summarization, or archiving. It is suitable for reports, articles, and forms where command-line text output is acceptable.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text printed to stdout or written as a UTF-8 text file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local PDF path and a Python environment with PyPDF2 available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PDF text can contain confidential or sensitive information that may be exposed through terminal logs or shared output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted local paths, avoid shared terminals or logs for confidential documents, and handle extracted text according to the document's sensitivity.
+
+Risk: Choosing an existing output filename can overwrite that file.
+
+Mitigation: Verify the output path before running the command and use a new filename when preserving existing content matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/albionaiinc-del/skills/pdf-text-extract)
+- [Publisher Profile](https://clawhub.ai/user/albionaiinc-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print extracted text to stdout or write it to a selected output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Automates browser navigation, screenshots, form interactions, page actions, data extraction, and web application testing through the OpenClaw browser tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates browser navigation, screenshots, form interactions, clicking, data extraction, and web testing for OpenClaw agents.
 
-## Publisher: <br>
-[baiyunrei2025](https://clawhub.ai/user/baiyunrei2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiyunrei2025](https://clawhub.ai/user/baiyunrei2025)
 
-## Use Case: <br>
-Developers and agents use this skill to operate websites through OpenClaw browser commands, including navigation, screenshots, form filling, element clicks, content extraction, and web flow testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can expose sensitive information or perform unintended actions on external websites. <br>
-Mitigation: Avoid submitting secrets, regulated data, or sensitive personal information unless the target site is trusted and authorized, and review actions before form submission or data extraction. <br>
-Risk: Unauthorized or excessive automation can conflict with website rules or trigger blocking. <br>
-Mitigation: Automate only authorized sites, respect terms of service and robots.txt, and use reasonable delays between actions. <br>
+## Use Case:
 
+Developers and OpenClaw agent builders use this skill to drive browser-based workflows such as navigation, screenshots, form filling, element clicks, page text extraction, and web application testing.
 
-## Reference(s): <br>
-- [OpenClaw Browser Documentation](https://docs.openclaw.ai/tools/browser) <br>
-- [Playwright Automation Guide](https://playwright.dev/docs/automation) <br>
-- [OpenClaw Web Scraping Best Practices](https://docs.openclaw.ai/automation/web-scraping) <br>
-- [ClawHub Release Page](https://clawhub.ai/baiyunrei2025/agent-browser-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser command output, extracted page text, and screenshot files when the suggested commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Crafted URLs, selectors, output paths, option names, or form data may be passed into local shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted inputs in controlled environments, review browser commands before execution, and prefer an implementation that invokes processes with argument arrays.
+
+Risk: Raw command logging can expose URLs, form data, selectors, or other sensitive browsing inputs.
+
+Mitigation: Avoid sensitive data in automation inputs, use test accounts or sanitized values, and disable or scrub command logs before broader use.
+
+Risk: Browser automation can violate website terms, robots.txt expectations, or rate limits when used aggressively.
+
+Mitigation: Automate only appropriate public sites, respect site terms and robots.txt, and use delays or rate limits for repeated actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baiyunrei2025/skills/agent-browser-skill)
+- [OpenClaw Browser Documentation](https://docs.openclaw.ai/tools/browser)
+- [Playwright Automation Guide](https://playwright.dev/docs/automation)
+- [Web Scraping Best Practices](https://docs.openclaw.ai/automation/web-scraping)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples; helper script output may include text responses and screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an enabled OpenClaw browser tool, Chrome or Chromium, and network access for web browsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

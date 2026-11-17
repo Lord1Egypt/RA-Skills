@@ -1,40 +1,49 @@
-## Description: <br>
-A skill that helps generate cool, creative, and stylish content, including catchy taglines, aesthetic code comments, fun ASCII art, and vibe-driven naming suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill that helps generate cool, creative, and stylish content, including catchy taglines, aesthetic code comments, fun ASCII art, and vibe-driven naming suggestions.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users and developers use this skill to generate creative names, taglines, ASCII art banners, witty code comments, and short style assessments for writing and software-adjacent content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated names, slogans, ASCII art, or comments may be inaccurate, misleading, or unsuitable for a particular audience. <br>
-Mitigation: Review generated content before publishing, presenting, or committing it. <br>
-Risk: Witty code comments may prioritize style over technical precision. <br>
-Mitigation: Keep or edit only comments that accurately describe the code behavior. <br>
+## Use Case:
 
+External users and developers use this skill to generate creative names, taglines, ASCII art banners, witty code comments, and playful vibe descriptions for text or code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/cool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text responses, including monospace ASCII art and short code comment snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed before publishing or committing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated creative content may add playful flair, emojis, or a tone that is unsuitable for formal contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for a plain, professional, or style-constrained response when tone matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/cool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with optional plain text, ASCII art, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creative-writing output may include playful flair or emojis; request a plain or professional tone when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

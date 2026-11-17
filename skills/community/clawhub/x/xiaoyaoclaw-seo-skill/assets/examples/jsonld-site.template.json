@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://<canonical-host>/#organization",
+      "name": "<站点名>",
+      "url": "https://<canonical-host>/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://<canonical-host>/logo.png"
+      },
+      "sameAs": [
+        "https://github.com/<user>",
+        "https://space.bilibili.com/<uid>"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://<canonical-host>/#website",
+      "name": "<站点名>",
+      "url": "https://<canonical-host>/",
+      "publisher": { "@id": "https://<canonical-host>/#organization" },
+      "inLanguage": "<replace with the language this site actually publishes in>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://<canonical-host>/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}

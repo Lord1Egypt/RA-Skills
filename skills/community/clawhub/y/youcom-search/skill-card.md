@@ -1,42 +1,56 @@
-## Description: <br>
-you.com web search, deep research, and content extraction for OpenClaw, with free basic search and paid research or extraction endpoints that send queries and URLs to you.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+you.com web search, deep research, and content extraction for OpenClaw; basic search is free, while research and extraction require a paid API key and send queries or URLs to You.com and ydc-index.io.
 
-## Publisher: <br>
-[crabsticksalad](https://clawhub.ai/user/crabsticksalad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crabsticksalad](https://clawhub.ai/user/crabsticksalad)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web, request you.com deep research with citations, and extract content from specific URLs when built-in browsing or direct HTTP fetches are insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, research prompts, and submitted URLs are sent to you.com or ydc-index.io. <br>
-Mitigation: Do not use the skill with secrets, private repositories, internal-only URLs, regulated data, or access-controlled content. <br>
-Risk: Research and extraction calls use a sensitive YOUCOM_API_KEY and may incur paid API usage. <br>
-Mitigation: Confirm with the user before paid calls and keep the API key in the configured environment rather than in prompts, URLs, or output files. <br>
+## Use Case:
 
+Developers and external agents use this skill to perform You.com web searches, request paid deep research with citations, or extract content from specific URLs when those queries and URLs are appropriate to send to external services.
 
-## Reference(s): <br>
-- [you.com API Reference](references/api.md) <br>
-- [you.com API keys](https://you.com/platform/api-keys) <br>
-- [ClawHub skill page](https://clawhub.ai/crabsticksalad/youcom-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON results from search, research, or extraction scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Basic search can run without an API key; research and extraction require YOUCOM_API_KEY and optional --out writes JSON to a file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Search queries and submitted URLs are transmitted to You.com and ydc-index.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, private or internal URLs, regulated data, sensitive repository content, or other information that should not be sent to those services.
+
+Risk: Research and extraction calls require a paid You.com API key.
+
+Mitigation: Confirm paid research or extraction calls with the user before use and configure YOUCOM_API_KEY only when those endpoints are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crabsticksalad/skills/youcom-search)
+- [Publisher profile](https://clawhub.ai/user/crabsticksalad)
+- [you.com API Reference](references/api.md)
+- [you.com API keys](https://you.com/platform/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results and Markdown/text guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Basic search needs no API key; research and extraction require YOUCOM_API_KEY and should be confirmed before paid calls.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter, _meta.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

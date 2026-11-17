@@ -1,43 +1,58 @@
-## Description: <br>
-Version tracking for Agent Skills bundles and their associated files across sessions, surfaces, and platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Version, validate, package, verify, recover, and hand off Agent Skill bundles across local folders, registries, platform uploads, and agent sessions.
 
-## Publisher: <br>
-[snapsynapse](https://clawhub.ai/user/snapsynapse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snapsynapse](https://clawhub.ai/user/snapsynapse)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to keep agent skill bundles traceable as they move across chat, CLI, IDE, API, registry, and local filesystem workflows. It guides creation and maintenance of manifests, changelogs, hashes, frontmatter modes, package variants, and handoff notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional shell scripts act on the files listed in MANIFEST.yaml and can package or validate the wrong files if that manifest is stale or overbroad. <br>
-Mitigation: Review MANIFEST.yaml before running package.sh or validate.sh, and confirm that it lists only the intended bundle files. <br>
-Risk: Generated manifests, changelogs, or handoff notes can carry private or stale information into a shared bundle. <br>
-Mitigation: Review generated MANIFEST.yaml, CHANGELOG.md, and handoff notes before publishing or sharing a package. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to preserve version identity, integrity, changelogs, bundle hashes, and deployment handoffs for multi-file Agent Skill bundles as they move across local folders, registries, uploads, and agent sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snapsynapse/skill-provenance) <br>
-- [Publisher Profile](https://clawhub.ai/user/snapsynapse) <br>
-- [README](README.md) <br>
-- [MANIFEST](MANIFEST.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update MANIFEST.yaml, CHANGELOG.md, package metadata, validation commands, and handoff notes when the user asks the agent to modify a skill bundle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.9.0 (source: server release, MANIFEST.yaml, CHANGELOG.md; released 2026-04-08) <br>
+Risk: The no-plugin verification path asks users to download and run a shell wrapper from a mutable external URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the wrapper and verify it through a trusted checksum or signature before execution, or prefer reviewed local tooling or a pinned package source.
+
+Risk: The skill can modify manifests, changelogs, hashes, validation records, and derived packages in directories selected by the user.
+
+Mitigation: Review proposed diffs and validation output before publishing, installing, replacing source material, committing, or deploying generated artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snapsynapse/skills/skill-provenance)
+- [Skill Provenance README](README.md)
+- [Packaging and changelog reference](references/packaging-and-changelog.md)
+- [Platform, ecosystem, and trust reference](references/platforms-and-trust.md)
+- [Standalone verification and bootstrap reference](references/standalone-verification.md)
+- [Public pre-install assistant guide](https://skillprovenance.dev/.well-known/assistant-guide.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured manifest or changelog snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or edit skill manifests, changelogs, bundle hashes, validation records, and derived package metadata in user-selected directories.]
+
+## Skill Version(s):
+
+6.3.0 (source: ClawHub release evidence and MANIFEST.yaml bundle_version, released 2026-09-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

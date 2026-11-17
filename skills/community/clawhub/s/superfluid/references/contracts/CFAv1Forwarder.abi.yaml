@@ -34,13 +34,13 @@ meta:
       avalanche-c: "0xcfA132E353cB4E398080B9700609bb008eceB125"
       celo-mainnet: "0xcfA132E353cB4E398080B9700609bb008eceB125"
       scroll-mainnet: "0xcfA132E353cB4E398080B9700609bb008eceB125"
-      degenchain: "0xcfA132E353cB4E398080B9700609bb008eceB125"
+      arc-mainnet: "0xcfA132E353cB4E398080B9700609bb008eceB125"
     testnet:
       avalanche-fuji: "0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D"
       base-sepolia: "0xcfA132E353cB4E398080B9700609bb008eceB125"
       eth-sepolia: "0xcfA132E353cB4E398080B9700609bb008eceB125"
       optimism-sepolia: "0xcfA132E353cB4E398080B9700609bb008eceB125"
-      scroll-sepolia: "0xcfA132E353cB4E398080B9700609bb008eceB125"
+      arc-testnet: "0xcfA132E353cB4E398080B9700609bb008eceB125"
 
 # == Glossary ==
 # flowrate          — token transfer rate in wad/second (int96)

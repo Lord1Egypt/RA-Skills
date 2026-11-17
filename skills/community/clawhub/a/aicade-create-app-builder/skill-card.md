@@ -1,46 +1,63 @@
-## Description: <br>
-Build general aicade application prompts by taking the user's base prompt plus the platform additions from the bundled 3.1 workflow reference, then assembling a final integrated prompt in the style of 3.2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Aicade application prompts by combining a user's base business prompt with the bundled Aicade platform integration workflow.
 
-## Publisher: <br>
-[aicadegalaxy](https://clawhub.ai/user/aicadegalaxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aicadegalaxy](https://clawhub.ai/user/aicadegalaxy)
 
-## Use Case: <br>
-Developers and agent users use this skill to assemble a final prompt for building or migrating an aicade app that follows the documented platform workflow, SDK integration order, iframe constraints, and upload preparation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill participates in setup for API credentials and upload preparation. <br>
-Mitigation: Use local input methods for secrets when possible, keep .env files out of version control, and redact secrets from confirmations and logs. <br>
-Risk: The workflow asks the agent to restate resolved upload variables before upload. <br>
-Mitigation: Confirm only that required variables are present or masked, and review generated upload steps before running them. <br>
-Risk: Generated prompts can influence payment, wallet, points, token, NFT, or market-related application behavior. <br>
-Mitigation: Review generated prompts and application code for correct SDK module selection, platform constraints, and business rules before deployment. <br>
+## Use Case:
 
+Developers use this skill to assemble IDE-ready prompts for Aicade apps, check required Aicade environment variables, and follow the platform scaffold workflow before upload.
 
-## Reference(s): <br>
-- [Prompt Workflow](references/prompt-workflow.md) <br>
-- [aicade SDK Capabilities](references/sdk-capabilities.md) <br>
-- [aicade TS Bootstrap](https://github.com/aicade-galaxy/aicade-ts-bootstrap) <br>
-- [aicade TS Bootstrap README](https://github.com/aicade-galaxy/aicade-ts-bootstrap/blob/main/README.md) <br>
-- [aicade Galaxy](https://www.aicadegalaxy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prompt text with JSON spec inputs and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect local project environment values and write requested aicade API settings to a project .env file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can handle Aicade upload credentials and save values into a project .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials only through local, private workflows; never paste real secrets into chat; verify .env is ignored by Git before saving.
+
+Risk: Credential values or resolved upload variables could be exposed during review or command output.
+
+Mitigation: Do not allow full secret values to be printed, logged, or included in prompts; use redacted values when confirming upload settings.
+
+Risk: The upload workflow may use downloaded upload.js code or changed npm dependencies.
+
+Mitigation: Review upload.js and dependency changes before running npm install or upload commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aicadegalaxy/skills/aicade-create-app-builder)
+- [Aicade TypeScript bootstrap repository](https://github.com/aicade-galaxy/aicade-ts-bootstrap)
+- [Aicade TypeScript bootstrap README](https://github.com/aicade-galaxy/aicade-ts-bootstrap/blob/main/README.md)
+- [Aicade scaffold upload script](https://github.com/aicade-galaxy/aicade-ts-bootstrap/blob/main/upload.js)
+- [Aicade Galaxy platform](https://www.aicadegalaxy.com/)
+- [Prompt workflow reference](references/prompt-workflow.md)
+- [SDK capabilities reference](references/sdk-capabilities.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update a project .env file when the user provides Aicade credentials and approves the local workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "instruction-improve",
+  "workflow": "product",
+  "focus": "instructions",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

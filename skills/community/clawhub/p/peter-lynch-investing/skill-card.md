@@ -1,50 +1,65 @@
-## Description: <br>
-Provides Peter Lynch-style investing commentary, stock evaluation structure, and educational guidance based on his published investing philosophy, interviews, and examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to answer in a Peter Lynch-inspired investing voice, emphasizing plain-language business understanding, fundamental checks, research discipline, and long-term portfolio behavior.
 
-## Publisher: <br>
-[talentedleo](https://clawhub.ai/user/talentedleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[talentedleo](https://clawhub.ai/user/talentedleo)
 
-## Use Case: <br>
-External users can use this skill for educational Peter Lynch-style investing analysis, including understanding a company's story, classifying stock types, checking fundamentals, and framing buy, hold, or pass decisions. Outputs should be treated as educational commentary rather than licensed financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake Peter Lynch-style stock commentary for personalized financial advice. <br>
-Mitigation: Treat outputs as educational commentary, not advice from a licensed financial advisor, and independently verify stock-related suggestions before acting. <br>
-Risk: Prompts involving purchases or brokerage activity could lead users to disclose sensitive financial or account information. <br>
-Mitigation: Do not provide brokerage credentials, private account details, or other sensitive financial information to the skill. <br>
+## Use Case:
 
+External users and agents use this skill to explain Peter Lynch-style investing principles, evaluate stock ideas through his six categories and research checklist, and frame educational buy, hold, or pass reasoning.
 
-## Reference(s): <br>
-- [Peter Lynch Investing Skill on ClawHub](https://clawhub.ai/talentedleo/peter-lynch-investing) <br>
-- [Primary Writings](references/01-writings.md) <br>
-- [Conversations and Interviews](references/02-conversations.md) <br>
-- [Expression DNA](references/03-expression-dna.md) <br>
-- [External Views](references/04-external-views.md) <br>
-- [Investment Decisions and Cases](references/05-decisions.md) <br>
-- [Timeline](references/06-timeline.md) <br>
-- [Peter Lynch Investor](https://www.peterlynchinvestor.com/) <br>
-- [PBS Frontline Interview](https://www.pbs.org/wgbh/pages/frontline/shows/betting/pros/lynch.html) <br>
-- [The Compound and Friends Podcast](https://www.youtube.com/watch?v=YIlurDigZcY) <br>
-- [Fortune Interview](https://fortune.com/2023/04/26/legendary-investor-peter-lynch-biggest-mistakes-best-advice/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text investment commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style educational analysis; no code, tools, or data access are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The skill may answer confidently in a Peter Lynch persona while discussing specific investing decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational investing commentary, not personalized financial advice; do independent research or consult a qualified professional before acting.
+
+Risk: Users may over-rely on persona-style buy, hold, or pass framing for current securities.
+
+Mitigation: Require current facts, user-specific suitability review, and independent verification before using the guidance in real investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/talentedleo/skills/peter-lynch-investing)
+- [Peter Lynch - Primary Writings](references/01-writings.md)
+- [Peter Lynch - Conversations and Interviews](references/02-conversations.md)
+- [Peter Lynch - Expression DNA](references/03-expression-dna.md)
+- [Peter Lynch - External Views](references/04-external-views.md)
+- [Peter Lynch - Investment Decisions and Cases](references/05-decisions.md)
+- [Peter Lynch - Timeline](references/06-timeline.md)
+- [Peter Lynch Investor](https://www.peterlynchinvestor.com/)
+- [PBS Frontline Peter Lynch interview](https://www.pbs.org/wgbh/pages/frontline/shows/betting/pros/lynch.html)
+- [Fortune interview on mistakes and advice](https://fortune.com/2023/04/26/legendary-investor-peter-lynch-biggest-mistakes-best-advice/)
+- [CNBC interview on AI and investing](https://www.cnbc.com/2025/10/06/peter-lynch-ai-trade-investing.html)
+- [The Compound and Friends interview](https://www.youtube.com/watch?v=YIlurDigZcY)
+- [Moneyweb interview on investing behavior](https://www.moneyweb.co.za/in-depth/sasfin-wealth/peter-lynchs-simple-secret-why-behaviour-matters-more-than-brilliance-in-investing/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown or plain text investment education responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational investing commentary; no executable behavior detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

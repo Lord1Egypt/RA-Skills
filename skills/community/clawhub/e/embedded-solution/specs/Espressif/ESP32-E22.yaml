@@ -1,0 +1,68 @@
+part: ESP32-E22
+link_status: verified_2026-07-01 (datasheet-html-extracted)
+expected_family: "ESP32-E22 \u2014 Tri-band Wi-Fi 6E + Bluetooth 5.4 Co-Processor"
+main_page: https://www.espressif.com/en/products/socs/esp32-e22
+datasheet_path_expected: references/semiconductor-vendor/Espressif/datasheet-html/esp32-e22.html
+created_at: '2026-06-30T10:42:00+08:00'
+specs:
+  family: ESP32-E (connectivity co-processor series)
+  family_position: Espressif first tri-band Wi-Fi 6E co-processor; pairs with ESP32-P4 or other application processors
+  cores:
+  - Dual-core 32-bit RISC-V @ up to 500 MHz
+  wireless:
+    wifi_6e_tri_band:
+      bands:
+      - 2.4 GHz
+      - 5 GHz
+      - 6 GHz
+      channel_max_mhz: 160
+      mu_mimo: 2x2
+      qam: 1024
+      advanced_link_scheduling: true
+    bluetooth:
+    - Bluetooth Classic (BR/EDR)
+    - Bluetooth LE 5.4
+  memory:
+    internal_ram: 1 MB
+    tcm: 1 MB variant in ESP32-E22 family; 192 KB in ESP32-E22 specific variant
+  host_interfaces:
+  - PCIe 2.1
+  - SDIO 3.0
+  gpio_count_esp32_e22_variant: 41
+  package_esp32_e22: QFN 9x9
+  modules:
+  - ESP32-E22-M2
+  use_cases:
+  - Wi-Fi 6E router / gateway co-processor (6 GHz Wi-Fi in mature products)
+  - Smart home hub with 6 GHz Wi-Fi backhaul
+  - Industrial wireless gateway (6 GHz Wi-Fi + Bluetooth Classic + BLE 5.4)
+  - Streaming media gateway (Wi-Fi 6E 160 MHz channels)
+unverified:
+- exact core details (Cache, FPU, vector extensions)
+- exact supply voltage
+- exact peak TX power per band
+- exact security module details
+- exact ROM + flash size on ESP32-E22 (no internal flash in co-processor)
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com product page via Firecrawl. Note: page URL was https://www.espressif.com/en/products/socs/esp32-c5n\
+  \ but the fetched page redirects to ESP32-E22 (Espressif tri-band co-processor). Likely ESP32-C5N was renamed/planned-product;\
+  \ ESP32-E22 is the live chip."
+- 'Family differentiator vs ESP32-C5 (existing yaml): C5 is dual-band Wi-Fi 6 + BLE 5 + 802.15.4 (host SoC, integrated MCU);
+  E22 is tri-band Wi-Fi 6E + BT Classic + BLE 5.4 (co-processor, no host MCU).'
+- 'Family differentiator vs ESP32-C6 (existing yaml): C6 is dual-band Wi-Fi 6 + BLE 5 + 802.15.4 host SoC; E22 = tri-band
+  co-processor (no 802.15.4 but adds 6 GHz and BT Classic).'
+- 'Use case: future-proofing for 6 GHz Wi-Fi 6E infrastructure (less congestion, more spectrum vs 5 GHz). Co-processor form
+  factor assumes pairing with host application processor.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-e22.html: 12/21 spec fields matched (57%). Source: https://www.espressif.com/en/products/socs/esp32-e22
+  (vendor product page scraped as HTML; no separate PDF available).'
+- "Verified 2026-07-01 via Tavily web search + documentation.espressif.com probe: confirmed that no public chip datasheet\
+  \ exists for ESP32-E22 as of 2026-07-01. documentation.espressif.com/esp32-e22_datasheet_en.pdf returns 302 \u2192 /404\
+  \ (Espressif docs CDN). espressif.com/main product page is the only authoritative source \u2014 kept as datasheet-html-extracted.\
+  \ When Espressif publishes the datasheet (expected 2026 Q3/Q4 per their product roadmap), this yaml should be re-verified\
+  \ with pdfplumber + keyword-split upgrade."
+extracted_at: '2026-06-30T10:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page (URL ESP32-C5N but page is ESP32-E22)
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-E22-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-E22-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.espressif.com/en/products/socs/esp32-e22

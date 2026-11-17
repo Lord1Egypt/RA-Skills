@@ -77,13 +77,13 @@ import base64
 import json
 import os
 import sys
-from mps_auto_upgrade import check_sdk_version
 import time
 import urllib.request
 
 # 同目录辅助模块
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version
 
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -113,8 +113,9 @@ except ImportError:
 # 常量
 # =============================================================================
 
-# SyncDubbing 接口端点（国际站设置 TENCENTCLOUD_MPS_ENDPOINT=mps.intl.tencentcloudapi.com）
-MPS_ENDPOINT = os.environ.get("TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com")
+# 注意：MPS 接入点不使用模块级常量。模块级 os.environ.get 会在 import 时求值，
+# 早于 ensure_env_loaded() 加载 .env，会导致国际站配置失效；
+# 请在 create_mps_client() 内按需读取 TENCENTCLOUD_MPS_ENDPOINT。
 
 # 语音合成 / 语音转语音预设模板 ID（TextToSpeech / SpeechToSpeech）
 ASYNC_DUBBING_DEFINITION = 36
@@ -193,23 +194,38 @@ def get_cos_region():
 
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        print("❌ 未找到 TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 环境变量", file=sys.stderr)
-        print("   请在 ~/.env 或 <SKILL_DIR>/.env 中配置后重试", file=sys.stderr)
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
-            from mps_load_env import _print_setup_hint
-            _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-        sys.exit(1)
+            print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
+            _ensure_env_loaded(verbose=True)
+            secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
+            secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
+        if not secret_id or not secret_key:
+            if _LOAD_ENV_AVAILABLE:
+                from mps_load_env import _print_setup_hint
+                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
+            else:
+                print(
+                    "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
+                    file=sys.stderr,
+                )
+            sys.exit(1)
     return credential.Credential(secret_id, secret_key)
 
 
 def create_mps_client(cred, region):
     """创建 MPS 客户端。"""
     http_profile = HttpProfile()
-    http_profile.endpoint = MPS_ENDPOINT
+    # 必须在函数内读取：模块级常量会在 import 时定格，而 ensure_env_loaded()
+    # 在 main 中才执行，导致 .env 里配置的国际站 endpoint 静默失效。
+    http_profile.endpoint = os.environ.get(
+        "TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com"
+    )
     http_profile.reqMethod = "POST"
 
     client_profile = ClientProfile()

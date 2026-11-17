@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "channel": "market-entry-brief",
+  "workflow": "page_compare",
+  "focus": "entry",
+  "outputTemplate": "ops_page_compare",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ]
+}

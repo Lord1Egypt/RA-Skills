@@ -1,45 +1,61 @@
-## Description: <br>
-AI builders digest that monitors top AI builders on X and YouTube podcasts and remixes their content into digestible summaries for AI industry insights, builder updates, or /ai requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI builders digest — monitors top AI builders on X and YouTube podcasts, remixes their content into digestible summaries.
 
-## Publisher: <br>
-[zarazhangrui](https://clawhub.ai/user/zarazhangrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zarazhangrui](https://clawhub.ai/user/zarazhangrui)
 
-## Use Case: <br>
-External users and developers use this skill to configure a daily or weekly AI builder digest from curated X accounts and YouTube podcasts, then receive concise summaries in chat, Telegram, email, or terminal output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch current prompt instructions and feeds from remote sources. <br>
-Mitigation: Review the prepared digest content before delivery, and use local prompt overrides when you need stable summarization behavior. <br>
-Risk: Telegram or email delivery can store third-party delivery credentials locally. <br>
-Mitigation: Use stdout or on-demand delivery when possible, and only add Telegram or Resend credentials when off-terminal delivery is required. <br>
-Risk: Automatic delivery can create recurring scheduled jobs. <br>
-Mitigation: Inspect any OpenClaw cron or system crontab entry after setup and remove scheduled delivery if it is not needed. <br>
+## Use Case:
 
+External users and agent operators use this skill to receive daily or weekly AI builder digests from curated X/Twitter and YouTube podcast sources. The skill also guides setup for delivery preferences, language, scheduling, and optional Telegram or email delivery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zarazhangrui/follow-builders) <br>
-- [README](artifact/README.md) <br>
-- [Configuration Schema](artifact/config/config-schema.json) <br>
-- [Default Sources](artifact/config/default-sources.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest text with setup guidance, shell command snippets, and JSON-backed configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local settings under ~/.follow-builders and configure recurring delivery jobs when automatic delivery is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can create recurring jobs for unattended digest delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any cron or OpenClaw scheduled job before enabling automatic delivery, and prefer on-demand stdout delivery when unattended delivery is not needed.
+
+Risk: Telegram or email delivery can store delivery credentials locally.
+
+Mitigation: Restrict permissions on ~/.follow-builders, protect Telegram and Resend tokens, and rotate credentials if they may have been exposed.
+
+Risk: Mutable digest prompts can change after installation without a new package review.
+
+Mitigation: Review prompt files and centrally fetched prompt content before relying on summaries for important decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zarazhangrui/skills/follow-builders)
+- [Publisher profile](https://clawhub.ai/user/zarazhangrui)
+- [README](README.md)
+- [Sample digest output](examples/sample-digest.md)
+- [Configuration schema](config/config-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest text with setup guidance, inline shell commands, and local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can deliver on demand in chat/stdout or through configured Telegram/email delivery; supports English, Chinese, and bilingual digests.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

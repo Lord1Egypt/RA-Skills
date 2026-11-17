@@ -1,51 +1,71 @@
-## Description: <br>
-Access Yahoo Finance data including real-time pricing, fundamentals, analyst estimates, options, news, and historical data via the yahooquery Python library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Yahoo Finance data including real-time pricing, fundamentals, analyst estimates, options, news, and historical data via the yahooquery Python library.
 
-## Publisher: <br>
-[512z](https://clawhub.ai/user/512z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[512z](https://clawhub.ai/user/512z)
 
-## Use Case: <br>
-Developers and financial analysts use this skill to ask an agent for yahooquery examples and guidance for retrieving Yahoo Finance pricing, fundamentals, financial statements, screeners, options, news, historical data, and premium research data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Premium Yahoo Finance credentials may be exposed if pasted into prompts, shared transcripts, or checked-in files. <br>
-Mitigation: Use premium credentials only when needed and provide them through protected environment variables or a secrets manager. <br>
-Risk: Disabling TLS verification or routing through untrusted proxies can expose finance requests and credentials. <br>
-Mitigation: Keep TLS verification enabled and avoid untrusted proxies. <br>
-Risk: Yahoo Finance may rate-limit or block requests, and upstream data accuracy or availability can vary. <br>
-Mitigation: Use retry, backoff, and timeout settings for robustness, and verify finance data before relying on it for decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [yahooquery overview](references/index.md) <br>
-- [Keyword arguments](references/keyword_arguments.md) <br>
-- [Ticker intro](references/ticker/intro.md) <br>
-- [Ticker modules](references/ticker/modules.md) <br>
-- [Ticker financials](references/ticker/financials.md) <br>
-- [Ticker historical prices](references/ticker/historical.md) <br>
-- [Ticker options](references/ticker/options.md) <br>
-- [Screener](references/screener.md) <br>
-- [Research](references/research.md) <br>
-- [Miscellaneous functions](references/misc.md) <br>
-- [Advanced session sharing](references/advanced.md) <br>
+## Use Case:
 
+Developers and analysts use this skill to guide agents in retrieving Yahoo Finance market data, company fundamentals, screeners, options, news, historical prices, and premium research data through the yahooquery Python library.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include yahooquery API usage examples and configuration options for async requests, retries, proxies, TLS verification, and premium credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes user-controlled package installation and live network calls to Yahoo Finance.
+
+Mitigation: Install in an isolated virtual environment, pin yahooquery and dependencies when reproducibility matters, and review generated commands before execution.
+
+Risk: Premium research workflows may require Yahoo credentials.
+
+Mitigation: Store credentials in a protected secret store or injected environment variables rather than source files or prompts.
+
+Risk: Some examples discuss disabling TLS certificate verification.
+
+Mitigation: Keep certificate verification enabled for real traffic and credentials; do not use `verify=False` outside disposable local testing.
+
+Risk: Financial data may be rate-limited or reflect upstream availability and accuracy constraints.
+
+Mitigation: Use retries and backoff for robustness, and verify important financial outputs against authoritative sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/512z/skills/yahooquery)
+- [Introduction](references/index.md)
+- [Ticker guide](references/ticker/intro.md)
+- [Ticker modules](references/ticker/modules.md)
+- [Financial statements](references/ticker/financials.md)
+- [Historical prices](references/ticker/historical.md)
+- [Options](references/ticker/options.md)
+- [Screener](references/screener.md)
+- [Research](references/research.md)
+- [Keyword arguments](references/keyword_arguments.md)
+- [Miscellaneous functions](references/misc.md)
+- [Advanced session sharing](references/advanced.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe network access, authentication options, retries, async operation, and DataFrame-to-JSON conversion patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

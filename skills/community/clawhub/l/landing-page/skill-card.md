@@ -1,43 +1,56 @@
-## Description: <br>
-Build high-converting landing pages with proven structure, persuasive copy, and conversion optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-converting landing pages with proven structure, persuasive copy, and conversion optimization.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Marketing teams, founders, product teams, and agents use this skill to draft and improve landing pages with focused sections, persuasive copy, page-type templates, and conversion optimization checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analytics, heatmap, or session-recording recommendations could lead to privacy or regulatory issues if implemented without appropriate controls. <br>
-Mitigation: Use consent where required, disclose tracking, minimize collected data, mask form fields and sensitive content, set retention limits, and review GDPR, CCPA, and ePrivacy obligations for the deployment. <br>
-Risk: Landing-page optimization guidance can produce claims, metrics, testimonials, or scarcity language that may be misleading if not grounded in the business's evidence. <br>
-Mitigation: Review generated copy before publication and verify performance claims, customer proof, offers, and urgency statements against current business records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/landing-page) <br>
-- [Landing Page Copywriting](copy.md) <br>
-- [Landing Page Optimization](optimization.md) <br>
-- [Landing Page Sections](sections.md) <br>
-- [Landing Page Templates](templates.md) <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to plan, draft, and improve landing pages for SaaS, ecommerce, lead generation, events, waitlists, services, and comparison pages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with copy formulas, section structures, checklists, and template examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden execution, local access, tool use, or credential handling is indicated by the evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Analytics, heatmaps, and session recordings can collect more visitor data than needed for landing page optimization.
+
+Mitigation: Use privacy-preserving analytics defaults, collect only necessary events, avoid precise location unless justified, mask form fields in recordings, respect consent requirements, and document retention limits.
+
+Risk: Conversion recommendations may produce misleading copy if claims, testimonials, scarcity, or competitor comparisons are not verified.
+
+Mitigation: Review landing page claims against product evidence, use real social proof, and verify comparison sources before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/landing-page)
+- [Landing Page Copywriting](artifact/copy.md)
+- [Landing Page Optimization](artifact/optimization.md)
+- [Landing Page Sections](artifact/sections.md)
+- [Landing Page Templates](artifact/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with formulas, checklists, tables, and page templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, shell commands, credential handling, or generated files are required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

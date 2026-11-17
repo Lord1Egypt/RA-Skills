@@ -1,40 +1,50 @@
-## Description: <br>
-Core skill package covering common research, development, and automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language core skill set for research, development, and automation tasks.
 
-## Publisher: <br>
-[jonjiang96](https://clawhub.ai/user/jonjiang96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonjiang96](https://clawhub.ai/user/jonjiang96)
 
-## Use Case: <br>
-Developers, researchers, and automation-focused users use this skill to request research assistance, coding support, project setup, scripts, scheduled tasks, and batch file workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research or web-search workflows may expose secrets or private data if sensitive content is included in prompts. <br>
-Mitigation: Avoid placing secrets, credentials, or private data into search queries or external research prompts. <br>
-Risk: Generated code, batch-file changes, automation scripts, or scheduled tasks may be incorrect or have unintended effects. <br>
-Mitigation: Review generated changes before applying them, and explicitly approve any cron or scheduled task before use. <br>
+## Use Case:
 
+Developers, researchers, and automation users use this skill to request literature search support, data handling, code writing or review, project setup, automation scripts, scheduled tasks, and batch file workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonjiang96/essential-skills-package) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; examples rely on available agent tools and user-approved actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Automation examples may propose commands, file targets, cron schedules, or batch operations that affect the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review file targets, requested commands, cron schedules, frequency, and removal steps before executing automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonjiang96/skills/essential-skills-package)
+- [ClawHub publisher profile](https://clawhub.ai/user/jonjiang96)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands for web search, ACP sessions, cron schedules, and file batch operations; users should review targets and schedules before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Extracts and parses content from HTTP(S) URLs across supported platforms using the ListenHub/Marswave content extraction API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and parses content from URLs into normalized text, metadata, and references for review or downstream skill workflows.
 
-## Publisher: <br>
-[0xFANGO](https://clawhub.ai/user/0xFANGO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xfango](https://clawhub.ai/user/0xfango)
 
-## Use Case: <br>
-Developers and external users use this skill to extract normalized text, metadata, and references from supported URLs before reading, summarizing, or passing the content into another agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs and extracted content are sent to the ListenHub/Marswave API. <br>
-Mitigation: Use the skill only with URLs you are comfortable sharing with that API, and avoid private, internal, signed, regulated, or confidential links unless that sharing is approved. <br>
-Risk: When autoDownload is enabled, extracted Markdown and raw API responses may be saved in the current working directory. <br>
-Mitigation: Disable autoDownload or run the skill in an appropriate working directory when handling sensitive content. <br>
-Risk: Some supported platforms may return partial, truncated, blocked, or unavailable content. <br>
-Mitigation: Review extracted output before relying on it or passing it into downstream generation workflows. <br>
+## Use Case:
 
+Developers, agents, and external users use this skill to extract readable content from supported public HTTP(S) URLs before summarization, content generation, or standalone analysis.
 
-## Reference(s): <br>
-- [Supported Platforms](references/supported-platforms.md) <br>
-- [Content Parser on ClawHub](https://clawhub.ai/0xFANGO/content-parser) <br>
-- [Marswave Content Extract API](https://api.marswave.ai/openapi/v1/content/extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash and JSON request examples; optional Markdown and JSON extracted-content files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write extracted content and raw API responses to the current working directory when autoDownload is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill sends user-provided URLs to the Marswave/ListenHub API, including any information embedded in private or signed links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public URLs intended for external API processing, and avoid private, sensitive, signed, or access-token-bearing links.
+
+Risk: Extracted content and raw API responses may be saved locally when autoDownload is enabled.
+
+Mitigation: Confirm the output directory before extraction, disable autoDownload when persistence is not needed, and remove generated .md and .json files that should not remain on disk.
+
+Risk: Shell command examples that substitute crafted URL values can execute unintended local commands if handled unsafely.
+
+Mitigation: Validate that URLs are HTTP(S), quote or encode user-supplied values, and review generated shell commands before execution.
+
+## Reference(s):
+
+- [Supported Platforms](artifact/references/supported-platforms.md)
+- [ClawHub Skill Page](https://clawhub.ai/0xfango/skills/content-parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown previews, JSON API responses, shell commands, and optional local .md/.json files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LISTENHUB_API_KEY; optional autoDownload saves extracted Markdown and raw JSON responses to the current directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

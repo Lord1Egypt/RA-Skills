@@ -1,43 +1,55 @@
-## Description: <br>
-Encrypted credential management for OpenClaw that keeps API keys, tokens, and passwords out of the AI agent context with AES-256-GCM encryption, subprocess-scoped injection, and automatic output scrubbing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypted credential management for OpenClaw keeps API keys, tokens, and passwords out of the AI agent's context window with AES-256-GCM encryption, subprocess-scoped injection, and automatic output scrubbing.
 
-## Publisher: <br>
-[karanuppal](https://clawhub.ai/user/karanuppal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karanuppal](https://clawhub.ai/user/karanuppal)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate an OpenClaw credential vault that stores secrets locally, injects them only into matching subprocesses, and scrubs output before the agent receives it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad credential-hook access for OpenClaw command execution, outbound messages, and session transcripts. <br>
-Mitigation: Review the npm package source before installing, especially hook registration, credential injection, output scrubbing, key derivation, and audit logging. <br>
-Risk: The security summary reports an unexplained vault token in the skill instructions. <br>
-Mitigation: Inspect the published package and submitted skill text before use, and do not add real credentials until the token handling and scrubbing behavior are verified in a local test environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to store credentials encrypted and inject them only into authorized subprocesses, reducing the chance that agents expose secrets in context, tool output, outbound messages, or transcripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/karanuppal/openclaw-credential-vault) <br>
-- [Source repository](https://github.com/karanuppal/openclaw-credential-vault) <br>
-- [Hook implementation](https://github.com/karanuppal/openclaw-credential-vault/tree/main/src/hooks) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-credential-vault) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create encrypted vault files, injection rules, metadata, and audit logs under ~/.openclaw/vault/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-beta.8 (source: server release metadata) <br>
+Risk: The skill asks users to install global npm code that handles credential storage and OpenClaw execution and message hooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the exact npm package version and source before installing, and use it only in trusted OpenClaw environments where those hooks are acceptable.
+
+Risk: Passing real secrets through --key command arguments can expose them through shell history or process inspection.
+
+Mitigation: Prefer interactive credential entry where available and avoid entering production secrets directly in command-line arguments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/karanuppal/skills/openclaw-credential-vault)
+- [Source Repository](https://github.com/karanuppal/openclaw-credential-vault)
+- [npm Package](https://www.npmjs.com/package/openclaw-credential-vault)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0-beta.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

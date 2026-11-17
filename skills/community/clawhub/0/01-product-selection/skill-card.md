@@ -1,40 +1,53 @@
-## Description: <br>
-A community group buying product-selection strategy skill covering category tiers, platform selection logic, pricing methods, selection SOPs, and supporting calculators; it excludes supply-chain execution and warehouse logistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language community group-buying product selection skill covering selection strategy, product category tiers, platform comparison, pricing methodology, selection SOPs, and supporting tools, excluding supply-chain execution and warehouse logistics.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Community commerce operators, merchandisers, and business analysts use this skill to decide what products to list, how to segment categories, how to compare platform selection logic, and how to estimate pricing and margin risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market figures, pricing bands, and legal references may be stale or jurisdiction-specific. <br>
-Mitigation: Verify assumptions, current market data, and legal or compliance requirements before commercial use. <br>
-Risk: Embedded calculator examples may produce misleading results if input costs, fees, commissions, logistics rates, or loss rates are wrong. <br>
-Mitigation: Review formulas and validate platform-specific assumptions before relying on calculated prices or margins. <br>
+## Use Case:
 
+External operators, product managers, and business analysts use this skill to evaluate community group-buying product categories, estimate pricing and margin feasibility, compare platform selection logic, and apply product-selection risk controls.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nic-yuan/01-product-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with embedded Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only business guidance; embedded calculators require user-provided commercial assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill includes adjacent operational recommendations that may affect supplier handling, refunds, packaging, and logistics decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as business guidance and require human approval before changing live operations or supplier/customer handling.
+
+Risk: The artifact contains market examples, platform comparisons, and pricing assumptions that may be context-specific or time-sensitive.
+
+Mitigation: Validate costs, demand, platform fees, legal constraints, and local operating conditions before using the guidance for commercial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/01-product-selection)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with embedded Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business guidance with product selection frameworks, SOPs, pricing calculations, checklists, and local calculator snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

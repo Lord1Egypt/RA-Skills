@@ -1,41 +1,52 @@
-## Description: <br>
-Searches WeChat Channels videos through the TikHub API and returns video links plus basic engagement metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches WeChat Channels videos through the TikHub API and returns video links plus basic analysis fields such as likes, duration, and publish time.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-External users and developers use this skill to search WeChat Channels by keyword, retrieve video download links, and inspect basic metadata such as author, likes, duration, and publish time. Use requires a TikHub API token with WeChat Channels API permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The script prints the user's TikHub API token during normal command output. <br>
-Mitigation: Remove token printing before use, use a least-privilege TikHub token when possible, and rotate any token exposed by this version. <br>
-Risk: Search terms and API responses are sent to a third-party TikHub endpoint. <br>
-Mitigation: Avoid sensitive search terms and review TikHub access requirements before operational use. <br>
+## Use Case:
 
+External users and developers use this skill to run keyword searches against TikHub's WeChat Channels endpoint and receive formatted video IDs, titles, authors, like counts, durations, publish times, download URLs, and share URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahsbnb/wechat-video-search) <br>
-- [TikHub WeChat Channels search endpoint](https://api.tikhub.dev/api/v1/wechat_channels/fetch_search_latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text summaries or raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include WeChat Channels video IDs, titles, author names, like counts, durations, publish times, download links, and share links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact metadata lists 1.0.0) <br>
+Risk: The skill may expose the user's TikHub API token and search activity through normal debug output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only low-privilege TikHub tokens, avoid sensitive searches, do not run this release where stdout or stderr is captured, remove the debug prints, and rotate any token used in a logged environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ahsbnb/skills/wechat-video-search)
+- [TikHub WeChat Channels Search Endpoint](https://api.tikhub.dev/api/v1/wechat_channels/fetch_search_latest)
+- [TikHub Token Registration](https://user.tikhub.io/register)
+- [TikHub API Token Dashboard](https://user.tikhub.io/dashboard/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Plain text search summaries or raw JSON returned from the TikHub API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TikHub API token; this release may print token and search activity details to stdout or stderr.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

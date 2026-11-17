@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Opportunity Brief"
+  short_description: "Turn a product idea into a testable Amazon opportunity brief."
+  default_prompt: "Use $amazon-product-opportunity-brief to turn my Amazon product idea into a testable research brief."

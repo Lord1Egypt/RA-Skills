@@ -1,0 +1,5 @@
+# Only required for figures. The statistics, report, TSV files and reproducibility
+# bundle use the Python standard library alone (Python 3.10+). The upper bound keeps
+# a future major release from silently changing the figures.
+matplotlib>=3.7,<4.0
+# Tests only: pip install "pytest>=7.0" "pyyaml>=6.0"

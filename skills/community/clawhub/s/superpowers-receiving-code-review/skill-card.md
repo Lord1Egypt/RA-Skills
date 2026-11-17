@@ -1,38 +1,53 @@
-## Description: <br>
-Use when receiving code review feedback to verify, clarify, and evaluate technical correctness before implementing or responding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when receiving code review feedback to verify, clarify, and evaluate technical correctness before implementing or responding.
 
-## Publisher: <br>
-[demo112](https://clawhub.ai/user/demo112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[demo112](https://clawhub.ai/user/demo112)
 
-## Use Case: <br>
-Developers and coding agents use this skill to handle code review feedback by clarifying unclear requests, checking suggestions against the codebase, and responding or implementing based on technical correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes team-specific trust and terse communication assumptions that may not fit every review culture. <br>
-Mitigation: Review and adapt the Cooper-specific handling and acknowledgement guidance before deploying it in another team context. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when handling code review feedback. It guides them to understand, verify, clarify, and test review suggestions before accepting or pushing back on them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/demo112/superpowers-receiving-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with response patterns and implementation workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no hidden execution, persistence, or data access behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The skill intentionally encourages terse responses and discourages gratitude language, which may not fit every team's communication norms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the tone guidance before installation and adapt or avoid the skill if normal courtesy language is expected.
+
+Risk: The skill gives special handling to a named reviewer, which may not match the user's actual review workflow.
+
+Mitigation: Replace or remove named-reviewer assumptions before use in teams that do not share that reviewer context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/demo112/skills/superpowers-receiving-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code, shell commands]
+
+**Output Format:** [Markdown or plain text guidance with optional code changes and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools are bundled; outputs depend on the host agent and repository context.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

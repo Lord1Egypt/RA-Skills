@@ -1,0 +1,13 @@
+{
+  "name": "fifteenth-plan-agent",
+  "displayName": "十五五规划Agent",
+  "version": "1.0.0",
+  "description": "专业的五年规划综合信息采集与分析Agent。覆盖十二五→十三五→十四五→十五五四个版本规划文件采集、经济行政数据收集、跨版本对比分析与智能问答。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["five-year-plan", "policy", "government", "strategy", "data-analysis"],
+  "minOpenClawVersion": "1.2.0"
+}

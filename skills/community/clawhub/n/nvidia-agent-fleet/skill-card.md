@@ -1,42 +1,55 @@
-## Description: <br>
-Routes prompts to a fleet of NVIDIA API-backed model agents, with automatic task classification, single-agent dispatch, and optional parallel multi-agent execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user tasks to a registry of NVIDIA API-backed model agents, with automatic task classification, selected-agent execution, and optional multi-agent parallel responses.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Developers and agent users can use this skill to choose among specialized NVIDIA-hosted model agents for coding, reasoning, writing, Chinese-language, research, finance, vision, embedding, and quick-response tasks. It supports CLI and Python workflows for automatic routing, explicit agent selection, task analysis, and multi-agent comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic credential discovery may execute a local shell startup file while looking for NVIDIA_API_KEY. <br>
-Mitigation: Set NVIDIA_API_KEY explicitly in the environment and avoid relying on shell startup file discovery. <br>
-Risk: The skill may read local OpenClaw configuration files while searching for NVIDIA credentials. <br>
-Mitigation: Review local configuration files before use and run the skill only in an environment where that credential lookup is acceptable. <br>
-Risk: Prompts are sent to NVIDIA API endpoints during dispatch. <br>
-Mitigation: Use the skill only with prompts and data that may be sent to NVIDIA APIs under your applicable policies. <br>
+## Use Case:
 
+Developers and agent users use this skill to route prompts to task-specific NVIDIA API model agents for coding, reasoning, Chinese-language tasks, writing, research, quick summaries, and multi-agent comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/skills/nvidia-agent-fleet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and Python return objects containing model content, usage metadata, selected agent details, and errors when calls fail.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call NVIDIA API endpoints using NVIDIA_API_KEY; multi-agent mode can run selected agents in parallel with per-model timeouts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Automatic credential discovery can read local credential files and run shell configuration while looking for NVIDIA_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set NVIDIA_API_KEY explicitly and avoid installing or running the skill in environments where shell startup files have side effects.
+
+Risk: Prompt content is transmitted to NVIDIA's API during model calls.
+
+Mitigation: Do not submit secrets, regulated data, or private business data unless the deployment has approved handling for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clementgu/skills/nvidia-agent-fleet)
+- [Publisher profile](https://clawhub.ai/user/clementgu)
+- [NVIDIA API endpoint](https://integrate.api.nvidia.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and Python dictionaries containing model responses, usage data, selected agents, and timing metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on selected model agents, NVIDIA_API_KEY availability, configured max token limits, and per-model request timeouts.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

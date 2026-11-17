@@ -1,44 +1,58 @@
-## Description: <br>
-Fully automated workflow for AI content monitoring and Feishu push notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Push System Skill automates monitoring of AI-generated content and pushes podcast summaries, skill learning summaries, and conversation briefs to Feishu with logging and recovery guidance.
 
-## Publisher: <br>
-[bianca1227](https://clawhub.ai/user/bianca1227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bianca1227](https://clawhub.ai/user/bianca1227)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an unattended workflow that watches AI content logs for ready signals, sends generated summaries or briefs to Feishu, and records processing status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended monitoring can send local file contents from log-referenced paths to Feishu. <br>
-Mitigation: Restrict monitored logs and content paths to a dedicated directory, add approval or redaction for sensitive content, and review Feishu permissions before enabling automation. <br>
-Risk: A default Feishu target chat can route generated content to an unintended destination. <br>
-Mitigation: Replace and verify the target chat ID during setup, then test with non-sensitive content before scheduling recurring pushes. <br>
-Risk: Processed files may be renamed automatically after successful delivery. <br>
-Mitigation: Confirm automatic renaming is acceptable for the workflow or adjust the scripts before production use. <br>
+## Use Case:
 
+Developers and operations teams use this skill to configure an automated workflow that detects AI-generated content readiness signals and sends selected content to Feishu. It is intended for recurring content notification workflows such as podcast summaries, skill learning summaries, and conversation briefs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bianca1227/auto-push-system-skill) <br>
-- [README](README.md) <br>
-- [OpenClaw auto-push documentation](https://docs.openclaw.ai/skills/auto-push-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration files, cron-oriented shell scripts, logs, Feishu messages, and processed-file markers when installed and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: Default Feishu recipient and unchecked file paths can send unintended local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the default chat ID, restrict processing to a dedicated trusted content directory, and require review before any external send.
+
+Risk: Recurring cron jobs can repeatedly send content before the workflow is tested.
+
+Mitigation: Disable recurring cron entries until configuration, Feishu authorization, and test content handling have been verified.
+
+Risk: Running the workflow with broad local access can expose secrets or personal files.
+
+Mitigation: Run with least-privilege permissions and avoid granting access to directories containing secrets or personal data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bianca1227/skills/auto-push-system-skill)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, scheduling, monitoring, and troubleshooting guidance for a Feishu content-push workflow.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

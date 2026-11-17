@@ -1,46 +1,55 @@
-## Description: <br>
-Local macOS voice-control integration for OpenClaw. Use when setting up, deploying, troubleshooting, or operating wakeword-triggered voice access to a local OpenClaw agent with ASR, TTS, overlay UI, and launchd background support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local macOS voice-control integration for OpenClaw. Use when setting up, deploying, troubleshooting, or operating wakeword-triggered voice access to a local OpenClaw agent with ASR, TTS, overlay UI, and launchd background support.
 
-## Publisher: <br>
-[carrotyuan](https://clawhub.ai/user/carrotyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carrotyuan](https://clawhub.ai/user/carrotyuan)
 
-## Use Case: <br>
-Developers and operators use this skill to install, configure, validate, and maintain a local macOS voice-control entrypoint for an OpenClaw agent. It helps set up wakeword activation, local ASR, TTS playback, overlay UI, environment configuration, and optional launchd background service behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The voice entrypoint is not identity-bound, so anyone near the microphone may be able to trigger capabilities exposed by the connected OpenClaw agent. <br>
-Mitigation: Use a limited-permission voice-facing agent, add explicit safety constraints, and require confirmation for high-risk actions. <br>
-Risk: The skill uses sensitive local microphone access and an OpenClaw token. <br>
-Mitigation: Keep the OpenClaw token private, avoid printing secrets, and store machine-specific secrets in the local environment file. <br>
-Risk: Optional launchd background service behavior can create an always-available wakeword listener. <br>
-Mitigation: Enable launchd auto-start only when persistent voice access is intended, and stop foreground validation before enabling background resident behavior. <br>
-Risk: Repository setup and model downloads can change the local system or pull unreviewed code and assets. <br>
-Mitigation: Review or pin the repository code before setup, confirm before fetching, installing, downloading models, or enabling background services. <br>
+## Use Case:
 
+Developers and operators use this skill to set up, validate, troubleshoot, and manage a local macOS voice-control path for an OpenClaw agent, including wakeword activation, ASR, TTS, overlay UI, and optional launchd background behavior.
 
-## Reference(s): <br>
-- [OpenClaw Voice Control repository](https://github.com/CarrotYuan/openclaw-voice-control) <br>
-- [OpenClaw Voice Control on ClawHub](https://clawhub.ai/carrotyuan/openclaw-voice-control) <br>
-- [Picovoice](https://picovoice.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, validation, troubleshooting, maintenance, and safety guidance for a macOS-only local voice-control deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: The skill asks an agent to download and run mutable GitHub code and deployment scripts with sensitive local access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing or pinning the exact repository commit and deployment scripts, and avoid launchd auto-start until the background behavior is understood.
+
+Risk: Microphone access and OPENCLAW_TOKEN create sensitive local authority, and voice-triggered requests may reach capabilities exposed by the connected OpenClaw agent.
+
+Mitigation: Use a least-privilege OpenClaw agent, require confirmations for risky voice-triggered actions, and treat microphone access plus OPENCLAW_TOKEN as sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carrotyuan/skills/openclaw-voice-control)
+- [OpenClaw Voice Control homepage](https://github.com/CarrotYuan/openclaw-voice-control)
+- [Picovoice](https://picovoice.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS setup and operation; requires local OpenClaw, microphone permission, Python, git, launchctl, model paths, and an OpenClaw token.]
+
+## Skill Version(s):
+
+0.1.9 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

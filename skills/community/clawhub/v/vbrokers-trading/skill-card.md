@@ -1,40 +1,58 @@
-## Description: <br>
-VBrokers Trading helps agents automate VBrokers OpenAPI Gateway workflows for account access, portfolio checks, quotes, orders, cancellations, and stop-loss or take-profit logic across supported US, HK, and A-share markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VBrokers Trading helps agents automate VBrokers (华盛通 VCL HK) account, quote, order, and stop-loss or take-profit workflows through a local OpenAPI Gateway.
 
-## Publisher: <br>
-[lcy360](https://clawhub.ai/user/lcy360) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lcy360](https://clawhub.ai/user/lcy360)
 
-## Use Case: <br>
-Developers and trading operators use this skill to connect an agent to a local VBrokers OpenAPI Gateway, inspect account state, retrieve quotes and K-lines, and prepare or execute order-management workflows. It is intended for environments where the user intentionally enables agent-assisted brokerage access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-assisted live trading and cancellation can place unintended brokerage orders if enabled without confirmation or guardrails. <br>
-Mitigation: Require explicit per-order approval and validate symbol, quantity, price, session, market status, and account context before calling order or cancellation endpoints. <br>
-Risk: Gateway access and trading credentials can expose brokerage account control if mishandled. <br>
-Mitigation: Keep the Gateway local, avoid hard-coding real passwords, and begin with read-only quote and account checks before enabling live trading actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VBrokers OpenAPI Reference](references/api-reference.md) <br>
-- [VBrokers OpenAPI Documentation](https://quant-open.hstong.com/api-docs) <br>
+## Use Case:
 
+Developers and trading automation users use this skill to connect an agent to a local VBrokers OpenAPI Gateway for authentication, account review, quote retrieval, order placement, cancellation, and trading workflow automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and JSON API parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local VBrokers OpenAPI Gateway at 127.0.0.1:11111 and pycryptodome for the bundled Python helper.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent live account and order-changing authority, including login, order placement, cancellation, bulk cancellation, and stop-loss automation.
+
+Mitigation: Require explicit human confirmation, trading limits, and order review before allowing any account-changing action.
+
+Risk: Account, position, funds, and order responses may be exposed when the helper script is run directly or logs output.
+
+Mitigation: Avoid running the script in shared logs and redact account balances, positions, order IDs, and other brokerage data from outputs.
+
+Risk: Trading decisions can be based on stale or session-dependent market data.
+
+Mitigation: Use explicit quote session parameters and verify live market data from the gateway before placing or cancelling orders.
+
+## Reference(s):
+
+- [VBrokers OpenAPI Reference](references/api-reference.md)
+- [VBrokers OpenAPI Documentation](https://quant-open.hstong.com/api-docs)
+- [ClawHub Skill Page](https://clawhub.ai/lcy360/skills/vbrokers-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with Python code snippets and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or execute account, quote, order, cancellation, and trading workflow requests against a locally running VBrokers Gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

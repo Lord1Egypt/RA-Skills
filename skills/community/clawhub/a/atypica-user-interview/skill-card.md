@@ -1,44 +1,64 @@
-## Description: <br>
-Run AI-simulated user interviews and focus group discussions using atypica.ai's library of human-like personas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run AI-simulated user interviews and focus group discussions using atypica.ai's library of human-like personas.
 
-## Publisher: <br>
-[owenrao](https://clawhub.ai/user/owenrao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[owenrao](https://clawhub.ai/user/owenrao)
 
-## Use Case: <br>
-Product, UX, and research teams use this skill to run simulated interviews or group discussions with atypica.ai personas and receive synthesized research reports without recruiting participants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts, product ideas, persona queries, and generated outputs are sent to atypica.ai under the user's account. <br>
-Mitigation: Avoid regulated or highly confidential data unless the organization has approved the service and its data handling. <br>
-Risk: Report share URLs may expose generated research outputs if shared broadly. <br>
-Mitigation: Keep report tokens and public report links private unless the audience is approved. <br>
-Risk: Verbose script output can reveal prompts, responses, or API-related details in logs. <br>
-Mitigation: Avoid verbose mode when prompts or responses contain sensitive information and keep API keys private. <br>
+## Use Case:
 
+External product, UX, and research teams use this skill to run AI-simulated one-on-one interviews or focus groups, monitor the session workflow, and retrieve synthesized research reports without recruiting participants.
 
-## Reference(s): <br>
-- [Atypica Universal Agent API Reference](references/api-reference.md) <br>
-- [Atypica MCP documentation](https://atypica.ai/docs/mcp) <br>
-- [Atypica Universal MCP endpoint](https://atypica.ai/mcp/universal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or retrieve HTML research reports and public share URLs from atypica.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Research prompts, interview outputs, persona queries, and generated reports may be sent to atypica.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated data unless the service's retention and sharing model has been reviewed.
+
+Risk: Generated report share links may expose sensitive research content.
+
+Mitigation: Do not use public share links for sensitive reports.
+
+Risk: Verbose mode can expose private inputs during direct Bash usage.
+
+Mitigation: Disable verbose output when prompts, tokens, or research data are sensitive.
+
+Risk: An untrusted ATYPICA_ENDPOINT value can redirect direct Bash wrapper calls.
+
+Mitigation: Run the wrapper only in trusted environments or explicitly set the intended endpoint.
+
+## Reference(s):
+
+- [atypica Universal Agent API Reference](references/api-reference.md)
+- [atypica MCP documentation](https://atypica.ai/docs/mcp)
+- [atypica Universal MCP endpoint](https://atypica.ai/mcp/universal)
+- [ClawHub skill page](https://clawhub.ai/owenrao/skills/atypica-user-interview)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing workflow instructions for creating sessions, sending messages, handling interactions, polling status, and retrieving reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

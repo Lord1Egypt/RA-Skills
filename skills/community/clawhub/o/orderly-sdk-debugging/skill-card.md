@@ -1,39 +1,52 @@
-## Description: <br>
-Debug and troubleshoot common issues with the Orderly SDK including errors, WebSocket issues, authentication problems, and trading failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug and troubleshoot common issues with the Orderly SDK including errors, WebSocket issues, authentication problems, and trading failures.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers use this skill to debug Orderly SDK integrations in browser applications, including build setup, WebSocket status, authentication, API errors, trading failures, and deposit or withdrawal issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dependency changes suggested by troubleshooting snippets may introduce packages that are inappropriate for a project. <br>
-Mitigation: Review any npm dependency before adding it and apply the project's normal dependency approval process. <br>
-Risk: Debug logs and screenshots can expose wallet addresses, account IDs, balances, positions, errors, or hook payloads. <br>
-Mitigation: Redact sensitive account, wallet, balance, position, error, and hook data before sharing logs or screenshots. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-debugging) <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot Orderly SDK browser integrations, including build setup, WebSocket status, authentication, order submission, deposits, withdrawals, and hook debugging.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, CSS, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only debugging guidance; no executable installer or hidden behavior identified by the security scan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Console logging snippets can reveal wallet or account state, balances, and trading context in development logs.
+
+Mitigation: Use the snippets only in development, avoid collecting sensitive logs, and remove debug panels before production use.
+
+Risk: Transaction examples cover deposits, withdrawals, and order submission flows that can involve real funds.
+
+Mitigation: Review and test transaction code in a non-production environment or with limited funds before using it with real accounts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tarnadas/skills/orderly-sdk-debugging)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, CSS, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes troubleshooting checklists and development-only debugging snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

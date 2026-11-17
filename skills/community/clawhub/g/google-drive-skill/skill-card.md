@@ -1,48 +1,67 @@
-## Description: <br>
-Provides ready-to-run Python scripts and guidance for listing, reading, creating, updating, deleting, and sharing Google Drive files and folders through the Drive API v3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to list, download, create, update, delete, and share Google Drive files and folders using Drive API v3 with API-key read access or service-account write access.
 
-## Publisher: <br>
-[DVNghiem](https://clawhub.ai/user/DVNghiem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dvnghiem](https://clawhub.ai/user/dvnghiem)
 
-## Use Case: <br>
-Developers and agents use this skill to integrate Google Drive operations into scripts or workflows. It supports public Drive reads with an API key and service-account based CRUD automation for folders, files, uploads, downloads, metadata updates, deletion, and permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write-capable credentials allow the helper scripts to change, delete, or share Google Drive files. <br>
-Mitigation: Use a dedicated service account with access only to intended folders and require explicit confirmation before public sharing, writer sharing, or permanent deletion. <br>
-Risk: Google API keys or service account JSON files could expose Drive access if committed or stored with the skill. <br>
-Mitigation: Keep credentials outside repositories, load them through environment variables, and store service account keys in a secret manager or similarly controlled location. <br>
-Risk: Running scripts from an unexpected SKILL_SCRIPTS location could execute the wrong local files. <br>
-Mitigation: Resolve and inspect SKILL_SCRIPTS before execution, especially before using write, share, or delete operations. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to integrate Google Drive into scripts or applications, read publicly shared files, manage service-account-owned Drive content, and automate folder structures.
 
-## Reference(s): <br>
-- [Google Drive API v3 documentation](https://developers.google.com/drive/api/v3/reference) <br>
-- [Google API Python Client Drive v3 reference](https://googleapis.github.io/google-api-python-client/docs/dyn/drive_v3.html) <br>
-- [Google service accounts guide](https://developers.google.com/identity/protocols/oauth2/service-account) <br>
-- [Google Drive MIME types](https://developers.google.com/drive/api/guides/mime-types) <br>
-- [MIME types reference](references/mime_types.md) <br>
-- [Google Drive errors reference](references/error_codes.md) <br>
-- [Service account template](assets/service_account_template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts, shell command examples, and optional JSON or table output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google Drive credentials through environment variables; write-capable scripts can modify Drive resources and local files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A download path can overwrite local files, especially when downloading untrusted Drive files into a directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download into a dedicated directory, check the resolved destination before execution, and avoid trusting remote filenames for sensitive paths.
+
+Risk: Read-only commands may still use full Drive credentials when service-account credentials are present.
+
+Mitigation: Use an API key for public read-only access where possible, and unset service-account credentials in read-only runs.
+
+Risk: Public sharing, writer roles, and non-interactive permanent deletion can expose or destroy Drive content.
+
+Mitigation: Review file IDs and permission roles before execution, prefer trashing over permanent deletion, and audit sharing after permission changes.
+
+Risk: Broad service-account credentials can grant more Drive access than a task needs.
+
+Mitigation: Use a tightly scoped service account and keep credential files outside the repository or in a secret manager.
+
+## Reference(s):
+
+- [Google Drive MIME Types Reference](references/mime_types.md)
+- [Google Drive Errors Reference](references/error_codes.md)
+- [Service Account Template](assets/service_account_template.json)
+- [Drive API v3 documentation](https://developers.google.com/drive/api/v3/reference)
+- [Python client library for Drive v3](https://googleapis.github.io/google-api-python-client/docs/dyn/drive_v3.html)
+- [Service accounts guide](https://developers.google.com/identity/protocols/oauth2/service-account)
+- [Drive MIME types](https://developers.google.com/drive/api/guides/mime-types)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command patterns for Google Drive API operations and may guide creation or handling of local files when scripts are executed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

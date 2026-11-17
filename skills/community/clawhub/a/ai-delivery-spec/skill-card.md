@@ -1,41 +1,63 @@
-## Description: <br>
-Create PRDs, prototypes, tests, AI runtime specs, and coding agent handoffs for product delivery. Excludes code debugging and copy rewriting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarify, create, review or change product, service and office workflow requirements, PRDs and interactive prototypes. Use for vague goals, process improvements, spreadsheet/form rules, small UI edits and changes to existing systems, even without the word requirement. 中文：产品、服务及办公流程的需求判断、深挖澄清、PRD、原型、变更与验收；一句话想法、表单/表格规则和微小改动也适用。明确的纯翻译、排版、抄录或既定步骤执行由对应工具直接处理。
 
-## Publisher: <br>
-[franklinxkk](https://clawhub.ai/user/franklinxkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franklinxkk](https://clawhub.ai/user/franklinxkk)
 
-## Use Case: <br>
-Developers, product managers, QA, operations, and delivery teams use this skill to produce structured product delivery artifacts, including PRDs, prototypes, tests, AI runtime specs, and coding agent handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Following the Git release guidance in the skill could commit or push changes from the wrong repository or with unintended staged files. <br>
-Mitigation: Confirm the intended repository, review staged changes, and verify local checks before committing, tagging, or pushing. <br>
-Risk: Product delivery artifacts can be incomplete or misleading when key inputs such as users, outcomes, data sources, metrics, permissions, workflow states, or acceptance evidence are missing. <br>
-Mitigation: Use the skill's clarification protocol before generation, or record assumptions and gaps when proceeding without complete information. <br>
+## Use Case:
 
+Product, service, and operations teams use the skill to clarify business needs, compare options, create requirements and interactive prototypes, and review changes against agreed expectations. Developers and testers can use its outputs as business context and acceptance guidance.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/franklinxkk/ai-delivery-spec) <br>
-- [ClawHub skill page](https://clawhub.ai/franklinxkk/skills/ai-delivery-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured text with optional code, shell command, and configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include completion states, assumptions, acceptance evidence, and handoff notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: An unpinned installation command may install a release that has not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed release and verify the installer before running the installation command.
+
+Risk: Project materials and saved snapshots, team bindings, or browser records may contain private information.
+
+Mitigation: Limit access to intended project materials and treat saved records as private.
+
+Risk: Automated gates may be mistaken for proof of business correctness or approval for production actions.
+
+Mitigation: Use gates as review assistance, verify business correctness, and obtain authorization before production actions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/franklinxkk/skills/ai-delivery-spec)
+- [Discovery guide](references/discover.md)
+- [Specification guide](references/specify.md)
+- [Prototype guide](references/prototype.md)
+- [Change and acceptance guide](references/change-acceptance.md)
+- [Team customization guide](references/team-customization.md)
+- [Tool adapters](references/tool-adapters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, HTML, JSON, YAML, Code]
+
+**Output Format:** [Markdown requirements and PRDs, interactive HTML prototypes, and structured JSON or YAML records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs and checks are scoped to the task; passing a structural or automated check does not establish business correctness.]
+
+## Skill Version(s):
+
+5.5.6 (source: ClawHub release metadata, changelog released 2026-10-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-LinkdAPI helps agents look up LinkedIn profiles, companies, jobs, posts, articles, and related B2B data through the LinkdAPI REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkdAPI helps agents use LinkdAPI's LinkedIn data API for profile lookups, people and company search, job and post research, lead enrichment, and API workflow guidance.
 
-## Publisher: <br>
-[ethcipher](https://clawhub.ai/user/ethcipher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethcipher](https://clawhub.ai/user/ethcipher)
 
-## Use Case: <br>
-External developers and agents use this skill to perform LinkedIn data workflows such as lead enrichment, company research, people and job search, market intelligence, and content research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys could be exposed in chats, shell history, or logs. <br>
-Mitigation: Use a dedicated LinkdAPI key, keep it in the LINKDAPI_KEY environment variable, and avoid pasting or logging the key. <br>
-Risk: LinkedIn profile, contact, and company data can include personal or sensitive business information. <br>
-Mitigation: Handle retrieved data according to applicable privacy, consent, retention, and platform rules. <br>
-Risk: High-volume lookups can consume LinkdAPI API credits quickly. <br>
-Mitigation: Monitor API-credit usage and scope requests to the minimum data needed. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to retrieve LinkedIn-derived profile, company, job, post, article, and services data through LinkdAPI and to build API workflows for research, enrichment, and market intelligence.
 
-## Reference(s): <br>
-- [LinkdAPI API Reference](references/api-ref.md) <br>
-- [LinkdAPI Endpoint Manifest](references/skills.json) <br>
-- [LinkdAPI API Specification](https://linkdapi.com/apispec.yml) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ethcipher/linkdapi-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with REST API examples, endpoint references, and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the LINKDAPI_KEY environment variable and the X-linkdapi-apikey header; API responses use the LinkdAPI response envelope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: People lookup, lead generation, recruiting, and outreach workflows can involve LinkedIn-derived personal data without adequate privacy or consent guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where there is a legitimate and compliant reason to process the data, and review planned usage for privacy, consent, and outreach requirements before execution.
+
+Risk: The skill can support bulk collection or unsolicited contact workflows.
+
+Mitigation: Avoid bulk collection and unsolicited contact use cases; scope requests narrowly and apply appropriate data minimization.
+
+Risk: API key exposure could allow unauthorized LinkdAPI access.
+
+Mitigation: Protect the LINKDAPI_KEY value, avoid placing it in shared logs or generated files, and prefer isolated environments for REST calls or pinned SDK versions.
+
+## Reference(s):
+
+- [LinkdAPI ClawHub skill page](https://clawhub.ai/ethcipher/skills/linkdapi-official)
+- [LinkdAPI API specification](https://linkdapi.com/apispec.yml)
+- [LinkdAPI API reference](references/api-ref.md)
+- [LinkdAPI endpoint manifest](references/skills.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST endpoint paths, request parameters, authentication header guidance, SDK references, and response handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

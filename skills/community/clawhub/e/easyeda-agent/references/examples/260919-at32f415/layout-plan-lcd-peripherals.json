@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "keepouts": [
+    {
+      "id": "U3-LCD-measured-footprint-bbox",
+      "minXMil": 379.151,
+      "minYMil": 410.751,
+      "maxXMil": 920.903,
+      "maxYMil": 1552.738,
+      "source": "考试说明.pdf p3；U3=C2890616；现场rendered bbox并由公开footprint丝印几何交叉验证；不等于封装region持久化证据",
+      "layers": [
+        "top"
+      ],
+      "exceptRefs": [
+        "U3"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "lcd-peripherals",
+      "strategy": "pin-satellites",
+      "anchorRef": "U3",
+      "members": [
+        {
+          "ref": "U3",
+          "fixedAxes": [
+            "x",
+            "y",
+            "rotation"
+          ],
+          "allowedRotationsDeg": [
+            0
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C7",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "R6",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "Q1",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "R4",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "R5",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "gapsMil": [
+          8,
+          20,
+          40
+        ]
+      },
+      "pinAssignments": [
+        {
+          "memberRef": "C7",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "061a7dacccb37220e15",
+          "ownerRef": "U3",
+          "ownerPad": "10",
+          "ownerPadPrimitiveId": "f086401280b13c2ee29",
+          "side": "right",
+          "alongOffsetMil": 80,
+          "source": "原理图.pdf 第1页：C7服务U3.10 VDD；U3.12为同网但不按最近距离改派"
+        },
+        {
+          "memberRef": "R6",
+          "memberPad": "2",
+          "memberPadPrimitiveId": "8a183a3faecbae32e7",
+          "ownerRef": "U3",
+          "ownerPad": "11",
+          "ownerPadPrimitiveId": "f086401280b13c2ee30",
+          "side": "right",
+          "alongOffsetMil": -80,
+          "source": "原理图.pdf 第1页：R6.2连接U3.11 LEDK"
+        },
+        {
+          "memberRef": "Q1",
+          "memberPad": "3",
+          "memberPadPrimitiveId": "036b99fd112fd454e4",
+          "ownerRef": "R6",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "8a183a3faecbae32e8",
+          "side": "right",
+          "source": "原理图.pdf 第1页：Q1.3连接R6.1，背光驱动链整体跟随"
+        },
+        {
+          "memberRef": "R4",
+          "memberPad": "2",
+          "memberPadPrimitiveId": "7dfc560ed42add9ce7",
+          "ownerRef": "Q1",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "036b99fd112fd454e6",
+          "side": "right",
+          "source": "原理图.pdf 第1页：R4.2连接Q1.1 LCD_BASE，R4.1朝PA15通道"
+        },
+        {
+          "memberRef": "R5",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "284fadc3e2d0ded8e8",
+          "ownerRef": "Q1",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "036b99fd112fd454e6",
+          "side": "bottom",
+          "source": "原理图.pdf 第1页：R5.1连接Q1.1 LCD_BASE，R5.2下拉GND"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

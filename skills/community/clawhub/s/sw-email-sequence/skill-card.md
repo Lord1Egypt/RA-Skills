@@ -1,38 +1,49 @@
-## Description: <br>
-Create tailored email sequences with subject lines, preview text, body copy, send timing, and A/B test tips for welcome, onboarding, nurture, and re-engagement campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Sequence Pro helps agents draft tailored marketing email sequences with subject lines, preview text, body copy, send timing, CTAs, and A/B test suggestions.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Marketers, founders, and customer-facing teams use this skill to draft structured campaign email sequences for welcome, onboarding, nurture, re-engagement, cart abandonment, launch, and drip campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email copy may be inaccurate, off-brand, or noncompliant with consent, unsubscribe, privacy, or advertising-law requirements. <br>
-Mitigation: Review and adapt all generated copy for accuracy, brand fit, consent, unsubscribe, privacy, and advertising requirements before using it in an email platform. <br>
+## Use Case:
 
+Marketing teams, founders, and business operators use this skill to create welcome, onboarding, nurture, re-engagement, cart-abandonment, launch, and drip email campaigns that are ready for human review and editing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-email-sequence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown email sequence drafts with subject lines, preview text, body copy, timing, goals, and CTA guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes send intervals and A/B test suggestions for subject lines and calls to action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated email copy may include inaccurate claims, brand-inconsistent language, or legally sensitive marketing statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated sequences for factual accuracy, brand fit, legal compliance, and unsupported claims before sending them to customers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amdf01-debug/skills/sw-email-sequence)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown email sequence drafts with structured timing, subject, preview, goal, body, CTA, and A/B testing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human review is recommended before sending to customers for accuracy, brand fit, legal compliance, and unsupported marketing claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

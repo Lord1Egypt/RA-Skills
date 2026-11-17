@@ -1,41 +1,55 @@
-## Description: <br>
-Google Classroom: Manage classes, rosters, and coursework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Classroom: Manage classes, rosters, and coursework.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and Google Workspace administrators use this skill to inspect and run gws CLI commands for Google Classroom courses, rosters, coursework, invitations, registrations, and user profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated gws Classroom commands can create, update, patch, delete, invite, grade, or registration changes in Google Classroom. <br>
-Mitigation: Before running mutating commands, inspect the schema, verify the target course, user, topic, coursework, or registration, and require explicit confirmation. <br>
-Risk: The skill depends on the local gws CLI and shared Google Workspace authentication behavior. <br>
-Mitigation: Install only when the gws CLI is trusted and review the shared auth and security guidance before use. <br>
+## Use Case:
 
+Developers, administrators, and agent operators use this skill to inspect and run Google Workspace CLI commands for Google Classroom courses, rosters, coursework, invitations, registrations, and user profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-classroom) <br>
-- [Google Classroom grading periods licensing requirements](https://developers.google.com/workspace/classroom/grading-periods/manage-grading-periods#licensing_requirements) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reference with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace authentication configured by the shared gws skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release evidence; artifact metadata version 0.22.5) <br>
+Risk: Classroom delete, update, invitation, roster, and registration operations can change courses, membership, notifications, or related Classroom data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before write operations and verify target course IDs, user IDs, invitation IDs, and Pub/Sub topics before execution.
+
+Risk: Incorrect parameters or permissions can cause failed Classroom API calls or unintended target selection.
+
+Mitigation: Inspect each method with gws schema classroom.<resource>.<method> and confirm required parameters, types, and defaults before running commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-classroom)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+- [Google Classroom grading periods licensing requirements](https://developers.google.com/workspace/classroom/grading-periods/manage-grading-periods#licensing_requirements)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and CLI parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and command inspection with gws classroom --help or gws schema before API calls.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

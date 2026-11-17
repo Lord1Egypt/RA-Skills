@@ -1,42 +1,54 @@
-## Description: <br>
-Bigdata helps an agent provide shell-based guidance for recording data workflow notes, queries, schemas, validation checks, and related activity in local plaintext logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Split large files, run parallel processing, and stream batch analysis for dataset sampling, log aggregation, and bulk data transformation workflows.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to track data workflow steps and review recent logged activity from a local command-line utility. It is best suited for lightweight workflow documentation rather than actual distributed or parallel big-data processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow notes are persisted in local plaintext log files. <br>
-Mitigation: Do not enter secrets, personal data, proprietary SQL, sensitive schema details, confidential dataset contents, or other regulated information. <br>
-Risk: The public description overstates big-data processing capabilities compared with the artifact behavior. <br>
-Mitigation: Use the skill for lightweight workflow logging and review, not for splitting large files, parallel processing, or stream/batch analysis. <br>
+## Use Case:
 
+Developers and data engineers use this skill to record, search, summarize, and export local notes about data pipeline steps, schemas, validation checks, profiling results, and related workflow activity.
 
-## Reference(s): <br>
-- [Bigdata on ClawHub](https://clawhub.ai/bytesagain3/bigdata) <br>
-- [BytesAgain](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output should avoid asking users to log secrets, personal data, proprietary SQL, sensitive schema details, or confidential dataset contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Users may record dataset names, SQL, schemas, file paths, customer information, or secrets in local plaintext history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or personal data, redact sensitive values before logging, restrict local file permissions, and delete or rotate logs according to the user's retention policy.
+
+Risk: The release summary overstates processing capabilities relative to the local logging behavior described by the security evidence.
+
+Mitigation: Treat the skill as a workflow logging and review helper unless its processing behavior is independently verified before operational use.
+
+## Reference(s):
+
+- [ClawHub Bigdata skill page](https://clawhub.ai/bytesagain3/skills/bigdata)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create or update local plaintext logs under ~/.local/share/bigdata when executed.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

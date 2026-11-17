@@ -1,41 +1,53 @@
-## Description: <br>
-Run the local Cline CLI to plan, build, code, and return the output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs the local Cline CLI for coding, scaffolding, debugging, and multistep planning tasks.
 
-## Publisher: <br>
-[elathoxu-crypto](https://clawhub.ai/user/elathoxu-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elathoxu-crypto](https://clawhub.ai/user/elathoxu-crypto)
 
-## Use Case: <br>
-Developers use this skill to delegate coding, scaffolding, debugging, and multistep planning tasks to an installed local Cline CLI and receive the resulting output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local Cline CLI can propose or make file changes in the active project. <br>
-Mitigation: Run it only in intended project directories and review generated file changes before keeping them. <br>
-Risk: Prompts or command output could expose sensitive information if secrets are pasted into the task. <br>
-Mitigation: Keep prompts specific and do not include secrets or credentials. <br>
-Risk: Behavior depends on the local cline executable available on PATH. <br>
-Mitigation: Install only if you already trust the local Cline CLI and verify the command being invoked. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elathoxu-crypto/cline) <br>
+## Use Case:
 
+Developers use this skill to invoke an installed local Cline CLI from an agent workflow for coding, repo scaffolding, debugging, and short task-oriented planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with command output and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local cline command on PATH; review generated file changes before keeping them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run broad coding tasks through auto-approved headless Cline CLI execution without strong scope controls.
+
+Mitigation: Use it only in a limited workspace, review tasks before invocation, and pay special attention to deletions, package installs, network access, or commands outside the project.
+
+Risk: Prompts or workspace context may expose secrets to the local CLI workflow.
+
+Mitigation: Do not paste secrets into prompts, and keep sensitive files out of the workspace context used with this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elathoxu-crypto/skills/cline)
+- [Publisher profile](https://clawhub.ai/user/elathoxu-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown or plain text with command output and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on the local Cline CLI task and workspace context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.0 — 2026-08-20
+
+### Changed
+- Require `garminconnect >= 0.3.11` and use its native `login(tokenstore)` authentication flow.
+- Remove direct access to the deprecated Garth client internals.
+- Reuse and refresh native tokens with bounded retries before requesting credentials.
+- Support interactive MFA through the native client and document the one-time re-login required when upgrading from `0.2.x`.
+
+### Security
+- Rely on the native client's protected token persistence instead of manually dumping legacy tokens.
+
 ## v1.0.11 — 2026-05-31
 
 ### Fixed

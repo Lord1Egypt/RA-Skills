@@ -2,15 +2,14 @@
 评论模块单元测试
 """
 
-from unittest.mock import MagicMock, patch, call
-import pytest
+from unittest.mock import MagicMock, patch
 
-from scripts.comment import CommentAction, MAX_COMMENT_LENGTH
 from scripts.client import XiaohongshuClient
+from scripts.comment import MAX_COMMENT_LENGTH, CommentAction
 
 
 class TestValidateComment:
-    """测试评论内容校验（ops 安全理念）"""
+    """测试评论内容校验"""
 
     def test_valid_comment(self):
         """正常评论通过校验"""
@@ -42,7 +41,7 @@ class TestValidateComment:
 
 
 class TestCheckRateLimit:
-    """测试频率限制检测（ops 安全理念）"""
+    """测试频率限制检测"""
 
     def setup_method(self):
         self.client = MagicMock(spec=XiaohongshuClient)

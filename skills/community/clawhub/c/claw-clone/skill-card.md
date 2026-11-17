@@ -1,41 +1,61 @@
-## Description: <br>
-Exports and imports OpenClaw agent configuration packages, including identity files, rules, selected memory, installed skill lists, and filtered configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Agent Clone exports and imports OpenClaw agent configuration packages for sharing, cloning, backup, and restoration.
 
-## Publisher: <br>
-[Anwhere](https://clawhub.ai/user/Anwhere) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anwhere](https://clawhub.ai/user/anwhere)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to package an agent setup for sharing or to clone another agent setup into a local OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported clone packages can overwrite persistent OpenClaw identity, rule, tool, memory, and configuration files. <br>
-Mitigation: Import only trusted packages, inspect every file entry before applying it, and keep or review the generated backup files before continuing work. <br>
-Risk: A package can request installation of additional skills chosen by the package author. <br>
-Mitigation: Review the listed skills before import and install only skills from publishers and versions the user trusts. <br>
-Risk: Exported packages may still contain sensitive agent identity, rules, memory, or credentials not covered by automatic filtering. <br>
-Mitigation: Inspect the generated package before sharing it and reconfigure API keys, channel credentials, and other authentication details manually after import. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to export an agent's identity, configuration, installed skill list, and optional memory into a shareable package, or import such a package to clone an agent setup.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [JSON clone package and terminal import/export report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports redact common sensitive configuration keys; imports can write workspace files, create backups, and install listed skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata and artifact _meta.json) <br>
+Risk: Importing a package can overwrite agent identity and configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package contents before import, keep the generated backups, and test imports in a disposable workspace when possible.
+
+Risk: Imported packages can install additional skills and change future agent behavior.
+
+Mitigation: Import only from trusted sources and review the package's skill list before allowing installation.
+
+Risk: Exported packages may contain sensitive identity, configuration, or optional memory content.
+
+Mitigation: Inspect exported packages manually before sharing and include memory only when the user explicitly intends to share it.
+
+Risk: Import behavior can write outside the intended workspace if environment paths are misconfigured.
+
+Mitigation: Confirm the target OpenClaw workspace paths before import and run the skill with least necessary file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anwhere/skills/claw-clone)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON clone package and plain-text import/export report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Export mode filters configured sensitive fields; import mode can write configuration files, create .bak backups, and install missing skills.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

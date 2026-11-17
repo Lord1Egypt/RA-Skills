@@ -1,0 +1,61 @@
+# coding:gbk
+'''
+4获取全推数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+ContextInfo.get_full_tick - 获取全推数据
+提示
+
+不能用于回测 只能取最新的分笔，不能取历史分笔
+
+原型
+
+内置python
+
+ContextInfo.get_full_tick(stock_code=[])
+释义
+
+获取最新分笔数据
+
+参数
+
+名称	类型	描述
+stock_code	list[str]	合约代码列表，如['600000.SH','600036.SH']，不指定时为当前主图合约。
+返回值 根据stock_code返回一个dict，该字典的key值是股票代码，其值仍然是一个dict，在该dict中存放股票代码对应的最新的数据。该字典数据key值参考tick字段
+Tick - Tick 对象
+行情快照数据
+
+get_market_data_ex/get_full_tick返回对象：
+字段名	数据类型	含义
+time	int	时间戳
+stime	string	时间戳字符串形式
+lastPrice	float	最新价
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+lastClose	float	前收盘价
+amount	float	成交总额
+volume	int	成交总量（手）
+pvolume	int	原始成交总量(未经过股手转换的成交总量)【不推荐使用】
+stockStatus	int	证券状态
+openInt	int	若是股票，则openInt含义为股票状态，非股票则是持仓量openInt字段说明
+transactionNum	float	成交笔数(期货没有，单独计算)
+lastSettlementPrice	float	前结算(股票为0)
+settlementPrice	float	今结算(股票为0)
+askPrice	list[float]	多档委卖价
+askVol	list[int]	多档委卖量
+bidPrice	list[float]	多档委买价
+bidVol	list[int]	多档委买量
+'''
+import pandas as pd
+import numpy as np
+
+def init(c):
+	c.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	
+def handlebar(c):
+	tick = c.get_full_tick(c.stock_list)
+	print(tick["510050.SH"])
+'''
+运行结果
+{'time': 1773730819000, 'timetag': '20260317 15:00:19', 'lastPrice': 3.039, 'open': 3.0300000000000002, 'high': 3.072, 'low': 3.028, 'lastClose': 3.028, 'amount': 2142979200.0, 'volume': 7016996, 'pvolume': 701699631, 'stockStatus': 5, 'openInt': 15, 'settlementPrice': 0.0, 'lastSettlementPrice': 3.028, 'askPrice': [3.04, 3.041, 3.0420000000000003, 3.043, 3.044], 'bidPrice': [3.0380000000000003, 3.037, 3.036, 3.035, 3.0340000000000003], 'askVol': [4612, 239, 1643, 1864, 2145], 'bidVol': [1075, 3663, 14853, 12271, 332]}
+'''

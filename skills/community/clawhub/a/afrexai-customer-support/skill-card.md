@@ -1,40 +1,57 @@
-## Description: <br>
-Enterprise-grade customer support system: ticket triage, response templates, escalation workflows, CSAT tracking, knowledge base management, and churn prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade customer support system: ticket triage, response templates, escalation workflows, CSAT tracking, knowledge base management, and churn prevention.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Support teams and customer-facing operators use this skill to triage tickets, draft customer responses, manage escalations, track CSAT and NPS, maintain knowledge base articles, and run churn-prevention workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide customer-facing messages and support decisions that affect customer experience. <br>
-Mitigation: Use a draft/review workflow and require human approval before sending responses or making commitments. <br>
-Risk: The skill includes billing, refund, discount, account-locking, and privacy-request workflows that can affect money, access, or personal data. <br>
-Mitigation: Perform these actions only through approved systems with scoped permissions, logging, role checks, and confirmation steps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Customer Support Command Center on ClawHub](https://clawhub.ai/1kalin/afrexai-customer-support) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Support teams and customer-facing agents use this skill to triage tickets, draft customer responses, route escalations, track support metrics, maintain knowledge base content, and identify churn risks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text templates, including YAML-style ticket, escalation, routing, metrics, and reporting blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drafts and operational guidance that should be reviewed before customer, billing, account, or privacy actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill discusses customer-data export and deletion workflows that may involve privacy rights or regulated personal data.
+
+Mitigation: Require identity verification, existing privacy-request procedures, support system permissions, and human approval before any export or deletion.
+
+Risk: The skill includes account locking, refunds, credits, and retention offers that can affect customer access or finances.
+
+Mitigation: Keep these actions behind role-based permissions, documented approval thresholds, and audit logging in the organization support system.
+
+Risk: Automated customer replies could send incorrect or unauthorized messages if treated as autonomous output.
+
+Mitigation: Use drafts for human review except for narrowly scoped, confidence-gated FAQ responses approved by the support team.
+
+## Reference(s):
+
+- [Customer Support Command Center on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-customer-support)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured templates, YAML examples, response drafts, routing rules, and reporting outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational support playbooks and customer communication drafts; does not grant system permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

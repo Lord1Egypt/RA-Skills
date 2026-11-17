@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "微信搜一搜文章搜索 - API出参",
-    "description": "微信搜一搜文章搜索实时搜索文章, API出参Schema详解",
+    "title": "微信搜一搜文章搜索 - 结果条目",
+    "description": "success 时 results 数组中的单条文章字段。完整 stdout 见 output_envelope.schema.json",
     "properties": {
         "docid": {
             "type": "string",
@@ -14,7 +14,11 @@
         },
         "pubtime": {
             "type": "number",
-            "description": "微信文章发布时间时间戳"
+            "description": "微信文章发布时间时间戳（秒）"
+        },
+        "pubtime_str": {
+            "type": "string",
+            "description": "发布时间北京时间字符串，如 2026/9/4 20:13:20"
         },
         "url": {
             "type": "string",

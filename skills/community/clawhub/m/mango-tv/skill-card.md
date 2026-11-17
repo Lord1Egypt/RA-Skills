@@ -1,40 +1,50 @@
-## Description: <br>
-提供芒果热门综艺、青春剧集及粉丝互动指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for Mango TV popular variety shows, youth dramas, and fan interaction features.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Viewers and fan community managers use this skill to ask an agent for Mango TV content filters, playback status fields, membership reminders, and youth-mode viewing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account-specific viewing, membership, or payment questions could involve private information. <br>
-Mitigation: Do not provide passwords, payment details, or private session information when using the skill. <br>
-Risk: Offers, licensing, and content availability can change over time. <br>
-Mitigation: Verify time-sensitive offers and licensing information in the official Mango TV app or website. <br>
+## Use Case:
 
+External users can use this skill to ask for Mango TV content filters, playback feature guidance, membership-status fields, and interaction options in Chinese.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/CodeKungfu/mango-tv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, credentials, or system access are part of the skill output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Account-related topics such as membership expiry or viewing progress may expose user-specific context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only share account or viewing context when it is intentional and necessary for the request.
+
+## Reference(s):
+
+- [ClawHub Mango TV skill page](https://clawhub.ai/codekungfu/skills/mango-tv)
+- [ClawHub publisher profile: codekungfu](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language entertainment and account-feature guidance; no executable code.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

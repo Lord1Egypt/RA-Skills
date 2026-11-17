@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn745zhmk61tvynpc3nwqfwhwx82s8a3",
-  "slug": "ai-product-space",
-  "version": "1.0.4",
-  "publishedAt": 1773301748847
+  "name": "ai-product-space",
+  "displayName": "AI Product Space",
+  "version": "1.0.0",
+  "description": "Upload a single product photo and AI generates full ecommerce assets — main images, scene shots, feature posters, marketing copy, and 8-second showcase videos.",
+  "author": "renshevy",
+  "license": "MIT",
+  "homepage": "https://renshevy.com",
+  "repository": "https://github.com/renshevy/ai-product-space",
+  "icon": "icon.png",
+  "acceptLicenseTerms": true
 }

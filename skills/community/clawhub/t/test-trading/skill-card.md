@@ -1,44 +1,59 @@
-## Description: <br>
-Trades a market when your estimated probability diverges from the live market price, with dry-run by default, context checks, reasoning tags, and optional live execution through AION. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades a market when the user's estimated probability diverges from the live market price, with dry-run by default, context checks, reasoning tags, and optional live execution through AION.
 
-## Publisher: <br>
-[ssj124](https://clawhub.ai/user/ssj124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssj124](https://clawhub.ai/user/ssj124)
 
-## Use Case: <br>
-Developers and trading agents use this skill to compare an operator-provided market probability against live market pricing, hold when the edge is too small or risk alerts are present, and optionally execute AION trades when live mode is explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real-money market trading and requires sensitive credentials. <br>
-Mitigation: Use a dedicated low-balance wallet or test account, keep dry-run mode unless live execution is intentional, and require explicit confirmation before any live order. <br>
-Risk: Wallet credential registration, token approvals, cancel-all orders, auto-redeem, and scheduled execution can create broad trading authority. <br>
-Mitigation: Review the scheduled automaton behavior and require explicit confirmation for wallet credential registration, token approvals, cancel-all orders, auto-redeem, and any live order. <br>
-Risk: Trading decisions may execute against incomplete or risky market context. <br>
-Mitigation: Fetch market context before deciding, hold when warnings or flip-flop risk are present, and avoid trading when the edge is below the configured threshold. <br>
+## Use Case:
 
+External users and developers use this skill when an agent already has a probability estimate for a prediction market and needs a disciplined wrapper for dry-run analysis or explicitly enabled live execution. The skill compares the estimate with market context, reports risk alerts, and holds or trades when the configured edge threshold is met.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ssj124/test-trading) <br>
-- [Publisher profile](https://clawhub.ai/user/ssj124) <br>
-- [Polymarket CLOB endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Operator-style text summaries, Markdown instructions, Python code, shell commands, and JSON trade result output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live trading requires the --live flag and AION credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, and skill frontmatter) <br>
+Risk: The skill can support live financial trading and token approval flows when explicitly enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in dry-run mode by default, use minimal funds, pin dependencies, and require explicit operator approval for every live trade and token approval.
+
+Risk: Reusable exchange credentials or API keys may be exposed, stored, or retained by external services.
+
+Mitigation: Use an isolated environment, avoid printing or storing reusable credentials unless the service is trusted, and maintain a clear credential revocation process.
+
+Risk: The manifest includes a managed cron schedule that could cause recurring execution.
+
+Mitigation: Disable or avoid scheduled execution unless recurring trading behavior is intentional and monitored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssj124/skills/test-trading)
+- [Publisher profile](https://clawhub.ai/user/ssj124)
+- [Polymarket CLOB endpoint](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and operator-style text or JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to dry-run; live trading requires an explicit live flag and configured AION credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

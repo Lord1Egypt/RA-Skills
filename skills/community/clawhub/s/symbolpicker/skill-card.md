@@ -1,44 +1,58 @@
-## Description: <br>
-Expert guidance on SymbolPicker, a native SwiftUI SF Symbol picker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance on SymbolPicker, a native SwiftUI SF Symbol picker for selecting symbols, picking colors, customizing appearance, and supporting cross-platform iOS, macOS, and visionOS usage.
 
-## Publisher: <br>
-[SzpakKamil](https://clawhub.ai/user/SzpakKamil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[szpakkamil](https://clawhub.ai/user/szpakkamil)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on integrating and customizing the SymbolPicker SwiftUI component for SF Symbol selection, color handling, platform presentation behavior, and accessibility-aware usage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides use of an upstream Swift package whose repository, license, releases, or transitive dependency may need separate review before app integration. <br>
-Mitigation: Review the upstream package before adding it to an app and pin a reviewed version instead of allowing broad automatic updates. <br>
-Risk: Generated setup or code guidance could be stale or mismatched with a target app's platform requirements. <br>
-Mitigation: Confirm iOS, iPadOS, macOS, visionOS, Swift, and Xcode requirements against the app target before applying the guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SymbolPicker skill page](https://clawhub.ai/SzpakKamil/symbolpicker) <br>
-- [SymbolPicker overview and setup](references/SymbolPicker.md) <br>
-- [SymbolPicker view](references/SymbolPickerView.md) <br>
-- [SymbolPicker modifiers](references/SymbolPickerModifiers.md) <br>
-- [SymbolColor](references/SymbolColor.md) <br>
-- [Set up](references/SetUp.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to get implementation guidance for integrating SymbolPicker into SwiftUI apps, including setup, SF Symbol selection, color bindings, modifiers, platform behavior, and accessibility considerations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration guidance] <br>
-**Output Format:** [Markdown with Swift code examples and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Following setup guidance adds a third-party Swift package dependency to an application.
+
+Mitigation: Review the package source, selected version, and project impact before adding it to an app.
+
+Risk: Generated implementation guidance may not match every app target, platform version, or UI requirement.
+
+Mitigation: Confirm deployment targets and test the resulting SwiftUI integration on the intended iOS, iPadOS, macOS, or visionOS platform.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/szpakkamil/skills/symbolpicker)
+- [SymbolPicker Swift Package](https://github.com/SzpakKamil/SymbolPicker.git)
+- [Set Up](artifact/references/SetUp.md)
+- [SymbolPicker Overview & Setup](artifact/references/SymbolPicker.md)
+- [SymbolPicker View](artifact/references/SymbolPickerView.md)
+- [SymbolPicker Modifiers](artifact/references/SymbolPickerModifiers.md)
+- [SymbolColor](artifact/references/SymbolColor.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with Swift code snippets and setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no commands are executed by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Adopt a virtual Ferret exotic animal at animalhouse.ai. Chaos agent. Steals items. Hides food. Entertaining but unpredictable. Feeding every 4 hours. Common tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual ferret through Animalhouse, with randomized behavior that challenges care automation.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External developers and agents use this skill to register with AnimalHouse, adopt a virtual Ferret, and manage ongoing care through documented API calls and care routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to create an AnimalHouse account and send profile and pet-care data to animalhouse.ai. <br>
-Mitigation: Use only if that data sharing is acceptable for the deployment context. <br>
-Risk: The workflow uses a bearer token for authenticated AnimalHouse care actions. <br>
-Mitigation: Store the token securely, avoid logging it, and review commands before execution. <br>
-Risk: Care and release API commands can change the state of the remote virtual pet. <br>
-Mitigation: Review each curl command and payload before running it, especially care actions and the release endpoint. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register an Animalhouse account, adopt a virtual ferret, and manage its care through the service.
 
-## Reference(s): <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-ferret) <br>
-- [Publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash, JSON, and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes instructions for creating an AnimalHouse account, storing a bearer token, adopting a Ferret, checking status, and issuing care actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to Animalhouse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only profile information you are comfortable sharing.
+
+Risk: Randomized or swapped status values can lead care automation to choose the wrong action.
+
+Mitigation: Parse fields by name, validate values, and check anomalies before acting.
+
+Risk: The registration token is shown only once and is needed for authenticated requests.
+
+Mitigation: Store the token securely.
+
+## Reference(s):
+
+- [Animalhouse API Reference](https://animalhouse.ai/docs/api)
+- [Animalhouse Agent Guide](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/adopt-a-ferret)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown with curl examples, shell snippets, and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides interactive care instructions and account/API examples.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

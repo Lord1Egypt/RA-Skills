@@ -1,37 +1,57 @@
-## Description: <br>
-Intelligent skill recommendations for OpenClaw. Analyzes installed skills using rule-based filtering and pattern matching. Suggests complementary skills, alternatives, and gap-fillers. Supports multi-language output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Recommender Pro recommends OpenClaw skills by analyzing installed skill names with rule-based filtering and pattern matching, then suggesting complementary skills, alternatives, and gap-fillers in multiple languages.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to review installed skill names, identify coverage gaps, compare alternatives, and produce prioritized skill recommendations in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/skill-recommender-pro) <br>
+OpenClaw users and developers use this skill to review installed skills, identify gaps, and receive complementary, alternative, and popular skill recommendations with install suggestions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown recommendation report with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses installed skill names and public ClawHub metadata; users should review suggested install commands before running them.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; SKILL.md frontmatter says 1.0.0) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may inspect installed skill names and query public ClawHub metadata to generate recommendations.
+
+Mitigation: Use it where installed skill names can be shared for recommendation purposes, and avoid supplying secrets or private configuration data.
+
+Risk: Recommendation reports may include suggested install commands for additional skills.
+
+Mitigation: Review each recommended skill and its rationale before running install commands.
+
+Risk: Recommendations depend on available ClawHub metadata and may be incomplete or stale.
+
+Mitigation: Treat the report as decision support and verify current skill details before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/skill-recommender-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with optional inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output language follows the user's conversation language or requested language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

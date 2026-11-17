@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn7572w32fd1k4z4r1r4r6af1582eb9e",
+  "ownerId": "kn7472bg474xtcrazj1dhmh0m180ywh6",
   "slug": "kannaka-eye",
-  "version": "1.0.1",
-  "publishedAt": 1773103634659
+  "version": "1.0.0",
+  "publishedAt": 1741737600000,
+  "dependencies": ["flux"],
+  "requires": {
+    "bins": ["node"],
+    "env": []
+  },
+  "optional": {
+    "bins": ["kannaka"],
+    "env": [
+      "KANNAKA_BIN",
+      "EYE_PORT",
+      "FLUX_URL",
+      "FLUX_AGENT_ID"
+    ]
+  },
+  "dataDestinations": {
+    "alwaysLocal": ["local-render"],
+    "optionalRemote": ["flux"]
+  },
+  "securityNotes": [
+    "File uploads are processed in-memory only — no server-side persistence of uploaded content",
+    "Exported PNGs and glyph JSON are generated client-side — never sent to any remote service",
+    "Share links encode glyph data in the URL fragment — no server round-trip required",
+    "Flux event publishing is disabled by default; only enabled when FLUX_URL is explicitly set"
+  ]
 }

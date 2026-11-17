@@ -1,0 +1,37 @@
+# Python dependencies for the dataset-producer skill scripts.
+#
+# Install with:
+#   pip install -r /home/z/my-project/skills/dataset-producer/requirements.txt
+#
+# These are the minimum versions known to work. Older versions may also work
+# but are not tested. Verified combinations: datasets 2.x–5.x (incl. 5.0.1)
+# with pyarrow 14–25, on Python 3.10–3.12.
+
+# HuggingFace datasets library — provides Features, Dataset, ClassLabel,
+# load_dataset(). The skill's scripts use it for schema validation and
+# parquet writing.
+datasets>=2.14,<5.1
+
+# PyArrow — parquet backend used by datasets. Pinned to a recent version
+# because the YAML `dataset_size` computation depends on
+# `Dataset.data.table.nbytes` which behaves consistently across 14+.
+pyarrow>=14.0
+
+# PyYAML — used by make_card.py to parse and validate the YAML frontmatter
+# in the generated README.md.
+pyyaml>=6.0
+
+# Optional (not installed by default):
+#
+#   fasttext     — for language ID in validate.py. Install with:
+#                    pip install fasttext
+#                  Then download the LID model:
+#                    curl -L https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin -o /tmp/lid.176.bin
+#
+#   presidio     — for higher-precision PII detection in validate.py.
+#                  Install with: pip install presidio-analyzer presidio-anonymizer
+#                  (validate.py uses regex by default; presidio is opt-in.)
+#
+#   huggingface_hub — only needed if you want to push the produced dataset
+#                     to the HF Hub from a script. Install with:
+#                       pip install huggingface_hub

@@ -1,41 +1,54 @@
-## Description: <br>
-Searches and navigates stored knowledge in memory palaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and navigates stored knowledge in memory palaces.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agents use this skill to locate concepts, cross-reference stored knowledge, and retrieve relevant review-chamber decisions across memory palaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad search or recall requests. <br>
-Mitigation: Review trigger wording before deployment and enable it only where memory-palace retrieval is expected. <br>
-Risk: Retrieved memory-palace content may expose stored information to the agent. <br>
-Mitigation: Store only information that is appropriate for agent retrieval and review memory sources before use. <br>
+## Use Case:
 
+Developers and agents use the skill to find concepts and information within or across memory palaces, follow cross-references, and retrieve stored review knowledge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-memory-palace-knowledge-locator) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and structured retrieval guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface stored memory-palace content, cross-references, and search workflow recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Some referenced CLI files were unavailable to the scan, so its benign verdict is based on incomplete evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the referenced CLI files and review the skill behavior before installing it.
+
+Risk: The skill includes a PR review trigger alongside its knowledge search purpose, which may create a trigger conflict in some setups.
+
+Mitigation: Review the trigger configuration and enable PR review search only where it is intended.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-memory-palace-knowledge-locator)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown retrieval guidance and search results, with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retrieval depends on available indexed memory palaces and the configured companion skills.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

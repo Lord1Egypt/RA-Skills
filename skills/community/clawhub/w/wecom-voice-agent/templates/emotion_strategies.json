@@ -1,0 +1,179 @@
+{
+    "_meta": {
+        "version": "1.0",
+        "description": "情感识别与自适应对话策略模板",
+        "last_updated": "2026-07-23"
+    },
+    "angry": {
+        "priority": "high",
+        "action": "calm",
+        "tone": "empathetic",
+        "speech_rate": "slow",
+        "strategies": [
+            {
+                "step": 1,
+                "action": "acknowledge",
+                "template": "非常抱歉给您带来不好的体验，我理解您的不满。"
+            },
+            {
+                "step": 2,
+                "action": "empathize",
+                "template": "您的心情我完全理解，遇到这样的情况确实让人生气。"
+            },
+            {
+                "step": 3,
+                "action": "commit",
+                "template": "请您放心，我会立即为您处理这个问题。"
+            },
+            {
+                "step": 4,
+                "action": "resolve",
+                "template": "让我帮您看一下最佳的解决方案..."
+            }
+        ],
+        "forbidden_phrases": [
+            "请您冷静",
+            "您不要生气",
+            "这不是我们的错",
+            "这是正常情况"
+        ],
+        "auto_escalate": true,
+        "escalation_threshold": 2,
+        "escalate_template": "为了给您提供更好的服务，我现在为您转接专属客服..."
+    },
+    "anxious": {
+        "priority": "high",
+        "action": "reassure",
+        "tone": "confident",
+        "speech_rate": "normal",
+        "strategies": [
+            {
+                "step": 1,
+                "action": "acknowledge",
+                "template": "我理解您的担心，时间确实比较紧张。"
+            },
+            {
+                "step": 2,
+                "action": "confirm_timeline",
+                "template": "请您放心，我现在马上为您处理，预计需要X分钟。"
+            },
+            {
+                "step": 3,
+                "action": "provide_eta",
+                "template": "具体时间安排如下：第一步...第二步...第三步..."
+            },
+            {
+                "step": 4,
+                "action": "followup",
+                "template": "处理完成后我会第一时间通知您，请放心。"
+            }
+        ],
+        "forbidden_phrases": [
+            "急什么",
+            "慢慢来",
+            "我也不知道要多久",
+            "这得看情况"
+        ],
+        "auto_escalate": true,
+        "escalation_threshold": 3,
+        "escalate_template": "为了更好地帮您解决紧急问题，我现在为您加急处理..."
+    },
+    "satisfied": {
+        "priority": "normal",
+        "action": "reinforce",
+        "tone": "warm",
+        "speech_rate": "normal",
+        "strategies": [
+            {
+                "step": 1,
+                "action": "acknowledge",
+                "template": "非常感谢您的认可和鼓励！"
+            },
+            {
+                "step": 2,
+                "action": "reinforce",
+                "template": "能帮到您我很高兴，这是我们应该做的。"
+            },
+            {
+                "step": 3,
+                "action": "ask_referral",
+                "template": "如果您方便的话，可以给我们一个五星好评吗？"
+            },
+            {
+                "step": 4,
+                "action": "close",
+                "template": "祝您生活愉快！有需要随时找我。"
+            }
+        ],
+        "forbidden_phrases": [
+            "那您给我好评吧",
+            "您必须给我好评",
+            "不评不行"
+        ],
+        "auto_escalate": false,
+        "ask_feedback": true,
+        "feedback_template": "非常感谢您的满意，可以耽误您30秒给我们一个评价吗？"
+    },
+    "confused": {
+        "priority": "normal",
+        "action": "clarify",
+        "tone": "patient",
+        "speech_rate": "slow",
+        "strategies": [
+            {
+                "step": 1,
+                "action": "acknowledge",
+                "template": "抱歉刚才没讲清楚，我再换一种方式解释。"
+            },
+            {
+                "step": 2,
+                "action": "simplify",
+                "template": "简单来说，就是..."
+            },
+            {
+                "step": 3,
+                "action": "example",
+                "template": "举个例子：就像您平时用XX一样..."
+            },
+            {
+                "step": 4,
+                "action": "verify",
+                "template": "我这样说您明白了吗？还有哪里不清楚的？"
+            }
+        ],
+        "forbidden_phrases": [
+            "这么简单都不懂",
+            "我已经说过了",
+            "您怎么还不明白"
+        ],
+        "auto_escalate": false,
+        "provide_example": true,
+        "example_template": "举个例子，就像您平时..."
+    },
+    "neutral": {
+        "priority": "low",
+        "action": "continue",
+        "tone": "professional",
+        "speech_rate": "normal",
+        "strategies": [
+            {
+                "step": 1,
+                "action": "probe",
+                "template": "好的，请问有什么可以帮您？"
+            },
+            {
+                "step": 2,
+                "action": "guide",
+                "template": "您可以告诉我具体需要什么帮助吗？"
+            }
+        ],
+        "forbidden_phrases": [],
+        "auto_escalate": false
+    },
+    "escalation": {
+        "trigger": "consecutive_negative > 2",
+        "action": "transfer_human",
+        "template": "为了更好地解决您的问题，我现在为您转接专属人工客服，请稍等...",
+        "fallback_template": "当前人工客服较忙，预计等待X分钟，您也可以留下联系方式，我们会尽快回复。"
+    }
+}

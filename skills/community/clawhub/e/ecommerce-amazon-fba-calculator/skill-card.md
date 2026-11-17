@@ -1,42 +1,50 @@
-## Description: <br>
-Amazon FBA Calculator - Complete fee breakdown and profit analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Amazon FBA fees, profit metrics, and optimization suggestions from product dimensions, weight, costs, category, and selling price.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External e-commerce sellers and agents use this skill to estimate Amazon FBA fulfillment, storage, referral fees, profitability, and optimization opportunities from product dimensions, weight, price, and category inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial estimates may be inaccurate if Amazon FBA rates have changed since the embedded 2024 rate tables. <br>
-Mitigation: Verify current Amazon FBA rates before relying on outputs for pricing, inventory, or profitability decisions. <br>
-Risk: Removal and disposal fees are calculated in the code but are not included in default totals or displayed reports. <br>
-Mitigation: Review removal or disposal costs separately when making liquidation, return, or inventory-aging decisions. <br>
+## Use Case:
 
+External e-commerce sellers and operators use this skill to estimate Amazon FBA fulfillment, storage, referral, and related fees, then review margin, ROI, and packaging or inventory optimization suggestions.
 
-## Reference(s): <br>
-- [Amazon Fba Calculator on ClawHub](https://clawhub.ai/phheng/ecommerce-amazon-fba-calculator) <br>
-- [phheng ClawHub Profile](https://clawhub.ai/user/phheng) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown fee calculation report with tables, metrics, and optimization suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English output by default and Chinese output with the --zh flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter and script state 1.0.0) <br>
+Risk: Amazon fee rules and rates may change, so calculated fees can become stale or omit scenario-specific fees such as removal or disposal costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Amazon fee rules and confirm whether removal, disposal, or other scenario-specific fees apply before using estimates for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/ecommerce-amazon-fba-calculator)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style fee calculation report with shell command usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes fee breakdown, size tier classification, profit metrics, ROI, and optimization suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

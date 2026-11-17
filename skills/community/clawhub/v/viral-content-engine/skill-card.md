@@ -1,43 +1,58 @@
-## Description: <br>
-Find trending topics, create editorial-style social media graphics, and post to X/Twitter and Instagram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find trending topics, create editorial-style social media graphics, and post to X/Twitter and Instagram.
 
-## Publisher: <br>
-[ashmonmc](https://clawhub.ai/user/ashmonmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashmonmc](https://clawhub.ai/user/ashmonmc)
 
-## Use Case: <br>
-Content creators, marketers, and social-media operators use this skill to research viral topics, generate editorial-style image assets, and prepare or run posting workflows for Instagram and X/Twitter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live posting authority for real Instagram and X/Twitter accounts. <br>
-Mitigation: Review every caption, media file, destination account, and publish action before running posting commands. <br>
-Risk: The skill uses account credentials and API keys for Instagram, Brave Search, OpenAI, and X/Twitter tooling. <br>
-Mitigation: Use environment variables or existing authenticated tools, avoid passing Instagram passwords on the command line, and rotate credentials if they are exposed. <br>
-Risk: Shell-based helper scripts construct commands from user-provided search and posting inputs. <br>
-Mitigation: Avoid untrusted search text or captions until command construction is hardened, and inspect commands before execution. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to research viral topics, generate editorial social graphics, and prepare or publish posts on X/Twitter and Instagram.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ashmonmc/viral-content-engine) <br>
-- [OpenAI Images API endpoint used by the image generator](https://api.openai.com/v1/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external social, search, and image-generation services when the user runs the provided commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can access social accounts and publish live content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Instagram account, review all generated captions and commands before posting, and confirm each target channel before execution.
+
+Risk: Credentials and API keys are required for Instagram, Brave Search, OpenAI image generation, and X/Twitter tooling.
+
+Mitigation: Prefer environment variables or managed configuration, avoid passing passwords on the command line, and rotate credentials after testing.
+
+Risk: Untrusted search queries or captions may be unsafe while shell or code injection issues remain unresolved.
+
+Mitigation: Treat external text as untrusted, inspect generated commands before running them, and avoid using unsanitized user input in posting or search workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ashmonmc/skills/viral-content-engine)
+- [OpenAI Images API endpoint used by artifact](https://api.openai.com/v1/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with command examples, terminal result text, generated image files, and social post result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated third-party tools and API keys for search, image generation, and posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

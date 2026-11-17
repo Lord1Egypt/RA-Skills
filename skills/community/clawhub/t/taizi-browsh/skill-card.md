@@ -1,40 +1,53 @@
-## Description: <br>
-A modern text-based browser that renders web pages in the terminal using headless Firefox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A modern text-based browser that renders web pages in the terminal using headless Firefox.
 
-## Publisher: <br>
-[fresh3](https://clawhub.ai/user/fresh3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fresh3](https://clawhub.ai/user/fresh3)
 
-## Use Case: <br>
-Developers and terminal users use this skill to launch Browsh, open web pages in a PTY-backed terminal browser, and follow setup guidance for required local binaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Opening URLs through the terminal browser carries normal browsing risks, including exposure to untrusted sites or sensitive account activity. <br>
-Mitigation: Use Browsh and Firefox from trusted sources, keep them updated, and apply normal browser precautions for sensitive or untrusted sites. <br>
-Risk: The skill depends on local browsh and firefox binaries, so missing or unexpected binaries can cause failures or unsafe local execution. <br>
-Mitigation: Verify the required binaries are installed from trusted sources and that PATH resolves to the expected installations before use. <br>
+## Use Case:
 
+Developers and terminal users use this skill to run Browsh, a text-based browser backed by headless Firefox, including launching the browser and opening a specific URL from a terminal session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fresh3/taizi-browsh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local browsh and firefox binaries and a PTY-capable terminal session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on local browsh and Firefox binaries resolved from PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install browsh and Firefox from trusted sources and confirm PATH resolves to the intended binaries before use.
+
+Risk: Browsing through Browsh contacts the websites the user opens.
+
+Mitigation: Open only intended URLs and apply the same privacy, network, and content policies used for other web browsing tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fresh3/skills/taizi-browsh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local browsh and firefox binaries in PATH; Browsh runs as a TUI and should be launched in a PTY session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

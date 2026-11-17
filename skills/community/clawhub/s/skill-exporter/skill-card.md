@@ -1,44 +1,61 @@
-## Description: <br>
-Export Clawdbot skills as standalone, deployable microservices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Exporter exports Clawdbot skills as standalone deployable microservices, generating FastAPI wrappers, Docker and deployment configuration, requirements files, environment examples, and optional LLM client integration.
 
-## Publisher: <br>
-[MacStenk](https://clawhub.ai/user/MacStenk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[macstenk](https://clawhub.ai/user/macstenk)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert trusted Clawdbot skills into standalone FastAPI microservices for Docker, Railway, or Fly.io deployment. It generates service wrappers, deployment configuration, requirements files, environment templates, and optional LLM client code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated services may be deployed before production hardening is complete. <br>
-Mitigation: Review the generated output before deployment, add authentication and rate limits, and restrict CORS for the deployed API. <br>
-Risk: Copied source skill scripts may carry behavior that is inappropriate for the target service. <br>
-Mitigation: Review and scan copied scripts and generated wrappers before publishing or running the service. <br>
-Risk: Optional LLM integrations require provider API keys. <br>
-Mitigation: Store API keys in deployment secrets and keep local environment files out of source control. <br>
-Risk: Generated dependency ranges may not meet production reproducibility requirements. <br>
-Mitigation: Pin and review dependencies before production builds. <br>
+## Use Case:
 
+Developers and engineers use this skill to package existing Clawdbot skills as FastAPI microservices for Docker, Railway, or Fly.io deployment. It is intended for creating an independent API service with generated project files and optional OpenAI or Anthropic client scaffolding.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/MacStenk/skill-exporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Generated project files with console status and next-step shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local skill directory with SKILL.md and scripts/; supports target platform, optional LLM provider, output directory, and API port options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: A generated service can be compromised by malicious source-skill metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the exporter only with trusted source skills and inspect generated api.py before running or deploying the service.
+
+Risk: Source scripts can be deleted if the output path overlaps the source skill directory.
+
+Mitigation: Choose an output directory outside the source skill directory and verify source and output paths before export.
+
+Risk: Production secrets or API keys may be exposed or misused if added before generated code is reviewed.
+
+Mitigation: Keep production API keys out of the generated service until the generated files have been reviewed.
+
+Risk: Generated dependency ranges may be unsuitable for production builds.
+
+Mitigation: Pin dependencies and review the generated requirements before production deployment.
+
+## Reference(s):
+
+- [Skill Exporter on ClawHub](https://clawhub.ai/macstenk/skills/skill-exporter)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated service files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates Dockerfile, docker-compose.yml, api.py, requirements.txt, .env.example, copied skill scripts, optional llm_client.py, and optional Railway or Fly.io deployment configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

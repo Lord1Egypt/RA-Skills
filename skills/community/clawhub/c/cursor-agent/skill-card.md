@@ -1,42 +1,57 @@
-## Description: <br>
-A comprehensive skill for using the Cursor CLI agent for various software engineering tasks, including model selection, session management, automation, and tmux-based execution guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill for using the Cursor CLI agent for various software engineering tasks, including 2026 features and tmux automation guidance.
 
-## Publisher: <br>
-[swiftlysingh](https://clawhub.ai/user/swiftlysingh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swiftlysingh](https://clawhub.ai/user/swiftlysingh)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to install, authenticate, configure, and operate the Cursor CLI agent for code review, refactoring, debugging, session management, and CI-oriented workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that install remote code and run Cursor CLI with broad repository access. <br>
-Mitigation: Use a verifiable installer or package-manager install, run commands only in repositories where Cursor CLI access is acceptable, and review generated changes before keeping them. <br>
-Risk: The documented force mode can auto-apply edits without confirmation. <br>
-Mitigation: Avoid force mode unless the target repository is reviewed, version controlled, and changes can be reverted. <br>
-Risk: The automation workflow includes trusting a workspace from tmux. <br>
-Mitigation: Do not automate workspace trust for untrusted, newly downloaded, or unfamiliar projects. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swiftlysingh/cursor-agent) <br>
-- [Cursor CLI installer](https://cursor.com/install) <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Cursor CLI from the terminal for software engineering workflows, including installation, authentication, model and session management, code review, refactoring, debugging, and CI-style automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes interactive and non-interactive Cursor CLI workflows; some referenced commands can install software or modify repository files when executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer commands may execute unverified remote code when using curl piped directly to a shell.
+
+Mitigation: Prefer a package-managed or verified Cursor CLI installer and review installation scripts before execution.
+
+Risk: Workspace trust automation and force mode can bypass human review or apply changes in an unreviewed repository.
+
+Mitigation: Use controlled branches or sandboxes, avoid force mode unless rollback is available, and review resulting changes before merging or deploying.
+
+Risk: Automated Cursor CLI runs can hang when launched without a real terminal.
+
+Mitigation: Run automated invocations through a managed TTY such as tmux, monitor execution with timeouts, and capture output for review.
+
+## Reference(s):
+
+- [Cursor CLI Agent on ClawHub](https://clawhub.ai/swiftlysingh/skills/cursor-agent)
+- [Cursor CLI Installer](https://cursor.com/install)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Cursor CLI examples for text, JSON, and streaming JSON modes; the skill itself emits guidance rather than a structured API response.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

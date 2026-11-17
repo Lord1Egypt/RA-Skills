@@ -1,41 +1,55 @@
-## Description: <br>
-Analyzes installed skills and commands for functional overlap, reports likely duplication, and guides cleanup decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InspirAI Skill Audit helps agents scan installed skills and commands for functional overlap, inspect audit status, and guide resolution of redundant entries.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
 
-## Use Case: <br>
-Developers and agent users use this skill to scan installed Claude Code skills and commands, identify possible functional duplication, review status, and decide which entries to keep or disable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resolve workflows can change local agent or plugin configuration after user confirmation. <br>
-Mitigation: Review proposed actions carefully, back up local agent configuration, prefer supported disable or uninstall commands, and use dry-run or undo paths where available. <br>
-Risk: Overlap findings are heuristic and may incorrectly classify skills as redundant. <br>
-Mitigation: Treat scan results as decision support, use deeper comparison for high-overlap groups, and manually review unique capabilities before disabling anything. <br>
+## Use Case:
 
+Developers and agent users managing ClawHub or Claude skill setups use this skill to identify overlapping commands and skills, review audit status, and decide which redundant entries to keep or disable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alexxxiong/inspirai-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/alexxxiong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal-style reports with inline shell commands and JSON cache examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write an audit cache and may move command files during confirmed resolve workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The resolve workflow can change installed command or plugin state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scan and status as inventory aids, run resolve with dry-run first, and back up ~/.claude/commands and ~/.claude/plugins/installed_plugins.json before permitting disable actions.
+
+Risk: The artifact contains contradictory plugin-disabling guidance, including unsafe direct registry edits.
+
+Mitigation: Avoid direct plugin registry edits and prefer supported plugin commands or manual review before changing installed plugin state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexxxiong/skills/inspirai-audit)
+- [Publisher profile](https://clawhub.ai/user/alexxxiong)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown reports, status summaries, interactive decision prompts, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce configuration-changing guidance during resolve flows; dry-run and backup review are recommended before disabling anything.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

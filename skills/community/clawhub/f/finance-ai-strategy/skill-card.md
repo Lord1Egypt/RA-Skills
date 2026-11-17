@@ -1,42 +1,59 @@
-## Description: <br>
-Helps financial institutions plan AI transformation, prioritize AI investments, and design AI governance frameworks using finance-focused AI strategy models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps financial institutions plan AI transformation, prioritize use cases and investments, design governance, assess ROI, select sourcing models, and manage organizational change.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Strategy, innovation, and governance teams at financial institutions use this skill to structure AI readiness assessments, investment prioritization, governance design, and ROI analysis. Outputs are educational strategy guidance and require qualified human review before real-world financial, legal, insurance, or regulatory decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the generated strategy content as professional financial, legal, insurance, or regulatory advice. <br>
-Mitigation: Use the output as an educational strategy aid only and consult qualified professionals before applying recommendations. <br>
-Risk: AI and financial regulation claims may be incomplete, outdated, or jurisdiction-specific. <br>
-Mitigation: Verify regulatory and market claims against official sources before using them in planning or governance decisions. <br>
-Risk: Reference code snippets may be copied into operational workflows without review. <br>
-Mitigation: Treat code examples as illustrative only; review, test, and adapt them before any real-world use. <br>
+## Use Case:
 
+Financial institution leaders and strategy, risk, and technology teams use it to shape AI transformation roadmaps, prioritize projects by value and feasibility, establish governance, compare sourcing models, and plan adoption. It can also structure market and sector research reports; investment decisions and regulatory interpretations require qualified human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/finance-ai-strategy) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prose with tables, strategy frameworks, checklists, and reference Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only output; no executable behavior, tool access, persistence, or credential handling is included in the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.2.0 (source: server evidence and frontmatter) <br>
+Risk: The skill includes forward-looking 2026 financial and regulatory claims that may be inaccurate or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check claims against current authoritative sources and confirm their date and jurisdiction before relying on them.
+
+Risk: The skill can produce investment research and portfolio suggestions.
+
+Mitigation: Treat outputs as analysis, verify market data and sources, and leave investment decisions to qualified, appropriately licensed professionals.
+
+Risk: The skill's output is primarily Chinese, which may not suit every user.
+
+Mitigation: Confirm the user's language preference and request an English response when needed.
+
+## Reference(s):
+
+- [Server-resolved source repository (GitHub)](https://github.com/gechengling/finance-ai-strategy)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-ai-strategy)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Code]
+
+**Output Format:** [Chinese-first text and Markdown reports, checklists, strategy recommendations, and Python code templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial or regulatory claims; verify sources, dates, jurisdiction, and assumptions before relying on them.]
+
+## Skill Version(s):
+
+5.2.4 (source: server-resolved release metadata; embedded artifact labels differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

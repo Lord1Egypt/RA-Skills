@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/imdb/title-box-office-summary/v1 for IMDb Box Office Summary through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-box-office-summary/v1 for IMDb Box Office Summary through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve IMDb title box-office summary data through JustOneAPI by IMDb ID. It supports revenue tracking and title comparison by summarizing grosses and related performance indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a query parameter and could be exposed in request URLs, logs, screenshots, shell history, or error traces. <br>
-Mitigation: Use a dedicated, revocable token from an environment variable or secret store, avoid logging full request URLs, and rotate the token if exposure is suspected. <br>
-Risk: The skill depends on an external JustOneAPI endpoint and may return backend errors or unavailable data for a requested IMDb ID. <br>
-Mitigation: Ask for missing required parameters before execution, preserve the supplied IMDb ID, and include the backend payload and operation ID when reporting errors. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve IMDb title box-office summary data from JustOneAPI for revenue tracking and title comparison.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_box_office_summary&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_box_office_summary&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-box-office-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN; accepts IMDb id and optional languageCountry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles a JustOneAPI token that may have billing impact, broad account access, or a long lifetime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token when available, rotate it if exposed, and avoid sharing token values in chat, screenshots, or logs.
+
+Risk: The token is passed through a command-line argument and sent to JustOneAPI in the request URL.
+
+Mitigation: Run the skill only in trusted environments and avoid collecting command histories, process listings, or request URLs that may include credentials.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_box_office_summary&utm_content=project_link)
+- [Just One API dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_box_office_summary&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-box-office-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summary with endpoint details and raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JUST_ONE_API_TOKEN and an IMDb title id.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

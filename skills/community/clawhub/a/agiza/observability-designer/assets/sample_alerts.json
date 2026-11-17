@@ -255,7 +255,7 @@
       "name": "slack-warnings",
       "slack_configs": [
         {
-          "api_url": "https://hooks.slack.com/services/warnings",
+          "api_url": "REDACTED-SECRET",
           "channel": "#alerts-warnings",
           "title": "Warning Alert",
           "text": "{{ range .Alerts }}{{ .Annotations.description }}{{ end }}"

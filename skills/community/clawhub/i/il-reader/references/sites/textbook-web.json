@@ -1,0 +1,308 @@
+{
+  "version": "2.4.0",
+  "source_id": "textbook-web",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:42.900Z",
+  "entry": {
+    "url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+    "final_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+    "title": "电子工业出版社-网上书店",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:42.900Z",
+    "identity": {
+      "declared_name": "《网络信息检索实例分析与操作训练》第 3 版（宋诚英）",
+      "hostname": "phei.com.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "高级搜索",
+        "href": "https://phei.com.cn/module/goods/gjsearch.jsp",
+        "target": ""
+      },
+      {
+        "text": "网络信息检索实例分析与操作训练（第3版）",
+        "href": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+        "target": ""
+      },
+      {
+        "text": "本书配套资源下载",
+        "href": "http://www.hxedu.com.cn/hxedu/fg/book/bookinfo.html",
+        "target": "_blank"
+      },
+      {
+        "text": "华信教育资源网",
+        "href": "http://www.hxedu.com.cn/",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "searchKey",
+      "id": "searchKey",
+      "css": "#searchKey",
+      "role": null,
+      "form_action": "https://phei.com.cn/module/goods/searchkey.jsp",
+      "locator": {
+        "css": "#searchKey"
+      },
+      "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "observed_at": "2026-10-09T09:01:42.254Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://phei.com.cn/module/goods/searchkey.jsp",
+      "locator": null,
+      "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "observed_at": "2026-10-09T09:01:42.254Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "title",
+      "id": "",
+      "css": "input[name=\"title\"]",
+      "role": null,
+      "form_action": "https://phei.com.cn/module/comment/commentalllogin.jsp",
+      "locator": {
+        "css": "input[name=\"title\"]"
+      },
+      "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "observed_at": "2026-10-09T09:01:42.254Z"
+    },
+    {
+      "tag": "textarea",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "textcontent",
+      "id": "",
+      "css": "textarea[name=\"textcontent\"]",
+      "role": null,
+      "form_action": "https://phei.com.cn/module/comment/commentalllogin.jsp",
+      "locator": {
+        "css": "textarea[name=\"textcontent\"]"
+      },
+      "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "observed_at": "2026-10-09T09:01:42.254Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "VCode",
+      "id": "",
+      "css": "input[name=\"VCode\"]",
+      "role": null,
+      "form_action": "https://phei.com.cn/module/comment/commentalllogin.jsp",
+      "locator": {
+        "css": "input[name=\"VCode\"]"
+      },
+      "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "observed_at": "2026-10-09T09:01:42.254Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "发表评论",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "observed_at": "2026-10-09T09:01:42.254Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "textbook-web:record-lookup",
+      "source_id": "textbook-web",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "searchKey",
+          "id": "searchKey",
+          "css": "#searchKey",
+          "role": null,
+          "form_action": "https://phei.com.cn/module/goods/searchkey.jsp",
+          "locator": {
+            "css": "#searchKey"
+          },
+          "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+          "observed_at": "2026-10-09T09:01:42.254Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "title",
+          "id": "",
+          "css": "input[name=\"title\"]",
+          "role": null,
+          "form_action": "https://phei.com.cn/module/comment/commentalllogin.jsp",
+          "locator": {
+            "css": "input[name=\"title\"]"
+          },
+          "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+          "observed_at": "2026-10-09T09:01:42.254Z"
+        },
+        {
+          "tag": "textarea",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "textcontent",
+          "id": "",
+          "css": "textarea[name=\"textcontent\"]",
+          "role": null,
+          "form_action": "https://phei.com.cn/module/comment/commentalllogin.jsp",
+          "locator": {
+            "css": "textarea[name=\"textcontent\"]"
+          },
+          "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+          "observed_at": "2026-10-09T09:01:42.254Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "VCode",
+          "id": "",
+          "css": "input[name=\"VCode\"]",
+          "role": null,
+          "form_action": "https://phei.com.cn/module/comment/commentalllogin.jsp",
+          "locator": {
+            "css": "input[name=\"VCode\"]"
+          },
+          "observed_url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+          "observed_at": "2026-10-09T09:01:42.254Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "textbook-web",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:42.900Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/textbook-web-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/textbook-web-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

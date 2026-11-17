@@ -243,7 +243,7 @@ Create `.env` in project root:
 PRIVATE_KEY=0xsk_your_private_key_here_64_hex_chars
 PROXY_WALLET=0x1234567890123456789012345678901234567890
 POLY_API_KEY=pk_live_xxxxxxxxxxxxxxxxxxxx
-POLY_API_SECRET=sk_live_xxxxxxxxxxxxxxxxxxxx
+POLY_API_SECRET=REDACTED-SECRET
 POLY_API_PASSPHRASE=your_passphrase_here
 SIGNER_TYPE=1  # 1=email account, 2=MetaMask registered account
 

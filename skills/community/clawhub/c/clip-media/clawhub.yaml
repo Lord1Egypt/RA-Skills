@@ -1,0 +1,17 @@
+slug: clip-media
+name: Clip Media
+owner: jlacroix82
+description: Extract and download media from URLs using yt-dlp. ⚠️ Files over 50MB require explicit opt-in for public cloud upload. Browser cookie access exposes session tokens.
+version: 0.3.5
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - media
+  - download
+  - yt-dlp
+  - video
+  - agent
+entry: SKILL.md
+dependencies:
+  - yt-dlp

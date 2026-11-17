@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents when generating, modifying, or reviewing Vue3 and TypeScript subproject code for the documented Vite, Arco Design, UnoCSS, kb-pro-table, useTable, and useForm conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers when an agent is asked to generate, modify, or review Vue3 + TypeScript subproject code and applies project conventions for kb-pro-table, useTable, useForm, Arco Design, UnoCSS, module organization, naming, enums, types, and ref-first reactivity.
 
-## Publisher: <br>
-[guccihuiyuan](https://clawhub.ai/user/guccihuiyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guccihuiyuan](https://clawhub.ai/user/guccihuiyuan)
 
-## Use Case: <br>
-Developers and coding agents use this skill to apply project-specific Vue3 and TypeScript conventions when creating, editing, or reviewing matching subprojects in a pnpm monorepo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying these conventions to repositories outside the described Vue3, TypeScript, Vite, Arco Design, and UnoCSS stack may produce unsuitable guidance. <br>
-Mitigation: Install and use the skill only for repositories that match the documented stack and conventions. <br>
-Risk: The skill may suggest skill-directory or symlink layout changes. <br>
-Mitigation: Review proposed skill-directory and symlink layout changes before applying them. <br>
+## Use Case:
 
+Developers and coding agents use this skill to keep Vue3 + TypeScript work aligned with a specific pnpm monorepo's table, form, component, styling, module, typing, naming, and commenting conventions.
 
-## Reference(s): <br>
-- [Arco Design Vue Components](https://arco.design/vue/component) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance and code-oriented recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or credential access was found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can influence most Vue3 + TypeScript coding tasks in a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for projects that intentionally follow these conventions and review generated code before merging.
+
+Risk: The instructions are written in Chinese, which may reduce reviewability for teams that do not use Chinese in their workflow.
+
+Mitigation: Confirm that maintainers can read and apply the standards before enabling the skill for shared projects.
+
+## Reference(s):
+
+- [Arco Design Vue Components](https://arco.design/vue/component)
+- [ClawHub Skill Release Page](https://clawhub.ai/guccihuiyuan/skills/keyblade-pro-rules)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with code examples and implementation constraints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Influences Vue3 + TypeScript coding tasks; contains Chinese-language coding standards.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

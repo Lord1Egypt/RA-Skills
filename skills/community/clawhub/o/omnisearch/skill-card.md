@@ -1,37 +1,48 @@
-## Description: <br>
-OmniSearch routes agent web-search requests for current information to configured search providers and guides agents to summarize findings with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OmniSearch helps agents retrieve current web information through AI-enhanced or raw search providers and summarize results with citations.
 
-## Publisher: <br>
-[bguidolim](https://clawhub.ai/user/bguidolim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bguidolim](https://clawhub.ai/user/bguidolim)
 
-## Use Case: <br>
-Developers and agent operators use OmniSearch to let OpenClaw agents retrieve current web information, compare recent facts, and cite sources when static model knowledge is insufficient. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to external providers automatically. <br>
-Mitigation: Avoid including secrets, confidential business data, private identifiers, or sensitive personal details in search queries unless the configured provider and mcporter setup are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub OmniSearch release page](https://clawhub.ai/bguidolim/omnisearch) <br>
+## Use Case:
 
+Developers and agent operators use OmniSearch to answer requests that require current web, news, price, product, or source-backed factual information. The skill provides a wrapper for AI-enhanced or raw web search and guides the agent to synthesize results with links.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with source links and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may depend on the configured provider and current web availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries may be sent to third-party search or AI-search providers.
+
+Mitigation: Avoid including secrets, private documents, customer data, or confidential workspace details in queries unless that disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bguidolim/skills/omnisearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with source links and optional shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search queries may be routed to external search or AI-search providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through Bang.AI recruiting workflows, including reviewing recruiting Agent status, filtering candidate lists, viewing candidate details and video resumes, approving or rejecting candidates, and creating new recruiting Agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bang.AI AI招聘平台操作。用于：(1) 查看招聘Agent列表和状态 (2) 查看候选人列表和详情 (3) 筛选候选人 (4) 通过/拒绝候选人 (5) 创建新的招聘Agent。触发词：Bang.AI、AI招聘、AI面试、候选人管理、招聘Agent。
 
-## Publisher: <br>
-[huzhongx](https://clawhub.ai/user/huzhongx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huzhongx](https://clawhub.ai/user/huzhongx)
 
-## Use Case: <br>
-Recruiting teams and authorized Bang.AI users can use this skill to navigate candidate review and recruiting Agent management tasks in a logged-in Bang.AI account. It is intended for operational recruiting workflows that involve applicant screening, candidate filtering, and creating AI recruiting Agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive applicant and recruiting data while viewing candidate details, filters, and video resumes. <br>
-Mitigation: Use only in authorized recruiting accounts and avoid retaining or sharing applicant data outside the recruiting need. <br>
-Risk: Approve, reject, and recruiting Agent creation actions can materially affect candidates and recruiting operations. <br>
-Mitigation: Require the agent to show the relevant candidate or Agent context and ask for explicit confirmation before every approve/reject action or before creating a new recruiting Agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bang.AI recruiting Agent page](https://bangai.hina.com/agent?tab=my-interviews) <br>
-- [ClawHub skill page](https://clawhub.ai/huzhongx/bangai-recruit) <br>
+## Use Case:
 
+Recruiting teams and hiring operators use this skill to navigate Bang.AI recruitment workflows, including reviewing recruitment Agents, filtering candidate lists, approving or rejecting candidates, and creating new AI recruitment Agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or conversational instructions for using the recruiting interface] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authorized logged-in Bang.AI account; no credential variables or local tools are specified by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide approve or reject decisions for job candidates.
+
+Mitigation: Review candidate details and video resumes before taking any approve or reject action.
+
+Risk: The skill may involve sensitive applicant and hiring information.
+
+Mitigation: Avoid unnecessary copying or sharing of applicant information and follow organizational hiring and retention policies.
+
+## Reference(s):
+
+- [Bang.AI recruitment platform](https://bangai.hina.com/agent?tab=my-interviews)
+- [ClawHub skill page](https://clawhub.ai/huzhongx/skills/bangai-recruit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown or plain text operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide actions on candidate data and candidate review decisions in a logged-in Bang.AI account.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

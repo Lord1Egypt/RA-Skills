@@ -1,43 +1,58 @@
-## Description: <br>
-使用 yt-dlp 和 ffmpeg 下载哔哩哔哩视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 yt-dlp 和 ffmpeg 下载哔哩哔哩视频。
 
-## Publisher: <br>
-[xbos1314](https://clawhub.ai/user/xbos1314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbos1314](https://clawhub.ai/user/xbos1314)
 
-## Use Case: <br>
-Users and agents use this skill to prepare yt-dlp and ffmpeg commands for downloading Bilibili videos, selecting formats, merging audio and video streams, and saving the result locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to run yt-dlp and ffmpeg and write downloaded video files locally. <br>
-Mitigation: Approve the exact download command and output path before execution, and confirm whether the resulting file should be retained or deleted. <br>
-Risk: Authenticated downloads may expose browser cookies or a cookie file to command-line tools. <br>
-Mitigation: Avoid cookie authentication for public videos; when login is required, explicitly approve the browser profile or cookie file before use. <br>
-Risk: The release security summary notes under-scoped cleanup behavior for downloaded files. <br>
-Mitigation: Tell the agent where files should be stored and whether to delete them after delivery. <br>
+## Use Case:
 
+External users and developers use this skill to download Bilibili videos from b23.tv or bilibili.com links with yt-dlp, then merge separate audio and video streams with ffmpeg when needed.
 
-## Reference(s): <br>
-- [FFmpeg download documentation](https://ffmpeg.org/download.html) <br>
-- [ClawHub skill page](https://clawhub.ai/xbos1314/bilibili-yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local browser use, cookie selection, output paths, and cleanup of downloaded video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Installing yt-dlp or ffmpeg from untrusted sources can introduce dependency or local execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies from trusted sources and prefer an isolated environment.
+
+Risk: Using --cookies-from-browser or --cookies can expose authenticated Bilibili session data.
+
+Mitigation: Use cookies only when necessary, protect cookie files as credentials, and avoid sharing them.
+
+Risk: Downloaded or shared videos may violate access permissions or copyright restrictions.
+
+Mitigation: Download and share only videos the user is authorized to access and distribute.
+
+## Reference(s):
+
+- [ffmpeg downloads](https://ffmpeg.org/download.html)
+- [Bilibili video URL example](https://www.bilibili.com/video/BVxxxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash, JavaScript, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers local downloads, optional browser cookies, and ffmpeg-based media merging.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

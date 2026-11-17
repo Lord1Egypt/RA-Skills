@@ -1,6 +1,6 @@
 ---
 name: bring-list
-description: "Manage Bring! shopping lists (Einkaufsliste / grocery list) — add, remove, check off items, batch ops, default list support. Use when: user wants to set up Bring!, add items to shopping list, check what's on the list, or complete/remove items. Guided setup: the agent walks the user through login and list selection. Credentials: enter privately in your own terminal (recommended) or paste in chat — your choice, never repeated by the agent."
+description: "Manage Bring! shopping lists (Einkaufsliste / grocery list) — add, catalog-match, preview, remove, check off items, batch/stdin ops, and default lists. Use when a user wants to set up Bring! or manage shopping-list items. Setup passwords are entered only in the user's own terminal and are never accepted in chat or stored on disk."
 metadata:
   openclaw:
     emoji: "🛒"
@@ -14,70 +14,47 @@ metadata:
 
 Manage Bring! shopping lists via the unofficial REST API. Requires `curl` and `jq`.
 
+## Why this is the best all-round Bring! skill
+
+- **Complete item lifecycle:** view, add, batch-add, check off, restore, permanently remove, and perform multi-item operations.
+- **Private onboarding:** neither the Bring! email nor password is stored; password entry happens only in the user's terminal, never in agent chat or command arguments.
+- **Catalog-aware without npm:** `smart-add` preserves native Bring! icons, while normal output and follow-up commands translate internal catalog IDs back to localized names.
+- **Safe and automation-ready:** every modifying command supports `--dry-run`; batch input also works through stdin, and read commands support JSON.
+- **Small auditable runtime:** one Bash script, only `curl` and `jq`, no package-manager install, hidden dependency chain, third-party service, or telemetry.
+- **Agent-friendly defaults:** guided first setup, automatic token refresh, default lists, and partial case-insensitive list matching.
+
 ## Security & data handling
 
 Be upfront with the user about what this skill accesses and stores:
 
-- **Network:** talks only to Bring!'s official API at `api.getbring.com` — no third-party services, no telemetry, no other hosts.
+- **Network:** talks only to Bring!'s official services: `api.getbring.com` for account/list operations and `web.getbring.com` for public catalog matching/display names. No third-party services or telemetry.
 - **Files written locally:**
-  - `~/.config/bring/credentials.json` — the user's Bring! email + password (`chmod 600`, owner-only).
-  - `~/.cache/bring/token.json` — cached access/refresh token.
-- **Why the password is stored:** Bring!'s unofficial API has no token-only login. The skill caches a token and auto-refreshes it, but keeps the password so it can re-login once the token *and* refresh token expire. The stored password therefore grants ongoing access to the Bring! account from this machine — treat `credentials.json` as a secret.
+  - `~/.config/bring/credentials.json` — optional default-list and country preferences; no login credentials.
+  - `~/.cache/bring/token.json` — cached access/refresh token. This remains a secret and is stored owner-only.
+- **Password handling:** the password is entered only in the user's own terminal for `scripts/bring.sh setup`, used for that login, and never written to disk or accepted in chat. If the refresh token eventually expires, the user runs setup again.
 - **Destructive actions:** `remove` / `remove-multi` permanently delete items, and every change syncs instantly to everyone on a shared list. Confirm with the user before removing items, especially on shared lists.
 
 ## Agent Setup Guide
 
-When a user asks you to set up or use Bring for the first time, follow these steps:
+When a user asks you to set up or use Bring for the first time, follow these steps. **Never request, receive, or write a Bring! password in chat.**
 
 ### Step 1: Check if already configured
 Run `scripts/bring.sh lists` first. If it works, setup is already done — skip to usage.
 
-### Step 2: Set up credentials
+### Step 2: Private terminal setup
 Bring! requires an email + password. If the user doesn't have an account yet, they can create one for free at getbring.com or in the Bring! app.
 
 **If they signed up via Google/Apple:** They need to set a direct password first in the Bring! app (Settings → Account → Change Password) before the API works.
 
-Ask the user how they'd like to provide their credentials. **Be transparent about the trade-off — never imply the credentials stay off-chat if the user picks the chat option:**
-
-> "I need your Bring! email and password. Two ways:
-> • **Terminal (recommended, most private):** you type them into your own terminal — they never appear in this chat.
-> • **Chat (convenient):** you paste them here. ⚠️ Heads-up: anything typed in chat becomes part of this conversation's history and may be retained in logs/backups. I'll write them straight to a local config file and never repeat them, but I can't un-send a chat message.
->
-> Which do you prefer?"
-
-**Option A — via terminal (recommended):**
-Give the user this command to run in their own terminal. Credentials never pass through the chat:
+Tell the user to run this in **their own terminal**:
 ```bash
-mkdir -p ~/.config/bring
-read -rp "Bring! Email: " BEMAIL
-read -rsp "Bring! Password: " BPASS && echo
-jq -n --arg e "$BEMAIL" --arg p "$BPASS" '{email: $e, password: $p}' > ~/.config/bring/credentials.json
-chmod 600 ~/.config/bring/credentials.json
-unset BEMAIL BPASS
+scripts/bring.sh setup
 ```
-Tell the user: "Run that in your terminal, then come back and I'll continue the setup."
+The script reads the email and password without echoing the password, uses both for one login, stores neither, caches only a protected refresh token, then asks for a default list. The password must not be pasted into this conversation.
 
-**Option B — via chat (convenient, but credentials pass through the chat):**
-Use only if the user explicitly chooses this *after* the warning above. The user shares email + password in chat; write them directly to the config file using `jq` for safe JSON encoding (prevents injection via special characters) and do not echo them back:
-```bash
-mkdir -p ~/.config/bring
-jq -n --arg e "USER_EMAIL" --arg p "USER_PASSWORD" '{email: $e, password: $p}' > ~/.config/bring/credentials.json
-chmod 600 ~/.config/bring/credentials.json
-```
-After writing, confirm: "Done — saved to the local config file (`chmod 600`), and I won't repeat them. Note they're now in this chat's history — feel free to clear it on your end."
+After it completes, ask the user to return here; then run the normal list commands.
 
-**⚠️ Do NOT use `scripts/bring.sh setup`** — it requires an interactive terminal (TTY) which agents don't have. Always create the credentials file manually as shown in Step 3.
-
-### Step 3: Save credentials and test login
-```bash
-mkdir -p ~/.config/bring
-jq -n --arg e "USER_EMAIL" --arg p "USER_PASSWORD" '{email: $e, password: $p}' > ~/.config/bring/credentials.json
-chmod 600 ~/.config/bring/credentials.json
-scripts/bring.sh login
-```
-If login fails: double-check email/password. The user may need their Bring! password (not Google/Apple SSO — Bring requires a direct account password).
-
-### Step 4: Show existing lists and ask for a default
+### Step 3: Show existing lists
 ```bash
 scripts/bring.sh lists
 ```
@@ -94,15 +71,7 @@ This shows all the user's Bring! lists. The user may have multiple lists, e.g.:
 If they have only ONE list: set it as default automatically and inform them.
 If they have MULTIPLE lists: show the list names and ask which one to use as default. Explain they can still target other lists by name (e.g., "Put nails on the Baumarkt list").
 
-### Step 5: Set default list
-Update the credentials file to include the chosen default:
-```bash
-# Read existing config and add default_list
-jq --arg list "CHOSEN_LIST_NAME" '. + {default_list: $list}' ~/.config/bring/credentials.json > /tmp/bring_conf.json && mv /tmp/bring_conf.json ~/.config/bring/credentials.json
-chmod 600 ~/.config/bring/credentials.json
-```
-
-### Step 6: Confirm setup
+### Step 4: Confirm setup
 Show the user their current list content to confirm everything works:
 ```bash
 scripts/bring.sh show
@@ -120,13 +89,13 @@ Bring! lists are often shared between family members or partners. Changes made b
 
 ## Setup (manual / reference)
 
-Credentials via env vars `BRING_EMAIL` + `BRING_PASSWORD`, or config file `~/.config/bring/credentials.json`:
+For non-interactive login, provide `BRING_EMAIL` + `BRING_PASSWORD` as temporary environment variables. Optional preferences live in `~/.config/bring/credentials.json`:
 
 ```json
-{"email": "user@example.com", "password": "YOUR_BRING_PASSWORD", "default_list": "Einkaufsliste"}
+{"default_list": "Einkaufsliste", "country": "DE", "locale": "de-DE"}
 ```
 
-Interactive setup (TTY required): `scripts/bring.sh setup`
+Interactive setup (TTY required): `scripts/bring.sh setup`. It never writes the email or password to disk. Existing legacy `email` and `password` profile fields are removed automatically.
 
 ## Commands
 
@@ -144,8 +113,17 @@ scripts/bring.sh show "Einkaufsliste"
 scripts/bring.sh add "Milch" "fettarm, 1L"
 scripts/bring.sh add "Einkaufsliste" "Milch" "fettarm, 1L"
 
+# Preview any modifying command without changing the list
+scripts/bring.sh add --dry-run "Milch" "fettarm, 1L"
+
+# Match Bring's public catalog and use its internal item ID for reliable icons
+scripts/bring.sh smart-add "Paprika" "2 Stück"
+
 # Add multiple items at once (use "item|spec" for specifications)
 scripts/bring.sh add-multi "Brot" "Käse|Gouda" "Butter|irische"
+
+# Add newline-separated items from stdin (same item|spec format)
+printf '%s\n' "Milch|1L" "Brot" | scripts/bring.sh add-multi -
 
 # Complete/check off item (moves to recently purchased)
 scripts/bring.sh complete "Milch"
@@ -193,6 +171,11 @@ scripts/bring.sh show "Einkaufsliste" --json
 - Item names with special characters (quotes, umlauts, emoji) are fully supported
 - Bring! requires a direct account password — Google/Apple SSO logins don't work with the API
 - `country` in credentials.json controls the item catalog language (default: `DE`)
+- `locale` optionally overrides the catalog locale used by `smart-add` (for example `de-DE`); otherwise it is derived from `country`
+- `smart-add` keeps ordinary `add` unchanged: use it when matching Bring's catalog/icon matters, and use `add` for custom item names
+- Human-readable `show` output translates catalog IDs back to localized display names; `show --json` remains the untouched API response
+- `--dry-run` is accepted by every modifying command; it may perform read-only validation but never submits a list change
+- `add-multi -` reads one item per line from stdin; append `|specification` when needed
 - When showing items to the user, consider only showing the "TO BUY" section unless they specifically ask for recently completed items — the recently list can be very long
 - If `remove` fails with "not found", suggest the user check the exact item name with `show`
 - **Creating/deleting lists is not supported by the Bring! API** — users must manage lists in the Bring! app

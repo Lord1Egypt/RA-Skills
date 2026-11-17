@@ -1,47 +1,63 @@
-## Description: <br>
-Helps configure Feishu bots for OpenClaw by parsing bot credentials, matching an Agent profile, updating local configuration, and producing a setup report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps configure Feishu bots by parsing bot setup details, matching an Agent profile, updating OpenClaw configuration, creating workspaces, restarting Gateway, and returning a setup report.
 
-## Publisher: <br>
-[jiebao360](https://clawhub.ai/user/jiebao360) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebao360](https://clawhub.ai/user/jiebao360)
 
-## Use Case: <br>
-Developers and operators use this skill to set up Feishu bot accounts for OpenClaw Agents from a chat-style configuration request or CLI input. It is intended for creating bot-specific workspaces, Agent entries, Feishu channel account settings, and route bindings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change OpenClaw configuration and restart the Gateway. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json, inspect planned changes, and test with non-production OpenClaw configuration before use. <br>
-Risk: Feishu app secrets may be copied into local configuration. <br>
-Mitigation: Use test Feishu credentials first, rotate any secret copied from examples, and restrict credential access after configuration. <br>
-Risk: Feishu allowlists, group access, and Agent skill bindings may be broader than intended. <br>
-Mitigation: Manually restrict Feishu allowlists, group access, and enabled Agent skills after configuration. <br>
-Risk: The installer is commonly run from a remote shell command. <br>
-Mitigation: Inspect the installer before running it instead of piping remote content directly to bash. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to set up Feishu bot Agents from chat-provided configuration details and generate local OpenClaw routing, workspace, and account settings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jiebao360/feishu-bot-config-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/jiebao360) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style setup report with JSON configuration changes and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update ~/.openclaw/openclaw.json, create workspace directories, store Feishu app credentials, and restart the OpenClaw Gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill asks users to provide Feishu App Secrets during configuration, which can expose production credentials through chat or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test credentials where possible, avoid pasting production secrets into retained chat or logs, and rotate any credential that may have been exposed.
+
+Risk: The installer fetches mutable remote code and executes package installation steps.
+
+Mitigation: Review the installer before running it and pin installation to a trusted commit or release.
+
+Risk: Generated Feishu account settings may create broad access by default, including wildcard direct-message allowlists and open group policy.
+
+Mitigation: Back up openclaw.json, review generated Agent permissions, replace wildcard allowFrom with explicit trusted users, and restrict broad skills such as all unless required.
+
+Risk: The configurator restarts Gateway, which can interrupt active service.
+
+Mitigation: Plan Gateway restart downtime and validate the generated configuration before restarting production services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiebao360/skills/feishu-bot-config-helper)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce setup reports and local OpenClaw configuration changes when executed by the user or host environment.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

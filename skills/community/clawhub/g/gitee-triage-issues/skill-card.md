@@ -1,41 +1,53 @@
-## Description: <br>
-Triage Issues uses a configured Gitee MCP server to fetch open repository issues, classify them, prioritize them, identify duplicates, and prepare issue updates after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage Issues helps an agent batch-process Gitee repository issues by classifying priority and type, identifying duplicates, producing a triage report, and optionally updating issue metadata or comments after user confirmation.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oschina](https://clawhub.ai/user/oschina)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to organize open Gitee issues into actionable priority, type, duplicate, and information-needed groups. After reviewing the generated report, they can approve label, priority, assignment, or comment updates through the configured Gitee MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk issue updates could apply incorrect labels, priorities, assignments, or comments to repository issues. <br>
-Mitigation: Review the generated triage report and the exact proposed updates before approving any bulk changes. <br>
-Risk: The skill depends on a Gitee MCP server that can read and update repository issues. <br>
-Mitigation: Use the skill only with a trusted Gitee MCP server configured for the intended repository. <br>
+## Use Case:
 
+Developers and maintainers use this skill to organize open issues in a Gitee repository, identify urgent work, spot duplicates, and prepare label, priority, assignment, or comment updates for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oschina/gitee-triage-issues) <br>
-- [Publisher profile](https://clawhub.ai/user/oschina) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, API Calls] <br>
-**Output Format:** [Markdown triage report with optional Gitee MCP tool actions after user confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured, trusted Gitee MCP server and repository owner/name inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Confirmed batch updates may change project-visible issue labels, priorities, assignments, or comments in a Gitee repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target repository, selected issue batch, proposed labels, priorities, assignments, and comments before approving updates.
+
+Risk: Triage recommendations may misclassify issue type, priority, duplicate status, or missing information.
+
+Mitigation: Review the generated triage report before applying recommendations or approving repository changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oschina/skills/gitee-triage-issues)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, text]
+
+**Output Format:** [Markdown triage report with issue tables, issue lists, and recommended updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed label, priority, assignment, or comment changes that require user confirmation before project-visible updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

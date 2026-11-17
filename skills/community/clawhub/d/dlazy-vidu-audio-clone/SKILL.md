@@ -1,30 +1,15 @@
 ---
 name: dlazy-vidu-audio-clone
-version: 1.2.0
-description: Clone voice and generate new text reading audio with one click using Vidu Audio Clone.
-metadata:
-  {
-    'clawdbot':
-      {
-        'emoji': '🤖',
-        'requires': { 'bins': ['npm', 'npx'] },
-        'install': 'npm install -g @dlazy/cli@latest',
-        'installAlternative': 'npx @dlazy/cli@latest',
-        'homepage': 'https://github.com/dlazyai/cli',
-        'source': 'https://github.com/dlazyai/cli',
-        'author': 'dlazyai',
-        'license': 'see-repo',
-        'npm': 'https://www.npmjs.com/package/@dlazy/cli',
-        'configLocation': '~/.dlazy/config.json',
-        'apiEndpoints': ['api.dlazy.com', 'files.dlazy.com'],
-      },
-    'openclaw': { 'systemPrompt': 'When invoking this skill, use dlazy vidu-audio-clone -h for help.' },
-  }
+version: 1.3.5
+description: "Clone voice and generate new text reading audio with one click using Vidu Audio Clone. 使用 Vidu 声音克隆技术，通过参考音频一键复制音色并生成新文本的朗读音频。"
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.2.3","installAlternative":"npx @dlazy/cli@1.2.3","homepage":"https://github.com/dlazy-ai/cli","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"When invoking this skill, use dlazy vidu-audio-clone -h for help."}}
 ---
 
-# dlazy-vidu-audio-clone
+# 声音克隆 Vidu Audio Clone
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
+
+
 
 Clone voice and generate new text reading audio with one click using Vidu Audio Clone.
 
@@ -64,18 +49,18 @@ Each key is scoped to your dLazy organization and can be **rotated or revoked at
 
 ## About & Provenance
 
-- **CLI source code**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI source code**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **Maintainer**: dlazyai
-- **npm package**: `@dlazy/cli` (pinned to `1.0.9` in this skill's install spec)
+- **npm package**: `@dlazy/cli` (pinned to `1.2.3` in this skill's install spec)
 - **Homepage**: [dlazy.com](https://dlazy.com)
 
 You can install on demand without persisting a global binary by running:
 
 ```bash
-npx @dlazy/cli@latest <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@latest`). Review the GitHub source before installing.
+Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.3`). Review the GitHub source before installing.
 
 ## How It Works
 
@@ -142,15 +127,14 @@ dlazy vidu-audio-clone --prompt 'prompt text'
 
 | Code | Error Type                         | Example Message                                                                                                          |
 | ---- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                              |
-| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                               |
-| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                           |
-| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"`                                                                                |
-| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                              |
+| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                                              |
+| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                              |
+| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                          |
+| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"` |
+| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                             |
 | 504  | Asynchronous task execution failed | `=== Generation Failed ===` / `{Specific error reason returned by backend, for example "Prompt violates safety policy"}` |
 
-> **AGENT CRITICAL INSTRUCTION**:
->
+> **AGENT CRITICAL INSTRUCTION**: 
 > 1. If the execution result returns `code: "insufficient_balance"`, you MUST explicitly inform the user that their credits are insufficient and guide them to recharge: [https://dlazy.com/dashboard/organization/settings?tab=credits](https://dlazy.com/dashboard/organization/settings?tab=credits)
 > 2. If the execution result returns `code: "unauthorized"` or indicates missing API key, you MUST inform the user to get their API key from [https://dlazy.com/dashboard/organization/api-key](https://dlazy.com/dashboard/organization/api-key) and save it using `dlazy auth set <key>` and resume the task.
 

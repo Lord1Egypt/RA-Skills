@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7104e9v8eyfbk1y69y0yr7th850741",
-  "slug": "docker-pilot",
+  "name": "docker-pilot",
   "version": "1.0.0",
-  "publishedAt": 1777666815726
+  "description": "Safe, intelligent Docker container management — fleet status, lifecycle operations, cleanup, compose stacks, troubleshooting, and security hardening with risk-level classification.",
+  "author": "wahajahmed010",
+  "license": "MIT-0",
+  "requires": {
+    "bins": ["docker"]
+  }
 }

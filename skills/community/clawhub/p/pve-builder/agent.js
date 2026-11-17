@@ -186,7 +186,7 @@ async function genSshKey(vmName, keyDir, keyType = 'ed25519') {
   try { await execCmd(`ssh-keygen -t ${keyType} -f ${base} -N ''`); }
   catch (e) {
     const uniqueId = `${vmName}-${Date.now()}`;
-    await writeFile(priv, `-----BEGIN PRIVATE KEY-----\nPlaceholder for ${uniqueId}\n-----END PRIVATE KEY-----`);
+    await writeFile(priv, `REDACTED-SECRET`);
     await writeFile(pub, `${keyType} AAAAC3NzaC1lZDI1NTE5AAAAI... placeholder - ${uniqueId}`);
   }
   await execCmd(`chmod 600 ${priv} ${pub}`);

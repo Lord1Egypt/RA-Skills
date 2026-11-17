@@ -1,43 +1,51 @@
-## Description: <br>
-Turn any research request into a structured, reviewable brief: fact collection, risk analysis, and recommendation in three deterministic steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any research request into a structured, reviewable brief: fact collection, risk analysis, and recommendation in three deterministic steps.
 
-## Publisher: <br>
-[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater)
 
-## Use Case: <br>
-Developers and teams running self-hosted OpenClaw use this skill to route `/hunt` research requests through fixed search, analysis, and synthesis stages for traceable decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and findings may be exposed to the configured OpenClaw agents and their underlying providers. <br>
-Mitigation: Install only with trusted main, search, and analyst agents and use a scoped OpenClaw token. <br>
-Risk: External runtime workflow assets may differ from the registry-facing documentation. <br>
-Mitigation: Verify the runtime workflow assets before relying on the skill for operational decisions. <br>
-Risk: Overbroad agent-to-agent permissions could route research content beyond the intended workflow. <br>
-Mitigation: Keep subagent allowlists narrow and limited to the documented main, search, and analyst handoffs. <br>
+## Use Case:
 
+External users, teams, and developers running self-hosted OpenClaw use this skill to turn /hunt requests into traceable, reviewable research briefs with separate findings, assessment, and conclusion sections.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/baobaodawang-creater/search-analyst-pair) <br>
-- [Homepage](https://github.com/baobaodawang-creater/neo-agent-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown brief with search findings, analyst assessment, and main conclusion sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw gateway token, configured main/search/analyst agents, and agent-to-agent allowlists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Over-broad OpenClaw agent permissions or tokens could expand access during delegated research tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the main, search, and analyst agents with only required allowlists and use a scoped OpenClaw token before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baobaodawang-creater/skills/search-analyst-pair)
+- [Publisher profile](https://clawhub.ai/user/baobaodawang-creater)
+- [Project homepage](https://github.com/baobaodawang-creater/neo-agent-lab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown brief with search findings, analyst assessment, and main conclusion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-triggered /hunt request and configured OpenClaw agents, gateway token, and agent allowlists.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

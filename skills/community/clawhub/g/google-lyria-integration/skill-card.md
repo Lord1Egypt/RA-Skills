@@ -1,42 +1,56 @@
-## Description: <br>
-Generate 30-second instrumental music via Google Lyria (Vertex AI). Use when user requests music generation, specific styles/keys/instruments, or music iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 30-second instrumental music via Google Lyria (Vertex AI). Use when user requests music generation, specific styles/keys/instruments, or music iteration.
 
-## Publisher: <br>
-[MeNoPeter](https://clawhub.ai/user/MeNoPeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[menopeter](https://clawhub.ai/user/menopeter)
 
-## Use Case: <br>
-External users and developers use this skill to generate short instrumental WAV tracks for social video, transitions, loops, and rapid music iteration from text prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Google Cloud bearer token in a local configuration file. <br>
-Mitigation: Keep the config file private, avoid committing or sharing it, use restrictive file permissions, and use a least-privilege Google Cloud project. <br>
-Risk: Prompts are sent to Google Vertex AI for music generation. <br>
-Mitigation: Avoid putting sensitive or confidential information in prompts. <br>
-Risk: Bearer tokens expire periodically and can interrupt generation. <br>
-Mitigation: Refresh the token with the documented Google Cloud command before long sessions or after authentication failures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google AI music generation documentation](https://ai.google.dev/gemini-api/docs/music-generation) <br>
-- [ClawHub release page](https://clawhub.ai/MeNoPeter/google-lyria-integration) <br>
+## Use Case:
 
+Developers, creators, and agents use this skill to configure Google Cloud access, craft music prompts, call Google Lyria through Vertex AI, and save short instrumental WAV tracks for social video, transitions, loops, or iteration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated WAV file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one or more 30-second instrumental WAV files through Google Vertex AI and saves them to the configured workspace output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Google access tokens may be stored in plaintext workspace configuration.
+
+Mitigation: Avoid storing live tokens when possible, restrict credential file permissions, and refresh tokens through gcloud when needed.
+
+Risk: Prompts and billable generation requests are sent to Google Vertex AI.
+
+Mitigation: Confirm the configured Google Cloud project and region before generating music, and review prompts for sensitive or unintended content.
+
+Risk: The documented setup flow includes installing gcloud before use.
+
+Mitigation: Use official Google Cloud SDK installation instructions and review install commands before running them.
+
+## Reference(s):
+
+- [Google AI music generation documentation](https://ai.google.dev/gemini-api/docs/music-generation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated WAV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audio is limited to 30-second instrumental WAV files with custom or timestamped filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

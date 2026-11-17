@@ -1,0 +1,4 @@
+interface:
+  display_name: Hyperliquid Plan
+  short_description: Build exact unsigned Hyperliquid trade tickets
+  default_prompt: Use $hyperliquid-plan to size this intent and produce an exact unsigned ticket with current preflight data.

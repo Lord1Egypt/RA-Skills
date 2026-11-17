@@ -1,46 +1,59 @@
-## Description: <br>
-Evaluate an Audible daily promotion against Goodreads public score, optional Goodreads CSV shelves, optional freeform reading notes, optional delivery rules, and manual Want-to-Read discount scans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks Audible promotions against Goodreads ratings and optional reading history and taste notes to recommend relevant audiobook deals.
 
-## Publisher: <br>
-[lenpr](https://clawhub.ai/user/lenpr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lenpr](https://clawhub.ai/user/lenpr)
 
-## Use Case: <br>
-Readers and OpenClaw users use this skill to evaluate Audible deals against public Goodreads ratings, their Goodreads shelves, and optional reading preference notes. It can also produce on-demand Want-to-Read discount audits and route selected results to configured delivery channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Audible authentication stores durable account tokens and extra account/device data in a local auth file. <br>
-Mitigation: Use the unauthenticated workflow unless member-visible prices are important; if authentication is enabled, keep the auth file out of shared, synced, or backed-up folders. <br>
-Risk: The skill may read local Goodreads exports, preference notes, generated artifacts, caches, and state files. <br>
-Mitigation: Point configured paths only at files intended for this workflow, and use the public-data or minimal-privacy path when personal context should not be used. <br>
-Risk: Configured delivery channels and cron jobs can send or schedule results automatically. <br>
-Mitigation: Review delivery targets before enabling sends, and enable cron only when scheduled runs are desired. <br>
+## Use Case:
 
+Readers and OpenClaw users check Audible daily promotions or scan their Goodreads Want-to-Read shelf for discounts, with optional personalized recommendations and configured delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lenpr/audible-goodreads-deal-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/lenpr) <br>
-- [Project homepage](https://github.com/lenpr/audible-goodreads-deal-scout) <br>
-- [Trust and Data Access](artifact/TRUST.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON runtime payloads, Markdown reports, setup guidance, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local config, state, cache, report, and delivery artifacts in the configured workspace storage directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.14 (source: server release metadata and changelog) <br>
+Risk: Personal Goodreads exports and reading notes may be used in recommendation writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only files you intend to share; select privacyMode "minimal" to exclude personal reading data from model-facing fit writing.
+
+Risk: Optional Audible authentication stores sensitive account tokens locally.
+
+Mitigation: Keep the auth file private, and never paste or publish its contents.
+
+Risk: Optional scheduled runs and message delivery can send recommendations without a manual check each time.
+
+Mitigation: Enable automation or external delivery only on a trusted OpenClaw host with delivery targets you control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lenpr/skills/audible-goodreads-deal-scout)
+- [Project homepage (release metadata)](https://github.com/lenpr/audible-goodreads-deal-scout)
+- [Trust and data access](artifact/TRUST.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Recommendation cards and optional Markdown discount reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional configured delivery; Want-to-Read discount scans support Audible US only; no purchases.]
+
+## Skill Version(s):
+
+0.1.19 (source: ClawHub release metadata and CHANGELOG, 2026-10-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

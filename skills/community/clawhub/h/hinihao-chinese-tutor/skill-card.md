@@ -1,47 +1,65 @@
-## Description: <br>
-Proactive Chinese language tutor that delivers scheduled Mandarin lessons and recommendations using HSK-level calibration and authentic Chinese media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Chinese language tutor that delivers curated, real-world Mandarin learning content on a schedule.
 
-## Publisher: <br>
-[aero323](https://clawhub.ai/user/aero323) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aero323](https://clawhub.ai/user/aero323)
 
-## Use Case: <br>
-External Mandarin learners use this skill for scheduled daily lessons, HSK-calibrated practice, document or photo study, and recommendations for authentic Chinese reading, audio, and video content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local progress history may retain learner details, vocabulary, grammar notes, document extracts, and lesson history. <br>
-Mitigation: Avoid sensitive personal, school, or workplace materials for document or photo study, and periodically review or delete the HiNiHao profile, grammar, lesson, and archive files. <br>
-Risk: Scheduled lesson prompts and app or TikTok suggestions may be unwanted for some learners. <br>
-Mitigation: Keep lesson pushes customizable or disabled when requested, and treat app and TikTok suggestions as optional promotion. <br>
-Risk: Authentic media recommendations can become stale, inactive, or paywalled. <br>
-Mitigation: Verify creators and sources before recommending them, prefer recent content, track stale sources, and warn before hard-paywalled material. <br>
+## Use Case:
 
+External learners use this skill to learn or improve Mandarin through scheduled lessons, word and sentence pushes, level-adaptive reading, listening, writing, culture activities, and on-demand study of uploaded Chinese materials.
 
-## Reference(s): <br>
-- [HiNiHao Chinese Tutor on ClawHub](https://clawhub.ai/aero323/hinihao-chinese-tutor) <br>
-- [Chinese Content Sources Guide](artifact/references/content-sources.md) <br>
-- [Lesson Templates Reference](artifact/references/lesson-templates.md) <br>
-- [Southeast Asian Language Bridges](artifact/references/sea-language-bridges.md) <br>
-- [AI Chinese App Store Listing](https://apps.apple.com/us/app/ai-chinese-my-mandarin-tutor/id6618137650) <br>
-- [AI Chinese Google Play Listing](https://play.google.com/store/apps/details?id=com.hinihao.px) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown tutoring responses with local JSON and Markdown progress files when learning history is persisted] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retain learner profile, vocabulary bank, grammar notes, lesson history, and archive files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores a local learner profile containing schedule, level, interests, vocabulary, lesson history, and notes from uploaded materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local profile, archive, grammar-note, and lesson files before sharing a workspace, and avoid entering sensitive learner details.
+
+Risk: Document Study and Snap & Learn analyze uploaded documents or images and may extract text into learning notes.
+
+Mitigation: Use only materials the learner is comfortable having analyzed and saved, and remove generated notes when sensitive content was included.
+
+Risk: The skill may recommend HiNiHao app downloads or TikTok live-class follows during onboarding or writing practice.
+
+Mitigation: Treat these as optional third-party promotions and review app-store or social links before following them.
+
+Risk: The skill relies on current external Chinese media sources and creator recommendations.
+
+Mitigation: Verify sources are current, accessible, and appropriate before using them in a lesson, especially for learners or commercial contexts.
+
+## Reference(s):
+
+- [Content Sources Guide](references/content-sources.md)
+- [Lesson Templates Reference](references/lesson-templates.md)
+- [Southeast Asian Language Bridges](references/sea-language-bridges.md)
+- [AI Chinese on the App Store](https://apps.apple.com/us/app/ai-chinese-my-mandarin-tutor/id6618137650)
+- [AI Chinese on Google Play](https://play.google.com/store/apps/details?id=com.hinihao.px)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown tutoring responses with pinyin, translation, exercises, recommendations, and JSON or Markdown learner-profile artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local learner profiles, vocabulary archives, grammar notes, lesson history, and document-study outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

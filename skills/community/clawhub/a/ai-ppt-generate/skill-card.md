@@ -1,42 +1,55 @@
-## Description: <br>
-AI PPT generate helps an agent use Baidu/Qianfan PPT APIs to query presentation themes, generate markdown outlines, and produce downloadable PPT file URLs from user topics or resource links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The intelligent PPT generation tool is provided by Baidu and generates PPT files from user themes, questions, selected themes, templates, custom templates, and optional resource files.
 
-## Publisher: <br>
-[baiduQianfanGroup](https://clawhub.ai/user/baiduQianfanGroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baiduqianfangroup](https://clawhub.ai/user/baiduqianfangroup)
 
-## Use Case: <br>
-Developers and external users use this skill through an OpenClaw agent to turn a topic, optional resource URL, and selected Baidu PPT theme/template into a generated outline and final PPT download URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PPT topics, generated outlines, and referenced document or template URLs are sent to Baidu/Qianfan. <br>
-Mitigation: Avoid confidential or regulated documents unless approved by the user's organization. <br>
-Risk: The skill requires a Baidu API key for external API calls. <br>
-Mitigation: Use a dedicated Baidu API key where possible and keep it out of prompts, logs, and shared outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baiduQianfanGroup/ai-ppt-generate) <br>
-- [Baidu Qianfan PPT theme API](https://qianfan.baidubce.com/v2/tools/ai_ppt/get_ppt_theme) <br>
-- [Baidu Qianfan PPT outline API](https://qianfan.baidubce.com/v2/tools/ai_ppt/generate_outline) <br>
-- [Baidu Qianfan PPT generation API](https://qianfan.baidubce.com/v2/tools/ai_ppt/generate_ppt_by_outline) <br>
+## Use Case:
 
+External users and developers use this skill to query Baidu PPT themes, generate a presentation outline, optionally edit the outline in markdown, and request a downloadable PPT file.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [JSON responses and markdown outline content from Python command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY; outline and PPT generation responses may stream as JSON event data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, released 2026-02-04) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, outlines, document URLs, and template URLs are sent to Baidu Qianfan PPT APIs.
+
+Mitigation: Do not submit confidential content unless your organization permits sending that content to Baidu.
+
+Risk: The skill requires a BAIDU_API_KEY for API access.
+
+Mitigation: Provide the API key through a managed environment secret and avoid placing it in prompts, command history, or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baiduqianfangroup/skills/ai-ppt-generate)
+- [Baidu Qianfan PPT theme API endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/get_ppt_theme)
+- [Baidu Qianfan PPT outline API endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/generate_outline)
+- [Baidu Qianfan PPT generation API endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/generate_ppt_by_outline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown outline guidance, JSON API responses, and a PPT download URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY and network access to Baidu Qianfan PPT APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Queries real-time domestic flight options in China, including prices, schedules, airlines, direct or connecting routes, and booking links using Fliggy data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内航班实时查询，支持直飞和中转筛选，价格、时刻、航司信息一查即得，基于途牛数据直连，零配置即装即用。暑期国内航线、热门城市。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[travel-skills](https://clawhub.ai/user/travel-skills)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to query Chinese domestic flight options by route and date, including prices, schedules, airlines, cabin classes, and direct or connecting itineraries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Flight search terms are sent through the skill publisher's hardcoded cloud proxy to access Tuniu data.
+
+Mitigation: Use only when this data flow is acceptable, and avoid entering unrelated sensitive information in flight queries.
+
+Risk: Advertised filtering and sorting features may be limited by the live data returned by the upstream service.
+
+Mitigation: Review returned options and confirm price, inventory, and booking details on the final booking page before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to search China domestic flights by structured origin, destination, and date fields or by natural-language queries. It helps compare route type, timing, cabin class, price, duration, and booking links. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, API Calls, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Flight search details are sent to the publisher's cloud proxy and onward to Fliggy. <br>
-Mitigation: Use structured origin, destination, and date searches, and avoid names, IDs, trip purpose, or other private details. <br>
-Risk: Returned prices and inventory can change before purchase. <br>
-Mitigation: Confirm price, availability, and terms on the booking page before buying a ticket. <br>
+**Output Format:** [Markdown-style text flight search results with prices, schedules, airline details, and booking links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/domestic-flight) <br>
+**Other Properties Related to Output:** [Results depend on live Tuniu data returned through the publisher's cloud proxy; prices and inventory can change before booking.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like text with flight option lists, prices, schedules, route details, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are limited to domestic flights and prices or inventory may change before booking.] <br>
+1.1.19 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact/version reports 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

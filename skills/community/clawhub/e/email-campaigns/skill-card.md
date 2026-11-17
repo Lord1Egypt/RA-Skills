@@ -1,41 +1,54 @@
-## Description: <br>
-Write high-converting email campaigns for any business — newsletters, re-engagement sequences, B2B cold outreach, promotional emails, and automated drip campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write high-converting email campaigns for any business - newsletters, re-engagement sequences, B2B cold outreach, promotional emails, and automated drip campaigns.
 
-## Publisher: <br>
-[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot)
 
-## Use Case: <br>
-Marketing teams, founders, sales teams, and external content creators use this skill to draft newsletter, promotional, re-engagement, cold outreach, and welcome-sequence email copy. It also provides subject-line formulas, segmentation guidance, performance benchmarks, and deliverability reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email copy could be used in campaigns without valid recipient consent or required anti-spam and privacy disclosures. <br>
-Mitigation: Before sending, confirm recipients may legally be contacted and include required sender identity and unsubscribe mechanisms. <br>
-Risk: Campaign copy may include unverified claims, testimonials, urgency, or proof points. <br>
-Mitigation: Review and substantiate claims, testimonials, urgency, and proof points before using the generated copy. <br>
+## Use Case:
 
+Marketing teams, business owners, and agents use this skill to draft email campaign assets, including newsletters, re-engagement sequences, B2B cold outreach, promotional emails, welcome sequences, subject lines, segmentation guidance, and deliverability checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielblinker83-bot/email-campaigns) <br>
-- [ContentAI Suite](https://contentai-suite.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces campaign copy, subject line options, segmentation guidance, and deliverability checklists; does not send emails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated outreach may be sent to recipients without lawful contact permission or required opt-out mechanisms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients may lawfully be contacted, identify the sender truthfully, and include and honor unsubscribe or opt-out mechanisms before using any campaign.
+
+Risk: Email marketing guidance may not satisfy every applicable anti-spam or privacy rule for a specific jurisdiction or audience.
+
+Mitigation: Review applicable rules such as CAN-SPAM, GDPR, PECR, or similar local laws before sending campaigns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielblinker83-bot/skills/email-campaigns)
+- [ContentAI Suite](https://contentai-suite.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown campaign copy, templates, prompts, checklists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool calls, credentials, or data access are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-使用智谱AI的CogView模型生成图片。当用户想要AI生成图片时使用此技能，支持中文提示词自动翻译为英文，支持自定义图片尺寸。在首次使用时需要用户配置智谱API密钥。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用智谱AI的CogView模型生成图片，支持中文提示词自动翻译为英文、自定义图片尺寸，并在首次使用时引导用户配置智谱API密钥。
 
-## Publisher: <br>
-[yzh-q](https://clawhub.ai/user/yzh-q) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzh-q](https://clawhub.ai/user/yzh-q)
 
-## Use Case: <br>
-External users and developers use this skill to generate images with Zhipu CogView from natural-language prompts, including Chinese prompts that are translated to English and common size presets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and image-generation requests are sent to the external Zhipu CogView service, and API-key use is required. <br>
-Mitigation: Use a revocable Zhipu API key and avoid secrets or sensitive personal or business details in prompts. <br>
-Risk: The skill references a generate_image.ps1 helper script that was not included in the artifact. <br>
-Mitigation: Review the referenced script before running it and confirm it matches the documented CogView image-generation behavior. <br>
+## Use Case:
 
+External users and developers use this skill to request image generation through Zhipu AI CogView, including Chinese prompts that should be translated and submitted with a supported image size.
 
-## Reference(s): <br>
-- [Zhipu AI Open Platform](https://open.bigmodel.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/yzh-q/cogview-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples and generated image URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 512x512, 768x768, 1024x1024, 1024x768, and 768x1024 image sizes; generated image URLs are described as expiring after about 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts and translated prompts may be sent to the external Zhipu CogView API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, confidential business information, or sensitive personal data in prompts.
+
+Risk: The skill references a PowerShell script that may not be present in every installed package or runtime environment.
+
+Mitigation: Verify that scripts/generate_image.ps1 is available before relying on the skill for image generation.
+
+Risk: Generated image URLs may expire after about 24 hours.
+
+Mitigation: Save required generated assets promptly when retention is needed.
+
+## Reference(s):
+
+- [Zhipu AI Open Platform](https://open.bigmodel.cn/)
+- [ClawHub skill page](https://clawhub.ai/yzh-q/skills/cogview-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command examples, configuration guidance, and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image URLs are described as temporary and valid for about 24 hours.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

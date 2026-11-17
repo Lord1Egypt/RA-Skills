@@ -1,40 +1,59 @@
-## Description: <br>
-GCP compliance evidence collection for auditclaw-grc across Cloud Storage, firewall, IAM, logging, KMS, DNS, BigQuery, Compute, and Cloud SQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GCP compliance evidence collection for auditclaw-grc. 12 read-only checks across Cloud Storage, firewall, IAM, logging, KMS, DNS, BigQuery, Compute, and Cloud SQL.
 
-## Publisher: <br>
-[mailnike](https://clawhub.ai/user/mailnike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mailnike](https://clawhub.ai/user/mailnike)
 
-## Use Case: <br>
-Cloud security, compliance, and GRC teams use this skill to collect read-only GCP configuration evidence and store automated findings for AuditClaw GRC workflows. It supports project-level checks for storage, firewall, IAM, logging, KMS, DNS, BigQuery, Compute Engine, and Cloud SQL controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires GCP authentication and may guide users toward long-lived service account JSON credentials. <br>
-Mitigation: Prefer keyless or short-lived GCP authentication where possible, restrict the service account to the smallest read-only scope needed, store any JSON key outside the repo with tight file permissions, rotate and monitor it, and revoke it when scanning is complete. <br>
-Risk: The skill reads cloud configuration across multiple GCP services and stores findings in a local GRC database. <br>
-Mitigation: Review the setup before installing, use read-only roles, verify the target GCP project, and limit database access to users who should see compliance evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mailnike/auditclaw-gcp) <br>
-- [AuditClaw homepage](https://www.auditclaw.ai) <br>
+## Use Case:
 
+Developers and security or compliance teams use this skill to collect automated GCP project evidence for AuditClaw GRC. It checks storage, firewall, IAM, logging, KMS, DNS, BigQuery, Compute, and Cloud SQL controls and stores results in the local GRC evidence database.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON check results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes automated GCP evidence records to an AuditClaw GRC SQLite database when run with configured credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill needs broad read visibility across a target GCP project to collect compliance evidence.
+
+Mitigation: Use a tightly scoped custom role or the documented read-only roles only for projects where this visibility is approved.
+
+Risk: Service account JSON keys can become long-lived credentials if generated for the integration.
+
+Mitigation: Prefer keyless authentication where possible; otherwise keep JSON keys out of repositories, restrict file permissions, rotate them, and revoke them when no longer needed.
+
+Risk: The local GRC SQLite database stores compliance evidence that may include sensitive cloud configuration details.
+
+Mitigation: Protect the local database path, limit access to authorized users, and handle exported evidence as sensitive compliance data.
+
+## Reference(s):
+
+- [AuditClaw GCP ClawHub Page](https://clawhub.ai/mailnike/skills/auditclaw-gcp)
+- [AuditClaw Homepage](https://www.auditclaw.ai)
+- [GCP IAM Roles](artifact/scripts/gcp-roles.json)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs read-only GCP checks and writes automated evidence records to a local AuditClaw GRC SQLite database.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

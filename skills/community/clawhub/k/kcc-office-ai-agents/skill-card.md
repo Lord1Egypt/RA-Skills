@@ -1,48 +1,61 @@
-## Description: <br>
-AI Agents collaboration system for KCC Office v2 - enables autonomous operation and collaboration of office agents (Komi, CEO, CFO, CTO, COO, EDN) with persistent context and self-improvement capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agents collaboration system for KCC Office v2 that enables autonomous operation and collaboration of office agents with persistent context and self-improvement capabilities.
 
-## Publisher: <br>
-[gasol36ai-dev](https://clawhub.ai/user/gasol36ai-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gasol36ai-dev](https://clawhub.ai/user/gasol36ai-dev)
 
-## Use Case: <br>
-Developers and office automation teams use this skill to initialize and operate a multi-agent office workspace with role-specific responsibilities, shared memory, heartbeat checks, onboarding flows, and coordination scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags broad proactive memory, account-checking, and repository-change authority without enough user controls. <br>
-Mitigation: Install in an isolated workspace first and define exactly what agents may read, write, remember, share, and publish before enabling autonomous workflows. <br>
-Risk: Heartbeat or cron-style automation can repeatedly check accounts, calendars, notifications, services, or project state. <br>
-Mitigation: Do not enable heartbeats, cron automation, email, calendar, social access, credentialed services, API keys, or git push permissions until each permission is explicitly scoped. <br>
-Risk: Persistent memory and instruction files can retain sensitive context or alter future agent behavior. <br>
-Mitigation: Require explicit approval for memory changes, instruction-file changes, commits, pushes, external messages, and any other persistent changes. <br>
-Risk: Setup and lifecycle scripts create or update local workspace files for agent onboarding, status, heartbeat, and shutdown flows. <br>
-Mitigation: Review generated files and run scripts only in a disposable or isolated copy before integrating them into an active workspace. <br>
+## Use Case:
 
+Developers and office automation teams use this skill to initialize and operate role-specific AI agents for KCC Office v2, including coordination, persistent memory, heartbeat checks, and inter-agent collaboration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gasol36ai-dev/kcc-office-ai-agents) <br>
-- [Publisher profile](https://clawhub.ai/user/gasol36ai-dev) <br>
-- [PixiJS documentation](https://pixijs.download/release/docs/index.html) <br>
-- [Gemini API documentation](https://ai.google.dev/gemini-api/docs) <br>
-- [Web image optimization guidance](https://web.dev/articles/image-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with bash scripts and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local agent workspace files, memory files, onboarding state, heartbeat checklists, and status output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent memory and account checks can expose private workspace, email, calendar, or social context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a sandboxed workspace without those credentials unless that access is intentional, and review memory promotion before preserving sensitive information.
+
+Risk: The skill encourages instruction-file edits, self-improvement, and commits or pushes with weak user control.
+
+Mitigation: Require explicit approval before instruction-file edits, memory promotion, commits, pushes, or other durable changes.
+
+Risk: Shell scripts create, copy, and touch files under role-derived agent paths.
+
+Mitigation: Validate agent role names and run scripts only from the intended workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gasol36ai-dev/skills/kcc-office-ai-agents)
+- [Publisher profile](https://clawhub.ai/user/gasol36ai-dev)
+- [PixiJS documentation](https://pixijs.download/release/docs/index.html)
+- [Gemini API documentation](https://ai.google.dev/gemini-api/docs)
+- [Web image optimization](https://web.dev/articles/image-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and workspace configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local agent workspace, memory, onboarding, status, heartbeat, and shutdown files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

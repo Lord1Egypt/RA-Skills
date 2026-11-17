@@ -1,42 +1,52 @@
-## Description: <br>
-Listen Notes (listennotes.com). Use this skill for ANY Listen Notes request - searching and reading data. Whenever a task involves Listen Notes, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Listen Notes (listennotes.com). Use this skill for ANY Listen Notes request — searching and reading data. Whenever a task involves Listen Notes, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to search Listen Notes, retrieve podcast and episode details, and list discovery metadata through an OOMOL-connected Listen Notes account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Listen Notes account and credential-backed connector access. <br>
-Mitigation: Review the first-time CLI install and account connection steps before use, and run account setup only when an auth or connection error requires it. <br>
-Risk: Connector payloads can become invalid if the live Listen Notes action schema changes. <br>
-Mitigation: Inspect the current action schema with oo connector schema before constructing or running each payload. <br>
+## Use Case:
 
+Developers and other Listen Notes users can search podcast and episode listings, retrieve podcast or episode details, and browse genres, languages, regions, rankings, and related podcasts through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Listen Notes Skill Page](https://clawhub.ai/oomol/oo-listennotes) <br>
-- [Listen Notes Homepage](https://www.listennotes.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill inspects the live action schema before running read-only Listen Notes connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Setup may execute downloaded software without a clear approval step, and the external installer and runtime implementation are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed oo CLI version yourself and require approval before running any downloaded installer; review OOMOL account access and monitor usage charges.
+
+## Reference(s):
+
+- [Listen Notes API documentation](https://www.listennotes.com/api/docs/)
+- [Listen Notes](https://www.listennotes.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Listen Notes skill on ClawHub](https://clawhub.ai/oomol/skills/oo-listennotes)
+
+## Skill Output:
+
+**Output Type(s):** [API data, JSON, Guidance]
+
+**Output Format:** [JSON data with concise text or Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results vary by read action; actions retrieve Listen Notes data.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

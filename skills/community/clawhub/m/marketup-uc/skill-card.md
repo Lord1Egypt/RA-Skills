@@ -1,49 +1,66 @@
-## Description: <br>
-Marketup CRM - detail/list search, advanced filtering, create, modify, assignment flows, history/behavior lookup, lead-to-account conversion, tags, and pool configuration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marketup CRM - detail/list search, advanced filtering, create, modify, assignment flows, history/behavior lookup, lead-to-account conversion, tags, and pool configuration workflows.
 
-## Publisher: <br>
-[azu-zhou](https://clawhub.ai/user/azu-zhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[azu-zhou](https://clawhub.ai/user/azu-zhou)
 
-## Use Case: <br>
-External CRM operators and agents use this skill to search, create, modify, assign, tag, and convert MarketUP leads and accounts through authenticated MarketUP CRM API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive MarketUP API key and stores it persistently in ~/.openclaw/.env. <br>
-Mitigation: Use a least-privilege, revocable API key; remove or rotate the key when access is no longer needed. <br>
-Risk: The skill can modify CRM records, including creating, assigning, tagging, converting, and returning leads or accounts. <br>
-Mitigation: Ask the agent to show target records and proposed payloads before important write actions, and rely on API responses before treating an operation as complete. <br>
+## Use Case:
 
+Sales, marketing, and CRM operators use this skill through an agent to query Marketup leads and accounts, inspect histories and behavior records, and perform approved CRM updates such as creating, modifying, assigning, converting, tagging, receiving, or returning records.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/azu-zhou/marketup-uc) <br>
-- [marketup-uc references](references/README.md) <br>
-- [Setup MARKETUP_API_KEY](references/setup-marketup-api-key.md) <br>
-- [Find Leads Reference](references/find-leads.md) <br>
-- [Leads write APIs](references/leads-mutations.md) <br>
-- [Lead history APIs](references/leads-history.md) <br>
-- [Form fields and lead to account conversion](references/convert-and-forms.md) <br>
-- [Lead pool and user helpers](references/pool-and-users.md) <br>
-- [Accounts query reference](references/accounts-query.md) <br>
-- [Accounts mutation and pool reference](references/accounts-mutations-and-pool.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with curl/jq shell commands and JSON payload guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MARKETUP_API_KEY, curl, and jq; may perform authenticated MarketUP CRM read and write API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a persistent MarketUP API key that is stored in plaintext at ~/.openclaw/.env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege MarketUP API key, restrict the environment file permissions, and rotate the key if it is exposed.
+
+Risk: The skill can perform live CRM write actions, including create, modify, assign, convert, tag, receive, return, and pool actions.
+
+Mitigation: Require operator approval for each write or pool action and review returned API responses before treating an operation as complete.
+
+Risk: The security verdict is suspicious because the skill combines credential handling with live CRM writes without enough guardrails.
+
+Mitigation: Review before installing and avoid production CRM data unless operators explicitly approve the intended actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/azu-zhou/skills/marketup-uc)
+- [Reference index](references/README.md)
+- [Setup MARKETUP_API_KEY](references/setup-marketup-api-key.md)
+- [Find leads reference](references/find-leads.md)
+- [Leads mutation APIs](references/leads-mutations.md)
+- [Lead history APIs](references/leads-history.md)
+- [Form fields and lead conversion](references/convert-and-forms.md)
+- [Lead pool and user helpers](references/pool-and-users.md)
+- [Accounts query reference](references/accounts-query.md)
+- [Accounts mutation and pool reference](references/accounts-mutations-and-pool.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with curl and jq command snippets when API execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and MARKETUP_API_KEY for live Marketup CRM API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

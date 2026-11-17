@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-1-6
 description: Kling 1.6 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-1.6/standard`, `kling-1.6/pro`, text-to-video, image-to-video, start and end frame guidance, elements with reference images, duration, aspect ratio, negative prompt, cfg scale, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-1-6","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-1-6","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling 1.6 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-1-6>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-1-6>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling 1.6 video jobs on PoYo. It helps agents prepare Standard and Pro payloads for text-to-video, image-to-video, and element-reference workflows, submit async tasks, and explain polling or webhook follow-up.
 

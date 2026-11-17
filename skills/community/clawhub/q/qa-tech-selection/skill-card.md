@@ -1,40 +1,50 @@
-## Description: <br>
-Helps teams evaluate QA and testing tools, frameworks, and platforms through requirement analysis, multidimensional comparison, recommendation planning, POC validation, and risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams compare QA automation frameworks, performance tools, and test management platforms against their requirements and plan a recommended choice and migration.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test leads, and engineering teams use this skill to choose testing tools or replacement frameworks based on project needs, technology constraints, team capability, cost, maintainability, and implementation risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic tool-selection prompts may activate the skill outside QA and testing contexts. <br>
-Mitigation: Narrow the agent or workflow context to testing and QA before applying its recommendations. <br>
-Risk: Tool recommendations may be incomplete or misleading if based on missing project requirements, technology constraints, budget, or team capability. <br>
-Mitigation: Review the recommendation, comparison matrix, POC validation plan, and risk assessment against the team's real environment before adopting a tool. <br>
+## Use Case:
 
+QA teams and developers use this skill to assess and select testing tools against project requirements, team skills, costs, and integration needs, then outline a proof of concept and migration plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-tech-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown technical evaluation report with comparison matrix, recommendation, POC validation plan, and risk assessment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses project requirements, technology constraints, and optional budget constraints as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The suggested unpinned external skill-bundle installation may add or change agent behavior beyond this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running the suggested installation command, verify its source, pin a version or commit, and review the additional skills it installs.
+
+## Reference(s):
+
+- [Testing tool selection framework](references/selection-framework.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-tech-selection)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Recommendations, Guidance]
+
+**Output Format:** [Markdown report with comparison matrix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes evaluation criteria, weighted comparisons, risks, proof-of-concept checks, and migration steps.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Supports clinical decision and health management tasks including specialty treatment planning, primary care handling, general practice assistance, outcome analysis, condition review, and chronic disease management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured medical model assistance for specialty diagnosis and treatment, primary care handling, general practice support, outcomes analysis, condition analysis, and chronic disease management selected by --task.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External developers and clinical workflow integrators use this skill to send medical questions to a configured medical language model and receive structured clinical assistance across selectable task modes. Outputs are intended to support review and workflow assistance, not to replace formal diagnosis or care decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical questions may be sent to a remote API without a documented consent, redaction, or minimization step. <br>
-Mitigation: Use only de-identified inputs unless the publisher documents the processor, retention policy, consent flow, and privacy safeguards. <br>
-Risk: Model output could be mistaken for a formal diagnosis or care decision. <br>
-Mitigation: Require qualified clinical review and keep the output as assistance rather than authoritative medical advice. <br>
+## Use Case:
 
+External integrators and clinical application developers use this skill to pass clinical questions into a medical LLM workflow for structured assistance across condition analysis, primary care, treatment planning, outcomes review, and chronic disease management. Outputs are auxiliary information and are not formal medical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-clinical-decision) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON by default, optional plain text answer, and NDJSON for batch output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task metadata, input provenance fields, model identifier, and the model answer; dry-run mode emits parsed input without calling the model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Clinical questions and bearer API keys can be sent to any configured API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin --api-url to the intended trusted HTTPS endpoint, use endpoint-specific keys, and control who can invoke the script.
+
+Risk: Clinical prompts may include identifiable patient information.
+
+Mitigation: Do not send identifiable patient information unless the organization has approved the data flow, retention policy, and required de-identification process.
+
+Risk: Model output may be mistaken for a formal diagnosis or treatment decision.
+
+Mitigation: Treat answers as auxiliary information and require review through the applicable clinical workflow before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-clinical-decision)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default OpenAI-compatible model endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON by default, optional plain text answer with --text-only, and NDJSON for batched input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write complete JSON or NDJSON results to --output; dry-run mode emits parsed input metadata without calling the model.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

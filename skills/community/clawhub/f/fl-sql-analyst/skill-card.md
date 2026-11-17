@@ -1,43 +1,57 @@
-## Description: <br>
-Natural language to SQL. Ask questions about your data in plain English, get queries, results, and explanations. Supports SQLite, PostgreSQL, and MySQL. Import CSVs for instant ad-hoc analysis. Save frequently used queries as shortcuts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Data Analyst translates plain-English data questions into SQL for SQLite, PostgreSQL, MySQL, and CSV-backed local analysis, then returns formatted results with explanations.
 
-## Publisher: <br>
-[PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipstark](https://clawhub.ai/user/philipstark)
 
-## Use Case: <br>
-External users, developers, product managers, analysts, and founders use this skill to ask plain-English questions about SQLite, PostgreSQL, MySQL, or CSV data and receive SQL queries, formatted results, and explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect schemas and run analysis queries against connected databases. <br>
-Mitigation: Use read-only or least-privilege database accounts and connect only databases the user is comfortable letting an agent query. <br>
-Risk: Generated SQL may be incorrect or may affect data if write operations are allowed. <br>
-Mitigation: Review generated SQL before execution, require explicit confirmation for writes, and avoid production admin credentials. <br>
-Risk: Local imports, exports, saved queries, schema caches, and query logs may contain sensitive business data. <br>
-Mitigation: Periodically clean local analysis artifacts and handle exports according to the data owner's retention and privacy requirements. <br>
+## Use Case:
 
+External users, developers, product managers, founders, and analysts use this skill to explore databases or CSVs in plain English, review generated SQL, and receive concise results and insights.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PhilipStark/fl-sql-analyst) <br>
-- [Publisher Profile](https://clawhub.ai/user/PhilipStark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with SQL code blocks, formatted tables, summaries, configuration guidance, and optional CSV or local data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local schema caches, query logs, saved-query configuration, SQLite imports, and exported query-result files when the host agent permits file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can run read queries against databases or imported CSVs chosen by the user, which may expose sensitive data or produce misleading results if the SQL is incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL before use on sensitive systems, keep write operations behind explicit confirmation, and disable or avoid auto-execute when manual approval is required.
+
+Risk: Imported data, schema caches, saved queries, exports, and query logs may be stored locally and can contain confidential information.
+
+Mitigation: Periodically clear local schema caches, imported tables, saved queries, exports, and query logs when they may contain confidential information.
+
+Risk: Database access depends on the credentials and connection scope provided by the user.
+
+Mitigation: Use least-privilege database accounts and environment variables for passwords, and avoid plaintext credentials in configuration files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philipstark/skills/fl-sql-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL code blocks, formatted result tables, summaries, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce generated SQL, query explanations, analysis summaries, saved-query guidance, CSV import or export guidance, and local database configuration notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

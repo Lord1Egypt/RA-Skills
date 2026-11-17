@@ -1,46 +1,55 @@
-## Description: <br>
-Provides a structured Chinese-language methodology for deep analysis of emerging technologies, technical trends, competing products, industry context, and investment opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical Deep Analysis is a Chinese-language methodology for structured analysis of emerging technologies, technology trends, products, competitors, and investment opportunities.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Developers, analysts, product teams, and investment reviewers use this skill to plan and produce structured technical analysis reports, competitive comparisons, market assessments, and decision recommendations with source-confidence grading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad analysis prompts may invoke the workflow when the user intended a lighter response. <br>
-Mitigation: Confirm the desired analysis depth, audience, output language, and report format before generating a full report. <br>
-Risk: Generated technical, market, or investment reports may include unsupported claims if source collection is weak. <br>
-Mitigation: Require source links, confidence levels, assumptions, and uncertainty notes for key conclusions. <br>
-Risk: Reports may contain confidential internal information if the user includes sensitive inputs. <br>
-Mitigation: Use the skill only in authorized workspaces and avoid adding confidential data unless handling requirements are clear. <br>
+## Use Case:
 
+Developers, product leaders, technical decision makers, and investors can use this skill to guide deep technical analysis, competitive comparisons, market analysis, and investment-oriented technology reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/technical-deep-analysis) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Technical analysis checklist](artifact/checklist.md) <br>
-- [Full report template](artifact/templates/full-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, matrices, checklists, source lists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve cited source links, confidence levels, assumptions, and uncertainty notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, README version history) <br>
+Risk: The skill includes a continuous-improvement workflow that can lead agents to update skill files, templates, or persistent notes from user feedback without a clear approval boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human review before applying any agent-generated changes to SKILL.md, templates, or persistent improvement files.
+
+Risk: Generated technical reports may include unsupported, stale, or speculative claims if source requirements are not followed.
+
+Mitigation: Review reports for cited L1/L2 sources, clearly marked uncertainty, and separated facts, opinions, and assumptions before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vincentlau2046-sudo/skills/technical-deep-analysis)
+- [README](artifact/README.md)
+- [Full Report Template](artifact/templates/full-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown reports, matrices, checklists, and source lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize source credibility levels, uncertainty notes, multi-perspective review, and report quality checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

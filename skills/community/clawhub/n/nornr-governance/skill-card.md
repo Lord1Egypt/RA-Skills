@@ -1,44 +1,59 @@
-## Description: <br>
-NORNR MCP Control adds an approval and audit layer before consequential MCP or OpenClaw actions so agents can proceed, queue, or block work before spend or vendor-side execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The control layer before consequential MCP and OpenClaw execution: approve, queue or block before local tool use turns into spend or vendor action.
 
-## Publisher: <br>
-[Onechan](https://clawhub.ai/user/Onechan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onechan](https://clawhub.ai/user/onechan)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run NORNR checks before paid, vendor-side, or policy-sensitive OpenClaw and MCP actions. It helps route approval-required or blocked actions to named review while preserving audit and finance records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is used around paid or policy-sensitive actions, so a broad or reused NORNR API key could increase approval and audit exposure. <br>
-Mitigation: Use a dedicated least-privilege NORNR API key with only the scopes needed for the selected command set. <br>
-Risk: Autonomous workflows could continue after approval-required, queued, blocked, anomalous, or review-required responses if client routing is misconfigured. <br>
-Mitigation: Verify that agents treat those responses as stop states and require a named human operator before continuing. <br>
-Risk: Governance behavior depends on the pinned nornr-agentpay dependency used by the local bridge. <br>
-Mitigation: Review the pinned nornr-agentpay release before production use, especially in finance-sensitive workflows. <br>
+## Use Case:
 
+Developers and operations teams use this skill to require NORNR approval, queueing, or blocking before OpenClaw or MCP-connected workflows trigger spend, vendor actions, or other policy-sensitive downstream steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Onechan/nornr-governance) <br>
-- [Artifact-stated NORNR MCP package repo](https://github.com/NORNR/nornr-mcp-control) <br>
-- [Artifact-stated NORNR Python SDK repo](https://github.com/NORNR/sdk-py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI-mediated NORNR responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NORNR_API_KEY and the pinned nornr-agentpay dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Risk: The skill delegates command behavior to the pinned nornr-agentpay==0.1.0 SDK, which may be material in payment or approval workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or trust the pinned SDK artifact before installation, especially in autonomous or finance-sensitive environments.
+
+Risk: A broad NORNR API key could grant more access than the workflow needs.
+
+Mitigation: Use a dedicated NORNR API key with only the required scopes, and avoid optional finance or webhook scopes unless the workflow needs them.
+
+Risk: Autonomous workflows could continue after a queued, blocked, anomalous, or review-required result if the calling agent ignores the control decision.
+
+Mitigation: Test that non-approved NORNR states stop downstream actions and route approval-required work to a named operator before enabling autonomous use.
+
+## Reference(s):
+
+- [NORNR MCP Control ClawHub page](https://clawhub.ai/onechan/skills/nornr-governance)
+- [onechan publisher profile](https://clawhub.ai/user/onechan)
+- [NORNR service homepage](https://nornr.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NORNR_API_KEY and the pinned nornr-agentpay==0.1.0 dependency for command execution.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

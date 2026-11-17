@@ -1,0 +1,146 @@
+# CyberPPT Dependencies
+
+## Core Dependencies
+
+These are required for CyberPPT's core functionality.
+
+```
+python-pptx>=0.6.21
+Pillow>=10.0.0
+PyYAML>=6.0
+```
+
+## Optional Dependencies
+
+### Image Processing
+
+```
+opencv-python>=4.8.0
+numpy>=1.24.0
+```
+
+### PDF Processing
+
+```
+PyPDF2>=3.0.0
+pdf2image>=1.16.0
+```
+
+### Document Processing
+
+```
+python-docx>=0.8.11
+openpyxl>=3.1.0
+```
+
+### Chart Generation
+
+```
+matplotlib>=3.7.0
+plotly>=5.15.0
+```
+
+## Platform-Specific Dependencies
+
+### OpenAI Codex Platform
+
+```
+openai>=1.0.0
+```
+
+### Anthropic/Claude Platform
+
+```
+anthropic>=0.18.0
+```
+
+## Development Dependencies
+
+### Testing
+
+```
+pytest>=7.4.0
+pytest-cov>=4.1.0
+```
+
+### Code Quality
+
+```
+black>=23.0.0
+flake8>=6.1.0
+mypy>=1.5.0
+```
+
+## Installation
+
+### Minimal Installation (Core Features Only)
+
+```bash
+pip install -r requirements.txt --only-binary :all:
+pip install python-pptx Pillow PyYAML
+```
+
+### Standard Installation (Recommended)
+
+```bash
+pip install -r requirements.txt
+```
+
+### Full Installation (All Features)
+
+```bash
+pip install -r requirements.txt
+pip install opencv-python numpy PyPDF2 pdf2image python-docx openpyxl matplotlib plotly
+```
+
+### Platform-Specific Installation
+
+**For OpenAI Codex:**
+```bash
+pip install -r requirements.txt openai
+```
+
+**For Anthropic/Claude:**
+```bash
+pip install -r requirements.txt anthropic
+```
+
+## Version Compatibility
+
+- Python: 3.7+
+- Operating Systems: Windows, macOS, Linux
+
+## Notes
+
+1. **pdf2image** requires poppler to be installed on your system
+   - Windows: Download from [poppler releases](http://blog.alivate.com.au/poppler-windows/)
+   - macOS: `brew install poppler`
+   - Linux: `apt-get install poppler-utils`
+
+2. **OpenCV** is optional and only needed for advanced image processing features
+
+3. Some dependencies may have platform-specific installation requirements
+
+## Upgrading
+
+To upgrade all dependencies to their latest compatible versions:
+
+```bash
+pip install --upgrade -r requirements.txt
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue: pdf2image not working**
+- Solution: Install poppler (see notes above)
+
+**Issue: OpenCV import error on macOS**
+- Solution: `brew install opencv`
+
+**Issue: python-pptx version conflict**
+- Solution: Use virtual environment: `python -m venv venv`
+
+**Issue: Permission denied during installation**
+- Solution: Use `--user` flag: `pip install --user -r requirements.txt`

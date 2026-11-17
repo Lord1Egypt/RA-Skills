@@ -1,43 +1,64 @@
-## Description: <br>
-Helps agents guide developers through systematic debugging, diagnosis, and profiling across application, system, network, database, and production environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides systematic debugging, diagnosis, and profiling workflows across application, system, network, database, and production issues.
 
-## Publisher: <br>
-[royhk920](https://clawhub.ai/user/royhk920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royhk920](https://clawhub.ai/user/royhk920)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate software failures, isolate root causes, choose debugging tools, profile performance, and plan verification steps before and after fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging commands, traces, and packet captures can expose secrets, private data, or sensitive infrastructure details. <br>
-Mitigation: Review examples before running them, avoid placing real secrets directly in shell commands, redact sensitive output, and keep packet captures and traces private. <br>
-Risk: Some diagnostics use sudo, packet capture, or production inspection workflows that may affect systems or cross authorization boundaries. <br>
-Mitigation: Run privileged or production diagnostics only on systems you are authorized to inspect, and prefer the least invasive commands that can answer the debugging question. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure bug investigations, isolate regressions, profile performance, inspect frontend and backend behavior, and prepare targeted fixes with verification steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/royhk920/debug-detective) <br>
-- [Debug checklist](examples/debug-checklist.md) <br>
-- [DevTools cheatsheet](references/devtools-cheatsheet.md) <br>
-- [Profiling tools guide](references/profiling-tools-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, checklists, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Example commands may expose sensitive data if copied into real debugging sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before running it, avoid real tokens in curl examples, and redact sensitive values from logs and shared outputs.
+
+Risk: Packet captures, tracing, and diagnostic logs can contain credentials, personal data, or internal network details.
+
+Mitigation: Protect and redact packet captures and logs before storing or sharing them.
+
+Risk: Some examples install or run external debugging tools without pinning versions.
+
+Mitigation: Prefer pinned versions and isolated environments when installing profiling or debugging utilities.
+
+Risk: The scaffold script writes VS Code settings and helper scripts into a target project.
+
+Mitigation: Inspect scaffold.sh and run it only in an intended project or disposable copy.
+
+## Reference(s):
+
+- [Debugging Workflow Checklist](examples/debug-checklist.md)
+- [Chrome DevTools Cheatsheet](references/devtools-cheatsheet.md)
+- [Profiling Tools Guide](references/profiling-tools-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/royhk920/skills/debug-detective)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic checklists, debugger commands, profiling steps, configuration snippets, and scaffolded helper script guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

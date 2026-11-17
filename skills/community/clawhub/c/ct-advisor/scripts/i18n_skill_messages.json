@@ -1,0 +1,410 @@
+{
+  "error.fallback_diagnose": {
+    "en": "[ct-advisor] The Coze cloud service is temporarily unavailable ({error}), so the local answer may be less complete. May I run an automatic diagnostic check to find and fix the cause?",
+    "zh": "[ct-advisor] Coze 云端服务暂时不可用（{error}），本次回答可能不够完善。是否允许我自动进行问题诊断排查？"
+  },
+  "ground.input.csr": {
+    "en": "CSR",
+    "zh": "CSR（临床总结报告）"
+  },
+  "ground.input.none": {
+    "en": "None yet",
+    "zh": "暂无材料"
+  },
+  "ground.input.otherdoc": {
+    "en": "Other document",
+    "zh": "其他文档"
+  },
+  "ground.input.protocol": {
+    "en": "Protocol",
+    "zh": "方案（Protocol）"
+  },
+  "ground.input.q": {
+    "en": "What input / material do you have?",
+    "zh": "你手头有什么材料 / 输入？"
+  },
+  "ground.input.question": {
+    "en": "Just a question",
+    "zh": "只是一个问题"
+  },
+  "ground.input.safetydb": {
+    "en": "Safety database",
+    "zh": "安全性数据库"
+  },
+  "ground.input.sap": {
+    "en": "SAP",
+    "zh": "SAP（统计分析计划）"
+  },
+  "ground.role.cro": {
+    "en": "CRO",
+    "zh": "CRO"
+  },
+  "ground.role.investigator": {
+    "en": "Investigator",
+    "zh": "研究者"
+  },
+  "ground.role.other": {
+    "en": "Other",
+    "zh": "其他"
+  },
+  "ground.role.q": {
+    "en": "What is your role?",
+    "zh": "你的角色是什么？"
+  },
+  "ground.role.reg": {
+    "en": "Regulatory affairs",
+    "zh": "注册事务"
+  },
+  "ground.role.sponsor": {
+    "en": "Sponsor",
+    "zh": "申办方"
+  },
+  "ground.stage.nda": {
+    "en": "NDA / submission",
+    "zh": "申报 / NDA 阶段"
+  },
+  "ground.stage.ph1": {
+    "en": "Phase I",
+    "zh": "I 期"
+  },
+  "ground.stage.ph2": {
+    "en": "Phase II",
+    "zh": "II 期"
+  },
+  "ground.stage.ph3": {
+    "en": "Phase III",
+    "zh": "III 期"
+  },
+  "ground.stage.ph4": {
+    "en": "Phase IV",
+    "zh": "IV 期"
+  },
+  "ground.stage.postmarket": {
+    "en": "Post-market",
+    "zh": "上市后"
+  },
+  "ground.stage.preind": {
+    "en": "Pre-IND",
+    "zh": "临床前（Pre-IND）"
+  },
+  "ground.stage.q": {
+    "en": "What stage is the program at?",
+    "zh": "项目处于什么阶段？"
+  },
+  "ground.stage.unsure": {
+    "en": "Not sure",
+    "zh": "不确定"
+  },
+  "menu.A": {
+    "en": "A · Define / basis / compare",
+    "zh": "A · 术语 / 依据 / 对比解释"
+  },
+  "menu.B": {
+    "en": "B · Trial design",
+    "zh": "B · 试验设计"
+  },
+  "menu.C": {
+    "en": "C · Statistics & sample size",
+    "zh": "C · 统计与样本量"
+  },
+  "menu.D": {
+    "en": "D · Operations & compliance",
+    "zh": "D · 运营与合规"
+  },
+  "menu.E": {
+    "en": "E · Enrollment / monitoring / DB lock",
+    "zh": "E · 招募 / 监查 / 数据封锁"
+  },
+  "menu.F": {
+    "en": "F · Safety signal / DSUR / SUSAR",
+    "zh": "F · 安全信号 / DSUR / SUSAR"
+  },
+  "menu.G": {
+    "en": "G · Document review",
+    "zh": "G · 文档评审（方案 / SAP / CSR）"
+  },
+  "menu.H": {
+    "en": "H · Cross-file / submission ready",
+    "zh": "H · 交叉核对 / 申报就绪"
+  },
+  "menu.I": {
+    "en": "I · Tone / rewrite",
+    "zh": "I · 语气 / 改写"
+  },
+  "menu.J": {
+    "en": "J · Memory / preferences",
+    "zh": "J · 记忆 / 偏好"
+  },
+  "menu.area.design_stats": {
+    "en": "Design & statistics",
+    "zh": "设计与统计"
+  },
+  "menu.area.docs_qc": {
+    "en": "Documents & QC",
+    "zh": "文档与质控"
+  },
+  "menu.area.explain_other": {
+    "en": "Explain & other",
+    "zh": "解释与其他"
+  },
+  "menu.area.safety_ops": {
+    "en": "Safety & operations",
+    "zh": "安全与运营"
+  },
+  "menu.cap.clarify": {
+    "en": "Clarify what I need",
+    "zh": "澄清需求"
+  },
+  "menu.cap.data_intel": {
+    "en": "Data intelligence",
+    "zh": "数据检索 / 情报"
+  },
+  "menu.cap.methodology": {
+    "en": "Methodology Q&A",
+    "zh": "方法学问答"
+  },
+  "menu.cap.q": {
+    "en": "What kind of help do you need?",
+    "zh": "你需要哪种帮助？"
+  },
+  "menu.cap.title": {
+    "en": "Capability",
+    "zh": "能力选择"
+  },
+  "menu.ct_competitive": {
+    "en": "Competitive intelligence",
+    "zh": "竞品情报综合"
+  },
+  "menu.ct_literature": {
+    "en": "Literature search",
+    "zh": "文献检索"
+  },
+  "menu.ct_registry": {
+    "en": "Trial registry search",
+    "zh": "试验注册库检索"
+  },
+  "menu.ct_safety": {
+    "en": "Safety signals (FAERS)",
+    "zh": "安全性信号（FAERS）"
+  },
+  "menu.ct_samplesize": {
+    "en": "Sample size calculation",
+    "zh": "样本量计算"
+  },
+  "menu.data_skill.q": {
+    "en": "Which data skill?",
+    "zh": "用哪个数据技能？"
+  },
+  "menu.data_skill.title": {
+    "en": "Data skill",
+    "zh": "数据技能"
+  },
+  "menu.data_subintent.focus": {
+    "en": "Focus on one part",
+    "zh": "聚焦某一部分"
+  },
+  "menu.data_subintent.q": {
+    "en": "What to do with the results?",
+    "zh": "检索后做什么？"
+  },
+  "menu.data_subintent.run": {
+    "en": "Run and return results",
+    "zh": "直接运行并出结果"
+  },
+  "menu.data_subintent.title": {
+    "en": "Data sub-intent",
+    "zh": "数据子意图"
+  },
+  "menu.explain_diff": {
+    "en": "Explain the difference",
+    "zh": "解释差异"
+  },
+  "menu.ground.title": {
+    "en": "Context",
+    "zh": "背景信息"
+  },
+  "menu.intent.q": {
+    "en": "Which area does the question fall into?",
+    "zh": "问题属于哪个领域？"
+  },
+  "menu.intent.title": {
+    "en": "Area",
+    "zh": "领域选择"
+  },
+  "menu.out.q": {
+    "en": "Which format?",
+    "zh": "想要什么格式？"
+  },
+  "menu.out.title": {
+    "en": "Output format",
+    "zh": "输出格式"
+  },
+  "menu.sub.A.compare_guide": {
+    "en": "Compare guidelines / options",
+    "zh": "对比指南 / 选项"
+  },
+  "menu.sub.A.define_term": {
+    "en": "Define a term / concept",
+    "zh": "定义术语 / 概念"
+  },
+  "menu.sub.A.find_basis": {
+    "en": "Find regulatory basis",
+    "zh": "查找法规依据"
+  },
+  "menu.sub.B.adaptive": {
+    "en": "Adaptive design",
+    "zh": "适应性设计"
+  },
+  "menu.sub.B.critique": {
+    "en": "Critique an existing design",
+    "zh": "评审 / 批评现有设计"
+  },
+  "menu.sub.B.design_new": {
+    "en": "Design a new trial",
+    "zh": "设计新试验"
+  },
+  "menu.sub.B.endpoints_estimand": {
+    "en": "Endpoints / estimand",
+    "zh": "终点 / 估计目标"
+  },
+  "menu.sub.C.estimand_setup": {
+    "en": "Estimand setup",
+    "zh": "估计目标设定"
+  },
+  "menu.sub.C.missing_data": {
+    "en": "Missing data handling",
+    "zh": "缺失数据处理"
+  },
+  "menu.sub.C.ni_eq": {
+    "en": "Non-inferiority / equivalence",
+    "zh": "非劣效 / 等效设计"
+  },
+  "menu.sub.C.samplesize": {
+    "en": "Sample size",
+    "zh": "样本量计算"
+  },
+  "menu.sub.D.audit_ready": {
+    "en": "Audit readiness",
+    "zh": "稽查就绪"
+  },
+  "menu.sub.D.consent_irb": {
+    "en": "Consent / IRB",
+    "zh": "知情同意 / 伦理"
+  },
+  "menu.sub.D.deviation_capa": {
+    "en": "Deviation & CAPA",
+    "zh": "偏离与 CAPA"
+  },
+  "menu.sub.E.dblock_ready": {
+    "en": "DB lock readiness",
+    "zh": "数据封锁就绪"
+  },
+  "menu.sub.E.enroll_feas": {
+    "en": "Enrollment feasibility",
+    "zh": "入组可行性"
+  },
+  "menu.sub.E.monitoring_vendor": {
+    "en": "Monitoring / vendor",
+    "zh": "监查 / 供应商"
+  },
+  "menu.sub.E.reg_path": {
+    "en": "Regulatory pathway",
+    "zh": "注册路径"
+  },
+  "menu.sub.F.benefit_risk": {
+    "en": "Benefit-risk assessment",
+    "zh": "获益-风险评估"
+  },
+  "menu.sub.F.dsur": {
+    "en": "DSUR",
+    "zh": "DSUR 撰写"
+  },
+  "menu.sub.F.signal": {
+    "en": "Safety signal evaluation",
+    "zh": "安全信号评估"
+  },
+  "menu.sub.F.susar": {
+    "en": "SUSAR handling",
+    "zh": "SUSAR 处理"
+  },
+  "menu.sub.G.csr_review": {
+    "en": "CSR review",
+    "zh": "CSR 评审"
+  },
+  "menu.sub.G.draft_section": {
+    "en": "Draft a section",
+    "zh": "起草章节"
+  },
+  "menu.sub.G.protocol_review": {
+    "en": "Protocol review",
+    "zh": "方案评审"
+  },
+  "menu.sub.G.sap_review": {
+    "en": "SAP review",
+    "zh": "SAP 评审"
+  },
+  "menu.sub.H.crossfile": {
+    "en": "Cross-file consistency",
+    "zh": "跨文件一致性"
+  },
+  "menu.sub.H.design_qc": {
+    "en": "Design QC",
+    "zh": "设计质控"
+  },
+  "menu.sub.H.document_qc": {
+    "en": "Document QC",
+    "zh": "文档质控"
+  },
+  "menu.sub.H.submission_ready": {
+    "en": "Submission readiness",
+    "zh": "申报就绪检查"
+  },
+  "menu.sub.I.reply_tone": {
+    "en": "Adjust reply tone",
+    "zh": "调整回复语气"
+  },
+  "menu.sub.I.rewrite": {
+    "en": "Rewrite content",
+    "zh": "改写内容"
+  },
+  "menu.sub.J.recall": {
+    "en": "Recall past content",
+    "zh": "回忆历史内容"
+  },
+  "menu.sub.J.save_pref": {
+    "en": "Save preferences",
+    "zh": "保存偏好"
+  },
+  "menu.sub.q": {
+    "en": "What exactly do you want?",
+    "zh": "具体想做什么？"
+  },
+  "menu.sub.title": {
+    "en": "Sub-intent",
+    "zh": "子意图"
+  },
+  "menu.workflow.q": {
+    "en": "Which workflow?",
+    "zh": "选择具体工作流？"
+  },
+  "menu.workflow.title": {
+    "en": "Workflow",
+    "zh": "工作流"
+  },
+  "out.format.advisory_memo": {
+    "en": "Advisory memo",
+    "zh": "顾问备忘录"
+  },
+  "out.format.checklist": {
+    "en": "Checklist",
+    "zh": "核对清单"
+  },
+  "out.format.option_compare": {
+    "en": "Option comparison",
+    "zh": "方案对比"
+  },
+  "out.format.redline_review": {
+    "en": "Redline review",
+    "zh": "修订批注评审"
+  }
+}

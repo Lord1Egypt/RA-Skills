@@ -1,43 +1,63 @@
-## Description: <br>
-Connects local OpenClaw agents to browser voice chat through the hosted hotbutter.ai relay, sending transcribed speech to the local agent and relaying text responses back for speech output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects a local OpenClaw agent to browser voice chat through the Hotbutter hosted relay, relaying transcribed speech to the local agent and returning spoken responses.
 
-## Publisher: <br>
-[michael-stajer](https://clawhub.ai/user/michael-stajer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michael-stajer](https://clawhub.ai/user/michael-stajer)
 
-## Use Case: <br>
-Developers and agent users use this skill to give a local OpenClaw agent a browser-based voice interface while the agent execution remains on the user's machine. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice transcripts and agent responses pass through hotbutter.ai by default. <br>
-Mitigation: Use only for sessions where that data flow is acceptable, or configure --relay-url to a relay you control. <br>
-Risk: Agent responses may include secrets or private data that would be sent through the relay. <br>
-Mitigation: Use an OpenClaw agent with permissions appropriate for voice input and avoid sessions where secrets or private data may be spoken or printed. <br>
-Risk: The server security summary notes that one registry summary describes the setup as self-hosted even though the default behavior uses a hosted relay. <br>
-Mitigation: Review the hosted relay data path before installation and use the local alternative or a controlled relay when private operation is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michael-stajer/hotbutter) <br>
-- [hotbutter-os local alternative](https://github.com/hotbutter-ai/hotbutter-os) <br>
-- [Hotbutter relay service](https://hotbutter.ai) <br>
+## Use Case:
 
+Developers and agent users use this skill to add a hosted browser voice interface to a local OpenClaw agent. It pairs a browser session with a local voice bridge that runs the OpenClaw CLI for each transcribed message.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation and CLI output with plain-text agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a WebSocket relay by default and can be configured with a custom relay URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Transcribed speech and agent response text pass through the hosted relay.
+
+Mitigation: Use the default relay only for conversations suitable for hosted transit, or configure a relay you control with --relay-url.
+
+Risk: Relay-delivered messages can invoke the local OpenClaw agent without local confirmation.
+
+Mitigation: Run the bridge with OpenClaw permissions limited to actions you are comfortable exposing to relay-delivered prompts.
+
+Risk: Agent responses may include secrets, credentials, or private data that would be sent back through the relay.
+
+Mitigation: Avoid agents and sessions that can reveal sensitive data, and review agent output behavior before using the voice bridge.
+
+Risk: Installation depends on downloaded package contents and npm dependencies.
+
+Mitigation: Verify the downloaded artifact, file hashes, and dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michael-stajer/skills/hotbutter)
+- [Publisher profile](https://clawhub.ai/user/michael-stajer)
+- [Hotbutter hosted relay](https://hotbutter.ai)
+- [Hotbutter local alternative](https://github.com/hotbutter-ai/hotbutter-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with setup prompts, pairing URL, status logs, and relayed agent response text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local openclaw CLI and a WebSocket relay; the default relay is wss://hotbutter.ai.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence; package.json lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

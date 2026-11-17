@@ -1,48 +1,62 @@
-## Description: <br>
-108 个思维模型，16 个系列，含周期分析实战指南 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language reference library of 108 mental models across 16 categories, including a practical cycle-analysis guide.
 
-## Publisher: <br>
-[gmilton09](https://clawhub.ai/user/gmilton09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmilton09](https://clawhub.ai/user/gmilton09)
 
-## Use Case: <br>
-External professionals, students, entrepreneurs, managers, and investors use this Chinese-language skill to select and apply mental models for strategic analysis, decision-making, learning, and investment-oriented framing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may trigger the skill for general analysis requests where the user did not specifically ask for a mental-model framework. <br>
-Mitigation: Confirm the user's analysis goal and apply only the relevant model family or template. <br>
-Risk: Investment and asset-allocation examples may be mistaken for financial advice. <br>
-Mitigation: Present investment-related output as general educational framing, state assumptions, and avoid personalized financial recommendations. <br>
+## Use Case:
 
+Professionals, students, entrepreneurs, managers, and investors use this skill to select and apply mental models for strategy, decision-making, learning, leadership, cycle analysis, and business analysis tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmilton09/mental-models-cn) <br>
-- [ClawHub publisher profile: gmilton09](https://clawhub.ai/user/gmilton09) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Model cards](artifact/MODEL-CARDS.md) <br>
-- [Model combinations](artifact/MODEL-COMBOS.md) <br>
-- [Case studies](artifact/CASE-STUDIES.md) <br>
-- [Selection flowchart](artifact/FLOWCHART.md) <br>
-- [Analysis templates](artifact/TEMPLATES.md) <br>
-- [Cycle analysis guide](artifact/cycle-analysis-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and JSON output from the recommendation script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language reference material; investment-related examples should be treated as educational framing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Broad analysis-related triggers can invoke the skill for many decision-making prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the selected mental model fits the user's actual task before relying on the response.
+
+Risk: Business or investment guidance may be incomplete, outdated, or unsuitable for a specific context.
+
+Mitigation: Verify recommendations independently and use qualified professional review for high-stakes business, financial, or investment decisions.
+
+Risk: The artifact contains inconsistent model counts across documentation and script comments.
+
+Mitigation: Treat counts as approximate release metadata and inspect the relevant model files when exact coverage matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gmilton09/skills/mental-models-cn)
+- [Project homepage declared by artifact](https://github.com/openclaw/openclaw)
+- [MODEL-CARDS.md](artifact/MODEL-CARDS.md)
+- [MODEL-COMBOS.md](artifact/MODEL-COMBOS.md)
+- [CASE-STUDIES.md](artifact/CASE-STUDIES.md)
+- [cycle-analysis-guide.md](artifact/cycle-analysis-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional Python command examples and JSON output from the recommendation script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational and analysis reference material; recommendation script supports command-line and JSON modes.]
+
+## Skill Version(s):
+
+2.8.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

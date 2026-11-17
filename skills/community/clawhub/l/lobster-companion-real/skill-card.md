@@ -1,43 +1,53 @@
-## Description: <br>
-Lobster Companion Real is an agent skill for P2P encrypted companion coordination, including pair bonding, shared schedules, task coordination, realtime sync, and emergency contact workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for a P2P encrypted companion-coordination system covering partner pairing, shared schedules, task coordination, real-time synchronization, and emergency contact workflows.
 
-## Publisher: <br>
-[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire)
 
-## Use Case: <br>
-External users and developers use this skill to coordinate private companion workflows such as pairing, shared schedules, task collaboration, realtime status sync, and emergency check-ins. It should only be used for sensitive sharing with explicit ongoing consent from both people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill involves sensitive sharing features, including location, health, emergency, monitoring, and companion data. <br>
-Mitigation: Use these features only with explicit ongoing consent from both people, and confirm there are clear ways to pause sharing, revoke access, and delete stored data. <br>
-Risk: The security summary warns that the skill normalizes sharing passwords without enough guardrails. <br>
-Mitigation: Do not use the skill to share passwords, recovery codes, financial secrets, or account credentials. <br>
-Risk: Emergency and safety check-in workflows may not reach a partner during outages, device loss, or network failures. <br>
-Mitigation: Treat emergency workflows as supplemental and contact official emergency services separately when needed. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through private companion-coordination workflows, including encrypted pairing, shared calendar and task operations, authorized location or health sharing, and emergency check-ins.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/puppetcat-fire/lobster-companion-real) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/puppetcat-fire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, jq, openssl, sqlite3, and curl per ClawHub metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, target metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill asks users to handle sensitive relationship data, including location, health, emergency, and shared-password or document workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm consent, sharing boundaries, revocation, and deletion behavior before using those workflows.
+
+Risk: The release relies on install scripts and mutable dependencies that were not independently reviewed in the provided security evidence.
+
+Mitigation: Inspect installation scripts before execution, pin and verify dependencies, install only from trusted sources, and avoid elevated privileges unless required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/puppetcat-fire/skills/lobster-companion-real)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reference local tools and companion-protocol dependencies that should be reviewed and pinned before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

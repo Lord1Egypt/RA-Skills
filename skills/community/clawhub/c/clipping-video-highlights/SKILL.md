@@ -38,7 +38,7 @@ python3 clipper.py "https://www.youtube.com/watch?v=xxx" "./output" 5
 
 - `ffmpeg` / `ffprobe` — 视频处理
 - `yt-dlp` — 字幕提取
-- MiniMax API（已有：`sk-cp-qLf6tET6ParE9D35M3O0_5TE`）
+- MiniMax API（已有：`REDACTED-SECRET`）
 - 腾讯COS（已有配置）
 
 ## 输出

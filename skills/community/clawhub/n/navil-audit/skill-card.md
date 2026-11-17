@@ -1,44 +1,59 @@
-## Description: <br>
-Navil Audit guides an agent through OpenClaw security audits covering installed skills, MCP servers, agent configuration, attack simulations, and remediation reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navil Audit runs deep security audits for OpenClaw by scanning MCP servers, installed skills, and agent configuration, then producing severity-ranked findings and remediation guidance.
 
-## Publisher: <br>
-[ivanpantheon](https://clawhub.ai/user/ivanpantheon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivanpantheon](https://clawhub.ai/user/ivanpantheon)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit OpenClaw skills, MCP servers, and agent configuration, run safe attack simulations, and generate remediation-oriented security reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad security prompts may trigger local scans or pentest-style commands against sensitive OpenClaw and MCP configuration. <br>
-Mitigation: Run the skill only for explicit audit tasks, provide exact config paths, and avoid broad home-directory scans. <br>
-Risk: The skill depends on the external navil pip package. <br>
-Mitigation: Install only when you trust that package and the intended local audit workflow. <br>
-Risk: VirusTotal-related checks or generated reports may expose sensitive details if shared without review. <br>
-Mitigation: Confirm what any external reputation check sends and redact generated reports before sharing. <br>
+## Use Case:
 
+Developers, security reviewers, and operators use this skill to audit OpenClaw and MCP deployments, evaluate attack exposure, and generate remediation-oriented security reports. It can also support CI/CD security gates and compliance review workflows.
 
-## Reference(s): <br>
-- [Navil GitHub Repository](https://github.com/navilai/navil) <br>
-- [Navil CI/CD Integration Guide](https://github.com/navilai/navil#cicd-integration) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivanpantheon/navil-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON or SARIF scan output, and optional report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security findings are severity-ranked and may include remediation steps and CI/CD-compatible SARIF output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, server release metadata, skill.json) <br>
+Risk: The skill installs and runs the external navil PyPI package while assessing sensitive agent and MCP configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and package are trusted, prefer a pinned and hash-verified package version, and run audits with a clearly specified target.
+
+Risk: Security scans can expose credentials, broad filesystem context, or unrelated configuration if run with excessive access.
+
+Mitigation: Run the audit in a constrained environment and avoid exposing unrelated credentials, broad home-directory access, or unnecessary network access during scans.
+
+Risk: Broad activation wording could lead to scans over a wider scope than the user intended.
+
+Mitigation: Confirm audit scope before running scan or pentest commands, especially in workspaces with multiple skills, MCP servers, or production configuration.
+
+## Reference(s):
+
+- [Navil GitHub Repository](https://github.com/navilai/navil)
+- [Navil CI/CD Integration Guide](https://github.com/navilai/navil#cicd-integration)
+- [Navil Audit ClawHub Page](https://clawhub.ai/ivanpantheon/skills/navil-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with severity-ranked findings, tables, remediation steps, and inline shell commands; may include guidance for JSON or SARIF scanner output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes scan and pentest results, including security scores, finding counts, attack simulation outcomes, and top remediation actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

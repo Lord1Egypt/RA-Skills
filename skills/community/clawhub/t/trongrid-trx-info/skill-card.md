@@ -1,42 +1,54 @@
-## Description: <br>
-Query TRX token fundamentals including price, supply, burn rate, market cap, staking yield, and network economics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TRX token fundamentals including price, supply, burn rate, market cap, staking yield, and network economics.
 
-## Publisher: <br>
-[greason](https://clawhub.ai/user/greason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greason](https://clawhub.ai/user/greason)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to produce TRX tokenomics reports that combine TronGrid on-chain data, market data, burn estimates, staking yield estimates, and network economics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform public web and TronGrid lookups when invoked. <br>
-Mitigation: Install and enable it only for TRX token analysis workflows where those public lookups are expected. <br>
-Risk: Crypto price, burn, supply, staking-yield, and value-assessment outputs may be time-sensitive or mistaken for financial advice. <br>
-Mitigation: Treat generated reports as informational, verify current figures against authoritative market and blockchain sources, and avoid relying on the output as investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for TRX price, supply, burn-rate, staking-yield, and network-economics reports using TronGrid data and public market sources.
 
-## Reference(s): <br>
-- [TronGrid MCP Guide](https://developers.tron.network/reference/mcp-api) <br>
-- [TRX price and supply analysis example](examples/trx-price-and-supply.md) <br>
-- [TRX burn rate analysis example](examples/trx-burn-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown report with TRX market metrics, supply estimates, burn analysis, staking-yield estimates, and explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use public web and TronGrid lookups when invoked; crypto price, supply, burn, and yield outputs are informational rather than financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release metadata; artifact metadata reports 1.0.0) <br>
+Risk: Current blockchain or market data may be unavailable, stale, or rate-limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Report available on-chain data, clearly state when market data is unavailable, and label time-sensitive values as current only at retrieval time.
+
+Risk: Burn-rate and staking-yield calculations are approximate and depend on sampled blocks, witness rewards, brokerage, and public market sources.
+
+Mitigation: Show calculation assumptions and present estimates as approximate rather than guaranteed values.
+
+## Reference(s):
+
+- [TronGrid MCP Guide](https://developers.tron.network/reference/mcp-api)
+- [ClawHub skill page](https://clawhub.ai/greason/skills/trongrid-trx-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current on-chain metrics, public market data, calculations, and caveats about unavailable or approximate data.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

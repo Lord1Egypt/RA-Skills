@@ -1,42 +1,59 @@
-## Description: <br>
-Generate professional podcast cover art and show artwork for Spotify, Apple Podcasts, YouTube Music, Amazon Music, and Overcast using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional podcast cover art and show artwork from plain text prompts for major podcast platforms using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External creators, indie podcasters, podcast networks, and show hosts use this skill to turn plain-language show descriptions into directory-ready podcast cover artwork. It is also useful for developers or agents that need a CLI workflow returning a generated image URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the podcast-cover prompt, optional reference image UUID, and Neta token to api.talesofai.com. <br>
-Mitigation: Avoid sensitive prompt content, review the external service before use, and only run the skill when sharing that data with the service is acceptable. <br>
-Risk: Passing the API token directly on the command line can expose it through shell history, logs, or CI output. <br>
-Mitigation: Prefer expanding the token from a shell variable and rotate the token if it may have been recorded. <br>
+## Use Case:
 
+External creators, podcast teams, and agents use this skill to turn podcast artwork prompts into generated cover-image URLs. It supports optional size presets and style inheritance from a reference image UUID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/podcast-cover-generator) <br>
-- [Neta Open](https://www.neta.art/open/) <br>
-- [Neta API Service](https://api.talesofai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text URL on stdout with progress messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a prompt, a Neta API token, and optional size or reference image UUID arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill sends prompts, optional reference image IDs, and the image-service token to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and references appropriate for that third-party service, and install only if this data sharing is acceptable.
+
+Risk: The token is supplied on the command line, where it may appear in shell history, logs, or process telemetry.
+
+Mitigation: Prefer expanding a shell variable, avoid placing real tokens in CI logs or shared shell commands, and rotate any token that may have been exposed.
+
+Risk: Evidence.security marks the release suspicious because of token exposure and disclosure or supply-chain weaknesses.
+
+Mitigation: Prefer a pinned release or ClawHub-managed install, review the source before execution, and follow the security guidance from the release evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/podcast-cover-generator)
+- [Neta access page](https://www.neta.art/open/)
+- [Neta image API host](https://api.talesofai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text URL printed to stdout, with progress and errors printed to stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates one image URL per successful run; requires a Neta API token and a text prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

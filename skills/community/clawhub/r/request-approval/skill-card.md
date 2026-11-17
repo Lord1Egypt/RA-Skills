@@ -1,45 +1,60 @@
-## Description: <br>
-Use Preloop's request_approval tool to get human approval before risky operations like deletions, production changes, or external modifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Preloop's request_approval tool to get human approval before risky operations like deletions, production changes, or external modifications.
 
-## Publisher: <br>
-[yconst](https://clawhub.ai/user/yconst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yconst](https://clawhub.ai/user/yconst)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add human approval checkpoints before destructive, production, external, security, financial, or otherwise sensitive operations. It helps agents gather context, request approval through Preloop, and stop when approval is denied or unavailable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Approval requests may fail or be bypassed if the Preloop MCP endpoint, token, or approval policy is misconfigured. <br>
-Mitigation: Verify the configured Preloop endpoint or package, store a least-privilege token securely, and test that the request_approval tool appears and sends notifications before relying on the skill. <br>
-Risk: Sensitive or destructive operations could proceed without adequate human review if approval rules are too permissive. <br>
-Mitigation: Set approval policies so destructive, production, external, security, financial, and bulk-change operations require approval in all relevant environments. <br>
-Risk: A denied, errored, or timed-out approval response could be misread as permission to continue. <br>
-Mitigation: Treat denial, errors, and timeouts as stop conditions, report the result to the user, and only retry when circumstances materially change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Setup & Configuration](references/SETUP.md) <br>
-- [Detailed Examples](references/EXAMPLES.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Preloop Documentation](https://docs.preloop.ai) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add human approval checkpoints before destructive, production, security, financial, or externally modifying actions. It helps agents gather impact details, request approval through Preloop, and stop when approval is denied or unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with tool parameters, configuration examples, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Preloop MCP server and approval policy before the request_approval tool can be used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup documentation includes an unpinned MCP server command, which can make installations harder to audit.
+
+Mitigation: Prefer direct HTTPS/SSE configuration or a pinned, purpose-specific Preloop MCP client before deploying the skill.
+
+Risk: Approval requirements may be weakened outside production, even though destructive or externally modifying actions can still cause harm in development or staging.
+
+Mitigation: Keep approval required for destructive or externally modifying actions unless an organization has an explicit policy exception.
+
+Risk: Preloop API tokens or authorization headers may be needed for authenticated instances.
+
+Mitigation: Store API tokens as secrets, avoid committing them to configuration files, and review MCP setup before installation.
+
+## Reference(s):
+
+- [Setup & Configuration](references/SETUP.md)
+- [Detailed Examples](references/EXAMPLES.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [Preloop Documentation](https://docs.preloop.ai)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline tool-call parameters, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Preloop MCP server and approval policy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

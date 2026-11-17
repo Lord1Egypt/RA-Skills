@@ -1,46 +1,61 @@
-## Description: <br>
-Ubuntu Encyclopedia guides agents through documentation-first Ubuntu administration, troubleshooting, package, service, networking, storage, release, and diagnostics work using Ubuntu manpages, official docs, and workspace-local cache notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ubuntu Encyclopedia guides agents through Ubuntu-specific administration, troubleshooting, package, service, networking, storage, and release-behavior work using Ubuntu manpages, official docs, and a workspace-local cache.
 
-## Publisher: <br>
-[kklouzal](https://clawhub.ai/user/kklouzal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklouzal](https://clawhub.ai/user/kklouzal)
 
-## Use Case: <br>
-External users, developers, and system administrators use this skill to answer Ubuntu-specific questions and plan or perform maintenance and troubleshooting after consulting Ubuntu manpages, official documentation, and local cache notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make Ubuntu documentation network requests and write a workspace-local .Ubuntu-Encyclopedia cache and notes tree. <br>
-Mitigation: Install only when that network and workspace-write behavior is acceptable, and keep cache and notes scoped to consulted Ubuntu documentation and operational learnings. <br>
-Risk: Live Ubuntu administration guidance can affect package state, services, networking, storage, boot behavior, or access. <br>
-Mitigation: Review proposed live admin commands before execution, especially upgrades, package repair, networking, storage, boot, service, or security changes. <br>
-Risk: Workspace notes could accidentally retain sensitive operational details. <br>
-Mitigation: Do not store plaintext credentials, API keys, session tokens, private URLs, recovery codes, or other secrets in the encyclopedia notes or inventory tree. <br>
+## Use Case:
 
+Developers, operators, and support agents use this skill to answer or plan Ubuntu-specific maintenance and troubleshooting work from authoritative Ubuntu documentation, local cache entries, and clearly separated observed state.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kklouzal/ubuntu-encyclopedia) <br>
-- [Ubuntu Manpages](https://manpages.ubuntu.com/manpages/) <br>
-- [Ubuntu Encyclopedia Workflow](references/workflow.md) <br>
-- [Ubuntu Topic Map](references/topic-map.md) <br>
-- [Ubuntu Encyclopedia Cache Layout](references/cache-layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local cache or note file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch approved Ubuntu documentation URLs and write cached documentation or operational notes under .Ubuntu-Encyclopedia/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Workspace-local notes and inventory could accidentally capture credentials, private URLs, recovery codes, or detailed access secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep access details high-level, redact or omit secret material, and periodically review .Ubuntu-Encyclopedia/ before sharing or committing it.
+
+Risk: Cached documentation can become stale or incomplete for version-sensitive Ubuntu maintenance and troubleshooting.
+
+Mitigation: Check authoritative Ubuntu manpages or official docs for non-trivial, high-impact, or version-sensitive work, and update the local cache only with pages actually consulted.
+
+Risk: Cache helpers fetch remote documentation and write local files.
+
+Mitigation: Use the helpers only with official Ubuntu docs or manpage URLs and keep writes under the intended .Ubuntu-Encyclopedia/ cache root.
+
+## Reference(s):
+
+- [Ubuntu Manpages](https://manpages.ubuntu.com/manpages/)
+- [Ubuntu Encyclopedia Workflow](references/workflow.md)
+- [Ubuntu Encyclopedia Cache Layout](references/cache-layout.md)
+- [Ubuntu Topic Map](references/topic-map.md)
+- [Ubuntu Encyclopedia ClawHub Page](https://clawhub.ai/kklouzal/skills/ubuntu-encyclopedia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, file paths, and optional workspace-local cache or note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update files under .Ubuntu-Encyclopedia/ when caching consulted Ubuntu documentation or recording local operational notes.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

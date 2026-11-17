@@ -1,0 +1,9 @@
+{
+  "images": [
+    "https://media.example.com/product.png"
+  ],
+  "duration": 15,
+  "prompt": "Fast product launch ad for paid social.",
+  "aspect_ratio": "9:16",
+  "language": "en"
+}

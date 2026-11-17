@@ -2,7 +2,7 @@
 name: stack-mode
 description: |
   Detects shared stack membership and iterates a command across all PRs in base-to-tip order
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - stacked-diffs
@@ -16,7 +16,7 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Stack Mode
@@ -30,14 +30,19 @@ targeting a common base branch, loop the command's normal
 workflow across every PR in the stack in base-to-tip order
 and emit one consolidated summary on the stack root.
 
-## When to Use
+## When To Use
 
 Load this skill when a command accepts a `--stack` flag
 (or auto-detects stack membership) and needs to iterate
 its normal workflow across multiple PRs.
 
 Do NOT load this skill for single-PR workflows. The
-per-PR workflow stays unchanged; stack mode wraps it.
+per-PR workflow stays unchanged and stack mode wraps it.
+
+## When NOT To Use
+
+- Creating the stack (use `sanctum:stack-create`)
+- Cascading a rebase through it (use `sanctum:stack-rebase`)
 
 ## Contract
 
@@ -64,7 +69,7 @@ A calling command MAY:
 
 ## Required Progress Tracking
 
-The caller creates `TodoWrite` items:
+The caller creates progress items:
 
 1. `stack-mode:membership-resolved`
 2. `stack-mode:iteration-complete`
@@ -298,7 +303,7 @@ Post via `gh pr comment "$ROOT_PR" --body-file <file>`.
 | Base chain loops | Visited set on ascent | Halt, report `stack-mode: cycle detected` |
 | Mid-stack PR failed its Gates | Caller raises | Halt iteration, leave downstream untouched |
 | Strategy B table malformed | Parse fails | Fall through to Strategy C |
-| Auth scope insufficient | `gh` returns 403 | Halt with clear error; caller surfaces to user |
+| Auth scope insufficient | `gh` returns 403 | Halt with clear error for the caller to surface |
 
 ## Notes
 
@@ -315,3 +320,18 @@ Post via `gh pr comment "$ROOT_PR" --body-file <file>`.
 - `stack-mode` is a read/orchestration skill; it does NOT
   push, rebase, or edit branches. Those concerns are in
   `stack-create`, `stack-push`, and `stack-rebase`.
+
+## Exit Criteria
+
+- [ ] Stack membership resolved using at least one of the three
+      strategies (A: branch names, B: stack comment, C: base-chain
+      walk) and PRs ordered base-to-tip before iteration starts
+- [ ] The 3 required progress items (`stack-mode:membership-resolved`,
+      `stack-mode:iteration-complete`, `stack-mode:root-summary-posted`)
+      are created and marked complete in sequence
+- [ ] Root PR receives exactly one consolidated `## Stack <Command>
+      Summary` comment after all PRs are processed
+- [ ] If stack size is 1, warning `stack-mode: only one PR found;
+      --stack has no effect` is emitted and single-PR mode used
+- [ ] If a PR fails its gates, iteration halts and downstream PRs
+      are left untouched with a `stack-mode: halted at #<pr>` report

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn700pehb743ydrgx62d7yqqhh84c3tb",
-  "slug": "huangli-almanac",
+  "name": "huangli-almanac",
   "version": "1.0.0",
-  "publishedAt": 1775532882335
+  "description": "黄历万年历 - 查询任意日期的黄历信息",
+  "author": "OpenClaw Assistant",
+  "createdAt": "2026-04-07T11:20:00Z",
+  "updatedAt": "2026-04-07T11:20:00Z"
 }

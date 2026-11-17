@@ -18,6 +18,9 @@
 
 const psychology = require('./psychology.js');
 const empathy = require('./empathy-detector.js');
+// 公式注册表：把认知公式主动注入情绪引擎（v5.9.5 重构）
+const { getFormulaRegistry } = require('../formula/formula-registry.js');
+const _registry = getFormulaRegistry();
 // AI认知状态调节器 — 6个人类心理学模块的AI化版本
 const { breathingExercise } = require('./breathing-exercise.js');
 const { pauseAndReflect } = require('./pause-and-reflect.js');
@@ -71,6 +74,9 @@ class PsychologyEngine {
         this._status = EngineStatus.READY;
         this._moduleErrors = []; // 记录模块级错误，用于降级决策
         this._lastAnalysis = null; // 缓存上次分析结果，用于趋势检测
+        this._userHistory = []; // 最近用户输入历史，用于觉醒检测
+        this._awakeningCount = 0; // 觉醒事件计数
+        this._lastAwakeningScore = 0; // 最近一次觉醒分数
 
         // 验证依赖模块
         this._verifyDependencies();
@@ -119,8 +125,8 @@ class PsychologyEngine {
         if (trimmed.length === 0) {
             return { valid: false, sanitized: '', error: '输入为空字符串' };
         }
-        // 限制最大输入长度，防止资源耗尽
-        const MAX_INPUT_LENGTH = 10000;
+        // 限制最大输入长度 - 1M 上下文适配
+        const MAX_INPUT_LENGTH = 50000; // 5% of 1M context
         if (trimmed.length > MAX_INPUT_LENGTH) {
             return {
                 valid: true,
@@ -188,28 +194,30 @@ class PsychologyEngine {
      */
     _aggregateConfidence(layers) {
         if (!layers || layers.length === 0) {
-            return { average: 0, min: 0, max: 0, weighted: 0 };
+            return { average: 0, min: 0, max: 0, weighted: 0, metacognitive: 0 };
         }
 
         const confidences = layers.filter(l => typeof l.confidence === 'number' && l.confidence >= 0 && l.confidence <= 1);
         if (confidences.length === 0) {
-            return { average: 0, min: 0, max: 0, weighted: 0 };
+            return { average: 0, min: 0, max: 0, weighted: 0, metacognitive: 0 };
         }
 
         const values = confidences.map(l => l.confidence);
         const sum = values.reduce((a, b) => a + b, 0);
         const average = sum / values.length;
 
-        // 加权：较低置信度层给予更少权重
-        const weights = values.map(v => Math.max(0.1, v));
-        const weightSum = weights.reduce((a, b) => a + b, 0);
-        const weighted = weights.reduce((acc, w, i) => acc + w * values[i], 0) / weightSum;
+        // 加权：较低置信度层给予更少权重（公式注册表 weighted_confidence 原语）
+        const weighted = _registry.call('confidence_aggr', 'weighted_confidence', values, values.map(v => Math.max(0.1, v)));
+
+        // 元认知置信度：多来源预测一致性越高，整体置信度越高（C = 1 - Var(p)）
+        const metacognitive = _registry.call('confidence_aggr', 'metacognitive_confidence', values);
 
         return {
             average: Math.round(average * 100) / 100,
             min: Math.round(Math.min(...values) * 100) / 100,
             max: Math.round(Math.max(...values) * 100) / 100,
-            weighted: Math.round(weighted * 100) / 100
+            weighted: Math.round((weighted || average) * 100) / 100,
+            metacognitive: Math.round((metacognitive || 0) * 100) / 100
         };
     }
 
@@ -360,10 +368,15 @@ class PsychologyEngine {
             needs: [...mappedResult.needs]
         };
 
+        // [v6.0.3 W-AXIS] 觉醒检测：对比当前分析与历史
+        const awakeningScore = this.detectAwakening(safeInput);
+
         return {
             ...mappedResult,
             insights,
             confidence,
+            awakeningScore,
+            awakeningDetected: awakeningScore >= 0.5,
             crisisCount: this._crisisCount,
             status: this._status,
             statusDescription: this._status === EngineStatus.DEGRADED
@@ -371,7 +384,13 @@ class PsychologyEngine {
                 : this._status === EngineStatus.ERROR
                     ? '引擎异常'
                     : '正常',
-            engineVersion: 'v1.2.0'
+            engineVersion: 'v1.2.0',
+            // [v6.0.4 诚实化] 标注分析方法和置信度
+            _meta: {
+                method: 'rule-based',
+                confidence: 'low',
+                note: '本地规则层仅做关键词模式匹配，非真实语义理解。如需深度分析，请调用 LLM 协作层。'
+            }
         };
     }
     
@@ -573,7 +592,12 @@ class PsychologyEngine {
             lastAnalysis: this._lastAnalysis ? {
                 timestamp: this._lastAnalysis.timestamp,
                 crisisLevel: this._lastAnalysis.crisisLevel
-            } : null
+            } : null,
+            awakening: {
+                score: this._lastAwakeningScore,
+                eventCount: this._awakeningCount,
+                historyLength: this._userHistory.length
+            }
         };
     }
 
@@ -727,6 +751,97 @@ class PsychologyEngine {
      */
     generateEngineRecoveryPlan(errors = []) {
         return selfCompassionScript.generateEngineRecoveryPlan(errors);
+    }
+
+    /**
+     * [v6.0.3 W-AXIS] 觉醒检测：识别用户是否正在推翻惯性立场
+     * 信号：
+     *   1. 语义反转：当前输入与历史立场相反（通过关键词极性对比）
+     *   2. 情绪强度上升： arousal > 0.6 且 pleasure 发生显著变化
+     *   3. 元认知标记：输入包含"我意识到"/"原来如此"/"我错了"等
+     * @param {string} input - 当前用户输入
+     * @returns {number} 觉醒分数 0-1
+     */
+    detectAwakening(input) {
+        if (!input || typeof input !== 'string') return 0;
+        const trimmed = input.trim();
+        if (trimmed.length === 0) return 0;
+
+        // 更新历史
+        this._userHistory.push(trimmed);
+        if (this._userHistory.length > 20) this._userHistory.shift();
+
+        const score = this._computeAwakeningScore(trimmed);
+        this._lastAwakeningScore = score;
+        if (score > 0.7) this._awakeningCount++;
+        return score;
+    }
+
+    /**
+     * 计算觉醒分数（内部）
+     * @private
+     */
+    _computeAwakeningScore(input) {
+        const lower = input.toLowerCase();
+        let score = 0;
+
+        // 信号1：元认知标记（权重最高）
+        const metaCognitiveMarkers = [
+            '意识到', '原来如此', '我错了', '明白了', '我突然明白',
+            '我以前从', '我现在才', '真相是', '我一直都在',
+            'realize', 'realised', 'i see now', 'i understand', 'i was wrong',
+            'it dawned on me', 'now i see'
+        ];
+        const hasMetaCognition = metaCognitiveMarkers.some(m => lower.includes(m));
+        if (hasMetaCognition) score += 0.5;
+
+        // 信号2：语义反转检测（与历史对比）
+        if (this._userHistory.length >= 2) {
+            const recent = this._userHistory.slice(-3);
+            const currentPolarity = this._estimateSentimentPolarity(input);
+            const historicalPolarity = recent.slice(0, -1).reduce((sum, h) => sum + this._estimateSentimentPolarity(h), 0) / (recent.length - 1);
+            const polarityFlip = Math.abs(currentPolarity - historicalPolarity) > 0.4;
+            if (polarityFlip) score += 0.3;
+        }
+
+        // 信号3：情绪强度上升（通过当前分析中的 arousal）
+        if (this._lastAnalysis && this._lastAnalysis.emotion) {
+            const arousal = Math.abs(this._lastAnalysis.emotion.arousal || 0);
+            const pleasure = this._lastAnalysis.emotion.pleasure || 0;
+            if (arousal > 0.5 && Math.abs(pleasure) > 0.3) score += 0.2;
+        }
+
+        return Math.min(1, Math.max(0, score));
+    }
+
+    /**
+     * 估算文本情感极性（简化版，用于觉醒检测）
+     * @private
+     * @param {string} text
+     * @returns {number} -1 到 1
+     */
+    _estimateSentimentPolarity(text) {
+        const lower = text.toLowerCase();
+        const positive = ['好', '棒', '开心', '喜欢', '爱', '希望', '感谢', '谢谢', 'good', 'great', 'happy', 'love', 'hope', 'thank'];
+        const negative = ['不好', '难过', '生气', '讨厌', '痛苦', '恨', '失望', '绝望', 'bad', 'sad', 'angry', 'hate', 'pain', 'despair'];
+        const posCount = positive.filter(w => lower.includes(w)).length;
+        const negCount = negative.filter(w => lower.includes(w)).length;
+        const total = posCount + negCount;
+        if (total === 0) return 0;
+        return (posCount - negCount) / total;
+    }
+
+    /**
+     * 获取觉醒统计
+     * @returns {object}
+     */
+    getAwakeningStats() {
+        return {
+            score: this._lastAwakeningScore,
+            eventCount: this._awakeningCount,
+            historyLength: this._userHistory.length,
+            recentHistory: this._userHistory.slice(-5)
+        };
     }
 
     /**

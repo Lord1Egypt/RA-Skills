@@ -1,41 +1,52 @@
-## Description: <br>
-Helper for using the Git CLI to inspect, stage, commit, branch, and synchronize code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helper for using the Git CLI to inspect, stage, commit, branch, and synchronize code changes.
 
-## Publisher: <br>
-[kenswj](https://clawhub.ai/user/kenswj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kenswj](https://clawhub.ai/user/kenswj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to understand and perform everyday Git command-line workflows, including inspecting repository state, staging and committing changes, branching, stashing, syncing with remotes, and troubleshooting common Git issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Git mutation commands can stage, commit, pull, push, stash, or switch branches, which may change local work or publish repository state.
+
+Mitigation: Review generated Git commands before execution and prefer read-only inspection commands such as git status, git diff, and git log before making changes.
+
+Risk: Destructive Git commands can discard local work or rewrite remote history if used incorrectly.
+
+Mitigation: Use destructive commands only when explicitly requested and after confirming that the user understands the impact.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for practical Git command-line guidance, including repository inspection, staging, committing, branching, stashing, syncing with remotes, and troubleshooting common Git states. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Git write or sync commands can commit secrets, overwrite local work, or publish unintended changes. <br>
-Mitigation: Check repository status, branch, staged files, diff, and remote before running write or sync commands. <br>
-Risk: Destructive Git commands can permanently discard work or rewrite shared history. <br>
-Mitigation: Prefer read-only inspection commands first and avoid destructive commands unless the user explicitly asks and understands the risk. <br>
+**Output Format:** [Markdown text with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kenswj/git-cli-1-0-0) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kenswj) <br>
+**Other Properties Related to Output:** [Prioritizes read-only Git inspection before mutation guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release metadata and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

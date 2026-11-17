@@ -1,40 +1,54 @@
-## Description: <br>
-Generate skin swap prompts for model images, producing precise AI skin replacement instructions based on user-specified target skin tone/region while preserving original clothing, lighting, background, hairstyle, and composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate skin swap prompts for model images, producing precise AI skin replacement instructions based on user-specified target skin tone/region while preserving original clothing, lighting, background, hairstyle, and composition.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and creative production teams use this skill to generate concise image-editing prompts for model skin tone changes while preserving clothing, lighting, background, hairstyle, and composition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used for sensitive appearance changes involving skin tone, ethnicity, race, nationality, or regional facial traits. <br>
-Mitigation: Use only images the user has permission to edit, and avoid ethnicity, race, nationality, or regional facial-trait transformations unless the depicted person has explicitly requested that framing. <br>
-Risk: Region-linked aesthetic or facial-feature instructions may create stereotyped or unsupported edits. <br>
-Mitigation: Keep prompts focused on the user's stated skin tone request, preserve non-target image attributes, and remove stereotype-based facial-feature changes unless they are explicitly consented to and necessary. <br>
+## Use Case:
 
+External users use this skill to generate concise, ready-to-use image editing prompts for changing a model's skin tone or regional presentation while preserving clothing, lighting, background, hairstyle, and composition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/model-skin-swap-prompt-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise, ready-to-use image-editing prompt; no code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may steer edits toward nationality or region-based facial features and beauty standards instead of limiting changes to the requested skin tone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts for stereotyping or unnecessary region-linked facial-feature changes before using them with real people or commercial imagery.
+
+Risk: Prompt-only output can still produce misleading or inappropriate image-editing instructions for sensitive identity attributes.
+
+Mitigation: Limit prompts to user-specified visual changes, preserve non-target attributes, and require human approval before publication or client delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/model-skin-swap-prompt-generator)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no code, persistence, or tool execution is produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

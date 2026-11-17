@@ -1,38 +1,53 @@
-## Description: <br>
-Query Art Blocks on-chain data using artblocks-mcp GraphQL and domain-specific tools for projects, tokens, artists, sales, traits, and custom schema exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Art Blocks on-chain data using artblocks-mcp GraphQL tools for projects, tokens, artists, sales, traits, and custom data needs.
 
-## Publisher: <br>
-[ryley-o](https://clawhub.ai/user/ryley-o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryley-o](https://clawhub.ai/user/ryley-o)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve and analyze Art Blocks on-chain project, token, artist, wallet, mint, release, sales, and trait data. It guides users toward domain-specific tools first and uses GraphQL tools for custom queries, schema exploration, validation, optimization, and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Custom GraphQL queries can return public wallet, ownership, and sales information beyond what a narrow task needs. <br>
-Mitigation: Prefer named domain tools when they answer the question, and limit custom GraphQL queries to the fields needed for the task. <br>
+## Use Case:
 
+Developers and agent users use this skill to guide Art Blocks data retrieval through domain-specific MCP tools or custom GraphQL queries when they need project, token, artist, sales, traits, wallet, or multi-chain on-chain data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryley-o/query-artblocks-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Code] <br>
-**Output Format:** [Markdown with GraphQL query examples and tool-selection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return public wallet, ownership, sales, project, token, and trait information from Art Blocks data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Raw GraphQL queries can return broad public Art Blocks blockchain datasets, including wallet, token ownership, and sales records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use specific filters, limits, chain IDs, and domain-specific tools when they cover the request.
+
+Risk: Custom schema exploration and joins can produce invalid or inefficient queries when fields or tables are assumed.
+
+Mitigation: Use explore_table, validate_fields, build_query, and query_optimizer before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryley-o/skills/query-artblocks-data)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, API calls]
+
+**Output Format:** [Markdown guidance with GraphQL code blocks and tool-call recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public Art Blocks wallet, token ownership, sales, and chain-specific query results returned through MCP GraphQL tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

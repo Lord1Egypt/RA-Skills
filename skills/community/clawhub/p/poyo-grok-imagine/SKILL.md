@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-grok-imagine
 description: Use PoYo AI Grok Imagine Video for short text-to-video and image-to-video generation with motion-style controls through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants 6s or 10s clips, optional `mode` styling, or PoYo payloads for `grok-imagine`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/grok-imagine", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/grok-imagine", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Grok Imagine Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/grok-imagine>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/grok-imagine>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill to submit and track PoYo jobs for the Grok Imagine Video family.
 
@@ -50,4 +56,3 @@ When helping with this model family, include:
 Notes:
 
 Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

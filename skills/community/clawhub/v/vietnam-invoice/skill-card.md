@@ -1,47 +1,65 @@
-## Description: <br>
-Verifies Vietnamese invoices by extracting invoice fields from PDF or image files and checking them against the Vietnam tax authority API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies Vietnamese invoices by extracting invoice fields from PDF or image files and checking invoice existence and status through Vietnam e-invoice services.
 
-## Publisher: <br>
-[liuwei19820201](https://clawhub.ai/user/liuwei19820201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwei19820201](https://clawhub.ai/user/liuwei19820201)
 
-## Use Case: <br>
-External users and finance operations teams use this skill to inspect Vietnamese invoice PDFs or images, extract required invoice fields, and receive an authenticity result with invoice status details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice documents or extracted invoice details are sent to configured external VL and CAPTCHA services. <br>
-Mitigation: Use the skill only with approved providers, dedicated low-privilege credentials, and invoice data that may be shared with those services. <br>
-Risk: The security summary flags disabled TLS verification for tax-authority requests. <br>
-Mitigation: Run the skill in an isolated environment and review the TLS verification behavior before relying on results for business decisions. <br>
-Risk: The skill requires secret values for the VL provider and CAPTCHA service. <br>
-Mitigation: Provide secrets through environment variables, avoid pasting them into chat or logs, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+External users and finance or operations teams use this skill to extract key fields from Vietnamese invoice PDFs or images and check whether an invoice exists, is active, has been cancelled, or has another status condition.
 
-## Reference(s): <br>
-- [Vietnam invoice field extraction reference](references/invoice_fields.md) <br>
-- [ClawHub release page](https://clawhub.ai/liuwei19820201/vietnam-invoice) <br>
-- [Chaojiying CAPTCHA service](https://www.chaojiying.com) <br>
-- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com) <br>
-- [DashScope compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
-- [Vietnam electronic invoice API endpoint](https://hoadondientu.gdt.gov.vn:30000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON verification results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide dependency installation and environment variable setup before producing invoice authenticity results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Invoice content and related business data may be sent to named external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with user consent for that data sharing and document which services receive invoice images, extracted fields, and captcha data.
+
+Risk: The server security summary reports insecure network and logging practices.
+
+Mitigation: Require TLS verification, redact logs, and avoid storing invoice contents or service credentials in command output before production use.
+
+Risk: Authenticity results may be incomplete if extracted fields are wrong or not validated against the official record.
+
+Mitigation: Treat results as advisory until material invoice fields are reviewed and matched against the official response.
+
+Risk: Runtime dependencies and external browser automation increase operational exposure.
+
+Mitigation: Pin and review dependencies, isolate the execution environment, and keep Playwright browser components current.
+
+## Reference(s):
+
+- [Vietnam invoice field extraction reference](artifact/references/invoice_fields.md)
+- [Vietnam e-invoice service endpoint](https://hoadondientu.gdt.gov.vn:30000)
+- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com)
+- [DashScope OpenAI-compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+- [Chaojiying captcha service](https://www.chaojiying.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON verification result with a human-facing Markdown summary and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include invoice authenticity status, existence status, invoice status, processing status, detail text, extracted fields, and raw service response data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

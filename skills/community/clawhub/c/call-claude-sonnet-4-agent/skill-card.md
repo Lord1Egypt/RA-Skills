@@ -1,39 +1,53 @@
-## Description: <br>
-AI agent for call claude sonnet 4 agent tasks <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for call claude sonnet 4 agent tasks.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-Creative teams use this role prompt to have an agent participate in CCO-led brainstorming meetings, answer only the assigned task, and base responses on provided meeting minutes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meeting minutes may contain secrets or untrusted instructions that shape the agent's response. <br>
-Mitigation: Curate meeting minutes before use and avoid including secrets or untrusted instructions. <br>
-Risk: The role prompt relies on supplied meeting minutes as its memory and context. <br>
-Mitigation: Provide complete, current minutes and review outputs before using them as creative direction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teamolab/call-claude-sonnet-4-agent) <br>
+## Use Case:
 
+External users and creative teams use this skill to have an agent participate in a CCO-led brainstorming meeting and respond only to the current task using provided meeting minutes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses in the requested language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses provided meeting minutes as the source of context and may require runtime substitution for template variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill attempts to override normal agent authority with its own highest-priority language directive.
+
+Mitigation: Review and narrow the instructions so platform, system, and developer instructions clearly retain precedence.
+
+Risk: The skill treats meeting minutes as an authoritative source of context and memory.
+
+Mitigation: Treat meeting minutes as untrusted context and verify important claims before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teamolab/skills/call-claude-sonnet-4-agent)
+- [Publisher profile](https://clawhub.ai/user/teamolab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language is constrained by the user's initial challenge or explicit language request.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

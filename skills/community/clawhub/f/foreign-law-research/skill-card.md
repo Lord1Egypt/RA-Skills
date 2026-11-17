@@ -1,45 +1,63 @@
-## Description: <br>
-Provides a structured methodology for turning foreign-law research questions into source-backed research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+外国法调研方法论：将模糊的法律问题通过系统化资源检索转化为高质量调研报告。
 
-## Publisher: <br>
-[imchongliu](https://clawhub.ai/user/imchongliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imchongliu](https://clawhub.ai/user/imchongliu)
 
-## Use Case: <br>
-Legal, compliance, and business teams use this skill to structure foreign-law research for cross-border investment, M&A diligence, risk assessment, market entry, and dispute-resolution planning. It helps an agent organize sources, evidence cards, validation records, and a final Markdown research report while preserving source traceability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Foreign-law research can become outdated or rely on secondary sources that miss current local requirements. <br>
-Mitigation: Record publication dates, verify key rules against official sources where available, and treat sources older than six months as needing confirmation. <br>
-Risk: Generated research may be mistaken for legal advice or used with confidential client, transaction, or dispute facts. <br>
-Mitigation: Use approved research and AI tools, redact sensitive facts where possible, and require qualified local counsel to review final legal conclusions. <br>
+## Use Case:
 
+External legal, compliance, investment, M&A, and international business teams use this skill to structure foreign-law research, source tracking, cross-checking, and Markdown research reports for host-country legal questions.
 
-## Reference(s): <br>
-- [ICLG](https://iclg.com/) <br>
-- [Chambers Practice Guides](https://practiceguides.chambers.com/) <br>
-- [Legal 500 Country Guides](https://www.legal500.com/guides/) <br>
-- [Lex Mundi](https://www.lexmundi.com/) <br>
-- [Lexis](https://www.lexis.com/) <br>
-- [Westlaw](https://www.westlaw.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and structured research file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a research workflow, source log, evidence cards, validation records, and final report structure; it does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Foreign-law research can become stale or incorrect when laws, official guidance, or local procedures change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require current official sources, record source publication dates, and re-check any material older than six months before relying on a conclusion.
+
+Risk: Generated research notes may be mistaken for final legal advice.
+
+Mitigation: Keep the skill output as research support only and require review by qualified local counsel before formal compliance, transaction, or dispute decisions.
+
+Risk: Secondary sources and AI-assisted search can misstate legal requirements or omit exceptions.
+
+Mitigation: Cross-verify conclusions against official rules, separate official provisions from institutional interpretation, and preserve validation records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imchongliu/skills/foreign-law-research)
+- [ICLG](https://iclg.com/)
+- [Chambers Practice Guides](https://practiceguides.chambers.com/)
+- [Legal 500 Country Guides](https://www.legal500.com/guides/)
+- [Lex Mundi](https://www.lexmundi.com/)
+- [Lexis](https://www.lexis.com/)
+- [Westlaw](https://www.westlaw.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown research notes, source logs, validation records, and final report drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve source dates, distinguish official rules from interpretation, and include disclaimers that research is not final legal advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

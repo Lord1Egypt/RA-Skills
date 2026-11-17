@@ -1,42 +1,55 @@
-## Description: <br>
-Sends plain text or HTML email with optional local file attachments through a configured SMTP account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to send emails with support for markdown, HTML text, and attachments, leveraging existing SMTP configuration in `{skill~}/smtp-config.json`.
 
-## Publisher: <br>
-[xlbbb-cn](https://clawhub.ai/user/xlbbb-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xlbbb-cn](https://clawhub.ai/user/xlbbb-cn)
 
-## Use Case: <br>
-Developers and agents use this skill to send email from automation workflows through an existing SMTP account, including optional HTML content and attachments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected local files outside the machine as email attachments. <br>
-Mitigation: Review every recipient, subject, body source, and attachment path before execution. <br>
-Risk: SMTP credentials can authorize outbound email from the configured account. <br>
-Mitigation: Use a dedicated low-privilege SMTP credential, enable TLS where possible, and restrict permissions on smtp-config.json. <br>
-Risk: Documented retry, logging, and markdown-conversion behavior is not reliable in the provided implementation. <br>
-Mitigation: Do not depend on those advertised features unless the implementation is updated and re-reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xlbbb-cn/smtp-sender) <br>
-- [Publisher profile](https://clawhub.ai/user/xlbbb-cn) <br>
+## Use Case:
+
+Developers and external users can use this skill to prepare or run SMTP email-sending workflows from an agent environment, including plain text or HTML message bodies and optional file attachments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release security summary says the skill ships unsafe SMTP configuration defaults.
+
+Mitigation: Replace example values before use, use a dedicated least-privileged SMTP account, require TLS, and secure the SMTP configuration file.
+
+Risk: The release security summary says the skill can send arbitrary local files as attachments without strong guardrails.
+
+Mitigation: Approve each recipient and attachment path before execution, and run the skill where only intended files are accessible.
+
+Risk: The security guidance warns not to rely on documented markdown conversion, retries, or audit logs unless they are implemented later.
+
+Mitigation: Validate generated email content and operational safeguards in the installed artifact before using those features in production workflows.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text] <br>
-**Output Format:** [Command-line email send operation using JSON SMTP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can send message body text or file content and can attach local files selected by the agent or user.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send SMTP email with optional HTML body and file attachments when executed with a valid SMTP configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

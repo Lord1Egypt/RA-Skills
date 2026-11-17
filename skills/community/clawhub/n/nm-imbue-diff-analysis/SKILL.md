@@ -2,7 +2,7 @@
 name: diff-analysis
 description: |
   Analyzes changesets with risk scoring, categorization by type and impact, and release note preparation
-version: 1.9.8
+version: 1.10.3
 triggers:
   - changes
   - semantic-analysis
@@ -15,16 +15,8 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Activation Patterns](#activation-patterns)
-- [4-Step Methodology](#4-step-methodology)
-- [Exit Criteria](#exit-criteria)
 
 # Diff Analysis Methodology
 
@@ -56,7 +48,7 @@ Load modules based on workflow stage:
 - `modules/semantic-categorization.md` for change categorization workflow
 
 ### Conditional Loading
-- `modules/risk-assessment-framework.md` when risk assessment is needed
+- `modules/riREDACTED-SECRET.md` when risk assessment is needed
 - `modules/git-diff-patterns.md` when working with git repositories
 
 ### Integration
@@ -64,7 +56,7 @@ Load modules based on workflow stage:
 - Use `imbue:proof-of-work` for capturing analysis evidence
 - Use `imbue:structured-output` for formatting final deliverables
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `diff-analysis:baseline-established`
 2. `diff-analysis:changes-categorized`
 3. `diff-analysis:risks-assessed`
@@ -83,12 +75,14 @@ For git contexts, load `modules/git-diff-patterns.md`. For other contexts, compa
 Group changes by semantic type. Load `modules/semantic-categorization.md` for change categories, semantic categories, and prioritization.
 
 ### Step 3: Assess Risks (`diff-analysis:risks-assessed`)
-Evaluate impact. Load `modules/risk-assessment-framework.md` for risk indicators, levels, and scoring methodology.
+Evaluate impact. Load `modules/riREDACTED-SECRET.md` for risk indicators, levels, and scoring methodology.
 
 ### Step 4: Prepare Summary (`diff-analysis:summary-prepared`)
 Synthesize findings: theme, scope with counts, risk level, review focus, dependencies. Format for downstream consumption (PR descriptions, release notes, reviews).
 
 ## Exit Criteria
-- All TodoWrite items completed with categorized changes and risk assessment
-- Downstream workflows have semantic understanding of the changeset
-- Summary ready for appropriate consumption (review, release notes, planning)
+
+- [ ] All `diff-analysis:` progress items are marked complete
+- [ ] Every change is assigned a category and a risk level
+- [ ] The summary names its baseline and the intended consumer:
+  review, release notes, or planning

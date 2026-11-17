@@ -1,7 +1,7 @@
 {
   "name": "modelshow",
   "displayName": "ModelShow",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Multi-model comparison with double-blind judging - compare AI responses side-by-side",
   "author": "Schuyler J Sloane",
   "license": "MIT License",
@@ -32,6 +32,8 @@
     "judge_pipeline.py",
     "blind_judge_manager.py",
     "save_results.py",
-    "update_modelshow_index.py"
+    "update_modelshow_index.py",
+    "test_modelshow.py",
+    "CHANGELOG.md"
   ]
 }

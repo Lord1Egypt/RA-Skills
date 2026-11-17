@@ -1,44 +1,59 @@
-## Description: <br>
-Textin Parse helps agents send supported images and documents to Textin's document parsing API for layout detection, OCR, table and formula recognition, and Markdown or structured output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Textin Parse helps an agent send images, PDFs, Office documents, HTML, text, and similar files to the Textin document parsing API for OCR, layout analysis, table and formula recognition, and Markdown or structured-data output.
 
-## Publisher: <br>
-[KingJus](https://clawhub.ai/user/KingJus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingjus](https://clawhub.ai/user/kingjus)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to configure Textin credentials and parse PDFs, images, Office documents, HTML, and text into Markdown or structured data through Textin's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents or URLs are sent to Textin for third-party processing. <br>
-Mitigation: Use only documents approved for Textin processing and confirm privacy, retention, and data-handling requirements before parsing. <br>
-Risk: Textin credentials are requested from the user and stored in plaintext at ~/.openclaw/textin-config.json. <br>
-Mitigation: Use a dedicated low-privilege Textin key, avoid pasting production secrets into chat, and restrict or remove the local config file after use. <br>
-Risk: Credential display commands can expose secrets in shared terminals, logs, or screenshots. <br>
-Mitigation: Do not run config display commands in shared sessions or captured environments, and rotate credentials if they are exposed. <br>
+## Use Case:
 
+Developers and other agent users use this skill to configure Textin API credentials and parse supported documents into Markdown and structured results for document conversion, content extraction, table recognition, formula recognition, and outline extraction.
 
-## Reference(s): <br>
-- [ClawHub release page for Textin Parse](https://clawhub.ai/KingJus/textin-parse) <br>
-- [Textin registration page](https://www.textin.com/register/code/3EJS7P) <br>
-- [Textin PDF-to-Markdown API endpoint](https://api.textin.com/ai/service/v1/pdf_to_markdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text, JSON results, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save full API results to a JSON file and can display a truncated Markdown preview in shell output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.yaml, release metadata) <br>
+Risk: The skill sends uploaded documents or document URLs to Textin for parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents approved for that provider, and avoid sensitive or regulated files unless policy allows Textin processing.
+
+Risk: The skill stores Textin API credentials in a local config file.
+
+Mitigation: Do not paste long-lived secrets into chat; rotate credentials already used with the skill and restrict the config file permissions manually after installation.
+
+Risk: The shell parser has weak safeguards for untrusted filenames.
+
+Mitigation: Prefer trusted filenames or the Python parser until the shell curl argument handling is fixed.
+
+## Reference(s):
+
+- [Textin Parse ClawHub page](https://clawhub.ai/kingjus/skills/textin-parse)
+- [Textin registration](https://www.textin.com/register/code/3EJS7P)
+- [Textin document parsing API endpoint](https://api.textin.com/ai/service/v1/pdf_to_markdown)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown text by default, with optional JSON results and shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Textin API credentials; supports local files or URLs up to 500MB and parser options for mode, tables, images, formulas, charts, page ranges, and output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.yaml, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclawlab.dev/pptsmith/task-route.schema.json",
+  "title": "Visual Narrative Task Route",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "selected_route",
+    "confidence",
+    "scores",
+    "rejected_routes",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "selected_route": {
+      "type": "string",
+      "enum": [
+        "research_report",
+        "technical_architecture",
+        "enterprise_proposal",
+        "product_business_review",
+        "product_prd",
+        "editorial_knowledge",
+        "domain_adapter",
+        "general_visual_narrative"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "research_report",
+        "technical_architecture",
+        "enterprise_proposal",
+        "product_business_review",
+        "product_prd",
+        "editorial_knowledge",
+        "domain_adapter"
+      ],
+      "properties": {
+        "research_report": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "technical_architecture": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "enterprise_proposal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "product_business_review": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "product_prd": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "editorial_knowledge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "domain_adapter": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "rejected_routes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "research_report",
+          "technical_architecture",
+          "enterprise_proposal",
+          "product_business_review",
+          "product_prd",
+          "editorial_knowledge",
+          "domain_adapter"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

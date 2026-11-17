@@ -1,40 +1,63 @@
-## Description: <br>
-Local team scheduling skill that uses Python and SQLite to manage shared schedules, detect conflicts, send email summaries, and send DingTalk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SmartSchedule is a local team scheduling skill that manages shared SQLite schedules, detects conflicts, sends email summaries, and triggers DingTalk reminders.
 
-## Publisher: <br>
-[renhao12356578](https://clawhub.ai/user/renhao12356578) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renhao12356578](https://clawhub.ai/user/renhao12356578)
 
-## Use Case: <br>
-Teams use this skill to add, update, search, delete, and review shared schedule entries through natural-language requests. It is also used to configure scheduled email summaries and DingTalk reminders for upcoming events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run background reminder and email-summary jobs that send schedule details to chat or email. <br>
-Mitigation: Before enabling cron, DingTalk, or email summaries, confirm the intended recipients, visibility of schedule entries, and how to disable the jobs. <br>
-Risk: Shared team schedules may contain sensitive meeting notes, locations, or timing details. <br>
-Mitigation: Exclude sensitive notes from reminders and confirm who can view or receive schedule entries before using shared or group delivery. <br>
+## Use Case:
 
+Team members use this skill through an OpenClaw agent to add, update, search, delete, and receive reminders for a shared schedule. Administrators use it to configure SMTP email summaries and recurring DingTalk reminder jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renhao12356578/smartschedule) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce schedule summaries, conflict-resolution options, reminder setup instructions, and command invocations for local Python scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Shared team calendar entries can be emailed and sent through DingTalk by recurring background jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict who can add, update, and delete schedules, and confirm reminder recipients before production use.
+
+Risk: SMTP credentials are configured in the project config file.
+
+Mitigation: Store SMTP credentials outside tracked project config, such as in a secrets store or environment-specific configuration.
+
+Risk: Schedule title, location, and description fields are rendered into HTML email summaries.
+
+Mitigation: Escape schedule fields before generating HTML email.
+
+Risk: Recurring reminder agents may encounter schedule text during autonomous runs.
+
+Mitigation: Treat schedule content as data only and prevent reminder jobs from following instructions embedded in event text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renhao12356578/skills/smartschedule)
+- [README.md](artifact/README.md)
+- [TECHNICAL.md](artifact/TECHNICAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown/plain text guidance with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite state and can configure recurring email and DingTalk reminder jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

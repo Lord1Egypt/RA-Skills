@@ -1,43 +1,59 @@
-## Description: <br>
-Real-time security monitoring dashboard for OpenClaw and Linux server infrastructure. Monitors gateway status, network security, public exposure, system updates, SSH access, TLS certificates, and resource usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Dashboard provides real-time monitoring for OpenClaw and Linux server security, including gateway status, network exposure, system updates, SSH access, TLS certificates, and resource usage.
 
-## Publisher: <br>
-[vegasbrianc](https://clawhub.ai/user/vegasbrianc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vegasbrianc](https://clawhub.ai/user/vegasbrianc)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to install and run a localhost security dashboard for OpenClaw and Linux server monitoring, including gateway status, network exposure, SSH access, TLS, updates, and resource checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent boot-starting dashboard service. <br>
-Mitigation: Install only on servers where a persistent localhost monitoring service is expected, and review the generated systemd service before enabling it. <br>
-Risk: The service account may receive passwordless sudo rights for host inspection commands. <br>
-Mitigation: Prefer the dedicated service user, avoid root mode, and review /etc/sudoers.d/openclaw-dashboard before deployment. <br>
-Risk: The unauthenticated local API exposes detailed host security information. <br>
-Mitigation: Keep the service bound to 127.0.0.1 or a trusted tunnel, and treat API output as sensitive security data. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to install and operate a local dashboard that monitors OpenClaw and Linux server security posture through web UI metrics, alerts, and service commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vegasbrianc/security-dashboard) <br>
-- [Skill documentation](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Web dashboard, JSON API responses, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security metrics and alerts are generated from local host inspection and should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and skill.json) <br>
+Risk: The installer grants broader passwordless sudo access than the documentation makes clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/install.sh before installation, prefer the dedicated dashboard user over root, and replace wildcard sudoers entries with narrow, root-owned metrics helpers.
+
+Risk: The web server has file disclosure risk.
+
+Mitigation: Keep the dashboard bound to 127.0.0.1 and fix static file traversal handling before any administrator-facing deployment.
+
+Risk: The dashboard has injection risk from rendered metric or alert content.
+
+Mitigation: Sanitize dashboard data and replace unsafe innerHTML rendering before exposing the dashboard to administrators.
+
+## Reference(s):
+
+- [ClawHub Security Dashboard Listing](https://clawhub.ai/vegasbrianc/skills/security-dashboard)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local system state and service commands for dashboard installation, monitoring, and risk review.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

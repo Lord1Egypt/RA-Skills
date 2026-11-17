@@ -1,41 +1,60 @@
-## Description: <br>
-Converts a PDF into a single GetNotes note with an AI-generated summary and embedded page images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当用户发送 PDF 文件并要求存入 GetNotes 时触发，执行 PDF 转图片、AI 摘要生成，并创建包含摘要和全页图片的单一 GetNotes 笔记。
 
-## Publisher: <br>
-[pieces201020](https://clawhub.ai/user/pieces201020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pieces201020](https://clawhub.ai/user/pieces201020)
 
-## Use Case: <br>
-External users or agents handling PDF workflows use this skill to convert a local PDF into one GetNotes note with a generated summary and page images, optionally adding it to a GetNotes knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports a live-looking GetNotes credential shipped with this release. <br>
-Mitigation: Do not install this version until the publisher removes and rotates the exposed credential; use credentials only from the local OpenClaw configuration. <br>
-Risk: PDF text and page images may be sent to GetNotes/OSS and possibly MiniMax during summarization and note creation. <br>
-Mitigation: Use only PDFs approved for those services, verify the configured GetNotes account and topic ID before running, and delete leftover /tmp PDF image artifacts after processing. <br>
+## Use Case:
 
+External users and agent operators use this skill to turn a supplied PDF into a single GetNotes note with a Markdown summary and each PDF page embedded as an image. It is useful when preserving all PDF pages in one note matters more than uploading the original PDF as an attachment.
 
-## Reference(s): <br>
-- [PDF Import to GetNotes SOP](references/full_sop.md) <br>
-- [GetNotes API Behavior Notes](references/api_behavior.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown note content with shell command examples and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local PDF path, GetNotes credentials, and optional topic ID or custom title; temporary page images are written under /tmp/pdf_pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The package includes live-looking GetNotes credentials in reference material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the exposed credentials, remove them from the package, and require users to provide credentials only through local configuration before installation.
+
+Risk: Processed PDFs may be uploaded to GetNotes/OSS and may be sent to an AI model for summarization.
+
+Mitigation: Use the skill only with documents approved for those services, and add explicit consent or disclosure before remote upload and model processing.
+
+Risk: The current implementation stores converted page images and URL metadata under temporary paths.
+
+Mitigation: Use secure temporary files, restrict permissions, and clean up generated images and URL records after note creation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pieces201020/skills/pdf-to-getnote)
+- [Full SOP](artifact/references/full_sop.md)
+- [GetNotes API Behavior](artifact/references/api_behavior.md)
+- [GetNotes Open API](https://openapi.biji.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown note content, shell command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one GetNotes plain_text note; PDF pages are embedded as Markdown image links after upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

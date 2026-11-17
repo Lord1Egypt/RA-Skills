@@ -1,41 +1,54 @@
-## Description: <br>
-滴答清单任务管理。管理你的滴答清单任务，包括查看项目、创建任务、完成任务、查询完成历史等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Dida365/TickTick tasks, including viewing projects, creating and completing tasks, checking completion history, and syncing data.
 
-## Publisher: <br>
-[SuperOwenX](https://clawhub.ai/user/SuperOwenX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[superowenx](https://clawhub.ai/user/superowenx)
 
-## Use Case: <br>
-External users and developers use this skill to configure and run the dida365 command-line tool for Dida365/TickTick task management, including listing projects, creating and completing tasks, reviewing completed work, and syncing task data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses credentials and a copied session cookie for access to a task account. <br>
-Mitigation: Install only when task-account access is expected, keep the session cookie out of shared terminals, scripts, logs, screenshots, and shell history, and remove stored credentials when finished. <br>
-Risk: Commands can modify task-account data, including creating and completing tasks. <br>
-Mitigation: Use a test or low-risk account where practical and review intended task changes before running modifying commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dida365 Web App](https://dida365.com) <br>
-- [Dida365 Developer Platform](https://developer.dida365.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/SuperOwenX/dida365-ticktick-agent) <br>
+## Use Case:
 
+External users and developers use this skill to configure an agent to manage Dida365/TickTick projects and tasks through the dida365 CLI. Typical tasks include listing projects, creating tasks, completing tasks, reviewing completed items, and syncing task data.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides CLI setup and usage commands for managing Dida365/TickTick task data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Global installation of the dida365 CLI can introduce supply-chain or local environment risk if the package source or version is not trusted.
+
+Mitigation: Review the package before installing and use a pinned, trusted CLI version where possible.
+
+Risk: Dida365 cookies, client IDs, and client secrets can be exposed through shell history, wrapper scripts, logs, backups, or repositories.
+
+Mitigation: Avoid placing real cookies or OAuth secrets directly in commands or scripts, check where the CLI stores credentials, and rotate or revoke exposed credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/superowenx/skills/dida365-ticktick-agent)
+- [Dida365 Web App](https://dida365.com)
+- [Dida365 Developer Platform](https://developer.dida365.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credential-handling guidance for Dida365 cookies, client IDs, and client secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,54 +1,66 @@
-## Description: <br>
-Turns concepts, articles, and posts into original editorial illustrations, explainer diagrams, mini-comics, or transparent mascot cutouts using a recurring character and bundled visual styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+illo helps an agent turn concepts, articles, and prompts into original editorial illustrations, explainer diagrams, mini-comics, mascot cutouts, and comparison galleries using bundled character, style, palette, and backend guidance.
 
-## Publisher: <br>
-[tmchow](https://clawhub.ai/user/tmchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tmchow](https://clawhub.ai/user/tmchow)
 
-## Use Case: <br>
-External users, creators, and developers use Illo to plan and generate article art, social images, brand-matched mascot illustrations, explainer diagrams, and character cutouts through an agent-driven workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call OpenRouter or the user's logged-in Codex CLI to generate images. <br>
-Mitigation: Run the documented doctor and backend setup flow, and confirm expected backend, quota, and cost behavior before generation. <br>
-Risk: Illo stores user-scoped settings under ~/.config/illo, including an OpenRouter key when that backend is used. <br>
-Mitigation: Enter API keys only through the documented local init flow and avoid pasting secrets into chat, command-line flags, or shared files. <br>
-Risk: Community character packs are installed from a GitHub-based catalog into user-scoped configuration directories. <br>
-Mitigation: Review pack sources before installing or updating them, and use trusted pack repositories for shared or company use. <br>
+## Use Case:
 
+External users, creators, and developers use illo to generate mascot-led editorial artwork for articles, posts, decks, social media, explainers, and transparent compositing assets. The skill guides the agent through routing, prompt construction, backend selection, quality checks, and delivery of generated image files.
 
-## Reference(s): <br>
-- [Illo homepage](https://illo-skill.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/tmchow/skills/illo) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Backends - dual image engine](references/backends.md) <br>
-- [Composition](references/composition.md) <br>
-- [Character builder](references/character-builder.md) <br>
-- [Character cutout register](references/cutout.md) <br>
-- [Community character packs](references/pack-sharing.md) <br>
-- [Models - friendly names, ids, traits](references/models.md) <br>
-- [Prompt recipe](references/prompt-recipe.md) <br>
-- [Quality bar](references/quality-bar.md) <br>
-- [Visual style](references/visual-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, local configuration instructions, generated image files, JSON line records, and optional HTML galleries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image generation uses either the user's Codex CLI session or an OpenRouter API key stored in the local Illo config; character packs and palettes are user-scoped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.28.2 (source: frontmatter and server release metadata) <br>
+Risk: Generated prompts, reference images, and related image data may be sent to the selected image backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that backend data flow is acceptable for the content being illustrated.
+
+Risk: OpenRouter use requires local credential configuration and can create paid image-generation charges.
+
+Mitigation: Have the user run key setup directly, keep API keys out of chat, and require explicit approval before any paid fallback.
+
+Risk: Community character packs can affect prompts and generated outputs.
+
+Mitigation: Review community packs before installing or updating them, and prefer managed or pinned installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tmchow/skills/illo)
+- [illo homepage](https://illo-skill.com)
+- [README](README.md)
+- [Backends and transports](references/backends.md)
+- [Models](references/models.md)
+- [Composition](references/composition.md)
+- [Prompt recipe](references/prompt-recipe.md)
+- [Quality bar](references/quality-bar.md)
+- [Character builder](references/character-builder.md)
+- [Community character packs](references/pack-sharing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated image file paths or attachments, JSONL manifest records, and optional HTML galleries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images may use subscription CLI transports or OpenRouter, and comparison galleries can include model, cost, dimensions, labels, and prompts.]
+
+## Skill Version(s):
+
+0.37.0 (source: frontmatter and server release changelog, released 2026-09-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,17 +1,19 @@
 ---
 name: card-full
-description: Return a compact full report for one major-US credit card — fees, welcome offer, earning rates, redemption, credits, travel benefits, protections, mechanics, eligibility, and strategy. Covers 11 major US issuers including co-branded hotel and airline cards.
+description: Return a compact full report for one major-US credit card - fees, welcome offer, earning rates, redemption, credits, travel benefits, protections, mechanics, eligibility, and strategy. Covers 11 major US issuers including co-branded hotel and airline cards.
 allowed-tools:
+  - Read
   - WebSearch
   - WebFetch
   - AskUserQuestion
 metadata:
-  openclaw:
+  legacy-agent:
     requires:
       optionalEnv:
         - BRAVE_API_KEY
       optionalBins:
         - curl
+    primaryEnv: BRAVE_API_KEY
 ---
 
 # Card Full
@@ -24,14 +26,14 @@ When the user asks for a full credit card review, breakdown, or "tell me about [
 
 ## Workflow
 
-1. **Resolve card identity** — normalize the input, fix abbreviations, and match to one exact card variant.
-2. **Run the main search first** — use `WebSearch` by default to discover the issuer page plus likely secondary sources. If `BRAVE_API_KEY` is available and `curl` exists, you may use one Brave search instead for faster results.
-3. **Fetch issuer + secondary pages** — fetch the issuer page and up to 3 approved secondary pages as needed.
-4. **Search for best public offer** — run a second search only after a short delay, and only after the first fetch pass is complete.
-5. **Search for historical offers** — run a third search only after another short delay, preserving historical-offer coverage without bursting requests.
-6. **Recover welcome-offer data explicitly** — if the issuer page does not expose the live offer cleanly, use approved secondary sources to identify the current public offer and the best public offer.
-7. **Compile** — assemble the report using the required sections below.
-8. **Confidence** — flag uncertain or conflicting claims in the Confidence Notes section, especially around welcome offers.
+1. **Resolve card identity** - normalize the input, fix abbreviations, and match to one exact card variant.
+2. **Run the main search first** - use `WebSearch` by default to discover the issuer page plus likely secondary sources. If `BRAVE_API_KEY` is available and `curl` exists, you may use one Brave search instead for faster results.
+3. **Fetch issuer + secondary pages** - fetch the issuer page and up to 3 approved secondary pages as needed.
+4. **Search for best public offer** - run a second search only after a short delay, and only after the first fetch pass is complete.
+5. **Search for historical offers** - run a third search only after another short delay, preserving historical-offer coverage without bursting requests.
+6. **Recover welcome-offer data explicitly** - if the issuer page does not expose the live offer cleanly, use approved secondary sources to identify the current public offer and the best public offer.
+7. **Compile** - assemble the report using the required sections below.
+8. **Confidence** - flag uncertain or conflicting claims in the Confidence Notes section, especially around welcome offers.
 
 ## Step 1: Card Identity Resolution
 
@@ -39,7 +41,7 @@ Normalize the card name and resolve to an exact issuer + family + variant.
 
 ### Common Abbreviations
 
-Only shorthands and ambiguous names need entries here. Cards with full, unambiguous names (e.g., "Chase Marriott Bonvoy Boundless", "Chase United Explorer", "American Express Hilton Honors Aspire") are resolved via search — no table entry needed.
+Only shorthands and ambiguous names need entries here. Cards with full, unambiguous names (e.g., "Chase Marriott Bonvoy Boundless", "Chase United Explorer", "American Express Hilton Honors Aspire") are resolved via search - no table entry needed.
 
 | Input | Resolved |
 |---|---|
@@ -58,7 +60,7 @@ Only shorthands and ambiguous names need entries here. Cards with full, unambigu
 | Amex Blue Biz Cash | American Express Blue Business Cash Card |
 | Venture X | Capital One Venture X Rewards Credit Card |
 | Venture X Business | Capital One Venture X Business Card |
-| Savor | Capital One SavorOne / Savor (ambiguous — ask) |
+| Savor | Capital One SavorOne / Savor (ambiguous - ask) |
 | Spark Cash Plus | Capital One Spark Cash Plus |
 | Spark Miles | Capital One Spark Miles |
 | Double Cash | Citi Double Cash Card |
@@ -66,10 +68,10 @@ Only shorthands and ambiguous names need entries here. Cards with full, unambigu
 | Ink Preferred | Chase Ink Business Preferred |
 | Ink Cash | Chase Ink Business Cash |
 | Ink Unlimited | Chase Ink Business Unlimited |
-| Bilt | Bilt Blue / Obsidian / Palladium (ambiguous — ask) |
-| Robinhood | Robinhood Gold Card / Cash Card (ambiguous — ask) |
+| Bilt | Bilt Blue / Obsidian / Palladium (ambiguous - ask) |
+| Robinhood | Robinhood Gold Card / Cash Card (ambiguous - ask) |
 | Aviator Red | Barclays AAdvantage Aviator Red World Elite Mastercard |
-| Wyndham Rewards | Barclays Wyndham Rewards Earner Card / Plus / Business (ambiguous — ask) |
+| Wyndham Rewards | Barclays Wyndham Rewards Earner Card / Plus / Business (ambiguous - ask) |
 | Altitude Reserve | U.S. Bank Altitude Reserve Visa Infinite Card |
 | Altitude Connect | U.S. Bank Altitude Connect Visa Signature Card |
 | Altitude Go | U.S. Bank Altitude Go Visa Signature Card |
@@ -104,7 +106,22 @@ curl -sS "https://api.search.brave.com/res/v1/web/search?q=CARD+NAME+review+welc
   -H "X-Subscription-Token: $BRAVE_API_KEY"
 ```
 
-Parse the JSON response — results are in `.web.results[]` with `.title`, `.url`, `.description` fields.
+Parse the JSON response - results are in `.web.results[]` with `.title`, `.url`, `.description` fields.
+
+### Search Query Design (critical for offer accuracy)
+
+Generic `CARD NAME review welcome offer` queries surface SEO pages that update slowly and can be months stale. Run **three query shapes** in the main search:
+
+1. **Generic** - `CARD NAME review welcome offer <year>` (finds issuer page + reviews)
+2. **Offer-structure terms** - append the kinds of non-mile components issuers use to differentiate offers: `certificate`, `round-trip`, `statement credit`, `companion`, `travel credit`, `elevated`. e.g. `Delta Reserve offer round-trip flight certificates 50,000`
+3. **Freshness-targeted** - `site:doctorofcredit.com CARD NAME offer` and `CARD NAME new offer <month> <year>` / `CARD NAME welcome offer ending`. Doctor of Credit tracks offer rounds the fastest (often same-day updates with "live now" / "expired" tags). Issuer newsrooms (e.g. news.delta.com) announce card refreshes - search `<issuer> <card family> card news <year>`.
+
+Date-based queries are meaningless without knowing today's date - always anchor with the current month/year.
+
+**Assess freshness of every result before trusting it:**
+- A page title or snippet saying "current", "live", or "<year>" does NOT mean fresh. Look for update timestamps in the page body.
+- If a page describes an offer with a "valid through"/"expires"/"ending" date, check it against today.
+- Prefer pages updated within the last ~30 days for the live offer; treat older pages as historical evidence only.
 
 ### Search Budget Rule
 
@@ -140,10 +157,9 @@ If a search returns **429**:
 - **Issuer-first for fees/terms/benefits**, but **not issuer-only for welcome offers**.
 - Use the issuer page as the baseline truth source for annual fee, earning rates, credits, protections, and restrictions.
 - For welcome offers, always compare against approved secondary sources because the best public offer may be broader than the issuer page or the issuer page may not extract cleanly.
-- An **approved secondary page** means a URL whose hostname matches one of the approved domains listed below. Do not fetch or cite secondary pages from any other domain.
 - **Max 5 secondary sources** from this approved list:
-  1. NerdWallet (nerdwallet.com) — preferred
-  2. The Points Guy (thepointsguy.com) — preferred
+  1. NerdWallet (nerdwallet.com) - preferred
+  2. The Points Guy (thepointsguy.com) - preferred
   3. Doctor of Credit (doctorofcredit.com)
   4. Bankrate (bankrate.com)
   5. One Mile at a Time (onemileatatime.com)
@@ -170,19 +186,13 @@ If a search returns **429**:
 
 ## Step 3: Fetch Pages
 
-Pick the top issuer URL and up to 3 secondary URLs (prefer thepointsguy.com, nerdwallet.com, and doctorofcredit.com when present) from the search results. Fetch in parallel with `WebFetch`.
+Pick the top issuer URL and up to 3 secondary URLs (prefer thepointsguy.com, nerdwallet.com, and doctorofcredit.com when present) from the search results. Fetch in parallel.
 
 Do not rely on snippets alone for welcome offers.
 
-### URL Safety Rules
-
-- Prefer `WebFetch` for page retrieval. Use `curl` only for the optional Brave Search API calls above, not for arbitrary result URLs.
-- Never execute a shell command that interpolates a raw URL taken directly from search results.
-- Only fetch URLs when all of the following are true:
-  1. scheme is `https`
-  2. hostname matches a supported issuer domain or an approved secondary domain from this skill
-  3. the URL is being passed to `WebFetch`, not inserted into a shell pipeline
-- If a result URL fails those checks, skip it and use the next valid result.
+```bash
+curl -sS -L "URL" | sed 's/<[^>]*>//g' | tr -s '\n' | head -200
+```
 
 ### Welcome Offer Recovery Rules
 
@@ -199,6 +209,22 @@ If the issuer page does **not** expose the welcome offer clearly in fetched text
 ### Issuer Extraction Caveat
 
 Some issuer pages, especially **American Express**, may be JS-heavy or may not expose the live offer cleanly to simple fetch tools. In those cases, use approved secondary sources for the welcome-offer section while keeping issuer pages as the primary source for fees, terms, and benefit structure.
+
+### Offer Recency & Conflict Resolution (mandatory before compiling)
+
+Welcome offers rotate frequently and approved sources go stale at different rates. Before writing the report, resolve the live offer with these rules:
+
+1. **Collect every offer claim** found across issuer + secondary pages, with each page's update date. Do not silently prefer the first or most authoritative-sounding one.
+2. **Expiration-date check:** if any source states a valid-through date, compare to today. An expired offer is historical, not current.
+3. **In-body offer beats tracker table:** when a review page's body/detail section states an offer that differs from its own (or another page's) summary/tracker table, the in-body statement is usually the fresher one - the tracker table is often cached or written for SEO. Treat the discrepancy as a conflict to resolve, NOT a typo to ignore or a "historical variant" to file away.
+4. **Freshest-dated source wins** for the live offer when sources conflict, unless a fresher source explicitly contradicts it.
+5. **Check the issuer newsroom** for recent announcements (e.g. news.delta.com, media.chase.com) - card refreshes are announced there first and include the official offer structure and any valid-through dates.
+6. **If the issuer page is JS-heavy** (Amex commonly fails to expose offer text), the issuer's newsroom press release + 2 approved secondary sources count as issuer-backed verification.
+7. **Never label a report "confirmed"** when sources conflict on the welcome offer - mark it `conflicting` in Confidence Notes and state which source you treated as live and why.
+
+### Strikethrough / Refresh Offer Pitfall
+
+Issuer pages may expose hero offer text in DOM order that is visually misleading, e.g. `Earn 75,000 strikethrough 100,000 points`. Do **not** infer the active offer from text order alone. When fetched text includes `strikethrough`, crossed-out amounts, or otherwise ambiguous offer rendering, verify the live page visually with browser/screenshot tools if available, or with at least two approved secondary sources that explicitly state the active offer. In the report, note which amount is active and which is struck through.
 
 ## Step 4: Best Public Offer Search
 
@@ -251,7 +277,7 @@ Base rate, bonus categories with multipliers, caps, point currency.
 Transfer partners summary, portal options, cash-out rates, minimum redemption.
 
 ### `## 🏷️ Credits`
-Statement credits, cash-back rebates, and complimentary subscriptions with concrete dollar values only. Each credit with amount, cadence, trigger, and restrictions. Do NOT include enhanced earning rates (e.g., "5x on Lyft"), bonus point multipliers, or anniversary point bonuses — those go in Earning Rates.
+Statement credits, cash-back rebates, and complimentary subscriptions with concrete dollar values only. Each credit with amount, cadence, trigger, and restrictions. Do NOT include enhanced earning rates (e.g., "5x on Lyft"), bonus point multipliers, or anniversary point bonuses - those go in Earning Rates.
 
 ### `## ✈️ Travel Benefits`
 Lounge access, hotel status, rental car benefits, travel credits, companion fares.
@@ -285,7 +311,7 @@ Numbered list of URLs fetched, as markdown hyperlinks with short "Site - Topic" 
 - Use one emoji per section heading.
 - When listing credits, fees, or any monetary amounts, sort from highest to lowest dollar value.
 - Use numbered lists for list-heavy sections.
-- Keep content to condensed facts — no prose padding.
+- Keep content to condensed facts - no prose padding.
 - Omit the Card Identity section when the match is confident.
 - Do not include YAML blocks in user-facing output.
 - End every report with a `## 🔗 Sources` section listing each URL fetched during research as a markdown hyperlink with a short "Site - Topic" label, e.g. `[Chase - Sapphire Preferred](https://...)`.
@@ -303,17 +329,22 @@ Every report must include a `## 📋 Confidence Notes` section. Keep notes short
 
 ## Practical Retrieval Strategy
 
+Reference notes:
+- `references/chase-sapphire-preferred-2026-refresh.md` - example of a JS/visual strikethrough welcome-offer ambiguity and how to resolve conflicting secondary sources.
+- `references/delta-reserve-2026-offer-staleness.md` - example of offer staleness + anchoring failure (tracker table beating the fresher in-body offer). Read this when a report's welcome offer could be stale.
+
 Use this order of operations:
 
-1. Resolve the exact card.
-2. Run the main search.
+1. Resolve the exact card. Note today's date.
+2. Run the main search using all three query shapes (generic, offer-structure, freshness-targeted).
 3. Fetch the issuer page.
-4. Fetch up to 3 approved secondary pages.
-5. Wait briefly.
-6. Run the best-public-offer search.
-7. Wait briefly.
-8. Run the historical-offers search.
-9. Resolve the welcome offer from issuer + approved sources.
-10. Compile the report with confidence notes for anything rate-limited or unresolved.
+4. Fetch up to 3 approved secondary pages, preferring the freshest-dated and any DoC "live/expired" roundup posts.
+5. Fetch the issuer newsroom announcement if one exists for this card family.
+6. Wait briefly.
+7. Run the best-public-offer search.
+8. Wait briefly.
+9. Run the historical-offers search.
+10. Resolve the welcome offer via the Offer Recency & Conflict Resolution rules - check every offer for a valid-through date, let the freshest in-body statement win over tracker tables, and never rationalize away a conflicting offer as historical without a newer source confirming it.
+11. Compile the report with confidence notes for anything rate-limited, expired, or unresolved.
 
 This skill should optimize for **accurate current answer first**, while preserving best-offer and historical-offer coverage through sane pacing rather than bursty search behavior.

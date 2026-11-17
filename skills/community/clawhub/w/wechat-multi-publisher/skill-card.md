@@ -1,43 +1,58 @@
-## Description: <br>
-Publishes one or multiple Markdown articles to a WeChat Official Account draft box, with combined drafts, cover images, custom styling, inline image upload, digest extraction, and optional immediate publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish one or multiple Markdown articles to a WeChat Official Account draft box, with support for combined drafts, cover selection, custom styling, inline image upload, digest extraction, and optional immediate publishing.
 
-## Publisher: <br>
-[x402spark-jpg](https://clawhub.ai/user/x402spark-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[x402spark-jpg](https://clawhub.ai/user/x402spark-jpg)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to turn Markdown articles into WeChat Official Account drafts or reviewed public posts. It supports single-article and multi-article workflows, including dry-run previews before upload. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat MP credentials to create drafts and can publish publicly when explicitly requested. <br>
-Mitigation: Use environment variables or a protected credentials file, avoid committing secrets, start with --dry-run or draft-only mode, and enable --publish only after review. <br>
-Risk: Markdown content and image references are uploaded to external services during non-dry-run execution. <br>
-Mitigation: Review article content and local image references before upload, and use dry-run previews to inspect rendered output first. <br>
-Risk: Cron automation can repeatedly push or publish content without interactive review. <br>
-Mitigation: Use cron only after the workflow has been tested, keep publication separate from draft creation where possible, and monitor logs for WeChat API errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Setup Guide](references/setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/x402spark-jpg/wechat-multi-publisher) <br>
-- [WeChat Official Account API Endpoint](https://api.weixin.qq.com/cgi-bin) <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare Markdown articles, push single or multi-article drafts to WeChat Official Account, preview output with dry runs, and optionally trigger publication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local HTML previews during dry runs and use WeChat API calls to create drafts or submit publishing requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload local files referenced by Markdown to WeChat CDN.
+
+Mitigation: Only process trusted Markdown and images, use dry-run first, and avoid externally supplied content until image path confinement is fixed.
+
+Risk: The skill can publish to a live WeChat account when the publish option is used.
+
+Mitigation: Do not run with publish mode unless live publication is intended, and review rendered drafts before publishing.
+
+Risk: WeChat credentials are required for live API calls.
+
+Mitigation: Keep credentials in environment variables or a protected secret store when possible, and use owner-only permissions for any credentials file.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [WeChat Official Account API endpoint](https://api.weixin.qq.com/cgi-bin)
+- [ClawHub skill page](https://clawhub.ai/x402spark-jpg/skills/wechat-multi-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for publishing Markdown content and using dry-run, draft, and publish modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Audits OpenClaw skills for security risks such as dynamic code execution, system command execution, network operations, file writes, sensitive information patterns, and dangerous imports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw skills for security risks such as dynamic code execution, command execution, network activity, file writes, dangerous imports, and sensitive strings.
 
-## Publisher: <br>
-[Yustnust](https://clawhub.ai/user/Yustnust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yustnust](https://clawhub.ai/user/yustnust)
 
-## Use Case: <br>
-Developers and maintainers use this skill to scan OpenClaw skill directories before installation or release and review a summarized report of detected security issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pattern-based scanning may miss context-specific behavior or report false positives. <br>
-Mitigation: Use the generated report as a review aid and manually inspect findings before installing, rejecting, or modifying a skill. <br>
-Risk: The skill scans local skill directories and depends on the selected path and configured rules. <br>
-Mitigation: Run it only against intended skill directories, keep file access read-only where possible, and review custom audit_config.json rules before use. <br>
+## Use Case:
 
+Developers and skill reviewers use this skill to scan OpenClaw skill directories for risky patterns and generate a human-readable security report before installation or release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Yustnust/yusongtao-skill-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/Yustnust) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Human-readable security audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports total issue counts and groups findings by critical, high, and medium severity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+Risk: The scanner needs read access to directories selected for audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for directories you intentionally choose, with the narrowest practical filesystem access.
+
+Risk: File-reading logic can escape the intended audit folder through symlinks.
+
+Mitigation: Avoid scanning untrusted archives that contain symlinks unless they are unpacked and inspected in a sandbox.
+
+Risk: Clean reports may be falsely reassuring because the checks are heuristic pattern scans.
+
+Mitigation: Treat results as triage and combine them with source review or additional security tools before installation or release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yustnust/skills/yusongtao-skill-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text security report with issue summaries by severity]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are heuristic pattern-scan results and should not be treated as proof that a skill is safe.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | **Name** | `spacesuit` |
-| **Version** | `0.3.0` |
+| **Version** | `0.4.0` |
 | **Author** | jontsai |
 | **License** | MIT |
 | **Category** | framework |
@@ -32,13 +32,13 @@ The Spacesuit is a batteries-included framework layer for OpenClaw workspaces. I
 
 ```bash
 # First-time install (creates workspace files with markers)
-make init
+bash scripts/install.sh --workspace /absolute/workspace
 
 # Upgrade existing workspace (replaces only SPACESUIT sections)
-make upgrade
+bash scripts/upgrade.sh --workspace /absolute/workspace
 ```
 
-## How It Works
+Requires Bash 4+; default macOS Bash 3 is unsupported. Registry downloads may\nomit Makefiles, so use the explicit script commands above. Unmarked files remain\nuntouched unless `--adopt-unmarked` is deliberately selected after a dry run.\nSee [release and rollback instructions](docs/releases/README.md).\n\n## How It Works
 
 OpenClaw reads hardcoded filenames from the workspace root (`AGENTS.md`, `SOUL.md`, etc.). Since we can't change that loading behavior, Spacesuit uses **section-based merging**:
 
@@ -64,11 +64,11 @@ OpenClaw reads hardcoded filenames from the workspace root (`AGENTS.md`, `SOUL.m
 
 ```bash
 # See what would change
-./scripts/diff.sh
+bash scripts/upgrade.sh --workspace /absolute/workspace --dry-run
 
 # Apply upgrade
-./scripts/upgrade.sh
+bash scripts/upgrade.sh --workspace /absolute/workspace
 
 # Check version
-cat skills/spacesuit/VERSION
+cat version.txt
 ```

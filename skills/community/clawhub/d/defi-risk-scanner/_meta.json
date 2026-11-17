@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7dwak47fxty2v34zvjjq0zvs81fcdz",
-  "slug": "defi-risk-scanner",
+  "name": "defi-risk-scanner",
   "version": "1.0.0",
-  "publishedAt": 1774514714930
+  "description": "DeFi Risk Scanner - 结构化风险评估工具，支持协议 TVL 查询和代币流动性分析",
+  "author": "Web3 Expert",
+  "tags": ["web3", "defi", "security", "risk-analysis", "crypto", "tvl", "rug-pull"],
+  "license": "MIT",
+  "homepage": "https://clawhub.com/skills/defi-risk-scanner"
 }

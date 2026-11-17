@@ -1,46 +1,56 @@
-## Description: <br>
-Generates HK stock market morning reports for bank trading desks, with Chinese report formatting, source-gathering steps, and WeChat/Feishu delivery guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Hong Kong stock market morning report for bank trading desks using market data, news search, and a fixed report template.
 
-## Publisher: <br>
-[cjlrestlong-ai](https://clawhub.ai/user/cjlrestlong-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjlrestlong-ai](https://clawhub.ai/user/cjlrestlong-ai)
 
-## Use Case: <br>
-Bank trading-desk users or their agents use this skill to gather HK market data and news, assemble a Chinese morning report, and prepare it for approved internal channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for Hong Kong market reporting. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market data or news could be incorrect or misleading when search results, source availability, or the partial helper script do not complete the full workflow. <br>
-Mitigation: Verify market figures and news against approved sources before relying on or distributing the report. <br>
-Risk: The workflow describes internal-labeled reports and WeChat/Feishu delivery without clear recipient controls. <br>
-Mitigation: Use only approved delivery channels and configured recipients, and require explicit confirmation before sending. <br>
+## Use Case:
 
+Bank trading-desk users and agents use this skill to assemble a daily Hong Kong stock morning report with market review, southbound capital flow, current news, and one highlighted Hong Kong stock.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjlrestlong-ai/hk-stock-morning-report) <br>
-- [Stock report format](references/stock_report_format.md) <br>
-- [Common report errors](references/errors.md) <br>
-- [Tencent Finance quote API](https://qt.gtimg.cn/q={code}) <br>
-- [Sina HK stock news](https://finance.sina.com/stock/hkstock/) <br>
-- [Gelonhui](https://www.gelonghui.com) <br>
-- [Securities Times](https://www.stcn.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report text with source-checking guidance and an optional Python helper script workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports are intended for internal review; the helper script covers only part of the full data collection, report, and delivery workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.10 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can forward an internal-labeled report to WeChat and Feishu without clear recipient controls or per-send confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where web access is allowed, output paths are controlled, and WeChat or Feishu recipients are explicitly configured and confirmed before each send.
+
+Risk: The skill relies on current market data and news searches, so stale or unsupported information can produce misleading report content.
+
+Mitigation: Review the generated report against the cited sources and the bundled format and error checklists before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjlrestlong-ai/skills/hk-stock-morning-report)
+- [stock_report_format.md](references/stock_report_format.md)
+- [errors.md](references/errors.md)
+- [Tencent Finance quote API](https://qt.gtimg.cn/q={code})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown report text with supporting shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report content depends on current market data, current news search results, and configured WeChat or Feishu recipients.]
+
+## Skill Version(s):
+
+1.4.11 (source: server-resolved release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

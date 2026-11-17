@@ -1,5 +1,7 @@
 ---
 name: bug-hunt
+version: 0.1.0
+license: MIT
 description: Use when asked to find bugs, hunt for correctness issues, sweep a codebase for defects, or verify a repo behaves as intended. Not for style or architecture review; this is defect-finding only.
 ---
 
@@ -22,6 +24,8 @@ Sweep with each lens. With parallel subagents available, one finder per lens; ot
 | API misuse | Contract violations against libraries and the project's own interfaces, ignored return values, resource leaks, lifecycle errors |
 
 Focus finders on code that is reachable and load-bearing: entry points, hot paths, recently changed files (`git log --since` is a good prior). A bug in dead code is info, not a finding.
+
+Two deep lenses live as their own skills: [latent-premises](../latent-premises/SKILL.md) for unguarded assumptions that hold today with no trigger yet, and [retry-safety](../retry-safety/SKILL.md) for side effects that double-apply on a re-run. Reach for them when the sweep keeps surfacing "could break later" candidates that fail the trigger rule.
 
 ## Verification (mandatory)
 

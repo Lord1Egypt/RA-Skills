@@ -1,43 +1,56 @@
-## Description: <br>
-Fetch and summarize daily news headlines from mainstream news sources, returning five top headlines with brief summaries in a structured format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches daily news from public RSS feeds and returns five top headlines with brief summaries in a structured format.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve a concise daily headline digest from public RSS feeds when asked for current news summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external BBC, Xinhua, and NYTimes RSS feeds when invoked, so output may fail, change, or reflect third-party feed content. <br>
-Mitigation: Use it for lightweight headline summaries, disclose the feed sources to users, and avoid treating the output as a complete or authoritative news ranking. <br>
-Risk: The artifact documentation claims Reuters support, translation, and hot-topic ranking, but release security guidance characterizes the implementation as a basic feed formatter. <br>
-Mitigation: Represent the skill as a public RSS headline formatter unless the publisher updates the documentation and code to support the broader claims. <br>
+## Use Case:
 
+External users ask an agent for a daily news summary, and the skill fetches current RSS headlines and formats the top five items for the response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallkeyboy/daily-news-fetcher) <br>
-- [BBC News RSS feed](https://feeds.bbci.co.uk/news/rss.xml) <br>
-- [Xinhua English News RSS feed](http://www.xinhuanet.com/english/news_english.xml) <br>
-- [NYTimes World RSS feed](https://rss.nytimes.com/services/xml/rss/nyt/World.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Structured text digest with headline, source, and summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to five news items; output depends on public RSS feed availability and feed contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Public RSS headlines and summaries may be inaccurate, misleading, or altered upstream, especially for the feed retrieved over HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the returned news as untrusted source data and verify important items against original publishers before relying on them.
+
+Risk: The skill contacts public RSS feeds when asked for news.
+
+Mitigation: Install and run it only in environments where outbound requests to those public news feeds are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/daily-news-fetcher)
+- [BBC News RSS feed](https://feeds.bbci.co.uk/news/rss.xml)
+- [Xinhua English News RSS feed](http://www.xinhuanet.com/english/news_english.xml)
+- [NYTimes World RSS feed](https://rss.nytimes.com/services/xml/rss/nyt/World.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Structured plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to five headline items with source labels and brief summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-05-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

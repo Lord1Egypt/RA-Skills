@@ -1,41 +1,49 @@
-## Description: <br>
-AI co-founder that evaluates, scores, and builds startup ideas with structured thinking, validation, and GTM strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI co-founder that evaluates, scores, and builds startup ideas with structured thinking, validation, and GTM strategy.
 
-## Publisher: <br>
-[raghavhavefun](https://clawhub.ai/user/raghavhavefun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raghavhavefun](https://clawhub.ai/user/raghavhavefun)
 
-## Use Case: <br>
-Founders, product teams, and startup advisors use this skill to evaluate startup ideas, compare customer, business, and investor perspectives, score the idea, generate alternative directions, and plan next steps from concept through MVP, go-to-market, and scaling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send raw business ideas, prompts, or strategy details to external research or search services. <br>
-Mitigation: Review and redact confidential startup ideas, customer data, unreleased product details, and sensitive strategy before enabling external research or search calls. <br>
-Risk: Startup scoring, market sizing, competitor summaries, and go-to-market guidance may be incomplete or misleading. <br>
-Mitigation: Treat outputs as decision support, verify important claims against authoritative sources, and review recommendations before using them for business commitments. <br>
+## Use Case:
 
+External users, founders, and startup builders use this skill to turn early startup ideas into structured evaluations, scores, alternatives, and next-step plans for MVP, go-to-market, and scaling work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raghavhavefun/ai-cofounder-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/raghavhavefun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Structured Markdown with sections for summary, perspective analysis, scores, insights, alternatives, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use available tools or fallback web search to support market validation, competitor research, trends, case studies, and marketing strategy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Market-research prompts may be sent to external web search through the skill's fallback behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential business plans, secrets, customer data, or unreleased proprietary details in prompts that may trigger research.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raghavhavefun/skills/ai-cofounder-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Structured Markdown-style response with sections for idea summary, perspectives, scoring, insights, alternatives, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-research summaries when user tools or fallback web search are available.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

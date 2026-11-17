@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_script_pull_from_git",
+    "description": "Pull scripts from Git repository to the application. Automatically compares differences between local and remote repository scripts, performing add, update and delete operations. Requires script Git repository to be configured first (_script_save_git_config).",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+}

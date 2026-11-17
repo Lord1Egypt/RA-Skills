@@ -1,44 +1,57 @@
-## Description: <br>
-麦当劳MCP接口自动化工具，支持自动领券、查询门店库存、计算最优优惠组合、一键下单，解决麦当劳优惠券手动领取麻烦、库存查询不便的问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+麦当劳MCP接口自动化工具，支持自动领券、查询门店库存、计算最优优惠组合、一键下单，解决麦当劳优惠券手动领取麻烦、库存查询不便的问题。
 
-## Publisher: <br>
-[winter1102](https://clawhub.ai/user/winter1102) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winter1102](https://clawhub.ai/user/winter1102)
 
-## Use Case: <br>
-External users and developers can use this skill to automate McDonald's coupon, store inventory, price calculation, and order-related workflows through shell commands that call McDonald's account APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCD_TOKEN can act on the user's McDonald's account. <br>
-Mitigation: Keep the token out of shell history, scripts, screenshots, shared terminals, and scheduled jobs unless the exposure has been reviewed. <br>
-Risk: Coupon, price, store, item, or order actions may affect real account state or charges. <br>
-Mitigation: Require a manual review of store, items, coupons, price, and final charge before any order-related action. <br>
-Risk: Automated or scheduled runs can repeat account actions without enough confirmation boundaries. <br>
-Mitigation: Use scheduled execution only after reviewing the account token scope, target action, and expected account impact. <br>
+## Use Case:
 
+External users and agent operators use this skill to automate McDonald's coupon collection, store inventory lookup, discount calculation, and pickup order workflows through command-line/API automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/winter1102/mcd-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/winter1102) <br>
-- [McDonald's MCP endpoint](https://mcp.mcd.cn/) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and an MCD_TOKEN environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill automates a real McDonald's account and can affect coupons, orders, and purchases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and add explicit confirmation and price-review checks before any order placement.
+
+Risk: MCD_TOKEN grants account access and is shown in shell and cron examples.
+
+Mitigation: Treat MCD_TOKEN like a password, avoid embedding it directly in cron or shared scripts, and rotate it if exposed.
+
+Risk: Automated API calls may trigger service risk controls or account restrictions.
+
+Mitigation: Keep call rates within documented limits and stop automation if access is restricted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/winter1102/skills/mcd-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and MCD_TOKEN; account-impacting actions should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

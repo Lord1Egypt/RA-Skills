@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Linkedin Ad Library Research"
+  short_description: "Collect and analyze public Linkedin Ad Library data"
+  default_prompt: "Use $socq-linkedin-ad-library-research to collect and analyze this public Linkedin Ad Library research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Linkedin Ad Library data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=linkedin-ad-library"

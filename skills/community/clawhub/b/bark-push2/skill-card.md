@@ -1,41 +1,54 @@
-## Description: <br>
-Sends Bark push notifications from a Node.js skill using LobeHub-style message and title arguments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bark Push sends agent-supplied notification messages through the Bark push service using a LobeHub-style notification format.
 
-## Publisher: <br>
-[smallersoup](https://clawhub.ai/user/smallersoup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallersoup](https://clawhub.ai/user/smallersoup)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send Bark notifications from agent workflows by providing a message and optional title. It requires Node.js and a Bark key, normally supplied through BARK_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches a parent USER.md file for a Bark key when BARK_KEY is not set. <br>
-Mitigation: Prefer explicit BARK_KEY configuration, avoid storing the Bark key in shared or logged USER.md files, and rotate the key if it may have been exposed. <br>
-Risk: Notification text and the Bark key are sent to api.day.app. <br>
-Mitigation: Use the skill only for notification content and credentials that are acceptable to send to Bark. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send short Bark notifications from an agent or command-line workflow with a message and optional title.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallersoup/bark-push2) <br>
-- [Bark API endpoint](https://api.day.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text] <br>
-**Output Format:** [Console text and HTTPS request to the Bark API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a Bark key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A Bark key may be read from the environment or from a parent USER.md file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment-based secret injection, avoid storing Bark keys in USER.md, and review or remove the file fallback before deployment.
+
+Risk: Notification content and the Bark key are sent to an external Bark service.
+
+Mitigation: Avoid sensitive notification messages and review outbound data handling before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallersoup/skills/bark-push2)
+- [Bark API endpoint](https://api.day.app)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text]
+
+**Output Format:** [Command-line invocation with terminal status text and an outbound Bark HTTPS request]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a Bark key supplied through the runtime environment, an explicit key path, or the documented file fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

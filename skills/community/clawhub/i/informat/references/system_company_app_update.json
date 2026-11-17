@@ -1,0 +1,35 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_update",
+    "description": "Modify team application information, can update application name and group, need to specify the list of fields to modify.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string",
+          "description": "ID of the application to modify"
+        },
+        "name": {
+          "type": "string",
+          "description": "New application name. Cannot contain special characters like , . / \\, required only when updateFields includes \"name\""
+        },
+        "groupId": {
+          "type": "string",
+          "description": "New group ID, required only when updateFields includes \"groupId\""
+        },
+        "updateFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of fields to modify, optional values: \"name\" (update application name), \"groupId\" (update group), at least one field must be specified"
+        }
+      },
+      "required": [
+        "appId",
+        "updateFields"
+      ]
+    }
+  }
+}

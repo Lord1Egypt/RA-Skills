@@ -1,43 +1,58 @@
-## Description: <br>
-MacPowerTools provides local macOS maintenance, resource forecasting, backup, process monitoring, and LAN service discovery helpers for OpenClaw agents on Apple Silicon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MacPowerTools provides local macOS maintenance, resource forecasting, backup, process-monitoring, LAN-discovery, and swarm-simulation commands for OpenClaw agents on Apple Silicon.
 
-## Publisher: <br>
-[AadiPapp](https://clawhub.ai/user/AadiPapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aadipapp](https://clawhub.ai/user/aadipapp)
 
-## Use Case: <br>
-Developers and agent operators use MacPowerTools to run local macOS maintenance workflows, generate resource forecasts, simulate agent-swarm metrics, monitor processes, and prepare local backups on Darwin hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Safety claims may understate local persistence because the tool can leave logs and history under ~/.logs/macpowertools and ~/.config/macpowertools. <br>
-Mitigation: Review storage behavior before installation and disclose cleanup or removal steps to users. <br>
-Risk: The shipped power_tools.py is not a clean runnable Python file according to server security evidence. <br>
-Mitigation: Validate and correct the script syntax before executing or distributing it. <br>
-Risk: The fleet-scan command may browse local LAN service advertisements. <br>
-Mitigation: Run LAN discovery only in environments where local network discovery is expected and permitted. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to run local Mac maintenance and agent-support commands on Apple Silicon systems. It is intended for local optimization workflows such as cleanup, backup support, process monitoring, resource forecasting, LAN discovery, and simulated swarm-coherence reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AadiPapp/mac-power-tools) <br>
-- [Publisher Profile](https://clawhub.ai/user/AadiPapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with text and JSON-style command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Darwin-only; requires Python >=3.10 and numpy for simulation features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The security summary says the package is a broken script and is not transparent enough for normal installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install until the publisher ships valid Python and aligns the artifact with the advertised commands.
+
+Risk: The security summary identifies intended local history storage despite claims of zero persistence.
+
+Mitigation: Require clear documentation of local files and retention behavior before use.
+
+Risk: The security summary identifies LAN discovery behavior.
+
+Mitigation: Run only after the publisher documents the LAN-discovery behavior and after the user confirms it is acceptable for the target network.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aadipapp/skills/mac-power-tools)
+- [Publisher profile](https://clawhub.ai/user/aadipapp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [CLI text, JSON-style command output, and Markdown install guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-focused output for local user-level workflows; no artifact-backed external API output is described.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact frontmatter says 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

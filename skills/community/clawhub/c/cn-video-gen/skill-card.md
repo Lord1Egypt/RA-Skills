@@ -1,43 +1,51 @@
-## Description: <br>
-Generates short AI video clips from text prompts or image inputs using Tongyi Wanxiang workflows and Kling V2 guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese AI video generation skill that helps agents create text-to-video and image-to-video clips with Tongyi Wanxiang Wan2.6 and Kling V2.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-Creators, operators, and developers use this skill to prepare text-to-video or image-to-video requests, poll generation tasks, and retrieve generated video outputs from supported Chinese video-generation providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user media to configured video providers, a public image-hosting service, and Feishu. <br>
-Mitigation: Use only media approved for those services and add an explicit confirmation step before upload, sharing, or download actions. <br>
-Risk: The release includes an embedded default upload token for the image-hosting workflow. <br>
-Mitigation: Remove or rotate the embedded token and require users to provide their own credentials through environment variables. <br>
+## Use Case:
 
+Developers, creators, and agent users can use this skill to turn prompts or image URLs into short AI-generated video clips, poll asynchronous generation tasks, and optionally download the resulting video file.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dadaniya99/cn-video-gen) <br>
-- [Tongyi Wanxiang video generation endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis) <br>
-- [Kling API documentation](https://klingai.kuaishou.com/api/docs) <br>
-- [ImgURL upload API](https://www.imgurl.org/api/v2/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON/API parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce provider task IDs, video URLs, and optionally downloaded MP4 files when credentials and output paths are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security evidence flags public image uploads with embedded ImgURL credentials and insufficient scoping or warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only non-sensitive image files, replace or remove embedded ImgURL credentials, and avoid arbitrary-path uploads until file validation, size limits, workspace restrictions, and explicit confirmation are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dadaniya99/skills/cn-video-gen)
+- [Kling AI API Documentation](https://klingai.kuaishou.com/api/docs)
+- [Tongyi Wanxiang Video Synthesis API Endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API examples, task status text, video URLs, and optional local MP4 file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses asynchronous video generation task polling; image-to-video workflows may require uploading a local image to a public image host before generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

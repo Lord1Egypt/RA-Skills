@@ -1,43 +1,60 @@
-## Description: <br>
-Craft compelling, policy-safe SMS messages for flash sales, order updates, and retention campaigns that drive clicks without triggering opt-outs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft compelling, policy-safe SMS messages for flash sales, order updates, and retention campaigns that drive clicks without triggering opt-outs.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing operators, ecommerce teams, and campaign writers use this skill to draft SMS campaign copy, A/B variants, character budgets, compliance checks, timing guidance, and optional sequence cadence recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SMS campaign guidance can be incomplete or misleading if required campaign inputs, consent status, platform footer behavior, or message classification are wrong. <br>
-Mitigation: Collect the required inputs first, apply the bundled SMS quality checklist, and have the final campaign reviewed against applicable SMS compliance requirements before sending. <br>
-Risk: Security evidence notes browser-session access and local API key handling. <br>
-Mitigation: Use the skill only with trusted accounts and keep local API keys private; review bridge requests before using it in sensitive browser sessions. <br>
+## Use Case:
 
+Marketing and ecommerce operators use this skill to draft SMS campaign copy, A/B variants, character budgets, compliance checks, and send timing guidance for promotional, transactional, retention, and sequence-based messages.
 
-## Reference(s): <br>
-- [SMS Optimizer - Output Template](references/output-template.md) <br>
-- [SMS Compliance Guide - TCPA, CTIA, and Platform Requirements](references/compliance-guide.md) <br>
-- [Carrier Filtering Guide - Deliverability Optimization for Ecommerce SMS](references/carrier-filtering-guide.md) <br>
-- [SMS Quality Checklist](assets/sms-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with message drafts, tables, checklists, and timing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes character counts, A/B variants, compliance flags, and sequence cadence when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, released 2026-03-30) <br>
+Risk: Generated SMS copy may not match the sender's actual consent records, platform configuration, or current legal requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each output against consent records, sender profile settings, opt-out handling, and applicable legal requirements before sending.
+
+Risk: Compliance-sensitive SMS campaigns can require legal review, especially for regulated, international, or high-volume sends.
+
+Mitigation: Use the skill's compliance prompts as drafting support and obtain appropriate legal review before launch.
+
+Risk: Mixing promotional content into transactional messages can create consent and deliverability problems.
+
+Mitigation: Classify each message before use, keep transactional and promotional content separate, and confirm the required consent level for the recipient list.
+
+## Reference(s):
+
+- [SMS Compliance Guide](references/compliance-guide.md)
+- [Carrier Filtering Guide](references/carrier-filtering-guide.md)
+- [SMS Optimizer Output Template](references/output-template.md)
+- [SMS Quality Checklist](assets/sms-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown campaign package with SMS copy, A/B variants, character counts, compliance checklist results, send timing, and optional cadence tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, compliance flags, and review notes for consent, platform setup, link handling, and jurisdiction-specific requirements.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊变体分析 · 颜色尺寸口碑对比"
+  short_description: "颜色尺寸规格口碑对比，揪出拖分变体"
+  default_prompt: "使用 $amazon-variant-analysis 对一个 Amazon ASIN 做变体归因，找出表现最好与最差的变体。"

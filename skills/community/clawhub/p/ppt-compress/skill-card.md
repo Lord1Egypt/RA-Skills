@@ -1,38 +1,56 @@
-## Description: <br>
-Compress PPT/PPTX file size by decompressing the deck, compressing large images, repackaging it, and converting it to PDF for easier sharing or upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress PPT/PPTX file size by decompressing presentations, compressing large images, repackaging them, and converting the result to PDF for easier sharing or upload.
 
-## Publisher: <br>
-[accidwar](https://clawhub.ai/user/accidwar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[accidwar](https://clawhub.ai/user/accidwar)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to reduce large PowerPoint decks into smaller PDF outputs for sharing or upload workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: LibreOffice conversion can produce formatting changes in the derived PDF. <br>
-Mitigation: Run the skill on a copy of the presentation and review the generated PDF before sharing it. <br>
-Risk: Generated output can replace files with the same generated names in the selected output folder. <br>
-Mitigation: Use a clean output folder or confirm that no existing files use the generated names before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and end users use this skill to reduce large PowerPoint presentations into smaller PDF files for sharing or upload workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated PPTX/PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a derived PDF output and may create temporary compressed PPTX files during processing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can overwrite and delete a predictable intermediate PPTX file in the selected output folder.
+
+Mitigation: Use an output folder you control and check for an existing file named after the input basename plus '_压缩版.pptx' before running the skill.
+
+Risk: Sensitive presentation contents are extracted and transformed locally during compression and conversion.
+
+Mitigation: Run the skill only on presentations and output folders appropriate for the document's sensitivity.
+
+Risk: PDF conversion depends on a local LibreOffice installation.
+
+Mitigation: Install LibreOffice only from a trusted source before using the conversion workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/accidwar/skills/ppt-compress)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and local file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a compressed PDF through a local Python script that depends on macOS sips and LibreOffice.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,37 @@
+# global-ai-governance
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+A quick-reference playbook for global AI governance — the world-level landscape, covering the World Artificial Intelligence Cooperation Organization (WAICO, founded in Shanghai July 2026 with 29 founding members, the first intergovernmental AI organization), the UN system (Global Digital Compact, first report of the UN independent AI science panel July 2026, General Assembly capacity-building resolution, UNESCO), China's AI governance initiative lineage (2023 Global AI Governance Initiative to the 2026 AI Cooperation Development Action Plan), international AI safety mechanisms (AI Safety Summit series, national AI Safety Institutes, International AI Safety Report), major-economy AI strategies (US/EU/UK/JP/KR/IN), Global South capacity building and the digital divide, and the trend toward institutionalized governance. Includes a zero-dependency local toolkit for organization, initiative, regional-strategy and timeline queries. Built for policy researchers, go-global strategists and industry observers — the macro-level extension of the enterprise AI governance playbook.
+
+全球 AI 治理版图速查手册——从宏观视角梳理 AI 世界治理格局：世界人工智能合作组织（WAICO，2026-07 上海成立、29 创始国、全球首个 AI 政府间国际组织）、联合国体系（全球数字契约、AI 独立国际科学小组首份报告 2026-07-01、联大能力建设决议、UNESCO）、中国 AI 治理倡议谱系（2023 全球人工智能治理倡议到 2026 人工智能合作发展行动计划）、国际 AI 安全机制（AI 安全峰会系列、各国 AI Safety Institute、国际 AI 安全报告）、主要经济体 AI 战略（美欧英日韩印）、全球南方能力建设与数字鸿沟、治理机制化转型趋势。附零依赖本地工具一键速查国际组织、倡议事件、地区战略与时间线。面向政策研究者、出海战略与行业观察者，企业 AI 治理（ai-governance-playbook）的宏观延伸。
+
+## When to use / 什么时候用
+
+- 各国AI监管现在到哪一步了
+- 这个国际AI组织对出海有啥影响
+- 写政策简报要梳理全球治理脉络
+- 欧盟和美国的AI立法差在哪
+- 进新市场前要不要看当地AI规则
+- 联合国那个AI科学小组出报告了吗
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

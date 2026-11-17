@@ -1,45 +1,56 @@
-## Description: <br>
-Ranks installable tools for agent jobs including OCR, PDF extraction, NFS-e invoices, bookkeeping, boletos, receipts, and web scraping, using reproducible evals on real-world corpora. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ranked installable tools for agent jobs - OCR, PDF extraction, NFS-e invoices, bookkeeping, boletos, receipts, web scraping, with reproducible evals on real-world corpora.
 
-## Publisher: <br>
-[tlalvarez](https://clawhub.ai/user/tlalvarez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlalvarez](https://clawhub.ai/user/tlalvarez)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to choose an installable OCR, document extraction, web scraping, bookkeeping, or service-recommendation tool based on ranked evaluations rather than ad hoc guesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to add and query the external auxiliar-mcp package and then install recommended follow-on tools. <br>
-Mitigation: Review returned install commands before running them and prefer a sandbox for document-processing tools. <br>
-Risk: Recommended services or tools may involve cloud API keys, paid usage, licenses, or sensitive documents. <br>
-Mitigation: Check each service or tool's trust, cost, license, and data-handling terms before sharing credentials or documents. <br>
-Risk: Ranked recommendations are based on evaluated corpora and may not fit every user's document set or workflow. <br>
-Mitigation: Read the scorecards, alternatives, corpus summaries, and methodological caveats, then test candidates on representative samples before relying on them. <br>
+## Use Case:
 
+Developers and agents use Auxiliar Solve to select installable tools or services for document extraction, OCR, web scraping, bookkeeping, and related automation tasks using ranked recommendations and evaluation evidence.
 
-## Reference(s): <br>
-- [Auxiliar Solve ClawHub page](https://clawhub.ai/tlalvarez/auxiliar-solve) <br>
-- [Human-readable rankings](https://auxiliar.ai/solve/) <br>
-- [Reproducible eval harness](https://github.com/Tlalvarez/Auxiliar-ai/tree/main/scripts/ocr-walkthrough) <br>
-- [Methodology](https://github.com/Tlalvarez/Auxiliar-ai/blob/main/docs/proposals/agent-upgrade-engine.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Text] <br>
-**Output Format:** [Markdown with inline shell commands and task-query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; recommendations may include install commands, scorecards, alternatives considered, corpus summaries, FAQs, caveats, and agent-fit notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v0.1.0 (source: server release metadata; SKILL.md frontmatter version 0.1.0) <br>
+Risk: The skill recommends installing an unpinned third-party MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the npm package and source before installation, and treat returned install commands as recommendations that require separate validation.
+
+Risk: Document workflows may involve sensitive financial or personal information.
+
+Mitigation: Run the MCP with least privilege and avoid sending sensitive document details to third-party services unless privacy, consent, and data-handling requirements are accepted.
+
+## Reference(s):
+
+- [Auxiliar Solve on ClawHub](https://clawhub.ai/tlalvarez/skills/auxiliar-solve)
+- [Human-readable rankings](https://auxiliar.ai/solve/)
+- [Reproducible eval harness](https://github.com/Tlalvarez/Auxiliar-ai/tree/main/scripts/ocr-walkthrough)
+- [Methodology](https://github.com/Tlalvarez/Auxiliar-ai/blob/main/docs/proposals/agent-upgrade-engine.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown-style guidance with command snippets and ranked recommendation data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked candidates, scorecards, install commands, alternatives considered, corpus summaries, caveats, and agent compatibility details.]
+
+## Skill Version(s):
+
+v0.1.0 (source: server release metadata and target metadata; frontmatter 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

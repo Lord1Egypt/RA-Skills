@@ -1,45 +1,62 @@
-## Description: <br>
-Interact with the BNB Chain MCP server for blocks, contracts, tokens, NFTs, wallet, Greenfield, and ERC-8004 agent tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the BNB Chain Model Context Protocol (MCP) server for blocks, contracts, tokens, NFTs, wallet operations, Greenfield, and ERC-8004 agent tools.
 
-## Publisher: <br>
-[0xlucasliao](https://clawhub.ai/user/0xlucasliao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xlucasliao](https://clawhub.ai/user/0xlucasliao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query BNB Chain and EVM-compatible network data, inspect contracts and tokens, and run BNB Chain MCP workflows. When a private key is configured, it can also support transfers, contract writes, Greenfield actions, and ERC-8004 agent registration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Providing PRIVATE_KEY enables state-changing blockchain actions such as transfers, approvals, contract writes, Greenfield writes, and ERC-8004 registration. <br>
-Mitigation: For read-only use, do not provide PRIVATE_KEY. For writes, use a testnet or low-value wallet and confirm the network, recipient or contract, amount, approvals, and fees before any transaction. <br>
-Risk: Write actions on the wrong network can cause irreversible financial loss. <br>
-Mitigation: Require an explicit network for every write action. If the network is missing, ask before calling the tool and use get_supported_networks to discover valid options. <br>
-Risk: Using npx @bnb-chain/mcp@latest fetches the MCP package from npm at runtime. <br>
-Mitigation: Review or install the package locally and verify or pin a package version before granting wallet credentials where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xlucasliao/bnbchain) <br>
-- [BNB Chain MCP](https://github.com/bnb-chain/bnbchain-mcp) <br>
-- [ERC-8004 specification](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [ERC-8004 contracts](https://github.com/erc-8004/erc-8004-contracts) <br>
-- [Agent Metadata Profile](https://best-practices.8004scan.io/docs/01-agent-metadata-standard.html) <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to the BNB Chain MCP server for EVM chain queries, token and NFT checks, contract interaction guidance, and explicitly confirmed state-changing blockchain operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, configuration snippets, and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include blockchain addresses, transaction hashes, balances, contract data, network names, and safety confirmations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-v1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an npm package that can change over time.
+
+Mitigation: Use a pinned and reviewed package version where possible before enabling the MCP server.
+
+Risk: State-changing blockchain tools can use private keys and create irreversible transactions.
+
+Mitigation: Do not provide a private key for read-only tasks; for writes, use a dedicated low-value or testnet wallet in a restricted MCP server environment.
+
+Risk: Accidental mainnet execution can cause financial loss.
+
+Mitigation: Require an explicit network for every write operation and confirm recipient, amount, contract, approval limit, calldata, and network before any transaction.
+
+## Reference(s):
+
+- [ClawHub bnbchain Skill Page](https://clawhub.ai/0xlucasliao/skills/bnbchain)
+- [BNB Chain MCP Documentation](https://github.com/bnb-chain/bnbchain-mcp)
+- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004)
+- [ERC-8004 Contracts](https://github.com/erc-8004/erc-8004-contracts)
+- [Agent Metadata Profile](https://best-practices.8004scan.io/docs/01-agent-metadata-standard.html)
+- [8004scan Mainnet](https://www.8004scan.io/)
+- [8004scan Testnet](https://testnet.8004scan.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve MCP tool calls that require explicit network selection and optional PRIVATE_KEY configuration for state-changing operations.]
+
+## Skill Version(s):
+
+v1.0.2 (source: server release; artifact frontmatter: 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

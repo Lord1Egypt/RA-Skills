@@ -1,40 +1,54 @@
-## Description: <br>
-Extracts and saves QR codes from each page of a PDF by converting pages to images and detecting QR regions with padding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and saves QR codes from each page of a PDF by converting pages to images and detecting QR regions with padding.
 
-## Publisher: <br>
-[mywebliu](https://clawhub.ai/user/mywebliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mywebliu](https://clawhub.ai/user/mywebliu)
 
-## Use Case: <br>
-Developers and operations users use this skill to batch extract QR code images from local PDF files, including customer-provided PDFs that contain generated QR codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing dependencies with --break-system-packages can modify the global Python environment. <br>
-Mitigation: Use a Python virtual environment before installing the required packages. <br>
-Risk: Full-page intermediate images may contain sensitive content from the source PDF. <br>
-Mitigation: Choose a protected output directory and remove intermediate page images after confirming the extracted QR files. <br>
+## Use Case:
 
+Developers and operators use this skill to extract QR code images from customer-provided PDFs in batch workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mywebliu/pdf-qr-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes cropped QR images and full-page intermediate images to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dependency installation guidance uses an overbroad Python package command that can modify the system Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated virtual environment, remove the separate fitz package, pin dependencies, and avoid --break-system-packages.
+
+Risk: Generated page images and QR crops may contain sensitive information from the source PDF.
+
+Mitigation: Treat outputs as sensitive and delete the output directory when processing is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mywebliu/skills/pdf-qr-extractor)
+- [Publisher profile](https://clawhub.ai/user/mywebliu)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates QR crop PNG files in the output directory and stores rendered PDF page images in a pages subdirectory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

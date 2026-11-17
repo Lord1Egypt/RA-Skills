@@ -1,41 +1,55 @@
-## Description: <br>
-Scans local folders for exact duplicate files, generates structured reports, and helps agents propose safe cleanup actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans user-selected directories for exact duplicate files, produces structured duplicate reports, and helps an agent suggest cautious cleanup actions.
 
-## Publisher: <br>
-[ludiansheng](https://clawhub.ai/user/ludiansheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ludiansheng](https://clawhub.ai/user/ludiansheng)
 
-## Use Case: <br>
-External users and agents use this skill to scan user-selected folders such as Downloads, Pictures, or Documents for exact duplicate files, review disk-space impact, and plan safe cleanup. It is suited for duplicate downloads, photo-library cleanup, project backup cleanup, and post-sync file organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accidental deletion of important files if cleanup scripts are run without review. <br>
-Mitigation: Back up important data, inspect the duplicate report, and require explicit confirmation before any delete, move, or generated cleanup script is run. <br>
-Risk: Broad scans of system or sensitive directories can expose file paths, take a long time, or lead to unsafe cleanup recommendations. <br>
-Mitigation: Start with limited user folders such as Downloads, Pictures, or Documents, and avoid system directories unless the user deliberately requests and reviews that scope. <br>
+## Use Case:
 
+External users and agents use this skill to find exact duplicate files in directories the user chooses, summarize reclaimable disk space, and prepare cautious file-retention or deletion guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ludiansheng/duplicate-file-cleaner) <br>
-- [File Organization Best Practices Guide](references/file-organization-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON scan reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local file deletion or move scripts only after user review and confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: Cleanup guidance may lead to unintended file loss if duplicate reports are acted on without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the report before deleting files, prefer backup-or-move workflows first, and require explicit confirmation for deletion scripts.
+
+Risk: Broad scans can expose sensitive file paths or include directories that the user did not intend to inspect.
+
+Mitigation: Scan only user-selected directories and avoid system directories or broad home-directory scans unless that scope is explicit.
+
+## Reference(s):
+
+- [File Organization Best Practices Guide](references/file-organization-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/ludiansheng/skills/duplicate-file-cleaner)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ludiansheng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON report interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scanner can write a JSON report to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and manifest.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

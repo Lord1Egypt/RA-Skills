@@ -1,43 +1,55 @@
-## Description: <br>
-Rigorous comparisons with confidence parity, weighted criteria, and research depth tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rigorous comparisons with confidence parity, weighted criteria, and research depth tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Users apply this skill when they need a structured, evidence-balanced comparison between products, tools, services, decisions, locations, people, investments, or content. The skill guides criteria weighting, research parity, confidence checks, scoring, caveats, and preference capture. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse locally stored comparison preferences, which may preserve past decision priorities. <br>
-Mitigation: Review or clear preferences.md when prior preferences should not influence a new comparison. <br>
-Risk: A comparison can be misleading if evidence depth, source quality, or data recency differs across items. <br>
-Mitigation: Apply the skill's research parity and confidence checks before presenting scores, and explicitly caveat unresolved imbalances. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Compare skill page](https://clawhub.ai/ivangdavila/compare) <br>
-- [Confidence levels](confidence.md) <br>
-- [Default comparison criteria by domain](domains.md) <br>
-- [Comparison traps](traps.md) <br>
-- [User comparison preferences](preferences.md) <br>
+## Use Case:
 
+External users and agents use this skill to compare products, tools, services, decisions, places, providers, investments, or media with balanced research depth, weighted criteria, transparent scoring, and caveats when evidence quality differs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown comparison report with weighted score tables, confidence labels, caveats, and alternative-winner notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local comparison preference notes when the agent environment permits persistent memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can remember comparison priorities in preferences.md, which may preserve sensitive preferences for categories such as career, finances, or providers.
+
+Mitigation: Review, clear, or avoid updating preferences.md when comparisons involve sensitive categories or when persistent preference memory is not desired.
+
+Risk: Uneven research depth can make comparison scores misleading.
+
+Mitigation: Track comparable source depth, source quality, and recency for each item before scoring, and explicitly caveat any remaining imbalance.
+
+## Reference(s):
+
+- [Confidence Levels](artifact/confidence.md)
+- [Default Comparison Criteria by Domain](artifact/domains.md)
+- [User Comparison Preferences](artifact/preferences.md)
+- [Comparison Traps](artifact/traps.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison report with weighted criteria, score tables, confidence labels, caveats, and conditional recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update a local preferences file after comparisons to record user priorities by category.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

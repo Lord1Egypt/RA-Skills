@@ -1,44 +1,60 @@
-## Description: <br>
-Fetches public cloud provider documentation, stores local copies, detects documentation changes, and returns raw content and diffs for the calling agent to summarize or compare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves, stores, compares, and monitors public documentation from Alibaba Cloud, Tencent Cloud, Baidu Cloud, and Volcengine, returning raw content and diffs for the calling agent to summarize.
 
-## Publisher: <br>
-[Mrb-AIA](https://clawhub.ai/user/Mrb-AIA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrb-aia](https://clawhub.ai/user/mrb-aia)
 
-## Use Case: <br>
-Developers and cloud operations teams use this skill to collect Aliyun, Tencent Cloud, Baidu Cloud, and Volcano Engine documentation, build local baselines, check for changes, and provide source material for downstream summaries, comparisons, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public cloud documentation and stores local copies, which may create local data retention obligations. <br>
-Mitigation: Review the configured SQLite, cache, log, and notification paths and apply normal retention or cleanup controls for the deployment environment. <br>
-Risk: Monitoring summaries can be sent to configured webhook destinations. <br>
-Mitigation: Keep webhook delivery disabled unless needed, use trusted HTTPS endpoints, and verify destination configuration before enabling notifications. <br>
-Risk: Unpinned package ranges can resolve to newer dependency versions over time. <br>
-Mitigation: Use a locked dependency file for production deployments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to fetch and cache cloud provider documentation, establish local baselines, compare documents across providers, and detect documentation changes for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Mrb-AIA/cloud-doc-intelligent-assistant) <br>
-- [Cloud API contracts](references/cloud-api-contracts.md) <br>
-- [OpenClaw integration notes](references/openclaw-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses with structured machine fields, brief human-readable text or markdown, diffs, and operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local SQLite data, logs, cached content, and notification markdown files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Activation rules are broad enough to trigger when supported cloud providers are merely mentioned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit cloud documentation retrieval, comparison, change checks, or monitoring, and ask a clarifying question when the cloud provider or product is ambiguous.
+
+Risk: Webhook notifications and optional .env loading can send change summaries to configured endpoints or import local environment values into the skill process.
+
+Mitigation: Enable webhook URLs and CLOUD_DOC_MONITOR_LOAD_DOTENV only in trusted workspaces, and review configured destinations before sending notifications.
+
+Risk: Outbound requests to public cloud documentation APIs can fail or encounter rate limits.
+
+Mitigation: Use explicit doc_ref retrieval for bounded fetches and keep conservative request delays configured for monitoring runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrb-aia/skills/cloud-doc-intelligent-assistant)
+- [ClawHub publisher profile](https://clawhub.ai/user/mrb-aia)
+- [OpenClaw integration](references/openclaw-integration.md)
+- [Cloud API contracts](references/cloud-api-contracts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [JSON responses containing structured machine data plus human-readable text or Markdown summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local SQLite data, logs, cache entries, and notification Markdown depending on configuration.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

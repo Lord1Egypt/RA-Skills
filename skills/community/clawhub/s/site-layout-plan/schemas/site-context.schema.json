@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "site-context/v1",
+  "title": "施工平面周边条件",
+  "type": "object",
+  "required": ["schema", "coord_unit"],
+  "properties": {
+    "schema": {"const": "site-context/v1"},
+    "project": {"type": "string"},
+    "coord_unit": {"enum": ["mm", "cm", "m"]},
+    "notes": {"type": "string"},
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "geometry"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["high_voltage", "residential", "river", "municipal_pipeline", "existing_building", "sensitive_receptor", "flood"]},
+          "name": {"type": "string"},
+          "geometry": {"type": "object"},
+          "buffer_m": {"type": "number", "minimum": 0},
+          "severity": {"enum": ["hard", "soft"]},
+          "voltage_kv": {"type": "number"},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "existing_roads": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["geometry"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "width_m": {"type": "number", "minimum": 0},
+          "geometry": {"type": "object"}
+        }
+      }
+    }
+  }
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-Provides RPM packaging guidance for writing and reviewing spec files, build commands, dependency declarations, macro usage, rpmlint checks, and build-system templates across RPM-based distributions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RPM Package Management provides RPM packaging guidance for spec files, rpmbuild and mock workflows, rpmlint checks, macro expansion, dependency handling, and common build-system templates.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and build or release engineers use this skill to prepare, review, and validate RPM spec files and packaging workflows before running rpm, rpmbuild, mock, osc, or rpmlint commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RPM build, install, and uninstall commands can modify packages or system state if executed directly on a host. <br>
-Mitigation: Review commands before execution and validate builds in a container, VM, mock build root, or other test environment. <br>
-Risk: RPM packaging policies and macros can vary by distribution and change over time. <br>
-Mitigation: Confirm the target distribution's current packaging policy before applying generated spec guidance. <br>
+## Use Case:
 
+Developers and packaging engineers use this Chinese-language skill as a reference for creating, reviewing, building, linting, and updating RPM packages across RPM-based distributions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/rpm) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/weidongkl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with RPM spec snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata) <br>
+Risk: The security summary notes some RPM guidance may be overconfident or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify distro-specific packaging rules and current macro behavior against the target distribution before applying recommendations.
+
+Risk: RPM build or package installation commands can modify host systems when run directly.
+
+Mitigation: Run builds in mock, containers, or other unprivileged isolated environments, and avoid install or remove commands on a main system unless that change is intended.
+
+Risk: Dependency installation guidance can introduce unreviewed or nondeterministic inputs.
+
+Mitigation: Prefer reviewed package sources, deterministic dependency inputs, and clean rebuilds when converting guidance into build steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidongkl/skills/rpm)
+- [Publisher profile](https://clawhub.ai/user/weidongkl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with RPM spec snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language RPM packaging reference; no hidden code, persistence, credential access, or automatic execution identified in security evidence.]
+
+## Skill Version(s):
+
+4.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

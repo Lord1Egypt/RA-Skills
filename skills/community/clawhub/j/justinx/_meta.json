@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn70ywccrp73x23qqk3z68mwn981vmgs",
+  "name": "justinx",
   "slug": "justinx",
-  "version": "1.0.2",
-  "publishedAt": 1772040497797
+  "summary": "Connect live streaming data (MQTT, Kafka, Webhook) to your AI agent via MCP with automated alerts and anomaly detection.",
+  "version": "1.0.0",
+  "author": "rupulsafaya",
+  "homepage": "https://justinx.ai",
+  "repository": "https://github.com/rupulsafaya/justinx-demo",
+  "bins": [],
+  "install": {},
+  "runtime": {}
 }

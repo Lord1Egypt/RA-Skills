@@ -1,6 +1,7 @@
 {
   "ownerId": "kn7dd2bx4b1r3sfcsb4fk7sdv583bcz9",
   "slug": "assetclaw",
-  "version": "1.5.9",
-  "publishedAt": 1778515190022
+  "version": "1.7.0",
+  "publishedAt": 1753801980000,
+  "changelog": "v1.7.0 (2026-07-29) - 增量升级，基于后端 swagger 2026-07-29 同步: 97→101 模块, 1709→1809 ops, 引入 15 业务域分组。helper 脚本 assethub_api.sh 新增 domains/stats/redirects 命令 + 旧路径警告 + IoT token/Idempotency-Key/高风险显式控制三个环境变量 + 修复 IoT token 替换 header 的 bug。428 高风险默认不再静默重放。references/auth-and-workflows.md 重写, references/api-modules-overview.md 改用 15 业务域, references/endpoint-quick-ref.md 新增 Top 40, references/route-mount-map.md 同步 v1.7.0 路径变更。api-catalog-2026-07-29.json (1.2MB) + api-domain-map.md (64KB) 同步快照。"
 }

@@ -1,40 +1,57 @@
-## Description: <br>
-Tracks, commits, compares, and rolls back OpenClaw configuration changes with local Git checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks, commits, compares, and restores OpenClaw configuration changes with local Git history.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and operators use this skill to create local Git checkpoints for OpenClaw configuration, inspect config diffs, and restore prior versions after a risky or broken change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage broad local configuration changes, including credential files, before committing. <br>
-Mitigation: Review the files selected for commit, avoid committing real credentials, and use sanitized staging copies or explicit exclusions for sensitive credential material. <br>
-Risk: The skill can rewrite live credential files during redaction and can restore older configuration over the current working tree. <br>
-Mitigation: Back up ~/.openclaw before use, preview restore diffs, and require explicit confirmation before overwriting current configuration. <br>
+## Use Case:
 
+Developers and OpenClaw users use Git Watcher to create local versioned checkpoints of OpenClaw configuration, inspect diffs and history, and restore a known-good configuration after a regression.
 
-## Reference(s): <br>
-- [Git Watcher on ClawHub](https://clawhub.ai/wangjipeng977/git-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Git commits and restore tracked OpenClaw configuration files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can modify and commit files under ~/.openclaw, including configuration and credential-related paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw before commit or restore operations, avoid tracking live credentials, and review the exact files being staged.
+
+Risk: Restore behavior can overwrite local OpenClaw configuration data.
+
+Mitigation: Review the preview diff, require explicit confirmation before restore, and keep the previous state available for undo or recovery.
+
+Risk: Diff, log, and commit-message output may expose sensitive configuration details.
+
+Mitigation: Treat generated output as sensitive, redact credentials before sharing, and avoid publishing raw logs or diffs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/git-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Git commits, restore tracked OpenClaw configuration files, and report validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

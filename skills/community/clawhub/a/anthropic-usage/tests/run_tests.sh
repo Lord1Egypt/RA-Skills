@@ -91,7 +91,7 @@ run_script() {
   local fixture="${STUB_CURL_FIXTURE:-response_ok}"
   STUB_CURL_FIXTURE="$fixture" \
     PATH="${STUBS_DIR}:${PATH}" \
-    ANTHROPIC_ADMIN_API_KEY="${ANTHROPIC_ADMIN_API_KEY:-sk-ant-admin-test-fake-key-0000}" \
+    ANTHROPIC_ADMIN_API_KEY="${ANTHROPIC_ADMIN_API_KEY:-REDACTED-SECRET}" \
     bash "$SCRIPT" "$@" 2>&1
 }
 
@@ -161,14 +161,14 @@ assert_contains "--check prints OK" "OK" "$output"
 
 output=$(STUB_CURL_HTTP_CODE=401 STUB_CURL_FIXTURE=response_models_ok \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --check 2>&1) || exit_code=$?
 assert_exit_nonzero "--check exits non-zero on HTTP 401" "${exit_code:-1}"
 assert_contains "--check 401 mentions invalid key" "Unauthorized" "$output"
 
 output=$(STUB_CURL_HTTP_CODE=403 STUB_CURL_FIXTURE=response_models_ok \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --check 2>&1) || exit_code=$?
 assert_exit_nonzero "--check exits non-zero on HTTP 403" "${exit_code:-1}"
 assert_contains "--check 403 mentions permissions" "Forbidden" "$output"
@@ -271,28 +271,28 @@ echo "[ HTTP error codes ]"
 
 output=$(STUB_CURL_HTTP_CODE=401 STUB_CURL_FIXTURE=response_ok \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --weekly 2>&1) || exit_code=$?
 assert_exit_nonzero "HTTP 401 exits non-zero" "${exit_code:-1}"
 assert_contains "HTTP 401 prints Unauthorized" "Unauthorized" "$output"
 
 output=$(STUB_CURL_HTTP_CODE=403 STUB_CURL_FIXTURE=response_ok \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --weekly 2>&1) || exit_code=$?
 assert_exit_nonzero "HTTP 403 exits non-zero" "${exit_code:-1}"
 assert_contains "HTTP 403 prints Forbidden" "Forbidden" "$output"
 
 output=$(STUB_CURL_HTTP_CODE=429 STUB_CURL_FIXTURE=response_ok \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --weekly 2>&1) || exit_code=$?
 assert_exit_nonzero "HTTP 429 exits non-zero" "${exit_code:-1}"
 assert_contains "HTTP 429 prints rate limit message" "Too Many Requests" "$output"
 
 output=$(STUB_CURL_HTTP_CODE=500 STUB_CURL_FIXTURE=response_ok \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --weekly 2>&1) || exit_code=$?
 assert_exit_nonzero "HTTP 500 exits non-zero" "${exit_code:-1}"
 assert_contains "HTTP 500 prints server error message" "Server error" "$output"
@@ -305,7 +305,7 @@ echo "[ Pagination ]"
 reset_page_counter
 output=$(STUB_CURL_PAGES=response_page1,response_page2 \
   PATH="${STUBS_DIR}:${PATH}" \
-  ANTHROPIC_ADMIN_API_KEY="sk-ant-admin-test-fake-key-0000" \
+  ANTHROPIC_ADMIN_API_KEY="REDACTED-SECRET" \
   bash "$SCRIPT" --weekly 2>&1)
 exit_code=$?
 assert_exit_zero "paginated response exits 0" "$exit_code"

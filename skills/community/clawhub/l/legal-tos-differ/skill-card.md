@@ -1,40 +1,61 @@
-## Description: <br>
-Fetches Terms of Service documents, stores snapshots, and performs semantic diffing to identify meaningful legal changes across Privacy Risks, Financial Changes, and User Rights categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Terms of Service documents, stores snapshots, and performs semantic diffing to identify meaningful legal changes across Privacy Risks, Financial Changes, and User Rights categories.
 
-## Publisher: <br>
-[liverock](https://clawhub.ai/user/liverock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liverock](https://clawhub.ai/user/liverock)
 
-## Use Case: <br>
-Developers, compliance reviewers, and policy monitors use this skill to track public legal documents, capture local snapshots, and surface semantic changes that may affect privacy, financial terms, or user rights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched webpage text is untrusted input and generated legal-change analysis may be incomplete or misleading. <br>
-Mitigation: Use the skill for public legal documents or documents acceptable for local storage, and review generated analyses before relying on them. <br>
-Risk: Snapshots are stored locally and the remove command deletes tracked snapshot data. <br>
-Mitigation: Set TOS_DATA_DIR to a dedicated folder and back up snapshots that need to be retained before using remove_url. <br>
+## Use Case:
 
+Developers, compliance reviewers, and policy analysts use this skill to track Terms of Service or privacy policy pages, capture snapshots, and produce semantic change analysis focused on privacy, financial, and user-rights impacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liverock/legal-tos-differ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown status messages and analysis prompts, with local JSON snapshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses tracked URLs, optional labels, local snapshot storage, and TOS_DATA_DIR for storage location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and package.json) <br>
+Risk: Tool commands accept URL and label values that may execute unintended shell commands if crafted maliciously.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted inputs, review command invocations before execution, and run the skill in a constrained environment.
+
+Risk: The skill fetches arbitrary URLs, which may expose internal services or untrusted network locations.
+
+Mitigation: Restrict allowed URLs to expected public legal-document hosts and avoid running the skill where internal network access is available.
+
+Risk: Fetched page content can influence the generated semantic analysis prompt.
+
+Mitigation: Treat generated analysis as review support, verify important legal conclusions manually, and avoid relying on untrusted page content without review.
+
+Risk: Removing a tracked URL can permanently delete associated snapshot data.
+
+Mitigation: Back up snapshot data before removal and confirm the target URL before using the remove command.
+
+## Reference(s):
+
+- [Legal/TOS Diff-er ClawHub page](https://clawhub.ai/liverock/skills/legal-tos-differ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown command output and structured semantic analysis prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores fetched document snapshots as JSON files and returns markdown summaries or comparison prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

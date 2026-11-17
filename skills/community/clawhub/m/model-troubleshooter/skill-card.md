@@ -1,40 +1,53 @@
-## Description: <br>
-model-troubleshooter diagnoses OpenClaw model and provider failures from configuration and logs, then proposes or applies configuration, credential, provider, retry, and verification fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent diagnose OpenClaw model, provider, authentication, rate-limit, timeout, endpoint, and streaming errors and propose or apply configuration-focused fixes.
 
-## Publisher: <br>
-[viratkumar123](https://clawhub.ai/user/viratkumar123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viratkumar123](https://clawhub.ai/user/viratkumar123)
 
-## Use Case: <br>
-Developers and operators use this skill to troubleshoot OpenClaw model, provider, API key, rate limit, timeout, streaming, and endpoint failures. It helps inspect local configuration and logs, identify likely root causes, recommend or apply fixes, and report verification steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect model and gateway configuration or logs that may contain credentials or sensitive operational details. <br>
-Mitigation: Run a dry run first, redact secrets, and limit shared output to non-sensitive diagnostics. <br>
-Risk: The skill may change model, provider, or gateway settings or restart services while troubleshooting. <br>
-Mitigation: Require explicit approval before patches or restarts, keep a configuration backup, and verify behavior after each change. <br>
+## Use Case:
 
+Developers and operators use this skill to troubleshoot failing OpenClaw model configurations, identify likely provider or gateway causes, and manage fixes such as provider switches, API key refreshes, retry settings, and endpoint changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/viratkumar123/model-troubleshooter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, configuration changes, diagnostic summaries, and verification notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should redact secrets and distinguish dry-run recommendations from approved changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may inspect broad OpenClaw configuration and logs that can contain sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with explicit approval for log and configuration access, and redact secrets in reports, logs, and diffs.
+
+Risk: The skill may change model defaults, switch providers, restart the gateway, or create persistent monitoring without clear approval.
+
+Mitigation: Use read-only diagnosis first, then require confirmation and redacted diffs before configuration changes, restarts, provider switches, memory notes, or heartbeat behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viratkumar123/skills/model-troubleshooter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic summaries, proposed or applied configuration changes, verification steps, and monitoring guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

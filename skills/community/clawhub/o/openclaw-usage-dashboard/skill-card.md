@@ -1,39 +1,54 @@
-## Description: <br>
-Interactive local dashboard for OpenClaw API usage that reads local session logs to show token consumption, request counts, model and agent activity, and system health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Usage Dashboard provides a localhost dashboard for OpenClaw usage, model activity, token consumption, agent activity, and system health from local session logs.
 
-## Publisher: <br>
-[vanhuelsing](https://clawhub.ai/user/vanhuelsing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanhuelsing](https://clawhub.ai/user/vanhuelsing)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local token usage, request volume, model activity, agent activity, and basic system health without sending data to an external service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local dashboard reads OpenClaw session history across agents, which may expose sensitive local usage metadata. <br>
-Mitigation: Run with the default localhost binding, avoid using --host to expose it on a network, and stop the Node server when finished. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to launch a local dashboard that summarizes token usage, request counts, model and agent activity, cache efficiency, and system health from OpenClaw session logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vanhuelsing/openclaw-usage-dashboard) <br>
-- [OpenClaw rate limits tracking issue](https://github.com/openclaw/openclaw/issues/55934) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local dashboard usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill starts a localhost dashboard and presents aggregated OpenClaw usage and system health information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Private OpenClaw usage patterns, model choices, agent names, session timing, and system details can be exposed through unauthenticated dashboard APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with the default localhost binding and do not use --host 0.0.0.0 or any other non-loopback address.
+
+Risk: Server evidence reports a verified browser security flaw and marks the release suspicious.
+
+Mitigation: Review the skill before installing, especially on shared or networked machines, and use it only in a trusted local browser environment.
+
+## Reference(s):
+
+- [OpenClaw Usage Dashboard on ClawHub](https://clawhub.ai/vanhuelsing/skills/openclaw-usage-dashboard)
+- [OpenClaw Rate Limits Tracking Issue](https://github.com/openclaw/openclaw/issues/55934)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the user to run a local Node.js dashboard on a selected localhost port.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

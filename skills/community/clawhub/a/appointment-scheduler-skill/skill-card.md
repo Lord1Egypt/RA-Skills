@@ -1,44 +1,62 @@
-## Description: <br>
-Schedule appointments with doctors, salons, mechanics, or any service provider. Polly calls, finds available times, and books it for you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedules appointments with service providers by using PollyReach to place calls, find available times, and report booking outcomes.
 
-## Publisher: <br>
-[zhugelaing888](https://clawhub.ai/user/zhugelaing888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhugelaing888](https://clawhub.ai/user/zhugelaing888)
 
-## Use Case: <br>
-External users and agents use this skill to schedule service appointments by phone through PollyReach. It also supports related outbound calls, inbound call answering, call summaries, transcripts, recordings, and credit-balance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is framed as an appointment scheduler but security evidence says it enables broader outbound calling, automatic inbound answering, and transcript or recording exposure. <br>
-Mitigation: Use it only when a broad PollyReach phone agent is intended, keep call prompts narrowly scoped, and review call summaries, transcripts, and recording links before relying on results. <br>
-Risk: The skill stores a local PollyReach token and sends call tasks, call content, transcripts, and related call details to PollyReach. <br>
-Mitigation: Protect the token file, revoke or rotate the token when access changes, and review PollyReach data retention, caller notice, and recording-consent controls before sensitive use. <br>
-Risk: Phone calls can consume paid credits and may involve business, medical, legal, or other sensitive communications. <br>
-Mitigation: Confirm billing and top-up expectations before use, monitor credit balance, and escalate sensitive or unauthorized decisions to the human. <br>
+## Use Case:
 
+People who need phone-based scheduling use this skill to ask an agent to register with PollyReach, place outbound calls to service providers, poll for results, and summarize appointment outcomes or incoming calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhugelaing888/appointment-scheduler-skill) <br>
-- [PollyReach](https://pollyreach.ai) <br>
-- [PollyReach agent dashboard](https://agent.pollyreach.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl, jq, and bc; reads and writes the local PollyReach token file at ~/.config/PollyReach/key.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses a persistent PollyReach token that can make calls, spend credits, answer incoming calls, and retrieve call details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token with restrictive file permissions, keep it out of chat transcripts and logs, and review balance and call activity before enabling broad use.
+
+Risk: Phone calls and incoming messages may expose personal or business information through recordings, transcripts, summaries, and call detail links.
+
+Mitigation: Use the assigned number only with informed users, avoid sensitive or regulated matters unless approved, and review summaries before sharing them further.
+
+Risk: The security review flags the skill as broader and more privacy-impacting than an appointment scheduler framing suggests.
+
+Mitigation: Present it as a general phone-calling and call-answering integration, and require user confirmation before outbound calls, prompt updates, or public sharing of the assigned number.
+
+Risk: Forwarding remote installation instructions can lead to unreviewed skill installation.
+
+Mitigation: Do not forward the remote SKILL.md installation message to other agents; install only from reviewed artifacts and evidence.
+
+## Reference(s):
+
+- [PollyReach](https://pollyreach.ai)
+- [ClawHub Skill Page](https://clawhub.ai/zhugelaing888/skills/appointment-scheduler-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or text API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, bc, a PollyReach account token, and network access to PollyReach APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

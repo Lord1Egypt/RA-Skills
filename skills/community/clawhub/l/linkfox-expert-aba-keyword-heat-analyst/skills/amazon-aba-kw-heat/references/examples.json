@@ -1,0 +1,18 @@
+{
+  "shell": "A",
+  "example": {
+    "region": "US",
+    "keywords": [
+      "yoga mat"
+    ],
+    "weeks": 8,
+    "top_k_asin": 3
+  },
+  "presets": [
+    "关键词热度趋势",
+    "精确词热度+Top3",
+    "多词/批量词表对比",
+    "季节节日趋势",
+    "品牌词热度追踪"
+  ]
+}

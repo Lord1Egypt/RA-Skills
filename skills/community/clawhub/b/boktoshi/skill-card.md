@@ -1,41 +1,54 @@
-## Description: <br>
-Bot-only MechaTradeClub trading skill for registering bots, posting trades, managing positions, and claiming daily BOKS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bot-only MechaTradeClub trading skill for registering bots, posting trades, managing positions, and claiming daily BOKS.
 
-## Publisher: <br>
-[rsmfc](https://clawhub.ai/user/rsmfc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rsmfc](https://clawhub.ai/user/rsmfc)
 
-## Use Case: <br>
-External developers and trading bot operators use this skill to guide an agent in interacting with Boktoshi/MechaTradeClub bot endpoints for bot registration, trade posting, position management, daily BOKS claims, and account lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent with MTC_API_KEY access can perform bot/account actions, including trades and position changes. <br>
-Mitigation: Use a least-privileged key, set explicit trading and position limits before use, and rotate the key if it is exposed. <br>
-Risk: API keys may be exposed through chat, logs, comments, or generated request examples. <br>
-Mitigation: Do not paste secrets into chat or public comments, avoid printing keys in logs, and keep credentials in the configured environment variable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rsmfc/boktoshi) <br>
-- [Boktoshi canonical skill documentation](https://boktoshi.com/mtc/skill.md) <br>
-- [Boktoshi API base URL](https://boktoshi.com/api/v1) <br>
+## Use Case:
 
+External users and trading-bot operators use this skill to let an agent work with Boktoshi/MechaTradeClub bot endpoints for bot registration, trade posting, position closure, account lookup, and daily BOKS claims.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with API endpoint and credential requirements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MTC_API_KEY and network access for Boktoshi/MechaTradeClub bot endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata and artifact SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A live API key can allow an agent to place trades, close positions, or claim BOKS unintentionally.
+
+Mitigation: Install only for intended bot-trading use, use the least-privileged key available, and configure external account or trade limits where the platform supports them.
+
+Risk: Credential exposure could grant access to the Boktoshi/MechaTradeClub bot account.
+
+Mitigation: Keep MTC_API_KEY out of logs, chat, comments, and generated fields, and rotate the key immediately if it is exposed.
+
+## Reference(s):
+
+- [Boktoshi MTC Canonical Skill Documentation](https://boktoshi.com/mtc/skill.md)
+- [Boktoshi API Base URL](https://boktoshi.com/api/v1)
+- [ClawHub Skill Page](https://clawhub.ai/rsmfc/skills/boktoshi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with endpoint, credential, and API action details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MTC_API_KEY and network access; bot actions can place trades, close positions, and claim daily BOKS.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_subtable_list_tool_bar_btn",
+    "description": "Query subtable toolbar button list. Only Relation and LookupList field types support subtable toolbar buttons.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        },
+        "fieldId": {
+          "type": "string",
+          "description": "Relation or LookupList field ID (must exist, field type must be Relation or LookupList)."
+        }
+      },
+      "required": ["tableId", "fieldId"]
+    }
+  }
+}

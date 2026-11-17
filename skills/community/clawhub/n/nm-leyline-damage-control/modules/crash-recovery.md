@@ -41,7 +41,7 @@ Classify what you find:
 
 | Observation | Action |
 |---|---|
-| Clean index, no changes | Task never started — restart normally |
+| Clean index, no changes | Task never started: restart normally |
 | Only unstaged changes | Safe to inspect and resume |
 | Staged and unstaged mix | Stash before any further work |
 | Merge in progress | Switch to merge-conflict-resolution.md |
@@ -54,7 +54,7 @@ Check the task list for the crashed task:
   Determine its last known completed step before deciding to
   resume or restart.
 - If `pending`: the task had not yet started. No recovery
-  needed; assign normally.
+  needed. Assign normally.
 - If `completed`: the task completed before the crash. No
   action required.
 

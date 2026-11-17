@@ -1,43 +1,57 @@
-## Description: <br>
-B2B foreign-trade dashboard skill for conversion funnels, ROI tracking, outreach monitoring, and self-improving analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Dashboard helps agents produce B2B foreign-trade analytics dashboards for conversion funnels, ROI tracking, outreach performance, model routing, and feedback analysis.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External users and operators use this skill to review B2B trade lead generation performance through funnel, trend, ROI, outreach, model-routing, and dashboard views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes automatic tuning of related trade skills without documented approval, limits, storage, or rollback behavior. <br>
-Mitigation: Require explicit approval before changing Hunter, Qualifier, scoring weights, search strategy, memory, or other skill behavior. <br>
-Risk: Dashboard inputs may include ROI, lead, and email-performance data. <br>
-Mitigation: Limit analysis to data sources intentionally provided for the dashboard workflow. <br>
+## Use Case:
 
+External business and operations users can use this skill to ask an agent for a compact dashboard-style report on foreign-trade prospecting performance, including funnel movement, ROI, outreach results, and trend signals.
 
-## Reference(s): <br>
-- [Trade Dashboard ClawHub page](https://clawhub.ai/wangm-a3/trade-dashboard) <br>
-- [trade-hunter related skill](https://github.com/cloud-travel-skills/trade-hunter) <br>
-- [trade-qualifier related skill](https://github.com/cloud-travel-skills/trade-qualifier) <br>
-- [trade-closer related skill](https://github.com/cloud-travel-skills/trade-closer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and dashboard-oriented HTML/code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference ECharts 5, Leaflet, CDN-loaded visualization assets, and curl as an available binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, frontmatter, package.json) <br>
+Risk: The skill describes automatic feedback that can alter trade-hunter search behavior or trade-qualifier scoring weights without clearly defining approval, scope, or rollback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before feedback changes another trade skill, document the affected data and scoring changes, and keep a rollback path for search and scoring settings.
+
+Risk: Dashboard outputs may influence business decisions using incomplete or stale prospecting, outreach, cost, or revenue data.
+
+Mitigation: Review source data freshness and reconcile key metrics before using the dashboard for spend, targeting, or sales decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/trade-dashboard)
+- [Publisher Profile](https://clawhub.ai/user/wangm-a3)
+- [Related Skill: trade-hunter](https://github.com/cloud-travel-skills/trade-hunter)
+- [Related Skill: trade-qualifier](https://github.com/cloud-travel-skills/trade-qualifier)
+- [Related Skill: trade-closer](https://github.com/cloud-travel-skills/trade-closer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or HTML-oriented dashboard guidance with chart and metric descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference ECharts, Leaflet, and curl where available; no credential variables were detected in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

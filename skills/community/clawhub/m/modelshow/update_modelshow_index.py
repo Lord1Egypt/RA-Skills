@@ -6,11 +6,17 @@ result JSON files (e.g. for a custom dashboard or static site). Can also be used
 import argparse
 import json
 import os
+import re
 import shutil
 import sys
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
+
+# Result files are always named {slug}-{YYYY}-{MM}-{DD}-{HHMM}[-{n}] by
+# save_results.py. Pruning only ever touches files matching this pattern, so
+# pointing --web at a directory containing unrelated JSON can never delete it.
+RESULT_STEM_RE = re.compile(r'^(?P<slug>.+)-(?P<ts>\d{4}-\d{2}-\d{2}-\d{4})(?:-\d+)?$')
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Update ModelShow results index')
@@ -50,11 +56,8 @@ def extract_metadata(data: Dict, filepath: Path) -> Dict[str, Any]:
         winner_score = sorted_results[0].get('score', 0)
     
     stem = filepath.stem
-    parts = stem.rsplit('-', 4)
-    if len(parts) >= 5:
-        slug = '-'.join(parts[:-4])
-    else:
-        slug = stem
+    stem_match = RESULT_STEM_RE.match(stem)
+    slug = stem_match.group('slug') if stem_match else stem
     
     prompt = meta.get('prompt', '')
     prompt_preview = prompt[:100] + ('...' if len(prompt) > 100 else '')
@@ -91,15 +94,20 @@ def prune_old_files(web_dir: Path, retention_days: int, max_entries: int,
     if retention_days <= 0 and max_entries <= 0:
         return index_entries
     
-    now = datetime.now().replace(tzinfo=None)
+    # Compare in UTC: result timestamps are stored with a Z suffix and parsed
+    # to naive UTC below, so "now" must be naive UTC too.
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
     cutoff = now - timedelta(days=retention_days) if retention_days > 0 else None
-    
+
     id_to_timestamp = {e['id']: e['timestamp'] for e in index_entries}
-    
+
     for filepath in web_dir.glob('*.json'):
         if filepath.name == 'index.json':
             continue
         file_id = filepath.stem
+        if not RESULT_STEM_RE.match(file_id):
+            # Not a ModelShow result file — never touch it.
+            continue
         if file_id not in id_to_timestamp:
             if verbose:
                 print(f"Removing orphaned file: {filepath.name}")
@@ -234,8 +242,8 @@ def main():
     existing_index = prune_old_files(web_dir, args.retention_days, args.max_entries, existing_index, args.verbose)
     
     index_data = {
-        'version': '1.0.1',
-        'last_updated': datetime.now().isoformat() + 'Z',
+        'version': '1.2.0',
+        'last_updated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'count': len(existing_index),
         'results': existing_index
     }

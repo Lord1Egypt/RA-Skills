@@ -1,41 +1,58 @@
-## Description: <br>
-Extract frames or short clips from videos using ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract frames or short clips from videos using ffmpeg.
 
-## Publisher: <br>
-[jili544](https://clawhub.ai/user/jili544) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jili544](https://clawhub.ai/user/jili544)
 
-## Use Case: <br>
-Developers and content reviewers use this skill to extract a first frame, a frame at a timestamp, or an indexed frame from local video files with ffmpeg for inspection or thumbnail creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper writes to user-selected output paths and may overwrite an existing file. <br>
-Mitigation: Use a dedicated output directory and review the --out path before running the command. <br>
-Risk: Frame extraction depends on the local ffmpeg binary. <br>
-Mitigation: Install ffmpeg from a trusted package manager or verified source before using the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to extract still frames from local video files for inspection, thumbnail generation, or sharing. It supports grabbing the first frame, a timestamped frame, or a frame by index through an ffmpeg wrapper.
 
-## Reference(s): <br>
-- [FFmpeg](https://ffmpeg.org) <br>
-- [ClawHub skill page](https://clawhub.ai/jili544/my-test-viedo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated image files from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and a local video file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: The script overwrites the requested output path when ffmpeg runs with replacement enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit output paths that are safe to replace and review the destination before execution.
+
+Risk: The frame index argument is passed into the ffmpeg filter expression without validation.
+
+Mitigation: Pass only trusted non-negative integers to --index until the script validates index input.
+
+Risk: The skill depends on the local ffmpeg binary and local media file handling.
+
+Mitigation: Install ffmpeg from a trusted source and use the skill only with video files you are comfortable processing locally.
+
+## Reference(s):
+
+- [FFmpeg](https://ffmpeg.org)
+- [ClawHub skill page](https://clawhub.ai/jili544/skills/my-test-viedo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; shell script output is a local output path string.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg and writes image files to user-specified output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

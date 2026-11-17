@@ -1,44 +1,62 @@
-## Description: <br>
-Check if geographic coordinates are over water or land using the IsItWater API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check if geographic coordinates are over water or land using the IsItWater API.
 
-## Publisher: <br>
-[johnnagro](https://clawhub.ai/user/johnnagro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[johnnagro](https://clawhub.ai/user/johnnagro)
 
-## Use Case: <br>
-Developers and agent users use this skill to determine whether latitude and longitude coordinates are over water or land, and to check IsItWater account details before making API requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an IsItWater API key. <br>
-Mitigation: Prefer the ISITWATER_API_KEY environment variable, avoid sharing logs or config files containing the key, and restrict permissions on any local config file that stores it. <br>
-Risk: Water lookup requests consume IsItWater account credits. <br>
-Mitigation: Use the account info endpoint to check the remaining balance before making many lookup requests. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure the IsItWater API and check whether latitude and longitude coordinates are over water or land. It can also help check account balance before spending lookup credits.
 
-## Reference(s): <br>
-- [IsItWater](https://isitwater.com) <br>
-- [Water lookup endpoint](https://api.isitwater.com/v1/locations/water) <br>
-- [Account info endpoint](https://api.isitwater.com/v1/accounts/me) <br>
-- [AgentSkills Spec](https://agentskills.io) <br>
-- [OpenClaw Skills Docs](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an IsItWater API key; water lookups return JSON and cost 1 credit per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires an IsItWater API key, and exposed credentials could allow unauthorized use of the account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in an environment variable or protected OpenClaw configuration, and do not paste real API keys into chat or shared logs.
+
+Risk: Coordinate and place-name lookups may disclose sensitive home, work, or travel locations to external services.
+
+Mitigation: Avoid geocoding or checking private locations unless the user is comfortable sending that location to external services.
+
+Risk: Water lookup requests consume paid credits.
+
+Mitigation: Use the account endpoint to check remaining balance before making many lookups.
+
+## Reference(s):
+
+- [IsItWater](https://isitwater.com)
+- [IsItWater water lookup endpoint](https://api.isitwater.com/v1/locations/water)
+- [IsItWater account endpoint](https://api.isitwater.com/v1/accounts/me)
+- [AgentSkills Spec](https://agentskills.io)
+- [OpenClaw Skills Docs](https://docs.openclaw.ai/tools/skills)
+- [ClawHub skill page](https://clawhub.ai/johnnagro/skills/isitwater)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash examples for API setup and requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an IsItWater API key; water lookups cost 1 credit each while account lookup is free.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

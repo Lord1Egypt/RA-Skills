@@ -1,42 +1,59 @@
-## Description: <br>
-Fix and verify OpenClaw TTS media-route behavior in installed dist builds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix and verify OpenClaw TTS media-route behavior in installed dist builds when audio URLs, binary MP3 serving, Bearer authentication, Range requests, or temporary-file cleanup are broken.
 
-## Publisher: <br>
-[tralaleo-tralala](https://clawhub.ai/user/tralaleo-tralala) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tralaleo-tralala](https://clawhub.ai/user/tralaleo-tralala)
 
-## Use Case: <br>
-Developers and engineers use this skill to repair and verify OpenClaw gateway TTS media routes when generated audio URLs, MP3 serving, Bearer auth, Range requests, or temporary-file cleanup are broken. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repairing an installed OpenClaw gateway runtime can disrupt service behavior if the wrong dist file is patched or the diff is not reviewed. <br>
-Mitigation: Patch only the active gateway-cli dist build, review the target file and diff, keep the .bak backup, restart deliberately, and verify with authenticated range curl. <br>
-Risk: Bearer tokens used for media-route verification can be exposed through shell history, logs, or process-visible command arguments. <br>
-Mitigation: Use care with real tokens during verification and avoid placing them in shell history, logs, or shared command transcripts. <br>
+## Use Case:
 
+Developers and operators use this skill to repair and verify OpenClaw gateway TTS media routes in installed builds. It guides minimal patching, backup, restart, authenticated curl verification, and temporary-file cleanup checks.
 
-## Reference(s): <br>
-- [TTS media-route patch checklist](references/patch-checklist.md) <br>
-- [ClawHub release page](https://clawhub.ai/tralaleo-tralala/tts-media-route-fix) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tralaleo-tralala) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes backup, patch, restart, and authenticated curl verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow edits installed OpenClaw gateway code, which can break the active gateway if the wrong file is patched or unrelated changes are introduced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Patch only the active hashed gateway build, keep edits minimal, create .bak backups before every edit, restart the gateway, and restore from backup if verification fails.
+
+Risk: Bearer tokens used during verification can be exposed if passed carelessly on shared systems or retained in shell history.
+
+Mitigation: Use a controlled environment, avoid running helpers as root, avoid exposing real bearer tokens on the command line when possible, and prefer loopback or HTTPS verification endpoints.
+
+Risk: Misconfigured media routing can serve HTML or unauthenticated content instead of protected binary MP3 responses.
+
+Mitigation: Verify authenticated GET or HEAD behavior, strict filename validation, audio/mpeg responses, Range support, and correct 200, 206, 404, 405, and 416 status handling.
+
+## Reference(s):
+
+- [TTS media-route patch checklist](references/patch-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/tralaleo-tralala/skills/tts-media-route-fix)
+- [Publisher profile](https://clawhub.ai/user/tralaleo-tralala)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backup, patch, restart, and curl verification workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

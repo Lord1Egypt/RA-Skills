@@ -1,46 +1,61 @@
-## Description: <br>
-Use when building or debugging an agent that integrates with the eSIMPal API to buy eSIMs for end-users, create orders, and deliver activation links, QR codes, or manual-install details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building or debugging an agent (e.g. Telegram/WhatsApp bot, AI assistant) that integrates with the eSIMPal API to buy eSIMs for end-users, create orders, and deliver activation links, QR codes, or manual-install details.
 
-## Publisher: <br>
-[deniurchak](https://clawhub.ai/user/deniurchak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deniurchak](https://clawhub.ai/user/deniurchak)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or test agents, bots, and assistants that guide eSIMPal order workflows, payments, activation, and delivery of eSIM installation details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through billable eSIM purchase, payment, or activation workflows. <br>
-Mitigation: Require explicit action-specific user confirmation before order creation, payment, or activation, and refuse execution when confirmation is absent. <br>
-Risk: An exposed eSIMPal API key could allow unauthorized order activity. <br>
-Mitigation: Use sandbox or least-privilege keys where possible, keep ESIMPAL_API_KEY out of logs and stored files, and rotate keys if exposure is suspected. <br>
-Risk: Retries with new idempotency keys could create duplicate billable actions. <br>
-Mitigation: Reuse the same idempotency key only for retries of the same request and use a new key only for a new user-confirmed logical action. <br>
-Risk: Activation actions may be irreversible or consume inventory. <br>
-Mitigation: Ask the user to choose and confirm the activation path before calling new-profile or existing-profile activation endpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [eSIMPal API base URL](https://getesimpal.com/api) <br>
-- [eSIMPal API example plans endpoint](https://getesimpal.com/api/v1/plans?country=TR&min_data_gb=1) <br>
-- [ClawHub skill page](https://clawhub.ai/deniurchak/esimpal-api) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/deniurchak) <br>
+## Use Case:
 
+Developers and engineers use this skill to build or debug bots and assistants that call the eSIMPal API to list plans, create orders, guide payment, activate eSIM packages, and deliver QR codes, activation links, or manual installation details to end users.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown guidance with code, command, configuration, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ESIMPAL_API_KEY at runtime and action-specific user confirmation before purchase, payment, or activation requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A configurable base URL could expose the eSIMPal bearer key to an untrusted endpoint.
+
+Mitigation: Use only the fixed eSIMPal API endpoint or a strictly allowlisted non-production endpoint with separate test credentials; do not forward Authorization headers across cross-origin redirects.
+
+Risk: Order creation, payment, or activation can cause billable or irreversible user-facing actions.
+
+Mitigation: Require explicit, action-specific user confirmation for order creation, payment, and activation endpoints; refuse execution when confirmation is absent.
+
+Risk: API keys could be exposed through logs, transcripts, files, or overly broad credentials.
+
+Mitigation: Load ESIMPAL_API_KEY from the runtime environment, avoid printing or persisting it, use least-privilege scopes, and rotate keys if exposure is suspected.
+
+Risk: Hidden retries or incorrect idempotency keys could create duplicate orders or payment sessions.
+
+Mitigation: Reuse the same idempotency key only for retrying the same request, use a new key only for a new confirmed action, and avoid hidden retries for billable operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deniurchak/skills/esimpal-api)
+- [eSIMPal API Base URL](https://getesimpal.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration, API calls]
+
+**Output Format:** [Markdown with API endpoint examples, JSON snippets, and integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ESIMPAL_API_KEY at runtime; billable and activation actions require explicit, action-specific user confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Execution and risk-management framework for agents trading on Hyperliquid through a host-provided authenticated client, covering trade validation, position sizing, funding checks, order confirmation, and safe-mode halts without collecting or managing secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Hyperliquid execution and risk-management layer for agents that use a host-provided authenticated trading client.
 
-## Publisher: <br>
-[jurgenw81](https://clawhub.ai/user/jurgenw81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jurgenw81](https://clawhub.ai/user/jurgenw81)
 
-## Use Case: <br>
-Developers and agent operators use this skill to validate strategy signals, size positions, construct normalized Hyperliquid order requests, and monitor execution through a host-provided authenticated client while keeping credential handling outside the skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive live leveraged trading, which can cause financial loss if orders or position changes are executed without strong user controls. <br>
-Mitigation: Use paper trading or dry-run first, require explicit confirmation for every live order or position change, and set tight exchange-side limits before enabling live execution. <br>
-Risk: A host-provided authenticated session can place real orders if it is over-permissive or cannot be revoked quickly. <br>
-Mitigation: Keep wallet signing and secret handling outside the skill, provide only the minimum required authenticated session, and ensure the session can be revoked immediately. <br>
-Risk: Stale market data, inconsistent account state, or unconfirmed order state can produce unsafe execution decisions. <br>
-Mitigation: Halt new trades when state cannot be read or reconciled, require order-state confirmation after submission, and use safe-mode behavior for inconsistent execution results. <br>
+## Use Case:
 
+Developers and agent builders use this skill to standardize Hyperliquid perpetual futures execution, including trade validation, position sizing, order confirmation, and safety halts. It is intended for agents that already receive strategy signals, market data, account state, and an authenticated client from the host runtime.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jurgenw81/hyperliquid-agent) <br>
-- [Hyperliquid onboarding link](https://app.hyperliquid.xyz/join/M8UHZWP) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Structured data, Code, Guidance] <br>
-**Output Format:** [JSON-like execution objects with human-readable reasons and example Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trade status, reason, normalized order request, execution result, position state, and risk summary; secrets are outside the skill output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The agent can be given live Hyperliquid trading authority without a strong confirmation or default simulation guard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted or paper-trading Hyperliquid client by default, and require explicit host-side approval before live order submission.
+
+Risk: Trading outside intended markets, exposure limits, or stop policies could create financial loss.
+
+Mitigation: Enforce host-side market allowlists, hard risk limits, stop-order verification, and emergency shutdown controls.
+
+Risk: Secrets or signing authority could be exposed if authentication is handled inside prompts, logs, or skill inputs.
+
+Mitigation: Keep wallet connection, session creation, transaction signing, and secret storage outside the skill, and pass only a host-provided authenticated client or session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jurgenw81/skills/hyperliquid-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured execution output descriptions and Python example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trade-status reasoning, normalized order-request structure, execution-result expectations, position-state details, and risk summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

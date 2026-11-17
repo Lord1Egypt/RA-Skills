@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Reddit posts, comments, subreddits, users, moderation, and community workflows via the Reddit API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Reddit posts, comments, subreddits, users, moderation, and community workflows via the Reddit API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and community managers use this skill to connect a Reddit account through ClawLink, discover available Reddit tools, inspect community content, submit posts or comments, and perform moderation workflows with confirmation for write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth-connected Reddit access and sensitive credentials managed through ClawLink. <br>
-Mitigation: Install only when Reddit workflows are needed, verify the Reddit connection before use, and review commands before running them. <br>
-Risk: Posting, deletion, and moderation actions can affect Reddit content or community members. <br>
-Mitigation: Preview and explicitly confirm write, destructive, bulk, and moderation actions before execution. <br>
-Risk: Tool availability and permissions depend on the live ClawLink catalog, Reddit scopes, rate limits, and subreddit moderator permissions. <br>
-Mitigation: List or search the live Reddit tools first, describe unfamiliar tools before calling them, and report real API errors without inventing results. <br>
+## Use Case:
 
+Reddit users and community moderators use this skill to find public content, manage their own posts and comments, and carry out authorized moderation through ClawLink.
 
-## Reference(s): <br>
-- [Reddit API](https://www.reddit.com/dev/api/) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=reddit-communities) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live ClawLink Reddit tool catalog as the source of truth before making tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Installing the integration requires enabling the ClawLink plugin and connecting a Reddit account for account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin and connection permissions before installing or linking an account.
+
+Risk: Read-only public Reddit lookups can consume ClawLink credit even without a connected Reddit account.
+
+Mitigation: Confirm expected usage and credit costs before repeated public-data searches.
+
+Risk: Posting, deletion, and moderation can change content or affect community members.
+
+Mitigation: Preview each action and confirm its exact target and effect with the user before execution.
+
+## Reference(s):
+
+- [Reddit skill on ClawHub](https://clawhub.ai/hith3sh/skills/reddit-communities)
+- [Reddit API documentation](https://www.reddit.com/dev/api/)
+- [ClawLink OpenClaw documentation](https://docs.claw-link.dev/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Conversational text or Markdown, with commands when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

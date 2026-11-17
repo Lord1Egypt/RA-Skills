@@ -1,45 +1,55 @@
-## Description: <br>
-Value Aware Guard monitors value drift and boundary pressure, then suggests or records graduated interventions through a Node.js CLI and proactive-engine signal workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors value drift, boundary violations, low-energy alerts, and user-pattern signals, then produces guard reports or progressive interventions through a CLI or proactive-engine signal mode.
 
-## Publisher: <br>
-[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor stated user values, boundary conditions, and proactive-engine signals, then produce guardrail status, reports, reminders, or intervention records. It is most relevant for workflows that need consent-aware support around time, energy, privacy, and decision boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says the skill may monitor personal patterns over time without enough consent and control safeguards. <br>
-Mitigation: Use it only after clear opt-in, make the monitoring scope visible, and provide a simple way to pause monitoring and delete stored observations. <br>
-Risk: The release evidence flags possible escalation to high-impact interventions, including restrictive actions or emergency-contact use. <br>
-Mitigation: Require explicit user approval for restrictive actions and emergency-contact use, except for narrowly documented emergencies that the user has agreed to in advance. <br>
-Risk: Artifact behavior records interventions and publishes proactive signals that may influence later agent behavior. <br>
-Mitigation: Review generated intervention records and outbound signals before connecting them to automated workflows, and keep conservative limits on daily interventions and escalation thresholds. <br>
+## Use Case:
 
+Developers and external agent users use this skill to monitor stated values, interaction boundaries, energy signals, and value drift, and to receive CLI reports, signal handling, or progressive intervention guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaoguoqiang-hub/value-aware-guard) <br>
-- [Boundary Detection Rules](references/boundary-detection-rules.md) <br>
-- [Value Drift Formula](references/value-drift-formula.md) <br>
-- [Intervention Levels](references/intervention-levels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and Markdown guidance with command examples and JSON-style status, intervention, and signal records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local guard configuration, user-value, state, intervention, and signal files in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: ClawHub release evidence; artifact package.json reports 0.5.0) <br>
+Risk: The skill persists sensitive behavioral, boundary, value, intervention, and signal records locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable persistence before use, avoid sensitive health, financial, relationship, identity, or work-profile data unless storage is intentional, and inspect or delete local records regularly.
+
+Risk: The skill supports silent monitoring and progressive interventions without clear user-facing consent, retention, or deletion controls.
+
+Mitigation: Require explicit user consent before monitoring or intervention, keep intervention thresholds conservative, and manually verify retention and deletion behavior before deployment.
+
+## Reference(s):
+
+- [Boundary Detection Rules](references/boundary-detection-rules.md)
+- [Intervention Levels](references/intervention-levels.md)
+- [Value Drift Formula](references/value-drift-formula.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with inline shell commands and JSON-like status data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read and write local guard state, value, intervention, and signal files under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

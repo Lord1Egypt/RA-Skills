@@ -1,42 +1,55 @@
-## Description: <br>
-Explains Monero's privacy features, including ring signatures, stealth addresses, RingCT, Kovri/I2P, Dandelion++, and Bulletproofs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains Monero's privacy features including ring signatures, stealth addresses, RingCT, Kovri/I2P, Dandelion++, and Bulletproofs.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-Developers, researchers, and cryptocurrency users use this skill to understand Monero's privacy mechanisms, compare them with other cryptocurrencies, and identify practical limitations before relying on privacy claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency privacy guidance can be outdated or misapplied for financial, legal, or operational decisions. <br>
-Mitigation: Verify technical claims, legal implications, and operational assumptions against current authoritative sources before relying on them. <br>
-Risk: The artifact includes external links and a voluntary XMR tip address. <br>
-Mitigation: Inspect external links before use and treat the donation address as optional, not part of skill operation. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to have an agent explain Monero privacy mechanisms, compare privacy behavior across cryptocurrencies, and summarize practical privacy limitations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liumaimiao/monero-privacy-features) <br>
-- [Monero Research Lab papers](https://ww.getmonero.org/resources/research-lab/) <br>
-- [How Monero works](https://ww.getmonero.org/resources/moneropedia/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, credentials, or system access; informational cryptocurrency privacy content only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Educational cryptocurrency privacy content may be incomplete, outdated, or linked to external material that has changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as an informational reference and independently verify technical claims and links against current Monero documentation before relying on them.
+
+Risk: The artifact includes a voluntary XMR donation address from the author.
+
+Mitigation: Treat the address as optional author-provided donation information, not a requirement or endorsement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumaimiao/skills/monero-privacy-features)
+- [Monero Research Lab papers](https://ww.getmonero.org/resources/research-lab/)
+- [How Monero works](https://ww.getmonero.org/resources/moneropedia/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown educational reference]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational content; no executable code, persistence, credential access, or automatic actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version, artifact/package.json, artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

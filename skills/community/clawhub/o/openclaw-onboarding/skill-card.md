@@ -1,46 +1,60 @@
-## Description: <br>
-Guides new users through OpenClaw setup, capability discovery, persistent memory, skill discovery, and group chat summary workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide new users to quickly learn and use OpenClaw features, including setup, skill discovery, memory, self-learning, and group chat summary.
 
-## Publisher: <br>
-[binson1994](https://clawhub.ai/user/binson1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binson1994](https://clawhub.ai/user/binson1994)
 
-## Use Case: <br>
-New OpenClaw users and the agents assisting them use this skill to run a short onboarding flow. It teaches basic setup, capability discovery, persistent memory, self-service skill installation, and group chat summary prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory examples can save personal, business, or sensitive information in local OpenClaw files. <br>
-Mitigation: Avoid storing secrets or sensitive personal or business data, and review saved memory files before relying on or sharing them. <br>
-Risk: The onboarding flow teaches skill installation, including confirmation-skipping commands, which can install unreviewed third-party skills. <br>
-Mitigation: Review a skill's publisher, source, permissions, and security guidance before installation; avoid confirmation-skipping install flags for new skills. <br>
-Risk: Group chat summary examples can process or export conversation content that the user may not be authorized to access or share. <br>
-Mitigation: Use chat-summary and document-export features only for conversations and destinations where the user has authorization. <br>
+## Use Case:
 
+New OpenClaw users use this skill to complete a short onboarding flow, learn core commands, configure preferences, discover available skills, use persistent memory, and try group chat summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binson1994/openclaw-onboarding) <br>
-- [Publisher profile](https://clawhub.ai/user/binson1994) <br>
-- [README](artifact/README.md) <br>
-- [OpenClaw quickstart training](artifact/references/training/quickstart.md) <br>
-- [Find Skills reference](artifact/references/find-skills/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with example prompts, tables, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes onboarding scripts and examples that may write local OpenClaw configuration and memory files when followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory guidance can lead users to save secrets, regulated personal data, or confidential company information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive information out of memory files and review saved memory entries before relying on or sharing them.
+
+Risk: Group chat summarization can expose private or unauthorized conversations.
+
+Mitigation: Summarize only chats the user is authorized to process and limit summaries to the requested group and time window.
+
+Risk: Skill discovery and installation guidance can encourage unattended installation of additional capabilities.
+
+Mitigation: Review each skill source, version, and requested permissions before installation, especially for global installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binson1994/skills/openclaw-onboarding)
+- [README.md](artifact/README.md)
+- [OpenClaw quickstart training](artifact/references/training/quickstart.md)
+- [Bundled find-skills reference](artifact/references/find-skills/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and onboarding prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language onboarding flow; may propose local configuration, persistent memory files, skill installation, and group chat summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

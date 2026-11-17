@@ -1,20 +1,20 @@
 ---
 name: update-readme
-description: Refreshes README structure and content using repo context and exemplar research
-version: 1.9.8
+description: Refreshes README structure favoring concision (an index, not a manual)
+version: 1.10.3
 triggers:
   - readme
   - documentation
   - exemplars
   - research
   - structure
-  - README needs a structural update after significant project changes
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:shared", "night-market.sanctum:git-workspace-review", "night-market.imbue:proof-of-work", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
+  - the README needs a structural update after significant project changes
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:git-workspace-review", "night-market.imbue:proof-of-work", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # README Update Workflow
@@ -28,7 +28,7 @@ Run `Skill(sanctum:git-workspace-review)` first to capture repo context and diff
 - Updating inline docs: use doc-updates
 - Consolidating ephemeral reports: use doc-consolidation
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `update-readme:language-audit`
 2. `update-readme:exemplar-research`
 3. `update-readme:outline-aligned`
@@ -52,9 +52,57 @@ See `modules/language-audit.md` for detailed detection patterns and commands.
 See `modules/exemplar-research.md` for search query patterns and evaluation criteria.
 
 ## Step 3 - Outline Alignment (`update-readme:outline-aligned`)
-- Compare current README headings (`rg -n '^#' README.md`) against patterns observed in exemplars.
-- Draft a target outline covering: value proposition, installation, quickstart, deeper usage/configuration, architecture/feature highlights, performance or math guarantees, documentation links, contribution/governance, roadmap/status, and licensing/security notes.
-- validate internal documents (docs/, specs/, wiki, commands/) are mapped to the relevant sections so the README anchors them with context-sensitive links.
+
+**The README is an index, not a manual.** Lead with what the
+project is, how to install it, and a scannable table of its
+units (plugins, commands, packages). Link out for everything
+else.
+
+**A README is a `newcomer` document.** Its reader has never seen
+this project, so the test for every candidate section is whether
+that reader needs it before they can install and run one thing.
+Rationale, alternatives considered, and internals are `expert`
+material: extract them to `docs/<topic>.md` or the
+`book/`, linked from the README in one line naming who the page
+is for. Never delete them to shorten the README. Tier table and
+cut test: `scribe:slop-detector` module `audience-targeting.md`.
+
+A README that declares a different tier (an internal tool whose
+only readers already run it) says so in its lead.
+
+When this repo's root README was simplified in 2026, it
+dropped from 435 to 200 lines (65% fewer words) by deleting
+inlined depth and linking to `book/` instead. Aim for that
+shape, not a section-by-section coverage sweep.
+
+- Compare current README headings (`rg -n '^#' README.md`)
+  against the exemplars from Step 2. Lean marketplace and
+  CLI-tool READMEs (asdf-vm/asdf-plugins, ohmyzsh/ohmyzsh,
+  ryoppippi/ccusage) are index-shaped: prose intro under ~500
+  words, a unit table doing the work, depth behind links.
+- Keep only the sections that earn a place in an index: a
+  one-line value proposition, one install path, a compact
+  command or unit table, a short "what's inside" summary, a
+  single Documentation link section, and metadata
+  (requirements, contributing, license) last. For every other
+  candidate section ask: **does this belong in the README, or
+  behind a link?**
+- Default to linking out. Send deep architecture, FAQ,
+  roadmap, changelog, alternate install methods, and per-unit
+  detail to their own pages. Per-unit docs live with the unit
+  (hub-and-spoke), never duplicated in the root.
+- Order signals priority: title and tagline first, then
+  install, then the index table, then a short feature summary,
+  then Documentation links, with housekeeping (requirements,
+  contributing, license) last.
+- Map internal documents (docs/, book/, specs/, commands/) to
+  the section that links them, so the README anchors depth
+  without restating it.
+
+**Soft budget**: a marketplace or collection root README runs
+roughly 150-400 lines of prose plus any index table. A section
+that grows over time (roadmap, FAQ, changelog) belongs in a
+linked page.
 
 ## Step 4 - Apply Edits (`update-readme:edits-applied`)
 - Implement the new structure directly in `README.md`
@@ -63,7 +111,10 @@ See `modules/exemplar-research.md` for search query patterns and evaluation crit
   wrap prose at 80 chars (prefer sentence/clause boundaries),
   blank lines around headings, ATX headings only, blank line
   before lists, reference-style links for long URLs.
-- Maintain concise, evidence-based prose; avoid marketing fluff.
+- Maintain concise, evidence-based prose and avoid marketing fluff.
+- Prefer deletion and linking over inlining. If a section
+  duplicates a docs page, cut it and link the page; if it
+  grows over time, move it out of the README entirely.
 - Add comparison tables, feature lists, or diagrams only if
   they originate from current repository assets (no speculative
   content).
@@ -111,18 +162,23 @@ Agent(scribe:doc-editor) --target README.md
 - Summarize detected languages, exemplar sources (with citations), key structural decisions, and follow-up TODOs (e.g., add badges, upload diagrams).
 
 ## Exit Criteria
-- All `TodoWrite` items are complete.
-- The README reflects a modern, language-aware structure, referencing both internal docs and external inspiration with citations.
-- Research notes and command references are captured so future reviewers can reproduce the process.
+
+- [ ] All progress items are complete.
+- [ ] The README is index-shaped: prose intro within the soft
+  budget (roughly 150-400 lines plus any unit table), one
+  install path, and a scannable unit/command table.
+- [ ] No README section duplicates a `book/` or `docs/` page;
+  depth is linked, not inlined (`rg -n '^#' README.md` headings
+  each map to a section that earns a place in an index).
+- [ ] The README serves a `newcomer`, or declares the tier it
+  serves instead in its lead.
+- [ ] Content cut for tier fit landed in a linked page, not the
+  bin (`docs/` or `book/`).
+- [ ] The README references internal docs and external
+  exemplars with citations.
+- [ ] Research notes and command references are captured so
+  future reviewers can reproduce the process.
+
 ## Troubleshooting
 
-### Common Issues
-
-**Documentation out of sync**
-Run `make docs-update` to regenerate from code
-
-**Build failures**
-Check that all required dependencies are installed
-
-**Links broken**
-Verify relative paths in documentation files
+See the Troubleshooting section of `Skill(sanctum:doc-updates)`.

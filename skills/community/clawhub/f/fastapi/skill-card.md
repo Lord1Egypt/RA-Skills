@@ -1,37 +1,58 @@
-## Description: <br>
-Build fast, production-ready Python APIs with type hints, validation, and async support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, debugs, and hardens FastAPI services, including async endpoints, Pydantic models, dependencies, auth, testing, deployment, and production troubleshooting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise FastAPI implementation guidance covering async behavior, validation, dependency injection, lifespan management, responses, error handling, background tasks, security, and testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FastAPI guidance may be applied directly to production systems without review of security, authentication, database, or background-task patterns. <br>
-Mitigation: Review generated or copied code snippets before production use and validate security, authentication, database, and background-task behavior in the target application. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, review, debug, test, secure, and deploy FastAPI applications with guidance for common framework, database, async, auth, and production issues.
 
-## Reference(s): <br>
-- [ClawHub FastAPI Skill Page](https://clawhub.ai/ivangdavila/fastapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no evidence that the skill itself runs commands or accesses private data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated FastAPI code or dependency recommendations may not match the target application's production constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated app-specific code, dependency choices, security behavior, and deployment settings before applying them in production.
+
+Risk: The skill may use a local preference file under ~/Clawic/data/fastapi/config.yaml.
+
+Mitigation: Treat stored preferences as non-secret configuration and avoid placing credentials or sensitive project data in that file.
+
+## Reference(s):
+
+- [ClawHub FastAPI Skill Page](https://clawhub.ai/ivangdavila/skills/fastapi)
+- [Clawic FastAPI Skill Page](https://clawic.com/skills/fastapi)
+- [FastAPI Skill Guide](artifact/SKILL.md)
+- [FastAPI Security Guide](artifact/security.md)
+- [FastAPI Deployment Guide](artifact/deployment.md)
+- [FastAPI Testing Guide](artifact/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a local preference file at ~/Clawic/data/fastapi/config.yaml; generated app-specific code and dependency choices should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

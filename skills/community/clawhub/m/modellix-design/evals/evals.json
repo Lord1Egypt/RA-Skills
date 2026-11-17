@@ -1,0 +1,109 @@
+{
+  "skill_name": "modellix-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate an image of a red panda sitting on a mossy stone in a misty bamboo forest at dawn. I don't care which model you use — just make it look good and save the file locally when it's done.",
+      "expected_output": "Does not invent a model slug. Asks which provider/model to use before any paid submit.",
+      "files": [],
+      "assertions": [
+        "Asked which model slug to use and did not submit a model the user did not name",
+        "Did not call modellix_submit_task or modellix-cli model run before the user named a slug",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Make a short text-to-video of ocean waves under a cloudy sunset. No model preference from me — pick whatever the skill says is default, wait for it to finish, and download the mp4.",
+      "expected_output": "Does not invent a text-to-video slug. Asks which provider/model to use before any paid submit.",
+      "files": [],
+      "assertions": [
+        "Asked which model slug to use and did not submit a text-to-video model the user did not name",
+        "Did not call modellix_submit_task or modellix-cli model run before the user named a slug",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to use Modellix but I'm not sure if my CLI/auth is set up. Check my environment first, then if things look good generate a simple square image that says 'hello modellix' as typography art using the default image model.",
+      "expected_output": "Checks the environment when the CLI path will be used. Asks which image model to run instead of choosing one. Does not submit until the user names a slug.",
+      "files": [],
+      "assertions": [
+        "On the CLI path, ran modellix-cli doctor or scripts/preflight.py before submitting. On the Media Generation path, did not require that CLI check before modellix_submit_task",
+        "Asked which model slug to use",
+        "Did not submit google/nano-banana-2-lite or any other slug the user did not name",
+        "Did not skip the auth check for the path actually used and jump straight to a paid submit",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Synthesize speech that says 'Welcome to Modellix' — I don't care which TTS model you use. Use the skill default, wait for completion, and save the audio locally.",
+      "expected_output": "Does not invent a TTS slug or voice. Asks which model to use before any paid submit.",
+      "files": [],
+      "assertions": [
+        "Asked which model slug to use and did not invent a TTS model or voice",
+        "Did not call modellix_submit_task or modellix-cli model run before the user named a slug",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Transcribe this public audio URL with whatever STT model the skill recommends by default: https://example.com/meeting.mp3 — wait and show me the result (download if needed).",
+      "expected_output": "Does not invent an STT slug. Asks which model to use before any paid submit. Keeps the provided audio URL for when a model is chosen.",
+      "files": [],
+      "assertions": [
+        "Asked which model slug to use and did not invent an STT model",
+        "Did not call modellix_submit_task or modellix-cli model run before the user named a slug",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Clone the speaker from https://example.com/reference.wav and say 'There is a large garden behind my house.' — pick the skill's default speech-to-speech model and save the audio.",
+      "expected_output": "Does not invent a speech-to-speech slug. Asks which model to use before any paid submit.",
+      "files": [],
+      "assertions": [
+        "Asked which model slug to use and did not invent a speech-to-speech model",
+        "Did not call modellix_submit_task or modellix-cli model run before the user named a slug",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Generate an image of a cute cat with bytedance/seedream-5.0-pro. Look up that model's request schema first so the body is valid, then wait for the result and save the file locally.",
+      "expected_output": "Uses the user-named slug bytedance/seedream-5.0-pro. Reads that model's schema with modellix_get_schema when Media Generation is available, otherwise modellix-cli model get-schema, then submits once on that same path and saves the file.",
+      "files": [],
+      "assertions": [
+        "Called modellix_get_schema when Media Generation is available, otherwise modellix-cli model get-schema, for bytedance/seedream-5.0-pro before submitting",
+        "Used model slug bytedance/seedream-5.0-pro because the user named it",
+        "Request body included required fields from the get-schema contract",
+        "When Modellix Media Generation tools are available, submitted once via modellix_submit_task and did not also call model run. When they are unavailable, submitted via modellix-cli model run with wait (or model run + task wait) after preflight",
+        "Did not print or log the raw API key value"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "The video task task-existing is processing and upload quota is full. Continue waiting and reuse existing files. Do not generate again or delete without approval.",
+      "expected_output": "Uses task wait with task-existing and file list to reuse URLs. A normal deadline keeps the ID. Deletion requires explicit selection and approval.",
+      "files": [],
+      "assertions": [
+        "Uses server-side wait rather than task get plus sleep",
+        "Keeps task-existing after exit 124",
+        "Lists reusable uploaded files",
+        "Does not automatically delete or replay uploads or paid submissions"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Edit the local file ./refs/product.png into a watercolor poster. Media Generation is connected, but this input is on disk. Use the default edit model and save the result.",
+      "expected_output": "Asks which edit model to use because the skill has no default. Does not upload or submit until the user names a slug. A later submit of a local file uses CLI file upload, not modellix_upload_file.",
+      "files": [],
+      "assertions": [
+        "Asked which model slug to use and did not invent an edit model",
+        "Did not call modellix_upload_file or modellix_submit_task for the local file before the user named a slug",
+        "Did not print or log the raw API key value"
+      ]
+    }
+  ]
+}

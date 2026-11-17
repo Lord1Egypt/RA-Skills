@@ -1,0 +1,77 @@
+{
+  "configVersion": 2,
+
+  "bookTitle": "示例：OpenClaw 官方文档",
+  "bookSlug": "openclaw-docs",
+  "createdAt": "2026-10-05",
+
+  "confirmed": {
+    "at": "",
+    "by": "",
+    "items": {
+      "source": false,
+      "language": false,
+      "cardType": false,
+      "pushMethod": false,
+      "naming": false,
+      "notes": false,
+      "notify": false
+    }
+  },
+
+  "source": {
+    "type": "book",
+    "file": "",
+    "bookSource": "",
+    "site": {
+      "url": "",
+      "sitemap": "auto",
+      "include": [],
+      "exclude": ["/", "/start/hubs", "/start/docs-directory"],
+      "bodySuffix": ".md",
+      "sections": []
+    }
+  },
+
+  "language": "en",
+  "granularity": "chapter",
+
+  "cardType": "pdf-standard",
+  "imageFormat": "1:1",
+  "renderer": {
+    "pdf-standard": "gen_card_pdf.py",
+    "pdf-large": "gen_card_pdf_large.py",
+    "long-image": "gen_image.py",
+    "feishu-card": "send_feishu.py",
+    "feishu-card+image": "gen_image.py"
+  },
+
+  "pushMethod": "local",
+  "ima": { "kbName": "", "folderName": "" },
+  "feishu": { "webhook": "" },
+  "feishuApi": { "appId": "", "appSecret": "", "chatId": "" },
+  "local": { "outDir": "" },
+  "notifyWebhook": "",
+
+  "naming": {
+    "filePrefix": "BOOK",
+    "sectionZh": "",
+    "fileTemplate": "{prefix}{seq:03d} {sectionZh}——{chainZh}",
+    "markerTemplate": "{idx}/{total}",
+    "manifestIndex": false
+  },
+
+  "itemsLayout": "single",
+
+  "notes": {
+    "channel": "local",
+    "dir": "",
+    "ima": { "notebookName": "", "progressNoteId": "", "guideNoteId": "" }
+  },
+
+  "batch": { "listNextN": 10, "translateParallel": true },
+
+  "testPush": false,
+  "cardPrefix": "BOOK",
+  "template": "pdf-standard"
+}

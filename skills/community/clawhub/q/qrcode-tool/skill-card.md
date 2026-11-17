@@ -1,40 +1,54 @@
-## Description: <br>
-Generate QR codes from URLs or text. Export as PNG with customizable size. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QR codes from URLs or text. Export as PNG with customizable size. No API key required.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and external users use this skill to generate QR codes for URLs or text with configurable size, margin, and image format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR payload text is sent to api.qrserver.com, which can expose private URLs, credentials, or other sensitive content to a third-party service. <br>
-Mitigation: Use the skill only for non-sensitive QR contents, and choose an offline QR generator when encoding passwords, private keys, internal links, recovery URLs, or Wi-Fi credentials. <br>
+## Use Case:
 
+Developers and external users can generate QR code images from URLs, plain text, contact links, phone links, or Wi-Fi payloads with configurable size, margin, and image format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/qrcode-tool) <br>
-- [freedompixels publisher profile](https://clawhub.ai/user/freedompixels) <br>
-- [qrserver.com API](https://api.qrserver.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Command-line text or JSON containing a QR image data URL and generation metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses api.qrserver.com to generate QR image data; users should avoid sensitive payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Encoded text is sent to api.qrserver.com, which can expose passwords, tokens, internal URLs, contact details, or Wi-Fi credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only nonsensitive payloads with this skill, or use a trusted local QR generator for confidential data.
+
+Risk: JSON output includes the generated request URL, which can preserve the encoded payload in logs or downstream records.
+
+Mitigation: Avoid JSON mode for sensitive content and redact generated URLs before logging or sharing output.
+
+## Reference(s):
+
+- [qrserver.com API](https://api.qrserver.com)
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/qrcode-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; the script can print text status or JSON and returns base64-encoded image data when used programmatically.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated QR payloads are requested from api.qrserver.com; PNG, GIF, JPEG, and JPG formats are supported by the script.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-A guide for implementing cost governance in multi-agent systems with per-agent wallets, budget caps, spend alerts, cost attribution, dashboards, API key isolation, and Python integration examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers and platform teams through multi-agent FinOps patterns for per-agent wallets, budget caps, spend alerts, cost attribution, volume discounts, fleet dashboards, and API key isolation using GreenHelix examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and platform teams use this guide to design cost controls for multi-agent systems, including budget enforcement, spending analytics, webhook alerts, and per-agent cost attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples can affect live billing, webhook, and API-key state if run against production accounts. <br>
-Mitigation: Use sandbox endpoints and test credentials first; confirm amounts, endpoints, key scopes, recipients, and rollback steps before any production use. <br>
-Risk: The guide includes both sandbox and production-style endpoint examples. <br>
-Mitigation: Verify the base URL and credential context before running any snippet, and keep exploratory testing isolated from live accounts. <br>
-Risk: The skill references sensitive credentials for API authentication and agent signing. <br>
-Mitigation: Store credentials in a secrets manager or protected environment variables, scope keys narrowly, rotate them regularly, and never commit them to source control. <br>
+## Use Case:
 
+Developers, platform engineers, and FinOps teams use this guide to design cost controls for multi-agent systems, including wallet isolation, budget enforcement, alerting, attribution, and spend analytics. The artifact is educational and non-executing, but its examples describe live billing, webhook, and API-key operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-finops-playbook) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API documentation](https://api.greenhelix.net/docs) <br>
-- [FinOps Foundation](https://www.finops.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide that references GREENHELIX_API_KEY and AGENT_SIGNING_KEY for user-supplied environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and release evidence) <br>
+Risk: Examples can affect live billing, webhook, and API-key state if used against production services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox endpoint and test GreenHelix account first, and do not paste production API keys into examples.
+
+Risk: Webhook-driven pause, kill, or key-revocation actions can disrupt agents if webhook authenticity or replay protection is missing.
+
+Mitigation: Add webhook signature verification and replay protection before connecting alerts to pause, kill, or credential-rotation actions.
+
+Risk: API-key rotation or revocation can invalidate active credentials without a verified fallback.
+
+Mitigation: Test key rotation with rollback before invalidating old credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-finops-playbook)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix developer documentation](https://api.greenhelix.net/docs)
+- [FinOps Foundation](https://www.finops.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; examples reference GREENHELIX_API_KEY and AGENT_SIGNING_KEY environment variables.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

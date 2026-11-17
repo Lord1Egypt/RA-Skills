@@ -2,11 +2,17 @@
 from __future__ import annotations
 
 import sys
+
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 if str(SKILL_ROOT) not in sys.path:
     sys.path.insert(0, str(SKILL_ROOT))
+
+from core.safe_fs import (
+    atomic_write_text, check_directory, lexical_path, note_path,
+    read_bytes, safe_exists,
+)
 
 import hashlib
 import json
@@ -51,41 +57,41 @@ STRENGTH_RISK_FACTOR = {"weak": 1.08, "normal": 1.0, "strong": 0.78}
 def resolve_path(value: str | Path, base: Path | None = None) -> Path:
     candidate = Path(value)
     if candidate.is_absolute():
-        return candidate
+        return lexical_path(candidate)
     base_dir = base or Path.cwd()
-    return (base_dir / candidate).resolve()
+    return lexical_path(base_dir / candidate)
 
 
 def resolve_memory_root(arg: str | None, default: Path = DEFAULT_MEMORY_ROOT) -> Path:
-    if arg:
-        return resolve_path(arg)
-    return default
+    return check_directory(resolve_path(arg) if arg else default, allow_missing=True)
 
 
 def load_json(path: Path, default: dict | list | None = None):
-    if path.exists():
+    if safe_exists(path):
+        content = read_bytes(path)
         try:
-            return json.loads(path.read_text(encoding="utf-8"))
-        except Exception:
+            return json.loads(content.decode("utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
             pass
     return {} if default is None else default
 
 
 def save_json(path: Path, data: dict | list) -> None:
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    atomic_write_text(path, json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
 
 def read_text_fallback(path: Path) -> str:
+    content = read_bytes(path)
     last_error: Exception | None = None
     for encoding in TEXT_FALLBACK_ENCODINGS:
         try:
-            return path.read_text(encoding=encoding)
+            return content.decode(encoding)
         except UnicodeDecodeError as exc:
             last_error = exc
             continue
     if last_error:
         raise last_error
-    return path.read_text(encoding="utf-8", errors="replace")
+    return content.decode("utf-8", errors="replace")
 
 
 def parse_date(value: str | None) -> date | None:
@@ -154,30 +160,8 @@ def parse_section_value(text: str, heading: str, key: str) -> str | None:
 
 
 def note_file_path(memory_root: Path, note: dict) -> Path:
-    """Resolve a note path and enforce the memory_root sandbox.
-
-    tags.json is metadata, not authority. Reject absolute paths and parent
-    traversal so poisoned metadata cannot make Hui-Yi read/write outside
-    memory/cold/.
-    """
-    raw = str(note.get("path", "") or "").replace("\\", "/").strip()
-    if not raw:
-        raise ValueError("note path is empty")
-    candidate = Path(raw)
-    if candidate.is_absolute():
-        raise ValueError(f"absolute note paths are not allowed: {raw}")
-    parts = candidate.parts
-    if parts[:2] == ("memory", "cold"):
-        candidate = Path(*parts[2:]) if len(parts) > 2 else Path("")
-    if not candidate.parts or any(part in {"..", ""} for part in candidate.parts):
-        raise ValueError(f"unsafe note path outside memory root: {raw}")
-    root = memory_root.resolve()
-    resolved = (root / candidate).resolve()
-    try:
-        resolved.relative_to(root)
-    except ValueError as exc:
-        raise ValueError(f"note path escapes memory root: {raw}") from exc
-    return resolved
+    """Metadata is not authority: preserve and validate every path component."""
+    return note_path(memory_root, note.get("path"))
 
 
 def session_fingerprint(session_key: str) -> str:
@@ -208,7 +192,7 @@ def normalize_signal_history(history: object) -> list[str]:
 
 def load_tags_payload(memory_root: Path) -> dict:
     tags_path = memory_root / "tags.json"
-    if not tags_path.exists():
+    if not safe_exists(tags_path):
         return {"_meta": {"version": 5}, "notes": []}
     data = load_json(tags_path, default={"_meta": {"version": 5}, "notes": []})
     return data if isinstance(data, dict) else {"_meta": {"version": 5}, "notes": []}

@@ -42,6 +42,79 @@ grep -v "^#\|^$" /etc/ssh/sshd_config
 - PasswordAuthentication no → confirm (MUST have key auth working first)
 - All others → queue confirm
 
+## Checks — SSH Ciphers, MACs, and Key Exchange Algorithms (CIS)
+
+### Commands
+```bash
+# Check configured ciphers
+sshd -T 2>/dev/null | grep -i ciphers
+
+# Check configured MACs
+sshd -T 2>/dev/null | grep -i macs
+
+# Check configured KexAlgorithms
+sshd -T 2>/dev/null | grep -i kexalgorithms
+
+# Check for weak ciphers in current config
+grep -i ciphers /etc/ssh/sshd_config 2>/dev/null
+```
+
+### Weak Ciphers (CBC mode — vulnerable to padding oracle attacks)
+| Cipher | Status | Severity |
+|--------|--------|----------|
+| 3des-cbc | WEAK | HIGH |
+| aes128-cbc | WEAK | MEDIUM |
+| aes192-cbc | WEAK | MEDIUM |
+| aes256-cbc | WEAK | MEDIUM |
+| blowfish-cbc | WEAK | HIGH |
+| cast128-cbc | WEAK | MEDIUM |
+| arcfour/arcfour128/arcfour256 | WEAK (RC4) | CRITICAL |
+| rijndael-cbc@lysator.liu.se | WEAK | MEDIUM |
+
+### Weak MACs (vulnerable to hash collision)
+| MAC | Status | Severity |
+|-----|--------|----------|
+| hmac-md5 | WEAK | HIGH |
+| hmac-md5-96 | WEAK | HIGH |
+| hmac-ripemd160 | WEAK | MEDIUM |
+| hmac-sha1 | WEAK | MEDIUM |
+| hmac-sha1-96 | WEAK | MEDIUM |
+| umac-64@openssh.com | WEAK | MEDIUM |
+| hmac-sha2-256-96 | WEAK | MEDIUM |
+| hmac-sha2-512-96 | WEAK | MEDIUM |
+
+### Weak Kex Algorithms (vulnerable to man-in-the-middle)
+| Algorithm | Status | Severity |
+|-----------|--------|----------|
+| diffie-hellman-group1-sha1 | WEAK | HIGH |
+| diffie-hellman-group14-sha1 | WEAK | MEDIUM |
+| diffie-hellman-group-exchange-sha1 | WEAK | HIGH |
+| diffie-hellman-group-exchange-sha256 (small moduli) | WEAK | MEDIUM |
+| ecdh-sha2-nistp256/384/521 | WEAK (NIST curves) | LOW |
+| curve25519-sha256 | STRONG | PASS |
+| curve25519-sha256@libssh.org | STRONG | PASS |
+| diffie-hellman-group16-sha512 | STRONG | PASS |
+| diffie-hellman-group18-sha512 | STRONG | PASS |
+| sntrup761x25519-sha512@openssh.com | STRONG (post-quantum) | PASS |
+
+### Recommended Secure Config
+```
+# /etc/ssh/sshd_config.d/99-hardening.conf
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512
+```
+
+### Auto-Fix Eligible
+- Weak ciphers/MACs/Kex detected → write hardening config to /etc/ssh/sshd_config.d/99-hardening.conf (confirm required — could break legacy clients)
+
+### Output Format (Ciphers/MACs/Kex)
+```
+[HIGH] 03-ssh: weak_cipher | cipher: 3des-cbc | in use: yes | action_id: ACT-YYYYMMDD-XXX
+[MEDIUM] 03-ssh: weak_mac | mac: hmac-sha1 | in use: yes | action_id: ACT-YYYYMMDD-XXX
+[PASS] 03-ssh: kex_algorithm | kex: curve25519-sha256 | strong ✓
+```
+
 ## Output Format
 ```
 [HIGH] 03-ssh: PermitRootLogin | value: yes | expected: no | action_id: ACT-YYYYMMDD-001

@@ -1,44 +1,63 @@
-## Description: <br>
-Manages and orchestrates multi-step, stateful agent workflows; handles task dependencies, persistent state, error recovery, and external rate-limiting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and orchestrates multi-step, stateful agent workflows; handles task dependencies, persistent state, error recovery, and external rate-limiting.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and workflow builders use this skill to define, parse, and run multi-step agent workflows with task dependencies, resumable local state, rate-limit handling, and optional SkillBoss-powered reasoning or notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task content can be sent to the SkillBoss API Hub and notifications can be delivered externally. <br>
-Mitigation: Use a least-privilege SkillBoss API key, avoid secrets or private business data in task requests, and confirm recipients before enabling notifications. <br>
-Risk: Workflow state can be persisted locally in task_state.json and cooldown timestamp files. <br>
-Mitigation: Run the skill in a controlled workspace and inspect or delete local state files after use. <br>
-Risk: cooldown.sh can execute wrapped shell commands with weak safeguards. <br>
-Mitigation: Do not use it with untrusted task names or command arguments unless the eval behavior is removed or replaced. <br>
+## Use Case:
 
+Developers and engineers use this skill to define, run, resume, and coordinate multi-step agent workflows with task dependencies, local state, API-backed reasoning, notifications, and cooldown handling.
 
-## Reference(s): <br>
-- [Task Structure Schema](references/task_schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-agent-task-manager) <br>
-- [SkillBoss API Hub pilot endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell scripts, JSON task definitions, and command-line output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; may persist task_state.json and cooldown timestamp files during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends user and workflow content to an external SkillBoss API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive task text, scope SKILLBOSS_API_KEY permissions, and run only in controlled environments.
+
+Risk: Workflow data can trigger outbound notifications.
+
+Mitigation: Restrict recipients and channels to trusted destinations and review workflows before enabling notification actions.
+
+Risk: The cooldown wrapper can execute local commands from task inputs or generated workflows.
+
+Mitigation: Review or replace the command wrapper before deployment and avoid passing untrusted command strings.
+
+Risk: Task state is written locally and may persist workflow data.
+
+Mitigation: Keep sensitive data out of task definitions and protect or clean local state files after use.
+
+## Reference(s):
+
+- [Task Structure Schema](references/task_schema.md)
+- [SkillBoss API Hub pilot endpoint](https://api.heybossai.com/v1/pilot)
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-agent-task-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON task definitions, Python and shell commands, local state files, and workflow execution results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; may call an external API, write local task state, and send outbound notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

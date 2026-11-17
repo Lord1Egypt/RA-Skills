@@ -1,42 +1,58 @@
-## Description: <br>
-Convert written medical content into podcast or video scripts optimized for audio delivery, including pronunciation notes, timing metadata, and audio-friendly structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert written medical content into podcast or video scripts optimized for audio delivery, including pronunciation guides, timing markers, and audio-friendly structure.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Medical educators, content producers, and developers use this skill to convert written medical or scientific material into spoken-word scripts for podcasts, videos, lectures, audiobooks, and patient education. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential or regulated medical content could be supplied as input. <br>
-Mitigation: Avoid processing patient or confidential medical data unless permitted, and review input and output paths before running the skill. <br>
-Risk: Generated scripts may preserve inaccurate, outdated, or incomplete medical claims from the source material. <br>
-Mitigation: Have qualified reviewers verify medical accuracy, audience suitability, and final narration copy before publication or recording. <br>
-Risk: The provided requirements file lists standard-library modules as dependencies, which can lead to unnecessary dependency installation attempts. <br>
-Mitigation: Run the script with the Python standard library and do not install packages from the requirements file unless separately reviewed. <br>
+## Use Case:
 
+Developers, educators, and medical content teams use this skill to convert medical or scientific text into audio-ready scripts for podcasts, educational videos, lectures, audiobooks, and voiceover narration.
 
-## Reference(s): <br>
-- [Audio Script Writer References](artifact/references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Guidance] <br>
-**Output Format:** [JSON containing an audio script, metadata, pronunciation notes, and formatting cues; optionally written to an output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Estimates duration from selected pace and target duration, expands common abbreviations, converts small numbers to words, and uses only Python standard-library behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The install manifest and shipped code do not match the security claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; do not run pip install -r requirements.txt as written, and remove the file or leave it comment-only.
+
+Risk: The converter can read input files and overwrite output files reachable by the process.
+
+Mitigation: Run it only on trusted input and output paths inside a workspace with appropriate file permissions.
+
+Risk: Generated medical scripts may preserve or introduce incorrect medical wording because the skill transforms text and does not verify clinical facts.
+
+Mitigation: Have qualified subject matter reviewers validate medical accuracy before recording or publishing.
+
+## Reference(s):
+
+- [Audio Script Writer - References](references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/audio-script-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [JSON from the bundled CLI, or audio-script prose with pacing cues, pronunciation notes, and timing metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes target duration, estimated duration, word count, speaking pace, style, pronunciation notes, and formatting notes when using the bundled CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

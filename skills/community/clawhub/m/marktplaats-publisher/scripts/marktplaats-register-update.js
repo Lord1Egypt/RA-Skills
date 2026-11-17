@@ -10,6 +10,8 @@ function usage() {
 Options:
   --note TEXT       Append a note to the ad and central register
   --add-missing     Add ad to central register if no matching adId/localId exists
+  --allow-unverified
+                    Allow register update without successful live verification; use only for drafts
   --json            Emit JSON only
   --self-test       Run deterministic smoke test
   -h, --help        Show this help
@@ -22,6 +24,7 @@ function parseArgs(argv) {
     centralJson: null,
     note: null,
     addMissing: false,
+    allowUnverified: false,
     json: false,
     selfTest: false,
   };
@@ -41,6 +44,7 @@ function parseArgs(argv) {
     else if (arg === '--central-json') out.centralJson = next();
     else if (arg === '--note') out.note = next();
     else if (arg === '--add-missing') out.addMissing = true;
+    else if (arg === '--allow-unverified') out.allowUnverified = true;
     else if (arg === '--json') out.json = true;
     else if (arg === '--self-test') out.selfTest = true;
     else throw new Error(`Unknown option: ${arg}`);
@@ -160,6 +164,32 @@ function updateRegister({ ad, central, note, addMissing }) {
   };
 }
 
+function validateLiveGate(ad, allowUnverified) {
+  if (allowUnverified) return [];
+  const failures = [];
+  const copyQuality = ad.copyQuality || null;
+  const liveVerification = copyQuality?.liveVerification || null;
+
+  if (!ad.url && !ad.adId) failures.push('missing live ad.url or ad.adId');
+  if (!copyQuality) {
+    failures.push('missing ad.copyQuality');
+    return failures;
+  }
+  if (copyQuality.passed !== true) failures.push('ad.copyQuality.passed is not true');
+  if (copyQuality.lastSentenceVerified !== true) failures.push('ad.copyQuality.lastSentenceVerified is not true');
+  if (!liveVerification) {
+    failures.push('missing ad.copyQuality.liveVerification');
+    return failures;
+  }
+  if (liveVerification.passed !== true) failures.push('ad.copyQuality.liveVerification.passed is not true');
+  if (liveVerification.hasLastSentence !== true) failures.push('live verification did not confirm last sentence');
+  if (liveVerification.paragraphStructureVerified !== true) failures.push('live verification did not confirm paragraph structure');
+  if (Array.isArray(liveVerification.liveWebsiteReferences) && liveVerification.liveWebsiteReferences.length) {
+    failures.push(`live verification found forbidden website/domain reference(s): ${liveVerification.liveWebsiteReferences.join(', ')}`);
+  }
+  return failures;
+}
+
 function printResult(result, json) {
   const publicResult = {
     passed: result.passed,
@@ -185,8 +215,18 @@ function runSelfTest() {
     localId: 'test-1',
     adId: 'm123',
     title: 'Test advertentie',
+    url: 'https://www.marktplaats.nl/v/test/m123',
     lastCheckedAt: '2026-01-01T00:00:00.000Z',
-    copyQuality: { passed: true, lastSentenceVerified: true },
+    copyQuality: {
+      passed: true,
+      lastSentenceVerified: true,
+      liveVerification: {
+        passed: true,
+        hasLastSentence: true,
+        paragraphStructureVerified: true,
+        liveWebsiteReferences: [],
+      },
+    },
     notes: 'Basisnotitie.',
   };
   fs.writeFileSync(adJson, `${JSON.stringify(ad, null, 2)}\n`);
@@ -200,6 +240,10 @@ function runSelfTest() {
   });
   if (!result.passed || result.action !== 'updated') throw new Error('self-test expected update PASS');
   if (!result.register.ads[0].notes.includes('Live gecontroleerd.')) throw new Error('self-test expected note append');
+  const unverified = JSON.parse(JSON.stringify(ad));
+  delete unverified.copyQuality.liveVerification;
+  const gateFailures = validateLiveGate(unverified, false);
+  if (!gateFailures.length) throw new Error('self-test expected missing live verification gate failure');
   console.log('marktplaats-register-update self-test: PASS');
 }
 
@@ -214,6 +258,18 @@ function main() {
   const lock = acquireLock(centralJsonPath);
   try {
     const ad = readJson(adJsonPath);
+    const gateFailures = validateLiveGate(ad, options.allowUnverified);
+    if (gateFailures.length) {
+      printResult({
+        passed: false,
+        action: 'blocked',
+        index: null,
+        updatedAt: new Date().toISOString(),
+        failures: gateFailures,
+      }, options.json);
+      process.exitCode = 1;
+      return;
+    }
     if (options.note) {
       ad.notes = appendNote(ad.notes, options.note);
       fs.writeFileSync(adJsonPath, `${JSON.stringify(ad, null, 2)}\n`, 'utf8');

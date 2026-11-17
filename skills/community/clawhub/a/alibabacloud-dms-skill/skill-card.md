@@ -1,49 +1,69 @@
-## Description: <br>
-Search for target databases in Alibaba Cloud DMS and execute SQL queries or data modifications through the Aliyun CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Alibaba Cloud DMS databases and executes SQL queries or data modifications through Aliyun CLI workflows.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to locate Alibaba Cloud DMS databases and run reviewed SQL queries or limited data modifications with their configured Alibaba Cloud identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read or change databases using the user's configured Alibaba Cloud identity. <br>
-Mitigation: Use a dedicated low-privilege RAM user or temporary credentials, prefer read-only permissions, and confirm the database ID and full SQL before execution. <br>
-Risk: Write SQL can modify database data. <br>
-Mitigation: Preview INSERT, UPDATE, and DELETE statements with --dry-run first; execute them only with --force after review. DDL operations are blocked by the script and should be handled through the DMS Console. <br>
-Risk: AI-Mode and CLI plugin settings can affect later Aliyun CLI usage if left enabled. <br>
-Mitigation: Disable AI-Mode after each session and review the CLI auto-plugin-install setting after use. <br>
+## Use Case:
 
+Developers and database operators use this skill to locate Alibaba Cloud DMS databases, run read queries, and perform guarded data modifications after confirming parameters and credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-dms-skill) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies for DMS Database Query](references/ram-policies.md) <br>
-- [Related APIs for DMS Database Query](references/related-apis.md) <br>
-- [Acceptance Criteria: DMS Database Query](references/acceptance-criteria.md) <br>
-- [DMS OpenAPI Overview](https://api.aliyun.com/product/dms-enterprise) <br>
-- [Alibaba Cloud DMS API Reference](https://help.aliyun.com/zh/dms/developer-reference/) <br>
-- [DMS Permission Management](https://help.aliyun.com/zh/dms/user-guide/permission-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and JSON command output with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Aliyun CLI, jq, configured Alibaba Cloud credentials, a database keyword, a database ID, and a SQL statement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server evidence release.version) <br>
+Risk: The security summary says the skill asks users to install or update unverified code through the Aliyun CLI and plugin flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified and pinned Aliyun CLI installation path, and do not enable global automatic plugin installation or update unrelated plugins inside an agent session.
+
+Risk: The security summary says the skill enables broad SQL execution with weak safety boundaries.
+
+Mitigation: Use least-privilege RAM roles scoped to approved databases, prefer read-only access for routine use, and require explicit human review for every SQL statement.
+
+Risk: SQL data modifications can change or delete database records.
+
+Mitigation: Preview INSERT, UPDATE, and DELETE statements with dry-run behavior where possible, use force only after review, and keep destructive DDL blocked outside the skill workflow.
+
+Risk: Credentials or secrets can be exposed if pasted into chat, command arguments, shell history, or persistent environment variables.
+
+Mitigation: Check credential status without revealing secret values and configure credentials outside the agent session using approved secure channels.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-dms-skill)
+- [Publisher Profile](https://clawhub.ai/user/sdk-team)
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [RAM Permission Policies](references/ram-policies.md)
+- [Related API List](references/related-apis.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [DMS OpenAPI Overview](https://api.aliyun.com/product/dms-enterprise)
+- [Alibaba Cloud RAM Documentation](https://help.aliyun.com/zh/ram/)
+- [DMS Permission Management](https://help.aliyun.com/zh/dms/user-guide/permission-management)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-confirmed database identifiers, SQL statements, Aliyun CLI credentials, and RAM permissions before execution.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

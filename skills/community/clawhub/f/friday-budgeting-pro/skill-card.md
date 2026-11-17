@@ -1,47 +1,62 @@
-## Description: <br>
-Friday Budgeting Pro is an AI-powered personal finance tracker that connects to banks via Plaid, auto-classifies transactions, syncs daily, supports personal, property, and investment ledgers, and exports to Excel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Friday Budgeting Pro is an AI-powered personal finance tracker that connects to banks through Plaid, auto-classifies transactions, syncs daily, exports to Excel, and supports personal, rental property, and investment ledgers.
 
-## Publisher: <br>
-[riddy21](https://clawhub.ai/user/riddy21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riddy21](https://clawhub.ai/user/riddy21)
 
-## Use Case: <br>
-Individuals using OpenClaw or another MCP client use this skill to manage local personal finance workflows: connecting banks, syncing and classifying transactions, reviewing budgets, managing ledgers, and exporting reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Canada for Plaid bank-linking workflows; other local budgeting functions are not geography-restricted by the evidence. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles bank data, Plaid credentials, and local finance records. <br>
-Mitigation: Use only on a trusted local machine, avoid sharing secrets in chat unless the full agent path is trusted, and review connected accounts and stored profile data during setup. <br>
-Risk: The skill installs a persistent local daemon and registers with OpenClaw. <br>
-Mitigation: Confirm the LaunchAgent and OpenClaw registration are expected before installation, and review uninstall cleanup for launchd, OpenClaw configuration, cron files, and local Friday Budgeting Pro data. <br>
-Risk: Transaction details may be sent to an external LLM provider through fallback behavior. <br>
-Mitigation: Disable or explicitly configure external LLM fallback when local-only processing is required, and review provider settings before syncing real financial data. <br>
-Risk: The skill can modify budgeting rules and ledgers, which may affect reports and classifications. <br>
-Mitigation: Review proposed classification rules, ledger changes, and uncertain transactions before relying on exported reports. <br>
+## Use Case:
 
+External users and developers use this agent skill to manage local personal finances through an MCP-enabled assistant: connect banks, sync and classify transactions, review uncertain items, manage ledgers, and export reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/riddy21/friday-budgeting-pro) <br>
-- [README](artifact/README.md) <br>
-- [Architecture](artifact/ARCHITECTURE.md) <br>
-- [Skill Homepage](https://github.com/Riddy21/Friday_Budgeting_Pro) <br>
+### Deployment Geography for Use:
 
+Canada
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with MCP tool calls, setup commands, local URLs, and export links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate local database, Plaid, LLM, notification, and Excel export workflows through configured tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata and package.json) <br>
+Risk: The skill handles bank transaction data, Plaid credentials, OpenClaw credential files, and LLM provider access through a persistent local daemon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a trusted macOS profile after reviewing the requested access and accepting local credential and transaction handling.
+
+Risk: LLM classification fallback can use configured external provider credentials for transaction classification.
+
+Mitigation: Confirm the configured LLM path before syncing financial data, and review uncertain classifications before relying on reports.
+
+Risk: Installation performs Python package changes, database initialization, and launchd daemon registration.
+
+Mitigation: Review install hooks before deployment and use the provided uninstall path if the persistent daemon should be removed.
+
+## Reference(s):
+
+- [Friday Budgeting Pro ClawHub Listing](https://clawhub.ai/riddy21/skills/friday-budgeting-pro)
+- [Publisher Profile](https://clawhub.ai/user/riddy21)
+- [Project Homepage](https://github.com/Riddy21/Friday_Budgeting_Pro)
+- [README](README.md)
+- [Architecture](ARCHITECTURE.md)
+- [Skill Definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses, MCP tool calls, local URLs, and Excel export links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger local daemon actions, Plaid connection flows, transaction classification, and Excel workbook generation.]
+
+## Skill Version(s):
+
+1.0.7 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-SEO optimization toolkit for Chinese search engines: Baidu, Sogou, and 360 Search, including keyword research, competitor analysis, and Baidu-specific ranking factor guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO optimization toolkit for Chinese search engines: Baidu, Sogou, and 360 Search, including keyword research, competitor analysis, and Baidu-specific ranking factor optimization.
 
-## Publisher: <br>
-[dzxiatian-crypto](https://clawhub.ai/user/dzxiatian-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzxiatian-crypto](https://clawhub.ai/user/dzxiatian-crypto)
 
-## Use Case: <br>
-Marketing teams, SEO practitioners, and developers use this skill to plan and review Chinese search optimization work for Baidu, Sogou, and 360 Search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on some general SEO-tool requests because one trigger is broad. <br>
-Mitigation: Use it for Baidu or Chinese search SEO tasks and review the generated guidance before applying it. <br>
+## Use Case:
 
+Developers, marketers, and site operators use this skill to plan Chinese search optimization work, compare Baidu-specific ranking factors, research keywords, analyze competitors, and prepare platform-specific SEO checks.
 
-## Reference(s): <br>
-- [Baidu Webmaster Tools sitemap submission](https://ziyuan.baidu.com/linksubmit) <br>
-- [ClawHub skill page](https://clawhub.ai/dzxiatian-crypto/baidu-seo-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable files are produced by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad SEO triggers may activate the skill in conversations where Chinese search optimization is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation scope before deployment where unexpected SEO guidance would be disruptive.
+
+Risk: SEO recommendations may be misapplied to sites, languages, jurisdictions, or search platforms they were not written for.
+
+Mitigation: Apply recommendations only after checking the target site's language, platform rules, and compliance obligations.
+
+## Reference(s):
+
+- [Baidu Webmaster Tools Sitemap Submission](https://ziyuan.baidu.com/linksubmit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Python code examples and SEO guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no credentials, tool calls, persistence, or shell execution are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

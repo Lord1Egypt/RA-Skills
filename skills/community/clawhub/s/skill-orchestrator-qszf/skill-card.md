@@ -1,42 +1,54 @@
-## Description: <br>
-Skill Orchestrator coordinates skill optimization, task routing, asset management, publishing checks, health monitoring, and audit logging for an organization-level agent skill library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Orchestrator coordinates organization-wide skill optimization, task routing, inventory management, health monitoring, audit logging, and publishing workflows.
 
-## Publisher: <br>
-[dxy0905](https://clawhub.ai/user/dxy0905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxy0905](https://clawhub.ai/user/dxy0905)
 
-## Use Case: <br>
-Developers and operators use this skill to choose, orchestrate, monitor, optimize, and audit skills across a managed agent skill library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes guidance for bypassing token redaction for a GitHub personal access token. <br>
-Mitigation: Review and remove token-redaction bypass guidance before installation; use scoped credentials from approved secret storage and do not provide raw GitHub PATs during code execution. <br>
-Risk: The release includes persistent auto-load guidance that can keep the skill active in future sessions. <br>
-Mitigation: Require explicit confirmation before changing auto-load or persistent configuration, and enable auto-load only when ongoing activation is intended. <br>
-Risk: The release includes workflows for configuration and publishing changes. <br>
-Mitigation: Require confirmation before configuration or publishing actions and run security scanning before deployment. <br>
+## Use Case:
 
+Employees, developers, and skill maintainers use this skill to route tasks to appropriate skills, coordinate multi-skill workflows, monitor skill health, and manage skill release operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dxy0905/skill-orchestrator-qszf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill recommendations, orchestration plans, health reports, audit notes, publishing checklists, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes guidance for bypassing GitHub token redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove token redaction bypass guidance and use approved authentication such as GitHub CLI, scoped short-lived tokens, or a secret store.
+
+Risk: Persistent startup auto-load and automatic skill optimization or rollback can change agent behavior without explicit user intent.
+
+Mitigation: Require explicit user confirmation before enabling startup auto-load, automated optimization, or rollback actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxy0905/skills/skill-orchestrator-qszf)
+- [ClawHub publisher profile](https://clawhub.ai/user/dxy0905)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with tables, workflow steps, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose skill routing, orchestration, health-check, audit, and configuration actions for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -51,6 +51,22 @@ mainctrl gives the agent two modes, like vi's V and I:
 
 Switch instantly — no restarts.
 
+## Invocation Model
+
+mainctrl is a management tool, not an agent behavior enhancer. Two skill-level
+frontmatter settings control how it's loaded:
+
+- **`disable-model-invocation: true`** — The agent never auto-invokes mainctrl.
+  This skill is excluded from the system prompt at load time. Only the user can
+  trigger it via `/mainctrl`.
+
+- **`user-invocable: true`** — Keeps the slash command available for manual use.
+  Default is `true`; set explicitly here for clarity.
+
+**Why this matters:** Safety toggles are user-controlled, not model-decided.
+The agent should never decide on its own to turn blocking on or off — only the
+user, through an explicit `/mainctrl` invocation, triggers this skill.
+
 ## Use
 
 ```bash

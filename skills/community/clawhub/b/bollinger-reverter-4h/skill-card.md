@@ -1,42 +1,57 @@
-## Description: <br>
-Builds a Freqtrade 4h Bollinger-band mean-reversion strategy that trades long and short on 2-sigma band touches with RSI confirmation and an ADX < 25 range-regime gate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing a symmetric Bollinger-band mean-reversion strategy on the 4h timeframe, with long-or-short entries on 2-sigma band touches, RSI confirmation, ADX-gated range regimes, and a tight ROI ladder.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Developers and trading-system operators use this skill to draft and configure a Freqtrade futures strategy for range-bound crypto markets. It provides strategy code, reference configuration, tunable parameters, backtest context, and deployment cautions for major pairs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live financial automation can lose funds if exchange fees, slippage, liquidation behavior, or order execution differ from the backtest assumptions. <br>
-Mitigation: Paper trade first and confirm exchange-specific fees, slippage, liquidation behavior, and order execution before any live deployment. <br>
-Risk: The ROI ladder is central to the strategy, and ambiguity between strategy-level and config-level ROI settings can change live behavior. <br>
-Mitigation: Resolve the ROI setting ambiguity before deployment so the live configuration matches the intended ladder. <br>
-Risk: The strategy can fail during trend transitions, news spikes, and meme or low-cap pair volatility. <br>
-Mitigation: Restrict deployment to validated major pairs, size positions conservatively, and consider pausing during scheduled macro events. <br>
+## Use Case:
 
+Developers and trading-strategy authors use this skill to draft or adapt a Freqtrade-style 4h Bollinger Band mean-reversion strategy for liquid crypto majors. It provides strategy logic, parameter ranges, reference configuration, backtest framing, and deployment cautions for range-bound market regimes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superior-ai/bollinger-reverter-4h) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown containing Python strategy code, JSON configuration, tables, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes backtest results and trading-risk guidance; no API keys, credentials, MCP tools, or API calls were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill provides speculative trading guidance, and its quoted backtest results are not guarantees of future performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the strategy independently, run dry-run or paper-trading tests first, and treat backtest metrics as historical evidence only.
+
+Risk: Futures trading, leverage, stop execution, and slippage can cause rapid losses or liquidation.
+
+Mitigation: Use conservative position sizing, isolated margin where applicable, hard stops, and avoid deployment around major news or scheduled macro events unless risk is explicitly accepted.
+
+Risk: The strategy can lose when range-bound markets transition into strong trends or when applied to meme or low-liquidity pairs.
+
+Mitigation: Restrict use to liquid majors, monitor ADX/regime behavior, and avoid extending the strategy to pairs outside the validated profile without fresh testing.
+
+## Reference(s):
+
+- [Bollinger Reverter 4h on ClawHub](https://clawhub.ai/superior-ai/skills/bollinger-reverter-4h)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trading-strategy guidance and example configuration; users should validate with dry-run or paper trading before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

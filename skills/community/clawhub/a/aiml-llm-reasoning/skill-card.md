@@ -1,43 +1,54 @@
-## Description: <br>
-Run AIMLAPI LLM and reasoning workflows through chat completions with retries, structured outputs, and explicit User-Agent headers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run AIMLAPI LLM and reasoning workflows through chat completions with retries, structured outputs, and explicit User-Agent headers.
 
-## Publisher: <br>
-[aimlapihello](https://clawhub.ai/user/aimlapihello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aimlapihello](https://clawhub.ai/user/aimlapihello)
 
-## Use Case: <br>
-Developers and engineers use this skill to make AIMLAPI chat completion calls from an agent workflow, including reasoning options, structured JSON responses, retry behavior, and optional response file output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, system messages, and allowed extra JSON fields are sent to AIMLAPI. <br>
-Mitigation: Avoid sending sensitive content unless AIMLAPI handling is acceptable for the use case. <br>
-Risk: The skill requires an AIMLAPI API key and can read it from a file when --apikey-file is used. <br>
-Mitigation: Prefer AIMLAPI_API_KEY and keep any API key file path intentional and access-controlled. <br>
-Risk: The --output option can save full API responses to a chosen file. <br>
-Mitigation: Use --output only for intended response files and review saved content before sharing or committing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AIMLAPI LLM notes](references/aimlapi-llm.md) <br>
-- [AIMLAPI API base endpoint](https://api.aimlapi.com/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/aimlapihello/aiml-llm-reasoning) <br>
+## Use Case:
 
+Developers and OpenClaw/Codex users use this skill to run AIMLAPI chat-completion and reasoning calls, including structured JSON responses, with retry and User-Agent handling.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text or JSON, with optional full JSON response files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIMLAPI_API_KEY; requests are sent to AIMLAPI chat completions with configurable retry, timeout, User-Agent, and whitelisted extra JSON fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, system messages, selected extra JSON fields, and the AIMLAPI API key are sent to AIMLAPI.
+
+Mitigation: Use the skill only with data approved for AIMLAPI, avoid sensitive or private prompt content, and provide credentials through AIMLAPI_API_KEY or a secured --apikey-file.
+
+Risk: The --output option writes full response JSON to a user-selected path.
+
+Mitigation: Choose output paths deliberately and avoid writing responses containing sensitive content to shared or unintended locations.
+
+## Reference(s):
+
+- [AIMLAPI LLM notes](references/aimlapi-llm.md)
+- [Skill README](README.md)
+- [ClawHub skill page](https://clawhub.ai/aimlapihello/skills/aiml-llm-reasoning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print model response text to stdout or write full response JSON to a user-selected output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

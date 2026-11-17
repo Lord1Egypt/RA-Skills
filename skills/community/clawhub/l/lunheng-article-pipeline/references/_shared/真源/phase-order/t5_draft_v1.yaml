@@ -1,0 +1,15 @@
+# 论衡流程真源 · 第二部分：节点 t5_draft_v1（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t5_draft_v1
+  phase: "Phase 3"
+  phase_seq: 9
+  input: analysis/分析大纲.md + analysis/T5-写作上下文.md
+  kind: agent
+  agent: T5
+  role: T5
+  write_authority: executor
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  output: drafts/初稿-v1.md
+  next: phase3_5_insight

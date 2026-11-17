@@ -1,48 +1,69 @@
-## Description: <br>
-Generate multiple illustrations for an article with structured type and style decisions and bundled generation tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates coordinated illustrations for articles with structured type and style decisions, prompt and batch generation, and optional Markdown insertion.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-External users, writers, editors, and developers use this skill to plan, generate, and insert coordinated illustrations into long-form Markdown articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article text, generated prompts, and selected reference images may be sent to WeryAI for image generation. <br>
-Mitigation: Use only content approved for third-party processing and avoid private local images or sensitive drafts unless that upload is intended. <br>
-Risk: The workflow can write local .image-skills configuration and may persist IMAGE_GEN_API_KEY when setup is explicitly run with key persistence. <br>
-Mitigation: Review generated .image-skills files before committing them and persist API keys only in approved local or secret-management locations. <br>
-Risk: The skill can modify article Markdown in place and run npx/Bun-based tooling. <br>
-Mitigation: Review the insertion summary and backup file after updates, and run the workflow in a controlled project environment. <br>
+## Use Case:
 
+External users and developers use this skill to plan, generate, and insert multiple coordinated illustrations into long-form Markdown articles. It is suited to tutorials, methods, reviews, explainers, and other articles where visuals should clarify section flow.
 
-## Reference(s): <br>
-- [Article Illustrator ClawHub Page](https://clawhub.ai/632657122/article-illustrator-2) <br>
-- [Types and Styles](references/types-and-styles.md) <br>
-- [Outline Template](references/outline-template.md) <br>
-- [Prompt Template](references/prompt-template.md) <br>
-- [WeryAI Platform Notes](scripts/vendor/shared-image-generation/references/weryai-platform.md) <br>
-- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task) <br>
-- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, generated prompt files, batch JSON, image files, and updated article Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create outline.md, prompt files, batch.json, generated images, local .image-skills configuration, article backups, and compressed web assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.6 (source: server release evidence) <br>
+Risk: Article prompts, generated-task metadata, and provided reference images may be sent to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content and reference images that are appropriate to share with WeryAI; avoid private local reference images unless upload is intended.
+
+Risk: The image generation API key can be persisted under `.image-skills/article-illustrator/.env` when setup is run with persistent storage.
+
+Mitigation: Prefer environment variables for `IMAGE_GEN_API_KEY`, and review file permissions before choosing persisted setup.
+
+Risk: The workflow may use `npx -y bun`, which can fetch a runtime during execution.
+
+Mitigation: Use a pinned local Bun runtime when reproducibility or supply-chain control is required.
+
+Risk: `http://` reference image URLs may be insecure or blocked.
+
+Mitigation: Prefer public `https://` reference image URLs and avoid local paths or data URLs.
+
+Risk: The insertion step can modify article Markdown in place.
+
+Mitigation: Use an explicit output file or review the automatic backup and insertion summary before publishing.
+
+## Reference(s):
+
+- [Types and Styles](references/types-and-styles.md)
+- [Outline Template](references/outline-template.md)
+- [Prompt Template](references/prompt-template.md)
+- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task)
+- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON configuration, generated image files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create outline.md, prompt files, batch.json, image outputs, and an updated article Markdown file.]
+
+## Skill Version(s):
+
+9.0.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Searches Amazon products and retrieves product details using Amazon Product Advertising API (PA-API), including support for price lookups and affiliate links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Amazon products and retrieve product details through Amazon Product Advertising API (PA-API) for product discovery, price lookup, and affiliate-link workflows.
 
-## Publisher: <br>
-[akkualle](https://clawhub.ai/user/akkualle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akkualle](https://clawhub.ai/user/akkualle)
 
-## Use Case: <br>
-External developers, commerce operators, and affiliate publishers use this skill to search Amazon.de products, retrieve product details by ASIN, and prepare affiliate-linked product information through PA-API-backed commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; configured by default for the Amazon.de marketplace. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon PA-API credentials could be exposed if provided through an untrusted shell, shared logs, or committed configuration. <br>
-Mitigation: Provide AMAZON_ACCESS_KEY, AMAZON_SECRET_KEY, and AMAZON_PARTNER_TAG only through a trusted local environment or secret manager, and avoid printing or committing those values. <br>
-Risk: The skill references amazon-search and amazon-product commands but does not include executable code, so a local command with those names could come from an untrusted source. <br>
-Mitigation: Confirm the installed amazon-search and amazon-product executables are expected and trusted before using this skill. <br>
+## Use Case:
 
+Developers, commerce operators, and affiliate-content agents use this skill to search Amazon.de products, retrieve product details by ASIN, look up prices, and support affiliate-link generation through Amazon PA-API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/akkualle/akkualle-amazon-paapi) <br>
+### Deployment Geography for Use:
 
+Global, with default configuration for Amazon Germany (Amazon.de).
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Amazon PA-API access key, secret key, and partner tag; defaults target webservices.amazon.de and eu-west-1 unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires Amazon PA-API credentials and an Amazon Associates partner tag in environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Amazon PA-API account and marketplace before use, and provide credentials through managed environment secrets rather than hardcoding them in prompts or files.
+
+## Reference(s):
+
+- [Amazon PA-API Integration on ClawHub](https://clawhub.ai/akkualle/skills/akkualle-amazon-paapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and product lookup details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Amazon PA-API credentials and an Amazon Associates partner tag through environment variables; defaults target Amazon.de unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

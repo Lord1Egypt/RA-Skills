@@ -1,50 +1,68 @@
-## Description: <br>
-OpenClaw CLI wrapper for installing, configuring, and managing gateway, channels, models, agents, nodes, browser, memory, security, and automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Anything wraps the openclaw CLI and provides local reference docs for managing gateways, channels, models, agents, nodes, browser automation, memory, security, automation, and deployment.
 
-## Publisher: <br>
-[doanbactam](https://clawhub.ai/user/doanbactam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[doanbactam](https://clawhub.ai/user/doanbactam)
 
-## Use Case: <br>
-Developers and operators use this skill to navigate OpenClaw CLI commands, configure gateway and channel behavior, manage models and agents, and run deployment or maintenance workflows with local reference guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The wrapper is not a strict safety boundary, and several OpenClaw command groups can change configuration, account state, messaging state, security settings, or approvals. <br>
-Mitigation: Use the skill only with a trusted local OpenClaw CLI, grant agents narrow access, prefer read-only checks first, and require explicit review for mutating gateway, channel, model, agent, message, security, and approvals commands. <br>
-Risk: High-risk operations can run shell commands, browser automation, node actions, device sensor access, cron changes, plugin or hook installation, secrets application, sandbox recreation, webhooks, or DNS setup. <br>
-Mitigation: Keep OPENCLAW_WRAPPER_ALLOW_RISKY unset by default, enable it only for a single reviewed action, verify node identity before approval, and keep gateways on loopback unless remote access is intentional. <br>
-Risk: Bulk shell-environment import and plaintext API keys can expose secrets to OpenClaw workflows. <br>
-Mitigation: Avoid OPENCLAW_LOAD_SHELL_ENV and plaintext keys unless needed, use dry-run and audit flows for secrets changes, and periodically run OpenClaw security and secrets audits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Skill Page](https://clawhub.ai/doanbactam/openclaw-anything) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai/) <br>
-- [OpenClaw CLI Reference](references/cli-full.md) <br>
-- [OpenClaw Security Policy](references/security-policy.md) <br>
-- [OpenClaw Configuration Reference](references/config-schema.md) <br>
-- [OpenClaw Deployment](references/deployment.md) <br>
-- [OpenClaw Prerequisites](references/prerequisites.md) <br>
-- [OpenClaw Nodes and Platforms](references/nodes-platforms.md) <br>
-- [OpenClaw Advanced Tools](references/advanced-tools.md) <br>
-- [OpenClaw Documentation Hubs](references/hubs.md) <br>
+## Use Case:
 
+Developers and operators use this skill to route OpenClaw CLI tasks, look up command syntax, and manage configuration, gateways, channels, models, agents, nodes, browser tooling, secrets, security checks, and deployment workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local openclaw CLI for command execution; high-risk wrapper routes require OPENCLAW_WRAPPER_ALLOW_RISKY=1.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill wraps broad OpenClaw administrative capabilities, including configuration, services, messaging, secrets, DNS, nodes, browser state, and automation.
+
+Mitigation: Run under a least-privileged account, pin and verify the OpenClaw CLI version, keep gateway tokens and environment secrets protected, and manually confirm mutating actions.
+
+Risk: The security evidence says the wrapper approval gate does not consistently block all documented high-risk changes.
+
+Mitigation: Treat OPENCLAW_WRAPPER_ALLOW_RISKY=1 as a convenience gate rather than a safety boundary, and require explicit per-action review for high-risk command groups.
+
+Risk: Remote node, browser, device, camera, screen, location, webhook, DNS, secrets, sandbox, plugin, and hook operations can affect systems or expose sensitive data.
+
+Mitigation: Prefer read-only status, list, health, logs, docs, and audit commands first; verify node identity before approval; use dry-run or audit modes where available; keep gateways on loopback or VPN/Tailscale unless remote access is intentional.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+- [OpenClaw CLI Documentation](https://docs.openclaw.ai/cli)
+- [OpenClaw Configuration Documentation](https://docs.openclaw.ai/cli/config)
+- [OpenClaw Gateway Configuration](https://docs.openclaw.ai/gateway/configuration)
+- [OpenClaw Docker Installation](https://docs.openclaw.ai/install/docker)
+- [ClawHub Skill Page](https://clawhub.ai/doanbactam/skills/openclaw-anything)
+- [OpenClaw CLI Reference](references/cli-full.md)
+- [OpenClaw Security Policy](references/security-policy.md)
+- [OpenClaw Configuration Reference](references/config-schema.md)
+- [OpenClaw Deployment](references/deployment.md)
+- [OpenClaw Prerequisites](references/prerequisites.md)
+- [OpenClaw Nodes and Platforms](references/nodes-platforms.md)
+- [OpenClaw Advanced Tools](references/advanced-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and wrapper command routes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openclaw CLI in PATH; high-risk wrapper routes are gated by OPENCLAW_WRAPPER_ALLOW_RISKY=1.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

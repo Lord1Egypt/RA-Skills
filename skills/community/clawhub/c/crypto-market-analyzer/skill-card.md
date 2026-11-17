@@ -1,41 +1,57 @@
-## Description: <br>
-Cryptocurrency market analysis for Bitcoin and Ethereum that fetches 4h (24h) and 1d (30-day) data from Binance API, calculates technical indicators (RSI, SMAs, support/resistance), and provides bullish/bearish sentiment analysis with reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptocurrency market analysis for Bitcoin and Ethereum. Fetches 4h (24h) and 1d (30-day) data from Binance API, calculates technical indicators (RSI, SMAs, support/resistance), and provides bullish/bearish sentiment analysis with reasoning. Use when user asks for crypto market reports, BTC/ETH analysis, or daily market summaries.
 
-## Publisher: <br>
-[hmzo](https://clawhub.ai/user/hmzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hmzo](https://clawhub.ai/user/hmzo)
 
-## Use Case: <br>
-External users and developers use this skill to generate BTC and ETH market summaries with technical indicators, sentiment, confidence, and reasoning. It is suitable for informational market reporting, not financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Binance for public market data, so reports depend on external API availability and returned market data. <br>
-Mitigation: Run it only in environments where Binance access is expected, and treat missing or stale data as a reason to retry or review the report before use. <br>
-Risk: The output is cryptocurrency market analysis and could be mistaken for financial advice. <br>
-Mitigation: Use the report as informational analysis only and review conclusions before making financial decisions. <br>
-Risk: Optional daily scheduling can repeatedly send market reports to a configured destination. <br>
-Mitigation: Enable the schedule deliberately and keep any messaging destination under the user's control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Binance Public API](https://api.binance.com) <br>
+## Use Case:
 
+External users and developers use this skill to generate Bitcoin and Ethereum market summaries from public Binance data, including technical indicators and bullish, bearish, or neutral sentiment reasoning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON analysis output and human-readable Markdown report guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes BTCUSDT and ETHUSDT using public Binance market data with no API key required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Binance's public API and depends on current third-party market data availability.
+
+Mitigation: Run it only in environments where outbound access to the Binance public API is acceptable, and treat API errors or missing data as report limitations.
+
+Risk: Scheduled execution and messaging delivery can create recurring automated reports.
+
+Mitigation: Enable cron execution and delivery only after confirming the destination, schedule, and user intent.
+
+Risk: Market sentiment summaries may be mistaken for financial advice.
+
+Mitigation: Present outputs as informational technical analysis and require human review before making trading or investment decisions.
+
+## Reference(s):
+
+- [Binance Public API endpoint](https://api.binance.com)
+- [Crypto Market Analyzer on ClawHub](https://clawhub.ai/hmzo/skills/crypto-market-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, json, markdown, shell commands, guidance]
+
+**Output Format:** [JSON market-analysis output and optional human-readable Markdown-style report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language explanatory report text is expected unless the skill is modified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

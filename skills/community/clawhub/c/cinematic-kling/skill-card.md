@@ -1,45 +1,59 @@
-## Description: <br>
-Generate 5-second cinematic AI videos using Kling via ComfyDeploy. Takes a character image, item image, and location image, then produces a character sheet, item sheet, and a short cinematic video showing them interacting. Use when creating short ads, film clips, music videos, or any scene where a character interacts with an item in a specific location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 5-second cinematic AI videos using Kling via ComfyDeploy. Takes a character image, item image, and location image, then produces a character sheet, item sheet, and a short cinematic video showing them interacting. Use when creating short ads, film clips, music videos, or any scene where a character interacts with an item in a specific location.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-External creators, marketers, filmmakers, and developers use this skill to generate short cinematic clips where a character interacts with a product or item in a chosen location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected character, item, and location images are uploaded to ComfyDeploy/S3 and processed by third-party services. <br>
-Mitigation: Use only images you have permission to process, avoid private or biometric images, and review the provider's handling terms before use. <br>
-Risk: The skill requires a ComfyDeploy API key and can create API usage or cost exposure. <br>
-Mitigation: Use a dedicated API key where possible, keep it in environment configuration, and monitor usage and billing. <br>
-Risk: Incorrectly assigning character, item, and location images can produce wrong or misleading outputs. <br>
-Mitigation: Use image inspection to verify each file role before submitting a run. <br>
+## Use Case:
 
+Developers, creators, and production teams use this skill to turn character, item, and location images into short cinematic video concepts for ads, film clips, music videos, product demos, fashion scenes, and similar visual storytelling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PauldeLavallaz/cinematic-kling) <br>
-- [Publisher profile](https://clawhub.ai/user/PauldeLavallaz) <br>
-- [ComfyDeploy run queue API endpoint](https://api.comfydeploy.com/api/run/deployment/queue) <br>
-- [ComfyDeploy file upload API endpoint](https://api.comfydeploy.com/api/file/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and API request examples; generated run artifacts are image and video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful runs produce character sheet, item sheet, and location sheet images plus a fixed 5-second video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The documented shell flow sources a local .env file as executable shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide COMFY_DEPLOY_API_KEY through a managed secret or existing environment variable, and avoid placing unrelated secrets in ~/clawd/.env.
+
+Risk: User images and prompts are uploaded to ComfyDeploy and S3-backed storage.
+
+Mitigation: Use only images and prompts that are acceptable to send to ComfyDeploy/S3 under the user's privacy, consent, and data-handling requirements.
+
+Risk: Assigning character, item, and location images incorrectly can produce misleading or unusable video outputs.
+
+Mitigation: Verify each supplied image with an image-identification tool before assigning character_base, item_base, and location_base.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pauldelavallaz/skills/cinematic-kling)
+- [ComfyDeploy deployment queue API endpoint](https://api.comfydeploy.com/api/run/deployment/queue)
+- [ComfyDeploy file upload API endpoint](https://api.comfydeploy.com/api/file/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Code, Files]
+
+**Output Format:** [Markdown guidance with shell and Python code blocks; generated image sheets and an MP4 video file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires COMFY_DEPLOY_API_KEY, uploads user-provided images and prompts to ComfyDeploy/S3, and typically takes about 3-5 minutes to produce results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

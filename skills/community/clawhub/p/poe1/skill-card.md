@@ -1,46 +1,60 @@
-## Description: <br>
-Queries poe.ninja for Path of Exile currency, item, and price trend data across leagues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Path of Exile market price query tool using the poe.ninja API.
 
-## Publisher: <br>
-[qpooqp777](https://clawhub.ai/user/qpooqp777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qpooqp777](https://clawhub.ai/user/qpooqp777)
 
-## Use Case: <br>
-External users and developers use this skill to look up Path of Exile market prices, compare leagues, and retrieve currency, item, map, gem, and trend data from poe.ninja. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: League names and item search terms are sent to poe.ninja. <br>
-Mitigation: Use public game-market queries only and avoid entering private information as search text. <br>
-Risk: Cross-type search can issue multiple poe.ninja requests in a short period. <br>
-Mitigation: Use focused item types when possible, limit repeated searches, and respect API rate limits. <br>
-Risk: Market prices can be stale, low confidence, or affected by low trading volume. <br>
-Mitigation: Check league selection, listing counts, trend fields, and low-confidence indicators before relying on results. <br>
+## Use Case:
 
+Developers and Path of Exile tool users use this skill to query live poe.ninja currency and item prices, compare league market values, inspect price trends, and run bundled Python helpers for currency, item, and cross-type searches.
 
-## Reference(s): <br>
-- [Poe.ninja API Reference](artifact/references/api_reference.md) <br>
-- [poe.ninja API](https://poe.ninja/api/data) <br>
-- [poe.ninja](https://poe.ninja) <br>
-- [poe.ninja API Documentation](https://github.com/ayberkgezer/poe.ninja-API-Document) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qpooqp777/poe1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text, with optional raw JSON from bundled Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs price tables, filtered search results, trend percentages, listing counts, and optional raw API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live market data can be stale, low-confidence, or inaccurate for important trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices before high-value trades and consider listing counts, trend fields, and low-confidence indicators when available.
+
+Risk: Cross-type searches can make multiple poe.ninja requests in a short period.
+
+Mitigation: Use reasonable rate limits, narrow searches when possible, and avoid repeated broad searches.
+
+Risk: The bundled Python helpers contact poe.ninja over HTTPS when run.
+
+Mitigation: Review commands before execution and run the scripts only in environments where outbound access to poe.ninja is acceptable.
+
+## Reference(s):
+
+- [Poe.ninja API reference](references/api_reference.md)
+- [poe.ninja public API](https://poe.ninja/api/data)
+- [poe.ninja API documentation](https://github.com/ayberkgezer/poe.ninja-API-Document)
+- [ClawHub skill page](https://clawhub.ai/qpooqp777/skills/poe1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command examples; bundled scripts print terminal tables or JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live HTTPS requests to poe.ninja and does not require credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

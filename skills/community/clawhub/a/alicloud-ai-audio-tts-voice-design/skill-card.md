@@ -1,43 +1,59 @@
-## Description: <br>
-Voice design workflows with Alibaba Cloud Model Studio Qwen TTS VD models. Use when creating custom synthetic voices from text descriptions and using them for speech synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice design workflows with Alibaba Cloud Model Studio Qwen TTS VD models. Use when creating custom synthetic voices from text descriptions and using them for speech synthesis.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to design custom synthetic voices from text descriptions with Alibaba Cloud Model Studio Qwen TTS voice-design models and prepare normalized request or validation artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses an Alibaba/DashScope API key and installs the provider SDK. <br>
-Mitigation: Install the SDK in an isolated environment and use a scoped Alibaba/DashScope API key. <br>
-Risk: Voice prompts and synthesis text may contain confidential content that is sent to the provider or stored in local output files. <br>
-Mitigation: Avoid confidential text in prompts unless provider processing and local storage are acceptable for the use case. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare Alibaba Cloud Qwen TTS voice-design requests, create reusable voice prompts, and validate generated voice responses before longer speech synthesis workflows.
 
-## Reference(s): <br>
-- [Qwen TTS Voice Design Documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-design) <br>
-- [Alibaba Cloud Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cinience/alicloud-ai-audio-tts-voice-design) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/cinience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON request or response artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local request JSON and response validation summaries under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Unreviewed or floating SDK dependencies may change behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a virtual environment and use a pinned, reviewed dashscope package version.
+
+Risk: Alibaba Cloud credentials could be exposed if shared in prompts, logs, or saved evidence.
+
+Mitigation: Provide credentials only when API calls are intended and keep DASHSCOPE_API_KEY out of saved artifacts and transcripts.
+
+Risk: Synthetic voice output may be unsuitable or misleading if generated from vague prompts.
+
+Mitigation: Use explicit tone, pace, emotion, and timbre constraints, then validate short utterances before longer scripts.
+
+## Reference(s):
+
+- [Alibaba Cloud Qwen TTS Voice Design documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-design)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-ai-audio-tts-voice-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON request or response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write normalized request JSON and validation output under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Formats terminal commands and their complete outputs into clear, step-by-step Markdown, including errors, long output, interactive prompts, background tasks, and short interpretations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command Output Display guides agents to present terminal commands, stdout, stderr, errors, and concise interpretations in a clear step-by-step format.
 
-## Publisher: <br>
-[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya)
 
-## Use Case: <br>
-Developers and technical agents use this skill to present terminal work transparently, showing each command, stdout, stderr, exit details, and a concise interpretation for setup, troubleshooting, and operational workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Displayed command output can reveal secrets, personal data, private paths, hostnames, or service details. <br>
-Mitigation: Redact tokens, passwords, API keys, cookies, private infrastructure details, and personal data before sharing or publishing output. <br>
-Risk: Example command transcripts may include mutating operations that could be copied into a live environment. <br>
-Mitigation: Confirm explicit user intent and review the target environment before running mutating commands shown in examples or generated walkthroughs. <br>
+## Use Case:
 
+Developers and support agents use this skill when running shell commands for users and need to show commands, outputs, errors, and interpretations in a readable troubleshooting or setup walkthrough.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pikaqiuyaya/command-output-display) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with fenced shell and output blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include summarized long output, error interpretation, and prompts for user action when commands require interaction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Raw command output, logs, or command arguments may expose tokens, passwords, private paths, or other sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and private values before displaying command output to the user.
+
+Risk: Terminal control characters or misleading escape sequences may be copied into chat as raw output.
+
+Mitigation: Escape unsafe control characters and avoid preserving sequences that could alter or obscure displayed text.
+
+Risk: Commands that change files, services, or system state may be presented without enough confirmation.
+
+Mitigation: Confirm file-changing, service-changing, or otherwise unsafe commands before execution.
+
+## Reference(s):
+
+- [Command Output Display on ClawHub](https://clawhub.ai/pikaqiuyaya/skills/command-output-display)
+- [pikaqiuyaya publisher profile](https://clawhub.ai/user/pikaqiuyaya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with fenced shell and output blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include full command output, error summaries, troubleshooting interpretations, and prompts for interactive commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

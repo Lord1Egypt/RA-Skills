@@ -1,40 +1,55 @@
-## Description: <br>
-Search and download related arXiv papers by topic plus date range, or from a seed paper title/id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and download related arXiv papers by topic plus date range, or from a seed paper title/id.
 
-## Publisher: <br>
-[ppingzhang](https://clawhub.ai/user/ppingzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppingzhang](https://clawhub.ai/user/ppingzhang)
 
-## Use Case: <br>
-Researchers, developers, and technical users use this skill to find arXiv papers by keyword, date range, or seed paper and download matching PDFs into a local workspace directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts arXiv and writes downloaded PDFs into the workspace. <br>
-Mitigation: Use reasonable result limits, keep the default ./arxiv directory unless another location is intentional, and review downloaded PDFs before opening or sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to collect arXiv papers for a topic, date range, or seed paper and save downloaded PDFs with deterministic filenames.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppingzhang/paper-search-and-download-automatically) <br>
-- [Publisher profile](https://clawhub.ai/user/ppingzhang) <br>
-- [arXiv API endpoint](https://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and locally saved PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads PDFs into a user-selected directory, defaulting to ./arxiv, and reports found, downloaded, skipped, and output path counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The downloader performs outbound web requests and writes files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a confined output directory, keep max-results small, and review the destination before running.
+
+Risk: The security scan says the downloader can fetch unverified links and lacks resource limits.
+
+Mitigation: Prefer a revised version that allowlists arXiv PDF hosts, validates redirects and PDF content, and enforces file-size and batch-size limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppingzhang/skills/paper-search-and-download-automatically)
+- [Publisher profile](https://clawhub.ai/user/ppingzhang)
+- [arXiv API endpoint](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and locally downloaded PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an output directory and names PDF files using arXiv version/date plus sanitized title.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

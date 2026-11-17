@@ -1,42 +1,50 @@
-## Description: <br>
-Read public PANews website pages as Markdown for homepage, article-page, and column-page reads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read public PANews website pages as Markdown for homepage, article-page, and column-page reads.
 
-## Publisher: <br>
-[medz](https://clawhub.ai/user/medz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[medz](https://clawhub.ai/user/medz)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve rendered PANews homepage, article, or column content as Markdown with page metadata when they have or imply a PANews page URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A PANews path without a language prefix defaults to Chinese, which may not match the user's intended locale. <br>
-Mitigation: Specify a supported locale prefix such as /en, /ja, /ko, /zh, or /zh-hant before fetching. <br>
-Risk: Unavailable pages can return 404 responses. <br>
-Mitigation: Report 404 pages as unavailable rather than synthesizing content from other endpoints. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve public PANews homepage, article, and column pages as Markdown with page metadata when they need rendered page content rather than structured search or API results.
 
-## Reference(s): <br>
-- [PANews website](https://www.panewslab.com) <br>
-- [PANews English homepage](https://www.panewslab.com/en) <br>
-- [ClawHub skill page](https://clawhub.ai/medz/panews-web-viewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with YAML frontmatter metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves rendered page structure and reports 404 pages as unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill may make direct web requests to PANews when a page-reading task is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for public single-page reads only, not authenticated accounts, private data, write actions, broad crawling, or structured API search workflows.
+
+## Reference(s):
+
+- [PANews Website](https://www.panewslab.com)
+- [PANews Web Viewer on ClawHub](https://clawhub.ai/medz/skills/panews-web-viewer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with YAML frontmatter metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns public PANews page content and metadata for supported locale-prefixed homepage, article, or column URLs.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

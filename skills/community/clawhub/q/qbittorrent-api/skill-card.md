@@ -1,43 +1,60 @@
-## Description: <br>
-Use when working with qBittorrent Web API - adding torrents, managing downloads, checking status, or any qBittorrent automation task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when working with qBittorrent Web API - adding torrents, managing downloads, checking status, or any qBittorrent automation task.
 
-## Publisher: <br>
-[HxBreak](https://clawhub.ai/user/HxBreak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hxbreak](https://clawhub.ai/user/hxbreak)
 
-## Use Case: <br>
-Developers and automation users use this skill to operate the qBittorrent Web API, including authentication, adding and managing torrents, checking status, and configuring categories, tags, trackers, RSS, and search behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential examples and .env usage could expose qBittorrent credentials if copied into version control or shared logs. <br>
-Mitigation: Replace all sample credentials, keep .env out of version control, and avoid allowing the agent to inspect unrelated secrets. <br>
-Risk: Mutating qBittorrent API operations can delete torrents or files, change global preferences, shut down qBittorrent, or install and remove search plugins. <br>
-Mitigation: Require explicit user confirmation before destructive or broad operations, especially deleting files, using hashes=all, shutting down qBittorrent, changing global preferences, or modifying search plugins. <br>
+## Use Case:
 
+Developers and operators use this skill as a qBittorrent Web API reference for torrent management, status checks, file operations, categories, tags, RSS, search, and automation workflows.
 
-## Reference(s): <br>
-- [qBittorrent OpenAPI documentation](https://www.qbittorrent.org/openapi-demo/) <br>
-- [qBittorrent WebUI API Wiki](https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-(qBittorrent-4.1)) <br>
-- [qBittorrent Web API changelog](https://github.com/qbittorrent/qBittorrent/blob/master/WebAPI_Changelog.md) <br>
-- [ClawHub skill page](https://clawhub.ai/HxBreak/qbittorrent-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with curl examples, endpoint tables, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include qBittorrent API calls that mutate torrents, files, preferences, RSS feeds, or search plugins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Examples include unsafe credential handling and weak defaults for qBittorrent access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a safer secret mechanism, replace weak defaults, and restrict API access to HTTPS or localhost-only connections.
+
+Risk: Deletion, shutdown, plugin install or uninstall, and bulk actions can have high operational impact.
+
+Mitigation: Require explicit user confirmation before these actions, especially before deleteFiles=true or actions that target all torrents.
+
+Risk: Shared or persistent cookie files can expose authenticated qBittorrent sessions.
+
+Mitigation: Use a private temporary cookie jar and remove it after the API workflow completes.
+
+## Reference(s):
+
+- [qBittorrent OpenAPI Demo](https://www.qbittorrent.org/openapi-demo/)
+- [qBittorrent WebUI API Wiki](https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-(qBittorrent-4.1))
+- [qBittorrent Web API Changelog](https://github.com/qbittorrent/qBittorrent/blob/master/WebAPI_Changelog.md)
+- [ClawHub Skill Page](https://clawhub.ai/hxbreak/skills/qbittorrent-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with endpoint tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes curl examples, API endpoint summaries, parameter notes, workflow guidance, and troubleshooting notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

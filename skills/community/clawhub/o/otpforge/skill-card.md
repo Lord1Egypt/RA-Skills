@@ -1,40 +1,57 @@
-## Description: <br>
-Otpforge helps agents manage local TOTP/2FA accounts, store base32 secrets in a local JSON vault, and display current codes through a CLI or optional Tkinter GUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TOTP/2FA codes locally (add/list/remove accounts, display current codes, and optional Tkinter GUI). Use when a user asks to generate a TOTP code, store a new base32 secret, list 2FA accounts, or manage a local OTP vault from the command line.
 
-## Publisher: <br>
-[ordsbot](https://clawhub.ai/user/ordsbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ordsbot](https://clawhub.ai/user/ordsbot)
 
-## Use Case: <br>
-Developers and end users use Otpforge to manage local OTP vault entries and retrieve current TOTP codes from the command line or a simple desktop GUI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local vault contains authentication secrets that can be used to generate 2FA codes. <br>
-Mitigation: Install and use the skill only on trusted devices with protected local storage; avoid shared or synced vault paths. <br>
-Risk: Command-line secrets, displayed codes, and copied codes are sensitive credentials. <br>
-Mitigation: Avoid use in shared terminals or screen-sharing sessions, clear copied codes when finished, and prefer an encrypted password manager for high-value accounts. <br>
+## Use Case:
 
+External users and developers use this skill to manage a local TOTP vault, add, list, and remove accounts, and display current 2FA codes through a CLI or optional Tkinter GUI.
 
-## Reference(s): <br>
-- [Otpforge ClawHub page](https://clawhub.ai/ordsbot/otpforge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display time-limited TOTP codes and local vault management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill handles long-lived 2FA seeds in a local JSON vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for real accounts, restrict access to the vault file, and avoid shared or synced vault locations.
+
+Risk: Entering TOTP seeds on the command line can expose secrets through shell history or process inspection.
+
+Mitigation: Avoid entering real seeds on the command line when possible, and prefer safer entry methods or an encrypted password manager for important accounts.
+
+Risk: A local TOTP manager may not provide the protections of an OS-backed authenticator or encrypted password manager.
+
+Mitigation: Prefer an encrypted password manager or OS-backed authenticator for high-value accounts.
+
+## Reference(s):
+
+- [ClawHub Otpforge skill page](https://clawhub.ai/ordsbot/skills/otpforge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Plain text and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce time-sensitive TOTP codes and local vault updates when commands are run.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

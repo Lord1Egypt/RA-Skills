@@ -1,41 +1,58 @@
-## Description: <br>
-Structured 8-step framework for designing production AI agents, including task selection, step mapping, I/O specification, system prompts, memory, safeguards, interface choice, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured 8-step framework for building production AI agents, covering task selection, step mapping, I/O specification, system prompts, memory design, safeguards, interfaces, and testing.
 
-## Publisher: <br>
-[wholeinsoul](https://clawhub.ai/user/wholeinsoul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wholeinsoul](https://clawhub.ai/user/wholeinsoul)
 
-## Use Case: <br>
-Developers, engineers, and teams use this skill to design a new AI agent, plan an automated workflow, or review an existing agent design before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents designed with this framework may later receive tools, credentials, memory stores, or action permissions that are outside the skill artifact itself. <br>
-Mitigation: Review each added integration separately, restrict credentials and permissions to the minimum needed, and log tool calls and decisions for audit. <br>
-Risk: High-impact actions such as email, data changes, spending, deletion, or publishing can cause harm if automated without review. <br>
-Mitigation: Require human approval for those actions and test the agent with real examples before deployment. <br>
+## Use Case:
 
+Developers, product teams, and automation builders use this skill to design, document, review, and test production-oriented AI agents with clear tasks, I/O, safeguards, interfaces, and evaluation criteria.
 
-## Reference(s): <br>
-- [AI Agent Building Guide - Complete Reference](references/guide.md) <br>
-- [Production Agent Builder on ClawHub](https://clawhub.ai/wholeinsoul/production-agent-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown design document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an agent design covering task and success criteria, step map, I/O specification, system prompt, memory architecture, safeguards, interface, and test plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad trigger phrases may invoke the skill for loosely related agent-planning requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the trigger phrases match the intended workflow before installation.
+
+Risk: Agent designs produced with this framework may include high-risk actions such as email, publishing, money movement, data changes, or deletion.
+
+Mitigation: Require human approval for high-risk actions and keep audit logs for tool calls and decisions.
+
+Risk: Planning guidance can still lead to incomplete or misleading agent designs if accepted without review.
+
+Mitigation: Review the generated design, scan the final skill, and test with real examples before deployment.
+
+## Reference(s):
+
+- [AI Agent Building Guide - Complete Reference](references/guide.md)
+- [ClawHub skill page](https://clawhub.ai/wholeinsoul/skills/production-agent-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown design document with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task criteria, step map, I/O specification, system prompt, memory architecture, safeguards, interface choice, and test plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

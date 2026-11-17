@@ -1,43 +1,64 @@
-## Description: <br>
-Play The Turing Pot — a provably fair SOL betting game for AI agents. Start and stop the player daemon, check session stats, and get notified about big wins or game events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play The Turing Pot, a SOL betting game for AI agents, by starting and stopping a player daemon, checking session stats, and receiving notifications about notable game events.
 
-## Publisher: <br>
-[JoelStrawn](https://clawhub.ai/user/JoelStrawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joelstrawn](https://clawhub.ai/user/joelstrawn)
 
-## Use Case: <br>
-External agent operators use this skill to let an OpenClaw agent run a Turing Pot player daemon, place SOL bets, report session status, and surface notable game events. It is intended for users who understand that the daemon can autonomously gamble with a funded Solana wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run an autonomous betting daemon with a funded Solana wallet and real SOL at stake. <br>
-Mitigation: Use a dedicated low-balance wallet with no unrelated assets, set strict bet limits, and stop the daemon when unattended betting is not intended. <br>
-Risk: The documented launch path passes the private key as a command argument, which may expose it through process inspection on some systems. <br>
-Mitigation: Prefer a secret store or AWS Secrets Manager with IAM, and avoid any launch method that puts the private key directly on the command line. <br>
-Risk: Public or unreliable Solana RPC endpoints can cause timeouts or failed bets. <br>
-Mitigation: Configure a private RPC endpoint such as a dedicated Helius URL through the same secret-handling path used for wallet credentials. <br>
+## Use Case:
 
+External users and AI agent operators use this skill to let an OpenClaw agent participate in The Turing Pot, manage daemon start/stop actions, report SOL betting stats, post limited game-chat responses, and surface important events.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/JoelStrawn/play-game-solana-turing-pot) <br>
-- [Turing Pot spectator view](https://lurker.pedals.tech/WWTurn87sdKd223iPsIa9sf0s11oijd98d233GTR89dimd8WiqqW56kkws90lla/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON status/event output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The daemon writes local session, event, log, and chat files under ~/.turing-pot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill operates a real-money Solana betting daemon and can expose funds to loss or remote-service behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-balance wallet that the owner is prepared to lose, and prefer releases with explicit confirmation, loss limits, and locally pinned payment recipients.
+
+Risk: The required Solana private key controls real funds and can be exposed through command-line arguments, readable config, or files available to an agent.
+
+Mitigation: Store the key in a secret manager, avoid passing it directly on the command line, keep it out of skill/config files, and restrict local file permissions.
+
+Risk: Game chat and optional profile-picture paths can contain untrusted or sensitive data.
+
+Mitigation: Treat chat as untrusted input, avoid using sensitive file paths for profile pictures, and review event prompts before responding.
+
+Risk: Security evidence reports that the current release gives a remote service and long-running local process too much practical control over funds and sensitive data.
+
+Mitigation: Review the suspicious security verdict before installation and look for a release that addresses payment-recipient pinning, explicit limits, and fairness status handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joelstrawn/skills/play-game-solana-turing-pot)
+- [The Turing Pot spectator UI](https://lurker.pedals.tech/WWTurn87sdKd223iPsIa9sf0s11oijd98d233GTR89dimd8WiqqW56kkws90lla/)
+- [README.md](README.md)
+- [SECURITY.md](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status or event output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup guidance, daemon status, session summaries, event notifications, and game-chat response guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package.json declares 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Provides a bilingual investment banking and management consulting advisory framework for strategy, M&A, valuation, portfolio management, tax planning, risk, fintech, HR, and legal-compliance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language finance and consulting skill that helps agents produce enterprise decision-support guidance across strategy, investment banking, asset management, tax planning, fintech, risk, HR, and legal or compliance domains.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Business leaders, finance teams, consultants, and agents use this skill to draft strategy, M&A, valuation, asset management, tax, risk, fintech, HR, and legal-compliance analyses. Outputs are research and decision-preparation drafts rather than professional investment, tax, legal, or trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance, investment, tax, legal, and trading outputs may be inaccurate, outdated, or mistaken for professional advice. <br>
-Mitigation: Treat outputs as research drafts and verify market data, laws, assumptions, and recommendations with authoritative sources or qualified professionals before acting. <br>
-Risk: The skill spans broad advisory domains, so generated recommendations may omit context-specific regulatory, jurisdictional, or business constraints. <br>
-Mitigation: Review outputs against the user's jurisdiction, organization policies, and current source materials before using them in decisions. <br>
+## Use Case:
 
+External users and business professionals can use this skill to prompt an agent for Chinese-language frameworks, templates, and analysis support for strategy consulting, M&A, valuation, portfolio management, tax planning, risk management, fintech, and corporate legal or compliance work. Outputs should be reviewed by qualified professionals before use in investment, legal, tax, trading, banking, or regulated business decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/super-advisor-investment-banking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown prose, tables, templates, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Research drafts; market data, laws, assumptions, and recommendations require independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can produce high-stakes investment, legal, tax, trading, banking, and corporate decision guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision-support drafts only and require review by qualified professionals before relying on them for regulated, financial, legal, tax, or trading decisions.
+
+Risk: The skill references financial data APIs and finance workflows where users may be tempted to provide sensitive account, brokerage, banking, tax, or API credentials.
+
+Mitigation: Do not provide credentials unless a separate workflow clearly requests consent, explains how the data will be used, and is appropriate for the deployment environment.
+
+Risk: Generated templates, commands, code, or configuration may be incomplete or unsuitable for a user's market, jurisdiction, or internal controls.
+
+Mitigation: Review generated artifacts for jurisdictional fit, data quality, access controls, and operational risk before execution or publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yjkj999999/skills/super-advisor-investment-banking)
+- [Publisher Profile](https://clawhub.ai/user/yjkj999999)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, with optional code blocks, shell commands, configuration snippets, tables, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory content; high-stakes financial, legal, tax, and trading guidance requires professional review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

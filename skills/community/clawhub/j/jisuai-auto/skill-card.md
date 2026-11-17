@@ -1,40 +1,54 @@
-## Description: <br>
-One-click configuration for connecting OpenClaw to the aicodee.com MiniMax model relay service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+jisuai-auto configures OpenClaw to use the aicodee.com MiniMax relay by extracting API details and updating the local OpenClaw model settings.
 
-## Publisher: <br>
-[outrice](https://clawhub.ai/user/outrice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[outrice](https://clawhub.ai/user/outrice)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure a custom MiniMax provider by extracting the API base URL, API key, and model name from a message and applying them to OpenClaw settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes OpenClaw configuration and stores the supplied API key locally in plaintext. <br>
-Mitigation: Review the target OpenClaw config path before running it, use a limited-scope or disposable API key, and keep a backup of existing provider settings. <br>
-Risk: The skill changes the default OpenClaw model provider to the configured MiniMax relay. <br>
-Mitigation: Confirm the intended provider name, model ID, and base URL before applying the configuration, and restore the prior default model if the relay is not desired. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure an aicodee.com MiniMax API relay as an OpenClaw provider and make it the default model route.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/outrice/jisuai-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a Python configuration helper that updates OpenClaw provider settings when required API values are supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles API credentials while configuring OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended HTTPS aicodee.com endpoints, avoid pasting real keys into chat or shell history when possible, and rotate keys if they are exposed.
+
+Risk: The skill makes persistent model-routing changes with too little scoping and user control.
+
+Mitigation: Back up openclaw.json first, then verify the provider, endpoint, API key, and default model before continuing to use OpenClaw.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/outrice/skills/jisuai-auto)
+- [aicodee.com MiniMax relay endpoint](https://v2.aicodee.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make persistent OpenClaw provider and default model changes when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Pre-trade readiness check for autonomous agents. One call returns wallet identity, venue status, spendable balance, open exposure, and a structured ok_to_trade verdict. Run before every real-money trade to prevent cap overruns and catch config issues before they become P&L issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-trade readiness check for autonomous agents that returns wallet identity, venue status, spendable balance, open exposure, and an ok_to_trade verdict before live real-venue trades proceed.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-Developers and autonomous trading agents use this skill before trade execution to check wallet identity, venue status, spendable balance, open exposure, and risk blockers. It is intended to prevent cap overruns and configuration mistakes before real-money orders are submitted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Simmer API key and can expose wallet identity, balances, positions, and risk alerts in local agent output. <br>
-Mitigation: Install only when connecting a Simmer account is intended, keep SIMMER_API_KEY scoped and secret, and avoid sharing logs or JSON output that contain trading readiness data. <br>
-Risk: The preflight verdict is read-only but is designed to inform real-money trading decisions. <br>
-Mitigation: Run it once per trade intent, review blockers and warnings before order submission, and keep exposure caps configured for the account's risk limits. <br>
+## Use Case:
 
+Developers and autonomous-agent operators use this skill before automated trade submission to check account readiness, wallet identity, balance, exposure, and blocking conditions. It supports pre-trade audit logging and fail-closed handling when a real-venue trade is not ready to proceed.
 
-## Reference(s): <br>
-- [Simmer API and preflight documentation](https://docs.simmer.markets) <br>
-- [Simmer skill page](https://clawhub.ai/simmer/simmer-preflight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable CLI summary or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and may include wallet identity, balances, positions, blockers, warnings, and risk alerts in local agent output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill requires a Simmer API key and reports trading-account readiness data, including wallet, balance, exposure, blockers, and warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, provide the API key through the SIMMER_API_KEY environment variable, and avoid exposing JSON or terminal output where account details should remain private.
+
+Risk: Preflight checks depend on current account, venue, and position data, so stale or failed checks can affect trade readiness decisions.
+
+Mitigation: Run the check once per trade intent, inspect blockers and warnings, and treat configuration or fetch failures as reasons to pause live trading until resolved.
+
+## Reference(s):
+
+- [Simmer API and wallet documentation](https://docs.simmer.markets)
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/simmer-preflight)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Human-readable terminal output or structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses exit codes 0, 1, and 2 to indicate pass, blocked, or configuration error.]
+
+## Skill Version(s):
+
+0.3.6 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

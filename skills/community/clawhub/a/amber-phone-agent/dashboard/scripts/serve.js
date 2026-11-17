@@ -37,19 +37,66 @@ if (args.help) {
 }
 
 const root = path.resolve(__dirname, '..');
+const { resolveBridgeCredential } = require('../../runtime/bridge-credential.cjs');
 
 function isAllowedOrigin(origin) {
-  if (!origin) return false;
+  if (typeof origin !== 'string') return false;
+  return [`http://127.0.0.1:${args.port}`, `http://localhost:${args.port}`, `http://[::1]:${args.port}`].includes(origin);
+}
+
+function readJsonBody(req, limitBytes = 8192) {
+  return new Promise((resolve, reject) => {
+    let raw = '';
+    req.on('data', chunk => {
+      raw += chunk;
+      if (Buffer.byteLength(raw) > limitBytes) {
+        reject(new Error('Request body too large'));
+        req.destroy();
+      }
+    });
+    req.on('end', () => {
+      try {
+        resolve(raw ? JSON.parse(raw) : {});
+      } catch (_) {
+        reject(new Error('Invalid JSON'));
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
+function isLoopbackBridgeUrl(value) {
   try {
-    const u = new URL(origin);
-    return ['127.0.0.1', 'localhost', '::1', '[::1]'].includes(u.hostname);
+    const u = new URL(value);
+    return (
+      (u.protocol === 'http:' || u.protocol === 'https:') &&
+      ['127.0.0.1', 'localhost', '::1', '[::1]'].includes(u.hostname)
+    );
   } catch (_) {
     return false;
   }
 }
 
+function sendJson(res, status, payload) {
+  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+  res.end(JSON.stringify(payload));
+}
+
+const ALLOWED_REALTIME_MODELS = new Set(['gpt-realtime', 'gpt-realtime-mini']);
+
 const server = http.createServer((req, res) => {
   const origin = req.headers.origin;
+  const allowedHosts = new Set([`127.0.0.1:${args.port}`, `localhost:${args.port}`, `[::1]:${args.port}`]);
+  if (!allowedHosts.has(req.headers.host)) return sendJson(res, 403, { error: 'Invalid dashboard Host' });
+  const ownOrigin = `http://${req.headers.host}`;
+  if (origin && origin !== ownOrigin) return sendJson(res, 403, { error: 'Cross-origin request denied' });
+  if (req.headers['sec-fetch-site'] && req.headers['sec-fetch-site'] !== 'same-origin' && req.headers['sec-fetch-site'] !== 'none') {
+    return sendJson(res, 403, { error: 'Cross-site request denied' });
+  }
+  if (req.method === 'POST' && (origin !== ownOrigin || !/^application\/json(?:;|$)/i.test(req.headers['content-type'] || ''))) {
+    return sendJson(res, 403, { error: 'Same-origin JSON POST required' });
+  }
+
   if (isAllowedOrigin(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
@@ -60,6 +107,61 @@ const server = http.createServer((req, res) => {
   if (req.method === 'OPTIONS') {
     res.writeHead(isAllowedOrigin(origin) ? 204 : 403);
     res.end();
+    return;
+  }
+
+  // POST /api/call — loopback-only proxy to Amber bridge /call/outbound.
+  // Keeping this same-origin avoids browser CORS issues while still refusing
+  // non-local bridge targets so the dashboard cannot become a generic proxy.
+  if (req.method === 'POST' && ['/api/call', '/api/call/preview'].includes(req.url)) {
+    readJsonBody(req)
+      .then(async body => {
+        const bridgeUrl = String(body.bridgeUrl || 'http://127.0.0.1:8000').replace(/\/+$/, '');
+        // Auto-share the installation secret only with its configured bridge, never an arbitrary local URL.
+        const configuredBridgeUrl = String(process.env.AMBER_BRIDGE_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '');
+        const bridgeToken = String(body.bridgeToken || (bridgeUrl === configuredBridgeUrl ? resolveBridgeCredential(path.join(root, '..', 'runtime')) : ''));
+        const to = String(body.to || '').trim();
+        const objective = String(body.objective || '').trim();
+        const model = String(body.model || 'gpt-realtime').trim();
+
+        if (!isLoopbackBridgeUrl(bridgeUrl)) {
+          sendJson(res, 400, { success: false, error: 'Bridge URL must be localhost/loopback.' });
+          return;
+        }
+        if (!ALLOWED_REALTIME_MODELS.has(model)) {
+          sendJson(res, 400, { success: false, error: 'Invalid model. Choose gpt-realtime or gpt-realtime-mini.' });
+          return;
+        }
+        if (!/^\+[1-9]\d{6,14}$/.test(to)) {
+          sendJson(res, 400, { success: false, error: 'Invalid phone number. Use E.164, like +14165551234.' });
+          return;
+        }
+        if (!objective) {
+          sendJson(res, 400, { success: false, error: 'Objective is required.' });
+          return;
+        }
+
+        const headers = { 'Content-Type': 'application/json' };
+        if (bridgeToken) headers.Authorization = `Bearer ${bridgeToken}`;
+
+        const upstream = await fetch(`${bridgeUrl}${req.url === '/api/call/preview' ? '/call/preview' : '/call/outbound'}`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ to, objective, model, confirmed: body.confirmed === true, approvalToken: body.approvalToken })
+        });
+        const text = await upstream.text();
+        let payload;
+        try {
+          payload = text ? JSON.parse(text) : {};
+        } catch (_) {
+          payload = { raw: text };
+        }
+        sendJson(res, upstream.ok ? 200 : upstream.status, {
+          success: upstream.ok,
+          ...payload
+        });
+      })
+      .catch(err => sendJson(res, 500, { success: false, error: err.message }));
     return;
   }
 

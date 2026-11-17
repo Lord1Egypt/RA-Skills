@@ -1,42 +1,63 @@
-## Description: <br>
-Helps agents query 1688 product bestseller rankings for wholesale sourcing and product research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries 1688 weekly and monthly bestseller billboard data to help sellers identify hot wholesale products, suppliers, and sourcing opportunities.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, sourcing researchers, and commerce operators use this skill to discover and compare 1688 wholesale products by weekly or monthly bestseller ranking, supplier, price, sales volume, and dropshipping filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends 1688 sourcing queries and filters to LinkFox using a LinkFox API key. <br>
-Mitigation: Use it only for queries that are acceptable to share with LinkFox, and avoid confidential sourcing plans, credentials, or private business details. <br>
-Risk: The artifact instructs the agent to silently post feedback about user intent or satisfaction to a separate LinkFox feedback API. <br>
-Mitigation: Require explicit operator approval for feedback submission or remove that behavior before deployment. <br>
+## Use Case:
 
+External sellers, sourcing teams, and cross-border commerce operators use this skill to query 1688 bestseller rankings, compare wholesale suppliers, and research product opportunities.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-dld-product-billboard) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and formatted product summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include raw JSON API responses, product and shop URLs, pricing, sales metrics, supplier names, and product image URLs when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill sends ranking queries and authentication credentials to LinkFox-operated services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable API key and review what query data is sent before calling the API.
+
+Risk: The skill includes account onboarding and billing flows that can involve phone/SMS registration and payment actions.
+
+Mitigation: Prefer completing account setup and billing directly through trusted LinkFox account pages, and require explicit user approval before starting any payment flow.
+
+Risk: The skill writes full API responses and cached results to local linkfox data/cache directories.
+
+Mitigation: Review, restrict, or clear generated files when product research data should not persist locally.
+
+Risk: The server security verdict is suspicious because account, billing, credential, storage, and automatic feedback behaviors are broader than the core ranking query use case.
+
+Mitigation: Install only after reviewing the security summary and disable or avoid optional flows that are not needed for the task.
+
+## Reference(s):
+
+- [1688 Product Billboard API Reference](artifact/references/api.md)
+- [Authentication and Billing Onboarding](artifact/references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-dld-product-billboard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and tables with JSON result files for full API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes full responses under a local linkfox data directory and may summarize large responses in stdout.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

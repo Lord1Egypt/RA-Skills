@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents use Scrapling-based tools to search Boss Zhipin candidates, retrieve resumes, send batch greetings, and parse structured recruiting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Scrapling-based tooling to search Boss Zhipin candidates, retrieve resumes, send batch greetings, and parse resume data.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-Recruiters, recruiting operations teams, and developers use this skill to automate Boss Zhipin candidate search, resume retrieval, outreach preparation, and resume parsing from an authorized account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires live Boss Zhipin account cookies and may expose sensitive session credentials if they are pasted into chats, logs, or shared files. <br>
-Mitigation: Use only accounts you control, keep cookies and proxy credentials in local environment variables or secret storage, and avoid sharing credentials in agent conversations or committed files. <br>
-Risk: Candidate resumes and contact details are personal data, and the skill can collect or process that data at scale. <br>
-Mitigation: Run the skill only with authorization and applicable legal or privacy review; keep daily limits, random delays, and human review in place before collecting resumes or sending outreach. <br>
-Risk: Optional LLM resume parsing can send candidate data to an external model provider. <br>
-Mitigation: Disable external LLM parsing unless candidates and the organization have approved that data flow, or use an approved private model endpoint with appropriate data handling controls. <br>
+## Use Case:
 
+Recruiters and recruiting-operations agents use this skill to search Boss Zhipin for candidates, retrieve resumes, send greetings, and convert resume text into structured recruiting data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wuritu/scrapling-boss-recruitment) <br>
-- [Boss Zhipin crawler configuration guide](references/config.md) <br>
-- [Boss Zhipin CSS selector reference](references/selectors.md) <br>
-- [Boss Zhipin](https://www.zhipin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; runtime helpers can return Python objects and JSON-formatted resume data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Boss Zhipin session cookies; optional proxy settings and optional external LLM parsing may be configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Live Boss Zhipin session cookies can grant authenticated account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account or sanctioned API flow, avoid pasting full browser cookies into prompts or shared files, and rotate credentials if exposed.
+
+Risk: Candidate resumes may contain personal data.
+
+Mitigation: Process resume data only with appropriate consent, access controls, retention limits, and review before sending content to any remote LLM parser.
+
+Risk: Batch outreach can contact candidates at scale.
+
+Mitigation: Require manual review before any batch greeting or outreach action and keep daily limits conservative.
+
+## Reference(s):
+
+- [Boss Zhipin Configuration Guide](references/config.md)
+- [Boss Zhipin Selector Reference](references/selectors.md)
+- [Boss Zhipin](https://www.zhipin.com)
+- [ClawHub Skill Listing](https://clawhub.ai/wuritu/skills/scrapling-boss-recruitment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets, configuration examples, and structured resume data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce candidate and resume fields as JSON-like structured text.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

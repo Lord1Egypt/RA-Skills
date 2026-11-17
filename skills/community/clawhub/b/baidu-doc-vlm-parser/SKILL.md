@@ -1,21 +1,21 @@
 ---
 name: baidu-doc-vlm-parser 百度文档解析(PaddleOCR-VL)
-description: 调用百度PaddleOCR-VL大模型API解析文档。基于PaddleOCR-VL-1.5多模态大模型，支持PDF、Word、PPT、图片等格式，精准识别印刷文本、手写文本、表格、公式、图表、印章等复杂元素，支持111种语言，可处理不规则布局和长文档跨页解析。触发词：文档解析、VLM解析、大模型OCR、PaddleOCR、多模态文档、手写识别、公式识别、复杂版面。
+description: 调用百度PaddleOCR-VL大模型API解析文档。基于PaddleOCR-VL-1.6多模态大模型，支持PDF、Word、PPT、图片等格式，精准识别印刷文本、手写文本、表格、公式、图表、印章等复杂元素，支持100+种语言，可处理不规则布局和长文档跨页解析。触发词：文档解析、VLM解析、大模型OCR、PaddleOCR、多模态文档、手写识别、公式识别、复杂版面。
 license: MIT
 ---
 
 # 百度文档解析（PaddleOCR-VL）Skill
 
-基于 PaddleOCR-VL-1.5 多模态大模型，提供开箱即用的文档智能解析能力。
+基于 PaddleOCR-VL-1.6 多模态大模型，提供开箱即用的文档智能解析能力。
 
 ## 功能概述
 
-**PaddleOCR-VL-1.5-0.9B** 是多模态文档解析领域的 SOTA 方案，具备：
+**PaddleOCR-VL-1.6-0.9B** 是多模态文档解析领域的 SOTA 方案，具备：
 
 - **全要素精准解析**：高效识别印刷文本、手写文本、表格、公式、图表、印章等复杂文档元素
 - **智能阅读顺序**：基于人类阅读习惯推断内容排列顺序，将零散页面信息转化为有序带标签的结构化元素序列
 - **行级别坐标**：支持精准的行级别坐标输出
-- **111 种语言**：覆盖中、英、日、韩、拉丁文等全球化多语种文档
+- **100+ 种语言**：覆盖中、英、日、韩、拉丁文等全球化多语种文档
 - **不规则布局定位**：攻克复杂版面解析难点
 - **长文档跨页解析**：支持跨页表格合并等企业级场景
 - **直接 Markdown/JSON 输出**：无需额外处理
@@ -25,7 +25,7 @@ license: MIT
 | 特性 | PaddleOCR-VL（本 Skill） | 标准版（pipeline-parser） |
 |------|-------------------------|--------------------------|
 | 底层模型 | 多模态大模型 VLM | 传统 Pipeline |
-| 语言支持 | 111 种 | 20+ 种 |
+| 语言支持 | 100+ 种 | 20+ 种 |
 | 公式/图片识别 | 默认开启，无需配置 | 需手动开启参数 |
 | 语种识别 | 自动识别，无需指定 | 需指定 language_type |
 | 版面类型 | 24 种细粒度类型 | 8 种基础类型 |
@@ -43,11 +43,25 @@ license: MIT
 - 长文档跨页表格合并
 - 免配置自动识别文档内容
 
+## 免费资源领取和计费说明
+[百度智能文档分析平台 领取免费测试资源](https://cloud.baidu.com/doc/OCR/s/fk3h7xu7h)
+
+
+[百度智能文档分析平台计费与购买方式](https://cloud.baidu.com/doc/OCR/s/Fls06fa15#%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%EF%BC%88paddleocr-vl%EF%BC%89)
+
+
+| 用户类型 | 免费额度 |
+|---------|---------|
+| 个人实名认证用户 | **200 页** |
+| 企业实名认证用户 | **1000 页** |
+
 ## API 配置
 
-### 环境变量（必须）
+### 额度获取方式
 
-[百度智能文档分析平台 领取免费测试资源](https://ai.baidu.com/ai-doc/OCR/dk3iqnq51)
+您可通过百度智能云平台获取[免费额度](https://cloud.baidu.com/doc/OCR/s/fk3h7xu7h)与[购买调用资源](https://cloud.baidu.com/doc/OCR/s/Fls06fa15#%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%EF%BC%88paddleocr-vl%EF%BC%89)
+
+### 环境变量（必须）
 
 使用前请设置以下环境变量：
 
@@ -58,17 +72,17 @@ export BAIDU_DOC_AI_SECRET_KEY="your_secret_key"
 
 ### 认证方式
 
-通过 API Key 和 Secret Key 获取 access_token，有效期 30 天。
+通过 API Key 和 Secret Key 获取 access_token，有效期 30 天。所有接口请求需以 URL 参数 `access_token` 携带。
 
 ## 支持格式
 
-**版式文档**：pdf, jpg, jpeg, png, bmp, tif, tiff, ofd（图片最长边不大于 4096px）
+**版式文档**：pdf, jpg, jpeg, png, bmp, tif, tiff, ofd（图片最长边不大于 8192px）
 
 **流式文档**：doc, docx, txt, wps, ppt, pptx
 
 ## 支持语言
 
-111 种语言，包括中文、英文、日文、韩文、拉丁文等，**无需手动指定，大模型自动识别**。
+100+ 种语言，包括中文、英文、日文、韩文、拉丁文等，**无需手动指定，大模型自动识别**。
 
 ## 使用方式
 
@@ -87,6 +101,38 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 - **请求 URL**：`https://aip.baidubce.com/rest/2.0/brain/online/v2/paddle-vl-parser/task?access_token={token}`
 - **Content-Type**：`application/x-www-form-urlencoded`
 
+#### Python 示例
+
+```python
+import requests, os, base64
+
+def create_task(url, file_path, file_url):
+    with open(file_path, "rb") as f:
+        file_data = base64.b64encode(f.read())
+    data = {
+        "file_data": file_data,
+        "file_url": file_url,
+        "file_name": os.path.basename(file_path)
+    }
+    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    return requests.post(url, headers=headers, data=data)
+
+request_host = "https://aip.baidubce.com/rest/2.0/brain/online/v2/paddle-vl-parser/task?access_token={token}"
+response = create_task(request_host, "./test.pdf", "")
+print(response.json())
+```
+
+**成功响应示例：**
+
+```json
+{
+  "error_code": 0,
+  "error_msg": "",
+  "log_id": "10138598131137362685273505665433",
+  "result": { "task_id": "taREDACTED-SECRET" }
+}
+```
+
 ### 获取结果接口
 
 - **HTTP 方法**：POST
@@ -94,13 +140,28 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 - **Content-Type**：`application/x-www-form-urlencoded`
 - **请求参数**：`task_id`（必填，提交请求时返回的 task_id）
 
+#### Python 示例
+
+```python
+import requests
+
+def query_task(url, task_id):
+    data = {"task_id": task_id}
+    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    return requests.post(url, headers=headers, data=data)
+
+request_host = "https://aip.baidubce.com/rest/2.0/brain/online/v2/paddle-vl-parser/task/query?access_token={access_token}"
+resp = query_task(request_host, "task_id")
+print(resp.json())
+```
+
 ## 请求参数
 
 ### 文件参数（必选，二选一）
 
 | 参数 | 必选 | 类型 | 说明 |
 |------|------|------|------|
-| `file_data` | 和 file_url 二选一 | string | 文件 Base64 编码数据。版式文档：pdf, jpg, jpeg, png, bmp, tif, tiff, ofd（图片最长边不大于 4096px）；流式文档：doc, docx, txt, wps, ppt, pptx。图片不超过 10M，版式文档不超过 100M，流式文档不超过 50M，PDF 最大 500 页。超过 50M 须使用 file_url。优先级：file_data > file_url |
+| `file_data` | 和 file_url 二选一 | string | 文件 Base64 编码数据。版式文档：pdf, jpg, jpeg, png, bmp, tif, tiff, ofd（图片最长边不大于 8192px）；流式文档：doc, docx, txt, wps, ppt, pptx。图片不超过 10M，版式文档不超过 100M，流式文档不超过 50M，PDF 最大 500 页。超过 50M 须使用 file_url。优先级：file_data > file_url |
 | `file_url` | 和 file_data 二选一 | string | 文件数据 URL，长度不超过 1024 字节。PDF 文档不超过 100M，最大 500 页。**请注意关闭 URL 防盗链** |
 | `file_name` | 是 | string | 文件名，请保证文件名后缀正确，例如 "1.pdf" |
 
@@ -116,15 +177,6 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 | `relevel_titles` | 否 | bool | 是否对段落标题（paragraph_title）进行分级，开启后在 sub_type 中输出标题级别 |
 | `recognize_seal` | 否 | bool | 是否识别印章内容 |
 | `return_span_boxes` | 否 | bool | 是否返回行坐标 |
-
-### 文档分块参数
-
-`return_doc_chunks` 为字典类型：
-
-| 参数 | 必选 | 类型 | 默认值 | 说明 |
-|------|------|------|--------|------|
-| `switch` | 否 | bool | False | 是否进行文档内容切分 |
-| `chunk_size` | 否 | int | -1 | 切分块的大小，-1 表示按照语义自动切分 |
 
 ## 返回结构
 
@@ -143,11 +195,13 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 |------|------|------|
 | `result.task_id` | string | 任务 ID |
 | `result.status` | string | 任务状态：pending（排队中）、processing（运行中）、success（成功）、failed（失败） |
-| `result.task_error` | string | 解析报错信息 |
+| `result.task_error` | string | 解析报错信息（任务失败、额度耗尽等） |
 | `result.markdown_url` | string | Markdown 格式结果链接，**有效期 30 天** |
 | `result.parse_result_url` | string | JSON 格式结果 BOS 链接，**有效期 30 天** |
 
 ### 解析结果 JSON 结构（parse_result_url）
+
+顶层字段：`file_name`、`file_id`、`pages[]`。
 
 #### 页面对象（pages[]）
 
@@ -197,8 +251,8 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 | `layout_id` | string | 对应 layouts 中 type 为 table 的 layout ID |
 | `markdown` | string | 表格 Markdown 形式 |
 | `position` | list | 边框数据 [x, y, w, h] |
-| `cells` | list | 单元格内版面信息 |
-| `matrix` | list | 单元格索引矩阵 |
+| `cells` | list | 单元格内版面信息（扁平列表） |
+| `matrix` | list | 2D 单元格索引矩阵，元素为 `cells` 数组下标；相同下标重复出现表示合并单元格 |
 | `merge_table` | string | 合并标识（开启 merge_tables 后）：begin（开始）、end（结束） |
 
 #### 图片对象（images[]）
@@ -208,7 +262,7 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 | `layout_id` | string | 对应 layouts 中 type 为 image 的 layout ID |
 | `position` | list | 边框数据 [x, y, w, h] |
 | `data_url` | string | 图片存储链接 |
-| `image_description` | string | 统计图表内容解析（JSON 字符串） |
+| `image_description` | string | 统计图表内容解析（JSON 字符串，需 `json.loads` 解析） |
 
 ## API 特性
 
@@ -225,14 +279,14 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 
 ### QPS 限制
 
-- 提交请求接口：2 QPS
-- 获取结果接口：10 QPS
+- 提交请求接口：**2 QPS**
+- 获取结果接口：**5 QPS**
 
 ## 文件限制
 
 | 限制项 | 说明 |
 |--------|------|
-| 图片大小 | ≤ 10M，最长边 ≤ 4096px |
+| 图片大小 | ≤ 10M，最长边 ≤ 8192px |
 | 版式文档大小 | ≤ 100M |
 | 流式文档大小 | ≤ 50M |
 | PDF 页数 | ≤ 500 页 |
@@ -241,7 +295,69 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 
 ## 错误处理
 
-常见错误码参见 `references/error_codes.md`
+常见错误码示例：
+
+| 错误码 | 说明 |
+|--------|------|
+| `282003` | missing parameters（缺少必要参数） |
+| `282007` | task not exist, please check task id（任务不存在） |
+
+完整错误码参见 `references/error_codes.md` 及 [OCR 错误码文档](https://cloud.baidu.com/doc/OCR/s/dk3iqnq51)。
+
+**失败响应示例：**
+
+```json
+{
+  "log_id": "13665091038742503867108513247608",
+  "error_code": "282007",
+  "error_msg": "task not exist, please check task id",
+  "result": "null"
+}
+```
+
+## 产品计费与购买方式
+
+> 数据来源：[百度智能云 OCR 计费说明](https://cloud.baidu.com/doc/OCR/s/Fls06fa15#%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%EF%BC%88paddleocr-vl%EF%BC%89)
+
+### 免费额度
+
+登录[文字识别控制台](https://console.bce.baidu.com/ai/)自动领取：
+
+| 用户类型 | 免费额度 |
+|---------|---------|
+| 个人实名认证用户 | **200 页** |
+| 企业实名认证用户 | **1000 页** |
+
+### 新人优惠
+
+限时活动价 **9 元/千页**，面向新用户。
+
+### 预付费资源包
+
+有效期 **1 年**，到期未抵扣额度作废。购买后 7 天内若未产生调用可自助退订。
+
+| 规格（页） | 原价（元） | 现价（元） |
+|---:|---:|---:|
+| 5,000 | 425 | 230 |
+| 10,000 | 800 | 440 |
+| 50,000 | 3,750 | 2,000 |
+| 100,000 | 7,700 | 3,800 |
+| 200,000 | 14,300 | 7,200 |
+| 500,000 | 33,000 | 17,000 |
+| 1,000,000 | 54,000 | 32,000 |
+| 2,000,000（新增） | — | 62,000 |
+| 5,000,000 | 210,000 | 150,000 |
+
+### 按量后付费
+
+- 不限月调用量
+- 原价 **0.09 元/页**，现价 **0.05 元/页**
+- 仅成功调用计费，**调用失败不计费**
+
+### 购买入口
+
+- **购买资源包 / 开通后付费**：均通过[百度智能云控制台](https://console.bce.baidu.com/ai/) 文字识别产品页面进行
+- **退订**：资源包购买后 7 天内未产生调用可前往"退订管理页面"自助退订
 
 ## 脚本
 
@@ -255,6 +371,7 @@ python3 scripts/baidu_doc_vlm_parser.py --file_url <文件公网URL> --file_name
 
 ## 相关链接
 
-- [官方 API 文档](https://ai.baidu.com/ai-doc/OCR/3mi73at9o)
+- [官方技术文档](https://cloud.baidu.com/doc/OCR/s/3mi73at9o)
+- [产品计费与购买](https://cloud.baidu.com/doc/OCR/s/Fls06fa15#%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%EF%BC%88paddleocr-vl%EF%BC%89)
 - [百度云控制台](https://console.bce.baidu.com/ai/)
 - [智能文档分析平台](https://ai.baidu.com/solution/intelligent-document-analysis)

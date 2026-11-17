@@ -1,37 +1,49 @@
-## Description: <br>
-AR/VR application development platform for immersive experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AR/VR application development platform for immersive experiences.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and teams building immersive AR/VR experiences use this skill for 3D scene construction, gesture-based interaction design, and collaborative applications across gaming, education, real estate, and industrial simulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-ar-vr-platform) <br>
+Developers and teams use this skill to build AR and VR applications with 3D scenes, gesture interaction, and shared immersive experiences for gaming, education, real estate, and industrial simulation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review the catalog metadata before installation; security evidence reports a metadata clarity issue but no hidden, destructive, or data-exfiltrating behavior.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The install instructions ask users to clone and run mutable unaudited remote code without integrity checks.
+
+Mitigation: Review the external repository before installing, prefer a pinned commit and hash-verified dependencies, use a virtual environment or sandbox, and avoid administrator/root privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-ar-vr-platform)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

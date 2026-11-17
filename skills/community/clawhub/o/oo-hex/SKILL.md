@@ -1,11 +1,11 @@
 ---
 name: oo-hex
-description: "Hex (hex.tech). Use this skill for ANY Hex request — reading, creating, and updating data. Whenever a task involves Hex, use this skill instead of calling the API directly."
+description: "Hex (hex.tech). Use this skill for ANY Hex request — reading, creating, updating, and deleting data. Whenever a task involves Hex, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Hex"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.5"
   services: ["hex"]
   icon: "https://static.oomol.com/logo/third-party/hex.svg"
 ---
@@ -37,12 +37,12 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `cancel_run` — Cancel an in-progress Hex project run. [write]
+- `cancel_run` — Cancel an in-progress Hex project run. [destructive]
 - `get_project` — Get metadata for a single Hex project by project ID.
 - `get_run_status` — Get the status and metadata for a specific Hex project run.
 - `list_project_runs` — List API-triggered runs for a Hex project, optionally filtered by status.
 - `list_projects` — List Hex projects visible to the connected token, with pagination and common project filters.
-- `run_project` — Trigger a run of the latest published version of a Hex project.
+- `run_project` — Trigger a run of the latest published version of a Hex project. [write]
 
 ## Safety
 
@@ -73,11 +73,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Hex is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=hex
+  https://console.oomol.com/connections/hex
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Hex homepage: https://hex.tech
+- API documentation: https://learn.hex.tech/docs/api-integrations/api/overview

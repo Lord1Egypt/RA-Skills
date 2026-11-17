@@ -1,39 +1,54 @@
-## Description: <br>
-Todo4google helps an agent manage weekly local todo and work-log Markdown files, sync daily tasks with Google Tasks through `gog`, and archive todo files to Google Drive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages local todo items and work logs, syncs selected tasks with Google Tasks, and archives todo files to Google Drive.
 
-## Publisher: <br>
-[liliangjie91](https://clawhub.ai/user/liliangjie91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liliangjie91](https://clawhub.ai/user/liliangjie91)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep local Markdown-based task plans, work notes, and daily summaries organized while syncing selected tasks with Google Tasks and archiving todo files to Google Drive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sync task notes and archive todo files to Google services, which may expose sensitive work notes if the wrong account or files are used. <br>
-Mitigation: Confirm the active Google account, review todo files before syncing or archiving, and avoid storing secrets or highly sensitive notes in files intended for upload. <br>
+## Use Case:
 
+External users and developers use this skill to maintain weekly markdown todo files, summarize daily work, sync day-specific tasks with Google Tasks through gog, and archive todo files to Google Drive.
 
-## Reference(s): <br>
-- [ClawHub Todo4google listing](https://clawhub.ai/liliangjie91/todo4google) <br>
-- [Publisher profile](https://clawhub.ai/user/liliangjie91) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown task files and guidance with inline `gog` shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `gog` command-line tool and access to the intended Google account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Todo content, notes, task titles, and file paths may be interpolated into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use trusted todo content and paths, and prefer structured gog arguments over assembled shell strings.
+
+Risk: Sync and archive operations send selected todo and work-log data to Google services.
+
+Mitigation: Confirm the user intends to sync or archive the specific day's tasks or target file before invoking Google Tasks or Google Drive operations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/liliangjie91/skills/todo4google)
+- [Publisher profile](https://clawhub.ai/user/liliangjie91)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown task files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog command-line tool and access to Google Tasks or Google Drive for sync and archive operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

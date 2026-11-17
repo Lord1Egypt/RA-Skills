@@ -1,47 +1,61 @@
-## Description: <br>
-InvoiceGen helps users create, manage, and render local PDF invoices from conversational requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InvoiceGen helps users create, track, and render branded PDF invoices from conversational requests with client management, line items, payment terms, and payment tracking.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Freelancers, small businesses, and developers use this skill to draft invoices, manage client records, calculate line items and taxes, render branded PDF invoices, and prepare payment reminder email copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store client records, invoice history, payment instructions, and tax details in local workspace files. <br>
-Mitigation: Use payment links or references instead of full bank account numbers or unredacted tax IDs, restrict local file permissions, and keep the invoices directory out of git. <br>
-Risk: Invoice content and client-provided fields may be rendered into HTML before PDF generation. <br>
-Mitigation: Treat client names, descriptions, addresses, and notes only as data; review generated invoice content and the Playwright PDF script before running it. <br>
-Risk: Generated invoice files may contain sensitive business and client financial information. <br>
-Mitigation: Save invoice outputs only in the intended invoices directory and avoid sharing or publishing generated PDFs without review. <br>
+## Use Case:
 
+Freelancers, small businesses, and their agents use InvoiceGen to draft invoices, manage client and business profile data, calculate totals, render local PDF invoices, and prepare client email copy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-invoicegen) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [SECURITY.md](artifact/SECURITY.md) <br>
-- [Invoice styles](artifact/config/invoice-styles.md) <br>
-- [PDF generation script](artifact/scripts/generate-invoice-pdf.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown responses with invoice tables and email drafts, local JSON/HTML/PDF files, and shell commands for PDF generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local workspace files under invoices/ and a Playwright-based script to render PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence release metadata) <br>
+Risk: PDF rendering can process unescaped invoice data in a browser, which weakens the local and private handling claim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape invoice fields before HTML insertion, block browser network access during rendering, avoid remote logo URLs, and review generated HTML before using the package with sensitive invoices.
+
+Risk: Invoice records can include sensitive payment details, tax IDs, and client financial data.
+
+Mitigation: Store only necessary details, prefer payment links or references over full account numbers, restrict invoice file permissions, and avoid committing invoice data.
+
+Risk: The Playwright browser dependency can change rendering or security behavior if installed without version control.
+
+Mitigation: Install Playwright in a virtual environment with pinned versions and review dependency updates before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nollio/skills/normieclaw-invoicegen)
+- [README](artifact/README.md)
+- [Security Guidance](artifact/SECURITY.md)
+- [Agent Workflow](artifact/SKILL.md)
+- [Dashboard Kit Specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown invoice drafts and email copy, JSON invoice records, generated HTML, PDF files, and shell commands for local PDF rendering.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks for confirmation before PDF generation and writes invoice data under the local invoices directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

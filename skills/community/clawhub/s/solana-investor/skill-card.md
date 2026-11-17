@@ -1,41 +1,51 @@
-## Description: <br>
-Solana Investor coordinates portfolio, DCA, alert, and market sub-skills for multi-step Solana investment requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Top-level Solana investment assistant orchestrator that coordinates portfolio, DCA, alerts, and market skills for complex multi-step investment requests.
 
-## Publisher: <br>
-[liji3597](https://clawhub.ai/user/liji3597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liji3597](https://clawhub.ai/user/liji3597)
 
-## Use Case: <br>
-External users managing Solana investments use this skill to coordinate multi-step workflows across portfolio review, market checks, DCA setup, and price alerts. The skill is intended for requests that require multiple sub-skills, with confirmation before write actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The package includes executable diagnostic scripts beyond the documented prompt workflow. <br>
-Mitigation: Review or remove the scripts before use, and only run them after confirming which shared database, metrics, environment, signer, and compliance-file state they inspect. <br>
-Risk: The skill coordinates investment-related workflows that may include write actions such as DCA strategy creation or alert setup. <br>
-Mitigation: Require explicit user confirmation for each write action and keep read-only checks separate from state-changing operations. <br>
-Risk: One sub-skill failure could otherwise obscure partial results in a multi-step investment workflow. <br>
-Mitigation: Report each sub-step separately and continue presenting successful read results when another sub-step fails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Solana Investor release page](https://clawhub.ai/liji3597/solana-investor) <br>
+## Use Case:
+
+External users use this skill to coordinate multi-step Solana investment workflows, such as checking portfolio or market state before setting alerts or DCA actions. It is intended for requests that require multiple sub-skills and stepwise confirmation before write operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Undocumented operational scripts may expose deployment posture, aggregate application state, configuration, or credential-presence indicators when run with repository and environment access.
+
+Mitigation: Review the package before installing, authorize any script execution explicitly, and run with least-privilege read access only in environments where those scripts are understood.
+
+Risk: The skill coordinates investment-related workflows that can include alerts or DCA setup across sub-skills.
+
+Mitigation: Require stepwise user confirmation for every write operation and keep failed sub-steps isolated from read-only summaries.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown text with structured workflow steps and referenced script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates sub-skill calls and asks for confirmation before write operations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata); artifact frontmatter reports 1.0.0 <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text orchestration guidance, with shell command references when delegating to sub-skill scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate read and write workflows across portfolio, market, DCA, and alert skills; write operations require user confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

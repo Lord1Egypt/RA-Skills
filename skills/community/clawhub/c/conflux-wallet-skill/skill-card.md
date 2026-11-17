@@ -1,46 +1,61 @@
-## Description: <br>
-Self-sovereign EVM wallet for AI agents that can create a local crypto wallet, check balances, send ETH or ERC20 tokens, swap tokens, and interact with smart contracts across supported EVM chains. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Self-sovereign EVM wallet for AI agents that can create a local wallet, check balances, send ETH or ERC20 tokens, swap tokens, and interact with smart contracts across Base, Conflux eSpace, Ethereum, Polygon, Arbitrum, and Optimism without cloud custody or API keys.
 
-## Publisher: <br>
-[pana](https://clawhub.ai/user/pana) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pana](https://clawhub.ai/user/pana)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent manage a self-hosted EVM wallet workflow, including wallet setup, balance checks, token transfers, swaps, and contract calls. The artifact describes this as exploratory and requires careful user confirmation before any irreversible transaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs unpinned external code that can handle private keys and irreversible crypto transactions. <br>
-Mitigation: Review or pin the GitHub code before use, install only from trusted sources, and use a new low-balance wallet for testing. <br>
-Risk: The local wallet file contains sensitive credentials and loss or disclosure can lead to loss of funds. <br>
-Mitigation: Protect and back up ~/.cfx-wallet.json, never share the private key or wallet file, and avoid reinitializing the wallet over an existing funded wallet. <br>
-Risk: Transfers, swaps, token approvals, and write contract calls are irreversible and may use the wrong chain, token, amount, or spender. <br>
-Mitigation: Manually verify chain, recipient, token, amount, approvals, gas, and quote details before confirming any transaction. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent create and operate a local EVM wallet, inspect balances, prepare transfers, request swap quotes, execute confirmed swaps, and interact with smart contracts across supported chains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pana/conflux-wallet-skill) <br>
-- [Project homepage](https://github.com/conflux-fans/conflux-wallet-skill) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [viem](https://viem.sh) <br>
-- [Odos](https://odos.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be run with --json when available; transfers, swaps, approvals, and write contract calls require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata) <br>
+Risk: The skill can manage real crypto funds and execute transfers, swaps, approvals, and contract writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with negligible funds and require independent verification of recipient, token contract, chain, amount, and gas cost before approving any transaction.
+
+Risk: The reviewed package can bootstrap by downloading and installing unpinned GitHub source and dependencies.
+
+Mitigation: Pin, inspect, and scan the GitHub source and dependencies before running npm install or executing wallet commands.
+
+Risk: Local private key exposure or accidental wallet reinitialization can cause loss of funds.
+
+Mitigation: Protect ~/.cfx-wallet.json, never share private keys, avoid reinitializing funded wallets, and move funds to a new wallet if a key may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pana/skills/conflux-wallet-skill)
+- [Publisher profile](https://clawhub.ai/user/pana)
+- [Project homepage from ClawHub metadata](https://github.com/conflux-fans/conflux-wallet-skill)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Conflux eSpace explorer](https://evm.confluxscan.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to use --json where available so the agent can parse results and present transaction details before user confirmation.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

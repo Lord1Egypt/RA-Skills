@@ -1,40 +1,56 @@
-## Description: <br>
-Tracks recent IPOs and generates TradingView watchlists. Auto-triggers on phrases like "recent IPOs", "tradingview watchlist", "IPO calendar", "IPO tracker", "IPO report", "new stock listings", or "IPO data". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks recent IPOs and generates TradingView watchlists from IPO calendar and market data.
 
-## Publisher: <br>
-[sarkcesscrewpay](https://clawhub.ai/user/sarkcesscrewpay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sarkcesscrewpay](https://clawhub.ai/user/sarkcesscrewpay)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to fetch recent IPO information, enrich listings with market data, and produce TradingView watchlists plus report and CSV outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may run Python commands, install dependencies, fetch market data from external services, and write IPO report or watchlist files.
+
+Mitigation: Review the actual script, dependency file, command options, and output paths before execution.
+
+Risk: The inspected artifact does not include the referenced script or dependency files.
+
+Mitigation: Confirm those files are present and trustworthy before running the skill.
+
+Risk: IPO and market data can be incomplete, stale, or unsuitable for trading decisions.
+
+Mitigation: Review generated reports and watchlists against authoritative market sources before importing or acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to collect recent IPO data, enrich it with market details, and produce TradingView watchlists, reports, and CSV exports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run scripts, install dependencies, fetch live market data, and write export files. <br>
-Mitigation: Ask before running commands or writing files, and review generated outputs before using them. <br>
-Risk: IPO and market data can be incomplete, stale, or unsuitable as investment advice. <br>
-Mitigation: Treat generated reports and watchlists as research aids and verify market information with authoritative sources. <br>
+**Output Format:** [Markdown guidance with shell commands and generated TXT/CSV files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sarkcesscrewpay/ipo-tracker) <br>
+**Other Properties Related to Output:** [Produces ipo_watchlist.txt, ipo_report.txt, and ipo_data.csv when the referenced IPO tracker script is available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown summary with generated text and CSV/watchlist files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write ipo_watchlist.txt, ipo_report.txt, and ipo_data.csv when the supporting script is run.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

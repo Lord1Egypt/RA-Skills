@@ -1,40 +1,51 @@
-## Description: <br>
-Rotate Claude Max API tokens for OpenClaw Anthropic profiles when a user provides a replacement `sk-ant-` token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rotate Claude Max API token for OpenClaw Anthropic profiles when the user requests a key swap, key rotation, new key, keyswap, or provides a new `sk-ant-` token.
 
-## Publisher: <br>
-[jawaddxb](https://clawhub.ai/user/jawaddxb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jawaddxb](https://clawhub.ai/user/jawaddxb)
 
-## Use Case: <br>
-Developers and operators use this skill to rotate Claude Max API tokens for configured OpenClaw Anthropic profiles and check whether the gateway is healthy afterward. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite stored API tokens for configured OpenClaw Anthropic profiles. <br>
-Mitigation: Back up auth-profiles.json, verify the profile names match the intended setup, and require explicit user confirmation before updating credentials. <br>
-Risk: The skill can restart the OpenClaw gateway as part of token rotation. <br>
-Mitigation: Run it only during an approved maintenance window or when a gateway restart is acceptable, and check gateway health after execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Key Swap on ClawHub](https://clawhub.ai/jawaddxb/keyswap) <br>
-- [jawaddxb publisher profile](https://clawhub.ai/user/jawaddxb) <br>
+## Use Case:
+
+Developers and OpenClaw operators use this skill to rotate Claude Max API tokens for the configured Anthropic profiles and restart the OpenClaw gateway after the update.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles a powerful Claude Max API token and can be triggered by broad key-rotation phrases.
+
+Mitigation: Use the skill only after an explicit user request, avoid pasting tokens into ambiguous conversations, and install it only when this exact OpenClaw profile rotation is needed.
+
+Risk: The security guidance flags unsafe shell-style invocation and token handling that needs review before installation.
+
+Mitigation: Prefer a reviewed version that reads the token from protected input, validates the full token format, avoids printing token fragments, and passes arguments without shell interpolation.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command execution and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a replacement token beginning with `sk-ant-`, access to the OpenClaw auth profiles file, jq, and the OpenClaw gateway environment.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with an inline shell command and status summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request a Claude Max API token from the user and reports success or script error output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

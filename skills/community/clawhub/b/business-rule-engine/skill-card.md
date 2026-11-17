@@ -1,39 +1,55 @@
-## Description: <br>
-Business Rule Engine helps agents define, load, chain, and evaluate lightweight business rules for dynamic logic execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight business rule engine supporting rule definition, execution, chain orchestration, and dynamic rule loading.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and engineers use this skill to define and exercise business rules, rule chains, and JSON-loaded policies for application workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rule text is evaluated as Python code without clear containment. <br>
-Mitigation: Install and use only with trusted rule definitions and trusted rule authors; replace eval-based execution with a restricted parser or allowlisted evaluator before using customer-supplied, third-party, or remotely loaded rules. <br>
+## Use Case:
 
+Developers and engineers use this skill to define, load, evaluate, and orchestrate business rules for application logic such as discounts, eligibility checks, and order workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/business-rule-engine) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rule definitions, rule-chain examples, JSON loading examples, and test commands; generated or loaded rules should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Untrusted JSON or DSL rule definitions can reach dynamic condition evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Accept rule definitions only from trusted administrators, or replace eval-based condition handling with a strict parser before exposing rule creation.
+
+Risk: External or ordinary users could create rules that trigger unsafe or unintended business logic.
+
+Mitigation: Gate rule creation behind validation, authorization, and review before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/business-rule-engine)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/kaiyuelv)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON-shaped rule definitions and rule evaluation examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

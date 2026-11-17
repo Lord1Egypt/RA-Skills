@@ -1,45 +1,58 @@
-## Description: <br>
-Meta-skill for interactively evolving other skills through directed improvements or source-guided capability fusion, with backup and rollback safeguards before edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Evolution helps an agent interactively improve other skills through targeted evolution or fusion of selected external skills, documents, and conversation-derived patterns, with backup and rollback safeguards before edits are applied.
 
-## Publisher: <br>
-[pillar-wang](https://clawhub.ai/user/pillar-wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pillar-wang](https://clawhub.ai/user/pillar-wang)
 
-## Use Case: <br>
-Developers and skill authors use this skill to improve selected installed skills through guided direction selection, proposed diffs, testing prompts, and rollback-aware retention decisions. It also supports absorbing useful patterns from other skills, documents, or conversation experience into a target skill after user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify selected installed skills and use git operations. <br>
-Mitigation: Review each proposed diff before approval, test the changed skill in a real scenario, and use the documented backup and rollback flow if results are unsatisfactory. <br>
-Risk: Backup and log files may retain private skill content, document excerpts, or conversation-derived details. <br>
-Mitigation: Avoid providing sensitive sources unless needed, and review or remove .skill-backups logs and backup files when they contain private material. <br>
-Risk: Fusion from other skills, documents, or conversation experience may introduce conflicting or misleading guidance. <br>
-Mitigation: Require user confirmation for selected sources and conflicts, keep frontmatter unchanged, and rescan or review the target skill before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this meta-skill to revise installed skills in a controlled workflow: choose an evolution direction, review proposed changes, apply confirmed diffs, test the result, and keep or roll back the edit. It is also used to incorporate reusable guidance from another skill, an external document, or prior conversation feedback into a target skill.
 
-## Reference(s): <br>
-- [Skill Evolution on ClawHub](https://clawhub.ai/pillar-wang/skill-evolution) <br>
-- [Publisher Profile](https://clawhub.ai/user/pillar-wang) <br>
-- [Evolution Directions](references/evolution-directions.md) <br>
-- [Rollback and Fusion Resources](references/resources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured choices, tables, diffs, code blocks, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create skill backup files, logs, and git commands when the user approves changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can modify other installed skills and persist new behavior into future agent runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended skill-editing workflows, inspect the source material and final diff before applying changes, and test the edited skill before keeping the result.
+
+Risk: Document or conversation-derived content can introduce private, incorrect, or unwanted instructions into a skill.
+
+Mitigation: Avoid sensitive inputs, review selected fusion items before insertion, and remove backup logs if they may contain private material.
+
+Risk: A failed or unsuitable edit can leave a target skill in an undesired state.
+
+Mitigation: Rely on the documented backup, rollback, byte comparison, and user-confirmation workflow before retaining edits.
+
+## Reference(s):
+
+- [Evolution Directions](references/evolution-directions.md)
+- [Rollback and Fusion Resources](references/resources.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with proposed diffs, tables, inline shell commands, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create backup files and evolution or fusion logs when used to edit a target skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

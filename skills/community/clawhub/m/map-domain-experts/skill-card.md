@@ -1,43 +1,54 @@
-## Description: <br>
-Use when a user wants to quickly learn a domain/field/领域 by mapping representative experts, scholars, practitioners, seminal works, core consensus, major disagreements, comparison tables, or an entry learning roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants to quickly learn a domain/field/领域 by mapping representative experts, scholars, practitioners, seminal works, core consensus, major disagreements, comparison tables, or an entry learning roadmap.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Learners, researchers, developers, and other external users use this skill to build a concise, evidence-aware map of a domain's representative experts, shared claims, important disagreements, comparison points, and entry learning path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Expert maps for current, contested, niche, or high-stakes fields may become inaccurate or overstate consensus if sources are not checked. <br>
-Mitigation: Verify against current primary or reputable sources and review cited materials before relying on the output. <br>
-Risk: A compact expert map can omit important perspectives when evidence is thin or the field scope is too broad. <br>
-Mitigation: State the scope assumption, reduce confidence when evidence is limited, and select experts to represent major schools and disagreements. <br>
+## Use Case:
 
+External users, developers, analysts, and learners use this skill to build a concise map of a field's representative experts, core consensus, major disagreements, comparison points, and entry learning path. It is most useful when a user wants a structured starting point for learning a domain rather than a generic reading list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/map-domain-experts) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise prose, lists, comparison tables, learning routes, and source links when used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to the user's language and asks for the field when the requested domain is only a placeholder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Expert maps for current, niche, contested, or high-stakes domains may become inaccurate or under-supported if claims are not checked against current sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output language and citations for fit, and verify current or contested claims against primary or reputable sources before relying on the result.
+
+Risk: A broad or ambiguous domain request can omit important schools of thought or overstate consensus.
+
+Mitigation: State the scope assumption, include representative experts across major perspectives, and reduce confidence when evidence is thin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/map-domain-experts)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown with structured sections, comparison table, learning roadmap, and concise citations or links when sources are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to the user's language and asks for the field when the requested domain is only a placeholder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

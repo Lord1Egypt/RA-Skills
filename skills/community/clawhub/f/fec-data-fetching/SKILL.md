@@ -1,21 +1,21 @@
 ---
 name: fec-data-fetching
-description: Use when implementing or reviewing frontend server-state flows: typed queries, request caching, invalidation, mutations, optimistic updates, infinite queries, prefetch, SSR hydration, or API-layer integration. Do not use for local UI state or Service Worker caching; Chinese triggers include 数据获取, 缓存, 乐观更新.
+description: "Use when implementing or reviewing frontend server-state flows: typed queries, request caching, invalidation, mutations, optimistic updates, infinite queries, prefetch, SSR hydration, or API-layer integration. Do not use for local UI state or Service Worker caching; Chinese triggers include data fetch, cache, optimistic updates."
 ---
 
-# Server State 数据获取
+# Server State data acquisition
 
 ## Purpose
 
-为前端 server state 建立清晰的数据获取、缓存、失效和提交边界，避免请求状态散落在页面组件中。
+Establish clear data acquisition, caching, invalidation and submission boundaries for front-end server state to avoid request state being scattered among page components.
 
 ## Procedure
 
-1. 判断状态来源：来自服务端且需要缓存、去重、刷新、分页或 mutation 时使用请求缓存方案；纯本地 UI 状态用组件 state 或 store。
-2. 先沿用项目已有数据获取库；新增依赖时 React/Vue/Solid/Svelte 可考虑 TanStack Query，也可沿用 SWR、Nuxt/Nitro 数据获取或项目封装。
-3. 设计稳定 cache key/query key：结构包含实体、动作和所有影响结果的参数。
-4. API 函数保持纯请求函数，数据 hook/composable 负责缓存、select、loading/error/empty 状态。
-5. mutation 成功后 invalidation；需要即时反馈时使用 optimistic update 并在失败时回滚。
+1. Determine the source of the state: use the request caching scheme when it comes from the server and needs caching, deduplication, refreshing, paging or mutation; use component state or store for purely local UI state.
+2. First use the existing data acquisition library of the project; when adding dependencies, you can consider TanStack Query for React/Vue/Solid/Svelte, or you can also use SWR, Nuxt/Nitro data acquisition or project encapsulation.
+3. Stable design cache key/query key: The structure contains entities, actions and all parameters that affect the results.
+4. The API function remains a pure request function, and the data hook/composable is responsible for cache, select, loading/error/empty status.
+5. Invalidation after mutation succeeds; use optimistic update when immediate feedback is needed and rollback when failure occurs.
 
 ## React Quick Start
 
@@ -45,18 +45,18 @@ export function useCreateUser() {
 }
 ```
 
-## 详细参考
+## Detailed reference
 
-涉及是否需要查询库、QueryClient 默认配置、Vue adapter、乐观更新、无限滚动查询、预取、SSR 水合和 API 层整合时，加载 [references/query-patterns.md](references/query-patterns.md)。
+Load [references/query-patterns.md](references/query-patterns.md) when it comes to whether you need a query library, QueryClient default configuration, Vue adapter, optimistic updates, infinite scroll queries, prefetching, SSR hydration, and API layer integration.
 
 ## Constraints
 
-- 相同数据必须复用相同 cache key/query key；参数缺失会造成缓存串读。
-- `staleTime` 过长会显示旧数据，过短会造成频繁请求。
-- 请求缓存库不管理本地 UI 状态；不要把 modal、输入框值放进 query cache。
-- 乐观更新必须保存快照并在失败时回滚。
-- SSR/SSG 场景必须使用框架支持的预取、水合或服务端数据边界。
+- The same data must reuse the same cache key/query key; missing parameters will cause cache string reading.
+- If `staleTime` is too long, old data will be displayed, and if it is too short, it will cause frequent requests.
+- The request cache library does not manage local UI state; do not put modal and input box values into the query cache.
+- Optimistic updates must save snapshots and rollback on failure.
+- SSR/SSG scenarios must use framework-supported prefetching, hydration, or server-side data boundaries.
 
 ## Expected Output
 
-数据获取层具备 loading/error/empty/data 状态，重复请求自动去重，mutation 后缓存正确失效或回滚，API 层与 UI 层边界清晰。
+The data acquisition layer has loading/error/empty/data status, repeated requests are automatically deduplicated, the cache is correctly invalidated or rolled back after mutation, and the boundary between the API layer and the UI layer is clear.

@@ -1,43 +1,55 @@
-## Description: <br>
-A complete SEO workflow skill that guides an agent from keyword research to HTML generation while tracking each step on a cloud Kanban dashboard through a companion plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A complete SEO workflow skill that guides an agent from keyword research to HTML generation while visually tracking each step on a cloud Kanban dashboard via the companion NPM plugin.
 
-## Publisher: <br>
-[Joeyzzyy](https://clawhub.ai/user/Joeyzzyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyzzyy](https://clawhub.ai/user/joeyzzyy)
 
-## Use Case: <br>
-Developers, content teams, and SEO practitioners use this skill to guide an agent through a structured SEO content workflow, including research, drafting, HTML generation, and progress tracking on an external Kanban dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends progress, card data, and generated artifacts through an external plugin and cloud dashboard. <br>
-Mitigation: Use it only when the external service is trusted for the content being processed, and avoid proprietary SEO briefs, unpublished drafts, or sensitive client content unless the service has been reviewed. <br>
-Risk: The companion plugin is required for dashboard synchronization and API requests. <br>
-Mitigation: Verify the plugin publisher and source before installation, and review how dashboard API keys and uploaded files are handled. <br>
+## Use Case:
 
+External users and developers use this skill to run SEO and content-production workflows that move from research and outline planning to Markdown content, responsive HTML generation, and visible Kanban status tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Joeyzzyy/claw-seo-to-kanban-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/Joeyzzyy) <br>
-- [External Kanban dashboard referenced by the skill](https://webkanbanforopenclaw.vercel.app) <br>
-- [Companion plugin source referenced by the skill](https://github.com/Joeyzzyy/claw-kanban) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated SEO content or HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on an external plugin and cloud dashboard for Kanban synchronization and artifact attachment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow depends on an unpinned external plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the plugin version before use, and reassess the plugin when updating.
+
+Risk: Task descriptions, research logs, progress data, and generated HTML may be sent to a cloud Kanban service.
+
+Mitigation: Avoid confidential, client, unpublished strategy, credential, or regulated personal data unless service controls, retention, and access permissions have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyzzyy/skills/claw-seo-to-kanban-workflow)
+- [Claw Kanban plugin source code](https://github.com/Joeyzzyy/claw-kanban)
+- [Kanban dashboard service](https://webkanbanforopenclaw.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local HTML artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the companion claw-kanban NPM plugin and a dashboard API key for cloud synchronization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

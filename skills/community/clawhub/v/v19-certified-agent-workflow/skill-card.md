@@ -1,42 +1,59 @@
-## Description: <br>
-Agent Community certification workflow for external agents, covering discovery, trial access, self-registration, audit logging, trust-score progress, and optional VPAV advanced certification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through the Agent Community certification workflow, including registration, governance audit activity, self-checks, appeals, feedback, exit handling, and certification progress tracking through an external governance service.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-External agent developers use this skill to follow the Agent Community governance and certification workflow, including registration, endpoint exploration, audit entry, trust-score tracking, and optional VPAV certification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to send registration data and API-key-backed requests to third-party web services without detailed privacy or credential-handling assurances. <br>
-Mitigation: Use it only if you trust the publisher and dashboard domain; avoid submitting secrets or proprietary metadata, and use a dedicated low-privilege API key that can be revoked or rotated quickly. <br>
+## Use Case:
 
+External agents and developers use this skill to join and operate within an Agent Community governance and certification process. It provides commands and workflow guidance for registration, audit logging, self-checks, appeals, feedback, exit, and certification tracking.
 
-## Reference(s): <br>
-- [V19 Certified Agent Workflow on ClawHub](https://clawhub.ai/liuyanfeng1234/v19-certified-agent-workflow) <br>
-- [Agent Community Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [Governance Health Endpoint](https://sat-personals-investment-hung.trycloudflare.com/governance/health) <br>
-- [Governance Registration Endpoint](https://sat-personals-investment-hung.trycloudflare.com/governance/register) <br>
-- [Governance Dashboard](https://sat-personals-investment-hung.trycloudflare.com/governance/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes third-party endpoint usage and API-key handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: frontmatter and release evidence) <br>
+Risk: The skill sends agent identifiers and governance activity to an external TryCloudflare-hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive agent identifiers and governance activity, and confirm that sharing this data is acceptable before registration or audit calls.
+
+Risk: The external service may return keys, endpoints, scores, dashboard URLs, or guidance that could be treated as authority by an agent.
+
+Mitigation: Treat all service responses as advisory and untrusted; platform, system, developer, user, and safety instructions remain higher priority.
+
+Risk: The service is mutable and third-party operated, so audit or certification outcomes can change outside the skill artifact.
+
+Mitigation: Review certification decisions and endpoint behavior before relying on them for deployment, access control, or trust decisions.
+
+## Reference(s):
+
+- [V19 Certified Agent Workflow ClawHub Page](https://clawhub.ai/liuyanfeng1234/skills/v19-certified-agent-workflow)
+- [Agent Community Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [Governance Dashboard](https://sat-personals-investment-hung.trycloudflare.com/governance/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include API keys, endpoint lists, dashboard URLs, audit status, trust scores, and certification guidance returned by the external governance service.]
+
+## Skill Version(s):
+
+1.2.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: halo-effect
 description: "Activate when: user is conducting a performance review or hiring interview; someone says 'she's great across the board' or 'everything they do is excellent'; user is evaluating a vendor, CEO, or investment and all attributes look uniformly positive or negative; user is reading business books or analyst reports and wants to assess whether the lessons generalize; user suspects their overall impression of a person or brand is distorting specific judgments.
-  Do NOT activate when: the global impression is itself the legitimate judgment (e.g., overall product satisfaction driving a purchase); attribute-by-attribute analysis would cause decision paralysis."
+  Do NOT activate when: the global impression is itself the legitimate judgment (e.g., overall product satisfaction driving a purchase); attribute-by-attribute analysis would cause decision paralysis. More: deciqai.com/c/halo-effect"
 ---
 
 # Halo Effect
@@ -10,7 +10,7 @@ description: "Activate when: user is conducting a performance review or hiring i
 
 A single positive or negative impression biases judgments of all unrelated attributes. A "great" CEO is assumed to have great strategy, vision, and execution; a beloved brand's features are rated higher than equivalent features from less-loved brands. Documented by Thorndike (1920), formalized by Nisbett & Wilson (1977), applied to business analysis by Rosenzweig (2007) — who showed business books overclaim because their descriptions follow company performance, not underlying reality.
 
-Composes with [`fundamental-attribution-error`](../fundamental-attribution-error/SKILL.md), [`narrative-fallacy`](../narrative-fallacy/SKILL.md), [`confirmation-bias`](../confirmation-bias/SKILL.md), [`hindsight-bias`](../hindsight-bias/SKILL.md), [`survivorship-bias`](../survivorship-bias/SKILL.md).
+Composes with `fundamental-attribution-error`, `narrative-fallacy`, `confirmation-bias`, `hindsight-bias`, `survivorship-bias`.
 
 ## When to Use
 
@@ -21,6 +21,7 @@ Composes with [`fundamental-attribution-error`](../fundamental-attribution-error
 - Evaluating investment opportunities or CEO impact
 - Conducting self-assessment
 - Someone says "halo effect," "visionary leader," "everything they do is great"
+- An "AI company" label, a marquee investor, or a famous-lab pedigree is doing the rating's work — evaluating an AI vendor, an AI-boom valuation, or a fluent model answer rated as accurate because it sounds confident
 
 **Not when:** the global impression is itself the relevant judgment; attribute-by-attribute analysis would produce decision paralysis.
 
@@ -65,6 +66,7 @@ Adjusted decision: real-evidence attrs | halo-inflated attrs | action
 ```
 
 *→ Method in Action: [Thorndike 1920 + Nisbett-Wilson 1977 + Rosenzweig 2007 Business Application](examples/thorndike-1920-nisbett-wilson-1977-rosenzweig-2007-business-application.md)*
+*→ 2026 lens: [The "AI" halo — Builder.ai and the AI-washing wave (2023–2026)](examples/ai-halo-builderai-and-ai-washing-2023-2026.md) — when two letters inflate every other attribute.*
 
 ## Pack: Halo Effect Across Evaluation Domains
 
@@ -117,4 +119,6 @@ Adjusted decision: real-evidence attrs | halo-inflated attrs | action
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 227 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/halo-effect** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/halo-effect.json*

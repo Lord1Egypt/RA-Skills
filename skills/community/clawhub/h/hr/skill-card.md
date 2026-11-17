@@ -1,38 +1,52 @@
-## Description: <br>
-Complete human resources intelligence system for founders, managers, and HR professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HR provides human resources guidance for hiring, onboarding, performance management, compensation, employee relations, termination, compliance, and people systems.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-Founders, managers, and HR professionals use this skill for HR drafting, checklists, and decision support across hiring, onboarding, performance management, compensation, employee relations, termination, and compliance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HR guidance may be mistaken for legal advice in termination, discrimination, wage-and-hour, compensation, or jurisdiction-specific employment-law matters. <br>
-Mitigation: Use outputs as drafting and checklist support, and obtain qualified HR or employment counsel review before acting on high-risk employment decisions. <br>
-Risk: Broad activation language may route general workplace questions into this skill even when specialized or local expertise is needed. <br>
-Mitigation: Narrow or disable the trigger where broad routing is not desired, and require users to specify jurisdiction and decision context for sensitive HR matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Founders, managers, and HR professionals use this skill to structure HR decisions and produce practical guidance for hiring, onboarding, performance management, compensation, employee relations, termination, compliance, and people systems.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, and structured prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no code execution, hidden access, persistence, or data-moving behavior indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HR guidance may affect legally sensitive employment decisions, especially termination, discrimination, wage-and-hour, privacy, or jurisdiction-specific matters.
+
+Mitigation: Treat outputs as general HR support and obtain qualified HR or employment counsel review before acting on sensitive or jurisdiction-specific decisions.
+
+Risk: Broad HR recommendations may be incomplete for a specific organization's policies, role context, or local employment rules.
+
+Mitigation: Review outputs against company policy, the relevant jurisdiction, and documented facts before using them with employees or candidates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agenticio/skills/hr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HR frameworks, checklists, draft job descriptions, feedback language, performance improvement plan structure, and termination preparation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

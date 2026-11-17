@@ -1,39 +1,49 @@
-## Description: <br>
-Manage calendar availability, schedule meetings across timezones, find optimal meeting times, and send calendar invites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage calendar availability, schedule meetings across timezones, find optimal meeting times, and send calendar invites.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-People coordinating meetings use this skill to find available time slots, compare timezone-aware options, and prepare calendar invitations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar invites may be sent with incorrect recipients, dates, titles, descriptions, or notification settings. <br>
-Mitigation: Draft invites first and require explicit user confirmation of attendees, timing, title, description, and external email notifications before sending. <br>
-Risk: Timezone conversion or availability assumptions may produce unsuitable meeting options. <br>
-Mitigation: Show proposed times with timezone context and ask the user to confirm the selected slot before generating or sending an invite. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to find meeting availability, compare timezones, propose suitable meeting times, and generate importable calendar invites.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with optional Python and ICS snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed meeting times, timezone conversions, and calendar invite content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Calendar invites can expose attendee lists, meeting times, timezones, and descriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the recipient list, meeting time, timezone, and description before sending or importing invites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/director-calendar-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and calendar invite content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce proposed meeting times, timezone conversions, and .ics calendar invite content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,55 @@
-## Description: <br>
-Local speech-to-text using OpenAI Whisper. Runs fully offline after model download. High quality transcription with multiple model sizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text using OpenAI Whisper. Runs fully offline after model download. High quality transcription with multiple model sizes.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and other agent users use this skill to transcribe local audio files with OpenAI Whisper, choosing model size, language detection, timestamps, and JSON output as needed. It is intended for local speech-to-text workflows where transcripts should remain on the user's machine after the initial model download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation from an unapproved package index can introduce compromised packages. <br>
-Mitigation: Install only the documented packages from default PyPI and the PyTorch CPU index URL shown in the artifact. <br>
-Risk: Transcription output may contain adversarial text or commands that should not be treated as executable instructions. <br>
-Mitigation: Review transcript text as untrusted data and do not pipe, redirect, eval, execute, or source it. <br>
-Risk: Transcripts can contain sensitive spoken information. <br>
-Mitigation: Keep transcription output local unless a user deliberately handles any later transfer outside the skill workflow. <br>
-Risk: Large Whisper models can require substantial downloads and local resources. <br>
-Mitigation: Choose model size deliberately and disclose larger model choices before starting downloads or transcription. <br>
+## Use Case:
 
+Developers and external users use this skill to transcribe local audio files into plain text or JSON with optional word and segment timestamps while keeping transcript contents on the local machine after the Whisper model is downloaded.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/snazar-faberlens/local-whisper-hardened) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/local-whisper) <br>
-- [Artifact safety notes](SAFETY.md) <br>
-- [PyTorch CPU package index](https://download.pytorch.org/whl/cpu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transcript or JSON transcription payload, with Markdown guidance and shell commands when setup or invocation help is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output can include detected language, transcript text, segments, and word timestamps when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Python packages and Whisper models are downloaded during setup or first use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the documented package set and approved PyTorch CPU index or default PyPI sources.
+
+Risk: Transcription text can contain adversarial commands or sensitive spoken content.
+
+Mitigation: Treat transcripts as untrusted local data; do not pipe them into command interpreters or automate uploads to external endpoints.
+
+## Reference(s):
+
+- [Local Whisper Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/local-whisper-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/local-whisper)
+- [PyTorch CPU package index](https://download.pytorch.org/whl/cpu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; transcription output may be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports multiple Whisper model sizes, optional language selection, optional timestamps, JSON output, and quiet mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

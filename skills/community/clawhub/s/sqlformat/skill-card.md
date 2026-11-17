@@ -1,40 +1,55 @@
-## Description: <br>
-Sqlformat is a local Bash command-line toolkit for recording SQL formatting, linting, validation, conversion, template, and report activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Bash command-line toolkit that claims SQL formatting, linting, validation, conversion, and template workflows while recording command inputs to local logs.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and database engineers use this skill as a local command-line utility to record SQL review, style-check, migration, template, and reporting activity during development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SQL inputs are saved to local plain-text logs, which can retain production queries, secrets, customer data, or sensitive schema details. <br>
-Mitigation: Do not enter sensitive SQL or production data, use a controlled local data directory, and regularly inspect or delete ~/.local/share/sqlformat/ logs and exported files. <br>
-Risk: The security review says the skill advertises formatting and linting while mostly saving raw SQL inputs rather than acting as a real formatter or validator. <br>
-Mitigation: Treat results as local activity records and verify SQL formatting, linting, validation, and dialect conversion with trusted database tooling before relying on them. <br>
+## Use Case:
 
+Developers and engineers may use this skill to record and review SQL-related formatting, linting, validation, dialect conversion, and template workflow notes from the command line. Because the security evidence says the artifacts mainly persist inputs in plaintext logs, use it only with non-sensitive SQL and schema details.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration] <br>
-**Output Format:** [CLI text output, plain-text logs, and optional JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command activity under ~/.local/share/sqlformat/ by default; SQLFORMAT_DIR can change the data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: SQL inputs, schema details, customer data, or secrets may be saved in persistent plaintext local logs and exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive SQL, set SQLFORMAT_DIR to an isolated location, review generated logs and exports, and delete them when no longer needed.
+
+Risk: The security evidence says the artifacts mainly record SQL inputs rather than implement real SQL formatting or linting.
+
+Mitigation: Validate formatting, linting, and migration decisions with a trusted SQL formatter or linter before relying on them in code reviews, migrations, or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/sqlformat)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write and export local plaintext log files under the configured SQLFORMAT_DIR.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

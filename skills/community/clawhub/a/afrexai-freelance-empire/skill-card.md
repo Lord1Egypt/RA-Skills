@@ -1,41 +1,54 @@
-## Description: <br>
-Complete freelance business operating system for freelancers and independent consultants, covering positioning, pricing, proposals, client management, finances, scaling, and the transition from side-hustle to full-time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Freelance Empire turns an AI agent into a freelance business advisor for positioning, pricing, proposals, client management, finances, scaling, and moving from side hustle to full-time freelancing.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-External freelancers, independent consultants, and solo business operators use this skill to structure positioning, pricing, proposals, client management, finances, retainers, and growth planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides legal, tax, contract, and financial business guidance that may be incomplete or jurisdiction-specific. <br>
-Mitigation: Verify legal, tax, contract, and financial recommendations with qualified professionals before acting on them. <br>
-Risk: Broad freelance-business triggers may activate the skill on general business requests where specialized advice is needed. <br>
-Mitigation: Confirm that the request is about freelance business operations and adapt advice to the user's context before relying on it. <br>
+## Use Case:
 
+External freelancers, consultants, and solo-business operators use this skill to plan niche positioning, package services, price work, write proposals, manage clients, structure finances, and decide when to scale or move full time.
 
-## Reference(s): <br>
-- [Freelance Empire on ClawHub](https://clawhub.ai/afrexai-cto/afrexai-freelance-empire) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Text] <br>
-**Output Format:** [Markdown with templates, checklists, scorecards, scripts, and structured YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill with no code execution, dependencies, API calls, credential access, or MCP/tool references detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may provide confident business, pricing, legal, tax, insurance, or wellness guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning support and verify jurisdiction-specific legal, tax, insurance, and health decisions with qualified professionals.
+
+Risk: Accidental activation could surface freelance-business advice in unrelated conversations.
+
+Mitigation: Use explicit freelance-related prompts when invoking the skill.
+
+## Reference(s):
+
+- [Freelance Empire on ClawHub](https://clawhub.ai/afrexai-cto/skills/afrexai-freelance-empire)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, YAML templates, and reusable client scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill with no executable code, persistence, or data access; outputs may include business, pricing, legal, tax, insurance, and wellness planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

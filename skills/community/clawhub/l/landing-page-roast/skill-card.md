@@ -1,38 +1,53 @@
-## Description: <br>
-Audit a landing page for clarity, trust, offer strength, and conversion friction; return prioritized fixes and copy rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a landing page for clarity, trust, offer strength, and conversion friction; return prioritized fixes and copy rewrites.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-Marketing teams, founders, and conversion reviewers use this skill to audit landing pages and turn a page URL or pasted copy into prioritized blockers, quick wins, CTA variants, and rewrite suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pasted page copy or review requests may include confidential launch plans, customer data, or unreleased business details. <br>
-Mitigation: Avoid sharing sensitive content unless it is acceptable for the agent environment where the skill is used. <br>
-Risk: Conversion recommendations and rewrites may be incomplete or unsuitable for the target audience. <br>
-Mitigation: Review recommendations before publishing changes and test material changes with appropriate business metrics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External teams, founders, marketers, and conversion-focused operators use this skill to critique a landing page and produce prioritized fixes, quick wins, copy rewrites, CTA variants, and optional A/B test ideas.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an overall score, ranked blockers, quick wins, structural rewrites, CTA variants, and an optional A/B test matrix.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Landing-page copy, offer details, pricing, or business context may be confidential.
+
+Mitigation: Provide only page copy, URLs, and business details that are appropriate to share with the agent.
+
+Risk: Critiques and rewrite suggestions may be subjective or may not match actual audience behavior.
+
+Mitigation: Review recommendations before publishing and validate material changes with user research, analytics, or A/B testing.
+
+## Reference(s):
+
+- [Landing Page Roast on ClawHub](https://clawhub.ai/xammarie/skills/landing-page-roast)
+- [xammarie ClawHub Profile](https://clawhub.ai/user/xammarie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an overall score, ranked blockers, quick wins, structural copy rewrites, CTA variants, and an optional A/B test matrix.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

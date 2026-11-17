@@ -1,45 +1,59 @@
-## Description: <br>
-Decompose complex tasks into independent subtasks, spawn parallel agents to execute them, and synthesize their outputs into a final deliverable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decompose complex tasks into independent subtasks, plan parallel sub-agent execution, and synthesize the collected results into a coherent deliverable.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break multi-part research, coding, analysis, review, and documentation work into scoped sub-agent tasks, then collect and synthesize the results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parallel sub-agents may overlap in workspace scope or produce conflicting outputs. <br>
-Mitigation: Give each sub-agent clear, non-overlapping file scopes and review collected outputs before accepting changes. <br>
-Risk: Unbounded or deeply nested spawning can increase runtime, cost, and coordination overhead. <br>
-Mitigation: Use timeouts, keep orchestration one level deep, and reserve spawning for tasks where parallel work is justified. <br>
-Risk: Final answers can become a loose concatenation of sub-agent results. <br>
-Mitigation: Actively synthesize results by resolving conflicts, removing duplication, and adding the parent agent's context. <br>
+## Use Case:
 
+Developers and agent operators use this skill to split complex research, coding, analysis, review, or documentation tasks into separable sub-agent assignments and then combine the results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/indigas/claw-agent-spawner) <br>
-- [README](README.md) <br>
-- [Spawn Patterns](references/spawn-patterns.md) <br>
-- [Model Selection](references/model-selection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON spawn plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spawn plans can include subtask descriptions, dependencies, model recommendations, output formats, and synthesis instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version history) <br>
+Risk: Parallel sub-agents can increase execution cost and token usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for complex, clearly separable work, limit the number of sub-agents, and set timeouts.
+
+Risk: Multiple agents may read or modify the same workspace during a task.
+
+Mitigation: Keep sub-agent instructions narrow, avoid shared mutable state, and review synthesized results before relying on them.
+
+Risk: Poor task decomposition can create dependencies, duplicated work, or lossy synthesis.
+
+Mitigation: Follow the documented spawn patterns, keep subtasks independent, and actively reconcile conflicts during final synthesis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indigas/skills/claw-agent-spawner)
+- [Spawn Patterns Reference Guide](artifact/references/spawn-patterns.md)
+- [Model Selection Guide](artifact/references/model-selection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON spawn plans from the planner script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planner output includes subtask descriptions, dependency hints, recommended model class, expected output format, and synthesis guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

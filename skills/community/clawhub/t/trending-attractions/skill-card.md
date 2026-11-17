@@ -1,38 +1,53 @@
-## Description: <br>
-Provides recommendation lists, check-in routes, and practical guides for trending attractions when users search for popular spots or plan related trips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供关于网红景点的推荐清单、打卡路线与指南。用户搜索网红景点或规划相关出行时调用。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and travel planners use this skill to get concise guidance for trending attractions, including route options, timing, transportation, photo spots, crowding, safety notes, equipment, and low-impact travel practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel recommendations can become outdated or miss current site-specific conditions such as weather, opening hours, reservations, local rules, accessibility, and safety restrictions. <br>
-Mitigation: Treat outputs as planning assistance and verify current official information and on-site conditions before visiting. <br>
+## Use Case:
 
+External users use this skill to plan visits to popular social-media attractions, compare routes, and obtain practical trip details such as timing, transportation, photo spots, safety notes, equipment, and crowd considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/trending-attractions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel-planning guidance with lists of routes, visit details, safety notes, and practical recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route maps described in text, timing, transportation, supply points, restrooms, photo locations, weather warnings, equipment lists, and environmental guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may activate for broad requests about planning trips to popular attractions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tighter routing or trigger wording when installing it, limiting activation to explicit requests about 网红景点 or social-media check-in routes.
+
+Risk: Travel recommendations may become stale because attraction popularity, weather, reservations, and site rules change frequently.
+
+Mitigation: Confirm current local conditions, reservation requirements, costs, restrictions, and weather before relying on the generated itinerary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/trending-attractions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text travel recommendations and route guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route maps, timing, transportation options, supply and restroom notes, scenic highlights, photo spots, crowd conditions, risk points, weather alerts, equipment checklists, and environmental guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

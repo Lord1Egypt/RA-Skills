@@ -1,6 +1,6 @@
 ---
 name: outlit-sdk
-description: Use when integrating Outlit tracking into web, server, native, or desktop apps; adding SDK event tracking, identity, consent, activation, billing, visitor tracking, customerId attribution, or troubleshooting @outlit/browser, @outlit/node, or the Rust outlit crate.
+description: Use when integrating Outlit tracking into web, server, native, or desktop apps; adding SDK event tracking, identity, consent, activation configuration, billing integrations, visitor tracking, customerId attribution, or troubleshooting @outlit/browser, @outlit/node, or the Rust outlit crate.
 ---
 
 # Outlit SDK Integration
@@ -23,8 +23,8 @@ Ask what they need help with, then run detection before changing code:
 - Add/change auth identity -> [Decision 2: Identity](#decision-2-identity)
 - Add consent management -> [Decision 1: Consent](#decision-1-consent)
 - Add server/native tracking -> [Decision 7: Server and Native Tracking](#decision-7-server-and-native-tracking)
-- Add activation tracking -> [Decision 4: Activation](#decision-4-activation)
-- Add billing/Stripe integration -> [Decision 5: Billing](#decision-5-billing)
+- Configure activation in Core -> [Decision 4: Activation](#decision-4-activation)
+- Connect a billing integration -> [Decision 5: Billing](#decision-5-billing)
 - Migrate from other analytics -> [Decision 3: Existing Analytics](#decision-3-existing-analytics)
 - Debug/troubleshoot -> [Troubleshooting](#troubleshooting)
 
@@ -39,8 +39,8 @@ These points prevent the most common stale integrations:
 - Server `identify()` requires `email` or `userId`. `customerId` is optional account/workspace attribution, not a user identity by itself.
 - Use `customerId` for your system-owned account/workspace/customer ID. The TypeScript SDK no longer uses `customerDomain`; do not add it.
 - Browser `setUser()` can be called before tracking is enabled and will be applied after consent. Browser `identify()` requires tracking to already be enabled.
-- `user.activate()` is the only journey stage new integrations should send manually. `user.engaged()` and `user.inactive()` are deprecated; Outlit derives engagement and inactivity from tracked product activity.
-- Billing is account-level. In TypeScript billing methods, prefer `customerId`; `stripeCustomerId` is still accepted for Stripe-backed billing identifiers. In Rust billing methods still start with a domain and can add `.customer_id(...)`.
+- Send ordinary `identify()` and `track()` events. Outlit Core derives activation from the configured activation event and derives engagement and inactivity from product activity.
+- Billing status is account-level context supplied by verified billing integrations. Do not send SDK lifecycle or billing-status events as authoritative state.
 - Event names should be `snake_case`.
 
 ## Phase 1: Quick Connect
@@ -95,7 +95,7 @@ Fetch the framework doc from the [Doc URL Map](#doc-url-map) and implement only 
 - Plain browser/script: use `@outlit/browser` or CDN script.
 - Server/native: create one `Outlit` instance where the process can reuse it.
 
-Do not add custom events, activation, billing, auth, or consent until basic tracking is working unless the user asked for a full integration immediately.
+Do not add custom events, activation configuration, billing integrations, auth, or consent until basic tracking is working unless the user asked for a full integration immediately.
 
 ### Step 5: Verify Connection
 
@@ -172,45 +172,26 @@ Keep event names `snake_case` and avoid reorganizing unrelated analytics code.
 
 ## Decision 4: Activation
 
-Activation means a user reached the product's meaningful value moment. It is not automatically "completed onboarding" unless onboarding itself delivers value.
+Activation means a user reached the product's meaningful value moment. Outlit Core derives it from one configured ordinary product event; it is not automatically "completed onboarding" unless onboarding itself delivers value.
 
 1. Scan for first-value actions: first project/resource created, first integration connected, first report/export generated, first invite, first successful core workflow.
 2. Suggest the strongest candidate and ask for confirmation if ambiguous.
-3. Call `user.activate()` only after the action is confirmed complete, usually after the backend succeeds.
-4. Ensure the user is identified first. Browser `user.activate()` can queue until identity is set, but the cleaner integration is to set identity before activation.
-5. Do not call `user.engaged()` or `user.inactive()` in new integrations.
+3. Reuse or add an ordinary `track()` event after the action is confirmed complete, usually after the backend succeeds.
+4. Ensure the user is identified before that event when possible so Core can attribute it correctly.
+5. Configure that exact event as the activation event in Outlit Core. Core derives engagement and inactivity from ongoing tracked activity.
 
 ## Decision 5: Billing
 
-Billing is account-level context, separate from contact journey stages.
+Billing is verified account-level context, separate from ordinary identity and product activity events.
 
 | Detection | Recommendation |
 |-----------|----------------|
-| Stripe connected in Outlit | Let the Stripe integration handle trialing/paid/churned |
-| Stripe in app but not connected | Recommend connecting Stripe in Outlit; only add manual SDK calls if they need custom logic |
-| Other/custom billing | Add billing calls in existing webhook/job handlers |
+| Stripe connected in Outlit | Verify the connection and customer mapping; let the integration supply billing status |
+| Stripe in app but not connected | Recommend connecting Stripe in Outlit and verifying the customer mapping |
+| Other/custom billing | Use a supported verified billing integration or source connector; do not turn webhook state into authoritative SDK events |
 | No billing | Skip |
 
-TypeScript:
-
-```ts
-outlit.customer.paid({
-  customerId: "cust_123",
-  properties: { plan: "pro" },
-})
-```
-
-Rust currently differs:
-
-```rust
-client.customer()
-    .paid("acme.com")
-    .customer_id("cust_123")
-    .send()
-    .await?;
-```
-
-Always flush server/native queues before the handler exits.
+Use `identify()` and `track()` only for identity and ordinary product activity. Billing status must come from a verified billing integration rather than SDK lifecycle methods, billing enums, or custom status events.
 
 ## Decision 6: Event Tracking
 
@@ -246,7 +227,7 @@ Hash-routed SPAs, `file://` routes, and Electron-style hash paths are handled by
 
 ## Decision 7: Server and Native Tracking
 
-Use server/native tracking for backend-confirmed product activity, billing, background jobs, native apps, CLIs, and device-based activity.
+Use server/native tracking for backend-confirmed product activity, background jobs, native apps, CLIs, and device-based activity.
 
 Node example:
 
@@ -337,9 +318,9 @@ Fetch docs as needed. Prefer docs over hardcoding long framework patterns, but a
 
 ### Activation missing or delayed
 
-- Call activation after identity is set.
-- In browsers, `user.activate()` can queue until `setUser()`/`identify()` provides identity.
-- Do not use deprecated `engaged`/`inactive` calls; send product activity with `track()`.
+- Confirm the configured activation event name exactly matches the event sent with `track()`.
+- Confirm identity is set before the event when possible and that the event reaches Outlit.
+- Core derives activation from that configured event and engagement/inactivity from activity; do not send separate lifecycle state.
 
 ## Key Principles
 
@@ -347,7 +328,8 @@ Fetch docs as needed. Prefer docs over hardcoding long framework patterns, but a
 - Detect first, ask second.
 - Use `customerId` for account/workspace context.
 - Use `setUser`/provider user for auth lifecycle.
-- Use `track()` for product activity; use `user.activate()` only for the activation milestone.
+- Use `track()` for product activity; configure the activation event in Core and let Core derive lifecycle state.
+- Let verified billing integrations supply billing status.
 - Flush server/native queues before exit.
 - Keep events `snake_case`.
 
@@ -362,5 +344,5 @@ outlit setup skills
 Or with the Skills CLI:
 
 ```sh
-npx -y skills add https://github.com/OutlitAI/outlit-agent-skills --skill outlit-sdk -g
+npx -y skills add OutlitAI/skills --skill outlit-sdk -g
 ```

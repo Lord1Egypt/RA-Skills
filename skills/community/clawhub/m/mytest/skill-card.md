@@ -1,41 +1,55 @@
-## Description: <br>
-高中地理提分专项技能，提供精准答疑、教材查询、工具包、错题管理、真题解析、提分技巧等功能。当用户询问高中地理相关的知识点、题目解析、教材内容、公式图表、错题整理、真题解析、提分技巧等内容时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language high-school geography tutoring skill for answering curriculum questions, locating textbook topics, explaining exam problems, organizing mistakes, and providing basic study guidance.
 
-## Publisher: <br>
-[flyswimmer](https://clawhub.ai/user/flyswimmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyswimmer](https://clawhub.ai/user/flyswimmer)
 
-## Use Case: <br>
-Students and study-assistant agents use this skill to answer high-school geography questions, look up textbook-aligned concepts, organize mistakes, review exam questions, and practice score-improvement techniques within the documented free and paid feature boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Textbook and exam-resource coverage claims may be incomplete or become outdated. <br>
-Mitigation: Treat responses as study assistance and verify critical facts against current official textbooks, curriculum standards, and exam materials. <br>
-Risk: Saved mistake-book entries could include personal or sensitive student details. <br>
-Mitigation: Avoid adding personal, sensitive, or unnecessary identifying information when storing or organizing mistakes. <br>
+## Use Case:
 
+External learners and tutoring agents use this skill to support high-school geography study, including concept explanations, textbook and syllabus lookup, basic problem solving, mistake collection, and introductory exam-preparation guidance.
 
-## Reference(s): <br>
-- [Feature Spec](references/feature-spec.md) <br>
-- [Resource Catalog](references/resource-catalog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown study guidance and structured explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include textbook chapter references, exam-point labels, answer steps, formulas, chart-reading rules, and mistake-book organization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Geography answers or exam explanations may be incomplete, incorrect, or outside the intended high-school curriculum scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses grounded in official curriculum, textbooks, and exam requirements, and have a qualified reviewer check high-stakes study material.
+
+Risk: The skill has explicit freemium boundaries, so deeper explanations may be withheld and replaced with paid-version guidance.
+
+Mitigation: Set user expectations that the free version provides basic explanations and route advanced diagnosis, full mistake analysis, or premium exam tactics to the appropriate paid flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyswimmer/skills/mytest)
+- [Feature specification](references/feature-spec.md)
+- [Resource catalog](references/resource-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text study guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational responses; no executable, credential, network, or persistence behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

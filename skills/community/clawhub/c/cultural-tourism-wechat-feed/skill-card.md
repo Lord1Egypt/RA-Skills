@@ -1,42 +1,59 @@
-## Description: <br>
-文旅公众号信息源 searches cultural tourism WeChat Official Account articles, ranks popular content by read count, clusters results by topic, and generates an HTML report for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches WeChat Official Account cultural tourism articles, ranks popular items by read count, clusters them by topic, and generates an HTML report.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External content operators, tourism marketers, team managers, and researchers use this skill to find trending cultural tourism WeChat articles, compare topics or destinations, and receive concise category summaries with downloadable HTML reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily subscription can create persistent scheduled jobs. <br>
-Mitigation: Prefer one-time report generation unless daily delivery is required; when subscribing, verify the created LaunchAgent or crontab entry and remove it when no longer needed. <br>
-Risk: API keys may be stored on disk for scheduled use. <br>
-Mitigation: Avoid long-lived API keys in environment-backed plist files, verify key scope and revocation support, and do not expose keys in code, prompts, logs, or output files. <br>
+## Use Case:
 
+External content operators, scenic spot or tourism professionals, and tourism researchers use this skill to monitor trending WeChat cultural tourism content, compare topics, and receive a report for daily hotspot tracking or keyword-based research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/cultural-tourism-wechat-feed) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown chat summary plus terminal output and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; supports optional keyword, start date, end date, output directory, and daily subscription controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Subscription mode can create persistent scheduled jobs on the user's system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use one-time report generation by default; enable subscription only after review and remove it with the unsubscribe path when it is no longer needed.
+
+Risk: API keys can be handled unsafely when stored in scheduler or local configuration files.
+
+Mitigation: Prefer environment-injected or keychain-managed API keys, avoid plaintext local configuration, and rotate or revoke keys that may have been exposed.
+
+Risk: The release security verdict is suspicious because subscription behavior and secret handling require extra review.
+
+Mitigation: Review carefully before installing, avoid subscription mode until the publisher resolves the security concerns, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/cultural-tourism-wechat-feed)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub](https://redfox.hk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown summary with category counts, shell command invocation, and generated HTML report file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; supports optional keyword, date range, output directory, and subscription flags.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

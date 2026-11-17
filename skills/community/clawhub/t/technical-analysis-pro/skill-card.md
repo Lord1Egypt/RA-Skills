@@ -1,46 +1,57 @@
-## Description: <br>
-Provides technical-analysis guidance for price action, chart patterns, indicators, volume context, and statistically validated trading setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides technical-analysis guidance for price action, chart patterns, indicators, support and resistance, and statistically validated trading setups.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External users and developers use this skill for educational technical market analysis, chart-pattern review, indicator interpretation, and validation-oriented trading setup design. It should not be treated as financial advice or an instruction to trade with real money. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Technical-analysis outputs may be mistaken for financial advice or direct trading instructions. <br>
-Mitigation: Treat outputs as educational analysis only and perform independent backtesting, position sizing, and risk review before any real-money use. <br>
-Risk: Generated Python examples or strategy snippets may be incorrect, incomplete, or unsuitable for a user's market data. <br>
-Mitigation: Review any generated code before running it and validate results with adequate samples, out-of-sample testing, fees, and slippage. <br>
-Risk: Chart patterns, divergences, and indicators can fail or lag in live markets. <br>
-Mitigation: Require volume confirmation, higher-timeframe context, defined stop loss, risk/reward checks, and setup invalidation conditions. <br>
+## Use Case:
 
+External users and developers use this skill for educational technical-analysis support, including chart pattern interpretation, indicator context, risk checks, and validation-oriented trading setup review. It should not be treated as financial advice or an automated trading system.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bingze00000/technical-analysis-pro) <br>
-- [Technical Analysis Patterns](references/patterns.md) <br>
-- [Technical Analysis Sharp Edges](references/sharp_edges.md) <br>
-- [Technical Analysis Validations](references/validations.md) <br>
-- [Lagging Indicator Reference](https://www.investopedia.com/terms/l/laggingindicator.asp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with optional Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational market analysis; users should independently validate strategies before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Users may mistake confident technical-analysis guidance for financial advice or automated trading decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs critically, apply independent risk controls, and do not let the skill make trading decisions.
+
+Risk: Broad trigger coverage may surface technical-analysis guidance in contexts where the user has not defined risk limits.
+
+Mitigation: Require explicit position sizing, stop-loss, invalidation, and validation assumptions before acting on any setup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingze00000/skills/technical-analysis-pro)
+- [patterns.md](artifact/references/patterns.md)
+- [sharp_edges.md](artifact/references/sharp_edges.md)
+- [validations.md](artifact/references/validations.md)
+- [Lagging Indicator](https://www.investopedia.com/terms/l/laggingindicator.asp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown prose with optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational technical-analysis support; does not execute trades, access accounts, persist data, or run hidden code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

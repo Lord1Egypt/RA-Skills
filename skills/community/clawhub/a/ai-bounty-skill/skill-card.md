@@ -1,52 +1,65 @@
-## Description: <br>
-Use when claiming the AI bounty on the tDVV mainnet sidechain. First explain the difference between Portkey AA/CA and EOA, recommend AA/CA because the current campaign rewards 2 AIBOUNTY for AA/CA and 1 AIBOUNTY for EOA, then route to account onboarding, Portkey AA/CA claim through CA ManagerForwardCall, EOA claim, or diagnostics-only stop handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through AI bounty claims on the aelf tDVV sidechain, routing users between Portkey AA/CA, EOA, onboarding, and diagnostics flows.
 
-## Publisher: <br>
-[hzz780](https://clawhub.ai/user/hzz780) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hzz780](https://clawhub.ai/user/hzz780)
 
-## Use Case: <br>
-External users and agents use this skill to choose and complete the supported AI bounty claim path on the aelf tDVV mainnet sidechain. It guides account selection, Portkey AA/CA and EOA claim routing, transaction confirmation, and diagnostic stop conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides wallet signing and on-chain writes, so a user could confirm the wrong signer, contract, receiver, reward, or gas assumptions. <br>
-Mitigation: Before any write, show the signer, contract address, receiver semantics, reward amount, gas note, and transaction summary, then stop unless the user explicitly confirms. <br>
-Risk: Wallet secrets could be exposed if a user pastes a seed phrase or private key into chat. <br>
-Mitigation: Never request seed phrases or private keys; prefer an isolated or low-value wallet and rely on local wallet or Portkey account context. <br>
-Risk: Exchange or custodial addresses cannot sign the required claim transaction and may cause failed or unsafe claim attempts. <br>
-Mitigation: Stop when the address is exchange-managed, custodial, or not user-controlled, and continue only with a local EOA signer or resolved local AA/CA context. <br>
-Risk: An unresolved Portkey AA/CA holder, caHash, recovery state, or tDVV account context can make the claim path invalid. <br>
-Mitigation: Stop until holder and caHash resolution on tDVV, recovery, or local account readiness is complete; do not guess missing prerequisites. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through choosing AA/CA or EOA and preparing an AI bounty claim on tDVV while stopping on custody, fee, recovery, RPC, or transaction blockers.
 
-## Reference(s): <br>
-- [AI Bounty Claim README](README.md) <br>
-- [Account Choice And Onboarding](references/flows/account-choice.md) <br>
-- [Diagnostics And Stop](references/flows/diagnostics-stop.md) <br>
-- [EOA Claim](references/flows/eoa-skill.md) <br>
-- [Portkey AA/CA Claim](references/flows/portkey-ca.md) <br>
-- [Portkey EOA skill](https://github.com/Portkey-Wallet/eoa-agent-skills) <br>
-- [Portkey CA skill](https://github.com/Portkey-Wallet/ca-agent-skills) <br>
-- [tDVV chain status endpoint](https://tdvv-public-node.aelf.io/api/blockChain/chainStatus) <br>
-- [ClawHub release page](https://clawhub.ai/hzz780/ai-bounty-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with transaction summaries, confirmation prompts, diagnostic stops, and optional shell or SDK command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction IDs and aelfscan tDVV lookup links after user-confirmed writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.10.0 (source: frontmatter); ClawHub release 0.1.1 <br>
+Risk: Wallet-related dependencies are unpinned, so dependency changes could alter signing or transaction behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, and pin the Portkey EOA and CA dependencies to reviewed commits or otherwise verified releases.
+
+Risk: Example behavior includes raw manager private-key handling for a blockchain transaction path.
+
+Mitigation: Prefer a signer interface that never exposes key material, and avoid asking users to paste or reveal private keys.
+
+Risk: An on-chain write can target the wrong receiver, chain, contract, method, fee condition, or reward amount if details are not checked.
+
+Mitigation: Confirm decoded transaction details, receiver semantics, chain, contract, fee status, and reward amount before any send.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hzz780/skills/ai-bounty-skill)
+- [README](README.md)
+- [Account choice flow](references/flows/account-choice.md)
+- [Portkey AA/CA claim flow](references/flows/portkey-ca.md)
+- [EOA claim flow](references/flows/eoa-skill.md)
+- [Diagnostics and stop flow](references/flows/diagnostics-stop.md)
+- [Portkey EOA skill dependency](https://github.com/Portkey-Wallet/eoa-agent-skills)
+- [Portkey CA skill dependency](https://github.com/Portkey-Wallet/ca-agent-skills)
+- [tDVV RPC chain status](https://tdvv-public-node.aelf.io/api/blockChain/chainStatus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with claim routing guidance, transaction summaries, diagnostic stop messages, and occasional TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before on-chain writes and should surface transaction IDs, final chain results, and exact chain errors when available.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; bundled SKILL.md declares behavior version 2.10.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

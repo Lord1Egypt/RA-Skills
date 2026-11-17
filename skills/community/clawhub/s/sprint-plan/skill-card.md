@@ -1,39 +1,52 @@
-## Description: <br>
-Use when the user asks to create, rewrite, or structure a concise one-week sprint plan, engineering sprint plan, focused project plan, or alignment doc with sprint goal, context, scope, workstreams, done criteria, metrics, and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to create, rewrite, or structure a concise one-week sprint plan, engineering sprint plan, focused project plan, or alignment doc with sprint goal, context, scope, workstreams, done criteria, metrics, and risks.
 
-## Publisher: <br>
-[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, product managers, and team leads use this skill to produce concise one-week sprint planning and alignment documents with goals, scope, workstreams, completion criteria, metrics, and risks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated sprint plans may contain inaccurate priorities, assumptions, or completion criteria.
+
+Mitigation: Review the plan with project owners before treating it as an execution commitment.
+
+Risk: Sprint planning inputs can include sensitive roadmap, staffing, customer, or incident details.
+
+Mitigation: Avoid sharing sensitive project details in the agent workflow unless that handling is approved for the team.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, product teams, and engineering leads use this skill to draft concise one-week sprint plans and alignment documents that define goals, scope, workstreams, completion criteria, metrics, and risks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sprint plans may include inaccurate assumptions or expose sensitive internal planning details if users provide them. <br>
-Mitigation: Review generated plans before use and avoid including sensitive internal details unless they are appropriate for the agent environment. <br>
+**Output Format:** [Markdown sprint planning document]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Sprint Plan on ClawHub](https://clawhub.ai/patrick-erichsen-2/sprint-plan) <br>
-- [Publisher profile](https://clawhub.ai/user/patrick-erichsen-2) <br>
+**Other Properties Related to Output:** [Concise bullet-oriented structure with sprint goal, context, scope, workstreams, definition of done, success metrics, and risks or open questions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sprint planning document with concise headings and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces planning structure and prose; it does not execute code or access external systems.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

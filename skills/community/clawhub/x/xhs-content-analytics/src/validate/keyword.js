@@ -1,106 +1,76 @@
 const utils = require("../utils/utils");
 
 /**
- * 检查搜索关键词是否符合要求
+ * 检查搜索关键词。长度 1-50，不能是链接，不含 < > " '。
+ * @param {string} keyword
+ * @returns {boolean}
  */
 function isKeywordValid(keyword) {
+  if (typeof keyword !== "string" || keyword.trim() === "") {
+    utils.printError("搜索关键词不能为空");
+    return false;
+  }
   keyword = keyword.trim();
-  if (keyword.length < 2) {
-    utils.printError(`搜索关键词长度不能小于 2 个字符`);
+  if (keyword.length < 1 || keyword.length > 50) {
+    utils.printError("搜索关键词长度须为 1-50 个字符");
     return false;
   }
-  if (keyword.length > 50) {
-    utils.printError(`搜索关键词长度不能超过 50 个字符`);
+  if (/[<>"']/.test(keyword)) {
+    utils.printError("搜索关键词包含特殊字符, 请输入普通关键词, 例如: 新媒体");
     return false;
   }
-  if (/[<>\"'&]/g.test(keyword)) {
-    utils.printError(`搜索关键词包含特殊字符, 请输入普通关键词, 例如: 新媒体`);
-    return false;
-  }
-  if (keyword.includes("http")) {
-    utils.printError(
-      `搜索关键词包含 http 链接, 请输入普通关键词, 例如: 新媒体`,
-    );
+  if (/https?:\/\//i.test(keyword) || /www\./i.test(keyword)) {
+    utils.printError("搜索关键词不能是链接, 请输入普通关键词, 例如: 新媒体");
     return false;
   }
   return true;
 }
 
 /**
- * 清洗搜索关键词
+ * 去掉控制字符、零宽字符和 emoji，连续空白收敛为一个空格。
+ * @param {string} keyword
+ * @returns {string}
  */
-function cleanKeyword(keyword) {
-  keyword = keyword.trim();
-  return keyword.replace(/[^\u4e00-\u9fa5a-zA-Z0-9\s.,!?# ，。！？]/g, "");
+function normalizeKeyword(keyword) {
+  if (typeof keyword !== "string") return "";
+  return keyword
+    .replace(/[\u0000-\u001f\u007f\u200b-\u200f\ufeff]/g, "")
+    .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function assertChoice(value, allowed, label) {
+  const n = Number(value);
+  if (!allowed.includes(n)) {
+    throw new Error(`${label} ${value} 无效, 允许值: ${allowed.join(", ")}`);
+  }
+  return n;
+}
+
+function assertIntegerRange(value, min, max, label) {
+  const n = Number(value);
+  if (!Number.isInteger(n) || n < min || n > max) {
+    throw new Error(`${label} ${value} 无效, 允许 ${min}-${max} 的整数`);
+  }
+  return n;
 }
 
 /**
- * 格式化搜索选项, 并检查是否有效
+ * 校验搜索选项。非法值直接失败，不改写成默认值。
+ * @returns {[number, number, number, number]}
  */
-function optionFormat(type, sort, limit, output) {
-  type = type || 0;
-  sort = sort || 0;
-  limit = limit || 10;
-  output = output || "json";
-  if (type !== 0 && type !== 1 && type !== 2) {
-    utils.printError(`内容类型 ${type} 无效, 请使用 0, 1, 2。 默认值为 0`);
-    type = 0;
-  }
-  if (sort !== 0 && sort !== 1 && sort !== 2 && sort !== 3 && sort !== 4) {
-    utils.printError(
-      `排序规则 ${sort} 无效, 请使用 0, 1, 2, 3, 4。 默认值为 0`,
-    );
-    sort = 0;
-  }
-  if (limit < 1 || limit > 60) {
-    utils.printError(`搜索数量 ${limit} 无效, 请使用 1-60。 默认值为 10`);
-    limit = 10;
-  }
-  if (output !== "json" && output !== "markdown") {
-    utils.printError(
-      `输出格式 ${output} 无效, 请使用 json, markdown。 默认值为 json`,
-    );
-    output = "json";
-  }
-  return [type, sort, limit, output];
-}
-
-function formatMessage(keyword, result) {
-  let message = `### 📊 关于 "${keyword}" 的小红书数据简报\n`;
-  message += `共找到 **${result.length}** 条高互动笔记（样本量）。\n\n`;
-  message += "#### 🏆 爆款前三名\n";
-  result.slice(0, 3).forEach((item, index) => {
-    message += `${index + 1}. **[${item.title?.substring(0, 20)}...](${item.url})** `;
-    message += `🔥${item.liked_count}点赞 `;
-    message += `💬${item.comment_count}评论\n`;
-  });
-  message += "\n---\n\n";
-  message += "#### 📝 详细列表\n";
-
-  message += "-".repeat(35) + "\n\n";
-  for (let i = 0; i < result.length; i++) {
-    const item = result[i];
-    message += `**${i + 1} .** ${item.title || "[无标题]"}\n`;
-    message += `**发布时间**: ${item.publish_time || "[未知]"}\n`;
-    message += `**链接**: ${item.url || "[未知]"}\n`;
-    message += `**发布人**: ${item.user.nickname || "[未知]"}\n`;
-    if (item.image_list && item.image_list.length > 0) {
-      message += `**图文**: ${item.image_list.slice(0, 3).join(", ")}...\n`;
-    }
-    message += `**点赞**: ${item.liked_count || 0}\t`;
-    message += `**评论**: ${item.comment_count || 0}\t`;
-    message += `**收藏**: ${item.collected_count || 0}\t`;
-    message += `**分享**: ${item.shared_count || 0}\n`;
-    message += "\n";
-  }
-  message += "-".repeat(35) + "\n";
-  message += `**共 ${result.length} 条结果**\n`;
-  return message;
+function assertSearchOptions(type, sort, time, limit) {
+  type = assertChoice(type, [0, 1, 2], "内容类型 type");
+  sort = assertChoice(sort, [0, 1, 2, 3, 4], "排序规则 sort");
+  time = assertChoice(time, [0, 1, 2, 3], "发布时间 time");
+  limit = assertIntegerRange(limit, 1, 10000, "搜索数量 limit");
+  return [type, sort, time, limit];
 }
 
 module.exports = {
-  cleanKeyword,
-  formatMessage,
+  normalizeKeyword,
   isKeywordValid,
-  optionFormat,
+  assertSearchOptions,
+  assertIntegerRange,
 };

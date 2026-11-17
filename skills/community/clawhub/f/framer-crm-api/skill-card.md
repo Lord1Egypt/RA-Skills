@@ -1,46 +1,61 @@
-## Description: <br>
-Framer CRM API helps agents manage Framer CMS content through the Server API, including collection and item CRUD, image uploads, preview publishing, production deployment, and project asset management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framer CRM API helps agents manage Framer CMS content through the Server API, including listing, creating, reading, updating, and deleting collections and items, uploading images, publishing previews, deploying to production, and managing project assets.
 
-## Publisher: <br>
-[berthelol](https://clawhub.ai/user/berthelol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[berthelol](https://clawhub.ai/user/berthelol)
 
-## Use Case: <br>
-Developers and site operators use this skill to automate Framer CMS workflows from an agent, including creating or updating content, uploading assets, publishing previews, and deploying approved changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live Framer site content, pages, redirects, custom code, publishing state, and deployment state beyond routine CMS edits. <br>
-Mitigation: Require explicit user confirmation before deletes, bulk edits, page changes, redirects, code or custom-code changes, publishing, and deployment; show the preview or change summary before production deployment. <br>
-Risk: The Framer API key is a sensitive project credential. <br>
-Mitigation: Keep FRAMER_API_KEY in an environment variable or ignored .env file, and do not log, commit, screenshot, or share it. <br>
-Risk: CMS item field updates can be silently ignored if field values are not wrapped in a fieldData object. <br>
-Mitigation: Resolve field IDs before updates, wrap all CMS field values inside fieldData, and verify updated items after write operations. <br>
+## Use Case:
 
+Developers and site operators use this skill to automate Framer CMS and publishing workflows from an agent session, including article creation, asset uploads, preview publishing, and production deployment with confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/berthelol/framer-crm-api) <br>
-- [CMS Operations Reference](references/cms-operations.md) <br>
-- [Onboarding Flow](references/onboarding.md) <br>
-- [Project Assets & Configuration](references/project-assets.md) <br>
-- [Publishing & Deployment](references/publishing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, FRAMER_PROJECT_URL, and FRAMER_API_KEY; outputs should avoid exposing secrets and should ask for confirmation before destructive or live-site operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can read and mutate Framer CMS content, project structure, code overrides, and deployment state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with Framer projects where agent-driven changes are acceptable, and prefer a project-scoped API key.
+
+Risk: Destructive or live-site actions can remove data, alter pages or code, add redirects, run screenshots, or deploy to production.
+
+Mitigation: Require explicit user confirmation before deletes, schema changes, page or code changes, screenshots, redirects, production deploys, or bulk operations.
+
+Risk: The Framer API key can expose broad project access if committed, logged, or reused across projects.
+
+Mitigation: Keep FRAMER_API_KEY out of source control and logs, store it in the environment or .env files ignored by git, and rotate it if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/berthelol/skills/framer-crm-api)
+- [CMS Operations Reference](artifact/references/cms-operations.md)
+- [Onboarding Flow](artifact/references/onboarding.md)
+- [Project Assets & Configuration](artifact/references/project-assets.md)
+- [Publishing & Deployment](artifact/references/publishing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FRAMER_PROJECT_URL, FRAMER_API_KEY, node, npm, and the framer-api package.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

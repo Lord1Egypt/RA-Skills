@@ -1,44 +1,56 @@
-## Description: <br>
-SurrealDB Surrealism WASM extension development. Write Rust functions, compile to WASM, deploy as database modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SurrealDB Surrealism WASM extension development. Write Rust functions, compile to WASM, deploy as database modules. Part of the surreal-skills collection.
 
-## Publisher: <br>
-[24601](https://clawhub.ai/user/24601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[24601](https://clawhub.ai/user/24601)
 
-## Use Case: <br>
-Developers and engineers use this skill to create Rust-based SurrealDB functions, compile them to WebAssembly, and register them as database modules callable from SurrealQL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The quick-start command uses default root credentials for a local SurrealDB example. <br>
-Mitigation: Run the commands only against a local or disposable instance, and replace default root credentials with a strong least-privilege account outside isolated testing. <br>
-Risk: WASM database modules can execute custom Rust logic inside the database environment. <br>
-Mitigation: Review any Rust/WASM module before registering it in a database. <br>
-Risk: Surrealism is described as actively in development and not yet stable. <br>
-Mitigation: Check compatibility with the target SurrealDB 3.x release before relying on the API in a production workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to build SurrealDB 3 WASM extensions in Rust, compile them with the SurrealDB CLI, and register them as database modules callable from SurrealQL.
 
-## Reference(s): <br>
-- [SurrealDB Extensions Docs](https://surrealdb.com/docs/surrealdb/extensions) <br>
-- [SurrealDB CLI module command](https://surrealdb.com/docs/surrealdb/cli/module) <br>
-- [ClawHub skill page](https://clawhub.ai/24601/surrealism) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash, TOML, Rust, and SurrealQL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for SurrealDB WASM extension development.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The Quick Start uses root/root credentials for an isolated local SurrealDB example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not reuse those credentials outside local testing; avoid real passwords on command lines and create least-privileged database users for shared or production environments.
+
+Risk: Surrealism is described as actively in development and not yet stable.
+
+Mitigation: Confirm API compatibility against the target SurrealDB 3.x release before adopting generated setup or deployment guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/24601/skills/surrealism)
+- [SurrealDB Extensions Documentation](https://surrealdb.com/docs/surrealdb/extensions)
+- [SurrealDB CLI Module Reference](https://surrealdb.com/docs/surrealdb/cli/module)
+- [SurrealDB Repository](https://github.com/surrealdb/surrealdb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, Rust, TOML, and SurrealQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers local project setup, WASM compilation, module registration, use cases, and stability cautions.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata; artifact frontmatter metadata.version is 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

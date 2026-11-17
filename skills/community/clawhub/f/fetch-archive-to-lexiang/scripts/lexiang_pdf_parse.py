@@ -9,9 +9,9 @@
     python3 lexiang_pdf_parse.py <entry_id> [--out-dir DIR] [--download-pdf]
 
 输出（默认写到 ./<safe_title>/）：
-    parsed_raw.md       解析出的完整 markdown 原文（含 [IMAGE] 块、页码注释）
+    source.md           不可变解析原文（含 [IMAGE] 块、页码注释）
     images.json         图片清单：index / page / title / desc / asset_link / context
-    meta.json           条目元信息：title / parent_id / space_id / file_id / extension
+    meta.json           标准来源元信息及 parent_id / space_id / file_id / extension
     paper.pdf           （--download-pdf 时）原始 PDF，供 pymupdf 提取图表
 
 依赖：标准库 only。Token 从 ~/.cursor/mcp.json 读取，company_from 从 skill config.json 读取。
@@ -121,7 +121,12 @@ def main():
     e = entry["data"]["entry"]
     title = e.get("name", entry_id)
     meta = {
-        "entry_id": entry_id, "title": title, "parent_id": e.get("parent_id"),
+        "title": title,
+        "source_url": f"https://lexiangla.com/pages/{entry_id}?company_from={company_from}",
+        "source_title": title,
+        "source_type": "pdf",
+        "language": "unknown",
+        "entry_id": entry_id, "parent_id": e.get("parent_id"),
         "space_id": e.get("space_id"), "file_id": e.get("target_id"),
         "extension": e.get("extension"), "entry_type": e.get("entry_type"),
     }
@@ -131,7 +136,15 @@ def main():
 
     parse = mcp_call("entry_describe_ai_parse_content", {"entry_id": entry_id}, token, company_from)
     content = parse["data"]["content"]
-    open(os.path.join(out_dir, "parsed_raw.md"), "w").write(content)
+    source_path = os.path.join(out_dir, "source.md")
+    if os.path.exists(source_path):
+        with open(source_path, encoding="utf-8") as existing:
+            if existing.read() != content:
+                raise FileExistsError(
+                    f"{source_path} 已存在且内容不同；请使用新的输出目录，避免覆盖不可变原文"
+                )
+    with open(source_path, "w", encoding="utf-8") as source_file:
+        source_file.write(content)
 
     imgs = build_image_inventory(content)
     json.dump(imgs, open(os.path.join(out_dir, "images.json"), "w"), ensure_ascii=False, indent=2)
@@ -147,12 +160,12 @@ def main():
 
     print(f"Title      : {title}")
     print(f"Parent dir : {meta['parent_id']}  (转存回此目录)")
-    print(f"Parsed     : {out_dir}/parsed_raw.md  ({len(content)} chars)")
+    print(f"Source     : {source_path}  ({len(content)} chars)")
     print(f"Images     : {len(imgs)} 个 [IMAGE] 标记 -> {out_dir}/images.json")
     n_head = len(re.findall(r"(?m)^#{1,4}\s", content))
     print(f"Headings   : {n_head} 个标题")
-    print("\n下一步：剔除装饰性图片→对真数据图表用 pymupdf 卡片裁剪→降级冗余标题为加粗正文→")
-    print("       默认用当前模型逐块翻译为中英对照（标题单行双语 'EN / 中文'），再用 md_to_page.py 转存回 parent_id。")
+    print("\n下一步：将整个工作包交给 trans-doc-to-md Prepared Markdown Package 模式；")
+    print("       最终 Markdown 再由 upload-markdown-to-lexiang 转存回 parent_id。")
 
 
 if __name__ == "__main__":

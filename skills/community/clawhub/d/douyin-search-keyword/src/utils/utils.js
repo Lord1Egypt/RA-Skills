@@ -1,3 +1,5 @@
+const { formatBeijingTime } = require("./time");
+
 /**
  * 通用工具函数模块
  */
@@ -7,12 +9,12 @@
  * @description 在控制台显示抖音搜索关键词的ASCII艺术横幅
  */
 function printBanner() {
-  console.log("╔════════════════════════════════════════════╗");
-  console.log("║                                            ║");
-  console.log("║          🎬 抖音数据智能分析助手            ║");
-  console.log("║                                            ║");
-  console.log("╚════════════════════════════════════════════╝");
-  console.log("");
+  process.stderr.write("╔════════════════════════════════════════════╗\n");
+  process.stderr.write("║                                            ║\n");
+  process.stderr.write("║          🎬 抖音数据智能分析助手            ║\n");
+  process.stderr.write("║                                            ║\n");
+  process.stderr.write("╚════════════════════════════════════════════╝\n");
+  process.stderr.write("\n");
 }
 
 /**
@@ -21,14 +23,15 @@ function printBanner() {
  * @param {string} message - 日志消息内容
  */
 function printLog(level, message) {
+  message = String(message ?? "");
   const colorMap = {
     INFO: "\x1b[34m",
     SUCCESS: "\x1b[32m",
     WARN: "\x1b[33m",
     ERROR: "\x1b[31m",
   };
-  console.log(
-    `${colorMap[level] || ""}[${new Date().toLocaleString()}] [${level}] ${message}\x1b[0m`,
+  console.error(
+    `${colorMap[level] || ""}[${formatBeijingTime(new Date())}] [${level}] ${message}\x1b[0m`,
   );
 }
 

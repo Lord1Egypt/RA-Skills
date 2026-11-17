@@ -1,43 +1,59 @@
-## Description: <br>
-Structured Dev guides agents through a Research, Plan, Annotate, Implement workflow for code changes, requiring written review checkpoints before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured Dev guides coding agents through a review-first development workflow: research the codebase, write a plan, incorporate user annotations, create a task checklist, then implement while tracking progress.
 
-## Publisher: <br>
-[lskun](https://clawhub.ai/user/lskun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lskun](https://clawhub.ai/user/lskun)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to make coding agents research the existing system, write reviewable plans, process annotations, and then implement approved work with progress tracked in project files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow creates .dev planning files and may later guide code edits in the active project. <br>
-Mitigation: Use it only on the intended project and branch, then review .dev/research.md, .dev/plan.md, diffs, and command output before approving implementation. <br>
-Risk: A flawed research or plan phase can preserve incorrect architecture assumptions into implementation. <br>
-Mitigation: Require human review of the research and plan documents before saying to implement, and send the agent back through annotation when assumptions are wrong. <br>
-Risk: The workflow can describe spawning another coding agent or creating a GitHub/GitLab merge request. <br>
-Mitigation: Require explicit confirmation before spawning another agent or creating any merge request. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to make agent-assisted coding more reviewable by requiring written research, a detailed plan, user annotations, and an implementation checklist before code changes begin.
 
-## Reference(s): <br>
-- [Workflow Guide](references/workflow-guide.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans, progress updates, code edits, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates .dev planning files; may guide implementation after explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The workflow creates or modifies project-local planning files under .dev/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .dev/research.md and .dev/plan.md before allowing implementation, and decide whether .dev/ artifacts should be committed or ignored.
+
+Risk: Broad trigger phrases can route normal coding requests into a document-heavy workflow.
+
+Mitigation: Use the skill when explicit research, planning, or review gates are desired; disable or avoid it for small direct edits.
+
+Risk: Plans or checklist items can encode incorrect assumptions if the research phase misses relevant architecture details.
+
+Mitigation: Treat the research and plan files as review surfaces and require user approval before implementation.
+
+## Reference(s):
+
+- [Workflow Guide](references/workflow-guide.md)
+- [Prompt Templates](references/prompt-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/lskun/skills/structured-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown planning files, checklist updates, code edits, and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project-local .dev/research.md and .dev/plan.md files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

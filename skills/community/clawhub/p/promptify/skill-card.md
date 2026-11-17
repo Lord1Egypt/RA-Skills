@@ -1,44 +1,56 @@
-## Description: <br>
-Optimize prompts for clarity and effectiveness, with optional routing for clarifying questions, codebase context, or web research when the prompt calls for it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize prompts for clarity and effectiveness. Use when user says "improve this prompt", "optimize my prompt", "make this clearer", or provides vague/unstructured prompts. Intelligently routes to sub-agents for codebase research, clarifying questions, or web search as needed.
 
-## Publisher: <br>
-[tolibear](https://clawhub.ai/user/tolibear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[tolibear](https://clawhub.ai/user/tolibear)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers use Promptify to turn vague or underspecified requests into structured prompts with clear role, task, constraints, and output expectations. It can ask clarifying questions, inspect relevant project context, or gather current web context when those steps are needed for better prompt optimization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated clipboard shell commands can be unsafe for untrusted or complex prompt text.
+
+Mitigation: Review the generated prompt before execution and avoid running the `echo '...' | pbcopy` command for untrusted or complex content.
+
+Risk: Prompt optimization may broaden into project file review or web research.
+
+Mitigation: Use the skill only where codebase and web access are acceptable, and review any agent dispatch before relying on the result.
+
+Risk: Server-resolved GitHub import provenance is unavailable for this version.
+
+Mitigation: Prefer installation from the verified ClawHub publisher profile and pin the intended release version.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, writers, analysts, and other agent users use this skill to turn vague or underspecified prompts into clearer prompts with explicit role, task, constraints, and output expectations. It can ask clarifying questions, gather project context, or research current practices when those modes are requested or detected. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Codebase-aware prompt optimization may inspect relevant project files when +deep is used or when codebase context is auto-detected. <br>
-Mitigation: Review prompts for secrets or private project details before using codebase-context modes, and limit the prompt scope to information needed for the optimization task. <br>
-Risk: Web research modes may send prompt-derived search terms to external search tools. <br>
-Mitigation: Avoid using +web or current-practice prompts with sensitive, proprietary, or confidential details unless those terms are safe to disclose. <br>
-Risk: The skill may produce clipboard shell commands for the optimized prompt. <br>
-Mitigation: Review generated clipboard commands before running them, especially when prompts contain quoting, shell metacharacters, or sensitive text. <br>
+**Output Format:** [Markdown with a fenced optimized prompt, a clipboard shell command, and a short explanation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tolibear/promptify) <br>
-- [README](artifact/README.md) <br>
-- [Promptify command](artifact/commands/promptify.md) <br>
+**Other Properties Related to Output:** [May include clarifying questions or synthesized codebase and web research context before producing the optimized prompt.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with an optimized prompt code block, optional clipboard command, and a short explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions, concise research summaries, or codebase context summaries when those modes are triggered.] <br>
+3.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

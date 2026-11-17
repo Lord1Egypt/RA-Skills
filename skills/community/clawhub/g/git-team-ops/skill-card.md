@@ -1,48 +1,60 @@
-## Description: <br>
-Role-based GitOps skill for OpenClaw agents with junior and senior operating modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Role-based GitOps skill for OpenClaw agents with junior and senior operating modes.
 
-## Publisher: <br>
-[launchthatbot](https://clawhub.ai/user/launchthatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[launchthatbot](https://clawhub.ai/user/launchthatbot)
 
-## Use Case: <br>
-Developers and teams use this skill to coordinate OpenClaw coding agents in GitHub repositories with junior PR-only and senior review, merge, workflow, and release-control roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Senior mode can merge pull requests, manage repository workflows, and trigger release or deployment workflows. <br>
-Mitigation: Install only for repositories where this authority is intended; enforce branch protection, require CI to pass before merge, and prefer least-privilege GitHub App installation tokens. <br>
-Risk: Fallback PATs, BYO GitHub App private keys, and onboarding tokens can expose repository access if mishandled. <br>
-Mitigation: Prefer short-lived installation tokens, treat all credentials as sensitive, do not print or commit secrets, and never persist onboarding tokens beyond one session. <br>
-Risk: Bundled workflow and CODEOWNERS templates may not match a team's repository controls. <br>
-Mitigation: Review and adapt templates in a bootstrap pull request before merging them to the default branch. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate OpenClaw coding agents in GitHub repositories with junior PR-only roles and senior review, merge, release, and workflow-management roles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/launchthatbot/git-team-ops) <br>
-- [LaunchThatBot website](https://launchthatbot.com) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Junior PR validation workflow template](templates/github/workflows/junior-pr-validate.yml) <br>
-- [Senior release control workflow template](templates/github/workflows/senior-release-control.yml) <br>
-- [CODEOWNERS template](templates/github/CODEOWNERS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text operational guidance, Git commands, PR descriptions, and repository configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports role mode, repository, branch, changed files or workflows, and the next required human approval step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: The senior release workflow template grants repository write permissions before concrete release logic is implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review copied workflow templates before installation and reduce senior release workflow permissions to read-only until write access is required.
+
+Risk: Unreviewed workflow actions or installer commands may change repository automation behavior.
+
+Mitigation: Pin actions/checkout and the ClawHub installer to reviewed versions before deploying into sensitive repositories.
+
+Risk: Long-lived personal access tokens increase exposure if credentials are logged or stored.
+
+Mitigation: Prefer short-lived GitHub App installation tokens, avoid printing secrets, and do not write secrets into repository files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/launchthatbot/skills/git-team-ops)
+- [LaunchThatBot Website](https://launchthatbot.com)
+- [Package Repository URL](https://github.com/launchthatbot/git-ops.git)
+- [Discord Support](https://discord.gg/launchthatbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, file paths, GitHub workflow configuration, and action summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports role mode, repository, branch, changed files or workflows, and the next required human approval step.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

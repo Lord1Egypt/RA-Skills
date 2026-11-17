@@ -1,42 +1,57 @@
-## Description: <br>
-IdeaForge helps users turn rough product, tool, page, or feature ideas into actionable project plans that another agent or developer can pick up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IdeaForge helps turn vague product, tool, page, or feature ideas into actionable implementation plans that another agent or developer can execute.
 
-## Publisher: <br>
-[bbbppt](https://clawhub.ai/user/bbbppt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbbppt](https://clawhub.ai/user/bbbppt)
 
-## Use Case: <br>
-External users, developers, and product builders use IdeaForge when they have a vague idea and need a structured PROJECT.md-style handoff covering scope, user experience, technical choices, risks, assets, data, implementation phases, and decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans may include incorrect or overly confident technical, licensing, or feasibility guidance. <br>
-Mitigation: Review the generated plan before implementation and independently verify referenced libraries, APIs, licenses, and hard constraints. <br>
-Risk: Broad idea-making prompts may activate a structured planning workflow when the user only wants casual brainstorming. <br>
-Mitigation: Use the skill when a detailed project handoff is desired, and ask the agent to stay conversational for lightweight ideation. <br>
-Risk: The workflow may ask the agent to look up technical references for difficult implementation choices. <br>
-Mitigation: Check external references for accuracy, suitability, and license compatibility before relying on them in a project. <br>
+## Use Case:
 
+Developers, builders, and product planners use this skill to clarify early ideas, assess feasibility, compare implementation options, and create a detailed PROJECT.md handoff plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bbbppt/ideaforge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown, typically a PROJECT.md-style project plan with structured sections, option comparisons, and implementation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include asset source tables, JSON Schema examples, technical references, and decision records when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Planning recommendations may include incorrect feasibility judgments or unsuitable technical choices for the user's constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the PROJECT.md before implementation and validate major architecture, dependency, licensing, and timeline assumptions.
+
+Risk: Broad brainstorming phrases may trigger the workflow when the user only intended lightweight ideation.
+
+Mitigation: Use the skill when a structured implementation plan is desired, and confirm scope before relying on its recommendations.
+
+Risk: The skill may suggest external references, libraries, APIs, assets, or data sources during planning.
+
+Mitigation: Verify source quality, license terms, access requirements, and security posture before using suggested external resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbbppt/skills/ideaforge)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown PROJECT.md planning document with recommendations, module breakdowns, implementation steps, and reference links when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended technical choices, dependency options, asset and data source notes, and decision records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

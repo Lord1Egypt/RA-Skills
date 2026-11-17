@@ -1,44 +1,61 @@
-## Description: <br>
-Book graduation trip flights, post-grad travel, and class trip booking with student fare deals, with support for flight booking, hotels, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related Fliggy-powered travel services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search graduation-trip and class-trip travel options, including flights and related travel services, using flyai and Fliggy booking data.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and SKILL.md-compatible agents use this skill to collect graduation travel parameters, run the flyai CLI for real-time travel results, and return booking-linked comparison tables and travel guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require a global flyai CLI installation. <br>
-Mitigation: Review and trust the @fly-ai/flyai-cli package and the Fliggy/flyai provider before installation; prefer a controlled environment for execution. <br>
-Risk: Local execution logs can retain raw travel queries. <br>
-Mitigation: Avoid entering passport, payment, or highly sensitive identity details unless required, and review or delete .flyai-execution-log.json when local query retention is not desired. <br>
+## Use Case:
 
+Developers and travel-planning agents use this skill to collect graduation travel parameters, run flyai CLI searches, and present bookable options for flights and related trip planning tasks. It is intended for user-facing graduation, post-grad, and class-trip booking assistance where real-time provider results are required.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/dingtom336-gif/graduation) <br>
-- [Templates - graduation](references/templates.md) <br>
-- [Playbooks - graduation](references/playbooks.md) <br>
-- [Fallbacks - Flight Category (Graduation)](references/fallbacks.md) <br>
-- [Runbook - Execution Log Schema (Universal)](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires travel results from flyai CLI output; each booking option must include a detailUrl-based Book link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may install a third-party npm package globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval before global installs and review the @fly-ai/flyai-cli package and provider dependency before deployment.
+
+Risk: Raw travel queries and CLI activity may be retained in a local execution log.
+
+Mitigation: Disable, rotate, or delete persistent raw-query logs and avoid storing sensitive travel details.
+
+Risk: Booking results route users through flyai or Fliggy links.
+
+Mitigation: Review provider dependency and link handling before use, and present only CLI-returned detailUrl booking links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/graduation)
+- [Parameter and output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Failure recovery fallbacks](references/fallbacks.md)
+- [Execution log runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking-link tables and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for live travel data; user-facing travel options should include Book links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

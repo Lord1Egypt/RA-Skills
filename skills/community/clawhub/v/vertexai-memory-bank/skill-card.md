@@ -1,45 +1,56 @@
-## Description: <br>
-Install and configure the OpenClaw Vertex AI Memory Bank plugin for persistent, cross-agent memory across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the OpenClaw Vertex AI Memory Bank plugin for persistent, cross-agent memory, including GCP setup, plugin installation, and openclaw.json configuration.
 
-## Publisher: <br>
-[Shubhamsaboo](https://clawhub.ai/user/Shubhamsaboo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shubhamsaboo](https://clawhub.ai/user/shubhamsaboo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up Google Vertex AI-backed long-term memory, configure openclaw.json, and manage memory search, capture, sync, and deletion commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent automatic cloud memory may store sensitive conversations or workspace files. <br>
-Mitigation: Use a dedicated least-privilege GCP project, disable autoCapture or autoSyncFiles for sensitive work, or set a TTL before use. <br>
-Risk: The setup script installs unpinned remote code from a GitHub repository. <br>
-Mitigation: Review and pin the source before running the setup script in a production or sensitive environment. <br>
-Risk: The setup flow can create Google Cloud resources that may incur costs. <br>
-Mitigation: Use an intended GCP project, review billing controls, and confirm the region and project ID before execution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up cloud-backed long-term memory, cross-session recall, and shared memory across agents using Google Vertex AI Memory Bank.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Shubhamsaboo/vertexai-memory-bank) <br>
-- [Source repository from skill metadata](https://github.com/Shubhamsaboo/openclaw-vertexai-memorybank) <br>
-- [Google Cloud SDK installation](https://cloud.google.com/sdk/docs/install) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, curl, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that create Google Cloud resources, install npm packages, and modify OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup flow installs and builds mutable remote code through git clone, git pull, npm install, and npm run build.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and setup script before execution, and prefer a pinned, verified plugin version over mutable repository state.
+
+Risk: The skill enables persistent cross-agent storage of conversation context and workspace markdown files in Vertex AI Memory Bank.
+
+Mitigation: Use a dedicated GCP project with least-privilege credentials, and disable autoCapture or autoSyncFiles when automatic memory storage is not desired.
+
+## Reference(s):
+
+- [Skill listing](https://clawhub.ai/shubhamsaboo/skills/vertexai-memory-bank)
+- [Repository listed in metadata](https://github.com/Shubhamsaboo/openclaw-vertexai-memorybank)
+- [Google Cloud SDK install documentation](https://cloud.google.com/sdk/docs/install)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup steps that prompt for GCP project, region, and OpenClaw gateway restart choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

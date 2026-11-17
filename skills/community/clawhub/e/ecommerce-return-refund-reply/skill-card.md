@@ -1,42 +1,54 @@
-## Description: <br>
-Generate standardized, policy-compliant customer service replies for e-commerce return, exchange, and refund inquiries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized, policy-compliant customer service replies for e-commerce return, exchange, and refund inquiries.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Customer service teams and commerce agents use this skill to draft ready-to-send buyer replies for return, exchange, refund, eligibility, damaged-item, wrong-item, size, quality, change-of-mind, and refund-status inquiries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may contain internal notes or policy assumptions that should not be sent directly to a buyer. <br>
-Mitigation: Review the full response before sending, especially the internal notes and policy details. <br>
-Risk: Metadata tags include purchase and crypto capabilities even though the artifact is a markdown-only drafting helper. <br>
-Mitigation: Install it for drafting customer-service responses only and avoid granting unnecessary purchase, payment, or crypto permissions. <br>
-Risk: Refund or shipping promises can be inaccurate if the return window, fault determination, or refund stage is missing or wrong. <br>
-Mitigation: Confirm order details, platform policy, return window, shipping responsibility, and refund status before using the generated reply. <br>
+## Use Case:
 
+Customer support staff and e-commerce sellers use this skill to draft Chinese-language replies for return, exchange, refund, quality, size, wrong-item, damaged-item, and refund-status inquiries.
 
-## Reference(s): <br>
-- [Reply Templates by Issue Type](references/reply-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a ready-to-send reply and internal notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Buyer-facing reply is intended to stay under 200 words and include issue type, template used, and policy checked notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Buyer-facing replies may include the internal-notes section if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated reply and remove or hide internal notes before sending it to the buyer.
+
+Risk: Templates may not match a seller's marketplace policy, language, or return-window rules.
+
+Mitigation: Confirm the platform, return window, shipping responsibility, and refund status before sending the reply.
+
+## Reference(s):
+
+- [Reply Templates by Issue Type](references/reply-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/ecommerce-return-refund-reply)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese customer service reply with an internal-notes section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single ready-to-send reply under 200 words; internal notes should be removed or hidden before buyer-facing use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

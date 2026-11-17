@@ -1,52 +1,66 @@
-## Description: <br>
-Guides agents through Go benchmarking, profiling, benchmark comparison, CI regression detection, and production performance investigation using Go tools such as pprof, trace, and benchstat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang benchmarking, profiling, and performance measurement for writing, running, comparing, profiling, interpreting, and tracking Go benchmark and production performance data.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to write and run Go benchmarks, interpret profiles and traces, compare before/after performance, and set up regression checks for Go projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: pprof or trace endpoints can expose operational details when used against real services. <br>
-Mitigation: Restrict access to profiling endpoints and avoid exposing them publicly. <br>
-Risk: Profiles and traces can contain stack traces, identifiers, paths, and other sensitive operational information. <br>
-Mitigation: Review and redact captured benchmark, profile, and trace artifacts before sharing them. <br>
-Risk: Insecure TLS settings can weaken safety when collecting production performance data. <br>
-Mitigation: Use secure transport settings and avoid disabling TLS verification during profiling or metric collection. <br>
+## Use Case:
 
+Developers and engineers use this skill to create statistically sound Go benchmarks, compare results with benchstat, inspect pprof and trace data, and set up CI checks for performance regressions.
 
-## Reference(s): <br>
-- [Golang Benchmark on ClawHub](https://clawhub.ai/samber/golang-benchmark) <br>
-- [Publisher Profile](https://clawhub.ai/user/samber) <br>
-- [Project Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [benchstat Reference](references/benchstat.md) <br>
-- [CI Benchmark Regression Detection](references/ci-regression.md) <br>
-- [Compiler Analysis Reference](references/compiler-analysis.md) <br>
-- [Investigation Session Setup](references/investigation-session.md) <br>
-- [pprof Reference](references/pprof.md) <br>
-- [Prometheus Go Runtime Metrics Reference](references/prometheus-go-metrics.md) <br>
-- [Diagnostic Tools Quick Reference](references/tools.md) <br>
-- [Execution Trace Reference](references/trace.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Go code examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include benchmark commands, pprof and trace workflows, benchstat interpretation, CI regression guidance, and reviewable code or configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: frontmatter and server release metadata) <br>
+Risk: The skill includes copy-ready privileged host tuning commands for dedicated benchmark runners.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run host-tuning commands only on disposable dedicated benchmark runners with rollback, and avoid granting passwordless sudo to agents.
+
+Risk: The skill discusses pprof, trace, and production diagnostic workflows that can expose sensitive runtime data or add overhead.
+
+Mitigation: Prefer localhost, SSH tunnels, VPNs, mTLS, and authenticated access for diagnostics, and keep profiling or tracing short-lived and targeted.
+
+Risk: The skill installs Go-based benchmark tools using latest-version package references.
+
+Mitigation: Pin Go tool versions before use in shared or production-adjacent environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/golang-benchmark)
+- [Project Homepage](https://github.com/samber/cc-skills-golang)
+- [pprof Reference](references/pprof.md)
+- [benchstat Reference](references/benchstat.md)
+- [Trace Reference](references/trace.md)
+- [Diagnostic Tools Quick Reference](references/tools.md)
+- [Compiler Analysis Reference](references/compiler-analysis.md)
+- [CI Benchmark Regression Detection](references/ci-regression.md)
+- [Investigation Session Setup](references/investigation-session.md)
+- [Prometheus Go Metrics Reference](references/prometheus-go-metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Go, shell, YAML, and PromQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend running Go benchmark, benchstat, pprof, trace, Prometheus, and CI regression commands; outputs should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

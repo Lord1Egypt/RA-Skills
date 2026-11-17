@@ -1,44 +1,58 @@
-## Description: <br>
-A Chinese-language agent skill for A-share, Hong Kong stock, US stock, and ETF analysis that gathers market data, checks sources, scores signals, and returns trading-oriented analysis with source labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向 A股、港股、美股和 ETF 的中文股票分析技能，要求基于已核实市场数据、研报和新闻输出数据校验、综合结论和操作建议。
 
-## Publisher: <br>
-[lin838465-ux](https://clawhub.ai/user/lin838465-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lin838465-ux](https://clawhub.ai/user/lin838465-ux)
 
-## Use Case: <br>
-External users and developers use this skill to request Chinese-language stock or ETF analysis by ticker or name, including basic information, technical indicators, fund-flow signals, news checks, scoring, and operation suggestions. It is intended for informational analysis and not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols, company names, and related queries may be sent to external market-data or search providers. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, and do not include confidential holdings, account data, or unrelated private information in prompts or the local knowledge folder. <br>
-Risk: The skill can produce trading-oriented buy, sell, hold, stop-loss, or take-profit guidance that may be incorrect or unsuitable for an individual user. <br>
-Mitigation: Treat outputs as informational analysis, verify cited market data independently, and do not rely on the skill as personalized financial advice. <br>
-Risk: The skill reads from ~/Desktop/股票知识库/ and may use TUSHARE_TOKEN for Tushare data access. <br>
-Mitigation: Keep the local knowledge folder free of secrets or unrelated private material, and set TUSHARE_TOKEN only when Tushare access is intended. <br>
+## Use Case:
 
+External users or agents use this skill to analyze named stocks and ETFs across China A-share, Hong Kong, U.S., and ETF markets. It produces source-labeled market checks, ratings, and buy/sell/hold-style guidance for informational review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lin838465-ux/stock-analysis-cn-full) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown-style Chinese-language analysis with data-check sections, source citations, conclusion boxes, and optional Python snippets for data retrieval.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include buy, sell, hold, stop-loss, and take-profit guidance; the artifact requires unavailable or unverified data to be labeled as incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: The skill may automatically read files under ~/Desktop/股票知识库/, which can expose unrelated or sensitive local content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive or unrelated files out of that folder and review the skill's local-file behavior before enabling it.
+
+Risk: The skill produces decisive buy/sell-style recommendations that may be affected by incomplete, stale, or unavailable market data.
+
+Mitigation: Verify market data and cited sources independently, and treat outputs as informational rather than investment advice.
+
+Risk: The security summary flags limited user control and data-integrity safeguards.
+
+Mitigation: Use the skill only when those tradeoffs are acceptable, and review generated conclusions before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lin838465-ux/skills/stock-analysis-cn-full)
+- [ClawHub publisher profile](https://clawhub.ai/user/lin838465-ux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown with a data validation checklist, source-labeled analysis, conclusion box, operation guidance, and disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cited market data, research-report references, news references, and Python data-access snippets; no fixed token cap specified.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata; artifact config files list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

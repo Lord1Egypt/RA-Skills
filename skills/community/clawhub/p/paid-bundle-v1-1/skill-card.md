@@ -1,45 +1,55 @@
-## Description: <br>
-Provides architecture guidance for OpenClaw production-agent operations, covering compaction, loop termination, session memory, bash security, agent memory scoping, coordinator mode, and forked agent architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-validated OpenClaw skills built for production Claude Code deployments, covering compaction, loop termination, session memory, bash security, agent memory scoping, coordinator mode, and forked agent architecture.
 
-## Publisher: <br>
-[thebrierfox](https://clawhub.ai/user/thebrierfox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebrierfox](https://clawhub.ai/user/thebrierfox)
 
-## Use Case: <br>
-Developers and engineers use this skill as a bundled set of architecture notes for configuring production OpenClaw agent behavior, including context management, loop controls, shell safety, persistent memory, and coordination patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises a seven-skill bundle, but server security evidence says the detailed referenced phase files are not included. <br>
-Mitigation: Review the artifact before installing and require the publisher to provide the referenced phase files before treating it as a complete bundle. <br>
-Risk: The artifact describes persistent memory, file scanning, and multi-agent coordination without clear operating limits. <br>
-Mitigation: Enable persistent memory only after defining scan scope, storage location, access controls, and deletion or disablement procedures. <br>
-Risk: The install guidance suggests copying Markdown files broadly into a skills directory. <br>
-Mitigation: Avoid wildcard-copy installation; install only reviewed files and scan them before deployment. <br>
+## Use Case:
 
+Developers and engineering teams use this bundle for OpenClaw production-agent operations guidance, including context management, loop termination, memory persistence, bash safety, coordinator resume integrity, and forked-agent architecture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thebrierfox/paid-bundle-v1-1) <br>
-- [Publisher profile](https://clawhub.ai/user/thebrierfox) <br>
-- [Context Death Spiral Prevention](https://clawhub.ai/skills/free-compaction-primer) <br>
-- [OpenClaw Bash Safety](https://clawhub.ai/skills/free-bash-safety-primer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact contains an overview and install guidance, but server security evidence says the referenced detailed phase files are not included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: The bundle may enable long-term memory and multi-agent workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when those operations features are intended, review all phase files before use, and enable persistent memory deliberately.
+
+Risk: Persistent memory can survive across sessions or environment resets when the memory directory environment variable is configured.
+
+Mitigation: Set the memory environment variable only in environments where cross-session persistence is acceptable.
+
+## Reference(s):
+
+- [Paid Bundle V1.1 on ClawHub](https://clawhub.ai/thebrierfox/skills/paid-bundle-v1-1)
+- [Context Death Spiral Prevention](https://clawhub.ai/skills/free-compaction-primer)
+- [OpenClaw Bash Safety](https://clawhub.ai/skills/free-bash-safety-primer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes phased architecture guidance and setup steps for OpenClaw environments.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

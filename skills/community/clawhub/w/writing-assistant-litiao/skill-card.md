@@ -1,39 +1,50 @@
-## Description: <br>
-This skill helps an agent lead writing tasks by analyzing references, developing content strategy, and delegating or guiding specialized writing tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writing Assistant Litiao coordinates writing tasks by analyzing available references, forming a content strategy, and routing guidance to specialized writer tools.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and agent operators use this skill to plan writing tasks, assess available references, create content strategy, and route or guide writing work through appropriate tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Writing material or confidential references may be shared with configured MCP tools when the agent delegates work. <br>
-Mitigation: Review the enabled MCP tools before use and avoid sharing confidential drafts or references unless those tools are approved for that data. <br>
-Risk: The artifact metadata is inconsistent with the registry record, which can make package identity unclear during installation or upgrade. <br>
-Mitigation: Verify the ClawHub publisher handle, skill page, slug, and version before installing or updating the skill. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to plan writing work, select and apply references, and delegate drafting guidance to available specialized writing tools.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reference material or confidential drafts may be routed to enabled writer tools in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the enabled MCP writer tools and data-handling expectations before using the skill with confidential or sensitive writing inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/writing-assistant-litiao)
+- [Publisher profile](https://clawhub.ai/user/litiao1224)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text writing plans and task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference runtime template variables when present; no code, install actions, persistence, or sensitive data handling were identified in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

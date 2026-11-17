@@ -1,7 +1,8 @@
 ---
 name: local-event-scanner
 description: Use when the user wants to discover real-world events and gatherings in a specific city, area, or region, within an upcoming date range. Also triggers when the user asks to scan, shortlist, or find events matched to their interests. Does not handle meeting planning.
-version: 1.1.4
+version: 1.1.5
+effort: medium
 metadata:
   short-description: Find and shortlist events for the user
 ---
@@ -11,6 +12,7 @@ metadata:
 Use this skill when the user wants event suggestions or asks what's happening in their area. It discovers real events from configured sources, scores them against the user's taste profile, and returns a ranked shortlist with source links and caveats.
 
 ## Procedure
+If you are an agent that can set your own reasoning effort level or is spawning a sub-agent to run this procedure, run the procedure using a low to medium reasoning effort.
 
 0. Locate the root directory of this skill in the workspace (which may be `.agents/skills/local-event-scanner/`, `skills/local-event-scanner/`, or another path containing this `SKILL.md`). In this document, we refer to this path as `<skill_dir>`.
 1. Follow the boot sequence in `<skill_dir>/references/operating-model.md`.
@@ -68,3 +70,5 @@ Pass this run note path through the rest of the scan. Do not wait until the end 
 ## Output
 
 When invoked, explicitly say: "[Using local-event-scanner skill]"
+
+

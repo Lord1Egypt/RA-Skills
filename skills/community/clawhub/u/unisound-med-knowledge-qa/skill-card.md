@@ -1,40 +1,63 @@
-## Description: <br>
-Provides medical exam, specialty Q&A, literature comprehension, terminology explanation, and synonym-matching answers by sending caller-provided questions to a configurable medical language model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides medical exam, specialty Q&A, literature reading comprehension, medical term explanation, and terminology synonym matching by sending caller-provided questions to the configured medical model.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and integrators use this skill to route medical knowledge questions into task-specific prompts for exams, specialty Q&A, literature comprehension, terminology explanations, and synonym matching. The output is model-assisted information and is not a formal clinical decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questions are sent to the configured medical model API, which can expose sensitive health or patient-identifying information. <br>
-Mitigation: Use the skill only with trusted, approved model endpoints and do not include patient-identifying, confidential, or regulated health data unless the workflow is authorized. <br>
-Risk: Medical answers may be mistaken for formal diagnosis or treatment decisions. <br>
-Mitigation: Treat outputs as model-assisted information and require qualified review before clinical or operational use. <br>
+## Use Case:
 
+Developers and medical knowledge workflow owners use this skill to route caller-supplied medical questions into task-specific prompts for exams, specialty Q&A, literature comprehension, term explanations, and synonym matching. Outputs are model-assisted information and are not formal clinical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-knowledge-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [JSON or plain text; batch output may be NDJSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write full UTF-8 JSON results to a file and can emit answer text only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: Caller-provided medical questions are sent to the documented external medical model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint is approved for the intended data before use and de-identify real patient information.
+
+Risk: The required app key can grant access to the external model service.
+
+Mitigation: Protect the --appkey value as a secret and avoid placing it in shared logs, command history, or committed files.
+
+Risk: Saved outputs can contain the original question and metadata.
+
+Mitigation: Choose --output paths carefully and apply the same access controls used for the input data.
+
+Risk: Model-assisted medical answers may be unsuitable as final clinical decisions.
+
+Mitigation: Route outputs through qualified review and applicable clinical or institutional processes before use in patient care.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-knowledge-qa)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Configured medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object or NDJSON by default, with optional plain text answer output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include the original question, task, metadata, model, input mode, and generated answer; batch input produces one JSON object per line.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

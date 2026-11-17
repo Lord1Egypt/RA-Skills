@@ -1,47 +1,59 @@
-## Description: <br>
-Taxonomy Normalizer helps users reconcile category systems across teams or tables while preserving alias mappings and deprecated terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalizes classification systems across teams or tables while preserving alias mappings and deprecated terms.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Data stewards, analysts, and developers use this skill to turn category lists, aliases, and conflict notes into an auditable taxonomy-normalization draft with migration suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated taxonomy mappings or migration suggestions may be incomplete or incorrect if the supplied category data is ambiguous. <br>
-Mitigation: Treat outputs as review drafts and confirm unresolved conflicts, aliases, and deprecated terms before acting on them. <br>
-Risk: Local file input and output paths could expose or overwrite unintended materials if selected carelessly. <br>
-Mitigation: Review input and output paths before running the script, and avoid pointing it at sensitive directories or files unnecessarily. <br>
-Risk: Taxonomy normalization can accidentally erase meaningful business differences between teams or datasets. <br>
-Mitigation: Use the skill's conflict and overlap sections to preserve distinctions for reviewer approval instead of forcing automatic unification. <br>
+## Use Case:
 
+Data, analytics, and governance teams use this skill to turn category lists, aliases, and conflict notes into reviewable taxonomy-normalization drafts. It helps prepare current categories, overlaps, preferred categories, alias maps, deprecated terms, and migration suggestions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/taxonomy-normalizer) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](artifact/README.md) <br>
-- [Structured specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Example output](artifact/examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown report by default, with optional JSON output from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for script execution; reads local input files or directories and writes to stdout or a selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Running the helper on broad directories may enumerate or summarize local text files beyond the intended input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files or directories intended for processing, and review the configured mode before using broad directory inputs.
+
+Risk: Taxonomy-normalization drafts can incorrectly collapse meaningful business distinctions if applied without review.
+
+Mitigation: Treat outputs as reviewable drafts and confirm mappings with domain owners before making production data or configuration changes.
+
+Risk: Inputs may contain sensitive taxonomy, alias, or governance material.
+
+Mitigation: Use local, authorized, and appropriately sanitized inputs, and choose output paths that match the data sensitivity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/taxonomy-normalizer)
+- [README](artifact/README.md)
+- [Skill specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON reports generated from local inputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local files or inline text; the Python helper can write to a selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

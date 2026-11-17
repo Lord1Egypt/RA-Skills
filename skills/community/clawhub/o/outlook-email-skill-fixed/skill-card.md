@@ -1,46 +1,57 @@
-## Description: <br>
-Microsoft Outlook/Live.com email and calendar client via Microsoft Graph API. List, search, read, send emails. View and create calendar events. Supports device code auth for servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Outlook/Live.com email and calendar client via Microsoft Graph API. List, search, read, send emails. View and create calendar events. Supports device code auth for servers.
 
-## Publisher: <br>
-[dongrebeccahhh-boop](https://clawhub.ai/user/dongrebeccahhh-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongrebeccahhh-boop](https://clawhub.ai/user/dongrebeccahhh-boop)
 
-## Use Case: <br>
-Developers and agent users can use this skill to manage Outlook or Live.com mail and calendar workflows from an agent-controlled CLI, including listing, searching, reading, sending, replying, and creating calendar events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests sensitive Microsoft email and calendar access, and the package does not include the declared ./outlook CLI program. <br>
-Mitigation: Verify the actual CLI implementation from a trusted source before installing or authenticating; do not enter Microsoft credentials, client secrets, or device-code authentication until that review is complete. <br>
-Risk: OAuth tokens are stored locally at ~/.config/outlook-cli/token.json. <br>
-Mitigation: Protect the token file with restrictive permissions, do not share or commit it, and revoke Microsoft app access immediately if the token is exposed. <br>
-Risk: The documented workflow can send email, reply to messages, and create calendar events. <br>
-Mitigation: Require explicit confirmation before sending mail, replying, or creating calendar events, and grant only the minimum Microsoft Graph permissions needed. <br>
+## Use Case:
 
+Developers and end users can use this skill to operate Outlook or Live.com mailbox and calendar workflows from an agent-assisted command-line environment.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/dongrebeccahhh-boop/outlook-email-skill-fixed) <br>
-- [Publisher Profile](https://clawhub.ai/user/dongrebeccahhh-boop) <br>
-- [Microsoft Azure Portal](https://portal.azure.com) <br>
-- [Microsoft Device Login](https://microsoft.com/devicelogin) <br>
-- [Microsoft Account App Access](https://account.microsoft.com/privacy/app-access) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the requests package, Microsoft Graph network access, and Azure AD app registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release requests persistent access to mailbox and calendar data through Microsoft Graph.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Azure permissions, review requested OAuth scopes before authentication, protect the local token file, and revoke access if credentials or tokens are exposed.
+
+Risk: The package declares a ./outlook executable, but the submitted artifact does not include it, so runtime behavior cannot be verified from the package.
+
+Mitigation: Do not install or run the skill until the missing executable is supplied and reviewed against the declared behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongrebeccahhh-boop/skills/outlook-email-skill-fixed)
+- [Publisher profile](https://clawhub.ai/user/dongrebeccahhh-boop)
+- [Microsoft Azure Portal](https://portal.azure.com)
+- [Microsoft device login](https://microsoft.com/devicelogin)
+- [Microsoft account app access](https://account.microsoft.com/privacy/app-access)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide Microsoft Graph API actions that read, send, and search email or manage calendar events after user authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

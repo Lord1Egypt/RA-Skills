@@ -1,41 +1,50 @@
-## Description: <br>
-Validate and pretty-print JSON files from the terminal. Use when linting config files, formatting API payloads, checking syntax before deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and pretty-print JSON files from the terminal. Use when linting config files, formatting API payloads, checking syntax before deployment.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use Jsonlint to validate, format, minify, compare, inspect, and extract values from local JSON files in terminal workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands that format, minify, diff, list keys, or extract values can print sensitive JSON contents into the terminal or agent session. <br>
-Mitigation: Avoid running these commands on JSON files that contain secrets unless the user is comfortable exposing those values in terminal output. <br>
-Risk: The tool depends on a local python3 runtime. <br>
-Mitigation: Confirm python3 is available before relying on the skill in an environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate, format, minify, compare, inspect, and extract values from local JSON files in terminal workflows.
 
-## Reference(s): <br>
-- [Jsonlint on ClawHub](https://clawhub.ai/bytesagain3/jsonlint) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON] <br>
-**Output Format:** [Terminal text and JSON emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-specified local JSON files and prints validation, formatting, comparison, key listing, or extraction results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill can print JSON file contents or extracted values to terminal output or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running it on sensitive JSON files unless terminal output and logs are an acceptable place for those values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/jsonlint)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and terminal output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-specified local JSON files and may print file contents or selected values to terminal output.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

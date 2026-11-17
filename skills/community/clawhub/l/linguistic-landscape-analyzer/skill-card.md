@@ -1,43 +1,57 @@
-## Description: <br>
-Local MCP tool for linguistic landscape analysis with social media sentiment analysis, keyword extraction, note listing, and Markdown weekly report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linguistic Landscape Analyzer is a local MCP tool for sentiment analysis, keyword extraction, note listing, and Markdown weekly reports from CSV social-media text data.
 
-## Publisher: <br>
-[Crystaria](https://clawhub.ai/user/Crystaria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystaria](https://clawhub.ai/user/crystaria)
 
-## Use Case: <br>
-Researchers, content operators, and data analysts use this skill to analyze local CSV social media notes for sentiment, keywords, engagement metrics, and weekly summaries. It is useful for exploratory language, sociology, communications, and content analysis workflows that can work from local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads CSV files from its data directory, so unrelated or sensitive files placed there could be processed into tool output or reports. <br>
-Mitigation: Keep only intended analysis CSV files in the skill data folder and review generated reports before sharing them. <br>
-Risk: The documented outputPath, startDate, and endDate parameters are not honored by the current report generator. <br>
-Mitigation: Expect reports to be written to the skill reports folder using the current date, and validate report scope manually when date filtering matters. <br>
-Risk: Sentiment and keyword results use simple local methods and may be too coarse for high-stakes research conclusions. <br>
-Mitigation: Use outputs as preliminary analysis and corroborate important findings with domain review or stronger NLP methods. <br>
+## Use Case:
 
+Developers, researchers, analysts, and content operations teams use this skill to analyze local social-media CSV data for sentiment, keywords, note summaries, and weekly Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Crystaria/linguistic-landscape-analyzer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Crystaria) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [JSON-formatted MCP text responses and Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads CSV files from the skill data folder and writes generated reports to the skill reports folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md changelog; package.json and server metadata declare 1.0.0) <br>
+Risk: Local CSV files and generated reports may contain copied note data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input CSV contents before analysis, keep generated reports local when needed, and avoid sharing reports that contain sensitive or proprietary notes.
+
+Risk: The dependency lockfile and registry source require review before installation.
+
+Mitigation: Review or update the dependency lockfile and prefer the official npm registry when appropriate.
+
+Risk: Dictionary-based sentiment analysis and simple Chinese tokenization can produce inaccurate NLP results.
+
+Mitigation: Treat sentiment and keyword outputs as preliminary analysis and review them before research, operational, or business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crystaria/skills/linguistic-landscape-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON text responses and generated Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local CSV data and writes reports under the skill reports directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md changelog; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

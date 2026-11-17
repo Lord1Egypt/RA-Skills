@@ -1,40 +1,58 @@
-## Description: <br>
-Designs and optimizes system prompts for advisory AI and autonomous agent systems using a three-layer architecture, evidence-graded techniques, and modular extensions for spec building, RAG grounding, domain calibration, and multi-agent orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs and optimizes system prompts for advisory AI and autonomous agent systems using a three-layer Foundation, Structure, and Execution architecture with evidence-graded techniques.
 
-## Publisher: <br>
-[iops](https://clawhub.ai/user/iops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iops](https://clawhub.ai/user/iops)
 
-## Use Case: <br>
-Developers, prompt engineers, and AI builders use this skill to create, refine, diagnose, and explain prompts for advisory AI and autonomous agent systems. It is suited for prompt architecture work involving tool use, confidence grading, RAG grounding, high-stakes domain calibration, multi-agent orchestration, and spec-to-prompt handoff. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Prompt Engineer System Prompt v4.1](references/agentic_core.md) <br>
-- [Spec Builder Knowledge Base](references/spec_builder_kb.md) <br>
-- [Retrieval-Augmented Grounding](references/rag_grounding.md) <br>
-- [Domain Calibration Template](references/domain_calibration.md) <br>
-- [Multi-Agent Architecture](references/multi_agent.md) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured prompt sections, examples, before/after comparisons, confidence grades, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill. Review generated prompts before using them with real tools, memory, credentials, public posting, or production systems, and narrow activation language if unintended routing occurs.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release evidence) <br>
+Developers, AI builders, and prompt engineers use this skill to build, iterate, diagnose, and explain system prompts for advisory AI, tool-using agents, RAG-grounded assistants, high-stakes domain advisors, and multi-agent orchestration patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated prompts may grant real-world action authority or shape behavior in high-stakes or tool-enabled systems.
+
+Mitigation: Review generated prompts before deployment, especially for medical, legal, financial, autonomous, or tool-enabled workflows.
+
+Risk: The skill can activate on broad agent, prompt, and specification language and may influence prompt-writing conversations beyond narrow build requests.
+
+Mitigation: Confirm that the prompt-engineering workflow is appropriate for the request before applying generated guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iops/skills/prompt-engineer-agentic)
+- [Prompt Engineer Skill Definition](artifact/SKILL.md)
+- [Prompt Engineer System Prompt v4.1](artifact/references/agentic_core.md)
+- [Spec Builder Knowledge Base](artifact/references/spec_builder_kb.md)
+- [RAG Grounding Module](artifact/references/rag_grounding.md)
+- [Domain Calibration Module](artifact/references/domain_calibration.md)
+- [Multi-Agent Module](artifact/references/multi_agent.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured prompt text with examples, confidence grades, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complete system prompts, before-and-after prompt revisions, diagnostic findings, specifications, RAG grounding rules, domain calibration templates, or multi-agent orchestration guidance.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

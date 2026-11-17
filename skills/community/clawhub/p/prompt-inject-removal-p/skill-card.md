@@ -1,45 +1,60 @@
-## Description: <br>
-Prompt Inject Removal helps agents summarize untrusted external content through a hardened prompt that treats embedded instructions as inert data and emits a sanitized factual summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A prompt-only sanitization skill that summarizes untrusted external content while removing or marking obvious prompt injection attempts.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and agent users can use this skill as a defense-in-depth step before passing web pages, articles, blogs, emails, or files into an agent workflow. It is intended to produce a sanitized summary for review, not to serve as a complete security boundary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt-only sanitization can reduce exposure to indirect prompt injection but is not a complete security boundary. <br>
-Mitigation: Use it as defense-in-depth and review sanitized summaries before allowing an agent to send messages, edit files, delete data, or take other consequential actions. <br>
-Risk: Sanitized output may still contain factual content that leads a downstream agent toward unsafe actions. <br>
-Mitigation: Keep downstream tools constrained and require human review before state-changing actions based on untrusted source material. <br>
-Risk: The setup script writes files into the selected target directory. <br>
-Mitigation: Inspect setup.sh and choose the target directory deliberately before running it. <br>
+## Use Case:
 
+Developers and agents use this skill to process untrusted web pages, articles, blogs, emails, or files into concise sanitized summaries before the information is used in a conversation or workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/prompt-inject-removal-p) <br>
-- [Metadata homepage](https://clawhub.ai/Quarantiine/prompt-inject-removal) <br>
-- [Hardened system prompt](PROMPT.md) <br>
-- [Security documentation](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise sanitized summary text, optionally including the marker [INJECTION_ATTEMPT_REMOVED]] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API keys are required; summaries should be reviewed before consequential agent actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompt-based sanitization is not a complete security boundary for sophisticated prompt injection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow fetch or browser permissions where possible, isolate the sanitization step for high-risk content, and review summaries before taking write, send, or delete actions.
+
+Risk: A sanitized summary can still carry malicious, misleading, or action-triggering content into the main agent.
+
+Mitigation: Treat summaries from untrusted sources as reviewable data and avoid state-changing actions based only on the sanitized output.
+
+Risk: The artifact includes defensive examples of prompt-injection phrases that scanners may flag.
+
+Mitigation: Review scanner findings in context and confirm that flagged phrases are negative constraints rather than executable instructions.
+
+## Reference(s):
+
+- [Prompt Inject Removal security documentation](references/security.md)
+- [Hardened sanitization prompt](PROMPT.md)
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/prompt-inject-removal-p)
+- [Metadata homepage](https://clawhub.ai/Quarantiine/prompt-inject-removal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise sanitized summary text, optionally containing the marker [INJECTION_ATTEMPT_REMOVED]]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API keys are required; output should omit conversational prefaces and conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

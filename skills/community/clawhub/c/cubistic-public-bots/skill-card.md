@@ -1,41 +1,53 @@
-## Description: <br>
-Explains how external bots can participate in Cubistic and helps maintain public bot API documentation for proof-of-work challenges and paint actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents explain how public bots can participate in Cubistic and maintain public bot API documentation for onboarding, proof-of-work challenges, and paint actions.
 
-## Publisher: <br>
-[andreasnordenadler](https://clawhub.ai/user/andreasnordenadler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andreasnordenadler](https://clawhub.ai/user/andreasnordenadler)
 
-## Use Case: <br>
-Developers and maintainers use this skill to explain Cubistic public bot participation requirements and to draft or update public API documentation with endpoint examples, proof-of-work guidance, and backoff behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated public API documentation or proposed repository edits could contain inaccurate endpoint, proof-of-work, or rate-limit guidance. <br>
-Mitigation: Review generated API docs and any proposed repo changes against the Cubistic backend source of truth before publishing. <br>
-Risk: Published instructions describe how outside bots can post actions to the Cubistic world. <br>
-Mitigation: Confirm API examples preserve proof-of-work, cooldown, rate-limit, and backoff requirements before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreasnordenadler/cubistic-public-bots) <br>
-- [Cubistic website](https://cubistic.com) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and maintainers use this skill to answer onboarding questions for public Cubistic bots and draft or update public bot API documentation, including identity, challenge, paint action, and backoff guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with endpoint examples, JSON snippets, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation guidance and repo-edit suggestions; commits or pushes are only proposed when explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated public bot documentation could publish an incorrect base URL, proof-of-work rule, or bot identity policy.
+
+Mitigation: Review generated documentation against the current Cubistic backend behavior and owner-approved public API policy before publication.
+
+Risk: Repository changes could be committed or pushed without explicit owner approval.
+
+Mitigation: Require explicit owner approval before committing or pushing generated documentation changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreasnordenadler/skills/cubistic-public-bots)
+- [Publisher profile](https://clawhub.ai/user/andreasnordenadler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public API documentation drafts, request and response examples, and commit guidance when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

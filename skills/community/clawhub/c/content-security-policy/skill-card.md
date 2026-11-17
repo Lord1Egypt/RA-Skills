@@ -1,43 +1,59 @@
-## Description: <br>
-Content Security Policy helps agents redact sensitive content, filter dangerous instructions, judge action permissions, and apply multi-level access controls when users request safety checks or sensitive operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content security policy skill for sensitive information redaction, dangerous instruction filtering, action permission judgment, and multi-level permission management.
 
-## Publisher: <br>
-[foxyy1126](https://clawhub.ai/user/foxyy1126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxyy1126](https://clawhub.ai/user/foxyy1126)
 
-## Use Case: <br>
-Developers and operators use this skill to add agent-level safety checks for redacting secrets, screening dangerous commands, and deciding whether requested operations need confirmation or rejection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic redaction or instruction filtering may change user content or suppress a legitimate request. <br>
-Mitigation: Review trigger conditions before use, keep an override path for workflows where rewriting is disruptive, and inspect outputs before relying on them. <br>
-Risk: Permission decisions depend on accurate user role configuration. <br>
-Mitigation: Configure the highest-privilege administrator and authorized users before enabling sensitive operations. <br>
+## Use Case:
 
+External users and developers use this skill to redact common sensitive strings, classify risky instructions, and apply advisory permission checks before handling sensitive actions.
 
-## Reference(s): <br>
-- [Instruction Filter Details](artifact/references/instruction-filter.md) <br>
-- [Action Permission Judgment Details](artifact/references/action-judgment.md) <br>
-- [Sanitizer Script](artifact/scripts/sanitizer.js) <br>
-- [ClawHub Skill Page](https://clawhub.ai/foxyy1126/content-security-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return redacted content, command risk levels, permission decisions, and confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may be mistaken for a dependable security or permission gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as advisory screening only; require trusted human review before approving dangerous actions.
+
+Risk: The sanitizer script can read and print local files when explicitly invoked with a file path.
+
+Mitigation: Do not provide paths to sensitive local files unless a trusted user intentionally selected those files.
+
+Risk: Redaction and command classification cover only the documented patterns and can miss secrets or risky requests outside those patterns.
+
+Mitigation: Pair the skill with independent secret scanning and operational access controls for real deployments.
+
+## Reference(s):
+
+- [Action Judgment Reference](references/action-judgment.md)
+- [Instruction Filter Reference](references/instruction-filter.md)
+- [ClawHub Skill Page](https://clawhub.ai/foxyy1126/skills/content-security-policy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit redacted text, risk classifications, permission decisions, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

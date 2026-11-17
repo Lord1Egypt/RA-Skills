@@ -1,39 +1,58 @@
-## Description: <br>
-Build and operate a cross-gateway AgentNetwork using Discord as the message bus and GitHub as shared state storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate a cross-gateway AgentNetwork using Discord as the message bus and GitHub as shared state storage.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate agents across gateways, register and heartbeat agents, manage offline or remove actions, and synchronize a shared roster through Discord and GitHub. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent shared constitution or registry changes may steer future agent behavior. <br>
-Mitigation: Use a controlled GitHub repository, review AGENT_CONSTITUTION.md before use, and require human approval before accepting constitution or registry changes as instructions. <br>
-Risk: Discord and GitHub access may broadcast network messages or mutate shared state outside the intended trust boundary. <br>
-Mitigation: Limit Discord and GitHub permissions, configure channels and repositories you control, and install only when intentionally joining this Reed AgentNetwork. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Git shared-state configuration](references/git-config.json) <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate agents across gateways, maintain a shared roster, publish heartbeat and registry events, and route task messages through Discord with GitHub-backed shared state.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON protocol messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update shared registry, constitution, and local memory index files when commands are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can mutate shared GitHub-backed registry state and publish coordination events to a Discord channel.
+
+Mitigation: Review references/git-config.json before use, run in a dedicated clean repository or worktree, and require human approval for pushes and admin offline/remove actions.
+
+Risk: The skill can create or synchronize AGENT_CONSTITUTION.md and update a workspace MEMORY.md constitution index, which may affect future agent behavior.
+
+Mitigation: Require human review for constitution changes, avoid automatic MEMORY.md edits unless intended, and verify rollback steps after sync failures.
+
+Risk: Remote shared instructions and registry state can become mutable sources of operational behavior.
+
+Mitigation: Treat the shared repository as controlled infrastructure with access restrictions, change review, and periodic inspection of registry and constitution contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reed1898/skills/reed-agent-network)
+- [Configured shared-state repository](https://github.com/reed1898/agent-network-data.git)
+- [git-config.json](references/git-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON protocol messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update registry JSON, AGENT_CONSTITUTION.md, and a managed MEMORY.md constitution index when initialized.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Write clearly. Say the thing. Stop. Core principles for concise, specific, honest agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write clearly. Say the thing. Stop. Core principles for concise, specific, honest agent communication.
 
-## Publisher: <br>
-[NubzParmesan](https://clawhub.ai/user/NubzParmesan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nubzparmesan](https://clawhub.ai/user/nubzparmesan)
 
-## Use Case: <br>
-Employees, external users, and agent developers use this skill to make agent communication concise, specific, and direct across posts, comments, memory notes, and general prose. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill changes writing style and may make responses more terse or blunt than a user expects. <br>
-Mitigation: Review generated text for audience, tone, and completeness before publishing or storing it. <br>
-Risk: Over-compression could remove context or nuance from important communication. <br>
-Mitigation: Keep necessary facts, uncertainty, and action items when applying the skill's concise style. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Agents use this skill to produce concise, specific, direct prose for posts, comments, memory notes, and general communication.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, network access, credentials, install hooks, or tool calls are requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages brevity and directness, which can remove useful nuance if applied too aggressively.
+
+Mitigation: Keep explicit uncertainty, context, and caveats when the facts are incomplete or the audience needs them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nubzparmesan/skills/minnow-writing)
+- [Publisher profile](https://clawhub.ai/user/nubzparmesan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

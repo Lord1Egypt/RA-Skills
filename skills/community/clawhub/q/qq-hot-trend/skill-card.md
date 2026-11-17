@@ -1,41 +1,54 @@
-## Description: <br>
-Extract and summarize public QQ app pages, announcements, and group invites without login or message access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and summarize public QQ app pages, announcements, and group invites without login or message access.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to summarize publicly accessible QQ application pages, announcement or share pages, and group invite pages. It is intended for public content only and excludes login, messaging, private data, and access bypass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide QQ credentials, cookies, private messages, account pages, or non-public group content. <br>
-Mitigation: Use only public share, app, announcement, or invite links, and do not provide credentials or private QQ content. <br>
-Risk: Automated access to dynamic public pages may repeat requests while waiting for rendered content. <br>
-Mitigation: Wait for page rendering only as needed, parse public content, and apply rate limits to avoid repeated access. <br>
+## Use Case:
 
+Developers and agents use this skill to extract titles, authors, update times, summaries, metadata, version details, and relevant links from publicly accessible QQ pages. It is intended for public announcements, app pages, and group invite pages, not account login, messaging, private content, or permission bypass.
 
-## Reference(s): <br>
-- [QQ homepage](https://im.qq.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/qq-hot-trend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured text fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should stay limited to public page content and include source links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill could be misapplied to account actions, private messages, authenticated QQ content, or workflows that require login or permission bypass.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for publicly accessible QQ pages and review requests before execution to confirm that the target content is public.
+
+Risk: Dynamic QQ pages may render content after initial page load, which can lead to incomplete extraction or summaries.
+
+Mitigation: Wait for page rendering to complete, verify key fields such as title, author, update time, and source link, and keep retries rate-limited.
+
+## Reference(s):
+
+- [QQ Homepage](https://im.qq.com/)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/qq-hot-trend)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to summaries and extracted fields from publicly accessible QQ pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

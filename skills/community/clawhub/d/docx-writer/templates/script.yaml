@@ -1,0 +1,35 @@
+# ============================================================
+# docx-writer 模板：script（演讲稿 / 答辩稿体例）
+# 与 academic 的区别：正文字号加大（13pt）便于照读，页边距收窄，关掉脚注。
+# 用法：Template.load('script')
+# ============================================================
+name: script
+base_docx: ../template.docx      # 承载基础样式；本模板不用脚注
+
+page:
+  size: A4
+  margin: { top: 1.8cm, bottom: 1.8cm, left: 2.2cm, right: 2.2cm }
+  background: null
+
+styles:
+  title:     { cn: 黑体, en: Arial,            size: 15pt,   bold: true,  align: center, indent: 0,      line_spacing: 1.4 }
+  meta:      { cn: 楷体, en: Times New Roman,  size: 10pt,   align: center, indent: 0,      line_spacing: 1.3 }
+  h1:        { cn: 黑体, en: Arial,            size: 12pt,   bold: true,  align: left,   indent: 0,      line_spacing: 1.3 }
+  body:      { cn: 宋体, en: Times New Roman,  size: 12pt,   align: left,   indent: 0.74cm, line_spacing: 1.4 }
+  note:      { cn: 楷体, en: Times New Roman,  size: 9.5pt,  align: left,   indent: 0.74cm, line_spacing: 1.3, color: "7F7F7F" }
+  caption:   { cn: 宋体, en: Times New Roman,  size: 9pt,    align: center, indent: 0,      line_spacing: 1.3 }
+  signature: { cn: 楷体, en: Times New Roman,  size: 10.5pt, align: right,  indent: 0,      line_spacing: 1.3 }
+  image:     { align: center, width: 14cm }
+  formula:  { align: center, indent: 0, scale: 0.95, line_spacing: 1.4, inline_scale: 0.96, inline_border: 1pt, mode: auto }
+  table:
+    mode: three_line
+    word_style: Normal Table
+    header: { cn: 黑体, en: Arial,           size: 9pt, bold: true, align: center }
+    cell:   { cn: 宋体, en: Times New Roman, size: 9pt, align: center }
+
+footnote:
+  enabled: false
+
+features:
+  fix_quotes: true
+  superscript_footnotes: false

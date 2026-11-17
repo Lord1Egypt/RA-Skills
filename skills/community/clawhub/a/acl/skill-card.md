@@ -1,39 +1,57 @@
-## Description: <br>
-Security engineer skill for backend ACL structure, menu visibility control, and administrative access safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security engineer skill for backend ACL structure, menu visibility control, and administrative access safety.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and repair backend ACL paths, admin menu visibility, and controller permission wiring for WelineFramework admin features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ACL or menu changes can affect who can see or access administrative features. <br>
-Mitigation: Review generated code and configuration changes and verify both permitted-role and denied-role behavior before deployment. <br>
-Risk: Menu visibility alone may hide an admin surface without enforcing controller-level permission checks. <br>
-Mitigation: Align menu source identifiers with controller permission annotations and validate denied access through the real admin path. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, repair, and review WelineFramework backend ACL definitions, menu visibility, and controller permission wiring for administrative features.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with code and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation evidence for allowed and denied admin access behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Incorrect ACL or menu wiring can expose administrative features or hide required controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review changes against menu.xml and controller permission annotations, then test allowed and denied admin roles through the real admin path.
+
+Risk: Menu visibility can be mistaken for access control.
+
+Mitigation: Enforce controller-level permission checks and verify denied backend paths fail safely.
+
+Risk: The skill guides production permission changes but contains no executable validation.
+
+Mitigation: Treat outputs as proposed changes and run project-specific admin ACL tests before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/acl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with code or configuration snippets and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on ACL, menu, and controller permission alignment with allowed and denied admin-role validation evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Run mutation testing to measure real test suite effectiveness by injecting code mutations, running tests against mutants, and reporting mutation score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run mutation testing to measure real test suite effectiveness. Inject code mutations (flip conditions, remove calls, change returns), run tests against mutants, and report mutation score — the truest measure of test quality beyond line coverage.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate whether a test suite catches realistic defects, identify survived mutants, and generate targeted tests for uncovered behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mutation testing may temporarily modify source files while evaluating whether tests catch changed behavior. <br>
-Mitigation: Run it on a clean branch, disposable checkout, or container, and verify that all mutations are reverted before continuing development. <br>
-Risk: The skill may install and run ecosystem mutation-testing tools such as Stryker, mutmut, PIT, or gremlins. <br>
-Mitigation: Review package installs and dependency changes before execution, especially in restricted or production-adjacent environments. <br>
-Risk: Project tests may be configured to contact production services or use real credentials. <br>
-Mitigation: Run with isolated test configuration, test endpoints, and non-production credentials only. <br>
+## Use Case:
 
+Developers and engineers use this skill to run mutation testing, identify surviving mutants, and improve weak or missing tests beyond line coverage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/mutation-test-runner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mutation score summaries, survived-mutant analysis, and concrete test suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may install or invoke unpinned external mutation-testing tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin tool versions before use, especially in CI or shared development environments.
+
+Risk: The skill may temporarily modify project source files while creating manual mutations.
+
+Mitigation: Run it in a clean branch, disposable worktree, container, or CI sandbox and verify all mutations are reverted.
+
+Risk: Third-party tools and test suites may run with access to local environment variables.
+
+Mitigation: Keep credentials and sensitive tokens out of the environment while mutation tests and related tooling run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/mutation-test-runner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, code examples, and mutation testing report structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended tests for surviving mutants and baseline mutation score guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

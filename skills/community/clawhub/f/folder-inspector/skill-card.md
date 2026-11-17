@@ -1,39 +1,55 @@
-## Description: <br>
-Scans a local directory and reports files and their sizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Folder Inspector scans a local directory and lists files with their sizes.
 
-## Publisher: <br>
-[JayXu-D](https://clawhub.ai/user/JayXu-D) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayxu-d](https://clawhub.ai/user/jayxu-d)
 
-## Use Case: <br>
-Developers and users invoke this skill to inspect an explicitly provided local folder path and receive a concise listing of files and their sizes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports an unsafe shell command path for invoking the helper script. <br>
-Mitigation: Install only after review, use trusted explicit paths, and prefer a fixed version that uses native filesystem APIs or execFile/spawn with argument arrays. <br>
-Risk: The release evidence reports undisclosed debug logging. <br>
-Mitigation: Review runtime logging before use and prefer a version that removes debug logging or clearly discloses it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JayXu-D/folder-inspector) <br>
+## Use Case:
+
+External users and developers use this skill to inspect an absolute local folder path and receive a concise listing of files and sizes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A malicious or malformed folder path could cause commands to run as the agent user.
+
+Mitigation: Use a version that avoids shell interpolation, such as argument-array process execution or native filesystem APIs, before installing.
+
+Risk: Inspected paths are written to a predictable temporary log file.
+
+Mitigation: Remove or secure debug logging so local path information is not written to an undocumented /tmp file.
+
+Risk: The helper script path is tied to a specific local installation path.
+
+Mitigation: Resolve the helper script from the installed skill directory instead of a hard-coded user-specific path.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text] <br>
-**Output Format:** [Markdown table with file names, types, and sizes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the inspected path with the generated directory listing.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown table with file names and sizes, or an error message when inspection fails.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lists immediate files in the requested directory and reports sizes in KB.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

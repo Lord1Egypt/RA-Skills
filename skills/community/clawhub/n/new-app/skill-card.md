@@ -1,44 +1,57 @@
-## Description: <br>
-Use when creating a new internal application from scratch, standardizing a 0-to-1 app build workflow, or helping teammates bootstrap a Next.js/FastAPI/Keycloak/PostgreSQL style product with a docs-first process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating a new internal application from scratch, standardizing a 0-to-1 app build workflow, or helping teammates bootstrap a Next.js/FastAPI/Keycloak/PostgreSQL style product with a docs-first process.
 
-## Publisher: <br>
-[lyc-chengzi](https://clawhub.ai/user/lyc-chengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyc-chengzi](https://clawhub.ai/user/lyc-chengzi)
 
-## Use Case: <br>
-Developers and internal app teams use this skill to clarify requirements, propose architecture, document decisions, bootstrap full-stack application structure, and validate delivery readiness before handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce architecture and implementation guidance that may be applied before business requirements and constraints are confirmed. <br>
-Mitigation: Confirm requirements, MVP scope, architecture, authentication, database, storage, and access-control constraints before implementation. <br>
-Risk: Generated repository changes could affect auth, database migrations, storage, or production configuration in shared environments. <br>
-Mitigation: Review generated changes, avoid placing secrets in files or chat, and validate auth, migration, storage, and runtime configuration before applying them. <br>
+## Use Case:
 
+Developers and internal product teams use this skill to turn a new app idea into a documented, reviewable MVP plan before implementation. It guides requirements clarification, architecture selection, documentation updates, toolchain setup, thin-slice implementation, and validation for internal full-stack applications.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lyc-chengzi/new-app) <br>
-- [Requirements template](templates/requirements-template.md) <br>
-- [Delivery checklist](templates/delivery-checklist.md) <br>
-- [Chinese requirements template](templates/requirements-template.cn.md) <br>
-- [Chinese delivery checklist](templates/delivery-checklist.cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with implementation notes, checklists, code/configuration changes, and validation commands when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce bilingual documentation updates and delivery checklists when the target application workflow requires them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Architecture or implementation guidance could be wrong if the business problem, access model, data sensitivity, or MVP boundary is not confirmed first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the requirements templates, confirm constraints and architecture before coding, and keep documentation aligned with the implementation.
+
+Risk: Auth, database, storage, upload, or deployment choices may introduce security or operational gaps when copied without local review.
+
+Mitigation: Review secret handling, identity boundaries, schema migration plans, diagnostics, and validation results before treating a generated app as ready.
+
+## Reference(s):
+
+- [Internal App Requirements Template](templates/requirements-template.md)
+- [Internal App Requirements Template (Chinese)](templates/requirements-template.cn.md)
+- [Internal App Delivery Checklist](templates/delivery-checklist.md)
+- [Internal App Delivery Checklist (Chinese)](templates/delivery-checklist.cn.md)
+- [ClawHub Skill Page](https://clawhub.ai/lyc-chengzi/skills/new-app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with implementation plans, code and configuration changes, shell commands, validation results, and follow-up recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bilingual documentation updates and reusable requirements or delivery checklist content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

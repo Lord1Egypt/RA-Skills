@@ -1,42 +1,58 @@
-## Description: <br>
-Audits Claude Code session memory directories as a knowledge graph, detecting broken wikilinks, orphan pages, hub nodes, bridge candidates, and sparse clusters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Claude Code session memory as a knowledge graph, detecting broken wikilinks, orphan pages, hub nodes, and bridge candidates, and guiding link repair.
 
-## Publisher: <br>
-[heavenchenggong](https://clawhub.ai/user/heavenchenggong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heavenchenggong](https://clawhub.ai/user/heavenchenggong)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to inspect local session memory Markdown as a lightweight knowledge graph and identify broken links, isolated pages, hub nodes, and bridge candidates before repairing memory content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repair suggestions or link changes can alter persistent Claude memory content. <br>
-Mitigation: Preview affected files and keep a backup or diff before applying repair commands or adding links. <br>
-Risk: Running the audit without an explicit path targets the most recently modified Claude project memory directory. <br>
-Mitigation: Pass the intended memory directory explicitly when auditing a specific project. <br>
+## Use Case:
 
+Developers, Claude Code users, and maintainers of Markdown-based personal memory systems use this skill to inspect session memory folders, identify graph-health issues in wikilinks, and plan or perform link repairs with follow-up checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/heavenchenggong/claude-memory-graph-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/heavenchenggong) <br>
-- [LLM Wiki reference](https://github.com/nashsu/llm_wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and terminal audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The audit script performs read-only checks; repair guidance may lead users to edit persistent memory Markdown after review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can inspect persistent Claude memory folders that may contain private or sensitive session notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the audit only on memory folders the user is comfortable inspecting and avoid sharing audit output that exposes sensitive memory contents.
+
+Risk: Suggested or scripted link repairs can bulk-edit persistent memory files and introduce incorrect links or overwrite useful context.
+
+Mitigation: Require a diff, backup, and explicit confirmation before applying repairs, then rerun the audit to verify broken links and orphan pages.
+
+Risk: Installing mutable executable code can expose users to changes after initial review.
+
+Mitigation: Install only a reviewed ClawHub package or a pinned, verified commit.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/heavenchenggong/skills/claude-memory-graph-audit)
+- [nashsu/llm_wiki](https://github.com/nashsu/llm_wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and terminal-style shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize memory graph counts, broken links, orphan pages, hub nodes, bridge candidates, and proposed link repairs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Generates maintainer-reviewed GitCode issue reply drafts with similar issue references when a user provides a single GitCode issue and asks to reply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate reply drafts for a single GitCode issue with similar-issue references for maintainer review before posting.
 
-## Publisher: <br>
-[autoxj](https://clawhub.ai/user/autoxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autoxj](https://clawhub.ai/user/autoxj)
 
-## Use Case: <br>
-Developers and maintainers use this skill to draft GitCode issue responses, review similar issue references, and publish comments only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a GitCode token to read issue data and post comments. <br>
-Mitigation: Use a least-privilege token and review label actions and final reply text before publication. <br>
-Risk: Issue text may be sent to DeepWiki and issue images may be downloaded for analysis. <br>
-Mitigation: Avoid private or sensitive issues unless DeepWiki sharing and local caching are acceptable. <br>
-Risk: Issue data may be retained locally during the reply workflow. <br>
-Mitigation: Review generated local outputs and remove cached issue artifacts when they are no longer needed. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to prepare a reviewed Markdown reply for one GitCode issue, with similar-issue references, issue context, optional image analysis, and DeepWiki background when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/autoxj/gitcode-issue-reply) <br>
-- [GitCode API documentation](https://docs.gitcode.com/docs/apis/) <br>
-- [Draft reply prompt template](artifact/references/prompts/draft_reply.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown draft reply with issue-reference links, status notes, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintainer review and explicit confirmation are required before posting the final reply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact history, released 2026-03-15) <br>
+Risk: Issue content is automatically sent to DeepWiki when that integration is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review repository sensitivity before use and disable DeepWiki where possible for private or sensitive repositories.
+
+Risk: Issue-linked images may be fetched from arbitrary URLs and processed locally.
+
+Mitigation: Avoid automatic processing of untrusted image links and inspect image sources before using their contents in a reply.
+
+Risk: Repository and issue data can be retained locally through output files, cache files, and the BM25 knowledge base.
+
+Mitigation: Disable cache or persistence where possible and clean generated output or temp data after handling sensitive issues.
+
+Risk: Posting comments requires a GitCode token and can affect live issue discussions.
+
+Mitigation: Use a narrowly scoped token and confirm the exact comment body before sending any post.
+
+## Reference(s):
+
+- [GitCode API documentation](https://docs.gitcode.com/docs/apis/)
+- [GitCode personal access token settings](https://gitcode.com/setting/token-classic)
+- [Draft reply prompt template](references/prompts/draft_reply.txt)
+- [ClawHub skill page](https://clawhub.ai/autoxj/skills/gitcode-issue-reply)
+- [ClawHub publisher profile](https://clawhub.ai/user/autoxj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reply draft with similar-issue links, status notes, warnings, and command guidance; preparation scripts also emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITCODE_TOKEN. The generated issue reply is shown for maintainer review before posting; preparation output may include similar issues, DeepWiki status, image references, and security warnings.]
+
+## Skill Version(s):
+
+1.2.0 (source: release metadata and SKILL.md history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

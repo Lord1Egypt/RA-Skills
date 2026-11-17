@@ -1,43 +1,56 @@
-## Description: <br>
-Helps an agent segment long-form articles, generate illustration prompts, and optionally produce article images through a user-selected image-generation tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Article Illustration helps users segment long-form articles, generate image prompts, and optionally create or package illustrations for publication.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Content creators, editors, and agents use this skill to turn long blog, newsletter, and social publishing drafts into paragraph-level illustration plans, image prompts, and optional generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article text and generated prompts may be sent to the image-generation provider configured by the user. <br>
-Mitigation: Use trusted providers, keep API keys outside the skill, and avoid sending confidential article content to providers that are not approved for that data. <br>
-Risk: Generated images may raise copyright, likeness, or platform policy concerns. <br>
-Mitigation: Review generated images before publication and regenerate or revise prompts when outputs appear unsafe, misleading, or rights-sensitive. <br>
+## Use Case:
 
+External creators, editors, and marketing teams use this skill to plan illustrations for long-form blog, WeChat, and social articles by segmenting article text and producing style-consistent image prompts or illustrated Markdown deliverables.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/antonia-sz/long-article-illustration) <br>
-- [Style presets and prompt templates](references/style-presets.md) <br>
-- [Paragraph segmentation rules](references/paragraph-rules.md) <br>
-- [Troubleshooting guidance](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article draft, prompt table, or image package guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include image-generation prompts and references to files produced by the user's chosen image tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Article content or prompt details may be shared with the image-generation service selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using sensitive unpublished material with third-party tools unless that sharing is acceptable.
+
+Risk: Generated illustrations or prompts may be unsuitable for direct publication without editorial review.
+
+Mitigation: Use the skill as a writing and illustration workflow aid, and review outputs before publishing.
+
+## Reference(s):
+
+- [Long Article Illustration ClawHub listing](https://clawhub.ai/antonia-sz/skills/long-article-illustration)
+- [Style presets and prompt templates](artifact/references/style-presets.md)
+- [Paragraph segmentation rules](artifact/references/paragraph-rules.md)
+- [Troubleshooting guidance](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with article segments, image-generation prompts, optional image links, and packaging guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated image files or image references when an image-generation tool is configured by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Provides scripts and guidance for testing OpenClaw skills across trigger behavior, functional outputs, and comparison metrics. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+OpenClaw Skill Tester helps agents test OpenClaw skills by checking trigger behavior, functional outputs, comparison metrics, and generated reports.
 
-## Publisher: <br>
-[cry779](https://clawhub.ai/user/cry779) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cry779](https://clawhub.ai/user/cry779)
 
-## Use Case: <br>
-Developers and engineers can use this as a scaffold for checking whether OpenClaw skills trigger in expected situations, return expected output shapes, and report comparison metrics. Treat the generated reports as examples until the scripts are connected to real target skill execution and measured results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pass/fail reports and comparison metrics may be simulated or hard-coded rather than based on real target skill execution. <br>
-Mitigation: Use the skill as a scaffold only until scripts execute real skills, propagate actual exit codes, and build reports from collected test results. <br>
-Risk: Teams may over-trust the reports for CI, quality, security, or deployment decisions. <br>
-Mitigation: Require independent review and real validation data before using results as release or deployment gates. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to exercise OpenClaw skill trigger checks, functionality checks, comparison metrics, and test-report generation. Security evidence says its bundled checks are mostly simulated or fixed, so it should not be treated as a trustworthy CI or release gate without additional validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cry779/openclaw-skill-tester) <br>
-- [Publisher profile](https://clawhub.ai/user/cry779) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON or Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and bash; package metadata lists pytest and requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled tests may produce misleading reports because security evidence says the checks are mostly simulated or fixed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require real skill execution, failure propagation, and report totals derived from actual results before using this skill in CI or release decisions.
+
+Risk: Report generation may expose or confuse results if skill names and report storage are not controlled.
+
+Mitigation: Sanitize skill names and use a private report directory before installing or running the skill in shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cry779/skills/openclaw-skill-tester)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and generated JSON, HTML, or Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and bash; OpenClaw metadata lists pytest and requests as package requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

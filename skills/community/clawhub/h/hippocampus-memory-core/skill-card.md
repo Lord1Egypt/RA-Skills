@@ -1,38 +1,53 @@
-## Description: <br>
-Hippocampus Memory Core provides deterministic external memory for OpenClaw and coding agents using S3-Hipokamp to store durable facts, retrieve prior decisions, snapshot memory, and restore agent state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic external memory for OpenClaw and coding agents using S3-Hipokamp for storing durable facts, retrieving prior decisions, snapshotting memory, and restoring agent state.
 
-## Publisher: <br>
-[cezexPL](https://clawhub.ai/user/cezexPL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cezexpl](https://clawhub.ai/user/cezexpl)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to give agents durable, scoped memory for decisions, architecture context, deployment or debugging findings, snapshots, and restore workflows across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory can retain secrets, raw transcripts, sensitive personal data, or context from the wrong project. <br>
-Mitigation: Store only high-signal facts, avoid secrets and raw transcripts, and keep memory scoped by workspace and agent before restoring it into future sessions. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to keep durable, namespaced memory across sessions, including key facts, prior decisions, snapshots, and restore points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cezexPL/hippocampus-memory-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Text and Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable code or hidden install behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Durable memory can retain sensitive, low-signal, or raw transcript content longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only high-signal facts and decisions, and avoid secrets, credentials, and raw transcripts.
+
+Risk: Snapshot or restore operations can affect the wrong memory scope if configuration or namespace is incorrect.
+
+Mitigation: Verify Hippocampus configuration and the workspace or agent namespace before snapshotting or restoring state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cezexpl/skills/hippocampus-memory-core)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to use configured Hippocampus memory operations for durable storage, retrieval, snapshots, and restores.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

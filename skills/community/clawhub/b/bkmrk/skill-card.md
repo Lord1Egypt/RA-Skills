@@ -1,43 +1,54 @@
-## Description: <br>
-Bookmark intelligence for developers. Browse, search, triage, and manage your AI-analyzed library. Submit URLs, assign projects, trigger deep analysis, and execute staged items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bookmark intelligence for developers. Browse, search, triage, and manage your AI-analyzed library. Submit URLs, assign projects, trigger deep analysis, and execute staged items.
 
-## Publisher: <br>
-[bonesvinyl](https://clawhub.ai/user/bonesvinyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bonesvinyl](https://clawhub.ai/user/bonesvinyl)
 
-## Use Case: <br>
-Developers use this skill to browse, search, triage, submit, and update BKMRK bookmarks analyzed against their coding projects. It helps manage bookmark status, project context, deep analysis, and URL submission through the BKMRK API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a BKMRK API key and the user's bookmark library. <br>
-Mitigation: Keep the API key private, rotate it if exposed, and install only when the user trusts BKMRK with bookmark content. <br>
-Risk: Bookmark content may be processed by BKMRK and Claude for analysis. <br>
-Mitigation: Avoid submitting sensitive URLs or bookmark content unless that external processing is acceptable. <br>
-Risk: Bulk status changes can trash or alter many bookmarks. <br>
-Mitigation: Require explicit user approval before bulk trashing or changing many bookmark statuses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BKMRK homepage](https://bkmrkapp.com) <br>
-- [BKMRK agent API documentation](https://bkmrkapp.com/agent.json) <br>
-- [ClawHub skill page](https://clawhub.ai/bonesvinyl/bkmrk) <br>
+## Use Case:
 
+Developers and engineers use this skill to browse, search, submit, triage, and manage AI-analyzed bookmarks against coding projects, including staging high-value items and triggering deeper analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text, configuration] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a BKMRK API key for authenticated library, project, status, and analysis endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a BKMRK API key and can read or modify the user's bookmark library.
+
+Mitigation: Install only when that access is acceptable, and review bulk status changes such as trashing or staging before execution.
+
+Risk: Submitted or synced bookmark content may be sent to Claude for analysis, including private pages, transcripts, secrets, or sensitive project metadata if the user submits them.
+
+Mitigation: Do not submit confidential or sensitive content unless sharing it with BKMRK and Claude is acceptable.
+
+## Reference(s):
+
+- [BKMRK Homepage](https://bkmrkapp.com)
+- [BKMRK Agent API Documentation](https://bkmrkapp.com/agent.json)
+- [ClawHub Skill Listing](https://clawhub.ai/bonesvinyl/skills/bkmrk)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with HTTP request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and modify a user's BKMRK bookmark library through authenticated API requests.]
+
+## Skill Version(s):
+
+1.4.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

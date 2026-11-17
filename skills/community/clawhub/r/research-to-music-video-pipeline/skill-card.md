@@ -1,39 +1,60 @@
-## Description: <br>
-Create 60-second music videos from research articles using a storyboard PDF, generated image, video, and audio assets, and ffmpeg assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create 60s music videos from research articles using storyboard PDF, image/video/audio gen, and ffmpeg assembly.
 
-## Publisher: <br>
-[bunsdev](https://clawhub.ai/user/bunsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bunsdev](https://clawhub.ai/user/bunsdev)
 
-## Use Case: <br>
-Developers and creators use this skill to turn a research article into a storyboarded short music video with generated scene prompts, media assets, audio, and a final assembled MP4. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article text, prompts, provider job metadata, and source details may be sent to approved media providers or retained in the run manifest. <br>
-Mitigation: Approve provider choices and credentials before generation, review provider terms and costs, and check the manifest before sharing outputs. <br>
-Risk: Generated scenes or music may misrepresent the source research or include inaccurate scientific claims. <br>
-Mitigation: Review the storyboard, prompt pack, source notes, and caveats before launching paid generation jobs or publishing the final video. <br>
+## Use Case:
 
+External users, developers, and media producers use this skill to turn research articles into a structured storyboard, generated media assets, and a finished 60-second music video. The workflow is intended for resumable production runs with approval gates before paid or long-running provider work.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown storyboard, JSON manifest and prompts, generated media files, MP4 video, and concise run summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before paid or long-running provider jobs and verifies generated assets before completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research content, prompts, and generated assets may be sent to external image, video, and audio providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid proprietary or sensitive source articles unless the selected providers are acceptable for that data.
+
+Risk: Media generation can launch paid or long-running provider jobs.
+
+Mitigation: Use the documented approval gates before provider selection, scene count, duration, and media generation.
+
+Risk: Generated storyboards and media may overstate or distort scientific claims from the source article.
+
+Mitigation: Preserve source notes and caveats in the storyboard and review prompts for research faithfulness before final generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bunsdev/skills/research-to-music-video-pipeline)
+- [Storyboard template](artifact/templates/storyboard.md)
+- [Run manifest schema](artifact/templates/manifest.schema.json)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON manifests, provider prompts, shell commands, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a storyboard PDF, prompt pack, manifest, generated scene assets, audio, and final MP4 when configured providers and approvals are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Places McDonald's China delivery orders through the official MCP server using a Bearer MCP token, including address lookup, menu browsing, price calculation, order creation, status checks, and coupon or points queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place McDonald's China delivery orders through the official MCP server at https://mcp.mcd.cn using a Bearer MCP token over Streamable HTTP / JSON-RPC.
 
-## Publisher: <br>
-[danielliao](https://clawhub.ai/user/danielliao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielliao](https://clawhub.ai/user/danielliao)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent or MCP client to McDonald's China ordering workflows for menu lookup, delivery address selection, price checks, order creation, and order status follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or cancel real McDonald's China orders when supplied with a valid MCP bearer token. <br>
-Mitigation: Require explicit final user confirmation before create-order or cancellation actions, and show the calculated payable amount before order creation. <br>
-Risk: The skill sends delivery details, contact information, addresses, coordinates, and account/order data to the remote service during supported workflows. <br>
-Mitigation: Use the skill only with users who understand the data flow, avoid unnecessary address or location lookups, and keep sensitive results out of logs and shared transcripts. <br>
-Risk: The bearer token grants account and order authority, and the client allows the MCP endpoint to be overridden through MCD_MCP_URL. <br>
-Mitigation: Store MCD_MCP_TOKEN securely, do not expose it in prompts or logs, and keep MCD_MCP_URL fixed to https://mcp.mcd.cn unless the endpoint has been independently trusted. <br>
+## Use Case:
 
+External users and developers use this skill to browse McDonald's China delivery addresses, menus, meal details, coupons, price totals, and order status, then create delivery orders only after user confirmation. Developers can also use the included client and RPC helper when wiring the MCP service into agent clients.
 
-## Reference(s): <br>
-- [McDonald's MCP quick reference](artifact/references/api.md) <br>
-- [McDonald's China MCP endpoint](https://mcp.mcd.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/danielliao/mcdonalds-mcp-order-lite) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool results and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return order IDs, payment URLs, store/menu data, address-related fields, coupon data, and status summaries from the remote MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bearer MCP tokens could be sent to a non-McDonald's endpoint if MCD_MCP_URL or base_url is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable McDonald's MCP token and verify the endpoint remains https://mcp.mcd.cn before use.
+
+Risk: The skill can perform account-changing actions, including order creation, coupon or points actions, and cancellation.
+
+Mitigation: Require explicit user confirmation before order creation, coupon or points actions, or cancellation.
+
+Risk: Configuration output can reveal service configuration and a masked token prefix.
+
+Mitigation: Avoid exposing mcdonalds_get_config output in user-visible contexts unless it is necessary for troubleshooting.
+
+## Reference(s):
+
+- [McDonald's MCP quick reference](artifact/references/api.md)
+- [ClawHub skill release](https://clawhub.ai/danielliao/skills/mcdonalds-mcp-order-lite)
+- [ClawHub publisher profile](https://clawhub.ai/user/danielliao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, Python helper code, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live MCP responses for account, address, menu, price, coupon, and order information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

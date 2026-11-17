@@ -1,43 +1,54 @@
-## Description: <br>
-Mingdao is a low-code APaaS assistant for application building, worksheet design, workflow automation, data management, permissions, custom pages, and open API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mingdao is an APaaS guidance skill for low-code app building, worksheet and workflow design, private deployment considerations, platform selection, permissions, and API integration.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers, builders, and operations teams use this skill to design Mingdao low-code applications for CRM, project management, approvals, inventory, and HR workflows. It provides guidance, examples, and code snippets for worksheets, workflows, permissions, custom pages, and API integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mingdao API credentials or signs could be exposed when adapting API examples. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of prompts and shared outputs, and store credentials only in approved secret-management systems. <br>
-Risk: Record update or delete examples could affect production data if copied directly. <br>
-Mitigation: Test update and delete calls outside production first, require review for destructive actions, and verify worksheet and row identifiers before execution. <br>
-Risk: Workflow and API examples may process personal identity data. <br>
-Mitigation: Send personal data only to vetted services with proper authorization, minimize the data shared, and follow applicable privacy controls. <br>
+## Use Case:
 
+Employees, administrators, and developers use this skill to plan and configure Mingdao APaaS applications, workflows, permissions, and integrations. It is most relevant for CRM, project management, approval workflows, inventory, and HR management scenarios.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhangifonly/mingdao) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with tables and inline JavaScript and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mingdao workflow patterns, worksheet configuration guidance, API examples, and permission design recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: API examples may encourage sensitive identity-data transmission without enough safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat API examples as unsafe drafts; use vetted HTTPS endpoints, least-privilege managed secrets, explicit privacy and legal approval for identity data, request timeouts, and error handling before adaptation.
+
+Risk: Update or delete operations may be adapted without confirmation, audit, or recovery controls.
+
+Mitigation: Add explicit confirmation, audit logging, and recovery controls before using update or delete operations in a live workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/mingdao)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API examples that require review before adaptation.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

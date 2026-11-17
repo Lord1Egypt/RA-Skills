@@ -1,40 +1,50 @@
-## Description: <br>
-AI-powered short video script writing skill for generating platform-tailored scripts, outlines, livestream sales copy, storyboard suggestions, and BGM recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates tailored short video scripts and outlines for platforms such as Douyin, Kuaishou, Bilibili, WeChat Channels, YouTube, Xiaohongshu video, and Taobao Live.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to draft short-video scripts, video outlines, and livestream selling scripts for platforms such as Douyin, Kuaishou, Bilibili, Video Channels, YouTube, Xiaohongshu, and Taobao Live. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing or livestream scripts may include inaccurate claims, rights issues, or content that conflicts with platform rules or advertising requirements. <br>
-Mitigation: Review generated scripts for factual accuracy, platform policy compliance, advertising compliance, and rights clearance before publishing. <br>
-Risk: The skill requires OpenAI access through the host environment. <br>
-Mitigation: Install and run it only in an environment where model access, credentials, and generated content handling are approved for the intended use. <br>
+## Use Case:
 
+Content creators, marketers, livestream sellers, and social video teams use this skill to draft platform-specific short video scripts, Bilibili outlines, livestream sales talk tracks, storyboard suggestions, and related creative notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/short-video-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown, Word-compatible document content, or teleprompter-ready script text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can adapt output by topic, platform, duration, style, hot-topic integration, storyboard suggestions, and BGM recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Generated scripts may be unsuitable for the user's publication language, brand requirements, or commercial claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts and files before publishing or using them commercially, and verify the agent can respond in the intended language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/short-video-writer)
+- [Publisher profile](https://clawhub.ai/user/bingze00000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown, Word document content, or teleprompter-ready script text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform style adaptation, hot topic integration, storyboard suggestions, and BGM recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

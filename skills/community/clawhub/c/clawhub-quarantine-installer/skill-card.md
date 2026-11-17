@@ -1,41 +1,57 @@
-## Description: <br>
-Installs and audits ClawHub skills in an isolated quarantine directory for security review before production use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs ClawHub skills into a dedicated quarantine directory and produces basic audit reports so developers can review flagged third-party skills before promoting them to production.
 
-## Publisher: <br>
-[alessandropcostabr](https://clawhub.ai/user/alessandropcostabr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alessandropcostabr](https://clawhub.ai/user/alessandropcostabr)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to install a selected ClawHub skill into a quarantine directory, run basic pattern-based auditing, and decide whether to promote it manually. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer can force-install ClawHub skills that are already flagged as suspicious, which may introduce untrusted code into the runtime environment. <br>
-Mitigation: Run it only in a disposable workspace, container, or VM with no valuable credentials or personal files, as directed by the security guidance. <br>
-Risk: The quarantine directory limits where the target skill is installed but does not provide complete containment. <br>
-Mitigation: Review the exact target skill and avoid using this workflow on a normal OpenClaw profile unless persistent skill-environment changes are acceptable. <br>
-Risk: The audit is pattern-based and may miss risky behavior that does not match the searched patterns. <br>
-Mitigation: Treat the generated report as a starting point and perform manual source and dependency review before promoting any quarantined skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alessandropcostabr/clawhub-quarantine-installer) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to install suspicious or third-party ClawHub skills into an isolated review directory, run pattern-based checks, and inspect the generated text report before any manual promotion to production.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, Guidance] <br>
-**Output Format:** [Terminal output and plain-text audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes quarantine installations and timestamped audit reports under $HOME/.openclaw/clawhub-quarantine when the scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs suspicious or flagged skills with a high-impact forced installation flow.
+
+Mitigation: Run it only in a disposable VM or container with no sensitive credentials, and manually inspect the installed skill before any production promotion.
+
+Risk: The quarantine path organizes files but does not enforce a real security sandbox.
+
+Mitigation: Treat the generated report as a review aid, not a containment boundary, and rely on external isolation for execution safety.
+
+Risk: The install command uses the ClawHub CLI through an unpinned npx invocation.
+
+Mitigation: Pin and verify the ClawHub CLI version where possible before running the installer.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/alessandropcostabr/skills/clawhub-quarantine-installer)
+- [Project homepage](https://github.com/alessandropcostabr/clawhub-quarantine-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell command output, and timestamped plain-text audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates quarantine and report directories under the user's OpenClaw home path when the scripts are run.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

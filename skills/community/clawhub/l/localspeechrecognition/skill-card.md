@@ -1,41 +1,57 @@
-## Description: <br>
-Local Speech Recognition transcribes supported audio files into text locally with faster-whisper, supporting Chinese, English, Japanese, and automatic language detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Speech Recognition transcribes supported audio files locally with faster-whisper and returns voice-message text without requiring API keys.
 
-## Publisher: <br>
-[zktufo](https://clawhub.ai/user/zktufo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zktufo](https://clawhub.ai/user/zktufo)
 
-## Use Case: <br>
-External users and developers use this skill to convert local voice messages, meeting audio, podcast audio, and other supported audio files into readable text without sending audio to a third-party transcription API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text transcribed from third-party audio may be injected into the conversation automatically and could be mistaken for user instructions. <br>
-Mitigation: Treat transcribed audio as untrusted content unless the speaker and context are trusted; review the text before acting on it. <br>
-Risk: First use may fetch a Whisper model or dependency for local transcription. <br>
-Mitigation: Install only in environments where local model or dependency downloads are allowed, and review dependency sources before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to convert local voice messages, meeting audio, podcasts, and other supported audio files into readable text. It is suitable for privacy-sensitive workflows where audio should be processed locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zktufo/localspeechrecognition) <br>
-- [Publisher profile](https://clawhub.ai/user/zktufo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transcription output with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports .ogg, .m4a, .mp3, and .wav audio files up to 25MB; language can be set to zh, en, ja, or auto.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: First use may download or install speech model dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency and model installation behavior in the target environment before deployment.
+
+Risk: Voice transcripts may contain sensitive user content and are inserted into the conversation.
+
+Mitigation: Treat generated transcripts as sensitive data and apply the same handling controls used for confidential conversation content.
+
+Risk: The default language is Chinese when no language argument is supplied.
+
+Mitigation: Pass the intended language argument or use auto detection when Chinese is not the expected default.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zktufo/skills/localspeechrecognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text transcript with status or error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports .ogg, .m4a, .mp3, and .wav audio files up to 25MB; language can be zh, en, ja, or auto.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

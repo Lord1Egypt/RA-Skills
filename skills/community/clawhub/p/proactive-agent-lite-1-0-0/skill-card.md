@@ -1,41 +1,52 @@
-## Description: <br>
-Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns.
 
-## Publisher: <br>
-[TerryRen2024](https://clawhub.ai/user/TerryRen2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terryren2024](https://clawhub.ai/user/terryren2024)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to add proactive behavior patterns to OpenClaw agents, including memory continuity prompts, reverse prompting, self-healing guidance, and mission-focused alignment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages more initiative-taking agent behavior, which can lead to suggestions or actions beyond the user's immediate request.
+
+Mitigation: Keep normal approval gates for file changes, external actions, and sensitive work.
+
+Risk: The source advertises memory behavior, but evidence does not prove how memory is stored or scoped in the user's OpenClaw environment.
+
+Mitigation: Confirm environment-level memory controls and data retention boundaries before relying on continuity across sessions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to add proactive behavior patterns to OpenClaw agents, including memory-oriented continuity, unprompted suggestions, self-diagnosis, and mission-focused alignment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages unsolicited suggestions and memory-like continuity, which may surface unwanted recommendations or retain sensitive context unexpectedly. <br>
-Mitigation: Keep approvals required for file, account, network, and tool actions, and review OpenClaw memory settings before deployment. <br>
-Risk: Self-healing and proactive behavior may lead an agent to diagnose or propose changes without an explicit user request. <br>
-Mitigation: Treat proposed actions as reviewable guidance and require human confirmation before applying changes. <br>
+**Output Format:** [Markdown guidance and agent behavior instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TerryRen2024/proactive-agent-lite-1-0-0) <br>
-- [README](artifact/README.md) <br>
+**Other Properties Related to Output:** [Markdown-only skill; evidence.security reports no installed code, requested permissions, or hidden execution paths.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code, install hooks, credentials, or hidden data movement were found in the security evidence.] <br>
+1.0.0 (source: server evidence release.version and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

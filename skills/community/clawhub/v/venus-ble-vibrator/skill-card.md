@@ -1,41 +1,58 @@
-## Description: <br>
-Control a Venus (Cachito) BLE vibrator from natural language. Calls a local HTTP server that broadcasts BLE commands to the toy via macOS CoreBluetooth. Requires hardware setup; see the ToyBridge repo before installing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a Venus (Cachito) BLE vibrator from natural language by calling a local HTTP server that broadcasts BLE commands to the toy through macOS CoreBluetooth.
 
-## Publisher: <br>
-[AmandaClarke61](https://clawhub.ai/user/AmandaClarke61) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amandaclarke61](https://clawhub.ai/user/amandaclarke61)
 
-## Use Case: <br>
-External users and developers who intentionally run a local ToyBridge server on macOS use this skill to let an agent send vibration, stop, status, and preset pattern commands to a Venus/Cachito BLE vibrator. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent can control a physical BLE vibrator through the local bridge. <br>
-Mitigation: Install only when this physical device control is intentional, start at low intensity, and use stop commands or close the bridge when finished. <br>
-Risk: The skill depends on external ToyBridge code and a local HTTP server. <br>
-Mitigation: Review the ToyBridge code before running it and keep the bridge active only during intended use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AmandaClarke61/venus-ble-vibrator) <br>
-- [ToyBridge Setup Guide](https://github.com/AmandaClarke61/toybridge) <br>
-- [Buttplug.io Device Compatibility Index](https://iostindex.com) <br>
+## Use Case:
 
+External users and developers use this skill to control a Venus or Cachito-protocol BLE vibrator through OpenClaw after configuring a local macOS bridge. It is intended for informed, consent-based device control with immediate stop and status commands available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target a user-run local HTTP bridge on port 8888 and support intensity values from 0 to 100.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OpenClaw may directly activate an intimate physical device.
+
+Mitigation: Use only with informed consent from the person using the device, keep the stop command available, and prefer timed sessions that stop at intensity 0.
+
+Risk: The skill depends on an unauthenticated local bridge.
+
+Mitigation: Run the bridge locally, restrict network exposure, and avoid exposing port 8888 beyond the trusted host environment.
+
+Risk: External setup code may change after release.
+
+Mitigation: Review and pin a known bridge version before running setup or device-control commands.
+
+## Reference(s):
+
+- [ToyBridge setup guide](https://github.com/AmandaClarke61/toybridge)
+- [Buttplug.io compatibility index](https://iostindex.com)
+- [ClawHub skill page](https://clawhub.ai/amandaclarke61/skills/venus-ble-vibrator)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only OpenClaw guidance for a local HTTP bridge on port 8888.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

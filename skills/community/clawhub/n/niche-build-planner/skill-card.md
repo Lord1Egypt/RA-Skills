@@ -1,41 +1,55 @@
-## Description: <br>
-Build Planner helps users choose an MVP tech stack, define a simple architecture, break features into milestone-sized tasks, and prepare first AI-development prompts for websites or WeChat Mini Programs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Planner helps users choose a practical tech stack and turn a website or WeChat Mini Program MVP scope into a step-by-step development roadmap.
 
-## Publisher: <br>
-[qiu-difeng](https://clawhub.ai/user/qiu-difeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiu-difeng](https://clawhub.ai/user/qiu-difeng)
 
-## Use Case: <br>
-Developers, founders, and product builders use this skill to turn a defined MVP scope into an implementation roadmap with stack choices, a flat architecture, data-model outline, milestone task breakdown, launch checklist guidance, and starter prompts for AI-assisted development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plans may involve payments, authentication, cloud services, or AI APIs that require sensitive credentials in later implementation work. <br>
-Mitigation: Review the generated plan before entering credentials or changing production systems; this skill only discusses those integrations and does not perform them. <br>
-Risk: A generated roadmap or stack recommendation may be incomplete or unsuitable for a specific product, market, or review process. <br>
-Mitigation: Validate the proposed architecture, payment flow, launch checklist, and WeChat or web platform requirements before implementation. <br>
+## Use Case:
 
+Developers, founders, and product builders use this skill to convert an MVP scope into technology choices, architecture guidance, milestone tasks, launch checks, and first implementation prompts for website or WeChat Mini Program projects.
 
-## Reference(s): <br>
-- [Tech Stack Options Reference](references/tech-stacks.md) <br>
-- [Launch Checklists](references/launch-checklists.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown roadmap with tables, checklists, architecture notes, and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only output; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The roadmap may default to common web or Mini Program stacks that do not match the user's platform, region, or technology preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm target platform, region, preferred technologies, and launch constraints before using the plan as implementation guidance.
+
+Risk: Planning output can include payment, launch, or WeChat review tasks that require external account setup or policy checks.
+
+Mitigation: Validate payment provider, merchant account, privacy policy, and platform review requirements before committing to the schedule.
+
+## Reference(s):
+
+- [Tech Stack Options Reference](references/tech-stacks.md)
+- [Launch Checklists](references/launch-checklists.md)
+- [Build Planner on ClawHub](https://clawhub.ai/qiu-difeng/skills/niche-build-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown development plan with stack recommendations, architecture notes, task checklists, risk assessment, launch checks, and copy-paste implementation prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning-only output; may include estimates, data model sketches, and command-like prompts but does not execute code.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

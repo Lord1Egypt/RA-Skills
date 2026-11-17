@@ -1,4 +1,4 @@
-"""Coding 开放平台 Open API — 事项相关接口。"""
+"""Coding Open API — issue-related endpoints."""
 
 from __future__ import annotations
 
@@ -24,19 +24,19 @@ _STATUS_TYPE_SET = frozenset({"TODO", "PROCESSING", "COMPLETED"})
 _BASE_ISSUE_TYPE_SET = frozenset({"REQUIREMENT", "DEFECT", "MISSION"})
 
 
-# ── 内部辅助 ──────────────────────────────────────────────────────────────────
+# ── Internal helpers ────────────────────────────────────────────────────────
 
 def _resolve_issue_status_type_filter(
     status_types: list[str] | None,
 ) -> frozenset[str] | None:
-    """None → 默认仅 TODO、PROCESSING；[] → 不过滤；非空 → 仅保留列出的类型。"""
+    """None → defaults to TODO and PROCESSING only; [] → no filter; non-empty → keep only the listed types."""
     if status_types is None:
         return frozenset({"TODO", "PROCESSING"})
     if not status_types:
         return None
     bad = [s for s in status_types if s not in _STATUS_TYPE_SET]
     if bad:
-        raise ValueError(f"IssueStatusType 仅允许 TODO/PROCESSING/COMPLETED，无效项: {bad}")
+        raise ValueError(f"IssueStatusType only allows TODO/PROCESSING/COMPLETED, invalid values: {bad}")
     return frozenset(status_types)
 
 
@@ -44,7 +44,7 @@ def _filter_response_issue_list_by_issue_status_type(
     parsed: dict[str, Any],
     allowed: frozenset[str] | None,
 ) -> None:
-    """就地缩小 Response.IssueList，仅保留 IssueStatusType 在 allowed 内的事项。"""
+    """Narrow Response.IssueList in place, keeping only issues whose IssueStatusType is in `allowed`."""
     if allowed is None:
         return
     resp = parsed.get("Response")
@@ -60,7 +60,7 @@ def _filter_response_issue_list_by_issue_status_type(
 
 
 def _summarize_issue_list_item(raw: dict[str, Any]) -> dict[str, Any]:
-    """DescribeIssueList 单条事项精简字段。Assignees 是处理人数组，保留完整。"""
+    """Trim a single DescribeIssueList item down to a summary. Assignees is the array of assignees, kept in full."""
     assignees = [
         {"id": m.get("Id"), "name": str(m.get("Name") or "")}
         for m in (raw.get("Assignees") or [])
@@ -85,7 +85,7 @@ def _summarize_issue_list_item(raw: dict[str, Any]) -> dict[str, Any]:
 
 
 def _summarize_response_issue_list(parsed: dict[str, Any]) -> None:
-    """将 Response.IssueList 替换为精简结构（就地）。"""
+    """Replace Response.IssueList with the trimmed-down structure (in place)."""
     resp = parsed.get("Response")
     if not isinstance(resp, dict):
         return
@@ -110,7 +110,7 @@ def _build_issue_list_conditions(
     if base_issue_type is not None:
         if base_issue_type not in _BASE_ISSUE_TYPE_SET:
             raise ValueError(
-                f"BASE_ISSUE_TYPE 仅允许 REQUIREMENT/DEFECT/MISSION，收到: {base_issue_type!r}"
+                f"BASE_ISSUE_TYPE only allows REQUIREMENT/DEFECT/MISSION, got: {base_issue_type!r}"
             )
         conds.append({"key": "BASE_ISSUE_TYPE", "value": base_issue_type})
     return conds
@@ -132,7 +132,7 @@ def _summarize_issue_detail(issue: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-# ── 公开接口 ──────────────────────────────────────────────────────────────────
+# ── Public API ────────────────────────────────────────────────────────────
 
 def describe_defect_types(
     project_name: str | None = None,
@@ -141,8 +141,8 @@ def describe_defect_types(
     timeout: int = DEFAULT_TIMEOUT,
 ) -> list[dict[str, Any]]:
     """
-    DescribeDefectTypes：返回项目下缺陷类型列表 [{'id': int, 'name': str}]。
-    创建缺陷时可通过 issue_type_id= 指定类型。
+    DescribeDefectTypes: return the project's list of defect types, [{'id': int, 'name': str}].
+    Use issue_type_id= when creating a defect to specify the type.
     """
     t = _resolve_token(token)
     pn = _resolve_project_name(project_name)
@@ -150,10 +150,10 @@ def describe_defect_types(
     try:
         types = parsed["Response"]["DefectTypes"]
     except (KeyError, TypeError) as e:
-        logger.error("DescribeDefectTypes 响应缺少 Response.DefectTypes\n%s", traceback.format_exc())
-        raise CodingAPIError("响应中缺少 Response.DefectTypes") from e
+        logger.error("DescribeDefectTypes response is missing Response.DefectTypes\n%s", traceback.format_exc())
+        raise CodingAPIError("Response is missing Response.DefectTypes") from e
     if not isinstance(types, list):
-        raise CodingAPIError("Response.DefectTypes 不是列表")
+        raise CodingAPIError("Response.DefectTypes is not a list")
     return [{"id": item.get("Id"), "name": item.get("Name")} for item in types if isinstance(item, dict)]
 
 
@@ -177,25 +177,25 @@ def create_issue(
     timeout: int = DEFAULT_TIMEOUT,
 ) -> dict[str, Any]:
     """
-    CreateIssue：创建需求、缺陷或任务，返回新建事项的精简信息。
+    CreateIssue: create a requirement, defect, or task, returning a summary of the newly created issue.
 
-    :param name: 事项标题（必填）
+    :param name: issue title (required)
     :param issue_type: REQUIREMENT / DEFECT / MISSION
-    :param priority: 0=低 1=中 2=高(默认) 3=紧急
-    :param assignee_id: 处理人 ID，可从 describe_issue_list 返回的 Assignees 字段反查
-    :param iteration: 迭代 Code；省略时读环境变量，仍无则不关联迭代
-    :param start_date: 开始日期，格式 'YYYY-MM-DD'（部分项目必填）
-    :param due_date: 截止日期，格式 'YYYY-MM-DD'（部分项目必填）
-    :param label_ids: 标签 ID 列表（部分项目必填，缺失报 issue_project_label_required）
-    :param working_hours: 预估工时，单位小时（部分项目必填，缺失报 working_hour_required）
-    :param issue_type_id: 事项大类 ID（如缺陷大类固定 ID），非缺陷子类型
-    :param defect_type_id: 缺陷子类型 ID，来自 describe_defect_types；仅创建缺陷时有效
-    :param custom_field_values: 自定义字段列表，格式 [{"Id": <IssueFieldId>, "Content": "<值>"}]
+    :param priority: 0=Low 1=Medium 2=High(default) 3=Urgent
+    :param assignee_id: assignee ID; can be looked up from the Assignees field returned by describe_issue_list
+    :param iteration: iteration Code; falls back to the environment variable if omitted, and to no iteration if that's also unset
+    :param start_date: start date, format 'YYYY-MM-DD' (required in some projects)
+    :param due_date: due date, format 'YYYY-MM-DD' (required in some projects)
+    :param label_ids: list of label IDs (required in some projects; missing value raises issue_project_label_required)
+    :param working_hours: estimated hours (required in some projects; missing value raises working_hour_required)
+    :param issue_type_id: issue category ID (e.g. the fixed ID for the defect category), not the defect subtype
+    :param defect_type_id: defect subtype ID, from describe_defect_types; only applies when creating a defect
+    :param custom_field_values: list of custom fields, format [{"Id": <IssueFieldId>, "Content": "<value>"}]
     :return: {Code, Name, IssueStatusName, AssigneeName, CreatorName}
     """
     t = _resolve_token(token)
     pn = _resolve_project_name(project_name)
-    # API 要求 Priority/AssigneeId/IterationCode 传字符串类型
+    # The API requires Priority/AssigneeId/IterationCode to be passed as strings
     body: dict[str, Any] = {
         "ProjectName": pn,
         "Name": name,
@@ -229,10 +229,10 @@ def create_issue(
     try:
         issue = parsed["Response"]["Issue"]
     except (KeyError, TypeError) as e:
-        logger.error("CreateIssue 响应缺少 Response.Issue\n%s", traceback.format_exc())
-        raise CodingAPIError("响应中缺少 Response.Issue") from e
+        logger.error("CreateIssue response is missing Response.Issue\n%s", traceback.format_exc())
+        raise CodingAPIError("Response is missing Response.Issue") from e
     if not isinstance(issue, dict):
-        raise CodingAPIError("Response.Issue 不是对象")
+        raise CodingAPIError("Response.Issue is not an object")
     return _summarize_issue_detail(issue)
 
 
@@ -244,10 +244,11 @@ def get_custom_fields_from_issues(
     token: str | None = None,
 ) -> list[dict[str, Any]]:
     """
-    通过采样现有事项推断项目中使用的自定义字段，返回 [{"id": int, "name": str}]。
+    Infer the custom fields used by a project by sampling existing issues, returning [{"id": int, "name": str}].
 
-    DescribeIssueCustomFieldsBoundToProject 需要更高 token scope，此函数绕开该限制。
-    创建事项前应先调用，以便将必填自定义字段一并传入 create_issue(custom_field_values=...)。
+    DescribeIssueCustomFieldsBoundToProject requires an elevated token scope; this function works around that.
+    Should be called before creating an issue, so any required custom fields can be passed to
+    create_issue(custom_field_values=...).
     """
     result = describe_issue_list(
         project_name, issue_type=issue_type, limit=str(sample),
@@ -264,10 +265,11 @@ def get_custom_fields_from_issues(
 
 def extract_members_from_issue_list(issues_result: dict[str, Any]) -> list[dict[str, Any]]:
     """
-    从 describe_issue_list 返回结果中提取去重成员列表 [{'id': int, 'name': str}]。
+    Extract a deduplicated member list, [{'id': int, 'name': str}], from a describe_issue_list result.
 
-    用于 DescribeTeamMembers 无权限时的替代方案：先拉取事项列表，再从 Assignees 字段反查成员 ID。
-    兼容摘要格式（{"id": int, "name": str}）和原始格式（{"Id": int, "Name": str}）。
+    A fallback for when DescribeTeamMembers is not permitted: fetch the issue list first, then look up
+    member IDs from the Assignees field. Compatible with both the summarized format ({"id": int, "name": str})
+    and the raw format ({"Id": int, "Name": str}).
     """
     seen: dict[int, str] = {}
     issues = (issues_result.get("Response") or {}).get("IssueList") or []
@@ -290,11 +292,11 @@ def filter_issues(
     iteration_code: int | None = None,
 ) -> list[dict[str, Any]]:
     """
-    客户端过滤事项列表（describe_issue_list 返回的 IssueList）。
+    Filter an issue list client-side (the IssueList returned by describe_issue_list).
 
-    :param assignee_name: 处理人姓名（模糊匹配，不区分大小写）
-    :param assignee_id: 处理人 ID（精确匹配）
-    :param iteration_code: 迭代 Code（精确匹配）——API 侧过滤有时失效，建议二次过滤
+    :param assignee_name: assignee name (fuzzy match, case-insensitive)
+    :param assignee_id: assignee ID (exact match)
+    :param iteration_code: iteration Code (exact match) — server-side filtering sometimes fails, so a re-filter is recommended
     """
     result = []
     for it in items:
@@ -322,7 +324,7 @@ def describe_issue(
     timeout: int = DEFAULT_TIMEOUT,
 ) -> dict[str, Any]:
     """
-    DescribeIssue：按事项 Code 查询单条事项详情，返回精简字段。
+    DescribeIssue: look up a single issue by Code, returning a summarized set of fields.
 
     :return: {Name, Description, IssueStatusName, AssigneeName, CreatorName}
     """
@@ -337,10 +339,10 @@ def describe_issue(
     try:
         issue = parsed["Response"]["Issue"]
     except (KeyError, TypeError) as e:
-        logger.error("DescribeIssue 响应缺少 Response.Issue\n%s", traceback.format_exc())
-        raise CodingAPIError("响应中缺少 Response.Issue") from e
+        logger.error("DescribeIssue response is missing Response.Issue\n%s", traceback.format_exc())
+        raise CodingAPIError("Response is missing Response.Issue") from e
     if not isinstance(issue, dict):
-        raise CodingAPIError("Response.Issue 不是对象") from None
+        raise CodingAPIError("Response.Issue is not an object") from None
     return _summarize_issue_detail(issue)
 
 
@@ -357,11 +359,11 @@ def describe_issue_list(
     timeout: int = DEFAULT_TIMEOUT,
 ) -> dict[str, Any]:
     """
-    DescribeIssueList：查询项目下事项列表。
+    DescribeIssueList: query the list of issues in a project.
 
-    排序固定为 SortKey=PRIORITY/DESC；STATUS_TYPE 由本地过滤实现。
-    :param status_types: None → 仅 TODO/PROCESSING；[] → 不过滤；其他 → 指定类型。
-    :return: 含 Response.IssueList，每条仅含精简字段（见 _summarize_issue_list_item）。
+    Sorting is fixed to SortKey=PRIORITY/DESC; STATUS_TYPE is applied via local filtering.
+    :param status_types: None → TODO/PROCESSING only; [] → no filter; other → the specified types.
+    :return: contains Response.IssueList, each entry trimmed to a summary (see _summarize_issue_list_item).
     """
     t = _resolve_token(token)
     pn = _resolve_project_name(project_name)
@@ -380,7 +382,7 @@ def describe_issue_list(
     }
     parsed = _request("DescribeIssueList", body, t, timeout=timeout)
     _filter_response_issue_list_by_issue_status_type(parsed, allowed_status)
-    # 客户端二次过滤迭代（API 侧 Conditions[ITERATION] 有时失效）
+    # Re-filter by iteration client-side (the server-side Conditions[ITERATION] filter sometimes fails)
     if iteration is not None:
         iter_code = _resolve_iteration_code(iteration)
         resp = parsed.get("Response", {})

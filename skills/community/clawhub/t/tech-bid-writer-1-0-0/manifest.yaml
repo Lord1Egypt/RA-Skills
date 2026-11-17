@@ -1,0 +1,59 @@
+# ── OpenClaw 兼容 manifest.yaml ── 多平台发布配置（clawhub / SkillHub）──
+
+name: tech-bid-writer
+slug: tech-bid-writer
+display_name: 技术标写作专家
+emoji: "\U0001F4DD"
+version: 1.0.0
+version_stage: "GA"
+author: "一线评标专家&ChesaraM"        # 含 & 必须加引号
+license: MIT-0
+agent_created: true
+homepage: https://github.com/chesaram/my-skill-hub
+
+# 反馈渠道：GitHub Issues（中性，不放置任何外部平台账号或联系方式）
+feedback:
+  channel: "GitHub Issues"
+  account: "chesaram/my-skill-hub"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"
+
+# description 保持干净的功能描述，不出现外部平台账号或联系方式（避免被判定为推广引流）
+description: 投标人侧「技术标写作专家」——根据招标文件一键产出技术部分可用投标包（合规版式技术标正文 Word + 技术偏离表 + 技术合规预检报告 + 评分点覆盖核对表），完全不涉及商务报价与资格审查。采用「评分项↔标题逐项映射防漏分 + 输出纯净（像人写）+ 技术合规零容忍 + 可选知识库溯源 + 内置 Word 直出」流水线。当用户需要写技术标、技术方案、技术投标文档、施工组织设计，或要求按评分表生成技术标大纲/标题体系、生成技术偏离表、检查技术标评分点是否全覆盖时使用。
+
+# ── 运行时元数据（OpenClaw 标准 metadata.openclaw）──
+metadata:
+  openclaw:
+    emoji: "\U0001F4DD"
+    homepage: https://github.com/chesaram/my-skill-hub
+    # 触发词：锚定技能专属场景（技术标写作），避免泛法务/泛文档问与跨技能误激活
+    triggers:
+      - pattern: "技术标写作|写技术标|生成技术标大纲|技术标大纲|生成技术方案|按评分表生成技术标|技术投标文档|施工组织设计|技术偏离表|技术标评分点覆盖"
+    tags:
+      - 技术标
+      - 技术方案
+      - 施工组织设计
+      - 投标写作
+      - 技术偏离表
+      - 评分点覆盖
+
+# ── 多平台发布配置 ──
+# displayName 规则：clawhub 英文利于全球发现；skillhub/cocoloop/coze 中文更直观
+platforms:
+  clawhub:
+    main: SKILL.md
+    displayName: Tech Bid Writer
+    slug: tech-bid-writer
+  skillhub:
+    main: SKILL.md
+    displayName: 技术标写作专家
+  cocoloop:
+    main: SKILL.md
+    displayName: 技术标写作专家
+  coze:
+    main: SKILL.md
+    displayName: 技术标写作专家
+
+changelog:
+  - version: 1.0.0
+    date: 2026-07-30
+    change: 首版发布——技术标写作专家。六阶段流水线（转换→篇幅规划→解析+合规预检+评分映射→并发编写→合稿+偏离表→质检门禁→Word直出）；评分项↔标题100%映射防漏分；输出纯净度（正文无过程元数据）；技术合规零容忍（偏离表逐条无负偏离）；IMA知识库可选溯源降低幻觉；柔性页数（发起人指定或AI按性质+金额推荐，±15%门禁）。合规：GitHub Issues 反馈、无外部账号导流、SKILL.md 不强制署名注入、触发词锚定技术标写作专属场景、不声明自主工具调用。

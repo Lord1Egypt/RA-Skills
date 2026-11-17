@@ -1,40 +1,54 @@
-## Description: <br>
-专业财务分析助手 - 财报分析、DCF估值、风险评估、行业对比、投资决策支持 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业财务分析助手用于财报分析、DCF 估值、风险评估、行业对比和投资决策支持。
 
-## Publisher: <br>
-[wangzhaofeng-max](https://clawhub.ai/user/wangzhaofeng-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhaofeng-max](https://clawhub.ai/user/wangzhaofeng-max)
 
-## Use Case: <br>
-Finance analysts, investors, and agents use this skill to produce Chinese-language financial statement analysis, DCF and relative valuation, risk assessment, and industry-comparison outputs for stock tickers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence gives the release a suspicious verdict and notes workflows that may bypass sandbox or approval protections. <br>
-Mitigation: Review the bundle before installation or use, avoid unsafe bypass options, and keep fallback reviewers disabled or pinned when diffs must remain local. <br>
-Risk: Financial analysis and valuation outputs can be misleading when source data is stale, unavailable, or model assumptions are wrong. <br>
-Mitigation: Verify data sources and assumptions, treat outputs as decision support, and require qualified human review before investment decisions. <br>
+## Use Case:
 
+Finance analysts, investors, and agent developers use this skill to run or generate financial statement analysis, valuation, risk assessment, industry comparison, and investment decision support workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhaofeng-max/finance-analysis-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese-language text and Markdown reports with inline shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Tushare data when TUSHARE_TOKEN is configured; valuation and risk outputs depend on financial data availability and model assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and target metadata) <br>
+Risk: Some valuation and risk commands may present fixed sample numbers as stock-specific analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat valuation, risk ratings, and buy or sell language as examples until the publisher replaces fixed outputs with validated live calculations and clear educational labeling.
+
+Risk: Financial outputs can be mistaken for investment advice.
+
+Mitigation: Require independent review before using outputs for financial decisions, and document assumptions, data source, and calculation limits in any downstream report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhaofeng-max/skills/finance-analysis-pro)
+- [Publisher profile](https://clawhub.ai/user/wangzhaofeng-max)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Tushare, pandas, numpy, and optionally a TUSHARE_TOKEN environment variable for live market data access.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

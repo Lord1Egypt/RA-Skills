@@ -1,37 +1,57 @@
-## Description: <br>
-Deep workflow for stakeholder communication-audience mapping, narrative structure, status with honesty, trade-off framing, asks, and follow-ups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep workflow for stakeholder communication: audience mapping, narrative structure, status with honesty, trade-off framing, asks, and follow-ups for exec updates, cross-team notes, project summaries, or expectation-setting under uncertainty.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Employees, managers, and project leads use this skill to draft executive updates, cross-team notes, project summaries, delay disclosures, dependency negotiations, and decision requests with clear audience fit, risks, asks, and follow-up cadence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated stakeholder updates may contain inaccurate details, confidential information, or tone that is inappropriate for the audience. <br>
-Mitigation: Review each draft for factual accuracy, confidentiality, audience sensitivity, and shareability before sending. <br>
+## Use Case:
 
+Employees, managers, and project leads use this skill to prepare clear stakeholder communications for exec updates, cross-team notes, incident or delay disclosures, roadmap reviews, project summaries, decision requests, and follow-up loops.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text stakeholder communication guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured communication drafts, review checklists, risk and trade-off framing, explicit asks, and follow-up plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Drafts may expose sensitive business context or be forwarded beyond the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm audience, sensitivity, and forwardability before sharing; remove details that are not appropriate for the channel.
+
+Risk: Stakeholder updates may contain inaccurate facts, dates, owners, deadlines, or default decisions.
+
+Mitigation: Verify facts, commitments, and decision deadlines with accountable owners before sending.
+
+Risk: Political or cultural nuance may make otherwise clear language land poorly.
+
+Mitigation: Adjust directness for the audience while keeping documented facts, options, asks, and follow-up actions explicit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/stakeholder-comms)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured prose for stakeholder updates, notes, summaries, decision asks, and follow-ups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No shell commands or code execution; drafts should be reviewed for sensitivity, accuracy, and forwardability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

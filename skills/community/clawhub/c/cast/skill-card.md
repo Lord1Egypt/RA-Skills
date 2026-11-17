@@ -1,44 +1,59 @@
-## Description: <br>
-Skill for managing EVM wallets, transactions, and network helpers via cast; covers onboarding, checks, and operating procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for managing EVM wallets, transactions, and network helpers via cast; covers onboarding, checks, and operating procedures.
 
-## Publisher: <br>
-[tezatezaz](https://clawhub.ai/user/tezatezaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tezatezaz](https://clawhub.ai/user/tezatezaz)
 
-## Use Case: <br>
-Developers and external users use this skill to set up and operate a local EVM hot-wallet workflow with Foundry cast, including wallet onboarding, network and token selection, balance checks, and transaction preparation or inspection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a local hot wallet and may store wallet secrets, keystore passwords, RPC URLs, and transaction metadata on disk. <br>
-Mitigation: Use it only with a low-value wallet, avoid importing valuable seed phrases, avoid reusing passwords, and review the scripts before installation or use. <br>
-Risk: Wallet and transaction actions can affect real EVM assets if used with funded accounts. <br>
-Mitigation: Prefer manual or hardware-wallet workflows for significant funds, and require explicit user confirmation before sending or publishing transactions. <br>
-Risk: The setup flow can install Foundry/cast and modify local wallet-related files. <br>
-Mitigation: Run it in a trusted local environment, inspect the planned changes, and use the removal workflow when the wallet helper is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cast release page](https://clawhub.ai/tezatezaz/cast) <br>
-- [Foundry installer](https://foundry.paradigm.xyz) <br>
-- [EVM network metadata](artifact/assets/evm-networks.json) <br>
-- [EVM token metadata](artifact/assets/evm-network-tokens.json) <br>
+## Use Case:
 
+Developers and operators use Cast to set up and manage EVM hot wallets with Foundry cast, choose EVM network and token metadata, check balances, prepare or send transactions, and remove wallet state when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local wallet state, RPC configuration, token metadata, and transaction mention logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can handle complete wallet-control secrets and local keystore passwords.
+
+Mitigation: Review scripts before installation, avoid wallets holding meaningful funds, prefer a hardware wallet or separate signer, and avoid importing existing seed phrases.
+
+Risk: The skill can install Foundry through a remote installer and make local or system changes.
+
+Mitigation: Decline unverified remote installers and sudo package changes; install dependencies through a trusted channel when possible.
+
+Risk: Testing can leave wallet files or transaction logs on disk.
+
+Mitigation: Delete ~/.agent-wallet and any workspace transaction logs after testing.
+
+## Reference(s):
+
+- [Cast ClawHub skill page](https://clawhub.ai/tezatezaz/skills/cast)
+- [Foundry installer](https://foundry.paradigm.xyz)
+- [EVM network metadata](artifact/assets/evm-networks.json)
+- [EVM token metadata](artifact/assets/evm-network-tokens.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and interactive script prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local wallet state, keystore, password, mnemonic backup, token metadata, and transaction log files during use.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+{
+  "title": "搜索热词",
+  "data": [
+    {
+      "name": "/home",
+      "value": 98234
+    },
+    {
+      "name": "/product/list",
+      "value": 74321
+    },
+    {
+      "name": "/detail",
+      "value": 65120
+    },
+    {
+      "name": "/cart",
+      "value": 52340
+    },
+    {
+      "name": "/activity",
+      "value": 41780
+    },
+    {
+      "name": "/user/center",
+      "value": 38210
+    },
+    {
+      "name": "/search",
+      "value": 31055
+    },
+    {
+      "name": "/news",
+      "value": 24890
+    },
+    {
+      "name": "/help",
+      "value": 18330
+    },
+    {
+      "name": "/about",
+      "value": 12044
+    }
+  ]
+}

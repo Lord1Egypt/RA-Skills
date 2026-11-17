@@ -1,0 +1,11 @@
+# swarmArena — systemd timer: one cycle every 2 minutes (mirrors cron scan job).
+[Unit]
+Description=swarmArena cycle timer
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+AccuracySec=15s
+
+[Install]
+WantedBy=timers.target

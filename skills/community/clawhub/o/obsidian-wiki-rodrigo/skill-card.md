@@ -1,43 +1,56 @@
-## Description: <br>
-Work with Rodion's Obsidian vault via Nextcloud, including ingest, query, and lint workflows for a Karpathy-style wiki pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Rodion's Obsidian vault via Nextcloud, including ingest, query, lint, and wiki maintenance workflows.
 
-## Publisher: <br>
-[rodrigo09313](https://clawhub.ai/user/rodrigo09313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rodrigo09313](https://clawhub.ai/user/rodrigo09313)
 
-## Use Case: <br>
-External users and developers use this skill to manage an Obsidian knowledge base stored in Nextcloud by ingesting source material, querying indexed wiki pages, checking wiki health, and syncing file changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently modify and sync Obsidian or Nextcloud vault content. <br>
-Mitigation: Define the exact vault path before use and require explicit confirmation before ingesting content, updating indexes or logs, linting with writes, or syncing changes. <br>
-Risk: Incorrect ingest or lint output could add misleading summaries, entities, concepts, or cross-references to the knowledge base. <br>
-Mitigation: Review generated Markdown changes before sync and keep raw source material immutable for comparison. <br>
+## Use Case:
 
+Users managing this specific Obsidian knowledge base use the skill to add source material, query wiki content, lint notes, update index and log pages, and sync changes through Nextcloud.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rodrigo09313/obsidian-wiki-rodrigo) <br>
-- [Wiki Operations](references/operations.md) <br>
-- [Nextcloud Sync](references/sync.md) <br>
-- [Wiki Structure](references/wiki-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Markdown wiki files, append log entries, and propose or run Nextcloud sync commands when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad or ambiguous prompts could cause unintended Obsidian wiki edits or sync actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit ingest, write, and sync commands, and review planned file changes before allowing the agent to apply them.
+
+Risk: Nextcloud sync can propagate local vault changes to connected clients.
+
+Mitigation: Run the sync step only after confirming the intended Obsidian files were created or modified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rodrigo09313/skills/obsidian-wiki-rodrigo)
+- [Wiki Operations](references/operations.md)
+- [Nextcloud Sync](references/sync.md)
+- [Wiki Structure](references/wiki-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes, text responses, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Obsidian wiki files and request a Nextcloud file scan after changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

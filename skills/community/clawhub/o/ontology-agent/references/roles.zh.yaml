@@ -1,0 +1,57 @@
+# roles.yaml — 角色治理模型
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 借鉴 A2 的 roles 范式：每个角色有 memory_paths / 工具集 / 并发限制 / 审计。
+# 已预留 employee（企业真实员工）角色，为 Phase 6 连接钉钉/企业微信/飞书时激活。
+
+meta:
+  layer: decision-roles
+  version: 0.1.0
+  description: 多角色治理；template 与 instance 分离时，企业实例 = 多用户各自 role 作用域不同的 instance
+
+roles:
+  system:
+    description: 运行时内核（WorkBuddy / EdgeClaw / 纯本地）
+    memory_paths: [system/*]
+    tools: [all_read_only]
+    concurrency: 1
+    audit: full
+
+  owner:                      # 老板 / 法人 / 一人公司本人（默认最高权限）
+    description: 公司拥有者，全权限、可审批敏感动作
+    memory_paths: [instance/*, company/*]
+    tools: [all]
+    concurrency: 1
+    audit: full
+    can_approve: [tax_filing, role_grant, expert_create]
+
+  admin:                      # 管理员（可授予信任的 AI 总管）
+    description: 协助 owner 的治理角色
+    memory_paths: [instance/*]
+    tools: [department_mgmt, expert_mgmt]
+    concurrency: 1
+    audit: full
+    delegated_by: owner
+
+  experts:                    # 12 部门 AI 员工（由 experts-template 实例化）
+    description: 部门专家，作用域限定本部门
+    scope: per_department
+    memory_paths: ["department/{dept}/inbox", "department/{dept}/knowledge"]
+    tools: ["department_actions.{dept}.*"]
+    concurrency: 1
+    audit: per_action
+    report_to: owner
+
+  employee:                   # 企业真实员工（预留，Phase 6 连接 IM 后激活）
+    description: 接入企业后绑定真实人员，每人一个 role 绑定 ontology 视图
+    scope: assigned_department
+    memory_paths: ["department/{dept}/shared"]
+    tools: by_role_assignment
+    concurrency: 1
+    audit: full
+    note: "连接钉钉/企业微信/飞书后，按 connectors/ 接入契约创建 employee role"
+
+  guest:
+    description: 只读访客
+    memory_paths: []
+    tools: [read_only]
+    audit: minimal

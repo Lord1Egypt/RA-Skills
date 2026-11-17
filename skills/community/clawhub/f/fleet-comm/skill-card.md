@@ -1,40 +1,48 @@
-## Description: <br>
-Enables real-time text messaging and broadcasting between multiple OpenClaw nodes across machines for coordinated fleet operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables real-time text messaging and broadcasting between multiple OpenClaw nodes across machines for coordinated fleet operations.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate multi-machine OpenClaw fleets by sending direct messages, broadcasts, tasks, status checks, and result messages between registered nodes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The message bus is exposed without authentication and can leak or allow tampering with agent messages. <br>
-Mitigation: Restrict port 18800 to trusted machines, preferably on a private network with firewall rules. <br>
-Risk: Fleet messages may contain sensitive task content and received messages are not authenticated. <br>
-Mitigation: Do not send secrets, credentials, or sensitive task content through the bus, and treat received messages as untrusted until authentication, authorization, safer CORS, output escaping, and retention controls are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dagangtj/fleet-comm) <br>
-- [Fleet Communication Skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate multiple OpenClaw nodes by starting a lightweight fleet message bus, registering nodes, sending direct messages, broadcasting updates, and polling for task or result messages.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON message payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Node.js HTTP message bus and CLI to exchange fleet messages; message content should be treated as untrusted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes unauthenticated network messaging and a writable dashboard.
+
+Mitigation: Use only on localhost or a tightly trusted VPN/firewalled network, and avoid sending secrets or sensitive task results until authentication, authorization, escaping, size limits, and retention controls are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/fleet-comm)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON message examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Node.js command invocations and environment variable settings for fleet bus coordination.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

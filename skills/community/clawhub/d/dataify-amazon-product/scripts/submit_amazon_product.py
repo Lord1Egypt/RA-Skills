@@ -9,6 +9,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -41,7 +46,7 @@ def require_token(api_token):
     if api_token:
         return True
     print(
-        "Missing Dataify API TOKEN. Get one from {}.".format(DATAIFY_URL),
+        "Missing Dataify API TOKEN. Get one from {}. New accounts receive 50 free credits.".format(DATAIFY_URL),
         file=sys.stderr,
     )
     return False
@@ -149,7 +154,6 @@ def submit_builder(api_token, spider_id, spider_parameters, file_name):
 
 
 def add_common_args(parser):
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name value. Defaults to {{TasksID}}.")
 
 
@@ -288,14 +292,17 @@ def main():
         return 2
 
     parser = build_parser()
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not require_token(args.api_token):
+    if not require_token(api_token):
         return 2
 
     try:
         spider_id, spider_parameters, file_name, summary = args.handler(args)
-        task_id = submit_builder(args.api_token, spider_id, spider_parameters, file_name)
+        task_id = submit_builder(api_token, spider_id, spider_parameters, file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
@@ -307,11 +314,18 @@ def main():
         "task_id": task_id,
         "mode": args.mode,
         "spider_id": spider_id,
-        "dashboard_url": DASHBOARD_URL,
-        "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+        "message": "Task submitted. Continue monitoring the returned task_id.",
     }
     output.update(summary)
     print(json.dumps(output, ensure_ascii=False, indent=2))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

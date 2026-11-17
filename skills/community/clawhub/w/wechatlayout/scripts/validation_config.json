@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "last_tested": "2026-07",
+  "filtered_tags": {
+    "style": "编辑器会移除 <style>，所有样式必须写在 style 属性里",
+    "script": "编辑器会移除 <script>",
+    "link": "编辑器会移除 <link>（外部 CSS / 字体无法加载）",
+    "meta": "编辑器会移除 <meta>",
+    "iframe": "编辑器不支持 <iframe>",
+    "form": "编辑器不支持 <form>",
+    "input": "编辑器不支持 <input>",
+    "div": "编辑器会改写 <div>，应改用 <section>"
+  },
+  "stripped_attrs": {
+    "class": "编辑器会移除 class 属性",
+    "id": "编辑器会移除 id 属性"
+  },
+  "unsupported_css": [
+    ["position:\\s*:\\s*(?:fixed|absolute|sticky)", "不支持 position 定位"],
+    ["float\\s*:", "不支持 float"],
+    ["@media", "不支持 @media 查询"],
+    ["@keyframes", "不支持 @keyframes 动画"],
+    ["@import", "不支持 @import"],
+    ["display\\s*:\\s*grid", "不支持 display:grid，应改用 flex"],
+    ["var\\s*\\(\\s*--", "不支持 CSS 自定义属性（变量）"],
+    ["url\\s*\\(\\s*['\"]?https?://[^)]*\\.(?:woff2?|ttf|otf)", "不支持外部字体文件引用"]
+  ],
+  "content_rules": {
+    "max_anchors": 5,
+    "min_underlines_per_para_threshold": 5,
+    "placeholder_pattern": "\\{\\{[^}]+\\}\\}",
+    "contrast_min_normal": 4.5,
+    "contrast_min_large": 3.0,
+    "contrast_large_font_threshold": 18,
+    "contrast_large_bold_font_threshold": 14
+  }
+}

@@ -1,40 +1,61 @@
-## Description: <br>
-OpenClaw Cognitive Operating & Skill Governance Kernel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Cognitive Operating & Skill Governance Kernel.
 
-## Publisher: <br>
-[maxime-Xian](https://clawhub.ai/user/maxime-Xian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maxime-xian](https://clawhub.ai/user/maxime-xian)
 
-## Use Case: <br>
-Developers and operators use this skill to guide an agent through skill governance, cognitive budget checks, context mounting, task closure, and archival practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly influence when work proceeds, which bundles are mounted, and what task records are stored. <br>
-Mitigation: Install only when this governance posture is intended, and override the rules so the agent asks before writing memory files, discarding data, or changing the installed skill set. <br>
-Risk: The skill asks agents to prepare summaries for external sync during financial, strategic, or major decision tasks. <br>
-Mitigation: Require explicit user approval before any external sync and redact confidential or sensitive material from generated summaries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxime-Xian/skill-governance) <br>
-- [Manifest homepage](https://clawhub.com/skills/skill-governance) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to govern higher-complexity work, manage cognitive load, coordinate skill usage, and require closure artifacts for governance-heavy tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and structured task records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request calibration scores and require archived task notes before closure.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: manifest.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask agents to persist task records or memory archives without clear approval.
+
+Mitigation: Require explicit user approval before writing archives, memories, decision records, or other persistent files.
+
+Risk: The skill may ask agents to sync summaries about financial, strategic, or major decisions to external notes or mobile channels.
+
+Mitigation: Review summaries for sensitive information and require explicit approval before any external sync or sharing.
+
+Risk: The skill may ask agents to manage skill lifecycle actions such as archiving or deletion candidates automatically.
+
+Mitigation: Treat lifecycle actions as recommendations that require human review before changing installed skills.
+
+Risk: Archived decisions and next actions could be reused as instructions by future agents.
+
+Mitigation: Treat archived records as historical context for review, not as executable instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maxime-xian/skills/skill-governance)
+- [Manifest Homepage](https://clawhub.com/skills/skill-governance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for task records, structured notes, decision records, and confidence statements as closure artifacts.]
+
+## Skill Version(s):
+
+2.1.0 (source: manifest.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+[Unit]
+Description=每 30 分钟运行 gold-tracker 一个周期
+
+[Timer]
+OnCalendar=*:0/30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,44 +1,61 @@
-## Description: <br>
-Query real-time stock prices, basic quote fields, and manage a Markdown watchlist for A-share, Hong Kong, and US stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time stock prices, basic quote fields, and manage a Markdown watchlist for A-share, Hong Kong, and US stocks.
 
-## Publisher: <br>
-[0xhyperdan](https://clawhub.ai/user/0xhyperdan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xhyperdan](https://clawhub.ai/user/0xhyperdan)
 
-## Use Case: <br>
-External users and developers use this skill to resolve stock names or ticker symbols, retrieve current quote fields, and maintain a Markdown watchlist with optional cost and position summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock lookup terms are sent to Eastmoney during search and quote requests. <br>
-Mitigation: Install and use the skill only if sending those lookup terms to Eastmoney is acceptable. <br>
-Risk: Watchlist commands edit local Markdown files. <br>
-Mitigation: Keep the watchlist in a dedicated file such as ./watchlist.md, avoid sensitive account data, and configure STOCK_WATCHLIST_ALLOWED_ROOTS only for directories intended for edits. <br>
+## Use Case:
 
+External users and developers use this skill to search A-share, Hong Kong, and US stocks by Chinese name or ticker, inspect current quote fields, and maintain a local Markdown watchlist with position summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xhyperdan/stock-watchlist) <br>
-- [Stock watchlist script](scripts/stock_watchlist.py) <br>
-- [Watchlist template](assets/watchlist-template.md) <br>
-- [Eastmoney search API](https://searchapi.eastmoney.com/api/suggest/get) <br>
-- [Eastmoney quote API](https://push2.eastmoney.com/api/qt/stock/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries, JSON command output, and Markdown watchlist files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Watchlist edits are scoped to Markdown files inside the current working directory unless STOCK_WATCHLIST_ALLOWED_ROOTS is explicitly configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and target metadata) <br>
+Risk: Watchlist commands can rewrite or remove rows in a Markdown file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep watchlist files in the project directory and review commands that add, sync, remove, or force-initialize watchlist rows before execution.
+
+Risk: Broad allowed roots could permit watchlist operations outside the intended workspace.
+
+Mitigation: Only set STOCK_WATCHLIST_ALLOWED_ROOTS to explicit directories that are safe for watchlist storage.
+
+Risk: Stock quote data is retrieved from public market APIs and may be delayed, unavailable, or unsuitable as financial advice.
+
+Mitigation: Treat returned quote fields as informational data and verify important trading or investment decisions with authoritative market sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xhyperdan/skills/stock-watchlist)
+- [Main stock watchlist script](scripts/stock_watchlist.py)
+- [Watchlist Markdown template](assets/watchlist-template.md)
+- [Eastmoney search API endpoint](https://searchapi.eastmoney.com/api/suggest/get)
+- [Eastmoney quote API endpoint](https://push2.eastmoney.com/api/qt/stock/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command output summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update marked sections of a local Markdown watchlist file when watchlist commands are used.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

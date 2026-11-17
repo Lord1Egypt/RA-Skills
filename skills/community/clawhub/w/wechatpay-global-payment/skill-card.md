@@ -1,52 +1,70 @@
-## Description: <br>
-微信支付境外（跨境）平台接入解决方案，覆盖产品选型、接入指南、质量评估、问题排查和多语言术语一致性支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers and payment-integration teams through WeChat Pay Global product selection, API integration, quality checks, and troubleshooting for overseas cross-border payment scenarios.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers, payment engineers, and implementation teams use this skill to plan and troubleshoot WeChat Pay Global integrations for overseas merchant and institution scenarios. It helps route questions to product selection, API parameters, signing, callbacks, order queries, network checks, quality review, and troubleshooting references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment integration guidance may become incorrect if direct-connection eligibility, auto-debit consent, notification requirements, or production API behavior changes. <br>
-Mitigation: Verify operational decisions against current official WeChat Pay documentation or a Tencent/WeChat Pay contact before production use. <br>
-Risk: The skill concerns flows that require sensitive merchant credentials, certificates, OAuth tokens, wallet access, and financial authority. <br>
-Mitigation: Keep credentials out of prompts and logs, follow the official signing and callback verification guidance, and review credential handling before deployment. <br>
+## Use Case:
 
+Developers and payment-integration teams use this skill to select WeChat Pay Global products, understand institution and sub-merchant integration requirements, locate official examples, run go-live checks, and troubleshoot cross-border payment issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/wechatpay-global-payment) <br>
-- [WeChat Pay Global documentation (English)](https://pay.weixin.qq.com/doc/global/v3/en/) <br>
-- [WeChat Pay Global documentation (Chinese)](https://pay.weixin.qq.com/doc/global/v3/zh/) <br>
-- [WeChat Pay Global llms.txt](https://pay.weixin.qq.com/doc/global/v3/zh/llms.txt) <br>
-- [Product introduction](references/1-机构/产品选型/产品介绍.md) <br>
-- [Cross-border payment general knowledge](references/1-机构/产品选型/跨境支付通用知识.md) <br>
-- [Development parameters](references/1-机构/接入指南/开发参数获取.md) <br>
-- [Signing and signature verification rules](references/1-机构/接入指南/签名与验签规则.md) <br>
-- [Callback handling](references/1-机构/接入指南/回调处理.md) <br>
-- [Order query design guide](references/1-机构/接入指南/查单设计指引.md) <br>
-- [Integration quality checklist](references/1-机构/接入指南/接入质量检查.md) <br>
-- [Troubleshooting manual](references/1-机构/问题排查/排障手册.md) <br>
-- [Glossary](references/glossary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with official documentation references and configuration-oriented integration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Multilingual responses are expected to preserve payment API identifiers, domains, paths, and error codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Payment-operation evidence can expose sensitive data if raw logs, screenshots, credentials, Authorization headers, private keys, callback payloads, customer identifiers, transaction IDs, or production code are shared during go-live review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only sanitized evidence, redact sensitive fields, and independently verify the support channel before sharing operational material.
+
+Risk: The artifact contains conflicting direct-connection eligibility guidance for WeChat Pay Global onboarding.
+
+Mitigation: Confirm direct-connection eligibility against current official WeChat Pay documentation before advising an integration mode.
+
+## Reference(s):
+
+- [微信支付境外接入指引](SKILL.md)
+- [机构模式 产品选型与产品介绍（境外微信支付）](references/1-机构/产品选型/产品介绍.md)
+- [微信支付境外（跨境）业务世界观](references/1-机构/产品选型/跨境支付通用知识.md)
+- [机构模式 开发参数获取](references/1-机构/接入指南/开发参数获取.md)
+- [机构模式 签名与验签规则（境外）](references/1-机构/接入指南/签名与验签规则.md)
+- [机构模式 回调处理（境外）](references/1-机构/接入指南/回调处理.md)
+- [查单逻辑设计指引（境外机构）](references/1-机构/接入指南/查单设计指引.md)
+- [境外网络接入指引](references/1-机构/接入指南/网络问题指引.md)
+- [API 版本对比与升级指引（境外机构）](references/1-机构/接入指南/API版本对比.md)
+- [机构上线前接入质量检查（境外）](references/1-机构/接入指南/接入质量检查.md)
+- [机构模式 接口索引](references/1-机构/示例代码/接口索引.md)
+- [机构模式 排障手册（境外）](references/1-机构/问题排查/排障手册.md)
+- [基础支付常见问题](references/1-机构/问题排查/基础支付常见问题.md)
+- [扩展能力常见问题（境外机构）](references/1-机构/问题排查/扩展能力常见问题.md)
+- [多语言术语表（Glossary）](references/glossary.md)
+- [WeChat Pay Global Documentation (English)](https://pay.weixin.qq.com/doc/global/v3/en/)
+- [WeChat Pay Global Documentation (Chinese)](https://pay.weixin.qq.com/doc/global/v3/zh/)
+- [Official Partner Search](https://pay.weixin.qq.com/index.php/public/wechatpay_en/partner_search#/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, official-document pointers, and inline commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese, English, Japanese, Korean, French, Spanish, Portuguese, Russian, and Arabic terminology.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

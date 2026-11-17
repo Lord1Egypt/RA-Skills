@@ -1,45 +1,54 @@
-## Description: <br>
-Manages BangunAI Blog content workflows and MDX authoring with BangunAI conventions, including Obsidian-like callouts, Mermaid diagrams, LaTeX, wikilinks, backlinks, and graph views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing BangunAI Blog content, automating blog workflows, and writing MDX articles with BangunAI conventions. Supports Obsidian-like features (callouts, mermaid, LaTeX, wikilinks, backlinks, graph view).
 
-## Publisher: <br>
-[dwirx](https://clawhub.ai/user/dwirx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dwirx](https://clawhub.ai/user/dwirx)
 
-## Use Case: <br>
-Developers and content authors use this skill to create, update, inspect, and verify BangunAI Blog MDX content across writing, articles, reading notes, daily notes, and special pages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflows can overwrite special page files such as about.mdx and now.mdx. <br>
-Mitigation: Require explicit approval before overwriting special pages and review generated MDX before publishing. <br>
-Risk: The documented workflows include file deletion, commits, and pushes that can publish or remove content. <br>
-Mitigation: Require explicit approval before deleting posts, committing, or pushing changes. <br>
-Risk: Generated MDX can contain incorrect frontmatter, links, diagrams, or embedded components. <br>
-Mitigation: Validate frontmatter, preview rendered MDX, and run the documented verification workflow before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dwirx/tulisai) <br>
-- [README.md](README.md) <br>
-- [INTEGRATION.md](INTEGRATION.md) <br>
-- [EXAMPLES.md](EXAMPLES.md) <br>
-- [BangunAI Blog repository](https://github.com/dwirx/BangunAI-Blog) <br>
+## Use Case:
 
+Developers and authors use this skill to manage BangunAI Blog content, create MDX posts, maintain daily notes, update static pages, and follow the blog's frontmatter and component conventions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with MDX templates and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces content-management instructions and MDX-oriented file updates for a specific BangunAI Blog workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intended for one local blog path, and its file-writing examples can overwrite or delete local content without strong safeguards.
+
+Mitigation: Install only when the agent should manage /home/hades/BangunAI-Blog; before allowing writes, deletes, commits, or pushes, require the agent to show the target path and diff.
+
+Risk: User-provided filenames or categories could target unexpected paths if accepted without validation.
+
+Mitigation: Reject filenames or categories containing slashes, dot-dot segments, or unexpected extensions before allowing filesystem actions.
+
+## Reference(s):
+
+- [BangunAI Blog Manager README](artifact/README.md)
+- [BangunAI Blog Manager Integration Guide](artifact/INTEGRATION.md)
+- [BangunAI Blog Manager Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MDX examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can propose content-file writes, page updates, deletions, git operations, and local blog workflow commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

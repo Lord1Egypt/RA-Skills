@@ -1,42 +1,57 @@
-## Description: <br>
-Create, deploy, update, and troubleshoot Coolify applications with the official Coolify CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, deploy, update, and troubleshoot Coolify applications with the official Coolify CLI. Use when user wants deploy via Coolify, app creation from GitHub, redeploy on push, env vars, logs, or fallback Docker/Traefik routing.
 
-## Publisher: <br>
-[Heldinhow](https://clawhub.ai/user/Heldinhow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heldinhow](https://clawhub.ai/user/heldinhow)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, redeploy, update, and troubleshoot Coolify applications, including GitHub app deployments, environment variables, logs, and fallback Docker/Traefik routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token-bearing Coolify context or API commands can expose credentials if copied with an untrusted fixed host or IP. <br>
-Mitigation: Replace every host or IP with the user's own Coolify instance, and do not send Coolify tokens to 217.77.2.59 or any endpoint the user does not control. <br>
-Risk: Forced redeploys, app deletion, and Docker stop/remove commands can interrupt or remove running services. <br>
-Mitigation: Require explicit confirmation and verify the Coolify context, app UUID, and container name before running destructive or force commands. <br>
-Risk: Direct Docker and Traefik fallback deployment can bypass Coolify-managed app state and expected UI visibility. <br>
-Mitigation: Use the official Coolify CLI first, reserve direct Docker fallback for blocked app creation, and verify both deployment status and HTTP response before treating deployment as complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, redeploy, update, and troubleshoot Coolify-managed applications, including private GitHub deployments, environment variable changes, deployment log review, and fallback Docker or Traefik routing when Coolify app creation is blocked.
 
-## Reference(s): <br>
-- [Coolify Reference](references/coolify-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Coolify CLI, HTTP API, curl, Docker, and Traefik commands that require user-provided hosts, tokens, UUIDs, and domains.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe infrastructure and credential examples may need review before installation or use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit examples before use; require HTTPS and a user-approved Coolify host.
+
+Risk: Tokens could be exposed if placed directly in shell commands.
+
+Mitigation: Avoid putting tokens directly in shell commands; use a safer credential handling method approved by the deployment environment.
+
+Risk: Force redeploys, environment variable changes, direct Docker replacement, or app deletion can affect running infrastructure.
+
+Mitigation: Require explicit user confirmation before taking those actions.
+
+## Reference(s):
+
+- [Coolify Reference](references/coolify-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CLI examples, Dockerfile snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Coolify CLI commands, Coolify API curl commands, Docker and Traefik fallback commands, deployment checks, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,41 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtemp, rm, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { placeImage, renderManifest, searchMarkdown } from './markdown.mjs';
+const asset = char => ({ public_id: char.repeat(32), slug: `scene-${char}`, title: `Scene ${char}`, preview: { url: `https://cdn.imagen.chat/${char}.webp` } });
+test('replacing slot 2 keeps the other placements and records history', async t => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'imagen-md-')); t.after(() => rm(dir, { recursive: true, force: true }));
+  const file = path.join(dir, 'article-images.json');
+  await placeImage(file, asset('a'), { placement: 'Introduction' });
+  await placeImage(file, asset('b'), { placement: 'Trade', caption: 'Old caption' });
+  await placeImage(file, asset('c'), { placement: 'Conclusion' });
+  const before = JSON.parse(await readFile(file));
+  const changed = await placeImage(file, asset('d'), { slot: 2, caption: 'New caption' });
+  const after = JSON.parse(await readFile(file));
+  assert.deepEqual(after.images[0], before.images[0]); assert.deepEqual(after.images[2], before.images[2]);
+  assert.equal(changed.placement, 'Trade'); assert.equal(changed.revision, 2);
+  assert.equal(changed.history[0].public_id, 'b'.repeat(32));
+  assert.match(changed.markdown, /!\[图 2：New caption\]/);
+  const markdown = await renderManifest(file);
+  assert.match(markdown, /https:\/\/cdn.imagen.chat\/d.webp/); assert.doesNotMatch(markdown, /cdn.imagen.chat\/b.webp/);
+  assert.match(markdown, /图 3/);
+  assert.equal((await placeImage(file, asset('e'))).slot, 4);
+});
+test('search produces real Markdown embeds with asset-based candidate references', () => {
+ const result = searchMarkdown({ items: [asset('a')] });
+ assert.match(result, /!\[候选 aaaaaaaa：Scene a\]\(<https:\/\/cdn.imagen.chat\/a.webp>\)/);
+ assert.doesNotMatch(result, /```/);
+ assert.match(result, /免费水印图链接/);
+ assert.match(result, /显示效果取决于/);
+ assert.match(result, /aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/);
+ assert.match(searchMarkdown({ items: [] }), /没有找到/);
+});
+test('caption cannot introduce another image or raw HTML', async t => {
+ const dir = await mkdtemp(path.join(tmpdir(), 'imagen-md-')); t.after(() => rm(dir, { recursive: true, force: true }));
+ const result = await placeImage(path.join(dir, 'images.json'), asset('a'), { caption: '[x](url)\n<script>bad</script>' });
+ assert.doesNotMatch(result.markdown, /<script>/);
+ await assert.rejects(() => placeImage(path.join(dir, 'images.json'), asset('b'), { slot: 0 }), /positive integer/);
+ await assert.rejects(() => placeImage(path.join(dir, 'images.json'), { ...asset('b'), preview: { url: 'http://evil.example/image' } }), /watermarked preview/);
+});

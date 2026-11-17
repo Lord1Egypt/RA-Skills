@@ -1,42 +1,60 @@
-## Description: <br>
-Create OpenClaw agents and connect them to messaging channels including Telegram, Discord, Slack, Feishu, WhatsApp, Signal, and Google Chat, with single and batch setup modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create new OpenClaw agents and connect them to messaging channels (Telegram, Discord, Slack, Feishu, WhatsApp, Signal, Google Chat). Supports single and batch mode. Batch mode creates all agents at once with a single config write and gateway restart to avoid connection churn.
 
-## Publisher: <br>
-[joansongjr](https://clawhub.ai/user/joansongjr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[joansongjr](https://clawhub.ai/user/joansongjr)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to create one or more OpenClaw agents, register dedicated workspaces, connect messaging channels, and verify gateway bindings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The setup scripts can make persistent changes to OpenClaw configuration and restart the gateway.
+
+Mitigation: Review the manifest and scripts before execution, run them in a controlled environment, and keep configuration backups available for rollback.
+
+Risk: Channel credentials may be supplied through manifests or configuration files.
+
+Mitigation: Use only manifests you authored and inspected, avoid placing live tokens in chat or version-controlled JSON, and rotate any secrets that may have been exposed.
+
+Risk: Batch setup can add agents to agent-to-agent permissions automatically.
+
+Mitigation: Grant cross-agent permissions only when explicitly needed and remove automatic allow-list changes from local copies if they are not required.
+
+Risk: Unsafe input handling in setup scripts can affect generated paths, identifiers, and configuration entries.
+
+Mitigation: Validate agent IDs as simple slugs and inspect generated workspace paths and config entries before restarting the gateway.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create one or more OpenClaw agents, provision dedicated workspaces, connect supported messaging channels, and verify gateway bindings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Live bot credentials may be included in chat prompts, manifests, or OpenClaw configuration. <br>
-Mitigation: Start with test or scoped credentials, keep manifests and openclaw.json out of version control, restrict file permissions, and rotate any token exposed in prompts, logs, or shared files. <br>
-Risk: Batch mode allows all created agents to interact through agent-to-agent tooling. <br>
-Mitigation: Review the generated agentToAgent allow list after setup and remove any agent pairings that are not required. <br>
-Risk: Gateway restarts and configuration writes can disrupt active messaging connections. <br>
-Mitigation: Prefer batch setup for multiple agents, keep the automatic backup made before config changes, and verify bindings and channel status after restart. <br>
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joansongjr/new-agent) <br>
+**Other Properties Related to Output:** [May guide creation of workspace files and OpenClaw gateway configuration updates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace files, update OpenClaw configuration, and restart the OpenClaw gateway when helper scripts are run.] <br>
+2.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Aggregates Chinese A-share market news from hot news, technology media, securities sites, and official channels, with include and exclude keyword filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News Market aggregates Chinese A-share market news from fixed RSS feeds and web sources, with include and exclude keyword filters.
 
-## Publisher: <br>
-[mc82465](https://clawhub.ai/user/mc82465) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mc82465](https://clawhub.ai/user/mc82465)
 
-## Use Case: <br>
-Agents use this skill to fetch, filter, and summarize current Chinese market and technology news for users who ask about A-share market developments or specific news topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts third-party Chinese news, RSSHub, finance, technology, and government sites and returns external article text and links. <br>
-Mitigation: Treat returned content and links as untrusted external content and verify important market or financial information with original sources before acting on it. <br>
-Risk: RSS feeds and website structures can change or become unavailable, which may produce incomplete or missing results. <br>
-Mitigation: Use the skill's source listing and alternate RSSHub mirrors when a feed fails, and disclose gaps when requested news cannot be retrieved. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and filter current Chinese A-share market, technology, securities, and official-channel news, then summarize titles, sources, links, and article excerpts for readers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mc82465/news-market) <br>
-- [Original adapted skill reference](https://skillsmp.com/zh/skills/countbot-ai-countbot-skills-news-skill-md) <br>
-- [RSSHub official source](https://rsshub.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON news lists with titles, sources, timestamps, summaries, and links; agents may present the results as concise Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports category selection, include and exclude keyword filters, result limits, and configurable summary length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9 (source: server release evidence) <br>
+Risk: Fetched article text and links come from third-party RSS and news sites and may be inaccurate, stale, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat retrieved content as untrusted and verify market-moving claims against authoritative sources before acting on them.
+
+Risk: Some configured feeds use HTTP or third-party mirrors, which can create content-integrity risk.
+
+Mitigation: Prefer an updated version that replaces HTTP feeds with HTTPS and clearly labels remote content sources.
+
+Risk: RSS feeds and scraped pages can fail or change format, causing incomplete results.
+
+Mitigation: Use the returned results as partial coverage and corroborate important news through primary publisher or official-channel pages.
+
+## Reference(s):
+
+- [News Market ClawHub page](https://clawhub.ai/mc82465/skills/news-market)
+- [RSSHub official instance](https://rsshub.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text news lists or JSON arrays, often summarized by the agent in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include article titles, sources, timestamps, links, summaries, and full RSS-provided text when requested.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

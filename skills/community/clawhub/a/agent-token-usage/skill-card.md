@@ -1,42 +1,55 @@
-## Description: <br>
-Summarizes daily per-agent LLM token consumption for OpenClaw multi-agent setups from local session JSONL logs and can optionally add a token-usage button to the OpenClaw Control UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Token Usage summarizes per-agent LLM token consumption for OpenClaw by reading canonical assistant message usage records from session JSONL logs and optionally installing a Control UI button for daily summaries.
 
-## Publisher: <br>
-[symbolstar](https://clawhub.ai/user/symbolstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symbolstar](https://clawhub.ai/user/symbolstar)
 
-## Use Case: <br>
-Developers and operators of OpenClaw multi-agent environments use this skill to review daily token usage by agent, including input, output, cache read, cache write, total, and estimated billable-equivalent tokens. It is also useful when they want an optional local Control UI button for the same report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional UI installer modifies the local OpenClaw Control UI bundle and, on macOS, installs a LaunchAgent that refreshes token data every five minutes. <br>
-Mitigation: Use the CLI-only path when UI integration is not needed; run apply-ui.sh only after reviewing the change, and use remove-ui.sh to restore the UI bundle and remove the background job. <br>
-Risk: Token usage reports are derived from local OpenClaw session logs and may reveal agent activity patterns if exported or shared. <br>
-Mitigation: Review generated tables or JSON before sharing and keep the Control UI data file local unless disclosure is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect daily OpenClaw agent token usage, rank agents by input, output, cache read, cache write, total, and billable-equivalent tokens, and optionally expose the same summary in the local Control UI.
 
-## Reference(s): <br>
-- [Agent Token Usage on ClawHub](https://clawhub.ai/symbolstar/skills/agent-token-usage) <br>
-- [Control UI header button screenshot](https://raw.githubusercontent.com/SymbolStar/echoCue/main/docs/agent-token-usage/header-button.png) <br>
-- [Per-agent token breakdown modal screenshot](https://raw.githubusercontent.com/SymbolStar/echoCue/main/docs/agent-token-usage/modal.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, tabular text, or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can emit a ranked table or JSON for a selected date and timezone; the optional UI writes same-origin JSON for the local Control UI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The optional UI installer patches discovered OpenClaw Control UI bundles and can add a macOS LaunchAgent that refreshes local data every five minutes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the CLI-only path when a token summary is sufficient; review apply-ui.sh before running it and use remove-ui.sh to restore patched UI assets and remove the scheduled job.
+
+Risk: The UI path publishes local agent token data into the Control UI data directory and renders agent-provided fields in a browser modal.
+
+Mitigation: Avoid the UI patch in shared or untrusted local environments until the rendered fields are escaped or rebuilt with DOM text APIs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/symbolstar/skills/agent-token-usage)
+- [Header button screenshot](https://raw.githubusercontent.com/SymbolStar/echoCue/main/docs/agent-token-usage/header-button.png)
+- [Modal screenshot](https://raw.githubusercontent.com/SymbolStar/echoCue/main/docs/agent-token-usage/modal.png)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell commands plus optional CLI text or JSON token-usage summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can return ranked text tables or JSON records for a selected date and timezone.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

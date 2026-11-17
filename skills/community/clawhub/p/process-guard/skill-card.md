@@ -1,43 +1,58 @@
-## Description: <br>
-Monitor critical processes and auto-restart on failure, with CPU and memory checks, webhook, callback, or file alerts, dead man's switch heartbeat output, and an optional HTTP status dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProcessGuard monitors critical local processes, restarts them on failure, tracks CPU and memory usage, sends alerts, writes a heartbeat file, and exposes an optional status dashboard.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and operators use this skill to add a local watchdog for critical services, including health checks, controlled restarts, status reporting, heartbeat files, and alert escalation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can restart local services using configured commands. <br>
-Mitigation: Use commandAllowlist, avoid allowAnyCommand unless the configuration is fully trusted, and run the watchdog under a least-privileged service account. <br>
-Risk: The optional dashboard can expose local process status. <br>
-Mitigation: Keep dashboard access local or protect it behind trusted network controls. <br>
-Risk: Webhook alerts send operational data to an external endpoint when configured. <br>
-Mitigation: Send webhooks only to trusted endpoints and review alert contents before enabling external delivery. <br>
+## Use Case:
 
+Developers and operations teams use ProcessGuard to supervise local services, run health checks, restart failed processes, and route alerts for manual intervention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/process-guard) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guidance for configuring local process monitoring, restart policy, alerting, heartbeat files, and the optional dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Configured restart and command health checks can execute local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use commandAllowlist, keep configuration files trusted and static, run ProcessGuard under a low-privilege service account, and avoid allowAnyCommand in production.
+
+Risk: The optional HTTP dashboard can expose operational status if reachable outside the intended host.
+
+Mitigation: Bind or expose the dashboard only on loopback, or place it behind authentication and firewall controls.
+
+Risk: Optional CPU and memory monitoring depends on pidusage.
+
+Mitigation: Pin and review pidusage before installing it in environments that enable resource monitoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/process-guard)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with JavaScript and shell code blocks, plus a JavaScript module artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local process status, JSON dashboard responses, log files, alert JSON lines, and heartbeat files when used in an agent environment.]
+
+## Skill Version(s):
+
+2.1.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

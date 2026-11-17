@@ -1,43 +1,59 @@
-## Description: <br>
-Helps developers update local code based on unresolved GitCode pull request review comments, with optional confirmed replies or resolution updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent fetch unresolved GitCode PR review comments, summarize them for user approval, apply selected local code fixes, validate the changes, and optionally reply to or resolve discussions.
 
-## Publisher: <br>
-[autoxj](https://clawhub.ai/user/autoxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autoxj](https://clawhub.ai/user/autoxj)
 
-## Use Case: <br>
-Developers use this skill to fetch unresolved GitCode PR review comments, choose which items to address, modify the local repository, validate the changes, and optionally prepare or send review-thread updates after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a GitCode access token and includes unsafe token-supply options, which could expose repository credentials if pasted into chat or passed on the command line. <br>
-Mitigation: Use a minimally scoped GitCode token through a protected environment variable or secret manager, avoid pasting tokens into chat or command arguments, and rotate the token if exposure is suspected. <br>
-Risk: Replying to or resolving PR review comments modifies remote PR discussion state. <br>
-Mitigation: Require explicit user confirmation before sending replies or changing review resolution status, and review generated reply text before submission. <br>
+## Use Case:
 
+Developers and code-review agents use this skill to turn unresolved GitCode PR line comments into user-approved local code changes. It also supports controlled follow-up actions, such as drafting replies and marking discussions resolved after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/autoxj/pr-comment-fix) <br>
-- [GitCode personal access tokens](https://gitcode.com/setting/token-classic) <br>
-- [GitCode API: reply to pull request comments](https://docs.gitcode.com/docs/apis/post-api-v-5-repos-owner-repo-pulls-number-discussions-discussions-id-comments) <br>
-- [GitCode API: update review discussion resolution state](https://docs.gitcode.com/docs/apis/put-api-v-5-repos-owner-repo-pulls-number-comments-discussions-id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown summaries and tables, code edits, JSON context files, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitCode PR URL and a GITCODE_TOKEN environment variable for API-backed actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles GitCode access tokens and PR review context that may be confidential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped GITCODE_TOKEN from the environment, avoid pasting tokens into chat or command lines, and treat generated context JSON and terminal logs as potentially confidential PR data.
+
+Risk: Applying fixes from review comments can change local source code in ways the user did not intend.
+
+Mitigation: Review the summarized comment list before approving edits, limit work to the selected comment range, and run local validation on changed files.
+
+Risk: Replying to comments or resolving discussions changes the live PR discussion.
+
+Mitigation: Only send replies or update resolve status after explicit user confirmation following local modification and validation.
+
+## Reference(s):
+
+- [GitCode Pull Request comment reply API](https://docs.gitcode.com/docs/apis/post-api-v-5-repos-owner-repo-pulls-number-discussions-discussions-id-comments)
+- [GitCode review discussion resolve API](https://docs.gitcode.com/docs/apis/put-api-v-5-repos-owner-repo-pulls-number-comments-discussions-id)
+- [GitCode personal access token settings](https://gitcode.com/setting/token-classic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, local code edits, validation results, and optional GitCode API actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetch produces JSON context containing unresolved PR review comments grouped by file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

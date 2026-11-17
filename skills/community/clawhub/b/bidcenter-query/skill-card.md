@@ -1,41 +1,51 @@
-## Description: <br>
-查询采招网（bidcenter.com.cn）招标信息，支持按地区、类型、关键词、时间范围筛选。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询采招网（bidcenter.com.cn）招标信息，支持按地区、类型、关键词、时间范围筛选
 
-## Publisher: <br>
-[wangpeng258](https://clawhub.ai/user/wangpeng258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangpeng258](https://clawhub.ai/user/wangpeng258)
 
-## Use Case: <br>
-Agents use this skill to search Bidcenter procurement and tender information by keyword, region, notice type, time range, and page controls. It is intended for users who need structured bid announcements, awards, and related procurement records from bidcenter.com.cn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords are sent to bidcenter.com.cn. <br>
-Mitigation: Avoid using confidential bid strategy, internal supplier details, or sensitive business plans as search keywords unless sharing those queries with Bidcenter is acceptable. <br>
-Risk: Bidcenter interface behavior, availability, paid-access coverage, or rate limits may affect result completeness. <br>
-Mitigation: Treat returned procurement records as search results to review, and retry later or narrow queries when results are empty, slow, or rate-limited. <br>
+## Use Case:
 
+Agents supporting Chinese procurement research use this skill to query bidcenter.com.cn tender and award records by keyword, region, notice type, time range, and pagination.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangpeng258/bidcenter-query) <br>
-- [Bidcenter search](https://search.bidcenter.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON] <br>
-**Output Format:** [Structured JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns status, listData, total, page, pageSize, and an optional message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad procurement-related prompts may activate the skill and send search keywords, region, type, time range, page, and page size to bidcenter.com.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only for intended bidcenter.com.cn tender searches and avoid confidential or sensitive search terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangpeng258/skills/bidcenter-query)
+- [bidcenter.com.cn search](https://search.bidcenter.com.cn/)
+- [bidcenter.com.cn search API endpoint](https://interface.bidcenter.com.cn/search/GetSearchProHandler.ashx)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Text]
+
+**Output Format:** [JSON object containing status, listData, total, page, pageSize, and optional message fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns bid records with titles, types, URLs, dates, locations, budget or award amounts, project stage, purchase method, and project flags when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

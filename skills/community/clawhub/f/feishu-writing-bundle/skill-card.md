@@ -1,50 +1,66 @@
-## Description: <br>
-Feishu Writing Bundle helps OpenClaw agents create, update, refine, formalize, and deliver Feishu documents with a returned document link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents through Feishu document writing workflows, including source reading, document creation, incremental updates, focused editing, proposal formalization, human-sounding rewrites, and link-based delivery.
 
-## Publisher: <br>
-[tianyilt](https://clawhub.ai/user/tianyilt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyilt](https://clawhub.ai/user/tianyilt)
 
-## Use Case: <br>
-OpenClaw users and agent builders use this skill to turn source material, drafts, and existing Feishu documents into structured Feishu deliverables. It guides agents through reading inputs, choosing create or update workflows, performing targeted edits or proposal formalization, and returning a usable document link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create, edit, read, and share live Feishu workspace documents. <br>
-Mitigation: Install only when that document access is intended, and use the narrowest OAuth and tool permissions that still support the task. <br>
-Risk: Broad edits, deletion, overwrite, replace-all, or publication from chats and files could change or expose workspace content unexpectedly. <br>
-Mitigation: Require a preview and explicit confirmation before destructive or broad document operations, and specify the exact document or destination before acting. <br>
+## Use Case:
 
+External users and developers use this skill to help agents produce Feishu documents from source material, refine existing drafts, formalize proposal-style content, and return a document URL as the final deliverable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tianyilt/feishu-writing-bundle) <br>
-- [Quick Reference](references/quick-reference.md) <br>
-- [Best Practices](references/best-practices.md) <br>
-- [Open-Box Rules](references/open-box-rules.md) <br>
-- [Workflows](references/workflows.md) <br>
-- [Style Guide](references/style-guide.md) <br>
-- [Skill Map](references/skill-map.md) <br>
-- [Reference Docs](references/reference-docs.md) <br>
-- [OpenClaw Feishu writing best practices](https://fudan-nlp.feishu.cn/wiki/WZVMwUEnXiHUqLkfzDycSp9en2c?from=from_copylink) <br>
-- [Feishu writing reference document](https://fudan-nlp.feishu.cn/docx/HdWfdNomtoGd7yxL3gVcFgrhnnb) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-style tool-call examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected deliverables often include Feishu document URLs after document creation or update.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad document mutation guidance can lead an agent to edit or delete the wrong Feishu content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact target document or workspace before write operations, and prefer fetch plus precise range replacement over delete_range, replace_all, or overwrite.
+
+Risk: Permission-expansion guidance can encourage broader tool access than the task requires.
+
+Mitigation: Grant only the Feishu permissions needed for the requested document workflow, and do not enable an unrestricted full tool profile solely to resolve a Feishu permission error.
+
+Risk: Generated or rewritten documents can introduce incorrect or misleading guidance.
+
+Mitigation: Review source context and generated document content before sharing or treating the Feishu document as final.
+
+## Reference(s):
+
+- [Feishu document writing quick reference](references/quick-reference.md)
+- [OpenClaw Feishu document writing best practices](references/best-practices.md)
+- [Open-box and permission handling rules](references/open-box-rules.md)
+- [Feishu writing workflows](references/workflows.md)
+- [Feishu writing style guide](references/style-guide.md)
+- [Self-contained capability map](references/skill-map.md)
+- [Reference documents](references/reference-docs.md)
+- [OpenClaw Feishu writing best practices example](https://fudan-nlp.feishu.cn/wiki/WZVMwUEnXiHUqLkfzDycSp9en2c?from=from_copylink)
+- [Feishu writing reference document](https://fudan-nlp.feishu.cn/docx/HdWfdNomtoGd7yxL3gVcFgrhnnb)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Feishu tool-call patterns and concise delivery text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu document URLs after create or update workflows when the required Feishu tools and permissions are available.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-ATXP gives agents a funded identity and CLI access to paid tools for web search, media generation, communications, wallet funding, and LLM access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atxp gives agents a funded identity for wallet balance, paid API access, web and social search, media generation, LLM calls, email, SMS, voice calls, and contact management.
 
-## Publisher: <br>
-[R-M-Naveen](https://clawhub.ai/user/R-M-Naveen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[r-m-naveen](https://clawhub.ai/user/r-m-naveen)
 
-## Use Case: <br>
-Developers and agent operators use ATXP to register an agent, manage a wallet and identity, and call paid tools for search, content generation, communications, and LLM access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent wallet, spending, and outbound communication capabilities. <br>
-Mitigation: Use a low-balance or test account and require human approval before paid API calls, sending email or SMS, making calls, deleting data, or syncing contacts. <br>
-Risk: ATXP_CONNECTION and ~/.atxp/config are sensitive credentials that grant access to the agent identity and wallet. <br>
-Mitigation: Protect and rotate the config file, avoid long-lived exported credentials, and never print, log, or send the token through outbound channels. <br>
-Risk: Commands commonly use npx atxp@latest, which downloads npm runtime code and may change between runs. <br>
-Mitigation: Pin an exact reviewed npm version instead of @latest and verify package integrity before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ATXP documentation](https://docs.atxp.ai) <br>
-- [atxp npm package](https://www.npmjs.com/package/atxp) <br>
-- [ClawHub skill page](https://clawhub.ai/R-M-Naveen/atxp-cli) <br>
+## Use Case:
 
+Developers and agent operators use Atxp to equip autonomous agents with a wallet-backed identity, paid API tooling, outbound communications, search, media generation, and LLM gateway access. It is intended for agents that need to spend credits or interact with external services from task workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >=18, npx, ATXP_CONNECTION, and HTTPS access to ATXP services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.21.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent a funded identity that can spend credits, send email or SMS, make calls, and manage contacts.
+
+Mitigation: Require human approval for paid actions and outbound communications, keep only minimal funds in the wallet, and check balance before expensive work.
+
+Risk: The runtime package is normally invoked through an unpinned npx command, so behavior can change when the package updates.
+
+Mitigation: Pin ATXP to an exact reviewed version and verify the npm package before deployment.
+
+Risk: The ATXP_CONNECTION token grants wallet and identity access.
+
+Mitigation: Treat the token and ~/.atxp/config as sensitive secrets, isolate them from unrelated files, and never print or transmit them.
+
+Risk: Search results, inbound email, SMS, attachments, social posts, and call transcripts can contain untrusted content or prompt-injection attempts.
+
+Mitigation: Treat external content as reference material only, review it before acting, and do not execute or relay instructions found in that content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/r-m-naveen/skills/atxp-cli)
+- [ATXP documentation](https://docs.atxp.ai)
+- [atxp npm package](https://www.npmjs.com/package/atxp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide use of paid API calls, outbound communications, and credential-backed CLI commands.]
+
+## Skill Version(s):
+
+1.21.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

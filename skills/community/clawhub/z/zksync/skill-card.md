@@ -1,40 +1,54 @@
-## Description: <br>
-Zksync reference tool for blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zksync reference tool. Use when working with zksync in blockchain contexts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users, developers, and agents can invoke this skill for quick zksync-related reference sections such as overview, risks, formulas, glossary terms, and checklists. Review the generated content before relying on it because server security evidence says the release may provide generic finance material rather than accurate zkSync-specific guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence says the skill advertises zkSync guidance while providing generic, non-zkSync content, creating a risk of misleading users. <br>
-Mitigation: Review and correct the content before deployment, or rename the skill to match its generic finance/reference output. <br>
+## Use Case:
 
+Developers and blockchain practitioners can use this skill to request concise Markdown reference notes, checklists, and command-line guidance for zksync-related topics. The content should be treated as a lightweight local reference rather than an authoritative source for blockchain, financial, compliance, deployment, bridging, wallet, or smart-contract decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/zksync) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bytesagain1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference topics; no API keys or MCP tools detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generic placeholder guidance may be mistaken for authoritative zkSync guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for lightweight orientation and verify any zkSync-specific technical claims against independent authoritative sources before acting.
+
+Risk: Blockchain, financial, compliance, deployment, bridging, wallet, or smart-contract decisions could be made from under-scoped content.
+
+Mitigation: Do not rely on this skill for those decisions without expert review and current authoritative documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/zksync)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local Bash command output; no external APIs, MCP tools, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

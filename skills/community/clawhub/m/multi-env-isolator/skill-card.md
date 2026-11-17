@@ -1,43 +1,58 @@
-## Description: <br>
-Generate isolated dev, test, and production environments for uvicorn/FastAPI Python web projects with Vue or React frontend support, including separate configs, startup scripts, data directories, Playwright integration, and setup documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate isolated dev, test, and production environments for uvicorn/FastAPI Python web projects with Vue or React frontend support, including config files, startup scripts, data directories, Playwright test integration, and setup documentation.
 
-## Publisher: <br>
-[rm-huang](https://clawhub.ai/user/rm-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rm-huang](https://clawhub.ai/user/rm-huang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scaffold isolated dev, test, and production workflows for FastAPI/uvicorn projects with optional Vue or React frontends. It is intended for projects that need separate ports, configuration files, data directories, startup scripts, and Playwright E2E test setup so parallel development and testing do not conflict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated environment files include placeholder secrets that are not suitable for production. <br>
-Mitigation: Replace every placeholder secret, especially production JWT secrets, before real production use. <br>
-Risk: The setup modifies a target project by creating local configuration, scripts, data directories, and documentation. <br>
-Mitigation: Run the skill only on the intended repository and inspect generated .env and shell scripts before execution. <br>
-Risk: Generated frontend scripts may run npm install when node_modules is missing. <br>
-Mitigation: Review frontend package files before allowing generated scripts to install dependencies. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scaffold separated dev, test, and production environments for FastAPI/uvicorn projects, including optional Vue or React frontend scripts and Playwright E2E test setup. It is suited for projects where development, QA, and production workflows need isolated ports, config, data, and startup commands.
 
-## Reference(s): <br>
-- [Configuration Options Reference](references/config-options.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rm-huang/multi-env-isolator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with generated Python, shell, environment, and Playwright configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces files in the target repository, including .env files, startup scripts, data directories, docs, and optional frontend test configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill generates executable backend, frontend, and Playwright scripts that run local commands such as uvicorn, npm, and npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted local projects, inspect generated scripts before running them, and review npm package and lock files before frontend or Playwright execution.
+
+Risk: Generated production configuration includes placeholder JWT secrets and local default settings.
+
+Mitigation: Replace generated JWT secrets with strong random values, verify production CORS origins, keep DEBUG disabled, and confirm rate limiting before production use.
+
+Risk: Command-line values are incorporated into generated project files and scripts.
+
+Mitigation: Avoid untrusted command-line values and review generated environment files, documentation, and shell scripts before committing or executing them.
+
+## Reference(s):
+
+- [Configuration Options Reference](artifact/references/config-options.md)
+- [ClawHub skill page](https://clawhub.ai/rm-huang/skills/multi-env-isolator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated Python, shell-script, environment-file, Playwright, and project documentation artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local project files and executable scripts for backend, frontend, and test workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

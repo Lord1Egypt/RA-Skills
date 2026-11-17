@@ -1,35 +1,100 @@
 #!/usr/bin/env python3
 """
 Stage 2: Inject verified metadata into manifest.
-
-Usage:
-  1. Edit VERIFIED_DATA dict below (key=filename, value={title,year,venue})
-  2. Run: python apply_verified.py "<folder>"
-  3. Review preview, then execute with execute.py --execute
 """
 import os, re, json
 
 MANIFEST_IN  = os.path.join(os.path.dirname(__file__), 'manifest.json')
 MANIFEST_OUT = os.path.join(os.path.dirname(__file__), 'manifest_verified.json')
 
-# ============================================================
-# Verified data — fill this in after web search verification
-# Format: { 'original_filename.pdf': { 'title':..., 'year':..., 'venue':..., 'confirmed': True/False } }
-# Set 'confirmed': False or omit to skip the file
-# ============================================================
 VERIFIED_DATA = {
-    # Example:
-    # 'paper.pdf': {
-    #     'title': 'Correct Paper Title',
-    #     'year': '2023',
-    #     'venue': 'NeurIPS',
-    #     'confirmed': True
-    # },
+    # === 文本鉴伪文件夹 ===
+    "2023ConDA- Contrastive Domain Adaptation for AI-generated Text Detection.pdf": {
+        "title": "ConDA: Contrastive Domain Adaptation for AI-Generated Text Detection",
+        "year": "2023", "venue": "EMNLP", "confirmed": True
+    },
+    "2023Fighting Fire with Fire- Can ChatGPT Detect AI-generated Text.pdf": {
+        "title": "Fighting Fire with Fire: Can ChatGPT Detect AI-Generated Text?",
+        "year": "2023", "venue": "arXiv", "confirmed": True
+    },
+    "2023Ghostbuster- Detecting Text Ghostwritten by Large Language Models.pdf": {
+        "title": "Ghostbuster: Detecting Text Ghostwritten by Large Language Models",
+        "year": "2023", "venue": "EMNLP", "confirmed": True
+    },
+    "2023LLMDet- AThird Party Large Language Models Generated Text Detection Tool.pdf": {
+        "title": "LLMDet: A Third Party Large Language Models Generated Text Detection Tool",
+        "year": "2023", "venue": "arXiv", "confirmed": True
+    },
+    "2023SeqXGPT- Sentence-Level AI-Generated Text Detection.pdf": {
+        "title": "SeqXGPT: Sentence-Level AI-Generated Text Detection",
+        "year": "2023", "venue": "EMNLP", "confirmed": True
+    },
+    "2023Token Prediction as Implicit Classification to Identify LLM-Generated Text.pdf": {
+        "title": "Token Prediction as Implicit Classification to Identify LLM-Generated Text",
+        "year": "2023", "venue": "EMNLP", "confirmed": True
+    },
+    "2024A Survey on LLM-Generated Text Detection- Necessity Methods and Future Directions.pdf": {
+        "title": "A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions",
+        "year": "2024", "venue": "arXiv", "confirmed": True
+    },
+    "2024Detecting AI-generated Text via Multi-Level Contrastive Learning.pdf": {
+        "title": "DeTeCtive: Detecting AI-Generated Text via Multi-Level Contrastive Learning",
+        "year": "2024", "venue": "NeurIPS", "confirmed": True
+    },
+    "2025Iron Sharpens Iron- Defending Against Attacks in Machine-Generated Text Detection with Adversarial Training.pdf": {
+        "title": "Iron Sharpens Iron: Defending Against Attacks in Machine-Generated Text Detection with Adversarial Training",
+        "year": "2025", "venue": "ICLR", "confirmed": True
+    },
+    "OUTFOX-LLM-Generated Essay Detection Through In-Context Learning with Adversarially Generated Examples.pdf": {
+        "title": "OUTFOX: LLM-Generated Essay Detection Through In-Context Learning with Adversarially Generated Examples",
+        "year": "2024", "venue": "AAAI", "confirmed": True
+    },
 }
-
-
-def normalize_title(t):
-    return re.sub(r'[^a-z0-9]', '', t.lower())
+try:
+    from VERIFIED_DATA import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_FSP import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_MAIN import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_OTHER import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_GAMETHEORY import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_GAMETHEORY_SUB import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_GAMUT import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_TMP import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
+try:
+    from VERIFIED_DATA_LLM import VERIFIED_DATA as EXTRA_VERIFIED
+    VERIFIED_DATA.update(EXTRA_VERIFIED)
+except ImportError:
+    pass
 
 
 def run(folder):
@@ -64,7 +129,7 @@ def run(folder):
     with open(MANIFEST_OUT, 'w', encoding='utf-8') as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
-    print(f'\n[OK] Manifest saved → {MANIFEST_OUT}')
+    print(f'[OK] Manifest saved -> {MANIFEST_OUT}')
     print(f'     {ready_count} files ready to rename')
     print(f'     {skip_count} files require manual review / skipped')
 
@@ -92,11 +157,11 @@ def run(folder):
             title_str += '.pdf'
 
             dup = ' [DUPLICATE]' if m['is_duplicate'] else ''
-            print(f'  ✅ {m["filename"]}')
+            print(f'  [OK] {m["filename"]}')
             print(f'      -> {title_str}{dup}')
             print()
         else:
-            print(f'  ⚠️  {m["filename"]} -> SKIPPED ({m["status"]})')
+            print(f'  [SKIP] {m["filename"]} -> {m["status"]} | title="{m["title"]}"')
             print()
 
     print(f'\nTo execute: python execute.py "{folder}" --execute')

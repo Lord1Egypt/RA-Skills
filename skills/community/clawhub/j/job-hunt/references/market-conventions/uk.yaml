@@ -1,0 +1,261 @@
+# Market conventions — United Kingdom (uk)
+#
+# Built 2026-08-09 from docs/superpowers/research/2026-08-09/
+# markets.json + review-us_uk.md. The research key was us_uk; this table is the
+# UK half of it, and the at-will/notice-period entry was split in two so each
+# market carries only its own sourced half. Every `published` URL in that research
+# was fetched and every "Verbatim:" string grepped on 2026-08-09.
+#
+# NEXT REVIEW — from review-us_uk.md's "Important and missing", verbatim. Do not
+# write these into conventions from this comment; a person must check the source
+# first. Item one names a protected trait, so a person has to decide whether it may
+# ship at all.
+#   1. **UK Civil Service Nationality Rules — the biggest gap.** The entry sends a job-seeker deep into Civil Service application mechanics (convention #9, plus `application_artifacts` and `interview_shape`) and never mentions that there is a nationality eligibility gate in front of all of it. Verified: gov.uk, *"Civil Service Nationality Rules"*, `https://www.gov.uk/government/publications/nationality-rules`, publisher Civil Service, last updated 8 August 2023, retrieved 2026-08-09 — *"You can apply for any job in the Civil Service as long as you are a UK national or have dual nationality with one part being British"*; most posts are also open to Commonwealth citizens and EEA nationals; *"The remainder, which require special allegiance to the state, are reserved for UK nationals."* Caveat for the caller: this names nationality, a protected trait, so it may collide with the table's constraints — but it is a published statutory-style eligibility gate, not a preference, and omitting it costs the reader more than naming it does.
+#
+#   3. **The two suppressed thresholds** — `at least half of their work time` (#2) and `four or more employees` (#5). Both are verified and both are currently unusable as written. If the no-digit rule genuinely forbids them in `text_*`, the text must at least tell the reader the exact place to read the number, rather than gesturing at "the figure is set in the rule".
+
+
+market: uk
+
+conventions:
+  - id: "uk-check-the-public-sponsor-register-before-applying"
+    text_en: |-
+      The UK publishes a register of organisations licensed to sponsor workers on the Worker and
+      Temporary Worker routes, and it lists the category of workers each organisation is licensed
+      for and its sponsorship rating. A UK advert that is silent about visas tells you nothing;
+      the register tells you whether the employer is set up to sponsor at all, and for what. The
+      Skilled Worker route then needs an employer approved by the Home Office, a certificate of
+      sponsorship from that employer, a job on the list of eligible occupations, and a salary floor
+      that varies with the type of work and the date of the certificate — look the floor up on
+      gov.uk rather than assuming a single figure, and note that a confirmed job offer must exist
+      before the visa application is made. Consult the register before you spend effort on an application.
+    text_zh: |-
+      英国公开发布一份「已获许可的担保机构名录」，涵盖 Worker 与 Temporary Worker 路
+      线，并载明每家机构被许可担保的工种类别及其担保评级。英国招聘启事对签证只字不提，并不代表任何
+      信息；名录才能告诉你这家雇主是否具备担保资格、能担保什么类别。Skilled Worker 路
+      线还要求：雇主经内政部批准、由该雇主签发担保证明（CoS）、职位在合格职业清单内，并达到薪资
+      下限——而该下限随工作类型和 CoS 签发日期变动，请到 gov.uk 上查当期数值，不要假
+      定是某个固定金额；另外，必须先有确定的工作邀约，才能提交签证申请。投出申请、投入精力之前，先
+      查这份名录。
+    applies_when: "Applying to any UK employer where sponsorship may eventually be needed."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "UK Visas and Immigration"
+      title: "Register of licensed sponsors: workers"
+      url: "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers"
+      retrieved: "2026-08-09"
+      quote: "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes. … This document lists Worker and Temporary Worker sponsors. It includes information about the category of workers they're licensed to sponsor and their sponsorship rating."
+      note: "The salary floor moves and is deliberately not reproduced here; the entry sends the reader to the official page instead, which is the only version that can be current."
+      also:
+        - publisher: "GOV.UK"
+          title: "Skilled Worker visa: Overview"
+          url: "https://www.gov.uk/skilled-worker-visa"
+          retrieved: "2026-08-09"
+          quote: "To qualify for a Skilled Worker visa, you must: work for a UK employer that's been approved by the Home Office; have a 'certificate of sponsorship' (CoS) from your employer…; do a job that's on the list of eligible occupations; be paid a minimum salary - how much depends on the type of work you do and the date you got your CoS"
+        - publisher: "GOV.UK"
+          title: "Skilled Worker visa: Overview"
+          url: "https://www.gov.uk/skilled-worker-visa"
+          retrieved: "2026-08-09"
+          quote: "You must have a confirmed job offer before you apply for your visa."
+    why: |-
+      UK adverts frequently say nothing about sponsorship either way, so candidates cannot distinguish
+      an employer that has never held a licence from one that simply did not mention it. The distinguishing
+      fact is published by the government, not by the employer, and candidates do not know to look
+      for it.
+  - id: "uk-right-to-work-check-is-universal-and-you-pick-the-evidence"
+    text_en: |-
+      Every UK employer must check that a person is allowed to work for them before employing them,
+      and can face a civil penalty for employing someone without a correct check — so being asked
+      for right-to-work evidence is routine process applied to everyone the employer hires, not
+      suspicion aimed at you, and gov.uk instructs employers that the process must not be used
+      to discriminate. The check sits before the first day, not after it, so have your evidence
+      ready by offer stage. Where an online check is used the candidate generates a share code
+      themselves, but if you are not a British or Irish citizen the choice of evidence is yours:
+      gov.uk states plainly that an employer cannot reject your application because you gave them
+      an eligible immigration document instead of a share code.
+    text_zh: |-
+      英国的每一位雇主在正式雇用某人之前，都必须核查此人是否被允许为其工作；未做正确核查即雇用无权
+      工作者，雇主可能面临民事罚款。因此被要求提供工作权利证明，是雇主对所有录用者一视同仁执行的常
+      规流程，并非针对你的怀疑；gov.uk 也明确要求雇主不得借此实施歧视。这项核查发生在入职第
+      一天之前，而不是之后，所以在收到 offer 阶段就应把材料准备好。若采用线上核查，分享码（
+      share code）由候选人自己生成；但若你不是英国或爱尔兰公民，选择用哪种证明是你的权利
+      ：gov.uk 明确写明，雇主不能因为你提供的是合格的移民证件而非分享码，就拒绝你的申请。
+    applies_when: "Any UK hiring process, from offer stage through to the day before you start."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    protected_trait_note: "The fact IS a citizenship-based evidence rule: the free choice between a share code and an eligible immigration document is stated on the page under the heading for people who are not British or Irish citizens, and British and Irish citizens have a different route. Naming the trait is what makes the entry correct; deleting the scoping would make it wrong."
+    source:
+      kind: "published"
+      publisher: "GOV.UK"
+      title: "Checking a job applicant's right to work"
+      url: "https://www.gov.uk/check-job-applicant-right-to-work"
+      retrieved: "2026-08-09"
+      quote: "You must check that a job applicant is allowed to work for you in the UK before you employ them. … You could face a civil penalty if you employ an illegal worker and have not carried out a correct right to work check. … You must not discriminate against anyone because of where they're from."
+      also:
+        - publisher: "GOV.UK"
+          title: "Prove your right to work to an employer: Overview, under the heading \"If you're not a British or Irish citizen\""
+          url: "https://www.gov.uk/prove-right-to-work"
+          retrieved: "2026-08-09"
+          quote: "You can choose which option you use. Your employer cannot reject your application because you gave them an eligible immigration document instead of a share code, for example."
+    why: |-
+      The advert says nothing about it, so the request arrives unannounced and reads as targeted
+      scrutiny. Candidates also assume the employer dictates the format of proof and comply with
+      whatever is demanded, not knowing the choice is theirs and the timing is fixed by law.
+  - id: "uk-civil-service-scores-named-behaviours-not-cover-letters"
+    text_en: |-
+      UK Civil Service recruitment runs on Success Profiles, assembled from behaviours, strengths,
+      ability, experience and technical elements. Not all elements apply to a given role: where
+      behaviours are assessed, the recruiting manager picks a selection of behaviours best suited
+      to the job, the behaviours are defined separately for each grade level, and the job description
+      names which ones will be assessed and by which method. The application typically asks for
+      written examples against those named behaviours, and gov.uk itself recommends the STAR method
+      so each example sets the scene, shows what you did and how, and gives the outcome. A general
+      letter about why the organisation appeals to you does not evidence any named behaviour, and
+      each one is assessed on its own evidence. Adjustments to the assessment process can be requested
+      from the recruiting manager.
+    text_zh: |-
+      英国公务员招聘采用 Success Profiles 框架，由 behaviours（行为）
+      、strengths（优势）、ability（能力潜质）、experience（经验）、
+      technical（专业技术）几个要素组合而成。并非每个职位都用到全部要素：在考核行为要素的职位上，招聘经理会挑选最
+      契合该职位的若干项行为，且各项行为在不同职级上有各自的定义，职位说明书会写明本次考核哪几项、
+      以何种方式考核。申请环节通常要求针对这些被点名的行为逐项撰写实例，gov.uk 本身就推荐使
+      用 STAR 方法——交代背景、说明你做了什么和怎么做的、给出结果。泛泛地写一封「为什么想加
+      入贵机构」的求职信，无法为任何一项被点名的行为提供证据，而每一项都按其自身证据单独考核。如需
+      对考核流程作出调整，可以向招聘经理提出。
+    applies_when: "Applying to any UK Civil Service role, or to a UK public body that states it recruits using Success Profiles."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "Cabinet Office"
+      title: "Success Profiles"
+      url: "https://www.gov.uk/government/publications/success-profiles"
+      retrieved: "2026-08-09"
+      quote: "A Success Profile is made up of 5 elements: behaviours…; strengths…; ability…; experience…; technical… Not all of the elements are relevant to every role."
+      note: "Behaviours are not guaranteed to be assessed at all — the page conditions the selection on a recruiting manager wishing to assess them, which is why the text is scoped that way."
+      also:
+        - publisher: "Cabinet Office"
+          title: "Success Profiles: Civil Service behaviours"
+          url: "https://www.gov.uk/government/publications/success-profiles/success-profiles-civil-service-behaviours"
+          retrieved: "2026-08-09"
+          quote: "Read the job description carefully to see which behaviours are required for the job you are applying for."
+        - publisher: "Cabinet Office"
+          title: "Success Profiles: Civil Service behaviours"
+          url: "https://www.gov.uk/government/publications/success-profiles/success-profiles-civil-service-behaviours"
+          retrieved: "2026-08-09"
+          quote: "The job description will outline the elements required for the role and the selection method(s) that will be used."
+        - publisher: "Cabinet Office"
+          title: "Success Profiles: Civil Service behaviours, on selection and on the STAR method"
+          url: "https://www.gov.uk/government/publications/success-profiles/success-profiles-civil-service-behaviours"
+          retrieved: "2026-08-09"
+          quote: "Civil Service Behaviours are specific to the grade level of the job role. … recruiting managers will choose a selection of behaviours which are best suited to the specific job role. You will not be asked to demonstrate all Civil Service Behaviours for one role. … In your own examples, consider using the STAR method which allows you to set the scene, show what and how you did and the overall outcome."
+    why: |-
+      The advert names the behaviours but does not explain that they are separately scored, grade-calibrated
+      units of assessment rather than themes to weave into prose. Candidates from markets where
+      a cover letter is a persuasive essay write one, and score zero on criteria they never addressed
+      head-on.
+  - id: "uk-nhs-shortlisting-is-assessed-against-the-person-specification"
+    text_en: |-
+      NHS shortlisting is assessed against the person specification attached to the advert, which
+      splits requirements into essential criteria — the qualifications, experience, skills or knowledge
+      you must have to apply — and desirable criteria, which are used to separate applicants when
+      many meet the essentials. NHS Jobs guidance is explicit that the applicants who closely match
+      the person specification are the ones shortlisted, that you should never submit the same
+      application twice but adapt it to the specification of that particular post, and that the
+      supporting information is where you demonstrate how you meet it. The personal information
+      and monitoring sections are not used for shortlisting. Where the employer uses the essential-and-desirable-criteria
+      section, evidence goes in criterion by criterion in separate boxes, and the official guide
+      instructs applicants not to include personal information that could identify them, such as
+      their name or contact details, in those boxes — so a signed narrative letter is the wrong
+      artifact there. Write to the specification, in its order, criterion by criterion.
+    text_zh: |-
+      英国 NHS 的初筛是对照招聘启事所附的「人员规格」（person specification）
+      逐条对照评估的：该规格把要求分为 essential（必备）criteria——即申请所必须
+      具备的学历、经验、技能或知识——以及 desirable（加分）criteria，后者用于在
+      大量申请者都满足必备条件时进行区分。NHS Jobs 的官方指引明确写着：与人员规格高度吻合
+      的申请者才会被列入面试短名单；绝不要重复提交同一份申请，而要针对该职位的人员规格逐次调整；
+      supporting information（佐证信息）栏就是你证明自己符合各条要求的地方。
+      personal information 与 monitoring information 两
+      栏不用于初筛。若雇主启用了「必备与加分条件」栏，佐证是按条目分框填写的，官方指南要求申请人不
+      要在这些框内填入可用于识别本人身份的个人信息，例如姓名或联系方式——因此在那里放一封署名的叙
+      述式求职信是错误的形式。请按人员规格的顺序，逐条对应地撰写。
+    applies_when: "Applying to any NHS role through NHS Jobs, in any profession."
+    added: "2026-08-09"
+    review_by: "2027-06-05"
+    source:
+      kind: "published"
+      publisher: "NHS Jobs"
+      title: "Making successful applications"
+      url: "https://www.jobs.nhs.uk/candidate/search/advice/making-successful-applications"
+      retrieved: "2026-09-05"
+      quote: "All employers will be judging how well your application matches the 'person specification' for the position you are applying for. The applicants who closely match the person specification will be the ones that are shortlisted for interview."
+      note: "The supporting-information section and the essential-and-desirable criteria section are different parts of the form. The do-not-identify-yourself instruction belongs to the criteria boxes; the supporting-information page carries no anonymity instruction and describes that box as the applicant's chance to sell themselves."
+      also:
+        - publisher: "NHS Jobs"
+          title: "Making successful applications"
+          url: "https://www.jobs.nhs.uk/candidate/search/advice/making-successful-applications"
+          retrieved: "2026-09-05"
+          quote: "Never submit the same application form twice. Always adapt it to show how you meet the person specification of the particular post you are applying for. … The 'personal information' and 'monitoring information' sections will not be used for shortlisting, but will be kept for administrative purposes only."
+        - publisher: "NHS Business Services Authority"
+          title: "Applicant - What is the difference between essential and desirable criteria?"
+          url: "https://faq.nhsbsa.nhs.uk/knowledgebase/article/KA-25715/en-us"
+          retrieved: "2026-09-05"
+          quote: "Essential criteria are the qualifications, experience, skills or knowledge you must have to apply for a role. … Desirable criteria are skills and experience that an employer would prefer. This may be used to decide who to invite to interview if they have a high volume of applications."
+        - publisher: "NHS Business Services Authority"
+          title: "How to apply for a job in NHS Jobs user guide – Add your supporting evidence"
+          url: "https://www.nhsbsa.nhs.uk/sites/default/files/2022-05/How%20to%20apply%20for%20a%20job%20in%20NHS%20Jobs%20-%20Add%20your%20supporting%20evidence.pdf"
+          retrieved: "2026-08-09"
+          quote: "Important: Do not include personal information that could be used to identify you such as your name or contact details."
+    why: |-
+      The advert publishes the person specification but does not say it is the scoring sheet, nor
+      that the supporting section is graded criterion by criterion, nor that those boxes are meant
+      to be anonymous. Candidates treat the specification as a wish list and write a flowing personal
+      letter, which cannot be scored against criteria it never names.
+  - id: "uk-notice-period-sets-your-start-date"
+    text_en: |-
+      The UK works the other way: gov.uk tells employees they must give at least a week's notice
+      once they have been in the job beyond a short qualifying period, and warns that you may be
+      in breach of your contract if you do not give enough notice or give it verbally when it should
+      be in writing — so check your own contract, which may set the notice you owe. A UK start
+      date is therefore negotiated around a notice period as a matter of course.
+    text_zh: |-
+      英国方向相反：gov.uk 告诉雇员，在职超过一段较短的资格期后，至少须提前一周通知，并提醒
+      通知不足、或本应书面却口头通知，都可能构成违约——所以要查自己的合同，看它约定了多少通知期。
+      因此英国的到岗日期天然是围绕通知期谈的。
+    applies_when: "Any UK application, from the moment you are asked for your availability through to agreeing a start date."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "GOV.UK"
+      title: "Handing in your notice: Giving notice"
+      url: "https://www.gov.uk/handing-in-your-notice/giving-notice"
+      retrieved: "2026-08-09"
+      quote: "You must give at least a week's notice if you've been in your job for more than a month. … You may be in breach of your contract if you do not give enough notice or give notice verbally when it should be given in writing."
+      note: "The cited page does not say a contract can require longer notice, so the entry does not say it either; what the page does say is to check your own contract."
+    why: |-
+      Both defaults are so ordinary inside their own market that no one writes them down. A candidate
+      carrying an at-will market's assumptions into a UK process names a start date that ignores
+      the notice they owe, and giving too little notice risks breach of contract.
+
+# The lint reports WARN_UNVERIFIED_OVERLAP on both notes below. Both were read against
+# their entries side by side before this file was committed. The qualifying period the
+# notice entry names is the notice one, which is sourced; the unfair-dismissal qualifying
+# period the first note disclaims appears nowhere. And the second note disclaims
+# private-sector practice, which neither public-sector entry generalises to — each is
+# scoped in its own applies_when. The shared words are subject matter, not drift.
+unverified:
+  - note: "Current UK unfair-dismissal qualifying period and any changes from recent employment legislation. I deliberately did not touch this. The relevant law has been in flux and I did not fetch a current authoritative statement, so nothing in this entry depends on it. The notice-period claim in the at-will entry rests only on gov.uk's \"Handing in your notice: Giving notice\" page, which I did fetch."
+    disclaims: [uk-notice-period-sets-your-start-date]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [notice, period, qualifying]
+  - note: "UK private-sector interview norms. Everything sourced here about UK process is public sector (Civil Service Success Profiles, NHS Jobs). I have no sourced basis for how a UK private-sector or startup process differs, and did not generalise from the public-sector material."
+    disclaims: [uk-civil-service-scores-named-behaviours-not-cover-letters, uk-nhs-shortlisting-is-assessed-against-the-person-specification]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [process, profiles, service, success]

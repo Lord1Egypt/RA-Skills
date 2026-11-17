@@ -4,7 +4,7 @@ version: 2.0.0
 description: 项目交付罗盘，按行业、阶段、项目形态和风险信号输出交付健康度、行业风险、卡点预警与救急动作。
 priority: high
 source: industry-experience-methodology
-workers: PM, Tech
+workers: [pm, tech]
 created: 2026-05-23
 tags: [delivery, project-management, risk-assessment, implementation, industry-playbook]
 ---

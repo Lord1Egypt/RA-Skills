@@ -1,0 +1,4 @@
+interface:
+  display_name: "DeFi Payments"
+  short_description: "Plan payments, x402 requests and token streams"
+  default_prompt: "Use $galleon-defi-payments to prepare a sourced plan and verify its required permissions."

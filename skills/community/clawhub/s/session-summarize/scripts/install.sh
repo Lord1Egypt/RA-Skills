@@ -9,9 +9,14 @@ REPO_HTTPS="https://github.com/gtbwpkwjnb-alt/summarize-skill.git"
 
 # --- Platform auto-detect ---
 detect_platform() {
-    # ZCode
-    if [ -d "$HOME/.zcode/skills" ] || [ -n "$ZCODE_CLI_VERSION" ]; then
-        echo "$HOME/.zcode/skills/summarize"
+    # ZCode (默认 ~/.agents/skills/)
+    if [ -d "$HOME/.agents/skills" ] || [ -n "$ZCODE_CLI_VERSION" ]; then
+        echo "$HOME/.agents/skills/summarize"
+        return
+    fi
+    # CodeBuddy
+    if [ -d "$HOME/.codebuddy/skills" ]; then
+        echo "$HOME/.codebuddy/skills/summarize"
         return
     fi
     # Claude Code
@@ -19,19 +24,14 @@ detect_platform() {
         echo "$HOME/.claude/skills/summarize"
         return
     fi
-    # Cursor
-    if [ -d "$HOME/.cursor/extensions" ] || [ -d "$HOME/.cursor/agent-skills" ]; then
-        echo "$HOME/.cursor/agent-skills/summarize"
-        return
-    fi
     # Codex (OpenAI)
     if [ -d "$HOME/.codex/skills" ] || [ -d "$HOME/.codex" ]; then
         echo "$HOME/.codex/skills/summarize"
         return
     fi
-    # Windsurf
-    if [ -d "$HOME/.windsurf/skills" ]; then
-        echo "$HOME/.windsurf/skills/summarize"
+    # Reasonix
+    if [ -d "$HOME/.reasonix/skills" ]; then
+        echo "$HOME/.reasonix/skills/summarize"
         return
     fi
     # Fallback: generic agent-skills

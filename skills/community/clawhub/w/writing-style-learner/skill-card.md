@@ -1,40 +1,51 @@
-## Description: <br>
-Extracts writing style patterns from provided documents and saves them as reusable personal or team style guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Style Learner extracts writing patterns from supplied documents and saves reusable personal or team style guides.
 
-## Publisher: <br>
-[oldtimerzhy](https://clawhub.ai/user/oldtimerzhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oldtimerzhy](https://clawhub.ai/user/oldtimerzhy)
 
-## Use Case: <br>
-Developers, technical writers, and teams use this skill to analyze one or more documents, extract recurring writing patterns, and turn them into reusable writing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted style profiles may contain private document-derived patterns, author-identifying habits, or confidential project details if saved to memory or a shared knowledge base. <br>
-Mitigation: Use the skill only on documents the user is allowed to analyze, decide where profiles may be stored before saving, and review generated profiles before committing them to persistent or shared storage. <br>
+## Use Case:
 
+Writers, documentation teams, and developers use this skill to analyze one or more source documents and turn observed structure, tone, vocabulary, formatting, and collaboration habits into reusable writing-style profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oldtimerzhy/writing-style-learner) <br>
-- [README](artifact/README.md) <br>
-- [Style Extraction Guide](artifact/extract_style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown style profiles and reusable writing guide entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save extracted profiles to MEMORY.md or a configured shared knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Extracted writing traits may retain sensitive patterns or details from confidential documents if saved persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated profiles before saving them, keep personal MEMORY.md storage separate from shared knowledge bases, and avoid using confidential documents unless the resulting style profile may be retained or shared.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/oldtimerzhy/skills/writing-style-learner)
+- [README](README.md)
+- [Style Extraction Guide](extract_style.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown style profile or team style guide with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save extracted profiles to MEMORY.md or a configured team knowledge base when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

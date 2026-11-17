@@ -1,0 +1,30 @@
+{
+  "_comment": "reading-notes-master v2.14 · templates/quad-exact 配置示例。复制为 config.json 后按项目改路径即可；所有键均有默认值，只有 journals / book_stream 是必须的。",
+
+  "root": "/path/to/your/project",
+  "project_dir": "/path/to/your/project/quad_exact",
+  "engine_dir": "/path/to/time_exact/scripts",
+
+  "_journal_note": "顺序即轮转顺序；per_journal=10 时四刊 → 40 页。选页由 pick_pages 的 photo/mix/text 配额自动完成。",
+  "journals": [
+    {"label": "NG 2026-10", "path": "/path/to/National_Geographic_2026-10.pdf"},
+    {"label": "NG History 2026-08", "path": "/path/to/National_Geographic_History_2026-08.pdf"},
+    {"label": "NG Italia 2026-06", "path": "/path/to/National_Geographic_Italia_2026-06.pdf"},
+    {"label": "NG Traveller LA 2026", "path": "/path/to/National_Geographic_Traveller_Latin_America_Collection,_2026.pdf"}
+  ],
+  "per_journal": 10,
+
+  "_content_note": "book_stream 是书稿纯文本；两个 marker 用来剥离版权页/献词/附录，剥错会导致开头几页填成定价信息。",
+  "book_stream": "/path/to/presuasion_text_stream.txt",
+  "body_start_marker": "前言",
+  "body_end_marker": "Table of Contents",
+
+  "_asset_note": "两个 4K 池的制备见 references/visual-detail-qa.md §2；摄影短边 ≥2160、科研图长边 ≥3840。",
+  "photo4k": "/path/to/assets/photo4k",
+  "fig4k": "/path/to/assets/fig4k",
+
+  "font_cjk": "/System/Library/Fonts/STHeiti Medium.ttc",
+
+  "out_pdf": "版式全复刻_输出.pdf",
+  "out_pptx": "版式全复刻_输出.pptx"
+}

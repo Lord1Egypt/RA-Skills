@@ -1,46 +1,62 @@
-## Description: <br>
-Operating doctrine for TikTok account automation with role separation, Business Suite DM and comment workflows, conservative quotas, account-safety checks, and recovery patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run TikTok Business account operations from cron for inbound DM and comment replies, with quotas, phase gates, and stop-on-block controls.
 
-## Publisher: <br>
-[alexbloch-ia](https://clawhub.ai/user/alexbloch-ia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexbloch-ia](https://clawhub.ai/user/alexbloch-ia)
 
-## Use Case: <br>
-External operators, creators, agencies, and developers use this skill to configure and supervise scheduled TikTok brand-account activity across messages, comments, posting cadence, state tracking, and recovery workflows. It is intended for accounts where account safety and long-term reach matter more than raw automation volume. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring logged-in DM and comment automation can trigger platform enforcement, account loss, or reach throttling. <br>
-Mitigation: Use the skill only on accounts you control, review workflows before scheduling them, keep quotas conservative, and stop automation after warnings or soft blocks. <br>
-Risk: The workflow requires access to a logged-in browser profile and OS-level Accessibility or UI-control permissions. <br>
-Mitigation: Run it from an isolated browser profile in a low-privilege environment, and revoke browser or Accessibility access when automation is not actively needed. <br>
-Risk: Human-like UI control and anti-detection tactics increase platform-policy and account-safety sensitivity. <br>
-Mitigation: Avoid unsolicited outbound DMs and comments, require human review for scheduled workflows, and prefer manual intervention for appeals, account warnings, and unusual UI changes. <br>
+## Use Case:
 
+Operators and developers use this skill to schedule controlled TikTok Business account reply workflows for one account they own. It supports inbound DM and comment handling, local recaps, quota checks, stop conditions, and configuration guidance for browser-based operation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexbloch-ia/tiktok-account-operations) <br>
-- [Publisher profile](https://clawhub.ai/user/alexbloch-ia) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [TikTok Business Suite Messages](https://www.tiktok.com/business-suite/messages) <br>
-- [TikTok Business Suite Comments](https://www.tiktok.com/business-suite/comments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes account-specific placeholders, schedules, quotas, state files, and recovery procedures; workflows should be reviewed before enabling automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires terminal Accessibility control and a logged-in TikTok browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege browser or user session, grant access deliberately, and revoke it when account operations are not running.
+
+Risk: Optional webhook alerts can send account handles, counts, and lead usernames outside the local machine.
+
+Mitigation: Leave the webhook unset by default, and only enable it for channels limited to authorized operators.
+
+Risk: TikTok challenges, account warnings, or rate limits indicate that the platform has applied a control.
+
+Mitigation: Stop the run, avoid retries or workarounds, alert a human operator, and resume only after manual review.
+
+Risk: Local operation logs include usernames, timestamps, and account activity summaries.
+
+Mitigation: Keep logs in the configured workspace, avoid storing DM bodies or personal details, monitor local logs, and prune identifier-bearing logs on the documented retention schedule.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexbloch-ia/skills/tiktok-account-operations)
+- [ClawHub metadata homepage](https://clawhub.ai/skills/tiktok-account-operations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local recap formats, operational checklists, quota guidance, and stop-condition handling instructions.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

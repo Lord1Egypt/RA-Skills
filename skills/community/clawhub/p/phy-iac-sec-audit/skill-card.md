@@ -1,41 +1,55 @@
-## Description: <br>
-Infrastructure as Code security auditor for Terraform (.tf), CloudFormation (YAML/JSON), and Pulumi (TypeScript/Python) that detects high-impact cloud misconfigurations and supports CI fail-gating without external scanner dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infrastructure as Code security auditor for Terraform (.tf), CloudFormation (YAML/JSON), and Pulumi (TypeScript/Python). Detects 12 high-impact cloud misconfigurations including public S3 buckets, open SSH/RDP security groups, unencrypted storage, wildcard IAM policies, hardcoded credentials, missing deletion protection, public RDS, and unrestricted Lambda execution roles.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, DevOps engineers, and security reviewers use this skill to scan Terraform, CloudFormation, and Pulumi infrastructure files for common AWS misconfigurations before merge or deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill is a lightweight local Terraform-oriented checker and may overstate coverage for CloudFormation, Pulumi, and Lambda trust-policy assurance. <br>
-Mitigation: Use it as one local signal, not as a comprehensive IaC security gate, and pair clean results with established IaC security scanners and human review for production changes. <br>
-Risk: Scan output may include secret-like snippets from infrastructure files. <br>
-Mitigation: Keep reports private, avoid posting findings in public logs, and rotate any exposed credentials found during review. <br>
+## Use Case:
 
+Developers, DevOps engineers, and security reviewers use this skill to scan Terraform, CloudFormation, and Pulumi infrastructure code for common cloud misconfigurations and to produce CI-friendly findings with remediation guidance.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-iac-sec-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and security findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local static-analysis guidance and CI usage instructions; no external API calls are required by the documented script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact metadata) <br>
+Risk: Detected credential values may be printed to terminal output or CI logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scanner only where logs are access-controlled, avoid scanning repositories with real secrets unless output is controlled, and redact findings before sharing logs.
+
+Risk: CloudFormation, Pulumi, and Lambda role coverage is limited and may miss relevant issues.
+
+Mitigation: Treat results as triage guidance and pair them with manual review or dedicated IaC security tooling before relying on the skill as a release gate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-iac-sec-audit)
+- [Publisher Profile](https://clawhub.ai/user/phy041)
+- [Homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CI snippets, and finding summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity-filtered IaC security findings and remediation recommendations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

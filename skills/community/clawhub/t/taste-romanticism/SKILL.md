@@ -2,6 +2,9 @@
 
 > The revolt of feeling against reason — Romanticism discovered that the sublime, the irrational, and the individual were not obstacles to truth but its deepest sources.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo?skill=romanticism)
+
+
 ## Overview
 | Property | Value |
 |----------|-------|
@@ -67,3 +70,23 @@ Brands that appeal to the individual's sense of their own uniqueness and destiny
 
 ---
 *Distilled by InspiredHub Taste Engine from 1491 works in the collection, spanning Friedrich, Delacroix, Turner, Géricault, and Goya.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo?skill=romanticism)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-romanticism)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

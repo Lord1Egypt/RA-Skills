@@ -1,45 +1,58 @@
-## Description: <br>
-获取中国 A 股、美股、全球大盘以及期市的行情与深度财务面分析，支持加密货币实时行情与买卖信号，AI 生成每日 A 股精华日报，并提供多通道（微信/Telegram）股价预警推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取中国 A 股、美股、全球大盘以及期市的行情与深度财务面分析，支持加密货币实时行情与买卖信号，AI 生成每日 A 股精华日报，并提供多通道（微信/Telegram）股价预警推送。
 
-## Publisher: <br>
-[atvisions](https://clawhub.ai/user/atvisions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atvisions](https://clawhub.ai/user/atvisions)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to CoolTrade for market quotes, financial indicators, market news, AI daily reports, cryptocurrency signals, and stock price alert management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a CoolTrade API key in URL-based HTTP requests. <br>
-Mitigation: Use a limited, rotateable key where possible and avoid sharing prompts or logs that expose credential-bearing request URLs. <br>
-Risk: The skill can create or delete persistent stock price alerts and configure WeChat or Telegram notifications from chat requests. <br>
-Mitigation: Review agent actions before alert changes and avoid enabling automatic alert management unless the notification behavior is acceptable. <br>
-Risk: Market analysis, cryptocurrency signals, and trading references may be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as informational analysis, verify against trusted market sources, and do not rely on the skill as sole financial advice. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to CoolTrade market data for A-share, U.S. stock, global index, futures, cryptocurrency, daily report, and stock-alert workflows. It supports market lookups, financial analysis, informational crypto trading signals, and alert create/list/delete actions.
 
-## Reference(s): <br>
-- [CoolTrade skill page](https://clawhub.ai/atvisions/cooltrade-market-pro) <br>
-- [CoolTrade website](https://cooltrade.xyz) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Guidance, Configuration] <br>
-**Output Format:** [Markdown or text responses based on JSON data returned from CoolTrade HTTP endpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CoolTrade API key and can create, list, or delete persistent stock price alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill uses a CoolTrade API key and sends market queries, crypto interests, and alert settings to CoolTrade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust CoolTrade with that data; do not hardcode or share the API key, and rotate it if exposed.
+
+Risk: Generated trading signals and market analysis may be incomplete, delayed, or unsuitable for a user's financial situation.
+
+Mitigation: Treat signals as informational and independently review data before making trading decisions.
+
+Risk: Alert create and delete actions can change a user's notification setup.
+
+Mitigation: Review alert parameters, channels, and alert IDs before creating or deleting alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atvisions/skills/cooltrade-market-pro)
+- [CoolTrade](https://cooltrade.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Structured market data and natural-language analysis returned through agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CoolTrade API key; may create, list, or delete stock alerts; trading signals should be treated as informational.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

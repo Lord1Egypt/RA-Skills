@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Deployment Architecture"
+  short_description: "Turn a POC specification into a runnable, risk-controlled design"
+  default_prompt: "Use $fde-deployment-architect to produce a deployment architecture and risk plan for this POC PRD."

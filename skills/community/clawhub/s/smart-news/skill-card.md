@@ -1,48 +1,63 @@
-## Description: <br>
-Use when calling the Crypto News Analyzer HTTP API for async analysis jobs, semantic search, datasource management, intelligence operations, or health checks from OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart News helps agents call the Crypto News Analyzer HTTP API for async analysis jobs, semantic search, datasource management, intelligence operations, and health checks from OpenClaw.
 
-## Publisher: <br>
-[laceletho](https://clawhub.ai/user/laceletho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laceletho](https://clawhub.ai/user/laceletho)
 
-## Use Case: <br>
-Developers and operators use this skill to guide OpenClaw agents through authenticated crypto news analysis, semantic search, datasource management, intelligence topic workflows, and service health checks against the Smart News HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a bearer API key and can use it to call a crypto news service. <br>
-Mitigation: Configure only the intended API key, prefer a scoped key where available, and do not send unauthenticated requests. <br>
-Risk: Datasource deletion, topic archiving, and topic-datasource association changes can modify server-side resources. <br>
-Mitigation: Review destructive or association-changing requests before execution and confirm the target datasource or topic identifiers. <br>
-Risk: Telegram, V2EX, and REST datasource collection may ingest sensitive or deployment-specific content. <br>
-Mitigation: Confirm each datasource is appropriate for the deployment and keep datasource credentials in environment-managed secrets. <br>
+## Use Case:
 
+External developers and operators use Smart News to authenticate to the Crypto News Analyzer API, run crypto-news analysis and semantic search jobs, manage news and intelligence datasources, and maintain intelligence topics.
 
-## Reference(s): <br>
-- [Smart News ClawHub Page](https://clawhub.ai/laceletho/smart-news) <br>
-- [Laceletho Publisher Profile](https://clawhub.ai/user/laceletho) <br>
-- [Analyze Workflow Reference](references/analyze-workflow.md) <br>
-- [Semantic Search Reference](references/semantic-search.md) <br>
-- [Datasource Management Reference](references/datasource-management.md) <br>
-- [Intelligence Query Reference](references/intelligence-query.md) <br>
-- [Operations and Maintenance Reference](references/operations-and-maintenance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include authenticated HTTP request patterns, polling steps, response interpretation, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.6 (source: server release evidence) <br>
+Risk: An agent using this skill can call an authenticated external API with a bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the operator intends to grant that API access, and configure API_KEY only in the intended runtime environment.
+
+Risk: Delete, archive, prompt-edit, topic-confirm, merge, and datasource association endpoints can change stored API state.
+
+Mitigation: Require explicit operator confirmation before using state-changing or lifecycle-changing endpoints.
+
+Risk: Telegram and V2EX datasources may collect or process third-party channel or forum content.
+
+Mitigation: Configure only sources the operator is authorized to collect and process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laceletho/skills/smart-news)
+- [Crypto News Analyzer API](https://news.tradao.xyz)
+- [Analyze Workflow Reference](references/analyze-workflow.md)
+- [Semantic Search Reference](references/semantic-search.md)
+- [Datasource Management Reference](references/datasource-management.md)
+- [Intelligence Query Reference](references/intelligence-query.md)
+- [Operations and Maintenance Reference](references/operations-and-maintenance.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON and bash/curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured bearer token in API_KEY; API responses may include JSON job metadata and Markdown reports.]
+
+## Skill Version(s):
+
+0.4.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,7 +14,7 @@ estimated_tokens: 200
 # Execution Trace Capture
 
 Record execution traces so that metacognitive-self-mod
-can analyze concrete decision sequences, not just
+can analyze concrete decision sequences as well as
 aggregate metrics. Inspired by Microsoft Trace
 (AutoDiff-like backward propagation through execution
 traces), Trajectory-Informed Memory Generation (arXiv
@@ -144,7 +144,7 @@ memory.record_insight(
     skill_ref=trace["skill"],
     category="causal_hypothesis",
     insight="Failure correlated with choosing X over Y",
-    evidence=[f"trace:{trace['trace_id']}"]
+    evidence=[f"trace:{trace['trace_id']}"],
 )
 ```
 

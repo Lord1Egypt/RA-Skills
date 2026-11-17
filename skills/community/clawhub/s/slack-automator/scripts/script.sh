@@ -138,7 +138,7 @@ cmd_connect() {
         echo "Usage: slack-automator connect <webhook_url>"
         echo ""
         echo "Example:"
-        echo "  slack-automator connect https://hooks.slack.com/services/T00/B00/xxxx"
+        echo "  slack-automator connect REDACTED-SECRET"
         return 1
     fi
 

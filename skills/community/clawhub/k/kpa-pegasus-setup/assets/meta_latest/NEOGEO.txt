@@ -1,0 +1,850 @@
+collection: NEOGEO
+sort-by: 10
+shortname: neogeo
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/fbalpha2012_neogeo_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 2020bb
+file: 2020bb.zip
+assets.box_front: Imgs/2020bb.png
+description: 《2020bb》，由 SNK / Pallas 出品，Neo Geo 街机 平台。
+publisher: SNK / Pallas
+game: 3countb
+file: 3countb.zip
+assets.box_front: Imgs/3countb.png
+description: 《3countb》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: alpham2
+file: alpham2.zip
+assets.box_front: Imgs/alpham2.png
+description: 《alpham2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: androdun
+file: androdun.zip
+assets.box_front: Imgs/androdun.png
+description: 《androdun》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: aodk
+file: aodk.zip
+assets.box_front: Imgs/aodk.png
+description: 《aodk》，由 ADK / SNK 出品，Neo Geo 街机 平台。
+publisher: ADK / SNK
+game: aof
+file: aof.zip
+assets.box_front: Imgs/aof.png
+description: 《aof》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: aof2
+file: aof2.zip
+assets.box_front: Imgs/aof2.png
+description: 《aof2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: aof3
+file: aof3.zip
+assets.box_front: Imgs/aof3.png
+description: 《aof3》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: bakatono
+file: bakatono.zip
+assets.box_front: Imgs/bakatono.png
+description: 《bakatono》，由 Monolith Corp. 出品，Neo Geo 街机 平台。
+publisher: Monolith Corp.
+game: bangbead
+file: bangbead.zip
+assets.box_front: Imgs/bangbead.png
+description: 《bangbead》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: bjourney
+file: bjourney.zip
+assets.box_front: Imgs/bjourney.png
+description: 《bjourney》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: blazstar
+file: blazstar.zip
+assets.box_front: Imgs/blazstar.png
+description: 《blazstar》，由 Yumekobo 出品，Neo Geo 街机 平台。
+publisher: Yumekobo
+game: breakers
+file: breakers.zip
+assets.box_front: Imgs/breakers.png
+description: 《breakers》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: breakrev
+file: breakrev.zip
+assets.box_front: Imgs/breakrev.png
+description: 《breakrev》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: bstars
+file: bstars.zip
+assets.box_front: Imgs/bstars.png
+description: 《bstars》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: bstars2
+file: bstars2.zip
+assets.box_front: Imgs/bstars2.png
+description: 《bstars2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: burningf
+file: burningf.zip
+assets.box_front: Imgs/burningf.png
+description: 《burningf》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: crswd2bl
+file: crswd2bl.zip
+assets.box_front: Imgs/crswd2bl.png
+description: 《crswd2bl》，由 bootleg (Razoola) 出品，Neo Geo 街机 平台。
+publisher: bootleg (Razoola)
+game: crsword
+file: crsword.zip
+assets.box_front: Imgs/crsword.png
+description: 《crsword》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: ctomaday
+file: ctomaday.zip
+assets.box_front: Imgs/ctomaday.png
+description: 《ctomaday》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: cyberlip
+file: cyberlip.zip
+assets.box_front: Imgs/cyberlip.png
+description: 《cyberlip》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: diggerma
+file: diggerma.zip
+assets.box_front: Imgs/diggerma.png
+description: 《diggerma》，由 Kyle Hodgetts 出品，Neo Geo 街机 平台。
+publisher: Kyle Hodgetts
+game: doubledr
+file: doubledr.zip
+assets.box_front: Imgs/doubledr.png
+description: 《doubledr》，由 Technos Japan 出品，Neo Geo 街机 平台。
+publisher: Technos Japan
+game: eightman
+file: eightman.zip
+assets.box_front: Imgs/eightman.png
+description: 《eightman》，由 SNK / Pallas 出品，Neo Geo 街机 平台。
+publisher: SNK / Pallas
+game: fatfur5sp
+file: fatfur5sp.zip
+assets.box_front: Imgs/fatfur5sp.png
+description: 《fatfur5sp》，Neo Geo 街机 平台。
+game: fatfur6sp
+file: fatfur6sp.zip
+assets.box_front: Imgs/fatfur6sp.png
+description: 《fatfur6sp》，Neo Geo 街机 平台。
+game: fatfursp
+file: fatfursp.zip
+assets.box_front: Imgs/fatfursp.png
+description: 《fatfursp》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: fatfurspsp
+file: fatfurspsp.zip
+assets.box_front: Imgs/fatfurspsp.png
+description: 《fatfurspsp》，Neo Geo 街机 平台。
+game: fatfury1
+file: fatfury1.zip
+assets.box_front: Imgs/fatfury1.png
+description: 《fatfury1》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: fatfury2
+file: fatfury2.zip
+assets.box_front: Imgs/fatfury2.png
+description: 《fatfury2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: fatfury3
+file: fatfury3.zip
+assets.box_front: Imgs/fatfury3.png
+description: 《fatfury3》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: fbfrenzy
+file: fbfrenzy.zip
+assets.box_front: Imgs/fbfrenzy.png
+description: 《fbfrenzy》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: fightfev
+file: fightfev.zip
+assets.box_front: Imgs/fightfev.png
+description: 《fightfev》，由 Viccom 出品，Neo Geo 街机 平台。
+publisher: Viccom
+game: galaxyfg
+file: galaxyfg.zip
+assets.box_front: Imgs/galaxyfg.png
+description: 《galaxyfg》，由 Sunsoft 出品，Neo Geo 街机 平台。
+publisher: Sunsoft
+game: ganryu
+file: ganryu.zip
+assets.box_front: Imgs/ganryu.png
+description: 《ganryu》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: garou
+file: garou.zip
+assets.box_front: Imgs/garou.png
+description: 《garou》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: ghostlop
+file: ghostlop.zip
+assets.box_front: Imgs/ghostlop.png
+description: 《ghostlop》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: goalx3
+file: goalx3.zip
+assets.box_front: Imgs/goalx3.png
+description: 《goalx3》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: gowcaizr
+file: gowcaizr.zip
+assets.box_front: Imgs/gowcaizr.png
+description: 《gowcaizr》，由 Technos Japan 出品，Neo Geo 街机 平台。
+publisher: Technos Japan
+game: gpilots
+file: gpilots.zip
+assets.box_front: Imgs/gpilots.png
+description: 《gpilots》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: gururin
+file: gururin.zip
+assets.box_front: Imgs/gururin.png
+description: 《gururin》，由 Face 出品，Neo Geo 街机 平台。
+publisher: Face
+game: irrmaze
+file: irrmaze.zip
+assets.box_front: Imgs/irrmaze.png
+description: 《irrmaze》，由 SNK / Saurus 出品，Neo Geo 街机 平台。
+publisher: SNK / Saurus
+game: janshin
+file: janshin.zip
+assets.box_front: Imgs/janshin.png
+description: 《janshin》，由 Aicom 出品，Neo Geo 街机 平台。
+publisher: Aicom
+game: jockeygp
+file: jockeygp.zip
+assets.box_front: Imgs/jockeygp.png
+description: 《jockeygp》，由 Sun Amusement / BrezzaSoft 出品，Neo Geo 街机 平台。
+publisher: Sun Amusement / BrezzaSoft
+game: joyjoy
+file: joyjoy.zip
+assets.box_front: Imgs/joyjoy.png
+description: 《joyjoy》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kabukikl
+file: kabukikl.zip
+assets.box_front: Imgs/kabukikl.png
+description: 《kabukikl》，由 Hudson 出品，Neo Geo 街机 平台。
+publisher: Hudson
+game: karnovr
+file: karnovr.zip
+assets.box_front: Imgs/karnovr.png
+description: 《karnovr》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: kf10thep
+file: kf10thep.zip
+assets.box_front: Imgs/kf10thep.png
+description: 《kf10thep》，由 bootleg 出品，Neo Geo 街机 平台。
+publisher: bootleg
+game: kf2k5uni
+file: kf2k5uni.zip
+assets.box_front: Imgs/kf2k5uni.png
+description: 《kf2k5uni》，由 bootleg 出品，Neo Geo 街机 平台。
+publisher: bootleg
+game: kizuna
+file: kizuna.zip
+assets.box_front: Imgs/kizuna.png
+description: 《kizuna》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof10th
+file: kof10th.zip
+assets.box_front: Imgs/kof10th.png
+description: 《kof10th》，由 bootleg 出品，Neo Geo 街机 平台。
+publisher: bootleg
+game: kof2000
+file: kof2000.zip
+assets.box_front: Imgs/kof2000.png
+description: 《kof2000》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof2000n
+file: kof2000n.zip
+assets.box_front: Imgs/kof2000n.png
+description: 《kof2000n》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof2001
+file: kof2001.zip
+assets.box_front: Imgs/kof2001.png
+description: 《kof2001》，由 Eolith / SNK 出品，Neo Geo 街机 平台。
+publisher: Eolith / SNK
+game: kof2002
+file: kof2002.zip
+assets.box_front: Imgs/kof2002.png
+description: 《kof2002》，由 Eolith / Playmore 出品，Neo Geo 街机 平台。
+publisher: Eolith / Playmore
+game: kof2003
+file: kof2003.zip
+assets.box_front: Imgs/kof2003.png
+description: 《kof2003》，由 SNK Playmore 出品，Neo Geo 街机 平台。
+publisher: SNK Playmore
+game: kof2k4extra
+file: kof2k4extra.zip
+assets.box_front: Imgs/kof2k4extra.png
+description: 《kof2k4extra》，Neo Geo 街机 平台。
+game: kof2k4se
+file: kof2k4se.zip
+assets.box_front: Imgs/kof2k4se.png
+description: 《kof2k4se》，由 bootleg 出品，Neo Geo 街机 平台。
+publisher: bootleg
+game: kof94
+file: kof94.zip
+assets.box_front: Imgs/kof94.png
+description: 《kof94》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof95
+file: kof95.zip
+assets.box_front: Imgs/kof95.png
+description: 《kof95》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof96
+file: kof96.zip
+assets.box_front: Imgs/kof96.png
+description: 《kof96》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof97
+file: kof97.zip
+assets.box_front: Imgs/kof97.png
+description: 《kof97》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof97pls
+file: kof97pls.zip
+assets.box_front: Imgs/kof97pls.png
+description: 《kof97pls》，由 bootleg 出品，Neo Geo 街机 平台。
+publisher: bootleg
+game: kof97xt
+file: kof97xt.zip
+assets.box_front: Imgs/kof97xt.png
+description: 《kof97xt》，由 hack 出品，2007 年发行，Neo Geo 街机 平台。
+publisher: hack
+release: 2007
+game: kof98
+file: kof98.zip
+assets.box_front: Imgs/kof98.png
+description: 《kof98》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof98evo
+file: kof98evo.zip
+assets.box_front: Imgs/kof98evo.png
+description: 《kof98evo》，由 hack 出品，Neo Geo 街机 平台。
+publisher: hack
+game: kof99
+file: kof99.zip
+assets.box_front: Imgs/kof99.png
+description: 《kof99》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof99h
+file: kof99h.zip
+assets.box_front: Imgs/kof99h.png
+description: 《kof99h》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kof99p
+file: kof99p.zip
+assets.box_front: Imgs/kof99p.png
+description: 《kof99p》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kotm
+file: kotm.zip
+assets.box_front: Imgs/kotm.png
+description: 《kotm》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: kotm2
+file: kotm2.zip
+assets.box_front: Imgs/kotm2.png
+description: 《kotm2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: lastblad
+file: lastblad.zip
+assets.box_front: Imgs/lastblad.png
+description: 《lastblad》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: lastbld2
+file: lastbld2.zip
+assets.box_front: Imgs/lastbld2.png
+description: 《lastbld2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: lbowling
+file: lbowling.zip
+assets.box_front: Imgs/lbowling.png
+description: 《lbowling》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: legendos
+file: legendos.zip
+assets.box_front: Imgs/legendos.png
+description: 《legendos》，由 SNK / Wave 出品，Neo Geo 街机 平台。
+publisher: SNK / Wave
+game: lresort
+file: lresort.zip
+assets.box_front: Imgs/lresort.png
+description: 《lresort》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: magdrop2
+file: magdrop2.zip
+assets.box_front: Imgs/magdrop2.png
+description: 《magdrop2》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: magdrop3
+file: magdrop3.zip
+assets.box_front: Imgs/magdrop3.png
+description: 《magdrop3》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: maglord
+file: maglord.zip
+assets.box_front: Imgs/maglord.png
+description: 《maglord》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: mahretsu
+file: mahretsu.zip
+assets.box_front: Imgs/mahretsu.png
+description: 《mahretsu》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: marukodq
+file: marukodq.zip
+assets.box_front: Imgs/marukodq.png
+description: 《marukodq》，由 Takara 出品，Neo Geo 街机 平台。
+publisher: Takara
+game: matrim
+file: matrim.zip
+assets.box_front: Imgs/matrim.png
+description: 《matrim》，由 Noise Factory / Atlus 出品，Neo Geo 街机 平台。
+publisher: Noise Factory / Atlus
+game: miexchng
+file: miexchng.zip
+assets.box_front: Imgs/miexchng.png
+description: 《miexchng》，由 Face 出品，Neo Geo 街机 平台。
+publisher: Face
+game: minasan
+file: minasan.zip
+assets.box_front: Imgs/minasan.png
+description: 《minasan》，由 Monolith Corp. 出品，Neo Geo 街机 平台。
+publisher: Monolith Corp.
+game: mslug
+file: mslug.zip
+assets.box_front: Imgs/mslug.png
+description: 《mslug》，由 Nazca 出品，Neo Geo 街机 平台。
+publisher: Nazca
+game: mslug2
+file: mslug2.zip
+assets.box_front: Imgs/mslug2.png
+description: 《mslug2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: mslug3
+file: mslug3.zip
+assets.box_front: Imgs/mslug3.png
+description: 《mslug3》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: mslug3h
+file: mslug3h.zip
+assets.box_front: Imgs/mslug3h.png
+description: 《mslug3h》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: mslug4
+file: mslug4.zip
+assets.box_front: Imgs/mslug4.png
+description: 《mslug4》，由 Mega / Noise Factory / Playmore 出品，Neo Geo 街机 平台。
+publisher: Mega / Noise Factory / Playmore
+game: mslug5
+file: mslug5.zip
+assets.box_front: Imgs/mslug5.png
+description: 《mslug5》，由 SNK Playmore 出品，Neo Geo 街机 平台。
+publisher: SNK Playmore
+game: mslugx
+file: mslugx.zip
+assets.box_front: Imgs/mslugx.png
+description: 《mslugx》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: mutnat
+file: mutnat.zip
+assets.box_front: Imgs/mutnat.png
+description: 《mutnat》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: nam1975
+file: nam1975.zip
+assets.box_front: Imgs/nam1975.png
+description: 《nam1975》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: ncombat
+file: ncombat.zip
+assets.box_front: Imgs/ncombat.png
+description: 《ncombat》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: ncommand
+file: ncommand.zip
+assets.box_front: Imgs/ncommand.png
+description: 《ncommand》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: neobombe
+file: neobombe.zip
+assets.box_front: Imgs/neobombe.png
+description: 《neobombe》，由 Hudson 出品，Neo Geo 街机 平台。
+publisher: Hudson
+game: neocup98
+file: neocup98.zip
+assets.box_front: Imgs/neocup98.png
+description: 《neocup98》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: neodrift
+file: neodrift.zip
+assets.box_front: Imgs/neodrift.png
+description: 《neodrift》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: neomrdo
+file: neomrdo.zip
+assets.box_front: Imgs/neomrdo.png
+description: 《neomrdo》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: ninjamas
+file: ninjamas.zip
+assets.box_front: Imgs/ninjamas.png
+description: 《ninjamas》，由 ADK / SNK 出品，Neo Geo 街机 平台。
+publisher: ADK / SNK
+game: nitd
+file: nitd.zip
+assets.box_front: Imgs/nitd.png
+description: 《nitd》，由 Eleven / Gavaking 出品，Neo Geo 街机 平台。
+publisher: Eleven / Gavaking
+game: overtop
+file: overtop.zip
+assets.box_front: Imgs/overtop.png
+description: 《overtop》，由 ADK 出品，Neo Geo 街机 平台。
+publisher: ADK
+game: panicbom
+file: panicbom.zip
+assets.box_front: Imgs/panicbom.png
+description: 《panicbom》，由 Eighting / Hudson 出品，Neo Geo 街机 平台。
+publisher: Eighting / Hudson
+game: pbobbl2n
+file: pbobbl2n.zip
+assets.box_front: Imgs/pbobbl2n.png
+description: 《pbobbl2n》，由 Taito (SNK license) 出品，Neo Geo 街机 平台。
+publisher: Taito (SNK license)
+game: pbobblen
+file: pbobblen.zip
+assets.box_front: Imgs/pbobblen.png
+description: 《pbobblen》，由 Taito 出品，Neo Geo 街机 平台。
+publisher: Taito
+game: pgoal
+file: pgoal.zip
+assets.box_front: Imgs/pgoal.png
+description: 《pgoal》，由 Saurus 出品，Neo Geo 街机 平台。
+publisher: Saurus
+game: pnyaa
+file: pnyaa.zip
+assets.box_front: Imgs/pnyaa.png
+description: 《pnyaa》，由 Aiky / Taito 出品，Neo Geo 街机 平台。
+publisher: Aiky / Taito
+game: popbounc
+file: popbounc.zip
+assets.box_front: Imgs/popbounc.png
+description: 《popbounc》，由 Video System Co. 出品，Neo Geo 街机 平台。
+publisher: Video System Co.
+game: preisle2
+file: preisle2.zip
+assets.box_front: Imgs/preisle2.png
+description: 《preisle2》，由 Yumekobo / Saurus 出品，Neo Geo 街机 平台。
+publisher: Yumekobo / Saurus
+game: pspikes2
+file: pspikes2.zip
+assets.box_front: Imgs/pspikes2.png
+description: 《pspikes2》，由 Video System Co. 出品，Neo Geo 街机 平台。
+publisher: Video System Co.
+game: pulstar
+file: pulstar.zip
+assets.box_front: Imgs/pulstar.png
+description: 《pulstar》，由 Aicom 出品，Neo Geo 街机 平台。
+publisher: Aicom
+game: puzzldpr
+file: puzzldpr.zip
+assets.box_front: Imgs/puzzldpr.png
+description: 《puzzldpr》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: puzzledp
+file: puzzledp.zip
+assets.box_front: Imgs/puzzledp.png
+description: 《puzzledp》，由 Visco 出品，Neo Geo 街机 平台。
+publisher: Visco
+game: quizdai2
+file: quizdai2.zip
+assets.box_front: Imgs/quizdai2.png
+description: 《quizdai2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: quizdais
+file: quizdais.zip
+assets.box_front: Imgs/quizdais.png
+description: 《quizdais》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: quizkof
+file: quizkof.zip
+assets.box_front: Imgs/quizkof.png
+description: 《quizkof》，由 Saurus (SNK license) 出品，Neo Geo 街机 平台。
+publisher: Saurus (SNK license)
+game: ragnagrd
+file: ragnagrd.zip
+assets.box_front: Imgs/ragnagrd.png
+description: 《ragnagrd》，由 Saurus 出品，Neo Geo 街机 平台。
+publisher: Saurus
+game: rbff1
+file: rbff1.zip
+assets.box_front: Imgs/rbff1.png
+description: 《rbff1》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: rbff2
+file: rbff2.zip
+assets.box_front: Imgs/rbff2.png
+description: 《rbff2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: rbffspec
+file: rbffspec.zip
+assets.box_front: Imgs/rbffspec.png
+description: 《rbffspec》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: ridhero
+file: ridhero.zip
+assets.box_front: Imgs/ridhero.png
+description: 《ridhero》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: roboarmy
+file: roboarmy.zip
+assets.box_front: Imgs/roboarmy.png
+description: 《roboarmy》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: rotd
+file: rotd.zip
+assets.box_front: Imgs/rotd.png
+description: 《rotd》，由 Evoga / Playmore 出品，Neo Geo 街机 平台。
+publisher: Evoga / Playmore
+game: samsh5sp
+file: samsh5sp.zip
+assets.box_front: Imgs/samsh5sp.png
+description: 《samsh5sp》，由 Yuki Enterprise / SNK Playmore 出品，Neo Geo 街机 平台。
+publisher: Yuki Enterprise / SNK Playmore
+game: samsho
+file: samsho.zip
+assets.box_front: Imgs/samsho.png
+description: 《samsho》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: samsho2
+file: samsho2.zip
+assets.box_front: Imgs/samsho2.png
+description: 《samsho2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: samsho3
+file: samsho3.zip
+assets.box_front: Imgs/samsho3.png
+description: 《samsho3》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: samsho4
+file: samsho4.zip
+assets.box_front: Imgs/samsho4.png
+description: 《samsho4》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: samsho5
+file: samsho5.zip
+assets.box_front: Imgs/samsho5.png
+description: 《samsho5》，由 Yuki Enterprise / SNK Playmore 出品，Neo Geo 街机 平台。
+publisher: Yuki Enterprise / SNK Playmore
+game: samuraia
+file: samuraia.zip
+assets.box_front: Imgs/samuraia.png
+description: 《samuraia》，由 Psikyo (Banpresto license) 出品，1993 年发行，Neo Geo 街机 平台。
+publisher: Psikyo (Banpresto license)
+release: 1993
+game: savagere
+file: savagere.zip
+assets.box_front: Imgs/savagere.png
+description: 《savagere》，由 SNK 出品，1995 年发行，Neo Geo 街机 平台。
+publisher: SNK
+release: 1995
+game: sdodgeb
+file: sdodgeb.zip
+assets.box_front: Imgs/sdodgeb.png
+description: 《sdodgeb》，由 Technos Japan 出品，1996 年发行，Neo Geo 街机 平台。
+publisher: Technos Japan
+release: 1996
+game: sengoku
+file: sengoku.zip
+assets.box_front: Imgs/sengoku.png
+description: 《sengoku》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: sengoku2
+file: sengoku2.zip
+assets.box_front: Imgs/sengoku2.png
+description: 《sengoku2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: sengoku3
+file: sengoku3.zip
+assets.box_front: Imgs/sengoku3.png
+description: 《sengoku3》，由 Noise Factory / SNK 出品，Neo Geo 街机 平台。
+publisher: Noise Factory / SNK
+game: shocktr2
+file: shocktr2.zip
+assets.box_front: Imgs/shocktr2.png
+description: 《shocktr2》，由 Saurus 出品，Neo Geo 街机 平台。
+publisher: Saurus
+game: shocktro
+file: shocktro.zip
+assets.box_front: Imgs/shocktro.png
+description: 《shocktro》，由 Saurus 出品，Neo Geo 街机 平台。
+publisher: Saurus
+game: socbrawl
+file: socbrawl.zip
+assets.box_front: Imgs/socbrawl.png
+description: 《socbrawl》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: sonicwi
+file: sonicwi.zip
+assets.box_front: Imgs/sonicwi.png
+description: 《sonicwi》，由 Video System Co. 出品，1992 年发行，Neo Geo 街机 平台。
+publisher: Video System Co.
+release: 1992
+game: sonicwi2
+file: sonicwi2.zip
+assets.box_front: Imgs/sonicwi2.png
+description: 《sonicwi2》，由 Video System Co. 出品，Neo Geo 街机 平台。
+publisher: Video System Co.
+game: sonicwi3
+file: sonicwi3.zip
+assets.box_front: Imgs/sonicwi3.png
+description: 《sonicwi3》，由 Video System Co. 出品，Neo Geo 街机 平台。
+publisher: Video System Co.
+game: spinmast
+file: spinmast.zip
+assets.box_front: Imgs/spinmast.png
+description: 《spinmast》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: ssideki
+file: ssideki.zip
+assets.box_front: Imgs/ssideki.png
+description: 《ssideki》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: ssideki2
+file: ssideki2.zip
+assets.box_front: Imgs/ssideki2.png
+description: 《ssideki2》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: ssideki3
+file: ssideki3.zip
+assets.box_front: Imgs/ssideki3.png
+description: 《ssideki3》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: ssideki4
+file: ssideki4.zip
+assets.box_front: Imgs/ssideki4.png
+description: 《ssideki4》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: stakwin
+file: stakwin.zip
+assets.box_front: Imgs/stakwin.png
+description: 《stakwin》，由 Saurus 出品，Neo Geo 街机 平台。
+publisher: Saurus
+game: stakwin2
+file: stakwin2.zip
+assets.box_front: Imgs/stakwin2.png
+description: 《stakwin2》，由 Saurus 出品，Neo Geo 街机 平台。
+publisher: Saurus
+game: strhoop
+file: strhoop.zip
+assets.box_front: Imgs/strhoop.png
+description: 《strhoop》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: superspy
+file: superspy.zip
+assets.box_front: Imgs/superspy.png
+description: 《superspy》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: svc
+file: svc.zip
+assets.box_front: Imgs/svc.png
+description: 《svc》，由 Playmore / Capcom 出品，Neo Geo 街机 平台。
+publisher: Playmore / Capcom
+game: tophuntr
+file: tophuntr.zip
+assets.box_front: Imgs/tophuntr.png
+description: 《tophuntr》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: tpgolf
+file: tpgolf.zip
+assets.box_front: Imgs/tpgolf.png
+description: 《tpgolf》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK
+game: trally
+file: trally.zip
+assets.box_front: Imgs/trally.png
+description: 《trally》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: turfmast
+file: turfmast.zip
+assets.box_front: Imgs/turfmast.png
+description: 《turfmast》，由 Nazca 出品，Neo Geo 街机 平台。
+publisher: Nazca
+game: twinspri
+file: twinspri.zip
+assets.box_front: Imgs/twinspri.png
+description: 《twinspri》，由 ADK / SNK 出品，Neo Geo 街机 平台。
+publisher: ADK / SNK
+game: tws96
+file: tws96.zip
+assets.box_front: Imgs/tws96.png
+description: 《tws96》，由 Tecmo 出品，Neo Geo 街机 平台。
+publisher: Tecmo
+developer: Tecmo
+game: viewpoin
+file: viewpoin.zip
+assets.box_front: Imgs/viewpoin.png
+description: 《viewpoin》，由 Sammy / Aicom 出品，Neo Geo 街机 平台。
+publisher: Sammy / Aicom
+game: vliner
+file: vliner.zip
+assets.box_front: Imgs/vliner.png
+description: 《vliner》，由 Dyna / BrezzaSoft 出品，Neo Geo 街机 平台。
+publisher: Dyna / BrezzaSoft
+game: wakuwak7
+file: wakuwak7.zip
+assets.box_front: Imgs/wakuwak7.png
+description: 《wakuwak7》，由 Sunsoft 出品，Neo Geo 街机 平台。
+publisher: Sunsoft
+game: wh1
+file: wh1.zip
+assets.box_front: Imgs/wh1.png
+description: 《wh1》，由 Alpha Denshi Co. 出品，Neo Geo 街机 平台。
+publisher: Alpha Denshi Co.
+game: wh2
+file: wh2.zip
+assets.box_front: Imgs/wh2.png
+description: 《wh2》，由 IntraCorp 出品，1996 年发行，动作类游戏，Neo Geo 街机 平台。
+publisher: IntraCorp
+developer: IntraCorp
+release: 1996
+genre: Action
+game: wh2j
+file: wh2j.zip
+assets.box_front: Imgs/wh2j.png
+description: 《wh2j》，由 ADK / SNK 出品，Neo Geo 街机 平台。
+publisher: ADK / SNK
+game: whp
+file: whp.zip
+assets.box_front: Imgs/whp.png
+description: 《whp》，由 ADK / SNK 出品，Neo Geo 街机 平台。
+publisher: ADK / SNK
+game: wjammers
+file: wjammers.zip
+assets.box_front: Imgs/wjammers.png
+description: 《wjammers》，由 Data East Corporation 出品，Neo Geo 街机 平台。
+publisher: Data East Corporation
+game: zedblade
+file: zedblade.zip
+assets.box_front: Imgs/zedblade.png
+description: 《zedblade》，由 NMK 出品，Neo Geo 街机 平台。
+publisher: NMK
+game: zintrckb
+file: zintrckb.zip
+assets.box_front: Imgs/zintrckb.png
+description: 《zintrckb》，由 bootleg 出品，Neo Geo 街机 平台。
+publisher: bootleg
+game: zupapa
+file: zupapa.zip
+assets.box_front: Imgs/zupapa.png
+description: 《zupapa》，由 SNK 出品，Neo Geo 街机 平台。
+publisher: SNK

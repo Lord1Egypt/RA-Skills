@@ -1,39 +1,54 @@
-## Description: <br>
-A game design expert that comprehensively analyzes and designs HTML5 game proposals based on game name input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A game design expert that comprehensively analyzes and designs HTML5 game proposals based on game name input.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Game designers, developers, and agents use this skill to turn a game name into a structured HTML5 design document covering gameplay, special mechanics, visual design, interface elements, technical requirements, and detail optimizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation ideas such as online multiplayer, Firebase, or localStorage may require security and privacy review before they are built. <br>
-Mitigation: Treat the output as design guidance and review proposed networking, persistence, and data-handling features before implementation. <br>
+## Use Case:
 
+Developers, designers, and game creators use this skill to turn a game name into a structured HTML5 game design document covering gameplay, mechanics, visuals, interface elements, technical requirements, and refinements.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/game-design-expert) <br>
-- [OpenLark publisher profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown design document with fixed sections for core gameplay, special mechanics, visual design, interface elements, technical requirements, and detail optimizations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool use or code execution; output is constrained to the requested game design document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated game design proposals may include optional features such as online multiplayer, leaderboards, or localStorage that create security, privacy, or deployment considerations if implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated proposals before implementation and apply normal security and privacy review to any feature that stores data or connects to network services.
+
+Risk: Generated design guidance may be impractical or unsuitable for the target game, platform, or audience.
+
+Mitigation: Validate the proposed mechanics, technical requirements, and accessibility choices against the project constraints before building.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/game-design-expert)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown design document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Follows a fixed section structure with no extra descriptive text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

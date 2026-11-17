@@ -1,44 +1,55 @@
-## Description: <br>
-Sleep Tracker helps agents analyze sleep timing, suggest improvement steps, plan sleep schedules, optimize sleep environments, guide naps, and maintain sleep or wellness logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sleep Tracker helps agents run a local CLI for sleep and wellness logging, sleep analysis, schedule planning, environment checks, nap guidance, and improvement tips.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and agents use this skill to log sleep and wellness activity, inspect recent entries, calculate sleep duration and cycle alignment, and receive sleep hygiene guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sleep, wellness, meal, exercise, or symptom notes may contain sensitive personal information, and the sleep journal script writes journal entries to /tmp/sleep_journal.txt. <br>
-Mitigation: Use a private data directory for tracker logs, avoid entering sensitive notes in shared environments, and inspect or remove /tmp/sleep_journal.txt after use. <br>
-Risk: Documented reset behavior may not fully clear stored tracker data. <br>
-Mitigation: Manually verify and delete stored files in the configured tracker directory and temporary journal path when clearing data. <br>
-Risk: Sleep and wellness suggestions are general guidance and may not address medical conditions. <br>
-Mitigation: Treat the output as informational wellness support and seek qualified professional advice for persistent or serious sleep symptoms. <br>
+## Use Case:
 
+External users and developers can use this skill to log sleep or wellness entries, review recent history and streaks, calculate sleep schedules, analyze sleep duration, and get general sleep hygiene guidance from local shell commands.
 
-## Reference(s): <br>
-- [Sleep Tracker on ClawHub](https://clawhub.ai/bytesagain-lab/sleep-tracker) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Sleep Tracker Tips](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local text log files for sleep, wellness, command history, and journal entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata) <br>
+Risk: Sleep journal entries can contain personal sleep or health notes, and one artifact script stores journal data in a shared temporary file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after review, avoid shared machines for personal entries, and prefer storage in a private per-user directory with restrictive permissions.
+
+Risk: The security summary says the documentation does not clearly match the artifact behavior.
+
+Mitigation: Confirm which script and commands are intended before installation or execution, especially before logging or exporting personal data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/sleep-tracker)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output with optional shell redirection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include locally recorded sleep or wellness notes when the user logs or exports data.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and scripts report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

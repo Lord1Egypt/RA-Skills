@@ -1,37 +1,52 @@
-## Description: <br>
-Professional AI prompt optimization expert that analyzes and optimizes user prompts using the CRISP framework (Clarity/Role/Instructions/Structure/Precision). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional AI prompt optimization expert that analyzes and optimizes user prompts using the CRISP framework (Clarity/Role/Instructions/Structure/Precision).
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, prompt engineers, and LLM users use this skill to diagnose prompt quality issues and produce clearer, more structured prompts while preserving the original intent.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prompts submitted for optimization may contain sensitive secrets or private data.
+
+Mitigation: Remove or redact sensitive information before using the skill unless the active agent is approved to process that content.
+
+Risk: Prompt optimization may unintentionally alter user requirements or intent.
+
+Mitigation: Review the optimized prompt and change notes before use, especially where exact wording, formats, tools, or API versions matter.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, prompt engineers, and LLM application builders use this skill to diagnose raw prompts, improve structure and clarity, and produce optimized prompt versions while preserving the user's intent and constraints. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The optimized prompt could accidentally change user intent, constraints, or output format in sensitive workflows. <br>
-Mitigation: Review rewritten prompts before use and confirm that required constraints, special formats, and intended behavior are preserved. <br>
+**Output Format:** [Markdown prompt optimization report with diagnosis scores, an optimized prompt, and change notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Preserves user intent and requires at least three quantifiable improvements.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt optimization report with scores, improvement notes, and an optimized prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves original prompt intent, includes at least three quantifiable improvements, and keeps user-specified format requirements.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

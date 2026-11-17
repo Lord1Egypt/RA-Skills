@@ -1,42 +1,58 @@
-## Description: <br>
-Use image-agent-plus CLI to generate images, prioritizing image2 for high-quality text and prompt-following, with Codex/Gemini fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use image-agent-plus CLI to generate images, prioritizing image2 for high-quality text and prompt-following, with Codex/Gemini fallback.
 
-## Publisher: <br>
-[webkubor](https://clawhub.ai/user/webkubor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[webkubor](https://clawhub.ai/user/webkubor)
 
-## Use Case: <br>
-Developers and agent users use this skill to invoke image-agent-plus for prompt-based image generation, choosing image2 when OpenAI credentials are available and falling back to Codex or Gemini local runtimes when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct provider mode can require sensitive OpenAI credentials. <br>
-Mitigation: Use dedicated, appropriately scoped credentials through the user's normal shell or agent secret manager, and prefer local Codex or Gemini runtimes when direct API access is not needed. <br>
-Risk: The security scan reports a review helper that defaults to nested Codex with full filesystem sandbox bypass. <br>
-Mitigation: Install only in a trusted maintainer environment, review the helper before use, and disable full-access mode with --no-yolo or the documented environment override when possible. <br>
+## Use Case:
 
+Developers and creative teams use this skill to have an agent invoke the image-agent-plus CLI for prompt-based image generation through OpenAI/image2, Codex, or Gemini. It supports provider checks, aspect-ratio selection, output counts, file output paths, and collection of images generated in an active Codex session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/webkubor/image-agent-plus) <br>
-- [Project Homepage](https://github.com/webkubor/image-agent-plus) <br>
-- [Showcase Image](https://raw.githubusercontent.com/webkubor/image-agent-plus/main/skills/image-agent-plus/assets/ai-era-editorial-poster.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; generated image files are written by the CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports prompt, provider, filename, aspect ratio, model, and output-count options; direct image2 API mode may require OpenAI credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: frontmatter and package.json) <br>
+Risk: Direct provider API mode may read OpenAI API keys from environment variables when configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run image-agent-plus check before use and configure provider keys only through approved shell or agent secret-management mechanisms.
+
+Risk: Codex collection copies generated images from Codex's generated image folder to a user-selected output location.
+
+Mitigation: Review the selected output path and generated image before sharing, moving, or publishing the file.
+
+Risk: Nested non-interactive Codex CLI image generation can hang or fail.
+
+Mitigation: Use the active Codex image tool first, then run image-agent-plus collect-codex after Codex reports the generated image.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webkubor/skills/image-agent-plus)
+- [Project homepage](https://github.com/webkubor/image-agent-plus)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline shell commands and CLI option guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are written to the requested output path or the documented default output folder; Codex-generated images may be copied from the active Codex generated image folder.]
+
+## Skill Version(s):
+
+2.0.5 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

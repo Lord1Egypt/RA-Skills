@@ -1,48 +1,62 @@
-## Description: <br>
-Generates ecommerce/game/teaching 3D assets via Blender scripts (Blender 4.2+ including 5.x). Supports cloud Windows and local machines; reference-image guided workflow with graceful degradation when vision is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ecommerce/game/teaching 3D assets via Blender scripts (Blender 4.2+ including 5.x), with cloud Windows and local execution paths plus reference-image guided fallback behavior.
 
-## Publisher: <br>
-[yamasite](https://clawhub.ai/user/yamasite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yamasite](https://clawhub.ai/user/yamasite)
 
-## Use Case: <br>
-Developers, technical artists, and ecommerce or game teams use this skill to generate reproducible Blender asset projects from text descriptions or reference-image-assisted specifications. It produces structured specs, Blender Python scripts, run instructions, exports, preview renders, and QA guidance for 3D asset delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running local Blender Python scripts can modify files or the active Blender scene. <br>
-Mitigation: Use a fresh copied project folder, review generated scripts and specs before execution, and avoid running them against an important open Blender scene. <br>
-Risk: The package advertises Windows and cloud runner scripts, but the security evidence notes that those scripts appear to be missing. <br>
-Mitigation: Confirm or create the Windows/cloud runner scripts before using those runtimes, or use the included macOS scripts where appropriate. <br>
-Risk: Reference-image dimensions may be uncertain when no scale anchor or multimodal vision is available. <br>
-Mitigation: Require at least one confirmed anchor dimension, mark unconfirmed values as low confidence, and keep open questions in the generated spec. <br>
+## Use Case:
 
+Developers, designers, and technical content creators use this skill to generate reproducible Blender asset projects for ecommerce, game, or teaching scenarios, including specs, scripts, run instructions, exports, preview renders, and QA notes.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Ecommerce Reference-Image Guided Template](references/ecommerce-reference-guided-template.md) <br>
-- [Degradation Strategy](references/degradation-strategy.md) <br>
-- [QA Checklist](references/qa-checklist.md) <br>
-- [Presets](references/presets.md) <br>
-- [Output Template](assets/output-template.md) <br>
-- [Project Skeleton README](assets/project-skeleton/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown response with project package details, spec.json content, Blender Python scripts, run commands, expected artifacts, and QA evaluation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Blender 4.2+ including 5.x; GLB export is required, FBX and USDC are optional, and preview renders plus run logs are expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe export paths in spec.json could write generated files outside the project folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review spec.json before execution and allow only export_glb, export_fbx_optional, and export_usdc_optional values under exports/ with no absolute paths or parent-directory components.
+
+Risk: Generated Blender scripts and exports run against local project files.
+
+Mitigation: Run the project in a dedicated workspace and inspect generated files before executing Blender.
+
+Risk: Windows and cloud runner commands are described, but the evidence shows shipped macOS scripts while referenced Windows/cloud runner files are missing.
+
+Mitigation: Confirm required runner scripts exist for the intended runtime, or use the documented Blender command pattern to create equivalent Windows/cloud commands before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yamasite/skills/blender-asset-generator)
+- [Workflow](references/workflow.md)
+- [Ecommerce reference-image guided template](references/ecommerce-reference-guided-template.md)
+- [Degradation strategy](references/degradation-strategy.md)
+- [QA checklist](references/qa-checklist.md)
+- [Presets](references/presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON specs, Blender Python scripts, shell commands, file trees, QA results, and artifact expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a runnable Blender project package with GLB export required, optional FBX/USDC exports, preview renders, and a run log.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

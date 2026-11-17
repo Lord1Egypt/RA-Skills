@@ -1,40 +1,49 @@
-## Description: <br>
-Atomic node skill to read a Google Doc using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to read a Google Doc using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch the plain text contents of a specific Google Doc by document ID through the local gog CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Google Docs identified by document ID through the user's local gog CLI, which can expose sensitive document contents if used on documents the user did not intend to share with the agent. <br>
-Mitigation: Use it only for documents the user explicitly identifies and avoid sensitive documents unless agent access to that content is intended. <br>
-Risk: The skill depends on the local gog CLI configuration and Google Docs access permissions. <br>
-Mitigation: Install only when the local gog CLI setup is trusted and verify CLI authentication and document permissions before use. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve the plain text contents of a Google Doc through the gog CLI when they have a document ID and appropriate access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-docs-read-document) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text from the gog CLI, with command guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local gog CLI setup with access to the requested Google Docs document ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The command template uses an unvalidated Google Doc ID in a terminal command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when document IDs come from trusted sources or the runtime passes CLI arguments safely; prefer validating Google Doc IDs and invoking gog with structured arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-docs-read-document)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text]
+
+**Output Format:** [Plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and a Google Doc ID that the runtime is authorized to access.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

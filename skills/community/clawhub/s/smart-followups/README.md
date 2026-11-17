@@ -25,15 +25,14 @@ After every AI response, get **3 smart suggestions** for what to ask next:
 - 🧠 **Deep Dive** — Technical depth and detailed exploration
 - 🔗 **Related** — Connected topics and broader context
 
-**Telegram/Discord/Slack:** Clickable inline buttons  
-**Signal/iMessage/SMS:** Numbered text list
+The skill generates the 3 suggestions. On channels that support interactive buttons, the agent can render them as buttons; on other channels they appear as a numbered text list.
 
 ---
 
 ## ✨ Features
 
 - **🎯 Context-Aware** — Analyzes your last 1-3 exchanges
-- **🔘 Interactive Buttons** — One tap to ask (Telegram, Discord, Slack)
+- **🔘 Buttons where supported** — The agent can render the suggestions as buttons on channels that support them
 - **📝 Text Fallback** — Numbered lists for channels without buttons
 - **⚡ Fast** — ~2 second generation time
 - **🔐 Privacy-First** — Uses your existing OpenClaw auth by default
@@ -66,13 +65,13 @@ npm install
 
 ### Usage
 
-Just say **"followups"** (or "give me follow-ups", "suggestions") in any OpenClaw conversation:
+Run **`/smart-followups`** (or ask in natural language, e.g. "give me suggestions") in any OpenClaw conversation:
 
 ```
 You: What is Docker?
 Bot: Docker is a containerization platform that...
 
-You: followups
+You: /smart-followups
 
 Bot: 💡 What would you like to explore next?
 [⚡ How do I install Docker?]
@@ -80,9 +79,9 @@ Bot: 💡 What would you like to explore next?
 [🔗 Docker vs Kubernetes?]
 ```
 
-Click any button → sends that question automatically!
+On channels that support interactive buttons, tapping a button sends that question. On other channels, reply with 1, 2, or 3.
 
-> **Note:** This works as a keyword the agent recognizes, not as a registered `/slash` command. OpenClaw skills are guidance docs — the agent reads the SKILL.md and knows how to respond when you ask for follow-ups.
+> **Note:** `/smart-followups` is a registered slash command. OpenClaw 2.0 derives the command name from the skill's `name` field; there are no aliases.
 
 ---
 
@@ -109,9 +108,11 @@ The skill works out of the box with OpenClaw's native authentication. No configu
 ```json
 {
   "skills": {
-    "smart-followups": {
-      "enabled": true,
-      "autoTrigger": false
+    "entries": {
+      "smart-followups": {
+        "enabled": true,
+        "autoTrigger": false
+      }
     }
   }
 }
@@ -234,7 +235,7 @@ Yes! With `provider: "openclaw"` (default), it uses whatever model your current 
 smart-followups/
 ├── cli/
 │   └── followups-cli.js    # Standalone CLI tool
-├── handler.js              # OpenClaw command handler
+├── handler.js              # Formatting helper; not loaded by OpenClaw as a command handler
 ├── package.json
 ├── README.md               # This file
 ├── SKILL.md                # OpenClaw skill manifest

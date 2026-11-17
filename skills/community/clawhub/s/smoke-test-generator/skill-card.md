@@ -1,39 +1,56 @@
-## Description: <br>
-Generate comprehensive API smoke test suites for auth, CRUD, integrations, cached versus live endpoints, and summary reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive API smoke test suites - categorised tests for auth, CRUD, integrations, cached vs live endpoints, with summary reporting.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft and adapt API smoke-test suites for deployment validation, CI smoke checks, and pre-demo verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The example smoke test is tailored to a specific demo application rather than every API. <br>
-Mitigation: Inspect and customize endpoints, payloads, expected responses, and demo credentials before running it. <br>
-Risk: The script sends HTTP requests, including POST requests, to the configured API target. <br>
-Mitigation: Prefer local or staging targets unless you are comfortable with the requests affecting a live service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/smoke-test-generator) <br>
+## Use Case:
 
+Developers and engineers use this skill to create or adapt API smoke tests that validate authentication, CRUD, cached content, live endpoints, and integration workflows before releases, CI checks, or demos.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python code examples and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint checks, expected status assertions, and summary reporting patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The smoke-test runner can authenticate and trigger state-changing API workflows.
+
+Mitigation: Run it only against disposable local or test environments unless live mutations are intentional.
+
+Risk: The artifact includes demo credentials and product-specific requests.
+
+Mitigation: Replace demo credentials with scoped test credentials and review endpoint behavior before execution.
+
+Risk: Some live endpoint checks may create cached content, exercise integrations, or incur billable service usage.
+
+Mitigation: Require an explicit opt-in for mutating or billable tests and disable those checks by default.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/smoke-test-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable smoke-test logic that sends HTTP requests to the target API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

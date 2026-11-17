@@ -1,42 +1,55 @@
-## Description: <br>
-Analyzes one to five reference articles and rewrites source material in a similar style, producing three versions with adjustable style intensity and support for iterative refinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供1-5篇参考文章和原始素材，分析参考文章的写作风格并将素材改写为同风格的3个版本，支持强度调节和迭代优化。
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-External users and content creators use this skill to analyze sample writing style and transform draft material into platform-ready article variants while preserving the source material's core points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference articles and draft material are sent to the configured LLM provider. <br>
-Mitigation: Use only content that the provider terms allow, avoid private or regulated material unless approved, and review the configured API_BASE before running. <br>
-Risk: The skill can produce text that closely imitates a person's writing style, which may create impersonation or authorship-misrepresentation risk. <br>
-Mitigation: Use the output transparently, avoid presenting generated text as written by the referenced author, and review outputs before publication. <br>
-Risk: API credentials are required for the external LLM call. <br>
-Mitigation: Use a dedicated API key with appropriate access limits and rotate it if it is exposed. <br>
+## Use Case:
 
+External users and content creators use this skill to analyze reference articles, rewrite draft material in a similar writing style, and compare three style-strength variants for publication or further editing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antonia-sz/style-cloner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown containing a style analysis summary, three rewritten article versions, and usage guidance; the CLI can also write the Markdown result to a file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by reference articles, source material, intensity, target length, target platform, and configured LLM provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: API keys and writing samples may be sent to an unintended external LLM provider if the API base is misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a provider-specific API key, explicitly set the matching API base, and avoid custom API_BASE values unless the endpoint is trusted.
+
+Risk: Reference articles and draft content may contain confidential or sensitive material that is sent to the configured LLM provider.
+
+Mitigation: Do not provide confidential drafts or reference articles unless sharing them with the configured provider is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/antonia-sz/skills/style-cloner)
+- [Publisher Profile](https://clawhub.ai/user/antonia-sz)
+- [Default DeepSeek API Endpoint](https://api.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with a style analysis summary, three rewritten article versions, and usage suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save the generated Markdown result to a user-specified output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

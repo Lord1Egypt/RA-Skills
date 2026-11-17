@@ -1,42 +1,61 @@
-## Description: <br>
-Generate and vectorize SVG graphics via the QuiverAI API (Arrow model). Use when the user asks to create logos, icons, or illustrations as SVG, convert raster images (PNG/JPEG/WebP) to SVG, or generate vector graphics from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and vectorize SVG graphics via the QuiverAI API (Arrow model). Use when the user asks to create logos, icons, or illustrations as SVG, convert raster images (PNG/JPEG/WebP) to SVG, or generate vector graphics from text prompts.
 
-## Publisher: <br>
-[charmmm718](https://clawhub.ai/user/charmmm718) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[charmmm718](https://clawhub.ai/user/charmmm718)
 
-## Use Case: <br>
-Developers and designers use this skill to ask an agent for SVG generation or raster-to-SVG vectorization through QuiverAI. It provides setup guidance, API examples, request parameters, and response handling details for text-to-SVG and image-to-SVG workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, reference images, or raster images to QuiverAI and requires access to a QuiverAI API key. <br>
-Mitigation: Use a dedicated API key where possible, avoid confidential or regulated material unless approved by your organization, and rotate or revoke the key if exposure is suspected. <br>
-Risk: API requests consume QuiverAI credits and may fail when credits, authorization, or rate limits are exhausted. <br>
-Mitigation: Review generated requests before execution, monitor credit usage, and handle 401, 402, and 429 responses as described by the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QuiverAI Skill Page](https://clawhub.ai/charmmm718/quiverai) <br>
-- [QuiverAI Site](https://quiver.ai) <br>
-- [QuiverAI Documentation](https://docs.quiver.ai) <br>
-- [QuiverAI API Base](https://api.quiver.ai/v1) <br>
+## Use Case:
 
+Developers, designers, and external users can use this skill to generate SVG graphics from text prompts or vectorize PNG, JPEG, and WebP images through the QuiverAI Arrow model API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, TypeScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include QuiverAI API request parameters and SVG response handling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: SVG prompts, reference images, image URLs, or base64 image data are sent to QuiverAI.
+
+Mitigation: Avoid confidential images or regulated data unless QuiverAI privacy terms have been reviewed and approved for the use case.
+
+Risk: The skill requires a QuiverAI API key for authenticated API calls.
+
+Mitigation: Keep QUIVERAI_API_KEY in an environment variable or secret manager and do not paste it into prompts, source files, or shared logs.
+
+Risk: Use of the npm SDK can drift if the dependency is not pinned.
+
+Mitigation: Pin the @quiverai/sdk version when using the SDK in projects or automation.
+
+## Reference(s):
+
+- [QuiverAI site](https://quiver.ai)
+- [QuiverAI documentation](https://docs.quiver.ai)
+- [QuiverAI API base](https://api.quiver.ai/v1)
+- [Text-to-SVG endpoint](https://api.quiver.ai/v1/svgs/generations)
+- [Image-to-SVG vectorization endpoint](https://api.quiver.ai/v1/svgs/vectorizations)
+- [ClawHub skill page](https://clawhub.ai/charmmm718/skills/quiverai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance, SVG graphics]
+
+**Output Format:** [Markdown with inline bash, TypeScript, JSON, and SVG content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QUIVERAI_API_KEY; requests may consume QuiverAI credits and depend on external API availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Generate Obsidian-compatible visualization files (Excalidraw / Mermaid / Canvas). Supports text descriptions and image inputs, outputs editable diagrams in Obsidian or standard formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Obsidian-compatible visualization files (Excalidraw / Mermaid / Canvas). Supports text descriptions and image inputs, outputs editable diagrams in Obsidian or standard formats.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-Developers, engineers, and Obsidian users use this skill to turn text descriptions or supplied images into editable Mermaid, Excalidraw, or Canvas diagrams for notes, architecture documents, workflows, and knowledge maps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided screenshots or diagrams may contain sensitive information. <br>
-Mitigation: Avoid sending sensitive screenshots unless needed and review generated files before moving them into an Obsidian vault or sharing them. <br>
-Risk: Generated diagrams may misrepresent source images or text descriptions. <br>
-Mitigation: Review the generated Mermaid, Excalidraw, Canvas, or HTML output before using it as documentation. <br>
-Risk: The manual repository URL in the artifact documentation is a placeholder. <br>
-Mitigation: Prefer the ClawHub install path and the server-resolved ClawHub listing for release provenance. <br>
+## Use Case:
 
+Developers, technical writers, and Obsidian users use this skill to turn text descriptions or diagram images into editable Mermaid, Excalidraw, or Canvas files for documentation and knowledge work.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/0xcjl/obsidian-viz) <br>
-- [Mermaid format reference](references/mermaid.md) <br>
-- [Excalidraw format reference](references/excalidraw.md) <br>
-- [Canvas format reference](references/canvas.md) <br>
-- [Excalidraw](https://excalidraw.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Configuration guidance] <br>
-**Output Format:** [Markdown, Mermaid syntax, Excalidraw JSON, Obsidian Canvas JSON, or interactive HTML depending on the requested mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for the OpenClaw outputs folder and can be moved into an Obsidian vault or opened with compatible diagram tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Private screenshots, credentials, or regulated data may be transcribed into generated local outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing sensitive images or text unless the resulting files are acceptable to retain locally; review generated files before adding them to an Obsidian vault.
+
+Risk: Generated diagrams may choose an unsuitable format or misrepresent complex source diagrams.
+
+Mitigation: Review the generated Mermaid, Excalidraw, Canvas, or HTML output and split large diagrams when the source has many nodes or dense relationships.
+
+Risk: Some Obsidian outputs require compatible local tooling.
+
+Mitigation: Use Obsidian's built-in Mermaid and Canvas support where applicable, and install the Excalidraw plugin before relying on Excalidraw Markdown files.
+
+## Reference(s):
+
+- [Mermaid format reference](references/mermaid.md)
+- [Excalidraw format reference](references/excalidraw.md)
+- [Canvas format reference](references/canvas.md)
+- [Excalidraw](https://excalidraw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown plus Mermaid syntax, Excalidraw JSON, Obsidian Canvas JSON, and optional HTML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Obsidian-compatible files, with standard export formats available when requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

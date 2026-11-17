@@ -1,42 +1,55 @@
-## Description: <br>
-轻量快捷的音乐搜索工具。一条命令搜歌、拿播放链接，零依赖即开即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+轻量快捷的音乐搜索工具。一条命令搜歌、拿播放链接，零依赖即开即用。
 
-## Publisher: <br>
-[zhangalexhy](https://clawhub.ai/user/zhangalexhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangalexhy](https://clawhub.ai/user/zhangalexhy)
 
-## Use Case: <br>
-External users and agents use this skill to search for songs or artists from the command line, page through results, and fetch a playback link for a selected result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Song and artist searches are sent to third-party music API providers. <br>
-Mitigation: Avoid sensitive queries and install only when third-party API use is acceptable. <br>
-Risk: Returned playback, detail, cover, or lyric links come from external services. <br>
-Mitigation: Treat returned links as external content and review them before relying on or sharing them. <br>
+## Use Case:
 
+External users and agents use this skill to search for songs or artists from the command line and retrieve a playback link for a selected result.
 
-## Reference(s): <br>
-- [Quick Music on ClawHub](https://clawhub.ai/zhangalexhy/quick-music) <br>
-- [Search API endpoint](https://kw-api.cenguigui.cn/) <br>
-- [Playback API endpoint](https://api.xcvts.cn/api/music/migu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text CLI output with song lists, playback URLs, and JSON fallback for unresolved responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a required search keyword plus optional page, limit, and play-index arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Music search terms are sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private, identifying, confidential, or sensitive search queries when using the skill.
+
+Risk: Playback, detail, cover, or lyric links are third-party content shown in terminal output.
+
+Mitigation: Treat returned links as untrusted and review them before opening or sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangalexhy/skills/quick-music)
+- [Search API endpoint](https://kw-api.cenguigui.cn/)
+- [Playback API endpoint](https://api.xcvts.cn/api/music/migu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text with song lists and playback, detail, cover, or lyric links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are paginated with page and limit options; playback retrieval uses a selected result index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

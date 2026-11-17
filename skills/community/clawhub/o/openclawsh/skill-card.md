@@ -1,38 +1,52 @@
-## Description: <br>
-Guides agents through OpenClaw data warehouse DDL creation for DWS, DWD, DIM, ADS, and ODS tables, covering workspace selection, table naming, field definitions, partitioning, storage format, and lifecycle settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw data warehouse table creation by helping users define workspace, table naming, fields, partitions, storage format, lifecycle settings, and DDL for ODS, DWD, DWS, DIM, and ADS layers.
 
-## Publisher: <br>
-[JiangYan0722](https://clawhub.ai/user/JiangYan0722) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiangyan0722](https://clawhub.ai/user/jiangyan0722)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data engineers use this skill to draft OpenClaw data warehouse CREATE TABLE DDL with consistent naming, field definitions, partition strategy, storage format, and TTL choices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated DDL may be incorrect for a specific production workspace or data governance policy.
+
+Mitigation: Review the generated SQL, workspace, schema, partitioning, storage format, and lifecycle settings before running it.
+
+Risk: The skill is written for Chinese-language DDL workflows, which may lead to misunderstandings for users outside that context.
+
+Mitigation: Confirm table requirements and generated comments with a user who understands the target OpenClaw workflow and language context.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data engineers use this skill to draft OpenClaw data warehouse DDL with consistent table names, fields, comments, partitions, storage formats, and TTL settings before reviewing and executing SQL in the target workspace. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DDL can target the wrong workspace, table name, partitioning, TTL, or storage settings if the requested database context is incomplete. <br>
-Mitigation: Verify the target workspace, table name, partitioning, TTL, and storage settings before executing any generated SQL, especially for production databases. <br>
+**Output Format:** [Markdown with SQL code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JiangYan0722/openclawsh) <br>
+**Other Properties Related to Output:** [Chinese-language guidance; generated SQL should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft SQL and checklist-style recommendations for review before execution.] <br>
+0.1.0 (source: server release metadata and changelog)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

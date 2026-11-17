@@ -120,8 +120,18 @@ def cmd_check_screening(config_path: Path) -> int:
 
 
 def load_repo_config(config_path: Path | None = None) -> dict:
-    """读取仓库 .aws-article/config.yaml；缺失或无效返回 {}。"""
+    """读取仓库 .aws-article/config.yaml；缺失或无效返回 {}。
+
+    配置按 cwd 相对路径解析且刻意不向上遍历（见 getdraft.py `_repo_root`）。用默认
+    路径而文件不存在时，多半是跑错了目录——这里点破一次，否则后续报的是
+    「config.yaml 中 wechat_accounts 无效」，把「文件根本没找到」说成了「值不对」，
+    用户会去翻一个不存在的文件里的字段。
+    """
     p = config_path if config_path is not None else Path(".aws-article/config.yaml")
+    if config_path is None and not p.is_file():
+        print(f"[ERROR] 未在当前工作目录下找到 .aws-article/config.yaml（当前目录：{Path.cwd()}）。\n"
+              f"        请在仓库根（含 .aws-article/ 的目录）下运行本脚本。", file=sys.stderr)
+        return {}
     data = _load_yaml_config(p)
     if data is None or not isinstance(data, dict):
         return {}
@@ -232,6 +242,69 @@ def upload_content_image(token: str, image_path: str) -> str:
     if "url" not in data:
         _err(f"上传正文图片失败: {data}")
     return data["url"]
+
+
+# ── 封面裁剪框 ──────────────────────────────────────────────
+#
+# 微信只收一张封面（thumb_media_id），但可以附带两个裁剪框，分别决定
+# 2.35:1（订阅号信息流首图）和 1:1（分享卡片、公众号主页、历史列表）怎么裁。
+# 不传时微信自行居中裁切。
+#
+# 取值为相对原图的归一化坐标 `X1_Y1_X2_Y2`（0~1）。裁出的区域宽高比必须与目标
+# 比例一致，否则接口返回 53402「封面裁剪失败」。
+#
+# 设计取向：以 2.35:1 为主场景（信息流那一眼决定点不点），1:1 作降级视图。
+# 所以主图按 2.35:1 构图，1:1 只是从中截一个方块。
+
+def _crop_box(img_w: int, img_h: int, target_ratio: float) -> str:
+    """在 img_w×img_h 内居中取一块宽高比为 target_ratio 的最大区域，返回归一化 X1_Y1_X2_Y2。"""
+    if img_w <= 0 or img_h <= 0:
+        return ""
+    if img_w / img_h >= target_ratio:
+        # 高度占满，宽度收窄
+        span = (target_ratio * img_h) / img_w
+        x1 = (1.0 - span) / 2.0
+        return f"{x1:.6f}_0.000000_{x1 + span:.6f}_1.000000"
+    # 宽度占满，高度收窄
+    span = (img_w / target_ratio) / img_h
+    y1 = (1.0 - span) / 2.0
+    return f"0.000000_{y1:.6f}_1.000000_{y1 + span:.6f}"
+
+
+def _cover_crops(cover_path: str, meta: dict) -> dict:
+    """算出两个裁剪框。article.yaml 显式给了就用给的值，不覆盖作者的手动裁剪。"""
+    out = {}
+    manual_235 = str(meta.get("pic_crop_235_1") or "").strip()
+    manual_11 = str(meta.get("pic_crop_1_1") or "").strip()
+    if manual_235:
+        out["pic_crop_235_1"] = manual_235
+    if manual_11:
+        out["pic_crop_1_1"] = manual_11
+    if manual_235 and manual_11:
+        _info("封面裁剪框来自 article.yaml（手动指定）")
+        return out
+
+    try:
+        from PIL import Image
+    except ImportError:
+        if not out:
+            _info("未安装 Pillow，跳过封面裁剪框（微信将自行居中裁切）")
+        return out
+    try:
+        with Image.open(cover_path) as im:
+            w, h = im.size
+    except Exception as e:  # noqa: BLE001
+        _info(f"无法读取封面尺寸（{e}），跳过封面裁剪框")
+        return out
+
+    if "pic_crop_235_1" not in out:
+        out["pic_crop_235_1"] = _crop_box(w, h, 2.35)
+    if "pic_crop_1_1" not in out:
+        out["pic_crop_1_1"] = _crop_box(w, h, 1.0)
+    _info(
+        f"封面 {w}x{h} → 2.35:1 {out['pic_crop_235_1']} | 1:1 {out['pic_crop_1_1']}"
+    )
+    return out
 
 
 # ── 草稿 ────────────────────────────────────────────────────
@@ -392,6 +465,7 @@ def full_publish(token: str, article_dir: str, do_publish: bool = False):
         "need_open_comment": meta.get("need_open_comment", 0),
         "only_fans_can_comment": meta.get("only_fans_can_comment", 0),
     }
+    article.update(_cover_crops(str(cover_path), meta))
     _info("创建草稿...")
     media_id = create_draft(token, [article])
     _ok(f"草稿创建成功: media_id={media_id}")
@@ -1081,8 +1155,23 @@ def _run_checks():
                     f"槽位 {probe_i} 凭证或白名单有误（见 errcode/errmsg），请检查 .env"
                 )
         except Exception as e:
-            print(f"[ERROR] API 连通失败: {e}")
-            issues.append("网络异常或微信接口不可用，可稍后重试")
+            # 报错必须带上实际请求的 API 基址，且分清「端点配错了」和「网络抖动」。
+            # 实测踩过：config.yaml 里的自建反代域名下线后全路径返回 404，这里却报
+            # 「网络异常，可稍后重试」且不提端点是谁——用户会一直重试，永远查不到
+            # 是自己配了个死掉的反代。
+            code = getattr(e, "code", None)
+            print(f"[ERROR] API 连通失败（端点 {API_BASE}{API_PATH}）: {e}")
+            src = ("config.yaml 的 wechat_api_base"
+                   if str(cfg.get("wechat_api_base") or "").strip()
+                   else f"aws.env 的 WECHAT_{probe_i}_API_BASE")
+            if API_BASE != DEFAULT_API_BASE and (code in (404, 403, 405) or code is None):
+                issues.append(
+                    f"端点 {API_BASE} 不可用（{e}）。这是自配的反代，不是官方接口——"
+                    f"重试不会好转。请确认 {src} 填的地址仍在服务；"
+                    f"或先清空该项改回官方 {DEFAULT_API_BASE}（注意官方接口有 IP 白名单）"
+                )
+            else:
+                issues.append(f"网络异常或微信接口不可用（端点 {API_BASE}），可稍后重试")
 
     try:
         import yaml

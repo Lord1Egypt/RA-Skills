@@ -1,42 +1,52 @@
-## Description: <br>
-Conducts Amazon PPC keyword research by analyzing up to 15 ASINs, segmenting keywords by tier and match type, and producing an Amazon Sponsored Products bulk upload TSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct Amazon PPC keyword research by analyzing up to 15 competitor ASINs, extracting ranked keywords by tier and match type, and generating a bulk upload CSV.
 
-## Publisher: <br>
-[BlockchainHB](https://clawhub.ai/user/BlockchainHB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockchainhb](https://clawhub.ai/user/blockchainhb)
 
-## Use Case: <br>
-Amazon sellers, advertisers, and ecommerce operators use this skill to turn competitor or own-ASIN keyword research into tiered Sponsored Products campaign inputs and a bulk upload file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A generated bulk upload file can affect live Amazon advertising campaigns if uploaded without review. <br>
-Mitigation: Review campaign name, daily budget, bids, ASINs, keyword tiers, and negatives before submitting the file in Seller Central. <br>
-Risk: Rerunning the skill can overwrite a prior export if the same output filename is reused. <br>
-Mitigation: Check the output filename in Downloads before rerunning or preserve the prior export under a distinct name. <br>
-Risk: The workflow depends on LaunchFast keyword research being available. <br>
-Mitigation: Confirm the LaunchFast keyword research tool is available before starting PPC research. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/BlockchainHB/launchfast-ppc-research) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/BlockchainHB) <br>
+## Use Case:
 
+External Amazon sellers, advertisers, and PPC specialists use this skill to research competitor keywords, segment opportunities by match type and tier, and prepare a reviewed Sponsored Products Bulk Operations TSV for upload.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, file, configuration, guidance] <br>
-**Output Format:** [Markdown summary plus tab-separated Amazon Sponsored Products bulk upload text file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a dated launchfast-ppc-bulk text export in the user's Downloads folder after confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated campaign files can affect advertising spend if uploaded without review.
+
+Mitigation: Review campaign name, bids, daily budget, keywords, negative keywords, and ASIN targeting in Amazon Seller Central before submitting the upload.
+
+Risk: Keyword research depends on LaunchFast MCP availability and returned keyword quality.
+
+Mitigation: Confirm the LaunchFast keyword research tool is available and validate that selected keywords match the advertised product category.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockchainhb/skills/launchfast-ppc-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summary and tab-separated text file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the LaunchFast Amazon keyword research MCP and user review before any Amazon Seller Central upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

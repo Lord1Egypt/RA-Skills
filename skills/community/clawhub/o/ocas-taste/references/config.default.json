@@ -1,0 +1,51 @@
+{
+  "skill_id": "ocas-taste",
+  "skill_version": "3.0.0",
+  "config_version": "2",
+  "created_at": "",
+  "updated_at": "",
+  "domains": {
+    "enabled": ["music", "restaurant", "book", "movie", "product", "travel", "event"]
+  },
+  "decay": {
+    "halflife_days": 180
+  },
+  "retention": {
+    "days": 0,
+    "max_records": 10000
+  },
+  "email_scan": {
+    "enabled": true,
+    "last_scan_timestamp": null,
+    "extraction_confidence_threshold": 0.6,
+    "auto_promote_threshold": 0.8
+  },
+  "email_sources": {
+    "doordash": { "sender_patterns": ["no-reply@doordash.com", "contact@example.com"], "domain": "restaurant", "source_type": "purchase" },
+    "instacart": { "sender_patterns": ["no-reply@instacart.com"], "domain": "product", "source_type": "purchase" },
+    "good_eggs": { "sender_patterns": ["*@goodeggs.com"], "domain": "product", "source_type": "purchase" },
+    "tock": { "sender_patterns": ["*@exploretock.com"], "domain": "restaurant", "source_type": "visit" },
+    "opentable": { "sender_patterns": ["*@opentable.com"], "domain": "restaurant", "source_type": "visit" },
+    "yelp": { "sender_patterns": ["no-reply@yelp.com"], "domain": "restaurant", "source_type": "visit" },
+    "amazon": { "sender_patterns": ["contact@example.com", "contact@example.com"], "domain": "product", "source_type": "purchase" },
+    "hotels": { "sender_patterns": ["*@booking.com", "*@hotels.com", "*@marriott.com", "*@hilton.com", "*@hyatt.com", "*@ihg.com", "*@airbnb.com"], "domain": "travel", "source_type": "stay" }
+  },
+  "strength": {
+    "base_purchase": 0.80,
+    "base_visit": 0.70,
+    "base_stay": 0.75,
+    "base_play": 0.60,
+    "base_watch": 0.60,
+    "base_manual": 0.60,
+    "frequency_bonus_per_visit": 0.05,
+    "frequency_bonus_cap": 0.15,
+    "recency_bonus_days": 30,
+    "recency_bonus_value": 0.05
+  },
+  "user_preferences": {
+    "dietary_restrictions": [],
+    "dietary_preferences": [],
+    "cuisine_dislikes": [],
+    "notes": ""
+  }
+}

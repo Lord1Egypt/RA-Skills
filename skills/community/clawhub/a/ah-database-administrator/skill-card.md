@@ -1,40 +1,49 @@
-## Description: <br>
-Expert database administrator specializing in high-availability systems, performance optimization, disaster recovery, and operational reliability across PostgreSQL, MySQL, MongoDB, and Redis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert database administrator specializing in high-availability systems, performance optimization, and disaster recovery. Masters PostgreSQL, MySQL, MongoDB, and Redis with focus on reliability, scalability, and operational excellence.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, database administrators, SREs, and platform engineers use this skill for database architecture review, performance tuning, high availability planning, backup and recovery strategy, monitoring, and operational troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose production database writes, failovers, restores, migrations, privilege changes, or backup-retention changes. <br>
-Mitigation: Require explicit approval before live operations, validate in staging when practical, and confirm backups and rollback steps before changes. <br>
-Risk: Database credentials, schemas, and operational details may be sensitive. <br>
-Mitigation: Share only task-relevant details, limit credential exposure, and follow least-privilege access controls. <br>
+## Use Case:
 
+Developers, database administrators, and operations teams use this skill to assess, configure, tune, monitor, migrate, and recover PostgreSQL, MySQL, MongoDB, and Redis systems. It focuses on high availability, backup and recovery planning, security hardening, and operational runbooks for production database environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-database-administrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with proposed commands, checklists, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database administration plans, runbooks, SQL or configuration snippets, and approval-sensitive operational steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Database administration guidance can lead to production-impacting changes, including configuration edits, migrations, replication changes, failover steps, or backup retention changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands and plans against current backups, replication state, failover design, migration testing, and maintenance windows before applying them to live systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-database-administrator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with procedural guidance, commands, configuration examples, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database administration plans, runbooks, backup and recovery steps, performance tuning recommendations, migration procedures, and monitoring guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

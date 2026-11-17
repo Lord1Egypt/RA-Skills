@@ -1,0 +1,2 @@
+Hello {{name}},
+Your plan costs {{amount}} {{currency}}.

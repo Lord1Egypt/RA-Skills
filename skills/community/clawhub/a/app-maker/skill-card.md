@@ -1,51 +1,61 @@
-## Description: <br>
-App Maker automates a six-phase full-stack application workflow from requirements analysis through UI design, database design, code generation, visual debugging, and deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+App Maker helps agents transform natural-language application requirements into full-stack project plans, generated code, configuration, debugging guidance, and deployment steps.
 
-## Publisher: <br>
-[chall2015](https://clawhub.ai/user/chall2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chall2015](https://clawhub.ai/user/chall2015)
 
-## Use Case: <br>
-Developers use this skill to turn natural language requirements or PRD inputs into application plans, project scaffolds, generated frontend and backend code, configuration files, preview setup, and deployment guidance. It is most suitable for rapid prototyping and MVP development where generated outputs can be reviewed before installation, execution, or deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated application code and dependency manifests may introduce unsafe logic, vulnerable packages, or unexpected behavior. <br>
-Mitigation: Review generated files before running npm install, starting a development server, or executing generated backend code. <br>
-Risk: Model API keys and other secrets may be handled in local configuration files or screenshots. <br>
-Mitigation: Use environment variables or a secret manager where possible, keep real keys out of examples and screenshots, and rotate any key that may have been exposed. <br>
-Risk: Deployment steps can expose services publicly or create billing and access-control impact. <br>
-Mitigation: Deploy only after checking secrets, authentication, authorization, cloud permissions, billing settings, and public network exposure. <br>
-Risk: Prompts and project details may be sent to third-party model providers when API keys are configured. <br>
-Mitigation: Review prompt contents and provider policies before sending confidential requirements, customer data, or proprietary design details. <br>
-Risk: The tool writes generated files under the selected output directory. <br>
-Mitigation: Run it in a dedicated workspace, inspect the output path before generation, and avoid pointing it at directories containing important existing files. <br>
+## Use Case:
 
+Developers and engineers use this skill to accelerate full-stack application creation from requirements analysis through UI design, database modeling, code generation, visual debugging, and deployment preparation. It is suited for rapid prototyping, MVP development, and repetitive application scaffolding tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chall2015/app-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/chall2015) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Quick start guide](artifact/QUICKSTART.md) <br>
-- [Configuration example](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON configuration, generated source files, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project files and deployment guidance; generated code, dependency installation, secrets, billing exposure, and public deployment settings should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; packaged artifact metadata lists 1.0.0) <br>
+Risk: The skill handles API keys for multiple external model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secret manager instead of plaintext keys, and never publish screenshots or generated files containing real credentials.
+
+Risk: The skill can generate files, package manifests, dependency commands, and deployment steps that may affect a local system or cloud account.
+
+Mitigation: Run generation in an isolated project directory, inspect generated files and package manifests before installing dependencies, and confirm deployment target, costs, and public exposure before deployment.
+
+Risk: The security verdict is suspicious because safeguards around external model calls, package execution, deployment, and generated file writes are weak.
+
+Mitigation: Review the skill before installation, pin and verify package commands, scan generated code, and deploy only after human review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chall2015/skills/app-maker)
+- [Publisher profile](https://clawhub.ai/user/chall2015)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Configuration example](artifact/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and generated project files with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce application source files, tests, deployment configuration, preview/debug guidance, and model configuration instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

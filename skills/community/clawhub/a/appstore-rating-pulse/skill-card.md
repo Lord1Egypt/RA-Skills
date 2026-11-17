@@ -1,41 +1,52 @@
-## Description: <br>
-Monitor overall App Store ratings for configured iOS apps across multiple countries using Apple's free iTunes Lookup API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor App Store ratings for any iOS app across multiple countries. Fetches live overall ratings using Apple's free iTunes Lookup API - no API key needed.
 
-## Publisher: <br>
-[aligurelli](https://clawhub.ai/user/aligurelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aligurelli](https://clawhub.ai/user/aligurelli)
 
-## Use Case: <br>
-Developers, product teams, and app operators use this skill to fetch current overall App Store ratings for selected iOS apps across configured countries, either on demand or through a daily report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A daily cron setup can create recurring messages that continue after they are no longer wanted. <br>
-Mitigation: Confirm the schedule before enabling it and keep track of where the cron job is configured so it can be disabled. <br>
-Risk: Incorrect or untrusted app IDs and country codes can produce misleading N/A results or unexpected API queries. <br>
-Mitigation: Use only trusted App Store IDs and ISO country codes in the APPS array, and review all-N/A output or script errors before acting on the report. <br>
-Risk: The script relies on local bash, curl, and python3 plus Apple's public lookup endpoint, so local tooling or network failures can affect the report. <br>
-Mitigation: Run it with trusted local tools and treat errors or missing API responses as a signal to retry or verify ratings through another source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple iTunes Lookup API endpoint](https://itunes.apple.com/lookup) <br>
+## Use Case:
 
+App developers and product teams use this skill to monitor public App Store ratings for configured iOS apps across selected countries, either as an instant snapshot or a scheduled daily report.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text rating report with shell command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ratings use a comma decimal separator, and unavailable ratings are reported as N/A.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a local shell script that makes HTTPS requests to Apple's public lookup API for configured app IDs and countries.
+
+Mitigation: Review the configured app IDs and country codes before execution.
+
+Risk: The optional cron setup creates recurring rating reports.
+
+Mitigation: Enable the schedule only when recurring reports are needed and keep it limited to this script.
+
+## Reference(s):
+
+- [Apple iTunes Lookup API endpoint](https://itunes.apple.com/lookup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text rating report with Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ratings are reported per configured app and country; N/A indicates no available rating.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

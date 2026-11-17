@@ -1,42 +1,61 @@
-## Description: <br>
-Discover Viator tours, attractions, and activities near airports with ratings, reviews, and booking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Viator tours, attractions, and activities near airports with ratings, reviews, and booking.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External travelers and trip-planning agents use this skill to discover airport-area tours, attractions, layover activities, and recovery-friendly options. It helps compare activity duration, ratings, reviews, prices, and connection feasibility before suggesting off-airport plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may use travel APIs and occasional browser or Scrapling lookups that share trip-planning details with external services. <br>
-Mitigation: Ask the agent to confirm before browsing or using supplemental lookups when travel details should stay private. <br>
-Risk: The skill depends on AEROBASE_API_KEY for primary API access. <br>
-Mitigation: Use a scoped, revocable API key and rotate it if exposed. <br>
-Risk: Activity suggestions can be unsafe if connection time, transit, or delay risk is not checked. <br>
-Mitigation: Use the layover feasibility checks and keep the documented 90-minute buffer before suggesting off-airport activities. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kurosh87/aerobase-activities) <br>
-- [Scrapling documentation](https://scrapling.readthedocs.io/en/latest/overview.html) <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to find tours, attractions, and layover activities near airports, including connection feasibility, recovery-stage suggestions, and booking links.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations with activity details and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price_from_usd, viator_rating, viator_review_count, duration_minutes, and viator_booking_url when activity results are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recommendations may include affiliate booking URLs and prioritize Aerobase results.
+
+Mitigation: Disclose affiliate booking links to users and compare against neutral sources when the user asks for unbiased recommendations.
+
+Risk: The skill may call Aerobase endpoints and limited browser or Scrapling requests to third-party travel sites.
+
+Mitigation: Only query destinations or activities the user requested, and avoid sending unnecessary personal or itinerary-sensitive details.
+
+Risk: Layover feasibility can change with flight delays, transit time, airport procedures, or minimum connection-time rules.
+
+Mitigation: Check current flight status, connection requirements, and transit time before suggesting off-airport activities.
+
+Risk: Over-broad searches can exceed intended API usage patterns.
+
+Mitigation: Follow the documented search limit of 30 attraction or tour searches per hour and avoid pre-fetching all cities.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kurosh87/skills/aerobase-activities)
+- [Scrapling Documentation](https://scrapling.readthedocs.io/en/latest/overview.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown or concise text with activity names, prices, ratings, durations, feasibility notes, and booking URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Viator affiliate booking URLs and Aerobase API result fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Search, retrieve, and get trending anime details including title, episodes, status, score, genres, and synopsis via the AniList GraphQL API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, and get trending anime details including title, episodes, status, score, genres, and synopsis via the AniList GraphQL API.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users and developers use this skill to search AniList for anime titles, retrieve anime details by ID, and review currently trending anime through a remote MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a remote third-party MCP gateway whose runtime behavior is not locally reviewable from this artifact. <br>
-Mitigation: Use it for ordinary anime lookups only, avoid sending private or sensitive text, and review returned results before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to configure an AniList MCP server for searching anime, retrieving details by ID, and finding currently trending anime.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-anilist) <br>
-- [AniList MCP gateway](https://gateway.pipeworx.io/anilist/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with anime lookup results and MCP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns anime metadata such as titles, episode counts, status, scores, genres, synopses, duration, and popularity ranking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Anime search terms and lookup requests are sent to gateway.pipeworx.io rather than directly to AniList.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending private or unrelated information through the tool.
+
+Risk: Returned lookup text is external data and could be unreliable or inappropriate to treat as instructions.
+
+Mitigation: Use returned anime details as reference data and review them before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/b-gutman/skills/pipeworx-anilist)
+- [Pipeworx AniList MCP gateway](https://gateway.pipeworx.io/anilist/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Markdown with a JSON MCP server configuration block and text lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Anime lookup requests are routed through gateway.pipeworx.io.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

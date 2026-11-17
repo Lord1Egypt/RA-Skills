@@ -1,41 +1,53 @@
-## Description: <br>
-Designs structured, evidence-based hiring interviews with role scorecards, question banks, assessment rubrics, panel coordination, candidate evaluation, bias checks, and offer guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and manage structured, evidence-based hiring interviews with job scorecards, question banks, evaluation rubrics, panel coordination, bias mitigation, and offer decision support.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Hiring managers, recruiters, interview panels, and people operations teams use this skill to plan role-specific interview loops, create scorecards and questions, evaluate candidates consistently, and audit hiring decisions for bias and evidence quality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hiring workflows can involve sensitive candidate personal data. <br>
-Mitigation: Collect only necessary candidate information, avoid entering unnecessary personal data into agent conversations, and apply applicable privacy and retention policies. <br>
-Risk: Interview recordings or notes can create consent, retention, and access-control obligations. <br>
-Mitigation: Record interviews only when consent and internal policy requirements are satisfied, and restrict access to interview records to authorized hiring participants. <br>
-Risk: The skill may inform hiring decisions in a regulated employment context. <br>
-Mitigation: Use outputs as decision-support materials for human reviewers, not as an automated decision-maker, and follow applicable employment and anti-discrimination laws. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-interview-architect) <br>
+## Use Case:
 
+Recruiters, hiring managers, and interview panelists use this skill to build role scorecards, structured interview loops, targeted questions, technical assessments, candidate evaluations, and process audits for hiring decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates, structured checklists, rubrics, decision matrices, and concise procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include YAML-style scorecards, interview loop plans, question banks, scoring rubrics, communication templates, audit checklists, and recommended shell install command.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated evaluations, feedback, or rejection messages may involve candidate personal data or employment-law considerations.
+
+Mitigation: Provide only the candidate information needed for the task and review outputs for privacy, legal, and fairness concerns before using them in hiring decisions.
+
+Risk: Hiring recommendations can reflect biased or incomplete interview input.
+
+Mitigation: Use predefined scorecards, consistent questions, independent interviewer notes, calibration, and final human review before making decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-interview-architect)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured templates, checklists, rubrics, and example prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed hiring process artifacts such as scorecards, interview plans, question banks, evaluation rubrics, debrief templates, and audit recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

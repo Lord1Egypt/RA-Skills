@@ -1,43 +1,53 @@
-## Description: <br>
-Record, transcribe, and store meeting notes with persistent semantic memory using BlueColumn for later recall of action items, decisions, and topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Memory helps agents store, recall, and search meeting notes using BlueColumn persistent memory.
 
-## Publisher: <br>
-[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm)
 
-## Use Case: <br>
-Employees, external collaborators, and agents use this skill to store meeting audio, transcripts, notes, action items, decisions, and topics in BlueColumn, then recall them later with natural-language questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting recordings, transcripts, notes, and action items may contain confidential, regulated, or third-party content that is sent to BlueColumn for persistent searchable storage. <br>
-Mitigation: Confirm meeting consent and review BlueColumn privacy, retention, and deletion requirements before storing sensitive meeting content. <br>
-Risk: The skill requires a BlueColumn API key. <br>
-Mitigation: Use a revocable API key, keep it private, and avoid logging or exposing it in prompts, command history, or shared output. <br>
-Risk: AI-extracted summaries and action items may be incomplete or inaccurate. <br>
-Mitigation: Review extracted summaries, action items, and recall answers before relying on them for follow-up work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent meeting memory to agent workflows, including storing meeting summaries, quick notes, and recall queries for prior discussions.
 
-## Reference(s): <br>
-- [BlueColumn API Reference](references/api.md) <br>
-- [BlueColumn](https://bluecolumn.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown summaries with inline shell command examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return meeting summaries, action items, key topics, recall answers, and source references from BlueColumn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting notes, summaries, and recall queries may be sent to and persisted by an external BlueColumn service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after confirming consent, retention, deletion, tenant isolation, and redaction practices for the meetings being stored.
+
+Risk: Confidential, regulated, credential-bearing, or internal-only discussion content could be stored outside the user's intended trust boundary.
+
+Mitigation: Avoid storing sensitive meeting content unless the deployment has approved data handling controls and redaction procedures.
+
+## Reference(s):
+
+- [BlueColumn API documentation](https://bluecolumn.ai/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a BlueColumn API key and sends meeting note text, summaries, tags, and recall queries to BlueColumn endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

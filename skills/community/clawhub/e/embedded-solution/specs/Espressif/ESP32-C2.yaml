@@ -1,0 +1,64 @@
+part: ESP32-C2
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "Espressif ESP32-C2 \u2014 Small RISC-V SoC with 2.4 GHz Wi-Fi 4 + BLE 5"
+main_page: https://www.espressif.com/en/products/socs/esp32-c2
+datasheet_path_expected: ../../datasheets/esp32-c2.pdf
+created_at: '2026-06-30T23:08:00+08:00'
+specs:
+  family: ESP32-C2 (entry-level RISC-V Wi-Fi SoC)
+  cores:
+  - RISC-V 32-bit single-core processor
+  packaging:
+    type: QFN
+    size_mm: 4x4
+  memory:
+    sram_kb: 272
+  wireless:
+    wifi:
+    - 802.11 b/g/n
+    - 2.4 GHz
+    - 20 MHz bandwidth
+    - 802.11n MC7 packets 72.2 Mbps
+    - Output power 18 dBm (typical)
+    - 20 dBm FCC limit at low data-rates
+    - RX sensitivity -97 to -100 dBm (1 Mbps 802.11b)
+    - RX current 58 mA
+    bluetooth:
+    - Bluetooth LE (5.x)
+  ai_features:
+  - ESP RainMaker AIoT cloud support
+  - Matter compatibility
+  software:
+    esp_idf: true
+    esp_at: yes (slave mode)
+    esp_hosted: yes (slave mode for master MCU)
+  use_cases:
+  - Cost-sensitive smart home (light switches, plugs)
+  - Matter-compatible low-cost nodes
+  - Master MCU pairs via ESP-Hosted (for STM32 / NXP / etc. host)
+  - Simple IoT sensors with Wi-Fi + BLE
+unverified:
+- exact CPU clock rate (not in fetched spec block)
+- exact RAM breakdown (272 KB total)
+- exact supply voltage range
+- exact operating temperature range
+- exact package pin count
+- exact Per / sensitivity per rate
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com ESP32-C2 product page via Firecrawl (8,203 bytes raw)."
+- 'Family differentiator vs ESP32-C3 (existing yaml): C3 is 32-bit LX7 RISC-V CPU + 400 KB SRAM + 8 MB Flash variants; C2
+  is single-core RISC-V + 272 KB SRAM (smaller, more cost-down).'
+- 'Family differentiator vs ESP8266 (predecessor): C2 is RISC-V 32-bit vs ESP8266 Xtensa L106; C2 has BLE + Matter vs ESP8266
+  Wi-Fi-only.'
+- 'Cross-reference: ESP8684 is the bare SoC version of ESP32-C2 (silicon- only, no onboard flash).'
+- 'Use case: cost-sensitive Wi-Fi + BLE combo for Matter nodes, IoT sensors, or as Wi-Fi/BLE slave MCU for an external host
+  (via ESP-Hosted or ESP-AT).'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-c2.html: 6/22 spec fields matched (27%). Source: https://www.espressif.com/en/products/socs/esp32-c2
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via vendor-direct datasheet PDF (datasheets/esp32-c2.pdf): 16/22 spec fields matched (73%). Source:
+  https://docs.espressif.com/projects/esp-idf/en/v5.0.2/esp32c2/esp-idf-en-v5.0.2-esp32c2.pdf.'
+extracted_at: '2026-06-30T23:08:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-C2-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://docs.espressif.com/projects/esp-idf/en/v5.0.2/esp32c2/esp-idf-en-v5.0.2-esp32c2.pdf

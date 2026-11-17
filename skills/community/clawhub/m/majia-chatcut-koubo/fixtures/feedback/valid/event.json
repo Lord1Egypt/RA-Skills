@@ -1,0 +1,22 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/feedback-event.schema.json",
+  "schemaVersion": "1.0.0",
+  "eventId": "feedback_event_001",
+  "eventRefHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "projectRefHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "runRefHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "eventType": "rework",
+  "occurredAt": "2026-07-24T08:00:00Z",
+  "metrics": {
+    "durationMs": 42000,
+    "attemptCount": 2,
+    "accepted": true
+  },
+  "ruleRefs": [
+    "CAPTION-MIN-DURATION"
+  ],
+  "redaction": {
+    "status": "content-free",
+    "externalSharing": "not-authorized"
+  }
+}

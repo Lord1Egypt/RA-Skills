@@ -1,40 +1,54 @@
-## Description: <br>
-Find nearby car parks when a user asks for parking near their current location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby car parks when a user asks for parking near them.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users and developers use this skill to request nearby car parks from a current location, with optional radius, limit, and parking filters. It is intended to return a standardized point-of-interest list for interface or API integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs location data to find nearby parking. <br>
-Mitigation: Only grant location access while actively searching for parking, and avoid retaining precise coordinates; use obfuscation when precision is not required. <br>
-Risk: The referenced standard response schema is not included in the release artifact. <br>
-Mitigation: Review the expected response contract before integration so downstream interfaces handle fields and errors consistently. <br>
+## Use Case:
 
+External users invoke this skill to find nearby parking facilities from an authorized location, with optional radius, result limit, and availability or price filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/car-parks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance describing JSON-like request and response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-authorized location input; recommends avoiding retention of precise coordinates and using coordinate obfuscation when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill uses precise user location input to search for nearby parking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit location authorization and avoid retaining exact coordinates beyond the task; use coordinate obfuscation when precision is unnecessary.
+
+Risk: Parking results may be incomplete or temporarily unavailable because the skill depends on external provider data.
+
+Mitigation: Surface provider failures with the documented PROVIDER_UNAVAILABLE or RATE_LIMITED error codes and avoid presenting unavailable data as confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/car-parks)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Markdown guidance describing standardized parking search inputs, outputs, and errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected outputs are standardized parking or POI lists with clear error codes for invalid locations, excessive radius, provider unavailability, and rate limiting.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

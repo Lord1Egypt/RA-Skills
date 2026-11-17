@@ -1,0 +1,259 @@
+{
+  "name": "MC Ecosystem Adaptation Engineer",
+  "name_zh": "MC全生态智能适配工程师",
+  "slug": "mc-ecosystem-adapt-engine",
+  "version": "1.1.0",
+  "download_source": "",
+  "source_update_check_url": "",
+  "author": "Liang030214",
+  "homepage": "https://github.com/Liang030214/mc-skill-v1",
+  "description": "One-stop Minecraft mod ecosystem intelligent management tool with 15 features including mod search, environment setup, Mixin conflict scanning, crash fix, translation, migration assessment, save sync, authorization management, online payment system, admin dashboard, and automated business reports. V1.1.0: ClawHub slim build — no local payment QR images or payment setup docs; paid plans are activated via the online payment page inside the Skill.",
+  "description_zh": "Minecraft 模组全生态智能适配工具，支持模组检索、环境搭建、Mixin冲突扫描、崩溃修复、汉化、移植评估、存档同步、授权管理、在线支付系统、管理员控制台、自动化运营报表等15大功能。V1.1.0：ClawHub 精简版——不含本地收款二维码与支付配置文档，付费开通请走 Skill 内在线支付页。",
+  "icon": "assets/icon-market.jpg",
+  "icon_local": "assets/icon-local.jpg",
+  "category": "games",
+  "license": "MC-Skill Restrictive License v1.0",
+  "language": "en",
+  "languages_supported": [
+    "en",
+    "zh",
+    "ja",
+    "ko",
+    "ru",
+    "es",
+    "it",
+    "el",
+    "th",
+    "hi",
+    "ar"
+  ],
+  "min_agent_version": "1.0.0",
+  "tags": [
+    "minecraft",
+    "mod",
+    "forge",
+    "fabric",
+    "neoforge",
+    "quilt",
+    "mixin",
+    "translation",
+    "crash-fix",
+    "migration",
+    "chinese",
+    "i18n",
+    "multilingual",
+    "save-sync",
+    "authorization",
+    "offline-mode",
+    "api-cache",
+    "payment",
+    "alipay",
+    "wechat-pay",
+    "paypal",
+    "arabic",
+    "rtl"
+  ],
+  "features": {
+    "F1": {
+      "name": "JAR Structure Parser",
+      "name_zh": "JAR结构解析",
+      "description": "Parse mod JAR metadata (mcmod.info, fabric.mod.json, mods.toml, quilt.mod.json). V1.0.8: Quilt loader deep support.",
+      "permissions": [
+        "file_read"
+      ],
+      "public": true
+    },
+    "F2": {
+      "name": "Mod Search & Download",
+      "name_zh": "模组检索下载",
+      "description": "Search and download mods from Modrinth with version and loader filters (supports batch search, category search, similar mod recommendations)",
+      "permissions": [
+        "network"
+      ],
+      "public": true
+    },
+    "F3": {
+      "name": "Environment Setup Guide",
+      "name_zh": "环境引导搭建",
+      "description": "Intelligently recommend MC version and loader combinations. V1.0.8: Cross-platform path detection (Windows/macOS/Linux), MC 1.21.2+/1.21.3+/1.21.4+ support.",
+      "permissions": [],
+      "public": true
+    },
+    "F4": {
+      "name": "Mixin Conflict Scanner",
+      "name_zh": "Mixin冲突扫描",
+      "description": "Detect Mixin injection conflicts between multiple mods",
+      "permissions": [
+        "file_read"
+      ],
+      "public": true
+    },
+    "F5": {
+      "name": "Resource Repacker",
+      "name_zh": "资源重打包",
+      "description": "Repack and optimize mod resource files",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ],
+      "public": true
+    },
+    "F6": {
+      "name": "Save Sync",
+      "name_zh": "存档同步",
+      "description": "Backup and restore game saves via Baidu Netdisk sync (supports PC-to-mobile handoff)",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ],
+      "public": true
+    },
+    "F7": {
+      "name": "Multi-Language Translation",
+      "name_zh": "多语言翻译",
+      "description": "Three-mode translation: offline (dictionary + translation DB), online (AI Agent), hybrid (DB-first, AI fallback with learning). 12-language auto-detection including Arabic RTL. V1.0.8: AI Agent online translation + learning mechanism.",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ],
+      "public": true
+    },
+    "F8": {
+      "name": "Crash Fix",
+      "name_zh": "报错修复",
+      "description": "Intelligently analyze crash logs and provide fix suggestions. V1.0.8: Optional network check for crash pattern DB updates.",
+      "permissions": [
+        "file_read",
+        "network"
+      ],
+      "public": true
+    },
+    "F8.1": {
+      "name": "Auto Fix",
+      "name_zh": "自动修复",
+      "description": "One-click mod upgrade to resolve crash issues. Downloads mod JAR from Modrinth and replaces local file with automatic backup.",
+      "permissions": [
+        "file_read",
+        "file_write",
+        "network"
+      ],
+      "public": true
+    },
+    "F9": {
+      "name": "Migration Feasibility Assessment",
+      "name_zh": "移植可行性评估",
+      "description": "Assess feasibility of cross-version/cross-loader migration. V1.0.8: MC 1.21.2/1.21.3/1.21.4 compatibility matrix, Quilt loader support, expanded from 4 to 16 version pairs.",
+      "permissions": [
+        "file_read"
+      ],
+      "public": true
+    },
+    "F10": {
+      "name": "Authorization & Usage Management",
+      "name_zh": "授权与使用管理",
+      "description": "Local machine ID generation, daily usage counting, free period management (7 days), membership tier management, license activation. V1.0.8: Real-time activity event reporting (app_started/feature_called/error_occurred/payment_page_opened) with HMAC-SHA256 signed requests.",
+      "permissions": [
+        "local_storage",
+        "system_info",
+        "network",
+        "file_read",
+        "hmac_signing"
+      ],
+      "data_collected": {
+        "machine_id": "Hash of MAC address, hostname, OS (stored locally)",
+        "usage_stats": "Daily and total feature usage counts (stored locally)",
+        "membership": "Tier and license info (stored locally)",
+        "first_use_date": "Date of first usage for free period calculation (stored locally)",
+        "activity_events": "App start, feature calls, errors, payment page opens (transmitted to auth server when configured)"
+      },
+      "external_transmission": "When AUTH_SERVER_URL is configured: usage stats (batch, every 10 minutes) + activity events (real-time). All transmission uses HMAC-SHA256 signed requests.",
+      "public": false,
+      "internal": true,
+      "note": "（内部运营模块，双轨制架构设计，不进入用户公开功能表）"
+    },
+    "F11": {
+      "name": "Payment Guide Page",
+      "name_zh": "付费引导页面",
+      "description": "Three-level progressive payment guidance: Level 1 shows friendly reminder when free trial ends or limits reached; Level 2 shows subscription plans (monthly/quarterly/yearly) only if user views; Level 3 shows developer support options (WeChat/Afdian/QQ/website QR codes). No browser auto-open - user manually opens the generated HTML page.",
+      "permissions": [],
+      "enabled": true,
+      "note": "Enabled in V1.0.4. Progressive guidance: friendly reminder first, subscription plans only on user request, developer support as alternative. QR codes loaded from assets/payment/ directory. Supports 12 languages with RTL for Arabic. （内部运营模块，双轨制架构设计，不进入用户公开功能表）",
+      "public": false,
+      "internal": true
+    },
+    "F12": {
+      "name": "Online Payment System",
+      "name_zh": "在线支付系统",
+      "description": "Complete payment system supporting Alipay (mini merchant API), WeChat Pay (mini merchant API), and PayPal (personal seller account) with 3 subscription plans (monthly/quarterly/yearly)",
+      "permissions": [
+        "network"
+      ],
+      "enabled": true,
+      "note": "Added in V1.0.4. Three payment channels, each with independent QR codes. Currency display: CNY for Chinese locale, USD for other locales. （内部运营模块，双轨制架构设计，不进入用户公开功能表）",
+      "public": false,
+      "internal": true
+    },
+    "F13": {
+      "name": "Admin Dashboard",
+      "name_zh": "管理员控制台",
+      "description": "Web-based admin console for user management, order tracking, permission control, email configuration, and notification settings",
+      "permissions": [
+        "network"
+      ],
+      "enabled": true,
+      "note": "Added in V1.0.4. Admin key auto-generated on server startup, 1-hour token expiry, stored in memory only. （内部运营模块，双轨制架构设计，不进入用户公开功能表）",
+      "public": false,
+      "internal": true
+    },
+    "F14": {
+      "name": "Automated Business Reports",
+      "name_zh": "自动化运营报表",
+      "description": "Automated operational reports including inactive user list, subscription expiry reminders (weekly), and monthly business summary reports",
+      "permissions": [
+        "network"
+      ],
+      "enabled": true,
+      "note": "Added in V1.0.4. Three report types: sleep users (monthly+weekly), expiry reminders (weekly), monthly business summary. All configurable and support test emails. （内部运营模块，双轨制架构设计，不进入用户公开功能表）",
+      "public": false,
+      "internal": true
+    }
+  },
+  "permissions_declaration": {
+    "file_read": "Read mod JARs, crash logs, config files, auth_state.json",
+    "file_write": "Write repacked mods, backup saves, upgrade mods, translation DB entries",
+    "network": "Download mods from Modrinth; version check query; crash pattern DB update; optional auth verification; activity event reporting",
+    "hmac_signing": "HMAC-SHA256 signing for auth server requests (client-generated)",
+    "browser_open": "Open payment guide HTML page in browser",
+    "local_storage": "Store auth state, usage counts, translation DB (auth_state.json, translation_entries.json)",
+    "system_info": "Generate machine ID (MAC address hash, hostname, OS fingerprint)"
+  },
+  "data_collection_declaration": {
+    "summary": "本 Skill 仅收集运行所需的最小数据，用于授权验证和使用统计，不收集任何个人身份信息（PII）。",
+    "local_storage": "本地存储以下文件（仅保存在用户本机，不上传）：data/auth_state.json（机器标识、使用次数、会员等级、授权状态）；data/translation_entries.json（用户生成的翻译条目，供离线使用）",
+    "external_transmission": "使用数据上报（可选，用于授权验证和使用量统计）：每 20 分钟批量上报使用次数统计；实时上报使用事件（启动/功能调用/错误/打开支付页）。请求发往作者服务器，带 HMAC-SHA256 签名，当前为 HTTP 地址，传输内容为机器标识、客户端版本、事件类型与计数、错误摘要（错误文本已脱敏，不含本地路径）；不采集文件内容与对话内容。机器标识为 MAC+主机名+操作系统的哈希值，不可逆推原始硬件信息。",
+    "user_rights": "用户可通过设置环境变量 MC_SKILL_NO_REPORT=1 关闭数据上报，或设置 MC_SKILL_OFFLINE=1 进入离线模式（不发起任何联网请求）；本地数据文件可随时手动删除。",
+    "free_period": "首次使用起 7 天免费期，本地存储",
+    "usage_limits": "7 天免费期结束后：免费用户每日 5 次自动处理 / 3 次半自动 / 1 次迁移；普通会员每日 100 次自动 / 50 次半自动 / 5 次迁移"
+  },
+  "onboarding_prompt": "2 steps, template-first (you may add honest disclosures):\n\n1. Run: python scripts/mc_skill.py onboarding_info\n   → Read the JSON output.\n\n2. Find the _agent_response_text object in the JSON:\n   FIRST — DETECT what language the USER actually wrote in. DO NOT use system locale.\n   a) User asked what this skill can do / introduce it:\n      User wrote in ENGLISH → base your reply on _agent_response_text.pattern_A_en\n      User wrote in CHINESE → base your reply on _agent_response_text.pattern_A_zh\n   b) User gave concrete task (search mod, parse jar, translate, crash, migration...):\n      User wrote in ENGLISH → base your reply on _agent_response_text.pattern_B_en, THEN run python main.py --feature xxx\n      User wrote in CHINESE → base your reply on _agent_response_text.pattern_B_zh, THEN run python main.py --feature xxx\n\nREQUIRED — honest disclosure overrides the template:\n✅ Add one short line when the user needs to know about network access and what data it sends, about side effects of an operation, or that a paid plan is required.\n✅ Always answer truthfully if the user asks about cost, payment, data collection, privacy or side effects — even if the template does not mention it.\n✅ Use python main.py / scripts/mc_skill.py for all actions.\n\nAVOID:\n❌ No F1/F2/F3 numbered feature lists and no feature tables.\n❌ No rewriting the template in a way that changes its meaning.\n❌ No mixing Chinese and English. Match the user's language.",
+  "onboarding_prompt_zh": "2 步，优先用模板（允许补充如实说明）：\n\n1. 执行：python scripts/mc_skill.py onboarding_info\n   → 拿到 JSON。\n\n2. 从 JSON 里找 _agent_response_text 对象：\n   ⚠️ 首先判断【用户实际输入的语言】，不是系统语言！\n   a) 用户问能做什么/介绍一下/怎么用：\n      用户说英文 → 以 _agent_response_text.pattern_A_en 为基础回复\n      用户说中文 → 以 _agent_response_text.pattern_A_zh 为基础回复\n   b) 用户有具体需求（搜模组/解析JAR/汉化/崩溃/迁移）：\n      用户说英文 → 以 _agent_response_text.pattern_B_en 为基础回复，然后运行 python main.py --feature xxx\n      用户说中文 → 以 _agent_response_text.pattern_B_zh 为基础回复，然后运行 python main.py --feature xxx\n\n必须做到——如实说明优先于模板：\n✅ 涉及联网及上报内容、操作副作用、需要付费开通时，补一句简短说明。\n✅ 用户问价格、付费方式、数据采集、隐私或副作用时，必须如实回答，即使模板没写。\n✅ 所有动作走 python main.py / scripts/mc_skill.py。\n\n避免：\n❌ 不列 F1/F2/F3 编号功能清单，不写功能表格。\n❌ 不改写模板导致语义变化。\n❌ 不中英文夹杂。用户说啥语言就用啥语言。",
+  "public_features_order": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F8.1",
+    "F9"
+  ],
+  "internal_features_order": [
+    "F10",
+    "F11",
+    "F12",
+    "F13",
+    "F14"
+  ]
+}

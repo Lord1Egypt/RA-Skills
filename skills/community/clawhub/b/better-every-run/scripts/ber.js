@@ -226,15 +226,42 @@ function isExpired(item, today = localDate()) {
 }
 
 
-function targetPathFor(target) {
+function targetPathFor(target, allowMissing = false) {
   if (!target) throw new Error("--target is required");
-  const targetPath = path.resolve(process.cwd(), target);
-  const rel = path.relative(process.cwd(), targetPath);
-  if (rel.startsWith("..") || path.isAbsolute(rel)) {
+  const root = fs.realpathSync(process.cwd());
+  const targetPath = path.resolve(root, target);
+  const rel = path.relative(root, targetPath);
+  if (!rel || rel === ".." || rel.startsWith(`..${path.sep}`) || path.isAbsolute(rel)) {
     throw new Error(`Target must stay inside the current project: ${target}`);
   }
-  if (!fs.existsSync(targetPath)) throw new Error(`Target file does not exist: ${target}`);
+  let current = root;
+  for (const part of rel.split(path.sep)) {
+    current = path.join(current, part);
+    try {
+      if (fs.lstatSync(current).isSymbolicLink()) {
+        throw new Error(`Symlink targets are not supported: ${target}`);
+      }
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+  }
+  if (!allowMissing && !fs.existsSync(targetPath)) throw new Error(`Target file does not exist: ${target}`);
+  if (fs.existsSync(targetPath) && !fs.statSync(targetPath).isFile()) throw new Error("Target must be a regular file");
   return { targetPath, rel };
+}
+
+function requireAcceptedLesson(lesson) {
+  if (lesson.status !== "accepted" || isExpired(lesson)) {
+    throw new Error("Only accepted, unexpired lessons can be promoted or exported as eval fixtures.");
+  }
+}
+
+function lessonHash(lesson, note = "") {
+  return crypto.createHash("sha256").update(JSON.stringify({
+    text: lesson.text, rationale: lesson.rationale, scope: lesson.scope,
+    category: lesson.category, evidenceIds: lesson.evidenceIds,
+    expiresAt: lesson.expiresAt, from: lesson.from, to: lesson.to, note,
+  })).digest("hex");
 }
 
 
@@ -651,6 +678,7 @@ function cmdCard(opts) {
   validatePromotionTarget(targetType, rel);
   const lessons = readJsonl(LESSONS_FILE);
   const lesson = findLesson(lessons, id);
+  requireAcceptedLesson(lesson);
   const rendered = promotionBlock(lesson, targetType, opts.note || "");
   const scan = scanPromotion(lesson, targetType, rel, rendered);
   const targetHash = hashFile(targetPath);
@@ -658,6 +686,7 @@ function cmdCard(opts) {
     targetType,
     target: rel,
     targetHash,
+    lessonHash: lessonHash(lesson, opts.note || ""),
     scan,
     cardPath: path.relative(process.cwd(), cardPath(lesson.id)),
     createdAt: new Date().toISOString(),
@@ -678,6 +707,7 @@ function cmdPromote(opts) {
   validatePromotionTarget(targetType, rel);
   const lessons = readJsonl(LESSONS_FILE);
   const lesson = findLesson(lessons, id);
+  requireAcceptedLesson(lesson);
   const rendered = promotionBlock(lesson, targetType, opts.note || "");
   const scan = scanPromotion(lesson, targetType, rel, rendered);
   if (scan.hard.length) {
@@ -694,6 +724,7 @@ function cmdPromote(opts) {
   if (plan.targetType !== targetType || plan.target !== rel) {
     throw new Error(`Promotion card target mismatch. Card is for ${plan.targetType}:${plan.target}; requested ${targetType}:${rel}. Re-run card before promoting.`);
   }
+  if (plan.lessonHash !== lessonHash(lesson, opts.note || "")) throw new Error("Lesson changed since card was written. Re-run card before promoting.");
   const currentHash = hashFile(targetPath);
   if (currentHash !== plan.targetHash) {
     throw new Error(`Target changed since lesson card was written: ${rel}. Expected ${plan.targetHash}, got ${currentHash}. Re-run card before promoting.`);
@@ -737,14 +768,11 @@ function cmdEvalFixture(opts) {
   const id = opts._[0];
   const target = opts.target;
   if (!target) throw new Error("--target is required");
-  const targetPath = path.resolve(process.cwd(), target);
-  const rel = path.relative(process.cwd(), targetPath);
-  if (rel.startsWith("..") || path.isAbsolute(rel)) {
-    throw new Error(`Target must stay inside the current project: ${target}`);
-  }
+  const { targetPath, rel } = targetPathFor(target, true);
   validateEvalTarget(rel);
   const lessons = readJsonl(LESSONS_FILE);
   const lesson = findLesson(lessons, id);
+  requireAcceptedLesson(lesson);
   const fixture = evalFixtureFor(lesson, opts.name || "");
   const scan = scanPromotion(lesson, "eval", rel, JSON.stringify(fixture));
   if (scan.hard.length) {
@@ -761,6 +789,7 @@ function cmdEvalFixture(opts) {
   } else {
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   }
+  targetPathFor(target, true);
   const next = existing.filter((item) => item.lessonId !== lesson.id);
   next.push(fixture);
   fs.writeFileSync(targetPath, `${JSON.stringify(next, null, 2)}\n`, "utf8");

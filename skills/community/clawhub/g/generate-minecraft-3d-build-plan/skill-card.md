@@ -1,42 +1,59 @@
-## Description: <br>
-Call Craftsman Agent API OneKey Router to generate a Minecraft 3D scene build plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call Craftsman Agent API OneKey Router to generate a Minecraft 3D scene build plan.
 
-## Publisher: <br>
-[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and Minecraft creators use this skill to send text prompts and optional reference image URLs to the Craftsman Agent API and receive a generated Minecraft 3D scene build plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and optional image URLs to a remote Craftsman/DeepNLP API using a user-provided API key. <br>
-Mitigation: Use it only with trusted data, avoid private prompts or image URLs, and keep DEEPNLP_ONEKEY_ROUTER_ACCESS secret. <br>
-Risk: The artifact installs optional npm and Python packages for API access. <br>
-Mitigation: Review and pin third-party package versions before installing in controlled environments. <br>
+## Use Case:
 
+Developers and Minecraft creators use this skill to request a Craftsman Agent build plan for a 3D Minecraft scene from a text prompt and optional reference image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/generate-minecraft-3d-build-plan) <br>
-- [DeepNLP Workspace keys](https://www.deepnlp.org/workspace/keys) <br>
-- [Craftsman Agent router endpoint](https://agent.deepnlp.org/agent_router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with CLI, Python, and TypeScript examples; remote API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and sends prompts and optional image URLs to a remote Craftsman/DeepNLP API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Install instructions use mutable third-party packages, including a global npm package and an apparently unused Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies before installation, use an isolated environment, avoid elevated privileges, and pin package versions where possible.
+
+Risk: Prompts and reference image URLs are sent to a third-party remote API.
+
+Mitigation: Do not send secrets, personal data, sensitive prompts, or private image URLs unless third-party exposure is acceptable.
+
+Risk: The skill requires an API key in DEEPNLP_ONEKEY_ROUTER_ACCESS.
+
+Mitigation: Store the key as a secret environment variable and avoid exposing it in command history, logs, or shared output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ai-hub-admin/skills/generate-minecraft-3d-build-plan)
+- [DeepNLP Workspace Keys](https://www.deepnlp.org/workspace/keys)
+- [OneKey Agent Router Endpoint](https://agent.deepnlp.org/agent_router)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands; API responses are JSON that can include text and hosted image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and calls a third-party remote API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

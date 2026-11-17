@@ -1,39 +1,48 @@
-## Description: <br>
-Manage AI agent finances under budget constraints by tracking expenses, runway, revenue experiments, and forecasting survival metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AI agent finances under budget constraints by tracking expenses, runway, revenue experiments, and survival forecasts.
 
-## Publisher: <br>
-[Gpunter](https://clawhub.ai/user/Gpunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gpunter](https://clawhub.ai/user/gpunter)
 
-## Use Case: <br>
-Agents and developers use this skill to maintain local finance logs, monitor runway, track revenue experiments, and generate budget-aware survival forecasts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores budget, revenue, expense, and experiment notes in local workspace files. <br>
-Mitigation: Install it only in workspaces where those local finance notes are appropriate, and review generated memory files for persisted content. <br>
-Risk: Users could enter payment credentials, account numbers, or confidential business details into finance logs. <br>
-Mitigation: Keep finance logs limited to non-sensitive operational notes and avoid recording credentials or confidential account details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Gpunter/agent-survival-kit) <br>
+## Use Case:
 
+Agents and developers use this skill to track balances, expenses, revenue experiments, runway, and crisis status for budget-constrained agent operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown responses with local JSON finance records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update MEMORY.md, memory/projects.json, and memory/finances.json in the workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact Version section) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local plaintext financial tracking files may expose balances, transactions, or experiment data when a workspace is shared or synced.
+
+Mitigation: Install only in workspaces where local financial tracking files are acceptable, and review generated memory files before sharing or syncing the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gpunter/skills/agent-survival-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown/text responses with JSON-backed workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update MEMORY.md, memory/projects.json, and memory/finances.json in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact Version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-ClawDate is an operator runbook for bootstrapping or re-binding one owner account, validating ClawDate CLI state, collecting profile intake, submitting owner profile JSON, and configuring recurring sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detailed SOP for ClawDate lobster operators installing or re-binding one owner account, validating whoami/sync/browse, collecting missing owner intake, submitting owner profile JSON, and keeping a 5-minute cron sync running.
 
-## Publisher: <br>
-[qybaihe](https://clawhub.ai/user/qybaihe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qybaihe](https://clawhub.ai/user/qybaihe)
 
-## Use Case: <br>
-ClawDate operators use this skill to set up one isolated owner account, complete missing dating-profile intake, submit the owner profile JSON, verify basic browse connectivity, and keep sync running on a recurring schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive dating preferences, internal operator notes, and WeChat contact data. <br>
-Mitigation: Confirm owner consent before collecting or submitting profile data, keep private operator notes out of public summaries, and avoid sharing raw logs or local config unless operationally necessary. <br>
-Risk: The bootstrap flow can install account automation and create a persistent five-minute sync schedule. <br>
-Mitigation: Review the generated wrapper and cron entry before relying on them, use --skip-cron unless continuous syncing is explicitly wanted, and remove scheduled sync when the account should no longer run. <br>
-Risk: The install flow depends on the ClawDate service and the @qybaihe npm CLI. <br>
-Mitigation: Install only when those services and the operator are trusted, and avoid remote SOURCE installs unless provenance or checksums are verified. <br>
-Risk: The profile template includes automatic session acceptance and contact exchange defaults. <br>
-Mitigation: Review auto-accept and auto-exchange settings against the owner's contact release rule before enabling live matching or contact handling. <br>
+## Use Case:
 
+External ClawDate operators use this skill to bootstrap or re-bind a single owner account, collect missing owner profile intake, submit the owner profile JSON, and validate the live account flow before ongoing sync.
 
-## Reference(s): <br>
-- [ClawDate on ClawHub](https://clawhub.ai/qybaihe/clawdate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write local profile JSON, wrapper scripts, logs, and cron entries when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release evidence) <br>
+Risk: The security evidence reports recurring background execution through cron and unsafe installation or input-handling paths that require review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact CLI package and installation source, avoid remote install.sh SOURCE URLs, and use --skip-cron unless persistent sync is explicitly needed.
+
+Risk: Owner profile JSON and logs can contain contact details, internal assessments, install tokens, or agent tokens.
+
+Mitigation: Protect or delete local profile JSON and logs after use, do not paste raw config or logs back to owners, and keep each owner on an isolated profile.
+
+Risk: The security guidance calls out a missing profile-sync template as a review condition.
+
+Mitigation: Install only after obtaining the profile-sync template from a trusted source and verifying the wrapper before enabling scheduled sync.
+
+Risk: Profile names and account bindings can be mixed across owners.
+
+Mitigation: Validate profile names as simple safe identifiers, confirm whoami/sync/profile get results, and stop before browse/session/contact if the owner profile or token looks wrong.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qybaihe/skills/clawdate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown runbook with inline shell commands and JSON profile configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of owner profile JSON, local wrapper scripts, logs, and 5-minute cron entries.]
+
+## Skill Version(s):
+
+0.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

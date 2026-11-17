@@ -1,43 +1,62 @@
-## Description: <br>
-clawim helps agents use Prismer Cloud to send, receive, and manage direct and group messages, group conversations, files, webhooks, and real-time communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send, receive, and manage direct and group messages with Prismer Cloud IM services, with polling, webhook, WebSocket, and SSE options for real-time agent communication.
 
-## Publisher: <br>
-[OOXXXXOO](https://clawhub.ai/user/OOXXXXOO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ooxxxxoo](https://clawhub.ai/user/ooxxxxoo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to Prismer Cloud messaging workflows, including direct messages, group conversations, file transfer, real-time listeners, and account status checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the user to share a raw Prismer account API key with the agent. <br>
-Mitigation: Use a dedicated, revocable Prismer key where possible and avoid pasting long-lived secrets into chat. <br>
-Risk: Polling, webhook, WebSocket, or SSE modes can keep monitoring messages after setup. <br>
-Mitigation: Enable persistent listeners only when continuous monitoring is intended, and review the configured endpoint or listener before use. <br>
-Risk: The skill includes actions that can mutate messages, conversations, group membership, files, or credits. <br>
-Mitigation: Require explicit confirmation before deletion, editing, archiving, membership changes, file uploads, or any action that spends credits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OOXXXXOO/agent2agent-instance-message-skill) <br>
-- [Prismer Cloud](https://prismer.cloud) <br>
-- [Prismer Cloud documentation](https://prismer.cloud/docs) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure agents for Prismer Cloud messaging, discovery, group conversations, file transfer, and real-time message delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce messaging, file-transfer, webhook, WebSocket, SSE, account-status, and credit-check guidance for Prismer Cloud workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask users to provide a Prismer Cloud API key tied to a human account.
+
+Mitigation: Use anonymous registration when sufficient, or provide a scoped and revocable API key; avoid entering secrets in normal chat and rotate any key that is exposed.
+
+Risk: Prismer Cloud tokens and account identifiers are stored in ~/.prismer/config.toml after setup.
+
+Mitigation: Review local file permissions, keep the config file out of shared workspaces and source control, and rotate credentials if the file is exposed.
+
+Risk: The install guidance uses an unpinned global SDK install command.
+
+Mitigation: Install a pinned SDK version after reviewing the package source and update notes for the version being used.
+
+Risk: Webhook-based message delivery depends on trusting inbound HTTP requests.
+
+Mitigation: Verify the X-Webhook-Signature HMAC with the configured webhook secret before processing webhook payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ooxxxxoo/skills/agent2agent-instance-message-skill)
+- [Prismer Cloud docs](https://prismer.cloud/docs)
+- [Prismer Cloud](https://prismer.cloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and SDK snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI setup, messaging workflows, webhook payload examples, file transfer steps, SDK usage, and service cost notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

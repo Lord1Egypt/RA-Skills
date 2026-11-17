@@ -1,40 +1,54 @@
-## Description: <br>
-Converts Markdown documents into Word .docx files formatted for the GB/T 9704-2012 Chinese official-document layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown into Word documents formatted for Chinese government official document layout under GB/T 9704-2012, with optional remote image embedding that can be disabled.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn generated or supplied Markdown reports into standardized Word documents with government-style page, font, heading, table, link, image, and list formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that Markdown image URLs are fetched automatically without network or size safeguards. <br>
-Mitigation: Use this skill only with Markdown you control or trust, or run it with restricted outbound network access until image fetching is constrained by allowlists, private-network blocking, and download size limits. <br>
+## Use Case:
 
+Developers and agents use this skill to turn Markdown reports, briefings, and structured documents into GB/T 9704-2012-style Word files. It is focused on formatting conversion and does not validate document content or add official document decorations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardwason/gongwen-formatter) <br>
-- [Publisher profile](https://clawhub.ai/user/edwardwason) <br>
-- [Project homepage from artifact metadata](https://github.com/EdwardWason/official-doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, text] <br>
-**Output Format:** [Word .docx file plus a success flag and output path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts Markdown content and an output path; supported Markdown includes headings, paragraphs, lists, tables, links, images, bold, italic, and code blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: Markdown containing remote image URLs can trigger outbound image fetches and expose network metadata in sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For untrusted Markdown or restricted networks, call md_to_docx with download_images=False and review image URLs before conversion.
+
+Risk: The skill formats documents but does not review content, legal sufficiency, or official document completeness.
+
+Mitigation: Review generated documents for content accuracy, compliance, and required official-document elements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardwason/skills/gongwen-formatter)
+- [Project homepage](https://github.com/EdwardWason/official-doc)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Configuration, Guidance]
+
+**Output Format:** [DOCX Word document with a success status and output path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a .docx file; remote image downloads are optional and can be disabled with download_images=False.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release evidence, artifact frontmatter, skill.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

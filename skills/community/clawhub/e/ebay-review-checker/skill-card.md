@@ -1,43 +1,60 @@
-## Description: <br>
-eBay review and feedback authenticity analyzer. Detect fake reviews, suspicious seller feedback patterns, and buyer manipulation. Includes time clustering detection, content similarity analysis, and eBay-specific red flag identification. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes eBay review and seller feedback data for authenticity signals such as timing clusters, repeated content, generic comments, and suspicious rating patterns.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users and developers can use this skill to analyze pasted or structured seller feedback for review-pattern signals, suspicious clustering, and authenticity scoring. The output should support manual review rather than serve as a final eBay fraud determination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill is advertised as an eBay fraud checker while the implementation is largely Amazon-oriented and may overstate what it can detect. <br>
-Mitigation: Use scores as review-support signals only, verify eBay seller decisions manually, and test the skill on representative eBay feedback before relying on results. <br>
-Risk: The security guidance warns against opening generated HTML reports from untrusted review text until report escaping and third-party JavaScript loading are addressed. <br>
-Mitigation: Open generated reports only from trusted input, avoid sharing reports created from untrusted feedback, and review report generation before deployment. <br>
+## Use Case:
 
+External users and e-commerce operators use this skill to inspect pasted or structured review data and receive heuristic authenticity scoring, detected red flags, and guidance on what additional review fields would improve analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/ebay-review-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/phheng) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
-- [Chart.js CDN used by generated reports](https://cdn.jsdelivr.net/npm/chart.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown analysis reports, command examples, and optional HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores and risk labels are heuristic and depend on the review fields supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The release is described as eBay-specific, while security evidence notes that much of the implementation is Amazon-oriented or generic review analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as heuristic review-pattern signals, not authoritative eBay authenticity findings, and manually review conclusions before using them for seller or buyer decisions.
+
+Risk: Generated HTML reports may be unsafe with untrusted review data and rely on an external Chart.js CDN dependency.
+
+Mitigation: Avoid opening generated reports from untrusted data unless HTML escaping and dependency handling have been reviewed and fixed.
+
+Risk: The installation guidance uses global installation.
+
+Mitigation: Install from a pinned release or commit in an isolated environment and avoid global installation for evaluation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/ebay-review-checker)
+- [Publisher profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI](https://www.nexscope.ai/)
+- [Chart.js CDN dependency](https://cdn.jsdelivr.net/npm/chart.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown-style analysis report text and optional HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required. Scores are heuristic and should not be treated as authoritative eBay seller or buyer decisions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,29 @@
+{
+  "version": "2.0",
+  "extends": "base.json",
+  "entity_types": {
+    "WCS_Device": {
+      "description": "WCS 系统设备",
+      "fields": {
+        "device_type": {"type": "string", "enum": ["堆垛机", "输送机", "AGV", "分拣机"], "required": true},
+        "model": {"type": "string", "required": true},
+        "capacity": {"type": "number", "unit": "kg", "required": false},
+        "speed": {"type": "number", "unit": "m/s", "required": false},
+        "communication": {"type": "array", "items": "string", "required": false}
+      }
+    },
+    "ScheduleRule": {
+      "description": "调度规则",
+      "fields": {
+        "name": {"type": "string", "required": true},
+        "algorithm": {"type": "string", "required": false},
+        "priority": {"type": "string", "enum": ["FIFO", "SJF", "优先级", "动态"], "required": true},
+        "constraints": {"type": "array", "items": "string", "required": false}
+      }
+    }
+  },
+  "relation_types": {
+    "dispatches_to": {"from": "ScheduleRule", "to": "WCS_Device", "description": "调度规则适用于某设备"},
+    "communicates_via": {"from": "WCS_Device", "to": "Protocol", "description": "设备通过某协议通信"}
+  }
+}

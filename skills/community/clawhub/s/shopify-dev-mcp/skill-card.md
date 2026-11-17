@@ -1,43 +1,59 @@
-## Description: <br>
-Helps agents work with Shopify Admin API, Storefront API, Liquid validation, GraphQL schemas, Shopify apps, documentation, and MCP tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Shopify Admin API, Storefront API, Liquid, Polaris, and Shopify documentation workflows using the shopify-dev MCP server.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-Developers and engineers use this skill to query Shopify documentation, inspect Shopify GraphQL schemas, validate Liquid, GraphQL, and Polaris code, and build Shopify apps or extensions with less risk of hallucinated API details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of external Shopify MCP tooling that interacts with Shopify APIs. <br>
-Mitigation: Confirm the external Shopify MCP tooling is trusted before installation and use. <br>
-Risk: Shopify credentials may be required for API access. <br>
-Mitigation: Keep Shopify secrets in environment variables and use least-privilege credentials or a development store where possible. <br>
-Risk: Admin API mutations or webhook create/delete operations can change a live shop. <br>
-Mitigation: Require explicit confirmation before running mutations or webhook create/delete commands against a live shop. <br>
+## Use Case:
 
+Developers and engineers use this skill to work with Shopify APIs, inspect GraphQL schemas, validate Liquid/theme or Polaris code, and retrieve Shopify documentation through MCP tooling.
 
-## Reference(s): <br>
-- [Shopify Development MCP API Guide](references/api-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/simoncai519/shopify-dev-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Shopify MCP tool calls, GraphQL snippets, Liquid or React code, validation results, and documentation excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Shopify API credentials and store URLs may expose or modify real store data if handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, keep secrets in environment variables, and prefer a development store.
+
+Risk: Mutation and webhook deletion commands can affect live Shopify stores.
+
+Mitigation: Confirm the store environment, resource IDs, and intended operation before running API mutations or webhook deletion commands.
+
+Risk: Generated API, Liquid, or Polaris code can be outdated or invalid for the active Shopify schema.
+
+Mitigation: Initialize the relevant Shopify technology context and validate generated code with the MCP validation tools before presenting or using it.
+
+## Reference(s):
+
+- [Shopify Development MCP API Guide](references/api-guide.md)
+- [ClawHub skill page](https://clawhub.ai/simoncai519/skills/shopify-dev-mcp)
+- [ClawHub publisher profile](https://clawhub.ai/user/simoncai519)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Shopify MCP tool calls, GraphQL snippets, Liquid validation notes, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

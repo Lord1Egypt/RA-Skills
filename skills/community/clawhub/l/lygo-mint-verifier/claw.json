@@ -1,0 +1,46 @@
+{
+  "name": "lygo-mint-verifier",
+  "displayName": "LYGO-MINT Verifier",
+  "version": "1.1.1",
+  "description": "Canonicalize packs, SHA-256 mint, consent-gated ledgers, portable Anchor Snippet. Pure local — no subprocess, no network, no auto-publish. Compat wrappers never inject --i-consent. Pairs with continuum-integrator + geodesic-sealer.",
+  "slug": "lygo-mint-verifier",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-mint-verifier",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-mint-verifier",
+  "security_audit": "https://clawhub.ai/deepseekoracle/skills/lygo-mint-verifier/security-audit",
+  "signature": "Delta9Phi963-MINT-VERIFIER-v1.1.1",
+  "tags": ["latest", "lygo", "mint", "verifier", "ledger", "anchor", "security", "delta9"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "mint": "scripts/mint_cli.py mint",
+    "verify": "scripts/mint_cli.py verify",
+    "snippet": "scripts/mint_cli.py snippet",
+    "backfill": "scripts/mint_cli.py backfill",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "operator --pack paths",
+      "write": "skill state/ ledgers with operator-supplied --i-consent only"
+    },
+    "publish": false
+  },
+  "security": {
+    "no_subprocess": true,
+    "local_first": true,
+    "consent_required_for_ledger": true,
+    "wrappers_never_inject_consent": true,
+    "no_auto_publish": true,
+    "audit_fixed": "1.1.1: backfill_anchors consent injection; 1.1.0: subprocess + undeclared permissions"
+  },
+  "pairs_with": [
+    "lygo-mint-walkthrough",
+    "lygo-continuum-integrator",
+    "lygo-geodesic-sealer",
+    "lygo-continuum"
+  ]
+}

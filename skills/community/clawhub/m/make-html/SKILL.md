@@ -24,7 +24,7 @@ Use the strongest version of the medium. Do not wrap a Markdown-shaped answer in
    - `references/interaction-patterns.md` for prototypes, explainers, dashboards, and editors.
    - `references/visual-quality.md` before writing the final artifact structure and styling.
    - `references/validation.md` before returning any nontrivial artifact, especially artifacts with JavaScript, SVG, tables, diagrams, or dense responsive layouts.
-   - `references/sharing.md` when the user asks for a hosted preview, shareable link, password protection, custom URL, or cross-device review.
+   - `references/sharing.md` when the user asks for a hosted preview, shareable link, cross-device review, or annotation feedback.
    - `references/source-style.md` when the artifact is about an existing product, repository, brand, app, docs site, or design system.
    - `references/custom-themes.md` when the user asks for a saved/custom/personal theme, when a theme name is provided, or when no source style exists and `themes/` contains a default or clearly matching theme.
    - `themes/fallback-theme.md` when no source/project style can be found after a quick style search, or when the artifact has no natural brand.
@@ -112,4 +112,4 @@ When creating a file, use a short descriptive filename such as:
 
 When returning the artifact, mention what was created and where it is. Keep the chat response brief; the HTML page is the deliverable.
 
-When returning a hosted preview, also state its expiry and keep the local `.html` file as the canonical fallback.
+When returning a hosted preview, also state the Pagedrop route, whether the URL is revision-pinned, and that it persists until the backing Gist is deleted. Keep the local `.html` file as the canonical artifact.

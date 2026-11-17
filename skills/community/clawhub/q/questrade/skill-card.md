@@ -1,43 +1,57 @@
-## Description: <br>
-Query a Questrade brokerage account and Canadian/US market data via the Questrade REST API for account information, balances, positions, orders, executions, activities, Level 1 quotes, historical candles, and symbol search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Questrade brokerage accounts and Canadian/US market data via the Questrade REST API for balances, positions, orders, executions, activities, Level 1 quotes, historical candles, and symbol search.
 
-## Publisher: <br>
-[JoseMiguelHerrera](https://clawhub.ai/user/JoseMiguelHerrera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[josemiguelherrera](https://clawhub.ai/user/josemiguelherrera)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect Questrade account data and Canadian/US market data, including balances, positions, orders, executions, activities, quotes, candles, and symbol metadata. Users with Questrade partner API access can expose order placement and cancellation commands, which should remain under explicit human approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Questrade account data and local token files. <br>
-Mitigation: Install only when the publisher and skill are trusted, protect the local OpenClaw credential and token cache files, and revoke Questrade tokens if a shared or compromised machine may have exposed them. <br>
-Risk: Order placement and cancellation commands can affect real brokerage activity when partner API access is available. <br>
-Mitigation: Keep QUESTRADE_READ_ONLY=true, require explicit human approval for order changes, and do not allow an agent to run cancellation or trading commands autonomously. <br>
-Risk: The --force option bypasses confirmation prompts and price-sanity checks for orders. <br>
-Mitigation: Avoid --force in agent workflows and require review of order summaries before submitting any trade. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Questrade API Reference](references/api.md) <br>
-- [Questrade REST API Documentation](https://www.questrade.com/api/documentation/getting-started) <br>
-- [Questrade Skill on ClawHub](https://clawhub.ai/JoseMiguelHerrera/questrade) <br>
+## Use Case:
 
+External users and agents use this skill to inspect Questrade portfolios, orders, executions, account activity, and Canadian/US market data. With Questrade partner API access, the skill can also place or cancel orders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and JSON printed by CLI commands, with setup guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Questrade refresh token and writes rotated token material to local OpenClaw credential and cache files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: With Questrade partner API credentials, the skill can submit or cancel real brokerage orders.
+
+Mitigation: Keep QUESTRADE_READ_ONLY=true unless trading access is intentionally required, review order summaries before confirming, and avoid --force for live accounts.
+
+Risk: The skill handles sensitive brokerage account data and rotating OAuth refresh tokens.
+
+Mitigation: Protect the ~/.openclaw credential files, do not share refresh tokens, and prefer practice mode when testing workflows.
+
+Risk: Dependency versions are not fully pinned.
+
+Mitigation: Use a pinned dependency set before deployment in controlled environments.
+
+## Reference(s):
+
+- [Questrade API Reference](references/api.md)
+- [Questrade API Documentation](https://www.questrade.com/api/documentation/getting-started)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or table-formatted CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Questrade OAuth credentials and may write rotated tokens to local OpenClaw credential files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

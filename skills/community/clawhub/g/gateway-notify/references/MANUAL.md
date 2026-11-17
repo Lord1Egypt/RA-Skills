@@ -1,75 +1,107 @@
 # Manual Setup Guide
 
+> **Requirements:** OpenClaw gateway 2026.7+, `python3` in `$PATH`, channel CLI installed.
+
 ## Step 1: Create Hook Directory
 
 ```bash
 mkdir -p ~/.openclaw/hooks/gateway-restart-notify
+chmod 700 ~/.openclaw/hooks/gateway-restart-notify
 ```
 
 ## Step 2: Create HOOK.md
 
 Create `~/.openclaw/hooks/gateway-restart-notify/HOOK.md`:
 
-```markdown
+```yaml
 ---
 name: gateway-restart-notify
 description: "Send notification when gateway starts"
 metadata:
   openclaw:
     emoji: "🚀"
-    events: ["gateway:startup"]
+    events:
+      - gateway:startup
 ---
-
-# Gateway Restart Notify
-
-Sends notification to user when gateway starts up.
 ```
 
 ## Step 3: Create Handler
 
-Create `~/.openclaw/hooks/gateway-restart-notify/handler.ts` with your channel-specific command.
+> **Privacy notice:** The handler below transmits only the startup timestamp to your messaging channel. No local config, model names, API keys, or port details are included.
+>
+> **Note:** Notification failures are caught silently to avoid blocking gateway startup. Check gateway logs for `[gateway-restart-notify]` if notifications stop arriving.
 
-Example for iMessage:
+Create `~/.openclaw/hooks/gateway-restart-notify/handler.ts`:
 
 ```typescript
-import { exec } from "child_process";
+import { execFile } from "child_process";
 import { promisify } from "util";
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
-const handler = async (event) => {
-  if (event.type !== "gateway" || event.action !== "startup") {
-    return;
-  }
+// Replace with your CLI command and address
+const CLI_BIN  = "imsg";                                   // imsg | wacli | openclaw
+const CLI_ARGS = ["send", "--to", "YOUR_ADDRESS", "--text"]; // args before message text
 
+const handler = async (event: any) => {
+  // HOOK.md events filter ensures this only fires on gateway:startup.
+  // Privacy: only timestamp is transmitted; no local config or sensitive data.
   try {
     const now = new Date();
-    const timeStr = now.toLocaleString('en-US', { hour12: false });
-    
-    const message = `🚀 Gateway started!
+    let timeStr: string;
+    try {
+      timeStr = now.toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false });
+    } catch {
+      // Fallback: UTC time (works in any timezone)
+      timeStr = now.toISOString().replace("T", " ").slice(0, 19) + " UTC";
+    }
 
-⏰ Time: ${timeStr}
-🌐 Port: 127.0.0.1:18789`;
+    const message = `🚀 Gateway started!\n\n⏰ ${timeStr}`;
 
-    await execAsync(`imsg send --to 'YOUR_ADDRESS' --text "${message}"`);
+    await execFileAsync(CLI_BIN, [...CLI_ARGS, message], { timeout: 10000 });
+    console.log("[gateway-restart-notify] Notification sent");
   } catch (err) {
     console.error("[gateway-restart-notify] Failed:", err);
+    // Do NOT re-throw: notification failure must never block gateway startup
   }
 };
 
 export default handler;
 ```
 
-Replace `YOUR_ADDRESS` and the command with your channel's CLI.
+### Channel-specific CLI_BIN / CLI_ARGS
 
-## Step 4: Enable Hook
+| Channel | CLI_BIN | CLI_ARGS |
+|---------|---------|---------|
+| iMessage | `imsg` | `["send", "--to", "YOUR_ADDRESS", "--text"]` |
+| WhatsApp | `wacli` | `["send", "--to", "YOUR_ADDRESS", "--text"]` |
+| Telegram | `openclaw` | `["message", "send", "--channel", "telegram", "--target", "YOUR_ADDRESS", "--message"]` |
+| Discord | `openclaw` | `["message", "send", "--channel", "discord", "--target", "YOUR_ADDRESS", "--message"]` |
+| Slack | `openclaw` | `["message", "send", "--channel", "slack", "--target", "YOUR_ADDRESS", "--message"]` |
+
+## Step 4: Restart Gateway
 
 ```bash
-openclaw hooks enable gateway-restart-notify
+openclaw gateway restart
 ```
 
-## Step 5: Restart Gateway
+The hook is automatically loaded from `~/.openclaw/hooks/` — no explicit enable command needed in OpenClaw 2026.7+.
+
+## Uninstall
+
+> ⚠️ The command below permanently deletes the hook directory. Review the path before running it.
+
+The recommended way is the uninstall script, which prompts for confirmation and offers to restart the gateway:
 
 ```bash
+scripts/uninstall_gateway_notify.sh
+```
+
+Manual removal (only the fixed hook path; confirm before running):
+
+```bash
+# Confirm the target path first, then remove
+ls -la ~/.openclaw/hooks/gateway-restart-notify
+rm -rf ~/.openclaw/hooks/gateway-restart-notify
 openclaw gateway restart
 ```

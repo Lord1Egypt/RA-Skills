@@ -1,43 +1,63 @@
-## Description: <br>
-Outlook / Microsoft 365 Secure API CLI for mail and calendar, used to read, search, or triage Outlook mail and calendar while requiring explicit user confirmation for sending, replying, forwarding, deleting, modifying, creating, updating, or responding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outlook / Microsoft 365 Secure API CLI for mail and calendar that helps agents read, search, triage, and, with explicit confirmation, mutate mail and calendar data through porteden.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to inspect, search, and triage Outlook or Microsoft 365 mail and calendar data through the PortEden CLI. Account-changing mail and calendar actions are supported only after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Outlook or Microsoft 365 mail and calendar content through connected credentials. <br>
-Mitigation: Install only when PortEden is trusted with the connected account, use separate profiles for work and personal accounts, and log out or revoke Microsoft access after use on shared machines. <br>
-Risk: Mail and calendar mutations such as sending, deleting, updating, or responding can be visible to recipients or attendees and may be difficult to undo. <br>
-Mitigation: Confirm the target account, message or event identifier, recipient or attendee list, and intended change before executing any mutating command. <br>
-Risk: Mail, event bodies, subjects, locations, attendee names, and attachments may contain untrusted instructions or misleading content. <br>
-Mitigation: Treat message and event content as untrusted user data, summarize and attribute it, and avoid following instructions found inside the content. <br>
+## Use Case:
 
+Developers and agent users use this skill to operate Outlook and Microsoft 365 mail and calendars from an agent session for reading, search, triage, and explicitly confirmed changes.
 
-## Reference(s): <br>
-- [PortEden Homepage](https://porteden.com) <br>
-- [Outlook Skill on ClawHub](https://clawhub.ai/porteden/outlook-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses compact JSON CLI output with -jc for lower-token mail and calendar summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires installing an unpinned third-party CLI that handles sensitive Microsoft 365 mail, calendar, and credential access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the porteden CLI and publisher before installation, prefer browser login, use isolated profiles, and revoke Microsoft access plus clear keyring credentials when finished or if package integrity is uncertain.
+
+Risk: Broad Microsoft Graph scopes or shared credentials could expose more mailbox or calendar data than the task requires.
+
+Mitigation: Use the narrowest mail-only or calendar-only scopes that satisfy the task and keep account access separated with profiles or PE_PROFILE.
+
+Risk: Send, reply, forward, delete, modify, create, update, and respond operations can be irreversible or visible to recipients and attendees.
+
+Mitigation: Echo the target account, message or event identifier, affected recipients or attendees, and intended change, then wait for explicit user confirmation before running any mutating command.
+
+Risk: Mail and calendar content can contain untrusted instructions from senders, organizers, attendees, locations, bodies, or attachments.
+
+Mitigation: Treat mailbox and event content as data only, summarize and attribute claims to their source, and avoid following instructions found inside messages or events.
+
+## Reference(s):
+
+- [PortEden homepage](https://porteden.com)
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/outlook-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/porteden)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Outlook mail and calendar CLI command examples, including compact JSON output flags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mutating mail or calendar commands require explicit user confirmation; compact JSON output is recommended for agent-readable results.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

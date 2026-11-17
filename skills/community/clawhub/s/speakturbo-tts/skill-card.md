@@ -1,44 +1,59 @@
-## Description: <br>
-Speak Turbo lets an agent turn text into local speech output with fast built-in text-to-speech voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speak Turbo gives agents ultra-fast local text-to-speech with built-in voices, audio playback, and roughly 90 ms warm-daemon latency.
 
-## Publisher: <br>
-[EmZod](https://clawhub.ai/user/EmZod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emzod](https://clawhub.ai/user/emzod)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an assistant speak responses aloud, play local audio by default, save WAV output when requested, and list or select the included voices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can play generated speech aloud by default, which may expose sensitive text in shared spaces. <br>
-Mitigation: Avoid speaking highly sensitive text in shared environments; save to a file only when needed and review the text before playback. <br>
-Risk: The skill can create local WAV files and supports a permanent output allowlist. <br>
-Mitigation: Keep output directories narrow and avoid adding broad paths such as the whole home directory to the permanent allowlist. <br>
-Risk: The skill runs a disclosed localhost text-to-speech daemon. <br>
-Mitigation: Use it only on systems where a local TTS daemon and localhost service are acceptable, and stop the daemon when no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to make an assistant speak responses aloud locally, either playing generated audio immediately or saving WAV output for later use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EmZod/speakturbo-tts) <br>
-- [Speak Turbo website](https://speakturbo-site.vercel.app) <br>
-- [Pocket TTS](https://github.com/kyutai-labs/pocket-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and WAV audio file output when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May play audible speech locally by default and can save WAV files to allowed output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release metadata and package.json) <br>
+Risk: The installer fetches unpinned dependencies and builds local code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing, run it in an isolated environment when possible, and pin or verify dependencies before use.
+
+Risk: The skill runs a localhost text-to-speech daemon without authentication or resource limits.
+
+Mitigation: Use it only on trusted machines, stop the daemon when finished, and avoid exposing the local port beyond the host.
+
+Risk: Sensitive text may be spoken aloud or written to audio files.
+
+Mitigation: Avoid sending secrets or private content to the skill and keep output directories narrowly scoped.
+
+## Reference(s):
+
+- [Speak Turbo ClawHub page](https://clawhub.ai/emzod/skills/speakturbo-tts)
+- [Speak Turbo website](https://speakturbo-site.vercel.app)
+- [Pocket TTS](https://github.com/kyutai-labs/pocket-tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, audio files]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional WAV audio output from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can play audio locally or save 24 kHz mono WAV files; first run may take 2-5 seconds while the daemon loads.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

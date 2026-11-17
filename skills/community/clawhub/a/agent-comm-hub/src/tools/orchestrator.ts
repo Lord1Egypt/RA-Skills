@@ -14,7 +14,7 @@ import { randomUUID } from "crypto";
 import { type Task, db } from "../db.js";
 import { taskRepo } from "../repo/sqlite-impl.js";
 import { pushToAgent } from "../sse.js";
-import { auditLog, type AuthContext } from "../security.js";
+import { auditLog, type AuthContext, assertOwns } from "../security.js";
 import {
   addDependency as addDep,
   removeDependency as removeDep,
@@ -30,7 +30,15 @@ import {
   getPipelineStatus,
   addTaskToPipeline,
 } from "../orchestrator.js";
-import { requireAuth, mcpError } from "../utils.js";
+import { requireAuth, authed, mcpError, mcpFail } from "../utils.js";
+import { ActivationOrchestrator } from "../orchestrator.js";
+
+/** 全局 ActivationOrchestrator 实例，由 server.ts 注入 */
+export let activationOrch: ActivationOrchestrator | null = null;
+
+export function setActivationOrchestrator(orch: ActivationOrchestrator): void {
+  activationOrch = orch;
+}
 
 /**
  * 注册 Task Orchestrator 相关工具（16 个）
@@ -51,8 +59,12 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
                      .describe("执行任务所需背景信息，减少执行方反复询问"),
       priority:    z.enum(["low", "normal", "high", "urgent"]).default("normal"),
     },
-    async ({ from, to, description, context, priority }) => {
-      requireAuth(authContext, "assign_task");
+    authed(authContext, "assign_task", async (ctx, { from, to, description, context, priority }) => {
+
+      // T5：发送者身份校验——from 必须等于调用方 agent_id
+      if (from !== ctx.agentId) {
+        return mcpFail(`Sender identity mismatch: from must equal your agent_id`);
+      }
 
       const task: Task = {
         id:          `task_${Date.now()}_${randomUUID().slice(0, 6)}`,
@@ -104,7 +116,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -121,8 +133,13 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       progress: z.number().min(0).max(100).optional().default(0)
                   .describe("完成百分比，0-100"),
     },
-    async ({ task_id, agent_id, status, result, progress }) => {
-      requireAuth(authContext, "update_task_status");
+    authed(authContext, "update_task_status", async (ctx, { task_id, agent_id, status, result, progress }) => {
+
+      // T5：对象级授权——仅任务参与者或 admin 可更新
+      assertOwns("task", task_id, ctx);
+      if (agent_id !== ctx.agentId) {
+        return mcpFail(`Task update identity mismatch: agent_id must equal your agent_id`);
+      }
 
       const task = taskRepo.getById(task_id);
       if (!task) {
@@ -160,7 +177,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -172,8 +189,10 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
     {
       task_id: z.string(),
     },
-    async ({ task_id }) => {
-      requireAuth(authContext, "get_task_status");
+    authed(authContext, "get_task_status", async (ctx, { task_id }) => {
+
+      // T5：对象级授权——仅任务参与者或 admin 可查询
+      assertOwns("task", task_id, ctx);
 
       const task = taskRepo.getById(task_id);
       return {
@@ -184,7 +203,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
             : JSON.stringify({ error: "Task not found" }),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -202,8 +221,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
                      .optional().default("finish_to_start")
                      .describe("依赖类型，默认 finish_to_start"),
     },
-    async ({ upstream_id, downstream_id, dep_type }) => {
-      const ctx = requireAuth(authContext, "add_dependency");
+    authed(authContext, "add_dependency", async (ctx, { upstream_id, downstream_id, dep_type }) => {
 
       try {
         const result = addDep(upstream_id, downstream_id, dep_type as any, ctx.agentId);
@@ -230,7 +248,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "add_dependency");
       }
-    }
+    })
   );
 
   // Tool D2: remove_dependency — member 及以上
@@ -241,8 +259,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       upstream_id:   z.string().describe("上游任务 ID"),
       downstream_id: z.string().describe("下游任务 ID"),
     },
-    async ({ upstream_id, downstream_id }) => {
-      const ctx = requireAuth(authContext, "remove_dependency");
+    authed(authContext, "remove_dependency", async (ctx, { upstream_id, downstream_id }) => {
 
       try {
         const result = removeDep(upstream_id, downstream_id, ctx.agentId);
@@ -268,7 +285,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "remove_dependency");
       }
-    }
+    })
   );
 
   // Tool D3: get_task_dependencies — member 及以上
@@ -278,8 +295,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
     {
       task_id: z.string().describe("要查询的任务 ID"),
     },
-    async ({ task_id }) => {
-      const ctx = requireAuth(authContext, "get_task_dependencies");
+    authed(authContext, "get_task_dependencies", async (ctx, { task_id }) => {
 
       try {
         const deps = getDeps(task_id);
@@ -301,7 +317,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "get_task_dependencies");
       }
-    }
+    })
   );
 
   // Tool D4: create_parallel_group — member 及以上
@@ -312,8 +328,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       task_ids: z.array(z.string()).min(2).max(10)
                .describe("并行任务 ID 列表（至少 2 个，最多 10 个）"),
     },
-    async ({ task_ids }) => {
-      const ctx = requireAuth(authContext, "create_parallel_group");
+    authed(authContext, "create_parallel_group", async (ctx, { task_ids }) => {
 
       try {
         const result = createParallelGroup(task_ids, ctx.agentId);
@@ -336,7 +351,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "create_parallel_group");
       }
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -351,8 +366,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       task_id:        z.string().describe("要交接的任务 ID"),
       target_agent_id: z.string().describe("目标 Agent ID（交接对象）"),
     },
-    async ({ task_id, target_agent_id }) => {
-      const ctx = requireAuth(authContext, "request_handoff");
+    authed(authContext, "request_handoff", async (ctx, { task_id, target_agent_id }) => {
 
       try {
         const result = requestHandoff(task_id, target_agent_id, ctx.agentId);
@@ -373,7 +387,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "request_handoff");
       }
-    }
+    })
   );
 
   // Tool H2: accept_handoff — member 及以上
@@ -383,8 +397,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
     {
       task_id: z.string().describe("要接受的任务 ID"),
     },
-    async ({ task_id }) => {
-      const ctx = requireAuth(authContext, "accept_handoff");
+    authed(authContext, "accept_handoff", async (ctx, { task_id }) => {
 
       try {
         const result = acceptHandoff(task_id, ctx.agentId);
@@ -403,7 +416,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "accept_handoff");
       }
-    }
+    })
   );
 
   // Tool H3: reject_handoff — member 及以上
@@ -414,8 +427,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       task_id: z.string().describe("要拒绝的任务 ID"),
       reason:  z.string().optional().describe("拒绝原因"),
     },
-    async ({ task_id, reason }) => {
-      const ctx = requireAuth(authContext, "reject_handoff");
+    authed(authContext, "reject_handoff", async (ctx, { task_id, reason }) => {
 
       try {
         const result = rejectHandoff(task_id, ctx.agentId, reason);
@@ -434,7 +446,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "reject_handoff");
       }
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -451,8 +463,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       criteria:    z.string().describe("评估规则（JSON 格式，如 {\"type\":\"manual\",\"check\":\"code_review\"}）"),
       after_order: z.number().int().min(0).describe("在哪个 order_index 之后的任务需要等待此质量门通过"),
     },
-    async ({ pipeline_id, gate_name, criteria, after_order }) => {
-      const ctx = requireAuth(authContext, "add_quality_gate");
+    authed(authContext, "add_quality_gate", async (ctx, { pipeline_id, gate_name, criteria, after_order }) => {
 
       try {
         const result = addQGate(pipeline_id, gate_name, criteria, after_order, ctx.agentId);
@@ -474,7 +485,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "add_quality_gate");
       }
-    }
+    })
   );
 
   // Tool Q2: evaluate_quality_gate — member 及以上
@@ -486,8 +497,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       status:      z.enum(["passed", "failed"]).describe("评估结果"),
       result:      z.string().optional().describe("评估说明"),
     },
-    async ({ gate_id, status, result }) => {
-      const ctx = requireAuth(authContext, "evaluate_quality_gate");
+    authed(authContext, "evaluate_quality_gate", async (ctx, { gate_id, status, result }) => {
 
       try {
         const evalResult = evalQGate(gate_id, status, ctx.agentId, result);
@@ -511,7 +521,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "evaluate_quality_gate");
       }
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -526,8 +536,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       name:        z.string().describe("Pipeline 名称"),
       description: z.string().optional().describe("Pipeline 描述"),
     },
-    async ({ name, description }) => {
-      const ctx = requireAuth(authContext, "create_pipeline");
+    authed(authContext, "create_pipeline", async (ctx, { name, description }) => {
 
       try {
         const pipeline = createPipeline({
@@ -551,7 +560,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "create_pipeline");
       }
-    }
+    })
   );
 
   // Tool P2: get_pipeline — member 及以上
@@ -561,8 +570,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
     {
       pipeline_id: z.string().describe("Pipeline ID"),
     },
-    async ({ pipeline_id }) => {
-      const ctx = requireAuth(authContext, "get_pipeline");
+    authed(authContext, "get_pipeline", async (ctx, { pipeline_id }) => {
 
       try {
         const result = getPipelineStatus(pipeline_id);
@@ -588,7 +596,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "get_pipeline");
       }
-    }
+    })
   );
 
   // Tool P3: list_pipelines — member 及以上
@@ -601,8 +609,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       limit:  z.number().min(1).max(50).optional().default(20)
               .describe("最大返回数量"),
     },
-    async ({ status, limit }) => {
-      const ctx = requireAuth(authContext, "list_pipelines");
+    authed(authContext, "list_pipelines", async (ctx, { status, limit }) => {
 
       try {
         const conditions: string[] = [];
@@ -639,7 +646,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "list_pipelines");
       }
-    }
+    })
   );
 
   // Tool P4: add_task_to_pipeline — member 及以上
@@ -651,8 +658,7 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       task_id:      z.string().describe("任务 ID"),
       order_index:  z.number().int().min(0).optional().describe("顺序索引（不传则自动追加到末尾）"),
     },
-    async ({ pipeline_id, task_id, order_index }) => {
-      const ctx = requireAuth(authContext, "add_task_to_pipeline");
+    authed(authContext, "add_task_to_pipeline", async (ctx, { pipeline_id, task_id, order_index }) => {
 
       try {
         const result = addTaskToPipeline(pipeline_id, task_id, order_index, ctx.agentId);
@@ -676,6 +682,86 @@ export function registerOrchestratorTools(server: McpServer, authContext?: AuthC
       } catch (err: unknown) {
         return mcpError(err, "add_task_to_pipeline");
       }
-    }
+    })
+  );
+
+  // ────────────────────────────────────────────────────
+  // P1-4: activate_agent — 激活 Agent
+  // ────────────────────────────────────────────────────
+  server.tool(
+    "activate_agent",
+    "激活一个已注册的 Agent（registered/suspended → active）。已激活再激活幂等。",
+    {
+      agent_id: z.string().describe("目标 Agent ID"),
+    },
+    authed(authContext, "activate_agent", async (ctx, { agent_id }) => {
+      // D8 修复：对象级鉴权 —— 仅 admin 或该 agent 自身可激活
+      if (ctx.role !== "admin" && ctx.agentId !== agent_id) {
+        return mcpFail(`Permission denied: you can only activate your own agent (${ctx.agentId}), or must be admin`);
+      }
+      const result = activationOrch?.activateAgent(agent_id, ctx.agentId);
+      if (!result) {
+        return { content: [{ type: "text", text: JSON.stringify({ success: false, error: "Activation orchestrator not initialized" }) }], isError: true };
+      }
+      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    })
+  );
+
+  // ────────────────────────────────────────────────────
+  // P1-4: deactivate_agent — 挂起 Agent
+  // ────────────────────────────────────────────────────
+  server.tool(
+    "deactivate_agent",
+    "挂起一个活跃 Agent（active → suspended）。已挂起再挂起幂等。",
+    {
+      agent_id: z.string().describe("目标 Agent ID"),
+    },
+    authed(authContext, "deactivate_agent", async (ctx, { agent_id }) => {
+      // D8 修复：对象级鉴权 —— 仅 admin 或该 agent 自身可挂起
+      if (ctx.role !== "admin" && ctx.agentId !== agent_id) {
+        return mcpFail(`Permission denied: you can only deactivate your own agent (${ctx.agentId}), or must be admin`);
+      }
+      const result = activationOrch?.deactivateAgent(agent_id, ctx.agentId);
+      if (!result) {
+        return { content: [{ type: "text", text: JSON.stringify({ success: false, error: "Activation orchestrator not initialized" }) }], isError: true };
+      }
+      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    })
+  );
+
+  // ────────────────────────────────────────────────────
+  // P1-4: pause_pipeline — 暂停 Pipeline
+  // ────────────────────────────────────────────────────
+  server.tool(
+    "pause_pipeline",
+    "暂停一个活跃 Pipeline（active → paused）。已暂停再暂停幂等。",
+    {
+      pipeline_id: z.string().describe("目标 Pipeline ID"),
+    },
+    authed(authContext, "pause_pipeline", async (ctx, { pipeline_id }) => {
+      const result = activationOrch?.pausePipeline(pipeline_id, ctx.agentId);
+      if (!result) {
+        return { content: [{ type: "text", text: JSON.stringify({ success: false, error: "Activation orchestrator not initialized" }) }], isError: true };
+      }
+      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    })
+  );
+
+  // ────────────────────────────────────────────────────
+  // P1-4: resume_pipeline — 恢复 Pipeline
+  // ────────────────────────────────────────────────────
+  server.tool(
+    "resume_pipeline",
+    "恢复一个暂停的 Pipeline（paused → active）。已激活再恢复幂等。",
+    {
+      pipeline_id: z.string().describe("目标 Pipeline ID"),
+    },
+    authed(authContext, "resume_pipeline", async (ctx, { pipeline_id }) => {
+      const result = activationOrch?.resumePipeline(pipeline_id, ctx.agentId);
+      if (!result) {
+        return { content: [{ type: "text", text: JSON.stringify({ success: false, error: "Activation orchestrator not initialized" }) }], isError: true };
+      }
+      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    })
   );
 }

@@ -1,40 +1,55 @@
-## Description: <br>
-Reference tool for devtools \u2014 covers intro, quickstart, patterns and more. Quick lookup for Privacy concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick Privacy concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise privacy reference guidance, including introductory concepts, quickstart material, patterns, debugging, performance, security, migration, and cheatsheet content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future releases could expand beyond static documentation and add credential, network, elevated-permission, or private-file access. <br>
-Mitigation: Review the artifact and security scan results before deployment, especially if a future version adds those capabilities. <br>
+## Use Case:
 
+Developers and security practitioners use this skill as a lightweight privacy reference for quick lookup of concepts, patterns, troubleshooting, migration, and security guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/privacy) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; evidence indicates no credentials, network access, or external API calls are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release and frontmatter; script reports 2.0.2) <br>
+Risk: The skill provides static privacy guidance that may be incomplete or out of date for legal, regulatory, or organization-specific requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a quick reference and verify privacy decisions against current legal, compliance, and internal policy sources.
+
+Risk: Broad command names such as intro and security can overlap with ordinary user requests.
+
+Mitigation: Invoke the skill intentionally for privacy reference lookups and confirm that the selected command matches the user request.
+
+## Reference(s):
+
+- [ClawHub Privacy skill page](https://clawhub.ai/bytesagain3/skills/privacy)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no API keys, credentials, network access, file access, or persistent system features.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

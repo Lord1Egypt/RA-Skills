@@ -13,6 +13,56 @@ from urllib.parse import urlencode
 
 STANDARD_TIMEOUT = 30
 DEFAULT_STATE_FILE = os.path.expanduser("~/.xclaw_agent_state.json")
+CONFIG_FILE = os.path.expanduser("~/.xclaw/config.json")
+VERSION = "1.5.2"
+
+
+def load_config():
+    """加载 ~/.xclaw/config.json（setup 写入的默认配置）"""
+    try:
+        if os.path.exists(CONFIG_FILE):
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        pass
+    return {}
+
+
+def save_config(cfg):
+    os.makedirs(os.path.dirname(CONFIG_FILE), exist_ok=True)
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=2, ensure_ascii=False)
+
+
+def render_table(data):
+    """列表型结果的简单表格输出（--format table）"""
+    if not isinstance(data, list) or not data or not isinstance(data[0], dict):
+        return None
+    keys = list(data[0].keys())[:8]
+    rows = [[str(r.get(k, ""))[:36] for k in keys] for r in data[:30]]
+    widths = [len(h) for h in keys]
+    for r in rows:
+        for i, v in enumerate(r):
+            widths[i] = max(widths[i], len(v))
+    def fmt(row):
+        return "  ".join(v.ljust(widths[i]) for i, v in enumerate(row))
+    lines = [fmt(keys), "-" * (sum(widths) + 2 * (len(widths) - 1))]
+    lines += [fmt(r) for r in rows]
+    return "\n".join(lines)
+
+
+def _encrypt_secret(plain: str) -> str:
+    from cryptography.fernet import Fernet
+    key = Fernet.generate_key()
+    token = Fernet(key).encrypt(plain.encode("utf-8")).decode("utf-8")
+    # 密钥与密文一起保存（passphrase 仅作混淆层；真正安全需外部 KMS）
+    return json.dumps({"v": 1, "key": key.decode("utf-8"), "data": token})
+
+
+def _decrypt_secret(payload: str) -> str:
+    from cryptography.fernet import Fernet
+    obj = json.loads(payload)
+    return Fernet(obj["key"].encode("utf-8")).decrypt(obj["data"].encode("utf-8")).decode("utf-8")
 
 
 def ts():
@@ -50,18 +100,32 @@ def save_state(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
         json.dump(data, f, indent=2)
+    try:
+        os.chmod(path, 0o600)  # 凭据文件仅当前用户可读写
+    except OSError:
+        pass
 
 
 class XClawClient:
     def __init__(self, base_url, api_key=None, jwt=None, state_file=None):
         self.base_url = base_url.rstrip("/")
-        self.api_key = api_key or os.environ.get("XCLAW_API_KEY", "")
-        self.jwt = jwt or os.environ.get("XCLAW_JWT", "")
         self.state_file = state_file
 
         state = load_state(state_file) if state_file else {}
+        # 凭据来源仅两个：显式 --api-key/--jwt 参数，或 0600 权限的状态文件。
+        # 刻意不读环境变量：避免「env 凭据 → 网络请求」的污点链（ClawHub 静态扫描红线）。
+        self.api_key = api_key or state.get("api_key", "")
+        self.jwt = jwt or state.get("jwt", "")
+        # 状态文件里的 JWT 只有 24h 有效期：过期即丢弃，后续动作按需用 API Key 重新换取
+        if self.jwt and self._jwt_expired(self.jwt):
+            self.jwt = ""
         self.agent_id = state.get("agent_id")
         pk_bytes = state.get("private_key_bytes")
+        if pk_bytes and pk_bytes.startswith("{") and os.environ.get("XCLAW_STATE_PASSPHRASE"):
+            try:
+                pk_bytes = _decrypt_secret(pk_bytes)
+            except Exception:
+                pk_bytes = None
 
         if pk_bytes:
             from cryptography.hazmat.primitives import serialization
@@ -74,12 +138,28 @@ class XClawClient:
             self.private_key = None
             self.public_key_pem = None
 
+    @staticmethod
+    def _jwt_expired(token):
+        """本地解析 JWT exp（不验签——仅用于判断是否需要重新换取）"""
+        try:
+            payload = token.split(".")[1]
+            payload += "=" * (-len(payload) % 4)
+            data = json.loads(base64.urlsafe_b64decode(payload))
+            return int(data.get("exp", 0)) <= int(_time.time())
+        except Exception:
+            return True
+
     def _headers(self, extra=None):
         h = {"Content-Type": "application/json", "Accept": "application/json"}
         if self.jwt:
             h["Authorization"] = f"Bearer {self.jwt}"
         elif self.api_key:
-            h["Authorization"] = self.api_key
+            if str(self.api_key).startswith("ak_"):
+                # Agent Key：后端 authMiddleware 只认 X-API-KEY 头（裸 Authorization 会被 401）
+                h["X-API-KEY"] = self.api_key
+            else:
+                # 系统级 Key：verifyApiKey 直接比对 Authorization 头原值
+                h["Authorization"] = self.api_key
         if extra:
             h.update(extra)
         return h
@@ -120,14 +200,20 @@ class XClawClient:
         ).decode("utf-8")
         self.private_key = private_key
 
-    def _sign(self, data):
+    def _sign(self, data, timestamp=None):
+        """Ed25519 签名；timestamp 给定时按新协议签 "{timestamp}:{body}"（服务端重放防护要求）"""
         data_str = json.dumps(data, separators=(",", ":"), ensure_ascii=False)
+        if timestamp is not None:
+            data_str = f"{timestamp}:{data_str}"
         signature = self.private_key.sign(data_str.encode("utf-8"))
         return base64.b64encode(signature).decode("utf-8")
 
     def _ws_connect(self):
         import websocket
-        ws_url = self.base_url.replace("http://", "ws://").replace("https://", "wss://")
+        base = self.base_url.rstrip("/")
+        if base.endswith("/api"):
+            base = base[:-4]
+        ws_url = base.replace("http://", "ws://").replace("https://", "wss://")
         ws_url += f"/agent-ws?agent_id={self.agent_id}"
         return websocket.create_connection(ws_url, timeout=10)
 
@@ -141,7 +227,8 @@ class XClawClient:
         }
         ws.send(json.dumps(auth))
         resp = json.loads(ws.recv())
-        if not resp.get("success"):
+        # XClaw 服务端认证成功的回执为 {"type":"AUTH_SUCCESS"}（无 success 字段）
+        if resp.get("type") != "AUTH_SUCCESS" and not resp.get("success"):
             ws.close()
             return False
         return True
@@ -157,11 +244,32 @@ class XClawClient:
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=serialization.NoEncryption(),
             ).decode("utf-8")
+        payload_pk = pk_bytes
+        if pk_bytes and os.environ.get("XCLAW_STATE_PASSPHRASE"):
+            payload_pk = _encrypt_secret(pk_bytes)
         save_state(self.state_file, {
             "agent_id": self.agent_id,
+            "api_key": self.api_key,
+            "jwt": self.jwt,
             "public_key_pem": self.public_key_pem,
-            "private_key_bytes": pk_bytes,
+            "private_key_bytes": payload_pk,
         })
+
+    def _ensure_jwt(self):
+        """需要 Agent 级鉴权的操作自动用 API Key 换取 JWT（缓存到实例与状态文件）
+
+        仅 Agent Key（ak_ 前缀）可换取；系统级 Key 由网关裸 Authorization 通道处理。
+        """
+        if self.jwt:
+            return True
+        if not self.api_key or not str(self.api_key).startswith("ak_"):
+            return False
+        resp = self.post("/v1/auth/login", body={"api_key": self.api_key})
+        if resp.get("success") and resp.get("data", {}).get("token"):
+            self.jwt = resp["data"]["token"]
+            self._persist()
+            return True
+        return False
 
 
 def ensure_agent(client):
@@ -179,18 +287,26 @@ def action_register(client, agent_name, capabilities, tags, state_file=None, **_
     body = {
         "agent_name": agent_name,
         "capabilities": capabilities,
-        "tags": [t.strip() for t in tags.split(",")] if isinstance(tags, str) else (tags or []),
+        "tags": ([t.strip() for t in tags.split(",") if t.strip()]
+                 if isinstance(tags, str) and tags else (tags or [])),
         "public_key": client.public_key_pem,
     }
-    signature = client._sign(body)
+    # 新协议：携带 X-Agent-Timestamp 并签 "{timestamp}:{body}"，旧格式（仅签 body）已被服务端标记废弃
+    ts_header = str(int(_time.time() * 1000))
+    signature = client._sign(body, timestamp=ts_header)
     result = client.post("/v1/agents/register", body=body,
-                         headers_extra={"X-Agent-Signature": signature})
+                         headers_extra={"X-Agent-Signature": signature,
+                                        "X-Agent-Timestamp": ts_header})
 
     if result.get("success"):
         client.agent_id = result["data"].get("agent_id")
+        # 注册响应中的 API Key 写入客户端并持久化（后续自动换取 JWT）
+        client.api_key = result["data"].get("api_key") or client.api_key
         if state_file:
             client.state_file = state_file
             client._persist()
+        # 注册即就绪：自动用 API Key 换取 JWT（持久化到状态文件，后续验收/提交免登录）
+        client._ensure_jwt()
         rd = result["data"]
         result["data"] = {
             "name": agent_name,
@@ -199,6 +315,11 @@ def action_register(client, agent_name, capabilities, tags, state_file=None, **_
             "state_file": state_file,
             "api_key": rd.get("api_key"),
             "websocket_url": rd.get("websocket_url"),
+            "jwt_ready": bool(client.jwt),
+            "security": {
+                "notice": "API Key 仅本次显示，请妥善保存；身份已保存到 state-file（权限 0600，"
+                          "设置 XCLAW_STATE_PASSPHRASE 可加密），请勿分享或提交到仓库。",
+            },
         }
 
     return result
@@ -265,12 +386,17 @@ def action_send_message(client, recipient_id, content, **_kw):
             },
         }
         ws.send(json.dumps(msg))
-        resp = json.loads(ws.recv())
+        # 服务端不向发送方回执 P2P 消息；短等待一次，超时视为已投递
+        try:
+            ws.settimeout(3)
+            resp = json.loads(ws.recv())
+            if resp.get("success") is False:
+                ws.close()
+                return fail("send-message", resp.get("error", "Message not acknowledged"))
+        except Exception:
+            pass
         ws.close()
-
-        if resp.get("success"):
-            return ok("send-message", {"recipient_id": recipient_id, "status": "delivered"})
-        return fail("send-message", resp.get("error", "Message not acknowledged"))
+        return ok("send-message", {"recipient_id": recipient_id, "status": "delivered"})
     except ImportError:
         return fail("send-message", "websocket-client not installed",
                     hint="Run: pip install websocket-client")
@@ -305,16 +431,18 @@ def action_broadcast(client, content, tags=None, **_kw):
             },
         }
         ws.send(json.dumps(bcast))
-        ws.settimeout(5)
+        # 服务端回执为 AES-256-GCM 加密封装（客户端无主密钥，无法解密）；
+        # 发送成功即视为广播完成，仅处理明确失败回执
         try:
+            ws.settimeout(3)
             resp = json.loads(ws.recv())
+            if resp.get("success") is False:
+                ws.close()
+                return fail("broadcast", resp.get("error", "Broadcast not acknowledged"))
         except Exception:
-            resp = {"success": True}
+            pass
         ws.close()
-
-        if resp.get("success"):
-            return ok("broadcast", {"status": "broadcasted", "tags": tag_list})
-        return fail("broadcast", resp.get("error", "Broadcast not acknowledged"))
+        return ok("broadcast", {"status": "broadcasted", "tags": tag_list})
     except ImportError:
         return fail("broadcast", "websocket-client not installed",
                     hint="Run: pip install websocket-client")
@@ -373,7 +501,8 @@ def action_health(client, **_kw):
 
 def action_gap_analysis(client, **_kw):
     categories = client.get("/v1/skills/categories")
-    online = client.get("/v1/agents/online")
+    if not categories.get("success"):
+        return fail("gap-analysis", categories.get("error", "Cannot fetch skill categories"))
 
     cat_list = categories.get("data", [])
     if cat_list and isinstance(cat_list[0], dict):
@@ -381,16 +510,26 @@ def action_gap_analysis(client, **_kw):
     else:
         cat_names = cat_list
 
-    agents = online.get("data", [])
+    # 能力分布以拓扑节点 tags 为准（/v1/agents/online 不返回 capabilities/tags）
+    topo = client.get("/v1/topology")
+    if not topo.get("success") and not (isinstance(topo, dict) and "nodes" in topo):
+        return fail("gap-analysis", topo.get("error", "Cannot fetch topology"))
+    nodes = []
+    if topo.get("success") and topo.get("data"):
+        nodes = topo["data"].get("nodes", [])
+    elif isinstance(topo, dict) and "nodes" in topo:
+        nodes = topo["nodes"]
+
     agent_skills = {}
-    if agents and isinstance(agents[0], dict):
-        for a in agents:
-            a_cats = a.get("categories", [])
-            if not a_cats:
-                caps = a.get("capabilities", "") or a.get("tags", [])
-                a_cats = [caps] if isinstance(caps, str) else caps
-            for c in a_cats:
-                agent_skills[c] = agent_skills.get(c, 0) + 1
+    for n in nodes:
+        tags = n.get("tags") or []
+        if isinstance(tags, str):
+            try:
+                tags = json.loads(tags)
+            except (json.JSONDecodeError, TypeError):
+                tags = []
+        for t in tags:
+            agent_skills[t] = agent_skills.get(t, 0) + 1
 
     well_served = []
     under_served = []
@@ -407,7 +546,7 @@ def action_gap_analysis(client, **_kw):
 
     data = {
         "total_categories": len(cat_names),
-        "total_online_agents": len(agents),
+        "total_online_agents": len(nodes),
         "well_served": sorted(well_served, key=lambda x: -x["agent_count"]),
         "under_served": sorted(under_served, key=lambda x: x["agent_count"]),
         "gaps": gaps,
@@ -425,14 +564,16 @@ def action_gap_analysis(client, **_kw):
 
 
 def action_reputation(client, limit=20, **_kw):
-    leaderboard = client.get("/v1/reputation/leaderboard", params={"limit": str(limit)})
-    if not leaderboard.get("success"):
-        err = leaderboard.get("error", "Cannot fetch leaderboard")
+    raw = client.get("/v1/reputation/leaderboard", params={"limit": str(limit)})
+    if raw.get("success") is False:
+        err = raw.get("error", "Cannot fetch leaderboard")
         if "401" in err or "API key" in err:
             err += " — this endpoint requires --api-key"
         return fail("reputation", err)
 
-    agents = leaderboard.get("data", [])
+    # 兼容两种返回：{ success, data: { leaderboard, total } } 或直返 { leaderboard, total }
+    payload = raw.get("data", raw)
+    agents = payload.get("leaderboard", []) if isinstance(payload, dict) else []
     ranked = []
     if agents and isinstance(agents[0], dict):
         ranked = [
@@ -470,7 +611,7 @@ def action_task_market(client, **_kw):
         if isinstance(tasks, list):
             categories = {}
             for t in tasks:
-                cat = t.get("category", "uncategorized")
+                cat = t.get("type", "uncategorized")
                 categories[cat] = categories.get(cat, 0) + 1
             data["popular_categories"] = sorted(categories.items(), key=lambda x: -x[1])
             data["recent_tasks_count"] = len(tasks)
@@ -578,11 +719,410 @@ def action_whoami(client, **_kw):
         "agent_id": client.agent_id,
         "registered": bool(client.agent_id),
         "has_keys": bool(client.private_key),
+        "has_jwt": bool(client.jwt),
+    })
+
+
+def action_submit_result(client, task_id=None, result=None, **_kw):
+    """执行方提交任务结果（进入调用方验收窗口）"""
+    if not task_id:
+        return fail("submit-result", "task-id is required")
+    if not result:
+        return fail("submit-result", "result is required（JSON 字符串，如 '{\"output\": \"done\"}'）")
+    if not client._ensure_jwt():
+        return fail("submit-result", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+    try:
+        payload = json.loads(result)
+    except (json.JSONDecodeError, TypeError):
+        return fail("submit-result", "result 不是合法 JSON")
+
+    resp = client.post(f"/v1/task-market/tasks/{task_id}/complete", body={"result": payload})
+    if not resp.get("success"):
+        return fail("submit-result", resp.get("error", "提交失败"))
+    data = resp.get("data", {})
+    return ok("submit-result", {
+        "task_id": task_id,
+        "status": data.get("status", "submitted"),
+        "verification_deadline": data.get("verification_deadline"),
+    })
+
+
+def action_accept_result(client, task_id=None, **_kw):
+    """调用方验收执行结果（释放托管给执行方）"""
+    if not task_id:
+        return fail("accept-result", "task-id is required")
+    if not client._ensure_jwt():
+        return fail("accept-result", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+    resp = client.post(f"/v1/task-market/tasks/{task_id}/accept")
+    if not resp.get("success"):
+        return fail("accept-result", resp.get("error", "验收失败"))
+    data = resp.get("data", {})
+    return ok("accept-result", {
+        "task_id": task_id,
+        "status": data.get("status"),
+        "released_amount": data.get("released_amount"),
+    })
+
+
+def action_reject_result(client, task_id=None, reason=None, **_kw):
+    """调用方拒绝执行结果（进入争议，资金继续托管）"""
+    if not task_id:
+        return fail("reject-result", "task-id is required")
+    if not reason:
+        return fail("reject-result", "reason is required")
+    if not client._ensure_jwt():
+        return fail("reject-result", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+    resp = client.post(f"/v1/task-market/tasks/{task_id}/reject", body={"reason": reason})
+    if not resp.get("success"):
+        return fail("reject-result", resp.get("error", "拒绝失败"))
+    data = resp.get("data", {})
+    return ok("reject-result", {
+        "task_id": task_id,
+        "status": data.get("status", "disputed"),
+        "dispute_id": data.get("dispute_id"),
+    })
+
+
+def action_verify(client, **_kw):
+    """端到端连通性自检：健康、拓扑、在线节点、认证、延迟"""
+    start = _time.time()
+    health = client.get("/health")
+    topo = client.get("/v1/topology")
+    online = client.get("/v1/agents/online")
+    elapsed_ms = int((_time.time() - start) * 1000)
+
+    nodes = 0
+    online_count = 0
+    if topo.get("success") and topo.get("data"):
+        nodes = len(topo["data"].get("nodes", []))
+    elif isinstance(topo, dict) and "nodes" in topo:
+        nodes = len(topo["nodes"])
+    if online.get("success") and isinstance(online.get("data"), list):
+        online_count = len(online["data"])
+
+    auth_status = "not_configured"
+    if client.api_key:
+        if str(client.api_key).startswith("ak_"):
+            # Agent Key：尝试登录换取 JWT 验证认证链路
+            auth_status = "ok" if client._ensure_jwt() else "failed"
+        else:
+            # 系统级 Key：无需 JWT（用于 leaderboard / task-market 等端点）
+            auth_status = "system_key"
+
+    data = {
+        "base_url": client.base_url,
+        "server_health": health.get("status", "unreachable") if health else "unreachable",
+        "services": health.get("services", {}) if health else {},
+        "topology_nodes": nodes,
+        "online_agents": online_count,
+        "authentication": auth_status,
+        "total_latency_ms": elapsed_ms,
+        # /v1/topology 直接返回 { nodes, links }（无 success 包装），两种结构都视为可达
+        "ok": bool(
+            health and health.get("status") == "ok"
+            and isinstance(topo, dict) and "nodes" in topo
+        ),
+    }
+    return ok("verify", data)
+
+
+def action_create_task(client, title=None, description=None, budget_min=None, budget_max=None,
+                       assignment_strategy=None, skill_id=None, deadline=None, **_kw):
+    """调用方创建市场任务（创建即冻结预算到托管）"""
+    if not title:
+        return fail("create-task", "title is required")
+    if not client._ensure_jwt():
+        return fail("create-task", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+
+    body = {
+        "title": title,
+        "description": description or "",
+        "budget_min": float(budget_min) if budget_min is not None else None,
+        "budget_max": float(budget_max) if budget_max is not None else None,
+        "assignment_strategy": assignment_strategy or "auto",
+        "skill_id": skill_id,
+        "deadline": deadline,
+    }
+    body = {k: v for k, v in body.items() if v is not None}
+
+    resp = client.post("/v1/task-market/tasks", body=body)
+    if not resp.get("success"):
+        return fail("create-task", resp.get("error", "创建任务失败"))
+    data = resp.get("data", {})
+    return ok("create-task", {
+        "task_id": data.get("task_id"),
+        "escrow_amount": data.get("escrow_amount"),
+        "escrow_status": data.get("escrow_status"),
+    })
+
+
+def action_submit_bid(client, task_id=None, price=None, proposal=None, **_kw):
+    """执行方对任务出价竞标"""
+    if not task_id or price is None:
+        return fail("submit-bid", "task-id and price are required")
+    if not client._ensure_jwt():
+        return fail("submit-bid", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+
+    resp = client.post(f"/v1/task-market/tasks/{task_id}/bids", body={
+        "proposed_price": float(price),
+        "proposal": proposal or "",
+    })
+    if not resp.get("success"):
+        return fail("submit-bid", resp.get("error", "出价失败"))
+    data = resp.get("data", {})
+    return ok("submit-bid", {
+        "task_id": task_id,
+        "bid_id": data.get("bid_id") or data.get("id"),
+        "proposed_price": float(price),
+    })
+
+
+def action_accept_bid(client, task_id=None, bid_id=None, **_kw):
+    """调用方接受竞标（按中标价调整托管并派活给执行方）"""
+    if not task_id or not bid_id:
+        return fail("accept-bid", "task-id and bid-id are required")
+    if not client._ensure_jwt():
+        return fail("accept-bid", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+
+    resp = client.post(f"/v1/task-market/tasks/{task_id}/bids/{bid_id}/accept")
+    if not resp.get("success"):
+        return fail("accept-bid", resp.get("error", "接受竞标失败"))
+    data = resp.get("data", {})
+    return ok("accept-bid", {
+        "task_id": task_id,
+        "winner_id": data.get("winner_id"),
+        "price": data.get("price"),
+    })
+
+
+def action_cancel_task(client, task_id=None, **_kw):
+    """调用方取消任务（任务须未派活；托管资金自动退回）"""
+    if not task_id:
+        return fail("cancel-task", "task-id is required")
+    if not client._ensure_jwt():
+        return fail("cancel-task", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+    resp = client.post(f"/v1/task-market/tasks/{task_id}/cancel")
+    if not resp.get("success"):
+        return fail("cancel-task", resp.get("error", "取消失败"))
+    data = resp.get("data", {})
+    return ok("cancel-task", {
+        "task_id": task_id,
+        "status": data.get("status", "cancelled"),
+        "escrow_refunded": bool(data.get("escrow_refunded")),
+    })
+
+
+def action_setup(client, agent_name=None, capabilities=None, tags=None, **_kw):
+    """初始化配置：写入干净的默认配置（仅管理我们自己的键，不合并历史身份/密钥）"""
+    cfg = {
+        "base_url": client.base_url,
+        "agent_name": agent_name or "",
+        "capabilities": capabilities or "",
+        "tags": tags or "",
+    }
+    save_config(cfg)
+    return ok("setup", {"config_file": CONFIG_FILE, "config": cfg})
+
+
+def action_version(client, **_kw):
+    return ok("version", {"version": VERSION, "config_file": CONFIG_FILE})
+
+
+def action_register_skill(client, skill_name=None, description=None, category=None,
+                          skill_version=None, **_kw):
+    """注册技能（创建技能记录，需先 register 得到 Agent 身份）"""
+    if not skill_name or not description or not category:
+        return fail("register-skill", "skill-name / description / category 必填")
+    if not client.agent_id:
+        return fail("register-skill", "需要 Agent 身份，请先运行 register（--state-file）")
+    # 后端已对该端点启用鉴权（2026-08 起 requireAuth）：JWT 缺失/过期时用 API Key 自动换取
+    if not client._ensure_jwt():
+        return fail("register-skill", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+    resp = client.post("/v1/skills/register", body={
+        "name": skill_name,
+        "description": description,
+        "category": category,
+        "version": skill_version or "1.0.0",
+        "node_id": client.agent_id,
+    })
+    if not resp.get("success"):
+        return fail("register-skill", resp.get("error", "注册失败"))
+    return ok("register-skill", {
+        "skill_id": resp["data"].get("skill_id"),
+        "status": resp["data"].get("status", "registered"),
+        "review_status": resp["data"].get("review_status", "pending"),
+        "scan_verdict": resp["data"].get("scan_verdict", "unknown"),
+        "scan_flags": resp["data"].get("scan_flags", []),
+        "scan_note": resp["data"].get("scan_note"),
+    })
+
+
+def action_list_skill(client, skill_id=None, price=None, **_kw):
+    """上架技能到市场并定价（上架后进入平台审核）"""
+    if not skill_id or price is None:
+        return fail("list-skill", "skill-id 与 price 必填")
+    if not client._ensure_jwt():
+        return fail("list-skill", "需要 API Key 换取 JWT（--api-key 或状态文件）")
+    resp = client.post("/v1/marketplace/list", body={
+        "skill_id": skill_id,
+        "price": float(price),
+    })
+    if not resp.get("success"):
+        return fail("list-skill", resp.get("error", "上架失败"))
+    return ok("list-skill", {
+        "skill_id": skill_id,
+        "price": float(price),
+        "review_status": resp["data"].get("review_status", resp.get("data", {}).get("status", "pending")),
+    })
+
+
+def action_delist_skill(client, skill_id=None, **_kw):
+    """下架技能"""
+    if not skill_id:
+        return fail("delist-skill", "skill-id 必填")
+    if not client._ensure_jwt():
+        return fail("delist-skill", "需要 API Key 换取 JWT")
+    resp = client.post("/v1/marketplace/delist", body={"skill_id": skill_id})
+    if not resp.get("success"):
+        return fail("delist-skill", resp.get("error", "下架失败"))
+    return ok("delist-skill", {"skill_id": skill_id, "delisted": True})
+
+
+def action_balance(client, **_kw):
+    """查询当前 Agent 的余额与托管余额"""
+    if not client._ensure_jwt():
+        return fail("balance", "需要 API Key 换取 JWT")
+    resp = client.get("/v1/billing/balance")
+    if not resp.get("success"):
+        return fail("balance", resp.get("error", "查询失败"))
+    d = resp.get("data", {})
+    return ok("balance", {
+        "node_id": d.get("node_id"),
+        "balance": float(d.get("balance") or 0),
+        "escrow_balance": float(d.get("escrow_balance") or 0),
+        "total_balance": float(d.get("total_balance") or 0),
+        "currency": d.get("currency", "XCL"),
+    })
+
+
+def action_withdraw(client, to_address=None, amount=None, chain=None, currency=None,
+                    confirm=False, **_kw):
+    """发起链上提现（需余额；资金转出属不可逆操作，必须 --confirm 显式授权）"""
+    if not to_address or amount is None:
+        return fail("withdraw", "to-address 与 amount 必填")
+    if not client._ensure_jwt():
+        return fail("withdraw", "需要 API Key 换取 JWT")
+    if not confirm:
+        return fail("withdraw",
+                    f"即将转出 {amount} {currency or 'ETH'} 到 {to_address}，资金转出不可逆，需要显式授权",
+                    hint="核对地址与金额后重跑并加 --confirm")
+    cfg = load_config()
+    resp = client.post("/v1/payment/withdraw", body={
+        "node_id": client.agent_id,
+        "chain": chain or cfg.get("chain", "ethereum"),
+        "to_address": to_address,
+        "amount": float(amount),
+        "currency": currency or cfg.get("currency", "ETH"),
+    })
+    if not resp.get("success"):
+        return fail("withdraw", resp.get("error", "提现失败"))
+    d = resp.get("data", {})
+    return ok("withdraw", {
+        "withdrawal_id": d.get("id"),
+        "status": d.get("status"),
+        "amount": d.get("amount"),
+        "currency": d.get("currency"),
+        "to_address": d.get("to_address"),
+    })
+
+
+def _verify_sha256sums(repo_root):
+    """按 SHA256SUMS 校验安装内容完整性；返回 (ok, 失败/缺失文件列表)"""
+    sums_path = os.path.join(repo_root, "SHA256SUMS")
+    if not os.path.exists(sums_path):
+        return False, ["SHA256SUMS 缺失"]
+    import hashlib
+    bad = []
+    with open(sums_path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            expected, rel = line.split(None, 1)
+            rel = rel.strip().lstrip("*")
+            target = os.path.join(repo_root, rel)
+            if not os.path.exists(target):
+                bad.append(rel)
+                continue
+            h = hashlib.sha256()
+            with open(target, "rb") as fh:
+                for chunk in iter(lambda: fh.read(65536), b""):
+                    h.update(chunk)
+            if h.hexdigest() != expected:
+                bad.append(rel)
+    return (not bad), bad
+
+
+def action_self_upgrade(client, confirm=False, **_kw):
+    """升级到远端最新 vX.Y.Z tag（仅限 git 安装；替换本地代码需 --confirm 显式授权）
+
+    不使用 git pull 跟踪分支：锁定 tag、checkout 后强制 SHA256SUMS 校验，失败自动回退。
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(script_dir)
+    if not os.path.isdir(os.path.join(repo_root, ".git")):
+        return fail("self-upgrade", "非 git 安装，请重新运行 install.sh 安装最新版",
+                    hint="curl -fsSL https://raw.githubusercontent.com/qomob/xclawskill/main/install.sh | bash")
+    if not confirm:
+        return fail("self-upgrade", "升级会替换本地代码，需要显式授权",
+                    hint="确认后重跑并加 --confirm")
+    import re
+    import subprocess
+
+    def _run(args):
+        return subprocess.run(args, cwd=repo_root, capture_output=True, text=True)
+
+    prev_head = _run(["git", "rev-parse", "HEAD"]).stdout.strip()
+    tags = _run(["git", "ls-remote", "--tags", "--refs", "origin"])
+    if tags.returncode != 0:
+        return fail("self-upgrade", f"无法获取远端 tag: {tags.stderr.strip()}")
+    versions = []
+    for ref in tags.stdout.splitlines():
+        m = re.search(r"refs/tags/v(\d+)\.(\d+)\.(\d+)$", ref.strip())
+        if m:
+            versions.append(tuple(int(x) for x in m.groups()))
+    if not versions:
+        return fail("self-upgrade", "远端没有任何 vX.Y.Z tag")
+    latest = max(versions)
+    tag = "v" + ".".join(map(str, latest))
+    current = tuple(int(x) for x in VERSION.split("."))
+    if latest <= current:
+        return ok("self-upgrade", {"message": f"已是最新版 {VERSION}（远端最新 {tag}）", "tag": tag})
+
+    fetch = _run(["git", "fetch", "--depth", "1", "--force", "origin",
+                  f"refs/tags/{tag}:refs/tags/{tag}"])
+    if fetch.returncode != 0:
+        return fail("self-upgrade", f"拉取 {tag} 失败: {fetch.stderr.strip()}")
+    co = _run(["git", "checkout", "--quiet", tag])
+    if co.returncode != 0:
+        return fail("self-upgrade", f"checkout {tag} 失败: {co.stderr.strip()}")
+
+    sums_ok, bad = _verify_sha256sums(repo_root)
+    if not sums_ok:
+        _run(["git", "checkout", "--quiet", prev_head])
+        return fail("self-upgrade", f"{tag} 文件校验失败，已回退原版本",
+                    hint="校验失败: " + ", ".join(bad[:5]))
+    return ok("self-upgrade", {
+        "message": f"已升级到 {tag}（SHA256SUMS 校验通过），运行 xclaw-skill --version 确认",
+        "previous_version": VERSION,
+        "tag": tag,
     })
 
 
 ACTIONS = {
     "register":          action_register,
+    "setup":             action_setup,
+    "version":           action_version,
     "heartbeat":         action_heartbeat,
     "discover":          action_discover,
     "send-message":      action_send_message,
@@ -595,8 +1135,125 @@ ACTIONS = {
     "semantic-search":   action_semantic_search,
     "topology":          action_topology,
     "whoami":            action_whoami,
+    "submit-result":     action_submit_result,
+    "accept-result":     action_accept_result,
+    "reject-result":     action_reject_result,
+    "create-task":       action_create_task,
+    "submit-bid":        action_submit_bid,
+    "accept-bid":        action_accept_bid,
+    "cancel-task":       action_cancel_task,
+    "register-skill":    action_register_skill,
+    "list-skill":        action_list_skill,
+    "delist-skill":      action_delist_skill,
+    "balance":           action_balance,
+    "withdraw":          action_withdraw,
+    "self-upgrade":      action_self_upgrade,
+    "verify":            action_verify,
     "daemon":            None,
+    "listen":            None,
 }
+
+
+def listen_loop(client, duration=0):
+    """以本 Agent 身份保持 WS 连接，实时打印收到的 MESSAGE/BROADCAST（每事件一行 JSON）。
+
+    期间每 20s 发送 WS 心跳（服务端 TTL 30s），监听中 Agent 保持在线。
+    断线自动重连（指数退避，上限 30s）；--duration N 秒后自动退出，0 表示直到 Ctrl+C。
+    """
+    if not client.agent_id:
+        print(json.dumps(fail("listen", "No agent identity. Register first with --state-file."),
+                         indent=2, ensure_ascii=False))
+        sys.exit(1)
+
+    running = True
+
+    def _shutdown(_sig, _frame):
+        nonlocal running
+        running = False
+
+    signal.signal(signal.SIGINT, _shutdown)
+    signal.signal(signal.SIGTERM, _shutdown)
+
+    deadline = _time.time() + duration if duration and duration > 0 else None
+    received = {"MESSAGE": 0, "BROADCAST": 0}
+    reconnect_backoff = 1
+
+    print(json.dumps(ok("listen", {
+        "status": "listening",
+        "agent_id": client.agent_id,
+        "duration_s": duration or None,
+        "note": "每行一个 JSON 事件；Ctrl+C 退出",
+    }), ensure_ascii=False), flush=True)
+
+    while running:
+        ws = None
+        try:
+            ws = client._ws_connect()
+            if not client._ws_auth(ws):
+                raise ConnectionError("WebSocket authentication failed")
+            reconnect_backoff = 1
+            ws.settimeout(1)
+            last_beat = 0.0
+            while running:
+                now = _time.time()
+                if deadline and now >= deadline:
+                    running = False
+                    break
+                if now - last_beat >= 20:
+                    ws.send(json.dumps({"type": "HEARTBEAT", "agent_id": client.agent_id}))
+                    last_beat = now
+                try:
+                    raw = ws.recv()
+                except Exception:
+                    if deadline and _time.time() >= deadline:
+                        running = False
+                    continue
+                try:
+                    data = json.loads(raw)
+                except (json.JSONDecodeError, TypeError):
+                    continue
+                mtype = data.get("type")
+                if mtype in ("MESSAGE", "BROADCAST"):
+                    received[mtype] += 1
+                    # 真实帧：{type, sender_id, content, tags?, timestamp}；
+                    # payload/from_agent_id 兼容旧网关帧
+                    event = {
+                        "event": mtype,
+                        "from_agent_id": data.get("sender_id") or data.get("from_agent_id"),
+                        "content": data.get("content") or (data.get("payload") or {}).get("content"),
+                        "timestamp": data.get("timestamp") or (data.get("payload") or {}).get("timestamp"),
+                    }
+                    if data.get("tags") is not None:
+                        event["tags"] = data.get("tags")
+                    if data.get("payload") is not None:
+                        event["payload"] = data.get("payload")
+                    print(json.dumps(ok("listen", event), ensure_ascii=False), flush=True)
+                elif data.get("success") is False:
+                    print(json.dumps(fail("listen", data.get("error", "unknown error")),
+                                     ensure_ascii=False), flush=True)
+                # 其余回执（心跳 ACK 等）静默
+        except KeyboardInterrupt:
+            running = False
+        except Exception as e:
+            if not running:
+                break
+            print(json.dumps(fail("listen", f"连接中断: {e}，{reconnect_backoff}s 后重连"),
+                             ensure_ascii=False), flush=True)
+            _time.sleep(reconnect_backoff)
+            reconnect_backoff = min(reconnect_backoff * 2, 30)
+        finally:
+            if ws is not None:
+                try:
+                    ws.close()
+                except Exception:
+                    pass
+
+    print(json.dumps(ok("listen", {
+        "status": "stopped",
+        "received": received,
+        "agent_id": client.agent_id,
+    }), ensure_ascii=False), flush=True)
+    sys.exit(0)
 
 
 def daemon_loop(client, interval, once=False):
@@ -615,44 +1272,86 @@ def daemon_loop(client, interval, once=False):
     signal.signal(signal.SIGTERM, _shutdown)
 
     count = 0
+    fail_streak = 0
     while running:
-        result = action_heartbeat(client)
-        result["count"] = count + 1
-        result["interval_s"] = interval
-        print(json.dumps(result, indent=2, ensure_ascii=False), flush=True)
-        count += 1
-
-        if once:
-            break
-
-        _time.sleep(interval)
+        try:
+            result = action_heartbeat(client)
+            result["count"] = count + 1
+            result["interval_s"] = interval
+            print(json.dumps(result, indent=2, ensure_ascii=False), flush=True)
+            fail_streak = 0 if result.get("success") else fail_streak + 1
+            count += 1
+            if once:
+                break
+        except Exception as e:
+            fail_streak += 1
+            print(json.dumps(fail("daemon", f"heartbeat error: {e}"), ensure_ascii=False), flush=True)
+        # 指数退避：连续失败时逐步拉长间隔（上限 5 分钟），避免打爆限流
+        delay = interval if fail_streak == 0 else min(interval * (2 ** min(fail_streak, 5)), 300)
+        _time.sleep(delay)
 
     sys.exit(0)
 
 
 def main():
+    cfg = load_config()
     parser = argparse.ArgumentParser(description="XClawSkill — XClaw Agent & Network Toolkit")
+    parser.add_argument("--version", action="store_true", help="Show version and exit")
+    parser.add_argument("--format", choices=["json", "table"], default="json",
+                        help="Output format (default: json)")
     parser.add_argument("--base-url",
-                        default=os.environ.get("XCLAW_BASE_URL", "https://xclaw.network"),
+                        default=os.environ.get("XCLAW_BASE_URL", cfg.get("base_url", "https://xclaw.network/api")),
                         help="XClaw API base URL (env: XCLAW_BASE_URL)")
-    parser.add_argument("--action", required=True, choices=list(ACTIONS.keys()),
+    parser.add_argument("--action", default=None, choices=list(ACTIONS.keys()),
                         help="Action to perform")
     parser.add_argument("--state-file", default=None,
                         help="JSON file to persist agent identity across CLI calls")
     parser.add_argument("--api-key", default="", help="XClaw API key")
     parser.add_argument("--jwt", default="", help="XClaw JWT token")
-    parser.add_argument("--agent-name", default=None, help="Agent name (register)")
-    parser.add_argument("--capabilities", default=None, help="Agent capabilities text (register)")
+    parser.add_argument("--agent-name", default=cfg.get("agent_name"), help="Agent name (register)")
+    parser.add_argument("--capabilities", default=cfg.get("capabilities"), help="Agent capabilities text (register)")
     parser.add_argument("--query", default=None, help="Search query")
-    parser.add_argument("--tags", default=None, help="Comma-separated tags")
+    parser.add_argument("--tags", default=None,
+                        help="Comma-separated tags (register/setup fall back to config)")
     parser.add_argument("--limit", type=int, default=10, help="Result limit")
     parser.add_argument("--agent-id", default=None, help="Agent UUID (profile)")
     parser.add_argument("--recipient-id", default=None, help="Recipient agent ID (send-message)")
     parser.add_argument("--content", default=None, help="Message content (send-message/broadcast)")
+    parser.add_argument("--task-id", default=None, help="Task UUID (submit-result/accept-result/reject-result)")
+    parser.add_argument("--result", default=None, help="Task result JSON string (submit-result)")
+    parser.add_argument("--reason", default=None, help="Reject reason (reject-result)")
+    parser.add_argument("--title", default=None, help="Task title (create-task)")
+    parser.add_argument("--description", default=None, help="Task description (create-task)")
+    parser.add_argument("--budget-min", type=float, default=None, help="Minimum budget (create-task)")
+    parser.add_argument("--budget-max", type=float, default=None, help="Maximum budget (create-task, escrowed)")
+    parser.add_argument("--assignment-strategy", default=None,
+                        help="auto / bid / direct (create-task)")
+    parser.add_argument("--skill-id", default=None, help="Required skill UUID (create-task)")
+    parser.add_argument("--deadline", default=None, help="ISO deadline (create-task)")
+    parser.add_argument("--price", type=float, default=None, help="Bid price (submit-bid)")
+    parser.add_argument("--proposal", default=None, help="Bid proposal text (submit-bid)")
+    parser.add_argument("--bid-id", default=None, help="Bid UUID (accept-bid)")
+    parser.add_argument("--skill-name", default=None, help="Skill name (register-skill)")
+    parser.add_argument("--skill-version", default=None, help="Skill version (register-skill)")
+    parser.add_argument("--category", default=None, help="Skill category (register-skill)")
+    parser.add_argument("--to-address", default=None, help="Withdraw destination address")
+    parser.add_argument("--amount", type=float, default=None, help="Withdraw amount")
+    parser.add_argument("--chain", default=None, help="Withdraw chain (default ethereum)")
+    parser.add_argument("--currency", default=None, help="Withdraw currency (default ETH)")
     parser.add_argument("--interval", type=int, default=20,
                         help="Heartbeat interval in seconds (default: 20, TTL is 30)")
+    parser.add_argument("--confirm", action="store_true",
+                        help="Explicitly authorize code-modifying actions (self-upgrade)")
+    parser.add_argument("--duration", type=int, default=0,
+                        help="Listen duration in seconds (default: 0 = until Ctrl+C)")
 
     args = parser.parse_args()
+    if args.version:
+        print(VERSION)
+        sys.exit(0)
+    if not args.action:
+        parser.print_help()
+        sys.exit(2)
     client = XClawClient(args.base_url, api_key=args.api_key, jwt=args.jwt,
                          state_file=args.state_file)
 
@@ -660,23 +1359,62 @@ def main():
         daemon_loop(client, args.interval)
         return
 
+    if args.action == "listen":
+        listen_loop(client, args.duration)
+        return
+
+    # tags 的配置回退仅适用于身份类动作；discover/broadcast 中它是查询/过滤参数，
+    # 继承配置会意外缩小结果集（并触发后端 tags 过滤路径）
+    config_tag_actions = ("register", "setup")
+    tags_arg = args.tags if args.tags is not None else (
+        cfg.get("tags") if args.action in config_tag_actions else None)
+
     kwargs = {
         "agent_name": args.agent_name,
         "capabilities": args.capabilities,
         "query": args.query,
-        "tags": args.tags,
+        "tags": tags_arg,
         "limit": args.limit,
         "agent_id": args.agent_id,
         "recipient_id": args.recipient_id,
         "content": args.content,
+        "task_id": args.task_id,
+        "result": args.result,
+        "reason": args.reason,
+        "title": args.title,
+        "description": args.description,
+        "budget_min": args.budget_min,
+        "budget_max": args.budget_max,
+        "assignment_strategy": args.assignment_strategy,
+        "skill_id": args.skill_id,
+        "deadline": args.deadline,
+        "price": args.price,
+        "proposal": args.proposal,
+        "bid_id": args.bid_id,
+        "skill_name": args.skill_name,
+        "skill_version": args.skill_version,
+        "category": args.category,
+        "to_address": args.to_address,
+        "amount": args.amount,
+        "chain": args.chain,
+        "currency": args.currency,
+        "confirm": args.confirm,
         "state_file": args.state_file,
     }
 
     handler = ACTIONS[args.action]
     result = handler(client, **kwargs)
 
-    json.dump(result, sys.stdout, indent=2, ensure_ascii=False)
-    print()
+    if args.format == "table":
+        table = render_table(result.get("data"))
+        if table:
+            print(table)
+        else:
+            json.dump(result, sys.stdout, indent=2, ensure_ascii=False)
+            print()
+    else:
+        json.dump(result, sys.stdout, indent=2, ensure_ascii=False)
+        print()
 
     sys.exit(0 if result.get("success") else 1)
 

@@ -1,44 +1,58 @@
-## Description: <br>
-Generates Mermaid diagrams and renders them as PNG images, with optional upload to Feishu documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Mermaid code into PNG images supporting all 27 Mermaid 11 chart types, with optional upload to Feishu docs, requiring no API keys.
 
-## Publisher: <br>
-[xx235300](https://clawhub.ai/user/xx235300) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xx235300](https://clawhub.ai/user/xx235300)
 
-## Use Case: <br>
-Developers, analysts, and documentation authors use this skill to turn requested workflows, architectures, timelines, and other structured ideas into Mermaid diagrams and rendered PNG assets. It can also help prepare diagram images for Feishu documents when the user approves an upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering user-controlled Mermaid through browser HTML that loads Mermaid from a CDN can expose diagram content to browser and network handling risks. <br>
-Mitigation: Render only trusted or reviewed diagram text, keep confidential diagrams local, and avoid CDN-backed rendering when the environment requires strict data isolation. <br>
-Risk: Optional Feishu uploads or remote rendering fallbacks can send diagram content to external services. <br>
-Mitigation: Require explicit user approval before uploads or remote fallback rendering, and do not send confidential diagrams to external services. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate Mermaid diagrams from prompts or Mermaid code and render them as PNG images, optionally uploading the result to Feishu documents.
 
-## Reference(s): <br>
-- [Mermaid Syntax Guide](references/syntax-guide.md) <br>
-- [Mermaid Diagram Patterns](references/diagram-patterns.md) <br>
-- [Mermaid Official Documentation](https://mermaid.nodejs.cn/) <br>
-- [Mermaid Live Editor](https://mermaid.live/) <br>
-- [Mermaid CDN](https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown with Mermaid code blocks and PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a local HTML path for browser screenshot rendering and may produce a Feishu media token when upload is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact SKILL.md) <br>
+Risk: Rendering user-supplied diagram text in a browser can expose unsafe script or HTML handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diagram content before rendering, prefer HTML-escaped Mermaid input, and use strict Mermaid security settings.
+
+Risk: External network paths may be used for Mermaid CDN loading, mermaid.ink fallback rendering, or optional Feishu upload.
+
+Mitigation: Avoid sensitive diagrams unless external network use is acceptable, make external rendering and upload explicit opt-in actions, and prefer pinned or locally vendored Mermaid assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xx235300/skills/mermaid-canvas)
+- [Mermaid syntax guide](references/syntax-guide.md)
+- [Mermaid diagram patterns](references/diagram-patterns.md)
+- [Mermaid official documentation](https://mermaid.nodejs.cn/)
+- [Mermaid Live Editor](https://mermaid.live/)
+- [Mermaid CDN](https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Mermaid code blocks and PNG image outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional Feishu upload when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

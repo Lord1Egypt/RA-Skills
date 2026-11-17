@@ -1,41 +1,53 @@
-## Description: <br>
-Guides users through creating an educational subagent that records class activity, tracks teaching progress, answers progress questions, and maintains course-outline status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates guidance and shell commands for setting up an educational subagent that records and tracks class lesson progress.
 
-## Publisher: <br>
-[2070super](https://clawhub.ai/user/2070super) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2070super](https://clawhub.ai/user/2070super)
 
-## Use Case: <br>
-Educators and education-operations users use this skill to create an OpenClaw subagent for recording class sessions, tracking each class's course progress, and answering later progress queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to approve broad OpenClaw administrative, pairing, approval, write, and secrets-related permissions that are not justified by classroom progress tracking. <br>
-Mitigation: Review the exact OpenClaw request ID, requester, device, and scopes before approval; avoid granting admin, approval, pairing, or secrets permissions unless an authorized administrator has confirmed they are necessary. <br>
-Risk: The included approval script can approve the latest pending OpenClaw device request without showing whether it belongs to this workflow. <br>
-Mitigation: Inspect pending requests before running any approval command, and prefer approving a specific reviewed request rather than using a latest-request shortcut. <br>
+## Use Case:
 
+Educators, teaching coordinators, and agent developers use this skill to create a course-progress tracking subagent that records class coverage, answers progress queries, and maintains lesson-outline status. It also provides troubleshooting guidance for OpenClaw runtime selection and permission approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2070super/create-educational-subagent) <br>
-- [Publisher profile](https://clawhub.ai/user/2070super) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and companion shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw command examples for approving a device request and spawning an ACP runtime subagent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes an approval command that can grant broad OpenClaw admin, approval, pairing, write, and secrets-related permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the exact pending OpenClaw request before approval, grant only privileges that are necessary for the course-progress subagent, and avoid running the approval script by default.
+
+Risk: A course-progress tracking subagent may not require broad administrative or secrets-related scopes.
+
+Mitigation: Use the least-privilege OpenClaw scopes available for subagent creation and course-progress recording.
+
+## Reference(s):
+
+- [Create Educational Subagent on ClawHub](https://clawhub.ai/2070super/skills/create-educational-subagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and companion shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw permission approval and subagent creation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

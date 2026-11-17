@@ -1,43 +1,59 @@
-## Description: <br>
-Felo AI real-time web search for questions requiring current/live information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Felo Search lets an agent call Felo AI for real-time web search and AI-generated answers to questions that need current information.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to answer questions that need current web information, including news, weather, prices, location recommendations, and recent technical documentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic triggering can send routine search queries to Felo. <br>
-Mitigation: Use the skill only for current web information and avoid submitting secrets, private file contents, credentials, proprietary code, or sensitive personal information. <br>
-Risk: The skill depends on a Felo API key and external API availability. <br>
-Mitigation: Store the API key in the FELO_API_KEY environment variable, avoid exposing it in prompts or logs, and handle missing or invalid keys before making requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangzhiming1999/felo-search) <br>
-- [Felo AI](https://felo.ai) <br>
-- [Felo Open Platform Documentation](https://openapi.felo.ai) <br>
-- [Felo API Reference](https://openapi.felo.ai/docs) <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to answer current-information queries such as news, weather, prices, documentation updates, travel, and recommendations. The skill sends the user's query to Felo and returns a concise Markdown answer with query analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls] <br>
-**Output Format:** [Markdown answer with query analysis and setup or shell-command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FELO_API_KEY and sends search queries to the Felo API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can over-trigger on ordinary questions and send prompt text to a third-party API.
+
+Mitigation: Use it only when live web search is intended, and avoid sending secrets, private code, personal data, or confidential business context.
+
+Risk: The skill requires a Felo API key and includes command examples that may expose secrets if copied into logs or shell history.
+
+Mitigation: Keep FELO_API_KEY in a secure environment configuration and avoid printing API keys during setup or troubleshooting.
+
+Risk: The artifact uses fixed /tmp JSON examples for request construction.
+
+Mitigation: Prefer safer temporary-file handling or direct JSON construction that avoids collisions and stale request data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/felo-search)
+- [Felo AI](https://felo.ai)
+- [Felo Open Platform Documentation](https://openapi.felo.ai/docs)
+- [Felo Open Platform](https://openapi.felo.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown answer text with query-analysis details and inline shell commands for setup or execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FELO_API_KEY and sends user queries to the Felo API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

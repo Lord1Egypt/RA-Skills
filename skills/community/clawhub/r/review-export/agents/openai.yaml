@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊评论导出 · 一键下载CSV报告"
+  short_description: "采集评论一键导出 CSV，分析报告导出 Markdown/HTML"
+  default_prompt: "使用 $amazon-review-export 导出一个 Amazon ASIN 的全部评论为 CSV。"

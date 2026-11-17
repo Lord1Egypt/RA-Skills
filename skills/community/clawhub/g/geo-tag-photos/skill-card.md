@@ -1,43 +1,61 @@
-## Description: <br>
-Recover lost GPS metadata for JPG photos by recognizing landmarks via vision and writing GPS coordinates back into EXIF with a dry-run-first workflow, explicit write confirmation, and mandatory backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recover lost GPS metadata for JPG photos by recognizing landmarks with vision, geocoding landmark text through Nominatim, and writing GPS coordinates back into JPG EXIF after explicit write confirmation.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-External users and developers use this skill to recover approximate city- or landmark-level GPS metadata for their own JPG photos when recognizable public landmarks are visible. The workflow helps scan EXIF state, collect visual landmark inferences, geocode those inferences, produce a reviewable report, and write GPS metadata only after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may view selected photos and inferred landmark, city, and country text is sent to Nominatim during geocoding. <br>
-Mitigation: Install and use only when comfortable with those data flows, and use the workflow only on photos you own. <br>
-Risk: Inferred coordinates may be approximate or wrong, especially for ambiguous landmarks or low-confidence visual matches. <br>
-Mitigation: Inspect report.csv before approving writes, skip low-confidence rows by default, and avoid legal, forensic, evidentiary, or law-enforcement use. <br>
-Risk: Writing GPS metadata modifies local JPG files. <br>
-Mitigation: Run the dry-run first, require explicit --write plus --backup-dir for changes, and keep the backup directory until the EXIF changes are verified. <br>
+## Use Case:
 
+External users and developers use this skill to recover city- or landmark-level GPS metadata for their own JPG photo collections when the photos contain recognizable public landmarks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/geo-tag-photos) <br>
-- [Nominatim search endpoint](https://nominatim.openstreetmap.org/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON input records, and CSV scan, geocode, and report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default dry-run before file modification; writes require explicit --write and a backup directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: A crafted or untrusted report CSV could cause the write step to alter JPG metadata outside the selected photo folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only reports generated during the current workflow, review planned writes before confirming, and avoid report files from other people or hand-edited sources.
+
+Risk: Real EXIF writes modify photo files.
+
+Mitigation: Run writes on copies or with verified backups, keep the default dry-run until the report is reviewed, and require --write with --backup-dir for modification.
+
+Risk: Landmark, city, and country text is sent to Nominatim and cached locally during geocoding.
+
+Mitigation: Process only trusted photo collections and avoid sending sensitive location descriptions when that disclosure is unacceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/geo-tag-photos)
+- [Publisher profile](https://clawhub.ai/user/ucsdzehualiu)
+- [Nominatim Search API](https://nominatim.openstreetmap.org/search)
+- [README](artifact/README.md)
+- [End-to-end test README](artifact/e2e/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files, Metadata]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON and CSV workflow files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; real writes require explicit confirmation, --write, and --backup-dir.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

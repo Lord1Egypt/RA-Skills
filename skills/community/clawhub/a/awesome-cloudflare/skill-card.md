@@ -1,39 +1,51 @@
-## Description: <br>
-Awesome Cloudflare provides quick plain-text reference documentation for Cloudflare-related concepts, setup, patterns, troubleshooting, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Awesome Cloudflare provides plain-text reference documentation for Cloudflare-related devtools and sysops topics, including quickstarts, patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operations engineers use this skill as a quick reference for Cloudflare concepts, setup, troubleshooting, performance, security, migration, and common patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release version is 3.0.2, while artifact metadata and script output mention earlier versions, which can confuse exact version review. <br>
-Mitigation: Use the ClawHub release version as the release identifier and verify artifact hashes and displayed version text before relying on exact provenance. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to retrieve quick reference guidance for Cloudflare-related setup, troubleshooting, performance, security, migration, and operational patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/awesome-cloudflare) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference content emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No network access or credentials required by the inspected artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: ClawHub release evidence; artifact frontmatter says 3.0.1 and script says 3.0.0) <br>
+Risk: The skill provides generic reference guidance that may be incomplete for production Cloudflare infrastructure decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against the target environment and authoritative Cloudflare documentation before applying changes.
+
+## Reference(s):
+
+- [Awesome Cloudflare on ClawHub](https://clawhub.ai/bytesagain-lab/skills/awesome-cloudflare)
+- [BytesAgain ClawHub profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no external API calls, credentials, or network access required.]
+
+## Skill Version(s):
+
+3.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

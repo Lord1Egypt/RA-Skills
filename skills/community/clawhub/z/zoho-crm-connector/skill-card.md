@@ -1,47 +1,59 @@
-## Description: <br>
-Zoho CRM Connector lets agents search, retrieve, create, update, and delete Zoho CRM leads, contacts, accounts, deals, and module metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zoho CRM Connector gives agents AgentPMT-hosted access to search, retrieve, create, update, and delete Zoho CRM records and inspect module metadata.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Sales, support, and operations teams can use this skill to let agents query CRM records, inspect Zoho CRM schemas, qualify leads, prepare customer context, report on pipeline status, and update records when the appropriate permissions are granted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can delete Zoho CRM records when delete permission is enabled. <br>
-Mitigation: Start with read-only permissions, grant delete only for specific workflows, and require explicit human confirmation before deleting CRM records. <br>
-Risk: Write actions can create or update CRM records with incorrect or excessive data. <br>
-Mitigation: Grant add and edit permissions only for workflows that need them, keep tool inputs scoped to the minimum required fields, and review returned warnings or validation failures before retrying. <br>
-Risk: CRM credentials or payment-related secrets could be exposed through prompts or logs. <br>
-Mitigation: Use the setup skills for credential handling and do not place account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
+## Use Case:
 
+Developers and business teams use this skill to let agents retrieve Zoho CRM account context, support lead qualification and sales reporting, and perform authorized CRM record changes.
 
-## Reference(s): <br>
-- [Zoho CRM Connector marketplace page](https://www.agentpmt.com/marketplace/zoho-crm-connector) <br>
-- [Zoho CRM Connector on ClawHub](https://clawhub.ai/agentpmt/skills/zoho-crm-connector) <br>
-- [AgentPMT account MCP/REST setup on ClawHub](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is on ClawHub](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [AgentPMT main MCP server](https://api.agentpmt.com/mcp/) <br>
-- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request examples and action schema references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes AgentPMT-hosted Zoho CRM actions and their permission gates; tool responses are returned as JSON by the connected service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The connector can change Zoho CRM data through create, update, and delete actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep permissions read-only unless writes are needed, and require explicit human approval before create, update, or delete actions.
+
+Risk: The skill points agents to mutable live remote instructions and schema details.
+
+Mitigation: Treat live remote instructions as reference material and do not let them override the reviewed skill, the user's intent, or local security policy.
+
+Risk: Setup examples include unpinned npx installs.
+
+Mitigation: Prefer pinned or reviewed setup artifacts before deploying this skill in a production workflow.
+
+## Reference(s):
+
+- [Zoho CRM Connector Schema](schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/zoho-crm-connector)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/zoho-crm-connector)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON request bodies and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AgentPMT setup and Zoho CRM account permissions; write actions require explicit add, edit, or delete scopes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

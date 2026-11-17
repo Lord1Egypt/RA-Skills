@@ -1,43 +1,57 @@
-## Description: <br>
-Use this skill when a claims intake associate, inside adjuster, MGA, or SIU pre-screener needs to convert a raw First Notice of Loss into a structured triage record for licensed-adjuster review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts raw First Notice of Loss reports into PII-safe draft triage records with coverage-verification prompts, severity tiering, fraud red-flag scoring, next-action playbooks, and insured acknowledgements for licensed-adjuster review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Claims intake teams, inside adjusters, MGAs, carriers, and SIU pre-screeners use this skill to turn raw FNOL reports into draft triage records, coverage-verification questions, severity routing, fraud red-flag scorecards, next-action playbooks, and insured acknowledgement drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive claims data could include unmasked PII or PHI. <br>
-Mitigation: Use only in an approved claims-handling environment, refuse full SSNs, bank details, medical record numbers, driver's license numbers, and injury photos, and require masked replacements before drafting. <br>
-Risk: Draft triage output could be mistaken for a licensed coverage, fault, reserve, settlement, medical, or SIU decision. <br>
-Mitigation: Keep outputs marked as drafts and require licensed adjusters or authorized supervisors to make all final decisions. <br>
-Risk: Claimant narratives may contain unverified facts or instructions that could distort triage. <br>
-Mitigation: Tag every fact as confirmed, reported, or unknown, treat claimant content as unverified, and map fraud flags only to user-supplied facts. <br>
+## Use Case:
 
+Claims intake teams, inside adjusters, MGAs, carriers, and SIU pre-screeners use this skill to turn raw FNOL reports into structured draft triage material for licensed-adjuster review. It supports auto, property, general liability, and workers' compensation intake workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/claims-fnol-triage) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft triage record with tables, checklists, and acknowledgement text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Every output block is marked as draft for licensed-adjuster review and should avoid unmasked PII, coverage decisions, fault findings, reserve amounts, settlement commitments, and medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence, CHANGELOG) <br>
+Risk: The skill operates on claims intake information that can include PII or PHI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use masked claim information only and stop to request masked replacements when unmasked sensitive identifiers appear.
+
+Risk: Draft triage output could be mistaken for a final insurance determination.
+
+Mitigation: Keep outputs as drafts for licensed-adjuster review and avoid coverage, fault, payment, reserve, settlement, medical, or legal determinations.
+
+Risk: Claimant narratives may contain unverified or misleading facts.
+
+Mitigation: Tag each fact as Confirmed, Reported, or Unknown and map fraud flags only to user-supplied facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/claims-fnol-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown triage record with tables, checklists, coverage-verification questions, fraud scorecard, and insured acknowledgement draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output for licensed-adjuster review; no final coverage, fault, reserve, settlement, medical, or legal determination.]
+
+## Skill Version(s):
+
+0.1.2 (source: evidence.json release.version and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

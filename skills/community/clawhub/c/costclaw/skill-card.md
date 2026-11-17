@@ -1,41 +1,58 @@
-## Description: <br>
-Zero-setup token cost analyzer for OpenClaw that runs a local Bash audit and returns ranked cost-saving recommendations with estimated dollar amounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-setup token cost analyzer for OpenClaw that runs locally and returns a ranked report with estimated dollar amounts for optimization opportunities.
 
-## Publisher: <br>
-[morpheis](https://clawhub.ai/user/morpheis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morpheis](https://clawhub.ai/user/morpheis)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit OpenClaw workspace, model, heartbeat, and installed-skill token overhead, then identify prioritized ways to reduce API costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local analyzer reads workspace Markdown metadata, OpenClaw model configuration, and installed-skill counts, which may reveal sensitive filenames, file sizes, or configuration details. <br>
-Mitigation: Run it only on workspaces where that metadata is acceptable to inspect, and pass an explicit workspace path when auditing sensitive projects. <br>
-Risk: Cost-saving recommendations may suggest trimming files or changing configuration in ways that affect agent behavior. <br>
-Mitigation: Review the generated report before applying changes, and validate any workspace trimming or model-routing updates against the intended OpenClaw workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw token usage, estimate daily and monthly costs, and identify prioritized changes that may reduce spend.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/morpheis/costclaw) <br>
-- [CostClaw homepage](https://github.com/Morpheis/costclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown-style terminal report or JSON summary from a local Bash analyzer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ranked recommendations, estimated monthly costs, estimated savings, model pricing, workspace Markdown file sizes, and installed-skill token overhead.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server-resolved release metadata) <br>
+Risk: The analyzer reads selected workspace Markdown filenames/sizes and local OpenClaw model configuration to estimate token costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the intended workspace path and review the report before acting on recommendations.
+
+Risk: JSON output may be consumed by automation and can include workspace-derived filenames.
+
+Mitigation: Avoid untrusted filenames when using JSON output in downstream scripts.
+
+Risk: Cost recommendations are estimates based on detected configuration, bundled pricing, and fixed usage assumptions.
+
+Mitigation: Validate recommendations against current provider pricing and real usage before making billing or configuration decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/morpheis/skills/costclaw)
+- [Project Homepage](https://github.com/Morpheis/costclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-text or JSON cost report with ranked recommendations and command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally against a selected workspace path; JSON output is available for automation.]
+
+## Skill Version(s):
+
+0.3.1 (source: ClawHub release metadata; artifact frontmatter reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

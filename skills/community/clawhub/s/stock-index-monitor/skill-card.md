@@ -1,39 +1,53 @@
-## Description: <br>
-A stock and index monitoring skill that defines configurable alert rules for cost thresholds, price moves, volume changes, moving-average crosses, RSI, gaps, and trailing stops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+StockIndexMonitor helps agents configure and explain a Chinese-market stock alert workflow using cost, price movement, volume, moving-average, RSI, gap, and trailing-stop rules.
 
-## Publisher: <br>
-[quant520](https://clawhub.ai/user/quant520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quant520](https://clawhub.ai/user/quant520)
 
-## Use Case: <br>
-External users and developers use this skill to configure market-monitoring alerts for stocks, ETFs, and gold instruments, then review generated alert messages and analysis prompts as decision-support material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release references a background control.sh script that is not included in the artifact, so runtime behavior, data access, logging, and stop behavior cannot be reviewed from the package. <br>
-Mitigation: Inspect the actual script locally before running it, including data sources contacted, logs written, holdings or cost-basis storage, and whether the stop command reliably terminates the process. <br>
-Risk: The skill generates trading alerts and analysis suggestions that may be delayed, incorrect, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat alerts and suggestions as research prompts only, verify them against trusted market data, and do not use them as standalone investment advice or automated trading instructions. <br>
+## Use Case:
 
+External users and developers use this skill to set up stock-index and securities monitoring alerts for Chinese-market conventions, including threshold tuning, technical-indicator signals, and tiered notification examples. Outputs are informational and should not be treated as professional investment advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python configuration examples, shell commands, and alert message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes financial monitoring examples and should be treated as research support, not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stock alerts and suggested actions could be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat alerts as informational, review decisions independently, and avoid trading solely from skill output.
+
+Risk: The skill's run commands reference a control.sh script that was not included in the reviewed package.
+
+Mitigation: Do not run any script from that path unless it has been separately inspected and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quant520/skills/stock-index-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python configuration examples, shell command examples, and alert-message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language stock-monitoring guidance using red-up and green-down market color conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

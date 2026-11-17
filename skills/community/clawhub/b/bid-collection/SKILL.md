@@ -1,48 +1,57 @@
 ---
 name: bid-collection
-description: 招投标商机采集 — 7x24自动监控全网招投标公开信息，智能筛选适配公司业务范围的高价值商机线索。
-version: 1.0.0
+description: 招投标商机采集 — 监控全网公开招投标信息，按业务赛道智能筛选高价值商机线索。能力与副作用完整披露：(1) 通过 WebSearch/WebFetch 向各级政府公共资源交易平台、国企采购平台、行业招投标网站及第三方聚合平台发起出站 HTTP 请求，仅采集公开信息，不读取用户环境变量/API Key/敏感配置；(2) scan/monitor 结果默认写入本地 leads-output/bid/ 目录（HTML/JSON/Markdown/log），不静默写入其他位置；(3) monitor 子命令通过 CronCreate 创建定时任务（会修改宿主调度），周期性发起出站请求并发送 PushNotification 系统通知，需用户显式确认后才会启动；(4) add-source 子命令会向用户指定的 URL 发起出站请求，存在 SSRF 类风险，仅应添加可信平台；(5) 不读取非公开/需登录内容，不代用户投标。触发词：招投标、商机采集、招标监控、采购线索、bid-collection。Use when the user asks for 招投标商机采集、招标监控、采购线索扫描、bid-collection，或要求监控政府/国企采购平台商机。
+version: 1.0.1
 ---
 
 # 🎯 招投标商机采集 Skill
 
-招投标商机采集是一个自动化监控与采集工具，覆盖各级政府公共资源交易平台、国企采购平台、行业招投标网站及第三方信息平台，精准抓取适配公司业务范围的招投标商机线索，实现招投标项目**早发现、早跟进、早布局**，助力公司业务拓展与项目落地。
+招投标商机采集是一个**公开信息**监控与采集工具，覆盖各级政府公共资源交易平台、国企采购平台、行业招投标网站及第三方信息平台，精准抓取适配公司业务范围的招投标商机线索，实现招投标项目**早发现、早跟进、早布局**。
 
-## 工作流程概览
+---
+
+## ⚠️ 隐私、合规与安全边界（发布审查重要）
+
+本技能严格遵守以下边界，**请发布审核时重点关注**：
+
+1. **仅采集公开信息**：所有抓取目标均为公开招投标公告页面，不读取非公开/需登录内容，不绕过任何访问控制。
+2. **不读取用户敏感配置**：本技能**不读取**用户环境变量、API Key、`.env`、密钥文件或任何系统敏感配置；所需关键词均来自用户在对话中显式提供的参数。
+3. **出站网络请求显式化**：`scan` / `monitor` / `add-source` 均会向外部招投标平台发起出站 HTTP 请求（WebSearch/WebFetch）。每次执行前会在控制台输出将要请求的域名范围，用户可随时中断。
+4. **本地写入受控**：结果默认写入技能同级 `leads-output/bid/` 目录（HTML/JSON/Markdown/`monitor.log`）；不静默写入 Desktop、用户目录或其他位置。如需改写到其他路径，需用户显式指定 `--output=<path>`。
+5. **monitor 需显式确认**：`monitor` 会通过 `CronCreate` 创建宿主定时任务（**实质修改宿主环境**），并周期性发起出站请求、发送 `PushNotification`、写入本地日志。**执行 monitor 前必须向用户明确告知上述副作用并获得确认**（见下文 monitor 节）。
+6. **add-source 的 SSRF 风险**：`add-source <url>` 会使本技能向该 URL 发起出站请求。**仅添加可信的公开招投标平台**，添加不可信来源可能导致向攻击者可控主机发起请求（SSRF 类风险）、处理恶意内容、暴露搜索关键词。
+7. **合规使用**：遵守目标网站的 `robots.txt` 与使用条款；监控频率不低于 60 分钟/次以避免限流。
+
+---
+
+## 命令总览与触发约束
 
 ```
 用户输入 /bid-collection
   │
-  ├─ scan <keywords>     → 实时全网扫描招投标商机线索
-  ├─ monitor             → 启动定时监控（后台循环扫描）
-  ├─ report              → 生成近期商机线索汇总报告
-  ├─ list-sources        → 列出当前监控的渠道清单
-  ├─ add-source <url>    → 添加自定义监控源
-  └─ (无参数)            → 交互式引导采集
-=======
-# 🎯 bid-collection
-
-**Tender & Procurement Lead Collection Skill for Claude Code**
-
-Bid-collection is an automated tender/procurement monitoring and lead generation tool. It covers government public resource trading platforms, state-owned enterprise procurement platforms, industry-specific tendering websites, and third-party bid information aggregators. It accurately captures procurement opportunities relevant to your business, enabling **early discovery, early follow-up, and early positioning** for business development and project success.
-
-## Command Overview
-
+  ├─ scan <keywords> [--days=N] [--budget-min=N] [--budget-max=N]   → 实时全网扫描（一次性出站请求）
+  ├─ monitor [--interval=N] [--max-runs=N] [--stop]                 → 启动/停止定时后台监控（需确认）
+  ├─ report [--track=core] [--priority=urgent] [--output=detail]    → 汇总报告（仅读本地历史数据，无出站请求）
+  ├─ list-sources                                                   → 列出当前监控渠道清单（无出站请求）
+  ├─ add-source <url>                                               → 添加自定义监控源（会向该 URL 发起请求）
+  ├─ remove-source <url>                                            → 移除监控源（无出站请求）
+  └─ (无参数)                                                       → 仅显示帮助菜单，不自动进入采集
 ```
-User types /bid-collection
-  │
-  ├─ scan <keywords>     → Real-time global scan for tender/procurement leads
-  ├─ monitor             → Start scheduled background monitoring
-  ├─ report              → Generate a summary report of recent leads
-  ├─ list-sources        → List currently monitored channels
-  ├─ add-source <url>    → Add a custom monitoring source
-  └─ (no args)           → Interactive guided collection
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
-```
+
+### 触发约束（针对 Vague Triggers 风险）
+
+- **无参数不自动采集**：`/bid-collection`（无参数）**只显示命令帮助菜单**，不自动进入"交互式引导采集"，不发起任何出站请求或本地写入。任何实际采集动作必须由用户显式指定子命令（`scan` / `monitor` 等）。
+- **子命令默认值明确**：
+  - `scan`：默认搜索窗口 `--days=3`；默认预算不限；默认赛道=全部；执行前打印将要查询的域名清单与关键词。
+  - `monitor`：默认间隔 `--interval=120`（分钟）；默认最大运行轮数 `--max-runs=48`（即默认约 4 天后自动停止）；**默认不跨会话持久化**（cron 仅在当前会话/进程存活期内有效，除非用户显式加 `--persist`）；可通过 `monitor --stop` 停止。
+  - `report` / `list-sources` / `remove-source`：纯本地操作，无出站请求。
+- **高风险动作确认门控**：
+  - `monitor`：执行前必须向用户输出副作用清单并获得"确认/继续"答复（见 monitor 节）。
+  - `add-source`：执行前必须向用户输出 SSRF 风险提示并获得确认（见 add-source 节）。
+  - `scan`：执行前打印将要请求的域名范围，用户可回复"取消"中止。
 
 ---
 
-<<<<<<< HEAD
 ## 核心采集范围
 
 ### 一、政府公共资源交易平台（核心渠道）
@@ -64,20 +73,20 @@ User types /bid-collection
 | **中国电信** | 阳光采购网 (ctyun.cn) | 云服务采购、集成服务、数智化项目 |
 | **中国电子** | CEC电子采购平台 | 信创项目、网络安全、系统集成 |
 | **国网** | 国家电网电子商务平台 (ecp.sgcc.com.cn) | 数字化建设、智能电网IT服务 |
-| **中石油** | 能源一号网 (www.energyahead.com) | 信息化建设、工业互联网 |
+| **中石油** | 能源一号网 (energyahead.com) | 信息化建设、工业互联网 |
 | **中铁** | 中铁采购平台 | 智能建造、BIM系统、工程管理 |
 | **招商局** | 招商局集团招投标平台 | 数字化转型、物流科技 |
 
 ### 三、行业专属招投标网站
 
-| 领域 | 平台 | 网址 | 监控重点 |
-|------|------|------|---------|
-| **AI/大模型** | 各地智算中心采购平台 | — | 算力租赁、模型训练服务、AI中台 |
-| **数字化** | 数字政府/智慧城市采购 | — | 政务云、数据治理、一网通办 |
-| **IT服务** | 软交所/信息化采购平台 | — | 软件开发、系统集成、运维服务 |
-| **科研** | 高校/科研院所采购平台 | — | 科研设备、实验室系统、技术开发 |
-| **医疗** | 医采云等医疗采购平台 | — | 医疗信息化、智慧医疗、HIS系统 |
-| **教育** | 教育装备采购平台 | — | 智慧教育、数字校园、教学平台 |
+| 领域 | 监控重点 |
+|------|---------|
+| **AI/大模型** | 算力租赁、模型训练服务、AI中台 |
+| **数字化** | 数字政府/智慧城市采购、政务云、数据治理、一网通办 |
+| **IT服务** | 软件开发、系统集成、运维服务 |
+| **科研** | 高校/科研院所采购平台、科研设备、实验室系统、技术开发 |
+| **医疗** | 医疗信息化、智慧医疗、HIS系统 |
+| **教育** | 智慧教育、数字校园、教学平台 |
 
 ### 四、第三方招投标信息聚合平台（辅助渠道）
 
@@ -95,8 +104,6 @@ User types /bid-collection
 
 ### 1. 按公司业务赛道智能化匹配
 
-根据公司业务领域、产品服务类型，将采集到的招投标信息自动匹配到以下业务赛道：
-
 | 业务赛道 | 匹配关键字 | 适配分析 |
 |---------|-----------|---------|
 | 🏢 **AI技术服务** | AI、人工智能、机器学习、NLP、CV、大模型 | 高适配 |
@@ -111,8 +118,6 @@ User types /bid-collection
 | 👁 **AI视觉/内容** | 数字人、AIGC、视频生成、虚拟现实 | 关注领域 |
 
 ### 2. 项目全生命周期覆盖
-
-采集覆盖招投标全周期的各阶段信息：
 
 | 阶段 | 信息类型 | 价值 |
 |------|---------|------|
@@ -133,8 +138,6 @@ User types /bid-collection
 
 ### 4. 线索标注体系
 
-采集到的线索自动标记以下标签：
-
 | 标签 | 含义 |
 |------|------|
 | `[招标预告]` | 采购意向公示，尚未正式发标 |
@@ -147,7 +150,9 @@ User types /bid-collection
 
 ## 使用方式
 
-### 快捷扫描
+### 1. 快捷扫描（scan — 一次性出站请求）
+
+> ℹ️ **执行前提示**：`scan` 会向上述监控渠道发起出站 WebSearch/WebFetch 请求（公开页面），并将结果写入本地 `leads-output/bid/` 目录。执行前会打印将要查询的域名清单与关键词，您可回复"取消"中止。
 
 ```
 /bid-collection scan AI 大模型 采购 --days=7
@@ -156,14 +161,50 @@ User types /bid-collection
 /bid-collection scan 算力 租赁 招标 --days=30
 ```
 
-### 启动定时监控
+| 参数 | 默认 | 说明 |
+|------|------|------|
+| `--days=N` | 3 | 搜索时间窗口（天） |
+| `--budget-min=N` | 不限 | 最低预算（人民币元） |
+| `--budget-max=N` | 不限 | 最高预算（人民币元） |
+| `--output=<path>` | `leads-output/bid/` | 结果写入目录 |
+
+### 2. 启动定时监控（monitor — 需显式确认，会创建 cron 任务）
+
+> ⚠️ **执行前必须告知用户并获得确认**：`monitor` 会执行以下**持续副作用**——
+> - 通过 `CronCreate` 创建宿主定时任务（**实质修改宿主调度环境**）；
+> - 按 `--interval` 周期向监控渠道发起出站 HTTP 请求（持续产生网络流量）；
+> - 对新商机发送 `PushNotification` 系统通知；
+> - 将运行日志写入本地 `leads-output/bid/monitor.log`。
+>
+> **激活边界**：默认间隔 120 分钟；默认最多运行 48 轮（约 4 天）后自动停止；**默认不跨会话持久化**（cron 仅在当前会话/进程存活期内有效，除非显式加 `--persist`）；可用 `monitor --stop` 立即停止并清理 cron 任务。
+>
+> 执行前请向用户复述上述副作用并询问"确认启动？"，用户明确确认后才执行。
 
 ```
+# 启动监控（默认：每 120 分钟扫描一次，最多 48 轮，不跨会话持久化）
 /bid-collection monitor
-/bid-collection monitor --interval=60    # 每60分钟扫描一次
+
+# 自定义扫描间隔（每 60 分钟）
+/bid-collection monitor --interval=60
+
+# 限制最大运行轮数（如运行 24 轮后自动停止）
+/bid-collection monitor --max-runs=24
+
+# 跨会话持久化（cron 在会话结束后仍生效，需手动 --stop 清理）
+/bid-collection monitor --persist
+
+# 停止监控并清理 cron 任务
+/bid-collection monitor --stop
 ```
 
-### 生成汇总报告
+| 参数 | 默认 | 说明 |
+|------|------|------|
+| `--interval=N` | 120 | 扫描间隔（分钟），建议 ≥60 避免限流 |
+| `--max-runs=N` | 48 | 最大运行轮数，到上限自动停止 |
+| `--persist` | 关 | cron 跨会话持久化（默认仅在当前会话有效） |
+| `--stop` | — | 停止并清理 cron 任务 |
+
+### 3. 生成汇总报告（report — 纯本地，无出站请求）
 
 ```
 /bid-collection report
@@ -172,241 +213,73 @@ User types /bid-collection
 /bid-collection report --output=detail           # 含内容摘要
 ```
 
-### 管理监控源
+### 4. 管理监控源
 
-> ⚠️ **安全警告：** 添加自定义监控源后，本技能将向该域名发起网络请求（WebSearch/WebFetch）并抓取内容。请**仅添加您信任的公开招投标信息平台**。添加不可信来源可能导致：
-> - 技能处理来自不可信源的恶意或误导性内容
-> - 向非预期第三方暴露扫描关键词（搜索请求会附带查询参数）
-> - 攻击面扩张
+#### list-sources / remove-source（无出站请求）
 
 ```
 /bid-collection list-sources
+/bid-collection remove-source https://example-bid-platform.cn
+```
+
+#### add-source（⚠️ 会向该 URL 发起出站请求，存在 SSRF 类风险）
+
+> ⚠️ **安全警告（执行前必须告知用户并获得确认）**：`add-source <url>` 会使本技能在后续 scan/monitor 中向该 URL 发起出站 WebSearch/WebFetch 请求并抓取其内容。
+> - **仅添加您信任的公开招投标信息平台**；
+> - 添加不可信来源可能导致：向攻击者可控主机发起请求（SSRF 类风险）、技能处理来自不可信源的恶意/误导性内容、向非预期第三方暴露扫描关键词（搜索请求会附带查询参数）；
+> - 添加内网/本地/元数据地址（如 `127.0.0.1`、`169.254.169.254`、`localhost`、内网段）会被拒绝。
+>
+> 执行前请向用户复述上述风险并询问"确认添加？"，用户明确确认后才写入监控源清单。
+
+```
 /bid-collection add-source https://example-bid-platform.cn
-/bid-collection remove-source <url>            # 移除监控源
-=======
-## Core Collection Scope
-
-### 1. Government Public Resource Trading Platforms (Core Channels)
-
-| Category | Channel | Focus |
-|----------|---------|-------|
-| **National** | China Government Procurement (ccgp.gov.cn) | Central budget procurement, framework agreements, designated procurement |
-| **National** | China Tendering & Bidding Public Service Platform (cebpubservice.com) | National tender notices, change notices, award announcements |
-| **Provincial** | Provincial Public Resource Trading Centers | Provincial and municipal procurement projects |
-| **Municipal** | Municipal Public Resource Trading Networks | City/county government procurement, construction, service procurement |
-| **State-owned** | China Tendering & Bidding Network (cncbid.com) | Central SOE centralized procurement, specialized tenders |
-
-### 2. SOE & Large Enterprise Procurement Platforms
-
-| Platform | URL | Focus |
-|----------|-----|-------|
-| **China Mobile** | Procurement & Bidding (b2b.10086.cn) | SuYan procurement, ICT services, system construction |
-| **China Unicom** | Procurement & Bidding (chinaunicombidding.cn) | Application development, O&M services, IT systems |
-| **China Telecom** | Sunshine Procurement (ctyun.cn) | Cloud services, integration services, digital-intelligence projects |
-| **CEC** | CEC E-Procurement Platform | Xinchuang projects, cybersecurity, system integration |
-| **State Grid** | SGCC E-Commerce Platform (ecp.sgcc.com.cn) | Digital transformation, smart grid IT services |
-| **CNPC** | Energy No.1 (energyahead.com) | IT infrastructure, industrial internet |
-| **China Railway** | CREC Procurement Platform | Smart construction, BIM systems, project management |
-| **CMHK/China Merchants** | CMHK Tendering Platform | Digital transformation, logistics technology |
-
-### 3. Industry-Specific Tendering Websites
-
-| Domain | Platform | URL | Focus |
-|--------|----------|-----|-------|
-| **AI/LLM** | Smart Computing Centers Procurement | — | Computing power leasing, model training, AI middleware |
-| **Digitalization** | Digital Gov / Smart City Procurement | — | Government cloud, data governance, integrated services |
-| **IT Services** | Software Exchange / IT Procurement | — | Software dev, system integration, O&M services |
-| **Research** | University / Research Institute Procurement | — | Research equipment, lab systems, technology development |
-| **Healthcare** | Medical Procurement Platforms | — | Healthcare IT, smart healthcare, HIS systems |
-| **Education** | Education Equipment Procurement | — | Smart education, digital campus, teaching platforms |
-
-### 4. Third-Party Tender Information Aggregators (Auxiliary Channels)
-
-| Platform | URL | Purpose |
-|----------|-----|---------|
-| **Qianlima** | qianlima.com | General tender info aggregation |
-| **Bidcenter** | bidcenter.com.cn | National procurement & tender info summary |
-| **Zhaobiaord** | zhaobiaord.com | AI smart recommendation matching |
-| **Bidizhaobiao** | bidizhaobiao.com | Big-data precision targeting |
-| **Jianyu360** | jianyu360.com | Real-time lead push, competitive analysis |
-
----
-
-## Core Capabilities
-
-### 1. Intelligent Matching by Business Track
-
-Based on your company's business domain and service types, tenders are automatically matched to the following tracks:
-
-| Track | Keywords | Match Level |
-|-------|----------|-------------|
-| 🏢 **AI Technical Services** | AI, artificial intelligence, machine learning, NLP, CV, LLM | High |
-| 🧠 **Large Language Models** | LLM, GPT, generative AI, vector database, RAG, fine-tuning | Dedicated |
-| 🔬 **SuYan (Suzhou Research) Procurement** | SuYan, Suzhou Research, China Mobile Suzhou | Dedicated |
-| 🖥 **System Construction/Dev** | Software dev, system integration, platform dev, microservices | Core |
-| ☁️ **Computing Power & Model Services** | GPU, computing power, smart computing, model training, inference | Core |
-| 📊 **Digital Transformation** | Digital transformation, data governance, data platform, data assets | Core |
-| 🔒 **Information Security** | Cybersecurity, data security, classified protection, cryptography | Extended |
-| 🌐 **Cloud Services** | Cloud platform, public/private/hybrid cloud, IaaS/PaaS | Extended |
-| 📱 **Smart Applications** | Smart city, smart park, smart government, digital government | Extended |
-| 👁 **AI Vision/Content** | Digital human, AIGC, video generation, VR/AR | Emerging |
-
-### 2. Full Project Lifecycle Coverage
-
-Covers all stages of the procurement lifecycle:
-
-| Stage | Info Type | Value |
-|-------|-----------|-------|
-| ⏳ **Pre-tender Notice** | Procurement意向,需求公示, RFP notice | **Early positioning**, prepare bid materials |
-| 📢 **Formal Tender** | Tender announcement, competitive磋商, competitive negotiation | **Core opportunity**, bid preparation |
-| 🔄 **Change Notice** | Corrections, supplements, Q&A | Adjust bidding strategy in time |
-| 🏆 **Award Announcement** | Winning candidate, deal announcement | Competitor analysis, industry insight |
-| ❌ **Failed/Abandoned** | Tender cancellation, termination | Potential second-round opportunity |
-
-### 3. Lead Priority Classification
-
-| Priority | Criteria | Tag |
-|----------|----------|-----|
-| 🔴 **Urgent** | Deadline <7 days OR high budget/core track match | Respond immediately |
-| 🟡 **Important** | Deadline 7-30 days AND matches core business track | Evaluate this week |
-| 🟢 **Watch** | Deadline >30 days OR extended business track | Add to tracking list |
-| ⚪ **Reference** | Award announcements, competitor analysis, industry trends | Info reference |
-
-### 4. Lead Tagging System
-
-| Tag | Meaning |
-|-----|---------|
-| `[Pre-tender]` | Procurement意向 announced, not yet formally issued |
-| `[Open Tender]` | Formal tender documents released |
-| `[Amendment]` | Project corrections/supplements issued |
-| `[Awarded]` | Results announced |
-| `[Canceled]` | Project terminated/abandoned |
-
----
-
-## Usage
-
-### Quick Scan
-
-```
-/bid-collection scan AI LLM procurement --days=7
-/bid-collection scan SuYan procurement
-/bid-collection scan digital transformation tender --budget-min=1000000
-/bid-collection scan computing power lease tender --days=30
-```
-
-### Start Scheduled Monitoring
-
-```
-/bid-collection monitor
-/bid-collection monitor --interval=60    # Scan every 60 minutes
-```
-
-### Generate Summary Report
-
-```
-/bid-collection report
-/bid-collection report --track=core              # Core tracks only
-/bid-collection report --priority=urgent         # Urgent leads only
-/bid-collection report --output=detail           # With content summaries
-```
-
-### Manage Monitoring Sources
-
-> ⚠️ **Security Notice:** Adding a custom source will cause this skill to send web requests (WebSearch/WebFetch) to that domain and ingest content from it. **Only add trusted public tender/procurement platforms.** Adding untrusted sources may:
-> - Expose searching keywords to unexpected third parties (search queries are sent as request parameters)
-> - Cause the skill to process malicious or misleading content from untrusted sources
-> - Expand the network attack surface of your environment
-
-```
-/bid-collection list-sources
-/bid-collection add-source https://example-bid-platform.com
-/bid-collection remove-source <url>            # Remove a monitoring source
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 执行流程
 
-### 模式1: `scan` — 实时扫描
+### 模式 1: `scan` — 实时扫描（一次性）
 
 ```
-1. 解析用户输入的关键词和参数（业务赛道、预算范围等）
-2. 遍历所有监控渠道，使用WebSearch进行搜索
-3. 对每个搜索结果使用WebFetch获取详情
-4. 按业务赛道 + 项目阶段自动标注
-5. 计算优先级评分（预算金额 × 赛道匹配度 × 时效因子）
-6. 按[优先级][标签]排序输出结果表格
-7. 结果保存至桌面 leads-output/bid/ 目录
+1. 解析用户输入的关键词和参数（业务赛道、预算范围、时间窗口）
+2. 【控制台打印】将要查询的域名清单与关键词，用户可回复"取消"中止
+3. 遍历所有监控渠道，使用 WebSearch 进行搜索（出站请求）
+4. 对每个搜索结果使用 WebFetch 获取详情（出站请求）
+5. 按业务赛道 + 项目阶段自动标注
+6. 计算优先级评分（预算金额 × 赛道匹配度 × 时效因子）
+7. 按 [优先级][标签] 排序输出结果表格
+8. 结果写入本地 leads-output/bid/ 目录
 ```
 
-### 模式2: `monitor` — 后台定时监控
+### 模式 2: `monitor` — 后台定时监控（需确认，持续副作用）
 
 ```
-1. 使用CronCreate创建定时任务
-2. 默认每120分钟执行一次全渠道扫描
-3. 每次扫描后增量比对（去重，基于URL/项目编号）
-4. 新发现的商机通过PushNotification推送通知
-5. 运行日志保存至 leads-output/bid/monitor.log
+1. 【确认门控】向用户复述副作用清单（cron/出站请求/通知/日志），获得"确认启动"
+2. 使用 CronCreate 创建定时任务（修改宿主调度）
+3. 默认每 120 分钟执行一次全渠道扫描（出站请求）
+4. 每次扫描后增量比对（去重，基于 URL/项目编号）
+5. 新发现的商机通过 PushNotification 推送通知
+6. 运行日志写入 leads-output/bid/monitor.log
+7. 达到 --max-runs 上限自动停止并清理 cron；或用户执行 monitor --stop
 ```
 
-### 模式3: `report` — 报告生成
+### 模式 3: `report` — 报告生成（纯本地）
 
 ```
-1. 读取 leads-output/bid/ 目录下历史数据
+1. 读取 leads-output/bid/ 目录下历史数据（无出站请求）
 2. 按业务赛道、项目阶段汇总统计
-3. 生成结构化Markdown报告
+3. 生成结构化 Markdown 报告
    - 📊 赛道分布统计（按预算规模和数量）
-   - 📋 高价值商机TOP10
+   - 📋 高价值商机 TOP10
    - ⏰ 近期截止提醒（7天/15天/30天）
    - 🏢 重点采购方动态
    - 🔄 vs 上期新增/流失商机分析
-4. 输出至桌面和控制台
-=======
-## Execution Flow
-
-### Mode 1: `scan` — Real-Time Scan
-
-```
-1. Parse user keywords and parameters (business track, budget range, etc.)
-2. Iterate through all monitored channels, use WebSearch to search
-3. For each result, use WebFetch to get details
-4. Auto-tag by business track + project stage
-5. Calculate priority score (budget × track match × timeliness factor)
-6. Output sorted table by [priority][tag]
-7. Save results to desktop leads-output/bid/ directory
-```
-
-### Mode 2: `monitor` — Background Scheduled Scan
-
-```
-1. Create scheduled task using CronCreate
-2. Default: full channel scan every 120 minutes
-3. Incremental comparison each scan (dedup by URL/project ID)
-4. PushNotification for newly discovered leads
-5. Log to leads-output/bid/monitor.log
-```
-
-### Mode 3: `report` — Report Generation
-
-```
-1. Read historical data from leads-output/bid/
-2. Aggregate by business track and project stage
-3. Generate structured Markdown report
-   - 📊 Track distribution (by budget and count)
-   - 📋 Top 10 high-value leads
-   - ⏰ Upcoming deadline reminders (7d/15d/30d)
-   - 🏢 Key buyer activity
-   - 🔄 New/lost leads vs. previous period
-4. Output to desktop and console
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
+4. 输出至 leads-output/bid/ 和控制台
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 输出格式示例
 
 ```
@@ -416,9 +289,7 @@ Covers all stages of the procurement lifecycle:
 │ 🔴   │ 2026年AI大模型训练平台建设项目           │ 中移苏研       │ 🧠 大模型     │ 800       │ 06-20     │
 │ 🔴   │ 政务云数据中台建设项目                  │ 省大数据中心    │ 📊 数字化      │ 1200      │ 06-25     │
 │ 🟡   │ 智慧园区综合管理平台开发                 │ 某高新区管委会   │ 📱 智慧应用    │ 500       │ 07-10     │
-│ 🟡   │ AI算力资源池租赁服务                    │ 智算中心        │ ☁️ 算力       │ 300       │ 07-15     │
 │ 🟢   │ 信息安全等级保护测评服务                 │ 市教育局        │ 🔒 安全       │ 80        │ 08-01     │
-│ ⚪   │ XX省数字政府建设规划方案征集              │ 省政务办        │ 📊 数字化      │ —         │ —         │
 └──────┴──────────────────────────────────────┴──────────────┴──────────────┴───────────┴────────────┘
 
 📋 详细商机卡片:
@@ -436,61 +307,19 @@ Covers all stages of the procurement lifecycle:
   ────────
   🎯 赛道匹配: AI大模型/高
   ⏰ 建议动作: 立即组织投标小组，筹备技术方案
-=======
-## Output Example
-
-```
-┌──────┬──────────────────────────────────────────────────┬──────────────────┬──────────────────┬──────────┬────────────┐
-│ Pri  │ Project Name                                     │ Buyer             │ Track            │ Budget   │ Deadline   │
-├──────┼──────────────────────────────────────────────────┼──────────────────┼──────────────────┼──────────┼────────────┤
-│ 🔴   │ 2026 AI LLM Training Platform Construction       │ China Mobile SuYan│ 🧠 LLM           │ ¥8M      │ 06-20     │
-│ 🔴   │ Government Cloud Data Middle Platform            │ Provincial Big Data│ 📊 Digital       │ ¥12M     │ 06-25     │
-│ 🟡   │ Smart Park Integrated Management Platform Dev    │ Hi-tech Zone Admin│ 📱 Smart Apps    │ ¥5M      │ 07-10     │
-│ 🟡   │ AI Computing Power Resource Pool Lease           │ Computing Center  │ ☁️ Computing      │ ¥3M      │ 07-15     │
-│ 🟢   │ Information Security Classified Protection Audit │ City Education Bu.│ 🔒 Security      │ ¥800K    │ 08-01     │
-│ ⚪   │ XX Province Digital Gov Planning Solicitation    │ Provincial Gov Of.│ 📊 Digital       │ —        │ —         │
-└──────┴──────────────────────────────────────────────────┴──────────────────┴──────────────────┴──────────┴────────────┘
-
-📋 Detailed Lead Card:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🔴 [Urgent] 🧠 AI LLM Training Platform Construction
-  Buyer: China Mobile (Suzhou) Software Technology Co.
-  Stage: Open Tender
-  Budget: ¥8,000,000
-  Issue Date: 2026-06-10
-  Deadline: 2026-06-20 (9 days remaining)
-  Requirements: High-performance computing cluster, distributed training framework,
-               data annotation platform for LLM training...
-  Contact: Mr. Zhang +86-512-XXXXXXX
-  Source: China Mobile Procurement & Bidding Network
-  URL: https://b2b.10086.cn/...
-  ────────
-  🎯 Track Match: AI/LLM — High
-  ⏰ Suggested Action: Assemble bid team immediately, prepare technical proposal
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 注意事项
 
 - 采集的信息均为**公开信息**，不涉及非公开/需登录内容
+- 本技能**不读取**用户环境变量、API Key、`.env` 或任何系统敏感配置
 - 各公共资源交易平台接口各异，建议对重点渠道定期人工确认
-- 监控频率建议不低于60分钟/次，避免被目标网站限流
+- 监控频率建议不低于 60 分钟/次，避免被目标网站限流
 - **高价值商机建议人工二次确认**后再投入应标资源
 - 预算金额一般含暂列金，投标报价需结合招标文件详细要求
-- 支持自定义添加行业/区域监控源
-- 合规使用：遵守目标网站的 robots.txt 和使用条款
-=======
-## Notes
-
-- All collected information is **publicly available**; no login or private data involved
-- Different platforms have varying interfaces; regular manual verification of key channels is recommended
-- Recommended monitoring interval ≥60 minutes to avoid rate limiting
-- **High-value leads should be manually verified** before committing bid resources
-- Budget figures typically include provisional sums; final pricing should reference detailed tender docs
-- Custom industry/regional monitoring sources are supported
-- Compliance: respect target websites' robots.txt and terms of service
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
+- 支持自定义添加行业/区域监控源（注意 add-source 的 SSRF 风险）
+- 合规使用：遵守目标网站的 `robots.txt` 和使用条款
+- `monitor` 会创建 cron 任务修改宿主调度，使用完毕请执行 `monitor --stop` 清理

@@ -1,43 +1,54 @@
-## Description: <br>
-Build concise creator proof packs for brand outreach using real performance evidence, niche fit, and campaign-ready positioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build concise creator proof packs for brand outreach using real performance evidence, niche fit, and campaign-ready positioning.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, creator managers, and partnership teams use this skill to turn performance evidence, audience fit, testimonials, and campaign notes into concise proof packs for brand outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes business-facing creator evidence such as performance screenshots, testimonials, audience data, and contact details. <br>
-Mitigation: Provide only information suitable for outreach, and review the final proof pack before sharing it externally. <br>
-Risk: The artifact text declares CC BY-NC-SA 4.0 non-commercial terms and says commercial use requires separate permission, while server evidence lists MIT-0. <br>
-Mitigation: Confirm the controlling license before commercial use or redistribution, and obtain separate commercial permission if the artifact license text controls. <br>
-Risk: Creator performance claims may be misleading if metrics are incomplete, outdated, or unattributed. <br>
-Mitigation: Keep source, timeframe, and attribution confidence with each metric, and label missing hard data as pending. <br>
+## Use Case:
 
+Creators and partnership teams use this skill to turn performance results, examples, testimonials, and audience evidence into a one-page proof pack and concise outreach copy for brand conversations.
 
-## Reference(s): <br>
-- [Proof Pack Template](references/proof-pack-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/creator-proof-portfolio-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown proof pack, case snapshots, and outreach copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Evidence-led wording with pending placeholders when hard data is missing] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Users may share creator performance data, testimonials, or campaign details with the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only information appropriate to disclose and remove confidential or permission-sensitive details before generating outreach materials.
+
+Risk: Generated proof packs or pitch copy could overstate results or imply unsupported brand outcomes.
+
+Mitigation: Review every metric, testimonial, and claim against the source evidence before sending materials to brands.
+
+## Reference(s):
+
+- [Proof Pack Template](references/proof-pack-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/creator-proof-portfolio-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown proof pack sections with short outreach copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided performance evidence, examples, testimonials, and audience context; generated claims should remain evidence-labeled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

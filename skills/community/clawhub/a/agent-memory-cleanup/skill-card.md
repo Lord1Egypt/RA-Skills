@@ -1,45 +1,61 @@
-## Description: <br>
-Agent Memory Cleanup audits and cleans long-term agent memory files, preserving durable user context while removing stale task notes, duplicates, conflicts, and suspected secrets after approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Memory Cleanup audits and cleans long-term agent memory files by removing or flagging stale task notes, duplicate or conflicting preferences, and suspected secrets while requiring approval before writes and creating recoverable backups.
 
-## Publisher: <br>
-[hollis9087](https://clawhub.ai/user/hollis9087) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis9087](https://clawhub.ai/user/hollis9087)
 
-## Use Case: <br>
-Developers and agent users use this skill to audit, prune, sanitize, deduplicate, and repair long-term memory files for Codex, OpenClaw, Hermes Agent, Claude, and similar runtimes. It helps agents keep stable global preferences while removing task-specific residue, stale project notes, contradictions, and suspected credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads long-term memory files that may contain private user context or sensitive credentials. <br>
-Mitigation: Use it only for intended memory cleanup, keep reports local when possible, and rely on the skill's redaction behavior before sharing findings. <br>
-Risk: Approved cleanup can modify memory files or write proposed reports to paths chosen by the user. <br>
-Mitigation: Review proposed diffs before applying, keep timestamped backups until satisfied, and avoid output paths that could expose memory reports or overwrite unrelated files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep persistent assistant memory focused on stable user preferences and durable context. It helps inspect memory pressure, propose cleanup, redact suspected secrets, preserve backups, and apply approved edits to user-selected memory files.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/hollis9087/agent-memory-cleanup) <br>
-- [README](README.md) <br>
-- [Default Cleanup Rules](references/default-rules.json) <br>
-- [Classification Rubric](references/classification-rubric.md) <br>
-- [Agent Memory Paths](references/agent-paths.md) <br>
-- [MCP Version Guidance](references/mcp-version.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, File edits, Guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON summaries, diffs, shell commands, and approved memory-file edits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped backups before approved edits and redacts suspected secrets in reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.7 (source: server release evidence) <br>
+Risk: The skill can rewrite persistent memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before applying edits, review proposed diffs, and keep cleanup scoped to memory files the user names or clearly authorizes.
+
+Risk: Backups may retain secrets removed from the active memory file.
+
+Mitigation: Treat backup files as sensitive, review retention needs after cleanup, and avoid sharing or committing backups.
+
+Risk: Overbroad path discovery could expose unrelated user files.
+
+Mitigation: Limit discovery to user-provided paths, workspace memory files, or configured memory roots, and avoid broad home-directory scans unless explicitly requested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hollis9087/skills/agent-memory-cleanup)
+- [Agent Memory Paths](references/agent-paths.md)
+- [Classification Rubric](references/classification-rubric.md)
+- [Default Rules](references/default-rules.json)
+- [MCP Version Guidance](references/mcp-version.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON summaries, unified diffs, proposed cleaned memory content, backup paths, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write approved memory edits and proposed cleaned files; apply mode creates timestamped backups before changing a memory file.]
+
+## Skill Version(s):
+
+0.3.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

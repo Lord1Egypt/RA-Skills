@@ -1,48 +1,66 @@
-## Description: <br>
-Guide for using wjx-cli (Wenjuanxing CLI) to create surveys, query responses, and analyze data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for using wjx-cli (Wenjuanxing CLI) to create AI homepages, posters, PPTs, and surveys, query responses, and analyze data. Use when the user mentions: AI主页, AI海报, AI PPT, 问卷, 调查, 收集, 表单, 投票, 考试, 测评, 满意度, NPS, 问卷星, wjx, survey, questionnaire, or wants to create or update those resources.
 
-## Publisher: <br>
-[orzwq](https://clawhub.ai/user/orzwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orzwq](https://clawhub.ai/user/orzwq)
 
-## Use Case: <br>
-Developers and operators use this skill to help an agent install and use wjx-cli for Wenjuanxing survey creation, response retrieval, local analytics, and contact or account management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent use a Wenjuanxing API key for broad account and data-changing actions. <br>
-Mitigation: Use the least-privileged API key available, avoid exposing secrets in chat where possible, and require explicit confirmation before exports, response submission or import, score changes, SSO link generation, contact or account changes, response clearing, or survey deletion. <br>
-Risk: The setup flow may rely on global npm installation, sudo, or pipe-to-shell Node.js installation commands. <br>
-Mitigation: Review the source before installation and prefer user-scoped or reviewed installation paths when possible. <br>
+## Use Case:
 
+Developers and survey operators use this skill to configure Wenjuanxing's CLI, create or update surveys and AI pages, retrieve responses, and analyze survey data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orzwq/wjx-cli-use) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/orzwq) <br>
-- [Survey command reference](references/survey-commands.md) <br>
-- [Response command reference](references/response-commands.md) <br>
-- [Contact and account command reference](references/contacts-commands.md) <br>
-- [Analytics command reference](references/analytics-commands.md) <br>
-- [Question type reference](references/question-types.md) <br>
-- [DSL syntax reference](references/dsl-syntax.md) <br>
-- [Node.js installation reference](references/install-nodejs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSONL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Wenjuanxing API credentials and may produce or execute wjx-cli commands for account and survey operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.3 (source: server release evidence) <br>
+Risk: The skill covers account, administrator, contact, and organization management commands that can have broad or destructive effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested operation and its target before running management or response commands.
+
+Risk: Installation guidance includes remote-script and sudo steps.
+
+Mitigation: Independently verify installation instructions and scripts before using remote execution or elevated privileges.
+
+Risk: One referenced section was only partially analyzed.
+
+Mitigation: Review the relevant source section before relying on its guidance.
+
+## Reference(s):
+
+- [Survey logic and references](references/logic.md)
+- [Question types](references/question-types.md)
+- [Survey commands](references/survey-commands.md)
+- [Response commands](references/response-commands.md)
+- [Analytics commands](references/analytics-commands.md)
+- [Contacts commands](references/contacts-commands.md)
+- [Host routing](references/host-routing.md)
+- [Node.js installation guidance](references/install-nodejs.md)
+- [Formula helper](references/formula-helper.md)
+- [ClawHub release](https://clawhub.ai/orzwq/skills/wjx-cli-use)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Survey content, Analysis]
+
+**Output Format:** [Markdown guidance with shell commands, JSONL examples, and Wenjuanxing survey or response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on the user's survey or AI page task; may include configuration steps, survey logic, response queries, or data analysis guidance.]
+
+## Skill Version(s):
+
+0.4.6 (source: SKILL.md frontmatter; ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

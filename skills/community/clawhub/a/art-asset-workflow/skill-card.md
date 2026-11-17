@@ -1,38 +1,58 @@
-## Description: <br>
-美术素材生成完整工作流指引。生成游戏 UI 图标、角色概念图、运营海报等素材时使用。包含工具链说明、尺寸选择、提示词规范、工作流步骤。细节工具用法见对应子技能：codex-imggen（生图）、sprite-tools（切图/抠图）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through generating game art assets such as UI icons, character concepts, and promotional posters, including tool selection, image sizes, prompt patterns, generation, splitting, cutout, and verification steps.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers, artists, and game teams use this skill to plan art-asset generation workflows for game UI icons, character concepts, operational posters, and sprite post-processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow references external local skills and an optional paid API path that may require sensitive credentials. <br>
-Mitigation: Trust the referenced codex-imggen and sprite-tools skills before use, and only provide an OpenAI API key when intentionally using the optional API workflow. <br>
+## Use Case:
 
+Developers and game-content creators use this skill to plan and run an AI-assisted workflow for producing game UI icons, single art assets, character concepts, and promotional art. It helps select generation tools, prompts, dimensions, post-processing steps, and image review checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/art-asset-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled executable code; examples reference Codex, codex-imggen, sprite-tools, and an optional OpenAI API path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence; SKILL.md frontmatter lists 1.0.0) <br>
+Risk: The workflow includes commands and API examples that may use local skills, local files, or user-provided OpenAI credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands and credential-dependent API calls before execution, and run them only in trusted environments.
+
+Risk: The skill is a Chinese-language workflow guide, which may be misread by agents or reviewers who do not understand the source language.
+
+Mitigation: Have a Chinese-proficient reviewer validate intended behavior, command usage, and generated prompts before operational use.
+
+Risk: Generated image assets may have quality issues such as missing elements, inconsistent style, incorrect content, or clipping.
+
+Mitigation: Use the artifact's required post-generation image review step and regenerate or adjust prompts when defects are found.
+
+## Reference(s):
+
+- [Art Asset Workflow on ClawHub](https://clawhub.ai/axelhu/skills/art-asset-workflow)
+- [Publisher profile: axelhu](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes recommended image sizes, prompt guidance, workflow steps, quality checks, and tool-selection notes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Discord project collaboration infrastructure for OpenClaw agents. Manage Forum Channels, threads, participant permissions, and mention mode. Supports 3-tier architecture (Forum Channel -> Thread -> Default Channel) for multi-agent project coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discord project collaboration infrastructure for OpenClaw agents. Manage Forum Channels, threads, participant permissions, and mention mode. Supports 3-tier architecture (Forum Channel -> Thread -> Default Channel) for multi-agent project coordination.
 
-## Publisher: <br>
-[lemodigital](https://clawhub.ai/user/lemodigital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lemodigital](https://clawhub.ai/user/lemodigital)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create and manage Discord forum channels, project threads, agent participant permissions, and mention mode for multi-agent collaboration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes ~/.openclaw/openclaw.json, including Discord bot token and channel permission mappings. <br>
-Mitigation: Use a least-privilege Discord bot scoped to the intended guild and back up ~/.openclaw/openclaw.json before first use. <br>
-Risk: Archive, remove, and permission commands can revoke agent channel access and trigger an OpenClaw gateway reload. <br>
-Mitigation: Double-check destructive commands and participant lists before execution, especially in active project threads. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lemodigital/discord-project-manager) <br>
-- [Publisher Profile](https://clawhub.ai/user/lemodigital) <br>
-- [OpenClaw Repository](https://github.com/openclaw/openclaw) <br>
-- [Discord API v10](https://discord.com/api/v10) <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate OpenClaw multi-agent project work in Discord by creating project forums and threads, managing participant permissions, and tracking project status from a CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for Discord/OpenClaw project management actions and invokes CLI/API workflows that can update local OpenClaw configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive OpenClaw and Discord credentials and can alter central agent configuration.
+
+Mitigation: Install only from a trusted publisher, back up ~/.openclaw/openclaw.json before use, and avoid diagnostic commands or logs that print raw configuration.
+
+Risk: Discord bot authority can affect forum, thread, and participant access in the configured guild.
+
+Mitigation: Restrict the bot to the minimum Discord permissions and guilds needed, and review target channels and participants before applying permission changes.
+
+Risk: Security guidance identifies config-file permission preservation and token redaction issues for review.
+
+Mitigation: Review and fix those issues before production use, then rescan the release before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lemodigital/skills/discord-project-manager)
+- [Discord API v10](https://discord.com/api/v10)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text and JSON status output with OpenClaw configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates Discord project channels, threads, permission entries, and skill-local registry files.]
+
+## Skill Version(s):
+
+2.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

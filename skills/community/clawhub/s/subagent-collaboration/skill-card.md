@@ -1,44 +1,57 @@
-## Description: <br>
-Analyzes configured OpenClaw subagents, recommends collaboration patterns, and generates multi-agent workflow designs with safety checks for complex task decomposition and orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subagent Collaboration helps OpenClaw users analyze available subagents, choose collaboration patterns, generate multi-agent workflow designs, and run safety checks for subagent configurations.
 
-## Publisher: <br>
-[nanlinsec-sys](https://clawhub.ai/user/nanlinsec-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanlinsec-sys](https://clawhub.ai/user/nanlinsec-sys)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze available subagent roles, choose a collaboration pattern, generate runnable workflow files, and check generated workflows against subagent safety rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates runnable multi-agent workflow code from user-provided task text. <br>
-Mitigation: Review generated JavaScript and workflow JSON before execution, especially agent count, sandbox, timeout, cleanup, and unintended code. <br>
-Risk: Untrusted or secret-bearing task text may be propagated into generated workflow files. <br>
-Mitigation: Avoid including secrets or sensitive operational details in task prompts passed to the workflow generator. <br>
-Risk: Generated files may be written to unexpected locations if output paths are implicit. <br>
-Mitigation: Use explicit output paths and inspect generated workflow and report files before using them. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and generate OpenClaw multi-subagent workflows for analysis, software delivery, consultation, relay, and workflow orchestration tasks. It also provides configuration analysis, model and concurrency recommendations, and safety-check reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nanlinsec-sys/subagent-collaboration) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance, terminal output, JSON workflow files, JSON security reports, and generated JavaScript workflow code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workflow code and reports should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Generated executable JavaScript may be affected by untrusted task text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted task descriptions and review generated .js files before running them.
+
+Risk: The skill can write generated files to broad or hard-coded local paths.
+
+Mitigation: Pass an explicit output directory and verify generated output paths before execution.
+
+Risk: Security evidence marks the release suspicious because local file generation and generated code execution require operator review.
+
+Mitigation: Use the security-check report as a pre-execution review step and accept the skill only in environments where local file generation is permitted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nanlinsec-sys/skills/subagent-collaboration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON workflow files, JavaScript code snippets, shell commands, and security-check reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and node; generated workflow and JavaScript files should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

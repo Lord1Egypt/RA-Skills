@@ -1,40 +1,55 @@
-## Description: <br>
-Detect and remove exact or visually similar duplicate images in local folders using MD5 and perceptual hashing with configurable actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and remove exact or similar duplicate images in folders using perceptual and MD5 hashing with configurable similarity and actions.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers, data practitioners, and users managing image folders use this skill to scan local directories for exact or visually similar duplicate images and choose whether to list, move, or delete duplicate files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Duplicate cleanup can delete or move local files when destructive actions are selected. <br>
-Mitigation: Run list mode first, review the files that would be affected, back up important folders, and prefer move mode when unsure. <br>
-Risk: Image processing depends on local Pillow and imagehash installations. <br>
-Mitigation: Install trusted, pinned versions of dependencies before running scans in important folders. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Image Deduplicator on ClawHub](https://clawhub.ai/Mingo-318/image-deduplicator) <br>
-- [Publisher profile](https://clawhub.ai/user/Mingo-318) <br>
+## Use Case:
+
+Developers, data practitioners, and image dataset maintainers use this skill to scan local folders for exact or near-duplicate images and decide whether to list, move, or delete duplicate files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Duplicate cleanup can remove or relocate files the user intended to keep.
+
+Mitigation: Run the listing mode first, review duplicate groups, and keep backups before using delete or move actions.
+
+Risk: Near-duplicate detection may group visually similar images that are not true duplicates.
+
+Mitigation: Use a conservative threshold and review reported groups before taking destructive action.
+
+Risk: Dependency versions can affect image hashing behavior and reproducibility.
+
+Mitigation: Install dependencies in a virtual environment and pin versions when repeatable results matter.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file listing, move, or delete workflows for duplicate image cleanup.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with CLI commands and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports duplicate image groups and may move or delete duplicate files when the user explicitly selects those actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

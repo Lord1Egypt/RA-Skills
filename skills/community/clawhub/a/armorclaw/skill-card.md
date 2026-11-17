@@ -1,43 +1,66 @@
-## Description: <br>
-AES-256 encrypted secrets manager for OpenClaw agents that stores API keys, tokens, and credentials in a local vault instead of plain-text .env files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ArmorClaw is a local secrets manager for OpenClaw agents that stores API keys, tokens, and credentials in an encrypted vault instead of plain-text .env files.
 
-## Publisher: <br>
-[SuperTechGod](https://clawhub.ai/user/SuperTechGod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supertechgod](https://clawhub.ai/user/supertechgod)
 
-## Use Case: <br>
-Developers and agent operators use ArmorClaw to store, retrieve, import, and audit secrets used by OpenClaw agents. It is intended for securing API keys, migrating from .env files, sharing secrets across skills, and reviewing credential access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags ArmorClaw as requiring review because its credential-handling claims may not match several high-impact behaviors. <br>
-Mitigation: Review the credential-handling tradeoffs before installation and use the secure dependency path for production-like use. <br>
-Risk: Bot auto-unlock and ARMORCLAW_PASSWORD can expose the master password or make unattended access easier than expected. <br>
-Mitigation: Avoid bot auto-unlock and ARMORCLAW_PASSWORD storage unless the environment is tightly controlled and the access model is explicitly accepted. <br>
-Risk: Bulk environment injection, broad .env scanning, and export back to .env can expose secrets to processes or plaintext files that should not receive them. <br>
-Mitigation: Inject only the secrets needed by trusted processes, limit .env scanning to explicit paths, and treat exported .env files as temporary plaintext that must be protected and removed. <br>
+## Use Case:
 
+Developers and agent operators use ArmorClaw to manage local credentials for OpenClaw agents, migrate .env entries into a vault, inject secrets into runtime environments, and audit which skills access stored credentials.
 
-## Reference(s): <br>
-- [ArmorClaw on ClawHub](https://clawhub.ai/SuperTechGod/armorclaw) <br>
-- [PHRAIMWORK](https://phraimwork.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI commands, Python snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local vault operations, environment-injection patterns, and audit/reporting workflows for agent secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md metadata, pyproject.toml) <br>
+Risk: The security evidence says ArmorClaw's security claims are stronger than the implementation and stored credentials may be exposed in ways users do not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and do not treat it as a high-assurance vault unless the reported crypto fallback, password verifier, config-file permissions, and per-skill access model issues are fixed.
+
+Risk: The artifact can use a less battle-tested cryptography fallback when the optional cryptography dependency is unavailable.
+
+Mitigation: Install with the real cryptography dependency and avoid relying on the fallback for sensitive credentials.
+
+Risk: Bot auto-unlock, plaintext export, and storing ARMORCLAW_PASSWORD in configuration can expose the master password or decrypted secrets.
+
+Mitigation: Avoid bot auto-unlock and plaintext export for sensitive vaults, do not store ARMORCLAW_PASSWORD in config, and keep vault and config files tightly permissioned.
+
+Risk: Environment injection and cross-skill secret sharing can make more credentials available to an agent process than intended.
+
+Mitigation: Prefer retrieving only required keys, restrict which skills can access secrets, and review access logs for unexpected reads.
+
+Risk: Static-IP lock mode can lock users out when their external IP changes.
+
+Mitigation: Use IP restriction only with a confirmed static external IP and choose a less brittle lock mode for dynamic home or mobile networks.
+
+## Reference(s):
+
+- [ArmorClaw ClawHub listing](https://clawhub.ai/supertechgod/skills/armorclaw)
+- [PHRAIMWORK website](https://phraimwork.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may involve local vault setup, credential import, runtime environment injection, and access-log review.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, SKILL.md metadata, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

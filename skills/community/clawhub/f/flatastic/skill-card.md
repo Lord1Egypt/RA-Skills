@@ -1,41 +1,57 @@
-## Description: <br>
-Manage shared household chores, shopping lists, expenses, and household messages via the Flatastic CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage shared household chores, shopping lists, and expenses via Flatastic.
 
-## Publisher: <br>
-[david-schopf](https://clawhub.ai/user/david-schopf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[david-schopf](https://clawhub.ai/user/david-schopf)
 
-## Use Case: <br>
-External users and household members use this skill to ask an agent for Flatastic CLI commands and guidance for chores, shopping lists, expenses, balances, WG information, and shared household messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked too broadly and cause an agent to read or change shared household chores, shopping items, expenses, members, or account data. <br>
-Mitigation: Invoke it only when the user explicitly mentions Flatastic or asks to read or update household records. <br>
-Risk: Mutating Flatastic actions can create, edit, delete, or notify household members about shared records. <br>
-Mitigation: Require user confirmation before creating, editing, deleting, or sending reminder actions. <br>
+## Use Case:
 
+External users with a Flatastic household use this skill to ask an agent for Flatastic CLI guidance that reads or updates chores, shopping items, expenses, balances, and bulletin-board messages.
 
-## Reference(s): <br>
-- [ClawHub Flatastic skill page](https://clawhub.ai/david-schopf/flatastic) <br>
-- [david-schopf publisher profile](https://clawhub.ai/user/david-schopf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Flatastic CLI commands that read or modify shared household data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill relies on an external flatastic CLI that was not reviewed as part of the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the CLI only if its source and behavior are trusted in the target environment.
+
+Risk: The Flatastic config stores a session token and household data locally.
+
+Mitigation: Treat the config file as sensitive and restrict access to the local user account that needs Flatastic access.
+
+Risk: Agent actions can change shared household records, including expenses, reminders, posts, and list items.
+
+Mitigation: Require explicit user confirmation before destructive, financial, reminder, or message-posting operations.
+
+## Reference(s):
+
+- [Flatastic ClawHub skill page](https://clawhub.ai/david-schopf/skills/flatastic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline Flatastic CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the external flatastic CLI binary and a local Flatastic config containing a session token.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

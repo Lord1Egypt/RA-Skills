@@ -1,11 +1,11 @@
 # ESCH\_PrimitivePinShape enum
 
-引脚形状
+Pin shape
 
 ## Signature
 
 ```typescript
-declare enum ESCH_PrimitivePinShape 
+enum ESCH_PrimitivePinShape
 ```
 
 ## Enumeration Members
@@ -14,80 +14,57 @@ declare enum ESCH_PrimitivePinShape
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 CLOCK
 
-
 </td><td>
 
-`"Clock"`
-
+`'Clock'`
 
 </td><td>
-
-时钟
-
 
 </td></tr>
 <tr><td>
 
 INVERTED
 
-
 </td><td>
 
-`"Inverted"`
-
+`'Inverted'`
 
 </td><td>
-
-反向
-
 
 </td></tr>
 <tr><td>
 
 INVERTED\_CLOCK
 
-
 </td><td>
 
-`"Inverted Clock"`
-
+`'Inverted Clock'`
 
 </td><td>
-
-反向时钟
-
 
 </td></tr>
 <tr><td>
 
 NONE
 
-
 </td><td>
 
-`"None"`
-
+`'None'`
 
 </td><td>
-
-无
-
 
 </td></tr>
 </tbody></table>

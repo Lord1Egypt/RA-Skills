@@ -1,43 +1,66 @@
-## Description: <br>
-每日新闻简报，自动抓取热点新闻并 AI 提炼重点。支持财经/科技/国际新闻，定时推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese-focused daily news brief by searching configured finance, technology, and international topics and saving summarized results.
 
-## Publisher: <br>
-[zt6558609-cpu](https://clawhub.ai/user/zt6558609-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt6558609-cpu](https://clawhub.ai/user/zt6558609-cpu)
 
-## Use Case: <br>
-External users and developers use this skill to generate scheduled Chinese daily news briefs across finance, technology, and international categories, with configurable sources and delivery timing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled delivery can repeatedly send generated briefs through configured messaging routes. <br>
-Mitigation: Enable the OpenClaw cron job only after reviewing the configured schedule and channel destinations. <br>
-Risk: News summaries are generated from public web content and fallback sources, so results can be incomplete, outdated, or inaccurate. <br>
-Mitigation: Review important items against their source links before relying on the brief for decisions. <br>
-Risk: The skill executes a local SearXNG skill when fetching live results. <br>
-Mitigation: Install and run it only in an environment where the local SearXNG skill and its dependencies are trusted. <br>
+## Use Case:
 
+External users and developers use this skill to collect Chinese-language news headlines, organize them by category, and produce scheduled Markdown news briefs for review or delivery through OpenClaw-managed channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zt6558609-cpu/daily-news-brief-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/zt6558609-cpu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown news brief with configuration JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefs are saved under scripts/output and can be scheduled through OpenClaw cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may run on a recurring schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the OpenClaw cron setup unless recurring news brief generation is intended.
+
+Risk: The skill relies on a separate local SearXNG skill through subprocess execution.
+
+Mitigation: Verify the local SearXNG skill and its configuration before installing or running this skill.
+
+Risk: Generated briefs and raw search results are written under the skill's scripts/output directory.
+
+Mitigation: Review retained output files and remove them if they contain unwanted or sensitive browsing-derived content.
+
+Risk: The release overstates AI and push-channel behavior relative to the implementation evidence.
+
+Mitigation: Confirm the actual summarization and delivery behavior in the local environment before relying on the generated brief.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zt6558609-cpu/skills/daily-news-brief-cn)
+- [Publisher profile](https://clawhub.ai/user/zt6558609-cpu)
+- [Skill definition](artifact/SKILL.md)
+- [User documentation](artifact/README.md)
+- [News source configuration](artifact/config/sources.json)
+- [Schedule configuration](artifact/config/schedule.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown brief files, console text, and optional JSON raw-news data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Briefs are saved under artifact/scripts/output; optimized scripts can also save raw JSON search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

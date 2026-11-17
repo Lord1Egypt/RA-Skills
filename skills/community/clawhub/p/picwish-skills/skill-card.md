@@ -1,44 +1,65 @@
-## Description: <br>
-Root routing skill for PicWish image processing capabilities, routing image tasks to background removal, face cutout, upscaling, object or watermark removal, ID photo generation, colorization, compression, OCR, smart crop, and clothing segmentation sub-skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes agent image-processing requests to 11 PicWish API-backed skills for background removal, face cutouts, upscaling, object and watermark removal, ID photos, colorization, compression, OCR, smart cropping, and clothing segmentation.
 
-## Publisher: <br>
-[px94](https://clawhub.ai/user/px94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[px94](https://clawhub.ai/user/px94)
 
-## Use Case: <br>
-External users and developers use this skill to route common PicWish image-processing requests to the correct sub-skill and return saved outputs or OCR files. It is intended for tasks such as background removal, image enhancement, object cleanup, ID photos, document correction, text extraction, and clothing mask generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, supplied image URLs, and OCR inputs are sent to PicWish for remote processing. <br>
-Mitigation: Use only authorized media and avoid sensitive faces, IDs, private documents, confidential screenshots, or regulated data unless the user has approval. <br>
-Risk: Returned result URLs may contain temporary authentication query parameters. <br>
-Mitigation: Treat complete result URLs as sensitive temporary links; prefer local saved paths and avoid unnecessary logging or sharing. <br>
-Risk: Changing PICWISH_BASE_URL can redirect processing away from the expected PicWish endpoint. <br>
-Mitigation: Set PICWISH_BASE_URL only to a trusted PicWish endpoint, or leave it unset so the skill uses its regional defaults. <br>
+## Use Case:
 
+External users and developers use this skill to route image-processing requests to the appropriate PicWish sub-skill and run PicWish API tasks that return processed images, OCR outputs, masks, or saved local files.
 
-## Reference(s): <br>
-- [ClawHub PicWish Skills Release](https://clawhub.ai/px94/picwish-skills) <br>
-- [PicWish API](https://picwish.com) <br>
-- [PicWish API Key](https://picwish.com/my-account?subRoute=api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON status with result URLs and local saved paths, plus downloaded image or OCR output files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PicWish API key. Image inputs are processed by PicWish remote APIs, and temporary result URLs should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: package.json and server release evidence) <br>
+Risk: The skill sends selected images and OCR inputs to PicWish servers, which can expose sensitive faces, IDs, documents, or proprietary images to third-party processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images that the user is authorized to process, avoid sensitive content unless consent and third-party processing are acceptable, and review the skill before deployment.
+
+Risk: Endpoint overrides can redirect requests away from the intended PicWish service.
+
+Mitigation: Leave PICWISH_BASE_URL unset unless it is pinned to a trusted HTTPS PicWish endpoint.
+
+Risk: Complete result URLs may contain access tokens and can remain useful during their validity window.
+
+Mitigation: Do not share complete result URLs outside trusted channels; prefer saved local outputs when possible.
+
+Risk: The security review flagged unsafe handling around shell execution.
+
+Mitigation: Execute only the declared Node.js entry points in a least-privilege workspace and review any optional workspace helper before allowing it to run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/px94/skills/picwish-skills)
+- [PicWish API](https://picwish.com)
+- [PicWish API Key](https://picwish.com/open-api)
+- [README](artifact/README.md)
+- [Security Model](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON execution inputs, saved file paths, and result URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PicWish API key; processed images, masks, and OCR outputs may be saved locally, and PicWish result URLs can be time-limited and token-bearing.]
+
+## Skill Version(s):
+
+1.0.7 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

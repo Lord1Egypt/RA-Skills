@@ -1,47 +1,61 @@
-## Description: <br>
-Analyzes X/Twitter profiles by collecting tweets, followings, and followers with tweety-ns, then producing a Chinese-language dossier with thematic content classification, style analysis, and network insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes X/Twitter profiles by collecting tweets, followings, and follower samples with tweety-ns, then generating Chinese-language profile dossiers with thematic classification, content style analysis, and network insights.
 
-## Publisher: <br>
-[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to build structured profile reports for public X/Twitter accounts, including tweet collection, LLM-assisted topic classification, Chinese summary reports, and social network analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Twitter/X session cookies. <br>
-Mitigation: Use only a dedicated low-privilege Twitter/X account, treat cookies as passwords, and do not paste them into chats or commit them to files. <br>
-Risk: The workflow can broaden collection beyond X/Twitter through external-link exploration. <br>
-Mitigation: Confirm the intended collection scope before running and avoid off-platform collection unless that data is explicitly wanted. <br>
-Risk: The security verdict is suspicious due to cookie handling and insufficient collection boundaries. <br>
-Mitigation: Review the skill before installation and run it only in a controlled workspace with the minimum account privileges needed. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to investigate a public X/Twitter account's recent content, posting patterns, audience signals, and social network. It is intended to produce a structured Chinese dossier for deciding whether and how to follow, reference, or further analyze the account.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lovensky1992-wk/x-profile-deep-dive) <br>
-- [README](artifact/README.md) <br>
-- [Data analysis reference](artifact/references/data-analysis.md) <br>
-- [Profile README template](artifact/references/readme-template.md) <br>
-- [Network analysis template](artifact/references/network-template.md) <br>
-- [With-skill evaluation](artifact/evals/results/deepdive-with-skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown profile files, JSON collection data, and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a profile directory with a README summary, topic category files, and network.md; uses Twitter/X cookies and may include external-link exploration when the workflow calls for it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill uses Twitter/X cookies with tweety-ns and a persisted session directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege X account, keep cookie and session files private, and refresh or revoke cookies when no longer needed.
+
+Risk: The tweety-ns dependency is unpinned in the release documentation.
+
+Mitigation: Pin and review the dependency before deployment, then install it only in a controlled agent environment.
+
+Risk: Generated reports may retain full tweets, profile details, and social-network information locally.
+
+Mitigation: Store generated dossiers in an appropriate workspace, review them before sharing, and delete reports that contain sensitive or unnecessary personal data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lovensky1992-wk/skills/x-profile-deep-dive)
+- [README](artifact/README.md)
+- [Data Analysis Reference](artifact/references/data-analysis.md)
+- [Report README Template](artifact/references/readme-template.md)
+- [Network Template](artifact/references/network-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON data produced from Python collection scripts and agent-authored analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a profile report directory with README.md, themed Markdown files, network.md, and intermediate JSON data.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

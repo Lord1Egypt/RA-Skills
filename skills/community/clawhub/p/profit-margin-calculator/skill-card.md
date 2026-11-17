@@ -1,41 +1,54 @@
-## Description: <br>
-Calculate true ecommerce profit margin after product cost, shipping, platform fees, discounts, and refund drag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate true ecommerce profit margin after product cost, shipping, platform fees, discounts, and refund drag.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Employees, external ecommerce operators, and analysts use this skill to calculate gross, contribution, or net margin for products and SKUs. It helps identify cost, fee, discount, refund, fulfillment, and fixed-cost drag before pricing decisions or business reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Margin outputs can be misleading if gross, contribution, and net margin are mixed or required cost categories are omitted. <br>
-Mitigation: Confirm the requested margin definition, included costs, formulas, and assumptions before calculating, and label estimated values. <br>
-Risk: Generated Python code could contain calculation or handling errors if run without review. <br>
-Mitigation: Review any generated Python script before running it and provide only the sales and cost numbers needed for the calculation. <br>
+## Use Case:
 
+External ecommerce operators and analysts use this skill to compare SKU profitability, validate pricing room, and diagnose why revenue growth is not converting into profit. It guides margin-scope clarification before calculating gross profit, net profit, margin drags, improvement ideas, and a reusable Python script.
 
-## Reference(s): <br>
-- [Profit Margin Calculator Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/profit-margin-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with cost tables, margin calculations, recommendations, and optional Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clarifies margin definitions and assumptions before calculation; labels estimated values when inputs are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Margin results can be incorrect or misleading if the user supplies incomplete cost inputs or mixes gross, contribution, and net margin definitions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the margin definition and required inputs before calculating, and clearly label assumptions and estimated values in the output.
+
+Risk: Financial calculations may be treated as precise even when refund drag, discounts, platform fees, or fixed-cost allocations are estimates.
+
+Mitigation: Show formulas, assumptions, and the largest margin drags so users can review the calculation basis before making pricing or operating decisions.
+
+## Reference(s):
+
+- [Profit Margin Calculator Output Template](artifact/references/output-template.md)
+- [Profit Margin Calculator on ClawHub](https://clawhub.ai/leooooooow/skills/profit-margin-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with tables, calculation results, recommendations, and Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided pricing, cost, fee, discount, refund, and optional fixed-cost inputs; asks follow-up questions when margin scope or inputs are incomplete.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,9 +14,11 @@ Validated demand: Agent users show strong demand for Self-Improving + Proactive 
 
 ## 来源证据
 
-- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 463,952 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Proactive Agent has 170,010 downloads](https://clawhub.ai/skills/proactive-agent)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Self-Improving + Proactive Agent has 200,743 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 492,787 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Proactive Agent has 179,734 downloads](https://clawhub.ai/skills/proactive-agent)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Self-Improving + Proactive Agent has 214,820 downloads](https://clawhub.ai/skills/self-improving)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Skill Creator has 104,586 downloads](https://clawhub.ai/skills/skill-creator)
+- hacker-news-ask-hn：[Using LLMs outside of reflection is an anti-pattern](https://news.ycombinator.com/item?id=50489240)
 - segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
@@ -24,8 +26,6 @@ Validated demand: Agent users show strong demand for Self-Improving + Proactive 
 - segmentfault-search：[OpenClaw 必装的 10 个 Skills，让你少躺 90% 以上的坑！！](https://segmentfault.com/a/1190000047666647)
 - segmentfault-search：[Keep_Improving](https://segmentfault.com/blog/keep_improving)
 - segmentfault-search：[self 与 Self](https://segmentfault.com/a/1190000044250449)
-- csdn-search：[Self - improving Agent](https://blog.csdn.net/qq_42540492/category_13024655.html?ops_request_misc=elastic_search_misc&request_id=f05a5e82086640a99df22f85deb50c49&biz_id=&utm_medium=distribute.pc_search_result.none-task-special_column-2~all~ElasticSearch~search_v2-1-13024655-null-null.142^v102^pc_search_result_base8&utm_term=self-improving-proactive-agent%20self%20improving%20proactive)
-- csdn-search：[Self - Improving - Agent 有哪几种安装方式？各自适合什么场景？](https://wenku.csdn.net/answer/4nxfgpn0mmqo?ops_request_misc=elastic_search_misc&request_id=f05a5e82086640a99df22f85deb50c49&biz_id=&utm_medium=distribute.pc_search_result.none-task-chatgpt-2~all~ElasticSearch~search_v2-4-4nxfgpn0mmqo-null-null.142^v102^pc_search_result_base8&utm_term=self-improving-proactive-agent%20self%20improving%20proactive)
 
 ## 这个技能如何满足需求
 

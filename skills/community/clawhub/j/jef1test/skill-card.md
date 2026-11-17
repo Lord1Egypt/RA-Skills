@@ -1,44 +1,59 @@
-## Description: <br>
-jef1test helps agents call 100+ external service APIs through Maton.ai managed OAuth connections and a passthrough API gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to 100+ external APIs, including Google Workspace, Microsoft 365, GitHub, Notion, Slack, Airtable, and HubSpot, through Maton's managed OAuth gateway.
 
-## Publisher: <br>
-[hjcloud](https://clawhub.ai/user/hjcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjcloud](https://clawhub.ai/user/hjcloud)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent query or manage connected third-party services such as Google Workspace, Microsoft 365, Slack, GitHub, Notion, Airtable, HubSpot, and similar APIs. The skill is intended for accounts and services that the user has explicitly authorized through Maton connections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad write-capable access across connected third-party accounts. <br>
-Mitigation: Connect only needed services with least-privilege scopes and require explicit confirmation before posting, editing, deleting, sending messages, changing business records, or accessing sensitive data. <br>
-Risk: MATON_API_KEY can act like a delegated account key for Maton API access. <br>
-Mitigation: Protect MATON_API_KEY as a sensitive credential and install the skill only when agent access to third-party APIs through Maton is intended. <br>
-Risk: When multiple connections exist for the same service, the agent could act on the wrong account. <br>
-Mitigation: Specify the intended connection whenever possible before making service API calls. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route agent requests through Maton's API gateway to user-authorized third-party service connections. It is intended for workflows that need listing, creating, retrieving, updating, deleting, or messaging through connected external services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjcloud/jef1test) <br>
-- [Maton homepage](https://maton.ai) <br>
-- [Maton API Reference](https://www.maton.ai/docs/api-reference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and user-authorized Maton service connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can route read, write, delete, and message-sending requests across connected services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep OAuth scopes minimal, verify the exact app and connection before each call, and require explicit user approval before POST, PUT, PATCH, DELETE, or message-sending actions.
+
+Risk: A leaked MATON_API_KEY could allow unauthorized use of the Maton gateway for available connections.
+
+Mitigation: Store MATON_API_KEY only in the environment or a secrets manager, avoid printing it in logs or screenshots, and rotate it if exposure is suspected.
+
+Risk: The security review flags broad connected-service access as suspicious without enough built-in scoping or safety warnings.
+
+Mitigation: Install only when the user trusts Maton with gateway access to connected services, and review authorized connections and scopes before use.
+
+## Reference(s):
+
+- [Maton](https://maton.ai)
+- [Maton API Reference](https://www.maton.ai/docs/api-reference)
+- [ClawHub Skill Page](https://clawhub.ai/hjcloud/skills/jef1test)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and user-authorized Maton service connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

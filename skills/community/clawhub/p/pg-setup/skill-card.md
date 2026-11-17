@@ -1,44 +1,61 @@
-## Description: <br>
-Pg Setup helps agents install the ProxyGate CLI, configure API-key or wallet authentication, and verify access to the ProxyGate gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pg Setup helps agents guide first-time ProxyGate users through CLI installation, authentication with an API key or wallet keypair, and gateway verification.
 
-## Publisher: <br>
-[jwelten](https://clawhub.ai/user/jwelten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwelten](https://clawhub.ai/user/jwelten)
 
-## Use Case: <br>
-Developers and AI agents use this skill for first-time ProxyGate setup: installing the CLI, authenticating with an API key or wallet keypair, browsing available APIs, and making an initial gateway request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ProxyGate setup can involve API keys and wallet keypair files. <br>
-Mitigation: Avoid sharing real API keys in chats or shared terminals, use dedicated keys where possible, and protect wallet keypair files with local file permissions and secure storage. <br>
-Risk: ProxyGate wallet, listing deletion, tunnel, development forwarding, job, and skill-install commands can spend funds, expose services, delete resources, or install additional skills. <br>
-Mitigation: Run those commands only after explicit user approval, review the exact command and target first, and use dry-run modes when available. <br>
-Risk: The release depends on the @proxygate/cli package for setup actions. <br>
-Mitigation: Verify the package source and installed version before using it for authenticated ProxyGate operations. <br>
+## Use Case:
 
+Developers, operators, and AI agents use this skill to set up ProxyGate for the first time, configure authentication, verify CLI access, and start routing API calls through the gateway.
 
-## Reference(s): <br>
-- [ProxyGate CLI Command Reference](references/commands.md) <br>
-- [ProxyGate API Keys](https://app.proxygate.ai/keys) <br>
-- [ProxyGate Gateway Docs](https://gateway.proxygate.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI installation, authentication, verification, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: ClawHub release metadata) <br>
+Risk: Global CLI installation can introduce package-source and environment risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package source and prefer an isolated or pinned CLI install where possible.
+
+Risk: API keys and wallet keypairs can be exposed through chat transcripts, shell history, or local configuration.
+
+Mitigation: Use interactive login or protected secret storage, and avoid pasting real API keys or private wallet keys into chat or shell history.
+
+Risk: Deposit, withdrawal, listing deletion, tunnel, or skill-install commands can change funds, access, or local agent behavior.
+
+Mitigation: Dry-run when available and manually verify commands before executing them.
+
+## Reference(s):
+
+- [ProxyGate CLI Command Reference](references/commands.md)
+- [ProxyGate API Keys](https://app.proxygate.ai/keys)
+- [ProxyGate Gateway Docs](https://gateway.proxygate.ai/docs)
+- [ClawHub Skill Page](https://clawhub.ai/jwelten/skills/pg-setup)
+- [Publisher Profile](https://clawhub.ai/user/jwelten)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that install a global CLI package, configure credentials, or initiate fund-moving ProxyGate operations.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Form Auto is an OpenClaw browser automation skill that helps agents detect, fill, summarize, and confirm standard web form fields for job applications, registrations, surveys, and similar workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Form Auto helps OpenClaw agents fill web forms automatically for job applications, registrations, surveys, and other standard HTML forms.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, employees, and agents use this skill to gather form details, match user-provided data to fields, fill supported HTML controls, and pause for review before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates in a logged-in browser session and may access or enter personal data on selected forms. <br>
-Mitigation: Use it only on trusted websites and consider a separate browser profile for testing or lower-trust workflows. <br>
-Risk: Automatically matched form fields may be incorrect or may place sensitive information in the wrong field. <br>
-Mitigation: Review every filled field and the generated summary before submitting any form. <br>
-Risk: Saved form templates may contain reusable personal information, while storage and deletion behavior are not fully specified by the evidence. <br>
-Mitigation: Avoid storing highly sensitive data in templates and clear saved data when it is no longer needed. <br>
-Risk: Payment, captcha, file-upload, or dynamically loaded forms may not be handled reliably. <br>
-Mitigation: Do not use the skill for payment forms or captchas, and switch to manual review or manual entry when fields fail to load or fill correctly. <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to detect web form fields, map them to user-provided profile data, fill the form, and present the filled values for review before submission.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobewin/form-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw v2026.3.22 or later with browser access and python3 available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive form values may appear in console or agent output while an authenticated browser session is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted sites, avoid forms containing credentials, payment data, tokens, or hidden sensitive fields, and review output carefully.
+
+Risk: The skill can enter user data into third-party websites on the user's behalf.
+
+Mitigation: Keep the review-before-submit step, confirm filled values with the user, and do not submit forms automatically without explicit confirmation.
+
+Risk: Saved templates may retain sensitive identity data.
+
+Mitigation: Avoid storing highly sensitive profile data unless the storage location and deletion process are understood.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/form-auto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw v2026.3.22+ with browser access; filled forms should be reviewed before submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

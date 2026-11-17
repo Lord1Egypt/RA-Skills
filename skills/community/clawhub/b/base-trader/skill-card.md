@@ -1,53 +1,66 @@
-## Description: <br>
-Autonomous crypto trading on Base via Bankr for token trading, launch monitoring, strategy execution, and portfolio management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous crypto trading on Base via Bankr. Use for trading tokens, monitoring launches, executing strategies, or managing a trading portfolio.
 
-## Publisher: <br>
-[sp0oby](https://clawhub.ai/user/sp0oby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sp0oby](https://clawhub.ai/user/sp0oby)
 
-## Use Case: <br>
-External users and developers use this skill to guide crypto trading workflows on Base through Bankr, including portfolio checks, token research, buy and sell execution, stop losses, launch monitoring, and trade journaling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward real crypto trades and standing orders that may spend wallet funds. <br>
-Mitigation: Use only a dedicated low-balance wallet and require explicit manual confirmation for every buy, sell, DCA, leverage, or order action. <br>
-Risk: Autonomous routines such as cron, heartbeat, DCA, leverage, and standing orders can continue acting after the user stops actively monitoring them. <br>
-Mitigation: Do not enable autonomous trading until spending limits, cancellation steps, alerts, and regular monitoring are configured. <br>
-Risk: Launch sniping, leverage, and low-liquidity token trading can cause rapid or total capital loss. <br>
-Mitigation: Keep position sizes small, define stop losses before entry, avoid high leverage, and stop trading after configured daily or consecutive-loss limits. <br>
-Risk: The skill depends on a separate Bankr skill and wallet configuration whose permissions are outside this artifact. <br>
-Mitigation: Inspect the Bankr skill, wallet permissions, and configured API access before installation or execution. <br>
+## Use Case:
 
+External users and developers use this skill to guide Base-chain crypto trading through Bankr, including portfolio checks, token research, trade execution, stop-loss planning, automation, and trade journaling. It is intended for users who understand the financial risk of live crypto trading.
 
-## Reference(s): <br>
-- [Base Trader ClawHub Page](https://clawhub.ai/sp0oby/base-trader) <br>
-- [Automation Strategies](references/automation-strategies.md) <br>
-- [Trade Execution](references/execution.md) <br>
-- [Launch Sniping Guide](references/launch-sniping.md) <br>
-- [Leverage Trading Guide](references/leverage-guide.md) <br>
-- [Market Analysis](references/market-analysis.md) <br>
-- [Market Research via Bankr](references/market-research-bankr.md) <br>
-- [Risk Management](references/risk-management.md) <br>
-- [Trading Strategies Deep Dive](references/strategies.md) <br>
-- [Token Analysis Framework](references/token-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local trade journal and performance JSON files when the agent follows the skill's logging workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill can direct real crypto trades, cancellations, leverage, DCA, and recurring orders using a funded Bankr wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before every buy, sell, cancellation, leverage trade, DCA, or recurring order.
+
+Risk: Broad trading triggers and autonomous cron or heartbeat mode can cause trading actions to be proposed outside a user's immediate review.
+
+Mitigation: Avoid autonomous execution until an enforceable policy wrapper blocks unapproved trades and order changes.
+
+Risk: Documented safety limits and journals are advisory and may not reliably enforce loss limits or stop trading.
+
+Mitigation: Treat stop-loss, daily-loss, and journal checks as review aids, and enforce portfolio limits outside the skill before deployment.
+
+## Reference(s):
+
+- [Trading Strategies Deep Dive](references/strategies.md)
+- [Token Analysis Framework](references/token-analysis.md)
+- [Risk Management](references/risk-management.md)
+- [Market Analysis](references/market-analysis.md)
+- [Market Research via Bankr](references/market-research-bankr.md)
+- [Trade Execution](references/execution.md)
+- [Automation Strategies](references/automation-strategies.md)
+- [Launch Sniping Guide](references/launch-sniping.md)
+- [Leverage Trading Guide](references/leverage-guide.md)
+- [Basescan Contract Lookup](https://basescan.org/address/CONTRACT)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON data, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON trade or performance records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose live Bankr trading commands and update local trade journal or performance JSON files.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

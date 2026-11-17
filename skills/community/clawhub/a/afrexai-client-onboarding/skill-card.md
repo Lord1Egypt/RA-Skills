@@ -1,39 +1,53 @@
-## Description: <br>
-Generate a tailored client onboarding checklist covering contract, setup, communication, milestones, and success metrics for service businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a tailored client onboarding checklist covering contract, setup, communication, milestones, and success metrics for service businesses.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-External users and service teams use this skill to create customized markdown onboarding checklists for new client engagements. It adapts the checklist to the business type, service, client size, and onboarding timeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated checklists may include a visible AfrexAI promotional CTA and links that are not appropriate for all client-facing contexts. <br>
-Mitigation: Review generated checklists before sharing them with clients and remove or replace the promotional CTA when advertising is not appropriate. <br>
+## Use Case:
 
+External service businesses and operations teams use this skill to create repeatable onboarding checklists for new client engagements. It helps tailor onboarding phases by business type, service, client size, and timeline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-client-onboarding) <br>
-- [Publisher profile](https://clawhub.ai/user/afrexai-cto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist sections cover pre-onboarding, kick-off, setup and configuration, stabilization, and handoff to ongoing support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated checklist items may request access credentials in a way that encourages sharing secrets in chat or storing long-lived credentials insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace credential collection wording with a secure access-provisioning step and avoid entering plaintext passwords or long-lived secrets into chat.
+
+Risk: Generated deliverables may include a promotional third-party CTA that is inappropriate for some teams or clients.
+
+Mitigation: Remove or approve the promotional CTA before using the checklist in client-facing workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-client-onboarding)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Customized by business type, service being delivered, client size, and onboarding timeline.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

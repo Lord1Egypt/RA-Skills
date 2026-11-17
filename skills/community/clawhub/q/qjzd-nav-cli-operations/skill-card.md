@@ -1,42 +1,55 @@
-## Description: <br>
-Use when managing QJZD Nav backups, restore, and site settings including uploading background images, logos, and favicons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing QJZD Nav backups, restore, and site settings including uploading background images, logos, and favicons.
 
-## Publisher: <br>
-[nqdy666](https://clawhub.ai/user/nqdy666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nqdy666](https://clawhub.ai/user/nqdy666)
 
-## Use Case: <br>
-Developers and site operators use this skill to manage QJZD Nav backups, restore data, inspect or update settings, and upload background, logo, or favicon assets through the qjzd-nav CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup deletion, backup import, settings updates, and asset uploads can change or delete QJZD Nav site data. <br>
-Mitigation: Confirm the target site and exact filename, file path, or setting before running data-changing commands; inspect current state with list, get, or JSON output first. <br>
-Risk: Importing the wrong backup data or uploading an unintended local asset can overwrite expected site state or public branding. <br>
-Mitigation: Keep a current exported backup and verify supported file type, source path, and intended destination before import or upload. <br>
+## Use Case:
 
+Developers and operators use this skill to manage QJZD Nav backups, restores, downloads, and site settings through the qjzd-nav CLI.
 
-## Reference(s): <br>
-- [Qjzd Nav Cli Operations on ClawHub](https://clawhub.ai/nqdy666/qjzd-nav-cli-operations) <br>
-- [qjzd-nav CLI](../qjzd-nav-cli) <br>
-- [qjzd-nav CLI Auth](../qjzd-nav-cli-auth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include qjzd-nav commands that read, export, import, delete, update, or upload site data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: Backup delete or import operations can change or remove QJZD Nav site data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before delete or import operations, list backups, identify the exact target file, make a fresh export when appropriate, and require explicit confirmation.
+
+Risk: Settings uploads and updates can change site appearance or uploaded assets.
+
+Mitigation: Review the intended file type, setting fields, and target values before running qjzd-nav settings update or upload commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nqdy666/skills/qjzd-nav-cli-operations)
+- [qjzd-nav CLI skill](../qjzd-nav-cli)
+- [qjzd-nav CLI auth skill](../qjzd-nav-cli-auth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented qjzd-nav commands for automation.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

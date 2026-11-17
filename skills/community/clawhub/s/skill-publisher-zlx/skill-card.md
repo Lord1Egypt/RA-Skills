@@ -1,45 +1,56 @@
-## Description: <br>
-Publishes Agent skills to multiple platforms including ClawHub, GitHub Releases, and SkillHub CN, with validation, packaging, version management, and one-command multi-platform publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Agent skills to ClawHub, GitHub Releases, and SkillHub CN with validation, packaging, version management, and multi-platform release commands.
 
-## Publisher: <br>
-[zlx](https://clawhub.ai/user/zlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlx](https://clawhub.ai/user/zlx)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to validate, package, version, and publish local Agent skills to supported distribution platforms. It is most useful for release workflows that need repeated publication to ClawHub, GitHub Releases, or SkillHub CN. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing may package and upload the entire target skill directory to the selected platforms. <br>
-Mitigation: Review the target directory contents before publishing and use only platforms where that upload is intended. <br>
-Risk: Platform adapters can execute publishing logic with local credentials or authenticated CLIs. <br>
-Mitigation: Review added or modified adapters before use and avoid running unknown adapters. <br>
-Risk: Sensitive-keyword scanning is not a complete secret-leak prevention control. <br>
-Mitigation: Perform separate secret scanning and manual review before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate, package, version, inspect status, and publish local OpenClaw Agent skills to multiple release platforms.
 
-## Reference(s): <br>
-- [Skill Publisher Release Page](https://clawhub.ai/zlx/skill-publisher-zlx) <br>
-- [Adding Platforms](references/adding-platforms.md) <br>
-- [Platform Interface](references/platform-interface.md) <br>
-- [SkillHub CN](https://skillhub.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local platform adapters and publishing CLIs that require authentication before release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Publishing an unreviewed skill directory could leak unintended files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit the exact directory and generated archive before publishing, and keep secrets, .env files, private keys, backups, and repository metadata out of the skill folder.
+
+Risk: Version or publish commands on an untrusted skill directory could run unsafe behavior.
+
+Mitigation: Run these commands only on trusted, reviewed skill directories and avoid --yes until the archive contents and target platforms have been checked.
+
+## Reference(s):
+
+- [Skill Publisher on ClawHub](https://clawhub.ai/zlx/skills/skill-publisher-zlx)
+- [Adding Platform Adapters](artifact/references/adding-platforms.md)
+- [Platform Interface Specification](artifact/references/platform-interface.md)
+- [SkillHub CN](https://skillhub.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local tarballs, update SKILL.md versions, call external platform CLIs, and write publish history without credentials.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

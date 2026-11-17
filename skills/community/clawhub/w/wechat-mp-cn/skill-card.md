@@ -1,47 +1,58 @@
-## Description: <br>
-微信公众号监控 - 文章监控、阅读量追踪、舆情分析（WeChat Official Account） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号监控 - 文章监控、阅读量追踪、舆情分析（WeChat Official Account）
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill as guidance for monitoring WeChat Official Account articles, engagement metrics, public sentiment, competitors, and content trends. <br>
-
-### Deployment Geography for Use: <br>
-Global use for WeChat Official Account monitoring, subject to WeChat platform availability and applicable data-use requirements. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using WeChat APIs, SDKs, or analytics services may require credentials or account authorization. <br>
-Mitigation: Use read-only or least-privilege access where possible and avoid sharing unnecessary credentials. <br>
-Risk: Monitoring activity may violate platform rules or applicable data-use requirements if used without review. <br>
-Mitigation: Confirm monitoring use complies with WeChat platform rules and relevant data-use requirements before relying on collected data. <br>
-Risk: High-frequency monitoring may trigger access restrictions or blocking. <br>
-Mitigation: Apply conservative rate limits and follow documented platform limits for any API, SDK, or third-party analytics workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WeChat Open Platform](https://open.weixin.qq.com/) <br>
-- [WeChatpy Python SDK](https://github.com/wechatpy/wechatpy) <br>
-- [EasyWechat PHP SDK](https://github.com/overtrue/wechat) <br>
-- [NewRank](https://www.newrank.cn/) <br>
-- [Sogou WeChat Search](https://weixin.sogou.com/) <br>
-- [Xigua Data](https://data.xiguaji.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/wechat-mp-cn) <br>
+## Use Case:
 
+External users and developers use this skill for Chinese-language guidance on monitoring WeChat Official Account articles, tracking readership signals, and organizing public-opinion or content analysis workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with reference links and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code was found in the scanned artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Use of WeChat APIs or third-party analytics services may require account credentials and compliance review.
+
+Mitigation: Confirm authorization, credential handling, and data-use compliance before applying the guidance to monitored accounts or analytics services.
+
+Risk: Monitoring workflows can trigger platform rate limits or account restrictions if used too aggressively.
+
+Mitigation: Apply conservative request frequency controls and follow the applicable platform terms for Official Account data access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/wechat-mp-cn)
+- [WeChat Open Platform](https://open.weixin.qq.com/)
+- [WeChatpy Python SDK](https://github.com/wechatpy/wechatpy)
+- [EasyWechat PHP SDK](https://github.com/overtrue/wechat)
+- [NewRank](https://www.newrank.cn/)
+- [Sogou Weixin Search](https://weixin.sogou.com/)
+- [Xiguaji Data](https://data.xiguaji.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with tables, lists, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no executable package code is included.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

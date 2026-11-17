@@ -1,42 +1,58 @@
-## Description: <br>
-Queue async tasks for your agent with retry logic, priority levels, dependency chains, concurrency, per-task timeouts, event hooks, cancel/clear, and run metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queue async tasks for your agent with retry logic, priority levels, dependency chains, concurrency, per-task timeouts, event hooks, cancel/clear, and run metrics.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent builders use TaskQueue to orchestrate asynchronous agent workflows with priorities, retries, dependency chains, concurrency controls, timeouts, cancellation, logs, and run metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queued handlers can perform costly, destructive, public, or account-changing actions, and the queue will execute and retry whatever functions are provided. <br>
-Mitigation: Use explicit timeouts, conservative retry counts, low concurrency, and review queued handlers before running them. <br>
-Risk: Long-running or stuck task handlers can delay the queue when no timeout is configured. <br>
-Mitigation: Set default or per-task timeouts for workflows that call external services or perform slow operations. <br>
+## Use Case:
 
+Developers and agent builders use this skill to organize asynchronous work into ordered or concurrent queues with priorities, retries, dependencies, timeouts, cancellation, and run metrics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/task-queue-sr) <br>
-- [README.md](artifact/README.md) <br>
-- [TaskQueue source](artifact/src/task-queue.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [JavaScript module API returning JSON-like task summaries, logs, results, and metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-memory queue execution with configurable retries, retry delay, concurrency, task dependencies, per-task timeouts, cancellation, clearing, pause/resume, event hooks, and metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Tasks can run without a timeout by default, which may leave an agent waiting on long-running or stalled work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure finite global or per-task timeouts for queues that call external systems or untrusted handlers.
+
+Risk: Automatic retries can repeat actions that publish, delete, charge, or otherwise mutate external systems.
+
+Mitigation: Keep retry counts low and only enable retries for idempotent tasks or handlers with explicit duplicate-protection.
+
+Risk: Untrusted task definitions can create unsafe dependency structures or unexpected execution behavior.
+
+Mitigation: Validate task IDs, dependency chains, priorities, retry counts, and timeouts before enqueueing externally supplied tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/task-queue-sr)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [JavaScript module with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces in-memory queue execution results, task statuses, retry counts, logs, metrics, and event notifications.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

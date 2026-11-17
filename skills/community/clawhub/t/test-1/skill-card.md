@@ -1,44 +1,62 @@
-## Description: <br>
-Provides command guidance and a Node.js helper for QQ group administration through a local NapCat OneBot 11 WebSocket API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides QQ group administration guidance and shell commands for calling the napcat OneBot 11 API to change group names, post announcements, mute or unmute members, remove members, manage admins, toggle whole-group mute, update cards or titles, recall messages, and query group information.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare QQ group administration commands for a trusted local OneBot/NapCat bot endpoint. It covers group naming, notices, muting, kicks, administrator changes, message deletion, profile updates, and group information queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose broad bot-control capability beyond narrow QQ group administration tasks. <br>
-Mitigation: Restrict allowed OneBot actions to the specific administrative operations required for the deployment. <br>
-Risk: An embedded or reused OneBot access token can grant unintended access to the local bot endpoint. <br>
-Mitigation: Remove or rotate embedded tokens and configure credentials through a trusted runtime secret path. <br>
-Risk: Privileged actions such as kicks, bans, administrator changes, message deletion, and announcements can disrupt a group if run without approval. <br>
-Mitigation: Require explicit human approval before executing privileged group-management actions. <br>
-Risk: File parameters using @/path can read sensitive local files into command payloads. <br>
-Mitigation: Avoid @/file inputs for sensitive paths and limit file access to reviewed, task-specific files. <br>
+## Use Case:
 
+Developers and operators use this skill to perform QQ group administration through a local or approved OneBot-compatible service. It is intended for tasks such as announcements, moderation actions, group configuration updates, message recall, and group/member information lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinwuzhe/test-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke privileged OneBot group-management actions when executed by an agent or user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The bundled dispatcher can invoke broad OneBot administration actions, including sensitive moderation and group configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a dedicated low-privilege OneBot instance and require explicit human confirmation before sensitive actions such as kicking, muting, admin changes, group-wide mute, or message recall.
+
+Risk: The release evidence reports a hardcoded fallback token.
+
+Mitigation: Remove the bundled fallback token before deployment and supply a rotated token through the environment.
+
+Risk: The release evidence reports a local-file-to-WebSocket data path through @/path inputs.
+
+Mitigation: Do not allow untrusted prompts or users to choose action names, parameters, or @/path file inputs; restrict allowed file paths and parameters before execution.
+
+Risk: The helper connects to a WebSocket endpoint for administrative actions.
+
+Mitigation: Restrict the endpoint to a trusted local service or an approved wss:// server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/test-1)
+- [Publisher profile](https://clawhub.ai/user/yinwuzhe)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute OneBot API actions through a Node.js WebSocket helper when used by an agent with shell access.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

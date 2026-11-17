@@ -1,0 +1,5 @@
+@startgantt
+[任务A] lasts 5 days
+[任务B] lasts 3 days
+[任务B] starts at [任务A]'s end
+@endgantt

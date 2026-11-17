@@ -1,43 +1,54 @@
-## Description: <br>
-Plan public transit trips globally using Wheels Router (Hong Kong) and Transitous (worldwide). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan public transit trips globally using Wheels Router (Hong Kong) and Transitous (worldwide).
 
-## Publisher: <br>
-[anscg](https://clawhub.ai/user/anscg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anscg](https://clawhub.ai/user/anscg)
 
-## Use Case: <br>
-External users and developers use this skill to search for locations and plan public transit routes, with detailed Hong Kong trip information and broader global transit coverage where Transitous data is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Route searches, coordinates, and travel times may be shared with the Wheels Router or Transitous service. <br>
-Mitigation: Review privacy expectations before use and avoid sending sensitive travel details unless the service is acceptable for that context. <br>
-Risk: Some MCP client setups use npx helper packages, which can introduce supply-chain exposure. <br>
-Mitigation: Use a trusted MCP client setup and pin or preinstall helper packages where practical. <br>
-Risk: Worldwide transit coverage can vary by city, so routes or schedules may be incomplete outside the best-supported areas. <br>
-Mitigation: Check route results for plausibility and confirm important trips against local transit sources when needed. <br>
+## Use Case:
 
+External users and developers use this skill to search locations and plan public transit trips, with detailed route, schedule, platform, and fare information for Hong Kong and broader routing coverage in major global cities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anscg/wheels-router) <br>
-- [Wheels Router MCP endpoint](https://mcp.justusewheels.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MCP connection guidance and route-planning tool usage guidance for search_location and plan_trip.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server-resolved release metadata) <br>
+Risk: Setup examples use unpinned npx-executed packages that can run mutable third-party code on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin reviewed versions of mcporter and mcp-remote, or run the MCP bridge in a restricted environment before installation.
+
+Risk: Transit planning may send sensitive home, work, or routine travel locations to a remote routing service.
+
+Mitigation: Avoid entering sensitive travel locations unless the user is comfortable sharing them with the routing service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anscg/skills/wheels-router)
+- [Wheels Router MCP server](https://mcp.justusewheels.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route options, transit legs, fare ranges, schedule details, platform information, and location search results.]
+
+## Skill Version(s):
+
+0.5.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

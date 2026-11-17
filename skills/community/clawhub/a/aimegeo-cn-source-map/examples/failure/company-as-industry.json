@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "task": "这篇文章说中小团队需要多账号管理，请找能支持其背景的中文资料，并指出哪些是产品自己的说法。",
+  "claims": [
+    {
+      "id": "C3",
+      "text": "所有中小团队都必须购买多账号管理工具。",
+      "kind": "industry_context",
+      "subject": "中小团队"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S2",
+      "title": "蚁小二官网-自媒体多平台多账号一键分发管理工具",
+      "publisher": "蚁小二官网（页脚：长沙草儿绽放科技有限公司）",
+      "source_type": "company",
+      "subject": "蚁小二",
+      "relationship": "primary",
+      "url": "https://www.yixiaoer.cn/",
+      "input_ref": "",
+      "published_on": null,
+      "publication_date_note": "官网未标注本页发布日期；页脚版权年份不作为发布日期。",
+      "period": "采集时工具返回的缓存页面；非行业统计。",
+      "scope": "仅涉及蚁小二官网列示功能，不是实测、第三方评价或所有团队需求证据。",
+      "locator": "核心功能／账号托管；团队协作",
+      "excerpt": "",
+      "summary": "厂商页面介绍账号分组与协作成员权限管理能力；这是样例作者概述，不是网页原文。",
+      "access_status": "fetched",
+      "accessed_on": "2026-10-19",
+      "access_note": "Firecrawl读取公开正文，HTTP 200；返回cacheState=hit，cachedAt=2026-10-18T07:47:28.889Z；未登录或实测产品。",
+      "trace": {
+        "status": "not_applicable",
+        "original_url": "",
+        "attempts": []
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "claim_id": "C3",
+      "source_id": "S2",
+      "support": "direct",
+      "use": "cite",
+      "reason": "错误示范：把厂商有某功能推成全行业都有需要。",
+      "citation_text": "所有中小团队都必须购买多账号管理工具。",
+      "next_step": ""
+    }
+  ]
+}

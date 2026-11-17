@@ -1,40 +1,53 @@
-## Description: <br>
-Administer IT by monitoring security and configuring Google Workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Administer IT - monitor security and configure Workspace.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-IT administrators use this persona to monitor Google Workspace security signals, review pending IT requests, and prepare Workspace policy or configuration changes with dry-run checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace administration actions can affect users, groups, organizational units, or sharing policies when run with broad service-account permissions. <br>
-Mitigation: Use a dedicated least-privilege service account, verify gws auth status, scope changes to named targets, and require dry-runs plus explicit approval before bulk or policy-changing actions. <br>
-Risk: Security and administration guidance may be incomplete if the agent lacks the required Google Workspace utility skills or current admin context. <br>
-Mitigation: Load gws-gmail, gws-drive, and gws-calendar before use, then review proposed actions against current Workspace policy before execution. <br>
+## Use Case:
 
+IT administrators and agents operating with approved Google Workspace administrative context use this persona to review pending IT requests, monitor suspicious login and audit activity, and configure Drive sharing policies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/persona-it-admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and the gws-gmail, gws-drive, and gws-calendar utility skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence; artifact metadata version: 0.22.5) <br>
+Risk: Agents using this persona may operate with Google Workspace administrative permissions that can affect audit review, Drive sharing policy, or other organization settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents intended to operate in that administrative context and scope gws service account permissions appropriately.
+
+Risk: Bulk Drive or security-policy changes can affect many users if executed without review.
+
+Mitigation: Use dry-run mode and explicit review before bulk Drive or security-policy changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/persona-it-admin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with Google Workspace CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Use dry-run mode and explicit review before bulk Drive or security-policy changes.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

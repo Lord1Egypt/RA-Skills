@@ -1,0 +1,190 @@
+{
+  "period": {
+    "start": "2026-07-13",
+    "end": "2026-07-19"
+  },
+  "meta": {
+    "title": "2026-07-19 周度复盘（weekly-review skill · 六章结构）",
+    "methodology": "本版按 `weekly-review` skill 六章固定结构组织；归因遵循三类框架（思路/记忆/流程），禁止一刀切「收敛到单一工作区」。",
+    "version_note": "示例：对齐用户定稿模板结构（看板表 + 主题分节 + 动作台账 + 可选事实更正）。",
+    "task_split": "复盘会话只做复盘；公众号等成品放独立会话。"
+  },
+  "source": {
+    "label": "agent-collected",
+    "note": "宿主 Agent 采集的会话/用量事实（只读）；分项目须 Glob/ls 核对磁盘后再下结论"
+  },
+  "dashboard": {
+    "metrics": [
+      {
+        "name": "原始 wall-clock 时长",
+        "value": "**≈220h**（在周内新建会话）",
+        "note": "不可用：被跨周/跨边界长会话拉高"
+      },
+      {
+        "name": "**真实活跃时长**",
+        "value": "**≈39h**",
+        "note": "已核对时间线，剔除跨夜 idle 与跨周只计在周活跃段"
+      },
+      {
+        "name": "Token 消耗",
+        "value": "**≈270万**",
+        "note": "近四周新高；以 Agent 汇总口径为准"
+      },
+      {
+        "name": "会话数",
+        "value": "**34 个**新建于周内",
+        "note": "含跨周旧会话重新打开"
+      },
+      {
+        "name": "主力主题",
+        "value": "社媒 Agent + 视频 + 复盘自动化",
+        "note": "三者占真实投入主要部分"
+      },
+      {
+        "name": "**本周重大更正**",
+        "value": "原「多工作区分散」**前提不成立**",
+        "note": "须 Glob 核对磁盘后再归因"
+      }
+    ],
+    "summary": "全周只围绕少数主题；最该记的不是「产出」，而是**复盘前先核对文件系统再下结论**。",
+    "active_hours": 39
+  },
+  "projects": [
+    {
+      "title": "社媒 Agent 主题（≈15.4h / ~20 会话）",
+      "dimensions": {
+        "做了什么": "规划自动内容发布；安装分析 CLI 并出报告；商业可行性探讨；写操作手册/测试方案",
+        "DB 记录的工作目录": "多个 cwd 别名（须与磁盘核对）",
+        "磁盘真实情况（已核对）": "仅少数真实目录存在；其余 cwd 可能为清理后的临时路径",
+        "低效条目": "【用户】寻找类指令缺交付物；【AI】开放式探索缺收敛",
+        "提示词怎么改": "寻找 X → 在项目里调研并产出对比表+首选 1 个+理由"
+      }
+    },
+    {
+      "title": "视频生成主题（≈13.6h / 10 会话）",
+      "dimensions": {
+        "做了什么": "分析视频问题；教程生成；发布排查；替代方案探讨",
+        "DB 记录的工作目录": "视频相关 cwd 若干",
+        "磁盘真实情况（已核对）": "仅一个真实视频工作目录",
+        "低效条目": "【用户】分析类缺交付物；【AI】跨夜 idle 缺退出",
+        "提示词怎么改": "分析类输出短结论+避坑清单；生成类加时间盒"
+      }
+    }
+  ],
+  "other_projects": [
+    {
+      "name": "复盘项目(自动化)",
+      "hours": "≈8.2h",
+      "note": "正向：机制落地；单任务过长应加 checkpoint"
+    },
+    {
+      "name": "测试专家",
+      "hours": "≈1.5h",
+      "note": "干净：目标清晰无漂移"
+    },
+    {
+      "name": "其他零散",
+      "hours": "≈0.5h",
+      "note": "短任务"
+    }
+  ],
+  "charts_data": {
+    "time_distribution": [
+      { "label": "社媒 Agent 主题", "hours": 15.4 },
+      { "label": "视频生成主题", "hours": 13.6 },
+      { "label": "复盘项目(自动化)", "hours": 8.2 },
+      { "label": "测试专家", "hours": 1.5 },
+      { "label": "其他零散", "hours": 0.5 }
+    ],
+    "attribution": [
+      { "label": "【用户】指令模糊", "count": 3 },
+      { "label": "【AI】缺收敛约束", "count": 3 },
+      { "label": "合理分工缺索引", "count": 1 },
+      { "label": "重复投入（待核实）", "count": 1 }
+    ],
+    "token_trend": [
+      { "label": "前两周", "millions": 0.34 },
+      { "label": "上周", "millions": 0.87 },
+      { "label": "本周", "millions": 2.74 }
+    ]
+  },
+  "problems": [
+    {
+      "description": "~1/3 指令仍为\"动词+无交付物\"",
+      "category": "【用户】",
+      "root_cause": "提问习惯（思路）",
+      "suggestion": "反问训练机制持续执行"
+    },
+    {
+      "description": "探索/生成类任务跨夜 idle",
+      "category": "【AI】",
+      "root_cause": "agent 缺收敛约束（流程）",
+      "suggestion": "可行性判定+试错上限+时间盒"
+    }
+  ],
+  "positives": [
+    "指令干净、含工具+动作+交付物的范本会话",
+    "主动核对文件系统、推翻错误归因"
+  ],
+  "actions": {
+    "done": [
+      {
+        "action": "会话标识改为可读格式",
+        "trigger": "用户说编号找不到",
+        "change": "改用「标题前30字+创建时间+目录末段」"
+      },
+      {
+        "action": "新增长会话主动对齐节",
+        "trigger": "用户要求当场拍板",
+        "change": "并入第五节待对齐开放会话"
+      }
+    ],
+    "observing": [
+      {
+        "action": "反问训练机制上线",
+        "criteria": "下周模糊指令占比是否明显下降？"
+      },
+      {
+        "action": "复盘先核对文件系统再下结论",
+        "criteria": "下周是否还有仅凭 cwd 臆断目录结构？"
+      }
+    ],
+    "pending": [
+      {
+        "suggestion": "跨夜 idle 会话继续对齐",
+        "priority": "中",
+        "deadline": "2026-07-26",
+        "status": "待开始"
+      }
+    ]
+  },
+  "open_sessions": [
+    {
+      "label": "「评价 Agent-Skill 识别准确性…」（7/17, 默认文件）",
+      "span": "63h",
+      "decision": "继续推进",
+      "follow_up": "做完自关；AI 追踪到关闭"
+    },
+    {
+      "label": "TubePilot 探讨会话（教程视频调优, 7/16→7/17）",
+      "span": "12.1h",
+      "decision": "跨夜 idle，计入缺退出机制",
+      "follow_up": "下周继续对齐"
+    }
+  ],
+  "automations": {
+    "narrative": [
+      "**周度复盘自动化**：周期内触发记录与结果由 Agent 据本平台事实填写；失败/超时需区分调度 off-by-one 与真实故障。",
+      "**建议**：保持现状；连续断档再评估告警。"
+    ]
+  },
+  "corrections_lesson": "执行待落实项前，先 Glob 核对文件系统；否则可能把不存在的「分散」当成真问题。",
+  "corrections": [
+    {
+      "was": "主题拆多个工作区",
+      "claimed": "多个 DB cwd",
+      "actual": "磁盘仅少数真实目录存在"
+    }
+  ],
+  "corrections_takeaway": "复盘归因不能只信会话库 cwd 字符串，必须核对磁盘真实目录再下结论。"
+}

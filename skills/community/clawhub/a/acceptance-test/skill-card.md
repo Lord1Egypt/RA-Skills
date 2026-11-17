@@ -1,39 +1,52 @@
-## Description: <br>
-Acceptance Test helps agents validate business requirements, user scenarios, acceptance criteria, customer acceptance support, and acceptance report generation. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Acceptance Test helps agents support acceptance testing by outlining requirement validation, user scenario testing, acceptance criteria checks, customer acceptance support, and acceptance report generation.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shenmeng](https://clawhub.ai/user/shenmeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, QA teams, and delivery teams use this skill to structure acceptance checks, BDD scenarios, signoff workflows, and concise acceptance reports before handoff.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bundled scripts generate random demo results rather than validating a user's project.
+
+Mitigation: Treat generated acceptance results as illustrative only until the publisher replaces the demo logic with deterministic validation tied to real test inputs.
+
+Risk: Outputs could be mistaken for release approval, customer sign-off, compliance evidence, or a quality gate.
+
+Mitigation: Require independent review and real acceptance evidence before using the skill's output for delivery decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, QA engineers, and delivery teams can use this skill as a demonstration scaffold for acceptance testing workflows, including requirement checks, BDD-style scenario review, acceptance criteria checks, and report drafting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Randomized runner and report outputs can be mistaken for real acceptance validation, approval, or sign-off evidence. <br>
-Mitigation: Use the skill only as a demonstration scaffold until the scripts are replaced with deterministic logic that reads and executes real stories, features, steps, and result files. <br>
-Risk: Generated pass rates, risk levels, approval flags, and report paths may create misleading release confidence. <br>
-Mitigation: Require human review and independent verification before using any output in release approval, customer acceptance, compliance evidence, or delivery sign-off. <br>
+**Output Format:** [Markdown with inline shell command examples and structured acceptance-test guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The bundled scripts print demo-style acceptance, BDD, and report summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and script-generated console summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include pass rates, risk levels, approval flags, recommendations, and report paths; security evidence says these are demo results and should not be used as real acceptance evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

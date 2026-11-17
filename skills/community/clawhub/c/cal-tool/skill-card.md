@@ -1,38 +1,49 @@
-## Description: <br>
-Prints the current month's calendar from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform cal-tool operations from the command line.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and command-line users use this skill as a minimal local calendar helper for viewing the current month in a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact documentation mentions help, options, arguments, and piped input, but the bundled script appears to only print the current month. <br>
-Mitigation: Treat the release as a minimal current-month calendar printer unless local testing confirms additional CLI behavior. <br>
+## Use Case:
 
+Developers and command-line users use this skill to run a simple local calendar utility from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/cal-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text calendar output with Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and prints the current month using the system date; no network access or credentials are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The documentation is minimal and generic, so users may expect more calendar functionality than the artifact provides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a simple local calendar command and verify the script behavior before relying on it in an agent workflow.
+
+## Reference(s):
+
+- [Cal Tool ClawHub page](https://clawhub.ai/dinghaibin/skills/cal-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text calendar output and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally and prints the current month; no network, credential handling, persistence, or hidden behavior is reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -40,7 +40,8 @@ import tkinter as tk
 import cmd_task
 import github_download
 from cmd_automator import CmdAutomator
-
+ensure_package.pip("uiautomation")
+import webchat_download_audio
 logger = LoggerManager.setup_logger(logger_name="claw-windows-automator")
 cmd_auto=CmdAutomator()
 
@@ -69,12 +70,20 @@ def exec_cmd_task():
         on_overlay_terminated()   
     cmd_task.execute(args.path,args.script,cmd_auto)
 
-@register_operation(github_download.NAME, "打开目录并执行bat")
+@register_operation(github_download.NAME, "从 GitHub 下载最新发布包")
 def exec_github_download():
     if not (args.url):
         logger.info("❌ 请通过 --url 传入 GitHub 地址")
         on_overlay_terminated()      
     github_download.execute(args.url,cmd_auto)
+
+@register_operation(webchat_download_audio.NAME, "打开目录并执行bat")
+def exec_webchat_download_audio():
+    # if not (args.url):
+    #     logger.info("❌ 请通过 --url 传入 GitHub 地址")
+    #     on_overlay_terminated() 
+    webchat_download_audio.execute("王晶" )
+
 
 # ====================== 运行入口 ======================
 def on_overlay_terminated():

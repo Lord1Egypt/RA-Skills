@@ -1,40 +1,58 @@
-## Description: <br>
-Drafts structured penalty recommendations for Taobao/Tmall merchant, Cainiao station, and logistics supplier violations based on confirmed facts and cited platform or legal rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Taobao/Tmall penalty systems and industry compliance standards to draft suggested penalties and supporting rationale for merchant, Cainiao station, and logistics supplier violations.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Compliance, operations, and internal-control reviewers can use this skill as an unofficial drafting aid to structure penalty recommendations, cite relevant rules, and identify follow-up remediation steps. Any real penalty, refund, delisting, account action, third-party notice, or risk-record update should be approved by an authorized human reviewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce official-sounding guidance for serious business penalties even though server security evidence classifies it as an unofficial drafting aid. <br>
-Mitigation: Use it only for draft recommendations; an authorized human must verify current rules, facts, legal requirements, and approval steps before acting. <br>
-Risk: Connecting the skill directly to enforcement workflows could trigger refunds, delisting, account restrictions, third-party notices, or risk-record updates without adequate review. <br>
-Mitigation: Do not connect it to enforcement tools or automated workflows unless a governed human approval process verifies each action first. <br>
+## Use Case:
 
+Internal controls and compliance reviewers use this skill to turn confirmed violation facts into structured, advisory penalty recommendations with cited rule or legal bases and remediation requirements.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nic-yuan/inter-control-06-penalty-calculator) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured penalty recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires confirmed violation facts and human review before any operational action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 1.7.0) <br>
+Risk: Penalty recommendations may rely on platform rules, laws, or support documents that are outdated, unavailable, or not included with the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited platform rules, laws, and internal support documents before using recommendations in an operational case.
+
+Risk: Outputs may influence high-impact actions such as refunds, suspensions, account closures, supplier termination, or legal escalation.
+
+Mitigation: Require review and approval by responsible compliance, legal, or operations staff before enforcing any recommendation.
+
+Risk: Incomplete or unconfirmed violation facts can lead to penalties that are too severe, too lenient, or unsupported.
+
+Mitigation: Collect and document confirmed facts, evidence, history, and appeal context before applying the suggested penalty framework.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/inter-control-06-penalty-calculator)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown advisory response with structured penalty recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and should be reviewed before enforcement.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

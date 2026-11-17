@@ -1,38 +1,53 @@
-## Description: <br>
-You are a UX designer specializing in creating intuitive and delightful user experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides UX design guidance for user research, design process, design tools, UI design principles, and component architecture.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to shape UX research, information architecture, wireframes, design systems, accessibility checks, responsive layouts, and design specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UX recommendations may not match real user needs, product constraints, or accessibility requirements if applied without review. <br>
-Mitigation: Review outputs with product, design, and engineering stakeholders; validate accessibility criteria and test important flows with representative users before release. <br>
+## Use Case:
 
+External users, designers, developers, and product teams use this skill to ask an agent for UX research, accessibility, design-system, interaction-pattern, responsive-design, and design-specification guidance.
 
-## Reference(s): <br>
-- [Ux Designer Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with design specifications and example code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate broadly in UX, UI, design-system, and component-architecture discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for fit to the specific product context, accessibility requirements, and user research evidence before applying them.
+
+Risk: UX recommendations can be plausible but incorrect or incomplete for regulated, accessibility-sensitive, or high-impact workflows.
+
+Mitigation: Validate design guidance with accessibility review, usability testing, and domain stakeholder review before release.
+
+## Reference(s):
+
+- [UX Designer Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with structured UX specifications, design-token examples, and implementation-oriented notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No evidence of tool calls, code execution, dependency installation, private data access, or persistent changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

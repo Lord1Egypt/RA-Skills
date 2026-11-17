@@ -1,39 +1,58 @@
-## Description: <br>
-Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns.
 
-## Publisher: <br>
-[jpzhengcn](https://clawhub.ai/user/jpzhengcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpzhengcn](https://clawhub.ai/user/jpzhengcn)
 
-## Use Case: <br>
-External users and developers use this skill to make OpenClaw agents more proactive, continuous, and self-correcting. It helps agents preserve context, surface useful suggestions, and recover from routine errors while staying aligned with user goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: More proactive agent behavior can produce unsolicited suggestions or persistent continuity that may be inappropriate for sensitive workflows. <br>
-Mitigation: Start in lower-risk workflows, monitor remembered context and suggestions, and avoid pairing the skill with credentials or high-impact tools unless separate approval controls are present. <br>
+## Use Case:
 
+OpenClaw users and agent developers use this skill to add proactive suggestions, memory continuity, self-healing patterns, and mission-focused behavior to compatible agents.
 
-## Reference(s): <br>
-- [Openclaw Proactive Agent Lite on ClawHub](https://clawhub.ai/jpzhengcn/openclaw-proactive-agent-lite) <br>
-- [jpzhengcn publisher profile](https://clawhub.ai/user/jpzhengcn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance and configuration-oriented instructions for agent behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code installation, credential request, or external access is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The skill encourages proactive suggestions, which may be distracting or inappropriate in sensitive workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tune the agent's initiative and communication style, monitor early interactions, and provide feedback on useful suggestion patterns.
+
+Risk: The skill emphasizes memory continuity across sessions, which can affect expectations around retained context.
+
+Mitigation: Review how the OpenClaw environment stores or uses memory before installation, especially for sensitive work.
+
+Risk: Proactive or self-healing behavior could lead an agent to propose external actions before the user expects them.
+
+Mitigation: Keep confirmation requirements enabled for external actions and require review before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpzhengcn/skills/openclaw-proactive-agent-lite)
+- [Publisher profile](https://clawhub.ai/user/jpzhengcn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and agent behavior patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; ClawHub security evidence reports no code, dependencies, install hooks, network access, or hidden execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

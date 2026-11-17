@@ -1,46 +1,60 @@
-## Description: <br>
-Summarizes WeChat group chat highlights into structured normal or opt-in roast digests using the local wx-cli binary, while maintaining per-group history, participant profiles, and group fact memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes WeChat group chat history into structured normal or opt-in roast digests using the local wx-cli binary, while maintaining per-group history, user profiles, and fact memory across runs.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-External users and developers with local WeChat access use this skill to turn WeChat group history into readable digests, optional sarcastic variants, per-user profile updates, and durable group memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires unsandboxed local access to private WeChat data. <br>
-Mitigation: Use it only when the user understands and accepts that access, and review the local wx-cli and WeChat data access requirements before running. <br>
-Risk: The skill creates durable local archives of group messages, digests, participant profiles, and memory files. <br>
-Mitigation: Choose a manageable data_root, restrict file access, and delete histories, profiles, and memory files when they are no longer needed. <br>
-Risk: Group members may not expect their messages to be summarized or profiled. <br>
-Mitigation: Avoid using the skill on groups where participants would not expect this processing. <br>
+## Use Case:
 
+External users and developers use this skill to turn WeChat group conversations into readable digests, optionally including a sharper roast version, while preserving continuity through history, profiles, and group memory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimliu/baoyu-wechat-summary) <br>
-- [Baoyu Skills Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-wechat-summary) <br>
-- [wx-cli](https://github.com/jackwener/wx-cli) <br>
-- [Output Formats](references/output-formats.md) <br>
-- [Profiles](references/profiles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown digests with configuration and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce normal digests by default, opt-in roast digests, profile files, history files, and group memory updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires broad local access to wx-cli data and WeChat data paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable granting local WeChat data access, prefer path-scoped sandbox permissions where available, and verify and pin the wx-cli package before use.
+
+Risk: The skill keeps long-lived named summaries, user profiles, and group memory on disk.
+
+Mitigation: Store the configured data root in a private non-synced location and periodically delete old history, profile, and memory files.
+
+Risk: The optional roast mode can produce sharper personal commentary about group participants.
+
+Mitigation: Use roast mode only when participants expect that style, and review outputs for inappropriate personal or sensitive inferences before sharing.
+
+## Reference(s):
+
+- [Baoyu WeChat Summary homepage](https://github.com/JimLiu/baoyu-skills#baoyu-wechat-summary)
+- [wx-cli dependency](https://github.com/jackwener/wx-cli)
+- [Output formats](artifact/references/output-formats.md)
+- [Profiles reference](artifact/references/profiles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown guidance with inline shell commands; generated digests are plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local digest history, profile files, profile-roast files, and group memory under the configured data root.]
+
+## Skill Version(s):
+
+1.117.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

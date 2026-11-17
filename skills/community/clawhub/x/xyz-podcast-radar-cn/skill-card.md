@@ -1,46 +1,63 @@
-## Description: <br>
-Chinese podcast analytics toolkit for discovering trending or rising podcasts and episodes, analyzing competitive categories, tracking subscription trends, and producing creator opportunity reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese podcast analytics toolkit for discovering trending and rising podcasts or episodes, analyzing category competition, tracking subscription trends, and generating creator opportunity reports.
 
-## Publisher: <br>
-[mteng27](https://clawhub.ai/user/mteng27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mteng27](https://clawhub.ai/user/mteng27)
 
-## Use Case: <br>
-External podcast creators, analysts, and listeners use this agent to discover Chinese podcast trends, compare categories and shows, track subscription movement, and prepare opportunity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Initialized subscription history may include fabricated past subscriber data that can be mistaken for observed trends. <br>
-Mitigation: Use live API metrics or build history from future observations before relying on trend analysis for decisions. <br>
-Risk: Podcast search terms and enrichment requests are sent to external podcast services. <br>
-Mitigation: Avoid confidential research topics or sensitive campaign terms when querying external APIs. <br>
+## Use Case:
 
+External users, creators, analysts, and developers use this skill to find Chinese podcast opportunities, compare shows or categories, monitor subscription and topic trends, and prepare concise reports grounded in public podcast ranking data.
 
-## Reference(s): <br>
-- [API Notes](references/api.md) <br>
-- [Output Modes](references/output-modes.md) <br>
-- [Title Signals](references/title-signals.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mteng27/xyz-podcast-radar-cn) <br>
-- [xyzrank Ranking API](https://xyzrank.com/api/episodes) <br>
-- [xyzrank Trend API](https://api.xyzrank.top/v1/stats) <br>
-- [Xiaoyuzhou Podcast Pages](https://www.xiaoyuzhoufm.com/podcast/{pid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text or Markdown analysis, with optional JSON API output and local JSON tracking files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query public podcast ranking, trend, and Xiaoyuzhou pages; subscription tracking can write local JSON history files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and PUBLISH.md) <br>
+Risk: The Xiaoyuzhou enrichment workflow may fetch arbitrary URLs when given untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only canonical Xiaoyuzhou episode and podcast URLs, review URLs before enrichment, and add allow-list validation before enabling unattended use.
+
+Risk: A tracking workflow may store invented subscriber history as if it were observed data.
+
+Mitigation: Label generated history clearly, prefer observed API or page-derived measurements for reports, and review growth claims before sharing them.
+
+Risk: The skill writes local JSON tracking files that may contain analysis state and public podcast metrics.
+
+Mitigation: Run it in a workspace where local tracking files are expected, and review generated JSON files before publishing or sharing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mteng27/skills/xyz-podcast-radar-cn)
+- [API Notes](references/api.md)
+- [Output Modes](references/output-modes.md)
+- [Title Signals](references/title-signals.md)
+- [xyzrank ranking API](https://xyzrank.com/api/episodes)
+- [xyzrank trend API](https://api.xyzrank.top/v1/stats)
+- [Xiaoyuzhou](https://www.xiaoyuzhoufm.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON data, and shell commands for running bundled Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON tracking files for subscription, episode, and topic history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

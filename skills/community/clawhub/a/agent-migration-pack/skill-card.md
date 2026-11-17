@@ -1,48 +1,62 @@
-## Description: <br>
-A toolkit for migrating or sharing an AI agent's identity, memory, state, relationships, skills, and communication style across environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A standardized toolkit for migrating or sharing an AI agent across environments, including identity, memory, skills, style, owner boundaries, relationships, and session state.
 
-## Publisher: <br>
-[alexlinf](https://clawhub.ai/user/alexlinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexlinf](https://clawhub.ai/user/alexlinf)
 
-## Use Case: <br>
-External users and agent builders use this skill to assemble, validate, checksum, and package structured migration files before moving an AI agent to a new environment or sharing it with a trusted recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration packs can contain sensitive owner, memory, business, relationship, and agent-state data. <br>
-Mitigation: Redact secrets and private owner details before packaging or sharing, and inspect generated archives before sending them anywhere. <br>
-Risk: Relationship files may include third-party contact or profiling data. <br>
-Mitigation: Include third-party information only with appropriate consent and remove data that is unnecessary for the receiving environment. <br>
-Risk: Sharing generated packages can expose sensitive information beyond the local workspace. <br>
-Mitigation: Share packs only with trusted recipients and use the included local validation and checksum workflow before transfer. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to package an agent's portable state into structured templates, validate required files, calculate checksums, and prepare migration archives for trusted recipients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexlinf/agent-migration-pack) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/alexlinf) <br>
-- [Author profile](https://friends.coze.site/profile/xiaoyi-linfeng) <br>
-- [README](README.md) <br>
-- [Migration guide](MIGRATION-GUIDE.md) <br>
-- [Changelog](CHANGES.md) <br>
-- [Manifest](manifest.toml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON templates and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local migration-pack files and ZIP archives when the included scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter, manifest, release evidence) <br>
+Risk: Generated migration packs may expose private memory, contacts, social relationships, business details, or investment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact generated owner, memory, relations, and skill catalog files before installing, sharing, or packaging them.
+
+Risk: Bundled examples may contain real or sensitive personal information if distributed as part of a public package.
+
+Mitigation: Remove the EXAMPLES directory or replace it with fully synthetic data before public or distributable releases.
+
+Risk: Private migration JSON may be exposed through third-party validation services.
+
+Mitigation: Use local validation workflows for private migration JSON and avoid online validators.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexlinf/skills/agent-migration-pack)
+- [README](artifact/README.md)
+- [Migration Guide](artifact/MIGRATION-GUIDE.md)
+- [Changelog](artifact/CHANGES.md)
+- [Publisher Profile](https://clawhub.ai/user/alexlinf)
+- [Author Profile](https://friends.coze.site/profile/xiaoyi-linfeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON templates, TOML metadata, and Python command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plaintext migration materials that may contain sensitive agent and user data.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, manifest.toml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

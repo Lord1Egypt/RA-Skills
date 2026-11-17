@@ -1,42 +1,56 @@
-## Description: <br>
-Mock technical interview mode for OpenAlgernon that simulates a senior AI engineering interviewer with adaptive difficulty, follow-up probes, and a full scored report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mock technical interview mode for OpenAlgernon that simulates a senior AI engineering interviewer with adaptive difficulty, follow-up probes, and a full scored report at the end.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and learners use this skill to practice technical interviews on OpenAlgernon study materials and receive calibrated category scores, weak-response notes, and study recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Interview summaries may be written to the OpenAlgernon memory directory without explicit confirmation at the end of each session.
+
+Mitigation: Require user confirmation before saving memory entries, or disable memory writes for sensitive interview practice.
+
+Risk: When Notion export variables are configured, full interview reports may be appended to Notion.
+
+Mitigation: Ask for confirmation before exporting, review the report content, and verify the target Notion page before appending.
+
+Risk: Material slugs are used to query the local study database.
+
+Mitigation: Validate material slugs against known OpenAlgernon materials before querying.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenAlgernon users use this skill to run mock technical interviews for a selected study material, practice concepts, application, trade-offs, and production reasoning, and receive a scored report with study recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the local OpenAlgernon study database to select interview topics. <br>
-Mitigation: Run it only with study databases intended for interview practice. <br>
-Risk: The skill writes a local interview memory summary under OpenAlgernon. <br>
-Mitigation: Review or remove generated memory files if interview results contain sensitive content. <br>
-Risk: When NOTION_CLI and NOTION_PAGE_ID are configured, the full interview report can be exported to Notion. <br>
-Mitigation: Leave NOTION_PAGE_ID unset when external export is not desired. <br>
+**Output Format:** [Conversational interview prompts followed by a Markdown-style scored report and optional shell command examples for saving or exporting results.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/algernon-interview) <br>
+**Other Properties Related to Output:** [May append a short session memory entry under the OpenAlgernon memory directory and may append the full report to Notion when the relevant environment variables and CLI are configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Conversational prompts plus a Markdown interview report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read the local OpenAlgernon study database, write a local interview memory summary, and optionally append the full report to Notion when configured.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

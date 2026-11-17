@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website to Elementor"
+  short_description: "Turn any website section into an Elementor template for WordPress"
+  brand_color: "#6366F1"

@@ -1,45 +1,57 @@
-## Description: <br>
-电商运营全流程助手，覆盖淘宝、京东、拼多多、抖音小店等平台的文案创作、客服话术和运营策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language ecommerce operations assistant for marketplace copywriting, product titles, product-detail pages, customer-service scripts, promotional campaigns, competitor analysis, and live-commerce scripts across Taobao, JD, Pinduoduo, Douyin Shop, and similar categories.
 
-## Publisher: <br>
-[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini)
 
-## Use Case: <br>
-External ecommerce operators, merchants, and content teams use this skill to draft Chinese marketplace titles, detail-page copy, promotional text, customer-service responses, review handling language, and livestream selling scripts for platforms such as Taobao, JD.com, Pinduoduo, and Douyin Shop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy, customer-service language, or livestream scripts may contain outdated platform policy assumptions or claims that are unsuitable for a specific product category. <br>
-Mitigation: Review outputs against the current rules of the target marketplace and the product's approved claims before publishing. <br>
-Risk: The skill can suggest urgency, scarcity, comparison, or benefit claims that may become misleading if they are not backed by inventory, pricing, or product evidence. <br>
-Mitigation: Verify promotions, inventory counts, prices, guarantees, and product benefits against merchant records before use. <br>
-Risk: Customer-service templates may sound generic or may not fit the user's exact order, refund, logistics, or dispute context. <br>
-Mitigation: Customize scripts with the actual order facts, platform process, and approved service policy before sending them to customers. <br>
+## Use Case:
 
+External ecommerce operators, merchants, marketers, and support teams use this skill to draft and improve Chinese marketplace listings, promotional copy, customer-service responses, review handling, and livestream sales scripts. It is intended for human-reviewed content generation before publishing to marketplace channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanlee-gemini/cn-ecommerce-copilot) <br>
-- [Ecommerce copywriting frameworks](references/copywriting-frameworks.md) <br>
-- [Platform title rules and compliance notes](references/platform-rules.md) <br>
-- [Customer service scripts](references/customer-service-scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text ecommerce copy, scripts, templates, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be adapted to the target product, platform, audience, and current platform policy before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated ecommerce copy may contain inaccurate product claims, exaggerated scarcity statements, or marketplace-sensitive wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims, urgency language, review-solicitation wording, and current marketplace advertising rules before publishing.
+
+Risk: Customer-service and review-handling templates may be applied too mechanically or outside the real order context.
+
+Mitigation: Adapt responses to the specific customer issue and keep a human operator responsible for final messages.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/ryanlee-gemini/skills/cn-ecommerce-copilot)
+- [Publisher profile](https://clawhub.ai/user/ryanlee-gemini)
+- [Platform rules and title guidelines](references/platform-rules.md)
+- [Ecommerce copywriting frameworks](references/copywriting-frameworks.md)
+- [Customer-service script templates](references/customer-service-scripts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured Chinese copy, scripts, templates, and optimization suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable content; no executable code or tool calls are part of the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

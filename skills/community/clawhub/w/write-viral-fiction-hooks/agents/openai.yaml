@@ -1,0 +1,7 @@
+interface:
+  display_name: "爆款小说开篇"
+  short_description: "从场景灵感生成五类爆款短篇小说开篇导语与短文案成稿"
+  default_prompt: "Use $write-viral-fiction-hooks to turn a scene idea into five selectable Chinese short-fiction opening hooks and a final copy under 200 Chinese characters."
+
+policy:
+  allow_implicit_invocation: true

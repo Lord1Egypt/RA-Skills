@@ -1,42 +1,55 @@
-## Description: <br>
-Models systems using Object-Process Methodology (OPM/ISO 19450), including system diagram construction, OPDs, OPL sentences, refinement, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model systems using Object-Process Methodology (OPM/ISO 19450) by creating SD and SD1 diagrams, OPDs, OPL sentences, refinements, and validation checklists.
 
-## Publisher: <br>
-[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl)
 
-## Use Case: <br>
-Developers, systems engineers, and modelers use this skill to create and validate OPM conceptual models, including system diagrams, object-process diagrams, OPL text, and refinement checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad or loosely related OPM mentions. <br>
-Mitigation: Use tighter trigger wording or invoke it only for concrete OPM modeling tasks when broad activation is not desired. <br>
-Risk: Conceptual modeling guidance can produce incorrect or misleading model structures if used without review. <br>
-Mitigation: Review generated OPM elements, links, OPL sentences, and validation results before relying on the model. <br>
+## Use Case:
 
+Developers, systems engineers, and modelers use this skill to build and validate OPM conceptual models, including SD/SD1 diagrams, OPDs, bilingual OPL text, refinement steps, and validation tables.
 
-## Reference(s): <br>
-- [OPM ISO/PAS 19450 - Object-Process Methodology](references/opm-iso-19450.md) <br>
-- [OPL-ES - Object-Process Language en Espanol](references/opm-opl-es.md) <br>
-- [Metodologia de Modelamiento OPM - Protocolo de Modelamiento Conceptual de Sistemas](references/metodologia-modelamiento-opm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and OPL paragraphs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes element tables, link tables, OPL sentences, and PASS/FAIL validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation wording may steer unrelated discussions about agents, instruments, or system diagrams toward formal OPM modeling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Installers can tighten trigger wording or require explicit OPM intent before loading the skill.
+
+Risk: Spanish-oriented modeling conventions may produce Spanish OPL when a user expects English output.
+
+Mitigation: Users should ask for English OPL explicitly when English output is required.
+
+## Reference(s):
+
+- [OPM ISO/PAS 19450 - Object-Process Methodology](artifact/references/opm-iso-19450.md)
+- [OPL-ES - Object-Process Language en Espanol](artifact/references/opm-opl-es.md)
+- [Metodologia de Modelamiento OPM - Protocolo de Modelamiento Conceptual de Sistemas](artifact/references/metodologia-modelamiento-opm.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and OPL paragraphs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces model element tables, link tables, OPL sentences, and validation checklist results for each model level.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-同程特价机票查询与价格监控技能。通过第三方旅行平台API查询机票价格，支持自然语言解析、价格监控、降价推送（飞书）。当用户需要查询机票价格、监控特定航班价格波动、设置价格提醒时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries and monitors discounted flight prices from third-party travel sources, parses Chinese natural-language route/date requests, and can send Feishu price-drop notifications.
 
-## Publisher: <br>
-[qi812560784](https://clawhub.ai/user/qi812560784) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qi812560784](https://clawhub.ai/user/qi812560784)
 
-## Use Case: <br>
-External users and EasyClaw/OpenClaw agents use this skill to parse Chinese natural-language flight queries, retrieve route or flight price results, create price-monitoring subscriptions, and send Feishu price-drop notifications when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route and date queries are sent to third-party travel services, and Feishu notifications may receive query and price details when configured. <br>
-Mitigation: Use the skill only when sharing those travel details with the travel provider and Feishu webhook destination is acceptable. <br>
-Risk: The security review reports mock flight fallbacks and potentially misleading alert behavior, including monitor creation claims that may not reflect durable setup. <br>
-Mitigation: Treat returned prices and subscription confirmations as advisory until verified against the travel provider and local subscription files. <br>
-Risk: The installer can make broad changes under ~/.easyclaw/skills. <br>
-Mitigation: Review installation changes before running the installer and keep a backup of existing EasyClaw skill files. <br>
-Risk: The bundled API exploration script may perform probing behavior against third-party endpoints. <br>
-Mitigation: Avoid running scripts/test_api_exploration.py unless the operator has reviewed it and has permission to perform the requests. <br>
+## Use Case:
 
+External users and developers can use this skill to query China-focused flight prices, create route or flight price monitors, and receive price-drop alerts through a configured Feishu webhook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qi812560784/tc-cheapflights) <br>
-- [API documentation](references/api_documentation.md) <br>
-- [City and airport codes](references/city_airport_codes.md) <br>
-- [Natural language examples](references/natural_language_examples.md) <br>
-- [Feishu webhook endpoint template](https://open.feishu.cn/open-apis/bot/v2/hook/xxxxx) <br>
-- [Tongcheng cheap flights API endpoint](https://wx.17u.cn/cheapflights/newcomparepriceV2/single) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text responses with optional Python and shell snippets, JSON configuration, and notification payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local subscription, history, configuration, and log files when installed and used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can present fabricated, mock, or fallback flight prices as usable fare results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require outputs to distinguish live-source results from mock or fallback data, keep mock data disabled for real use, and verify fares directly with the travel provider before purchase.
+
+Risk: Monitoring and price-drop notification behavior may be overstated or unverified.
+
+Mitigation: Test subscription creation, scheduled checks, threshold handling, and Feishu delivery before relying on the skill for real alerts.
+
+Risk: Feishu notifications can disclose route, date, and price information to the configured webhook destination.
+
+Mitigation: Configure Feishu webhooks only for trusted channels and avoid sending sensitive travel plans to shared or untrusted rooms.
+
+Risk: Installation writes persistent local skill files and dependencies with limited safeguards.
+
+Mitigation: Review the skill before installing, use a virtual environment with pinned dependencies, and install into a scoped EasyClaw/OpenClaw profile.
+
+## Reference(s):
+
+- [API documentation](artifact/references/api_documentation.md)
+- [City and airport codes](artifact/references/city_airport_codes.md)
+- [Natural language examples](artifact/references/natural_language_examples.md)
+- [ClawHub skill page](https://clawhub.ai/qi812560784/skills/tc-cheapflights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with optional Python and shell snippets plus JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include parsed route/date parameters, flight listings, price analysis, subscription status, notification setup guidance, and local configuration paths.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

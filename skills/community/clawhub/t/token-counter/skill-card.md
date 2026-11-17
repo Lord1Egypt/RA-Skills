@@ -1,42 +1,53 @@
-## Description: <br>
-Track and analyze OpenClaw token usage across main, cron, and sub-agent sessions with category, client, model, and tool attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and analyze OpenClaw token usage across main, cron, and sub-agent sessions with category, client, model, and tool attribution.
 
-## Publisher: <br>
-[mkhaytman87](https://clawhub.ai/user/mkhaytman87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkhaytman87](https://clawhub.ai/user/mkhaytman87)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local OpenClaw token usage, drill into sessions, and identify category, client, model, and tool-level cost drivers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw transcripts and session metadata that may contain private prompts, file paths, timestamps, client names, tool usage, and other sensitive context. <br>
-Mitigation: Use explicit data paths, run it only on workspaces whose transcripts may be inspected, and keep generated reports private. <br>
-Risk: Saved JSON reports can persist derived session details beyond the original transcript location. <br>
-Mitigation: Review saved reports before sharing and delete snapshots that are no longer needed. <br>
-Risk: Tool token attribution is heuristic and may not exactly match billing records. <br>
-Mitigation: Use attribution as a hotspot guide and confirm important cost decisions against authoritative billing or platform usage data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Token Counter on ClawHub](https://clawhub.ai/mkhaytman87/token-counter) <br>
-- [Classification Rules](references/classification-rules.md) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local OpenClaw token usage, identify high-consumption sessions, and break usage down by category, client, model, and tool.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, json, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reports or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write reports to a selected output path or save daily JSON snapshots.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads local OpenClaw session transcripts and cron definitions that may contain sensitive prompts, labels, paths, or derived usage metadata.
+
+Mitigation: Install and run it only in workspaces where that local transcript access is acceptable, and avoid --save or --output on shared or synced storage unless retaining derived reports is intended.
+
+Risk: Category, client, and tool-token attribution are heuristic and may be imprecise.
+
+Mitigation: Use the report for hotspot detection and planning, and inspect source sessions before making billing, compliance, or client-allocation decisions.
+
+## Reference(s):
+
+- [Token Counter Classification Rules](references/classification-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/mkhaytman87/skills/token-counter)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, text, json, shell commands, files, guidance]
+
+**Output Format:** [Plain text or JSON reports, with optional saved JSON snapshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can cover a time period, selected breakdowns, or a specific session; saved daily snapshots are written only when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

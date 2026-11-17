@@ -1,41 +1,50 @@
-## Description: <br>
-Coldwallet reference tool. Use when working with coldwallet in blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coldwallet reference tool. Use when working with coldwallet in blockchain contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and blockchain practitioners use Coldwallet to print quick reference material, checklists, and command-line guidance for cold-wallet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad cold-wallet, regulatory, and finance reference content that may be mistaken for authoritative legal, financial, or wallet-security advice. <br>
-Mitigation: Treat the output as general reference material and verify decisions against authoritative legal, financial, and wallet-security sources before acting. <br>
-Risk: Users may expose seed phrases, private keys, or other wallet secrets while trying to apply cold-wallet guidance. <br>
-Mitigation: Do not provide seed phrases or private keys to tools or prompts unless the need has been independently verified through trusted wallet-security procedures. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to retrieve concise cold-wallet reference material, including fundamentals, risk categories, regulatory considerations, checklists, and glossary terms for blockchain workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/coldwallet) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific reference sections for overview, formulas, regulations, risks, instruments, strategies, glossary, and checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may mistake generic cold-wallet regulatory, finance, or security guidance for current advice for managing real assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as static reference material and verify legal, tax, investment, and operational security decisions against current authoritative sources before acting.
+
+## Reference(s):
+
+- [Coldwallet on ClawHub](https://clawhub.ai/xueyetianya/skills/coldwallet)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no wallet, credential, file, network, or persistent system access according to the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

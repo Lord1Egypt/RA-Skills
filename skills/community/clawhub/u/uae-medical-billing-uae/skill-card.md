@@ -1,39 +1,53 @@
-## Description: <br>
-Medical billing, insurance claims, and revenue cycle management guidance for UAE clinics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical billing, insurance claims, and revenue cycle management for UAE clinics.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
 
-## Use Case: <br>
-Clinic administrators, billing staff, and revenue-cycle teams use this skill to answer UAE insurance billing questions, plan claim submission and resubmission workflows, and identify payer-specific documentation and authorization checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers sensitive patient, insurance, portal, provider, bank, and payment workflows. <br>
-Mitigation: Use it as reference material only, and do not enter real details unless approved clinic privacy controls are in place. <br>
-Risk: Billing, appeal, or payment guidance could affect claim submissions and financial decisions. <br>
-Mitigation: Have authorized clinic staff review claim submissions, appeals, and payment-related decisions before action. <br>
+## Use Case:
 
+External clinic operators, billing staff, and healthcare administrators use this skill for UAE private-clinic insurance credentialing, pre-authorization, claim submission, rejection handling, co-payment collection, and revenue-cycle workflow guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+United Arab Emirates
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with step-by-step billing guidance, checklists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs should be reviewed by authorized clinic staff before use with patient, insurance, portal, provider, or payment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may include patient identifiers or other protected health information while asking billing questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized examples, keep real patient data inside approved clinic systems, and avoid pasting full identifiers into chat.
+
+Risk: Broad activation in healthcare workspaces may invoke billing guidance during unrelated clinical or operational conversations.
+
+Mitigation: Narrow activation terms and deploy the skill only where UAE medical billing and revenue-cycle guidance is expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dralmazrouei/skills/uae-medical-billing-uae)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with step-by-step process notes, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payer, emirate, coding, authorization, claim rejection, and workflow recommendations when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

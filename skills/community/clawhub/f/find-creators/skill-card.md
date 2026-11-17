@@ -1,41 +1,54 @@
-## Description: <br>
-Finds relevant creators, influencers, and affiliate partners for ecommerce outreach, creator seeding, TikTok Shop, and brand collaborations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find relevant creators, influencers, and affiliate partners for ecommerce outreach, creator seeding, TikTok Shop, and brand collaborations. Use when the user wants help finding who to contact, shortlist creator candidates, compare creator fit, or identify promising creators by niche, platform, geography, audience size, and content style.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, ecommerce, and creator partnership teams use this skill to identify, compare, and prioritize creator candidates by niche, platform, geography, audience size, content style, and campaign fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creator fit, audience signals, or contact details may be incomplete, outdated, or hard to verify from public sources. <br>
-Mitigation: Check source links, recent platform activity, and available audience or content signals before prioritizing outreach. <br>
-Risk: Creator outreach may be subject to platform rules, privacy expectations, advertising disclosures, or campaign-specific requirements. <br>
-Mitigation: Review applicable platform policies and outreach requirements before contacting creators or launching collaborations. <br>
+## Use Case:
 
+External ecommerce and marketing teams use this skill to find and prioritize creators, influencers, and affiliate partners for outreach, seeding, TikTok Shop, UGC, whitelisting, and brand collaborations.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/find-creators) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown shortlist with source references, fit rationale, risks or unknowns, and suggested outreach angle.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes strong creator fits separately from secondary options and flags missing information for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Public creator metrics, audience fit, contact details, legal requirements, and platform rules may be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify metrics, audience quality, contact details, applicable legal requirements, and platform rules before acting on a shortlist.
+
+Risk: Creator recommendations may overstate fit when public signals are sparse or ambiguous.
+
+Mitigation: Treat the shortlist as a prioritization aid and review the cited signals, risks, and unknowns before outreach.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/find-creators)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shortlist with links, evidence signals, risks or unknowns, and outreach recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes candidate prioritization, fit rationale, source references when available, verification risks, and suggested outreach angles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-提供独居用户每日签到和状态监测，长时间未签到时自动告警并通知紧急联系人。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a daily check-in and status monitoring service for people living alone, with automatic alerts to emergency contacts after prolonged inactivity.
 
-## Publisher: <br>
-[zhdryanchang](https://clawhub.ai/user/zhdryanchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhdryanchang](https://clawhub.ai/user/zhdryanchang)
 
-## Use Case: <br>
-External users and caregivers use this skill to run a check-in service for people living alone, chronic-condition patients, travelers, or other users who need routine safety confirmation and escalation to emergency contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The service is positioned as a safety-monitoring tool, but the authoritative security review says alerting is unreliable. <br>
-Mitigation: Do not rely on it for real safety monitoring until emergency-alert delivery, escalation paths, and failure handling are tested end to end. <br>
-Risk: The artifact includes an exposed SkillPay API key in configuration examples and skill metadata. <br>
-Mitigation: Remove the embedded key, rotate it before use, and provide payment credentials only through protected environment variables or a secrets manager. <br>
-Risk: The service handles sensitive user, check-in, phone, location, and emergency-contact data with inadequate data-protection evidence. <br>
-Mitigation: Add authentication, authorization, encrypted storage, retention/deletion controls, and clear consent for monitored users and emergency contacts before deployment. <br>
+## Use Case:
 
+Developers and service operators can use this skill to run a check-in API for people living alone, allowing users to register emergency contacts, submit daily check-ins, review status history, and trigger inactivity alerts. The service should be treated as an isolated prototype until the documented security controls and alert reliability requirements are addressed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhdryanchang/alive-check-monitor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhdryanchang) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Alive-check app article](https://www.bnext.com.tw/article/89759/alive-check-app) <br>
-- [Product analysis article](https://www.woshipm.com/share/6323812.html) <br>
-- [36Kr founder interview](https://m.36kr.com/p/3638430937910658) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API examples, shell commands, and JavaScript service configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Express service and scheduled status checks; requires Node.js, environment variables, and notifier/payment credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, skill.json, package.json) <br>
+Risk: Sensitive user, location, phone, and emergency-contact data may be exposed because the security evidence reports missing authentication and per-user authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authenticated endpoints, per-user authorization checks, HTTPS deployment guidance, and least-privilege access controls before handling real users.
+
+Risk: Stored personal data and operational secrets may be exposed if local files or configured tokens are not protected.
+
+Mitigation: Use encrypted and access-controlled storage, keep secrets out of committed files, rotate exposed or shared credentials, and define consent and retention policies.
+
+Risk: Emergency notifications may be unreliable, which could create false confidence in a safety-monitoring workflow.
+
+Mitigation: Verify alert delivery for each configured channel, add delivery acknowledgements and escalation handling, and avoid relying on the service for real safety monitoring until tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhdryanchang/skills/alive-check-monitor)
+- [Business Next article on alive-check apps](https://www.bnext.com.tw/article/89759/alive-check-app)
+- [Woshipm product analysis of alive-check apps](https://www.woshipm.com/share/6323812.html)
+- [36Kr interview about an alive-check app](https://m.36kr.com/p/3638430937910658)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation, JSON API examples, shell commands, and JavaScript service code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs an Express-based check-in service, persists user and check-in records locally, and sends notifications through configured Telegram, Discord, and email channels.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, artifact skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

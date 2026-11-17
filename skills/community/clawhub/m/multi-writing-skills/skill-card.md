@@ -1,47 +1,60 @@
-## Description: <br>
-Converts Markdown articles into platform-ready content for WeChat Official Accounts, Zhihu, and Toutiao, with code formatting, AI writing assistance, AI cover image generation, and draft publishing support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown articles for WeChat Official Accounts, Zhihu, and Toutiao, with draft publishing, code formatting, AI writing, humanization, and cover image generation support.
 
-## Publisher: <br>
-[yuesf](https://clawhub.ai/user/yuesf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuesf](https://clawhub.ai/user/yuesf)
 
-## Use Case: <br>
-Developers, technical writers, and content operators use this skill to convert Markdown into publication-ready drafts, generate or revise article content, create cover images, and send drafts to WeChat Official Accounts, Zhihu, or Toutiao. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use real WeChat, Zhihu, and Toutiao credentials to create drafts or publish content. <br>
-Mitigation: Prefer test accounts, limit credential scope where possible, and review each generated or converted article before publication. <br>
-Risk: Drafts, prompts, and article content may be sent to configured AI or conversion providers. <br>
-Mitigation: Avoid sending confidential content to external providers unless approved, and configure providers according to the user's data handling requirements. <br>
-Risk: The AI de-tracing feature can be misused to obscure AI authorship or bypass platform disclosure expectations. <br>
-Mitigation: Do not use de-tracing to evade disclosure, authorship, or platform policy requirements. <br>
-Risk: Account cookies and API keys are needed for several workflows. <br>
-Mitigation: Avoid storing browser cookies in plaintext configuration and rotate credentials if local configuration files are exposed. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare Markdown articles, generate or revise article content, and create drafts on supported publishing platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuesf/multi-writing-skills) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Skill tutorial](docs/skill-tutorial.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or HTML content, CLI command guidance, configuration values, generated image outputs, and platform draft or publish results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured publishing platforms and AI providers, and may write converted articles or generated assets to local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: Publishing credentials, cookies, and AI API keys are required for normal operation and could expose accounts if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated or low-privilege publishing accounts where possible, restrict access to configuration files and environment variables, and avoid pasting browser cookies into shared shells.
+
+Risk: Article content, prompts, and media may be sent to external publishing, AI, image generation, or conversion services.
+
+Mitigation: Review every draft or publish command before execution and avoid processing private or proprietary drafts unless the configured service use is approved.
+
+Risk: Cover image paths or URLs can cause local files or remote resources to be uploaded or downloaded.
+
+Mitigation: Pass only trusted cover paths or URLs and inspect referenced files before publishing or generating drafts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuesf/skills/multi-writing-skills)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Package metadata](artifact/pyproject.toml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown, HTML, shell command snippets, configuration values, generated text, image URLs, and local output files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create platform drafts and send article content, prompts, credentials, and media to configured external services.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata; artifact pyproject.toml reports 1.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

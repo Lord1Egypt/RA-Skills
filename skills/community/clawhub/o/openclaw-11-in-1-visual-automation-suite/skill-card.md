@@ -1,42 +1,58 @@
-## Description: <br>
-Windows-only visual automation toolkit for screen capture, OCR, template matching, mouse and keyboard control, environment setup, cleanup, and repeatable task loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows-only visual automation toolkit for screen capture, OCR, template matching, target localization, mouse clicks, keyboard input, temporary file cleanup, and looped desktop tasks.
 
-## Publisher: <br>
-[joriemancgemanne](https://clawhub.ai/user/joriemancgemanne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joriemancgemanne](https://clawhub.ai/user/joriemancgemanne)
 
-## Use Case: <br>
-Developers and operators use this skill to automate Windows desktop workflows that need visual target detection, OCR text extraction, template-based localization, input simulation, and repeated task execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full-screen screenshots and OCR can capture passwords, private documents, or other sensitive on-screen content. <br>
-Mitigation: Run the skill only when sensitive content is not visible, and delete temporary screenshot and OCR files after use. <br>
-Risk: Mouse and keyboard automation can perform unintended actions if target localization is wrong or the active window changes. <br>
-Mitigation: Review target coordinates or recognition results before input control, and prefer workflows that require explicit confirmation before clicks or typing. <br>
-Risk: Temporary screenshots, OCR results, and coordinate files may retain sensitive data if cleanup is skipped or interrupted. <br>
-Mitigation: Run the cleanup step after each workflow and verify the temporary directory is cleared before ending the session. <br>
+## Use Case:
 
+Developers and operators use this skill to compose Windows desktop automation workflows that locate visual targets with OCR or image templates, then click, type, capture screenshots, clean temporary outputs, or repeat the workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joriemancgemanne/openclaw-11-in-1-visual-automation-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python automation functions and call-style commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows 10/11 only; uses full-screen screenshots, OCR results, template images, mouse control, keyboard input, and temporary files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can capture the full screen, which may expose private windows, secrets, passwords, or one-time codes visible on the desktop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on controlled desktops, keep sensitive windows off screen, and avoid workflows involving passwords or one-time codes.
+
+Risk: The skill can control the mouse and keyboard, so a wrong target match can trigger unintended desktop actions.
+
+Mitigation: Run on bounded tasks, review target text and templates before use, and leave delays or checkpoints after clicks on slow interfaces.
+
+Risk: Temporary OCR text and screenshots are written locally, and cleanup behavior can delete files from the selected temporary directory.
+
+Mitigation: Use a dedicated temporary directory, review or patch cleanup behavior before valuable-file or production use, and clean temporary outputs after each run.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/joriemancgemanne/skills/openclaw-11-in-1-visual-automation-suite)
+- [Publisher Profile](https://clawhub.ai/user/joriemancgemanne)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown instructions, Python call patterns, console status text, screenshots, OCR text files, and coordinate files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows 10/11 only; requires Python, OpenCV, pytesseract or another OCR engine, pyautogui, Pillow, and local template images for template matching.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

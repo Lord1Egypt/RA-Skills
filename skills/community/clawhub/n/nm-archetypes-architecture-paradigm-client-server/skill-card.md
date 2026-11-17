@@ -1,41 +1,58 @@
-## Description: <br>
-Applies client-server architecture for web/mobile apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies client-server architecture for web/mobile apps
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and architects use this skill to frame client-server, peer-to-peer, and offline-first system design decisions. It helps document trust boundaries, API contracts, compatibility planning, and rollout assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture guidance may appear for broad architecture prompts and may not fit the user's system constraints. <br>
-Mitigation: Review the recommendations against the target system's requirements, trust boundaries, and operational constraints before adoption. <br>
-Risk: The artifact mentions a separate external Claude Code plugin that was not reviewed as part of this skill release. <br>
-Mitigation: Treat installation of the external plugin as a separate trust decision and review it independently before use. <br>
+## Use Case:
 
+Developers and software architects use this skill to plan client-server or peer-to-peer systems, define trust boundaries and API contracts, manage client-server version skew, and account for intermittent connectivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-client-server) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and architecture recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or credential requirements were found in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Chatty clients can create avoidable latency and poor performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consolidate requests behind a facade or gateway and use client-side or edge caching where appropriate.
+
+Risk: Duplicated business logic across clients can become inconsistent with server behavior.
+
+Mitigation: Keep rules on the server or share validation through a common library.
+
+Risk: Peer-to-peer updates can conflict when devices change data independently.
+
+Mitigation: Define a conflict-resolution approach, such as CRDTs, last-write-wins, or consensus, during design.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-client-server)
+- [Related project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown architecture guidance, recommendations, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the described system; covers client-server and, where relevant, peer-to-peer design considerations.]
+
+## Skill Version(s):
+
+1.10.3 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

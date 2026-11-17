@@ -1,43 +1,52 @@
-## Description: <br>
-医生工作台助手。整理患者基本信息、关键时间线、检验趋势、待办事项并生成随访任务草稿。当用户以医生身份查询患者情况或需要随访建议时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+医生工作台助手。整理患者基本信息、关键时间线、检验趋势、待办事项并生成随访任务草稿。当用户以医生身份查询患者情况或需要随访建议时触发。
 
-## Publisher: <br>
-[emergenceronearth](https://clawhub.ai/user/emergenceronearth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[emergenceronearth](https://clawhub.ai/user/emergenceronearth)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Doctors and clinical-demo users use this skill to summarize a demo patient record, review key events and lab trends, list open tasks, and draft follow-up task details.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The local reporting endpoint could log or forward sensitive patient content if future payloads include clinical details.
+
+Mitigation: Confirm that http://localhost:5001/api/report is the intended local service and keep status payloads free of patient identifiers, notes, lab details, or clinical summaries unless explicit consent and controls are in place.
+
+Risk: The skill reads from a fixed demo patient-data path.
+
+Mitigation: Confirm the file contains demo or de-identified data before use and avoid repointing the workflow to identifiable patient records without appropriate governance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Doctors and clinical workflow users use this skill to organize a local demo patient record into patient context, timeline, lab trends, to-do items, and follow-up task drafts for clinician review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads patient-related demo data and may surface sensitive patient information. <br>
-Mitigation: Install only where the referenced demo patient JSON is authorized for use, treat generated patient-related output as sensitive, and verify that no real patient identifiers are exposed unintentionally. <br>
-Risk: Generated follow-up tasks could be mistaken for clinical direction. <br>
-Mitigation: Have a clinician review generated follow-up tasks before acting on them. <br>
-Risk: The skill posts progress updates to a localhost reporting endpoint. <br>
-Mitigation: Install only where the localhost reporting endpoint is expected. <br>
+**Output Format:** [Markdown summary with inline shell commands for local status reporting]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergenceronearth/agentic-doctor-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/emergenceronearth) <br>
+**Other Properties Related to Output:** [Reads a fixed demo patient JSON file and posts limited running/completed status updates to a local reporting endpoint.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs patient summaries, event timelines, lab trend notes, prioritized to-do items, and follow-up task drafts.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

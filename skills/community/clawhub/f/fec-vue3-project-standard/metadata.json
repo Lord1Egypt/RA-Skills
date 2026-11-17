@@ -1,6 +1,6 @@
 {
   "id": "fec-vue3-project-standard",
-  "name": "Vue 3 项目规范",
+  "name": "Vue 3 project specifications",
   "category": "project-standard",
   "tags": [
     "vue3",
@@ -9,8 +9,8 @@
     "pinia",
     "components"
   ],
-  "summary": "Frontend Craft skill for Vue 3 项目规范.",
-  "version": "2.7.0",
+  "summary": "Organize Vue 3 and TypeScript SFCs, composables, routes, Pinia, and project boundaries.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when designing or reviewing Vue 3 + TypeScript project structure, SFC/component boundaries, composables organization, route composition, Pinia ownership, API/error/styling defaults, directives, or repository-wide Vue conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include Vue 3 项目规范, Vue 组件架构.",
+  "description": "Use when designing or reviewing Vue 3 + TypeScript project structure, SFC/component boundaries, composables organization, route composition, Pinia ownership, API/error/styling defaults, directives, or repository-wide Vue conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include Vue 3 project specification, Vue component architecture.",
   "source": "skills/fec-vue3-project-standard",
   "references": [
     "references/vue3-composables-routing.md",

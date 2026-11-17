@@ -1,39 +1,55 @@
-## Description: <br>
-Create one or many ordinary email addresses in a Cloudflare temporary mail system through the `/admin/new_address` admin API and return structured results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates single or batch Cloudflare temporary mail addresses through the `/admin/new_address` admin API and returns structured status output.
 
-## Publisher: <br>
-[jcwang502](https://clawhub.ai/user/jcwang502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcwang502](https://clawhub.ai/user/jcwang502)
 
-## Use Case: <br>
-Developers and operators use this skill to create single or batch mailbox addresses through a Cloudflare temporary mail admin API instead of using the web UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admin credentials and returned mailbox tokens may appear in terminal output or JSON/CSV files. <br>
-Mitigation: Use dedicated revocable credentials, prefer environment variables, verify mailbox names and batch size before running, and treat generated output files as sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to create one or more mailbox addresses in a Cloudflare temporary mail deployment through the admin API, including batch creation and CSV export when needed.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [Example Prompts](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Structured JSON by default; CSV when export is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mailbox JWTs or passwords in terminal output or exported files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Admin credentials and mailbox access tokens can be exposed through transcripts, logs, shared terminals, or exported JSON/CSV files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or secure runtime secret handling, avoid sharing raw output, and redact JWTs, passwords, and admin credentials before storing or forwarding results.
+
+Risk: Changing the admin API URL can send credentials and mailbox data to an unintended endpoint.
+
+Mitigation: Set CLOUDFLARE_MAIL_API_URL only when the operator intentionally controls and trusts the replacement endpoint.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [Example Prompts](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/jcwang502/skills/cloudflare-mail-address-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [JSON or CSV output, with Markdown summaries when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include mailbox addresses, JWTs, passwords, status counts, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

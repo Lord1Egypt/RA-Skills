@@ -1,41 +1,51 @@
-## Description: <br>
-Creates clear, testable specifications from feature descriptions with user stories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates clear, testable specifications from feature descriptions with user stories
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, product managers, and agents use this skill to turn feature ideas into user-focused specifications with scenarios, functional requirements, acceptance criteria, quality checklists, and measurable success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the skill during ordinary requirements discussions. <br>
-Mitigation: Invoke it deliberately for specification-writing work, or disable it when its workflow interruption is not desired. <br>
-Risk: Generated specifications or checklists may include incorrect assumptions, vague requirements, or misleading acceptance criteria. <br>
-Mitigation: Review the drafted specification against project context and scan outputs before using it for planning or implementation. <br>
+## Use Case:
 
+Developers and product teams use this skill to turn feature descriptions into user-focused specifications with clear scenarios, testable requirements, and measurable success criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-spec-kit-spec-writing) <br>
-- [Declared homepage](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and specification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; produces drafting and review guidance rather than executing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: A drafted specification may omit a constraint or record an assumption that stakeholders do not share.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have stakeholders review assumptions, scope, and acceptance criteria before treating the specification as an agreed delivery target.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
+- [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174)
+- [RFC 7322](https://www.rfc-editor.org/rfc/rfc7322)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown specifications, user stories, acceptance criteria, and quality checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content is tailored to the feature description and may include assumptions, edge cases, and success criteria.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

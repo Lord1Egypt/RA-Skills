@@ -1,43 +1,59 @@
-## Description: <br>
-Build and maintain an Apple Shortcuts workflow that takes a Douyin share link, resolves a no-watermark MP4 URL via configurable backend APIs, saves the video into the Photos app, and cleans temporary cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain an Apple Shortcuts workflow that takes a Douyin share link, resolves a no-watermark MP4 URL via configurable backend APIs, saves the video into the Photos app, and cleans temporary cache.
 
-## Publisher: <br>
-[vahnxu](https://clawhub.ai/user/vahnxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vahnxu](https://clawhub.ai/user/vahnxu)
 
-## Use Case: <br>
-Developers and iOS Shortcuts builders use this skill to create a one-tap workflow that accepts Douyin links from the Share Sheet or clipboard, resolves an MP4 through configured providers, saves it to Photos, and cleans temporary files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected Douyin links are sent to tikwm.com or another configured resolver endpoint. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, and configure a fallback endpoint only if it is trusted. <br>
-Risk: The workflow can download and store media that the user may not have rights to keep. <br>
-Mitigation: Process only content the user is allowed to download and store, and do not use it to bypass paid, member-only, or protected access controls. <br>
-Risk: Broader Photos access or persistent storage would increase privacy exposure. <br>
-Mitigation: Keep Photos permission add-only, avoid telemetry or history, and delete temporary media files after import or failure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Douyin-to-Photos Shortcut Build Guide](references/shortcut-build-guide.md) <br>
-- [Douyin To Photos ClawHub Listing](https://clawhub.ai/vahnxu/douyin-to-photos) <br>
-- [Primary Resolver Endpoint](https://www.tikwm.com/api/) <br>
+## Use Case:
 
+External users and shortcut builders use this skill to create or maintain a one-tap Apple Shortcuts workflow that saves authorized Douyin videos into Photos. It is useful for Share Sheet or clipboard-triggered workflows that need configurable resolver APIs, validation, error handling, and local cleanup.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with JSON configuration and Bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve configurable API endpoints, timeout handling, Photos add-only permission, and temporary-file cleanup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shared Douyin links are sent to TikWM or a configured resolver API.
+
+Mitigation: Use trusted resolver providers, prefer a self-hosted fallback when appropriate, and avoid arbitrary parser APIs.
+
+Risk: Downloaded media is added to the user's Photos library.
+
+Mitigation: Confirm the workflow validates real Douyin hostnames and prompts or clearly signals before saving media.
+
+Risk: Users may process content they are not allowed to download or store.
+
+Mitigation: Process only links the user has rights to save and do not use the workflow to bypass paid, member-only, or protected access controls.
+
+## Reference(s):
+
+- [Shortcut Build Guide](references/shortcut-build-guide.md)
+- [Resolver Script](scripts/fetch_douyin_no_watermark.sh)
+- [ClawHub Skill Page](https://clawhub.ai/vahnxu/skills/douyin-to-photos)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/vahnxu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Apple Shortcuts workflow instructions, resolver script usage, configurable API settings, and validation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-小龙虾备忘录 records quick ideas and local notes so an AI assistant can better support creative work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小龙虾备忘录 — 记录即时想法，让 AI 更好辅助创作。
 
-## Publisher: <br>
-[lwbwbw](https://clawhub.ai/user/lwbwbw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lwbwbw](https://clawhub.ai/user/lwbwbw)
 
-## Use Case: <br>
-Developers and AI-assisted creators use this skill to run a lightweight local memo service for capturing ideas, tasks, tags, and context across sessions through a web UI, CLI, and simple HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The memo service can expose private notes and deletion controls if reachable without authentication. <br>
-Mitigation: Keep the service bound to localhost or behind strong access controls, and avoid storing sensitive notes until authentication is added. <br>
-Risk: Optional nginx setup uses sudo commands and can change host web server routing. <br>
-Mitigation: Review the nginx commands before applying them and confirm the target server configuration. <br>
-Risk: Local memo data is stored in scripts/memos.db and could be lost or overwritten. <br>
-Mitigation: Back up scripts/memos.db before relying on the service for important notes. <br>
+## Use Case:
 
+External users and developers use this skill to run a lightweight memo service for recording, searching, updating, and deleting idea notes through a web UI, CLI, and HTTP API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lwbwbw/idea-memos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Node.js and SQLite memo service with web, CLI, and HTTP API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Memo data may be exposed by an unauthenticated network service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on trusted machines and networks unless the service is bound to localhost, authentication is added, and wildcard CORS is removed.
+
+Risk: System-level nginx setup guidance can alter host web server configuration.
+
+Mitigation: Review each nginx command before use and avoid blindly removing the default site.
+
+Risk: Memo deletion is permanent unless backups exist.
+
+Mitigation: Back up the SQLite database before bulk changes or before using deletion workflows on important notes.
+
+Risk: The web UI needs tag escaping fixes according to the security guidance.
+
+Mitigation: Fix tag rendering before exposing the UI beyond a trusted local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lwbwbw/skills/idea-memos)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite memo store and exposes web, CLI, and HTTP API workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

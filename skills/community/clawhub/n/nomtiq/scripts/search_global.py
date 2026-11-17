@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 Nomtiq 小饭票 - 全球搜索（Google Places + Yelp + Reddit）
 用于海外用户或海外华人场景
@@ -13,42 +14,32 @@ import sys
 import json
 import argparse
 import re
-import os
-import subprocess
-from pathlib import Path
-
-WORKSPACE = Path(__file__).parent.parent.parent.parent  # ~/.openclaw/workspace
+from serper_client import search_web
+from safe_http import is_allowed_https_url, quoted_search_term
 
 
 def _hub_search(query: str, max_results: int = 20) -> list:
-    """调用 search-hub"""
-    try:
-        result = subprocess.run(
-            ['python3.13', 'skills/search-hub/scripts/hub.py', 'search', query, '-t', 'text', '-l', str(max_results)],
-            cwd=str(WORKSPACE),
-            capture_output=True, text=True, timeout=30
-        )
-        if result.returncode != 0:
-            return []
-        data = json.loads(result.stdout)
-        return data.get('results', [])
-    except Exception as e:
-        print(f"search-hub error: {e}", file=sys.stderr)
-        return []
+    """Backward-compatible wrapper around Nomtiq's direct Serper client."""
+    return search_web(query, max_results)
 
 
 def search_google_places(query: str, city: str = '', max_results: int = 20) -> list:
-    """搜索 Google Places（通过 search-hub 搜索 Google Maps）"""
-    city_str = f' {city}' if city else ''
-    search_query = f'site:maps.google.com OR site:google.com/maps {query}{city_str} restaurant'
+    """搜索 Google Places/Tripadvisor 公开页面。"""
+    city_str = f' {quoted_search_term(city)}' if city else ''
+    search_query = f'site:maps.google.com OR site:google.com/maps {quoted_search_term(query)}{city_str} restaurant'
     
     # 同时搜 TripAdvisor 作为补充
-    tripadvisor_query = f'site:tripadvisor.com {query}{city_str} restaurant review'
+    tripadvisor_query = f'site:tripadvisor.com {quoted_search_term(query)}{city_str} restaurant review'
     
     results = []
-    for q in [search_query, tripadvisor_query]:
+    for q, domains in [
+        (search_query, ('google.com',)),
+        (tripadvisor_query, ('tripadvisor.com',)),
+    ]:
         raw = _hub_search(q, max_results // 2)
         for r in raw:
+            if not is_allowed_https_url(r.get('url', ''), domains):
+                continue
             parsed = _parse_global_result(r, source='google')
             if parsed:
                 results.append(parsed)
@@ -58,12 +49,14 @@ def search_google_places(query: str, city: str = '', max_results: int = 20) -> l
 
 def search_yelp(query: str, city: str = '', max_results: int = 20) -> list:
     """搜索 Yelp"""
-    city_str = f' {city}' if city else ''
-    search_query = f'site:yelp.com {query}{city_str}'
+    city_str = f' {quoted_search_term(city)}' if city else ''
+    search_query = f'site:yelp.com {quoted_search_term(query)}{city_str}'
     
     raw = _hub_search(search_query, max_results)
     results = []
     for r in raw:
+        if not is_allowed_https_url(r.get('url', ''), ('yelp.com',)):
+            continue
         parsed = _parse_global_result(r, source='yelp')
         if parsed:
             results.append(parsed)
@@ -74,7 +67,10 @@ def search_reddit(query: str, city: str = '', max_results: int = 10) -> list:
     """搜索 Reddit 本地推荐（最真实的本地人口碑）"""
     city_str = city or ''
     # 搜索城市 subreddit 的餐厅推荐
-    search_query = f'site:reddit.com {query} {city_str} restaurant recommendation'
+    search_query = (
+        f'site:reddit.com {quoted_search_term(query)} '
+        f'{quoted_search_term(city_str) if city_str else ""} restaurant recommendation'
+    )
     
     raw = _hub_search(search_query, max_results)
     results = []
@@ -88,11 +84,13 @@ def search_reddit(query: str, city: str = '', max_results: int = 10) -> list:
 def search_xiaohongshu_global(query: str, max_results: int = 10) -> list:
     """搜索小红书（海外华人场景）"""
     # 小红书上有大量海外华人的探店内容
-    search_query = f'site:xiaohongshu.com {query} 探店 海外'
+    search_query = f'site:xiaohongshu.com {quoted_search_term(query)} 探店 海外'
     
     raw = _hub_search(search_query, max_results)
     results = []
     for r in raw:
+        if not is_allowed_https_url(r.get('url', ''), ('xiaohongshu.com',)):
+            continue
         results.append({
             'name': _extract_name_from_title(r.get('title', '')),
             'snippet': r.get('snippet', '')[:200],
@@ -177,7 +175,7 @@ def _parse_reddit_result(result: dict) -> dict | None:
     snippet = result.get('snippet', '')
     url = result.get('url', '')
 
-    if 'reddit.com' not in url:
+    if not is_allowed_https_url(url, ('reddit.com',)):
         return None
 
     # 提取提到的餐厅名（通常在引号或大写中）

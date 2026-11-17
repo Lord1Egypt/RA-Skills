@@ -1,40 +1,57 @@
-## Description: <br>
-Analyzes recent public statements by a target company's executive to identify strategic priorities, business pain points, and role-specific visit talking points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+搜集并剖析企业核心高管近期公开言论，洞察其战略重心与业务痛点，并生成面向拜访准备的话术建议。
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Business development, investment, sales, and招商 teams use this skill to prepare for executive meetings by researching public executive statements and turning sourced findings into a structured briefing and negotiation script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may turn incomplete or unverifiable public information into persuasive executive talking points. <br>
-Mitigation: Require citations for factual claims, use public and reliable sources, and label inference or limited evidence clearly. <br>
-Risk: Executive identity, role, and recent priorities can change over time. <br>
-Mitigation: Verify current executive names, dates, and source recency during web research before relying on the generated brief. <br>
+## Use Case:
 
+招商人员、投资人和销售团队 use this skill to prepare for executive meetings by turning recent public statements into a structured briefing, strategic-interest analysis, and tailored outreach or negotiation language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/strategic-partnership-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with cited findings, prioritized needs, talking points, and risk notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web research; factual claims should include source names, dates, and links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: Public executive statements may be outdated, incomplete, or weakly sourced, leading to misleading strategic-intent analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each cited statement, publication date, and company-executive match before using the generated briefing.
+
+Risk: Generated talking points may include speculative personal inferences or claims that go beyond public information.
+
+Mitigation: Use only public sources, label limited evidence clearly, and avoid claims about private motives, sensitive personal attributes, or non-public facts.
+
+Risk: Outreach or negotiation language may overstate regional benefits, incentives, or business leverage.
+
+Mitigation: Review proposed talking points against current local policy, available offers, and approved business positions before sharing them externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/strategic-partnership-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with sourced executive-analysis sections and suggested talking points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires public-source verification of cited statements, source dates, and company-executive matches.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

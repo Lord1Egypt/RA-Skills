@@ -1,40 +1,49 @@
-## Description: <br>
-Claw MBTI guides an agent through a 60-question MBTI-style survey, scores the answers, and returns a personality type with a detailed result link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw MBTI guides an agent through a 60-question MBTI-style self-assessment, calculates a personality type, and reports a localized result URL.
 
-## Publisher: <br>
-[juunini](https://clawhub.ai/user/juunini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juunini](https://clawhub.ai/user/juunini)
 
-## Use Case: <br>
-Agents use this skill to collect behavioral tendency ratings, calculate an MBTI-style personality result, and present the result with dimension percentages and a localized result URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The external result link contains the inferred MBTI-style type and percentage scores. <br>
-Mitigation: Treat the link as personal profile data and avoid opening or sharing it when that information should remain private. <br>
-Risk: The skill asks personal behavioral questions to produce a personality-style profile. <br>
-Mitigation: Answer only questions the user is comfortable sharing and present the result as a self-reported profile rather than a clinical or employment assessment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Claw MBTI on ClawHub](https://clawhub.ai/juunini/claw-mbti) <br>
-- [Claw MBTI result site](https://claw-mbti.epsilondelta.ai) <br>
+## Use Case:
 
+Agents and their users use this skill to answer a structured personality survey, compute an MBTI-style result, and share a human-readable breakdown with a localized result link.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with JavaScript scoring code and a result URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an MBTI-style type, dimension percentages, and a language-localized external result link.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Opening the generated result link may share encoded personality-score parameters with the external result website.
+
+Mitigation: Review the generated URL before opening or sharing it, and avoid using the link when the score parameters should remain private.
+
+## Reference(s):
+
+- [Claw MBTI skill page](https://clawhub.ai/juunini/skills/claw-mbti)
+- [Claw MBTI result site](https://claw-mbti.epsilondelta.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown response with a personality-type summary, dimension breakdown, JavaScript scoring guidance, and result URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The result URL can encode personality-score parameters and may include a language prefix for supported locales.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

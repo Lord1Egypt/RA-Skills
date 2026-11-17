@@ -1,40 +1,52 @@
-## Description: <br>
-[Didoo AI] Generates Meta Ads creative, including ad copy, headlines, hooks, and visual concepts for new campaigns or refreshed existing ads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Meta Ads creative, including ad copy, headlines, hooks, and visual concepts for new campaigns or creative refreshes.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketers, growth teams, and agents use this skill to turn campaign context into Meta ad variations with hooks, body copy, calls to action, and visual directions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optional Meta and Gemini credentials could expose unnecessary account or model access if provided when they are not needed.
+
+Mitigation: Only provide META_ACCESS_TOKEN or GEMINI_API_KEY when performance lookup or AI image generation is specifically required.
+
+Risk: Generated ad claims, urgency, testimonials, or competitive references may be inaccurate or violate Meta advertising policies.
+
+Mitigation: Review each generated variation for factual accuracy, policy compliance, landing-page alignment, and substantiated claims before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, growth operators, and agents use this skill to turn campaign context into Meta ad variations with hooks, body copy, CTAs, and visual directions. It can also help refresh existing ads when strategy direction or performance context is available. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Meta or Gemini credentials could expose sensitive account access if provided unnecessarily or with broad scope. <br>
-Mitigation: Use the skill without credentials for basic copy generation; only provide keys when optional performance-data or image-generation features are needed, and prefer minimally scoped credentials. <br>
-Risk: Generated ads may include unsupported claims, testimonials, visual concepts, or landing-page mismatches. <br>
-Mitigation: Review generated claims, testimonials, images, CTAs, and landing-page alignment before publishing ads. <br>
+**Output Format:** [Markdown text with ad variations and visual concept descriptions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/elias-didoo/meta-ads-builder) <br>
+**Other Properties Related to Output:** [May reference optional Meta performance data or image generation when credentials and tools are provided.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown ad creative variations with hooks, headlines, body copy, CTAs, and visual directions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally use Meta creative performance data or image generation when the user supplies the relevant credentials and tools.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

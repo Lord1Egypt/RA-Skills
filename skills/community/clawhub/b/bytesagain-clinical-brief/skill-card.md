@@ -1,39 +1,57 @@
-## Description: <br>
-Summarize clinical case notes into specialty briefs. Input: raw case notes or lab results. Output: structured specialty brief, differential diagnosis list, key findings summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize clinical case notes into specialty briefs, including structured specialty briefs, differential diagnosis lists, and key findings summaries.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Clinicians, clinical educators, and healthcare workflow builders can use this skill to draft structured clinical summaries, differential diagnosis lists, lab interpretations, case presentations, and specialty briefs from provided notes or lab values. Its output is a drafting aid for qualified review, not a substitute for clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical notes or lab values entered in terminal commands may appear in shell history, logs, screenshots, or terminal transcripts. <br>
-Mitigation: Prefer de-identified inputs and use the skill only in environments where terminal history, logs, and transcripts are handled under appropriate privacy controls. <br>
-Risk: Generated summaries, differential diagnoses, lab interpretations, or next steps may be incomplete or clinically incorrect. <br>
-Mitigation: Treat outputs as draft text for review by qualified healthcare professionals and do not use them as standalone clinical decision support. <br>
+## Use Case:
 
+Clinicians, healthcare staff, and clinical documentation teams can use this skill to turn raw case notes, symptoms, lab results, or handover details into structured drafts for review. It supports clinical briefing workflows but requires qualified professional judgment before any clinical decision or record use.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with structured headings and bullet-style clinical sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local terminal output; users provide notes, symptoms, lab values, patient descriptors, or specialty names as command arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Clinical notes, lab results, and other inputs may contain sensitive medical information that is printed to the terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use de-identified notes where possible, avoid shared or logged shells for PHI, and confirm local handling practices before use.
+
+Risk: Generated briefs, differential diagnoses, lab interpretations, and next-step suggestions may be incomplete or clinically incorrect.
+
+Mitigation: Treat all output as a draft and rely on qualified clinicians for diagnosis, treatment, and record-entry decisions.
+
+Risk: The generated text includes BytesAgain branding that may be inappropriate in clinical records.
+
+Mitigation: Remove branding before copying generated text into clinical systems or records.
+
+## Reference(s):
+
+- [Bytesagain Clinical Brief on ClawHub](https://clawhub.ai/loutai0307-prog/skills/bytesagain-clinical-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured plain text and Markdown-style clinical briefs with command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include raw user-provided clinical text and should be reviewed before clinical use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

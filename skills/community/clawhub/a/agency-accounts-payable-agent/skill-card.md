@@ -1,40 +1,54 @@
-## Description: <br>
-Accounts Payable Agent supports vendor and contractor payment workflows, payment-rail selection, idempotency checks, audit trails, and escalation for exceptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in accounts payable agent.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Finance and operations teams use this skill to coordinate accounts-payable work such as vendor invoice payments, contractor payouts, recurring bill handling, payment-status reporting, and exception escalation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct real-money payments across fiat, crypto, stablecoin, and payment API rails. <br>
-Mitigation: Install only where payment tools enforce approved vendors and accounts, allowlisted wallets and bank accounts, spend limits, and required approvals. <br>
-Risk: Requests from other agents could cause duplicate, unauthorized, or incorrectly scoped payments if controls are weak. <br>
-Mitigation: Require idempotency checks, per-payment or batch approval policies, audit logging, and human review for exceptions or limit breaches. <br>
+## Use Case:
 
+Finance and operations teams use this skill to process vendor, contractor, recurring, and inter-agent payment requests while maintaining idempotency checks, approval thresholds, audit logs, and escalation paths.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhouqkt/agency-accounts-payable-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured payment-status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate externally constrained payment tool calls when integrated with financial systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks an agent to move real funds across high-risk payment rails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a payment environment with human approval, authenticated callers, vendor allowlists, immutable idempotency keys, cumulative limits, audit logs, and reconciliation before retry or rail failover.
+
+Risk: Unrestricted access to live payment, crypto, stablecoin, wire, payroll, or vendor-payment tools could enable unauthorized or duplicate transfers.
+
+Mitigation: Do not grant unrestricted live payment access; require scoped credentials, approval thresholds, spend limits, and human review for exceptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-accounts-payable-agent)
+- [Publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline code examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce payment status messages, audit summaries, escalation notes, and example tool-call code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

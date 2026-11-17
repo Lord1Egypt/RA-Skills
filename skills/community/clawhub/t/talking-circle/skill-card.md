@@ -1,44 +1,61 @@
-## Description: <br>
-Create animated talking-circle videos, similar to Telegram-style round video messages, from avatar frame images and audio, with audio-to-video and text-to-video workflows using ElevenLabs or SaluteSpeech TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create animated talking-circle videos, like Telegram-style round video messages, from avatar frame images and audio, with audio-to-video and text-to-video support via ElevenLabs or SaluteSpeech TTS.
 
-## Publisher: <br>
-[Rai220](https://clawhub.ai/user/Rai220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rai220](https://clawhub.ai/user/rai220)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to generate circular talking-avatar videos from four prepared avatar frames and either an existing audio file or synthesized speech. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: SaluteSpeech mode disables HTTPS certificate verification while handling credentials. <br>
-Mitigation: Avoid SaluteSpeech mode until TLS verification is fixed; prefer audio-to-video mode or ElevenLabs mode in a trusted environment. <br>
-Risk: Scripts install unpinned Python packages at runtime. <br>
-Mitigation: Review and install pinned dependencies in a controlled environment before running the skill. <br>
-Risk: Text submitted to cloud TTS providers may contain private or regulated content. <br>
-Mitigation: Use existing audio or a trusted local TTS path for sensitive content, or confirm the selected provider's data handling policies before use. <br>
+## Use Case:
 
+External users and developers use this skill to generate circular avatar videos from prepared character frames and either an existing audio file or text synthesized through a supported TTS provider.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Rai220/talking-circle) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [ElevenLabs Voice Library](https://elevenlabs.io/voice-library) <br>
-- [SaluteSpeech](https://developers.sber.ru/portal/products/smartspeech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [MP4 video files, generated avatar frame files, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.9+, ffmpeg, four matching square PNG avatar frames, and optional TTS credentials for cloud speech synthesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The SaluteSpeech text-to-video mode disables TLS verification while sending credentials and user text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid SaluteSpeech mode until TLS verification is fixed; use existing audio files or another TTS path, and rotate SaluteSpeech credentials that were used on untrusted networks.
+
+Risk: Text-to-video modes send user-provided text to cloud TTS providers.
+
+Mitigation: Use audio-to-video mode with a local or already approved TTS source when text or voice content is sensitive.
+
+Risk: Runtime dependencies are not pinned in the artifact requirements.
+
+Mitigation: Run in a private verified environment with reviewed or pinned dependency versions before production use.
+
+## Reference(s):
+
+- [Talking Circle on ClawHub](https://clawhub.ai/rai220/skills/talking-circle)
+- [Frame Preparation Guide](examples/frames/README.md)
+- [ElevenLabs](https://elevenlabs.io)
+- [ElevenLabs Voice Library](https://elevenlabs.io/voice-library)
+- [SaluteSpeech](https://developers.sber.ru/portal/products/smartspeech)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash command snippets; scripts generate MP4 video files and build logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+, ffmpeg, four matched square PNG frame images, and optional TTS provider credentials for text-to-video modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Expert in designing and building autonomous AI agents. Helps with agent architecture, tool integration, memory systems, planning strategies, and multi-agent orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in designing and building autonomous AI agents. Helps with agent architecture, tool integration, memory systems, planning strategies, and multi-agent orchestration.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design, build, and review autonomous AI agent architectures, including tool integration, memory systems, planning strategies, and multi-agent orchestration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Example agent patterns may be adapted into systems that execute tools, manage memory, or coordinate multiple agents.
+
+Mitigation: Review generated implementations for user consent, iteration limits, credential handling, and logging before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, and review autonomous AI agent systems, including tool integration, memory architecture, planning strategies, and multi-agent orchestration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or adapted agent code may introduce unsafe autonomy, tool misuse, credential exposure, persistent memory issues, network access, or hidden execution paths if used without review. <br>
-Mitigation: Review and test any generated code before running it, especially when adding real tools, credentials, persistent memory, network access, or autonomous actions. <br>
-Risk: Agent workflows can loop, fail silently, or produce difficult-to-debug behavior if operational controls are omitted. <br>
-Mitigation: Use iteration limits, explicit error handling, logging, tracing, and graceful fallbacks when implementing the patterns described by the skill. <br>
+**Output Format:** [Markdown guidance with illustrative code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericn26-star/eric-ai-agents-architect) <br>
+**Other Properties Related to Output:** [Produces advisory architecture patterns and example snippets; it does not bundle executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; examples should be reviewed before execution.] <br>
+6.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-6.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

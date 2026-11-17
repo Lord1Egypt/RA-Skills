@@ -16,9 +16,15 @@ Open a core issue when the adapter needs:
 - a readiness bit or health check shared by host dispatchers;
 - a gateway search/describe/call response field;
 - install, uninstall, or sidecar lifecycle behavior;
-- cross-DCC app UI automation contracts;
+- cross-DCC UI Control automation contracts;
 - common artefact/file handoff and retention behavior;
 - policy, audit, telemetry, or debug bundle fields.
+
+Before adding a protocol DTO, check
+[`ADR-027`](https://github.com/dcc-mcp/dcc-mcp-core/blob/main/docs/adr/027-protocol-type-ownership.md). Adapters and
+gateway applications consume the canonical core type directly, re-export it
+for compatibility, or use an explicit conversion when their invariants differ;
+they do not copy generic JSON-RPC, MCP, wire, or transport fields locally.
 
 ## Keep Local to the Adapter
 

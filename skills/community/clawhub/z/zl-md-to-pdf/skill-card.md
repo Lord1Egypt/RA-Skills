@@ -1,40 +1,48 @@
-## Description: <br>
-Use when converting markdown files to PDF with styling, code highlighting, and CJK support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when converting markdown files to PDF with styling, code highlighting, and CJK support.
 
-## Publisher: <br>
-[zhuleikiro222](https://clawhub.ai/user/zhuleikiro222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhuleikiro222](https://clawhub.ai/user/zhuleikiro222)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and other agent users use this skill to convert Markdown documents into styled PDF files for offline documentation, reports, and shareable technical materials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security evidence says untrusted Markdown is rendered as active browser content with browser sandboxing disabled and unrestricted network access.
+
+Mitigation: Use the skill only with trusted Markdown or in an isolated environment, and avoid files from other people until JavaScript is disabled, HTML is sanitized, network requests are blocked, and browser sandboxing is restored.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and technical writers use this skill to convert Markdown documents into styled, printable PDF files with CJK text, tables, images, links, and optional page numbers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted Markdown can cause the browser renderer to load external resources during PDF generation. <br>
-Mitigation: Use the skill on trusted Markdown, or add request blocking or sanitization before processing untrusted files. <br>
+**Output Format:** [Markdown guidance with shell commands and JavaScript configuration references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuleikiro222/zl-md-to-pdf) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+**Other Properties Related to Output:** [Produces instructions for generating PDF files from Markdown using Node.js, marked, puppeteer-core, and a local Chrome or Edge browser.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js v18+ and an installed Chrome or Edge browser.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

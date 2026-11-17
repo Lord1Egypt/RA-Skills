@@ -1,0 +1,204 @@
+{
+  "card_id": "WQ-EXP-013",
+  "source_type": "clinical_experience",
+  "source_file": "王琦以调节体质为本治疗呼吸道变态反应性疾病经验_赵蔚波.pdf",
+  "title": "王琦以调节体质为本治疗呼吸道变态反应性疾病经验赵蔚波，王雅琦，赵海虹，吴涛涛，严云，邵冬梅，马晗，申荣旻，王济✉",
+  "authors": [
+    "赵蔚波"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证在辨体论治的基础上先辨病抓住根本病机，再辨证做到因人施治，佐以对症治疗。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散"
+    ],
+    "principle": "益气固表、活血化瘀",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "当归",
+      "甘草"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "经验。呼吸道变态反应性疾病主要包括变应性鼻炎、变应性咳嗽、变应性哮喘。认为体质在呼吸道变态反应性疾病的产生、发展、转归中起着重要作用，调节特禀体质应贯穿其防治的始终，自拟“脱敏调体方”对禀赋不耐及肺卫失衡有良好改善作用。呼吸道变态反应性疾病基本病机为邪热怫郁于肺，临证在辨体论治的基础上先辨病抓住根本病机，再辨证做到因人施治，佐以对症治疗。 体质；名医经验；王琦王琦（1943—），男，北京中医药大学终身教授，中国工程院院士，国医大师，国际欧亚科学院院士，国家重点基础研究发展计划（“973”计划）首席科学家。从事中医体质学研究40 余载，临床上遵循“辨体-辨病-辨证”诊疗模式。 体质状况对疾病的治疗起着重要的作用，倡导改变治疗“过敏病”的观念，并确立治疗“过敏人”的学术观点。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "王老师把伏热蕴肺作为变应性鼻炎发作的主要原因，同时认为特禀体质是患者发生变应性鼻炎的内在体质基础",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "若鼻塞重者，加白芷、薄荷以增强宣通鼻窍、疏风散邪之效；鼻痒、眼痒者，加路路通、百部或蜂房以杀虫祛风止痒；清涕多者加五苓散温阳化气、利水渗湿；兼有气虚、恶风、易感冒者，加黄芪、白术、防风益气固表",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "王老师认为，变异性咳嗽与普通咳嗽均为肺气上逆所致，但其根本病机不同，变异性咳嗽为特禀体质感受外邪、肺热痰阻所致，因此治疗时除用宣降肺气、化痰止咳之品外，同时需加用改善特禀体质、 养阴清热的药物",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证在辨体论治的基础上先辨病抓住根本病机，再辨证做到因人施治，佐以对症治疗。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为益气固表、活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、当归、甘草。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "呼吸道变态反应性疾病主要包括变应性鼻炎、变应性咳嗽、变应性哮喘",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [
+    "过敏性鼻炎",
+    "哮喘"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "王老师把伏热蕴肺作为变应性鼻炎发作的主要原因，同时认为特禀体质是患者发生变应性鼻炎的内在体质基础",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "若鼻塞重者，加白芷、薄荷以增强宣通鼻窍、疏风散邪之效；鼻痒、眼痒者，加路路通、百部或蜂房以杀虫祛风止痒；清涕多者加五苓散温阳化气、利水渗湿；兼有气虚、恶风、易感冒者，加黄芪、白术、防风益气固表",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "王老师认为，变异性咳嗽与普通咳嗽均为肺气上逆所致，但其根本病机不同，变异性咳嗽为特禀体质感受外邪、肺热痰阻所致，因此治疗时除用宣降肺气、化痰止咳之品外，同时需加用改善特禀体质、 养阴清热的药物",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [
+      "过敏性鼻炎",
+      "哮喘"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 4,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 4
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.629901",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.526680",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.526691"
+  }
+}

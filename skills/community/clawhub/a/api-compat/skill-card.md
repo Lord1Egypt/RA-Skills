@@ -1,39 +1,53 @@
-## Description: <br>
-Change public APIs without breaking clients-versioning schemes, additive vs breaking changes, deprecation windows, and comms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Change public APIs without breaking clients-versioning schemes, additive vs breaking changes, deprecation windows, and comms.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan public API changes, choose versioning and deprecation approaches, coordinate client migrations, and avoid breaking existing consumers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public API guidance can still be misapplied without organization-specific release approvals, customer communication standards, rollback planning, or API governance. <br>
-Mitigation: Apply local release approvals, customer communication standards, rollback plans, and API governance before making public API changes. <br>
-Risk: Deprecation or removal decisions may affect unknown clients if usage data is missing. <br>
-Mitigation: Use API telemetry and removal gates so old and new behaviors are measurable before retiring behavior. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan public API evolution, including versioning choices, deprecation windows, migration communication, and removal gates for web, mobile, and SDK clients.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, persistence, or hidden behavior was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: API compatibility advice applied without human review could still lead to disruptive breaking changes for clients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as planning guidance, then confirm changes with telemetry, stakeholder coordination, migration communication, and explicit removal gates.
+
+Risk: Deprecating or removing API behavior without usage data can interrupt active consumers.
+
+Mitigation: Measure old and new behavior before removal and gate the final cutover on evidence that affected traffic has moved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/api-compat)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or sensitive access indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

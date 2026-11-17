@@ -1,44 +1,59 @@
-## Description: <br>
-基金新闻日报。从五大财经平台抓取基金新闻，支持特定日期或一段时间查询，自动生成 Word 文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基金新闻日报。从五大财经平台抓取基金新闻，支持特定日期或一段时间查询，自动生成 Word 文档。
 
-## Publisher: <br>
-[imkiiki](https://clawhub.ai/user/imkiiki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imkiiki](https://clawhub.ai/user/imkiiki)
 
-## Use Case: <br>
-External users and analysts use this skill to collect Chinese public fund industry news from major finance outlets for a specific day or date range. It filters for industry-wide and regulatory items and can produce a dated Word report for range queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs outbound searches against third-party financial and news search services. <br>
-Mitigation: Review network access expectations before installation and run it only in environments where those outbound searches are permitted. <br>
-Risk: Range queries can create local Word documents. <br>
-Mitigation: Choose an explicit report output path and review generated documents before sharing or relying on them. <br>
-Risk: The skill depends on npm and pip packages for search access and Word document generation. <br>
-Mitigation: Pin or review the mcporter and python-docx dependencies in stricter environments. <br>
+## Use Case:
 
+External users and finance reporting teams use this skill to collect Chinese public-fund industry news for a specific day or date range, filter out single-product or non-public-fund items, and produce a concise daily summary or Word report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/imkiiki/fundnews-search) <br>
-- [Content Filtering Rules](references/filter_rules.md) <br>
-- [Technical Implementation Details](references/technical_specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown/text news summaries and .docx Word documents for date-range reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are grouped by date and source, include article summaries and official links, and may create an auto-named Word file for range queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow depends on outbound searches through financial news providers, so results may be incomplete, unavailable, or vary by provider coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the returned source links and treat the generated summary as a reporting aid, not an authoritative financial record.
+
+Risk: The documented setup uses unpinned global npm and pip installation commands.
+
+Mitigation: Install dependencies in an isolated environment and pin reviewed versions before operational use.
+
+Risk: Date-range queries can create local Word report files.
+
+Mitigation: Run the skill in a controlled workspace and review the generated document path and contents before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imkiiki/skills/fundnews-search)
+- [Content Filtering Rules](references/filter_rules.md)
+- [Technical Implementation Details](references/technical_specs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Markdown-style text summaries and .docx Word documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Date-scoped Chinese public-fund news summaries with source links; multi-day queries can create a local Word document.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

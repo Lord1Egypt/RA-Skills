@@ -1,40 +1,53 @@
-## Description: <br>
-Generate secure passwords, passphrases, and PINs with entropy analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate secure passwords, passphrases, and PINs with entropy analysis.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and other agent users use this skill to generate random passwords, passphrases, and PINs, or to estimate the entropy of an existing password. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passphrase mode may make an outbound request and cache the downloaded word list in a shared temporary location. <br>
-Mitigation: Review the network behavior before use in offline or restricted environments, and use only password or PIN generation when outbound access is not acceptable. <br>
-Risk: Supplying real passwords through the documented --analyze argument can expose them through shell history or process listings. <br>
-Mitigation: Avoid analyzing real passwords on shared systems, or use an input path that does not place secrets in command-line arguments. <br>
+## Use Case:
 
+External users and developers use this skill to generate random passwords, passphrases, and PINs, or to check password strength with entropy estimates.
 
-## Reference(s): <br>
-- [EFF Large Wordlist](https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate batches and includes entropy estimates with strength labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Passphrase mode may make an outbound request and cache a shared word list, which could weaken generated passphrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a version that bundles or verifies its word list, and avoid passphrase mode where outbound retrieval or shared cache reuse is unacceptable.
+
+Risk: Using the documented --analyze argument form with real passwords can expose sensitive passwords through command history or process arguments.
+
+Mitigation: Avoid analyzing real passwords with command-line arguments; use a version that prompts securely or analyze only test values.
+
+## Reference(s):
+
+- [EFF Large Wordlist](https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON, with shell command examples when guiding use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated secrets, passphrases, PINs, and entropy or strength analysis]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

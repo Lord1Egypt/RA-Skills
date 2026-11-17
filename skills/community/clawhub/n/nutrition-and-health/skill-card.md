@@ -1,45 +1,60 @@
-## Description: <br>
-Provides personalized meal, drink, nutrition, fitness, and general wellness guidance, with Chinese-first documentation and English trigger support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nutrition And Health helps agents provide Chinese-first meal, drink, nutrition, wellness, weight-loss, fitness, and stomach-friendly lifestyle guidance based on user context.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users use this skill for everyday meal planning, drink choices, nutrition habits, fitness eating, stomach-friendly options, and general wellness suggestions. It can also ask profile questions to tailor recommendations to preferences, goals, and health context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for sensitive health details such as age, weight, health conditions, allergies, habits, and goals. <br>
-Mitigation: Use it only when users are comfortable sharing that context in their OpenClaw environment, and avoid entering medical details that should not appear in prompts, logs, or conversation history. <br>
-Risk: The skill gives broad nutrition and wellness guidance that may be mistaken for medical advice. <br>
-Mitigation: Treat recommendations as general wellness support, not diagnosis or treatment, and consult a qualified clinician for serious symptoms, chronic disease management, allergies, medication interactions, or medically restricted diets. <br>
-Risk: The skill can activate on ordinary food and health questions, increasing the chance that users rely on generic guidance for a specific personal situation. <br>
-Mitigation: Review suggestions against the user's actual constraints, preferences, and professional medical advice before acting on them. <br>
+## Use Case:
 
+External users use this skill to get everyday nutrition and wellness suggestions for meals, drinks, takeout, cafeteria choices, weight loss, fitness nutrition, stomach care, seasonal wellness, and personal dietary preferences. It is general wellness guidance and does not replace professional medical diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhuqingsonga/nutrition-and-health) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [README](README.md) <br>
-- [Usage Tips](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown or conversational text with lists, examples, and profile questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local JSON knowledge files and locally supplied user profile details to tailor suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Users may share sensitive health, diet, and body-profile details while seeking personalized recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask only for the minimum useful context, avoid storing unnecessary details, and follow the surrounding agent platform's privacy controls for conversation logs and local files.
+
+Risk: Condition-specific nutrition suggestions could be mistaken for diagnosis or treatment.
+
+Mitigation: Present advice as general wellness guidance and direct users with serious symptoms, chronic conditions, allergies, or medication questions to qualified medical professionals.
+
+Risk: The skill uses preset knowledge and may not reflect a user's current medical context or real-time nutrition guidance.
+
+Mitigation: State assumptions, invite correction, and tailor recommendations to user-provided constraints without claiming real-time or clinical authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/nutrition-and-health)
+- [GitHub repository](https://github.com/zhuqingsonga/nutrition-and-health)
+- [README](artifact/README.md)
+- [Usage tips](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for age, sex, height, weight, health status, dietary habits, exercise habits, schedule, and health goals to personalize recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

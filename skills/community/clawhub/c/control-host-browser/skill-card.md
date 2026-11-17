@@ -1,40 +1,58 @@
-## Description: <br>
-Control the host machine's Chrome browser to open specific URLs in new tabs when the user explicitly asks to open a link, show a page, or search in the browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls the host machine's Chrome browser to open specific URLs in new tabs when the user explicitly asks to open or search for a page.
 
-## Publisher: <br>
-[stevenxie66](https://clawhub.ai/user/stevenxie66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenxie66](https://clawhub.ai/user/stevenxie66)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an agent to open a specific HTTP or HTTPS URL in the user's real Chrome browser rather than perform internal or headless browsing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-requested URLs in the user's real Chrome browser, which may expose logged-in sessions or sensitive browser state to the opened page. <br>
-Mitigation: Confirm the exact URL before use, avoid sensitive logged-in sessions, and prefer a dedicated browser profile for stronger separation. <br>
-Risk: The skill requires Chrome remote debugging to be enabled on the host machine. <br>
-Mitigation: Use it only in environments where the remote debugging port is intentionally enabled and access to that port is controlled. <br>
+## Use Case:
 
+Developers and agent users use this skill to open user-requested HTTP/HTTPS links or search pages in the host Chrome browser for local viewing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevenxie66/control-host-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Text status messages and shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Opens a new Chrome tab through Chrome DevTools Protocol and reports success or error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can open pages in a real Chrome browser through a DevTools port, potentially using a signed-in browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested destinations before execution and enable the skill only for trusted agents and users.
+
+Risk: Security evidence says the skill gives host-browser navigation power without enforcing the promised URL limits.
+
+Mitigation: Add URL scheme and destination validation before enabling the skill broadly.
+
+Risk: The skill depends on a host Chrome remote debugging port being available.
+
+Mitigation: Restrict the debugging port to the expected local environment and avoid exposing it to untrusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevenxie66/skills/control-host-browser)
+- [Publisher profile](https://clawhub.ai/user/stevenxie66)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command output strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces host-browser navigation instructions and reports tab creation or CDP error output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

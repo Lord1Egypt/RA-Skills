@@ -1,44 +1,62 @@
-## Description: <br>
-Openclaw Prompt Shield is a local Python input-hardening scanner that scores untrusted text for prompt-injection, jailbreak, role-override, data-exfiltration, and related LLM input risks before an agent processes it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local input-hardening scanner for OpenClaw agents that uses deterministic, pattern-based checks across 9 LLM input-risk categories and returns a risk score, matched categories, sanitized text, and a safe-to-process verdict.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers and agent builders use this skill to pre-filter user messages, scraped web content, email bodies, RAG snippets, or chat logs before those inputs are treated as agent instructions. It returns risk scores, category matches, verdicts, and sanitized text or JSON reports so the caller can decide whether to continue, review, or block downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner can read input files and write reports or sanitized files at paths supplied by the caller. <br>
-Mitigation: Provide only intended input and output paths, and review generated reports or sanitized files before relying on them downstream. <br>
-Risk: Pattern-based verdicts are a first-pass signal and may miss novel attacks or flag legitimate security discussion. <br>
-Mitigation: Combine the verdict with policy-level controls, human review for high-impact workflows, and deliberate threshold or whitelist settings for trusted research content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to pre-filter user messages, scraped web content, email bodies, RAG snippets, or historical chat logs before downstream agents treat the text as instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gopendrasharma89-tech/openclaw-prompt-shield) <br>
-- [Security review notes](SECURITY.md) <br>
-- [Detection pattern reference](references/patterns.md) <br>
-- [Detection category alphabets](references/categories.txt) <br>
-- [Exfiltration host fragments](references/exfil-hosts.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Guidance] <br>
-**Output Format:** [Plain text or JSON scan reports, with optional sanitized UTF-8 text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic local scoring with safe, caution, and block verdicts; no API keys or remote calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release evidence) <br>
+Risk: Pattern-based detection can miss novel prompt-injection or evasion phrasing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a first-pass signal and keep downstream tool permissions, secret access, and policy controls independently enforced.
+
+Risk: Legitimate security or AI-policy content can trigger false positives.
+
+Mitigation: Tune caution/block thresholds for those domains and use caller-supplied whitelists for known-good quoted material.
+
+Risk: The skill returns advisory verdicts and does not itself block downstream processing.
+
+Mitigation: Wrap the scanner in an agent or platform policy that decides how to handle safe, caution, and block results before using the input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gopendrasharma89-tech/skills/openclaw-prompt-shield)
+- [OpenClaw metadata homepage](https://clawhub.ai/gopendrasharma89-tech/openclaw-prompt-shield)
+- [Detection categories reference](references/patterns.md)
+- [Detection-rule alphabets](references/categories.txt)
+- [Suspicious host fragments](references/exfil-hosts.txt)
+- [Security review notes](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON scan reports, sanitized text blocks, batch JSONL outputs, shell exit codes, and Markdown usage guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include a 0-100 risk score, safe/caution/block verdict, matched categories, recommendations, optional redactions, and caller-configurable thresholds and whitelists.]
+
+## Skill Version(s):
+
+0.4.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

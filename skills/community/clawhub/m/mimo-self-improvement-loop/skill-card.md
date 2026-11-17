@@ -1,41 +1,58 @@
-## Description: <br>
-Self-Improvement Loop helps an agent mine weaknesses from execution traces, generate targeted improvements, validate their effect, and preserve lessons across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a self-improvement loop that mines weaknesses from execution traces, proposes targeted improvements, applies changes by risk level, and validates whether those changes improve future performance.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and agent operators use this skill after important tasks, failures, repeated mistakes, or scheduled review cycles to turn observed behavior into concrete, testable agent improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to keep cross-session records of failures, traces, mistakes, improvements, and validation history, which may capture sensitive task details. <br>
-Mitigation: Use clear workspace boundaries, review generated traces for sensitive data, and avoid storing secrets or private user content in memory records. <br>
-Risk: The skill can direct the agent to modify behavior files such as SKILL.md, MEMORY.md, or TOOLS.md, which can change future agent behavior. <br>
-Mitigation: Require user confirmation and review before applying changes to core behavior files, and keep improvements small, targeted, testable, and reversible. <br>
-Risk: Unvalidated self-improvements can degrade behavior or reinforce incorrect guidance. <br>
-Mitigation: Run the documented proposal validation step, compare outcomes against the prior baseline, and roll back changes that regress quality or reliability. <br>
+## Use Case:
 
+Developers and agent operators use this skill after important tasks, failures, repeated mistakes, or periodic reviews to turn execution history into concrete, testable process improvements.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON record templates with proposed file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update execution traces, weakness records, improvement proposals, validation records, metrics, and skill or memory files when permitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can encourage long-term retention of execution history, weaknesses, mistakes, and validation records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a contained workspace and disable, redact, or regularly review logs before applying it to sensitive tasks.
+
+Risk: The skill can propose or apply changes to future instructions, skills, memory, tools, or decision rules.
+
+Mitigation: Require reviewed diffs and explicit approval before any persistent behavior or instruction changes are accepted.
+
+Risk: Self-improvement proposals may reduce quality if they are accepted without validation.
+
+Mitigation: Run the skill's proposal validation step and roll back changes when measured outcomes are flat or worse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-self-improvement-loop)
+- [Publisher profile](https://clawhub.ai/user/qqyougitcom)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON examples and structured checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent memory records, improvement proposals, metrics, validation notes, and suggested changes to skills or decision rules.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

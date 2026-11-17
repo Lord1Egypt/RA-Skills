@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn793md79p7hf5f98k45wmxp1s81ynbj",
-  "slug": "xiaohongshu-viral-content",
+  "name": "xiaohongshu-viral-content",
   "version": "1.0.0",
-  "publishedAt": 1772367303740
+  "description": "小红书爆款文案生成器。基于热门模板和数据驱动，生成高转化率的小红书内容。",
+  "author": "imgolye",
+  "tags": ["xiaohongshu", "content", "marketing", "viral", "copywriting"],
+  "license": "MIT"
 }

@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through WebSocket and SSE architecture decisions for transport choice, authentication, message protocols, reliability, scaling, operations, and abuse controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep WebSocket/SSE workflow-handshake and auth, session lifecycle, heartbeats, ordering, backpressure, scaling, and observability for realtime dashboards, chat, collaborative editing, or live notifications.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, or troubleshoot realtime systems such as dashboards, chat, collaborative editing, and notification workflows. It helps an agent structure guidance around transport choice, authentication, heartbeats, ordering, backpressure, horizontal scaling, observability, and abuse controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Realtime architecture guidance can involve security-sensitive choices for tokens, cookies, authorization, origins, and long-lived connections. <br>
-Mitigation: Review recommendations against the application's threat model, require WSS, validate origins where applicable, authorize every subscription server-side, and avoid long-lived secrets in query strings. <br>
-Risk: Incorrect heartbeat, reconnect, ordering, or backpressure guidance can lead to unstable production behavior under proxy timeouts, missed messages, or reconnect storms. <br>
-Mitigation: Validate heartbeat intervals against proxy and load balancer timeouts, test exponential backoff with jitter, define delivery semantics, and set buffer, rate-limit, and load-shedding policies before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and review realtime WebSocket or Server-Sent Events systems, including transport selection, connection authentication, message protocol design, reliability, scaling, observability, and abuse controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/websocket-patterns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, design heuristics, and implementation considerations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory workflow content only; it does not run code, request credentials, or change the user's system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Agents may generate implementation code that omits WebSocket authentication, authorization, rate limiting, or operational safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated implementation code against the skill's security and abuse checklist and the ClawHub security guidance before deployment.
+
+Risk: The skill provides advisory design guidance and does not enforce the controls it recommends.
+
+Mitigation: Treat the output as a design checklist and verify the actual system configuration, tests, and runtime behavior separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/websocket-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with checklists, design heuristics, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory workflow guidance; it does not execute code or enforce security controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

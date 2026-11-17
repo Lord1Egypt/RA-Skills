@@ -1,44 +1,55 @@
-## Description: <br>
-Enables OpenClaw agents to discover trusted peers, exchange messages, and coordinate over local UDP networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LocalUDPMessenger helps agents discover peers and exchange text messages over a local UDP network with configurable trust, rate limits, logging, and optional relay monitoring.
 
-## Publisher: <br>
-[turfptax](https://clawhub.ai/user/turfptax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[turfptax](https://clawhub.ai/user/turfptax)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let OpenClaw agents communicate with approved peers on the same LAN, review message history, and coordinate work through controlled local messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Trusted network peers and optional wake-up settings can influence agent behavior by causing incoming messages to be processed as agent turns. <br>
-Mitigation: Use the skill only with highly trusted peers, keep hookToken disabled unless needed, and review incoming messages and udp_log regularly. <br>
-Risk: The optional relayServer can copy message contents to a monitoring endpoint. <br>
-Mitigation: Leave relayServer disabled unless you control the endpoint and accept that sent and received message contents may be copied there. <br>
-Risk: LAN messaging can expose sensitive project details if agents send file contents, secrets, or private data. <br>
-Mitigation: Confirm with the user before sending project details and avoid sharing credentials or private data unless explicitly instructed. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to coordinate OpenClaw agents on the same LAN, manage peer trust, and review or relay local agent-to-agent messages.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/turfptax/openclaw-udp-messenger) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/turfptax/udp-messenger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing guidance for UDP peer discovery, messaging, trust management, logging, and runtime configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release metadata and package.json) <br>
+Risk: Network messages can trigger agent activity without the confirmation users are told to expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted networks, review before installing, and do not rely on always-confirm until enforcement is fixed.
+
+Risk: Relay and wake-up settings can increase exposure of message contents or trigger automatic agent turns.
+
+Mitigation: Leave relayServer and hookToken disabled unless explicitly needed and avoid sharing secrets or project data through messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/turfptax/skills/udp-messenger)
+- [Project homepage](https://github.com/turfptax/openclaw-udp-messenger)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and agent tool outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local UDP peer discovery, messaging, trust management, inbox, status, and log interactions through OpenClaw tools.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

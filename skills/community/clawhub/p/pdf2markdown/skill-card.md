@@ -1,46 +1,60 @@
-## Description: <br>
-Converts PDF and image documents to clean Markdown through the PDF2Markdown CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF and image documents to clean Markdown via the PDF2Markdown CLI.
 
-## Publisher: <br>
-[QThans](https://clawhub.ai/user/QThans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qthans](https://clawhub.ai/user/qthans)
 
-## Use Case: <br>
-Developers and agents use this skill to convert PDFs and common image formats into Markdown or JSON, including larger documents handled through asynchronous parsing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or URLs may be sent to the PDF2Markdown service. <br>
-Mitigation: Use the skill only for user-requested documents that are appropriate to share with the service, and review organizational data-handling requirements before parsing sensitive files. <br>
-Risk: API keys or credentials may be exposed through shell history, logs, or chat if pasted directly. <br>
-Mitigation: Use interactive login or a secret manager, avoid logging PDF2MARKDOWN_API_KEY, and do not paste real API keys into conversations. <br>
-Risk: Setup commands can modify multiple agent environments, and unpinned npx execution may install unexpected package versions. <br>
-Mitigation: Prefer manual installation or single-agent setup for routine use, and pin or review the CLI package before installation in managed environments. <br>
-Risk: Parsed document content can be sensitive or untrusted and may be too large for direct agent context handling. <br>
-Mitigation: Write outputs to .pdf2markdown/, keep that directory gitignored, and inspect large outputs incrementally with targeted reads. <br>
+## Use Case:
 
+Developers and agents use this skill to convert PDFs and common image formats into Markdown or JSON, including larger documents through the CLI's async parsing workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/QThans/pdf2markdown) <br>
-- [PDF2Markdown API Docs](https://pdf2markdown.io/docs) <br>
-- [pdf2markdown-cli package](https://www.npmjs.com/package/pdf2markdown-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional Markdown or JSON conversion outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are typically written under .pdf2markdown/; synchronous parsing is documented for files under about 30MB and asynchronous parsing for files up to 100MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Unpinned npm or npx execution could install a package version that has not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, vetted PDF2Markdown CLI version before installing or running the skill.
+
+Risk: Parsed documents may contain private or sensitive content, and server evidence notes that remote processing is not clearly scoped.
+
+Mitigation: Confirm where documents are sent before parsing sensitive files and keep converted output in a gitignored .pdf2markdown/ directory.
+
+Risk: API keys can be exposed if passed inline or logged during setup.
+
+Mitigation: Use safer login or secret-management flows and avoid exposing PDF2MARKDOWN_API_KEY in command history, logs, or committed files.
+
+## Reference(s):
+
+- [PDF2Markdown API Docs](https://pdf2markdown.io/docs)
+- [pdf2markdown-cli npm package](https://www.npmjs.com/package/pdf2markdown-cli)
+- [ClawHub skill page](https://clawhub.ai/qthans/skills/pdf2markdown)
+- [Publisher profile](https://clawhub.ai/user/qthans)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON file output from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converted content is typically written to .pdf2markdown/ files; async parsing supports large files up to 100MB.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

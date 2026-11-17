@@ -1,39 +1,49 @@
-## Description: <br>
-Reverse the order of lines or characters in text input. Use for text transformation, palindrome checking, and data reordering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse the order of lines or characters in text input for text transformation, palindrome checking, and data reordering.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and other text-processing users use this skill to reverse text line order from standard input. The artifact also documents character and word reversal modes, but the included script only implements line-order reversal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact documents file input plus -c and -w options, but the provided script only reads standard input and reverses line order. <br>
-Mitigation: Verify packaging and command behavior before use, and implement or remove unsupported documented options. <br>
+## Use Case:
 
+Developers and other ClawHub users can use this skill to reverse text line order and support simple text reordering workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/reverse-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text and Markdown with inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script reads standard input and prints lines in reverse order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The documentation describes character and word reversal options that are not implemented by the included script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for basic line-order reversal unless the option handling is reviewed and updated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/reverse-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included script reads standard input and emits reversed line order.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

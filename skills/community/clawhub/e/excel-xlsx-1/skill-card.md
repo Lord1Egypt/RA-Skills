@@ -1,41 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[tonydesign1999](https://clawhub.ai/user/tonydesign1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonydesign1999](https://clawhub.ai/user/tonydesign1999)
 
-## Use Case: <br>
-Developers, analysts, and automation agents use this skill to create, inspect, or modify Excel and spreadsheet files while preserving formulas, dates, workbook structure, formatting, and recalculation expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet edits can damage formulas, formatting, data types, cached values, or workbook structure. <br>
-Mitigation: Use copies or backups for important workbooks, then review formulas, formatting, recalculation, and workbook behavior before replacing originals. <br>
-Risk: Formula values can be stale when a workbook has not been recalculated after edits. <br>
-Mitigation: Recalculate and inspect representative cells before delivery, especially where formulas, named ranges, or copied references are involved. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill when asking an agent to create, inspect, or modify Excel workbooks and spreadsheet files while preserving formulas, data types, formatting, workbook structure, and recalculation behavior.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tonydesign1999/excel-xlsx-1) <br>
-- [Skill homepage](https://clawic.com/skills/excel-xlsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with code or shell command snippets; may guide creation or editing of spreadsheet files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable install hooks, credential use, or hidden data flow are reported in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Workbook edits can change important business or financial spreadsheet data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups of important workbooks before using the skill to edit files.
+
+Risk: Formula-heavy workbook changes can leave incorrect formulas, stale calculated values, or misleading results.
+
+Mitigation: Review formula-heavy changes and recalculate or audit representative cells before relying on the workbook.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/tonydesign1999/skills/excel-xlsx-1)
+- [Skill homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with optional code blocks, shell commands, and spreadsheet file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook edits involving formulas, dates, data types, formatting, recalculation settings, and template preservation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL.md frontmatter reports 1.0.2 and artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

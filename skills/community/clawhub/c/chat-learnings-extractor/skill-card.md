@@ -1,43 +1,60 @@
-## Description: <br>
-Extract structured learnings (lessons, decisions, patterns, dead ends) from AI conversation exports using a local Ollama model or any OpenAI-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts lessons, decisions, patterns, and dead ends from AI conversation exports using local Ollama or an OpenAI-compatible API.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze exported AI conversation histories and extract reusable lessons, decisions, patterns, and dead ends into semantic memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive conversation content may be sent to a configured OpenAI-compatible API when OPENAI_API_KEY or OPENAI_BASE_URL is set. <br>
-Mitigation: Use the default local Ollama mode for sensitive exports, or only configure a remote endpoint after confirming the provider is acceptable for the data. <br>
-Risk: The skill writes extracted learnings to workspace memory files and tracks processed chat IDs. <br>
-Mitigation: Run with --dry-run or --limit first to inspect behavior before allowing writes to the workspace. <br>
+## Use Case:
 
+Developers and agent users can analyze exported AI conversations to capture actionable insights in persistent semantic memory. Use a dry run and review the generated learnings before relying on them.
 
-## Reference(s): <br>
-- [Chat Learnings Extractor on ClawHub](https://clawhub.ai/djc00p/chat-learnings-extractor) <br>
-- [Publisher Profile](https://clawhub.ai/user/djc00p) <br>
-- [Prompt Template](references/prompt-template.md) <br>
-- [chat-history-importer](https://clawhub.ai/djc00p/chat-history-importer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown appended to memory/semantic/learnings-from-exports.md, with optional command-line output during dry runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can process OpenAI or Anthropic JSON conversation exports, deduplicate processed chats, and use either local Ollama or an OpenAI-compatible chat completions endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: When remote mode is enabled, private conversation exports and the API key are sent to the configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For local processing, unset OPENAI_API_KEY and keep Ollama on loopback. For remote processing, verify the provider and privacy terms and use a trusted HTTPS endpoint.
+
+Risk: Generated learnings are unreviewed text written into persistent memory and may be inaccurate or misleading.
+
+Mitigation: Start with --dry-run, limit the selected exports, and review the generated learnings before relying on them in memory.
+
+Risk: A dry run still contacts the configured model and may create directories.
+
+Mitigation: Check the selected model endpoint and workspace location before running, and use a narrow input scope.
+
+## Reference(s):
+
+- [Chat Learnings Extractor on ClawHub](https://clawhub.ai/djc00p/skills/chat-learnings-extractor)
+- [Related chat-history-importer skill](https://clawhub.ai/djc00p/chat-history-importer)
+- [Model Modes and Extraction Categories](references/model-modes-and-categories.md)
+- [Extraction Prompt Template](references/prompt-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown organized into lessons learned, decisions made, patterns noticed, and dead ends]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Model-generated learnings can be previewed with --dry-run before they are written to persistent memory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

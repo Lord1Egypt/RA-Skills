@@ -1,0 +1,3 @@
+{"section":"2","item":"测试项·营业收入（虚构，仅冒烟）","value":"1,000","basis":"百万元（虚构）","date":"2026-09-30","source":"http://example.invalid/x","locator":"§0"}
+{"section":"4","side":"bull","item":"测试看多依据（虚构）","value":"12%","basis":"增速（虚构）","date":"2026-09-30","source":"http://example.invalid/b1","locator":"§0"}
+{"section":"4","side":"bear","item":"测试看空依据（虚构）","value":"-3%","basis":"毛利（虚构）","date":"2026-09-30","source":"http://example.invalid/b2","locator":"§0"}

@@ -1,44 +1,59 @@
-## Description: <br>
-AI virtual team collaboration system with PM/Dev/Review agents for automated software development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawCompany coordinates PM, development, and review agents to turn feature or app requests into implementation tasks, code changes, and review results.
 
-## Publisher: <br>
-[felix-miao](https://clawhub.ai/user/felix-miao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felix-miao](https://clawhub.ai/user/felix-miao)
 
-## Use Case: <br>
-Developers and engineers use ClawCompany to turn feature or application requests into a coordinated PM, development, and review workflow that can generate or modify project files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically edit files in a project through its development agent workflow. <br>
-Mitigation: Run it in a clean repository or branch, use dry-run first where practical, and manually inspect all diffs before accepting changes. <br>
-Risk: Verbose logs or agent session output may expose API or session details. <br>
-Mitigation: Keep verbose logs private and avoid pasting secrets or sensitive project data into requests. <br>
-Risk: The built-in review agent may approve changes that still require human review. <br>
-Mitigation: Treat the review output as advisory and perform a separate manual code and security review before deployment. <br>
+## Use Case:
 
+Developers and builders use this skill to delegate a software request to a small virtual team that analyzes requirements, generates or modifies project code, and reviews the result. It is intended for rapid prototyping and implementation workflows in OpenClaw-style agent environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/felix-miao/clawcompany) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [GLM API documentation](https://open.bigmodel.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON and markdown-style agent progress summaries with generated file paths and code artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify files in the configured project path; dry-run mode can be used to preview workflow behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can launch coding agents that modify project files using broad natural-language triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in a disposable or version-controlled project directory, use dry-run first, and review generated changes before applying or committing them.
+
+Risk: Task prompts and project details may be sent to external agent or model services.
+
+Mitigation: Avoid sensitive prompts and proprietary project context unless the publisher documents acceptable data handling for the configured services.
+
+Risk: Verbose operation or generated logs may expose credentials or sensitive configuration such as GLM_API_KEY.
+
+Mitigation: Keep API keys in environment variables, avoid verbose mode with real secrets, and rotate any credential that appears in logs or generated output.
+
+## Reference(s):
+
+- [ClawCompany ClawHub release](https://clawhub.ai/felix-miao/skills/clawcompany)
+- [OpenClaw](https://openclaw.ai)
+- [GLM API key portal](https://open.bigmodel.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-style task plans, generated file paths or code changes, review summaries, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run and verbose modes; generated files and summaries depend on the downstream agent sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

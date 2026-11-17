@@ -1,43 +1,53 @@
-## Description: <br>
-Provides tools for browsing Taobao Tiantian deals, including paginated product lists, sorting, product details, coupons, purchase links, and channel statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+淘宝天天特卖频道商品查询，100%天猫品牌店精选，涵盖家居日用、洗护清洁、零食粮油等全品类，价格多在5-30元，支持销量/价格/热度4种排序。夏日特卖好物，淘宝天天低价精选
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-Shopping assistants and agents use this skill to browse current Taobao Tiantian deal listings, compare sort orders, retrieve product details, and present coupon or purchase links to users. It supports deal discovery only and does not place orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product lookup requests are sent through the publisher's Tencent Cloud proxy before reaching Taobao-related APIs. <br>
-Mitigation: Use the skill only for intended Taobao deals browsing and avoid sending sensitive personal information in lookup prompts. <br>
-Risk: The publisher's proxy token is disclosed in the submitted artifact. <br>
-Mitigation: Publisher should rotate and protect the proxy token; users should install only versions whose publisher they trust. <br>
-Risk: Shopping information, coupons, stock, and prices may change after retrieval. <br>
-Mitigation: Confirm final price, coupon rules, inventory, and seller information on the destination Taobao page before purchasing. <br>
+## Use Case:
 
+External shoppers and shopping-assistant agents use this skill to browse Taobao Tiantian Temai deals, sort deal lists by sales, price, or recommendation heat, inspect item details, and retrieve channel statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/taobao-tiantian) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON strings containing product data and concise human-facing summaries suitable for agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Product data may include item titles, brand and shop names, category, prices, coupon information, promotional labels, image URLs, buy links, coupon links, pagination state, cache status, and category statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends Taobao deal requests through a publisher-operated cloud proxy, so requests and outbound shopping-link retrieval depend on that remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that proxy dependency is acceptable, and review the publisher profile and skill page before deployment.
+
+Risk: ClawHub security evidence reports an embedded shared proxy token and configurable proxy URL, which could enable proxy abuse or unintended token disclosure.
+
+Mitigation: Rotate or replace shared tokens, remove source-code token fallbacks, and restrict the allowed proxy host before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/taobao-tiantian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON tool responses containing human-readable Chinese text and shopping links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns paginated deal lists, single-item details, or channel statistics; item output may include image URLs and outbound purchase links.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

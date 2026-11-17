@@ -2008,7 +2008,7 @@ alert_manager = AlertManager(
 # Configure notification channels
 alert_manager.configure_webhook("https://alerts.myfleet.com/webhook")
 alert_manager.configure_slack(
-    webhook_url="https://hooks.slack.com/services/T00/B00/xxx",
+    webhook_url="REDACTED-SECRET",
     default_channel="#agent-alerts",
 )
 

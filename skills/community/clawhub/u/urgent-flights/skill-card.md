@@ -1,46 +1,61 @@
-## Description: <br>
-Find flights departing within 48 hours for spontaneous trips or emergency travel with immediate availability and real-time seat status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find flights departing within 48 hours for spontaneous trips or emergency travel with immediate availability and real-time seat status, powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to find urgent flight options, compare near-term availability, and format real-time travel results with booking links. It also guides agents through parameter collection, CLI execution, and fallback handling when results are unavailable or ambiguous. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run the flyai CLI and send travel search details to that provider. <br>
-Mitigation: Review commands before execution, use an isolated environment where possible, and avoid sharing sensitive travel details unless the provider is acceptable for the use case. <br>
-Risk: The skill documentation allows local request logging that may retain raw travel details. <br>
-Mitigation: Delete, disable, or restrict access to .flyai-execution-log.json when travel details should not be retained. <br>
-Risk: The skill suggests global installation and fallback sudo installation for the CLI. <br>
-Mitigation: Prefer a project-local or otherwise isolated install and avoid sudo unless explicitly reviewed and approved. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search urgent flight options within 48 hours, compare available itineraries, and present booking links based on live flyai CLI results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/urgent-flights) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight and travel results are expected to come from flyai CLI output, and every shown flight result must include a booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install an unpinned global flyai CLI, including a sudo fallback in artifact guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package and installation source before use, avoid sudo installation, and prefer a pinned or isolated installation path.
+
+Risk: The skill depends on external booking links returned by the CLI.
+
+Mitigation: Use the skill only when the flyai CLI and returned booking links are trusted, and review links before acting on them.
+
+Risk: The runbook behavior may persist raw travel queries and command history in a local hidden log file.
+
+Mitigation: Disable or review local logging where sensitive travel details are involved, and remove logs according to the user's retention needs.
+
+## Reference(s):
+
+- [Urgent Flights on ClawHub](https://clawhub.ai/dingtom336-gif/skills/urgent-flights)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should be sourced from flyai CLI output and include booking links when available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

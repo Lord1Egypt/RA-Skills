@@ -1,46 +1,62 @@
-## Description: <br>
-Access real-time public social media data from TikTok, Instagram, YouTube, Reddit, Twitter, Twitch, Snapchat, and Threads via EnsembleData's REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access real-time public social media data from TikTok, Instagram, YouTube, Reddit, Twitter, Twitch, Snapchat, and Threads via EnsembleData's REST API.
 
-## Publisher: <br>
-[marktristy](https://clawhub.ai/user/marktristy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marktristy](https://clawhub.ai/user/marktristy)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to guide authenticated EnsembleData REST API requests for public social media data, including platform endpoints, pagination, SDK examples, usage monitoring, and metered costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens can be exposed through query parameters in prompts, logs, or shared request URLs. <br>
-Mitigation: Treat the EnsembleData token as a secret and redact full request URLs from logs, tickets, and shared prompts. <br>
-Risk: Bulk collection of public social-media data may conflict with platform terms, privacy law, consent expectations, or retention policies. <br>
-Mitigation: Confirm the intended use complies with applicable terms and policies, avoid unnecessary bulk collection, and define retention limits before use. <br>
-Risk: Metered API calls can consume daily units or paid quota unexpectedly. <br>
-Mitigation: Review endpoint unit costs before running bulk workflows and use the free account usage endpoints to monitor consumption. <br>
+## Use Case:
 
+Developers and analysts use this skill to call EnsembleData endpoints and SDKs for collecting public social media profiles, posts, comments, and engagement data for monitoring, research, and analytics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marktristy/skills/social-scraper-api) <br>
-- [EnsembleData API Docs](https://ensembledata.com/apis/docs) <br>
-- [EnsembleData Pricing](https://ensembledata.com/pricing) <br>
-- [EnsembleData Python SDK](https://github.com/EnsembleData/ensembledata-python) <br>
-- [EnsembleData Node.js SDK](https://github.com/EnsembleData/ensembledata-node) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with endpoint tables and Python, Node.js, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes JSON REST API requests and responses; no hidden execution or generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: EnsembleData tokens may be exposed through shared URLs, logs, screenshots, notebooks, or source code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or secret storage, redact logs, avoid sharing tokenized URLs, rotate tokens after exposure, and pin SDK versions.
+
+Risk: Collected public social-media data can include comments, profile details, contact fields, or business information subject to platform terms and privacy rules.
+
+Mitigation: Limit collection to lawful public-data use cases, minimize stored data, review platform and privacy obligations, and apply access controls to exported datasets.
+
+Risk: Bulk scraping and paginated endpoints can consume metered units quickly.
+
+Mitigation: Cap pagination depth, monitor usage with the free account usage endpoints, and set operational limits before large collection jobs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marktristy/skills/social-scraper-api)
+- [EnsembleData API Documentation](https://ensembledata.com/apis/docs)
+- [EnsembleData Pricing](https://ensembledata.com/pricing)
+- [EnsembleData Python SDK](https://github.com/EnsembleData/ensembledata-python)
+- [EnsembleData Node.js SDK](https://github.com/EnsembleData/ensembledata-node)
+- [Postman Collection](https://elements.getpostman.com/view/fork?collection=33901342-37bb76fa-5bc5-4342-94b5-3a6f884daabd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown documentation with REST endpoint tables and Python, Node.js, and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes token handling guidance, endpoint costs, pagination notes, error codes, and account usage monitoring examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

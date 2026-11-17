@@ -1,0 +1,20 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_list",
+    "description": "Get team member list with pagination support.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "pageIndex": {
+          "type": "integer",
+          "description": "Page number, starting from 1 (optional, default 1)."
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "Number of records per page (optional, default 20)."
+        }
+      }
+    }
+  }
+}

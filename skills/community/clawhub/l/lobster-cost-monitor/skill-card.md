@@ -1,42 +1,49 @@
-## Description: <br>
-OpenClaw Cost Guardian monitors OpenClaw token use and estimated cost, recommends lower-cost models, issues budget alerts, and produces optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Cost Guardian helps users monitor OpenClaw token consumption, estimate costs, receive budget alerts, and choose lower-cost models for tasks.
 
-## Publisher: <br>
-[zhanqirong](https://clawhub.ai/user/zhanqirong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanqirong](https://clawhub.ai/user/zhanqirong)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to review token spending, choose cost-appropriate models, receive budget warnings, and generate cost reports with optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks to inspect OpenClaw usage across conversations without clear opt-in, retention, deletion, or report-destination boundaries. <br>
-Mitigation: Use it manually or only after explicit opt-in; limit analysis to the current reporting scope unless data handling and report destinations are documented. <br>
-Risk: The skill describes automatic daily reports and possible cost-related behavior changes without confirmation controls. <br>
-Mitigation: Require user confirmation before sending reports, changing models, pausing tasks, or applying budget-control actions. <br>
-Risk: Model prices, budget status, and savings claims may be inaccurate if based on stale or incomplete usage data. <br>
-Mitigation: Treat outputs as estimates and verify recommendations against current billing data before making spending or workflow decisions. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to review token usage, estimate spend, receive budget warnings, and get model-selection and configuration guidance for reducing usage costs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zhanqirong/lobster-cost-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports with plain-text recommendations and YAML-style configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost estimates and savings recommendations depend on available usage and pricing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic conversation-level monitoring and daily reporting may expose usage patterns without clear opt-in, destination, retention, or disable controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only where users can opt in, disable monitoring, and understand what usage data is stored, shared, and retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanqirong/skills/lobster-cost-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, bullet lists, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cost estimates, budget thresholds, model recommendations, and daily report summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

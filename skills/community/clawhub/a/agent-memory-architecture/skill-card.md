@@ -1,45 +1,59 @@
-## Description: <br>
-Helps agents implement a durable file-based memory architecture with core memory files, WAL protocol, typed entries, L1 summaries, compression, recall search, and contradiction detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements a file-based agent memory architecture for durable continuity using core workspace files, typed memory entries, WAL protocol, L1 summaries, memory compression, and contradiction detection.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and agent builders use this skill to scaffold, restructure, or audit persistent memory systems for agents that need continuity across sessions. It is most relevant when the agent has persistent filesystem access and needs durable operating rules, user context, decisions, lessons, and long-term memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory files may retain personal identifiers, preferences, decisions, or sensitive workspace context longer than intended. <br>
-Mitigation: Store only necessary memory, avoid secrets and unnecessary personal identifiers, and keep generated memory files out of shared contexts. <br>
-Risk: Heartbeat-style behavior and optional checks of email, calendar, social, or git sources can over-collect context if integrations are enabled too broadly. <br>
-Mitigation: Require explicit opt-in for each external source and keep integrations read-only by default. <br>
-Risk: Loading long-term memory in group chats or shared channels could expose private user or agent context. <br>
-Mitigation: Treat MEMORY.md and SOUL.md as private files and load them only in appropriate one-to-one sessions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up, restructure, or audit persistent file-based memory systems for agents that need continuity across sessions.
 
-## Reference(s): <br>
-- [Memory File Templates](references/memory-templates.md) <br>
-- [Memory Type Taxonomy](references/typing-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/agent-memory-architecture) <br>
-- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates and structured conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable architecture guidance and copy-paste memory file templates; no runtime tool calls or credentials are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+Risk: Durable plaintext memory can expose personal, client, or strategic context if files are shared, synced, committed, or loaded in the wrong session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create memory directories with private permissions, keep memory files out of git and unencrypted cloud sync, and load personal memory only in approved one-to-one sessions.
+
+Risk: Long-lived memory may accumulate sensitive secrets or outdated facts over time.
+
+Mitigation: Do not store passwords or tokens, define deletion rules, review stale facts during maintenance, and preserve contradiction-detection steps.
+
+Risk: Recurring heartbeat checks can touch private integrations too broadly.
+
+Mitigation: Enable heartbeat checks only for explicitly approved accounts or repositories and use the narrowest read-only scopes available.
+
+## Reference(s):
+
+- [Agent Memory Architecture on ClawHub](https://clawhub.ai/samledger67-dotcom/skills/agent-memory-architecture)
+- [Memory File Templates](references/memory-templates.md)
+- [Memory Type Taxonomy](references/typing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with templates, examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-architecture guidance for local agent memory; does not call external services itself.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

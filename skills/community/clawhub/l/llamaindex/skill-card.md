@@ -1,37 +1,53 @@
-## Description: <br>
-LlamaIndex RAG framework assistant for document indexing, retrieval-augmented generation, vector stores, and query engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LlamaIndex RAG framework assistant for document indexing, retrieval-augmented generation, vector stores, and query engines.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Chinese-language guidance and examples for building LlamaIndex RAG systems, including document loading, vector indexing, retrieval, query engines, and vector-store integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/llamaindex) <br>
+Developers and engineers use this skill for concise LlamaIndex guidance when building RAG applications, including loading documents, creating indexes, configuring vector stores, and using query engines.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Install packages deliberately, consider pinning dependency versions in real projects, and protect or delete persistent vector databases that contain private documents.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Example RAG workflows may index sensitive or unauthorized source material into a local or persistent vector store.
+
+Mitigation: Only load documents or webpages the user is allowed to index, and review vector-store retention before using the examples with sensitive data.
+
+Risk: Unpinned package installation examples can resolve to different dependency versions over time.
+
+Mitigation: Install dependencies in an isolated environment and pin reviewed package versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/llamaindex)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Chinese-language explanations and examples for LlamaIndex RAG workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

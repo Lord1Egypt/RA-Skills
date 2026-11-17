@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "mobile-listing",
+  "workflow": "listing",
+  "focus": "mobile",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

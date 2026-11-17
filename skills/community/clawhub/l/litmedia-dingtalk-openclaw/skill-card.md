@@ -1,42 +1,61 @@
-## Description: <br>
-Connects DingTalk Stream mode to OpenClaw AI conversations by receiving DingTalk bot messages, calling the OpenClaw HTTP API for replies, and sending responses back through a DingTalk webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects a DingTalk Stream-mode bot to OpenClaw so user messages can be sent to the OpenClaw HTTP API and returned to DingTalk through a webhook.
 
-## Publisher: <br>
-[tongshendota](https://clawhub.ai/user/tongshendota) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tongshendota](https://clawhub.ai/user/tongshendota)
 
-## Use Case: <br>
-Developers and operators use this skill to set up a DingTalk AI assistant that relays chat messages to a local OpenClaw HTTP API and posts AI replies back to DingTalk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DingTalk secrets, OpenClaw tokens, or webhook URLs could be exposed during setup or operation. <br>
-Mitigation: Keep credentials private, restrict access to the bot configuration, and avoid committing tokens or webhook URLs. <br>
-Risk: Chat text is forwarded to OpenClaw and may be written to logs. <br>
-Mitigation: Use the bot only in approved conversations and redact or disable message logs when privacy requirements call for it. <br>
-Risk: Runtime dependencies and bot permissions may be unsuitable for production without review. <br>
-Mitigation: Review and pin Python dependencies, limit the bot to approved DingTalk conversations, and validate the processed-message file handling before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a DingTalk AI assistant that forwards chat messages to OpenClaw and posts the generated response back into DingTalk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tongshendota/litmedia-dingtalk-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Python, JSON, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps and example bot configuration; users provide DingTalk and OpenClaw credentials, tokens, and webhook URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Enterprise chat content and credentials are handled by the generated DingTalk bot workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege DingTalk app, store credentials outside source code, and approve data handling before forwarding sensitive messages.
+
+Risk: Plaintext configuration and webhook/token examples can lead to accidental secret exposure.
+
+Mitigation: Move DingTalk credentials, webhook URLs, and OpenClaw tokens into a secret manager or protected environment variables before deployment.
+
+Risk: Message-body logging may record sensitive user content.
+
+Mitigation: Disable message-body logging or redact chat content in logs before using the bot in an organization.
+
+Risk: Unrestricted bot access can allow unintended users or chats to invoke OpenClaw.
+
+Mitigation: Restrict allowed DingTalk chats and users, and pin dependencies before running the integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tongshendota/skills/litmedia-dingtalk-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes credential, webhook, logging, and local OpenClaw gateway configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

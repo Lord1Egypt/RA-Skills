@@ -1,40 +1,58 @@
-## Description: <br>
-Generate formatted digests from Discord servers using a user token by reading selected channels and threads and summarizing activity with links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate formatted Markdown digests from selected Discord servers, channels, and threads using a Discord user token, with message summaries, source links, multi-server configuration, token validation, and configurable time periods.
 
-## Publisher: <br>
-[NikolayBohdanov](https://clawhub.ai/user/NikolayBohdanov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nikolaybohdanov](https://clawhub.ai/user/nikolaybohdanov)
 
-## Use Case: <br>
-External users and developers use this skill to monitor configured Discord servers and produce concise activity reports from selected channels or threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A Discord user token can provide broad account access if exposed through shell history, logs, or the local config file. <br>
-Mitigation: Prefer a bot or OAuth-based alternative, avoid passing tokens on the command line, keep the config file private, and rotate the token immediately if it is exposed. <br>
-Risk: Automated digest forwarding can disclose Discord server content to unauthorized recipients. <br>
-Mitigation: Enable scheduled forwarding only when channel owners and all recipients are authorized, and review configured servers and channels before running automation. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent Discord activity from configured servers, channels, and threads and turn it into concise Markdown digests with links to source messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NikolayBohdanov/discord-digest) <br>
-- [Discord API endpoint](https://discord.com/api/v10) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest text with direct links, plus command output and JSON configuration values.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Digest period, server selection, and channel selection are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: A full Discord user session token can expose the Discord account and private server content if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with accounts and servers where this access is acceptable, avoid entering tokens directly in shell history, and prefer a limited-permission bot or OAuth flow when available.
+
+Risk: The skill persists Discord token configuration locally.
+
+Mitigation: Protect the local configuration directory, avoid plaintext token sharing, rotate the token if exposure is suspected, and remove the token when the skill is no longer needed.
+
+Risk: Generated digests may include private community content and source links.
+
+Mitigation: Restrict configured channels to non-sensitive spaces and get permission before forwarding digests to Telegram or other external services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nikolaybohdanov/skills/discord-digest)
+- [Discord API v10](https://discord.com/api/v10)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest text with message links, plus JSON-like command output for setup and validation flows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads Discord messages through a configured user token and selected server/channel settings; output is printed locally.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

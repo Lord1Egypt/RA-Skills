@@ -1,44 +1,56 @@
-## Description: <br>
-Interzoid (interzoid.com) supports requests that search, read, validate, enrich, or compare company, organization, name, email, IP, and license credit data through the OOMOL connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Interzoid data through the OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to run Interzoid lookup and matching actions through an OOMOL-connected account. It supports schema-first requests for email enrichment, IP profile and reputation checks, company and full-name similarity keys, full-name match scoring, organization name standardization, and remaining credit checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send names, emails, IP addresses, organization names, and account-related lookup requests to Interzoid through an OOMOL-connected account. <br>
-Mitigation: Use it only with an intended OOMOL-connected Interzoid account and avoid submitting data that should not be processed by that service. <br>
-Risk: First-time setup may require installing the oo CLI, including documented pipe-to-shell installation commands. <br>
-Mitigation: Review the installation method first, or use manual vendor installation steps before running setup commands. <br>
-Risk: Connected account credentials and scopes can expire or be missing, causing failed actions or requiring reconnection. <br>
-Mitigation: Run connection or authentication setup only after an auth or connection error and confirm the intended Interzoid connection before retrying. <br>
+## Use Case:
 
+External users and developers use this skill to query Interzoid for company and name matching, email enrichment, IP profiles, remaining credits, and organization name standardization through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Interzoid skill page](https://clawhub.ai/oomol/oo-interzoid) <br>
-- [Interzoid homepage](https://www.interzoid.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs agents to inspect live action schemas before constructing JSON payloads and to read response data with execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and artifact frontmatter) <br>
+Risk: The remote CLI installer has not been inspected, and the security review does not establish its safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release before enabling the skill, and inspect any changes it makes to other agent skills.
+
+Risk: Interzoid requests may involve personal or confidential information.
+
+Mitigation: Connect only the intended account and submit such values only when authorized to share them with OOMOL and Interzoid.
+
+## Reference(s):
+
+- [Interzoid](https://www.interzoid.com/)
+- [Interzoid API documentation](https://docs.interzoid.com/)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Interzoid on ClawHub](https://clawhub.ai/oomol/skills/oo-interzoid)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON action results with concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected Interzoid action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

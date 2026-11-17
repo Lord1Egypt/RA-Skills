@@ -1,43 +1,61 @@
-## Description: <br>
-A Test-Driven Development assistant that generates test cases from code or specifications, runs tests, tracks coverage, guides the red-green-refactor cycle, and supports pytest, unittest, jest, and go test. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists test-driven development by generating test scaffolds, running Python tests, reporting coverage, and guiding red-green-refactor workflows.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate and run tests, inspect coverage, and follow a red-green-refactor workflow across supported project test frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running tests can execute code from the target project. <br>
-Mitigation: Use the skill only on trusted projects and review generated commands before execution. <br>
-Risk: Some advertised workflow, mutation, Jest, or Go capabilities may need verification before use. <br>
-Mitigation: Confirm the required framework support in the artifact and test it in a controlled project before depending on those paths. <br>
-Risk: Temporary test report files use predictable /tmp paths on shared machines. <br>
-Mitigation: Run in an isolated workspace or clean up temporary reports after execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate test scaffolds, run Python test suites, inspect coverage, and structure test-driven development work in supported repositories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/oc-tdd) <br>
-- [Publisher profile](https://clawhub.ai/user/michealxie001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated test code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated tests or coverage reports when users run the provided commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Test, status, and coverage commands can execute code from the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted repositories or isolated environments and review commands before running them.
+
+Risk: The release advertises Jest, Go, mutation testing, and full TDD-cycle support that the shipped artifact does not provide.
+
+Mitigation: Validate required framework support before adoption and do not depend on those advertised features unless they are independently present.
+
+Risk: A writable sibling c-support directory could affect optional C/Unity behavior.
+
+Mitigation: Install the skill in a trusted, non-shared location and review sibling support libraries before using C/Unity generation.
+
+Risk: Report files are written under /tmp and are not suitable for high-integrity automation.
+
+Mitigation: Treat /tmp reports as convenience output only and use isolated workspaces or dedicated report paths for controlled automation.
+
+## Reference(s):
+
+- [OpenClaw TDD Assistant on ClawHub](https://clawhub.ai/michealxie001/skills/oc-tdd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with generated test code, shell commands, coverage summaries, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated test files when an output path is provided; test and coverage commands execute in the target repository.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

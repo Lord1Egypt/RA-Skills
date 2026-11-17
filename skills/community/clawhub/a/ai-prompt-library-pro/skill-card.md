@@ -1,39 +1,58 @@
-## Description: <br>
-AI 绘画提示词库，包含 1000+ 高质量 Midjourney/Stable Diffusion 提示词模板，覆盖人像、风景、产品、插画等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 绘画提示词库，包含 1000+ 高质量 Midjourney/Stable Diffusion 提示词模板，覆盖人像、风景、产品、插画等场景。
 
-## Publisher: <br>
-[3313145040](https://clawhub.ai/user/3313145040) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3313145040](https://clawhub.ai/user/3313145040)
 
-## Use Case: <br>
-External creators, designers, and marketers use this skill to ask an agent for AI image-generation prompt templates across portrait, landscape, product, illustration, commercial asset, and special-effect scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security confidence is limited because the scanner guidance says reviewers should inspect the skill content before installation. <br>
-Mitigation: Review SKILL.md and any bundled files for commands, credential requirements, write actions, network calls, or persistence before deployment. <br>
-Risk: Generated image prompts or commercial examples may be inaccurate, unsuitable for a brand, or overstate expected results. <br>
-Mitigation: Review and adapt generated prompts and claims before using them in production or customer-facing work. <br>
+## Use Case:
 
+External users and creative practitioners use this skill as a Chinese-language prompt reference for generating AI image prompts across portrait, landscape, product, illustration, commercial material, and visual effects scenarios.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates and parameter recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt text for external image-generation systems; it does not generate images directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Marketing-style pricing, support, update, and outcome claims may not be backed by bundled files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify commercial terms, support promises, update policy, and claimed results with the publisher before relying on them.
+
+Risk: Chinese-language documentation may be misunderstood by users who cannot review it fluently.
+
+Mitigation: Have a fluent reviewer confirm the scope, instructions, and commercial claims before operational use.
+
+Risk: Generated prompts and downstream images may be unsuitable for a particular brand, audience, model policy, or legal context.
+
+Mitigation: Review prompts and generated outputs against the target platform policy, brand standards, and intended use before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3313145040/skills/ai-prompt-library-pro)
+- [Publisher profile](https://clawhub.ai/user/3313145040)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt templates and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Chinese-language prompt reference; no executable runtime behavior disclosed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -23,6 +23,7 @@ import time
 import uuid
 from datetime import datetime, date, timedelta, timezone
 from pathlib import Path
+from typing import Optional, Union
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, quote
 
 
@@ -191,7 +192,7 @@ DEBUG_DIR: Path = STATE_DIR / "debug"
 DEFAULT_LOGIN_TIMEOUT = 180  # seconds (George app approval window is ~3 minutes)
 
 # User id override for this run (set from CLI --user-id)
-USER_ID_OVERRIDE: str | None = None
+USER_ID_OVERRIDE: Optional[str] = None
 
 def _get_profile_dir(user_id: str) -> Path:
     """Return profile directory for a specific user."""
@@ -202,7 +203,7 @@ def _get_token_cache_file(user_id: str) -> Path:
     return _get_profile_dir(user_id) / "token.json"
 
 
-def _load_config_user_id() -> str | None:
+def _load_config_user_id() -> Optional[str]:
     """Best-effort: read the default George user id from config.json."""
     try:
         if not CONFIG_PATH.exists():
@@ -216,7 +217,7 @@ def _load_config_user_id() -> str | None:
     return None
 
 
-def _discover_recent_profile_user_id() -> str | None:
+def _discover_recent_profile_user_id() -> Optional[str]:
     """Best-effort: pick the most recently used George profile from STATE_DIR."""
     try:
         candidates: list[tuple[float, str]] = []
@@ -274,7 +275,7 @@ def _is_george_app_url(url: str) -> bool:
     return "george.sparkasse.at" in u
 
 
-def _extract_token_expires_in_seconds(url: str | None) -> int | None:
+def _extract_token_expires_in_seconds(url: Optional[str]) -> Optional[int]:
     """Return expires_in seconds if the URL fragment includes an OAuth token response."""
     if not url:
         return None
@@ -290,7 +291,7 @@ def _extract_token_expires_in_seconds(url: str | None) -> int | None:
         return None
 
 
-def _safe_filename_component(value: str | None, default: str = "value") -> str:
+def _safe_filename_component(value: Optional[str], default: str = "value") -> str:
     """Sanitize a user-controlled string for safe use in filenames.
 
     Prevents path traversal by stripping path separators and limiting characters.
@@ -320,7 +321,7 @@ def _safe_filename_component(value: str | None, default: str = "value") -> str:
     return s[:80]
 
 
-def _safe_url_for_logs(url: str | None) -> str:
+def _safe_url_for_logs(url: Optional[str]) -> str:
     """Redact sensitive info from URLs before logging.
 
     George sometimes returns OAuth tokens in the URL fragment, e.g.
@@ -382,7 +383,7 @@ def _ensure_dir(p: Path) -> None:
 DEBUG_ENABLED: bool = False
 
 
-def _write_debug_json(prefix: str, payload) -> Path | None:
+def _write_debug_json(prefix: str, payload) -> Optional[Path]:
     # Write bank-native payload to a timestamped JSON file for debugging.
     if not DEBUG_ENABLED:
         return None
@@ -394,7 +395,7 @@ def _write_debug_json(prefix: str, payload) -> Path | None:
     return out
 
 
-def _load_token_cache(user_id: str) -> dict | None:
+def _load_token_cache(user_id: str) -> Optional[dict]:
     try:
         p = _get_token_cache_file(user_id)
         if not p.exists():
@@ -404,7 +405,7 @@ def _load_token_cache(user_id: str) -> dict | None:
         return None
 
 
-def _save_token_cache(user_id: str, access_token: str, source: str = "auth_header", expires_at: str | None = None) -> None:
+def _save_token_cache(user_id: str, access_token: str, source: str = "auth_header", expires_at: Optional[str] = None) -> None:
     try:
         p = _get_token_cache_file(user_id)
         _ensure_dir(p.parent)
@@ -421,7 +422,7 @@ def _save_token_cache(user_id: str, access_token: str, source: str = "auth_heade
         return
 
 
-def _extract_bearer_token(auth_header: str) -> str | None:
+def _extract_bearer_token(auth_header: str) -> Optional[str]:
     if not auth_header:
         return None
     m = re.match(r"(?i)bearer\s+(.+)$", auth_header.strip())
@@ -430,14 +431,14 @@ def _extract_bearer_token(auth_header: str) -> str | None:
     return m.group(1).strip()
 
 
-def _eu_amount(amount: float | None) -> str:
+def _eu_amount(amount: Optional[float]) -> str:
     if amount is None:
         return "N/A"
     s = f"{amount:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     return s
 
 
-def _canonical_account_type_george(raw_type: str | None) -> str:
+def _canonical_account_type_george(raw_type: Optional[str]) -> str:
     t = (raw_type or "").lower()
     return {
         "currentaccount": "checking",
@@ -452,7 +453,7 @@ def _canonical_account_type_george(raw_type: str | None) -> str:
     }.get(t, t or "other")
 
 
-def canonicalize_accounts_george(payload, normalized: list[dict], raw_path: Path | None = None) -> dict:
+def canonicalize_accounts_george(payload, normalized: list[dict], raw_path: Optional[Path] = None) -> dict:
     # Build canonical accounts wrapper for George.
     raw_accounts: list[dict] = []
     if isinstance(payload, list):
@@ -725,7 +726,7 @@ def get_account(account_key: str) -> dict:
     # Config-less mode: caller must provide the internal account id.
     return {"id": q, "name": q, "iban": None, "type": "unknown"}
 
-    def iban_norm(s: str | None) -> str:
+    def iban_norm(s: Optional[str]) -> str:
         return re.sub(r"\s+", "", (s or "")).lower()
 
     # 1) Exact ID match
@@ -984,7 +985,7 @@ def _format_iban(iban: str) -> str:
     return " ".join(clean[i : i + 4] for i in range(0, len(clean), 4))
 
 
-def _short_iban(iban: str | None) -> str:
+def _short_iban(iban: Optional[str]) -> str:
     if not iban:
         return "IBAN N/A"
     clean = re.sub(r"\s+", "", iban).strip()
@@ -993,7 +994,7 @@ def _short_iban(iban: str | None) -> str:
     return f"{clean[:4]}...{clean[-4:]}"
 
 
-def _first_iban_in_text(text: str) -> str | None:
+def _first_iban_in_text(text: str) -> Optional[str]:
     # Standard Austrian IBAN is 20 chars: AT + 18 digits.
     # Note: don't use a word-boundary here; George sometimes concatenates strings like "...KGAT31...".
     m = re.search(r"AT\d{2}(?:\s*\d{4}){4}", text)
@@ -1008,7 +1009,7 @@ def _first_iban_in_text(text: str) -> str | None:
     return None
 
 
-def capture_bearer_auth_header(context, page, timeout_s: int = 10) -> str | None:
+def capture_bearer_auth_header(context, page, timeout_s: int = 10) -> Optional[str]:
     """Capture Bearer Authorization header from any George API request.
 
     Note: we listen on the *browser context* (not only the page) because George may
@@ -1085,7 +1086,7 @@ def fetch_my_accounts(context, auth_header: str) -> dict:
         "https://api.sparkasse.at/rest/netbanking/my/accounts",
     ]
 
-    last_err: Exception | None = None
+    last_err: Optional[Exception] = None
     for url in urls:
         try:
             resp = context.request.get(url, headers={"Authorization": auth_header}, timeout=30000)
@@ -1254,7 +1255,7 @@ def _securities_accounts_list(payload) -> list[dict]:
     return []
 
 
-def _find_securities_account(payload, account_id: str) -> dict | None:
+def _find_securities_account(payload, account_id: str) -> Optional[dict]:
     if not account_id:
         return None
     for acc in _securities_accounts_list(payload):
@@ -1309,14 +1310,14 @@ def normalize_depot_accounts_from_securities(payload) -> list[dict]:
     return out
 
 
-def _extract_first(d: dict, keys: list[str]) -> object | None:
+def _extract_first(d: dict, keys: list[str]) -> Optional[object]:
     for k in keys:
         if k in d and d.get(k) is not None:
             return d.get(k)
     return None
 
 
-def _extract_amount(value) -> float | None:
+def _extract_amount(value) -> Optional[float]:
     if value is None:
         return None
     if isinstance(value, (int, float)):
@@ -1345,7 +1346,7 @@ def _extract_amount(value) -> float | None:
     return None
 
 
-def _extract_currency(value) -> str | None:
+def _extract_currency(value) -> Optional[str]:
     if isinstance(value, dict):
         for k in ("currency", "ccy"):
             v = value.get(k)
@@ -1354,7 +1355,7 @@ def _extract_currency(value) -> str | None:
     return None
 
 
-def _extract_money(value) -> tuple[float | None, str | None]:
+def _extract_money(value) -> tuple[Optional[float], Optional[str]]:
     amount = _extract_amount(value)
     currency = _extract_currency(value)
     if isinstance(currency, str):
@@ -1441,7 +1442,7 @@ def normalize_accounts_from_api(payload) -> list[dict]:
         # /proxy/g/api/my/accounts includes embedded `card` objects.
         # Treat CREDIT cards as synthetic creditcard accounts (skip non-credit cards).
         card = acc.get("card") if isinstance(acc.get("card"), dict) else None
-        card_number: str | None = None
+        card_number: Optional[str] = None
         if card:
             card_type = (card.get("type") or "").lower()
             flags = acc.get("flags") if isinstance(acc.get("flags"), list) else []
@@ -1499,7 +1500,7 @@ def normalize_accounts_from_api(payload) -> list[dict]:
     return normalized
 
 
-def _extract_money_from_account(acc: dict, value_keys: list[str], currency_keys: list[str]) -> tuple[float | None, str | None]:
+def _extract_money_from_account(acc: dict, value_keys: list[str], currency_keys: list[str]) -> tuple[Optional[float], Optional[str]]:
     raw = _extract_first(acc, value_keys)
     amount = _extract_amount(raw)
     currency = _extract_currency(raw) or _extract_first(acc, currency_keys)
@@ -1508,7 +1509,7 @@ def _extract_money_from_account(acc: dict, value_keys: list[str], currency_keys:
     return amount, currency
 
 
-def try_extract_iban_from_account_page(page, acc_type: str, acc_id: str) -> str | None:
+def try_extract_iban_from_account_page(page, acc_type: str, acc_id: str) -> Optional[str]:
     """Try to extract IBAN by visiting the account detail page.
 
     This is slower than scraping the overview but tends to be more reliable.
@@ -1972,7 +1973,7 @@ def _try_select_datacarrier_type(page, file_type: str) -> None:
         pass
 
 
-def upload_datacarrier_file(page, file_path: Path, file_type: str | None = None) -> dict | None:
+def upload_datacarrier_file(page, file_path: Path, file_type: Optional[str] = None) -> Optional[dict]:
     print(f"[datacarrier-upload] Opening upload page...", flush=True)
     page.goto(DATACARRIER_UPLOAD_URL, wait_until="domcontentloaded")
     time.sleep(2)
@@ -2031,7 +2032,7 @@ def upload_datacarrier_file(page, file_path: Path, file_type: str | None = None)
             return {"raw": "<unparseable response>"}
 
 
-def _extract_sign_state(payload: dict | None) -> tuple[str | None, str | None]:
+def _extract_sign_state(payload: Optional[dict]) -> tuple[Optional[str], Optional[str]]:
     if not isinstance(payload, dict):
         return None, None
     sign_id = payload.get("signId") or payload.get("id")
@@ -2042,7 +2043,7 @@ def _extract_sign_state(payload: dict | None) -> tuple[str | None, str | None]:
     return sign_id, state
 
 
-def _extract_sign_id_from_url(url: str | None) -> str | None:
+def _extract_sign_id_from_url(url: Optional[str]) -> Optional[str]:
     if not url:
         return None
     try:
@@ -2062,7 +2063,7 @@ def _build_datacarrier_files_list_url() -> str:
     return f"{DATACARRIER_FILES_API_URL}?page=0&size=100"
 
 
-def _extract_datacarrier_file_state(payload, file_id: str | int | None) -> tuple[str | None, dict | None]:
+def _extract_datacarrier_file_state(payload, file_id: Optional[Union[str, int]]) -> tuple[Optional[str], Optional[dict]]:
     if file_id is None:
         return None, None
 
@@ -2110,7 +2111,7 @@ def _parse_ddmmyyyy(s: str) -> date:
     return datetime.strptime(s, "%d.%m.%Y").date()
 
 
-def _normalize_date_range(date_from: str | None, date_to: str | None) -> tuple[str | None, str]:
+def _normalize_date_range(date_from: Optional[str], date_to: Optional[str]) -> tuple[Optional[str], str]:
     """Return (date_from, date_to) as strings in DD.MM.YYYY.
 
     - date_to defaults to today
@@ -2415,7 +2416,7 @@ def cmd_accounts(args):
         page = context.new_page()
 
         try:
-            auth_header_value: str | None = None
+            auth_header_value: Optional[str] = None
 
             # 1) Prefer cached token to avoid interactive login.
             token_cache = _load_token_cache(user_id) or {}
@@ -2564,7 +2565,7 @@ def cmd_balances(args):
             payload = fetch_my_accounts(context, auth_header)
             accounts = normalize_accounts_from_api(payload)
 
-            def fmt(amount: float | None, cur: str | None) -> str:
+            def fmt(amount: Optional[float], cur: Optional[str]) -> str:
                 if amount is None:
                     return "N/A"
                 cur = (cur or "EUR").strip()
@@ -3630,7 +3631,7 @@ def cmd_portfolio(args):
     USER_ID_OVERRIDE = user_id
 
     raw_payload = None
-    auth_header_value: str | None = None
+    auth_header_value: Optional[str] = None
 
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(

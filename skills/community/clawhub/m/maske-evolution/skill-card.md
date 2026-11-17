@@ -1,41 +1,54 @@
-## Description: <br>
-统一进化系统，自动化技能发现、评估、安装、进化。当用户需要技能管理、系统进化、能力评估、技能搜索安装时使用此技能。支持ClawHub技能搜索、VFM评估、自动安装、每日进化流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A unified skill-evolution system for discovering, evaluating, installing, and iterating agent skills, including ClawHub skill search, VFM scoring, automated installation flows, and scheduled reflection.
 
-## Publisher: <br>
-[skillforge-jojo](https://clawhub.ai/user/skillforge-jojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skillforge-jojo](https://clawhub.ai/user/skillforge-jojo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover, evaluate, install, and record improvements to agent skills through a recurring evolution workflow. It is aimed at skill management, VFM evaluation, automatic installation, and reflection logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill asks the agent to automatically find, install, or create other skills on a recurring schedule without clear approval controls. <br>
-Mitigation: Use the skill as a manual discovery assistant unless approval is required before each install or skill creation, versions are pinned, and source and publisher are inspected. <br>
-Risk: The daily evolution workflow could introduce unreviewed third-party skills or changes into an agent environment. <br>
-Mitigation: Disable recurring execution by default and require human review, source scanning, and publisher verification before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search for candidate skills, score them with a value-for-money rubric, install or create selected skills, and record recurring reflection notes for capability improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skillforge-jojo/maske-evolution) <br>
-- [Publisher profile](https://clawhub.ai/user/skillforge-jojo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce skill recommendations, VFM scoring guidance, installation commands, evolution logs, and reflection notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Risk: The skill promotes scheduled external skill discovery and installation without clear approval or trust checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before every external skill install or creation, restrict trusted sources, pin and verify versions, inspect permissions and code, and keep scheduled workflows opt-in with disable controls and audit logging.
+
+Risk: Automated recommendations or generated skill changes could introduce incorrect or misleading guidance.
+
+Mitigation: Review proposed recommendations and scan any skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skillforge-jojo/skills/maske-evolution)
+- [ClawHub publisher profile](https://clawhub.ai/user/skillforge-jojo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce skill recommendations, VFM scores, install commands, reflection templates, and evolution logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

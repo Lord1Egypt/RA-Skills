@@ -1,0 +1,33 @@
+{
+  "schema": "qcm-collab-v1",
+  "source": "C:\\Users\\shen.fu.hai\\.workbuddy\\skills\\QCM",
+  "synced_at": "2026-08-25T16:53:38.794273",
+  "infoseek_version": "v3.0.0+",
+  "files": {
+    "qcm_client.py": {
+      "hash": "17269019faa3",
+      "status": "unchanged"
+    },
+    "tracing.py": {
+      "hash": "e92ec72df1ad",
+      "status": "unchanged"
+    },
+    "qcm_graphql.py": {
+      "hash": "1825ccfa90a0",
+      "status": "unchanged"
+    }
+  },
+  "usage": {
+    "import": "sys.path.insert(0, '<infoseek>/extensions/qcm')",
+    "modules": [
+      "qcm_client",
+      "tracing",
+      "qcm_graphql"
+    ],
+    "integration_points": [
+      "qcm_client.call_qcm（统一调用入口）",
+      "qcm_client.call_qcm_remote（跨设备归因）",
+      "tracing（OTel 追踪）"
+    ]
+  }
+}

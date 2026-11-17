@@ -1,41 +1,59 @@
-## Description: <br>
-Analyzes post-feeding aquarium or aquaculture videos to estimate fish gathering, feeding intensity, residual feed, and a 0-100 feeding activity score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes post-feeding fish videos to estimate feeding activity, remaining feed, and appetite alerts.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Aquarium owners, aquaculture operators, public aquarium staff, and developers use the skill to submit feeding-window videos or query historical reports so an agent can return structured feeding activity assessments and recommended observation or water-quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Aquarium videos or video URLs and an open-id may be sent to the LifeEmergence/SMYX cloud service. <br>
-Mitigation: Use only non-sensitive footage, avoid videos containing people or private spaces, and use a dedicated non-sensitive identifier where possible. <br>
-Risk: The skill handles silent account login or registration, local token storage, and bundled API credentials. <br>
-Mitigation: Review the workspace for stored tokens and bundled credentials before deployment, and install only when that account and credential behavior is acceptable. <br>
+## Use Case:
 
+Aquarium keepers and aquaculture operators can use the skill to turn post-feeding camera footage into feeding activity summaries, remaining-feed estimates, and alerts for closer observation. The results support monitoring and should not be treated as a disease diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-fish-feeding-activity-analysis) <br>
-- [API interface documentation](artifact/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown or JSON reports with feeding activity scores, scene labels, alert levels, recommended actions, and report links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write an output file when the optional --output argument is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter states 1.0.2) <br>
+Risk: The security review flags unclear account registration and credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid installing or running the skill with production credentials until the operator clarifies how accounts and credentials are handled.
+
+Risk: The security review flags video transfer disclosures and possible cross-user history exposure.
+
+Mitigation: Until transfer destinations, access boundaries, and retention are clarified, use only non-sensitive test footage in an isolated environment.
+
+Risk: The security review reports that parts of the supplied implementation may not match the fish-analysis description, including export-only behavior.
+
+Mitigation: Confirm the actual analysis, data handling, and export behavior before relying on scores or alerts.
+
+## Reference(s):
+
+- [Fish feeding analysis API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release](https://clawhub.ai/18072937735/skills/smyx-fish-feeding-activity-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Structured data, Markdown, Guidance]
+
+**Output Format:** [Structured feeding report with activity scores, alerts, recommendations, and report links, presented as text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Visual estimates from supplied footage; monitoring guidance, not a disease diagnosis.]
+
+## Skill Version(s):
+
+1.0.21 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

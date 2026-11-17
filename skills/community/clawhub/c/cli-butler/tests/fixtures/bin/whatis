@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# fake whatis — fixture map; miss mimics real "nothing appropriate."
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+o=$(awk -v n="$1" '$1==n{print; exit}' "$DATA/whatis.txt")
+if [ -n "$o" ]; then echo "$o"; else printf '%s: nothing appropriate.\n' "$1"; fi

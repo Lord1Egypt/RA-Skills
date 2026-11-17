@@ -1,312 +1,66 @@
-# Bangkok Nightlife Guide
+# Bangkok Nightlife
 
-## Overview
+Pick the zone by what you actually want — the scenes don't overlap, and going to the wrong one is the mistake. Rooftops are Bangkok's signature; the craft-cocktail scene is genuinely world-ranked; the go-go strips are avoidable if that's not your thing.
 
-Bangkok's nightlife is diverse — from rooftop bars and craft cocktails to megaclubs and local beer gardens. It runs late and options suit every taste.
+## Zones by Intent
 
-## Nightlife Areas
+| You want | Go | Crowd | Anchor venues |
+|----------|-----|-------|---------------|
+| International club-hopping | **Sukhumvit Soi 11** | Tourists, expats | Levels, Above Eleven, Sugar |
+| Upscale cocktails / date night | **Thonglor (Soi 55)** | Young Thai pros | Iron Fairies, 72 Courtyard, WTF |
+| Megaclub / Thai EDM | **RCA** | Thai students | Route 66, Onyx, Slim/Fix |
+| Backpacker chaos, cheap | **Khao San** | 20-something travelers | Brick Bar, bucket stalls |
+| LGBTQ+ | **Silom Soi 2 & 4** | Locals + visitors | DJ Station, G, Telephone, Balcony |
+| Underground / alt / speakeasy | **Charoen Krung / Chinatown** | Creatives, in-the-know | Teens of Thailand, Tropic City, Ba Hao |
 
-### Sukhumvit Soi 11
+## Rooftop Bars (the signature)
 
-**The Main Expat Party Strip**
+Go for **sunset** (arrive ~5:30 PM); dress code enforced — no shorts, sandals, or sleeveless for men. Drinks ฿350-800.
 
-**Vibe**: Loud, international, clubs and bars
-**Crowd**: Tourists, expats, working professionals
-**Best For**: Club-hopping, late nights
+| Bar | Area | Note |
+|-----|------|------|
+| Sky Bar (Lebua) | Riverside | The postcard view, priciest |
+| Vertigo / Moon Bar | Sathorn | Open-edge drama |
+| Octave | Thonglor | 360° from Marriott, smart-casual |
+| Above Eleven | Soi 11 | Peruvian-Japanese, more casual |
 
-**Key Venues**:
-- **Levels**: Multi-floor club
-- **Above Eleven**: Rooftop bar/club
-- **Sugar Club**: Hip-hop, EDM
-- **Nest**: Rooftop lounge
-- **Havana Social**: Cuban-themed bar
+## Cocktails & Live Music
 
-### Thonglor (Sukhumvit Soi 55)
+- **Craft cocktails** (Asia's-50-Best tier): Teens of Thailand, BKK Social Club, Vesper, Rabbit Hole, Backstage. ฿350-500/drink.
+- **Jazz**: Saxophone Pub (Victory Monument institution), The Living Room (Sheraton). **Rock/cover**: Brick Bar (Khao San), Titanium (Soi 22, all-female house band).
 
-**Hip and Upscale**
-
-**Vibe**: Trendy, more Thai, cocktail-focused
-**Crowd**: Young Thai professionals, fashion-conscious
-**Best For**: Quality drinks, date nights, lounge vibes
-
-**Key Venues**:
-- **Iron Fairies**: Speakeasy, live music
-- **72 Courtyard**: Multiple bars
-- **Octave**: Rooftop at Marriott
-- **Demo**: Dance club
-- **WTF Gallery & Bar**: Art and cocktails
-
-### RCA (Royal City Avenue)
-
-**The Megaclub District**
-
-**Vibe**: Massive clubs, Thai party scene
-**Crowd**: Young Thais, university students
-**Best For**: Big room EDM, Thai club experience
-
-**Key Venues**:
-- **Route 66**: Legendary, massive
-- **Onyx**: EDM focus
-- **Slim/Fix**: Hip-hop, R&B
-
-### Khao San Road
-
-**Backpacker Party Zone**
-
-**Vibe**: Chaotic, cheap, international backpackers
-**Crowd**: 20-something travelers
-**Best For**: Bucket drinks, meeting travelers, chaos
-
-**Key Spots**:
-- The whole street is a party
-- Bucket drinks (~฿150)
-- Live music bars
-- Club options at end of road
-
-### Silom Soi 2 & Soi 4
-
-**LGBTQ+ Hub**
-
-**Vibe**: Gay bars, clubs, inclusive
-**Crowd**: LGBTQ+ locals and visitors
-**Best For**: Gay nightlife, inclusive partying
-
-**Key Venues**:
-- **DJ Station**: Biggest gay club
-- **G Bangkok**: Popular club
-- **Telephone Pub**: Classic bar
-- **Balcony**: Starting point bar
-
-### Charoen Krung / Warehouse District
-
-**Alternative & Underground**
-
-**Vibe**: Art spaces, warehouse parties, alternative
-**Crowd**: Creative types, locals who know
-**Best For**: Unique experiences, electronic music
-
-**Key Venues**:
-- **Teens of Thailand**: Speakeasy
-- **Tropic City**: Tiki bar
-- **Warehouse 30**: Event space
-- **Ba Hao**: Bar in Chinatown
-
----
-
-## Types of Venues
-
-### Rooftop Bars
-
-Bangkok's specialty.
-
-| Venue | Location | View | Dress Code |
-|-------|----------|------|------------|
-| **Sky Bar (Lebua)** | Riverside | Best | Smart |
-| **Vertigo** | Sathorn | Dramatic | Smart |
-| **Octave** | Thonglor | City | Smart casual |
-| **Red Sky** | Sukhumvit | Good | Smart casual |
-| **Above Eleven** | Soi 11 | City | Casual |
-
-**Prices**: ฿350-800 per drink
-**Tips**: Go for sunset. Dress code enforced (no shorts, sandals).
-
-### Cocktail Bars
-
-Growing scene with excellent bars.
-
-**Top Picks**:
-- **Teens of Thailand**: Asia's 50 Best Bars
-- **Backstage**: Theatrical cocktails
-- **Vesper**: Classic cocktails
-- **Tropic City**: Tiki vibes
-- **Rabbit Hole**: Whimsical
-
-**Prices**: ฿350-500 per cocktail
-
-### Live Music
-
-**Jazz**:
-- Living Room (Sheraton)
-- Saxophone Pub
-
-**Rock/Cover Bands**:
-- Brick Bar (Khao San)
-- Titanium (Soi 22)
-
-**Local/Indie**:
-- Parking Toys
-- Live performances at Lido Connect
-
-### Clubs
+## Clubs (cover usually includes a drink)
 
 | Club | Music | Cover | Hours |
 |------|-------|-------|-------|
-| **Onyx** | EDM | ฿400-600 | 11 PM - 4 AM |
-| **Route 66** | Mixed/Thai pop | ฿300-500 | 10 PM - 3 AM |
-| **Levels** | EDM | Free-฿400 | 9 PM - 3 AM |
-| **Demo** | EDM | ฿400-600 | 11 PM - late |
+| Onyx (RCA) | EDM | ฿400-600 | 11 PM-4 AM |
+| Route 66 (RCA) | Mixed/Thai pop | ฿300-500 | 10 PM-3 AM |
+| Levels (Soi 11) | EDM | free-฿400 | 9 PM-3 AM |
 
-**Cover**: Often includes a drink
+## Timing & Prices
 
-### Beer Gardens / Local Style
+- **Fill times**: bars 9-10 PM, clubs 11 PM-midnight. Official close 2 AM in entertainment zones, earlier elsewhere — some venues quietly run later.
+- Drink ladder: 7-Eleven beer ฿50-70 · local bar beer ฿100-150 / cocktail ฿150-250 · mid bar ฿150-250 / ฿250-400 · rooftop/premium ฿250-400 / ฿400-700.
 
-**Thai-style outdoor drinking**
+## LGBTQ+
 
-- **Tawandang German Brewery**: Live music, Thai-German
-- **Beer gardens along Ratchadaphisek**
-- **Tow truck beer bars**: Pop-up outdoor bars
+One of Asia's most open scenes. **Silom Soi 2/4** is the club core (DJ Station is the anchor); **Soi 6** quieter bars; Thonglor for mixed/inclusive venues (Maggie Choo's). Drag shows common; weekends draw an international crowd. Same-sex couples move freely here (broader legal picture in `safety.md`).
 
----
+## Red-Light Zones — how not to get burned
 
-## Practical Information
+Nana Plaza (Sukhumvit), Soi Cowboy (Asok), Patpong (Silom) are visible but easy to skip; "no thanks" ends any approach.
 
-### Hours
+- **Agree every price in writing before ordering.** The classic sting: "free entry" → a ฿5,000-20,000 bill for "mandatory drinks" with a bouncer at the door. Ping-pong show touts are the worst offenders — walk past.
+- **Lady drinks** are commission; **bar fines** (฿500-1,500) go to the bar. Know what each is before agreeing, and never run a tab you didn't watch being rung up.
+- The "sick buffalo" emotional-money ask is a script, not a crisis (more scams: `safety.md`).
 
-**Official closing times**:
-- **Entertainment zones**: 2 AM
-- **Regular areas**: Midnight-1 AM
-- **Reality**: Varies, some stay open later
+## Traps
 
-**Peak times**:
-- Bars fill up: 9-10 PM
-- Clubs fill up: 11 PM-midnight
-- Afterparties: 2 AM onwards
+| Trap | Why it fails | Do instead |
+|------|--------------|------------|
+| Entering a "free entry" go-go bar | Bill arrives with mandatory-drink padding + muscle | Agree costs in writing or don't go in |
+| Any drugs | Zero tolerance, clubs get raided and urine-tested | Not worth it — possession = prison (`safety.md`) |
+| Rooftop in shorts/sandals | Turned away at the lift | Smart-casual, closed shoes |
+| Open tab at a hostess bar | Padded with drinks you didn't order | Pay per round; watch the till |
 
-### Cover Charges
-
-- **Bars**: Usually none
-- **Clubs**: ฿300-800 (often includes drink)
-- **Rooftop bars**: No cover, minimum spend sometimes
-
-### Dress Code
-
-**Rooftop Bars**:
-- No shorts, sandals, sleeveless (men)
-- Smart casual minimum
-
-**Clubs**:
-- Smart casual
-- No flip-flops
-- Some require collared shirts
-
-**Casual Bars**:
-- Anything goes
-
-### Drink Prices
-
-| Venue Type | Beer | Cocktail |
-|------------|------|----------|
-| 7-Eleven | ฿50-70 | N/A |
-| Local bar | ฿100-150 | ฿150-250 |
-| Mid-range bar | ฿150-250 | ฿250-400 |
-| Rooftop/premium | ฿250-400 | ฿400-700 |
-
----
-
-## Safety & Tips
-
-### General Safety
-- Bangkok nightlife is generally safe
-- Watch your drink (spiking rare but possible)
-- Use Grab home (tracked)
-- Avoid confrontations (Thai face culture)
-
-### Common Issues
-- **Overcharging**: Agree on prices beforehand at go-go bars
-- **Lady drinks**: Know these are commission for staff
-- **Ping pong shows**: Often overcharge, avoid or negotiate
-
-### Bar Fines
-At certain bars, you can "bar fine" staff to leave with you:
-- ฿500-1,500 typical
-- Goes to bar, not person
-- Negotiation separate
-- Legal for consenting adults
-
-### Drugs
-- **Don't**: Zero tolerance, severe penalties
-- Police raids happen
-- Not worth the risk
-
----
-
-## LGBTQ+ Nightlife
-
-Bangkok is one of Asia's most LGBTQ+-friendly cities.
-
-### Main Areas
-- **Silom Soi 2/4**: Gay bars, clubs
-- **Silom Soi 6**: Quieter gay bars
-- **Thonglor**: Mixed, inclusive venues
-
-### Venues
-**Clubs**:
-- DJ Station (biggest)
-- G Bangkok
-- Maggie Choo's (mixed, glam)
-
-**Bars**:
-- Telephone Pub
-- Balcony
-- The Stranger Bar
-
-### Scene
-- Welcoming to all
-- Drag shows common
-- Trans community visible
-- International crowd weekends
-
----
-
-## Red Light Areas
-
-Exist and are visible but avoidable if not interested.
-
-**Main Areas**:
-- **Nana Plaza** (Sukhumvit): Go-go bars
-- **Soi Cowboy** (Asok): Tourist-oriented strip
-- **Patpong** (Silom): Night market + go-go bars
-
-**What to Know**:
-- Prostitution is technically illegal
-- These areas are tolerated
-- Can walk through without engaging
-- Harassment is rare — "no thanks" works
-- Overcharging in some venues — know prices beforehand
-
----
-
-## After-Hours
-
-When official venues close:
-
-### Options
-- Some clubs quietly extend hours
-- Private parties
-- 24-hour restaurants
-- Chinatown food
-- Pratunam area
-
-### Recovery
-- 7-Eleven: 24/7 water, snacks
-- Khao tom (rice soup): Thai hangover cure
-- Coconut water: Natural rehydration
-
----
-
-## Budget Night Out
-
-### ฿500 Night
-- Pre-drink 7-Eleven (฿100)
-- 2-3 beers at local bar (฿300)
-- Street food (฿100)
-
-### ฿1,500 Night
-- Dinner (฿300)
-- Cocktail bar (฿400)
-- Club entry + drinks (฿800)
-
-### ฿3,000+ Night
-- Nice dinner (฿800)
-- Rooftop bar (฿800)
-- Club VIP or bottle (฿1,500+)
+Getting home: Grab is tracked and cheap — default to it over a street taxi after dark. Alcohol-ban days (Buddhist holidays, election eves): `festivals.md`.

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deployment and Release Map</title>
+  <style>
+    :root {
+      --page: #f5f3ee;
+      --paper: #fffdfa;
+      --canvas: #f8fafc;
+      --ink: #172033;
+      --muted: #647084;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--page); color: var(--ink); font-family: var(--font); }
+    body { padding: 20px; }
+    .shell { max-width: 1480px; margin: 0 auto; border: 1px solid #e2ded4; border-radius: 10px; background: var(--paper); box-shadow: 0 24px 80px rgba(69, 54, 36, 0.12); overflow: hidden; }
+    .topbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: start; padding: 20px 22px; border-bottom: 1px solid #ebe5d9; background: linear-gradient(180deg, #fffdfa, #f9f6ef); }
+    .kicker { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+    .status-mark { width: 9px; height: 9px; border-radius: 50%; background: #2563eb; }
+    h1 { margin: 0; font-size: clamp(26px, 3vw, 42px); line-height: 1.05; letter-spacing: -0.02em; }
+    .subtitle { max-width: 900px; margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .toolbar { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .toolbar button { appearance: none; border: 1px solid #d7dce5; border-radius: 8px; background: #ffffff; color: var(--ink); cursor: pointer; font: 650 12px var(--font); padding: 9px 11px; }
+    .toolbar button:hover { border-color: #aab4c4; background: #f8fafc; }
+    .body-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; min-height: 760px; }
+    .map-wrap { padding: 20px; border-right: 1px solid #ebe5d9; background: linear-gradient(90deg, rgba(148, 163, 184, 0.10) 1px, transparent 1px), linear-gradient(180deg, rgba(148, 163, 184, 0.10) 1px, transparent 1px), var(--canvas); background-size: 32px 32px; overflow-x: auto; }
+    svg { display: block; width: 100%; min-width: 0; height: auto; }
+    .notes { padding: 18px; background: #fffdfa; }
+    .notes h2 { margin: 0 0 12px; font-size: 15px; letter-spacing: -0.01em; }
+    .note-section { border-top: 1px solid #ebe5d9; padding: 16px 0; }
+    .note-section:first-of-type { border-top: 0; padding-top: 0; }
+    .note-section h3 { margin: 0 0 8px; color: #334155; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .note-section ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .note-section li { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 12px 22px; border-top: 1px solid #ebe5d9; color: #7b8495; font-family: var(--mono); font-size: 11px; background: #faf7f0; }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="kicker">
+          <span class="status-mark" aria-hidden="true"></span>
+          <span>Deployment Lens</span>
+          <span>/</span>
+          <span>Release Scope</span>
+        </div>
+        <h1>Deployment and Release Map</h1>
+        <p class="subtitle">How a change travels from an approved release through build, registry, and the deploy controller into staging and a canary-gated production rollout.</p>
+      </div>
+      <nav class="toolbar" aria-label="Export toolbar">
+        <button type="button" onclick="downloadSVG()">SVG</button>
+        <button type="button" onclick="downloadPNG()">PNG</button>
+        <button type="button" onclick="copyPNG()">Copy PNG</button>
+        <button type="button" onclick="window.print()">Print</button>
+      </nav>
+    </header>
+
+    <section class="body-grid">
+      <div class="map-wrap">
+        <svg id="system-map" viewBox="0 0 1500 900" role="img" aria-labelledby="map-title map-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="map-title">Deployment and release map</title>
+          <desc id="map-desc">A deployment map showing the release engineer, CI runner, artifact registry, deploy controller, staging and production environments, secrets, feature flags, and observability.</desc>
+          <defs>
+            <marker id="arrow-actor" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#0f766e"/></marker>
+            <marker id="arrow-entry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#2563eb"/></marker>
+            <marker id="arrow-compute" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#15803d"/></marker>
+            <marker id="arrow-state" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#7c3aed"/></marker>
+            <marker id="arrow-message" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#c2410c"/></marker>
+            <marker id="arrow-control" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#be123c"/></marker>
+            <marker id="arrow-telemetry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#a16207"/></marker>
+            <marker id="arrow-external" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#475569"/></marker>
+          </defs>
+
+          <rect x="0" y="0" width="1500" height="900" rx="0" fill="#f8fafc"/>
+
+          <g id="regions" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <rect x="1040" y="140" width="400" height="180" rx="8" fill="#eef6ff" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="1062" y="168" fill="#1d4ed8" font-size="12" font-weight="700">Staging — pre-prod</text>
+
+            <rect x="1040" y="420" width="400" height="240" rx="8" fill="#eef6ff" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="1062" y="448" fill="#1d4ed8" font-size="12" font-weight="700">Production — us-east-1</text>
+
+            <rect x="740" y="440" width="200" height="150" rx="8" fill="#fff1f2" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="8 6"/>
+            <text x="758" y="464" fill="#be123c" font-size="11" font-weight="700">Release Trust</text>
+          </g>
+
+          <g id="connectors" font-family="SFMono-Regular, JetBrains Mono, monospace" font-size="10" fill="#334155">
+            <path data-edge-id="engineer_to_ci" d="M 200 345 H 280" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="240" y="331" text-anchor="middle">trigger</text>
+
+            <path data-edge-id="ci_to_registry" d="M 440 345 H 520" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="480" y="331" text-anchor="middle">push image</text>
+
+            <path data-edge-id="registry_to_deployer" d="M 670 345 H 760" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="715" y="331" text-anchor="middle">pull</text>
+
+            <path data-edge-id="deployer_to_staging" d="M 920 330 H 1000 V 235 H 1080" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="992" y="290" text-anchor="end">deploy</text>
+
+            <path data-edge-id="staging_api_to_db" d="M 1240 235 H 1260" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="1250" y="300" text-anchor="middle">migrate</text>
+
+            <path data-edge-id="deployer_to_canary" d="M 920 360 H 980 V 510 H 1080" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="1000" y="496" text-anchor="middle">promote</text>
+
+            <path data-edge-id="canary_to_prod" d="M 1220 515 H 1260" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="1240" y="458" text-anchor="middle">shift traffic</text>
+
+            <path data-edge-id="prod_api_to_db" d="M 1335 560 V 580" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="1345" y="574" text-anchor="start">write</text>
+
+            <path data-edge-id="deployer_to_secrets" d="M 840 400 V 470" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="855" y="435" text-anchor="start">fetch creds</text>
+
+            <path data-edge-id="canary_to_flags" d="M 1080 515 H 1050 V 450 H 700 V 510 H 670" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/>
+            <text x="692" y="460" text-anchor="end">flag check</text>
+
+            <path data-edge-id="staging_db_to_observability" d="M 1395 275 V 300 H 1445 V 730" stroke="#a16207" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrow-telemetry)"/>
+            <text x="1435" y="400" text-anchor="end">traces</text>
+
+            <path data-edge-id="prod_db_to_observability" d="M 1335 640 V 730" stroke="#a16207" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrow-telemetry)"/>
+            <text x="1350" y="690" text-anchor="start">metrics</text>
+          </g>
+
+          <g id="components" font-family="Inter, Arial, sans-serif">
+            <g data-node-id="engineer">
+              <rect x="60" y="300" width="140" height="90" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.6"/>
+              <text x="130" y="338" text-anchor="middle" fill="#134e4a" font-size="14" font-weight="750">Release Engineer</text>
+              <text x="130" y="362" text-anchor="middle" fill="#475569" font-size="11">manual approval</text>
+            </g>
+
+            <g data-node-id="ci_runner">
+              <rect x="280" y="290" width="160" height="110" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="360" y="338" text-anchor="middle" fill="#14532d" font-size="15" font-weight="750">CI Runner</text>
+              <text x="360" y="364" text-anchor="middle" fill="#475569" font-size="11">build test scan</text>
+            </g>
+
+            <g data-node-id="registry">
+              <rect x="520" y="295" width="150" height="100" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="595" y="340" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="750">Artifact Registry</text>
+              <text x="595" y="364" text-anchor="middle" fill="#64748b" font-size="11">images, charts</text>
+            </g>
+
+            <g data-node-id="deployer">
+              <rect x="760" y="290" width="160" height="110" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="840" y="338" text-anchor="middle" fill="#14532d" font-size="15" font-weight="750">Deploy Controller</text>
+              <text x="840" y="364" text-anchor="middle" fill="#475569" font-size="11">argo, helm</text>
+            </g>
+
+            <g data-node-id="staging_api">
+              <rect x="1080" y="190" width="160" height="90" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="1160" y="228" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Staging API</text>
+              <text x="1160" y="252" text-anchor="middle" fill="#475569" font-size="11">smoke tests</text>
+            </g>
+
+            <g data-node-id="staging_db">
+              <rect x="1260" y="195" width="150" height="80" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <ellipse cx="1335" cy="215" rx="36" ry="9" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.1"/>
+              <path d="M 1299 215 V 245 C 1299 252 1315 258 1335 258 C 1355 258 1371 252 1371 245 V 215" fill="none" stroke="#7c3aed" stroke-width="1.1"/>
+              <text x="1335" y="240" text-anchor="middle" fill="#4c1d95" font-size="12" font-weight="750">Staging DB</text>
+            </g>
+
+            <g data-node-id="canary">
+              <rect x="1080" y="475" width="140" height="80" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="1150" y="510" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Canary Pods</text>
+              <text x="1150" y="534" text-anchor="middle" fill="#475569" font-size="11">5 percent traffic</text>
+            </g>
+
+            <g data-node-id="prod_api">
+              <rect x="1260" y="470" width="150" height="90" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="1335" y="508" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Production API</text>
+              <text x="1335" y="532" text-anchor="middle" fill="#475569" font-size="11">stable release</text>
+            </g>
+
+            <g data-node-id="prod_db">
+              <rect x="1260" y="580" width="150" height="60" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="1335" y="608" text-anchor="middle" fill="#4c1d95" font-size="13" font-weight="750">Production DB</text>
+              <text x="1335" y="628" text-anchor="middle" fill="#64748b" font-size="10">postgres primary</text>
+            </g>
+
+            <g data-node-id="secrets">
+              <rect x="760" y="470" width="160" height="90" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+              <text x="840" y="508" text-anchor="middle" fill="#881337" font-size="14" font-weight="750">Secrets Manager</text>
+              <text x="840" y="532" text-anchor="middle" fill="#475569" font-size="11">vault, KMS</text>
+            </g>
+
+            <g data-node-id="feature_flags">
+              <rect x="520" y="470" width="150" height="80" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+              <text x="595" y="505" text-anchor="middle" fill="#334155" font-size="14" font-weight="750">Feature Flags</text>
+              <text x="595" y="529" text-anchor="middle" fill="#64748b" font-size="11">launchdarkly</text>
+            </g>
+
+            <g data-node-id="observability">
+              <rect x="280" y="730" width="1200" height="70" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
+              <text x="880" y="765" text-anchor="middle" fill="#713f12" font-size="15" font-weight="750">Observability Surface</text>
+              <text x="880" y="787" text-anchor="middle" fill="#64748b" font-size="11">deploy events, rollout metrics, traces, alerts</text>
+            </g>
+          </g>
+
+          <g id="map-key" transform="translate(48 842)" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <text x="0" y="0" fill="#172033" font-size="11" font-weight="700">Map key</text>
+            <g transform="translate(0 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ccfbf1" stroke="#0f766e"/><text x="22" y="8" fill="#647084" font-size="9">Actor</text></g>
+            <g transform="translate(82 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dbeafe" stroke="#2563eb"/><text x="22" y="8" fill="#647084" font-size="9">Entry</text></g>
+            <g transform="translate(169 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dcfce7" stroke="#15803d"/><text x="22" y="8" fill="#647084" font-size="9">Compute</text></g>
+            <g transform="translate(267 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ede9fe" stroke="#7c3aed"/><text x="22" y="8" fill="#647084" font-size="9">State</text></g>
+            <g transform="translate(354 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ffedd5" stroke="#c2410c"/><text x="22" y="8" fill="#647084" font-size="9">Message</text></g>
+            <g transform="translate(452 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ffe4e6" stroke="#be123c"/><text x="22" y="8" fill="#647084" font-size="9">Control</text></g>
+            <g transform="translate(550 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#fef3c7" stroke="#a16207"/><text x="22" y="8" fill="#647084" font-size="9">Telemetry</text></g>
+            <g transform="translate(659 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#f1f5f9" stroke="#475569"/><text x="22" y="8" fill="#647084" font-size="9">External</text></g>
+            <g transform="translate(762 18)"><path d="M 0 5 H 34" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/><text x="44" y="8" fill="#647084" font-size="9">Sync</text></g>
+            <g transform="translate(866 18)"><path d="M 0 5 H 34" stroke="#c2410c" stroke-width="2" stroke-dasharray="6 4" fill="none" marker-end="url(#arrow-message)"/><text x="44" y="8" fill="#647084" font-size="9">Async or side path</text></g>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="notes" aria-label="Diagram notes">
+        <h2>Reading Notes</h2>
+        <section class="note-section">
+          <h3>System Shape</h3>
+          <ul>
+            <li>A release engineer triggers the CI runner; built artifacts land in the registry and are pulled by the deploy controller.</li>
+            <li>The controller rolls out to staging first, then promotes to a canary in production before full traffic shift.</li>
+            <li>Deploy credentials live in a dedicated trust zone and are fetched at deploy time.</li>
+          </ul>
+        </section>
+        <section class="note-section">
+          <h3>Critical Flows</h3>
+          <ul>
+            <li>Approval to artifact: engineer triggers CI, the image is scanned and pushed to the registry.</li>
+            <li>Rollout: deploy controller applies to staging, runs migrations, then promotes to canary with feature-flag checks.</li>
+            <li>Cutover: canary metrics gate the shift of full traffic to the production API and its database.</li>
+          </ul>
+        </section>
+        <section class="note-section">
+          <h3>Operational Notes</h3>
+          <ul>
+            <li>Canary aborts automatically on elevated error rates from the observability surface.</li>
+            <li>Secrets are short-lived and scoped to the deploy controller identity.</li>
+            <li>Assumption: a single production region; multi-region failover is out of scope.</li>
+          </ul>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>Diagram type: deployment map</span>
+      <span>Scope: generated from a release-flow brief</span>
+    </footer>
+  </main>
+
+  <script type="application/json" id="diagram-ir">
+  {
+    "title": "Deployment and Release Map",
+    "lens": "deployment",
+    "scope": "release flow from approval through build, registry, and staged rollout into production",
+    "language": "en",
+    "mode": "create",
+    "canvas": { "complexity": "standard", "viewBox": "0 0 1500 900" },
+    "regions": [
+      { "id": "staging_env", "label": "Staging — pre-prod", "role": "infrastructure", "bounds": { "x": 1040, "y": 140, "width": 400, "height": 180 }, "contains": ["staging_api", "staging_db"] },
+      { "id": "prod_env", "label": "Production — us-east-1", "role": "infrastructure", "bounds": { "x": 1040, "y": 420, "width": 400, "height": 240 }, "contains": ["canary", "prod_api", "prod_db"] },
+      { "id": "release_trust", "label": "Release Trust", "role": "trust", "bounds": { "x": 740, "y": 440, "width": 200, "height": 150 }, "contains": ["secrets"] }
+    ],
+    "nodes": [
+      { "id": "engineer", "label": "Release Engineer", "role": "actor", "responsibility": "manual approval", "bounds": { "x": 60, "y": 300, "width": 140, "height": 90 } },
+      { "id": "ci_runner", "label": "CI Runner", "role": "compute", "responsibility": "build, test, scan", "bounds": { "x": 280, "y": 290, "width": 160, "height": 110 } },
+      { "id": "registry", "label": "Artifact Registry", "role": "state", "responsibility": "images, charts", "bounds": { "x": 520, "y": 295, "width": 150, "height": 100 } },
+      { "id": "deployer", "label": "Deploy Controller", "role": "compute", "responsibility": "argo, helm", "bounds": { "x": 760, "y": 290, "width": 160, "height": 110 } },
+      { "id": "staging_api", "label": "Staging API", "role": "compute", "responsibility": "smoke tests", "bounds": { "x": 1080, "y": 190, "width": 160, "height": 90 } },
+      { "id": "staging_db", "label": "Staging DB", "role": "state", "responsibility": "schema migrations", "bounds": { "x": 1260, "y": 195, "width": 150, "height": 80 } },
+      { "id": "canary", "label": "Canary Pods", "role": "compute", "responsibility": "5 percent traffic", "bounds": { "x": 1080, "y": 475, "width": 140, "height": 80 } },
+      { "id": "prod_api", "label": "Production API", "role": "compute", "responsibility": "stable release", "bounds": { "x": 1260, "y": 470, "width": 150, "height": 90 } },
+      { "id": "prod_db", "label": "Production DB", "role": "state", "responsibility": "postgres primary", "bounds": { "x": 1260, "y": 580, "width": 150, "height": 60 } },
+      { "id": "secrets", "label": "Secrets Manager", "role": "control", "responsibility": "vault, KMS", "bounds": { "x": 760, "y": 470, "width": 160, "height": 90 } },
+      { "id": "feature_flags", "label": "Feature Flags", "role": "external", "responsibility": "launchdarkly", "bounds": { "x": 520, "y": 470, "width": 150, "height": 80 } },
+      { "id": "observability", "label": "Observability Surface", "role": "telemetry", "responsibility": "deploy events, rollout metrics, traces, alerts", "bounds": { "x": 280, "y": 730, "width": 1200, "height": 70 } }
+    ],
+    "edges": [
+      { "id": "engineer_to_ci", "from": "engineer", "to": "ci_runner", "kind": "sync", "label": "trigger", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 240, "y": 331, "width": 50 } },
+      { "id": "ci_to_registry", "from": "ci_runner", "to": "registry", "kind": "sync", "label": "push image", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 480, "y": 331, "width": 76 } },
+      { "id": "registry_to_deployer", "from": "registry", "to": "deployer", "kind": "sync", "label": "pull", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 715, "y": 331, "width": 34 } },
+      { "id": "deployer_to_staging", "from": "deployer", "to": "staging_api", "kind": "sync", "label": "deploy", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 992, "y": 290, "width": 48 } },
+      { "id": "staging_api_to_db", "from": "staging_api", "to": "staging_db", "kind": "sync", "label": "migrate", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 1250, "y": 300, "width": 54 } },
+      { "id": "deployer_to_canary", "from": "deployer", "to": "canary", "kind": "sync", "label": "promote", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 1000, "y": 496, "width": 56 } },
+      { "id": "canary_to_prod", "from": "canary", "to": "prod_api", "kind": "sync", "label": "shift traffic", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 1240, "y": 458, "width": 88 } },
+      { "id": "prod_api_to_db", "from": "prod_api", "to": "prod_db", "kind": "sync", "label": "write", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 1345, "y": 574, "width": 40 } },
+      { "id": "deployer_to_secrets", "from": "deployer", "to": "secrets", "kind": "control", "label": "fetch creds", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 855, "y": 435, "width": 76 } },
+      { "id": "canary_to_flags", "from": "canary", "to": "feature_flags", "kind": "sync", "label": "flag check", "role": "external", "route": "orthogonal", "labelAnchor": { "x": 692, "y": 460, "width": 72 } },
+      { "id": "staging_db_to_observability", "from": "staging_db", "to": "observability", "kind": "telemetry", "label": "traces", "role": "telemetry", "route": "orthogonal", "labelAnchor": { "x": 1435, "y": 400, "width": 50 } },
+      { "id": "prod_db_to_observability", "from": "prod_db", "to": "observability", "kind": "telemetry", "label": "metrics", "role": "telemetry", "route": "orthogonal", "labelAnchor": { "x": 1350, "y": 690, "width": 52 } }
+    ],
+    "notes": [
+      { "title": "System Shape", "bullets": ["Release engineer triggers CI; artifacts flow through the registry to the deploy controller.", "Staging first, then canary-gated production rollout."] },
+      { "title": "Critical Flows", "bullets": ["Approval to artifact, staged rollout, canary cutover with feature-flag checks."] },
+      { "title": "Operational Notes", "bullets": ["Canary auto-aborts on error-rate alerts; secrets are short-lived; single-region assumption."] }
+    ],
+    "assumptions": ["Single production region; multi-region failover out of scope."]
+  }
+  </script>
+
+  <script>
+    function serializeSVG() {
+      const svg = document.getElementById('system-map');
+      const clone = svg.cloneNode(true);
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+    }
+    function downloadBlob(filename, blob) {
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    function downloadSVG() {
+      downloadBlob('deployment-map.svg', new Blob([serializeSVG()], { type: 'image/svg+xml;charset=utf-8' }));
+    }
+    function renderCanvas(scale = 2) {
+      return new Promise((resolve, reject) => {
+        const svg = document.getElementById('system-map');
+        const box = svg.viewBox.baseVal;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round((box.width || 1500) * scale);
+        canvas.height = Math.round((box.height || 900) * scale);
+        const context = canvas.getContext('2d');
+        context.fillStyle = '#f8fafc';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        const image = new Image();
+        image.onload = () => {
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          resolve(canvas);
+        };
+        image.onerror = reject;
+        image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializeSVG());
+      });
+    }
+    async function downloadPNG() {
+      const canvas = await renderCanvas(2);
+      canvas.toBlob((blob) => {
+        if (blob) downloadBlob('deployment-map.png', blob);
+      }, 'image/png');
+    }
+    async function copyPNG() {
+      try {
+        const canvas = await renderCanvas(2);
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+        if (!blob) throw new Error('PNG export failed');
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      } catch (error) {
+        console.error(error);
+        window.alert('Copy PNG is not available in this browser context. Use PNG download instead.');
+      }
+    }
+  </script>
+</body>
+</html>

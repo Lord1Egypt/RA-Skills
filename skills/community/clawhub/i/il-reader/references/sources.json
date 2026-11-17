@@ -1,0 +1,4346 @@
+{
+  "profile": {
+    "startup_preflight_source_ids": [],
+    "preparation_source_ids": ["cnki", "wanfang", "vip", "duxiu", "chaoxing-huiya"],
+    "title": "2026 年大学生“AI+信息素养”大赛客观题命题范围及备赛建议（高职高专命题组）",
+    "region": "四川省",
+    "track": "高职高专赛道（省级赛事）",
+    "pdf_pages": 34,
+    "document_date": "2026-07",
+    "notes": [
+      "依据 PDF 第 3 物理页：适用于 2026 年四川省高职高专赛道省级赛事，不能泛化为全国或其他赛道。",
+      "PDF 声称 11 核心模块、55 细化知识点；逐项列考核表计 55 项，不从样题或二级工具名凑数。",
+      "pdf_pages 均为从封面起的 PDF 物理页码；正文第 1 页对应物理第 5 页。",
+      "第 31 物理页 M11 表格误写科研工具，按章标题与内容记 AI 素养。",
+      "第 10 物理页样题将 3/5 算成 62.5%≈63%；正确算术是 60%，不得固化错答案。",
+      "第 15 物理页百度指数样题答案空缺；同一 SYSU URL 被标不同学校/教师，应现场核验。",
+      "微软学术已于 2021-12-31 退役；PDF 旧推荐不能证明当前可用。",
+      "origin 区分 PDF 显式网址、只列名称后补齐入口、额外补充一手来源；发现渠道不是最终权威。",
+      "目录核验日 2026-10-09（Asia/Shanghai）；仅对各类代表入口进行网页核验，不声称全部可达、已登录或已读全文。",
+      "本包概述范围与来源，不附原 PDF 全文、完整样题集或商业题库。"
+    ]
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "name": "文献信息基本概念",
+      "knowledge_points": [
+        "文献信息和信息素养基本概念",
+        "文献类型、标识符与 DOI",
+        "信息伦理",
+        "信息安全"
+      ]
+    },
+    {
+      "id": "M2",
+      "name": "文献信息检索原理",
+      "knowledge_points": [
+        "检索语言",
+        "检索工具与检索途径",
+        "检索效率评价",
+        "信息检索的类型（含 AI 增强检索/专业检索）",
+        "中国图书馆分类法"
+      ]
+    },
+    {
+      "id": "M3",
+      "name": "信息检索理论与技术",
+      "knowledge_points": [
+        "检索语法",
+        "高级检索",
+        "布尔逻辑检索",
+        "截词检索",
+        "精确与模糊匹配",
+        "字段限制检索",
+        "结果筛选"
+      ]
+    },
+    {
+      "id": "M4",
+      "name": "文献信息检索系统",
+      "knowledge_points": [
+        "网络指数",
+        "门户网站（主要指行业/学会/协会网站）",
+        "学术搜索",
+        "馆藏查询系统",
+        "开放获取资源系统（含预印本）"
+      ]
+    },
+    {
+      "id": "M5",
+      "name": "常用中文商业数据库",
+      "knowledge_points": [
+        "中国知网",
+        "维普资讯",
+        "万方数据知识服务平台",
+        "考试类数据库（银符考试/中科/维普）",
+        "超星汇雅电子图书数据库"
+      ]
+    },
+    {
+      "id": "M6",
+      "name": "政府开放信息资源",
+      "knowledge_points": [
+        "思政信息资源",
+        "开放数据资源",
+        "法律信息资源",
+        "标准及标准文献资源",
+        "专利及专利文献资源",
+        "商标及地理标志数据资源",
+        "反诈防骗信息资源",
+        "医卫信息资源",
+        "文教信息资源（含创业/升学）",
+        "证书资格信息资源"
+      ]
+    },
+    {
+      "id": "M7",
+      "name": "实用学习资源",
+      "knowledge_points": [
+        "开放平台中的学习资源（含开放课程）",
+        "商业信息类查询资源（含天眼查、企查查、爱企查等）",
+        "问答社区信息资源（知乎/简书/小红书）"
+      ]
+    },
+    {
+      "id": "M8",
+      "name": "学术写作",
+      "knowledge_points": [
+        "论文结构",
+        "学术写作辅助工具（PDF 处理/Office 插件/论文排版工具）",
+        "论文投稿流程（含论文投稿系统）",
+        "引用及参考文献著录格式",
+        "学术伦理（检索场景类）"
+      ]
+    },
+    {
+      "id": "M9",
+      "name": "知识管理工具",
+      "knowledge_points": [
+        "文献管理工具（知网研学/NoteExpress/EndNote）",
+        "思维导图（XMind/MindMaster〔亿图脑图〕/FreeMind）",
+        "笔记软件（印象/为知/有道云）",
+        "问卷调查"
+      ]
+    },
+    {
+      "id": "M10",
+      "name": "科研工具",
+      "knowledge_points": [
+        "数据处理工具",
+        "学术评价工具",
+        "可视化工具（文献/数据）",
+        "文献追踪工具"
+      ]
+    },
+    {
+      "id": "M11",
+      "name": "AI 素养",
+      "knowledge_points": [
+        "AI 基础知识与伦理规范",
+        "常用 AI 工具的认知及其基本应用（含提示词工程）",
+        "常规 AI 工具应用场景（办公、科研、多模态、智能体；含图片搜索）"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "cnki",
+      "name": "中国知网 CNKI",
+      "url": "https://www.cnki.net/",
+      "domains": [
+        "cnki.net"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3",
+        "M5",
+        "M8",
+        "M10"
+      ],
+      "kind": "official_database",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        18,
+        19,
+        25,
+        26,
+        29,
+        30
+      ],
+      "keywords": [
+        "中国知网",
+        "知网",
+        "CNKI",
+        "篇名",
+        "主题",
+        "作者单位",
+        "第一单位",
+        "被引",
+        "学位论文",
+        "参考文献",
+        "关键词"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "题录可能公开，全文、分析和导出依机构授权。2026-10-09 核验发生境外站重定向；具体检索界面用浏览器核验。"
+    },
+    {
+      "id": "cnki-journals",
+      "name": "知网期刊导航",
+      "url": "https://navi.cnki.net/knavi/",
+      "domains": [
+        "navi.cnki.net",
+        "rss.cnki.net"
+      ],
+      "modules": [
+        "M1",
+        "M8",
+        "M10"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        6,
+        7,
+        29
+      ],
+      "keywords": [
+        "期刊导航",
+        "ISSN",
+        "CSSCI",
+        "CSCD",
+        "北大核心",
+        "RSS"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 含临时带参详情与 RSS 备选，原 URL 见 exam-scope.md；核心标签须匹配年版。"
+    },
+    {
+      "id": "wanfang",
+      "name": "万方数据知识服务平台",
+      "url": "https://www.wanfangdata.com.cn/",
+      "domains": [
+        "wanfangdata.com.cn"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3",
+        "M5",
+        "M8",
+        "M10"
+      ],
+      "kind": "official_database",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        7,
+        10,
+        12,
+        18,
+        19,
+        25,
+        26,
+        30
+      ],
+      "keywords": [
+        "万方",
+        "万方数据",
+        "DOI",
+        "学位论文",
+        "关键词",
+        "摘要",
+        "布尔"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 官网返回平台与机构登录信息；全文和分析依授权。"
+    },
+    {
+      "id": "vip",
+      "name": "维普资讯",
+      "url": "https://www.cqvip.com/",
+      "domains": [
+        "cqvip.com"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3",
+        "M5",
+        "M8",
+        "M10"
+      ],
+      "kind": "official_database",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        7,
+        10,
+        14,
+        18,
+        19,
+        25,
+        26,
+        30
+      ],
+      "keywords": [
+        "维普",
+        "维普资讯",
+        "维普学位",
+        "中文期刊",
+        "核心期刊"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 官网返回期刊、学位等入口；全文依机构授权。"
+    },
+    {
+      "id": "duxiu",
+      "name": "读秀学术搜索",
+      "url": "https://www.duxiu.com/",
+      "domains": [
+        "duxiu.com"
+      ],
+      "modules": [
+        "M1",
+        "M3"
+      ],
+      "kind": "official_database",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        6,
+        7,
+        14
+      ],
+      "keywords": [
+        "读秀",
+        "图书",
+        "ISBN",
+        "正文字段",
+        "章节",
+        "目录"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "图书章节与正文必须取得合法全文权限；只有题录不能证明章节内容。"
+    },
+    {
+      "id": "chaoxing-huiya",
+      "name": "超星汇雅电子图书数据库",
+      "url": "https://www.sslibrary.com/",
+      "domains": [
+        "sslibrary.com",
+        "chaoxing.com"
+      ],
+      "modules": [
+        "M5"
+      ],
+      "kind": "official_database",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        18
+      ],
+      "keywords": [
+        "超星汇雅",
+        "汇雅",
+        "电子图书",
+        "超星图书"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "由本校图书馆入口进入，全文阅读依机构授权。"
+    },
+    {
+      "id": "yinfu-exam",
+      "name": "银符考试题库",
+      "url": "https://www.yfzxmn.cn/",
+      "domains": [
+        "yfzxmn.cn",
+        "yfzxmn.com"
+      ],
+      "modules": [
+        "M5"
+      ],
+      "kind": "vendor",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        18
+      ],
+      "keywords": [
+        "银符",
+        "银符考试",
+        "考试题库"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 定位供应商 yfzxmn.cn/mobile.jsp；旧入口 https://www.yfzxmn.com/YFB12/ 。不批量复制题库。"
+    },
+    {
+      "id": "zhongke-exam",
+      "name": "中科 VIPExam 考试学习资源数据库",
+      "url": "https://lib.vipexam.org/",
+      "domains": [
+        "vipexam.org"
+      ],
+      "modules": [
+        "M5"
+      ],
+      "kind": "vendor",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        18
+      ],
+      "keywords": [
+        "中科",
+        "VIPExam",
+        "考试数据库"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 仅列“中科”，此入口按考试数据库语境补齐；2026-10-09 返回供应商平台与版权信息。"
+    },
+    {
+      "id": "vip-exam",
+      "name": "维普考试服务平台",
+      "url": "https://vers.cqvip.com/",
+      "domains": [
+        "vers.cqvip.com",
+        "vipinfo.com.cn"
+      ],
+      "modules": [
+        "M5"
+      ],
+      "kind": "vendor",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        18
+      ],
+      "keywords": [
+        "维普考试",
+        "维普考典",
+        "考试服务平台"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 供应商 https://www.vipinfo.com.cn/cp-wpks.html 核验产品身份；只使用公开说明或已有授权。"
+    },
+    {
+      "id": "acm",
+      "name": "ACM Digital Library",
+      "url": "https://dl.acm.org/",
+      "domains": [
+        "dl.acm.org"
+      ],
+      "modules": [
+        "M3",
+        "M11"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        12,
+        13,
+        31
+      ],
+      "keywords": [
+        "ACM",
+        "截词",
+        "wildcard",
+        "analy",
+        "comput",
+        "AI素养"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "通配符语义、筛选项和数量应以查询当日官方界面/帮助核验。"
+    },
+    {
+      "id": "arxiv",
+      "name": "arXiv",
+      "url": "https://arxiv.org/",
+      "domains": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        17
+      ],
+      "keywords": [
+        "arXiv",
+        "预印本",
+        "identifier",
+        "2108.09800",
+        "页数"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 明确给出入口；页数依版本而异，保存版本号及物理页数。"
+    },
+    {
+      "id": "pubscholar",
+      "name": "PubScholar 公益学术平台",
+      "url": "https://pubscholar.cn/",
+      "domains": [
+        "pubscholar.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "PubScholar",
+        "公益学术",
+        "全文获取渠道",
+        "Tromsø"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 可定位官网标题；聚合检索用于发现，正文/DOI/页数转原出版者。"
+    },
+    {
+      "id": "oxford",
+      "name": "Oxford Academic",
+      "url": "https://academic.oup.com/",
+      "domains": [
+        "academic.oup.com"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "Oxford",
+        "OXFORD",
+        "牛津",
+        "全文来源"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "PDF 样题将其列为 PubScholar 全文渠道；实际渠道须由目标记录来源按钮核验。"
+    },
+    {
+      "id": "crossref",
+      "name": "Crossref 官方 REST API",
+      "url": "https://api.crossref.org/",
+      "domains": [
+        "api.crossref.org",
+        "crossref.org"
+      ],
+      "modules": [
+        "M1",
+        "M3",
+        "M8"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "Crossref",
+        "DOI",
+        "题录",
+        "出版元数据"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充 DOI 和题录交叉核验入口，不能替代指定商业库的排序或正文第 N 项。"
+    },
+    {
+      "id": "pubmed",
+      "name": "PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "domains": [
+        "pubmed.ncbi.nlm.nih.gov",
+        "eutils.ncbi.nlm.nih.gov",
+        "ncbi.nlm.nih.gov"
+      ],
+      "modules": [
+        "M1",
+        "M3"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "PubMed",
+        "PMID",
+        "医学论文",
+        "流行病学",
+        "DOI"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充 NCBI 医学文献官方入口。"
+    },
+    {
+      "id": "nlc",
+      "name": "国家图书馆",
+      "url": "https://www.nlc.cn/",
+      "domains": [
+        "nlc.cn"
+      ],
+      "modules": [
+        "M2",
+        "M4",
+        "M7"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        8,
+        15,
+        16,
+        17,
+        23
+      ],
+      "keywords": [
+        "国图",
+        "国家图书馆",
+        "免费数字资源",
+        "民国时期文献"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 官网核验到 OPAC、读者云门户、近代图书、国图公开课与中图法链接。"
+    },
+    {
+      "id": "nlc-opac",
+      "name": "国家图书馆馆藏目录",
+      "url": "https://opac.nlc.cn/",
+      "domains": [
+        "opac.nlc.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "国图馆藏",
+        "馆藏目录",
+        "文津搜索",
+        "索书号",
+        "ISBN"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "由国图官网进入；实际馆藏需核对书名、作者、语言、版本及状态。"
+    },
+    {
+      "id": "nlc-digital",
+      "name": "国家图书馆数字资源／民国时期文献",
+      "url": "https://read.nlc.cn/",
+      "domains": [
+        "read.nlc.cn"
+      ],
+      "modules": [
+        "M4",
+        "M7"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        15,
+        16,
+        17,
+        23
+      ],
+      "keywords": [
+        "民国时期文献",
+        "民国图书",
+        "代数难题详解",
+        "近代图书",
+        "免费电子书"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 国图官网近代图书栏目指向该域；全文可能需读者账号。勿与出版社商业民国图书数据库混淆。"
+    },
+    {
+      "id": "nlc-courses",
+      "name": "国家图书馆在线培训／国图公开课",
+      "url": "https://open.nlc.cn/",
+      "domains": [
+        "open.nlc.cn"
+      ],
+      "modules": [
+        "M2",
+        "M7"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        8,
+        23
+      ],
+      "keywords": [
+        "国图公开课",
+        "在线培训",
+        "信息检索课程"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "由国图官网直链核验入口；PDF 只写在线培训课程。"
+    },
+    {
+      "id": "clc",
+      "name": "《中国图书馆分类法》编委会",
+      "url": "https://clc.nlc.cn/",
+      "domains": [
+        "clc.nlc.cn"
+      ],
+      "modules": [
+        "M2"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        9,
+        10
+      ],
+      "keywords": [
+        "中图法",
+        "中国图书馆分类法",
+        "分类号",
+        "K265"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只称中图法在线查询系统；补齐国图官网直链的编委会入口，图书分类以书目记录为证。"
+    },
+    {
+      "id": "sichuan-library",
+      "name": "四川省图书馆／川图书目",
+      "url": "https://www.sclib.cn/",
+      "domains": [
+        "sclib.cn",
+        "sclib.org"
+      ],
+      "modules": [
+        "M2"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        9
+      ],
+      "keywords": [
+        "四川省图书馆",
+        "川图书目",
+        "ISBN",
+        "中图分类号"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 上海交大图书馆官方报告列 sclib.cn；旧域 sclib.org 不作首选，动态 OPAC 用时核验。"
+    },
+    {
+      "id": "cqu-library",
+      "name": "重庆大学图书馆",
+      "url": "https://lib.cqu.edu.cn/",
+      "domains": [
+        "lib.cqu.edu.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "重庆大学图书馆",
+        "白银资本",
+        "ReORIENT",
+        "馆藏"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 样题指定机构，从馆方首页进入馆藏系统。"
+    },
+    {
+      "id": "shandong-library",
+      "name": "山东省图书馆",
+      "url": "https://www.sdlib.com/",
+      "domains": [
+        "sdlib.com"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "山东省图书馆",
+        "白银资本",
+        "ReORIENT",
+        "馆藏"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 样题指定机构，从馆方首页进入馆藏系统。"
+    },
+    {
+      "id": "mit-library",
+      "name": "MIT Libraries",
+      "url": "https://libraries.mit.edu/",
+      "domains": [
+        "libraries.mit.edu",
+        "lib.mit.edu"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "MIT",
+        "麻省理工学院图书馆",
+        "白银资本",
+        "ReORIENT",
+        "馆藏"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 样题指定机构；考虑英文书名、作者与各版本。"
+    },
+    {
+      "id": "lzu-library",
+      "name": "兰州大学图书馆",
+      "url": "https://lib.lzu.edu.cn/",
+      "domains": [
+        "lib.lzu.edu.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "兰州大学图书馆",
+        "白银资本",
+        "ReORIENT",
+        "馆藏"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 样题指定机构；馆藏结论须来自具体书目记录。"
+    },
+    {
+      "id": "classics-navigation",
+      "name": "中国古典文献资源导航系统（奎章阁）",
+      "url": "https://www.wenxianxue.cn/",
+      "domains": [
+        "wenxianxue.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        15,
+        16
+      ],
+      "keywords": [
+        "古典文献",
+        "奎章阁",
+        "古籍全文",
+        "安徽基本古籍库",
+        "登楼古籍检索",
+        "湖南省古籍智慧化平台",
+        "尚古汇典"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 本站 about 页确认新域。导航可证明栏目收录，古籍正文须到目标原库；四个子资源名仅作按题检索线索。"
+    },
+    {
+      "id": "nstl",
+      "name": "国家科技图书文献中心 NSTL",
+      "url": "https://www.nstl.gov.cn/",
+      "domains": [
+        "nstl.gov.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "NSTL",
+        "国家科技图书文献中心",
+        "重点领域",
+        "成员单位"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只列名；本次 HTTP 返回错误，用真实浏览器核验，不能据此判断停运。"
+    },
+    {
+      "id": "nstl-portal",
+      "name": "重点领域信息门户（中科院文献情报中心）",
+      "url": "https://portal.las.ac.cn/",
+      "domains": [
+        "portal.las.ac.cn"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "重点领域信息服务",
+        "新能源汽车",
+        "生物育种",
+        "重点传染病"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 明确该入口；判断领域需查当前门户栏目。"
+    },
+    {
+      "id": "baidu-index",
+      "name": "百度指数",
+      "url": "https://index.baidu.com/",
+      "domains": [
+        "index.baidu.com"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        15
+      ],
+      "keywords": [
+        "百度指数",
+        "网络指数",
+        "人群画像",
+        "地域分布",
+        "搜索指数",
+        "火锅"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "依题设时间区间读取图表；该平台指数不能当全国真实销量或人口偏好。"
+    },
+    {
+      "id": "baidu-search",
+      "name": "百度搜索／高级检索",
+      "url": "https://www.baidu.com/",
+      "domains": [
+        "baidu.com"
+      ],
+      "modules": [
+        "M3"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        14
+      ],
+      "keywords": [
+        "百度",
+        "高级搜索",
+        "高级检索",
+        "关键词位置",
+        "site:",
+        "intitle:"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "搜索只作线索；搜索摘要不是事实题最终证据。界面题可直接核验它自身功能。"
+    },
+    {
+      "id": "baidu-scholar",
+      "name": "百度学术",
+      "url": "https://xueshu.baidu.com/",
+      "domains": [
+        "xueshu.baidu.com"
+      ],
+      "modules": [
+        "M3",
+        "M4"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        14
+      ],
+      "keywords": [
+        "百度学术",
+        "学术搜索"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "用于发现文献，题录/全文/被引回指定数据库或出版者核验。"
+    },
+    {
+      "id": "sogou-search",
+      "name": "搜狗搜索／搜索指南",
+      "url": "https://www.sogou.com/",
+      "domains": [
+        "sogou.com"
+      ],
+      "modules": [
+        "M4"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        15
+      ],
+      "keywords": [
+        "搜狗",
+        "搜索指南"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "PDF 只列指南名，未给特定帮助页。搜索结果只作发现。"
+    },
+    {
+      "id": "baidu-images",
+      "name": "百度图片搜索",
+      "url": "https://image.baidu.com/",
+      "domains": [
+        "image.baidu.com"
+      ],
+      "modules": [
+        "M4",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "百度图片",
+        "以图识图",
+        "图片搜索"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "PDF 明确网址；返回候选后核验原图出处。"
+    },
+    {
+      "id": "sogou-images",
+      "name": "搜狗图片搜索",
+      "url": "https://pic.sogou.com/",
+      "domains": [
+        "pic.sogou.com"
+      ],
+      "modules": [
+        "M4",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "搜狗图片",
+        "以图识图"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "PDF 明确网址；核验功能菜单与原图出处。"
+    },
+    {
+      "id": "so-images",
+      "name": "360 图片搜索",
+      "url": "https://image.so.com/",
+      "domains": [
+        "image.so.com"
+      ],
+      "modules": [
+        "M4",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "360图片",
+        "以图识图"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "PDF 明确网址。"
+    },
+    {
+      "id": "bing-visual",
+      "name": "必应视觉搜寻",
+      "url": "https://cn.bing.com/visualsearch",
+      "domains": [
+        "bing.com"
+      ],
+      "modules": [
+        "M4",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        16
+      ],
+      "keywords": [
+        "必应",
+        "Bing",
+        "视觉搜寻",
+        "以图识图"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "PDF 明确网址。"
+    },
+    {
+      "id": "microsoft-academic-retired",
+      "name": "微软学术（已停运，官方说明）",
+      "url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "domains": [
+        "microsoft.com"
+      ],
+      "modules": [
+        "M3"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        14
+      ],
+      "keywords": [
+        "微软学术",
+        "MicrosoftAcademic",
+        "停运"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 核验微软官方公告：网站与相关 API 已于 2021-12-31 退役。保留说明，禁止作为仍可用数据库路由。"
+    },
+    {
+      "id": "stats",
+      "name": "国家统计局",
+      "url": "https://www.stats.gov.cn/",
+      "domains": [
+        "stats.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        20,
+        21
+      ],
+      "keywords": [
+        "国家统计局",
+        "统计公报",
+        "统计年鉴",
+        "普通本专科毕业生"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "统计值需对照指标口径、单位与修订版本。"
+    },
+    {
+      "id": "national-data",
+      "name": "国家数据（国家统计局）",
+      "url": "https://data.stats.gov.cn/",
+      "domains": [
+        "data.stats.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        21,
+        22
+      ],
+      "keywords": [
+        "国家数据",
+        "数据查询",
+        "统计数据",
+        "年度数据",
+        "普通本专科生毕业人数"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 入口转 JavaScript 页面，需浏览器。PDF 国家数据平台按语境指统计局，勿与国家数据局混淆。"
+    },
+    {
+      "id": "xi-speeches",
+      "name": "习近平系列重要讲话数据库",
+      "url": "https://jhsjk.people.cn/",
+      "domains": [
+        "jhsjk.people.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        20,
+        21
+      ],
+      "keywords": [
+        "习近平系列重要讲话数据库",
+        "数字货币",
+        "讲话",
+        "署名文章"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "核验文章原文、发表时间和检索范围。"
+    },
+    {
+      "id": "gov-policy",
+      "name": "中国政府网／国务院政策文件库",
+      "url": "https://www.gov.cn/zhengce/",
+      "domains": [
+        "gov.cn"
+      ],
+      "modules": [
+        "M6",
+        "M11"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "国务院",
+        "政策",
+        "法律法规",
+        "AI伦理",
+        "生成式人工智能",
+        "政府工作报告",
+        "数字中国"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充官方政策入口；PDF 仅泛称政府服务门户，没有明列本 URL。"
+    },
+    {
+      "id": "npc-laws",
+      "name": "国家法律法规数据库",
+      "url": "https://flk.npc.gov.cn/",
+      "domains": [
+        "flk.npc.gov.cn",
+        "npc.gov.cn"
+      ],
+      "modules": [
+        "M6",
+        "M11"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "国家法律法规数据库",
+        "法律",
+        "法规",
+        "个人信息保护法",
+        "著作权法",
+        "网络安全法",
+        "人工智能伦理"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充官方法库；2026-10-09 HTTP 返回 403，浏览器可能可用。记录施行日期、效力状态与条文号。"
+    },
+    {
+      "id": "court-enforcement",
+      "name": "中国执行信息公开网",
+      "url": "https://zxgk.court.gov.cn/",
+      "domains": [
+        "zxgk.court.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        21
+      ],
+      "keywords": [
+        "中国执行信息公开网",
+        "失信被执行人",
+        "执行案号",
+        "立案时间",
+        "执行金额"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "可能要求验证码；金额与案号必须由指定记录核验。"
+    },
+    {
+      "id": "standards-fulltext",
+      "name": "国家标准全文公开系统",
+      "url": "https://openstd.samr.gov.cn/bzgk/gb/index",
+      "domains": [
+        "openstd.samr.gov.cn"
+      ],
+      "modules": [
+        "M6",
+        "M8"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        21,
+        25
+      ],
+      "keywords": [
+        "国家标准全文公开系统",
+        "GB/T",
+        "38880",
+        "7714",
+        "起草人",
+        "标准全文",
+        "儿童口罩"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 官方结果核验入口。题设指 GB/T 7714-2015 时按该版；问现行版时重新查状态。"
+    },
+    {
+      "id": "standards",
+      "name": "全国标准信息公共服务平台",
+      "url": "https://std.samr.gov.cn/",
+      "domains": [
+        "std.samr.gov.cn",
+        "samr.gov.cn"
+      ],
+      "modules": [
+        "M6",
+        "M8"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "国家标准",
+        "标准信息",
+        "标准状态",
+        "标准号",
+        "起草单位",
+        "GB/T"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 返回官方国家/行业/地方标准入口；起草人及条款需打开全文。"
+    },
+    {
+      "id": "cnipa",
+      "name": "国家知识产权局",
+      "url": "https://www.cnipa.gov.cn/",
+      "domains": [
+        "cnipa.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        21,
+        22
+      ],
+      "keywords": [
+        "国家知识产权局",
+        "知识产权",
+        "专利",
+        "商标",
+        "地理标志"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 指名机构；从官方首页进入当前业务入口。"
+    },
+    {
+      "id": "patents",
+      "name": "国家知识产权局专利检索及分析系统",
+      "url": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "domains": [
+        "pss-system.cponline.cnipa.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "login",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        21
+      ],
+      "keywords": [
+        "专利检索",
+        "专利",
+        "技术领域",
+        "说明书",
+        "附图",
+        "发明",
+        "小米",
+        "耳机插头"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 国家知识产权局检索指南确认入口；全文和图像需进入目标专利记录。"
+    },
+    {
+      "id": "trademarks",
+      "name": "中国商标网商标综合查询",
+      "url": "https://wcjs.sbj.cnipa.gov.cn/sgtmi",
+      "domains": [
+        "wcjs.sbj.cnipa.gov.cn",
+        "sbj.cnipa.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        22
+      ],
+      "keywords": [
+        "中国商标网",
+        "商标",
+        "注册号",
+        "申请日期",
+        "比亚迪云微"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 明确网址；可能需要登录或验证码。"
+    },
+    {
+      "id": "geo-indications",
+      "name": "国家知识产权局地理标志资源",
+      "url": "https://www.cnipa.gov.cn/",
+      "domains": [
+        "cnipa.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "地理标志",
+        "地理标志产品",
+        "专用标志"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "补充地理标志主题官方入口；在官网按题目指定名称查公告、地域范围与保护要求。"
+    },
+    {
+      "id": "piyao",
+      "name": "中国互联网联合辟谣平台",
+      "url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "domains": [
+        "piyao.org.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        22
+      ],
+      "keywords": [
+        "辟谣",
+        "反诈",
+        "查证",
+        "科学常识",
+        "公共政策",
+        "公共安全"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 明确查证栏目；若迁移，从 https://www.piyao.org.cn/ 首页进入。"
+    },
+    {
+      "id": "nmpa",
+      "name": "国家药品监督管理局数据查询",
+      "url": "https://www.nmpa.gov.cn/",
+      "domains": [
+        "nmpa.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        20,
+        22
+      ],
+      "keywords": [
+        "国家药品监督管理局",
+        "NMPA",
+        "医疗器械",
+        "注册证",
+        "药品",
+        "辽械注准"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "从官网数据查询进入药品或器械数据库，区分历史数据与现行记录。"
+    },
+    {
+      "id": "nhc",
+      "name": "国家卫生健康委员会",
+      "url": "https://www.nhc.gov.cn/",
+      "domains": [
+        "nhc.gov.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "卫生健康",
+        "医卫",
+        "医学政策",
+        "卫生统计"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "补充医卫政策入口，不替代药监局器械注册。"
+    },
+    {
+      "id": "moe",
+      "name": "教育部",
+      "url": "https://www.moe.gov.cn/",
+      "domains": [
+        "moe.gov.cn"
+      ],
+      "modules": [
+        "M6",
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "教育部",
+        "职业教育",
+        "文教",
+        "升学",
+        "招生政策",
+        "教育数字化"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "补充文教政策官方入口，省级细则另查题设省份。"
+    },
+    {
+      "id": "yz",
+      "name": "中国研究生招生信息网（研招网）",
+      "url": "https://yz.chsi.com.cn/",
+      "domains": [
+        "yz.chsi.com.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        22
+      ],
+      "keywords": [
+        "研招网",
+        "硕士专业目录",
+        "招生院校",
+        "天体物理",
+        "退役大学生士兵",
+        "双一流"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 可读取官方招生信息；锁定题设招生年度。"
+    },
+    {
+      "id": "chsi",
+      "name": "中国高等教育学生信息网（学信网）",
+      "url": "https://www.chsi.com.cn/",
+      "domains": [
+        "chsi.com.cn"
+      ],
+      "modules": [
+        "M6"
+      ],
+      "kind": "official_database",
+      "access": "login",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        22
+      ],
+      "keywords": [
+        "学信网",
+        "学历",
+        "学籍",
+        "证书资格",
+        "毕业证书",
+        "专业"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "仅核验用户有权使用的资料；不复制 PDF 样题个人证书号/姓名为默认查询。"
+    },
+    {
+      "id": "gsxt",
+      "name": "国家企业信用信息公示系统",
+      "url": "https://www.gsxt.gov.cn/",
+      "domains": [
+        "gsxt.gov.cn"
+      ],
+      "modules": [
+        "M6",
+        "M7"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "企业",
+        "工商",
+        "注册资本",
+        "统一社会信用代码",
+        "成立日期",
+        "经营范围"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充企业登记官方核验入口；商业聚合查询可作线索。"
+    },
+    {
+      "id": "tianyancha",
+      "name": "天眼查",
+      "url": "https://www.tianyancha.com/",
+      "domains": [
+        "tianyancha.com"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23,
+        24
+      ],
+      "keywords": [
+        "天眼查",
+        "企业查询",
+        "合肥三只羊",
+        "行业",
+        "注册资本"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "商业聚合平台；企业法律状态优先与官方公示交叉核验。"
+    },
+    {
+      "id": "qichacha",
+      "name": "企查查",
+      "url": "https://www.qcc.com/",
+      "domains": [
+        "qcc.com"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23,
+        24
+      ],
+      "keywords": [
+        "企查查",
+        "企业查询",
+        "工商"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "只证明平台显示内容；登记事实优先查官方公示。"
+    },
+    {
+      "id": "aiqicha",
+      "name": "爱企查",
+      "url": "https://aiqicha.baidu.com/",
+      "domains": [
+        "aiqicha.baidu.com"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23
+      ],
+      "keywords": [
+        "爱企查",
+        "工商",
+        "企业信用"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "企业登记事实与官方公示交叉核验。"
+    },
+    {
+      "id": "mooc",
+      "name": "中国大学 MOOC",
+      "url": "https://www.icourse163.org/",
+      "domains": [
+        "icourse163.org"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3",
+        "M7",
+        "M10"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        5,
+        6,
+        8,
+        9,
+        12,
+        23,
+        24,
+        29
+      ],
+      "keywords": [
+        "中国大学MOOC",
+        "慕课",
+        "在线课程",
+        "课程大纲",
+        "视频时长",
+        "中国诗歌艺术",
+        "王红"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 首页核验平台身份；《中国诗歌艺术》按四川大学、王红与课程名检索，PDF 未给固定课号。"
+    },
+    {
+      "id": "mooc-whu-search",
+      "name": "信息检索（武汉大学，黄如花）",
+      "url": "https://www.icourse163.org/course/WHU-29001",
+      "domains": [
+        "icourse163.org"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        5,
+        8,
+        12
+      ],
+      "keywords": [
+        "信息检索",
+        "武汉大学",
+        "黄如花"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "PDF 原链接追踪参数保留于 exam-scope.md；规范课号入口去追踪参数。"
+    },
+    {
+      "id": "mooc-sysu-literacy",
+      "name": "信息素养通识教程：数字化生存的必修课（中山大学，潘燕桃）",
+      "url": "https://www.icourse163.org/course/SYSU-1001936003",
+      "domains": [
+        "icourse163.org"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        5,
+        6,
+        8,
+        9,
+        12
+      ],
+      "keywords": [
+        "信息素养通识教程",
+        "数字化生存",
+        "中山大学",
+        "潘燕桃",
+        "四川师范大学",
+        "周建芳"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "PDF 还把同一 SYSU URL 标为四川师范大学周建芳，学校/主讲人/链接不一致；以课程页为准。"
+    },
+    {
+      "id": "mooc-whu-practice",
+      "name": "信息素养与实践——学术慧眼（武汉大学，龚芙蓉）",
+      "url": "https://www.icourse163.org/course/WHU-1003640003",
+      "domains": [
+        "icourse163.org"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        6,
+        9,
+        12
+      ],
+      "keywords": [
+        "信息素养与实践",
+        "学术慧眼",
+        "龚芙蓉",
+        "武汉大学"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "PDF 文本题名缺字，按课程号与教师查证，不将排版题名错误当官方名。"
+    },
+    {
+      "id": "xueyin-course",
+      "name": "文献信息检索与利用（成都航空职业技术大学，陈萍秀）",
+      "url": "https://www.xueyinonline.com/detail/254211146",
+      "domains": [
+        "xueyinonline.com",
+        "chaoxing.com"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        6,
+        9,
+        12
+      ],
+      "keywords": [
+        "文献信息检索与利用",
+        "陈萍秀",
+        "学银在线",
+        "成都航空"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "PDF 第 6 物理页给公开详情，9/12 页给带 clazzid/cpi/enc/t 会话链接；原长 URL 见说明。"
+    },
+    {
+      "id": "xuetangx",
+      "name": "学堂在线",
+      "url": "https://www.xuetangx.com/",
+      "domains": [
+        "xuetangx.com"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23
+      ],
+      "keywords": [
+        "学堂在线",
+        "开放课程",
+        "慕课"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 定位官网标题；静态抓取无课程正文。"
+    },
+    {
+      "id": "literacy-db",
+      "name": "高校信息素养教育数据库",
+      "url": "https://xxsuyang.com/",
+      "domains": [
+        "xxsuyang.com",
+        "zxhnzq.com"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23,
+        24
+      ],
+      "keywords": [
+        "高校信息素养教育数据库",
+        "公益大讲堂",
+        "王一",
+        "数字数据可视化",
+        "炫酷图表"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "2026-10-09 官网可读；高校官方页另列 https://suyang.zxhnzq.com/ 。公益讲座与其他课程权限分别核验。"
+    },
+    {
+      "id": "cambridge",
+      "name": "Cambridge Core",
+      "url": "https://www.cambridge.org/core",
+      "domains": [
+        "cambridge.org"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        24
+      ],
+      "keywords": [
+        "剑桥",
+        "Cambridge",
+        "BigDataandGlobalTradeLaw",
+        "电子书",
+        "OpenfullbookPDF"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "页码题同时记录正文印刷页与 PDF 物理页；开放性以目标书页为准。"
+    },
+    {
+      "id": "smartedu",
+      "name": "国家智慧教育公共服务平台",
+      "url": "https://www.smartedu.cn/",
+      "domains": [
+        "smartedu.cn"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "国家智慧教育",
+        "国家学习资源",
+        "智慧职教",
+        "智慧高教",
+        "职业教育"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "补充国家学习资源官方入口，PDF 未明列。2026-10-09 可定位官方标题。"
+    },
+    {
+      "id": "coursera",
+      "name": "Coursera",
+      "url": "https://www.coursera.org/",
+      "domains": [
+        "coursera.org"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "Coursera",
+        "AI课程",
+        "人工智能课程"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "课程平台证明课程安排；AI 概念优先用原论文/技术文档。"
+    },
+    {
+      "id": "edx",
+      "name": "edX",
+      "url": "https://www.edx.org/",
+      "domains": [
+        "edx.org"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "course",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "edX",
+        "AI课程"
+      ],
+      "evidence_fields": [
+        "课程/讲座名",
+        "开课机构",
+        "主讲人",
+        "大纲/章节号",
+        "视频时长",
+        "开课期次",
+        "检索日期"
+      ],
+      "notes": "PDF 只列平台名，补齐官方入口。"
+    },
+    {
+      "id": "textbook-medical",
+      "name": "《医学文献检索》第 3 版（赵玉虹）",
+      "url": "https://www.pmphmall.com/gdsdetail/627357-302955",
+      "domains": [
+        "pmphmall.com",
+        "pmph.com"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        5,
+        8,
+        11
+      ],
+      "keywords": [
+        "医学文献检索",
+        "赵玉虹",
+        "9787117270519"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 人卫商城命中指定版。只核验书目与合法样章，不复制全文。"
+    },
+    {
+      "id": "textbook-practical",
+      "name": "《文献信息检索实用教程》第 4 版（陈萍秀）",
+      "url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "domains": [
+        "cmpedu.com"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        5,
+        8,
+        11
+      ],
+      "keywords": [
+        "文献信息检索实用教程",
+        "陈萍秀",
+        "9787111765134"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 机械工业出版社产品页核验。"
+    },
+    {
+      "id": "textbook-chemical",
+      "name": "《化学化工信息检索》第 5 版（魏振枢）",
+      "url": "https://www.cip.com.cn/",
+      "domains": [
+        "cip.com.cn"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        5,
+        8,
+        11
+      ],
+      "keywords": [
+        "化学化工信息检索",
+        "魏振枢",
+        "9787122407795"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "补齐化学工业出版社入口；未取得官方稳定书目深链，不声称已读正文。"
+    },
+    {
+      "id": "textbook-project",
+      "name": "《现代化工文献检索项目化教程》第 3 版（伍丽娜）",
+      "url": "https://www.cip.com.cn/",
+      "domains": [
+        "cip.com.cn"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        5,
+        8,
+        11
+      ],
+      "keywords": [
+        "现代化工文献检索项目化教程",
+        "伍丽娜"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "补齐化学工业出版社入口；未取得官方稳定深链，具体版次与正文须再核验。"
+    },
+    {
+      "id": "textbook-web",
+      "name": "《网络信息检索实例分析与操作训练》第 3 版（宋诚英）",
+      "url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "domains": [
+        "phei.com.cn"
+      ],
+      "modules": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        5,
+        8,
+        11
+      ],
+      "keywords": [
+        "网络信息检索实例分析与操作训练",
+        "宋诚英"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 电子工业出版社目录页核验；防止误用已更新第 4 版。"
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "url": "https://www.grammarly.com/",
+      "domains": [
+        "grammarly.com"
+      ],
+      "modules": [
+        "M8"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        26
+      ],
+      "keywords": [
+        "Grammarly",
+        "语法检查",
+        "写作辅助"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "支持语言与文本类型以当前官方文档为准，不沿用 PDF 泛称。"
+    },
+    {
+      "id": "turnitin",
+      "name": "Turnitin",
+      "url": "https://www.turnitin.com/",
+      "domains": [
+        "turnitin.com"
+      ],
+      "modules": [
+        "M8"
+      ],
+      "kind": "vendor",
+      "access": "institution",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        26
+      ],
+      "keywords": [
+        "Turnitin",
+        "查重",
+        "相似度",
+        "论文诚信"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "产品功能查供应商文档；相似度分数不是单独抄袭判定。"
+    },
+    {
+      "id": "wofficebox",
+      "name": "万彩办公大师",
+      "url": "https://www.wofficebox.com/",
+      "domains": [
+        "wofficebox.com"
+      ],
+      "modules": [
+        "M8"
+      ],
+      "kind": "vendor",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        26
+      ],
+      "keywords": [
+        "万彩办公大师",
+        "PDF分隔",
+        "PDF合并",
+        "PDF页码",
+        "WORD转PDF"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 供应商关于页和功能页核验官网身份；具体菜单查当前版本。"
+    },
+    {
+      "id": "yuketang",
+      "name": "雨课堂",
+      "url": "https://www.yuketang.cn/",
+      "domains": [
+        "yuketang.cn"
+      ],
+      "modules": [
+        "M8"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        26
+      ],
+      "keywords": [
+        "雨课堂",
+        "PPT插件",
+        "弹幕",
+        "分组",
+        "题型"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "功能权限与版本可能变化，读取当前官方说明或插件实测。"
+    },
+    {
+      "id": "cnki-study",
+      "name": "知网研学",
+      "url": "https://x.cnki.net/",
+      "domains": [
+        "x.cnki.net"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "知网研学",
+        "研学",
+        "文献管理",
+        "E-Study"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官方页核验入口；受地区、账号和机构权限影响。"
+    },
+    {
+      "id": "noteexpress",
+      "name": "NoteExpress",
+      "url": "https://www.inoteexpress.com/aegean/index.php/home/ne/index.html",
+      "domains": [
+        "inoteexpress.com"
+      ],
+      "modules": [
+        "M9",
+        "M10"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        30
+      ],
+      "keywords": [
+        "NoteExpress",
+        "文献管理",
+        "文献追踪",
+        "DOI",
+        "订阅"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官方产品页核验；采用 inoteexpress.com，不采用相似域 noteexpress.com。"
+    },
+    {
+      "id": "endnote",
+      "name": "EndNote",
+      "url": "https://endnote.com/",
+      "domains": [
+        "endnote.com",
+        "clarivate.com"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "EndNote",
+        "文献管理",
+        "引用",
+        "导入"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "本次 HTTP 403，转浏览器或 Clarivate 官方支持，不据此判断停运。"
+    },
+    {
+      "id": "mendeley",
+      "name": "Mendeley",
+      "url": "https://www.mendeley.com/",
+      "domains": [
+        "mendeley.com"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27
+      ],
+      "keywords": [
+        "Mendeley",
+        "DOI添加",
+        "Addentrymanually",
+        "文献管理"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官网可读；涉及网页/客户端同时支持时分别查证。"
+    },
+    {
+      "id": "xmind",
+      "name": "XMind",
+      "url": "https://xmind.app/",
+      "domains": [
+        "xmind.app",
+        "xmind.cn"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "XMind",
+        "思维导图",
+        "导出格式"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "核对桌面/网页版及付费计划。"
+    },
+    {
+      "id": "mindmaster",
+      "name": "MindMaster／亿图脑图",
+      "url": "https://www.edrawmind.com/",
+      "domains": [
+        "edrawmind.com",
+        "edrawsoft.cn"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27
+      ],
+      "keywords": [
+        "MindMaster",
+        "亿图脑图",
+        "EdrawMind",
+        "思维导图"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "品牌与地区入口可能不同，核验当前官方文档。"
+    },
+    {
+      "id": "freemind",
+      "name": "FreeMind",
+      "url": "https://freemind.sourceforge.net/wiki/index.php/Main_Page",
+      "domains": [
+        "freemind.sourceforge.net"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27
+      ],
+      "keywords": [
+        "FreeMind",
+        "开源思维导图"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "以项目官方文档和版本为证。"
+    },
+    {
+      "id": "baidu-mindmap",
+      "name": "百度脑图",
+      "url": "https://naotu.baidu.com/",
+      "domains": [
+        "naotu.baidu.com"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "百度脑图",
+        "另存为",
+        "XMIND",
+        "导出"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "导出格式须读当前菜单/官方帮助，不直接照搬旧样题答案。"
+    },
+    {
+      "id": "yinxiang",
+      "name": "印象笔记",
+      "url": "https://www.yinxiang.com/",
+      "domains": [
+        "yinxiang.com"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "印象",
+        "印象笔记",
+        "笔记软件",
+        "同步"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官网返回产品介绍与同步栏目。"
+    },
+    {
+      "id": "wiz",
+      "name": "为知笔记",
+      "url": "https://www.wiz.cn/",
+      "domains": [
+        "wiz.cn"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "为知",
+        "为知笔记",
+        "笔记软件"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "本次 HTTP 超时，使用浏览器核验。"
+    },
+    {
+      "id": "youdao-note",
+      "name": "有道云笔记",
+      "url": "https://note.youdao.com/",
+      "domains": [
+        "note.youdao.com"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        27,
+        28
+      ],
+      "keywords": [
+        "有道笔记",
+        "有道云",
+        "笔记软件",
+        "网页剪报",
+        "OCR"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官网返回产品、帮助与多端同步栏目。"
+    },
+    {
+      "id": "wjx",
+      "name": "问卷星",
+      "url": "https://www.wjx.cn/",
+      "domains": [
+        "wjx.cn",
+        "wjx.top"
+      ],
+      "modules": [
+        "M9"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "问卷调查",
+        "问卷星",
+        "表单",
+        "数据收集"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "补充问卷工具示例；PDF 只泛称问卷工具，未指定问卷星。"
+    },
+    {
+      "id": "spss",
+      "name": "IBM SPSS Statistics",
+      "url": "https://www.ibm.com/products/spss-statistics",
+      "domains": [
+        "ibm.com"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        29,
+        30
+      ],
+      "keywords": [
+        "SPSS",
+        "数据处理",
+        "统计分析",
+        "官方教程"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官网核验产品身份；教程优先 IBM 官方文档。"
+    },
+    {
+      "id": "tableau",
+      "name": "Tableau",
+      "url": "https://www.tableau.com/",
+      "domains": [
+        "tableau.com"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        30
+      ],
+      "keywords": [
+        "Tableau",
+        "数据可视化",
+        "数据源"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "2026-10-09 官网核验产品与帮助入口。"
+    },
+    {
+      "id": "excel-support",
+      "name": "Microsoft Excel 官方支持",
+      "url": "https://support.microsoft.com/zh-cn/excel",
+      "domains": [
+        "support.microsoft.com"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "Excel",
+        "MID",
+        "LEFT",
+        "RIGHT",
+        "TRIM",
+        "函数",
+        "身份证",
+        "出生年月日",
+        "Office"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 提到 Excel 但未给官方文档；此为补充入口，使用脱敏示例。"
+    },
+    {
+      "id": "microsoft-learn",
+      "name": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/zh-cn/",
+      "domains": [
+        "learn.microsoft.com"
+      ],
+      "modules": [
+        "M10",
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "MicrosoftLearn",
+        "Office",
+        "Excel",
+        "人工智能",
+        "AI",
+        "数据分析",
+        "开发文档"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "补充微软技术文档入口；普通 Office 函数说明优先 support.microsoft.com。"
+    },
+    {
+      "id": "weiciyun",
+      "name": "微词云",
+      "url": "https://www.weiciyun.com/",
+      "domains": [
+        "weiciyun.com"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        30
+      ],
+      "keywords": [
+        "微词云",
+        "词频",
+        "在线分词",
+        "政府工作报告"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "词频依文本版本、分词/停用词设置，保存输入和设置。"
+    },
+    {
+      "id": "cssci",
+      "name": "南京大学 CSSCI",
+      "url": "https://cssci.nju.edu.cn/",
+      "domains": [
+        "cssci.nju.edu.cn"
+      ],
+      "modules": [
+        "M8",
+        "M10"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "CSSCI",
+        "中文社会科学引文索引",
+        "来源期刊"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充原始评价目录入口；核对适用年份。"
+    },
+    {
+      "id": "cscd",
+      "name": "中国科学引文数据库 CSCD",
+      "url": "https://sciencechina.cn/",
+      "domains": [
+        "sciencechina.cn"
+      ],
+      "modules": [
+        "M8",
+        "M10"
+      ],
+      "kind": "official_database",
+      "access": "variable",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "CSCD",
+        "中国科学引文数据库",
+        "核心库"
+      ],
+      "evidence_fields": [
+        "记录标题/名称",
+        "唯一标识",
+        "题设检索条件",
+        "目标字段",
+        "统计期或版本",
+        "原始记录 URL",
+        "检索日期"
+      ],
+      "notes": "补充原始评价目录入口；区分年段和核心/扩展库。"
+    },
+    {
+      "id": "pku-core",
+      "name": "北京大学图书馆／中文核心期刊要目总览",
+      "url": "https://www.lib.pku.edu.cn/",
+      "domains": [
+        "lib.pku.edu.cn"
+      ],
+      "modules": [
+        "M8",
+        "M10"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "supplementary_primary",
+      "pdf_pages": [],
+      "keywords": [
+        "北大核心",
+        "中文核心期刊要目总览",
+        "核心期刊"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "补充编制机构入口；具体年版目录权限另核。"
+    },
+    {
+      "id": "unesco-students",
+      "name": "UNESCO《学生人工智能能力框架》2024 英文版",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000391105",
+      "domains": [
+        "unesdoc.unesco.org",
+        "unesco.org"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        31,
+        32
+      ],
+      "keywords": [
+        "UNESCO",
+        "联合国教科文组织",
+        "AIcompetencyframeworkforstudents",
+        "学生人工智能能力框架",
+        "AI伦理",
+        "Competencyblocks"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 明确文档 URL；区分正文印刷页码与 PDF 物理页码，必须读到表格原文。"
+    },
+    {
+      "id": "szu-ai",
+      "name": "深圳大学图书馆生成式人工智能专题",
+      "url": "https://www.lib.szu.edu.cn/learning/ai",
+      "domains": [
+        "lib.szu.edu.cn"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        32
+      ],
+      "keywords": [
+        "深圳大学图书馆",
+        "生成式人工智能专题",
+        "GenAI工具导航",
+        "最新AI政策"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "抽取尾部乱码已去除；专题可证明栏目内容，政策/工具事实转相应原站。"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com/",
+      "domains": [
+        "deepseek.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        33
+      ],
+      "keywords": [
+        "DeepSeek",
+        "Deepseek",
+        "深度求索",
+        "通用AI"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 指定工具；本次 HTTP 403，需浏览器与用户账号。模型菜单随版本变化。"
+    },
+    {
+      "id": "doubao",
+      "name": "豆包",
+      "url": "https://www.doubao.com/chat/",
+      "domains": [
+        "doubao.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        32,
+        33
+      ],
+      "keywords": [
+        "豆包",
+        "AIPPT",
+        "PPT",
+        "模板",
+        "音乐生成",
+        "图像",
+        "视频",
+        "智能体",
+        "办公"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 另给 https://www.doubao.com ；本次根站重定向 /chat/，具体模板和风格需登录查证。"
+    },
+    {
+      "id": "yuanbao",
+      "name": "腾讯元宝",
+      "url": "https://yuanbao.tencent.com/",
+      "domains": [
+        "yuanbao.tencent.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        32,
+        33
+      ],
+      "keywords": [
+        "腾讯元宝",
+        "元宝",
+        "Hunyuan",
+        "混元",
+        "DeepSeek",
+        "模型选择",
+        "智能体"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 原会话 https://yuanbao.tencent.com/chat/naQivTmsDa 只作溯源，规范入口用首页；菜单现场核验。"
+    },
+    {
+      "id": "chatglm",
+      "name": "智谱清言",
+      "url": "https://chatglm.cn/",
+      "domains": [
+        "chatglm.cn"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        33
+      ],
+      "keywords": [
+        "智谱清言",
+        "ChatGLM",
+        "GLM",
+        "模块能力",
+        "智能体",
+        "联网能力",
+        "AI绘画",
+        "代码能力"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 指定工具；历史模块选项不能当当前功能事实。"
+    },
+    {
+      "id": "tongyi",
+      "name": "通义千问／通义",
+      "url": "https://www.tongyi.com/",
+      "domains": [
+        "tongyi.com",
+        "qwen.ai"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        33
+      ],
+      "keywords": [
+        "通义千问",
+        "通义",
+        "Qwen",
+        "PPT",
+        "会议记录",
+        "智能体"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 指定工具；入口调整时沿官方跳转并记录。"
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "url": "https://www.kimi.com/",
+      "domains": [
+        "kimi.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        34
+      ],
+      "keywords": [
+        "Kimi",
+        "月之暗面",
+        "PPT",
+        "写作"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 指定工具；当前功能以官方帮助或实测为准。"
+    },
+    {
+      "id": "xinghuo",
+      "name": "讯飞星火",
+      "url": "https://xinghuo.xfyun.cn/",
+      "domains": [
+        "xinghuo.xfyun.cn"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        34
+      ],
+      "keywords": [
+        "讯飞星火",
+        "星火",
+        "AI写作",
+        "图像生成",
+        "智能体"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "通用星火与星火科研助手是不同入口。"
+    },
+    {
+      "id": "iflytek-paper",
+      "name": "星火科研助手",
+      "url": "https://paper.iflytek.com/",
+      "domains": [
+        "paper.iflytek.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        32
+      ],
+      "keywords": [
+        "星火科研助手",
+        "学术写作",
+        "学术翻译",
+        "英文润色",
+        "全文审校"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "本次可定位产品标题；具体菜单需登录后核验。"
+    },
+    {
+      "id": "yiyan",
+      "name": "文心一言",
+      "url": "https://yiyan.baidu.com/",
+      "domains": [
+        "yiyan.baidu.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        34
+      ],
+      "keywords": [
+        "文心一言",
+        "文心",
+        "文小言",
+        "图像生成",
+        "写作",
+        "智能体"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "名称与跳转可能更新，记录实际官方落点。"
+    },
+    {
+      "id": "nano-ai",
+      "name": "纳米 AI",
+      "url": "https://www.n.cn/",
+      "domains": [
+        "n.cn"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "login",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        34
+      ],
+      "keywords": [
+        "纳米AI",
+        "纳米",
+        "智能体",
+        "通用AI"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "PDF 指定工具；查当前功能入口。"
+    },
+    {
+      "id": "metaso",
+      "name": "秘塔 AI 搜索",
+      "url": "https://metaso.cn/",
+      "domains": [
+        "metaso.cn"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "vendor",
+      "access": "variable",
+      "origin": "pdf_explicit_url",
+      "pdf_pages": [
+        34
+      ],
+      "keywords": [
+        "秘塔",
+        "秘塔AI搜索",
+        "科研",
+        "AI搜索"
+      ],
+      "evidence_fields": [
+        "官方功能说明",
+        "目标菜单/字段",
+        "产品版本/平台",
+        "权限条件",
+        "实测日期",
+        "原始 URL"
+      ],
+      "notes": "可证明产品自身功能；生成答案仅作线索，引用须打开原始来源。"
+    },
+    {
+      "id": "tensorflow",
+      "name": "TensorFlow 官方文档",
+      "url": "https://www.tensorflow.org/",
+      "domains": [
+        "tensorflow.org"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "TensorFlow",
+        "深度学习",
+        "模型训练",
+        "机器学习"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只列框架名，补齐官方入口。"
+    },
+    {
+      "id": "keras",
+      "name": "Keras 官方文档",
+      "url": "https://keras.io/",
+      "domains": [
+        "keras.io"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "Keras",
+        "深度学习",
+        "API",
+        "模型"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只列框架名，补齐官方入口。"
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch 官方文档",
+      "url": "https://pytorch.org/",
+      "domains": [
+        "pytorch.org"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "PyTorch",
+        "Pytorch",
+        "动态计算图",
+        "深度学习"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只列框架名，补齐官方入口。"
+    },
+    {
+      "id": "gradio",
+      "name": "Gradio 官方文档",
+      "url": "https://www.gradio.app/",
+      "domains": [
+        "gradio.app"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "Gradio",
+        "交互式界面",
+        "Web界面"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只列工具名，补齐官方入口。"
+    },
+    {
+      "id": "flask",
+      "name": "Flask 官方文档",
+      "url": "https://flask.palletsprojects.com/",
+      "domains": [
+        "flask.palletsprojects.com"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "official_docs",
+      "access": "public",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "Flask",
+        "Web微框架",
+        "模型部署"
+      ],
+      "evidence_fields": [
+        "文档标题",
+        "发布机构",
+        "发布日期/版本",
+        "条号或章节",
+        "原文片段",
+        "原始 URL",
+        "检索日期"
+      ],
+      "notes": "PDF 只列工具名，补齐 Pallets 官方文档。"
+    },
+    {
+      "id": "ai-literacy-paper",
+      "name": "What is AI Literacy? Competencies and Design Considerations",
+      "url": "https://dl.acm.org/doi/10.1145/3313831.3376727",
+      "domains": [
+        "dl.acm.org"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "publisher",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        31
+      ],
+      "keywords": [
+        "AI素养",
+        "AIliteracy",
+        "Competencies",
+        "Long",
+        "Magerko"
+      ],
+      "evidence_fields": [
+        "题名/书名",
+        "作者",
+        "DOI/ISBN",
+        "出版年/版次",
+        "目标正文或目录",
+        "正文页码",
+        "PDF 物理页码",
+        "原始 URL"
+      ],
+      "notes": "PDF 只列论文题名，补齐 ACM DOI 入口；实际引用须打开出版者记录核验。"
+    },
+    {
+      "id": "bilibili",
+      "name": "哔哩哔哩（B 站）",
+      "url": "https://www.bilibili.com/",
+      "domains": [
+        "bilibili.com"
+      ],
+      "modules": [
+        "M3",
+        "M7",
+        "M9",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        11,
+        24,
+        27,
+        33
+      ],
+      "keywords": [
+        "B站",
+        "哔哩哔哩",
+        "视频教程",
+        "信息检索技术",
+        "文献管理工具使用教程"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "教程发现渠道，不是规范、记录或工具功能最终权威，追溯政府/出版者/供应商原始证据。"
+    },
+    {
+      "id": "zhihu",
+      "name": "知乎",
+      "url": "https://www.zhihu.com/",
+      "domains": [
+        "zhihu.com"
+      ],
+      "modules": [
+        "M7",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23,
+        24,
+        33
+      ],
+      "keywords": [
+        "知乎",
+        "问答社区"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "社区只作线索，不能作为事实题最终权威。"
+    },
+    {
+      "id": "jianshu",
+      "name": "简书",
+      "url": "https://www.jianshu.com/",
+      "domains": [
+        "jianshu.com"
+      ],
+      "modules": [
+        "M7"
+      ],
+      "kind": "discovery",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23
+      ],
+      "keywords": [
+        "简书",
+        "问答社区"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "社区只作线索，不能作为事实题最终权威。"
+    },
+    {
+      "id": "xiaohongshu",
+      "name": "小红书",
+      "url": "https://www.xiaohongshu.com/",
+      "domains": [
+        "xiaohongshu.com"
+      ],
+      "modules": [
+        "M7",
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        23,
+        33
+      ],
+      "keywords": [
+        "小红书",
+        "经验教程"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "社区只作线索，不能作为事实题最终权威。"
+    },
+    {
+      "id": "csdn",
+      "name": "CSDN",
+      "url": "https://www.csdn.net/",
+      "domains": [
+        "csdn.net"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "kind": "discovery",
+      "access": "variable",
+      "origin": "pdf_named_resource",
+      "pdf_pages": [
+        33
+      ],
+      "keywords": [
+        "CSDN",
+        "技术博客"
+      ],
+      "evidence_fields": [
+        "检索词",
+        "候选原始 URL",
+        "发布者",
+        "检索日期"
+      ],
+      "notes": "博客只作线索，技术语义与功能追溯官方文档。"
+    }
+  ]
+}

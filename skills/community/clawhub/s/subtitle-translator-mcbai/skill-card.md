@@ -1,43 +1,60 @@
-## Description: <br>
-Translate SRT subtitle files into any target language using AI while preserving SRT timing and format and writing a translated SRT output file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates SRT subtitle files into a target language using AI, batching large files, preserving timing and format, and producing a translated SRT file.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-External users and developers use this skill to translate movie or video subtitle files into a chosen target language while keeping subtitle IDs, timecodes, and SRT structure intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subtitle files may contain private or sensitive dialogue that is sent through the user's configured AI translation provider. <br>
-Mitigation: Review subtitle content and provider settings before translation, and avoid processing private files with providers that are not approved for that data. <br>
-Risk: A translated output file could overwrite or be mistaken for an important subtitle file. <br>
-Mitigation: Check the output filename and directory before running the helper scripts on important files. <br>
+## Use Case:
 
+External users and developers use this skill to translate subtitle files for films or videos into a selected target language while preserving SRT timecodes and structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcbaivn/subtitle-translator-mcbai) <br>
-- [MCB AI publisher profile](https://clawhub.ai/user/mcbaivn) <br>
-- [MCB AI](https://www.mcbai.vn) <br>
-- [OpenClaw cheatsheet](https://openclaw.mcbai.vn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python helper commands and generated SRT subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided SRT subtitle files, can parse subtitle text to JSON for translation, and writes translated UTF-8 SRT output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing with an unpinned ClawHub installer version can change install behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned ClawHub installer version before installing the skill.
+
+Risk: The skill reads subtitle content supplied by the user and sends text through the agent's translation workflow.
+
+Mitigation: Run it only on subtitle files the user intends the agent to read and translate.
+
+Risk: The workflow creates a translated SRT output file near the input path.
+
+Mitigation: Review the requested input and output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcbaivn/skills/subtitle-translator-mcbai)
+- [MCB AI](https://www.mcbai.vn)
+- [OpenClaw Cheatsheet](https://openclaw.mcbai.vn)
+- [OpenClaw 101](https://openclaw.mcbai.vn/openclaw101)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [SRT subtitle file and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original SRT timecodes and writes a translated output file near the input path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

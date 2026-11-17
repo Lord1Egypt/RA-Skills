@@ -1,44 +1,55 @@
-## Description: <br>
-Finds IHG points-night options in Shanghai, Jiangsu, and Zhejiang, with filters for brand, distance, points range, and executive lounge availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds IHG reward-night and promotional options in the Jiangsu-Zhejiang-Shanghai region, with filters for brand, distance, points bands, and executive lounge availability.
 
-## Publisher: <br>
-[eddylhb](https://clawhub.ai/user/eddylhb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddylhb](https://clawhub.ai/user/eddylhb)
 
-## Use Case: <br>
-Travelers and agent users use this skill to compare IHG reward stays and promotions in the Jiangsu-Zhejiang-Shanghai region. It returns ranked hotel suggestions with points, cash value, distance, brand, and lounge signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports that the main query script and hotel database are missing or referenced from outside the package. <br>
-Mitigation: Install only after the publisher includes those files or clearly documents the trusted external path they come from. <br>
-Risk: Backup and rollback scripts can change local OpenClaw skill and script files. <br>
-Mitigation: Inspect backups before restoring and review maintenance scripts before running them. <br>
-Risk: Artifact documentation states that current hotel availability and price values may use simulated data. <br>
-Mitigation: Treat recommendations as planning guidance unless the publisher documents a live trusted data source. <br>
+## Use Case:
 
+Travel-focused agents and users use this skill to surface reward-night options and promotions for IHG hotels in Shanghai, Jiangsu, and Zhejiang, then rank options by distance, brand preference, points value, and lounge availability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eddylhb/find-ihg) <br>
-- [Artifact changelog](references/CHANGELOG.md) <br>
-- [Artifact audit report](references/audit_report.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style text with ranked hotel recommendations, filter summaries, points and cash-value analysis, and booking guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on packaged or external hotel data and query execution files; current release evidence says the main query script and hotel database are missing or referenced outside the package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence) <br>
+Risk: The main executable and hotel data referenced by the skill are not present in the reviewed package, so runtime behavior cannot be fully assessed from the submitted artifact alone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external query.py and hotels.json implementation before installation, or require the publisher to bundle those files in the skill package.
+
+Risk: The rollback script can replace live skill and script files from backup directories without strong path validation or integrity checks.
+
+Mitigation: Use rollback only with trusted backup labels and backup locations, and add path validation plus checksum verification before restoring files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eddylhb/skills/find-ihg)
+- [CHANGELOG.md](artifact/references/CHANGELOG.md)
+- [audit_report.json](artifact/references/audit_report.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted natural-language recommendations and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ranked hotel recommendations, points-versus-cash value analysis, filter context, and promotional guidance when available.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

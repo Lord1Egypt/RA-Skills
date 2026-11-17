@@ -1,43 +1,48 @@
-## Description: <br>
-Use ZeroCut CLI media and document tools. Invoke when user needs generate media, run ffmpeg/pandoc, sync resources, or save outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use ZeroCut CLI media and document tools. Invoke when user needs generate media, run ffmpeg/pandoc, sync resources, or save outputs.
 
-## Publisher: <br>
-[smartdiana](https://clawhub.ai/user/smartdiana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smartdiana](https://clawhub.ai/user/smartdiana)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and creators use this skill to have agents invoke ZeroCut CLI commands for media generation, speech audio, ffmpeg or ffprobe work, pandoc conversion, resource syncing, and saved outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or converted files may be written into the current workspace, and missing output directories may be created.
+
+Mitigation: Specify trusted input resources and explicit output filenames or directories before running commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and creators use this skill to request ZeroCut CLI commands for generating images, videos, music, and speech audio, converting media and documents with ffmpeg or pandoc, syncing resources, and saving generated outputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local files or URLs may be synced to ZeroCut storage for processing. <br>
-Mitigation: Review resource paths and URLs before running commands, and avoid syncing private or sensitive documents unless that processing is intended. <br>
-Risk: Generated commands can write output files to local paths and create missing parent directories. <br>
-Mitigation: Confirm output filenames and destination paths before execution. <br>
-Risk: ffmpeg and pandoc argument strings can change media or document conversion behavior. <br>
-Mitigation: Inspect ffmpeg, ffprobe, and pandoc arguments before running generated commands. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smartdiana/zerocut-cli-tools) <br>
-- [Publisher profile](https://clawhub.ai/user/smartdiana) <br>
+**Other Properties Related to Output:** [May propose commands that create output directories and write generated or converted files into the current workspace.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated media or document output paths and resource sync guidance.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

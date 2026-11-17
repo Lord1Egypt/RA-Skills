@@ -1,50 +1,66 @@
-## Description: <br>
-AI finance assistant - real-time quotes, charts, technical analysis, portfolio tracking, price alerts, watchlists, daily briefings, macro economics, and sentiment analysis for US stocks, BIST, crypto, and forex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FinClaw is an AI finance assistant for real-time quotes, charts, technical analysis, portfolio tracking, price alerts, watchlists, market briefings, macro indicators, and sentiment analysis across US stocks, BIST, crypto, and forex.
 
-## Publisher: <br>
-[salihgun](https://clawhub.ai/user/salihgun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[salihgun](https://clawhub.ai/user/salihgun)
 
-## Use Case: <br>
-External users and developers use FinClaw to query market data, generate charts and technical indicators, track portfolios, manage watchlists and price alerts, and produce concise market briefings across US stocks, BIST, crypto, and forex. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Portfolio records, watchlists, alerts, cached prices, and user notes are stored locally. <br>
-Mitigation: Use appropriate local file permissions and avoid storing sensitive notes or identifiers in portfolio, watchlist, or alert fields. <br>
-Risk: Market queries and optional API keys are sent to third-party finance APIs. <br>
-Mitigation: Use limited-scope API keys and only query symbols or assets you are comfortable sending to external market-data providers. <br>
-Risk: Some remove or delete commands modify local records rather than archiving them. <br>
-Mitigation: Review destructive portfolio, watchlist, and alert commands before execution and keep backups if local records are important. <br>
-Risk: Setup installs current Python package versions from package indexes. <br>
-Mitigation: Run setup in an isolated Python environment and review or pin dependency versions where reproducibility is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FinClaw ClawHub release](https://clawhub.ai/salihgun/finclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/salihgun) <br>
-- [API Endpoints Reference](artifact/references/api-endpoints.md) <br>
-- [Briefing Templates](artifact/references/briefing-template.md) <br>
-- [FRED Macro Indicators Reference](artifact/references/macro-indicators.md) <br>
-- [Portfolio Commands Quick Reference](artifact/references/portfolio-commands.md) <br>
-- [Technical Indicators Reference](artifact/references/technical-indicators.md) <br>
-- [Ticker Symbols Reference](artifact/references/ticker-symbols.md) <br>
+## Use Case:
 
+External users and agents use FinClaw to retrieve market data, generate chart files, run technical and macro analysis, manage local portfolios and watchlists, and create local price alerts. The skill is intended for finance workflow assistance and should be reviewed before acting on market or portfolio outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown/plain text from helper scripts, optional JSON output, shell commands for setup and execution, configuration snippets, and PNG chart files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on current third-party market data and optional API keys; portfolio records, watchlists, alerts, and cached prices are stored locally in SQLite.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup flow installs Python dependencies for a local finance utility.
+
+Mitigation: Review the dependency list before setup and run the skill in its local virtual environment.
+
+Risk: The skill contacts third-party market-data services for quotes, news, macro indicators, sentiment, crypto, and forex data.
+
+Mitigation: Confirm data against authoritative sources before making financial decisions and configure API keys only when needed.
+
+Risk: Portfolio, alert, watchlist, and cached market data are stored locally.
+
+Mitigation: Avoid entering sensitive notes or holdings on shared machines and protect the skill directory and local database.
+
+Risk: Some portfolio and alert commands mutate or delete local records.
+
+Mitigation: Review remove, sell, and delete commands before execution and keep backups when portfolio history matters.
+
+## Reference(s):
+
+- [FinClaw ClawHub Skill Page](https://clawhub.ai/salihgun/skills/finclaw)
+- [API Endpoints Reference](references/api-endpoints.md)
+- [Briefing Templates](references/briefing-template.md)
+- [FRED Macro Indicators Reference](references/macro-indicators.md)
+- [Portfolio Commands Quick Reference](references/portfolio-commands.md)
+- [Technical Indicators Reference](references/technical-indicators.md)
+- [Ticker Symbols Reference](references/ticker-symbols.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown and JSON text output, shell command invocations, configuration snippets, and generated PNG chart files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional API keys for some data sources, calls third-party market-data services, and stores portfolio, alert, watchlist, and cache data in a local SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

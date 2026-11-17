@@ -1,43 +1,59 @@
-## Description: <br>
-A practitioner guide for adding escrow payments, marketplace discovery, reputation-gated hiring, and dispute resolution to CrewAI, LangGraph, and AutoGen multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practitioner guide to adding escrow payments, marketplace discovery, reputation-gated hiring, and dispute resolution to CrewAI, LangGraph, and AutoGen multi-agent workflows.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent builders use this guide to design multi-agent workflows that can discover counterparties, manage escrow-backed payments, evaluate reputation, and handle disputes across CrewAI, LangGraph, and AutoGen systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Payment and signing examples involve sensitive credentials and agent spending authority. <br>
-Mitigation: Use sandbox or Stripe test mode first, store keys in a secrets manager, scope keys narrowly, and require human approval before production spending, subscriptions, or escrow release. <br>
-Risk: Copied examples could authorize agents to make purchases or sign transactions without adequate budget controls. <br>
-Mitigation: Set strict per-agent budgets, isolate wallets by agent, log transactions, and review workflows before enabling real funds. <br>
+## Use Case:
 
+Developers and engineers use this guide to add agent-to-agent commerce patterns, including escrow, discovery, reputation-gated hiring, and dispute handling, to CrewAI, LangGraph, and AutoGen workflows.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/mirni/greenhelix-multi-agent-commerce-cookbook) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint](https://api.greenhelix.net/v1) <br>
-- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guide with Python examples, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; examples reference GreenHelix, agent signing, and Stripe credentials supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and frontmatter) <br>
+Risk: Payment examples can create, release, dispute, or refund payments when adapted with live credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with sandbox credentials, require explicit approval before fund movement, set strict per-agent budget caps, and allow only authenticated triggers.
+
+Risk: The guide references powerful GreenHelix, signing, and Stripe credentials.
+
+Mitigation: Store credentials in a secrets manager, scope keys to the minimum required permissions, and avoid exposing Stripe or signing keys unless a workflow specifically needs them.
+
+Risk: Illustrative key-generation examples can return private-key material in process memory or logs if copied directly.
+
+Mitigation: Replace returned private-key strings with secrets-manager references and prevent private keys from being committed, logged, or shared between agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-multi-agent-commerce-cookbook)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guide with Python examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; workflows reference GREENHELIX_API_KEY, AGENT_SIGNING_KEY, and STRIPE_API_KEY when used with live services.]
+
+## Skill Version(s):
+
+1.3.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Schedule and run safe daily or weekly updates for Clawdbot and installed skills using the Gateway cron scheduler. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and run daily or weekly update routines for Clawdbot and installed skills through Gateway cron jobs, including update reporting and optional Clawdbot update, restart, and doctor checks.
 
-## Publisher: <br>
-[xabo1986](https://clawhub.ai/user/xabo1986) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xabo1986](https://clawhub.ai/user/xabo1986)
 
-## Use Case: <br>
-Developers and operators use this skill to configure recurring Clawdbot Gateway cron jobs that report on, and optionally apply, ClawHub skill and Clawdbot updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a persistent scheduled job that updates all installed skills. <br>
-Mitigation: Review the cron schedule before installation, start in report-only mode, and confirm how to list, pause, or delete the cron job. <br>
-Risk: Optional Clawdbot self-updates and restarts can disrupt running automation. <br>
-Mitigation: Require explicit manual approval before enabling self-updates or restarts, schedule changes during a quiet window, and run doctor checks after updates. <br>
-Risk: The sample command contains absolute local paths and a hard-coded Telegram recipient. <br>
-Mitigation: Replace all absolute paths and notification recipients with environment-specific values before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xabo1986/auto-updater-gateway) <br>
-- [Publisher profile](https://clawhub.ai/user/xabo1986) <br>
+## Use Case:
 
+Developers and operators use this skill to configure Gateway cron jobs that check and apply updates for Clawdbot and installed skills, then report the results. It is most relevant for environments where scheduled maintenance, update summaries, and controlled restart behavior are needed.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command examples and cron configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for Clawdbot cron scheduling, ClawHub login checks, update reporting, and optional self-update workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unattended scheduled jobs can update all installed skills and may optionally update and restart Clawdbot without per-update approval.
+
+Mitigation: Prefer report-only checks or explicit approvals for changes, schedule maintenance during quiet periods, and keep rollback and provenance checks before applying updates.
+
+Risk: The artifact includes example local paths and a fixed Telegram recipient that may not match the installing environment.
+
+Mitigation: Replace paths, work directories, and delivery recipients with verified environment-specific values before creating the cron job.
+
+Risk: Clawdbot self-updates and restarts can disrupt active Gateway sessions.
+
+Mitigation: Enable self-updates only when intended, run doctor checks after updates, and review the summary report for errors or restart failures.
+
+## Reference(s):
+
+- [Auto-Updater (Gateway) ClawHub page](https://clawhub.ai/xabo1986/skills/auto-updater-gateway)
+- [Publisher profile: xabo1986](https://clawhub.ai/user/xabo1986)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include scheduled update commands, report-only or update-and-restart posture, delivery settings, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

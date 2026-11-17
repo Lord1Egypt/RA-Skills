@@ -1,40 +1,54 @@
-## Description: <br>
-Manage CalDAV calendars from the command line, including iCloud, Google, Yandex, and custom CalDAV servers with OAuth2 or Basic authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage CalDAV calendars (iCloud, Google, Yandex) from the command line. Supports OAuth2 and Basic auth, multi-account, table/JSON output.
 
-## Publisher: <br>
-[cyberash-dev](https://clawhub.ai/user/cyberash-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cyberash-dev](https://clawhub.ai/user/cyberash-dev)
 
-## Use Case: <br>
-Developers, operators, and calendar power users use this skill to install and operate caldav-cli for managing CalDAV accounts, listing calendar events, and creating events from Linux or macOS terminals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CLI connects to calendar accounts and can read calendar data or create events in connected calendars. <br>
-Mitigation: Only connect calendar accounts intended for this workflow, review event creation commands before execution, and confirm target account and calendar flags. <br>
-Risk: The workflow requires calendar credentials, OAuth2 tokens, OAuth client credentials, and OS keychain access. <br>
-Mitigation: Use the documented OS keychain storage path, verify the local config file is limited to account metadata, and install caldav-cli only from a trusted npm package. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberash-dev/caldav-cli) <br>
-- [caldav-cli source link from metadata](https://github.com/cyberash-dev/caldav-cli) <br>
+## Use Case:
 
+Developers and command-line users use this skill to install and operate caldav-cli for account setup, event listing, and event creation across CalDAV calendar providers.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples; caldav-cli can return table or JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, the caldav-cli binary, local config at ~/.config/caldav-cli/config.json, and OS keychain access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The global npm install is unpinned and the installed CLI can access calendar account data.
+
+Mitigation: Review or pin the caldav-cli package before installation and grant only the minimum calendar and account access required.
+
+Risk: Account setup requires calendar credentials or OAuth secrets.
+
+Mitigation: Use the documented OS keychain storage path for secrets, keep account metadata permissions restricted, and revoke credentials when access is no longer needed.
+
+## Reference(s):
+
+- [Caldav Cli on ClawHub](https://clawhub.ai/cyberash-dev/skills/caldav-cli)
+- [caldav-cli source](https://github.com/cyberash-dev/caldav-cli)
+- [Google Cloud Console](https://console.cloud.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, JSON]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes interactive and non-interactive command examples for account and event workflows.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Book Of The Day fetches a fresh daily book recommendation and returns an uplifting, poetic reading in the user's language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book of the Day is a daily book oracle that fetches a fresh book and produces one uplifting, poetic reading in the user's language.
 
-## Publisher: <br>
-[Romanluoman00007](https://clawhub.ai/user/Romanluoman00007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[romanluoman00007](https://clawhub.ai/user/romanluoman00007)
 
-## Use Case: <br>
-External users ask for a daily book-themed reading or recommendation. Operators can optionally configure the skill for scheduled Telegram or Slack posts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the configured book API when invoked. <br>
-Mitigation: Install only if external API access is acceptable, and configure BOOK_OF_THE_DAY_API_URL to a trusted endpoint when overriding the default. <br>
-Risk: Optional cron setup can automatically post daily output to Telegram or Slack. <br>
-Mitigation: Enable the cron command only when scheduled posting is intended, and verify the channel, timezone, and message before use. <br>
-Risk: A separate one-click private-API installer may modify local configuration. <br>
-Mitigation: Inspect any private-API installer command before executing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Romanluoman00007/book-of-the-day) <br>
-- [Default Book Of The Day API](https://book-of-the-day.vercel.app) <br>
+## Use Case:
 
+External users ask for a daily book recommendation with a short optimistic reading, optionally scheduled through OpenClaw cron for daily delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a book title, author, archetype, short reading, and closing call to action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Under 200 words for the generated reading, excluding book description] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Install notes may direct users to a publisher-supplied one-command installer outside the reviewed package.
+
+Mitigation: Use the reviewed clawhub install book-of-the-day path, and only run a separate installer after reviewing its full contents, source, version, and checksum or signature.
+
+Risk: Daily push configuration can send automated messages to a configured channel.
+
+Mitigation: Review cron schedule, timezone, session, and channel settings before enabling daily delivery.
+
+## Reference(s):
+
+- [Book of the Day API](https://book-of-the-day.vercel.app)
+- [ClawHub Skill Page](https://clawhub.ai/romanluoman00007/skills/book-of-the-day)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with optional inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Under 200 words for the reading, excluding the book description.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

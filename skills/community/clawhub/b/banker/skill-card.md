@@ -1,42 +1,53 @@
-## Description: <br>
-Banking and financial services advisor covering loans, mortgages, deposits, credit, banking products, and financial transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Banking and financial services advisor covering loans, mortgages, deposits, credit, banking products, and financial transactions.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users and employees use this skill to understand banking products, compare loan and mortgage options, reason about credit and fees, and prepare questions for licensed financial institutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general banking guidance as a substitute for formal financial advice or binding product terms. <br>
-Mitigation: Present outputs as informational and verify loan, mortgage, credit, and banking decisions with licensed financial institutions. <br>
-Risk: Users may share sensitive banking details while asking for help with transactions or products. <br>
-Mitigation: Avoid sharing account numbers, credentials, or other sensitive financial information. <br>
-Risk: Calculations or comparisons may be incomplete if rates, fees, terms, taxes, or local rules are missing. <br>
-Mitigation: Use the skill to frame questions and compare options, then confirm exact figures with formal quotes and current institution disclosures. <br>
+## Use Case:
 
+External users use this skill to understand banking products, compare loan or mortgage options, reason about credit and rates, and frame financial transaction questions before seeking formal quotes from licensed providers.
 
-## Reference(s): <br>
-- [Banker ClawHub listing](https://clawhub.ai/jiwenbing/banker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown text with explanations, comparisons, and financial calculations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational banking guidance only; no account access, persistence, or transaction authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat educational banking explanations or sample calculations as binding financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs informational, state assumptions, and recommend formal quotes or advice from licensed banks or financial professionals before actual decisions.
+
+Risk: Banking product comparisons may omit lender-specific fees, eligibility rules, or terms that affect the user's real cost.
+
+Mitigation: Highlight what to watch for, compare relevant options, and direct users to verify APR, fees, term length, and eligibility with licensed providers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiwenbing/skills/banker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include educational explanations, comparisons, and illustrative banking calculations; outputs are informational and not binding financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

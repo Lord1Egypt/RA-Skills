@@ -1,41 +1,57 @@
-## Description: <br>
-Fetches real estate listings from Paragon MLS APIs and supports four-square rental property analysis, property comparisons, and structured listing extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real estate listings from Paragon MLS (paragonrels.com / fnimls.com) APIs and perform four-square rental property analysis.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-External users, developers, and real estate analysts use this skill to look up public Paragon MLS listing data, analyze rental investment assumptions, compare properties, and inspect raw listing JSON through an MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package is configured to run a hard-coded local Node MCP server whose source code is not included in the artifact. <br>
-Mitigation: Inspect and trust the referenced paragon-mls-mcp server code, then update the MCP command to a reviewed local path before enabling the skill. <br>
-Risk: Some regions may use plaintext HTTP, and unofficial MLS API responses can change without notice. <br>
-Mitigation: Treat results as advisory, verify listing and financial analysis against authoritative sources, and avoid sending sensitive data through unencrypted endpoints. <br>
+## Use Case:
 
+Developers, agents, and real estate analysts use this skill to retrieve public Paragon MLS listing data, inspect structured property details, and analyze rental investment scenarios including cash flow, cash-on-cash return, DSCR, ROI, ROE, IRR, and velocity banking comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/earlvanze/paragon-mls) <br>
-- [Publisher profile](https://clawhub.ai/user/earlvanze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples; MCP tools return structured listing data, investment analysis, comparisons, and raw JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and a locally reviewed Paragon MLS MCP server path before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill depends on a separate Node MCP server outside the bundled artifact, so the executable code may differ from the reviewed skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and trust the referenced paragon-mls-mcp source before installation, and prefer a packaged release that bundles the server source.
+
+Risk: The setup is not reproducible because dependencies are installed at build time without a bundled lockfile.
+
+Mitigation: Pin and verify dependencies before deployment.
+
+Risk: Some MLS regions may use plaintext HTTP for listing data, which can expose or allow tampering with queries and responses.
+
+Mitigation: Block plaintext HTTP use where possible, or clearly confirm the risk before using affected regions.
+
+## Reference(s):
+
+- [ClawHub Paragon MLS skill page](https://clawhub.ai/earlvanze/skills/paragon-mls)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, analysis]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, structured listing data, and investment analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and a separately available Paragon MLS MCP server at the configured path.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

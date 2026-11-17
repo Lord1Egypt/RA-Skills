@@ -1,41 +1,56 @@
-## Description: <br>
-Security self-check for Clawdbot/Moltbot that audits clawdbot.json for exposed gateway bind, missing auth, weak tokens, open DM or group policies, loose permissions, and plaintext secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security self-check for Clawdbot/Moltbot that audits clawdbot.json for exposed gateway binding, missing authentication, permissive DM or group policies, weak tokens, loose file permissions, and plaintext secrets.
 
-## Publisher: <br>
-[peterokase42](https://clawhub.ai/user/peterokase42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peterokase42](https://clawhub.ai/user/peterokase42)
 
-## Use Case: <br>
-Developers and operators use this skill to review Clawdbot or Moltbot configuration for common security misconfigurations and to receive proposed fixes for unsafe settings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may lead an agent to read sensitive Clawdbot configuration without a clearly targeted opt-in. <br>
-Mitigation: Invoke the skill only with an explicit request for this security check and review the report before sharing it. <br>
-Risk: The skill can propose changes to authentication, tokens, gateway binding, DM or group policy, and file permissions. <br>
-Mitigation: Review each proposed fix before approving edits and update paired clients if a gateway token is replaced. <br>
-Risk: Reports may include details about local tokens, secrets, or configuration weaknesses. <br>
-Mitigation: Avoid pasting or publishing the full report unless sensitive values and environment details have been removed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peterokase42/dont-hack-me) <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit a local Clawdbot/Moltbot configuration for common security misconfigurations and to review optional fixes before applying them.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with PASS, WARN, FAIL, or SKIP statuses and optional shell commands or configuration edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to clawdbot.json and permission changes after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill inspects ~/.clawdbot/clawdbot.json, which may contain local tokens or other secrets.
+
+Mitigation: Run it only when you intend to grant the agent access to that file, and review the generated security report before approving any fixes.
+
+Risk: The auto-fix backup file ~/.clawdbot/clawdbot.json.bak may retain old tokens or other secrets.
+
+Mitigation: After auto-fix, verify whether the backup is still needed and remove or protect it if it contains sensitive values.
+
+Risk: Token replacement changes gateway credentials and can disconnect paired clients until they are updated.
+
+Mitigation: Confirm token-changing fixes deliberately, restart the gateway, and update paired clients with the new token.
+
+## Reference(s):
+
+- [Dont Hack Me ClawHub Skill Page](https://clawhub.ai/peterokase42/skills/dont-hack-me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown security report with PASS, WARN, FAIL, and SKIP statuses, plus optional fix guidance after user confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect ~/.clawdbot/clawdbot.json and propose or apply targeted configuration changes only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

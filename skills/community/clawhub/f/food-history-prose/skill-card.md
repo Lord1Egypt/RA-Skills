@@ -1,41 +1,53 @@
-## Description: <br>
-Generates Chinese-language food history prose about medieval or modern European foods and desserts, with guidance on structure, tone, evidence, openings, endings, and platform adaptation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese food-history prose about medieval and modern European foods with clear structure, grounded detail, and a plain, warm tone.
 
-## Publisher: <br>
-[zealot00](https://clawhub.ai/user/zealot00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zealot00](https://clawhub.ai/user/zealot00)
 
-## Use Case: <br>
-Writers and agents use this skill to draft Chinese-language food-history essays for WeChat, Weibo, electronic magazines, and related media. It is especially suited to articles about medieval or modern European foods and desserts that need a clear narrative, restrained style, and verifiable historical anchors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated historical details or citations may be inaccurate or insufficiently sourced. <br>
-Mitigation: Verify factual claims, dates, places, people, and source references before publication. <br>
-Risk: The skill is written for Chinese-language food-history essays and may not fit broader audiences without adaptation. <br>
-Mitigation: Confirm the target language, publication platform, and audience expectations before relying on the generated prose. <br>
+## Use Case:
 
+Writers and content teams use this skill to draft Chinese food-history essays for WeChat public accounts, long-form Weibo, and digital magazines, especially on medieval or modern European foods and desserts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zealot00/food-history-prose) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese prose in natural paragraphs, usually without headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only writing output; historical facts and citations should be checked before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill strongly steers outputs toward Chinese food-history essays for WeChat, Weibo, and similar platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State another language, topic scope, or publication style explicitly when invoking it.
+
+Risk: Generated historical claims, dates, places, or source references may need editorial verification before publication.
+
+Mitigation: Review factual details and cited sources against trusted references before publishing the essay.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zealot00/skills/food-history-prose)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose in Markdown or plain natural paragraphs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Natural paragraphs without section headings; platform tone can be adapted for knowledge, emotional, or cultural essay channels.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

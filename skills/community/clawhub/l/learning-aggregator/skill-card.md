@@ -1,40 +1,54 @@
-## Description: <br>
-Learning Aggregator analyzes accumulated .learnings/ files across sessions, groups entries by pattern key, computes recurrence, and outputs ranked promotion candidates as gap reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Beta] Cross-session analysis of accumulated .learnings/ files. Reads all entries, groups by pattern_key, computes recurrence across sessions, and outputs ranked promotion candidates.
 
-## Publisher: <br>
-[pskoett](https://clawhub.ai/user/pskoett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pskoett](https://clawhub.ai/user/pskoett)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review accumulated learning logs, identify recurring gaps, and decide which patterns are ready to promote into project instructions, skills, tools, or evaluations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deep trace review can expose sensitive project context and user prompts from session transcripts. <br>
-Mitigation: Use --deep only when transcript analysis is authorized; use the default .learnings-only mode for routine reporting. <br>
-Risk: Gap reports may recommend promotions that are incomplete, stale, or not appropriate for a project. <br>
-Mitigation: Review recommendations before changing project instructions, creating evaluations, or updating skills and tools. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to inspect accumulated local learning files, identify recurring gaps across sessions, and prioritize promotion candidates for instructions, tools, skills, or evaluations.
 
-## Reference(s): <br>
-- [Entire](https://entire.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown gap report with ranked patterns, evidence, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional filters such as since date, minimum recurrence, area, and deep trace analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Optional deep mode can read full historical session transcripts, which may include secrets or unrelated private work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use deep analysis only after confirming the selected checkpoints are relevant, and review generated gap reports before sharing or committing them.
+
+Risk: Gap reports may contain incorrect or over-broad promotion recommendations for ambiguous patterns.
+
+Mitigation: Require human review before applying recommendations to project instructions, skills, tools, or evaluations.
+
+## Reference(s):
+
+- [Learning Aggregator skill page](https://clawhub.ai/pskoett/skills/learning-aggregator)
+- [Entire](https://entire.io)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown gap report with ranked pattern summaries, evidence, recommended actions, and optional command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include filters by date, area, recurrence threshold, and optional deep trace analysis when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

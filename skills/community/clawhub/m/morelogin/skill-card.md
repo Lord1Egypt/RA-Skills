@@ -1,45 +1,66 @@
-## Description: <br>
-Manage MoreLogin anti-detect browser profiles and cloud phones through the official localhost Local API, including profile lifecycle, fingerprint refresh, cloud phone power and app operations, and proxy, group, and tag management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage MoreLogin anti-detect browser profiles and cloud phones through the official Local API (http://127.0.0.1:40000), including browser profile lifecycle, fingerprint refresh, cloud phone power/file/app operations, and proxy/group/tag management.
 
-## Publisher: <br>
-[MoreLoginBrowser](https://clawhub.ai/user/MoreLoginBrowser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moreloginbrowser](https://clawhub.ai/user/moreloginbrowser)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to control local MoreLogin browser profiles and cloud phones through documented API endpoints while building profile lifecycle, CDP, ADB, proxy, group, and tag workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over real MoreLogin profiles and cloud phones. <br>
-Mitigation: Install only when that control is intended, keep the API target on localhost, and confirm sensitive actions before execution. <br>
-Risk: Destructive operations can clear caches, delete profiles, uninstall apps, change proxies, or alter device state. <br>
-Mitigation: Require explicit confirmation of target IDs, endpoint names, and request bodies before running destructive or state-changing commands. <br>
-Risk: Automation can expose account data, cookies, screenshots, proxy credentials, ADB keys, or scraping outputs. <br>
-Mitigation: Avoid logging secrets or captured data, review cookie, screenshot, scraping, and anti-detection workflows, and approve only exact endpoints and payloads. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to manage MoreLogin browser profiles, cloud phones, proxies, groups, and tags through the local MoreLogin API and to connect running profiles to Puppeteer or Playwright.
 
-## Reference(s): <br>
-- [MoreLogin Local API Documentation](https://guide.morelogin.com/api-reference/local-api) <br>
-- [MoreLogin ClawHub Skill Page](https://clawhub.ai/MoreLoginBrowser/morelogin) <br>
-- [API-CONTRACT.md](artifact/API-CONTRACT.md) <br>
-- [local-api.yaml](artifact/local-api.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce localhost API payloads and CLI commands for MoreLogin browser profile, cloud phone, proxy, group, and tag operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and package.json) <br>
+Risk: Sensitive profile, proxy, or ADB data may be sent to or printed from a broader endpoint than the localhost-only workflow implies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a running local MoreLogin desktop app, keep MORELOGIN_LOCAL_API_URL on localhost, and review command output before sharing it.
+
+Risk: Tokens, profile identifiers, IP mappings, proxy credentials, or ADB details may be exposed through shared files or logs.
+
+Mitigation: Keep secrets and profile-to-IP mappings out of shared files, redact sensitive output, and treat command output as sensitive unless reviewed.
+
+Risk: Browser automation dependencies may be outdated for sensitive environments.
+
+Mitigation: Upgrade the Playwright and Puppeteer dependency chain before using browser tooling in sensitive environments.
+
+Risk: Batch delete, cache clearing, proxy deletion, group/tag deletion, and app uninstall operations can affect multiple managed resources.
+
+Mitigation: Confirm target IDs and payloads before write operations, prefer explicit payloads for complex changes, and verify status after lifecycle actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/moreloginbrowser/skills/morelogin)
+- [MoreLogin Local API Documentation](https://guide.morelogin.com/api-reference/local-api)
+- [API-CONTRACT.md](artifact/API-CONTRACT.md)
+- [README-OFFICIAL-API.md](artifact/README-OFFICIAL-API.md)
+- [USAGE.md](artifact/USAGE.md)
+- [local-api.yaml](artifact/local-api.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local CLI/API commands for a running MoreLogin desktop app; review outputs for sensitive profile, proxy, or ADB data before sharing.]
+
+## Skill Version(s):
+
+1.0.3 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

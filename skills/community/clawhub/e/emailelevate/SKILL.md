@@ -196,7 +196,7 @@ export ACTIVECAMPAIGN_URL="https://youraccount.api-us1.com"
 export SENDGRID_API_KEY="your_sendgrid_api_key_here"
 
 # Analytics & Reporting (optional but recommended)
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 export GOOGLE_ANALYTICS_KEY="your_google_analytics_key"
 
 # Brand Customization

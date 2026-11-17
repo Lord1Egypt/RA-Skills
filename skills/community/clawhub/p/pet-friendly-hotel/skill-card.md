@@ -1,38 +1,53 @@
-## Description: <br>
-Provides local, Chinese-language guidance for pet-friendly hotel policy checks, domestic airline pet transport, rail pet restrictions, and pet travel document checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language, locally stored guidance for pet-friendly hotel policies, China-focused airline and rail pet travel rules, and pet travel document checklists.
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Travelers in China use this skill to check pet-friendly lodging guidance, airline and rail pet travel constraints, and document preparation timelines before traveling with cats or dogs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, hotel, airline, rail, and document requirements may change after the bundled local data was published. <br>
-Mitigation: Confirm current requirements with the hotel, carrier, railway operator, or relevant government office before booking or travel. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer Chinese-language questions about taking pets to hotels, on flights or trains, and through domestic or international document preparation workflows. It is best suited for preliminary planning and should be paired with direct verification from hotels, carriers, rail operators, and destination authorities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/pet-friendly-hotel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Text] <br>
-**Output Format:** [JSON objects with human-readable policy guidance and checklist text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled local policy data and does not send external requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The release advertises nationwide pet-friendly hotel search, while the security evidence says the artifact mainly implements pet flight, train, and document lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use hotel guidance as a starting point only and verify each hotel or chain policy directly before booking.
+
+Risk: Hotel, airline, railway, and destination pet travel requirements can change after the local static data was published.
+
+Mitigation: Confirm current requirements with the relevant hotel, carrier, railway operator, official destination authority, or qualified travel professional before travel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/pet-friendly-hotel)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, JSON]
+
+**Output Format:** [Markdown-style guidance and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local static data; no external requests or user data collection are described in the artifact.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release metadata; artifact frontmatter says 1.0.6 and artifact _meta.json says 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

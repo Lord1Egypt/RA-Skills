@@ -1,49 +1,68 @@
-## Description: <br>
-Deep Search-mpro helps agents structure public web research and generate consulting-style Markdown and HTML reports for company, product, industry, market, and AI vendor analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional deep-research and report-generation skill for company, product, industry, market, and AI-vendor analysis that uses agent web search/fetch workflows and consulting frameworks to produce Markdown and HTML reports.
 
-## Publisher: <br>
-[muqi98-michael](https://clawhub.ai/user/muqi98-michael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muqi98-michael](https://clawhub.ai/user/muqi98-michael)
 
-## Use Case: <br>
-External users, employees, and analysts use this skill to turn a research topic into a confirmed analysis framework, collect public web evidence, and produce presentation-ready Markdown and HTML reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public web research and optional local workflows may expose sensitive topics or trigger unintended execution paths. <br>
-Mitigation: Use the skill for public web research, avoid confidential topics unless downstream tools are controlled, require explicit confirmation before searches or conversions, and inspect optional scripts before running them. <br>
-Risk: Generated research reports can include misleading conclusions when source evidence is incomplete or weak. <br>
-Mitigation: Require traceable sources, cross-check key claims, and mark missing data rather than filling gaps. <br>
+## Use Case:
 
+Employees, external analysts, and developers use this skill to turn a research topic into a structured analysis framework, gather traceable web evidence, and generate consulting-style market, company, product, industry, or AI-tool reports.
 
-## Reference(s): <br>
-- [Deep Search-mpro ClawHub page](https://clawhub.ai/muqi98-michael/deep-search-mpro) <br>
-- [Deep Research Methodology](references/methodology/deep-research-methodology.md) <br>
-- [Analysis Frameworks](references/methodology/analysis-frameworks.md) <br>
-- [Report Writing Guide](references/methodology/report-writing-guide.md) <br>
-- [Workflow Phase 0 Details](references/workflow/phase0-details.md) <br>
-- [Workflow Phase 1 Details](references/workflow/phase1-details.md) <br>
-- [Workflow Phase 2 Details](references/workflow/phase2-details.md) <br>
-- [Search Engines Guide](references/technical/search-engines.md) <br>
-- [Data Quality Guidelines](references/technical/data-quality-guidelines.md) <br>
-- [Analysis Model Index](references/models/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and HTML reports, with optional code and shell-command snippets for setup or supporting data collection.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create report files from bundled Markdown and HTML templates; optional local scripts should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: The security summary says the skill may guide agents toward web searches, report-file generation, and optional local scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned searches and generated files before use, and run optional scripts only in a controlled environment.
+
+Risk: The security summary notes guidance that may load or run unverified local skills and scripts outside the package.
+
+Mitigation: Verify referenced sibling skills and script paths before following them, especially hard-coded user-directory paths.
+
+Risk: Optional Python scripts may require dependencies and network access for collection workflows.
+
+Mitigation: Use a virtual environment with pinned dependencies, explicit network limits, and source-review before enabling live collection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muqi98-michael/skills/deep-search-mpro)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Deep research methodology](artifact/references/methodology/deep-research-methodology.md)
+- [Analysis frameworks](artifact/references/methodology/analysis-frameworks.md)
+- [Report writing guide](artifact/references/methodology/report-writing-guide.md)
+- [Workflow phase 0 details](artifact/references/workflow/phase0-details.md)
+- [Workflow phase 1 details](artifact/references/workflow/phase1-details.md)
+- [Workflow phase 2 details](artifact/references/workflow/phase2-details.md)
+- [Model reference index](artifact/references/models/README.md)
+- [Search engine guide](artifact/references/technical/search-engines.md)
+- [Data quality guidelines](artifact/references/technical/data-quality-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and HTML reports, with optional shell commands and configuration guidance for supporting scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite sources, mark unavailable data explicitly, and avoid fabricated metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

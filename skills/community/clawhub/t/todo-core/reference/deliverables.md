@@ -1,0 +1,7 @@
+# Deliverables without a natural unit test
+
+Read on demand from `reference/verification.md`. Part of the `todo` core skill.
+
+Choose a focused, safe executable check of the deliverable. For a shell script, invoke it in a controlled fixture and assert its exit status and output; before implementation, a missing script or the expected assertion failure is red. For CI YAML, parse the workflow and assert the required jobs and steps; the missing workflow or a specific missing step is red. For documentation, run a link or anchor checker against the changed pages; a missing target or the expected broken link is red. For configuration, run a local validation or smoke command with an assertion on the intended behavior; missing configuration or that assertion failing is red. An unrelated syntax, setup, or network error is not the expected red. Read scripts before running them and apply the command safety rules above.
+
+`Tests:` and `Done when` may use environment assignments, such as `SERVICE_URL=127.0.0.1:17233 pytest -q`. Prefer a reviewed, self-contained test entry script that starts and cleans up required services when practical. If infrastructure is unavailable, record the exact command and environment failure, restore the dependency or use an already approved equivalent environment, and rerun the baseline. Do not call an infrastructure failure a passing baseline or skip tests. If restoring the infrastructure requires implementation, track it as a FIX node under the red-baseline exception and verify the full suite once available.

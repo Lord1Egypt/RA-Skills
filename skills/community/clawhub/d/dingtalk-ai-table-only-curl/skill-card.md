@@ -1,43 +1,58 @@
-## Description: <br>
-Provides agent guidance and curl-based DingTalk Notable API workflows for managing AI table sheets, fields, and records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage DingTalk AI Table (.able) sheets, fields, and records through curl-based Notable API workflows.
 
-## Publisher: <br>
-[breath57](https://clawhub.ai/user/breath57) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breath57](https://clawhub.ai/user/breath57)
 
-## Use Case: <br>
-Developers and business operators use this skill to configure DingTalk app credentials and operate DingTalk AI tables. It supports sheet, field, and record management tasks, including list, create, update, query, and delete workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores DingTalk credentials and tokens in a local configuration file. <br>
-Mitigation: Use a least-privileged DingTalk app, avoid shared machines, restrict permissions on the local config file, and do not print full credentials in agent responses. <br>
-Risk: The skill can create, update, or delete DingTalk AI table sheets, fields, and records. <br>
-Mitigation: Require explicit user confirmation of the target base, sheet, field, or record IDs before any destructive operation. <br>
-Risk: Cached DingTalk tokens may become invalid before their cached expiry time. <br>
-Mitigation: On DingTalk 401 responses, bypass the cache with the documented nocache token refresh flow before retrying. <br>
+## Use Case:
 
+Developers and operations users use this skill to prepare curl-based DingTalk Notable API calls for listing, creating, updating, and deleting AI Table sheets, fields, and records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/breath57/dingtalk-ai-table-only-curl) <br>
-- [DingTalk AI table API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DingTalk API request and response examples, configuration key checks, and credential-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill can guide read, write, and delete operations against live DingTalk AI Table business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege DingTalk app permissions and require explicit user confirmation before update or delete operations.
+
+Risk: The helper workflow stores DingTalk credentials and cached tokens on the local machine.
+
+Mitigation: Use the skill only on trusted machines, avoid printing full secrets, and rotate credentials if exposure is suspected.
+
+Risk: The security summary reports unsafe shell patterns.
+
+Mitigation: Review generated shell commands before execution and keep sensitive values out of shared terminals, logs, and files.
+
+## Reference(s):
+
+- [dingtalk-ai-table API reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/breath57/skills/dingtalk-ai-table-only-curl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands, DingTalk configuration guidance, and confirmation prompts for write or delete operations.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

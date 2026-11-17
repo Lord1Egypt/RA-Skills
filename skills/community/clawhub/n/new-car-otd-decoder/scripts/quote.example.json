@@ -1,0 +1,16 @@
+{
+  "state": "TX",
+  "deal_type": "purchase",
+  "has_trade": false,
+  "lines": [
+    {"label": "MSRP", "amount": 39995},
+    {"label": "Selling price", "amount": 37500},
+    {"label": "Manufacturer rebate", "amount": -3000},
+    {"label": "Sales tax @ 8.25%", "amount": 2856},
+    {"label": "Title, registration, plates", "amount": 218},
+    {"label": "Documentation fee", "amount": 350},
+    {"label": "VIN etching", "amount": 1495},
+    {"label": "Surface protection package", "amount": 495},
+    {"label": "All-weather floor mats", "amount": 495}
+  ]
+}

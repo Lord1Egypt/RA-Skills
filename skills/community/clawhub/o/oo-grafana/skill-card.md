@@ -1,42 +1,61 @@
-## Description: <br>
-Operates Grafana through OOMOL's oo CLI for reading, creating, updating, and deleting dashboards, folders, and data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI with an OOMOL-connected Grafana account to read and manage Grafana dashboards, folders, data sources, and alerts.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Grafana resources through an OOMOL-connected account. It helps inspect live action schemas, build valid JSON payloads, and run read, write, and delete connector actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a Grafana account through OOMOL-managed credentials. <br>
-Mitigation: Install it only if you trust OOMOL and use a least-privileged Grafana service account where possible. <br>
-Risk: Write and destructive actions can change or remove Grafana dashboards, folders, and data sources. <br>
-Mitigation: Inspect the live connector schema, review the exact payload and target, and require explicit approval before delete actions. <br>
+## Use Case:
 
+Developers and Grafana users can use this skill to inspect dashboards, folders, data sources, and alerting information, and to create, update, or delete supported Grafana resources through the oo CLI.
 
-## Reference(s): <br>
-- [Grafana homepage](https://grafana.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-grafana) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL sign-in, and a connected Grafana account; write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup can execute unverified remote code and may introduce broader changes to installed agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing, use a pinned and verified CLI installed under your control, and disable startup skill synchronization if you do not want other agent skills changed.
+
+Risk: The hosted connector was not verified, and an over-permissioned Grafana API key could grant access beyond what the task needs.
+
+Mitigation: Grant only the necessary API-key permissions and review the connector setup before use.
+
+Risk: Grafana writes and deletions can change or remove resources.
+
+Mitigation: Keep the skill's explicit approval requirements for write and destructive actions.
+
+## Reference(s):
+
+- [Grafana skill release](https://clawhub.ai/oomol/skills/oo-grafana)
+- [Grafana](https://grafana.com)
+- [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and JSON request and response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read Grafana information and, with user approval, make changes or delete resources.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

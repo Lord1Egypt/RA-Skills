@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+"""
+xr-call: 轻量 CLI 调度器，复用已有代码，不造轮子。
+
+放在 skill 的 scripts/ 目录下，与 SKILL.md 配合使用。
+
+用法：
+  xr-call capture [--timeout 2.0]
+  xr-call scan [--timeout 1.0]
+  xr-call move --direction forward --duration-sec 2 --speed-mps 0.3
+  xr-call turn --direction left --duration-sec 1
+  xr-call stop
+  xr-call navigate --waypoint A
+  xr-call list-waypoints
+
+说明：
+- 不需要 source ROS 环境，内部 import 自动处理
+- 参数支持 --key value 格式，数值自动转 int/float
+"""
+
+import json
+import sys
+from dataclasses import dataclass, field
+from typing import Any
+
+
+@dataclass
+class CliContext:
+    """最小化 context，满足已有 handler 的参数要求。"""
+    ros_node: Any = None
+    logger: Any = None
+    provider_config: dict = field(default_factory=dict)
+    package_share_dir: str = ""
+    manifest_path: str = ""
+
+
+def _parse_args() -> dict[str, Any]:
+    """解析 argv[2:] 中的 --key value 参数。"""
+    kwargs: dict[str, Any] = {}
+    i = 2
+    while i < len(sys.argv):
+        arg = sys.argv[i]
+        if not arg.startswith("--"):
+            print(json.dumps({"ok": False, "message": f"参数必须以 -- 开头: {arg}"}),
+                  file=sys.stderr)
+            sys.exit(1)
+        key = arg[2:].replace("-", "_")
+        if i + 1 < len(sys.argv) and not sys.argv[i + 1].startswith("--"):
+            raw = sys.argv[i + 1]
+            i += 2
+            # 尝试转数值
+            try:
+                raw = int(raw)
+            except ValueError:
+                try:
+                    raw = float(raw)
+                except ValueError:
+                    pass
+            kwargs[key] = raw
+        else:
+            kwargs[key] = True
+            i += 1
+    return kwargs
+
+
+def _init_ros_and_context(package_name: str) -> CliContext:
+    """初始化 ROS 节点，构造 context。"""
+    import rclpy
+    from ament_index_python.packages import get_package_share_directory
+    from rclpy.node import Node
+    rclpy.init()
+    node = Node("xr_call")
+    logger = node.get_logger()
+    package_share_dir = get_package_share_directory(package_name)
+    return CliContext(
+        ros_node=node,
+        logger=logger,
+        provider_config={
+            "settings": {
+                "image_topic": "/camera/color/image_raw",
+                "capture_timeout_sec": 2.0,
+                "jpeg_quality": 85,
+                "static_image_path": "",
+                "scan_topic": "/scan",
+                "scan_timeout_sec": 1.0,
+                "config_file": "config/offline_voice.yaml",
+                "default_frame_id": "map",
+                "topics": {
+                    "cmd_vel": "/cmd_vel",
+                    "goal_pose": "/goal_pose",
+                    "action": "/offline_voice/action",
+                    "reply": "/offline_voice/reply_text",
+                },
+            },
+        },
+        package_share_dir=package_share_dir,
+        manifest_path="cli",
+    )
+
+
+def _shutdown(node, rclpy_module):
+    node.destroy_node()
+    rclpy_module.shutdown()
+
+
+def main() -> None:
+    if len(sys.argv) < 2:
+        cmds = "capture scan move turn stop navigate list-waypoints"
+        print(json.dumps({"ok": False, "message": f"用法: xr-call <命令> [--参数 值]\n命令: {cmds}"}))
+        sys.exit(1)
+
+    cmd = sys.argv[1]
+
+    # 延迟 import，只在需要时加载
+    if cmd == "capture":
+        import rclpy
+        from xrrobot_bringup.mcp_handlers import capture_current_frame
+        ctx = _init_ros_and_context("xrrobot_bringup")
+        kwargs = _parse_args()
+        try:
+            result = capture_current_frame(context=ctx, **kwargs)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    elif cmd == "scan":
+        import rclpy
+        from xrrobot_bringup.mcp_handlers import get_latest_scan_info
+        ctx = _init_ros_and_context("xrrobot_bringup")
+        kwargs = _parse_args()
+        try:
+            result = get_latest_scan_info(context=ctx, **kwargs)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    elif cmd == "move":
+        import rclpy
+        from xrrobot_offline_voice.mcp_handlers import move as _move
+        ctx = _init_ros_and_context("xrrobot_offline_voice")
+        kwargs = _parse_args()
+        direction = kwargs.pop("direction", "")
+        if direction not in ("forward", "backward"):
+            print(json.dumps({"ok": False, "message": "direction 必须是 forward 或 backward"}))
+            _shutdown(ctx.ros_node, rclpy)
+            sys.exit(1)
+        try:
+            result = _move(direction=direction, context=ctx, **kwargs)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    elif cmd == "turn":
+        import rclpy
+        from xrrobot_offline_voice.mcp_handlers import turn as _turn
+        ctx = _init_ros_and_context("xrrobot_offline_voice")
+        kwargs = _parse_args()
+        direction = kwargs.pop("direction", "")
+        if direction not in ("left", "right"):
+            print(json.dumps({"ok": False, "message": "direction 必须是 left 或 right"}))
+            _shutdown(ctx.ros_node, rclpy)
+            sys.exit(1)
+        try:
+            result = _turn(direction=direction, context=ctx, **kwargs)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    elif cmd == "stop":
+        import rclpy
+        from xrrobot_offline_voice.mcp_handlers import stop as _stop
+        ctx = _init_ros_and_context("xrrobot_offline_voice")
+        try:
+            result = _stop(context=ctx)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    elif cmd == "navigate":
+        import rclpy
+        from xrrobot_offline_voice.mcp_handlers import navigate_to_waypoint
+        ctx = _init_ros_and_context("xrrobot_offline_voice")
+        kwargs = _parse_args()
+        waypoint = kwargs.pop("waypoint", "")
+        if not waypoint:
+            print(json.dumps({"ok": False, "message": "需要 --waypoint 参数"}))
+            _shutdown(ctx.ros_node, rclpy)
+            sys.exit(1)
+        try:
+            result = navigate_to_waypoint(waypoint=waypoint, context=ctx)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    elif cmd == "list-waypoints":
+        import rclpy
+        from xrrobot_offline_voice.mcp_handlers import list_waypoints
+        ctx = _init_ros_and_context("xrrobot_offline_voice")
+        try:
+            result = list_waypoints(context=ctx)
+            print(json.dumps(result, ensure_ascii=False, default=str))
+        except Exception as e:
+            print(json.dumps({"ok": False, "message": str(e)}))
+        _shutdown(ctx.ros_node, rclpy)
+
+    else:
+        print(json.dumps({"ok": False, "message": f"未知命令: {cmd}"}))
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

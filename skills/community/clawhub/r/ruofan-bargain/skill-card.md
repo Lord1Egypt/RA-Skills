@@ -1,38 +1,54 @@
-## Description: <br>
-Ruofan Bargain Arena helps users join Ruofan's coupon bargaining activity, exchange messages with the Ruofan shopkeeper AI, and track coupon offers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ruofan Bargain Arena helps users join Ruofan's coupon bargaining event and relay bargaining messages to Ruofan's AI shopkeeper.
 
-## Publisher: <br>
-[sanool](https://clawhub.ai/user/sanool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanool](https://clawhub.ai/user/sanool)
 
-## Use Case: <br>
-External users use this skill to participate in Ruofan's coupon bargaining activity by providing an activity passphrase and nickname, sending negotiation messages, and reviewing offer status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bargaining messages and nicknames may be publicly displayed on Ruofan's activity page. <br>
-Mitigation: Use a nickname and messages suitable for public display, avoid personal or sensitive information, verify ruffood.com is the expected Ruofan site, and keep the session token private. <br>
+## Use Case:
 
+External users use this skill to participate in Ruofan's bargain event by providing a passphrase and nickname, sending bargain messages, and reviewing coupon offers returned by the event API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanool/ruofan-bargain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user-facing bargaining prompts, Ruofan API calls, offer status, remaining round counts, and final deal status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill sends the user's passphrase, nickname, and bargain messages to ruffood.com, and the resulting conversation may be publicly displayed on the event page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to avoid personal or sensitive information in nicknames and bargain messages, and explain that the conversation may become public before sending messages.
+
+Risk: The returned session token controls access to the bargain session.
+
+Mitigation: Treat the session token as private and avoid exposing it in public chat, logs, or shared transcripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanool/skills/ruofan-bargain)
+- [Publisher profile](https://clawhub.ai/user/sanool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with API request examples and conversational status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session token handling guidance, current coupon offer, deal status, remaining rounds, and user-facing privacy reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

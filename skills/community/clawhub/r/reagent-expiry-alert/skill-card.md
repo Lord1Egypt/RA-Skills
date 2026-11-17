@@ -1,44 +1,61 @@
-## Description: <br>
-Scan reagent barcodes or IDs, log expiration dates, and generate multi-level alerts before reagent expiry to support laboratory inventory management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan reagent barcodes or IDs, log expiration dates, and generate multi-level alerts before reagent expiry to support laboratory inventory management.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Laboratory staff and inventory managers use this skill to log reagent IDs, expiration dates, locations, and quantities, then check for expired or soon-to-expire reagents. It supports inventory review and reorder planning, not safety assessment, controlled substance tracking, disposal guidance, or chain-of-custody inventory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local reagent inventory details may include lab-sensitive operational data. <br>
-Mitigation: Confirm local storage is acceptable for the lab before running the skill, and record only the reagent IDs, dates, locations, and quantities needed for expiry tracking. <br>
-Risk: Expiry alerts and reorder recommendations could be mistaken for regulated inventory, hazardous disposal, safety assessment, or chain-of-custody guidance. <br>
-Mitigation: Use the skill only for expiry tracking, and route controlled substances, hazardous materials, disposal decisions, and formal compliance inventory to approved lab systems and personnel. <br>
-Risk: Incorrect or fabricated expiry dates can lead to poor inventory decisions. <br>
-Mitigation: Verify reagent IDs and expiration dates against labels or inventory records, and leave missing dates unresolved rather than guessing. <br>
+## Use Case:
 
+Laboratory staff, inventory managers, and agents supporting lab operations use this skill to log reagent IDs with expiration dates, check alert windows, and produce expiry status and reorder guidance for ordinary non-regulated inventory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/reagent-expiry-alert) <br>
-- [Skill definition](SKILL.md) <br>
-- [Polish changelog](POLISH_CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and structured reagent alert reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local JSON reagent inventory file when the packaged script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Inventory details are persisted locally in plaintext at ~/.openclaw/reagent_inventory.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on appropriate accounts and avoid storing sensitive or regulated inventory details in the local file.
+
+Risk: Expired-item output may display overdue items incorrectly until the known overdue display bug is fixed.
+
+Mitigation: Manually verify expired-item reports against the stored expiration dates before acting on disposal or reorder decisions.
+
+Risk: The skill is not intended for controlled substances, biological hazards requiring special disposal, or regulated chain-of-custody inventory.
+
+Mitigation: Use it only for ordinary non-regulated reagent expiry tracking and route regulated inventory through approved lab systems.
+
+Risk: Local inventory records may be operationally important but are stored outside a managed database.
+
+Mitigation: Keep backups when the inventory matters for operations and review file access controls on shared systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/reagent-expiry-alert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured alert reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local inventory data to ~/.openclaw/reagent_inventory.json when the packaged CLI is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Turn any live camera into a smart camera: describe what to watch for in plain English, ask questions about live streams, set up continuous monitoring with custom conditions, or get periodic summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any live camera into a smart camera by letting an agent check live streams, monitor for natural-language conditions, and produce periodic summaries through Trio by MachineFi.
 
-## Publisher: <br>
-[drandrewlaw](https://clawhub.ai/user/drandrewlaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drandrewlaw](https://clawhub.ai/user/drandrewlaw)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw agents to Trio by MachineFi for live video question answering, event monitoring, and periodic stream digests. It is intended for authorized camera, livestream, RTSP, RTSPS, and HLS sources where the user can provide a Trio API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live camera frames or stream-derived observations may be sent to Trio, webhooks, or chat destinations. <br>
-Mitigation: Use only streams you own or are authorized to monitor, avoid private or regulated spaces unless consent and compliance obligations are handled, and disclose where outputs are sent. <br>
-Risk: Continuous monitoring jobs can keep running and continue sending surveillance-derived alerts. <br>
-Mitigation: Prefer finite monitoring durations, retain job IDs, and cancel jobs when monitoring is no longer needed. <br>
-Risk: The Trio API key is required to call the service. <br>
-Mitigation: Store TRIO_API_KEY securely and never expose or log the key in user-visible output. <br>
+## Use Case:
 
+External users and developers use this skill to ask questions about live camera or stream content, set up event monitoring with natural-language conditions, and request live digests without building their own video AI pipeline.
 
-## Reference(s): <br>
-- [Trio API Docs](https://docs.machinefi.com) <br>
-- [Trio Console](https://console.machinefi.com) <br>
-- [Trio by MachineFi](https://machinefi.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/drandrewlaw/trio-vision) <br>
-- [Publisher Profile](https://clawhub.ai/user/drandrewlaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples, JSON API response handling, and concise user-facing summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRIO_API_KEY and curl or python3; may produce job IDs, trigger explanations, status summaries, and API error remediation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Live camera streams, selected frames, summaries, and webhook notifications may be sent to Trio/MachineFi and configured webhook destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only streams you are authorized to monitor, avoid sensitive or regulated environments without consent, and review webhook destinations before enabling notifications.
+
+Risk: The skill requires a Trio API key and includes shell examples that could expose secrets if copied into persistent shell history or logs.
+
+Mitigation: Store TRIO_API_KEY in a secret manager or ephemeral environment, avoid printing it, and redact it from shared logs or transcripts.
+
+Risk: Curl templates accept user-provided stream URLs, conditions, job IDs, and webhook URLs.
+
+Mitigation: Prefer a structured HTTP client or JSON-safe command construction, validate untrusted values, and avoid pasting untrusted input directly into shell commands.
+
+Risk: Continuous monitoring and live digest jobs can create ongoing per-minute charges.
+
+Mitigation: Disclose the expected cost and duration before starting jobs, set bounded monitor durations where possible, and return job IDs so users can inspect or cancel jobs.
+
+## Reference(s):
+
+- [Trio API Docs](https://docs.machinefi.com)
+- [MachineFi](https://machinefi.com)
+- [Trio Console](https://console.machinefi.com)
+- [ClawHub Skill Listing](https://clawhub.ai/drandrewlaw/skills/trio-vision)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON request examples, job identifiers, status summaries, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Trio API response fields such as triggered, explanation, latency_ms, job_id, status, and remediation; API key values should not be exposed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

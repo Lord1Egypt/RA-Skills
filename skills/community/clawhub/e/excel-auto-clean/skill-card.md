@@ -1,40 +1,57 @@
-## Description: <br>
-Cleans Excel spreadsheets by removing empty rows and columns, deduplicating rows, sorting by the first column, and generating a summary report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically cleans Excel spreadsheets by removing empty rows and columns, deduplicating records, sorting data, and generating summary reports.
 
-## Publisher: <br>
-[sfxia](https://clawhub.ai/user/sfxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfxia](https://clawhub.ai/user/sfxia)
 
-## Use Case: <br>
-External users and office teams use this skill to clean selected Excel files and save a new cleaned workbook or report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package appears incomplete because the referenced Excel processing module is missing, so cleanup may fail at runtime. <br>
-Mitigation: Confirm the complete package includes the Excel handler before purchase or installation and test the skill on a copy of a spreadsheet. <br>
-Risk: Automatic cleanup can remove duplicates, delete empty rows, or reorder data in ways that may not match the user's intent. <br>
-Mitigation: Keep the original spreadsheet, confirm the cleanup criteria, and inspect the generated file before relying on it. <br>
+## Use Case:
 
+External users use this skill to clean Excel workbooks and create a new organized file with deduplicated, sorted data and summary reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sfxia/excel-auto-clean) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [Cleaned Excel workbook with text status message or payment link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves a new cleaned file after purchase verification when the Excel processing package is complete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Purchased runs may fail because the package calls an Excel processing module that is not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the missing Excel handler is included and tested before purchase, installation, or deployment.
+
+Risk: The skill advertises saving cleaned files to the desktop without evidence of an output-path confirmation step.
+
+Mitigation: Ask the publisher to let users choose or confirm the output path before cleaned files are written.
+
+Risk: Failure responses may expose internal error details.
+
+Mitigation: Review error handling so user-facing messages are actionable without revealing unnecessary internal details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sfxia/skills/excel-auto-clean)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Cleaned Excel workbook plus status or payment-link message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a payment URL before processing; successful runs report that a new cleaned file was saved to the desktop.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

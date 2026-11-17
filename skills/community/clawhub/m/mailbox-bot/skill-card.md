@@ -1,45 +1,60 @@
-## Description: <br>
-Postal mail API for AI agents: send physical mail, use inbound context, and join the launching-soon mailbox address beta (street + mailbox number). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Postal mail API and MCP server for AI agents: send letters, certified mail and postcards, and give an agent its own street address + PMB with webhooks, OCR search and human-approved scan, forward or discard.
 
-## Publisher: <br>
-[arbengine](https://clawhub.ai/user/arbengine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbengine](https://clawhub.ai/user/arbengine)
 
-## Use Case: <br>
-External developers and operators use mailbox.bot to connect agents to outbound physical mail, forwarded inbound document context, and linked postal thread workflows. Approved beta users can evaluate mailing mailbox address workflows with street address, scan/photo intake, and agent notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global for software integration; the real mailing mailbox address beta is described as starting in Southern California, then Utah and Nevada. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can initiate real-world mail authority, including destructive mailbox actions and outbound production mail. <br>
-Mitigation: Use sandbox or dry-run keys first, enable force_approval and spend limits, and require explicit human approval for destructive actions or production sends. <br>
-Risk: The skill requires sensitive credentials that can authorize postal workflows and charges. <br>
-Mitigation: Prefer agent-scoped keys, keep credentials out of prompts and logs, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+External developers and AI agents use mailbox.bot through REST or MCP to send physical mail, read inbound mail context, and propose mailbox actions such as scanning, forwarding, or discarding. Humans review costs and approve funded sends or inbound mailbox actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbengine/mailbox-bot) <br>
-- [mailbox.bot Website](https://mailbox.bot) <br>
-- [MCP Install Guide](https://mailbox.bot/mcp-install) <br>
-- [API Docs](https://mailbox.bot/api-docs) <br>
-- [OpenAPI Specification](https://mailbox.bot/openapi.json) <br>
-- [Public MCP Tool Catalog](https://mailbox.bot/api/mcp/tools-public) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, shell command, and REST/MCP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated API requests; sandbox and dry-run modes are documented for testing before live mail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.5 (source: server release metadata, frontmatter, server.json, smithery.yaml, changelog released 2026-06-05) <br>
+Risk: The security evidence marks the skill suspicious because the README recommends an installation command that is not pinned to a fixed version; the scan was partial and its result is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installation instructions and verify the intended release before installing; treat the partial scan as incomplete.
+
+Risk: Live outbound mail can create postage and service charges, and mailbox actions can affect physical mail.
+
+Mitigation: Use dry-run quotes and a cost cap, show the human review details, and require owner approval for funded sends and scan, forward, or discard actions.
+
+Risk: API credentials can authorize account operations if exposed.
+
+Mitigation: Keep keys out of URLs, command-line arguments, copied prompts, and logs; use sandbox keys for testing.
+
+## Reference(s):
+
+- [MCP Install Guide](https://mailbox.bot/mcp-install)
+- [API Documentation](https://mailbox.bot/api-docs)
+- [OpenAPI Specification](https://mailbox.bot/openapi.json)
+- [Public MCP Tool Catalog](https://mailbox.bot/api/mcp/tools-public)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell examples, plus REST or MCP requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can send physical mail or incur charges; the skill documents dry runs, cost caps, and human approval steps.]
+
+## Skill Version(s):
+
+5.3.2 (source: frontmatter, changelog released 2026-11-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

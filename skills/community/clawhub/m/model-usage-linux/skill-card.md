@@ -1,40 +1,47 @@
-## Description: <br>
-Track OpenClaw AI token usage and cost per model on Linux by parsing session JSONL files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track OpenClaw AI token usage and cost per model on Linux by parsing session JSONL files.
 
-## Publisher: <br>
-[HablaBechir](https://clawhub.ai/user/HablaBechir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hablabechir](https://clawhub.ai/user/hablabechir)
 
-## Use Case: <br>
-Developers and engineers use this skill to summarize OpenClaw model usage, token counts, cache activity, assistant turns, and estimated cost from local Linux session logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session JSONL files, which may contain sensitive usage or conversation metadata. <br>
-Mitigation: Run it only in trusted local environments and treat generated reports as sensitive operational data. <br>
-Risk: The security guidance notes that the --session flag should not be relied on for scoped reporting. <br>
-Mitigation: Use --sessions-dir to point at a deliberately scoped directory, or update the skill before depending on single-session filtering. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HablaBechir/model-usage-linux) <br>
-- [HablaBechir publisher profile](https://clawhub.ai/user/HablaBechir) <br>
+## Use Case:
+
+Developers and engineers use this skill to inspect local OpenClaw session logs and summarize token usage, model activity, cache usage, and estimated cost.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads local OpenClaw session logs, which may contain sensitive conversation records.
+
+Mitigation: Use the default sessions directory or a narrowly chosen --sessions-dir, and avoid pointing the skill at unrelated private JSONL files.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text usage summary or JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports per-model turns, input and output tokens, cache read and write tokens, and cost in USD.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, json, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text or JSON summaries with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local JSONL session logs and reports per-model turns, input tokens, output tokens, cache tokens, and cost.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,70 @@
-## Description: <br>
-GPA Genomic Phenotype Association helps agents run genomic variant and phenotype association analysis with tissue-aware tiering for germline risk, somatic tumor variants, pharmacogenomics, and multi-hit findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GPA (Genomic Phenotype Association) analyzes genomic variants against phenotype and tissue context using external biomedical annotations, offline fallback data, tiered risk classification, multi-hit and phase analysis, ClinVar confidence handling, gnomAD frequency lookup, and optional SpliceAI splice prediction.
 
-## Publisher: <br>
-[lzr098](https://clawhub.ai/user/lzr098) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzr098](https://clawhub.ai/user/lzr098)
 
-## Use Case: <br>
-Developers and genomics analysts use this skill to run variant files or variant JSON through GPA after confirming analysis purpose, sample identity, and phenotype or tissue context. It produces tiered decision-support reports and structured results that require qualified clinical review before use in patient or regulated settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive genetic and phenotype data may be sent to external services or retained in local cache, log, or output files. <br>
-Mitigation: Use offline mode for sensitive samples when possible, avoid identifiers in phenotype text, obtain appropriate consent for external processing, and protect or clear cache, log, and output directories after use. <br>
-Risk: Generated genomic reports may be mistaken for standalone diagnosis or treatment advice. <br>
-Mitigation: Treat outputs as decision support only and require review by qualified clinical personnel before patient-facing or regulated use. <br>
-Risk: Proxy environment settings can route sensitive network traffic through unintended infrastructure. <br>
-Mitigation: Review HTTP_PROXY and HTTPS_PROXY settings before running analyses that may contact external services. <br>
+## Use Case:
 
+Developers, clinical informatics teams, and genomics analysts use this skill to run structured gene-phenotype association and variant tiering workflows for germline risk, somatic tumor analysis, pharmacogenomics, multi-hit detection, and tissue-specific review. The reports are decision-support artifacts and require qualified clinical review before use in care decisions.
 
-## Reference(s): <br>
-- [GPA Skill Page](https://clawhub.ai/lzr098/gpa-genomic-phenotype) <br>
-- [GPA README](artifact/README.md) <br>
-- [Phase Analysis Algorithm](artifact/docs/PHASE_ANALYSIS_ALGORITHM.md) <br>
-- [Runtime Configuration](artifact/references/dgra.yaml) <br>
-- [Gene Phenotype Map](artifact/references/gene_phenotype_map.json) <br>
-- [Tissue Context Reference](artifact/references/tissue_context.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and structured JSON results, with shell command examples for running the GPA wrapper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tier summaries, variant evidence chains, QC flags, multi-hit details, and analysis metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: server release metadata and artifact config.json) <br>
+Risk: Sensitive genomic, phenotype, or patient-identifiable data may be sent to external biomedical services during online analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use offline mode by default for patient or identifiable data and enable external API calls only after privacy review and user authorization.
+
+Risk: Genomic caches can retain sensitive analysis data after a run.
+
+Mitigation: Run the skill in an isolated environment and clear, encrypt, or otherwise protect cache directories after sensitive analyses.
+
+Risk: Variant tiering and phenotype association results can be mistaken for definitive clinical advice.
+
+Mitigation: Treat outputs as decision support and require review by qualified clinical or genomics professionals before care decisions.
+
+Risk: Scenario ambiguity can change how the same variant is classified.
+
+Mitigation: Confirm analysis purpose, sample identity, and disease or tissue context before executing analysis or producing a report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lzr098/skills/gpa-genomic-phenotype)
+- [README](artifact/README.md)
+- [Phase Analysis Algorithm](artifact/docs/PHASE_ANALYSIS_ALGORITHM.md)
+- [Runtime Configuration](artifact/references/dgra.yaml)
+- [Ensembl REST API](https://rest.ensembl.org)
+- [UniProt REST API](https://rest.uniprot.org)
+- [GTEx Portal API](https://gtexportal.org/api/v2)
+- [gnomAD GraphQL API](https://gnomad.broadinstitute.org/api)
+- [NCBI E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [HGNC REST API](https://rest.genenames.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON results, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include tiered variant findings, evidence chains, phenotype association details, QC flags, and optional saved Markdown or JSON files.]
+
+## Skill Version(s):
+
+0.8.0 (source: server release metadata, artifact/config.json, changelog released 2026-05-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

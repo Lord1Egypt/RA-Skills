@@ -1,47 +1,54 @@
-## Description: <br>
-Foundational design system architecture for token hierarchies, theming infrastructure, token pipelines, and governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Foundational design system architecture - token hierarchies, theming infrastructure, token pipelines, and governance.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and design-system engineers use this skill to define design token architecture, implement light/dark/system theming, build token pipelines, and establish governance for scalable multi-brand UI systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Global installation can extend the skill's guidance to many projects. <br>
-Mitigation: Review the artifact contents and pin the referenced source before installing globally. <br>
-Risk: Theme examples persist user preference in localStorage and modify document-level theme attributes. <br>
-Mitigation: Review storage keys and DOM attribute behavior before adapting the examples into production applications. <br>
-Risk: Generated token or theming guidance may introduce inconsistent naming, contrast, or platform gaps if copied without validation. <br>
-Mitigation: Run design-token governance checks, cross-theme tests, and WCAG contrast validation before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/design-system-patterns) <br>
-- [Design Tokens Deep Dive](references/design-tokens.md) <br>
-- [Theming Architecture](references/theming-architecture.md) <br>
-- [Component Architecture Patterns](references/component-architecture.md) <br>
-- [Design Tokens W3C Community Group](https://design-tokens.github.io/community-group/) <br>
-- [Style Dictionary](https://amzn.github.io/style-dictionary/) <br>
-- [next-themes](https://github.com/pacocoursey/next-themes) <br>
+## Use Case:
 
+Developers and designers use this skill to plan scalable design systems, define token hierarchies, implement theme switching, set up token pipelines, and establish governance for multi-brand interfaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance with CSS, TypeScript, JavaScript, JSON, Swift, XML, and shell snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The README recommends an unpinned executable install from a mutable GitHub branch.
+
+Mitigation: Review the install path before use; prefer a ClawHub-reviewed install or pin the installer version and commit hash with an integrity check.
+
+Risk: The design examples include inline theme-script behavior that could be copied directly into an application.
+
+Mitigation: Treat the inline theme script as static trusted code only, review it before deployment, and adapt the sample language and application settings.
+
+## Reference(s):
+
+- [Design Tokens Deep Dive](references/design-tokens.md)
+- [Theming Architecture](references/theming-architecture.md)
+- [Component Architecture Patterns](references/component-architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces design-system implementation patterns and examples for agent-assisted frontend work.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

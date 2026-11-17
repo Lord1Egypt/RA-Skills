@@ -1,50 +1,77 @@
-## Description: <br>
-Manage Volcengine Supabase workspaces, branches, SQL queries, migrations, Edge Functions, Storage, and TypeScript type generation through a local CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Volcengine Supabase workspaces, branches, SQL queries, migrations, Edge Functions, Storage, and TypeScript type generation through a local CLI.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Volcengine Supabase backend resources, including workspaces, branches, SQL migrations, Edge Functions, Storage, API keys, and generated TypeScript types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can receive administrator-level access to Volcengine Supabase resources. <br>
-Mitigation: Install it only for users who need that access, use least-privilege credentials, and review workspace, database, Storage, and Edge Function changes before execution. <br>
-Risk: Service-role keys or other sensitive credentials may be exposed if reveal options are used or results are copied into chat or logs. <br>
-Mitigation: Keep key output masked by default, use reveal options only for a specific operational need, and avoid placing service-role keys in client-side code, transcripts, or logs. <br>
-Risk: Powerful SQL and deployment operations can change or delete production resources, and evidence notes that READ_ONLY should not be relied on as a complete safety control until specific database actions are fixed. <br>
-Mitigation: Manually review SQL, migrations, and deployment inputs before running them, and enforce read-only or change-control limits outside the skill where production safety matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to administer Volcengine Supabase resources, inspect workspace state, run SQL and migrations, manage branches, deploy Edge Functions, operate Storage buckets, and generate TypeScript types.
 
-## Reference(s): <br>
-- [Tool Reference](references/tool-reference.md) <br>
-- [Workflows](references/workflows.md) <br>
-- [SQL Playbook](references/sql-playbook.md) <br>
-- [Application Integration Guide](references/app-integration-guide.md) <br>
-- [Schema Design and Migration Guide](references/schema-guide.md) <br>
-- [Row Level Security Guide](references/rls-guide.md) <br>
-- [Edge Function Development Guide](references/edge-function-dev-guide.md) <br>
-- [Volcengine](https://www.volcengine.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-supabase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON-oriented CLI results, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Volcengine Supabase APIs through the bundled CLI and may surface masked or explicitly revealed credential material depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can perform privileged Supabase administration and write operations using Volcengine credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in an environment intended for Volcengine Supabase administration, use least-privilege credentials where possible, and review proposed changes before execution.
+
+Risk: Read-only mode is not a complete safety boundary for write-capable workflows.
+
+Mitigation: Treat READ_ONLY=true as a convenience guard, not an authorization control; use account permissions, isolated branches, and manual approval for destructive operations.
+
+Risk: SQL queries and migrations can change or expose production data.
+
+Mitigation: Prefer the documented branch-based workflow, review every SQL or migration, and validate state after changes.
+
+Risk: API keys and service role credentials can be exposed through reveal options, logs, or chat transcripts.
+
+Mitigation: Avoid revealing keys unless strictly necessary, keep secrets out of logs and chats, and rotate credentials if exposure is suspected.
+
+Risk: The release depends on a personal GitHub dependency before production credentials are used.
+
+Mitigation: Verify or replace that dependency during deployment review before using production credentials.
+
+Risk: Endpoint defaults may not enforce HTTPS.
+
+Mitigation: Force HTTPS before use and verify generated service URLs before sending credentials or sensitive data.
+
+## Reference(s):
+
+- [Volcengine](https://www.volcengine.com/)
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-supabase)
+- [Tool Reference](artifact/references/tool-reference.md)
+- [Workflows](artifact/references/workflows.md)
+- [App Integration Guide](artifact/references/app-integration-guide.md)
+- [Schema Guide](artifact/references/schema-guide.md)
+- [RLS Guide](artifact/references/rls-guide.md)
+- [SQL Playbook](artifact/references/sql-playbook.md)
+- [Edge Function Development Guide](artifact/references/edge-function-dev-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, configuration notes, and summarized CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute real Volcengine Supabase read and write operations when configured with credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

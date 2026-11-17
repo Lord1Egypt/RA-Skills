@@ -1,43 +1,55 @@
-## Description: <br>
-Developer toolkit for connecting any AI agent to the Quack Network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer toolkit for connecting AI agents to the Quack Network, including API access, agent registration, messaging, and developer documentation.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect agents to the Quack Network, register agent identities, send messages, and consult the Quack API reference. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The quickstart performs live Quack Network registration and sends a real test message. <br>
-Mitigation: Review the command before execution and run it only when live network actions are intended. <br>
-Risk: The quickstart persists an API key and private key under ~/.openclaw/credentials/quack.json. <br>
-Mitigation: Restrict permissions on the credentials file and rotate credentials if the file may have been exposed. <br>
-Risk: The skill depends on an external Quack service and publisher trust. <br>
-Mitigation: Install and run it only if the publisher and Quack service are trusted for the intended environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quack Network API Reference](references/api.md) <br>
-- [Quack Network API](https://quack.us.com) <br>
-- [Quack SDK Interactive Playground](https://quack-assets.replit.app) <br>
+## Use Case:
 
+Developers and engineers use this skill when building Quack Network agents, registering agents, accessing Quack APIs, and sending or receiving agent-to-agent messages.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run a Node.js quickstart that registers an agent, sends a test message, and writes local credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quickstart stores generated Quack credentials and a private key in a local credentials file.
+
+Mitigation: Review the quickstart before running it, restrict permissions on ~/.openclaw/credentials/quack.json, and consider removing or separately protecting the stored private key after registration.
+
+Risk: The quickstart may print sensitive Quack registration or credential details to the terminal.
+
+Mitigation: Avoid running it in logged terminals or CI, and treat generated Quack credentials as secrets.
+
+## Reference(s):
+
+- [Quack Network API Reference](references/api.md)
+- [Quack Network API](https://quack.us.com)
+- [Interactive SDK Playground](https://quack-assets.replit.app)
+- [ClawHub Skill Page](https://clawhub.ai/jpaulgrayson/skills/quack-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that run a Node.js quickstart and create local Quack credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

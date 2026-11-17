@@ -1,41 +1,58 @@
-## Description: <br>
-Deepsync helps agents guide compatibility searches for romantic, business, friendship, or custom matches based on psychological profiling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deepsync helps users explore compatibility with romantic partners, business partners, friends, or custom matches using psychological profiling.
 
-## Publisher: <br>
-[ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivankoriako](https://clawhub.ai/user/ivankoriako)
 
-## Use Case: <br>
-External users use Deepsync through an agent to explore compatibility matching for romantic partners, co-founders, friends, or custom searches. The current release is a markdown-only placeholder for a future profile builder and matching engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compatibility matching can involve intimate relationship, personality, or business-partner details. <br>
-Mitigation: Avoid using real personal profiles until future versions clearly document consent, local storage, deletion controls, and matching-data reuse. <br>
-Risk: The current artifact describes a future profile builder and matching engine but does not include that implementation. <br>
-Mitigation: Treat this release as guidance only and re-check future versions before relying on generated matching behavior. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for compatibility matching across romantic, business, friendship, or custom search contexts. The release is early stage, with the profile builder and matching engine described as in development.
 
-## Reference(s): <br>
-- [Deepsync ClawHub Skill Page](https://clawhub.ai/ivankoriako/deepsync) <br>
-- [ivankoriako Publisher Profile](https://clawhub.ai/user/ivankoriako) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with example user prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; current release is a markdown-only placeholder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may encourage sensitive self-disclosure during psychological profiling and matchmaking conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Warn users before collecting personal details, minimize requested information, and avoid storing or sharing profile data without explicit consent.
+
+Risk: The artifact claims user data stays local, but the security evidence says that privacy claim is unsupported.
+
+Mitigation: Treat locality and privacy guarantees as unverified until the publisher documents data collection, processing, storage, and retention behavior.
+
+Risk: Compatibility suggestions may be inaccurate or misleading for personal or business relationships.
+
+Mitigation: Present matches as exploratory guidance, avoid deterministic claims, and recommend human judgment for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivankoriako/skills/deepsync)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivankoriako)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt for sensitive personal details related to psychological profiling; no executable code is packaged in the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

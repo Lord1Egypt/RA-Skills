@@ -1,40 +1,53 @@
-## Description: <br>
-ETF投资助理 / ETF Investment Assistant - 查询行情、筛选ETF、对比分析、定投计算。支持沪深300、创业板、科创50、纳指等主流ETF。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ETF投资助理 / ETF Investment Assistant - 查询行情、筛选ETF、对比分析、定投计算。支持沪深300、创业板、科创50、纳指等主流ETF。
 
-## Publisher: <br>
-[franky0617](https://clawhub.ai/user/franky0617) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[franky0617](https://clawhub.ai/user/franky0617)
 
-## Use Case: <br>
-External investors and agents use this skill to list common ETFs, look up ETF quotes, compare pairs, search by code or name, and calculate DCA estimates. Its results are informational and not financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Quote and comparison commands send user-entered ETF symbols to Yahoo Finance. <br>
-Mitigation: Inform users about the outbound request before use and avoid entering symbols or queries they consider sensitive. <br>
-Risk: Investment summaries, popular ETF lists, quote output, and DCA estimates could be mistaken for financial advice or trading instructions. <br>
-Mitigation: Treat outputs as informational only and verify investment decisions with authoritative market data and qualified financial guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ETF投资助理 ClawHub release page](https://clawhub.ai/franky0617/etf-assistant) <br>
-- [Yahoo Finance chart endpoint used for ETF quotes](https://query1.finance.yahoo.com/v8/finance/chart/${code}.SS) <br>
+## Use Case:
 
+External users can use this skill to look up common ETF codes, query ETF quotes, search and compare ETF entries, and run simple dollar-cost averaging calculations. Its investment notes are for reference only and do not constitute financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output with ETF lists, quote summaries, comparisons, and DCA estimates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quote and comparison commands make outbound Yahoo Finance requests with user-entered ETF symbols.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The calculator can run unintended shell commands from crafted inputs.
+
+Mitigation: Review or patch before installation; require strict numeric validation for amount and years and avoid evaluating user input in shell arithmetic or bc source.
+
+Risk: Quote and comparison commands perform Yahoo Finance network lookups.
+
+Mitigation: Keep network access visible to users and treat returned market data as external, time-sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/franky0617/skills/etf-assistant)
+- [Yahoo Finance chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/${code}.SS)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text output with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Yahoo Finance network lookups for quote and comparison commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Conference Deadline Radar"
+  short_description: "Fast AI conference deadline lookup with official-source checks."
+  default_prompt: "Use $ai-conference-deadline-radar to answer which AI conference deadlines matter for this paper or research sprint, starting from deadline radar sources and verifying official CFP/OpenReview evidence before making planning recommendations."
+
+policy:
+  allow_implicit_invocation: true

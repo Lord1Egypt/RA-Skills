@@ -1,42 +1,60 @@
-## Description: <br>
-表达层 routes user questions, source material, links, and drafts into content generation, format conversion, visualization, presentation, and WeChat publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+表达层 routes direct questions, source material, drafts, links, and output requests to content-generation, format-conversion, visualization, and publishing workflows without requiring a separate reasoning layer.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Developers and content operators use this skill to coordinate content-generation skills and publishing tools from a direct user request. It is suited for producing plain-language explanations, long-form articles, Markdown analyses, PNG cards, HTML presentations, and WeChat article drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route generated drafts toward a WeChat public-account publishing workflow without clearly documented approval and privacy guardrails. <br>
-Mitigation: Require manual preview and explicit confirmation of destination, account, and visibility before any draft is pushed or published. <br>
-Risk: Generated content may be routed through multiple dependent skills, which can obscure which component produced a specific artifact. <br>
-Mitigation: Review the selected route and final artifacts before publication, especially when sequential or parallel routes are used. <br>
+## Use Case:
 
+Developers and agent users use this skill to route content tasks into plain-language explanation, long-form writing, visual cards, presentations, paper or word breakdowns, travel reports, and WeChat publishing flows. It is intended as an orchestration layer for multi-format Chinese content production rather than as a source of deep analysis or data retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/expression-layer) <br>
-- [Route orchestration matrix](references/orchestration-matrix.md) <br>
-- [Investor education orchestration analysis](references/ie-orchestration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, text, HTML, PNG assets, and publishing workflow guidance depending on the selected route] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate single-step, sequential, parallel, or publishing routes through related skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill declares broad command execution tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and remove Bash or Exec access unless a concrete workflow requires it.
+
+Risk: Publishing workflows can expose drafts, links, or user-provided material.
+
+Mitigation: Require explicit confirmation before any WeChat publishing action and treat drafts and links as sensitive inputs.
+
+Risk: Downstream routing can fail or produce inappropriate output if required skills are missing or misconfigured.
+
+Mitigation: Verify downstream skills before deployment and review generated content before delivery or publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/expression-layer)
+- [README](README.md)
+- [路由编排矩阵](references/orchestration-matrix.md)
+- [投教工作流与表达层编排分析](references/ie-orchestration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown, plain text, HTML, PNG assets, and publishing drafts routed through downstream skills]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected route and downstream skill availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, clawhub.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

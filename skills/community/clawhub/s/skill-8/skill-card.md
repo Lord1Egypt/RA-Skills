@@ -1,43 +1,60 @@
-## Description: <br>
-Mine Bittensor Subnet 50 (Synth) with Ganglion, including price-path simulation, CRPS scoring, volatility estimation, backtesting, and multi-asset forecasting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mine Bittensor Subnet 50 (Synth) with Ganglion, covering price-path simulation, CRPS scoring, volatility estimation, backtesting, and multi-asset forecasting.
 
-## Publisher: <br>
-[tensorlink-dev](https://clawhub.ai/user/tensorlink-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tensorlink-dev](https://clawhub.ai/user/tensorlink-dev)
 
-## Use Case: <br>
-Developers and Bittensor miners use this skill to understand and operate SN50 mining workflows with Ganglion, including simulation, scoring, volatility estimation, and backtesting guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is documentation-only, but its examples may lead users to run Ganglion, curl, and mining workflows against external APIs or live infrastructure. <br>
-Mitigation: Review the separate Ganglion binary and project behavior before real mining, especially wallet, chain, and forecast-submission behavior. <br>
-Risk: Forecasting, scoring, and competition parameters can become stale relative to current SN50 validator rules. <br>
-Mitigation: Confirm current subnet, validator, and Pyth data-source requirements before relying on the guidance for live submissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tensorlink-dev/skill-8) <br>
-- [Ganglion repository](https://github.com/TensorLink-AI/ganglion) <br>
-- [Synth subnet reference](https://github.com/mode-network/synth-subnet/tree/main/synth) <br>
-- [Pyth Hermes latest price API](https://hermes.pyth.network/v2/updates/price/latest) <br>
-- [Pyth Benchmarks history API](https://benchmarks.pyth.network/v1/shims/tradingview/history) <br>
+## Use Case:
 
+Developers and Bittensor miners use this skill to understand and operate Ganglion-based Synth forecasting workflows for Subnet 50. It provides guidance for generating Monte Carlo price paths, using Pyth price data, estimating volatility, and backtesting CRPS performance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and API command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; command examples require user review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Commands may target an unintended Ganglion service if GANGLION_URL is misconfigured.
+
+Mitigation: Set GANGLION_URL only to the intended local or trusted server before running remote workflow examples.
+
+Risk: Python dependency drift can change forecasting or scoring behavior.
+
+Mitigation: Install dependencies in a virtual environment and pin versions when reproducing mining or backtesting workflows.
+
+Risk: Forecast submissions can be rejected when timestamps, increments, path counts, path lengths, or price precision do not match validator requirements.
+
+Mitigation: Validate generated submissions against the documented Synth format before submitting them to validators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tensorlink-dev/skills/skill-8)
+- [Ganglion project](https://github.com/TensorLink-AI/ganglion)
+- [Synth subnet reference](https://github.com/mode-network/synth-subnet/tree/main/synth)
+- [Pyth Hermes latest price API](https://hermes.pyth.network/v2/updates/price/latest)
+- [Pyth Benchmarks history API](https://benchmarks.pyth.network/v1/shims/tradingview/history)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflows require either the ganglion binary or curl; no credential environment variables were detected.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

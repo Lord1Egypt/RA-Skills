@@ -1,7 +1,7 @@
 # skill-deep-audit
 
 > Generic, multi-dimension quality audit for agent skills — with explicit
-> ERR / WARN severity, 115-point scoring, and an opt-in `--fix` workflow.
+> ERR / WARN severity, 120-point scoring, and an opt-in `--fix` workflow.
 
 `skill-deep-audit` is a **read-only**, deterministic skill auditor. Point
 it at any skill folder and it will run 7 dimensions of static (or static +
@@ -13,8 +13,8 @@ human confirmation".
 
 | Mode | What runs | Max | Time |
 |------|-----------|-----|------|
-| **L1 static** | File read, structural check, keyword scan, syntax check (D1–D7 minus items that need external systems) | **112** | ~2 min |
-| **L2 dryRun** ⭐ | L1 + Hub existence check + dependency existence check + read-only branch reachability simulation | **115** | ~5 min |
+| **L1 static** | File read, structural check, keyword scan, syntax check (D1–D7 minus items that need external systems) | **117** | ~2 min |
+| **L2 dryRun** ⭐ | L1 + Hub existence check + dependency existence check + read-only branch reachability simulation | **120** | ~5 min |
 
 Both depths share the same pass line: **≥ 90 points AND zero ERR**.
 
@@ -72,22 +72,31 @@ is built into the pass criterion: `total ≥ 90 AND zero ERR`.
 ## Scoring
 
 ```
-Total          : 115 pts
+Total          : 120 pts
   D1 Process closure & idempotency   :  13
   D2 Tool & command conventions      :  10
-  D3 Portability & defense           :  15
-  D4 Skill usability conventions     :  21
+  D3 Portability & defense           :  18
+  D4 Skill usability conventions     :  23
   D5 Security & op risk              :  21
   D6 Code & doc quality              :  31
   D7 Dependency & footprint health   :   4
 
 Pass line      : ≥ 90  AND  zero ERR   (both must hold)
-L1 max         : 112  (skips Hub + dryRun-only items)
-L2 max         : 115
+L1 max         : 117  (skips Hub + dryRun-only items)
+L2 max         : 120
 ```
 
 ERR is uniformly 3 points (the value is symbolic — a single ERR means
 FAIL). WARN uses 3 priority tiers (3 / 2 / 1) to guide fix order.
+
+**Four 0-point ERRs** are the exception: `D3-E4` (cross-skill reference base),
+`D3-E5` (relocation-safe path derivation), `D3-E6` (file-I/O failure handling),
+and `D4-E6` (SKILL.md length control) consume **no** budget and deduct
+**nothing** — they rely only on the "zero ERR" half of the gate. All four detect
+*silent* failure modes, where a numeric penalty is the wrong instrument: a
+mis-resolved path quietly reads another copy, a missing file quietly becomes
+empty input, an over-long SKILL.md quietly gets skimmed. Keeping them at 0 also
+means adopting them **cannot lower any existing skill's score**.
 
 ## Red lines
 
@@ -121,7 +130,7 @@ suite — open-source skills that help you build better skills, end-to-end:
 |-------|-------|--------|
 | Creation | `skill-creator` | 🚧 Not yet released |
 | **Audit** | **`glic-check`** | ✅ **v1.0.x** |
-| **Audit** | **`skill-deep-audit`** | ✅ **v1.0.0** |
+| **Audit** | **`skill-deep-audit`** | ✅ **v1.1.0** |
 | Testing | `skill-regression` | 🚧 Not yet released |
 | Sediment | `skill-sediment` | 🚧 Not yet released |
 
@@ -130,7 +139,7 @@ Two complementary tools share the **Audit** stage:
 - **`glic-check`** — lightweight & qualitative; run right after any edit for a
   fast multi-dimension sanity review (no score).
 - **`skill-deep-audit`** (this tool) — heavyweight & quantitative; a full
-  dryRun-level exam that grades the skill on a 115-point scale. Best as the
+  dryRun-level exam that grades the skill on a 120-point scale. Best as the
   pre-ship final check.
 
 Only `glic-check` and `skill-deep-audit` are installable today. The other
@@ -145,13 +154,42 @@ skill-deep-audit/
 ├── README.md                      ← this file
 ├── LICENSE                        ← MIT
 ├── .gitignore
+├── scripts/
+│   └── check_path_boundary.py     ← D3-E5 judge: path endpoint vs. skill boundary (stdlib, read-only)
 └── references/
     ├── check-rules.md             ← full rule decisions + grep patterns + thresholds
     ├── output-template.md         ← scorecard MD template (4-element ERR/WARN structure)
+    ├── scan-commands.md           ← code-size + dependency-extraction command bodies
     └── controlled-domains.md      ← optional D2-E1 controlled-domain config (default empty)
 ```
 
 ## Changelog
+
+### v1.1.0 (2026-08-21)
+
+- **Total raised 115 → 120**; pass line unchanged at 90. D3 15→18, D4 21→23.
+- **Four 0-point ERRs** added for *silent* failure modes — they consume no
+  budget and deduct nothing, so adopting this version **cannot lower an
+  existing skill's score**:
+  - `D3-E4` cross-skill references must declare their resolution base
+  - `D3-E5` path derivation must survive relocation
+  - `D3-E6` file reads/writes must handle failure (`except: pass` stays an ERR)
+  - `D4-E6` SKILL.md length control (>600 lines)
+- **`D3-E5` judges by endpoint, not hop count.** Counting `.parent` hops is a
+  *relative* depth measure, so it both over- and under-reports: a nested script
+  reaching its own skill root in 3 hops was flagged (false positive), while a
+  root-level script escaping into a sibling skill in 2 hops was not (missed).
+  Measured across 124 skills / 47 chain hits: 1 false positive removed, 1
+  previously-missed real escape caught, **0 new ERRs**.
+- **New** `scripts/check_path_boundary.py` — stdlib-only, read-only checker
+  covering hop count, nesting depth, literal tail segments, and single-hop
+  cross-line variable relays. Its coverage limits are documented explicitly:
+  a hit is trustworthy, **no hit is not proof of safety**.
+- **New WARNs**: `D3-W4` fixed-hop derivation inside the skill (3 pts, the soft
+  counterpart to D3-E5) and `D4-W6` SKILL.md length 401–600 (2 pts, the soft
+  tier below D4-E6).
+- Command bodies moved from SKILL.md into `references/scan-commands.md`, keeping
+  the body at 385 lines (within its own D4-E6 budget).
 
 ### v1.0.0 (2026-06-21)
 

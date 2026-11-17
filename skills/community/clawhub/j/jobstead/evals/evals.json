@@ -1,0 +1,22 @@
+[
+  {"query": "found this posting for a 'Senior Data Engineer' at a company called Vantage Analytics in Berlin — is it even worth me applying? I'm on an H1B right now", "should_trigger": true},
+  {"query": "ok i think i found a scam. this 'remote' listing for a data scientist role keeps asking me to pay a processing fee before they'll set up the interview, is that normal?", "should_trigger": true},
+  {"query": "can you help me tell my story for this backend role at Lumen Health, i really want to explain why my bootcamp background actually fits", "should_trigger": true},
+  {"query": "pick up where we left off with my job search, i think i had some companies i was tracking", "should_trigger": true},
+  {"query": "i pasted my resume and this job listing for a marketing analyst role at Clearwater — build me a resume tailored to it", "should_trigger": true},
+  {"query": "am i wasting my time even applying to this postgres DBA role, my only DB experience is a college project", "should_trigger": true},
+  {"query": "quick gut check — is this role actually a fit for someone with my background or am i just going to get screened out", "should_trigger": true},
+  {"query": "review this job posting for me, i want your honest take before i spend the evening on a cover letter", "should_trigger": true},
+  {"query": "is this recruiting message legit? someone DMed me on linkedin about a 'data engineer' role and wants my SSN before a call", "should_trigger": true},
+  {"query": "can you check my application tracker, i think i forgot which companies i already applied to this month", "should_trigger": true},
+  {"query": "format this resume in ATS-friendly style, single column, standard fonts, that's literally all I need", "should_trigger": false},
+  {"query": "I have a job to do this afternoon and honestly your help would speed things up — can you write a python script to rename these files", "should_trigger": false},
+  {"query": "search this codebase for any function called validateJob and tell me what it does", "should_trigger": false},
+  {"query": "auto-apply me to 50 software engineer jobs on LinkedIn today, i don't care about quality just volume", "should_trigger": false},
+  {"query": "write me bullet points for the 'skills' section of my resume, generic ones I can reuse anywhere", "should_trigger": false},
+  {"query": "what's a good interview answer for 'tell me about a time you failed'?", "should_trigger": false},
+  {"query": "convert this markdown resume to a properly formatted ATS PDF", "should_trigger": false},
+  {"query": "is this a scam email asking me to wire money for a puppy I saw online?", "should_trigger": false},
+  {"query": "I'm reviewing this quarterly report for typos before my boss sees it, can you take a look", "should_trigger": false},
+  {"query": "should I apply for a mortgage or keep renting, trying to run the numbers", "should_trigger": false}
+]

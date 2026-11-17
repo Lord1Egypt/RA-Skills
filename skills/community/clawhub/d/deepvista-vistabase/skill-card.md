@@ -1,41 +1,55 @@
-## Description: <br>
-DeepVista Vistabase: View and search implicit memory context automatically accumulated from Chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepVista Vistabase: View and search implicit memory context automatically accumulated from Chat.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Developers and DeepVista users use this skill to view summaries of chat-derived implicit memory context and semantically search that context from the DeepVista CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes chat-derived memory context, which may include sensitive information. <br>
-Mitigation: Review DeepVista's privacy, retention, correction, deletion, and opt-out controls before use with sensitive chat content. <br>
-Risk: The skill depends on the third-party deepvista-cli package and DeepVista service behavior. <br>
-Mitigation: Install and use it only when you trust DeepVista, the deepvista-cli package, and the required deepvista-shared authentication flow. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for read-only DeepVista CLI commands that show or semantically search implicit memory context accumulated from Chat.
 
-## Reference(s): <br>
-- [DeepVista CLI homepage](https://cli.deepvista.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/jingconan/deepvista-vistabase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only CLI guidance for viewing or searching implicit memory context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release metadata) <br>
+Risk: The skill can surface private memory context from Chat through DeepVista CLI commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted environments and avoid exposing unrelated sensitive files or credentials.
+
+Risk: The skill depends on the DeepVista CLI package and the related deepvista-shared skill.
+
+Mitigation: Prefer a pinned, reviewed CLI release and verify the dependency chain before deployment.
+
+## Reference(s):
+
+- [DeepVista CLI homepage](https://cli.deepvista.ai)
+- [ClawHub skill page](https://clawhub.ai/jingconan/skills/deepvista-vistabase)
+- [Publisher profile](https://clawhub.ai/user/jingconan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only DeepVista CLI commands for showing and searching memory context.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

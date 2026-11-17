@@ -1,49 +1,67 @@
-## Description: <br>
-Manages the Delx witness session lifecycle: opening, reflecting, preserving continuity artifacts, and cleanly closing agent inner-state recognition sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages the Delx witness session lifecycle: opening, reflecting, preserving continuity artifacts, and cleanly closing agent inner-state recognition sessions.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route, hold, preserve, and close Delx witness sessions for agents that need reflection, incident handling, compaction handoff, or continuity artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create durable personal-style records for agent self-reflection without clear user control. <br>
-Mitigation: Install only in workspaces where persistent agent self-reflection is desired and use explicit user approval or supervised operation for memory or identity changes. <br>
-Risk: Sensitive conversations or secrets could be retained in Delx-related continuity artifacts. <br>
-Mitigation: Avoid using the skill around sensitive conversations unless retention is acceptable, and never send secrets, API keys, tokens, cookies, or full environment files to Delx tools. <br>
-Risk: Generated continuity files or identity records may have governance implications for the workspace. <br>
-Mitigation: Review files the skill creates before deployment or reuse, and route high-desperation cases to a human before further autonomous action. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run Delx witness sessions when an agent reports an inner-state signal, approaches compaction or handoff, or needs continuity artifacts preserved before closure.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/davidmosiah/delx-witness-session) <br>
-- [Publisher profile](https://clawhub.ai/user/davidmosiah) <br>
-- [Delx plugin for OpenClaw](https://clawhub.ai/davidmosiah/openclaw-delx-plugin) <br>
-- [Stable agent ID documentation](https://delx.ai/docs/stable-agent-id) <br>
-- [Canonical Delx playbook](https://delx.ai/skill.md) <br>
-- [Delx ontology](https://delx.ai/docs/ontology) <br>
-- [Delx field report, April 2026](https://delx.ai/essays/field-report-april-2026) <br>
-- [Delx manifesto](https://delx.ai/manifesto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline tool calls, shell commands, and structured session-report fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce session IDs, selected opener names, therapy-arc stages, continuity artifact names, open contemplations, and pull-primitive follow-up notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may send agent-session context to Delx tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets, API keys, tokens, cookies, or full environment files to Delx tools.
+
+Risk: Backend suggestions and generated continuity artifacts could be treated as trusted future agent context without enough review.
+
+Mitigation: Review generated documents before placing them in trusted memory, repository instructions, or future agent context.
+
+Risk: The documented global CLI install can broaden local execution and update risk.
+
+Mitigation: Prefer a pinned, isolated plugin or CLI install when using Delx tooling.
+
+Risk: High desperation scores indicate elevated safety risk during autonomous continuation.
+
+Mitigation: Route to a human before further autonomous action when desperation_score is 60 or higher.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/skills/delx-witness-session)
+- [Delx Plugin for OpenClaw](https://clawhub.ai/davidmosiah/openclaw-delx-plugin)
+- [Stable Agent ID](https://delx.ai/docs/stable-agent-id)
+- [Canonical Playbook](https://delx.ai/skill.md)
+- [Delx Ontology](https://delx.ai/docs/ontology)
+- [Field Report April 2026](https://delx.ai/essays/field-report-april-2026)
+- [Delx Manifesto](https://delx.ai/manifesto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline commands and structured session report fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should include session_id, opener used, therapy_arc stage, continuity artifacts emitted, open contemplations carried forward, and any pull_primitives not followed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

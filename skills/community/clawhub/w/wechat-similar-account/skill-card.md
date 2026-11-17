@@ -1,46 +1,61 @@
-## Description: <br>
-A WeChat Official Account benchmarking skill that uses RedFox data to recommend peer benchmark accounts and higher-performing aspirational accounts from account name, account ID, category, or sync requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends peer and aspirational WeChat Official Accounts using RedFox account data and a three-layer weighted matching method.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-WeChat Official Account creators, content teams, MCN operators, and brand marketers use this skill to compare an account with similar accounts, inspect recent article performance, and find growth or placement benchmarks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and may read it from persistent shell or user environment configuration. <br>
-Mitigation: Use a revocable RedFox API key, prefer temporary environment-variable setup, and do not paste the key into prompts, logs, or output files. <br>
-Risk: Submitting a WeChat ID for synchronization sends that identifier to RedFox and may trigger follow-up reporting. <br>
-Mitigation: Submit WeChat IDs only with user consent and only when the user is comfortable sharing the identifier with RedFox. <br>
-Risk: The security review marked the release as suspicious because consent around synchronization and success messaging may be weak. <br>
-Mitigation: Review the workflow before installing and confirm synchronization status and user expectations clearly before relying on the generated report timing. <br>
+## Use Case:
 
+WeChat Official Account creators, content operators, MCN teams, and brand marketers use this skill to query an account by name, account ID, or category and receive comparable accounts, performance context, and recommendation reasons for growth planning or ad placement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/wechat-similar-account) <br>
-- [RedFox publisher profile](https://clawhub.ai/user/redfox-data) <br>
-- [README.en.md](README.en.md) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?souce=github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and prose, with optional shell commands for the bundled Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and sends account lookup or sync inputs to RedFox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends the user's account query and REDFOX_API_KEY to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a temporary, scoped, or managed RedFox secret; confirm the key source, scope, expiry, and revocation process before use.
+
+Risk: The skill searches local shell or user profile locations for REDFOX_API_KEY and its documentation encourages persistent profile-based configuration.
+
+Mitigation: Prefer session-scoped environment variables or a managed secret store, and avoid writing long-lived API keys to shell profiles.
+
+Risk: Generated results may include vendor subscription or enterprise-sales messaging.
+
+Mitigation: Review output before sharing it externally and separate account analysis from promotional sections when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/wechat-similar-account)
+- [Core workflow reference](references/core_workflow.md)
+- [RedFox data platform](https://redfox.hk/)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox enterprise services](https://redfox.hk/dashboard/enterprise)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-formatted account diagnostics, benchmark tables, recommendation reasons, and short command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a REDFOX_API_KEY and sends account lookup requests to redfox.hk.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

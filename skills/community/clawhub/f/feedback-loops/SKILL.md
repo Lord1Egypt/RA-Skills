@@ -7,6 +7,7 @@ description: >
   user is planning an intervention in an org/market/supply chain and wants to predict how it will respond.
   Do NOT activate when: the decision is a one-shot linear choice with no feedback to future decisions,
   or an exogenous shock so large it dominates all internal dynamics is the obvious explanation.
+  More: deciqai.com/c/feedback-loops
 ---
 
 # Feedback Loops
@@ -15,11 +16,11 @@ description: >
 
 A system has a **feedback loop** when its output circles back as input to the next cycle. **Reinforcing loops** amplify (compound interest, viral growth, bank runs, death spirals). **Balancing loops** self-correct (thermostats, price discovery, immune response). The critical complication is **delay**: when delay is long relative to response time, even well-designed balancing loops produce oscillation and overshoot — and operators systematically mismanage the system (Sterman 1989: supply-line underweight = 0.34 on a 0–1 scale).
 
-Composes with: [`second-order-thinking`](../second-order-thinking/SKILL.md) · [`s-curve-technology-adoption`](../s-curve-technology-adoption/SKILL.md) · [`prisoners-dilemma`](../prisoners-dilemma/SKILL.md) · [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md)
+Composes with: `second-order-thinking` · `s-curve-technology-adoption` · `prisoners-dilemma` · `probabilistic-thinking`
 
 ## When to Use
 
-Apply when: system shows non-linear surprise (collapse, oscillation, death spiral, growth flywheel); you are intervening in a complex system and success depends on how it responds; trends are not extrapolating well; bullwhip or oscillation in any quantity that should be steady.
+Apply when: system shows non-linear surprise (collapse, oscillation, death spiral, growth flywheel); you are intervening in a complex system and success depends on how it responds; trends are not extrapolating well; bullwhip or oscillation in any quantity that should be steady; a capex/AI-adoption flywheel is compounding and you need to know when the balancing limits (power, supply, cost, AI-native competition) will bite and whether it will overshoot.
 
 **When NOT to use:** one-shot linear decision with no feedback; insufficient data to map loops (hand-waving without structure); decision too time-bounded for delays to matter; exogenous shock dominates internal dynamics.
 
@@ -70,13 +71,15 @@ Falsifier: <observable that would prove the diagnosis wrong>
 
 *→ Method in Action: [Forrester's Beer Distribution Game & Sterman's 1989 Measurement](examples/forresters-beer-distribution-game-stermans-1989-measurement.md)*
 
+*→ 2026 lens: [The AI Capex Boom as a Reinforcing Loop Meeting Its Balancing Limits (2024–2026)](examples/ai-capex-boom-reinforcing-and-balancing-loops-2024-2026.md)*
+
 ## Pack: Loop Patterns
 
 - **R growth:** network effects, viral k>1, compounding learning curves. Risk: hits a balancing limit you don't control.
 - **R collapse:** death spirals, bank runs, adverse selection cascades. Defense: structural circuit breakers, fast intervention.
 - **B working:** market price discovery, wages, thermostats. Don't suppress healthy balancing loops.
 - **B + long delay → oscillation:** bullwhip, cobweb cycles, capacity build-out. Defense: shorten delays, damp response, share end-demand data.
-- **R + B → S-curve:** technology adoption. See [`s-curve-technology-adoption`](../s-curve-technology-adoption/SKILL.md). To extend growth, kick off a second R loop before the first saturates.
+- **R + B → S-curve:** technology adoption. See `s-curve-technology-adoption`. To extend growth, kick off a second R loop before the first saturates.
 
 ## Common Rationalizations
 
@@ -110,4 +113,6 @@ Falsifier: <observable that would prove the diagnosis wrong>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/feedback-loops** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/feedback-loops.json*

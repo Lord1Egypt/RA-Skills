@@ -1,39 +1,50 @@
-## Description: <br>
-This deprecated skill redirects users to a replacement ClawHub skill page and contains no active code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated skill directs users to the replacement ClawHub skill at https://clawhub.ai/dddcn1/jiuma-free-voice-clone.
 
-## Publisher: <br>
-[rookiedeng33](https://clawhub.ai/user/rookiedeng33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rookiedeng33](https://clawhub.ai/user/rookiedeng33)
 
-## Use Case: <br>
-External ClawHub users encounter this deprecated placeholder when looking for the original voice-cloning skill and are directed to the replacement skill page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this clean security verdict covers the linked replacement voice-cloning skill. <br>
-Mitigation: Review the linked replacement skill separately before installing or using it. <br>
+## Use Case:
 
+External users and agents use this deprecated skill record to learn that the voice-clone skill has moved and to find the replacement ClawHub release for any actual capability.
 
-## Reference(s): <br>
-- [Current ClawHub skill page](https://clawhub.ai/rookiedeng33/jma-voice-clone-free) <br>
-- [Replacement ClawHub skill page](https://clawhub.ai/dddcn1/jiuma-free-voice-clone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown text with a replacement ClawHub link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated placeholder; no active code is present in this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The package does not provide the advertised voice-clone capability and instead points to a separate replacement skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the replacement skill's permissions, provenance, and behavior independently before using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rookiedeng33/skills/jma-voice-clone-free)
+- [Replacement ClawHub skill](https://clawhub.ai/dddcn1/jiuma-free-voice-clone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text containing a deprecation notice and replacement link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior is provided by this version.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

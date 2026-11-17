@@ -1,46 +1,57 @@
-## Description: <br>
-Generates Wan 2.7 text-to-video requests on RunComfy through the local RunComfy CLI, with guidance for audio-driven lip-sync, prompt expansion, duration, resolution, aspect ratio, and routing to related video models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate text-to-video with Wan 2.7 on RunComfy, including guidance for multi-reference conditioning, audio-driven lip-sync, prompt expansion, duration, resolution, aspect ratio, and routing to related video models.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers, creators, and agent operators use this skill to decide when Wan 2.7 is appropriate and to invoke RunComfy text-to-video generation with valid inputs. It is especially suited to short clips requiring custom audio-driven lip-sync, multi-reference motion control, smooth transitions, or negative-prompted cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on the local RunComfy CLI and a RunComfy token. <br>
-Mitigation: Verify the CLI package provenance before installation and keep RUNCOMFY_TOKEN private. <br>
-Risk: Prompts, audio, and media URLs are submitted to RunComfy's hosted service for generation. <br>
-Mitigation: Only submit content the user is comfortable sending to RunComfy. <br>
-Risk: Generated outputs are downloaded into a user-selected output directory. <br>
-Mitigation: Choose an appropriate output directory and review generated files before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to generate short Wan 2.7 text-to-video clips through RunComfy, including lip-synced videos from supplied audio and prompt-controlled commercial video variants.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kalvinrv/wan-2-7) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=wan-2-7) <br>
-- [Wan 2.7 text-to-video model page](https://www.runcomfy.com/models/wan-ai/wan-2-7/text-to-video?utm_source=clawhub&utm_medium=skill&utm_campaign=wan-2-7) <br>
-- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=wan-2-7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with RunComfy CLI commands and JSON input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of an output directory where the RunComfy CLI may save generated video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill asks users to install and run an unpinned global RunComfy CLI that handles account tokens and media prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before installing, prefer a pinned or local install, and use a scoped token that can be rotated.
+
+Risk: Prompts, private media URLs, and generated outputs are processed by the RunComfy service.
+
+Mitigation: Avoid sending sensitive prompts, private media URLs, or long-lived credentials unless the service and package provenance are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/wan-2-7)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=wan-2-7)
+- [Wan 2.7 text-to-video model page](https://www.runcomfy.com/models/wan-ai/wan-2-7/text-to-video?utm_source=clawhub&utm_medium=skill&utm_campaign=wan-2-7)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=wan-2-7)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and JSON input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to call the RunComfy CLI and save generated video files to a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

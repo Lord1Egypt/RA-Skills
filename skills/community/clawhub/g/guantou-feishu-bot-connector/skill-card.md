@@ -1,43 +1,58 @@
-## Description: <br>
-Connects an agent to a Feishu bot by adding Feishu bot account configuration and routing bindings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users configure Feishu bot accounts and connect OpenClaw agents to Feishu bot routing.
 
-## Publisher: <br>
-[leochens](https://clawhub.ai/user/leochens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leochens](https://clawhub.ai/user/leochens)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure Feishu bot accounts, bind them to agents, and route account-level or group-level messages to the intended agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes OpenClaw configuration and stores Feishu App Secret values. <br>
-Mitigation: Review the planned account and routing changes before execution, avoid exposing real secrets on the command line, and check permissions on ~/.openclaw and its backups. <br>
-Risk: The skill can restart the OpenClaw gateway after configuration changes. <br>
-Mitigation: Run it during an acceptable maintenance window and plan for a short service interruption. <br>
-Risk: Incorrect agent, account, or group routing values can send Feishu messages to the wrong agent. <br>
-Mitigation: Verify the target agent ID, routing mode, account ID, and group chat ID before confirming changes. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add Feishu bot accounts, choose account-level or group-level routing, and bind incoming Feishu messages to a selected agent.
 
-## Reference(s): <br>
-- [Feishu OpenClaw bot setup page](https://open.feishu.cn/page/openclaw?form=multiAgent) <br>
-- [ClawHub release page](https://clawhub.ai/leochens/guantou-feishu-bot-connector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw configuration, create a backup file, and print terminal status messages when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles Feishu App Secrets during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass real App Secrets in shell command history; use a protected secret input method or manually edit secured configuration.
+
+Risk: The default DM policy can allow broad bot access.
+
+Mitigation: Use restrictive DM access such as pairing or an allowlist before enabling the bot in a real OpenClaw environment.
+
+Risk: The skill automatically changes OpenClaw configuration and may restart the gateway.
+
+Mitigation: Review the generated configuration before restart and confirm backup/configuration files are owner-only and retained only as needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leochens/skills/guantou-feishu-bot-connector)
+- [Feishu OpenClaw bot setup page](https://open.feishu.cn/page/openclaw?form=multiAgent)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw configuration, create a local backup, and request a gateway restart.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

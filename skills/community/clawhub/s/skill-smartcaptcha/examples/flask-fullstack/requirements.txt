@@ -1,0 +1,3 @@
+# Зависимости примера Flask + SmartCaptcha. Подробности проверки токена: ../../docs/server-validation.md
+flask>=3.0
+requests>=2.31

@@ -1,39 +1,52 @@
-## Description: <br>
-Runs a Bitcoin-like proof-of-work loop over a simple skill benchmark to produce a shareable PoQ hash, nonce, and score for reruns. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Generates a Bitcoin-style proof-of-work quality proof for a skill when its benchmark score exceeds a threshold.
 
-## Publisher: <br>
-[KUNOIIV](https://clawhub.ai/user/KUNOIIV) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kunoiiv](https://clawhub.ai/user/kunoiiv)
 
-## Use Case: <br>
-Developers and reviewers can run this skill against a skill path to produce a proof-of-work style JSON result for sharing and independent reruns. The release evidence warns that the result should not be treated as a trustworthy quality or security attestation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The advertised proof-of-quality is not a real benchmark and could mislead users into treating PoQ output as an approval signal. <br>
-Mitigation: Treat output as a toy or demonstration signal only; do not rely on it for approving skills or validating security. <br>
-Risk: Recurring runs could create an unintended ongoing process if users follow the cron suggestion without review. <br>
-Mitigation: Run it only with an explicit intended skill path and avoid cron unless recurring execution is deliberate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KUNOIIV/proof-of-quality) <br>
+## Use Case:
 
+Developers and skill reviewers use this skill to run a local proof-of-work script that reports a score, hash, and nonce for a target skill. Its output should be treated as advisory and not as a standalone approval gate.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Console text describing benchmark score and PoQ hash/nonce; documentation describes a shareable PoQ JSON object.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local skill path and threshold from command-line arguments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The proof-of-quality result can be mistaken for a trustworthy quality or security gate.
+
+Mitigation: Use the PoQ output only as advisory signal and require independent review, testing, and security assessment before approving skills, forks, or collaborators.
+
+Risk: Recurring cron execution can create unnecessary CPU work.
+
+Mitigation: Avoid scheduling recurring runs unless target paths, frequency, runtime limits, and CPU limits are explicitly defined.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kunoiiv/skills/proof-of-quality)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance and console text; proof data includes score, hash, and nonce.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally against a skill path and numeric threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

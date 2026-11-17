@@ -1,0 +1,85 @@
+# bazi-engine 双许可声明（Dual License Notice）
+
+**bazi-engine** 采用双许可结构，请在使用前区分你正在使用的部分：
+
+| 部分 | 范围 | 许可 |
+|---|---|---|
+| 代码 | 排盘引擎（`engine/`）、UI 逻辑（`ui/`）、构建/测试/质检脚本（`tools/`）、Skill 定义（`skill/`） | **MIT**（见 [LICENSE](LICENSE)） |
+| 数据 | 知识库全部内容（`kb/`，含断语库、古籍汇编、规则手册、基础表） | **CC BY-NC-SA 4.0**（本文件） |
+| 复合产物 | `ui/index.html`、`engine/engine.dist.js` 及其派生物（含 C 端合规软化版）：**代码部分适用 MIT，其中内联的断语数据（`RULES` 数组）仍适用 CC BY-NC-SA 4.0** | 分层适用：代码 MIT / 数据 CC BY-NC-SA 4.0 |
+
+> ⚠️ **复合产物提示（重要）**：`ui/index.html` 与 `engine/engine.dist.js` 是**同一文件同时包含代码与数据**。
+> 取得这两个文件，只代表你获得其中**代码部分**的 MIT 许可；其中内联的断语数据（1000 条 `RULES`）
+> **不因该文件的 MIT 声明而变为可商用**，仍需遵守本文件的 CC BY-NC-SA 4.0 条款，或另行取得商业授权。
+> 任何平台/市场页面显示的 License 字段（例如 MIT-0）仅为平台元数据，**不构成对数据部分的授权**。
+
+---
+
+## 数据部分：Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+
+除代码外的全部知识库数据（下称"数据"），依据
+**知识共享 署名-非商业性使用-相同方式共享 4.0 国际（CC BY-NC-SA 4.0）** 提供。
+
+完整法律文本：
+- 中文版：<https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-hans>
+- 英文版：<https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>
+
+### 简明条款
+
+你可以**自由地**：共享（复制、发行）与演绎（修改、转换、基于其创作）。
+
+但必须遵守以下条件：
+
+1. **署名（BY）**：使用、演绎、再分发时必须保留本项目的署名与出处标注——
+   「bazi-engine · ruanxiaoer」，并注明你做了何种修改。断语数据逐条标注的古籍出处
+   （source 字段）必须原样保留，不得删改。
+2. **非商业性使用（NC）**：不得将数据用于商业目的，包括但不限于：将断语库整体或
+   实质部分嵌入付费产品/付费 Skill/付费 API；以售卖数据本身获利。个人学习、学术
+   研究、非营利性传播不受限制。
+3. **相同方式共享（SA）**：若你基于数据创作了衍生作品，该衍生作品必须以
+   **同样的 CC BY-NC-SA 4.0 许可**发布——你的改进也必须向社区开放。
+
+> 商业授权（如命理师 SaaS、企业内嵌、Pro 断语库）：请联系作者获取单独授权。
+> 本项目未来新增的 Pro 断语库（800+ 条）默认**闭源**，不在本声明范围内。
+
+---
+
+## 来源归属与边界（Important Attribution Notes）
+
+为保证合规使用，特此说明数据的来源构成：
+
+1. **古籍原文（公有领域）**：《三命通会》《渊海子平》《滴天髓》《子平真诠》《穷通宝鉴》
+   《黄帝内经》等经典古籍原文属于公有领域（Public Domain），任何人可自由引用；
+   本声明仅保护本项目对其的**汇编、摘录、结构化与条件化编译**成果。
+2. **开源社区整理（MIT）**：部分基础表与规则整理参考了 MIT 许可的开源社区项目
+   （如 jinchenma94/bazi-skill 等），该部分保留其原始版权声明与 MIT 许可，
+   其使用不受本数据许可的 NC 限制（但请遵守各自原始许可）。
+3. **本项目原创编译**：断语库的条件化规则、置信度标注、行动建议、质检流水线等
+   为本项目原创成果，受 CC BY-NC-SA 4.0 保护。
+
+**使用建议**：若你仅引用古籍原文（来源 1），可直接使用；若你使用了结构化断语
+（来源 2 与 3 的编译成果），请遵循 CC BY-NC-SA 4.0。
+
+---
+
+*Copyright (c) 2026 ruanxiaoer · 代码部分见 LICENSE（MIT）· 数据部分见本文件（CC BY-NC-SA 4.0）*
+
+---
+
+## 附：第三方数据与代码署名（NOTICE）
+
+本仓库部分内容源自第三方，按各自许可要求署名如下：
+
+1. **城市经纬度数据（`CITY_LON`，内联于 `engine/engine.dist.js` 与 `ui/index.html`）**：
+   参考 **GeoNames**（<https://www.geonames.org/>，CC BY 4.0）及其开源行政区划衍生整理
+   （如 `modood/Administrative-divisions-of-China`）。按 CC BY 4.0 要求保留署名；
+   若将该数据集单独作为产品对外授权，须一并标注上述来源。
+2. **`jinchenma94/bazi-skill`（MIT）**：时辰对照等基础表参考其整理。
+   `Copyright (c) 2025 jinchenma94`，许可全文见
+   <https://github.com/jinchenma94/bazi-skill/blob/main/LICENSE>。
+   MIT 要求保留版权与许可声明，故本条随本文件一并保留。
+3. **已排除出交付包的第三方整理件**：`kb/03-classics/` 中来源标注为 `.docx` 的 6 个文件
+   （`bazi-wuxing-table` / `ditian-sui` / `qiongtong-baojian` / `sanming-tonghui` / `workflow-full` / `yuanhai-ziping`）
+   **不进入发布/商业交付包**，由 `tools/build_release_zip.py` 自动排除并硬校验。
+4. **已重写为本项目原创版本**：`kb/01-basics/najin.md`（表格数据为传统公知事实）、
+   `kb/02-rules/bazi-mbti.md`（2026-10 整体重写，原版作废）。

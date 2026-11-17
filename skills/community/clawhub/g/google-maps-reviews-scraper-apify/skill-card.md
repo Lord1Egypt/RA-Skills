@@ -1,47 +1,62 @@
-## Description: <br>
-Use this skill when the user needs Google Maps reviews from exact places through an Apify actor, including review text, ratings, dates, review URLs, reviewer profile data, owner replies, review context, detailed ratings, and place metadata from Google Maps place URLs, CID URLs, review URLs, or Place IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an agent needs to build and run exact-place Google Maps review scraping workflows through an Apify actor and return structured review rows.
 
-## Publisher: <br>
-[hundevmode](https://clawhub.ai/user/hundevmode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hundevmode](https://clawhub.ai/user/hundevmode)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use this skill to collect structured Google Maps review data for exact places through Apify. It supports local SEO, reputation monitoring, sentiment analysis, competitor research, and BI export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Google Maps place identifiers and resulting review data are sent to Apify during runs. <br>
-Mitigation: Use the skill only when that data transfer is acceptable for the user's workflow and organization. <br>
-Risk: Reviewer names, profile URLs, photos, and related public profile fields may be privacy-sensitive. <br>
-Mitigation: Set personalData=false unless those fields are needed and lawful for the specific use case. <br>
-Risk: Apify runs can incur usage costs or stop early when the configured budget is too low. <br>
-Mitigation: Use scoped Apify tokens and set budget limits with maxTotalChargeUsd or the script's --budget-usd option. <br>
+## Use Case:
 
+Developers and agent users use this skill to extract Google Maps reviews for exact place URLs, CID URLs, review URLs, or Place IDs. It supports local SEO, reputation monitoring, sentiment analysis, competitor research, BI exports, and similar review-data workflows.
 
-## Reference(s): <br>
-- [Input and Output Contract](references/input-output-contract.md) <br>
-- [Sample Input](references/sample_input.json) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hundevmode/google-maps-reviews-scraper-apify) <br>
-- [Project Homepage](https://github.com/hundevmode/apify-google-maps-reviews-scraper-agent-skill) <br>
-- [Apify Actor Store Page](https://apify.com/x_guru/google-maps-reviews-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output from the Apify runner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runner returns JSON containing run status, actor ID, fetch time, input used, item count, and review rows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review says agents have too much room to override the Apify actor ID and run arbitrary Apify actors with the user's token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, keep the default actor unless another actor is intentional, and use a limited Apify token with budget limits.
+
+Risk: The security review says the skill collects reviewer profile data by default.
+
+Mitigation: Set personalData=false unless reviewer profile fields are explicitly needed and appropriate to retain.
+
+Risk: Apify runs can consume paid usage.
+
+Mitigation: Use --budget-usd or maxTotalChargeUsd for controlled runs and split large jobs by place list.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hundevmode/skills/google-maps-reviews-scraper-apify)
+- [Project homepage from ClawHub metadata](https://github.com/hundevmode/apify-google-maps-reviews-scraper-agent-skill)
+- [Apify Google Maps Reviews Scraper actor](https://apify.com/x_guru/google-maps-reviews-scraper)
+- [Input and output contract](references/input-output-contract.md)
+- [Sample input](references/sample_input.json)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, shell commands, and JSON run output from the Apify actor.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_TOKEN; runner output includes ok, actorId, fetchedAt, inputUsed, itemCount, and rows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

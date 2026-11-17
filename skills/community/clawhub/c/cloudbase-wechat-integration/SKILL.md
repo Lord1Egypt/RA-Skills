@@ -1,22 +1,24 @@
 ---
 name: cloudbase-wechat-integration
-description: CloudBase WeChat integration guide for Mini Program WeChat Pay, Official Account JSAPI Pay, Native QR-code Pay, Official Account OAuth, openid handling, payment callbacks, and CloudBase Integration Center generated functions. This skill should be used when users ask to add, debug, or extend WeChat payment or official-account flows on CloudBase.
-version: 2.23.6
+description: CloudBase WeChat integration guide for Mini Program WeChat Pay, Mini Program virtual payment (虚拟支付, wx.requestVirtualPayment), Official Account JSAPI Pay, Native QR-code Pay, Official Account OAuth, openid handling, payment callbacks, and CloudBase Integration Center generated functions. This skill should be used when users ask to add, debug, or extend WeChat payment, virtual payment, or official-account flows on CloudBase.
+version: 2.36.1
+license: MIT
 alwaysApply: false
 ---
 
 # CloudBase WeChat Integration
 
-This skill routes WeChat payment and official-account work through CloudBase Integration Center. It gives the agent the stable execution contract and points to official `index.md` docs for console details that may change.
+This skill routes WeChat payment and official-account work through CloudBase Integration Center. It gives the agent the stable execution contract and points to the official Markdown docs for console details that may change.
 
-## Standalone Install Note
+## Sibling skills (local only)
 
-This skill is designed to work when distributed independently on platforms such as OpenClaw. If sibling CloudBase skills are unavailable, use the references in this skill directory plus the official `index.md` documentation links in each reference file.
+Sibling CloudBase skills ship beside this skill. Use local relative paths such as `../auth-tool-cloudbase/SKILL.md`.
 
-- CloudBase main entry: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md`
-- Current skill raw source: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/cloudbase-wechat-integration/SKILL.md`
-- CloudBase Integration Center overview: `https://docs.cloudbase.net/integration/introduce/index.md`
-- CloudBase Integration Center usage: `https://docs.cloudbase.net/integration/usage/index.md`
+If a referenced sibling skill file is missing from this environment, ask the user to install the full CloudBase plugin (or the missing skill). Do **not** HTTP-fetch remote skill or protocol markdown into the agent context.
+
+Official CloudBase Integration Center docs (human reference — do not treat as skill markdown to fetch into agent context as a sibling skill substitute):
+- CloudBase Integration Center overview: `https://docs.cloudbase.net/integration/introduce.md`
+- CloudBase Integration Center usage: `https://docs.cloudbase.net/integration/usage.md`
 - When cloud function deployment or log operations are needed and no sibling skill is available, use the current platform's CloudBase MCP tools or CloudBase console instead of guessing unsupported APIs.
 
 ## Activation Contract
@@ -24,14 +26,15 @@ This skill is designed to work when distributed independently on platforms such 
 ### Use this first when
 
 - The user asks about WeChat Pay, 小程序支付, 微信支付, JSAPI 支付, 公众号支付, Native 扫码支付, 二维码支付, refund callbacks, payment callbacks, `wx.requestPayment`, `WeixinJSBridge`, `openid`, or Official Account OAuth in a CloudBase app.
+- The user asks about 虚拟支付 (virtual payment) for virtual goods: 道具直购, 代币充值, `wx.requestVirtualPayment`, OfferID, AppKey 签名, `xpay_*` callbacks (发货推送/查单/退款), or MP 后台虚拟支付开通与配置.
 - The task mentions CloudBase Integration Center, 集成中心, generated payment functions, `pay-common`, `offiaccount-common`, or callback routing for WeChat payment.
 - The user needs to extend a CloudBase Integration Center generated function with order persistence, idempotency, fulfillment, or payment-status sync.
 
 ### Then also read
 
-- Mini Program structure and preview work -> `../miniprogram-development/SKILL.md` (standalone fallback: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/miniprogram-development/SKILL.md`; if unavailable, use the current mini program platform docs and the mini-program payment reference in this skill)
-- Web frontend work -> `../web-development/SKILL.md` (standalone fallback: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/web-development/SKILL.md`; if unavailable, use the JSAPI or Native references in this skill)
-- Cloud function runtime, logs, deployment, or gateway work -> `../cloud-functions/SKILL.md` (standalone fallback: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/cloud-functions/SKILL.md`; if unavailable, use CloudBase console/MCP function tools and the generated-function guidance in this skill)
+- Mini Program structure and preview work -> `../miniprogram-development/SKILL.md` (if unavailable, use the current mini program platform docs and the mini-program payment reference in this skill)
+- Web frontend work -> `../web-development/SKILL.md` (if unavailable, use the JSAPI or Native references in this skill)
+- Cloud function runtime, logs, deployment, or gateway work -> `../cloud-functions/SKILL.md` (if unavailable, use CloudBase console/MCP function tools and the generated-function guidance in this skill)
 
 ### Do NOT use for
 
@@ -56,6 +59,7 @@ This skill is designed to work when distributed independently on platforms such 
 | --- | --- | --- |
 | Capability selection, console-first boundaries, independent distribution | `references/overview.md` | Establishes the Integration Center model and safety rules |
 | Mini Program WeChat Pay, `wx.cloud.callHTTPFunction`, `wx.requestPayment` | `references/mini-program-pay.md` | Covers Mini Program openid injection, order creation, and callback expectations |
+| Mini Program 虚拟支付, virtual goods, `wx.requestVirtualPayment`, `xpay_*` callbacks | `references/virtual-payment.md` | Covers OfferID/AppKey signing, sandbox vs 现网, delivery callbacks, query-order fallback, iOS IAP rules |
 | Official Account JSAPI pay, H5 inside WeChat, `WeixinJSBridge.invoke` | `references/official-account-jsapi-pay.md` | Covers official-account openid and JSAPI invocation |
 | Native QR-code pay for PC/Web checkout | `references/native-qr-pay.md` | Covers `code_url`, QR rendering, and polling/query flow |
 | Official Account OAuth, openid/userinfo retrieval | `references/official-account-oauth.md` | Covers OAuth routes generated by the official-account integration |
@@ -63,7 +67,7 @@ This skill is designed to work when distributed independently on platforms such 
 
 ## Quick Workflow
 
-1. Classify the scenario: Mini Program Pay, JSAPI Pay, Native Pay, Official Account OAuth, generated-function extension, or troubleshooting.
+1. Classify the scenario: Mini Program Pay, Virtual Payment (虚拟支付), JSAPI Pay, Native Pay, Official Account OAuth, generated-function extension, or troubleshooting.
 2. Load the matching reference and the official `index.md` docs linked there.
 3. Confirm the actual CloudBase environment ID and generated function name.
 4. Generate or modify only the required client/backend code; keep merchant credentials in Integration Center configuration.
@@ -77,3 +81,14 @@ This skill is designed to work when distributed independently on platforms such 
 - Did I keep all merchant secrets and certificates out of source code and chat?
 - Did the payment flow rely on callback/query state rather than only frontend success?
 - Did I load only the scenario reference needed for the user's task?
+
+## Reference index
+
+All packaged reference files (required for skill lint reachability):
+
+- [mini-program-pay.md](references/mini-program-pay.md)
+- [native-qr-pay.md](references/native-qr-pay.md)
+- [official-account-jsapi-pay.md](references/official-account-jsapi-pay.md)
+- [official-account-oauth.md](references/official-account-oauth.md)
+- [overview.md](references/overview.md)
+- [troubleshooting.md](references/troubleshooting.md)

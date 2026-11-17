@@ -1,44 +1,60 @@
-## Description: <br>
-Conduct multi-source web research, read key sources in depth, and synthesize cited Markdown reports with explicit gaps and confidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts multi-source web research and produces structured, cited research reports.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill when they need an agent to plan research questions, search and fetch multiple web sources, and produce cited reports for due diligence, technology evaluation, competitive analysis, or current-state research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad prompts such as research or investigate may activate external web research. <br>
-Mitigation: Scope research requests explicitly and confirm that network search and source fetching are appropriate before use. <br>
-Risk: Configured research providers may receive search queries and fetched URLs. <br>
-Mitigation: Avoid submitting confidential or sensitive information unless the provider terms and data-handling posture are acceptable. <br>
-Risk: Synthesized reports can still contain weakly supported or outdated claims if source quality is poor. <br>
-Mitigation: Cross-reference important facts, prefer recent authoritative sources, and label gaps, estimates, and single-source claims. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to research topics in depth, compare sources, and produce evidence-attributed reports for learning, decisions, writing, competitive analysis, technology evaluation, market sizing, or due diligence.
 
-## Reference(s): <br>
-- [Deep Research workflow](references/workflow.md) <br>
-- [Deep Research examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/djc00p/deep-research-ecc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report with inline citations and a source list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executive summaries, key takeaways, methodology notes, and confidence labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate broadly for research-like prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's research goal and scope before running a long web-heavy workflow.
+
+Risk: Long reports may be saved locally and could contain sensitive research topics or findings.
+
+Mitigation: Avoid using the skill for sensitive topics unless local report persistence is acceptable, and review saved outputs before sharing.
+
+Risk: Research synthesis can contain incorrect, stale, or weakly supported claims.
+
+Mitigation: Require citations for claims, cross-reference critical facts, prefer recent authoritative sources, and label gaps or inferences clearly.
+
+## Reference(s):
+
+- [Deep Research Workflow](references/workflow.md)
+- [Deep Research Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/djc00p/skills/deep-research-ecc)
+- [Publisher profile](https://clawhub.ai/user/djc00p)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report with citations and optional saved report file for long outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an executive summary, key takeaways, source list, methodology, and confidence notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

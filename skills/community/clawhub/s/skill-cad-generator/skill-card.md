@@ -1,40 +1,57 @@
-## Description: <br>
-Skill Cad Generator helps agents create CAD and 3D generation parameters, local project files, and rendering handoffs for M4 Pro and Three.js workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Cad Generator helps agents turn CAD and 3D design requests into structured parameters, simple CAD project data, and exportable drawing files.
 
-## Publisher: <br>
-[zimuge-doudou](https://clawhub.ai/user/zimuge-doudou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimuge-doudou](https://clawhub.ai/user/zimuge-doudou)
 
-## Use Case: <br>
-Designers and developers use this skill to turn natural-language CAD requests into structured model parameters, project definitions, and exportable DXF/SVG or 3D-rendering handoff files for local design workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe file-writing behavior can overwrite or place project and output files unexpectedly. <br>
-Mitigation: Use trusted project names only, run the skill in a sandbox or dedicated workspace, and require path containment, safe filename validation, and overwrite protection before deployment. <br>
-Risk: The documentation does not fully match the included implementation and describes unauthenticated local or FRP rendering. <br>
-Mitigation: Review the implementation against the documentation, keep any local or FRP renderer private, and add authentication or explicit confirmation before remote rendering. <br>
+## Use Case:
 
+Developers, design assistants, and event-production teams can use this skill to draft CAD parameters and generate simple venue, stage, meeting, exhibition, or parametric 3D design outputs for review.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/zimuge-doudou/skill-cad-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON parameter definitions, Python CAD project files, and DXF/SVG export instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local project JSON, DXF, and SVG files and hand off rendering requests to a configured local renderer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact metadata reports 1.0/1.0.0) <br>
+Risk: The server security evidence says the documentation, permissions, and code do not line up safely enough for automatic installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and use it only in a constrained workspace until the packaged behavior matches the advertised workflow.
+
+Risk: The advertised remote CAD workflow uses an FRP-assisted localhost endpoint and the evidence notes that authentication and retention are not understood.
+
+Mitigation: Avoid proprietary design prompts and require endpoint authentication, data-retention review, and network controls before enabling the remote workflow.
+
+Risk: The artifact can write project and export files, and the security guidance calls out filename validation, overwrite protection, and SVG escaping.
+
+Mitigation: Validate project names and output paths, prevent unintended overwrites, and escape generated SVG text before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zimuge-doudou/skills/skill-cad-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, shell commands, configuration, files]
+
+**Output Format:** [JSON parameter objects, command-line text, and generated JSON, DXF, SVG, OBJ, or PNG artifacts depending on the available workflow.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The release evidence describes an FRP-assisted localhost CAD rendering workflow, while the bundled artifact primarily provides stubs and a local DXF/SVG export script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

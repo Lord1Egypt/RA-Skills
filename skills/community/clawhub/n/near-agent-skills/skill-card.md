@@ -1,46 +1,55 @@
-## Description: <br>
-Comprehensive agentic skills for NEAR Protocol, including gas optimization and on-chain analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive agentic skills for NEAR Protocol, including gas optimization and on-chain analytics.
 
-## Publisher: <br>
-[mastrophot](https://clawhub.ai/user/mastrophot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mastrophot](https://clawhub.ai/user/mastrophot)
 
-## Use Case: <br>
-Developers and engineers use this skill to query NEAR Protocol gas data, compare transaction costs, and gather public on-chain analytics for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound requests to NEAR RPC and NearBlocks may expose queried account IDs, contract IDs, or usage patterns to those public API providers. <br>
-Mitigation: Use the skill only when those outbound requests are acceptable, and avoid querying account IDs or contracts considered sensitive. <br>
-Risk: Dependency or lockfile changes could alter API behavior or introduce new network-facing code. <br>
-Mitigation: Keep the lockfile under review and inspect dependency changes before upgrading the skill. <br>
-Risk: Analytics and gas estimates depend on availability and freshness of public blockchain APIs. <br>
-Mitigation: Treat outputs as operational guidance and cross-check important cost or network-health decisions against authoritative sources. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect NEAR network activity, estimate gas costs, compare costs, and get contract gas optimization guidance through OpenClaw-compatible tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mastrophot/near-agent-skills) <br>
-- [NEAR Mainnet RPC](https://rpc.mainnet.near.org) <br>
-- [NearBlocks transactions API](https://api.nearblocks.io/v1/txns?limit=5&sort=amount&order=desc) <br>
-- [NearBlocks contracts API](https://api.nearblocks.io/v1/contracts?limit=5&sort=txns&order=desc) <br>
-- [NearBlocks stats API](https://api.nearblocks.io/v1/stats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Plain text responses and JSON-like structured objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make outbound read-only requests to NEAR RPC and NearBlocks public APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, package.json) <br>
+Risk: The skill performs network lookups against NEAR RPC and NearBlocks, which can disclose public account identifiers used in queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat NearBlocks calls as third-party lookups of public account identifiers and avoid submitting private or sensitive wallet context.
+
+Risk: The npm dependency chain may require updates or isolation before deployment.
+
+Mitigation: Install only in an environment where npm dependencies can be updated or isolated, and review the dependency chain before using the package with private keys or wallet credentials.
+
+## Reference(s):
+
+- [NEAR Agent Skills on ClawHub](https://clawhub.ai/mastrophot/skills/near-agent-skills)
+- [NEAR Mainnet RPC](https://rpc.mainnet.near.org)
+- [NearBlocks API](https://api.nearblocks.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text, JSON-like objects, arrays of recommendations, and markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-dependent outputs reflect live NEAR RPC and NearBlocks API responses when those services are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, molthub.json, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

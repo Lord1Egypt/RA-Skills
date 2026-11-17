@@ -1,45 +1,60 @@
-## Description: <br>
-Deploy and manage apps, servers, databases, domains, and environment variables on VPS providers using the Hoist CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage apps, servers, databases, domains, and environment variables on VPS providers using the Hoist CLI.
 
-## Publisher: <br>
-[g4f4r0](https://clawhub.ai/user/g4f4r0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g4f4r0](https://clawhub.ai/user/g4f4r0)
 
-## Use Case: <br>
-Developers and infrastructure operators use Hoist to guide agent-assisted deployment and administration of applications, VPS servers, databases, domains, environment variables, Dockerfiles, and troubleshooting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps administer real infrastructure, including creating, modifying, and destroying servers, databases, domains, keys, and environment variables. <br>
-Mitigation: Use least-privilege provider tokens and require explicit user confirmation before actions that create, modify, expose, or destroy resources. <br>
-Risk: Environment-variable, database, and log outputs may contain secrets or sensitive connection information. <br>
-Mitigation: Avoid asking the agent to print or summarize env exports, database connection strings, provider tokens, or logs that may contain secrets. <br>
-Risk: Public database exposure and domain changes can unintentionally broaden network access. <br>
-Mitigation: Keep services private by default and confirm DNS, firewall, and public-access changes before executing related Hoist commands. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to guide agents through deploying applications and managing VPS-backed servers, databases, domains, environment variables, logs, and rollback workflows with Hoist.
 
-## Reference(s): <br>
-- [Hoist homepage](https://github.com/g4f4r0/hoist) <br>
-- [Hoist ClawHub listing](https://clawhub.ai/g4f4r0/hoist) <br>
-- [COMMANDS.md](COMMANDS.md) <br>
-- [DOCKERFILES.md](DOCKERFILES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and Dockerfile snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hoist CLI commands are expected to return structured JSON in non-TTY agent contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The skill can guide agents to install and operate an unpinned privileged infrastructure CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a controlled environment and pin and verify the Hoist CLI version before installation.
+
+Risk: Infrastructure commands may expose secrets such as environment values, API keys, or database URLs in chat or logs.
+
+Mitigation: Avoid printing secret values, prefer stdin or a secrets manager for secret injection, and redact sensitive command output before sharing.
+
+Risk: Commands can modify or destroy live servers, domains, databases, keys, and storage volumes.
+
+Mitigation: Require explicit user confirmation before resource-changing commands and take backups before destructive or volume-deletion operations.
+
+## Reference(s):
+
+- [Hoist GitHub Repository](https://github.com/g4f4r0/hoist)
+- [Hoist Skill Page](https://clawhub.ai/g4f4r0/skills/hoist)
+- [COMMANDS.md](artifact/COMMANDS.md)
+- [DOCKERFILES.md](artifact/DOCKERFILES.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Dockerfile snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing infrastructure instructions that should be reviewed before executing commands against live resources.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

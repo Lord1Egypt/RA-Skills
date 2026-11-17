@@ -1,44 +1,65 @@
-## Description: <br>
-Writes content to local files, including text, code, configuration, Word documents, and Excel spreadsheets, with encoding handling for agent-driven file creation and updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local file-writing skill for enterprise security policy environments that writes authorized text, code, configuration, DOCX, and XLSX files with encoding-aware handling; it does not provide encryption.
 
-## Publisher: <br>
-[endcy](https://clawhub.ai/user/endcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[endcy](https://clawhub.ai/user/endcy)
 
-## Use Case: <br>
-Developers and agent users use this skill when an agent needs to create, overwrite, or append local files in common text, code, configuration, .docx, or .xlsx formats. It is most appropriate for explicit, reviewed file-writing tasks where the target path and content are intended by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad local file writer that can create, overwrite, and append files. <br>
-Mitigation: Use it only for explicit file-writing requests, review target paths before execution, and keep backups for important files. <br>
-Risk: The skill name and description may imply encryption or protected-file enforcement that the security evidence does not confirm. <br>
-Mitigation: Do not assume this skill encrypts output or enforces enterprise protection policies; use separate approved encryption or data-protection controls when needed. <br>
-Risk: Writing sensitive configuration, scripts, shell profiles, or environment files can alter system or application behavior. <br>
-Mitigation: Avoid those targets unless the change is intentional and reviewed, and inspect resulting diffs or file contents before use. <br>
+## Use Case:
 
+Developers and employees use this skill to write or append content to local files they are already authorized to access, especially when encoding-safe output or simple DOCX/XLSX creation is needed. It should not be used for encryption or to bypass file access controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/endcy/encrypted-file-writer) <br>
-- [README](artifact/README.md) <br>
-- [Verification report](artifact/VERIFICATION_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Local files plus terminal status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can overwrite or append files and can create missing parent directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: Users may assume the skill encrypts files because the release is named Encrypted File Writer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a local file writer only; use operating-system encryption or dedicated encryption tools when encryption is required.
+
+Risk: Overwrite and append modes can change or destroy existing local file contents.
+
+Mitigation: Back up important files and review target paths before using overwrite or append.
+
+Risk: Spreadsheet append mode can destroy existing workbook data.
+
+Mitigation: Avoid XLSX append on existing workbooks unless the workbook can be regenerated or restored.
+
+Risk: Appending to untrusted DOCX files can preserve unsafe or unexpected document content.
+
+Mitigation: Do not append to untrusted DOCX files; create a new document from trusted content when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/endcy/skills/encrypted-file-writer)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Verification Report](artifact/VERIFICATION_REPORT.md)
+- [Fix Report v1.2.0](artifact/FIX_REPORT_v1.2.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Local file content with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports overwrite, append, stdin input, and optional text encoding; DOCX and XLSX handling is simplified.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact files also contain 1.1.0 and 1.2.0 version references)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

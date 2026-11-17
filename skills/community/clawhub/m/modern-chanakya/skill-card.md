@@ -1,56 +1,70 @@
-## Description: <br>
-Interpret Chanakya, Chanakya Niti, Arthashastra, and reliable historical/wiki-style summaries into modern practical guidance for systems, software, product building, career strategy, discipline, leadership, governance, and execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret Chanakya, Chanakya Niti, Arthashastra, and reliable historical/wiki-style summaries into modern practical guidance for systems, software, product building, career strategy, discipline, leadership, governance, and execution.
 
-## Publisher: <br>
-[21f2000735](https://clawhub.ai/user/21f2000735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[21f2000735](https://clawhub.ai/user/21f2000735)
 
-## Use Case: <br>
-External users and developers use this skill to translate Chanakya-style principles into practical judgment for work, career strategy, negotiation, leadership, relationships, resilience, and long-horizon decisions. It is intended for strategic framing and structured guidance, not professional health, financial, legal, or emergency advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat broad strategic guidance as professional health, financial, legal, relationship, or emergency advice. <br>
-Mitigation: Frame outputs as general perspective, flag high-stakes uncertainty, and direct users to qualified professionals or emergency services when appropriate. <br>
-Risk: A reusable knowledge layer could accumulate private personal, family, health, relationship, household, or identifying details. <br>
-Mitigation: Keep public and reusable knowledge universal and privacy-safe; exclude sensitive or identifying personal details from stored principles. <br>
-Risk: Chanakya-style strategic framing could be over-relied on or interpreted as manipulative certainty. <br>
-Mitigation: Separate source-backed meaning from modern interpretation, use confidence labels, preserve ethical boundaries, and keep recommendations practical rather than theatrical. <br>
+## Use Case:
 
+External users and developers use this skill to translate Chanakya-style strategic principles into grounded guidance for work, career, product, leadership, negotiation, resilience, and practical decision-making. It is best suited for judgment, framing, and reusable decision structures rather than factual lookup or professional advice replacement.
 
-## Reference(s): <br>
-- [Modern Chanakya Skill Page](https://clawhub.ai/21f2000735/modern-chanakya) <br>
-- [Modern Chanakya Usage Guide](artifact/references/usage/usage-guide.md) <br>
-- [Modern Chanakya Working Outline](artifact/references/modern-chanakya-outline.md) <br>
-- [Knowledge Format](artifact/references/knowledge-format.md) <br>
-- [Privacy Boundary](artifact/references/privacy-boundary.md) <br>
-- [Testing Plan](artifact/references/testing-plan.md) <br>
-- [Software Engineer Career Strategy](artifact/references/frameworks/software-engineer-career-strategy.md) <br>
-- [Compensation and Offer Negotiation](artifact/references/frameworks/compensation-and-offer-negotiation.md) <br>
-- [Foresight and Risk](artifact/references/frameworks/foresight-and-risk.md) <br>
-- [Ethics in Unstable Systems](artifact/references/frameworks/ethics-in-unstable-systems.md) <br>
-- [Research Bibliography](artifact/research/research-bibliography.md) <br>
-- [Salary Negotiation: Make More Money, Be More Valued](https://www.kalzumeus.com/2012/01/23/salary-negotiation/) <br>
-- [How Not to Bomb Your Offer Negotiation](https://haseebq.com/how-not-to-bomb-your-offer-negotiation/) <br>
-- [StaffEng Guides](https://staffeng.com/guides/) <br>
-- [WHO Burn-out Occupational Phenomenon](https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance with structured lists, examples, and optional knowledge entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence labels that separate source-backed ideas from modern interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Users may treat broad strategic framing as medical, legal, financial, relationship-safety, or crisis advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as framing support only in those domains and seek qualified help where appropriate.
+
+Risk: Chanakya quotations or modern commentary may be weakly sourced or folklore-based.
+
+Mitigation: Separate source-backed meaning from modern interpretation and include high, medium, or low confidence labels when attribution is uncertain.
+
+Risk: Ancient statecraft concepts may be copied too literally into modern work, family, or business contexts.
+
+Mitigation: Translate principles into present-day ethical constraints and practical tradeoffs rather than presenting historical tactics as direct instructions.
+
+Risk: Personal or household-specific details could be folded into the public skill layer.
+
+Mitigation: Keep the public skill universal and privacy-safe; place person-specific adaptation only in a separate private layer.
+
+## Reference(s):
+
+- [Modern Chanakya Knowledge Format](references/knowledge-format.md)
+- [Modern Chanakya Usage Guide](references/usage/usage-guide.md)
+- [Privacy Boundary for Modern Chanakya](references/privacy-boundary.md)
+- [Modern Chanakya Research Bibliography](research/research-bibliography.md)
+- [Strategic Thinking and Contemporary Business](research/papers/2007-strategic-thinking-contemporary-business-gupta.md)
+- [Burnout: A Review of Theory and Measurement](research/papers/2022-burnout-review-theory-measurement.md)
+- [Salary Negotiation: Make More Money, Be More Valued](https://www.kalzumeus.com/2012/01/23/salary-negotiation/)
+- [How Not to Bomb Your Offer Negotiation](https://haseebq.com/how-not-to-bomb-your-offer-negotiation/)
+- [StaffEng Guides](https://staffeng.com/guides/)
+- [WHO Burn-out Occupational Phenomenon Notice](https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with structured bullets, confidence labels, examples, and practical actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include short principle summaries, modern interpretations, confidence labels, analogies, and decision steps; no hidden actions or credential handling are expected.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

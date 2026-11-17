@@ -1,43 +1,59 @@
-## Description: <br>
-World Cup Groups skill — a market-dynamics play on group-winner sets that buys group favorites at pre-tournament prices, trims after qualification becomes market-obvious, and trades incoherent group market sets back toward consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World Cup Groups skill that simulates or automates market-dynamics trades on group-winner markets by buying pre-tournament favorites, trimming after market repricing, and trading confirmed incoherent group market sets back toward consistency.
 
-## Publisher: <br>
-[bridgeaisocial](https://clawhub.ai/user/bridgeaisocial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bridgeaisocial](https://clawhub.ai/user/bridgeaisocial)
 
-## Use Case: <br>
-Developers and trading operators use this skill to run a Simmer-based paper or live prediction-market workflow for 2026 World Cup group-winner markets. It discovers active and importable group markets, reports candidate sets, and, when explicitly configured for live trading, places bounded trades using the configured venue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to local eligibility and compliance requirements for prediction-market trading. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live automated trading can lose money through adverse prices, slippage, illiquidity, or incorrect configuration. <br>
-Mitigation: Keep the skill in dry-run mode until the strategy and settings are reviewed; verify live mode, venue, spending limits, and position limits before enabling real-money execution. <br>
-Risk: The skill requires API keys or wallet-linked credentials for trading workflows. <br>
-Mitigation: Store credentials only in a secured environment and restrict access to the account or agent that runs the skill. <br>
-Risk: Group-set trades are sequential and may face partial fills or market movement. <br>
-Mitigation: Use small per-trade caps, the configured exposure cap, and slippage checks; review incomplete or unconfirmed market sets before live execution. <br>
+## Use Case:
 
+External developers and trading-automation users use this skill to discover 2026 World Cup group-winner markets, review active and importable candidates, and run sim-first or live guarded trading passes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bridgeaisocial/polymarket-worldcup-group-repricer) <br>
-- [Publisher profile](https://clawhub.ai/user/bridgeaisocial) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and text reports from Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default dry-run mode uses the Simmer paper engine; live mode can call trading APIs, emit reasoning strings, and update local exposure state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata and skill metadata) <br>
+Risk: Automated prediction-market trading can lose money when live mode is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run or sim mode first, review all settings, and avoid funded credentials until exit and position reconciliation behavior has been reviewed.
+
+Risk: The trading SDK dependency is unpinned in the artifact.
+
+Mitigation: Use a pinned, audited simmer-sdk version before production use.
+
+Risk: Live credentials could permit unintended account activity.
+
+Mitigation: Use narrowly scoped API credentials and account-side spending limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bridgeaisocial/skills/polymarket-worldcup-group-repricer)
+- [Publisher profile](https://clawhub.ai/user/bridgeaisocial)
+- [Disclaimer](artifact/DISCLAIMER.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration details, and text status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; the managed entrypoint is scripts/group_repricer.py.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, artifact metadata, and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

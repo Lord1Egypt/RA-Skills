@@ -1,0 +1,13 @@
+# Digital-human avatar prompt for ImageGen
+#
+# Copy this into the ImageGen tool. Edit the bracketed tokens to match any
+# user-specified look (ethnicity, clothing, gender). Keep it front-facing and
+# simple — talking-head lip-sync (SadTalker) crops to the face and struggles
+# with hats, hands near the face, or strong profile angles.
+
+Photorealistic half-body studio portrait of a [professional Middle-Eastern / neutral] presenter,
+[man/woman] around 30, wearing [a clean solid-color business shirt or blazer],
+looking directly at the camera with a confident, friendly neutral expression,
+head and shoulders only, centered composition, soft even studio lighting on a
+smooth [light gray] background, high detail, 8k, sharp focus, no text, no logo,
+no glasses glare, no hands near the face.

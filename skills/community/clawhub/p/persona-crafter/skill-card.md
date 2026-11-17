@@ -1,37 +1,52 @@
-## Description: <br>
-Designs deeply nuanced AI identities with specific behavioral traits, values, language patterns, and opinionated collaboration style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designing deeply nuanced AI identities with specific behavioral traits, values, and language patterns. Transform basic chatbots into authentic, opinionated collaborators.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-External users and developers use this skill to craft agent personas with defined diction, behavioral boundaries, refusal style, and values. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A generated persona can change an agent's refusal style, boundaries, or values in ways that conflict with intended behavior. <br>
-Mitigation: Review persona outputs before use and confirm that diction, boundaries, values, and refusals align with the deployment's existing instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Persona Crafter on ClawHub](https://clawhub.ai/balkanblbn/persona-crafter) <br>
+## Use Case:
 
+Developers and agent builders use Persona Crafter to draft persona guidance that defines diction, refusal boundaries, and value-system traits for AI assistants.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance for persona and behavior instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, external tools, credentials, or sensitive access indicated.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persona and boundary guidance can affect how an agent speaks and refuses tasks.
+
+Mitigation: Review generated persona guidance before deployment and test refusal behavior against the intended policy.
+
+Risk: Highly opinionated diction or value-system guidance may produce an unsuitable tone for some users or contexts.
+
+Mitigation: Adjust diction, boundaries, and value statements for the target audience before applying the persona.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/balkanblbn/skills/persona-crafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown persona guidance and agent behavior notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, credentials, network access, or hidden runtime behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Provides an HVAC contractor operations reference covering pricing, technician productivity, seasonal planning, compliance, equipment margins, marketing, KPIs, and growth strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides HVAC contractor operations guidance for pricing, technician productivity, seasonal planning, equipment margins, compliance, marketing, KPIs, and growth strategy.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-HVAC contractors, service company operators, and agents supporting those businesses use this skill to answer operational questions about pricing, staffing, compliance, seasonal planning, marketing, KPIs, and staged growth. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pricing, compliance, and business benchmarks may not reflect current local requirements or market conditions. <br>
-Mitigation: Verify current local licensing, regulatory, pricing, and labor-market requirements before relying on the guidance. <br>
-Risk: External links are promotional/reference links from the publisher. <br>
-Mitigation: Review external destinations before following their recommendations or making purchases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-hvac) <br>
-- [AfrexAI Context Pack Store](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+HVAC contractors, service company operators, and business advisors use this skill to ask an agent for concise operations guidance on pricing, staffing, compliance topics, marketing benchmarks, KPIs, and growth planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with operational guidance and benchmarks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not run code or change systems; provides reference guidance for agent responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HVAC pricing, wage, marketing, and vendor benchmarks may not match the user's local market or current costs.
+
+Mitigation: Verify figures against current local rates, supplier quotes, labor costs, and business financials before making pricing or investment decisions.
+
+Risk: Regulatory guidance may vary by jurisdiction and may change after release.
+
+Mitigation: Confirm current local licensing, permitting, EPA refrigerant rules, OSHA obligations, and other applicable requirements with authoritative sources before relying on the guidance.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/1kalin/skills/afrexai-hvac)
+- [AfrexAI Context Pack Store](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

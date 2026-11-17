@@ -1,43 +1,62 @@
-## Description: <br>
-Fetches Hugging Face Daily Papers through the HF API, reads the results, and helps score papers into a formatted digest with commentary for daily paper requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and digest HuggingFace Daily Papers for daily paper reports, including paper metadata retrieval, scoring, and formatted commentary.
 
-## Publisher: <br>
-[godiao](https://clawhub.ai/user/godiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godiao](https://clawhub.ai/user/godiao)
 
-## Use Case: <br>
-Developers, researchers, and technical readers use this skill to fetch Hugging Face Daily Papers for a target date, inspect the generated paper data, and produce a scored daily research digest with concise commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Hugging Face token may be exposed if pasted into shared chats, screenshots, shell history, or committed files. <br>
-Mitigation: Use a read-only token, provide it through the HF_TOKEN environment variable, and avoid storing real tokens in shared or versioned material. <br>
-Risk: The fetch script creates or overwrites hf_results.json in the directory where it is run. <br>
-Mitigation: Run the script from a dedicated working directory or review existing files before execution. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to fetch Hugging Face Daily Papers for a selected date and turn the results into a concise research digest with scores, summaries, and commentary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/godiao/hf-daily-papers) <br>
-- [Hugging Face Daily Papers](https://huggingface.co/papers) <br>
-- [Hugging Face Access Tokens](https://huggingface.co/settings/tokens) <br>
-- [arXiv Abstract Pages](https://arxiv.org/abs/{paper_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown digest guidance, shell commands, and a JSON results file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The fetch script reads HF_TOKEN from the environment and writes hf_results.json in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The fetch script requires a Hugging Face token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped read token and avoid broad personal tokens when possible.
+
+Risk: The fetch script creates or overwrites hf_results.json in its working directory.
+
+Mitigation: Run it from the intended scripts directory or an isolated working directory before reviewing the generated digest input.
+
+Risk: Generated commentary may overstate paper significance or reflect the skill's default author-branded tone.
+
+Mitigation: Review the digest before sharing and override tone or branding requirements in the prompt when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godiao/skills/hf-daily-papers)
+- [Publisher profile](https://clawhub.ai/user/godiao)
+- [Hugging Face](https://huggingface.co)
+- [Hugging Face Daily Papers](https://huggingface.co/papers)
+- [Hugging Face access tokens](https://huggingface.co/settings/tokens)
+- [arXiv abstract pages](https://arxiv.org/abs/{paper_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest plus JSON intermediate file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The fetcher writes hf_results.json in the script working directory and the agent uses it to produce a ranked paper digest.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

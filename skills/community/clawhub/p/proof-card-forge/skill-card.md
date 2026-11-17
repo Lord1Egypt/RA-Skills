@@ -1,41 +1,50 @@
-## Description: <br>
-Generate shareable SVG and Markdown proof cards from a skill audit or release metadata for GitHub READMEs, landing pages, and ClawHub listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate shareable SVG and Markdown proof cards from a skill audit or release metadata for GitHub READMEs, landing pages, and ClawHub listings.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and skill builders use this skill to create small, shareable proof cards from audit or release metadata for READMEs, landing pages, and ClawHub listings. It helps present score, grade, status, version, checked date, and links without hand-editing SVG. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A proof card can misstate score, status, grade, or link if the source audit or release metadata is stale or untrusted. <br>
-Mitigation: Run the skill on trusted audit files and review the generated score, status, grade, and link before publishing. <br>
-Risk: The --force option can overwrite existing output files. <br>
-Mitigation: Use --force only when intentionally replacing known proof-card outputs. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to create compact SVG and Markdown proof cards from audit or release metadata for READMEs, landing pages, and ClawHub listings.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zack-dev-cm/proof-card-forge) <br>
-- [Source manifest](references/source-manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with file paths, shell command examples, SVG output, and optional JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proof-card SVG and Markdown files, can emit a JSON summary, and refuses overwrites unless --force is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated proof cards can create misleading audit badges if the source audit result is not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the audit result before publishing and treat generated cards as self-asserted unless the script is hardened to reject do-not-publish audits, invalid schemas, missing authoritative success fields, and conflicting CLI overrides.
+
+## Reference(s):
+
+- [Proof Card Forge on ClawHub](https://clawhub.ai/zack-dev-cm/skills/proof-card-forge)
+- [Source Manifest](references/source-manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file paths, badge snippets, JSON summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proof-card SVG, Markdown badge snippet, and optional JSON summary files when invoked with suitable audit or release metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

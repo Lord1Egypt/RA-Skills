@@ -1,40 +1,62 @@
-## Description: <br>
-优惠券查询助手，当用户询问优惠、折扣、红包时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coupon query assistant that helps users find coupons, discounts, red packets, and product offers from a third-party coupon aggregation service.
 
-## Publisher: <br>
-[GeraldAlexanderrw](https://clawhub.ai/user/GeraldAlexanderrw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geraldalexanderrw](https://clawhub.ai/user/geraldalexanderrw)
 
-## Use Case: <br>
-External users use this skill to query platform coupons, food-delivery red packets, and product-category discounts, with results sourced from a third-party coupon aggregation service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts a third-party coupon aggregation service and may show external coupon links. <br>
-Mitigation: Install and use it only if that service contact and external coupon-link flow are acceptable for the user or organization. <br>
-Risk: The skill can update itself when the user explicitly asks for an upgrade. <br>
-Mitigation: Request upgrades only intentionally, and review the installed release before continued use. <br>
+## Use Case:
 
+External users can ask an agent to retrieve current platform coupons, food delivery red packets, and product-category offers. The skill is intended for coupon lookup and savings guidance, with results supplied by an external coupon aggregation service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GeraldAlexanderrw/getcoupon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text with coupon summaries, platform names, coupon links, status messages, and retry or upgrade guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coupon availability is time-sensitive and results may include external links that must be opened in the relevant platform app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: The skill contacts a third-party coupon service and displays externally supplied coupon links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, and validate returned links before users act on them.
+
+Risk: The skill can run a local update path in response to upgrade-related chat input.
+
+Mitigation: Avoid using the chat-triggered upgrade path; prefer a release that removes runtime self-updates.
+
+Risk: The package includes shared service credentials.
+
+Mitigation: Prefer a version that does not ship shared credentials and uses publisher- or user-managed credentials instead.
+
+Risk: Cache data is handled in a shared temporary location.
+
+Mitigation: Store cache data in a protected per-user location with appropriate permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geraldalexanderrw/skills/getcoupon)
+- [ClawHub publisher profile](https://clawhub.ai/user/geraldalexanderrw)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text coupon summaries, platform lists, category matches, and externally supplied links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include time-sensitive discounts, app-opening instructions, fallback coupon text, and update guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

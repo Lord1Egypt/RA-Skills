@@ -1,47 +1,65 @@
-## Description: <br>
-LinkFoxAI lets an agent call the LinkFox AI Open Platform for image and video generation tasks, media upload, result polling, and documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkFoxAI lets an agent call the LinkFox AI open platform for image and video generation workflows, including model swaps, cutouts, image expansion, scene variation, product image sets, talking sales videos, image-to-video, task polling, generic API calls, and connectivity checks.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-Developers, ecommerce operators, and agents use LinkFoxAI to submit LinkFox image and video generation jobs, upload image inputs, poll task status, and retrieve generated media URLs for product imagery, model scenes, sales videos, and related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires LinkFoxAI credentials and can send prompts, image URLs, and uploaded image files to LinkFox/Ziniao. <br>
-Mitigation: Install only after approving that data flow, store LINKFOXAI_API_KEY securely, and avoid using sensitive local files or private media. <br>
-Risk: The api-call command can call arbitrary documented LinkFox Open Platform paths under the configured base URL. <br>
-Mitigation: Use api-call only for documented LinkFox AI endpoints and review request bodies before execution. <br>
-Risk: Long-running generation and polling jobs may consume API quota or continue for many minutes. <br>
-Mitigation: Use explicit timeouts, monitor spawned sessions, and stop or split jobs when results are no longer needed. <br>
+## Use Case:
 
+Developers and external teams use this skill to connect an agent to LinkFox AI media-generation APIs, submit authenticated image or video jobs, poll for results, and return generated media URLs or API responses.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-ai) <br>
-- [LinkFox AI Open Platform Access and Errors](references/open-platform.md) <br>
-- [AI Image and Video API Reference](references/image-make.md) <br>
-- [Ziniao Open Platform](https://open.ziniao.com) <br>
-- [LinkFox Team API Guide](https://www.linkfox.com/team/api-guide) <br>
-- [Open Platform API Call Guide](https://open.ziniao.com/docSupport?docId=233) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return task IDs, status or error objects, generated media URLs, and polling progress for long-running jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata) <br>
+Risk: The skill gives an agent broad authenticated access to LinkFox AI APIs and media upload workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key if available, protect LINKFOXAI_API_KEY, and review proposed api-call and upload-base64 commands before execution.
+
+Risk: Media, prompts, product data, and account credentials are sent to LinkFoxAI/Ziniao services.
+
+Mitigation: Install only when that data sharing is acceptable, and avoid uploading sensitive local files or private/person media without consent.
+
+Risk: Changing LINKFOXAI_BASE_URL can route authenticated requests away from the documented official hosts.
+
+Mitigation: Keep LINKFOXAI_BASE_URL on the documented official hosts unless the deployment has separately verified the endpoint and allowlist requirements.
+
+Risk: Generated media jobs can take a long time, fail audit checks, or return temporary result URLs.
+
+Mitigation: Run long jobs in background sessions, poll status, surface task IDs and error messages, and refresh expired result URLs when needed.
+
+## Reference(s):
+
+- [LinkFox AI Open Platform](https://open.ziniao.com)
+- [LinkFox API Guide](https://www.linkfox.com/team/api-guide)
+- [AI Image and Video API Reference](references/image-make.md)
+- [Open Platform Access and Error Codes](references/open-platform.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses or generated media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include temporary generated media URLs, task IDs for polling, API error messages, and configuration requirements for LinkFoxAI credentials.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

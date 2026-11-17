@@ -1,5 +1,9 @@
 # Fundraising
 
+Running the raise: the process, the terms, the story, and the investor relationships that outlast the round. `bootstrapping.md` covers whether to raise at all; this file covers how to run the round once you've decided to, and `capital-valuation.md` covers what the round costs you once it closes.
+
+> **Benchmarks are calibration, not truth.** Figures marked *[bench 2026-07]* — runway norms, fundraising-process timelines, the seed-to-Series-A interval, round-over-round step-ups, and the viability of reaching cash-flow positive before a first round — reflect the funding market as of July 2026 and move with it. The mechanics are durable; the numbers are not. Check current data before quoting a threshold, and name the vintage.
+
 ## Core axioms
 
 **Raise when you can, not when you need to.** The best time to raise is when you don't need the money. Once you need it, you've lost the leverage that makes good rounds possible. Founders who internalize this raise opportunistically — when the market is hot, when a tier-1 firm pre-empts, when momentum makes a clean round easy — even if their runway is fine.
@@ -8,9 +12,9 @@
 
 **The lead investor matters more than the firm.** You're marrying a partner, not a logo. The same firm has wildly different partners. Reference-check the specific partner with founders they've backed — including founders whose companies failed. "How did they behave when things were going badly?" is the only question that matters.
 
-**Always have 18 months of runway, ideally 24.** Twelve months means you start fundraising at six, which means you're fundraising from weakness. Twenty-four months means you can pass on a bad term sheet and still have time to find a better one.
+**Always have 18 months of runway, ideally 24.** *[bench 2026-07]* Twelve months means you start fundraising at six, which means you're fundraising from weakness. Twenty-four months means you can pass on a bad term sheet and still have time to find a better one.
 
-**A bridge round is a confession.** It can be the right move — especially if your last round was led by a strong investor who's signaling support — but understand what signal it sends to future investors. A "bridge to nowhere" is one of the most common death spirals.
+**A bridge round is a confession.** It can be the right move — especially if your last round was led by a strong investor who's signaling support — but understand what signal it sends to future investors. A "bridge to nowhere" is one of the most common death spirals. The other route out of the same spot is a priced round at a lower number, and running one is a different process from the raise this file describes — the sequence, the terms your own charter triggers, and what a preserved headline costs are in `capital-valuation.md`.
 
 **The pitch deck is a prop.** What matters is the narrative you tell and the conviction with which you tell it. Founders who memorize their deck sound robotic. Founders who tell the story as if they're explaining it to a smart friend over coffee close rounds.
 
@@ -18,27 +22,25 @@
 
 **"This round will be our last" is something every founder says and almost none mean.** Plan as if you'll raise again. The optimization isn't "minimize dilution this round" — it's "maximize the company's value over the next 3 rounds."
 
-**Process beats outcome in fundraising — run a tight one.** Schedule all first meetings within a two-week window. Create scarcity by having multiple firms moving in parallel. Set a soft close date. Founders who let fundraising drag for 4–6 months suffer brand damage with every passing week ("still raising?"). Tight processes close in 3–6 weeks.
+**Process beats outcome in fundraising — run a tight one.** All three clocks in this axiom are *[bench 2026-07]*: schedule all first meetings inside a two-week window, expect a tight process to close in 3–6 weeks, and read a raise that drags to 4–6 months as brand damage accruing every passing week ("still raising?"). Create scarcity by having multiple firms moving in parallel, and set a soft close date.
 
 **The first meeting is a screen, not a sale.** Partners decide in the first 5 minutes whether to dig in. Optimize the opening: a clear one-sentence company description, the most surprising metric or insight, and why now. Save the deep dive for meeting two.
 
 **Hot rounds are won on speed; cold rounds are lost on time.** When you have momentum, sign fast. When you don't have momentum, time is the enemy — every week without a term sheet makes the next investor less likely to engage.
 
-**Don't optimize the seed round; optimize the Series A.** The seed valuation barely matters. What matters is whether you've built a company that can credibly raise a Series A in 18–24 months. Founders who push seed valuations too high create unraisable A rounds.
+**Don't optimize the seed round; optimize the Series A.** The seed valuation barely matters. What matters is whether you've built a company that can credibly raise a Series A in 18–24 months *[bench 2026-07]*. Founders who push seed valuations too high create unraisable A rounds. *(Stage: Pre-seed–Seed.)*
 
 **Strategic investors trade money for optionality loss.** Corporate VCs and strategic investors often come with rights of first refusal, info rights, or implicit M&A signals that close doors. Take them when the strategic value is concrete and unique. Don't take them for the money alone.
 
-**The board observer seat is a no.** Once you give one, every future investor wants one too. Before you know it, your board meetings have 12 people in them and nothing gets decided.
+**The board observer seat is a no.** Once you give one, every future investor wants one too. Before you know it, your board meetings have 12 people in them and nothing gets decided. The narrow exception: observer rights can be the right *downgrade* — the thing you offer an angel or small check who's asking for a full board seat (see `startup-mechanics.md`). Never grant them as an add-on to an investor who already has a seat's worth of access.
 
-**A "soft circle" is not money.** Until the wire is in your account, the round isn't closed. Founders who count soft circles in their forecasts get burned. Famous investors back out for reasons that have nothing to do with you.
+**It's not your money.** Once raised, investor capital carries a fiduciary obligation: you spend it to improve the company's prospects, not on lifestyle, vanity hires, or premature fancy offices. See `yc-canon.md` for the full treatment.
 
-**It's not your money.** Once raised, investor capital carries a fiduciary obligation. You spend it to improve the company's prospects, not on lifestyle, vanity hires, or premature fancy offices. Founders who treat investor capital as personally flexible are violating a duty and usually get caught — either by the board, by future diligence, or by the cap-table mathematics that exposes the waste.
+**A fundraise is not a milestone — it's literally cash.** (Michael Seibel.) The press, the investors, and your own ego will collude to treat the round as proof you've made it; the metric that matters is whether you're creating value, not whether you raised. See `yc-canon.md` for the full treatment.
 
-**A fundraise is not a milestone — it's literally cash.** (Michael Seibel.) The press, the investors, and your own ego will collude to treat the round as proof you've made it. It's not. Plenty of bad companies raise big rounds; some great companies raise small ones (Airbnb, Dropbox, Twitch all raised on tiny early valuations). The metric that matters is whether you're creating value, not whether you successfully raised.
+**Hear no until you hear yes — and a "soft circle" is not a yes.** (Paul Graham.) A soft circle is the version of this that catches founders who already know the axiom: it feels like a commitment, so it lands in the forecast, and investors back out of them for reasons that have nothing to do with you. Until the wire is in your account, the round isn't closed. See `yc-canon.md` for the full treatment of investor politeness.
 
-**Hear no until you hear yes.** (Paul Graham.) Most positive investor language is politeness, not commitment. "Let's stay in touch," "this is interesting," "send me an update" — none of these are yes. Interpret encouragement as encouragement, not as signal that you're closing. Until the wire hits, the round is open.
-
-**Don't talk to Corp Dev unless you're ready to sell today.** If a Big Company's M&A team wants to meet, they want to acquire you cheaply. They have professional skills in lowballing, demoralizing, and slow-walking founders into worse terms. The meeting itself, even if no offer results, damages startup intensity. See `yc-canon.md` for the full Rockefeller-rule treatment.
+**Don't talk to Corp Dev unless you're ready to sell today.** The meeting itself, even if no offer results, damages startup intensity, and the M&A team's job is to acquire you cheaply. See `yc-canon.md` for the full Rockefeller-rule treatment.
 
 **The audience is the hero of the story; the founder is the guide.** (Michael Skok.) The most common pitch failure is casting yourself as the hero — "we built this amazing thing." Reverse the polarity: the listener's problem, transformation, and win are the subject of the story; you're Obi-Wan, not Luke. Same failure mode across audiences — investors, customers, and recruits all reject pitches and lean into stories where they're the one being transformed.
 
@@ -46,13 +48,13 @@
 
 **Break the ask into the smallest possible next step.** (Skok.) Founders default to asking for the ultimate yes — the term sheet, the enterprise deployment, the full hire — when the right ask is the *next* step: the intro, the integration test, the conversation with their VP. Big asks raise risk for the listener and kill momentum; next-step asks create it. The skill is naming the smallest commitment that still moves the relationship forward.
 
-**The Five A's: Aptitude, Attitude, Ability, Authenticity, Attractor.** (Lily Lyman, Underscore VC.) What an early-stage investor underwrites in a founder, in order: *aptitude* (pace of learning), *attitude* (grit, willingness to "rip a hole in the sky"), *ability* (background evidence you can execute), *authenticity* (self-awareness about your gaps), and *attractor* (the magnetism to pull co-founders, hires, customers, and investors toward you). *"It's never been easier to start a company than right now"* — and as a result, domain expertise has slid down the filter and raw founder attributes now dominate.
+**The Five A's: Aptitude, Attitude, Ability, Authenticity, Attractor.** (Lily Lyman, Underscore VC.) What an early-stage investor underwrites in a founder, in order: *aptitude* (pace of learning), *attitude* (grit, willingness to "rip a hole in the sky"), *ability* (background evidence you can execute), *authenticity* (self-awareness about your gaps), and *attractor* (the magnetism to pull co-founders, hires, customers, and investors toward you). *"It's never been easier to start a company than right now"* — and as a result, domain expertise has slid down the filter and raw founder attributes now dominate. *(Stage: Pre-seed–Seed.)*
 
-**In the AI-build era, the case for raising early capital has weakened — especially for B2B SaaS.** (Phil Green.) *"You can go from zero to a product and customers and revenue without going cash-flow negative at all."* The legacy "valley of death" argument for seed money assumed you needed engineers to build the MVP — an assumption AI code generation and no-code tools have largely retired. Cash-flow positive before the first round is now a credible default; the only legitimate reason to raise early is a land-grab in a winner-take-most market. Deep tech, life sciences, and hardware remain the genuine exceptions.
+**In the AI-build era, the case for raising early capital has weakened — especially for B2B SaaS.** (Phil Green, Harvard Innovation Labs, "Startup Myths to Leave Behind in 2025," August 2025 — paraphrased from the i-lab's written summary rather than from the session recording, so nothing here is set in quotes.) His version: with no-code platforms and generative AI, founders can build a functional MVP, reach customers, and generate revenue without ever going cash-flow negative. The legacy "valley of death" argument for seed money assumed you needed engineers to build the MVP — an assumption AI code generation and no-code tools have largely retired. In software with thin COGS, cash-flow positive before the first round is a credible path rather than an exception *[bench 2026-07]* — credible, not the base rate, because the evidence is bootstrapped-to-scale outliers rather than funding data. The one reason to raise early that survives the argument is a land-grab in a winner-take-most market. Deep tech, life sciences, and hardware remain the genuine exceptions. `bootstrapping.md` carries the full treatment of the path this opens. *(Stage: Pre-seed–Seed.)*
 
 ## Common founder mistakes
 
-- Raising too much. Bigger rounds raise the bar for the next round dramatically. A $20M Series A at $80M post means your Series B needs to come at $200M+ — and the company has to actually be worth that.
+- Raising too much. Bigger rounds raise the bar for the next round dramatically. A $20M Series A at $80M post means your Series B needs to come at $200M+ *[bench 2026-07]* — and the company has to actually be worth that.
 - Optimizing for the highest valuation rather than the best partner. Six months later, the valuation is a number on a cap table; the partner is in your board meeting every quarter.
 - Talking to investors before you're ready. Investors take notes. The "no" you got at $1M ARR doesn't reset when you hit $3M — they remember the original conversation.
 - Hiding bad news from existing investors. Always tell your board the bad news yourself, before they hear it elsewhere. Surprise is the cardinal sin in investor relations.

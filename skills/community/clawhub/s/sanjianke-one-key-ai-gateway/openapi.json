@@ -1,0 +1,463 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "算力集市 · 统一 AI 算力网关",
+    "description": "把文本、图像、视频、语音、数字人、音乐等主流 AI 能力统一成一套接口：一个 API Key、一个 Base URL、一份账单。模型侧兼容 OpenAI 协议（换 model 即换模型）；生成类应用走统一的「提交任务 → 拿 task_id → 轮询或回调」异步流程。计费按点数（1 元 = 100 点），先冻结后结算，任务失败全额退回。使用前请先在 https://api.a7w.cn/ 注册、实名并创建 API Key。",
+    "version": "1.0.0",
+    "contact": {
+      "name": "算力集市",
+      "url": "https://api.a7w.cn/"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.a7w.cn",
+      "description": "生产环境"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    { "name": "模型网关", "description": "OpenAI 兼容的大模型调用入口，同步返回结果" },
+    { "name": "应用任务", "description": "生成类应用（出图 / 视频 / 语音 / 数字人 / 音乐），多为异步任务" },
+    { "name": "任务", "description": "异步任务的状态查询" },
+    { "name": "账单", "description": "价格规则与点数余额" }
+  ],
+  "paths": {
+    "/api/v1/chat/completions": {
+      "post": {
+        "tags": ["模型网关"],
+        "operationId": "createChatCompletion",
+        "summary": "调用大模型（OpenAI 兼容）",
+        "description": "兼容 OpenAI Chat Completions 协议。把 base_url 指向本服务即可，换模型只需改 model 字段——密钥、账单、鉴权方式都不变。model 名请先用 listModels 查询，不要凭记忆填写。文本按点数/百万 Token 计费，输入输出分别计价，流式与非流式同价。注意：部分模型是推理模型，会先花 token 产出思维链；max_tokens 过小会导致 content 返回 null 且 finish_reason=length（实测 max_tokens=8 时为 null，调到 200 即正常）。响应中可能带非标准的 reasoning / reasoning_content 字段。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["model", "messages"],
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "模型名，如 DeepSeek-V4-Flash。用 listModels 获取可用清单。"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "description": "对话消息数组，与 OpenAI 一致。",
+                    "items": {
+                      "type": "object",
+                      "required": ["role", "content"],
+                      "properties": {
+                        "role": {
+                          "type": "string",
+                          "enum": ["system", "user", "assistant"],
+                          "description": "消息角色"
+                        },
+                        "content": {
+                          "type": "string",
+                          "description": "消息内容"
+                        }
+                      }
+                    }
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "采样温度，越高输出越发散。"
+                  },
+                  "max_tokens": {
+                    "type": "integer",
+                    "description": "最大生成 token 数，控制成本的主要旋钮。"
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": "是否流式返回。注意：流式返回 text/event-stream，多数工具编排平台无法解析，建议保持 false。"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功。与 OpenAI 响应结构一致。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "model": { "type": "string", "description": "实际使用的模型" },
+                    "choices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "index": { "type": "integer" },
+                          "message": {
+                            "type": "object",
+                            "properties": {
+                              "role": { "type": "string" },
+                              "content": { "type": "string", "description": "模型回复正文" }
+                            }
+                          },
+                          "finish_reason": { "type": "string" }
+                        }
+                      }
+                    },
+                    "usage": {
+                      "type": "object",
+                      "description": "token 用量",
+                      "properties": {
+                        "prompt_tokens": { "type": "integer" },
+                        "completion_tokens": { "type": "integer" },
+                        "total_tokens": { "type": "integer" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" },
+          "402": { "description": "insufficient_points（账号余额不足）或 key_quota_exceeded（该 Key 额度打满）" },
+          "403": { "description": "permission_denied：该 Key 无权调用此模型" },
+          "429": { "description": "queue_limit_exceeded：排队任务已达上限，降并发后重试" }
+        }
+      }
+    },
+    "/api/v1/models": {
+      "get": {
+        "tags": ["模型网关"],
+        "operationId": "listModels",
+        "summary": "列出可调用的模型",
+        "description": "返回当前账号可调用的模型清单（实测 75 个）。模型上下架频繁，调用大模型前应先查这里拿准确模型名。条目的名称字段是 model_code / model_name（不是 model），另有 call_type_desc、vendor_name、supports_vision、supports_reasoning 等。备选路径：/api/user_center/modelList?page_no=1（实测也可用，但慢约 39 秒）。",
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer", "description": "1 或 200 表示成功" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "description": "模型列表，元素含 model / name 等字段",
+                      "type": "array",
+                      "items": { "type": "object", "additionalProperties": true }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" }
+        }
+      }
+    },
+    "/api/v1/apps": {
+      "get": {
+        "tags": ["应用任务"],
+        "operationId": "listApps",
+        "summary": "列出全部生成类应用",
+        "description": "返回平台上的生成类应用（插件）清单，实测为 21 个，覆盖视频生成、数字人、超分、换装、TTS、音乐、水印消除、文件问答等。注意：应用代码使用下划线命名，例如语音合成是 voice_tts 而不是 voice-tts（实测连字符写法返回 404）。拿到代码后再用 getAppSchema 查该应用有哪些接口与参数。",
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer", "description": "1 或 200 表示成功" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "type": "array",
+                      "items": { "type": "object", "additionalProperties": true }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" }
+        }
+      }
+    },
+    "/api/v1/apps/{app}": {
+      "get": {
+        "tags": ["应用任务"],
+        "operationId": "getAppSchema",
+        "summary": "查询某个应用的接口与参数定义",
+        "description": "返回该应用下所有接口的代码、endpoint_path、参数定义（params_schema）与价格。params_schema 有两种形态：带 properties 包装的，以及扁平字典（如 action_transfer）。价格字段中 tenant_fixed_points / tenant_points_per_1k_input 是实际结算价，fixed_price / input_price 是公示标准价，两者可能相差很大，做预算请用 tenant_* 字段。",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "required": true,
+            "description": "应用代码，用下划线，如 voice_tts、flashvsr、nano_banana",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "type": "object",
+                      "description": "含 apis 数组，每个元素有 api、endpoint_path、schema、价格字段",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" },
+          "404": { "description": "not_found：应用不存在（检查代码是否误用了连字符）" }
+        }
+      }
+    },
+    "/api/v1/apps/{app}/{api}": {
+      "post": {
+        "tags": ["应用任务"],
+        "operationId": "callAppApi",
+        "summary": "调用某个应用的具体接口",
+        "description": "提交生成任务。**先判 code**：成功时 code 为 1 或 200；失败时 code 为 0——注意失败时 HTTP 状态码仍可能是 200（实测调用不存在的接口返回 HTTP 200 + {\"code\":0,\"msg\":\"应用或 API 不可用或未配置价格\"}），所以不要只看 HTTP 状态判断成败。响应 data 中若含 task_id 则为异步任务，需用 getTask 轮询到 completed；若不含 task_id 说明是同步接口，结果已在 data 中。异步任务在提交时会预冻结相应点数，完成后按实际用量多退少补，失败会全额退回——因此不要因超时就重复提交同一个任务。各接口的参数名各不相同，务必先用 getAppSchema 查询参数定义，不要凭猜测填写。若需要平台主动推送结果，可在参数中附加 callback_url。",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "required": true,
+            "description": "应用代码，用下划线，如 voice_tts",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "api",
+            "in": "path",
+            "required": true,
+            "description": "接口代码，如 tts、submit、create、query。用 getAppSchema 查询",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "业务参数，随接口不同而不同。常见字段见下方 properties；完整定义请用 getAppSchema 查询。",
+                "properties": {
+                  "text": { "type": "string", "description": "文本入参（TTS、文案类接口）" },
+                  "prompt": { "type": "string", "description": "提示词（图像 / 视频生成类接口）" },
+                  "model": { "type": "string", "description": "该应用可选的子模型名" },
+                  "image_url": { "type": "string", "description": "参考图 / 输入图 URL" },
+                  "video_url": { "type": "string", "description": "输入视频 URL" },
+                  "audio_url": { "type": "string", "description": "输入音频 URL" },
+                  "callback_url": {
+                    "type": "string",
+                    "description": "任务完成后的回调地址。平台会 POST 结果，需返回 2xx，否则按 1-10 次重试。消费端请按 task_id 幂等。"
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功。data 含 task_id 即为异步任务。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer", "description": "1 或 200 表示成功" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "type": "object",
+                      "description": "异步时含 task_id / status / created_at；同步时直接是结果",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "invalid_request：参数缺失或格式错误（用 getAppSchema 核对参数名与必填项）" },
+          "401": { "description": "auth_failed：API Key 缺失或无效" },
+          "402": { "description": "insufficient_points（账号余额不足）或 key_quota_exceeded（该 Key 额度打满）" },
+          "403": { "description": "permission_denied：该 Key 无权调用此应用" },
+          "404": { "description": "not_found：应用或接口不存在" },
+          "429": { "description": "queue_limit_exceeded：排队任务已达上限" }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}": {
+      "get": {
+        "tags": ["任务"],
+        "operationId": "getTask",
+        "summary": "查询异步任务的状态与结果",
+        "description": "查询某个生成任务。关注四个字段：status（pending / processing / completed / failed / cancelled）、result（产物，视频常见 result.data.videoUrl）、usage（用量与结算点数，可能落在 usage.points 或 usage.points_cost）、error（失败原因）。注意：轮询超时不等于任务失败，应先查询确认，不要直接重新提交。",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "description": "提交任务时返回的 task_id，形如 tsk_xxx",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "type": "object",
+                      "description": "含 status、result、usage、error",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" },
+          "404": { "description": "not_found：任务不存在" }
+        }
+      }
+    },
+    "/api/v1/tasks": {
+      "get": {
+        "tags": ["任务"],
+        "operationId": "listTasks",
+        "summary": "列出最近的异步任务",
+        "description": "分页列出当前账号的任务，用于核对消耗与排查。每条的 usage 里带结算点数，可用于估算最近用量。",
+        "parameters": [
+          {
+            "name": "page_no",
+            "in": "query",
+            "required": false,
+            "description": "页码，从 1 开始",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "每页数量",
+            "schema": { "type": "integer", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "description": "任务列表，可能包在 lists / items / data 字段里",
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" }
+        }
+      }
+    },
+    "/api/v1/pricing": {
+      "get": {
+        "tags": ["账单"],
+        "operationId": "getPricing",
+        "summary": "查询当前价格规则",
+        "description": "实时查询平台的**计费规则表**。注意：实测该端点只返回 6 条规则——一条全局默认规则（键为 `*`，含 markupPercent）加少量特例（full_video 按分辨率、asr 按分钟、flashvsr、action_transfer、person_replacement），**并不覆盖全部接口**（例如 voice_tts 就不在其中）。要查某个接口到底多少钱，请用 getAppSchema 读 tenant_fixed_points / tenant_points_per_1k_input 等字段。响应是裸对象，没有 code/msg 外壳。",
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer" },
+                    "msg": { "type": "string" },
+                    "data": { "description": "价格规则", "type": "object", "additionalProperties": true }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" }
+        }
+      }
+    },
+    "/api/v1/user/balance": {
+      "get": {
+        "tags": ["账单"],
+        "operationId": "getUserBalance",
+        "summary": "查询点数余额",
+        "description": "返回账号可用点数。实测该端点可用，且返回的是**裸对象**：{\"available_points\": <数字>, \"currency\": \"points\"}——没有 code/msg/data 外壳，所以不要用「有没有 data 字段」判断它是否可用。点数不足时调用其它接口会返回 402，错误信息里会附带本次所需点数。",
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer" },
+                    "msg": { "type": "string" },
+                    "data": {
+                      "type": "object",
+                      "description": "含 available_points 等字段",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "auth_failed：API Key 缺失或无效" },
+          "404": { "description": "该账号未开放此端点" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "在请求头携带 Authorization: Bearer <你的 API Key>。Key 在 https://api.a7w.cn/ 用户中心 → API 密钥 创建（需实名认证）。每个 Key 可单独设消费上限。请勿把 Key 写进代码或提交进仓库。"
+      }
+    }
+  }
+}

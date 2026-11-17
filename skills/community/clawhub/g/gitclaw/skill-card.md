@@ -1,43 +1,57 @@
-## Description: <br>
-Back up the OpenClaw agent workspace to a GitHub repo and keep it synced via a cron-driven commit/push script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Back up the OpenClaw agent workspace to a GitHub repo and keep it synced via a cron-driven commit/push script.
 
-## Publisher: <br>
-[marian2js](https://clawhub.ai/user/marian2js) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marian2js](https://clawhub.ai/user/marian2js)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up automatic workspace backup to a GitHub repository and keep it synchronized on a cron schedule. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring GitHub backups may upload workspace files that contain secrets or private project data. <br>
-Mitigation: Use a private repository and review the workspace for secrets or sensitive files before the first push. <br>
-Risk: The setup flow can install system packages, configure GitHub authentication, create repositories, and add a cron job. <br>
-Mitigation: Require explicit user confirmation before sudo installs, GitHub authentication, repository creation, and cron setup. <br>
-Risk: A persistent cron job and backup script can continue pushing workspace changes after initial setup. <br>
-Mitigation: Record the crontab entry and script path and verify the user knows how to remove both. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GitClaw homepage](https://gitclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/marian2js/gitclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/marian2js) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure recurring GitHub backups for an agent workspace, including prerequisite checks, GitHub CLI authentication, repository setup, and scheduled sync.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local git configuration, GitHub CLI authentication state, a backup shell script, and a crontab entry when followed by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can repeatedly push the full agent workspace to GitHub, which may expose secrets or private files.
+
+Mitigation: Use strong ignore rules or an allowlist, review the first staged file list, and choose a private repository unless public exposure is intentional.
+
+Risk: The skill may use sudo to install software and enable cron-based automation.
+
+Mitigation: Require explicit approval for package installation and cron registration before allowing persistent changes.
+
+Risk: The backup behavior is designed to run quietly and recur on a schedule.
+
+Mitigation: Review the generated script and schedule before installation, and monitor the backup log after the first run.
+
+## Reference(s):
+
+- [GitClaw homepage](https://gitclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/marian2js/skills/gitclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and bash script content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps for Git, GitHub CLI authentication, repository creation, a recurring backup script, cron configuration, and validation output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

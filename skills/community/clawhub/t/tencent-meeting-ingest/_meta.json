@@ -1,0 +1,26 @@
+{
+  "name": "tencent-meeting-ingest",
+  "version": "0.5.0",
+  "description": "Research KB skill: fetch Tencent Meeting materials through tencent-meeting-skill, archive sources, and apply OpenClaw Markdown drafts through a compact validated manifest.",
+  "entry": "SKILL.md",
+  "runtime": {
+    "type": "python",
+    "command": "python3 scripts/run_task.py prepare --input <payload.json> --context-output <context.json>; python3 scripts/run_task.py validate-manifest --input <payload.json> --context <context.json>; python3 scripts/run_task.py apply --input <payload.json> --context <context.json>"
+  },
+  "selfContained": false,
+  "delegatesTo": ["tencent-meeting-skill", "tencent-meeting-mcp"],
+  "requiredEnv": [
+    "TENCENT_MEETING_TOKEN",
+    "GITEA_URL",
+    "GITEA_BOT_TOKEN",
+    "GITEA_BOT_USERNAME or GITEA_ORG",
+    "TEAM_KB_REPO"
+  ],
+  "optionalEnv": [
+    "TENCENT_MEETING_SKILL_COMMAND",
+    "OPENCLAW_SHARED_DIR"
+  ],
+  "pageProtocol": "research-kb-markdown-drafts/v1",
+  "legacyPageProtocol": "apply --pages is compatibility-only",
+  "outputContract": "Top-level JSON envelope consumed by Research KB V2 backend"
+}

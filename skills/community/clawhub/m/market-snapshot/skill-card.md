@@ -1,41 +1,58 @@
-## Description: <br>
-Fetch a token market snapshot (price/liquidity/volume) and return stable JSON (backed by Jupiter). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch token market snapshots with price, liquidity, and volume data and return stable JSON.
 
-## Publisher: <br>
-[nicholasoxford](https://clawhub.ai/user/nicholasoxford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicholasoxford](https://clawhub.ai/user/nicholasoxford)
 
-## Use Case: <br>
-External users and agent builders use this skill to fetch token price, liquidity, volume, and metadata snapshots for one or more symbols, names, or mint addresses. It is intended for informational market snapshots, not wallet management, swaps, or trading recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Token symbols, names, or mint addresses are sent to Vecstack for lookup. <br>
-Mitigation: Submit only the token identifiers needed for the snapshot and avoid including private or unrelated information in queries. <br>
-Risk: Returned market data may be incomplete, unavailable, delayed, or unsuitable as trading advice. <br>
-Mitigation: Treat results as informational, preserve null fields and warnings or errors, and do not present the output as a trade recommendation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Market Snapshot](https://clawhub.ai/nicholasoxford/market-snapshot) <br>
-- [Vecstack](https://app.vecstack.com) <br>
-- [Market Snapshot API Example](https://app.vecstack.com/api/skills/market-snapshot?q=SOL&source=openclaw) <br>
+## Use Case:
 
+External developers and ClawHub/OpenClaw bot builders use this skill to fetch parseable token market snapshots for symbols, names, or mint addresses without wallet operations, swaps, or trade recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON] <br>
-**Output Format:** [Strict JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves nulls and includes warnings or errors when market data is missing or fetches fail.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Token queries are sent to a disclosed external market-data endpoint.
+
+Mitigation: Use the skill only when external market-data lookup is appropriate for the user request.
+
+Risk: Ambiguous prompts may trigger market-data lookup more often than intended.
+
+Mitigation: Apply stricter market-data intent checks before invoking the skill.
+
+Risk: Market snapshots can be mistaken for trading advice.
+
+Mitigation: Return factual JSON data only and avoid wallet actions, swaps, or trade recommendations.
+
+## Reference(s):
+
+- [ClawHub Market Snapshot skill page](https://clawhub.ai/nicholasoxford/skills/market-snapshot)
+- [Vecstack application](https://app.vecstack.com)
+- [Market snapshot endpoint example](https://app.vecstack.com/api/skills/market-snapshot?q=SOL&source=openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stable parseable snapshot with null fields plus warnings or errors when market data is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

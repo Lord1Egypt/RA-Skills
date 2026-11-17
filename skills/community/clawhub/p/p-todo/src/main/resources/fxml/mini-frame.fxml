@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- 迷你小窗：一行横排小窗口（500 x 44），展开后更高 -->
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="rootPane"
+      fx:controller="com.teamtodo.controller.MiniFrameController"
+      style="-fx-background-color:#1F2937; -fx-padding:0;">
+
+    <!-- 第一行：颜色块 + 标题 + 截止时间 + 勾选 + 按钮 -->
+    <HBox spacing="8" alignment="CENTER_LEFT"
+          style="-fx-padding:8 10 8 10;">
+        <!-- 颜色标签（自动计算） -->
+        <Region fx:id="colorBlock" styleClass="mini-color-block"
+                style="-fx-background-color:#10B981; -fx-min-width:12; -fx-min-height:12; -fx-max-width:12; -fx-max-height:12; -fx-background-radius:3; -fx-cursor:move;"
+                prefWidth="12" prefHeight="12" HBox.hgrow="NEVER" onMousePressed="#onDragStart" onMouseDragged="#onDragMove"/>
+        <!-- 当前待办标题 -->
+        <Label fx:id="titleLabel" text="（无待办）"
+               style="-fx-text-fill:#F9FAFB; -fx-font-size:13px; -fx-cursor:move;"
+               HBox.hgrow="ALWAYS" onMousePressed="#onDragStart" onMouseDragged="#onDragMove"/>
+        <!-- 截止时间 -->
+        <Label fx:id="dueLabel" text=""
+               style="-fx-text-fill:#9CA3AF; -fx-font-size:12px;"
+               HBox.hgrow="NEVER"/>
+        <!-- 完成勾选 -->
+        <CheckBox fx:id="completedBox" text="已完成" onAction="#onCompletedToggle"
+                  HBox.hgrow="NEVER"/>
+        <Separator orientation="VERTICAL"
+                   style="-fx-border-color:#374151;"/>
+        <!-- 展开/收起 -->
+        <Button fx:id="expandBtn" text="▼ 列表" onAction="#onToggleExpand"
+                styleClass="mini-btn"/>
+        <!-- 打开主界面 -->
+        <Button fx:id="openMainBtn" text="主界面" onAction="#onOpenMain"
+                styleClass="mini-btn-accent"/>
+        <!-- 隐藏小窗（不退出应用） -->
+        <Button fx:id="hideBtn" text="—" onAction="#onHide"
+                styleClass="mini-btn"/>
+    </HBox>
+
+    <!-- 展开区域：全部待办列表（默认隐藏） -->
+    <VBox fx:id="expandPanel" visible="false" managed="false">
+        <Separator style="-fx-border-color:#374151;"/>
+        <ListView fx:id="todoListView" prefHeight="300"
+                  styleClass="mini-todo-list"/>
+        <Label fx:id="listHint" text="按紧急度排序：进行中 → 超时 → 延后 → 未开始 → 已完成"
+               style="-fx-text-fill:#6B7280; -fx-font-size:11px; -fx-padding:4 10 8 10;"/>
+    </VBox>
+
+</VBox>

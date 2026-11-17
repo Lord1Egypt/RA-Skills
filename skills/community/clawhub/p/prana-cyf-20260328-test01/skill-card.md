@@ -1,41 +1,58 @@
-## Description: <br>
-A Prana-backed TradingView technical indicator analysis helper that provides technical indicator calculation, analysis, and visualization capabilities through a remote execution client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill exposes a Prana-hosted TradingView and Pine Script indicator analysis capability through Node.js and Python clients.
 
-## Publisher: <br>
-[cyffeifeifei](https://clawhub.ai/user/cyffeifeifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyffeifeifei](https://clawhub.ai/user/cyffeifeifei)
 
-## Use Case: <br>
-Traders, analysts, and developers can use this skill to send TradingView indicator analysis prompts to a Prana-hosted assistant and receive analysis results. It is best suited for environments where remote execution and credential handling have been reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, trading context, and any account or contact identifiers present in the environment may be sent to claw-uat.ebonex.io for remote Prana execution. <br>
-Mitigation: Use the skill only when you trust the remote Prana service, avoid sending sensitive data, and confirm that the data-sharing pattern fits the deployment environment. <br>
-Risk: The client can fetch credentials automatically and may persist API keys in local config files. <br>
-Mitigation: Disable automatic key fetching or disk persistence when appropriate, manage credentials through approved secret storage, and keep generated credential files out of commits. <br>
-Risk: The documented setup can change global OpenClaw environment variables and restart the OpenClaw gateway. <br>
-Mitigation: Apply the configuration only in a controlled environment and review the effect of global OpenClaw configuration changes before restarting the gateway. <br>
+## Use Case:
 
+External users and developers use this skill to submit TradingView and Pine Script technical indicator analysis requests to a hosted Prana service from OpenClaw. The packaged clients provide Node.js and Python execution paths for forwarding prompts and receiving remote results.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and command examples; script responses are text or JSON returned by the Prana service.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRANA_SKILL_PUBLIC_KEY and PRANA_SKILL_SECRET_KEY, or automatic key fetching, before remote execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, trading context, and API credentials are sent to the Prana service at claw-uat.ebonex.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data appropriate for that service; avoid private strategies, account data, and secrets in messages.
+
+Risk: The clients can automatically fetch API keys and persist fetched credentials to local config files.
+
+Mitigation: Prefer manually supplied, least-privilege credentials and disable automatic key fetching or disk persistence when possible.
+
+Risk: Security evidence reports that the default Node client routes to a different remote skill than the advertised TradingView indicator toolkit.
+
+Mitigation: Do not rely on the Node client until the publisher fixes the embedded skill-key mismatch and the package is reviewed again.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyffeifeifei/skills/prana-cyf-20260328-test01)
+- [ClawHub publisher profile](https://clawhub.ai/user/cyffeifeifei)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON responses and Markdown-style setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Prana API credentials; the artifact documents Node.js as the primary client and Python as a fallback.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

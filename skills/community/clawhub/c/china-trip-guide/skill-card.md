@@ -1,40 +1,57 @@
-## Description: <br>
-Lightweight AI assistant for foreign travelers in China that provides quick trip planning, payment help, transport guidance, emergency support, and translation assistance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight AI assistant for foreign travelers in China with quick trip planning, payment, transport, emergency, and translation guidance.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-Short-term visitors, first-time visitors, and business travelers use this skill for practical China travel support, including preparation checklists, payment troubleshooting, local transport, emergency phrases, itinerary ideas, and translation cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, visa, payment, transport, emergency, and medical information can become outdated or vary by location. <br>
-Mitigation: Verify time-sensitive or high-impact guidance with official or local sources before relying on it. <br>
-Risk: Broad activation triggers and image translation workflows may lead users to provide sensitive images or location details. <br>
-Mitigation: Avoid uploading passports, full payment cards, prescriptions, or unrelated personal details. <br>
+## Use Case:
 
+Foreign travelers, business visitors, and first-time visitors use this skill for concise China travel support, including preparation checklists, app and payment guidance, city transport, emergency phrases, itinerary ideas, and practical translation cards.
 
-## Reference(s): <br>
-- [China Trip Guide on ClawHub](https://clawhub.ai/findhappy7/china-trip-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style responses with concise steps, tables, emergency cards, and short translation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask users to upload images for translation; users should avoid sharing passports, payment cards, prescriptions, or unrelated personal details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Static China travel details can become outdated, including visa rules, payment limits, hospital contacts, transport prices, and emergency procedures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current requirements and urgent information with official or local sources before relying on the guidance.
+
+Risk: Broad help and emergency triggers may be used in high-stress situations where generic travel guidance is insufficient.
+
+Mitigation: Use the skill for quick orientation, but contact local emergency services, consular support, or qualified local staff for urgent issues.
+
+Risk: Translation and taxi cards may not capture every context, dialect, allergy detail, or medical nuance.
+
+Mitigation: Confirm critical translations with a trusted speaker, official interpreter, medical professional, or destination staff when consequences are significant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-trip-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown-style travel answers, numbered steps, checklists, tables, translation cards, and emergency scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May draw on static travel details from the included quick-data JSON; time-sensitive details should be verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

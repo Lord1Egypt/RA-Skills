@@ -1,41 +1,57 @@
-## Description: <br>
-Supervisor aggregates active tasks, open issues, monitored groups, pending follow-ups, and system health into structured status reports for a PA agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Central status dashboard for the PA agent. Use when: owner asks 'what's the status', 'what are you working on', 'what's happening', or any status/overview question. Aggregates active tasks, open issues, monitored groups, pending follow-ups, and system health into one structured report.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-PA owners and admins use this skill to request quick or full status reports across active tasks, group activity, pending follow-ups, billing health, backups, and PA network status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read broad PA and WhatsApp memory, which may include private operational context. <br>
-Mitigation: Limit invocation to explicit status requests, enforce requester and scope checks, and avoid full reports outside owner or admin DMs. <br>
-Risk: The billing check can use an API key for a live external request. <br>
-Mitigation: Require confirmation or cached results for live billing checks, protect API keys, and redact credentials and raw API responses from reports. <br>
-Risk: Status workflows may lead to outbound follow-up messages or reports to other people. <br>
-Mitigation: Require approval before outbound messages and log what was sent and to whom. <br>
+## Use Case:
 
+PA owners and administrators use this skill to ask an agent for a structured status report covering active tasks, blockers, group activity, pending follow-ups, completed work, and system health. It can also scope reports to the requester context, such as owner DMs or a specific group.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown status reports with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local PA memory files and summarize only the requester-appropriate scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The artifact includes an unsafe shell/Python path handling pattern while reading group metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix path handling before installation, and avoid interpolating untrusted directory names into inline Python commands.
+
+Risk: The skill can perform credentialed billing health checks and may touch local OpenClaw memory, WhatsApp-derived notes, PA status data, and billing health.
+
+Mitigation: Make external billing checks explicit, opt-in, and cached; restrict access to local memory and status files to authorized agents.
+
+Risk: Full reports, scheduled reports, and PA pings can expose sensitive operational context to the wrong recipient.
+
+Mitigation: Confirm who may receive full reports or pings, enforce requester-based scoping, and never send full supervisor reports in groups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/supervisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status reports with optional shell and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include scoped status sections, counts, health checks, and follow-up summaries.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

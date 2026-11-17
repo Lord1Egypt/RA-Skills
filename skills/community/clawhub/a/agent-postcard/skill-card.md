@@ -1,41 +1,53 @@
-## Description: <br>
-Generate and send AI-created postcards featuring an agent persona at real locations in multiple artistic styles through the Turai Postcard API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and sends AI-created postcards featuring an agent selfie at real locations in 12 artistic styles through the Turai Postcard API.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an agent create a location-themed postcard image from either its persona file or an explicit selfie prompt. It supports choosing a destination, art style, optional message, and output path. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends postcard details and a persona-derived selfie prompt to Turai. <br>
-Mitigation: Review SOUL.md or IDENTITY.md before use, or pass --selfie to avoid reading persona text. <br>
-Risk: The script requires a Turai API key and writes generated output to disk. <br>
-Mitigation: Use an API key intended for this workflow and choose output paths deliberately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JPaulGrayson/agent-postcard) <br>
-- [Turai](https://turai.org) <br>
-- [Turai Postcard API endpoint](https://turai.org/api/agent/postcard) <br>
+## Use Case:
 
+Agents and their operators use this skill to create postcard images from a chosen location, style, optional message, and either a supplied selfie prompt or a persona-derived prompt.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Image files, Guidance] <br>
-**Output Format:** [PNG image file or JSON image response, with console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TURAI_API_KEY; may read SOUL.md or IDENTITY.md unless --selfie is provided.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persona-derived local file content may be sent to the Turai API when the skill auto-detects SOUL.md or IDENTITY.md.
+
+Mitigation: Use --selfie with a sanitized prompt, or use --persona only with a file created specifically for postcard appearance data.
+
+Risk: The third-party API receives the generated selfie prompt plus the requested location, style, and message.
+
+Mitigation: Avoid including private instructions, identity details, secrets, or sensitive workspace context in persona files or postcard messages.
+
+## Reference(s):
+
+- [Agent Postcard ClawHub page](https://clawhub.ai/jpaulgrayson/skills/agent-postcard)
+- [Turai](https://turai.org)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Shell commands]
+
+**Output Format:** [PNG image file or JSON image response with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TURAI_API_KEY and user-provided location and style; can save the generated postcard to a specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

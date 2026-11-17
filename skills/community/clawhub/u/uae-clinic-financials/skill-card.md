@@ -1,40 +1,48 @@
-## Description: <br>
-Clinic financial management, P&L, budgeting, and profitability for UAE private clinics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clinic financial management, P&L, budgeting, and profitability guidance for UAE private clinics.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External clinic owners, managers, and advisors use this skill to model UAE private clinic P&L, budgets, break-even points, tax considerations, profitability benchmarks, and valuation scenarios.
+
+### Deployment Geography for Use:
+
+United Arab Emirates
+
+## Known Risks and Mitigations:
+
+Risk: UAE tax, regulatory, and financial benchmark guidance may be outdated or too general for a specific clinic.
+
+Mitigation: Verify current UAE tax and regulatory details with a qualified UAE accountant or legal professional before making business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External clinic owners, operators, physicians, and finance staff use this skill to reason through UAE private clinic P&L structure, budgeting, break-even analysis, profitability benchmarks, tax considerations, and valuation scenarios. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, tax, valuation, or investment guidance may be incomplete or outdated for a specific clinic decision. <br>
-Mitigation: Treat outputs as general support and confirm current UAE tax, accounting, and clinic-finance details with a qualified professional before acting. <br>
-Risk: Clinic financial models may rely on sensitive or incomplete user-provided business data. <br>
-Mitigation: Use only the data needed for the analysis, review assumptions explicitly, and avoid sharing confidential patient or business details unless the environment is approved for that data. <br>
+**Output Format:** [Markdown guidance with calculations, benchmarks, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [UAE clinic-financials on ClawHub](https://clawhub.ai/dralmazrouei/uae-clinic-financials) <br>
+**Other Properties Related to Output:** [Uses user-provided clinic financial inputs; no code execution or persistent storage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with calculations, benchmarks, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided clinic figures; no code execution or external data retrieval is required.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

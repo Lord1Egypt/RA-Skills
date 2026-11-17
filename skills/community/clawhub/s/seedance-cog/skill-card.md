@@ -1,43 +1,58 @@
-## Description: <br>
-Seedance Cog helps agents generate cinematic videos through CellCog and ByteDance's Seedance model, including multi-shot narratives, voice synthesis, lipsync, scoring, and editing from a single prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI video generation powered by CellCog via Seedance 2.5. Complete multi-minute videos from a single prompt: scripting, voice synthesis, lipsync, scoring, editing, with locked character consistency via 50 reference files. Full productions, not just clips, via ByteDance's Seedance model.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to ask an agent to generate marketing, explainer, cinematic, or spokesperson videos through CellCog and Seedance from a text prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, uploaded assets, and generated media may be handled by CellCog or Seedance. <br>
-Mitigation: Use the skill only when that provider is approved for the task, and avoid submitting secrets, regulated data, or confidential material unless explicitly authorized. <br>
-Risk: Synthetic voice, lipsync, and spokesperson outputs can create consent and disclosure risks. <br>
-Mitigation: Use synthetic presenters, voices, and likenesses only with proper consent and clear disclosure. <br>
-Risk: The skill requires a CELLCOG_API_KEY credential. <br>
-Mitigation: Store the key in the environment, avoid pasting it into prompts or generated files, and rotate it if it is exposed. <br>
+## Use Case:
 
+Content creators, marketers, educators, and developers use this skill to request generated ads, explainers, short films, and presenter videos. It coordinates video generation with scripting, voice, music, lipsync, and editing.
 
-## Reference(s): <br>
-- [CellCog Homepage](https://cellcog.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nitishgargiitd/seedance-cog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides CellCog API usage and setup; generated media is produced by the external CellCog/Seedance service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Prompts and reference media may be processed by CellCog and its providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and reference media you are authorized to share with CellCog and its processing providers.
+
+Risk: The service requires an API key and video generation may incur usage costs.
+
+Mitigation: Protect CELLCOG_API_KEY and check usage costs before submitting generation requests.
+
+Risk: Setup installs an external SDK dependency.
+
+Mitigation: Review or pin dependencies before setup.
+
+## Reference(s):
+
+- [Seedance Video Generation on ClawHub](https://clawhub.ai/cellcog/skills/seedance-video-generation-cellcog)
+- [CellCog](https://cellcog.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Video files, Audio, Text]
+
+**Output Format:** [MP4 video with generated audio; text task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes 720p output, generated takes up to 30 seconds, and multi-minute productions.]
+
+## Skill Version(s):
+
+1.0.18 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

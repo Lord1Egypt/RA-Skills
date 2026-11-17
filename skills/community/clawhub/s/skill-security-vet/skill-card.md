@@ -1,41 +1,58 @@
-## Description: <br>
-Audits installed OpenCode and OpenClaw skills with local pattern scanning and optional VirusTotal threat intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Security Vet scans installed OpenCode skills with local pattern checks and optional VirusTotal threat intelligence.
 
-## Publisher: <br>
-[lanew197894fun-cmd](https://clawhub.ai/user/lanew197894fun-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanew197894fun-cmd](https://clawhub.ai/user/lanew197894fun-cmd)
 
-## Use Case: <br>
-Developers and operators use this skill to scan installed OpenCode and OpenClaw skills for risky code patterns and optional VirusTotal hash matches before deciding whether to keep, quarantine, or remove them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically quarantine or remove installed skills and may scan broad local disk areas. <br>
-Mitigation: Back up the skill directory first, disable auto-quarantine and auto-remove unless automated remediation is explicitly desired, and avoid local, full, or --auto modes unless the scan scope is understood. <br>
-Risk: VirusTotal mode stores an API key locally and sends file hashes to VirusTotal. <br>
-Mitigation: Use VirusTotal only when that data sharing and local API key storage are acceptable; rotate or remove the key if it may have been exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to review installed ClawHub or OpenCode skills for risky code patterns and optional VirusTotal hash reputation before deployment or continued use.
 
-## Reference(s): <br>
-- [VirusTotal](https://virustotal.com) <br>
-- [ClawHub release page](https://clawhub.ai/lanew197894fun-cmd/skill-security-vet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal text reports with optional local configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bun. VirusTotal checks require an API key and send file hashes to VirusTotal. Scan modes may write configuration, logs, quarantine copies, or removal actions under the user's OpenCode configuration paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill may scan broad local filesystem areas in local or full scan modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use skill-only scanning unless broad filesystem reads have been reviewed and approved for the environment.
+
+Risk: Automatic quarantine or removal can modify installed skills or local files.
+
+Mitigation: Avoid --auto and config --auto-remove unless recovery procedures and quarantine behavior have been tested.
+
+Risk: VirusTotal use requires an API key and may involve external reputation lookups.
+
+Mitigation: Do not configure a VirusTotal API key until credential storage and data-sharing expectations are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanew197894fun-cmd/skills/skill-security-vet)
+- [VirusTotal](https://virustotal.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown-style command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scan status, severity labels, scores, VirusTotal reputation summaries, and quarantine or removal status.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

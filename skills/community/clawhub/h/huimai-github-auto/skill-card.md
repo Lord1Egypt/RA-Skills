@@ -1,42 +1,57 @@
-## Description: <br>
-Manages PRs, watches issues, checks CI, and prepares releases for routine GitHub repository maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents monitor GitHub pull requests, issues, CI status, releases, and multi-repository maintenance work.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Project maintainers, engineering managers, and open-source contributors use this skill to triage PRs and issues, check CI status, detect merge conflicts, and track work across repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub token access can expose private repositories or allow unintended repository changes if the token is too broad. <br>
-Mitigation: Use a narrowly scoped token limited to the intended repositories, and prefer read-only permissions unless write actions are required. <br>
-Risk: Repository-changing actions such as commenting, labeling, closing issues, assigning reviewers, triggering CI, publishing releases, merging PRs, or deleting branches can affect live projects. <br>
-Mitigation: Require explicit confirmation before any write, release, merge, or destructive branch action. <br>
-Risk: Automated PR, issue, and CI summaries can be incomplete or wrong. <br>
-Mitigation: Review the generated guidance and verify critical CI or release status in GitHub before acting on it. <br>
+## Use Case:
 
+Developers, project maintainers, technical managers, and open-source contributors use this skill to triage pull requests, track related issues, monitor CI failures, and prepare repository maintenance summaries across one or more GitHub repositories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/huimai-github-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require GITHUB_TOKEN and explicit confirmation for repository-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md changelog) <br>
+Risk: The skill requires GitHub token access and does not clearly scope repository permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token limited to the repositories and actions needed for the current task.
+
+Risk: Automation around pull requests, issues, workflows, branches, and releases can change repository state.
+
+Mitigation: Require explicit confirmation before merges, issue or pull request changes, workflow triggers, branch deletion, or release publication.
+
+Risk: The artifact metadata claims no API key is needed, while the skill text says GITHUB_TOKEN is required.
+
+Mitigation: Treat GitHub token configuration as required and review the token handling path before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-github-auto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitHub token for repository access; destructive actions are described as requiring user confirmation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact changelog, released 2026-05-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

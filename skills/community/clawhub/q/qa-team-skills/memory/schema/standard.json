@@ -1,0 +1,26 @@
+{
+  "name": "测试规范库 (Standard)",
+  "description": "团队测试规范、Checklist、经验教训的沉淀模型",
+  "version": "1.0",
+  "fields": {
+    "id": { "type": "string", "format": "std-YYYYMMDD-NNN", "required": true },
+    "created_at": { "type": "string", "format": "ISO 8601", "required": true },
+    "module": { "type": "string", "description": "适用模块，留空表示全局规范" },
+    "source": { "type": "string", "description": "来源 session_id 或人工录入" },
+    "tags": { "type": "array", "items": "string", "default": [] },
+    "data": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": ["checklist", "best_practice", "lession_learned", "process", "template"]
+        },
+        "title": { "type": "string" },
+        "content": { "type": "string", "description": "规范详细内容" },
+        "applicable_modules": { "type": "array", "items": { "type": "string" }, "description": "适用模块列表" },
+        "references": { "type": "array", "items": { "type": "string" }, "description": "引用来源" }
+      }
+    }
+  }
+}

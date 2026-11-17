@@ -1,0 +1,15 @@
+schema_version: 1
+selection:
+  max_items_per_run: 5
+  minimum_score: 6
+authors:
+  - id: example-author
+    display_name: Example Author
+    topics:
+      - distributed systems
+      - developer tools
+    sources:
+      feeds:
+        - url: https://example.com/feed.xml
+      gists:
+        - username: example

@@ -1,42 +1,59 @@
-## Description: <br>
-Web Access.Bak guides an agent through web search, page retrieval, authenticated browser operations, and dynamic web interaction using tool selection and optional Chrome CDP control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance and scripts for web research, page fetching, authenticated browser automation, dynamic-page inspection, and network interactions through search, static fetch, curl, Jina, and Chrome CDP.
 
-## Publisher: <br>
-[aysun168](https://clawhub.ai/user/aysun168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aysun168](https://clawhub.ai/user/aysun168)
 
-## Use Case: <br>
-Developers and agent users use this skill when an assistant needs to gather or verify online information, read web pages, or operate logged-in and dynamic sites through an authorized browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent act through a logged-in Chrome session, including sensitive sites or account actions. <br>
-Mitigation: Use a separate Chrome profile or low-privilege account, disable remote debugging when finished, stop the proxy when not in use, and require explicit approval before uploads, posts, purchases, deletions, account changes, or sensitive browsing. <br>
-Risk: Automated browsing can interact with pages in ways the user did not intend or trigger site anti-abuse controls. <br>
-Mitigation: Keep actions goal-scoped, review proposed page operations before execution, prefer primary sources for verification, and close agent-created tabs after the task. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route online tasks through appropriate search, static fetch, and browser automation paths, including logged-in or dynamic pages.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/aysun168/web-access-bak) <br>
-- [CDP Proxy API reference](artifact/references/cdp-api.md) <br>
-- [Web Access design article](https://mp.weixin.qq.com/s/rps5YVB6TchT9npAaIWKCw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Text, Markdown] <br>
-**Output Format:** [Markdown instructions with inline shell and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser automation through a local Chrome CDP proxy when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill exposes broad browser automation over a user's logged-in Chrome session and local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that level of browser control is acceptable, use a dedicated Chrome profile with limited logins, and shut down the proxy after use.
+
+Risk: Browser actions can affect accounts or local files through uploads, posts, purchases, forms, or similar state-changing workflows.
+
+Mitigation: Require explicit user review before uploads, posts, purchases, form submissions, or any account-changing action.
+
+Risk: Private or token-bearing URLs may be exposed when third-party preprocessing is used.
+
+Mitigation: Avoid third-party preprocessing for private pages, authenticated content, and URLs containing tokens or other sensitive parameters.
+
+## Reference(s):
+
+- [CDP Proxy API Reference](references/cdp-api.md)
+- [ClawHub Skill Page](https://clawhub.ai/aysun168/skills/web-access-bak)
+- [Web Access Article](https://mp.weixin.qq.com/s/rps5YVB6TchT9npAaIWKCw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and curl command examples, JavaScript snippets, and API call patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local shell commands and a localhost CDP HTTP API when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact metadata reports 2.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

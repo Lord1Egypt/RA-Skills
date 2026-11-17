@@ -1,41 +1,55 @@
-## Description: <br>
-An AI-powered academic reading assistant that helps users read, summarize, and reflect on technical books using a structured Engineering Cybernetics-inspired methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI-powered academic reading assistant that helps users read, summarize, and reflect on technical books using a structured methodology inspired by Qian Xuesen's "Engineering Cybernetics".
 
-## Publisher: <br>
-[hollis9087](https://clawhub.ai/user/hollis9087) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis9087](https://clawhub.ai/user/hollis9087)
 
-## Use Case: <br>
-Developers, students, researchers, and other readers use this skill to turn academic or technical book content into structured chapter analysis, critical reflection, personal integration notes, and action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Book excerpts, notes, or personal context provided during reading assistance may be sent to the selected AI model provider. <br>
-Mitigation: Share only content that is appropriate for the model/provider in use and avoid sensitive personal, proprietary, or restricted text unless permitted. <br>
-Risk: The release declares a Node binary requirement even though the included artifact is prompt and configuration content. <br>
-Mitigation: Installers should review local runtime requirements before installation and avoid granting additional privileges solely because Node is declared. <br>
+## Use Case:
 
+Students, researchers, and developers use this skill to analyze academic or technical books chapter by chapter, extract core concepts, reflect critically on assumptions and limitations, and turn reading into practical action plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hollis9087/holli-academic-reader) <br>
-- [Skill homepage](https://github.com/holli/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown responses with structured headings, bullet lists, reusable prompts, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommended model and generation parameters are provided in the included configuration; the artifact contains prompts and configuration only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, server release evidence, and skill frontmatter) <br>
+Risk: The skill produces interpretive academic reading guidance that may be incomplete, overly confident, or mismatched to the source book.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated summaries and action plans against the original source material before relying on them for study, research, or work decisions.
+
+Risk: The prompt pack is Chinese-oriented and uses a specific Engineering Cybernetics methodology that may not fit every reader or subject.
+
+Mitigation: Review the prompts and adapt the language, methodology, and evaluation criteria to the user's reading context before regular use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hollis9087/skills/holli-academic-reader)
+- [Publisher profile](https://clawhub.ai/user/hollis9087)
+- [Project homepage](https://github.com/holli/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Structured Markdown responses with reading summaries, critical reflection prompts, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use the included configuration template recommending Claude Sonnet 4, temperature 0.7, and a 4000-token maximum response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

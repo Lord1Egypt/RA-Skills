@@ -1,49 +1,60 @@
-## Description: <br>
-TikTok 数据查询与工具助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商等模块。含部分交互触发和协议工具接口（已标注）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query TikTok video, user, search, ads, creator, shop, and analytics data through MaxHub APIs.
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-Marketing analysts, creator teams, and developers use this skill to query TikTok video, user, search, ad, creator, shop, and analytics data through the MaxHub API and summarize results in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive MaxHub API keys and TikTok cookies may be transmitted to a third-party service. <br>
-Mitigation: Install only when the user trusts MaxHub/aconfig.cn, use test-account cookies where possible, avoid primary-account cookies, and rotate or revoke cookies after use. <br>
-Risk: Protocol utility endpoints for signatures, fingerprints, tokens, and device registration may raise platform terms or client-emulation concerns. <br>
-Mitigation: Require explicit user approval before using these endpoints and review the relevant platform terms before deployment. <br>
-Risk: Endpoints involving likes, follows, comments, view boosting, or account interactions can create higher misuse risk. <br>
-Mitigation: Do not run these endpoints automatically; require explicit user intent and keep deployment controls focused on permitted data-analysis use cases. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent retrieve and summarize TikTok public data, creator signals, search results, ads, shop/product information, comments, and analytics through the MaxHub API. It is intended for data analysis workflows that require a configured MaxHub API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/tiktok-aggregate-scraper) <br>
-- [MaxHub API service](https://www.aconfig.cn) <br>
-- [README](README.md) <br>
-- [Video API reference](references/api-video.md) <br>
-- [User API reference](references/api-user.md) <br>
-- [Search API reference](references/api-search.md) <br>
-- [Ads and analytics API reference](references/api-ads-analytics.md) <br>
-- [Parameter mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese responses; API credentials should not be echoed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.7.1 (source: server release metadata, frontmatter) <br>
+Risk: Some flows can send TikTok session cookies and possible login passwords to the third-party MaxHub/aconfig.cn API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only if you trust MaxHub/aconfig.cn, avoid primary TikTok accounts, do not provide TikTok passwords, and revoke or rotate TikTok cookies after use.
+
+Risk: TikTok session cookies are full account credentials when provided to third-party services.
+
+Mitigation: Use a separate test account for cookie-required requests and remove cookies from prompts, samples, and client-side contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/tiktok-aggregate-scraper)
+- [Publisher profile](https://clawhub.ai/user/new-ironman)
+- [MaxHub API service](https://www.aconfig.cn)
+- [Video & Content API](references/api-video.md)
+- [User Data API](references/api-user.md)
+- [Search API](references/api-search.md)
+- [Ads & Analytics API](references/api-ads-analytics.md)
+- [Parameter Mappings](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, concise summaries, and inline shell commands or curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAXHUB_API_KEY and curl; API responses are used to produce user-facing summaries and analysis.]
+
+## Skill Version(s):
+
+3.7.1 (source: evidence.json release.version, parsed metadata.version, and SKILL.md metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

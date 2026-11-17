@@ -1,4 +1,4 @@
-# setup_mathematica.ps1 — Detect and configure Mathematica (Windows)
+﻿# setup_mathematica.ps1 — Detect and configure Mathematica (Windows)
 # Supports Mathematica 12.0+ (Wolfram Language / WolframScript)
 
 # ============================================================
@@ -16,6 +16,40 @@ function Write-Lang {
     if ($script:isZH) { Write-Host $CN -ForegroundColor $Color }
     else { Write-Host $EN -ForegroundColor $Color }
 }
+
+function Save-StatSoftConfig {
+    param(
+        [string]$ConfigPath,
+        [object]$Config
+    )
+    # Fail-closed by default - persist ONLY when explicitly opted in.
+    $autoWrite = $env:STATSOFT_AUTO_WRITE -eq '1'
+    $confirm = $env:STATSOFT_CONFIRM -eq '1'
+    $persist = $false
+    if ($autoWrite) {
+        $persist = $true
+    } elseif ($confirm -and -not [Console]::IsInputRedirected) {
+        $ans = Read-Host (if ($script:isZH) { "Persist detected config to config.json? (y/N)" } else { "Persist detected config to config.json? (y/N)" })
+        if ($ans -match '^[yY]') { $persist = $true }
+    }
+    if (-not $persist) {
+        Write-Lang "Detection-only: config.json NOT modified. Set STATSOFT_AUTO_WRITE=1 to persist, or STATSOFT_CONFIRM=1 for an interactive prompt." "Detection-only: config.json NOT modified. Set STATSOFT_AUTO_WRITE=1 to persist, or STATSOFT_CONFIRM=1 for an interactive prompt." -Color Yellow
+        return
+    }
+    $gate = Join-Path $PSScriptRoot "..\..\common\write_config.py"
+    if (-not (Test-Path $gate)) {
+        Write-Lang "write_config.py gate not found; skipping persist." "write_config.py gate not found; skipping persist." -Color Red
+        return
+    }
+    $tmp = [System.IO.Path]::GetTempFileName()
+    $Config | ConvertTo-Json -Depth 10 | Set-Content -Path $tmp -Encoding UTF8
+    & python3 "$gate" "$ConfigPath" "$tmp" "--consent"
+    Remove-Item $tmp -Force -ErrorAction SilentlyContinue
+}
+
+# Disclosure gate (default-deny): reveal install paths/versions only on opt-in.
+$statsoftReveal = ($env:STATSOFT_REVEAL -eq '1')
+$statsoftVerify = ($env:STATSOFT_VERIFY -eq '1')
 
 
 
@@ -73,40 +107,56 @@ if (-not $mathKernel -and -not $wolframScript) {
     exit 1
 }
 
-# Get version info
-$version = "unknown"
-if ($wolframScript) {
-    try {
-        $versionOutput = & $wolframScript -code "`$VersionNumber" 2>&1
-        $version = $versionOutput.Trim()
-    } catch {
-        $version = "unknown"
+# Get version info (third-party binary launch is gated behind STATSOFT_VERIFY)
+$version = "unknown (set STATSOFT_VERIFY=1 to query)"
+if ($statsoftVerify) {
+    if ($wolframScript) {
+        try {
+            $versionOutput = & $wolframScript -code "`$VersionNumber" 2>&1
+            $version = $versionOutput.Trim()
+        } catch {
+            $version = "unknown"
+        }
+    } elseif ($mathKernel) {
+        $version = (Get-Item $mathKernel).Directory.Name
     }
-} elseif ($mathKernel) {
-    $version = (Get-Item $mathKernel).Directory.Name
 }
 
-Write-Lang "MathKernel: $mathKernel" "MathKernel: $mathKernel" -ForegroundColor Green
-Write-Lang "WolframScript: $wolframScript" "WolframScript: $wolframScript" -ForegroundColor Green
-Write-Lang "Install Dir: $installDir" "Install Dir: $installDir" -ForegroundColor Green
-Write-Lang "Version: $version" "Version: $version" -ForegroundColor Green
+if ($statsoftReveal) {
+    Write-Lang "MathKernel: $mathKernel" "MathKernel: $mathKernel" -ForegroundColor Green
+    Write-Lang "WolframScript: $wolframScript" "WolframScript: $wolframScript" -ForegroundColor Green
+    Write-Lang "Install Dir: $installDir" "Install Dir: $installDir" -ForegroundColor Green
+    Write-Lang "Version: $version" "Version: $version" -ForegroundColor Green
+} else {
+    Write-Lang "Mathematica detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)." "Mathematica detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+}
 
-# Update config.json
-$configPath = Join-Path $PSScriptRoot "..\config.json"
+$configPath = Join-Path $PSScriptRoot "config.json"
+if (-not (Test-Path $configPath)) { $configPath = Join-Path $PSScriptRoot "..\config.json" }
+if (-not (Test-Path $configPath)) { $configPath = Join-Path $PSScriptRoot "..\..\config.json" }
 if (Test-Path $configPath) {
     $config = Get-Content $configPath -Raw | ConvertFrom-Json
 } else {
     $config = @{}
 }
 
-$config | Add-Member -NotePropertyName "Mathematica" -NotePropertyValue @{
-    installed = $true
-    kernel_path = $mathKernel
-    wolframscript_path = $wolframScript
-    version = $version
-    platform = "windows"
-    mode = "simple"
-} -Force
+if ($statsoftReveal) {
+    $mathCfg = @{
+        installed = $true
+        kernel_path = $mathKernel
+        wolframscript_path = $wolframScript
+        version = $version
+        platform = "windows"
+        mode = "simple"
+    }
+} else {
+    $mathCfg = @{
+        installed = $true
+        platform = "windows"
+        mode = "simple"
+        note = "paths/versions hidden unless STATSOFT_REVEAL=1"
+    }
+}
+$config | Add-Member -NotePropertyName "Mathematica" -NotePropertyValue $mathCfg -Force
 
-$config | ConvertTo-Json -Depth 3 | Set-Content $configPath -Encoding UTF8
-Write-Lang "Config updated: $configPath" "Config updated: $configPath" -ForegroundColor Green
+Save-StatSoftConfig -ConfigPath $configPath -Config $config

@@ -1,46 +1,67 @@
-## Description: <br>
-Automates Weibo post image generation, browser-based publishing, scheduled content workflows, and temporary file cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Weibo post images with PIL, prepares content strategy guidance, and automates browser-based Weibo publishing through clipboard paste and desktop controls.
 
-## Publisher: <br>
-[apple-sugar-xing](https://clawhub.ai/user/apple-sugar-xing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apple-sugar-xing](https://clawhub.ai/user/apple-sugar-xing)
 
-## Use Case: <br>
-Developers and social media operators use this skill to generate Weibo card images and publish posts through a logged-in browser. It also provides content-type guidance and cron-based scheduling patterns for recurring posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public posts from a logged-in Weibo account. <br>
-Mitigation: Use a test account or separate browser profile and require manual review before each post is submitted. <br>
-Risk: Scheduled cron workflows can post without timely human review. <br>
-Mitigation: Avoid unattended cron jobs until a dry-run or explicit approval gate is added. <br>
-Risk: Cleanup commands delete files matching broad patterns in user picture and temporary folders. <br>
-Mitigation: Change cleanup to a dedicated temporary directory and delete only files created by the current run. <br>
-Risk: Browser automation can take screenshots and overwrite clipboard contents during publishing. <br>
-Mitigation: Run in a separate browser profile or desktop session and keep unrelated sensitive content out of the clipboard and visible browser windows. <br>
+## Use Case:
 
+Creators and operators use this skill to generate Weibo-ready image cards, plan recurring content formats, and automate posting from a logged-in browser session.
 
-## Reference(s): <br>
-- [Weibo Auto Post release page](https://clawhub.ai/apple-sugar-xing/weibo-auto-post) <br>
-- [Weibo content types guide](references/content_types.md) <br>
-- [Weibo cron scheduling guide](references/cron_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell and PowerShell command examples; generated PNG image files when scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish to a live Weibo account through desktop and browser automation when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish publicly through a logged-in Weibo browser session without a final confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and confirmation immediately before clicking publish.
+
+Risk: Scheduled posting can run unattended and publish stale, duplicate, or inappropriate content.
+
+Mitigation: Disable cron jobs by default and require approval for each scheduled payload before enabling it.
+
+Risk: Temporary-file cleanup can delete matching local files.
+
+Mitigation: Use a dedicated output directory and review cleanup patterns before running the publish workflow.
+
+Risk: Desktop automation controls the active browser session and clipboard.
+
+Mitigation: Run it in an isolated browser profile or controlled desktop session that is logged in only to the intended Weibo account.
+
+Risk: PowerShell image-path handling can treat path content as command text.
+
+Mitigation: Pass image paths as data through safe argument binding before using the publishing script.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/apple-sugar-xing/skills/weibo-auto-post)
+- [Weibo Content Types Guide](references/content_types.md)
+- [Weibo Cron Guide](references/cron_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger browser automation, clipboard writes, public posting, scheduled runs, and local temporary-file cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

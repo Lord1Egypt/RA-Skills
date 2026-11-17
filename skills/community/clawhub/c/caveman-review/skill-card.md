@@ -1,37 +1,53 @@
-## Description: <br>
-Ultra-compressed code review comments that cut noise from PR feedback while preserving actionable signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Caveman Review produces ultra-compressed, actionable code review comments with exact locations, problems, and fixes.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanford](https://clawhub.ai/user/seanford)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to turn pull request findings into terse, paste-ready comments with exact locations, concrete problems, and direct fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Terse review comments can omit context that is needed for security, architecture, or onboarding discussions. <br>
-Mitigation: Use normal mode or stop caveman-review when fuller explanations are needed, especially for security or architecture reviews. <br>
+## Use Case:
 
+Developers and code reviewers use this skill during PR review to produce paste-ready, terse findings with exact line references, concrete problems, and direct fixes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-ready one-line review comments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One line per finding; normal prose is used for security findings, architecture disagreements, and onboarding contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Terse review mode can omit context needed for security findings, architectural disagreements, or onboarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use normal review style for those cases and include fuller rationale or references before resuming terse comments.
+
+Risk: The skill may activate during pull request reviews when normal review prose is expected.
+
+Mitigation: Say "stop caveman-review" or "normal mode" to return to verbose review style.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seanford/skills/caveman-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-ready one-line code review comments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paste-ready PR review findings; no code changes, approval decisions, or command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

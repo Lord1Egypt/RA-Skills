@@ -1,46 +1,59 @@
-## Description: <br>
-AI-powered architecture knowledge management for searching building designs, code compliance records, project specifications, and BIM data with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered architecture knowledge management. Search building designs, code compliance records, project specifications, and BIM data with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Architecture teams and agents use this skill to search firm knowledge, verify project facts, find subject matter experts, retrieve directives, and ground answers in building design, code compliance, project specification, and BIM records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive organizational architecture data, including confidential project or agreement information. <br>
-Mitigation: Install only with a scoped, revocable UPLO token and follow the documented classification tiers before sharing or exporting information. <br>
-Risk: Conversation logging may capture project context without clear user consent or retention controls. <br>
-Mitigation: Confirm organizational approval for conversation logging and avoid logging sensitive details unless policy permits it. <br>
-Risk: Full organizational context export can expose more internal knowledge than a specific task requires. <br>
-Mitigation: Use targeted search tools first and reserve full context export for explicitly approved workflows. <br>
-Risk: The skill depends on an external MCP server package and UPLO instance configuration. <br>
-Mitigation: Vet or pin the MCP server package and configure the UPLO endpoint and token according to internal security review. <br>
+## Use Case:
 
+Architecture teams and their agents use this skill to query UPLO-backed organizational knowledge for building designs, code compliance records, project specifications, BIM metadata, directives, and subject-matter experts. It is intended for grounded lookup, context-aware analysis, citation-backed answers, and conversation logging against an approved UPLO instance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-architecture) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped UPLO MCP token and source citation when sharing UPLO information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill runs an unpinned npm MCP server package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or administrator-approved MCP server package before deploying with sensitive organizational data.
+
+Risk: The skill can export or log organizational context to a remote UPLO service.
+
+Mitigation: Install only with a trusted UPLO instance and avoid confidential conversations unless logging is approved.
+
+Risk: The skill requires an API token for the UPLO MCP server.
+
+Mitigation: Use a narrowly scoped, revocable API token and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-architecture)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should cite UPLO sources, respect classification tiers, and avoid fabricating answers when the knowledge base lacks support.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

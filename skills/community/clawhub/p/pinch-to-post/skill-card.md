@@ -1,45 +1,65 @@
-## Description: <br>
-Manage WordPress sites through WP Pinch MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage WordPress sites through WP Pinch MCP tools as part of WP Pinch.
 
-## Publisher: <br>
-[nickhamze](https://clawhub.ai/user/nickhamze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickhamze](https://clawhub.ai/user/nickhamze)
 
-## Use Case: <br>
-External WordPress site owners and content teams use this skill to let an agent draft, update, repurpose, and govern site content through WP Pinch MCP tools. It supports content, media, taxonomy, comment, settings, plugin, theme, analytics, governance, WooCommerce, Ghost Writer, and Molt workflows when those tools are enabled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make changes to WordPress sites when the MCP server is configured with write-capable credentials. <br>
-Mitigation: Install it only for sites intended for agent management, use least-privileged WordPress credentials or the OpenClaw Agent role, and keep read-only mode or write budgets enabled where possible. <br>
-Risk: Broad triggers such as post, blog, and publish may make the skill available in more conversations than strictly necessary. <br>
-Mitigation: Review when the skill is enabled, confirm scope before write or bulk operations, and check WP Pinch audit logs after sensitive actions. <br>
-Risk: Publishing, role, plugin, theme, and bulk-edit actions can affect live site behavior or public content. <br>
-Mitigation: Create drafts before publishing, orient with site-health or site-digest before significant changes, and require explicit user confirmation for destructive, bulk, or public-facing changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nickhamze/pinch-to-post) <br>
-- [WP Pinch homepage](https://wp-pinch.com) <br>
-- [WP Pinch configuration guide](https://github.com/RegionallyFamous/wp-pinch/wiki/Configuration) <br>
-- [WP Pinch security model](https://github.com/RegionallyFamous/wp-pinch/wiki/Security) <br>
-- [WP Pinch error codes](https://github.com/RegionallyFamous/wp-pinch/wiki/Error-Codes) <br>
+## Use Case:
 
+External WordPress site owners and operators use this skill to manage posts, media, users, comments, settings, plugins, themes, governance checks, and WooCommerce workflows through WP Pinch MCP tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, API Calls, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and MCP tool requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WP_SITE_URL to target the WordPress site; credentials are configured in the MCP server rather than the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-5.5.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate writes, publishing, plugin or theme changes, user changes, WooCommerce updates, cron changes, and bulk operations on a connected WordPress site.
+
+Mitigation: Install it only for sites the agent is intended to manage, use draft-first workflows, and require explicit confirmation before publish, plugin/theme, user, WooCommerce, cron, and bulk actions.
+
+Risk: Over-scoped WordPress credentials could allow broader site changes than the operator intended.
+
+Mitigation: Use a least-privilege WordPress Application Password, prefer the OpenClaw Agent role or read-only mode when possible, and rotate credentials periodically.
+
+Risk: Generic trigger words such as post or blog may route ordinary requests into this WordPress management skill.
+
+Mitigation: Confirm the target site and intended WordPress action before taking operational steps, especially for write or bulk workflows.
+
+Risk: Webhook and export workflows may expose site activity or content context if configured too broadly.
+
+Mitigation: Configure webhook destinations deliberately, keep capture tokens private, and rely on the documented PII redaction behavior for user exports and activity feeds.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nickhamze/skills/pinch-to-post)
+- [WP Pinch Homepage](https://wp-pinch.com)
+- [WP Pinch Project](https://github.com/RegionallyFamous/wp-pinch)
+- [WP Pinch Configuration Guide](https://github.com/RegionallyFamous/wp-pinch/wiki/Configuration)
+- [WP Pinch Error Codes](https://github.com/RegionallyFamous/wp-pinch/wiki/Error-Codes)
+- [WP Pinch Security Model](https://github.com/RegionallyFamous/wp-pinch/wiki/Security)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration]
+
+**Output Format:** [Markdown instructions with MCP tool names and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WP_SITE_URL; WordPress authentication credentials are configured in the MCP server, not in the skill.]
+
+## Skill Version(s):
+
+5.5.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

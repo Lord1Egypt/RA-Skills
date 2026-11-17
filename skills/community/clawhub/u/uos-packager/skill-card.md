@@ -1,43 +1,60 @@
-## Description: <br>
-Packages UOS/deepin desktop applications as Debian packages under /opt/apps/${appid}/ and helps generate compliant info, desktop, icon, and validation files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Packages application files into UOS/deepin-compliant Debian packages under /opt/apps/${appid}/ with required info, desktop, icon, build, and inspection helpers.
 
-## Publisher: <br>
-[zaneniu](https://clawhub.ai/user/zaneniu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaneniu](https://clawhub.ai/user/zaneniu)
 
-## Use Case: <br>
-Developers and package maintainers use this skill to scaffold, build, inspect, and validate UOS/deepin application .deb packages that follow UnionTech packaging conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Debian packages can include maintainer scripts that run during install or removal. <br>
-Mitigation: Inspect DEBIAN/preinst, postinst, prerm, and postrm before installing any generated package. <br>
-Risk: udev rules and hardware-integration hooks can change system behavior. <br>
-Mitigation: Include udev rules only when the packaged application truly needs hardware integration, then test in a disposable environment before installing on a main system. <br>
-Risk: Packaging untrusted application sources can produce packages that install unwanted files or behavior. <br>
-Mitigation: Build only from trusted application sources and validate the .deb contents before installation. <br>
+## Use Case:
 
+Developers and packaging engineers use this skill to create, adapt, build, and inspect Debian packages that follow UOS/deepin application layout and metadata requirements.
 
-## Reference(s): <br>
-- [Uos Packager on ClawHub](https://clawhub.ai/zaneniu/uos-packager) <br>
-- [references/template_build.sh](references/template_build.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated packaging file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated Debian packaging scripts, control files, desktop entries, icon placeholders, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Generated or adapted maintainer scripts may change privileged system files, including udev rules, before package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review maintainer scripts before installing packages with sudo; only use fixed, necessary, and reviewed destinations and contents.
+
+Risk: Generic privileged-file-write examples can be unsafe if copied without validating the destination and input content.
+
+Mitigation: Prefer package-managed system files, validate script inputs, and avoid following generic udev or privileged-write examples unless they are necessary and reviewed.
+
+Risk: Temporary build directory handling may be unsuitable for shared or privileged build environments.
+
+Mitigation: Harden temporary directory handling before using the helper scripts in shared or privileged environments.
+
+## Reference(s):
+
+- [UOS/deepin packaging guidance](artifact/SKILL.md)
+- [UOS application scaffold template](artifact/references/template_build.sh)
+- [Debian package build helper](artifact/scripts/build_deb.sh)
+- [Debian package inspection helper](artifact/scripts/introspect.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, INI examples, and bash helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces packaging instructions and local helper commands; generated maintainer scripts and privileged installation steps require review before use.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

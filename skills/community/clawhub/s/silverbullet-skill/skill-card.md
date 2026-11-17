@@ -1,44 +1,59 @@
-## Description: <br>
-MCP server for SilverBullet note-taking app - read, write, search, and manage markdown pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server for SilverBullet note-taking app - read, write, search, and manage markdown pages.
 
-## Publisher: <br>
-[ramonitor](https://clawhub.ai/user/ramonitor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ramonitor](https://clawhub.ai/user/ramonitor)
 
-## Use Case: <br>
-Developers and external users connect an MCP-compatible agent to a configured SilverBullet note space so the agent can list, read, write, search, append, delete, and inspect markdown pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read notes from the configured SilverBullet space. <br>
-Mitigation: Install it only for agents that should have access to that space, and keep SILVERBULLET_URL pointed at the intended server. <br>
-Risk: Write, append, and delete tools can change or remove real notes. <br>
-Mitigation: Require user confirmation before invoking write_page, append_to_page, or delete_page. <br>
-Risk: An unintended base_url override could direct requests to the wrong SilverBullet server. <br>
-Mitigation: Do not allow untrusted content to choose base_url; prefer a fixed, reviewed SILVERBULLET_URL configuration. <br>
+## Use Case:
 
+Developers and agents use this skill to connect an MCP-compatible client to a SilverBullet note space for reading, writing, searching, and managing markdown pages.
 
-## Reference(s): <br>
-- [SilverBullet documentation](https://silverbullet.md) <br>
-- [SilverBullet HTTP API](https://silverbullet.md/HTTP%20API) <br>
-- [ClawHub skill page](https://clawhub.ai/ramonitor/silverbullet-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, Markdown page content, JSON tool responses, and Markdown with inline shell or configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool behavior depends on the configured SilverBullet server URL and the selected MCP transport.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, pyproject.toml, and server-resolved release metadata) <br>
+Risk: The skill can modify or delete note data through write, append, and delete tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a SilverBullet server you control, review write and delete operations before execution, and keep backups for important notes.
+
+Risk: Per-call base_url values can redirect tool requests to arbitrary URLs.
+
+Mitigation: Avoid letting prompts or untrusted content supply base_url values; prefer a version that removes or validates per-call URL overrides.
+
+Risk: Dependencies are declared with broad minimum versions.
+
+Mitigation: Pin dependencies before production deployment and review updates before installing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ramonitor/skills/silverbullet-skill)
+- [SilverBullet](https://silverbullet.md)
+- [SilverBullet HTTP API](https://silverbullet.md/HTTP%20API)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON-like tool responses, and plain-text status or error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and uv; tools operate against a configured SilverBullet server URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

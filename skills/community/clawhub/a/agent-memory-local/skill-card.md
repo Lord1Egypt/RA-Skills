@@ -1,45 +1,55 @@
-## Description: <br>
-Local-first memory retrieval for Agent/OpenClaw workspaces that need explainable answers from MEMORY.md and memory/*.md instead of a remote memory platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first memory retrieval for Agent/OpenClaw workspaces that searches Markdown memory files and returns explainable matches for prior decisions, incidents, preferences, and change history.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to retrieve and explain prior decisions, incidents, preferences, policy notes, and change history from local Markdown memory files. It is best suited for local or self-hosted agent workspaces that need transparent memory retrieval without a hosted memory service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may contain secrets, personal data, incident details, or business-sensitive notes. <br>
-Mitigation: Review MEMORY.md and memory/*.md before installation or use, and protect or delete .memory-index when the indexed copy is no longer needed. <br>
-Risk: Local memory snippets can be sent to SiliconFlow automatically when rerank is enabled and an API key is present. <br>
-Mitigation: Set MEMORY_RERANK=0 for hard local-only operation when memory contents should not leave the workspace. <br>
-Risk: A generic API_KEY environment variable may unintentionally enable external reranking. <br>
-Mitigation: Avoid exposing a generic API_KEY in the environment used to run this skill; use explicit, scoped credentials only when reranking is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to answer memory questions from local Markdown notes, inspect why results matched, rebuild a local index, and debug retrieval quality without depending on a hosted memory platform.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
-- [Regression Cases](references/regression-cases.json) <br>
-- [Regression Queries](references/regression-queries.md) <br>
-- [Publish Plan](references/publish-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns ranked memory matches, snippets, scores, source file names, and explanation fields; can build local index files under .memory-index/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The local index stores plaintext snippets from MEMORY.md and memory/*.md in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not index secrets or confidential notes; review memory files before indexing and protect or remove the generated .memory-index directory according to the workspace data policy.
+
+Risk: Optional SiliconFlow reranking can send selected local memory excerpts to an external API when an API key is present.
+
+Mitigation: Set MEMORY_RERANK=0 for local-only operation and avoid exposing a generic API_KEY in the runtime environment unless external reranking is intended.
+
+## Reference(s):
+
+- [Architecture](artifact/references/architecture.md)
+- [Regression Queries](artifact/references/regression-queries.md)
+- [Regression Cases](artifact/references/regression-cases.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON retrieval results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retrieval results include source file, title, snippet, scores, anchor hits, overlap terms, index status, and optional rerank metadata.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

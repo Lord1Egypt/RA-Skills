@@ -1,41 +1,54 @@
-## Description: <br>
-Deerflow submits and monitors multi-step deep research tasks against a running DeerFlow LangGraph API-only deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits and monitors multi-step deep research tasks against a running DeerFlow LangGraph API.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-Developers and agent operators use Deerflow to submit asynchronous deep research requests to a trusted DeerFlow service and retrieve run identifiers or completed reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts are sent to the configured DeerFlow endpoint and may be processed by that service's model or search providers. <br>
-Mitigation: Use the skill only with a DeerFlow endpoint you control or trust, and avoid sensitive prompts unless the endpoint and providers are approved for that data. <br>
-Risk: The DeerFlow host is a separate deployment whose Docker images and configuration are outside this skill. <br>
-Mitigation: Review the upstream DeerFlow deployment, images, credentials, and network exposure before operating the service. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send research prompts to an existing DeerFlow service and retrieve task status or results from the LangGraph API.
 
-## Reference(s): <br>
-- [Deerflow ClawHub release](https://clawhub.ai/bevanding/deerflow) <br>
-- [DeerFlow upstream repository](https://github.com/bytedance/deer-flow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON status objects and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submits tasks to a configured DeerFlow LangGraph endpoint and prints thread_id, run_id, status, endpoint, or fetched run data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter and server release metadata) <br>
+Risk: Research prompts and task results are sent to the configured DeerFlow LangGraph endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only to a trusted DeerFlow instance, keep it on localhost or behind authenticated TLS, and avoid sending sensitive prompts to untrusted remote endpoints.
+
+Risk: Optional DeerFlow deployment steps rely on external Docker images and configuration outside this skill.
+
+Mitigation: Review or pin the upstream DeerFlow Docker deployment before running it; this skill only connects to an already running DeerFlow API.
+
+## Reference(s):
+
+- [ClawHub Deerflow skill page](https://clawhub.ai/bevanding/skills/deerflow)
+- [DeerFlow upstream project](https://github.com/bytedance/deer-flow)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns DeerFlow thread and run identifiers, then polls configured LangGraph endpoints for task status and results.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

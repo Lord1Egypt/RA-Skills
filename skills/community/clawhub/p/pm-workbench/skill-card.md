@@ -1,49 +1,61 @@
-## Description: <br>
-pm-workbench helps PMs, product leaders, and founders clarify ambiguous product requests, evaluate priorities and trade-offs, and produce reusable decision artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pm-workbench helps PMs, product leaders, and founders clarify vague product asks, evaluate and prioritize options, draft lightweight artifacts, and communicate trade-offs.
 
-## Publisher: <br>
-[bobbielee](https://clawhub.ai/user/bobbielee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobbielee](https://clawhub.ai/user/bobbielee)
 
-## Use Case: <br>
-External PMs, product leaders, founders, and agents use this skill to turn messy product requests into clearer recommendations, prioritization calls, lightweight specs, executive summaries, postmortems, and other reusable PM artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce confident product recommendations for ambiguous or high-stakes business decisions. <br>
-Mitigation: Treat outputs as decision-support drafts and require responsible human review before committing roadmap, launch, staffing, or investment decisions. <br>
-Risk: Broad PM trigger language may overlap with other installed business or product skills. <br>
-Mitigation: Review routing behavior in environments with multiple PM or business skills and prefer explicit skill invocation when the desired workflow matters. <br>
-Risk: The package currently has missing README image assets that break its own validation check. <br>
-Mitigation: Run the repository validation script after installation and repair or remove broken README image references before relying on package validation status. <br>
+## Use Case:
 
+PMs, product leaders, founders, and their agents use this skill to turn ambiguous product requests into clearer decisions, prioritization calls, lightweight PM artifacts, executive summaries, roadmap plans, metrics, and postmortems.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bobbielee/pm-workbench) <br>
-- [README](README.md) <br>
-- [START_HERE](START_HERE.md) <br>
-- [Scenario Router](docs/SCENARIO-ROUTER.md) <br>
-- [Command-style combinations](docs/COMMANDS.md) <br>
-- [Benchmark kit](benchmark/README.md) <br>
-- [Workflow references](references/workflows/) <br>
-- [PM artifact templates](references/templates/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured PM recommendations, decision artifacts, summaries, and next actions based on the user's product context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: package.json and server release evidence) <br>
+Risk: Product recommendations or PM artifacts may be misleading when the user's business context, constraints, or evidence are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review assumptions, trade-offs, and decision criteria before using outputs for roadmap, launch, staffing, or leadership decisions.
+
+Risk: The security review notes missing README image assets that can make the documented validation command fail in the inspected artifact.
+
+Mitigation: Repair the missing README assets and rerun repository validation before publishing or relying on the packaged release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobbielee/skills/pm-workbench)
+- [README](README.md)
+- [START_HERE](START_HERE.md)
+- [Getting Started](docs/GETTING-STARTED.md)
+- [Scenario Router](docs/SCENARIO-ROUTER.md)
+- [Command-style combinations](docs/COMMANDS.md)
+- [Product leader playbook](docs/PRODUCT-LEADER-PLAYBOOK.md)
+- [Benchmark kit](benchmark/README.md)
+- [Examples](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown PM artifacts, recommendations, and concise structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask a small number of clarifying questions when missing context would materially change the recommendation.]
+
+## Skill Version(s):
+
+1.2.0 (source: package.json, CHANGELOG, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

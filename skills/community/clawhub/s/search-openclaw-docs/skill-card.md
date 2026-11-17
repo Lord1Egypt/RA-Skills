@@ -1,49 +1,66 @@
-## Description: <br>
-MANDATORY before any openclaw.json changes. Prevents config breakage via embedded anti-patterns and correct patterns. Use when configuring OpenClaw (bindings, channels, sessions, cron, heartbeat) or troubleshooting config issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search local OpenClaw documentation and use embedded configuration patterns before changing openclaw.json.
 
-## Publisher: <br>
-[karmanverma](https://clawhub.ai/user/karmanverma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[karmanverma](https://clawhub.ai/user/karmanverma)
 
-## Use Case: <br>
-Developers and engineers use this skill before changing OpenClaw configuration to find the right embedded pattern, avoid known anti-patterns, and search the local OpenClaw documentation index when a topic is not covered by the references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting examples can overwrite configuration or delete old sessions if followed carelessly. <br>
-Mitigation: Make a fresh backup, review diffs, and confirm retention requirements before following restore or cleanup snippets. <br>
-Risk: The skill may be invoked for unrelated tasks if trigger phrases are too broad. <br>
-Mitigation: Use OpenClaw-specific trigger phrases so the skill is applied only to OpenClaw setup, configuration, and troubleshooting. <br>
+## Use Case:
 
+Developers and operators use this skill to find the right OpenClaw documentation and apply safer patterns for bindings, channels, sessions, cron jobs, heartbeats, and configuration troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/karmanverma/search-openclaw-docs) <br>
-- [Homepage from ClawHub metadata](https://github.com/karmanverma/search-openclaw-docs) <br>
-- [Best Practices: OpenClaw Configuration](references/best-practices-config.md) <br>
-- [Config Pattern: Agent Bindings](references/config-bindings.md) <br>
-- [Config Pattern: Channel Management](references/config-channel-management.md) <br>
-- [Config Pattern: Cron Jobs](references/config-cron.md) <br>
-- [Config Pattern: Heartbeat](references/config-heartbeat.md) <br>
-- [Config Pattern: Session Reset](references/config-session-reset.md) <br>
-- [Migration: OpenClaw 2026.2.9 Changes](references/migration-2026-2-9.md) <br>
-- [Troubleshooting: Config Breaks After Changes](references/troubleshooting-config-breaks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results return local OpenClaw documentation paths to read; the skill requires Node.js, better-sqlite3, and a locally built OpenClaw docs index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; package.json reports 2.2.0) <br>
+Risk: The skill can lead agents toward OpenClaw configuration changes such as config.patch, restarts, cron jobs, heartbeat updates, or restores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed configuration and operational actions before execution, then verify gateway status and behavior after the change.
+
+Risk: Search output includes local file paths and suggested cat commands, which may be unsafe if the local documentation index is untrusted.
+
+Mitigation: Build the index only from trusted OpenClaw documentation and read returned paths through a trusted file API or safely quoted command.
+
+Risk: Setup depends on local Node.js execution and the better-sqlite3 package dependency.
+
+Mitigation: Install only when the local OpenClaw docs tree and package dependency resolution are trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/karmanverma/skills/search-openclaw-docs)
+- [OpenClaw Docs Search Homepage](https://github.com/karmanverma/search-openclaw-docs)
+- [Best Practices: OpenClaw Configuration](references/best-practices-config.md)
+- [Config Pattern: Agent Bindings](references/config-bindings.md)
+- [Config Pattern: Channel Management](references/config-channel-management.md)
+- [Config Pattern: Cron Jobs](references/config-cron.md)
+- [Config Pattern: Heartbeat](references/config-heartbeat.md)
+- [Config Pattern: Session Reset](references/config-session-reset.md)
+- [Migration: OpenClaw 2026.2.9 Changes](references/migration-2026-2-9.md)
+- [Troubleshooting: Config Breaks After Changes](references/troubleshooting-config-breaks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and optional JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline local documentation search that returns file paths for the agent to read before acting.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

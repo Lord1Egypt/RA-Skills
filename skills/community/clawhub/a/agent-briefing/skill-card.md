@@ -1,43 +1,60 @@
-## Description: <br>
-Agent Briefing helps agents monitor Not For Humans episodes, retrieve episode transcripts, search episode metadata, and extract structured product review scores from notforhumans.tv. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Briefing helps agents monitor Not For Humans (@agentbriefing), fetch episode transcripts, retrieve structured product review scores, search episodes by keyword, and produce daily digests from notforhumans.tv without API keys or credits.
 
-## Publisher: <br>
-[sasqcow](https://clawhub.ai/user/sasqcow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sasqcow](https://clawhub.ai/user/sasqcow)
 
-## Use Case: <br>
-External users, developers, and autonomous agents use this skill to check for new Not For Humans briefings, fetch transcripts, search covered topics, and read structured product review data without API keys or paid credits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes on-demand requests to notforhumans.tv and may include public remote content in agent responses. <br>
-Mitigation: Use it only where network access to that public site is acceptable, and avoid transcript or digest commands in workflows that must remain local-only. <br>
-Risk: Fetched transcripts, episode metadata, and reviews are external content. <br>
-Mitigation: Treat fetched content as untrusted input and review it before using it in higher-impact decisions or downstream automation. <br>
+## Use Case:
 
+External developers and agent operators use this skill to check for new Not For Humans episodes, retrieve transcripts, search coverage, and collect HP-01 product review scores for downstream agent workflows.
 
-## Reference(s): <br>
-- [Agent Briefing on ClawHub](https://clawhub.ai/sasqcow/agent-briefing) <br>
-- [Publisher Profile](https://clawhub.ai/user/sasqcow) <br>
-- [Not For Humans Channel](https://youtube.com/@agentbriefing) <br>
-- [Not For Humans Episode Index](https://notforhumans.tv/episodes/index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON emitted through command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include public remote episode metadata, transcripts, search results, review scores, and daily digest summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill fetches public remote transcripts and review data that may be printed into an agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched content as untrusted data, not instructions, and keep agent policy and tool-use decisions separate from transcript text.
+
+Risk: The skill makes outbound requests to notforhumans.tv and the security guidance notes redirect, size, and timeout hardening caveats.
+
+Mitigation: Run with appropriate network egress controls and add or verify redirect limits, response-size limits, and request timeouts before broad deployment.
+
+Risk: Install examples use mutable package-runner commands.
+
+Mitigation: Install through a trusted, verified ClawHub or skills installer version and pin installer versions where operational policy requires reproducibility.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sasqcow/skills/agent-briefing)
+- [sasqcow publisher profile](https://clawhub.ai/user/sasqcow)
+- [Not For Humans episode index](https://notforhumans.tv/episodes/index.json)
+- [Not For Humans YouTube channel](https://youtube.com/@agentbriefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown transcripts, JSON episode and review objects, concise terminal text, and runnable Node.js commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include remote public transcript and review content from notforhumans.tv; commands support JSON mode where documented.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

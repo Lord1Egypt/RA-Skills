@@ -1,0 +1,110 @@
+# packs/public_institution.yaml — 事业单位 / 行政事业单位行业包 (Public Institution)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 零侵入说明：本文件为新增 pack，不改动 24 部门模板、159 动作库、decision/roles/semantic/logic、init.py。
+# 事业单位「心脏」部门（国资管理 / 内部审计 / 党务政务）不在 24 部门通用库，
+# 通过 suggested_custom_departments 建议用户用私有定制添加（references/customization.md），不写入技能包本体。
+
+meta:
+  pack_id: public_institution
+  display_name: 事业单位 / 行政事业单位 (Public Institution)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [事业单位, 行政事业单位, 公益一类, 公益二类, 财政补助, 预算单位, 公办非营利, 公共事务, 公办, 参公]
+  description: >
+    适用于由国家机关举办、从事教育/科技/文化/卫生等公益服务，不以营利为目的的事业单位（公益一类/二类）。
+    主包覆盖事业单位共性（预算/履职/国资/政府采购/编制/决算），行业差异由 biomed(医院)/edu_research(学校科研院所) 等更专包承接。
+
+# ── 一、事业单位共性实体 ──
+entities_extra:
+  - type: PublicInstitution
+    extends: Organization
+    properties:
+      - { name: institution_class, type: enum, enum: [公益一类, 公益二类, 从事生产经营活动, 转企改制], required: true, desc: "公益分类决定能否从事经营" }
+      - { name: funding_source, type: enum, enum: [财政补助, 自收自支, 财政贴息], desc: "经费来源" }
+      - { name: governing_body, type: string, desc: "主管部门（举办单位）" }
+      - { name: establishment_headcount, type: integer, desc: "编制数（实名管理）" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+  - type: StateAsset
+    extends: Asset
+    properties:
+      - { name: state_owned, type: boolean, desc: "是否国有资产", default: true }
+      - { name: appraisal_no, type: string, desc: "资产评估备案号（处置前须有）" }
+      - { name: disposal_approved, type: boolean, desc: "处置是否经审批" }
+  - type: ProcurementPlan
+    extends: Document
+    properties:
+      - { name: budget_source, type: string, desc: "预算来源（财政/自筹）" }
+      - { name: method, type: enum, enum: [公开招标, 邀请招标, 竞争性谈判, 竞争性磋商, 询价, 单一来源], desc: "政府采购方式" }
+      - { name: threshold_reached, type: boolean, desc: "是否达公开招标数额标准" }
+    relations:
+      - { to: PublicInstitution, type: belongs_to, cardinality: many_to_one }
+
+# ── 二、推荐部门 ──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+  # 事业单位相关可选
+  - { code: operations,  name: 运营 }        # 日常履职/流程编排
+  - { code: procurement, name: 采购供应链 }  # 政府采购/资产
+  - { code: quality,     name: 质量管理 }    # 服务标准/绩效
+
+suggested_custom_departments:
+  - { code: state_asset, name: 国有资产管理, gender_default: male, expertise: "国有资产登记/评估/处置审批", when: "有国有资产即建议加" }
+  - { code: internal_audit, name: 内部审计, gender_default: male, expertise: "预算执行/经济责任/专项审计", when: "规模较大即建议加" }
+  - { code: party_gov,  name: 党务政务, gender_default: female, expertise: "党建/政务信息/信息公开", when: "参公或规模较大即建议加" }
+
+# ── 三、默认工作流 ──
+default_workflow: public_institution_ops
+workflow_bindings:
+  public_institution_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [预算编制, 履职服务, 政府采购, 决算, 资产盘点, 复盘]
+
+# ── 四、本地化政策钩子 ──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.public_institution      # 国有资产/政府采购/财政票据/编制/公益属性（本 pack 触发）
+    - compliance_redlines.tax                     # 票据/非税合规
+    - compliance_redlines.general                 # 个保法最小必要
+  local_services: []
+
+# ── 五、B 层风味 ──
+flavor:
+  default: >-
+    你服务的是事业单位（公益一类/二类），公益属性是生命线；公益一类不得从事经营活动，收费须按政府定价或标准。
+    国有资产须登记入账、处置前须评估备案并经审批，不得擅自处置或无偿划转；政府采购须编预算、走法定方式，
+    严禁化整为零规避招标。统一社会信用代码等公开信息可记，个人身份证/银行卡/票据影像等 PII 一律不存明文。
+  finance: 预算管理是主线；财政票据/非税收入按规使用，不得转借或伪造；决算与资产盘点形成年度 SOP；开票→记账→申报一致。
+  legal: 政府采购合规（公开招标数额标准/方式选择）；合同须与履职相关；信息公开按《政府信息公开条例》执行。
+  hr: 编制实名管理，不得超编进人；编外用工合规；工资总额与绩效按规；职称与岗位设置合规。
+  admin: 国有资产台账与处置审批流；办公用房/公务用车合规；印章与公文管理留痕。
+
+# ── 六、实例化提示 ──
+instance_prompts:
+  - "请描述单位类型（公益一类/二类/从事生产经营）与主管部门"
+  - "请介绍单位情况（名称、地区、编制数、经费来源、是否雇人）"
+  - "想搭建哪些部门（默认 12 核心 + 运营/采购/质量；建议加国资管理/内部审计/党务政务）"
+  - "核心业务循环（如 预算 → 履职 → 采购 → 决算 → 资产盘点）"
+  - "是否有国有资产处置/政府采购大额项目（影响合规红线）"
+
+# ── 七、事业特有监测信号（配合 monitoring.yaml 的 public_institution 域）──
+public_institution_signals:
+  signals:
+    - { id: budget_overrun, name: 预算执行超支, owner: [finance, internal_audit], desc: "预算执行偏离/超支预警" }
+    - { id: asset_disposal_risk, name: 国资处置风险, owner: [state_asset, legal], desc: "未评估/未审批的国资处置" }
+    - { id: procurement_split, name: 化整为零规避招标, owner: [procurement, legal], desc: "拆分采购规避公开招标" }
+    - { id: establishment_overflow, name: 超编进人, owner: [hr, internal_audit], desc: "超编制/违规用工" }

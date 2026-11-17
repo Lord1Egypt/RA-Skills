@@ -1,43 +1,59 @@
-## Description: <br>
-Checks OpenClaw system health across configuration, model connectivity, cron jobs, memory files, and skill loading, then reports issues and repair suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Doctor checks OpenClaw configuration, model connectivity, cron tasks, memory files, and installed skills, then reports a health score and repair suggestions.
 
-## Publisher: <br>
-[l6366616-lang](https://clawhub.ai/user/l6366616-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l6366616-lang](https://clawhub.ai/user/l6366616-lang)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent to inspect an OpenClaw installation, summarize health status, and recommend concrete fixes without changing configuration by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic output may reveal local versions, configuration status, cron details, or memory-system metadata. <br>
-Mitigation: Invoke the skill deliberately and avoid publishing or forwarding the report without review. <br>
-Risk: Health checks may encounter sensitive values such as API keys while inspecting model and channel configuration. <br>
-Mitigation: Redact sensitive values in the report and do not expose raw configuration contents. <br>
-Risk: Repair suggestions could be mistaken for permission to change configuration automatically. <br>
-Mitigation: Report findings first and make changes only when the user explicitly asks for remediation. <br>
+## Use Case:
 
+Developers and administrators use this skill to diagnose an OpenClaw installation, review local configuration and service health, and identify concrete repair steps before making changes.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Doctor on ClawHub](https://clawhub.ai/l6366616-lang/openclaw-health-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown health report with status bullets, a health score, and repair suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sensitive values such as API keys are expected to be redacted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagnostics may expose sensitive configuration, credential status, cron output, or memory/workspace file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show reports only to the system owner or administrator, redact secrets and credential values, and apply stricter allowlisting for openclaw.json, cron output, MEMORY.md, TOOLS.md, and API-key checks.
+
+Risk: Broad automatic activation may inspect local OpenClaw state before the user expects it.
+
+Mitigation: Ask for explicit confirmation before reading sensitive files or running local status and cron checks.
+
+Risk: Repair suggestions or health scores may be incomplete or misleading if local commands fail or files are stale.
+
+Mitigation: Present the checked source or command with each finding and require user review before applying any configuration changes.
+
+## Reference(s):
+
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw Doctor on ClawHub](https://clawhub.ai/l6366616-lang/skills/openclaw-health-doctor)
+- [Publisher profile](https://clawhub.ai/user/l6366616-lang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown health report with status bullets, a numeric health score, and repair suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should redact sensitive values and should not modify configuration unless the user explicitly requests changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,44 @@
+# starter pack · 制造设备与生产
+# 来源：mocks/manufacturing 合成场景提炼
+# 本体段为声明式事实清单；投影示例见 mocks/ 与 references/contract.md。
+pack:
+  id: manufacturing
+  name: 制造设备与生产
+  version: '0.1'
+  source: mocks/manufacturing 合成场景提炼
+  aligns:
+  - IOF Core 可对齐
+  - schema.org/Manufacturer
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml
+    --session session.json --pack starter_packs/manufacturing.yaml
+ontology:
+  entities:
+  - name: 生产批次
+    attributes: []
+    note: 一行一个生产批次
+    uid: ent_production_batch
+    evidence:
+      source: data_observed
+  - name: 设备
+    attributes:
+    - name: 设备状态
+      value_type: enum
+      values:
+      - 运行
+      - 停机
+      - 检修
+    - name: 所属产线
+      value_type: enum
+      values:
+      - A线
+      - B线
+      - C线
+    note: 一行一台设备
+    uid: ent_equipment
+    evidence:
+      source: owner_confirmed
+  relations:
+  - from: 设备
+    to: 生产批次
+    predicate: 产出
+    mapping: equi_key

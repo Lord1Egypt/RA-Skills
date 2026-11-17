@@ -1,42 +1,56 @@
-## Description: <br>
-Summarizes and analyzes how major media outlets around the world report on and frame significant news events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes and compares how major international media outlets report on significant news events, including differences in regional focus, editorial stance, and commentary.
 
-## Publisher: <br>
-[qingnaniso](https://clawhub.ai/user/qingnaniso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qingnaniso](https://clawhub.ai/user/qingnaniso)
 
-## Use Case: <br>
-External users and analysts use this skill to compare major international media coverage of the same news event, including regional focus, editorial framing, and differences in stated viewpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Breaking or controversial news summaries can be incomplete, biased, or affected by source availability and paywalls. <br>
-Mitigation: Check cited sources directly, compare coverage across multiple outlets, and call out unavailable or paywalled source material. <br>
-Risk: Media perspective comparisons may overstate an outlet's stance if based on limited articles or headlines. <br>
-Mitigation: Distinguish factual reporting from editorial opinion and avoid presenting a single article as representative of an entire outlet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [New York Times](https://www.nytimes.com/) <br>
-- [BBC News](https://www.bbc.com/news) <br>
-- [The Guardian World News](https://www.theguardian.com/world) <br>
-- [Al Jazeera Live News](https://www.aljazeera.com/news/live/) <br>
+## Use Case:
 
+External users, researchers, and analysts use this Chinese-language workflow to compare international media coverage of a major news event. It helps organize source-attributed summaries by country or region, media focus, and editorial or commentary differences.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown news summary with tables, bullet lists, source labels, and viewpoint comparisons.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should remain objective, cite information sources, and balance perspectives for controversial events.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public news websites may contain paywalls, rapidly changing articles, or incomplete access.
+
+Mitigation: Check source availability at use time and clearly mark unavailable or inaccessible sources instead of filling gaps with assumptions.
+
+Risk: Comparative media summaries can overstate outlet positions or reflect uneven source quality.
+
+Mitigation: Attribute claims to specific sources, preserve differing viewpoints, and separate reported facts from editorial or commentary analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qingnaniso/skills/media-news-summary)
+- [The New York Times](https://www.nytimes.com/)
+- [BBC News](https://www.bbc.com/news)
+- [The Guardian World News](https://www.theguardian.com/world)
+- [Al Jazeera News](https://www.aljazeera.com/news/live/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with source-attributed tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language comparative news summary organized by region, media outlet, focus areas, and commentary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

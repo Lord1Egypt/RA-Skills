@@ -1,0 +1,174 @@
+[
+  {
+    "method": "POST",
+    "path": "/rms/deposit/api/v1/poi/records/query",
+    "request_params": [
+      {
+        "name": "beginTime",
+        "type": "long",
+        "required": true,
+        "description": "起始营业时间"
+      },
+      {
+        "name": "endTime",
+        "type": "long",
+        "required": true,
+        "description": "截止营业时间"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": false,
+        "description": "页码"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": false,
+        "description": "页行数"
+      },
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "orgId"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123456789\",\n\"data\":{\n  \"data\": {\n    \"details\": [\n      {\n        \"restAmount\": 10000,\n        \"capitalType\": \"01\",\n        \"amount\": 10000,\n        \"depositId\": 1024,\n        \"payType\": 1,\n        \"depositNo\": \"2004102882046597\",\n        \"action\": 100,\n        \"createdTime\": 1586486072000,\n        \"businessTime\": 1586448000000,\n        \"type\": 1,\n        \"customerName\": \"张xx\",\n        \"customerMobile\":\"188****8888\",\n        \"bizOrderNo\": \"DC1202323\"\n      }\n    ],\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 80\n    }\n  },\n  \"status\": {\n    \"msg\": \"SUCCESS\",\n    \"code\": 0\n  }\n}",
+    "title": "门店-查询订金列表-美团技术服务合作中心",
+    "api_path": "/rms/deposit/api/v1/poi/records/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-deposit-api-v1-poi-records-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/onaccount/bills/query",
+    "request_params": [],
+    "response_params": [
+      {
+        "name": "idpayMethodName",
+        "type": "string",
+        "description": "发生挂账还款时支付方式名称支付方式namesubjectIdlong挂帐人id1166279311653687344subjectNamestring挂帐人name小可爱creatorint操作人name老王orgIdint组织机构id"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"repaymentedMoney\": \"还款金额\",\n  \"onAccountMoney\": \"挂帐金额\",\n  \"creator\": \"老王\",\n  \"transTime\": 1566983687000,\n  \"transType\": 1,\n  \"payMethod\": \"支付方式id\",\n  \"payMethodName\": \"支付方式name\",\n  \"id\": 1166640255219093547,\n  \"transNo\": \"交易流水号\",\n  \"freeMoney\": \"减免金额\",\n  \"subjectId\": 1166279311653687344,\n  \"subjectName\": \"小可爱\"\n}",
+    "title": "门店-查询挂帐及还款列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/onaccount/bills/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-onaccount-bills-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/orders/waimai/ele/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "请求参数"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "orderList",
+        "type": "array<OrderList>",
+        "description": "订单详情列表totalint总条数100pageNoint页码1pageSizeint分页大小10totalPageCountint总页数"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orderList\": [\n      {\n        \"orderBase\": {\n          \"id\": 10001,\n          \"localId\": \"\\\"1001\\\"\",\n          \"orderNo\": \"\\\"202002260001\\\"\",\n          \"type\": 100,\n          \"status\": 300,\n          \"payed\": 10000,\n          \"orderTime\": 1582704227000,\n          \"comment\": \"example\",\n          \"orderVersion\": 1,\n          \"creator\": 100,\n          \"modifier\": 100,\n          \"createdTime\": 1582704227000,\n          \"modifyTime\": 1582704227000,\n          \"customerCount\": 2,\n          \"businessType\": 1,\n          \"receivable\": 10000,\n          \"oddment\": 100,\n          \"autoOddment\": 20,\n          \"cashier\": 1001,\n          \"source\": 1,\n          \"checkoutTime\": 1582704227000,\n          \"refundTime\": 1582704227000,\n          \"cancelTime\": 1582704227000,\n          \"syncTime\": 1582704227000,\n          \"serviceFee\": 1000,\n          \"pickupType\": 1,\n          \"pickupNo\": \"\\\"20\\\"\",\n          \"keepReason\": \"example\",\n          \"poiName\": \"example\",\n          \"tableId\": 10001,\n          \"tableComment\": \"example\",\n          \"goodsTotalPrice\": 10000,\n          \"sourceName\": \"example\",\n          \"statusName\": \"example\",\n          \"typeName\": \"example\",\n          \"businessTypeName\": \"example\",\n          \"userOrderTime\": 1000,\n          \"amount\": 10000,\n          \"hasInvoice\": 0,\n          \"areaName\": \"example\",\n          \"income\": 9000,\n          \"discount\": 1000,\n          \"keepAmount\": 0,\n          \"bookStatus\": 100,\n          \"bookTime\": 1000,\n          \"taxRate\": \"example\",\n          \"taxAmt\": 1000,\n          \"taxExcludedAmt\": 1000,\n          \"poiId\": 1,\n          \"orgId\": 1,\n          \"orgCode\": \"example\",\n          \"externalUserId\": \"example\",\n          \"shippingFee\": 1000,\n          \"bookType\": 1,\n          \"refundOrderDetailVOs\": [\n            {}\n          ]\n        },\n        \"itemList\": [\n          {\n            \"orderId\": 10001,\n            \"skuId\": 10001,\n            \"skuNo\": \"example\",\n            \"specs\": \"大\",\n            \"name\": \"鱼香肉丝\",\n            \"count\": 100.01,\n            \"price\": 2000,\n            \"totalPrice\": 2000,\n            \"comment\": \"example\",\n            \"serialNo\": 1,\n            \"actualPrice\": 2000,\n            \"createdTime\": 1000,\n            \"modifyTime\": 1000,\n            \"spuId\": 1000,\n            \"spuName\": \"example\",\n            \"isCombo\": 1,\n            \"type\": 1,\n            \"serving\": 1,\n            \"groupId\": 1,\n            \"status\": 2,\n            \"attrs\": \"example\",\n            \"spuCount\": 1,\n            \"creator\": 1001,\n            \"modifier\": 1001,\n            \"reason\": \"example\",\n            \"parentNo\": 1,\n            \"parentType\": 2,\n            \"temp\": 1,\n            \"apportionPrice\": 2000,\n            \"parentItemNo\": \"example\",\n            \"itemNo\": \"example\",\n            \"unit\": \"example\",\n            \"performanceStatus\": 1,\n            \"batchNo\": \"example\",\n            \"weight\": 100.01,\n            \"newAttrs\": [\n     ",
+    "title": "门店-获取饿了么外卖订单明细-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/orders/waimai/ele/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-orders-waimai-ele-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/orders/waimai/mt/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "请求参数"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "total",
+        "type": "int",
+        "description": "总条数100pageNoint页码1pageSizeint分页大小10totalPageCountint总页数"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orderList\": [\n      {\n        \"orderBase\": {\n          \"id\": 1552855897179553872,\n          \"localId\": \"45196db1119f11ed88320ba500489868\",\n          \"orderNo\": \"20129962203010039\",\n          \"type\": 100,\n          \"status\": 300,\n          \"payed\": 10000,\n          \"orderTime\": 1582704227000,\n          \"comment\": \"example\",\n          \"orderVersion\": 1,\n          \"creator\": 100,\n          \"modifier\": 100,\n          \"createdTime\": 1582704227000,\n          \"modifyTime\": 1582704227000,\n          \"customerCount\": 2,\n          \"businessType\": 1,\n          \"receivable\": 10000,\n          \"oddment\": 100,\n          \"autoOddment\": 20,\n          \"cashier\": 1001,\n          \"source\": 1,\n          \"checkoutTime\": 1582704227000,\n          \"refundTime\": 1582704227000,\n          \"cancelTime\": 1582704227000,\n          \"syncTime\": 1582704227000,\n          \"serviceFee\": 1000,\n          \"pickupType\": 1,\n          \"pickupNo\": \"20\",\n          \"keepReason\": \"example\",\n          \"poiName\": \"测试门店\",\n          \"tableId\": 10001,\n          \"tableComment\": \"example\",\n          \"goodsTotalPrice\": 10000,\n          \"sourceName\": \"第三方小程序\",\n          \"statusName\": \"已结账\",\n          \"typeName\": \"堂食\",\n          \"businessTypeName\": \"快餐\",\n          \"userOrderTime\": 1582704227000,\n          \"amount\": 10000,\n          \"hasInvoice\": 0,\n          \"areaName\": \"example\",\n          \"income\": 9000,\n          \"discount\": 1000,\n          \"keepAmount\": 0,\n          \"bookStatus\": 100,\n          \"bookTime\": 1582704227000,\n          \"taxRate\": \"example\",\n          \"taxAmt\": 1000,\n          \"taxExcludedAmt\": 1000,\n          \"poiId\": 600382210,\n          \"orgId\": 1076686,\n          \"orgCode\": \"MD0001\",\n          \"externalUserId\": \"example\"\n        },\n        \"itemList\": [\n          {\n            \"orderId\": 1552855897179553872,\n            \"skuId\": 6030380429,\n            \"skuNo\": \"example\",\n            \"specs\": \"大\",\n            \"name\": \"清新手打柠檬茶(大)\",\n            \"count\": 1.0,\n            \"price\": 2000,\n            \"totalPrice\": 2000,\n            \"comment\": \"example\",\n            \"serialNo\": 1,\n            \"actualPrice\": 2000,\n            \"createdTime\": 1582704227000,\n            \"modifyTime\": 1582704227000,\n            \"spuId\": 6030380430,\n            \"spuName\": \"清新手打柠檬茶\",\n            \"isCombo\": 2,\n            \"type\": 1,\n            \"serving\": 1,\n            \"groupId\": 1,\n            \"status\": 2,\n            \"attrs\": \"example\",\n            \"spuCount\": 1,\n            \"creator\": 1001,\n            \"modifier\": 1001,\n            \"reason\": \"example\",\n            \"parentNo\": 0,\n            \"parentType\": 2,\n            \"temp\": 2,\n            \"apportionPrice\": 2000,\n            \"parentItemNo\": \"3a55cd59f24c4771b80f06e51dad98ce\",\n            \"itemNo\": \"3a55cd59f24c4771b80f06e51dad98ce\",\n            \"unit\": \"杯\",\n            \"performanceStatus\": 1,\n            \"batchNo\": \"example\",\n            \"weight\": 100.01,\n            \"",
+    "title": "门店-获取美团外卖订单明细-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/orders/waimai/mt/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-orders-waimai-mt-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/orders/waimai/self/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "请求参数"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "total",
+        "type": "int",
+        "description": "总条数100pageNoint页码1pageSizeint分页大小10totalPageCountint总页数"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orderList\": [\n      {\n        \"orderBase\": {\n          \"id\": 1552855897179553872,\n          \"localId\": \"45196db1119f11ed88320ba500489868\",\n          \"orderNo\": \"20129962203010039\",\n          \"type\": 100,\n          \"status\": 300,\n          \"payed\": 10000,\n          \"orderTime\": 1582704227000,\n          \"comment\": \"example\",\n          \"orderVersion\": 1,\n          \"creator\": 100,\n          \"modifier\": 100,\n          \"createdTime\": 1582704227000,\n          \"modifyTime\": 1582704227000,\n          \"customerCount\": 2,\n          \"businessType\": 1,\n          \"receivable\": 10000,\n          \"oddment\": 100,\n          \"autoOddment\": 20,\n          \"cashier\": 1001,\n          \"source\": 1,\n          \"checkoutTime\": 1582704227000,\n          \"refundTime\": 1582704227000,\n          \"cancelTime\": 1582704227000,\n          \"syncTime\": 1582704227000,\n          \"serviceFee\": 1000,\n          \"pickupType\": 1,\n          \"pickupNo\": \"20\",\n          \"keepReason\": \"example\",\n          \"poiName\": \"金拱门\",\n          \"tableId\": 10001,\n          \"tableComment\": \"example\",\n          \"goodsTotalPrice\": 10000,\n          \"sourceName\": \"第三方小程序\",\n          \"statusName\": \"已结账\",\n          \"typeName\": \"堂食\",\n          \"businessTypeName\": \"快餐\",\n          \"userOrderTime\": 1582704227000,\n          \"amount\": 10000,\n          \"hasInvoice\": 0,\n          \"areaName\": \"example\",\n          \"income\": 9000,\n          \"discount\": 1000,\n          \"keepAmount\": 0,\n          \"bookStatus\": 100,\n          \"bookTime\": 1582704227000,\n          \"taxRate\": \"example\",\n          \"taxAmt\": 1000,\n          \"taxExcludedAmt\": 1000,\n          \"poiId\": 600382210,\n          \"vipCardId\": 123456,\n          \"orgId\": 1076686,\n          \"orgCode\": \"MD00005\",\n          \"externalUserId\": \"example\",\n          \"cashierName\": \"张三\",\n          \"cashierNo\": \"123456\",\n          \"shippingFee\": 1000,\n          \"bookType\": 0,\n          \"odOpenId\": \"example\",\n          \"odUnionId\": \"example\"\n        },\n        \"itemList\": [\n          {\n            \"orderId\": 1552855897179553872,\n            \"skuId\": 6030380429,\n            \"skuNo\": \"example\",\n            \"specs\": \"大\",\n            \"name\": \"清新手打柠檬茶(大)\",\n            \"count\": 1.0,\n            \"price\": 2000,\n            \"totalPrice\": 2000,\n            \"comment\": \"example\",\n            \"serialNo\": 1,\n            \"actualPrice\": 2000,\n            \"createdTime\": 1582704227000,\n            \"modifyTime\": 1582704227000,\n            \"spuId\": 6030380430,\n            \"spuName\": \"清新手打柠檬茶\",\n            \"isCombo\": 2,\n            \"type\": 1,\n            \"serving\": 1,\n            \"groupId\": 1,\n            \"status\": 2,\n            \"attrs\": \"example\",\n            \"spuCount\": 1,\n            \"creator\": 1001,\n            \"modifier\": 1001,\n            \"reason\": \"example\",\n            \"parentNo\": 0,\n            \"parentType\": 2,\n            \"temp\": 2,\n            \"apportionPrice\": 2000,\n            \"parentItemNo\": \"3a55cd59f24c4",
+    "title": "门店-查询自营外卖订单明细-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/orders/waimai/self/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-orders-waimai-self-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/orders/ids/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "请求参数"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "orderList",
+        "type": "array<OrderList>",
+        "description": "订单详情列表totalint总条数100pageNoint页码1pageSizeint分页大小10totalPageCountint总页数"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orderList\": [\n      {\n        \"orderBase\": {\n          \"id\": 10001,\n          \"localId\": \"1001\",\n          \"orderNo\": \"202002260001\",\n          \"type\": 100,\n          \"status\": 300,\n          \"payed\": 10000,\n          \"orderTime\": 1582704227000,\n          \"comment\": \"example\",\n          \"orderVersion\": 1,\n          \"creator\": 100,\n          \"modifier\": 100,\n          \"createdTime\": 1582704227000,\n          \"modifyTime\": 1582704227000,\n          \"customerCount\": 2,\n          \"businessType\": 1,\n          \"receivable\": 10000,\n          \"oddment\": 100,\n          \"autoOddment\": 20,\n          \"cashier\": 1001,\n          \"source\": 1,\n          \"checkoutTime\": 1582704227000,\n          \"refundTime\": 1582704227000,\n          \"cancelTime\": 1582704227000,\n          \"syncTime\": 1582704227000,\n          \"serviceFee\": 1000,\n          \"pickupType\": 1,\n          \"pickupNo\": \"20\",\n          \"keepReason\": \"example\",\n          \"poiName\": \"门店名\",\n          \"tableId\": 10001,\n          \"tableComment\": \"example\",\n          \"goodsTotalPrice\": 10000,\n          \"sourceName\": \"example\",\n          \"statusName\": \"example\",\n          \"typeName\": \"example\",\n          \"businessTypeName\": \"example\",\n          \"userOrderTime\": 1000,\n          \"amount\": 10000,\n          \"hasInvoice\": 0,\n          \"areaName\": \"example\",\n          \"income\": 9000,\n          \"discount\": 1000,\n          \"keepAmount\": 0,\n          \"bookStatus\": 100,\n          \"bookTime\": 1000,\n          \"taxRate\": \"example\",\n          \"taxAmt\": 1000,\n          \"taxExcludedAmt\": 1000,\n          \"parentOrderNo\": \"example\",\n          \"businessTime\": \"2020-02-02\",\n          \"unionType\": 0,\n          \"parentCustomerCount\": 1,\n          \"poiId\": 123456,\n          \"banquetName\": \"张三李四的婚宴\",\n          \"reservationBusinessTypeName\": \"example\",\n          \"vipCardId\": 123456,\n          \"isPartRefund\": true,\n          \"orgId\": 1,\n          \"orgCode\": 1,\n          \"externalUserId\": \"example\",\n          \"strikeCount\": 1,\n          \"extra\": {\n            \"successRefundOrderIds\": [\n              \"example\"\n            ]\n          },\n          \"cashierName\": \"张三\",\n          \"cashierNo\": \"123456\",\n          \"shippingFee\": 1000,\n          \"bookType\": 1,\n          \"refundOrderDetailVOs\": [\n            {}\n          ],\n          \"originalLocalId\": \"example\",\n          \"odOpenId\": \"example\",\n          \"odUnionId\": \"example\"\n        },\n        \"itemList\": [\n          {\n            \"orderId\": 10001,\n            \"skuId\": 10001,\n            \"skuNo\": \"example\",\n            \"specs\": \"大\",\n            \"name\": \"鱼香肉丝\",\n            \"count\": 100.01,\n            \"price\": 2000,\n            \"totalPrice\": 2000,\n            \"comment\": \"example\",\n            \"serialNo\": 1,\n            \"actualPrice\": 2000,\n            \"createdTime\": 1000,\n            \"modifyTime\": 1000,\n            \"spuId\": 1000,\n            \"spuName\": \"example\",\n            \"isCombo\": 1,\n            \"type\"",
+    "title": "根据订单id查询订单详情v2(包含联台子单)-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/orders/ids/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-orders-ids-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/orders/instore/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "请求参数"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "orderList",
+        "type": "array<OrderList>",
+        "description": "订单详情列表totalint总条数100pageNoint页码1pageSizeint分页大小10totalPageCountint总页数"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orderList\": [\n      {\n        \"orderBase\": {\n          \"id\": 10001,\n          \"localId\": \"1001\",\n          \"orderNo\": \"202002260001\",\n          \"type\": 100,\n          \"status\": 300,\n          \"payed\": 10000,\n          \"orderTime\": 1582704227000,\n          \"comment\": \"example\",\n          \"orderVersion\": 1,\n          \"creator\": 100,\n          \"modifier\": 100,\n          \"createdTime\": 1582704227000,\n          \"modifyTime\": 1582704227000,\n          \"customerCount\": 2,\n          \"businessType\": 1,\n          \"receivable\": 10000,\n          \"oddment\": 100,\n          \"autoOddment\": 20,\n          \"cashier\": 1001,\n          \"source\": 1,\n          \"checkoutTime\": 1582704227000,\n          \"refundTime\": 1582704227000,\n          \"cancelTime\": 1582704227000,\n          \"syncTime\": 1582704227000,\n          \"serviceFee\": 1000,\n          \"pickupType\": 1,\n          \"pickupNo\": \"20\",\n          \"keepReason\": \"example\",\n          \"poiName\": \"example\",\n          \"tableId\": 10001,\n          \"tableComment\": \"example\",\n          \"goodsTotalPrice\": 10000,\n          \"sourceName\": \"example\",\n          \"statusName\": \"example\",\n          \"typeName\": \"example\",\n          \"businessTypeName\": \"example\",\n          \"userOrderTime\": 1000,\n          \"amount\": 10000,\n          \"hasInvoice\": 0,\n          \"areaName\": \"example\",\n          \"income\": 9000,\n          \"discount\": 1000,\n          \"keepAmount\": 0,\n          \"bookStatus\": 100,\n          \"bookTime\": 1000,\n          \"taxRate\": \"example\",\n          \"taxAmt\": 1000,\n          \"taxExcludedAmt\": 1000,\n          \"parentOrderNo\": \"example\",\n          \"businessTime\": \"2020-02-02\",\n          \"unionType\": 0,\n          \"parentCustomerCount\": 1,\n          \"poiId\": 1,\n          \"banquetName\": \"婚宴\",\n          \"reservationBusinessTypeName\": \"宝宝宴\",\n          \"vipCardId\": 123456,\n          \"adjustType\": 0,\n          \"makeStatus\": 0,\n          \"refundStatus\": 0,\n          \"isPartRefund\": true,\n          \"orgId\": 1,\n          \"orgCode\": 1,\n          \"externalUserId\": \"example\",\n          \"strikeCount\": 1,\n          \"cashierName\": \"张三\",\n          \"cashierNo\": \"123456\",\n          \"originalLocalId\": \"example\",\n          \"odOpenId\": \"example\",\n          \"odUnionId\": \"example\"\n        },\n        \"itemList\": [\n          {\n            \"orderId\": 10001,\n            \"skuId\": 10001,\n            \"skuNo\": \"example\",\n            \"specs\": \"大\",\n            \"name\": \"菜品名称\",\n            \"count\": 100.01,\n            \"price\": 2000,\n            \"totalPrice\": 2000,\n            \"comment\": \"example\",\n            \"serialNo\": 1,\n            \"actualPrice\": 2000,\n            \"createdTime\": 1000,\n            \"modifyTime\": 1000,\n            \"spuId\": 1000,\n            \"spuName\": \"example\",\n            \"isCombo\": 1,\n            \"type\": 1,\n            \"serving\": 1,\n            \"groupId\": 1,\n            \"status\": 2,\n            \"attrs\": \"example\",\n            \"spuCount\": 1,\n            \"crea",
+    "title": "门店-查询店内订单列表V2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/orders/instore/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-orders-instore-query"
+  }
+]

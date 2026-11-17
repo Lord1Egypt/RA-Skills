@@ -1,46 +1,64 @@
-## Description: <br>
-Generates Nevada-focused legal marketing prompt templates for business litigation attorneys, covering ads, website content, structured data, reviews, and referral outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Nevada-focused marketing content for business litigation attorneys, including ad campaigns, local profile content, website copy and schema, referral letters, review responses, and compliance checklists.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Nevada business litigators, commercial litigation firms, and legal marketing agencies use this skill to draft client acquisition campaigns, local profile content, practice-area pages, JSON-LD schema, review responses, and referral outreach with Nevada statutory cues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States - Nevada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal marketing content may contain inaccurate or noncompliant statements despite built-in compliance prompts. <br>
-Mitigation: Have qualified Nevada counsel review statutes, comparisons, testimonials, review requests, disclosures, and platform rules before publication. <br>
-Risk: Claims such as bar-compliant, pre-screened, or audit pass may be mistaken for legal approval. <br>
-Mitigation: Treat those labels as drafting aids only and require independent attorney approval before using generated materials. <br>
+## Use Case:
 
+Nevada business litigation attorneys, commercial litigation firms, and legal marketing agencies use this skill to draft localized attorney-marketing assets around Nevada business-entity disputes. Outputs should be reviewed by Nevada counsel before publication or campaign launch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/business-entity-disputes-kit) <br>
-- [README](README.md) <br>
-- [Skill source](SKILL.md) <br>
-- [Client acquisition campaign prompts](prompts/01-client-acquisition-campaigns.md) <br>
-- [Digital advertising prompts](prompts/02-digital-advertising-suite.md) <br>
-- [Website content and schema prompts](prompts/03-website-content-schema.md) <br>
-- [Reputation and referral prompts](prompts/04-reputation-referral-program.md) <br>
+### Deployment Geography for Use:
 
+Nevada, United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown prompt templates and generated marketing copy with occasional JSON-LD snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact package.json reports 1.0.0) <br>
+Risk: Attorney-advertising copy could be misleading or noncompliant if comparative, superiority, guarantee, testimonial, or outcome claims are published without legal review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have Nevada counsel review all outputs, remove unsupported comparative or superiority claims, include required disclosures, and verify compliance with Nevada attorney-advertising and professional conduct rules before publication.
+
+Risk: The skill is narrowly scoped to Nevada legal marketing and may be inappropriate for other jurisdictions or for substantive legal advice.
+
+Mitigation: Use it only for Nevada-targeted marketing reviewed by a Nevada attorney, and verify all statutes, court references, and procedural claims against current law before use.
+
+Risk: Using client, former-client, or prospective-client inquiry data for advertising audiences can create privacy, consent, and legal-ethics issues.
+
+Mitigation: Do not use legal inquiry or client records for ad targeting unless the firm has documented purpose-specific consent and privacy/legal approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitflopez/skills/business-entity-disputes-kit)
+- [Publisher Profile](https://clawhub.ai/user/gitflopez)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Client Acquisition Campaign Prompts](artifact/prompts/01-client-acquisition-campaigns.md)
+- [Digital Advertising Suite Prompts](artifact/prompts/02-digital-advertising-suite.md)
+- [Website Content and Schema Prompts](artifact/prompts/03-website-content-schema.md)
+- [Reputation and Referral Program Prompts](artifact/prompts/04-reputation-referral-program.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown prompts and generated marketing copy, with structured data examples where requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are jurisdiction-specific attorney-marketing drafts requiring professional review before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

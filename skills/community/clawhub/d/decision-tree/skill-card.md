@@ -1,44 +1,53 @@
-## Description: <br>
-Guides agents through decision tree analysis for multi-stage decisions with uncertain outcomes, quantified probabilities, payoffs, rollback, sensitivity analysis, and EVPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through sequential decisions by mapping choices, uncertain outcomes, probabilities, and payoffs into an expected-value decision tree.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to structure sequential choices with uncertainty, estimate branch probabilities and payoffs, roll expected values back through the tree, and identify sensitivity thresholds before recommending an option. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision tree outputs can influence business, financial, legal, or safety-relevant decisions. <br>
-Mitigation: Treat the skill as a structured analysis aid; independently verify probabilities, payoffs, assumptions, and professional implications before acting. <br>
-Risk: Incorrect or unjustified probabilities and mixed payoff units can produce misleading expected value recommendations. <br>
-Mitigation: Require documented probability bases, consistent payoff units, sensitivity analysis, EVPI checks, and a missing-branch audit before relying on the recommendation. <br>
+## Use Case:
 
+Business leaders, analysts, and teams use this skill to structure multi-stage decisions with uncertain outcomes, compare expected values, and identify assumptions or information that could change a recommendation.
 
-## Reference(s): <br>
-- [Primary sources for decision-tree](references/sources.md) <br>
-- [Magee 1964 chemical plant investment example](examples/magee-1964-chemical-plant-investment-hbr.md) <br>
-- [Decision Tree skill page](https://clawhub.ai/deciqai/skills/decision-tree) <br>
-- [deciqAI publisher profile](https://clawhub.ai/user/deciqai) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured decision tree tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes branch probabilities, payoff units, rollback calculations, sensitivity threshold, EVPI, and conditions where the recommendation changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unverified probabilities, payoffs, or omitted branches can produce misleading recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check assumptions and calculations, test sensitivity, audit for missing branches, and review recommendations before making real commitments.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/deciqai/skills/decision-tree)
+- [Decision Tree project page](https://www.deciqai.com/c/decision-tree)
+- [Decision Tree source references](references/sources.md)
+- [Documented skill repository](https://github.com/deciqAI/knowledge-skills)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/decision-tree.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Structured Markdown or text with decision-tree branches, probability and payoff tables, rollback, and sensitivity analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should state the assumptions and conditions under which they hold or change.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

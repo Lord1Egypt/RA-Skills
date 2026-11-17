@@ -1,42 +1,58 @@
-## Description: <br>
-Generate images using APIYI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using APIYI API.
 
-## Publisher: <br>
-[mengwuzhi](https://clawhub.ai/user/mengwuzhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mengwuzhi](https://clawhub.ai/user/mengwuzhi)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from text prompts through APIYI, choosing the output filename and supported resolution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to the third-party APIYI service. <br>
-Mitigation: Do not include secrets, personal data, or confidential business information in prompts. <br>
-Risk: The skill writes generated images to user-selected relative or absolute paths. <br>
-Mitigation: Prefer workspace-relative filenames and review output paths before execution. <br>
-Risk: The skill requires an APIYI API key. <br>
-Mitigation: Provide APIYI_API_KEY through the environment or configured skill environment, and avoid embedding secrets in prompts or shared command history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [APIYI](https://apiyi.com/) <br>
-- [Draw Images By Apiyi on ClawHub](https://clawhub.ai/mengwuzhi/draw-images-by-apiyi) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate PNG images from natural-language prompts through APIYI and save them into a chosen workspace path.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and APIYI_API_KEY; supports 1K, 2K, and 4K resolution settings and prints a MEDIA line for generated images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to APIYI for image generation.
+
+Mitigation: Avoid sensitive prompt content and install only if APIYI use is acceptable for the intended workflow.
+
+Risk: The skill stores and uses an APIYI API key.
+
+Mitigation: Use APIYI_API_KEY from the environment and follow the security guidance to avoid the documented --api-key override until the key-handling issue is fixed.
+
+Risk: Generated images are downloaded and written to local paths selected by the user.
+
+Mitigation: Choose output paths deliberately and consider running the skill in a restricted environment with pinned dependencies.
+
+## Reference(s):
+
+- [Draw Images By Apiyi on ClawHub](https://clawhub.ai/mengwuzhi/skills/draw-images-by-apiyi)
+- [APIYI](https://apiyi.com/)
+- [APIYI OpenAI-compatible API endpoint](https://api.apiyi.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [PNG image files with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates one image per request at 1K, 2K, or 4K resolution and prints a MEDIA path when successful.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

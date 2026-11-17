@@ -1,43 +1,52 @@
-## Description: <br>
-Call GET /api/imdb/title-countries-of-origin/v1 for IMDb Countries of Origin through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-countries-of-origin/v1 for IMDb Countries of Origin through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to look up IMDb title countries of origin from JustOneAPI by IMDb title ID for catalog enrichment and regional content analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent in the request URL and may be exposed if full URLs are logged. <br>
-Mitigation: Use a low-scope token if available, avoid logging full request URLs, and rotate the token if it may have appeared in logs. <br>
-Risk: Localized country-of-origin results may default to US English. <br>
-Mitigation: Set languageCountry explicitly when non-US localized results are needed. <br>
+## Use Case:
 
+Developers and agents use this skill to look up IMDb title countries of origin through JustOneAPI for catalog enrichment and regional content analysis.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_countries_of_origin&utm_content=project_link) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_countries_of_origin&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-countries-of-origin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON results when requested or after the endpoint-specific summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an IMDb title ID; optional languageCountry controls localized results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A JustOneAPI token is required and is sent as a query parameter to the documented endpoint, which can expose it through command history, process monitoring, proxy logs, or API logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token when available, do not paste token values into chat or logs, avoid recording command invocations that contain the token, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-countries-of-origin)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_countries_of_origin&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_countries_of_origin&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The endpoint requires an IMDb title id and a JustOneAPI token; languageCountry defaults to en_US when omitted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

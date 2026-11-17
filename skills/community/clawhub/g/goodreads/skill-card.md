@@ -1,43 +1,60 @@
-## Description: <br>
-Search for books, get book details and reviews, discover personalized recommendations, and manage reading lists on Goodreads through browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for books, gets book details and reviews, discovers personalized recommendations, and manages reading lists on Goodreads through browser automation.
 
-## Publisher: <br>
-[surajssd](https://clawhub.ai/user/surajssd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[surajssd](https://clawhub.ai/user/surajssd)
 
-## Use Case: <br>
-Readers and book-focused assistants use this skill to search Goodreads, summarize book pages and reviews, discover recommendations, and help manage reading-list actions when the user is logged in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate Goodreads in a browser and may change shelves, reading status, or ratings when the user is logged in. <br>
-Mitigation: Review Goodreads actions before confirming account changes, and use manual login rather than sharing credentials with the agent. <br>
-Risk: Goodreads pages can block, challenge, or change browser automation flows. <br>
-Mitigation: Use fresh browser snapshots after navigation, handle authentication or verification prompts explicitly, and provide manual fallback steps when automation is blocked. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Goodreads Skill Instructions](artifact/SKILL.md) <br>
-- [Goodreads Error Handling](artifact/assets/error-handling.md) <br>
-- [Goodreads Workflows](artifact/references/WORKFLOWS.md) <br>
-- [Goodreads Page Structure and Selectors](artifact/references/SELECTORS.md) <br>
-- [Goodreads URL Patterns](artifact/references/URLS.md) <br>
+## Use Case:
 
+External users use this skill to operate Goodreads in a browser: searching for books, reading book details and reviews, getting recommendations, and managing shelves or ratings when authenticated.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with browser action guidance and concise book or shelf-action summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require the user to be logged into Goodreads for recommendations, shelf changes, and ratings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: When the user is logged into Goodreads, the skill may read account-specific Goodreads pages.
+
+Mitigation: Install only when browser-based Goodreads operation is intended, check authentication before account-specific workflows, and avoid handling user credentials.
+
+Risk: Authenticated workflows can change Goodreads shelves or ratings.
+
+Mitigation: Perform shelf and rating changes only for explicit user requests, then re-snapshot the page to confirm the resulting state.
+
+Risk: Goodreads may block, rate-limit, or change page structure during browser automation.
+
+Mitigation: Use the documented recovery steps: avoid unnecessary re-navigation, re-snapshot after navigation or page-changing actions, inspect screenshots when structure is unclear, and provide manual instructions when automation is blocked.
+
+## Reference(s):
+
+- [Goodreads Skill on ClawHub](https://clawhub.ai/surajssd/skills/goodreads)
+- [Goodreads Browser Workflows](references/WORKFLOWS.md)
+- [Goodreads Page Structure and Selectors](references/SELECTORS.md)
+- [Goodreads URL Patterns](references/URLS.md)
+- [Error Handling and Recovery](assets/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with browser-action guidance and concise Goodreads result summaries or confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include book metadata, community review excerpts, recommendation groups, authentication notices, and shelf-action confirmations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

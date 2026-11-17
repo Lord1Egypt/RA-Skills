@@ -1,48 +1,62 @@
-## Description: <br>
-Busca receitas em portugues do Brasil (pt-BR) via Wikilivros e TheMealDB, com geracao de receitas originais quando fontes adequadas nao retornam resultados. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Busca receitas em portugues do Brasil (pt-BR) via Wikilivros e TheMealDB, and can generate an original recipe when supported sources do not return a suitable result.
 
-## Publisher: <br>
-[runawaydevil](https://clawhub.ai/user/runawaydevil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[runawaydevil](https://clawhub.ai/user/runawaydevil)
 
-## Use Case: <br>
-External users and agents use this skill to find, retrieve, and format Brazilian Portuguese recipes from public recipe sources, suggest recipes from ingredients, and optionally look up nutrition information. It can generate an original recipe when the supported sources do not return a suitable match. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Recipe, ingredient, and optional nutrition queries are sent to public third-party services. <br>
-Mitigation: Use the skill only when sharing those queries with Wikilivros, TheMealDB, and OpenFoodFacts is acceptable. <br>
-Risk: Cached recipe results are stored locally. <br>
-Mitigation: Review or clear the local cache when recipe or ingredient queries should not persist on disk. <br>
-Risk: Dietary, allergy, religious, or medical suitability may be incomplete or inaccurate. <br>
-Mitigation: Manually verify ingredients and nutrition details before relying on the output for strict dietary or health requirements. <br>
+## Use Case:
 
+External users and agents use this skill to search, retrieve, suggest, or generate Brazilian Portuguese recipe content from supported public recipe sources and ingredient prompts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/runawaydevil/seth-receitas-ptbr) <br>
-- [Publisher profile](https://clawhub.ai/user/runawaydevil) <br>
-- [Wikilivros recipes category](https://pt.wikibooks.org/wiki/Categoria:Receitas) <br>
-- [Wikilivros MediaWiki API](https://pt.wikibooks.org/w/api.php) <br>
-- [TheMealDB](https://www.themealdb.com/) <br>
-- [TheMealDB API](https://www.themealdb.com/api/json/v1/1/) <br>
-- [OpenFoodFacts](https://world.openfoodfacts.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style recipe text and CLI output in pt-BR] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recipe outputs include title, yield, preparation time, ingredients, numbered preparation steps, tags, and source attribution when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Dietary restrictions, allergy constraints, religious dietary rules, and vegan or vegetarian requests may not be consistently enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every ingredient and preparation step before using a recipe for dietary, allergy, medical, or religious requirements.
+
+Risk: Recipe, ingredient, and nutrition queries may be sent to public recipe or nutrition APIs and cached locally.
+
+Mitigation: Avoid entering sensitive personal information in queries and clear the local cache when cached request data should not persist.
+
+Risk: Nutrition data and generated fallback recipes are suggestions and may be incomplete or inaccurate.
+
+Mitigation: Verify nutrition information against trusted labels or professional sources, and review generated recipes for food-safety and suitability before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runawaydevil/skills/seth-receitas-ptbr)
+- [Wikilivros receitas category](https://pt.wikibooks.org/wiki/Categoria:Receitas)
+- [Wikilivros MediaWiki API](https://pt.wikibooks.org/w/api.php)
+- [TheMealDB](https://www.themealdb.com/)
+- [TheMealDB API](https://www.themealdb.com/api/json/v1/1/)
+- [OpenFoodFacts](https://world.openfoodfacts.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Portuguese markdown-style text with recipe sections, source attribution, and optional CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include source links or IDs; recipe, ingredient, and nutrition queries can be sent to public APIs and cached locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

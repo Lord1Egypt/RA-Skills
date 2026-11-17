@@ -1,46 +1,59 @@
-## Description: <br>
-Production-grade memory system for OpenClaw agents that organizes local Markdown notes, preserves context during compaction, and runs daily and weekly memory maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade memory system for OpenClaw agents that organizes notes into local topic files, preserves context across compaction, and runs daily and weekly memory maintenance.
 
-## Publisher: <br>
-[tzx666888](https://clawhub.ai/user/tzx666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tzx666888](https://clawhub.ai/user/tzx666888)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create a local Markdown memory structure, split large MEMORY.md files into topic files, preserve key context before compaction, and schedule routine memory cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer makes persistent global OpenClaw configuration changes and adds scheduled background maintenance jobs. <br>
-Mitigation: Review scripts/install.sh before running it, confirm the config changes and cron entries it will add, and keep or restore from the generated OpenClaw config backup if the behavior is not desired. <br>
-Risk: Scheduled memory maintenance can process local memory files that may contain secrets, credentials, personal data, or private chat content. <br>
-Mitigation: Define memory rules that exclude sensitive data before enabling the crons, and audit memory/ files regularly for content that should not be retained. <br>
-Risk: Background cleanup and compaction behavior can change how an agent records and reuses context over time. <br>
-Mitigation: Use openclaw cron list to review installed jobs, disable unwanted jobs with openclaw cron delete, and run scripts/verify.sh after installation or configuration changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up local Markdown-based agent memory, split existing MEMORY.md content into topic files, and maintain session, daily, and long-term notes through compaction prompts and scheduled cleanup jobs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tzx666888/beastxa-memory-pro) <br>
-- [Quick Start](docs/quickstart.md) <br>
-- [FAQ](docs/faq.md) <br>
-- [Cron Prompt Templates](templates/cron-prompts.md) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local Markdown memory files and OpenClaw cron/configuration changes when the installer is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; changelog: v1.0.0 Initial release) <br>
+Risk: The installer persistently changes OpenClaw compaction behavior and creates recurring maintenance cron jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it, back up ~/.openclaw/openclaw.json, and inspect or remove the created OpenClaw cron entries after installation.
+
+Risk: Conversation-derived notes are stored locally and may include sensitive information if users place secrets in chats or memory files.
+
+Mitigation: Avoid storing secrets in conversations or memory files, and review generated Markdown memory content before retaining or sharing it.
+
+Risk: The weekly deep-clean job can trim and rewrite topic memory in ways users may not want.
+
+Mitigation: Disable the weekly deep-clean job or keep backups unless automatic trimming and rewriting of topic memory is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tzx666888/skills/beastxa-memory-pro)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local Markdown memory files, OpenClaw compaction settings, and recurring OpenClaw cron jobs when installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

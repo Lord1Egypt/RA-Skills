@@ -1,41 +1,54 @@
-## Description: <br>
-Tavily Search provides advanced web search through the AIsa API with search depth, topic, time range, domain filtering, source discovery, content extraction, and optional LLM-generated answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced web search via Tavily through the AIsa API with search depth, topic and time filtering, content extraction, and optional LLM-generated answer summaries.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and agents use this skill to run web research, source discovery, content extraction, news or finance-focused searches, and optional answer summaries through AIsa-backed Tavily search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, and requested summaries are sent to AIsa-backed external services. <br>
-Mitigation: Avoid entering secrets, private internal URLs, regulated data, or confidential business information unless external processing is approved for the use case. <br>
-Risk: The skill requires the sensitive AISA_API_KEY credential. <br>
-Mitigation: Provide the API key through the environment or approved plugin configuration and avoid hard-coding it in prompts, scripts, logs, or shared files. <br>
+## Use Case:
 
+Developers and agent users use this skill to run AIsa-backed Tavily searches, filter search results by depth, topic, and time range, extract supplied URLs, and request answer summaries with source snippets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bibaofeng/tavily-search-aisa-api) <br>
-- [AIsa](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [CLI text with titles, URLs, dates, excerpts, citations when returned, and optional answer summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and sends search queries, URLs, and requested summaries to AIsa-backed external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Search terms, supplied URLs, prompts, and retrieved result data may be sent to AIsa under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data approved for that external service, and avoid secrets, private URLs, regulated data, and URLs containing tokens.
+
+Risk: The package exposes broader web, scholar, extraction, Perplexity, and synthesis modes than the Tavily-focused description suggests.
+
+Mitigation: Review the available subcommands before deployment and restrict use to approved modes until the documentation and exposed commands are aligned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/tavily-search-aisa-api)
+- [AIsa homepage](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Structured terminal text with titles, URLs, excerpts, dates when available, optional answer summaries, citations, and usage/cost metadata when returned by the API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; count and filtering options affect returned result volume.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

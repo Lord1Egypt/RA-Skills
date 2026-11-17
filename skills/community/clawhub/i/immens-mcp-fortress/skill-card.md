@@ -1,43 +1,60 @@
-## Description: <br>
-Connects OpenClaw to WordPress sites running Immens MCP Fortress so agents can manage content, media, comments, users, WooCommerce, SEO, translations, and other WordPress operations through MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to any WordPress site running Immens MCP Fortress. Manage posts, pages, media, comments, users, WooCommerce, SEO, translations, and 274+ WordPress operations via MCP tools. Secure bearer-token authentication with SHA-256 hashed API keys, IP whitelisting, and rate limiting.
 
-## Publisher: <br>
-[studioimmens](https://clawhub.ai/user/studioimmens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[studioimmens](https://clawhub.ai/user/studioimmens)
 
-## Use Case: <br>
-Developers and site operators use this skill to connect an AI agent to a trusted WordPress MCP access point and manage publishing, ecommerce, SEO, media, comments, users, and plugin integrations from OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad live WordPress administrative power, including destructive or business-impacting operations. <br>
-Mitigation: Use a staging site or least-privilege access point first, keep backups available, and require explicit human approval before deletes, user or account changes, code snippet changes, bulk edits, cache flushes, SEO changes, or WooCommerce and customer operations. <br>
-Risk: The integration depends on sensitive bearer-token credentials for a WordPress access point. <br>
-Mitigation: Connect only to access points the user intentionally trusts, keep API keys secret, restrict access by IP where possible, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+External developers and WordPress site operators use this skill to connect OpenClaw to WordPress sites running Immens MCP Fortress so an agent can manage content, users, media, WooCommerce, SEO, translations, and plugin integrations through MCP tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/studioimmens/immens-mcp-fortress) <br>
-- [Immens MCP Fortress WordPress plugin](https://wordpress.org/plugins/immens-mcp-fortress/) <br>
-- [Declared project repository](https://github.com/Studio-Immens/immens-mcp-fortress) <br>
-- [Immens MCP Fortress Pro](https://studioimmens.com/immens-mcp-fortress-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted WordPress MCP access point and bearer-token credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The connected agent can receive broad WordPress site-changing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a narrowly scoped WordPress Access Point and start on staging before production use.
+
+Risk: Bearer API keys can grant site access if exposed in shared shells, logs, or chat transcripts.
+
+Mitigation: Treat API keys like passwords, avoid pasting them into shared environments, and rotate any key that may have been exposed.
+
+Risk: Deletes, user changes, WooCommerce changes, plugin settings, and Code Snippets operations can affect site integrity or customers.
+
+Mitigation: Require human approval for sensitive or destructive operations and use IP allowlisting and audit logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/studioimmens/skills/immens-mcp-fortress)
+- [Repository](https://github.com/Studio-Immens/immens-mcp-fortress)
+- [WordPress Plugin](https://wordpress.org/plugins/immens-mcp-fortress/)
+- [Immens MCP Fortress Pro](https://studioimmens.com/immens-mcp-fortress-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bearer-token configuration details that should be handled as credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

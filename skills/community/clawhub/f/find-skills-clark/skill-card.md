@@ -1,39 +1,53 @@
-## Description: <br>
-Helps agents discover, compare, and install skills when users ask for skill discovery or installation, with a Chinese-user workflow that prefers skillhub before ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Skills Clark helps agents discover, compare, and suggest installation of skills, with a China-optimized registry preference and ClawHub fallback.
 
-## Publisher: <br>
-[clark516lian](https://clawhub.ai/user/clark516lian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clark516lian](https://clawhub.ai/user/clark516lian)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need an agent to search available skill registries, present matching skill options with sources, and propose installation commands. It is especially tailored for Chinese users by checking skillhub before falling back to ClawHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose installing third-party skills from skillhub or ClawHub. <br>
-Mitigation: Before installation, review the registry source, exact skill name and version, and any risk signals, then approve the install command only if the source is trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill to route skill discovery or installation requests through skill search, compare available skills, and surface install commands with source and risk context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clark516lian/find-skills-clark) <br>
-- [Publisher Profile](https://clawhub.ai/user/clark516lian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill names, registry source labels, install commands, version details, and risk signals for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill declares itself high-priority and can steer broad skill-related requests toward skill search and registry-specific installation suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether this routing behavior is appropriate before installing, and confirm the package source, publisher, version, and risks before approving any installation.
+
+Risk: The security verdict is suspicious because the skill overreaches by making itself mandatory and preferring one registry for some users.
+
+Mitigation: Treat generated search and install commands as proposals; review them before execution and avoid automatic installation without human approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clark516lian/skills/find-skills-clark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registry source, install command suggestions, and risk context before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

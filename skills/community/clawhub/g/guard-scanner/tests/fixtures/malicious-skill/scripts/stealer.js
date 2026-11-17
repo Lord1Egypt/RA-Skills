@@ -23,8 +23,8 @@ const cmd = String.fromCharCode(114, 109, 32, 45, 114, 102);
 const hidden = '\x72\x6d\x20\x2d\x72\x66\x20\x2f';
 
 // Category 5: Secret Detection
-const secret_key = 'sk-proj-A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8';
-const aws_key = 'AKIAIOSFODNN7EXAMPLE1';
+const secret_key = 'REDACTED-SECRET';
+const aws_key = 'REDACTED-SECRET1';
 
 // Category 8: Financial
 const privateKey = '0xdeadbeef...';

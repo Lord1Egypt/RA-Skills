@@ -1,39 +1,54 @@
-## Description: <br>
-Get live sports betting odds and compare lines across sportsbooks. Supports NFL, NBA, MLB, NHL, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get live sports betting odds and compare lines across sportsbooks. Supports NFL, NBA, MLB, NHL, and more.
 
-## Publisher: <br>
-[ianalloway](https://clawhub.ai/user/ianalloway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianalloway](https://clawhub.ai/user/ianalloway)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to fetch live sports odds, compare moneylines, spreads, and totals across sportsbooks, and check API usage for The Odds API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user-provided The Odds API key to make external API requests. <br>
-Mitigation: Provide only the needed ODDS_API_KEY, avoid sharing unrelated secrets with the agent, and review commands before execution. <br>
-Risk: Live odds requests can consume API quota and may return changing market data. <br>
-Mitigation: Monitor request usage, cache responses when appropriate, and verify odds against an authoritative source before making business or betting decisions. <br>
+## Use Case:
 
+Sports fans, analysts, and developers use the skill to retrieve current odds for supported sports and compare moneyline, spread, and totals markets across sportsbooks.
 
-## Reference(s): <br>
-- [The Odds API](https://the-odds-api.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and an ODDS_API_KEY environment variable; commands call The Odds API and may consume account quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The API key is included in request URLs and could appear in shared logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use your own Odds API key and keep expanded request URLs out of shared logs.
+
+Risk: Repeated requests can consume the API request allowance.
+
+Mitigation: Cache responses and monitor the API usage headers.
+
+## Reference(s):
+
+- [The Odds API](https://the-odds-api.com/)
+- [sports-odds on ClawHub](https://clawhub.ai/ianalloway/skills/sports-odds)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands]
+
+**Output Format:** [Sports odds data and cross-book comparisons as JSON or concise text, with shell command examples in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live results depend on the selected sport, region, market, and API availability.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

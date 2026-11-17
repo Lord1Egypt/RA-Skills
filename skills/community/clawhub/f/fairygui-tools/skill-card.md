@@ -1,40 +1,53 @@
-## Description: <br>
-fairygui-tools helps agents analyze FairyGUI projects, create UI mockup images and white-box XML prototypes from screenshots or natural language, and produce package structures that can be imported into the FairyGUI editor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze FairyGUI projects and UI screenshots, create HTML/CSS mockup screenshots, generate importable FairyGUI graybox XML packages, and validate generated XML.
 
-## Publisher: <br>
-[slinkz](https://clawhub.ai/user/slinkz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slinkz](https://clawhub.ai/user/slinkz)
 
-## Use Case: <br>
-Developers and UI designers use this skill to analyze FairyGUI UI structures, discuss XML layouts, generate prototype imagery, and produce validated white-box FairyGUI project files for editor import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated FairyGUI XML or UI mockups may not match the intended design or local project conventions. <br>
-Mitigation: Review generated XML and images before importing them into FairyGUI, and run the bundled validator on a dedicated output directory. <br>
-Risk: The full workflow may run local file generation, the bundled Python validator, and may require Puppeteer. <br>
-Mitigation: Install and use the skill only in an environment where local file creation and validator execution are expected. <br>
+## Use Case:
 
+Developers and technical UI designers use this skill to analyze FairyGUI UI structures, produce prototype visuals, generate complete FairyGUI graybox XML packages, and validate package/component XML before editor import.
 
-## Reference(s): <br>
-- [FairyGUI XML Specification](artifact/references/fairygui-xml-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with XML, HTML/CSS, Python command snippets, and generated file-tree descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local HTML/CSS mockups, screenshot images, FairyGUI XML package files, and validator output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata) <br>
+Risk: Generated XML or prototype files may be written to local project paths and may not match production UI expectations without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated XML and local files before importing them into production FairyGUI projects.
+
+Risk: The workflow can run a local validator or screenshot tool on paths supplied by the user.
+
+Mitigation: Run validation and screenshot steps only on intended local directories and inspect outputs before use.
+
+## Reference(s):
+
+- [FairyGUI XML Specification](references/fairygui-xml-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTML/CSS, XML, and shell command snippets; may also produce local files for mockups and FairyGUI packages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local review and validation before importing generated XML into FairyGUI projects.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

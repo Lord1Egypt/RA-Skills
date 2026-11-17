@@ -1,41 +1,50 @@
-## Description: <br>
-NoPUA Lite gives agents a compact, Daoist-inspired troubleshooting posture that encourages persistence, initiative, verification, and responsible handoff without fear-based motivation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NoPUA Lite is a compact markdown coaching skill that encourages AI agents to persist, investigate, verify, and hand off responsibly when tasks become difficult.
 
-## Publisher: <br>
-[wuji-labs](https://clawhub.ai/user/wuji-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuji-labs](https://clawhub.ai/user/wuji-labs)
 
-## Use Case: <br>
-Agents and their users use this skill to keep troubleshooting work persistent and evidence-driven across task types, especially after repeated failed attempts or when the agent is about to stop prematurely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages agents to investigate before asking, which can increase autonomy in sensitive, destructive, account, or policy-bound work. <br>
-Mitigation: Keep normal permission prompts and confirmation requirements in place for sensitive files, destructive operations, accounts, and policy-bound tasks. <br>
-Risk: Because the skill applies broadly across task types, an agent may spend too long pursuing alternate approaches after repeated failures. <br>
-Mitigation: Use the skill's responsible handoff guidance after repeated failed attempts, including a concise record of what was verified, eliminated, and recommended next. <br>
+## Use Case:
 
+Developers and agent users use this skill to guide an AI assistant toward more persistent, proactive, and evidence-based task completion across general workflows.
 
-## Reference(s): <br>
-- [NoPUA Lite on ClawHub](https://clawhub.ai/wuji-labs/nopua-lite) <br>
-- [Project homepage](https://github.com/wuji-labs/nopua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Task-dependent agent responses, often Markdown with code blocks or shell commands when the user task requires them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is broad in scope and primarily changes agent behavior; it does not install code or request credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill encourages the agent to investigate and try alternatives before asking, which may exceed intended scope on tightly scoped or sensitive tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State explicit boundaries, allowed tools, and stop conditions in the task request.
+
+## Reference(s):
+
+- [NoPUA Lite on ClawHub](https://clawhub.ai/wuji-labs/skills/nopua-lite)
+- [NoPUA homepage](https://github.com/wuji-labs/nopua)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only coaching guidance with no code, persistence, credential access, or hidden execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

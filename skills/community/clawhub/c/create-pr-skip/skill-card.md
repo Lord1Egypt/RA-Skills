@@ -1,39 +1,52 @@
-## Description: <br>
-Creates a pull request with a standardized description template based on the current branch changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+create a pull request with standardized description template
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to gather branch evidence, draft a conventional pull request title and body, create the pull request with GitHub CLI, and apply suitable labels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Repository-derived branch, commit, or diff text may be interpolated into generated shell commands.
+
+Mitigation: Review the generated PR title, body, and exact GitHub CLI command before execution, especially for untrusted branches or external contributions.
+
+Risk: Generated PR content may include incorrect summaries, unresolved placeholders, or unsuitable labels.
+
+Mitigation: Use the skill's branch, evidence, template, and create gates; remove empty optional sections and confirm labels before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect branch changes, summarize the work, draft a conventional pull request title and body, create the pull request with the GitHub CLI, and apply appropriate labels. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may place sensitive or inaccurate repository details into a pull request title, body, labels, or issue references. <br>
-Mitigation: Review the generated PR title, body, labels, and related issue references before relying on them, especially for private repositories or sensitive changes. <br>
-Risk: A pull request could be created from incomplete branch evidence if the branch, evidence, template, or create gates are skipped. <br>
-Mitigation: Run the gates in order and only report a pull request as created after gh returns a PR URL, number, or identifier. <br>
+**Output Format:** [Markdown PR description with inline shell commands and checklist items]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces a PR title, PR body, suggested labels, and GitHub CLI commands for review and execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown PR title and body text with GitHub CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or edit a GitHub pull request through existing gh authentication after the skill's gates pass.] <br>
+1.0.2 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

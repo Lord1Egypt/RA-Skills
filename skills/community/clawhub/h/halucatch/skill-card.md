@@ -1,42 +1,55 @@
-## Description: <br>
-HaluCatch audits AI skill packages for execution reliability, reproducibility, business-rule clarity, and interpretation guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates AI Skill execution reliability across data pipeline integrity, code risk, business logic ambiguity, interpretation guardrails, and reportable complexity signals.
 
-## Publisher: <br>
-[codermoray](https://clawhub.ai/user/codermoray) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codermoray](https://clawhub.ai/user/codermoray)
 
-## Use Case: <br>
-Developers, skill authors, and engineering reviewers use HaluCatch to scan a target Skill directory, classify its reliability profile, and produce review reports with fix guidance before release or reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recursively inspects the selected folder and writes local markdown reports, so broad paths may include unrelated or sensitive files. <br>
-Mitigation: Run it only on an intentional Skill directory, avoid home, root, secrets, and broad project folders unless that scan is intended, and review generated reports before sharing. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit an AI Skill folder before deployment or sharing, checking whether agent execution is reproducible, trustworthy, and supported by clear rules and guardrails.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/codermoray/skills/halucatch) <br>
-- [HaluCatch README](README.md) <br>
-- [HaluCatch FAQ](FAQ.md) <br>
-- [HaluCatch Online Site](https://codermoray.github.io/HaluCatch/) <br>
-- [HaluCatch Decision Flowchart](https://codermoray.github.io/HaluCatch/decision-flowchart.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional inline shell commands and fix guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local report files and can run validate-only scans for a selected Skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.7 (source: frontmatter and server release evidence) <br>
+Risk: Filesystem scanning may reach content the operator did not intend to include, especially when target folders contain symlinks or unexpected nested directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only against trusted or pre-checked directories, avoid targets with symlinks to sensitive files, and use a sandbox when auditing untrusted skills.
+
+Risk: Report output can be written outside the target folder when an output directory is specified.
+
+Mitigation: Confirm the target path and output directory before execution, and keep report output inside the intended workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codermoray/skills/halucatch)
+- [HaluCatch Homepage](https://github.com/CoderMoray/HaluCatch)
+- [Publisher Profile](https://clawhub.ai/user/codermoray)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown reports and terminal text generated from local Python execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes professional, standard, and AI action report files to a reports directory unless an output directory is specified.]
+
+## Skill Version(s):
+
+1.8.8 (source: frontmatter, manifest.json, __init__.py, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

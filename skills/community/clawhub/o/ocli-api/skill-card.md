@@ -1,44 +1,55 @@
-## Description: <br>
-Turn any OpenAPI or Swagger API into CLI commands, search endpoints with BM25, check parameters, and execute API calls without an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any OpenAPI/Swagger API into CLI commands and call them. Search endpoints with BM25, check parameters, execute - no MCP server needed.
 
-## Publisher: <br>
-[vakovalskii](https://clawhub.ai/user/vakovalskii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vakovalskii](https://clawhub.ai/user/vakovalskii)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure ocli profiles, search OpenAPI or Swagger endpoints, inspect command parameters, and execute API calls from shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authenticated control over arbitrary APIs configured in ocli profiles. <br>
-Mitigation: Use least-privilege tokens, prefer test or read-only profiles for exploration, and scope profiles to the APIs the agent is intended to use. <br>
-Risk: Untrusted OpenAPI specs or base URLs can steer the agent toward unsafe or unintended API calls. <br>
-Mitigation: Use trusted OpenAPI specs and base URLs, and refresh profiles only from sources the operator has reviewed. <br>
-Risk: Commands that create, update, delete, publish, or otherwise change remote data can have real side effects. <br>
-Mitigation: Require explicit human approval before state-changing API commands are executed. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover, inspect, and call REST API endpoints from OpenAPI or Swagger specifications through the ocli command-line tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vakovalskii/ocli-api) <br>
-- [Publisher profile](https://clawhub.ai/user/vakovalskii) <br>
-- [openapi-to-cli project documentation](https://github.com/EvilFreelancer/openapi-to-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ocli binary and trusted OpenAPI or Swagger specs; API effects depend on configured profiles and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The skill enables broad authenticated API calls from an agent through shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted OpenAPI specifications, least-privilege or read-only tokens where possible, and review commands before write or delete operations.
+
+Risk: The setup path uses an unpinned global npm install.
+
+Mitigation: Consider pinning or locally installing the npm package for controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vakovalskii/skills/ocli-api)
+- [openapi-to-cli project](https://github.com/EvilFreelancer/openapi-to-cli)
+- [ocli-api skill source referenced by issue draft](https://github.com/EvilFreelancer/openapi-to-cli/tree/main/skills/ocli-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON response handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ocli binary and user-provided OpenAPI or Swagger specifications and API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

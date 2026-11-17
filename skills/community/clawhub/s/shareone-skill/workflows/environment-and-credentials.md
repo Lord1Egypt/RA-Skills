@@ -31,7 +31,9 @@ node scripts/ensure_credentials.js --create-guest
 两个命令都会自动完成保存、复查和核对，按输出处理：
 
 - `READY`：继续原操作。
-- `GUEST_KEY_CREATED:<api_key>`：**阻塞性用户通知**。分隔线之后是需要原样转发给用户的完整通知文本（含临时 API Key、绑定账号链接和保存提醒）。必须先把该通知发给用户，才能继续原任务的任何上传、下载、评论处理命令；即使 key 已自动保存也不能省略。
+- `GUEST_KEY_CREATED:<api_key>`：**阻塞性用户通知**。分隔线之后是需要原样转发给用户的完整通知文本（含临时 API Key、绑定账号链接和保存提醒）。必须先把该通知发给用户，才能继续原任务的任何上传、下载、评论处理命令；即使 key 已自动保存也不能省略。转发完通知后，追加一句引导：
+  > 如果您希望绑定邮箱以便后续在网站管理文件，请告诉我您的邮箱地址，我可以帮您完成绑定（API Key 不变）。
+  这只是轻提示，不阻塞后续操作。如果用户回复了邮箱，按 `workflows/bind-account.md` 执行绑定流程。
 - `NOTE:SUDOWORK_FALLBACK_KEY_SAVED`：附加信息，表示 key 保存到了 skill 安装目录下的本地 fallback 凭证（`.shareone_credentials`），不是 Sudowork Secret Store。脚本输出的说明文字一并转发给用户即可。
 
 ## 3. 后续命令规则
@@ -39,7 +41,7 @@ node scripts/ensure_credentials.js --create-guest
 - `MODE:sudowork`：后续所有命令**不要传 `--api-key`**，凭证由 Auth Proxy 自动注入。
 - `MODE:sudowork_fallback` / `MODE:direct`：脚本会自动读取环境变量 `SHAREONE_API_KEY` 或本地凭证文件，**无需显式传 `--api-key`**；仅当用户临时指定其他 key 时才传。
 - 所有非 Sudowork secrets 的本地凭据都只读写 ShareOne skill 安装目录下的 `.shareone_credentials`，不读写用户 home。
-- 如果后续操作中服务返回 401（脚本输出 `ERROR:AUTH_FAILED`），提示用户“API Key 无效或权限不足”。
+- 后续操作按 `ERROR_JSON.error_code` 和 `hint` 判断原因。`INVALID_API_KEY` 才表示账号凭据无效，应核对当前账号的 Key；`PASSWORD_REQUIRED` / `EMAIL_GATE_REQUIRED` 是分享访问门禁，`COMMENTS_DISABLED` 是评论开关已关闭，均保留当前账号 Key。不要为这些访问限制创建新身份或自动开启评论。
 
 ## 4. 错误处理
 

@@ -1,40 +1,53 @@
-## Description: <br>
-Atomic node skill to draft an email via Gmail using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to draft an email via Gmail using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agents use this skill to create Gmail draft messages through a local gog CLI while leaving review and sending to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may be created through an untrusted gog CLI or in a Gmail account the user did not intend to use. <br>
-Mitigation: Install only if the local gog CLI is trusted and connected to the intended Gmail account. <br>
-Risk: Email recipients or draft content may include sensitive or incorrect information. <br>
-Mitigation: Review recipients and message content before asking an agent to create drafts, especially for sensitive or confidential material. <br>
+## Use Case:
 
+Agent users and operators use this skill to prepare Gmail draft messages for review without sending them. It is suited to workflows where an agent should create a draft email through the gog CLI and report whether draft creation succeeded.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-draft-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text] <br>
-**Output Format:** [Shell command that returns a JSON confirmation and a short text status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates Gmail drafts through the local gog CLI; it does not send email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: Shell-based execution of generated Gmail draft commands could mishandle attacker-controlled recipient, subject, or body values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke gog with separate argv arguments, validate recipient addresses, treat subject and body as opaque data, and review generated commands before execution.
+
+Risk: Blind retries after uncertain command results could create duplicate Gmail drafts.
+
+Mitigation: Verify draft creation responses and existing drafts before retrying; stop and report uncertainty when confirmation is ambiguous.
+
+## Reference(s):
+
+- [Gmail Draft Email on ClawHub](https://clawhub.ai/zvirb/skills/gmail-draft-email)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell command and JSON confirmation expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and Gmail access; the workflow retries draft creation up to three times before reporting failure.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

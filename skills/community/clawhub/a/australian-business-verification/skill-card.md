@@ -1,46 +1,61 @@
-## Description: <br>
-Verifies Australian businesses against the official Australian Business Register using an ABN, ACN, or business/entity name and returns registration status, GST status, entity type, location, and trading names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies Australian business registration details against the Australian Business Register using an ABN, ACN, or entity name.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-Agents, developers, finance teams, and compliance reviewers use this skill to validate Australian suppliers, customers, invoices, GST status, and onboarding records against ABR data. It supports due-diligence workflows but should be treated as one verification signal rather than a fraud, payment, or legal determination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live lookups send the configured ABR GUID and the queried ABN, ACN, or business name to abr.business.gov.au. <br>
-Mitigation: Obtain the GUID directly from ABR, store it only as ABR_GUID, and keep it out of chat, logs, and version control. <br>
-Risk: ABR registration and GST status can support due diligence but do not determine fraud risk, payment safety, or legal compliance by themselves. <br>
-Mitigation: Use lookup results alongside invoice review, identity checks, contractual records, and appropriate legal or compliance review before acting. <br>
-Risk: Name searches can return multiple similar businesses, making an incorrect entity match possible. <br>
-Mitigation: Present close matches for user confirmation and run a follow-up ABN lookup before treating one result as verified. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to verify ABN, ACN, entity name, registration status, GST status, entity type, location, and trading names for Australian supplier onboarding, invoice checks, KYC, compliance, and due-diligence workflows.
 
-## Reference(s): <br>
-- [Australian Business Register](https://abr.business.gov.au) <br>
-- [ABR Web Services](https://abr.business.gov.au/Tools/WebServices) <br>
-- [ABR API Reference](reference/api-reference.md) <br>
-- [ABR Entity Types](reference/entity-types.md) <br>
-- [Sample Responses](examples/sample-responses.md) <br>
+### Deployment Geography for Use:
 
+Global, for Australian business registration checks
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Plain-language Markdown summaries with optional shell commands and JSON lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ABR_GUID environment variable for live ABR lookups; local ABN and ACN checksum validation can run without an API call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live lookups send the queried ABN, ACN, or business name to the Australian Business Register.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users what will be queried before lookup when context is sensitive, and avoid submitting unrelated confidential information.
+
+Risk: ABR results verify register status but are not a complete fraud, credit, or due-diligence decision.
+
+Mitigation: Present results as register verification and recommend additional checks for high-value, regulated, or suspicious transactions.
+
+Risk: The ABR GUID is a credential-like setup value that could be exposed if pasted into chat or logs.
+
+Mitigation: Store the GUID only in the ABR_GUID environment variable and do not print, hardcode, or ask the user to paste it into chat.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/australian-business-verification)
+- [ABR Web Services Registration](https://abr.business.gov.au/Tools/WebServices)
+- [ABR JSON API Reference](reference/api-reference.md)
+- [ABR Entity Type Codes](reference/entity-types.md)
+- [Example Responses](examples/sample-responses.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Plain-language summaries, Markdown guidance, inline shell commands, and JSON helper-script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ABR_GUID for live ABR lookups; local ABN and ACN checksum validation can run without a network call.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

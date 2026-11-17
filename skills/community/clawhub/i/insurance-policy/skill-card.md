@@ -1,41 +1,52 @@
-## Description: <br>
-Read, parse, and explain insurance policy documents in plain language. Highlight coverage limits, exclusions, deductibles, and key terms. Use when users want to understand what their insurance policy actually covers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads, parses, and explains insurance policy documents in plain language, highlighting coverage limits, exclusions, deductibles, and key terms.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Consumers, employees, and advisors use this skill to summarize user-supplied insurance policy text and answer coverage questions in plain language before confirming details with an insurer or qualified professional.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share unnecessary personal identifiers from insurance documents.
+
+Mitigation: Ask for only the policy sections needed and encourage users to redact personal identifiers before analysis.
+
+Risk: Plain-language coverage explanations may be incomplete or may not reflect insurer decisions or jurisdiction-specific requirements.
+
+Mitigation: Present outputs as aids for understanding policy language and direct users to confirm coverage or purchase decisions with the insurer or a qualified professional.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to understand insurance policy text, including coverage scope, exclusions, deductibles, premiums, claim limits, waiting periods, and gaps that may leave them underinsured. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Insurance policy explanations can be incomplete or incorrect if policy text is missing, ambiguous, outdated, or jurisdiction-specific. <br>
-Mitigation: Ask users to provide the relevant policy sections and present findings as plain-language guidance that should be confirmed against the official policy or insurer. <br>
-Risk: Health-related insurance questions may overlap with urgent medical decisions. <br>
-Mitigation: Use the skill only for general coverage triage and direct users to professional or emergency care for severe, worsening, unusual, or urgent symptoms. <br>
+**Output Format:** [Plain-language Markdown summaries and answers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/insurance-policy) <br>
-- [Publisher profile](https://clawhub.ai/user/jiwenbing) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured summary and plain-language answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May highlight unusual exclusions, tricky fine print, and potential coverage gaps.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

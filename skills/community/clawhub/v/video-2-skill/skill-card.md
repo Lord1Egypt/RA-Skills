@@ -1,43 +1,58 @@
-## Description: <br>
-Video to Skill Extractor helps agents convert authorized technical tutorial videos into reusable AI workflow skill documentation by extracting transcripts, visual evidence, OCR notes, timelines, principles, and generated skill files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts subtitles, visual frames, OCR notes, timelines, and operational workflows from technical tutorial videos to generate reusable AI agent skill documentation.
 
-## Publisher: <br>
-[jacob210](https://clawhub.ai/user/jacob210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacob210](https://clawhub.ai/user/jacob210)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to analyze authorized technical tutorial videos and turn the extracted methodology into reusable OpenClaw or Codex skill documentation. It is suited for workflows that need transcripts, visual/OCR evidence, timeline summaries, evidence maps, and generated Markdown skills rather than a simple video summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use browser login cookies when downloading videos. <br>
-Mitigation: Require explicit user confirmation before any browser-cookie command and use the skill only for content the user is authorized to access. <br>
-Risk: Downloaded videos, transcripts, frames, and OCR outputs can contain sensitive or private content. <br>
-Mitigation: Avoid sensitive or private videos unless local workspace storage and generated outputs are protected, and do not redistribute video content or full transcripts. <br>
-Risk: Installing media, OCR, ASR, and browser automation dependencies globally can affect the host environment. <br>
-Mitigation: Install and run dependencies in a virtual environment instead of modifying the global Python environment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert technical tutorial videos into executable, reusable agent skills with transcripts, visual notes, OCR evidence, timelines, extracted principles, prompt templates, and validation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacob210/video-2-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/jacob210) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and text files with optional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces video metadata, raw and cleaned transcripts, visual and OCR notes, a timeline, extracted principles, generated skill Markdown, an evidence map, and a debug report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow defaults to using the user's Chrome browser session for video downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to unauthenticated downloads and require explicit user consent before using browser cookies.
+
+Risk: Video-derived subtitles, screen content, OCR text, and frames may be sent to unspecified remote models.
+
+Mitigation: Disclose model providers and transmitted data, redact sensitive screen content, and require consent before remote-model use.
+
+Risk: Generated skills may contain incorrect, misleading, or unsafe operational guidance.
+
+Mitigation: Require human review, security scanning, and validation before installing or using any generated skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacob210/skills/video-2-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/jacob210)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown and JSON files with inline shell commands and structured evidence maps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates video metadata, raw and cleaned transcripts, visual notes, OCR notes, timeline data, extracted principles, a generated skill, an evidence map, and a debug report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Runs a configurable Python bot that paper-trades or live-trades Polymarket BTC 15-minute markets using mid-candle momentum from Binance price data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a configurable Polymarket BTC 15-minute mid-candle trading bot that can paper trade or place live trades based on Binance momentum signals and Simmer/Polymarket market data.
 
-## Publisher: <br>
-[DjDyll](https://clawhub.ai/user/DjDyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-External traders and developers use this skill to configure and run a BTC mid-candle Polymarket trading strategy, starting in paper mode and optionally enabling live automated trades after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make unattended real-money trades when live mode and cron are enabled. <br>
-Mitigation: Run in paper mode first, review results before enabling live mode, and use a dedicated low-balance, revocable API key. <br>
-Risk: Live safeguards can be bypassed with the no-safeguards option. <br>
-Mitigation: Avoid disabling safeguards for live funds and review trade behavior before changing risk controls. <br>
-Risk: Trade details may be sent to a configured Discord webhook. <br>
-Mitigation: Configure a webhook only for trusted endpoints where sharing trade details is acceptable. <br>
-Risk: Expected volume confirmation depends on the configured volume gate. <br>
-Mitigation: Explicitly set the volume threshold if volume confirmation is required for the trading strategy. <br>
+## Use Case:
 
+External traders and agent operators use this skill to configure and run a BTC Up/Down market strategy in paper mode or live mode on Polymarket through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DjDyll/polymarket-btc-midcandle) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Runtime configuration](artifact/clawhub.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with CLI commands and optional JSON automaton status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can place live trades when run with live mode; default usage is paper mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can run unattended live trades with real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run paper mode first, use a dedicated low-limit trading key or account, keep conservative position sizing, and avoid cron scheduling until the strategy is understood.
+
+Risk: The skill relies on high-trust credentials and the simmer-sdk dependency.
+
+Mitigation: Pin and review the simmer-sdk dependency, restrict credential permissions where possible, and rotate credentials if they may have been exposed.
+
+Risk: Startup may fail because max_consecutive_losses is referenced but is not defined in the configuration schema.
+
+Mitigation: Fix or add the missing configuration key and validate startup in paper mode before any live deployment.
+
+Risk: A Discord webhook can send trading notifications to a configured external endpoint.
+
+Mitigation: Configure only a trusted HTTPS webhook destination and treat the webhook URL as a secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djdyll/skills/polymarket-btc-midcandle)
+- [ClawHub publisher profile](https://clawhub.ai/user/djdyll)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Command-line text logs, JSON automaton status, and trading API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and a configured Polymarket agent ID; paper mode is the default and live execution requires --live.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

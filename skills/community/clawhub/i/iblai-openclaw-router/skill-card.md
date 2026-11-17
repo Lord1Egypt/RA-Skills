@@ -1,47 +1,61 @@
-## Description: <br>
-Cost-optimizing model router for OpenClaw that routes each request to a cheaper capable Claude model using weighted scoring, with optional OpenRouter support for OpenAI and Google models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cost-optimizing model router for OpenClaw that routes each request to the cheapest capable Claude model using weighted scoring and supports Anthropic directly or OpenAI and Google models through OpenRouter.
 
-## Publisher: <br>
-[Neuralshift1](https://clawhub.ai/user/Neuralshift1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neuralshift1](https://clawhub.ai/user/neuralshift1)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install and configure a local model-routing proxy for background jobs, subagents, and other workloads where lower-cost model selection is useful. The skill helps route requests across configured model tiers while keeping routing on the user's OpenClaw server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent local system service. <br>
-Mitigation: Review the install script and generated systemd unit before installing or enabling the service. <br>
-Risk: The router handles API keys and may place the selected key in the service environment. <br>
-Mitigation: Confirm which API key will be used and prefer a protected secret file or manual key setup over embedding secrets directly in the unit. <br>
-Risk: Prompt text and routing decisions may be sensitive in operational logs. <br>
-Mitigation: Set ROUTER_LOG=0 for sensitive workloads and review logging behavior before production use. <br>
-Risk: Custom apiBaseUrl values can forward prompts and credentials to an external provider. <br>
-Mitigation: Use only provider URLs that the operator trusts and has approved for the workload. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install and configure a local model-routing proxy for cost-aware LLM selection across cron jobs, subagents, background tasks, and other OpenClaw workloads.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Neuralshift1/iblai-openclaw-router) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [OpenRouter API](https://openrouter.ai/api/v1) <br>
-- [ibl.ai](https://ibl.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation, verification, customization, and uninstall guidance for a local OpenClaw routing proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The installer creates and enables a persistent root-level systemd service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and service unit before execution; prefer a foreground or user-level service when possible and avoid unattended agent installation.
+
+Risk: Provider API keys may be placed in the systemd unit or handled by the installer.
+
+Mitigation: Use explicit credentials for the intended provider, restrict access to service files, and rotate keys if they may have been exposed.
+
+Risk: Request content and routing signals can be exposed through logs or forwarding to configured provider endpoints.
+
+Mitigation: Disable per-request logging for sensitive workloads and use only trusted HTTPS provider endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neuralshift1/skills/iblai-openclaw-router)
+- [Iblai OpenClaw Router README referenced by skill](https://github.com/iblai/iblai-openclaw-router)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [OpenRouter API base referenced by skill](https://openrouter.ai/api/v1)
+- [ClawRouter weighted scoring inspiration referenced by README](https://github.com/BlockRunAI/ClawRouter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to install a localhost router, update OpenClaw model configuration, and verify health and routing stats.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

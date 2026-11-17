@@ -1,40 +1,54 @@
-## Description: <br>
-Help developers manage OpenClaw skills with the ClawHub CLI for publishing, inspecting, installing, updating, syncing, authentication, workdir behavior, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help developers manage OpenClaw skills with the ClawHub CLI. Use when publishing, inspecting, installing, updating, syncing, or troubleshooting ClawHub skills. Also covers auth, workdir behavior, and exact command templates.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-Developers and skill authors use this skill to get exact ClawHub CLI commands and short workflows for managing OpenClaw skills in local workspaces and the ClawHub registry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious because a review helper may default to broad nested review access. <br>
-Mitigation: Install only when the maintainer workflow is trusted; prefer running review helpers without automatic full-access behavior and review generated diffs before use. <br>
+## Use Case:
 
+Developers, skill authors, ClawHub publishers, and OpenClaw users use this skill to install, inspect, update, publish, sync, authenticate, and troubleshoot skills with the ClawHub CLI.
 
-## Reference(s): <br>
-- [ClawHub CLI documentation](https://docs.openclaw.ai/tools/clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/chen-vassili-clawhub-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/cs995279497-byte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command blocks and concise step-by-step instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes exact CLI commands first, followed by short explanations, prerequisites, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Token login examples can expose credentials if users paste or store tokens carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ClawHub tokens as secrets and prefer interactive login when available.
+
+Risk: Bulk update and sync commands can change multiple local or published skills at once.
+
+Mitigation: Review bulk commands before running them and use dry-run workflows where available.
+
+## Reference(s):
+
+- [ClawHub CLI documentation](https://docs.openclaw.ai/tools/clawhub)
+- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/skills/chen-vassili-clawhub-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise command-first guidance for ClawHub CLI workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

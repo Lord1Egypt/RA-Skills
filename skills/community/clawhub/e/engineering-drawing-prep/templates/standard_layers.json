@@ -1,0 +1,50 @@
+[
+  {
+    "name": "0",
+    "color": 7,
+    "linetype": "Continuous",
+    "description": "Default layer for new geometry"
+  },
+  {
+    "name": "DEFPOINTS",
+    "color": 7,
+    "linetype": "Continuous",
+    "description": "Definition points for dimensions (non-plot)"
+  },
+  {
+    "name": "STANDARD",
+    "color": 7,
+    "linetype": "Continuous",
+    "description": "Standard geometry layer"
+  },
+  {
+    "name": "TEXT",
+    "color": 7,
+    "linetype": "Continuous",
+    "description": "General annotation and text"
+  },
+  {
+    "name": "DIM",
+    "color": 3,
+    "linetype": "Continuous",
+    "description": "Dimensions and leaders"
+  },
+  {
+    "name": "ANNO",
+    "color": 2,
+    "linetype": "Continuous",
+    "description": "Annotations, labels, tags"
+  },
+  {
+    "name": "HATCH",
+    "color": 8,
+    "linetype": "Continuous",
+    "description": "Hatching and fills"
+  },
+  {
+    "name": "BORDER",
+    "color": 1,
+    "linetype": "Continuous",
+    "description": "Sheet borders and title block geometry"
+  }
+]

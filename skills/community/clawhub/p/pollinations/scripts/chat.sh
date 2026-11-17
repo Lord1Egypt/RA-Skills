@@ -109,13 +109,13 @@ if [[ -n "$SEED" ]]; then
   BODY=$(echo "$BODY" | jq -c --arg v "$SEED" '. + {seed: ($v | tonumber)}')
 fi
 if [[ -n "$JSON_MODE" ]]; then
-  BODY=$(echo "$BODY" | jq -c '. + {jsonMode: true}')
+  BODY=$(echo "$BODY" | jq -c '. + {response_format: {type: "json_object"}}')
 fi
 if [[ -n "$REASONING_EFFORT" ]]; then
   BODY=$(echo "$BODY" | jq -c --arg v "$REASONING_EFFORT" '. + {reasoning_effort: $v}')
 fi
 if [[ -n "$THINKING_BUDGET" ]]; then
-  BODY=$(echo "$BODY" | jq -c --arg v "$THINKING_BUDGET" '. + {thinking_budget: ($v | tonumber)}')
+  BODY=$(echo "$BODY" | jq -c --arg v "$THINKING_BUDGET" '. + {thinking: {type: "enabled", budget_tokens: ($v | tonumber)}}')
 fi
 
 # Make request

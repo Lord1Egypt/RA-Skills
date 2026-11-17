@@ -1,41 +1,52 @@
-## Description: <br>
-Professional JMeter & LoadRunner performance testing career roadmap platform that generates personalized learning paths for aspiring performance engineers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional JMeter & LoadRunner performance testing career roadmap platform that generates personalized learning paths for aspiring performance engineers.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, training platforms, and career-development systems use this skill to generate personalized JMeter and LoadRunner learning roadmaps from performance-testing assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment submissions may include personal career details or confidential employer, project, or account information sent to an external API. <br>
-Mitigation: Use anonymous or short-lived identifiers and omit confidential employer, project, account, and sensitive personal information from assessment fields. <br>
+## Use Case:
 
+Developers, training platform teams, learning management system owners, and career development applications use this skill to generate structured JMeter and LoadRunner learning roadmaps from assessment data. The generated roadmap can include learning phases, topics, estimated hours, certification suggestions, resource estimates, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/performance-tester) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
-- [Performance Tester API route](https://api.mkkpro.com/career/performance-tester) <br>
-- [API docs](https://api.mkkpro.com:8065/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [JSON roadmap with learning phases, certification recommendations, resource estimates, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires assessment data with sessionId and timestamp; userId may be null for anonymous requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Roadmap requests can contain user identifiers, career goals, experience details, and skill assessments sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize personal data, avoid real names, unnecessary user IDs, sensitive employment details, and internal training data unless the user accepts the provider's data handling terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/performance-tester)
+- [OpenAPI specification](artifact/openapi.json)
+- [API Docs](https://api.mkkpro.com:8065/docs)
+- [Kong Route](https://api.mkkpro.com/career/performance-tester)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON]
+
+**Output Format:** [JSON roadmap response with concise Markdown explanation when summarized by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated roadmaps may include phases, certifications, resource estimates, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

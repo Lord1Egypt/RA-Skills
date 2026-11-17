@@ -1,41 +1,54 @@
-## Description: <br>
-Founder Content helps solo founders and indie hackers create and repurpose platform-native social content for Twitter/X, LinkedIn, and Xiaohongshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Founder Content helps solo founders and indie hackers research, adapt, and write platform-native social content for Twitter/X, LinkedIn, and Xiaohongshu.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External founders, indie hackers, and content operators use this skill to turn product updates, long-form writing, and founder stories into social posts, threads, platform adaptations, and content calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may expose sensitive product, customer, commit, PR, release, or unreleased roadmap details when those are used as source material. <br>
-Mitigation: Review and redact source material and generated drafts before publishing, especially for unreleased work or customer stories. <br>
-Risk: Broad content defaults can produce off-brand, inaccurate, or platform-mismatched posts if the target audience, language, or metrics are unclear. <br>
-Mitigation: Confirm platform, audience, language, and claims before generation, then verify metrics and edit drafts for brand voice and accuracy. <br>
+## Use Case:
 
+Solo founders, indie hackers, and content-focused operators use this skill to turn product updates, articles, and founder stories into platform-specific posts, threads, repurposing plans, and distribution schedules.
 
-## Reference(s): <br>
-- [Founder Content on ClawHub](https://clawhub.ai/PHY041/founder-content) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with platform-specific post drafts, analysis notes, and distribution schedules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Twitter/X, LinkedIn, and Xiaohongshu variants and should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Generated content may follow broad founder-content defaults that do not match the user's intended platform, language, or tone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target platform, language, tone, and audience before generation.
+
+Risk: Draft posts may misstate product updates, metrics, or founder experiences if the source context is incomplete.
+
+Mitigation: Review generated posts against the underlying release, git, PR, or article context before publishing.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [Founder Content on ClawHub](https://clawhub.ai/phy041/skills/founder-content)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with platform-specific post drafts, analysis notes, and distribution schedules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multilingual social copy for Twitter/X, LinkedIn, and Xiaohongshu.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

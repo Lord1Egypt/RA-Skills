@@ -1,39 +1,53 @@
-## Description: <br>
-Book flooring services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flooring services through Lokuli MCP for users who need to find flooring providers, check availability, and create bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find flooring providers through Lokuli, check availability, and create a booking through the Lokuli MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send customer contact details to an external booking provider. <br>
-Mitigation: Install only if using Lokuli as the external provider is acceptable, and require the agent to show the name, email, and phone number before submission. <br>
-Risk: The skill can create a real flooring-service booking without clear confirmation safeguards in the artifact. <br>
-Mitigation: Require explicit user approval after showing the provider, service, date, and time before allowing the booking request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for flooring services through Lokuli, check appointment availability, and create a booking after confirming the provider, time slot, and contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP over SSE and JSON-RPC to search for flooring services, check availability, and create bookings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send booking contact details, including name, email, and phone number, to an external Lokuli service.
+
+Mitigation: Confirm the provider, time slot, and user consent before creating a booking or sharing contact details.
+
+Risk: Booking creation may establish a real-world appointment if used without final confirmation.
+
+Mitigation: Use search and availability checks first, then request explicit user confirmation before calling create_booking.
+
+## Reference(s):
+
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-flooring)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

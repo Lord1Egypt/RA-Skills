@@ -1,0 +1,33 @@
+part: LPC55S69
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: LPC MCU (Arm Cortex-M33)
+main_page: https://www.nxp.com/products/LPC55S6x
+datasheet_path_expected: ../../embedded_dev/nxp/datasheet/LPC55S69_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  flash: 640 KB
+  cores: ARM Cortex-M33
+  clock_mhz_max: 150
+  ram: 320 KB
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 4 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- LPC5500 series, dual Cortex-M33, TrustZone, CASPER crypto accelerator.
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 4/4 spec fields matched
+  (100%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:20:02+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

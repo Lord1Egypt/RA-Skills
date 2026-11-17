@@ -1,48 +1,66 @@
-## Description: <br>
-Query and annotate gene variants from ClinVar and dbSNP databases, returning clinical significance, ACMG classification, allele frequency, and disease association information. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Variant Annotation queries and interprets genetic variants from ClinVar and dbSNP, returning clinical significance, ACMG-style classification, population frequencies, disease associations, and functional predictions.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and bioinformatics users can use this skill to query individual or batch genetic variants and summarize public database annotations for research or educational review. It is not a diagnostic tool and clinical interpretation should be reviewed by qualified genetics professionals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Queried variant data may be sent to NCBI services during annotation. <br>
-Mitigation: Use only data appropriate for external API queries, avoid broad or sensitive input files, and run the skill in a sandboxed workspace. <br>
-Risk: The skill presents simplified clinical classifications and interpretation summaries that could be mistaken for diagnostic guidance. <br>
-Mitigation: Use outputs for research or education only and have any clinical interpretation reviewed by qualified genetics professionals using current authoritative sources. <br>
-Risk: Batch mode and configurable output paths can write annotation results to local files. <br>
-Mitigation: Choose output paths carefully, keep generated files in the intended workspace, and avoid storing sensitive variant data unnecessarily. <br>
+## Use Case:
 
+Developers, bioinformatics analysts, and research users use this skill to query rsID, HGVS, VCF-style, or coordinate inputs and summarize variant significance, population data, disease associations, and ACMG-style evidence. Outputs require expert review and are not diagnostic advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AIPOCH-AI/variant-annotation) <br>
-- [ACMG/AMP Guidelines for Variant Classification](references/acmg-guidelines.md) <br>
-- [ClinVar Database Guide](references/clinvar-guide.md) <br>
-- [HGVS Nomenclature Guide](references/hgvs-nomenclature.md) <br>
-- [Example Variants for Testing](references/example-variants.md) <br>
-- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) <br>
-- [HGVS Variant Nomenclature](https://varnomen.hgvs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files, guidance] <br>
-**Output Format:** [JSON or plain text variant annotation summaries; CLI output can also be written to a JSON file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClinVar clinical significance, ACMG criteria and score, disease associations, population frequencies, HGVS identifiers, and interpretation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Variant identifiers may be sent to NCBI services during annotation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid patient-identifying data, use the minimum necessary variant information, and only provide an NCBI API key when needed.
+
+Risk: Algorithmic ACMG-style classifications can overstate pathogenicity, especially when population data is missing.
+
+Mitigation: Treat classifications as research support only and require review by qualified genetics professionals before clinical use.
+
+Risk: Outputs may be persisted wherever the user chooses to write result files.
+
+Mitigation: Run in an isolated environment and write results only to approved storage locations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/variant-annotation)
+- [ACMG/AMP Guidelines for Variant Classification](references/acmg-guidelines.md)
+- [ClinVar Database Guide](references/clinvar-guide.md)
+- [HGVS Nomenclature Guide](references/hgvs-nomenclature.md)
+- [Example Variants for Testing](references/example-variants.md)
+- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
+- [HGVS Variant Nomenclature](https://varnomen.hgvs.org/)
+- [Mutalyzer](https://mutalyzer.nl/)
+- [VariantValidator](https://variantvalidator.org/)
+- [ClinGen Allele Registry](https://reg.clinicalgenome.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON or plain-text variant annotation outputs and optional Python or shell snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query external variant databases and write user-selected result files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

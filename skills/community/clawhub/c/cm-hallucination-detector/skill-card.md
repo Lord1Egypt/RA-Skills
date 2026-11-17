@@ -1,40 +1,52 @@
-## Description: <br>
-Detect and flag hallucinations in LLM outputs by cross-referencing claims against source documents, code, and verifiable data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and flag hallucinations in LLM outputs by cross-referencing claims against source documents, code, and verifiable data.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, AI application teams, and content reviewers use this skill to check LLM-generated documentation, summaries, release notes, API references, code comments, and RAG outputs against available source material.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read project documents, source files, and git metadata while checking factual claims.
+
+Mitigation: Use it only in repositories and document sets the agent is authorized to review, and avoid providing sensitive material that is not needed for the accuracy check.
+
+Risk: Incomplete source material can leave claims uncertain or unverifiable.
+
+Mitigation: Require human review for uncertain or unverifiable findings before publishing or relying on generated content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, AI content reviewers, and RAG application teams use this skill to check AI-generated documentation, summaries, API references, and release notes against source material before publication or merge. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require reading workspace documents and source code to verify claims, which can expose sensitive project material to the active agent session. <br>
-Mitigation: Run the skill in a scoped project and provide only the source material needed for the review. <br>
-Risk: Findings can be limited by incomplete or ambiguous source evidence, especially for unverifiable or high-impact claims. <br>
-Mitigation: Have a human reviewer confirm uncertain, security-related, legal, performance, or release-critical findings before publication or merge. <br>
+**Output Format:** [Markdown analysis report with claim classifications, confidence scores, evidence notes, and recommendations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/cm-hallucination-detector) <br>
+**Other Properties Related to Output:** [May include suggested verification commands and human-review notes for uncertain or unverifiable claims.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis report with verification findings, confidence scores, issue classifications, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested local commands for checking claims against source code, documentation, and repository history.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Submits Dataify Builder tasks that collect Amazon product reviews by URL and returns the created task ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Amazon product reviews from known product URLs through Dataify Builder and returns the final collection results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Amazon product review collection jobs through Dataify Builder, confirm the task parameters, and receive the resulting task_id for follow-up in Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends an Amazon product URL and an API-authenticated request to Dataify. <br>
-Mitigation: Review the submitted URL before execution and use the skill only when sending the request to Dataify is acceptable. <br>
-Risk: DATAIFY_API_TOKEN is a credential that may be exposed if stored or shared carelessly. <br>
-Mitigation: Store the token only in trusted environments, avoid sharing sessions with untrusted users, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify jobs that collect Amazon product review data by product URL and retrieve the resulting JSON.
 
-## Reference(s): <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Builder endpoint](https://scraperapi.dataify.com/builder) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-amazon-comment) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and JSON task submission summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script prints task_id, url, file_name, dashboard_url, and message after a successful Dataify Builder submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill uses a Dataify API token for external jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the Dataify publisher and service are trusted, keep DATAIFY_API_TOKEN in the environment, and never expose the token in chat or logs.
+
+Risk: The skill depends on a sibling dataify-task-operations runtime for final-result retrieval.
+
+Mitigation: Review and trust that runtime before use, and preserve the returned task_id so work can resume without resubmitting a paid job.
+
+Risk: The promised Amazon-only URL scope is not fully enforced by the artifact.
+
+Mitigation: Require known Amazon product URLs and confirm the target URL before submission until URL validation is tightened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-amazon-comment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a task_id for resume or no-wait behavior; by default it waits for and returns the final collected JSON result.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

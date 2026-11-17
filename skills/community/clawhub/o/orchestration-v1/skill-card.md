@@ -1,45 +1,56 @@
-## Description: <br>
-Orchestrate multi-agent teams with defined roles, task lifecycles, handoff protocols, review workflows, async communication, and artifact sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multi-agent teams with defined roles, task lifecycles, handoff protocols, review workflows, and artifact-sharing conventions.
 
-## Publisher: <br>
-[zhangjun20250818-cyber](https://clawhub.ai/user/zhangjun20250818-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangjun20250818-cyber](https://clawhub.ai/user/zhangjun20250818-cyber)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate sustained multi-agent workflows, define agent roles, route tasks through review, and manage handoffs through shared artifacts and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes under-scoped instructions for sending messages in an external chat and taking a post-send snapshot. <br>
-Mitigation: Require human confirmation of the exact recipient or chat, exact message content, authorization to send, and retention or deletion handling for any snapshot before external messages are sent. <br>
-Risk: The Justin/Physical Strike section can create operational risk if treated as a general execution protocol. <br>
-Mitigation: Tightly control or remove that section before installation when the deployment does not need a human-operated external messaging workflow. <br>
+## Use Case:
 
+Developers and agent operators use this skill to define sustained multi-agent workflows, route tasks across specialized agents, manage handoffs, and add review gates before work is accepted.
 
-## Reference(s): <br>
-- [Team Setup](references/team-setup.md) <br>
-- [Task Lifecycle](references/task-lifecycle.md) <br>
-- [Communication](references/communication.md) <br>
-- [Patterns](references/patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangjun20250818-cyber/orchestration-v1) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhangjun20250818-cyber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with templates, checklists, and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces process guidance for agent roles, task state, handoffs, reviews, and artifact conventions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security verdict is suspicious because the skill includes mismatched instructions for sending and confirming a browser chat message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the Physical Strike (Justin Protocol) before installation and require explicit, task-specific user confirmation of the destination and exact content before external messages, browser submissions, or screenshots.
+
+Risk: Recurring operations guidance can create unintended repeated actions if schedules, triggers, or limits are ambiguous.
+
+Mitigation: Configure recurring operations with clear times, triggers, scope, and stop conditions before use.
+
+## Reference(s):
+
+- [Team Setup](references/team-setup.md)
+- [Task Lifecycle](references/task-lifecycle.md)
+- [Communication](references/communication.md)
+- [Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown guidance with templates, task-state examples, and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include role definitions, handoff instructions, task lifecycle rules, review protocols, and artifact path conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-A professional recruitment workflow assistant that evaluates resumes against dynamic requirements and AI proficiency, provides critical pros and cons analysis, and performs Shenzhen-specific market salary benchmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional recruitment workflow assistant that evaluates resumes against dynamic requirements and AI proficiency, provides Pros/Cons analysis, and performs Shenzhen-specific market salary benchmarks.
 
-## Publisher: <br>
-[gakkiismywife](https://clawhub.ai/user/gakkiismywife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gakkiismywife](https://clawhub.ai/user/gakkiismywife)
 
-## Use Case: <br>
-Recruiters and hiring teams use this skill to screen technical candidates, compare resume evidence against role-specific criteria, prepare follow-up interview questions, and summarize interview notes. The workflow is tailored for Go and PHP hiring with Shenzhen salary benchmarking. <br>
-
-### Deployment Geography for Use: <br>
-Global; salary benchmark guidance is Shenzhen-specific. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive candidate data may be exposed through public Feishu links or recruiter messages. <br>
-Mitigation: Use only recruiter-approved sharing settings, confirm exactly what candidate data will be shared and with whom, and avoid public links unless explicitly approved. <br>
-Risk: Unsafe shell-based file processing and PDF conversion can be risky with untrusted filenames or files. <br>
-Mitigation: Use trusted local files, avoid untrusted filenames, and run PDF conversion in a sandboxed environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Recruiter Assistant on ClawHub](https://clawhub.ai/gakkiismywife/recruiter-assistant) <br>
-- [Hiring Criteria](references/hiring-criteria.md) <br>
-- [Interview Report Template](assets/report-template.md) <br>
+## Use Case:
 
+Recruiters and hiring teams use this skill to screen technical candidates, compare resumes to role-specific criteria, benchmark expected salary against Shenzhen market ranges, generate follow-up interview questions, and summarize interview notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text reports with command examples and recruiter-facing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce candidate evaluations, interview questions, interview summaries, HR notifications, and Feishu document links when the host agent has those tools available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence) <br>
+Global; hiring benchmarks and salary guidance are Shenzhen-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive candidate data could be exposed through public document links, HR notifications, or uncontrolled external sharing.
+
+Mitigation: Enable Feishu or messaging tools only after document visibility, recipients, candidate consent, and candidate-data handling rules are explicitly controlled.
+
+Risk: Shell-based command execution with user-controlled file paths can create unsafe execution paths.
+
+Mitigation: Use only trusted local files, avoid attacker-supplied filenames, and replace shell-based execSync usage with argument-safe process execution before production use.
+
+Risk: Resume or interview-note content can be mixed with agent instructions and influence generated hiring outputs.
+
+Mitigation: Keep untrusted resume text separate from agent instructions and review generated evaluations before acting on hiring recommendations.
+
+## Reference(s):
+
+- [Stricter Hiring Criteria](references/hiring-criteria.md)
+- [Interview Report Template](assets/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and command-line text for resume evaluations, interview questions, interview summaries, HR notifications, and Feishu document creation guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include candidate scores, Pros/Cons, salary-fit analysis, interview questions, HR summaries, and public document links when external sharing tools are enabled.]
+
+## Skill Version(s):
+
+1.4.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

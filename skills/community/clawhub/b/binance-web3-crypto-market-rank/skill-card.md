@@ -1,40 +1,58 @@
-## Description: <br>
-Provides Binance Web3 crypto market leaderboards for social hype, trending and searched tokens, Binance Alpha and tokenized stocks, smart-money inflows, Pulse meme tokens, and trader PnL rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CLI-backed crypto market leaderboards for social hype, trending and top-search tokens, Binance Alpha and tokenized-stock ranks, smart-money inflows, Pulse meme scores, and top trader PnL.
 
-## Publisher: <br>
-[binance-skills-hub](https://clawhub.ai/user/binance-skills-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binance-skills-hub](https://clawhub.ai/user/binance-skills-hub)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to answer crypto ranking questions by calling Binance Web3 leaderboards for tokens, public wallet activity, and trader performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to web3.binance.com and returns crypto token and public wallet leaderboard data. <br>
-Mitigation: Use it for intended Binance Web3 crypto ranking questions and review returned public market data before relying on it. <br>
-Risk: The skill may be an inappropriate default source for generic, non-crypto, or traditional market ranking questions. <br>
-Mitigation: Use another source unless the user specifically asks for Binance Web3 or crypto market rankings. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve ranked Binance Web3 crypto token and wallet leaderboards for market discovery, social sentiment, smart-money inflow, meme-token scoring, and trader PnL questions.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI calls return JSON from public Binance Web3 endpoints; some numeric market fields may be string-encoded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence; skill frontmatter reports 3.0) <br>
+Risk: Users may pass private wallet notes, credentials, or unrelated personal data as command parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public crypto token and address ranking questions, and avoid sending secrets or unrelated personal data.
+
+Risk: Live crypto rankings can be volatile and should not be treated as investment advice.
+
+Mitigation: Treat outputs as informational market data and verify important decisions with authoritative financial and risk-review processes.
+
+Risk: Network failures, rate limits, or unsupported chain and parameter combinations can interrupt leaderboard retrieval.
+
+Mitigation: Check CLI exit codes and error messages, use documented chain and period values, and retry transient failures with appropriate backoff.
+
+## Reference(s):
+
+- [CLI Reference](references/cli.md)
+- [ClawHub Skill Page](https://clawhub.ai/binance-skills-hub/skills/binance-web3-crypto-market-rank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or text summaries supported by JSON CLI output from public Binance Web3 API calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI returns live public market ranking data; numeric market fields may need parsing before calculations.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

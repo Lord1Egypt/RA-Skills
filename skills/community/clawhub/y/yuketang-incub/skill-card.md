@@ -1,48 +1,62 @@
-## Description: <br>
-Rain Classroom MCP connector for accessing class, teaching activity, and student data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to Rain Classroom MCP tools for retrieving account, teaching, classroom, warning, assignment, notice, and lesson data.
 
-## Publisher: <br>
-[softwolves](https://clawhub.ai/user/softwolves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softwolves](https://clawhub.ai/user/softwolves)
 
-## Use Case: <br>
-Educators and teaching assistants with Rain Classroom access use this skill to query their account, teaching classes, classroom statistics, warning lists, lesson attendance and response data, grading workload, assignment completion, announcement reading, and lesson reservation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses YUKETANG_SECRET to authenticate to Rain Classroom. <br>
-Mitigation: Treat YUKETANG_SECRET like a password, keep it out of shared logs and screenshots, and rotate it if it may have been exposed. <br>
-Risk: The installer writes or suggests MCP configuration that connects to the Rain Classroom endpoint. <br>
-Mitigation: Review the generated project MCP configuration after setup and install only if the endpoint and publisher are trusted. <br>
-Risk: The shell installer can silently report installation duration through the configured MCP service. <br>
-Mitigation: Review setup.sh before running it and remove or disable the claw_report call if silent installation reporting is not acceptable. <br>
-Risk: The skill can access classroom, teaching activity, attendance, grading, assignment, announcement, and student warning data. <br>
-Mitigation: Use it only from an authorized Rain Classroom account and avoid sharing returned student or classroom data beyond the intended audience. <br>
+## Use Case:
 
+Educators and Rain Classroom users use this skill to configure an MCP connection and let an agent retrieve teaching, class, warning, assignment, notice, and lesson information with their Yuketang secret.
 
-## Reference(s): <br>
-- [ClawHub yuketang-incub listing](https://clawhub.ai/softwolves/yuketang-incub) <br>
-- [Publisher profile: softwolves](https://clawhub.ai/user/softwolves) <br>
-- [Rain Classroom secret setup](https://ykt-envning.rainclassroom.com/ai-workspace/open-claw-skill) <br>
-- [Rain Classroom MCP endpoint](https://open-envning.rainclassroom.com/openapi/v1/mcp-server/sse) <br>
-- [API references](artifact/references/api_references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese-language Markdown and plain text responses, shell commands, and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some tool results must preserve the original returned text, emoji, tables, links, and class statistics without rewriting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The installer and MCP configuration use YUKETANG_SECRET as a bearer credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store YUKETANG_SECRET only in a protected environment variable or reviewed MCP config, avoid sharing logs that may contain it, and rotate the secret if exposure is suspected.
+
+Risk: The setup flow depends on the Rain Classroom endpoint and the mcporter package source.
+
+Mitigation: Install only after reviewing the endpoint and package source, and prefer a manually reviewed MCP configuration over running setup scripts.
+
+Risk: The shell setup reports an install event and duration through the configured MCP service.
+
+Mitigation: Review setup.sh before execution, avoid elevated privileges, and choose manual configuration when silent install reporting is not acceptable.
+
+Risk: One response-handling instruction allows remote MCP text to become the assistant's verbatim final response.
+
+Mitigation: Treat remote MCP responses as untrusted content and verify important teaching, attendance, or student-risk information before acting on it.
+
+## Reference(s):
+
+- [Rain Classroom MCP Tool Reference](artifact/references/api_references.md)
+- [ClawHub skill page](https://clawhub.ai/softwolves/skills/yuketang-incub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves tool-returned wording for selected Rain Classroom responses when the skill requires exact output.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

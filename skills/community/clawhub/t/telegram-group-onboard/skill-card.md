@@ -1,42 +1,53 @@
-## Description: <br>
-Helps agents onboard Telegram groups by discovering blocked group chat IDs, updating OpenClaw configuration, creating group project files, and verifying bot responsiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically onboard new Telegram groups so the bot responds immediately, with project setup.
 
-## Publisher: <br>
-[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del)
 
-## Use Case: <br>
-Developers and operators use this skill to make a Telegram bot respond in newly created groups and to set up per-group project files after the group is added. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can configure Telegram groups so the bot responds to all group messages without requiring mentions. <br>
-Mitigation: Use allowlist or requireMention=true unless broad group access is intentional, and confirm the target group before applying changes. <br>
-Risk: The workflow can modify local or remote OpenClaw configuration. <br>
-Mitigation: Confirm the exact server and chat ID, review the configuration change and backup, and run remote commands only on trusted hosts. <br>
-Risk: Group project setup may create persistent knowledge files that influence future responses. <br>
-Mitigation: Restrict who can add persistent project knowledge and review project files before relying on them. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose Telegram groups where an OpenClaw bot is present but not responding, then add the group to configuration and create project records for that group.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/moltbotmolty-del/telegram-group-onboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local or remote shell commands and project file content for Telegram group onboarding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The security evidence says this skill recommends and defaults to broad Telegram group access where any group member can trigger the bot and every message may be processed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when broad Telegram group onboarding is intended; prefer allowlist mode, verify the group and administrator, and use requireMention=true unless full-channel listening is explicitly approved.
+
+Risk: Onboarded groups and project records can persist after the immediate setup task.
+
+Mitigation: Document how to remove the group configuration and associated project records during offboarding.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/moltbotmolty-del/skills/telegram-group-onboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose configuration changes, project files, and operational verification steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "图片创意 brief 与生成"
+  short_description: "设计视觉方案与提示词；宿主有生图能力时生成、检查并登记图片"
+  default_prompt: "使用 $aimegeo-visual-brief，根据我给出的文章和事实设计视觉方案；我要求生成时请调用当前可用生图工具、保存并实看结果。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"

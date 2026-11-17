@@ -1,44 +1,59 @@
-## Description: <br>
-Automated pre-audit checklist for Solidity smart contracts that runs SWC registry checks, OpenZeppelin pattern validation, gas optimization review, and common vulnerability detection before manual audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated pre-audit checklist for Solidity smart contracts that guides agents through static analysis, OpenZeppelin pattern validation, gas review, SWC cross-reference, and a structured pre-audit handoff.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and smart contract security reviewers use this skill to run a Solidity pre-audit workflow before paid manual audits, major releases, or mainnet/testnet deployment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to install and run third-party Solidity analysis tools locally. <br>
-Mitigation: Use a virtual environment or container, verify tool sources before installation, and run the skill only in Solidity repositories intended for analysis. <br>
-Risk: Automated Solidity scanners can miss business logic, economic invariant, access control, and oracle risks. <br>
-Mitigation: Treat the output as a pre-audit filter and require manual review before deployment or paid audit handoff. <br>
-Risk: Generated reports may contain sensitive source details or vulnerability findings. <br>
-Mitigation: Review reports before sharing them outside the workspace. <br>
+## Use Case:
 
+Developers and security engineers use this skill before paid manual audits, internal code reviews, and pre-deployment checks for Solidity smart contracts. It helps organize automated scanner results, manual review items, gas findings, and auditor handoff notes without replacing a manual security audit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/solidity-audit-precheck) <br>
-- [Foundry installer](https://foundry.paradigm.xyz) <br>
-- [SWC Registry](https://swcregistry.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with checklist items, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analysis workflow guidance and a pre-audit report template; it does not replace manual audit judgment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup commands install remote or unpinned tools with broad local execution authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before execution, prefer pinned versions and isolated project environments or containers, and verify checksums or signatures where available.
+
+Risk: Automated Solidity analysis can miss business-logic, oracle, access-control, and economic invariant issues.
+
+Mitigation: Use the generated findings as a pre-audit input and keep manual review and paid audit steps in scope for production contracts.
+
+Risk: Running scanners from an account with wallet, deployment, or production credentials may expose sensitive assets if tools or installers are compromised.
+
+Mitigation: Run scans from a low-privilege environment without sensitive credentials and avoid sudo during installation or execution.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/skills/solidity-audit-precheck)
+- [SWC Registry](https://swcregistry.io/)
+- [Foundry](https://foundry.paradigm.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, checklists, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pre-audit review guidance and report structure; does not certify contract security.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Track dog health, walks, training, routines, travel, and vet coordination with species-aware memory and emergency triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track dog health, walks, training, routines, travel, and vet coordination with species-aware memory and emergency triage.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and caretakers use this skill to coordinate real-world dog care, including symptom triage, walk and routine tracking, training progress, behavior notes, travel preparation, vet logistics, and optional local records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive household, veterinary, medication, microchip, insurance, sitter, and dog-care details in local files. <br>
-Mitigation: Install only if local dog-care memory is desired, approve storage explicitly, and keep only details the user is comfortable storing in ~/dog/. <br>
-Risk: Casual dog mentions may activate care workflows if the activation preference is broad. <br>
-Mitigation: Choose explicit or dog-specific activation during setup when casual dog mentions should not trigger the skill. <br>
-Risk: Dog health and behavior guidance can be mistaken for diagnosis or emergency care. <br>
-Mitigation: Use the skill's conservative triage posture, escalate emergency red flags to veterinary care, and do not rely on chat for definitive diagnosis or medication dosing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/dog) <br>
-- [Skill Homepage](https://clawic.com/skills/dog) <br>
+## Use Case:
 
+External users use this skill to manage day-to-day dog care, including health triage preparation, walks, routines, training notes, travel planning, vet logistics, shopping, and sitter handoffs. It supports real dog-care operations and local memory when the user approves persistent storage.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with optional inline shell commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local records under ~/dog/ only with user approval; does not make external network requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent dog-care memory can store dog names, routines, health notes, vet logistics, and sitter details locally.
+
+Mitigation: Ask for explicit approval before writing local files, keep records under ~/dog/, and support explicit or topic-specific activation preferences.
+
+Risk: Dog health or behavior guidance could be mistaken for diagnosis or emergency veterinary care.
+
+Mitigation: Use conservative triage language, escalate emergency red flags to veterinary care, and avoid medication dosing or definitive diagnosis from chat alone.
+
+## Reference(s):
+
+- [ClawHub Dog Skill Page](https://clawhub.ai/ivangdavila/skills/dog)
+- [Dog Skill Homepage](https://clawic.com/skills/dog)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with optional inline bash code blocks and local record templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local dog-care records under ~/dog/ only after user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

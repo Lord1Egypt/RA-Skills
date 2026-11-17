@@ -1,42 +1,53 @@
-## Description: <br>
-Reviews Python code for type safety, async patterns, error handling, and common mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Python code for type safety, async patterns, error handling, and common mistakes. Use when reviewing .py files, checking type hints, async/await usage, or exception handling.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Python files for style, typing, async behavior, exception handling, and common implementation mistakes before reporting findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a referenced review-verification-protocol skill for final reporting guidance, and that dependency may be absent or untrusted in a user's environment. <br>
-Mitigation: Before relying on final review output, confirm that the referenced verification protocol skill exists locally and comes from a trusted source. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Python code for style, type-safety, async, error-handling, and common correctness issues before reporting findings.
 
-## Reference(s): <br>
-- [Async Patterns](references/async-patterns.md) <br>
-- [Common Mistakes](references/common-mistakes.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [PEP8 Style Guide](references/pep8-style.md) <br>
-- [Type Safety](references/type-safety.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown review notes with scoped Python file and line references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should follow the skill's gates for scope, false-positive screening, evidence, verification, and final reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill requires loading an unbundled sibling review-verification-protocol file that was not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or bundle that dependency before installing; do not rely on unreviewed sibling instructions for mandatory verification or final output formatting.
+
+## Reference(s):
+
+- [PEP8 Style Guide](references/pep8-style.md)
+- [Type Safety](references/type-safety.md)
+- [Async Patterns](references/async-patterns.md)
+- [Error Handling](references/error-handling.md)
+- [Common Mistakes](references/common-mistakes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown review findings with file and line references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should include inspected Python paths and evidence for each reported issue.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

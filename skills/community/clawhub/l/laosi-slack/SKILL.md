@@ -48,7 +48,7 @@ class SlackHelper:
         """发送Block Kit富消息"""
         return self.post_message(channel, fallback, blocks=blocks)
 
-slack = SlackHelper("xoxb-your-token-here")
+slack = SlackHelper("REDACTED-SECRET")
 slack.post_message("#general", "Hello from AI assistant!")
 ```
 
@@ -131,7 +131,7 @@ def send_via_webhook(webhook_url: str, text: str):
     return resp.status_code == 200
 
 # 创建Webhook: Slack API → Incoming Webhooks → Add New Webhook
-send_via_webhook("https://hooks.slack.com/services/T00/B00/xxxxx",
+send_via_webhook("REDACTED-SECRET",
                  "Deployment complete: v2.3.1 is live!")
 ```
 
@@ -160,7 +160,7 @@ def upload_file(self, channel_id: str, filepath: str, title: str = ""):
 ## 配置
 
 ```yaml
-token: "xoxb-xxxxxxxxxxxx"
+token: "REDACTED-SECRET"
 default_channel: "#general"
 webhook_url: "https://hooks.slack.com/services/..."
 bot_name: "AI Assistant"

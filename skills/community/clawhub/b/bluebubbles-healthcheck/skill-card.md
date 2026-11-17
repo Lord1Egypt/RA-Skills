@@ -1,47 +1,65 @@
-## Description: <br>
-Diagnoses and auto-heals BlueBubbles to OpenClaw iMessage connectivity when messages stop arriving after a gateway restart, webhook registration breaks, or webhook backoff and stale gateway state need repair. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and auto-heals BlueBubbles and OpenClaw iMessage connectivity by running targeted checks and repairing common webhook, backoff, and gateway issues.
 
-## Publisher: <br>
-[amzzzzzzz](https://clawhub.ai/user/amzzzzzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amzzzzzzz](https://clawhub.ai/user/amzzzzzzz)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to diagnose BlueBubbles webhook connectivity, restart the local OpenClaw gateway when needed, reset stale webhooks, and report whether iMessage delivery has recovered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Auto-heal can delete existing BlueBubbles webhook settings and re-register a single webhook. <br>
-Mitigation: Back up or list current BlueBubbles webhooks first and run heal.sh with --dry-run before applying changes. <br>
-Risk: Healing can restart the local OpenClaw gateway and affect in-flight local messaging workflows. <br>
-Mitigation: Run healing during an acceptable maintenance window and verify OpenClaw gateway status after completion. <br>
-Risk: The BlueBubbles password can be embedded in webhook URLs stored by BlueBubbles or visible in full URL logs. <br>
-Mitigation: Use only trusted local BlueBubbles and OpenClaw instances, avoid remote or shared servers, and rotate BB_PASSWORD if a full webhook URL may have leaked. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to diagnose and repair BlueBubbles webhook delivery problems when iMessages stop flowing after gateway restarts, stale webhook registration, or webhook backoff.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/amzzzzzzz/bluebubbles-healthcheck) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [BlueBubbles](https://bluebubbles.app) <br>
-- [BlueBubbles API Reference](references/bluebubbles-api.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [BlueBubbles Postman API Documentation](https://documenter.getpostman.com/view/765844/UVR4PVmG) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal-style diagnostic output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include health-check pass/fail status, auto-heal actions taken, dry-run guidance, and manual follow-up steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release evidence) <br>
+Risk: The repair path can delete existing BlueBubbles webhook settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnose.sh first, use heal.sh --dry-run when possible, and avoid running repairs on servers with other webhook integrations unless replacing webhook configuration is acceptable.
+
+Risk: Password-bearing webhook URLs can expose BB_PASSWORD in logs, transcripts, or copied output.
+
+Mitigation: Use trusted local runs, avoid sharing command transcripts with secrets, and rotate BB_PASSWORD if prior output may have exposed the password.
+
+Risk: Remote BB_URL or OPENCLAW_WEBHOOK_URL values can send credentials or callbacks outside the intended local setup.
+
+Mitigation: Use the localhost defaults for normal operation and do not point the scripts at remote BlueBubbles or webhook services.
+
+Risk: Auto-healing can restart the OpenClaw gateway and disrupt active message handling.
+
+Mitigation: Review diagnostic output before repair and run disruptive fixes during an acceptable maintenance window.
+
+## Reference(s):
+
+- [BlueBubbles API Reference](references/bluebubbles-api.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [BlueBubbles API Documentation](https://documenter.getpostman.com/view/765844/UVR4PVmG)
+- [OpenClaw](https://openclaw.ai)
+- [BlueBubbles](https://bluebubbles.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON diagnostic output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs health status, repair recommendations, command results, and exit status from local diagnostic and healing scripts.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

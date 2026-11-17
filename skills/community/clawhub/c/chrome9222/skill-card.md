@@ -1,42 +1,53 @@
-## Description: <br>
-Launches Chrome with remote debugging enabled on port 9222 for local debugging and development workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launches Chrome with remote debugging enabled on port 9222 for local debugging and development workflows.
 
-## Publisher: <br>
-[aizzaua](https://clawhub.ai/user/aizzaua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aizzaua](https://clawhub.ai/user/aizzaua)
 
-## Use Case: <br>
-Developers use this skill to start a local Windows Chrome instance with remote debugging on port 9222 for browser automation, inspection, and development tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill force-closes existing Chrome windows before launch, which can interrupt active browsing sessions or unsaved work. <br>
-Mitigation: Save browser work and close Chrome intentionally before invoking the skill. <br>
-Risk: Remote debugging on port 9222 can expose browser control in the debug-enabled profile. <br>
-Mitigation: Use only in a trusted local development environment and avoid sensitive accounts in the debug profile. <br>
-Risk: The launch behavior is tied to a Windows Chrome path and taskkill command. <br>
-Mitigation: Confirm the local Chrome installation path and Windows execution context before relying on the skill. <br>
+## Use Case:
 
+Developers use this skill to start a local Chrome browser with DevTools remote debugging available on port 9222. It is intended for browser debugging and automation setup where a dedicated Chrome profile is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aizzaua/chrome9222) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Text status message after executing local Chrome launch commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts Chrome with --remote-debugging-port=9222 and a custom user data directory, after closing existing Chrome processes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact) <br>
+Risk: The skill may silently force-close existing Chrome windows before launching the debug browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, save browser work first, and modify the skill to prompt before closing Chrome if used in regular workflows.
+
+Risk: The skill starts a Chrome instance with remote debugging enabled and persistent local state.
+
+Mitigation: Use it only on trusted machines, avoid sensitive accounts in the debug browser, and prefer a private or disposable profile directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aizzaua/skills/chrome9222)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Text status message after executing local browser launch commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill launches a local Chrome process, may close existing Chrome sessions, and uses a dedicated local user data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

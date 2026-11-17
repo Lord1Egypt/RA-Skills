@@ -1,44 +1,58 @@
-## Description: <br>
-Private-to-public repo sync. Copies everything except ai/ to the public mirror. Creates PR, merges, syncs releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private-to-public repo sync that copies everything except ai/ to the public mirror, creates and merges a PR, and syncs releases.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to publish a private repository to its public GitHub mirror, create and merge a sync PR, and carry release notes forward. It is intended for repositories that already have a private-to-public counterpart workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish private repository contents to a public GitHub repository. <br>
-Mitigation: Confirm the target public repository and exclusions before running, and run secret scanning on the content to be published. <br>
-Risk: The skill can merge PRs, edit releases, delete public branches, and publish npm packages. <br>
-Mitigation: Use narrowly scoped GitHub and npm credentials, and review the affected branches, releases, and package versions before execution. <br>
-Risk: The security assessment flags use of local 1Password-backed credentials for npm publishing. <br>
-Mitigation: Verify the local credential source and prefer tokens limited to the intended packages and release workflow. <br>
+## Use Case:
 
+Developers and release engineers use this skill to publish a private repository's sanitized contents to a public GitHub mirror, then sync release notes and package publication state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/deploy-public) <br>
-- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks) <br>
-- [AI DevOps Toolbox](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git, gh, bash, a local private repository path, and a target public GitHub repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: ClawHub release evidence) <br>
+Risk: The skill can mutate or create a public GitHub repository, merge pull requests, delete remote branches, and create or update releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against an explicit allowlisted public repository after reviewing pending changes, and require manual approval or a dry run before merge and branch cleanup.
+
+Risk: The skill can publish npm packages using local credentials.
+
+Mitigation: Require explicit opt-in before npm publishing and verify package names, versions, registry target, and credentials before execution.
+
+Risk: Private material could be exposed if exclusion rules miss sensitive files.
+
+Mitigation: Run secret scanning and an allowlist review before public commits, and keep private-only paths explicitly excluded.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/deploy-public)
+- [AI DevOps Toolbox homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git, GitHub CLI, bash, and appropriate repository and package publishing credentials.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

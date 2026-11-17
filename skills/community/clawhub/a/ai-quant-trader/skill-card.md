@@ -1,42 +1,59 @@
-## Description: <br>
-Ai Quant Trader is a simulated A-share stock analysis and quant-trading assistant that supports strategy generation, stock screening, paper trading, risk rules, and portfolio status commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Quant Trader helps an agent simulate A-share stock screening, technical analysis, strategy generation, backtesting, automated trading, and risk-management workflows.
 
-## Publisher: <br>
-[yuhuijiang2025-cell](https://clawhub.ai/user/yuhuijiang2025-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuhuijiang2025-cell](https://clawhub.ai/user/yuhuijiang2025-cell)
 
-## Use Case: <br>
-External users and developers use this skill through OpenClaw commands or conversation to explore A-share screening criteria, generate illustrative strategies, run simulated trades, and review stop-loss or take-profit rules before making any independent investment decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Strategy recommendations, backtests, win rates, and some screening metrics may be mock, random, delayed, or illustrative. <br>
-Mitigation: Treat every recommendation and metric as non-authoritative; independently verify market data, assumptions, and strategy performance before using them for real investing. <br>
-Risk: The artifact includes setup and runtime code that can install dependencies, call AKShare data sources, and write local user-data, cache, strategy, position, and risk-rule files. <br>
-Mitigation: Review setup scripts and runtime file-writing behavior before installation or deployment, and run the skill in an isolated environment when evaluating it. <br>
-Risk: The skill exposes automatic-trading and risk-rule flows even though the release evidence characterizes trading behavior as simulated. <br>
-Mitigation: Keep broker integrations in simulation mode unless a qualified reviewer confirms the code path, authorization model, and operational controls are appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuhuijiang2025-cell/ai-quant-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/yuhuijiang2025-cell) <br>
+## Use Case:
 
+External users and developers use this skill to explore simulated quantitative trading workflows, including stock screening, strategy drafting, paper-trade execution, stop-loss and take-profit rules, and portfolio risk review. Outputs should be treated as simulation and decision support, not as validated financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Chinese natural-language responses, command-style prompts, Python code paths, and JSON configuration or strategy files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include simulated prices, strategy performance, screening metrics, trade records, and risk-rule settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Screening, backtest, strategy-performance, and signal outputs can be mistaken for validated financial analysis.
+
+Mitigation: Treat these outputs as simulation only unless the publisher replaces random placeholders with validated data sources and documented methodology.
+
+Risk: Dependency installation and registration scripts can modify the local environment or overwrite prior skill files.
+
+Mitigation: Run installation in an isolated environment and review backup and path behavior before rerunning registration.
+
+Risk: Automated trading flows could be misused with a real broker integration.
+
+Mitigation: Do not connect to a real broker without explicit confirmations, path validation, audit logs, and hard trading limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuhuijiang2025-cell/skills/ai-quant-trader)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+- [Quick Start Guide](artifact/QUICK_START.md)
+- [Simplified Conversation Mode](artifact/SIMPLIFIED_SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with command examples, plus Python and JSON files when the local scripts are used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces simulated finance analysis and may cache or save local user, strategy, position, and screening data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

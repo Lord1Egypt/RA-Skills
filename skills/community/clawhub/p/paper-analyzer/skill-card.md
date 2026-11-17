@@ -1,41 +1,62 @@
-## Description: <br>
-Paper Analyzer helps users structurally read and analyze academic papers across 12 reading elements and save the results as Excel reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Analyzer helps an agent read academic papers, extract twelve structured research-reading elements, and save the analysis as an Excel report.
 
-## Publisher: <br>
-[yipng05-max](https://clawhub.ai/user/yipng05-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yipng05-max](https://clawhub.ai/user/yipng05-max)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to break down one or more academic papers into structured reading elements, compare papers, and generate local Excel reports plus a brief Markdown summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paper contents may be written into local Excel reports or temporary JSON files. <br>
-Mitigation: Use the skill only on papers intended for local analysis, handle sensitive documents according to policy, and delete temporary JSON files when they are no longer needed. <br>
-Risk: Generated Excel filenames or output paths could overwrite files the user wanted to keep. <br>
-Mitigation: Review the output path and filename before running the export step, and choose a non-conflicting name for important work. <br>
+## Use Case:
 
+Researchers, students, and analysts use this skill to convert one or more academic papers into a structured twelve-dimension reading analysis, with concise Markdown results and an Excel workbook for review or comparison.
 
-## Reference(s): <br>
-- [12 Reading Elements Reference](references/reading_elements.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yipng05-max/paper-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown summary and Excel workbook files (.xlsx) generated from structured paper-analysis data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Excel reports to the analyzed paper's folder; supports single-paper and multi-paper workbooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted paper-derived text may be written into spreadsheet cells in a form interpreted as formulas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape spreadsheet formula prefixes before writing paper text into Excel cells.
+
+Risk: Temporary JSON used during export may remain on disk after the workbook is generated.
+
+Mitigation: Delete temporary JSON files after export completes.
+
+Risk: Excel output saved in the source-paper folder may overwrite an existing file.
+
+Mitigation: Ask before overwriting existing files or choose a unique output path.
+
+Risk: Externally supplied papers may contain hostile or misleading content.
+
+Mitigation: Review the extracted analysis before relying on it, especially for untrusted papers.
+
+## Reference(s):
+
+- [12 Reading Elements](references/reading_elements.md)
+- [ClawHub Skill Page](https://clawhub.ai/yipng05-max/skills/paper-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files]
+
+**Output Format:** [Markdown summary plus Excel workbook (.xlsx)]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For multi-paper analysis, the Excel workbook includes per-paper worksheets and a cross-paper comparison worksheet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

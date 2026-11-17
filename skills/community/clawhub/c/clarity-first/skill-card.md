@@ -1,41 +1,56 @@
-## Description: <br>
-Intent detection protocol for Claude that identifies the real goal behind requests, surfaces hidden assumptions, and decides when to ask clarifying questions versus when to proceed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intent detection protocol for Claude that identifies the real goal behind requests, surfaces hidden assumptions, and knows when to ask versus when to proceed.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent clarify ambiguous or high-impact requests before taking action. It is intended to reduce rework by translating intent, listing assumptions, scoring ambiguity, and setting scope boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may add an extra clarification step before work begins. <br>
-Mitigation: Use it for ambiguous, significant, or hard-to-reverse requests, and skip it for simple factual questions or single-step operations. <br>
-Risk: An incorrect intent translation could steer the agent toward the wrong scope. <br>
-Mitigation: Ask the user to confirm when the translated goal differs from the literal request, and limit clarification to the most important questions. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent clarify intent, assumptions, ambiguity, and scope before starting non-trivial work.
 
-## Reference(s): <br>
-- [Clarity First on ClawHub](https://clawhub.ai/skills/clarity-first) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style clarity checks, assumption summaries, scope boundaries, and concise clarifying questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external API calls; output is conversational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Optional companion skill documentation uses inconsistent names and does not pin versions or publishers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher and version of optional companion skills before installation.
+
+Risk: Clarification guidance may slow simple or already clear requests if applied too broadly.
+
+Mitigation: Use the documented skip conditions for simple factual questions, single-step operations, and repeated workflows.
+
+## Reference(s):
+
+- [Clarity First on ClawHub](https://clawhub.ai/skills/clarity-first)
+- [Clarity First release page](https://clawhub.ai/jiajiaoy/skills/clarity-first)
+- [jiajiaoy publisher profile](https://clawhub.ai/user/jiajiaoy)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown text with concise clarification checks, assumptions, scope boundaries, and focused questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; may suggest optional companion skill installation commands from the artifact documentation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Transforms an agent into a Zen Buddhism guide with a bundled knowledge base of scriptures, koans, poems, Q&A, and an installer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+禅宗禅师技能 - 将任意 Agent 转型为精通禅宗经论、公案、语录的禅宗大法师。包含完整知识库（心经、金刚经、坛经、公案、禅诗），支持一键安装。
 
-## Publisher: <br>
-[tomor1984](https://clawhub.ai/user/tomor1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomor1984](https://clawhub.ai/user/tomor1984)
 
-## Use Case: <br>
-External users and developers use this skill to give an agent a Zen-oriented persona, reference material, and response boundaries for Buddhist philosophy, koans, meditation guidance, and reflective Q&A. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can replace or change an agent workspace's identity, memory, and tool guidance files. <br>
-Mitigation: Install only into a test or backed-up workspace, then review the generated Markdown files before relying on the configured agent. <br>
-Risk: The bundled wellbeing and anxiety guidance may be mistaken for professional mental-health support. <br>
-Mitigation: Use it only as reflective or educational guidance and seek licensed mental-health or emergency support for clinical, crisis, or safety-sensitive situations. <br>
+## Use Case:
 
+External users and developers use this skill to configure an agent with a Chinese-language Zen/Chan Buddhist persona, knowledge base, koans, scripture summaries, poems, meditation guidance, and refusal boundaries around superstition and proselytizing.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tomor1984/zen-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated agent behavior files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installer copies a local knowledge base and writes agent persona, memory, and tool guidance files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The installer can overwrite persistent agent identity, tool, memory, and knowledge files without confirmation or backup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only into a disposable or intentionally prepared agent workspace, and back up any existing IDENTITY.md, SOUL.md, TOOLS.md, MEMORY.md, and knowledge/ directory first.
+
+Risk: The persona may provide reflective responses to distress that should not be treated as professional mental-health support.
+
+Mitigation: Use the skill for spiritual or reflective guidance only, and route distress, self-harm, or clinical mental-health needs to appropriate professional or emergency support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomor1984/skills/zen-master)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown and plain text with optional shell commands for installation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs or updates agent identity, memory, tool, and knowledge files when the installer is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-NotFair Google Ads agent for OpenClaw. Diagnose live Google Ads accounts, audit wasted spend, review search terms, draft negative keywords, inspect policy errors, and propose approval-gated campaign changes through NotFair's hosted MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NotFair Google Ads agent for OpenClaw. Diagnose live Google Ads accounts, audit wasted spend, review search terms, draft negative keywords, inspect policy errors, and propose approval-gated campaign changes through NotFair's hosted MCP server.
 
-## Publisher: <br>
-[tongchen92](https://clawhub.ai/user/tongchen92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tongchen92](https://clawhub.ai/user/tongchen92)
 
-## Use Case: <br>
-External advertisers, PPC managers, and agents use this skill to inspect connected Google Ads accounts, diagnose wasted spend and policy issues, and prepare approval-gated optimization changes through NotFair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access live Google Ads account data through NotFair's hosted service. <br>
-Mitigation: Install it only when NotFair and the openclaw-notfair plugin are trusted, and connect only the intended Google Ads accounts. <br>
-Risk: Approved writes can affect campaign budgets, bids, keywords, ads, or account state. <br>
-Mitigation: Review the exact account, campaign, budget, bid, keyword, deletion, and mutation scope before approving any write, and verify the Google Ads state after execution. <br>
+## Use Case:
 
+External advertisers, PPC managers, and developers use this skill to audit and optimize connected Google Ads accounts through NotFair. It supports read-only diagnosis, search-term and wasted-spend review, policy-error inspection, and approval-gated campaign changes.
 
-## Reference(s): <br>
-- [NotFair homepage](https://notfair.co) <br>
-- [ClawHub skill page](https://clawhub.ai/tongchen92/notfair-google-ads-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JavaScript examples, findings, and proposed actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis may run directly; Google Ads writes require explicit user approval and follow-up verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.5.14 (source: server-resolved release metadata) <br>
+Risk: The skill connects to Google Ads through a third-party plugin and hosted MCP service that may access sensitive advertising account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted NotFair distribution channels, authenticate only intended accounts, and review account scopes before running analysis.
+
+Risk: Campaign, budget, bid, keyword, and ad changes can affect external spend and account performance.
+
+Mitigation: Prefer read-only analysis first, present proposed actions before writes, require explicit user approval, and use paused or draft changes when supported.
+
+Risk: Incorrect or destructive changes could remove entities or alter campaign behavior unexpectedly.
+
+Mitigation: Do not delete entities unless the user explicitly requests the destructive action and confirms scope; verify Google Ads state after any approved write.
+
+## Reference(s):
+
+- [NotFair homepage](https://notfair.co)
+- [ClawHub skill page](https://clawhub.ai/tongchen92/skills/notfair-google-ads-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/tongchen92)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands, JavaScript snippets, and JSON tool arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose approval-gated Google Ads write actions; read-only analysis is preferred until account scopes and approval flow are clear.]
+
+## Skill Version(s):
+
+2026.5.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

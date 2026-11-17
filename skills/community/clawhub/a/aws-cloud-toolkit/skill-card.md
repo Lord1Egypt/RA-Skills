@@ -1,41 +1,56 @@
-## Description: <br>
-Manage AWS EC2, S3, Lambda, and CloudWatch resources with deployment, operations, and monitoring guidance across AWS regions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AWS EC2, S3, Lambda, and CloudWatch resources with automated deployment, operations, and monitoring across multiple regions.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to work with AWS infrastructure tasks such as EC2 instance lifecycle management, S3 object and bucket operations, Lambda function management, and CloudWatch monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad AWS capabilities and includes create, update, delete, terminate, upload, download, and invoke operations. <br>
-Mitigation: Use a dedicated least-privilege IAM role or short-lived credentials, restrict accounts, regions, and resources, and require explicit confirmation before resource-changing operations. <br>
-Risk: The package source is not backed by server-resolved GitHub provenance for this version. <br>
-Mitigation: Verify the real package source before installation or use. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage AWS compute, storage, serverless, and monitoring resources through agent-assisted commands, code examples, and configuration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/aws-cloud-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/kaiyuelv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON schemas, Python examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [AWS operations may require credentials, IAM permissions, target regions, and explicit confirmation for resource-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes broad AWS permissions and destructive operations such as terminate, delete, update, upload, and invoke.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege and preferably short-lived AWS credentials, scope IAM permissions to required resources, and require explicit confirmation before running destructive operations against real AWS resources.
+
+Risk: Server security evidence reports limited provenance and warns against the placeholder repository or unverified package name.
+
+Mitigation: Install only from a verified source and avoid relying on the placeholder repository or unverified package name.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/aws-cloud-toolkit)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact requirements](artifact/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, Python, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes AWS operation examples, environment variable guidance, dependency requirements, and IAM permission notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

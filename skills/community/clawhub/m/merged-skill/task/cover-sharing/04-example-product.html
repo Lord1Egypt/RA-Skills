@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="indigo-porcelain">
+<head>
+  <meta charset="utf-8">
+  <title>第二张：产品功能介绍</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root, [data-theme="indigo-porcelain"] {
+      --paper: #f2f4f5; --paper-2: #e5ebef; --ink: #0a1f3d; --muted: #5f6d78;
+      --line: rgba(10,31,61,.20); --accent: #315d93; --accent-soft: #d7e1ec;
+      --ink-rgb: 10,31,61; --paper-rgb: 242,244,245; --accent-rgb: 49,93,147;
+    }
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1a1a1a; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+    .poster { position: relative; width: 1080px; height: 1440px; overflow: hidden; isolation: isolate; background: var(--paper); }
+    .content { position: relative; width: 100%; height: 100%; padding: 96px 88px; display: flex; flex-direction: column; z-index: 2; }
+
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--accent); border: 1px solid var(--line);
+      padding: 6px 14px; margin-bottom: 28px; align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 72px; font-weight: 900;
+      line-height: 1.15; color: var(--ink); margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 22px; font-weight: 400;
+      font-style: italic; color: var(--muted); margin-bottom: 48px;
+    }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 28px; line-height: 1.8; color: var(--ink);
+    }
+    .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+    .feature-item { padding: 28px; border: 1px solid var(--line); }
+    .feature-num {
+      font-family: var(--mono); font-size: 44px; font-weight: 500;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .feature-title {
+      font-family: var(--sans-zh); font-size: 22px; font-weight: 700;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .feature-desc { font-family: var(--sans-zh); font-size: 16px; color: var(--muted); line-height: 1.5; }
+    .pull-quote {
+      font-family: var(--serif-zh); font-size: 32px; font-weight: 700;
+      line-height: 1.5; color: var(--ink); border-left: 3px solid var(--accent);
+      padding-left: 28px; margin-top: auto;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      padding: 6px 14px; border: 1px solid var(--accent); color: var(--accent);
+    }
+    .footer-band {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 88px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line); background: var(--paper); z-index: 10;
+    }
+    .footer-text { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- 示例二：产品功能 -->
+  <div class="poster" id="poster-4">
+    <div class="content">
+      <div class="label-tag">示例 · 靛蓝瓷主题</div>
+      <h1 class="hero-title">小程序<br>功能介绍</h1>
+      <div class="hero-sub">PRODUCT FEATURE INTRO</div>
+
+      <div class="section-label">生成过程</div>
+      <div class="body-text">
+        这次是做一个小程序的功能介绍封面。<br>
+        跟它说"深靛青主题，四个功能卡片，要有高级感"。
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-label">效果展示</div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-title">深色背景</div>
+          <div class="feature-desc">深靛青色调，高级感拉满</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-title">功能卡片</div>
+          <div class="feature-desc">四个模块排列整齐</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-title">CTA 按钮</div>
+          <div class="feature-desc">放在合适的位置</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-title">配色协调</div>
+          <div class="feature-desc">没有那种一看就是 AI 的感觉</div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        「之前用其他工具生成的类似图，<br>
+        要么按钮位置尴尬，<br>
+        要么颜色搭配很奇怪。」
+      </div>
+
+      <div class="tag-row">
+        <div class="tag">靛蓝瓷</div>
+        <div class="tag">产品介绍</div>
+        <div class="tag">高级感</div>
+      </div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">工具分享 · 封面设计救星</div>
+      <div class="footer-text">04 / 05</div>
+    </div>
+  </div>
+
+</body>
+</html>

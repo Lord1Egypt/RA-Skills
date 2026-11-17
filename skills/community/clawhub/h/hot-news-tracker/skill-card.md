@@ -1,42 +1,55 @@
-## Description: <br>
-Tracks Toutiao hot-news rankings and searches Toutiao news by keyword for current topics and related articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Toutiao hot-news rankings and searches news by keyword through the gnomic CLI.
 
-## Publisher: <br>
-[huyi9531](https://clawhub.ai/user/huyi9531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huyi9531](https://clawhub.ai/user/huyi9531)
 
-## Use Case: <br>
-People using an agent to monitor current Chinese news trends can ask for Toutiao hot lists or keyword-based news results with summaries, media sources, timestamps, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external gnomic CLI package and sends news search terms to that service. <br>
-Mitigation: Install the CLI only after trusting the package, and avoid using the skill for sensitive private topics. <br>
-Risk: Live news rankings and search results can change quickly and may be incomplete or source-dependent. <br>
-Mitigation: Check timestamps and source links before relying on results for decisions or redistribution. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve the current Toutiao hot list or search recent news for a topic, then summarize ranked items, sources, timestamps, and links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huyi9531/hot-news-tracker) <br>
-- [gnomic-cli repository](https://github.com/huyi9531/gnomic_cli) <br>
-- [Toutiao](https://www.toutiao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with links and optional shell commands; the source CLI can return JSON or text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Freshness and result coverage depend on Toutiao data and the external gnomic CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill instructs agents to run user-provided search terms through shell-style commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Quote or pass search terms as structured command arguments and avoid executing suspicious input.
+
+Risk: The skill recommends globally installing an unpinned npm CLI if gnomic is unavailable.
+
+Mitigation: Use a pinned, locally reviewed gnomic-cli installation in an environment with limited filesystem and network privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huyi9531/skills/hot-news-tracker)
+- [gnomic-cli source](https://github.com/huyi9531/gnomic_cli)
+- [Toutiao](https://www.toutiao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text summaries with inline shell commands and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked hot-list entries, keyword search results, media names, timestamps, summaries, heat values, and URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

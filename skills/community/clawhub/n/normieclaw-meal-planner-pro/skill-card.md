@@ -1,45 +1,64 @@
-## Description: <br>
-Meal Planner Pro helps an agent create personalized household meal plans, grocery lists, prep schedules, freezer tracking, and fridge-photo recipe suggestions based on dietary needs and preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meal Planner Pro helps households create personalized weekly meal plans, grocery lists, freezer inventories, prep schedules, and recipe suggestions based on tastes, allergies, dietary restrictions, ratings, and available ingredients.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Household users use this skill to plan weekly meals, maintain household dietary profiles, generate organized grocery lists, and adapt plans from ratings, freezer inventory, schedules, and visible fridge or pantry ingredients. It is intended for personal meal-planning workflows where allergy and preference data must remain private and user-verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores household names, ages, allergy details, preferences, meal ratings, freezer contents, and possible food-photo context. <br>
-Mitigation: Keep the local data directory private, minimize unnecessary identifying details for children, and use the optional dashboard only with proper authentication, row-level security, private storage, and proxied external images. <br>
-Risk: Meal suggestions that involve allergies or dietary constraints can be incomplete or wrong. <br>
-Mitigation: Have the user independently verify allergy-sensitive meal suggestions, ingredients, labels, and cross-contamination risks before preparing or serving food. <br>
+## Use Case:
 
+Household users use this skill to plan meals, generate shopping lists, track preferences and freezer inventory, and get recipe ideas from available ingredients or fridge photos. It is intended for recurring personal meal-planning workflows where allergy and preference constraints matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nollio/normieclaw-meal-planner-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/nollio) <br>
-- [Dietary Profiles](config/dietary-profiles.md) <br>
-- [Cuisine Categories](config/cuisine-categories.md) <br>
-- [Store Sections](config/store-sections.md) <br>
-- [Dashboard Specification](dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Conversational meal-planning guidance, markdown grocery and prep lists, and local JSON data files for household profiles, ratings, meal plans, grocery lists, and freezer inventory.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a vision-capable model for fridge-photo mode and may be paired with an optional authenticated dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and target metadata) <br>
+Risk: The skill stores sensitive household details such as names, ages, allergies, dietary restrictions, meal ratings, meal history, freezer inventory, and possibly food photos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, keep generated data in private local or authenticated storage, and avoid sharing household files or photos outside the intended environment.
+
+Risk: First-run setup commands can overwrite existing data files if setup is rerun in a populated skill directory.
+
+Mitigation: Run setup only from the intended skill directory and back up existing data before rerunning setup.
+
+Risk: The artifact includes under-disclosed promotional cross-sells that may introduce unsolicited product mentions.
+
+Mitigation: Remove or disable the Cross-Sells section before deployment if unsolicited product recommendations are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-meal-planner-pro)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [First-run setup](artifact/SETUP-PROMPT.md)
+- [Dietary profiles](artifact/config/dietary-profiles.md)
+- [Cuisine categories](artifact/config/cuisine-categories.md)
+- [Store sections](artifact/config/store-sections.md)
+- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON data files, setup shell commands, and structured meal-planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local household profile, rating, meal-history, freezer, meal-plan, grocery-list, and prep-plan files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

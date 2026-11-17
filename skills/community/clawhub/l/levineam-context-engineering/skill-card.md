@@ -1,44 +1,50 @@
-## Description: <br>
-Comprehensive context engineering guidance for AI agent systems that routes requests to specialized sub-skills for context optimization, memory systems, multi-agent coordination, evaluation, and production agent architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes context-engineering requests to specialized sub-skills for context optimization, memory systems, multi-agent patterns, evaluation, and related agent architecture topics.
 
-## Publisher: <br>
-[levineam](https://clawhub.ai/user/levineam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[levineam](https://clawhub.ai/user/levineam)
 
-## Use Case: <br>
-Developers and agent builders use this skill to route context engineering questions to focused guidance on token budgets, memory, multi-agent design, evaluation, tool design, debugging context degradation, and related production LLM architecture topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill loads unpinned external sub-skill instructions from GitHub, so fetched guidance can change after review. <br>
-Mitigation: Prefer a local or commit-pinned copy of the referenced sub-skills before deployment. <br>
-Risk: Fetched sub-skill text may contain advisory instructions that conflict with user intent or platform policy. <br>
-Mitigation: Treat fetched sub-skill text as advisory content and keep user intent, platform policy, and scoped workflows authoritative. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/levineam/levineam-context-engineering) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/levineam) <br>
-- [Agent Skills for Context Engineering collection](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) <br>
-- [Context optimization sub-skill example](https://raw.githubusercontent.com/muratcankoylan/Agent-Skills-for-Context-Engineering/main/skills/context-optimization/SKILL.md) <br>
-- [Muratcan Koylan profile](https://x.com/koylanai) <br>
+## Use Case:
 
+Developers and agent builders use this skill to route questions about context windows, token costs, memory systems, multi-agent design, evaluation, and production LLM architecture to focused guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes to one or more sub-skill documents and returns task-specific guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can load mutable remote GitHub instructions without pinning or integrity checks.
+
+Mitigation: Prefer a version that vendors the sub-skills locally or pins them to reviewed commit hashes, and use least-privileged agent settings when trying it.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/levineam/skills/levineam-context-engineering)
+- [Agent Skills for Context Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering)
+- [Context optimization sub-skill source](https://raw.githubusercontent.com/muratcankoylan/Agent-Skills-for-Context-Engineering/main/skills/context-optimization/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes to one or more sub-skill documents based on the user's task.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

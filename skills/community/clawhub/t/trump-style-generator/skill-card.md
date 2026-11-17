@@ -1,42 +1,54 @@
-## Description: <br>
-Transform any text into Donald Trump's iconic speaking style for persuasive, dramatic, or entertainment-oriented copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms input text into Donald Trump-style copy for speeches, social posts, marketing copy, presentations, or entertainment.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External users and content creators use this skill to rewrite supplied text into a Trump-like rhetorical style for speeches, social posts, presentations, marketing copy, or entertainment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be unsuitable for neutral editing, fact-sensitive communication, or public professional and political use without review. <br>
-Mitigation: Review generated text before publication and avoid using this skill when a neutral, factual, or non-political tone is required. <br>
-Risk: Broad activation wording can cause the agent to apply the style when a user only loosely references Trump-like language. <br>
-Mitigation: Confirm the desired tone and intensity before rewriting sensitive, public-facing, or professional content. <br>
+## Use Case:
 
+External users and content creators use this skill to rewrite provided text into a dramatic Trump-style persona for speeches, social posts, emails, presentations, marketing copy, or entertainment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/trump-style-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
-- [Project homepage](https://xiaping.coze.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text rewrite] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rewritten user-provided text with style cues, emphasis, repetition, and tone adjustments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad automatic trigger wording may cause an agent to apply this style when the user did not intend it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit rewrite prompts and confirm the desired style before applying the transformation.
+
+Risk: Political or persona-based persuasive copy can be inappropriate in professional, civic, or sensitive contexts.
+
+Mitigation: Review and edit generated text carefully before publication or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/trump-style-generator)
+- [Skill homepage](https://xiaping.coze.site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text rewritten copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, credentials, or external data access are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

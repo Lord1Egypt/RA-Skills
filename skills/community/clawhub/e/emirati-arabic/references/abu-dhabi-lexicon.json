@@ -1,0 +1,324 @@
+{
+  "version": "0.2.0",
+  "status": "limited-attested-lexicon-not-exclusive-or-native-certified",
+  "entries": [
+    {
+      "id": "shu",
+      "form": "شو",
+      "meaning_ar": "ما / ماذا في السؤال",
+      "example": "شو رقم الطلب؟",
+      "context": "السؤال عن شيء أو معلومة",
+      "caution": "ليست بديلاً عن كل «ما»؛ لا تغيّر ما النافية أو الموصولة.",
+      "source_id": "Q70-U1",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "2",
+        "pdf_page": 17
+      },
+      "source_romanization": "šuu",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "marhaba",
+      "form": "مرحبا",
+      "meaning_ar": "تحية",
+      "example": "مرحبا، عندك وقت؟",
+      "context": "افتتاح حديث إذا احتاج المقام تحية",
+      "caution": "ليست علامة حصرية لأبوظبي، ولا تُضف إلى كل جواب.",
+      "source_id": "Q70-U1",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "2",
+        "pdf_page": 17
+      },
+      "source_romanization": "marḥaba",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "ween",
+      "form": "وين",
+      "meaning_ar": "أين",
+      "example": "وين مكتب ناصر؟",
+      "context": "سؤال عن مكان",
+      "caution": "لا تحوّل سؤال الوجهة إلى سؤال عن الأصل؛ حافظ على من/إلى عند الحاجة.",
+      "source_id": "Q70-U2",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "11",
+        "pdf_page": 26
+      },
+      "source_romanization": "ween",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "shughl",
+      "form": "شغل",
+      "meaning_ar": "عمل",
+      "example": "عندي شغل اليوم.",
+      "context": "العمل أو الانشغال في السياق المناسب",
+      "caution": "لا تستبدل بها كل معنى من معاني «عمل»؛ العمل الفني أو العملية الحسابية ليسا الاستعمال نفسه.",
+      "source_id": "Q70-U2",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "11",
+        "pdf_page": 26
+      },
+      "source_romanization": "šuγul",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "hazzah",
+      "form": "حزة",
+      "meaning_ar": "وقت",
+      "example": "أي حزة تناسبك؟",
+      "context": "السؤال عن وقت أو فترة",
+      "caution": "لا تفرض الكلمة على كل ذكر للوقت؛ «الساعة» أنسب لوقت رقمي محدد.",
+      "source_id": "Q70-U4",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "30",
+        "pdf_page": 45
+      },
+      "source_romanization": "ḥazza",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "indak",
+      "form": "عندك",
+      "meaning_ar": "لديك",
+      "example": "عندك رقم المكتب؟",
+      "context": "حيازة شيء أو توفره لدى مخاطب مذكر مفرد",
+      "caution": "لا تغيّر جنس المخاطب أو عدده؛ هذا المدخل لا يوثّق جميع تصاريفه.",
+      "source_id": "Q70-U4",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "30",
+        "pdf_page": 45
+      },
+      "source_romanization": "ʿindak",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "hini",
+      "form": "هني",
+      "meaning_ar": "هنا",
+      "example": "الملف هني.",
+      "context": "إشارة إلى مكان قريب",
+      "caution": "المصدر ينقل hini؛ الرسم العربي هنا تحريري، لا اقتباس عربي منه ولا إثبات لنطق جميع أهل أبوظبي.",
+      "source_id": "Q70-U4",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "30",
+        "pdf_page": 45
+      },
+      "source_romanization": "hini",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "halhiin",
+      "form": "هالحين",
+      "meaning_ar": "الآن",
+      "example": "عندي وقت هالحين.",
+      "context": "الوقت الحاضر",
+      "caution": "إثبات تاريخي للصيغة، لا قياس لشيوعها المعاصر ولا تفويض بابتكار بدائل إملائية.",
+      "source_id": "Q70-U4",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "30",
+        "pdf_page": 45
+      },
+      "source_romanization": "halḥiin",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "tfaddal",
+      "form": "تفضل",
+      "meaning_ar": "دعوة مناسبة للمقام",
+      "example": "تفضل، هذا الملف.",
+      "context": "تقديم شيء أو إتاحته أو الترحيب بالدخول حسب الموقف",
+      "caution": "لا تستعملها مقابلاً آلياً لكل please؛ دعوة الدخول تختلف عن طلب تنفيذ مهمة.",
+      "source_id": "Q70-U4",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "30",
+        "pdf_page": 45
+      },
+      "source_romanization": "tfaδ̣δ̣al",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "istriih",
+      "form": "استريح",
+      "meaning_ar": "دعوة إلى الجلوس أو الراحة بحسب المقام",
+      "example": "تفضل، استريح.",
+      "context": "دعوة ضيف إلى الجلوس في المثال المقصود",
+      "caution": "لا تجعلها أمراً مناسباً لكل مخاطب؛ المصدر يوردها في مقام الجلوس.",
+      "source_id": "Q70-U4",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "30",
+        "pdf_page": 45
+      },
+      "source_romanization": "ʾistriiḥ",
+      "romanization_note": "Editorial Unicode normalization of the source transcription; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "mub",
+      "form": "مب",
+      "meaning_ar": "نفي وصف أو خبر في التركيب المناسب",
+      "example": "الموعد مب اليوم.",
+      "context": "النفي غير الفعلي المناسب",
+      "caution": "مشترك إماراتي؛ لا تحوّل «لم أذهب» إلى «مب أذهب»، ولا تزعم أن مب ممنوعة في أبوظبي.",
+      "source_id": "MT52",
+      "scope": "uae-shared",
+      "locator": {
+        "printed_page": "52",
+        "pdf_page": 53
+      },
+      "source_romanization": null,
+      "romanization_note": null,
+      "orthography": "source-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "baseer",
+      "form": "بسير",
+      "meaning_ar": "سأذهب",
+      "example": "بسير المكتب الساعة 5:30.",
+      "context": "ذهاب مستقبلي مقصود؛ المثال تطبيق مؤلف",
+      "caution": "الباء ليست علامة تلصق بكل مضارع، ولا تحوّل الماضي أو العادة إلى مستقبل.",
+      "source_id": "MT52",
+      "scope": "uae-shared",
+      "locator": {
+        "printed_page": "52",
+        "pdf_page": 53
+      },
+      "source_romanization": null,
+      "romanization_note": null,
+      "orthography": "source-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "wayid",
+      "form": "وايد",
+      "meaning_ar": "جداً؛ للتكثير في السياق المناسب",
+      "example": "الشرح واضح وايد.",
+      "context": "تقوية وصف حين يكون التقوية في الأصل",
+      "caution": "لا تضف مبالغة لم تكن في المدخل. رسم المصدر CODA هو واجد، أما وايد هنا فتمثيل قرائي لنطقه الموثق، وليس ادعاء معيار إملائي وحيد.",
+      "source_id": "H18-T9",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "3635",
+        "pdf_page": 8
+      },
+      "source_written": "واجد",
+      "source_romanization": "w aa y i d",
+      "romanization_note": "CAPHI, as printed in the cited example; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "yalas",
+      "form": "يلس",
+      "meaning_ar": "جلس",
+      "example": "يلس ناصر في المكتب.",
+      "context": "فعل ماضٍ للمفرد المذكر في هذا المثال",
+      "caution": "رسم الدراسة جلس، ونقلها الصوتي يثبت الياء هنا فقط؛ لا تغيّر جميع كلمات الجيم.",
+      "source_id": "H18-F2",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "3631",
+        "pdf_page": 4
+      },
+      "source_written": "جلس",
+      "source_romanization": "y a l a s",
+      "romanization_note": "CAPHI, as printed in the cited example; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    },
+    {
+      "id": "ngool",
+      "form": "نقول",
+      "meaning_ar": "نحن نقول",
+      "example": "نقول نفس الكلام.",
+      "context": "فعل القول للمُتكلم الجمع في الشاهد",
+      "caution": "لا تفسر نون هذا الشاهد على أنها أنا؛ لا تعمم تصريفه على كل اللهجات.",
+      "source_id": "H18-T9",
+      "scope": "abu-dhabi-source-attested",
+      "locator": {
+        "printed_page": "3635",
+        "pdf_page": 8
+      },
+      "source_written": "نقول",
+      "source_romanization": "n g uu l",
+      "romanization_note": "CAPHI, as printed in the cited example; not IPA.",
+      "orthography": "editorial-readable-Arabic",
+      "exclusive_to_abu_dhabi": false,
+      "example_status": "original-provisional",
+      "verification": "page-image-inspected",
+      "contemporary_native_review": false
+    }
+  ]
+}

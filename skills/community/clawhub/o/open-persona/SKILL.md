@@ -6,7 +6,7 @@ compatibility: "Generated skill packs work with any SKILL.md-compatible agent. C
 allowed-tools: "Bash(npx openpersona:*) Bash(npx clawhub@latest:*) Bash(openclaw:*) Bash(gh:*) Read Write WebFetch"
 metadata:
   author: "openpersona"
-  version: "0.21.1"
+  version: "0.22.0"
   repository: "https://github.com/acnlabs/OpenPersona"
   tags: "persona, agent, skill-pack, meta-skill, agent-agnostic, openclaw"
   installSurface: "instruction-only"
@@ -37,7 +37,7 @@ You are the meta-skill for creating, installing, updating, and publishing agent 
 3. **Manage Personas** — List, update, fork, switch, reset, export/import installed personas
 4. **Publish Persona** — Publish a GitHub-hosted persona pack to [OpenPersona](https://openpersona.co/skills) (the vertical persona directory); optionally also to ClawHub / skills.sh
 5. **Dataset Directory** — Discover and publish Hugging Face persona datasets at [openpersona.co/datasets](https://openpersona.co/datasets) via `openpersona dataset install <owner/repo>` and `openpersona dataset publish <owner/repo>`
-6. **Runner Integration** — Provide runner authors with the four `openpersona state` commands (read / write / signal / promote / responses) for integrating personas at conversation boundaries
+6. **Runner Integration** — Provide runner authors with the five `openpersona state` commands (read / write / signal / responses / promote) for integrating personas at conversation boundaries
 7. **Monitor & Evolve** — Generate evolution reports (`evolve-report`), run soul-memory bridge (`state promote`), run pack refinement (`refine`), interpret vitality scores
 
 ## Available Presets
@@ -461,7 +461,7 @@ npx openpersona search "" --type multi
 
 ## Runner Integration Protocol
 
-Any agent runner integrates with installed personas via four CLI commands called at conversation boundaries — no knowledge of file paths or persona internals needed:
+Any agent runner integrates with installed personas via five CLI commands called at conversation boundaries — no knowledge of file paths or persona internals needed:
 
 ```bash
 # Before conversation starts — load state into agent context

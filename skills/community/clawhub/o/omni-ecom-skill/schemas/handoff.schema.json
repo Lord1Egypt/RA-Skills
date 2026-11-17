@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/handoff-2.0.json",
+  "title": "Omni E-commerce Expert Handoff",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "contract_name",
+    "contract_version",
+    "created_by_team_version",
+    "legacy_compatibility",
+    "run_id",
+    "agent_id",
+    "agent_version",
+    "scope",
+    "gate_status",
+    "status",
+    "facts",
+    "judgments",
+    "hypotheses",
+    "actions",
+    "risks",
+    "missing_data",
+    "evidence_ledger"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "expert_handoff" },
+    "contract_name": { "const": "omni-ecom.expert-handoff" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "legacy_compatibility": {
+      "type": "object",
+      "required": ["read_only_import", "current_agent_return", "execution_permission_inherited"],
+      "properties": {
+        "read_only_import": { "const": ["omni-ecom.expert-handoff@1.0"] },
+        "current_agent_return": { "const": false },
+        "execution_permission_inherited": { "const": false }
+      },
+      "additionalProperties": false
+    },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "agent_id": { "type": "string", "minLength": 1 },
+    "agent_version": { "type": "string", "minLength": 1 },
+    "agent_task_id": { "type": "string", "pattern": "^(?:agent-[0-9A-Za-z_-]+|[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12})$" },
+    "agent_return_status": { "const": "completed" },
+    "agent_returned_at": { "type": "string", "minLength": 1 },
+    "agent_return_file": { "type": "string", "minLength": 1 },
+    "agent_return_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "agent_session_id": { "type": "string", "minLength": 1 },
+    "agent_view_url": { "type": "string", "format": "uri" },
+    "contribution_summary": { "type": "string" },
+    "scope": {
+      "type": "object",
+      "required": ["platform", "store", "period", "grain"],
+      "properties": {
+        "platform": { "type": "string", "minLength": 1 },
+        "store": { "type": "string", "minLength": 1 },
+        "period": { "type": "string", "minLength": 1 },
+        "grain": { "type": "string", "minLength": 1 }
+      }
+    },
+    "gate_status": { "enum": ["PASS", "WARN", "BLOCKED"] },
+    "status": { "enum": ["data_blocked", "draft_diagnosis", "ready_for_review"] },
+    "facts": { "$ref": "#/$defs/facts" },
+    "judgments": { "$ref": "#/$defs/judgments" },
+    "hypotheses": { "$ref": "#/$defs/hypotheses" },
+    "actions": { "$ref": "#/$defs/actions" },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "missing_data": { "type": "array", "items": { "type": "string" } },
+    "evidence_ledger": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+  },
+  "$defs": {
+    "evidence_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^E[0-9A-Za-z._-]+$" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "number_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field", "token", "occurrence", "kind"],
+        "properties": {
+          "field": { "type": "string", "minLength": 1 },
+          "token": { "type": "string", "minLength": 1 },
+          "occurrence": { "type": "integer", "minimum": 1 },
+          "kind": { "enum": ["claim", "proposal"] },
+          "claim_id": { "type": "string", "pattern": "^C-[A-Za-z0-9_-]+$" },
+          "label": { "enum": ["target", "threshold", "test_budget", "sample_size"] },
+          "basis_claim_ids": { "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^C-[A-Za-z0-9_-]+$" } },
+          "rationale": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim", "evidence_ids"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "claim": { "type": "string", "minLength": 1 },
+          "evidence_ids": { "$ref": "#/$defs/evidence_ids" },
+          "number_bindings": { "$ref": "#/$defs/number_bindings" }
+        }
+      }
+    },
+    "judgments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim", "confidence", "evidence_ids", "counter_conditions"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "claim": { "type": "string", "minLength": 1 },
+          "confidence": { "enum": ["high", "medium", "low"] },
+          "evidence_ids": { "$ref": "#/$defs/evidence_ids" },
+          "counter_conditions": { "type": "array", "items": { "type": "string" } },
+          "causal_analysis": {
+            "type": "object",
+            "required": ["outcome_metric", "cause_variable", "period", "primary_cause", "claim_strength", "inference_status", "temporal_order", "mechanism", "alternative_explanations", "confounders", "falsification_test", "identification_method", "evidence_ids"],
+            "properties": {
+              "outcome_metric": {"type": "string", "minLength": 1}, "cause_variable": {"type": "string", "minLength": 1},
+              "period": {"type": "string", "minLength": 1}, "primary_cause": {"type": "boolean"},
+              "claim_strength": {"enum": ["hypothesis", "observational_association", "quasi_experimental", "experimental"]},
+              "inference_status": {"enum": ["hypothesis_only", "association_supported", "causal_supported"]},
+              "temporal_order": {"enum": ["verified", "not_verified"]},
+              "mechanism": {"type": "string", "minLength": 1},
+              "alternative_explanations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "confounders": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "falsification_test": {"type": "string", "minLength": 1}, "identification_method": {"type": "string", "minLength": 1},
+              "evidence_ids": {"$ref": "#/$defs/evidence_ids"}, "design_evidence_ids": {"$ref": "#/$defs/evidence_ids"},
+              "control_group": {"type": "string", "minLength": 1}, "treatment_timing": {"type": "string", "minLength": 1},
+              "pretrend_status": {"enum": ["passed", "failed", "not_applicable"]}
+            },
+            "additionalProperties": false
+          },
+          "number_bindings": { "$ref": "#/$defs/number_bindings" }
+        }
+      }
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim", "verification_method", "counter_conditions"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "claim": { "type": "string", "minLength": 1 },
+          "verification_method": { "type": "string", "minLength": 1 },
+          "counter_conditions": { "type": "array", "items": { "type": "string" } },
+          "number_bindings": { "$ref": "#/$defs/number_bindings" }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "priority", "action", "owner", "due", "acceptance", "stop_condition", "approval_required", "approval_state"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "priority": { "enum": ["P0", "P1", "P2"] },
+          "action": { "type": "string", "minLength": 1 },
+          "owner": { "type": "string", "minLength": 1 },
+          "due": { "type": "string", "minLength": 1 },
+          "acceptance": { "type": "string", "minLength": 1 },
+          "stop_condition": { "type": "string", "minLength": 1 },
+          "approval_required": { "type": "boolean" },
+          "approval_state": { "enum": ["not_required", "pending", "approved", "rejected", "executed", "verified"] },
+          "number_bindings": { "$ref": "#/$defs/number_bindings" }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "source", "period", "metric", "value", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^E[0-9A-Za-z._-]+$" },
+        "source": { "type": "string", "minLength": 1 },
+        "period": { "type": "string", "minLength": 1 },
+        "metric": { "type": "string", "minLength": 1 },
+        "value": {},
+        "formula": { "type": "string" },
+        "status": { "enum": ["verified", "warning", "blocked", "unverified"] }
+      }
+    }
+  }
+}

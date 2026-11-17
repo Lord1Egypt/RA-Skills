@@ -1,41 +1,54 @@
-## Description: <br>
-Audit installed WorkBuddy skills to identify duplicates, platform-mismatched skills, and maintenance candidates, then generate a structured cleanup report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits installed WorkBuddy skills to identify duplicates, platform-mismatched skills, and maintenance candidates, then generates a structured cleanup report.
 
-## Publisher: <br>
-[anderszhan](https://clawhub.ai/user/anderszhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderszhan](https://clawhub.ai/user/anderszhan)
 
-## Use Case: <br>
-Developers and operators use this skill to audit installed WorkBuddy skills, compare them with an approved golden list, and identify unknown or platform-specific skills for manual review before cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance can lead to removal of useful skills if the audit classifications are followed without review. <br>
-Mitigation: Review the generated report and confirm any cleanup or deletion actions before removing skill directories. <br>
-Risk: Broad activation wording may cause the skill to run during general skill-maintenance conversations. <br>
-Mitigation: Use it when explicitly auditing or tidying installed skills, and treat its report as decision support rather than automatic cleanup. <br>
+## Use Case:
 
+Developers and maintainers use this skill to audit installed WorkBuddy skills, compare them against an approved golden list, and identify unknown or platform-specific skills that need review before cleanup.
 
-## Reference(s): <br>
-- [Golden List - Authorized Skills Reference](artifact/references/golden-list.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderszhan/workbuddy-skills-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown audit report with summary tables and cleanup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a dated skills-audit report and may include review or removal recommendations that require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documentation includes an irreversible removal command for installed skill folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for report generation first, manually verify exact absolute paths, and prefer moving candidates to a quarantine folder before deletion.
+
+Risk: Unknown and platform-specific classifications can be incomplete or wrong because they depend on the golden list and keyword matching.
+
+Mitigation: Review the generated report and golden list before taking cleanup action, especially for skills flagged as unknown or platform-specific.
+
+## Reference(s):
+
+- [Golden List - Authorized Skills Reference](references/golden-list.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderszhan/skills/workbuddy-skills-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with summary tables and cleanup recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a dated skills-audit report; cleanup commands require user confirmation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

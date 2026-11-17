@@ -1,41 +1,54 @@
-## Description: <br>
-Convierte respuestas de texto a audio OGG con Piper y las envía por Telegram cuando se activa el modo de voz. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text responses to OGG audio with Piper and sends spoken replies through Telegram when voice mode is active.
 
-## Publisher: <br>
-[jgf78](https://clawhub.ai/user/jgf78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jgf78](https://clawhub.ai/user/jgf78)
 
-## Use Case: <br>
-Developers and Telegram bot operators use this skill to turn assistant text into spoken OGG voice replies and send them to a configured Telegram chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated voice replies and caption text can be shared with Telegram for the configured chat. <br>
-Mitigation: Use spoken mode only when Telegram sharing is acceptable for the conversation content. <br>
-Risk: A misconfigured bot token or chat ID could send audio to the wrong Telegram destination. <br>
-Mitigation: Use a limited bot token and verify CHAT_ID before enabling voice replies. <br>
+## Use Case:
 
+Developers and bot operators use this skill to convert assistant text into spoken Telegram responses and to switch between written and spoken reply modes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jgf78/tts-responder) <br>
-- [Skill homepage](https://github.com/openclaw/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or sends OGG Opus audio through the bundled shell script when configured with Telegram credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated responses may be sent to a configured Telegram chat, exposing conversation content outside the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive content or a controlled Telegram chat, and confirm BOT_TOKEN, CHAT_ID, and voice-mode behavior before enabling spoken replies.
+
+Risk: Audio output uses predictable shared temporary filenames, and the generated OGG file may remain after execution.
+
+Mitigation: Run in an isolated environment and update deployment packaging to use private per-run temporary files with full cleanup before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jgf78/skills/tts-responder)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; runtime output includes OGG audio and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Piper and ffmpeg; can send generated voice messages through Telegram when BOT_TOKEN and CHAT_ID are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

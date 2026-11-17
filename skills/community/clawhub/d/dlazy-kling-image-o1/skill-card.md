@@ -1,47 +1,57 @@
-## Description: <br>
-Generate exquisite images with the Kling o1 model, supporting text-to-image and image-to-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with the Kling o1 model from text prompts or reference images.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and external users use this skill to call the dLazy hosted Kling Image O1 service from an agent for image generation or image editing. It supports prompt-only generation, reference-image inputs, optional asynchronous execution, and JSON result handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and may store or read credentials through the dLazy CLI. <br>
-Mitigation: Use OS-user-restricted config or DLAZY_API_KEY per invocation, and rotate or revoke the key from the dLazy dashboard if needed. <br>
-Risk: Prompts and selected local media files are sent to dLazy API and media storage endpoints for cloud generation. <br>
-Mitigation: Avoid passing sensitive prompts or local files, and use dry-run behavior when available to inspect payload and cost before calling the API. <br>
-Risk: Generation can fail because of missing credentials, insufficient credits, service errors, or asynchronous task failures. <br>
-Mitigation: Handle unauthorized and insufficient-balance responses explicitly, and use the CLI's async polling or timeout options for long-running tasks. <br>
+## Use Case:
 
+External users and agents use this skill to generate or edit images with Kling o1 using a text prompt and optional reference images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-kling-image-o1) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [SKILL-cn.md](artifact/SKILL-cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns generated image URLs hosted on files.dlazy.com; async mode can return a task generateId for polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The scanner reported partial coverage, including an unresolved CLI package, and could not clearly connect the login step to the image-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or signing in, verify that the CLI and login flow are from the expected provider and are needed for this skill.
+
+Risk: Prompts and supplied local image files are sent to dLazy's hosted API and media storage.
+
+Mitigation: Avoid sending sensitive prompts or images unless your organization's policies allow processing them by this service.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-kling-image-o1)
+- [dLazy CLI project (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy API key dashboard](https://dlazy.com/dashboard/organization/api-key)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON]
+
+**Output Format:** [Image URLs or saved image files with structured JSON result metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text-to-image and image-to-image generation; results can be returned asynchronously.]
+
+## Skill Version(s):
+
+1.3.40 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

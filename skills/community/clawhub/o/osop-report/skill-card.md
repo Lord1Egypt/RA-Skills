@@ -1,42 +1,58 @@
-## Description: <br>
-Convert .osop and .osoplog.yaml into standalone HTML report with dark mode and expandable nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert .osop and .osoplog.yaml into standalone HTML report with dark mode and expandable nodes.
 
-## Publisher: <br>
-[archie0125](https://clawhub.ai/user/archie0125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archie0125](https://clawhub.ai/user/archie0125)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn OSOP workflow definitions and execution logs into local, self-contained HTML reports for inspection and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can contain workflow inputs, outputs, reasoning, errors, costs, and operational metadata from OSOP logs. <br>
-Mitigation: Review generated HTML before sharing it outside the intended audience. <br>
-Risk: The skill reads local OSOP files provided by the user and creates local HTML copies of their contents. <br>
-Mitigation: Run it only on files you intend to inspect and store as a report. <br>
+## Use Case:
 
+Developers and operators use this skill to convert OSOP workflow definitions and optional execution logs into a local, self-contained HTML report for review and sharing.
 
-## Reference(s): <br>
-- [OSOP homepage](https://osop.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/archie0125/osop-report) <br>
-- [Publisher profile](https://clawhub.ai/user/archie0125) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Self-contained HTML report file plus a short file-path response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads selected .osop and .osoplog.yaml files and writes an HTML report next to the source file or to a requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill reads OSOP workflow and log files that may contain sensitive workflow details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files intended for report generation and review the resulting HTML before sharing it.
+
+Risk: The skill writes a local HTML report file next to the source file or to the requested output path.
+
+Mitigation: Choose an output location appropriate for the report contents and avoid overwriting important local files.
+
+Risk: The release metadata lists ~/.osop/config.yaml as required configuration, which may contain sensitive settings.
+
+Mitigation: Review why that configuration is needed before installation and avoid exposing its contents in generated reports.
+
+## Reference(s):
+
+- [OSOP](https://osop.ai)
+- [ClawHub skill page](https://clawhub.ai/archie0125/skills/osop-report)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Guidance]
+
+**Output Format:** [Self-contained HTML report file plus a short path message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads .osop and optional .osoplog.yaml inputs; writes a local -report.html file.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

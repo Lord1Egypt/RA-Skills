@@ -1,43 +1,51 @@
-## Description: <br>
-Helps users turn real-world operations research problems into mathematical optimization models, including objective functions, constraints, assumptions, complexity estimates, literature context, and LaTeX model output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents translate real-world operations research problems into mathematical optimization models, validate assumptions, search academic literature when needed, and produce LaTeX formulations.
 
-## Publisher: <br>
-[Go-own-way](https://clawhub.ai/user/Go-own-way) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[go-own-way](https://clawhub.ai/user/go-own-way)
 
-## Use Case: <br>
-Developers, analysts, researchers, and students use this skill to formulate operations research problems as optimization models, validate assumptions, search relevant academic literature when needed, and produce clear mathematical model documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic paper searches may send user-provided keywords to OpenAlex or Semantic Scholar. <br>
-Mitigation: Keep confidential business data, client names, private datasets, and sensitive operational details out of search keywords. <br>
-Risk: Quick confirmation mode can let modeling assumptions proceed with limited review. <br>
-Mitigation: Review and confirm assumptions before relying on the generated optimization model or allowing the workflow to continue. <br>
+## Use Case:
 
+Developers, analysts, and operations researchers use this skill to turn business or engineering optimization scenarios into model assumptions, objectives, constraints, solver guidance, self-check reports, and LaTeX model writeups.
 
-## Reference(s): <br>
-- [Operations Research Modeling ClawHub listing](https://clawhub.ai/Go-own-way/or-modeling) <br>
-- [Operations Research Problem Reference](artifact/references/or-problems.md) <br>
-- [OpenAlex Works API](https://api.openalex.org/works) <br>
-- [Semantic Scholar Graph API](https://api.semanticscholar.org/graph/v1/paper/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, latex, shell commands, guidance] <br>
-**Output Format:** [Markdown with LaTeX model blocks, structured analysis tables, self-check reports, and optional shell commands for literature search.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use scripts/paper_search.py to query OpenAlex and Semantic Scholar when literature review is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Paper searches send search keywords to OpenAlex and Semantic Scholar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including confidential business details, personal data, or proprietary model inputs in search terms unless sharing them with those services is acceptable.
+
+## Reference(s):
+
+- [Operations Research Problem Reference](references/or-problems.md)
+- [OpenAlex Works API](https://api.openalex.org/works)
+- [Semantic Scholar Paper Search API](https://api.semanticscholar.org/graph/v1/paper/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with LaTeX model blocks and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include literature-search summaries sourced from OpenAlex and Semantic Scholar when paper_search.py is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

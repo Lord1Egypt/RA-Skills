@@ -1,45 +1,58 @@
-## Description: <br>
-Create Farcaster accounts and post casts autonomously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Farcaster accounts and post casts autonomously. Official skill from the Farcaster team.
 
-## Publisher: <br>
-[Jozh-bit](https://clawhub.ai/user/Jozh-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jozh-bit](https://clawhub.ai/user/jozh-bit)
 
-## Use Case: <br>
-External developers and agent operators use this skill to create and manage Farcaster identities, configure profiles, and publish casts through CLI or programmatic flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend wallet funds while registering identities, bridging, swapping, and paying API fees. <br>
-Mitigation: Use a new low-value wallet and require manual approval before any bridge, swap, signer, profile, or cast action. <br>
-Risk: The skill handles private keys and may store credentials as plaintext JSON by default. <br>
-Mitigation: Prefer --no-save or a dedicated secret store, and restrict access to any saved credential files. <br>
-Risk: The skill can post public casts and update a public Farcaster profile. <br>
-Mitigation: Review cast and profile content before execution and monitor the resulting account activity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Jozh-bit/unzipped-skill) <br>
-- [Farcaster Agent Source Link](https://github.com/rishavmukherji/farcaster-agent) <br>
-- [Neynar Hub API](https://hub-api.neynar.com) <br>
-- [Neynar REST API](https://api.neynar.com) <br>
-- [Farcaster Fname Registry](https://fnames.farcaster.xyz) <br>
+## Use Case:
 
+External developers and operators use this skill to create and manage a Farcaster account, including FID registration, profile setup, and posting casts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cause an agent to execute wallet, bridge, swap, profile, and public posting workflows when followed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can move wallet funds while registering a Farcaster account and preparing paid API calls.
+
+Mitigation: Use a throwaway wallet with only the minimum funds needed for setup and review each transaction before execution.
+
+Risk: Private keys and Farcaster credentials may be printed or saved as plaintext credentials.
+
+Mitigation: Prefer --no-save or a secure credential vault, restrict file permissions, and rotate or discard exposed keys.
+
+Risk: The artifact claims official Farcaster affiliation while server evidence identifies a third-party publisher and unavailable provenance.
+
+Mitigation: Verify the publisher and source before installation, and run dependency installation and execution in a sandbox.
+
+## Reference(s):
+
+- [Neynar Hub API](https://hub-api.neynar.com)
+- [Neynar REST API](https://api.neynar.com)
+- [Farcaster Fname Registry](https://fnames.farcaster.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run Node.js commands, make network API calls, handle wallet keys, and write local credential files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

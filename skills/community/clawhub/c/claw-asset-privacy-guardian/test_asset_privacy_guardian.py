@@ -60,7 +60,7 @@ This is a test file that might contain:
         # 环境文件测试
         ".env": """
 DATABASE_URL=postgresql://user:password@localhost/prod
-AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+AWS_ACCESS_KEY_ID=REDACTED-SECRET
 AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 STRIPE_SECRET_KEY=sk_live_1234567890
         """,

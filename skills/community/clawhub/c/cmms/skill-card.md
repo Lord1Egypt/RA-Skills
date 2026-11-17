@@ -1,41 +1,55 @@
-## Description: <br>
-Cmms provides a local command-line computerized maintenance management system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computerized maintenance management system.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Maintenance teams and developers use this skill to keep a local command-line maintenance log, add and search entries, remove records, review status and statistics, manage simple configuration, and export records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Maintenance entries and configuration are stored locally in plain text under ~/.cmms by default. <br>
-Mitigation: Avoid recording secrets or highly sensitive business data unless plain-text local storage is acceptable; set CMMS_DIR to an approved location when needed. <br>
-Risk: The export command writes JSON or CSV files into the current directory. <br>
-Mitigation: Run exports from an intended workspace and review generated files before sharing or committing them. <br>
+## Use Case:
 
+Maintenance teams and developers can use this skill to run a local CMMS command-line workflow for adding, listing, searching, removing, exporting, and summarizing maintenance entries.
 
-## Reference(s): <br>
-- [Cmms on ClawHub](https://clawhub.ai/bytesagain-lab/cmms) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text stdout with JSONL local records and JSON or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores data under ~/.cmms by default, or under CMMS_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Configuration updates can allow shell injection through unsafe sed-based rewriting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the shell script before installing; validate configuration keys and replace sed-based updates with data-safe file rewriting.
+
+Risk: Entry and export handling uses weak JSON and CSV encoding.
+
+Mitigation: Encode JSON with a real JSON encoder, quote CSV fields correctly, and handle exported CSV files from untrusted entries carefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/cmms)
+- [Publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with JSONL data storage and optional JSONL or CSV export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses stdout for status and command results, stores entries under CMMS_DIR or ~/.cmms, and exits 0 on success or 1 on error.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

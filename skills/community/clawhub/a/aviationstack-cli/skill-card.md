@@ -1,41 +1,53 @@
-## Description: <br>
-Manage AviationStack via CLI - flights, airports, airlines, routes. Use when user mentions 'aviationstack', 'flight search', 'airport lookup', 'airline search', or wants to interact with the AviationStack API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AviationStack via CLI for flights, airports, airlines, and routes.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and operators use this skill to install, authenticate, and call an AviationStack CLI for flight, airport, airline, and route lookups with filtering, pagination, and selectable output formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs or bundles command-line tooling and may execute code from external installation sources. <br>
-Mitigation: Review the api2cli and Bun installation sources before running the setup commands. <br>
-Risk: The AviationStack token is a secret and could be exposed through shared terminals, logs, or copied command history. <br>
-Mitigation: Only use a token you are comfortable giving to the CLI, avoid pasting real tokens into shared logs or terminals, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and operations users use this skill to configure and run aviationstack-cli commands for flight, airport, airline, and route lookup through the AviationStack API.
 
-## Reference(s): <br>
-- [Aviationstack Cli on ClawHub](https://clawhub.ai/Melvynx/aviationstack-cli) <br>
-- [Bun installer](https://bun.sh/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Programmatic CLI calls should use the --json flag; commands may emit text, JSON, CSV, or YAML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Setup can execute mutable third-party internet installers and link a local command into the user's command environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin referenced tools before installation, and run setup in an isolated environment when possible.
+
+Risk: The AviationStack token is a secret used for outbound API calls and may be stored by the CLI.
+
+Mitigation: Treat the token as sensitive, avoid exposing it in logs or transcripts, and rotate it if accidental disclosure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melvynx/skills/aviationstack-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use --json when called programmatically; output may be JSON, CSV, YAML, or text depending on CLI flags.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

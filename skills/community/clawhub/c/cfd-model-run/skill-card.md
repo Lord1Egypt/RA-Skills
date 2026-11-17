@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through downloading, verifying, training, adapting, and running inference with a ModelScope Fourier Neural Operator workflow for CFD and PDE surrogate modeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents bootstrap and adapt a ModelScope Fourier Neural Operator workflow for CFD surrogate training, inference, and structured-grid PDE forecasting.
 
-## Publisher: <br>
-[onescience-ai](https://clawhub.ai/user/onescience-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onescience-ai](https://clawhub.ai/user/onescience-ai)
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap the OneScience/FNO_B ModelScope codebase, check runtime readiness, adapt structured CFD/PDE datasets, and run training or inference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to download and run external ModelScope model code, which may change outside this artifact. <br>
-Mitigation: Resolve the downloaded path, inspect the codebase and entry points, and review the code before training on sensitive data. <br>
-Risk: Authenticated ModelScope access may require MODELSCOPE_API_TOKEN. <br>
-Mitigation: Provide credentials only when intentional, avoid exposing tokens in logs, and prefer unauthenticated access when sufficient. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare FNO model code, adapt dataset and model configuration, run smoke tests, train, and run inference on CFD or PDE structured-grid datasets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onescience-ai/skills/cfd-model-run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to download external ModelScope code, inspect files, and adapt training configuration for user-provided datasets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill may cause an agent to contact ModelScope, install Python packages, cache remote code, and execute downloaded code locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, review or pin the ModelScope package and model revision, and avoid exposing credentials or sensitive datasets unless the upstream source is trusted.
+
+Risk: Mutable remote model code can change between runs without strong integrity controls.
+
+Mitigation: Pin the model revision when possible, inspect the resolved local directory, and verify expected entry points before training or inference.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onescience-ai/skills/cfd-model-run)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and bash snippets plus configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local dependency installation, ModelScope download or cache resolution, dataset adapter changes, training commands, and inference commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

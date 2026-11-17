@@ -1,40 +1,57 @@
-## Description: <br>
-External Receiver starts an HTTP service that receives file uploads, text messages, and JSON webhooks and forwards them into an OpenClaw session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+External Receiver starts an HTTP receiver that accepts file uploads, text messages, and webhook JSON, then forwards the received content into an OpenClaw session.
 
-## Publisher: <br>
-[kriouerlia](https://clawhub.ai/user/kriouerlia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kriouerlia](https://clawhub.ai/user/kriouerlia)
 
-## Use Case: <br>
-Developers and operators use this skill to bridge external systems into OpenClaw by receiving uploads, messages, or webhook payloads and surfacing them in an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The receiver can expose uploads and agent-visible messages to anyone who can reach the HTTP server if deployed without access controls. <br>
-Mitigation: Bind the service to localhost or a private interface, set RECEIVER_SECRET, and place it behind firewall, VPN, or TLS controls before accepting external traffic. <br>
-Risk: Received files and webhook payloads are external input and may be untrusted. <br>
-Mitigation: Treat all received content as untrusted, review files before use, and restrict public access to status and download endpoints. <br>
+## Use Case:
 
+Developers and operators use this skill to receive files, text messages, or webhook JSON from external systems and make those inputs available in an OpenClaw session.
 
-## Reference(s): <br>
-- [External Receiver on ClawHub](https://clawhub.ai/kriouerlia/external-receiver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces server setup instructions, endpoint examples, and agent-visible received message or file notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The default receiver can expose uploaded files and allow external messages to reach an OpenClaw session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to localhost or a trusted interface, require a strong receiver secret, and restrict access with a firewall before use.
+
+Risk: Status and download endpoints can reveal or serve received files.
+
+Mitigation: Protect or remove status and download endpoints when deploying outside a trusted environment.
+
+Risk: Received files, text, and webhook payloads are untrusted content before they enter an OpenClaw session.
+
+Mitigation: Review, scan, and size-limit received content before allowing it to influence agent work.
+
+## Reference(s):
+
+- [External Receiver on ClawHub](https://clawhub.ai/kriouerlia/skills/external-receiver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a local HTTP service and writes received messages or file notifications into an OpenClaw queue.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

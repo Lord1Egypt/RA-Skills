@@ -1,43 +1,57 @@
-## Description: <br>
-Compare innovations across multiple academic papers in a folder and produce a rolling summ document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare innovations across multiple academic papers in a folder and produce a rolling summary document.
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Researchers, students, and technical reviewers use this skill to process up to 20 local papers, summarize each paper's contributions, compare related papers, and identify concrete follow-on research directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads files in the selected paper folder and writes summary, state, and extracted-text files there. <br>
-Mitigation: Run it only on an intended paper folder and review generated files before relying on them. <br>
-Risk: The source includes a self-evolution section that asks the agent to record failures and propose changes to its own instructions. <br>
-Mitigation: Ignore or remove that section unless diary logging and human-reviewed skill changes are explicitly desired. <br>
-Risk: PDF text extraction quality may be poor for scanned or malformed PDFs, which can affect summaries and comparisons. <br>
-Mitigation: Check extracted text and use OCR or corrected source text when extraction is incomplete. <br>
+## Use Case:
 
+Researchers, students, and technical writers use this skill to process up to 20 papers in a folder, summarize each paper's core problem, methods, innovations, experiments, and workload, and compare related papers for possible combined research directions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/multi-paper-innovation-comparator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/orbisz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown research notebook with supporting JSON state and extracted text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates summ.md, paper_summ_state.json, and extracted_text/ in the selected paper folder; output is Chinese by default unless the user requests another language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A paper folder containing symlinks could cause the extraction script to read files outside the intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted paper folders and avoid folders containing symlinks.
+
+Risk: The skill includes persistence and self-evolution behavior that can write diary entries or propose changes to the skill.
+
+Mitigation: Do not allow diary or SKILL.md PR self-evolution steps unless persistent skill changes are explicitly desired and reviewed manually.
+
+Risk: Running the workflow creates or updates files in the selected paper folder.
+
+Mitigation: Review the target folder before use and expect summ.md, paper_summ_state.json, and extracted_text/ to be created or updated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orbisz/skills/multi-paper-innovation-comparator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Chinese-first Markdown research notebook with JSON state and extracted text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates summ.md, paper_summ_state.json, and extracted_text/ in the paper folder unless a separate output directory is explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

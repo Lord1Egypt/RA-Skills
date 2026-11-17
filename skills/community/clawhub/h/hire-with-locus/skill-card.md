@@ -1,50 +1,67 @@
-## Description: <br>
-Enables AI agents to send USDC payments and order freelance services through an escrow-backed marketplace on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to send USDC payments and order freelance services through an escrow-backed marketplace on Base.
 
-## Publisher: <br>
-[wjorgensen](https://clawhub.ai/user/wjorgensen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wjorgensen](https://clawhub.ai/user/wjorgensen)
 
-## Use Case: <br>
-External users and their agents use this skill to make USDC payments, place escrow-backed freelance orders, and monitor order status through Locus. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent real-money authority to send USDC or place escrow-backed freelance orders. <br>
-Mitigation: Require human confirmation for every payment and order, and enforce allowance, per-transaction, and approval thresholds. <br>
-Risk: Heartbeat routines can create recurring payment or ordering behavior if allowed to act beyond status polling. <br>
-Mitigation: Limit heartbeat behavior to order status checks and require explicit human approval before any reorder or new purchase. <br>
-Risk: Remote skill files can change after installation. <br>
-Mitigation: Disable automatic remote updates or manually review and scan fetched updates before use. <br>
-Risk: A leaked Locus API key can allow wallet spending through the connected account. <br>
-Mitigation: Store the key securely, send it only to api.paywithlocus.com, and rotate it immediately if exposure is suspected. <br>
-Risk: Freelance order requests may expose confidential or personal files through public URLs. <br>
-Mitigation: Use only approved, non-sensitive public links in order requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wjorgensen/hire-with-locus) <br>
-- [Locus skill documentation](https://paywithlocus.com/skill.md) <br>
-- [Locus onboarding guide](https://paywithlocus.com/onboarding.md) <br>
-- [Locus freelance ordering guide](https://paywithlocus.com/fiverr.md) <br>
-- [Locus heartbeat guide](https://paywithlocus.com/heartbeat.md) <br>
-- [Locus API base](https://api.paywithlocus.com/api) <br>
+## Use Case:
 
+External users and their agents use this skill to fund wallets, send USDC, order freelance services through Locus escrow, and monitor order status until completion or cancellation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request and response examples, local credential setup guidance, and heartbeat status text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can spend USDC or place paid freelance orders when configured with a valid API key.
+
+Mitigation: Set strict allowance, maximum transaction size, and approval-threshold limits before use, and require human approval for larger payments.
+
+Risk: A leaked Locus API key can allow another party to spend from the configured wallet.
+
+Mitigation: Store the API key with restrictive permissions or a secret manager and send it only to api.paywithlocus.com.
+
+Risk: The heartbeat recommends periodically fetching remote instructions, which can change outside the reviewed release.
+
+Mitigation: Do not enable remote self-updating heartbeat behavior unless the user accepts that future instructions may change outside the reviewed package.
+
+Risk: Freelance order requests may include confidential details or public asset links.
+
+Mitigation: Avoid sharing confidential order details, private links, or sensitive source material in order requests.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/wjorgensen/skills/hire-with-locus)
+- [Publisher Profile](https://clawhub.ai/user/wjorgensen)
+- [Locus Homepage](https://paywithlocus.com)
+- [Locus API Base](https://api.paywithlocus.com/api)
+- [Skill Instructions](https://paywithlocus.com/skill.md)
+- [Onboarding Guide](https://paywithlocus.com/onboarding.md)
+- [Freelance Ordering Guide](https://paywithlocus.com/fiverr.md)
+- [Heartbeat Routine](https://paywithlocus.com/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON, markdown]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request/response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate payment, escrow, order-placement, and order-polling workflows when used with a valid Locus API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Douban CLI helps agents query Douban movies, books, celebrities, user collections, reviews, and ratings, and run logged-in collection actions through the douban command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps explicit Douban-sourced movie, TV, book, collection, account, batch, and export requests to appropriate douban CLI commands.
 
-## Publisher: <br>
-[Marvae](https://clawhub.ai/user/Marvae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marvae](https://clawhub.ai/user/marvae)
 
-## Use Case: <br>
-Agents and developers use this skill to choose and run Douban CLI commands for movie, book, celebrity, review, rating, and user collection lookup. With user login, it can help export viewing records and perform account actions such as marking, rating, commenting, reviewing, following, or unfollowing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The login workflow reads local browser cookies to access Douban. <br>
-Mitigation: Install only if the npm package is trusted, ask for explicit confirmation before login, and run logout or remove the auth cache when stored login state is no longer wanted. <br>
-Risk: Authenticated commands can make visible changes to a user's Douban account. <br>
-Mitigation: Require explicit confirmation before marking, rating, commenting, reviewing, following, unfollowing, exporting, or running batch operations. <br>
-Risk: Batch operations can repeatedly call Douban and may trigger anti-abuse controls or unintended bulk changes. <br>
-Mitigation: Review input files before execution and use conservative request delays for batch commands. <br>
+## Use Case:
 
+External users and developers use this skill when they explicitly want Douban as the source, or explicitly want the douban CLI, for movie, TV, book, collection, account-management, batch-operation, or export workflows. It helps the agent choose commands, parameters, paging behavior, confirmation points, and privacy handling for douban CLI use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Marvae/douban-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/Marvae) <br>
-- [npm package @marvae24/douban-cli](https://www.npmjs.com/package/@marvae24/douban-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON or CSV command output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the douban binary; authenticated workflows may read browser cookies and use local configuration and auth cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: release metadata) <br>
+Risk: The skill depends on an unpinned third-party executable that may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted, pinned, reviewed version of @marvae24/douban-cli before use.
+
+Risk: Login, browser-profile extraction, and cookie import can expose Douban session cookies.
+
+Mitigation: Do not paste cookies into chat or logs; run cookie import locally, avoid uploading cookie files, and use logout or a restricted profile/account when finished.
+
+Risk: Account write actions and exports can change or disclose personal account data.
+
+Mitigation: Require explicit confirmation before follow, unfollow, rating, comment, review, mark, unmark, login, or export commands, and write exports only to user-specified paths.
+
+## Reference(s):
+
+- [Douban CLI homepage](https://github.com/Marvae/douban-cli)
+- [ClawHub skill page](https://clawhub.ai/marvae/skills/douban-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/marvae)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file-format notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command confirmations, pagination guidance, JSON/stdout notes, and privacy warnings for login, cookies, account writes, and exports.]
+
+## Skill Version(s):
+
+0.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

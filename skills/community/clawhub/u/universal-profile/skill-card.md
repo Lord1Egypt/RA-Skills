@@ -1,46 +1,61 @@
-## Description: <br>
-Manage LUKSO Universal Profiles - identity, permissions, tokens, blockchain operations, with cross-chain support for Base and Ethereum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage LUKSO Universal Profiles, including identity, permissions, tokens, blockchain operations, and cross-chain support for Base and Ethereum.
 
-## Publisher: <br>
-[frozeman](https://clawhub.ai/user/frozeman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frozeman](https://clawhub.ai/user/frozeman)
 
-## Use Case: <br>
-Developers and operators use this skill to manage LUKSO Universal Profiles, controller permissions, profile metadata, token operations, gasless LUKSO relay flows, and cross-chain deployment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use local controller keys to submit irreversible blockchain transactions. <br>
-Mitigation: Manually inspect every direct, relay, batch, transfer, mint, and permission-changing transaction before allowing an agent to run it; test on testnet first. <br>
-Risk: A funded or highly privileged Universal Profile could be exposed to excessive controller permissions. <br>
-Mitigation: Use a least-privilege controller, avoid full-access permissions, and prefer restricted permissions such as CALL over SUPER_CALL where possible. <br>
-Risk: Controller private keys may be stored locally for signing. <br>
-Mitigation: Keep key files locked down, use restrictive file permissions, and avoid logging, printing, or transmitting private keys. <br>
+## Use Case:
 
+Developers and agents use this skill to configure and operate LUKSO Universal Profiles, manage controller permissions, query assets, prepare profile and token operations, and execute direct or LUKSO relay transactions.
 
-## Reference(s): <br>
-- [ERC725.js Complete Reference](references/ERC725-JS.md) <br>
-- [LUKSO Docs](https://docs.lukso.tech/) <br>
-- [LSP6 Key Manager](https://docs.lukso.tech/standards/access-control/lsp6-key-manager) <br>
-- [ERC725.js](https://github.com/ERC725Alliance/erc725.js) <br>
-- [Universal Everything](https://universaleverything.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, JSON, and transaction examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include blockchain transaction, relay, permission, and credential-handling guidance that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: The skill can read or create controller keys used for signing profile actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated controller keys, avoid plaintext private keys, do not pass keystore passwords on the command line, and keep credential files restricted.
+
+Risk: The skill can initiate on-chain actions that may be irreversible.
+
+Mitigation: Use a testnet first, verify the target chain and recipient before signing, and review transaction payloads before submission.
+
+Risk: Broad controller permissions can expand the impact of a mistaken or compromised action.
+
+Mitigation: Grant the narrowest practical permissions and restrict controller capabilities with allowed calls or data keys where possible.
+
+## Reference(s):
+
+- [ERC725.js Reference](references/ERC725-JS.md)
+- [LUKSO Docs](https://docs.lukso.tech/)
+- [LSP6 Key Manager](https://docs.lukso.tech/standards/access-control/lsp6-key-manager)
+- [Universal Profile Authorization UI](https://openclaw.universalprofile.cloud)
+- [ClawHub Skill Page](https://clawhub.ai/frozeman/skills/universal-profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, CLI commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction payloads, profile metadata, permission encodings, and on-chain operation guidance]
+
+## Skill Version(s):
+
+0.9.0 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

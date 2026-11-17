@@ -1,43 +1,57 @@
-## Description: <br>
-Kalshi helps agents query read-only Kalshi prediction-market data for sports events, series, markets, trades, and candlestick price history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kalshi prediction markets skill for querying public read-only market data, events, series, trades, and candlestick history for US sports and major soccer leagues.
 
-## Publisher: <br>
-[antonelli182](https://clawhub.ai/user/antonelli182) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonelli182](https://clawhub.ai/user/antonelli182)
 
-## Use Case: <br>
-External users and developers use this skill to discover Kalshi sports prediction markets, retrieve open event and market data, and inspect implied probabilities and OHLC price history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kalshi prices are prediction-market probabilities, not sports scores, match results, or financial advice. <br>
-Mitigation: Present prices as 0-100 implied probabilities and use sport-specific data sources when the user asks for schedules, scores, or statistics. <br>
-Risk: The skill assumes the runtime provides the referenced sports-skills CLI or Python SDK. <br>
-Mitigation: Confirm the runtime has the required CLI or SDK before use and review generated commands before execution. <br>
+## Use Case:
 
+External users, developers, and sports-market analysts use this skill to find open Kalshi markets, inspect event contracts, retrieve market prices as implied probabilities, and review price-history data.
 
-## Reference(s): <br>
-- [Kalshi API](https://api.elections.kalshi.com/trade-api/v2) <br>
-- [Kalshi API Reference](references/api-reference.md) <br>
-- [Valid Commands & Common Mistakes](references/commands.md) <br>
-- [Sport Codes & Series Tickers](references/series-tickers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only market data guidance; no credentials are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Kalshi prices can be misread as betting odds or investment recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat prices as market-implied probabilities, not betting or trading advice, and verify any financial decision independently.
+
+Risk: Queries can return stale, closed, or irrelevant markets if required sport or status parameters are omitted.
+
+Mitigation: Pass the documented sport code for sport-specific searches and use status="open" when querying live markets.
+
+## Reference(s):
+
+- [Kalshi API base URL](https://api.elections.kalshi.com/trade-api/v2)
+- [API Reference](artifact/references/api-reference.md)
+- [Kalshi API](artifact/references/api.md)
+- [Valid Commands and Common Mistakes](artifact/references/commands.md)
+- [Sport Codes and Series Tickers](artifact/references/series-tickers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, Python snippets, and API parameter recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public read-only Kalshi endpoints and does not require credentials for documented read operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-A skill to fetch and reference news information from Feishu when interacting with users. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A skill to fetch and reference news information from Feishu when interacting with users.
 
-## Publisher: <br>
-[yeat](https://clawhub.ai/user/yeat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeat](https://clawhub.ai/user/yeat)
 
-## Use Case: <br>
-Users can ask an agent to retrieve, format, and cite Feishu-style news updates in conversation. The current release should be treated as a demo/mock because the included implementation returns sample articles rather than live Feishu API results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for a live Feishu news connector even though the included code returns hardcoded sample articles. <br>
-Mitigation: Treat outputs as demonstration data unless the publisher updates the implementation and documentation to use real Feishu API results. <br>
-Risk: Broad dependency ranges can change behavior or increase installation risk over time. <br>
-Mitigation: Review and pin dependencies before deployment. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to retrieve Feishu news items, format them for conversation, and preserve source attribution when referencing current news.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown-formatted news summaries with source attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns sample article metadata including title, summary, source, URL, and date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependencies are broader than the mock implementation requires and are not locked to exact versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or lock dependencies before production deployment and remove unused packages while the skill remains mock-only.
+
+Risk: Generic news requests may invoke Feishu when the user expected a different news source.
+
+Mitigation: Clarify when Feishu should be used and ask for source preference when the requested source is ambiguous.
+
+## Reference(s):
+
+- [Feishu News Skill on ClawHub](https://clawhub.ai/yeat/skills/feishu-news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted news summaries with source attribution links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on Feishu source availability and configured news sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

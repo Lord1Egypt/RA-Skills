@@ -1,46 +1,60 @@
-## Description: <br>
-Multi-agent orchestration with 5 proven patterns - Work Crew, Supervisor, Pipeline, Council, and Auto-Routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent orchestration with 5 proven patterns - Work Crew, Supervisor, Pipeline, Council, and Auto-Routing
 
-## Publisher: <br>
-[variable190](https://clawhub.ai/user/variable190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[variable190](https://clawhub.ai/user/variable190)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multiple OpenClaw agents for parallel research, dynamic task decomposition, staged workflows, expert review, and automatic routing when a task benefits from multiple perspectives or structured delegation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Tasks and intermediate outputs may be sent to multiple spawned sessions during orchestration. <br>
-Mitigation: Keep tasks tightly scoped, avoid secrets or regulated data in prompts, and use least-privilege host permissions. <br>
-Risk: Prompt injection and unsafe task propagation cannot be fully eliminated in multi-agent workflows. <br>
-Mitigation: Keep the skill's safe-state mode enabled, rely on its sanitization and safety preamble behavior, and review generated outputs before code changes, deployments, publishing, or other high-impact actions. <br>
-Risk: Multi-agent patterns can increase token cost and operational complexity. <br>
-Mitigation: Limit agent counts and rounds, and use orchestration only for tasks where reliability, breadth, or speed justifies the overhead. <br>
+## Use Case:
 
+Developers and engineers use this skill to coordinate OpenClaw sub-agents for parallel research, supervisor-led decomposition, staged pipelines, expert councils, and task routing when a single-agent workflow is brittle or slow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/variable190/agent-orchestrator-molter-102) <br>
-- [Security notes](SECURITY.md) <br>
-- [Examples guide](examples/README.md) <br>
-- [Content pipeline example](examples/content-pipeline.json) <br>
-- [Task router example](examples/task-router.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON summaries with command-line guidance and aggregated agent outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include synthesized consensus, routing decisions, staged workflow results, and recommendations that should be reviewed before high-impact use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Sub-agent orchestration forwards task content into spawned OpenClaw sessions, which can expose sensitive input if users include secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets or sensitive material unless the OpenClaw runtime is tightly sandboxed and least-privilege controls are in place.
+
+Risk: Prompt-injection attempts in task text may still influence workers even with sanitization and a safety preamble.
+
+Mitigation: Keep tasks scoped and explicit, review generated outputs before high-impact use, and run new workflow prompts in a sandbox or test environment first.
+
+Risk: Council mode can launch sub-agent sessions while returning simulated expert opinions rather than collected sub-agent deliberation.
+
+Mitigation: Treat council-mode results as advisory and verify them independently before making important decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/variable190/skills/agent-orchestrator-molter-102)
+- [Agent Orchestrator README](README.md)
+- [Security Notes](SECURITY.md)
+- [Pipeline Examples](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, or JSON depending on the selected orchestration command and output flag]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May spawn multiple OpenClaw sub-agent sessions and can use substantially more tokens than a single-agent run.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

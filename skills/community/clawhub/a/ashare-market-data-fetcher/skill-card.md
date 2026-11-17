@@ -1,46 +1,58 @@
-## Description: <br>
-Guides agents in fetching, organizing, and validating A-share market data including stock basics, trading calendars, prices, financials, trading status, sectors, capital flows, announcements, and professional market-data source guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides workflows for collecting and validating A-share market data, including stock basics, trading calendars, historical and intraday prices, adjustment data, suspensions, financial statements, market themes, capital flows, announcements, and professional data-source guidance.
 
-## Publisher: <br>
-[alanwu2024](https://clawhub.ai/user/alanwu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alanwu2024](https://clawhub.ai/user/alanwu2024)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to prepare A-share market datasets, compare market-data sources, document field definitions, and surface reliability limits before using data for research, backtesting, or market review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data may come from providers with different authority levels, licensing terms, delays, or field definitions. <br>
-Mitigation: Confirm which providers the agent will contact, use paid or licensed feeds only with permission, and report source, timestamp, units, and field definitions with the output. <br>
-Risk: Financial data can be incomplete, conflicting, delayed, or unsuitable for trading, investment, or compliance decisions without independent checks. <br>
-Mitigation: Cross-check key fields against authoritative or commercial sources and clearly mark conflicts, missing data, and unavailable official data before relying on results. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to collect, explain, and validate A-share market data for research, review, backtesting preparation, and market-data quality checks. It emphasizes source hierarchy, field definitions, timestamps, and cross-source validation before drawing conclusions from the data.
 
-## Reference(s): <br>
-- [AKShare stock data documentation](https://akshare.akfamily.xyz/data/stock/stock.html) <br>
-- [AKShare data dictionary](https://akshare.akfamily.xyz/data/index.html) <br>
-- [CNINFO](http://www.cninfo.com.cn/) <br>
-- [Shenzhen Stock Exchange disclosure notices](https://www.szse.cn/marketServices/deal/disclosure/notice/index.html) <br>
-- [Shanghai Stock Exchange market data products](https://english.sse.com.cn/markets/dataservice/products/) <br>
-- [Choice Quant API manual](https://quantapi.eastmoney.com/Manual?from=web) <br>
-- [Reference documentation for Ashare Market Data Fetcher](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables and optional code or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes data-source, timestamp, field-definition, and limitation metadata when market data is reported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market data may be unsuitable for trading or investment decisions if source permissions, latency, and field definitions are not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify data-source permissions, latency, field definitions, and usage rights before relying on outputs; use official or licensed providers for Level-2, tick, and trading-critical workflows.
+
+Risk: Free, open-source, and public web data can diverge from official or licensed market-data feeds.
+
+Mitigation: Label every source, retrieval time, adjustment basis, unit, and unresolved conflict, and cross-check key fields against official disclosures or licensed market-data sources.
+
+## Reference(s):
+
+- [AKShare Stock Data Documentation](https://akshare.akfamily.xyz/data/stock/stock.html)
+- [AKShare Data Dictionary](https://akshare.akfamily.xyz/data/index.html)
+- [CNINFO](http://www.cninfo.com.cn/)
+- [Shenzhen Stock Exchange Information Disclosure Notices](https://www.szse.cn/marketServices/deal/disclosure/notice/index.html)
+- [Shanghai Stock Exchange Market Data Products](https://english.sse.com.cn/markets/dataservice/products/)
+- [Choice Quant API Manual](https://quantapi.eastmoney.com/Manual?from=web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured tables, source and field metadata, validation notes, and optional code snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state data source, retrieval time, field definitions, adjustment basis, units, and unresolved conflicts or limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

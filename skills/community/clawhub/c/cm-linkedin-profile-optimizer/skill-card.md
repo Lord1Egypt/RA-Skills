@@ -1,45 +1,52 @@
-## Description: <br>
-Audits and rewrites LinkedIn profiles for recruiter visibility, inbound leads, category authority, keyword strategy, and social selling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and rewrites LinkedIn profiles to improve recruiter visibility, inbound leads, category authority, keyword placement, and profile conversion.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and employees use this skill to audit and rewrite LinkedIn profiles for job search, fundraising, B2B sales, recruiting visibility, and personal-brand positioning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may process career details, LinkedIn profile text, and target contacts that a user may consider sensitive.
+
+Mitigation: Provide only profile and career information the user is comfortable sharing with the agent.
+
+Risk: Suggested public profile edits or outreach messages may be inaccurate, overstate experience, or reveal details the user does not want public.
+
+Mitigation: Review and edit rewritten profile copy, activity plans, and outreach messages before publishing or sending them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External professionals, job seekers, founders, sales representatives, marketers, and personal-brand builders use this skill to audit and rewrite LinkedIn profiles for search visibility, profile conversion, and professional authority. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Profile drafts may include inaccurate claims, metrics, or positioning if the source profile details are incomplete or embellished. <br>
-Mitigation: Verify all claims, employment details, metrics, and examples before publishing profile changes. <br>
-Risk: The skill can draft LinkedIn posts, DMs, recommendations, connection requests, and endorsement plans that could affect a user's professional reputation. <br>
-Mitigation: Keep all LinkedIn posting, messaging, recommendation, connection, and endorsement actions under manual user control. <br>
-Risk: Users may provide sensitive career, compensation, employer, or NDA-constrained information while requesting profile optimization. <br>
-Mitigation: Share only profile and career details the user is comfortable exposing to the agent, and avoid entering confidential or restricted information. <br>
-Risk: Capability tags mention crypto and purchase authority, but the security guidance does not support granting those powers for this skill. <br>
-Mitigation: Do not grant purchase, crypto, login, messaging, or posting authority based on this skill alone. <br>
+**Output Format:** [Markdown profile audit, rewritten profile copy, activity plan, and outreach templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/cm-linkedin-profile-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+**Other Properties Related to Output:** [May include scored audit tables, rewritten LinkedIn sections, keyword maps, a 30-day activity calendar, and outreach messages.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown with profile rewrites, scorecards, keyword maps, outreach templates, and activity plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drafting and strategy guidance; users should verify claims and manually control LinkedIn actions.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

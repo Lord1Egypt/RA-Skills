@@ -1,46 +1,65 @@
-## Description: <br>
-Semantically optimizes conversation history and large text blocks through the Trunkate AI API, including optional OpenClaw hooks for proactive context management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantically optimizes agent conversation history and large text blocks through the Trunkate AI API, with optional OpenClaw hooks for proactive context compression.
 
-## Publisher: <br>
-[titus-choi](https://clawhub.ai/user/titus-choi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[titus-choi](https://clawhub.ai/user/titus-choi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to compress long agent histories, large logs, and oversized text blocks while preserving task-relevant context for continued work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation history and project context may be sent to the Trunkate API, especially when the always-on PreRequest hook is enabled. <br>
-Mitigation: Prefer manual CLI use or disable the PreRequest hook unless the workspace is appropriate for third-party processing; avoid sensitive or regulated sessions. <br>
-Risk: The hook can replace agent memory with optimized text without clear per-use control. <br>
-Mitigation: Review or disable automatic history replacement, set conservative thresholds and budgets, and keep raw-history fallback available when exact context matters. <br>
-Risk: The skill requires a TRUNKATE_API_KEY for a third-party service. <br>
-Mitigation: Scope, rotate, and store the API key only in trusted environments; do not commit it to project files. <br>
+## Use Case:
 
+Developers and agent operators use Trunkate AI to compress long conversations, logs, documents, and handoff context so an agent can continue work within token limits while preserving key task facts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/titus-choi/trunkate-ai) <br>
-- [Optimization examples](references/examples.md) <br>
-- [Hooks setup](references/hooks-setup.md) <br>
-- [OpenClaw integration](references/openclaw-integration.md) <br>
-- [Proactive context hook](hooks/openclaw/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; optimized history text from the CLI or hook output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When OpenClaw hooks are enabled, the skill may emit OPENCLAW_ACTION:SET_HISTORY to replace session history with optimized text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.20.0 (source: server release metadata and version.txt) <br>
+Risk: Automatic hook behavior can send conversation history, logs, and project content to Trunkate and replace session history without enough user-visible control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only where sending that content to Trunkate is acceptable, and avoid enabling the PreRequest hook until explicit opt-in, threshold checks, destination allowlisting, stronger redaction, and confirmation are in place.
+
+Risk: Sensitive context may be included in text selected for optimization.
+
+Mitigation: Use protected rules and KEEP blocks for content that must not be compressed, keep secrets out of compressible context, and verify redaction behavior before enabling automatic operation.
+
+Risk: Compressed history can omit or alter details that matter for later agent decisions.
+
+Mitigation: Preserve critical instructions and project facts explicitly, review optimization logs or outputs at important milestones, and fall back to original context when fidelity is uncertain.
+
+Risk: API failures, missing API keys, or rate limits can leave context unoptimized.
+
+Mitigation: Treat optimization as a best-effort helper, monitor error output, and do not assume compression occurred unless the optimized output or history update is visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/titus-choi/skills/trunkate-ai)
+- [Optimization Examples and Benchmarks](references/examples.md)
+- [Python Proactive Hooks Integration Guide](references/hooks-setup.md)
+- [OpenClaw and Trunkate API Integration Spec](references/openclaw-integration.md)
+- [Proactive Context Hook](hooks/openclaw/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRUNKATE_API_KEY; optimization returns compressed text or leaves the original text unchanged when the API key is missing or the API call fails.]
+
+## Skill Version(s):
+
+0.20.0 (source: server release metadata, CHANGELOG.md, version.txt; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

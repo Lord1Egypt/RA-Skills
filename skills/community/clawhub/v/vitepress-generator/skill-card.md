@@ -1,44 +1,57 @@
-## Description: <br>
-Quickly generate static websites using VitePress, including dependency installation, project initialization, local preview, builds, and deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly generate static websites using VitePress. Supports installing dependencies, initializing projects, local preview, building, and deployment.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and technical writers use this skill to create and configure VitePress documentation sites, blogs, and static websites, then preview, build, and prepare them for deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper installs npm dependencies and generates project files in the target directory. <br>
-Mitigation: Run it in a new or backed-up directory and review generated files before committing or deploying. <br>
-Risk: Deployment examples include GitHub Actions permissions and manual force-push commands. <br>
-Mitigation: Review workflow permissions, repository targets, and branch names before using deployment examples. <br>
+## Use Case:
 
+Developers and technical writers use this skill to scaffold, configure, preview, build, and deploy VitePress-based documentation sites, blogs, and static websites.
 
-## Reference(s): <br>
-- [VitePress Generator on ClawHub](https://clawhub.ai/openlark/vitepress-generator) <br>
-- [VitePress Documentation](https://vitepress.dev) <br>
-- [Configuration Guide](references/config-guide.md) <br>
-- [Deployment Guide](references/deployment.md) <br>
-- [Theme Customization](references/theme-customization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell, JSON, TypeScript, CSS, YAML, Dockerfile, and Vue snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a VitePress project scaffold and deployment configuration examples when the initialization script or documented steps are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Setup commands and the initialization script create project files, install npm dependencies, and modify package.json in the selected directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the setup only in the intended project directory and review generated files before committing or deploying them.
+
+Risk: Deployment examples include dependency, GitHub Actions, Docker, and repository write-credential choices that may be unsuitable for production without review.
+
+Mitigation: Pin package versions, GitHub Actions, and Docker images for production or CI, and review any workflow that receives repository write credentials.
+
+## Reference(s):
+
+- [VitePress Documentation](https://vitepress.dev)
+- [VitePress Configuration Guide](references/config-guide.md)
+- [VitePress Theme Customization](references/theme-customization.md)
+- [VitePress Deployment Guide](references/deployment.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/vitepress-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, code snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include npm, VitePress, GitHub Actions, Docker, and static hosting commands that users should review before running.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

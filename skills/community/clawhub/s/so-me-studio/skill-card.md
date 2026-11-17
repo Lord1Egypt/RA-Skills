@@ -1,45 +1,62 @@
-## Description: <br>
-so-me.studio is a multi-platform social-media scheduler that helps agents schedule posts, manage drafts, reply to inbox messages and comments, generate AI content, query analytics, manage media and biolinks, and react to webhooks across major social platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+so-me.studio is a multi-platform social-media scheduler. Schedule posts, manage drafts, reply to inbox messages and post comments, generate AI captions/images/UGC videos, query analytics, manage media files and biolinks, and react to webhooks across Twitter/X, LinkedIn, LinkedIn Page, Instagram, Facebook, TikTok, YouTube, Threads, WhatsApp, Pinterest, Dribbble.
 
-## Publisher: <br>
-[yasin047](https://clawhub.ai/user/yasin047) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yasin047](https://clawhub.ai/user/yasin047)
 
-## Use Case: <br>
-Social media operators, marketers, and support teams use this skill to let an agent schedule and draft social posts, triage inbox conversations, generate content, collect analytics, and manage connected workspace resources through the so-me.studio CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent operate connected social accounts and workspace settings with broad posting, inbox, webhook, account, and team-management capabilities. <br>
-Mitigation: Use the least-privileged so-me.studio credential available and require explicit human approval before posting, replying, deleting content, changing team roles, modifying webhooks, disconnecting accounts, or deleting or leaving workspaces. <br>
-Risk: An API key or saved login gives the agent access to sensitive social-media and workspace actions. <br>
-Mitigation: Keep SOMESTUDIO_API_KEY out of logs and chat output, rotate credentials when access changes, and avoid admin credentials for routine scheduling or analytics work. <br>
+## Use Case:
 
+Developers and social-media operators use this skill to direct an agent through authenticated so-me.studio CLI workflows for scheduling posts, managing drafts, replying to inbox messages and comments, generating content, querying analytics, managing media and biolinks, and handling webhooks.
 
-## Reference(s): <br>
-- [so-me.studio documentation](https://docs.so-me.studio) <br>
-- [so-me.studio CLI package](https://www.npmjs.com/package/@so-me/cli) <br>
-- [so-me.studio website](https://so-me.studio) <br>
-- [so-me.studio app](https://app.so-me.studio) <br>
-- [Webhook payloads](https://docs.so-me.studio/webhooks/payloads) <br>
-- [MCP server overview](https://docs.so-me.studio/mcp/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON-aware workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid SOMESTUDIO_API_KEY or browser OAuth session for so-me.studio CLI access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill can perform real social-media actions, including posting, messaging, deleting content, and changing workspace resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege workspace or API key where possible, review posts and replies before they are sent, and prefer drafts when intent is ambiguous.
+
+Risk: The skill exposes account-administration workflows such as team, tenant, webhook, and API-key management.
+
+Mitigation: Avoid allowing the agent to create API keys, webhooks, tenants, or team changes unless explicitly requested, and monitor those settings after use.
+
+Risk: Authenticated operation depends on SOMESTUDIO_API_KEY or saved CLI credentials.
+
+Mitigation: Never echo or disclose the API key, rotate credentials if exposed, and revoke access that is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yasin047/skills/so-me-studio)
+- [so-me.studio Documentation](https://docs.so-me.studio)
+- [so-me.studio CLI on npm](https://www.npmjs.com/package/@so-me/cli)
+- [so-me.studio Website](https://so-me.studio)
+- [Webhook Payloads](https://docs.so-me.studio/webhooks/payloads)
+- [MCP Overview](https://docs.so-me.studio/mcp/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated so-me.studio access through SOMESTUDIO_API_KEY or CLI login.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

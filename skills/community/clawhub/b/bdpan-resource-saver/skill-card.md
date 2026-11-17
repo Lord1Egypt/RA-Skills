@@ -1,41 +1,53 @@
-## Description: <br>
-Searches Bing or Baidu for Baidu Netdisk share links, verifies accessible resources, and helps save or transfer selected files into a user's Baidu Netdisk account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for resources using Bing or Baidu, finds Baidu Netdisk share links, verifies access details, and saves or transfers selected files to a user's Baidu Netdisk account.
 
-## Publisher: <br>
-[nameefef](https://clawhub.ai/user/nameefef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nameefef](https://clawhub.ai/user/nameefef)
 
-## Use Case: <br>
-External users use this skill to find movies, shows, books, or other resources shared through Baidu Netdisk and transfer approved resources into their own netdisk storage. It is intended for workflows where the user can review the source link, extraction code, file details, and destination before any save or transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a logged-in Baidu Netdisk account or authenticated bdpan CLI session. <br>
-Mitigation: Require the agent to stop after finding links and ask for approval of the exact file, source link, and destination folder before any save or transfer. <br>
-Risk: The skill searches third-party share links that may be expired, fake, misleading, or unsuitable. <br>
-Mitigation: Verify link accessibility, file name, file size, and expiration before transfer, and search for alternatives when a link is invalid. <br>
+## Use Case:
 
+External users and agents use this skill to search for Baidu Netdisk resources, verify share links and extraction codes, and save chosen content into a Baidu Netdisk account.
 
-## Reference(s): <br>
-- [Browser Automation Patterns for Baidu Netdisk](references/browser-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nameefef/bdpan-resource-saver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with resource details and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Baidu Netdisk share links, extraction codes, file status, target folders, and transfer results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can browse third-party share links and may surface unknown or infringing resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each discovered resource before transfer and avoid unknown, suspicious, or infringing shares.
+
+Risk: The skill can make persistent changes in a Baidu Netdisk account through bdpan commands or an authenticated browser session.
+
+Mitigation: Use it only with an account session where the user accepts account changes, and verify file details, quota, and destination folder before saving.
+
+## Reference(s):
+
+- [Browser Automation Patterns for Baidu Netdisk](references/browser-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and transfer status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include discovered share links, extraction codes, file details, quota findings, destination folders, and success or failure status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

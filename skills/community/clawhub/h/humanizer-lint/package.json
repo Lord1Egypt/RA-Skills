@@ -1,0 +1,51 @@
+{
+  "name": "humanizer-lint",
+  "version": "1.3.0",
+  "description": "Deterministic multilingual AI text humanizer, anti-slop prose linter, copywriting/blog/SEO editor, and stylometric analyzer for 8 language packs plus 100+ universal languages. Local zero-dependency Node.js CLI, no network.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.3.0"
+  },
+  "bin": {
+    "humanizer-lint": "scripts/analyze.mjs",
+    "humanizer-fingerprint": "scripts/fingerprint.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "rules/",
+    "profiles/"
+  ],
+  "scripts": {
+    "test": "node demo/build.mjs && node --test tests/test-runner.mjs",
+    "build:demo": "node demo/build.mjs"
+  },
+  "homepage": "https://humanizer.aiclub.ai.id",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanstd888/humanizer-lint.git"
+  },
+  "keywords": [
+    "skills-sh",
+    "agent-skill",
+    "ai-humanizer",
+    "humanizer",
+    "anti-slop",
+    "prose-linter",
+    "stylometry",
+    "burstiness",
+    "mattr",
+    "multilingual-nlp",
+    "indonesian-nlp",
+    "copywriting",
+    "markdown-linter",
+    "claude-code",
+    "cursor-skill",
+    "windsurf",
+    "codex",
+    "gemini-cli"
+  ],
+  "license": "MIT"
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Better provides role context for a Senior PM on Better Mortgage's borrower communications team, including call routing, dialers, CRM systems, speed-to-lead work, meeting prep, project tracking, and workflow support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Better Mortgage PM work context. Senior PM role leading borrower communications team (call routing, dialers, CRM systems, speed-to-lead optimization). Use when working on Better-specific tasks, meeting prep, team updates, project tracking, or MS Teams/Outlook/JIRA workflows.
 
-## Publisher: <br>
-[tw0316](https://clawhub.ai/user/tw0316) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tw0316](https://clawhub.ai/user/tw0316)
 
-## Use Case: <br>
-Employees or agents assisting Tej Wadwa use this skill to keep Better Mortgage work context available for meeting preparation, status updates, team coordination, metrics analysis, and workflow documentation. The skill is scoped to Better Mortgage work and should not be mixed with unrelated startup or real estate context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal compensation details and employer-specific role context may be exposed if the skill is shared or installed beyond its intended personal workspace. <br>
-Mitigation: Review the artifact before distribution and remove salary, bonus, RSU, vesting, and other private employment details for broader sharing. <br>
-Risk: Better Mortgage work context may be applied to unrelated startup or real estate work if the skill is invoked outside its intended scope. <br>
-Mitigation: Use the skill only for Better Mortgage workflows and keep it separate from unrelated business contexts. <br>
+## Use Case:
 
+Employees or agents supporting Tej's Better Mortgage product management work use this skill for meeting preparation, project updates, team coordination, workflow documentation, and metrics analysis around borrower communications.
 
-## Reference(s): <br>
-- [ClawHub skill page: Better](https://clawhub.ai/tw0316/better) <br>
-- [ClawHub publisher profile: tw0316](https://clawhub.ai/user/tw0316) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise text or Markdown guidance for Better Mortgage work tasks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code execution, shell commands, external tools, or system access are defined by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes identifiable compensation and equity details that are broader than the stated product management workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and remove or generalize salary, bonus, RSU, valuation, and vesting details unless that context is explicitly required.
+
+Risk: The activation description may trigger during unrelated meeting, project, or enterprise-tool requests.
+
+Mitigation: Narrow activation to Better-specific tasks or named internal workflows so the context is used only when relevant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tw0316/skills/better)
+- [Publisher profile](https://clawhub.ai/user/tw0316)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language responses, summaries, and task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May draw on Better-specific role context and named workplace tools; sensitive compensation and equity details should be minimized before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

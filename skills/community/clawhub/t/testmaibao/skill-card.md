@@ -1,38 +1,50 @@
-## Description: <br>
-Queries weather for a specified city and returns temperature, weather description, and humidity in Celsius or Fahrenheit. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Queries simulated current weather for a specified city, returning temperature, weather conditions, and humidity in Celsius or Fahrenheit.
 
-## Publisher: <br>
-[qkainan](https://clawhub.ai/user/qkainan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qkainan](https://clawhub.ai/user/qkainan)
 
-## Use Case: <br>
-Agent developers can use this skill to answer user weather questions for a named city and requested temperature unit. Because the security evidence identifies the output as simulated, it is suitable as a mock weather-query example unless connected to a real weather data source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises current weather while returning random simulated weather data. <br>
-Mitigation: Treat results as mock data, clearly label them as simulated, or connect the skill to a real weather data source before using it for weather-dependent decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to answer city-specific weather questions with mock weather data for conversational or test workflows. Its outputs should not be treated as live weather observations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qkainan/testmaibao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON string with city, temperature, description, humidity, and status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Temperature unit may be Celsius or Fahrenheit; weather values are simulated in the provided artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill returns simulated weather data that may be mistaken for live weather information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label outputs as mock data and use a real weather source for operational, travel, safety, or commercial weather decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qkainan/skills/testmaibao)
+- [Publisher profile](https://clawhub.ai/user/qkainan)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns simulated weather values; city is required and unit defaults to celsius.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Automates lead discovery using geolocation and Google Places, site generation, personalized outreach emails, and follow-up sequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates lead discovery using geolocation and Google Places, site generation from templates, and personalized email outreach with follow-up sequences.
 
-## Publisher: <br>
-[mandebiko5-star](https://clawhub.ai/user/mandebiko5-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mandebiko5-star](https://clawhub.ai/user/mandebiko5-star)
 
-## Use Case: <br>
-External users, sales operators, and developers can use this skill to plan or generate lead discovery, website generation, and email outreach workflows. Users should review lead sources, message content, and follow-up scheduling before any outreach is sent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lead scraping and automated outreach can contact people without consent or violate source, provider, or jurisdictional rules. <br>
-Mitigation: Use lawful and permitted lead sources, review every lead list before use, include unsubscribe or opt-out handling, and define retention and deletion rules. <br>
-Risk: Automated SMTP and follow-up sequences can send unwanted or excessive messages. <br>
-Mitigation: Set strict send limits, review every message before sending, and require explicit approval before any scheduled follow-up emails are sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mandebiko5-star/lead-auto-scraper) <br>
+## Use Case:
 
+Sales, marketing, and business development users can use this skill to plan lead discovery, generate lead-facing sites, and coordinate personalized outreach and follow-up workflows. It is intended for lead generation workflows that require human review before contacting recipients.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with implementation steps and optional code, shell, or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API, SMTP, template, and follow-up configuration guidance; human review is required before collecting leads or sending outreach.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Lead scraping and automated outreach may create consent, spam, legal, account reputation, or deliverability risks.
+
+Mitigation: Require explicit recipient review, opt-out handling, rate limits, and confirmation before any email is sent.
+
+Risk: Using geolocation or Google Places data without controls may conflict with applicable API terms, privacy obligations, or business policies.
+
+Mitigation: Use permitted data sources only, retain source and consent records, and review regional compliance requirements before collecting or using lead data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mandebiko5-star/skills/lead-auto-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation steps, tool recommendations, outreach workflow guidance, and compliance review checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

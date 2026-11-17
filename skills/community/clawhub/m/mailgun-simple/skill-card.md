@@ -1,45 +1,60 @@
-## Description: <br>
-Send outbound emails via the Mailgun API. Uses MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION, and MAILGUN_FROM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send outbound emails via the Mailgun API. Uses MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION, and MAILGUN_FROM.
 
-## Publisher: <br>
-[lksrz](https://clawhub.ai/user/lksrz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lksrz](https://clawhub.ai/user/lksrz)
 
-## Use Case: <br>
-Developers and automation agents use this skill to send transactional or operational emails through a configured Mailgun account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send outbound email through the configured Mailgun account. <br>
-Mitigation: Review the recipient, subject, body, sender, sending domain, and region before execution. <br>
-Risk: The skill requires a private Mailgun API key in the environment. <br>
-Mitigation: Use the narrowest practical Mailgun key, keep it out of source control and logs, and rotate it if exposure is suspected. <br>
-Risk: Email bodies may contain sensitive, regulated, or secret information. <br>
-Mitigation: Avoid sending secrets or regulated data unless Mailgun handling is approved for the intended use case. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mailgun Simple release page](https://clawhub.ai/lksrz/mailgun-simple) <br>
-- [lksrz publisher profile](https://clawhub.ai/user/lksrz) <br>
-- [Mailgun API security settings](https://app.mailgun.com/settings/api_security) <br>
-- [Mailgun EU API endpoint](https://api.eu.mailgun.net) <br>
-- [Mailgun US API endpoint](https://api.mailgun.net) <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent send outbound email through a configured Mailgun account and verified sending domain.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text] <br>
-**Output Format:** [Plain text command output from a Node.js helper and Mailgun API response messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sending email requires Mailgun credentials, a verified sending domain, and the selected Mailgun region.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires access to a Mailgun API key.
+
+Mitigation: Use a scoped Mailgun key where possible, store it only in the runtime environment, and rotate it if exposure is suspected.
+
+Risk: Email recipients, subjects, and bodies are sent to Mailgun.
+
+Mitigation: Do not use the skill for secrets or regulated data unless the Mailgun account and workflow are approved for that data.
+
+Risk: The skill can send outbound email from the configured domain.
+
+Mitigation: Restrict use to approved sending domains and review generated recipient, subject, and body content before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lksrz/skills/mailgun-simple)
+- [ClawHub publisher profile](https://clawhub.ai/user/lksrz)
+- [Mailgun API security settings](https://app.mailgun.com/settings/api_security)
+- [Mailgun EU API endpoint](https://api.eu.mailgun.net)
+- [Mailgun US API endpoint](https://api.mailgun.net)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text, Guidance]
+
+**Output Format:** [CLI command invocation and Mailgun API response or status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION, and MAILGUN_FROM environment variables.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

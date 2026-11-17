@@ -1,40 +1,59 @@
-## Description: <br>
-Autonomous social media management for X/Twitter using OpenClaw native browser automation and web fetch tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Media Agent helps an agent manage X/Twitter posting, content generation, engagement, scheduling, and analytics using browser automation and OpenClaw-native tools.
 
-## Publisher: <br>
-[qq63523555](https://clawhub.ai/user/qq63523555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq63523555](https://clawhub.ai/user/qq63523555)
 
-## Use Case: <br>
-Developers, creators, and social media operators use this skill to draft, schedule, post, engage, and track X/Twitter content with OpenClaw-native browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, engage, and schedule future public account actions on X/Twitter. <br>
-Mitigation: Use a dedicated X account or browser profile, require manual approval for every post or engagement action, and enable schedules only with a clear content policy and disable plan. <br>
+## Use Case:
 
+External users and developers use this skill to draft, schedule, publish, and track X/Twitter content for an authenticated account. It is intended for social media workflow assistance where the operator can review account activity and approve posts or schedules.
 
-## Reference(s): <br>
-- [Content Templates](references/content-templates.md) <br>
-- [Social Media Agent on ClawHub](https://clawhub.ai/qq63523555/social-media-x-agent) <br>
-- [X](https://x.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command examples and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tweet drafts, content calendars, posting steps, schedule definitions, and engagement logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill can publish, reply, quote, and schedule real X/Twitter activity for an authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft-only workflows by default and explicitly approve each post, reply, quote, and cron schedule before execution.
+
+Risk: Scheduled posting can create persistent cron jobs that continue after the initial setup.
+
+Mitigation: Track created schedules and verify that the operator knows how to list, review, and remove cron jobs.
+
+Risk: Weak user-control boundaries could allow unintended account activity.
+
+Mitigation: Require human review for account actions and limit automation to clearly scoped social media tasks.
+
+## Reference(s):
+
+- [Content Templates](references/content-templates.md)
+- [X/Twitter](https://x.com/)
+- [ClawHub Skill Page](https://clawhub.ai/qq63523555/skills/social-media-x-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline command examples and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce draft social posts, engagement guidance, posting schedules, browser automation steps, and tracking data structures.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Evez Identity provides an agent with EVEZ persona context, infrastructure state, project priorities, and operational preferences for the EVEZ ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evez Identity provides EVEZ mesh identity, infrastructure context, project status, and agent posture guidance.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and agents use this skill to load EVEZ identity, mesh architecture, active project status, and preferred operating style before assisting with EVEZ-related work. It is most relevant for agent configuration, project planning, and continuity across EVEZ infrastructure tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill steers an agent toward a specific autonomous persona and operational roadmap involving infrastructure, services, bots, and credentials. <br>
-Mitigation: Require explicit user approval before GitHub, cloud, bot, service, credential, or persistent infrastructure actions. <br>
-Risk: The artifact includes concrete infrastructure identifiers and deployment details. <br>
-Mitigation: Redact live infrastructure identifiers before broad reuse and avoid exposing them in public logs or generated documentation. <br>
-Risk: The roadmap references tokens and authentication setup for GitHub and other services. <br>
-Mitigation: Use a secure secret manager with least-privilege scopes and never place tokens directly in the skill text or shell history. <br>
+## Use Case:
 
+Developers and agent operators use this skill to provide an agent with EVEZ ecosystem identity, architecture context, active project status, and operational preferences. The skill is best treated as project reference that requires review before any setup, deployment, repository, memory, or bot action is performed.
 
-## Reference(s): <br>
-- [Evez Identity on ClawHub](https://clawhub.ai/evezart/evez-identity) <br>
-- [Publisher profile](https://clawhub.ai/user/evezart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with tables, lists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides persona and infrastructure context for agent behavior; does not produce a standalone executable artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill asks agents to adopt an autonomous identity and can encourage memory writes, repository publication, cloud provisioning, systemd deployment, or bot configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as project reference in an isolated workspace and require explicit approval before high-impact operational actions.
+
+Risk: The skill contains sensitive operational context and infrastructure identifiers.
+
+Mitigation: Redact infrastructure identifiers before sharing outputs or deploying the skill in broader environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-identity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, status notes, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contains operational identity and infrastructure context; review before acting on setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

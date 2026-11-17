@@ -1,0 +1,49 @@
+{
+  "research_object": "Test Invalid Ledger",
+  "generated_at": "2026-06-28",
+  "entries": [
+    {
+      "id": "E-001",
+      "claim": "Valid entry",
+      "status": "confirmed_fact",
+      "source_type": "official",
+      "source_title": "Official Source",
+      "source_url": "https://example.com",
+      "accessed_at": "2026-06-28",
+      "reliability": "high",
+      "implication": "Test"
+    },
+    {
+      "id": "E-001",
+      "claim": "Duplicate ID entry",
+      "status": "bad_status_value",
+      "source_type": "bad_source_type",
+      "reliability": "bad_reliability",
+      "implication": "Has duplicate ID and invalid field values"
+    },
+    {
+      "id": "",
+      "claim": "",
+      "status": "",
+      "source_type": "",
+      "reliability": "",
+      "implication": "Missing all required fields"
+    },
+    {
+      "id": "E-004",
+      "claim": "Confirmed fact without source",
+      "status": "confirmed_fact",
+      "source_type": "official",
+      "reliability": "high",
+      "implication": "Missing source_url and source_title"
+    },
+    {
+      "id": "E-005",
+      "claim": "Reported claim without corroboration",
+      "status": "reported_claim",
+      "source_type": "media",
+      "reliability": "medium",
+      "implication": "Missing corroboration_group and upstream_source_id"
+    }
+  ]
+}

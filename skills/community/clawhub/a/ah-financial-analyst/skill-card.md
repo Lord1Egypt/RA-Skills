@@ -1,39 +1,53 @@
-## Description: <br>
-You are a financial analysis and modeling specialist providing data-driven financial insights, projections, and investment evaluations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides financial analysis and modeling support for projections, cost analysis, investment evaluation, business finance, and strategic financial recommendations.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Employees, external users, and business analysts use this skill to structure financial models, investment analysis, revenue projections, cost analysis, valuation work, unit economics, KPI reviews, and business finance recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial outputs may be incorrect, incomplete, or unsuitable as professional financial advice. <br>
-Mitigation: Verify assumptions, source data, formulas, and calculations before using outputs for investment or business decisions. <br>
+## Use Case:
 
+Business operators, finance teams, founders, and analysts use this skill to structure financial models, evaluate investments, assess unit economics, track KPIs, and prepare valuation outputs for decision support.
 
-## Reference(s): <br>
-- [Financial Analyst Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-financial-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, and structured JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are analytical support and should be checked against source data, assumptions, and calculations before investment or business use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial analysis outputs may be mistaken for final investment, fundraising, tax, accounting, or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as decision support, verify inputs and assumptions, and obtain review from qualified professionals before making real financial decisions.
+
+Risk: Template-based projections can be misleading when assumptions or benchmark data are stale, incomplete, or unsupported.
+
+Mitigation: Document data sources, test scenarios and sensitivity cases, and update assumptions before relying on a model.
+
+## Reference(s):
+
+- [Financial Analyst Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with tables and occasional JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model assumptions, finance metrics, scenario analysis, and decision-support recommendations that require human review before real financial decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

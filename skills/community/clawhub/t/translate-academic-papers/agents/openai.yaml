@@ -1,0 +1,5 @@
+interface:
+  display_name: "Academic Paper Translator"
+  short_description: "Complete Chinese and bilingual academic DOCX translation"
+  default_prompt: "Use $translate-academic-papers now. Without asking setup questions, completely translate the supplied English paper and deliver two verified DOCX files: an Image2 Chinese-only edition and a paragraph-aligned English-Chinese edition containing each original figure followed by its Image2 Chinese version. Preserve equations and English references, add WPS Ctrl+click citation jumps and official DOI links, render every page through Word/WPS, repair all failures, and return only the completed files plus a concise QA report."
+

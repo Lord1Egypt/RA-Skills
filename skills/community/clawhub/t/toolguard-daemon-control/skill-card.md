@@ -1,42 +1,57 @@
-## Description: <br>
-Manage macOS launchd user agents to start, stop, restart, check status, and access logs of persistent background services without sudo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage macOS launchd user agents to start, stop, restart, check status, and access logs of persistent background services without sudo.
 
-## Publisher: <br>
-[johnnylambada](https://clawhub.ai/user/johnnylambada) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnnylambada](https://clawhub.ai/user/johnnylambada)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, inspect, and remove persistent macOS launchd user agents for processes that should continue beyond an agent session. It is intended for service lifecycle operations, including launchd plist creation, status checks, and log access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer can immediately create persistent, auto-restarting macOS launchd services. <br>
-Mitigation: Review the exact command, arguments, working directory, and environment values before installing a service. <br>
-Risk: The server security summary reports unsafe input handling in the installer. <br>
-Mitigation: Prefer a patched version that removes eval, validates service names and environment keys, escapes plist XML, and asks for confirmation before loading persistent services. <br>
-Risk: Environment variables passed with --env may expose sensitive values through service configuration. <br>
-Mitigation: Do not pass secrets through --env. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnnylambada/toolguard-daemon-control) <br>
-- [Publisher profile](https://clawhub.ai/user/johnnylambada) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage long-running local macOS processes as user-level launchd services, including installation, removal, status checks, service listing, and log access.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces launchd service-management instructions and uses user-level plist and log paths on macOS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer can persist arbitrary user commands as macOS launchd services.
+
+Mitigation: Use it only for commands that are intentionally meant to survive beyond the current session, and review the command, arguments, working directory, and environment variables before installation.
+
+Risk: The security scan reports eval and plist-escaping issues that make untrusted input unsafe.
+
+Mitigation: Avoid untrusted service names, commands, arguments, work directories, and environment values until those issues are fixed.
+
+Risk: Environment variables supplied with --env may be written into the generated service configuration.
+
+Mitigation: Do not pass secrets through --env; prefer a safer secret-loading mechanism outside the generated launchd plist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnylambada/skills/toolguard-daemon-control)
+- [ClawHub publisher profile](https://clawhub.ai/user/johnnylambada)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create, load, unload, inspect, and log user-level launchd services when the bundled shell scripts are executed.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

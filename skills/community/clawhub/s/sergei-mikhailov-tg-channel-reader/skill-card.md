@@ -1,42 +1,55 @@
-## Description: <br>
-Read posts and comments from Telegram channels via MTProto (Pyrogram or Telethon), including recent messages and discussion replies from public or private channels by time window. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent read and monitor Telegram channels: fetch posts, captions, link previews, and comments from public or private channels and turn them into daily digests, summaries, and alerts.
 
-## Publisher: <br>
-[bzsega](https://clawhub.ai/user/bzsega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bzsega](https://clawhub.ai/user/bzsega)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent fetch, inspect, and summarize Telegram channel posts, comments, and channel metadata for channels visible to the user's Telegram account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Telegram credentials and local session files that can grant access to channels visible to the user's Telegram account. <br>
-Mitigation: Install only when this access is intended, protect TG_API_HASH and session files like account credentials, and avoid sharing or syncing session files. <br>
-Risk: Fetching with output files or unread tracking can retain Telegram channel data or reading history on disk. <br>
-Mitigation: Use output and read-unread options only when local retention is intended, and manage generated files according to the user's data handling requirements. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to read Telegram channels they can access and turn recent posts, captions, link previews, and comments into digests, summaries, monitoring updates, and alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bzsega/sergei-mikhailov-tg-channel-reader) <br>
-- [Telegram API development tools](https://my.telegram.org) <br>
-- [OpenClaw Control UI documentation](https://docs.openclaw.ai/web/control-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI commands return JSON or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write fetched channel data or read-state files locally when output or unread-tracking options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.4 (source: server release metadata, CHANGELOG, setup.py; released 2026-05-16) <br>
+Risk: The skill uses a Telegram account session that can read private channels available to that account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that account access is acceptable, keep session and backup files private, and use a dedicated environment with reviewed dependency versions.
+
+Risk: Telegram login codes, 2FA passwords, and auth progress can be exposed if handled through logged or shared channels.
+
+Mitigation: Prefer self-authentication or stdin, avoid /tmp code or password files when possible, and avoid using Telethon auth output in logged environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bzsega/skills/sergei-mikhailov-tg-channel-reader)
+- [Telegram API credentials portal](https://my.telegram.org)
+- [OpenClaw Control UI documentation](https://docs.openclaw.ai/web/control-ui)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or plain text from the Telegram reader CLI, with Markdown setup and usage guidance in the skill instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write fetched channel data to JSON files when the user requests file output.]
+
+## Skill Version(s):
+
+0.11.1 (source: server release metadata, artifact changelog, setup.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

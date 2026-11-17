@@ -1,49 +1,59 @@
-## Description: <br>
-Query, create, and manage Notion databases and pages using the 2025-09-03 API format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query, create, and manage Notion databases and pages using the 2025-09-03 API format.
 
-## Publisher: <br>
-[kai-tw](https://clawhub.ai/user/kai-tw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kai-tw](https://clawhub.ai/user/kai-tw)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to query Notion databases, create database entries, update page properties, and add content blocks through the Notion API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Notion API key can read or edit every page or database shared with the integration. <br>
-Mitigation: Use a dedicated least-privilege Notion integration and share only the specific pages or databases intended for the task. <br>
-Risk: Batch updates or page writes can change Notion content unexpectedly. <br>
-Mitigation: Review proposed updates before running them and test against non-critical pages or databases first. <br>
-Risk: Untrusted text or property names passed into the shell helper can lead to malformed JSON or unsafe requests. <br>
-Mitigation: Do not pass untrusted text directly into the helper; validate Notion IDs and use jq-based escaping for JSON values. <br>
-Risk: A local plaintext API token can be exposed through weak file permissions. <br>
-Mitigation: Store the token only at the configured secret path and restrict it with chmod 600. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kai-tw/notion-2025-api) <br>
-- [API reference](references/API_REFERENCE.md) <br>
-- [Examples](references/EXAMPLES.md) <br>
-- [Security report](SECURITY.md) <br>
-- [Notion API documentation](https://developers.notion.com) <br>
-- [Notion 2025 API upgrade guide](https://developers.notion.com/guides/get-started/upgrade-guide-2025-09-03) <br>
+## Use Case:
 
+Developers and operators use this skill to query Notion data sources, create database entries, update page properties, and add page content blocks through the Notion 2025-09-03 API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands, curl requests, and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq; requires a Notion API key stored at the configured local secret path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a long-lived Notion API key stored in a local plaintext file.
+
+Mitigation: Use a least-privilege Notion integration, restrict shared pages and databases, set restrictive file permissions, and rotate the token if exposure is suspected.
+
+Risk: Write and batch operations can alter more Notion data than intended.
+
+Mitigation: Review write commands before execution, test against non-critical pages first, and share only the specific Notion pages or databases required.
+
+Risk: Untrusted property names, filters, or JSON payloads can produce malformed or unsafe Notion requests.
+
+Mitigation: Avoid passing untrusted input directly to the helper script; validate JSON and escape user-provided text with jq before use.
+
+## Reference(s):
+
+- [Notion 2025-09-03 API Reference](references/API_REFERENCE.md)
+- [Notion 2025 API Examples](references/EXAMPLES.md)
+- [Notion Integration Setup](https://notion.so/my-integrations)
+- [ClawHub Skill Page](https://clawhub.ai/kai-tw/skills/notion-2025-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Notion API endpoints through curl and parse responses with jq when the user provides valid Notion identifiers and credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

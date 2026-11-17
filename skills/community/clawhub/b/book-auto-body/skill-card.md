@@ -1,40 +1,53 @@
-## Description: <br>
-Book auto-body services through Lokuli MCP by searching providers, checking availability, and creating bookings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book auto-body services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find auto-body service providers, check appointment availability, and prepare bookings through Lokuli. The skill is relevant when a user asks to book auto-body service or find an auto-body provider near a ZIP code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and send personal contact details while creating a booking. <br>
-Mitigation: Ask the agent to show the provider, service, appointment time, customer name, email, and phone number, then get explicit approval before finalizing the booking. <br>
-Risk: The user could book the wrong provider, service, or appointment time if search and availability results are not reviewed. <br>
-Mitigation: Confirm the selected provider, service, location, and appointment time before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Auto Body on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-auto-body) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to find auto-body providers through Lokuli MCP, check availability, and create bookings after the user confirms the provider, service, time slot, and contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Markdown with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider search results, appointment availability, booking details, and confirmation prompts before contact information is sent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Searches and bookings are handled by Lokuli's external MCP service.
+
+Mitigation: Install only after accepting that workflow data is sent to the external service, and review the selected provider, service, and time slot before booking.
+
+Risk: Creating a booking requires customer name, email, and phone details.
+
+Mitigation: Provide contact details only when intending to create a booking, and confirm those details before submission.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-auto-body)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP over SSE with JSON-RPC 2.0 POST requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

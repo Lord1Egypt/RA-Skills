@@ -1,45 +1,61 @@
-## Description: <br>
-Helps developers push backend API definitions to a frontend data-interface platform so frontend and backend API documentation stay synchronized. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes backend API interface definitions to a frontend data interface platform for API documentation synchronization.
 
-## Publisher: <br>
-[snowzhouj](https://clawhub.ai/user/snowzhouj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowzhouj](https://clawhub.ai/user/snowzhouj)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare JSON or OpenAPI-style endpoint definitions, push them to the configured frontend data-interface platform, validate results, and keep a local push history for coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API definitions may contain secrets, tokens, customer data, or sensitive internal details before upload. <br>
-Mitigation: Review and sanitize API definitions before running the skill or asking an agent to push them. <br>
-Risk: The script sends API specifications to a configured external endpoint. <br>
-Mitigation: Use the skill only when the configured endpoint is an approved destination for the organization. <br>
-Risk: Push results are retained in a local Markdown history file. <br>
-Mitigation: Review local history entries and avoid storing sensitive response details in the artifact. <br>
+## Use Case:
 
+Developers and backend engineers use this skill to prepare, validate, and push backend API definitions to a frontend interface documentation platform. It supports JSON, Swagger/OpenAPI, and related backend interface descriptions for synchronization between backend and frontend teams.
 
-## Reference(s): <br>
-- [Frontend API platform documentation](references/frontend-api-docs.md) <br>
-- [API definition standard](references/api-definition-standard.md) <br>
-- [Push history record](references/push-history.md) <br>
-- [ClawHub skill page](https://clawhub.ai/snowzhouj/api-push-frontend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, Python script usage, and local Markdown history entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send API definitions to the configured endpoint and append push results to a local push-history Markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API definitions may contain sensitive internal metadata and are uploaded to a fixed external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with an approved destination service, and review and redact API definitions before upload.
+
+Risk: Saved push history may contain raw response data that is sensitive if loaded by agents or committed to source control.
+
+Mitigation: Remove, relocate, or sanitize push-history records before sharing the skill or committing generated history.
+
+Risk: The artifact includes an unused shell-execution helper.
+
+Mitigation: Review the script before deployment and avoid enabling or extending shell execution paths unless they are explicitly required and controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snowzhouj/skills/api-push-frontend)
+- [Frontend API platform documentation](references/frontend-api-docs.md)
+- [API definition standard](references/api-definition-standard.md)
+- [Push history record](references/push-history.md)
+- [Frontend API upload endpoint](https://jffe.techgp.cn/md/api/uploadV4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls, files]
+
+**Output Format:** [Markdown guidance with JSON payloads, Python command examples, API calls, and push-history entries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send API metadata to a fixed external service and append raw push responses to a Markdown history file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

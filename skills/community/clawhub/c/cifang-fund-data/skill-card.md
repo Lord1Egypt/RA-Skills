@@ -1,43 +1,59 @@
-## Description: <br>
-Fetches historical prices, near-real-time quotes, and performance rankings for China A-share exchange-traded funds (ETFs and LOFs) through the Cifang Quant API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves China A-share exchange-traded fund data, including ETF and LOF lists, historical quotes, real-time quotes, and return rankings from the Cifang Quant API using a required API key.
 
-## Publisher: <br>
-[tianyuwu](https://clawhub.ai/user/tianyuwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyuwu](https://clawhub.ai/user/tianyuwu)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to retrieve China ETF and LOF fund lists, historical market data, near-real-time quotes, and return rankings for financial analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Cifang Quant API key and sends it to the Cifang Quant API. <br>
-Mitigation: Install only if the publisher and API provider are trusted, and prefer passing the key explicitly or through a short-lived environment variable. <br>
-Risk: Generic finance prompts could trigger live API requests if the skill is automatically activated. <br>
-Mitigation: Restrict automatic activation when live fund-data requests should require explicit user intent. <br>
-Risk: Market data can be delayed, unavailable, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Review returned timestamps and data quality notes, and verify important results against authoritative financial sources before acting. <br>
+## Use Case:
 
+External users, developers, and financial data analysts use this skill to retrieve and summarize China A-share ETF and LOF market data for research, comparison, and reporting workflows.
 
-## Reference(s): <br>
-- [Cifang Quant Data API](https://www.cifangquant.com/tool/data-api) <br>
-- [API reference](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API results and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can output raw API data, readable JSON objects, or summary statistics depending on the requested command and format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill requires a Cifang API key and sends it to the Cifang Quant service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you intend to use that service and provide the key through a scoped secret manager or short-lived environment variable.
+
+Risk: Passing the API key directly on the command line can expose it through shell history, process listings, or logs.
+
+Mitigation: Avoid inline command-line secrets on shared, monitored, or logged systems.
+
+Risk: Fund market data may be mistaken for financial advice.
+
+Mitigation: Treat outputs as market data for analysis and validate results before making financial decisions.
+
+## Reference(s):
+
+- [Cifang Quant Data API](https://www.cifangquant.com/tool/data-api)
+- [Cifang Quant](https://www.cifangquant.com)
+- [API Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance and JSON-formatted fund data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include fund lists, historical price objects, real-time quote snapshots, return rankings, summary statistics, and data quality notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

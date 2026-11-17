@@ -1,48 +1,69 @@
-## Description: <br>
-Construction law toolkit for FIDIC, PSSCOC, SIA, and Singapore SOP Act workflows that helps generate notices, claims, EOT applications, obligations registers, and statutory deadline calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A construction-law toolkit for analyzing FIDIC, PSSCOC, SIA, NEC notice workflows, and Singapore SOP Act matters, with tools for notices, claims, EOT applications, obligations registers, and deadline calculations.
 
-## Publisher: <br>
-[redkiwi1688-prog](https://clawhub.ai/user/redkiwi1688-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redkiwi1688-prog](https://clawhub.ai/user/redkiwi1688-prog)
 
-## Use Case: <br>
-External construction lawyers, in-house counsel, contract managers, commercial managers, quantity surveyors, claims consultants, and project managers use this skill to structure contract analysis, notices, claims, EOT submissions, obligations registers, and Singapore SOP Act deadline workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with Singapore-specific statutory workflows and bundled Singapore holiday data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated intake reports, claim drafts, registers, or exports may contain confidential matter facts and legal strategy. <br>
-Mitigation: Choose output locations carefully and avoid shared or synced folders for sensitive matters. <br>
-Risk: Contractual and statutory deadlines can be wrong if the contract, amendments, governing law, or holiday source differs from the assumptions used. <br>
-Mitigation: Verify deadlines against the actual contract, current official sources, and qualified legal review before relying on them. <br>
+## Use Case:
 
+External construction lawyers, in-house counsel, contract managers, quantity surveyors, claims consultants, and project managers use this skill to structure contract analysis, claim preparation, notice tracking, obligations registers, and Singapore SOP Act deadline workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/redkiwi1688-prog/construction-law) <br>
-- [FIDIC 2017 Suite - Clause Reference](references/fidic.md) <br>
-- [Singapore Construction Contracts - Reference](references/singapore.md) <br>
-- [Claims, EOT & Delay Analysis - Reference](references/claims.md) <br>
-- [Dispute Resolution in Construction - Reference](references/disputes.md) <br>
-- [Procurement & Tendering - Reference](references/procurement.md) <br>
-- [Legal Systems in Construction - Orientation Reference](references/legal_systems.md) <br>
-- [Holiday File Format](docs/holiday-file-format.md) <br>
-- [BCA Circulars](https://www1.bca.gov.sg/resources/circulars/) <br>
+### Deployment Geography for Use:
 
+Global, with Singapore-specific SOP Act and bundled Singapore holiday data coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, plain text, CSV, XLSX, DOCX, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some file exports require optional dependencies such as openpyxl or python-docx; generated legal analysis and deadlines require human review before reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.11.5 (source: server release evidence and CHANGELOG.md, released 2026-05-17) <br>
+Risk: Matter files and generated reports may contain confidential legal or commercial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep all matter inputs and generated outputs in approved confidential storage.
+
+Risk: CSV or spreadsheet outputs may be opened in tools that transform or execute spreadsheet content.
+
+Mitigation: Review CSV outputs before opening or sharing them in spreadsheet applications.
+
+Risk: Optional BCA mirror or scheduled refresh workflows add background maintenance and data-handling obligations.
+
+Mitigation: Enable those workflows only when explicitly needed and governed by local operational controls.
+
+Risk: Construction-law drafting and deadline outputs can be incorrect if applied without checking contract amendments, governing law, holiday coverage, and current regulatory updates.
+
+Mitigation: Review generated analysis against the actual contract, authoritative legal sources, and qualified professional judgment before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redkiwi1688-prog/skills/construction-law)
+- [FIDIC reference](artifact/references/fidic.md)
+- [Singapore construction law reference](artifact/references/singapore.md)
+- [Claims reference](artifact/references/claims.md)
+- [Disputes reference](artifact/references/disputes.md)
+- [Procurement reference](artifact/references/procurement.md)
+- [Legal systems reference](artifact/references/legal_systems.md)
+- [Holiday file format](artifact/docs/holiday-file-format.md)
+- [BCA circulars](https://www1.bca.gov.sg/resources/circulars/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown, plain text, CSV, Excel workbooks, Word documents, JSON configuration, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs are local workflow aids and should be reviewed before legal or commercial reliance.]
+
+## Skill Version(s):
+
+2.11.5 (source: evidence.release.version, CHANGELOG.md, scripts/version.py; pyproject.toml reports 2.11.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,7 +14,7 @@
 
 ## 设计原则
 
-- 🔒 **本地优先** —— 数据存在 `~/.agent-commons/skills_data/soul-archive/`，永不上传
+- 🔒 **本地优先** —— 数据存在 `~/.agent-guild/skills_data/soul-archive/`，永不上传
 - 📂 **可读可改** —— 全部明文 JSON，随时打开编辑
 - 🤖 **主动伴随** —— AI 在对话中自动沉淀与召回
 - 🎯 **单用户极简** —— 一个用户，一台电脑，一份灵魂
@@ -95,7 +95,7 @@ python3 scripts/soul.py report --output ~/soul-report.html
 
 ## 隐私
 
-- 数据在 `~/.agent-commons/skills_data/soul-archive/`，明文 JSON，**永不上传**。
+- 数据在 `~/.agent-guild/skills_data/soul-archive/`，明文 JSON，**永不上传**。
 - 数据目录的 `.gitignore` 拦截误提交。
 - Soul Chat 在本地构建 prompt；是否被外部 LLM 看到，取决于**你**用的 agent / 平台。
 - 默认敏感话题（健康、财务、亲密关系）需用户确认。

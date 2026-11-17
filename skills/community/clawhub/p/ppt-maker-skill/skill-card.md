@@ -1,44 +1,61 @@
-## Description: <br>
-根据一句话主题、Markdown 或已有文稿生成结构化 PPT，并支持自然语言修改页面与组件后导出为可编辑 PPT。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured PPT decks from a topic, Markdown, or existing draft, supports natural-language slide and component edits, renders HTML previews, and exports editable PPTX files.
 
-## Publisher: <br>
-[mr-q526](https://clawhub.ai/user/mr-q526) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-q526](https://clawhub.ai/user/mr-q526)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to create structured presentation projects from a topic, Markdown, or draft text, then preview, edit, validate, and export editable PPTX files. It is suited to repeatable deck workflows that keep slide content in deck.json rather than ad hoc HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes project files, previews, and PPTX exports in its workspace. <br>
-Mitigation: Confirm project and export paths before running build, preview, export, or subskill creation commands. <br>
-Risk: Source documents placed in materials/ may contain sensitive content used during deck creation. <br>
-Mitigation: Only add needed materials, remove sensitive files after use, and review generated deck.json and PPTX outputs before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to create, preview, edit, validate, and export structured presentation decks for business briefings, lessons, personal introductions, project introductions, customer stories, and similar presentation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mr-q526/ppt-maker-skill) <br>
-- [Slide Schema](references/slide-schema.md) <br>
-- [Layout Rules](references/layout-rules.md) <br>
-- [Template Catalog](references/template-catalog.md) <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance, JSON deck structures, Node.js shell commands, HTML preview files, and PPTX exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates project files in its workspace and can export editable .pptx presentations from deck.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved ClawHub release metadata) <br>
+Risk: Malicious or attacker-influenced deck.json content can inject script into generated previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open previews only for trusted decks and reference materials until preview escaping is fixed.
+
+Risk: Deck image references can point to local files outside the project.
+
+Mitigation: Keep image references contained to trusted project or materials directories and avoid externally influenced deck files until path containment is fixed.
+
+Risk: Sensitive presentation materials may be processed by local scripts and dependencies.
+
+Mitigation: Update dependencies and use explicit invocation for sensitive documents.
+
+## Reference(s):
+
+- [Slide Schema](references/slide-schema.md)
+- [Layout Rules](references/layout-rules.md)
+- [Template Catalog](references/template-catalog.md)
+- [Prompt Patterns](references/prompt-patterns.md)
+- [PPT Maker Skill Page](https://clawhub.ai/mr-q526/skills/ppt-maker-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with JSON deck files, HTML previews, structured edit plans, and PPTX exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; generated decks use deck.json as the source of truth and can be validated, previewed, edited, and exported through bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

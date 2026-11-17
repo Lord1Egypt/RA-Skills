@@ -1,40 +1,58 @@
-## Description: <br>
-Skill Distill helps agents turn a local project into a clean, publishable ClawHub skill by scanning for local traces, scaffolding standard files, and validating before publish. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strip any local project into a clean, publishable agent skill by scanning for hardcoded paths and secrets, scaffolding standard structure, and validating before publish.
 
-## Publisher: <br>
-[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw)
 
-## Use Case: <br>
-Developers and agent authors use Skill Distill to extract an existing project into a reusable ClawHub skill, check for secrets or hardcoded local paths, scaffold standard skill files, and validate the package before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project-derived files may be uploaded to ClawHub before secrets, proprietary code, private paths, customer data, or identifying metadata are reviewed. <br>
-Mitigation: Review the generated skill directory before publishing, run the provided scan and validation steps, and publish only after confirming exactly which files are included. <br>
-Risk: Sensitive credentials or local configuration may remain in material copied from an existing project. <br>
-Mitigation: Remove real secrets, private configuration, and local identifiers; replace required credentials with documented placeholders or environment-variable guidance. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to turn an existing local project into a generalized, publishable ClawHub skill. It helps scan for local traces, scaffold a standard skill directory, validate publishing requirements, and prepare for a manual publish step.
 
-## Reference(s): <br>
-- [Skill Distill checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, scan, or validate a skill directory when the included scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Scan output can expose secrets, local paths, or other sensitive project details in terminal or agent logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only on projects whose contents may be shown in logs, avoid live .env files, and replace sensitive values with placeholders before scanning.
+
+Risk: Scaffolding can write files outside the intended local skill directory if the requested skill name contains path components.
+
+Mitigation: Use a simple skill name without slashes or path traversal, and manually inspect the scaffolded directory before publishing.
+
+Risk: The publish step can release an insufficiently reviewed skill.
+
+Mitigation: Require explicit confirmation before running clawhub publish and review validation results, generated files, and checklist items first.
+
+## Reference(s):
+
+- [Skill Distill checklist](artifact/references/checklist.md)
+- [ClawHub skill page](https://clawhub.ai/yuchangxu1989-openclaw/skills/openclaw-skill-distill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash commands and shell-script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local scan findings, scaffolded skill files, validation results, and publish-readiness guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, created 2026-04-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

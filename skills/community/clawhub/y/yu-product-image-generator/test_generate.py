@@ -12,7 +12,7 @@ import time
 from datetime import datetime
 
 # Nano Banana API 配置
-API_KEY = "sk-6fe41fd597614d2686f6d0685b4bd232"
+API_KEY = "REDACTED-SECRET"
 ENDPOINT = "https://grsai.dakka.com.cn/v1/draw/nano-banana"
 RESULT_ENDPOINT = "https://grsai.dakka.com.cn/v1/draw/result"
 TIMEOUT = 180  # 超时时间（秒）

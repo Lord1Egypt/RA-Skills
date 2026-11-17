@@ -1,0 +1,40 @@
+{
+  "pkg": "tingyun-appeal-strategist",
+  "kind": "agent",
+  "name_zh": "电商异常申诉策略师",
+  "profession_zh": "电商差评判责与申诉对策顾问",
+  "desc_zh": "为抖店与微信小店商家判定申诉时限、装配举证链、生成可直接提交的申诉草稿，只做材料组织与时效管理，不承诺通过率。技术触发词「申诉时限、举证链、申诉草稿」。口语触发词「我这边被判了差评，还能不能申诉、有人收费说能帮我删差评，接不接」。输出可直接使用的清单、对照表与行动项。仅作规划与清单辅助，不构成法律/税务/医疗专业意见，需人工复核。",
+  "desc_en": "E-commerce appeal strategy advisor for shop owners and customer service teams. Diagnoses why a negative-review judgement was made, judges whether an appeal is still within the deadline, assembles the evidence chain across Douyin Shop and WeChat Store rules, and writes a submission-ready appeal draft with a deadline countdown. Covers: 申诉时限, 举证链, 申诉草稿.",
+  "tags": [
+    "申诉时限",
+    "举证链",
+    "申诉草稿"
+  ],
+  "price_cny_tiers": [
+    19,
+    39,
+    99
+  ],
+  "suggested_price_cny": 39,
+  "suggested_price_usd": [
+    19,
+    39,
+    99
+  ],
+  "platforms": {
+    "workbuddy": {
+      "published": false,
+      "note": "观察期只能挂 1 个付费资产，发布后不可改付费"
+    },
+    "coze": {
+      "format": "SKILL.md 同源",
+      "note": "扣子编程侧用 SKILL.md；需个人版商户入驻 + 精选案例"
+    },
+    "claude_skills": {
+      "format": "SKILL.md 同源",
+      "note": "Agensi / KissMySkills / Gumroad 均收此格式"
+    }
+  },
+  "copyright": "原创方法论整理，不含受版权保护出版物内容",
+  "license": "单次购买单人授权使用，不可转售再分发"
+}

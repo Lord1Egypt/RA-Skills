@@ -1,0 +1,8 @@
+Replace placeholders with the approved shot plan; match duration to the manifest.
+Image 1 is the departure; image 2 is the destination.
+One continuous [duration]-second shot:
+Opening: [viewpoint and exit direction].
+Middle: [physical path and visible intermediate event].
+Arrival: [reveal, approach and settling into image 2].
+Preserve the approved identities and rendering style as perspective changes.
+Follow the planned camera event; no unintended cut, morph, text or watermark.

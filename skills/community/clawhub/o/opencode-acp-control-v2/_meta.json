@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn74akfj24s29c981jn5zcej0580v987",
-  "slug": "opencode-acp-control-v2",
-  "version": "2.2.1",
-  "publishedAt": 1772724345355
+  "id": "opencode-acp-control-3",
+  "slug": "opencode-acp-control-3",
+  "version": "2.2.0",
+  "publishedAt": 1771531563367,
+  "updatedAt": 1772692100000,
+  "changes": [
+    "v2.2.0: Added opencode-session.sh executable helper script",
+    "v2.2.0: Script handles pre-flight, retry, adaptive polling, cleanup",
+    "v2.2.0: Script generates complete workflow for CYPHER to execute",
+    "v2.1.0: Added config file, templates, metrics, smart health checks",
+    "v2.0.0: Auto-retry, stuck detection, adaptive polling"
+  ]
 }

@@ -1,39 +1,53 @@
-## Description: <br>
-Audio Recognition helps agents transcribe uploaded audio into text, identify speech-related details such as keywords or song titles, and prepare outputs such as meeting notes, subtitles, or searchable transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio Recognition helps an agent transcribe audio into text, distinguish speakers when needed, and extract speech-related information such as keywords or song names.
 
-## Publisher: <br>
-[zzhimin](https://clawhub.ai/user/zzhimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzhimin](https://clawhub.ai/user/zzhimin)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to convert meeting recordings, media files, voice commands, or other uploaded audio into transcript text with optional speaker labels and timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio may be uploaded to an external transcription engine or provider depending on deployment choices. <br>
-Mitigation: Confirm the selected transcription engine and data handling path before installation, and treat the privacy statement as policy guidance rather than technical enforcement. <br>
-Risk: Transcripts may be inaccurate for noisy recordings, heavy accents, dialects, or unsupported languages. <br>
-Mitigation: Review generated transcripts before relying on them for decisions, publication, or records. <br>
+## Use Case:
 
+External users and developers use this skill to convert meeting recordings, audio or video content, voice commands, and recorded files into readable transcript text with optional speaker labels and timestamps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text transcript with optional speaker labels and timestamps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accuracy depends on audio quality, background noise, accent, language coverage, and the transcription engine selected by the deploying agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Audio recordings can contain sensitive personal or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use transcription providers and storage settings that match the user's privacy and data-retention requirements.
+
+Risk: Background noise, strong accents, or dialects can reduce transcription accuracy.
+
+Mitigation: Review transcripts before relying on them for decisions, subtitles, records, or downstream analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzhimin/skills/audio-recognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text transcription guidance with transcript text, optional speaker labels, and optional timestamps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include punctuation cleanup, diarization labels, and timestamp annotations when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

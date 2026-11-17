@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "type": "creative-writing-style",
+    "subtype": "social-media-narrative-irony",
+    "target_platform": "generic",
+    "compilation_mode": "full",
+    "name": "前任回怼写作风格",
+    "name_en": "Ex-Clapback Writing Style",
+    "alias": ["前任反讽撒娇体", "富豪前任叙事体"],
+    "version": "1.1.0",
+    "confidence": 0.72,
+    "origin": "7 张微博截图语料，已匿名化/泛化"
+  },
+  "resolved_intent": {
+    "surface": "提取图片里的文字，总结写作风格，生成 Skill",
+    "actual": "把一种极具辨识度的‘前任视角反讽撒娇’社交媒体叙事，编译成可复用的创意写作 Skill，同时规避版权与声誉风险"
+  },
+  "context_model": {
+    "persona": "前任/旧爱第一人称叙述者，明知自己是入局者却用过来人姿态复盘",
+    "brand": "个人社交媒体账号，偏娱乐/情感/人设解构",
+    "audience": "微博/小红书/朋友圈用户，喜欢段子、吃瓜、情感反讽",
+    "platform": "generic 社交平台（微博体）",
+    "market": "情感内容、分手文学、名人前任叙事",
+    "culture": "中文互联网‘甜丧’文化、反娇妻、反成功学、流量课体"
+  },
+  "style_fingerprint": {
+    "perspective": "第一人称 100%",
+    "irony_density": "高，约每 80 字一次反转",
+    "avg_paragraph_length": "1-3 句",
+    "data_usage": "高，常用伪精确数字",
+    "dialogue_ratio": "中-高",
+    "brand_prop_density": "高",
+    "internet_slang_density": "中-高",
+    "literary_mixed_register": "中",
+    "hashtag_usage": "每篇 1-3 个，反讽向",
+    "ending_pattern": "100% 金句/反转"
+  },
+  "extractors": {
+    "principles": {
+      "narrative_triangle": ["深情", "反讽", "荒诞细节"],
+      "persona_formula": ["前任叙述者", "成功学对象", "具体琐碎道具"],
+      "templates": ["tutorial 体", "初见遗物体", "分手复盘体", "流量课体"]
+    },
+    "style": {
+      "tone": ["甜腻", "反讽", "黑色幽默", "撒娇", "故作深情"],
+      "rhythm": ["短句", "频繁换行", "排比", "设问自答", "反转连接"],
+      "devices": ["对比", "突降", "伪数据", "引用式对话", "标签反讽"]
+    },
+    "examples": {
+      "positive": 3,
+      "negative": 4
+    },
+    "anti_patterns": {
+      "critical": ["真实人名", "捏造事实", "纯人身攻击", "复制原文"],
+      "major": ["细节不具体", "情绪单一", "段落过长", "标签同向", "结尾无力", "网络词滥用"]
+    },
+    "heuristics": {
+      "opening": "夸张标题或 Tutorial 式开头",
+      "middle": "一本正经论证 + 对象反例 + 我感动承诺",
+      "twist": "细节暴露真相 / 对象说出更荒唐的话",
+      "ending": "反转金句 + 反讽标签"
+    }
+  },
+  "judgment_loop": {
+    "enabled": true,
+    "stages": ["Critique", "Judge", "Revision", "Final Judge"],
+    "dimensions": [
+      { "name": "风格保真", "weight": 0.30 },
+      { "name": "反讽甜度", "weight": 0.25 },
+      { "name": "细节具体度", "weight": 0.20 },
+      { "name": "节奏感", "weight": 0.15 },
+      { "name": "AI 腔率", "weight": 0.10 }
+    ],
+    "threshold": 7.5,
+    "max_revisions": 2,
+    "veto_rules": {
+      "C11_tenderness_ratio": "深情段落字数 >= 攻击性段落字数，否则 FAIL",
+      "C12_restraint": "无连续两段以上纯负面输出；情绪最高处须有突降，否则 FAIL",
+      "effect": "C11 或 C12 判 FAIL 时，无论其他维度多高，综合得分记为 <7.5 并强制 Revision"
+    }
+  },
+  "naming_note": "“回怼”指回应姿态（叙述者以‘被消耗过但已走出来的人’身份回头拆解对方），不是语气浓度。越克制越有杀伤力。",
+  "honest_boundaries": {
+    "confidence": "中（样本量 7，风格信号强但变体有限）",
+    "no_real_names": true,
+    "no_fabricated_facts": true,
+    "no_defamation": true,
+    "copyright_note": "风格范式不受版权保护，具体表达受保护；本 Skill 不复制原文"
+  },
+  "folder_structure": [
+    "SKILL.md",
+    "runtime.md",
+    "style/principles.md",
+    "style/fingerprint.md",
+    "style/examples.md",
+    "style/anti-patterns.md",
+    "references/origin.md",
+    "creative-ir.json"
+  ]
+}

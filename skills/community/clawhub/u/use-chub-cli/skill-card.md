@@ -1,40 +1,52 @@
-## Description: <br>
-Use the Context Hub chub CLI to fetch current third-party SDK, API, and cloud-service documentation before writing, modifying, or reviewing integration code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Context Hub chub CLI to fetch current third-party SDK, API, and cloud-service documentation before writing, modifying, or reviewing integration code.
 
-## Publisher: <br>
-[kshern](https://clawhub.ai/user/kshern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kshern](https://clawhub.ai/user/kshern)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to look up current third-party SDK, API, and cloud-service documentation with the chub CLI before implementing, modifying, troubleshooting, or reviewing integration code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent may use the chub CLI for documentation lookups and occasional local annotations.
+
+Mitigation: Confirm that CLI-based documentation lookup and local annotation behavior are acceptable before installing or using the skill.
+
+Risk: The skill includes a feedback command that can send documentation feedback externally when approved.
+
+Mitigation: Avoid approving chub feedback submissions unless external feedback is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to look up current third-party SDK, API, and cloud-service documentation with the chub CLI before implementing or reviewing integration code. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a local or repository-provided chub executable, which may not be trustworthy in every environment. <br>
-Mitigation: Verify that the chub executable or repository-local ./cli/bin/chub fallback comes from a trusted source before use. <br>
-Risk: Annotations or feedback could accidentally include secrets or confidential project details. <br>
-Mitigation: Do not store secrets, credentials, or confidential details in chub annotations or feedback. <br>
+**Output Format:** [Markdown with inline shell commands and code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kshern/use-chub-cli) <br>
+**Other Properties Related to Output:** [May include CLI lookup commands, fetched documentation summaries, implementation guidance, and local annotation guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI command selections, documentation lookup results, integration guidance, code examples, and cautions about trusted chub executables and sensitive annotations.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

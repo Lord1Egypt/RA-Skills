@@ -1,46 +1,60 @@
-## Description: <br>
-AI Face Swap - Swap face in video using verging.ai API. Supports local video files, YouTube/Bilibili URLs, local and remote face images. Auto-download, trimming, real-time progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Face Swap - Swap face in video using verging.ai API. Supports local video files, YouTube/Bilibili URLs, local and remote face images. Auto-download, trimming, real-time progress.
 
-## Publisher: <br>
-[revisual-ai](https://clawhub.ai/user/revisual-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[revisual-ai](https://clawhub.ai/user/revisual-ai)
 
-## Use Case: <br>
-External users and developers use this skill to run command-line face swaps on video using the verging.ai API with local files, supported video URLs, and local or remote face images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends face images and video media to a third-party service for processing. <br>
-Mitigation: Use only media where consent and rights are documented, and avoid private, regulated, intimate, or non-consensual content unless the publisher documents privacy, retention, deletion, and acceptable-use controls. <br>
-Risk: The skill requires a sensitive verging.ai API key. <br>
-Mitigation: Store the key in VERGING_API_KEY or pass it only at runtime, never commit it to public repositories, and rotate it if exposure is suspected. <br>
-Risk: Temporary media files are written under /tmp/verging-faceswap/ during processing. <br>
-Mitigation: Remove temporary files after use and avoid shared systems for sensitive media unless local access controls are appropriate. <br>
+## Use Case:
 
+Developers and creators use this skill to run face-swap jobs on short videos through the verging.ai API, including trimming input media, uploading video, submitting a face image, polling job status, and optionally downloading the result.
 
-## Reference(s): <br>
-- [ClawHub Faceswap release](https://clawhub.ai/revisual-ai/faceswap) <br>
-- [Publisher profile](https://clawhub.ai/user/revisual-ai) <br>
-- [verging.ai](https://verging.ai) <br>
-- [verging.ai API docs](https://verging.ai/docs/api) <br>
-- [Face Swap demo](https://youtu.be/xvlZe4uqvY4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return verging.ai job status, result URLs, and optional downloaded video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence.release.version) <br>
+Risk: The skill sends selected face images, videos, and a verging.ai API key to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with media you are allowed to process, keep the API key in VERGING_API_KEY, and do not expose the key in shared logs or public repositories.
+
+Risk: The skill can download media from broad user-provided URLs.
+
+Mitigation: Prefer local files or trusted HTTPS URLs and avoid private or internal URLs.
+
+Risk: Temporary media files are written under /tmp/verging-faceswap.
+
+Mitigation: Clean /tmp/verging-faceswap after each run, especially on shared machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/revisual-ai/skills/faceswap)
+- [verging.ai](https://verging.ai)
+- [verging.ai API Docs](https://verging.ai/docs/api)
+- [Face Swap Demo](https://youtu.be/xvlZe4uqvY4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API request examples, result URLs, and optional downloaded media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VERGING_API_KEY and local command-line tools: yt-dlp, ffmpeg, ffprobe, and curl.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata; artifact frontmatter lists 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Roundtable Discussion provides a structured, truth-seeking multi-person dialogue framework with an AI moderator and dynamically selected representatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roundtable Discussion provides a structured, truth-seeking multi-perspective dialogue mode where an AI moderator convenes representative viewpoints around a user-supplied topic.
 
-## Publisher: <br>
-[xyzach](https://clawhub.ai/user/xyzach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyzach](https://clawhub.ai/user/xyzach)
 
-## Use Case: <br>
-Users invoke this skill to have an AI moderator structure a multi-perspective roundtable discussion around a topic, manage debate flow, and summarize the resulting ideas. It is suited for brainstorming, analysis, and exploratory reasoning where multiple viewpoints are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated roundtable dialogue and summaries may sound authoritative while reflecting simulated perspectives rather than verified facts. <br>
-Mitigation: Review important claims against reliable sources before using the output for decisions, publication, or user-facing guidance. <br>
+## Use Case:
 
+External users can use this skill to run structured roundtable-style discussions that compare multiple viewpoints, deepen a topic through moderated debate, and end with a synthesized knowledge-network summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xyzach/roundtable-discussion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style conversational text with ASCII diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include moderator turns, representative dialogue, user command prompts, and end-of-session knowledge network summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Simulated named or fictional roundtable participants could be mistaken for authoritative real-world statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all participant voices as generated viewpoints and verify factual claims against authoritative sources before relying on them.
+
+Risk: The skill changes the assistant's conversational style into a debate format that may overemphasize adversarial framing.
+
+Mitigation: Use the moderator summaries as discussion aids, and ask for clarification or source-based verification when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xyzach/skills/roundtable-discussion)
+- [ClawHub publisher profile](https://clawhub.ai/user/xyzach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style conversational text with structured dialogue, ASCII diagrams, and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces simulated viewpoints and moderated discussion summaries; no files, tools, credentials, or persistent settings are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

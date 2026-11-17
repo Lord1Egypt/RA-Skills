@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Gist"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["gist"]
-  icon: "https://static.oomol.com/logo/third-party/github.png"
+  icon: "https://static.oomol.com/logo/third-party/github.svg"
 ---
 
 # Gist
@@ -42,9 +42,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_gist_comment` — Create a comment on a GitHub gist. [write]
 - `delete_gist` — Delete a GitHub gist. [destructive]
 - `delete_gist_comment` — Delete a GitHub gist comment. [destructive]
-- `fork_gist` — Fork a GitHub gist.
+- `fork_gist` — Fork a GitHub gist. [write]
 - `get_gist` — Get a GitHub gist by id.
-- `get_gist_comment` — Get a GitHub gist comment by id. [write]
+- `get_gist_comment` — Get a GitHub gist comment by id.
 - `get_gist_revision` — Get a specific revision of a GitHub gist.
 - `list_gist_comments` — List comments for a GitHub gist.
 - `list_gist_commits` — List commit history for a GitHub gist.
@@ -54,7 +54,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_starred_gists` — List gists starred by the authenticated GitHub user.
 - `list_user_gists` — List public gists for a GitHub user.
 - `star_gist` — Star a GitHub gist. [write]
-- `unstar_gist` — Unstar a GitHub gist. [write]
+- `unstar_gist` — Unstar a GitHub gist. [destructive]
 - `update_gist` — Update a GitHub gist description or files. [write]
 - `update_gist_comment` — Update a GitHub gist comment. [write]
 
@@ -87,11 +87,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Gist is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=gist
+  https://console.oomol.com/connections/gist
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Gist homepage: https://gist.github.com
+- API documentation: https://developers.getgist.com/api/

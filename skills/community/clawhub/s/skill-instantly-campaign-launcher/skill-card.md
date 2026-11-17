@@ -1,42 +1,58 @@
-## Description: <br>
-Creates or reuses an Instantly.ai cold email campaign, adds D0/D3/D8 email sequences, and bulk-imports leads through Instantly API v2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and launch an Instantly.ai cold email campaign with D0/D3/D8 sequences and bulk-import leads via the Instantly API.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Sales operators, agencies, and developers use this skill to launch cold email outreach campaigns from code, configure schedules and sequences, and upload lead lists without using the Instantly dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Instantly API token and uploads lead contact data to Instantly.ai. <br>
-Mitigation: Keep the token in an environment variable, do not commit it in configuration files, and confirm permission and lawful basis before uploading or contacting leads. <br>
-Risk: Campaign automation can affect real outreach if campaign settings, email copy, or lead data are incorrect. <br>
-Mitigation: Review the campaign configuration and lead file before execution, then test with a small lead file before a full import. <br>
-Risk: The Instantly API sequence endpoint may fail, leaving a campaign without the expected email sequence. <br>
-Mitigation: Check the script's console warnings after execution and add sequences manually in the Instantly dashboard if the API call fails. <br>
+## Use Case:
 
+Developers, operators, and sales teams use this skill to configure and run code-driven Instantly.ai outreach campaigns without using the dashboard. It is suited for B2B outreach workflows that need reusable campaign templates, scheduled sequences, and bulk lead import.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-instantly-campaign-launcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with inline bash, JSON, and JavaScript examples; runtime output is console text from the Node.js script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or reuses an Instantly campaign, attempts to attach email sequences, imports leads, and reports total, imported, skipped, and failed counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The script can create or reuse campaigns, add sequences, and upload lead data to Instantly.ai using the provided API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an Instantly API key with only the intended access, and review the campaign name, sequence copy, schedule, timezone, and leads file before running.
+
+Risk: Lead imports send contact data to an external email campaign service.
+
+Mitigation: Confirm the lead file contains only approved recipients and fields for the campaign before import.
+
+Risk: The artifact notes that the Instantly API v2 sequence endpoint can occasionally return 404, requiring manual sequence setup.
+
+Mitigation: Check the console output after execution and manually verify campaign sequences in the Instantly dashboard when the API sequence call fails.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skills/skill-instantly-campaign-launcher)
+- [Publisher Profile](https://clawhub.ai/user/zero2ai-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and JavaScript examples; Node.js console output when run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script creates or reuses an Instantly campaign, attempts to add email sequences, imports leads, and reports total, imported, skipped, and failed counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

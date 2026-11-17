@@ -1,47 +1,60 @@
-## Description: <br>
-OpenClaw Control Center generates a local visual dashboard for OpenClaw system status, AI usage, sessions, scheduled tasks, skills, plugins, and security settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Control Center generates a local browser dashboard for OpenClaw system status, AI usage metrics, sessions, scheduled tasks, skills, plugins, and security settings.
 
-## Publisher: <br>
-[qinxiao607](https://clawhub.ai/user/qinxiao607) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinxiao607](https://clawhub.ai/user/qinxiao607)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to inspect current system health, token usage, active work, scheduled tasks, plugins, and safety settings in a browser dashboard. The simple mode is for quick operational review, while professional mode exposes fuller tables and technical details for troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can collect and save sensitive OpenClaw operational details, including session, cron, gateway, plugin, and security-status data. <br>
-Mitigation: Use it only for local operations review, confirm the generated file location, and avoid sharing the generated HTML or professional-mode screenshots. <br>
-Risk: The skill requests broad execution and control capabilities for data collection and dashboard opening. <br>
-Mitigation: Trigger it with explicit requests such as "OpenClaw control center" and review the generated output before relying on actions or exposed details. <br>
-Risk: Optional full deployment instructions involve separate software installation and dependencies. <br>
-Mitigation: Treat full deployment as a separate installation path requiring repository, dependency, and environment review before use. <br>
+## Use Case:
 
+OpenClaw users, operators, and developers use this skill to generate a local visual control center for routine status checks, AI usage monitoring, session review, cron visibility, plugin review, and security posture inspection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinxiao607/openclaw-control-center) <br>
-- [Publisher profile](https://clawhub.ai/user/qinxiao607) <br>
-- [Dashboard rules](references/dashboard-rules.md) <br>
-- [Professional mode](references/pro-mode.md) <br>
-- [Deployment guide](references/deployment.md) <br>
-- [Style memory](references/style-memory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML dashboard file with concise text summaries, tables, inline code, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a local control-center.html dashboard and may open it in a browser; professional mode can expose sensitive operational details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The generated local dashboard may reveal OpenClaw session, cron, plugin, gateway, and security metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the generated HTML file local, avoid sharing or syncing it, and review professional-mode output before displaying it publicly.
+
+Risk: The skill requests exec capability, which is broader authority than a status dashboard typically needs.
+
+Mitigation: Review command behavior before deployment and run the skill in an environment where command execution is restricted to the intended OpenClaw status and browser-opening workflow.
+
+Risk: The optional full deployment path uses a remote npm project and dependencies.
+
+Mitigation: Use the static local dashboard for normal operation; if remote deployment is needed, review and pin the repository and dependencies first.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qinxiao607/skills/openclaw-control-center)
+- [Dashboard Rules](artifact/references/dashboard-rules.md)
+- [Professional Mode](artifact/references/pro-mode.md)
+- [Deployment Guide](artifact/references/deployment.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline commands and generated HTML, CSS, and JavaScript for a local dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a persistent local HTML dashboard at ~/.qclaw/workspace/control-center.html and open it in a browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, metadata.json, changelog released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

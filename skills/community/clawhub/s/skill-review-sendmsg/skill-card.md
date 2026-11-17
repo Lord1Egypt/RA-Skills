@@ -1,45 +1,55 @@
-## Description: <br>
-Performs structured code reviews of diffs, patches, and pull requests, returning actionable findings about correctness, security, test coverage, and maintainability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs structured repository code reviews with local checks, hard-rule blocking, LLM batch review, and optional Telegram notifications.
 
-## Publisher: <br>
-[dexing2635-tech](https://clawhub.ai/user/dexing2635-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexing2635-tech](https://clawhub.ai/user/dexing2635-tech)
 
-## Use Case: <br>
-Developers and engineers use this skill to review repository changes before merge or deployment and to summarize concrete issues for a human reviewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository diffs may be sent to the configured LLM provider. <br>
-Mitigation: Use the skill only with repositories approved for that provider, redact sensitive changes, or configure local-only REVIEW_MODE or a trusted self-hosted endpoint. <br>
-Risk: Telegram notifications can disclose review status, project metadata, and log details to the configured chat. <br>
-Mitigation: Use least-privilege bot tokens, restrict chat membership, and avoid configuring Telegram for sensitive repositories unless disclosure is approved. <br>
-Risk: The runner can clone configured repositories and persist local review state. <br>
-Mitigation: Run it in an isolated workspace with scoped repository credentials and review local state and logs before sharing the environment. <br>
+## Use Case:
 
+Developers and release operators use this skill to review repository changes before merge or deployment, focusing on actionable correctness, safety, test coverage, and maintainability findings. The helper scripts target PHP, JavaScript, TypeScript, SQL, and shell diffs rather than Python files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dexing2635-tech/skill-review-sendmsg) <br>
-- [Publisher profile](https://clawhub.ai/user/dexing2635-tech) <br>
-- [references/README.md](references/README.md) <br>
-- [references/SKILL.original.md](references/SKILL.original.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review findings with file and line references; helper scripts can emit JSON results and notification text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes high-severity findings, verdicts, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Repository diffs, review metadata, or logs may be sent to configured external LLM and Telegram services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with repositories where that data sharing is approved, and review provider, token, and notification configuration before installation.
+
+Risk: The skill advertises Python review, but the helper scripts filter for PHP, JavaScript, TypeScript, SQL, and shell files.
+
+Mitigation: Do not rely on this release for Python review unless the target-file filtering and documentation are corrected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dexing2635-tech/skills/skill-review-sendmsg)
+- [Reference README](references/README.md)
+- [Original Skill Definition](references/SKILL.original.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review findings and JSON helper-script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verdicts, file and line references, local check failures, LLM review findings, suggested fixes, and configured notification or log summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

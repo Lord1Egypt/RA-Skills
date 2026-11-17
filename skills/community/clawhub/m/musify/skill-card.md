@@ -1,41 +1,59 @@
-## Description: <br>
-Musify MooreThreads helps agents guide CUDA-to-MUSA code conversion with the musify tool, including batch conversion commands, mapping options, exclusion markers, and review steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert CUDA code to MUSA (Moore Threads GPU) using the musify tool for CUDA-to-MUSA migration, kernel/API conversion, and batch conversion of .cu, .cuh, .cpp, and .h files with text-based API mapping.
 
-## Publisher: <br>
-[dongyang-mt](https://clawhub.ai/user/dongyang-mt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dongyang-mt](https://clawhub.ai/user/dongyang-mt)
 
-## Use Case: <br>
-Developers and engineers migrating CUDA codebases to Moore Threads MUSA use this skill to plan and run musify-based conversions, then review, build, and test the converted code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: In-place conversion commands can modify project files and text-based API mapping may require manual fixes. <br>
-Mitigation: Run conversions on a version-controlled or backed-up project, review diffs, compile with the MUSA compiler, and test on a MUSA device before relying on the result. <br>
-Risk: The workflow depends on external toolkit and package sources for musify-text and Python dependencies. <br>
-Mitigation: Install only from trusted package and toolkit sources, and use an isolated environment where practical. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Musify Blog Post](https://blog.mthreads.com/blog/musa/2024-05-28-使用musify对代码进行平台迁移/) <br>
-- [MUSA Documentation](https://docs.mthreads.com/) <br>
-- [Tutorial on MUSA](https://github.com/MooreThreads/tutorial_on_musa) <br>
+## Use Case:
 
+Developers and engineers use this skill to migrate CUDA codebases to Moore Threads MUSA by running musify-text conversions, applying optional exclusion markers, reviewing generated changes, and validating the result with the MUSA compiler and device tests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include in-place file modification commands; users should review diffs before building or committing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The ahocorapy dependency is shown without a pinned version.
+
+Mitigation: Install it in a dedicated virtual environment and pin a reviewed version before use in managed workflows.
+
+Risk: In-place conversion can modify source files directly.
+
+Mitigation: Back up or commit the project before running in-place conversion, then review generated diffs before keeping the changes.
+
+Risk: Text-based API mapping may produce conversions that need manual fixes.
+
+Mitigation: Compile converted code with the MUSA compiler and test it on a MUSA device before relying on the result.
+
+## Reference(s):
+
+- [Musify Blog Post](https://blog.mthreads.com/blog/musa/2024-05-28-使用musify对代码进行平台迁移/)
+- [MUSA Documentation](https://docs.mthreads.com/)
+- [Tutorial on MUSA](https://github.com/MooreThreads/tutorial_on_musa)
+- [ClawHub Skill Page](https://clawhub.ai/dongyang-mt/skills/musify)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance focuses on text-based CUDA-to-MUSA conversion workflows and expected manual review after conversion.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

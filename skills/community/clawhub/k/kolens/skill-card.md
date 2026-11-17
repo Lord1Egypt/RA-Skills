@@ -1,42 +1,56 @@
-## Description: <br>
-Search and analyze TikTok KOLs using the KOLens API, including creator metrics and optional contact information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze TikTok KOLs using the KOLens API, including creator discovery, metrics, and optional contact fields.
 
-## Publisher: <br>
-[maweis1981](https://clawhub.ai/user/maweis1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[maweis1981](https://clawhub.ai/user/maweis1981)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and growth teams use this skill to submit TikTok KOL search jobs, poll job status, query creator lists, and inspect follower, view, engagement, and contact data for legitimate outreach.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Collecting creator contact data can create privacy, anti-spam, or outreach compliance obligations.
+
+Mitigation: Use the skill only for legitimate outreach, avoid fetching contacts unless needed, and follow applicable privacy and anti-spam laws.
+
+Risk: A misconfigured or untrusted KOLENS_API_URL could expose API keys or search activity.
+
+Mitigation: Use only the verified HTTPS endpoint from the KOLens service administrator and keep API keys scoped and revocable.
+
+Risk: Creator metrics and contact details returned by the API may be stale, incomplete, or unsuitable for immediate outreach.
+
+Mitigation: Verify contact information and creator fit before taking action based on API results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to search TikTok creators by keyword, inspect KOL metrics, and retrieve available outreach fields through a configured KOLens API endpoint. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: API credentials could be exposed through logs, commits, shell history, or shared outputs. <br>
-Mitigation: Keep KOLENS_API_KEY private, avoid logging or committing credentials, and rotate keys if exposure is suspected. <br>
-Risk: The configured KOLens API URL and provider control the service that receives requests and returns creator data. <br>
-Mitigation: Install only when the provider and API URL are trusted, and use HTTPS endpoints. <br>
-Risk: Creator contact collection can raise privacy, platform-terms, and outreach-compliance concerns. <br>
-Mitigation: Use contact collection only for legitimate outreach and follow TikTok terms plus applicable privacy laws such as GDPR and CCPA. <br>
+**Output Format:** [Markdown with inline bash commands and JSON response examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [KOLens ClawHub listing](https://clawhub.ai/maweis1981/kolens) <br>
+**Other Properties Related to Output:** [Requires KOLENS_API_KEY, KOLENS_API_URL, curl, and optionally jq; API responses may include creator contact data when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KOLENS_API_KEY and KOLENS_API_URL environment variables; responses depend on the configured KOLens API service.] <br>
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

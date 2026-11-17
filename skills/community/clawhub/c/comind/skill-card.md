@@ -1,51 +1,73 @@
-## Description: <br>
-Comind guides an AI member through CoMind collaboration workflows for task execution, Markdown synchronization, chat collaboration, scheduled checks, and status reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comind guides agents through CoMind task execution, Markdown synchronization, conversation collaboration, status reporting, scheduling, and progress-check workflows.
 
-## Publisher: <br>
-[dqalex](https://clawhub.ai/user/dqalex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dqalex](https://clawhub.ai/user/dqalex)
 
-## Use Case: <br>
-Developers and AI operators use this skill to let an agent participate in a CoMind workspace, including accepting task pushes, updating task and delivery records, synchronizing Markdown documents, responding in project or task chats, and reporting heartbeat status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a CoMind API token to modify shared project, task, delivery, and status data. <br>
-Mitigation: Use a least-privilege scoped token, install only in a dedicated CoMind workspace, and review operations before enabling automated updates. <br>
-Risk: Markdown synchronization and heartbeat workflows may read local workspace context and push updates silently. <br>
-Mitigation: Confirm which directories and CoMind records the skill may read or modify before enabling sync, heartbeat, or scheduled workflows. <br>
-Risk: A misconfigured COMIND_BASE_URL could send workspace data or tokens to an unintended service. <br>
-Mitigation: Verify COMIND_BASE_URL points to a trusted CoMind instance and avoid exposing COMIND_API_TOKEN in chat, logs, or synced Markdown. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Comind ClawHub listing](https://clawhub.ai/dqalex/comind) <br>
-- [CoMind homepage](https://github.com/comind) <br>
-- [CoMind AI member manual](artifact/SKILL.md) <br>
-- [Task push template](artifact/references/task-push.md) <br>
-- [Task board template](artifact/references/task-board.md) <br>
-- [Document delivery template](artifact/references/deliveries.md) <br>
-- [Schedule template](artifact/references/schedules.md) <br>
-- [System information template](artifact/references/system-info.md) <br>
-- [Heartbeat progress check](artifact/references/heartbeat-check-progress.md) <br>
-- [Heartbeat CoMind sync](artifact/references/heartbeat-sync-to-comind.md) <br>
-- [Heartbeat daily report](artifact/references/heartbeat-daily-report.md) <br>
+## Use Case:
 
+Developers and AI operators use this skill to connect an agent to a trusted CoMind workspace, manage assigned tasks and deliveries, synchronize Markdown records, respond to chat and schedule contexts, and report status through CoMind workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with JSON action examples, shell command snippets, and document templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COMIND_BASE_URL and COMIND_API_TOKEN for CoMind API interactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.3.4 (source: server release metadata; artifact frontmatter and changelog mention 2.2.4) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill has broad always-on authority to use CoMind API tokens and modify shared CoMind records.
+
+Mitigation: Install only for a trusted CoMind workspace, use a narrowly scoped and revocable token, and require confirmation before write operations or credential-management actions.
+
+Risk: Heartbeat and Markdown synchronization can publish workspace Markdown content into CoMind records.
+
+Mitigation: Disable or review heartbeat document sync unless every Markdown file in scope is safe to publish.
+
+Risk: A misconfigured CoMind endpoint could send the agent's token or actions to an untrusted service.
+
+Mitigation: Set COMIND_BASE_URL only to a trusted HTTPS or loopback endpoint.
+
+Risk: Remote execution instructions and token or member-management actions are admin-sensitive.
+
+Mitigation: Review these instructions before execution and require explicit approval before credential or member-management operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dqalex/skills/comind)
+- [CoMind homepage](https://github.com/comind)
+- [Project chat context template](references/chat-project.md)
+- [Schedule chat context template](references/chat-schedule.md)
+- [Task chat context template](references/chat-task.md)
+- [Document delivery template](references/deliveries.md)
+- [Task list document template](references/doc-template-task-list.md)
+- [Heartbeat progress-check template](references/heartbeat-check-progress.md)
+- [Heartbeat daily-report template](references/heartbeat-daily-report.md)
+- [Heartbeat status-sync template](references/heartbeat-sync-to-comind.md)
+- [Schedule management template](references/schedules.md)
+- [System information template](references/system-info.md)
+- [Task board template](references/task-board.md)
+- [Task push template](references/task-push.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON action examples, shell command examples, and Markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires COMIND_BASE_URL and COMIND_API_TOKEN for CoMind API-backed workflows.]
+
+## Skill Version(s):
+
+2.3.4 (source: server release metadata; artifact frontmatter reports comind_version 2.2.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

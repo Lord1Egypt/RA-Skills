@@ -1,39 +1,60 @@
-## Description: <br>
-Read Bluesky profiles, posts, feeds, followers, and threads via the AT Protocol using mostly public endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Bluesky profiles, posts, feeds, followers, and threads via the AT Protocol -- 8 tools, mostly public endpoints.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to retrieve public Bluesky profiles, posts, feeds, follower lists, follow lists, and threads. Post search is available when users provide dedicated Bluesky credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional post search places a Bluesky app password in the gateway URL, which can expose the credential if the URL is logged, shared, or reused. <br>
-Mitigation: Use the anonymous public tools when possible; if search is needed, use a dedicated Bluesky app password, treat the configured URL as secret, and rotate or revoke the password after use. <br>
+## Use Case:
 
+External developers and analysts use this skill to read public Bluesky profiles, posts, feeds, followers, follows, and threads, and to search posts when they provide their own Bluesky credentials.
 
-## Reference(s): <br>
-- [Pipeworx Bluesky homepage](https://pipeworx.io/packs/bluesky) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-bluesky) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration] <br>
-**Output Format:** [JSON tool responses and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public read endpoints work anonymously; search_posts requires Bluesky credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The authenticated post-search flow places a Bluesky app password in a gateway URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting app passwords in URLs; rotate any password already exposed this way and prefer safer credential handling before use.
+
+Risk: Requests are sent through the third-party Pipeworx gateway.
+
+Mitigation: Use the public-read tools only when sending requests through Pipeworx is acceptable for the intended data and workflow.
+
+Risk: The MCP client example runs mcp-remote@latest through npx.
+
+Mitigation: Pin and review the MCP helper package version before adding the configuration to an agent client.
+
+## Reference(s):
+
+- [Pipeworx Bluesky Pack](https://pipeworx.io/packs/bluesky)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-bluesky)
+- [Publisher Profile](https://clawhub.ai/user/brucegutman)
+- [Pipeworx Bluesky MCP Endpoint](https://gateway.pipeworx.io/bluesky/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes eight Bluesky tools; most use public endpoints, while post search requires user-provided Bluesky credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

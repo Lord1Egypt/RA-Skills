@@ -1,43 +1,53 @@
-## Description: <br>
-Automates retrieval and summary of Jira Cloud issues and Confluence Cloud pages using secure API tokens for workflow insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates retrieval and summarization of Jira Cloud issues and Confluence Cloud pages using API tokens.
 
-## Publisher: <br>
-[Arkiant](https://clawhub.ai/user/Arkiant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arkiant](https://clawhub.ai/user/arkiant)
 
-## Use Case: <br>
-Developers and workflow teams use this skill to retrieve Jira issue details and Confluence page content through Atlassian Cloud APIs, then summarize or inspect project and documentation context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Jira and Confluence data through Atlassian API tokens. <br>
-Mitigation: Install it only for agents that should access those systems, and use least-privilege read-only tokens by default. <br>
-Risk: Comment posting requires broader write permissions and may modify tickets or pages. <br>
-Mitigation: Avoid write-scoped tokens unless comment posting is required, and review agent actions before enabling write access. <br>
-Risk: Issue keys, page references, and placeholder domains may point to unintended resources if supplied incorrectly. <br>
-Mitigation: Replace the placeholder domain carefully and treat unusual issue keys or page references as untrusted input. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Arkiant/jiraandconfluence-skill) <br>
-- [Skill README](SKILL.md) <br>
-- [Usage Examples](examples/usage.md) <br>
+## Use Case:
 
+Developers and workflow automation users use this skill to fetch Jira issues and Confluence pages, summarize content, and surface suggested improvements for support, project, and documentation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Atlassian API tokens from environment variables and requires the placeholder Atlassian domain to be replaced before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact version section) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credential-bearing helper scripts may expose Atlassian API tokens to local process inspection.
+
+Mitigation: Use least-privilege read-only tokens, avoid shared or monitored hosts, and prefer a safer secret-passing mechanism before production use.
+
+Risk: The helper scripts may source an unexpected local auth.sh when run from an untrusted directory.
+
+Mitigation: Run scripts only from a trusted installation path and anchor authentication loading to the script directory before treating the skill as low risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arkiant/skills/jiraandconfluence-skill)
+- [Usage examples](examples/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON API output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Atlassian API tokens and a configured Jira or Confluence Cloud domain.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact Version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

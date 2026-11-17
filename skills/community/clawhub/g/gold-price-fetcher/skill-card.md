@@ -1,44 +1,58 @@
-## Description: <br>
-Fetches real-time gold price data from the JD Finance API and returns a timestamped price response when users ask for current gold prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time gold price information from a disclosed JD Finance endpoint and returns a timestamped price response.
 
-## Publisher: <br>
-[jayhenry00](https://clawhub.ai/user/jayhenry00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayhenry00](https://clawhub.ai/user/jayhenry00)
 
-## Use Case: <br>
-External users or agents use this skill to answer current gold price questions by running the included Python lookup and returning a timestamped price for reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound HTTPS requests to JD Finance and depends on that endpoint's availability and accuracy. <br>
-Mitigation: Install only where that network access is acceptable and treat returned prices as informational. <br>
-Risk: Displayed prices may differ from executable transaction prices. <br>
-Mitigation: Confirm prices with the bank or trading venue before making financial decisions. <br>
-Risk: The script writes a local cache file at cache/last_price.json. <br>
-Mitigation: Review local write permissions and clear the cache if stale local price data should not be reused. <br>
+## Use Case:
 
+External users and developers can use this skill to query current reference gold prices and receive a clear timestamped response for informational checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jayhenry00/gold-price-fetcher) <br>
-- [JD Finance gold price endpoint](https://ms.jr.jd.com/gw2/generic/CreatorSer/newh5/m/getFirstRelatedProductInfo) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text timestamped price line, with script-level success or error data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes cache/last_price.json with the last fetched price and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README version history) <br>
+Risk: The skill makes a network request to JD Finance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where outbound access to the disclosed endpoint is acceptable.
+
+Risk: The returned gold price is informational and may differ from transaction prices.
+
+Mitigation: Confirm actual transaction prices with the relevant bank or trading venue before making financial decisions.
+
+Risk: The helper script writes a local cache file with the last fetched price and timestamp.
+
+Mitigation: Review local storage expectations before deployment in restricted environments.
+
+## Reference(s):
+
+- [JD Finance gold price endpoint](https://ms.jr.jd.com/gw2/generic/CreatorSer/newh5/m/getFirstRelatedProductInfo)
+- [ClawHub skill page](https://clawhub.ai/jayhenry00/skills/gold-price-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Timestamped plain text response, with optional JSON fields when the helper script is used programmatically.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a small local cache file containing the last fetched price and timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

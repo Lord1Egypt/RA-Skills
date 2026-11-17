@@ -1,44 +1,58 @@
-## Description: <br>
-抖音民间诡异故事视频生成器。根据用户提供的文案自动生成配音、图片、视频并合成最终视频，支持上传到抖音。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户提供的中文故事文案，生成配音、竖屏图片、视频片段、字幕和最终视频，并在用户确认后支持上传到抖音。
 
-## Publisher: <br>
-[google696](https://clawhub.ai/user/google696) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[google696](https://clawhub.ai/user/google696)
 
-## Use Case: <br>
-Content creators and automation-focused developers use this skill to turn provided Chinese folklore or eerie-story text into short Douyin-style videos with narration, generated imagery, video clips, subtitles, and optional upload after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story text and generated media are sent to DashScope and to the configured FTP/HTTP host. <br>
-Mitigation: Use dedicated API and FTP credentials, avoid sensitive unpublished material, and confirm the configured hosts before running generation. <br>
-Risk: The Douyin upload path depends on an authenticated browser profile. <br>
-Mitigation: Verify the openclaw browser profile is logged into the intended Douyin account before upload. <br>
-Risk: Generated videos may contain unsuitable or inaccurate AI-generated content. <br>
-Mitigation: Review the final video, title, description, topics, and AI disclosure before confirming publication. <br>
+## Use Case:
 
+External creators and operators use this skill to turn supplied Chinese folklore or eerie-story scripts into short-form Douyin-style videos with voiceover, generated visuals, synchronized subtitles, and an optional publishing step after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/google696/douyin-folklore-video) <br>
-- [Publisher profile](https://clawhub.ai/user/google696) <br>
-- [Configuration reference](references/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces voice.wav, generated images, video segments, subtitle.srt, video_raw.mp4, video_sub.mp4, and final_video.mp4 when the required services and tools are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The server security summary flags account publishing automation and insecure FTP/HTTP media transfer paths as requiring review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-privilege FTP account and a Douyin account approved for automation; prefer HTTPS object storage, SFTP, or FTPS over FTP/HTTP.
+
+Risk: Story text and generated media are sent to DashScope services and may include user-provided content.
+
+Mitigation: Use non-sensitive story text and require explicit user confirmation before sending content to DashScope or publishing to Douyin.
+
+Risk: The server skill summary says this release is deprecated and should not be installed or used.
+
+Mitigation: Treat the release as historical unless the publisher provides a maintained replacement or a fresh review clears it for use.
+
+## Reference(s):
+
+- [Configuration Reference](references/config.md)
+- [ClawHub Skill Page](https://clawhub.ai/google696/skills/douyin-folklore-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces voice.wav, generated image files, video segment files, subtitle.srt, and final_video.mp4 when supporting services and credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

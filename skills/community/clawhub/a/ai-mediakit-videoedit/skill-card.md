@@ -1,45 +1,62 @@
-## Description: <br>
-AI MediaKit Video Edit helps an agent analyze local videos with subtitles or danmaku, propose clip segments for a user's editing request, and synthesize edited video outputs with FFmpeg and optional Remotion text effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI MEDIAKIT VIDEO EDIT helps an agent analyze subtitles and Bilibili-style danmaku, propose clip selections, splice video segments with FFmpeg, and optionally add rendered text effects.
 
-## Publisher: <br>
-[volc-ai-mediakit](https://clawhub.ai/user/volc-ai-mediakit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volc-ai-mediakit](https://clawhub.ai/user/volc-ai-mediakit)
 
-## Use Case: <br>
-Developers and content operators use this skill to turn local video, subtitle, and danmaku files into a reviewed clip plan, then generate edited videos with transitions and optional text overlays. It is useful for highlight extraction, topic-based video cuts, multi-clip splicing, and Bilibili-style danmaku-informed editing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local video, subtitle, and danmaku files provided by the user. <br>
-Mitigation: Use it only with files intended for processing and avoid providing unrelated sensitive media or text files. <br>
-Risk: The generated edit plan can write or overwrite video output paths. <br>
-Mitigation: Review the clip plan and choose an output path that can be safely overwritten before confirming execution. <br>
-Risk: Optional text effects require installing and running the bundled Remotion template dependencies. <br>
-Mitigation: Run npm install only inside the included template directory and use a trusted Remotion server if REMOTION_SERVE_URL is set. <br>
+## Use Case:
 
+Developers and content-production agents use this skill to turn local videos, subtitles, and optional danmaku files into an editable plan, then generate clipped and merged videos with optional text effects after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volc-ai-mediakit/ai-mediakit-videoedit) <br>
-- [Bilibili danmaku XML format reference](artifact/references/danmaku_format.md) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with JSON clip/effects plans, shell commands, and generated local video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before running video synthesis; output paths are selected by the user or plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The optional Remotion rendering path uses vulnerable and unlocked npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Upgrade Remotion and related packages to at least 4.0.410, commit and review a lockfile, and run dependency review before installation.
+
+Risk: Installing npm or system dependencies with elevated privileges can increase host impact if a dependency is compromised.
+
+Mitigation: Install dependencies in a least-privileged project environment and avoid root or administrator installs unless the operator has explicitly accepted the risk.
+
+Risk: Audio normalization behavior can be misunderstood because documentation and script defaults differ.
+
+Mitigation: Ask the user to confirm audio normalization explicitly before execution and record the chosen value in the clip configuration.
+
+Risk: Video content understanding depends on subtitle or danmaku evidence and may produce incorrect clip boundaries when those inputs are missing or noisy.
+
+Mitigation: Present the proposed segments, transition choice, and output path for user confirmation before running FFmpeg.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volc-ai-mediakit/skills/ai-mediakit-videoedit)
+- [Bilibili Danmaku XML Format Reference](artifact/references/danmaku_format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Video files, Guidance]
+
+**Output Format:** [Markdown plans, JSON clip/effects configuration, shell commands, and MP4 video outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local video inputs and installed FFmpeg; optional text effects use Node.js and Remotion.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact SKILL.md lists v1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

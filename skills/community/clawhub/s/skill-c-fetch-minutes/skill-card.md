@@ -1,43 +1,62 @@
-## Description: <br>
-Runs a post-meeting workflow that scans eligible meetings, retrieves or accepts meeting transcripts, generates minutes and draft issues, writes them to Gitea, and prepares organizer notification details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates post-meeting minutes processing by scanning eligible meetings, coordinating transcript retrieval, supporting AI issue extraction, committing transcript, minutes, summary, and draft issue files to Gitea, and returning organizer notification payloads.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and operations teams use this skill in scheduled ClawHub/OpenClaw workflows to process meeting records after a grace period, create reviewable minutes and draft issue files, update Gitea state, and prepare notification email payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify Gitea repositories and meeting status across a broad repository scope. <br>
-Mitigation: Use a least-privilege Gitea bot token and restrict the configured repositories the bot may modify. <br>
-Risk: Meeting transcripts, attendee details, and organizer emails may be exposed through runner output, scan results, or logs. <br>
-Mitigation: Run in a controlled environment, limit log retention and access, and review scan output handling before production use. <br>
-Risk: Setup defaults may encourage insecure configuration, including non-HTTPS service URLs or untrusted environment sourcing. <br>
-Mitigation: Require HTTPS-only Gitea URLs, pin dependencies, and review the local .env file before sourcing or deploying the skill. <br>
+## Use Case:
 
+Developers and operations teams use this skill in an OpenClaw cron workflow to process completed Tencent Meeting sessions into reviewable meeting minutes and draft issue content. It is intended for controlled meeting automation workflows that can safely access the configured Gitea repositories.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/myd2002/skill-c-fetch-minutes) <br>
-- [Publisher profile: myd2002](https://clawhub.ai/user/myd2002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command responses plus Markdown meeting artifacts and email payload text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces transcript, optional AI summary, minutes, and draft issue content for Gitea submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can scan and modify multiple Gitea repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in the intended controlled AIFusion environment, use a repo-scoped bot token, and add an explicit repository allowlist before deployment.
+
+Risk: The default Gitea endpoint uses plaintext HTTP, which can expose tokens and meeting data.
+
+Mitigation: Change the configured Gitea endpoint to HTTPS before use and rotate any token previously used with the HTTP endpoint.
+
+Risk: Generated meeting artifacts and status transitions are written back to remote repositories.
+
+Mitigation: Constrain commit-content input files to a controlled temporary directory and enforce valid meeting state transitions before remote writes.
+
+Risk: Runtime dependencies are installed from broad version ranges.
+
+Mitigation: Run dependencies in a virtual environment with pinned versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/skill-c-fetch-minutes)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON command responses and Markdown meeting artifacts committed as files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scan groupings, status-transition results, email payloads, and committed transcript.md, ai_summary.md, minutes.md, and draft_issue.md files when inputs are available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

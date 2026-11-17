@@ -1,43 +1,58 @@
-## Description: <br>
-Helps users design and implement AI-agent workflow automation with OpenClaw skills, multi-agent orchestration, scheduling patterns, and implementation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Workflow Automation Expert helps users automate repetitive tasks using AI agents, OpenClaw skills, and multi-agent orchestration.
 
-## Publisher: <br>
-[xiatian5](https://clawhub.ai/user/xiatian5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiatian5](https://clawhub.ai/user/xiatian5)
 
-## Use Case: <br>
-Developers, operators, and workflow owners use this skill to analyze repetitive processes, choose suitable OpenClaw skills, and draft practical automation workflows for scheduled jobs, content pipelines, reports, customer inquiry routing, and multi-agent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad workflow templates may be turned into automations that affect external communications, financial actions, or sensitive data. <br>
-Mitigation: Require manual approval for outbound emails, public posts, customer-facing responses, financial actions, and workflows involving sensitive data. <br>
-Risk: Connected skills or services may introduce risks outside this Markdown-only guide. <br>
-Mitigation: Review each connected skill separately before using generated workflow plans in real automations. <br>
-Risk: Scheduled jobs can run too broadly or retain sensitive information if translated directly into production workflows. <br>
-Mitigation: Keep scheduled jobs narrowly scoped and avoid storing secrets in memory. <br>
+## Use Case:
 
+Developers, operators, and teams use this skill to analyze manual processes, design AI-assisted workflows, select OpenClaw skills, and draft implementation patterns for scheduled jobs, pipelines, and multi-agent systems.
 
-## Reference(s): <br>
-- [Cron Scheduling Patterns](references/cron-patterns.md) <br>
-- [Multi-Agent Patterns](references/multi-agent-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning and implementation guidance only; it does not run automations, access accounts, or install code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Automated workflows may send messages, post content, answer customers, or change accounts without enough oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval for outbound email, social posting, customer responses, financial changes, and account changes.
+
+Risk: Workflow integrations may expose sensitive data or overbroad credentials to unnecessary tools.
+
+Mitigation: Use least-privilege credentials and avoid sending sensitive data into tools that do not need it.
+
+Risk: Scheduled workflows can fail silently or produce changes that are hard to unwind.
+
+Mitigation: Keep logs, monitor failures, and define rollback steps before enabling recurring automation.
+
+## Reference(s):
+
+- [Cron Scheduling Patterns](references/cron-patterns.md)
+- [Multi-Agent Patterns](references/multi-agent-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration, shell commands]
+
+**Output Format:** [Markdown with inline YAML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow designs, skill recommendations, schedules, pipeline templates, and implementation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

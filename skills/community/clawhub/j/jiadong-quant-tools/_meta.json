@@ -1,6 +1,36 @@
 {
-  "ownerId": "kn75vawery24aak6p5qw951efd84gpkb",
-  "slug": "jiadong-quant-tools",
   "version": "1.0.0",
-  "publishedAt": 1775744838974
+  "name": "quant-tools",
+  "description": "学术导向量化研究工具集",
+  "tools": [
+    "AlphaLens",
+    "VectorBT",
+    "PyPortfolioOpt",
+    "FinRL",
+    "FinBERT",
+    "EconML",
+    "QuantLib",
+    "VeighNa",
+    "Qlib",
+    "WonderTrader",
+    "AkShare",
+    "JupyterHub"
+  ],
+  "categories": [
+    "学术研究库",
+    "投研工具",
+    "量化交易",
+    "因子分析",
+    "组合优化"
+  ],
+  "author": "许霸天",
+  "created": "2026-03-09",
+  "tags": [
+    "quant",
+    "量化",
+    "因子",
+    "回测",
+    "AI量化",
+    "交易框架"
+  ]
 }

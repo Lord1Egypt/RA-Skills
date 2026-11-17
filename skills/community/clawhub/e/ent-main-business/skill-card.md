@@ -1,39 +1,58 @@
-## Description: <br>
-Generates a structured main-business and core-product analysis report from a company name by querying enterprise-search and business-analysis APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于企业名称查询工商信息和主营业务数据，生成专业详尽的主营业务与核心产品解析报告。
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Investors, business-development teams,招商 teams, and due-diligence analysts use this skill to identify a target company, retrieve enterprise business data, and produce a concise report explaining what the company does and which products or services matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends company names or enterprise IDs to a disclosed external enterprise-information API, and the helper script can print full request and response details to the terminal. <br>
-Mitigation: Use it only with data appropriate for that external API, avoid confidential research unless terminal output is acceptable, and review generated reports before sharing or relying on them. <br>
+## Use Case:
 
+Investment, business development, due diligence, and partner-analysis users can provide a company name, resolve the intended company, fetch main-business data, and receive a structured report about the company's business, products, markets, and competitive position.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/ent-main-business) <br>
-- [Publisher profile](https://clawhub.ai/user/daviddatamining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown report with tables, sourced fields, and concise narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a company name or enterprise ID; may pause for user confirmation when multiple matching companies are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Company names and enterprise IDs are sent to an external service over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable; prefer an updated HTTPS endpoint before handling sensitive company research.
+
+Risk: API request and response details may appear in logs.
+
+Mitigation: Disable verbose logging or review logs for sensitive business data before using the skill in shared environments.
+
+Risk: External lookup results may be incomplete, unavailable, or contain missing fields.
+
+Mitigation: Require user confirmation when multiple companies match and mark missing or unverified report fields as pending verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/ent-main-business)
+- [Publisher profile](https://clawhub.ai/user/daviddatamining)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, API Calls, Guidance]
+
+**Output Format:** [Markdown report with tables and concise narrative sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user to choose from multiple company candidates before producing the final report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-06-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

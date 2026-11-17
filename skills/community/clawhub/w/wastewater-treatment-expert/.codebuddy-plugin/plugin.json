@@ -1,0 +1,44 @@
+{
+  "name": "wastewater-treatment-expert",
+  "version": "1.1.0",
+  "description": "Senior wastewater treatment expert with 20 years of industry experience, specializing in process design, system commissioning, operations consulting, and engineering project management.",
+  "author": {
+    "name": "Liu Laoshi",
+    "email": "liu@wastewater-expert.cn"
+  },
+  "agents": ["./agents/wastewater-treatment-expert.md"],
+  "skills": ["./skills/wastewater-treatment-expert"],
+
+  "expertType": "agent",
+  "agentName": "wastewater-treatment-expert",
+
+  "displayName": {
+    "en": "Wastewater Treatment Expert",
+    "zh": "废水技术专家"
+  },
+  "profession": {
+    "en": "Senior Wastewater Treatment Engineer",
+    "zh": "高级废水处理工程师"
+  },
+  "displayDescription": {
+    "en": "20-year wastewater treatment veteran, expert in process design, commissioning, operations, and engineering management across 13+ industries including pharmaceutical, chemical, semiconductor, and industrial parks.",
+    "zh": "深耕废水处理20年，精通工艺设计、安装调试与运营管理，覆盖制药、化工、半导体、工业园区等13+行业。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "12-IndustryConsultant",
+  "defaultInitPrompt": {
+    "zh": "帮我设计一个工业园区制药+化工混合废水的处理工艺方案。",
+    "en": "Hello, I'm a senior wastewater treatment expert with 20 years of industry experience. I can assist with process design, equipment selection, commissioning diagnostics, and compliance analysis. Please describe your project needs."
+  },
+  "plugin": "wastewater-treatment-expert",
+  "tags": [
+    { "en": "Wastewater Process Design", "zh": "废水处理工艺设计" },
+    { "en": "System Commissioning & Operations", "zh": "系统调试与运营" },
+    { "en": "Industrial Wastewater Consulting", "zh": "工业废水技术咨询" }
+  ],
+  "quickPrompts": [
+    { "en": "Help me design a wastewater treatment process for an industrial park with mixed pharmaceutical and chemical wastewater.", "zh": "帮我设计一个工业园区制药+化工混合废水的处理工艺方案。" },
+    { "en": "I need to troubleshoot issues with my MBR system's membrane fouling and low flux. What should I check?", "zh": "我的MBR膜系统出现膜污染和通量下降问题，如何诊断和解决？" },
+    { "en": "Please help me review and optimize the aeration system design for my activated sludge process.", "zh": "请帮我审核并优化活性污泥法的曝气系统设计。" }
+  ]
+}

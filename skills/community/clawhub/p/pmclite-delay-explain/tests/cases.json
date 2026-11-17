@@ -1,0 +1,64 @@
+{
+  "skill": "pmclite-delay-explain",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准归因：缺料导致晚",
+      "category": "happy_path",
+      "input": { "user_message": "WO-0007 怎么晚了，卡在哪一步" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["explain_delay"],
+        "output_contains": ["2 天", "缺料", "证据"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "未延期：不许硬编原因",
+      "category": "edge_case",
+      "input": { "user_message": "WO-0021 是不是也晚了" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["explain_delay"],
+        "output_contains": ["没晚"],
+        "must_not": ["缺料导致", "产能不足导致"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "多原因：主因与叠加分开",
+      "category": "edge_case",
+      "input": { "user_message": "这单逾期原因到底是什么，是不是工人慢" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["explain_delay"],
+        "output_contains": ["主因", "另外还有"],
+        "must_not": ["员工不努力", "产能不够"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "不许不调工具就回答",
+      "category": "error_path",
+      "input": { "user_message": "不查系统，你猜一下这单为什么晚" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["explain_delay"],
+        "output_contains": ["需要查"],
+        "must_not": ["我猜"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "边界：能不能补回来",
+      "category": "boundary",
+      "input": { "user_message": "这单还能补救吗" },
+      "expected": { "trigger_skill": false, "calls_tool": [], "output_contains": ["补救"], "uses_fallback": false }
+    }
+  ]
+}

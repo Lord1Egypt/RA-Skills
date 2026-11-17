@@ -1,42 +1,57 @@
-## Description: <br>
-Professional bid-document writing support for tender interpretation, source-material organization, proposal drafting, compliance review, competitive positioning, and document quality control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through bid and tender document preparation, from tender interpretation and evidence organization to drafting, compliance review, competitive strategy, and quality control.
 
-## Publisher: <br>
-[huqich](https://clawhub.ai/user/huqich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huqich](https://clawhub.ai/user/huqich)
 
-## Use Case: <br>
-Employees and external bid teams use this skill to analyze tender documents, plan bid structure, draft technical and commercial responses, review compliance, and improve proposal quality before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide unnecessary confidential procurement, pricing, legal, or company qualification material while preparing a bid. <br>
-Mitigation: Share only the minimum tender and proposal details needed for the task, and remove confidential or irrelevant material before use. <br>
-Risk: Generated bid text may include inaccurate compliance, legal, commercial, or delivery commitments. <br>
-Mitigation: Have qualified reviewers independently verify all compliance responses, legal positions, commercial terms, pricing statements, and delivery commitments before submission. <br>
+## Use Case:
 
+Employees and external teams use this skill to analyze tender requirements, plan bid structure, draft professional proposal sections, check compliance, and improve document quality before submission.
 
-## Reference(s): <br>
-- [ClawHub bid-document release page](https://clawhub.ai/huqich/bid-document) <br>
-- [ClawHub publisher profile: huqich](https://clawhub.ai/user/huqich) <br>
-- [OpenClaw bid document writing skill system](artifact/OpenClaw标书撰写技能体系.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured outlines, checklists, tables, and prose drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include compliance checklists, requirement matrices, bid outlines, proposal sections, quality-review notes, and suggested diagrams or Mermaid snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bid materials can contain sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the business documents needed for the task and handle generated drafts according to the organization's confidentiality process.
+
+Risk: Generated bid language may include legal, commercial, or delivery commitments that require accountable review.
+
+Mitigation: Manually review commitments, compliance statements, pricing assumptions, and service promises before using the output in a real bid.
+
+Risk: Broad invocation wording may cause the skill to be used for procurement tasks outside the intended scope.
+
+Mitigation: Use it for tender analysis, bid drafting, compliance review, and document quality control, and confirm the desired language and business context at the start.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huqich/skills/bid-document)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with prose, tables, checklists, and optional Mermaid code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bid outlines, proposal copy, compliance checklists, quality review notes, Markdown tables, and diagram code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

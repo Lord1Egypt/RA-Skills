@@ -1,48 +1,54 @@
-## Description: <br>
-Generates claim-gated marketing copy, local SEO content, outreach messages, review and referral materials, and JSON-LD schema for auto glass and windshield replacement businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates marketing copy, local SEO content, review and referral messages, fleet outreach, and insurance-aware advertising prompts for auto glass and windshield replacement shops.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Independent auto glass shops, mobile windshield operators, auto body shops, dealerships, and fleet service teams use this skill to generate marketing copy, local SEO pages, outreach messages, review and referral flows, and structured data. The prompts gate safety, insurance billing, warranty, ADAS recalibration, AGRSS, NWRA, and glass-tier claims on facts provided by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include business, certification, warranty, insurance, SMS, email, or local advertising claims that are inaccurate for a specific shop if inputs are wrong or outdated. <br>
-Mitigation: Verify AGRSS and NWRA status, ADAS capabilities, insurance billing language, warranty terms, SMS/email compliance, and local advertising requirements before publishing outputs. <br>
-Risk: Users may paste private customer records, policy numbers, credentials, or sensitive account data into an external AI service while running the prompts. <br>
-Mitigation: Use only non-sensitive shop facts or anonymized examples, and remove customer records, policy numbers, credentials, and sensitive account data before prompting. <br>
+## Use Case:
 
+External auto glass shops, mobile windshield operators, auto body shops, dealerships, and fleet service teams use this skill to generate gated marketing assets that avoid unsupported AGRSS, ADAS, OEM, insurance, warranty, and review claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/auto-glass-windshield-marketing-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/gitflopez) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Seasonal campaign prompt](artifact/prompts/prompt1-seasonal-campaign.md) <br>
-- [Service pages and schema prompt](artifact/prompts/prompt2-service-pages.md) <br>
-- [Review and referral prompt](artifact/prompts/prompt3-review-referral.md) <br>
-- [Fleet and insurance outreach prompt](artifact/prompts/prompt4-fleet-insurance-outreach.md) <br>
-- [Worked example](artifact/examples/desert-glass-henderson-nv.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown prompts and generated marketing copy, with JSON-LD schema snippets where requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-supplied shop facts and should be reviewed before publication for certification, insurance, warranty, advertising, SMS, email, and local compliance accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated ads, SMS, service pages, or outreach may contain inaccurate certifications, warranty terms, prices, ADAS capabilities, insurance language, or jurisdiction-specific claims if placeholders are not replaced with real business facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every certification, warranty, insurance, price, timing, contact, ADAS, and local regulatory claim against business records and applicable rules before publishing.
+
+Risk: Readers may treat the prompt kit as legal or regulatory advice for auto glass advertising and customer communications.
+
+Mitigation: Use it as a marketing prompt and template kit only; have qualified business, legal, or compliance reviewers approve public copy when required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/auto-glass-windshield-marketing-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown prompts and generated marketing copy, including JSON-LD schema snippets where requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes character and word-count constraints for ads, SMS, email, service pages, business profiles, and outreach templates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL.md lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

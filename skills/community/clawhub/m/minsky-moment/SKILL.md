@@ -1,7 +1,7 @@
 ---
 name: minsky-moment
 description: "Activate when: user asks 'is this a bubble?', 'what's the tail risk here?', 'this time is different', 'leverage has been stable for years', 'the fundamentals support these prices', someone wants to diagnose credit cycle fragility, analyze debt structure risk, or assess whether a calm financial period is hiding systemic danger.
-  Do NOT activate when: the entity has no meaningful leverage and is funded entirely from operating cash flows; collapse risk is primarily operational rather than financial (e.g., a debt-free tech company facing competitive displacement)."
+  Do NOT activate when: the entity has no meaningful leverage and is funded entirely from operating cash flows; collapse risk is primarily operational rather than financial (e.g., a debt-free tech company facing competitive displacement). More: deciqai.com/c/minsky-moment"
 ---
 
 # Minsky Moment
@@ -10,7 +10,7 @@ description: "Activate when: user asks 'is this a bubble?', 'what's the tail ris
 
 A **Minsky Moment** is the point at which a leveraged financial system tips from apparent stability into rapid self-reinforcing collapse — caused by the internal dynamic of debt accumulation that sustained stability itself produced. Minsky identified three debt stages systems cycle through: **Hedge** (income covers principal + interest), **Speculative** (income covers interest only; must roll over principal), **Ponzi** (income covers neither; depends on asset appreciation). Stability breeds instability: prolonged calm leads rational actors to accumulate more risk until debt cannot be serviced from income alone.
 
-**Compose with neighbors:** Use [black-swan](../black-swan/SKILL.md) to distinguish Minsky dynamics from genuine tail events — a Minsky Moment is predictable, not random. Use [antifragile](../antifragile/SKILL.md) to identify who gains from Minsky collapses. Use [margin-of-safety](../margin-of-safety/SKILL.md) to operationalize the hedge financing requirement.
+**Compose with neighbors:** Use black-swan to distinguish Minsky dynamics from genuine tail events — a Minsky Moment is predictable, not random. Use antifragile to identify who gains from Minsky collapses. Use margin-of-safety to operationalize the hedge financing requirement.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ Apply when:
 - Evaluating debt structure of a company, sector, or economy
 - Building a risk scenario for an investment, loan, or counterparty exposure
 - Someone says: *"this time is different," "leverage has been stable," "what's the tail risk," "is this a bubble?"*
+- Assessing an AI-capex / AI-infrastructure boom, circular ("round-trip") vendor financing, GPU-collateralized debt, or whether prolonged AI-boom stability is hiding an "AI bubble"
 
 **When NOT to use:**
 - Entity has no meaningful leverage — Minsky dynamics require debt
@@ -63,6 +64,8 @@ Fragility: <High/Medium/Low> | Implication: <...>
 ```
 
 *→ Method in Action: [US Subprime Mortgage Market (2003–2008)](examples/us-subprime-mortgage-market-2003-2008.md)*
+
+*→ 2026 lens: [The AI capex financing loop (2023–2026)](examples/ai-capex-circular-financing-2023-2026.md) — circular vendor financing among Nvidia, OpenAI, Oracle, CoreWeave and the hyperscalers*
 
 ## Minsky Packs
 
@@ -116,4 +119,6 @@ Fragility: <High/Medium/Low> | Implication: <...>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/minsky-moment** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/minsky-moment.json*

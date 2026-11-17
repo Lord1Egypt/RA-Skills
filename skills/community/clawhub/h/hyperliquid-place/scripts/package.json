@@ -1,0 +1,14 @@
+{
+  "name": "hyperliquid-place-scripts",
+  "version": "1.3.64",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/hypelens-agent-rail": "0.1.28"
+  },
+  "scripts": {
+    "postinstall": "node setup.mjs || node -e \"console.error('[hypelens] setup incomplete \u2014 run: node setup.mjs (start-mcp/place refused until .setup-ok + maxBuilderFee>=10)')\"",
+    "setup": "node setup.mjs",
+    "start": "node start-mcp.mjs"
+  }
+}

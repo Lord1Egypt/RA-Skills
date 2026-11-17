@@ -1,41 +1,53 @@
-## Description: <br>
-Build localized B2B sales playbooks, objection-handling scripts, and account-based outreach sequences for any overseas market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build localized B2B sales playbooks, objection-handling scripts, and account-based outreach sequences for any overseas market.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-B2B founders, sales leaders, export sales teams, and go-to-market operators use this skill to create localized sales playbooks, buyer maps, objection responses, collateral checklists, and outreach sequences for overseas markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach, claims, and sales collateral may conflict with local advertising, privacy, procurement, or truthful-claims rules. <br>
-Mitigation: Treat outputs as planning drafts and verify local rules with qualified reviewers before using them externally. <br>
-Risk: Prompts may include sensitive customer, prospect, partner, or procurement information. <br>
-Mitigation: Minimize, anonymize, or remove sensitive data unless it is necessary for the sales-planning task. <br>
-Risk: Market and cultural guidance can overgeneralize or become outdated. <br>
-Mitigation: Validate assumptions with local market experts, current sources, and customer-facing teams before operational use. <br>
+## Use Case:
 
+External B2B founders, sales leaders, export teams, and go-to-market operators use this skill to create localized overseas sales playbooks, buyer committee maps, objection handling, outreach sequences, and pilot-to-contract plans.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, scripts, templates, and concise rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces descriptive sales-planning drafts only; it does not execute code, call APIs, browse, send messages, or take external actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact versions differ: SKILL.md frontmatter 1.1.0, _meta.json 1.0.3, skill.json 1.0.1) <br>
+Risk: Generated sales enablement templates may conflict with local commercial law, procurement rules, advertising claims requirements, privacy obligations, or payment terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning guidance and verify market-specific requirements with qualified local experts before using materials in market.
+
+Risk: Market, buyer, and cultural assumptions may be incomplete, outdated, or overly broad for a specific region or account segment.
+
+Mitigation: Require explicit assumptions, evidence gaps, and local validation steps before adopting playbooks, scripts, outreach sequences, or ROI narratives.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-b2b-sales-enablement-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, scripts, templates, and bullet-point rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure descriptive output with no code execution, API calls, network access, or external side effects.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

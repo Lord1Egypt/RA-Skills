@@ -1,43 +1,61 @@
-## Description: <br>
-LYGO Δ9 Council Champion persona helper for institutional decoding, reflective logic, doublespeak translation, and agenda decryption as a pure advisor rather than a controller. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated legacy Delta 9 SRAITH persona helper for institutional decoding that directs new installs to lygo-champion-council.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and developers use this persona helper to translate policy, legal, PR, or institutional language into concrete claims, likely incentives, implementation mechanisms, source checks, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advisory persona may infer hidden incentives or agendas from incomplete evidence. <br>
-Mitigation: Keep outputs separated into observed, inferred, and unknown claims, and require primary-source receipts for high-stakes conclusions. <br>
-Risk: Linked LYGO-MINT verifier workflows can involve minting, ledger writing, anchor snippets, or posted URL backfills outside this advisory pack. <br>
-Mitigation: Review the linked verifier separately before using it for minting, ledger writing, anchor snippets, or posted URL backfills. <br>
+## Use Case:
 
+External users and developers use this legacy persona helper to decode policy, legal, PR, or institutional language into concrete claims, likely incentives, mechanisms, receipts to collect, and uncertainty notes.
 
-## Reference(s): <br>
-- [Persona Pack](references/persona_pack.md) <br>
-- [Canon Metadata](references/canon.json) <br>
-- [Verifier Usage](references/verifier_usage.md) <br>
-- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lygo-champion-sraith-shadow-sentinel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates observed, inferred, and unknown information; includes receipts to collect and risk notes for high-stakes claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The legacy skill directs users to a successor skill and includes a migration command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the successor skill before installation and prefer pinned versions when using migration commands.
+
+Risk: The external LYGO-MINT verifier can process pasted text, file paths, URLs, posting identifiers, or backfill actions.
+
+Mitigation: Treat verifier use as a separate trust decision and require explicit confirmation before processing local paths, URLs, posting, or backfill actions.
+
+Risk: Persona-style institutional decoding can overstate intent or incentives when evidence is incomplete.
+
+Mitigation: Keep outputs separated into observed facts, inferences, unknowns, receipts to collect, and risk notes.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-sraith-shadow-sentinel)
+- [persona_pack.md](references/persona_pack.md)
+- [canon.json](references/canon.json)
+- [verifier_usage.md](references/verifier_usage.md)
+- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown guidance with optional inline shell command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-helper responses should separate observed facts, inferences, unknowns, receipts to collect, and risk notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

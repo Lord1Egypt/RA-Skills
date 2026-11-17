@@ -136,7 +136,7 @@ WAREHOUSE_API_TOKEN=your_token_here
 WAREHOUSE_API_URL=https://warehouse.example.com/api
 
 # Notifications
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+SLACK_WEBHOOK_URL=REDACTED-SECRET
 SENDGRID_API_KEY=your_sendgrid_key_here
 TWILIO_ACCOUNT_SID=your_twilio_sid
 TWILIO_AUTH_TOKEN=your_twilio_token

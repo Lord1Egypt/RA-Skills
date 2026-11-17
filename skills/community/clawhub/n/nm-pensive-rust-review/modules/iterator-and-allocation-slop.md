@@ -9,13 +9,13 @@ estimated_tokens: 600
 
 **AI-generated Rust defaults to manual loops where
 iterators read better, and to allocation where references
-suffice. Both compile; both are slop.**
+suffice. Both compile, and both are slop.**
 
 This module covers two of the highest-frequency AI Rust
 anti-patterns: imperative loops the iterator API expresses
 in one line, and unnecessary allocation that
 borrow-checker capitulation produces. The clippy lints
-catch most of this; the rest is judgment.
+catch most of this, and the rest is judgment.
 
 ## Iterator slop
 
@@ -101,6 +101,79 @@ if flag { do_a() } else { do_b() }
 ```
 
 Detector: `clippy::match_bool`.
+
+### Pattern 6: hand-rolled loop optimization
+
+```rust
+// SLOP: manually unrolled, defeats the auto-vectorizer
+let mut sum = 0u32;
+let mut i = 0;
+while i + 4 <= v.len() {
+    sum += v[i] + v[i + 1] + v[i + 2] + v[i + 3];
+    i += 4;
+}
+while i < v.len() {
+    sum += v[i];
+    i += 1;
+}
+
+// Idiomatic: let LLVM unroll and vectorize the iterator
+let sum: u32 = v.iter().sum();
+```
+
+Rust compiles through LLVM, which unrolls, hoists invariants, and
+strength-reduces at `-O2`/`-O3`. Hand-rolling these is redundant, and
+manual unrolling commonly blocks the vectorizer. Manual SIMD
+(`std::simd`, intrinsics) is justified only on a loop the compiler
+provably failed to vectorize, after fixing aliasing, and verified by a
+codegen check (not "I see SIMD in the source").
+
+No single clippy lint covers this. It is judgment. Decision rule and
+the two benchmark traps: `Skill(leyline:loop-optimization)`.
+
+#### The branchless exception
+
+Branch elimination is the one hand-rolled loop transform LLVM will
+not do for you, so Pattern 6 does not apply to it.
+
+```rust
+// Ordinary: one unpredictable branch per element
+input.iter().copied().filter(|&x| x > threshold).collect()
+
+// Branchless: store unconditionally, advance the index conditionally
+let mut out = vec![0.0; input.len()];
+let mut n = 0;
+for &x in input {
+    out[n] = x;
+    n += (x > threshold) as usize;
+}
+out.truncate(n);
+```
+
+The rewrite stores every element and lets the comparison decide
+where the next one lands. LLVM cannot generate this itself: writing
+to slots the original never touched is not a semantics-preserving
+transformation, so it has to come from the author.
+
+**Do not flag this as slop when all three hold.** The loop is a
+profiled hot path. The predicate depends on unpredictable data, so
+the branch actually mispredicts (a sorted or stably-skewed predicate
+predicts well and needs nothing). And the author reports measurements
+across a selectivity range rather than one point.
+
+**Do flag it when any are missing**, and flag these costs even when
+it is justified:
+
+- It flattens cost, it does not reduce it. On measured 1M-element
+  `f64` data it won the 50% worst case by about 4x and lost the 1%
+  best case by about 2x. On sorted input the plain branchy filter beat
+  it outright.
+- The output buffer is allocated at full input length. A 1% filter
+  over 1M `f64` reserves 8 MB to return 80 KB, which interacts badly
+  with the allocation guidance below.
+
+Full technique table, the benchmark numbers, and the source:
+`Skill(leyline:loop-optimization)`.
 
 ## Allocation slop
 
@@ -210,7 +283,7 @@ use_it(x);
 Heap allocation is justified for:
 - `dyn Trait` objects (`Box<dyn Error>`, `Box<dyn Future>`).
 - Recursive types (`Box<Node>`).
-- Large stack-frame avoidance (uncommon; measure first).
+- Large stack-frame avoidance (uncommon: measure first).
 - Pinning requirements (`Pin<Box<T>>`).
 
 Anywhere else, `Box::new` is unjustified allocation.
@@ -241,7 +314,7 @@ flip, a 4-byte move), the prologue/epilogue and indirect
 jump overhead can represent 40–50% of total runtime.
 
 Note: `&dyn Trait` has the same problem as `Box<dyn Trait>`.
-The issue is dynamic dispatch, not heap allocation.
+The issue is dynamic dispatch rather than heap allocation.
 
 **Fix 1: flip the loop order (batch-first)**: iterate
 all rows for each decoder, not all decoders for each row.
@@ -284,7 +357,7 @@ impl ColDecoder {
 **When to flag**: any `Vec<Box<dyn Trait>>` or `Vec<&dyn Trait>`
 iterated inside an inner loop where the method body is
 inlineable. The Java/JVM analogy is instructive: the JVM
-de-virtualizes and inlines at JIT time; rustc cannot cross
+de-virtualizes and inlines at JIT time, but rustc cannot cross
 the `dyn` boundary. If reviewers come from JVM backgrounds,
 this is the most important Rust performance lesson to surface.
 
@@ -349,7 +422,7 @@ rg "\.clone\(\)" --type rust -n | head -50
 Some `.clone()` calls are correct and should stay:
 
 - **Async / spawn boundaries**: cloning an `Arc<T>` to
-  send into `tokio::spawn` is required, not slop.
+  send into `tokio::spawn` is required.
 - **Genuine ownership transfer**: when two callers each
   need to mutate independently from the same source.
 - **Intentional defensive copy**: in security-sensitive
@@ -358,7 +431,7 @@ Some `.clone()` calls are correct and should stay:
 
 When in doubt, comment the rationale next to the
 `.clone()`. A `.clone()` with a one-line "why" comment
-is documented intent; a `.clone()` with no comment is
+is documented intent. A `.clone()` with no comment is
 slop.
 
 ## Output format

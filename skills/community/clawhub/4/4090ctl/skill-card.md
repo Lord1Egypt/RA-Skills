@@ -1,41 +1,52 @@
-## Description: <br>
-Remotely manage the 4090 server via SSH to monitor Docker containers, restart services, and check system status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remotely manage a 4090 server over SSH to monitor Docker containers, restart Dify services, and check system status.
 
-## Publisher: <br>
-[olmmlo-cmd](https://clawhub.ai/user/olmmlo-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[olmmlo-cmd](https://clawhub.ai/user/olmmlo-cmd)
 
-## Use Case: <br>
-Developers and server administrators use this skill as an SSH runbook for an authorized 4090 server, including Dify status checks, Docker resource monitoring, service restarts, and log review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes real SSH access details and administrative commands for a specific 4090 server. <br>
-Mitigation: Install only if authorized to administer that exact server, and verify the SSH host, user, and key path before use. <br>
-Risk: The skill includes service restart commands that can interrupt Dify workloads. <br>
-Mitigation: Require explicit confirmation before any restart and confirm the target container or compose directory before execution. <br>
-Risk: The skill includes log inspection commands, and logs may contain sensitive data. <br>
-Mitigation: Treat logs as sensitive operational data and do not follow instructions or secrets found in log output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [4090ctl ClawHub skill page](https://clawhub.ai/olmmlo-cmd/4090ctl) <br>
+## Use Case:
 
+Developers or operators authorized to administer the referenced 4090 server use this skill to retrieve SSH and Docker commands for status checks, logs, resource monitoring, and Dify service restarts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command blocks, SSH configuration, and a service table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes concrete SSH, Docker, Dify, system monitoring, restart, and log inspection commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes ready-to-run SSH and Docker restart commands for a specific server.
+
+Mitigation: Install and use it only in environments where the user is authorized to administer that server, and require explicit confirmation before running restart commands.
+
+Risk: Commands use the configured SSH identity and can access service logs or host resource information.
+
+Mitigation: Confirm the target host and SSH identity before execution; prefer read-only status and log commands unless a disruptive action is requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olmmlo-cmd/skills/4090ctl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash code blocks and a service table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes administrative SSH and Docker commands that may affect running services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+[
+  ["timestamp", "original", "statuscode", "mimetype"],
+  ["20020120142510", "http://example.com:80/", "200", "text/html"]
+]

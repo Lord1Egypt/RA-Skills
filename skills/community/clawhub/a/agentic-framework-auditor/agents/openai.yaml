@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic Framework Auditor"
+  short_description: "Audit agent prompts, workflows, and risk"
+  default_prompt: "Use $agentic-framework-auditor to audit this agentic framework directory for prompt, workflow, security, and production-readiness issues."

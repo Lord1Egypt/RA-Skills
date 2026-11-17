@@ -1,0 +1,555 @@
+{
+  "delta": {
+    "base": "origin/master",
+    "changedFiles": [
+      {
+        "concern": "positioning",
+        "path": "CHANGELOG.md",
+        "status": "M"
+      },
+      {
+        "concern": "positioning",
+        "path": "README.md",
+        "status": "M"
+      },
+      {
+        "concern": "positioning",
+        "path": "SKILL.md",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "docs/gallery.html",
+        "status": "M"
+      },
+      {
+        "concern": "positioning",
+        "path": "docs/repo-aware-generation.md",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/agent-runtime.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/agent-runtime.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/dataflow-analytics.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/dataflow-analytics.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/lifecycle-agent-task.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/lifecycle-agent-task.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-before.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-before.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-extracted.html",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-extracted.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-extracted.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-extracted.share-card.svg",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-extracted.svg",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-extracted.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-generated.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-generated.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-head.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-head.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-review.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/pr-delta-review.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/repo-evidence-map.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/repo-evidence-map.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/sequence-cache-miss.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/sequence-cache-miss.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/service-map.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/service-map.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-artifact-engine.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-artifact-engine.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-pr-delta.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-pr-delta.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-repo-evidence.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-repo-evidence.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-visual-architecture-case-study.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/showcase-visual-architecture-case-study.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/visual-architecture-auto.html",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/visual-architecture-auto.html.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/visual-architecture-auto.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/visual-architecture-auto.share-card.svg",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/visual-architecture-auto.svg",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "examples/visual-architecture-auto.svg.receipt.json",
+        "status": "M"
+      },
+      {
+        "concern": "artifacts",
+        "path": "index.html",
+        "status": "M"
+      },
+      {
+        "concern": "runtime",
+        "path": "scripts/render_architecture.py",
+        "status": "M"
+      }
+    ],
+    "head": "HEAD"
+  },
+  "edges": [
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "git.diff.base",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "medium",
+        "rule": "git.diff.base"
+      },
+      "from": "base",
+      "kind": "control",
+      "label": "compare",
+      "source_side": "right",
+      "target_side": "top",
+      "to": "review",
+      "via": [
+        {
+          "x": 240,
+          "y": 80
+        },
+        {
+          "x": 840,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "git.diff.head",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "medium",
+        "rule": "git.diff.head"
+      },
+      "from": "head",
+      "kind": "control",
+      "label": "compare",
+      "source_side": "right",
+      "target_side": "bottom",
+      "to": "review",
+      "via": [
+        {
+          "x": 240,
+          "y": 560
+        },
+        {
+          "x": 840,
+          "y": 560
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "confidence": "high",
+        "line": 1,
+        "rule": "pr.concern.runtime",
+        "source": "scripts/render_architecture.py",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "high",
+        "rule": "pr.concern.runtime"
+      },
+      "from": "runtime",
+      "kind": "primary-data",
+      "label": "runtime",
+      "source_side": "right",
+      "target_side": "top",
+      "to": "review",
+      "via": [
+        {
+          "x": 600,
+          "y": 80
+        },
+        {
+          "x": 840,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "confidence": "high",
+        "line": 1,
+        "rule": "pr.concern.artifacts",
+        "source": "docs/gallery.html",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "high",
+        "rule": "pr.concern.artifacts"
+      },
+      "from": "artifacts",
+      "kind": "primary-data",
+      "label": "artifacts",
+      "source_side": "right",
+      "target_side": "left",
+      "to": "review"
+    },
+    {
+      "evidence": {
+        "confidence": "high",
+        "line": 1,
+        "rule": "pr.concern.positioning",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "high",
+        "rule": "pr.concern.positioning"
+      },
+      "from": "positioning",
+      "kind": "control",
+      "label": "positioning",
+      "source_side": "right",
+      "target_side": "bottom",
+      "to": "review",
+      "via": [
+        {
+          "x": 720,
+          "y": 720
+        },
+        {
+          "x": 840,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "pr.review-to-receipt",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "medium",
+        "rule": "pr.review-to-receipt"
+      },
+      "from": "review",
+      "kind": "memory-write",
+      "label": "facts",
+      "to": "receipt"
+    }
+  ],
+  "extraction": {
+    "base": "origin/master",
+    "concerns": {
+      "artifacts": 42,
+      "positioning": 4,
+      "runtime": 1
+    },
+    "head": "HEAD",
+    "version": "1.7.0"
+  },
+  "mode": "pr-delta",
+  "nodes": [
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "git.ref.base",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "group": "base",
+      "id": "base",
+      "kind": "memory",
+      "label": "Base",
+      "subtitle": "origin/master",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "git.ref.head",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "group": "head",
+      "id": "head",
+      "kind": "memory",
+      "label": "Head",
+      "subtitle": "HEAD",
+      "x": 120,
+      "y": 400
+    },
+    {
+      "evidence": {
+        "confidence": "high",
+        "line": 1,
+        "rule": "git.diff.concern.runtime",
+        "source": "scripts/render_architecture.py",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "high",
+        "rule": "git.diff.concern.runtime"
+      },
+      "group": "changed",
+      "id": "runtime",
+      "kind": "agent",
+      "label": "Runtime Changes",
+      "role": "runtime",
+      "subtitle": "M render_architecture.py",
+      "x": 480,
+      "y": 160
+    },
+    {
+      "evidence": {
+        "confidence": "high",
+        "line": 1,
+        "rule": "git.diff.concern.artifacts",
+        "source": "docs/gallery.html",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "high",
+        "rule": "git.diff.concern.artifacts"
+      },
+      "group": "changed",
+      "id": "artifacts",
+      "kind": "service",
+      "label": "Artifact Changes",
+      "role": "artifacts",
+      "subtitle": "42 files, first: M gallery.html",
+      "x": 480,
+      "y": 400
+    },
+    {
+      "evidence": {
+        "confidence": "high",
+        "line": 1,
+        "rule": "git.diff.concern.positioning",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "extraction": {
+        "confidence": "high",
+        "rule": "git.diff.concern.positioning"
+      },
+      "group": "changed",
+      "id": "positioning",
+      "kind": "service",
+      "label": "Docs/Positioning",
+      "role": "positioning",
+      "subtitle": "4 files, first: M CHANGELOG.md",
+      "x": 480,
+      "y": 640
+    },
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "pr.review.summary",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "group": "review",
+      "id": "review",
+      "kind": "llm",
+      "label": "Architecture Review",
+      "subtitle": "47 files / 3 concerns",
+      "x": 840,
+      "y": 400
+    },
+    {
+      "evidence": {
+        "confidence": "medium",
+        "line": 1,
+        "rule": "pr.receipt",
+        "source": "CHANGELOG.md",
+        "sourceType": "git"
+      },
+      "group": "receipt",
+      "id": "receipt",
+      "kind": "memory",
+      "label": "Delta Receipt",
+      "subtitle": "concerns and confidence",
+      "x": 1200,
+      "y": 400
+    }
+  ],
+  "sourceBacked": true,
+  "story": [
+    {
+      "text": "Read changed files from origin/master..HEAD.",
+      "title": "Diff"
+    },
+    {
+      "text": "Map files into runtime, contract, artifact, proof, positioning, and other concerns.",
+      "title": "Classify"
+    },
+    {
+      "text": "Show what architecture surface changed, with confidence and evidence in the receipt.",
+      "title": "Review"
+    }
+  ],
+  "summary": "Generated from git diff origin/master..HEAD: 47 files grouped into architecture concerns instead of raw filename buckets.",
+  "theme": "showcase",
+  "title": "Generated PR Delta Review"
+}

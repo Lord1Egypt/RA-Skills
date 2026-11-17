@@ -1,39 +1,56 @@
-## Description: <br>
-Fast local image search using macOS Spotlight or fd. Search images by name, date, location, or metadata. Use when users need to find images on their local machine quickly without manual browsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast local image search using macOS Spotlight or fd. Search images by name, date, location, or metadata.
 
-## Publisher: <br>
-[zhaomenghuan](https://clawhub.ai/user/zhaomenghuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhaomenghuan](https://clawhub.ai/user/zhaomenghuan)
 
-## Use Case: <br>
-Developers and agents use this skill to find local image files quickly by filename, date, location metadata, or image type without manual folder browsing. It is especially relevant for macOS workflows that can use Spotlight metadata, with fd and find as filename-search fallbacks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Searches can reveal local image file paths and GPS-tagged photo metadata. <br>
-Mitigation: Use narrow search directories where possible and review returned paths before sharing or further processing results. <br>
-Risk: copy_results.sh can copy selected photos into a destination that may be shared or cloud-synced. <br>
-Mitigation: Review the result list and destination folder before copying, and avoid copying sensitive photos unless intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaomenghuan/local-image-search) <br>
+## Use Case:
 
+Developers, creators, and other local-machine users use this skill to find image files quickly by filename, date, location metadata, or supported image type without manually browsing folders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include local image paths and image metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted search patterns can cause unsafe behavior in search_by_name.sh.
+
+Mitigation: Review or harden the script before installation, and only pass trusted patterns unless fd and grep are protected with -- delimiters.
+
+Risk: copy_results.sh can duplicate arbitrary local files from a piped result list.
+
+Mitigation: Review the result list before copying and use only an explicitly chosen destination folder.
+
+Risk: Local photos and GPS metadata can expose private information.
+
+Mitigation: Scope searches to specific folders and avoid broad home-directory searches unless that exposure is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaomenghuan/skills/local-image-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and script usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are local filesystem paths produced by shell commands or helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

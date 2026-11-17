@@ -1,44 +1,54 @@
-## Description: <br>
-PDD Shopping Assistant helps an agent assess Pinduoduo products or links by comparing subsidy and group-buy prices, seller risk, visible prices, review signals, refund caveats, and purchase boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinduoduo shopping assistant. Input a product name or PDD link; evaluate 百亿补贴, 拼团 rules, seller risk, visible price, review signals, refund caveats, and whether the low price is worth it. Safe boundary: no login, no order submission, no payment.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to research Pinduoduo shopping options, compare group-buy and subsidy mechanics, evaluate seller trust signals, and prepare a purchase summary. Login-required cart, coupon, group-buy, and checkout-preview actions require close user supervision and final purchase steps remain manual. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill description says no login, while the artifact includes login-required cart, group-buy, coupon, and checkout-preview flows. <br>
-Mitigation: Require explicit user consent before any login-required step, supervise each browser action, and keep final checkout, order submission, and payment manual. <br>
-Risk: Shopping automation may expose sensitive account session, address, coupon, cart, or order-preview information. <br>
-Mitigation: Do not enter credentials, SMS codes, CAPTCHA responses, identity checks, addresses, or payment details for the user; use only browser-visible or user-provided information. <br>
-Risk: Product prices, stock, subsidy eligibility, seller ratings, reviews, and after-sales terms can be stale or misleading. <br>
-Mitigation: Capture current page evidence, warn on weak seller or review signals, and require the user to recheck final price, stock, delivery, coupons, and after-sales terms before purchase. <br>
+## Use Case:
 
+External shoppers and shopping agents use this skill to evaluate Pinduoduo products, group-buy and subsidy mechanics, seller trust, review signals, and refund caveats before deciding whether a low price is worth the risk.
 
-## Reference(s): <br>
-- [Browser Workflow Guide](references/browser-workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/pdd-shopping) <br>
-- [Pinduoduo Mobile Site](https://mobile.yangkeduo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with shopping comparisons, checklists, browser-observation summaries, and manual handoff steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include visible product, seller, coupon, cart, and order-preview observations; payment and final order submission remain outside the agent output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata, clawhub.json, package.json) <br>
+Risk: Logged-in PDD workflows can change cart, coupon, and group-buy state and may expose checkout-preview details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public browsing for product evaluation by default; require explicit action-by-action consent before logged-in actions and stop before checkout, order submission, address handling, or payment.
+
+Risk: The skill advertises a no-login boundary, but some documented workflows require an already logged-in Pinduoduo session.
+
+Mitigation: Tell users when login is required, offer manual-mode alternatives, and keep final price, stock, delivery, coupons, and after-sales terms subject to user recheck before purchase.
+
+## Reference(s):
+
+- [Browser Workflow Guide](references/browser-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/pdd-shopping)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown shopping recommendations, seller-risk summaries, price comparisons, and user handoff steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize browser-visible product, seller, price, coupon, and order-preview evidence; payment remains user-controlled.]
+
+## Skill Version(s):
+
+2.2.0 (source: clawhub.json, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

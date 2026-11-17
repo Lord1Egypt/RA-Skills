@@ -1,42 +1,50 @@
-## Description: <br>
-本地将文本/URL 编成 PNG 二维码，或从图片识别二维码，可与远程 qrcode 技能搭配。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill locally encodes text or URLs into PNG QR codes and decodes QR code contents from image files without requiring an external API key.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers and agents use this skill to generate local PNG QR codes from text or URLs and to decode text from local QR-code image files without relying on an external API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated QR images can overwrite files in the current working directory when an existing output path is reused. <br>
-Mitigation: Use a dedicated output directory and review the requested output path before running encode. <br>
-Risk: The skill depends on local Python packages for QR generation and decoding. <br>
-Mitigation: Install qrcode[pil] and opencv-python from trusted sources, preferably in a virtual environment. <br>
+## Use Case:
 
+Developers and agents use this skill to create local PNG QR codes from text or URLs and decode QR code contents from local images without calling an external API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/qrcode2) <br>
-- [JisuAPI QR code API](https://www.jisuapi.com/api/qrcode/) <br>
-- [JisuAPI](https://www.jisuapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [JSON responses, shell command examples, and generated PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encode returns a local output path and QR settings; decode returns decoded text, detected points when available, and the input path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Local path handling and input limits can let the skill read or overwrite more than users expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a contained environment, use a dedicated output directory, avoid untrusted paths or symlinked workspaces, and avoid very large QR rendering parameters until the security guidance is resolved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/qrcode2)
+- [JisuAPI QR code API reference](https://www.jisuapi.com/api/qrcode/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [JSON command responses with local PNG image files for encoded QR codes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus the qrcode[pil] package for encoding and opencv-python for decoding.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

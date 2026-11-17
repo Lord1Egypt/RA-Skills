@@ -1,43 +1,55 @@
-## Description: <br>
-Controls Xiaomi and Mijia smart-home devices through mijiaAPI, including device status checks, property updates, and scene execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mijia-py-api lets an agent query status, set properties, and run scenes for Xiaomi/Mijia smart-home devices through mijiaAPI.
 
-## Publisher: <br>
-[xcchenx345](https://clawhub.ai/user/xcchenx345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xcchenx345](https://clawhub.ai/user/xcchenx345)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect and control Xiaomi or Mijia smart-home devices from a local Python environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an existing Mijia login to reveal household details, device lists, scenes, and account identifiers. <br>
-Mitigation: Avoid sharing setup or device-list logs, and review outputs before pasting them into external systems. <br>
-Risk: The skill can change real smart-home device state or run automation scenes. <br>
-Mitigation: Require explicit user confirmation before every state-changing command or scene run. <br>
-Risk: Sensitive devices such as cameras or locks may create higher safety and privacy impact. <br>
-Mitigation: Require a second confirmation for sensitive operations and prefer a version that enforces confirmation in code. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect and control their Xiaomi/Mijia smart-home devices, including device status, property changes, and automation scenes.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/xcchenx345/mijia-py-api) <br>
-- [Device MIoT Property Catalog](reference/device_catalogs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and natural-language status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Python CLI commands that inspect homes, devices, scenes, and consumables or change device properties.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can control physical smart-home devices and run scenes through a local Mijia account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any scene execution or device state change, especially for cameras, locks, or other sensitive devices.
+
+Risk: The skill depends on local Mijia account authentication and can expose account context through command execution or logs.
+
+Mitigation: Use a trusted local environment, prefer a virtual environment with pinned dependencies, and avoid running setup or authentication checks in logged or shared terminals.
+
+## Reference(s):
+
+- [Standard Operating Procedure](instructions.md)
+- [Device MIoT Property Catalog](reference/device_catalogs.md)
+- [ClawHub Skill Page](https://clawhub.ai/xcchenx345/skills/mijia-py-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown/text responses with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query local Mijia account state and propose or execute device and scene changes after confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

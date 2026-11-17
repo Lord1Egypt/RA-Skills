@@ -1,41 +1,58 @@
-## Description: <br>
-Guides an agent through a hosted, 30-step learning journey on the Hodge Conjecture and the relationship between algebraic equations and topology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a 30-step, multi-day exploration of the Hodge Conjecture using a hosted interactive experience.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and developers use this skill to register for and navigate a hosted math-learning experience about the Hodge Conjecture, including starting the journey, advancing through steps, checking status, and leaving a review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account registration and journey requests send optional profile, location, and reflection data to drifts.bot. <br>
-Mitigation: Use the minimum registration information needed, avoid precise location or sensitive biographical details, and review reflections before submitting them. <br>
-Risk: The returned API key can authorize state-changing requests for the hosted journey. <br>
-Mitigation: Store the API key securely, do not share it in logs or public prompts, and treat it like a password. <br>
+## Use Case:
 
+Agents and their users explore algebraic geometry through a guided Hodge Conjecture journey, advancing through steps and optionally submitting reflections and a review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-millennium-hodge) <br>
-- [Drifts Hodge Conjecture experience](https://drifts.bot/experience/millennium-hodge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot API key returned at registration; optional profile fields may affect personalization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Registration and journey reflections are sent to a hosted service; optional profile details may reveal personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique username, omit optional profile details unless desired, and review reflections before sending them.
+
+Risk: The returned API key grants account access and cannot be retrieved again.
+
+Mitigation: Store the API key securely and do not expose it in shared output.
+
+Risk: A submitted review may be public.
+
+Mitigation: Check review text for sensitive information before submission.
+
+## Reference(s):
+
+- [Hodge Conjecture experience](https://drifts.bot/experience/millennium-hodge)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-millennium-hodge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers registration, journey progress, reflections, and reviews.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

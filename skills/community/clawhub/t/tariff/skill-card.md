@@ -1,38 +1,50 @@
-## Description: <br>
-International trade tariff reference for HS codes, duty rates, trade agreements, customs valuation, and tariff classification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+International trade tariff reference - HS codes, duty rates, trade agreements, customs valuation, and tariff classification.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill as a general tariff reference for classifying goods, estimating duties, understanding trade agreements, and reviewing import/export compliance topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tariff classifications, duty rates, and trade compliance requirements can change and may affect business or legal decisions. <br>
-Mitigation: Verify HS classifications, duty rates, and compliance decisions against current official customs sources before relying on the skill output. <br>
+## Use Case:
 
+External users and trade operations teams use this skill as a static quick reference for tariff classification, customs valuation, duty types, trade agreements, and import/export compliance checklists.
 
-## Reference(s): <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no evidence of networking, persistence, hidden access, or data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Tariff and compliance material may be incomplete, outdated, or non-authoritative for a specific shipment or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify actual duty rates, trade restrictions, classification decisions, valuation treatment, and filing requirements with official sources before acting.
+
+## Reference(s):
+
+- [Tariff skill on ClawHub](https://clawhub.ai/bytesagain1/skills/tariff)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-oriented command reference]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content printed by bundled shell commands; no network access or external data retrieval is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

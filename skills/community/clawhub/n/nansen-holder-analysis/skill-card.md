@@ -1,41 +1,53 @@
-## Description: <br>
-Is this token held by quality wallets or retail noise? SM holder ratio, flow breakdown by label, and recent buyer quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Is this token held by quality wallets or retail noise? SM holder ratio, flow breakdown by label, and recent buyer quality.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and developers use this skill to run Nansen CLI token-holder analysis for Ethereum token contracts, including smart-money holder ratios, label-based flow breakdowns, and recent buyer quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs Nansen CLI queries with the user's Nansen API key, which may consume quota or affect billing on usage-limited plans. <br>
-Mitigation: Install only after trusting the nansen-cli package, provide a scoped NANSEN_API_KEY where possible, and monitor Nansen API usage or billing. <br>
-Risk: Holder analysis can be inaccurate for unsupported native or wrapped token inputs. <br>
-Mitigation: Use a specific Ethereum token contract address, matching the skill's documented input requirement. <br>
+## Use Case:
 
+Developers, traders, and on-chain researchers use this skill to assess token holder quality by reviewing smart-money holders, flows by wallet label, and recent buyer and seller activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-holder-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI; expects a specific Ethereum token contract address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version) <br>
+Risk: Each supported x402 research call can spend funds from the configured wallet, and loops can multiply charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only the needed calls and review wallet authorization, payment policy, and spending limits before researching.
+
+Risk: Cached session metadata does not prove credentials are valid; continuing after authentication failure or switching to anonymous access can create unsafe or unintended access and payment behavior.
+
+Mitigation: Use an explicitly selected API key or saved browser session, check authentication status, and stop if authentication or renewal fails.
+
+## Reference(s):
+
+- [Browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands]
+
+**Output Format:** [Text analysis with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Holder values and ownership percentages, flows by wallet label, and recent buyer and seller volumes.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

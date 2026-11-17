@@ -1,8 +1,5 @@
 ---
-name: Thoughtful
-slug: thoughtful
-version: 1.3.0
-license: MIT-0
+name: thoughtful
 description: Your thoughtful companion for WhatsApp - remembers what matters, helps you stay present in your relationships.
 metadata: {"openclaw":{"emoji":"💭","requires":{"bins":["wacli-readonly"]}}}
 ---

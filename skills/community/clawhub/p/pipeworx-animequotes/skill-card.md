@@ -1,43 +1,52 @@
-## Description: <br>
-AnimeQuotes MCP — wraps animechan.io (free, no auth) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AnimeQuotes MCP wraps animechan.io for free, unauthenticated anime quote queries.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to query anime quote information through the Pipeworx animequotes MCP gateway without an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends tool calls to a remote Pipeworx MCP service. <br>
-Mitigation: Do not send private or sensitive text as tool arguments unless the Pipeworx service is trusted for that data. <br>
-Risk: The MCP client configuration uses an npx-based mcp-remote bridge. <br>
-Mitigation: Review the bridge package and endpoint before enabling it in an agent runtime. <br>
+## Use Case:
 
+Developers and external users can use this skill to query anime quote information through the Pipeworx AnimeQuotes MCP gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-animequotes) <br>
-- [Pipeworx animequotes pack](https://pipeworx.io/packs/animequotes) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [Pipeworx animequotes MCP endpoint](https://gateway.pipeworx.io/animequotes/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The remote service returns JSON-RPC 2.0 responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The suggested MCP client setup runs an unpinned npm bridge package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, use a lockfile or controlled environment, and limit the MCP process's filesystem, environment-variable, and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-animequotes)
+- [Pipeworx AnimeQuotes homepage](https://pipeworx.io/packs/animequotes)
+- [Pipeworx homepage](https://pipeworx.io)
+- [Pipeworx AnimeQuotes MCP endpoint](https://gateway.pipeworx.io/animequotes/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON-RPC examples and MCP client configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns JSON-RPC 2.0 responses from the Pipeworx AnimeQuotes gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

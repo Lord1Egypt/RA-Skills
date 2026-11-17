@@ -1,40 +1,48 @@
-## Description: <br>
-Calculate Body Mass Index (BMI) with health category assessment. Supports metric and imperial units. Pure Python standard library, no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate Body Mass Index (BMI) with health category assessment, supporting metric and imperial units with no external dependencies.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to calculate BMI from height and weight inputs, classify the result, and report a healthy weight range.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact includes a Chinese promotional footer and external links that may not fit all publisher-branding or non-English deployment contexts.
+
+Mitigation: Review the footer text and external links before installation or redistribution, and remove or localize them if they do not fit the intended release context.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to calculate BMI from metric or imperial height and weight inputs, classify the result, and return a healthy weight range for general informational use. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: BMI category output can be mistaken for medical advice. <br>
-Mitigation: Treat results as general information and rely on qualified medical guidance for health decisions. <br>
-Risk: The README includes promotional external links unrelated to BMI calculation. <br>
-Mitigation: Review external links before following them and keep calculator use local when links are not needed. <br>
+**Output Format:** [JSON emitted by a local Python command]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-bmi-calculator) <br>
+**Other Properties Related to Output:** [Pure Python standard library; supports metric and imperial height and weight inputs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns BMI value, English and Chinese category labels, normalized height and weight, and a healthy weight range in kilograms.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

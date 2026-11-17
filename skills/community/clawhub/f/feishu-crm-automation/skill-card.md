@@ -1,41 +1,55 @@
-## Description: <br>
-飞书CRM自动化技能。当用户提到客户管理、销售跟进、CRM录入、飞书表格自动填充、跟进提醒、生成本周客户报告时使用。功能：客户信息录入多维表格、超期未跟进自动提醒、客户周报生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Feishu CRM workflows for customer entry, overdue follow-up reminders, and weekly customer summary reports using Feishu Bitable.
 
-## Publisher: <br>
-[wanderen](https://clawhub.ai/user/wanderen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanderen](https://clawhub.ai/user/wanderen)
 
-## Use Case: <br>
-Sales and CRM users use this skill to enter customer information into Feishu Bitable, find customers overdue for follow-up, and generate weekly customer summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a hard-coded Feishu Bitable app_token and table_id that could receive customer data. <br>
-Mitigation: Replace the default Bitable target with an authorized workspace table before use, and verify table ownership and permissions. <br>
-Risk: Customer names, contact details, and requirements may be written to Feishu during create or update actions. <br>
-Mitigation: Require user confirmation before writes and avoid sending real customer data unless the Feishu app and table are approved for that data. <br>
+## Use Case:
 
+Sales and operations teams use this skill to record customer details in Feishu Bitable, identify customers overdue for follow-up, and generate weekly CRM summaries.
 
-## Reference(s): <br>
-- [跟进提醒逻辑](references/跟进提醒逻辑.md) <br>
-- [周报生成逻辑](references/周报生成逻辑.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown summaries with Feishu Bitable tool calls and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Feishu Bitable app_token, table_id, field mappings, millisecond timestamps, and Asia/Shanghai time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill embeds a specific Feishu Bitable destination that could route customer data to the wrong table.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, replace the embedded table configuration with an approved organization-owned Feishu table or confirm the listed table belongs to the intended organization.
+
+Risk: The skill can read and write customer contact details and sales records.
+
+Mitigation: Require user confirmation before reading, creating, or updating CRM records, especially when processing customer contact information.
+
+## Reference(s):
+
+- [Follow-up Reminder Logic](references/跟进提醒逻辑.md)
+- [Weekly Report Logic](references/周报生成逻辑.md)
+- [ClawHub Skill Page](https://clawhub.ai/wanderen/skills/feishu-crm-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration guidance]
+
+**Output Format:** [Markdown or plain text responses with Feishu Bitable operation guidance and CRM summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer records, overdue follow-up lists, weekly CRM metrics, and Feishu Bitable field mappings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

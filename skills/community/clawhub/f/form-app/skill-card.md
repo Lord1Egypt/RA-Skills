@@ -1,40 +1,49 @@
-## Description: <br>
-Helps exam candidates match their scores, preferences, and goals to suitable universities and majors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+助力考生精准匹配理想院校与专业。
 
-## Publisher: <br>
-[ym9zep](https://clawhub.ai/user/ym9zep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ym9zep](https://clawhub.ai/user/ym9zep)
 
-## Use Case: <br>
-Students and education advisors use this skill to structure college application planning, compare reach, match, and safety options, and answer follow-up questions about program fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions recommendations may be inaccurate or outdated if ranking, score, or program data changes. <br>
-Mitigation: Verify recommendations against current official admissions data and treat the output as planning support, not a final enrollment decision. <br>
-Risk: The skill may ask users for education profile details such as scores, ranking, subject choices, and location preferences. <br>
-Mitigation: Share only information needed for planning and follow applicable privacy practices when using or storing the responses. <br>
+## Use Case:
 
+External students, families, and admissions advisors use this Chinese-language skill to plan Gaokao applications from scores, provincial rank, subject choices, preferred cities, major interests, and postgraduate goals. It produces reach, match, and safety school recommendations with risk notes and follow-up comparison guidance.
 
-## Reference(s): <br>
-- [form-app on ClawHub](https://clawhub.ai/ym9zep/form-app) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style natural language recommendations and Q&A] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked reach, match, and safety school recommendations with rationale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Admissions recommendations may be misleading if example ranks, major details, or admission probabilities are stale or not specific to the user's province and year.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all admissions data against current official school and provincial sources before making application decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ym9zep/skills/form-app)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown or structured prose recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and depend on current admissions data supplied or verified by the user.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

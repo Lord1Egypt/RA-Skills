@@ -44,7 +44,7 @@
 | `goods_desc` | 商品描述 | String | 128 | Y | 商品描述 |
 | `remark` | 备注 | String | 255 | N | 原样返回 |
 | `acct_id` | 账户号 | String | 9 | N | 指定收款账户号，仅支持基本户、现金户 |
-| `time_expire` | 交易有效期 | String | 14 | N | `yyyyMMddHHmmss`；建议大于 1 分钟；不传时微信/支付宝通常按约 2 小时后关单处理 |
+| `time_expire` | 交易有效期 | String | 14 | N | `yyyyMMddHHmmss`；建议大于 1 分钟。该配置字段不等于平台默认置失败时限，也不等于主动关单能力 |
 | `delay_acct_flag` | 延迟标识 | String | 1 | N | `Y`=延迟，`N`=不延迟，默认 `N` |
 | `fee_flag` | 手续费扣款标识 | Integer | 1 | N | `1`=外扣，`2`=内扣 |
 | `acct_split_bunch` | 分账对象 | String(JSON Object) | - | C | 顶层请求字段；有分账权限时传 |
@@ -54,8 +54,8 @@
 | `pay_scene` | 场景类型 | String | 2 | N | 微信业务开通类型 |
 | `term_div_coupon_type` | 分账遇到优惠的处理规则 | String | 2 | N | `1`=按比例分，`2`=按顺序保障，`3`=只给交易商户 |
 | `fq_mer_discount_flag` | 商户贴息标记 | String | 1 | N | `Y`=商户全额贴息，`P`=商户部分贴息；`P` 需配合支付宝侧 `ali_business_params` 传贴息明细 |
-| `notify_url` | 异步通知地址 | String | 504 | N | HTTP 或 HTTPS 地址 |
-| `method_expand` | 交易类型扩展参数 | String(JSON Object) | - | C | 按 `trade_type` 选择当前渠道对象；JSON 内容直接是当前场景参数本身，不再额外包一层 `T_JSAPI` / `A_JSAPI` / `U_MICROPAY` 这类 key |
+| `notify_url` | 异步通知地址 | String | 504 | N | HTTP 或 HTTPS 地址；字段说明中的“异步返回参数”同时覆盖正扫和反扫两套通知参数，按实际 `trade_type` 选择对应报文结构 |
+| `method_expand` | 交易类型扩展参数 | String(JSON Object) | - | Y | 官网请求表标为 Y；具体有效子字段随 `trade_type` 变化，SDK 示例又以 optional 方式承载，属于官网/SDK 证据差异。JSON 内容直接是当前场景对象，不再包场景 key |
 | `combinedpay_data` | 补贴支付信息 | String(JSON Array) | - | C | 顶层扩展字段；有补贴支付场景时传，Java SDK 通过 `addExtendInfo(...)` / `optional(...)` 注入 |
 | `combinedpay_data_fee_info` | 补贴支付手续费承担方信息 | String(JSON Object) | - | C | 顶层扩展字段；有明确承担方时传，Java SDK 通过 `addExtendInfo(...)` / `optional(...)` 注入 |
 | `trans_fee_allowance_info` | 手续费补贴信息 | String(JSON Object) | - | C | 顶层扩展字段；有手续费补贴场景时传，Java SDK 通过 `addExtendInfo(...)` / `optional(...)` 注入 |
@@ -124,11 +124,8 @@
     "trans_amt": "0.01",
     "goods_desc": "银联反扫测试",
     "delay_acct_flag": "N",
-    "method_expand": "{\"qr_code\":\"union-542323asdas12351111\",\"user_id\":\"union4f4f5a5f5a5f5111\",\"auth_code\":\"6236171220051893816\"}",
-    "terminal_device_data": "{\"device_ip\":\"221.11.52.52\",\"mer_device_type\":\"11\",\"devs_id\":\"SPINTP35142090061111\"}",
-    "combinedpay_data": "[{\"huifu_id\":\"6666000108609999\",\"user_type\":\"merchant\",\"acct_id\":\"F00598652\",\"amount\":\"0.02\"}]",
-    "combinedpay_data_fee_info": "{\"huifu_id\":\"6666000108609999\",\"acct_id\":\"F00598652\"}",
-    "trans_fee_allowance_info": "{\"allowance_fee_amt\":\"0.01\"}"
+    "method_expand": "{\"auth_code\":\"6236171220051893816\"}",
+    "terminal_device_data": "{\"device_ip\":\"221.11.52.52\",\"mer_device_type\":\"11\",\"devs_id\":\"SPINTP35142090061111\"}"
   },
   "sign": "RSA签名"
 }
@@ -137,7 +134,8 @@
 ## 请求侧实现备注
 
 - 官方把 `req_date` 标成 N，但 SDK 示例和后续查询 / 回调都依赖它，实务上建议始终传。
-- 官方把 `method_expand` 标成 Y，但真实是否有强制子字段取决于 `trade_type`。
+- `method_expand` 必须同时保留 `document_required=Y` 与“有效子字段按 `trade_type` 决定”的条件事实；不得静默改写成单一 C，也不得因此发送空对象。
+- `U_MICROPAY` 的 `method_expand` 只使用银联反扫分支字段；`qr_code/user_id` 属于 `U_JSAPI/U_NATIVE` 展示分支，不得混入付款码请求。
 - `acct_split_bunch`、`terminal_device_data` 是请求顶层字段，不要再包进 `tx_metadata`。
 - 开发确认后，`combinedpay_data`、`combinedpay_data_fee_info`、`trans_fee_allowance_info` 也按请求顶层扩展字段处理，不要再包进 `tx_metadata`。
 - `tx_metadata` 本身不作为请求字段上送；完整边界见 `references/aggregation-order-tx-metadata.md`。
@@ -150,6 +148,19 @@
 - 只在调用 SDK 前做一次 JSON 序列化，不要在代码里手写长字符串常量。
 - 对象一旦出现，就要保证子结构完整；不要只传一个空壳对象或半截 JSON。
 - `sub_openid`、`buyer_id`、`user_id`、`auth_code`、`customer_ip`、`devs_id` 这类值若无明确来源，应先暴露缺口，不要让模型补示例值。
+
+## 默认置失败时限与主动关单
+
+下列口径描述未支付订单的默认状态保障，不是统一的主动关单时间：
+
+| 场景 | 未传有效期时的官网状态口径 | 主动关单 |
+| --- | --- | --- |
+| 微信公众号、微信小程序、支付宝 JS、银联 JS | 约 2 小时后置失败 | 微信、支付宝非终态且超过一分钟时可尝试；银联不支持 |
+| 微信付款码、支付宝付款码 | 约 3 分钟后置失败 | 微信、支付宝非终态且超过一分钟时可尝试 |
+| 支付宝正扫、银联正扫 | 用户扫码后约 2 小时置失败 | 支付宝可按关单合同尝试；银联不支持 |
+| 银联付款码 | 约 24 小时后置失败 | 不支持 |
+
+银联场景开发指引虽挂有主动关单描述，但聚合关单 API 明确排除银联；实现以更直接的关单 API 合同为保守基线，并把冲突留给官方联调确认。
 
 推荐写法：
 

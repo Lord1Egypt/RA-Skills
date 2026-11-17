@@ -1,41 +1,57 @@
-## Description: <br>
-教科书目录读取。用户问「这学期要学哪些古诗词」「《朝花夕拾》在哪个单元」时，直接读取对应 JSON 文件回答。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+教科书目录读取：根据本地 JSON 课本目录回答古诗词、单元、篇目、作者和必读内容等查询。
 
-## Publisher: <br>
-[makiwinster72](https://clawhub.ai/user/makiwinster72) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makiwinster72](https://clawhub.ai/user/makiwinster72)
 
-## Use Case: <br>
-External users and learning assistants use this skill to answer questions about bundled Chinese middle-school textbook tables of contents, including units, required readings, poems, authors, and chapter topics. Maintainers can add new textbook directory JSON files after reviewing the supplied content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The add-new-book workflow writes local textbook data and could overwrite or place files incorrectly if unchecked user text controls names or paths. <br>
-Mitigation: Confirm the book name, keep writes limited to the skill's textbooks folder, and review before overwriting existing files. <br>
-Risk: Answers are only as current and accurate as the bundled textbook JSON files. <br>
-Mitigation: Use the skill for local directory lookup and verify important curriculum decisions against the official textbook or school materials. <br>
+## Use Case:
 
+Students, parents, educators, and agents use this skill to answer questions about bundled Chinese middle-school textbook catalogs, including units, readings, poems, authors, and required reading. The skill can also help structure newly provided textbook catalogs as JSON files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/makiwinster72/chinese-students-textbook) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown or plain text answers derived from local JSON textbook目录 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local textbook JSON file when the user asks to add a new book.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The new-book workflow may add or update local textbook JSON files from user-provided book names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before writing files, sanitize book names, reject path separators, `..`, and absolute paths, and avoid overwriting existing files unless the user confirms the exact target.
+
+Risk: Malformed bundled JSON can prevent reliable textbook lookup or cause incomplete answers.
+
+Mitigation: Validate all textbook JSON files before release or deployment and repair invalid entries before relying on those books for answers.
+
+Risk: Bundled catalog coverage is limited to the included textbook files and may not match every school, edition, or future curriculum update.
+
+Mitigation: Tell users which textbook file was used and recommend checking against the relevant official or school-provided textbook when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/makiwinster72/skills/chinese-students-textbook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text answers, with JSON textbook data when adding new books]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled local textbook JSON files; new-book additions may create or update JSON data files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

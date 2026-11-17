@@ -1,43 +1,54 @@
-## Description: <br>
-Tracks packages across USPS, UPS, FedEx, DHL, Amazon, OnTrac, and LaserShip by reading a markdown shipments file, detecting carriers from tracking-number patterns, and checking status with direct HTTP or an optional browser-use fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shipment Tracker helps agents track packages across USPS, UPS, FedEx, DHL, Amazon, OnTrac, and LaserShip by reading a markdown shipments file, detecting carriers from tracking numbers, checking basic web status, and suggesting browser-use for JS-heavy tracking pages.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-External users and developers use this skill to track active shipments, detect carriers from tracking numbers, generate carrier tracking URLs, and obtain status output from a local markdown shipments table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional browser-use fallback may send tracking numbers, order information, package details, and carrier URLs to cloud browser and LLM services. <br>
-Mitigation: Use manual tracking for sensitive packages and run the browser-use fallback only after reviewing the link fields and command. <br>
-Risk: The skill prints an executable browser-use command built from shipment-file links. <br>
-Mitigation: Do not let an agent automatically run the printed command; inspect the shipment file links and generated command before execution. <br>
-Risk: Shipment and order data are kept in a local markdown file. <br>
-Mitigation: Install only where storing shipment data locally is acceptable, and remove delivered or sensitive entries when no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a markdown list of shipments, identify carriers from tracking numbers, and get delivery-status output or follow-up browser-use guidance when carrier pages require it.
 
-## Reference(s): <br>
-- [Shipment Tracker on ClawHub](https://clawhub.ai/pfrederiksen/shipment-tracker) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON status summaries, with optional shell commands for browser-use fallback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local markdown shipments table and may make outbound HTTPS carrier lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The generated browser-use fallback can turn shipment-file link text into executable Python code if the command is run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated browser-use commands before execution, use only trusted shipment files, and pass tracking URLs as data rather than interpolated Python source.
+
+Risk: The browser-use fallback sends tracking numbers, order information, package details, and carrier URLs to third-party cloud and LLM services.
+
+Mitigation: Avoid browser-use for sensitive packages and use manual carrier tracking when shipment details should remain local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/shipment-tracker)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text status summaries, JSON objects, and inline shell commands for optional browser-use follow-up.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided markdown shipments table and may recommend cloud browser-use for pages that cannot be checked through direct HTTP.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

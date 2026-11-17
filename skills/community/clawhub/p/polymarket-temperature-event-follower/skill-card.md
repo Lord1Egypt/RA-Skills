@@ -1,50 +1,66 @@
-## Description: <br>
-Automated trader for Polymarket weather highest temperature markets that scans global weather markets, executes buys during the local morning window when YES price is favorable, and integrates SkillPay billing with error handling and state persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated trader for Polymarket weather highest temperature markets that scans global markets and executes buys during a local morning window when YES prices are favorable, with SkillPay billing integration, error handling, and state persistence.
 
-## Publisher: <br>
-[stefantaylor5](https://clawhub.ai/user/stefantaylor5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefantaylor5](https://clawhub.ai/user/stefantaylor5)
 
-## Use Case: <br>
-External traders and developers use this skill to monitor Polymarket weather markets, test the strategy in dry-run mode, and optionally automate live orders for high-temperature event contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket orders and trigger per-order SkillPay billing when live mode is enabled. <br>
-Mitigation: Run dry-run mode first, use a dedicated low-balance wallet, review billing behavior, and enable live mode only after accepting automatic order and billing risk. <br>
-Risk: The skill handles wallet private keys, Polymarket API credentials, and local .env, state, and cache files. <br>
-Mitigation: Keep secrets out of shared terminals and repositories, restrict file access, and avoid using a primary wallet or high-value account. <br>
-Risk: Automated market strategy settings such as entry threshold, trade amount, slippage, and fallback behavior can create financial losses. <br>
-Mitigation: Review and tune trading parameters, monitor positions and logs, and cap exposure with conservative wallet funding and per-trade limits. <br>
+## Use Case:
 
+External traders and developers use this skill to monitor Polymarket weather markets and run an automated, configurable buying strategy for high-temperature event contracts. It supports dry-run testing before live trading with wallet credentials and funded accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stefantaylor5/polymarket-temperature-event-follower) <br>
-- [Publisher profile](https://clawhub.ai/user/stefantaylor5) <br>
-- [English skill documentation](artifact/SKILL-en.md) <br>
-- [English background knowledge](artifact/background-knowledge-EN.md) <br>
-- [Polymarket](https://polymarket.com) <br>
-- [Polymarket settings](https://polymarket.com/settings) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
-- [SkillPay billing API](https://skillpay.me/api/v1/billing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with inline shell commands, Python code, and environment configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python script can create local state and cache files while scanning markets or placing orders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill frontmatter) <br>
+Risk: Live mode can place real-money Polymarket orders and incur trading losses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with dry-run mode, review the threshold and order logic before live use, and fund only a dedicated wallet with a small amount.
+
+Risk: Wallet and Polymarket API credentials are sensitive, and credentials printed in logs should be treated as exposed.
+
+Mitigation: Use an isolated environment, avoid primary wallets, rotate exposed credentials, and keep secrets out of shared logs and repositories.
+
+Risk: Billing and order execution are separate, so a submitted order may remain active even if billing fails afterward.
+
+Mitigation: Monitor SkillPay balance and bot logs, verify billing behavior in dry-run or minimal live tests, and stop the bot if billing warnings appear.
+
+Risk: Unpinned dependencies and network API calls increase operational and supply-chain risk.
+
+Mitigation: Pin and review dependencies, run in a constrained virtual environment, and limit API credentials and wallet funding to the minimum required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stefantaylor5/skills/polymarket-temperature-event-follower)
+- [Polymarket](https://polymarket.com)
+- [Polymarket settings](https://polymarket.com/settings)
+- [SkillPay dashboard](https://skillpay.me/dashboard)
+- [English usage guide](artifact/SKILL-en.md)
+- [Background knowledge](artifact/background-knowledge-EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python scripts, shell commands, and environment configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions, trading-bot code, configuration examples, dry-run/live command guidance, logs, and persisted state files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

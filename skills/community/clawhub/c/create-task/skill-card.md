@@ -1,45 +1,61 @@
-## Description: <br>
-Create a new task with a crypto bounty on OpenAnt, including optional draft creation and funded escrow by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a new OpenAnt task with a crypto bounty and optional on-chain escrow funding through the OpenAnt CLI.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-External users and agents use this skill to create OpenAnt tasks, post bounty-funded work, or create draft tasks before funding. It is intended for workflows where the user has confirmed task details, wallet readiness, and funding intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Funded task creation and draft funding can sign and send on-chain escrow transactions. <br>
-Mitigation: Require explicit user confirmation before any funded action and offer --no-fund when the user wants a draft instead of an escrow transaction. <br>
-Risk: Insufficient wallet balance or wrong-chain funding can waste gas or leave a task in a broken draft state. <br>
-Mitigation: Check the wallet balance for the selected chain and token before creating or funding a task. <br>
-Risk: Retrying after a timeout or network error can duplicate task creation or funding. <br>
-Mitigation: List the user's tasks first and confirm no matching task was already created before retrying. <br>
-Risk: A vague task description or incorrect reward can be hard to correct after escrow funding. <br>
-Mitigation: Confirm the title, description, chain, token, reward, deadline, mode, and verification method before funding. <br>
+## Use Case:
 
+External users and agents use this skill to post OpenAnt work requests, set bounty terms, and create or fund blockchain escrow tasks after confirming wallet state and task details.
 
-## Reference(s): <br>
-- [Create Task on ClawHub](https://clawhub.ai/ant-1984/create-task) <br>
-- [Publisher profile](https://clawhub.ai/user/ant-1984) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with OpenAnt CLI commands and JSON command-output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate wallet, balance, task creation, task funding, and task listing commands when the user confirms funded actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: release evidence) <br>
+Risk: The skill can create and fund blockchain escrow tasks using wallet-backed commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm chain, token, reward, deadline, task description, and wallet balance before any funded create or fund operation.
+
+Risk: The skill invokes the OpenAnt CLI with a mutable latest package reference in a financial workflow.
+
+Mitigation: Prefer a version-pinned CLI release and install only from a trusted OpenAnt CLI source.
+
+Risk: Network timeouts or duplicate retries can create duplicate tasks or waste gas.
+
+Mitigation: List existing creator tasks after errors and ask before retrying create or fund commands.
+
+Risk: Broad or ambiguous hiring requests could route into funded task creation unintentionally.
+
+Mitigation: Use this skill only for clear OpenAnt task-creation requests and refuse prohibited or harmful task categories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ant-1984/skills/create-task)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON command-output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use structured JSON output and may create or fund wallet-backed escrow tasks.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

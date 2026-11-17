@@ -1,42 +1,59 @@
-## Description: <br>
-This skill reviews and improves OpenClaw SKILL.md files against a bundled quality standard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews and improves OpenClaw SKILL.md files against defined quality criteria and grading guidance.
 
-## Publisher: <br>
-[phallusophy](https://clawhub.ai/user/phallusophy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phallusophy](https://clawhub.ai/user/phallusophy)
 
-## Use Case: <br>
-Developers and skill authors use this skill to audit OpenClaw SKILL.md files, grade them against the included quality standard, and generate improvement suggestions or an optimized SKILL.md when issues are found. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be asked to inspect private or unrelated files when locating a target SKILL.md. <br>
-Mitigation: Limit inputs to the intended SKILL.md or skill directory and avoid providing paths that expose private or unrelated content. <br>
-Risk: Suggested rewrites may introduce incorrect or misleading guidance into a skill. <br>
-Mitigation: Review generated edits before applying them and scan the revised skill before release. <br>
+## Use Case:
 
+Developers and skill authors use this skill to audit OpenClaw SKILL.md files, receive an A-D quality grade, and get targeted remediation guidance or an optimized SKILL.md when issues are found.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/phallusophy/skill-improver) <br>
-- [Skill Reviewer](skill-reviewer/skill-reviewer.md) <br>
-- [OpenClaw Skill Quality Standard](skill-standard/skill-standard.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, guidance] <br>
-**Output Format:** [Markdown reports with optional optimized SKILL.md code blocks and JSON-shaped status examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include grades, issue counts, dimension scores, suggested fixes, and failure details for parse or file errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill-reviewer frontmatter) <br>
+Risk: The skill may read a user-provided SKILL.md path during review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review only intended skill files and avoid pointing the agent at unrelated sensitive files.
+
+Risk: Suggested optimized SKILL.md content could be incorrect or unsuitable for a specific project's standards.
+
+Mitigation: Review proposed changes before applying them and keep a backup of the original skill file.
+
+Risk: Malformed, missing, or empty skill files can prevent a successful review.
+
+Mitigation: Check the file path and SKILL.md structure, then use the documented parse, missing-file, or empty-content failure handling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phallusophy/skills/skill-improver)
+- [OpenClaw Skill Quality Tools](artifact/SKILL.md)
+- [OpenClaw Skill Quality Standard](artifact/skill-standard/skill-standard.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, JSON, Guidance]
+
+**Output Format:** [Markdown review report with optional optimized SKILL.md and JSON status examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include quality grade, issue and warning counts, dimension scores, remediation suggestions, and failure codes for parse or file errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

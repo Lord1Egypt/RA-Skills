@@ -1,0 +1,19 @@
+{
+  "schema": "mochi-translation-qa.v1",
+  "reportLanguage": "zh-CN",
+  "title": "示例：新手介绍的双语校对",
+  "sourceLanguage": "en",
+  "targetLanguage": "zh-CN",
+  "sourceSegments": [
+    {"id":"s1","text":"OpenClaw helps our team prepare 3 drafts. Read https://example.com/guide."},
+    {"id":"s2","text":"The review window is 7 days. No publishing is automatic."}
+  ],
+  "targetSegments": [
+    {"id":"s1","text":"OpenClaw 帮团队准备 3 份草稿。阅读 https://example.com/guide。"},
+    {"id":"s2","text":"核对期为 7 天，不会自动发布。"}
+  ],
+  "glossary": [
+    {"source":"OpenClaw","target":"OpenClaw","caseSensitive":true},
+    {"source":"drafts","target":"草稿"}
+  ]
+}

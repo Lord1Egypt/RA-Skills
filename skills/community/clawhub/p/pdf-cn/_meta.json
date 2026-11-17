@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "pdf-cn",
-  "version": "1.0.1",
-  "publishedAt": 1771604827839
+  "metadata": {
+    "openclaw": {
+      "name": "pdf-cn",
+      "title": "PDF 文档处理器",
+      "description": "处理 PDF 文档，支持文本提取、图像生成、格式转换和内容分析",
+      "version": "1.0.0",
+      "category": "文档处理",
+      "tags": ["pdf", "文档", "文本提取", "图像转换", "格式转换"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/pdf-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

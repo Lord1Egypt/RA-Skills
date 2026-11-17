@@ -1,0 +1,103 @@
+﻿# 软件授权协议 / Software License Agreement
+
+**版本 Version 1.2 ｜ 生效日期 Effective: 2026-10-14**
+
+**版权所有 © 2026 上海霖铭均华科技有限公司 与 NOHN AI TECHNOLOGY PTE. LTD. 保留一切权利。**
+Copyright © 2026 Shanghai Linming Junhua Technology Co., Ltd. and NOHN AI TECHNOLOGY PTE. LTD. All rights reserved.
+
+> 本文件为本仓库作品（含其源代码、硬件描述、文档、示例与附属材料，统称"本作品"）的授权依据。本作品受《中华人民共和国著作权法》《伯尔尼公约》及国际版权条约保护。
+> This document is the authorization basis for the Work in this repository (including its source code, hardware descriptions, documentation, examples, and附属 materials, collectively the "Work"). The Work is protected by the Copyright Law of the People's Republic of China, the Berne Convention, and international copyright treaties.
+
+> 本文件以中文与英文对照写成；如两种文本存在任何歧义，以中文文本为准。
+> This document is written in a Chinese–English parallel form; in the event of any discrepancy between the two texts, the Chinese text shall prevail.
+
+---
+
+## 一、授权分级（核心条款） / Article 1 — Tiered Authorization (Core Terms)
+
+在遵守本协议全部限制的前提下，本作品按使用主体与用途授予以下两类权限：
+Subject to all restrictions herein, the Work is granted under two tiers based on the user and purpose:
+
+### 1.1 个人研究免费许可 / Free Individual Research License
+任何自然人（个人）可免费将本作品用于非商业的学术研究、学习或个人实验。
+Any natural person (individual) may use the Work free of charge for non-commercial academic research, study, or personal experimentation.
+
+允许 / Permitted:
+- 为上述研究、学习目的，下载、复制、编译、运行、修改本作品；
+  Download, copy, compile, run, and modify the Work for the above research or study purposes;
+- 在学术成果（论文、报告）中引用本作品并注明出处。
+  Cite the Work in academic outputs (papers, reports) with proper attribution.
+
+禁止（违反即视为超出本许可范围） / Prohibited (breach constitutes exceeding this license):
+- 用于任何商业目的（包括但不限于产品销售、服务提供、盈利性咨询）；
+  Any commercial purpose (including but not limited to product sales, service provision, or profitable consulting);
+- 为任何企业、政府机构或事业单位提供基于本作品的服务、交付物或内部能力；
+  Providing services, deliverables, or internal capability based on the Work to any enterprise, government agency, or public institution;
+- 将修改后的版本用于上述禁止用途，或再行分发以消除本声明；
+  Using modified versions for the prohibited purposes above, or redistributing to remove this notice;
+- 移除或篡改本作品中的任何版权、商标或许可声明。
+  Removing or altering any copyright, trademark, or license notice in the Work.
+
+### 1.2 政府 / 企业商业授权 / Government / Enterprise Commercial License
+任何政府机构、事业单位、企业或商业组织（统称"商业使用者"）拟将本作品用于任何目的（包括但不限于内部部署、产品研发、服务提供、商业研究、教学培训），必须事先取得权利人的书面付费授权。
+Any government agency, public institution, enterprise, or commercial organization (collectively, the "Commercial User") intending to use the Work for any purpose (including but not limited to internal deployment, product development, service provision, commercial research, or training) must obtain prior written paid authorization from the Rights Holder.
+
+- 在签署《商业授权协议》并支付约定费用之前，商业使用者不得复制、部署、运行、集成、修改或分发本作品，亦不得使其员工或关联方代为实施上述行为。
+  Before signing a Commercial Authorization Agreement and paying the agreed fee, the Commercial User shall not copy, deploy, run, integrate, modify, or distribute the Work, nor cause its employees or affiliates to do so.
+- 授权范围、地域、期限、费用、技术支持与限制，以双方另行签署的书面协议为准。
+  Scope, territory, term, fees, technical support, and restrictions are governed by a separate written agreement between the parties.
+- 未经授权的商业使用构成侵权，权利人保留追究法律责任及索赔的权利。
+  Unauthorized commercial use constitutes infringement; the Rights Holder reserves the right to pursue legal liability and claims.
+
+---
+
+## 二、许可人确定与适用法律 / Article 2 — Determination of Licensor and Governing Law
+
+本作品由以下两家关联权利实体共同持有，并按使用主体所在地确定本协议项下的许可人：
+The Work is co-owned by the following two affiliated rights entities; the Licensor under this Agreement is determined by the location of the User:
+
+| 使用主体所在地 / User Location | 许可人（权利人） / Licensor (Rights Holder) | 适用法律与争议解决 / Governing Law & Dispute Resolution |
+|---|---|---|
+| 中华人民共和国境内（含中国自然人、政府机构、事业单位、企业） / Within the PRC (incl. PRC natural persons, government agencies, public institutions, enterprises) | **上海霖铭均华科技有限公司** <br> Shanghai Linming Junhua Technology Co., Ltd. | 中华人民共和国法律（不含冲突法规则）；争议提交许可人所在地有管辖权的人民法院诉讼解决。 / Laws of the PRC (excluding conflict-of-law rules); disputes submitted to the competent people's court at the Licensor's location. |
+| 中华人民共和国境外 / Outside the PRC | **NOHN AI TECHNOLOGY PTE. LTD.** | 新加坡法律；因本协议产生的争议提交新加坡国际仲裁中心（SIAC）依其届时有效的仲裁规则仲裁，仲裁裁决具有终局效力并可依《承认及执行外国仲裁裁决公约》（《纽约公约》）强制执行。 / Laws of Singapore; disputes arising under this Agreement shall be finally resolved by arbitration administered by the Singapore International Arbitration Centre (SIAC) under its rules then in force; the award is final and enforceable under the New York Convention. |
+
+> 两实体之间另签有内部知识产权归属与交叉授权协议，确保各自具备前述许可资格。
+> An internal IP ownership and cross-license agreement between the two entities ensures each holds the requisite licensing qualification.
+
+---
+
+## 三、授权申请（商业使用者） / Article 3 — Authorization Application (Commercial Users)
+
+商业使用者请联系对应区域的权利人获取授权方案：
+Commercial Users shall contact the Rights Holder for the relevant region:
+
+- **国际 / 全球区（International / Global）**：[ai@nohnlins.com](mailto:ai@nohnlins.com)
+- **中国区（China）**：[lin@secondai.top](mailto:lin@secondai.top)
+
+申请时需说明：使用主体性质（政府 / 事业单位 / 企业）、拟用场景、部署规模、预计期限。
+When applying, state: the user's nature (government / public institution / enterprise), intended scenario, deployment scale, and expected term.
+
+---
+
+## 四、通用条款 / Article 4 — General Terms
+
+**4.1 无其他授权 / No Other Rights.** 除本协议明示授予者外，不授予任何明示或默示的权利（包括专利权、商标权的任何许可）。 No rights are granted other than those expressly stated herein (including any license of patent or trademark rights).
+
+**4.2 无担保 / No Warranty.** 本作品按"现状"提供，不作任何明示或默示担保，包括但不限于对适销性、特定用途适用性及不侵权的担保。 The Work is provided "as is" without any express or implied warranty, including any warranty of merchantability, fitness for a particular purpose, or non-infringement.
+
+**4.3 责任限制 / Limitation of Liability.** 无论何种情形，权利人对因使用或不能使用本作品所致的任何间接、特殊、附带或后果性损害不承担责任。 In no event shall the Rights Holder be liable for any indirect, special, incidental, or consequential damages arising from the use or inability to use the Work.
+
+**4.4 终止 / Termination.** 任何主体若违反本协议，其获得的所有许可自违反之日起自动终止；终止后须立即停止使用并销毁所有副本。 Any breach automatically terminates all licenses granted; upon termination, use must cease and all copies destroyed.
+
+**4.5 商标 / Trademarks.** 本协议不授予任何商标使用权。"Nohn""第二视角"等标识的 ™/® 权利均归相关权利人所有。 No trademark rights are granted; the ™/® marks such as "Nohn" and "Second Perspective" belong to their respective owners.
+
+**4.6 适用法律与管辖 / Governing Law and Jurisdiction.** 依第二条（许可人确定与适用法律）之约定确定。 As determined by Article 2.
+
+**4.7 可分割性 / Severability.** 任一条款被认定无效，不影响其余条款效力。 If any provision is held invalid, the remainder of this Agreement remains effective.
+
+**4.8 完整协议 / Entire Agreement.** 本协议构成双方就本作品授权的完整约定，取代此前所有口头或书面沟通。 This Agreement is the entire understanding between the parties regarding the authorization of the Work and supersedes all prior oral or written communications.
+
+---
+
+*提示：本文件为授权框架草稿，正式对外签署商业授权前应由权利人的法律顾问终审。NOHN 主体 UEN 由权利人以书面形式另行提供。*
+*Note: This is a framework document; the Rights Holder's legal counsel should review it before executing any commercial authorization. The UEN of NOHN AI TECHNOLOGY PTE. LTD. is provided separately by the Rights Holder in writing.*

@@ -1,40 +1,54 @@
-## Description: <br>
-Use when using Feishu/Lark Sheets through lark-cli or feishu-cli for office reports, QA matrices, release checklists, KPI trackers, imports/exports, tabular analysis, and Dev Hub artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when using Feishu/Lark Sheets through lark-cli or feishu-cli for office reports, QA matrices, release checklists, KPI trackers, imports/exports, tabular analysis, and Dev Hub artifacts.
 
-## Publisher: <br>
-[afengzi](https://clawhub.ai/user/afengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afengzi](https://clawhub.ai/user/afengzi)
 
-## Use Case: <br>
-Developers and operators use this skill to work with Feishu/Lark Sheets via lark-cli or feishu-cli for office reports, QA matrices, release checklists, KPI trackers, imports, exports, tabular analysis, and Dev Hub artifact workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sheet write commands can modify shared business spreadsheets if the target URL, range, or JSON payload is wrong. <br>
-Mitigation: Review Sheet URLs, ranges, and JSON files before running write commands, and confirm the Lark/Feishu account and CLI configuration are trusted. <br>
-Risk: The skill depends on an existing lark-cli or feishu-cli installation and its authenticated account permissions. <br>
-Mitigation: Install and use the CLI only in an environment where its authentication, permissions, and account context are understood. <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents working with Feishu/Lark Sheets for operational reporting, QA matrices, release checklists, KPI trackers, tabular analysis, imports, exports, and Dev Hub artifact snapshots.
 
-## Reference(s): <br>
-- [Lark CLI Dev Hub Sheets on ClawHub](https://clawhub.ai/afengzi/lark-cli-devhub-sheets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Sheet routing guidance, CLI command examples, and Dev Hub workflow suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Sheet commands can read or change Lark/Feishu office data under the user's authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sheet URLs, ranges, and local JSON files before allowing read, append, dropdown, or export commands.
+
+Risk: Exported Sheet snapshots and Dev Hub artifact records may contain sensitive operational data.
+
+Mitigation: Review exported files and artifact summaries before retaining or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afengzi/skills/lark-cli-devhub-sheets)
+- [ClawHub publisher profile](https://clawhub.ai/user/afengzi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-authorized lark-cli or feishu-cli environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-门店销售业绩环比分析工具，支持门店和导购业绩对比、波动归因、异常识别，并输出诊断结论和改进建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes store or clerk retail sales performance across comparison periods, attributes changes to order count or average transaction value, detects anomalies, and returns diagnostic findings with improvement recommendations.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-Retail operators, store managers, and business analysts use this skill to compare store or clerk performance across periods, identify drivers of sales changes, flag anomalies, and receive improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business sales data could be exposed or analyzed beyond the intended scope. <br>
-Mitigation: Use a read-only, least-privileged account and provide only the store IDs, clerk IDs, and date ranges the agent is allowed to analyze. <br>
-Risk: The skill depends on a local api_client supplied by the OpenClaw environment. <br>
-Mitigation: Install only in a trusted OpenClaw environment and review the local api_client before use. <br>
+## Use Case:
 
+Retail operators, store managers, and business analysts use this skill to compare store or clerk performance across periods, diagnose revenue movement, identify sales anomalies, and generate action-oriented recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gwyang7/retail-sales-performance-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, guidance] <br>
-**Output Format:** [JSON object containing status, analysis period, core metrics, attribution, findings, risks, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authorized access to the retail API data for the requested store IDs, clerk IDs, and date ranges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill loads an external API client from a hard-coded local path, so the data-access code may be outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an authorized retail BI environment and confirm the external API client path is trusted and controlled before use.
+
+Risk: The store-versus-clerk data scope is unclear, which may expose clerk-level analysis before explicit handling and privacy guidance are reviewed.
+
+Mitigation: Limit use to store-level or otherwise authorized requests until clerk handling, input validation, and privacy guidance are confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwyang7/skills/retail-sales-performance-analysis)
+- [Publisher profile](https://clawhub.ai/user/gwyang7)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON analysis result with findings, attribution, risks, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorized retail BI data access for the requested store or clerk and time window.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

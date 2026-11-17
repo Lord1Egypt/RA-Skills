@@ -1,43 +1,58 @@
-## Description: <br>
-DevOps Ops Bot provides server health monitoring with configurable CPU, memory, disk, and uptime checks, Slack or Discord alerts, and optional auto-recovery for critical conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Server health monitoring with alerts and auto-recovery. Checks CPU, memory, disk, and uptime with configurable thresholds. Sends Slack/Discord alerts and can auto-restart services on critical.
 
-## Publisher: <br>
-[gruted](https://clawhub.ai/user/gruted) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gruted](https://clawhub.ai/user/gruted)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to check server health, configure alert thresholds, send Slack or Discord notifications, and optionally recover critical services with restart commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented curl-to-bash install path can execute remote code without review. <br>
-Mitigation: Prefer a pinned npm package version or pinned container digest and review the package before installation. <br>
-Risk: Auto-restart commands can affect production services when critical thresholds are reached. <br>
-Mitigation: Enable restart behavior only for specific services with tightly scoped permissions and reviewed commands. <br>
-Risk: Slack or Discord webhook URLs can expose alert channels if handled as plain text. <br>
-Mitigation: Store webhook URLs as secrets and avoid committing them to configuration, logs, or shared prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gruted/devops-ops-bot) <br>
-- [Project repository](https://github.com/gruted/devops-ops-bot) <br>
-- [Landing page](https://gruted.github.io/devops-ops-bot/) <br>
+## Use Case:
 
+Developers and operations engineers use this skill to run server health checks, tune warning and critical thresholds, send Slack or Discord alerts, and prepare recovery commands for critical service conditions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include threshold values, webhook configuration, cron examples, and restart command guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable remote installers and unpinned packages can execute changed code after publication.
+
+Mitigation: Prefer a pinned npm package version or immutable container digest from a trusted release, and avoid the curl-to-shell installer path.
+
+Risk: Webhook alerts may send operational server-health details to Slack or Discord destinations.
+
+Mitigation: Enable webhook alerts only after reviewing what data is sent and restricting webhook access to the intended channel or workspace.
+
+Risk: Automatic restart commands can affect production services during critical conditions.
+
+Mitigation: Limit service-control permissions for restart commands and review each command before enabling auto-recovery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gruted/skills/devops-ops-bot)
+- [Project Repository](https://github.com/gruted/devops-ops-bot)
+- [Landing Page](https://gruted.github.io/devops-ops-bot/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for JSON status output, webhook alerting, cron scheduling, and restart-command configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

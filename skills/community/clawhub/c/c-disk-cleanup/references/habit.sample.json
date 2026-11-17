@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "lastCleanup": "2026-07-20",
+  "backupDrive": "D",
+  "backupFolder": "D:\\C盘整理\\备份_20260720",
+  "autoEnabled": false,
+  "autoFrequency": "monthly",
+  "confirmedCategories": {
+    "systemTemp": true,
+    "browserCache": true,
+    "windowsUpdateCache": true,
+    "recycleBin": false,
+    "desktopDownloadsMove": true,
+    "appCache": false,
+    "hibernateFile": false,
+    "pageFile": false
+  },
+  "notes": "用户第一次开荒保洁留下的偏好。appCache 默认 false 表示涉及聊天/资料文件需每次单独确认。"
+}

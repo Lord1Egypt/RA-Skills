@@ -1,39 +1,53 @@
-## Description: <br>
-Naruto Multi-Agent CN turns the main agent into a Chinese Naruto-themed coordinator that delegates work to five persistent sub-agent sessions with round-robin scheduling and fixed session keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent dispatcher that turns the main agent into a Chinese Naruto-themed coordinator which delegates work to five persistent sub-agent sessions with fixed session keys and round-robin scheduling.
 
-## Publisher: <br>
-[Be1Human](https://clawhub.ai/user/Be1Human) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[be1human](https://clawhub.ai/user/be1human)
 
-## Use Case: <br>
-Developers and agent operators can use this skill to run a Chinese roleplay multi-agent dispatcher that breaks independent tasks apart and forwards them to persistent sub-agent sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The dispatcher forwards real work and context into reused persistent sub-agent sessions, which can carry information across tasks. <br>
-Mitigation: Use it only when persistent sub-agent context is intended, avoid secrets or sensitive documents, and clear or isolate spawned sessions when boundaries matter. <br>
-Risk: The security review guidance flags this skill for review before use because context forwarding lacks clear reset or data-boundary controls. <br>
-Mitigation: Review task context before dispatch and restrict use to projects where forwarded context can be controlled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Be1Human/naruto-multi-agent-cn) <br>
+## Use Case:
 
+External users and developers use this skill to coordinate agent work through reusable sub-agent sessions while preserving a Chinese Naruto-themed dispatcher persona. It is suited to task routing, parallel task decomposition, and delegated agent execution where the user accepts the persistent-session coordination model.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls] <br>
-**Output Format:** [Chinese Markdown-style chat responses followed by sessions_spawn tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fixed sub-agent session keys and a 300 second timeout for each spawned task.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence and artifact/skill.json; artifact/SKILL.md frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill broadly forces real work into persistent sub-agent sessions without clear user control or containment.
+
+Mitigation: Install only when persistent delegated sessions are desired, and avoid tasks requiring direct main-agent inspection, strict context isolation, or independent result verification.
+
+Risk: Delegated sessions may expose or retain sensitive context across tasks.
+
+Mitigation: Do not use this skill for secrets, credentials, private code, regulated data, or other sensitive inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/be1human/skills/naruto-multi-agent-cn)
+- [Publisher profile](https://clawhub.ai/user/be1human)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with delegated sub-agent task requests and synthesized results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegates work through five named persistent sub-agent sessions using fixed session keys and a 300 second run timeout.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

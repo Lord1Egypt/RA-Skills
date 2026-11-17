@@ -1,41 +1,53 @@
-## Description: <br>
-Interprets common diagnostic imaging and ECG report wording with clinical context while reminding users that it does not replace specialist reports or clinical judgment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets common diagnostic imaging, ECG, ultrasound, CT, MRI, and related report wording while highlighting critical findings and clinical context.
 
-## Publisher: <br>
-[anightmare2](https://clawhub.ai/user/anightmare2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anightmare2](https://clawhub.ai/user/anightmare2)
 
-## Use Case: <br>
-Patients, caregivers, and clinical support users can use this skill to understand common terms in X-ray, CT, MRI, ultrasound, ECG, and related reports. It supports education and triage awareness, not diagnosis, urgency decisions, or treatment planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational interpretations of imaging or ECG wording as diagnosis, urgency assessment, or treatment advice. <br>
-Mitigation: Use the output only to understand report language and rely on qualified clinicians and official reports for diagnosis, urgent decisions, and treatment. <br>
-Risk: Broad trigger phrases may activate the skill when the user is not actually asking for medical report interpretation. <br>
-Mitigation: Confirm the user is asking about report interpretation before applying the guidance. <br>
+## Use Case:
 
+External users and health-context assistants use this skill to explain common Chinese and English diagnostic report terms, severity cues, and urgent findings. It supports education and triage-oriented understanding but does not replace radiology reports, specialist interpretation, or clinical judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anightmare2/imaging-interpret) <br>
-- [Publisher profile](https://clawhub.ai/user/anightmare2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with explanatory tables and clinical-context guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational reference output only; users should confirm findings with qualified clinicians and official reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Medical report explanations may be mistaken for diagnosis or a substitute for professional interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as educational context and direct users to qualified medical professionals for urgent, abnormal, or treatment-related decisions.
+
+Risk: Broad triggers such as CT, MRI, or ECG may activate the skill in conversations where medical-report interpretation was not intended.
+
+Mitigation: Confirm that the user wants imaging, ECG, or related report wording explained before giving medical-context guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anightmare2/skills/imaging-interpret)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational medical-report interpretation; users should confirm urgent, abnormal, or clinical decisions with qualified medical professionals.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

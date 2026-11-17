@@ -7,7 +7,7 @@ description: TikTok 达人（Creator/affiliate creator）数据与可购物视�
 
 本 skill 通过 **LinkFox 网关 → 紫鸟代理 → TikTok Shop 达人(affiliate_creator)开放接口**，提供 TikTok 带货达人的数据查询（达人资料、绑定店铺商品、橱窗商品）与可购物视频带货操作（上传、内容预检、发布、状态查询）。全部接口收录在 `references/api.md`。
 
-> 📌 **前置依赖**：本 skill 需要 **达人 access_token（`user_type=1`）**。请先用 **`linkfox-tiktok-video-auth`** 完成达人授权，经 `/tiktokVideo/accountTokens` 取得 `accessToken`，再作为本 skill 调用的 `ttsAccessToken` 传入。**勿使用** `linkfox-tiktok-auth`（`/tiktokShop`）做达人授权。
+> 📌 **前置依赖**：本 skill 需要 **达人 access_token（`user_type=1`）**。请先用 **`linkfox-tiktok-video-auth`** 完成达人授权，经 `/tiktokVideo/accountTokens` 取得 `accessToken`，再作为本 skill 调用的 `ttsAccessToken` 传入。**勿使用** `linkfox-tiktok-shop-auth`（`/tiktokShop`）做达人授权。
 
 ## Core Concepts
 
@@ -47,6 +47,14 @@ description: TikTok 达人（Creator/affiliate creator）数据与可购物视�
 | 查询视频预检结果（Get Shoppable Video Pre-check Result） | `affiliate_creator/202511/videos/precheck_tasks/{task_id}` | GET |
 
 > ⚠️ 含 `multipart/form-data` 二进制上传的接口（Upload Shoppable Video File）不走通用 `creator_proxy.py`，需 multipart 链路，详见 `references/api.md`。
+
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## 典型编排流程
 
@@ -93,8 +101,12 @@ description: TikTok 达人（Creator/affiliate creator）数据与可购物视�
 | "看看达人的带货信息" | 达人数据查询（按已收录接口） |
 
 **Not applicable**：
-- TikTok 达人授权本身 → 用 **`linkfox-tiktok-video-auth`**（勿用 `linkfox-tiktok-auth`）。
+- TikTok 达人授权本身 → 用 **`linkfox-tiktok-video-auth`**（勿用 `linkfox-tiktok-shop-auth`）。
 - TikTok 选品 / 商品销量（EchoTik 等数据源）→ 由对应 skill 负责。
+
+## 积分消耗规则
+
+不消耗积分。
 
 **Feedback**：
 

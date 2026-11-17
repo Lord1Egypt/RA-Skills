@@ -1,44 +1,58 @@
-## Description: <br>
-自动化操作剪映桌面客户端，将用户提供的分镜脚本通过 AI 文字成片功能生成 9:16 比例未来科幻风格视频，并配置真人播客女配音。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the Jianying desktop client's AI text-to-video workflow to turn a user-provided storyboard script into a 9:16 future-science-fiction video with a preset voice.
 
-## Publisher: <br>
-[infiniteask](https://clawhub.ai/user/infiniteask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infiniteask](https://clawhub.ai/user/infiniteask)
 
-## Use Case: <br>
-External creators and agents use this skill to drive the Jianying desktop client and turn a user-provided storyboard script into a configured AI text-to-video project. It is intended for Windows desktop sessions where Jianying is installed, focused, and ready for coordinate-based automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control the Windows desktop and may click the wrong target if Jianying is not focused or the user interacts with the computer during automation. <br>
-Mitigation: Keep Jianying open and focused, avoid using the computer during automation, and require user confirmation before starting video generation. <br>
-Risk: The skill overwrites clipboard contents and text fields while inserting the storyboard script. <br>
-Mitigation: Treat clipboard contents as temporary during execution and review the target text field before approving generation. <br>
-Risk: The skill can save screenshots and temporary files during verification. <br>
-Mitigation: Review and delete generated screenshots or temporary files after the run if they contain sensitive project content. <br>
-Risk: The skill may install dependencies or modify skill files as part of its workflow. <br>
-Mitigation: Require explicit approval before dependency installation or skill-file self-modification. <br>
+## Use Case:
 
+External users or creators can use this skill through an agent to configure Jianying Professional desktop settings and launch its AI text-to-video flow for storyboard-to-video generation. It is intended for controlled Windows desktop sessions with Jianying installed and preconfigured screen coordinates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infiniteask/jianying-ai-text-video-infinite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with Python and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates a Windows desktop client through fixed screen coordinates, clipboard input, and confirmation-gated video generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Broad desktop automation can click or type into the wrong window if the desktop changes during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a dedicated Windows desktop session with non-sensitive windows closed, and avoid user interaction while the automation is active.
+
+Risk: The skill overwrites the clipboard and may store storyboard text and screenshots locally.
+
+Mitigation: Use non-sensitive storyboard content, clear the clipboard after use, and review or delete local temporary files and screenshots.
+
+Risk: Runtime package installation and self-modification directives weaken deployment control.
+
+Mitigation: Preinstall and pin dependencies in a controlled environment, and review or remove self-modification and no-other-skills directives before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infiniteask/skills/jianying-ai-text-video-infinite)
+- [ClawHub publisher profile](https://clawhub.ai/user/infiniteask)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python and PowerShell code blocks plus local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local coordinate JSON and user-provided storyboard text; may save local screenshots during verification.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

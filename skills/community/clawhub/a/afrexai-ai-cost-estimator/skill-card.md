@@ -1,42 +1,55 @@
-## Description: <br>
-Estimate infrastructure, API, storage, monitoring, maintenance, and engineering costs for running AI agents in production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate infrastructure and API costs for running AI agents in production. Covers compute, API tokens, storage, and monitoring costs. Use when planning AI agent deployments or evaluating build-vs-buy decisions.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Developers, technical leads, and buyers use this skill to estimate production AI agent costs and compare build-in-house versus managed service options for budgeting and vendor evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud, model, and vendor prices can change after publication. <br>
-Mitigation: Verify current provider pricing before using the estimates for budgeting or procurement. <br>
-Risk: The artifact includes promotional AfrexAI managed-service comparisons that may not represent all vendor options. <br>
-Mitigation: Compare claims against independent managed-service vendors and internal cost models before making a purchasing decision. <br>
+## Use Case:
 
+Developers, engineering leads, and business stakeholders use this skill to estimate production AI agent costs, compare build-in-house and managed-service options, and prepare deployment budgets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/afrexai-ai-cost-estimator) <br>
-- [AfrexAI AI-as-a-Service](https://afrexai-cto.github.io/aaas/landing.html) <br>
-- [AfrexAI ROI Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with cost tables and calculator-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Passive reference content; no code execution or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Provider prices, vendor comparisons, and cost assumptions may be outdated or promotional.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current provider pricing and treat AfrexAI links as informational and promotional before making purchasing decisions.
+
+Risk: Cost estimates may be mistaken for final financial or procurement advice.
+
+Mitigation: Use the skill output as planning guidance and review assumptions with finance, engineering, and vendor stakeholders before committing budget.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-ai-cost-estimator)
+- [AfrexAI AI-as-a-Service](https://afrexai-cto.github.io/aaas/landing.html)
+- [AfrexAI ROI Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown cost estimates with tables, comparison matrices, and calculation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include provider-specific prices and vendor comparisons that should be checked against current public pricing before purchasing decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

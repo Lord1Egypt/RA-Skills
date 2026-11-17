@@ -1,44 +1,54 @@
-## Description: <br>
-Audit any GitHub repo or raw code for security, quality, or gas optimization. Returns score, findings, severity counts, and summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review a public GitHub repository or a code snippet for security and quality issues, through AIProx (aiprox.dev): one POST /api/orchestrate with capability code-execution, 50 sats, paid in Bitcoin Lightning (L402 or a LightningProx spend token). Returns findings with severities, a score and a summary. Use it when the user asks to audit specific code and agrees to pay.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-Developers and security reviewers use Code Auditor to assess GitHub repositories or pasted source code for security vulnerabilities, code quality issues, best practices, and Solidity gas optimization before deployment or dependency adoption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted repository references or pasted code are sent to aiprox.dev/LightningProx for analysis. <br>
-Mitigation: Submit only code your organization permits for external analysis, and avoid secrets, private credentials, or confidential source code unless approved. <br>
-Risk: The skill requires AIPROX_SPEND_TOKEN for paid API access. <br>
-Mitigation: Use a scoped or monitored spend token and provide it only through the required environment variable. <br>
-Risk: Audit findings and fixes are generated guidance and may be incomplete or incorrect. <br>
-Mitigation: Have a qualified reviewer validate findings and proposed remediations before changing production code. <br>
+## Use Case:
 
+Developers use this skill to request a paid security and quality review of a public repository or code snippet. It returns findings with severity labels, a score, and a summary for the agent to present and discuss.
 
-## Reference(s): <br>
-- [Code Auditor on ClawHub](https://clawhub.ai/unixlamadev-spec/code-auditor) <br>
-- [AIProx](https://aiprox.dev) <br>
-- [AIProx orchestration endpoint](https://aiprox.dev/api/orchestrate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON response with score, severity counts, findings, recommended fixes, and summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIPROX_SPEND_TOKEN and sends submitted repository URLs or pasted code to aiprox.dev/LightningProx for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Submitted task text and code are sent to AIProx and its model provider; remote retention and service behavior are not established by this artifact review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only code the user may share, exclude secrets and personal data, and review the provider's privacy terms.
+
+Risk: Each audit costs 50 sats, and an optional spend token is a bearer credential.
+
+Mitigation: Get user approval before a paid call, keep the token minimally funded, never expose or log it, and limit each request to one call.
+
+## Reference(s):
+
+- [AIProx](https://aiprox.dev)
+- [AIProx documentation](https://aiprox.dev/docs.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text]
+
+**Output Format:** [Audit findings with severity labels, a 1–10 score, and a summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One code source per call; each paid call costs 50 sats.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-Build and use a Feishu/Lark cross-app identity master for multi-agent, multi-account routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and use a Feishu/Lark cross-app identity master for multi-agent, multi-account routing.
 
-## Publisher: <br>
-[wxfkuq2023](https://clawhub.ai/user/wxfkuq2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxfkuq2023](https://clawhub.ai/user/wxfkuq2023)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to maintain a canonical Feishu/Lark identity master, merge app-local identities into shared subjects, and route outbound messages through the correct account-scoped open_id. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists sensitive cross-app identity mappings, including Feishu identifiers and contact fields. <br>
-Mitigation: Restrict read and edit access to identity files, define retention and deletion rules, and avoid collecting fields that are not needed for routing. <br>
-Risk: Incorrect merges can associate one person with the wrong subject or route messages to the wrong app-local open_id. <br>
-Mitigation: Use union_id first, fall back to unique user_id only when unambiguous, and send conflicts or missing critical identifiers to pending review. <br>
-Risk: Merge and review controls are under-scoped if any workspace actor can update the shared identity database. <br>
-Mitigation: Limit who can run merge and review scripts, require review reasons for approvals or rejections, and audit changes to the identity master. <br>
-Risk: Batch merging invokes a workspace bin script path, which can be unsafe if that path is not the reviewed merge script. <br>
-Mitigation: Confirm the invoked workspace script is the reviewed merge helper before running batch updates. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a canonical Feishu/Lark identity master, merge app-local identities, review ambiguous matches, and route outbound actions through the correct account-specific open_id.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wxfkuq2023/feishu-identity-routing) <br>
-- [Workflow](references/workflow.md) <br>
-- [Outbound Routing Patterns](references/outbound-routing-patterns.md) <br>
-- [Pending Review Policy](references/pending-review-policy.md) <br>
-- [Schema Example](references/schema-example.json) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON identity files and Node.js command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates workspace identity data, human-readable summaries, merge/review command guidance, and outbound routing patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores and mutates sensitive Feishu identity-routing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled workspace where identity correlation is authorized, and restrict access to the identity directory.
+
+Risk: Batch imports and merge scripts can modify the identity master from input records.
+
+Mitigation: Avoid running batch imports on untrusted paths and review or harden the scripts before using the master file for outbound messages.
+
+Risk: Logs and review records may expose identity data or routing decisions.
+
+Mitigation: Treat logs and review artifacts as sensitive and limit their retention and access.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Outbound Routing Patterns](references/outbound-routing-patterns.md)
+- [Pending Review Policy](references/pending-review-policy.md)
+- [Schema Example](references/schema-example.json)
+- [Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/wxfkuq2023/skills/feishu-identity-routing)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON structures and Node.js command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates workspace identity files for Feishu/Lark identity mapping and pending-review workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

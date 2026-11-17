@@ -1,38 +1,54 @@
-## Description: <br>
-Migrated A/B test setup skill with usage, integration, and quota optimization guidance for Qwen Code and OpenCode-style agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A migrated A/B test setup skill with usage and integration examples for Qwen Code and OpenCode workflows.
 
-## Publisher: <br>
-[jacr6](https://clawhub.ai/user/jacr6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacr6](https://clawhub.ai/user/jacr6)
 
-## Use Case: <br>
-Developers and agent builders use this skill as documentation for migrated A/B test setup workflows, including JavaScript usage examples, helper-skill integration examples, and quota-conscious execution guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact is documentation-only and references helper skills that are not included in the artifact. <br>
-Mitigation: Review separately installed helper skills, especially subagente-optimizado, buscador_de_skills, and exa-search, before using the examples with sensitive context. <br>
+## Use Case:
 
+Developers and engineers can use this skill as a lightweight migrated stub for A/B test setup workflows and integration examples. It is most useful when paired with the local companion skills referenced by its examples.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jacr6/ab-test-setup-migrated) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; examples reference separately installed helper skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The skill is a thin migrated stub and may not provide full A/B test setup functionality by itself.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the expected workflow and supporting local skills before relying on it for experiment setup.
+
+Risk: The examples reference companion skills that may be absent from a user's local environment.
+
+Mitigation: Verify that referenced skills such as subagente-optimizado, buscador_de_skills, and exa-search are installed or adapt the examples.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jacr6/skills/ab-test-setup-migrated)
+- [Publisher profile](https://clawhub.ai/user/jacr6)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload is bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,22 @@
+{
+  "skill": "ocas-imagine",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-imagine",
+  "evals": [
+    {
+      "input": "Generate an image of a mountain landscape in watercolor style",
+      "expected_output": "Creates a text-to-image prompt with separated style and content, generates image",
+      "description": "Image generation with style"
+    },
+    {
+      "input": "Create a series of images in a consistent art style",
+      "expected_output": "Generates multiple images with consistent aesthetic identity",
+      "description": "Series generation"
+    },
+    {
+      "input": "Capture the style from a reference image",
+      "expected_output": "Extracts style parameters from reference for use in new generations",
+      "description": "Style extraction"
+    }
+  ]
+}

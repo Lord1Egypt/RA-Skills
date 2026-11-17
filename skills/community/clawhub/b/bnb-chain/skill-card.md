@@ -1,42 +1,58 @@
-## Description: <br>
-Basic BNB Chain operations: check balances, send BNB, send BEP-20 tokens, derive wallet addresses, and inspect transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Basic BNB Chain operations: check balances, send BNB, and send BEP-20 tokens.
 
-## Publisher: <br>
-[CLAWZAI](https://clawhub.ai/user/CLAWZAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[clawzai](https://clawhub.ai/user/clawzai)
 
-## Use Case: <br>
-Developers and agents use this skill to perform basic BNB Chain wallet and token operations from a Node.js helper script, including balance checks, token transfers, BNB transfers, address derivation, and transaction lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend cryptocurrency with a raw private key and has no built-in confirmation step before submitting BNB or BEP-20 transfers. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid passing private keys on the command line, prefer controlled secret storage, and manually verify the network, recipient address, token contract, and amount before any send operation. <br>
-Risk: Private keys may be exposed if they are committed, logged, stored in shell history, or shared through command arguments. <br>
-Mitigation: Keep private keys out of git and logs, use environment variables or a managed secret mechanism, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+Developers and blockchain operators use this skill to inspect BNB Chain wallet and BEP-20 token balances, submit transfers, derive wallet addresses from private keys, and inspect transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CLAWZAI/bnb-chain) <br>
-- [CLAWZAI publisher profile](https://clawhub.ai/user/CLAWZAI) <br>
-- [BNB Chain default RPC endpoint](https://bsc-dataseed.binance.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and ethers.js; reads BNB_PRIVATE_KEY and BNB_RPC_URL from the environment, with optional command-line private key input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles wallet private keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing private keys on the command line; prefer environment variables, secure storage, a safer signer, or a dedicated low-value wallet.
+
+Risk: The skill can submit irreversible BNB and BEP-20 token transfers without an additional confirmation step.
+
+Mitigation: Manually verify recipient, token contract, amount, chain, and fees before any send operation, and test first with small amounts.
+
+Risk: The security verdict is suspicious because the behavior can move funds immediately.
+
+Mitigation: Review the skill carefully before installing or running it, and only use it with wallets and amounts you can afford to risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawzai/skills/bnb-chain)
+- [Default BNB Chain RPC endpoint](https://bsc-dataseed.binance.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; helper script responses are JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and ethers.js; can use BNB_PRIVATE_KEY and BNB_RPC_URL environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

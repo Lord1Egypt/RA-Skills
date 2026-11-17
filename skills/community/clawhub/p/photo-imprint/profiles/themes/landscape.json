@@ -1,0 +1,10 @@
+{
+  "profile_type": "theme",
+  "id": "landscape",
+  "version": "1.0.0",
+  "subject_priority": ["terrain", "water", "vegetation", "sky and weather", "scale cues"],
+  "preserve": ["horizon and major contours", "light direction", "weather character", "recognizable natural landmarks"],
+  "deemphasize": ["incidental people", "temporary clutter", "illegible distant signage"],
+  "forbid_invention": ["mountains", "buildings", "weather effects", "text"],
+  "prompt_fragment": "Extract the landscape's dominant contours, light, and atmosphere while preserving recognizable natural landmarks and scale."
+}

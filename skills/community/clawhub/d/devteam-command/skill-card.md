@@ -1,39 +1,52 @@
-## Description: <br>
-Runs a full Dev Team pipeline from planning to release for any coding task, producing plans, code, tests, fixes, and release notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a full Dev Team pipeline from planning to release for coding tasks, producing plans, code, tests, fixes, and release notes.
 
-## Publisher: <br>
-[SunlearnDev](https://clawhub.ai/user/SunlearnDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunlearndev](https://clawhub.ai/user/sunlearndev)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate a coding task through a staged planning, implementation, testing, fixing, and reporting workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delegate broad coding work to multiple autonomous subagents without clear scope limits or approval checkpoints. <br>
-Mitigation: Run it in a disposable branch or sandboxed repository, review PLAN.md and TASKS.md before implementation, and monitor for overlapping runs or unexpected file changes. <br>
-Risk: Use on sensitive or production repositories can expose higher-impact changes to autonomous execution. <br>
-Mitigation: Avoid sensitive or production repositories unless the run is isolated and all generated changes are reviewed before merge or deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SunlearnDev/devteam-command) <br>
+## Use Case:
 
+Developers use this skill to coordinate a multi-agent coding workflow for scoped repository tasks, from planning and implementation through testing and release notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown documents, code changes, shell command guidance, and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PLAN.md, TASKS.md, BUGS.md, RELEASE.md, and implementation changes through autonomous subagent runs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger a broad, long-running multi-agent coding workflow that may modify repository code.
+
+Mitigation: Use it only for clearly scoped repository tasks, avoid concurrent runs, and review all code changes before accepting them.
+
+Risk: Advertised fixer and documentation outputs may not be produced reliably.
+
+Mitigation: Confirm generated PLAN.md, TASKS.md, BUGS.md, RELEASE.md, and any fixes exist and match the task before relying on completion status.
+
+## Reference(s):
+
+- [DevTeam Command on ClawHub](https://clawhub.ai/sunlearndev/skills/devteam-command)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and code changes with command and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May spawn long-running subagents and should be used only for clearly scoped repository tasks.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

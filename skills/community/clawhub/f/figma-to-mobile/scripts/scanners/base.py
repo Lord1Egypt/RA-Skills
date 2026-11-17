@@ -4,6 +4,15 @@ Base classes and unified schema for multi-platform project scanning.
 
 All platform scanners (Android, iOS, Flutter, etc.) produce a ScanReport
 in the same format, enabling downstream tools to work platform-agnostically.
+
+The base ProjectScanner orchestrates the standard scanning pipeline:
+  1. discover_modules()    — platform-specific
+  2. scan_module() each    — platform-specific
+  3. build_indices()       — base default, platform can override
+  4. build_semantic_labels() — platform-specific
+  5. finalize_metadata()
+
+Platforms override only what differs; the pipeline is managed by base.scan().
 """
 
 from __future__ import annotations
@@ -14,7 +23,26 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-SCANNER_VERSION = "2.0.0"
+SCANNER_VERSION = "2.1.0"
+
+
+# ── Semantic labels (new in 2.1.0) ──
+
+@dataclass
+class SemanticLabel:
+    """
+    Maps a raw resource to its semantic role in the design system.
+
+    Examples:
+        colorPrimary → role="color", semantic="primary", source="theme"
+        @dimen/spacing_16 → role="dimen", semantic="spacing_md", source="naming"
+        @style/TextAppearance.Body1 → role="text_style", semantic="body", source="naming"
+    """
+    name: str               # Resource identifier, e.g. "@color/purple_500"
+    resource_type: str      # "color", "dimen", "text_style", "image"
+    semantic_role: str      # e.g. "primary", "surface", "on_primary", "body", "title"
+    source: str = ""        # How it was determined: "theme_mapping", "naming_convention"
+    confidence: str = "high"  # "high", "medium", "low"
 
 
 # ── Unified output schema (as typed dicts for documentation + runtime use) ──
@@ -126,6 +154,7 @@ class ScanReport:
         "drawable_shapes": {},
         "text_styles": {},
     })
+    semantic_labels: list[SemanticLabel] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
     metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -135,6 +164,16 @@ class ScanReport:
             "project_root": self.project_root,
             "modules": [m.to_dict() for m in self.modules],
             "indices": self.indices,
+            "semantic_labels": [
+                {
+                    "name": sl.name,
+                    "resource_type": sl.resource_type,
+                    "semantic_role": sl.semantic_role,
+                    "source": sl.source,
+                    "confidence": sl.confidence,
+                }
+                for sl in self.semantic_labels
+            ],
             "errors": self.errors,
             "metadata": self.metadata,
         }
@@ -166,16 +205,154 @@ class PlatformDetector(ABC):
 
 
 class ProjectScanner(ABC):
-    """Scan a project and produce a unified ScanReport."""
+    """
+    Scan a project and produce a unified ScanReport.
+
+    Subclasses implement the platform-specific parts (module discovery,
+    per-module scanning, semantic labeling) while the base class
+    orchestrates the common pipeline.
+    """
+
+    # ── Abstract: platform-specific ──
 
     @abstractmethod
-    def scan(self, project_root: Path, target_module: str | None = None, **kwargs) -> ScanReport:
-        """
-        Scan the project and return a ScanReport.
+    def get_platform_name(self) -> str:
+        """Return 'android', 'ios', 'flutter', etc."""
+        ...
 
-        Args:
-            project_root: Path to the project root directory.
-            target_module: Optional module name to focus on.
-            **kwargs: Platform-specific options (e.g., level='resources').
+    @abstractmethod
+    def discover_modules(
+        self, project_root: Path, target_module: str | None = None,
+    ) -> tuple[list[tuple[str, Path]], list[str]]:
+        """
+        Discover modules in the project.
+
+        Returns:
+            (modules, errors)
+            modules: list of (module_name, module_path) tuples.
+            errors: list of error/warning strings.
         """
         ...
+
+    @abstractmethod
+    def scan_module(
+        self, name: str, mod_dir: Path, project_root: Path, level: str = "full",
+    ) -> ModuleReport:
+        """Scan a single module and return its structured report."""
+        ...
+
+    def build_semantic_labels(self, report: ScanReport) -> None:
+        """
+        Add semantic labels to report.semantic_labels.
+
+        Labels map raw resources (colors, dimens, text_styles) to semantic
+        roles (primary, secondary, surface, body, title, etc.).
+
+        Default: no-op. Override for platform-specific labeling.
+        """
+        pass
+
+    # ── Hook: optional overrides ──
+
+    def build_indices(self, report: ScanReport) -> None:
+        """
+        Build lookup indices (hex → name, text → key, etc.) from modules.
+
+        Default implementation creates flat color/string/image indices.
+        Override for dependency-aware or sorted indices.
+        """
+        self._build_color_index(report)
+        self._build_string_index(report)
+        self._build_image_index(report)
+
+    def after_modules_scanned(self, report: ScanReport, project_root: Path,
+                              target_module: str | None = None) -> None:
+        """
+        Hook called after all modules are scanned, before index building.
+
+        Use for post-processing that depends on all module data
+        (e.g. Android drawable scanning, cross-module analysis).
+        """
+        pass
+
+    # ── Concrete: pipeline orchestrator (can be overridden) ──
+
+    def scan(self, project_root: Path, target_module: str | None = None,
+             **kwargs) -> ScanReport:
+        """
+        Run the full scanning pipeline.
+
+        Steps:
+          1. discover_modules()
+          2. scan_module() for each
+          3. after_modules_scanned() hook
+          4. build_indices()
+          5. build_semantic_labels()
+          6. finalize_metadata()
+
+        Override entirely if the platform needs a different flow.
+        """
+        level = kwargs.get("level", "full")
+        root_str = str(project_root)
+
+        report = ScanReport(platform=self.get_platform_name(),
+                            project_root=root_str)
+
+        # 1. Discover modules
+        modules, errors = self.discover_modules(project_root, target_module)
+        report.errors.extend(errors)
+
+        # 2. Scan each module
+        for mod_name, mod_dir in modules:
+            try:
+                mod_report = self.scan_module(
+                    mod_name, mod_dir, project_root, level=level,
+                )
+                report.modules.append(mod_report)
+            except Exception as e:
+                report.errors.append(
+                    f"Error scanning module {mod_name}: {e}"
+                )
+
+        # 3. Post-scan hook
+        self.after_modules_scanned(report, project_root, target_module)
+
+        # 4. Build indices
+        self.build_indices(report)
+
+        # 5. Semantic labels
+        self.build_semantic_labels(report)
+
+        # 6. Finalize
+        report.finalize_metadata()
+
+        return report
+
+    # ── Default index builders (usable by subclasses) ──
+
+    def _build_color_index(self, report: ScanReport) -> None:
+        """Build hex → resource-name index across all modules."""
+        idx: dict[str, str] = {}
+        for mod in report.modules:
+            for c in mod.colors:
+                if c.value and c.value not in idx:
+                    idx[c.value] = c.name
+        report.indices["colors"] = idx
+
+    def _build_string_index(self, report: ScanReport) -> None:
+        """Build text → key index across all modules."""
+        idx: dict[str, str] = {}
+        for mod in report.modules:
+            for s in mod.strings:
+                if s.value and s.value not in idx:
+                    idx[s.value] = s.key
+        report.indices["strings"] = idx
+
+    def _build_image_index(self, report: ScanReport) -> None:
+        """Build name → type index across all modules."""
+        idx: dict[str, str] = {}
+        for mod in report.modules:
+            for i in mod.images:
+                if i.name not in idx:
+                    idx[i.name] = i.type
+        report.indices["images"] = idx

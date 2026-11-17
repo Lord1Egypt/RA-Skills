@@ -1,40 +1,55 @@
-## Description: <br>
-Query Kimi Code Plan quota and usage information, including subscription quota, usage percentage, reset time, and API key status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Kimi Code Plan quota and usage information, including subscription quota, usage percentage, reset time, and API key status.
 
-## Publisher: <br>
-[doraohm1](https://clawhub.ai/user/doraohm1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doraohm1](https://clawhub.ai/user/doraohm1)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through checking Kimi Code Plan quota, reset timing, membership level, model access, and high-level API key status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow opens a user's Kimi Code account pages and can expose private usage, membership, and API-key metadata. <br>
-Mitigation: Ask the agent to report only the quota and high-level API-key status needed, avoid sharing masked key fragments or identifiers, and delete quota.png after use if it contains account details. <br>
+## Use Case:
 
+External users use this skill to have an agent open their Kimi Code account console, check subscription quota and rate-limit usage, and summarize API key status.
 
-## Reference(s): <br>
-- [Kimi Code](https://www.kimi.com/code) <br>
-- [Kimi Code Console](https://www.kimi.com/code/console) <br>
-- [ClawHub Skill Page](https://clawhub.ai/doraohm1/kimi-code-quota) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with browser automation commands and a quota summary table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create quota.png during the browser workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The skill opens an authenticated Kimi Code console and may expose quota and API-key metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user intent, limit reporting to quota information by default, and avoid running it in shared workspaces.
+
+Risk: The skill can save a console screenshot as quota.png, which may retain sensitive account details.
+
+Mitigation: Avoid saved screenshots unless specifically requested; if screenshots are needed, redact sensitive fields and delete temporary files after use.
+
+## Reference(s):
+
+- [Kimi Code official site](https://www.kimi.com/code)
+- [Kimi Code console](https://www.kimi.com/code/console)
+- [ClawHub skill page](https://clawhub.ai/doraohm1/skills/kimi-code-quota)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with table entries and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quota percentages, reset times, membership level, model access, API key metadata, and recent usage records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

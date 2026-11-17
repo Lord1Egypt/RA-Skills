@@ -1,39 +1,48 @@
-## Description: <br>
-Identify and prioritize risks by impact and controllability. Use for risk management, project planning, and strategic decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and prioritize risks by impact and controllability. Use for risk management, project planning, and strategic decision support.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and teams use this skill to structure risk identification, assess impact and controllability, prioritize responses, and produce a risk register for project planning or strategic decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated risk assessments can be inaccurate or incomplete for financial, legal, compliance, or strategic decisions.
+
+Mitigation: Review outputs with qualified stakeholders and validate assumptions, probabilities, impacts, controls, and response plans before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to structure risk identification, impact assessment, prioritization, mitigation planning, and follow-up monitoring for projects, initiatives, or strategic decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Risk assessments can be misleading if the agent receives incomplete context or stale assumptions about impact, probability, controls, or ownership. <br>
-Mitigation: Review generated matrices with accountable stakeholders and validate assumptions, financial impacts, probabilities, owners, and mitigation actions before relying on them. <br>
+**Output Format:** [Markdown risk matrix, tables, risk register, and action plan]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Risk Matrix skill on ClawHub](https://clawhub.ai/linuszz/risk-matrix) <br>
-- [Publisher profile: linuszz](https://clawhub.ai/user/linuszz) <br>
+**Other Properties Related to Output:** [Includes structured risk categories, priority ratings, mitigations, owners, early warning indicators, and next steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured tables, risk matrix sections, mitigation notes, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the subject supplied in $ARGUMENTS and should be reviewed against current risk assumptions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

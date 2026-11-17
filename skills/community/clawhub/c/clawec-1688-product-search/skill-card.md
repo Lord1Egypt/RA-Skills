@@ -1,41 +1,56 @@
-## Description: <br>
-通过 Clawec API 搜索 1688 商品，返回价格、销量、链接、卖家信息与 AI 建议。在用户需要 1688 搜品、货源调研、供应链比价、跨境选品、关键词找货、1688 产品搜索时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches 1688 products through the ClawEC API and returns prices, sales volume, links, seller information, and AI suggestions for sourcing research.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-Cross-border ecommerce sellers, sourcing researchers, and agents use this skill to search 1688 product listings through the ClawEC API and summarize price, sales, seller, link, and AI-suggested sourcing information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ClawEC API key and sends product search keywords or sourcing research terms to ClawEC. <br>
-Mitigation: Use a scoped API key where possible, keep the key in CLAWEC_API_KEY rather than hardcoding it, and avoid sending sensitive business research terms unless that disclosure is acceptable. <br>
+## Use Case:
 
+External sellers, sourcing teams, and developers use this skill to search 1688 product listings, compare suppliers by price and sales signals, and summarize product-sourcing observations from ClawEC results.
 
-## Reference(s): <br>
-- [Response Schema](references/response-schema.md) <br>
-- [ClawEC API](https://www.clawec.com/api) <br>
-- [ClawEC API Key](https://www.clawec.com/api-key?source=q-clawhub) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anyunzhong/clawec-1688-product-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with tables and optional shell commands; raw API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the CLAWEC_API_KEY environment variable and sends search keywords, page, and table parameters to the ClawEC API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Search keywords and the user-provided ClawEC API key are sent to clawec.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an API key intended only for ClawEC and avoid submitting sensitive search terms unless sharing them with the service is acceptable.
+
+Risk: Product-search results and AI suggestions can be incomplete, stale, or unsuitable for a purchasing decision.
+
+Mitigation: Review supplier details, prices, sales signals, and product links before acting on the recommendations.
+
+## Reference(s):
+
+- [1688 Product Search Response Schema](references/response-schema.md)
+- [ClawEC API Base URL](https://www.clawec.com/api)
+- [ClawEC 1688 Product Search Endpoint](https://www.clawec.com/api/aigc/tool/1688_product_search_lite)
+- [ClawHub Skill Page](https://clawhub.ai/anyunzhong/skills/clawec-1688-product-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with comparison tables and optional shell commands; raw API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided CLAWEC_API_KEY and sends search keywords to clawec.com.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

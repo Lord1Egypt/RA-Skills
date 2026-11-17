@@ -1,43 +1,57 @@
-## Description: <br>
-Compress PNG, JPEG, and WebP images using TinyPNG/Tinify web endpoints without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress PNG, JPEG, and WebP images using the TinyPNG/Tinify free web endpoint with support for single files, batches, directories, retries, and rate-limit handling.
 
-## Publisher: <br>
-[aga-j](https://clawhub.ai/user/aga-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aga-j](https://clawhub.ai/user/aga-j)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to reduce image file sizes for PNG, JPEG, and WebP assets in single-file, batch, or directory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are uploaded to TinyPNG/Tinify servers for compression, which may expose private or sensitive image content to an external service. <br>
-Mitigation: Use the skill only with images approved for external processing, and avoid personal, confidential, or regulated content. <br>
-Risk: Overwrite mode can replace original image files. <br>
-Mitigation: Keep backups or write compressed images to a separate output directory unless replacement is explicitly intended. <br>
-Risk: The skill simulates browser requests to TinyPNG/Tinify web endpoints rather than using the official API, so endpoint behavior, rate limits, or availability may change. <br>
-Mitigation: Use moderate request volumes, review failures before retrying, and consider the official TinyPNG API for heavy or automated production workloads. <br>
+## Use Case:
 
+Developers and content operators use this skill to compress PNG, JPEG, and WebP assets through an agent workflow for file-size reduction before publishing or sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aga-j/image-tiny-compress) <br>
-- [TinyPNG](https://tinypng.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, json, guidance] <br>
-**Output Format:** [Compressed image files with JSON compression statistics and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports PNG, JPEG, and WebP files up to 5 MB each, with up to 20 images per batch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Selected images are uploaded to TinyPNG/Tinify through an unofficial web endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for sensitive, personal, confidential, or proprietary images; use the official TinyPNG API or a local compressor for controlled environments.
+
+Risk: Overwrite mode can replace original files with downloaded compressed content.
+
+Mitigation: Prefer separate output files or an output directory, and use overwrite only after explicit confirmation and backup.
+
+Risk: The unofficial endpoint and spoofed request headers may change, fail, or trigger rate limits.
+
+Mitigation: Keep request volume low, review failures before retrying large batches, and prefer the official API for heavy or production batch processing.
+
+## Reference(s):
+
+- [TinyPNG](https://tinypng.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and per-image JSON result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compressed image files and reports output paths, original size, compressed size, saved bytes, and saved percent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

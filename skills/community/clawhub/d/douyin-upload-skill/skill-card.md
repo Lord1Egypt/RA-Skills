@@ -1,43 +1,62 @@
-## Description: <br>
-Login and publish Douyin (China mainland) videos from local files with OAuth, local speech-to-text, and generated caption drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorizes Douyin accounts, prepares local video metadata and transcripts, drafts captions, and publishes videos through the Douyin OpenAPI with fallback outbox export when publish permissions are unavailable.
 
-## Publisher: <br>
-[YJLi-new](https://clawhub.ai/user/YJLi-new) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yjli-new](https://clawhub.ai/user/yjli-new)
 
-## Use Case: <br>
-Developers and content operators use this skill to authorize a Douyin account, prepare captions from local video audio, and publish through Douyin OpenAPI or export an outbox package when publishing permission is unavailable. <br>
-
-### Deployment Geography for Use: <br>
-China mainland <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Douyin OAuth publishing access and stores local tokens/config. <br>
-Mitigation: Install only when that access level is acceptable, protect the local configuration directory, and rotate or revoke Douyin credentials if the machine is shared or compromised. <br>
-Risk: The default ASR mode can send extracted video audio to a remote ASR API. <br>
-Mitigation: For sensitive videos, set ASR mode to whisper-cpu or whisper-gpu before running prepare; use api mode only when the configured ASR provider is intentionally trusted. <br>
-Risk: Unattended publishing can occur if auto-confirm is enabled. <br>
-Mitigation: Keep auto-confirm disabled unless unattended publishing is explicitly required, and review final captions and visibility settings before publish. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YJLi-new/douyin-upload-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/YJLi-new) <br>
-- [Douyin Open Platform](https://developer.open-douyin.com/) <br>
+## Use Case:
 
+Developers and automation teams use this skill to authorize Douyin accounts, transcribe local video audio, draft captions, and publish or package videos for manual publishing when API permissions are missing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI returns machine-readable JSON and may create local outbox files for fallback publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+China mainland
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private video audio may be sent to an external ASR endpoint when API transcription mode is used.
+
+Mitigation: Prefer local Whisper CPU or GPU mode for sensitive media and restrict ASR API URLs to trusted HTTPS services.
+
+Risk: Publishing actions depend on stored Douyin credentials and may be executed with configurable confirmation bypasses.
+
+Mitigation: Keep auto-confirm disabled for account posts unless the workflow is intentionally non-interactive and the final caption and visibility are reviewed elsewhere.
+
+Risk: Transcript caches and fallback outbox packages can retain video-derived text, metadata, captions, and local source paths.
+
+Mitigation: Periodically delete transcript caches and outbox files, and store them only in access-controlled local directories.
+
+Risk: The local transcription path depends on an external Whisper binary and model file.
+
+Mitigation: Verify the Whisper dependency and model source before installing or using them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yjli-new/skills/douyin-upload-skill)
+- [Artifact README](artifact/README.md)
+- [Douyin Open Platform](https://developer.open-douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and machine-readable JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The publish command can return official publish results or fallback outbox file paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

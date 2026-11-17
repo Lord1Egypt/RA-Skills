@@ -1,41 +1,48 @@
-## Description: <br>
-Pywayne Llm Chat Window helps developers use pywayne.llm.chat_window to create PyQt5 desktop chat applications with streaming responses, configurable models, system messages, and stop functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PyQt5-based GUI chat window for LLM conversations with streaming responses, stop functionality, customizable window configuration, system message management, and real-time display.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on launching and configuring a PyQt5 desktop chat window around OpenAI-compatible LLM APIs, including streaming responses, stop control, system messages, and model parameters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if users hardcode or share real credentials while following the examples. <br>
-Mitigation: Use trusted secret handling for API keys and avoid committing or sharing credentials. <br>
-Risk: Prompts and chat content may be sent to an external LLM provider configured through the base URL. <br>
-Mitigation: Use only trusted providers and endpoints, and avoid entering secrets or regulated data unless that provider is approved for the use case. <br>
-Risk: The runtime package is external to the skill artifact. <br>
-Mitigation: Confirm the pywayne package source and installed version before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/chat-window) <br>
+## Use Case:
 
+Developers use this skill to create desktop LLM chat applications with the pywayne.llm.chat_window module, including streaming responses, configurable model settings, and system message management.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint, API key, model, sampling, window, and system-message configuration fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chat prompts, conversation history, system messages, and configured API keys may be handled by the selected LLM endpoint.
+
+Mitigation: Use an approved provider or local endpoint for sensitive work, and avoid entering secrets or regulated data unless the provider is acceptable for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/chat-window)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with Python code blocks and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guidance for API endpoint, API key, model, generation settings, system messages, and desktop window configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

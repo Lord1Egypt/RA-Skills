@@ -1,0 +1,46 @@
+{
+  "standard": "ISO 22000:2018 食品安全管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "相关方", "食品安全"],
+    "5": ["领导作用", "食品安全方针", "食品安全小组"],
+    "6": ["风险", "食品安全目标", "策划"],
+    "7": ["前提方案", "PRP", "能力", "培训", "沟通", "成文信息"],
+    "8": ["运行", "危害控制", "HACCP", "可追溯性", "应急"],
+    "9": ["验证", "内部审核", "管理评审"],
+    "10": ["不合格", "纠正措施", "持续改进"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-fs-team", "name_zh": "食品安全小组与组长胜任", "name_en": "Food safety team",
+     "keywords_zh": ["食品安全小组", "食品安全组长", "小组组长"], "keywords_en": ["food safety team"],
+     "description_zh": "必须设立具备专业知识的食品安全小组并任命组长，负责危害分析与体系建立。",
+     "compliance_statement": ["已任命食品安全小组组长并明确职责", "小组成员具备相应专业知识与经验"]},
+    {"id": "hv-fs-prp", "name_zh": "前提方案(PRP/OPRP)建立并运行", "name_en": "Prerequisite programs",
+     "keywords_zh": ["前提方案", "PRP", "操作性前提方案", "OPRP", "基础设施", "维护"], "keywords_en": ["PRP", "prerequisite"],
+     "description_zh": "需建立前提方案（基础设施维护、清洁、虫害、人员卫生等）并保持运行。",
+     "compliance_statement": ["已建立文件化的前提方案", "基础设施与维护满足食品安全要求"]},
+    {"id": "hv-fs-haccp", "name_zh": "HACCP/危害控制计划有效", "name_en": "HACCP plan",
+     "keywords_zh": ["HACCP", "危害分析", "关键控制点", "CCP", "危害控制计划"], "keywords_en": ["HACCP", "CCP"],
+     "description_zh": "须识别显著危害，确定CCP并设定关键限值、监控与纠偏，计划有效实施。",
+     "compliance_statement": ["已完成危害分析并确定CCP", "CCP有关键限值、监控与纠偏记录"]},
+    {"id": "hv-fs-trace", "name_zh": "可追溯性系统", "name_en": "Traceability",
+     "keywords_zh": ["可追溯", "追溯", "溯源", "批次"], "keywords_en": ["traceability"],
+     "description_zh": "须建立从原料到成品的可追溯系统，并定期验证。",
+     "compliance_statement": ["建立了批次/物料可追溯系统", "可追溯性已定期验证有效"]},
+    {"id": "hv-fs-emergency", "name_zh": "应急准备与产品撤回/召回", "name_en": "Emergency & recall",
+     "keywords_zh": ["应急", "召回", "撤回", "演练"], "keywords_en": ["recall", "withdrawal", "emergency"],
+     "description_zh": "须建立突发事件与产品撤回/召回程序并演练。",
+     "compliance_statement": ["已建立撤回/召回程序", "定期开展应急演练"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制", "受控文件"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-RA", "name": "风险与机遇管理程序", "clause": "6.1", "match_keywords": ["风险管理"], "priority": "medium"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施", "不合格"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核", "内审"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-FS-001", "name": "前提方案(PRP)控制程序", "clause": "7.5", "match_keywords": ["前提方案", "PRP", "操作性前提方案"], "priority": "high"},
+    {"id": "SP-FS-002", "name": "危害分析与HACCP计划控制程序", "clause": "8.5", "match_keywords": ["危害分析", "HACCP", "关键控制点"], "priority": "high"},
+    {"id": "SP-FS-003", "name": "可追溯性控制程序", "clause": "8.9", "match_keywords": ["可追溯", "追溯", "批次"], "priority": "high"},
+    {"id": "SP-FS-004", "name": "应急准备与产品撤回/召回控制程序", "clause": "8.4/8.9", "match_keywords": ["应急", "召回", "撤回"], "priority": "high"}
+  ]
+}

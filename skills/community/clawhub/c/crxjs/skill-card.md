@@ -1,44 +1,58 @@
-## Description: <br>
-CRXJS helps agents guide Chrome extension development with Vite, including HMR for extension contexts, manifest-driven builds, dynamic content script imports, and type-safe manifests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CRXJS guides agents through Chrome extension development with Vite, including HMR setup, manifest-driven builds, content script configuration, framework-specific Vite configuration, and production packaging.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to scaffold or modify CRXJS-based Chrome extension projects, configure Vite and manifests, troubleshoot HMR issues, and prepare extension builds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad GitHub CLI authority that is not central to CRXJS development guidance. <br>
-Mitigation: Allow GitHub CLI use only for tasks that explicitly require it, and review proposed repository or issue operations before execution. <br>
-Risk: Generated npm project files or dependency changes can alter build behavior and supply-chain exposure. <br>
-Mitigation: Review scaffolded files, package scripts, and dependency changes before running or publishing the extension. <br>
-Risk: Copied Chrome extension permissions and URL match patterns may be broader than needed. <br>
-Mitigation: Narrow permissions and match patterns to the minimum required before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, configure, troubleshoot, and package CRXJS-based Chrome extension projects. It is most useful when an agent needs to generate Vite configuration, Manifest V3 examples, content script setup, shell commands, or workflow guidance for CRXJS projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/crxjs) <br>
-- [Publisher profile](https://clawhub.ai/user/samber) <br>
-- [Project homepage](https://github.com/samber/cc-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose npm, git, and GitHub CLI commands for supervised execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The security summary says the skill requests broad GitHub CLI authority that its instructions do not clearly need.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review tool permissions before installation and avoid or narrow GitHub CLI access unless the workflow specifically requires it.
+
+Risk: The security guidance calls out dependency handling risk when using npm in sensitive repositories.
+
+Mitigation: Prefer pinned npm package versions or a lockfile before applying generated dependency changes.
+
+Risk: The skill can propose shell commands and project configuration changes for extension builds.
+
+Mitigation: Review proposed commands and file diffs before execution, especially in repositories with release or browser-store publishing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/crxjs)
+- [Skill library homepage](https://github.com/samber/cc-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose npm, git, and GitHub CLI commands; users should review commands before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

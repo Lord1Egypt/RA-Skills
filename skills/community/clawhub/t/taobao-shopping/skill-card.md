@@ -1,43 +1,59 @@
-## Description: <br>
-Taobao Shopping helps an agent evaluate public Taobao listings, sellers, SKUs, reviews, visible prices, promotions, return protections, and buy/wait/avoid decisions while keeping login, cart, checkout, order, and payment actions user-controlled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents research Taobao products using public information, compare sellers, prices, reviews, and SKU risks, and prepare user-controlled cart and checkout handoff guidance.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to research Taobao products from public listing evidence, compare seller and SKU risks, and produce a manual pre-purchase checklist. It is intended for decision support, not for changing account state or completing transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled documentation and metadata inconsistently mention cart or coupon actions that could affect a user's Taobao account. <br>
-Mitigation: Use the skill only for public Taobao research and decision support; keep login, coupon claiming, cart changes, checkout, order submission, and payment manual. <br>
-Risk: Taobao recommendations may be misleading when final price, coupons, SKU availability, delivery, or returns depend on private account or checkout-only conditions. <br>
-Mitigation: Require the user to manually verify selected SKU, final payable amount, address-based delivery, coupon eligibility, stock, return policy, invoice, warranty, and payment before buying. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to research Taobao listings, compare options, assess seller and SKU risk, and prepare a manual pre-purchase checklist. It is intended for public visible information only; account state, checkout, order submission, and payment remain user-controlled.
 
-## Reference(s): <br>
-- [Taobao Shopping ClawHub listing](https://clawhub.ai/harrylabsj/skills/taobao-shopping) <br>
-- [Browser Workflow](artifact/skills/taobao-shopping/references/browser-workflow.md) <br>
-- [Marketplace Guide](artifact/references/marketplace-guide.md) <br>
-- [Output Patterns](artifact/references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown with verdict, evidence, risk, and final-check sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public-visible Taobao evidence and hands off account-state, checkout, and payment steps to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: Public shopping data such as price, stock, promotions, seller status, reviews, and delivery terms may change or vary by account, location, or time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as decision support and have the user verify final payable amount, stock, address-based delivery, coupon eligibility, return terms, invoice, and warranty before purchase.
+
+Risk: Login, address, coupon, cart, checkout, order, and payment flows involve private account state or financial action.
+
+Mitigation: Stop before those flows and require the user to complete any cart changes, checkout, order submission, and payment manually.
+
+Risk: The skill may encounter requests for passwords, SMS codes, payment details, address details, or other account data while researching Taobao pages.
+
+Mitigation: Do not collect or store those details; hand control back to the user whenever authentication, CAPTCHA, private account state, or payment information is required.
+
+## Reference(s):
+
+- [Public Browser Workflow for Taobao Shopping](references/browser-workflow.md)
+- [Marketplace Guide](references/marketplace-guide.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shopping summaries, comparison tables, risk notes, and handoff checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Taobao information and user-provided details; does not perform login, cart, checkout, order, or payment actions.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release evidence, clawhub.json, package.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

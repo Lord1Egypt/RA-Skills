@@ -1,0 +1,14 @@
+{
+  "name": "migu-ai-guide-skill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenClaw helper for Migu AI guide guide_chat WebSocket and image upload.",
+  "scripts": {
+    "guide": "node scripts/migu_ai_guide_client.mjs",
+    "check": "node --check scripts/migu_ai_guide_client.mjs"
+  },
+  "dependencies": {
+    "ws": "latest"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/decision-log.schema.json",
+  "schemaVersion": "majia.koubo.decisions.v1",
+  "runId": "run-demo-stable",
+  "decisions": [
+    {"decisionId": "dec-001", "type": "false-start", "risk": "low", "action": "remove-false-start", "spokenExcerpt": "数、数据分析", "resultExcerpt": "数据分析", "reason": "词头卡壳，后面紧接完整词", "evidenceRefs": ["logical:word-range-001"], "status": "applied", "approvalRequired": false, "approvalRef": null},
+    {"decisionId": "dec-002", "type": "whole-sentence", "risk": "high", "action": "keep-pending-review", "spokenExcerpt": "这里是一句完整观点", "resultExcerpt": "保持原句", "reason": "完整句删除会改变内容价值", "evidenceRefs": ["logical:word-range-002"], "status": "proposed", "approvalRequired": true, "approvalRef": null}
+  ]
+}

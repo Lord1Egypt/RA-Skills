@@ -1,40 +1,54 @@
-## Description: <br>
-Livestream sales script expert. Writes lively, engaging, and persuasive livestream sales scripts based on product information, highlighting key value points and sparking purchase desire. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Livestream sales script expert that writes lively, engaging, and persuasive livestream sales scripts from product information, highlighting key value points and sparking purchase desire.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External creators, sellers, and marketing teams use this skill to draft concise livestream product sales scripts, sales pitches, product demos, and closing segments from product details and promotional information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include inaccurate product claims, prices, stock limits, certifications, health or safety claims, or social-proof numbers if the input data is incomplete or unverified. <br>
-Mitigation: Review generated scripts against authoritative product, promotion, inventory, certification, and compliance sources before use. <br>
-Risk: Persuasive sales language may overstate urgency or benefits if not checked against actual offer terms. <br>
-Mitigation: Keep claims truthful, remove unsupported scarcity or guarantee statements, and align the final script with applicable advertising standards. <br>
+## Use Case:
 
+External sellers, livestream hosts, and marketing teams use this skill to turn product details into concise livestream sales scripts with value points, demonstrations, price reveals, closing prompts, and host rhythm markers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/livestream-sales) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown script content with rhythm markers and section headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces script-only content and asks for missing product details when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may generate persuasive sales copy using inaccurate product, price, stock, certification, or promotion details if the user supplies incomplete or incorrect inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide verified product facts and compliance constraints before generation, and review the final script for truthful claims before use.
+
+Risk: Livestream scripts can create urgency or social proof that is inappropriate for some products, markets, or regulated claims.
+
+Mitigation: Ask for target language, jurisdiction, category constraints, and brand or legal review requirements when the sales context may be regulated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/livestream-sales)
+- [openlark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown livestream sales script with timing, delivery, interaction, and call-to-action markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure script content; concise conversational language; sparse emoji; truthful product claims only.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Multi Model Critique routes complex prompts through selected model agents for drafting, cross-critique, revision, and final synthesis with uncertainties and evidence notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs complex prompts through a multi-model deliberation pipeline that drafts, cross-critiques, revises, and synthesizes a final answer with uncertainties and evidence notes.
 
-## Publisher: <br>
-[prairiedoggg](https://clawhub.ai/user/prairiedoggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[prairiedoggg](https://clawhub.ai/user/prairiedoggg)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a task is explicitly complex and benefits from multiple model drafts, peer critique, revision, scoring, and a synthesized final answer. It is suited to high-stakes, ambiguous, or long-form reasoning where the user wants uncertainties and evidence notes surfaced. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Complex prompts may contain sensitive information routed to selected model agents. <br>
-Mitigation: Avoid sending highly sensitive information unless the selected agents are trusted and approved for that data. <br>
-Risk: Multi-agent critique runs can consume more time or budget than a single-model response. <br>
-Mitigation: Set runtime controls such as budgetUsd, timeoutSec, maxRetries, and maxRounds before running costly tasks. <br>
-Risk: Generated prompt files or run-plan artifacts may retain user content after execution. <br>
-Mitigation: Delete generated prompt and run-plan files when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/prairiedoggg/multi-model-critique) <br>
-- [Orchestration Template](references/orchestration-template.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
+## Use Case:
 
+Developers and advanced users use this skill when a request explicitly opts into complex reasoning to coordinate multiple ACP agents through drafting, critique, revision, and synthesis for ambiguous, high-stakes, or long-form tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown final answer or JSON matching references/output-schema.md; helper scripts may generate prompt files and run-plan JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes per-model scoring, uncertainties, optional next steps, and runtime controls for timeouts, retries, rounds, and budget.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and intermediate model outputs may be shared across multiple selected agent sessions.
+
+Mitigation: Avoid highly sensitive prompts unless that sharing is acceptable; prefer explicit complex=true activation, explicit model IDs, and a budget limit.
+
+Risk: Untrusted questions or constraints may contain prompt-injection control phrases.
+
+Mitigation: Use the provided input validation and data-block wrapping behavior before generating prompts or orchestration plans.
+
+Risk: Model failures or strong disagreement can reduce answer quality.
+
+Mitigation: Continue with a single failed model while noting reduced diversity; if multiple models fail, ask whether to retry or switch to single-model mode.
+
+## Reference(s):
+
+- [Multi Model Critique ClawHub page](https://clawhub.ai/prairiedoggg/skills/multi-model-critique)
+- [Orchestration Template](references/orchestration-template.md)
+- [Output Schema](references/output-schema.md)
+- [Prompt Templates](references/prompt-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown final answers or JSON run-plan and result payloads, with optional generated prompt files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes per-model scores, uncertainties, optional next steps, and runtime controls such as timeout, retries, max rounds, and budget.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

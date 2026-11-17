@@ -64,10 +64,13 @@ def search_ontology(keywords):
 
 def fetch_from_network(query):
     """
-    从网络获取数据
-    注意：实际需要配置web_search API
-    这里返回模拟结果和获取建议
+    从网络获取数据 - ⚠️ 已禁用 ⚠️
+    
+    为确保安全，本函数现在只返回本地搜索结果。
+    如需启用网络功能，请配置 web_search API 并经用户确认。
     """
+    # 网络功能已禁用，仅返回本地结果
+    # 如需启用，需要：1) 用户明确授权 2) 配置网络API
     # 先检查本地
     local_results = search_local(query.split())
     onto_results = search_ontology(query.split())

@@ -1,44 +1,58 @@
-## Description: <br>
-File Drop Organizer reviews a downloads or temporary folder and proposes categories, naming suggestions, duplicate risks, and a move plan before any action is taken. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Drop Organizer helps review a downloads or temporary-materials directory, then drafts categories, naming suggestions, duplicate-risk notes, and a move plan before any action is taken.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, developers, and employees can use this skill to audit download or temporary directories and prepare a reviewable organization plan. It is suited for local file triage where the user wants categories, rename suggestions, duplicate-risk notes, and manual confirmation before any move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper reads filenames and limited text content from the folder selected by the user. <br>
-Mitigation: Run it first on Downloads or temporary folders, avoid broad or sensitive directories unless intentional, and review the generated report before acting. <br>
-Risk: Generated move plans or naming suggestions may be incomplete or unsuitable for the user's files. <br>
-Mitigation: Keep the default dry-run posture and require manual confirmation before moving, renaming, or otherwise changing files. <br>
+## Use Case:
 
+External users and developers use this skill to audit local downloads or temporary work folders and produce a reviewable organization plan before moving, renaming, or deleting anything.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/file-drop-organizer) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report by default, with optional JSON wrapping from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs directory overviews, suggested categories, duplicate-risk notes, naming recommendations, move plans, and manual confirmation items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Directory audits may include local directory names and Markdown headings in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the input path before running the skill and avoid including sensitive folders unless the report destination is appropriate.
+
+Risk: A proposed move or naming plan could be wrong when the input directory context is incomplete.
+
+Mitigation: Use the default dry-run review workflow and manually confirm the plan before moving, renaming, or deleting files.
+
+Risk: Using --output can create or overwrite a report file.
+
+Mitigation: Set --output only to a report path that is intended for creation or replacement.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/file-drop-organizer)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown report or JSON from a local dry-run directory audit]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; designed for read-only review workflows and manual confirmation before file changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

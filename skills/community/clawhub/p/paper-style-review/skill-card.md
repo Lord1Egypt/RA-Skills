@@ -1,50 +1,62 @@
-## Description: <br>
-结构化审校中文论文：从参考论文学习风格，统一结构图谱，执行格式/术语/逻辑/风格融合审查，并将结果回写为 Word 批注。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese theses with structure-aware checks, style learning from user-provided reference papers, and Word comment injection.
 
-## Publisher: <br>
-[urnotLhh](https://clawhub.ai/user/urnotLhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urnotlhh](https://clawhub.ai/user/urnotlhh)
 
-## Use Case: <br>
-Developers, researchers, and writing-support teams use this skill to review Chinese thesis drafts with structure-aware format, terminology, logic, and style checks. It learns a style profile from user-provided reference papers and writes review results back as Word comments for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Target manuscripts and reference-paper excerpts may be sent to the configured LLM provider. <br>
-Mitigation: Use an approved provider, explicit skill-specific LLM settings, and a limited API key; only process documents that are permitted for that provider. <br>
-Risk: Ambient OpenAI-compatible environment variables or global provider defaults may route document content to an unintended service. <br>
-Mitigation: Set the PAPER_STYLE_REVIEW_LLM_* configuration explicitly and avoid relying on generic OPENAI_* defaults. <br>
-Risk: The review pipeline can remove prior generated outputs in the selected output directory. <br>
-Mitigation: Use an isolated output directory and keep original manuscripts and reference files outside that directory. <br>
-Risk: Generated Word comments may contain incorrect, incomplete, or misleading review suggestions. <br>
-Mitigation: Treat annotations as review aids and have a human reviewer approve changes before distribution. <br>
+## Use Case:
 
+External users and developers use this skill to review Chinese undergraduate or master's theses, learn a style profile from their own reference papers, and return findings as structured reports and Word comments for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urnotLhh/paper-style-review) <br>
-- [Review configuration example](references/review-config.example.json) <br>
-- [Format rule matrix](references/format-rule-matrix.md) <br>
-- [Format rules](references/format-rules.json) <br>
-- [Style profile extractor](references/style-profile-extractor.md) <br>
-- [Style profile schema](references/style-profile.schema.json) <br>
-- [AI diff report schema](references/ai-diff-report.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Word document annotations] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime outputs include JSON reports, a style profile, structured annotations, and annotated DOCX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided target and reference documents; review generated annotations before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: LLM endpoint configuration can expose credentials when used with sensitive thesis content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review endpoint settings before installation and use explicit per-endpoint API keys instead of relying on global OpenClaw credentials.
+
+Risk: DOCX input and output handling can affect unrelated local files if paths are reused or supplied by an untrusted party.
+
+Mitigation: Use a dedicated empty output directory, avoid untrusted DOCX files, and do not accept review configs from untrusted users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urnotlhh/skills/paper-style-review)
+- [README](README.md)
+- [Review config example](references/review-config.example.json)
+- [Project defaults](references/project-defaults.json)
+- [Style profile schema](references/style-profile.schema.json)
+- [Style profile extractor](references/style-profile-extractor.md)
+- [Format rule matrix](references/format-rule-matrix.md)
+- [Format rules](references/format-rules.json)
+- [Format public addendum](references/format-public-addendum.md)
+- [AI diff report schema](references/ai-diff-report.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [JSON, Markdown, and annotated DOCX files produced by a command-line review pipeline.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces style-profile.json, ref-style-basis.md, target-structure-map.json, target-style-units.json, review reports, annotations.json, final-advice.md, run-summary.json, and <target>-annotated.docx when configured inputs are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

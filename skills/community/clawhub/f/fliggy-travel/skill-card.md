@@ -1,43 +1,58 @@
-## Description: <br>
-飞猪旅行 helps agents search Fliggy and Amap-powered travel information for itineraries, hotels, flights, train tickets, attraction tickets, food, local transport, and Marriott hotel options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多源聚合旅行助手，覆盖行程规划、酒店、机票、火车票、景点门票、品牌酒店、美食推荐和市内交通查询，并整合途牛、TourMind 和高德数据源。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search travel options, compare prices and schedules, build trip plans, and receive booking links for review outside the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel searches are sent to external flyai/Fliggy services and may include itinerary details. <br>
-Mitigation: Avoid entering highly sensitive travel details unless necessary and install only if this data flow is acceptable. <br>
-Risk: Returned booking links lead to external sites where prices, availability, and purchase terms can change. <br>
-Mitigation: Review booking pages directly before purchasing and treat returned prices and availability as informational. <br>
-Risk: The skill depends on an external CLI and remote travel APIs. <br>
-Mitigation: Approve installation deliberately and review results before using them for travel decisions. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to plan trips and retrieve travel options such as hotels, flights, trains, attraction tickets, restaurants, and city transit routes. It returns search results, itinerary guidance, prices, schedules, ratings, addresses, and booking links when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/fliggy-travel) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style travel search results with prices, schedules, images, booking links, and trip guidance when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational; booking and payment are completed on external Fliggy app or web pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release evidence) <br>
+Risk: Travel queries, itinerary details, and addresses may be sent through cloud proxy services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this data handling is acceptable; avoid entering sensitive travel details and require the maintainer to disclose proxy endpoints and PROXY_TOKEN behavior.
+
+Risk: Security evidence reports an explicit scan-evasion comment and a suspicious verdict.
+
+Mitigation: Require maintainer review, remove the scan-evasion comment, and re-scan before routine use.
+
+Risk: The hotel-detail tool is reported as unavailable.
+
+Mitigation: Use hotel search for hotel information until the detail tool is corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/fliggy-travel)
+- [ClawHub publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text travel results with prices, schedules, ratings, addresses, route summaries, and links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-backed results are returned through cloud proxy services; several list-style outputs cap displayed items.]
+
+## Skill Version(s):
+
+1.4.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

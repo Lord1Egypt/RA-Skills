@@ -60,7 +60,7 @@ Two codex review rounds (r4 + r5) drove these fixes — all merged to `main` and
 
 Source trace lives under `~/.gemini/tmp/<project>/chats/` (Gemini CLI's local chat history). It contains the user's API key in plain text on the first message that paste it in. Operators using this skill must:
 
-- **Rotate the Cue API key** at `https://cuecue.cn/api-key` after any cross-agent session that involved pasting the key into chat (Gemini CLI / Codex / OpenClaw all persist chat history to disk by default).
+- **Rotate the Cue API key** at `https://cuecue.cn/hub/api-key` after any cross-agent session that involved pasting the key into chat (Gemini CLI / Codex / OpenClaw all persist chat history to disk by default).
 - Treat `~/.gemini/tmp/` and equivalent dirs as containing secrets — never commit them, never share, never sync to public cloud.
 - Use `export CUE_API_KEY=sk-...` in shell env or write to `~/.cue/config.json` (mode 600) so the key never enters chat content.
 

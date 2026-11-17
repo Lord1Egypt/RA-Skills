@@ -1,38 +1,53 @@
-## Description: <br>
-Detect and redact sensitive information in PDFs, including ID numbers, phone numbers, addresses, and bank cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects sensitive information patterns associated with PDFs, including ID numbers, phone numbers, addresses, and bank cards.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to scan PDFs for Chinese and international PII, choose redaction categories and modes, and produce sanitized PDFs with auditable redaction reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Redaction reports can contain truncated PII snippets and exact document locations. <br>
-Mitigation: Store reports with the same protections as the source PDFs and prefer masked or category-only reporting for highly sensitive workflows. <br>
+## Use Case:
 
+Developers and document-processing teams can use this skill as a PII-detection helper for text extracted from PDF workflows, especially for Chinese ID numbers, phone numbers, bank cards, email addresses, passport numbers, and IP addresses. Review is required before use on real documents because the security evidence says the included script scans text and prints matches rather than completing PDF redaction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/pdf-sanitizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, PDF, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; runtime outputs include redacted PDF files and JSON reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON reports may include truncated PII snippets, categories, page numbers, bounding boxes, and applied redaction modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The release is described as a PDF redaction tool, but the authoritative security summary says the included script only scans text and prints sensitive matches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the artifact as a detection helper until PDF parsing, irreversible redaction, output generation, and documentation are verified.
+
+Risk: Sensitive values may be copied into terminal output, saved JSON, logs, or agent transcripts.
+
+Mitigation: Use only test data or controlled environments unless matches are masked by default and output handling is reviewed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/harrylabsj/skills/pdf-sanitizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included detection script reads text from standard input and emits JSON matches that may contain full sensitive values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

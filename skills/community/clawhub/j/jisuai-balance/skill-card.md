@@ -1,41 +1,49 @@
-## Description: <br>
-Checks a JisuAI account balance and remaining call count by reading the configured API key and calling the JisuAI balance API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries a configured JisuAI account for balance and remaining call count, then returns the requested account status to the user.
 
-## Publisher: <br>
-[outRice](https://clawhub.ai/user/outRice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[outrice](https://clawhub.ai/user/outrice)
 
-## Use Case: <br>
-External users and developers use this skill to query their JisuAI account balance and remaining usage count from an existing OpenClaw configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a JisuAI API key from the local OpenClaw configuration. <br>
-Mitigation: Review the skill before installing and only run it when you are comfortable granting it access to that configured credential. <br>
-Risk: The skill sends the API key to a plain HTTP balance endpoint using a query-string parameter. <br>
-Mitigation: Prefer a version that uses HTTPS and avoids placing secrets in URLs before using it with sensitive or production credentials. <br>
+## Use Case:
 
+OpenClaw users with a configured JisuAI API key use this skill to ask an agent for their account balance, remaining call count, or both. The skill reads the local OpenClaw configuration and queries the JisuAI balance service on the user's behalf.
 
-## Reference(s): <br>
-- [JisuAI provider base URL](https://v2.aicodee.com) <br>
-- [JisuAI balance API endpoint](http://v2api.aicodee.com/chaxun/balance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns balance, remaining call count, or a localized error message depending on the query and API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence says the skill reads a local OpenClaw API key and sends it to the JisuAI balance service over plaintext HTTP in the URL, which can expose the credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that credential exposure is acceptable; rotate any key previously used with this implementation and prefer a version that uses HTTPS and avoids query-string credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/outrice/skills/jisuai-balance)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text response produced by a Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns balance, remaining call count, or an error message depending on the query and service response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

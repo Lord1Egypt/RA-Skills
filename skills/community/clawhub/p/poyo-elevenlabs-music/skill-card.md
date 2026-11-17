@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents prepare and submit PoYo ElevenLabs Music text-to-music jobs, including text briefs, structured composition plans, output formats, callbacks, and task status retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate music on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `elevenlabs-music`, text-to-music, instrumental music, structured composition plans, section timing, audio output formats, async task submission, callbacks, and task status retrieval.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare text briefs or structured composition plans for PoYo ElevenLabs Music, submit trusted server-side generation requests, and guide retrieval of task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts, lyrics, callback URLs, task IDs, generated audio URLs, and API keys may be sensitive when sent to PoYo or retained in logs. <br>
-Mitigation: Keep POYO_API_KEY in a server-side secret store, review payload files before submission, and avoid logging private prompts, callback URLs, task IDs, generated audio URLs, or API keys. <br>
+## Use Case:
 
+External developers and engineers use this skill to prepare PoYo ElevenLabs Music generation payloads, submit trusted server-side requests, and track asynchronous music generation results.
 
-## Reference(s): <br>
-- [PoYo ElevenLabs Music API Reference](artifact/references/api.md) <br>
-- [PoYo ElevenLabs Music docs](https://docs.poyo.ai/api-manual/music-series/elevenlabs-music) <br>
-- [PoYo ElevenLabs Music model page](https://poyo.ai/models/elevenlabs-music) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-elevenlabs-music) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON payloads and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model selection, input path choice, generation payloads, task IDs, and next-step retrieval guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill submits user-prepared music prompts and optional callback URLs to the PoYo API when explicitly requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review payload JSON before submission and avoid sending private prompts, lyrics, callback URLs, task ids, or generated-audio links unless that is acceptable for the workflow.
+
+Risk: The workflow requires a PoYo API key.
+
+Mitigation: Keep POYO_API_KEY server-side in environment variables or a backend secret manager, and never expose it in browser code, logs, screenshots, public repositories, or chat output.
+
+## Reference(s):
+
+- [PoYo ElevenLabs Music API Reference](references/api.md)
+- [PoYo ElevenLabs Music model page](https://poyo.ai/models/elevenlabs-music)
+- [PoYo ElevenLabs Music API docs](https://docs.poyo.ai/api-manual/music-series/elevenlabs-music)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-elevenlabs-music)
+- [coolhackboy publisher profile](https://clawhub.ai/user/coolhackboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and inline bash or curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a PoYo task_id and status retrieval or webhook next steps when a task is submitted.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

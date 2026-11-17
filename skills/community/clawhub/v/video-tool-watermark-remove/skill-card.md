@@ -1,43 +1,58 @@
-## Description: <br>
-Remove watermark overlays from an existing HTTPS video via WeryAI (video-watermark-remove). Use when the user wants watermark cleanup, not subtitles-only or text-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove watermark overlays from an existing HTTPS video via WeryAI (video-watermark-remove). Use when the user wants watermark cleanup, not subtitles-only or text-to-video.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and developers use this skill to remove watermark overlays from an existing public HTTPS video through WeryAI. It supports optional normalized watermark-region boxes and is not intended for local files, subtitle-only erasure, or text-to-video generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the video URL and optional watermark-region coordinates to WeryAI under the user's API key. <br>
-Mitigation: Install and run it only when that disclosure is acceptable; avoid signed, private, internal, or sensitive media URLs. <br>
-Risk: Submit and wait commands can start paid WeryAI jobs. <br>
-Mitigation: Confirm the exact URL and custom regions before running paid commands, and use dry-run first to inspect the request. <br>
-Risk: Watermark removal can be misapplied to media the user is not authorized to modify. <br>
-Mitigation: Use the skill only on videos where the user has the right to process and redistribute the output. <br>
+## Use Case:
 
+Developers and external users use this skill to remove watermark overlays from an existing public HTTPS video with WeryAI, optionally specifying normalized regions or relying on auto-detection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-watermark-remove) <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, a public HTTPS video URL, and optional normalized rectangle coordinates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow sends public HTTPS video URLs to WeryAI and may consume paid API credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the video URL and any custom regions before submit or wait, and avoid private or sensitive video URLs unless third-party processing is acceptable.
+
+Risk: The WeryAI API key could be exposed if written into files or prompts.
+
+Mitigation: Keep WERYAI_API_KEY only in the runtime environment and do not store it in skill files or command examples.
+
+Risk: A copied package may contain sibling scripts outside this skill's intended contract.
+
+Mitigation: Run only scripts/video_watermark_remove.js for this skill and inspect the local package layout before execution.
+
+## Reference(s):
+
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-watermark-remove)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WERYAI_API_KEY, accepts a public HTTPS video URL, and can include optional normalized watermark-region boxes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Prose editing, rewriting, and humanizing text for natural tone across copy, docs, blog posts, emails, and PRs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edits, rewrites, and humanizes prose for a natural tone, and audits drafts for AI writing patterns without rewriting them.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers, technical writers, and reviewers use ia-writing to audit or rewrite prose, PR descriptions, READMEs, docs, emails, and copy so it reads direct, human, and concrete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies strict prose rules and may make strong rewrites that change voice, nuance, or intent. <br>
-Mitigation: Review edited output against the source text and keep domain-specific wording, brand voice, or required terminology when it is intentional. <br>
+## Use Case:
 
+Writers and developers use this skill to draft, edit, proofread, or adjust the tone of copy, documentation, blog posts, emails, and pull requests. They can also request an audit of AI writing patterns without changing the draft.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-writing) <br>
-- [Two-Phase Audit Workflow](references/audit-workflow.md) <br>
-- [Before/After Examples](references/examples.md) <br>
-- [Extended Phrase Reference](references/phrases.md) <br>
-- [PR and MR Description Style](references/pr-descriptions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown with audit findings, corrected prose, and concise change summaries when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use AUDIT, CORRECTED TEXT, and CHANGELOG sections for long-form editing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.5 (source: server release metadata) <br>
+Risk: The security review could not establish the deeper behavior of the bundled evaluation tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the validation and evaluation commands and their scripts before running them, and confirm they fit your environment.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/iliaal/skills/compound-eng-writing)
+- [Audit workflow](artifact/references/audit-workflow.md)
+- [Editing and voice](artifact/references/editing-and-voice.md)
+- [Examples](artifact/references/examples.md)
+- [Language and patterns](artifact/references/language-and-patterns.md)
+- [Machine-parsed text](artifact/references/machine-parsed-text.md)
+- [Phrase catalog](artifact/references/phrases.md)
+- [PR descriptions](artifact/references/pr-descriptions.md)
+- [Publication surfaces](artifact/references/publication-surfaces.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Edited prose or a concise Markdown audit]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves meaning, factual accuracy, and the writer's voice; audit mode reports observed patterns without rewriting.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

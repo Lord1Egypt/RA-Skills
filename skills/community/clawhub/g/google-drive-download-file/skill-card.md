@@ -1,42 +1,54 @@
-## Description: <br>
-Atomic node skill to download a file from Google Drive using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to download a file from Google Drive using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agents use this skill when they need to download a specific Google Drive file to a local path through the authenticated gog CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes Google Drive content to a local path, so an unsafe or unintended output location could overwrite or expose files. <br>
-Mitigation: Use an explicit output path in a safe folder and check whether the file already exists before downloading. <br>
-Risk: Downloaded Google Drive content may be untrusted even when the download command succeeds. <br>
-Mitigation: Inspect or scan downloaded files before opening, executing, or sharing them. <br>
-Risk: The download depends on the local gog CLI and its active Google account authentication. <br>
-Mitigation: Install only when the gog CLI is trusted and authenticated to the intended Google account. <br>
+## Use Case:
 
+Developers and agents use this skill to download a known Google Drive file to a local path through the gog CLI.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zvirb/google-drive-download-file) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell command guidance and a downloaded local file path confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary and an authenticated Google account with access to the requested Drive file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: User-controlled Drive file IDs or destination paths could lead to unsafe command execution or unexpected file writes if passed through a shell or left unvalidated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass gog arguments without a shell, validate the Drive file ID, and restrict output paths to an approved download directory.
+
+Risk: The skill depends on the external gog binary and the workflow that supplies the file ID and path.
+
+Mitigation: Install only in trusted workflows where gog is available and the invoking agent controls or verifies the download inputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zvirb/skills/google-drive-download-file)
+- [Publisher Profile](https://clawhub.ai/user/zvirb)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog binary and a Google Drive file ID plus local output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,61 @@
-## Description: <br>
-Browser Harness lets an agent control the user's already-open, logged-in Chrome session through CDP to run JavaScript, click, scroll, capture screenshots, inspect the DOM, fill forms, upload files, and share browser state across Python and TypeScript clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Harness lets an agent control a user's existing logged-in Chrome browser through CDP to run JavaScript, inspect pages, navigate tabs, click, scroll, take screenshots, fill forms, and upload files while sharing the active browser session.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need an agent to inspect or operate the same authenticated Chrome session the user is already using. It supports browser automation tasks such as page inspection, data extraction, form interaction, screenshot capture, file upload, and reusable site-specific guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a real logged-in Chrome session, exposing authenticated pages and actions to agent control. <br>
-Mitigation: Use it only when that access is intended, prefer a separate Chrome profile, review write and upload commands before execution, and stop the daemon when finished. <br>
-Risk: Sensitive sites such as banking, email, internal systems, admin consoles, and health records can contain high-impact data or irreversible actions. <br>
-Mitigation: Keep the default sensitive-deny policy enabled, use BH_PUBLIC_ONLY=1 for routine public browsing, and require explicit user approval before any sensitive override. <br>
-Risk: Screenshots, DOM reads, and domain-skills notes can capture private data, secrets, or business information. <br>
-Mitigation: Keep sensitive data out of screenshots and domain-skills files, and rely on the documented metadata-only audit logging rather than recording page contents. <br>
-Risk: Raw browser commands and floating dependency versions can bypass policy controls or change reviewed behavior. <br>
-Mitigation: Avoid BH_RAW_OK except for user-approved emergency use, use the normal exec workflow, and keep the pinned browser-harness-ts and browser-harness versions enforced by setup. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they need an AI agent to work in the same browser session as the user, including authenticated web workflows, page inspection, form entry, screenshots, file upload, and reusable site-specific notes. It is suitable only when the user intentionally wants an agent to control a real Chrome session.
 
-## Reference(s): <br>
-- [ClawHub Browser Harness Skill Page](https://clawhub.ai/sipingme/browser-harness-skill) <br>
-- [Browser Harness README](README.md) <br>
-- [Browser Harness API Reference](reference.md) <br>
-- [Browser Harness Setup Guide](setup.md) <br>
-- [browser-harness-ts](https://github.com/sipingme/browser-harness-ts) <br>
-- [browser-use/browser-harness](https://github.com/browser-use/browser-harness) <br>
-- [Browser Use](https://browser-use.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON snippets, local file paths, and task result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local screenshots, metadata-only audit entries, and domain-skills files when the user explicitly runs those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill controls a real logged-in Chrome session and may expose authenticated pages, personal data, or business data to agent actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this capability is intentional, use a dedicated Chrome profile, and keep BH_PUBLIC_ONLY=1 enabled for public browsing tasks.
+
+Risk: Writes, uploads, screenshots, exec-style commands, and raw browser/CDP control can cause sensitive or irreversible actions.
+
+Mitigation: Require explicit user confirmation before writes, uploads, screenshots, or sensitive-site operations, and avoid exec/raw on sensitive sites.
+
+Risk: The security verdict notes broad exec/CDP escape hatches and safety or upgrade guidance that need review before installation.
+
+Mitigation: Review the skill before use and do not follow @latest or curl-pipe-shell setup shortcuts without a package-verification process.
+
+## Reference(s):
+
+- [Browser Harness Skill on ClawHub](https://clawhub.ai/sipingme/skills/browser-harness-skill)
+- [Publisher Profile](https://clawhub.ai/user/sipingme)
+- [browser-harness-ts](https://github.com/sipingme/browser-harness-ts)
+- [browser-use/browser-harness](https://github.com/browser-use/browser-harness)
+- [Browser Use](https://browser-use.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance, JSON command output, shell commands, code snippets, and local files such as screenshots or domain-skill notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local screenshot files and metadata-only audit log entries when browser commands run.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

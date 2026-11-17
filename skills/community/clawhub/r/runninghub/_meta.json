@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7fpdc8whpgwjqqsn6j17fvpd82jgbj",
-  "slug": "runninghub",
+  "name": "runninghub",
   "version": "1.0.0",
-  "publishedAt": 1773464199092
+  "description": "RunningHub - 云端 ComfyUI 平台",
+  "source": "https://www.runninghub.cn",
+  "alternate_source": "https://www.runninghub.ai"
 }

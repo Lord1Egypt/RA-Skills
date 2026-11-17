@@ -1,40 +1,54 @@
-## Description: <br>
-Generate and send a 5-day Tübingen weather graphic (PNG) from open-meteo.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a five-day Tübingen weather forecast PNG from Open-Meteo data and prints a short text summary.
 
-## Publisher: <br>
-[zopyx](https://clawhub.ai/user/zopyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zopyx](https://clawhub.ai/user/zopyx)
 
-## Use Case: <br>
-External users and developers use this skill to generate a local PNG weather graphic and terminal summary for Tübingen forecasts, with optional user-configured scheduling or Telegram delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script fetches public forecast data from Open-Meteo and writes a PNG to local storage. <br>
-Mitigation: Run it only in environments where outbound access to Open-Meteo and local file creation at the selected output path are acceptable. <br>
-Risk: The example cron and Telegram workflow can send automated daily messages if the user installs it. <br>
-Mitigation: Add the schedule only when daily delivery is intended, and remove the cron entry when automated messages are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zopyx/tuebingen-weather-graphics) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=48.5216&longitude=9.0576) <br>
+## Use Case:
 
+Developers and operators can use this skill to generate a visual weather forecast and text summary for Tübingen, including optional scheduling for recurring morning forecast posts.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration] <br>
-**Output Format:** [PNG file plus terminal text summary and optional cron/Telegram configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public Open-Meteo forecast data and saves the generated graphic to a user-selected local path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional automation can create a recurring daily OpenClaw task that sends weather output through Telegram without enough scoping or removal guidance.
+
+Mitigation: Enable the recurring task only when daily Telegram delivery is intended, keep the script and virtual environment in a private durable location, pin dependencies, and verify how to list and remove the cron entry before deployment.
+
+Risk: The generated forecast depends on live Open-Meteo responses and may be affected by network failures or missing precipitation fields.
+
+Mitigation: Review generated summaries and graphics before sharing when accuracy matters, and add deployment-side handling for API failures or empty precipitation data.
+
+## Reference(s):
+
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast?latitude=48.5216&longitude=9.0576)
+- [ClawHub Skill Page](https://clawhub.ai/zopyx/skills/tuebingen-weather-graphics)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/zopyx)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, shell commands, configuration, guidance]
+
+**Output Format:** [PNG file plus terminal text summary and Markdown instructions with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a forecast image to a local output path and can be scheduled through an OpenClaw cron task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

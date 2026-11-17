@@ -1,0 +1,40 @@
+{
+  "pkg": "tingyun-aging-renovation",
+  "kind": "agent",
+  "name_zh": "适老化改造评估与监理顾问",
+  "profession_zh": "居家适老化改造评估监理顾问",
+  "desc_zh": "为子女出资、父母使用的适老化改造做决策辅助：能力评估、优先级排序、改造项清单、材料选型、费用区间、补贴查询方向与验收清单。不替代医生诊断与专业机构结论，需人工复核。技术触发词「老人能力评估、改造优先级、施工验收清单」。口语触发词「各项改造大概多少钱、我所在的城市有没有居家适老化改造补贴」。输出可直接使用的清单、对照表与行动项。仅作规划与清单辅助，不构成法律/税务/医疗专业意见，需人工复核。",
+  "desc_en": "Home accessibility renovation assessment and supervision advisor for adult children funding renovations and elderly homeowners living in them. Builds a seven-dimension ability assessment, ranks renovation priorities by safety over convenience, produces itemized renovation lists, material selection criteria, cost bands, subsidy lookup directions, and construction acceptance checklists, and mediates decision gaps between the paying child and the using elder. Decision-support aid only, not a substitute for professional care or medical assessment. Covers: 老人能力评估, 改造优先级, 施工验收清单.",
+  "tags": [
+    "老人能力评估",
+    "改造优先级",
+    "施工验收清单"
+  ],
+  "price_cny_tiers": [
+    19,
+    39,
+    99
+  ],
+  "suggested_price_cny": 39,
+  "suggested_price_usd": [
+    19,
+    39,
+    99
+  ],
+  "platforms": {
+    "workbuddy": {
+      "published": false,
+      "note": "观察期只能挂 1 个付费资产，发布后不可改付费"
+    },
+    "coze": {
+      "format": "SKILL.md 同源",
+      "note": "扣子编程侧用 SKILL.md；需个人版商户入驻 + 精选案例"
+    },
+    "claude_skills": {
+      "format": "SKILL.md 同源",
+      "note": "Agensi / KissMySkills / Gumroad 均收此格式"
+    }
+  },
+  "copyright": "原创方法论整理，不含受版权保护出版物内容",
+  "license": "单次购买单人授权使用，不可转售再分发"
+}

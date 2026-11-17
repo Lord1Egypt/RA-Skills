@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品价格位置"
+  short_description: "基于商品页快照比较展示价格位置与证据缺口"
+  default_prompt: "使用 $amazon-competitor-price-positioning 根据主 ASIN 与竞品商品页快照分析展示价格位置和证据缺口。"

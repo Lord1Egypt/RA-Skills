@@ -1,42 +1,58 @@
-## Description: <br>
-Helps research teams draft author contribution statements, assign CRediT roles, and prepare advisory authorship credit outputs for manuscript workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates CRediT contributor statements from supplied author, affiliation, contribution role, equal-contribution, and corresponding-author metadata.
 
-## Publisher: <br>
-[googolme](https://clawhub.ai/user/googolme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googolme](https://clawhub.ai/user/googolme)
 
-## Use Case: <br>
-Researchers, research administrators, and publication teams use this skill to draft transparent authorship contribution statements, map contributors to CRediT roles, and review possible authorship credit issues before journal submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorship recommendations may be treated as final decisions despite journal, institutional, or team-specific rules. <br>
-Mitigation: Use outputs as advisory drafts and review them against journal policies, institutional requirements, and documented team agreements. <br>
-Risk: Contributor names, affiliations, and role assignments can be sensitive collaboration data if written to public, shared, or repository paths. <br>
-Mitigation: Store generated files only in appropriate private locations and avoid committing contributor data unless the team has approved that handling. <br>
-Risk: The skill contains broad claims about fairness and dispute resolution that may overstate what the generated output can settle. <br>
-Mitigation: Treat fairness and dispute signals as prompts for human review, not as binding determinations. <br>
+## Use Case:
 
+External researchers and publication support teams can use this skill to generate CRediT contribution statements from structured author metadata. Authorship ordering, dispute resolution, and fairness decisions should remain human-reviewed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googolme/authorship-credit-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, XML, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell examples; generated contributor statements may be text, JSON, XML, or bilingual text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory drafts and should be reviewed against journal rules, institutional policy, and team agreement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill overstates its ability to make fair authorship decisions and resolve disputes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as draft contribution statements and require human review for author order, dispute resolution, and ICMJE-compliance decisions.
+
+Risk: Untrusted author metadata may be embedded in XML output.
+
+Mitigation: Avoid untrusted metadata for XML generation or sanitize author names, affiliations, and role values before using XML output.
+
+Risk: Generated files can be written to caller-provided output paths.
+
+Mitigation: Use explicit, reviewed output paths and avoid running the skill where accidental overwrite of important files is possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googolme/skills/authorship-credit-gen)
+- [ClawHub publisher profile](https://clawhub.ai/user/googolme)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, XML, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated contribution statements can be text, JSON, XML, or bilingual text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated statements to an explicit output file when the command-line output option is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and tile.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Windows desktop automation skills for screenshot capture, OCR text extraction, and image-based UI element location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows desktop automation skills - screenshot capture, OCR text extraction, and image-based UI element location.
 
-## Publisher: <br>
-[civen-cn](https://clawhub.ai/user/civen-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[civen-cn](https://clawhub.ai/user/civen-cn)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to capture Windows screen content, extract text from images, and locate UI elements by image matching for desktop automation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Screenshots and OCR may expose sensitive content visible on the user's desktop. <br>
-Mitigation: Close or hide sensitive windows before capture, prefer region or window captures over full-screen captures, and choose screenshot output paths deliberately. <br>
-Risk: Image-based UI matching may identify the wrong target and lead to unintended desktop actions when paired with clicks or automation. <br>
-Mitigation: Confirm target matches, use confidence thresholds appropriate for the workflow, and review coordinates before any click or state-changing action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tesseract OCR Windows installer documentation](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to capture Windows screen or window images, extract OCR text from screenshots, and locate UI elements by image matching for desktop automation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may save screenshot image files and return OCR text or screen coordinates when used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Screenshot capture and OCR can expose secrets, private documents, or other sensitive on-screen data.
+
+Mitigation: Limit captures to the smallest needed region or window, avoid sensitive screens, store screenshots only in intended locations, and delete captures after use.
+
+Risk: Desktop automation dependencies and OCR tooling expand the local execution surface.
+
+Mitigation: Install dependencies in an isolated environment and use reviewed or pinned package versions.
+
+## Reference(s):
+
+- [Tesseract OCR for Windows](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also produce screenshot image files, OCR text, text bounding boxes, and image-match coordinates when its helper scripts are used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

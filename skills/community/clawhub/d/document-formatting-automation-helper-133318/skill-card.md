@@ -1,42 +1,59 @@
-## Description: <br>
-Helps users plan and produce practical workflows, checklists, scripts, and verification notes for automating document formatting, find-and-replace, styles, and Word-like editing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps knowledge workers automate document formatting, find-and-replace, styles, and Word-like editing tasks with practical workflows, checklists, scripts, and validation notes.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Knowledge workers, office staff, legal and operations teams, students, and documentation maintainers use this skill to reduce repeated manual cleanup in structured documents. It supports document-formatting automation, find-and-replace planning, style cleanup, reusable workflows, and locally feasible scripts or templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad productivity and automation triggers may invoke the skill for requests that are only loosely related to document formatting. <br>
-Mitigation: Confirm the user's intended document-formatting outcome, constraints, and success criteria before producing detailed automation steps. <br>
-Risk: The artifact's demand-score and evidence claims may overstate market need or include noisy source signals. <br>
-Mitigation: Treat demand claims as background context only and rely on the user's current task and the server security guidance when deciding how to apply the skill. <br>
+## Use Case:
 
+Employees, external users, and documentation maintainers use this skill to turn recurring document cleanup needs into practical formatting workflows, find-and-replace plans, reusable checklists, scripts, or validation notes.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/document-formatting-automation-helper-133318) <br>
-- [Microsoft Word find-and-replace discussion](https://superuser.com/questions/1938401/how-to-replace-with-in-microsoft-word) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional code blocks, checklists, workflow steps, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state assumptions and practical checks when user inputs are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad activation metadata may cause the skill to trigger on generic words such as styles or automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for document formatting, find-and-replace, styles, or Word-like editing requests, and narrow triggers before broader deployment.
+
+Risk: Formatting automation guidance may cause incorrect document edits if applied directly to important files.
+
+Mitigation: Test scripts, find-and-replace patterns, and style changes on copies or small samples before applying them to production documents.
+
+Risk: The artifact contains noisy evidence and localization text that may reduce reliability for users.
+
+Mitigation: Review the README, localized skill text, and evidence references before publishing or relying on the skill in a managed catalog.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/document-formatting-automation-helper-133318)
+- [Requirement Plan](references/requirement-plan.md)
+- [Super User: Microsoft Word Find and Replace](https://superuser.com/questions/1938401/how-to-replace-with-in-microsoft-word)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, code snippets, checklists, workflow steps, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only; no direct tool access or credentials requested by the skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

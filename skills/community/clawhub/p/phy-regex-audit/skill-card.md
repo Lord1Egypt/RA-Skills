@@ -1,42 +1,59 @@
-## Description: <br>
-Regex Audit helps agents scan source files for ReDoS risks and regex quality issues, then report severity-ranked findings with locations and suggested fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static ReDoS (Regular Expression Denial of Service) vulnerability scanner and regex quality auditor for codebases.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit application source code for regex denial-of-service patterns, unsafe validators, missing anchors, locale assumptions, and related regex quality issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad scans may include unrelated secrets, private material, or sensitive source context in the generated report. <br>
-Mitigation: Run the skill on explicit files or source directories and avoid directories that contain unrelated secrets or private material. <br>
-Risk: Static regex analysis can produce false positives or miss context-specific behavior. <br>
-Mitigation: Review findings and test suggested regex rewrites before applying them in production code. <br>
+## Use Case:
 
+Developers and security engineers use this skill to audit codebases for risky regular expressions, ReDoS patterns, missing anchors, locale assumptions, and high-risk call sites before shipping or during review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-regex-audit) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [OWASP ReDoS reference](https://owasp.org/www-community/attacks/ReDoS) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with code snippets; optional JSON for CI-oriented output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Severity-ranked regex findings with file, line, context, attack examples, and fix suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact metadata) <br>
+Risk: The skill reads source files in the target project to identify regex patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with an explicit file, directory, language, or --pattern value when a narrow review is sufficient.
+
+Risk: Optional npm/npx helper commands may run unpinned packages.
+
+Mitigation: Pin package versions or run those commands in an isolated environment before relying on their output.
+
+Risk: Static regex analysis can produce findings that need engineering judgment before code changes are applied.
+
+Mitigation: Review each finding, prioritize high-risk call sites, and test proposed rewrites against expected valid and invalid inputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-regex-audit)
+- [Canlah AI Homepage](https://canlah.ai)
+- [OWASP Regular Expression Denial of Service](https://owasp.org/www-community/attacks/ReDoS)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with code snippets, shell command examples, and optional JSON-oriented CI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity-ranked findings, file and line references, dangerous sub-patterns, attack input examples, and suggested rewrites.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release, evidence.parsed.metadata, artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

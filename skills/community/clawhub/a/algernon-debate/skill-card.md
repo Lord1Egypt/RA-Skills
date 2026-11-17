@@ -1,40 +1,61 @@
-## Description: <br>
-Runs a structured technical trade-off debate for OpenAlgernon, pressing the user to defend a position and ending with a balanced synthesis of when each side is appropriate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs a structured trade-off debate mode for OpenAlgernon that challenges a user's position and ends with a balanced technical synthesis.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-Developers, engineers, and technical learners use this skill to practice nuanced design trade-off discussions. It helps structure a debate, challenge assumptions, and produce an interview-style synthesis of the conditions where each approach is strongest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can export debate notes to Notion or append them to local conversation logs without clear approval. <br>
-Mitigation: Remove or edit the Notion and memory sections unless they are explicitly wanted, and require a preview plus user confirmation before anything is appended or logged. <br>
-Risk: The skill reads from a local study database path that may contain private or unexpected material. <br>
-Mitigation: Verify the database path and material scope before use, and only run the database query against data the user intends to use for debate topic selection. <br>
+## Use Case:
 
+Developers and technical learners use this skill to practice design trade-off debates, defend an implementation choice, respond to opposing arguments, and produce an interview-ready synthesis of when each option is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/algernon-debate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown dialogue prompts with bash command examples and a final synthesis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append debate summaries to Notion and local conversation logs when those sections are retained and configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can query a specific local study database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an environment where that database path is expected, validate material slugs before querying, and prefer read-only database access.
+
+Risk: Debate summaries and critiques may be sent to a configured Notion page.
+
+Mitigation: Require explicit user confirmation before export and confirm the destination page is appropriate for the content.
+
+Risk: Session notes may be persisted locally without clear consent.
+
+Mitigation: Tell users when logging is enabled and avoid recording sensitive or unnecessary details.
+
+Risk: User-derived Markdown may be passed through a shell command string.
+
+Mitigation: Avoid shell-string interpolation for user content; pass content through a safer input channel or quote and escape it rigorously.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/algernon-debate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with debate prompts, counter-arguments, synthesis text, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a Notion append command and a conversation-log entry when the configured local workflow is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

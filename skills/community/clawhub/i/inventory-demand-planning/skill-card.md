@@ -1,45 +1,62 @@
-## Description: <br>
-Codified expertise for demand forecasting, safety stock optimisation, replenishment planning, and promotional lift estimation at multi-location retailers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides inventory demand planning guidance for forecasting, safety stock calculation, replenishment planning, promotional lift estimation, ABC/XYZ analysis, seasonal transition management, and vendor negotiation at multi-location retailers.
 
-## Publisher: <br>
-[nocodemf](https://clawhub.ai/user/nocodemf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[nocodemf](https://clawhub.ai/user/nocodemf)
 
-## Use Case: <br>
-Retail demand planners, supply chain teams, and merchandising partners use this skill to forecast demand, set safety stock, plan replenishment, estimate promotional lift, manage seasonal transitions, and prepare vendor or internal planning communications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Inventory guidance can affect working capital, stockouts, markdowns, vendor commitments, and approval-sensitive business decisions. <br>
-Mitigation: Review recommendations against current POS, ERP, WMS, vendor lead-time data, company authority limits, and internal approval processes before acting. <br>
-Risk: Forecasting and safety stock recommendations depend on accurate assumptions, service levels, time units, and demand variability inputs. <br>
-Mitigation: Validate calculations and unit conversions in the company's planning system, especially before purchase orders, safety stock changes, markdowns, or vendor negotiations. <br>
+## Use Case:
 
+Retail demand planners, supply chain teams, and inventory operators use this skill to choose forecasting methods, calculate safety stock, plan replenishment, estimate promotional impact, and prepare vendor or merchandising recommendations across multi-location assortments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nocodemf/inventory-demand-planning) <br>
-- [Decision Frameworks](references/decision-frameworks.md) <br>
-- [Communication Templates](references/communication-templates.md) <br>
-- [Edge Cases Reference](references/edge-cases.md) <br>
-- [Evaluation Results](evals/results/eval_results.md) <br>
-- [Evaluation Rubric](evals/rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown prose with formulas, tables, and planning recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calculations, decision frameworks, communication drafts, and documented assumptions for inventory planning decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Inventory recommendations could affect purchase orders, stock records, markdowns, liquidation decisions, vendor communications, or public statements if applied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as decision support and require explicit human approval before any live business or system-of-record action.
+
+Risk: The evaluation runner imports a shared framework path from the surrounding repository.
+
+Mitigation: Run artifact/evals/run_evals.py only when the surrounding repository and imported shared framework are trusted.
+
+Risk: Safety stock was the weakest evaluated category despite overall passing results.
+
+Mitigation: Review safety stock calculations and assumptions carefully, especially for intermittent demand, lead time variability, and high-service-level scenarios.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nocodemf/skills/inventory-demand-planning)
+- [Decision Frameworks - Inventory Demand Planning](artifact/references/decision-frameworks.md)
+- [Inventory Demand Planning - Edge Cases Reference](artifact/references/edge-cases.md)
+- [Communication Templates - Inventory Demand Planning](artifact/references/communication-templates.md)
+- [Inventory Demand Planning - LLM Grading Rubric](artifact/evals/rubric.md)
+- [Evaluation Results](artifact/evals/results/eval_results.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with calculations, decision tables, and communication templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-support content; human approval is required before live inventory, purchase order, markdown, liquidation, vendor communication, or system-of-record changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

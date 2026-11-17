@@ -1,44 +1,59 @@
-## Description: <br>
-Adapts HKUDS OpenSpace into an OpenClaw-callable skill for MiniMax-M2.7 chat, writing, text analysis, and code generation with proxy, timeout, and retry configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OpenClaw-callable MiniMax-M2.7/OpenSpace LLM wrapper for chat, long-form writing, text analysis, and code generation.
 
-## Publisher: <br>
-[linhuiguo](https://clawhub.ai/user/linhuiguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linhuiguo](https://clawhub.ai/user/linhuiguo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to call a MiniMax-backed OpenSpace LLM workflow from the command line or Python for conversation, long-form writing, text analysis, and code generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README publishes a full-looking MiniMax API key. <br>
-Mitigation: Treat the published key as exposed and unsafe, do not use it, and configure a fresh MiniMax credential through a secure environment variable or secret manager. <br>
-Risk: Prompts and generated work are sent to an external LLM service. <br>
-Mitigation: Avoid sending secrets, private files, regulated data, or proprietary text unless the external provider, account, and retention settings are approved for that data. <br>
-Risk: Runtime behavior depends on the openspace dependency and local proxy configuration. <br>
-Mitigation: Verify the openspace package source and version, review proxy settings, and test the connection in a controlled environment before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to call MiniMax-M2.7 through OpenSpace for conversational responses, article drafting, text analysis, and code generation from a command line or Python workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linhuiguo/openspace-llm-xiaowei) <br>
-- [HKUDS OpenSpace project](https://github.com/HKUDS/OpenSpace) <br>
-- [MiniMax API endpoint](https://api.minimax.chat/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Command-line or Python string output, including generated prose, analysis, and code blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on the configured MiniMax/OpenSpace model, API key, proxy, timeout, and retry settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Published documentation contains a real-looking API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the documented key as compromised, rotate or revoke it, remove it from published material, and use a user-provided secret stored outside documentation.
+
+Risk: The skill installs an unpinned executable dependency.
+
+Mitigation: Install a trusted, pinned version of openspace in an isolated environment before deploying the skill.
+
+Risk: Prompts and files sent through the skill may be processed by external MiniMax/OpenSpace services.
+
+Mitigation: Do not send confidential or regulated data unless that processing path is approved for the intended use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linhuiguo/skills/openspace-llm-xiaowei)
+- [HKUDS OpenSpace project](https://github.com/HKUDS/OpenSpace)
+- [MiniMax API base](https://api.minimax.chat/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown-formatted CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the configured MiniMax/OpenSpace model, API key, network proxy, timeout, and retry settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

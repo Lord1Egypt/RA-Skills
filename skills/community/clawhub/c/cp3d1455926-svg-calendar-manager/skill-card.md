@@ -1,44 +1,56 @@
-## Description: <br>
-Calendar Manager helps an agent add, view, complete, delete, and summarize calendar events, reminders, holidays, memorable dates, and countdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calendar Manager helps users manage schedules, reminders, holidays, anniversaries, countdowns, and time statistics through Chinese-language calendar interactions.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-People using a Chinese-language personal productivity agent use this skill to manage daily schedules, reminders, holidays, anniversaries, countdowns, and lightweight time statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local calendar records may contain personal schedule details. <br>
-Mitigation: Avoid storing secrets in event titles, locations, or notes, and keep local calendar files access-controlled. <br>
-Risk: Calendar deletions are persistent and important schedule data could be lost. <br>
-Mitigation: Keep backups for important calendar data before relying on the skill for ongoing schedule management. <br>
-Risk: Natural-language time parsing is limited and may not capture all intended dates or times. <br>
-Mitigation: Review event times after creation, especially for ambiguous requests or important reminders. <br>
+## Use Case:
 
+External users and developers can use this skill to add, view, complete, and delete calendar events, query holidays, manage anniversaries, and generate countdown or schedule-summary responses in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/cp3d1455926-svg-calendar-manager) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill description](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown-like conversational text with local JSON event records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores schedule and memorable-day data in local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Calendar entries are stored locally and may include sensitive schedule details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing highly sensitive details in shared workspaces and restrict access to the local calendar data files.
+
+Risk: Deletion commands can permanently remove stored events when a matching event ID is provided.
+
+Mitigation: Review delete or cancel requests before execution and keep a backup for important schedule data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/cp3d1455926-svg-calendar-manager)
+- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Chinese-language text and Markdown responses, with local JSON event records when schedule data is stored]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores calendar data locally in JSON files; no network output is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

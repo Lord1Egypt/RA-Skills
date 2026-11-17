@@ -1,40 +1,53 @@
-## Description: <br>
-MiniMax Word guides agents in generating professional .docx documents with the .NET OpenXML SDK while preserving headers, footers, tables of contents, tracked changes, complex tables, and styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Word guides agents to generate polished .docx documents with .NET OpenXML SDK while preserving headers, footers, tables of contents, tracked changes, complex table styles, and delivery-ready formatting.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, document authors, and business users use this skill to guide an agent in producing deliverable Word documents for reports, contracts, academic papers, project proposals, and news releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact is instruction-only and does not bundle the .NET OpenXML SDK or document-generation code. <br>
-Mitigation: Confirm the agent environment has the required Word/OpenXML tooling before relying on the skill for production documents. <br>
-Risk: Complex document formatting may vary by generator implementation or document viewer. <br>
-Mitigation: Open and validate generated .docx files in Microsoft Word or WPS before formal submission. <br>
+## Use Case:
 
+Developers and document-producing agents use this skill to create professional Word documents such as reports, contracts, academic papers, project proposals, and news releases with preserved Word formatting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smseow001/minimax-word-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with optional code snippets and .docx file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document output quality depends on the agent environment and available .NET OpenXML tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The target environment may not have an appropriate .NET OpenXML workflow available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the .NET OpenXML tooling is available before relying on the skill for deliverable document generation.
+
+Risk: Generated Word files may lose formatting fidelity or fail to open cleanly in target office software.
+
+Mitigation: Validate generated .docx files in Microsoft Word or WPS before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/minimax-word-docx)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, files]
+
+**Output Format:** [Markdown guidance with OpenXML-oriented implementation details and generated .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents should preserve complex Word formatting and remain compatible with Microsoft Word 2007+.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

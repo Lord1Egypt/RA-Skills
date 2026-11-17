@@ -1,42 +1,56 @@
-## Description: <br>
-Generate, edit, blend, upscale, and describe images with Midjourney via AceDataCloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate and edit Midjourney images and videos through Ace Data Cloud, then retrieve the results of submitted tasks.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and creators use this skill to guide an agent through Midjourney image workflows via AceDataCloud, including text-to-image generation, image edits, blending, upscaling, variations, reverse prompting, and image-to-video generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and related metadata are sent to AceDataCloud or Midjourney-related services. <br>
-Mitigation: Use a dedicated API token where possible and avoid sending secrets, confidential images, internal URLs, regulated personal data, or other sensitive content. <br>
-Risk: The optional mcp-midjourney package or hosted MCP endpoint can expand the agent's interaction surface. <br>
-Mitigation: Verify the package or hosted endpoint before enabling it and review the exact tools exposed to the agent. <br>
+## Use Case:
 
+Creators and developers use this skill to request image or video generation and edits, describe images, and check the status of submitted tasks without repeating generation requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Germey/acedatacloud-midjourney-image) <br>
-- [AceDataCloud Midjourney Imagine API endpoint](https://api.acedata.cloud/midjourney/imagine) <br>
-- [AceDataCloud hosted Midjourney MCP endpoint](https://midjourney.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce prompts, HTTP request examples, task polling guidance, and MCP setup instructions; generated images, descriptions, and videos are returned by the third-party service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A service API key grants access to external API actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the publisher is @acedatacloud, use a separate key when possible, and restrict allowed API routes to required actions.
+
+Risk: Prompts or uploaded images are processed externally and generation actions may incur charges.
+
+Mitigation: Review the data before submission, check pricing and balance, and poll the original task ID rather than repeating a billable generation request.
+
+## Reference(s):
+
+- [Midjourney imagine API documentation](https://platform.acedata.cloud/documents/midjourney-imagine)
+- [Midjourney task API documentation](https://platform.acedata.cloud/documents/midjourney-tasks)
+- [Ace Data Cloud token setup and troubleshooting](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [Midjourney MCP server documentation](https://github.com/AceDataCloud/MidjourneyMCP)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with API request examples and task-result guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation returns a task ID; a successful task may provide an image URL or raw image URL.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

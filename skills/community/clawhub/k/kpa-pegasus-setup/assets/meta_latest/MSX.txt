@@ -1,0 +1,125 @@
+collection: MSX
+sort-by: 10
+shortname: msx
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/bluemsx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 伊师塔回归
+file: 伊师塔回归.rom
+assets.box_front: Imgs/伊师塔回归.png
+description: 《伊师塔回归》，MSX 平台。
+game: 勇者斗恶龙一代
+file: 勇者斗恶龙一代.rom
+assets.box_front: Imgs/勇者斗恶龙一代.png
+description: 《勇者斗恶龙一代》，MSX 平台。
+game: 勇者斗恶龙二代
+file: 勇者斗恶龙二代.rom
+assets.box_front: Imgs/勇者斗恶龙二代.png
+description: 《勇者斗恶龙二代》，MSX 平台。
+game: 南海道杀人事件
+file: 南海道杀人事件.rom
+assets.box_front: Imgs/南海道杀人事件.png
+description: 《南海道杀人事件》，MSX 平台。
+game: 合金装备一代
+file: 合金装备一代.rom
+assets.box_front: Imgs/合金装备一代.png
+description: 《合金装备一代》，MSX 平台。
+game: 合金装备二代-索利德斯耐克
+file: 合金装备二代-索利德斯耐克.rom
+assets.box_front: Imgs/合金装备二代-索利德斯耐克.png
+description: 《合金装备二代-索利德斯耐克》，MSX 平台。
+game: 圣饥魔二代-恶魔之逆袭
+file: 圣饥魔二代-恶魔之逆袭.rom
+assets.box_front: Imgs/圣饥魔二代-恶魔之逆袭.png
+description: 《圣饥魔二代-恶魔之逆袭》，MSX 平台。
+game: 奇奇怪界
+file: 奇奇怪界.rom
+assets.box_front: Imgs/奇奇怪界.png
+description: 《奇奇怪界》，MSX 平台。
+game: 射击方块
+file: 射击方块.rom
+assets.box_front: Imgs/射击方块.png
+description: 《射击方块》，MSX 平台。
+game: 山村美纱侦探-京都龙之寺杀人事件
+file: 山村美纱侦探-京都龙之寺杀人事件.rom
+assets.box_front: Imgs/山村美纱侦探-京都龙之寺杀人事件.png
+description: 《山村美纱侦探-京都龙之寺杀人事件》，MSX 平台。
+game: 幽灵君
+file: 幽灵君.rom
+assets.box_front: Imgs/幽灵君.png
+description: 《幽灵君》，MSX 平台。
+game: 忍者君-阿修罗之章
+file: 忍者君-阿修罗之章.rom
+assets.box_front: Imgs/忍者君-阿修罗之章.png
+description: 《忍者君-阿修罗之章》，MSX 平台。
+game: 恶魔城
+file: 恶魔城.rom
+assets.box_front: Imgs/恶魔城.png
+description: 《恶魔城》，MSX 平台。
+game: 户外飚车
+file: 户外飚车.rom
+assets.box_front: Imgs/户外飚车.png
+description: 《户外飚车》，MSX 平台。
+game: 未来
+file: 未来.rom
+assets.box_front: Imgs/未来.png
+description: 《未来》，MSX 平台。
+game: 柏青哥传说
+file: 柏青哥传说.rom
+assets.box_front: Imgs/柏青哥传说.png
+description: 《柏青哥传说》，MSX 平台。
+game: 森林物语
+file: 森林物语.rom
+assets.box_front: Imgs/森林物语.png
+description: 《森林物语》，MSX 平台。
+game: 灰色几内亚1
+file: 灰色几内亚1.rom
+assets.box_front: Imgs/灰色几内亚1.png
+description: 《灰色几内亚1》，MSX 平台。
+game: 灰色几内亚2-虚空之牙城
+file: 灰色几内亚2-虚空之牙城.rom
+assets.box_front: Imgs/灰色几内亚2-虚空之牙城.png
+description: 《灰色几内亚2-虚空之牙城》，MSX 平台。
+game: 燃烧!热斗野球'88
+file: 燃烧!热斗野球'88.rom
+assets.box_front: Imgs/燃烧!热斗野球'88.png
+description: 《燃烧!热斗野球'88》，MSX 平台。
+game: 牙龙王
+file: 牙龙王.rom
+assets.box_front: Imgs/牙龙王.png
+description: 《牙龙王》，MSX 平台。
+game: 硬派棒球
+file: 硬派棒球.rom
+assets.box_front: Imgs/硬派棒球.png
+description: 《硬派棒球》，MSX 平台。
+game: 胜利九人棒球二代-高校野球编
+file: 胜利九人棒球二代-高校野球编.rom
+assets.box_front: Imgs/胜利九人棒球二代-高校野球编.png
+description: 《胜利九人棒球二代-高校野球编》，MSX 平台。
+game: 胡闹野次来了-隐密道中
+file: 胡闹野次来了-隐密道中.rom
+assets.box_front: Imgs/胡闹野次来了-隐密道中.png
+description: 《胡闹野次来了-隐密道中》，MSX 平台。
+game: 超级赛跑
+file: 超级赛跑.rom
+assets.box_front: Imgs/超级赛跑.png
+description: 《超级赛跑》，MSX 平台。
+game: 轰炸东京
+file: 轰炸东京.rom
+assets.box_front: Imgs/轰炸东京.png
+description: 《轰炸东京》，MSX 平台。
+game: 迷宫
+file: 迷宫.rom
+assets.box_front: Imgs/迷宫.png
+description: 《迷宫》，MSX 平台。
+game: 闷闷怪物
+file: 闷闷怪物.rom
+assets.box_front: Imgs/闷闷怪物.png
+description: 《闷闷怪物》，MSX 平台。
+game: 音乐合成器
+file: 音乐合成器.rom
+assets.box_front: Imgs/音乐合成器.png
+description: 《音乐合成器》，MSX 平台。
+game: 魂斗罗
+file: 魂斗罗.rom
+assets.box_front: Imgs/魂斗罗.png
+description: 《魂斗罗》，MSX 平台。

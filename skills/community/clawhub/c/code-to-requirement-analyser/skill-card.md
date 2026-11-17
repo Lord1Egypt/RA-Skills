@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes Vue, React, and Angular front-end code to infer trading-domain business requirements, extract business rules, and produce reusable knowledge artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Vue, React, and Angular front-end trading code to derive business requirements and build a reusable trading knowledge graph.
 
-## Publisher: <br>
-[joshphe](https://clawhub.ai/user/joshphe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshphe](https://clawhub.ai/user/joshphe)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect trading-oriented front-end codebases, reverse-engineer functional requirements, compare implementation with requirements, and generate JSON or Markdown analysis artifacts for review and knowledge management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local caching and optional knowledge-base storage can persist code-derived analysis. <br>
-Mitigation: Install only for repositories where local persistence is acceptable, review configured storage paths, and use --no-cache for sensitive one-off analysis. <br>
-Risk: Optional LLM-backed analysis may send code-derived data outside the local environment if enabled in the future. <br>
-Mitigation: Do not enable LLM_API_KEY or related optional dependencies until the data flow and provider terms have been reviewed. <br>
-Risk: The optional setup script can modify skill files. <br>
-Mitigation: Review setup scripts before running them and execute them only when those file changes are intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect existing trading-domain front-end code, extract UI structure, APIs, business rules, and produce reverse-engineered requirements for review, refactoring, or knowledge management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joshphe/code-to-requirement-analyser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown reports, JSON analysis results, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local cache entries and optional knowledge-base files under configured local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata); artifact frontmatter reports 2.1.0 <br>
+Risk: Local cache and knowledge graph files may retain source-derived analysis data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on code you are comfortable storing locally, set cache and knowledge paths deliberately, and clear or disable cache for sensitive analysis.
+
+Risk: The bundled repair script can overwrite React and Angular parser implementations.
+
+Mitigation: Do not run fix_setup.sh unless the skill directory is backed up and overwriting those parser files is acceptable.
+
+Risk: Unpinned dependencies can change behavior over time.
+
+Mitigation: Install in a virtual environment and pin dependencies before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joshphe/skills/code-to-requirement-analyser)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON analysis results, optional Markdown reports, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write parser cache entries, knowledge graph JSON files, and user-selected report or output files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

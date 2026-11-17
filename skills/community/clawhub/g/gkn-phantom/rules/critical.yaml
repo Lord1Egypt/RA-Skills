@@ -1,0 +1,233 @@
+# GKN-Phantom v3.0 — CRITICAL Tier Detection Rules
+# ==================================================
+# All rules at the CRITICAL tier: RCE, authentication bypass, privilege
+# escalation, data exposure, and HTTP request smuggling.
+#
+# Total: 5 rules
+
+- id: "rce-secondary-confirmation"
+  type: "rce"
+  severity: "critical"
+  tier: "critical"
+  risk_level: "L4"
+  target_param_hints:
+    - "<confirmed command_injection/ssti/deserialization surfaces>"
+  probe_description: >-
+    Second independent time-based/arithmetic probe to confirm code-exec
+    context (NO data exfil)
+  detection_signal: "Second independent probe succeeds; no data exfiltrated"
+  safe_poc: false
+  requires_credentials: false
+  requires_human_approval: true
+  blocked_in_safe_mode: true
+  remediation: >-
+    This is a CRITICAL finding. Immediately isolate the affected
+    system. RCE vulnerabilities allow an attacker to execute arbitrary
+    commands on the server. The root cause is one of: command injection,
+    SSTI, or insecure deserialization. Follow the specific remediation
+    for the underlying vulnerability type. Additionally: (1) Run the
+    application process under a restricted OS user with minimal
+    privileges (no root/Administrator, no sudo); (2) Deploy the
+    application in a container or sandbox with limited system call
+    access (seccomp/AppArmor); (3) Apply OS-level hardening: SELinux
+    enforcing mode, read-only filesystem where possible; (4) Enable
+    detailed application-level logging to detect exploitation attempts;
+    (5) Conduct a thorough incident response investigation — assume the
+    server may have been compromised and check for backdoors, abnormal
+    processes, and unauthorized network connections.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/78.html"
+    - "https://cwe.mitre.org/data/definitions/94.html"
+    - "https://cwe.mitre.org/data/definitions/502.html"
+  tags:
+    - "rce"
+    - "critical"
+    - "code-execution"
+    - "l4"
+    - "command-injection"
+    - "ssti"
+    - "deserialization"
+
+- id: "auth-bypass-jwt-default-creds"
+  type: "auth_bypass"
+  severity: "critical"
+  tier: "critical"
+  risk_level: "L3"
+  target_param_hints:
+    - "login"
+    - "auth"
+    - "token"
+    - "reset"
+  probe_description: >-
+    Default-cred (bounded, approved) / JWT alg:none+kid traversal /
+    reset-token predictability
+  detection_signal: >-
+    Unauthenticated or wrong-identity request accepted as
+    authenticated/different identity
+  safe_poc: false
+  requires_credentials: false
+  requires_human_approval: true
+  blocked_in_safe_mode: false
+  remediation: >-
+    This finding indicates the authentication mechanism can be
+    completely bypassed. Immediate actions: (1) If the bypass is via
+    default credentials, force password rotation for all users and
+    disable unused default accounts; implement the remediation for weak
+    credentials. (2) If the bypass is via JWT manipulation (alg:none,
+    kid injection), implement the JWT remediation immediately and
+    invalidate all existing tokens. (3) If the bypass is via predictable
+    reset tokens, switch to cryptographically secure random tokens
+    (at least 128 bits from a CSPRNG) and enforce short expiry (15 min)
+    and single-use. (4) Enable multi-factor authentication for all
+    accounts. (5) Audit all login events in the past 30 days for signs
+    of exploitation.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/287.html"
+    - "https://cwe.mitre.org/data/definitions/798.html"
+    - "https://cwe.mitre.org/data/definitions/640.html"
+  tags:
+    - "auth-bypass"
+    - "authentication"
+    - "critical"
+    - "jwt"
+    - "default-credentials"
+    - "reset-token"
+
+- id: "priv-esc-role-manipulation"
+  type: "priv_esc"
+  severity: "critical"
+  tier: "critical"
+  risk_level: "L3"
+  target_param_hints:
+    - "role"
+    - "admin"
+    - "isAdmin"
+    - "user_type"
+  probe_description: >-
+    As low-priv user call admin endpoints; flip role claim in JWT/cookie
+    (alg:none if key unknown)
+  detection_signal: "Low-priv user gets 200 on admin endpoint OR role flip accepted"
+  safe_poc: false
+  requires_credentials: true
+  requires_human_approval: true
+  blocked_in_safe_mode: false
+  remediation: >-
+    Implement server-side role verification on every privileged endpoint.
+    Never trust client-supplied role claims — the user's role must be
+    fetched from a trusted server-side source (database, directory
+    service) on each request. Ensure the authorization check happens
+    after authentication but before any business logic executes. Use a
+    well-tested authorization framework (Spring Security's method
+    security, Django's permission_required, CASL for Node.js). Audit all
+    admin endpoints to ensure they have authorization checks — automated
+    testing should verify that every endpoint returns 403 for
+    unprivileged users. Immediately rotate all session tokens and JWT
+    secrets. Log all privilege-related events with alerting on
+    unauthorized access attempts.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/269.html"
+    - "https://cwe.mitre.org/data/definitions/639.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+  tags:
+    - "privilege-escalation"
+    - "vertical-escalation"
+    - "authorization"
+    - "role-manipulation"
+    - "critical"
+
+- id: "data-exposure-pii-leak"
+  type: "data_exposure"
+  severity: "critical"
+  tier: "critical"
+  risk_level: "L2"
+  target_param_hints:
+    - "<any validated finding exposing response body>"
+  probe_description: >-
+    Regex-count PII in confirmed-finding responses: >=10 emails OR
+    phone/SSN/card OR password/secret/api_key fields
+  detection_signal: >-
+    PII count thresholds exceeded — UPGRADES an existing finding to
+    critical
+  safe_poc: false
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Massive data exposure is an incident requiring immediate response.
+    (1) Take the affected endpoint offline or restrict access until the
+    data leak is fixed. (2) Identify the root cause: is it excessive data
+    returned by an API (no pagination, no field filtering), IDOR
+    allowing enumeration, or a misconfigured endpoint that dumps entire
+    tables? (3) Implement data minimization: APIs should only return
+    the fields necessary for the client, never entire database rows.
+    Use DTOs/projections to limit exposed fields. (4) Add pagination with
+    reasonable page sizes and authorization scoping on all list
+    endpoints. (5) Classify your data and apply the appropriate
+    protection level: PII, credentials, and secrets should NEVER be
+    returned in bulk. (6) Initiate a data breach assessment per your
+    organization's incident response plan and applicable regulations
+    (GDPR, CCPA, PCI-DSS).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/200.html"
+    - "https://cwe.mitre.org/data/definitions/359.html"
+    - "https://owasp.org/www-project-api-security/"
+  tags:
+    - "data-exposure"
+    - "pii"
+    - "information-disclosure"
+    - "critical"
+    - "privacy"
+    - "data-leak"
+
+- id: "http-request-smuggling"
+  type: "http_smuggling"
+  severity: "critical"
+  tier: "critical"
+  risk_level: "L4"
+  target_param_hints:
+    - "<all endpoints behind proxy/CDN>"
+  probe_description: >-
+    Test HTTP request smuggling: (1) CL.TE: Content-Length +
+    Transfer-Encoding mismatch; (2) TE.CL: Transfer-Encoding first,
+    Content-Length second; (3) TE.TE: obfuscated Transfer-Encoding
+    (\r\n, 0x0d, chunked0); (4) detect via time differential: send slow
+    POST + smuggled request
+  detection_signal: >-
+    Time differential observed (smuggled request processed) OR response
+    queue poisoning (different user's response received) OR 400/500 from
+    smuggled request
+  safe_poc: false
+  requires_credentials: false
+  requires_human_approval: true
+  blocked_in_safe_mode: true
+  remediation: >-
+    HTTP request smuggling is a protocol-level attack that exploits
+    discrepancies between front-end (proxy/CDN/load balancer) and
+    back-end HTTP parsing. Remediation: (1) Ensure the front-end and
+    back-end use the same HTTP parsing libraries or enforce consistent
+    parsing behavior. (2) Disable Transfer-Encoding: chunked support
+    on either the front-end or back-end if not required. (3) Use HTTP/2
+    end-to-end — HTTP/2 eliminates request smuggling vectors. (4) If
+    HTTP/1.1 downgrade is necessary, ensure the downgrade process is
+    well-defined and consistent. (5) Apply vendor patches: HAProxy,
+    Nginx, AWS ALB, Cloudflare have all released fixes for known
+    smuggling variants. (6) Monitor for smuggling indicators: unusual
+    response patterns, 400 spikes, queue desync. (7) Conduct a full
+    audit of the HTTP pipeline including all intermediate proxies.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/444.html"
+    - "https://portswigger.net/web-security/request-smuggling"
+    - "https://cwe.mitre.org/data/definitions/436.html"
+  tags:
+    - "http-smuggling"
+    - "request-smuggling"
+    - "protocol-attack"
+    - "l4"
+    - "cl-te"
+    - "te-cl"
+    - "critical"

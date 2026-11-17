@@ -1,43 +1,63 @@
-## Description: <br>
-Uses Wikmd to manage a personal local Markdown wiki that an agent can consult, update, and optionally serve over local HTTP for manual review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Wikmd to manage a local personal wiki for useful information, including manual browsing, review, and ongoing updates from conversations and research.
 
-## Publisher: <br>
-[errant](https://clawhub.ai/user/errant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[errant](https://clawhub.ai/user/errant)
 
-## Use Case: <br>
-External users and agents use this skill to keep a local personal wiki of projects, research, decisions, resources, and other reusable context. It supports reading existing Markdown pages, creating or updating wiki pages, and recording useful findings with git history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages proactive reads and writes in a local personal wiki, which could capture incorrect, sensitive, or unwanted information. <br>
-Mitigation: Use a dedicated PERSONAL_WIKI_ROOT folder, review proposed edits before committing, and avoid storing secrets or sensitive third-party information. <br>
-Risk: Serving the wiki on 0.0.0.0 can expose wiki content to the local network. <br>
-Mitigation: Keep the Wikmd host bound to 127.0.0.1 unless network access is intentional and appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a Wikmd-backed personal knowledge base. It helps agents create, read, search, update, and version Markdown wiki pages for projects, research, decisions, resources, and recurring context.
 
-## Reference(s): <br>
-- [Wikmd project](https://github.com/Linbreux/wikmd) <br>
-- [Wikmd documentation](https://linbreux.github.io/wikmd/) <br>
-- [Wikmd Markdown Reference](references/wikmd-formatting.md) <br>
-- [ClawHub skill page](https://clawhub.ai/errant/personal-memory-wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local Markdown files under PERSONAL_WIKI_ROOT/wiki when the user accepts those changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can persist broad conversation and research context into a local wiki.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated PERSONAL_WIKI_ROOT, keep secrets and unrelated private files out of that tree, and require confirmation before writes.
+
+Risk: The wiki can be served over HTTP and may expose local notes if bound to a network interface.
+
+Mitigation: Keep the Wikmd host bound to 127.0.0.1 unless network access is intentional and reviewed.
+
+Risk: Version-control commits may include unintended files or sensitive notes.
+
+Mitigation: Inspect staged Git files before committing and commit only intended Markdown wiki content.
+
+Risk: Installing an unpinned Wikmd package can introduce dependency drift.
+
+Mitigation: Use pipx or a pinned Wikmd version before enabling the skill.
+
+## Reference(s):
+
+- [Wikmd GitHub Repository](https://github.com/Linbreux/wikmd)
+- [Wikmd Documentation](https://linbreux.github.io/wikmd/)
+- [Wikmd Markdown Reference](references/wikmd-formatting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with shell command and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PERSONAL_WIKI_ROOT and writes within the configured local wiki tree.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

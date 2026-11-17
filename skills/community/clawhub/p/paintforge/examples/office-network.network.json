@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "diagram_type": "network",
+  "meta": {
+    "title": "Office Network Topology",
+    "output": "examples/network-office-rendered.html",
+    "subtitle": "Force-directed layout; geometric quality not yet verified",
+    "views": [
+      { "id": "edge", "label": "Edge", "focus": ["fw", "edge-switch", "wan"], "note": "The perimeter and uplink." },
+      { "id": "core", "label": "Core", "focus": ["core-switch", "edge-switch", "app-server", "db"], "note": "The internal core and servers." }
+    ]
+  },
+  "nodes": [
+    { "id": "fw", "label": "Firewall", "kind": "firewall" },
+    { "id": "edge-switch", "label": "Edge Switch", "kind": "switch" },
+    { "id": "core-switch", "label": "Core Switch", "kind": "switch" },
+    { "id": "app-server", "label": "App Server", "kind": "server" },
+    { "id": "db", "label": "Database", "kind": "database" },
+    { "id": "wan", "label": "WAN Uplink", "kind": "router" },
+    { "id": "wifi", "label": "WiFi AP", "kind": "router" },
+    { "id": "laptop", "label": "Laptops", "kind": "client" }
+  ],
+  "links": [
+    { "id": "l1", "from": "wan", "to": "fw", "variant": "emphasis" },
+    { "id": "l2", "from": "fw", "to": "edge-switch", "variant": "security" },
+    { "id": "l3", "from": "edge-switch", "to": "core-switch" },
+    { "id": "l4", "from": "core-switch", "to": "app-server" },
+    { "id": "l5", "from": "core-switch", "to": "db" },
+    { "id": "l6", "from": "edge-switch", "to": "wifi" },
+    { "id": "l7", "from": "wifi", "to": "laptop" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Layered perimeter",
+      "items": [
+        "Traffic enters through the WAN uplink and firewall",
+        "The edge switch fans out to the core and WiFi",
+        "Servers and the database sit behind the core switch"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Layout note",
+      "items": [
+        "This is a force-directed layout",
+        "Geometric quality is not yet verified for network topology",
+        "Use it for relationship clarity, not pixel-perfect routing"
+      ]
+    }
+  ]
+}

@@ -1,40 +1,57 @@
-## Description: <br>
-整合多智能体协作与科研工具生态，帮助研究者快速了解数据获取、论文复现、审稿回复和报告生成工作流。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language research workflow guide that maps AI tools for data access, paper reproduction, review-response drafting, multi-agent research, and research platform selection.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Researchers, students, and academic teams use this guide to map AI-assisted research workflows, compare tool options, and decide which supporting skills or platforms to review for literature work, paper reproduction, peer review responses, presentations, and multi-agent research assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide recommends installing or using separate downstream tools that may have their own security, licensing, or reproducibility risks. <br>
-Mitigation: Review each downstream skill or tool before use, prefer pinned versions when reproducibility matters, and scan tools separately before running install or configuration commands. <br>
-Risk: AI-generated research outputs, citations, statistical conclusions, and review responses can be inaccurate or require disclosure. <br>
-Mitigation: Keep human review over research claims, citations, statistical conclusions, and required academic AI-use disclosures. <br>
+## Use Case:
 
+Researchers, students, and research-support agents use this skill to choose AI-assisted workflows for finding data, reproducing papers, drafting review responses, creating presentations, and coordinating multi-agent research tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smseow001/ai-research-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with tables, workflow examples, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides research-tool recommendations and workflow guidance; does not execute code itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The guide includes unpinned remote installer commands that can change over time and install additional skills with unspecified provenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source, resolved versions, permissions, and provenance before running installer commands; prefer trusted or pinned packages when available.
+
+Risk: Research connectors and external tools may receive confidential manuscripts, restricted datasets, reviewer materials, or personal data.
+
+Mitigation: Use approved environments, minimize or anonymize sensitive inputs, and confirm data-sharing permissions before using external connectors.
+
+Risk: AI-generated research summaries, analysis plans, or conclusions may be incorrect or misleading.
+
+Mitigation: Keep human review over research questions, methods, conclusions, and disclosure obligations, and cross-check important claims against authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/ai-research-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with tables and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content; references external research tools and installer commands that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

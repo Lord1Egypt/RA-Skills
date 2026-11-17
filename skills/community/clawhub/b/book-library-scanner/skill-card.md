@@ -1,41 +1,57 @@
-## Description: <br>
-扫描本地电子书库，自动提取元数据、分类整理、联网搜索书籍简介，生成Obsidian笔记的完整工作流。支持EPUB/MOBI/AZW3/PDF格式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+扫描本地电子书库，自动提取元数据、分类整理、联网搜索书籍简介，生成Obsidian笔记的完整工作流。支持EPUB/MOBI/AZW3/PDF格式。
 
-## Publisher: <br>
-[fatblue](https://clawhub.ai/user/fatblue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fatblue](https://clawhub.ai/user/fatblue)
 
-## Use Case: <br>
-External users and developers use this skill to scan a local ebook collection, organize extracted metadata, optionally enrich missing introductions through online search, and generate Obsidian-ready Markdown notes and index files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local ebook directories and writes persistent index and note files. <br>
-Mitigation: Use a narrow source folder, choose a private output location, and review generated JSON and Markdown before importing them into a personal knowledge base. <br>
-Risk: Optional online enrichment may send book titles or metadata to an external search service. <br>
-Mitigation: Review the search helper before enabling online enrichment, adjust the delay and batch size for rate limits, and avoid processing sensitive library metadata with online search. <br>
+## Use Case:
 
+External users and developers use this skill to scan local ebook folders, extract book metadata, enrich entries with book introductions, and generate Obsidian-ready Markdown notes and index files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fatblue/book-library-scanner) <br>
-- [Dublin Core Metadata Element Set](http://purl.org/dc/elements/1.1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated artifacts include JSON indexes and Obsidian Markdown notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected ebook directory and writes persistent JSON/Markdown files to the chosen output directory; optional online enrichment may send book titles or metadata to an external search service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The search step can invoke a caller-supplied PowerShell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the search script before use and run it only when it is known and trusted.
+
+Risk: A crafted index can make note generation write outside the intended output folder.
+
+Mitigation: Use a dedicated empty output directory and avoid untrusted index files until path containment is fixed.
+
+Risk: The generated JSON index records book titles and full local file paths.
+
+Mitigation: Treat the index as sensitive and avoid sharing it outside trusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fatblue/skills/book-library-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated workflow artifacts include JSON indexes and Markdown notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local library indexes, categorized note folders, an Obsidian index page, and progress output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

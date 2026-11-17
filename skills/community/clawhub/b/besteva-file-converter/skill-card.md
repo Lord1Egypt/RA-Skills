@@ -1,41 +1,58 @@
-## Description: <br>
-This skill provides file format conversion capabilities for PDF to Word, Word to PDF, image format conversion, and Excel/CSV conversion, with support for single-file and batch workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents convert documents, images, and spreadsheets between PDF, Word, common image formats, Excel, and CSV, including single-file and batch workflows.
 
-## Publisher: <br>
-[besteva77](https://clawhub.ai/user/besteva77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[besteva77](https://clawhub.ai/user/besteva77)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to convert documents, images, and spreadsheets between common formats, including batch conversions when many files need the same treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-named source files and writes converted copies to disk. <br>
-Mitigation: Specify exact input files, output formats, destination folders, and overwrite behavior before running conversions. <br>
-Risk: Batch conversions can process many files and may place sensitive outputs together with unrelated files. <br>
-Mitigation: Use a separate output folder for sensitive or batch conversions and review the reported file paths after completion. <br>
+## Use Case:
 
+Developers, engineers, and external users use this skill when they need an agent to prepare or run document, image, and spreadsheet file conversions while checking dependencies, output locations, and conversion results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/besteva77/besteva-file-converter) <br>
-- [Publisher Profile](https://clawhub.ai/user/besteva77) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and converted local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create one converted file or multiple converted files during batch operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Broad batch conversions can write many files or write into unexpected locations if pointed at important directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated output folder, avoid batch runs over important directories, and review generated paths before opening or sharing results.
+
+Risk: CSV files from untrusted sources may contain formulas that execute when opened in spreadsheet software.
+
+Mitigation: Treat untrusted CSV and Excel outputs as active content and inspect or sanitize formula-like cells before opening them in a spreadsheet application.
+
+Risk: PDF conversion and manipulation behavior may be hard to audit for complex or malformed files.
+
+Mitigation: Run conversions in an isolated virtual environment and review output quality and contents before relying on converted files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/besteva77/skills/besteva-file-converter)
+- [Publisher profile](https://clawhub.ai/user/besteva77)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands and file path summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create converted files in user-selected output paths or batch output directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

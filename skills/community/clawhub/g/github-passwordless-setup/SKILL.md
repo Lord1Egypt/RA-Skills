@@ -123,7 +123,7 @@ Visit: https://github.com/settings/tokens/new
 
 Click **Generate token** and **copy it immediately** (shown only once!).
 
-Format: `ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+Format: `REDACTED-SECRET`
 
 #### Step 2: Install GitHub CLI
 

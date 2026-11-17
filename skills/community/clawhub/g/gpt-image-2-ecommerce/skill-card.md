@@ -1,40 +1,49 @@
-## Description: <br>
-Provides prompt engineering guidance and examples for creating e-commerce product image prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides prompt engineering guidance for creating professional e-commerce product image prompts with GPTImage2.
 
-## Publisher: <br>
-[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del)
 
-## Use Case: <br>
-E-commerce merchants, brand designers, and digital marketers use this skill to draft product image prompts for marketplace listings, social campaigns, banners, packaging mockups, and image edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes model feature and performance claims that may be inaccurate or change over time. <br>
-Mitigation: Verify GPTImage2 capabilities, limits, and pricing against current authoritative model documentation before production use. <br>
-Risk: Generated product imagery and label text can misrepresent real product appearance or claims. <br>
-Mitigation: Review prompts and outputs for brand accuracy, marketplace compliance, and truthful product representation before publication. <br>
+## Use Case:
 
+External users, e-commerce merchants, brand designers, and digital marketers use this skill to draft structured prompts for product listings, lifestyle shots, banners, apparel presentations, packaging mockups, and image-editing requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhongkedy-del/gpt-image-2-ecommerce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with prompt templates and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static prompt-writing guide; does not request credentials, code execution, or persistent behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Model capability claims in the prompt-writing guide may be inaccurate or outdated for commercial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guide's model capability claims and generated image results before relying on them commercially.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhongkedy-del/skills/gpt-image-2-ecommerce)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt guidance with example prompts and reusable prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tools, MCP servers, or credential requirements are described by the artifact.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

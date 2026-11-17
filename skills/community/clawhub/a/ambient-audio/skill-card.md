@@ -1,43 +1,57 @@
-## Description: <br>
-Play ambient sounds for focus, relaxation, meditation, and sleep, including white noise, pink noise, brown noise, rain, singing bowl, binaural beats, and brain-wave tones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plays algorithmically generated ambient sounds such as white, pink, and brown noise, rain, brain-wave tones, singing bowl, and binaural beats for focus, relaxation, meditation, or sleep.
 
-## Publisher: <br>
-[leyao1017](https://clawhub.ai/user/leyao1017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leyao1017](https://clawhub.ai/user/leyao1017)
 
-## Use Case: <br>
-Developers, office workers, students, and other users can use this skill to play local ambient audio for concentration, relaxation, meditation, or sleep. It is intended for machines with ffmpeg/ffplay installed and audible output available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill plays audible local audio and may be disruptive in shared or production environments. <br>
-Mitigation: Install and run it only on machines where audio playback is expected and acceptable. <br>
-Risk: The expected sample audio files may be missing from the artifact or local installation. <br>
-Mitigation: Verify that the samples directory exists and contains the required audio files, or generate the missing samples before use. <br>
-Risk: The stop behavior can force-kill matching ffplay processes rather than only its own tracked player. <br>
-Mitigation: Use explicit playback and stop commands, and avoid running unrelated ffplay processes with matching command patterns during use. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent to start, stop, or list ambient audio modes for focus, relaxation, meditation, and sleep on a Linux machine with audio output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leyao1017/ambient-audio) <br>
-- [Publisher Profile](https://clawhub.ai/user/leyao1017) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Audio playback] <br>
-**Output Format:** [Markdown guidance with shell commands and local audio playback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local ffplay playback with selectable sound modes, duration, and volume.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Duration and volume arguments are not bounded by the script before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate duration and volume as bounded numeric values before playback.
+
+Risk: The script stores PID state in a shared temporary path and uses broad process matching to stop playback.
+
+Mitigation: Use a private runtime directory for PID state and stop only the exact child process started by the skill.
+
+Risk: The skill can play sound immediately and its setup guidance may require installing ffmpeg with sudo.
+
+Mitigation: Confirm ffmpeg installation is acceptable for the environment and start playback at low volume.
+
+## Reference(s):
+
+- [Ambient Audio on ClawHub](https://clawhub.ai/leyao1017/skills/ambient-audio)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start local audio playback through ffplay and uses mode, duration, volume, stop, and list arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,64 @@
-## Description: <br>
-Kb Mini stores, searches, recalls, and optionally captures personal or shared knowledge for OpenClaw agents using local SQLite-backed command-line and hook workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kb Mini stores, searches, and automatically manages a personal or shared SQLite knowledge base for OpenClaw agents through command-line tools and before/after hooks.
 
-## Publisher: <br>
-[ThomasLiu](https://clawhub.ai/user/ThomasLiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomasliu](https://clawhub.ai/user/thomasliu)
 
-## Use Case: <br>
-Developers and agent users use this skill to persist useful notes, configuration details, decisions, and reusable context, then retrieve that knowledge manually or inject related entries before future agent turns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic after-turn capture can persist full conversation text, including sensitive or secret-like content, in private or shared databases. <br>
-Mitigation: Use private KB mode for sensitive work, avoid automatic capture unless conversation storage is acceptable, and do not store credentials or secrets. <br>
-Risk: Shared knowledge-base mode can expose retained conversation context to multiple agents without explicit access-control, redaction, retention, or deletion guarantees in the evidence. <br>
-Mitigation: Use shared mode only when the sharing boundary is intentional and retention, deletion, and access practices are reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to persist useful conversation context, retrieve prior notes, and share a lightweight knowledge base across agents. It is suited to workflows that need local recall and capture while accepting the privacy and review obligations of persistent memory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ThomasLiu/kb-mini) <br>
-- [API interface specification](references/api-spec.md) <br>
-- [Database schema](references/db-schema.md) <br>
-- [Retrieval pipeline](references/retrieval-pipeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create and query persistent SQLite knowledge-base records through manual commands and OpenClaw before/after hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill may automatically save full conversation turns into a persistent local knowledge database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only with explicit capture expectations, prefer a private KB path, and provide review and deletion controls for retained entries.
+
+Risk: Stored conversations can retain secrets or sensitive personal and business information.
+
+Mitigation: Avoid sharing secrets while the skill is enabled and require secret redaction before using it for sensitive work.
+
+Risk: The security evidence reports serious injection flaws in database access.
+
+Mitigation: Require parameterized database access and review the storage and retrieval scripts before installation or deployment.
+
+Risk: Automatic summarization and recall can surface stale, excessive, or inappropriate context to an agent.
+
+Mitigation: Use safe summarization limits, prefer scoped recall, and review captured entries before relying on them in high-impact workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thomasliu/skills/kb-mini)
+- [API Interface Specification](artifact/references/api-spec.md)
+- [Database Schema](artifact/references/db-schema.md)
+- [Retrieval Pipeline](artifact/references/retrieval-pipeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or text command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists knowledge-base entries in a local or shared SQLite database and may inject concise recall context before agent work.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact SKILL.md says v1.2.0 and artifact/_meta.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Uses the Z-Image lightweight text-to-image API to generate images from prompts, sizes, or aspect ratios, while avoiding image editing, OCR, and video generation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zimage helps agents generate images through the Z-Image text-to-image API by validating prompts, mapping aspect ratios to supported sizes, controlling request count, and returning structured result summaries.
 
-## Publisher: <br>
-[runninghcm](https://clawhub.ai/user/runninghcm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runninghcm](https://clawhub.ai/user/runninghcm)
 
-## Use Case: <br>
-External users and developers use this skill to generate text-to-image requests through the Z-Image API, including poster, cover, illustration, product, and Chinese or English text-in-image prompts. It normalizes requested aspect ratios into supported sizes, validates required parameters, and controls the exact number of API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and API usage are sent to the Z-Image provider. <br>
-Mitigation: Avoid confidential prompts and install only when the provider is trusted for the intended use case. <br>
-Risk: The helper scripts can store the API key in plaintext at ~/.config/z-image/.env. <br>
-Mitigation: Prefer a session-scoped X_API_KEY or a dedicated revocable key, and remove or rotate the key when it is no longer needed. <br>
-Risk: Repeated generation requests can consume API quota or expose more prompt data than intended. <br>
-Mitigation: Confirm the requested count before execution and run only the number of API calls requested by the user. <br>
+## Use Case:
 
+External users and developers use this skill to generate posters, cover images, illustrations, product images, and other text-to-image outputs with explicit prompt, size or aspect-ratio, and count controls. It is not intended for image editing, OCR, video generation, or audio workflows.
 
-## Reference(s): <br>
-- [z-image API Guide](references/api-guide.md) <br>
-- [Z-Image API endpoint](https://agent.mathmind.cn/minimalist/api/tywx/zImage) <br>
-- [ClawHub skill page](https://clawhub.ai/runninghcm/zimage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with shell commands and structured API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce one or more Z-Image API calls according to the requested count; uses prompt and size parameters and requires an x-api-key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The helper scripts can store an API key locally and later load the local environment file as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an environment variable or managed secret store; only use a local ~/.config/z-image/.env file that you created and inspected, and keep it permission-restricted.
+
+Risk: Prompts are sent to an external API and may expose sensitive or confidential content.
+
+Mitigation: Do not include sensitive, confidential, regulated, or proprietary data in image-generation prompts.
+
+## Reference(s):
+
+- [z-image API Guide](references/api-guide.md)
+- [Z-Image API endpoint](https://agent.mathmind.cn/minimalist/api/tywx/zImage)
+- [ClawHub skill page](https://clawhub.ai/runninghcm/skills/zimage)
+- [ClawHub publisher profile](https://clawhub.ai/user/runninghcm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown or plain text summaries with shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external image-generation API using prompt, size, and count; requires an x-api-key.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

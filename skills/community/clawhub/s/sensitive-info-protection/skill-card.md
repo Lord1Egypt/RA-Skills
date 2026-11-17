@@ -1,42 +1,60 @@
-## Description: <br>
-Sensitive Info Protection detects sensitive data in user interactions, supports custom detection rules, and helps users review or desensitize credentials, personal information, and business secrets before sharing them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sensitive information real-time protection skill that automatically detects, alerts, and handles sensitive data in user interactions.
 
-## Publisher: <br>
-[LeeFJ0606](https://clawhub.ai/user/LeeFJ0606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leefj0606](https://clawhub.ai/user/leefj0606)
 
-## Use Case: <br>
-Developers and operators use this skill to scan conversation or file content for credentials, personal data, and business secrets, then review or desensitize findings before sending or storing the content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Detection reports may show raw secrets or personal data in the agent transcript. <br>
-Mitigation: Prefer desensitized output for sharing or logging, and review detection reports before copying them into downstream systems. <br>
-Risk: The bundled browser helper can monitor chat content and submit chat messages after button clicks. <br>
-Mitigation: Review the helper before installation and avoid enabling it in sensitive workflows unless that UI automation is acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to scan conversation text, files, or custom inputs for credentials, personal information, and business-sensitive patterns before sharing or submitting content.
 
-## Reference(s): <br>
-- [API Documentation](references/api.md) <br>
-- [Configuration Guide](references/configuration.md) <br>
-- [ClawHub skill page](https://clawhub.ai/LeeFJ0606/sensitive-info-protection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown detection reports, desensitized text, Python examples, CLI commands, and JSON rule configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Detection reports may include raw matched values unless desensitization output is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The browser interaction helper watches chat DOM content, injects controls, and can submit messages through broad UI selectors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or omit the browser helper unless that automation is explicitly needed and accepted by the deploying user.
+
+Risk: Detected values can appear verbatim in markdown output, CLI output, logs, chat history, or page globals.
+
+Mitigation: Use desensitization output for real sensitive data and avoid scanning live secrets in shared or persistent environments.
+
+Risk: Custom rule files control regex patterns loaded by the detector.
+
+Mitigation: Load only trusted custom rule files and review patterns before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leefj0606/skills/sensitive-info-protection)
+- [Publisher Profile](https://clawhub.ai/user/leefj0606)
+- [Configuration Guide](references/configuration.md)
+- [API Documentation](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown detection reports, CLI text output, Python API objects, and JSON rule configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Detection reports may include matched sensitive values unless desensitization is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Audits ClawHub skill folders before publishing by checking frontmatter, runtime metadata, secret handling, file limits, and publish-readiness issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits a ClawHub skill folder before publishing, checking metadata alignment, missing required fields, potential secret exposure, file limits, license and pricing conflicts, trigger quality, and stale guidance.
 
-## Publisher: <br>
-[solidstate](https://clawhub.ai/user/solidstate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solidstate](https://clawhub.ai/user/solidstate)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to audit a ClawHub skill folder before publishing. It produces a concise readiness report with blockers, warnings, and concrete fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit guidance may discuss sensitive local skill contents, including possible secret references. <br>
-Mitigation: Run it only on skill folders intended for review and inspect the generated report before applying suggested fixes. <br>
-Risk: The skill is a publish-readiness audit, not a full install-safety or malware vetter. <br>
-Mitigation: Use a separate vetting process before installing third-party skills. <br>
+## Use Case:
 
+Developers and skill publishers use this skill before a ClawHub publish or release to audit a skill folder for blockers and warnings that could hide or reject the release.
 
-## Reference(s): <br>
-- [Publish Audit skill page](https://clawhub.ai/solidstate/publish-audit) <br>
-- [Solid State homepage](https://solidstate.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit report with pass, warning, blocker, verdict, and publish command sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local skill folders and returns review guidance; it does not make network calls or use credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can be misused as an install-safety review for third-party skills, which its own instructions and security guidance say is outside scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for local pre-publish checks, and use a dedicated install-vetting workflow before installing third-party skills.
+
+Risk: The report template includes Solid State branding, which may affect how users perceive audit neutrality.
+
+Mitigation: Review generated reports before sharing them and treat branding as publisher attribution rather than independent certification.
+
+## Reference(s):
+
+- [Publish Audit on ClawHub](https://clawhub.ai/solidstate/skills/publish-audit)
+- [Solid State homepage](https://solidstate.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style audit report with pass, warn, and blocker lines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a READY or FIX FIRST verdict, plus a publish command when the audit is clean.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Write winning proposals and quotes for a solopreneur business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proposal Writing helps solopreneurs create persuasive client proposals and quotes with guidance on discovery, structure, scoping, pricing presentation, objection handling, design, delivery, and follow-up.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and service providers use this skill to draft client proposals, quotes, pricing options, scope boundaries, objection handling, and follow-up steps for prospective work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Proposal drafting can involve confidential client, pricing, or legal details. <br>
-Mitigation: Avoid sharing sensitive client, pricing, or legal information unless it is appropriate for the agent workspace; review generated proposals before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JK-0001/proposal-writing-2) <br>
+## Use Case:
 
+Solopreneurs and freelance service providers use this skill to plan, write, price, and polish client proposals that communicate scope, value, next steps, and likely objections clearly.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured prose for proposal drafts, checklists, pricing sections, and client-facing next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposal section outlines, bullet lists, tables, and short client email copy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated proposal language may include inaccurate claims, unsuitable pricing, or unintended contractual commitments.
+
+Mitigation: Review all proposal content, prices, scope boundaries, timelines, and acceptance terms before sending to a client.
+
+Risk: Proposal drafting may involve client-sensitive information.
+
+Mitigation: Avoid including unnecessary confidential client details and verify that any shared proposal follows the user's privacy and data-handling obligations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jk-0001/skills/proposal-writing-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and proposal-ready text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential use, persistence, or hidden system-level behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

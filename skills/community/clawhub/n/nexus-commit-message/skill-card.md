@@ -1,47 +1,55 @@
-## Description: <br>
-Generate conventional commit messages from diffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate conventional commit messages from diffs.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and agents use this skill to send repository diffs to the NEXUS service and receive conventional commit message text. It is suited for commit workflow assistance when the user accepts the remote processing and payment requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository diffs and payment proof data can be transmitted to a paid third-party API. <br>
-Mitigation: Use sandbox mode first, redact secrets and proprietary content, and install only when the user trusts NEXUS to process the submitted data. <br>
-Risk: Automatic invocation and payment boundaries are not clearly scoped. <br>
-Mitigation: Require manual approval before any network call, wallet action, payment proof submission, or reusable payment mandate. <br>
+## Use Case:
 
+Developers use this skill to turn diffs or change summaries into conventional commit messages before committing changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/nexus-commit-message) <br>
-- [NEXUS Platform](https://ai-service-hub-15.emergent.host) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [JSON service response with a generated commit message string, plus Markdown usage guidance and curl examples in the artifact documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or supported x402, MPP, AP2, or legacy payment credentials before paid service calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill sends provided diffs or change summaries and a payment proof to the NEXUS hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, proprietary code, or sensitive internal changes unless the provider's processing and retention practices are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-commit-message)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text commit message returned in a JSON result field]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One generated conventional commit message per request]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

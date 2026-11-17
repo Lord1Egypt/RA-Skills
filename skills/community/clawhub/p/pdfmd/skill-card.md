@@ -1,43 +1,52 @@
-## Description: <br>
-Convert Markdown files to PDF using Pandoc and LaTeX with options for syntax highlighting, table of contents, and custom CSS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to PDF using Pandoc and LaTeX with options for syntax highlighting, table of contents, and custom CSS.
 
-## Publisher: <br>
-[yangmanqi2104201431-ship-it](https://clawhub.ai/user/yangmanqi2104201431-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmanqi2104201431-ship-it](https://clawhub.ai/user/yangmanqi2104201431-ship-it)
 
-## Use Case: <br>
-Developers and technical writers use this skill to convert local Markdown documents into PDF files with Pandoc and a LaTeX engine, including optional table of contents, syntax highlighting, CSS, and CJK font settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document conversion can inherit risks from malformed Markdown, CSS, or LaTeX inputs, especially from unknown sources. <br>
-Mitigation: Convert unknown documents in a sandboxed or low-risk environment. <br>
-Risk: The skill depends on local Pandoc and LaTeX tooling. <br>
-Mitigation: Install Pandoc and LaTeX only from trusted sources. <br>
+## Use Case:
 
+Developers and other agent users use this skill to convert trusted Markdown documents into PDFs, including documents that need a table of contents, syntax highlighting, custom CSS, or CJK font support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangmanqi2104201431-ship-it/pdfmd) <br>
-- [Pandoc installing documentation](https://pandoc.org/installing.html) <br>
-- [MiKTeX downloads](https://miktex.org/download) <br>
-- [LaTeX project](https://www.latex-project.org/get/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated PDF file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a local PDF file and dependency installation guidance when Pandoc or LaTeX is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Untrusted Markdown processed through Pandoc and LaTeX may expose local files in generated PDFs when hostile raw TeX is present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Convert only trusted Markdown, or run conversion in a sandbox with access limited to the required input and output directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangmanqi2104201431-ship-it/skills/pdfmd)
+- [Pandoc installation documentation](https://pandoc.org/installing.html)
+- [MiKTeX download](https://miktex.org/download)
+- [LaTeX project](https://www.latex-project.org/get/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and a generated PDF file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Pandoc and a LaTeX engine such as XeLaTeX, LuaLaTeX, or PDFLaTeX.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

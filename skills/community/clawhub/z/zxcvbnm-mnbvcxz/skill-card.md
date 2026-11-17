@@ -1,45 +1,60 @@
-## Description: <br>
-Executes AIVideoMaker API workflows for text-to-video and image-to-video generation, including task creation, status polling, task details retrieval, and cancellation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes AIVideoMaker API workflows for text-to-video and image-to-video generation, including task creation, status polling, task details retrieval, and cancellation.
 
-## Publisher: <br>
-[rainlin10](https://clawhub.ai/user/rainlin10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rainlin10](https://clawhub.ai/user/rainlin10)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to create, poll, inspect, and cancel AIVideoMaker video generation tasks from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, image payloads, task IDs, and an AIVideoMaker API key to the AIVideoMaker service. <br>
-Mitigation: Install only when the publisher is trusted, provide the API key through environment variables, and review submitted prompts, images, and task IDs before execution. <br>
-Risk: Generation and cancellation actions may consume credits or affect an existing video task. <br>
-Mitigation: Confirm model, duration, payload, and task ID values before running createGeneration or cancelTask commands. <br>
-Risk: Polling can encounter upstream rate limits. <br>
-Mitigation: Use the built-in retry and backoff settings, honor Retry-After responses, and keep task query requests within documented service limits. <br>
+## Use Case:
 
+Developers and automation agents use this skill to submit AIVideoMaker text-to-video or image-to-video jobs, poll generation status, retrieve task details, and cancel submitted tasks through a Node.js workflow.
 
-## Reference(s): <br>
-- [AIVideoMaker API Reference](references/api-reference.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [AIVideoMaker](https://aivideomaker.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rainlin10/zxcvbnm-mnbvcxz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON runtime output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime commands return normalized JSON with fields such as ok, status, taskId, data, errorCode, errorMessage, retryAfter, and suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact files report 1.0.12) <br>
+Risk: The skill sends prompts, image inputs, and generated task requests to AIVideoMaker using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive, private, or proprietary prompts or images unless upstream processing and retention are acceptable.
+
+Risk: AIVideoMaker usage may consume account credits, especially for longer videos and higher-cost models.
+
+Mitigation: Review model and duration settings before submission, monitor credit usage, and prefer lower-cost models when appropriate.
+
+Risk: The workflow depends on a secret API key and external network calls.
+
+Mitigation: Store AIVIDEO_API_KEY in environment or secret storage, rotate it regularly, and do not hardcode it in skill archives or configuration files.
+
+## Reference(s):
+
+- [AIVideoMaker API Reference](references/api-reference.md)
+- [Usage Examples](references/examples.md)
+- [AIVideoMaker](https://aivideomaker.ai)
+- [ClawHub Skill Page](https://clawhub.ai/rainlin10/skills/zxcvbnm-mnbvcxz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime results are normalized with ok, status, taskId, data, errorCode, errorMessage, retryAfter, httpStatus, and timestamp fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package files report 1.0.12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Batch extract structured data from up to 500 invoices/receipts. Flat $9.00 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch extract structured data from up to 500 invoices/receipts. Flat $9.00 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-External developers and operations teams use this skill to call a paid API that extracts structured invoice and receipt fields from batches of image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice or receipt image URLs, fetched document contents, and extracted financial fields are sent to a third-party service. <br>
-Mitigation: Use only documents you are authorized to process, and avoid regulated, confidential, customer, or payment-sensitive documents unless the service's retention and logging practices are acceptable. <br>
-Risk: The skill describes a paid x402 request with a flat $9.00 USDC charge on Base mainnet. <br>
-Mitigation: Confirm wallet policy, payment header generation, network, and expected cost before allowing an agent to call the endpoint. <br>
+## Use Case:
 
+External developers and finance operations teams use this skill to call a paid x402 API that batch extracts structured invoice and receipt fields from image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-x402-invoice-extract-batch) <br>
-- [Ntriq X402 homepage](https://x402.ntriq.co.kr) <br>
-- [Invoice extract batch API](https://x402.ntriq.co.kr/invoice-extract-batch) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown guidance with HTTP request, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The API returns JSON results with invoice status, counts, and extracted fields; image URL batches are limited to 500 per call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Invoice or receipt image URLs and extracted contents are sent to the provider's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents your organization permits sending to this provider, and review privacy, retention, and compliance terms before using regulated or confidential data.
+
+Risk: The skill requires a flat $9.00 USDC payment through x402 on Base mainnet.
+
+Mitigation: Confirm payment authorization, network, and fee expectations before sending batch requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-invoice-extract-batch)
+- [ntriq homepage](https://x402.ntriq.co.kr)
+- [Invoice extraction endpoint](https://x402.ntriq.co.kr/invoice-extract-batch)
+- [x402 protocol](https://x402.org)
+- [Service discovery endpoint](https://x402.ntriq.co.kr/services)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns structured extraction results for invoice or receipt image URLs, including vendor, dates, amounts, currency, and line items when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

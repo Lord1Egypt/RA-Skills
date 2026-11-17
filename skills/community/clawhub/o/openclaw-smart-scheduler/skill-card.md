@@ -1,40 +1,58 @@
-## Description: <br>
-Smart Scheduler classifies user requests as simple or complex, routes simple tasks quickly, and decomposes complex tasks through resource lookup and debate-style verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Scheduler classifies user requests by complexity and routes simple tasks directly while decomposing complex tasks for resource selection, execution, aggregation, and debate-style verification.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route user tasks between fast direct handling and deeper multi-step processing with local resources, installed skills, ClawHub-style skill lookup, and optional verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says the skill under-discloses local service data sharing and persistent input logging. <br>
-Mitigation: Review localhost service calls and JSONL statistics logging before deployment, and avoid sending secrets or sensitive business data unless logging is disabled or redacted. <br>
-Risk: The security scan says the skill makes unsupported sandbox and network safety claims. <br>
-Mitigation: Treat execution and network behavior as requiring independent review, and confirm contacted services and code execution boundaries before enabling automatic routing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route user work between fast handling and deeper multi-step processing. It is intended for task triage, resource selection, result aggregation, and verification workflows.
 
-## Reference(s): <br>
-- [Smart Scheduler ClawHub listing](https://clawhub.ai/timo2026/openclaw-smart-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance, configuration] <br>
-**Output Format:** [Structured Python results and human-readable text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task complexity, response text, latency, selected skill, subtasks, and summary statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Local service calls may send task content to localhost APIs during routing or verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve configured local endpoints before installation, and run the skill in an isolated environment where unexpected local services are not reachable.
+
+Risk: The skill may persist truncated user prompt text and run statistics to a local stats file.
+
+Mitigation: Avoid secrets and sensitive business data, disable or redirect stats collection, and purge local logs according to retention policy.
+
+Risk: Dynamic routing and execution-related code can depend on unverified local skills, services, or generated code paths.
+
+Mitigation: Require human approval before installing or executing routed dependencies, scan generated code and referenced skills, and keep sandboxing controls enabled.
+
+## Reference(s):
+
+- [Smart Scheduler on ClawHub](https://clawhub.ai/timo2026/skills/openclaw-smart-scheduler)
+- [Publisher profile](https://clawhub.ai/user/timo2026)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Code]
+
+**Output Format:** [TaskResult-style text response with routing metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complexity, selected skill, latency, subtasks, verification confidence, and status details.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; SKILL.md frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

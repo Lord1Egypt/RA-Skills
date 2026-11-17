@@ -1,44 +1,59 @@
-## Description: <br>
-通过聚合数据（juhe.cn）API 核验银行卡号、姓名和身份证号三要素是否一致，并返回面向用户的核验结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+银行卡三要素核验。验证银行卡号、姓名、身份证号三要素是否一致。使用场景：用户说"验证银行卡"、"核验银行卡三要素"、"银行卡实名认证"、"检查银行卡号和身份证是否匹配"、"银行卡三元素检测"等。通过聚合数据（juhe.cn）API实时核验，支持单次查询和批量核验。
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users and developers use this skill for bank-card real-name verification and risk-control checks after collecting a bank-card number, legal name, ID number, and Juhe API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive bank-card, legal-name, ID-card, and API-key data may be sent to Juhe over an unencrypted HTTP endpoint. <br>
-Mitigation: Use only test data or change the provider call to HTTPS before handling real customer data, and obtain explicit user approval before sending personal information to Juhe. <br>
-Risk: The Juhe API key can be exposed if passed directly on the command line. <br>
-Mitigation: Prefer JUHE_BANKCARD3_KEY from an environment variable or managed secret, and avoid command-line key arguments. <br>
-Risk: Verification requests involve sensitive personal information that can be overexposed in agent responses. <br>
-Mitigation: Return only the minimum result needed, mask bank-card and ID-card values, and remind users to handle the data securely. <br>
+## Use Case:
 
+External users and developers use this skill to check whether a bank card number, legal name, and Chinese ID number match for real-name authentication or risk-control workflows. It supports single checks and batch verification through a Python script backed by the Juhe API.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/juhemcp/juhe-verify-bankcard-three) <br>
-- [Juhe bank-card three-element verification API](https://www.juhe.cn/docs/api/id/207) <br>
-- [Juhe data service platform](https://www.juhe.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON verification results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JUHE_BANKCARD3_KEY; verification output should mask bank-card and ID-card values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes sensitive bank card, legal name, and ID number data through an external Juhe verification API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user consent, minimize retained data, and show masked identifiers in responses.
+
+Risk: The artifact uses an HTTP API endpoint for verification traffic.
+
+Mitigation: Do not use real personal or financial data unless the endpoint is changed to HTTPS or the transport security is otherwise verified.
+
+Risk: API keys can be exposed when passed on the command line or stored in a repository-local .env file.
+
+Mitigation: Prefer environment or secret-manager injection and keep credentials out of command histories and repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-verify-bankcard-three)
+- [Juhe bank card three-element verification API](https://www.juhe.cn/docs/api/id/207)
+- [Juhe data service platform](https://www.juhe.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and masked JSON verification results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JUHE_BANKCARD3_KEY; handles sensitive bank card, legal name, and ID number inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

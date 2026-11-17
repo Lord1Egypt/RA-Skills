@@ -1,43 +1,52 @@
-## Description: <br>
-Analyzes frontend page performance and produces a structured optimization report for slow pages, weak Lighthouse or Core Web Vitals results, slow first-screen rendering, janky interactions, large bundles, and render-blocking resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分析前端页面性能并输出结构化优化报告。
 
-## Publisher: <br>
-[cnoder-wgh](https://clawhub.ai/user/cnoder-wgh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnoder-wgh](https://clawhub.ai/user/cnoder-wgh)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to evaluate a page URL, Lighthouse metrics, network waterfall, bundle analysis, or project files and produce a structured performance optimization report with evidence, inferred causes, prioritized fixes, and missing-data caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private project files, reports, URLs, or performance metrics may be shared with the agent while using this skill. <br>
-Mitigation: Provide only inputs that are approved for agent access and omit sensitive project details when they are not needed for the audit. <br>
-Risk: Optimization advice may be incomplete or misleading when measurements are missing or based only on screenshots, structure, waterfalls, or resource lists. <br>
-Mitigation: Review recommendations before applying them and prefer measured Core Web Vitals, Lighthouse data, network waterfalls, and bundle analysis when available. <br>
+## Use Case:
 
+Frontend developers and engineering teams use this skill to review page URLs, Lighthouse metrics, network waterfalls, bundle information, or project files and produce prioritized performance findings and optimization guidance.
 
-## Reference(s): <br>
-- [Performance Metrics](references/metrics.md) <br>
-- [Diagnosis Rules](references/diagnosis-rules.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cnoder-wgh/frontend-performance-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured performance audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Distinguishes observed evidence from inferred conclusions and flags missing metrics when input is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is designed for Chinese-language frontend performance reports, so non-Chinese readers may miss labels or recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to translate or adapt the report language when the audience needs another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnoder-wgh/skills/frontend-performance-audit)
+- [Performance metrics](references/metrics.md)
+- [Diagnosis rules](references/diagnosis-rules.md)
+- [Report template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown performance audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports distinguish observed evidence from inferred conclusions and preserve missing-data caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

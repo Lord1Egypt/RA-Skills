@@ -1,16 +1,16 @@
 # PCB\_ManufactureData class
 
-PCB &amp; 封装 / 生产资料类
+PCB &amp; footprint / manufacture data class
 
 ## Signature
 
 ```typescript
-declare class PCB_ManufactureData 
+class PCB_ManufactureData
 ```
 
 ## Remarks
 
-获取当前 PCB 的生产资料文件及快捷下单
+Get the manufacture data files of the current PCB and quick ordering
 
 ## Methods
 
@@ -18,422 +18,343 @@ declare class PCB_ManufactureData
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [deleteBomTemplate(template)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 删除 BOM 模板
-
+**_(BETA)_** Delete BOM template
 
 </td></tr>
 <tr><td>
 
 [get3DFile(fileName, fileType, element, modelMode, autoGenerateModels)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 3D 模型文件
-
+**_(BETA)_** Get 3D model file
 
 </td></tr>
 <tr><td>
 
 [get3DShellFile(fileName, fileType)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 3D 外壳文件
-
+**_(BETA)_** Get the 3D shell file
 
 </td></tr>
 <tr><td>
 
 [getAltiumDesignerFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 Altium Designer 文件
-
+**_(BETA)_** Get Altium Designer file
 
 </td></tr>
 <tr><td>
 
 [getAutoLayoutJsonFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取自动布局文件（JSON）
-
+**_(BETA)_** Get Auto layout file (JSON)
 
 </td></tr>
 <tr><td>
 
 [getAutoRouteJsonFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取自动布线文件（JSON）
-
+**_(BETA)_** Get Auto routing file (JSON)
 
 </td></tr>
 <tr><td>
 
 [getAutoRouteJsonFileForJRouter(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 JRouter 专用自动布线文件（JSON）
-
+**_(BETA)_** Get the JRouter-specific auto routing file (JSON)
 
 </td></tr>
 <tr><td>
 
 [getBomFile(fileName, fileType, template, filterOptions, statistics, property, columns)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 BOM 文件
-
+**_(BETA)_** Get BOM file
 
 </td></tr>
 <tr><td>
 
 [getBomTemplateFile(template)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 BOM 模板文件
-
+**_(BETA)_** Get BOM template file
 
 </td></tr>
 <tr><td>
 
 [getBomTemplates()](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 BOM 模板列表
-
+**_(BETA)_** Get BOM template list
 
 </td></tr>
 <tr><td>
 
 [getDsnFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取自动布线文件（DSN）
-
+**_(BETA)_** Get Auto routing file (DSN)
 
 </td></tr>
 <tr><td>
 
 [getDxfFile(fileName, layers, objects)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 DXF 文件
-
+**_(BETA)_** Get DXF file
 
 </td></tr>
 <tr><td>
 
 [getFlyingProbeTestFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取飞针测试文件
-
+**_(BETA)_** Get the flying probe test file
 
 </td></tr>
 <tr><td>
 
 [getGerberFile(fileName, colorSilkscreen, unit, digitalFormat, other, layers, objects)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 PCB 制版文件（Gerber）
-
+**_(BETA)_** Get the PCB fabrication file (Gerber)
 
 </td></tr>
 <tr><td>
 
 [getIdxFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
+**_(BETA)_** Get IDX file
+
+</td></tr>
+<tr><td>
+
+[getIpc2581CFile(fileName, fileType, unit, oemNumber)](./PCB_ManufactureData.md)
 
 </td><td>
 
-**_(BETA)_** 获取 IDX 文件
+</td><td>
 
+**_(BETA)_** Get IPC-2581C file
 
 </td></tr>
 <tr><td>
 
 [getIpcD356AFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 IPC-D-356A 文件
-
+**_(BETA)_** Get IPC-D-356A file
 
 </td></tr>
 <tr><td>
 
 [getManufactureData()](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 导出制造文件
-
+**_(BETA)_** Export the manufacture data
 
 </td></tr>
 <tr><td>
 
 [getNetlistFile(fileName, netlistType)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取网表文件（Netlist）
-
+**_(BETA)_** Get the netlist file (Netlist)
 
 </td></tr>
 <tr><td>
 
 [getOpenDatabaseDoublePlusFile(fileName, unit, otherData, layers, objects)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 ODB++ 文件
-
+**_(BETA)_** Get ODB++ file
 
 </td></tr>
 <tr><td>
 
 [getPadsFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 PADS 文件
-
+**_(BETA)_** Get PADS file
 
 </td></tr>
 <tr><td>
 
 [getPcbInfoFile(fileName)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取 PCB 信息文件
-
+**_(BETA)_** Get PCB information file
 
 </td></tr>
 <tr><td>
 
-[getPdfFile(fileName, outputMethod, contentConfig, watermark)](./PCB_ManufactureData.md)
-
-
-</td><td>
-
+[getPdfFile(fileName, outputMethod, contentConfig, watermark, graphPageConfig)](./PCB_ManufactureData.md)
 
 </td><td>
 
-**_(BETA)_** 获取 PDF 文件
+</td><td>
 
+**_(BETA)_** Get PDF file
 
 </td></tr>
 <tr><td>
 
 [getPickAndPlaceFile(fileName, fileType, unit)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取坐标文件（PickAndPlace）
-
+**_(BETA)_** Get Coordinate file (PickAndPlace)
 
 </td></tr>
 <tr><td>
 
 [getTestPointFile(fileName, fileType)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取测试点报告文件
-
+**_(BETA)_** Get the test point report file
 
 </td></tr>
 <tr><td>
 
 [place3DShellOrder(interactive, ignoreWarning)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 3D 外壳下单
-
+**_(BETA)_** 3D shell ordering
 
 </td></tr>
 <tr><td>
 
 [placeComponentsOrder(interactive, ignoreWarning)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 元件下单
-
+**_(BETA)_** Component ordering
 
 </td></tr>
 <tr><td>
 
 [placePcbOrder(interactive, ignoreWarning)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** PCB 下单
-
+**_(BETA)_** PCB ordering
 
 </td></tr>
 <tr><td>
 
 [placeSmtComponentsOrder(interactive, ignoreWarning)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** SMT 元件下单
-
+**_(BETA)_** SMT component ordering
 
 </td></tr>
 <tr><td>
 
 [uploadBomTemplateFile(templateFile, template)](./PCB_ManufactureData.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 上传 BOM 模板文件
-
+**_(BETA)_** Upload a BOM template file
 
 </td></tr>
 </tbody></table>
@@ -448,12 +369,12 @@ Description
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-删除 BOM 模板
+Delete BOM template
 
 ## Signature
 
 ```typescript
-deleteBomTemplate(template: string): Promise<boolean>;
+function deleteBomTemplate(template: string): Promise<boolean>;
 ```
 
 ## Parameters
@@ -462,54 +383,46 @@ deleteBomTemplate(template: string): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 template
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-BOM 模板名称
-
+BOM template name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Example
-
 
 ```javascript
 // 删除指定的 BOM 模板
 const success = await eda.pcb_ManufactureData.deleteBomTemplate('MyCustomTemplate');
 if (success) {
-    console.log('BOM 模板删除成功');
-} else {
-    console.log('删除失败，可能是默认模板或模板不存在');
+	console.log('BOM 模板删除成功');
+}
+else {
+	console.log('删除失败，可能是默认模板或模板不存在');
 }
 ```
 
@@ -519,12 +432,18 @@ if (success) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 3D 模型文件
+Get 3D model file
 
 ## Signature
 
 ```typescript
-get3DFile(fileName?: string, fileType?: 'step' | 'obj', element?: Array<'Component Model' | 'Via' | 'Silkscreen' | 'Wire In Signal Layer'>, modelMode?: 'Outfit' | 'Parts', autoGenerateModels?: boolean): Promise<File | undefined>;
+function get3DFile(
+	fileName?: string,
+	fileType?: 'step' | 'obj',
+	element?: Array<'Component Model' | 'Via' | 'Silkscreen' | 'Wire In Signal Layer'>,
+	modelMode?: 'Outfit' | 'Parts',
+	autoGenerateModels?: boolean,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -533,146 +452,125 @@ get3DFile(fileName?: string, fileType?: 'step' | 'obj', element?: Array<'Compone
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 fileType
 
-
 </td><td>
 
 'step' \| 'obj'
 
-
 </td><td>
 
-_(Optional)_ 文件类型
-
+_(Optional)_ File type
 
 </td></tr>
 <tr><td>
 
 element
 
-
 </td><td>
 
 Array&lt;'Component Model' \| 'Via' \| 'Silkscreen' \| 'Wire In Signal Layer'&gt;
 
-
 </td><td>
 
-_(Optional)_ 导出对象
-
+_(Optional)_ Exported objects
 
 </td></tr>
 <tr><td>
 
 modelMode
 
-
 </td><td>
 
 'Outfit' \| 'Parts'
 
-
 </td><td>
 
-_(Optional)_ 导出模式，`Outfit` = 装配体，`Parts` = 零件
-
+_(Optional)_ Export mode. `Outfit` = assembly, `Parts` = parts
 
 </td></tr>
 <tr><td>
 
 autoGenerateModels
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否为未绑定 3D 模型的元件自动生成 3D 模型（根据元件的"高度"属性）
-
+_(Optional)_ Whether to automatically generate a 3D model for components not bound to a 3D model (based on the "height" property of the component)
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-3D 模型文件数据
+3D model file data
 
 ## Remarks
 
-请注意：只有以 STEP 格式导入的元件模型，才能在导出的 STEP 文件中体现
+Please note: only component models imported in STEP format can be reflected in the exported STEP file
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 导出装配体模式的 STEP 文件（包含元件模型）
 const stepFile = await eda.pcb_ManufactureData.get3DFile(
-    'MyBoard_3D',
-    'step',
-    ['Component Model'],
-    'Outfit',
-    true
+	'MyBoard_3D',
+	'step',
+	['Component Model'],
+	'Outfit',
+	true
 );
 if (stepFile) {
-    await eda.sys_FileSystem.saveFile(stepFile);
+	await eda.sys_FileSystem.saveFile(stepFile);
 }
 
 // 导出包含多种对象的完整 3D 模型
 const full3DFile = await eda.pcb_ManufactureData.get3DFile(
-    'Complete_3D_Model',
-    'step',
-    ['Component Model', 'Via', 'Silkscreen', 'Wire In Signal Layer'],
-    'Outfit',
-    true
+	'Complete_3D_Model',
+	'step',
+	['Component Model', 'Via', 'Silkscreen', 'Wire In Signal Layer'],
+	'Outfit',
+	true
 );
 
 // 导出零件模式 OBJ 文件
 const objFile = await eda.pcb_ManufactureData.get3DFile(
-    'MyBoard_OBJ',
-    'obj',
-    ['Component Model'],
-    'Parts',
-    false
+	'MyBoard_OBJ',
+	'obj',
+	['Component Model'],
+	'Parts',
+	false
 );
 ```
 
@@ -682,12 +580,15 @@ const objFile = await eda.pcb_ManufactureData.get3DFile(
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 3D 外壳文件
+Get the 3D shell file
 
 ## Signature
 
 ```typescript
-get3DShellFile(fileName?: string, fileType?: 'stl' | 'step' | 'obj'): Promise<File | undefined>;
+function get3DShellFile(
+	fileName?: string,
+	fileType?: 'stl' | 'step' | 'obj',
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -696,78 +597,66 @@ get3DShellFile(fileName?: string, fileType?: 'stl' | 'step' | 'obj'): Promise<Fi
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 fileType
 
-
 </td><td>
 
 'stl' \| 'step' \| 'obj'
 
-
 </td><td>
 
-_(Optional)_ 文件类型
-
+_(Optional)_ File type
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-3D 外壳文件数据
+3D shell file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 导出 STL 格式 3D 外壳
 const stlFile = await eda.pcb_ManufactureData.get3DShellFile('Board_Shell', 'stl');
 if (stlFile) {
-    await eda.sys_FileSystem.saveFile(stlFile);
+	await eda.sys_FileSystem.saveFile(stlFile);
 }
 
 // 导出 STEP 格式 3D 外壳
 const stepShellFile = await eda.pcb_ManufactureData.get3DShellFile('Board_Shell_STEP', 'step');
 if (stepShellFile) {
-    await eda.sys_FileSystem.saveFile(stepShellFile);
+	await eda.sys_FileSystem.saveFile(stepShellFile);
 }
 ```
 
@@ -777,12 +666,12 @@ if (stepShellFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 Altium Designer 文件
+Get Altium Designer file
 
 ## Signature
 
 ```typescript
-getAltiumDesignerFile(fileName?: string): Promise<File | undefined>;
+function getAltiumDesignerFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -791,56 +680,47 @@ getAltiumDesignerFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-Altium Designer 文件数据
+Altium Designer file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
 
-
 ```javascript
-//获取 Altium Designer 格式文件
+// 获取 Altium Designer 格式文件
 const adFile = await eda.pcb_ManufactureData.getAltiumDesignerFile('Converted_To_AD');
 if (adFile) {
-    await eda.sys_FileSystem.saveFile(adFile);
+	await eda.sys_FileSystem.saveFile(adFile);
 }
 ```
 
@@ -850,12 +730,12 @@ if (adFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取自动布局文件（JSON）
+Get Auto layout file (JSON)
 
 ## Signature
 
 ```typescript
-getAutoLayoutJsonFile(fileName?: string): Promise<File | undefined>;
+function getAutoLayoutJsonFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -864,55 +744,46 @@ getAutoLayoutJsonFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-自动布局 JSON 文件数据
+Auto layout JSON file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 const autoLayoutJson = await eda.pcb_ManufactureData.getAutoLayoutJsonFile('AutoLayout_Json');
 if (autoLayoutJson) {
-    await eda.sys_FileSystem.saveFile(autoLayoutJson);
+	await eda.sys_FileSystem.saveFile(autoLayoutJson);
 }
 ```
 
@@ -922,12 +793,12 @@ if (autoLayoutJson) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取自动布线文件（JSON）
+Get Auto routing file (JSON)
 
 ## Signature
 
 ```typescript
-getAutoRouteJsonFile(fileName?: string): Promise<File | undefined>;
+function getAutoRouteJsonFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -936,55 +807,46 @@ getAutoRouteJsonFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-自动布线 JSON 文件数据
+Auto routing JSON file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 const autoRouteJson = await eda.pcb_ManufactureData.getAutoRouteJsonFile('AutoRoute_Json');
 if (autoRouteJson) {
-    await eda.sys_FileSystem.saveFile(autoRouteJson);
+	await eda.sys_FileSystem.saveFile(autoRouteJson);
 }
 ```
 
@@ -994,12 +856,12 @@ if (autoRouteJson) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 JRouter 专用自动布线文件（JSON）
+Get the JRouter-specific auto routing file (JSON)
 
 ## Signature
 
 ```typescript
-getAutoRouteJsonFileForJRouter(fileName?: string): Promise<File | undefined>;
+function getAutoRouteJsonFileForJRouter(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1008,47 +870,50 @@ getAutoRouteJsonFileForJRouter(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-自动布线 JSON 文件数据
+Auto routing JSON file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
+
+## Example
+
+```javascript
+// 1. 导出 JRouter 专用自动布线 JSON 文件（参数为目标文件名）
+const jrouterFile = await eda.pcb_ManufactureData.getAutoRouteJsonFileForJRouter('嘉立创示例_JRouter');
+
+// 2. 查看导出结果
+console.log('导出文件名：', jrouterFile?.name);
+console.log('文件大小：', jrouterFile?.size);
+```
 
 ### getbomfile
 
@@ -1056,15 +921,20 @@ Promise&lt;File \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 BOM 文件
+Get BOM file
 
 ## Signature
 
 ```typescript
-getBomFile(fileName?: string, fileType?: 'xlsx' | 'csv', template?: string, filterOptions?: Array<{
-        property: string;
-        includeValue: boolean | string;
-    }>, statistics?: Array<string>, property?: Array<string>, columns?: Array<IPCB_BomPropertiesTableColumns>): Promise<File | undefined>;
+function getBomFile(
+	fileName?: string,
+	fileType?: 'xlsx' | 'csv',
+	template?: string,
+	filterOptions?: Array<{ property: string; includeValue: boolean | string }>,
+	statistics?: Array<string>,
+	property?: Array<string>,
+	columns?: Array<IPCB_BomPropertiesTableColumns>,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1073,146 +943,119 @@ getBomFile(fileName?: string, fileType?: 'xlsx' | 'csv', template?: string, filt
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 fileType
 
-
 </td><td>
 
 'xlsx' \| 'csv'
 
-
 </td><td>
 
-_(Optional)_ 文件类型
-
+_(Optional)_ File type
 
 </td></tr>
 <tr><td>
 
 template
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 模板名称
-
+_(Optional)_ Template name
 
 </td></tr>
 <tr><td>
 
 filterOptions
 
+</td><td>
+
+Array&lt;{ property: string; includeValue: boolean \| string }&gt;
 
 </td><td>
 
-Array&lt;{ property: string; includeValue: boolean \| string; }&gt;
-
-
-</td><td>
-
-_(Optional)_ 过滤规则，仅应包含需要启用的规则，`property` 为规则名称，`includeValue` 为匹配的值
-
+_(Optional)_ Filter rules, which should only contain the rules to be enabled. `property` is the rule name, and `includeValue` is the matched value
 
 </td></tr>
 <tr><td>
 
 statistics
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 统计，包含所有需要启用的统计项的名称
-
+_(Optional)_ Statistics, containing the names of all statistic items to be enabled
 
 </td></tr>
 <tr><td>
 
 property
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 属性，包含所有需要启用的属性的名称
-
+_(Optional)_ Properties, containing the names of all properties to be enabled
 
 </td></tr>
 <tr><td>
 
 columns
 
-
 </td><td>
 
 Array&lt;[IPCB\_BomPropertiesTableColumns](../interfaces/IPCB_BomPropertiesTableColumns.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 列的属性及排序，`title`<!-- -->、`sort`<!-- -->、`group`<!-- -->、`orderWeight` 不传入则取默认值，`null` 代表 \*\*无\*\* 或 \*\*空\*\*
-
+_(Optional)_ Column properties and sorting. If `title`<!-- -->, `sort`<!-- -->, `group`<!-- -->, and `orderWeight` are not passed in, default values are used. `null` means \*\*none\*\* or \*\*empty\*\*
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-BOM 文件数据
+BOM file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 使用默认配置导出 BOM
@@ -1255,12 +1098,12 @@ const csvBomFile = await eda.pcb_ManufactureData.getBomFile(
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 BOM 模板文件
+Get BOM template file
 
 ## Signature
 
 ```typescript
-getBomTemplateFile(template: string): Promise<File | undefined>;
+function getBomTemplateFile(template: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1269,52 +1112,43 @@ getBomTemplateFile(template: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 template
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-BOM 模板名称
-
+BOM template name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-BOM 模板文件
+BOM template file
 
 ## Example
-
 
 ```javascript
 // 获取指定模板的文件
 const templateFile = await eda.pcb_ManufactureData.getBomTemplateFile('MyCustomTemplate');
 if (templateFile) {
-    await eda.sys_FileSystem.saveFile(templateFile);
+	await eda.sys_FileSystem.saveFile(templateFile);
 }
 ```
 
@@ -1324,30 +1158,28 @@ if (templateFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 BOM 模板列表
+Get BOM template list
 
 ## Signature
 
 ```typescript
-getBomTemplates(): Promise<Array<string>>;
+function getBomTemplates(): Promise<Array<string>>;
 ```
-
 
 ## Returns
 
 Promise&lt;Array&lt;string&gt;&gt;
 
-BOM 模板列表
+BOM template list
 
 ## Example
-
 
 ```javascript
 // 获取所有可用的 BOM 模板
 const templates = await eda.pcb_ManufactureData.getBomTemplates();
 console.log('可用的 BOM 模板:', templates);
 templates.forEach((template, index) => {
-    console.log(`${index + 1}. ${template}`);
+	console.log(`${index + 1}. ${template}`);
 });
 ```
 
@@ -1357,12 +1189,12 @@ templates.forEach((template, index) => {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取自动布线文件（DSN）
+Get Auto routing file (DSN)
 
 ## Signature
 
 ```typescript
-getDsnFile(fileName?: string): Promise<File | undefined>;
+function getDsnFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1371,55 +1203,46 @@ getDsnFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-自动布线 DSN 文件数据
+Auto routing DSN file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 const dsnFile = await eda.pcb_ManufactureData.getDsnFile('AutoRoute_DSN');
 if (dsnFile) {
-    await eda.sys_FileSystem.saveFile(dsnFile);
+	await eda.sys_FileSystem.saveFile(dsnFile);
 }
 ```
 
@@ -1429,15 +1252,16 @@ if (dsnFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 DXF 文件
+Get DXF file
 
 ## Signature
 
 ```typescript
-getDxfFile(fileName?: string, layers?: Array<{
-        layerId: number;
-        mirror: boolean;
-    }>, objects?: Array<string>): Promise<File | undefined>;
+function getDxfFile(
+	fileName?: string,
+	layers?: Array<{ layerId: EPCB_LayerId; mirror: boolean }>,
+	objects?: Array<string>,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1446,79 +1270,90 @@ getDxfFile(fileName?: string, layers?: Array<{
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 layers
 
+</td><td>
+
+Array&lt;{ layerId: [EPCB\_LayerId](../enums/EPCB_LayerId.md)<!-- -->; mirror: boolean }&gt;
 
 </td><td>
 
-Array&lt;{ layerId: number; mirror: boolean; }&gt;
-
-
-</td><td>
-
-_(Optional)_ 导出层
-
+_(Optional)_ Exported layers
 
 </td></tr>
 <tr><td>
 
 objects
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 导出对象
-
+_(Optional)_ Exported objects
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-DXF 文件数据
+DXF file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
+
+## Example
+
+```javascript
+// 1. 指定导出层：顶层铜层（layerId 1）和板框层（layerId 11），不镜像
+const layers = [
+	{ layerId: 1, mirror: false },
+	{ layerId: 11, mirror: false }
+];
+
+// 2. 发起导出，25 秒内完成就输出文件信息
+const dxfFile = await Promise.race([
+	eda.pcb_ManufactureData.getDxfFile('嘉立创示例_DXF', layers),
+	new Promise(resolve => setTimeout(() => resolve(undefined), 25000))
+]);
+
+// 3. 查看导出结果
+if (dxfFile) {
+	console.log('导出文件名：', dxfFile.name);
+	console.log('文件大小：', dxfFile.size);
+}
+else {
+	console.log('导出超过 25 秒仍在后台进行，真实使用直接 await 等待完成即可');
+}
+```
 
 ### getflyingprobetestfile
 
@@ -1526,12 +1361,12 @@ DXF 文件数据
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取飞针测试文件
+Get the flying probe test file
 
 ## Signature
 
 ```typescript
-getFlyingProbeTestFile(fileName?: string): Promise<File | undefined>;
+function getFlyingProbeTestFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1540,52 +1375,43 @@ getFlyingProbeTestFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-飞针测试文件数据
+Flying probe test file data
 
 ## Example
-
 
 ```javascript
 // 保存飞针测试文件到本地
 const flyingProbeFile = await eda.pcb_ManufactureData.getFlyingProbeTestFile('FlyingProbe_Test');
 if (flyingProbeFile) {
-    await eda.sys_FileSystem.saveFile(flyingProbeFile);
+	await eda.sys_FileSystem.saveFile(flyingProbeFile);
 }
 ```
 
@@ -1595,23 +1421,42 @@ if (flyingProbeFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 PCB 制版文件（Gerber）
+Get the PCB fabrication file (Gerber)
 
 ## Signature
 
 ```typescript
-getGerberFile(fileName?: string, colorSilkscreen?: boolean, unit?: ESYS_Unit.MILLIMETER | ESYS_Unit.INCH, digitalFormat?: {
-        integerNumber: number;
-        decimalNumber: number;
-    }, other?: {
-        metallicDrillingInformation: boolean;
-        nonMetallicDrillingInformation: boolean;
-        drillTable: boolean;
-        flyingProbeTestingFile: boolean;
-    }, layers?: Array<{
-        layerId: number;
-        isMirror: boolean;
-    }>, objects?: Array<'Pad' | 'Via' | 'Track' | 'Text' | 'Image' | 'Dimension' | 'BoardOutline' | 'BoardCutout' | 'CopperFilled' | 'SolidRegion' | 'FPCStiffener' | 'Line' | 'PlaneZone' | 'ComponentProperty' | 'ComponentSilkscreen' | 'TearDrop'>): Promise<File | undefined>;
+function getGerberFile(
+	fileName?: string,
+	colorSilkscreen?: boolean,
+	unit?: ESYS_Unit.MILLIMETER | ESYS_Unit.INCH,
+	digitalFormat?: { integerNumber: number; decimalNumber: number },
+	other?: {
+		metallicDrillingInformation: boolean;
+		nonMetallicDrillingInformation: boolean;
+		drillTable: boolean;
+		flyingProbeTestingFile: boolean;
+	},
+	layers?: Array<{ layerId: EPCB_LayerId; isMirror: boolean }>,
+	objects?: Array<
+		| 'Pad'
+		| 'Via'
+		| 'Track'
+		| 'Text'
+		| 'Image'
+		| 'Dimension'
+		| 'BoardOutline'
+		| 'BoardCutout'
+		| 'CopperFilled'
+		| 'SolidRegion'
+		| 'FPCStiffener'
+		| 'Line'
+		| 'PlaneZone'
+		| 'ComponentProperty'
+		| 'ComponentSilkscreen'
+		| 'TearDrop'
+	>,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1620,146 +1465,121 @@ getGerberFile(fileName?: string, colorSilkscreen?: boolean, unit?: ESYS_Unit.MIL
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 colorSilkscreen
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否生成彩色丝印制造文件（嘉立创专用文件）
-
+_(Optional)_ Whether to generate a color silkscreen fabrication file (EasyEDA-specific file)
 
 </td></tr>
 <tr><td>
 
 unit
 
-
 </td><td>
 
 [ESYS\_Unit.MILLIMETER](../enums/ESYS_Unit.md) \| [ESYS\_Unit.INCH](../enums/ESYS_Unit.md)
 
-
 </td><td>
 
-_(Optional)_ 单位
-
+_(Optional)_ Unit
 
 </td></tr>
 <tr><td>
 
 digitalFormat
 
+</td><td>
+
+\{ integerNumber: number; decimalNumber: number \}
 
 </td><td>
 
-\{ integerNumber: number; decimalNumber: number; \}
-
-
-</td><td>
-
-_(Optional)_ 数字格式
-
+_(Optional)_ Digital format
 
 </td></tr>
 <tr><td>
 
 other
 
+</td><td>
+
+\{ metallicDrillingInformation: boolean; nonMetallicDrillingInformation: boolean; drillTable: boolean; flyingProbeTestingFile: boolean \}
 
 </td><td>
 
-\{ metallicDrillingInformation: boolean; nonMetallicDrillingInformation: boolean; drillTable: boolean; flyingProbeTestingFile: boolean; \}
-
-
-</td><td>
-
-_(Optional)_ 其它
-
+_(Optional)_ Other
 
 </td></tr>
 <tr><td>
 
 layers
 
+</td><td>
+
+Array&lt;{ layerId: [EPCB\_LayerId](../enums/EPCB_LayerId.md)<!-- -->; isMirror: boolean }&gt;
 
 </td><td>
 
-Array&lt;{ layerId: number; isMirror: boolean; }&gt;
-
-
-</td><td>
-
-_(Optional)_ 导出层，默认则按照嘉立创生产需求导出
-
+_(Optional)_ Exported layers. By default, they are exported according to EasyEDA production requirements
 
 </td></tr>
 <tr><td>
 
 objects
 
-
 </td><td>
 
 Array&lt;'Pad' \| 'Via' \| 'Track' \| 'Text' \| 'Image' \| 'Dimension' \| 'BoardOutline' \| 'BoardCutout' \| 'CopperFilled' \| 'SolidRegion' \| 'FPCStiffener' \| 'Line' \| 'PlaneZone' \| 'ComponentProperty' \| 'ComponentSilkscreen' \| 'TearDrop'&gt;
 
-
 </td><td>
 
-_(Optional)_ 导出对象，默认则按照嘉立创生产需求导出
-
+_(Optional)_ Exported objects. By default, they are exported according to EasyEDA production requirements
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-PCB 制版文件数据
+PCB fabrication file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
+
+默认参数与编辑器「导出 PCB 制版文件」弹窗的 \*\*一键导出\*\* 选项保持一致（单位 `MM`<!-- -->、数字格式 `4:5`<!-- -->、导出板内真实使用的层及钻孔图层等）
 
 ## Example
-
 
 ```javascript
 // 导出默认的 Gerber 文件
@@ -1773,7 +1593,7 @@ const gerberFile = await eda.pcb_ManufactureData.getGerberFile(
     'MyBoard_Gerber',
     false,
     ESYS_Unit.MILLIMETER,
-    { integerNumber: 2, decimalNumber: 6 }
+    { integerNumber: 4, decimalNumber: 6 }
 );
 if (gerberFile) {
     await eda.sys_FileSystem.saveFile(gerberFile,'Gerber.zip');
@@ -1786,7 +1606,7 @@ const gerberFile = await eda.pcb_ManufactureData.getGerberFile(
     ESYS_Unit.INCH,
     { integerNumber: 3, decimalNumber: 5 },
     { metallicDrillingInformation: true, nonMetallicDrillingInformation: true, drillTable: false, flyingProbeTestingFile: false },
-    [{ layerId: 1, isMirror: false }, { layerId: 2, isMirror: false }, { layerId: 11, isMirror: false }],
+    [{ layerId: EPCB_LayerId.TOP, isMirror: false }, { layerId: EPCB_LayerId.BOTTOM, isMirror: false }, { layerId: EPCB_LayerId.BOARD_OUTLINE, isMirror: false }],
     ['Pad', 'Via', 'Track', 'BoardOutline']
 );
 ```
@@ -1797,12 +1617,12 @@ const gerberFile = await eda.pcb_ManufactureData.getGerberFile(
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 IDX 文件
+Get IDX file
 
 ## Signature
 
 ```typescript
-getIdxFile(fileName?: string): Promise<File | undefined>;
+function getIdxFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1811,55 +1631,164 @@ getIdxFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
-
 
 </td><td>
 
 _(Optional)_
 
-
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-IDX 文件
+IDX file
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 const idxFile = await eda.pcb_ManufactureData.getIdxFile('Design_Exchange');
 if (idxFile) {
-    await eda.sys_FileSystem.saveFile(idxFile);
+	await eda.sys_FileSystem.saveFile(idxFile);
+}
+```
+
+### getipc2581cfile
+
+# PCB\_ManufactureData.getIpc2581CFile() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Get IPC-2581C file
+
+## Signature
+
+```typescript
+function getIpc2581CFile(
+	fileName?: string,
+	fileType?: 'xml' | 'cvg' | '2581',
+	unit?: ESYS_Unit.INCH | ESYS_Unit.MILLIMETER,
+	oemNumber?: 'Device' | 'Manufacturer Part' | 'Supplier Part' | 'Comment',
+): Promise<File | undefined>;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
+
+</th></tr></thead>
+<tbody><tr><td>
+
+fileName
+
+</td><td>
+
+string
+
+</td><td>
+
+_(Optional)_ File name
+
+</td></tr>
+<tr><td>
+
+fileType
+
+</td><td>
+
+'xml' \| 'cvg' \| '2581'
+
+</td><td>
+
+_(Optional)_
+
+</td></tr>
+<tr><td>
+
+unit
+
+</td><td>
+
+[ESYS\_Unit.INCH](../enums/ESYS_Unit.md) \| [ESYS\_Unit.MILLIMETER](../enums/ESYS_Unit.md)
+
+</td><td>
+
+_(Optional)_
+
+</td></tr>
+<tr><td>
+
+oemNumber
+
+</td><td>
+
+'Device' \| 'Manufacturer Part' \| 'Supplier Part' \| 'Comment'
+
+</td><td>
+
+_(Optional)_
+
+</td></tr>
+</tbody></table>
+
+## Returns
+
+Promise&lt;File \| undefined&gt;
+
+IPC-2581C file data
+
+## Remarks
+
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
+
+## Example
+
+```javascript
+// 1. 发起导出（XML 格式、毫米单位、OEM 编号取元件的 Device 属性），
+// 25 秒内完成就输出文件信息
+const ipcFile = await Promise.race([
+	eda.pcb_ManufactureData.getIpc2581CFile('嘉立创示例_IPC2581C', 'xml', 'mm', 'Device'),
+	new Promise(resolve => setTimeout(() => resolve(undefined), 25000))
+]);
+
+// 2. 查看导出结果
+if (ipcFile) {
+	console.log('导出文件名：', ipcFile.name);
+	console.log('文件大小：', ipcFile.size);
+}
+else {
+	console.log('导出超过 25 秒仍在后台进行，真实使用直接 await 等待完成即可');
 }
 ```
 
@@ -1869,12 +1798,12 @@ if (idxFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 IPC-D-356A 文件
+Get IPC-D-356A file
 
 ## Signature
 
 ```typescript
-getIpcD356AFile(fileName?: string): Promise<File | undefined>;
+function getIpcD356AFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1883,55 +1812,46 @@ getIpcD356AFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-IPC-D-356A 文件数据
+IPC-D-356A file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 const ipcFile = await eda.pcb_ManufactureData.getIpcD356AFile('IPC_D356A_Test');
 if (ipcFile) {
-    await eda.sys_FileSystem.saveFile(ipcFile);
+	await eda.sys_FileSystem.saveFile(ipcFile);
 }
 ```
 
@@ -1941,28 +1861,41 @@ if (ipcFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-导出制造文件
+Export the manufacture data
 
 ## Signature
 
 ```typescript
-getManufactureData(): Promise<File | undefined>;
+function getManufactureData(): Promise<File | undefined>;
 ```
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-制造文件
+Manufacture data
 
 ## Remarks
 
-本接口对应私有化部署版本一键导出制造文件功能
+This API corresponds to the one-click manufacture data export function of the private deployment edition
 
-将根据前端一键导出制造文件弹窗的配置获取其文件数据
+It will obtain the file data according to the configuration of the one-click manufacture data export popup on the front end
 
-注意：本接口仅私有化部署版本有效，如若在其他版本调用将始终 `throw Error`
+Note: This API is only valid for the private deployment edition. Calling it in other editions will always `throw Error`
+
+## Example
+
+```javascript
+// 1. 按弹窗当前配置一键导出制造文件
+try {
+	const manufactureFile = await eda.pcb_ManufactureData.getManufactureData();
+	console.log('制造文件大小：', manufactureFile?.size);
+}
+catch (e) {
+	// 非私有化部署版本调用会直接抛错，属预期行为
+	console.log('当前版本不支持一键导出制造文件（仅私有化部署版本有效）');
+}
+```
 
 ### getnetlistfile
 
@@ -1970,12 +1903,15 @@ Promise&lt;File \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取网表文件（Netlist）
+Get the netlist file (Netlist)
 
 ## Signature
 
 ```typescript
-getNetlistFile(fileName?: string, netlistType?: ESYS_NetlistType): Promise<File | undefined>;
+function getNetlistFile(
+	fileName?: string,
+	netlistType?: ESYS_NetlistType,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -1984,87 +1920,75 @@ getNetlistFile(fileName?: string, netlistType?: ESYS_NetlistType): Promise<File 
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 netlistType
 
-
 </td><td>
 
 [ESYS\_NetlistType](../enums/ESYS_NetlistType.md)
 
-
 </td><td>
 
-_(Optional)_ 网表类型
-
+_(Optional)_ Netlist type
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-网表文件数据
+Netlist file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 导出嘉立创 EDA 专业版格式网表
 const netlistFile = await eda.pcb_ManufactureData.getNetlistFile(
-    'MyNetlist',
-    ESYS_NetlistType.JLCEDA_PRO
+	'MyNetlist',
+	ESYS_NetlistType.JLCEDA_PRO
 );
 if (netlistFile) {
-    await eda.sys_FileSystem.saveFile(netlistFile);
+	await eda.sys_FileSystem.saveFile(netlistFile);
 }
 
 // 导出 Altium Designer 格式
 const altiumNetlist = await eda.pcb_ManufactureData.getNetlistFile(
-    'Netlist_Altium',
-    ESYS_NetlistType.ALTIUM_DESIGNER
+	'Netlist_Altium',
+	ESYS_NetlistType.ALTIUM_DESIGNER
 );
 
 // 导出 PADS 格式
 const padsNetlist = await eda.pcb_ManufactureData.getNetlistFile(
-    'Netlist_PADS',
-    ESYS_NetlistType.PADS
+	'Netlist_PADS',
+	ESYS_NetlistType.PADS
 );
 ```
 
@@ -2074,22 +1998,23 @@ const padsNetlist = await eda.pcb_ManufactureData.getNetlistFile(
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 ODB++ 文件
+Get ODB++ file
 
 ## Signature
 
 ```typescript
-getOpenDatabaseDoublePlusFile(fileName?: string, unit?: ESYS_Unit.INCH, otherData?: {
-        metallizedDrilledHoles?: boolean;
-        nonMetallizedDrilledHoles?: boolean;
-        drillTable?: boolean;
-        flyingProbeTestFile?: boolean;
-    }, layers?: Array<{
-        layerId: number;
-        mirror: boolean;
-    }>, objects?: Array<{
-        objectName: string;
-    }>): Promise<File | undefined>;
+function getOpenDatabaseDoublePlusFile(
+	fileName?: string,
+	unit?: ESYS_Unit.INCH | ESYS_Unit.MILLIMETER,
+	otherData?: {
+		metallizedDrilledHoles?: boolean;
+		nonMetallizedDrilledHoles?: boolean;
+		drillTable?: boolean;
+		flyingProbeTestFile?: boolean;
+	},
+	layers?: Array<{ layerId: EPCB_LayerId; mirror: boolean }>,
+	objects?: Array<{ objectName: string }>,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -2098,129 +2023,108 @@ getOpenDatabaseDoublePlusFile(fileName?: string, unit?: ESYS_Unit.INCH, otherDat
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 unit
 
+</td><td>
+
+[ESYS\_Unit.INCH](../enums/ESYS_Unit.md) \| [ESYS\_Unit.MILLIMETER](../enums/ESYS_Unit.md)
 
 </td><td>
 
-[ESYS\_Unit.INCH](../enums/ESYS_Unit.md)
-
-
-</td><td>
-
-_(Optional)_ 单位
-
+_(Optional)_ Unit
 
 </td></tr>
 <tr><td>
 
 otherData
 
+</td><td>
+
+\{ metallizedDrilledHoles?: boolean; nonMetallizedDrilledHoles?: boolean; drillTable?: boolean; flyingProbeTestFile?: boolean \}
 
 </td><td>
 
-\{ metallizedDrilledHoles?: boolean; nonMetallizedDrilledHoles?: boolean; drillTable?: boolean; flyingProbeTestFile?: boolean; \}
-
-
-</td><td>
-
-_(Optional)_ 其它
-
+_(Optional)_ Other
 
 </td></tr>
 <tr><td>
 
 layers
 
+</td><td>
+
+Array&lt;{ layerId: [EPCB\_LayerId](../enums/EPCB_LayerId.md)<!-- -->; mirror: boolean }&gt;
 
 </td><td>
 
-Array&lt;{ layerId: number; mirror: boolean; }&gt;
-
-
-</td><td>
-
-_(Optional)_ 导出层，默认则按照嘉立创生产需求导出
-
+_(Optional)_ Exported layers. By default, they are exported according to EasyEDA production requirements
 
 </td></tr>
 <tr><td>
 
 objects
 
+</td><td>
+
+Array&lt;{ objectName: string }&gt;
 
 </td><td>
 
-Array&lt;{ objectName: string; }&gt;
-
-
-</td><td>
-
-_(Optional)_ 导出对象，默认则按照嘉立创生产需求导出
-
+_(Optional)_ Exported objects. By default, they are exported according to EasyEDA production requirements
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-ODB++ 文件数据
+ODB++ file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 导出 ODB++ 文件，自定义单位和选项
 const odbFile = await eda.pcb_ManufactureData.getOpenDatabaseDoublePlusFile(
-    'MyBoard_ODB',
-    ESYS_Unit.INCH,
-    {
-        metallizedDrilledHoles: true,
-        nonMetallizedDrilledHoles: true,
-        drillTable: true,
-        flyingProbeTestFile: false
-    }
+	'MyBoard_ODB',
+	ESYS_Unit.INCH,
+	{
+		metallizedDrilledHoles: true,
+		nonMetallizedDrilledHoles: true,
+		drillTable: true,
+		flyingProbeTestFile: false
+	}
 );
 if (odbFile) {
-    await eda.sys_FileSystem.saveFile(odbFile);
+	await eda.sys_FileSystem.saveFile(odbFile);
 }
 ```
 
@@ -2230,12 +2134,12 @@ if (odbFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 PADS 文件
+Get PADS file
 
 ## Signature
 
 ```typescript
-getPadsFile(fileName?: string): Promise<File | undefined>;
+function getPadsFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -2244,56 +2148,47 @@ getPadsFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-PADS 文件数据
+PADS file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 获取 PADS 格式文件
 const padsFile = await eda.pcb_ManufactureData.getPadsFile('Converted_To_PADS');
 if (padsFile) {
-    await eda.sys_FileSystem.saveFile(padsFile);
+	await eda.sys_FileSystem.saveFile(padsFile);
 }
 ```
 
@@ -2303,12 +2198,12 @@ if (padsFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 PCB 信息文件
+Get PCB information file
 
 ## Signature
 
 ```typescript
-getPcbInfoFile(fileName?: string): Promise<File | undefined>;
+function getPcbInfoFile(fileName?: string): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -2317,55 +2212,46 @@ getPcbInfoFile(fileName?: string): Promise<File | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-PCB 信息文件
+PCB information file
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 const pcbInfoFile = await eda.pcb_ManufactureData.getPcbInfoFile('Board_Information');
 if (pcbInfoFile) {
-    await eda.sys_FileSystem.saveFile(pcbInfoFile);
+	await eda.sys_FileSystem.saveFile(pcbInfoFile);
 }
 ```
 
@@ -2375,31 +2261,33 @@ if (pcbInfoFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取 PDF 文件
+Get PDF file
 
 ## Signature
 
 ```typescript
-getPdfFile(fileName?: string, outputMethod?: EPCB_PdfOutputMethod, contentConfig?: {
-        displayAttributesAsMenu: boolean;
-        showOutlineOnly: boolean;
-    }, watermark?: {
-        show?: boolean;
-        content?: string;
-        styleConfig?: {
-            color: string;
-            transparency: 'Opaque' | '75%' | '50%' | '25%';
-            font: string;
-            fontSize: string;
-            style: {
-                blood: boolean;
-                italic: boolean;
-                underline: boolean;
-            };
-            slope: 0 | 45 | 90;
-            denseness: 'Single' | 'Sparse' | 'Std' | 'Dense';
-        };
-    }): Promise<File | undefined>;
+function getPdfFile(
+	fileName?: string,
+	outputMethod?: EPCB_PdfOutputMethod,
+	contentConfig?: { displayAttributesAsMenu: boolean; showOutlineOnly: boolean },
+	watermark?: {
+		show?: boolean;
+		content?: string;
+		styleConfig?: {
+			color: string;
+			transparency: 'Opaque' | '75%' | '50%' | '25%';
+			font: string;
+			fontSize: {
+				unit: ESYS_Unit.INCH | ESYS_Unit.MIL | ESYS_Unit.MILLIMETER;
+				value: number;
+			};
+			style: { bold: boolean; italic: boolean; underline: boolean };
+			slope: 0 | 45 | 90;
+			denseness: 'Single' | 'Sparse' | 'Std' | 'Dense';
+		};
+	},
+	graphPageConfig?: Array<Record<string, any>>,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -2408,109 +2296,104 @@ getPdfFile(fileName?: string, outputMethod?: EPCB_PdfOutputMethod, contentConfig
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 outputMethod
 
-
 </td><td>
 
 [EPCB\_PdfOutputMethod](../enums/EPCB_PdfOutputMethod.md)
 
-
 </td><td>
 
-_(Optional)_ 输出方式
-
+_(Optional)_ Output method. ADD since EDA v4.2
 
 </td></tr>
 <tr><td>
 
 contentConfig
 
+</td><td>
+
+\{ displayAttributesAsMenu: boolean; showOutlineOnly: boolean \}
 
 </td><td>
 
-\{ displayAttributesAsMenu: boolean; showOutlineOnly: boolean; \}
-
-
-</td><td>
-
-_(Optional)_ 内容配置
-
+_(Optional)_ Content configuration. ADD since EDA v4.2
 
 </td></tr>
 <tr><td>
 
 watermark
 
+</td><td>
+
+{ show?: boolean; content?: string; styleConfig?: { color: string; transparency: 'Opaque' \| '75%' \| '50%' \| '25%'; font: string; fontSize: { unit: [ESYS\_Unit.INCH](../enums/ESYS_Unit.md) \| [ESYS\_Unit.MIL](../enums/ESYS_Unit.md) \| [ESYS\_Unit.MILLIMETER](../enums/ESYS_Unit.md)<!-- -->; value: number }; style: { bold: boolean; italic: boolean; underline: boolean }; slope: 0 \| 45 \| 90; denseness: 'Single' \| 'Sparse' \| 'Std' \| 'Dense' } }
 
 </td><td>
 
-{ show?: boolean; content?: string; styleConfig?: { color: string; transparency: 'Opaque' \| '75%' \| '50%' \| '25%'; font: string; fontSize: string; style: { blood: boolean; italic: boolean; underline: boolean; }; slope: 0 \| 45 \| 90; denseness: 'Single' \| 'Sparse' \| 'Std' \| 'Dense'; }; }
+_(Optional)_ Watermark. ADD since EDA v4.2
 
+</td></tr>
+<tr><td>
+
+graphPageConfig
 
 </td><td>
 
-_(Optional)_ 水印
+Array&lt;Record&lt;string, any&gt;&gt;
 
+</td><td>
+
+_(Optional)_ Graph page configuration. ADD since EDA v4.2
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-PDF 文件数据（或压缩包）
+PDF file data (or archive)
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
-`outputMethod`<!-- -->、`contentConfig`<!-- -->、`watermark` 参数暂不可用，等待后期规划
+REFACTOR since EDA v4.2
 
 ## Example
-
 
 ```javascript
 // 导出多页 PDF（包含所有图层）
 const pdfFile = await eda.pcb_ManufactureData.getPdfFile(
-    'PCB_Documentation',
-    EPCB_PdfOutputMethod.MULTI_PAGE_PDF
+	'PCB_Documentation',
+	EPCB_PdfOutputMethod.MULTI_PAGE_PDF
 );
 if (pdfFile) {
-    await eda.sys_FileSystem.saveFile(pdfFile);
+	await eda.sys_FileSystem.saveFile(pdfFile);
 }
 ```
 
@@ -2520,12 +2403,16 @@ if (pdfFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取坐标文件（PickAndPlace）
+Get Coordinate file (PickAndPlace)
 
 ## Signature
 
 ```typescript
-getPickAndPlaceFile(fileName?: string, fileType?: 'xlsx' | 'csv', unit?: ESYS_Unit.MILLIMETER | ESYS_Unit.MIL): Promise<File | undefined>;
+function getPickAndPlaceFile(
+	fileName?: string,
+	fileType?: 'xlsx' | 'csv',
+	unit?: ESYS_Unit.MILLIMETER | ESYS_Unit.MIL,
+): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -2534,94 +2421,78 @@ getPickAndPlaceFile(fileName?: string, fileType?: 'xlsx' | 'csv', unit?: ESYS_Un
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 fileType
 
-
 </td><td>
 
 'xlsx' \| 'csv'
 
-
 </td><td>
 
-_(Optional)_ 文件类型
-
+_(Optional)_ File type
 
 </td></tr>
 <tr><td>
 
 unit
 
-
 </td><td>
 
 [ESYS\_Unit.MILLIMETER](../enums/ESYS_Unit.md) \| [ESYS\_Unit.MIL](../enums/ESYS_Unit.md)
 
-
 </td><td>
 
-_(Optional)_ 单位
-
+_(Optional)_ Unit
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-坐标文件数据
+Coordinate file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 导出毫米单位的 Excel 格式坐标文件
 const pnpFile = await eda.pcb_ManufactureData.getPickAndPlaceFile(
-    'PickAndPlace',
-    'xlsx',
-    ESYS_Unit.MILLIMETER
+	'PickAndPlace',
+	'xlsx',
+	ESYS_Unit.MILLIMETER
 );
 if (pnpFile) {
-    await eda.sys_FileSystem.saveFile(pnpFile);
+	await eda.sys_FileSystem.saveFile(pnpFile);
 }
-
 ```
 
 ### gettestpointfile
@@ -2630,12 +2501,12 @@ if (pnpFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取测试点报告文件
+Get the test point report file
 
 ## Signature
 
 ```typescript
-getTestPointFile(fileName?: string, fileType?: 'xlsx' | 'csv'): Promise<File | undefined>;
+function getTestPointFile(fileName?: string, fileType?: 'xlsx' | 'csv'): Promise<File | undefined>;
 ```
 
 ## Parameters
@@ -2644,72 +2515,60 @@ getTestPointFile(fileName?: string, fileType?: 'xlsx' | 'csv'): Promise<File | u
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件名
-
+_(Optional)_ File name
 
 </td></tr>
 <tr><td>
 
 fileType
 
-
 </td><td>
 
 'xlsx' \| 'csv'
 
-
 </td><td>
 
-_(Optional)_ 文件类型
-
+_(Optional)_ File type
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;File \| undefined&gt;
 
-测试点报告文件数据
+Test point report file data
 
 ## Remarks
 
-可以使用 [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) 接口将文件导出到本地文件系统
+You can use [SYS\_FileSystem.saveFile()](./SYS_FileSystem.md) API export the file to the local file system
 
 ## Example
-
 
 ```javascript
 // 保存测试点报告文件到本地
 const testPointFile = await eda.pcb_ManufactureData.getTestPointFile('Test_Point_Report', 'xlsx');
 if (testPointFile) {
-    await eda.sys_FileSystem.saveFile(testPointFile);
+	await eda.sys_FileSystem.saveFile(testPointFile);
 }
 ```
 
@@ -2719,12 +2578,12 @@ if (testPointFile) {
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-3D 外壳下单
+3D shell ordering
 
 ## Signature
 
 ```typescript
-place3DShellOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
+function place3DShellOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
 ```
 
 ## Parameters
@@ -2733,71 +2592,64 @@ place3DShellOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boole
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 interactive
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否启用交互式检查
-
-如若启用，则会存在弹窗等待用户进行交互，且无法使用 `ignoreWarning` 参数忽略警告， 即 `ignoreWarning` 参数将被忽略；
-
-如若禁用，则在调用后不会有任何 EDA 内部弹窗，程序执行静默检查， 如若达成下单条件，将返回 `true` 并在新标签页打开下单页面
-
+_(Optional)_ Whether to enable interactive checking. If enabled, a popup will wait for user interaction, and the `ignoreWarning` parameter cannot be used to ignore warnings; that is, the `ignoreWarning` parameter will be ignored. If disabled, no EDA internal popup will appear after the call, and the program performs a silent check. If the ordering conditions are met, `true` will be returned and the ordering page will be opened in a new tab
 
 </td></tr>
 <tr><td>
 
 ignoreWarning
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 在非交互式检查时忽略警告
-
-如果设置为 `true`<!-- -->，将会忽略所有检查警告项并尽可能生成下单资料；
-
-如果设置为 `false`<!-- -->，存在任意警告将中断执行并返回 `false` 的结果
-
+_(Optional)_ Ignore warnings during non-interactive checking. If set to `true`<!-- -->, all check warning items will be ignored and the ordering data will be generated as much as possible; if set to `false`<!-- -->, any warning will interrupt execution and return `false`
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-是否通过下单检查
+Whether the ordering check passed. Until the input parameters are fully developed, the return value has no practical effect and does not wait for the execution result
 
 ## Remarks
 
-本接口暂时只支持交互式检查，入参暂无作用，预留后续开发
+This API currently only supports interactive checking. The input parameters have no effect for now and are reserved for future development
+
+## Example
+
+```javascript
+// 1. 交互式下单检查：弹出检查弹窗等待确认，确认后打开下单页面
+// const passed = await eda.pcb_ManufactureData.place3DShellOrder(true);
+// 2. 静默检查：不弹任何弹窗，忽略警告并直接生成下单资料
+// const passed = await eda.pcb_ManufactureData.place3DShellOrder(false, true);
+// console.log('下单检查结果 ' + passed);
+// 下单会真实打开订单页面并产生订单数据，案例中不实际执行
+console.log('演示调用：place3DShellOrder(true) 交互式检查，或 place3DShellOrder(false, true) 静默下单');
+```
 
 ### placecomponentsorder
 
@@ -2805,12 +2657,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-元件下单
+Component ordering
 
 ## Signature
 
 ```typescript
-placeComponentsOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
+function placeComponentsOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
 ```
 
 ## Parameters
@@ -2819,71 +2671,64 @@ placeComponentsOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<bo
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 interactive
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否启用交互式检查
-
-如若启用，则会存在弹窗等待用户进行交互，且无法使用 `ignoreWarning` 参数忽略警告， 即 `ignoreWarning` 参数将被忽略；
-
-如若禁用，则在调用后不会有任何 EDA 内部弹窗，程序执行静默检查， 如若达成下单条件，将返回 `true` 并在新标签页打开下单页面
-
+_(Optional)_ Whether to enable interactive checking. If enabled, a popup will wait for user interaction, and the `ignoreWarning` parameter cannot be used to ignore warnings; that is, the `ignoreWarning` parameter will be ignored. If disabled, no EDA internal popup will appear after the call, and the program performs a silent check. If the ordering conditions are met, `true` will be returned and the ordering page will be opened in a new tab
 
 </td></tr>
 <tr><td>
 
 ignoreWarning
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 在非交互式检查时忽略警告
-
-如果设置为 `true`<!-- -->，将会忽略所有检查警告项并尽可能生成下单资料；
-
-如果设置为 `false`<!-- -->，存在任意警告将中断执行并返回 `false` 的结果
-
+_(Optional)_ Ignore warnings during non-interactive checking. If set to `true`<!-- -->, all check warning items will be ignored and the ordering data will be generated as much as possible; if set to `false`<!-- -->, any warning will interrupt execution and return `false`
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-是否通过下单检查
+Whether the ordering check passed. Until the input parameters are fully developed, the return value has no practical effect and does not wait for the execution result
 
 ## Remarks
 
-本接口暂时只支持交互式检查，入参暂无作用，预留后续开发
+This API currently only supports interactive checking. The input parameters have no effect for now and are reserved for future development
+
+## Example
+
+```javascript
+// 1. 交互式下单检查：弹出检查弹窗等待确认，确认后打开购买页面
+// const passed = await eda.pcb_ManufactureData.placeComponentsOrder(true);
+// 2. 静默检查：不弹任何弹窗，忽略警告并直接生成下单资料
+// const passed = await eda.pcb_ManufactureData.placeComponentsOrder(false, true);
+// console.log('下单检查结果 ' + passed);
+// 下单会真实打开订单页面并产生订单数据，案例中不实际执行
+console.log('演示调用：placeComponentsOrder(true) 交互式检查，或 placeComponentsOrder(false, true) 静默下单');
+```
 
 ### placepcborder
 
@@ -2891,12 +2736,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-PCB 下单
+PCB ordering
 
 ## Signature
 
 ```typescript
-placePcbOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
+function placePcbOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
 ```
 
 ## Parameters
@@ -2905,71 +2750,64 @@ placePcbOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 interactive
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否启用交互式检查
-
-如若启用，则会存在弹窗等待用户进行交互，且无法使用 `ignoreWarning` 参数忽略警告， 即 `ignoreWarning` 参数将被忽略；
-
-如若禁用，则在调用后不会有任何 EDA 内部弹窗，程序执行静默检查， 如若达成下单条件，将返回 `true` 并在新标签页打开下单页面
-
+_(Optional)_ Whether to enable interactive checking. If enabled, a popup will wait for user interaction, and the `ignoreWarning` parameter cannot be used to ignore warnings; that is, the `ignoreWarning` parameter will be ignored. If disabled, no EDA internal popup will appear after the call, and the program performs a silent check. If the ordering conditions are met, `true` will be returned and the ordering page will be opened in a new tab
 
 </td></tr>
 <tr><td>
 
 ignoreWarning
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 在非交互式检查时忽略警告
-
-如果设置为 `true`<!-- -->，将会忽略所有检查警告项并尽可能生成下单资料；
-
-如果设置为 `false`<!-- -->，存在任意警告将中断执行并返回 `false` 的结果
-
+_(Optional)_ Ignore warnings during non-interactive checking. If set to `true`<!-- -->, all check warning items will be ignored and the ordering data will be generated as much as possible; if set to `false`<!-- -->, any warning will interrupt execution and return `false`
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-是否通过下单检查
+Whether the ordering check passed. Until the input parameters are fully developed, the return value has no practical effect and does not wait for the execution result
 
 ## Remarks
 
-本接口暂时只支持交互式检查，入参暂无作用，预留后续开发
+This API currently only supports interactive checking. The input parameters have no effect for now and are reserved for future development
+
+## Example
+
+```javascript
+// 1. 交互式下单检查：弹出检查弹窗等待确认，确认后打开下单页面
+// const passed = await eda.pcb_ManufactureData.placePcbOrder(true);
+// 2. 静默检查：不弹任何弹窗，忽略警告并直接生成下单资料
+// const passed = await eda.pcb_ManufactureData.placePcbOrder(false, true);
+// console.log('下单检查结果 ' + passed);
+// 下单会真实打开订单页面并产生订单数据，案例中不实际执行
+console.log('演示调用：placePcbOrder(true) 交互式检查，或 placePcbOrder(false, true) 静默下单');
+```
 
 ### placesmtcomponentsorder
 
@@ -2977,12 +2815,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-SMT 元件下单
+SMT component ordering
 
 ## Signature
 
 ```typescript
-placeSmtComponentsOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
+function placeSmtComponentsOrder(interactive?: boolean, ignoreWarning?: boolean): Promise<boolean>;
 ```
 
 ## Parameters
@@ -2991,71 +2829,64 @@ placeSmtComponentsOrder(interactive?: boolean, ignoreWarning?: boolean): Promise
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 interactive
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否启用交互式检查
-
-如若启用，则会存在弹窗等待用户进行交互，且无法使用 `ignoreWarning` 参数忽略警告， 即 `ignoreWarning` 参数将被忽略；
-
-如若禁用，则在调用后不会有任何 EDA 内部弹窗，程序执行静默检查， 如若达成下单条件，将返回 `true` 并在新标签页打开下单页面
-
+_(Optional)_ Whether to enable interactive checking. If enabled, a popup will wait for user interaction, and the `ignoreWarning` parameter cannot be used to ignore warnings; that is, the `ignoreWarning` parameter will be ignored. If disabled, no EDA internal popup will appear after the call, and the program performs a silent check. If the ordering conditions are met, `true` will be returned and the ordering page will be opened in a new tab
 
 </td></tr>
 <tr><td>
 
 ignoreWarning
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 在非交互式检查时忽略警告
-
-如果设置为 `true`<!-- -->，将会忽略所有检查警告项并尽可能生成下单资料；
-
-如果设置为 `false`<!-- -->，存在任意警告将中断执行并返回 `false` 的结果
-
+_(Optional)_ Ignore warnings during non-interactive checking. If set to `true`<!-- -->, all check warning items will be ignored and the ordering data will be generated as much as possible; if set to `false`<!-- -->, any warning will interrupt execution and return `false`
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-是否通过下单检查
+Whether the ordering check passed. Until the input parameters are fully developed, the return value has no practical effect and does not wait for the execution result
 
 ## Remarks
 
-本接口暂时只支持交互式检查，入参暂无作用，预留后续开发
+This API currently only supports interactive checking. The input parameters have no effect for now and are reserved for future development
+
+## Example
+
+```javascript
+// 1. 交互式下单检查：弹出检查弹窗等待确认，确认后打开下单页面
+// const passed = await eda.pcb_ManufactureData.placeSmtComponentsOrder(true);
+// 2. 静默检查：不弹任何弹窗，忽略警告并直接生成下单资料
+// const passed = await eda.pcb_ManufactureData.placeSmtComponentsOrder(false, true);
+// console.log('下单检查结果 ' + passed);
+// 下单会真实打开订单页面并产生订单数据，案例中不实际执行
+console.log('演示调用：placeSmtComponentsOrder(true) 交互式检查，或 placeSmtComponentsOrder(false, true) 静默下单');
+```
 
 ### uploadbomtemplatefile
 
@@ -3063,12 +2894,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-上传 BOM 模板文件
+Upload a BOM template file
 
 ## Signature
 
 ```typescript
-uploadBomTemplateFile(templateFile: File, template?: string): Promise<string | undefined>;
+function uploadBomTemplateFile(templateFile: File, template?: string): Promise<string | undefined>;
 ```
 
 ## Parameters
@@ -3077,73 +2908,61 @@ uploadBomTemplateFile(templateFile: File, template?: string): Promise<string | u
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 templateFile
 
-
 </td><td>
 
 File
 
-
 </td><td>
 
-BOM 模板文件
-
+BOM template file
 
 </td></tr>
 <tr><td>
 
 template
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ BOM 模板名称，如若为 `undefined` 则自动从 `templateFile` 中取值
-
+_(Optional)_ BOM template name. If it is `undefined`<!-- -->, the value is automatically taken from `templateFile`
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;string \| undefined&gt;
 
-BOM 模板名称
+BOM template name
 
 ## Example
-
 
 ```javascript
 // 从文件选择器读取模板文件
 const templateFile = await eda.sys_FileSystem.openReadFileDialog('.xlsx');
 if (templateFile) {
-    const templateName = await eda.pcb_ManufactureData.uploadBomTemplateFile(
-        templateFile,
-        'MyCustomTemplate'
-    );
-    if (templateName) {
-        console.log('模板上传成功:', templateName);
-    }
+	const templateName = await eda.pcb_ManufactureData.uploadBomTemplateFile(
+		templateFile,
+		'MyCustomTemplate'
+	);
+	if (templateName) {
+		console.log('模板上传成功:', templateName);
+	}
 }
 ```

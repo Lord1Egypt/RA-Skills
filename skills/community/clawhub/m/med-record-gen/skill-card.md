@@ -1,43 +1,55 @@
-## Description: <br>
-Generates structured outpatient initial medical-record text from Chinese doctor-patient dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从中文医患对话文本生成门诊初诊病历，输出结构化分段的病历正文（文本）。
 
-## Publisher: <br>
-[aaiccee](https://clawhub.ai/user/aaiccee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaiccee](https://clawhub.ai/user/aaiccee)
 
-## Use Case: <br>
-Clinicians, medical documentation teams, and agent operators can use this skill to turn Chinese consultation dialogue into a draft outpatient initial-visit record for licensed physician review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Doctor-patient dialogue may contain protected health information and is sent to an external service. <br>
-Mitigation: Use only when external processing is allowed under the applicable medical-data privacy obligations, and confirm the destination service is approved before execution. <br>
-Risk: The documentation promises de-identification, but the provided script does not implement local removal of identifiers. <br>
-Mitigation: Manually remove names, phone numbers, IDs, addresses, and other identifiers before providing input to the skill. <br>
-Risk: Generated records may be incomplete or clinically incorrect. <br>
-Mitigation: Require review and approval by a licensed physician before using the output in clinical documentation. <br>
+## Use Case:
 
+Clinicians, medical documentation staff, and developers can use this skill to turn Chinese doctor-patient dialogue transcripts into structured outpatient initial visit record text for review. It is a documentation aid and requires final review by a licensed physician.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaiccee/med-record-gen) <br>
-- [External record-generation service endpoint](https://shangbao.yunzhisheng.cn/skills/record-gen/gen_record_by_diag_v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [UTF-8 plain text medical-record draft with structured clinical sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script can write the generated record to a local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill handles doctor-patient dialogue that may contain personal health information, and the security evidence reports that raw dialogue is sent to an external API despite de-identification claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use only with consent and an approved data-processing pathway, or require local de-identification, explicit endpoint disclosure, and tests proving identifiers are not transmitted.
+
+Risk: Generated medical-record text may be incomplete or clinically incorrect if the source dialogue is ambiguous or the generated output is flawed.
+
+Mitigation: Require a licensed physician to review, correct, and approve the generated record before it is used for care or documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaiccee/skills/med-record-gen)
+- [Publisher profile](https://clawhub.ai/user/aaiccee)
+- [External record-generation API endpoint](https://shangbao.yunzhisheng.cn/skills/record-gen/gen_record_by_diag_v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [UTF-8 structured Chinese medical-record text, optionally written to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sections commonly include chief complaint, present illness, past history, physical examination, auxiliary examinations, diagnosis, and management.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Predict intelligence skill for AI agents that generates professional PDF reports with probability-ranked predictions, D3 visualizations, and Polymarket consensus signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict Intelligence generates professional PDF reports with probability-ranked predictions, D3 visualizations, and Polymarket consensus signals for geopolitics, finance, technology, elections, corporate events, and other prediction questions.
 
-## Publisher: <br>
-[Ken-Chy129](https://clawhub.ai/user/Ken-Chy129) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken-chy129](https://clawhub.ai/user/ken-chy129)
 
-## Use Case: <br>
-Developers and analysts use this skill to research prediction questions and produce concise intelligence briefs with calibrated outcomes, source-backed drivers, watch lists, visualizations, and optional Polymarket comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may browse the web, query Polymarket, execute Python and Playwright, and write local HTML/PDF files. <br>
-Mitigation: Run it in a virtual environment with expected file-write locations and review generated reports before using them for financial or operational decisions. <br>
-Risk: Generated reports may load assets from third-party CDNs. <br>
-Mitigation: Use only in environments where those external loads are acceptable, or review the HTML template before rendering. <br>
-Risk: Prediction outputs can be incorrect, incomplete, or stale. <br>
-Mitigation: Verify source URLs, probabilities, and market data before relying on the report. <br>
+## Use Case:
 
+Developers and analysts use this skill to generate source-backed prediction briefs that combine current research, probability-ranked outcomes, visualizations, and Polymarket consensus comparisons. It is intended for agents that can search the web, fetch URLs, run shell commands, and write report files.
 
-## Reference(s): <br>
-- [Predict Intelligence Skill Page](https://clawhub.ai/Ken-Chy129/predict-intelligence) <br>
-- [Data Sources & Methodology Reference](artifact/reference.md) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket Event Pages](https://polymarket.com/event/{slug}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [HTML report converted to PDF, with Markdown guidance and inline shell commands during agent execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local HTML/PDF report files and may query web sources and Polymarket for current prediction data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: PDF rendering executes mutable third-party JavaScript and browser tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment, pin or vendor JavaScript assets and browser/Python dependencies, and review generated HTML before PDF conversion.
+
+Risk: The skill makes web requests, contacts Polymarket, and writes local HTML/PDF report files.
+
+Mitigation: Use a scoped working directory, review source URLs and generated files, and restrict network access when live market or news data is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ken-chy129/skills/predict-intelligence)
+- [Data Sources & Methodology Reference](artifact/reference.md)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with HTML and PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces self-contained HTML reports, converts them to PDF with Playwright Chromium, and may include D3 visualizations and Polymarket market data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

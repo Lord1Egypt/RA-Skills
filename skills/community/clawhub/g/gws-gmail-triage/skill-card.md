@@ -1,42 +1,53 @@
-## Description: <br>
-Gmail: Show unread inbox summary (sender, subject, date). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail: Show unread inbox summary (sender, subject, date).
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to ask an agent for a concise summary of unread Gmail inbox messages, including sender, subject, and date metadata. It is intended for read-only email triage through the trusted gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unread Gmail sender, subject, date, and label metadata may be exposed to the agent or surrounding session. <br>
-Mitigation: Use the skill only where that metadata is appropriate to share, and avoid copying outputs into contexts that should not contain email metadata. <br>
-Risk: The skill depends on the local gws CLI and its Gmail authentication configuration. <br>
-Mitigation: Install only a trusted gws CLI, confirm it is connected to the intended Google account, and review the shared auth and security guidance before use. <br>
-Risk: Broad queries or high message limits can return more unread email metadata than intended. <br>
-Mitigation: Prefer narrow Gmail queries and conservative --max values when triaging sensitive inboxes. <br>
+## Use Case:
 
+Google Workspace users and agents assisting them use this skill to review unread Gmail inbox items by sender, subject, and date without modifying the mailbox.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-gmail-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash examples; command output is table text by default and can be JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Gmail metadata summary; default maximum is 20 unread messages unless changed with flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill can expose unread Gmail message metadata from a mailbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where gws Gmail read access is acceptable and review the shared gws authentication and security guidance when available.
+
+Risk: Authentication and global security behavior are delegated to a separate shared gws skill.
+
+Mitigation: Confirm the shared gws skill is present and reviewed before relying on this triage helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-gmail-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default command output is a table; JSON output is available through the gws format option.]
+
+## Skill Version(s):
+
+1.0.12 (source: release metadata; skill metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

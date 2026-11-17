@@ -1,44 +1,55 @@
-## Description: <br>
-Fetch articles from PubMed Central using NCBI APIs. Search journals, retrieve full text via OAI-PMH, batch harvest for RAG pipelines. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch articles from PubMed Central using NCBI APIs. Search journals, retrieve full text via OAI-PMH, batch harvest for RAG pipelines. No API key required.
 
-## Publisher: <br>
-[angusthefuzz](https://clawhub.ai/user/angusthefuzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[angusthefuzz](https://clawhub.ai/user/angusthefuzz)
 
-## Use Case: <br>
-Developers and researchers use this skill to search PubMed Central, retrieve open-access article metadata, abstracts, or JATS XML full text, and batch harvest literature for review queues or RAG pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Literature searches and requested PMC IDs are sent to NCBI/PMC public APIs. <br>
-Mitigation: Use the skill only when sending those queries and identifiers to NCBI/PMC is acceptable for the workflow. <br>
-Risk: Large automated batches may hit NCBI rate limits or recommended usage windows. <br>
-Mitigation: Respect the built-in request delay, keep batch sizes reasonable, and schedule large harvests outside NCBI peak hours where practical. <br>
-Risk: No upstream source or homepage is listed in server-resolved provenance. <br>
-Mitigation: Review future versions and their security evidence before automated or large-scale use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PMC Harvest ClawHub release](https://clawhub.ai/angusthefuzz/pmc-harvest) <br>
-- [NCBI E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/) <br>
-- [NCBI E-utilities endpoint](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [PubMed Central OAI-PMH endpoint](https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh) <br>
+## Use Case:
 
+Developers and researchers use this skill to search PubMed Central, retrieve open-access article XML or abstracts, and batch-harvest article metadata for review queues or RAG pipelines.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and JavaScript examples; runtime commands return console text and parsed article data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and network access to NCBI/PMC public APIs; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes broader network access than its PubMed Central harvesting purpose documents.
+
+Mitigation: Review before installing in environments with sensitive internal network access; prefer a version restricted to eutils.ncbi.nlm.nih.gov and pmc.ncbi.nlm.nih.gov with request timeouts and response-size limits.
+
+Risk: Large batch harvests can exceed public NCBI usage expectations or run during discouraged peak hours.
+
+Mitigation: Keep rate limiting enabled, use conservative batch sizes, and schedule large runs outside NCBI's documented peak-hour window.
+
+## Reference(s):
+
+- [PMC Harvest on ClawHub](https://clawhub.ai/angusthefuzz/skills/pmc-harvest)
+- [NCBI E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [PubMed Central OAI-PMH API](https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh)
+- [NCBI E-utilities Documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks; CLI output may include article metadata, abstracts, and XML-derived text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js and public NCBI APIs without an API key; requests are rate-limited in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

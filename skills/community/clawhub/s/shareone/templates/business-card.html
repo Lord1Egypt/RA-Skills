@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>电子名片模板 · ShareOne</title>
+<meta name="description" content="ShareOne 电子名片模板：一份 HTML 同时产出微信可发的图片、可扫的链接和 90x54mm 印刷 PDF。">
+<!-- A personal card is meant to be handed out, not found by searching a name. -->
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* ===========================================================================
+   Card geometry is declared once, in millimetres, and every inside measurement
+   is a `cqw` — 1cqw = 1% of the card's own width. The same stylesheet therefore
+   renders a pixel-accurate 90x54mm print page and a phone-width preview with no
+   second set of numbers to keep in sync.
+   =========================================================================== */
+:root {
+  --card-w: 90mm;
+  --card-h: 54mm;
+  --paper: #FBFBF9;
+  --ink: #1A1A18;
+  --ink-soft: #6E6E6A;
+  --ink-faint: #9C9C97;
+  --dark: #1A1A18;
+  --on-dark: #EDEDE9;
+  --on-dark-soft: rgba(237, 237, 233, .55);
+  --page: #F4F4F1;
+  --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC",
+          "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --page: #121211; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  padding: clamp(20px, 6vw, 56px) 16px calc(40px + env(safe-area-inset-bottom, 0px));
+  background: var(--page);
+  font-family: var(--sans);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 4vw, 26px);
+}
+
+/* --- the two card faces ------------------------------------------------- */
+.deck { display: flex; flex-direction: column; gap: clamp(14px, 3.5vw, 22px); width: 100%; max-width: 420px; }
+
+.card {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 90 / 54;
+  overflow: hidden;
+  border-radius: 1.6cqw;
+  /* A printed card is a physical object — it keeps its own colours whatever
+     theme the viewer's phone is in. Only the page around it follows the theme. */
+  color-scheme: light;
+  box-shadow: 0 1px 2px rgba(0,0,0,.10), 0 10px 30px -12px rgba(0,0,0,.30);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.card__inner { position: absolute; inset: 0; padding: 7.2cqw 7.6cqw; display: flex; flex-direction: column; }
+
+/* front ------------------------------------------------------------------ */
+.front { background: var(--paper); color: var(--ink); }
+/* The mark again, oversized and cropped by the corner — the brand geometry as
+   a watermark. Kept well clear of the name so it never fights the type. */
+.front__motif {
+  position: absolute;
+  right: -9cqw;
+  bottom: -13cqw;
+  height: 50cqw;
+  opacity: .04;
+  pointer-events: none;
+}
+.lockup { display: flex; align-items: center; gap: 3.4cqw; }
+.lockup__mark { height: 10cqw; display: block; }
+/* Swap this text span for an <svg> of your own wordmark when you have one. */
+.lockup__word { font-size: 4.3cqw; font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+.front__id { margin-top: auto; position: relative; }
+.front__name {
+  font-size: 10.2cqw;
+  font-weight: 500;
+  letter-spacing: .04em;
+  line-height: 1;
+  margin: 0;
+}
+.front__rule { width: 9.5cqw; height: .32cqw; background: var(--ink); margin: 3.4cqw 0 3cqw; opacity: .85; }
+.front__title { font-size: 3.5cqw; letter-spacing: .28em; color: var(--ink-soft); }
+
+/* back ------------------------------------------------------------------- */
+.back { background: var(--dark); color: var(--on-dark); }
+.back .card__inner { flex-direction: row; gap: 4cqw; }
+.back__left { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.back__head { display: flex; align-items: center; gap: 2.8cqw; }
+.back__mark { height: 7cqw; width: auto; display: block; opacity: .95; }
+.back__org { font-size: 2.9cqw; letter-spacing: .06em; color: var(--on-dark); opacity: .88; }
+.contact { margin-top: auto; display: flex; flex-direction: column; gap: 2.5cqw; }
+.contact__row { display: flex; align-items: flex-start; gap: 2.6cqw; font-size: 3.05cqw; line-height: 1.35; }
+.contact__icon { width: 3.3cqw; height: 3.3cqw; flex: none; margin-top: .35cqw; opacity: .58; }
+.contact__val { min-width: 0; word-break: break-word; }
+
+.back__right { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.chip { background: #fff; border-radius: 1.4cqw; padding: 1.1cqw; display: block; }
+.chip svg { display: block; width: 21cqw; height: 21cqw; }
+.back__scan { margin-top: 1.9cqw; font-size: 2.35cqw; letter-spacing: .18em; color: var(--on-dark-soft); }
+
+/* --- the page around the cards (screen only) ----------------------------- */
+/* The card faces are an image — at phone width their type is ~11px. These rows
+   repeat the same values as real, selectable, tappable text at a readable size,
+   and the script fills them from the card face so nothing is typed twice. */
+.actions { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 420px; }
+.btn {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 54px; padding: 0 18px;
+  border: 1px solid rgba(26,26,24,.14); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  font-size: 15.5px; font-family: inherit; text-decoration: none;
+  transition: transform .12s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn svg { width: 18px; height: 18px; flex: none; opacity: .5; }
+.btn__val { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn--primary {
+  justify-content: center;
+  background: var(--ink); color: #fff; border-color: var(--ink);
+  font-size: 16px; font-weight: 500;
+  margin-bottom: 4px;
+}
+.btn--primary svg { opacity: .85; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .btn { background: #1E1E1C; color: #EDEDE9; border-color: rgba(237,237,233,.16); }
+  :root:not([data-theme="light"]) .btn--primary { background: #EDEDE9; color: #1A1A18; }
+}
+.note { max-width: 420px; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); text-align: center; margin: 0; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .note { color: #76766F; }
+}
+
+/* --- print: the cards alone, at exact trim size -------------------------- */
+@page { size: 90mm 54mm; margin: 0; }
+@media print {
+  body { padding: 0; background: #fff; display: block; gap: 0; }
+  .actions, .note { display: none !important; }
+  .deck { display: block; max-width: none; gap: 0; }
+  .card {
+    width: var(--card-w); height: var(--card-h);
+    aspect-ratio: auto; border-radius: 0; box-shadow: none;
+    break-after: page; page-break-after: always;
+  }
+  .card:last-child { break-after: auto; page-break-after: auto; }
+}
+</style>
+</head>
+<body>
+<!--
+  ============================================================================
+  ShareOne 电子名片模板 — 一份 HTML，三种交付
+
+    1. 手机/微信可发的图片   page_screenshot 这一页
+    2. 可扫的电子名片链接    publish.js 发布本文件
+    3. 可印的 90x54mm PDF    Chrome 打印 / Page.printToPDF（已内置 @page）
+
+  改名片只要改下面 data-field="..." 的文字。vCard、tel:、mailto: 和四个操作
+  按钮都由脚本从卡面读取，不要在别处重复写一遍联系方式。
+
+  三处需要替换：
+    A) data-field 的文字（姓名/职务/公司/电话/邮箱/地址/网址）
+       - data-surname 是姓氏的字数，vCard 靠它切分姓和名（中文名没有空格）
+    B) LOGO —— 三处 <svg> 里的占位立方体换成你的标记。
+       .ai 文件其实是 PDF，可以直接抽成矢量：
+         python -c "import fitz;print(fitz.open('logo.ai')[0].get_svg_image())"
+    C) 二维码 —— 必须重新生成，指向这张名片发布后的链接：
+         node ../scripts/make_qr.js --text "https://s.shareone.vip/s/你的slug" \
+              --ecc Q --format path
+       把输出贴进 class="chip" 里那个 <path> 的 d 属性。
+       先用 --slug 想好链接再生成二维码，顺序反了二维码会指向不存在的页面。
+
+  二维码为什么指向名片链接而不是官网：扫码的人当场想要的是把你存进通讯录，
+  名片页能一键存 vCard，官网不能；而且印出去的卡改不了，名片页可以随时更新。
+  ============================================================================
+-->
+
+<div class="deck">
+  <!-- ---------------------------------------------------------------- front -->
+  <article class="card front" aria-label="名片正面">
+    <svg class="front__motif" viewBox="0 0 670.00 770.60" aria-hidden="true">
+      <path fill="#1A1A18" fill-rule="evenodd" d="M509.9 503.7L624.9 570.1L509.9 636.5L509.9 503.7M350 596.1L464.9 662.4L350 728.7L350 596.1M30 411.3L145 477.7L30 544.1L30 411.3M320 191.9L175 275.6L45 200.5L320 41.8L320 191.9M350 174.6L350 41.8L465 108.2L350 174.6M510 266.9L510 134.2L624.9 200.6L510 266.9M350 394L479.9 319L479.9 636.5L350 561.5L350 394M320 578.8L320 728.9L45 570.1L175 495.1L320 578.8M174.9 310.3L319.9 394L319.9 544.1L44.9 385.3L174.9 310.3M144.9 293L29.9 359.4L29.9 226.6L144.9 293M480 134.2L480 284.3L335 368L205 293L480 134.2M510 469.1L510 301.7L640 226.6L640 544.1L510 469.1M668.8 194.8C667.5 191.8 665.3 189.2 662.5 187.6L502.7 95.3L502.6 95.2L502.5 95.2L342.7 2.9L342.6 2.8C337.9 0.1 332.2 0 327.5 2.7L7.5 187.4C2.9 190.1 0 195.1 0 200.5L0 385.1L0 385.3L0 385.4L0 570L0 570.1C0 575.5 2.9 580.4 7.5 583.1L327.5 767.9C332.1 770.6 337.9 770.6 342.5 767.9C342.8 767.7 343.2 767.5 343.5 767.2L502.3 675.5L502.5 675.4L502.6 675.3L662.4 583.1L662.5 583C667.1 580.3 670 575.4 670 570L670 200.6C670 198.6 669.6 196.7 668.8 194.8Z"/>
+    </svg>
+    <div class="card__inner">
+      <div class="lockup">
+        <svg class="lockup__mark" viewBox="0 0 670.00 770.60" aria-hidden="true">
+          <path fill="#1A1A18" fill-rule="evenodd" d="M509.9 503.7L624.9 570.1L509.9 636.5L509.9 503.7M350 596.1L464.9 662.4L350 728.7L350 596.1M30 411.3L145 477.7L30 544.1L30 411.3M320 191.9L175 275.6L45 200.5L320 41.8L320 191.9M350 174.6L350 41.8L465 108.2L350 174.6M510 266.9L510 134.2L624.9 200.6L510 266.9M350 394L479.9 319L479.9 636.5L350 561.5L350 394M320 578.8L320 728.9L45 570.1L175 495.1L320 578.8M174.9 310.3L319.9 394L319.9 544.1L44.9 385.3L174.9 310.3M144.9 293L29.9 359.4L29.9 226.6L144.9 293M480 134.2L480 284.3L335 368L205 293L480 134.2M510 469.1L510 301.7L640 226.6L640 544.1L510 469.1M668.8 194.8C667.5 191.8 665.3 189.2 662.5 187.6L502.7 95.3L502.6 95.2L502.5 95.2L342.7 2.9L342.6 2.8C337.9 0.1 332.2 0 327.5 2.7L7.5 187.4C2.9 190.1 0 195.1 0 200.5L0 385.1L0 385.3L0 385.4L0 570L0 570.1C0 575.5 2.9 580.4 7.5 583.1L327.5 767.9C332.1 770.6 337.9 770.6 342.5 767.9C342.8 767.7 343.2 767.5 343.5 767.2L502.3 675.5L502.5 675.4L502.6 675.3L662.4 583.1L662.5 583C667.1 580.3 670 575.4 670 570L670 200.6C670 198.6 669.6 196.7 668.8 194.8Z"/>
+        </svg>
+        <span class="lockup__word">示例科技有限公司</span>
+      </div>
+      <div class="front__id">
+        <h1 class="front__name" data-field="name" data-surname="1">张与之</h1>
+        <div class="front__rule"></div>
+        <div class="front__title" data-field="title">业务发展总监</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ----------------------------------------------------------------- back -->
+  <article class="card back" aria-label="名片背面">
+    <div class="card__inner">
+      <div class="back__left">
+        <div class="back__head">
+          <svg class="back__mark" viewBox="0 0 670.00 770.60" aria-hidden="true">
+            <path fill="#EDEDE9" fill-rule="evenodd" d="M509.9 503.7L624.9 570.1L509.9 636.5L509.9 503.7M350 596.1L464.9 662.4L350 728.7L350 596.1M30 411.3L145 477.7L30 544.1L30 411.3M320 191.9L175 275.6L45 200.5L320 41.8L320 191.9M350 174.6L350 41.8L465 108.2L350 174.6M510 266.9L510 134.2L624.9 200.6L510 266.9M350 394L479.9 319L479.9 636.5L350 561.5L350 394M320 578.8L320 728.9L45 570.1L175 495.1L320 578.8M174.9 310.3L319.9 394L319.9 544.1L44.9 385.3L174.9 310.3M144.9 293L29.9 359.4L29.9 226.6L144.9 293M480 134.2L480 284.3L335 368L205 293L480 134.2M510 469.1L510 301.7L640 226.6L640 544.1L510 469.1M668.8 194.8C667.5 191.8 665.3 189.2 662.5 187.6L502.7 95.3L502.6 95.2L502.5 95.2L342.7 2.9L342.6 2.8C337.9 0.1 332.2 0 327.5 2.7L7.5 187.4C2.9 190.1 0 195.1 0 200.5L0 385.1L0 385.3L0 385.4L0 570L0 570.1C0 575.5 2.9 580.4 7.5 583.1L327.5 767.9C332.1 770.6 337.9 770.6 342.5 767.9C342.8 767.7 343.2 767.5 343.5 767.2L502.3 675.5L502.5 675.4L502.6 675.3L662.4 583.1L662.5 583C667.1 580.3 670 575.4 670 570L670 200.6C670 198.6 669.6 196.7 668.8 194.8Z"/>
+          </svg>
+          <div class="back__org" data-field="org">示例科技有限公司</div>
+        </div>
+        <div class="contact">
+          <div class="contact__row">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="#EDEDE9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            <span class="contact__val" data-field="tel">13800000000</span>
+          </div>
+          <div class="contact__row">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="#EDEDE9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span class="contact__val" data-field="email">hello@example.com</span>
+          </div>
+          <div class="contact__row">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="#EDEDE9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="contact__val" data-field="address">北京市朝阳区示例路 1 号 10 层</span>
+          </div>
+          <div class="contact__row">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="#EDEDE9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/><path d="M2 12h20"/></svg>
+            <span class="contact__val" data-field="url">example.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="back__right">
+        <span class="chip">
+          <svg viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="扫码打开电子名片">
+            <path fill="#1A1A18" d="M4 4h7v1h-7zM14 4h2v1h-2zM17 4h1v1h-1zM26 4h2v1h-2zM30 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM15 5h2v1h-2zM19 5h2v1h-2zM22 5h2v1h-2zM26 5h1v1h-1zM30 5h1v1h-1zM36 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM12 6h3v1h-3zM17 6h1v1h-1zM19 6h1v1h-1zM21 6h2v1h-2zM25 6h1v1h-1zM27 6h1v1h-1zM30 6h1v1h-1zM32 6h3v1h-3zM36 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM13 7h1v1h-1zM15 7h3v1h-3zM19 7h3v1h-3zM23 7h1v1h-1zM27 7h1v1h-1zM30 7h1v1h-1zM32 7h3v1h-3zM36 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM12 8h2v1h-2zM15 8h2v1h-2zM18 8h2v1h-2zM23 8h1v1h-1zM26 8h2v1h-2zM30 8h1v1h-1zM32 8h3v1h-3zM36 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM14 9h1v1h-1zM17 9h2v1h-2zM22 9h1v1h-1zM24 9h2v1h-2zM28 9h1v1h-1zM30 9h1v1h-1zM36 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h7v1h-7zM13 11h6v1h-6zM21 11h1v1h-1zM23 11h5v1h-5zM5 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM16 12h2v1h-2zM19 12h4v1h-4zM24 12h6v1h-6zM31 12h2v1h-2zM34 12h1v1h-1zM4 13h1v1h-1zM8 13h1v1h-1zM11 13h1v1h-1zM15 13h2v1h-2zM18 13h1v1h-1zM21 13h2v1h-2zM27 13h1v1h-1zM29 13h1v1h-1zM33 13h2v1h-2zM4 14h2v1h-2zM7 14h1v1h-1zM9 14h4v1h-4zM14 14h3v1h-3zM18 14h3v1h-3zM22 14h1v1h-1zM26 14h2v1h-2zM33 14h1v1h-1zM35 14h1v1h-1zM6 15h4v1h-4zM11 15h1v1h-1zM13 15h2v1h-2zM16 15h1v1h-1zM19 15h2v1h-2zM23 15h5v1h-5zM29 15h2v1h-2zM35 15h2v1h-2zM5 16h3v1h-3zM9 16h4v1h-4zM14 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM23 16h1v1h-1zM25 16h4v1h-4zM30 16h4v1h-4zM4 17h4v1h-4zM9 17h1v1h-1zM14 17h2v1h-2zM17 17h1v1h-1zM19 17h2v1h-2zM22 17h3v1h-3zM27 17h1v1h-1zM29 17h1v1h-1zM31 17h1v1h-1zM5 18h6v1h-6zM12 18h4v1h-4zM19 18h1v1h-1zM24 18h2v1h-2zM27 18h4v1h-4zM32 18h1v1h-1zM35 18h1v1h-1zM8 19h1v1h-1zM11 19h2v1h-2zM16 19h2v1h-2zM22 19h1v1h-1zM25 19h1v1h-1zM27 19h4v1h-4zM5 20h1v1h-1zM7 20h1v1h-1zM9 20h2v1h-2zM12 20h1v1h-1zM15 20h2v1h-2zM18 20h1v1h-1zM20 20h1v1h-1zM23 20h1v1h-1zM25 20h4v1h-4zM30 20h1v1h-1zM32 20h1v1h-1zM35 20h1v1h-1zM4 21h1v1h-1zM8 21h1v1h-1zM11 21h3v1h-3zM17 21h3v1h-3zM27 21h1v1h-1zM33 21h3v1h-3zM4 22h4v1h-4zM10 22h1v1h-1zM13 22h3v1h-3zM20 22h1v1h-1zM22 22h1v1h-1zM25 22h1v1h-1zM27 22h5v1h-5zM33 22h1v1h-1zM7 23h1v1h-1zM16 23h1v1h-1zM18 23h3v1h-3zM22 23h4v1h-4zM31 23h1v1h-1zM35 23h2v1h-2zM4 24h1v1h-1zM6 24h3v1h-3zM10 24h2v1h-2zM13 24h1v1h-1zM18 24h2v1h-2zM21 24h2v1h-2zM24 24h1v1h-1zM28 24h1v1h-1zM30 24h1v1h-1zM32 24h2v1h-2zM35 24h2v1h-2zM4 25h1v1h-1zM8 25h1v1h-1zM11 25h2v1h-2zM16 25h1v1h-1zM18 25h1v1h-1zM21 25h1v1h-1zM23 25h1v1h-1zM25 25h1v1h-1zM27 25h2v1h-2zM33 25h1v1h-1zM35 25h1v1h-1zM6 26h1v1h-1zM8 26h4v1h-4zM13 26h6v1h-6zM23 26h1v1h-1zM27 26h2v1h-2zM31 26h1v1h-1zM34 26h2v1h-2zM7 27h2v1h-2zM11 27h1v1h-1zM13 27h2v1h-2zM16 27h2v1h-2zM19 27h3v1h-3zM23 27h3v1h-3zM28 27h5v1h-5zM35 27h2v1h-2zM4 28h3v1h-3zM9 28h2v1h-2zM12 28h2v1h-2zM18 28h3v1h-3zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h6v1h-6zM36 28h1v1h-1zM12 29h2v1h-2zM18 29h1v1h-1zM20 29h2v1h-2zM24 29h2v1h-2zM27 29h2v1h-2zM32 29h1v1h-1zM34 29h1v1h-1zM4 30h7v1h-7zM14 30h2v1h-2zM19 30h1v1h-1zM21 30h2v1h-2zM24 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h2v1h-2zM35 30h1v1h-1zM4 31h1v1h-1zM10 31h1v1h-1zM15 31h1v1h-1zM18 31h3v1h-3zM22 31h1v1h-1zM24 31h1v1h-1zM26 31h1v1h-1zM28 31h1v1h-1zM32 31h1v1h-1zM35 31h2v1h-2zM4 32h1v1h-1zM6 32h3v1h-3zM10 32h1v1h-1zM12 32h1v1h-1zM14 32h3v1h-3zM18 32h1v1h-1zM20 32h4v1h-4zM26 32h1v1h-1zM28 32h6v1h-6zM4 33h1v1h-1zM6 33h3v1h-3zM10 33h1v1h-1zM13 33h2v1h-2zM16 33h1v1h-1zM19 33h1v1h-1zM21 33h1v1h-1zM23 33h3v1h-3zM29 33h7v1h-7zM4 34h1v1h-1zM6 34h3v1h-3zM10 34h1v1h-1zM13 34h1v1h-1zM16 34h1v1h-1zM20 34h1v1h-1zM24 34h1v1h-1zM28 34h1v1h-1zM30 34h3v1h-3zM4 35h1v1h-1zM10 35h1v1h-1zM12 35h1v1h-1zM14 35h3v1h-3zM19 35h2v1h-2zM25 35h5v1h-5zM4 36h7v1h-7zM13 36h3v1h-3zM21 36h8v1h-8zM30 36h1v1h-1zM33 36h1v1h-1zM36 36h1v1h-1z"/>
+          </svg>
+        </span>
+        <div class="back__scan">扫码存名片</div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div class="actions">
+  <a class="btn btn--primary" id="vcf" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+    存入通讯录
+  </a>
+  <a class="btn" id="act-tel" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+    <span class="btn__val"></span>
+  </a>
+  <a class="btn" id="act-mail" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    <span class="btn__val"></span>
+  </a>
+  <a class="btn" id="act-web" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/><path d="M2 12h20"/></svg>
+    <span class="btn__val"></span>
+  </a>
+</div>
+
+<p class="note">示例科技有限公司</p>
+
+<script>
+// Every value is READ BACK OUT of the card face, which is the only place it is
+// written. The vCard, the tel: link and the mailto: link therefore cannot drift
+// from what is printed on the card — edit the markup above and all four follow.
+(function () {
+  function field(name) {
+    var el = document.querySelector('[data-field="' + name + '"]');
+    return el ? el.textContent.trim() : '';
+  }
+
+  var name = field('name');
+  var tel = field('tel');
+  var email = field('email');
+  var url = /^https?:\/\//.test(field('url')) ? field('url') : 'https://' + field('url');
+  var surnameLength = Number(document.querySelector('[data-field="name"]').dataset.surname || 1);
+
+  var vcf = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    // Chinese names are written family-name-first and carry no separator, so the
+    // split point is declared on the element rather than guessed from a space.
+    'N:' + name.slice(0, surnameLength) + ';' + name.slice(surnameLength) + ';;;',
+    'FN:' + name,
+    'ORG:' + field('org'),
+    'TITLE:' + field('title'),
+    'TEL;TYPE=CELL,VOICE:' + tel,
+    'EMAIL;TYPE=INTERNET,WORK:' + email,
+    'ADR;TYPE=WORK:;;' + field('address') + ';;;;',
+    'URL:' + url,
+    'END:VCARD',
+  ].join('\r\n') + '\r\n';
+
+  var dl = document.getElementById('vcf');
+  // A UTF-8 data: URI keeps the download working inside ShareOne's origin-opaque
+  // iframe, where a Blob URL would count as cross-origin.
+  dl.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcf);
+  dl.setAttribute('download', name + '-' + field('org') + '.vcf');
+
+  function wire(id, href, label) {
+    var el = document.getElementById(id);
+    el.href = href;
+    el.querySelector('.btn__val').textContent = label;
+  }
+  wire('act-tel', 'tel:' + tel.replace(/[^+\d]/g, ''), tel);
+  wire('act-mail', 'mailto:' + email, email);
+  wire('act-web', url, field('url'));
+})();
+</script>
+</body>
+</html>

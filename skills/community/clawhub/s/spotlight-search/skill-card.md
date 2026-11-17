@@ -1,44 +1,59 @@
-## Description: <br>
-Search files, apps, and metadata on macOS using Spotlight CLI tools (`mdfind`, `mdls`, `mdutil`) with a fallback script for cases where indexing is incomplete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search files, apps, and metadata on macOS using Spotlight CLI tools (`mdfind`, `mdls`, `mdutil`) and a fallback script when indexing is incomplete.
 
-## Publisher: <br>
-[mozi1924](https://clawhub.ai/user/mozi1924) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mozi1924](https://clawhub.ai/user/mozi1924)
 
-## Use Case: <br>
-Developers, operators, and macOS users use this skill to find files, applications, and metadata on a Mac through Spotlight CLI tools, with a fallback path-based search when indexing is incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches can expose local file paths or file metadata in the agent chat. <br>
-Mitigation: Prefer folder-scoped searches for sensitive areas and review results before sharing or acting on them. <br>
-Risk: Spotlight reindexing with `sudo mdutil -E /` is privileged and system-wide. <br>
-Mitigation: Use `mdutil` mainly for status checks and approve reindexing only when intentionally rebuilding Spotlight. <br>
-Risk: Spotlight results can be incomplete when indexing is stale or a directory is excluded. <br>
-Mitigation: Use scoped `mdfind` queries first, then the bundled fallback script for filename or path matching when a known file is missing. <br>
+## Use Case:
 
+Developers and macOS users use this skill to construct Spotlight searches, inspect file metadata, and fall back to local filename or path matching when Spotlight indexing is incomplete.
 
-## Reference(s): <br>
-- [mdfind Query Reference](references/mdfind-queries.md) <br>
-- [Apple Uniform Type Identifiers Reference](https://developer.apple.com/documentation/uniformtypeidentifiers) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mozi1924/spotlight-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file paths and metadata; no API calls or credential variables are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill can search local Spotlight-indexed content, which may include sensitive filenames, paths, metadata, or document contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit directory scoping such as `mdfind -onlyin` when possible, and review proposed searches before execution.
+
+Risk: The security summary reports a directory-scoping bug in the bundled fallback behavior.
+
+Mitigation: Prefer explicit `-onlyin` scoping for Spotlight searches and avoid relying on the bundled script for home-directory-limited searches until the issue is fixed.
+
+Risk: The skill includes guidance for `sudo mdutil -E /`, a privileged system-wide Spotlight reindex command.
+
+Mitigation: Do not approve system-wide reindexing unless the user intentionally requests that system-level change.
+
+## Reference(s):
+
+- [mdfind Query Reference](references/mdfind-queries.md)
+- [Apple Uniform Type Identifiers](https://developer.apple.com/documentation/uniformtypeidentifiers)
+- [ClawHub Spotlight Search Skill Page](https://clawhub.ai/mozi1924/skills/spotlight-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces macOS-specific search and metadata inspection guidance; commands may access local Spotlight-indexed content.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

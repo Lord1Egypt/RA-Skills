@@ -1,42 +1,57 @@
-## Description: <br>
-Calls a remote OpenClaw instance through an OpenAI-compatible Gateway HTTP API with multi-turn session continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls a remote OpenClaw instance through the OpenClaw Gateway HTTP API and preserves multi-turn sessions.
 
-## Publisher: <br>
-[anlinxi](https://clawhub.ai/user/anlinxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlinxi](https://clawhub.ai/user/anlinxi)
 
-## Use Case: <br>
-Developers and OpenClaw users can route a prompt to a remote OpenClaw Gateway when they want the remote instance to answer while preserving a reusable session key across requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill forwards prompts to a hardcoded HTTP gateway with a hardcoded token. <br>
-Mitigation: Install only when you own or fully trust the configured OpenClaw Gateway and local network path; override the URL and token before production use. <br>
-Risk: Session continuity is stored in ~/.oc_session and reused until cleared. <br>
-Mitigation: Clear or rotate the session with the provided management commands when changing users, tasks, or trust boundaries. <br>
-Risk: Prompt contents may traverse an unencrypted local-network HTTP connection. <br>
-Mitigation: Avoid sending secrets through the skill unless you replace the endpoint with a trusted HTTPS gateway. <br>
+## Use Case:
 
+Developers and agent users use this skill to route selected prompts to a remote OpenClaw Gateway and receive its answer while reusing a session key across turns.
 
-## Reference(s): <br>
-- [Oc Call on ClawHub](https://clawhub.ai/anlinxi/oc-call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses with command-line usage and environment-variable configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forwards one user prompt per invocation to the configured OpenClaw Gateway and prints the returned assistant message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Prompts and credentials are sent to a remote OpenClaw Gateway over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on trusted networks and require HTTPS before using the skill with sensitive prompts or credentials.
+
+Risk: The artifact ships a reusable bearer token.
+
+Mitigation: Replace bundled credentials with environment-specific secrets before deployment and rotate any exposed token.
+
+Risk: Session continuity depends on a local ~/.oc_session file.
+
+Mitigation: Protect the session file with appropriate filesystem permissions or clear it with the provided management command when session reuse is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anlinxi/skills/oc-call)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text response or short command status message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are produced by a remote OpenClaw chat completion endpoint; session continuity uses an x-openclaw-session-key value stored in ~/.oc_session.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

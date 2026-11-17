@@ -1,41 +1,58 @@
-## Description: <br>
-Manage Neon Serverless Postgres via CLI - projects, branches, databases, roles, endpoints, connection strings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Neon Serverless Postgres via CLI - projects, branches, databases, roles, endpoints, connection strings.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Neon Serverless Postgres resources through neonctl, including projects, branches, databases, roles, endpoints, context, and connection strings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands may affect real Neon cloud databases when valid credentials are available. <br>
-Mitigation: Use least-privilege Neon credentials and review the target project, branch, database, or role before execution. <br>
-Risk: Delete and reset commands can remove or overwrite Neon resources. <br>
-Mitigation: Require explicit confirmation before running destructive neonctl commands such as delete or branch reset. <br>
-Risk: Connection strings and API keys are sensitive secrets. <br>
-Mitigation: Treat Neon connection strings and API keys as secrets and avoid exposing them in logs, chat transcripts, or generated files. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Neon Serverless Postgres resources from an agent-assisted CLI workflow, including projects, branches, databases, roles, endpoints, and connection strings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Use --output json when calling neonctl programmatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Neon API keys and connection strings can expose database access if printed, logged, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat credentials and connection strings as secrets, avoid exposing them in shared terminals or logs, and use JSON output only in trusted programmatic paths.
+
+Risk: Delete and reset commands can remove or alter Neon projects, branches, databases, and roles.
+
+Mitigation: Double-check project, branch, database, and role identifiers before executing destructive Neon commands.
+
+Risk: A globally installed neonctl package may change behavior over time.
+
+Mitigation: Pin a reviewed neonctl version or use a controlled project-local install when repeatable supply-chain behavior matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/melvynx/skills/cli-neon)
+- [Publisher Profile](https://clawhub.ai/user/melvynx)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends JSON output for programmatic command use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

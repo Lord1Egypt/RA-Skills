@@ -1,0 +1,147 @@
+{
+  "skill": "pmclite-scheduler",
+  "version": "1.1.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准排产：明天的生产安排",
+      "category": "happy_path",
+      "input": {
+        "user_message": "帮我排一下明天的生产，看看有什么问题"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": ["pmclite"],
+        "calls_tool": ["query_work_orders", "preview_schedule"],
+        "output_contains": ["产线", "齐套"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "标准查询：今天生产情况",
+      "category": "happy_path",
+      "input": {
+        "user_message": "今天生产怎么样"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": ["pmclite"],
+        "calls_tool": ["get_dashboard"],
+        "output_contains": ["在制", "应开工"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "交期评审：新单能不能接",
+      "category": "happy_path",
+      "input": {
+        "user_message": "客户要 500 件智能手表，11 月底交，这单能接吗"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": ["pmclite"],
+        "calls_tool": ["evaluate_order"],
+        "output_contains": ["交期", "产能"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "负向场景：基础资料录入",
+      "category": "negative",
+      "input": {
+        "user_message": "帮我在系统里新建一个产品的 BOM"
+      },
+      "expected": {
+        "trigger_skill": false,
+        "does_not_call": ["apply_schedule", "import_data"]
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "负向场景：通用排产理论问答",
+      "category": "negative",
+      "input": {
+        "user_message": "有限产能排程和无限产能排程有什么区别"
+      },
+      "expected": {
+        "trigger_skill": false,
+        "does_not_call": ["preview_schedule", "apply_schedule"]
+      }
+    },
+    {
+      "id": "TC006",
+      "name": "写操作：用户确认后落库",
+      "category": "write_confirm",
+      "input": {
+        "user_message": "确认，落库吧"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": ["pmclite"],
+        "calls_tool": ["apply_schedule"],
+        "output_contains": ["已写入"]
+      }
+    },
+    {
+      "id": "TC007",
+      "name": "写操作：用户拒绝时不执行",
+      "category": "write_reject",
+      "input": {
+        "user_message": "先别写，我再看看"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": ["pmclite"],
+        "does_not_call": ["apply_schedule", "reschedule_from_actuals"],
+        "output_contains": ["未写入"]
+      }
+    },
+    {
+      "id": "TC008",
+      "name": "降级：轻排未安装或 MCP 未连接",
+      "category": "tool_unavailable",
+      "input": {
+        "user_message": "帮我排一下明天的产"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": [],
+        "uses_fallback": true,
+        "fallback_type": "block",
+        "output_contains": ["pmclite.com"],
+        "does_not_call": ["preview_schedule", "apply_schedule"]
+      }
+    },
+    {
+      "id": "TC009",
+      "name": "降级：齐套工具不可用改走工单齐套",
+      "category": "tool_unavailable",
+      "input": {
+        "user_message": "WO-001 料齐了吗"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "connected_tools": ["pmclite"],
+        "uses_fallback": true,
+        "fallback_type": "partial",
+        "output_contains": ["齐套"]
+      }
+    },
+    {
+      "id": "TC010",
+      "name": "信息不足：缺工单号时追问",
+      "category": "clarification",
+      "input": {
+        "user_message": "帮我报工"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "asks_clarification": true,
+        "does_not_call": ["report_progress"]
+      }
+    }
+  ]
+}

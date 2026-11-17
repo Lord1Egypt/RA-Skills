@@ -1,40 +1,54 @@
-## Description: <br>
-Use when implementing new frontend behavior, fixing bugs, or refactoring logic where tests can describe the expected behavior first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides frontend feature work and behavior-changing bug fixes through failing behavior tests, minimal implementation, and refactoring after tests pass.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Frontend developers and coding agents use this skill to follow a test-first workflow for new behavior, bug fixes, and refactors across components, hooks, utilities, API clients, route guards, and user workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to change tests and source code or suggest test commands. <br>
-Mitigation: Review proposed diffs and commands before applying them, and run the relevant project test suite after changes. <br>
-Risk: The skill may recommend introducing minimal test infrastructure when a project has none. <br>
-Mitigation: Confirm new dependencies, tools, or configuration changes with the project owner before adding them. <br>
+## Use Case:
 
+Frontend developers use this skill to add observable behavior or fix defects with test-first, red-green-refactor cycles. For behavior-preserving refactoring, they keep existing characterization tests green instead.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-tdd-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and test command summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a failing-then-passing test, minimal implementation changes, refactoring notes, and uncovered risk summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence, metadata.json, package.json, README.md) <br>
+Risk: Applying test-first behavior changes to styling-only, documentation-only, backend-only, or pure refactoring tasks creates unnecessary or misleading tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this workflow for observable frontend behavior changes; keep existing tests green for pure refactoring and choose another workflow for unrelated tasks.
+
+Risk: A failing test caused by setup errors or an unrelated defect can misdirect implementation.
+
+Mitigation: Confirm that the test fails for the intended missing behavior before changing code, then rerun it after the minimal fix.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-tdd-workflow)
+- [Frontend Craft repository (listed in package metadata; import provenance unavailable)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Guidance]
+
+**Output Format:** [Tests and minimal implementation code with a concise Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes test commands, covered behavior, and remaining risks.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, README.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

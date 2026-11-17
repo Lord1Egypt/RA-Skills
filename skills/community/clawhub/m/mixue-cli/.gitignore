@@ -1,0 +1,28 @@
+# ── 凭据：一个都不能进仓库 ──
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# 运行时生成的登录态 / 标识（旧版本会写这些文件）
+tools/
+token.txt
+openid.txt
+customer_id.txt
+*.token
+
+# 抓包原件（含完整请求头与登录态，等同密码）
+*.har
+*.har.gz
+*.chlsj
+*.saz
+
+# 本地产物
+__pycache__/
+*.py[cod]
+*.png
+menu_*.txt
+dist/

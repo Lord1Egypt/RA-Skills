@@ -1,45 +1,60 @@
-## Description: <br>
-Tracks pharmaceutical regulatory sources including NMPA, CDE, FDA, EMA, and ICH, identifies new or updated regulations and guidance, analyzes applicability, tags topics, and generates PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks pharmaceutical regulations from configured web and RSS sources, analyzes relevance to a user profile, and produces regulation tracking reports.
 
-## Publisher: <br>
-[gxpcode-hezhong](https://clawhub.ai/user/gxpcode-hezhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxpcode-hezhong](https://clawhub.ai/user/gxpcode-hezhong)
 
-## Use Case: <br>
-Regulatory affairs, quality, and compliance teams use this skill to monitor selected pharmaceutical regulatory websites and feeds, compare new items against history, fetch details and attachments, and produce applicability-focused tracking reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs Python and browser dependencies before full web tracking functionality is available. <br>
-Mitigation: Run setup in a controlled workspace, review the dependency list first, and install only when those dependencies are acceptable. <br>
-Risk: The skill contacts external regulatory websites, downloads PDFs, and writes reports, history, and intermediate files. <br>
-Mitigation: Use it only in the intended workspace, review generated reports before sharing, and avoid distributing outputs that expose sensitive local attachment paths. <br>
-Risk: The skill can modify its configured regulatory source list and includes a local source-management panel. <br>
-Mitigation: Run the panel only when needed, stop it afterward, and review source or parser changes before using newly added sources. <br>
+## Use Case:
 
+Regulatory affairs and quality teams use this skill to monitor pharmaceutical regulation sources, compare new items against history, fetch details and attachments, analyze applicability, and generate Markdown/PDF tracking reports.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/gxpcode-hezhong/skills/gxpcode-tu-xingsun) <br>
-- [Publisher Profile](https://clawhub.ai/user/gxpcode-hezhong) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [Configured Regulatory Sources](artifact/resources/sources.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON intermediate records, PDF reports, configuration updates, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download regulatory attachments and write reports, history, and intermediate data into the active workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: Setup installs mutable third-party dependencies and browser components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installation, use a virtual environment, pin dependencies with hashes, and use trusted package and browser download sources.
+
+Risk: New-source analysis can persistently change monitored sources and parser code based on broad web inputs.
+
+Mitigation: Require human review for new-source analysis, parser changes, and updates to configured regulatory sources before running the tracking workflow.
+
+Risk: The source manager can persistently change which regulatory domains are monitored.
+
+Mitigation: Restrict source-management access and maintain an allowlist of approved regulatory domains.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gxpcode-hezhong/skills/gxpcode-tu-xingsun)
+- [Configured regulatory sources](artifact/resources/sources.yaml)
+- [Workflow definition](artifact/SKILL.md)
+- [Report generation step](artifact/resources/steps/step_5.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, YAML configuration, shell commands, and generated Markdown/PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured web and RSS sources, local history for duplicate detection, and optional PDF attachment/report outputs in the workspace.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

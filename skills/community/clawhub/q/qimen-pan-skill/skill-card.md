@@ -1,44 +1,55 @@
-## Description: <br>
-奇门遁甲排盘技能，支持阴阳遁、局数、八门九星八神落宫，以及断卦解盘自动化分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+奇门遁甲排盘技能。支持阴阳遁、局数、八门九星八神落宫、断卦解盘自动化分析。
 
-## Publisher: <br>
-[dglijin-oss](https://clawhub.ai/user/dglijin-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dglijin-oss](https://clawhub.ai/user/dglijin-oss)
 
-## Use Case: <br>
-External users and developers use this skill to generate Qi Men Dun Jia charts from dates, locations, and question types, then receive culturally grounded interpretive output. It is appropriate as a reference and divination aid, not as a basis for medical, legal, financial, safety, or other high-stakes decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Divination interpretations and precision claims may be mistaken for reliable predictions. <br>
-Mitigation: Present results as approximate cultural and divination references, not as authoritative predictions or decision rules. <br>
-Risk: Users may apply readings to medical, legal, financial, safety, or other high-stakes decisions. <br>
-Mitigation: Require independent professional judgment for high-stakes matters and avoid relying on the skill output as advice. <br>
-Risk: The optional backup script permanently removes older backup_* directories after retaining five backups. <br>
-Mitigation: Run backup.sh only when local backup rotation is desired and the user accepts deletion of older backup directories. <br>
+## Use Case:
 
+External users and developers use this skill to generate Qi Men Dun Jia charts for selected dates, cities, and question types, including automated interpretive analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dglijin-oss/qimen-pan-skill) <br>
-- [README](README.md) <br>
-- [奇门遁甲基础知识](references/奇门基础知识.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Text or JSON chart output with command examples and interpretive guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports date, timestamp, longitude, city, question type, and optional JSON output parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence) <br>
+Risk: Divination-style outputs and overstated accuracy claims may be mistaken for professional medical, legal, financial, or safety advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the results only as cultural or entertainment guidance and require independent professional judgment for consequential decisions.
+
+Risk: The bundled backup utility writes under the local OpenClaw skills directory and removes older backup_* folders.
+
+Mitigation: Run scripts/backup.sh only after reviewing its target paths and retention behavior.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/dglijin-oss/skills/qimen-pan-skill)
+- [奇门遁甲基础知识](references/奇门基础知识.md)
+- [Python documentation](https://python.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON chart output, with Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit Chinese-language chart details, interpretive analysis, and optional JSON from local Python scripts.]
+
+## Skill Version(s):
+
+3.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

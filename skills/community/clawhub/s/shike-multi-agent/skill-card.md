@@ -1,43 +1,54 @@
-## Description: <br>
-Shike Multi Agent routes Chinese-language user tasks to five persistent sub-agents using sessions_spawn, polling, reply-then-dispatch, and sessionKey reuse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language dispatcher skill that evaluates user tasks and delegates work to five persistent sub-agents using fixed session keys.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent work in Chinese by assigning tasks to persistent specialist sub-agent sessions and collecting their results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tasks may be copied into persistent child-agent sessions, which can expose secrets or sensitive private data included in prompts. <br>
-Mitigation: Do not send secrets or sensitive private data into delegated tasks, and review task payloads before dispatch. <br>
-Risk: Contact and payment handles appear in the skill metadata and may be mistaken for setup requirements. <br>
-Mitigation: Treat those handles as optional publisher metadata and do not use them as part of installation or operation. <br>
-Risk: Delegated sub-agent results may contain incorrect or misleading guidance. <br>
-Mitigation: Review child-agent outputs and scan the skill before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to run a Chinese-language multi-agent coordination workflow that triages tasks, assigns work to alpha/bravo/charlie/delta/echo sub-agents, monitors progress, and summarizes results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sjj2026/shike-multi-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/sjj2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Tool calls] <br>
-**Output Format:** [Markdown or plain text with sessions_spawn task payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May dispatch to persistent alpha, bravo, charlie, delta, and echo sessions with 300-second timeouts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Automatic delegation can route user work to multiple persistent sub-agents before the full scope is reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only for workflows that need delegated multi-agent coordination, and review each task assessment before allowing dispatch.
+
+Risk: Persistent alpha/bravo/charlie/delta/echo session reuse may carry context between tasks.
+
+Mitigation: Reset or isolate sessions when switching projects or handling sensitive context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sjj2026/skills/shike-multi-agent)
+- [Publisher Profile](https://clawhub.ai/user/sjj2026)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text task assessments, dispatch plans, progress reports, and final summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate multiple persistent sub-agent sessions with fixed alpha/bravo/charlie/delta/echo keys.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

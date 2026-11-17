@@ -1,41 +1,53 @@
-## Description: <br>
-Allows an agent to transfer USD1, described as USDC on Wormhole, between wallets using Wormhole Liquidity Facility on Testnet by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely transfer USD1 (USDC on Wormhole) between wallets using Wormhole Liquidity Facility on testnet by default.
 
-## Publisher: <br>
-[AsgherAli](https://clawhub.ai/user/AsgherAli) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[asgherali](https://clawhub.ai/user/asgherali)
 
-## Use Case: <br>
-Developers and agents use this skill to check a sender balance when supported and initiate a testnet USD1 transfer to a specified recipient wallet. It is intended for workflows that need a transaction hash, status, and concise transfer result message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accepts a raw wallet private key, which authorizes blockchain transfers. <br>
-Mitigation: Use only throwaway testnet wallets and never provide a reused or mainnet private key. <br>
-Risk: The skill can broadcast a transfer without a separate confirmation step. <br>
-Mitigation: Manually verify the recipient, amount, chain, and actual token before running it, and prefer a signer flow that requires explicit confirmation. <br>
+## Use Case:
 
+Developers and agents use this skill to execute USD1 testnet transfers between wallets and return the transaction hash, status, and message. It is suitable for controlled testnet workflows that require explicit handling of amount, recipient address, source chain, and a sender key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AsgherAli/usd1transaction) <br>
-- [Publisher profile](https://clawhub.ai/user/AsgherAli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls] <br>
-**Output Format:** [JSON object with transaction hash, status, and message fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return failed status and an error message when required parameters are missing or the transfer fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill requires a raw wallet private key and can broadcast token transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only disposable testnet wallets, never provide keys that control real funds or are reused on mainnet, and require explicit human confirmation before sending.
+
+Risk: Transfer confirmation and input validation are not strong enough for real-value transfers.
+
+Mitigation: Add strict amount, address, and chain validation, keep dependencies updated, and prefer wallet or signer integration before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asgherali/skills/usd1transaction)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text]
+
+**Output Format:** [JSON object with transactionHash, status, and message fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May broadcast a Wormhole testnet transfer when valid inputs and a sender key are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

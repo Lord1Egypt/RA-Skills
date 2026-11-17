@@ -1,39 +1,49 @@
-## Description: <br>
-Create high-quality content for blogs, social media, email marketing, and sales copy. Generates engaging, SEO-optimized content in any voice or style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create high-quality content for blogs, social media, email marketing, and sales copy. Generates engaging, SEO-optimized content in any voice or style.
 
-## Publisher: <br>
-[btizzy](https://clawhub.ai/user/btizzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[btizzy](https://clawhub.ai/user/btizzy)
 
-## Use Case: <br>
-Employees, external users, and content teams use this skill to draft and optimize blog posts, social media posts, email campaigns, landing pages, sales copy, and repurposed content for a specified audience, tone, goal, length, and keyword set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may contain unsupported marketing claims, SEO statements, statistics, legal assertions, or other factual errors. <br>
-Mitigation: Review and verify generated content before publishing, especially claims, statistics, legal language, and factual assertions. <br>
+## Use Case:
 
+External creators, marketers, and business users use this skill to draft and optimize blog posts, social media posts, email campaigns, landing pages, sales copy, and repurposed content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/btizzy/owl-content-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/btizzy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text content drafts with optional headings, bullets, calls to action, subject lines, signatures, hashtags, and SEO keywords] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for factual accuracy, marketing claims, SEO statements, statistics, and legal assertions before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Generated marketing copy may include inaccurate factual claims, SEO statistics, compliance-sensitive statements, or brand voice mismatches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content before publishing, especially factual claims, SEO statistics, regulated statements, and brand voice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/btizzy/skills/owl-content-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text content drafts with structured sections, calls to action, subject lines, hashtags, and optimization guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May vary by requested topic, format, tone, target audience, goal, length, and SEO keywords.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

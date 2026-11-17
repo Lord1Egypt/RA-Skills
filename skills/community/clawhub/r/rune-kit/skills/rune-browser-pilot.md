@@ -30,6 +30,7 @@ Browser automation for testing and verification using MCP Playwright tools. Navi
 - `launch` (L1): verify live site after deployment
 - `perf` (L2): Lighthouse / Core Web Vitals measurement
 - `audit` (L2): visual verification during quality assessment
+- `design` (L2): render the surface before any visual property is claimed (design Step 5.4 — render blindness)
 
 ## Calls (outbound)
 
@@ -189,7 +190,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~500-1500 tokens input, ~300-800 tokens output. Sonnet for interaction logic.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

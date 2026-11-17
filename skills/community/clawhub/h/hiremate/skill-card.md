@@ -1,45 +1,59 @@
-## Description: <br>
-HireMate is an AI recruiting assistant for creating job descriptions, screening criteria, interview questions, candidate scores, match analyses, salary reports, and interview evaluations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HireMate is an AI recruiting assistant that generates job descriptions, screening criteria, interview questions, candidate scores, match analyses, salary reports, and interview evaluation reports.
 
-## Publisher: <br>
-[keybryant](https://clawhub.ai/user/keybryant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keybryant](https://clawhub.ai/user/keybryant)
 
-## Use Case: <br>
-Recruiters, hiring teams, and HR operations staff use this skill to draft recruiting materials, generate structured interview content, compare candidates to job requirements, and prepare hiring-support reports. Candidate scores and recommendations should be treated as draft decision support requiring human HR and legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate scoring and recommendations can affect employment decisions and may rely on sensitive or insufficiently validated criteria. <br>
-Mitigation: Use outputs only as draft decision support, require trained human HR and legal review, and document job-related criteria before applying scores. <br>
-Risk: Resume text, interview notes, and candidate profiles may contain personal or sensitive information. <br>
-Mitigation: Use only authorized candidate data, minimize or redact unnecessary personal details, and keep generated reports private. <br>
-Risk: Cultural-fit, employment-gap, auto-reject, or no-hire recommendations may create fairness or compliance concerns. <br>
-Mitigation: Remove or constrain those criteria unless they are job-related, consistently applied, documented, and compliant for the hiring context. <br>
+## Use Case:
 
+Recruiters, hiring managers, and recruiting operations teams use this skill to draft recruiting materials and produce advisory resume, candidate-fit, salary, and interview assessments. Outputs should support human review rather than replace hiring or compensation decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keybryant/hiremate) <br>
-- [Interview questions database](references/interview_questions_db.json) <br>
-- [Job description templates](references/jd_templates.json) <br>
-- [Salary benchmark data](references/salary_data.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON reports, with CLI command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some scripts can write generated markdown or JSON to an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes sensitive candidate data such as resumes, interview notes, strengths, concerns, locations, education, and experience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted candidate data where possible and store any generated output files in approved, access-controlled locations.
+
+Risk: Candidate scores, match analyses, interview recommendations, screening criteria, salary reports, and cultural-fit fields may affect hiring or compensation decisions without sufficient privacy, fairness, or scope guardrails.
+
+Mitigation: Treat outputs as advisory, require human review, and validate screening, salary, language, cultural-fit, and hire/no-hire criteria against organizational policy and applicable law.
+
+Risk: Salary benchmark outputs depend on bundled reference data that can become stale.
+
+Mitigation: Verify compensation recommendations against current market data and update salary benchmarks on the cadence required by the hiring workflow.
+
+## Reference(s):
+
+- [Job description templates](references/jd_templates.json)
+- [Interview questions database](references/interview_questions_db.json)
+- [Salary benchmark data](references/salary_data.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, files, guidance]
+
+**Output Format:** [Markdown or JSON reports written to stdout or an optional output file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CLI scripts generate recruiting documents, scoring summaries, salary reports, and interview evaluation reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

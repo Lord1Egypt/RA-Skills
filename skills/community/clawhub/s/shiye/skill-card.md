@@ -1,44 +1,59 @@
-## Description: <br>
-Shiye runs Kimi, GLM, and Qwen as three AI reviewers for documents, code, resumes, and other text, then reports score comparisons, deduction details, consensus issues, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+师爷 is a three-model review skill that uses Kimi, GLM, and Qwen to assess documents, code, resumes, and other text, then returns score comparisons, issue details, consensus findings, and improvement suggestions.
 
-## Publisher: <br>
-[vlarkspur](https://clawhub.ai/user/vlarkspur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vlarkspur](https://clawhub.ai/user/vlarkspur)
 
-## Use Case: <br>
-Developers, writers, reviewers, and agents use this skill to evaluate documents, code, resumes, email, presentation text, and similar content through three model-based reviewers. It is intended to compare scores, surface deduction reasons, identify consensus problems, and suggest improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewed documents, code, resumes, or other text can be sent to the configured external API provider. <br>
-Mitigation: Use the skill only when external processing is approved, and avoid sending secrets, proprietary code, regulated data, resumes, or confidential documents unless that use is authorized. <br>
-Risk: The script supports placing an API key directly in source code. <br>
-Mitigation: Prefer SHIYE_API_KEY and SHIYE_API_BASE environment variables, and do not commit or share a modified script containing credentials. <br>
-Risk: When no criteria file is provided, the skill auto-generates criteria by sending a sample of the reviewed content to the model API. <br>
-Mitigation: Provide an explicit criteria file for sensitive material so criteria generation does not send an additional sample before scoring. <br>
+## Use Case:
 
+Developers, writers, reviewers, and other external users can use this skill to cross-review text artifacts such as documents, source code, resumes, emails, notices, and presentation content. It is intended to compare model judgments and highlight low-scoring items that need human follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vlarkspur/shiye) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Console text with score tables, deduction details, reviewer diagnostics, consensus analysis, and short improvement guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured API key; reviewed content is sent to the configured API provider and is truncated to 16000 characters for scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reviewed content may be sent to a configured external model API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved HTTPS endpoints, avoid confidential or regulated content unless approved, and confirm user consent before sending content outside the local environment.
+
+Risk: API credentials can be placed directly in the source file.
+
+Mitigation: Prefer the SHIYE_API_KEY environment variable, use a limited-scope key, and avoid committing real credentials into the artifact.
+
+Risk: Generated scores and consensus findings can be misleading or incomplete.
+
+Mitigation: Treat the three-model output as review assistance and require human review before acting on low scores, disputed findings, or improvement suggestions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vlarkspur/skills/shiye)
+- [Publisher profile](https://clawhub.ai/user/vlarkspur)
+- [Configured model API endpoint](https://api.deepseek.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with terminal text tables and JSON model-response parsing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviews up to 16000 characters of supplied content and may call the configured external model API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

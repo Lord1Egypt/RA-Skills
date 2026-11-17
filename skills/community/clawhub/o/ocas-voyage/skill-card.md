@@ -1,43 +1,73 @@
-## Description: <br>
-Voyage builds constraint-aware travel itineraries from a destination, dates, budget, dietary preferences, and pace, then assembles lodging, dining, and activity recommendations into a logistics-optimized plan without auto-booking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel planning, itinerary construction, reservation management, lodging search, and flight search across multiple travel sources.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-Travelers and agents use Voyage to plan multi-day trips, compare lodging, dining, and activity options, optimize itinerary feasibility, and track reservation-ready decisions without treating uncertain availability as confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Voyage can create a daily self-update task that silently replaces its own files from GitHub. <br>
-Mitigation: Review or disable the voyage:update cron job before use, and prefer manual updates from a pinned or verified release. <br>
-Risk: The skill stores local itinerary, reservation, decision, and journal data. <br>
-Mitigation: Use it only where local travel data storage is acceptable, and review the configured data and journal directories before deployment. <br>
+## Use Case:
 
+Travelers and agent operators use Voyage to build constraint-aware itineraries, compare lodging and flight options, manage reservation planning, and persist trip decisions without automatically booking unless explicitly enabled.
 
-## Reference(s): <br>
-- [Voyage Itinerary Constraints](references/itinerary_constraints.md) <br>
-- [Voyage Recommendation Style](references/recommendation_style.md) <br>
-- [Voyage Schemas](references/voyage_schemas.md) <br>
-- [Journal](references/journal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown and JSON-backed local plan, state, decision, reservation, and journal files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reservation-ready planning artifacts and local journals; it does not auto-book unless explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release evidence and skill.json) <br>
+Risk: The skill can store sensitive itinerary and reservation details locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local data retention and storage paths before installation, and avoid entering sensitive reservation details unless the deployment environment is trusted.
+
+Risk: Initialization may add package dependencies, MCP connectors, account authorization, and a scheduled self-update task.
+
+Mitigation: Require explicit operator approval for package installs, OAuth, MCP additions, cron registration, and voyage.update before first use.
+
+Risk: The self-update workflow can silently replace skill files from its configured source.
+
+Mitigation: Disable or review voyage.update and any scheduler entry unless automatic updates are acceptable for the deployment.
+
+Risk: Booking-capable integrations may support real reservations or payment-adjacent actions.
+
+Mitigation: Keep auto-booking disabled and require explicit user confirmation before any booking, payment, cancellation, OAuth, or card-on-file action.
+
+Risk: The skill can share confirmed travel briefs and journal signals with other local skills.
+
+Mitigation: Review cross-skill sharing paths and downstream consumers before enabling Vesper intake delivery or journal ingestion.
+
+## Reference(s):
+
+- [Voyage Skill Listing](https://clawhub.ai/indigokarasu/skills/ocas-voyage)
+- [Booking Gates](references/booking-gates.md)
+- [Flight Search Reference](references/flight-search.md)
+- [Flights](references/flights.md)
+- [Lodging Sources](references/lodging-sources.md)
+- [Self-Update Procedure](references/self-update.md)
+- [Storage Layout and Default Config](references/storage-and-config.md)
+- [Total Cost](references/total-cost.md)
+- [HotelOracle MCP](https://tooloracle.io/hotel/mcp/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with tables, checklists, JSON or JSONL state records, and occasional shell commands or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local trip state, decision logs, journals, and optional schedule briefs for related local skills.]
+
+## Skill Version(s):
+
+2.3.1 (source: server release evidence; artifact metadata also reports 3.0.0 and changelog reports 2.7.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

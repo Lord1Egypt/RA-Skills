@@ -1,39 +1,52 @@
-## Description: <br>
-Enables AI agents to introduce themselves clearly and consistently by expressing their identity, temperament, boundaries, and preferred relationship style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to introduce themselves clearly and consistently by expressing their identity, temperament, boundaries, and preferred relationship style.
 
-## Publisher: <br>
-[ronwithlove](https://clawhub.ai/user/ronwithlove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ronwithlove](https://clawhub.ai/user/ronwithlove)
 
-## Use Case: <br>
-Developers and agent builders use this skill to help an AI agent generate context-aware self-introductions that state identity, tone, boundaries, and relationship expectations for humans or other agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Self-introduction wording can create overtrust if it sounds human or authoritative. <br>
-Mitigation: Review sample wording for the deployment environment and keep introductions clear that the agent is not human and does not replace human judgment. <br>
-Risk: Relationship-oriented phrasing can blur the agent's role or boundaries. <br>
-Mitigation: Use the skill's boundary language to state the agent's scope, limitations, and preferred interaction style plainly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ronwithlove/agent-self-introduction) <br>
+## Use Case:
 
+Agents use this skill to generate clear, context-aware self-introductions for humans, other agents, or mixed audiences. It supports first meetings, onboarding, role clarification, and task-context introductions without claiming authentication, memory, or verified identity.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text self-introduction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional audience, situation, tone, and length inputs shape the introduction; no code execution, credentials, persistence, or external access are requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake a narrative self-introduction for verified identity, authentication, persistent memory, or authority.
+
+Mitigation: Present outputs as persona and relationship-setting prose only, with explicit limits around identity, memory, authentication, and authority.
+
+Risk: The skill could activate in contexts where a self-introduction is not wanted.
+
+Mitigation: Narrow activation to explicit self-introduction, onboarding, reintroduction, or role-clarification requests when stricter behavior is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ronwithlove/skills/agent-self-introduction)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text self-introduction prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional audience, situation, tone, and length inputs shape the generated introduction.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

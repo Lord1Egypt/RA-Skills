@@ -1,42 +1,58 @@
-## Description: <br>
-Monitor dozens of websites with configurable health checks, auto-restart alerts, and intelligent alert routing. Use when the user needs uptime tracking, performance monitoring, or automated incident response across multiple domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors dozens of websites with configurable health checks, auto-restart alerts, intelligent alert routing, uptime tracking, performance monitoring, and automated incident response across multiple domains.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Developers and operations teams use this skill to plan multi-site uptime checks, performance monitoring, certificate checks, WordPress health checks, alert routing, and incident response workflows across production services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes automated production restarts, rollbacks, SSH commands, and scaling actions that can change live infrastructure. <br>
-Mitigation: Start in alert-only mode and require explicit human approval before SSH, restart, scaling, rollback, or other infrastructure-changing actions. <br>
-Risk: The skill relies on operational credentials for alerting and monitoring services. <br>
-Mitigation: Use least-privilege tokens, rotate credentials, store secrets outside prompts and logs, and avoid logging full response bodies or secret-bearing headers. <br>
-Risk: The skill can route incidents, metrics, and logs to broad third-party destinations. <br>
-Mitigation: Restrict allowed destinations, review what data is sent to each integration, and limit outbound reporting to approved channels. <br>
+## Use Case:
 
+Developers and operations teams use this skill to design and configure health checks, alert routing, uptime reporting, and incident response workflows for multiple websites and services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/multi-site-health-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uses Slack, PagerDuty, and Datadog credentials when those integrations are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill encourages automated restarts, rollbacks, remote SSH commands, webhook actions, and cloud infrastructure actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep restart, rollback, AWS, SSH, and webhook actions disabled unless each target and command is explicitly approved, scoped, logged, and reversible.
+
+Risk: Monitoring and alerting setup can require API keys and service credentials.
+
+Mitigation: Use least-privilege API keys and avoid pasting real bearer tokens into prompts or shared configuration.
+
+Risk: Long-running deployment guidance may affect production services if monitoring actions are misconfigured.
+
+Mitigation: Review generated configurations before deployment and test endpoints, thresholds, alert routing, and rollback behavior in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/multi-site-health-monitor)
+- [Artifact homepage](https://github.com/ncreighton/empire-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include monitoring configurations, alert payloads, incident response steps, and integration setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

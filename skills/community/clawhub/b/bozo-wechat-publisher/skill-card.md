@@ -1,46 +1,66 @@
-## Description: <br>
-Publishes Markdown articles to WeChat Official Account drafts, with wenyan-cli formatting, custom card themes, and curl-based fallback publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Markdown articles to a WeChat Official Account draft box with wenyan-cli formatting, theme support, image upload handling, and a curl fallback.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to prepare and publish Markdown articles, metadata, cover images, and formatted HTML content into a WeChat Official Account draft workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WeChat Official Account API credentials and may read them from environment variables, shell startup files, or TOOLS.md. <br>
-Mitigation: Use a dedicated secret manager or per-run environment variables, avoid storing AppSecret in shared files, and rotate credentials after testing. <br>
-Risk: Publishing workflows upload selected Markdown content, metadata, cover images, and generated article content to WeChat services. <br>
-Mitigation: Review the exact Markdown, frontmatter, and image paths before publishing, and test with non-sensitive content first. <br>
-Risk: Setup and publishing scripts may install global Node packages or run remote setup commands in some documented paths. <br>
-Mitigation: Install Node and wenyan-cli manually from trusted sources, inspect shell commands before execution, and avoid curl-to-sudo-bash setup steps. <br>
+## Use Case:
 
+External developers and content operators use this skill to convert Markdown posts into formatted WeChat Official Account drafts, choose themes or code highlighting, upload article images, and troubleshoot publishing failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bozoyan/bozo-wechat-publisher) <br>
-- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/offiaccount/) <br>
-- [wenyan-cli](https://github.com/caol64/wenyan-cli) <br>
-- [Theme reference](references/themes.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces publishing instructions and command sequences that may upload selected Markdown content, metadata, and images to WeChat services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and target metadata) <br>
+Risk: The skill requires WeChat Official Account credentials and can publish drafts using those credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide AppID and AppSecret only for the specific publishing command or session, and install only when you accept that account access.
+
+Risk: Setup guidance may encourage unsafe shell installation and persistent credential storage.
+
+Mitigation: Avoid curl-to-sudo-bash setup paths and do not store AppSecret in shell startup files.
+
+Risk: Markdown content, cover images, and embedded images may be sent to WeChat during publishing.
+
+Mitigation: Review article content and cover/image paths before running publish commands.
+
+Risk: Global package installation can pull the current wenyan-cli behavior rather than a reviewed version.
+
+Mitigation: Prefer a pinned, manually installed wenyan-cli version that has been reviewed in the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/bozo-wechat-publisher)
+- [wenyan-cli GitHub](https://github.com/caol64/wenyan-cli)
+- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/offiaccount/)
+- [Wenyan documentation](https://wenyan.yuzhi.tech)
+- [Themes reference](references/themes.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce publishing commands that send article content and images to WeChat; requires WeChat AppID/AppSecret credentials and IP allowlisting.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

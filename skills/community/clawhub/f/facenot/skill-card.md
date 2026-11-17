@@ -1,44 +1,58 @@
-## Description: <br>
-Extracts the first available post text from a user-provided Facebook URL using simple server-side HTML fetching and parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts the first post text from a provided Facebook URL using simple server-side HTML scraping.
 
-## Publisher: <br>
-[duylori](https://clawhub.ai/user/duylori) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duylori](https://clawhub.ai/user/duylori)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch a public Facebook page or post URL and extract the first readable static post text for lightweight review or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs outbound web requests to user-provided URLs. <br>
-Mitigation: Install only where outbound requests are acceptable and provide only URLs the agent is intended to fetch. <br>
-Risk: Dynamic pages, login-gated pages, or JavaScript-rendered content may not return the intended post text. <br>
-Mitigation: Treat extraction failures or sparse output as expected limitations and verify important content against the source page. <br>
-Risk: Dependency versions are not pinned in the artifact. <br>
-Mitigation: Pin reviewed versions of requests and beautifulsoup4 before production or sensitive use. <br>
+## Use Case:
 
+Developers and agents use this skill to attempt extraction of visible post text from a supplied Facebook page or post URL. It is best suited for public, static HTML content and will return an error when content requires login, JavaScript rendering, or other unsupported access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duylori/facenot) <br>
-- [queries.md](artifact/references/queries.md) <br>
-- [schema.md](artifact/references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON object printed to stdout with status and content fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound network access to the user-provided URL and works only when readable static HTML is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and manifest.json) <br>
+Risk: The skill can fetch arbitrary user-supplied URLs from the runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict use to approved public domains, block private and metadata IP ranges including redirects, and review before installation in environments with access to internal services.
+
+Risk: Fetched pages may be large, unexpected, or controlled by third parties.
+
+Mitigation: Cap response size, keep network timeouts, and pin dependencies before production use.
+
+Risk: Facebook or other modern pages may require login or JavaScript, causing incomplete or failed extraction.
+
+Mitigation: Use the returned error status as a failure signal and avoid treating missing content as proof that no post exists.
+
+## Reference(s):
+
+- [Query Examples](references/queries.md)
+- [Post Schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON status object printed to stdout, with concise Markdown guidance from the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns either extracted content or an error message; does not handle authenticated pages or JavaScript-rendered content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

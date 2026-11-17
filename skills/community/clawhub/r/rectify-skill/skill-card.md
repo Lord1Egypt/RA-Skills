@@ -1,42 +1,55 @@
-## Description: <br>
-Manage tasks, columns, and documents on the Rectify platform via REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks, columns, and documents on the Rectify platform via REST API.
 
-## Publisher: <br>
-[Umar-Lateef](https://clawhub.ai/user/Umar-Lateef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[umar-lateef](https://clawhub.ai/user/umar-lateef)
 
-## Use Case: <br>
-Developers, project teams, and OpenClaw agents use Rectify to manage AgentPulse task boards and Rectify Documents, including creating, updating, moving, searching, archiving, and deleting project content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project token exposure could allow unauthorized access to Rectify project data. <br>
-Mitigation: Keep RECTIFY_PROJECT_TOKEN private and use the least-privileged project token available. <br>
-Risk: Delete, archive, and column deletion actions can remove important project tasks or documents. <br>
-Mitigation: Require clear user confirmation before deleting documents, archiving document trees, deleting tasks, or deleting columns. <br>
+## Use Case:
 
+Developers and operations teams use this skill to let agents manage Rectify AgentPulse task boards and Rectify Documents, including creating, updating, moving, searching, archiving, and deleting project records.
 
-## Reference(s): <br>
-- [Rectify ClawHub skill](https://clawhub.ai/Umar-Lateef/rectify-skill) <br>
-- [Rectify](https://www.rectify.so) <br>
-- [Rectify AgentPulse API](https://api.rectify.so) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RECTIFY_PROJECT_TOKEN for authenticated Rectify project access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The Rectify project token can read and modify project tasks and documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill only for trusted agents and use a token scoped to the intended workspace or project when available.
+
+Risk: Task, column, and document operations include archive, delete, and permanent deletion paths.
+
+Mitigation: Review destructive requests carefully, especially column deletion and permanent document deletion, before allowing the agent to proceed.
+
+## Reference(s):
+
+- [Rectify product site](https://www.rectify.so)
+- [ClawHub Rectify skill page](https://clawhub.ai/umar-lateef/skills/rectify-skill)
+- [Publisher profile](https://clawhub.ai/user/umar-lateef)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses RECTIFY_PROJECT_TOKEN to call Rectify REST endpoints and returns concise action confirmations or API error details.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

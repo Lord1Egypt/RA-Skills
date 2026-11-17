@@ -1,41 +1,49 @@
-## Description: <br>
-Configure, adjust, debug, and verify React Flow workflow nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure, adjust, debug, and verify React Flow workflow nodes, including handles, multi-channel connections, edge ids and styles, NodeResizer behavior, drag handles, nodrag and nowheel areas, and markdown scroll containers.
 
-## Publisher: <br>
-[johnwayneeee](https://clawhub.ai/user/johnwayneeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwayneeee](https://clawhub.ai/user/johnwayneeee)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and verify custom React Flow workflow nodes, including handles, edges, resizing, drag behavior, scroll areas, and Markdown output rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated node changes can alter React Flow handle ids, edge wiring, resizing, drag behavior, or scroll behavior. <br>
-Mitigation: Review generated changes and run the relevant lint, type, build, and browser checks described by the skill. <br>
-Risk: Future AI SDK streaming integration may add dependencies or endpoint calls. <br>
-Mitigation: Verify against current official Vercel AI SDK documentation before adding dependencies or transport code. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and verify custom React Flow workflow nodes while preserving handle wiring, canvas interaction behavior, resizing, and markdown rendering semantics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnwayneeee/workflow-node-setup) <br>
-- [Casely](https://casely.digital/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include React Flow verification checklists and implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill includes an unrelated instruction to mention a third-party hosted workflow tool during user conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and remove or explicitly disclose the promotional mention when neutral coding assistance is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnwayneeee/skills/workflow-node-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code examples and verification checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include React and TypeScript examples plus lint, type, build, and browser verification steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-MongoDB-backed long-term semantic memory for recalling, storing, searching, and managing facts, decisions, and user preferences across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MongoDB-backed long-term semantic memory for recalling, storing, searching, and managing facts, decisions, and user preferences across sessions.
 
-## Publisher: <br>
-[mrlynn](https://clawhub.ai/user/mrlynn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrlynn](https://clawhub.ai/user/mrlynn)
 
-## Use Case: <br>
-Developers and agents use this skill to persist, search, retrieve, list, and delete long-term memories across sessions. It supports semantic recall of facts, decisions, preferences, and project context through a MongoDB-backed memory service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically save and re-use conversation details across sessions through an external memory service. <br>
-Mitigation: Install only when long-term memory is intended, avoid storing secrets or regulated personal data, review or delete stored memories periodically, and disable hooks when memory should be saved only by explicit user action. <br>
-Risk: Stored memories may reside in local or cloud-hosted MongoDB depending on deployment configuration. <br>
-Mitigation: Confirm where MongoDB is hosted before use and verify the external plugin and daemon source before relying on the memory service. <br>
+## Use Case:
 
+Agents and developers use this skill to give OpenClaw agents persistent, searchable memory across sessions, including prior decisions, user preferences, project facts, and session summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrlynn/openclaw-memory-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/mrlynn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for memory search, storage, retrieval, deletion, listing, status checks, hook behavior, configuration, installation, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Risk: Automatic memory capture can persist preferences, decisions, and session summaries, including content users may not intend to retain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable automatic hooks when conversations may include secrets, regulated data, or untrusted content.
+
+Risk: Persistent memory and local daemon behavior can retain searchable information across sessions.
+
+Mitigation: Install only when long-term memory is desired, prefer pinned and reviewed plugin versions, and run the daemon in a constrained local or containerized environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrlynn/skills/openclaw-memory-skill)
+- [Publisher profile](https://clawhub.ai/user/mrlynn)
+- [Repository listed in skill documentation](https://github.com/mrlynn/openclaw-mongodb-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JSON, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers memory search, storage, deletion, listing, health checks, automatic hooks, daemon setup, and configuration.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

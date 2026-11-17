@@ -1,42 +1,55 @@
-## Description: <br>
-Configure Brave Search API and troubleshoot network/proxy issues for web_search functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Brave Search API and troubleshoot network/proxy issues for web_search functionality.
 
-## Publisher: <br>
-[qingliu1617-art](https://clawhub.ai/user/qingliu1617-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qingliu1617-art](https://clawhub.ai/user/qingliu1617-art)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure Brave Search, diagnose web_search or web_fetch failures, and set up macOS proxy access when direct network access fails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes persistent proxy configuration steps that can change local shell or macOS environment behavior. <br>
-Mitigation: Prefer session-only proxy exports first, and use launchctl, shell profile edits, or sudo proxychains configuration only when the user intends and knows how to reverse those changes. <br>
-Risk: Brave Search setup requires an API key that could be exposed if pasted into shared logs, shell history, or public files. <br>
-Mitigation: Use placeholder values in examples, store the real key only in the intended OpenClaw configuration, and avoid sharing command output that contains the key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Brave Search API Docs](https://api.search.brave.com/app/docs) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
-- [OpenClaw Config](https://docs.openclaw.ai/config) <br>
-- [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure Brave Search API access, diagnose web_search or web_fetch fetch failures, and set proxy configuration on macOS when local networking requires it.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to configure API keys, which can expose secrets if pasted into shell history, logs, or shared configuration files.
+
+Mitigation: Use secret-entry or protected configuration methods, avoid pasting real keys into commands saved by shell history, and review file permissions on local OpenClaw configuration.
+
+Risk: The skill includes persistent proxy changes and a sudo proxychains configuration path that can affect local networking beyond a single command.
+
+Mitigation: Prefer temporary session-scoped proxy settings first, review each command before execution, and prepare a rollback plan before changing shell profiles or system-wide proxychains configuration.
+
+## Reference(s):
+
+- [Brave Search API Docs](https://api.search.brave.com/app/docs)
+- [OpenClaw Config](https://docs.openclaw.ai/config)
+- [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev)
+- [ClawHub Skill Page](https://clawhub.ai/qingliu1617-art/skills/brave-search-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configuration steps, diagnostic commands, proxy setup guidance, and verification checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

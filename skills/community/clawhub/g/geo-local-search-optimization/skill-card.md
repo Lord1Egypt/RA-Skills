@@ -1,41 +1,59 @@
-## Description: <br>
-Guides local businesses through a 7-day AI search optimization workflow with media content creation, keyword strategy, competitor analysis, and publishing recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides local businesses through a 7-day AI search optimization workflow with media content creation, keyword strategy, competitor analysis, and publishing recommendations.
 
-## Publisher: <br>
-[Koharu885](https://clawhub.ai/user/Koharu885) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koharu885](https://clawhub.ai/user/koharu885)
 
-## Use Case: <br>
-Local business owners and marketing operators use this skill to prepare AI-search-friendly media articles, keyword strategy, publishing guidance, competitor checks, and result verification for local discovery campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated local SEO content may contain inaccurate business identity, address, phone number, service, media placement, or advertising claims. <br>
-Mitigation: Verify business details, service claims, media placement, and advertising language against current business records before public publication. <br>
-Risk: Media publishing recommendations may be unsuitable if they do not match the business location or industry. <br>
-Mitigation: Select media channels that match the business geography and category, and avoid cross-industry placements. <br>
+## Use Case:
 
+Local business owners and marketers use this skill to prepare AI-friendly local search content, map verification steps, competitor checks, and media publishing guidance for discoverability in AI recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Koharu885/geo-local-search-optimization) <br>
-- [Publisher profile](https://clawhub.ai/user/Koharu885) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with article drafts, checklists, and publishing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces seven days of media article content and verification guidance from user-supplied business details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated promotional content could include unverifiable or misleading business claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated claim against authorized business facts before publishing.
+
+Risk: The workflow asks for business address and phone details intended for public promotion.
+
+Mitigation: Provide only contact details authorized for public business listings and avoid personal or residential information not meant for publication.
+
+Risk: Publishing recommendations may place content in channels that are not relevant to the business type or location.
+
+Mitigation: Check media relevance, local fit, and cost before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/koharu885/skills/geo-local-search-optimization)
+- [README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured article drafts, checklists, and publishing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates seven daily media articles of 500+ words plus verification and publishing guidance when sufficient business details are provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; changelog v1.0.1 dated 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

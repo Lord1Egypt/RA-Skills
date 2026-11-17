@@ -85,3 +85,13 @@ npm install @dg-elements/js-sdk
 
 - 服务端预下单能力：读 `references/hostingpay-preorder.md`
 - 支付完成后的最终确认闭环：读 `references/hostingpay-async-webhook.md` 和 `references/hostingpay-query.md`
+
+## 按问题选择分册
+
+| 文件 | 解决什么问题 |
+|------|-------------|
+| `references/checkout-js-integration-flow.md` | 前端页面、服务端预下单、JS SDK、查单确认如何串成主链路 |
+| `references/checkout-js-create-preorder-contract.md` | `createPreOrder` 的入参、返回字段、`pre_order_type` 决策与常见错误 |
+| `references/checkout-js-component-modes.md` | `checkout` 与单支付按钮模式怎么选 |
+| `references/checkout-js-callback-and-confirmation.md` | 前端 callback 为什么不能直接当成支付成功 |
+| `references/checkout-js-framework-integration-notes.md` | React / Vue / 原生 JS 集成时的最小边界提示 |

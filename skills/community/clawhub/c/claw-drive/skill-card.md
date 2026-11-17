@@ -1,47 +1,68 @@
-## Description: <br>
-Claw Drive is an AI-managed personal drive for OpenClaw that helps agents categorize, tag, deduplicate, sync, and retrieve personal files with natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Drive is an OpenClaw skill for auto-categorizing, tagging, deduplicating, syncing, and retrieving personal files through the claw-drive CLI.
 
-## Publisher: <br>
-[zhiyuanw101](https://clawhub.ai/user/zhiyuanw101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhiyuanw101](https://clawhub.ai/user/zhiyuanw101)
 
-## Use Case: <br>
-Individuals using OpenClaw or compatible agents use this skill to store incoming personal files, classify and index them with consent-aware descriptions, and retrieve them later by natural language. It is useful for personal document organization with optional Google Drive backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill manages personal files, and file contents or detailed descriptions can persist in local indexes or agent transcripts. <br>
-Mitigation: Ask before reading contents, default unanswered privacy prompts to sensitive handling, keep sensitive descriptions brief or redacted, and avoid extracting identity files. <br>
-Risk: Optional Google Drive sync can send selected files to a cloud provider or include unintended folders if sync settings are misconfigured. <br>
-Mitigation: Review the rclone remote and .sync-config exclusions before enabling sync, and keep highly sensitive folders such as identity/ excluded. <br>
-Risk: Local indexes, hashes, and rclone credentials remain on the user's machine and depend on the security of that local environment. <br>
-Mitigation: Use local device protections such as full-disk encryption, avoid storing secrets in descriptions, and review credential locations before deployment. <br>
+## Use Case:
 
+External users and developers use Claw Drive to let an OpenClaw agent store incoming files, create searchable metadata, retrieve previously stored files, and manage optional Google Drive sync.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiyuanw101/claw-drive) <br>
-- [Claw Drive homepage](https://github.com/dissaozw/claw-drive) <br>
-- [Security documentation](docs/security.md) <br>
-- [Sync documentation](docs/sync.md) <br>
-- [Tagging documentation](docs/tags.md) <br>
-- [PyMuPDF documentation](https://pymupdf.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, categories, tags, descriptions, and sync configuration choices; sensitive file contents should only be included with user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release metadata) <br>
+Risk: AI-assisted personal file management creates persistent local indexes that may contain sensitive descriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for consent before reading file contents, keep sensitive descriptions brief and redacted, and review index metadata before relying on it.
+
+Risk: Optional Google Drive sync may include sensitive identity files if exclusions are misconfigured.
+
+Mitigation: Before enabling sync, verify the exclude list and keep identity documents out of synced paths.
+
+Risk: Migration, reindex, and delete workflows can affect files beyond the intended targets.
+
+Mitigation: Apply only plans you created and reviewed, use summaries or dry runs where available, and confirm exact target paths before deleting files.
+
+Risk: Implementation flaws can exceed the skill's intended file boundaries.
+
+Mitigation: Review and scan the skill before deployment, and run it against a constrained local drive directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhiyuanw101/skills/claw-drive)
+- [Publisher Profile](https://clawhub.ai/user/zhiyuanw101)
+- [Skill Homepage](https://github.com/dissaozw/claw-drive)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Sync Documentation](docs/sync.md)
+- [Security Documentation](docs/security.md)
+- [Tags Documentation](docs/tags.md)
+- [PyMuPDF Documentation](https://pymupdf.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, category tags, descriptions, and dry-run or status output for review.]
+
+## Skill Version(s):
+
+0.4.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

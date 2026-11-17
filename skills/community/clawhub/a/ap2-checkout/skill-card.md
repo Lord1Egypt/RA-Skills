@@ -1,44 +1,56 @@
-## Description: <br>
-AP2 Agent-to-Agent mock checkout (SuperShoe). HP/HNP with card or x402 via mcporter and local mock MCP. No real payments. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+AP2 Agent-to-Agent mock checkout (SuperShoe). HP/HNP with card or x402 via mcporter and local mock MCP. No real payments.
 
-## Publisher: <br>
-[xielianghai](https://clawhub.ai/user/xielianghai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xielianghai](https://clawhub.ai/user/xielianghai)
 
-## Use Case: <br>
-Developers and agents use this skill to exercise a local AP2 checkout scenario for SuperShoe purchases, including human-present and human-not-present flows with card or x402 payment rails. It is intended for simulated local checkout behavior, not real payment settlement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The one-command npx installer is outside this skill package and is documented to patch OpenClaw and start local backend services. <br>
-Mitigation: Review the AP2 repository installer before running it, or use the manual setup path with an explicit AP2_HOME and the bundled backend check script. <br>
-Risk: The skill drives local AP2 mock MCP services and requires localhost ports 8091-8094 and 8100-8103. <br>
-Mitigation: Run it only in an intended local demo environment and verify the backend ports before starting a checkout flow. <br>
-Risk: Checkout steps can resemble payment actions even though settlement is simulated. <br>
-Mitigation: Show the item, price cap, and payment rail before mandate signing, and proceed only after explicit user approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to exercise AP2 human-present and human-not-present checkout flows against local mock MCP services with card or x402 payment rails. It helps test agent checkout orchestration without real settlement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xielianghai/ap2-checkout) <br>
-- [Setup reference](references/setup.md) <br>
-- [mcporter schema](https://raw.githubusercontent.com/steipete/mcporter/main/mcporter.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces simulated checkout flow instructions and a final purchase_complete JSON object.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The recommended one-command installer runs code outside the reviewed artifact and can modify OpenClaw setup or start local services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted and reviewed AP2 checkout, verify the AP2 commit, pin the mcporter version when possible, and prefer the manual setup path for tighter review.
+
+Risk: The skill simulates checkout and mandate-signing behavior, which could be confused with a real payment flow if run against the wrong environment.
+
+Mitigation: Use it only with the documented local mock MCP services, confirm the localhost endpoints, and require explicit user approval before signing mandates.
+
+## Reference(s):
+
+- [AP2 Checkout setup reference](references/setup.md)
+- [ClawHub skill page](https://clawhub.ai/xielianghai/skills/ap2-checkout)
+- [ClawHub publisher profile](https://clawhub.ai/user/xielianghai)
+- [mcporter schema](https://raw.githubusercontent.com/steipete/mcporter/main/mcporter.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local AP2 mock backend services, mcporter configuration, AP2_HOME, and a stable session_id; produces no real payment settlement.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

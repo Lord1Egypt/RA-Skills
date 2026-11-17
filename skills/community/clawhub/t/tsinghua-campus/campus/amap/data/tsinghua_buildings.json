@@ -1,0 +1,343 @@
+{
+  "snapshot_date": "2026-09-11",
+  "snapshot_source": "清华大学官网 (tsinghua.edu.cn) — 校园风光/景观/走进清华 + 维基百科 + 北京旅游/中关村/五道口相关公开资料",
+  "snapshot_summary": "清华校内主要建筑（标志性）+ 五道口/中关村周边地标性建筑/园区。校内部分以官方'校园景观'页为来源；周边部分以维基百科五道口、中关村智造大街公开介绍为来源。坐标为高德 GCJ-02 火星坐标系。",
+  "data_expiry_hint": "建议每 12 个月跑一次 campus-buildings --refresh 重新对齐 amap POI",
+  "campus_buildings": [
+    {
+      "name": "清华大学主楼",
+      "category": "校园核心",
+      "use": "教学/办公 — 由西主楼、东主楼、中央主楼三部分组成，4 个过街楼联成整体",
+      "area_m2": 76871,
+      "built_year": "1956-1966",
+      "designer": "清华师生结合毕业设计自行设计",
+      "note": "建国后清华最大单体建筑群",
+      "location": "116.332496,40.002047",
+      "poi_name": "清华大学主楼后厅",
+      "amap_address": "双清路30号清华大学",
+      "coordinate_source": "amap_poi"
+    },
+    {
+      "name": "清华大学图书馆（老馆）",
+      "category": "校园核心",
+      "use": "图书馆 — 始建 1912 年，1916 年由美国建筑师亨利·墨菲设计；经杨廷宝、关肇邺多次扩建",
+      "built_year": "1912-1916 起，多次扩建至 1991",
+      "designer": "亨利·墨菲 / 杨廷宝 / 关肇邺",
+      "location": "116.324125,40.005096",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学图书馆"
+    },
+    {
+      "name": "李文正馆（图书馆北楼）",
+      "category": "校园核心",
+      "use": "图书馆第四期扩建 — 2016 年建成，校园核心区",
+      "built_year": "2016",
+      "designer": "清华大学建筑设计研究院",
+      "location": "116.323995,40.005927",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学-李文正馆(打卡点)"
+    },
+    {
+      "name": "人文社科图书馆（文科图书馆）",
+      "category": "校园核心",
+      "use": "图书馆 — 2011 年百年校庆落成，瑞士建筑师马里奥·博塔与中国建筑科学研究院合作",
+      "built_year": "2011",
+      "designer": "马里奥·博塔（瑞士）",
+      "location": "116.328564,40.004346",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学人文社科图书馆"
+    },
+    {
+      "name": "大礼堂",
+      "category": "四大建筑",
+      "use": "集会/典礼 — 与老图书馆、西体育馆、科学馆并称'四大建筑'，清华建校以来第一批大规模建筑；建成时是国内高校最大礼堂；意大利文艺复兴时期古罗马风格",
+      "built_year": "1920s",
+      "location": "116.324430,40.003693",
+      "poi_name": "清华大学大礼堂",
+      "amap_address": "成府路45-1号清华园1号",
+      "coordinate_source": "amap_poi"
+    },
+    {
+      "name": "清华大学美术学院新教学楼",
+      "category": "校园核心",
+      "use": "美术学院教学 — 位于中央主楼东南方向，2005 年投入使用",
+      "area_m2": 62000,
+      "built_year": "2005",
+      "designer": "美国帕金斯威尔公司",
+      "location": "116.335764,39.999688",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学美术学院"
+    },
+    {
+      "name": "艺术博物馆",
+      "category": "校园核心",
+      "use": "博物馆 — 校园东区，占地 1.5 公顷，总建筑面积 30000㎡，展厅 9000㎡；藏品 1.3 万余（组）件，主要来自美术学院",
+      "built_year": "2016 前后",
+      "location": "116.335592,40.001971",
+      "poi_name": "清华大学艺术博物馆",
+      "amap_address": "清华园街道清华大学蒙民伟人文楼B2层",
+      "coordinate_source": "amap_poi"
+    },
+    {
+      "name": "第六教学楼（裕元楼）",
+      "category": "教学楼",
+      "use": "教学 — 清华最新、规模最大的教学楼，主楼西北侧；2003 年竣工",
+      "area_m2": 34000,
+      "built_year": "2003",
+      "designer": "叶彪（清华建筑设计研究院）",
+      "location": "116.330175,40.002741",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学第六教学楼A区"
+    },
+    {
+      "name": "西阶梯教室 / 东阶梯教室",
+      "category": "教学楼",
+      "use": "大课/讲座",
+      "location": "116.323853,40.003244",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学西阶梯教室"
+    },
+    {
+      "name": "清华学堂",
+      "category": "历史建筑",
+      "use": "早期教学楼 — 1911 年建，两层大楼，建校初期最高建筑",
+      "built_year": "1911",
+      "location": "116.325610,40.002319",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华学堂"
+    },
+    {
+      "name": "新水利馆 / 旧水利馆",
+      "category": "教学楼",
+      "use": "水利系教学楼",
+      "location": "116.325537,40.003636",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学新水利馆"
+    },
+    {
+      "name": "明理楼 / 伟伦楼",
+      "category": "教学楼",
+      "use": "教学楼",
+      "location": "116.331995,39.999563",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学伟伦楼"
+    },
+    {
+      "name": "逸夫技术科学楼",
+      "category": "教学楼",
+      "use": "教学楼",
+      "location": "116.326,40.003",
+      "coordinate_source": "fallback（清华园中心）"
+    },
+    {
+      "name": "旧经管报告厅 / 建馆报告厅",
+      "category": "报告厅",
+      "use": "学术报告/活动",
+      "location": "116.326,40.003",
+      "coordinate_source": "fallback（清华园中心）"
+    },
+    {
+      "name": "西体育馆 / 科学馆",
+      "category": "四大建筑",
+      "use": "体育/科学教学 — 四大建筑之二（与老图书馆、大礼堂并列）",
+      "location": "116.323923,40.002859",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学科学馆"
+    },
+    {
+      "name": "清华学堂 + 同方部",
+      "category": "历史建筑",
+      "use": "早期教学/剧场 — 同方部建于 1920 年代，原为纪念性礼堂",
+      "location": "116.325289,40.002669",
+      "coordinate_source": "amap_poi",
+      "poi_name": "清华大学同方部"
+    },
+    {
+      "name": "工字厅",
+      "category": "历史建筑",
+      "use": "校机关办公 — 清华现存最早古建筑（1707 年熙春园原址）",
+      "location": "116.323079,40.002365",
+      "poi_name": "清华大学工字厅",
+      "amap_address": "双清路30号清华大学",
+      "coordinate_source": "amap_poi"
+    },
+    {
+      "name": "古月堂",
+      "category": "历史建筑",
+      "use": "清华早期建筑，毗邻工字厅",
+      "location": "116.321925,40.002463",
+      "poi_name": "清华大学古月堂",
+      "amap_address": "双清路30号清华大学",
+      "coordinate_source": "amap_poi"
+    },
+    {
+      "name": "荷塘 / 荷花池",
+      "category": "景观",
+      "use": "朱自清《荷塘月色》所在地",
+      "location": "116.326,40.003",
+      "coordinate_source": "fallback（清华园中心）"
+    },
+    {
+      "name": "近春园",
+      "category": "历史景观",
+      "use": "清华早期皇家园林遗址（1707 年熙春园）",
+      "location": "116.326,40.003",
+      "coordinate_source": "fallback（清华园中心）"
+    },
+    {
+      "name": "熙春园 / 工字厅遗址",
+      "category": "历史景观",
+      "use": "康熙三子建园旧址，今工字厅保留",
+      "location": "116.326,40.003",
+      "coordinate_source": "fallback（清华园中心）"
+    }
+  ],
+  "surrounding_buildings": [
+    {
+      "name": "中关村智造大街（含 AI 原点社区）",
+      "category": "周边园区",
+      "use": "智能制造产业基地 + 人工智能园区（37 所高校、10 新型研发机构、52 个全国重点实验室）",
+      "address": "五道口清华大学东南门",
+      "note": "F 座为清华大学人工智能学院入驻地（2024 签约）",
+      "key_tenants": [
+        "清华大学人工智能学院（入驻 F 座）",
+        "无问芯穹",
+        "清华大学计算机系互联网体系结构全国重点实验室",
+        "火炬科创学院"
+      ],
+      "location": "116.334102,39.994506",
+      "coordinate_source": "manual（清华大学人工智能学院入驻地）"
+    },
+    {
+      "name": "清华科技园",
+      "category": "周边园区",
+      "use": "清华大学科技园区 — 总建筑面积 70 万㎡，5A 甲级写字楼集群",
+      "address": "北京市海淀区中关村东路 1 号（地铁 13 号线五道口站）",
+      "buildings": [
+        "科技大厦（8 号楼）",
+        "创业大厦（A 座）",
+        "搜狐网络大厦（9 号楼）",
+        "赛尔大厦（B 座）",
+        "威盛大厦（7 号楼）"
+      ],
+      "location": "116.336,39.994",
+      "coordinate_source": "fallback（五道口）"
+    },
+    {
+      "name": "清华科技园创业大厦",
+      "category": "写字楼",
+      "use": "清华科技园南侧，5A 智能化甲级写字楼",
+      "address": "成府路",
+      "area_m2": 188000,
+      "location": "116.332,39.996",
+      "coordinate_source": "manual（清华科技园南侧）"
+    },
+    {
+      "name": "清华科技园科技大厦",
+      "category": "写字楼",
+      "use": "园区标志性 5A 甲级写字楼",
+      "address": "中关村东路 1 号院 8 号楼",
+      "location": "116.331,39.995",
+      "coordinate_source": "manual（清华科技园）"
+    },
+    {
+      "name": "威盛大厦",
+      "category": "写字楼",
+      "use": "电子/芯片行业办公 — 距地铁 13 号线五道口站 713 米",
+      "address": "中关村东路 1 号院 7 号楼",
+      "location": "116.332228,39.993766",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "搜狐网络大厦",
+      "category": "写字楼",
+      "use": "搜狐媒体/科技公司办公",
+      "address": "中关村东路 1 号院 9 号楼",
+      "location": "116.332171,39.993491",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "赛尔大厦",
+      "category": "写字楼",
+      "use": "清华科技园 B 座，办公",
+      "location": "116.331168,39.993814",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "东升大厦",
+      "category": "写字楼",
+      "use": "五道口人工智能产业园四主体之一",
+      "address": "中关村东路 8 号",
+      "note": "原裙楼 2023 年改造为人工智能创新产业空间",
+      "location": "116.333793,39.994142",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "中关村智造大街 F 座（AI 原点社区核心）",
+      "category": "孵化器/学院",
+      "use": "清华大学人工智能学院入驻地（2024 年签约）+ 周边 AI 创业公司",
+      "location": "116.336,39.994",
+      "coordinate_source": "fallback（五道口）"
+    },
+    {
+      "name": "文津国际酒店",
+      "category": "酒店",
+      "use": "中关村核心区商务酒店 — 毗连清华，距五道口地铁 6 分钟步行",
+      "address": "中关村东路 1 号院清华科技园 5 号楼",
+      "location": "116.327,39.993",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "清华园宾馆",
+      "category": "酒店",
+      "use": "校内宾馆 — 校园东南角",
+      "location": "116.336,39.994",
+      "coordinate_source": "fallback（五道口）"
+    },
+    {
+      "name": "财智国际大厦",
+      "category": "写字楼",
+      "use": "写字楼 — 距清华大学正门 500 米，北四环保福寺桥东北角",
+      "address": "清华南路",
+      "location": "116.328,40.000",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "华清嘉园",
+      "category": "住宅",
+      "use": "五道口住宅区，紧邻清华大学东门",
+      "location": "116.338,40.005",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "成府路 35 号院",
+      "category": "住宅",
+      "use": "五道口住宅区 — AI 原点社区联动片区",
+      "location": "116.338,40.001",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "蓝旗营",
+      "category": "住宅",
+      "use": "清华/北大附近知名住宅区（IT/创业公司扎堆）",
+      "location": "116.323,39.998",
+      "coordinate_source": "manual"
+    },
+    {
+      "name": "华联 U-Center",
+      "category": "商业",
+      "use": "五道口购物中心",
+      "address": "五道口地铁 13 号线站口",
+      "location": "116.336,39.992",
+      "coordinate_source": "manual"
+    }
+  ],
+  "snapshot_metadata": {
+    "address_layer": "amap_poi + manual_fallback",
+    "address_query": "amap text 批量查询（35 个真实 POI 命中） + 手工校正（校门/周边）",
+    "campus_matched": 5,
+    "campus_fallback": 16,
+    "campus_amap_matched": 11,
+    "address_note": "校内建筑坐标优先取 amap POI（含 53 条 amap 采集结果）；新书院/缺失坐标 fallback 到清华园中心"
+  }
+}

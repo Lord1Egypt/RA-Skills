@@ -1,40 +1,55 @@
-## Description: <br>
-Distills long Markdown documents into concise summaries while preserving key facts, structure, and technical values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes long markdown documents into concise prose, bullet points, or tl;dr output while preserving key facts and document structure.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-External users and developers use this skill to turn long Markdown files, READMEs, articles, meeting notes, and changelogs into shorter prose, bullet lists, or tl;dr summaries without changing technical details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive Markdown content may be exposed to the active agent or model environment during summarization. <br>
-Mitigation: Avoid submitting sensitive documents unless that exposure is acceptable, or redact sensitive content before using the skill. <br>
+## Use Case:
 
+External users and developers use this skill when they provide markdown content and need a shorter summary, bullet digest, or tl;dr that keeps important technical details intact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/markdown-to-summary) <br>
-- [Publisher-listed metadata source](https://github.com/MiniMax-AI/skills) <br>
-- [Skill reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary, bullet list, or tl;dr prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 20-40% of the original length unless the user specifies otherwise; preserves source order and exact technical values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Sensitive or confidential markdown content may be processed during summarization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents that are approved for the agent environment, or redact sensitive content before summarizing.
+
+Risk: A condensed summary can omit context or make source details easier to misread.
+
+Mitigation: Review important summaries against the original markdown before using them for decisions or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/markdown-to-summary)
+- [Source listed in skill metadata](https://github.com/MiniMax-AI/skills)
+- [references/index.md](references/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default summaries target 20-40% of the original content unless the user requests a different length.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

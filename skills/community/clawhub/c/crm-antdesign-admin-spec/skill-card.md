@@ -1,45 +1,62 @@
-## Description: <br>
-Design, structure, review, and generate B2B CRM or admin pages using an Ant Design-style system with page taxonomy, reusable layout rules, token guidance, component mapping, and AI-generation constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, structures, reviews, and generates B2B CRM or admin pages using an Ant Design-style system with page taxonomy, reusable layout rules, token guidance, component mapping, and AI-generation constraints.
 
-## Publisher: <br>
-[benisonli](https://clawhub.ai/user/benisonli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benisonli](https://clawhub.ai/user/benisonli)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to plan, generate, and review B2B CRM or SaaS admin pages that should follow Ant Design-style structure, density, component choices, and implementation constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CRM or admin page guidance may not match a project's specific product, accessibility, localization, or design-system requirements. <br>
-Mitigation: Review generated specs against the target product constraints and implementation design system before using them for build work. <br>
-Risk: Private adaptations can introduce company-specific page names, internal URL patterns, organization assumptions, or product-module details. <br>
-Mitigation: Keep public guidance separate from private adaptation material and review adapted skill content for confidential information before release. <br>
+## Use Case:
 
+External designers, product teams, and developers use this skill to classify CRM/admin page types and produce implementation-friendly Ant Design-style page specs, review notes, prompt templates, and component guidance.
 
-## Reference(s): <br>
-- [CRM Ant Design Admin Spec on ClawHub](https://clawhub.ai/benisonli/crm-antdesign-admin-spec) <br>
-- [Admin Guidelines](references/admin-guidelines.md) <br>
-- [Token and Components](references/token-and-components.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [Examples](references/examples.md) <br>
-- [Private Adaptation Notes](references/private-adaptation-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with optional code, component, token, and prompt snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces page classifications, information architecture, section breakdowns, Ant Design component mappings, design review comments, and implementation-friendly planning prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may steer CRM/admin work toward Ant Design-style layouts even when a product requires a different design system or locale-specific typography.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected tokens, component mapping, and font stack against the product design system before implementation.
+
+Risk: Design guidance can be over-applied as fixed implementation requirements and weaken the fit to a specific business workflow.
+
+Mitigation: Confirm the page type, information architecture, and expected user workflow before generating final UI or code.
+
+Risk: Private adaptation material could introduce internal page names, menu structures, URL patterns, or organization assumptions if reused in a public release.
+
+Mitigation: Keep company-specific adaptations in private overlays and review public skill updates for internal identifiers before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/benisonli/skills/crm-antdesign-admin-spec)
+- [Admin Guidelines](references/admin-guidelines.md)
+- [Token and Components](references/token-and-components.md)
+- [Prompt Templates](references/prompt-templates.md)
+- [Examples](references/examples.md)
+- [Private Adaptation Notes](references/private-adaptation-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown prose, structured page specifications, prompt templates, and implementation-oriented code guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No commands, credential access, persistence, or hidden high-impact behavior are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

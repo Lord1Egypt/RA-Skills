@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Scrapbook con fotos</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+// 2 o 3 fotos REALES de la persona (rutas relativas a este archivo). Van en el orden en que caen.
+const FOTOS = ['fotos/foto-1.jpg', 'fotos/foto-3.jpg', 'fotos/foto-4.jpg'];
+const PIES = ['antes: grababa sin plan', 'ahora: cada video vende', ''];   // lo que se escribe bajo cada foto ('' = nada)
+const TITULO = 'mi diario de creadora';               // la etiqueta de papel arriba (≤ 30 letras, '' = sin etiqueta)
+const COLORES = {
+  hoja: '#f1e6d2',      // la hoja del cuaderno
+  puntos: '#c9b79a',    // la cuadrícula de puntitos
+  cintas: ['#e8a0a8', '#9fc9c2', '#f0c75e'],   // la cinta adhesiva de cada foto
+  tinta: '#2b2330',     // lo escrito a mano
+  garabato: '#d8412f',  // corazón, flecha y estrellas
+  etiqueta: '#fffaf0',
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const N = Math.min(3, FOTOS.length);
+const T_FOTO = i => .35 + i * .75;                    // cuándo cae cada foto
+const T_PIES = T_FOTO(N - 1) + .55;                   // después se escriben los pies
+const T_GARABATO = T_PIES + .25 + PIES.filter(Boolean).length * .55;
+const DUR = +(T_GARABATO + 1.9).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+cargarFotos(FOTOS.slice(0, N));
+let IMG = [];
+window.LISTO.then(ims => { IMG = ims; });
+
+const PAPEL = (() => {                                 // hoja con cuadrícula de puntos y un margen cosido
+  const c = hacerPapel(COLORES.hoja, { viñeta: .2, semilla: 3 }), p = c.getContext('2d'), r = rng(11);
+  p.fillStyle = COLORES.puntos;
+  for (let y = 60; y < H; y += 54) for (let x = 60; x < W; x += 54) { p.globalAlpha = .55 + r() * .3; p.beginPath(); p.arc(x, y, 3.2, 0, 7); p.fill(); }
+  p.globalAlpha = .5; p.setLineDash([22, 14]); p.strokeStyle = '#a88f6c'; p.lineWidth = 3;
+  p.beginPath(); p.moveTo(36, 0); p.lineTo(36, H); p.stroke();
+  return c;
+})();
+
+// dónde queda cada foto (dentro de la zona segura: 250 arriba, 450 abajo)
+// Acomodo en zigzag: una foto nunca tapa el pie ni el título de otra.
+const LUGAR = N === 3 ? [
+  { cx: 330, cy: 640, w: 380, h: 400, rot: -.06, cinta: [-.5, .45] },
+  { cx: 760, cy: 895, w: 380, h: 400, rot: .05, cinta: [.35, -.5] },
+  { cx: 350, cy: 1165, w: 380, h: 400, rot: -.035, cinta: [-.3, .3], esquinas: true },   // cintas en las esquinas: no tapan el pie de arriba
+] : [
+  { cx: 360, cy: 690, w: 440, h: 520, rot: -.06, cinta: [-.5, .45] },
+  { cx: 790, cy: 1100, w: 380, h: 460, rot: .05, cinta: [.35, -.5] },
+].slice(0, N);
+
+const MARCO = 26, PIE = 84;                           // borde blanco y franja de abajo (estilo instantánea)
+
+function cinta(cx, cy, ang, col, seed, L = 190) {    // tira de cinta de papel con bordes rasgados
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang);
+  const A = 58, r = rng(seed), pts = [];
+  for (let k = 0; k <= 8; k++) pts.push([-L / 2 + k * L / 8, -A / 2 + (r() - .5) * 3]);
+  for (let k = 0; k <= 5; k++) pts.push([L / 2 + (k % 2 ? 7 : -3), -A / 2 + k * A / 5]);
+  for (let k = 8; k >= 0; k--) pts.push([-L / 2 + k * L / 8, A / 2 + (r() - .5) * 3]);
+  for (let k = 5; k >= 0; k--) pts.push([-L / 2 + (k % 2 ? -7 : 3), -A / 2 + k * A / 5]);
+  ctx.globalAlpha = .82; ctx.fillStyle = col; ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.fill();
+  ctx.globalAlpha = .22; ctx.fillStyle = '#fff';
+  for (let k = -L / 2 + 12; k < L / 2; k += 26) ctx.fillRect(k, -A / 2 + 4, 8, A - 8);   // rayitas de la cinta
+  ctx.restore();
+}
+
+function foto(i, t) {
+  const L = LUGAR[i], im = IMG[i]; if (!im) return;
+  const k = prog(t, T_FOTO(i), T_FOTO(i) + .5); if (k <= 0) return;
+  // cae desde arriba girando y se asienta con un pequeño rebote
+  const s = lerp(1.35, 1, back(k)), caida = (1 - easeOut(k)) * -260;
+  const rot = L.rot + (1 - easeOut(k)) * (i % 2 ? .35 : -.35);
+  const w = L.w + 2 * MARCO, h = L.h + MARCO + PIE;
+  ctx.save(); ctx.translate(L.cx, L.cy + caida); ctx.rotate(rot); ctx.scale(s, s);
+  // sombra que se achica cuando toca la hoja
+  const alto = 1 - easeOut(k);
+  ctx.fillStyle = `rgba(50,30,20,${.28 - alto * .12})`; ctx.filter = `blur(${8 + alto * 18}px)`;
+  ctx.fillRect(-w / 2 + 14 + alto * 30, -h / 2 + 20 + alto * 40, w, h); ctx.filter = 'none';
+  ctx.fillStyle = '#fbfaf6'; ctx.fillRect(-w / 2, -h / 2, w, h);
+  ctx.save(); ctx.beginPath(); ctx.rect(-w / 2 + MARCO, -h / 2 + MARCO, L.w, L.h); ctx.clip();
+  fotoCover(im, -w / 2 + MARCO, -h / 2 + MARCO, L.w, L.h, .5, .3);
+  // un poquito de tono cálido de papel impreso
+  ctx.fillStyle = 'rgba(255,220,170,.08)'; ctx.fillRect(-w / 2, -h / 2, w, h);
+  ctx.restore();
+  ctx.strokeStyle = 'rgba(0,0,0,.08)'; ctx.lineWidth = 2; ctx.strokeRect(-w / 2, -h / 2, w, h);
+  // cinta: aparece pegada justo cuando la foto termina de caer
+  if (k > .75) {
+    const col = COLORES.cintas[i % COLORES.cintas.length];
+    if (L.esquinas) { cinta(-w / 2 + 14, -h / 2 + 30, -.8, col, 30 + i, 140); cinta(w / 2 - 14, -h / 2 + 30, .8, col, 50 + i, 140); }
+    else cinta(0, -h / 2 + 4, L.cinta[0], col, 30 + i);
+    if (i === 1) cinta(w / 2 + 4, h / 2 - 6, L.cinta[1], COLORES.cintas[(i + 1) % 3], 40 + i, 150);   // esquina, lejos del pie
+  }
+  // pie escrito a mano en la franja blanca
+  const pie = PIES[i] || '';
+  if (pie) {
+    const orden = PIES.slice(0, i).filter(Boolean).length;
+    const p = prog(t, T_PIES + orden * .55, T_PIES + orden * .55 + .5);
+    if (p > 0) {
+      const aj = autoajuste(pie, LETRA_MANO, 400, w - 2 * MARCO - 10, 1, 52, 30);
+      ctx.font = aj.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      const tw = medir(pie, aj.font);
+      ctx.save(); ctx.beginPath(); ctx.rect(-tw / 2 - 10, h / 2 - PIE - 10, (tw + 20) * p, PIE + 20); ctx.clip();
+      ctx.fillText(pie, (vnoise(BOIL, i) - .5) * 2, h / 2 - PIE / 2 + 4 + (vnoise(i, BOIL) - .5) * 2);
+      ctx.restore();
+    }
+  }
+  ctx.restore();
+}
+
+function etiqueta(t) {                                 // papelito rasgado con el título, arriba
+  if (!TITULO) return;
+  const k = back(prog(t, .05, .45)); if (k <= 0) return;
+  const aj = autoajuste(TITULO, LETRA_MANO, 700, 700, 1, 74, 40);
+  const tw = medir(TITULO, aj.font) + 90, x = W / 2, y = 300;
+  ctx.save(); ctx.translate(x, y); ctx.rotate(.025); ctx.scale(k, k);
+  const r = rng(77), pts = [];
+  for (let s = 0; s <= 14; s++) pts.push([-tw / 2 + s * tw / 14, -52 + (r() - .5) * 7]);
+  for (let s = 14; s >= 0; s--) pts.push([-tw / 2 + s * tw / 14, 52 + (r() - .5) * 9]);
+  ctx.fillStyle = 'rgba(40,20,10,.22)'; ctx.beginPath(); pts.forEach(([a, b], i) => i ? ctx.lineTo(a + 8, b + 10) : ctx.moveTo(a + 8, b + 10)); ctx.fill();
+  ctx.fillStyle = COLORES.etiqueta; ctx.beginPath(); pts.forEach(([a, b], i) => i ? ctx.lineTo(a, b) : ctx.moveTo(a, b)); ctx.fill();
+  ctx.font = aj.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(TITULO, 0, 4);
+  ctx.restore();
+  cinta(x - tw / 2 + 20, y - 40, -.7, COLORES.cintas[2], 90);
+}
+
+function garabatos(t) {                               // corazón, flecha y estrellas dibujados al final
+  const p = prog(t, T_GARABATO, T_GARABATO + .9); if (p <= 0) return;
+  const o = { w: 9, col: COLORES.garabato, amp: 2.2 };
+  // flecha curva de la primera foto a la segunda
+  const a = LUGAR[0], b = LUGAR[1] || LUGAR[0];
+  const fl = resample([[a.cx + a.w / 2 + 40, a.cy - 120], [a.cx + a.w / 2 + 200, a.cy - 170], [b.cx + 20, b.cy - b.h / 2 - 90]], 8);
+  drawOn(fl, easeOut(prog(p, 0, .5)), { ...o, seed: 1 });
+  if (p > .5) { const [ex, ey] = fl[fl.length - 1]; ink(resample([[ex - 34, ey - 30], [ex, ey], [ex + 36, ey - 22]], 6), { ...o, seed: 2 }); }
+  // corazón junto a la última foto
+  const c = LUGAR[N - 1], der = c.cx + c.w / 2 + 50 < W - 110;   // el corazón va del lado donde hay espacio
+  const hx = der ? c.cx + c.w / 2 + 50 : c.cx - c.w / 2 - 80, hy = c.cy + 60;
+  const cor = []; for (let u = 0; u <= 1.001; u += .03) { const q = u * 6.283; cor.push([hx + 16 * Math.pow(Math.sin(q), 3) * 4, hy - (13 * Math.cos(q) - 5 * Math.cos(2 * q) - 2 * Math.cos(3 * q) - Math.cos(4 * q)) * 4]); }
+  drawOn(cor, easeOut(prog(p, .35, .85)), { ...o, seed: 3 });
+  // tres estrellitas que saltan
+  [[930, 420], [990, 1290], [640, 1420]].forEach(([sx, sy], i) => {
+    const e = back(prog(p, .55 + i * .1, .8 + i * .1)); if (e <= 0) return;
+    const R = 26 * e, pts = [];
+    for (let q = 0; q <= 10; q++) { const ang = -Math.PI / 2 + q * Math.PI / 5, rr = q % 2 ? R * .45 : R; pts.push([sx + Math.cos(ang) * rr, sy + Math.sin(ang) * rr]); }
+    ink(pts, { w: 6, col: COLORES.garabato, amp: 1, seed: 10 + i });
+  });
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  // la cámara se acerca apenas durante todo el clip (se siente vivo sin marear)
+  const z = 1 + .04 * ease(prog(t, 0, DUR));
+  ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
+  ctx.drawImage(PAPEL, 0, 0);
+  etiqueta(t);
+  for (let i = 0; i < N; i++) foto(i, t);
+  garabatos(t);
+});
+</script>
+</body>
+</html>

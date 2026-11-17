@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents produce implementation guidance for Chinese data protection requirements, including privacy policies, consent management, data localization, cross-border transfer assessments, and security impact assessments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensure applications comply with Chinese data protection laws, including PIPL, Cybersecurity Law, and Data Security Law, by guiding privacy policies, consent management, data localization, cross-border transfer assessment, and security impact assessment.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers and product teams use this skill when building applications for Chinese users that collect personal information, store data, or transfer data across borders. It helps an agent draft compliance checklists, technical control patterns, assessment templates, and implementation snippets for PIPL, the Cybersecurity Law, and the Data Security Law. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China-focused applications and deployments serving Chinese users <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes a paid third-party web app that may receive sensitive compliance details outside the agent workflow. <br>
-Mitigation: Do not share confidential data maps, architecture details, personal-information inventories, or legal materials with the linked app unless the operator, privacy terms, hosting, and authorization have been independently verified. <br>
-Risk: Compliance guidance can become outdated or be misapplied as legal advice. <br>
-Mitigation: Treat outputs as technical implementation guidance, review current China data-protection requirements, and consult qualified counsel before relying on the results for production decisions. <br>
+## Use Case:
 
+Developers and compliance engineers use this skill when building applications for Chinese users that collect personal information, store data, or transfer data across borders. It helps agents draft implementation guidance, checklists, data-flow assessments, and technical patterns for China data compliance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/china-data-compliance) <br>
-- [China Compliance Skills homepage](https://github.com/lm203688/china-compliance-skills-mirror) <br>
-- [cn-seo-optimizer related skill](https://github.com/lm203688/china-compliance-skills-mirror/tree/main/skills/cn-seo-optimizer) <br>
-- [cn-geo-monitor related skill](https://github.com/lm203688/china-compliance-skills-mirror/tree/main/skills/cn-geo-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, code snippets, shell commands, and assessment templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill promotes an external commercial web app that may receive compliance content without clear data-handling disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste sensitive policy drafts, business data, personal information, or regulated content into the external app unless its operator, terms, and data handling have been independently reviewed.
+
+Risk: Legal thresholds and cloud-region commands may become outdated or may not match a specific deployment context.
+
+Mitigation: Treat the guidance as a starting point and require current legal, security, and infrastructure review before using it for production compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lm203688/skills/china-data-compliance)
+- [China Compliance Skills repository](https://github.com/lm203688/china-compliance-skills-mirror)
+- [cn-seo-optimizer related skill](https://github.com/lm203688/china-compliance-skills-mirror/tree/main/skills/cn-seo-optimizer)
+- [cn-geo-monitor related skill](https://github.com/lm203688/china-compliance-skills-mirror/tree/main/skills/cn-geo-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with checklists, tables, code snippets, shell commands, and architecture notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include legal and infrastructure compliance guidance that requires current professional review before production use.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

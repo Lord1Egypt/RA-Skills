@@ -1,0 +1,53 @@
+# Fictional example. No real candidate data.
+meta:
+  name: 陈予安
+  language: zh
+  target_market: cn
+  section_order:
+  - education
+  - experience
+  - projects
+  - skills
+contact:
+  email: candidate@example.com
+  phone: 138 0000 0000
+education:
+- institution: 示例理工大学
+  location: 中国
+  degree: 数据科学与商业分析  硕士
+  start: 2021-09
+  end: 2023-06
+  details: 主修课程：统计建模、数据库系统、实验设计与产品分析；毕业项目聚焦零售库存预测。
+- institution: 示例科技大学
+  location: 中国
+  degree: 信息管理与信息系统  学士
+  start: 2017-09
+  end: 2021-06
+  details: 校园实践：带领四人团队完成校园服务调研，整理访谈记录并制作交互原型。
+experience:
+- org: 示例数字科技有限公司
+  title: 数据产品分析师
+  start: 2023-07
+  end: present
+  bullets:
+  - 需求分析：访谈业务与客服团队，梳理订单查询中的重复问题，明确指标口径并维护需求优先级。
+  - 产品迭代：负责经营看板的需求文档、原型与验收标准，协调设计和研发完成三个版本交付。
+  - 数据质量：用 SQL 与 Python 建立日报校验流程，覆盖缺失值、重复记录和异常波动，减少人工核对。
+  - 效果复盘：跟踪新用户完成关键任务的路径，将反馈转为可执行改进项，形成月度复盘记录。
+- org: 示例商业研究工作室
+  title: 研究分析实习生
+  start: 2022-06
+  end: 2022-09
+  bullets:
+  - 行业研究：整理公开资料与访谈纪要，比较六家同类产品的功能、定价和目标用户，形成研究简报。
+  - 协作支持：维护资料索引和数据来源清单，核对图表口径，支持项目经理完成客户汇报。
+projects:
+- name: 数据清洗助手
+  description: 开发 CSV 检查工具，提供字段校验、重复项识别和错误报告，并编写使用示例。
+- name: 产品分析笔记
+  description: 持续整理用户访谈、指标设计和实验复盘方法，用小型公开数据集演示分析过程。
+skills:
+  工具与方法:
+  - Python、SQL、Excel、Figma；熟悉数据清洗、需求访谈、原型设计和基础统计分析。
+  语言与协作:
+  - 中文母语，英语可用于工作阅读与沟通；习惯用清晰文档记录决策、进度和待办。

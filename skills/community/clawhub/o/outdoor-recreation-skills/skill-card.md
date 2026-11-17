@@ -1,44 +1,58 @@
-## Description: <br>
-Practical skills for camping, hiking, and outdoor recreation. Use when someone wants to start camping, plan a hiking trip, learn outdoor cooking, or build confidence in nature without prior experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical guidance for camping, hiking, and outdoor recreation, including tent setup, backpack packing, camp cooking, trail navigation, and beginner trip planning.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users can use this skill to plan beginner camping and hiking trips, learn core outdoor skills, and build confidence with tent setup, backpack packing, camp cooking, trail navigation, water treatment, and Leave No Trace practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outdoor guidance can become unsafe when local weather, trail closures, permits, fire restrictions, or emergency conditions change. <br>
-Mitigation: Check current authoritative local park, land manager, weather, trail, permit, and emergency sources before relying on trip guidance. <br>
-Risk: Trip-planning state may include destination, gear, permits, group details, and reminder information. <br>
-Mitigation: Review and limit what the agent stores or remembers, especially for personal travel plans and location details. <br>
+## Use Case:
 
+External users and agents use this skill to help beginners plan camping or hiking trips, choose and pack gear, cook outdoors, navigate trails, and build outdoor confidence progressively.
 
-## Reference(s): <br>
-- [Leave No Trace Center for Outdoor Ethics](https://lnt.org) <br>
-- [REI Expert Advice](https://www.rei.com/learn/expert-advice) <br>
-- [National Park Service Trip Planning](https://www.nps.gov/planyourvisit) <br>
-- [Appalachian Mountain Club](https://www.outdoors.org) <br>
-- [American Hiking Society](https://americanhiking.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, step-by-step procedures, and reminder state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain trip-planning state such as destination, gear, permits, and reminders when supported by the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The published install command uses an unpinned npx installer path that can execute mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, reviewed installer version or a controlled ClawHub installation path in a low-privilege environment.
+
+Risk: Outdoor recommendations can depend on local regulations, weather, terrain, wildlife, and current closures.
+
+Mitigation: Check current local land-manager guidance, weather, permits, fire restrictions, trail conditions, and emergency plans before acting on trip advice.
+
+## Reference(s):
+
+- [Leave No Trace Center for Outdoor Ethics](https://lnt.org)
+- [REI Expert Advice](https://www.rei.com/learn/expert-advice)
+- [National Park Service Trip Planning](https://www.nps.gov/planyourvisit)
+- [Appalachian Mountain Club](https://www.outdoors.org)
+- [American Hiking Society](https://americanhiking.org)
+- [Anthropic: Labor market impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists and step-by-step instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localized planning advice, safety reminders, and gear checklists; no API calls or code generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

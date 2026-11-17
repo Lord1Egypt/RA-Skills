@@ -1,47 +1,62 @@
-## Description: <br>
-Helps agents find 302.AI APIs, retrieve relevant documentation, and generate integration code for language, image, video, audio, and other API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find 302.AI APIs, retrieve documentation, and generate integration code for the user's programming language.
 
-## Publisher: <br>
-[sharkqwy](https://clawhub.ai/user/sharkqwy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharkqwy](https://clawhub.ai/user/sharkqwy)
 
-## Use Case: <br>
-Developers and agents use this skill to identify suitable 302.AI APIs and produce implementation examples, commands, and configuration guidance for API integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is broad and may activate for many API or AI requests. <br>
-Mitigation: Use it only when 302.AI-centered API integration help is intended, and confirm the selected API before applying generated code. <br>
-Risk: The skill asks for a 302.AI API key and generated examples may expose credentials if copied directly. <br>
-Mitigation: Use environment variables or limited test keys, avoid pasting live production keys into chat, and never commit generated code containing secrets. <br>
-Risk: Generated API calls may send user data to 302.AI or upstream services. <br>
-Mitigation: Review generated code and documentation before running it, and avoid sending private or regulated data unless that transfer is intended and approved. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose 302.AI APIs and generate starter integration code, shell commands, and configuration guidance for AI, media, document, search, RAG, and utility workflows.
 
-## Reference(s): <br>
-- [API Category Index](references/api_categories.md) <br>
-- [Integration Code Templates](references/integration_examples.md) <br>
-- [API List Parser Usage](references/parse_script_usage.md) <br>
-- [302.AI Documentation](https://doc.302.ai/) <br>
-- [302.AI API List](https://doc.302.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sharkqwy/302ai-api-integration-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated API request snippets, selected documentation links, and security notes for API key handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users for a live 302.AI API key and its examples place keys directly in generated code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a local secret manager, avoid pasting live keys into chat, and remove hardcoded credentials from generated examples before running or sharing code.
+
+Risk: Broad activation rules can cause the skill to engage for unrelated API or AI requests.
+
+Mitigation: Install it only when a 302.AI-focused helper is desired and confirm that generated endpoints and documentation links stay on expected 302.AI domains.
+
+Risk: Generated integration code may be incomplete or unsuitable for a production service without review.
+
+Mitigation: Review generated code before execution, add project-specific error handling and rate-limit controls, and test with non-sensitive data first.
+
+## Reference(s):
+
+- [API Category Index](artifact/references/api_categories.md)
+- [Integration Code Templates](artifact/references/integration_examples.md)
+- [Parse Script Usage](artifact/references/parse_script_usage.md)
+- [302.AI API Documentation](https://doc.302.ai/)
+- [302.AI API List](https://doc.302.ai/llms.txt)
+- [ClawHub Skill Page](https://clawhub.ai/sharkqwy/skills/302ai-api-integration-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoint choices, generated request code, error-handling notes, and credential handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

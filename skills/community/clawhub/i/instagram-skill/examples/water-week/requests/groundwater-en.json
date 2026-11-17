@@ -1,0 +1,24 @@
+{
+ "content": [
+  {
+   "text": "Is the water under our feet fresh? More than half of Earth's groundwater, 55%, is salty.\n\nUSGS Water Science School: 12.87 of 23.4 million km³ of groundwater is saline. Send this to someone who drinks well water.\n\n#groundwater #aquifer #freshwater #earthscience",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-01.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "<id from social_accounts_list>",
+   "postType": "POST"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-17T17:30:00Z"
+ }
+}

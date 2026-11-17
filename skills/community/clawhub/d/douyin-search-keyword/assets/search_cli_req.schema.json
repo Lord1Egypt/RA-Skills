@@ -45,6 +45,16 @@
                 3
             ]
         },
+        "content": {
+            "type": "number",
+            "description": "内容类型, 0: 不限, 1: 视频, 2: 图文",
+            "default": 0,
+            "enum": [
+                0,
+                1,
+                2
+            ]
+        },
         "limit": {
             "type": "number",
             "description": "获取数量",

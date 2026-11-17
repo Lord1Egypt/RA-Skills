@@ -4,6 +4,12 @@
 Demucs is optional. When installed, this script writes normalized stem paths and
 a `stems.json` report that downstream helpers can consume. It does not install
 anything automatically.
+
+Model weights: on first use Demucs downloads the chosen model's weights from
+Meta's public Demucs release files (roughly 80 MB for `htdemucs`, about 4x that
+for `htdemucs_ft`) into the PyTorch hub cache (`torch.hub.get_dir()`, usually
+`~/.cache/torch/hub/checkpoints`). This script refuses to do that unless you
+pass `--allow-model-download`, so the user can agree to it first.
 """
 
 from __future__ import annotations
@@ -12,6 +18,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -33,6 +40,38 @@ def _cache_key(audio_path: Path, model: str, stems: list[str]) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16]
 
 
+def required_checkpoint_files(remote_root: Path, model_name: str) -> list[str]:
+    """Checkpoint filenames the chosen Demucs model needs, from Demucs' own remote lists.
+
+    `remote_root` is the `demucs/remote` folder shipped with Demucs: `<model>.yaml`
+    lists the model signatures and `files.txt` lists `<signature>-<hash>.th` names.
+    Raises ValueError when the lists cannot be read, so callers fail closed.
+    """
+    yaml_text = (remote_root / f"{model_name}.yaml").read_text(encoding="utf-8")
+    match = re.search(r"models:\s*\[([^\]]*)\]", yaml_text)
+    if not match:
+        raise ValueError(f"no model list in {model_name}.yaml")
+    signatures = re.findall(r"[0-9a-f]{8}", match.group(1))
+    names = [
+        line.strip()
+        for line in (remote_root / "files.txt").read_text(encoding="utf-8").splitlines()
+        if line.strip().endswith(".th")
+    ]
+    required = []
+    for signature in signatures:
+        found = [name for name in names if name.startswith(f"{signature}-")]
+        if not found:
+            raise ValueError(f"signature {signature} missing from files.txt")
+        required.append(found[0])
+    if not required:
+        raise ValueError(f"no checkpoints listed for {model_name}")
+    return required
+
+
+def missing_checkpoints(checkpoint_dir: Path, required: list[str]) -> list[str]:
+    return [name for name in required if not (checkpoint_dir / name).is_file()]
+
+
 def _load_optional_demucs():
     try:
         from demucs.apply import apply_model  # type: ignore
@@ -52,6 +91,7 @@ def separate_stems(
     stems: list[str] | None = None,
     device: str = "cpu",
     shifts: int = 0,
+    allow_model_download: bool = False,
 ) -> dict[str, object]:
     if stems is None:
         stems = list(DEFAULT_STEMS)
@@ -71,6 +111,24 @@ def separate_stems(
         }
 
     apply_model, AudioFile, get_model, torch, torchaudio = _load_optional_demucs()
+    if not allow_model_download:
+        import demucs.pretrained  # type: ignore
+
+        checkpoints = Path(torch.hub.get_dir()) / "checkpoints"
+        try:
+            required = required_checkpoint_files(Path(demucs.pretrained.REMOTE_ROOT), model_name)
+        except (OSError, ValueError) as exc:
+            raise RuntimeError(
+                f"Cannot confirm that Demucs model '{model_name}' is cached ({exc}). "
+                "Ask the user, then rerun with --allow-model-download."
+            ) from exc
+        missing = missing_checkpoints(checkpoints, required)
+        if missing:
+            raise RuntimeError(
+                f"Demucs model '{model_name}' needs {len(missing)} checkpoint file(s) not cached in {checkpoints}: "
+                f"{', '.join(missing)}. The first run downloads them from Meta's public Demucs files "
+                "(about 80 MB per checkpoint). Ask the user, then rerun with --allow-model-download."
+            )
     model = get_model(model_name)
     model.to(device)
     model.eval()
@@ -107,6 +165,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--stems", default="vocals,drums,bass,other")
     parser.add_argument("--device", default="cpu", choices=["cpu", "cuda"])
     parser.add_argument("--shifts", type=int, default=0)
+    parser.add_argument(
+        "--allow-model-download",
+        action="store_true",
+        help="allow Demucs to download model weights into the PyTorch hub cache on first use (ask the user first)",
+    )
     args = parser.parse_args(argv)
 
     stems = [stem.strip() for stem in args.stems.split(",") if stem.strip()]
@@ -118,6 +181,7 @@ def main(argv: list[str] | None = None) -> int:
             stems=stems,
             device=args.device,
             shifts=args.shifts,
+            allow_model_download=args.allow_model_download,
         )
     except Exception as exc:  # noqa: BLE001 - CLI emits JSON errors
         print(json.dumps({"status": "error", "error": str(exc)}, indent=2), file=sys.stderr)

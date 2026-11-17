@@ -1,0 +1,339 @@
+version: mock-diag-reform-1.0
+domain: 高等职业教育·内部质量保证体系诊改
+datasets:
+- name: diag_tasks
+  source: diag_tasks
+  cn: 诊改任务明细表
+  grain: 一行一条诊改指标任务
+  primary_key: task_id
+  ai:
+    instructions: 能答指标达标率/任务完成率/逾期占比及分层面、分执行体系统计；必带时间围栏（end_date）；目标值与实际值仅供明细展示，是否达标以 status 为准，不自行用数值比对判定
+  fields:
+  - name: task_id
+    role: pk
+    cn: 任务编号
+  - name: level
+    role: dim
+    cn: 诊改层面
+    enum: &diag_level
+    - 学校
+    - 专业
+    - 课程
+    - 教师
+    - 学生
+  - name: plan_group
+    role: dim
+    cn: 规划分组
+    enum: &diag_plan
+    - 学校发展规划
+    - 专业建设规划
+    - 课程建设规划
+    - 教师队伍建设规划
+    - 学生综合素质发展规划
+  - name: source
+    role: dim
+    cn: 指标来源
+    enum: &diag_source
+    - 双高任务
+    - 职教本科
+    - ISO质量管理
+    - 校内自定义
+  - name: indicator_name
+    role: dim
+    cn: 指标名称
+  - name: unit
+    role: dim
+    cn: 数据单位
+    enum: &diag_unit
+    - 个
+    - 人
+    - '%'
+    - 万元
+    - 门
+    - 天
+  - name: strategy
+    role: dim
+    cn: 达标策略
+    enum: &diag_strategy
+    - ≥
+    - ≤
+  - name: target_value
+    role: measure
+    cn: 目标值
+  - name: actual_value
+    role: measure
+    cn: 实际值
+  - name: status
+    role: dim
+    cn: 任务状态
+    enum: &diag_status
+    - 未提交
+    - 已达标
+    - 未达标
+    - 已逾期
+  - name: dept
+    role: dim
+    cn: 责任部门
+    enum: &diag_dept
+    - 教务处
+    - 人事处
+    - 学工部
+    - 质管办
+    - 信息中心
+  - name: system_name
+    role: dim
+    cn: 执行体系
+    enum: &diag_system
+    - 2025年度诊改
+    - 2026年度诊改
+  - name: end_date
+    role: time
+    cn: 执行截止日
+  - name: weight
+    role: measure
+    cn: 指标权重
+  ontology_ref: 指标任务
+- name: diag_warnings
+  source: diag_warnings
+  cn: 预警记录表
+  grain: 一行一条任务预警
+  primary_key: warn_id
+  ai:
+    instructions: 能答预警数量与处理状态统计；通过 task_id 关联诊改任务明细可查预警对应的指标任务；必带时间围栏（warn_date）
+  fields:
+  - name: warn_id
+    role: pk
+    cn: 预警编号
+  - name: task_id
+    role: dim
+    cn: 关联任务编号
+  - name: warn_type
+    role: dim
+    cn: 预警类型
+    enum: &diag_warn_type
+    - 倒计时预警
+    - 逾期预警
+  - name: warn_status
+    role: dim
+    cn: 处理状态
+    enum: &diag_warn_status
+    - 未处理
+    - 已处理
+  - name: warn_date
+    role: time
+    cn: 预警日期
+  ontology_ref: 预警记录
+relationships:
+- from: diag_warnings
+  to: diag_tasks
+  join_key: task_id
+  cardinality: N:1
+  traversable: true
+  ontology_ref: 指标任务->预警记录:触发
+concepts:
+- term: 已办结任务
+  synonyms:
+  - 办结任务
+  - 已处理完成的任务
+  expand:
+    dataset: diag_tasks
+    field: status
+    values:
+    - 已达标
+    - 未达标
+    - 已逾期
+metrics:
+- id: pass_rate
+  name: 诊改指标达标率
+  synonyms:
+  - 达标率
+  - 指标达标率
+  - 诊改达标率
+  type: ratio
+  dataset: diag_tasks
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN status = '已达标' THEN 1 ELSE 0 END)
+  denominator:
+    expr: SUM(CASE WHEN status IN ('已达标','未达标','已逾期') THEN 1 ELSE 0 END)
+  time_field: end_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 已达标任务数 ÷ 已办结任务数（已办结=已达标+未达标+已逾期，不含未提交；SUM/COUNT 加权，禁行级平均）
+    basis: 《高等职业院校内部质量保证体系诊断与改进指导方案（试行）》（教职成司函〔2015〕168号）诊断口径；目标管理与诊改平台需求说明书V3.0 任务状态流转
+  on_zero_denominator: 'null'
+- id: completion_rate
+  name: 诊改任务完成率
+  synonyms:
+  - 任务完成率
+  - 完成率
+  - 诊改任务完成比例
+  type: ratio
+  dataset: diag_tasks
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN status IN ('已达标','未达标') THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: end_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 已提交且出结论的任务数（已达标+未达标）÷ 任务总数；逾期与未提交计入分母，体现执行鞭策导向
+    basis: 目标管理与诊改平台需求说明书V3.0 任务状态流转口径；《高等职业院校内部质量保证体系诊断与改进指导方案（试行）》（教职成司函〔2015〕168号）
+  on_zero_denominator: 'null'
+- id: overdue_ratio
+  name: 逾期任务占比
+  synonyms:
+  - 逾期率
+  - 任务逾期占比
+  - 逾期任务比例
+  type: ratio
+  dataset: diag_tasks
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN status = '已逾期' THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: end_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 已逾期任务数 ÷ 任务总数；逾期判定以执行体系结束时间为准，mock 用状态列直接承载
+    basis: 目标管理与诊改平台需求说明书V3.0 预警信息配置（倒计时/逾期）
+  on_zero_denominator: 'null'
+- id: unhandled_warning_count
+  name: 未处理预警数
+  synonyms:
+  - 待处理预警数量
+  - 预警未处理条数
+  - 还没处理的预警有多少
+  type: count
+  dataset: diag_warnings
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: warn_status
+    values:
+    - 未处理
+  time_field: warn_date
+  unit: 条
+  caliber:
+    note: 处理状态为「未处理」的预警记录计数
+    basis: 目标管理与诊改平台需求说明书V3.0 预警管理口径
+constraints:
+- {id: tasks_pk, kind: unique, dataset: diag_tasks, columns: [task_id], null_policy: forbid}
+- {id: tasks_level_values, kind: allowed_values, dataset: diag_tasks, field: level, values: [学校, 专业, 课程, 教师, 学生], null_policy: forbid}
+- {id: tasks_plan_values, kind: allowed_values, dataset: diag_tasks, field: plan_group, values: [学校发展规划, 专业建设规划, 课程建设规划, 教师队伍建设规划, 学生综合素质发展规划], null_policy: forbid}
+- {id: tasks_source_values, kind: allowed_values, dataset: diag_tasks, field: source, values: [双高任务, 职教本科, ISO质量管理, 校内自定义], null_policy: forbid}
+- {id: tasks_status_values, kind: allowed_values, dataset: diag_tasks, field: status, values: [未提交, 已达标, 未达标, 已逾期], null_policy: forbid}
+- {id: tasks_strategy_values, kind: allowed_values, dataset: diag_tasks, field: strategy, values: [≥, ≤], null_policy: forbid}
+- {id: tasks_unit_values, kind: allowed_values, dataset: diag_tasks, field: unit, values: [个, 人, '%', 万元, 门, 天], null_policy: forbid}
+- {id: tasks_system_values, kind: allowed_values, dataset: diag_tasks, field: system_name, values: [2025年度诊改, 2026年度诊改], null_policy: forbid}
+- {id: tasks_weight_range, kind: range, dataset: diag_tasks, field: weight, min: 0, max: 1, null_policy: forbid}
+- {id: tasks_target_nonnegative, kind: range, dataset: diag_tasks, field: target_value, min: 0, null_policy: forbid}
+- {id: tasks_actual_nonnegative, kind: range, dataset: diag_tasks, field: actual_value, min: 0, null_policy: ignore}
+- {id: tasks_enddate_notnull, kind: not_null, dataset: diag_tasks, field: end_date, null_policy: forbid}
+- {id: warn_pk, kind: unique, dataset: diag_warnings, columns: [warn_id], null_policy: forbid}
+- {id: warn_type_values, kind: allowed_values, dataset: diag_warnings, field: warn_type, values: [倒计时预警, 逾期预警], null_policy: forbid}
+- {id: warn_status_values, kind: allowed_values, dataset: diag_warnings, field: warn_status, values: [未处理, 已处理], null_policy: forbid}
+- {id: warn_task_ref, kind: referential, dataset: diag_warnings, columns: [task_id], references: {dataset: diag_tasks, columns: [task_id]}, null_policy: forbid}
+- {id: warn_date_notnull, kind: not_null, dataset: diag_warnings, field: warn_date, null_policy: forbid}
+ontology:
+  entities:
+  - name: 指标任务
+    attributes:
+    - name: 诊改层面
+      value_type: enum
+      values: *diag_level
+    - name: 任务状态
+      value_type: enum
+      values: *diag_status
+    - name: 指标来源
+      value_type: enum
+      values: *diag_source
+    note: 一行一条诊改指标任务（诊改任务明细表投影；指标由规划层层分解形成目标链）
+    uid: ent_diag_task
+    evidence:
+      source: user_provided
+  - name: 预警记录
+    attributes:
+    - name: 预警类型
+      value_type: enum
+      values: *diag_warn_type
+    - name: 处理状态
+      value_type: enum
+      values: *diag_warn_status
+    note: 一行一条任务预警（预警记录表投影）
+    uid: ent_diag_warning
+    evidence:
+      source: user_provided
+  - name: 专业
+    note: 五横层面之一；本体需要专业实体承载任务挂载语义，但本场景任务只到层面粒度
+    uid: ent_major
+    unprojected_reason: 专业个体明细未接入本场景物理库，任务以 level='专业' 汇总挂载
+    evidence:
+      source: model_inferred
+  - name: 课程
+    note: 五横层面之一；本体需要课程实体承载任务挂载语义，但本场景任务只到层面粒度
+    uid: ent_course
+    unprojected_reason: 课程个体明细未接入本场景物理库，任务以 level='课程' 汇总挂载
+    evidence:
+      source: model_inferred
+  - name: 教师
+    note: 五横层面之一；本体需要教师实体承载师资诊改语义，但本场景无教师个体表
+    uid: ent_teacher
+    unprojected_reason: 教师人事明细未接入本场景物理库，任务以 level='教师' 汇总挂载
+    evidence:
+      source: model_inferred
+  - name: 学生
+    note: 五横层面之一；本体需要学生实体承载学生发展诊改语义，但本场景无学生个体表
+    uid: ent_student
+    unprojected_reason: 学生个体明细未接入本场景物理库，任务以 level='学生' 汇总挂载
+    evidence:
+      source: model_inferred
+  relations:
+  - from: 指标任务
+    to: 预警记录
+    predicate: 触发
+    mapping: equi_key
+  - from: 专业
+    to: 课程
+    predicate: 开设
+    mapping: semantic_only
+    note: 专业/课程个体表均未接入，五横层级关系仅作语义声明不投影合同（无键关系不假装外键）
+  - from: 教师
+    to: 课程
+    predicate: 讲授
+    mapping: semantic_only
+    note: 教师/课程个体表均未接入，讲授关系仅作语义声明不投影合同
+  - from: 学生
+    to: 专业
+    predicate: 修读
+    mapping: semantic_only
+    note: 学生/专业个体表均未接入，修读关系仅作语义声明不投影合同
+templates:
+- id: unpassed_tasks
+  name: 未达标诊改任务名单
+  dataset: diag_tasks
+  columns:
+  - task_id
+  - level
+  - indicator_name
+  - dept
+  - target_value
+  - actual_value
+  - end_date
+  extra_where: status = '未达标'
+  time_field: end_date
+  synonyms:
+  - 未达标任务清单
+  - 没达标的诊改任务
+  - 诊改未达标列表
+  note: 按 end_date 倒序，默认最多 100 行
+  status: 已发布

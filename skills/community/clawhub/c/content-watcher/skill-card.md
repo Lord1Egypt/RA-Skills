@@ -1,45 +1,58 @@
-## Description: <br>
-AI-powered content monitoring and summarization tool that monitors RSS feeds, blogs, and news sources with automatic summarization and daily digest generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor RSS feeds, blogs, and news sources with AI-powered summarization and generate daily digests in Markdown or console output.
 
-## Publisher: <br>
-[su707181393-del](https://clawhub.ai/user/su707181393-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[su707181393-del](https://clawhub.ai/user/su707181393-del)
 
-## Use Case: <br>
-External users and developers use this skill to monitor selected RSS feeds, blogs, and news sources, summarize newly fetched articles, and generate a digest for review or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The npm package source and installed dependencies must be trusted before installation. <br>
-Mitigation: Install only from a trusted package source and review package provenance before use. <br>
-Risk: Configured feeds can cause the tool to fetch linked article URLs. <br>
-Mitigation: Add only feeds and sources that the user intends to monitor. <br>
-Risk: The --output option writes the digest to the exact path provided by the user. <br>
-Mitigation: Choose output paths deliberately and avoid overwriting important files. <br>
-Risk: Source history and seen URLs persist in local configuration storage. <br>
-Mitigation: Review or remove ~/.config/content-watcher/ when source history should not persist. <br>
+## Use Case:
 
+External users and developers use this skill to monitor trusted RSS feeds, blogs, and news sources, summarize newly discovered articles, and produce recurring digests for research, competitive intelligence, trend tracking, or content curation.
 
-## Reference(s): <br>
-- [Content Watcher ClawHub release page](https://clawhub.ai/su707181393-del/content-watcher) <br>
-- [Publisher profile](https://clawhub.ai/user/su707181393-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown digest or console text, with CLI commands and JSON configuration snippets in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a digest to a user-specified output path and persists source configuration and seen URLs under ~/.config/content-watcher/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The tool fetches configured feed and article URLs without clear network safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public feed URLs, avoid internal or private-network sources, and run it in a network-restricted environment until URL allowlisting and private-network blocking are added.
+
+Risk: Generated Markdown may contain untrusted article titles, links, authors, or summaries.
+
+Mitigation: Review generated digests before sharing and avoid rendering them in permissive Markdown viewers unless output escaping or sanitization is added.
+
+Risk: Documentation mentions Feishu, email, and cron delivery behavior that is not fully implemented in the CLI artifact.
+
+Mitigation: Confirm delivery features in the installed package before relying on them, or limit use to the implemented add, remove, list, run, and config commands.
+
+## Reference(s):
+
+- [Content Watcher ClawHub skill page](https://clawhub.ai/su707181393-del/skills/content-watcher)
+- [Publisher profile](https://clawhub.ai/user/su707181393-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest, console text, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write digest Markdown to a user-specified output file and stores local configuration under ~/.config/content-watcher/config.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

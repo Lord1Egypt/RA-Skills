@@ -1,41 +1,49 @@
-## Description: <br>
-Format and validate JSON files with pretty-printing, indentation control, key sorting, and validation modes supporting stdin, stdout, and file I/O. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format and validate JSON files with pretty-printing, indentation control, key sorting, and validation modes supporting stdin, stdout, and file I/O.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and engineers use this skill to format, validate, and normalize JSON from files or stdin before using it in configuration, API debugging, or data review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads JSON files or stdin supplied by the user, which may expose sensitive data to a local third-party skill. <br>
-Mitigation: Run it only on JSON content you are comfortable processing with this publisher's local tool, and avoid sensitive files unless the publisher is trusted. <br>
-Risk: The output option writes to a user-selected path and could overwrite an important file. <br>
-Mitigation: Review the destination path before execution and write to a new or temporary file when preserving the original matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to format, validate, and normalize JSON from files or stdin while controlling indentation, key ordering, and output destination.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/json-formatter-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands] <br>
-**Output Format:** [Markdown guidance with shell command examples and formatted JSON or validation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads JSON from stdin or selected files and can write formatted output to stdout or a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Using --output can overwrite the chosen destination file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer stdout or a new output filename when formatting important JSON files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/json-formatter-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text, formatted JSON, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read from stdin or files and can write formatted JSON to stdout or a selected output file.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

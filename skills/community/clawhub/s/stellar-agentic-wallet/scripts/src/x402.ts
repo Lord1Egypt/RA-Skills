@@ -15,19 +15,54 @@ export interface X402PaymentRequirements {
   extra?: { areFeesSponsored?: boolean };
 }
 
-export interface X402PaymentPayload {
-  x402Version: number;
-  scheme: "exact";
-  network: string;
-  payload: { transaction: string };
-}
+/**
+ * The wire payload sent back after signing. Two shapes, by version:
+ *   v1: scheme + network at the top level
+ *   v2: the accepted PaymentRequirements echoed in `accepted`
+ */
+export type X402PaymentPayload =
+  | {
+      x402Version: number;
+      scheme: "exact";
+      network: string;
+      payload: { transaction: string };
+    }
+  | {
+      x402Version: number;
+      accepted: X402PaymentRequirements;
+      payload: { transaction: string };
+    };
 
 /** Wrap a signed XDR as an x402 PaymentPayload. */
 export function wrapX402(
   transactionXdr: string,
   network: string,
   x402Version = 1,
+  accepted?: X402PaymentRequirements,
 ): X402PaymentPayload {
+  // The envelope shape changed between versions, and getting it wrong
+  // fails silently: the server cannot parse the credential, so it
+  // answers 402 again — indistinguishable from a rejected payment.
+  //
+  //   v1: { x402Version, scheme, network, payload }
+  //   v2: { x402Version, accepted: PaymentRequirements, payload }
+  //
+  // v2 requires echoing back the exact requirement the client accepted.
+  // Servers verify by strict equality against it (scheme, network,
+  // asset, payTo, amount), so it must be the requirement object from
+  // the challenge, not a reconstruction.
+  if (x402Version >= 2) {
+    if (!accepted) {
+      throw new Error(
+        "x402 v2 payload requires the accepted PaymentRequirements from the challenge.",
+      );
+    }
+    return {
+      x402Version,
+      accepted,
+      payload: { transaction: transactionXdr },
+    };
+  }
   return {
     x402Version,
     scheme: "exact",

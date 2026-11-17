@@ -1,43 +1,62 @@
-## Description: <br>
-Complete Salesforce REST API for SOQL queries, CRUD operations, Bulk API, Composite API, authentication, and standard objects with error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the Salesforce REST, Bulk, Composite, and Metadata APIs for SOQL and SOSL queries, record CRUD and upserts, OAuth setup, bulk loads, sync design, metadata work, Apex REST calls, report access, and Salesforce error handling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and operators use this skill to work with Salesforce REST APIs, including SOQL queries, record create/read/update/delete operations, bulk imports and exports, composite requests, metadata lookup, authentication setup, and error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, export, create, update, or delete Salesforce data using credentials supplied by the user. <br>
-Mitigation: Use a sandbox or least-privilege Salesforce integration user when possible, and review write, delete, and bulk commands before execution. <br>
-Risk: Salesforce access tokens and instance URLs are required for API calls. <br>
-Mitigation: Keep secrets in environment variables, avoid pasting them into shared shells or logs, and rotate or revoke credentials according to Salesforce policy. <br>
-Risk: Salesforce context and preferences may be retained locally under ~/salesforce-api-integration/. <br>
-Mitigation: Inspect or remove the local directory when retained org context is no longer desired. <br>
+## Use Case:
 
+Developers and operators use this skill to query, load, update, export, and synchronize Salesforce data while selecting the appropriate Salesforce API and accounting for limits, permissions, authentication, and destructive-operation safeguards.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/salesforce-api-integration) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill Homepage](https://clawic.com/skills/salesforce-api-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, CSV, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Salesforce environment variables and may maintain local Salesforce preferences under ~/salesforce-api-integration/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can act with the Salesforce authority available to its configured access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged integration user and verify that SF_INSTANCE_URL and SF_LOGIN_HOST point to trusted Salesforce hosts before use.
+
+Risk: Local memory writes can persist business context such as contacts, project notes, subscriptions, org context, schema notes, saved queries, and load history.
+
+Mitigation: Review or disable automatic local memory writes when those details should not persist across sessions, and keep tokens, private keys, and secrets out of Clawic data files.
+
+Risk: Salesforce writes, deletes, bulk loads, and metadata changes can affect production data at scale.
+
+Mitigation: Require explicit confirmation for destructive or broad changes, rehearse large writes in a sandbox, and state record counts and API-limit impact before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/salesforce-api-integration)
+- [Clawic skill homepage](https://clawic.com/skills/salesforce-api-integration)
+- [Skill source overview](artifact/SKILL.md)
+- [Authentication guidance](artifact/auth.md)
+- [Bulk API guidance](artifact/bulk.md)
+- [Salesforce limits guidance](artifact/limits.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, API examples, configuration notes, and local file update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Salesforce REST, Bulk, Composite, Metadata, and OAuth request examples; may also update declared local Clawic note files when durable context should persist.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

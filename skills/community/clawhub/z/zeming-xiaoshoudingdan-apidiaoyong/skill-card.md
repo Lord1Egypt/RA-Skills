@@ -1,41 +1,54 @@
-## Description: <br>
-Presents DingTalk-style order data for review, showing 20 order fields and offering confirm, retry, or exit choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过钉钉API导入订单数据，展示20项详细信息供核对，支持确认、重新查询或退出操作。
 
-## Publisher: <br>
-[duanzhen001](https://clawhub.ai/user/duanzhen001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanzhen001](https://clawhub.ai/user/duanzhen001)
 
-## Use Case: <br>
-Sales or operations staff can use this skill to review customer order details before continuing an order workflow. Evidence flags embedded customer and contact details and unclear chained behavior, so it should be reviewed and sanitized before real order processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds real-looking customer order and contact details. <br>
-Mitigation: Remove embedded customer data, replace it with placeholders or an authorized DingTalk lookup, and mask sensitive fields by default before use. <br>
-Risk: The workflow claims DingTalk import behavior and includes automatic chaining to a second skill without clearly identifying that second skill. <br>
-Mitigation: Clearly document and review the chained skill behavior before enabling workflow chaining for real order processing. <br>
+## Use Case:
 
+Sales or operations users can use this skill to display imported DingTalk order records for manual review and choose whether to continue, re-query, or exit the workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duanzhen001/zeming-xiaoshoudingdan-apidiaoyong) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/duanzhen001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text console output with A/B/C workflow choices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Displays 20 order fields and branches based on confirm, retry, or exit selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact embeds and displays real-looking customer identity, phone, address, and financial order details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded record, use synthetic examples or authorized runtime retrieval, and mask sensitive fields by default.
+
+Risk: The workflow can show full order data without an explicit access-control step.
+
+Mitigation: Require an authorized user action before revealing full order details and log or constrain access according to the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanzhen001/skills/zeming-xiaoshoudingdan-apidiaoyong)
+- [Publisher profile](https://clawhub.ai/user/duanzhen001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text order checklist with A/B/C action options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May display personal, contact, address, and financial order details unless the implementation masks or removes them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

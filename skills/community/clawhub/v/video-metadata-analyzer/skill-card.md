@@ -1,43 +1,60 @@
-## Description: <br>
-Analyzes video files by extracting frames and audio, using visual and transcription analysis, and generating structured Bilibili publishing metadata such as title, intro, tags, category, and cover suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Metadata Intelligence System extracts video frames and audio, analyzes visual and transcript signals, and synthesizes structured Bilibili publishing metadata including title, intro, tags, category, cover suggestions, and content declarations.
 
-## Publisher: <br>
-[cyberkurry](https://clawhub.ai/user/cyberkurry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberkurry](https://clawhub.ai/user/cyberkurry)
 
-## Use Case: <br>
-External creators, developers, and publishing workflow operators use this skill to turn a source video into structured Bilibili publishing metadata. It is suited for video metadata analysis, publish preparation, and upstream handoff to a Bilibili publishing automation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video frames, audio, transcripts, and derived metadata can be sent to configured external LLM endpoints in API modes. <br>
-Mitigation: Use local or agent-direct modes for confidential, regulated, or sensitive media; verify endpoint trust and retention policy before using API modes. <br>
-Risk: The skill requires sensitive credentials for full API-based analysis. <br>
-Mitigation: Provide credentials only through approved runtime configuration and avoid exposing keys in chat or published artifacts. <br>
-Risk: Generated observations or publishing metadata may be inaccurate or unsuitable for direct publication. <br>
-Mitigation: Review agent-mode prompt output and generated metadata before passing it to another agent or publishing pipeline. <br>
+## Use Case:
 
+Developers, creators, and publishing workflow agents use this skill to convert a local video into Bilibili-ready publishing metadata. It is useful when an agent needs frame observations, audio transcription, and a structured metadata package for downstream publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyberkurry/video-metadata-analyzer) <br>
-- [Video Metadata Analyzer Technical Reference](references/REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Files, Guidance] <br>
-**Output Format:** [JSON files for visual observations, audio observations, and synthesized metadata, with optional Markdown for manual review.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include extracted frame and audio files when agent-direct or keep-frame modes are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: API modes can send video frames, audio, transcripts, and generated metadata to external endpoints, which may expose sensitive media content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local or agent-direct modes for private videos; when API modes are required, use only trusted HTTPS endpoints and review provider retention policies.
+
+Risk: API keys can be exposed through command history, logs, or copied chat content.
+
+Mitigation: Prefer environment variables or a secret manager over command-line keys, and rotate any key that may have been exposed.
+
+Risk: The server security verdict is suspicious because sensitive media and credentials require careful handling.
+
+Mitigation: Review the skill and its configured endpoints before deployment, and restrict use to approved media and approved providers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberkurry/skills/video-metadata-analyzer)
+- [Full Technical Reference](artifact/references/REFERENCE.md)
+- [Project homepage declared by artifact](https://github.com/CyberKurry/video-metadata-analyzer)
+- [SkillHub listing declared by artifact](https://skillhub.cn/skills/video-metadata-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON files and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces observations_visual.json, observations_audio.json, optional metadata.json, and optional extracted frames/audio in agent-direct mode.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Send push notifications via Gotify when long-running tasks complete or important events occur. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send push notifications via Gotify when long-running tasks complete or important events occur.
 
-## Publisher: <br>
-[jmagar](https://clawhub.ai/user/jmagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jmagar](https://clawhub.ai/user/jmagar)
 
-## Use Case: <br>
-Developers and operators use this skill to send Gotify notifications for long-running task completion, status updates, important events, or errors. It can produce shell commands and notification payloads with optional title, priority, and Markdown formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends notification content and an app token to the configured Gotify server. <br>
-Mitigation: Use HTTPS, configure a trusted Gotify server, create an app token limited to message creation, and avoid putting secrets or highly sensitive details in notification text. <br>
-Risk: A local credentials file stores the Gotify server URL and token. <br>
-Mitigation: Restrict credential file permissions and keep the token scoped to the minimum Gotify permissions needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to send Gotify push notifications for task completion, status updates, important events, and errors.
 
-## Reference(s): <br>
-- [Gotify API docs](https://gotify.net/docs/) <br>
-- [ClawHub Gotify release page](https://clawhub.ai/jmagar/gotify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a Gotify server over HTTPS and return the Gotify message API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Gotify server URLs and application tokens are read from local configuration or environment variables and could be exposed through weak file permissions, logs, process inspection, or plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted HTTPS Gotify servers, store the configuration file with owner-only permissions, avoid sending secrets in notification messages, and rotate application tokens if exposure is suspected.
+
+## Reference(s):
+
+- [Gotify API docs](https://gotify.net/docs/)
+- [Gotify skill page](https://clawhub.ai/jmagar/skills/gotify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute a shell script that sends a Gotify API request when configured by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

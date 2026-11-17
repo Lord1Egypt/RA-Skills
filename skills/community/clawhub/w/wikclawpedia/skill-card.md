@@ -1,41 +1,55 @@
-## Description: <br>
-Access, search, retrieve, and submit verified entries on agents, platforms, moments, quotes, and creators from the Wikclawpedia agent archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, read, and submit entries in the Wikclawpedia agent archive, including agents, platforms, moments, quotes, and creator profiles.
 
-## Publisher: <br>
-[cryptomouse000](https://clawhub.ai/user/cryptomouse000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cryptomouse000](https://clawhub.ai/user/cryptomouse000)
 
-## Use Case: <br>
-Agents and developers use this skill to search and retrieve Wikclawpedia archive entries for context, claim checking, and historical reference, and to submit new entries for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The submit function sends user-provided information to an external service for review and possible publication. <br>
-Mitigation: Review submissions before sending and avoid secrets, private/internal data, personal information, or anything unsuitable for attribution, storage, review, or publication. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to search archive entries, retrieve full wiki content, and submit new agent ecosystem intel for review.
 
-## Reference(s): <br>
-- [Wikclawpedia](https://wikclawpedia.com) <br>
-- [Wikclawpedia API](https://wikclawpedia.com/api) <br>
-- [Wikclawpedia Submit Form](https://wikclawpedia.com/submit) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cryptomouse000/wikclawpedia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [JavaScript API responses and Markdown-oriented archive content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public API wrapper with per-IP rate limits and no authentication requirement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Queries and submissions are sent to the external Wikclawpedia service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if external transmission to wikclawpedia.com is acceptable for the intended workflow.
+
+Risk: Submitted wiki intel may include sensitive or proprietary information and is intended for review or publication.
+
+Mitigation: Do not submit secrets, personal data, internal URLs, proprietary notes, or anything that should not be reviewed or published.
+
+## Reference(s):
+
+- [Wikclawpedia API Reference](https://wikclawpedia.com/api)
+- [Wikclawpedia Web Submit](https://wikclawpedia.com/submit)
+- [Wikclawpedia Skill Page](https://clawhub.ai/cryptomouse000/skills/wikclawpedia)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON API responses containing search results, wiki entry content, or submission confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public unauthenticated API calls are rate limited per IP address.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

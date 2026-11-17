@@ -1,0 +1,24 @@
+[
+  {
+    "full_name": "example/alpha",
+    "name": "alpha",
+    "owner": {"login": "example"},
+    "stargazers_count": 12000,
+    "forks_count": 800,
+    "language": "Python",
+    "created_at": "2026-10-10T08:00:00Z",
+    "html_url": "https://github.com/example/alpha",
+    "description": "样例仓库 alpha，仅用于 --dry-run 预览"
+  },
+  {
+    "full_name": "example/beta",
+    "name": "beta",
+    "owner": {"login": "example"},
+    "stargazers_count": 6500,
+    "forks_count": 300,
+    "language": "TypeScript",
+    "created_at": "2026-10-20T08:00:00Z",
+    "html_url": "https://github.com/example/beta",
+    "description": "样例仓库 beta，仅用于 --dry-run 预览"
+  }
+]

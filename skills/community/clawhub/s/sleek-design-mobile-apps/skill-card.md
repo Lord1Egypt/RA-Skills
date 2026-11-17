@@ -1,43 +1,58 @@
-## Description: <br>
-Helps agents design mobile apps, create and edit screens, manage Sleek projects, and return rendered screenshots through the Sleek API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to design a mobile app, create screens, build UI, or interact with their Sleek projects.
 
-## Publisher: <br>
-[stefanofa](https://clawhub.ai/user/stefanofa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stefanofa](https://clawhub.ai/user/stefanofa)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to create or modify mobile app screens in Sleek, manage Sleek projects, and retrieve rendered screenshots for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Sleek API key to access and manage projects. <br>
-Mitigation: Use a revocable SLEEK_API_KEY with only the scopes required for the requested task. <br>
-Risk: Prompts or image URLs sent to Sleek may contain sensitive content. <br>
-Mitigation: Avoid sending sensitive prompts or private image URLs unless the user explicitly approves sharing them with Sleek. <br>
-Risk: The skill can delete Sleek projects when the API key has project write access. <br>
-Mitigation: Require explicit user confirmation before deleting any Sleek project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stefanofa/sleek-design-mobile-apps) <br>
-- [Sleek](https://sleek.design) <br>
-- [Sleek API keys](https://sleek.design/dashboard/api-keys) <br>
+## Use Case:
 
+Developers and designers use this skill to create, inspect, update, and screenshot mobile app UI projects through Sleek.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SLEEK_API_KEY; may return PNG or WebP screenshots through Sleek.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad design prompts and image URLs can be sent to Sleek.
+
+Mitigation: Avoid sensitive prompts and private image URLs, and use this skill only for mobile app design work intended for Sleek.
+
+Risk: Project deletion is available through the Sleek API.
+
+Mitigation: Require explicit user confirmation before deleting any Sleek project.
+
+Risk: A broad Sleek API key can expose more project access than a task needs.
+
+Mitigation: Use the narrowest possible Sleek API key scopes and prefer short-lived or revocable keys.
+
+## Reference(s):
+
+- [Sleek](https://sleek.design)
+- [Sleek API keys](https://sleek.design/dashboard/api-keys)
+- [ClawHub skill page](https://clawhub.ai/stefanofa/skills/sleek-design-mobile-apps)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown with HTTP request examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated mobile screen screenshots returned from Sleek.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

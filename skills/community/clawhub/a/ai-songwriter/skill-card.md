@@ -1,41 +1,57 @@
-## Description: <br>
-AI Songwriter turns a user-provided theme into Chinese pop lyrics, formats them for Suno, and automatically calls KIE/Suno to return generated song links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Songwriter turns a user-provided theme into Chinese pop lyrics, Suno style tags, and generated Suno audio links through an automated multi-step workflow.
 
-## Publisher: <br>
-[jason-hou-pe](https://clawhub.ai/user/jason-hou-pe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-hou-pe](https://clawhub.ai/user/jason-hou-pe)
 
-## Use Case: <br>
-External users and creators use this skill to turn a song theme into polished Chinese lyrics, Suno style tags, and generated song preview links without intermediate review prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends generated song content to KIE/Suno using a local API key and may consume provider credits without a review step. <br>
-Mitigation: Use a scoped or low-risk API key where supported, review expected cost before execution, and run only when automatic external generation is acceptable. <br>
-Risk: The helper script includes a hard-coded callback URL and additional cover or extend modes that are not fully described in the user-facing skill workflow. <br>
-Mitigation: Review the helper script before deployment and restrict use to the documented generate path unless the extra modes and callback behavior have been approved. <br>
+## Use Case:
 
+External users and creators use this skill to turn a song theme into polished Chinese pop lyrics, Suno-ready style tags, and generated audio links. Agents running the workflow need a KIE_API_KEY or SUNO_API_KEY for the external kie.ai music generation step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-hou-pe/ai-songwriter) <br>
-- [Publisher profile](https://clawhub.ai/user/jason-hou-pe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with generated lyrics, extracted hook text, and audio preview URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses KIE_API_KEY or SUNO_API_KEY and may execute a Node.js helper that polls KIE/Suno until generation completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The workflow automatically runs local Node.js code and submits generated lyrics to the external kie.ai API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only where automatic local execution and external content submission are acceptable; add a confirmation step before network submission for stricter deployments.
+
+Risk: The workflow uses unsafe command and temporary-file handling for generated lyrics.
+
+Mitigation: Avoid shell interpolation and pass generated content through stdin or a private temporary file with restricted permissions.
+
+Risk: The bundled script includes extra audio URL modes beyond the normal generation workflow.
+
+Mitigation: Document or remove the extra audio URL modes before deployment if they are not required.
+
+## Reference(s):
+
+- [ClawHub AI Songwriter release](https://clawhub.ai/jason-hou-pe/skills/ai-songwriter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown containing lyrics, Suno style tags, generated audio URLs, and command execution details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KIE_API_KEY or SUNO_API_KEY; generated lyrics are submitted to kie.ai for music generation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

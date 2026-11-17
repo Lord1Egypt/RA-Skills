@@ -1,51 +1,68 @@
-## Description: <br>
-Helps agents design and verify high-fidelity web, mobile, mini-program, and component UI prototypes using aesthetic genres, design tokens, accessibility checks, and platform-specific starter examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates high-fidelity frontend design guidance and prototype assets for web pages, mobile H5 or app interfaces, mini-programs, design systems, accessibility checks, motion tokens, and multi-style visual comparisons.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to generate polished frontend prototypes, design-system tokens, mobile-native layouts, mini-program starters, and accessibility verification guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation on frontend and design requests may affect sensitive projects. <br>
-Mitigation: Review the skill before use in sensitive workspaces and confirm the requested UI generation or verification scope. <br>
-Risk: Optional browser and accessibility audits may load external audit tooling such as axe-core from a CDN. <br>
-Mitigation: Use the audit route only when CDN loading is acceptable, or run an approved local accessibility scanner instead. <br>
-Risk: Multi-genre comparison workflows may produce temporary design drafts that are later deleted. <br>
-Mitigation: Confirm which draft should be retained before removing generated comparison files. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to turn frontend UI requests into visually opinionated prototypes, platform-specific mobile or mini-program starters, design-token guidance, and accessibility verification steps.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/zhaobod1/huo15-openclaw-frontend-design) <br>
-- [Self-verification workflow](references/self-verify.md) <br>
-- [Accessibility checklist](references/a11y-checklist.md) <br>
-- [Design token schema](tokens/_schema.md) <br>
-- [Multi-genre comparison guide](references/multi-genre-compare.md) <br>
-- [Mini-program starter guide](examples/mini-program/README.md) <br>
-- [WeChat developer tools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html) <br>
-- [Alipay mini program IDE](https://opendocs.alipay.com/mini/ide/download) <br>
-- [Douyin mini app developer tools](https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/develop/developer-instrument/installation/developer-instrument-update-and-download) <br>
-- [Kuaishou mini program developer tools](https://mp.kuaishou.com/docs/develop/developerTools/downloadPath.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with frontend source code, JSON design tokens, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include runnable HTML/CSS/JavaScript, React or Vue components, mini-program starter files, design-token exports, screenshots, and accessibility audit instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.7.0 (source: SKILL.md frontmatter and evidence.release.version) <br>
+Risk: Verification guidance can lead users to run mutable third-party browser or shell tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review verification steps before use and run audits against local prototypes or a dedicated browser profile without production logins.
+
+Risk: Examples reference CDN-hosted axe-core and unpinned npx tooling.
+
+Mitigation: Replace CDN and unpinned examples with pinned or lockfile-managed local tooling before using them in a production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-frontend-design)
+- [Accessibility and WCAG 2.2 AA checklist](references/a11y-checklist.md)
+- [Self-verification workflow](references/self-verify.md)
+- [Multi-style comparison workflow](references/multi-genre-compare.md)
+- [Design token schema](tokens/_schema.md)
+- [Design token comparison matrix](tokens/_compare-matrix.md)
+- [CSS variables exporter](tokens/exporters/to-css-vars.md)
+- [Tailwind exporter](tokens/exporters/to-tailwind.md)
+- [Figma exporter](tokens/exporters/to-figma.md)
+- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
+- [Material Design 3](https://m3.material.io/)
+- [HarmonyOS Design Guidelines](https://developer.huawei.com/consumer/cn/design/)
+- [WeChat Mini Program Design Guidelines](https://developers.weixin.qq.com/miniprogram/design/)
+- [Alipay Mini Program Design Guidelines](https://opendocs.alipay.com/mini/design)
+- [Douyin Mini App Developer Documentation](https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/develop/component/)
+- [Kuaishou Mini Program Developer Documentation](https://mp.kuaishou.com/docs/develop/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, configuration notes, JSON design tokens, and prototype source files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific starter files, design token exports, accessibility audit steps, and short design rationale.]
+
+## Skill Version(s):
+
+4.7.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

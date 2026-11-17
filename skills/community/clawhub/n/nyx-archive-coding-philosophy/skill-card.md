@@ -1,37 +1,54 @@
-## Description: <br>
-Guides agents through a coding philosophy that balances feeling-first prototyping with structure-first refactoring, emphasizing creative iteration, maintainability, and practical workflow lessons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insights about refactoring intuitive code, when to impose structure vs let feeling lead, and code as creative expression.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nyxur42](https://clawhub.ai/user/nyxur42)
 
-## Use Case: <br>
-Developers and coding agents use this skill to decide when to prototype by intuition, when to refactor into maintainable structure, and how to preserve context while changing code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change an agent's coding workflow preferences, including when it reads notes first, how terse it is, and how cautiously it removes old code. <br>
-Mitigation: Install it only when those preferences are desired, and review the skill text before enabling it in environments that require stricter communication or change-management boundaries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyxur42/nyx-archive-coding-philosophy) <br>
+## Use Case:
 
+Developers and coding agents use this advisory skill for guidance on when to prototype by intuition, when to refactor for maintainability, and how to reason about code structure, hot paths, dead code, and creative iteration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with occasional inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or tool integrations are declared in the evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes strong workflow advice that could conflict with the user's current task or established project practices.
+
+Mitigation: Treat advisory rules as suggestions, follow the active user request and project context, and remove obsolete or vulnerable code when appropriate.
+
+Risk: Guidance about reading memory or notes may be inappropriate for projects where those files are unrelated, private, or not user-approved.
+
+Mitigation: Read project memory or notes only when relevant to the task and permitted by the user or workspace policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nyxur42/skills/nyx-archive-coding-philosophy)
+- [Publisher profile](https://clawhub.ai/user/nyxur42)
+- [Skill homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown advisory text with occasional code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No execution, persistence, credential handling, or external tool use is described by the security evidence.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

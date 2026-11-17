@@ -5,7 +5,7 @@ This document contains detailed models for complexity assessment, risk classific
 ## Table of Contents
 
 - [11. Complexity Level Assignment Model](#11-complexity-level-assignment-model)
-- [12. Risk Classification Model](#12-risk-classification-model)
+- [12. Risk Classification Model](#12-riREDACTED-SECRET)
 - [13. Confidence Scoring System](#13-confidence-scoring-system)
 - [14. Escalation to Clarification Rules](#14-escalation-to-clarification-rules)
 - [15. Misclassification Prevention Rules](#15-misclassification-prevention-rules)

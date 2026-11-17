@@ -1,0 +1,15 @@
+@startnwdiag
+nwdiag {
+  network dmz {
+    address = "210.x.x.x/24"
+    web [address = "210.x.x.1"];
+    fw [address = "210.x.x.254"];
+  }
+  network intranet {
+    address = "172.17.0.0/24"
+    fw [address = "172.17.0.254"];
+    api [address = "172.17.0.2"];
+    db [address = "172.17.0.3"];
+  }
+}
+@endnwdiag

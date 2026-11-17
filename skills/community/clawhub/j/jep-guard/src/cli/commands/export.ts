@@ -14,10 +14,10 @@ export const exportCommand = new Command('export')
       agent: options.agent
     });
 
-    const output = audit.export(options.format as 'jep' | 'json');
+    const output = audit.export(options.format as 'jep' | 'json', events);
 
     if (options.output) {
-      require('fs').writeFileSync(options.output, output);
+      require('fs').writeFileSync(options.output, output, {mode:0o600,flag:'wx'});
       console.log(`Exported to ${options.output}`);
     } else {
       console.log(output);

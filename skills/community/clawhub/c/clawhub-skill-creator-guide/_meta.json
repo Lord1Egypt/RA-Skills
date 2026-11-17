@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7dehpw50yse5vrk4be5s738x8417nc",
-  "slug": "clawhub-skill-creator-guide",
+  "name": "clawhub-skill-creator",
+  "description": "Create and publish ClawHub skills with the correct format. Includes YAML frontmatter template, _meta.json structure, and step-by-step publishing guide.",
   "version": "1.0.0",
-  "publishedAt": 1775055511969
+  "tags": ["clawhub", "skill-creator", "template", "publishing", "guide"]
 }

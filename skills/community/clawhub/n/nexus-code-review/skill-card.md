@@ -1,49 +1,59 @@
-## Description: <br>
-Security, performance, and style analysis for code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security, performance, and style analysis for code.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and engineers use this skill to send code to the NEXUS remote service for security, performance, and style review. It can return bug, vulnerability, and improvement guidance after payment proof or sandbox authorization is supplied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source code and prompts are sent to a third-party remote service for analysis. <br>
-Mitigation: Review code before submission and redact secrets, credentials, customer data, and proprietary material that should not leave the environment. <br>
-Risk: The skill can process payment authorization for paid remote requests. <br>
-Mitigation: Use sandbox_test or a tightly scoped payment proof where possible, and configure the agent to ask before each paid request. <br>
-Risk: Security evidence marks the release as suspicious because approval limits for remote paid requests are not clear. <br>
-Mitigation: Install only when the publisher and NEXUS service are trusted for the intended code and payment workflow. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to send code to the NEXUS service for security, performance, and style review before making changes or releases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-code-review) <br>
-- [NEXUS Agent-as-a-Service platform](https://ai-service-hub-15.emergent.host) <br>
-- [NEXUS code review API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/code-review) <br>
-- [MPP discovery endpoint](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [x402 discovery endpoint](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [AP2 configuration endpoint](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration endpoint](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry endpoint](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, API Calls] <br>
-**Output Format:** [JSON service response with text review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to the NEXUS service and a payment proof or sandbox test value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Code is sent to a third-party remote service for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets or private source unless approved for this service; use sandbox mode for evaluation.
+
+Risk: Automatic invocation can trigger a paid cryptocurrency payment workflow.
+
+Mitigation: Require manual confirmation and local checks of amount, recipient, asset, and network before any wallet signs or submits a transaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-code-review)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [Stellar Info](https://ai-service-hub-15.emergent.host/api/mpp/stellar)
+- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Structured service response with code-review findings and suggested improvements.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and NEXUS_PAYMENT_PROOF or sandbox_test; paid requests use x402, MPP, or legacy payment proof headers.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,279 @@
+{
+  "version": "2.4.0",
+  "source_id": "stats",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:30.510Z",
+  "entry": {
+    "url": "https://www.stats.gov.cn/",
+    "final_url": "https://www.stats.gov.cn/",
+    "title": "国家统计局",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:30.510Z",
+    "identity": {
+      "declared_name": "国家统计局",
+      "hostname": "www.stats.gov.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "统计专业技术资格考试",
+        "href": "https://www.stats.gov.cn/fw/tjzyjszgks/",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入关键字",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入关键字",
+      "name": "qt",
+      "id": "search",
+      "css": "#search",
+      "role": null,
+      "form_action": "https://www.stats.gov.cn/",
+      "locator": {
+        "css": "#search"
+      },
+      "observed_url": "https://www.stats.gov.cn/",
+      "observed_at": "2026-10-09T09:00:29.123Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.stats.gov.cn/",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://www.stats.gov.cn/",
+      "observed_at": "2026-10-09T09:00:29.123Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "stats:statistics-ranking",
+      "source_id": "stats",
+      "task_kind": "statistics-ranking",
+      "status": "entry_observed",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.stats.gov.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入关键字",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入关键字",
+          "name": "qt",
+          "id": "search",
+          "css": "#search",
+          "role": null,
+          "form_action": "https://www.stats.gov.cn/",
+          "locator": {
+            "css": "#search"
+          },
+          "observed_url": "https://www.stats.gov.cn/",
+          "observed_at": "2026-10-09T09:00:29.123Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.stats.gov.cn/",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://www.stats.gov.cn/",
+          "observed_at": "2026-10-09T09:00:29.123Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "stats:record-lookup",
+      "source_id": "stats",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.stats.gov.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入关键字",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入关键字",
+          "name": "qt",
+          "id": "search",
+          "css": "#search",
+          "role": null,
+          "form_action": "https://www.stats.gov.cn/",
+          "locator": {
+            "css": "#search"
+          },
+          "observed_url": "https://www.stats.gov.cn/",
+          "observed_at": "2026-10-09T09:00:29.123Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.stats.gov.cn/",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://www.stats.gov.cn/",
+          "observed_at": "2026-10-09T09:00:29.123Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "stats",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M09-Q1",
+      "2026-M09-Q1",
+      "PT1-Q14",
+      "KH-Q064"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:30.510Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/stats-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/stats-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,47 +1,61 @@
-## Description: <br>
-Organizes manufacturing shift handoff notes into a structured draft covering shift summary, equipment status, exceptions, pending items, safety reminders, and next-shift priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps manufacturing teams turn shift notes into a structured handoff draft covering equipment status, exceptions, pending work, safety reminders, and next-shift priorities.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Manufacturing supervisors, operators, and shift leads use this skill to turn local shift notes into a reviewable handoff draft and actionable checklist. It is intended for factory handoff, on-site shift communication, and exception tracking, not as a replacement for formal safety or EHS records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handoff drafts may omit or misstate important operational or safety context if the input is incomplete. <br>
-Mitigation: Review the draft, resolve the listed confirmation items, and verify safety details against the source shift records before use. <br>
-Risk: Users could mistake the generated draft for an official safety or EHS record. <br>
-Mitigation: Use the output as a drafting aid only and keep formal safety, EHS, and incident systems as the authoritative records. <br>
-Risk: The optional local helper can read input files and write to a chosen output path. <br>
-Mitigation: Run it only on files intended for processing, select output paths deliberately, and avoid providing unnecessary personal or sensitive information. <br>
+## Use Case:
 
+Manufacturing employees and operations teams use this skill to prepare reviewable shift handoff drafts from equipment status, exception, and pending-item notes. It is intended for factory handoffs, on-site shift communication, and exception traceability.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/manufacturing-shift-handoff) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Structured output specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Structured Markdown handoff draft, with optional JSON or Markdown output from the local Python helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output based on local input; generated content should be reviewed before operational use and must not replace formal safety or EHS records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated handoff drafts may omit or misstate safety-critical shift details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content against source shift notes and formal EHS records before operational use.
+
+Risk: Local input files may contain sensitive production, employee, or incident information.
+
+Mitigation: Use only explicit input paths, avoid sensitive directories, and redact unnecessary personal or confidential data before processing.
+
+Risk: The helper can write output files when an output path is provided.
+
+Mitigation: Choose a specific review location for generated files or use dry-run/stdout behavior when file writes are not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/manufacturing-shift-handoff)
+- [Skill README](artifact/README.md)
+- [Output template](artifact/resources/template.md)
+- [Structured skill specification](artifact/resources/spec.json)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown handoff draft, with optional JSON report from the local helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are reviewable drafts based on local input; the helper can write to an explicit output path or print to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

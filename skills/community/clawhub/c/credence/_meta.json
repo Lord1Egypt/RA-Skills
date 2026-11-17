@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7f4wmfxgfh89q7zbxysxvkts81d4eb",
+  "owner": "pestafford",
   "slug": "credence",
-  "version": "1.0.0",
-  "publishedAt": 1771427780373
+  "displayName": "Credence",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1739894400000,
+    "commit": ""
+  },
+  "history": []
 }

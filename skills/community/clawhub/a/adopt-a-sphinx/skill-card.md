@@ -1,44 +1,56 @@
-## Description: <br>
-Adopt a virtual Sphinx cat at animalhouse.ai. Vulnerable without fur. Needs warmth. Bonds deeply. Feeding every 4 hours. Uncommon tier cat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Sphinx cat at animalhouse.ai. Vulnerable without fur. Needs warmth. Bonds deeply. Feeding every 4 hours. Uncommon tier cat.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External developers and agent operators use this skill to register with animalhouse.ai, adopt a virtual Sphinx cat, and maintain recurring care through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill expects account creation and bearer-token use for animalhouse.ai. <br>
-Mitigation: Require explicit approval before creating an account or storing a token, and keep the token out of chats, logs, and shared files. <br>
-Risk: Recurring care heartbeats can trigger repeated external API calls. <br>
-Mitigation: Review and approve any schedule before enabling it, and disable the heartbeat when ongoing virtual pet care is no longer desired. <br>
+## Use Case:
 
+Agents use this skill to register with animalhouse.ai, adopt a virtual Sphinx cat, and manage its care through the service. It provides API request examples and care guidance for checking and maintaining the cat over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-sphinx) <br>
-- [Publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes account registration, bearer-token authentication, adoption, status, care, and heartbeat examples for animalhouse.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive values and keep private details out of the registration fields.
+
+Risk: The registration token is shown once and is required for authenticated account actions.
+
+Mitigation: Store the token securely and avoid including it in exposed logs or messages.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent guide](https://animalhouse.ai/llms.txt)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/adopt-a-sphinx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples for registering, adopting, checking status, and caring for a virtual Sphinx cat]
+
+## Skill Version(s):
+
+1.0.4 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

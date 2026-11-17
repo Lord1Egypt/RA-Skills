@@ -1,42 +1,54 @@
-## Description: <br>
-NIST Cybersecurity Framework (CSF) and SP 800-53 Rev 5 compliance assessment for network infrastructure, mapping device configuration against six control families with direct network device relevance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nist Compliance Assessment helps agents assess network infrastructure against NIST CSF and SP 800-53 Rev 5 controls using read-only device configuration and operational checks.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Security, compliance, and network engineering teams use this skill to assess network devices against NIST SP 800-53 Rev 5 and CSF 2.0 controls for FISMA, NIST 800-171, CMMC, audit preparation, and security posture baselining. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment outputs can expose sensitive network configuration data, including usernames, IP addresses, AAA server details, SNMP communities, password hashes, and active session information. <br>
-Mitigation: Use scoped read-only accounts, define the assessment boundary before collection, and redact raw device outputs before sharing results. <br>
-Risk: Running assessment commands against devices without authorization may violate operational or policy boundaries. <br>
-Mitigation: Install and use the skill only when authorized to assess the target network devices. <br>
+## Use Case:
 
+Security and compliance engineers use this skill to scope network device assessments, map device configuration and operational state to NIST CSF and SP 800-53 controls, and produce gap analysis for FISMA, CMMC, FedRAMP, and enterprise posture reviews.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Control Reference](references/control-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/nist-compliance-assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with read-only CLI command examples and compliance assessment report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on read-only network device assessment; raw device outputs may contain sensitive configuration details that should be redacted before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Unauthorized assessment or collection of sensitive network device data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit authorization and treat account listings, SNMP settings, ACLs, and software versions as sensitive operational data.
+
+Risk: Incorrect compliance conclusions if the assessment boundary or FIPS 199 impact level is missing.
+
+Mitigation: Confirm the authorization boundary and Low, Moderate, or High impact categorization before interpreting control gaps.
+
+## Reference(s):
+
+- [NIST 800-53 Compliance CLI Reference](references/cli-reference.md)
+- [NIST 800-53 Rev 5 Control Reference - Network Device Mapping](references/control-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown assessment guidance with read-only CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compliance findings, control gap analysis, and POA&M guidance; collected device outputs should be handled as sensitive operational data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

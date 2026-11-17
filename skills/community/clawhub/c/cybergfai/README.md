@@ -23,13 +23,14 @@ CyberGFAI 是一个基于 OpenClaw 的渐进式人格模拟引擎。它通过分
 - **Deployment**: ClawHub (Slug: `cybergfai`) / Vercel (Landing Page)
 - **Data**: 100% 本地化存储，隐私第一，不存储原始聊天记录，仅提取风格特征。
 
-## 📦 安装与运行 (只需 3 步)
+## 📦 安装与运行
 
-1. **安装技能**：在 OpenClaw 中运行 `clawhub install cybergfai`。
-2. **开启对话**：直接在 Telegram/WhatsApp 中对 AI 说「你好」。
-3. **灵魂注入**：根据 AI 的提示回答 3 个问题（姓名、性格标签、语录），引擎将自动完成初始化并开启全量心智模拟。
-
-> 💡 *提示：你可以随时粘贴真实的聊天记录给它，它会自动学习并进化。*
+1. 安装 OpenClaw 并在 workspace 中启用该技能：
+   ```bash
+   clawhub install cybergfai
+   ```
+2. 首次对话将引导完成 Persona 初始化。
+3. 支持微信记录导入以实现极致风格模仿。
 
 ## 🗺️ 路线图 (Roadmap)
 

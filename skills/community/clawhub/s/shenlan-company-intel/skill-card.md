@@ -1,42 +1,55 @@
-## Description: <br>
-当用户需要查询上市公司信息、追踪企业舆情、监控公告、按股票代码查找公司，或分析企业关联新闻时使用。通过深蓝财经API提供企业档案、舆情追踪、公告监控和热门企业排行。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query public Shenlan Finance APIs for listed-company profiles, related content, mentions, announcements, trending companies, and follower data.
 
-## Publisher: <br>
-[shenlannews](https://clawhub.ai/user/shenlannews) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenlannews](https://clawhub.ai/user/shenlannews)
 
-## Use Case: <br>
-External users and business analysts use this skill to query public listed-company profiles, monitor announcements, track company mentions, and compare company attention signals through the Shenlan Finance API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public HTTPS requests to shenlannews.com for company, announcement, sentiment, and follower-attention data. <br>
-Mitigation: Use it only when external API access to that provider is acceptable, and avoid sending private or sensitive company research unless the provider is trusted. <br>
-Risk: Returned company intelligence can be mistaken for investment or financial advice. <br>
-Mitigation: Treat outputs as informational business intelligence and verify material facts against official filings before making decisions. <br>
+## Use Case:
 
+External users, analysts, and agent developers use this skill to retrieve company profiles, monitor public sentiment and announcements, and compare listed companies using Shenlan News data. It is suited for company-intelligence workflows that need public API results plus concise interpretation.
 
-## Reference(s): <br>
-- [深蓝企业情报 API 参考文档](references/api-reference.md) <br>
-- [深蓝财经 Homepage](https://www.shenlannews.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shenlannews/shenlan-company-intel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with JSON API results and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public HTTPS requests to shenlannews.com; no credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Company names, stock codes, announcement searches, and related research queries are sent to Shenlan News over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when those queries are appropriate to share with Shenlan News and avoid submitting sensitive internal research terms.
+
+Risk: Financial, announcement, and sentiment results come from third-party public data and may be incomplete, stale, or unsuitable as the sole basis for decisions.
+
+Mitigation: Verify important investment, compliance, or business conclusions against primary company announcements and other authoritative sources.
+
+## Reference(s):
+
+- [深蓝企业情报 API 参考文档](references/api-reference.md)
+- [Shenlan News](https://www.shenlannews.com)
+- [ClawHub skill page](https://clawhub.ai/shenlannews/skills/shenlan-company-intel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON API results and occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and sends company lookup terms, stock codes, announcement searches, and related research queries to Shenlan News over HTTPS.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

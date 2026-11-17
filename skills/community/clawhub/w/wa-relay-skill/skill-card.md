@@ -1,41 +1,61 @@
-## Description: <br>
-WhatsApp message relay for OpenClaw v0.2.0 that routes third-party DMs to a relay agent, forwards them to the main agent with sessions_send, and supports direct number allowlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wa Relay routes third-party WhatsApp direct messages through an OpenClaw relay agent that forwards them to the main agent via sessions_send, so the owner receives the message with a suggested response.
 
-## Publisher: <br>
-[zarruk](https://clawhub.ai/user/zarruk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zarruk](https://clawhub.ai/user/zarruk)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to route WhatsApp messages from non-allowlisted senders through a relay agent so the main agent can notify the owner and suggest a response. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup copies main-agent model-provider credentials into the relay agent. <br>
-Mitigation: Use a separate least-privilege auth profile for the relay and rotate or remove copied credentials if the relay is uninstalled. <br>
-Risk: Setup temporarily patches OpenClaw internals and modifies the main agent SOUL.md. <br>
-Mitigation: Back up SOUL.md and gateway configuration first, review generated changes before applying them, and restore backups or update OpenClaw when the upstream fix is available. <br>
-Risk: The relay can receive WhatsApp messages from non-allowlisted senders. <br>
-Mitigation: Review generated bindings before applying them and keep direct-number allowlists narrow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wa Relay setup guide](references/SETUP.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route WhatsApp messages from third parties through a relay agent, notify the owner, and prepare suggested responses while keeping direct owner messages on the main agent. It also supports direct-number allowlists for trusted contacts that should bypass the relay.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON/YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create relay workspace files, append main-agent SOUL.md guidance, and emit gateway routing configuration for review before application.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation can duplicate model-provider credentials for the relay agent, creating broader persistent access than the main agent alone.
+
+Mitigation: Review the setup script before installation, prefer a dedicated low-privilege relay credential, and copy credentials only after confirming that access is acceptable.
+
+Risk: Installation can patch installed OpenClaw runtime files to change session ID validation.
+
+Mitigation: Use an upstream OpenClaw fix instead of the patch when available, review the files before patching, and keep the generated backups so the change can be reverted.
+
+Risk: Generated routing configuration can replace existing bindings and route unintended WhatsApp senders through the relay or main agent.
+
+Mitigation: Validate the generated routing JSON manually, keep trusted direct allowlists small, preserve existing agents and bindings intentionally, and restart/test the gateway after applying changes.
+
+Risk: The setup script modifies the main agent's SOUL.md so relay messages affect owner notifications and suggested responses.
+
+Mitigation: Review the appended relay instructions after setup and adjust them to match the owner's communication policy before relying on the relay.
+
+## Reference(s):
+
+- [WA Relay Setup Guide](references/SETUP.md)
+- [OpenClaw session ID issue #16211](https://github.com/openclaw/openclaw/issues/16211)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Setup may create or update local OpenClaw workspace files, copy relay credentials after confirmation, patch installed OpenClaw files after confirmation, and write generated routing JSON to /tmp/wa-relay-config.json.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

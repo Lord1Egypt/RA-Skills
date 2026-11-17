@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Mailchimp"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["mailchimp"]
   icon: "https://static.oomol.com/logo/third-party/Mailchimp.svg"
 ---
@@ -37,16 +37,16 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `archive_member` — Archive a Mailchimp member from the specified audience/list. [write]
+- `archive_member` — Archive a Mailchimp member from the specified audience/list. [destructive]
 - `delete_member_permanently` — Permanently delete a Mailchimp member from the specified audience/list. [destructive]
 - `get_list` — Fetch a single Mailchimp audience/list by ID.
 - `get_member` — Fetch a single Mailchimp member by subscriber hash or email address.
 - `list_lists` — List Mailchimp audiences/lists visible to the current API key.
 - `list_member_tags` — List tags currently attached to a Mailchimp member.
 - `list_members` — List members in a Mailchimp audience/list.
-- `list_merge_fields` — List merge fields defined for a Mailchimp audience/list. [write]
+- `list_merge_fields` — List merge fields defined for a Mailchimp audience/list.
 - `update_member` — Patch an existing Mailchimp member by subscriber hash or email address. [write]
-- `update_member_tags` — Add or remove Mailchimp member tags using the official tag-update endpoint. [write]
+- `update_member_tags` — Add or remove Mailchimp member tags using the official tag-update endpoint. [destructive]
 - `upsert_member` — Add or update a Mailchimp member using the official upsert endpoint. [write]
 
 ## Safety
@@ -78,11 +78,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Mailchimp is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=mailchimp
+  https://console.oomol.com/connections/mailchimp
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Mailchimp homepage: https://mailchimp.com
+- API documentation: https://mailchimp.com/developer/marketing/api/

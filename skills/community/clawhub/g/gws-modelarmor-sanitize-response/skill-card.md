@@ -1,42 +1,53 @@
-## Description: <br>
-Google Model Armor: Sanitize a model response through a Model Armor template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Model Armor: Sanitize a model response through a Model Armor template.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to route generated model responses through a configured Google Model Armor template before returning content to users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends response content to the configured Google service for sanitization. <br>
-Mitigation: Use least-privilege Google credentials and avoid sending content that should not be processed by the configured service. <br>
-Risk: Using the wrong Model Armor template can apply unintended sanitization behavior. <br>
-Mitigation: Verify the target Model Armor template resource before running the command. <br>
-Risk: The skill depends on generated shared gws instructions and the gws CLI. <br>
-Mitigation: Install only if you trust the gws CLI and the generated shared gws instructions. <br>
+## Use Case:
 
+Developers and operators use this skill to sanitize outbound model responses through a configured Google Model Armor template using the gws CLI. It is intended for model-to-user response safety checks before content is returned downstream.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-modelarmor-sanitize-response) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI flag guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and a configured Google Model Armor template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; skill metadata version 0.22.5) <br>
+Risk: Response text or JSON supplied to the command may be sent to the configured Google Model Armor service or template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target Model Armor configuration and data handling requirements before using --text or --json with sensitive content.
+
+Risk: The workflow depends on the gws CLI and the referenced gws-shared skill for authentication, global flags, and security rules.
+
+Mitigation: Install only a trusted gws CLI and verify that gws-shared is present and acceptable in the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-modelarmor-sanitize-response)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands, CLI flags, examples, and operational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI, the gws-shared skill, and a full Model Armor template resource name; accepts response content through --text or --json.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

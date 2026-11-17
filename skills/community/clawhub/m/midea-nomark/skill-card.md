@@ -1,46 +1,57 @@
-## Description: <br>
-Parses supported short-video and social-media share links and returns watermark-free video, cover, author, and image-gallery information for platforms such as Douyin, Kuaishou, Xiaohongshu, Weibo, Xigua, Doubao, Yunque, and Bilibili. <br>
+## Description:
 
-This skill is for research and development only. <br>
+视频去除水印解析 Skill，支持抖音、快手、小红书、微博、西瓜视频、豆包、云雀、B站等 20+ 平台的短视频去水印解析。
 
-## Publisher: <br>
-[mackjosn](https://clawhub.ai/user/mackjosn) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mackjosn](https://clawhub.ai/user/mackjosn)
 
-## Use Case: <br>
-External users and agents use this skill to parse supported video or image share links and retrieve downloadable, watermark-free media URLs and related metadata. The artifact describes personal learning and research use rather than commercial deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes an unverified local parser binary. <br>
-Mitigation: Install only after trusting the publisher and independently verifying the parser binary source. <br>
-Risk: The optional HTTP service may expose parsing functionality outside the intended host if network access is misconfigured. <br>
-Mitigation: Run the service on localhost only and do not expose it to a broader network unless access controls and network boundaries are understood. <br>
-Risk: Private or token-bearing share links could disclose sensitive access information to the parser. <br>
-Mitigation: Use only public share links or links that do not contain private access tokens. <br>
-Risk: Parsed media links are temporary and may stop working as platform interfaces change. <br>
-Mitigation: Verify parsed results before relying on them and expect periodic parser updates for platform changes. <br>
+## Use Case:
 
+Developers and external users can use this skill to parse supported short-video or social-media share links and retrieve de-watermarked media metadata and temporary media URLs. It supports command-line parsing and an optional local HTTP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mackjosn/midea-nomark) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with URLs and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful parsing returns title, author details, direct video URL, cover URL, and image count when available; parsed media links may be temporary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The optional HTTP service could expose video parsing functionality if bound beyond localhost or deployed without access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep service mode bound to localhost, avoid public exposure, and add authentication before any shared deployment.
+
+Risk: The documented workflow depends on platform binaries that are referenced by the skill but absent from the submitted artifact.
+
+Mitigation: Verify the supplied package includes trusted binaries for the intended platform before installation or execution.
+
+Risk: Parsed media links are temporary third-party network data and may expire or change behavior as platforms update.
+
+Mitigation: Use parsed links promptly, validate results before relying on them, and expect periodic breakage from upstream platform changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mackjosn/skills/midea-nomark)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful parses may return temporary third-party media links, titles, author information, cover URLs, and image counts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

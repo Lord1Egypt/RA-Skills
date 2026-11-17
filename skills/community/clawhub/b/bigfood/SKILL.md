@@ -1,6 +1,6 @@
 ---
 name: bigfood
-description: "AI 冰箱管家 — 上传食材图片识别 → 推荐菜谱。支持多图混搭、冰箱食材管理、采购提醒。Food recognition, recipe recommendation, ingredient management."
+description: "🍽️ BigFood · AI冰箱管家 — 拍食材图片识别 → 智能推荐菜谱。支持多图混搭、冰箱食材管理、采购提醒、做饭灵感。食材识别、菜谱推荐、家常菜做法、冰箱库存管理一站式。| Fridge to Table — food recognition, recipe recommendation, ingredient & meal planning."
 triggers:
   - 冰箱
   - 吃什么

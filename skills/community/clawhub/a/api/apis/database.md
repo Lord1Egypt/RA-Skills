@@ -2,16 +2,16 @@
 
 | API | Line |
 |-----|------|
-| Supabase | 2 |
-| Firebase | 115 |
-| PlanetScale | 216 |
-| Neon | 285 |
-| Upstash | 355 |
-| MongoDB Atlas | 425 |
-| Fauna | 509 |
-| Xata | 593 |
-| Convex | 678 |
-| Appwrite | 749 |
+| Supabase | 18 |
+| Firebase | 131 |
+| PlanetScale | 232 |
+| Neon | 301 |
+| Upstash | 371 |
+| MongoDB Atlas | 441 |
+| Fauna | 525 |
+| Xata | 609 |
+| Convex | 694 |
+| Appwrite | 765 |
 
 ---
 

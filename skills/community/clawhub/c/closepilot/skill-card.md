@@ -1,40 +1,48 @@
-## Description: <br>
-A conversion decision system that analyzes customer intent, reveals hidden objections, and tells you exactly how to close the deal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A conversion decision system that analyzes customer intent, reveals hidden objections, and tells you exactly how to close the deal.
 
-## Publisher: <br>
-[NingHengHub](https://clawhub.ai/user/NingHengHub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ninghenghub](https://clawhub.ai/user/ninghenghub)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Founders, salespeople, freelancers, and other external users use ClosePilot to assess customer messages, identify objections or deal risk, and draft a specific, non-pushy next reply.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sales-conversation coaching may suggest replies that are inappropriate for the customer context or feel overly persuasive if sent without review.
+
+Mitigation: Review and adapt each suggested reply before sending, keep the interaction honest and non-pushy, and avoid using the skill for personal or support conversations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Founders, salespeople, freelancers, and other external users use ClosePilot to analyze stalled sales conversations, identify customer stage and objections, draft a non-pushy reply, and decide the next move. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may infer customer intent or deal risk incorrectly. <br>
-Mitigation: Treat the analysis as a hypothesis and review it against the actual customer context before acting. <br>
-Risk: A suggested sales reply may be inappropriate, misleading, or non-compliant with sales policies. <br>
-Mitigation: Review any recommended message for honesty, appropriateness, and policy compliance before sending it to a customer. <br>
+**Output Format:** [Markdown with labeled sections and suggested reply text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClosePilot ClawHub release](https://clawhub.ai/NingHengHub/closepilot) <br>
+**Other Properties Related to Output:** [Produces customer stage, psychology, blocking point, risk level, recommended reply, next move, and likely outcome if no action is taken.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Text] <br>
-**Output Format:** [Markdown-style structured text with labeled sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces customer stage, real psychology, blocking point, risk level, recommended reply, next move, and likely outcome if no action is taken.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

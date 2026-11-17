@@ -1,46 +1,65 @@
-## Description: <br>
-Trade on prediction markets. Create a local wallet, list markets, check prices, buy and sell outcome shares. Coming soon: create and fund markets directly from this skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on prediction markets. Create a local wallet, list markets, check prices, buy and sell outcome shares. Coming soon: create and fund markets directly from this skill.
 
-## Publisher: <br>
-[0xAstraea](https://clawhub.ai/user/0xAstraea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xastraea](https://clawhub.ai/user/0xastraea)
 
-## Use Case: <br>
-Developers and external users use this skill to browse Precog prediction markets, inspect probabilities and positions, quote trades, and buy or sell outcome shares through a local wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A plaintext private key in ~/.openclaw/.env can control funds held by the local wallet. <br>
-Mitigation: Use a throwaway wallet, prefer Sepolia/testnet, avoid storing valuable mainnet keys, and set the key file to owner-only permissions. <br>
-Risk: Mainnet commands can execute real prediction-market trades. <br>
-Mitigation: Confirm the network, contract, market, outcome, shares, and final max/min trade bounds before any transaction; quote trades first and require explicit user confirmation. <br>
-Risk: The security evidence flags broader contract-control surfaces than the trading instructions disclose. <br>
-Mitigation: Review the wallet-handling and contract-interaction code before installation or use, and verify the repository source before running scripts. <br>
+## Use Case:
 
+External users and developers use this skill to interact with Precog prediction markets from an agent, including wallet setup, market discovery, quotes, trades, and position checks. It supports testnet practice flows by default and mainnet flows only when explicitly selected.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xAstraea/opencog) <br>
-- [Skill Homepage](https://github.com/openclaw/precog-skill) <br>
-- [Precog Documentation](https://learn.precog.markets) <br>
-- [Precog App](https://core.precog.markets) <br>
-- [MATE Token](https://matetoken.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and verbatim command output blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before executing trading transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release metadata) <br>
+Risk: The skill handles real wallet keys and stores PRIVATE_KEY in ~/.openclaw/.env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, verify the key file is owner-only readable, and avoid storing valuable mainnet keys there.
+
+Risk: Installation provenance is unavailable for this release.
+
+Mitigation: Install only from a repository and commit the user trusts, preferably one matching the declared homepage.
+
+Risk: Mainnet commands and token approvals are real financial actions.
+
+Mitigation: Use testnet by default, require explicit mainnet selection, quote before each trade, and get user confirmation before execution.
+
+Risk: Custom RPC endpoints can observe signed transaction contents.
+
+Mitigation: Use only trusted RPC endpoints when overriding the default public RPC configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xastraea/skills/opencog)
+- [ClawHub-declared Homepage](https://github.com/openclaw/precog-skill)
+- [Precog Documentation](https://learn.precog.markets)
+- [Precog App](https://core.precog.markets)
+- [MATE Token](https://matetoken.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and verbatim fenced command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before trading actions; mainnet commands use real funds and must be explicitly selected.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

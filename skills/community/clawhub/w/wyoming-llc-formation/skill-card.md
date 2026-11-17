@@ -1,43 +1,66 @@
-## Description: <br>
-Provides Wyoming LLC formation guidance covering costs, filing steps, registered agent requirements, privacy considerations, annual compliance, and state comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance on forming a Wyoming LLC, including costs, filing steps, registered agent rules, privacy benefits, annual compliance, and state comparisons.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-External users, entrepreneurs, and business formation researchers use this skill to get concise Wyoming LLC formation guidance, cost breakdowns, process checklists, and comparisons with other states. The guidance should be verified against official state, federal, legal, and tax sources before filing or making business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wyoming, IRS, FinCEN, tax, and filing requirements may change or vary by the user's facts. <br>
-Mitigation: Verify fees, deadlines, BOI obligations, tax treatment, and filing requirements with official sources and qualified legal or tax professionals before acting. <br>
-Risk: The skill provides LLCClass-branded business formation guidance that could be mistaken for legal or tax advice. <br>
-Mitigation: Present outputs as informational guidance, disclose the LLCClass source context, and recommend professional advice for complex or consequential decisions. <br>
+## Use Case:
 
+Entrepreneurs, small business owners, and agents use this skill to answer Wyoming LLC formation questions, estimate costs and timelines, compare state options, and outline registered agent, EIN, BOI, and annual compliance considerations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zlc000190/wyoming-llc-formation) <br>
-- [LLCClass Wyoming Guide](https://llcclass.com/wyoming) <br>
-- [LLCClass Formation Hub](https://llcclass.com/get-started) <br>
-- [LLCClass Name Generator](https://llcclass.com/llc-name-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown or plain text guidance, with optional shell commands for local demo usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links to LLCClass resources and should include reminders to verify legal, tax, BOI, fee, and filing requirements with authoritative sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Users may mistake LLC formation guidance for legal or tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill is informational, direct consequential decisions to qualified professionals, and verify requirements with official sources before filing.
+
+Risk: State, IRS, and FinCEN requirements can change after the package is published.
+
+Mitigation: Check Wyoming, IRS, and FinCEN sources before relying on fees, timelines, BOI rules, or compliance deadlines.
+
+Risk: Documentation contains repository and install-provenance inconsistencies.
+
+Mitigation: Install only an exact reviewed package version and rely on server-resolved release evidence for provenance.
+
+Risk: The content strongly promotes LLCClass services.
+
+Mitigation: Present LLCClass as the provider source and encourage comparison against official resources and independent professional advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlc000190/skills/wyoming-llc-formation)
+- [LLCClass Wyoming Guide](https://llcclass.com/wyoming)
+- [LLCClass Formation Hub](https://llcclass.com/get-started)
+- [LLCClass LLC Name Generator](https://llcclass.com/llc-name-generator)
+- [Wyoming Secretary of State](https://sos.wyo.gov/)
+- [Wyoming Department of Revenue](https://revenue.wyo.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes informational formation guidance, cost estimates, comparisons, and compliance reminders; it should not be treated as legal or tax advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

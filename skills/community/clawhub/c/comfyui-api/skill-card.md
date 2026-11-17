@@ -1,39 +1,57 @@
-## Description: <br>
-Connects to a ComfyUI server to generate images from prompts, auto-detects URLs, translates Chinese prompts, and supports REST and WebSocket APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to a configured ComfyUI server to generate images from prompts, inspect server state, and interact with ComfyUI REST and WebSocket endpoints.
 
-## Publisher: <br>
-[qqliaoxin](https://clawhub.ai/user/qqliaoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qqliaoxin](https://clawhub.ai/user/qqliaoxin)
 
-## Use Case: <br>
-Developers and creators use this skill to connect an agent to a ComfyUI server, set the server URL, check status, and generate images from text prompts through REST or WebSocket APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files to the configured ComfyUI server. <br>
-Mitigation: Use only a ComfyUI server you control or trust, confirm the configured URL before generation, and avoid running upload actions on sensitive local files. <br>
-Risk: The skill can inspect queue/history information and cancel or interrupt work on the configured server. <br>
-Mitigation: Use it only with servers where you are authorized to manage running jobs, and review status or control actions before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqliaoxin/comfyui-api) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect to a trusted ComfyUI server, submit image-generation prompts, retrieve generated image URLs, and check queue, model, history, and server status.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration instructions] <br>
-**Output Format:** [Markdown and structured status/result text with image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connects to a configured ComfyUI server; generation results depend on that server's models, queue, and API availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and workflow data are sent to the configured ComfyUI server.
+
+Mitigation: Install and use the skill only with a ComfyUI server that the operator trusts for the prompts and generated content being handled.
+
+Risk: The upload command can send arbitrary local file paths to the configured server.
+
+Mitigation: Do not use upload for sensitive paths, keys, configuration files, documents, or workspace files; restrict uploads to intended image assets.
+
+Risk: The skill can inspect or change remote ComfyUI execution state beyond simple image generation.
+
+Mitigation: Limit use of queue, history, cancel, interrupt, and status commands to operators authorized to manage the target ComfyUI server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqliaoxin/skills/comfyui-api)
+- [Publisher profile](https://clawhub.ai/user/qqliaoxin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Image URLs, Configuration guidance]
+
+**Output Format:** [Structured JSON-style responses with status fields, messages, and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ComfyUI prompt IDs, queue or history data, server status, model listings, and error messages.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

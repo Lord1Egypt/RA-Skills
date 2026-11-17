@@ -1,44 +1,60 @@
-## Description: <br>
-APM 인증 센터 API documents 19 APM authentication endpoints for account, email, phone, admin, supplier, user, token refresh, verification-code, and token-validation flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APM Authentication Center API documents 19 APM authentication endpoints for account, email, phone, administrator, supplier, user login, token refresh, verification code, captcha, and token validation flows.
 
-## Publisher: <br>
-[apmzoom](https://clawhub.ai/user/apmzoom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apmzoom](https://clawhub.ai/user/apmzoom)
 
-## Use Case: <br>
-Developers and operators use this skill to look up APM authentication API endpoints and prepare signed requests for login, token refresh, verification-code delivery, and token validation. It is intended for agents helping with API integration work where the user already has authorization to access the APM platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers login, token refresh, and token validation flows that may expose passwords, SMS or email codes, access tokens, and refresh tokens. <br>
-Mitigation: Use least-privilege accounts, keep credentials and tokens out of logs and shared prompts, and rotate any value that may have been exposed. <br>
-Risk: Some flows send verification codes or may create accounts during login or registration-style authentication. <br>
-Mitigation: Ask for explicit user confirmation before sending verification codes or using login flows that could create accounts. <br>
-Risk: Administrator authentication endpoints can grant elevated access when used with admin credentials. <br>
-Mitigation: Avoid admin credentials unless the task requires them and the user confirms the intended scope. <br>
+## Use Case:
 
+Developers and agents use this skill to understand and prepare calls to APM authentication endpoints, including login, token refresh, verification-code delivery, captcha retrieval, and token validation. It is intended for authorized APM accounts and workflows that can safely handle credentials and tokens.
 
-## Reference(s): <br>
-- [APM skills homepage](https://github.com/apmzoom-ai/apm-skills) <br>
-- [APM authentication API base URL](https://44k2t5n59e.execute-api.ap-northeast-2.amazonaws.com) <br>
-- [ClawHub skill page](https://clawhub.ai/apmzoom/apmzoom-ids) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Code, Shell commands] <br>
-**Output Format:** [Markdown with endpoint details, request parameters, and optional code or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference APM_USER_TOKEN and sensitive authentication values supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill covers administrator, user, supplier, and seller authentication flows that can expose passwords, verification codes, access tokens, and refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized accounts, avoid logging or persisting secrets, and keep tokens out of long-lived exported environment variables.
+
+Risk: The documented signing pattern uses MD5 with static salts, which the security evidence identifies as weak for security-sensitive workflows.
+
+Mitigation: Review the signing design with the APM service owner before relying on it for sensitive production automation.
+
+Risk: Agents following the documentation may prepare calls that send verification codes or refresh reusable tokens.
+
+Mitigation: Require explicit user approval before sending codes, refreshing tokens, or using privileged administrator credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apmzoom/skills/apmzoom-ids)
+- [Publisher profile](https://clawhub.ai/user/apmzoom)
+- [Homepage](https://github.com/apmzoom-ai/apm-skills)
+- [APM API base URL](https://44k2t5n59e.execute-api.ap-northeast-2.amazonaws.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with request details, signing rules, headers, and example command or code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; does not execute API calls by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

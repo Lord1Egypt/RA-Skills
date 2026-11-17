@@ -1,41 +1,55 @@
-## Description: <br>
-Multi-platform video auto-publisher. Automatically upload videos to Douyin, WeChat Channels, Xiaohongshu, Bilibili, YouTube and more. Supports batch publishing, scheduled posting, auto-caption generation, and hashtag optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Publisher helps agents prepare and run multi-platform video publishing workflows for Douyin, WeChat Channels, Xiaohongshu, Bilibili, YouTube, and related platforms.
 
-## Publisher: <br>
-[954215110](https://clawhub.ai/user/954215110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[954215110](https://clawhub.ai/user/954215110)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to publish video content across multiple social platforms with generated captions, tags, account configuration guidance, and Playwright-driven upload commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The publishing script can post to multiple real social-media accounts without a final confirmation or dry-run safeguard. <br>
-Mitigation: Run visibly first, test with specific target platforms, and avoid all-platform, headless, or scheduled operation until the account behavior is confirmed. <br>
-Risk: Local account, configuration, cookie, and publish-log files may reveal account setup or posting history. <br>
-Mitigation: Protect local configuration and log files, avoid sharing them, and delete stale account data when access is no longer needed. <br>
+## Use Case:
 
+Creators, operators, and developers use this skill to automate or guide video uploads, captions, tags, account configuration, and publish logging across multiple social media platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/954215110/auto-publisher) <br>
-- [Publisher profile](https://clawhub.ai/users/954215110) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local account configuration and publish-log files when the provided publishing script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish content publicly across multiple social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts where automated posting is acceptable, begin with one selected platform, and run in a visible browser until the workflow is verified.
+
+Risk: Local account configuration, saved sessions, cookies, and publish logs may expose account or posting data.
+
+Mitigation: Do not store real passwords in config/accounts.json, protect or delete config and publish_log.json files after use, and treat saved browser sessions or cookies as account credentials.
+
+## Reference(s):
+
+- [Auto Publisher ClawHub Skill Page](https://clawhub.ai/954215110/skills/auto-publisher)
+- [Publisher Profile](https://clawhub.ai/users/954215110)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python command examples, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local account configuration and publish logs when the publishing script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

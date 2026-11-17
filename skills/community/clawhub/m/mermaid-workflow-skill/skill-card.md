@@ -1,45 +1,64 @@
-## Description: <br>
-Creates Mermaid diagram definition files, converts them to PNG images with Mermaid CLI, and inserts the image links into Markdown documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Mermaid diagram definition files, renders them to PNG with Mermaid CLI, and inserts the resulting image links into Markdown documents.
 
-## Publisher: <br>
-[runmanfm-bit](https://clawhub.ai/user/runmanfm-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[runmanfm-bit](https://clawhub.ai/user/runmanfm-bit)
 
-## Use Case: <br>
-Developers and technical writers use this skill to generate project roadmap, architecture, flowchart, sequence, class, state, Gantt, and ER diagrams, render them as PNG images, and place them into Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Mermaid rendering may run Chromium with sandboxing disabled. <br>
-Mitigation: Use the skill only with trusted Mermaid inputs or render inside a container or virtual machine, and keep Chromium sandboxing enabled where the environment supports it. <br>
-Risk: Markdown insertion can edit files in place. <br>
-Mitigation: Use version control or backups before insertion and review the changed Markdown before relying on the output. <br>
-Risk: The conversion flow may fall back to automatic npx execution for Mermaid CLI. <br>
-Mitigation: Avoid automatic npx execution in sensitive environments and install or pin trusted Mermaid CLI tooling before running conversions. <br>
+## Use Case:
 
+Developers, engineers, and technical writers use this skill to create roadmap, architecture, flowchart, sequence, class, state, Gantt, and ER diagrams and place rendered PNGs into Markdown reports or documentation.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/runmanfm-bit/mermaid-workflow-skill) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Example workflow](examples/example_workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Mermaid .mmd text, shell command sequences, PNG file paths, and Markdown image references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify Markdown files in place when inserting generated image links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: The conversion workflow may run Chromium with --no-sandbox or --disable-setuid-sandbox for Mermaid rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render diagrams only in a disposable isolated container or VM, or use a sandbox-compatible Mermaid CLI setup without disabling Chromium sandboxing.
+
+Risk: The converter can fall back to npx @mermaid-js/mermaid-cli, which may execute an unpinned npm package.
+
+Mitigation: Install a pinned Mermaid CLI version locally with a lockfile and disable or review any automatic npx fallback before use.
+
+Risk: Markdown insertion commands rewrite target Markdown files and can replace placeholders or section content.
+
+Mitigation: Back up or version-control Markdown files before insertion and review diffs before publishing generated documentation.
+
+Risk: Mermaid files supplied by other parties may contain untrusted content processed by the renderer.
+
+Mitigation: Treat external .mmd files as untrusted input and process them only in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/runmanfm-bit/skills/mermaid-workflow-skill)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Example workflow](artifact/examples/example_workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples plus generated Mermaid definitions, PNG images, and Markdown image links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create .mmd and .png files, generate Puppeteer configuration, and modify target Markdown files when insertion commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

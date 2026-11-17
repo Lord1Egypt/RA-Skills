@@ -1,50 +1,69 @@
-## Description: <br>
-Creates complete murder-mystery game packages from a requested theme, style, player count, or reference-work structure analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Murder Mystery Creator helps agents generate complete murder mystery game packages from a requested theme, style, player count, or reference work, including plot outlines, character cards, clue cards, host materials, visual assets, and an interactive HTML view.
 
-## Publisher: <br>
-[gongsunyanming](https://clawhub.ai/user/gongsunyanming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gongsunyanming](https://clawhub.ai/user/gongsunyanming)
 
-## Use Case: <br>
-External users and creators use this skill to draft host-ready murder-mystery scripts, character cards, clue cards, host guides, reveal scripts, image asset plans, and optional interactive visualization pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may include mature crime themes. <br>
-Mitigation: Review generated scripts for the intended audience and tone before use or distribution. <br>
-Risk: The skill can create many local output files and asset descriptions. <br>
-Mitigation: Review generated file contents and paths before sharing, packaging, or running follow-up automation. <br>
-Risk: Generated visualization HTML loads D3 from a CDN. <br>
-Mitigation: Review the HTML before sharing, and use a local or pinned D3 copy when offline use or supply-chain control matters. <br>
+## Use Case:
 
+External users and content creators use this skill to draft playable murder mystery scripts and supporting host materials. It can generate a standard script from direct requirements or analyze a reference work's structure before producing a new game package.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gongsunyanming/murder-mystery-creator) <br>
-- [Project Homepage](https://github.com/yiqi-ai/murder-mystery-creator) <br>
-- [Professional Analysis Framework](references/professional-analysis-framework.md) <br>
-- [Outline Template](references/outline-template.md) <br>
-- [Character Template](references/character-template.md) <br>
-- [Clue Template](references/clue-template.md) <br>
-- [Host Guide](references/host-guide.md) <br>
-- [Image Generation Guide](references/image-generation-guide.md) <br>
-- [Visualization Template](references/visualization-template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown script package with optional HTML visualization and image asset configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce multiple local files, image prompt/configuration artifacts, and an HTML visualization page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The security evidence reports that the skill asks agents to persist generated analysis into trusted reference markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not allow the skill to modify its own reference files as a cache; store generated analysis in a separate user-controlled workspace file when persistence is needed.
+
+Risk: The security evidence reports that generated visualizations can expose private player material.
+
+Mitigation: Treat visualization HTML as host-only unless private character fields and other non-player information are removed before sharing.
+
+Risk: The security evidence warns that generated HTML may execute unsafe page content.
+
+Mitigation: Review generated HTML before opening or sharing it, escape dynamic content, and vendor or pin D3 with integrity checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gongsunyanming/skills/murder-mystery-creator)
+- [Project homepage](https://github.com/yiqi-ai/murder-mystery-creator)
+- [Professional analysis framework](artifact/references/professional-analysis-framework.md)
+- [Outline template](artifact/references/outline-template.md)
+- [Character template](artifact/references/character-template.md)
+- [Clue template](artifact/references/clue-template.md)
+- [Host guide](artifact/references/host-guide.md)
+- [Logic check](artifact/references/logic-check.md)
+- [Image generation guide](artifact/references/image-generation-guide.md)
+- [Visualization template](artifact/references/visualization-template.html)
+- [Design tips](artifact/references/design-tips.md)
+- [Writing techniques](artifact/references/writing-techniques.md)
+- [Snowstorm Manor example script](artifact/snowstorm-manor.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown script package with optional image-generation prompts, JSON-like configuration, and generated HTML visualization.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include private character sections and host-only material that should be kept separate from player-facing content.]
+
+## Skill Version(s):
+
+1.8.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

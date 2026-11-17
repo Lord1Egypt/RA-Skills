@@ -1,44 +1,55 @@
-## Description: <br>
-帮助用户从NLP理解层次的顶层重新规划人生；当用户感到迷茫、深陷日复一日的执行循环、不知如何突破现状时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language reflective coaching skill that guides users through NLP logical levels to explore mission, identity, beliefs and values, capabilities, actions, and environment when they feel stuck or directionless.
 
-## Publisher: <br>
-[kangarooking](https://clawhub.ai/user/kangarooking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kangarooking](https://clawhub.ai/user/kangarooking)
 
-## Use Case: <br>
-External users can use this Chinese-language coaching skill for structured self-reflection when they feel stuck, directionless, or caught in repetitive execution without a clear sense of purpose. The skill guides a top-down exploration of NLP logical levels: mission, identity, beliefs and values, capabilities, behavior, and environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake broad life-planning prompts for mental-health, legal, financial, career, or relationship advice. <br>
-Mitigation: Present the skill as structured reflection only and direct users to qualified human support for crisis situations or major life decisions. <br>
-Risk: The skill invites personal reflection that may include sensitive life details. <br>
-Mitigation: Encourage users to share only what they are comfortable discussing in chat and avoid unnecessary sensitive personal details. <br>
-Risk: The coaching flow is broad and directive, so generated plans may not fit a user's circumstances. <br>
-Mitigation: Treat outputs as draft reflection aids and ask users to review, adapt, and validate commitments before acting on them. <br>
+## Use Case:
 
+External users use this skill for structured Chinese-language self-reflection and life planning when they feel lost, busy without direction, or ready to rethink goals from mission down to concrete actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kangarooking/reshape-your-life) <br>
-- [NLP理解层次详细指南](references/nlp-levels-guide.md) <br>
-- [引导对话脚本与话术库](references/session-script.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style conversational guidance and structured reflection summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompts, reflective questions, action commitments, and a structured life blueprint; no code or tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat reflective life-planning prompts as crisis support, psychiatric care, or professional mental-health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as coaching only, pause if prompts feel distressing, and seek qualified help for crisis, psychiatric, or clinical concerns.
+
+Risk: Deep self-reflection prompts may feel emotionally distressing for some users.
+
+Mitigation: Use the prompts at a comfortable pace and stop or redirect the session when the user shows distress.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kangarooking/skills/reshape-your-life)
+- [NLP理解层次详细指南](references/nlp-levels-guide.md)
+- [引导对话脚本与话术库](references/session-script.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Chinese text with Markdown-style structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the guidance may span multiple dialogue turns.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

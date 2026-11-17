@@ -1,37 +1,53 @@
-## Description: <br>
-Optimizes build toolchains and engineering setups for Vite/Webpack configuration, pnpm/Turborepo monorepos, Module Federation, CI/CD pipelines, code generation, and developer experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Engineering helps developers diagnose and optimize frontend build toolchains, monorepos, module federation, CI/CD pipelines, code generation, and developer experience.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and build engineers use this skill to diagnose slow builds, design monorepo and module federation setups, improve CI/CD pipelines, and generate practical configuration examples for frontend projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Build-system and CI recommendations may include dependency installs or configuration changes that affect a real project. <br>
-Mitigation: Review proposed commands and configuration changes in version control or a test branch before applying them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to investigate slow builds, structure pnpm and Turborepo monorepos, configure module federation, improve GitHub Actions pipelines, and add code generation workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review proposed dependency installs, CI changes, and build configuration before applying them to a real project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and clawhub.json) <br>
+Risk: Suggested package installs, GitHub Actions snippets, or build configuration changes could affect supply-chain exposure, CI behavior, or production build output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands and configuration before applying them, pin package versions and GitHub Actions to reviewed versions or SHAs, and test changes in a branch or staging pipeline first.
+
+Risk: The skill requests the Opus model, which may affect account cost or model governance requirements.
+
+Mitigation: Confirm that the requested model is acceptable for the deploying account, budget, and internal approval process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/skills/build-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration snippets, code examples, shell commands, and diagnostic recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest package installs, CI snippets, and build configuration changes that should be reviewed before application.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

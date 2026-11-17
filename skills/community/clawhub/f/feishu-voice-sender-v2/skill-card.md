@@ -1,43 +1,58 @@
-## Description: <br>
-Sends Feishu voice-message responses by selecting a channel-specific path and using Xiaomi MiMo TTS for Feishu audio generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaomi MiMo TTS voice audio for Feishu-oriented voice replies after detecting the current messaging channel.
 
-## Publisher: <br>
-[EnderXiao](https://clawhub.ai/user/EnderXiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[enderxiao](https://clawhub.ai/user/enderxiao)
 
-## Use Case: <br>
-Developers and operators use this skill to generate voice responses for Feishu channels and fall back to channel-appropriate behavior for other messaging platforms. It is intended for workflows where an agent needs to turn user-provided text into a voice notification or reply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text may be sent to an external Xiaomi MiMo TTS path. <br>
-Mitigation: Use the skill only with approved text data, disclose the external TTS dependency, and configure a dedicated MiMo API key. <br>
-Risk: The Feishu send path can report delivery success even though the send implementation is not complete. <br>
-Mitigation: Review or fix the send implementation before deployment and verify actual Feishu delivery before reporting success to users. <br>
-Risk: Automatic channel detection can generate or attempt to send voice messages unexpectedly. <br>
-Mitigation: Require explicit confirmation before generating or sending voice messages and use least-privilege Feishu bot credentials. <br>
+## Use Case:
 
+Developers use this skill to let an agent convert requested text into voice audio for Feishu-oriented messaging workflows, with channel detection for Feishu and unsupported-channel handling for other platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EnderXiao/feishu-voice-sender-v2) <br>
-- [Xiaomi MiMo API Platform](https://platform.xiaomimimo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance, command-line status text, and generated voice audio files when the helper succeeds] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MIMO_API_KEY, ffmpeg, the Xiaomi MiMo TTS skill, and approved Feishu bot credentials for deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Voice generation delegates execution to an unpinned external xiaomi-mimo-tts script with the subprocess environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted and protected xiaomi-mimo-tts installation, and restrict the subprocess environment to required variables.
+
+Risk: The current Feishu delivery path can report success before actual Feishu message delivery is implemented and verified.
+
+Mitigation: Do not rely on this version for real Feishu delivery until the send function is implemented, tested, and verified in the target environment.
+
+Risk: Text used for voice generation may pass through external TTS and messaging data flows.
+
+Mitigation: Avoid sending sensitive text unless those external data flows are acceptable for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enderxiao/skills/feishu-voice-sender-v2)
+- [Xiaomi MiMo platform](https://platform.xiaomimimo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Command-line status text and generated OGG audio file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MIMO_API_KEY, ffmpeg, Node.js, and the xiaomi-mimo-tts dependency.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

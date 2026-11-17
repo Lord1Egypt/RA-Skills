@@ -1,40 +1,53 @@
-## Description: <br>
-Hegelian synthesis overlay for ideation and strategic reframing when strong opposing positions need structured confrontation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hegelian synthesis overlay for ideation and strategic reframing when strong opposing positions need structured confrontation.
 
-## Publisher: <br>
-[malleus35](https://clawhub.ai/user/malleus35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malleus35](https://clawhub.ai/user/malleus35)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to structure open-ended ideation, strategic reframing, and synthesis when two strong positions may yield a higher-order answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence how an agent frames debate and strategy work, which may introduce reasoning quality or bias issues. <br>
-Mitigation: Review outputs for reasoning quality, balance, and bias before relying on conclusions. <br>
-Risk: Paired skills may add tools, credentials, network access, or file access outside this skill's instruction-only behavior. <br>
-Mitigation: Evaluate any separately installed paired skills on their own before use. <br>
+## Use Case:
 
+Developers, strategists, and other external users use this skill to structure open-ended ideation, strategic reframing, and synthesis when two strong positions need to be confronted. It is not intended for simple decision forks, direct verification tasks, or problems that are still too vague to frame.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/malleus35/agora-dialectic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown synthesis memo or explicit deadlock report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no tools, credentials, network access, code execution, or persistence are used by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The skill can shape how an agent frames opposing viewpoints, which may be inappropriate for straightforward factual verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for open-ended ideation and strategic reframing; avoid it when a direct factual answer or verification workflow is needed.
+
+Risk: Applying the dialectic frame to a vague or simple problem can produce unnecessary structure or an artificial deadlock.
+
+Mitigation: Use it only when two strong positions can be clearly framed; otherwise clarify the problem or use a simpler decision workflow.
+
+## Reference(s):
+
+- [Agora Dialectic on ClawHub](https://clawhub.ai/malleus35/skills/agora-dialectic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance, typically a synthesis memo or explicit deadlock report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, data access, persistence, or elevated authority requested according to security evidence.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 # ILIB\_DeviceItem interface
 
-器件属性
+Device property
 
 ## Signature
 
 ```typescript
-interface ILIB_DeviceItem 
+interface ILIB_DeviceItem
 ```
 
 ## Properties
@@ -14,194 +14,154 @@ interface ILIB_DeviceItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [association](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_DeviceAssociationItem](./ILIB_DeviceAssociationItem.md)
 
-
 </td><td>
 
-关联
-
+Associate
 
 </td></tr>
 <tr><td>
 
 [classification?](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_ClassificationIndex](./ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 器件分类
-
+_(Optional)_ Device classification
 
 </td></tr>
 <tr><td>
 
 [description?](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [libraryType](./ILIB_DeviceItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [ELIB\_LibraryType.DEVICE](../enums/ELIB_LibraryType.md)
 
-
 </td><td>
 
-库类型
-
+Library type
 
 </td></tr>
 <tr><td>
 
 [libraryUuid](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属库 UUID
-
+UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [name](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-器件名称
-
+Device name
 
 </td></tr>
 <tr><td>
 
 [property](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_DeviceExtendPropertyItem](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
 
-扩展属性
-
+Extension property
 
 </td></tr>
 <tr><td>
 
 [subPartNames](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 \[\]
 
-
 </td><td>
 
-子部件名称数组
-
+Sub-part name array
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_DeviceItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-器件 UUID
-
+Device UUID
 
 </td></tr>
 </tbody></table>
@@ -214,7 +174,7 @@ string
 
 # ILIB\_DeviceItem.association property
 
-关联
+Associate
 
 ## Signature
 
@@ -226,7 +186,7 @@ association: ILIB_DeviceAssociationItem;
 
 # ILIB\_DeviceItem.classification property
 
-器件分类
+Device classification
 
 ## Signature
 
@@ -238,7 +198,7 @@ classification?: ILIB_ClassificationIndex | Array<string>;
 
 # ILIB\_DeviceItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -250,7 +210,7 @@ description?: string;
 
 # ILIB\_DeviceItem.libraryType property
 
-库类型
+Library type
 
 ## Signature
 
@@ -262,7 +222,7 @@ readonly libraryType: ELIB_LibraryType.DEVICE;
 
 # ILIB\_DeviceItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 
@@ -274,7 +234,7 @@ libraryUuid: string;
 
 # ILIB\_DeviceItem.name property
 
-器件名称
+Device name
 
 ## Signature
 
@@ -286,7 +246,7 @@ name: string;
 
 # ILIB\_DeviceItem.property property
 
-扩展属性
+Extension property
 
 ## Signature
 
@@ -298,7 +258,7 @@ property: ILIB_DeviceExtendPropertyItem;
 
 # ILIB\_DeviceItem.subPartNames property
 
-子部件名称数组
+Sub-part name array
 
 ## Signature
 
@@ -310,7 +270,7 @@ subPartNames: [];
 
 # ILIB\_DeviceItem.uuid property
 
-器件 UUID
+Device UUID
 
 ## Signature
 

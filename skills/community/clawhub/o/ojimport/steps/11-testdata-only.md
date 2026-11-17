@@ -36,6 +36,8 @@
 - 算法**正**（能过诸 25 组测试数据）
 - 用 `std.cpp` 为文件名，置 `{WORK_DIR}/` 目录
 - OI 风格：简变量名、全局变量、`ios::sync_with_stdio(false)`
+- **禁止使用 C 语言的输入输出**（`scanf`/`printf`），必须用 `cin`/`cout`
+- **除数组外，尽量用 C++ 写法**——结构体、算法、字符串处理等优先用 C++ 标准库（`std::sort`、`std::string`、`std::vector` 等），避免 C 风格（`qsort`、`char[]`、`strcpy` 等）
 - 时复杂度对标题限（勿写出比正解更慢版）
 - 注：Hack 数据乃为**选手码**掘坑，标程必能正跑过诸 Hack
 
@@ -94,6 +96,12 @@ else if (case_num >= 3 && case_num <= 5) {
 格式见 **`references/testdata-design.md` → 五、config.yaml 格式**。
 **时/内存限**自用户供题信息取。若用户未供，主动问。
 
+### 4b. 追加测试点分布表
+
+写完 config.yaml 后，**必**于 `{WORK_DIR}/problem_zh.md` 的 `</div>` 前追加测试点分布表。
+
+格式详见 **`references/testdata-design.md` → 六、测试点分布表格式**。**此步不可跳过。**
+
 ### 5. 编译运行
 
 ```bash
@@ -124,6 +132,7 @@ g++ mkdata.cpp -o mkdata -std=c++17
 - [ ] 前 2 组数与样例题完全一致（用 `diff` 或 `read_file` 较）
 - [ ] 每组 .in 格合同题入格式述
 - [ ] {WORK_DIR}/testdata/config.yaml 之 subtask cases 表与实生文件一致
+- [ ] {WORK_DIR}/problem_zh.md 末尾含测试点分布表
 - [ ] `lsp_diagnostics` 查 mkin.h 无误
 
 ### 7. 打包
@@ -146,7 +155,8 @@ zip testdata.zip *.in *.out config.yaml
 
 告用户测数已生：
 - `{WORK_DIR}/testdata/` 目录：25 组 `.in` + 25 组 `.out` + `config.yaml`
-- `{WORK_DIR}/testdata/testdata.zip`：前诸文件打
+- `{WORK_DIR}/testdata/testdata.zip`：前诸文件打包
+- `{WORK_DIR}/problem_zh.md`：内含测试点分布表
 
 ## 与常流之别
 
@@ -159,3 +169,4 @@ zip testdata.zip *.in *.out config.yaml
 | mkdata + 运 | 行 | **行** |
 | 打包 zip | 打全 {WORK_DIR}/ | **只打 testdata/ 为 testdata.zip** |
 | {WORK_DIR}/testdata/config.yaml | 写 | **写** |
+| 追加测试点分布表至 problem_zh.md | 做 | **做**（内参 problem_zh.md 也追加） |

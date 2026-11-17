@@ -1,47 +1,62 @@
-## Description: <br>
-Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use before starting work and after responding to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection, self-criticism, self-learning, and self-organizing memory help an agent evaluate its work, catch mistakes, and improve across sessions.
 
-## Publisher: <br>
-[Theo-jobs](https://clawhub.ai/user/Theo-jobs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theo-jobs](https://clawhub.ai/user/theo-jobs)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture explicit corrections, self-reflections, preferences, and reusable work patterns in a local tiered memory system so future agent sessions can improve with visible, auditable state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory and steering can influence future agent sessions beyond the immediate task. <br>
-Mitigation: Use Passive or Strict mode, keep learned rules visible, review memory entries regularly, and remove entries that should no longer affect behavior. <br>
-Risk: Sensitive personal, work, credential, financial, medical, third-party, or access-context data could be stored in memory. <br>
-Mitigation: Follow the skill's boundaries: do not store those categories, inspect ~/self-improving/ regularly, and use the forget or wipe flows when needed. <br>
-Risk: Suggested edits to AGENTS.md, SOUL.md, or HEARTBEAT.md can change agent behavior across sessions. <br>
-Mitigation: Review those edits before applying them and keep any inferred rules tentative until the user validates them. <br>
+## Use Case:
 
+Developers and agent users use this skill to add local self-reflection and correction-driven memory so agents can record explicit feedback, organize reusable preferences, and cite memory sources in later work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Theo-jobs/hamster-self-improving) <br>
-- [Skill Homepage](https://clawic.com/skills/self-improving) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Security Boundaries](artifact/boundaries.md) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Memory Operations](artifact/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local files under ~/self-improving/; no required external binaries are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.9 (source: frontmatter and server release evidence) <br>
+Risk: Persistent local memory and steering-file edits can change agent behavior across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup edits before applying them, keep the operating mode conservative when appropriate, and periodically inspect or delete ~/self-improving/ contents.
+
+Risk: Memory files may retain sensitive or unwanted information if boundaries are not followed.
+
+Mitigation: Do not store credentials, medical data, financial data, third-party information, or location and access patterns; use the documented forget and export flows for audit and removal.
+
+Risk: Optional always-on self-improvement behavior may be broader than some users intend.
+
+Mitigation: Skip SOUL.md core-drive text and HEARTBEAT automation unless continuous self-improvement behavior is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theo-jobs/skills/hamster-self-improving)
+- [Skill homepage](https://clawic.com/skills/self-improving)
+- [Security boundaries](artifact/boundaries.md)
+- [Setup guide](artifact/setup.md)
+- [Learning mechanics](artifact/learning.md)
+- [Memory operations](artifact/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on local memory files under ~/self-improving/ and optional steering-file edits.]
+
+## Skill Version(s):
+
+1.2.9 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

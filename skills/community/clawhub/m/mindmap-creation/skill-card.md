@@ -1,38 +1,55 @@
-## Description: <br>
-Mind map creation expert that produces structured, hierarchical mind maps based on user-provided topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mind map creation expert that produces structured, hierarchical mind maps based on user-provided topics. Breaks down complex knowledge into logically clear tree structures.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to organize knowledge, study notes, project plans, brainstorming outputs, and content outlines into concise hierarchical mind maps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mind maps may omit important context or organize a topic in a misleading way. <br>
-Mitigation: Review generated mind maps for accuracy, completeness, and suitability before using them for study, planning, or documentation. <br>
+## Use Case:
 
+External users and developers use this skill to turn topics into concise hierarchical markdown mind maps for knowledge organization, study notes, project planning, brainstorming, and content outlining.
 
-## Reference(s): <br>
-- [Common Mind Map Structure Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown heading and bullet-list mind map] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the mind map structure with no explanation, summary, or commentary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Strict output constraints may produce terse or awkward labels for longer terms or some languages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated mind maps for clarity and expand branch labels when readability matters.
+
+Risk: A generated mind map can omit important context when a topic is broad or ambiguous.
+
+Mitigation: Provide a clear topic scope and review the final hierarchy before using it for planning, study, or documentation.
+
+## Reference(s):
+
+- [Common Mind Map Structure Patterns](references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/mindmap-creation)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown mind map with a topic heading, branch headings, and nested lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs the agent to output only the mind map structure without explanation, summary, or commentary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

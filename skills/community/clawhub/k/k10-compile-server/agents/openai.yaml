@@ -1,0 +1,4 @@
+interface:
+  display_name: "K10 Compile Server"
+  short_description: "Build K10 projects and flash through Web Serial"
+  default_prompt: "Use $k10-compile-server to compile my UNIHIKER K10 PlatformIO project and open the Web Serial flash page."

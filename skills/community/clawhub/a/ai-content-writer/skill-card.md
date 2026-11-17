@@ -1,43 +1,58 @@
-## Description: <br>
-AI 智能写作助手 - 支持多平台内容创作，包括公众号、小红书、知乎、LinkedIn 等风格。提供 AI 查重、SEO 优化、改写润色等功能，一键生成高质量内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-specific Chinese content drafts for channels such as WeChat, Xiaohongshu, Zhihu, LinkedIn, Twitter/X, Weibo, and Douyin, with optional hot-topic search when Tavily is configured.
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Content creators, marketers, and business users use this skill to generate and adapt Markdown articles or social posts for WeChat, Xiaohongshu, Zhihu, LinkedIn, Twitter/X, Weibo, and Douyin styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted topic value can be executed as a shell command when hot-topic search runs. <br>
-Mitigation: Only use fully trusted topic values and replace shell-string execution with argument-array process spawning before broader deployment. <br>
-Risk: Topic searches may send user-provided subjects to Tavily. <br>
-Mitigation: Avoid confidential topics and clearly disclose the external search data flow to users. <br>
-Risk: The skill depends on a Tavily search helper and inherited environment variables. <br>
-Mitigation: Declare the Tavily dependency explicitly and minimize inherited environment variables. <br>
+## Use Case:
 
+External users and agents use this skill to draft social, professional, and article-style content from a topic, style, tone, keywords, and length options. It is suited to assisted content drafting and should be reviewed before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/ai-content-writer) <br>
-- [Homepage declared by artifact](https://github.com/openclaw/ai-writing-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown article or social-post content with optional command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated Markdown content to a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The topic search path can execute shell commands unsafely when topic text is used to construct a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and ask the publisher to replace shell command construction with argument-array execution and strict topic validation.
+
+Risk: User topics and draft ideas can be sent to Tavily search when TAVILY_API_KEY is configured.
+
+Mitigation: Do not provide confidential topics or unpublished ideas unless external search disclosure is acceptable.
+
+Risk: A user-provided output path can overwrite an existing file.
+
+Mitigation: Choose output destinations deliberately and review generated drafts before publication or downstream use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryan-wuxl/skills/ai-content-writer)
+- [Publisher Profile](https://clawhub.ai/user/ryan-wuxl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown article printed to stdout or written to a user-provided output file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; TAVILY_API_KEY enables external hot-topic search; supported options include topic, platform style, tone, keywords, length, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

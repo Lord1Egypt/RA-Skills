@@ -1,0 +1,79 @@
+{
+  "name": "lygo-public-witness",
+  "displayName": "LYGO Public Witness",
+  "version": "1.0.0",
+  "description": "Public feeds are REFERENCE. Dual ledgers, kernel eggs, and Haven Star Chart are CANON. HTTPS GET allowlist. Never invent missing sources. Never live chart write. Optional localhost Ollama.",
+  "slug": "lygo-public-witness",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://chatagent.ca/witness/",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-public-witness",
+  "signature": "Delta9Phi963-PUBLIC-WITNESS-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "osint",
+    "reference",
+    "canon",
+    "lattice",
+    "star-chart",
+    "eggs",
+    "public",
+    "openclaw",
+    "globe"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "doctrine": "scripts/witness_cli.py doctrine",
+    "canon": "scripts/witness_cli.py canon",
+    "reference": "scripts/witness_cli.py reference",
+    "overlay": "scripts/witness_cli.py overlay",
+    "propose": "scripts/witness_cli.py propose",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🌐",
+    "homepage": "https://chatagent.ca/witness/",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": {
+      "https_get": true,
+      "http_post": false,
+      "localhost_ollama": "optional POST http://127.0.0.1:11434/api/generate",
+      "domains_hint": [
+        "earthquake.usgs.gov",
+        "eonet.gsfc.nasa.gov",
+        "api.wheretheiss.at",
+        "deepseekoracle.github.io",
+        "raw.githubusercontent.com",
+        "chatagent.ca",
+        "eternalhaven.ca",
+        "clawhub.ai"
+      ]
+    },
+    "filesystem": {
+      "write_reports": "only --write-report or propose --write",
+      "shell": false,
+      "os_system": false,
+      "subprocess": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub": false,
+      "social": false,
+      "live_star_chart": false
+    }
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "https_only_public": true,
+    "live_chart_write": false,
+    "invent_missing_sources": false,
+    "version": "1.0.0"
+  }
+}

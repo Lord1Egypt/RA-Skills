@@ -1,42 +1,55 @@
-## Description: <br>
-Socratic dialogue helps users clarify thinking, challenge assumptions, seek evidence, and explore alternative perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Socratic Dialogue helps users clarify thinking, challenge assumptions, seek evidence, and explore alternative perspectives.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill as a local prompting aid for structured Socratic reflection during product decisions, strategy work, problem analysis, startup validation, and important choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Displayed prompts may guide user reasoning without supplying final answers or expert advice. <br>
-Mitigation: Use the prompts as a reflection aid and apply human judgment before acting on conclusions. <br>
-Risk: The skill includes short shell scripts that execute locally to display dialogue prompts. <br>
-Mitigation: Grant only normal skill execution permissions and review the scripts before deployment when required by policy. <br>
+## Use Case:
 
+External users, developers, and employees can use this skill to guide reflective Socratic dialogue for clarifying ideas, testing assumptions, examining evidence, and exploring alternatives before decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/socratic-dialogue) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuqingsonga) <br>
-- [Publisher homepage](https://github.com/zhuqingsonga/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text prompts and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, API calls, or private-file access are indicated by the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Users may treat reflective prompts as answers or expert advice for urgent, high-stakes, or emotional-crisis situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a thinking aid; route emergencies, emotional crises, and high-stakes decisions to qualified human support or domain experts.
+
+Risk: Dialogue prompts can surface assumptions without independently verifying whether resulting conclusions are correct.
+
+Mitigation: Review conclusions independently and verify evidence before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/socratic-dialogue)
+- [Publisher profile](https://clawhub.ai/user/zhuqingsonga)
+- [Publisher homepage from clawdis metadata](https://github.com/zhuqingsonga/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text prompts and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt sets cover clarify, challenge, evidence, explore, and full dialogue modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

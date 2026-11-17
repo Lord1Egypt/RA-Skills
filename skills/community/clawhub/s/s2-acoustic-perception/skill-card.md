@@ -1,41 +1,62 @@
-## Description: <br>
-S2-SP-OS Acoustic Radar performs edge-delegated zero-shot acoustic classification with claimed ephemeral privacy and strict LAN-only network enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures a short microphone sample, sends it to a local edge service for acoustic event classification, and returns semantic event data with optional local linkage suggestions.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and operators use this skill to capture a consented short ambient audio sample, send it to a trusted LAN edge classifier, and receive semantic acoustic tags plus local follow-up suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records ambient microphone audio and sends short audio clips to a LAN edge server. <br>
-Mitigation: Install only with explicit microphone consent, verify the destination is a trusted local server, and do not rely solely on the skill's privacy claims. <br>
-Risk: The skill can suggest camera, alarm, security, logging, or smart-home follow-up actions based on acoustic classifications. <br>
-Mitigation: Require manual confirmation before executing any follow-up action from the skill's suggestions. <br>
+## Use Case:
 
+Developers and agents can use this skill, with explicit user consent, to sample environmental audio and receive structured acoustic labels such as speech, music, pet sounds, glass breakage, or ambient noise. It is intended for local edge-service workflows where microphone access and follow-on smart-home or security actions are carefully controlled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-acoustic-perception) <br>
-- [Project homepage](https://space2.world/s2-sp-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, guidance] <br>
-**Output Format:** [JSON object emitted to stdout, with setup and execution guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, sounddevice, numpy, microphone consent, and a trusted LAN edge server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill captures microphone audio and can expose sensitive environmental or human-speech context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after explicit user consent, limit use to intended zones, and avoid recording or retaining raw audio outside the local workflow.
+
+Risk: Audio is sent to an edge service over unauthenticated HTTP.
+
+Mitigation: Use only a trusted local service on a controlled network, add authentication or transport protection where possible, and do not route requests to public or untrusted hosts.
+
+Risk: The skill's output may suggest camera, alarm, smart-home, or memory actions.
+
+Mitigation: Require human review or explicit policy gates before agents trigger downstream devices, alarms, logging, or memory updates.
+
+Risk: The source text makes strong LAN-only and memory-erasure claims that should not be treated as guarantees.
+
+Mitigation: Review the deployment and runtime behavior directly, and document residual privacy limits before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-acoustic-perception)
+- [S2-SP-OS homepage](https://space2.world/s2-sp-os)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON emitted by a Python command-line client]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 with sounddevice and numpy, microphone access, explicit consent, and a local edge service IP.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

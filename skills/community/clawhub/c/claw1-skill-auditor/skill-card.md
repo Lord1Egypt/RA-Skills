@@ -1,43 +1,52 @@
-## Description: <br>
-Analyze SKILL.md files for security risks, quality issues, and best-practice violations before installing or sharing OpenClaw skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze SKILL.md files for security risks, quality issues, and best-practice violations to support safer OpenClaw skill installation.
 
-## Publisher: <br>
-[Gpunter](https://clawhub.ai/user/Gpunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Free to use <br>
+## Publisher:
 
+[gpunter](https://clawhub.ai/user/gpunter)
 
-## Use Case: <br>
-Developers, engineers, and agents use this skill to audit OpenClaw SKILL.md files or URLs for security risks, quality issues, and best-practice violations before installation, comparison, or report sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trust scores may create a false sense of assurance because the skill uses heuristic static review. <br>
-Mitigation: Treat audit results as advisory and combine them with human review before installing or publishing a skill. <br>
-Risk: Sensitive information could be exposed if secrets are included in audit inputs or generated reports. <br>
-Mitigation: Audit only selected files or URLs and remove credentials, tokens, or private data before sharing reports. <br>
-Risk: Runtime-only behavior and external URL safety may not be fully detectable from SKILL.md content alone. <br>
-Mitigation: Review runtime dependencies, network behavior, and external endpoints separately when a skill has executable behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gpunter/claw1-skill-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/Gpunter) <br>
+## Use Case:
 
+Developers and agent users use this skill to audit OpenClaw SKILL.md files before installation, compare skill versions, and generate shareable security reports. It helps reviewers identify risky patterns, quality gaps, and best-practice violations while keeping final trust decisions human-reviewed.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit report with trust score, severity counts, findings, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include warning IDs, comparison notes, and follow-up recommendations; trust scores are heuristic and advisory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and SKILL.md Version section) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trust scores and findings are heuristic and may miss runtime-only attacks or risks that are not visible in the skill definition.
+
+Mitigation: Use the audit output as review guidance, not as a guarantee, and combine it with manual inspection before installing or updating a skill.
+
+Risk: The skill reads user-supplied skill files and may fetch a URL provided for audit.
+
+Mitigation: Point it only at intended SKILL.md files or URLs, and avoid supplying private files unrelated to the audit task.
+
+## Reference(s):
+
+- [CLAW-1 Skill Auditor on ClawHub](https://clawhub.ai/gpunter/skills/claw1-skill-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit reports with trust scores, severity counts, warnings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Heuristic security and quality findings for the SKILL.md file or URL supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Use when auditing Go code involving logging, error handling, HTTP response data, Kubernetes Secret management, or credential storage for information disclosure risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through audits of Go code for information disclosure in logs, errors, HTTP responses, Kubernetes Secret handling, and credential storage.
 
-## Publisher: <br>
-[yhy0](https://clawhub.ai/user/yhy0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhy0](https://clawhub.ai/user/yhy0)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit Go code for possible credential leaks, information disclosure in logs and API responses, Kubernetes Secret handling mistakes, and related CWE-200/532/522/312/552 patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the skill as suspicious because it includes high-impact auth and RCE guidance outside its stated information-disclosure scope. <br>
-Mitigation: Use the skill only as a broader Go security-audit reference on codebases you are authorized to review, and route discovered secrets or exploit-relevant findings through approved private disclosure channels. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit Go services for credential leaks and sensitive data exposure across logs, API serialization, Kubernetes resources, and error paths.
 
-## Reference(s): <br>
-- [Go Information Disclosure Real-World Cases](references/cases.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yhy0/go-vuln-info-disclosure) <br>
-- [Publisher profile](https://clawhub.ai/user/yhy0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with grep command examples and audit checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools or APIs are invoked by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad security review examples, including auth-bypass and RCE-adjacent cases, could be misapplied outside an authorized assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized defensive review and keep analysis scoped to systems the reviewer is permitted to assess.
+
+Risk: Pattern-based grep checks can produce false positives or miss source-to-sink context.
+
+Mitigation: Trace candidate findings manually and confirm missing sanitization before reporting a vulnerability.
+
+Risk: Audit work may surface real credentials or sensitive strings in code, logs, or API responses.
+
+Mitigation: Redact secrets in notes and reports, and avoid copying raw credentials into prompts or shared artifacts.
+
+## Reference(s):
+
+- [Go Information Disclosure -- Real-World Cases](references/cases.md)
+- [ClawHub Skill Page](https://clawhub.ai/yhy0/skills/go-vuln-info-disclosure)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown guidance with grep command examples and audit checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language audit guidance with real-world vulnerability examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

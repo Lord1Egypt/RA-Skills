@@ -1,39 +1,53 @@
-## Description: <br>
-Doubao helps agents summarize public ByteDance Doubao model and documentation pages, including model capabilities, pricing details, documentation directories, and example links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+整理字节跳动大模型公开页面信息，包括模型特性、定价、文档目录及示例链接的摘要和汇总。
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and developers use this skill to collect concise summaries of public Doubao product pages, model documentation, pricing information, and documentation links without performing account actions or API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Doubao model capabilities, pricing, quotas, and service status may change after the skill summarizes public pages. <br>
-Mitigation: Verify important or time-sensitive details against official Doubao pages before relying on them. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to gather concise summaries from public Doubao product pages and documentation, including model capabilities, pricing information, documentation links, and examples.
 
-## Reference(s): <br>
-- [Doubao Homepage](https://www.doubao.com/) <br>
-- [ClawHub Doubao Skill Page](https://clawhub.ai/codenova58/doubao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; generated content should be checked against current official Doubao pages for important details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Public product and documentation pages may change after a summary is generated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review important outputs against the linked public source before relying on them for decisions.
+
+Risk: The skill is intended for public-information summaries and should not be used for account operations, credential handling, or privileged actions.
+
+Mitigation: Keep usage limited to public pages and reject requests that require credentials, account changes, API calls, or permission bypass.
+
+## Reference(s):
+
+- [Doubao homepage](https://www.doubao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are based on public information and do not require account access, credentials, API calls, or persistence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

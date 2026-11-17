@@ -1,44 +1,56 @@
-## Description: <br>
-Browse and search the AgentAPI directory - a curated database of APIs designed for AI agents. Find MCP-compatible APIs for search, AI, communication, databases, payments, and more. Includes x402 pay-per-use billing with USDC on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search the AgentAPI directory - a curated database of APIs designed for AI agents, including MCP-compatible APIs and x402 pay-per-use billing with USDC on Base.
 
-## Publisher: <br>
-[gizmo-dev](https://clawhub.ai/user/gizmo-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gizmo-dev](https://clawhub.ai/user/gizmo-dev)
 
-## Use Case: <br>
-Developers and agents use this skill to find API services by category, capability, MCP compatibility, pricing, and examples. It also documents x402 pay-per-use access patterns for selected paid API endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes paid x402 API calls that can trigger USDC payments. <br>
-Mitigation: Require explicit per-payment approval, verify the price and recipient before payment, and use a low-balance or spending-limited wallet. <br>
-Risk: Agents may treat the payment examples as sufficient authorization to spend funds. <br>
-Mitigation: Configure agent policy so the skill is informational unless a human or separate payment-control layer approves each paid request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentAPI Hub ClawHub Listing](https://clawhub.ai/gizmo-dev/agentapi-hub) <br>
-- [AgentAPI Website](https://agentapihub.com) <br>
-- [AgentAPI Billing API](https://api.agentapihub.com) <br>
-- [AgentAPI Docs](https://api.agentapihub.com/api/docs) <br>
-- [AgentAPI Directory JSON Endpoint](https://agentapihub.com/api/v1/apis) <br>
-- [Publisher Profile](https://clawhub.ai/user/gizmo-dev) <br>
+## Use Case:
 
+Developers and agents use AgentAPI Hub to discover MCP-compatible APIs by category or capability and to review x402 pay-per-use examples for API access.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with API endpoint examples, JSON response examples, and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents toward paid x402 API calls that require USDC payments on Base.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes workflows where an agent can make real USDC payments through a third-party API.
+
+Mitigation: Require explicit approval for each payment, use a low-balance wallet, and enforce strict spending limits.
+
+Risk: Prompts or requests sent through proxied third-party APIs may expose sensitive information.
+
+Mitigation: Do not send secrets, private code, personal data, or credentials in proxied prompts.
+
+## Reference(s):
+
+- [AgentAPI Hub ClawHub listing](https://clawhub.ai/gizmo-dev/skills/agentapi-hub)
+- [AgentAPI website](https://agentapihub.com)
+- [AgentAPI docs](https://api.agentapihub.com/api/docs)
+- [AgentAPI JSON endpoint](https://agentapihub.com/api/v1/apis)
+- [Billing API](https://api.agentapihub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party API endpoints, x402 payment flow examples, and suggested API categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.teamtodo.controller.TodoListController"
+      spacing="8" styleClass="todo-list-panel">
+    <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+
+    <!-- 筛选栏 -->
+    <HBox spacing="6" alignment="CENTER_LEFT">
+        <Button fx:id="btnAll" text="全部" styleClass="filter-btn" onAction="#filterAll"/>
+        <Button fx:id="btnMine" text="我的" styleClass="filter-btn" onAction="#filterMine"/>
+        <Button fx:id="btnToday" text="今天" styleClass="filter-btn" onAction="#filterToday"/>
+        <Button fx:id="btnDone" text="已完成" styleClass="filter-btn" onAction="#filterDone"/>
+        <Label fx:id="countLabel" text="" styleClass="count-label"/>
+    </HBox>
+
+    <!-- 待办列表 -->
+    <ListView fx:id="todoListView" VBox.vgrow="ALWAYS"/>
+
+    <!-- 底部按钮 -->
+    <HBox spacing="8">
+        <Button fx:id="btnCreate" text="+ 新建待办" styleClass="btn-primary" maxWidth="Infinity" HBox.hgrow="ALWAYS" onAction="#createTodo"/>
+        <Button fx:id="btnDelete" text="删除" styleClass="btn-danger" onAction="#deleteSelected"/>
+    </HBox>
+</VBox>

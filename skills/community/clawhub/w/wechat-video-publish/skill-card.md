@@ -1,41 +1,57 @@
-## Description: <br>
-Automates publishing a local video to WeChat Channels through a browser session, including upload, title and description entry, visibility selection, and final publish checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+腾讯视频号发布 uses browser automation to guide publishing a video to WeChat Channels when the user asks to post to 视频号.
 
-## Publisher: <br>
-[Johnnyxu820](https://clawhub.ai/user/Johnnyxu820) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnnyxu820](https://clawhub.ai/user/johnnyxu820)
 
-## Use Case: <br>
-External users use this skill to guide an agent through posting prepared video content to a logged-in WeChat Channels account. It is intended for browser-assisted publishing workflows where the user can confirm the final content and publish action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish from a logged-in WeChat Channels account. <br>
-Mitigation: Require explicit user confirmation of the final video, title, description, hashtags, visibility, and publish action before posting. <br>
-Risk: The skill adds fixed public text, location, and originality claims that may not match the user's intent. <br>
-Mitigation: Remove or confirm the fixed appended phrase, fixed location, and originality declaration for each post. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WeChat Channels post creation page](https://channels.weixin.qq.com/platform/post/create) <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnyxu820/wechat-video-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/Johnnyxu820) <br>
+## Use Case:
 
+Developers, operators, and content publishing agents use this skill to publish prepared videos to WeChat Channels through a browser workflow with QR-code login, upload, title, description, visibility, location, originality declaration, and post-publication checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown instructions for browser automation steps and user confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a browser session, OpenClaw Chrome extension, a local video file, and WeChat QR-code login.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate in a live WeChat Channels account and publish visible content.
+
+Mitigation: Use a dedicated publishing account where practical and require the user to review title, description, visibility, location, and originality settings before clicking publish.
+
+Risk: Server security evidence says the skill adds preset public wording, hashtags, a fixed Suzhou Center location, and an originality declaration without clear user approval.
+
+Mitigation: Treat these fields as proposed defaults only; confirm or edit the wording, tags, location, and originality declaration with the user before publication.
+
+Risk: Duplicate publishing can occur if success is not checked before retrying.
+
+Mitigation: Check the WeChat Channels content management page or refresh confirmation before attempting another publish action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnyxu820/skills/wechat-video-publish)
+- [WeChat Channels publish page](https://channels.weixin.qq.com/platform/post/create)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Browser automation actions, Text]
+
+**Output Format:** [Markdown-style workflow guidance with browser actions and publication field text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local video file, WeChat QR-code login, Browser Relay/OpenClaw Chrome profile access, and manual review before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

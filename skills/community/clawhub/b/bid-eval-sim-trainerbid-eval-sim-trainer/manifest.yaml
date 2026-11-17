@@ -1,0 +1,16 @@
+name: bid-eval-sim-trainer
+display_name: 评标情景模拟训练官（如果是我）
+version: 1.0.0
+author: "一线评标专家&ChesaraM"
+description: 评标/政采评审专家的安全模拟训练陪练。覆盖招投标法体系与政采法体系双线，支持体系路由、灰区诚实判定、责任性质专项（民事/行政/刑事），含否决无效、异常低价、澄清询标、评分合规、围串标、独立评审、质疑投诉及2026新规等场景，输出标杆应对、法条依据、真实案例对照与后果分层。
+slug: bid-eval-sim-trainer
+emoji: "🎓"
+version_stage: stable
+agent_created: true
+license: MIT-0
+changelog: "v1.0.0 首发：评标情景模拟训练官（如果是我）。覆盖招投标法体系与政采法体系双线，含体系路由、灰区诚实判定、责任性质专项（民事/行政/刑事）、六维评分、模式A–G、测试用例TC1–6与KB挂载回归。"
+feedback:
+  channel: github
+  account: "https://github.com/<your-repo>/bid-eval-sim-trainer/issues"
+  note: 使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈
+homepage: "https://github.com/<your-repo>/bid-eval-sim-trainer"

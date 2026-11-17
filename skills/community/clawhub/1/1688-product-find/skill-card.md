@@ -1,53 +1,64 @@
-## Description: <br>
-Finds 1688 products from text, image, or link inputs, including similar-product search, bulk purchasing comparison, hot-sale and cross-border sourcing, and filters for price, sales, material, and attributes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches 1688 products by text, image, or product link, finds same or similar items, and supports purchase comparison with price, sales, supplier, and product attribute filters.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and sourcing teams use this skill to search 1688 for products, find same or similar items from images or links, compare candidate suppliers, and prepare purchasing research from API-returned product data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 1688 AK and stores credentials locally. <br>
-Mitigation: Use a dedicated or least-privileged AK, avoid sharing secrets in chat, and clear or rotate credentials when they are no longer needed. <br>
-Risk: CLI output, logs, and returned product data may include sensitive sourcing or credential-adjacent information. <br>
-Mitigation: Treat command output and logs as sensitive and avoid pasting them into shared channels without review. <br>
-Risk: The artifact includes automatic telemetry for completed CLI subcommands. <br>
-Mitigation: Review the telemetry behavior before installation and confirm it is acceptable for the intended environment. <br>
-Risk: The skill can support purchasing research and comparison workflows but does not handle payment, ordering, logistics, or inventory management. <br>
-Mitigation: Use it only for product discovery and supplier comparison; route transaction and fulfillment actions through approved purchasing systems. <br>
+## Use Case:
 
+External users and purchasing-focused agents use this skill to search 1688 for products, same-item matches, similar products, and lower-cost or higher-volume supplier options. It is intended for product discovery and comparison, not order placement, payment, logistics tracking, or inventory management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/1688-product-find) <br>
-- [Publisher Profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [AK Portal](https://clawhub.1688.com/) <br>
-- [Capability: text_search](references/capabilities/text_search.md) <br>
-- [Capability: image_search](references/capabilities/image_search.md) <br>
-- [Capability: link_search](references/capabilities/link_search.md) <br>
-- [Capability: compare](references/capabilities/compare.md) <br>
-- [Capability: configure](references/capabilities/configure.md) <br>
-- [Common Error Handling](references/common/error-handling.md) <br>
-- [Skill Telemetry Notes](references/skill埋点说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output with a markdown field containing product tables, status messages, and follow-up guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search commands require a 1688 AK and may return product identifiers, prices, supplier names, image URLs, detail links, and comparison tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: frontmatter and server release evidence) <br>
+Risk: Reusable 1688 AK or OAuth credentials may be exposed in chat, command output, or local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, avoid pasting real AK values into chat, avoid status commands that reveal live credentials until redaction is fixed, and rotate any AK that appears in transcripts or logs.
+
+Risk: The skill requires access to a 1688 AK for product search and comparison.
+
+Mitigation: Install only when granting this credential access is acceptable, and clear or rotate credentials when the skill is no longer needed.
+
+Risk: Product recommendations, prices, links, and supplier details are only as reliable as the API response returned at execution time.
+
+Mitigation: Do not invent missing product details, present returned links and fields as evidence, and ask the user to retry or reconfigure credentials when the CLI reports API or authentication errors.
+
+## Reference(s):
+
+- [1688 Product Find on ClawHub](https://clawhub.ai/1688aiinfra/skills/1688-product-find)
+- [Publisher profile: 1688aiinfra](https://clawhub.ai/user/1688aiinfra)
+- [Text search capability](references/capabilities/text_search.md)
+- [Image search capability](references/capabilities/image_search.md)
+- [Link search capability](references/capabilities/link_search.md)
+- [Compare capability](references/capabilities/compare.md)
+- [Configure capability](references/capabilities/configure.md)
+- [Error handling](references/common/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON containing a success flag, markdown product tables or errors, and structured product data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product results include item identifiers, titles, image URLs, detail URLs, price, SKU, supplier, sales, stock, promotion tags, service tags, and selling points when returned by the 1688 API.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

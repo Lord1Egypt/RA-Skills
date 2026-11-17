@@ -1,0 +1,1215 @@
+{
+  "argparse_defaults": {
+    "R": null,
+    "a0_borrowing": 0.5,
+    "a_path": 0.3,
+    "accrual_exact": 12,
+    "accrual_time": 12,
+    "adaptive_type": "SSR",
+    "adopt_ref": null,
+    "alpha": 0.05,
+    "alpha_exact": 0.05,
+    "auc0": 0.5,
+    "audit": false,
+    "b_path": 0.3,
+    "batch_file": null,
+    "beta": 0.2,
+    "ci_control": 0.2,
+    "ci_treatment": 0.1,
+    "cluster_cv": null,
+    "correction": "dunnett",
+    "correlation": 0.5,
+    "correlation_must": 0.5,
+    "cox_event_prop": 0.3,
+    "cox_hr": 2.0,
+    "cox_prev": 0.5,
+    "cox_r2": 0.3,
+    "cprime": 0.0,
+    "cv": 0.25,
+    "cv_cluster": null,
+    "delta_effect": 0.3,
+    "delta_sup": 0.15,
+    "design": "2x2",
+    "dist_plot": false,
+    "dropout_exact": 0.05,
+    "dropout_rate": 0.05,
+    "effect0": null,
+    "effect_adaptive": 0.4,
+    "effect_dunnett": 0.4,
+    "effect_gs": 0.4,
+    "effect_must": 0.3,
+    "effect_ref": null,
+    "effect_seq": null,
+    "effect_size": 0.3,
+    "effect_sizes": null,
+    "effect_type": null,
+    "endpoint": null,
+    "eq_margin_surv": 1.25,
+    "event_rate": 0,
+    "event_rate_exact": 0.3,
+    "evidence_source": "",
+    "f2": null,
+    "figure_mode": null,
+    "followup_exact": 12,
+    "followup_time": 12,
+    "gs_median_control": 12.0,
+    "gs_or": 0.5,
+    "gs_poisson_time": 2.0,
+    "gs_proportion_metric": "difference",
+    "gs_rate1": 0.6,
+    "gs_rate2": 1.0,
+    "gs_ratio": 0.8,
+    "half_width": null,
+    "heatmap": false,
+    "hist_n": 100.0,
+    "historical_n": 100,
+    "historical_response": 15,
+    "hr_exact": 0.75,
+    "hr_expected": 1.0,
+    "i2": null,
+    "interim_fraction": 0.5,
+    "interim_looks": 2,
+    "justify": false,
+    "k_groups": 2,
+    "k_studies": null,
+    "language": null,
+    "margin_assurance": null,
+    "max_inflation": 2.0,
+    "mcid": null,
+    "mcid_source": null,
+    "median0": 12.0,
+    "median1": 18.0,
+    "median_diff": null,
+    "mu_x": null,
+    "n_arms": 3,
+    "n_arms_mams": 3,
+    "n_assurance": 100,
+    "n_completed": 100,
+    "n_control_dunnett": 50,
+    "n_cv": null,
+    "n_doses": 5,
+    "n_endpoints_must": 2,
+    "n_groups_dunnett": 3,
+    "n_interim": 1,
+    "n_max": 1000,
+    "n_min": 10,
+    "n_per_study": null,
+    "n_planned": 200,
+    "n_seq": null,
+    "n_sim": null,
+    "n_sim_assurance": 5000,
+    "n_sim_initial": 100,
+    "n_sim_mediation": 1000,
+    "n_simulations": 10000,
+    "n_stages_adapt": 2,
+    "n_stages_exact": 1,
+    "n_stages_mams": 2,
+    "new_median": 18.0,
+    "ni_margin_surv": 1.25,
+    "nl": null,
+    "nobs": null,
+    "nsim": 500,
+    "observed_effect": 0.2,
+    "out": null,
+    "p0": null,
+    "p1": 0.7,
+    "p2": 0.5,
+    "p_control_current": 0.3,
+    "p_control_sup": 0.3,
+    "phi": null,
+    "planned_effect": 0.3,
+    "plot_effects": null,
+    "power": 0.8,
+    "power_exact": 0.8,
+    "power_seq": null,
+    "power_time_seq": null,
+    "prior_a0": 0.5,
+    "prob_control": 0.3,
+    "prob_treatment": 0.15,
+    "q": null,
+    "r2": null,
+    "rate_control": 1.0,
+    "rate_mode": null,
+    "rate_ratio": 0.6,
+    "ratio": null,
+    "recur_followup": 2.0,
+    "reestimate_method": "promising_zone",
+    "rel_error": null,
+    "rho": 3.0,
+    "sd": null,
+    "se_approx": 0.0625,
+    "selection_fraction": 0.5,
+    "shape": "normal",
+    "shape1_ctrl": null,
+    "shape1_trt": null,
+    "shape2_ctrl": null,
+    "shape2_trt": null,
+    "show_assumptions": false,
+    "show_code": false,
+    "side": "two",
+    "sigma": 1.0,
+    "sigma2_m": 1.0,
+    "sigma2_y": 1.0,
+    "sigma_ratio": 1.0,
+    "sim_design": "group_sequential",
+    "sim_n": 100,
+    "sim_output": null,
+    "sim_seed": null,
+    "spending_func": "OF",
+    "spending_function": "obrien_fleming",
+    "sup_hr": 0.67,
+    "sup_margin": 0.05,
+    "sup_margin_surv": 0.8,
+    "superiority": null,
+    "t1": 1.0,
+    "t2": 1.0,
+    "ta": null,
+    "target_cp": 0.9,
+    "target_dlt": 0.33,
+    "test": null,
+    "theta0": 0.95,
+    "theta1": null,
+    "theta2": null,
+    "timing": 0.5,
+    "u_pred": null,
+    "varcorr": 0.5,
+    "ve_control": 0.02,
+    "ve_treatment": 0.005,
+    "verify_accrual": null,
+    "verify_boundaries": null,
+    "verify_design": null,
+    "verify_effect_size": null,
+    "verify_expected_events": null,
+    "verify_followup": null,
+    "verify_hr": null,
+    "verify_interim_fraction": null,
+    "verify_json": null,
+    "verify_looks": 2,
+    "verify_max_inflation": null,
+    "verify_median_control": null,
+    "verify_n": null,
+    "verify_nsim": 20000,
+    "verify_p1": null,
+    "verify_p2": null,
+    "verify_power": 0.8,
+    "verify_side": "two",
+    "verify_spending": "obrien_fleming",
+    "verify_target_cp": null,
+    "win_ratio_theta": 1.5,
+    "wt_delta": 0.25,
+    "x_type": null
+  },
+  "common": [
+    "alpha",
+    "power",
+    "nobs",
+    "side",
+    "alt",
+    "d_val",
+    "solve_for_power",
+    "user_language",
+    "locale",
+    "sd",
+    "effect",
+    "ratio",
+    "dropout_rate",
+    "curve_n_seq",
+    "curve_power_seq",
+    "curve_effects",
+    "curve_effect_seq",
+    "plot_dist",
+    "curve_power_time_seq",
+    "curve_heatmap",
+    "evidence_source",
+    "effect_ref",
+    "justify",
+    "audit",
+    "show_assumptions",
+    "verify_design",
+    "verify_looks",
+    "verify_spending",
+    "n_sim",
+    "n_cv",
+    "account_id",
+    "billing_token"
+  ],
+  "generated_at": "2026-11-15T07:54:43Z",
+  "intent_hints": {
+    "adaptive": [
+      "适应性设计",
+      "adaptive design"
+    ],
+    "bayesian": [
+      "贝叶斯",
+      "bayesian",
+      "历史对照借用"
+    ],
+    "be_tost": [
+      "生物等效",
+      "BE",
+      "bioequivalence"
+    ],
+    "ci_mean": [
+      "均数置信区间",
+      "CI for mean"
+    ],
+    "ci_prop": [
+      "率的置信区间",
+      "CI for proportion"
+    ],
+    "cluster": [
+      "整群随机",
+      "集群随机",
+      "cluster randomized"
+    ],
+    "correlation": [
+      "相关性",
+      "correlation"
+    ],
+    "cox_covariate": [
+      "Cox",
+      "协变量",
+      "HR 校正"
+    ],
+    "dose_escalation": [
+      "剂量递增",
+      "3+3",
+      "DLT",
+      "dose escalation"
+    ],
+    "dunnett": [
+      "多臂",
+      "Dunnett",
+      "multiple arms"
+    ],
+    "equivalence": [
+      "等效性",
+      "equivalence"
+    ],
+    "group_sequential": [
+      "成组序贯",
+      "中期分析",
+      "interim",
+      "group sequential"
+    ],
+    "gsd_survival": [
+      "生存序贯",
+      "interim survival"
+    ],
+    "meta_planning": [
+      "meta",
+      "荟萃",
+      "研究数",
+      "异质性",
+      "I2"
+    ],
+    "multiple_endpoints": [
+      "多重终点",
+      "multiple endpoints"
+    ],
+    "ni_survival": [
+      "生存非劣效",
+      "non-inferior survival"
+    ],
+    "non_inferiority": [
+      "非劣效",
+      "non-inferiority",
+      "非劣"
+    ],
+    "poisson": [
+      "泊松",
+      "复发事件率",
+      "poisson"
+    ],
+    "proportion_one": [
+      "单组率",
+      "单臂",
+      "single arm",
+      "one proportion"
+    ],
+    "proportion_two": [
+      "两率比较",
+      "有效率比较",
+      "two proportions"
+    ],
+    "roc": [
+      "ROC",
+      "AUC",
+      "诊断试验"
+    ],
+    "superiority_margin": [
+      "优效",
+      "superiority margin"
+    ],
+    "survival": [
+      "生存分析",
+      "OS",
+      "总生存",
+      "log-rank",
+      "中位生存"
+    ],
+    "survival_equivalence": [
+      "生存等效"
+    ],
+    "ttest_ind": [
+      "两独立样本",
+      "均数比较",
+      "平行对照",
+      "two-sample",
+      "mean difference"
+    ],
+    "ttest_paired": [
+      "配对",
+      "交叉设计",
+      "paired",
+      "crossover"
+    ],
+    "vaccine_efficacy": [
+      "疫苗效力",
+      "vaccine efficacy"
+    ],
+    "win_ratio": [
+      "win ratio",
+      "获胜比"
+    ]
+  },
+  "note": "发布包内契约，禁止依赖 tests/；由 scripts/build_log_contract.py 重建",
+  "ranges": [
+    {
+      "en": "correlation coefficient",
+      "hi": 1,
+      "keys": [
+        "effect"
+      ],
+      "lo": -1,
+      "only_test": "correlation",
+      "open": true,
+      "zh": "相关系数"
+    },
+    {
+      "en": "correlation coefficient",
+      "hi": 1,
+      "keys": [
+        "correlation_must",
+        "correlation"
+      ],
+      "lo": -1,
+      "only_test": null,
+      "open": true,
+      "zh": "相关系数"
+    },
+    {
+      "en": "rate / proportion",
+      "hi": 1,
+      "keys": [
+        "p1",
+        "p2",
+        "p1_t",
+        "p1_c",
+        "p_control",
+        "p_treatment",
+        "p_exp",
+        "prop",
+        "pi"
+      ],
+      "lo": 0,
+      "only_test": null,
+      "open": false,
+      "zh": "率/比例"
+    },
+    {
+      "en": "alpha / power",
+      "hi": 1,
+      "keys": [
+        "alpha",
+        "power",
+        "type_i_error",
+        "power_target",
+        "sig_level"
+      ],
+      "lo": 0,
+      "only_test": null,
+      "open": true,
+      "zh": "alpha / power"
+    },
+    {
+      "en": "ICC / CV / I2",
+      "hi": 1,
+      "keys": [
+        "icc",
+        "cv",
+        "i2"
+      ],
+      "lo": 0,
+      "only_test": null,
+      "open": false,
+      "zh": "ICC / CV / I²"
+    },
+    {
+      "en": "standard deviation",
+      "hi": null,
+      "keys": [
+        "s0",
+        "s1",
+        "sd",
+        "sd0",
+        "sd1",
+        "sigma",
+        "stdev"
+      ],
+      "lo": 0,
+      "only_test": null,
+      "open": true,
+      "zh": "标准差"
+    },
+    {
+      "en": "hazard ratio",
+      "hi": null,
+      "keys": [
+        "hr",
+        "hazard_ratio"
+      ],
+      "lo": 0,
+      "only_test": null,
+      "open": true,
+      "zh": "风险比 HR"
+    },
+    {
+      "en": "rate / ratio",
+      "hi": null,
+      "keys": [
+        "r",
+        "r1",
+        "r2"
+      ],
+      "lo": 0,
+      "only_test": null,
+      "open": true,
+      "zh": "率/比值"
+    }
+  ],
+  "schema_version": "1.0",
+  "source_of_truth": "tests/coze_cases/_contract_index.json + scripts/samplesize_power.py",
+  "tests": {
+    "adaptive": {
+      "optional": [],
+      "required": [
+        "n_stages_adapt",
+        "effect_adaptive",
+        "adaptive_type",
+        "alpha"
+      ]
+    },
+    "adaptive_simulate": {
+      "optional": [
+        "effect_sizes",
+        "n_simulations",
+        "sim_seed",
+        "optimize",
+        "n_min",
+        "n_max",
+        "reestimate_method",
+        "interim_fraction",
+        "target_cp",
+        "max_inflation",
+        "selection_fraction",
+        "correction",
+        "beta",
+        "rho",
+        "futility",
+        "visualize",
+        "sim_output",
+        "n_arms",
+        "sim_n"
+      ],
+      "required": [
+        "sim_design",
+        "effect_size",
+        "interim_looks",
+        "spending_function"
+      ]
+    },
+    "anova": {
+      "optional": [],
+      "required": [
+        "k_groups",
+        "effect",
+        "alpha"
+      ]
+    },
+    "assurance": {
+      "optional": [
+        "margin_assurance",
+        "sim_seed"
+      ],
+      "required": [
+        "shape1_trt",
+        "shape2_trt",
+        "shape1_ctrl",
+        "shape2_ctrl",
+        "n_assurance",
+        "n_sim_assurance",
+        "margin"
+      ]
+    },
+    "bayesian": {
+      "optional": [],
+      "required": [
+        "prob_control",
+        "prob_treatment",
+        "alpha"
+      ]
+    },
+    "be_tost": {
+      "optional": [
+        "theta1",
+        "theta2",
+        "margin"
+      ],
+      "required": [
+        "theta0",
+        "cv",
+        "design",
+        "alpha"
+      ]
+    },
+    "bland_altman": {
+      "optional": [],
+      "required": [
+        "sd_diff",
+        "w",
+        "alpha"
+      ]
+    },
+    "ci_cor": {
+      "optional": [],
+      "required": [
+        "effect",
+        "half_width",
+        "alpha"
+      ]
+    },
+    "ci_icc": {
+      "optional": [],
+      "required": [
+        "icc",
+        "m",
+        "half_width",
+        "alpha"
+      ]
+    },
+    "ci_mean": {
+      "optional": [],
+      "required": [
+        "sd",
+        "half_width",
+        "alpha"
+      ]
+    },
+    "ci_or": {
+      "optional": [],
+      "required": [
+        "p0",
+        "effect",
+        "half_width",
+        "alpha"
+      ]
+    },
+    "ci_prop": {
+      "optional": [],
+      "required": [
+        "p1",
+        "half_width",
+        "alpha"
+      ]
+    },
+    "ci_rr": {
+      "optional": [],
+      "required": [
+        "p0",
+        "effect",
+        "half_width",
+        "alpha"
+      ]
+    },
+    "cluster": {
+      "optional": [],
+      "required": [
+        "m",
+        "icc",
+        "n_indiv",
+        "effect"
+      ]
+    },
+    "cluster_ext": {
+      "optional": [],
+      "required": [
+        "m",
+        "icc",
+        "cv_cluster",
+        "ratio",
+        "n_indiv",
+        "effect",
+        "alpha",
+        "side"
+      ]
+    },
+    "competing_risks": {
+      "optional": [],
+      "required": [
+        "ci_control",
+        "ci_treatment",
+        "alpha"
+      ]
+    },
+    "conditional_power": {
+      "optional": [],
+      "required": [
+        "observed_effect",
+        "planned_effect",
+        "n_completed",
+        "n_planned",
+        "timing",
+        "alpha"
+      ]
+    },
+    "correlation": {
+      "optional": [],
+      "required": [
+        "effect",
+        "alpha",
+        "side"
+      ]
+    },
+    "cox_covariate": {
+      "optional": [],
+      "required": [
+        "cox_hr",
+        "cox_r2",
+        "cox_prev",
+        "cox_event_prop",
+        "alpha"
+      ]
+    },
+    "cv_one": {
+      "optional": [],
+      "required": [
+        "effect",
+        "rel_error",
+        "alpha"
+      ]
+    },
+    "dose_escalation": {
+      "optional": [],
+      "required": [
+        "n_doses",
+        "target_dlt"
+      ]
+    },
+    "dunnett": {
+      "optional": [],
+      "required": [
+        "n_groups_dunnett",
+        "n_control_dunnett",
+        "effect_dunnett",
+        "alpha"
+      ]
+    },
+    "equivalence": {
+      "optional": [],
+      "required": [
+        "effect",
+        "sd",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "group_sequential": {
+      "optional": [],
+      "required": [
+        "effect_gs",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "gsd_hazard": {
+      "optional": [],
+      "required": [
+        "gs_median_control",
+        "hr_expected",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "gsd_hazard_sim": {
+      "optional": [
+        "n_simulations",
+        "sim_seed"
+      ],
+      "required": [
+        "gs_median_control",
+        "hr_expected",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "n_sim",
+        "ratio"
+      ]
+    },
+    "gsd_poisson": {
+      "optional": [],
+      "required": [
+        "gs_rate1",
+        "gs_rate2",
+        "gs_poisson_time",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "gsd_proportion": {
+      "optional": [
+        "gs_ratio",
+        "gs_or"
+      ],
+      "required": [
+        "p1",
+        "p2",
+        "gs_proportion_metric",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "gsd_survival": {
+      "optional": [],
+      "required": [
+        "gs_median_control",
+        "hr_expected",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "gsd_survival_sim": {
+      "optional": [
+        "n_simulations",
+        "sim_seed"
+      ],
+      "required": [
+        "gs_median_control",
+        "hr_expected",
+        "spending_func",
+        "n_interim",
+        "alpha",
+        "n_sim",
+        "ratio"
+      ]
+    },
+    "historical_controls": {
+      "optional": [],
+      "required": [
+        "p_control_current",
+        "historical_response",
+        "historical_n",
+        "a0_borrowing",
+        "alpha",
+        "prob_treatment"
+      ]
+    },
+    "mams": {
+      "optional": [],
+      "required": [
+        "n_arms_mams",
+        "delta_effect",
+        "alpha"
+      ]
+    },
+    "mediation": {
+      "optional": [],
+      "required": [
+        "a_path",
+        "b_path",
+        "sigma2_m",
+        "sigma2_y",
+        "alpha"
+      ]
+    },
+    "meta_planning": {
+      "optional": [
+        "n_cv",
+        "n_sim",
+        "sd"
+      ],
+      "required": [
+        "effect_type",
+        "effect",
+        "n_per_study",
+        "i2",
+        "k_studies",
+        "alpha",
+        "side",
+        "p0",
+        "m",
+        "icc",
+        "R",
+        "effect0",
+        "cluster_cv"
+      ]
+    },
+    "mixed_model": {
+      "optional": [],
+      "required": [
+        "effect",
+        "varcorr",
+        "sigma",
+        "nsim",
+        "effect_name",
+        "n_indiv"
+      ]
+    },
+    "multiple_endpoints": {
+      "optional": [],
+      "required": [
+        "correlation",
+        "effect",
+        "alpha"
+      ]
+    },
+    "must_win": {
+      "optional": [],
+      "required": [
+        "n_endpoints_must",
+        "correlation_must",
+        "effect_must",
+        "alpha"
+      ]
+    },
+    "ni_survival": {
+      "optional": [],
+      "required": [
+        "ni_margin_surv",
+        "hr_expected",
+        "accrual_time",
+        "followup_time",
+        "event_rate",
+        "alpha",
+        "ratio",
+        "dropout_rate"
+      ]
+    },
+    "non_inferiority": {
+      "optional": [],
+      "required": [
+        "p1",
+        "p2",
+        "margin",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "odds_ratio": {
+      "optional": [],
+      "required": [
+        "p1",
+        "p2",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "poisson": {
+      "optional": [],
+      "required": [
+        "lambda1",
+        "lambda2",
+        "t1",
+        "t2",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "proportion_one": {
+      "optional": [],
+      "required": [
+        "p1",
+        "alpha",
+        "side",
+        "p2"
+      ]
+    },
+    "proportion_paired": {
+      "optional": [],
+      "required": [
+        "p1",
+        "p2",
+        "alpha",
+        "side"
+      ]
+    },
+    "proportion_two": {
+      "optional": [],
+      "required": [
+        "p1",
+        "p2",
+        "alpha",
+        "side",
+        "ratio"
+      ]
+    },
+    "rates_ext": {
+      "optional": [
+        "half_width"
+      ],
+      "required": [
+        "rate_mode",
+        "lambda1",
+        "lambda2",
+        "t1",
+        "t2",
+        "phi",
+        "ratio",
+        "alpha"
+      ]
+    },
+    "recurrent_events": {
+      "optional": [],
+      "required": [
+        "rate_control",
+        "rate_ratio",
+        "recur_followup",
+        "alpha"
+      ]
+    },
+    "regression_linear": {
+      "optional": [],
+      "required": [
+        "u_pred",
+        "f2",
+        "alpha"
+      ]
+    },
+    "regression_logistic": {
+      "optional": [],
+      "required": [
+        "p0",
+        "effect",
+        "x_type",
+        "q",
+        "r2",
+        "alpha",
+        "side"
+      ]
+    },
+    "regression_poisson": {
+      "optional": [],
+      "required": [
+        "lambda1",
+        "effect",
+        "mu_x",
+        "sd",
+        "t1",
+        "phi",
+        "r2",
+        "alpha",
+        "side"
+      ]
+    },
+    "risk_ratio": {
+      "optional": [],
+      "required": [
+        "p1",
+        "p2",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "roc": {
+      "optional": [],
+      "required": [
+        "auc0",
+        "auc1",
+        "alpha"
+      ]
+    },
+    "superiority_margin": {
+      "optional": [],
+      "required": [
+        "p_control_sup",
+        "delta_sup",
+        "sup_margin",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "survival": {
+      "optional": [
+        "hr"
+      ],
+      "required": [
+        "hazard_ratio",
+        "alpha",
+        "event_rate",
+        "accrual_time",
+        "followup_time",
+        "ratio"
+      ]
+    },
+    "survival_equivalence": {
+      "optional": [],
+      "required": [
+        "eq_margin_surv",
+        "hr_expected",
+        "accrual_time",
+        "followup_time",
+        "event_rate",
+        "alpha",
+        "ratio",
+        "dropout_rate"
+      ]
+    },
+    "survival_exact": {
+      "optional": [],
+      "required": [
+        "hr_exact",
+        "accrual_exact",
+        "followup_exact",
+        "event_rate_exact",
+        "alpha",
+        "ratio",
+        "alpha_exact",
+        "power_exact",
+        "dropout_exact",
+        "n_stages_exact"
+      ]
+    },
+    "survival_historical": {
+      "optional": [],
+      "required": [
+        "new_median",
+        "hist_n",
+        "accrual_time",
+        "followup_time",
+        "alpha",
+        "median0"
+      ]
+    },
+    "survival_one_sample": {
+      "optional": [],
+      "required": [
+        "median0",
+        "median1",
+        "accrual_time",
+        "followup_time",
+        "alpha"
+      ]
+    },
+    "survival_superiority": {
+      "optional": [],
+      "required": [
+        "sup_margin_surv",
+        "sup_hr",
+        "accrual_time",
+        "followup_time",
+        "event_rate",
+        "alpha",
+        "ratio",
+        "dropout_rate"
+      ]
+    },
+    "ttest_ind": {
+      "optional": [
+        "sd"
+      ],
+      "required": [
+        "effect",
+        "alpha",
+        "side",
+        "ratio"
+      ]
+    },
+    "ttest_one": {
+      "optional": [
+        "sd"
+      ],
+      "required": [
+        "effect",
+        "alpha",
+        "side"
+      ]
+    },
+    "ttest_paired": {
+      "optional": [
+        "sd"
+      ],
+      "required": [
+        "effect",
+        "alpha",
+        "side"
+      ]
+    },
+    "vaccine_efficacy": {
+      "optional": [],
+      "required": [
+        "ve_control",
+        "ve_treatment",
+        "alpha",
+        "ratio"
+      ]
+    },
+    "variance_one": {
+      "optional": [],
+      "required": [
+        "sd",
+        "effect",
+        "alpha",
+        "side"
+      ]
+    },
+    "variance_two": {
+      "optional": [],
+      "required": [
+        "effect",
+        "alpha",
+        "side"
+      ]
+    },
+    "wilcoxon": {
+      "optional": [],
+      "required": [
+        "superiority",
+        "median_diff",
+        "sd",
+        "shape",
+        "alpha",
+        "side",
+        "ratio"
+      ]
+    },
+    "wilcoxon_signed_rank": {
+      "optional": [],
+      "required": [
+        "superiority",
+        "median_diff",
+        "sd",
+        "shape",
+        "alpha",
+        "side"
+      ]
+    },
+    "win_ratio": {
+      "optional": [],
+      "required": [
+        "win_ratio_theta",
+        "se_approx",
+        "alpha"
+      ]
+    }
+  }
+}

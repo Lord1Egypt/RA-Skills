@@ -1,11 +1,11 @@
 # IDMT\_PanelItem interface
 
-面板属性
+Panel property
 
 ## Signature
 
 ```typescript
-interface IDMT_PanelItem 
+interface IDMT_PanelItem
 ```
 
 ## Properties
@@ -14,99 +14,79 @@ interface IDMT_PanelItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [itemType](./IDMT_PanelItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.PANEL](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_PanelItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-面板名称
-
+Panel name
 
 </td></tr>
 <tr><td>
 
 [parentProjectUuid](./IDMT_PanelItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属工程 UUID
-
+UUID of the project it belongs to
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_PanelItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-面板 UUID
-
+Panel UUID
 
 </td></tr>
 </tbody></table>
@@ -119,7 +99,7 @@ string
 
 # IDMT\_PanelItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -131,7 +111,7 @@ readonly itemType: EDMT_ItemType.PANEL;
 
 # IDMT\_PanelItem.name property
 
-面板名称
+Panel name
 
 ## Signature
 
@@ -143,7 +123,7 @@ name: string;
 
 # IDMT\_PanelItem.parentProjectUuid property
 
-所属工程 UUID
+UUID of the project it belongs to
 
 ## Signature
 
@@ -155,7 +135,7 @@ parentProjectUuid: string;
 
 # IDMT\_PanelItem.uuid property
 
-面板 UUID
+Panel UUID
 
 ## Signature
 

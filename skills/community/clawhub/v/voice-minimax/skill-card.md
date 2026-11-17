@@ -1,43 +1,54 @@
-## Description: <br>
-Generates speech with the MiniMax API, converts it to OPUS by default, and sends the audio to a Feishu/Lark user with lark-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates MiniMax text-to-speech audio, converts it to OPUS or MP3, and sends it to a specified Feishu/Lark user.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Developers and operators use this skill to turn provided text into spoken audio and deliver it as a Feishu/Lark voice message or transferable MP3 file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text is sent to MiniMax and generated audio is delivered to the configured Feishu/Lark recipient. <br>
-Mitigation: Use only with content and recipients approved for those services, and verify the MiniMax API key and Feishu/Lark user ID before running. <br>
-Risk: Generated audio files may remain in /tmp or the working directory after delivery. <br>
-Mitigation: Delete temporary and local audio files when they are no longer needed. <br>
-Risk: Incorrect Feishu/Lark identity or audio settings can send to the wrong context or produce unusable voice messages. <br>
-Mitigation: Use the documented bot identity and OPUS settings, then confirm delivery in the intended Feishu/Lark conversation. <br>
+## Use Case:
 
+Developers and operators use this skill to turn supplied text into spoken audio for self-introductions, message readouts, and content broadcasts delivered through Feishu/Lark.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/voice-minimax) <br>
-- [MiniMax TTS API endpoint](https://api.minimaxi.com/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key, ffmpeg, lark-cli, and a Feishu/Lark user ID; writes temporary and local audio files before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send generated audio to a default Feishu/Lark recipient, which may disclose user content to the wrong destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the recipient with an explicitly chosen user, confirm the destination before each send, and use the skill only with non-sensitive text.
+
+Risk: Inline command patterns can expose credentials or leave generated audio in temporary files.
+
+Mitigation: Keep the MiniMax key out of command strings, use reviewed scripts with secure temporary files, and clean up generated MP3 and OPUS files after delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/voice-minimax)
+- [MiniMax TTS API endpoint](https://api.minimaxi.com/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow may create temporary MP3 and OPUS audio files before delivery through Feishu/Lark.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

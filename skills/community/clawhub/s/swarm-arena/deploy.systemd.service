@@ -1,0 +1,20 @@
+# swarmArena — systemd unit (one cycle per trigger; pair with the timer).
+# Install: copy to ~/.config/systemd/user/ (user service) or /etc/systemd/system/,
+# edit WorkingDirectory/EnvironmentFile, then:
+#   systemctl --user daemon-reload && systemctl --user enable --now swarm-arena.timer
+[Unit]
+Description=swarmArena trading cycle (Lighter)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/ABSOLUTE/PATH/TO/swarm-arena
+# Credentials via a root-owned 0600 environment file, NEVER in this unit:
+#   LIGHTER_API_PRIVATE_KEY=..., LIGHTER_API_KEY_INDEX=..., LIGHTER_ACCOUNT_INDEX=...
+EnvironmentFile=-/ABSOLUTE/PATH/TO/swarm-arena/swarm-arena.env
+ExecStart=/usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/autonomous_runner.py /ABSOLUTE/PATH/TO/swarm-arena/config.json
+StandardOutput=append:/ABSOLUTE/PATH/TO/swarm-arena/logs/scan.log
+StandardError=append:/ABSOLUTE/PATH/TO/swarm-arena/logs/scan.log
+TimeoutStartSec=120
+Nice=10

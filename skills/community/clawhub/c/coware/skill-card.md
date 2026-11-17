@@ -1,41 +1,59 @@
-## Description: <br>
-Coware Living Specs syncs shared API specs for multi-agent coding teams when a project uses Coware or needs team, API, interface, or merge-conflict alignment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coware Living Specs helps AI coding agents sync and follow shared API specifications for multi-agent development teams.
 
-## Publisher: <br>
-[shitianfang](https://clawhub.ai/user/shitianfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shitianfang](https://clawhub.ai/user/shitianfang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to keep AI coding agents aligned with shared interface and API specs before, during, and after code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A remote setup guide and project sync scripts can influence account, project, and upload actions. <br>
-Mitigation: Before first use, have the agent show the fetched setup guide, confirm any login, project, or invite-code steps, and inspect the .coware Node scripts in the repository. <br>
-Risk: Shared specs may include secrets or sensitive internal architecture. <br>
-Mitigation: Review spec contents before syncing and avoid publishing credentials, tokens, private endpoints, or sensitive architecture details. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to initialize or join Coware projects, pull shared interface specs before coding, update specs before related code changes, and sync changes for teammates.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shitianfang/coware) <br>
-- [Coware setup guide](https://coware.team/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs agents to read local Coware specs and may instruct them to run project-local sync scripts when Coware is initialized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup can delegate agent work to mutable remote instructions from coware.team.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote setup guide before allowing login, project joining, file changes, or spec synchronization.
+
+Risk: The workflow can run project-local .coware pull and sync scripts that contact external services.
+
+Mitigation: Inspect .coware scripts and configuration before execution, especially in sensitive repositories.
+
+Risk: The setup path limits normal user checkpoints while it completes multiple steps.
+
+Mitigation: Require explicit tool-based confirmation before credential use, project creation or joining, and external synchronization.
+
+## Reference(s):
+
+- [Coware setup guide](https://coware.team/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/shitianfang/skills/coware)
+- [ClawHub publisher profile](https://clawhub.ai/user/shitianfang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and spec-file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to read remote setup guidance and project-local .coware scripts or configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

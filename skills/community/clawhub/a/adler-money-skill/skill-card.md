@@ -1,38 +1,50 @@
-## Description: <br>
-用阿德勒心理学实现财务自信与副业突破，帮助创业者、自媒体人和想改变财务轨迹的人重构谈钱、推广和副业变现的心理阻力。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用阿德勒心理学实现财务自信与副业突破。适用于：创业者、自媒体人、想改变财务轨迹的人。触发词：「用阿德勒赚钱」「自卑与财富」「阿德勒副业」
 
-## Publisher: <br>
-[jordan-home](https://clawhub.ai/user/jordan-home) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jordan-home](https://clawhub.ai/user/jordan-home)
 
-## Use Case: <br>
-Entrepreneurs, creators, and side-hustle builders use this Chinese-language coaching skill to examine money-related self-doubt, reframe sales and promotion through Adlerian psychology, and turn that reflection into small action steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill's money mindset and psychology guidance as professional financial, medical, or mental-health advice. <br>
-Mitigation: Use it as self-help coaching only, and consult qualified financial, medical, or mental-health professionals for decisions that require professional judgment. <br>
+## Use Case:
 
+External users use this Chinese-language coaching skill to reframe money anxiety, pricing resistance, promotion avoidance, and side-hustle confidence through Adlerian psychology exercises. It provides reflective prompts, practical reframing steps, and short action checklists rather than professional financial, legal, or mental-health advice.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/jordan-home/adler-money-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with reflective prompts, short exercises, and action checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only coaching guidance; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, _meta.json, package.json) <br>
+Risk: Users may mistake motivational coaching about money confidence for professional financial, legal, or mental-health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as reflective self-improvement guidance and direct users to qualified professionals for financial, legal, or clinical decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jordan-home/skills/adler-money-skill)
+- [Publisher profile](https://clawhub.ai/user/jordan-home)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching guidance with prompts, tables, and action checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language self-improvement content; no executable code or sensitive access.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/package.json, artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

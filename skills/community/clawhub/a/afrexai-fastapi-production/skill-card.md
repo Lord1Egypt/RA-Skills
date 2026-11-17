@@ -1,40 +1,57 @@
-## Description: <br>
-Guides developers through production FastAPI architecture, configuration, Pydantic v2 schemas, structured errors, JWT authorization, async database patterns, testing, observability, and deployment readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides production-focused FastAPI engineering guidance for architecture, configuration, Pydantic v2 schemas, structured errors, authentication, database patterns, testing, observability, and deployment.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit, design, harden, test, and prepare FastAPI applications for production deployment. It is useful when converting prototypes into maintainable APIs with clear layering, validation, security, database, observability, and release practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation patterns can be copied with placeholder or wildcard values for authentication, CORS, TrustedHostMiddleware, file uploads, secrets, Docker, CI, or migrations. <br>
-Mitigation: Review diffs before applying changes and replace placeholders or wildcard settings with project-specific secure configuration. <br>
-Risk: Database migration and deployment examples may need environment-specific validation before production use. <br>
-Mitigation: Test migrations and deployment changes in staging and confirm rollback, health checks, and secret handling before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-fastapi-production) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit, design, and harden FastAPI applications for production readiness. It helps agents produce project structure recommendations, implementation patterns, checklists, code examples, shell commands, and deployment guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, checklists, tables, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance and code patterns for FastAPI projects; generated changes should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: WebSocket examples may be unsafe if copied without authenticated handshakes and authorization checks.
+
+Mitigation: Require authentication during the WebSocket handshake and enforce authorization before accepting or processing messages.
+
+Risk: File upload examples may be unsafe if they trust client-provided filenames or omit containment and content validation.
+
+Mitigation: Generate server-side filenames, constrain storage paths, validate content, and scan uploads before use.
+
+Risk: Deployment templates may install build tools such as uv without pinning versions.
+
+Mitigation: Pin build tool versions and review Docker and CI snippets before using them in production pipelines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-fastapi-production)
+- [Publisher Profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists, code snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some security-sensitive examples should be reviewed and adapted before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

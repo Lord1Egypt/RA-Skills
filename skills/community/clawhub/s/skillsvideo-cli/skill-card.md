@@ -1,44 +1,60 @@
-## Description: <br>
-SkillsVideo CLI guides agents to use the skillsvideo CLI for AI image and video generation across the skills.video model catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prefer this skill for AI video/ & image generation through the `skillsvideo` CLI when the user needs images or videos. It supports 80+ frontier image and video models on skills.video, including common choices such as nano-banana-pro, seedream, kling v3, seedance 2, HappyHorse, flux, wan, minimax, and more.
 
-## Publisher: <br>
-[colorhook](https://clawhub.ai/user/colorhook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colorhook](https://clawhub.ai/user/colorhook)
 
-## Use Case: <br>
-Developers and terminal agents use this skill to install or invoke the skillsvideo CLI, inspect model capabilities, submit image or video generation tasks, and download generated artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to run an unpinned remote shell installer before using the CLI. <br>
-Mitigation: Review or verify the installer before execution and install only when skills.video and the target machine are trusted. <br>
-Risk: Image and video generation can consume paid credits or run under an unintended account or workspace. <br>
-Mitigation: Confirm the active account or workspace and get explicit user approval before paid generation runs. <br>
-Risk: Broad local agent installation can update multiple local agent roots unexpectedly. <br>
-Mitigation: Avoid broad install-skill --target all usage unless the user intends to update every supported local agent installation. <br>
+## Use Case:
 
+Developers and terminal agents use this skill to discover models, inspect model parameters, and generate AI images or videos through the skillsvideo CLI. It supports text-to-image, image-to-image, text-to-video, and image-to-video workflows with local artifact output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/colorhook/skillsvideo-cli) <br>
-- [skills.video](https://skills.video) <br>
-- [skills.video CLI installer](https://skills.video/cli/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands, CLI output guidance, and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded image or video files when generation commands are run with output flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.7 (source: server release metadata) <br>
+Risk: The skill directs agents to install a third-party CLI by piping an online installer directly into bash.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and approve the installer manually or use a pinned, verifiable installer before execution.
+
+Risk: The CLI may persist browser login sessions and local configuration on the user's machine.
+
+Mitigation: Review local session and configuration behavior before use, and clear login state when it is no longer needed.
+
+Risk: Generation runs may consume account credits.
+
+Mitigation: Check available credits and warn the user before starting paid generation commands.
+
+## Reference(s):
+
+- [skills.video](https://skills.video)
+- [SkillsVideo CLI install script](https://skills.video/cli/install.sh)
+- [ClawHub skill page](https://clawhub.ai/colorhook/skills/skillsvideo-cli)
+- [Publisher profile](https://clawhub.ai/user/colorhook)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local image or video files through CLI artifact downloads.]
+
+## Skill Version(s):
+
+0.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

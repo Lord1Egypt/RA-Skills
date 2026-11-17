@@ -1,44 +1,56 @@
-## Description: <br>
-Provides summary data for public QQ Music playlists, songs, and artists, including play counts, favorites, and ranking trends without download or bulk scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides summary data for public QQ Music playlists, songs, and artists including plays, favorites, and ranking trends without download or bulk scraping.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to summarize and compare public QQ Music playlists, songs, artists, and ranking pages for lightweight trend monitoring. It is scoped to visible public page information and avoids downloads, interface reverse engineering, and bulk collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A logged-in browser session may expose personal QQ Music page information to the agent. <br>
-Mitigation: Use the skill for public page summaries; avoid private account workflows and review any logged-in page content before sharing or retaining it. <br>
-Risk: Over-automation could conflict with QQ Music platform rules or trigger anti-abuse controls. <br>
-Mitigation: Keep usage lightweight, avoid downloads, interface reverse engineering, and bulk scraping, and control request frequency. <br>
-Risk: Dynamic rendering and human verification pages can make extracted metrics incomplete or stale. <br>
-Mitigation: Open pages manually when needed, confirm rendered content before analysis, and treat extracted trend summaries as reviewable signals. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public QQ Music playlists, songs, artists, and rankings for lightweight summaries, trend comparisons, and internal reminders while staying within platform-use limits.
 
-## Reference(s): <br>
-- [QQ Music](https://y.qq.com/) <br>
-- [QQ Music Toplist](https://y.qq.com/n/ryqq/toplist) <br>
-- [QQ Music Search](https://y.qq.com/n/ryqq/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown or concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include visible public QQ Music page links and playlist, song, artist, play-count, favorite-count, ranking, genre, language, and duration fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may be misused for downloads, bulk scraping, bypassing checks, or automatic account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for summaries and trend checks on public QQ Music pages; avoid downloads, bulk collection, bypass attempts, and automatic account interactions.
+
+Risk: Using account access can expose personal QQ Music page information to the agent workflow.
+
+Mitigation: Avoid giving the skill account access unless personal page organization is specifically required, and review any personal data before sharing outputs.
+
+## Reference(s):
+
+- [QQ Music](https://y.qq.com/)
+- [QQ Music Rankings](https://y.qq.com/n/ryqq/toplist)
+- [QQ Music Search](https://y.qq.com/n/ryqq/search)
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/qq-music)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public-page metrics such as plays, favorites, ranking distribution, genres, languages, durations, and source links.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

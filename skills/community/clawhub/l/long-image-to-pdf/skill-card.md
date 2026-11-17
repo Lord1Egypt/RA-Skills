@@ -1,41 +1,53 @@
-## Description: <br>
-Slices long images/screenshots into overlapping segments and auto-arranges them into a paginated PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slices long images/screenshots into overlapping segments and auto-arranges them into a paginated PDF.
 
-## Publisher: <br>
-[byronleeeee](https://clawhub.ai/user/byronleeeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byronleeeee](https://clawhub.ai/user/byronleeeee)
 
-## Use Case: <br>
-Developers, operators, and other users can use this skill to convert long screenshots or tall image captures into paginated PDF documents. The skill runs a local Python script that slices the source image, arranges slices into pages, and reports the final PDF path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes user-provided images locally, which may include sensitive screenshots or captured content. <br>
-Mitigation: Run it only on images the user intends to process locally, and choose an output directory the user controls. <br>
-Risk: Intermediate image slices can remain on disk when cleanup is disabled. <br>
-Mitigation: Use --cleanup by default; omit it only when the user explicitly wants to inspect or keep the generated slices. <br>
+## Use Case:
 
+Developers, engineers, and external users use this skill to convert very long screenshots, chat captures, or webpage captures into paginated PDF documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/byronleeeee/long-image-to-pdf) <br>
-- [Publisher profile](https://clawhub.ai/user/byronleeeee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated PDF file and optional intermediate image slices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent normally uses --cleanup to remove generated intermediate slices unless the user asks to keep them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can overwrite files in the selected output directory, including an existing PDF with the chosen name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated empty output directory and choose a simple, unique PDF filename.
+
+Risk: Cleanup can remove intermediate image slices that the user may need to inspect or keep.
+
+Mitigation: Avoid cleanup when intermediate images are needed, and keep unrelated files out of the output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/byronleeeee/skills/long-image-to-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with command-line invocation and generated PDF path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a PDF file and may produce intermediate image slice files unless cleanup is enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

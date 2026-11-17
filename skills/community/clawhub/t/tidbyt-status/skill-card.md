@@ -1,41 +1,54 @@
-## Description: <br>
-HTTP API server that exposes OpenClaw agent status for Tidbyt LED displays, returning JSON with agent status, emoji, activity level, and task counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an HTTP API that exposes OpenClaw agent status as JSON for Tidbyt LED displays, including status, emoji, activity level, and task counts.
 
-## Publisher: <br>
-[MrScoutsHub](https://clawhub.ai/user/MrScoutsHub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrscoutshub](https://clawhub.ai/user/mrscoutshub)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to expose local agent activity through a status API and display it on a Tidbyt 64x32 LED device or related dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local status API can expose agent status and activity details to any client that can reach the configured host and port. <br>
-Mitigation: Run it only on a trusted LAN, avoid exposing port 8765 to the internet, and restrict firewall access where possible. <br>
-Risk: Background or systemd mode keeps the API running continuously. <br>
-Mitigation: Use continuous service mode only when persistent display access is desired, and stop or disable the service when it is no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run a local status API and configure a Tidbyt display to show agent activity, task counts, and recent activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MrScoutsHub/tidbyt-status) <br>
-- [Publisher profile](https://clawhub.ai/user/MrScoutsHub) <br>
-- [Tidbyt Pixlet releases](https://github.com/tidbyt/pixlet/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API examples, bash commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operation guidance for a local HTTP status API that emits JSON for Tidbyt display clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The unauthenticated status API can expose OpenClaw activity metadata if reachable from an untrusted network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the API to 127.0.0.1 or a trusted interface, avoid broad firewall rules, and add authentication before LAN or internet exposure.
+
+Risk: Running the API as a background or systemd service can keep the endpoint available longer than intended.
+
+Mitigation: Enable persistence only after deciding how the endpoint will be stopped, monitored, and protected.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/mrscoutshub/skills/tidbyt-status)
+- [Tidbyt Pixlet releases](https://github.com/tidbyt/pixlet/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, code snippets, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to start or configure a local HTTP API for Tidbyt status display.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

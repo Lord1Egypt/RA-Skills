@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "skill": "distillation-adversarial-verify",
+  "totalOps": 1,
+  "totalErrors": 0,
+  "capabilityStats": {
+    "对抗验证": {
+      "count": 1,
+      "success": 1,
+      "fail": 0
+    }
+  },
+  "errorPatterns": {},
+  "preferences": {},
+  "recentOps": [
+    {
+      "t": "2026-07-23T06:16",
+      "cap": "对抗验证",
+      "ok": true,
+      "err": null,
+      "note": null
+    }
+  ],
+  "optimizations": {},
+  "lastUpdated": "2026-07-23T06:16"
+}

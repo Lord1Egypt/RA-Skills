@@ -1,40 +1,50 @@
-## Description: <br>
-Complete Windows setup guide for Ollama: installation, CORS header fix for web apps, custom model creation with Modelfiles, and integration with desktop AI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Windows setup guide for Ollama: installation, CORS header fix for web apps, custom model creation with Modelfiles, and integration with desktop AI tools.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and local AI users use this skill to set up Ollama on Windows, configure browser access, create custom Modelfile-based models, and troubleshoot common runtime issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The guide recommends setting OLLAMA_ORIGINS=* permanently, which allows browser requests from any origin. <br>
-Mitigation: Prefer setting OLLAMA_ORIGINS only to exact trusted app origins, such as a specific localhost port, and reserve wildcard origins for controlled temporary tests. <br>
+## Use Case:
 
+Developers and Windows users use this skill to install Ollama, configure browser access for local web apps, create custom Modelfile-based models, and troubleshoot common local AI setup issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/ollama-windows-guide) <br>
-- [Ollama](https://ollama.com) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline PowerShell, bash, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; commands and environment changes should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Wildcard CORS origin guidance can allow any website to reach a local Ollama service if the setting is made permanent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an exact trusted origin for the local web UI, keep wildcard origins temporary for troubleshooting, and remove persistent OLLAMA_ORIGINS=* settings after use.
+
+## Reference(s):
+
+- [Ollama](https://ollama.com)
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/ollama-windows-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell, bash, and Modelfile snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; does not execute commands or call external services by itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

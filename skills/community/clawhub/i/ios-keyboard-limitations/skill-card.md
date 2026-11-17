@@ -1,40 +1,56 @@
-## Description: <br>
-iOS keyboard extension technical limitations and workarounds. Use when planning or building iOS custom keyboards with voice/audio features, dictation, or system integration needs. Covers memory limits, sandbox restrictions, microphone access, app launching, and viable alternative architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides iOS keyboard extension technical limitations and workarounds for planning or building custom keyboards with voice/audio features, dictation, or system integration needs.
 
-## Publisher: <br>
-[usimic](https://clawhub.ai/user/usimic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[usimic](https://clawhub.ai/user/usimic)
 
-## Use Case: <br>
-Developers and iOS app teams use this skill to evaluate whether a custom keyboard is viable for voice, dictation, or system-integration workflows. It helps compare keyboard extensions with share extensions, standalone app flows, and Siri Shortcuts before implementation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated app code or architecture plans based on this skill may affect microphone access, clipboard use, networking, App Groups, or user-consent flows. <br>
-Mitigation: Review generated iOS code and configuration separately for those behaviors before implementation or release. <br>
-Risk: Keyboard-extension workarounds can create unreliable or high-friction user flows involving manual app switching and clipboard handoff. <br>
-Mitigation: Prototype the full user flow and prefer Apple-supported share extension, standalone app, or Siri Shortcuts architectures when voice or audio capture is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/usimic/ios-keyboard-limitations) <br>
-- [Apple custom keyboard documentation](https://developer.apple.com/documentation/uikit/keyboards_and_input/creating_a_custom_keyboard) <br>
+## Use Case:
 
+Developers and engineers use this skill to assess whether an iOS custom keyboard is viable for voice, dictation, networking, storage, or app-integration features and to compare supported alternatives such as share extensions, full app flows, and Siri Shortcuts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with decision tables, architecture recommendations, and Swift snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated iOS app code should be reviewed separately for microphone, clipboard, networking, App Groups, and user-consent behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Keyboard Full Access is sensitive for users and may create privacy concerns when networking or shared data access is required.
+
+Mitigation: Explain why Full Access is needed in the companion app and avoid requiring it unless the keyboard feature cannot work without network access.
+
+Risk: Voice and audio features inside a keyboard extension can lead to non-working flows because the extension cannot access the microphone and has strict sandbox limits.
+
+Mitigation: Use the skill's recommended supported alternatives, such as a share extension, full app mode, or Siri Shortcuts, before committing to a keyboard-based voice workflow.
+
+Risk: Manual app-switching and clipboard-based workarounds can interrupt the user flow or expose text to clipboard overwrite behavior.
+
+Mitigation: Reserve these patterns for fallback flows and document the expected user steps and clipboard behavior clearly.
+
+## Reference(s):
+
+- [Apple: Creating a Custom Keyboard](https://developer.apple.com/documentation/uikit/keyboards_and_input/creating_a_custom_keyboard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, analysis, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with inline Swift examples, architectural options, and a decision matrix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no bundled code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

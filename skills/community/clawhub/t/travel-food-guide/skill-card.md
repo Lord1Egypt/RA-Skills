@@ -1,38 +1,57 @@
-## Description: <br>
-旅行场景美食推荐与餐饮规划助手；帮旅行者找景点周边餐厅、当地必吃特色、生成多日餐饮计划。当用户需要查找旅行目的地美食、景点附近餐厅、当地特色菜、旅行饮食建议或规划旅途餐饮时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮旅行者找景点周边餐厅、当地必吃特色、生成多日餐饮计划，旅途中不踩雷、不错过当地特色。暑期旅行美食探店，各地特色小吃推荐
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to find restaurants near attractions or hotels, identify local specialties, and produce multi-day dining plans for a destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live restaurant searches send place names, addresses, cuisine keywords, and nearby-search parameters to the skill publisher's proxy-backed map service. <br>
-Mitigation: Use only when that data sharing is acceptable, avoid entering sensitive itinerary details, and keep PROXY_TOKEN limited to this skill's proxy use. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to find restaurants near destinations, surface local specialty foods, and draft multi-day dining plans based on location, budget, preferences, and itinerary context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/travel-food-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Natural-language guidance, usually Markdown, based on JSON returned by the skill script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include restaurant lists, local specialties, dining tips, and multi-day meal plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Travel locations, dining preferences, and restaurant search terms are sent to the skill proxy and downstream map POI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable and avoid entering sensitive personal details that are not needed for restaurant search or meal planning.
+
+Risk: The skill uses a proxy token for access to the restaurant search service.
+
+Mitigation: Scope the proxy token specifically to this service and do not reuse it for unrelated accounts or infrastructure.
+
+Risk: Restaurant details and availability may be incomplete or stale because the skill provides POI information and does not support booking, queue status, delivery lookup, or live review verification.
+
+Mitigation: Treat recommendations as planning guidance and verify critical restaurant details directly before travel or purchase decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/travel-food-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Natural-language guidance derived from JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include restaurant names, addresses, distances, ratings when available, average cost estimates, local specialty lists, food streets, and day-by-day meal plans.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

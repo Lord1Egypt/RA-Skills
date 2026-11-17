@@ -1,40 +1,52 @@
-## Description: <br>
-配置和管理 MCP 服务器，使 AI 能够调用视觉理解、网络搜索等外部工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and manages MCP servers so an AI agent can call external tools such as visual understanding and web search.
 
-## Publisher: <br>
-[godzff](https://clawhub.ai/user/godzff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[godzff](https://clawhub.ai/user/godzff)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up mcporter and MCP server configuration so an AI agent can list servers and call tools such as MiniMax image understanding and web search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: MCP servers can grant an agent access to external tools, local paths, or third-party APIs. <br>
-Mitigation: Review each enabled MCP server before installation, use least-privilege filesystem paths, and scope API or GitHub tokens narrowly. <br>
-Risk: The setup guidance includes installing uv through a remote shell command. <br>
-Mitigation: Prefer installing uv through a package manager or inspect the installer before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godzff/mcp-protocol) <br>
-- [Astral uv installer referenced by the skill](https://astral.sh/uv/install.sh) <br>
+## Use Case:
 
+Developers and agent users use this skill to install mcporter, create MCP server configuration, validate server health, and call MCP tools for tasks such as image understanding and web search.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example MCP server configuration and validation commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup guidance includes unpinned package commands and a remote installer command.
+
+Mitigation: Pin package versions where possible, verify package provenance before installation, and avoid curl-to-shell installers in managed environments.
+
+Risk: The MCP configuration handles API keys and can route prompts, images, or other user data through configured tools.
+
+Mitigation: Store API keys with restrictive permissions or environment-managed secrets, and avoid sending sensitive data unless the MCP provider and package chain are trusted.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/godzff/skills/mcp-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP server configuration examples, validation commands, tool-call examples, a package list, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

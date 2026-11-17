@@ -1,40 +1,54 @@
-## Description: <br>
-Track home furniture, schedule maintenance, and manage warranty details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track home furniture, schedule maintenance, and manage warranty details.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users use Furniture to catalog household furniture, record cost and warranty details, schedule maintenance, and export local records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Furniture, cost, maintenance, schedule, and warranty notes may be sensitive local records. <br>
-Mitigation: Install only if local storage in ~/.local/share/furniture is acceptable, avoid entering unrelated secrets, and treat exported files as private records. <br>
+## Use Case:
 
+External users use this skill to catalog home furniture, record household notes, schedule maintenance, track warranty dates, and export local records.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/bytesagain3/furniture) <br>
-- [Publisher Profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, JSON, CSV] <br>
-**Output Format:** [Command-line text, local log files, and optional JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores records locally under ~/.local/share/furniture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata) <br>
+Risk: Furniture and household notes are stored in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording highly sensitive details and protect access to ~/.local/share/furniture.
+
+Risk: Exports may expose household records when shared or opened in other tools.
+
+Mitigation: Review JSON, CSV, and text exports before sharing, and handle CSV files cautiously in spreadsheet software.
+
+## Reference(s):
+
+- [Furniture Skill Page](https://clawhub.ai/bytesagain3/skills/furniture)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and local JSON, CSV, or plain text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores records locally as plaintext files under ~/.local/share/furniture.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

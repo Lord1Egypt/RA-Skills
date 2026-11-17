@@ -2,7 +2,7 @@
 name: test-updates
 description: |
   Updates, generates, and validates tests using git-workspace context and TDD/BDD methodology
-version: 1.9.8
+version: 1.10.3
 triggers:
   - tdd
   - bdd
@@ -11,54 +11,25 @@ triggers:
   - test-generation
   - pytest
   - code changes require new or updated test coverage
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.test-driven-development", "night-market.git-workspace-review", "night-market.file-analysis"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.superpowers:test-driven-development", "night-market.git-workspace-review"]}}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Core Philosophy](#core-philosophy)
-- [What It Is](#what-it-is)
-- [Quick Start](#quick-start)
-- [Quick Checklist for First Time Use](#quick-checklist-for-first-time-use)
-- [detailed Test Update](#detailed-test-update)
-- [Targeted Test Updates](#targeted-test-updates)
-- [TDD for New Features](#tdd-for-new-features)
-- [Using the Scripts Directly](#using-the-scripts-directly)
-- [When to Use It](#when-to-use-it)
-- [Workflow Integration](#workflow-integration)
-- [Phase 1: Discovery](#phase-1:-discovery)
-- [Phase 2: Strategy](#phase-2:-strategy)
-- [Phase 3: Implementation](#phase-3:-implementation)
-- [Phase 4: Validation](#phase-4:-validation)
-- [Quality Assurance](#quality-assurance)
-- [Examples](#examples)
-- [BDD-Style Test Generation](#bdd-style-test-generation)
-- [Test Enhancement](#test-enhancement)
-- [Integration with Existing Skills](#integration-with-existing-skills)
-- [Success Metrics](#success-metrics)
-- [Troubleshooting FAQ](#troubleshooting-faq)
-- [Common Issues](#common-issues)
-- [Performance Tips](#performance-tips)
-- [Getting Help](#getting-help)
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Test Updates and Maintenance
 
 ## Overview
 
-detailed test management system that applies TDD/BDD principles to maintain, generate, and enhance tests across codebases. This skill practices what it preaches - it uses TDD principles for its own development and serves as a living example of best practices.
+detailed test management system that applies TDD/BDD principles to maintain, generate, and enhance tests across codebases. This skill practices what it preaches - it uses TDD principles for its own development and is a living example of best practices.
 
 ### Core Philosophy
 
 - **RED-GREEN-REFACTOR**: Strict adherence to TDD cycle
 - **Behavior-First**: BDD patterns that describe what code should do
-- **Invariant-Encoding**: Tests guard design decisions, not just behavior
+- **Invariant-Encoding**: Tests guard design decisions as well as behavior
 - **Meta Dogfooding**: The skill's own tests demonstrate the principles it teaches
 - **Quality Gates**: detailed validation before considering tests complete
 
@@ -245,8 +216,7 @@ def test_plugins_never_import_from_other_plugins():
         imports = extract_imports(plugin_dir)
         for imp in imports:
             assert not imp.startswith("plugins."), (
-                f"{plugin_dir} imports {imp} — "
-                f"violates plugin independence invariant"
+                f"{plugin_dir} imports {imp} — violates plugin independence invariant"
             )
 ```
 
@@ -263,12 +233,13 @@ If an invariant-encoding test needs to change, do NOT
 silently update the assertion. Flag it for human review
 with the three options: preserve the invariant, layer
 on top, or revise the invariant. This is a judgment
-call that requires human wisdom — models default to
+call that requires human wisdom: models default to
 the "average" of training data and get these wrong far
 too often.
 
 ### Phase 3: Implementation
-1. Write failing tests (RED) - see `modules/tdd-workflow.md`
+1. Write failing tests (RED) - `Skill(superpowers:test-driven-development)`
+   for the cycle; `modules/tdd-workflow.md` for what is local
 2. Implement minimal passing code (GREEN)
 3. Refactor for clarity (REFACTOR)
 
@@ -300,7 +271,8 @@ class TestGitWorkflow:
     """BDD-style tests for Git workflow operations."""
 
     def test_commit_workflow_with_staged_changes(self):
-        """
+        """Committing with staged changes produces a formatted commit.
+
         GIVEN a Git repository with staged changes
         WHEN the user runs the commit workflow
         THEN it should create a commit with proper message format
@@ -321,7 +293,8 @@ See `modules/test-enhancement.md` for enhancement strategies.
 ## Integration with Existing Skills
 
 1. **git-workspace-review**: Get context of changes
-2. **file-analysis**: Understand code structure
+2. **structure mapping**: Map layout, languages and large files
+   with `modules/structure-mapping.md`
 3. **test-driven-development**: Apply strict TDD discipline
 4. **skills-eval**: Validate quality and compliance
 
@@ -379,3 +352,17 @@ A: The analyzer uses naming conventions:
 2. Use `--verbose` flag for more information
 3. Review the validation report for specific recommendations
 4. Start with small modules to understand patterns before scaling
+
+## Exit Criteria
+
+- [ ] `pytest -v` passes with zero failures after all test updates
+      are applied to the target files
+- [ ] Test coverage for files in scope exceeds 85% as reported by
+      `pytest --cov`
+- [ ] All new tests include a GIVEN/WHEN/THEN docstring matching
+      the BDD pattern from `modules/bdd-patterns.md`
+- [ ] `quality_checker.py --validate <test_file> --output-json`
+      returns `quality_score` ≥ 80 for each updated test file
+- [ ] If an invariant-encoding test changes, it is flagged for human
+      review with the three options (preserve/layer/revise) before
+      any assertion is modified

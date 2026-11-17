@@ -2,7 +2,7 @@
 name: sem-integration
 description: |
   Provides sem semantic-diff detection, install-on-first-use, and fallback patterns
-version: 1.9.8
+version: 1.10.3
 triggers:
   - sem
   - semantic-diff
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # sem Integration
@@ -88,3 +88,19 @@ sem impact --json <file-or-entity>
 
 Fallback path (sem unavailable): use rg/grep to trace
 callers by filename. See `modules/fallback.md`.
+
+## Exit Criteria
+
+- [ ] `_sem_check` result cached per session at
+  `${CLAUDE_CODE_TMPDIR:-/tmp}/sem-available`; detection command
+  runs at most once per session regardless of how many skills
+  invoke it
+- [ ] When sem is unavailable, install offer presented and fallback
+  path used automatically (`git diff --name-only --diff-filter=`
+  variants); no silent failure
+- [ ] Fallback output normalized to the same entity schema as sem
+  JSON output per `modules/fallback.md`; consumers downstream
+  see the same structure from both paths
+- [ ] Skills consuming this integration declare
+  `dependencies: [leyline:sem-integration]` in frontmatter
+  rather than reimplementing the detection pattern

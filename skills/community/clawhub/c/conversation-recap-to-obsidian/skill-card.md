@@ -1,41 +1,54 @@
-## Description: <br>
-Builds structured Obsidian daily and weekly review notes from conversations or existing markdown notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-value Obsidian daily and weekly review notes from conversation or existing markdown notes.
 
-## Publisher: <br>
-[amortalsodyssey](https://clawhub.ai/user/amortalsodyssey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amortalsodyssey](https://clawhub.ai/user/amortalsodyssey)
 
-## Use Case: <br>
-People who use Obsidian for work logs and AI-assisted development use this skill to turn conversations and daily notes into durable daily summaries, weekly reports, tags, and wikilinks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify local Obsidian daily and weekly markdown notes. <br>
-Mitigation: Configure the vault path and Obsidian binary carefully, keep Obsidian sync or backups enabled, and use explicit commands such as /summary daily or /summary weekly before writes. <br>
-Risk: A generated recap could replace the wrong generated summary block if note structure or local configuration is unexpected. <br>
-Mitigation: Use the skill's generated-section markers, review summaries before relying on them, and preserve non-target note content outside the marked block. <br>
+## Use Case:
 
+External users and developers use this skill to turn chat sessions and Obsidian daily notes into durable daily entries, regenerated daily summaries, and weekly reports grouped by work item.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amortalsodyssey/conversation-recap-to-obsidian) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/amortalsodyssey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown note sections with optional shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can append session entries, refresh generated daily summary blocks, and create weekly reports grouped by work item.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill can read and overwrite Obsidian daily and weekly notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated note changes before relying on them, keep config.json private and trusted, and use explicit commands for append, daily refresh, or weekly generation.
+
+Risk: Configuration may allow reads or writes outside the intended vault.
+
+Mitigation: Set obsidian_bin to the real Obsidian CLI, avoid absolute or ../ paths in daily_dir and weekly_dir, and use trusted vault_path settings.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/amortalsodyssey/skills/conversation-recap-to-obsidian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Obsidian note content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can append or regenerate local Obsidian daily and weekly markdown notes when configured with trusted paths.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

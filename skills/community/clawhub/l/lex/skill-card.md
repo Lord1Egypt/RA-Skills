@@ -1,53 +1,63 @@
-## Description: <br>
-Build original LangGraph agents for Warden Protocol and prepare them for publishing in Warden Studio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build original LangGraph agents for Warden Protocol and prepare them for deployment and publishing in Warden Studio.
 
-## Publisher: <br>
-[kulotzkih](https://clawhub.ai/user/kulotzkih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kulotzkih](https://clawhub.ai/user/kulotzkih)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, test, and deploy original LangGraph-based Warden Protocol agents, including API-accessible Web3 and automation agents intended for Warden Studio publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated dependency files may introduce packages that should be reviewed before installation. <br>
-Mitigation: Review generated manifests and dependency versions before running package installation commands. <br>
-Risk: The initializer creates files in the selected workspace. <br>
-Mitigation: Run scaffolding only in an intended project directory and inspect generated files before committing or deploying them. <br>
-Risk: Agent setup and deployment workflows require API keys and environment variables. <br>
-Mitigation: Keep .env files and real API keys out of source control, use deployment secret stores where possible, and avoid logging secrets. <br>
-Risk: Testing deployed agents against untrusted endpoints or with real credentials can expose sensitive data. <br>
-Mitigation: Use trusted endpoints, least-privilege test credentials, and avoid sending raw production prompts or secrets during validation. <br>
-Risk: Warden Phase 1 limitations prohibit user wallet access and storing data on Warden infrastructure. <br>
-Mitigation: Confirm generated agents do not access user wallets or persist data on Warden infrastructure before Warden Studio publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kulotzkih/lex) <br>
-- [Warden Community Agents Repository](https://github.com/warden-protocol/community-agents) <br>
-- [Warden Protocol Documentation](https://docs.wardenprotocol.org) <br>
-- [LangSmith](https://smith.langchain.com) <br>
-- [Deployment Guide](references/deployment-guide.md) <br>
-- [Installation Guide](references/installation-guide.md) <br>
-- [LangGraph Patterns](references/langgraph-patterns.md) <br>
-- [Quick Reference](references/quick-reference.md) <br>
-- [Example Configurations](assets/example-configs.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to create original Web3 and LangGraph agents for Warden Protocol, configure API access, and prepare deployment through LangSmith Deployments or self-hosted infrastructure.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, and generated project files when helper scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports TypeScript and Python LangGraph agent scaffolding, deployment guidance, and endpoint testing workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deployment and testing examples could expose real API keys if copied without adjustment.
+
+Mitigation: Store secrets in environment variables or a secrets manager, avoid passing real keys as command-line arguments, and use separate development and production credentials.
+
+Risk: Public agent endpoints such as /invoke or /stream could be exposed without authentication.
+
+Mitigation: Require authentication, serve authenticated endpoints only over HTTPS, apply rate limiting, and restrict CORS before making an agent public.
+
+Risk: Example infrastructure defaults could be unsuitable for production use.
+
+Mitigation: Replace example passwords, avoid public Redis or Postgres defaults, and pin dependency and container image versions for production deployments.
+
+## Reference(s):
+
+- [Warden Protocol Documentation](https://docs.wardenprotocol.org)
+- [Warden Community Agents Repository](https://github.com/warden-protocol/community-agents)
+- [LangSmith](https://smith.langchain.com)
+- [Installation Guide](references/installation-guide.md)
+- [LangGraph Agent Patterns for Warden](references/langgraph-patterns.md)
+- [API Integration and Deployment Guide](references/deployment-guide.md)
+- [Warden Agent Builder Quick Reference](references/quick-reference.md)
+- [Example Warden Agent Configurations](assets/example-configs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May scaffold TypeScript or Python LangGraph project files when the bundled initializer script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

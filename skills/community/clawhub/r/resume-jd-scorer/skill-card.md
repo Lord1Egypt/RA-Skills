@@ -1,43 +1,58 @@
-## Description: <br>
-简历-JD匹配度5维度评分技能。输入简历文本和目标JD，自动提取关键词、交叉匹配、5维评分，并生成交互式HTML报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+简历-JD匹配度5维度评分技能。输入简历文本和目标JD，自动提取关键词、交叉匹配、5维评分，并生成交互式HTML报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Job seekers, recruiters, and career advisors use this skill to compare resume content against a target job description, score fit across five dimensions, and identify high-impact resume improvements. It is intended for structured resume diagnosis, not for inventing new candidate facts or rewriting the original resume file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume and job description text can contain personal or sensitive information. <br>
-Mitigation: Provide only the resume and JD content you are comfortable letting the agent read, and provide sensitive JD text directly instead of asking the skill to search externally. <br>
-Risk: The skill writes local scoring reports that may be stored in a shared or unintended location. <br>
-Mitigation: Choose an output directory appropriate for the sensitivity of the resume and review generated files before sharing them. <br>
-Risk: Resume scoring and recommendations may be incomplete or misleading if inputs are missing, stale, or not representative of the target role. <br>
-Mitigation: Review the generated score, matched keywords, deductions, and TOP3 suggestions before using the report for application or hiring decisions. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate how well a resume matches a target job description, inspect five scoring dimensions and keyword matches, and generate reports with prioritized improvement suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/resume-jd-scorer) <br>
-- [Scoring rubric](references/scoring-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [Text guidance plus local JSON, HTML, and Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates resume-output/<version>/jd-match-report.html and jd-match-report.md when run with provided resume and JD content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML reports can execute injected content when built from untrusted or externally modified score JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted resume and JD inputs, and avoid opening generated HTML from untrusted score JSON until HTML escaping and CSP protections are fixed.
+
+Risk: Optional web lookup may send job-query data externally.
+
+Mitigation: Do not allow web search or fetch unless the user is comfortable sharing the job-query data with external services.
+
+Risk: Generated report files can contain personal career information.
+
+Mitigation: Treat score JSON, HTML, and Markdown reports as sensitive files and limit storage or sharing accordingly.
+
+## Reference(s):
+
+- [Scoring Rubric](references/scoring-rubric.md)
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/resume-jd-scorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON scoring data plus HTML and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can contain sensitive resume and job-description information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

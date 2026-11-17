@@ -1,49 +1,62 @@
-## Description: <br>
-Local-first multimedia research library for hardware projects. Capture code, CAD, PDFs, images. Search with material-type weighting. Project isolation with cross-references. Async extraction. Backup + restore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Library is a local-first multimedia research library for hardware projects that captures code, CAD, PDFs, images, and schematics with project-scoped search, extraction, backup, and restore.
 
-## Publisher: <br>
-[Jonbuckles](https://clawhub.ai/user/Jonbuckles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jonbuckles](https://clawhub.ai/user/jonbuckles)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to capture, index, search, link, export, and back up local research materials such as code, CAD files, PDFs, images, schematics, and project notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Imported private files, extracted text, and metadata can become searchable in the local library. <br>
-Mitigation: Import only materials intended for local indexing and review the configured data directory before adding sensitive project files. <br>
-Risk: Image EXIF fields, including GPS-related metadata when present, may be extracted and indexed. <br>
-Mitigation: Strip sensitive image metadata before import or avoid adding images whose EXIF data should not become searchable. <br>
-Risk: The CLI can add materials from URLs, including less trustworthy sources. <br>
-Mitigation: Prefer trusted HTTPS sources and avoid FTP or unknown URLs when importing external documents. <br>
-Risk: Restore and force operations can overwrite or hide local library state. <br>
-Mitigation: Create a fresh backup before restore operations and review targets carefully before using --force. <br>
+## Use Case:
 
+Developers and hardware engineers use this skill to operate a local research library for project documents, extracted metadata, cross-reference links, and CLI-driven search.
 
-## Reference(s): <br>
-- [Research Library ClawHub Page](https://clawhub.ai/Jonbuckles/research-library) <br>
-- [CLI Reference](docs/CLI-REFERENCE.md) <br>
-- [Extraction Guide](docs/EXTRACTION-GUIDE.md) <br>
-- [Search Guide](docs/SEARCH-GUIDE.md) <br>
-- [Worker Guide](docs/WORKER-GUIDE.md) <br>
-- [Technical Notes](TECHNICAL-NOTES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples, Python snippets, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CLI workflows and library-management guidance; the underlying tool stores indexed text, metadata, attachments, and backups on the user's machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: URL import can fetch untrusted content or unsafe network locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ClawHub-reviewed package path, avoid untrusted URLs and FTP links, and review imported sources before extraction.
+
+Risk: Project-path handling can affect where local research data and attachments are organized.
+
+Mitigation: Run as a normal user, use simple safe project IDs, and keep data directories scoped to the intended workspace.
+
+Risk: Indexed metadata and exports may include sensitive file contents, GPS, author, or device information.
+
+Mitigation: Review extracted metadata and exported JSON or Markdown before sharing outside the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonbuckles/skills/research-library)
+- [CLI Reference](artifact/docs/CLI-REFERENCE.md)
+- [Extraction Pipeline Guide](artifact/docs/EXTRACTION-GUIDE.md)
+- [Research Library Search Guide](artifact/docs/SEARCH-GUIDE.md)
+- [Extraction Worker Guide](artifact/docs/WORKER-GUIDE.md)
+- [Technical Notes](artifact/TECHNICAL-NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON or Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local SQLite data, extracted text indexes, backups, and export files when its CLI is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

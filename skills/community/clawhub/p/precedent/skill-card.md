@@ -1,39 +1,54 @@
-## Description: <br>
-Legal precedent reference — stare decisis, case law hierarchy, distinguishing, overruling, persuasive authority. Use when researching binding case law, analyzing judicial reasoning, or building legal arguments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal precedent reference for stare decisis, case law hierarchy, distinguishing, overruling, and persuasive authority when researching binding case law, analyzing judicial reasoning, or building legal arguments.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Legal researchers, lawyers, students, and agents use this skill as a quick reference for evaluating precedent, court hierarchy, case analysis, distinguishing, overruling, research, and legal writing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal precedent guidance may be outdated, incomplete, or jurisdiction-specific. <br>
-Mitigation: Verify current case law in authoritative legal research sources before relying on it for real legal work. <br>
+## Use Case:
 
+Legal researchers, lawyers, students, and agents use this skill as a quick reference for precedent doctrine, court hierarchy, case analysis, distinguishing, overruling, research validation, and legal-writing structure.
 
-## Reference(s): <br>
-- [Precedent on ClawHub](https://clawhub.ai/bytesagain1/precedent) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text legal-reference guidance emitted by shell commands, with command usage documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local script output; no API keys, network services, or MCP tools detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users could mistake static educational legal-reference output for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a quick reference only and consult qualified legal counsel for jurisdiction-specific advice.
+
+Risk: Case treatment and authority status can change after the static reference was published.
+
+Mitigation: Check current case treatment in authoritative legal databases before relying on or citing a precedent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/precedent)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static educational reference output; does not access private data or modify the system.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 意向性分析模块
 
@@ -18,6 +24,10 @@ import json
 import sys
 from typing import Dict, Any, List
 from datetime import datetime
+from interfaces import TraceContext, create_trace_context
+from metrics_collector import MetricsCollector
+from health_checker import HealthChecker
+from validation_framework import ValidationError, validate_params, validate_params
 
 
 class IntentionalityAnalyzer:
@@ -364,3 +374,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# 错误处理
+def _handle_error(error: Exception, context: str = "") -> None:
+    """处理错误"""
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.error(f"错误发生在 {context}: {str(error)}", exc_info=True)

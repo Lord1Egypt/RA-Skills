@@ -1,45 +1,54 @@
-## Description: <br>
-Security scanner for ClawHub skills that detects malicious code, obfuscated payloads, and social engineering before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for ClawHub skills. Detects malicious code, obfuscated payloads, and social engineering before installation. Three-layer analysis: pattern matching, deobfuscation, and LLM intent analysis.
 
-## Publisher: <br>
-[sypsyp97](https://clawhub.ai/user/sypsyp97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sypsyp97](https://clawhub.ai/user/sypsyp97)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit third-party ClawHub skills before installation or to review installed skill directories for suspicious shell, markdown, Python, or JavaScript content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is a shell-based auditor, so execution depends on the local shell environment and the target path or fetched skill content. <br>
-Mitigation: Run it only against specific skill directories or known ClawHub skill names, and do not run it with sudo. <br>
-Risk: The audit report is a helper and does not provide a complete security guarantee. <br>
-Mitigation: Use the results as one review input, and manually inspect high or medium findings before installing or updating a skill. <br>
-Risk: Suspicious snippets may be exported to /tmp/skill-audit-*-suspicious.txt for manual review. <br>
-Mitigation: Treat exported snippets as untrusted and delete the temporary file after review. <br>
-Risk: Optional LLM intent analysis requires a separate Gemini CLI or manual agent review step. <br>
-Mitigation: Do not assume LLM analysis has run unless the required tool is available and the suspicious snippet review was completed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/sypsyp97/skill-auditor-pro) <br>
-- [341 Malicious ClawHub Skills Incident](https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html) <br>
-- [OpenClaw Security Guide](https://docs.openclaw.ai/gateway/security) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to inspect ClawHub skills before installation and flag suspicious patterns, obfuscated payloads, social engineering indicators, and risky execution behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Guidance, Text] <br>
-**Output Format:** [Terminal text report with severity-labeled findings and verdicts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write suspicious-code snippets to a temporary /tmp/skill-audit-*-suspicious.txt file for manual review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can write extracted suspicious code to a predictable shared temporary path.
+
+Mitigation: Run it as an unprivileged user in a disposable or single-user environment, and avoid scanning directories that contain private source or secrets until the temporary-file behavior is fixed.
+
+Risk: The documentation overstates LLM analysis behavior compared with the artifact's handoff-style implementation.
+
+Mitigation: Treat the LLM step as reviewer guidance rather than automatic semantic analysis unless the implementation and documentation are corrected.
+
+## Reference(s):
+
+- [Skill Auditor Pro ClawHub listing](https://clawhub.ai/sypsyp97/skills/skill-auditor-pro)
+- [341 Malicious ClawHub Skills Incident](https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html)
+- [OpenClaw Security Guide](https://docs.openclaw.ai/gateway/security)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text report with risk findings, line references, suspicious code preview, and verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a nonzero shell exit code when medium or high risk findings are detected.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

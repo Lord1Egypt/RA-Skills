@@ -1,43 +1,60 @@
-## Description: <br>
-Bank Draft OCR identifies bank draft documents and extracts key fields such as issue date, payee, paying bank, and draft amount. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes bank draft documents and extracts structured fields such as issue date, payee, paying bank, and draft amount.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Developers and external users use this skill to submit local bank draft images or PDFs to Scnet OCR and receive structured recognition results for downstream review or processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected bank draft images or PDFs to Scnet's remote OCR API, which may expose sensitive financial document contents to a third party. <br>
-Mitigation: Use the skill only for documents you are authorized to transmit to Scnet, and confirm organizational data handling requirements before use. <br>
-Risk: The skill requires a Scnet API key for authentication. <br>
-Mitigation: Store the key locally in the configured environment or config file and do not paste API keys into chat. <br>
+## Use Case:
 
+External developers and operations teams use this skill to submit authorized bank-draft images, PDFs, or archives to the Scnet OCR API and receive structured JSON containing recognized draft fields.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/bank-draft-ocr) <br>
-- [Scnet Website](https://www.scnet.cn) <br>
-- [Sugon-Scnet OCR API Documentation Summary](references/api-docs.md) <br>
-- [Bank Draft Field Summary](assets/templates/fields-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Structured JSON recognition results with setup and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and sends the selected document file to Scnet's remote OCR API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill frontmatter, skill.yaml, CHANGELOG) <br>
+Risk: The skill uploads potentially sensitive bank-draft documents to a configurable external OCR endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for that endpoint, and confirm organizational approval before processing financial documents.
+
+Risk: A modified SCNET_API_BASE could redirect document uploads and API credentials to an untrusted destination.
+
+Mitigation: Keep config/.env permissions restricted, verify the endpoint before use, and avoid changing SCNET_API_BASE unless the destination is trusted.
+
+Risk: The skill requires an API credential to call Scnet OCR.
+
+Mitigation: Store SCNET_API_KEY in a protected environment or config file and do not paste credentials into chats or logs.
+
+## Reference(s):
+
+- [Sugon-Scnet OCR API Documentation](references/api-docs.md)
+- [Bank Draft Field Summary](assets/templates/fields-summary.md)
+- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/skills/bank-draft-ocr)
+- [Scnet Website](https://www.scnet.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON returned on standard output, with human-readable error text on failure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and accepts optional SCNET_API_BASE; uploads the provided document file to the configured OCR endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

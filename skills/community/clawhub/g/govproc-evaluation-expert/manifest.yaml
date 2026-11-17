@@ -1,0 +1,55 @@
+# ── OpenClaw 兼容 manifest.yaml ── govproc-evaluation-expert ──
+name: 政府采购评审专家
+slug: govproc-evaluation-expert
+emoji: "\u2696\uFE0F"
+version: 1.1.0
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+
+# ── 反馈渠道（四件套 #1：GitHub，禁用公众号导流）──
+feedback:
+  channel: "GitHub"
+  account: "chesaram/my-skill-hub"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"
+
+description: 政府采购评审专家——立足《政府采购法》体系的资深评审专家，以评审委员会组长独立公正第三方视角，覆盖公开招标、邀请招标、竞争性谈判、竞争性磋商、询价、单一来源等全部法定采购方式。处理无效投标与废标判定、质疑投诉、供应商串通识别、采购文件审查、响应文件风险评析、法条适用判断；挂载三个 ima 知识库（KB-A 实务与合规 / KB-B 投诉AI / KB-C 文件汇集）跨库交叉验证，法条引用可溯源。
+
+tags:
+  - 政府采购
+  - 评审专家
+  - 无效投标
+  - 废标判定
+  - 质疑投诉
+  - 供应商串通
+  - 采购文件审查
+
+triggers:
+  - pattern: "政府采购评审|无效投标判定|废标风险|质疑投诉处理|供应商串通识别|采购文件审查|响应文件风险评析|政采法条适用"
+
+metadata:
+  openclaw:
+    emoji: "\u2696\uFE0F"
+    homepage: https://github.com/chesaram/my-skill-hub
+
+platforms:
+  clawhub:
+    main: SKILL.md
+    displayName: Government Procurement Evaluation Expert
+    slug: govproc-evaluation-expert
+  skillhub:
+    main: SKILL.md
+    displayName: 政府采购评审专家
+  cocoloop:
+    main: SKILL.md
+    displayName: 政府采购评审专家
+  coze:
+    main: SKILL.md
+    displayName: 政府采购评审专家
+
+changelog:
+  - version: 1.1.0
+    date: 2026-07-27
+    change: 基于 SkillSpector 评析（综合 4.4/5）优化：内联 4 处幽灵引用（references/*.md）、新增 3 个 Few-Shot 完整问答演示、术语速查表前置 + 纠正话术模板、复杂混合场景分层分析、完整 Markdown 输出骨架模板、快速上手提问引导；通过静态回归（12/12 功能 + 6/6 防回归 + 0 幽灵引用）与动态回归（5/5 真实模型执行）双轮验证。
+  - version: 1.0.0
+    date: 2026-07-10
+    change: 初始版本，基于政府采购评审专家角色构建。

@@ -1,44 +1,60 @@
-## Description: <br>
-Conducts Freedom-to-Operate patent searches and infringement risk analyses from technical descriptions or images, using Google Patents or Patsnap to produce search queries, relevant patent lists, feature comparison tables, and risk conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts freedom-to-operate patent searches and infringement risk analysis from technical descriptions or images, producing search strategies, relevant patent lists, feature comparisons, and risk conclusions.
 
-## Publisher: <br>
-[chaochaoSZ](https://clawhub.ai/user/chaochaoSZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaochaosz](https://clawhub.ai/user/chaochaosz)
 
-## Use Case: <br>
-Developers, product teams, and IP professionals use this skill to structure FTO patent searches before product launch or technical implementation. It helps decompose a technical solution, search granted and pending patents across selected jurisdictions, compare high-relevance claims, and draft a research report that must be reviewed by qualified counsel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose confidential product plans, invention details, or images to external patent-search services. <br>
-Mitigation: Submit only information the user is authorized to disclose, and avoid confidential or sensitive inputs unless disclosure to the selected service is approved. <br>
-Risk: Patsnap access may require user authentication. <br>
-Mitigation: Log in only through the official Patsnap site and do not provide raw credentials to the agent. <br>
-Risk: FTO reports can be incomplete, inaccurate, or mistaken for legal advice. <br>
-Mitigation: Treat generated reports as research support and have findings reviewed by a qualified patent attorney before acting on them. <br>
+## Use Case:
 
+External users and patent or product teams use this skill to structure FTO searches before product launch or technology implementation. It helps collect search scope, decompose technical features, query granted and pending patents, compare claim elements, and draft a non-legal risk report for attorney review.
 
-## Reference(s): <br>
-- [Google Patents](https://patents.google.com) <br>
-- [Patsnap Patent Database](https://analytics.zhihuiya.com) <br>
-- [Patsnap Eureka](https://eureka.patsnap.com/ip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with tables, search queries, patent lists, and risk conclusions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured comparison tables, jurisdiction-specific search scope, legal-status notes, and confidentiality disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow may involve confidential product, invention, or launch details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intentional FTO or patent-risk work, confirm jurisdiction and search platform first, and limit confidential details to approved systems and accounts.
+
+Risk: The report template includes vendor promotional links and disclaimer language.
+
+Mitigation: Review generated reports and remove or edit promotional language when a neutral report is required.
+
+Risk: Patent search and infringement conclusions can be incomplete or misleading if treated as legal advice.
+
+Mitigation: Treat outputs as preliminary research and have a qualified patent attorney review conclusions before business or product decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaochaosz/skills/patent-fto)
+- [Google Patents](https://patents.google.com)
+- [Patsnap Patent Database](https://analytics.zhihuiya.com)
+- [Patsnap Eureka](https://eureka.patsnap.com/ip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report content with tables, search queries, patent lists, feature comparisons, and risk conclusions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include patent database URLs and report disclaimers; findings require professional legal review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

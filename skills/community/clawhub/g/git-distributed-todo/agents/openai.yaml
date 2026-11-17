@@ -1,0 +1,14 @@
+interface:
+  display_name: Git Distributed Todo
+  short_description: Coordinate Todo tasks across AI agents through Git
+  default_prompt: Use $git-distributed-todo to coordinate Todo tasks and consolidated
+    reminders across my AI agents through a shared Git repository.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

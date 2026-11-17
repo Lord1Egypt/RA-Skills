@@ -1,43 +1,57 @@
-## Description: <br>
-Writes pre-show booth invitation emails, reminder messages, subject line variants, and outreach sequences that help book meetings before trade shows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write pre-show booth invitation emails and outreach sequences that book meetings before the event.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Marketing, sales, and event teams use this skill to draft booth invitation emails, reminder follow-ups, subject line alternatives, personalization checklists, and multilingual outreach for prospects, customers, partners, press, or VIP contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may include unverified marketing, medical, or performance claims. <br>
-Mitigation: Review each draft before sending and verify all product, medical, and performance claims against approved source material. <br>
-Risk: Drafts may retain placeholders, inaccurate event details, or a footer/link that is not appropriate for a customer-facing message. <br>
-Mitigation: Replace placeholders, confirm show dates and booth details, and approve or remove the footer/link before sending. <br>
-Risk: Personalized language can imply a prior relationship when the recipient is actually a cold prospect. <br>
-Mitigation: Match the outreach pattern to the real relationship and avoid implying familiarity or a prior conversation unless it is true. <br>
+## Use Case:
 
+Sales and marketing teams use this skill to draft pre-show booth invitation emails, subject-line variants, reminder follow-ups, and meeting-booking sequences for prospects, customers, partners, press, and VIP contacts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/weilun88313/booth-invitation-writer) <br>
-- [Lensmor trade show intelligence](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=booth-invitation-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown outreach package] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically includes a primary email, A/B subject line variant, optional follow-up email, personalization checklist, practical sending tips, and translations when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: release evidence and frontmatter) <br>
+Risk: Generated outreach can include third-party promotional footer text that may be inappropriate for a sender's campaign.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before sending and remove the Lensmor promotional footer unless the sender intentionally wants it included.
+
+Risk: Healthcare-oriented examples can encourage recipients to bring or share patient-related scan data without approved handling procedures.
+
+Mitigation: Do not request patient-related scan data unless the sender's organization has approved compliant handling procedures.
+
+Risk: Unverified event logistics, product claims, customer proof, integrations, or metrics could make an invitation misleading.
+
+Mitigation: Verify all event and product claims before sending; keep unknown details as placeholders or omit them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weilun88313/skills/booth-invitation-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown outreach package with email drafts, subject-line variants, follow-up timing, personalization checklist, and practical sending tips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports multilingual drafting when the user requests another language; uses visible placeholders when event details, product claims, proof points, or availability are not verified.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

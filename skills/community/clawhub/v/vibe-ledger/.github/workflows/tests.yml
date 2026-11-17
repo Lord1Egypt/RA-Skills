@@ -1,0 +1,27 @@
+name: tests
+
+# The whole suite on Linux, at the oldest and newest Python the skill supports. The browser tests
+# (layout, screenshots) skip themselves when no Chrome is installed, so this run covers the scripts;
+# the rendered pages are checked on a machine with Chrome before a release.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pytest
+        run: python -m pip install --upgrade pip pytest
+      - name: Run the suite
+        run: python -m pytest tests -q

@@ -1,41 +1,54 @@
-## Description: <br>
-Interact with looplink (looplink.app) - A social content organizer / bookmarking app <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with looplink (looplink.app) - A social content organizer / bookmarking app
 
-## Publisher: <br>
-[sleep9](https://clawhub.ai/user/sleep9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sleep9](https://clawhub.ai/user/sleep9)
 
-## Use Case: <br>
-External users and agents use this skill to connect OpenClaw to Looplink, dynamically discover Looplink MCP tools, and organize or retrieve social bookmarking content through the Looplink service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill lets a live remote MCP manifest define which Looplink tools are callable. <br>
-Mitigation: Inspect the current manifest before use and require clear user confirmation before enabling write, delete, publish, share, or account-changing actions. <br>
-Risk: The skill uses a permanent agent apiKey that represents the agent's persistent identity. <br>
-Mitigation: Store the apiKey securely, never log or expose it, and confirm there is a way to revoke or rotate it before linking important accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sleep9/looplink) <br>
-- [Looplink MCP manifest](https://api.looplink.app/mcp/manifest) <br>
-- [Looplink MCP tool execution endpoint](https://api.looplink.app/mcp/call) <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Looplink's social content organizer through its MCP manifest and tool execution endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Structured JSON responses from Looplink MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The available tools and schemas are defined by the live Looplink MCP manifest.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives a remote service broad, changing tool authority through a dynamically loaded MCP manifest.
+
+Mitigation: Install only if the publisher and Looplink service are trusted, and review the manifest's available tools and authorization requirements before enabling agent access.
+
+Risk: The skill uses a permanent apiKey that functions as a long-lived agent credential.
+
+Mitigation: Store the apiKey in a secure secret store, avoid logging or exposing it, and confirm that it can be revoked or rotated if the agent or device is compromised.
+
+## Reference(s):
+
+- [Looplink MCP manifest endpoint](https://api.looplink.app/mcp/manifest)
+- [Looplink MCP tool execution endpoint](https://api.looplink.app/mcp/call)
+- [ClawHub skill page](https://clawhub.ai/sleep9/skills/looplink)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Configuration, Guidance]
+
+**Output Format:** [Structured JSON responses and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a permanent Looplink apiKey for authorized tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

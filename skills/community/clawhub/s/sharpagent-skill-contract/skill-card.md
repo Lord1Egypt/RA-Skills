@@ -1,41 +1,55 @@
-## Description: <br>
-SharpAgent Skill Contract is a schema-driven skill scaffolding tool that generates, validates, and packages SharpAgent-compliant skills with trust verification, calibration hooks, and content safety integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SharpAgent Skill Contract — Schema-driven skill scaffolding tool. Generates, validates, and packages SharpAgent-compliant skills with five-factor trust verification, calibration framework hooks, and content safety integration.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Developers and skill authors use this skill to scaffold new SharpAgent-compliant skills, validate contract structure, and package skills for ClawHub publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scaffolding or validation guidance could be applied to real publication workflows without review. <br>
-Mitigation: Review generated skill contracts and package contents before publication or deployment. <br>
-Risk: Operational commands described by the skill may affect public content or real users when adapted into moderation workflows. <br>
-Mitigation: Use the skill only in trusted development or staff environments and require explicit confirmation before any write action. <br>
+## Use Case:
 
+Developers and skill authors use this skill to scaffold, validate, package, and upgrade SharpAgent-compliant skills for ClawHub publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/sharpagent-skill-contract) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, shell command, and file layout examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scaffolding, validation, and packaging guidance for SharpAgent skill contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Referenced sharpagent CLI commands could create or package files using an untrusted local CLI installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the sharpagent CLI source before running commands.
+
+Risk: Generated or upgraded skill files could contain incorrect contract details before publication.
+
+Mitigation: Review and scan generated skill files before publishing them to ClawHub.
+
+## Reference(s):
+
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/skills/sharpagent-skill-contract)
+- [Publisher Profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with YAML, JSON, directory tree, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents SharpAgent contract fields, validation checks, packaging workflow, dependencies, and edge cases.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

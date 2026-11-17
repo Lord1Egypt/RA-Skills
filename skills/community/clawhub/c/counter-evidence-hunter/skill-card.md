@@ -1,42 +1,56 @@
-## Description: <br>
-Counter Evidence Hunter helps an agent pressure-test a main conclusion by searching for counter-evidence, flip conditions, alternative explanations, and confidence gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Counter Evidence Hunter helps an agent challenge a mainline claim by finding counter-evidence, flip conditions, and alternative explanatory paths.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Analysts, researchers, and decision-support agents use this skill after forming a mainline claim to find contradictory evidence, conditions that could overturn the conclusion, and alternative explanations before high-stakes analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential claims or private business details may be exposed when the agent uses them as search queries. <br>
-Mitigation: Use sanitized summaries or public-safe identifiers when search tools are enabled, and avoid including confidential details in the mainline claim or counter goal. <br>
-Risk: Weak or noisy counter-evidence may be over-weighted and distort the final conclusion. <br>
-Mitigation: Treat the output as advisory, preserve the skill's hard/soft/noise ratings, and require source review before changing the main analysis. <br>
+## Use Case:
 
+Analysts, researchers, and agents use this skill after forming a mainline claim to generate counter queries, classify conflicting evidence, identify flip conditions, and surface alternative explanations before high-risk conclusions.
 
-## Reference(s): <br>
-- [Counter-Evidence Patterns](references/counter-patterns.md) <br>
-- [Flip Condition Examples](references/flip-condition-examples.md) <br>
-- [Counter-Evidence Search Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Structured JSON with counter queries, counter-evidence, flip conditions, alternative supports, and confidence assessment fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dynamic search queries, evidence-strength ratings, blind spots, and 0-100 confidence scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill may surface weak or noisy objections as part of an adversarial evidence pass.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source quality, evidence strength, and stated search coverage before using its findings in a final decision.
+
+Risk: The skill may activate broadly around high-risk or uncertainty-heavy reasoning.
+
+Mitigation: Scope the mainline claim, time frame, and counter goal clearly, and treat the output as a review aid rather than an automated verdict.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/z1one0415/skills/counter-evidence-hunter)
+- [Counter Patterns](artifact/references/counter-patterns.md)
+- [Flip Condition Examples](artifact/references/flip-condition-examples.md)
+- [Counter-Evidence Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dynamic counter queries, merged counter-query lists, classified counter-evidence, flip conditions, alternative supports, and confidence assessment.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

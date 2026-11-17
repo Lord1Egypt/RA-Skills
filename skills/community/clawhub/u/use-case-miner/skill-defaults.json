@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "use-case-miner",
+  "workflow": "product",
+  "focus": "use_cases",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

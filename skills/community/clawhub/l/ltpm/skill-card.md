@@ -1,43 +1,63 @@
-## Description: <br>
-Manages multi-session, multi-stage projects by maintaining and syncing MISSION.md, PROGRESS.md, and NEXT_STEPS.md for seamless long-term progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages multi-session, multi-stage projects by maintaining and syncing MISSION.md, PROGRESS.md, and NEXT_STEPS.md for seamless long-term progress tracking.
 
-## Publisher: <br>
-[bono5137](https://clawhub.ai/user/bono5137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bono5137](https://clawhub.ai/user/bono5137)
 
-## Use Case: <br>
-Developers, agent users, and project teams use this skill to preserve long-running project context across sessions, resume work from structured status files, and keep immediate next actions visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passive heartbeat or file-watcher behavior can save project state without enough user control. <br>
-Mitigation: Require an explicit project directory and user approval before enabling auto-sync or file watching. <br>
-Risk: Progress, memory, backup, or log files may capture sensitive project details. <br>
-Mitigation: Keep logs and secrets out of scope, disable broad natural-language triggers where possible, and regularly inspect PROGRESS.md, MEMORY.md, and backup files. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to keep long-running AI projects resumable across sessions by creating and updating structured mission, progress, and next-step documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bono5137/ltpm) <br>
-- [Publisher profile](https://clawhub.ai/user/bono5137) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with example shell commands and JSON/YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-tracking document templates and progress-management procedures; optional watcher and backup behavior should be explicitly scoped by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can persist cross-session project context in workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for projects where persistent progress files are intended, and review PROGRESS.md and MEMORY.md before sharing them with other agents or users.
+
+Risk: Automatic monitoring can observe workspace file changes and update progress without enough user control.
+
+Mitigation: Prefer explicit commands such as checkpoint or mark_milestone, and disable or tightly scope automatic file watching.
+
+Risk: Progress documents may capture sensitive data from logs or configuration files.
+
+Mitigation: Keep logs and secret-bearing JSON/YAML files out of monitored paths.
+
+Risk: Optional third-party tooling or dependencies may expand the runtime environment.
+
+Mitigation: Pin third-party dependencies in an isolated environment before enabling optional watcher or conversion features.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bono5137/skills/ltpm)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown project documents with inline shell commands and optional JSON/YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists project state in workspace files and may use explicit commands or scoped file monitoring to keep progress synchronized.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

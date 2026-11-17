@@ -1,43 +1,62 @@
-## Description: <br>
-Pay for anything with USDC - virtual cards for any online checkout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay for anything with USDC using virtual cards for online checkout.
 
-## Publisher: <br>
-[clawallex-tech](https://clawhub.ai/user/clawallex-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawallex-tech](https://clawhub.ai/user/clawallex-tech)
 
-## Use Case: <br>
-External users and agent developers use Clawallex to set up a Clawallex account, check USDC balances, create one-time or reloadable virtual cards, refill cards, and inspect card or transaction status from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create USDC-funded virtual cards, subscriptions, refills, and card-control changes that may spend funds. <br>
-Mitigation: Require explicit user approval before every payment, subscription, refill, and card-control change, and verify wallet balance before spending. <br>
-Risk: Account credentials are stored locally on the machine running the agent. <br>
-Mitigation: Use a dedicated or limited API key when possible and protect the local Clawallex credential directory on shared machines. <br>
-Risk: Card details can include sensitive PAN and CVV data for checkout use. <br>
-Mitigation: Use sensitive card details only to fill checkout forms, never display PAN or CVV in chat, and show only masked card numbers to users. <br>
+## Use Case:
 
+External users and agent developers use this skill to set up Clawallex access, check USDC wallet and card state, create virtual cards for one-time or subscription payments, and guide checkout flows without exposing card secrets in chat.
 
-## Reference(s): <br>
-- [Clawallex on ClawHub](https://clawhub.ai/clawallex-tech/clawallex) <br>
-- [Clawallex dashboard settings](https://app.clawallex.com/dashboard/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [JSON command output with markdown and shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return success or error JSON; payment and card operations require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can initiate payment-card creation and uses high-value Clawallex credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-limit Clawallex API key, check wallet balance before payment, and confirm amount and description with the user before creating a card.
+
+Risk: Secrets can be exposed through chat transcripts or command-line history.
+
+Mitigation: Avoid entering API keys or secrets directly into chat or shell history, and rotate keys if they may have been logged.
+
+Risk: Production credentials could be sent to an unsafe endpoint if a custom or HTTP base URL is used.
+
+Mitigation: Do not use custom or HTTP base URLs with production credentials.
+
+Risk: Stored credentials and card-sensitive data require careful local handling.
+
+Mitigation: Keep ~/.clawallex credential files protected or remove them when no longer needed, and never display PAN or CVV values to the user.
+
+## Reference(s):
+
+- [Clawallex Skill on ClawHub](https://clawhub.ai/clawallex-tech/skills/clawallex)
+- [Clawallex Dashboard Settings](https://app.clawallex.com/dashboard/settings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command results with concise Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Python 3.9+ and a configured Clawallex account or signup flow; payment actions should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

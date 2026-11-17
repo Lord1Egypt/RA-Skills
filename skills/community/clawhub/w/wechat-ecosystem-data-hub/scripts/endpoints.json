@@ -1,0 +1,647 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "account-balance",
+      "name": "账户余额",
+      "cat": "other",
+      "method": "GET",
+      "path": "/openapi/account-balance/",
+      "price": 0.0,
+      "params": [],
+      "purpose": "查询余额（免费）",
+      "param_types": {},
+      "product_slug": "account-balance"
+    },
+    {
+      "key": "hot-search",
+      "name": "全网热搜",
+      "cat": "other",
+      "method": "GET",
+      "path": "/openapi/today-hot-search/rank",
+      "price": 0.0,
+      "params": [
+        "platform",
+        "limit",
+        "includeStale"
+      ],
+      "purpose": "多平台热搜榜",
+      "free": true,
+      "param_types": {
+        "platform": "string",
+        "limit": "integer",
+        "includeStale": "boolean"
+      },
+      "product_slug": "today-hot-search"
+    },
+    {
+      "key": "low-baseline-viral",
+      "name": "低粉爆文",
+      "cat": "other",
+      "method": "GET",
+      "path": "/openapi/wechat-low-baseline-viral-library-api/rank",
+      "price": 0.0,
+      "params": [
+        "range",
+        "category",
+        "title",
+        "account",
+        "publishedFrom",
+        "publishedTo",
+        "readMin",
+        "readMax",
+        "likeMin",
+        "likeMax",
+        "oldLikeMin",
+        "oldLikeMax",
+        "shareMin",
+        "shareMax",
+        "commentMin",
+        "commentMax",
+        "collectMin",
+        "collectMax",
+        "interactionMin",
+        "interactionMax",
+        "page",
+        "pageSize",
+        "sortBy",
+        "sortOrder"
+      ],
+      "purpose": "低粉爆文榜单",
+      "free": true,
+      "param_types": {
+        "range": "string",
+        "category": "string",
+        "title": "string",
+        "account": "string",
+        "publishedFrom": "string",
+        "publishedTo": "string",
+        "readMin": "integer",
+        "readMax": "integer",
+        "likeMin": "integer",
+        "likeMax": "integer",
+        "oldLikeMin": "integer",
+        "oldLikeMax": "integer",
+        "shareMin": "integer",
+        "shareMax": "integer",
+        "commentMin": "integer",
+        "commentMax": "integer",
+        "collectMin": "integer",
+        "collectMax": "integer",
+        "interactionMin": "integer",
+        "interactionMax": "integer",
+        "page": "integer",
+        "pageSize": "integer",
+        "sortBy": "string",
+        "sortOrder": "string"
+      },
+      "product_slug": "wechat-low-baseline-viral-library-api"
+    },
+    {
+      "key": "mp-account-articles",
+      "name": "公众号历史文章",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-account-articles/accounts/articles",
+      "price": 0.035,
+      "params": [
+        "url",
+        "ghid",
+        "page",
+        "cursor",
+        "collectionId",
+        "offset",
+        "limit"
+      ],
+      "purpose": "按链接或 gh_ ID 拉历史文章",
+      "param_types": {
+        "url": "string",
+        "ghid": "string",
+        "page": "integer",
+        "cursor": "string",
+        "collectionId": "string",
+        "offset": "integer",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-account-articles"
+    },
+    {
+      "key": "mp-account-articles-today",
+      "name": "公众号今日文章",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-account-articles-today/accounts/articles/today",
+      "price": 0.03,
+      "params": [
+        "url",
+        "ghid",
+        "limit"
+      ],
+      "purpose": "拉取当日发文",
+      "param_types": {
+        "url": "string",
+        "ghid": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-account-articles-today"
+    },
+    {
+      "key": "mp-account-profile",
+      "name": "公众号资料",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-account-profile/accounts/profile",
+      "price": 0.03,
+      "params": [
+        "url",
+        "ghid"
+      ],
+      "purpose": "公众号名称/简介/原始ID",
+      "param_types": {
+        "url": "string",
+        "ghid": "string"
+      },
+      "product_slug": "wechat-native-account-profile"
+    },
+    {
+      "key": "mp-article-metrics",
+      "name": "文章互动数据",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-metrics/articles/metrics",
+      "price": 0.015,
+      "params": [
+        "url"
+      ],
+      "purpose": "阅读/点赞/分享/收藏",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-metrics"
+    },
+    {
+      "key": "mp-article-info",
+      "name": "文章基本信息",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-info/articles/info",
+      "price": 0.01,
+      "params": [
+        "url"
+      ],
+      "purpose": "标题/作者/发布时间",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-info"
+    },
+    {
+      "key": "mp-article-content",
+      "name": "文章正文",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-content/articles/content",
+      "price": 0.008,
+      "params": [
+        "url",
+        "format"
+      ],
+      "purpose": "正文/媒体/内容分析",
+      "param_types": {
+        "url": "string",
+        "format": "string"
+      },
+      "product_slug": "wechat-native-article-content"
+    },
+    {
+      "key": "mp-article-media",
+      "name": "文章媒体资源",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-media/native/media",
+      "price": 0.021,
+      "params": [
+        "url"
+      ],
+      "purpose": "图片/视频/音频/链接清单",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-media"
+    },
+    {
+      "key": "mp-article-snapshot",
+      "name": "文章完整数据",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-snapshot/articles/snapshot",
+      "price": 0.03,
+      "params": [
+        "url"
+      ],
+      "purpose": "一次拿信息+互动+正文",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-snapshot"
+    },
+    {
+      "key": "mp-article-report",
+      "name": "文章完整报告",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-report/articles/report",
+      "price": 0.063,
+      "params": [
+        "url"
+      ],
+      "purpose": "一次拿全量分析报告",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-report"
+    },
+    {
+      "key": "mp-article-resolve",
+      "name": "文章短链解析",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-resolve/articles/resolve",
+      "price": 0.035,
+      "params": [
+        "url"
+      ],
+      "purpose": "短链转规范链接",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-resolve"
+    },
+    {
+      "key": "mp-search-accounts",
+      "name": "搜一搜公众号",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-accounts/search/accounts",
+      "price": 0.08,
+      "params": [
+        "query",
+        "sort",
+        "cursor"
+      ],
+      "purpose": "按关键词找公众号",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string"
+      },
+      "product_slug": "wechat-native-search-accounts"
+    },
+    {
+      "key": "mp-search-articles",
+      "name": "搜一搜文章",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-articles/search/articles",
+      "price": 0.04,
+      "params": [
+        "query",
+        "sort",
+        "cursor",
+        "publishTime",
+        "scope"
+      ],
+      "purpose": "按关键词搜文章",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string",
+        "publishTime": "string",
+        "scope": "string"
+      },
+      "product_slug": "wechat-native-search-articles"
+    },
+    {
+      "key": "mp-search-summary",
+      "name": "搜一搜综合",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-summary/search/summary",
+      "price": 0.1,
+      "params": [
+        "query",
+        "sort",
+        "cursor",
+        "publishTime",
+        "scope"
+      ],
+      "purpose": "综合搜索结果",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string",
+        "publishTime": "string",
+        "scope": "string"
+      },
+      "product_slug": "wechat-native-search-summary"
+    },
+    {
+      "key": "mp-search-wechat-index",
+      "name": "微信指数",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-wechat-index/search/wechat-index",
+      "price": 0.1,
+      "params": [
+        "query",
+        "sort",
+        "cursor"
+      ],
+      "purpose": "微信指数相关结果",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string"
+      },
+      "product_slug": "wechat-native-search-wechat-index"
+    },
+    {
+      "key": "mp-search-suggestions",
+      "name": "搜一搜推荐词",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-suggestions/search/suggestions",
+      "price": 0.1,
+      "params": [
+        "query"
+      ],
+      "purpose": "关键词联想",
+      "param_types": {
+        "query": "string"
+      },
+      "product_slug": "wechat-native-search-suggestions"
+    },
+    {
+      "key": "mp-search-guide",
+      "name": "搜索引导",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-guide/search/guide",
+      "price": 0.1,
+      "params": [
+        "query"
+      ],
+      "purpose": "搜一搜引导/推荐",
+      "param_types": {
+        "query": "string"
+      },
+      "product_slug": "wechat-native-search-guide"
+    },
+    {
+      "key": "ch-info",
+      "name": "视频号作品资料",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-info/videos/info",
+      "price": 0.21,
+      "params": [
+        "url",
+        "shortUri"
+      ],
+      "purpose": "标题/账号/时间/媒体/互动",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string"
+      },
+      "product_slug": "wechat-native-channel-info"
+    },
+    {
+      "key": "ch-video-list",
+      "name": "视频号作品列表",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-videos/videos/list",
+      "price": 0.1,
+      "params": [
+        "shareUrl",
+        "accountId",
+        "cursor",
+        "limit"
+      ],
+      "purpose": "按账号拉作品列表",
+      "param_types": {
+        "shareUrl": "string",
+        "accountId": "string",
+        "cursor": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-channel-videos"
+    },
+    {
+      "key": "ch-metrics",
+      "name": "视频号互动数据",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-metrics/videos/metrics",
+      "price": 0.028,
+      "params": [
+        "url",
+        "shortUri"
+      ],
+      "purpose": "点赞/评论/收藏/转发/播放",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string"
+      },
+      "product_slug": "wechat-native-channel-metrics"
+    },
+    {
+      "key": "ch-account-search",
+      "name": "视频号账号搜索",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-search/videos/search",
+      "price": 0.1,
+      "params": [
+        "keyword",
+        "cursor",
+        "limit"
+      ],
+      "purpose": "按关键词找视频号",
+      "param_types": {
+        "keyword": "string",
+        "cursor": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-channel-search"
+    },
+    {
+      "key": "ch-resolve",
+      "name": "视频号作品解析",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-resolve/videos/resolve",
+      "price": 0.07,
+      "params": [
+        "url",
+        "shortUri"
+      ],
+      "purpose": "链接解析为 objectId",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string"
+      },
+      "product_slug": "wechat-native-channel-resolve"
+    },
+    {
+      "key": "ch-share-url",
+      "name": "视频号分享链接",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-share-url/videos/share-url",
+      "price": 0.07,
+      "params": [
+        "objectId",
+        "objectNonceId",
+        "exportId"
+      ],
+      "purpose": "生成分享链接",
+      "param_types": {
+        "objectId": "string",
+        "objectNonceId": "string",
+        "exportId": "string"
+      },
+      "product_slug": "wechat-native-channel-share-url"
+    },
+    {
+      "key": "ch-export-to-object",
+      "name": "export 转作品",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-export-object/videos/export-to-object",
+      "price": 0.035,
+      "params": [
+        "exportId"
+      ],
+      "purpose": "短期ID转稳定ID",
+      "param_types": {
+        "exportId": "string"
+      },
+      "product_slug": "wechat-native-channel-export-object"
+    },
+    {
+      "key": "ch-download-url",
+      "name": "视频号播放地址",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-download-url/videos/download-url",
+      "price": 0.05,
+      "params": [
+        "url",
+        "shortUri",
+        "exportId",
+        "objectId",
+        "objectNonceId"
+      ],
+      "purpose": "短期播放地址",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string",
+        "exportId": "string",
+        "objectId": "string",
+        "objectNonceId": "string"
+      },
+      "product_slug": "wechat-native-channel-download-url"
+    },
+    {
+      "key": "ch-live-replays",
+      "name": "视频号直播回放",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-live-replays/videos/live-replays",
+      "price": 0.14,
+      "params": [
+        "shareUrl",
+        "accountId",
+        "cursor",
+        "limit"
+      ],
+      "purpose": "直播回放记录",
+      "param_types": {
+        "shareUrl": "string",
+        "accountId": "string",
+        "cursor": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-channel-live-replays"
+    },
+    {
+      "key": "video-understanding",
+      "name": "视频视觉理解",
+      "cat": "ai",
+      "method": "POST",
+      "path": "/openapi/video-understanding/analyze",
+      "price": 0.12,
+      "params": [
+        "videoUrl",
+        "analysisMode",
+        "extraPrompt"
+      ],
+      "purpose": "多模态画面/时间线/OCR",
+      "mode_price": {
+        "summary": 0.12,
+        "timeline": 0.18,
+        "decompose": 0.24
+      },
+      "param_types": {
+        "videoUrl": "string",
+        "analysisMode": "string",
+        "extraPrompt": "string"
+      },
+      "product_slug": "video-understanding"
+    },
+    {
+      "key": "audio-transcription",
+      "name": "音频转文字",
+      "cat": "ai",
+      "method": "POST",
+      "path": "/openapi/stepfun-audio-transcription/transcribe",
+      "price": 0.05,
+      "params": [
+        "file",
+        "audioUrl"
+      ],
+      "purpose": "音视频转写",
+      "param_types": {
+        "file": "string",
+        "audioUrl": "string"
+      },
+      "product_slug": "stepfun-audio-transcription"
+    },
+    {
+      "key": "mp-search-miniprograms",
+      "name": "搜一搜小程序",
+      "cat": "other",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-miniprograms/search/miniprograms",
+      "price": 0.7,
+      "params": [
+        "query",
+        "sort",
+        "cursor"
+      ],
+      "purpose": "按关键词搜小程序",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string"
+      },
+      "product_slug": "wechat-native-search-miniprograms"
+    }
+  ]
+}

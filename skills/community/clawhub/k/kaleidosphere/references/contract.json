@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "kaleidosphere/agent-skill-contract/v1",
+  "product": "KaleidoSphere",
+  "apiContract": "superset-bi-agent.external/intent-request/v2",
+  "actions": ["status", "discovery", "analyze", "plan", "preview", "readback"],
+  "authority": "authority-free",
+  "forbidden": ["free_sql", "credential", "raw_row", "arbitrary_url", "provider_payload", "apply", "write", "delete", "deploy"],
+  "visualReview": {
+    "hmi": "advisory-only-not-implementation-authority",
+    "internalDesignReview": "adapt-visual-heuristics-never-evidence-override",
+    "presentations": "adapt-clarity-never-truth-judge"
+  }
+}

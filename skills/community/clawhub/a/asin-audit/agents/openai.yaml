@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon ASIN 运营体检"
+  short_description: "商品详情与评论证据驱动的一键运营诊断"
+  default_prompt: "使用 $amazon-asin-audit 体检一个 Amazon ASIN，结合商品详情与评论给出最优先的运营动作。"

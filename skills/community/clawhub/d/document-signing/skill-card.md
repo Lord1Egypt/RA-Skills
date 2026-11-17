@@ -1,42 +1,54 @@
-## Description: <br>
-Helps users set up document signing in Nota Sign by planning envelopes, signers, fields, templates, signing order, and post-send tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users set up document signing in Nota Sign with practical guidance for envelopes, signers, fields, templates, signing order, and post-send status tracking.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Employees and business users use this skill to prepare documents for signature, choose between one-off envelopes and templates, map signers to fields, decide signing order, and track completion after sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential documents, legal materials, or credentials into chat while asking for setup help. <br>
-Mitigation: Use minimal document metadata and signer-role descriptions when possible; avoid sharing credentials or full sensitive document text unless intentionally required. <br>
-Risk: Guidance may be mistaken for legal advice or for confirmation that a signing workflow is enforceable. <br>
-Mitigation: Keep recommendations focused on setup and execution steps, and have legal or compliance staff review legal requirements for the document and jurisdiction. <br>
+## Use Case:
 
+Employees and external users use this skill to plan and review document-signing setup in Nota Sign before sending envelopes. It helps choose one-off envelopes or templates, map signers to fields, configure signing order, and track completion records.
 
-## Reference(s): <br>
-- [Nota Sign website](https://www.notasign.com/en) <br>
-- [ClawHub skill page](https://clawhub.ai/notasign/document-signing) <br>
-- [notasign publisher profile](https://clawhub.ai/user/notasign) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown checklists, setup steps, recommendations, and signer/field mapping tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; does not send envelopes or automate document signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Incorrect signer names, email addresses, fields, deadlines, or legal assumptions could cause an envelope to be sent incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify signer details, required fields, deadlines, and legal requirements before sending real documents.
+
+Risk: Users may mistake setup guidance for legal advice or automated signing action.
+
+Mitigation: Treat the skill as guidance only; it does not send envelopes, perform clicks, execute signing actions, or provide legal advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/notasign/skills/document-signing)
+- [Nota Sign Website](https://www.notasign.com/en)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown checklists, setup steps, signer/field mapping tables, and template recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution; users must verify signer details, deadlines, legal requirements, and audit records before sending documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Hook and opening optimization for Chinese short-form content, including diagnosis of weak openings and generation of content-aligned hook directions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hook and opening optimization for Chinese short-form content that diagnoses weak first seconds or sentences, checks whether the underlying material can support a strong opening, and generates multiple opening directions that match the content.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Creators, editors, and agent users use this skill to evaluate whether a Chinese short-form draft has enough material for a strong opening, diagnose an existing hook, and generate several opening directions that the body can support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated hooks may overpromise or distort the underlying draft if the source material is weak. <br>
-Mitigation: Review each opening against the body and reject options the content cannot pay off. <br>
-Risk: The skill can shape public-facing content and may encourage attention-grabbing openings that are not suitable for every brand or audience. <br>
-Mitigation: Apply human editorial review for tone, accuracy, and audience fit before publishing. <br>
+## Use Case:
 
+External creators, content teams, and agent users use this skill to diagnose and improve Chinese short-form openings. It helps determine whether the opening is weak or the source material is under-fueled, then produces a concise hook pack with several viable directions and top recommendations.
 
-## Reference(s): <br>
-- [Hook Optimizer Homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/hook-optimizer) <br>
-- [开头原则](references/hook-principles.md) <br>
-- [常见 Hook 类型](references/hook-types.md) <br>
-- [开头优化包](assets/hook-pack-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a content viability note, opening diagnosis, extracted materials, multiple hook directions, and top recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The default template and workflow are Chinese-focused, so results may be less suitable for other languages unless requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to respond in the desired language when the target content is not Chinese.
+
+Risk: Opening suggestions can overpromise when the source material lacks a concrete result, contradiction, scene, detail, or judgment.
+
+Mitigation: Use the skill's content viability diagnosis before accepting generated hooks, and strengthen the underlying material when it is marked under-fueled.
+
+## Reference(s):
+
+- [开头原则](references/hook-principles.md)
+- [常见 Hook 类型](references/hook-types.md)
+- [Skill homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/hook-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown hook pack with diagnostic notes, extracted materials, multiple opening directions, candidate openings, and ranked recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output and emphasizes openings that the provided body can actually support.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

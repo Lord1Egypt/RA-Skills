@@ -1,45 +1,59 @@
-## Description: <br>
-飞书图片消息 helps an agent upload, send, retrieve, download, and view Feishu image messages using the bundled Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书图片消息 helps agents upload, send, download, and view Feishu image messages using local Feishu account credentials.
 
-## Publisher: <br>
-[imBing](https://clawhub.ai/user/imBing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imbing](https://clawhub.ai/user/imbing)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent work with Feishu image messages, including uploading local images, sending image keys or files to chats, downloading images, and returning image data for inspection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HTTPS certificate and hostname verification are disabled while the script handles Feishu credentials, image content, and message sending. <br>
-Mitigation: Review or patch the script to restore normal HTTPS verification before installing or running it. <br>
-Risk: The skill can send images to Feishu chats or users, which can expose data if the recipient or image is wrong. <br>
-Mitigation: Use least-privilege Feishu app scopes and confirm the recipient, chat type, and image before sending. <br>
-Risk: The view command returns image contents as base64 data, which can expose sensitive images to the agent session. <br>
-Mitigation: Avoid the view command for sensitive images and limit use to images approved for agent inspection. <br>
-Risk: The download command can create directories and write files at the requested output path. <br>
-Mitigation: Choose download paths carefully and run the skill with filesystem permissions limited to the intended workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Upload Image API](https://open.feishu.cn/document/server-docs/im-v1/image/create) <br>
-- [Feishu Get Image API](https://open.feishu.cn/document/server-docs/im-v1/image/get) <br>
-- [Feishu Send Message API](https://open.feishu.cn/document/server-docs/im-v1/message/create) <br>
+## Use Case:
 
+Developers and agent users use this skill to operate Feishu image workflows from an assistant, including uploading local images, sending images to chats or users, downloading images by image_key, and returning image data for viewing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands; the script prints JSON status objects, saved image files, or base64 image data URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials in the local OpenClaw configuration and Feishu scopes for image resources and bot message sending.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill disables normal HTTPS server-certificate checks while using Feishu credentials and transferring image data.
+
+Mitigation: Review before installation, avoid use on untrusted networks, and restore default TLS certificate verification before broad deployment.
+
+Risk: The skill can send local image files to Feishu chats or users and write downloaded images to local disk paths.
+
+Mitigation: Require explicit confirmation of recipients, source files, and output paths before executing send or download operations.
+
+Risk: The skill reads Feishu app credentials from the local OpenClaw configuration.
+
+Mitigation: Use only Feishu credentials intended for this workflow and rotate or scope credentials according to the Feishu permissions required by the release.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/imbing/skills/feishu-img-msg)
+- [Feishu upload image API](https://open.feishu.cn/document/server-docs/im-v1/image/create)
+- [Feishu get image API](https://open.feishu.cn/document/server-docs/im-v1/image/get)
+- [Feishu send message API](https://open.feishu.cn/document/server-docs/im-v1/message/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON command responses, data URI text, and downloaded image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Feishu image_key values, local file paths, chat IDs, and an OpenClaw Feishu account configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

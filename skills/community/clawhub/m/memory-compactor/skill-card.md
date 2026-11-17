@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically organizes and compacts long-term memory by summarizing key points, deduplicating content, and removing stale information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Compactor organizes and compresses long-term memory by summarizing redundant content and clearing outdated information.
 
-## Publisher: <br>
-[soroyue](https://clawhub.ai/user/soroyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soroyue](https://clawhub.ai/user/soroyue)
 
-## Use Case: <br>
-Agents and users use this skill to compact persistent memory files into concise summaries, preserve important long-term information, and remove outdated temporary details. It is intended for memory maintenance workflows where proposed changes can be reviewed before they are applied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may be rewritten or removed without clear confirmation, preview, backup, or rollback safeguards. <br>
-Mitigation: Use the skill manually, require a preview or diff before changes, and keep versioned backups before applying compaction. <br>
-Risk: Scheduled or threshold-based cleanup could compact memory before retention rules and restore behavior are clear. <br>
-Mitigation: Avoid scheduled or threshold-based cleanup until retention rules are defined and restore behavior has been tested. <br>
+## Use Case:
 
+Agent users and developers use this skill to maintain persistent memory files by summarizing older entries, retaining key decisions and lessons, and removing stale temporary information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soroyue/memory-compactor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance for memory compaction decisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose summaries, deletions, and deduplication of persistent memory; require review before applying changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic memory summarization or cleanup can rewrite or remove persistent memory without clear preview, confirmation, or rollback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview, explicit user confirmation, and recoverable backups before applying memory changes.
+
+Risk: Important decisions, preferences, or lessons may be lost if the compaction rules classify them as outdated or redundant.
+
+Mitigation: Keep long-term identity, goals, rules, decisions, and lessons in protected sections that are reviewed manually before deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soroyue/skills/memory-compactor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown memory summaries and file update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize, deduplicate, or remove memory content according to documented retention levels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

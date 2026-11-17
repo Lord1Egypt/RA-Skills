@@ -1,43 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill when spreadsheet deliverables need reliable Excel formulas, workbook structure, formatting, type handling, recalculation awareness, and template preservation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet edits can introduce incorrect formulas, stale cached values, or broken references. <br>
-Mitigation: Review formulas and outputs before relying on them, recalculate workbooks in Excel or a compatible engine, and verify representative cells after bulk edits. <br>
-Risk: Important workbook data or formatting can be damaged during edits. <br>
-Mitigation: Keep backups of important workbooks and preserve existing workbook structure, styles, validations, and templates unless the task explicitly changes them. <br>
-Risk: The published package identity may matter because the ClawHub slug and artifact slug differ. <br>
-Mitigation: Confirm the publisher handle, page URL, and package identity before installing when provenance or publisher trust is important. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to create, inspect, and edit spreadsheet workbooks while preserving formulas, dates, data types, formatting, and workbook structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/chen-excel-xlsx) <br>
-- [Skill homepage](https://clawic.com/skills/excel-xlsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code, shell commands, and configuration details when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable behavior is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: Spreadsheet edits can introduce stale formulas, incorrect references, or damaged workbook structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review formulas, recalculate with Excel or a compatible tool, and inspect formatting, hidden sheets, named ranges, validations, and merged areas before relying on the workbook.
+
+Risk: Identifiers, dates, and precision-sensitive values can be corrupted by spreadsheet auto-conversion.
+
+Mitigation: Use explicit data types or text formats where needed, then verify representative cells after read and write operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/skills/chen-excel-xlsx)
+- [Skill homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with optional code or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook-editing instructions, formula guidance, and review steps; no hidden execution is disclosed in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and _meta.json report 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

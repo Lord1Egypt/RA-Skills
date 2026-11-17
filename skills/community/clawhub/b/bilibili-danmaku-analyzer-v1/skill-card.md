@@ -1,43 +1,59 @@
-## Description: <br>
-Bilibili Danmaku Analyzer extracts public Bilibili video comments, summarizes comment timing and keyword sentiment, and produces analysis files for LLM-assisted review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B站视频弹幕舆情与节奏分析。输入B站视频链接，自动提取弹幕数据，通过大模型分析弹幕的舆情倾向、情感演变、节奏热度分布等。
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to collect public danmaku from a Bilibili video and prepare structured sentiment, rhythm, and topic-analysis materials for an LLM or local review workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves sampled public comments, video metadata, generated prompts, and reports locally, which may be sensitive depending on the video topic. <br>
-Mitigation: Choose an intentional output directory, review generated files before sharing them, and delete outputs when the topic or comments are sensitive. <br>
-Risk: The skill fetches data from public Bilibili APIs for user-supplied videos and may encounter access failures or rate limiting. <br>
-Mitigation: Use valid Bilibili video identifiers, retry later after access failures, and avoid high-frequency repeated requests. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch public Bilibili danmaku for a supplied video, summarize time-based comment activity, and prepare sentiment and rhythm analysis artifacts for LLM review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unclecheng-li/bilibili-danmaku-analyzer-v1) <br>
-- [Bilibili video page](https://www.bilibili.com/) <br>
-- [Bilibili video information API](https://api.bilibili.com/x/web-interface/view?bvid={bvid}) <br>
-- [Bilibili danmaku API](https://api.bilibili.com/x/v1/dm/list.so?oid={cid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [JSON analysis data, plain-text LLM prompt, and Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves sampled comments, video metadata, generated prompts, and reports to the selected local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _skillhub_meta.json) <br>
+Risk: The skill sends the user-supplied Bilibili video identifier to Bilibili APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for video identifiers you are comfortable disclosing to Bilibili services.
+
+Risk: Sampled public danmaku text is stored locally and may be included in generated prompts and reports.
+
+Mitigation: Review generated artifacts before sharing them or submitting them to a model with tools or sensitive context.
+
+Risk: Downloaded comments are untrusted user-generated content.
+
+Mitigation: Run downstream LLM analysis without tools or privileged context when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unclecheng-li/skills/bilibili-danmaku-analyzer-v1)
+- [Bilibili video information API](https://api.bilibili.com/x/web-interface/view?bvid={bvid})
+- [Bilibili danmaku API](https://api.bilibili.com/x/v1/dm/list.so?oid={cid})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [JSON analysis data, plain-text LLM prompt, Markdown report, and command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files for a supplied Bilibili BV identifier or video URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _skillhub_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,96 @@
+{
+  "standard": "ISO 45001:2018",
+  "chinese_title": "职业健康安全管理体系 要求及使用指南",
+  "abbr": "OH&S",
+  "note": "采用 Annex SL；特有重点为 6.1.2 危险源辨识、5.4 员工协商参与、8.1.2 消除降低替代、8.1.3 变更管理、8.2 应急。",
+  "clauses": [
+    {"clause": "4", "title": "组织环境", "chinese_title": "组织环境",
+     "subclauses": ["4.1 理解组织及其环境", "4.2 理解相关方需求和期望", "4.3 确定体系范围", "4.4 职业健康安全管理体系"]},
+    {"clause": "5", "title": "领导作用和工作人员参与", "chinese_title": "领导作用和员工参与",
+     "subclauses": ["5.1 领导承诺和职业健康安全方针", "5.2 职业健康安全方针", "5.3 组织的角色、职责和权限", "5.4 工作人员的协商和参与"]},
+    {"clause": "6", "title": "策划", "chinese_title": "策划",
+     "subclauses": ["6.1.1 总则", "6.1.2 危险源辨识、风险和机遇评价", "6.1.3 法律法规和其他要求", "6.1.4 措施的策划", "6.2 职业健康安全目标"]},
+    {"clause": "7", "title": "支持", "chinese_title": "支持",
+     "subclauses": ["7.1 资源", "7.2 能力", "7.3 意识", "7.4 沟通", "7.5 文件化信息"]},
+    {"clause": "8", "title": "运行", "chinese_title": "运行",
+     "subclauses": ["8.1.1 运行策划和控制总则", "8.1.2 消除危险源和降低职业健康安全风险", "8.1.3 变更管理", "8.1.4 采购", "8.2 应急准备和响应"]},
+    {"clause": "9", "title": "绩效评价", "chinese_title": "绩效评价",
+     "subclauses": ["9.1 监视、测量和评价", "9.1.2 合规性评价", "9.2 内部审核", "9.3 管理评审"]},
+    {"clause": "10", "title": "改进", "chinese_title": "改进",
+     "subclauses": ["10.1 总则", "10.2 事件、不符合和纠正措施", "10.3 持续改进"]}
+  ],
+  "clause_keywords": {
+    "4.3": ["体系范围"], "5.2": ["职业健康安全方针"], "5.4": ["员工参与", "协商"],
+    "6.1.2": ["危险源", "hazard"], "6.1.3": ["法律法规", "安全法规", "合规义务"],
+    "6.2": ["安全目标", "职业健康安全目标"], "7.2": ["能力培训", "持证"], "7.5": ["文件控制", "记录控制"],
+    "8.1.2": ["消除", "替代", "工程控制", "防护措施"], "8.1.3": ["变更管理", "变更"], "8.1.4": ["承包商", "采购"],
+    "8.2": ["应急", "演练", "急救"], "9.1": ["安全监测", "工伤", "事故"], "9.1.2": ["合规性评价"],
+    "9.2": ["内部审核"], "9.3": ["管理评审"], "10.2": ["事件", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hazard_identification", "name_zh": "危险源辨识与评价（6.1.2）", "name_en": "Hazard Identification",
+     "description_zh": "是否系统辨识危险源（含常规/非常规、承包商、人员），评价风险并策划控制措施。",
+     "keywords_zh": ["危险源", "风险评价", "风险分级", "辨识"], "keywords_en": ["hazard"],
+     "related_clauses": ["6.1.2"],
+     "compliance_statement": [
+       "✓ 建立《危险源辨识与风险评价程序》，覆盖常规/非常规活动、所有人员与场所。",
+       "✓ 形成《重大危险源清单》，按风险分级策划控制措施（消除→替代→工程→标识→管理→PPE）。"]},
+    {"id": "worker_participation", "name_zh": "员工协商与参与（5.4）", "name_en": "Worker Participation",
+     "description_zh": "是否建立机制让员工参与危险源辨识、方针制定、事件调查、协商沟通。",
+     "keywords_zh": ["员工参与", "协商", "员工代表", "安全委员会"], "keywords_en": ["worker participation"],
+     "related_clauses": ["5.4"],
+     "compliance_statement": [
+       "✓ 建立员工协商参与机制（如安全委员会、员工代表）。",
+       "✓ 保留协商记录，员工参与危险源辨识与事件调查。"]},
+    {"id": "legal_compliance", "name_zh": "法律法规与其他要求（6.1.3）", "name_en": "Legal Requirements",
+     "description_zh": "是否识别适用安全法规（安法、特种设备、危化品、职业健康），并定期更新。",
+     "keywords_zh": ["安全法规", "合规义务", "特种设备", "危化品", "职业健康"], "keywords_en": ["legal requirement"],
+     "related_clauses": ["6.1.3"],
+     "compliance_statement": [
+       "✓ 建立《法律法规识别程序》，形成适用清单并定期评审更新。",
+       "✓ 对特种设备、危化品、职业健康等专项要求有专门跟踪。"]},
+    {"id": "operational_control", "name_zh": "运行控制与变更管理（8.1）", "name_en": "Operational Control",
+     "description_zh": "是否对高风险作业（高风险、特种作业、承包商）实施控制，变更前评审安全风险。",
+     "keywords_zh": ["运行控制", "特种作业", "承包商", "变更管理", "高风险"], "keywords_en": ["operational control"],
+     "related_clauses": ["8.1.2", "8.1.3", "8.1.4"],
+     "compliance_statement": [
+       "✓ 对高风险作业、特种作业、承包商实施作业许可与安全交底。",
+       "✓ 变更实施前评审对职业健康安全的影响。"]},
+    {"id": "emergency_response", "name_zh": "应急准备和响应（8.2）", "name_en": "Emergency Preparedness",
+     "description_zh": "是否识别紧急状况（火灾、泄漏、伤亡），制定预案并演练、配急救物资。",
+     "keywords_zh": ["应急", "预案", "演练", "急救", "火灾"], "keywords_en": ["emergency"],
+     "related_clauses": ["8.2"],
+     "compliance_statement": [
+       "✓ 识别紧急状况并制定应急预案，配备急救与消防物资。",
+       "✓ 定期演练并评审有效性。"]},
+    {"id": "incident_handling", "name_zh": "事件与不符合（10.2）", "name_en": "Incident & Nonconformity",
+     "description_zh": "是否对事故/事件/不符合进行调查、根因分析并采取纠正措施。",
+     "keywords_zh": ["事故", "事件", "工伤", "纠正措施", "调查"], "keywords_en": ["incident"],
+     "related_clauses": ["10.2"],
+     "compliance_statement": [
+       "✓ 建立《事件调查与纠正措施程序》，及时报告并调查。",
+       "✓ 采取根因分析与预防措施，评估措施有效性。"]},
+    {"id": "internal_audit", "name_zh": "内部审核（9.2）", "name_en": "Internal Audit",
+     "description_zh": "是否按计划实施职业健康安全内审并闭环。",
+     "keywords_zh": ["内部审核"], "keywords_en": ["internal audit"],
+     "related_clauses": ["9.2"],
+     "compliance_statement": [
+       "✓ 编制年度内审方案，覆盖全部要素与部门。",
+       "✓ 内审不符合项已整改闭环。"]}
+  ],
+  "required_procedures": [
+    {"id": "OHS-PF-001", "name": "文件控制程序", "clause": "7.5", "priority": "high", "high_voltage_check": [], "match_keywords": ["文件控制"]},
+    {"id": "OHS-PF-002", "name": "记录控制程序", "clause": "7.5", "priority": "high", "high_voltage_check": [], "match_keywords": ["记录控制"]},
+    {"id": "OHS-PF-003", "name": "危险源辨识与风险评价程序", "clause": "6.1.2", "priority": "high", "high_voltage_check": ["hazard_identification"], "match_keywords": ["危险源"]},
+    {"id": "OHS-PF-004", "name": "法律法规识别与评价程序", "clause": "6.1.3", "priority": "high", "high_voltage_check": ["legal_compliance"], "match_keywords": ["安全法规"]},
+    {"id": "OHS-PF-005", "name": "人力资源控制程序", "clause": "7.2", "priority": "medium", "high_voltage_check": [], "match_keywords": ["能力", "培训", "持证"]},
+    {"id": "OHS-PF-006", "name": "运行控制程序（高风险/特种作业/承包商）", "clause": "8.1", "priority": "high", "high_voltage_check": ["operational_control"], "match_keywords": ["运行控制", "特种作业", "承包商"]},
+    {"id": "OHS-PF-007", "name": "变更管理控制程序", "clause": "8.1.3", "priority": "medium", "high_voltage_check": [], "match_keywords": ["变更管理"]},
+    {"id": "OHS-PF-008", "name": "应急准备和响应控制程序", "clause": "8.2", "priority": "high", "high_voltage_check": ["emergency_response"], "match_keywords": ["应急", "预案"]},
+    {"id": "OHS-PF-009", "name": "绩效监视与测量程序", "clause": "9.1", "priority": "medium", "high_voltage_check": [], "match_keywords": ["安全监测", "工伤"]},
+    {"id": "OHS-PF-010", "name": "合规性评价程序", "clause": "9.1.2", "priority": "high", "high_voltage_check": [], "match_keywords": ["合规性评价"]},
+    {"id": "OHS-PF-011", "name": "内部审核控制程序", "clause": "9.2", "priority": "high", "high_voltage_check": ["internal_audit"], "match_keywords": ["内部审核"]},
+    {"id": "OHS-PF-012", "name": "事件调查与纠正措施控制程序", "clause": "10.2", "priority": "high", "high_voltage_check": ["incident_handling"], "match_keywords": ["事件", "纠正措施"]},
+    {"id": "OHS-PF-013", "name": "管理评审控制程序", "clause": "9.3", "priority": "high", "high_voltage_check": [], "match_keywords": ["管理评审"]}
+  ]
+}

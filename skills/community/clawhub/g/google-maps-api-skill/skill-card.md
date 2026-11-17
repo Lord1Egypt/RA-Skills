@@ -1,44 +1,59 @@
-## Description: <br>
-This skill helps agents collect structured business listing data from Google Maps through the BrowserAct Google Maps API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users automatically scrape business data from Google Maps using the BrowserAct Google Maps API for local business research, lead generation, competitor analysis, ratings checks, contact retrieval, and directory building.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to run keyword- and country-biased Google Maps searches for business names, categories, addresses, phone numbers, websites, ratings, review counts, and operational status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The BrowserAct API key could be exposed if pasted into chat or committed with files. <br>
-Mitigation: Keep BROWSERACT_API_KEY in environment configuration and avoid sharing the key in conversation or source files. <br>
-Risk: Broad or recurring business-contact collection can raise privacy, terms-of-service, or compliance concerns. <br>
-Mitigation: Confirm user intent before large lead-generation runs and check applicable privacy, platform, and compliance requirements. <br>
-Risk: External API authorization or task failures can interrupt data collection. <br>
-Mitigation: Do not retry invalid authorization errors; for other failures, retry once and then report the specific error. <br>
+## Use Case:
 
+Developers, operators, sales teams, and analysts use this skill to query Google Maps through BrowserAct and collect structured local business data such as names, categories, addresses, phone numbers, websites, ratings, review counts, and business status.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/phheng/google-maps-api-skill) <br>
-- [BrowserAct integrations console](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, configuration guidance] <br>
-**Output Format:** [Terminal status logs followed by structured text or JSON-like API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; polls BrowserAct task status and uses the skill-defined retry behavior for non-authorization failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Risk: The skill requires a BrowserAct API key and may prompt the user to provide one.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BROWSERACT_API_KEY as an environment secret and avoid pasting credentials into chat.
+
+Risk: The skill automates Google Maps business-contact extraction for uses such as outreach or CRM import.
+
+Mitigation: Confirm that scraping, storing, and using business contact data is allowed by applicable laws, platform terms, and organizational policy before use.
+
+Risk: The security verdict is suspicious because the skill broadly encourages automated business-contact scraping.
+
+Mitigation: Review the skill before installation and limit use to approved data collection workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/google-maps-api-skill)
+- [BrowserAct Console Integrations](https://www.browseract.com/reception/integrations)
+- [BrowserAct Workflow API Endpoint](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Terminal text with structured business records returned from the BrowserAct API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and the BROWSERACT_API_KEY environment variable; task status is streamed while the BrowserAct workflow runs.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

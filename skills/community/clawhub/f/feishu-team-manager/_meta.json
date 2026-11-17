@@ -2,5 +2,27 @@
   "ownerId": "kn7a068npwxbg0hdteb6s8gcvd85b543",
   "slug": "feishu-team-manager",
   "version": "2.4.3",
-  "publishedAt": 1777297653570
+  "publishedAt": 1777189509532,
+  "description": "自动化招聘新 Agent，配置独立飞书/ Discord 机器人并重构多账号路由",
+  "requires": {
+    "binaries": ["openclaw"],
+    "env": ["HOME"],
+    "credentials": [
+      {
+        "name": "Feishu App ID",
+        "description": "飞书机器人应用凭证 App ID",
+        "env": "LARK_APP_ID"
+      },
+      {
+        "name": "Feishu App Secret",
+        "description": "飞书机器人应用凭证 App Secret",
+        "env": "LARK_APP_SECRET"
+      },
+      {
+        "name": "Discord Bot Token (optional)",
+        "description": "Discord 机器人 Token，仅绑定 Discord 时需要",
+        "env": "DISCORD_BOT_TOKEN"
+      }
+    ]
+  }
 }

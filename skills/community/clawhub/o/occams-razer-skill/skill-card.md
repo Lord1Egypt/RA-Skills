@@ -1,44 +1,57 @@
-## Description: <br>
-Evaluates competing hypotheses with Occam's Razor to identify the simplest explanation that fits the scenario, using forensic, academic, or combined reasoning modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates competing hypotheses to identify the simplest explanation that fits the scenario using forensic, academic, or combined parsimony logic.
 
-## Publisher: <br>
-[aleph23](https://clawhub.ai/user/aleph23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aleph23](https://clawhub.ai/user/aleph23)
 
-## Use Case: <br>
-Developers, analysts, investigators, and researchers use this skill to compare hypotheses, count assumptions, identify fallacies, and explain why one candidate explanation is more parsimonious than another. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may favor simpler explanations and underweight rare but important evidence in legal, forensic, medical, financial, or other high-stakes decisions. <br>
-Mitigation: State constraints and evidence clearly, require domain expert review, and do not use the result as the sole basis for high-stakes decisions. <br>
-Risk: A hypothesis can appear simpler because critical evidence was omitted or treated as irrelevant. <br>
-Mitigation: Check that the preferred explanation accounts for all material observations and explicitly penalize assumptions that dismiss evidence without support. <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to compare explanations for investigations, troubleshooting, conceptual debates, and research synthesis. It helps count assumptions, check for fallacies, and explain why one hypothesis is more parsimonious than another.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aleph23/occams-razer-skill) <br>
-- [Core reasoning instructions](references/instructions_core.md) <br>
-- [Workflow logic](references/workflow_logic.yaml) <br>
-- [Logical fallacies reference](references/fallacies.md) <br>
-- [Example scenarios](references/example_scenarios.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured prose or JSON-style analysis with a preferred hypothesis, complexity analysis, rationale, and confidence score.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumption counts, fallacy checks, and confidence scoring for each hypothesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad triggers may steer ordinary analytical conversations toward parsimony-based hypothesis comparison when a different reasoning frame is needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke deliberately for hypothesis comparison and ask the agent to account for the user's stated constraints before preferring the simpler explanation.
+
+Risk: Parsimony can become oversimplification if a simpler hypothesis ignores critical evidence.
+
+Mitigation: Use the skill's fallacy and evidence checks; require the selected hypothesis to explain all provided observations and constraints.
+
+## Reference(s):
+
+- [Occam's Razor Analysis on ClawHub](https://clawhub.ai/aleph23/skills/occams-razer-skill)
+- [Core Instructions](references/instructions_core.md)
+- [Workflow Logic](references/workflow_logic.yaml)
+- [Logical Fallacies Reference Guide](references/fallacies.md)
+- [Example Scenarios](references/example_scenarios.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured JSON with explanatory rationale in text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a preferred hypothesis, assumption analysis, logic rationale, and confidence score.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

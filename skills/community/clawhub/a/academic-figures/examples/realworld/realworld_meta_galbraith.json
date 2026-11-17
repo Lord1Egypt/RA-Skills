@@ -1,0 +1,20 @@
+{
+  "_chart_type": "galbraith",
+  "_command": "python3 scripts/gen_figure.py -t galbraith -d examples/realworld/realworld_meta_galbraith.json -o meta_galbraith.png --cjk",
+  "_note": "场景：12 项研究比较免疫治疗组 vs 化疗的客观缓解率 ORR（logOR 尺度，模拟数据，量级参照晚期 NSCLC 一线 Meta 文献）。Galbraith 径向图与漏斗图配套读：漏斗看小样本不对称（发表偏倚），径向图看哪个研究偏离同质带（异质性来源）。本例 Kim 2023 为故意构造的带外离群——stderr 会逐个报名并提示敏感性分析；est_label=OR 默认画效应量弧线（OR=0.5/1/2/4 读数）。与 forest（合并效应）、funnel（不对称）组成 Meta 分析三件套。",
+  "est_label": "OR",
+  "studies": [
+    {"name": "Garon 2015", "effect": 0.52, "se": 0.31},
+    {"name": "Borghaei 2015", "effect": 0.44, "se": 0.22},
+    {"name": "Reck 2016", "effect": 0.61, "se": 0.18},
+    {"name": "Herbst 2016", "effect": 0.55, "se": 0.16},
+    {"name": "Socinski 2018", "effect": 0.67, "se": 0.13},
+    {"name": "Paz-Ares 2018", "effect": 0.58, "se": 0.12},
+    {"name": "Gandhi 2018", "effect": 0.63, "se": 0.11},
+    {"name": "Mok 2019", "effect": 0.70, "se": 0.10},
+    {"name": "刘 2022", "effect": 0.57, "se": 0.14},
+    {"name": "周 2022", "effect": 0.49, "se": 0.20},
+    {"name": "Nishio 2020", "effect": 0.60, "se": 0.15},
+    {"name": "Kim 2023", "effect": 1.42, "se": 0.19}
+  ]
+}

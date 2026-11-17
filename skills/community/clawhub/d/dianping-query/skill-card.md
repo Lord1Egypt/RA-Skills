@@ -1,38 +1,53 @@
-## Description: <br>
-Guides an agent through querying Dianping for restaurant ratings, average cost, addresses, recommendations, nearby food results, and city-specific search handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Dianping restaurant searches to find ratings, average spend, addresses, recommendations, and review summaries.
 
-## Publisher: <br>
-[guogang1024](https://clawhub.ai/user/guogang1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guogang1024](https://clawhub.ai/user/guogang1024)
 
-## Use Case: <br>
-External users and agents use this skill to search Dianping for specific restaurants, cuisine or area-based recommendations, and nearby food information, then extract practical restaurant details from results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to use a pre-existing logged-in Dianping session without a clear user consent gate. <br>
-Mitigation: Prefer public or logged-out Dianping pages; when a logged-in session is needed, ask the user before using it and explain whose account is active and what account-scoped data may be visible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dianping Hangzhou](https://www.dianping.com/hangzhou) <br>
-- [Dianping AI Search URL Pattern](https://www.dianping.com/ai-search?keyword=...) <br>
+## Use Case:
 
+External users can use this skill to guide restaurant lookups on Dianping, including named restaurant queries, cuisine or area searches, and nearby food recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown instructions and extracted restaurant details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include restaurant names, ratings, average cost, addresses, descriptions, recommended dishes, and review summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dianping may receive searches and account or location context when a logged-in browser session is used.
+
+Mitigation: Use the skill only with user consent and avoid sensitive searches when account or location context should not be shared.
+
+Risk: Phone or SMS verification may be required if the Dianping session is not already logged in.
+
+Mitigation: Have the user complete verification directly in the browser session.
+
+## Reference(s):
+
+- [Dianping Hangzhou](https://www.dianping.com/hangzhou)
+- [ClawHub Skill Page](https://clawhub.ai/guogang1024/skills/dianping-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with browser navigation steps and extracted restaurant details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include restaurant names, ratings, average spend, addresses, descriptions, recommended dishes, and review summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

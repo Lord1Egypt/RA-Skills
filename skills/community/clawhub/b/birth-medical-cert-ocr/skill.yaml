@@ -1,11 +1,12 @@
 name: birth_medical_cert_ocr
-version: 1.0.3
-description: 将图片中的文字、出生医学证明信息识别并提取出来。本技能应在用户需要 OCR 识别图片中的文字，或识别出生医学证明时使用。
+version: 1.0.5
+description: 仅在用户明确提及“出生医学证明”、“出生证明”、“医学出生证明”、“新生儿证明”等特定词汇时触发，用于识别出生医学证明上的核心信息（新生儿姓名、出生日期、父母信息、证件号码等）。严禁用于通用 OCR 或其他非出生医学证明类证件识别。
 author: SCNet
 license: MIT
 tags:
   - ocr
-  - 文字提取
+  - 证件识别
+  - 出生医学证明
 required_env_vars:
   - SCNET_API_KEY
 
@@ -16,6 +17,21 @@ primary_credential: SCNET_API_KEY
 
 # 增加项目主页，解决 missing homepage 警告
 homepage: https://github.com/SCNet-sugon/birth_medical_cert_ocr.git  # 请替换为实际仓库地址
+
+permissions:
+  read_local_files:
+    paths:
+      - "${SKILL_ROOT}/config/.env"
+      - "${USER_PROVIDED_FILE_PATH}"
+    reason: 读取用户提供的出生医学证明图片文件及本地配置文件。
+  network:
+    endpoints:
+      - "https://api.scnet.cn/api/llm/v1/ocr/recognize"
+    reason: 将出生医学证明图片上传至 Scnet OCR 服务进行识别处理。
+  execute_script:
+    command: "python3 ${SKILL_ROOT}/scripts/main.py <ocrType> <filePath>"
+    reason: 执行本地 Python 脚本完成 OCR 识别调用。
+
 dependencies:
   - python3
   - requests

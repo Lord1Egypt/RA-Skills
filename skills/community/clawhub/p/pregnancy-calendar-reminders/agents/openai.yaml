@@ -1,0 +1,4 @@
+interface:
+  display_name: "孕期日历提醒 / Pregnancy Calendar"
+  short_description: "生成并核对孕期产检提醒日历"
+  default_prompt: "使用 $pregnancy-calendar-reminders 根据末次月经生成完整孕期提醒日历。"

@@ -1,41 +1,54 @@
-## Description: <br>
-Provides a FactorLang quantitative factor expression reference for writing factor expressions, strategy conditions, syntax queries, and trading strategy logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a FactorLang quantitative factor expression reference for writing factor expressions, querying syntax, and designing trading strategy conditions.
 
-## Publisher: <br>
-[rxjhfmf](https://clawhub.ai/user/rxjhfmf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rxjhfmf](https://clawhub.ai/user/rxjhfmf)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to draft and check FactorLang expressions for quantitative factor logic, trading strategy conditions, and syntax-specific formula guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading expressions or strategy formulas may be incorrect, incomplete, or unsuitable for a user's market assumptions. <br>
-Mitigation: Review generated formulas manually before using them for trading, backtesting, or automation. <br>
-Risk: If an agent has access to a trading or backtesting tool, it could run a strategy request before the user has confirmed the expression. <br>
-Mitigation: Require explicit user confirmation before running expressions, backtests, or strategy requests through external tools. <br>
+## Use Case:
 
+Developers and quantitative strategy authors use this skill to look up FactorLang syntax, variables, functions, and examples when drafting factor expressions and trading strategy conditions.
 
-## Reference(s): <br>
-- [FactorLang Expression System Specification](resources/FactorLang表达式系统规范.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rxjhfmf/factorlang-expression) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with FactorLang expression examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise formula snippets, syntax corrections, and strategy-condition guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated trading rules may be incorrect, misleading, or unsuitable for a user's financial context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated rules carefully and treat examples as technical templates rather than financial recommendations.
+
+Risk: Backtest or execution-related tool calls could run with unintended strategy parameters.
+
+Mitigation: Require explicit user confirmation before any MCP, backtest, or execution-related tool use.
+
+## Reference(s):
+
+- [FactorLang expression system specification](artifact/resources/FactorLang表达式系统规范.md)
+- [ClawHub skill page](https://clawhub.ai/rxjhfmf/skills/factorlang-expression)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with FactorLang expression snippets and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include strategy-expression examples and user-directed MCP/backtest call parameters; examples should not be treated as financial recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

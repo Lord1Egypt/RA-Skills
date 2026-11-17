@@ -1,42 +1,59 @@
-## Description: <br>
-Control the desktop via CUA computer server API running on port 8000. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the desktop via the CUA computer server API running on port 8000.
 
-## Publisher: <br>
-[sarinali](https://clawhub.ai/user/sarinali) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sarinali](https://clawhub.ai/user/sarinali)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to a local CUA computer server for screenshots, mouse and keyboard actions, window control, and desktop workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad live-screen desktop control and may be configured as an always-on service. <br>
-Mitigation: Run the CUA server only while needed, keep it bound to localhost, close sensitive windows before use, and avoid always-on service mode unless the operator understands how to disable it. <br>
-Risk: Network exposure of the CUA server can allow remote desktop control if access is not constrained. <br>
-Mitigation: Use authentication for any network exposure, keep firewall rules restrictive, and prefer local-only access. <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate a trusted local desktop through a CUA server, including screenshots, mouse actions, typing, hotkeys, app launches, and opening files or URLs.
 
-## Reference(s): <br>
-- [Desktop Automation on ClawHub](https://clawhub.ai/sarinali/desktop-automation) <br>
-- [CUA Computer Server GitHub Repository](https://github.com/trycua/cua-computer-server) <br>
-- [CUA Getting Started Documentation](https://cua.ai/docs/cua/guide/get-started/what-is-cua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target a CUA server on localhost:8000 by default and may control the live desktop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Desktop automation can expose screenshots and perform clicks, typing, app launches, and file or URL opens in the active local session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only on a trusted machine, review the visible desktop before use, and stop the local CUA server when automation is not needed.
+
+Risk: Always-on service setup can leave broad local desktop control available persistently.
+
+Mitigation: Prefer starting the server manually for each session unless persistent operation is explicitly required and understood.
+
+Risk: Binding the server beyond localhost can expose desktop-control capabilities to a network.
+
+Mitigation: Keep the server bound to localhost, and use authentication and firewall controls if any network exposure is unavoidable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sarinali/skills/desktop-automation)
+- [CUA getting started documentation](https://cua.ai/docs/cua/guide/get-started/what-is-cua)
+- [CUA computer server repository](https://github.com/trycua/cua-computer-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce desktop-control commands that can affect the visible local session when executed against a running CUA server.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

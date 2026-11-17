@@ -1,0 +1,438 @@
+# ============================================================================
+# access.yaml — Convbox-DiagClaw Self-Service Analytics Prof.Skill · API Reference
+# ----------------------------------------------------------------------------
+# This file describes the Convbox Agent-AI data API's call method, field
+# definitions, sample input, and sample output, so consuming AI platforms can
+# fetch data accordingly. It is the "dictionary" part of the data-access layer;
+# for "when to use which endpoint and caliber caveats", see functions.md.
+#
+# Credentials: every request carries  ApiKey: <CONVBOX_API_KEY>  in the HTTP
+#   header. <CONVBOX_API_KEY> MUST be read from an environment variable; it is
+#   STRICTLY FORBIDDEN to write it into this file or any file in the package.
+#
+# Items labelled "when not instrumented" describe what a store sees when a given
+# dimension or metric is not configured; everything else is the general
+# interface caliber.
+# ============================================================================
+
+meta:
+  doc_version: 2.1.0
+  base_url: https://admin-api-eoyon7vptq-uc.a.run.app/v1.1/agent-ai
+  auth:
+    location: header
+    header_name: ApiKey
+    value_from_env: CONVBOX_API_KEY      # Do not write the actual Key here
+  conventions:
+    method: POST                          # All endpoints are POST + JSON body
+    content_type: application/json
+    http_status: "A successful response returns 201 Created (not 200); success is always judged by body code===1, never by HTTP 200."
+    success_message: "The success message is 'Service succeed'; do not hard-match the string."
+    date_format: "YYYY-MM-DD"             # Range is inclusive of both ends
+    dimensions_type: "For all Convbox list endpoints, pass dimensions as a single-value string (e.g. \"channel\"). ad-analysis rejects any array with code:400; web-analysis accepts a 1-element array but rejects multi-element with code:400. See dimensions_array_rule below. (A multi-value dimensions can also collapse into a 1-row rollup with total:1 — wrong data.)"
+    paging: { page_size: "Rows per page", page_no: "Page number, starting at 1. The param name is page_no; passing page is IGNORED and you stay on page 1." }
+    sorting: { sort_by: "Sort field name, from a NARROW backend whitelist (verified live 2026-06-30 on #4/#5). Sortable (return data): spend, main_conversions, cpa, ctr. BROKEN — silently return total:0 / empty records with no error: conversions, conversion_value, profit, roas, ad_net_roas, margin, impressions, clicks (and on web-analysis: purchases, unique_users). These broken fields still exist in every response row; you simply cannot sort by them server-side. To rank by such a field, fetch with a whitelisted sort_by (or omit sort_by) using a page_size large enough to capture all rows, then rank in-kernel. Also: the main-conversion sort key is main_conversions, but its response field is named conversions (request key ≠ response field).", sort: "asc | desc" }
+    dimensions_array_rule: "dimensions is a single value. ad-analysis rejects ANY array (code:400). web-analysis tolerates a 1-element array (e.g. [\"channel\"]) but rejects multi-element arrays (code:400). all-attribution: pass a single-value string. No endpoint supports true multi-dimension grouping; a multi-value array returns 400."
+    empty_data_note: "source / medium / landing_page may be empty when those dimensions are not instrumented; some on-site funnel fields (homepage/product-page views, engagement rate, etc.) and new_lead_conversions may be 0 when not instrumented. Before product-level / source-level / new-customer / funnel analysis, first confirm data completeness; do not fabricate from empty data."
+
+# Attribution model / conversion goal values (caliber details in functions.md)
+enums:
+  model: ["First click", "Last click", "Linear", "Time decay", "Data driven"]   # Default First click
+  goal:  ["purchase", "add_to_cart", "checkout_started"]   # The interface accepts these keywords (default purchase). The code returned by setting_goals is a hash string, different from these keywords; do not pass code as goal.
+  ad_dimension:  ["channel", "campaign", "ad_set", "ad"]                          # ad-analysis single-value string
+  attr_dimension: ["channel", "campaign", "source", "medium", "landing_page"]    # Single-value string (not array)
+
+# ============================================================================
+# Endpoint catalog (9 endpoints)
+# ============================================================================
+endpoints:
+
+  # ── 1. Conversion goal configuration ──────────────────────────────────────
+  - id: setting_goals
+    summary: Fetch the conversion goal configurations available for this store (for reference/display; the goal parameter itself uses keywords like purchase)
+    method: POST
+    path: /api/get/setting-goals
+    request_fields: []                    # Empty body {}
+    sample_request: {}
+    response_fields:
+      - { name: code,            desc: "Goal code (opaque hash string). This is not the goal parameter value — goal uses keywords like purchase; do not pass this code as goal" }
+      - { name: name,            desc: "Goal name, e.g. Purchase" }
+      - { name: event_type,      desc: "Trigger event type, e.g. checkout_completed / add_to_cart" }
+      - { name: limit_type,      desc: "Limit type, e.g. no" }
+      - { name: limit_value,     desc: "Limit value array" }
+      - { name: data_source,     desc: "Data source identifier (integer)" }
+      - { name: conversion_num,  desc: "Conversion count for this goal" }
+    sample_response:
+      code: 1
+      message: "Service succeed"
+      data:
+        goals:
+          - { name: "Purchase", code: "x4w0tc0elo0co1n9eftdalo100h8dp6k", event_type: "checkout_completed", limit_type: "no", limit_value: ["1"], data_source: 1, conversion_num: 10 }
+
+  # ── 2. Ad account connection (account discovery) ───────────────────────────
+  - id: connection_source
+    summary: List connected ad-platform accounts, used to obtain the account_id required by meta-query / google-query
+    method: POST
+    path: /api/get/connection/source
+    request_fields:
+      - { name: platform_type, type: string, required: false, desc: "Filter platform: google / facebook / tiktok / bing …; omit to return all" }
+    sample_request: { platform_type: "google" }
+    response_fields:
+      - { name: id,            desc: "Internal record ID" }
+      - { name: account_id,    desc: "Ad account ID (for use by meta-query / google-query)" }
+      - { name: name,          desc: "Account name" }
+      - { name: platform_type, desc: "Platform type: google / facebook / tiktok / bing …" }
+      - { name: currency,      desc: "Account currency unit, e.g. USD" }
+      - { name: connected,     desc: "Connection status: 1=connected" }
+      - { name: trace_status,  desc: "Tracking status: 1=normal" }
+    sample_response:
+      code: 1
+      message: "Service succeed"
+      data:
+        records:
+          - { id: 1, account_id: "1234567890", name: "example-store", platform_type: "google", currency: "USD", connected: 1, trace_status: 1 }
+
+  # ── 3. Destination platform connection (tracking governance) ───────────────
+  - id: connection_destination
+    summary: List destination platform (pixel/CAPI/Klaviyo etc.) connections and server-side/browser-side event toggles, used for tracking health diagnostics
+    method: POST
+    path: /api/get/connection/destination
+    request_fields:
+      - { name: platform_type, type: string, required: false, desc: "Filter platform: klaviyo / facebook / google …; omit to return all" }
+    sample_request: { platform_type: "facebook" }
+    response_fields:
+      - { name: id,              desc: "Internal record ID" }
+      - { name: status,          desc: "Connection status: 1=normal" }
+      - { name: platform_type,   desc: "Destination platform: facebook / klaviyo / google …" }
+      - { name: pixel_id,        desc: "Pixel ID" }
+      - { name: pixel_text,      desc: "Pixel name" }
+      - { name: enable_aan,      desc: "AAN toggle (bool)" }
+      - { name: enable_enhanced, desc: "Enhanced conversions toggle (bool)" }
+      - { name: server_config,   desc: "Server-side event toggles { event: bool }; the set of event keys varies by platform/configuration, not limited to those in the sample (e.g. dm_form_submitted etc.)" }
+      - { name: browser_config,  desc: "Browser-side event toggles { event: bool } (may be an empty object)" }
+      - { name: configuration,   desc: "Configuration status { code, message }" }
+    sample_response:
+      code: 1
+      message: "Service succeed"
+      data:
+        records:
+          - id: 6580
+            status: 1
+            platform_type: facebook
+            pixel_id: "1234567890123456"
+            pixel_text: "example pixel"
+            enable_aan: true
+            enable_enhanced: false
+            server_config: { checkout_completed: true, dm_form_submitted: true, page_viewed: true }
+            browser_config: {}
+            configuration: { code: info, message: Completed }
+
+  # ── 4. Ad attribution (drill down by dimension) ────────────────────────────
+  - id: ad_analysis_list
+    summary: Paid ad attribution, single-dimension drill-down by channel→campaign→ad_set→ad, includes real ROAS and platform comparison
+    method: POST
+    path: /api/get/ad-analysis/list
+    request_fields:
+      - { name: start_date, type: date,   required: true }
+      - { name: end_date,   type: date,   required: true }
+      - { name: dimensions, type: string, required: true,  desc: "Single-value string: channel/campaign/ad_set/ad" }
+      - { name: model,      type: string, required: false, desc: "Attribution model, default First click" }
+      - { name: goal,       type: string, required: false, desc: "Conversion goal keyword, default purchase" }
+      - { name: page_size,  type: int,    required: false, default: 50 }
+      - { name: page_no,    type: int,    required: false, default: 1 }
+      - { name: sort_by,    type: string, required: false, desc: "Sort field. For the main-conversion sort use main_conversions (NOT conversions — that silently returns empty). Other fields e.g. spend / roas" }
+      - { name: sort,       type: string, required: false, desc: "asc | desc" }
+    response_fields:
+      - { name: channel,            desc: "Channel" }
+      - { name: campaign,           desc: "Campaign (includes upper-level name when dimensions=campaign/ad_set/ad)" }
+      - { name: ad_set,             desc: "Ad set" }
+      - { name: ad_name,            desc: "Ad creative name" }
+      - { name: source,             desc: "UTM source (empty when not instrumented)" }
+      - { name: medium,             desc: "UTM medium (empty when not instrumented)" }
+      - { name: landing_page,       desc: "Landing page (empty when not instrumented)" }
+      - { name: spend,              desc: "Spend USD" }
+      - { name: conversions,        desc: "Main conversion count. Response field is conversions; to SORT pass sort_by=main_conversions (sort_by=conversions silently returns empty)" }
+      - { name: new_lead_conversions, desc: "New-customer conversion count (0 when not instrumented)" }
+      - { name: new_order_conversion_value, desc: "New-customer order conversion value" }
+      - { name: new_order_roas,     desc: "New-customer ROAS" }
+      - { name: conversion_value,   desc: "Convbox attributed conversion value (real)" }
+      - { name: roas,               desc: "Real ROAS = conversion_value / spend" }
+      - { name: ad_net_conversion_value, desc: "Ad platform self-reported net conversion value" }
+      - { name: ad_net_roas,        desc: "Platform ROAS = ad_net_conversion_value / spend (comparison caliber)" }
+      - { name: cpa,                desc: "spend / conversions" }
+      - { name: cpc,                desc: "spend / clicks" }
+      - { name: cpm,                desc: "spend / impressions × 1000" }
+      - { name: ctr,                desc: "Click-through rate (caliber may differ from cvr; confirm field by field before use)" }
+      - { name: cvr,                desc: "Conversion rate, returned as a decimal (0.0657 = 6.57%); multiply by 100 for display" }
+      - { name: impressions,        desc: "Impressions" }
+      - { name: clicks,             desc: "Clicks (may be 0 on some platforms; use outbound_clicks)" }
+      - { name: outbound_clicks,    desc: "Outbound clicks" }
+      - { name: outbound_ctr,       desc: "Outbound click-through rate (decimal)" }
+      - { name: cost_per_outbound_click, desc: "Cost per outbound click" }
+      - { name: view_through_conversions,      desc: "View-through conversions" }
+      - { name: view_through_conversion_value, desc: "View-through conversion value" }
+      - { name: view_through_roas,  desc: "View-through ROAS" }
+      - { name: profit,             desc: "Net profit (includes COGS caliber, requires cost configured on the platform)" }
+      - { name: margin,             desc: "Profit margin, returned as a decimal (0.627 = 62.7%), not a percentage" }
+    sample_request:
+      start_date: "2026-06-01"
+      end_date: "2026-06-16"
+      dimensions: "channel"
+      model: "First click"
+      goal: "purchase"
+      page_size: 50
+      page_no: 1
+      sort_by: "main_conversions"     # NOT "conversions" (that returns empty)
+      sort: "desc"
+    sample_response:                      # Field names are exact; values are a representative row
+      code: 1
+      message: "Service succeed"
+      data:
+        total: 5
+        records:
+          - { channel: "Google Ads", campaign: "", ad_set: "", ad_name: "", source: "", medium: "", landing_page: "", spend: 2277.85, conversions: 27, new_lead_conversions: 0, new_order_conversion_value: 0, new_order_roas: 0, conversion_value: 2829.27, roas: 1.24, ad_net_conversion_value: 3841.72, ad_net_roas: 1.69, cpa: 84.36, cpc: 2.13, cpm: 16.89, ctr: 0.82, cvr: 0.0, impressions: 134847, clicks: 0, outbound_clicks: 1067, outbound_ctr: 0.0079, cost_per_outbound_click: 2.13, view_through_conversions: 0, view_through_conversion_value: 0, view_through_roas: 0, profit: 551.42, margin: 0.195 }
+
+  # ── 5. All-channel attribution detail ──────────────────────────────────────
+  - id: all_attribution_list
+    summary: Cross-channel attribution detail (including paid and organic channels), grouped by channel, channel comparison / campaign evaluation
+    method: POST
+    path: /api/all-attribution/get-list      # Must include /api/; /all-attribution/get-list (no /api/) returns a bare {code:404}
+    request_fields:
+      - { name: start_date, type: date,   required: true }
+      - { name: end_date,   type: date,   required: true }
+      - { name: dimensions, type: string, required: true,  desc: "Single-value string (e.g. \"channel\"); passing an array collapses into a 1-row error rollup" }
+      - { name: model,      type: string, required: false }
+      - { name: goal,       type: string, required: false }
+      - { name: page_size,  type: int,    required: false, default: 50 }
+      - { name: page_no,    type: int,    required: false, default: 1 }
+      - { name: sort_by,    type: string, required: false }
+      - { name: sort,       type: string, required: false }
+    response_fields:                      # Same field set as #4 (ad_set/ad_name + the full metric block)
+      - { name: channel,            desc: "Channel (organic channels spend=0)" }
+      - { name: campaign,           desc: "Campaign (empty when not instrumented)" }
+      - { name: ad_set,             desc: "Ad set" }
+      - { name: ad_name,            desc: "Ad creative name" }
+      - { name: source,             desc: "UTM source (empty when not instrumented)" }
+      - { name: medium,             desc: "UTM medium (empty when not instrumented)" }
+      - { name: landing_page,       desc: "Landing page (empty when not instrumented)" }
+      - { name: spend,              desc: "Spend USD" }
+      - { name: conversions,        desc: "Main conversion count (response field is conversions; to SORT use sort_by=main_conversions)" }
+      - { name: new_lead_conversions, desc: "New-customer conversion count (0 when not instrumented)" }
+      - { name: new_order_conversion_value, desc: "New-customer order conversion value" }
+      - { name: new_order_roas,     desc: "New-customer ROAS" }
+      - { name: conversion_value,   desc: "Convbox attributed value (real)" }
+      - { name: roas,               desc: "Real ROAS = conversion_value / spend" }
+      - { name: ad_net_conversion_value, desc: "Platform self-reported net value (comparison caliber)" }
+      - { name: ad_net_roas,        desc: "Platform net ROAS (comparison caliber)" }
+      - { name: ad_conversion_value, desc: "Platform conversion value — coexists with ad_net_conversion_value" }
+      - { name: ad_roas,            desc: "Platform ROAS — coexists with ad_net_roas" }
+      - { name: cpa,                desc: "spend / conversions" }
+      - { name: cpc,                desc: "spend / clicks" }
+      - { name: cpm,                desc: "spend / impressions × 1000" }
+      - { name: ctr,                desc: "Click-through rate (caliber per #4, confirm field by field)" }
+      - { name: cvr,                desc: "Conversion rate, returned as a decimal (multiply by 100 for display)" }
+      - { name: impressions,        desc: "Impressions" }
+      - { name: clicks,             desc: "Clicks (may be 0 on some platforms; use outbound_clicks)" }
+      - { name: outbound_clicks,    desc: "Outbound clicks" }
+      - { name: outbound_ctr,       desc: "Outbound click-through rate (decimal)" }
+      - { name: cost_per_outbound_click, desc: "Cost per outbound click" }
+      - { name: view_through_conversions,      desc: "View-through conversions" }
+      - { name: view_through_conversion_value, desc: "View-through conversion value" }
+      - { name: view_through_roas,  desc: "View-through ROAS" }
+      - { name: profit,             desc: "Net profit USD" }
+      - { name: margin,             desc: "Net profit margin, returned as a decimal" }
+    sample_request:
+      start_date: "2026-06-01"
+      end_date: "2026-06-16"
+      dimensions: "channel"
+      model: "First click"
+      goal: "purchase"
+      page_size: 50
+      page_no: 1
+      sort_by: "main_conversions"     # NOT "conversions" (that returns empty)
+      sort: "desc"
+    sample_response:                      # Representative row, ABBREVIATED — a real row also carries
+                                          # ad_set/ad_name, ad_conversion_value/ad_roas, and the
+                                          # cpa/cpc/cpm/ctr/cvr/outbound_*/view_through_* block, see response_fields
+      code: 1
+      message: "Service succeed"
+      data:
+        total: 5
+        records:
+          - { channel: "Google Ads", campaign: "", source: "", medium: "", landing_page: "", spend: 2277.85, conversions: 27, new_lead_conversions: 0, new_order_conversion_value: 0, new_order_roas: 0, conversion_value: 2829.27, roas: 1.24, ad_net_conversion_value: 3841.72, ad_net_roas: 1.69, ad_conversion_value: 3841.72, ad_roas: 1.69, view_through_conversions: 0, view_through_conversion_value: 0, view_through_roas: 0, outbound_clicks: 1067, profit: 551.42, margin: 0.195 }
+
+  # ── 6. All-channel attribution summary ─────────────────────────────────────
+  - id: all_attribution_sum
+    summary: Whole-window summary with the same caliber as #5 (single-object total, no paging), often paired with #5: view the summary first, then the detail
+    method: POST
+    path: /api/all-attribution/get-list-sum  # Must include /api/; /all-attribution/get-list-sum (no /api/) returns a bare {code:404}
+    request_fields:
+      - { name: start_date, type: date,   required: true }
+      - { name: end_date,   type: date,   required: true }
+      - { name: dimensions, type: string, required: false, desc: "Single-value string, consistent with #5" }
+      - { name: model,      type: string, required: false }
+      - { name: goal,       type: string, required: false }
+    response_fields:                      # Returns a single object with the full set of #4/#5 metrics
+      - { name: spend,            desc: "Total spend" }
+      - { name: conversions,      desc: "Total main conversions" }
+      - { name: conversion_value, desc: "Total attributed value (real)" }
+      - { name: roas,             desc: "Overall real ROAS" }
+      - { name: ad_net_conversion_value, desc: "Overall platform self-reported net value (comparison caliber)" }
+      - { name: ad_net_roas,      desc: "Overall platform net ROAS (comparison caliber)" }
+      - { name: ad_conversion_value, desc: "Overall platform value — coexists with ad_net_conversion_value (see #5)" }
+      - { name: ad_roas,          desc: "Overall platform ROAS — coexists with ad_net_roas" }
+      - { name: profit,           desc: "Overall net profit" }
+      - { name: margin,           desc: "Overall net profit margin, returned as a decimal" }
+      - { name: impressions,      desc: "Total impressions" }
+      - { name: clicks,           desc: "Total clicks" }
+      - { name: view_through_conversions,   desc: "View-through conversions (summary)" }
+      - { name: new_order_conversion_value, desc: "New-customer order value (summary)" }
+      # Also includes a batch of channel/campaign/source label fields that are empty at the summary level
+    sample_request:
+      start_date: "2026-06-01"
+      end_date: "2026-06-16"
+      dimensions: "channel"
+      model: "First click"
+      goal: "purchase"
+    sample_response:                      # Single object, representative values
+      code: 1
+      message: "Service succeed"
+      data:
+        channel: ""
+        campaign: ""
+        source: ""
+        spend: 234370.00
+        conversions: 2841
+        conversion_value: 1107990.00
+        roas: 4.73
+        ad_net_conversion_value: 685400.00
+        ad_net_roas: 2.93
+        profit: 297443.00
+        margin: 0.268
+        impressions: 5820000
+        clicks: 0
+        view_through_conversions: 0
+        new_order_conversion_value: 0
+
+  # ── 7. On-site behavior / conversion funnel ────────────────────────────────
+  - id: web_analysis_list
+    summary: On-site traffic and conversion funnel (homepage→product page→add-to-cart→purchase), channel dimension
+    method: POST
+    path: /api/get/web-analysis/list
+    request_fields:
+      - { name: start_date, type: date,   required: true }
+      - { name: end_date,   type: date,   required: true }
+      - { name: dimensions, type: string, required: true,  desc: "Single-value string: channel/utm_campaign/utm_source/utm_medium/landing_page (passing a multi-element array collapses)" }
+      - { name: model,      type: string, required: false }
+      - { name: goal,       type: string, required: false }
+      - { name: page_size,  type: int,    required: false, default: 50 }
+      - { name: page_no,    type: int,    required: false, default: 1 }
+      - { name: sort_by,    type: string, required: false }
+      - { name: sort,       type: string, required: false }
+    response_fields:
+      - { name: channel,             desc: "Channel" }
+      - { name: utm_campaign,        desc: "UTM campaign" }
+      - { name: utm_source,          desc: "UTM source (empty when not instrumented)" }
+      - { name: utm_medium,          desc: "UTM medium (empty when not instrumented)" }
+      - { name: landing_page,        desc: "Landing page path (empty when not instrumented)" }
+      - { name: spend,               desc: "Spend (0 for organic channels)" }
+      - { name: unique_users,        desc: "Unique visitors" }
+      - { name: returning_users,     desc: "Returning users" }
+      - { name: total_sessions,      desc: "Session count" }
+      - { name: event_per_session,   desc: "Events per session (0 when not instrumented)" }
+      - { name: engagement_rate,     desc: "Engagement rate (0 when not instrumented)" }
+      - { name: homepage_view_users, desc: "Homepage visit users (0 when not instrumented)" }
+      - { name: product_view_users,  desc: "Product-page visit users (0 when not instrumented)" }
+      - { name: atc_users,           desc: "Add-to-cart users" }
+      - { name: purchases,           desc: "Purchase count" }
+      - { name: purchases_rate,      desc: "Purchase conversion rate % (purchases / unique_users)" }
+    sample_request:
+      start_date: "2026-06-01"
+      end_date: "2026-06-16"
+      dimensions: "channel"
+      model: "First click"
+      goal: "purchase"
+      page_size: 50
+      page_no: 1
+      # sort_by omitted on purpose: web-analysis sort_by:"purchases"/"unique_users"
+      # silently returns total:0 / empty records (same trap as conversions on the attr
+      # endpoints). Safest is to omit sort_by here and sort client-side if needed.
+    sample_response:                      # Representative row; funnel fields are 0 when not instrumented
+      code: 1
+      message: "Service succeed"
+      data:
+        total: 5
+        records:
+          - { channel: "Google Ads", utm_campaign: "", utm_source: "", utm_medium: "", landing_page: "", spend: 2277.85, unique_users: 1124, returning_users: 247, total_sessions: 1371, event_per_session: 0, engagement_rate: 0, homepage_view_users: 0, product_view_users: 0, atc_users: 113, purchases: 31, purchases_rate: 2.76 }
+
+  # ── 8. Meta platform passthrough ───────────────────────────────────────────
+  - id: meta_query
+    summary: Proxy the Meta Insights API, returning Meta platform native-caliber fields (for comparison, not Convbox attribution)
+    method: POST
+    path: /api/source/meta-query
+    request_fields:
+      - { name: account_id, type: string, required: true,  desc: "Obtained from connection_source" }
+      - { name: level,      type: string, required: true,  desc: "campaign / adset / ad" }
+      - { name: fields,     type: array,  required: true,  desc: "Meta field names, e.g. campaign_id, spend" }
+      - { name: breakdowns, type: array,  required: false }
+      - { name: time_range, type: object, required: true,  desc: "{ since, until }, YYYY-MM-DD" }
+      - { name: filters,    type: array,  required: false }
+    response_notes:                       # Structure differs from Convbox list endpoints
+      - "The result array is at data.data (i.e. resp.data.data), not data.records"
+      - "Each row automatically carries date_start / date_stop"
+      - "Paginate using Meta-native data.paging.cursors (before / after)"
+    sample_request:
+      account_id: "123456789012345"
+      level: "campaign"
+      fields: ["campaign_id", "spend"]
+      breakdowns: []
+      time_range: { since: "2026-06-01", until: "2026-06-16" }
+      filters: []
+    sample_response:                      # Meta native caliber
+      code: 1
+      message: "Service succeed"
+      data:
+        data:
+          - { campaign_id: "123456789012", spend: "1372.18", date_start: "2026-06-01", date_stop: "2026-06-16" }
+        paging:
+          cursors: { before: "MAZDZD", after: "MjQZD" }
+
+  # ── 9. Google platform passthrough (GAQL) ──────────────────────────────────
+  - id: google_query
+    summary: Proxy the Google Ads API (GAQL), returning Google platform native-caliber fields (for comparison)
+    method: POST
+    path: /api/source/google-query
+    request_fields:
+      - { name: account_id, type: string, required: true,  desc: "Obtained from connection_source" }
+      - { name: gaql,       type: string, required: true,  desc: "Complete Google Ads Query Language statement" }
+    response_notes:                       # Structure differs from Convbox list endpoints
+      - "The result array is at data.results, not data.records"
+      - "Fields are nested + camelCase: customer.{resourceName, id}, metrics.{conversions, costMicros}"
+      - "metrics.costMicros is in micros, ÷1e6 gives USD"
+      - "Also includes data.fieldMask and data.queryResourceConsumption"
+    sample_request:
+      account_id: "1234567890"
+      gaql: "select customer.id, metrics.conversions, metrics.cost_micros from customer where segments.date BETWEEN '2026-06-09' and '2026-06-09'"
+    sample_response:                      # Google native caliber, nested camelCase
+      code: 1
+      message: "Service succeed"
+      data:
+        results:
+          - { customer: { resourceName: "customers/1234567890", id: "1234567890" }, metrics: { conversions: 142.0, costMicros: "2277850000" } }
+        fieldMask: "customer.id,metrics.conversions,metrics.costMicros"
+        queryResourceConsumption: 12
+
+# ============================================================================
+# Common response conventions
+# ============================================================================
+response_envelope:
+  http_status: "Success returns 201 Created (not 200); judge success only by code===1"
+  code: "1 = success; non-1 = failure, message contains the error description"
+  message: "Status description (success is 'Service succeed', do not hard-match 'succeed')"
+  data: "Business data. Convbox list endpoints include total and records; summary endpoints are a single object; passthrough endpoints are the exception: meta-query is at data.data, google-query is at data.results"
+errors:
+  - { signal: "code != 1", meaning: "Business failure, read message" }
+  - { signal: "Empty records / label fields always empty", meaning: "No data in the range, or that dimension is not instrumented (source/medium/landing_page are often empty) — do not fabricate conclusions from empty data" }
+  - { signal: "code:400", meaning: "Bad request — most commonly dimensions passed as an array (ad-analysis) or as a multi-element array (web-analysis); pass a single-value string" }
+  - { signal: "total:1 and values look like an overall total", meaning: "dimensions may have been mistakenly passed as an array, causing a collapse; dimensions must be a single-value string" }
+  - { signal: "code:404 with a bare {code:404} body (no message/data)", meaning: "Path not matched by the gateway. Check the path includes /api/ — esp. /api/all-attribution/... (NOT /all-attribution/...)" }
+  - { signal: "total:0 / empty records but you expected data", meaning: "Likely sort_by:\"conversions\" (use main_conversions) or web-analysis sort_by:\"purchases\"/\"unique_users\" — these silently return empty; drop or correct sort_by" }

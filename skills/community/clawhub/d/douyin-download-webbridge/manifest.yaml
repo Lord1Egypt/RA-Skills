@@ -1,0 +1,27 @@
+name: douyin-download-webbridge
+display_name: 免费抖音下载支持视频图片
+slug: douyin-download-webbridge
+version: 1.1.6
+category: 内容工具 / Content Tools
+author: xxjrq
+description: 免费下载抖音视频和图文图片；免注册第三方下载站、免第三方 API Key，支持作品长链、ID 和可由单次安全 HTTPS 响应解析的分享短链。
+icon: assets/icon-512.png
+trigger_words:
+  - 抖音视频下载
+  - 抖音图文下载
+  - 抖音作品下载
+  - 下载抖音素材
+  - 保存抖音视频
+  - 保存抖音图文
+tags:
+  - douyin
+  - video-download
+  - image-download
+  - creator-tools
+  - easy-webbridge
+  - 抖音下载
+  - 自媒体素材
+  - 免费
+  - 免APIKey
+license: MIT-0
+repository: https://github.com/xxjrq/douyin-download-webbridge

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/capability-profile.schema.json",
+  "schemaVersion": "1.0.0",
+  "profileId": "capability_profile_local",
+  "host": "chatcut",
+  "status": "unverified",
+  "hostBuild": null,
+  "toolSchemaHash": null,
+  "observedAt": null,
+  "expiresAt": null,
+  "capabilities": [
+    {
+      "capabilityId": "timeline-read",
+      "mandatory": true,
+      "status": "unverified",
+      "probeRefs": [],
+      "fallback": "fake-adapter"
+    },
+    {
+      "capabilityId": "timeline-write",
+      "mandatory": true,
+      "status": "unverified",
+      "probeRefs": [],
+      "fallback": "fake-adapter"
+    },
+    {
+      "capabilityId": "media-import",
+      "mandatory": true,
+      "status": "unverified",
+      "probeRefs": [],
+      "fallback": "manual"
+    },
+    {
+      "capabilityId": "preview-render",
+      "mandatory": true,
+      "status": "unverified",
+      "probeRefs": [],
+      "fallback": "manual"
+    },
+    {
+      "capabilityId": "media-export",
+      "mandatory": true,
+      "status": "unverified",
+      "probeRefs": [],
+      "fallback": "blocked"
+    }
+  ],
+  "canary": {
+    "mode": "non-blocking",
+    "status": "not-run",
+    "redaction": "content-free",
+    "businessMutation": false,
+    "evidenceRefs": []
+  },
+  "liveRouteRequested": false
+}

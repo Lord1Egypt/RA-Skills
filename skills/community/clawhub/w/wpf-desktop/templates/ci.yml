@@ -1,0 +1,176 @@
+name: CI
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read                   # 全局只读；要写的 job 自己提权，PR 触发的 job 永远拿不到写权限
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}   # 分支上新推送取消旧运行；发版运行永不被中途取消
+
+jobs:
+  test:
+    runs-on: windows-latest        # WPF 只能在 Windows 上跑（发布可以交叉编，smoke 不行）
+    timeout-minutes: 15            # 卡死就快点红，别挂到 6 小时上限
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0           # 浅克隆不带 tag，csproj 里从 git tag 取版本的 target 会拿不到
+          persist-credentials: false   # 后面没有 git push，令牌别留在 .git/config 里给后续步骤读
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json   # SDK 版本唯一来源；别再并排写 dotnet-version
+      - name: Verify the .NET 10 build SDK
+        shell: pwsh
+        run: |
+          $sdk = dotnet --version
+          if ($LASTEXITCODE -or $sdk -notmatch '^10\.0\.\d+$') { throw "Expected stable .NET 10 SDK, got $sdk" }
+          Write-Host "Build SDK: $sdk"
+      - name: Test
+        run: dotnet test --project tests/Xxx.Core.Tests -c Release --minimum-expected-tests 1
+      - name: Build (App)
+        run: dotnet build src/Xxx.App -c Release --nologo
+      - name: Smoke (parse every window's XAML)
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem src/Xxx.App/bin/Release -Recurse -Filter Xxx.exe | Select-Object -First 1
+          if (-not $exe) { Write-Error 'Xxx.exe not found'; exit 1 }
+          $marker = Join-Path ([System.IO.Path]::GetTempPath()) 'xxx-smoke.txt'
+          Remove-Item $marker -ErrorAction SilentlyContinue
+          $p = Start-Process $exe.FullName -ArgumentList '--smoke' -WindowStyle Hidden -PassThru
+          if (-not $p.WaitForExit(60000)) { $p.Kill(); throw 'Window smoke timed out' }
+          $ok = (Test-Path $marker) -and ((Get-Content $marker -Raw).Trim() -eq 'OK')
+          if (-not $ok) { Get-Content $marker -Raw -ErrorAction SilentlyContinue; exit 1 }
+          if ($p.ExitCode -and $p.ExitCode -ne 0) { exit 1 }
+
+  release:                         # Build, sign, package and publish directly after tests
+    if: github.ref_type == 'tag'
+    needs: test                    # ← 这行就是「测不过发不了版」
+    runs-on: windows-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      id-token: write               # Azure signing OIDC when configured
+    env:
+      TAG: ${{ github.ref_name }}  # 进 shell 一律走 env，不把 ${{ }} 直接拼进脚本
+    steps:
+      - uses: actions/checkout@v7
+        id: source
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Verify the .NET 10 build SDK
+        shell: pwsh
+        run: |
+          $sdk = dotnet --version
+          if ($LASTEXITCODE -or $sdk -notmatch '^10\.0\.\d+$') { throw "Expected stable .NET 10 SDK, got $sdk" }
+          Write-Host "Build SDK: $sdk"
+      - name: Check tag
+        shell: pwsh
+        run: |
+          if ($env:TAG -notmatch '^v\d+\.\d+\.\d+$') { Write-Error "tag '$env:TAG' is not vX.Y.Z"; exit 1 }
+      - name: Publish (x64 + arm64, both forms)
+        shell: pwsh
+        run: |
+          $v = $env:TAG.Substring(1)
+          foreach ($p in 'win-x64', 'win-x64-needs-dotnet10', 'win-arm64', 'win-arm64-needs-dotnet10') {
+            $tfm = dotnet msbuild src/Xxx.App/Xxx.App.csproj -p:Configuration=Release -p:PublishProfile=$p -getProperty:TargetFramework
+            if ($LASTEXITCODE -or $tfm -notmatch '^net10\.0-windows(?:\d+(?:\.\d+)*)?$') {
+              throw "Profile $p must target .NET 10 Windows. Evaluated TFM: $tfm"
+            }
+            dotnet publish src/Xxx.App -c Release -p:PublishProfile=$p -p:Version=$v --nologo
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          }
+      - name: Azure login (for signing)
+        if: vars.AZURE_CLIENT_ID != ''
+        uses: azure/login@v3
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Sign exe (Azure Artifact Signing)
+        if: vars.AZURE_CLIENT_ID != ''
+        uses: azure/artifact-signing-action@v2
+        with:
+          endpoint: ${{ vars.ARTIFACT_SIGNING_ENDPOINT }}
+          signing-account-name: ${{ vars.ARTIFACT_SIGNING_ACCOUNT }}
+          certificate-profile-name: ${{ vars.ARTIFACT_SIGNING_PROFILE }}
+          files: |
+            ${{ github.workspace }}\src\Xxx.App\bin\Release\publish-x64\Xxx.exe
+            ${{ github.workspace }}\src\Xxx.App\bin\Release\publish-x64-needs-dotnet10\Xxx.exe
+            ${{ github.workspace }}\src\Xxx.App\bin\Release\publish-arm64\Xxx.exe
+            ${{ github.workspace }}\src\Xxx.App\bin\Release\publish-arm64-needs-dotnet10\Xxx.exe
+          file-digest: SHA256
+          timestamp-rfc3161: http://timestamp.acs.microsoft.com
+          timestamp-digest: SHA256
+      - name: Build Installer (Inno Setup)
+        id: installer
+        shell: pwsh
+        run: |
+          $scripts = @(Get-ChildItem tools/installer/*.iss -File -ErrorAction SilentlyContinue)
+          if ($scripts.Count -eq 0) { throw 'Expected installer script; adapt this workflow explicitly for a portable-only edition' }
+          if ($scripts.Count -gt 1) { throw 'Select the installer script for this edition' }
+          $compiler = "${env:ProgramFiles(x86)}/Inno Setup 6/ISCC.exe"
+          if (-not (Test-Path -LiteralPath $compiler)) {
+            $versions = choco search innosetup --exact --all-versions --limit-output
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+            $version = $versions | ForEach-Object {
+              if ($_ -match '^innosetup\|(6\.\d+\.\d+)$') { [version]$Matches[1] }
+            } | Sort-Object -Descending | Select-Object -First 1
+            if (-not $version) { throw 'No stable Inno Setup 6.x available' }
+            choco install innosetup --version="$version" --allow-downgrade --no-progress -y
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          }
+          if (-not (Test-Path -LiteralPath $compiler)) { throw 'Inno Setup 6 compiler not found' }
+          $name = "Xxx-$env:TAG-setup"
+          & $compiler "/DAppVersion=$($env:TAG.Substring(1))" "/O$PWD" "/F$name" $scripts[0].FullName
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          if (-not (Test-Path "$name.exe" -PathType Leaf)) { throw "Missing $name.exe" }
+          "asset=$name.exe" >> $env:GITHUB_OUTPUT
+      - name: Sign the installer before hashing
+        if: vars.AZURE_CLIENT_ID != '' && steps.installer.outputs.asset != ''
+        uses: azure/artifact-signing-action@v2
+        with:
+          endpoint: ${{ vars.ARTIFACT_SIGNING_ENDPOINT }}
+          signing-account-name: ${{ vars.ARTIFACT_SIGNING_ACCOUNT }}
+          certificate-profile-name: ${{ vars.ARTIFACT_SIGNING_PROFILE }}
+          files: ${{ github.workspace }}/${{ steps.installer.outputs.asset }}
+          file-digest: SHA256
+          timestamp-rfc3161: http://timestamp.acs.microsoft.com
+          timestamp-digest: SHA256
+      - name: Package + SHA256
+        id: package
+        shell: pwsh
+        env:
+          INSTALLER: ${{ steps.installer.outputs.asset }}
+          REQUIRE_SIGNING: ${{ vars.AZURE_CLIENT_ID != '' }}
+        run: |
+          ./tools/package-release.ps1 -AppName Xxx -Tag $env:TAG -PublishRoot src/Xxx.App/bin/Release -Installer $env:INSTALLER -RequireSigning:($env:REQUIRE_SIGNING -eq 'true')
+          # Add -RequiredFiles for external resources/native DLLs; configure app-specific
+          # -SmokeEnvironment switches to disable shell hooks and redirect custom data paths.
+      - name: Publish release
+        id: upload
+        uses: softprops/action-gh-release@v3
+        with:
+          draft: false
+          make_latest: legacy
+          fail_on_unmatched_files: true
+          files: ${{ steps.package.outputs.files }}
+          body: |
+            **Which package? / 下载哪个？**
+
+            - `…-setup.exe` — Installer, when included in this edition; no admin rights required, desktop shortcut & clean uninstallation. / 提供安装包的版本可选它，支持快捷方式与卸载。
+            - `…-win-x64.zip` — Portable edition with .NET runtime included; unzip and run. / 自包含便携版（含运行环境），解压即用，拿不准就选它。
+            - `…-win-arm64.zip` — Same portable edition for Windows on Arm (Snapdragon / Surface Pro). / 同上，ARM 版 Windows 便携版。
+            - `…-win-{x64,arm64}-needs-dotnet10.zip` — Compact edition (needs .NET 10 Desktop Runtime). / 框架依赖精简版，需已装 .NET 10 桌面运行时。
+
+            Verify / 校验：`sha256sum -c SHA256SUMS.txt`
+            Signing / 签名：${{ steps.package.outputs.signing }}
+          generate_release_notes: true

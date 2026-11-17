@@ -1,38 +1,50 @@
-## Description: <br>
-系统解读塔勒布《黑天鹅》和《随机漫步的傻瓜》，揭示不确定性认知偏误及应对策略如杠铃策略与反脆弱。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains Taleb-style uncertainty thinking, including black swan events, randomness, survivorship bias, barbell strategy, antifragility, and investment-risk reasoning.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Readers and agents use this skill as an educational guide to Taleb-style uncertainty, randomness, cognitive-bias, and risk-thinking concepts, especially when discussing black swan events, survivorship bias, barbell strategy, antifragility, or investment decision framing. It should support learning and structured reasoning, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake general portfolio percentages or investment do/don't lists for personalized financial advice. <br>
-Mitigation: Treat the content as educational, account for individual goals, liquidity needs, and risk tolerance, and consult a qualified financial professional before making investment decisions. <br>
+## Use Case:
 
+Developers and external users can use this skill to help an agent summarize and apply Taleb's concepts about uncertainty, randomness, cognitive bias, and risk-aware decision making. It is educational and should not be treated as personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/taleb-uncertainty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown educational guidance with tables, examples, and decision prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or privileged behavior; outputs may include general investment examples that require user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may mistake educational allocation examples or investment practice notes for personalized financial instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the content as general education, avoid treating percentages as prescriptive, and consult regulated financial advice before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/taleb-uncertainty)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text educational explanations with tables and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include conceptual summaries, example prompts, investment-risk caveats, and decision-framing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

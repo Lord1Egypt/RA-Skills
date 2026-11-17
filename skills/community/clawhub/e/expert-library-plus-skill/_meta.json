@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7bsaf5wb0nwp1y4n43fwbtvh82rczt",
-  "slug": "expert-library-plus-skill",
+  "name": "expert-library-plus",
   "version": "1.0.2",
-  "publishedAt": 1774063786778
+  "description": "Expert Library Plus - AI expert library with name-based quality anchors",
+  "author": "Qwen 3.5 Plus + Qwen-Max + DeepSeek + Gemini",
+  "license": "MIT-0",
+  "repository": "https://github.com/kalluche/expert-library-plus",
+  "homepage": "https://github.com/kalluche/expert-library-plus",
+  "keywords": ["expert", "library", "quality", "anchor", "name", "persona", "claude-skills", "openclaw"],
+  "categories": ["productivity", "development", "ai"],
+  "compatibility": {
+    "openclaw": ">=2026.2.0"
+  },
+  "scripts": {
+    "install": "scripts/install.py",
+    "verify": "scripts/verify.py",
+    "create-name": "scripts/create_name.py"
+  }
 }

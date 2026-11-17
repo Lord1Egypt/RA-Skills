@@ -1,42 +1,59 @@
-## Description: <br>
-AI-powered meme generation, meme editing, meme video generation for your projects, powered by memelord.com's trending memetic data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered meme generation, meme editing, and meme video generation for projects, powered by memelord.com's trending memetic data.
 
-## Publisher: <br>
-[iamjasonlevin](https://clawhub.ai/user/iamjasonlevin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamjasonlevin](https://clawhub.ai/user/iamjasonlevin)
 
-## Use Case: <br>
-Developers and agent users use this skill to create and edit image or video memes through the Memelord API, save JSON/media outputs locally, and validate webhook callbacks for asynchronous renders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, captions, template data, optional audio URLs, webhook URLs, webhook secrets, and the Memelord API key to Memelord. <br>
-Mitigation: Use it only with content and callback URLs appropriate for Memelord processing, avoid confidential prompts or internal URLs, and keep the API key out of shared logs and repositories. <br>
-Risk: Local .env loading can expose credentials if the file is committed or shared. <br>
-Mitigation: Store MEMELORD_API_KEY in a trusted local .env or shell environment and exclude credential files from shared artifacts. <br>
+## Use Case:
 
+Developers and agents use this skill to generate, edit, download, and share image or video memes through the Memelord API. It supports scripted meme creation, asynchronous video render polling, and webhook signature verification.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iamjasonlevin/memelord) <br>
-- [Memelord Documentation](https://www.memelord.com/docs) <br>
-- [Memelord Homepage](https://memelord.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; helper scripts produce JSON responses and local image or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMELORD_API_KEY and the node, curl, and realpath binaries; optional webhook URLs, webhook secrets, audio URLs, output paths, counts, categories, and NSFW inclusion flags may be supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Prompts, template data, generated media metadata, and API-backed requests are sent to memelord.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted Memelord account and avoid sending confidential or sensitive content.
+
+Risk: Credential handling relies on MEMELORD_API_KEY and optional local `.env` loading.
+
+Mitigation: Create your own `.env` or environment variables, keep file permissions restricted, and never use `.env` files from untrusted sources.
+
+Risk: Webhook secrets and downloaded media URLs can be exposed or mishandled when passed through shell commands and output files.
+
+Mitigation: Prefer secure secret handling, avoid storing secrets in shell history, and treat returned URLs and downloaded media paths as untrusted unless you control them.
+
+## Reference(s):
+
+- [Memelord homepage](https://memelord.com)
+- [Memelord API documentation](https://www.memelord.com/docs)
+- [ClawHub skill page](https://clawhub.ai/iamjasonlevin/skills/memelord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON response files, and generated media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMELORD_API_KEY and local node, curl, and realpath binaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

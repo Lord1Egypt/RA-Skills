@@ -1,0 +1,35 @@
+{
+  "name": "hiapi-video-prompt-generator-skill",
+  "version": "0.1.3",
+  "description": "HiAPI Video Prompt Generator skill — turn briefs, links, and research topics into directed video prompts for Seedance 2.0 and HappyHorse 1.0",
+  "type": "module",
+  "private": true,
+  "homepage": "https://github.com/HiAPIAI/hiapi-video-prompt-generator-skill#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiAPIAI/hiapi-video-prompt-generator-skill.git"
+  },
+  "bin": {
+    "hiapi-video-prompt-generator-skill": "./scripts/install.mjs"
+  },
+  "keywords": [
+    "hiapi",
+    "video-prompt",
+    "video-prompt-generator",
+    "ai-video-prompt-generator",
+    "text-to-video-prompt-generator",
+    "prompt-engineering",
+    "ai-video",
+    "seedance",
+    "seedance-prompt",
+    "happyhorse",
+    "happyhorse-prompt",
+    "ai-agent",
+    "agent-skill",
+    "skill"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

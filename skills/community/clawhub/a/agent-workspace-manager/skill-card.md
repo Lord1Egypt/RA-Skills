@@ -1,41 +1,55 @@
-## Description: <br>
-Organize and maintain agent workspace directories by initializing structure, classifying files, auditing placement, cleaning content, and suggesting expansions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and maintain agent workspace directories by initializing structure, classifying files, auditing placement, cleaning content, and suggesting expansions.
 
-## Publisher: <br>
-[zhaql](https://clawhub.ai/user/zhaql) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaql](https://clawhub.ai/user/zhaql)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, audit, and maintain organized workspace directory structures. It helps classify documents and code files, detect misplaced or duplicate content, and propose cleanup or structure changes for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace cleanup recommendations can move, rename, archive, merge, or remove files that contain unique or important information. <br>
-Mitigation: Ask for a dry-run report first and review proposed changes before applying them. <br>
-Risk: Cleanup of memory, preferences, SQL, or task files can affect future agent behavior or workspace correctness. <br>
-Mitigation: Review these categories explicitly and prefer archiving over deletion when value is uncertain. <br>
+## Use Case:
 
+Developers, operators, and agent workspace maintainers use this skill to initialize workspace structure, classify files by purpose, audit placement, detect duplicate or stale content, and plan cleanup or directory expansion.
 
-## Reference(s): <br>
-- [Document Classification Rules](references/classification-rules.md) <br>
-- [Workspace Structure Templates](references/structure-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with directory structures, checklists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file moves, renames, archives, or cleanup steps for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and CHANGELOG, released 2026-03-25) <br>
+Risk: Workspace cleanup guidance can lead to incorrect bulk renames, moves, archives, pruning, or changes to installed skill and reference documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a clear proposed diff or file list and explicit approval before applying bulk file operations or changing installed skill materials.
+
+Risk: Removing duplicate or stale content can discard information that still has unique value.
+
+Mitigation: Prefer archiving over deletion unless the content is confirmed to be completely redundant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaql/skills/agent-workspace-manager)
+- [Document Classification Rules](references/classification-rules.md)
+- [Workspace Structure Templates](references/structure-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with directory trees, tables, file recommendations, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include proposed workspace changes such as file moves, archives, renames, cleanup plans, and health reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and CHANGELOG, released 2026-03-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

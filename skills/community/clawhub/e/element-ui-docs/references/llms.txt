@@ -1,0 +1,90 @@
+# Element UI
+> Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库。包含 61 个组件和 5 篇开发指南。
+
+## 开发指南
+- [安装](guides/installation.md): npm 安装、CDN 引入方式
+- [快速上手](guides/quickstart.md): 完整引入 vs 按需引入、babel-plugin-component 配置
+- [国际化](guides/i18n.md): 多语言配置、locale 文件使用
+- [自定义主题](guides/custom-theme.md): 在线主题编辑器 + SCSS 变量覆盖
+- [内置过渡动画](guides/transition.md): Element UI 内置的过渡动画效果
+
+## Basic 基础组件
+- [Layout 布局](components/layout.md): 通过 row/col 创建栅格布局
+- [Container 布局容器](components/container.md): 页面整体布局容器
+- [Color 色彩](components/color.md): 主题色、辅助色、中性色规范
+- [Typography 字体](components/typography.md): 字号、行高、字体规范
+- [Border 边框](components/border.md): 边框样式规范
+- [Icon 图标](components/icon.md): 内置图标库使用说明
+- [Button 按钮](components/button.md): 按钮样式、尺寸、状态、加载态
+- [Link 文字链接](components/link.md): 文字超链接组件
+
+## Form 表单组件
+- [Radio 单选框](components/radio.md): 单选按钮组
+- [Checkbox 多选框](components/checkbox.md): 多选按钮组
+- [Input 输入框](components/input.md): 文本输入、文本域、复合输入框
+- [InputNumber 计数器](components/input-number.md): 数字输入控件
+- [Select 选择器](components/select.md): 下拉选择，支持远程搜索、多选
+- [Cascader 级联选择器](components/cascader.md): 多级联动选择
+- [Switch 开关](components/switch.md): 布尔值切换
+- [Slider 滑块](components/slider.md): 范围值拖动选择
+- [TimePicker 时间选择器](components/time-picker.md): 时间点/范围选择
+- [DatePicker 日期选择器](components/date-picker.md): 日期点/范围选择
+- [DateTimePicker 日期时间选择器](components/datetime-picker.md): 日期+时间选择
+- [Upload 上传](components/upload.md): 文件上传，支持拖拽、多文件
+- [Rate 评分](components/rate.md): 星级评分组件
+- [ColorPicker 颜色选择器](components/color-picker.md): 颜色拾取器
+- [Transfer 穿梭框](components/transfer.md): 双列数据转移
+- [Form 表单](components/form.md): 表单验证规则、动态表单项、布局
+
+## Data 数据展示
+- [Table 表格](components/table.md): 数据表格，支持排序、筛选、多选、固定列、合并
+- [Tag 标签](components/tag.md): 标记和分类
+- [Progress 进度条](components/progress.md): 进度指示
+- [Tree 树形控件](components/tree.md): 树形数据展示，支持懒加载、拖拽
+- [Pagination 分页](components/pagination.md): 分页导航
+- [Badge 标记](components/badge.md): 角标/徽标
+- [Avatar 头像](components/avatar.md): 头像展示
+- [Skeleton 骨架屏](components/skeleton.md): 加载占位图
+- [Empty 空状态](components/empty.md): 空数据占位
+- [Descriptions 描述列表](components/descriptions.md): 描述信息展示
+- [Result 结果](components/result.md): 操作结果反馈
+- [Statistic 统计数值](components/statistic.md): 统计数字展示
+
+## Notice 通知
+- [Alert 警告](components/alert.md): 静态警告提示
+- [Loading 加载](components/loading.md): 加载状态，支持指令和服务方式
+- [Message 消息提示](components/message.md): 全局消息通知（this.$message）
+- [MessageBox 弹框](components/message-box.md): 确认/提示弹窗（this.$confirm）
+- [Notification 通知](components/notification.md): 右侧弹出通知（this.$notify）
+
+## Navigation 导航
+- [NavMenu 导航菜单](components/menu.md): 侧边/顶部导航菜单
+- [Tabs 标签页](components/tabs.md): 选项卡切换
+- [Breadcrumb 面包屑](components/breadcrumb.md): 路径导航
+- [PageHeader 页头](components/page-header.md): 页面头部导航
+- [Dropdown 下拉菜单](components/dropdown.md): 下拉操作菜单
+- [Steps 步骤条](components/steps.md): 步骤流程引导
+
+## Others 其他
+- [Dialog 对话框](components/dialog.md): 模态对话框
+- [Tooltip 文字提示](components/tooltip.md): 鼠标悬浮提示
+- [Popover 弹出框](components/popover.md): 点击弹出内容
+- [Popconfirm 气泡确认框](components/popconfirm.md): 气泡确认操作
+- [Card 卡片](components/card.md): 卡片容器
+- [Carousel 走马灯](components/carousel.md): 轮播图
+- [Collapse 折叠面板](components/collapse.md): 手风琴面板
+- [Timeline 时间线](components/timeline.md): 时间轴展示
+- [Divider 分割线](components/divider.md): 内容分割
+- [Calendar 日历](components/calendar.md): 日历视图
+- [Image 图片](components/image.md): 图片展示，支持预览
+- [Backtop 回到顶部](components/backtop.md): 返回页面顶部按钮
+- [InfiniteScroll 无限滚动](components/infiniteScroll.md): 滚动加载指令
+- [Drawer 抽屉](components/drawer.md): 侧边抽屉面板
+
+## 补充文档
+- [设计原则](extra-guides/design.md): 一致性、反馈、效率、可控四大原则
+- [导航指南](extra-guides/nav.md): 侧边导航、顶部导航设计规范
+- [更新日志](extra-guides/changelog.md): 完整版本历史与变更记录
+
+## 安全注意事项
+> 本技能为 UI 组件 API 参考，示例代码仅演示用法，未经生产安全审查。文件上传 (el-upload)、v-html、表单验证等场景需服务端二次加固。

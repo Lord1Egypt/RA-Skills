@@ -1,39 +1,53 @@
-## Description: <br>
-Clawrank is an agent performance scoring system for OpenClaw agents that scores seven evidence-based dimensions on a normalized 100-point scale, assigns performance tiers, supports trajectory tracking, and can integrate peer review via agent-sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent performance scoring system for OpenClaw agents with seven evidence-based dimensions, crab-themed tiers, and trajectory tracking.
 
-## Publisher: <br>
-[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3)
 
-## Use Case: <br>
-Developers and OpenClaw users use Clawrank at session end or on explicit self-evaluation requests to produce evidence-backed performance scores, tiers, and weekly trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad self-evaluation phrases may trigger scoring when the user did not intend to request a formal Clawrank report. <br>
-Mitigation: Invoke Clawrank explicitly for formal scoring and treat mid-session checks as estimates. <br>
-Risk: Score evidence, peer review, or weekly tracking may expose sensitive user or project details. <br>
-Mitigation: Keep scoring evidence concise and omit sensitive details when sharing, reviewing, or tracking scores. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to have OpenClaw agents produce structured end-of-session self-evaluations, score trends, and optional peer-review comparisons.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown score report with tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes seven dimension scores, evidence lines, raw and final totals, a tier, optional weekly trend tracking, and optional peer-review averaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generic performance questions may trigger a ClawRank report when the user expected a brief informal assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when structured self-scoring is desired, and treat mid-session score checks as estimates rather than final ClawRank results.
+
+Risk: Self-scored performance reports can be inflated or unsupported if evidence is missing.
+
+Mitigation: Require one-line evidence for each dimension and default unsupported dimensions to 5/10 as specified by the artifact.
+
+## Reference(s):
+
+- [Clawrank on ClawHub](https://clawhub.ai/joeycacciatore3/skills/nate-clawrank)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, guidance]
+
+**Output Format:** [Markdown score report with evidence table and optional weekly trend table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a normalized 100-point score from seven 0-10 dimensions; peer review averages self and reviewer scores when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

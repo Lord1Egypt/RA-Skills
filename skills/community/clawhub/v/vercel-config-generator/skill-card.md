@@ -1,38 +1,53 @@
-## Description: <br>
-Generates a starter Vercel vercel.json configuration for Serverless Functions, Edge Functions, static sites, and SSR deployment patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a basic vercel.json configuration for Vercel deployments.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to create a starter Vercel deployment configuration for projects that need static, serverless, edge, or SPA-style deployment settings. Review the generated vercel.json before deploying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The script can overwrite an existing local vercel.json file. <br>
-Mitigation: Run it only from the intended project directory, check whether vercel.json already exists, and review the generated file before deploying. <br>
+## Use Case:
 
+Developers use this skill to create a starter Vercel configuration file for web projects. Review the generated file before deploying because the release evidence says the script writes a fixed configuration rather than implementing all documented deployment modes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/vercel-config-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Code, Shell commands] <br>
-**Output Format:** [JSON configuration file with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a vercel.json file in the current project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: The script can silently overwrite an existing vercel.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean directory or back up the existing vercel.json before execution.
+
+Risk: The documentation advertises deployment modes and options that the release evidence says are not implemented.
+
+Mitigation: Treat the output as a fixed starter configuration and manually adjust Vercel settings for framework, region, and deployment mode needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/vercel-config-generator)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, guidance]
+
+**Output Format:** [Text guidance with shell commands and JSON configuration content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite vercel.json in the current directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/_meta.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

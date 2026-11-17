@@ -1,50 +1,67 @@
-## Description: <br>
-Guides an agent through the full WeChat public-account article workflow, including topic discovery, style analysis, drafting, image planning, and styled HTML rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jike WeChat Writer guides agents through WeChat public-account article creation, including topic selection, research, style adaptation, Markdown drafting, image planning, and WeChat-ready HTML rendering.
 
-## Publisher: <br>
-[mzoob](https://clawhub.ai/user/mzoob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzoob](https://clawhub.ai/user/mzoob)
 
-## Use Case: <br>
-External users and content teams use this skill to plan, draft, revise, illustrate, and format WeChat public-account articles. It helps agents call the bundled 100City-backed tools for trend search, WeChat style analysis, image generation, and Markdown-to-HTML rendering when the required API key is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send search terms, URLs, prompts, and image-generation requests to the 100City API. <br>
-Mitigation: Use only when that data sharing is acceptable, configure the API key through the environment where possible, and ask before submitting sensitive or third-party URLs. <br>
-Risk: The skill gives the agent broad permission to remember user preferences. <br>
-Mitigation: Ask before writing memory and keep remembered content limited to preferences or reusable writing context the user has agreed to store. <br>
-Risk: The skill may overwrite draft files during article generation or formatting. <br>
-Mitigation: Require confirmation before overwriting existing drafts and preserve a copy when revising user-provided work. <br>
-Risk: The key-check command may reveal partial API-key information in shared logs. <br>
-Mitigation: Avoid running key checks in shared transcripts or logs, and prefer environment-based secret management. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to turn ideas, links, or source material into WeChat public-account articles. It supports trend research, style matching, draft iteration, image handling, and optional HTML formatting for WeChat editors.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mzoob/jike-wechat-writer) <br>
-- [Module A: Topic and Direction Confirmation](references/module-a-topic.md) <br>
-- [Module B: Memory Adaptation](references/module-b-memory.md) <br>
-- [Module C: Style Following](references/module-c-style.md) <br>
-- [Module D: Drafting and Iteration](references/module-d-writing.md) <br>
-- [Module E: Image Strategy](references/module-e-image.md) <br>
-- [Module F: WeChat Styling](references/module-f-styling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts, command guidance, JSON-capable CLI output, and styled HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a 100CITY_API_KEY or configured API key for API-backed search, style analysis, and image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill makes authenticated calls to the 100.city API and allows the API base URL to be configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, keep the API key private, and avoid setting 100CITY_BASE_URL to untrusted hosts.
+
+Risk: The skill can fetch external URLs for style extraction and image-related workflows.
+
+Mitigation: Do not provide internal, private, or sensitive URLs; review fetched-source assumptions before using generated content.
+
+Risk: The skill can write article, theme, and persistent memory files.
+
+Mitigation: Review generated files and MEMORY.md updates before publishing, sharing, or reusing them in later work.
+
+Risk: Generated HTML may contain active or unsafe content for downstream publishing surfaces.
+
+Mitigation: Treat rendered HTML as untrusted until reviewed and sanitized for the target WeChat publishing workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzoob/skills/jike-wechat-writer)
+- [Module A: Topic and Direction](artifact/references/module-a-topic.md)
+- [Module B: Memory Adaptation](artifact/references/module-b-memory.md)
+- [Module C: Style Matching](artifact/references/module-c-style.md)
+- [Module D: Writing and Iteration](artifact/references/module-d-writing.md)
+- [Module E: Image Strategy](artifact/references/module-e-image.md)
+- [Module F: WeChat Styling](artifact/references/module-f-styling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown article files, image URLs, configuration guidance, and WeChat-compatible HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a 100CITY_API_KEY for API-backed search, trend, style-analysis, and image-generation features; may update article, theme, and memory files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-FeaturePlanningAutoPilot helps agents analyze implementation context, produce executable feature development plans, validate work, and capture reusable planning lessons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A general-purpose feature development planning skill used to generate executable, verifiable, and iterative development plans before coding, and to capture lessons learned after each conversation.
 
-## Publisher: <br>
-[NANAME-ZZ](https://clawhub.ai/user/NANAME-ZZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naname-zz](https://clawhub.ai/user/naname-zz)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan frontend, backend, full-stack, API, SQL migration, and mobile refactoring work before implementation. It is intended to produce scoped plans, risk and rollback notes, acceptance checks, and reusable planning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived lessons, preferences, fixes, and reusable prompts into skill files. <br>
-Mitigation: Use it only where stored planning context is acceptable, and review or delete persisted entries before sharing or publishing the skill. <br>
-Risk: Sensitive project details, proprietary prompts, customer data, or secrets could be captured in persistent learning files. <br>
-Mitigation: Avoid using the skill with sensitive inputs unless the agent's writes can be inspected, approved, and removed. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze implementation context, define scope, create verifiable feature plans, and capture reusable lessons after implementation work.
 
-## Reference(s): <br>
-- [FeaturePlanningAutoPilot ClawHub page](https://clawhub.ai/NANAME-ZZ/featureplanningautopilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown planning documents and JSON learning entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scope, execution steps, risks, rollback guidance, acceptance criteria, and optional updates to persistent skill learning files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Conversation-derived lessons may be written into local skill files and affect future behavior without clear opt-in controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable the auto-iteration behavior, and inspect changes to evolution.json, custom_prompts, and SKILL.md before reusing the skill.
+
+Risk: Plans can be misleading when they are produced before confirming the current code, data sources, and state transitions.
+
+Mitigation: Require the context scan and verification checklist before implementation, and clearly state when a conclusion could not be verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/naname-zz/skills/featureplanningautopilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown plans, checklists, risk notes, and local lesson-capture updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scoped execution plans with verification criteria and may update local evolution files when auto-iteration is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

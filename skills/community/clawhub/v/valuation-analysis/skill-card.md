@@ -1,49 +1,64 @@
-## Description: <br>
-A股和港股价值投资分析系统，基于《股市真规则》方法论提供护城河分析、财务健康检查、DCF估值、管理层评估、行业分析和投资决策整合。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股和港股价值投资分析系统，基于《股市真规则》方法论提供护城河、财务健康、DCF估值、管理层、行业和投资决策分析框架。
 
-## Publisher: <br>
-[frankski818](https://clawhub.ai/user/frankski818) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankski818](https://clawhub.ai/user/frankski818)
 
-## Use Case: <br>
-External users and developers use this skill to analyze A-share and Hong Kong stocks with a value-investing workflow covering moat, financial health, management quality, industry context, DCF valuation, peer comparison, and integrated investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis may be interpreted as buy or sell advice. <br>
-Mitigation: Treat outputs as analytical support only and independently verify conclusions before making financial decisions. <br>
-Risk: Public market data, uploaded reports, or dependency outputs may be incomplete, stale, or inaccurate. <br>
-Mitigation: Cross-check data sources, prefer current official filings, and review the separate pdf-parser skill before using sensitive reports. <br>
-Risk: Runtime dependencies and market-data clients introduce execution and supply-chain exposure. <br>
-Mitigation: Install in a virtual environment and pin dependencies before use. <br>
-Risk: The skill stores a local watchlist in the user's home directory. <br>
-Mitigation: Avoid storing sensitive notes in the watchlist and apply appropriate local file permissions. <br>
+## Use Case:
 
+External users and analysts use this skill to structure value-investing research for A-share and Hong Kong-listed stocks, including financial health checks, moat review, DCF valuation, peer comparison, watchlist monitoring, and decision summaries. Its outputs should be treated as research aids, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankski818/valuation-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/frankski818) <br>
-- [Usage guide](artifact/references/usage_guide.md) <br>
-- [Investment decision framework](artifact/modules/investment_decision_framework.md) <br>
-- [Financial analysis module](artifact/modules/financial_analysis.md) <br>
-- [Moat analysis module](artifact/modules/moat_analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports with inline shell commands and Python tool outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use uploaded financial reports, public market data, and a local watchlist for valuation monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Investment conclusions, target prices, and position guidance may be incomplete or misleading if treated as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as research support only, cross-check source data and assumptions, and require independent review before making investment decisions.
+
+Risk: Financial reports processed through the dependent pdf-parser skill may expose sensitive documents or produce extraction errors.
+
+Mitigation: Install in an isolated environment and verify the pdf-parser publisher and version before using it on financial reports.
+
+Risk: Watchlist use writes local state to ~/.valuation_watchlist.json.
+
+Mitigation: Review local storage expectations before use and avoid storing confidential portfolio notes in shared environments.
+
+Risk: Unpinned dependencies and free market-data sources can affect reproducibility and data reliability.
+
+Mitigation: Pin dependency versions for controlled deployments and cross-check important market data before relying on generated analyses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankski818/skills/valuation-analysis)
+- [Publisher profile](https://clawhub.ai/user/frankski818)
+- [Usage guide](references/usage_guide.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis reports with inline shell commands and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read market and financial data through AKShare; watchlist operations write a local ~/.valuation_watchlist.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

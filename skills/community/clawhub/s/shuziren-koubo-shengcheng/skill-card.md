@@ -1,44 +1,60 @@
-## Description: <br>
-可以生成数字人口播视频。训练自己的数字人、生成口播视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过平台 API 获取数字人与音色、训练资源并合成口播视频。
 
-## Publisher: <br>
-[xuhongfeii2](https://clawhub.ai/user/xuhongfeii2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuhongfeii2](https://clawhub.ai/user/xuhongfeii2)
 
-## Use Case: <br>
-External users and developers use this skill to list available digital humans and voices, train custom digital humans or voices, and submit talking-head video synthesis tasks through the configured platform API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses HTTP defaults for the platform API and may transmit media, scripts, callback details, and credentials over that connection. <br>
-Mitigation: Install only when the EasyClaw/Chanjing platform is trusted, prefer short-lived API tokens, and rotate tokens after use. <br>
-Risk: Scheduled watcher commands may persist credential-related environment details on the machine where the agent runs. <br>
-Mitigation: Avoid shared machines for sensitive work and review or remove scheduled watchers after task completion. <br>
+## Use Case:
 
+External users and developers use this skill to list available digital humans, voices, and fonts, train custom digital-human or voice assets, and synthesize talking-head videos through the configured platform API.
 
-## Reference(s): <br>
-- [Platform API Reference](references/platform-api.md) <br>
-- [Setup Guide](references/setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuhongfeii2/shuziren-koubo-shengcheng) <br>
-- [Publisher Profile](https://clawhub.ai/user/xuhongfeii2) <br>
-- [Chanjing API Keys](https://www.chanjing.cc/platform/api_keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline media links and JSON-backed task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include direct image and video URLs returned by platform tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The security review says this version may send API tokens, scripts, voice recordings, videos, images, and task results to the easyclaw.bar platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts and networks where that data sharing is acceptable, and review platform access before use.
+
+Risk: The security guidance notes that current artifacts default to HTTP, which may expose credentials and media in transit.
+
+Mitigation: Prefer HTTPS or a trusted network path before using production credentials or sensitive media.
+
+Risk: The security guidance warns against enabling the async watcher while credentials may be written into cron prompts or command-line arguments.
+
+Mitigation: Avoid the async watcher until credential handling is reviewed, and rotate tokens previously used with this version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuhongfeii2/skills/shuziren-koubo-shengcheng)
+- [Publisher profile](https://clawhub.ai/user/xuhongfeii2)
+- [Platform API Reference](references/platform-api.md)
+- [Setup Guide](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON script results and media links when tasks return images or videos]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task identifiers, watcher status, direct video URLs, image previews, and setup instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

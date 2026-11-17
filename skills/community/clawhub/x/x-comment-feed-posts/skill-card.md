@@ -1,45 +1,59 @@
-## Description: <br>
-Find posts in the user's X feed and leave comments on them one by one. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find posts in the user's X feed and leave comments on them one by one. Use when the user wants to comment on N posts from the feed, usually about indie tech launches, new tech, or AI, while keeping comments short, first-person, thread-specific, and manually executed.
 
-## Publisher: <br>
-[dishant0406](https://clawhub.ai/user/dishant0406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dishant0406](https://clawhub.ai/user/dishant0406)
 
-## Use Case: <br>
-External users use this skill to have an agent browse their X For You feed, select relevant recent posts, like them, and post short first-person comments on a requested topic set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can like posts and publish visible X comments from the user's account. <br>
-Mitigation: Require user review and approval of each comment before posting, keep the requested count small, and stop if the feed does not provide suitable candidates. <br>
-Risk: First-person or experience-based comments may imply feelings, work history, or product use that are not true for the user. <br>
-Mitigation: Allow first-person claims only when they accurately reflect the user's real views or experience; otherwise rewrite comments as narrower observations or questions. <br>
-Risk: Public engagement on sensitive or political topics can create reputational or policy risk. <br>
-Mitigation: Avoid sensitive, political, or high-risk topics unless the user explicitly approves the topic and the exact comment text. <br>
+## Use Case:
 
+External users use this skill to guide an agent through manually selecting recent X feed posts, liking each selected post, posting short first-person comments, and reporting the outcome.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dishant0406/x-comment-feed-posts) <br>
-- [Comment Rules](references/comment-rules.md) <br>
-- [Feed Workflow](references/feed-workflow.md) <br>
-- [Human Voice](references/human-voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown completion report with comment text and run details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports requested and actual comment counts, chosen topics or posts, final comments, search avoidance, and x.com tab closure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: The skill can use the user's active X browser session to like posts and publish public comments from the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to show each selected post and draft comment for approval before posting, and specify the exact topic scope and maximum number of comments.
+
+Risk: The feed may not yield enough fresh, relevant posts for the requested topic scope.
+
+Mitigation: Keep the topic scope explicit and require the agent to report when the feed is weak instead of lowering the quality bar without permission.
+
+Risk: Leaving the X session open after the run may expose an authenticated browser tab longer than needed.
+
+Mitigation: Require confirmation that all x.com tabs were closed at completion.
+
+## Reference(s):
+
+- [Comment Rules](references/comment-rules.md)
+- [Feed Workflow](references/feed-workflow.md)
+- [Human Voice](references/human-voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text, Markdown]
+
+**Output Format:** [Markdown guidance with shell commands and short social comment text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include a completion report with the requested count, actual comments posted, selected topics or posts, final comment text, search-avoidance confirmation, and X tab closure confirmation.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

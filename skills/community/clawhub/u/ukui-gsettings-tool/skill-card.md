@@ -1,40 +1,54 @@
-## Description: <br>
-A skill for exporting, inspecting and applying UKUI desktop gsettings presets, with fine-grained get/set support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for exporting, inspecting and applying UKUI desktop gsettings presets, with fine-grained get/set support.
 
-## Publisher: <br>
-[lizhuoan](https://clawhub.ai/user/lizhuoan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lizhuoan](https://clawhub.ai/user/lizhuoan)
 
-## Use Case: <br>
-Developers and desktop administrators use this skill to export, inspect, synchronize, and apply UKUI or GNOME gsettings presets across user environments. It also supports targeted reads and writes for individual schema keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying presets changes the current user's desktop gsettings. <br>
-Mitigation: Review preset JSON before applying it and export the current settings first when rollback may be needed. <br>
-Risk: Exported presets can contain private paths, usernames, or machine-specific values. <br>
-Mitigation: Redact private or host-specific values before sharing exported presets. <br>
+## Use Case:
 
+Developers and desktop automation users use this skill to inspect, export, and apply UKUI or GNOME gsettings values across machines or agent workflows. It supports bulk presets as well as targeted reads and writes for individual schema keys.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lizhuoan/ukui-gsettings-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON files, shell commands, configuration] <br>
-**Output Format:** [Command-line text and gsettings preset JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and gsettings on a UKUI or GNOME-compatible desktop session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Applying presets or using set can persistently change display, power, keyboard, mouse, shortcut, theme, or other desktop settings for the current user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Export the current configuration before changes, review each preset key and value, and apply changes only on the intended desktop profile.
+
+Risk: Exported gsettings presets may contain privacy-relevant values such as usernames, local paths, shortcuts, or environment-specific preferences.
+
+Mitigation: Review and remove sensitive or machine-specific values before sharing exported preset JSON.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lizhuoan/skills/ukui-gsettings-tool)
+- [Publisher profile](https://clawhub.ai/user/lizhuoan)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON preset files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local python3 and gsettings binaries and acts on the current user's desktop settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

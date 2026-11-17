@@ -1,41 +1,53 @@
-## Description: <br>
-Query and track health indicators from the CareMax Health API, including saved metrics, lab trends, categories, and quick logging of everyday vitals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and track CareMax Health API indicators, including health metrics, lab results, trends, and quick logging for everyday vitals.
 
-## Publisher: <br>
-[kittenyang](https://clawhub.ai/user/kittenyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kittenyang](https://clawhub.ai/user/kittenyang)
 
-## Use Case: <br>
-CareMax users and their agents use this skill to review health indicators, inspect trends and abnormal values, and log a single authenticated reading for the selected profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write sensitive health indicator records through external authentication scripts. <br>
-Mitigation: Install only when the CareMax auth scripts are trusted, verify token storage and revocation, and confirm the target profile before accessing or saving records. <br>
-Risk: A quick-log action could save an incorrect value, unit, date, or family profile. <br>
-Mitigation: List available presets first and require user confirmation of the value, unit, date, and profile before saving a reading. <br>
+## Use Case:
 
+External CareMax users and their agents use this skill to browse health indicators, review lab and metric trends, identify abnormal values, and quick-log authenticated everyday vitals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kittenyang/caremax-indicators) <br>
-- [Publisher profile](https://clawhub.ai/user/kittenyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and health indicator summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dates, units, reference ranges, abnormal flags, and confirmation text for saved readings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can write persistent health readings through quick-log actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation of the metric, value, unit, date, and profile before executing any quick-log write.
+
+Risk: The skill depends on unpinned external authentication scripts.
+
+Mitigation: Install only from a trusted CareMax source and prefer a pinned, reviewed version of caremax-auth.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kittenyang/skills/caremax-indicators)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text responses with bash command examples and API endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated CareMax access through a sibling caremax-auth skill; quick-log writes should confirm metric, value, unit, date, and profile before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Podwise"
+  short_description: "Search, summarize and learn from podcasts."
+  brand_color: "#7948E8"
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "podwise"
+      description: "Podwise podcast transcripts, summaries and insights"
+      transport: "streamable_http"
+      url: "https://mcp.podwise.ai/mcp"

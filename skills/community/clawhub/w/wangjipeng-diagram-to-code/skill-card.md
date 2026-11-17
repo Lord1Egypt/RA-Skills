@@ -1,41 +1,54 @@
-## Description: <br>
-Converts architecture diagrams into infrastructure as code or component code when the user provides a recognizable diagram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts architecture diagrams or infrastructure plans into infrastructure as code, deployment manifests, workflow code, or component code with assumptions and node-to-resource mappings.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert architecture, flowchart, component, and network diagrams into Terraform, Kubernetes YAML, CloudFormation, workflow scripts, component code, or deployment configuration. The skill also returns a mapping from diagram nodes to generated resources and states assumptions for ambiguous input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated infrastructure or component code can include incorrect defaults or unsafe assumptions when a diagram omits security, scaling, networking, or dependency details. <br>
-Mitigation: Review generated code and the diagram-to-resource mapping before deployment, and require explicit confirmation for security-sensitive settings. <br>
-Risk: The skill may rely on sensitive credentials such as an API key for service configuration. <br>
-Mitigation: Provide credentials only through environment variables or approved secret stores, and scope access to the task the user requested. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn Mermaid, PlantUML, draw.io XML, ASCII, or text-described architecture diagrams into deployable infrastructure definitions, workflow scripts, or component code. It is intended for diagram-backed requests where assumptions and mappings can be reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/wangjipeng-diagram-to-code) <br>
-- [references/index.md](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with fenced code blocks and diagram-to-code mapping] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outputs should identify assumptions, validate the selected target format, and avoid hardcoded credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scaffolded README workflows mention API keys and write modes without documenting the backing service or exact file changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide API keys or run write-mode workflows unless the publisher documents the service used and the files that will be changed.
+
+Risk: Generated infrastructure or component code may include incorrect defaults or assumptions when the source diagram is incomplete.
+
+Mitigation: Review the node-to-resource mapping, assumptions, and generated configuration before deployment or integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/wangjipeng-diagram-to-code)
+- [Declared metadata source: MiniMax-AI skills](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and diagram-to-code mapping notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, and refinement prompts for ambiguous diagram elements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

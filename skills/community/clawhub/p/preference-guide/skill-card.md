@@ -1,43 +1,57 @@
-## Description: <br>
-Helps an agent ask one brief, non-sensitive follow-up question to capture reusable user preferences and store confirmed answers for future conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactively captures reusable user preferences and prompts the agent to ask one brief, non-blocking follow-up when a future default would be useful.
 
-## Publisher: <br>
-[wubin010](https://clawhub.ai/user/wubin010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wubin010](https://clawhub.ai/user/wubin010)
 
-## Use Case: <br>
-Agents and their users use this skill to convert recurring preferences, work habits, and stable constraints into future defaults without blocking the current task. It is intended for direct main-session conversations where lightweight preference capture can improve later assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change future agent behavior by adding memory rules or hook-based reminders. <br>
-Mitigation: Install only when proactive preference capture is desired, and review AGENTS.md or OpenClaw hook entries before and after installation. <br>
-Risk: Preference history may be stored locally in memory, state, and log files. <br>
-Mitigation: Avoid answering with sensitive information, and periodically review or remove MEMORY.md, atr-state.json, and atr-log.jsonl. <br>
-Risk: Users may want to disable or reset the behavior after installation. <br>
-Mitigation: Remove the Ask-to-Remember memory section or hook files and delete the related local state/log files to reset behavior. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent remember stable, non-sensitive preferences from direct sessions without blocking the current task. It is intended for preference-capture workflows where the agent asks concise follow-up questions and records confirmed defaults for future interactions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wubin010/preference-guide) <br>
-- [ATR Test Scenarios](artifact/references/test-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON state and log entries, plus optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace memory, state, log, AGENTS.md, and optional OpenClaw hook files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can persistently change agent behavior by adding Ask-to-Remember guidance to AGENTS.md or injecting bootstrap guidance through an OpenClaw hook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the AGENTS.md and hook behavior before installation, and disable the optional hook if persistent startup injection is not desired.
+
+Risk: The skill can store user-derived preferences and replies in MEMORY.md, atr-state.json, and atr-log.jsonl as plaintext.
+
+Mitigation: Use it only for non-sensitive preferences, inspect these files regularly, and require explicit approval before writing durable memory.
+
+Risk: Proactive preference questions may capture more user preference data than expected.
+
+Mitigation: Keep questions low-friction and non-sensitive, honor refusals, and limit use to the user's direct main session.
+
+## Reference(s):
+
+- [ATR Test Scenarios](references/test-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON state/log entries and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update MEMORY.md, AGENTS.md, atr-state.json, and atr-log.jsonl; optional OpenClaw hook can inject bootstrap guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

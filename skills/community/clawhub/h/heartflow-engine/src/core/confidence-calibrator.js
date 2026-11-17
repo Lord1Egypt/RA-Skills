@@ -20,8 +20,10 @@
  * 4. 校准学习：记录历史准确性，持续修正置信度
  */
 
-const fs = require('fs');
+const fs = require('../utils/safe-fs');
 const path = require('path');
+
+const { escapeRegExp } = require('../utils/safe-regex.js');
 
 class ConfidenceCalibrator {
   constructor(options = {}) {
@@ -37,13 +39,24 @@ class ConfidenceCalibrator {
       complexityFit: options.complexityFit || 0.20,
     };
 
-    // 置信度阈值
-    this.thresholds = {
-      veryHigh: 0.85,   // "绝对正确"
-      high: 0.70,       // "很可能"
-      medium: 0.50,     // "可能"
-      low: 0.30,        // "不太确定"
-      veryLow: 0.15,    // "不知道"
+    // [v5.11.0] 公式驱动的动态阈值基准（作为回退值保留）
+    this._hardcodedThresholds = {
+      veryHigh: 0.85,
+      high: 0.70,
+      medium: 0.50,
+      low: 0.30,
+      veryLow: 0.15,
+    };
+
+    // 置信度阈值（初始化为硬编码值，每次 calibrate 时由公式动态更新）
+    this.thresholds = { ...this._hardcodedThresholds };
+
+    // [v5.11.0] 临界性易感度追踪：监测阈值随时间的稳定性
+    this._thresholdStability = {
+      history: [],
+      maxHistory: 50,
+      driftCount: 0,
+      lastStabilityCheck: null,
     };
 
     // 语言映射：置信度 → 表达方式
@@ -62,6 +75,9 @@ class ConfidenceCalibrator {
     ];
 
     this._load();
+    // [v5.14.1] 共享认知桥接
+    const { getCognitiveBridge } = require('../formula/cognitive-bridge.js');
+    this._bridge = getCognitiveBridge();
   }
 
   /**
@@ -71,6 +87,16 @@ class ConfidenceCalibrator {
    * @returns {object} 置信度评估结果
    */
   assess(text = '', context = {}) {
+    // [v5.11.0] 公式驱动的动态阈值：每次评估前更新
+    try {
+      const stats = {
+        totalRecords: this.records.length,
+        correctCount: this.records.filter(r => r.feedback === true).length,
+        driftCount: this._thresholdStability.driftCount,
+      };
+      this.thresholds = this._computeDynamicThresholds(stats);
+    } catch (e) { /* keep existing thresholds */ }
+
     const scores = {
       evidenceCoverage: this.scoreEvidenceCoverage(text, context),
       consistency: this.scoreConsistency(text),
@@ -86,7 +112,7 @@ class ConfidenceCalibrator {
 
     const confidence = Math.round(rawScore * 100) / 100;
     const level = this.scoreToLevel(confidence);
-    const calibrated = this.applyCalibration(confidence);
+    const calibrated = this.applyCalibration(confidence, scores);
 
     // 修正语言：去除刚强词汇
     const calibratedText = this.calibrateLanguage(text, level);
@@ -297,11 +323,133 @@ class ConfidenceCalibrator {
     return 'veryLow';
   }
 
-  applyCalibration(rawScore) {
-    // 轻微向下校准（防止过度自信）
-    // 原始分数高 → 向下调整一点
-    // 原始分数低 → 保持或轻微向上
+  /**
+   * [v5.11.0] 公式驱动的动态阈值计算
+   * 使用 Dirichlet 置信度 + 精确度权重 + 临界性易感度来动态调整阈值，
+   * 70% 公式驱动 + 30% 硬编码回退。
+   * @param {object} stats - 校准统计 { totalRecords, correctCount, recentAccuracy }
+   * @returns {object} 动态阈值
+   */
+  _computeDynamicThresholds(stats = {}) {
+    try {
+      const bridge = this._bridge;
+      if (!bridge) return { ...this._hardcodedThresholds };
+
+      // 1. Dirichlet 置信度：用伪计数构建证据分布
+      const totalRecords = stats.totalRecords || this.records.length || 1;
+      const correctCount = stats.correctCount || this.records.filter(r => r.feedback === true).length;
+      const incorrectCount = Math.max(0, totalRecords - correctCount);
+      // 构建证据伪计数：正确、不正确、未标记
+      const evidenceCounts = [
+        Math.max(0.1, correctCount),
+        Math.max(0.1, incorrectCount),
+        Math.max(0.1, totalRecords * 0.1), // 未标记/模糊
+      ];
+      const dc = bridge.dirichletConfidence(evidenceCounts, 1, 0.5);
+      const baselineConfidence = dc && dc.confidence !== undefined ? dc.confidence : 0.5;
+
+      // 2. 精确度权重：基于证据一致性调整阈值灵敏度
+      const consistencySigma = stats.consistencySigma || 0.3;
+      const pw = bridge.precisionWeight(consistencySigma);
+      const sensitivity = Math.min(1, Math.max(0.1, pw / 10)); // 归一化到 [0.1, 1]
+
+      // 3. 临界性易感度：高易感度 → 阈值更保守（降低 veryHigh, 提高 low）
+      const chi = bridge.criticalitySusceptibility
+        ? bridge.criticalitySusceptibility(1 + (stats.driftCount || 0) * 0.1)
+        : 1;
+      const criticalityFactor = Math.min(1, Math.max(0.5, chi));
+
+      // 4. 公式驱动的阈值（70%）+ 硬编码（30%）
+      const formulaThresholds = {
+        veryHigh: 0.85 * (0.7 * baselineConfidence + 0.3),
+        high:     0.70 * (0.7 * baselineConfidence + 0.3),
+        medium:   0.50 * (0.7 * (1 - sensitivity * 0.3) + 0.3),
+        low:      0.30 * (0.7 * sensitivity + 0.3),
+        veryLow:  0.15 * (0.7 * sensitivity * 0.8 + 0.3),
+      };
+
+      // 临界性修正：高易感度 → 降低高阈值、提高低阈值（更保守）
+      if (criticalityFactor < 0.8) {
+        formulaThresholds.veryHigh *= 1.05;
+        formulaThresholds.high *= 1.03;
+        formulaThresholds.low *= 0.95;
+      }
+
+      // 与硬编码值 70/30 混合
+      return {
+        veryHigh: +(formulaThresholds.veryHigh * 0.7 + this._hardcodedThresholds.veryHigh * 0.3).toFixed(4),
+        high:     +(formulaThresholds.high * 0.7 + this._hardcodedThresholds.high * 0.3).toFixed(4),
+        medium:   +(formulaThresholds.medium * 0.7 + this._hardcodedThresholds.medium * 0.3).toFixed(4),
+        low:      +(formulaThresholds.low * 0.7 + this._hardcodedThresholds.low * 0.3).toFixed(4),
+        veryLow:  +(formulaThresholds.veryLow * 0.7 + this._hardcodedThresholds.veryLow * 0.3).toFixed(4),
+      };
+    } catch (e) {
+      return { ...this._hardcodedThresholds };
+    }
+  }
+
+  applyCalibration(rawScore, scores = {}) {
+    // [FORMULA v5.14.0] 预测编码自由能 — 用预测误差能量调整置信度
+    // F = 0.5 * (s - μ)² / σ² + 0.5 * ln(2πσ²)
+    // 高 F → 高预测误差 → 应降低置信；低 F → 预测准确 → 可维持置信
+    try {
+      const bridge = this._bridge;
+      if (bridge && typeof bridge.predictiveCodingFreeEnergy === 'function') {
+        // s = rawScore (observed), μ = 0.5 (expected baseline), σ = 0.3
+        const fEnergy = bridge.predictiveCodingFreeEnergy(rawScore, 0.5, 0.3);
+        if (typeof fEnergy === 'number') {
+          // 高自由能（>1.5）→ 预测误差大 → 惩罚置信度
+          if (fEnergy > 1.5) {
+            const penalty = Math.min(0.15, (fEnergy - 1.5) * 0.03);
+            return Math.round((rawScore - penalty) * 100) / 100;
+          }
+        }
+      }
+    } catch (e) { /* fallback */ }
+
+    // [FORMULA v8.15.0] Dirichlet 证据累积停止规则 (arXiv:2605.26147)
+    // 用评分维度作为伪计数，构建 Dirichlet 分布置信度
+    // 高证据一致性 → 低熵 → 高置信度；分散证据 → 高熵 → 应降低置信
+    try {
+      const bridge = this._bridge;
+      if (bridge && scores) {
+        const evidenceCounts = [
+          scores.evidenceCoverage || 0.5,
+          scores.consistency || 0.5,
+          scores.specificity || 0.5,
+          scores.sourceReliability || 0.5,
+          scores.complexityFit || 0.5
+        ].map(s => Math.max(0.1, s * 5)); // scale to pseudo-counts
+        const dc = bridge.dirichletConfidence(evidenceCounts, 1, 0.5);
+        if (dc && dc.confidence !== undefined) {
+          // Blend: dirichlet confidence provides theoretical upper bound,
+          // raw score provides empirical signal
+          return Math.round((rawScore * 0.7 + dc.confidence * 0.3) * 100) / 100;
+        }
+      }
+    } catch (e) { /* fallback to legacy calibration */ }
+
+    // [v5.11.0] 公式驱动的向下校准：使用 bayesFactor 或 logLoss 代替固定 0.05
+    // 原始分数高 → 用贝叶斯证据因子或对数损失来精确计算调整幅度
     if (rawScore > 0.8) {
+      try {
+        const bridge = this._bridge;
+        if (bridge) {
+          // 使用 logLoss 计算过度自信惩罚
+          // p_predicted = rawScore, p_actual = feedback 历史准确率
+          const withFeedback = this.records.filter(r => r.feedback !== null);
+          let actualAccuracy = 0.5; // default if no feedback
+          if (withFeedback.length > 0) {
+            const correct = withFeedback.filter(r => r.feedback === true).length;
+            actualAccuracy = correct / withFeedback.length;
+          }
+          // logLoss: 高预测+低实际 → 高惩罚
+          const loss = bridge.logLoss(rawScore, actualAccuracy > 0.5 ? 1 : 0);
+          // 将 logLoss 映射为调整幅度：[0, ~5] → [0.01, 0.15]
+          const adjustment = Math.min(0.15, Math.max(0.01, loss * 0.03));
+          return Math.round((rawScore - adjustment) * 100) / 100;
+        }
+      } catch (e) { /* fallback */ }
       return Math.round((rawScore - 0.05) * 100) / 100;
     }
     return rawScore;
@@ -314,7 +462,7 @@ class ConfidenceCalibrator {
 
     // 替换刚强词汇
     for (const word of this.forbiddenHighConfidence) {
-      const regex = new RegExp(word, 'gi');
+      const regex = new RegExp(escapeRegExp(word), 'gi');
       calibrated = calibrated.replace(regex, this.getReplacement(level));
     }
 
@@ -383,7 +531,27 @@ class ConfidenceCalibrator {
       }
     }
 
-    // 如果过度自信率高，稍微调整阈值
+    // [v5.11.0] 用 weightedAccuracy 驱动阈值调整
+    try {
+      const bridge = this._bridge;
+      if (bridge && recent.length > 0) {
+        const decisions = recent.map(r => ({ correct: r.feedback === true }));
+        const wa = bridge.weightedAccuracy(decisions, 0.3);
+        const weightedAcc = wa.weightedAccuracy;
+
+        // 基于加权准确率调整阈值：准确率低 → 提高阈值（更保守），准确率高 → 保持
+        const accFactor = weightedAcc < 0.5 ? 0.04 : weightedAcc < 0.7 ? 0.02 : 0;
+        if (accFactor > 0) {
+          this.thresholds.veryHigh = Math.min(this.thresholds.veryHigh + accFactor, 0.95);
+          this.thresholds.high = Math.min(this.thresholds.high + accFactor * 0.8, 0.82);
+        }
+
+        // 临界性易感度追踪
+        this._trackThresholdStability();
+      }
+    } catch (e) { /* fallback to simple adjustments */ }
+
+    // 如果过度自信率高，稍微调整阈值（回退逻辑）
     if (overconfident > recent.length * 0.3) {
       this.thresholds.veryHigh = Math.min(this.thresholds.veryHigh + 0.02, 0.95);
       this.thresholds.high = Math.min(this.thresholds.high + 0.02, 0.80);
@@ -392,6 +560,147 @@ class ConfidenceCalibrator {
     if (underconfident > recent.length * 0.2) {
       this.thresholds.veryLow = Math.max(this.thresholds.veryLow - 0.02, 0.05);
     }
+  }
+
+  /**
+   * [v5.11.0] 基于反馈更新阈值 — 公开 API（原名 updateFromFeedback）
+   * 使用 weightedAccuracy 公式来智能调整校准阈值
+   * @param {boolean} wasCorrect - 反馈是否正确
+   * @param {object} [context] - 校准上下文
+   */
+  updateFromFeedback(wasCorrect, context = {}) {
+    if (wasCorrect === null || wasCorrect === undefined) return;
+
+    // 记录反馈
+    this.records.push({
+      text: (context.text || '').slice(0, 200),
+      calibrated: context.calibrated || { calibrated: 0.5, level: 'medium' },
+      feedback: wasCorrect,
+      ts: Date.now(),
+    });
+    if (this.records.length > 100) this.records.shift();
+
+    // 用公式驱动更新阈值
+    this.recalibrate();
+    this._save();
+  }
+
+  /**
+   * [v5.11.0] 临界性易感度追踪：监测阈值随时间的漂移
+   */
+  _trackThresholdStability() {
+    const now = Date.now();
+    const snap = {
+      ts: now,
+      thresholds: { ...this.thresholds },
+    };
+
+    this._thresholdStability.history.push(snap);
+    if (this._thresholdStability.history.length > this._thresholdStability.maxHistory) {
+      this._thresholdStability.history.shift();
+    }
+
+    // 每 10 次检查一次漂移
+    if (this._thresholdStability.history.length % 10 === 0) {
+      this._thresholdStability.lastStabilityCheck = now;
+      const history = this._thresholdStability.history;
+      if (history.length >= 10) {
+        const first = history[0].thresholds;
+        const last = history[history.length - 1].thresholds;
+        const drift = Math.abs(last.veryHigh - first.veryHigh) +
+                     Math.abs(last.high - first.high) +
+                     Math.abs(last.medium - first.medium);
+        if (drift > 0.15) {
+          this._thresholdStability.driftCount++;
+        }
+      }
+    }
+  }
+
+  /**
+   * [v5.11.0] 获取阈值稳定性报告
+   */
+  getThresholdStability() {
+    return {
+      historyLength: this._thresholdStability.history.length,
+      driftCount: this._thresholdStability.driftCount,
+      lastCheck: this._thresholdStability.lastStabilityCheck,
+      current: { ...this.thresholds },
+      baseline: { ...this._hardcodedThresholds },
+    };
+  }
+
+  /**
+   * 计算校准误差：已记录的预测中，声明置信度与实际准确率的绝对差值的平均值
+   * @returns {number|null} 校准误差（0-1），无数据时返回 null
+   * @private
+   */
+  _computeCalibrationError() {
+    const withFeedback = this.records.filter(r => r.feedback !== null);
+    if (withFeedback.length === 0) return null;
+
+    const bridge = this._bridge;
+    let totalAbsError = 0;
+    let totalLogLoss = 0;
+
+    // [FORMULA v5.14.0] KL散度：量化校准分布与实际分布的信息论偏离
+    let totalKlDiv = 0;
+    let totalCrossEntropy = 0;
+
+    for (const r of withFeedback) {
+      // 使用校准后的置信度（即向用户展示的置信度）作为 stated confidence
+      const stated = r.calibrated.calibrated;
+      // 实际准确率：1 = 正确, 0 = 错误
+      const actual = r.feedback ? 1 : 0;
+      totalAbsError += Math.abs(stated - actual);
+      // [FORMULA] 二值交叉熵（对数损失）：比绝对差更敏感地惩罚过度自信
+      if (bridge) totalLogLoss += bridge.logLoss(stated, actual);
+
+      // [FORMULA v5.14.0] KL散度 & 交叉熵：信息论校准质量度量
+      // p = [actual, 1-actual]（真实分布），q = [stated, 1-stated]（预测分布）
+      if (bridge && typeof bridge.klDivergence === 'function') {
+        const p = [actual, 1 - actual];
+        const q = [stated, 1 - stated];
+        totalKlDiv += bridge.klDivergence(p, q);
+        if (typeof bridge.crossEntropy === 'function') {
+          totalCrossEntropy += bridge.crossEntropy(p, q);
+        }
+      }
+    }
+
+    const absError = Math.round((totalAbsError / withFeedback.length) * 1000) / 1000;
+    const logLoss = bridge ? Math.round((totalLogLoss / withFeedback.length) * 1000) / 1000 : null;
+    const klDiv = bridge && typeof bridge.klDivergence === 'function' ? Math.round((totalKlDiv / withFeedback.length) * 1000) / 1000 : null;
+    const crossEnt = bridge && typeof bridge.crossEntropy === 'function' ? Math.round((totalCrossEntropy / withFeedback.length) * 1000) / 1000 : null;
+    return { absError, logLoss, klDivergence: klDiv, crossEntropy: crossEnt };
+  }
+
+  /**
+   * 公开API：获取校准误差
+   * @returns {object} 包含误差值和样本量的结果
+   */
+  getCalibrationError() {
+    const error = this._computeCalibrationError();
+    const absError = error ? error.absError : null;
+    const logLoss = error ? error.logLoss : null;
+    const klDivergence = error ? error.klDivergence : null;
+    const crossEntropy = error ? error.crossEntropy : null;
+    return {
+      error: absError,
+      logLoss,
+      klDivergence,
+      crossEntropy,
+      samples: this.records.filter(r => r.feedback !== null).length,
+      interpretation: absError === null
+        ? '尚无反馈数据，无法计算校准误差'
+        : absError < 0.1
+          ? '校准优秀：置信度与实际准确率高度吻合'
+          : absError < 0.25
+            ? '校准良好：存在轻微过度自信或保守倾向'
+            : absError < 0.40
+              ? '校准一般：置信度表达与实际结果存在明显偏差'
+              : '校准较差：建议检查评分维度和阈值设置',
+    };
   }
 
   // ===== 持久化 =====

@@ -1,41 +1,57 @@
-## Description: <br>
-Multi-agent-comm guides OpenClaw agents through structured multi-agent communication, including subagent delegation, persistent sessions, ACP-based cross-agent messaging, task decomposition, and shared context strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent Communication Protocol is a general OpenClaw framework for structured communication, task delegation, parallel subagent orchestration, and shared context across agents.
 
-## Publisher: <br>
-[ncepuee](https://clawhub.ai/user/ncepuee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncepuee](https://clawhub.ai/user/ncepuee)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate OpenClaw agents through one-off delegation, long-running sessions, and ACP communication. It helps split work across multiple agents, pass required context, configure agent definitions, and collect results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Multi-agent sessions may expose shared workspaces, skills, environment variables, or session history to agents that should not receive them. <br>
-Mitigation: Review which agents share those resources before use, keep API keys in a secure secret store, and avoid plaintext secrets in copied folders or configuration examples. <br>
-Risk: Resuming an unfamiliar session can continue prior context or actions that the user did not intend to trust. <br>
-Mitigation: Resume only sessions you recognize and prefer a fresh session for sensitive work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate OpenClaw agents, delegate tasks to subagents, maintain persistent sessions, configure ACP-based agent communication, and summarize parallel work.
 
-## Reference(s): <br>
-- [ACP Setup Guide](references/acp-setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ncepuee/skills/multi-agent-comm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, command, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable scripts are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security review flags this skill as suspicious because it encourages persistent agents, session resumption, and environment/API-key sharing without enough safety guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation when agents can access email, documents, calendars, API keys, or prior session history; use only trusted subagents and avoid broad environment inheritance.
+
+Risk: Resumed sessions and cross-agent communication can route work to the wrong identity, context, or task if session ownership is not checked.
+
+Mitigation: Verify that any resumed session belongs to the intended user and task before sending new instructions or shared context.
+
+Risk: Copying secrets or sharing inherited environments across devices and agents can increase credential exposure.
+
+Mitigation: Rotate or provision per-device API keys rather than copying secrets casually.
+
+## Reference(s):
+
+- [ACP Setup Guide](references/acp-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline session, ACP, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for spawning, steering, resuming, and configuring multi-agent sessions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

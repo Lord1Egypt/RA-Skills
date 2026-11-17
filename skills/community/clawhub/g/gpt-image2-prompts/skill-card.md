@@ -1,44 +1,58 @@
-## Description: <br>
-将用户需求转化为结构化高质量 GPT Image 2 提示词；支持专业/新手双模式、场景预设、多风格方案生成、迭代优化反馈；用于海报、人像、UI、插画等视觉创作 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将用户需求转化为结构化高质量 GPT Image 2 提示词；支持专业/新手双模式、场景预设、多风格方案生成、迭代优化反馈；用于海报、人像、UI、插画等视觉创作
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-Designers, creators, marketers, and other external users use this skill to turn visual concepts into structured GPT Image 2 prompts for portraits, posters, product imagery, UI visuals, illustrations, and iterative prompt refinement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include private photos, personal visual details, or brand assets when asking for prompt help. <br>
-Mitigation: Treat reference images and sensitive visual details as normal chat data, and share them only when acceptable for the session. <br>
+## Use Case:
 
+External creators, designers, marketers, and developers use this skill to turn visual ideas into structured GPT Image 2 prompts. It supports direct prompt generation, guided refinement, scene presets, reference-image analysis, style variation, and feedback-driven prompt adjustment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qomob/gpt-image2-prompts) <br>
-- [Quick Reference](references/quick-reference.md) <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
-- [Advanced Techniques](references/advanced-techniques.md) <br>
-- [Style Gallery](references/style-gallery.md) <br>
-- [Feedback Guide](references/feedback-guide.md) <br>
-- [Changelog](references/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt options, scoring tables, quick-copy prompt text, and concise revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured image-generation prompts and recommendations; it does not execute commands or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated image prompts may include incorrect or unsuitable creative guidance for the user's intended audience or platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated prompt variants and scoring notes before using them in an image generation workflow.
+
+Risk: Image prompts may request visible text, logos, or other content that a model renders poorly or that requires exact brand/legal review.
+
+Mitigation: Use the skill's text-rendering and no-watermark guidance, then manually verify final prompts and generated images before publication.
+
+## Reference(s):
+
+- [Quick Reference](references/quick-reference.md)
+- [Prompt Patterns](references/prompt-patterns.md)
+- [Feedback Guide](references/feedback-guide.md)
+- [Advanced Techniques](references/advanced-techniques.md)
+- [Style Gallery](references/style-gallery.md)
+- [Changelog](references/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured prompt variants, scoring tables, quick-copy prompt text, and refinement guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Usually produces Chinese-language guidance and mostly English image prompts unless the user asks for another language.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

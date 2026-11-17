@@ -155,9 +155,11 @@ class AliyunClient:
         self.ak = ak
         self.sk = sk
         self.region = region
+        # 完整校验 TLS 证书链与主机名。请求中带有签名后的 AccessKeyId 与询价参数，
+        # 关闭校验会让中间人得以窃取凭据或伪造价格数据。
         self.ctx = ssl.create_default_context()
-        self.ctx.check_hostname = False
-        self.ctx.verify_mode = ssl.CERT_NONE
+        self.ctx.check_hostname = True
+        self.ctx.verify_mode = ssl.CERT_REQUIRED
 
     @staticmethod
     def _percent_encode(s: str) -> str:

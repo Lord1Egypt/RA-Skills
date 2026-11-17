@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>iFinance</title>
+<style>
+/*设置标准字体*/body {font-family:'微软雅黑', sans-serif !important;}
+/*设置衬线字体*/.serif {font-family:'宋体', serif !important;}
+/*设置无衬线字体*/.sans-serif {font-family:'微软雅黑', sans-serif !important;}
+</style>
+</head>
+<body>
+<div id="app" v-cloak><router-view></router-view></div>
+
+<template id="tpl_home">
+<q-layout view="hHh lpr fFf">
+<q-header>
+  <q-toolbar>
+   <q-avatar rounded><img src="./favicon.png"></q-avatar>
+   <q-toolbar-title>{{tags.app_name}}</q-toolbar-title>
+  </q-toolbar>
+  <div class="text-right bg-white q-pt-sm">
+    <q-btn :label="tags.bank.title" @click="goto('/bankacc')"
+     icon="account_box" color="primary" flat padding="xs"></q-btn>
+    <q-btn :label="tags.income.title" @click="goto('/income')"
+     icon="login" color="orange" flat padding="xs"></q-btn>
+    <q-btn :label="tags.pay.title" @click="goto('/pay')"
+     icon="logout" color="orange" flat padding="xs"></q-btn>
+    <q-btn :label="tags.salary.title" @click="goto('/salary')"
+     icon="attach_money" color="primary" flat class="q-pl-none"></q-btn>
+    <q-btn :label="tags.balance.title" @click="goto('/balance')"
+     icon="bar_chart" color="accent" flat class="q-pl-none"></q-btn>
+  </div>
+</q-header>
+<q-page-container>
+ <q-page class="q-pa-sm">
+  <q-separator spaced="sm"></q-separator>
+  <ibf></ibf>
+ </q-page>
+</q-page-container>
+</q-layout>
+</template>
+
+</body>
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script type="module">
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+import ConfirmDialog from "/assets/v3/components/confirm_dialog.js";
+import DateInput from "/assets/v3/components/date_input.js"
+import MonthInput from "/assets/v3/components/month_input.js"
+import UserInput from "/assets/v3/components/user_input.js"
+
+import IBF from '/ibfbase/ibf.js'
+import BankAcc from "./bankacc.js"
+import Salary from "./salary.js"
+import Income from "./income.js"
+import Pay from "./pay.js"
+import Balance from "./balance.js"
+import BalanceLog from "./balancelog.js"
+
+import Language from "./language.js"
+import { registerIbf } from '/ibfbase/ibf.js';
+
+const homeTpl=document.getElementById('tpl_home');
+const Home = {
+inject:['tags'],
+methods:{
+goto(url) {
+    this.$router.push(url);
+}
+},
+template:homeTpl.innerHTML
+}
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+//router定义
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+  {path:'/home', component:Home},
+  {path:'/bankacc', component:BankAcc}, //常用银行帐号管理
+  {path:'/salary', component:Salary}, //发薪
+  {path:'/income', component:Income}, //回款确认
+  {path:'/pay', component:Pay}, //向外支付
+  {path:'/balance', component:Balance}, //资产负债表
+  {path:'/balancelog', component:BalanceLog} //资产负债表日志
+]});
+
+//service定义
+const service = {name:"ifinance",N_PAGE:10,N_SMPG:5,
+CLIENTW:document.documentElement.clientWidth,
+back() { //返回，在页面中通过service.back调用
+    router.back();
+},
+goto(url) {
+    router.push(url)
+}
+};
+//app主体定义
+const app = Vue.createApp({
+provide:{tags:tags, service:service},
+created(){
+    registerIbf(app,router,service.name).then((r)=> {
+        this.$router.push('/home').catch(err => {err});
+    });
+},
+mounted() {
+    window.sys_go_back = this.sysGoBack;//给webview调用
+},
+methods:{
+sysGoBack() {
+    //声明全局函数，在webview中调用，
+    //实现按回退按钮回退历史页面，如果无历史，则退出activity或应用
+    if(this.$router.currentRoute.value.path==="/home") {
+        return false;
+    }
+    this.$router.back();
+    return true;
+}
+}
+});
+
+app.use(Quasar);
+app.use(router);
+app.component('ibf', IBF);
+app.component('alert-dialog', AlertDialog);
+app.component('confirm-dialog', ConfirmDialog);
+app.component('date-input', DateInput);
+app.component('month-input', MonthInput);
+app.component('user-input', UserInput);
+//启动APP
+app.mount('#app');
+</script>
+<script src="/assets/v3/echarts.js"></script>
+</html>

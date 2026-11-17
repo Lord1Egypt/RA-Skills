@@ -1,9 +1,11 @@
 # Supported Channels
 
+> **Privacy notice:** This hook transmits only a startup timestamp to your chosen channel. No local configuration, model names, port numbers, or other host details are included in the message.
+
 ## iMessage
 
 **CLI**: `imsg`
-**Address format**: Email or phone number (e.g., `user@icloud.com`, `277498782@qq.com`)
+**Address format**: Email or phone number (e.g., `user@icloud.com`, `yourname@qq.com`)
 **Command**:
 ```bash
 imsg send --to <address> --text "<message>"

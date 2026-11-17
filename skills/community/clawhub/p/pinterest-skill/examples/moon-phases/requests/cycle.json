@@ -1,0 +1,26 @@
+{
+ "content": [
+  {
+   "text": "How long is a lunar cycle? The Moon phases repeat every 29.5 days, from one new Moon to the next, while one trip around Earth takes about 27.3 days. Photo: a NASA astronaut on the International Space Station.",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for cycle.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "PINTEREST",
+   "socialAccountId": "<socialAccountId for main>",
+   "pinterestBoardId": "<board id for 'Space science lessons'>",
+   "title": "Lunar cycle length: 29.5 days from new Moon to new Moon",
+   "link": "https://science.nasa.gov/moon/moon-phases/"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-12-08T01:30:00Z"
+ }
+}

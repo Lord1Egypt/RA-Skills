@@ -20,9 +20,25 @@ description: 腾讯云 AndonQ 工单与智能客服助手 — 不切窗口、不
 
 密钥获取地址：https://console.cloud.tencent.com/cam/capi
 
-**环境变量必须永久写入 shell 配置文件**，确保新会话中仍然生效：
+**凭据权限要求**：请使用**最小权限、可随时吊销**的子账号密钥，不要使用主账号密钥。
+本 Skill 只需要工单相关的读取权限。
 
-Linux / macOS（写入 `~/.bashrc` 或 `~/.zshrc`）：
+**推荐方式 — 会话级注入（不落盘）**
+
+优先从密钥管理器读取，仅注入当前会话，命令结束即失效：
+
+```bash
+# macOS 钥匙串示例
+export TENCENTCLOUD_SECRET_ID="$(security find-generic-password -s tencentcloud-secret-id -w)"
+export TENCENTCLOUD_SECRET_KEY="$(security find-generic-password -s tencentcloud-secret-key -w)"
+```
+
+其他可用方案：`pass`、1Password CLI（`op read`）、HashiCorp Vault、企业密钥管理服务。
+
+**备选方式 — 写入 shell 配置文件（有风险，请知悉后再用）**
+
+若确实需要跨会话持久化，可写入 `~/.zshrc` / `~/.bashrc`：
+
 ```bash
 echo 'export TENCENTCLOUD_SECRET_ID="your-secret-id"' >> ~/.zshrc
 echo 'export TENCENTCLOUD_SECRET_KEY="your-secret-key"' >> ~/.zshrc
@@ -35,11 +51,22 @@ Windows PowerShell（写入用户级环境变量）：
 [Environment]::SetEnvironmentVariable("TENCENTCLOUD_SECRET_KEY", "your-secret-key", "User")
 ```
 
-> **注意**：`export` 仅对当前会话生效，新开会话会丢失。务必写入配置文件。
+> ⚠️ **持久化的代价**：这样做会把长期有效的明文密钥留在磁盘上。该文件会被备份、
+> 被同步工具上传、被其他本地进程读取，且泄露后不会有任何提示。
+> 选择此方式时请确保密钥为最小权限子账号密钥，并定期轮换。
+>
+> **Agent 不应主动替用户执行写入操作**，应说明两种方式的差异，由用户自行选择。
 
 ### 1.2 智能问答（SmartQA）
 
 无需 AK/SK，uin 和 skey 默认为空。直接调用即可。
+
+> ⚠️ **数据出境提示**：SmartQA 会把你输入的问题**以及多轮对话的上下文**发送到
+> 腾讯云在线客服服务（`cloud.tencent.com` / `andon.cloud.tencent.com`）进行处理。
+> 这些内容离开本地环境，且可能被服务端留存用于客服记录。
+>
+> 请不要在提问中包含密钥、内部主机名、客户数据或其他敏感信息。
+> 首次为用户调用 SmartQA 时，应主动告知这一点。
 
 ---
 
@@ -107,15 +134,24 @@ python3 {baseDir}/scripts/andon-api.py -a GetCurrentTime -d '{}'
 }
 ```
 
-### 3.1 GetMCTicketList — 查询工单列表（合并）
+### 3.1 GetMCTicketList — 查询工单列表
 
-查询当前账户下的工单列表，默认按创建时间倒序返回。后台自动合并多来源工单并按 TicketId 去重。任一来源不可用时静默忽略，不影响结果。
+查询**当前账户**下的工单列表，默认按创建时间倒序返回。
 
 - **触发词**：“查询工单”、“工单列表”、“我的工单”、“看看工单”、“有哪些工单”、“list tickets”、“my tickets”
 - **详细文档**：使用前加载 `{baseDir}/references/GetMCTicketList.md`
 
+> **数据范围**：默认**只返回当前账号自己的工单**。
+> 加上 `--include-organization` 才会同时查询 `DescribeOrganizationTickets`
+> 并按 `TicketId` 去重合并，此时返回结果会扩大到**集团范围**的工单，
+> 可能包含其他成员的工单标题、UIN 与问题描述。
+>
+> Agent 不应默认加这个参数。只有当用户明确要求查看集团/成员工单时才使用，
+> 并在返回前说明数据范围已扩大。合并模式下任一来源失败会被静默忽略，
+> 因此结果可能不完整。
+
 ```bash
-# 默认查询（最新 20 条）
+# 默认查询（最新 20 条，仅本账号工单）
 python3 {baseDir}/scripts/andon-api.py -a GetMCTicketList -d '{}'
 
 # 按状态过滤（待处理 + 处理中）
@@ -123,6 +159,9 @@ python3 {baseDir}/scripts/andon-api.py -a GetMCTicketList -d '{"StatusIdList":[0
 
 # 关键词搜索
 python3 {baseDir}/scripts/andon-api.py -a GetMCTicketList -d '{"Search":"CVM","PageSize":10}'
+
+# 显式扩大到集团范围（需用户明确要求）
+python3 {baseDir}/scripts/andon-api.py -a GetMCTicketList -d '{}' --include-organization
 ```
 
 返回示例：
@@ -432,10 +471,26 @@ python3 {baseDir}/scripts/smartqa-api.py -q "..." -n
 
 ### 7.3 数据安全
 
-- **密钥处理**：AK/SK 仅通过环境变量读取，不写入文件、日志或网络传输
-- **无持久化存储**：本 Skill 不创建配置文件、不缓存数据
-- **SSL 验证**：所有 HTTPS 请求启用完整 SSL 证书验证
+- **密钥读取**：脚本本身只从环境变量读取 AK/SK，不写入文件、日志，也不会把密钥
+  发送到签名头以外的任何地方
+- **凭据持久化由用户决定**：本 Skill 的脚本不会创建配置文件、不缓存数据。
+  但若用户按 §1.1 的**备选方式**把 AK/SK 写入 `~/.zshrc` / `~/.bashrc` 或 Windows
+  用户级环境变量，则密钥会以明文长期留存在磁盘上 —— 这是用户环境的持久化，
+  不是脚本的行为，但风险真实存在。推荐使用 §1.1 的会话级注入方式避免落盘。
+- **SSL 验证**：所有 HTTPS 请求启用完整 SSL 证书验证（证书链 + 主机名）
 - **纯 Python 实现**：无需 curl、openssl、jq 等外部依赖
+
+### 7.4 数据范围与外发
+
+- **SmartQA 会把问题和多轮上下文发送到腾讯云**（见 §1.2），内容离开本地环境。
+- **工单接口返回敏感数据**：工单标题、问题描述、沟通记录、UIN、企业名称、
+  处理人、操作流水、附件链接等。展示给用户时按需呈现，不要在无关上下文中转述，
+  也不要写入日志或粘贴到第三方服务。
+- **默认只查个人工单**：`GetMCTicketList` 默认仅返回当前账号的工单。
+  如需同时查询集团范围工单，必须显式传入 `--include-organization`
+  （见 §3.1）—— 该参数会显著扩大返回数据的范围，应先向用户确认。
+- **`-v` / `-n` 输出包含敏感内容**：verbose 会打印原始请求/响应，dry-run 会打印
+  payload 与签名头元数据。不要在共享终端、录屏或日志中使用这两个模式。
 
 ---
 

@@ -1,46 +1,56 @@
-## Description: <br>
-Tax is a local-first tax recordkeeping skill that captures tax documents, receipts, expenses, notices, missing-item reminders, and CPA-ready handoff summaries without providing tax advice or final calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tax helps individuals, freelancers, and small businesses locally capture tax-relevant facts, track possible missing documents, and generate CPA-ready handoff summaries without providing tax advice.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-Individuals, freelancers, and small businesses use this skill to preserve tax-relevant facts throughout the year, track expected or missing records, and prepare organized Markdown and CSV materials for CPA, EA, accountant, or tax software review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive tax records may remain in local persistent storage longer than intended. <br>
-Mitigation: Use the skill only in a trusted private workspace, archive completed years, and remove records that no longer need to be retained. <br>
-Risk: Generated handoff summaries may include incomplete facts or unresolved tax treatment questions. <br>
-Mitigation: Review summaries before sharing and confirm tax treatment, filing positions, and calculations with a licensed professional. <br>
-Risk: Users may ask for legal or tax judgments that the skill is not designed to provide. <br>
-Mitigation: Record the underlying fact, flag the issue for professional review, and avoid final advice, filing positions, or tax liability calculations. <br>
+## Use Case:
 
+External users and their agents use Tax to organize year-round tax documents, expenses, notices, and CPA questions. The skill supports recordkeeping, possible missing-item checks, and professional handoff preparation while leaving tax treatment and filing decisions to licensed professionals.
 
-## Reference(s): <br>
-- [ClawHub Tax skill page](https://clawhub.ai/agenticio/tax) <br>
-- [CPA Handoff](references/cpa-handoff.md) <br>
-- [Cross-Year Memory](references/cross-year-memory.md) <br>
-- [Facts vs. Judgments](references/fact-vs-judgment.md) <br>
-- [Recordkeeping](references/recordkeeping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, CSV, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and CSV summaries, JSON local records, concise text guidance, and Python script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores tax memory locally under ~/.openclaw/workspace/memory/tax/ and preserves raw user wording for later review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence) <br>
+Risk: Sensitive tax records are stored as local plaintext files under ~/.openclaw/workspace/memory/tax/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private account or encrypted disk, check local file permissions, and avoid syncing the tax memory folder to broad backups or shared storage.
+
+Risk: Generated CSV files may expose users to spreadsheet-related risks when opened.
+
+Mitigation: Treat generated CSV files as untrusted, review them before opening in spreadsheet software, and avoid sharing them beyond the intended professional review workflow.
+
+## Reference(s):
+
+- [CPA Handoff](references/cpa-handoff.md)
+- [Cross-Year Memory](references/cross-year-memory.md)
+- [Facts vs. Judgments](references/fact-vs-judgment.md)
+- [Recordkeeping](references/recordkeeping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, CSV, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text responses, local JSON records, Markdown summaries, and CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores tax memory and generated summaries as local plaintext files under ~/.openclaw/workspace/memory/tax/ when scripts are run.]
+
+## Skill Version(s):
+
+4.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

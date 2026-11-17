@@ -1,45 +1,59 @@
-## Description: <br>
-Turn your AI into JARVIS. Voice, wit, and personality -- the complete package. Humor cranked to maximum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn your AI into JARVIS. Voice, wit, and personality - the complete package. Humor cranked to maximum.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to make an OpenClaw agent produce JARVIS-style spoken replies, visible Markdown transcripts, and witty conversational behavior through local audio tooling and SkillBoss text-to-speech. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends spoken reply text to the external SkillBoss text-to-speech service. <br>
-Mitigation: Use it only where that text sharing is acceptable, protect SKILLBOSS_API_KEY, and avoid private, shared, or compliance-sensitive workspaces unless additional confirmation or mute controls are added. <br>
-Risk: The skill automatically runs a local jarvis command for audio playback. <br>
-Mitigation: Review the jarvis executable on PATH before enabling the skill and confirm that ffmpeg, aplay, curl, and audio playback behavior match the workspace policy. <br>
-Risk: The provided templates can persistently change future OpenClaw sessions by auto-loading voice and humor instructions. <br>
-Mitigation: Install the templates only when persistent voice behavior is desired, and remove or disable them for workspaces that should not auto-run voice output. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure an agent to speak responses through a local jarvis command using SkillBoss TTS and ffmpeg audio effects, while applying JARVIS-style humor and transcript rules.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/mar-jarvis-voice) <br>
-- [SkillBoss Jarvis Voice Page](https://skillboss.co/skills/jarvis-voice) <br>
-- [LIMBIC Humor Research Draft](https://github.com/globalcaos/tinkerclaw/blob/main/AI_reports/humor-embeddings-paper-draft.md) <br>
-- [TinkerClaw Project](https://github.com/globalcaos/tinkerclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown transcripts with inline shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spoken text is constrained by the skill to short English voice output, with one background jarvis command per response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 3.1.0) <br>
+Risk: The skill can make the agent run local voice commands and send response text to an external TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the jarvis script before installation, require explicit SkillBoss API key configuration, and prefer opt-in voice use per session or response.
+
+Risk: Workspace templates may persistently change future sessions by requiring automatic voice output and recent memory/session inspection.
+
+Mitigation: Install templates only after review, document a clear disable or removal path, and avoid applying the templates to workspaces that should remain text-only.
+
+Risk: Downloaded media, shell interpolation, and shared temporary audio paths can create execution or file-handling risk.
+
+Mitigation: Safely escape spoken text, validate downloaded media, use unique temporary files, and keep ffmpeg, curl, and playback dependencies patched.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/marjoriebroad/skills/mar-jarvis-voice)
+- [SkillBoss Jarvis Voice listing](https://skillboss.co/skills/jarvis-voice)
+- [LIMBIC humor research draft](https://github.com/globalcaos/tinkerclaw/blob/main/AI_reports/humor-embeddings-paper-draft.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice output is limited by the artifact guidance to one jarvis call per response and spoken text of 1500 characters or fewer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

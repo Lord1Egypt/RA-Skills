@@ -1,49 +1,63 @@
-## Description: <br>
-AI-powered parametric furniture modeling for Fusion 360. Generates production-ready CAD models with real joinery from natural language, images, or reference links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered parametric furniture modeling for Fusion 360 that generates production-ready CAD models with real joinery from natural language, images, or reference links.
 
-## Publisher: <br>
-[ylzha](https://clawhub.ai/user/ylzha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ylzha](https://clawhub.ai/user/ylzha)
 
-## Use Case: <br>
-External users and developers use Shopprentice to turn natural-language prompts, images, or reference links into parametric Fusion 360 furniture models with joinery. When configured with its local add-in, it can execute and iterate on generated Fusion 360 Python scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local Fusion 360 control server can inspect designs and run Fusion Python scripts without authentication. <br>
-Mitigation: Install only when the publisher is trusted, enable MCP only when live Fusion execution is needed, stop the add-in when not in use, and review generated scripts before execution. <br>
-Risk: Generated scripts can alter active CAD work if run in the wrong document mode. <br>
-Mitigation: Capture document state before execution, use additive mode for untracked user work, and reserve clean rebuilds for models the agent intentionally owns. <br>
-Risk: The one-line installer fetches and runs a remote shell script that changes local client and Fusion 360 configuration. <br>
-Mitigation: Review the installer source, prefer explicit installer flags for the clients in use, and skip MCP setup unless local CAD execution is required. <br>
+## Use Case:
 
+External developers, CAD users, and furniture designers use Shopprentice to turn natural-language, image, or reference-link furniture requests into parametric Fusion 360 Python scripts, live MCP-driven builds, validation steps, and iterative design guidance.
 
-## Reference(s): <br>
-- [Shopprentice ClawHub page](https://clawhub.ai/ylzha/shopprentice) <br>
-- [Shopprentice homepage](https://github.com/ShopPrentice/shopprentice) <br>
-- [Installer source](https://github.com/ShopPrentice/shopprentice/blob/main/install.sh) <br>
-- [README](README.md) <br>
-- [Fusion 360 API Rules](docs/fusion-api-rules.md) <br>
-- [MCP Advanced](docs/mcp-advanced.md) <br>
-- [Joinery Reference](docs/joinery/README.md) <br>
-- [Hardware Installation](docs/hardware-installation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Fusion 360 Python scripts and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local MCP add-in to execute generated Fusion 360 scripts and inspect CAD documents when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill installs and exposes local execution paths that can run generated Python and modify Fusion 360 CAD documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment, review generated scripts before execution when possible, and keep valuable Fusion documents backed up.
+
+Risk: The documented one-line installer uses a remote shell command.
+
+Mitigation: Prefer cloning or downloading a pinned release and inspecting the installer before running it.
+
+Risk: The Fusion 360 MCP add-in exposes powerful local actions over a localhost JSON-RPC server.
+
+Mitigation: Keep the service local-only, run it only when needed, and avoid bypassing agent sandbox protections unless the local-system access is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylzha/skills/shopprentice)
+- [Project homepage](https://github.com/ShopPrentice/shopprentice)
+- [MCP Integration for Fusion 360](artifact/mcp/README.md)
+- [Joinery Reference](artifact/docs/joinery/README.md)
+- [Fusion 360 API Rules](artifact/docs/fusion-api-rules.md)
+- [Organic Shapes](artifact/docs/organic-shapes.md)
+- [Hardware Installation](artifact/docs/hardware-installation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets, generated Fusion 360 Python scripts, and local configuration details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute generated scripts through a local Fusion 360 MCP add-in when configured; scripts can also be reviewed and run manually.]
+
+## Skill Version(s):
+
+0.7.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

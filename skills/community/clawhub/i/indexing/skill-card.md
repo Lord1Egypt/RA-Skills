@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents through technical SEO indexing fixes for Google Search Console issues, noindex decisions, and Google Indexing API setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents troubleshoot Google Search Console indexing issues, choose noindex, canonical, and robots.txt fixes, and use the Google Indexing API where appropriate.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, technical SEO practitioners, and site operators use this skill to triage Google Search Console indexing statuses and choose concrete fixes such as canonical updates, noindex directives, robots.txt adjustments, URL inspection, or Indexing API setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect noindex, canonical, robots.txt, redirect, or indexing API changes can reduce search visibility for important pages. <br>
-Mitigation: Review each affected URL and its intended search behavior before applying the recommended change. <br>
-Risk: Google Indexing API setup may expose credentials if service account details are pasted into project context files. <br>
-Mitigation: Use a dedicated service account scoped to the relevant Search Console property and keep credentials outside shared context files. <br>
+## Use Case:
 
+Developers, site operators, and SEO practitioners use this skill to convert indexing signals from Search Console into prioritized fixes for crawlability, canonicalization, page quality, noindex decisions, and eligible Google Indexing API workflows.
 
-## Reference(s): <br>
-- [Google Search Central: Page indexing report](https://support.google.com/webmasters/answer/7440203) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown action items with tables and inline configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; recommendations may affect search visibility and should be reviewed per URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Incorrect noindex, canonical, robots.txt, or Google Indexing API changes can affect whether important pages appear in search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested indexing changes before applying them, especially on important public content pages.
+
+Risk: Blocking crawl access to pages that rely on noindex can prevent crawlers from seeing the directive.
+
+Mitigation: Keep noindex pages crawlable unless there is a separate reason to block crawling, and verify behavior before release.
+
+## Reference(s):
+
+- [Page indexing report](https://support.google.com/webmasters/answer/7440203)
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/indexing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with prioritized action items, reference links, and inline code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SEO recommendations for noindex, canonical tags, robots.txt, URL Inspection, and Google Indexing API workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Compresses long content into structured 4D vectors to reduce token use by about 60-80% while preserving core information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses long text into structured 4D vectors to reduce token use while preserving core meaning.
 
-## Publisher: <br>
-[largetool](https://clawhub.ai/user/largetool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[largetool](https://clawhub.ai/user/largetool)
 
-## Use Case: <br>
-Developers and OpenClaw users can trigger the skill to compress pasted text into structured summaries for review, knowledge preservation, or retrieval. It is intended for text content and does not directly process EPUB or PDF files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad triggers, including ordinary terms such as "compress" and "压缩", may activate the skill more often than expected. <br>
-Mitigation: Review the agent's selected skill before acting on compressed output, especially in workflows where ordinary compression requests may have another meaning. <br>
-Risk: The artifact describes local-only and privacy-preserving behavior, but the scanner guidance notes that sensitive-text handling depends on the OpenClaw runtime's guarantees. <br>
-Mitigation: Avoid relying on the local-only claim for highly sensitive text unless the deployed runtime independently guarantees local processing and data handling. <br>
+## Use Case:
 
+External users and developers use this skill to condense long Chinese-oriented text into structured summaries or 4D vector-style representations. It is suited for text review, knowledge notes, dialogue compression, and token budget reduction after users provide plain text input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/largetool/4d-compression-core) <br>
-- [VERSION_PROTOCOL.md](artifact/VERSION_PROTOCOL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown text with structured 4D sections and optional JSON-style structured output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compression rate and semantic retention vary by text type; EPUB and PDF inputs must be converted to text first.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad triggers such as "compress" and "压缩" may invoke the skill more often than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when this text-compression behavior is desired, and adjust triggers or priority if the agent platform supports that.
+
+Risk: Compression can omit nuance or expand already concise dialogue and emotional text.
+
+Mitigation: Review compressed output before using it as an authoritative record or decision input.
+
+Risk: The skill does not directly process EPUB or PDF books.
+
+Mitigation: Convert documents to plain text before asking the skill to compress them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/largetool/skills/4d-compression-core)
+- [Version Selection Protocol](artifact/VERSION_PROTOCOL.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown or JSON structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local rule-based routing selects compression version A, B, or C based on text type; no executable payload or network behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

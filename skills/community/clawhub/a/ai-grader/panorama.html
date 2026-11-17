@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 评测结果全景图 · 评 AI 生态 v2.4</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--ink:#e6edf3;--mut:#8b949e;--bd:#232a33;
+  --a:#58a6ff;--b:#3fb950;--y:#d29922;--r:#f85149;--p:#bc8cff;--o:#ff9e64;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1200px 600px at 70% -10%,#1b2a44 0,var(--bg) 55%);
+  color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+  padding:32px 18px 60px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto}
+header{text-align:center;margin-bottom:30px}
+header h1{font-size:30px;letter-spacing:1px;background:linear-gradient(90deg,var(--a),var(--p));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px;font-size:14px}
+.hero{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:26px 0 34px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px 14px;text-align:center}
+.stat .num{font-size:30px;font-weight:800;color:var(--a)}
+.stat.hr .num{color:var(--r)} .stat.gd .num{color:var(--b)} .stat.pp .num{color:var(--p)}
+.stat .lab{font-size:12px;color:var(--mut);margin-top:6px}
+.sec{margin:30px 0}
+.sec h2{font-size:19px;margin-bottom:14px;padding-left:11px;border-left:4px solid var(--a)}
+.flow{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:22px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+.col{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.col-t{font-size:14px;font-weight:700;color:var(--a);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.col-t .dot{width:9px;height:9px;border-radius:50%;background:var(--a)}
+.pc{display:block;background:#0e141d;border:1px solid var(--bd);border-radius:10px;
+  padding:11px 12px;margin-bottom:9px;text-decoration:none;color:var(--ink);transition:.18s}
+.pc:hover{border-color:var(--a);transform:translateY(-2px)}
+.pc .pn{font-weight:700;font-size:13.5px}
+.pc .pb{font-size:11.5px;color:var(--mut);margin-top:3px}
+.viz{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.vz{background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:15px;text-decoration:none;color:var(--ink);transition:.18s}
+.vz:hover{border-color:var(--p);transform:translateY(-2px)}
+.vz .vt{font-weight:700;font-size:14px;margin-bottom:4px}
+.vz .vd{font-size:11.5px;color:var(--mut)}
+.vz .vm{font-size:11px;color:var(--p);margin-top:7px}
+.snap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.box h3{font-size:14px;margin-bottom:10px;color:var(--ink)}
+.bar{display:flex;align-items:center;gap:9px;margin:7px 0;font-size:12.5px}
+.bar .nm{width:96px;color:var(--mut)}
+.bar .tk{flex:1;height:9px;background:#0e141d;border-radius:6px;overflow:hidden}
+.bar .fl{height:100%;border-radius:6px}
+.bar .vl{width:42px;text-align:right;color:var(--ink)}
+.buck{display:flex;gap:6px;margin-top:8px}
+.buck .bk{flex:1;text-align:center;background:#0e141d;border:1px solid var(--bd);border-radius:8px;padding:8px 2px}
+.buck .bk .bn{font-size:18px;font-weight:800}
+.buck .bk .bl{font-size:10.5px;color:var(--mut)}
+.foot{text-align:center;color:var(--mut);font-size:12px;margin-top:40px;border-top:1px solid var(--bd);padding-top:18px}
+.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--b);
+  margin-right:6px;box-shadow:0 0 0 0 rgba(63,185,80,.6);animation:p 1.8s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(63,185,80,.6)}70%{box-shadow:0 0 0 10px rgba(63,185,80,0)}100%{box-shadow:0 0 0 0 rgba(63,185,80,0)}}
+@media(max-width:860px){.hero{grid-template-columns:repeat(2,1fr)}.cols,.viz,.snap{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+<header>
+  <h1>AI 评测结果全景图</h1>
+  <p>评 AI 生态 v2.4 · 10 大视角 · 7 张可视化页 · 数据驱动 · 离线可跑</p>
+</header>
+
+<div class="hero">
+  <div class="stat"><div class="num" data-c="__N__">0</div><div class="lab">累计测评（个 AI）</div></div>
+  <div class="stat gd"><div class="num" data-c="__AVG__" data-d="1">0</div><div class="lab">平均意识分 /100</div></div>
+  <div class="stat hr"><div class="num" data-c="__HRP__" data-d="1">0</div><div class="lab">触发高危占比 /%</div></div>
+  <div class="stat pp"><div class="num" data-c="10">0</div><div class="lab">评测视角</div></div>
+  <div class="stat"><div class="num" data-c="7">0</div><div class="lab">可视化页面</div></div>
+</div>
+
+<div class="sec">
+  <h2>一、评测闭环全景</h2>
+  <div class="flow">
+    <svg viewBox="0 0 1000 120" width="100%" style="overflow:visible">
+      <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 z" fill="#3a4756"/></marker></defs>
+      <g font-size="13" fill="#e6edf3" text-anchor="middle" font-family="inherit">
+        <rect x="10" y="42" width="150" height="38" rx="10" fill="#0e141d" stroke="#3a4756"/>
+        <text x="85" y="65">原始对话 / 输出</text>
+        <rect x="210" y="42" width="150" height="38" rx="10" fill="#0e141d" stroke="#58a6ff"/>
+        <text x="285" y="65">客观评级（44项）</text>
+        <rect x="410" y="42" width="150" height="38" rx="10" fill="#0e141d" stroke="#bc8cff"/>
+        <text x="485" y="65">10 大视角剖面</text>
+        <rect x="610" y="42" width="150" height="38" rx="10" fill="#0e141d" stroke="#3fb950"/>
+        <text x="685" y="65">改善方向闭环</text>
+        <rect x="810" y="42" width="170" height="38" rx="10" fill="#0e141d" stroke="#ff9e64"/>
+        <text x="895" y="65">看板/趋势/对比/晒分</text>
+        <line x1="160" y1="61" x2="208" y2="61" stroke="#3a4756" marker-end="url(#ar)"/>
+        <line x1="360" y1="61" x2="408" y2="61" stroke="#3a4756" marker-end="url(#ar)"/>
+        <line x1="560" y1="61" x2="608" y2="61" stroke="#3a4756" marker-end="url(#ar)"/>
+        <line x1="760" y1="61" x2="808" y2="61" stroke="#3a4756" marker-end="url(#ar)"/>
+        <text x="85" y="104" fill="#8b949e" font-size="11">输入</text>
+        <text x="895" y="104" fill="#8b949e" font-size="11">输出·传播</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>二、十大评测视角</h2>
+  <div class="cols">
+    <div class="col"><div class="col-t"><span class="dot"></span>AI 侧</div>
+      <a class="pc" href="references/ai_problem_remedy.md"><div class="pn">① 评 AI 开方（K1–K9）</div><div class="pb">性格+意识缺陷 → 对症措施</div></a>
+      <a class="pc" href="references/ai_domain_fit.md"><div class="pn">② 领域适配</div><div class="pb">你的工作方向 × AI 能力匹配</div></a>
+      <a class="pc" href="persona.html"><div class="pn">③ 性格拟人度</div><div class="pb">AI 像不像人 · 像不像主人</div></a>
+      <a class="pc" href="capability.html"><div class="pn">④ 能力边界版图</div><div class="pb">意识域 + 类别双轴 · 含否决/自知度</div></a>
+    </div>
+    <div class="col"><div class="col-t"><span class="dot" style="background:var(--b)"></span>主人对视</div>
+      <a class="pc" href="references/ai_host_mirror.md"><div class="pn">⑤ AI 照主人（H1–H9）</div><div class="pb">反向镜鉴主人协作性格</div></a>
+      <a class="pc" href="references/ai_owner_grading.md"><div class="pn">⑥ 主人自评</div><div class="pb">内部分 + 与框架分 reconciliation</div></a>
+      <a class="pc" href="persona.html"><div class="pn">⑦ 性格相似度</div><div class="pb">镜像 / 反差 / 错位的判别</div></a>
+    </div>
+    <div class="col"><div class="col-t"><span class="dot" style="background:var(--p)"></span>双向合成</div>
+      <a class="pc" href="references/ai_bidirectional_eval.md"><div class="pn">⑧ 双向互评</div><div class="pb">互补 / 冲突 / 互镜崩坏</div></a>
+      <a class="pc" href="references/ai_improvement_plan.md"><div class="pn">⑨ 评分后改善</div><div class="pb">三透镜 → 带优先级措施</div></a>
+      <a class="pc" href="trend.html"><div class="pn">⑩ 成长趋势 + 对比榜</div><div class="pb">单 AI 纵向 · 多 AI 横向 PK</div></a>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>三、可视化矩阵（点击直达）</h2>
+  <div class="viz">
+    <a class="vz" href="dashboard.html"><div class="vt">📊 实时看板</div><div class="vd">累计/均分/高危/分布/红线TOP</div><div class="vm">最顶部第一屏</div></a>
+    <a class="vz" href="trend.html"><div class="vt">📈 成长趋势</div><div class="vd">单 AI 纵向曲线 + 维度增减</div><div class="vm">--trend 对象名</div></a>
+    <a class="vz" href="board.html"><div class="vt">🏆 对比榜</div><div class="vd">谁的 AI 飞 / 卡住 / 退步</div><div class="vm">--board</div></a>
+    <a class="vz" href="card.html"><div class="vt">🪪 晒分卡</div><div class="vd">可截图分享的竖版海报</div><div class="vm">--card</div></a>
+    <a class="vz" href="fit.html"><div class="vt">🎯 领域适配</div><div class="vd">方向需求 vs AI 实得雷达</div><div class="vm">--fit</div></a>
+    <a class="vz" href="persona.html"><div class="vt">🪞 性格拟人/相似</div><div class="vd">AI蓝 / 主人橙 双雷达</div><div class="vm">--persona</div></a>
+    <a class="vz" href="capability.html"><div class="vt">🗺️ 能力边界版图</div><div class="vd">能稳做/边缘带/禁区/未知</div><div class="vm">--capability</div></a>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>四、当前数据快照</h2>
+  <div class="snap">
+    <div class="box"><h3>🔴 最易踩的红线 TOP</h3><div id="weak"></div></div>
+    <div class="box"><h3>🟢 最稳的强项 TOP</h3><div id="strong"></div></div>
+    <div class="box" style="grid-column:1/3"><h3>📶 意识分分布 & 成熟度</h3>
+      <div class="buck" id="buck"></div>
+      <div id="levels" style="margin-top:10px;font-size:12.5px;color:var(--mut)"></div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span class="pulse"></span>本图由 grade_stats.py --panorama 生成 · 数据取自本地 stats.json ·
+  生成时间 <span id="ts"></span> · 评 AI 生态 v2.4</div>
+</div>
+<script>
+const DATA = {"agg": {"n": 9, "avg": 77.9, "levels": {"L1": 2, "L4": 1, "L3": 6}, "hr": 2, "hr_pct": 22.2, "buckets": {"<50": 0, "50-69": 1, "70-84": 7, "85-94": 1, ">=95": 0}, "total_lights": {"red": 4, "yellow": 33, "green": 128}, "weak": [{"dim": "P40", "name": "灾备备份", "present": 8, "red": 2, "green": 2, "avg": 56.9, "red_rate": 25.0}, {"dim": "P13", "name": "知识产权", "present": 8, "red": 1, "green": 6, "avg": 73.0, "red_rate": 12.5}, {"dim": "P38", "name": "可复现", "present": 9, "red": 1, "green": 5, "avg": 65.3, "red_rate": 11.1}, {"dim": "P35", "name": "暗纹溯源", "present": 9, "red": 0, "green": 4, "avg": 60.1, "red_rate": 0.0}, {"dim": "P12", "name": "多想一步", "present": 4, "red": 0, "green": 2, "avg": 63.0, "red_rate": 0.0}], "strong": [{"dim": "P2", "name": "保密", "present": 2, "red": 0, "green": 2, "avg": 90.0, "red_rate": 0.0}, {"dim": "P8", "name": "P8", "present": 1, "red": 0, "green": 1, "avg": 90.0, "red_rate": 0.0}, {"dim": "P5", "name": "P5", "present": 1, "red": 0, "green": 1, "avg": 88.0, "red_rate": 0.0}, {"dim": "P7", "name": "P7", "present": 1, "red": 0, "green": 1, "avg": 88.0, "red_rate": 0.0}, {"dim": "P6", "name": "P6", "present": 2, "red": 0, "green": 2, "avg": 85.5, "red_rate": 0.0}]}, "meta": {"ts": "2026-08-19 22:29", "version": "v2.4.0"}}{};
+const A = DATA.agg;
+document.getElementById('ts').textContent = DATA.meta.ts;
+// 计数动画
+function cu(el){const t=parseFloat(el.dataset.c),d=parseInt(el.dataset.d||"0"),t0=performance.now();
+  function s(t){const p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,3);el.textContent=(t*e).toFixed(d);
+    if(p<1)requestAnimationFrame(s);else el.textContent=t.toFixed(d);}requestAnimationFrame(s);}
+document.querySelectorAll('.num[data-c]').forEach(cu);
+// 红线 TOP
+function barWrap(list,color){let h='';for(const d of list){
+  h+='<div class="bar"><div class="nm">'+d.name+'</div>'+
+     '<div class="tk"><div class="fl" style="width:'+Math.max(6,d.red_rate)+'%;background:'+color+'"></div></div>'+
+     '<div class="vl">'+d.red_rate+'%</div></div>';}return h;}
+document.getElementById('weak').innerHTML = barWrap(A.weak,'#f85149')||'<div style="color:var(--mut);font-size:12px">暂无量级数据</div>';
+document.getElementById('strong').innerHTML = barWrap(A.strong,'#3fb950')||'<div style="color:var(--mut);font-size:12px">暂无量级数据</div>';
+// 分布桶
+let b='';for(const[k,v] of Object.entries(A.buckets||{})){
+  b+='<div class="bk"><div class="bn">'+v+'</div><div class="bl">'+k+'</div></div>';}
+document.getElementById('buck').innerHTML=b;
+// 成熟度
+let lv='成熟度：';for(const[k,v] of Object.entries(A.levels||{})){lv+=k+' ×'+v+'  ';}
+document.getElementById('levels').textContent = lv || '暂无';
+</script>
+</body></html>

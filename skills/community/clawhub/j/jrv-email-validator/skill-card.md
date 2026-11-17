@@ -1,39 +1,56 @@
-## Description: <br>
-Validate email addresses with syntax checks (RFC 5322), MX record verification, disposable/temporary email detection, and common typo suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate email addresses with syntax checks (RFC 5322), MX record verification, disposable/temporary email detection, and common typo suggestions.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to validate individual email addresses or batches of addresses before signups, data cleanup, deliverability checks, or disposable-address screening.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: DNS/MX checks may disclose queried email domains to configured DNS infrastructure.
+
+Mitigation: Use --no-dns for sensitive lists or run DNS checks only in environments approved for the data.
+
+Risk: Batch validation can process files containing sensitive email addresses.
+
+Mitigation: Use only files the operator intentionally selects and handle validation output under the same data controls as the source list.
+
+Risk: Terminal output from untrusted email-list content may be unsafe to display directly.
+
+Mitigation: Prefer JSON output for review workflows or sanitize untrusted input before displaying terminal-formatted results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to validate signup addresses, clean email lists, check deliverability signals, flag disposable addresses, and suggest corrections for common domain typos. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Live MX validation may reveal queried domains to configured DNS resolvers. <br>
-Mitigation: Use the --no-dns flag when checking sensitive, private, or internal domains. <br>
-Risk: Email validation results can be incomplete because syntax, MX, disposable-domain, and typo checks do not prove account ownership or guaranteed deliverability. <br>
-Mitigation: Treat results as screening signals and use confirmation flows or other verification where account ownership or deliverability matters. <br>
+**Output Format:** [Terminal text or JSON validation results, with command examples in Markdown guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Can read email addresses from a user-selected file, perform DNS/MX lookups unless disabled, and return a nonzero exit code when any address is invalid.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Terminal text output or machine-readable JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-address input, multi-address input, batch file input, optional JSON output, and flags to skip DNS or disposable-domain checks.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

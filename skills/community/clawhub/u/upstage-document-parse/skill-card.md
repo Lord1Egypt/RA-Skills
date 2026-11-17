@@ -1,43 +1,60 @@
-## Description: <br>
-Parse documents into layout-aware markdown or HTML with tables, figures, headings, and bounding boxes using the Upstage Document Parse API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse documents such as PDFs, images, DOCX, PPTX, XLSX, and HWP files into layout-aware Markdown or HTML with tables, figures, headings, and bounding boxes using the Upstage Document Parse API.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to convert PDFs, images, and office documents into structured markdown or HTML while preserving layout elements such as tables, figures, headings, equations, and coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents submitted for parsing leave the local machine and are processed by Upstage's remote API. <br>
-Mitigation: Use the skill only for documents your organization permits sending to Upstage, and confirm Upstage terms, retention, and handling requirements before processing confidential, regulated, or highly sensitive content. <br>
-Risk: The skill requires a sensitive Upstage API key. <br>
-Mitigation: Provide UPSTAGE_API_KEY through the runtime environment and avoid hardcoding, logging, or committing the credential. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to convert selected documents into structured Markdown or HTML while preserving layout elements such as tables, charts, figures, headings, and coordinates.
 
-## Reference(s): <br>
-- [Upstage Document Parse Console](https://console.upstage.ai/api/document-digitization/document-parsing) <br>
-- [ClawHub Skill Page](https://clawhub.ai/upstage-deployment/upstage-document-parse) <br>
-- [Document Parse Async API Workflow](references/async-workflow.md) <br>
-- [Document Parse Sync API Detail](references/sync-options.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Python and curl examples; parsed document output may be Markdown, HTML, text, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses UPSTAGE_API_KEY from the environment, sends selected documents to the Upstage API, writes parsed output files when requested, and prints the resolved absolute output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Selected documents are sent to Upstage for processing, which can expose confidential, regulated, or highly sensitive content to a remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for Upstage processing and confirm organizational policies and remote retention behavior before uploading sensitive content.
+
+Risk: Async processing stores results for 30 days and uses temporary download URLs that expire after 15 minutes.
+
+Mitigation: Plan async workflows around approved retention expectations and re-fetch status when a download URL expires.
+
+Risk: The skill requires an Upstage API key for API calls.
+
+Mitigation: Provide the key through the UPSTAGE_API_KEY environment variable and avoid placing credentials in prompts, files, or command history.
+
+## Reference(s):
+
+- [Upstage Document Parsing](https://console.upstage.ai/api/document-digitization/document-parsing)
+- [Document Parse - Sync API Detail](references/sync-options.md)
+- [Document Parse - Async API Workflow](references/async-workflow.md)
+- [ClawHub skill release](https://clawhub.ai/upstage-deployment/skills/upstage-document-parse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and curl examples, plus parsed Markdown or HTML files generated from user-selected documents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses UPSTAGE_API_KEY, supports sync and async Upstage API workflows, and prints the resolved absolute output path when writing parsed files.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

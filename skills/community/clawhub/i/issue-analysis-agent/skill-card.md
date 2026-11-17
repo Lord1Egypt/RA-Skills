@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes customer support issue spreadsheets and produces weekly visual reports with trend comparisons, charts, alerts, and an uploaded report link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue Analysis Agent analyzes customer-service issue spreadsheets, generates weekly trend summaries and visual reports, and can upload the resulting report to a public COS URL.
 
-## Publisher: <br>
-[davidunderwood7970](https://clawhub.ai/user/davidunderwood7970) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidunderwood7970](https://clawhub.ai/user/davidunderwood7970)
 
-## Use Case: <br>
-Developers and support operations teams use this skill to turn Excel-based customer service issue logs into weekly metrics, visual HTML reports, and public report links for review and follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated support reports may include names, unresolved issue details, and other internal support data that can become public when uploaded. <br>
-Mitigation: Review and redact reports before upload; use private objects or signed links instead of public-read access. <br>
-Risk: The artifact embeds Tencent COS credentials and defaults to public report publishing. <br>
-Mitigation: Treat the embedded keys as compromised, rotate them before use, and replace them with least-privilege credentials managed outside the skill files. <br>
+## Use Case:
 
+Support, operations, and product teams use this skill to turn weekly customer-service Excel exports into issue metrics, unresolved-owner lists, trend summaries, alerts, and shareable reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidunderwood7970/issue-analysis-agent) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [JSON analysis data, Markdown summaries, HTML reports, shell command guidance, and public report URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload generated support reports to Tencent COS when configured and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled cloud credentials can allow unauthorized access or misuse if installed or run as-is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and replace the COS credentials before use, load secrets from a managed secret store or environment variables, and keep credentials out of skill artifacts.
+
+Risk: The workflow can publish customer, employee, or internal support reports to a public URL.
+
+Mitigation: Disable public-read upload by default, require explicit approval for public sharing, and review or redact reports before upload.
+
+Risk: Tests and validation paths can perform real network requests against COS.
+
+Mitigation: Use synthetic local fixtures and mock or gate network upload during tests and pre-deployment checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidunderwood7970/skills/issue-analysis-agent)
+- [Example week 12 report](https://claw-1301484442.cos.ap-shanghai.myqcloud.com/reports/issue_analysis/report_cn_latest.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON data files, Markdown summaries, HTML reports, public report URLs, and console text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform network upload and public-read publication when COS upload is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

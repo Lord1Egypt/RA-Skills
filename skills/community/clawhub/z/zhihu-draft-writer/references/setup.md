@@ -40,7 +40,7 @@ The skill reads the API key from the `ZHIHUIAPI_KEY` environment variable at run
 Set it in your shell profile (e.g., `~/.bashrc`, `~/.zshrc`, or Windows user environment variables):
 
 ```bash
-export ZHIHUIAPI_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+export ZHIHUIAPI_KEY="REDACTED-SECRET"
 ```
 
 Keep the real key out of the repository. Never commit it to version control.

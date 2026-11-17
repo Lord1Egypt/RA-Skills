@@ -1,47 +1,62 @@
-## Description: <br>
-Sync Apple Health data from iPhone to OpenClaw with QR-code pairing, local storage, and query support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync Apple Health data from iPhone to OpenClaw through QR-code pairing, local ingestion, and health-data queries.
 
-## Publisher: <br>
-[reffwu](https://clawhub.ai/user/reffwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reffwu](https://clawhub.ai/user/reffwu)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to pair an iPhone health-sync app, ingest Apple Health records into local SQLite storage, and answer health-data questions from the stored records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow reads a live OpenClaw gateway token and places pairing details in QR or manual JSON form. <br>
-Mitigation: Treat the QR code and manual JSON as secrets, share them only with the intended device, and rotate the gateway token if they are exposed. <br>
-Risk: Gateway pairing can expose access over a LAN, VPS, or public address. <br>
-Mitigation: Prefer local-only access or HTTPS/tunneled access, and restrict firewall rules to trusted networks when remote access is required. <br>
-Risk: The skill stores Apple Health records locally in SQLite. <br>
-Mitigation: Keep the local database on trusted devices, apply normal disk and account protections, and remove the database when health records no longer need to be retained. <br>
-Risk: Automatic ingest and dependency installation can run with broad behavior after trigger phrases or setup. <br>
-Mitigation: Review the setup and ingest scripts before use, and disable or supervise automatic pip installation and auto-ingest behavior where that is not acceptable. <br>
-Risk: Pairing depends on an external iOS app or sideloaded IPA. <br>
-Mitigation: Use only a trusted app source and avoid unknown sideloaded builds. <br>
+## Use Case:
 
+OpenClaw users use this skill to pair an iPhone companion app, ingest Apple Health updates into a local SQLite store, and ask Chinese-language questions about metrics such as steps, heart rate, sleep, weight, calories, and workouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reffwu/health-to-openclaw) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/reffwu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and concise Chinese responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local SQLite health data and emits setup, ingest, status, summary, and query responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup QR codes, raw JSON, screenshots, or terminal logs can expose a live OpenClaw gateway token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat pairing output as secret, avoid sharing it, and rotate the gateway token if pairing data is exposed.
+
+Risk: Remote or VPS gateway use can make port 18789 reachable beyond trusted devices.
+
+Mitigation: Prefer HTTPS, VPN, or a trusted tunnel for remote access and avoid broad firewall rules.
+
+Risk: Sensitive Apple Health data is stored locally at ~/.apple-health-sync/health.db.
+
+Mitigation: Restrict filesystem permissions, use an isolated account or environment where practical, and disclose local storage before ingesting health data.
+
+Risk: The setup flow may install the qrcode Python package automatically when it is unavailable.
+
+Mitigation: Install and review dependencies yourself in an isolated environment before running setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reffwu/skills/health-to-openclaw)
+- [Skill homepage](https://clawhub.ai/ReffWu/apple-health-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese prose with inline shell commands and script-generated JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Setup may produce QR-code pairing data; query responses should summarize stored data without exposing raw JSON or bearer tokens.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

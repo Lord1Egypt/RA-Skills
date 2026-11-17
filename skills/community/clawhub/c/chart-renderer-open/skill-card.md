@@ -1,50 +1,54 @@
-## Description: <br>
-Renders structured data into polished, self-contained HTML reports with heatmaps, trend lines, category cards, styled tables, screenshot export, and download-ready output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render structured data into polished, self-contained HTML pages with heatmaps, trend lines, category cards, styled tables, and more. Screenshot/download ready. Suitable for reports, dashboards, comparisons, and analyses.
 
-## Publisher: <br>
-[dachunggan](https://clawhub.ai/user/dachunggan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dachunggan](https://clawhub.ai/user/dachunggan)
 
-## Use Case: <br>
-Developers and agents use this skill to turn provided structured data into self-contained HTML chart and report pages for analysis, dashboards, comparisons, and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports are active HTML and may execute malicious content if untrusted or unsanitized data is inserted into the report. <br>
-Mitigation: Use the skill only with trusted or sanitized input data, especially when content comes from copied web pages, uploads, emails, or third-party text. <br>
-Risk: Rendered canvas previews or hosted report files may expose sensitive report contents if shared or stored in an unexpected location. <br>
-Mitigation: Confirm where previews and generated HTML files are stored before sharing reports that include confidential data. <br>
+## Use Case:
 
+Developers and agents use this skill to turn structured data into self-contained HTML chart reports, including heatmaps, line charts, category cards, styled tables, and text callouts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dachunggan/chart-renderer-open) <br>
-- [Project homepage](https://github.com/dachunggan/chart-renderer-open) <br>
-- [Chart type registry](templates/registry.json) <br>
-- [Page template](templates/chart_page.html) <br>
-- [Heatmap format](templates/types/heatmap.md) <br>
-- [Line chart format](templates/types/line.md) <br>
-- [Dual-axis chart format](templates/types/dualAxis.md) <br>
-- [Layered cards format](templates/types/layered.md) <br>
-- [Recommendation cards format](templates/types/direction.md) <br>
-- [Table format](templates/types/table.md) <br>
-- [Text block format](templates/types/text.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, HTML, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance plus self-contained HTML report files assembled from JSON data, CSS, and JavaScript templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include hosted report preview embed markup and downloadable screenshot behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated reports are active HTML pages, and report data may execute injected browser code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or sanitize untrusted data before rendering, and avoid opening or sharing generated reports with sensitive same-origin access until HTML-safe data embedding and escaping are verified.
+
+Risk: Generated reports may rely on external browser dependencies for chart rendering and downloads.
+
+Mitigation: Pin, vendor, or otherwise control Chart.js, ChartDataLabels, and html2canvas dependencies for managed deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dachunggan/skills/chart-renderer-open)
+- [Project Homepage](https://github.com/dachunggan/chart-renderer-open)
+
+## Skill Output:
+
+**Output Type(s):** [files, code, markdown, configuration]
+
+**Output Format:** [Self-contained HTML report files with JSON configuration/data blocks and a Markdown embed snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated pages may include browser-executed JavaScript and CDN-loaded visualization dependencies.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

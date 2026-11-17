@@ -1,41 +1,58 @@
-## Description: <br>
-Creates trail race roadmaps and dynamic training plans from Garmin activity data and race GPX tracks, with optional calendar synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates trail race roadmaps, dynamic training plans, and calendar sync guidance from Garmin activity data and race GPX tracks.
 
-## Publisher: <br>
-[mtroymatt](https://clawhub.ai/user/mtroymatt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtroymatt](https://clawhub.ai/user/mtroymatt)
 
-## Use Case: <br>
-External runners and training-plan builders use this skill to analyze Garmin activity history and race GPX files, then produce trail-race pacing guidance, taper plans, calendar events, and optional social sharing copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Garmin credentials, sensitive health history, and stored session tokens. <br>
-Mitigation: Install only when that access is acceptable, avoid putting a Garmin password in config.json, prefer a temporary user-controlled login method, scope wellness/profile queries to what is needed, and delete stored tokens under ~/.clawdbot/garmin when finished. <br>
-Risk: The skill can generate calendar synchronization scripts that write to macOS/iOS calendars. <br>
-Mitigation: Review any generated calendar script before running it and confirm the target calendar, event contents, and date range. <br>
+## Use Case:
 
+Trail runners, coaches, and support teams use this skill to analyze Garmin activity data and race GPX tracks, produce race roadmaps, adjust taper training plans, and prepare calendar sync steps.
 
-## Reference(s): <br>
-- [Garmin Trail-Running Roadmap & Training Plan Guide](references/roadmap_standard.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtroymatt/garmin-trail-running-training-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML, JSON, Python, AppleScript, and shell command snippets where needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce calendar synchronization scripts and Garmin data queries that require local review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can handle Garmin credentials and local authentication tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or an approved secrets store instead of committing credentials to config files, and restrict token storage permissions.
+
+Risk: Garmin activity exports, GPX files, and generated reports can contain sensitive health and location history.
+
+Mitigation: Store exports in protected locations, avoid sharing raw files publicly, and delete temporary files when analysis is complete.
+
+Risk: Generated calendar sync code can write events to macOS Calendar.
+
+Mitigation: Review generated scripts before execution, avoid untrusted race names or event text, and confirm calendar permissions are intentional.
+
+## Reference(s):
+
+- [Garmin Trail-Running Roadmap & Training Plan Standard](artifact/references/roadmap_standard.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtroymatt/skills/garmin-trail-running-training-plan)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with generated HTML, JSON data, Python or AppleScript snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local files containing Garmin activity exports, GPX-derived route data, HTML reports, and calendar sync scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

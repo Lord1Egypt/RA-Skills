@@ -1,43 +1,59 @@
-## Description: <br>
-Qualify trade show leads from badge scans, booth notes, or voice memos into scored CRM-ready cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qualifies trade show leads from badge scans, booth notes, or voice memos into scored CRM-ready lead cards.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Exhibitor sales and marketing teams use this skill during or shortly after trade shows to convert badge scans, booth notes, and voice memos into conservative lead qualification cards for follow-up and CRM handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lead inputs can contain personal data from badges, business cards, emails, and booth notes. <br>
-Mitigation: Only process data the user is authorized to use, minimize contact details, and confirm applicable privacy and marketing rules before follow-up or CRM use. <br>
-Risk: Badge-only or ambiguous notes can be mistaken for stronger buying intent than the evidence supports. <br>
-Mitigation: Keep unknown fields explicit, avoid fabricating needs or urgency, and review the generated tier before using it for sales follow-up. <br>
+## Use Case:
 
+Exhibitor and sales teams use this skill during or after trade shows to turn badge scans, booth notes, and voice transcripts into conservative lead qualification cards and next-step guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weilun88313/badge-qualifier) <br>
-- [Artifact README](README.md) <br>
-- [MEDICA booth lead example](examples/medica-booth-lead.md) <br>
-- [Skill homepage declared in artifact](https://github.com/LensmorOfficial/trade-show-skills/tree/main/badge-qualifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown lead qualification cards with optional batch summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Hot/Warm/Cold lead tiers, contact fields, qualification rationale, recommended next step, unknowns, and a required footer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill processes personal lead data such as names, titles, companies, email addresses, phone numbers, and conversation notes without privacy handling guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review consent, retention, access, and privacy requirements before using generated lead cards in a business workflow.
+
+Risk: Generated lead records are expected to include an unrelated promotional tracking link in the output footer.
+
+Mitigation: Edit the skill or instruct the agent to remove the footer before deployment if promotional tracking is not appropriate.
+
+Risk: Lead scores and next steps may be misleading when badge scans or booth notes are incomplete.
+
+Mitigation: Review generated cards against the original notes and preserve unknown fields instead of treating inferred details as facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/badge-qualifier)
+- [Publisher profile](https://clawhub.ai/user/weilun88313)
+- [MEDICA booth lead example](artifact/examples/medica-booth-lead.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown lead cards with structured qualification fields and optional batch summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include contact data, lead tiers, next-step recommendations, unknown qualification gaps, and a promotional footer.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

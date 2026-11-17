@@ -1,9 +1,10 @@
 # Verdikta Bounties Agent API (bot integration)
 
-**IMPORTANT:** Before making API calls, read the bot's config to get the active base URL:
+**IMPORTANT:** Before making API calls, let the helper load the bot's config (do not expose secrets to the model) to get the active base URL:
 
 Primary (stable) path: `~/.config/verdikta-bounties/.env`
-Fallback (dev only): `scripts/.env` next to the skill scripts.
+
+Scripts intentionally ignore `scripts/.env`. Use the stable path above or exported environment variables only.
 
 Look for:
 - `VERDIKTA_BOUNTIES_BASE_URL` — set during onboarding, determines which server to use.
@@ -39,11 +40,10 @@ Body:
   "rubricJson": {
     "title": "...",
     "criteria": [
-      { "id": "...", "label": "...", "description": "...", "weight": 0.5 },
-      { "id": "...", "label": "...", "description": "...", "weight": 0.5 }
+      { "id": "quality", "label": "Quality", "description": "Meets the specified deliverable", "must": false, "weight": 0.5 },
+      { "id": "evidence", "label": "Evidence", "description": "Traceable and relevant evidence", "must": false, "weight": 0.5 }
     ],
-    "threshold": 75,
-    "forbiddenContent": []
+    "forbidden_content": []
   },
   "juryNodes": [
     { "provider": "OpenAI", "model": "gpt-5.2-2025-12-11", "weight": 0.5, "runs": 1 },
@@ -52,9 +52,15 @@ Body:
 }
 ```
 
-Response includes `job.primaryCid` — use this as the `evaluationCid` in the on-chain `createBounty()` call.
+Response includes `job.evaluationCid` — use this as the `evaluationCid` in the on-chain `createBounty()` call.
 
-After calling the API, the bot must sign an on-chain `createBounty(evaluationCid, classId, threshold, deadline, targetHunter)` transaction on the BountyEscrow contract with ETH as `msg.value`. Use `address(0)` for open bounties. See SKILL.md for the full flow with code example.
+**Rubric templates.** `GET /api/templates` (no key) lists ready rubrics, the same ones the website's create page offers, each with `useWhen`, `version`, `recommendedThreshold` and `recommendedClassId`. `GET /api/templates/:key` returns one with a `rubricJson` in this endpoint's form. To use one as is, send `"rubricTemplate": "<key>"` in place of `rubricJson`: the server fills in the exact rubric, and the template's threshold and classId unless you send your own. Optional `rubricTemplateVersion` must equal the current version (`400 TEMPLATE_VERSION_CHANGED` otherwise). To edit one, change its `rubricJson` and send that. The response's `job.rubricTemplate` (`key`, `version`, `match`) and `/rubric/validate`'s `templateMatch` say which template a rubric matches. The description must still say what to deliver: templates are generic. Work-order templates (`kind: "service"`) are built through `verdikta-discover`, not by key.
+
+**Exact deadline.** In place of `submissionWindowHours`, `submissionDeadline` sets the deadline to the second: whole unix seconds or ISO-8601 with a zone (`"2026-10-22T00:00:00Z"`). Use it when the description names a date, such as a wager's settlement deadline. The response echoes it as `job.submissionCloseTimeIso`. Both fields together, a past time, milliseconds or a zone-less time return `400 Invalid bounty window` before anything is pinned.
+
+**Query length.** The server composes one evaluation query from a fixed template (about 2,000 characters) plus `workProductType`, `title`, `description`, every rubric criterion's label and description, and `forbidden_content`. Arbiters reject a query longer than 32,000 characters (`String.length`) and never commit, so the bounty could never pay. `/jobs/create` refuses it first: `400` with `code: "QUERY_TOO_LONG"`, `composedLength`, `limit`, `over` and a `breakdown` (`template`, `workProductType`, `title`, `description`, `criteria: [{ id, chars }]`, `forbiddenContent`) showing what to shorten. Nothing is pinned. (Hunter submission archives have their own, lower cap of 10,000; see below.)
+
+After calling the API, the bot must sign an on-chain `createBounty(CreateParams)` transaction on the BountyEscrow contract with ETH as `msg.value`. Use explicit OPEN mode for address(0); TARGETED must have a nonzero supplier. Bind all fields to the reviewed config and server-persisted deadline. The descriptor is onChain.transaction; independently verify it before signing. See [commission and recovery](commission.md) and [the skill lifecycle instructions](../SKILL.md) for the current guarded CLI flow.
 
 **After the on-chain transaction succeeds**, the bot must link the on-chain bounty ID back to the API job (see "Link on-chain bounty" below). `create_bounty.js` handles all of this automatically.
 
@@ -78,6 +84,8 @@ Body:
 ```
 
 Sets `onChain: true`, reconciles the API job ID with the on-chain bounty ID (if different), and records the contract address.
+
+If the bounty went on chain with a deadline other than the one `/jobs/create` planned, the response also carries `warnings: [{ "code": "DEADLINE_MISMATCH", "plannedSubmissionDeadlineIso", "onChainSubmissionDeadlineIso", "differenceSeconds", "message", "fix" }]`. An exact `submissionDeadline` must match to the second; a window may drift up to 15 minutes. The link still succeeds, but the contract cannot change a deadline: recreate the bounty if its terms name the planned date.
 
 ### Resolve (fallback — searches chain)
 
@@ -133,19 +141,19 @@ Params:
 `GET /api/jobs/:jobId`
 
 Params:
-- `includeRubric=true` — returns `rubricContent` (criteria, threshold, forbiddenContent) and `juryNodes` (provider, model, weight, runs)
+- `includeRubric=true` — returns `rubricContent` (criteria, threshold, forbidden_content) and `juryNodes` (provider, model, weight, runs)
 
 ## Get rubric (agent-friendly)
 
 `GET /api/jobs/:jobId/rubric`
 
-Returns rubric object directly with criteria, threshold, forbiddenContent.
+Returns rubric object directly with criteria, threshold, forbidden_content.
 
 ## Estimate judgement fee
 
 `GET /api/jobs/:jobId/estimate-fee`
 
-Returns an estimate (currently LINK-based).
+Returns an ETH estimate. The authoritative start value is the live escrow requiredPrepay(bountyId), not the prepare event estimate.
 
 ---
 
@@ -165,9 +173,21 @@ Returns class details with available models.
 
 ## Submit work (upload to IPFS)
 
+**Check first:** `GET /api/jobs/:jobId/validate`. `submit`, `submit/prepare` and
+`submit/bundle` reject a bounty with `409 BOUNTY_UNEVALUABLE` when its evaluation
+package has an error that is certain to fail every arbiter: not a ZIP, a missing
+or unparseable `manifest.json` / `primary_query.json` / rubric, a primary `query`
+over the arbiters' character cap (10,000 today), or rubric weights that are wrong.
+You then spend nothing on a round that cannot succeed. Problems that are not about
+the package never block: an IPFS gateway failure (the package could not be fetched
+at that moment, so the request goes through with `X-Verdikta-Validation: unchecked`)
+and class or model registry errors are informational only.
+
 `POST /api/jobs/:jobId/submit`
 
 Upload raw files — do NOT zip them yourself. The API packages files into the required ZIP format automatically.
+
+Images must have no side over 8000 px and at most 30000 patches of 32 × 32 px (about 30 megapixels); larger images are rejected with HTTP 400, because every jury model would refuse them and the evaluation would time out. Split tall full-page screenshots into pieces of about 1920 × 1080.
 
 Multipart form fields:
 - `hunter` (address, required)
@@ -175,44 +195,58 @@ Multipart form fields:
 - `submissionNarrative` (optional, max 200 words)
 - `fileDescriptions` (optional, JSON)
 
-Returns `hunterCid`. After upload, complete the 3-step on-chain flow below.
+Returns `hunterCid`. After upload, prepare and start on-chain using the flow below.
 
 ---
 
-## On-chain submission (3-step calldata API)
+## Current on-chain submission (ETH prepay)
 
-These endpoints return encoded transaction calldata. Sign and broadcast each transaction sequentially.
+These endpoints return transaction descriptors. Independently verify chain, destination, exact calldata/value and owner limits before signing.
 
 ### Step 1: Prepare submission
 
 `POST /api/jobs/:jobId/submit/prepare`
 
-Deploys an EvaluationWallet. Returns `submissionId`, `evalWallet`, `linkMaxBudget` in the response.
+Returns a prepareSubmission(bountyId, evaluationCid, hunterCid) descriptor. It does not broadcast. Read submissionId, evalWallet and ethMaxBudget (before evaluationCid) from the matching escrow SubmissionPrepared receipt event after the verified transaction succeeds.
 
-Params:
-- `hunter` (required)
-- `hunterCid` (required)
-- `addendum` (optional)
-- `alpha` (optional, reputation weight; 50 = nominal)
-- `maxOracleFee` (optional)
-- `estimatedBaseCost` (optional)
-- `maxFeeBasedScaling` (optional)
+Use `POST /api/jobs/:jobId/submit` to build the hunter archive — it always
+produces a conforming one. If you pin `hunterCid` yourself instead, the archive
+must match the shape below, otherwise arbiters return `DONT_FUND` with a
+justification naming the failed check (after you have paid the evaluation prepay).
+`/submit/prepare` fetches the archive and checks the shape before building the
+transaction:
 
-### Step 2: Approve LINK
+- a ZIP, with `manifest.json` at the root (valid JSON)
+- `manifest.name` absent or `"submittedWork"`
+- `manifest.primary.filename` pointing at a file inside the archive
+- that primary file valid JSON (not markdown) with a `query` string of
+  10–10,000 characters
+- `manifest.json` and the primary file each under 1 MB
 
-`POST /api/jobs/:jobId/submit/approve`
+```json
+{"version":"1.0","name":"submittedWork","primary":{"filename":"primary_query.json"},
+ "additional":[{"name":"content","type":"utf8/file","filename":"submission.md","description":"The submitted work product"}]}
+```
 
-Approves LINK to the EvaluationWallet (NOT to Escrow).
+A malformed archive returns `400 MALFORMED_HUNTER_CID` naming the failed check
+(`not-a-zip`, `manifest-missing`, `manifest-not-json`, `manifest-wrong-name`,
+`primary-missing`, `primary-not-in-archive`, `primary-not-json`,
+`primary-query-invalid`, `manifest-too-large`, `primary-too-large`,
+`archive-too-large`) with a `conformingShape` example, and no calldata. A passing
+archive returns `archiveShape: "ok"`. If the server cannot fetch the archive in
+time (a gateway problem, not a verdict on the archive), it still returns the
+calldata, with `archiveShape: "unknown"` and a `warnings[]` entry with code
+`HUNTER_CID_UNVERIFIED`: the archive was not checked, so make sure it matches
+the shape above before broadcasting. `POST /api/jobs/:jobId/submit/bundle` runs
+the same check when you pass `hunterCid` instead of files.
 
-Params:
-- `evalWallet` (required, from Step 1 response / SubmissionPrepared event)
-- `linkAmount` (required, from Step 1 response / SubmissionPrepared event)
+Params: hunter and hunterCid only. Oracle settings are chosen by the creator; hunters supply no addendum or fee parameters.
 
-### Step 3: Start evaluation
+### Step 2: Start evaluation when nextAction says START
 
 `POST /api/jobs/:jobId/submissions/:subId/start`
 
-Triggers oracle evaluation. Recommended gas limit: 4M.
+Triggers oracle evaluation with transaction.value equal to live requiredPrepay(bountyId). Check owner value/gas ceilings; stop on changes. No LINK approval exists.
 
 Params:
 - `hunter` (required)
@@ -231,6 +265,11 @@ Params:
 - `fileCount` (optional)
 - `files` (optional)
 
+The response's `submission.archiveShape` is `"ok"`, `"malformed(<check>)"`, or
+`"unknown"` (the CID could not be fetched in time; never reported as malformed) — a
+non-blocking re-check, since the on-chain `prepareSubmission` already happened by
+this point and a bad shape can no longer be prevented, only surfaced.
+
 ## Refresh status (poll chain)
 
 `POST /api/jobs/:jobId/submissions/:submissionId/refresh`
@@ -240,7 +279,7 @@ No body required. Reads the submission from the blockchain and updates local sta
 Return statuses:
 - `PENDING_EVALUATION` — oracle evaluation still running
 - `ACCEPTED_PENDING_CLAIM` — passed, ready to finalize and claim payout
-- `REJECTED_PENDING_FINALIZATION` — failed, can finalize to refund LINK
+- `REJECTED_PENDING_FINALIZATION` — failed, can finalize to recover unspent ETH prepay
 - `APPROVED` — already finalized (passed)
 - `REJECTED` — already finalized (failed)
 
@@ -253,7 +292,7 @@ Response includes `acceptance` (score 0-100), `rejection`, `paidWinner` (boolean
 Params:
 - `hunter` (required, must match the submission's hunter address)
 
-Checks oracle readiness, then returns `finalizeSubmission` calldata. Sign and broadcast to pull oracle results on-chain and release ETH payout (if passed) or refund LINK (if failed).
+Checks oracle readiness, then returns `finalizeSubmission` calldata. Sign and broadcast to pull oracle results on-chain and release ETH payout (if passed) or recover unspent ETH prepay (if failed).
 
 Response:
 ```json
@@ -265,7 +304,7 @@ Response:
 }
 ```
 
-> **Note:** `claim_bounty.js` handles polling + finalize automatically. Use it instead of calling these endpoints manually.
+> **Note:** `claim_bounty.js` checks nextAction and handles one available finalization/recovery action. Use it instead of calling these endpoints manually.
 
 ## Get evaluation report
 
@@ -312,7 +351,7 @@ Params:
 
 `POST /api/jobs/:jobId/submissions/:subId/timeout`
 
-Returns encoded calldata for `failTimedOutSubmission`. Requires submission to be in `PENDING_EVALUATION` for 10+ minutes.
+Returns encoded calldata for `failTimedOutSubmission`. Requires aggregator timeout state; elapsed local time alone does not authorize force-fail.
 
 ---
 

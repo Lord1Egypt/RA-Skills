@@ -1,42 +1,60 @@
-## Description: <br>
-Chinese response-compression skill that helps agents answer more concisely in multiple compression modes, including a classical Chinese style, while preserving technical substance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ancient Man is a Chinese response-compression skill that rewrites agent responses into concise modern or classical Chinese modes while preserving core technical content.
 
-## Publisher: <br>
-[garylooop](https://clawhub.ai/user/garylooop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garylooop](https://clawhub.ai/user/garylooop)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to compress Chinese technical explanations, troubleshooting guidance, and operational responses to reduce token use while keeping key facts, code, identifiers, and configuration values intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ultra and classical compression can remove context or nuance that is needed for high-stakes or step-by-step safety work. <br>
-Mitigation: Use normal or clear responses for safety-critical, legal, medical, security-sensitive, or procedural instructions; review compressed outputs before acting. <br>
-Risk: Document and index integrations may retain original text, compressed text, or mapping logs in local result objects or indexes. <br>
-Mitigation: Avoid processing secrets or sensitive documents unless local retention is acceptable, and clear mappings or indexes after use when needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to reduce Chinese-language token usage by applying configurable compression modes to technical answers, commands, and explanations. It is most appropriate when brevity is desired and exact original wording is not required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/garylooop/ancient) <br>
-- [Chinese compression guide](artifact/references/caveman_zh_cn.md) <br>
-- [Classical enhancement guide](artifact/references/classical_enhancement.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Compressed Chinese prose, markdown examples, Python snippets, and command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports lite, standard, ultra, and classical compression modes; integrations can return compression metadata and mapping logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Lossy rewriting can silently change code, configuration, search queries, retrieved document text, or other wording where precision matters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Gate compression behind explicit use, preserve the original text separately, and avoid default use for security, legal, medical, operational runbooks, code/config editing, and retrieval pipelines.
+
+Risk: Broad auto-activation can compress responses when the user only loosely asks for brevity.
+
+Mitigation: Require clear mode selection or confirmation for high-impact workflows and disable automatic compression where exact wording is important.
+
+Risk: The decompression behavior is best-effort and may not restore the original text exactly.
+
+Mitigation: Store mapping logs and the original source text whenever compressed content must be audited, reviewed, or reconstructed.
+
+## Reference(s):
+
+- [Ancientman skill definition](artifact/SKILL.md)
+- [Chinese compression guide](artifact/references/caveman_zh_cn.md)
+- [Classical enhancement guide](artifact/references/classical_enhancement.md)
+- [Ancientman v2 update report](artifact/ancientman_v2_update_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode-dependent Chinese compression; output may be lossy and only partially reversible when mapping logs are preserved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

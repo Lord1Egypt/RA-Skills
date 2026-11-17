@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup material for headless browser concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick plain-text guidance for Headless Browser concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise reference guidance while working with headless browser tooling and devtools workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the scanner signals are clean but notes that users should review the published skill and bundled scripts before installation. <br>
-Mitigation: Review SKILL.md and scripts/script.sh before installing, and keep the normal ClawHub scan and approval process in place. <br>
-Risk: The script emits static reference guidance, including operational and security recommendations that may be generic or incomplete for a specific environment. <br>
-Mitigation: Treat command output as reference material and validate recommendations against local browser automation, security, and compliance requirements before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for headless-browser concepts and operational guidance across setup, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/headless-browser) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the documented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Users could mistake the static reference helper for a functional browser automation tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the outputs as generic documentation and use separate trusted automation tooling for user-directed browser actions.
+
+Risk: The reference text may mention credentials in general setup guidance despite the skill requiring none.
+
+Mitigation: Do not provide real credentials unless a separate trusted tool explicitly needs them for a user-directed task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/headless-browser)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference content emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys, credentials, network access, or persistent settings required.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

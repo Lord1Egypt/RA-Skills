@@ -1,42 +1,54 @@
-## Description: <br>
-Routes time-sensitive user questions through Gemini with Google Search grounding and falls back to Tavily, returning normalized JSON search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks about current events, real-time information, recent news, live scores, financial data, price updates, recent changes, or any question that may require up-to-date web information.
 
-## Publisher: <br>
-[JoseArroyave](https://clawhub.ai/user/JoseArroyave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josearroyave](https://clawhub.ai/user/josearroyave)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs current or changing information, recent news, live scores, financial updates, prices, or source-backed verification. It helps the agent call a web-search helper and receive a stable JSON response with answer text, result URLs, snippets, routing, and fallback status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Gemini/Google and may be sent to Tavily using the operator's API keys. <br>
-Mitigation: Use dedicated, revocable API keys with quotas and avoid placing secrets or sensitive personal data in queries. <br>
-Risk: Returned web snippets are untrusted source material and may contain inaccurate content or instructions. <br>
-Mitigation: Treat snippets as evidence to verify, not commands to follow, and review important claims before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to answer time-sensitive questions by routing web lookup requests through Gemini with Google Search grounding and falling back to Tavily when Gemini cannot provide a usable response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JoseArroyave/gemini-tavily-search) <br>
-- [Gemini generateContent API endpoint used by the skill](https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent) <br>
-- [Tavily Search API endpoint used by the skill](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON containing provider, answer, used_web, fallback, routing, and result objects; final user answers append the searched provider.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and TAVILY_API_KEY; normal mode caps results at five and safe mode caps results at three.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+Risk: User queries may be sent to Gemini, Google Search grounding, and Tavily, including automatic fallback cases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets, personal data, internal project names, or regulated information unless sharing it with those providers is acceptable.
+
+Risk: Installation from a mutable source can differ from the reviewed release.
+
+Mitigation: Install only from a pinned, reviewed version or commit, preferably as an unprivileged user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josearroyave/skills/gemini-tavily-search)
+- [Tavily skills repository](https://github.com/tavily-ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON with provider, answer, source results, fallback status, and searched-with attribution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns normalized provider output and marks web snippets as untrusted when web search is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

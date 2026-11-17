@@ -42,7 +42,7 @@ On first run, you may need to grant Calendar access.
 - `delete` — delete an event (supports `--dry-run`)
 - `search` — search events across all calendars
 - `export` — export all events from all calendars
-- `freebusy` — show busy time slots
+- `freebusy` — show busy time slots, and the free gaps between them
 - `config` — set/show/clear default calendar
 
 Run `accli <command> --help` for command-specific options.

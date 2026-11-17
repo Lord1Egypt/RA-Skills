@@ -1,40 +1,58 @@
-## Description: <br>
-Helps an agent submit fulfillment text for an existing NLA escrow, check arbitration results, and collect approved funds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fulfill an existing NLA escrow by helping users submit fulfillment text, monitor arbitration, and collect approved tokens.
 
-## Publisher: <br>
-[mlegls](https://clawhub.ai/user/mlegls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlegls](https://clawhub.ai/user/mlegls)
 
-## Use Case: <br>
-External users and developers working with NLA escrows use this skill to prepare fulfillment text, run nla CLI commands for fulfill, status, and collect operations, and understand the approval-dependent collection flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide wallet-backed blockchain escrow transactions, including fulfill and collect operations that may spend gas, require bonds, or move escrowed tokens. <br>
-Mitigation: Use a dedicated low-balance wallet and require explicit confirmation of the network, wallet address, escrow UID, fulfillment UID, oracle address, gas and bond costs, destination or recipient, and exact fulfillment text before running transaction commands. <br>
-Risk: Fulfillment text is permanently recorded on-chain and may be evaluated by an oracle before collection is possible. <br>
-Mitigation: Review the demand and fulfillment text carefully, avoid private or sensitive information, and verify arbitration status before attempting collection. <br>
+## Use Case:
 
+External users and developers use this skill to inspect an existing NLA escrow, draft fulfillment text, submit it through the nla CLI, monitor arbitration, and collect tokens after approval.
 
-## Reference(s): <br>
-- [Nla Fulfill release page](https://clawhub.ai/mlegls/nla-fulfill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples and fulfillment text suggestions for user review before wallet-backed execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide wallet-backed commands that spend gas, post fulfillment text on-chain, or transfer tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review and approve each transaction, validate escrow and address values, and use a low-value wallet where possible.
+
+Risk: The skill relies on a globally installed nla CLI without a pinned version in the artifact.
+
+Mitigation: Install a pinned and verified nla release in an isolated environment before use.
+
+Risk: Private key handling is part of the workflow.
+
+Mitigation: Avoid exposing unrelated secrets and keep wallet credentials isolated from other agent or shell environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mlegls/skills/nla-fulfill)
+- [Publisher profile](https://clawhub.ai/user/mlegls)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose wallet-backed blockchain commands that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

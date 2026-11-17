@@ -1,48 +1,59 @@
-## Description: <br>
-Guides OpenClaw users through creating multiple agents in one gateway and binding each agent to a separate Feishu bot account for isolated identities and memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures multiple OpenClaw Gateway agents so each agent can be bound to a separate Feishu bot account with isolated identity and workspace state.
 
-## Publisher: <br>
-[kolikoliko](https://clawhub.ai/user/kolikoliko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kolikoliko](https://clawhub.ai/user/kolikoliko)
 
-## Use Case: <br>
-Developers and operators configuring OpenClaw Gateway use this skill to set up multiple Feishu bots, route each bot to a different agent, and verify isolated workspaces, memory, and identities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu app secrets stored in OpenClaw configuration or backups could be exposed if shared or committed. <br>
-Mitigation: Keep ~/.openclaw/openclaw.json and backups out of source control and shared locations, restrict local file access, and rotate any exposed Feishu app secret. <br>
-Risk: Incorrect agent-to-account bindings could route messages or replies through the wrong Feishu bot identity. <br>
-Mitigation: Verify each binding with openclaw agents list --bindings before using the bots in real chats. <br>
-Risk: Over-permissioned Feishu apps increase impact if credentials are misused. <br>
-Mitigation: Use only Feishu apps you control and grant the minimum bot permissions needed. <br>
+## Use Case:
 
+Developers and operators use this skill to set up multiple independent OpenClaw agents behind one Gateway and route different Feishu bot accounts to different agents. It is useful when teams need separate assistant identities, memories, workspaces, or models for different Feishu users or workflows.
 
-## Reference(s): <br>
-- [Configuration Fields](references/config-fields.md) <br>
-- [Feishu Bot Creation Guide](references/feishu-app.md) <br>
-- [Multi-Agent Architecture](references/architecture.md) <br>
-- [FAQ](references/faq.md) <br>
-- [Backup and Restore](references/backup.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kolikoliko/multi-agent-feishu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only setup guidance; no runtime code is produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Feishu App Secret values may be exposed through shared configuration files or backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ~/.openclaw/openclaw.json private, restrict file permissions, avoid committing it, and encrypt backups that include OpenClaw configuration or agent workspaces.
+
+Risk: Restore commands can overwrite active OpenClaw configuration and Gateway restarts can interrupt service.
+
+Mitigation: Create a current backup before restoring configuration, verify the target backup file, and plan Gateway restarts during an acceptable maintenance window.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kolikoliko/skills/multi-agent-feishu)
+- [Configuration fields](references/config-fields.md)
+- [Feishu bot creation guide](references/feishu-app.md)
+- [Architecture](references/architecture.md)
+- [FAQ](references/faq.md)
+- [Backup and restore](references/backup.md)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only setup guidance; no tool or API calls are executed by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

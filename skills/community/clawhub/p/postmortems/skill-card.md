@@ -1,41 +1,52 @@
-## Description: <br>
-Deep blameless postmortem workflow--timeline, impact, root cause vs contributing factors, what went well/poorly, action items with owners, and follow-through. Use after incidents, outages, or near-misses to improve reliability culture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep blameless postmortem workflow--timeline, impact, root cause vs contributing factors, what went well/poorly, action items with owners, and follow-through.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Engineering, operations, customer support, and leadership teams use this skill after incidents, outages, data-loss scares, or near-misses to run a blameless postmortem. It guides timeline capture, impact assessment, root cause analysis, action-item ownership, communications, and 30/60-day follow-through.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Postmortem workflows can include PII, secrets, or sensitive security details.
+
+Mitigation: Use approved environments for sensitive incident data and avoid pasting unnecessary PII, secrets, or sensitive security details.
+
+Risk: Customer-facing or security-sensitive postmortem details may require careful disclosure.
+
+Mitigation: Coordinate sensitive or public incident communication with the appropriate legal, security, and customer-communication reviewers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, incident facilitators, engineering teams, and support leaders use this skill after incidents, outages, or near-misses to structure a blameless postmortem with a clear timeline, impact, root cause analysis, owners, action dates, communication, and follow-up. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Incident postmortems can contain sensitive customer data, PII, security details, or legal exposure. <br>
-Mitigation: Redact unnecessary sensitive details, coordinate legal review for security or customer-facing incidents, and align external summaries with verified facts. <br>
-Risk: Poorly scoped postmortems can assign blame or produce vague actions that do not reduce recurrence. <br>
-Mitigation: Use the skill's blameless framing, separate root causes from contributing factors, and require tracked action items with owners and dates. <br>
+**Output Format:** [Markdown guidance and structured checklist text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Postmortems skill page](https://clawhub.ai/codenova58/postmortems) <br>
-- [Publisher profile: codenova58](https://clawhub.ai/user/codenova58) <br>
+**Other Properties Related to Output:** [Produces facilitation guidance for a six-stage postmortem workflow; does not request tool access or code execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and checklist text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only workflow aid; does not request system access, credentials, code execution, or persistence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

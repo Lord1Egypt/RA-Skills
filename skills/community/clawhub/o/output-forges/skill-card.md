@@ -1,39 +1,50 @@
-## Description: <br>
-OutputForge helps agents produce clearer, faster, more structured, and more useful responses by organizing, simplifying, speeding, and refining output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms agent responses into clear, structured, concise, and polished outputs.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and agent builders use this skill to make AI responses cleaner, more structured, faster to read, and easier to act on. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's preference for short, fast answers may reduce detail in cases where deeper explanation is needed. <br>
-Mitigation: Ask the agent for additional detail, caveats, or step-by-step reasoning when the task requires depth. <br>
+## Use Case:
 
+Developers and agent users use OutputForge to guide an AI assistant toward structured, direct, readable, and actionable responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/output-forges) <br>
-- [Publisher profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with concise headings and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes short, direct, organized, and actionable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may encourage responses that are too brief for tasks requiring careful reasoning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for deeper analysis, tradeoffs, or step-by-step reasoning when the task needs more scrutiny.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/output-forges)
+- [Publisher profile](https://clawhub.ai/user/theshimaw-svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with concise sections and direct wording]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optimizes response structure, clarity, speed, and refinement; may favor brevity over deeper reasoning unless the user asks for it.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

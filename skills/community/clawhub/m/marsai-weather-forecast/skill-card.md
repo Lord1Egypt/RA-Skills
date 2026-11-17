@@ -1,44 +1,55 @@
-## Description: <br>
-Get current weather and forecasts with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts (no API key required).
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-Developers and end users use this skill to ask an agent for quick current weather and forecast lookup commands for named locations, airport codes, or coordinates using public weather services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookup queries can disclose locations or coordinates to wttr.in or Open-Meteo. <br>
-Mitigation: Use only the location granularity needed and avoid querying sensitive private locations. <br>
-Risk: Some wttr.in examples omit an explicit HTTPS scheme. <br>
-Mitigation: Prefer https://wttr.in URLs when running curl commands. <br>
-Risk: Forecasts from public services may be unavailable, delayed, or inaccurate. <br>
-Mitigation: Cross-check weather data before relying on it for operational or safety-sensitive decisions. <br>
+## Use Case:
 
+External users and developers use this skill to get current weather and forecast guidance for a city, airport code, or coordinates without configuring an API key.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mars82311111/marsai-weather-forecast) <br>
-- [wttr.in Help](https://wttr.in/:help) <br>
-- [Open-Meteo Forecast API Documentation](https://open-meteo.com/en/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and service URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Weather queries are sent to wttr.in or Open-Meteo and may reveal the requested city, airport code, or coordinates to those providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive locations, review generated commands before execution, and use only locations that are acceptable to disclose to public weather services.
+
+Risk: The skill depends on public weather services and curl, so availability and response formats can affect results.
+
+Mitigation: Confirm curl is installed, inspect returned weather data before acting on it, and fall back from wttr.in to Open-Meteo when needed.
+
+## Reference(s):
+
+- [wttr.in Help](https://wttr.in/:help)
+- [Open-Meteo Forecast API Documentation](https://open-meteo.com/en/docs)
+- [MarsAI Weather Forecast on ClawHub](https://clawhub.ai/mars82311111/skills/marsai-weather-forecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and optional JSON weather responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and makes outbound requests to public weather services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

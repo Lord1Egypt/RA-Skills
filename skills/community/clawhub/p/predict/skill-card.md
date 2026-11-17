@@ -1,41 +1,57 @@
-## Description: <br>
-Prediction and forecasting system for trends, outcomes, and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict is a local forecasting helper for structuring trend forecasts, scenario planning, probability evaluation, and risk assessment with explicit uncertainty.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-External users and developers use this skill to structure trend forecasts, scenario planning, probability estimates, and risk assessments while keeping local records of forecast runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill materially overstates its forecasting abilities. <br>
-Mitigation: Treat outputs as a lightweight forecasting checklist and require reviewed analysis logic before using it for business, financial, safety, or risk decisions. <br>
-Risk: Forecast helper runs can retain local forecast records. <br>
-Mitigation: Review or delete ~/.openclaw/workspace/memory/predict when retained forecast records are no longer wanted. <br>
-Risk: Several workflows described by the skill reference helper scripts that are not present in the artifact. <br>
-Mitigation: Review installed files before relying on scenario generation, risk assessment, probability evaluation, accuracy tracking, or model-building workflows. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to organize forecasts, scenarios, probability judgments, and decision risks while documenting assumptions and uncertainty.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local JSON recordkeeping] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecast helper output is advisory and can retain local forecast records under ~/.openclaw/workspace/memory/predict.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can overstate its analytical depth relative to the bundled implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as structured forecasting notes and checklists unless the missing analytical scripts are added and reviewed.
+
+Risk: Forecasts and probability estimates may be misleading if users treat them as guaranteed predictions.
+
+Mitigation: Document assumptions, uncertainty, and confidence levels, then update forecasts as new information becomes available.
+
+Risk: The bundled forecast script writes forecast metadata to local storage.
+
+Mitigation: Review locally retained forecast records and delete them according to the user's data retention needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/projectsnowwork/skills/predict)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with optional local JSON forecast records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the bundled forecast script is used, it records forecast metadata under ~/.openclaw/workspace/memory/predict.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Xhs Expert helps agents search Xiaohongshu notes, collect note and comment data, analyze content trends, and prepare or run account interactions such as likes, comments, saves, follows, and batch actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Expert helps agents search Xiaohongshu notes, collect note and comment data, manage login state, and perform like, collect, comment, follow, and batch engagement actions.
 
-## Publisher: <br>
-[mieming1985](https://clawhub.ai/user/mieming1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mieming1985](https://clawhub.ai/user/mieming1985)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to route Xiaohongshu search, data collection, account status, and interaction requests into the bundled xhs CLI. It supports content discovery, note detail retrieval, comment collection, local data statistics, and confirmed social actions through a logged-in account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Xiaohongshu account for likes, comments, saves, follows, and batch actions. <br>
-Mitigation: Use a separate account or profile and manually confirm every comment, follow, and batch action before execution. <br>
-Risk: The skill stores session cookies and account state locally under the Xiaohongshu configuration directory. <br>
-Mitigation: Protect the local profile directory, limit machine access, and delete ~/.config/xiaohongshu when the account should no longer be available to the skill. <br>
-Risk: Stealth browser automation or bulk engagement may violate platform rules or trigger account enforcement. <br>
-Mitigation: Install only when this automation is intentional, keep action volume low, and review Xiaohongshu platform rules before use. <br>
+## Use Case:
 
+Social media operators and agents use this skill to research Xiaohongshu content, collect local datasets, check account state, and perform reviewed engagement actions on selected notes or users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mieming1985/xhs-expert) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
-- [Xiaohongshu web API base](https://edith.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with inline CLI commands, terminal text, and optional JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on local login state, saved cookies, Xiaohongshu API responses, and user confirmation for sensitive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The skill can perform real account-changing actions, including likes, collects, comments, follows, and batch engagement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review of every target and action before execution, keep batch sizes small, and avoid bulk engagement unless the operator has manually approved the full scope.
+
+Risk: The skill stores login material and browser profile data locally.
+
+Mitigation: Treat cookie and profile files as sensitive credentials, restrict local access, use an account dedicated to this workflow, and rotate or revoke sessions if files may have been exposed.
+
+Risk: The skill can scrape and save Xiaohongshu content and comments.
+
+Mitigation: Collect only the minimum data needed, protect exported JSON files, and review platform terms and privacy obligations before sharing or reusing collected data.
+
+Risk: The skill includes browser stealth behavior that can hide automation signals.
+
+Mitigation: Use automation only where permitted, avoid bypassing platform safeguards, and expect platform enforcement or account restrictions if automated behavior violates service rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mieming1985/skills/xhs-expert)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON files, shell commands, configuration guidance]
+
+**Output Format:** [CLI text, JSON exports, and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local search result JSON and uses local browser profile and cookie files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Converts Chinese responses, conversation summaries, logs, and memory notes into concise classical-Chinese-style text while preserving key information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文言文压缩技能，可将中文回复、摘要、日志和记忆存档压缩为文言文或典故化表达，并提供映射表、语法速查和典故词典供代理查阅。
 
-## Publisher: <br>
-[october27](https://clawhub.ai/user/october27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[october27](https://clawhub.ai/user/october27)
 
-## Use Case: <br>
-Chinese-language users and agents use this skill to produce classical-Chinese-style answers or compact summaries for archives, logs, and memory records. It is useful when token-efficient Chinese summaries or readable wenyan prose are desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory or log mode may preserve sensitive conversation details. <br>
-Mitigation: Use compression for details that are intended to be saved, and exclude sensitive content from archived summaries. <br>
-Risk: Classical-Chinese compression can omit nuance or introduce ambiguity. <br>
-Mitigation: Review compressed summaries before relying on them as accurate records. <br>
+## Use Case:
 
+External users and agent builders use this skill to produce classical Chinese responses, compact Chinese-language summaries, and terse memory or log entries while preserving key information. It is most useful when token-efficient Chinese phrasing or human-facing Wenyan output is desired.
 
-## Reference(s): <br>
-- [Compression Map](references/compress-map.md) <br>
-- [Grammar Cheatsheet](references/grammar.md) <br>
-- [Allusion Dictionary](references/dict.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/october27/wenyancompress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese prose or compact Markdown/text log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compressed summaries should be reviewed before being treated as accurate records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation guidance for summaries, record-keeping, and memory notes may cause future notes to be stored in a terse Wenyan format when that is not expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review when the skill activates and use the compressed format only for explicit compression, logging, summary, or memory workflows.
+
+Risk: Concise classical Chinese phrasing can omit nuance from the original text.
+
+Mitigation: Use reversible mapped terms for internal archives and keep source context available when precision is important.
+
+## Reference(s):
+
+- [Compression Map](references/compress-map.md)
+- [Grammar Cheatsheet](references/grammar.md)
+- [Allusion Dictionary](references/dict.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with compact Wenyan phrases and optional log-style records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use terse time-subject-action-state records for summaries, logs, and memory notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

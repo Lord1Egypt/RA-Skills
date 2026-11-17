@@ -1,41 +1,55 @@
-## Description: <br>
-Provides Qunar travel information queries for flights, hotels, attraction tickets, and train tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent query Qunar travel information for flights, hotels, scenic tickets, and train tickets.
 
-## Publisher: <br>
-[hellllll0world](https://clawhub.ai/user/hellllll0world) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hellllll0world](https://clawhub.ai/user/hellllll0world)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to collect travel query parameters, call Qunar travel APIs, and summarize results for flights, hotels, attractions, and train tickets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured Qunar API key can be sent to a runtime-supplied URL. <br>
-Mitigation: Use only verified official Qunar HTTPS endpoints, prefer a version with a Qunar-domain allowlist, and attach the API key only to approved Qunar hosts. <br>
-Risk: The release has a suspicious security verdict. <br>
-Mitigation: Review the skill before installation and deploy it only in environments where the operator and API endpoint choices are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Qunar API Reference](references/api_reference.md) <br>
-- [Qunar Open Platform Documentation](http://open.qunar.com/developer/doc) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hellllll0world/qunar-travel-query) <br>
+## Use Case:
 
+External users and travel-support agents use this skill to collect trip parameters, call Qunar travel APIs, and summarize flight, hotel, scenic-ticket, or train-ticket results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports list, detail, and conversational result summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The configured Qunar API key can be sent to a caller-supplied API endpoint.
+
+Mitigation: Restrict API requests to known Qunar HTTPS domains and avoid arbitrary or third-party endpoint URLs.
+
+Risk: Travel prices, availability, and API parameters may be stale or incorrect if the endpoint or Qunar documentation has changed.
+
+Mitigation: Confirm endpoint URLs and required parameters against current Qunar developer documentation before relying on results.
+
+## Reference(s):
+
+- [Qunar API Reference](references/api_reference.md)
+- [Qunar Open Platform](http://open.qunar.com)
+- [Qunar Developer Documentation](http://open.qunar.com/developer/doc)
+- [ClawHub Skill Page](https://clawhub.ai/hellllll0world/skills/qunar-travel-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus JSON command output from the query script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports list, detail, and conversation-style result presentations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

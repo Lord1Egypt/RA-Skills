@@ -1,42 +1,57 @@
-## Description: <br>
-Generate UK AML/KYC compliance documentation — customer due diligence records, risk assessments, policies, and SAR drafts for regulated businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate UK AML/KYC compliance documentation - customer due diligence records, risk assessments, policies, and SAR drafts for regulated businesses.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External UK regulated businesses and compliance staff use this skill to draft AML/KYC documentation, onboarding packs, risk assessments, policies, and internal SAR materials for review. The skill supports documentation only and does not perform identity verification, PEP or sanctions screening, electronic verification, or legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive personal data or confidential SAR details in prompts or generated drafts. <br>
-Mitigation: Do not paste unnecessary personal data or confidential SAR details; mask identifiers where possible and have an MLRO, qualified compliance professional, or legal adviser review outputs. <br>
-Risk: Users may mistake generated documentation for completed AML/KYC verification or legal advice. <br>
-Mitigation: Treat outputs as drafts only and use accredited services for identity verification, PEP checks, sanctions screening, and electronic verification. <br>
+## Use Case:
 
+External UK regulated businesses and compliance teams use this skill to generate AML/KYC documentation templates, client onboarding records, risk assessments, policy drafts, and internal SAR drafts tailored to their sector.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/aml-kyc-docs) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact listing](artifact/listing.md) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style compliance document templates and drafted records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafts for professional review and should repeat the skill's limitation that it does not perform verification or provide legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat generated AML/KYC templates or SAR drafts as final legal or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as templates and have qualified compliance or legal professionals review final documents before operational use.
+
+Risk: Users may enter unnecessary sensitive identity, account, or confidential SAR details into the agent.
+
+Mitigation: Use placeholders or redacted details unless the organisation has approved the platform for that data.
+
+Risk: The skill can draft documentation but does not verify identities or perform PEP, sanctions, adverse media, or electronic verification checks.
+
+Mitigation: Perform required checks through approved verification services and record verified results separately.
+
+## Reference(s):
+
+- [ClawHub release: aml-kyc-docs](https://clawhub.ai/jamespatrickthom2003-star/skills/aml-kyc-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown templates and draft compliance records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documents include disclaimers and require professional review; the skill does not perform identity, PEP, sanctions, or electronic verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

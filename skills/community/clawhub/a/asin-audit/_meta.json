@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "asin-audit",
+  "version": "1.5.3",
+  "workflow": "audit",
+  "focus": "full",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 1
+}

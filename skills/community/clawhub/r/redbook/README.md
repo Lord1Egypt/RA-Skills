@@ -66,8 +66,9 @@ redbook comments https://www.xiaohongshu.com/explore/abc123 --all
 redbook feed
 
 # 查看博主信息
-redbook user <userId>
-redbook user-posts <userId>
+redbook user "<profileUrl>"
+redbook user-posts "<profileUrl>"
+redbook account-report --file kos-accounts.txt --month 2026-07 --json
 
 # 搜索话题标签
 redbook topics "Claude Code"
@@ -123,8 +124,9 @@ redbook post --title "测试" --body "..." --images img.png --private
 | `search <关键词>` | 搜索笔记 |
 | `read <url>` | 阅读单篇笔记 |
 | `comments <url>` | 获取笔记评论 |
-| `user <userId>` | 查看用户资料 |
-| `user-posts <userId>` | 列出用户所有笔记 |
+| `user <userId\|profileUrl>` | 查看用户资料 |
+| `user-posts <userId\|profileUrl>` | 列出用户所有笔记 |
+| `account-report <user...>` | 批量统计账号发帖和互动数据 |
 | `feed` | 获取推荐页内容 |
 | `post` | 发布图文笔记（易触发验证码，详见下方说明） |
 | `topics <关键词>` | 搜索话题/标签 |
@@ -140,6 +142,7 @@ redbook post --title "测试" --body "..." --images img.png --private
 | `reply <url>` | 回复指定评论 |
 | `batch-reply <url>` | 按策略批量回复评论（支持预览模式） |
 | `render <文件>` | Markdown 渲染为小红书图文卡片 PNG（需可选依赖） |
+| `auth` | 保存、导出、检查 Cookie 文件，适合云端/OpenClaw 使用 |
 
 ### 通用选项
 
@@ -148,7 +151,54 @@ redbook post --title "测试" --body "..." --images img.png --private
 | `--cookie-source <浏览器>` | Cookie 来源浏览器（chrome, safari, firefox） | `chrome` |
 | `--chrome-profile <名称>` | Chrome 配置文件目录名（如 "Profile 1"），默认自动检测 | 自动 |
 | `--cookie-string <cookies>` | 手动传入 Cookie 字符串：`"a1=值; web_session=值"`（从 Chrome DevTools 复制） | 无 |
+| `--platform <name>` | 强制后端：`xhs`（大陆）或 `rednote`（全球版），不传则自动检测 | 自动 |
+| `--global` | 强制使用全球版 RedNote 后端（等同 `--platform rednote`） | 无 |
 | `--json` | JSON 格式输出 | `false` |
+
+### 保存 Cookie / 云端使用
+
+如果在 OpenClaw、云服务器或 CI 里运行，不想每条命令都加 `--cookie-string`，可以把 Cookie 保存成文件。普通命令会按这个顺序读取 Cookie：`--cookie-string` → `REDBOOK_COOKIE_STRING` → `REDBOOK_COOKIE_FILE` → `~/.redbook/cookies.json` → 本机浏览器。
+
+```bash
+# 本地浏览器已登录时，导出到默认路径 ~/.redbook/cookies.json
+redbook auth export
+
+# 或手动保存从 DevTools 复制的 Cookie 字符串
+redbook auth save --cookie-string "a1=值; web_session=值"
+
+# 查看保存位置和键名（不会打印 Cookie 值）
+redbook auth path
+redbook auth inspect
+
+# 上传 ~/.redbook/cookies.json 到云端后，普通命令会自动读取
+redbook whoami
+
+# 如果放在自定义路径
+export REDBOOK_COOKIE_FILE=/secure/path/redbook-cookies.json
+redbook search "AI编程" --json
+```
+
+Cookie 文件是明文登录凭据，默认写入权限为 `0600`。不要提交到 Git，也不要贴到日志里。需要撤销时可以删除文件或执行 `redbook auth clear`，然后在浏览器里退出登录/重新登录刷新会话。
+
+### 用户主页选项
+
+`user` 和 `user-posts` 可以接受完整主页 URL，例如 `https://www.xiaohongshu.com/user/profile/<id>?xsec_token=...&xsec_source=pc_search`。如果只有用户 ID，但接口返回 `code=-1`，请从搜索结果或浏览器地址栏复制带 `xsec_token` 的主页 URL，或手动传入：
+
+```bash
+redbook user "<userId>" --xsec-token "<token>" --xsec-source pc_search --json
+redbook user-posts "<userId>" --xsec-token "<token>" --xsec-source pc_search --json
+```
+
+### 账号报表选项
+
+`account-report` 用于按账号 ID/主页 URL 批量统计发帖和互动数据，适合 KOS/KOC 账号巡检。文件中每行一个用户 ID 或带 `xsec_token` 的主页 URL，`#` 开头的行会被忽略。
+
+```bash
+redbook account-report --file kos-accounts.txt --month 2026-07 --json
+redbook account-report "<profileUrl1>" "<profileUrl2>" --max-pages 2 --json
+```
+
+默认每个账号只拉第一页，结果里 `complete: false` 表示后面还有分页；需要完整历史时加 `--all`，或用 `--max-pages <n>` 控制每个账号最多拉几页。JSON 输出包含账号汇总和每篇笔记的点赞、评论、收藏、分享、总互动、发布时间和 `webUrl`。
 
 ### 搜索选项
 
@@ -216,6 +266,9 @@ npm install -g puppeteer-core marked
 | macOS 钥匙串弹窗 | 输入密码后点击"始终允许"，CLI 需要读取 Chrome 的加密 Cookie |
 | 多个 Chrome 配置文件 | CLI 自动扫描所有配置文件（macOS / Windows / Linux）。如需指定：`--chrome-profile "Profile 1"` |
 | 使用 Brave/Arc 等浏览器 | 尝试 `--cookie-source safari`，或在 Chrome 中登录 |
+| `user` / `user-posts` / `comments` 报 `code=-1`（HTTP 406） | 请求签名被拒绝，通常是小红书更新了网页签名。升级到最新版：`npm i -g @lucasygu/redbook@latest` |
+| `search` 报 `-104`（当前登录账号没有权限访问） | 小红书按账号限制接口权限，不是 Cookie 或签名问题。`whoami` / `feed` / `read` 正常、只有 `search` 报 `-104` 时，换一个账号或改用浏览器搜索。新号、未养号的账号，以及高频调用或触发过风控的账号都可能遇到 |
+| 用小红书号（纯数字）查用户失败 | `user` / `user-posts` 需要主页 URL 里 24 位的用户 ID（`/user/profile/<id>`），不是小红书号。直接传完整主页 URL 最稳妥 |
 
 ## 工作原理
 
@@ -261,7 +314,7 @@ npm install -g puppeteer-core marked
 ```
 /redbook search "AI编程"                        # 搜索笔记
 /redbook read <url>                             # 阅读笔记
-/redbook user <userId>                          # 查看博主
+/redbook user <profileUrl>                      # 查看博主
 /redbook analyze-viral <url>                    # 分析爆款笔记
 ```
 
@@ -383,8 +436,9 @@ redbook comments https://www.xiaohongshu.com/explore/abc123 --all
 redbook feed
 
 # Look up a creator
-redbook user <userId>
-redbook user-posts <userId>
+redbook user "<profileUrl>"
+redbook user-posts "<profileUrl>"
+redbook account-report --file kos-accounts.txt --month 2026-07 --json
 
 # Search hashtags
 redbook topics "Claude Code"
@@ -439,8 +493,9 @@ redbook post --title "测试" --body "..." --images img.png --private
 | `search <keyword>` | Search notes by keyword |
 | `read <url>` | Read a note by URL |
 | `comments <url>` | Get comments on a note |
-| `user <userId>` | Get user profile info |
-| `user-posts <userId>` | List a user's posted notes |
+| `user <userId\|profileUrl>` | Get user profile info |
+| `user-posts <userId\|profileUrl>` | List a user's posted notes |
+| `account-report <user...>` | Batch summarize account posting and engagement |
 | `feed` | Get homepage feed |
 | `post` | Publish an image note (captcha-prone, see below) |
 | `topics <keyword>` | Search for topics/hashtags |
@@ -456,6 +511,7 @@ redbook post --title "测试" --body "..." --images img.png --private
 | `reply <url>` | Reply to a specific comment |
 | `batch-reply <url>` | Batch reply to comments with filtering strategy (supports dry-run) |
 | `render <file>` | Render markdown to styled PNG image cards for XHS posts (optional deps) |
+| `auth` | Save, export, inspect, and clear reusable cookie files for cloud/OpenClaw runs |
 
 ### Global Options
 
@@ -464,7 +520,56 @@ redbook post --title "测试" --body "..." --images img.png --private
 | `--cookie-source <browser>` | Browser to read cookies from (chrome, safari, firefox) | `chrome` |
 | `--chrome-profile <name>` | Chrome profile directory name (e.g., "Profile 1"). Auto-detected if omitted. | auto |
 | `--cookie-string <cookies>` | Manual cookie string: `"a1=VALUE; web_session=VALUE"` (from Chrome DevTools) | none |
+| `--platform <name>` | Force backend: `xhs` (mainland) or `rednote` (global). Omit to auto-detect. | auto |
+| `--global` | Force the global RedNote backend (= `--platform rednote`) | — |
 | `--json` | Output as JSON | `false` |
+
+> **Mainland 小红书 vs global RedNote — handled automatically.** These are two separate backends (`xiaohongshu.com` / `edith.xiaohongshu.com` vs `rednote.com` / `webapi.rednote.com`) with separate sessions and cookie domains; RedNote routes you to one by IP/region and you can only be signed into one at a time. The CLI **auto-detects which one you're logged into** (probing both cookie domains, verifying with one `/user/me` call when both have cookies, then caching the result in `~/.redbook/`), so you normally pass **no flag**. Use `--global` / `--platform xhs` only to force one.
+
+### Saved Cookies / Cloud Use
+
+For OpenClaw, cloud servers, or CI, save cookies once so every command does not need `--cookie-string`. Normal commands resolve cookies in this order: `--cookie-string` → `REDBOOK_COOKIE_STRING` → `REDBOOK_COOKIE_FILE` → `~/.redbook/cookies.json` → local browser extraction.
+
+```bash
+# Export from a logged-in local browser to ~/.redbook/cookies.json
+redbook auth export
+
+# Or save a cookie string copied from DevTools
+redbook auth save --cookie-string "a1=VALUE; web_session=VALUE"
+
+# Inspect path/keys without printing secret values
+redbook auth path
+redbook auth inspect
+
+# After uploading ~/.redbook/cookies.json to the cloud, commands auto-load it
+redbook whoami
+
+# For a custom location
+export REDBOOK_COOKIE_FILE=/secure/path/redbook-cookies.json
+redbook search "AI编程" --json
+```
+
+The cookie file is a plaintext login credential and is written with `0600` permissions by default. Do not commit it or print it in logs. To revoke local reuse, remove it with `redbook auth clear`, then log out/in from the browser to rotate the session.
+
+### User Profile Options
+
+`user` and `user-posts` accept full profile URLs such as `https://www.xiaohongshu.com/user/profile/<id>?xsec_token=...&xsec_source=pc_search`. If a bare user ID returns `code=-1`, copy a fresh profile URL from search results or the browser address bar, or pass the token explicitly:
+
+```bash
+redbook user "<userId>" --xsec-token "<token>" --xsec-source pc_search --json
+redbook user-posts "<userId>" --xsec-token "<token>" --xsec-source pc_search --json
+```
+
+### Account Report Options
+
+`account-report` summarizes posting activity and engagement by account ID/profile URL, useful for KOS/KOC account checks. A file can contain one user ID or tokenized profile URL per line; blank lines and `#` comments are ignored.
+
+```bash
+redbook account-report --file kos-accounts.txt --month 2026-07 --json
+redbook account-report "<profileUrl1>" "<profileUrl2>" --max-pages 2 --json
+```
+
+By default it fetches the first page per account. `complete: false` means more pages exist; use `--all` for full history or `--max-pages <n>` to cap page reads. JSON includes account summaries plus per-note likes, comments, collects, shares, total engagement, publish time, and `webUrl`.
 
 ### Search Options
 
@@ -532,6 +637,9 @@ Publishing **frequently triggers captcha** (type=124). Image upload works, but t
 | macOS Keychain prompt | Enter your password and click "Always Allow" — the CLI needs to decrypt Chrome's cookies |
 | Multiple Chrome profiles | The CLI auto-scans all profiles (macOS / Windows / Linux). To pick one: `--chrome-profile "Profile 1"` |
 | Using Brave/Arc/other | Try `--cookie-source safari`, or log into xiaohongshu.com in Chrome |
+| `user` / `user-posts` / `comments` return `code=-1` (HTTP 406) | XHS rejected the request signature, usually after a web signing update. Upgrade: `npm i -g @lucasygu/redbook@latest` |
+| `search` returns `-104` ("no permission for this account") | An account-level API restriction from XHS, not a cookie or signing bug. If `whoami` / `feed` / `read` work but `search` returns `-104`, try another account or search in the browser. New or barely used accounts, and accounts that made heavy API calls or tripped risk control, can both hit this |
+| Looking up a user by Red ID (all digits) fails | `user` / `user-posts` need the 24-character user ID from the profile URL (`/user/profile/<id>`), not the 小红书号. Passing the full profile URL is safest |
 
 ## How It Works
 
@@ -577,7 +685,7 @@ Installs automatically as a Claude Code skill. Use `/redbook` in Claude Code:
 ```
 /redbook search "AI编程"                        # Search notes
 /redbook read <url>                             # Read a note
-/redbook user <userId>                          # Creator profile
+/redbook user <profileUrl>                      # Creator profile
 /redbook analyze-viral <url>                    # Analyze a viral note
 ```
 

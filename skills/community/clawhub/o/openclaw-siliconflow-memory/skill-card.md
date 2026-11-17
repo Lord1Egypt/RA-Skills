@@ -1,43 +1,53 @@
-## Description: <br>
-Configure OpenClaw semantic memory to use SiliconFlow embeddings through an OpenAI-compatible API, especially BAAI/bge-m3, and validate memory indexing and retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure OpenClaw semantic memory to use SiliconFlow embeddings through the OpenAI-compatible API, especially `BAAI/bge-m3`.
 
-## Publisher: <br>
-[otweihan](https://clawhub.ai/user/otweihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otweihan](https://clawhub.ai/user/otweihan)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw memory_search with SiliconFlow embeddings, add curated Markdown knowledge paths, and validate indexing and retrieval through CLI and tool-layer checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SiliconFlow API keys can be exposed if users paste secrets into shared configuration or logs. <br>
-Mitigation: Review the configuration patch before applying it, keep the API key private, and avoid sharing logs or files that contain credentials. <br>
-Risk: Adding broad local folders to semantic memory can make unintended personal or noisy files searchable. <br>
-Mitigation: Add only curated Markdown folders that the user is comfortable making searchable, and expand extraPaths in small batches. <br>
-Risk: A wrong provider, endpoint, model, or fallback setting can hide embedding failures or produce failed retrieval. <br>
-Mitigation: Keep provider, model, baseUrl, apiKey, and fallback explicit, then validate with memory status, forced indexing, CLI search, and tool-layer retrieval. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure, validate, and troubleshoot OpenClaw memory_search with SiliconFlow embeddings, including curated external Markdown knowledge paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/otweihan/openclaw-siliconflow-memory) <br>
-- [SiliconFlow OpenAI-compatible API endpoint](https://api.siliconflow.cn/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes validation steps for OpenClaw memory status, indexing, and search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Indexed local text is sent to SiliconFlow's external embedding API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Index only curated files that are appropriate to share with SiliconFlow, and avoid private journals, inboxes, secrets, generated exports, or broad repositories unless explicitly intended.
+
+Risk: Embedding configuration requires a SiliconFlow API key.
+
+Mitigation: Use the user's own API key and avoid placing real secrets in shared examples, logs, or public skill materials.
+
+## Reference(s):
+
+- [SiliconFlow OpenAI-compatible API endpoint](https://api.siliconflow.cn/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with JSON-style configuration snippets and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides validation of OpenClaw memory status, indexing, and retrieval after configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

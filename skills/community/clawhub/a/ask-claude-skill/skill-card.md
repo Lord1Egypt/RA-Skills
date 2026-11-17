@@ -1,42 +1,59 @@
-## Description: <br>
-Delegates coding tasks to Claude Code CLI, captures the result, and reports it back in chat with support for continued sessions in the same workdir. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates coding and analysis tasks to Claude Code CLI, captures the result, and reports it back in chat with support for continued sessions.
 
-## Publisher: <br>
-[0xManel](https://clawhub.ai/user/0xManel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xmanel](https://clawhub.ai/user/0xmanel)
 
-## Use Case: <br>
-Developers and agent users use this skill to delegate code analysis, file edits, test writing, troubleshooting, and follow-up coding tasks to Claude Code from an OpenClaw chat. It is suited for workflows where the agent should run Claude synchronously and summarize the captured result back to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated Claude Code sessions run with permission checks bypassed and can broadly edit files or run commands in the selected project. <br>
-Mitigation: Install only in trusted repositories, review the helper script before use, and prefer removing `--permission-mode bypassPermissions` unless bypassed permissions are intentionally required. <br>
-Risk: Persistent `--continue` sessions reuse prior workdir context, so a follow-up request can act on earlier files, edits, and conversation history. <br>
-Mitigation: Use a new session for unrelated tasks or different projects, and confirm the intended workdir before delegating follow-up work. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to delegate coding, file analysis, test-writing, and follow-up implementation tasks to Claude Code CLI from an agent chat. The skill is useful when a task benefits from Claude Code's project context, shell access, and persistent per-directory sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xManel/ask-claude-skill) <br>
-- [OpenClaw](https://openclaw.dev) <br>
-- [Claude Code](https://claude.ai/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown chat response summarizing captured Claude Code CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include files created or edited, captured errors, suggested fixes, and summarized long output with full output available on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence; artifact package metadata reports 1.1.0) <br>
+Risk: Delegated Claude Code runs with permission checks bypassed and weak workspace controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a sandboxed project directory, avoid sensitive workspaces, and remove or disable permission-bypass mode before trusted use.
+
+Risk: Delegation or session continuation can perform actions using prior project context.
+
+Mitigation: Require explicit confirmation before delegation or continuation and review captured output before relying on changes or recommendations.
+
+Risk: Installer behavior can change if the install source is not pinned.
+
+Mitigation: Pin the installer version when installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xmanel/skills/ask-claude-skill)
+- [OpenClaw](https://openclaw.dev)
+- [Claude Code](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown chat response with captured CLI output and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stderr, exit codes, edited file names, and summarized long outputs.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact package.json and README changelog list 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

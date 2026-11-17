@@ -1,40 +1,54 @@
-## Description: <br>
-深度认知能力构建系统 - 认知升级/信息结构化/逻辑训练/反馈修正/书籍推荐 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深度认知能力构建系统 - 认知升级/信息结构化/逻辑训练/反馈修正/书籍推荐
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-External users and developers use this Chinese-language guide to structure cognitive improvement workflows, practice logic training, organize information, build feedback loops, and identify supporting books or tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool or platform recommendations could lead users to share private notes or connect external services without review. <br>
-Mitigation: Treat recommendations as optional and confirm privacy, access, and data-sharing implications before using external tools. <br>
-Risk: Cognitive and logic-training guidance may be overgeneralized or misapplied to high-stakes decisions. <br>
-Mitigation: Use the guidance as a reference aid and validate conclusions with domain experts, data, or independent review before acting. <br>
+## Use Case:
 
+External users and developers use this skill for Chinese-language guidance on building deeper cognition habits, structuring information, practicing logic, correcting through feedback, and selecting relevant books or tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/deep-cognition-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with tables, checklists, examples, and recommended resources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language reference-style guidance; no code execution, credentials, or install actions are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can provide broad cognition-improvement and book-recommendation guidance that may not fit a user's specific context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations before acting on them and adapt plans to the user's goals, constraints, and available evidence.
+
+Risk: The skill is Chinese-language focused and does not document multilingual support.
+
+Mitigation: Use it primarily for Chinese-language workflows or validate translated guidance before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/deep-cognition-guide)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown-formatted Chinese-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured tables, step-by-step practice plans, book recommendations, and tool suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

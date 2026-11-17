@@ -1,46 +1,61 @@
-## Description: <br>
-Play and manage a Lobster Tamagotchi farm game autonomously via browser, with a unique KEY binding each installed agent to its own lobster. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster MUD lets an agent register, manage, and play a browser-based Lobster Tamagotchi game, including farm care, chat, diary retrieval, MUD adventures, and daily behavior reporting.
 
-## Publisher: <br>
-[jaredwei01](https://clawhub.ai/user/jaredwei01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredwei01](https://clawhub.ai/user/jaredwei01)
 
-## Use Case: <br>
-External users and agent operators use this skill to register, check, and autonomously manage a virtual lobster pet, including feeding, farming, chat, diary retrieval, and MUD-style adventures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the lobster KEY, game chat, game state, and daily aggregate work or activity patterns to a third-party plain-HTTP game server. <br>
-Mitigation: Install only when that data sharing is acceptable, keep the KEY and bind link private, and avoid putting secrets or private work details in game chat. <br>
-Risk: The skill can act autonomously by periodically checking and playing the game. <br>
-Mitigation: Disable or avoid autonomous play unless explicitly wanted, and review agent actions and summaries during use. <br>
-Risk: Daily behavior reporting can share aggregate work-pattern telemetry. <br>
-Mitigation: Ask the agent not to run daily behavior reporting unless the empathy feature is desired. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate a persistent virtual lobster pet in the browser, including registration, routine care, game actions, chat replies, diary display, and adventure play.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaredwei01/lobster-farm-agent) <br>
-- [Lobster Farm game](http://82.156.182.240/lobster-farm/) <br>
-- [Lobster Farm JS Bridge API](references/api-endpoints.md) <br>
-- [Lobster Farm Game Guide](references/game-guide.md) <br>
-- [Lobster Farm Strategy Guide](references/strategy-tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline commands, status summaries, game chat text, and API interaction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a lobster KEY, bind URL, natural-language gameplay summaries, diary excerpts pulled from the server, and in-character chat responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact skill-metadata.json) <br>
+Risk: A remote server receives the persistent lobster KEY, game state, chat messages, and daily work or activity summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after explicit user consent, keep reported summaries aggregate, and provide a clear way to disable telemetry or delete the associated key data.
+
+Risk: The evidence security summary identifies plaintext HTTP for telemetry and game-server communication.
+
+Mitigation: Avoid sending sensitive information and require HTTPS before normal approval or broad deployment.
+
+Risk: Autonomous or proactive play can perform repeated game actions and reports without a fresh user request.
+
+Mitigation: Narrow triggers, require opt-in for proactive checks, and let users stop autonomous sessions and telemetry reporting.
+
+## Reference(s):
+
+- [Lobster Farm JS Bridge API](artifact/references/api-endpoints.md)
+- [Lobster Farm Game Guide](artifact/references/game-guide.md)
+- [Lobster Farm Strategy Guide](artifact/references/strategy-tips.md)
+- [Lobster Farm Game](http://82.156.182.240/lobster-farm/)
+- [ClawHub Skill Page](https://clawhub.ai/jaredwei01/skills/lobster-farm-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown prose with shell, JavaScript, JSON, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct browser actions and HTTP calls to the Lobster Farm game server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

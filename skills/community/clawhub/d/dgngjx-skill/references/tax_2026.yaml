@@ -1,0 +1,214 @@
+# tax_2026.yaml - 个税五险一金数据包
+# 版本与生效日期
+meta:
+  version: "2026.01"
+  effective_date: "2026-01-01"
+  description: "全国主要城市社保公积金基数与个税税率表"
+
+# ═══════════════════════════════════════════
+# 社保基数上下限（单位：元/月）
+# 养老/医疗/失业/工伤/生育 统一上下限
+# 公积金独立上下限
+# ═══════════════════════════════════════════
+social_insurance_bases:
+  beijing:
+    name: "北京"
+    pension:    { lower: 6821,  upper: 35283 }
+    medical:    { lower: 6821,  upper: 35283 }
+    unemployed: { lower: 6821,  upper: 35283 }
+    injury:     { lower: 6821,  upper: 35283 }
+    maternity:  { lower: 6821,  upper: 35283 }
+    housing_fund: { lower: 2420, upper: 35283 }
+  shanghai:
+    name: "上海"
+    pension:    { lower: 7310,  upper: 36549 }
+    medical:    { lower: 7310,  upper: 36549 }
+    unemployed: { lower: 7310,  upper: 36549 }
+    injury:     { lower: 7310,  upper: 36549 }
+    maternity:  { lower: 7310,  upper: 36549 }
+    housing_fund: { lower: 2590, upper: 36549 }
+  guangzhou:
+    name: "广州"
+    pension:    { lower: 5284,  upper: 26421 }
+    medical:    { lower: 5284,  upper: 26421 }
+    unemployed: { lower: 5284,  upper: 26421 }
+    injury:     { lower: 5284,  upper: 26421 }
+    maternity:  { lower: 5284,  upper: 26421 }
+    housing_fund: { lower: 2300, upper: 26421 }
+  shenzhen:
+    name: "深圳"
+    pension:    { lower: 2360,  upper: 26421 }
+    medical:    { lower: 5284,  upper: 26421 }
+    unemployed: { lower: 2360,  upper: 26421 }
+    injury:     { lower: 2360,  upper: 26421 }
+    maternity:  { lower: 2360,  upper: 26421 }
+    housing_fund: { lower: 2300, upper: 26421 }
+  hangzhou:
+    name: "杭州"
+    pension:    { lower: 4812,  upper: 24060 }
+    medical:    { lower: 4812,  upper: 24060 }
+    unemployed: { lower: 4812,  upper: 24060 }
+    injury:     { lower: 4812,  upper: 24060 }
+    maternity:  { lower: 4812,  upper: 24060 }
+    housing_fund: { lower: 2280, upper: 24060 }
+  chengdu:
+    name: "成都"
+    pension:    { lower: 4246,  upper: 21228 }
+    medical:    { lower: 4246,  upper: 21228 }
+    unemployed: { lower: 4246,  upper: 21228 }
+    injury:     { lower: 4246,  upper: 21228 }
+    maternity:  { lower: 4246,  upper: 21228 }
+    housing_fund: { lower: 2100, upper: 21228 }
+  nanjing:
+    name: "南京"
+    pension:    { lower: 4494,  upper: 24042 }
+    medical:    { lower: 4494,  upper: 24042 }
+    unemployed: { lower: 4494,  upper: 24042 }
+    injury:     { lower: 4494,  upper: 24042 }
+    maternity:  { lower: 4494,  upper: 24042 }
+    housing_fund: { lower: 2480, upper: 24042 }
+  wuhan:
+    name: "武汉"
+    pension:    { lower: 4077,  upper: 23826 }
+    medical:    { lower: 4077,  upper: 23826 }
+    unemployed: { lower: 4077,  upper: 23826 }
+    injury:     { lower: 4077,  upper: 23826 }
+    maternity:  { lower: 4077,  upper: 23826 }
+    housing_fund: { lower: 2010, upper: 23826 }
+  xian:
+    name: "西安"
+    pension:    { lower: 4559,  upper: 22795 }
+    medical:    { lower: 4559,  upper: 22795 }
+    unemployed: { lower: 4559,  upper: 22795 }
+    injury:     { lower: 4559,  upper: 22795 }
+    maternity:  { lower: 4559,  upper: 22795 }
+    housing_fund: { lower: 2160, upper: 22795 }
+  chongqing:
+    name: "重庆"
+    pension:    { lower: 4118,  upper: 20587 }
+    medical:    { lower: 4118,  upper: 20587 }
+    unemployed: { lower: 4118,  upper: 20587 }
+    injury:     { lower: 4118,  upper: 20587 }
+    maternity:  { lower: 4118,  upper: 20587 }
+    housing_fund: { lower: 2100, upper: 20587 }
+  tianjin:
+    name: "天津"
+    pension:    { lower: 4751,  upper: 23757 }
+    medical:    { lower: 4751,  upper: 23757 }
+    unemployed: { lower: 4751,  upper: 23757 }
+    injury:     { lower: 4751,  upper: 23757 }
+    maternity:  { lower: 4751,  upper: 23757 }
+    housing_fund: { lower: 2180, upper: 23757 }
+  suzhou:
+    name: "苏州"
+    pension:    { lower: 4494,  upper: 24042 }
+    medical:    { lower: 4494,  upper: 24042 }
+    unemployed: { lower: 4494,  upper: 24042 }
+    injury:     { lower: 4494,  upper: 24042 }
+    maternity:  { lower: 4494,  upper: 24042 }
+    housing_fund: { lower: 2480, upper: 24042 }
+  zhengzhou:
+    name: "郑州"
+    pension:    { lower: 3836,  upper: 19180 }
+    medical:    { lower: 3836,  upper: 19180 }
+    unemployed: { lower: 3836,  upper: 19180 }
+    injury:     { lower: 3836,  upper: 19180 }
+    maternity:  { lower: 3836,  upper: 19180 }
+    housing_fund: { lower: 1900, upper: 19180 }
+  changsha:
+    name: "长沙"
+    pension:    { lower: 3726,  upper: 18600 }
+    medical:    { lower: 3726,  upper: 18600 }
+    unemployed: { lower: 3726,  upper: 18600 }
+    injury:     { lower: 3726,  upper: 18600 }
+    maternity:  { lower: 3726,  upper: 18600 }
+    housing_fund: { lower: 1900, upper: 18600 }
+
+# ═══════════════════════════════════════════
+# 社保缴费比例（个人部分 + 单位部分）
+# ═══════════════════════════════════════════
+insurance_rates:
+  default:
+    personal:
+      pension:    0.08   # 养老
+      medical:    0.02   # 医疗
+      unemployed: 0.005  # 失业
+      injury:     0.0    # 工伤（个人不缴）
+      maternity:  0.0    # 生育（个人不缴）
+      housing_fund: 0.12 # 公积金（默认，各城市不同）
+    company:
+      pension:    0.16   # 养老
+      medical:    0.095  # 医疗
+      unemployed: 0.005  # 失业
+      injury:     0.004  # 工伤
+      maternity:  0.008  # 生育
+      housing_fund: 0.12 # 公积金（默认，各城市不同）
+
+  # 城市差异化比例（覆盖默认值）
+  overrides:
+    beijing:
+      personal: { housing_fund: 0.12 }
+      company:  { housing_fund: 0.12 }
+    shanghai:
+      personal: { housing_fund: 0.07 }
+      company:  { housing_fund: 0.07 }
+    guangzhou:
+      personal: { housing_fund: 0.05 }
+      company:  { housing_fund: 0.05 }
+    shenzhen:
+      personal: { housing_fund: 0.05 }
+      company:  { housing_fund: 0.05 }
+    hangzhou:
+      personal: { housing_fund: 0.12 }
+      company:  { housing_fund: 0.12 }
+    chengdu:
+      personal: { housing_fund: 0.06 }
+      company:  { housing_fund: 0.06 }
+    nanjing:
+      personal: { housing_fund: 0.08 }
+      company:  { housing_fund: 0.08 }
+    wuhan:
+      personal: { housing_fund: 0.08 }
+      company:  { housing_fund: 0.08 }
+    xian:
+      personal: { housing_fund: 0.05 }
+      company:  { housing_fund: 0.05 }
+    chongqing:
+      personal: { housing_fund: 0.07 }
+      company:  { housing_fund: 0.07 }
+    tianjin:
+      personal: { housing_fund: 0.11 }
+      company:  { housing_fund: 0.11 }
+    suzhou:
+      personal: { housing_fund: 0.08 }
+      company:  { housing_fund: 0.08 }
+    zhengzhou:
+      personal: { housing_fund: 0.08 }
+      company:  { housing_fund: 0.08 }
+    changsha:
+      personal: { housing_fund: 0.08 }
+      company:  { housing_fund: 0.08 }
+
+# ═══════════════════════════════════════════
+# 个税累进税率表（综合所得，年度）
+# 起征点：5000元/月 = 60000元/年
+# ═══════════════════════════════════════════
+individual_income_tax:
+  annual_threshold: 60000  # 年度起征点（6万/年）
+  monthly_threshold: 5000  # 月度起征点
+  # 7级超额累进税率
+  brackets:
+    - { limit: 36000,   rate: 0.03, deduction: 0 }
+    - { limit: 144000,  rate: 0.10, deduction: 2520 }
+    - { limit: 300000,  rate: 0.20, deduction: 16920 }
+    - { limit: 420000,  rate: 0.25, deduction: 31920 }
+    - { limit: 660000,  rate: 0.30, deduction: 52920 }
+    - { limit: 960000,  rate: 0.35, deduction: 85920 }
+    - { limit: 999999999, rate: 0.45, deduction: 181920 }
+
+# ═══════════════════════════════════════════
+# 汇率缓存时效配置
+# ═══════════════════════════════════════════
+exchange_rate_cache:
+  ttl_hours: 72  # 缓存有效期（小时）
+  stale_warning: "⚠️ 数据更新于 {days}天前，可能已过期"  # 陈旧警告模板

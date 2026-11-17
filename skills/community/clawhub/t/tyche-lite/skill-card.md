@@ -1,41 +1,59 @@
-## Description: <br>
-Tyche Lite processes up to 5 invoices from a CSV, shows payment status, and produces a friendly payment reminder template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tyche Lite previews up to five invoices from a CSV, summarizes payment status, and drafts one friendly overdue-payment reminder.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Freelancers and small-business users can preview a short invoice list, check paid or overdue status, and draft a friendly reminder for an overdue invoice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice CSV files can contain client names, email addresses, amounts, due dates, and payment status. <br>
-Mitigation: Use only CSV files intended for local processing and avoid sharing generated previews that expose client billing details. <br>
-Risk: The install command shown in the artifact uses pip with --break-system-packages. <br>
-Mitigation: Prefer installing the rich dependency in a virtual environment to avoid modifying system Python. <br>
+## Use Case:
 
+External users, freelancers, and small businesses use this skill to preview invoice status from a small CSV file and generate a friendly reminder for an overdue invoice. It is intended as a lightweight invoice-review helper rather than a full receivables workflow.
 
-## Reference(s): <br>
-- [Tyche Lite ClawHub page](https://clawhub.ai/occupythemilkyway/tyche-lite) <br>
-- [Publisher profile](https://clawhub.ai/user/occupythemilkyway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads at most 5 invoice rows in Lite mode and renders a local console preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The provided dependency install command uses an overly broad system-package flag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment and avoid running the command against system Python.
+
+Risk: The skill includes visible upsell messaging and a Ko-fi purchase link.
+
+Mitigation: Treat Tyche Pro and the purchase link as separate decisions from the invoice-preview task.
+
+Risk: Invoice CSV content may include client names, emails, amounts, and payment status.
+
+Mitigation: Review generated output before sharing it and avoid pasting sensitive invoice data into unrelated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/tyche-lite)
+- [ClawHub metadata homepage](https://clawhub.ai/occupythemilkyway/tyche-lite)
+- [Publisher profile](https://clawhub.ai/user/occupythemilkyway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads an optional invoice CSV through INVOICES_FILE and limits Lite previews to five invoices.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

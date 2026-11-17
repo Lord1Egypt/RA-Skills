@@ -1,48 +1,61 @@
-## Description: <br>
-Automates web browser tasks through CLI commands for navigation, interaction, data extraction, screenshots, form handling, and browser cleanup using local Chrome or SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web browser tasks using CLI commands for navigation, interaction, data extraction, screenshots, and form handling locally or via SkillBoss API Hub.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and agent operators use this skill to drive browser workflows such as visiting pages, clicking or filling elements, extracting structured page data, taking screenshots, downloading files, and closing browser sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control logged-in browser sessions and interact with private or sensitive websites. <br>
-Mitigation: Use isolated test profiles and test accounts, avoid real passwords or regulated data, and require explicit confirmation before submitting forms or acting on logged-in sites. <br>
-Risk: Page context may be routed through SkillBoss API Hub when remote mode or AI-driven actions are used. <br>
-Mitigation: Install only when remote routing is acceptable and avoid exposing confidential page content to the service. <br>
-Risk: Screenshots, downloads, cookies, and saved passwords can persist on disk with limited user control. <br>
-Mitigation: Review screenshot and download directories, verify downloaded files before use, and clear or isolate browser profiles after sensitive tasks. <br>
+## Use Case:
 
+Developers and agents use this skill to control a browser from natural-language CLI commands for navigation, page interaction, screenshots, and structured web data extraction.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/godferylindsay/godfery-browser-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/godferylindsay) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [REFERENCE.md](REFERENCE.md) <br>
-- [EXAMPLES.md](EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshots are saved as PNG files and downloads are saved to the configured downloads directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Browser actions, prompts, and entered credentials may be processed by SkillBoss API Hub in remote mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid real accounts, internal sites, regulated data, payment flows, and secrets unless that external processing is approved for the use case.
+
+Risk: Screenshots, downloads, cached analysis, cookies, and profile data may persist locally.
+
+Mitigation: Use a fresh isolated browser profile, review generated artifacts, and clear local state after sensitive sessions.
+
+Risk: Natural-language browser actions may target the wrong element or perform unintended operations.
+
+Mitigation: Navigate deliberately, use observe and screenshots to verify page state, and break sensitive workflows into small confirmed steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/godferylindsay/skills/godfery-browser-automation)
+- [Browser Automation Setup Guide](https://skillboss.co/skill.md)
+- [SKILL.md](artifact/SKILL.md)
+- [REFERENCE.md](artifact/REFERENCE.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance, Files]
+
+**Output Format:** [CLI commands and JSON results, with screenshots and downloads written as files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser state, screenshots, downloads, cached analysis, cookies, and profile data may persist locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

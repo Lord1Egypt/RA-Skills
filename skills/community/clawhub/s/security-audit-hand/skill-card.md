@@ -1,39 +1,56 @@
-## Description: <br>
-Autonomous security audit skill for regularly checking system security, finding risks, and generating reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自主安全审计 - 定期检查系统安全、发现风险、生成报告
 
-## Publisher: <br>
-[Bandwe](https://clawhub.ai/user/Bandwe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bandwe](https://clawhub.ai/user/bandwe)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw and server security posture, review configurations, analyze logs, score risks, and generate remediation-focused audit reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit runs may expose local secrets, logs, workspace metadata, process state, network information, or system configuration details. <br>
-Mitigation: Require explicit approval for each audit run, redact secrets from reports and notifications, and remove commands that print API keys or token values. <br>
-Risk: Scheduled audits may collect or retain sensitive reports without clear consent or retention controls. <br>
-Mitigation: Keep scheduled audits disabled unless report storage location, retention period, access control, and notification handling are clearly configured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bandwe/security-audit-hand) <br>
+## Use Case:
 
+Developers and operators use this skill to run structured OpenClaw security audits, inspect configuration, permissions, logs, and network posture, and generate risk-scored remediation reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown security audit report with shell commands, configuration snippets, risk scores, and remediation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audit checklists, dashboard metrics, historical trend comparisons, and scheduled audit settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect configuration, logs, network details, and credential-related files that contain sensitive data.
+
+Mitigation: Review the skill before use, limit audit scope to intended systems, and run it only where such inspection is authorized.
+
+Risk: Audit commands or log searches may expose API keys, sensitive log entries, host details, or retained audit history.
+
+Mitigation: Prefer checks that verify key presence and file permissions without printing secret values, redact log matches, and avoid saving history unless explicitly enabled.
+
+Risk: The skill describes outbound network checks and scheduled audits that may run without clear operator consent.
+
+Mitigation: Require confirmation before outbound network calls, and keep scheduled audits, notifications, and saved history disabled until intentionally configured.
+
+## Reference(s):
+
+- [Security Audit Hand on ClawHub](https://clawhub.ai/bandwe/skills/security-audit-hand)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk scores, prioritized remediation plans, audit checklists, and dashboard metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

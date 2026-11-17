@@ -1,37 +1,52 @@
-## Description: <br>
-Guides agents through a structured workflow for co-authoring documentation, proposals, technical specs, and decision documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through a structured workflow for co-authoring documentation.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pupuking723](https://clawhub.ai/user/pupuking723)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external collaborators, and developers use this skill to co-author documentation, proposals, technical specs, decision docs, and RFC-style documents through staged context gathering, section drafting, and reader testing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Overbroad connector use could expose sensitive workplace documents or messaging channels.
+
+Mitigation: Name the exact files, threads, or channels to inspect and avoid broad workspace searches unless that context is truly needed.
+
+Risk: Drafted documents may contain incorrect facts, unclear assumptions, or reader-facing gaps.
+
+Mitigation: Use reader testing and final review, and verify facts, links, and technical details before sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this skill to draft, refine, and test substantial documents through context gathering, section-by-section iteration, and reader validation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can involve user-directed access to drafts and selected workplace context. <br>
-Mitigation: Name the exact documents, links, channels, or threads the agent may read, and avoid granting broad connector access or sharing secrets unless they are required for the document. <br>
+**Output Format:** [Markdown and conversational drafting guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create or update a markdown document or artifact when the agent environment supports file or artifact tools.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, files] <br>
-**Output Format:** [Markdown guidance, structured questions, draft sections, and optional document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user to provide or authorize access to specific documents, channels, threads, or files needed for drafting.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

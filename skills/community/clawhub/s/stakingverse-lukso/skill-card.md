@@ -1,44 +1,59 @@
-## Description: <br>
-Stake LYX tokens on Stakingverse for LUKSO liquid staking, including staking, unstaking, claiming rewards, and checking sLYX balances through the deposit, withdrawal request, and oracle-claim pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users stake LYX, request unstaking, claim processed withdrawals, and check sLYX balances on Stakingverse liquid staking for LUKSO.
 
-## Publisher: <br>
-[LUKSOAgent](https://clawhub.ai/user/LUKSOAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luksoagent](https://clawhub.ai/user/luksoagent)
 
-## Use Case: <br>
-External users and developers use this skill to manage Stakingverse LUKSO liquid-staking actions, including staking LYX, requesting unstake, claiming processed withdrawals, and checking sLYX or claimable balances. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill signs real LUKSO mainnet transactions that can move or lock assets. <br>
-Mitigation: Review each transaction before execution, start with a small amount, and confirm gas costs and unstaking delays. <br>
-Risk: The scripts use a raw controller private key for transaction signing. <br>
-Mitigation: Use a dedicated low-permission controller key and avoid storing or pasting long-lived private keys in shell history. <br>
-Risk: Incorrect vault, Universal Profile, or Key Manager addresses could cause irreversible asset effects. <br>
-Mitigation: Independently verify the Stakingverse vault and account addresses before running stake, unstake, or claim commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LUKSOAgent/stakingverse-lukso) <br>
-- [Stakingverse app](https://app.stakingverse.io) <br>
-- [Stakingverse docs](https://docs.stakingverse.io) <br>
-- [LUKSO docs](https://docs.lukso.tech) <br>
+## Use Case:
 
+External users and developers use this skill to manage Stakingverse LUKSO liquid staking workflows, including staking LYX, checking sLYX balances, requesting unstake, and claiming processed withdrawals.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute or describe LUKSO mainnet staking, unstaking, claim, and balance-check operations when configured with wallet credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for a wallet or controller private key and can send LUKSO mainnet transactions involving real funds.
+
+Mitigation: Review before installing or running it with real funds, use a dedicated low-value least-privileged controller key when possible, and never paste private keys into scripts, repositories, shell history, logs, or shared automation.
+
+Risk: On-chain staking, unstaking, and claiming actions can incur gas costs and may be irreversible after submission.
+
+Mitigation: Verify the LUKSO mainnet, Universal Profile, Key Manager, vault address, and amount before every run.
+
+Risk: The security evidence reports ABI defects in the unstake and claim scripts and notes that SKILL.md references a check-claim.js file that is not present.
+
+Mitigation: Inspect and test the scripts against the intended Stakingverse contracts before relying on unstake or claim flows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luksoagent/skills/stakingverse-lukso)
+- [Stakingverse App](https://app.stakingverse.io)
+- [Stakingverse Docs](https://docs.stakingverse.io)
+- [LUKSO Docs](https://docs.lukso.tech)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of scripts that read wallet, Universal Profile, controller, and LUKSO RPC configuration from environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

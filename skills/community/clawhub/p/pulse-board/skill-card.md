@@ -1,47 +1,61 @@
-## Description: <br>
-Universal operational digest for agent skill stacks: scheduled skills append outcomes to a local log, Pulse Board summarizes the log through the configured OpenClaw agent when available, delivers the digest to Telegram, Discord, or a local log, and falls back to a mechanical summary if agent composition fails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal operational digest for agent skill stacks. Every scheduled skill logs its outcome with log-append.sh; twice daily, digest-agent.sh reads the log, composes a human-readable summary via the configured OpenClaw agent, delivers it to Telegram, Discord, or a log file, and clears the pending log.
 
-## Publisher: <br>
-[LittleJakub](https://clawhub.ai/user/LittleJakub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littlejakub](https://clawhub.ai/user/littlejakub)
 
-## Use Case: <br>
-Developers and operators use Pulse Board to turn scheduled skill and cron-job outcomes into concise operational digests. It is intended for agent skill stacks that need local logging, scheduled summaries, and optional delivery to Telegram, Discord, or a local file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cron job output stored in Pulse Board logs may contain sensitive operational data. <br>
-Mitigation: Avoid logging secrets from wrapped jobs, review local log contents, and restrict access to ~/.pulse-board. <br>
-Risk: When LLM composition is enabled, raw log content is sent to the configured OpenClaw agent and may leave the host if that agent uses a remote provider. <br>
-Mitigation: Use a local-only agent for sensitive environments and review agent configuration before enabling digest composition. <br>
-Risk: Telegram bot tokens, Discord webhooks, and related configuration grant delivery access if exposed. <br>
-Mitigation: Protect pulse.yaml and any secrets env file, prefer environment-based secret storage, and rotate tokens or webhooks after exposure. <br>
-Risk: The installer and plug scripts modify the user crontab. <br>
-Mitigation: Review the prompted crontab changes before confirming installation or plugging jobs, and use unplug.sh to remove registered entries. <br>
+## Use Case:
 
+Developers and operators use Pulse Board to collect outcomes from scheduled agent-skill cron jobs, summarize recent activity, and deliver operational digests through a configured channel.
 
-## Reference(s): <br>
-- [Pulse Board ClawHub page](https://clawhub.ai/LittleJakub/pulse-board) <br>
-- [Publisher profile](https://clawhub.ai/user/LittleJakub) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
-- [_meta.json](_meta.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Plain text and Markdown digests, plus shell-driven cron and configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local log files and optional Telegram or Discord messages from cron outcome logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence, _meta.json, CHANGELOG.md released 2026-03-09) <br>
+Risk: The installer and plug workflow can add persistent entries to the user's crontab.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed cron entries before accepting installation, plug only trusted jobs, and periodically inspect the user crontab for Pulse Board entries.
+
+Risk: Runtime scripts can source a shared secrets file as shell code and may store notification credentials in local configuration.
+
+Mitigation: Use tightly permissioned config and secrets files, keep the secrets file limited to trusted assignments, and avoid sharing the Pulse Board home directory with untrusted users.
+
+Risk: Operational log content can be sent to the configured OpenClaw agent, Telegram, or Discord.
+
+Mitigation: Use a local or low-privilege summarization agent when privacy matters, choose log-only delivery for sensitive environments, and prevent plugged cron jobs from writing secrets or incident-sensitive data to logs.
+
+Risk: Cron command construction depends on the trusted command and schedule values supplied during setup or plug-in registration.
+
+Mitigation: Validate cron expressions and command strings before registration, and avoid registering commands from untrusted sources.
+
+## Reference(s):
+
+- [Pulse Board on ClawHub](https://clawhub.ai/littlejakub/skills/pulse-board)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and shell-oriented operational digest output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local configuration, registry, and digest log files, and may deliver digest text to Telegram or Discord when configured.]
+
+## Skill Version(s):
+
+1.1.3 (source: server evidence and CHANGELOG.md, released 2026-03-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

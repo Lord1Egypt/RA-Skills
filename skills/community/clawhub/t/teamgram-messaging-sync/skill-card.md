@@ -1,39 +1,54 @@
-## Description: <br>
-Documents the message delivery and sync distribution layer in Teamgram Server, covering Kafka Inbox-T/Sync-T topics, inbox/outbox model, and the complete message send flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents the message delivery and sync distribution layer in Teamgram Server, covering Kafka Inbox-T/Sync-T topics, inbox/outbox model, and the complete message send flow.
 
-## Publisher: <br>
-[zhihang9978](https://clawhub.ai/user/zhihang9978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihang9978](https://clawhub.ai/user/zhihang9978)
 
-## Use Case: <br>
-Developers and engineers use this skill as reference material for understanding Teamgram Server's Kafka-based message delivery, inbox/outbox storage model, and online sync distribution flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration and code snippets may be mistaken for ready-to-run deployment steps. <br>
-Mitigation: Treat snippets as documentation, review them against the upstream Teamgram Server project, and adapt them manually before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand Teamgram Server's asynchronous message delivery and sync distribution path, including Kafka topics, inbox/outbox writes, and service responsibilities.
 
-## Reference(s): <br>
-- [Teamgram Server repository](https://github.com/teamgram/teamgram-server) <br>
-- [Teamgram Messaging Sync release page](https://clawhub.ai/zhihang9978/teamgram-messaging-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown reference material with configuration and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code, network calls, or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill is documentation-only but includes architecture notes, code snippets, and configuration examples that could be mistaken for directly applicable operational instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the content as static Teamgram reference material and verify implementation details against the Teamgram Server repository before applying changes.
+
+Risk: Installing or using the skill should not require sensitive access, credentials, shell access, network access, or write permissions.
+
+Mitigation: Do not grant additional runtime permissions for this skill; use it as read-only documentation unless separate reviewed evidence justifies broader access.
+
+## Reference(s):
+
+- [Teamgram Server repository](https://github.com/teamgram/teamgram-server)
+- [ClawHub skill page](https://clawhub.ai/zhihang9978/skills/teamgram-messaging-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable behavior, credentials, network access, or write permissions are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

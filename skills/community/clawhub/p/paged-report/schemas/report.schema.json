@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/mfang0126/paged-report/main/schemas/report.schema.json",
+  "title": "Paged Report input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["family", "meta", "pages"],
+  "properties": {
+    "family": {
+      "type": "string",
+      "enum": ["proposal", "data-audit", "progress", "confirmation", "handoff"]
+    },
+    "toc": {"type": "boolean"},
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/page"}
+    }
+  },
+  "$defs": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title"],
+      "properties": {
+        "language": {"type": "string", "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"},
+        "title": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"},
+        "client": {"type": "string"},
+        "category": {"type": "string"},
+        "subtitle": {"type": "string"},
+        "date": {"type": "string"},
+        "version": {"type": "string"},
+        "project": {"type": "string"},
+        "footer": {"type": "string"}
+      }
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sections"],
+      "properties": {
+        "label": {"type": "string"},
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/section"}
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title"],
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"},
+        "components": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/component"}
+        }
+      }
+    },
+    "component": {
+      "oneOf": [
+        {"$ref": "#/$defs/table"},
+        {"$ref": "#/$defs/callout"},
+        {"$ref": "#/$defs/tag"},
+        {"$ref": "#/$defs/kpi"},
+        {"$ref": "#/$defs/progress"},
+        {"$ref": "#/$defs/statusRow"},
+        {"$ref": "#/$defs/checklist"},
+        {"$ref": "#/$defs/grid"},
+        {"$ref": "#/$defs/divider"}
+      ]
+    },
+    "table": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "columns", "rows"],
+      "properties": {
+        "type": {"enum": ["table", "compare_table"]},
+        "columns": {"type": "array", "minItems": 1, "items": {"type": ["string", "number"]}},
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/tableCell"},
+            "$comment": "The renderer requires each row to contain exactly as many cells as columns."
+          }
+        }
+      }
+    },
+    "tableCell": {
+      "oneOf": [
+        {"type": ["string", "number"]},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text"],
+          "properties": {
+            "text": {"type": ["string", "number"]},
+            "class": {"type": "string"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tag"],
+          "properties": {
+            "tag": {"$ref": "#/$defs/tableTag"},
+            "class": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "tableTag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"},
+        "variant": {"enum": ["blue", "green", "amber", "red"]}
+      }
+    },
+    "callout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "text"],
+      "properties": {
+        "type": {"const": "callout"},
+        "variant": {"enum": ["blue", "green", "amber", "red"]},
+        "label": {"type": "string"},
+        "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"}
+      }
+    },
+    "tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "text"],
+      "properties": {
+        "type": {"const": "tag"},
+        "variant": {"enum": ["blue", "green", "amber", "red"]},
+        "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"}
+      }
+    },
+    "kpi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {"const": "kpi"},
+        "value": {"type": ["string", "number"]},
+        "unit": {"type": "string"}
+      }
+    },
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {"const": "progress"},
+        "variant": {"enum": ["blue", "green", "amber", "red"]},
+        "value": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    },
+    "statusRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label", "status"],
+      "properties": {
+        "type": {"const": "status_row"},
+        "variant": {"enum": ["blue", "green", "amber", "red"]},
+        "label": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"},
+        "status": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"}
+      }
+    },
+    "checklist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "items"],
+      "properties": {
+        "type": {"const": "checklist"},
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": {
+              "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"},
+              "done": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "grid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "cards"],
+      "properties": {
+        "type": {"const": "grid"},
+        "columns": {"enum": [2, 3]},
+        "cards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title"],
+            "additionalProperties": false,
+            "properties": {
+              "title": {"type": "string", "minLength": 1, "pattern": "^(?![\\u0009-\\u000d\\u001c-\\u001f\\u0020\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]*$)[\\s\\S]+$"},
+              "body": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "divider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {"type": {"const": "divider"}}
+    }
+  }
+}

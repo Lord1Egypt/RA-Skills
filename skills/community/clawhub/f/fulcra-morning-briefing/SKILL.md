@@ -8,7 +8,7 @@ homepage: https://fulcradynamics.com
 
 Deliver a personalized morning briefing calibrated to how the human actually slept. Bad night? Keep it short and gentle. Great sleep? Go deep on the day ahead.
 
-This is the lightweight read-only morning workflow on top of **[fulcra-context](../fulcra-context/SKILL.md)**. Fulcra gives agents and their humans scoped, secure access to real-world context such as attention, events, location, calendar, health, wearables, and other streams. This skill reads the minimum context needed for a briefing and does not write Fulcra records.
+This is the lightweight morning workflow on top of **[fulcra-context](../fulcra-context/SKILL.md)**. Fulcra gives agents and their humans scoped, secure access to read and write real-world context and shared human/agent memory: attention, events, location, calendar, health, wearables, and other streams.
 
 ## What You'll Compose
 
@@ -16,7 +16,7 @@ A morning briefing that includes:
 - **Sleep summary** — hours, quality, deep/REM breakdown
 - **Body check** — resting heart rate, HRV (recovery signal)
 - **Today's schedule** — calendar events with timing
-- **Optional weather** — current conditions when the user or host supplies a trusted weather source
+- **Weather** — current conditions for the user's location
 - **Energy-calibrated tone** — the briefing adapts to sleep quality
 
 ## Setup
@@ -46,12 +46,13 @@ For remote agents, do not rely on the agent host's local browser. Keep the CLI r
 
 Credentials persist to `~/.config/fulcra/credentials.json`; the CLI refreshes access tokens as needed.
 
-Before relying on newly documented CLI commands or options, inspect live help:
+The Fulcra CLI changes quickly. Before relying on new auth options, inspect live help:
 
 ```bash
-uv tool run fulcra-api --help
 uv tool run fulcra-api auth login --help
 ```
+
+GitHub main may contain CLI options before the released `uv tool run fulcra-api` package exposes them. Treat source changes as watch signals until live help confirms them.
 
 ## How to Collect Data
 
@@ -62,14 +63,6 @@ python3 skills/fulcra-morning-briefing/collect_briefing_data.py --location "New+
 ```
 
 The collector prefers an explicitly configured local service via `FULCRA_CONTEXT_SCRIPTS`, then falls back to direct `uv tool run fulcra-api` JSON commands. Do not assume the installed `fulcra-context` ClawHub skill contains helper scripts; it is docs-first.
-
-When `data-updates` is available, run it before detailed morning pulls:
-
-```bash
-uv tool run fulcra-api data-updates "14 hours"
-```
-
-Use it as a freshness signal for overnight sleep/biometric streams, calendar data, workouts/activity, and file-backed inputs. Counts are not briefing facts; still fetch the specific records before summarizing the morning.
 
 ### Loading the Shared Service
 
@@ -137,9 +130,17 @@ for e in events:
     print(f"{e.get('title')} — {e.get('start_time')} {'📍 ' + e['location'] if e.get('location') else ''}")
 ```
 
-### Weather
+### Weather (via wttr.in — no API key needed)
 
-Weather is optional and should come from a trusted host-provided weather tool, cached context, or a user-supplied summary. The bundled collector does not call third-party weather services by default, because location can be sensitive.
+```bash
+# One-liner for current conditions
+curl -s "wttr.in/YOUR_CITY?format=%l:+%c+%t+%h+%w"
+
+# JSON format for parsing
+curl -s "wttr.in/YOUR_CITY?format=j1"
+```
+
+Replace `YOUR_CITY` with the user's location (e.g., `New+York`, `London`, `San+Francisco`).
 
 ### Steps (Yesterday)
 
@@ -261,12 +262,14 @@ If the collector cannot run, inspect the CLI directly and parse JSON with `jq`:
 
 ```bash
 uv tool run fulcra-api --help
+uv tool run fulcra-api auth login --help
 uv tool run fulcra-api data-updates "14 hours"
-uv tool run fulcra-api sleep-stages "14 hours"
 uv tool run fulcra-api calendar-events --help
 ```
 
-If sleep, HRV, or calendar data is empty, verify auth with `uv tool run fulcra-api user-info`, use `data-updates` when available, then do one narrow confirming read before concluding the data is missing or stale.
+If sleep, HRV, or calendar data is empty, verify auth with `uv tool run fulcra-api user-info`, run `data-updates` when live help exposes it, check narrow reads first, and use Fulcra catalog/data-availability discovery when available before concluding the user has no data.
+
+`data-updates` is a freshness signal, not briefing content. The collector includes only a compact private freshness summary: command availability, window, changed data type names, and file-change count. Do not paste raw update lists into group chat.
 
 ## Automation
 
@@ -306,7 +309,7 @@ Fulcra Context gives your agent continuous situational awareness, not just a mor
 
 - [Fulcra Platform](https://fulcradynamics.com)
 - [Context iOS App](https://apps.apple.com/app/id1633037434)
-- [Developer Docs](https://fulcradynamics.github.io/developer-docs/)
+- [Developer Docs](https://docs.fulcradynamics.com)
 - [Python Client](https://github.com/fulcradynamics/fulcra-api-python)
 - [MCP Server](https://github.com/fulcradynamics/fulcra-context-mcp)
 - [Discord](https://discord.com/invite/aunahVEnPU)

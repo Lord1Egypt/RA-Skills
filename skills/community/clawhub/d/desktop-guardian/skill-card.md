@@ -1,44 +1,64 @@
-## Description: <br>
-Desktop Guardian gives OpenClaw agents macOS GUI automation through Hammerspoon, including window and app queries, browser and tab management, dialog handling, keypresses, and policy-based desktop monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desktop Guardian gives OpenClaw agents macOS GUI automation through Hammerspoon, including window queries, app and browser-tab management, dialog handling, keypresses, and desktop policy monitoring.
 
-## Publisher: <br>
-[s3rous](https://clawhub.ai/user/s3rous) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[s3rous](https://clawhub.ai/user/s3rous)
 
-## Use Case: <br>
-Developers and operators use this skill to let an OpenClaw agent inspect and control a macOS desktop, enforce configurable desktop policies, and surface dialogs or app activity that may need human attention. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables always-on macOS desktop automation that can close apps, browser windows, tabs, and dialogs automatically. <br>
-Mitigation: Install only when that behavior is intended, review the default policy before enabling cleanup, and use ask or disabled actions where automatic cleanup is not acceptable. <br>
-Risk: Desktop automation depends on Hammerspoon Accessibility permission and can act on the user's active desktop context. <br>
-Mitigation: Grant Accessibility permission only after reviewing the skill, keep the app whitelist narrow, and use the documented kill switch to stop actions immediately. <br>
-Risk: The security guidance says to inspect or obtain the missing DesktopGuardian Spoon source before enabling the skill. <br>
-Mitigation: Verify the Spoon source and installed files before launch, then confirm cleanup and dialog policies match the user's risk tolerance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hammerspoon Setup Guide](references/hammerspoon-setup.md) <br>
-- [macOS Permissions for Desktop Guardian](references/macos-permissions.md) <br>
-- [Desktop Guardian Policy Configuration Guide](references/policies.md) <br>
-- [Hammerspoon](https://www.hammerspoon.org/) <br>
+## Use Case:
 
+Developers and operators use this skill to let an OpenClaw agent inspect and manage a macOS desktop, enforce configurable cleanup policies, and alert when human attention is needed for dialogs or policy violations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML configuration, and JSON-oriented command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Hammerspoon Accessibility permission for full control, and optional Chrome DevTools Protocol access for tab-level browser actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and configures an always-on macOS desktop controller that can close apps, close browser tabs, and dismiss dialogs automatically.
+
+Mitigation: Install only when that level of desktop automation is intended, review policy.yaml before enabling it, and adjust cleanup.enabled, cleanup.apps.action, browser actions, and dialogs.auto_dismiss before use.
+
+Risk: The installer may modify Hammerspoon configuration, set up LaunchAgent persistence, and install unpinned dependencies.
+
+Mitigation: Inspect the installer before running it, consider running the monitor manually first, and disable or remove persistence if continuous monitoring is not required.
+
+Risk: Accessibility permission gives Hammerspoon broad control over the macOS GUI.
+
+Mitigation: Grant Accessibility only in trusted environments, use the documented kill switch to stop actions quickly, and keep hardcoded protected-app and dialog safeguards enabled.
+
+Risk: Chrome DevTools Protocol support can expose browser tab control to same-user local processes when enabled on localhost:9222.
+
+Mitigation: Enable Chrome remote debugging only when tab-level monitoring is required and keep it limited to the local user trust boundary.
+
+## Reference(s):
+
+- [macOS Permissions for Desktop Guardian](references/macos-permissions.md)
+- [Desktop Guardian Policy Configuration Guide](references/policies.md)
+- [Hammerspoon Setup Guide](references/hammerspoon-setup.md)
+- [Hammerspoon](https://www.hammerspoon.org/)
+- [Desktop Guardian on ClawHub](https://clawhub.ai/s3rous/skills/desktop-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation of local macOS automation components and policy files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

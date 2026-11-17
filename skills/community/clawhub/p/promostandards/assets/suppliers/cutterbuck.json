@@ -1,0 +1,30 @@
+{
+  "_note": "Endpoints from the PromoStandards registry capture, except PRODUCT: the registry lists only Product Data 1.0.0, while Cutter & Buck's own integration document specifies 2.0.0 at ProductData200.asmx. The vendor document wins. If 2.0.0 misbehaves, fall back to https://api.cbcorporate.com/promostandards/ProductData.asmx at wsVersion 1.0.0. Cutter & Buck also publishes MED 1.1.0, ODRSTAT 1.0.0, OSN 1.0.0 and INVC 1.0.0, which this skill has no adapters for.",
+  "supplier": "Cutter",
+  "credentials": {
+    "id": "${PS_CUTTER_ID}",
+    "password": "${PS_CUTTER_PASSWORD}"
+  },
+  "services": {
+    "INV": {
+      "url": "https://api.cbcorporate.com/promostandards/InventoryService200.asmx",
+      "wsVersion": "2.0.0",
+      "status": "Production"
+    },
+    "PO": {
+      "url": "https://api.cbcorporate.com/promostandards/PurchaseOrder.asmx",
+      "wsVersion": "1.0.0",
+      "testUrl": "https://qapi.cbcorporate.com/promostandards/PurchaseOrder.asmx",
+      "status": "Production"
+    },
+    "PPC": {
+      "url": "https://api.cbcorporate.com/promostandards/ProductConfigPricing.asmx",
+      "wsVersion": "1.0.0",
+      "status": "Production"
+    },
+    "PRODUCT": {
+      "url": "https://api.cbcorporate.com/promostandards/ProductData200.asmx",
+      "wsVersion": "2.0.0"
+    }
+  }
+}

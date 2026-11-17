@@ -1,41 +1,54 @@
-## Description: <br>
-Optimize web performance and LLM API costs. Covers loading speed, runtime efficiency, resource optimization, and cost-aware LLM pipelines with model routing, budget tracking, and prompt caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize web performance and LLM API costs. Covers loading speed, runtime efficiency, resource optimization, and cost-aware LLM pipelines with model routing, budget tracking, and prompt caching.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose web performance bottlenecks, set performance budgets, optimize assets and runtime behavior, and control LLM API spend with routing, budget tracking, retries, and prompt caching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Performance and caching recommendations can change production behavior, content freshness, or client-side runtime characteristics. <br>
-Mitigation: Review proposed changes, test them in staging, and monitor Core Web Vitals and application behavior before deploying broadly. <br>
-Risk: LLM model routing, retry, caching, and budget guidance can affect output quality, latency, or API spend. <br>
-Mitigation: Set explicit budgets, log routing decisions, validate quality on representative tasks, and keep rollback paths for cost-control changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to find and prioritize web performance bottlenecks, improve frontend loading and runtime behavior, and reduce LLM API spend with routing, prompt caching, retries, and budget tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huamu668/performance-ecc) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include before/after metrics, performance budgets, code snippets, and configuration recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; frontmatter version 2.0) <br>
+Risk: Running the Lighthouse CLI example without pinning can execute an unexpected package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the Lighthouse package version or run the command in an isolated environment before using the result.
+
+Risk: LLM cost-optimization examples may send prompts or user data to external API providers.
+
+Mitigation: Review provider data handling, redact sensitive content, and avoid sending confidential prompts or user data unless approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huamu668/skills/performance-ecc)
+- [Core Web Vitals](../core-web-vitals/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optimization checklists, performance budgets, implementation examples, and measurement commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

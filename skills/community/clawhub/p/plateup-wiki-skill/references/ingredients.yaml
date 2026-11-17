@@ -1,0 +1,76 @@
+meta:
+  source: https://wiki.plateupgame.com/ingredients
+  retrieved: 2026-11-05
+  game_version: 1.5.x
+  key: English canonical item name
+  note: "Fish variants are assigned by Fish Provider according to recipe/cards; provider is not a normal blueprint."
+
+ingredients:
+  Apple: [Apple Pies, Apple Salad, Cheese Board]
+  Bamboo: [Bamboo, Bamboo Stir Fry]
+  Beans: [Breakfast Beans]
+  Blue Fish: [Fish]
+  Pink Fish: [Fish]
+  Crab: [Crab Cake]
+  Fish Fillet: [Fish Fillet]
+  Oysters: [Oysters]
+  Spiny Fish: [Spiny Fish]
+  Broccoli: [Broccoli, Broccoli Cheese Soup, Stir Fry, Vegetable Pies]
+  Burger Buns: [Burgers]
+  Butter: [Cheesy Spaghetti, Lasagne]
+  Carrot: [Carrot Soup, Dumplings, Stir Fry, Vegetable Pies]
+  Cheese: [Broccoli Cheese Soup, Cheese Board, Cheeseburgers, Mushroom Pizza, Onion Pizza, Pizza, Tacos]
+  Cherries: [Cherry Pie]
+  Chocolate: [Cake Flavour - Chocolate]
+  Christmas Crackers: [Christmas Crackers]
+  Corn: [Corn on the Cob]
+  Cranberry: [Turkey - Cranberry Sauce, Sundae Toppings]
+  Eggs: [Apple Salad, Breakfast Eggs, Crab Cake, Fresh Patties, Potato Salad, Sponge Cake]
+  Flour: [Apple Pies, Bread, Breakfast, Cherry Pie, Crab Cake, Dumplings, Onion Rings, Mushroom Pie, Mushroom Pizza, Onion Pizza, Pies, Pizza, Pumpkin Pies, Turkey - Stuffing, Vegetable Pies, Sponge Cake, Cupcake, Cookies, Brownies, Doughnuts]
+  Ham: [Sandwich]
+  Hot Dog: [Hot Dogs]
+  Hot Dog Bun: [Hot Dogs]
+  Ice Cream: [Ice Cream, Affogato]
+  Lettuce: [Apple Salad, Salad, Tacos]
+  Lemon: [Cake Flavour - Lemon]
+  Mandarin: [Mandarin Starter]
+  Meat: [Dumplings, Fresh Patties, Meat Soup, Pies, Steak, Steak Stir Fry]
+  Bone-in Meat: [Bone-in Steaks]
+  Thick Cut Meat: [Thick Cut Steaks]
+  Thin Cut Meat: [Thin Cut Steaks]
+  Milk: [Sponge Cakes, Cupcake, Cookies, Brownies, Doughnuts, Latte]
+  Mince: [Spaghetti Bolognese, Lasagne, Tacos]
+  Mushrooms: [Breakfast Extras, Mushroom Pie, Mushroom Pizza, Mushroom Stir Fry, Steak Sauce - Mushroom, Steak Topping - Mushroom]
+  Nuts: [Apple Salad, Cheese Board, Nut Roast, Sundae Toppings]
+  Oil: [Apple Salad, Mushroom Pizza, Onion Pizza, Pizza, Potato Salad]
+  Olives: [Salad Toppings, Sandwich - Toppers]
+  Onion: [Broccoli Cheese Soup, Burger Toppings, Carrot Soup, Meat Soup, Onion Pizza, Onion Rings, Potato Salad, Pumpkin Soup, Salad Toppings, Steak Sauce - Mushroom, Steak Sauce - Red Wine Jus, Tacos, Tomato Soup, Turkey - Gravy, Turkey - Stuffing]
+  Pasta Sheet: [Lasagne]
+  Patties: [Burgers]
+  Pickles: [Sandwich - Toppers]
+  Potato: [Chips, Mashed Potato, Potato Salad, Roast Potato]
+  Pumpkin: [Pumpkin Pies, Pumpkin Seed, Pumpkin Soup]
+  Rice: [Bamboo Stir Fry, Mushroom Stir Fry, Steak Stir Fry, Stir Fry]
+  Seaweed: [Seaweed]
+  Spaghetti: [Spaghetti, Spaghetti Bolognese, Cheesy Spaghetti]
+  Strawberries: [Sundaes II: Homemade]
+  Sugar: [Turkey - Cranberry Sauce, Sponge Cakes, Cupcake, Cookies, Brownies, Doughnuts, Sundaes II: Homemade]
+  Sundae Glasses: [Sundaes]
+  Tea Bag: [Tea]
+  Tea Cup: [Tea]
+  Tea Pot: [Tea]
+  Tomato: [Breakfast Extras, Burger Toppings, Mushroom Pizza, Onion Pizza, Pizza, Salad, Steak Topping - Tomato, Tacos, Tomato Soup]
+  Tortillas: [Tacos, Fajitas]
+  Turkey: [Turkey]
+  Wine: [Steak Sauce - Red Wine Jus]
+  Fish Provider: [Fish]
+
+extras_and_equipment:
+  Chocolate Syrup: {unlocked_by: Extra Chocolate Syrup, requested_for: [Sundaes]}
+  Cupcake Stand: {unlocked_by: Cupcake Stand, requested_for: [Black Coffee, Iced Coffee, Latte, Tea]}
+  Extra Ketchup: {unlocked_by: Hot Dogs, requested_for: [Hot Dogs]}
+  Extra Mustard: {unlocked_by: Hot Dog - Mustard, requested_for: [Hot Dogs]}
+  Extra Soy Sauce: {unlocked_by: [Dumpling - Soy Sauce, Stir Fry - Soy Sauce], requested_for: [Dumplings, Stir Fry variants]}
+  Milk: {unlocked_by: Extra Milk, requested_for: [Black Coffee, Iced Coffee, Latte, Tea]}
+  Strawberry Syrup: {unlocked_by: Extra Strawberry Syrup, requested_for: [Sundaes]}
+  Sugar: {unlocked_by: Extra Sugar, requested_for: [Black Coffee, Iced Coffee, Latte, Tea]}

@@ -1,39 +1,53 @@
-## Description: <br>
-Session Log creates local timestamped Markdown session files for OpenClaw agents and records short topic summaries so session history survives resets and can feed daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight session logging for OpenClaw agents that creates timestamped session files and appends concise topic summaries during conversation.
 
-## Publisher: <br>
-[meigesir](https://clawhub.ai/user/meigesir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meigesir](https://clawhub.ai/user/meigesir)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local session logging to OpenClaw workspaces, including per-agent logs and daily report inputs across resets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local session logs persist conversation summaries on disk and may capture sensitive information if users record it. <br>
-Mitigation: Keep the sessions folder in a controlled workspace, avoid recording secrets or sensitive personal data, and define retention rules before broad use. <br>
-Risk: Daily report workflows can aggregate logs from multiple agents and widen access to conversation summaries. <br>
-Mitigation: Limit report access to intended readers and document which agent workspaces are included. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain persistent local conversation summaries across session resets and to support daily multi-agent recap workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with bash commands and generated Markdown session files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped local session files in a user-selected sessions directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Persistent session logs may contain secrets or sensitive personal data if agents write them into summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep logs in a known workspace sessions folder and instruct agents not to include secrets or sensitive personal data.
+
+Risk: Local session summaries may be retained longer than intended.
+
+Mitigation: Define and apply a retention or deletion policy for generated session log files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meigesir/skills/session-log)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local Markdown session log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent local session files under a configured sessions directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

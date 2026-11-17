@@ -10,12 +10,12 @@
           "type": "array",
           "description": "Module list (including groups, tree structure, supporting multi-level nesting)",
           "items": {
-            "$ref": "#/definitions/ObjectRef"
+            "$ref": "#/$defs/ObjectRef"
           }
         }
       },
       "required": ["moduleList"],
-      "definitions": {
+      "$defs": {
         "ObjectRef": {
           "type": "object",
           "description": "Module or directory node",
@@ -28,7 +28,7 @@
               "type": "array",
               "description": "Sub-module list",
               "items": {
-                "$ref": "#/definitions/ObjectRef"
+                "$ref": "#/$defs/ObjectRef"
               }
             }
           },

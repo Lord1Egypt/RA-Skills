@@ -1,0 +1,39 @@
+{
+  "title": "Text-Only Sample",
+  "bgBrightness": 0,
+  "layoutMode": "horizontal",
+  "tiers": [
+    {
+      "name": "S",
+      "color": "#FF7F7F",
+      "cards": [
+        { "type": "text", "text": "Alpha", "detail": "Top pick — reliable across the board." },
+        { "type": "text", "text": "Beta", "detail": "Almost as good as Alpha; cheaper." }
+      ]
+    },
+    {
+      "name": "A",
+      "color": "#FFBF7F",
+      "cards": [
+        { "type": "text", "text": "Gamma", "detail": "Strong but situational." }
+      ]
+    },
+    {
+      "name": "B",
+      "color": "#FFFF7F",
+      "cards": [
+        { "type": "text", "text": "Delta", "detail": "Average. Fine for casual use." }
+      ]
+    },
+    {
+      "name": "C",
+      "color": "#7FBFFF",
+      "cards": [
+        { "type": "text", "text": "Epsilon", "detail": "Weak; only if you must." }
+      ]
+    }
+  ],
+  "candidates": [
+    { "type": "text", "text": "Zeta", "detail": "Haven't decided yet." }
+  ]
+}

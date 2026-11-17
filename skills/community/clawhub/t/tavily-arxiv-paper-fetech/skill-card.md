@@ -1,41 +1,56 @@
-## Description: <br>
-Resolve one or more paper titles to reliable arXiv papers using Tavily search, then fetch compact arXiv metadata and abstracts with a local helper script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve one or more paper titles to reliable arXiv papers using Tavily search, then fetch compact arXiv metadata and abstracts with a local helper script.
 
-## Publisher: <br>
-[red0orange](https://clawhub.ai/user/red0orange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[red0orange](https://clawhub.ai/user/red0orange)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to resolve supplied paper titles to canonical arXiv records, fetch title-author-abstract metadata, and leave a reusable JSONL log plus Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses Tavily search and requests to arxiv.org, so results depend on external service availability and returned search quality. <br>
-Mitigation: Run the lookup only when those external requests are acceptable, process titles sequentially, and record errors or no_match results instead of guessing. <br>
-Risk: The skill runs local Python helper scripts and writes fetched metadata into the selected work directory. <br>
-Mitigation: Use a deliberate WORKDIR, keep generated files inside that folder, and review paper_fetches.jsonl and paper_fetch_report.md before relying on them. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to resolve paper titles to canonical arXiv records and produce a reusable lookup folder with normalized inputs, per-title JSONL results, and a Markdown report.
 
-## Reference(s): <br>
-- [Examples](examples.md) <br>
-- [arXiv](https://arxiv.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown report with JSONL process log and compact JSON metadata from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes input_titles.md, paper_fetches.jsonl, and paper_fetch_report.md under the chosen WORKDIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad command, file, agent, MCP, and web authority for a narrow arXiv lookup workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with narrowed permissions limited to Tavily, arXiv, the bundled helper scripts, and the intended work directory.
+
+Risk: Generated Markdown reports may include paper titles, metadata, or abstracts sourced from external services.
+
+Mitigation: Treat generated reports as untrusted content and review them before using them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/red0orange/skills/tavily-arxiv-paper-fetech)
+- [Publisher profile](https://clawhub.ai/user/red0orange)
+- [Examples](examples.md)
+- [arXiv abs URL pattern](https://arxiv.org/abs/xxxx.xxxxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown report and JSONL process log with compact arXiv metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes input_titles.md, paper_fetches.jsonl, and paper_fetch_report.md under the requested work directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

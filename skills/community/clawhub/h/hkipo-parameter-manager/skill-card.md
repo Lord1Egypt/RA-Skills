@@ -1,50 +1,63 @@
-## Description: <br>
-Save, inspect, activate, and compare Hong Kong IPO scoring parameter versions across weights, thresholds, and cost assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save, inspect, activate, and compare Hong Kong IPO scoring parameter versions across weights, thresholds, and cost assumptions.
 
-## Publisher: <br>
-[hackstoic](https://clawhub.ai/user/hackstoic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackstoic](https://clawhub.ai/user/hackstoic)
 
-## Use Case: <br>
-Developers and analysts use this skill to manage stateful Hong Kong IPO scoring parameters, compare candidate versions, and activate the parameter version used by later scoring or recommendation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the package exposes broader financial-data, profile, network, and persistence behavior than the parameter-manager description alone suggests. <br>
-Mitigation: Review the runtime before installation, run only explicit commands, and avoid granting the skill open-ended authority over financial workflows. <br>
-Risk: The runtime may store financial preferences and review history locally. <br>
-Mitigation: Treat ~/.hkipo-next/data/hkipo.db as sensitive local data, protect or remove it when no longer needed, and avoid storing unnecessary personal financial assumptions. <br>
-Risk: The runtime may cache market data and make requests to third-party finance sites. <br>
-Mitigation: Use it only where those network requests are acceptable, and verify external data before relying on generated IPO decisions or recommendations. <br>
+## Use Case:
 
+Developers and IPO-analysis agents use this skill to manage versioned Hong Kong IPO scoring parameters before generating recommendations. It supports inspecting active settings, saving tuned candidates, activating defaults, and comparing parameter versions on representative symbols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hackstoic/hkipo-parameter-manager) <br>
-- [hkipo-next runtime README](runtime/hkipo-next/README.md) <br>
-- [AiPO API documentation](runtime/hkipo-next/references/aipo-api.md) <br>
-- [API Guide](runtime/hkipo-next/references/api-guide.md) <br>
-- [HK IPO mechanism guide](runtime/hkipo-next/references/ipo-mechanism.md) <br>
-- [HK IPO analysis guide](runtime/hkipo-next/references/analysis-guide.md) <br>
-- [Risk preference guide](runtime/hkipo-next/references/risk-preferences.md) <br>
-- [AiPO service](https://aipo.myiqdii.com) <br>
-- [AASTOCKS IPO market](https://www.aastocks.com/tc/stocks/market/ipo/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [CLI output in JSON, text, or markdown, with parameter-management commands and structured response objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parameter versions are stored locally by default under ~/.hkipo-next/data/hkipo.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, release metadata, pyproject.toml) <br>
+Risk: The bundled runtime exposes broader HK IPO workflows than the parameter-manager description, including scraping, scoring, profile, watchlist, review, and suggestion commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only explicit params commands for parameter management, and review any use of score, review, apply-suggestions, profile, or watchlist commands before execution.
+
+Risk: Parameter versions are stored in the user's HKIPO runtime data directory by default.
+
+Mitigation: Use an isolated HKIPO_HOME or test environment when evaluating the skill, especially before activating a parameter version for later scoring.
+
+Risk: The runtime is executed through uv and depends on bundled Python code and dependencies.
+
+Mitigation: Prefer a locked dependency install and review the included runtime before running commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hackstoic/skills/hkipo-parameter-manager)
+- [hkipo-next README](runtime/hkipo-next/README.md)
+- [API Guide](runtime/hkipo-next/references/api-guide.md)
+- [Risk Preferences](runtime/hkipo-next/references/risk-preferences.md)
+- [AiPO API](runtime/hkipo-next/references/aipo-api.md)
+- [AAStocks IPO market page](https://www.aastocks.com/tc/stocks/market/ipo/)
+- [AiPO data source](https://aipo.myiqdii.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks and JSON-oriented output cues]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parameter commands may read or write version data under ~/.hkipo-next/data/hkipo.db unless HKIPO_HOME is isolated.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, pyproject.toml, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

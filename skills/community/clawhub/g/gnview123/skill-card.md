@@ -1,42 +1,53 @@
-## Description: <br>
-Documents API endpoints for extracting and downloading Douyin, TikTok, and Bilibili video, user, comment, live, and collection data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloader helps agents reference Douyin, TikTok, and Bilibili API endpoints for extracting video details, play URLs, user posts, collections, comments, live room information, and dynamic data.
 
-## Publisher: <br>
-[goldknife6](https://clawhub.ai/user/goldknife6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldknife6](https://clawhub.ai/user/goldknife6)
 
-## Use Case: <br>
-External developers and automation agents use this skill to call a configured Douyin TikTok Download API host for social-video metadata, play URLs, comments, live data, ID extraction, and downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to send account cookies and exposes cookie-update endpoints. <br>
-Mitigation: Use only dedicated or low-privilege accounts, avoid personal cookies, and deploy with HTTPS and secret handling before sending cookies. <br>
-Risk: The skill exposes request-signing token endpoints for Douyin and TikTok API access. <br>
-Mitigation: Use signing-token endpoints only with explicit authorization and avoid workflows that bypass service restrictions or access controls. <br>
-Risk: The skill depends on a configured API host for extraction and downloading behavior. <br>
-Mitigation: Install only when the configured host is trusted, controlled, and appropriate for the intended scraping or downloading functions. <br>
+## Use Case:
 
+Developers and agents use this skill as an API reference for collecting social-video metadata, playback links, user profile data, comments, live room details, and related endpoint parameters from Douyin, TikTok, and Bilibili services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goldknife6/gnview123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown documentation with endpoint paths, parameter tables, examples, and JSON response samples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured API host; some endpoints require user cookies or signing tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided Douyin or TikTok cookies may grant account access if sent to an untrusted API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS API host, avoid primary-account cookies, prefer public-data endpoints or a dedicated low-privilege account, and revoke cookies after use when possible.
+
+Risk: The artifact config leaves the API host unspecified, which can lead users to route requests and credentials to an unknown service.
+
+Mitigation: Review and set the API host before use, and do not submit cookies or other secrets to placeholder, plain HTTP, or untrusted hosts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goldknife6/skills/gnview123)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code]
+
+**Output Format:** [Markdown API reference with endpoint paths, parameter tables, JSON configuration, and example values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some endpoints may require a configured API host and user-provided platform cookies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

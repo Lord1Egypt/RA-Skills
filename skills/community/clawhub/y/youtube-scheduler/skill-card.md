@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes a YouTube channel's recent upload history to identify high-performing posting days and hours for scheduling content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a YouTube channel's upload history to identify high-performing posting days and hourly windows based on views and engagement signals.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-Creators, channel operators, and content teams use this skill to inspect recent YouTube upload performance and choose posting windows based on historical views. Agents can use it to run the analyzer script, summarize the report, and provide scheduling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install commands fetch mutable files into a persistent agent skills folder. <br>
-Mitigation: Review the fetched files before use, prefer pinning to a commit or verifying checksums, and remove ~/.agents/skills/youtube-scheduler when the skill is no longer needed. <br>
-Risk: Scheduling recommendations are statistical estimates from historical videos and may not predict future performance. <br>
-Mitigation: Treat the recommended posting windows as decision support and validate them against current audience analytics and channel goals. <br>
+## Use Case:
 
+External creators, channel operators, and agents supporting content planning use this skill to analyze recent YouTube videos for statistically stronger posting times. It produces a local schedule report with best weekdays, best hourly windows, a day-by-time heatmap, top videos, and a recommended posting slot.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/youtube-scheduler) <br>
-- [Publisher Profile](https://clawhub.ai/user/mcbaivn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style report text with shell command examples and a saved .txt report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The analyzer writes reports under Youtube_Schedule/ and bases recommendations on the requested number of recent videos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The security evidence marks the release suspicious because the documented install commands pull executable agent files from an unpinned GitHub main branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact downloaded files before installing and prefer a reviewed release package or pinned commit instead of main-branch download commands.
+
+Risk: The analyzer processes user-provided YouTube channel URLs through a local command-line downloader.
+
+Mitigation: Run it only on trusted channel URLs and in an environment where invoking yt-dlp on external media URLs is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcbaivn/skills/youtube-scheduler)
+- [Publisher profile](https://clawhub.ai/user/mcbaivn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and a local Markdown-style text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under Youtube_Schedule/[Channel]_schedule_DD_MM_YYYY.txt; results are statistical estimates from recent channel history, not guaranteed outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

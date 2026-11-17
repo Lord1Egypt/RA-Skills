@@ -1,48 +1,64 @@
-## Description: <br>
-Novel Orchestrator routes and coordinates long-form web novel planning, drafting, review, revision, and agent setup across manager, planner, writer, and checker roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Orchestrator coordinates manager, planner, writer, and checker agents for long-form Chinese web-novel planning, drafting, review, revision, and setup workflows.
 
-## Publisher: <br>
-[NaitOah](https://clawhub.ai/user/NaitOah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naitoah](https://clawhub.ai/user/naitoah)
 
-## Use Case: <br>
-Authors and teams using OpenClaw use this skill to coordinate long-form web novel workflows, including chapter planning, drafting, review, revision loops, and multi-agent task routing. It also guides creation of writer, checker, planner, and manager agent workspaces when the user explicitly starts setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow makes persistent OpenClaw agent configuration changes, including agent directories, workspace files, openclaw.json updates, and agent-to-agent permissions. <br>
-Mitigation: Review the workspace path, agent additions, openclaw.json changes, and agentToAgent allow list before confirming setup. <br>
-Risk: Configured agents may use Moonshot or Xiaomi API keys from environment variables. <br>
-Mitigation: Confirm which model provider is selected and which MOONSHOT_API_KEY or XIAOMI_API_KEY credentials are available before running the workflow. <br>
+## Use Case:
 
+Developers and authors use this skill to route Chinese web-novel work across planning, writing, checking, revision, and project coordination roles. It can also guide creation of the supporting OpenClaw agent workspace and provider configuration after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NaitOah/novel-orchestrator) <br>
-- [Agent setup workflow](references/agent-setup.md) <br>
-- [Routing rules](references/routing.md) <br>
-- [Workflow diagrams](references/workflow-diagrams.md) <br>
-- [Chapter format](references/chapter-format.md) <br>
-- [Quality standards](references/quality-standards.md) <br>
-- [Review template](references/review-template.md) <br>
-- [Moonshot API endpoint](https://api.moonshot.cn/v1) <br>
-- [Xiaomi MiMo API endpoint](https://api.xiaomimimo.com/anthropic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with configuration steps and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OpenClaw agent setup instructions, task routing decisions, review reports, revision guidance, and chapter workflow artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup workflow can make persistent OpenClaw configuration changes and enable messaging among the main, writer, checker, planner, and manager agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated openclaw.json changes before applying them and confirm that these agents should be allowed to message each other.
+
+Risk: The bundled model configuration references Moonshot and Xiaomi provider endpoints and API key environment variables.
+
+Mitigation: Verify the provider endpoints, model choices, and API key environment variables match APIs you trust before using the generated agents.
+
+Risk: The workflow and templates default to Chinese web-novel conventions that may not match every writing project.
+
+Mitigation: Review the style, quality, and platform reference files before applying the workflow to projects with different language, genre, or publication requirements.
+
+## Reference(s):
+
+- [Agent setup workflow](references/agent-setup.md)
+- [Chapter file format](references/chapter-format.md)
+- [Agent handoffs](references/handoffs.md)
+- [Tomato novel platform guide](references/platform-tomato.md)
+- [Quality standards](references/quality-standards.md)
+- [Review report template](references/review-template.md)
+- [Routing rules](references/routing.md)
+- [Workflow diagrams](references/workflow-diagrams.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional JSON configuration and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create OpenClaw agent and workspace files after user confirmation; chapter word counts and chapter format checks are produced by bundled Python scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

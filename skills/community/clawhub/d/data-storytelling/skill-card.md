@@ -1,42 +1,55 @@
-## Description: <br>
-Transform data into compelling narratives using visualization, context, and persuasive structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform data into compelling narratives using visualization, context, and persuasive structure. Use when presenting analytics to stakeholders, creating data reports, or building executive presentations.
 
-## Publisher: <br>
-[jackhua6](https://clawhub.ai/user/jackhua6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackhua6](https://clawhub.ai/user/jackhua6)
 
-## Use Case: <br>
-Employees, analysts, and business teams use this skill to turn analytics into stakeholder-ready reports, executive presentations, investor updates, and data-backed recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated narratives, charts, calculations, or recommendations may contain incorrect or misleading business claims. <br>
-Mitigation: Verify the underlying data, calculations, visualizations, and recommendations before sharing outputs with stakeholders. <br>
-Risk: A persuasive story structure may overstate causation or confidence when the data only supports correlation or limited conclusions. <br>
-Mitigation: State confidence levels, sample limitations, and causal uncertainty explicitly when presenting findings. <br>
+## Use Case:
 
+Employees, analysts, and business communicators use this skill to turn analytics, reports, dashboards, and executive presentations into clear data narratives with context, visualization guidance, recommendations, and calls to action.
 
-## Reference(s): <br>
-- [Storytelling with Data](https://www.storytellingwithdata.com/) <br>
-- [The Pyramid Principle](https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516) <br>
-- [Resonate](https://www.duarte.com/resonate/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prose with example report sections and optional Python visualization snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable install behavior; generated data claims, calculations, charts, and business recommendations require user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Business decisions could be influenced by incomplete, confidential, or misleading data supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source data, assumptions, and confidentiality requirements before using generated narratives in reports or executive presentations.
+
+Risk: Narrative framing can overstate causation or certainty from analytical findings.
+
+Mitigation: Preserve caveats, confidence ranges, and correlation-versus-causation limits when communicating recommendations.
+
+## Reference(s):
+
+- [Storytelling with Data](https://www.storytellingwithdata.com/)
+- [The Pyramid Principle](https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516)
+- [Resonate](https://www.duarte.com/resonate/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with example presentation structures and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include narrative outlines, slide flows, dashboard story structures, visualization recommendations, and chart annotation examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

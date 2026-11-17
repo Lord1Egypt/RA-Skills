@@ -1,42 +1,53 @@
-## Description: <br>
-Searches Marriott-family hotels by destination, brand keyword, and budget, then returns hotel prices, details, package offers, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Marriott-family hotels and returns live prices, hotel details, package offers, and booking links for Marriott brands including Sheraton, Westin, Ritz-Carlton, JW Marriott, Renaissance, Fairfield, and St. Regis.
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travelers and travel planners use this skill to find Marriott-family hotels, compare prices and amenities, review hotel or package details, and open booking links. It does not complete bookings directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an environment-configured proxy URL and auth token for hotel search, and the release evidence says external network use is under-disclosed. <br>
-Mitigation: Review before installing, use it only with a trusted proxy service, control PROXY_URL and PROXY_TOKEN, and verify the proxy URL is fixed to the intended HTTPS host. <br>
-Risk: Travel queries and booking details may be sent through the configured proxy service. <br>
-Mitigation: Avoid entering sensitive travel or booking details until the skill declares its network requirements and validates the proxy destination. <br>
-Risk: Hotel prices and availability can change, and the skill provides booking links rather than completing reservations. <br>
-Mitigation: Confirm final pricing, policies, availability, and payment terms on the booking page before acting on the result. <br>
+## Use Case:
 
+External users and travel-booking agents use this skill to search Marriott-family hotels in Chinese by destination, date, brand keyword, price, and sort order, then retrieve hotel details, package offers, and booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/marriott-hotel-booking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted text with hotel search results, details, package offers, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include hotel IDs, prices, addresses, nearby points of interest, facilities, policies, package benefits, and external booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence; artifact frontmatter reports 1.1.2) <br>
+Risk: Hotel search details and any local PROXY_TOKEN value may be sent to an opaque external proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the proxy relationship, limit environment-variable exposure, and run the skill with scoped network access when possible.
+
+Risk: The skill can trigger live hotel searches and booking-link retrieval when user intent is unclear.
+
+Mitigation: Use it only after clear Marriott hotel search, detail, package, or booking intent is established.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/marriott-hotel-booking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown-formatted Chinese hotel search, detail, and package results with inline booking links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are limited by the requested limit value and reflect data returned by the configured proxy service.]
+
+## Skill Version(s):
+
+1.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

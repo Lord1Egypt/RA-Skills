@@ -70,7 +70,7 @@ class TestExtractDynamic:
         assert any(f.name == "jwt" for f in frags)
 
     def test_api_key_sk(self):
-        text = "ANTHROPIC_API_KEY=sk-ant-api03-abcdefghijklmnopqrstuvwxyz1234"
+        text = "ANTHROPIC_API_KEY=REDACTED-SECRET"
         frags = extract_dynamic(text)
         assert any(f.name == "api_key" for f in frags)
 
@@ -117,7 +117,7 @@ class TestExtractDynamic:
         text = (
             "System started at 2026-03-17T09:00:00Z. "
             "Session: 550e8400-e29b-41d4-a716-446655440000. "
-            "Key: sk-myapp-abcdefghijklmnopqrstuvwxyz."
+            "Key: REDACTED-SECRET."
         )
         frags = extract_dynamic(text)
         names = {f.name for f in frags}

@@ -1,40 +1,56 @@
-## Description: <br>
-Automate YouTube video editing workflow: Download -> Transcribe (Whisper) -> Analyze (GPT-4) -> High-Quality Thumbnail (Korean & Character Consistency). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate YouTube video editing workflow: Download -> Transcribe (Whisper) -> Analyze (GPT-4) -> High-Quality Thumbnail (Korean & Character Consistency).
 
-## Publisher: <br>
-[jeong-wooseok](https://clawhub.ai/user/jeong-wooseok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeong-wooseok](https://clawhub.ai/user/jeong-wooseok)
 
-## Use Case: <br>
-Content creators and video production agents use this skill to turn YouTube or local videos into transcripts, Korean SEO metadata, and thumbnail assets with OpenAI and local media tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Video audio and transcript-derived text may be sent to OpenAI services during transcription and analysis. <br>
-Mitigation: Use only appropriate source videos, review data-handling requirements before execution, and prefer limited or revocable API keys. <br>
-Risk: The skill runs local media and browser tooling and can optionally call the nano-banana-pro skill for image generation. <br>
-Mitigation: Install and run it only in trusted environments, ensure FFmpeg and optional dependencies are expected, and review nano-banana-pro separately before enabling thumbnail generation. <br>
-Risk: User-provided avatar or font file paths are read during thumbnail generation. <br>
-Mitigation: Use trusted local asset paths and avoid untrusted avatar inputs until the local HTML escaping concern noted in the security guidance is fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External creators and developers use this skill to turn YouTube URLs or local videos into edited content packages with subtitles, Korean SEO metadata, and thumbnail assets.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; generated subtitles, transcripts, Korean metadata, and thumbnail image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY; optionally uses NANO_BANANA_KEY, FFmpeg, Playwright, rembg, and local input assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs unpinned dependencies and invokes local subprocesses for video and optional image generation.
+
+Mitigation: Review before installing and run only in an isolated project directory.
+
+Risk: The optional image-generation path can expose NANO_BANANA_KEY through a child-process command line.
+
+Mitigation: Avoid enabling the optional image-generation path until key handling is fixed and prefer environment-based secret passing to child processes.
+
+Risk: The skill can invoke an installed nano-banana-pro skill and read user-provided avatar or font paths.
+
+Mitigation: Review nano-banana-pro separately and avoid untrusted avatar filenames or paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jeong-wooseok/skills/youtube-editor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Generated files and console guidance, including SRT subtitles, transcript text, Markdown metadata, HTML thumbnail markup, and PNG thumbnail assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENAI_API_KEY, FFmpeg, and optional NANO_BANANA_KEY for image generation.]
+
+## Skill Version(s):
+
+1.0.14 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

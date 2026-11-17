@@ -9,7 +9,7 @@ Template for creating negotiation skills extracted from learnings and negotiatio
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the negotiation skill and when to use it."
+description: "Concise description of the negotiation skill and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name

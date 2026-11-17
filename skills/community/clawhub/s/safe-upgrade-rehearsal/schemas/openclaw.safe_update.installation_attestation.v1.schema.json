@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.installation_attestation.v1.schema.json",
+  "title": "OpenClaw Public-Safe Local Installation Attestation",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "expires_at",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "status",
+    "axes",
+    "attestation_content",
+    "attestation_digest",
+    "errors"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.installation_attestation.v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expires_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "const": "read_only_local_installation_attestation"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "none"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "success",
+        "failed"
+      ]
+    },
+    "axes": {
+      "type": "object",
+      "required": [
+        "observation",
+        "freshness",
+        "completeness"
+      ],
+      "properties": {
+        "observation": {
+          "enum": [
+            "success",
+            "failed"
+          ]
+        },
+        "freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unknown"
+          ]
+        },
+        "completeness": {
+          "enum": [
+            "complete",
+            "incomplete",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "attestation_content": {
+      "type": "object",
+      "required": [
+        "candidate_root",
+        "observed_components",
+        "observed_services",
+        "missing",
+        "residue"
+      ],
+      "properties": {
+        "candidate_root": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "observed_components": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "observed_services": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "residue": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "attestation_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

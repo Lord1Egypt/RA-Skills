@@ -1,43 +1,60 @@
-## Description: <br>
-Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AIsa relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AIsa relay.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and external users use this skill to research X/Twitter content and perform approved posting, liking, following, and unfollowing workflows through AIsa relay clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorization and posting command output may expose the AIsa API key in logs or transcripts. <br>
-Mitigation: Use a rotatable AIsa API key, avoid sharing authorize/post command output until the key-output issue is fixed, and redact secrets from logs. <br>
-Risk: Media attachments and engagement actions are sent through api.aisa.one and may affect public Twitter/X content. <br>
-Mitigation: Attach only files intended for relay upload or publication, and confirm targets before posting, liking, following, or unfollowing. <br>
+## Use Case:
 
+External users and developers use this skill to research X/Twitter accounts and content, publish posts after OAuth approval, and perform account engagement actions through the AIsa relay.
 
-## Reference(s): <br>
-- [AIsa Twitter Engagement](references/engage_twitter.md) <br>
-- [AIsa Twitter OAuth](references/post_twitter.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/aisa-twitter-engagement-suite) <br>
-- [AIsa homepage](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; Twitter/X actions are relay-based through api.aisa.one.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can expose the full AISA_API_KEY in normal command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive accounts until fixed, treat existing authorize/post logs as potentially containing the key, and rotate the key if exposed.
+
+Risk: The skill can directly publish posts or change likes, follows, and unfollows on the authorized X/Twitter account.
+
+Mitigation: Confirm the intended account, target, and content before action, require OAuth approval where applicable, and only report success after the relay returns success.
+
+Risk: Twitter/X requests and media uploads are routed through api.aisa.one.
+
+Mitigation: Use the skill only when the user trusts AIsa and api.aisa.one with Twitter/X relay access and uploaded media.
+
+## Reference(s):
+
+- [AIsa Twitter Engagement](artifact/references/engage_twitter.md)
+- [AIsa Twitter OAuth](artifact/references/post_twitter.md)
+- [AIsa homepage](https://aisa.one)
+- [AIsa API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; actions are performed through the AIsa relay after required authorization.]
+
+## Skill Version(s):
+
+1.0.3 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

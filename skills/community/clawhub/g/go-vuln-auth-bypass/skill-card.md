@@ -1,40 +1,55 @@
-## Description: <br>
-Helps agents audit Go authentication and authorization flows for bypass patterns in RBAC, Kubernetes admission webhooks, JWT/OAuth validation, middleware chains, and cloud-native privilege paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides audits of Go authentication and authorization flows, RBAC policies, Kubernetes admission webhooks, JWT/OAuth validation, and privilege-escalation paths in cloud-native infrastructure.
 
-## Publisher: <br>
-[yhy0](https://clawhub.ai/user/yhy0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhy0](https://clawhub.ai/user/yhy0)
 
-## Use Case: <br>
-Developers, security engineers, and code reviewers use this skill to inspect Go and Kubernetes/cloud-native projects for authentication bypass, authorization bypass, privilege escalation, and related access-control weaknesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit searches may surface sensitive security logic, token handling, or credential-related code paths. <br>
-Mitigation: Use the skill only on repositories you are authorized to review and handle discovered security-sensitive details according to the repository owner's disclosure process. <br>
-Risk: Pattern matches and checklist findings may be incomplete or may flag benign code as a candidate vulnerability. <br>
-Mitigation: Validate each finding against the full authentication flow, authorization checks, tests, and deployment context before relying on or reporting it. <br>
+## Use Case:
 
+Developers and security engineers use this skill to review Go and Kubernetes/cloud-native code for authentication bypass, authorization bypass, RBAC leakage, middleware ordering, impersonation, and token-validation weaknesses.
 
-## Reference(s): <br>
-- [Go Auth Bypass - Real-World Cases](references/cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with grep commands, detection checklists, and Go code-pattern examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit guidance; no executables, credentials, or API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill includes exploit-path examples and grep searches for authentication and authorization weaknesses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized code review and treat the examples as audit guidance, not operational attack instructions.
+
+Risk: Static audit guidance can produce incomplete findings or false positives when applied without project context.
+
+Mitigation: Confirm candidate issues against the target application's authentication, authorization, RBAC, and deployment design before acting.
+
+## Reference(s):
+
+- [Go Auth Bypass - Real-World Cases](references/cases.md)
+- [ClawHub skill page](https://clawhub.ai/yhy0/skills/go-vuln-auth-bypass)
+- [Publisher profile](https://clawhub.ai/user/yhy0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with checklist items and inline grep commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static review guidance; it does not execute code or call external services.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

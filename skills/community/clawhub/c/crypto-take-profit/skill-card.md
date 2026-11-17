@@ -1,50 +1,70 @@
-## Description: <br>
-Automated crypto take-profit orders. Gasless, oracle-protected across 8 EVM chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated crypto take-profit orders. Gasless, oracle-protected across 8 EVM chains.
 
-## Publisher: <br>
-[eranp-orbs](https://clawhub.ai/user/eranp-orbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eranp-orbs](https://clawhub.ai/user/eranp-orbs)
 
-## Use Case: <br>
-External users and developers use this skill to turn crypto trading intent into normalized EVM swap order parameters, EIP-712 typed data, signed relay payloads, and follow-up query or cancellation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide wallet approval, EIP-712 signing, and signed swap order submission to an external relay beyond simple take-profit orders. <br>
-Mitigation: Use it only when the user intends to create crypto swap orders and can independently verify the order type, signed payload, and relay submission. <br>
-Risk: Incorrect approval amount, chain ID, contract address, token address, recipient, deadline, nonce, or signature can create unintended crypto orders. <br>
-Mitigation: Verify every approval amount, chain ID, contract address, token address, recipient, deadline, nonce, and signed payload before submission. <br>
-Risk: Changing the output recipient away from the swapper can direct proceeds to a different address. <br>
-Mitigation: Keep the recipient equal to the swapper unless the user explicitly requests and confirms a different recipient address. <br>
+## Use Case:
 
+External users and developers use this skill to translate EVM swap intent into Spot order parameters, EIP-712 typed data, approval and signing guidance, relay submission, and lifecycle actions for take-profit and related advanced order shapes.
 
-## Reference(s): <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Params](references/params.md) <br>
-- [Template, Sign, And Submit](references/sign.md) <br>
-- [Lifecycle](references/lifecycle.md) <br>
-- [Examples](references/examples.md) <br>
-- [Common Token Addressbook](assets/token-addressbook.md) <br>
-- [RePermit Typed Data Template](assets/repermit.template.json) <br>
-- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf) <br>
-- [Spot Configuration](https://github.com/orbs-network/spot/blob/master/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload templates and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; produces local params, EIP-712 typed data, relay payloads, and lifecycle guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill label focuses on take-profit orders, while the artifact also supports market, limit, TWAP, stop-loss, delayed-start, and chunked order shapes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when a broader Spot advanced EVM swap-order workflow is acceptable, and confirm the intended order shape before building or signing payloads.
+
+Risk: Approval, signer, spender, verifying contract, recipient, amount, deadline, trigger, or relay mistakes can create unwanted crypto transactions.
+
+Mitigation: Before signing or submitting, verify every transaction-critical field and prefer exact ERC-20 approvals over standing maxUint approvals.
+
+Risk: Wrong chain, token address, token decimals, or unsupported native-input handling can produce invalid or harmful order payloads.
+
+Mitigation: Confirm the chain is explicitly supported, validate token addresses and decimals, and wrap native input tokens before order creation.
+
+Risk: Ambiguous relay failures can lead to duplicate or inconsistent orders if payloads are rebuilt before status is resolved.
+
+Mitigation: Persist the exact typedData and signature, query the relay by order hash or swapper, and retry only after confirming the previous submission state.
+
+## Reference(s):
+
+- [Skill Instructions](artifact/SKILL.md)
+- [Quickstart](artifact/references/quickstart.md)
+- [Parameters](artifact/references/params.md)
+- [Template, Sign, And Submit](artifact/references/sign.md)
+- [Lifecycle](artifact/references/lifecycle.md)
+- [Examples](artifact/references/examples.md)
+- [RePermit typed-data template](artifact/assets/repermit.template.json)
+- [Token addressbook](artifact/assets/token-addressbook.md)
+- [Spot security audit report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf)
+- [Spot chain configuration](https://github.com/orbs-network/spot/blob/master/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload templates, EIP-712 typed-data fields, JavaScript snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output for local payload construction, signing, relay submission, query, and cancellation; no external helper code is fetched or executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package.json is 2.5.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

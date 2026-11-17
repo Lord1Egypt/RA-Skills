@@ -1,41 +1,53 @@
-## Description: <br>
-Get To Know You helps an OpenClaw agent collect user work preferences and background through guided questions, update profile or configuration files after confirmation, and standardize feedback or skill-optimization requests into a confirm-before-execution workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get To Know You helps an agent collect a user's work context and preferences through guided Q&A, then apply a confirmation-first workflow for handling negative feedback and skill optimization requests.
 
-## Publisher: <br>
-[zzzanezhou0829](https://clawhub.ai/user/zzzanezhou0829) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzzanezhou0829](https://clawhub.ai/user/zzzanezhou0829)
 
-## Use Case: <br>
-OpenClaw users use this skill to build a durable assistant profile from work details, preferences, and communication habits. They also use it to make negative feedback and skill-optimization requests follow a clarify, plan, confirm, execute workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects personal and work-profile details that may become durable assistant context. <br>
-Mitigation: Avoid sharing confidential personal or organizational information, and review proposed profile entries before they are written. <br>
-Risk: Persistent updates to AGENTS.md, SOUL.md, MEMORY.md, USER.md, or TOOLS.md can shape future agent behavior. <br>
-Mitigation: Back up or monitor those files so unwanted profile entries can be removed or corrected. <br>
+## Use Case:
 
+External ClawHub users and agent operators use this skill to build a personalized working profile and require clearer requirement alignment before changes are made after feedback. It is intended for agents that should adapt communication, output, and workflow behavior based on user-confirmed preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzzanezhou0829/get-to-know-you) <br>
-- [Information Collection Question Bank](references/question_bank.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and configuration-file update summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or append profile and configuration updates after user confirmation; the collector script can persist collection progress.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill collects broad personal and workplace preference information that can shape future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only information the user explicitly chooses to share, avoid sensitive personal or workplace details, and review the resulting profile before it is reused.
+
+Risk: The collector can append raw collected text to persistent agent configuration files.
+
+Mitigation: Review proposed writes before running the script and prefer explicit invocation over automatic or passive collection.
+
+## Reference(s):
+
+- [Information Collection Question Bank](references/question_bank.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command examples and configuration-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist collected answers into local agent configuration files when the user approves or runs the collector script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

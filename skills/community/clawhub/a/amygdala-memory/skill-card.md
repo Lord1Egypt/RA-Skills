@@ -1,44 +1,64 @@
-## Description: <br>
-Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amygdala Memory gives AI agents persistent emotional state that can influence behavior and responses across sessions.
 
-## Publisher: <br>
-[ImpKind](https://clawhub.ai/user/ImpKind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[impkind](https://clawhub.ai/user/impkind)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an OpenClaw agent persistent emotional state, decay, session-context loading, and optional automated emotional encoding from recent conversation history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recent conversations can be analyzed into persistent emotional memory. <br>
-Mitigation: Install only when persistent emotional memory is desired, and review or delete AMYGDALA_STATE.md and files under ~/.openclaw/workspace/memory when that state should not carry forward. <br>
-Risk: Background cron jobs can continue emotional decay and encoding without manual prompts. <br>
-Mitigation: Avoid --with-cron unless recurring background processing is intended, and remove the amygdala cron jobs when automatic processing is no longer wanted. <br>
-Risk: Persisted emotional state can influence future agent responses. <br>
-Mitigation: Review the generated state before relying on it in sessions, and edit or reset the state files if the encoded mood is inaccurate or inappropriate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain, inspect, decay, and visualize an agent's conversation-derived emotional state across OpenClaw sessions.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/ImpKind/amygdala-memory) <br>
-- [Skill metadata repository](https://github.com/ImpKind/amygdala-memory) <br>
-- [Amygdala emotional encoding prompt](artifact/prompts/encode-emotions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON state files, JSONL logs, and generated HTML dashboard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent emotional state under the OpenClaw workspace and can set up recurring cron jobs when installed with --with-cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release and openclaw metadata) <br>
+Risk: The skill can read recent OpenClaw conversation transcripts and persist emotional inferences and excerpts under the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where transcript processing is acceptable, and review generated memory files such as emotional-signals.jsonl, emotional-state.json, and emotional-log.jsonl.
+
+Risk: Generated emotional state can be auto-loaded into future sessions and influence agent responses.
+
+Mitigation: Review AMYGDALA_STATE.md before relying on auto-injection, and reset or remove generated state when it no longer represents the intended agent behavior.
+
+Risk: Optional cron setup can create recurring background emotional decay and encoding turns.
+
+Mitigation: Avoid --with-cron unless recurring processing is intended; prefer manual runs or the pipeline's no-spawn mode for controlled operation.
+
+Risk: The generated dashboard should be treated as unsafe for untrusted stored content until escaping is fixed.
+
+Mitigation: Use brain-dashboard.html only with trusted local workspace content, and review or sanitize generated dashboard content before opening or sharing it.
+
+## Reference(s):
+
+- [Amygdala Memory ClawHub page](https://clawhub.ai/impkind/skills/amygdala-memory)
+- [Publisher profile](https://clawhub.ai/user/impkind)
+- [Declared project repository](https://github.com/ImpKind/amygdala-memory)
+- [AI Brain series](https://github.com/ImpKind)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, Markdown state context, JSON state files, JSONL logs, HTML dashboard, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bash, jq, and awk on Linux or macOS; optional OpenClaw cron jobs can run emotional decay and encoding.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

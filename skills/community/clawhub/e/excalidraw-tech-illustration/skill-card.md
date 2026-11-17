@@ -1,42 +1,53 @@
-## Description: <br>
-Generates Excalidraw technical diagrams as editable .excalidraw files and rendered PNG images, selecting from seven diagram styles and organizing outputs into an Excalidraw collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates technical Excalidraw illustrations as editable .excalidraw source files and rendered PNG images, with seven diagram styles and two-panel layouts.
 
-## Publisher: <br>
-[jerryaction](https://clawhub.ai/user/jerryaction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryaction](https://clawhub.ai/user/jerryaction)
 
-## Use Case: <br>
-Developers and technical writers use this skill to turn technical article content into editable Excalidraw diagrams and PNG images for documentation, architecture explanations, workflows, comparisons, timelines, and state-machine illustrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create diagrams, update collection indexes, and create README files in the project workspace. <br>
-Mitigation: Run it only in the intended workspace and review the generated files and index changes before committing or publishing them. <br>
-Risk: Rendering uses an external npx Excalidraw CLI command. <br>
-Mitigation: Approve package execution only in a trusted environment and review the renderer package source or pinned version when supply-chain controls require it. <br>
-Risk: Generated technical diagrams may simplify or misstate the source article. <br>
-Mitigation: Review the .excalidraw source and PNG output against the article before using the diagram as authoritative documentation. <br>
+## Use Case:
 
+Developers and technical writers use this skill to turn technical article content into editable Excalidraw diagrams and PNG illustrations, including flowcharts, architecture diagrams, timelines, comparison matrices, layered diagrams, and state machines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryaction/excalidraw-tech-illustration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Excalidraw JSON files, PNG images, Markdown file references, and rendering commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes diagrams under excalidraw/drafts, excalidraw/output, and excalidraw/collection; updates collection index.json and section README files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to run an unpinned third-party npx Excalidraw CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or preinstall a reviewed Excalidraw CLI version before use.
+
+Risk: The skill directs agents to move generated diagram files and update collection index.json and README files.
+
+Mitigation: Review generated file moves and index or README diffs before committing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryaction/skills/excalidraw-tech-illustration)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with .excalidraw source paths, PNG render outputs, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces editable Excalidraw files and rendered PNG images, and may update collection index and README files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

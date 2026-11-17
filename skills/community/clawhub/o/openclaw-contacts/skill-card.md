@@ -1,39 +1,53 @@
-## Description: <br>
-通讯录查询与维护技能，用于查找联系人信息、记录新联系人、或查询历史沟通偏好。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contacts helps an agent look up and maintain contact records, messaging identifiers, and communication preferences in a local YAML-based contacts memory.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Agents and users use this skill to maintain local contact cards and look up communication identifiers, channels, and preferences before contacting someone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist and reveal local contact records, including messaging identifiers and communication preferences. <br>
-Mitigation: Use it only for explicit contact lookup or update tasks, review contact details before sharing them, and require confirmation before creating or changing contact cards. <br>
+## Use Case:
 
+Agents and agent operators use this skill to find contact details, record new contacts, and preserve communication preferences for future interactions.
 
-## Reference(s): <br>
-- [Contacts Skill on ClawHub](https://clawhub.ai/axelhu/openclaw-contacts) <br>
-- [Contact Schema](memory/contacts/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes local contact-card files under memory/contacts when an agent follows the skill guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill can keep persistent contact memory that includes messaging identifiers and communication preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent contacts memory is desired, and require explicit confirmation before adding or updating contact records.
+
+Risk: The contact lookup script accepts an unvalidated contact_id and can read YAML files outside the intended contacts folder.
+
+Mitigation: Restrict contact_id values to letters, numbers, underscores, and hyphens before invoking helper scripts.
+
+## Reference(s):
+
+- [Contact Schema](artifact/memory/contacts/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or maintain per-agent YAML contact records containing messaging identifiers and communication preferences.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

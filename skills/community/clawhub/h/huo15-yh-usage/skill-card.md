@@ -1,41 +1,54 @@
-## Description: <br>
-Huo15 Yh Usage helps an agent use a customer-provided Huo15 Fireworks-style API key to retrieve token usage and billing summaries by provider, model, and day, with CNY and USD output options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries token usage and billing for a customer-provided Huo15 YanHua Zhihui API key, with totals, provider and model breakdowns, daily trends, and CNY/USD display options based on the platform billing endpoint.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers, support teams, and customer-facing teams use this skill to produce a concise usage and cost report for a single authorized Huo15 API key. It is suited for answering questions about total spend, expensive models or providers, and recent usage trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends a user-provided fsk API key to the Huo15 billing endpoint. <br>
-Mitigation: Use only keys the user is authorized to inspect, keep the key out of shared chats and shell history where possible, and confirm the request targets the documented Huo15 usage endpoint. <br>
-Risk: The report covers only the single API key supplied by the user. <br>
-Mitigation: State that multi-key account totals require the account console or another authorized aggregation path. <br>
+## Use Case:
 
+Developers, operators, support teams, and sales teams use this skill to produce a customer-facing usage and cost summary for a specific Huo15 YanHua Zhihui API key. It helps identify overall spend, high-cost models or providers, and recent daily usage trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-yh-usage) <br>
-- [Huo15 usage endpoint](https://fireworks-simulator-api.huo15.com/v1/usage?days=30) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown billing report with optional raw JSON output and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can cover 1 to 90 days and can display costs in CNY or converted USD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires a live customer API key to query usage and billing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted terminals and automation, avoid logging command invocations that contain keys, and rotate keys after use in untrusted environments.
+
+Risk: The billing request is sent to a third-party endpoint and can be redirected with YH_BASE.
+
+Mitigation: Trust the publisher and endpoint before installation, and leave YH_BASE unset unless the alternate endpoint is fully trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-yh-usage)
+- [Huo15 usage API endpoint](https://fireworks-simulator-api.huo15.com/v1/usage?days=N)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown billing report with optional raw JSON output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are scoped to one fsk-prefixed API key, support a 1-90 day range, and can display CNY or USD-converted costs.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

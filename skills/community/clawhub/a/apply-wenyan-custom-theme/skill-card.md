@@ -1,40 +1,54 @@
-## Description: <br>
-AI-ready skill to test, register, and publish Markdown articles to WeChat Official Accounts using a local custom CSS theme via Wenyan CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-ready skill to test, register, and publish Markdown articles to WeChat Official Accounts using a local custom CSS theme via Wenyan CLI.
 
-## Publisher: <br>
-[caol64](https://clawhub.ai/user/caol64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caol64](https://clawhub.ai/user/caol64)
 
-## Use Case: <br>
-Developers, content teams, and agent operators use this skill to preview Markdown with a local Wenyan CSS theme, publish it to a WeChat Official Account draft, and optionally register reusable local themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing uses WeChat account credentials and can create drafts in the target Official Account. <br>
-Mitigation: Keep WECHAT_APP_ID and WECHAT_APP_SECRET out of logs and shared files, and require the agent to show the target account context before running the publish command. <br>
-Risk: The workflow executes wenyan-cli commands against user-provided Markdown and CSS paths. <br>
-Mitigation: Verify the wenyan-cli package source before installing, confirm the Markdown and CSS paths, and run the render test before publishing. <br>
+## Use Case:
 
+Developers and publishing operators use this skill to preview Markdown with a local CSS theme, publish it to a WeChat Official Account draft, and optionally register the theme for reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caol64/apply-wenyan-custom-theme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Wenyan CLI commands and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Markdown and CSS file paths, WeChat API credentials from environment variables, and optional Wenyan CLI theme or highlighting flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Publishing requires WeChat account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep WECHAT_APP_SECRET private, avoid printing environment variables, and verify credential setup outside shared logs.
+
+Risk: The skill runs a third-party CLI to render, register, and publish content.
+
+Mitigation: Prefer a pinned or project-local Wenyan CLI installation and confirm the exact Markdown and CSS files before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caol64/skills/apply-wenyan-custom-theme)
+- [Publisher profile](https://clawhub.ai/user/caol64)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-oriented agent guidance for local files, Wenyan CLI usage, and WeChat credential setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

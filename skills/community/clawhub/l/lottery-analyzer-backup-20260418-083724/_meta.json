@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7cdfd4frj79t17ag9nfh09eh84zncp",
-  "slug": "lottery-analyzer-backup-20260418-083724",
-  "version": "1.0.0",
-  "publishedAt": 1776475538735
+  "ownerId": "kn7828hwpw0k0fpctdyqrmyvfn81z8ns",
+  "slug": "lottery-analyzer",
+  "version": "2.0.0",
+  "publishedAt": 1772155799885,
+  "updatedAt": 1772155799886,
+  "dataIncluded": true,
+  "dataDescription": "包含3438期双色球历史数据（2003-2026年）",
+  "files": [
+    "SKILL.md",
+    "QUICK_START.md",
+    "scripts/analyze_lottery.py",
+    "scripts/analyze_ssq_simple.py",
+    "scripts/verify.py",
+    "data/ssq_base_english.csv",
+    "data/ssq_standard.csv",
+    "data/5_recommendations.json"
+  ]
 }

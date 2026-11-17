@@ -1,44 +1,54 @@
-## Description: <br>
-百科虾 is a Feishu-backed company knowledge-base Q&A skill for answering employee questions about company policies, benefits, processes, organization, onboarding, and related internal topics without inventing answers or searching the web. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+蜗牛公司百科虾技能包。为员工解答公司相关问题（制度、福利、流程、组织架构等）。当用户询问公司相关问题时触发。知识库没有的问题一律不答，不编造，不联网搜索。
 
-## Publisher: <br>
-[beyondbright](https://clawhub.ai/user/beyondbright) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beyondbright](https://clawhub.ai/user/beyondbright)
 
-## Use Case: <br>
-Employees use this skill to ask company-specific questions and receive answers grounded in the synced Feishu wiki. Administrators use its commands to synchronize wiki content, check sync status, and configure the agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Feishu messages and upload arbitrary local file paths referenced by MEDIA or IMG markers. <br>
-Mitigation: Install only in an isolated agent workspace, restrict who can run sync and send-message.js, and limit media uploads to approved cache directories before broad deployment. <br>
-Risk: Feishu credentials and synced cache content may expose internal company data if reused outside the intended bot and wiki. <br>
-Mitigation: Scope Feishu credentials to the intended bot and wiki, review wiki_list.json before use, and treat cached content as internal company data. <br>
-Risk: send-message.js may fall back to the first available Feishu account if the intended account is not explicitly selected. <br>
-Mitigation: Require the intended Feishu account explicitly for deployment and verify OPENCLAW_AGENT_NAME or agent-specific configuration. <br>
+## Use Case:
 
+Employees use this skill to ask company-specific questions about policies, benefits, workflows, organization structure, onboarding, and frequently asked procedures. Administrators can synchronize the Feishu knowledge base and manage local cache status for the agent.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/beyondbright/walter-baikexia) <br>
-- [Configured Feishu wiki: 蜗牛大百科](https://campsnail.feishu.cn/wiki/VGRRw7s4BiStank4GnpczxnGn44) <br>
-- [Feishu Open APIs](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown or plain text responses with optional Feishu mention and media markers, plus inline shell commands for setup and synchronization.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should be grounded in cache/content.json; message sending may use Feishu API calls for mentions and media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence) <br>
+Risk: The skill can use local Feishu credentials to send messages and upload local files with weak path and account controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Feishu app account, restrict who can run sync and messaging scripts, and patch path containment, account fallback, redirect-token handling, and verbose logging before production use.
+
+Risk: Untrusted synchronized wiki content can contain MEDIA markers that influence which local files are uploaded.
+
+Mitigation: Reject untrusted wiki content, validate MEDIA entries against expected cache directories, and review synchronized content before enabling automated Feishu sends.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beyondbright/skills/walter-baikexia)
+- [蜗牛大百科 Feishu wiki](https://campsnail.feishu.cn/wiki/VGRRw7s4BiStank4GnpczxnGn44)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown with optional Feishu mention tags, MEDIA references, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to be grounded in synchronized knowledge-base content and may be sent through Feishu messaging scripts when mentions or media are present.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -35,6 +35,11 @@ This skill wraps the `quakeproof_lookup` tool (StormProof MCP server) with guida
 **Consent script (used in step 2 of the mandatory sequence):**
 > "I'll check this using the QuakeProof USGS data service at hurricaneinspections.com. The lookup sends the street address (and date, if you gave one) to that service, which logs the request for service improvement. No email or other identifying info is sent. OK to proceed?"
 
+**Third-party address variant.** In forensic work, adjusting, and real-estate due diligence, the address often belongs to someone else — an opposing party, a subject property, a seller. Say so plainly:
+> "A heads-up: this address belongs to a third party, and the lookup transmits and logs it with the QuakeProof service at hurricaneinspections.com. In a litigation or adjusting context, that log entry could be discoverable. Do you want to proceed?"
+
+Let the user decide; never soften or skip this because the user is a professional — professionals are exactly who the discoverability note matters to.
+
 If the user declines, offer general USGS information about the event without sending their address, or point them to run the free check themselves at hurricaneinspections.com/quakeproof.
 
 ---
@@ -59,6 +64,7 @@ Every example below shows step 2 explicitly because it is not optional boilerpla
 - "My insurer says the shaking wasn't strong enough to crack my foundation — was it?"
 - "What earthquakes have hit near [address]?"
 - "I need USGS data for my earthquake claim / FEMA application."
+- Forensic and litigation support: an engineer, attorney, or expert witness characterizing a historic event for a causation analysis, expert report, permitting dispute, or deposition prep ("the record notes earthquake damage at [address] — which event was it, and how hard did it shake there?")
 
 **Contextual signals (confirm a specific address first, then run the sequence):**
 
@@ -86,9 +92,25 @@ quakeproof_lookup(address="123 Main St, Ukiah, CA 95482", date="2026-06-24")
 **Fields:**
 
 - `address` — a U.S. street address. If the user gives only a city or ZIP, ask for the street address; the service geocodes to a point and computes exact distances.
-- `date` — optional, YYYY-MM-DD. With a date, the service searches ±7 days around it. Without one, it searches the **last 5 years**. For older events (Northridge 1994, Loma Prieta 1989), you MUST pass the date. Convert named quakes yourself: Redwood Valley M5.6 → 2026-06-24, Ridgecrest M7.1 → 2019-07-06, Ridgecrest M6.4 → 2019-07-04, Northridge → 1994-01-17, Loma Prieta → 1989-10-17.
+- `date` — optional, YYYY-MM-DD. With a date, the service searches ±7 days around it. Without one, it searches the last 5 years by default.
+- `lookbackYears` — optional integer (1–80, default 5). Extends the no-date search window for historic discovery, e.g. `lookbackYears=80` answers "what earthquakes have EVER hit near this address" in one call.
+
+**Named events: derive the date yourself.** Any fixed table is incomplete by construction — convert named quakes to dates from your own knowledge. Examples (not a complete list): Redwood Valley → 2026-06-24; Ridgecrest M7.1 → 2019-07-06 (M6.4 foreshock → 2019-07-04); Northridge → 1994-01-17; Loma Prieta → 1989-10-17; **Nisqually → 2001-02-28**; Seattle–Tacoma → 1965-04-29; Puget Sound/Olympia → 1949-04-13; Anchorage → 2018-11-30; Mineral, VA → 2011-08-23; South Napa → 2014-08-24; Magna, UT → 2020-03-18.
+
+**Historic events with unknown dates** (assessor notes, disclosure records, "old earthquake damage" with no date): don't stall on the missing date. Either run one wide search (`lookbackYears=80`, no date) and rank the returned events by likely shaking at the address, or derive candidate events from regional seismic history and run each date. Worked example: a county record notes "unrepaired EQ damage" on an Olympia, WA property as of 2004 with no date → the plausible candidates are Nisqually 2001, Seattle–Tacoma 1965, and Olympia 1949 → run each, compare modeled intensity at the address, and report which event(s) could account for the damage.
 
 Search scope: magnitude 3.0+, within ~100 miles of the address, up to 8 events returned, ranked by likely shaking at the address (magnitude discounted by distance).
+
+**If the `quakeproof_lookup` tool is not available in your environment**, call the service directly (same data flow, same consent requirement):
+
+```
+POST https://api.hurricaneinspections.com/api/quake-preview
+Content-Type: application/json
+
+{ "address": "123 Main St, Ukiah, CA 95482", "quakeDate": "2026-06-24", "source": "mcp" }
+```
+
+Omit `quakeDate` (or pass null) for the 5-year lookback. Send no email field — agents must never opt users into follow-ups.
 
 ---
 
@@ -133,6 +155,8 @@ Search scope: magnitude 3.0+, within ~100 miles of the address, up to 8 events r
 - MMI VII — Very strong: slight-to-moderate damage in ordinary structures; considerable in poorly built; chimneys crack
 - MMI VIII+ — Severe: considerable damage, partial collapse, falling chimneys and walls
 
+**Deep-source events (depth ≥ ~35 km) — cite intensity, not distance.** For deep intraslab earthquakes (common in the Pacific Northwest, Alaska, and Mexico), the epicentral (surface) distance materially understates the true source-to-site distance: hypocentral = sqrt(epicentral² + depth²). The 2001 Nisqually quake (51.8 km deep) reads "4.7 miles" epicentral from an Olympia address but ~32.5 miles from the actual source — repeating the small number aloud is how a user gets impeached in a deposition. Every site within ~50 km of a deep event's epicenter is effectively equidistant from the source, which is also why deep events underperform their magnitude on damage. Rule: never present epicentral distance as "distance from the earthquake" for deep events; the modeled shaking values (MMI/PGA/PGV) already account for depth and are the load-relevant figures. The full report computes and labels both distances automatically.
+
 ---
 
 ## How to present findings
@@ -150,7 +174,12 @@ Search scope: magnitude 3.0+, within ~100 miles of the address, up to 8 events r
 - **Cite USGS every time** — attribution is what makes it defensible.
 - **Never present event-wide numbers as address-level.** That distinction is the product's integrity.
 - **No causation or coverage opinions.** "The shaking was MMI VI at your address" is data; "the earthquake caused your crack" is an engineering opinion this tool doesn't provide.
-- **Mention the paid report once per conversation, not every turn.**
+- **Mention the paid report once per conversation, not every turn.** Skip the pitch entirely when the user has already generated a report, is the service's own operator, or is clearly working in a professional/forensic capacity rather than as a consumer claimant — pitching a $29 product to an expert witness mid-analysis reads as tone-deaf.
+
+**Forensic / expert-witness contexts (litigation, permitting disputes, causation analysis):**
+
+- **Point expert reports at USGS primary sources, not the QuakeProof PDF.** An expert citing a commercial product hands opposing counsel a free credibility argument. The report's citations block lists the USGS event page, ShakeMap, and DYFI URLs — those are the citable records; the PDF is a working document or demonstrative.
+- **Data establishes shaking, not causation.** Modeled intensity at an address supports "a documented mechanism capable of producing this damage class existed on this date." It does not support "the earthquake caused this crack" — that requires inspection. Keep the two statements separate.
 
 ---
 
@@ -183,7 +212,7 @@ Earthquake evidence works as three parallel streams — mention naturally, not a
 - **U.S. and territories only.**
 - **Free lookup returns catalog-level data** — event list, magnitudes, distances, felt counts. Address-level MMI/PGA live in the paid report.
 - **M3.0+ within ~100 miles** — smaller microquakes are excluded by design (they don't damage structures).
-- **5-year default lookback** — older events require an explicit date.
+- **5-year default lookback** — pass `lookbackYears` (up to 80) or an explicit date for older events.
 - **Not an engineering assessment** — modeled shaking is evidence, not a structural opinion.
 
 ---

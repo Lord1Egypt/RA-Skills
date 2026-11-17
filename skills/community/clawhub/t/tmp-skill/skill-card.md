@@ -1,42 +1,52 @@
-## Description: <br>
-CRM integration, lead tracking, outreach automation, and pipeline management for an AI sales assistant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CRM integration, lead tracking, outreach automation, and pipeline management. Transform your AI agent into a sales assistant that never lets leads slip through the cracks.
 
-## Publisher: <br>
-[AlexeyVorobiev](https://clawhub.ai/user/AlexeyVorobiev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[alexeyvorobiev](https://clawhub.ai/user/alexeyvorobiev)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Sales teams and agents use this skill to set up a local sales workspace, track leads, manage follow-ups, generate pipeline reports, and prepare outreach and meeting materials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Crafted company names can cause lead files to be written outside the intended sales folder.
+
+Mitigation: Review and fix filename validation before installing, or use the lead tracker only with trusted company names.
+
+Risk: Sales contact records are stored as plaintext files.
+
+Mitigation: Avoid regulated or unnecessary personal data, and use only workspaces with appropriate access controls and retention practices.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales teams, operators, and agent users use this skill to track leads, manage pipeline status, prepare outreach and meeting materials, and generate sales reports from local Markdown templates and shell helpers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect and customer information may be stored in local plaintext files. <br>
-Mitigation: Store only approved minimal fields, avoid sensitive customer data, and apply the user's normal local file access controls. <br>
-Risk: Path-like company names can cause lead files to be written outside the intended leads folder. <br>
-Mitigation: Do not use company names containing slashes, '..', or path-like text unless filename handling is fixed. <br>
-Risk: CRM synchronization can transfer prospect or customer data to third-party systems. <br>
-Mitigation: Use only approved CRM tools, least-privilege credentials, and data fields authorized for the target system. <br>
+**Output Format:** [Markdown guidance with inline shell commands and generated Markdown files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlexeyVorobiev/tmp-skill) <br>
+**Other Properties Related to Output:** [Creates and updates local sales workspace files under the user's home directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local Markdown file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts create and update local sales workspace files under the user's home directory when run.] <br>
+1.0.0 (source: server release metadata and artifact frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

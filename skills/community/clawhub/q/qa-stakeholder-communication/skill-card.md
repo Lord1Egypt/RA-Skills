@@ -1,40 +1,54 @@
-## Description: <br>
-Provides Chinese-language templates and communication strategies for QA stakeholders to report bugs, release risks, and quality concerns to developers, product managers, and leadership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams communicate test findings and release risks to engineers, product managers, and leaders with audience-specific templates.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA testers and quality engineers use this skill to tailor bug reports, release-risk updates, and quality summaries for developers, product managers, and managers. It helps convert test findings into role-specific communication plans, reports, key metrics, and risk highlights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad communication prompts outside a clear QA or stakeholder-reporting context. <br>
-Mitigation: Use it when the request is clearly about QA bugs, release risks, quality issues, or stakeholder reporting. <br>
-Risk: Generated stakeholder wording may overstate impact or urgency if the underlying test report or audience analysis is incomplete. <br>
-Mitigation: Review the communication plan and report against the source QA evidence before sending it to developers, product managers, or leadership. <br>
+## Use Case:
 
+QA practitioners use this skill to tailor bug reports, quality updates, and release-risk discussions for developers, product managers, and decision-makers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-stakeholder-communication) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured communication plans, tailored reports, key metrics, and risk highlights] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language, audience-specific QA stakeholder communication guidance] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: QA examples may expose customer, payment, identity, or production details if copied into prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mask sensitive data and use synthetic or sanitized examples instead of real production evidence.
+
+Risk: The optional installation suggestion does not pin a source version.
+
+Mitigation: Verify the publisher, source, and version before running the suggested installation command.
+
+## Reference(s):
+
+- [Stakeholder communication patterns](references/comms-patterns.md)
+- [ClawHub skill listing](https://clawhub.ai/kokxi/skills/qa-stakeholder-communication)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Audience-tailored communication plans and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Communication strategy IDs use COMM-XXXX; coverage statements state their basis and identify uncovered areas.]
+
+## Skill Version(s):
+
+1.8.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

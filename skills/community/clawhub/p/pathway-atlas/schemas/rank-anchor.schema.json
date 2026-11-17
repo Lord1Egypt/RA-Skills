@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathway-atlas.example/schemas/rank-anchor.schema.json",
+  "title": "Joy-report rank anchor",
+  "$comment": "This Schema validates the JSON structure. Every payload must also pass RankAnchor semantic validation; estimation additionally validates student-rank coverage.",
+  "x-semantic-validator": {
+    "anchor": "scripts.rank_calc.RankAnchor",
+    "estimate": "scripts.rank_calc.estimate_rank_from_anchors",
+    "checks": [
+      "coverage_order",
+      "anchor_containment",
+      "student_rank_coverage"
+    ]
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "anchor_id",
+    "year",
+    "school_name",
+    "scope_type",
+    "scope_value",
+    "school_rank",
+    "province_rank",
+    "school_score",
+    "source_ids",
+    "evidence_status",
+    "coverage_status",
+    "coverage_min_school_rank",
+    "coverage_max_school_rank"
+  ],
+  "properties": {
+    "anchor_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "school_name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "scope_type": {
+      "type": "string",
+      "enum": ["whole_school", "class", "subject_group", "named_program"]
+    },
+    "scope_value": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "school_rank": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "province_rank": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "school_score": {
+      "type": ["number", "null"],
+      "exclusiveMinimum": 0
+    },
+    "source_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+      }
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "official",
+        "corroborated",
+        "reference",
+        "inferred",
+        "conflict",
+        "missing",
+        "masked",
+        "partial"
+      ]
+    },
+    "coverage_status": {
+      "type": "string",
+      "enum": [
+        "official",
+        "corroborated",
+        "reference",
+        "inferred",
+        "conflict",
+        "missing",
+        "masked",
+        "partial"
+      ]
+    },
+    "coverage_min_school_rank": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "coverage_max_school_rank": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"coverage_min_school_rank": {"type": "integer"}},
+        "required": ["coverage_min_school_rank"]
+      },
+      "then": {
+        "properties": {"coverage_max_school_rank": {"type": "integer"}}
+      },
+      "else": {
+        "properties": {"coverage_max_school_rank": {"type": "null"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"coverage_max_school_rank": {"type": "integer"}},
+        "required": ["coverage_max_school_rank"]
+      },
+      "then": {
+        "properties": {"coverage_min_school_rank": {"type": "integer"}}
+      },
+      "else": {
+        "properties": {"coverage_min_school_rank": {"type": "null"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "coverage_status": {
+            "enum": ["official", "corroborated", "reference"]
+          }
+        },
+        "required": ["coverage_status"]
+      },
+      "then": {
+        "properties": {
+          "coverage_min_school_rank": {"type": "integer"},
+          "coverage_max_school_rank": {"type": "integer"}
+        }
+      }
+    }
+  ]
+}

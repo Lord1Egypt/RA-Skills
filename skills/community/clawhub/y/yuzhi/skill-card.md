@@ -1,40 +1,54 @@
-## Description: <br>
-御知库 is a personal knowledge-base skill that stores Markdown, PDF, and text documents locally and helps an agent search them before answering knowledge questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+御知库 is a personal knowledge-base skill that stores Markdown, PDF, and text documents, searches them by keyword or simple semantic matching, and helps agents answer from local knowledge first.
 
-## Publisher: <br>
-[zton100](https://clawhub.ai/user/zton100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zton100](https://clawhub.ai/user/zton100)
 
-## Use Case: <br>
-Developers and individual users use this skill to maintain a local personal knowledge base and have an agent add, list, search, and summarize stored documents before answering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Added documents are copied into a persistent local knowledge base and may be used in later answers. <br>
-Mitigation: Do not add secrets or highly sensitive documents unless local storage and later retrieval are acceptable. <br>
-Risk: PDF ingestion depends on local pdfplumber support and may fail or extract incomplete text. <br>
-Mitigation: Verify PDF support in the target environment and review extracted content for important documents. <br>
+## Use Case:
 
+Developers and end users can use this skill to maintain a local personal knowledge base and retrieve relevant stored material when answering knowledge-oriented questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zton100/yuzhi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with CLI command examples and search-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a persistent local SQLite database under ~/.yuzhi for indexed document text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Imported documents may be stored as full plaintext content under ~/.yuzhi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review files before adding them and avoid importing secrets, credentials, agent configuration, logs, or broad workspace files.
+
+Risk: Broad trigger language may cause the skill to be used for general knowledge questions where local retrieval is not intended.
+
+Mitigation: Prefer explicit knowledge-base lookup commands and verify retrieved snippets before relying on them in an answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zton100/skills/yuzhi)
+- [ClawHub publisher profile](https://clawhub.ai/user/zton100)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with CLI commands and retrieved document snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference locally stored knowledge-base entries from ~/.yuzhi when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

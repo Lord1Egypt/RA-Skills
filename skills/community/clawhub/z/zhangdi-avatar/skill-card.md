@@ -1,45 +1,59 @@
-## Description: <br>
-张迪的数字化身。以张迪的视角、价值观、方法论和决策逻辑，进行分析、判断、决策，并持续自我完善。当用户需要"问问张迪会怎么想/怎么做/怎么判断"时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a Zhang Di persona avatar for business, product, and startup analysis using the persona's stated viewpoint, decision methods, and communication style.
 
-## Publisher: <br>
-[sparkbayes](https://clawhub.ai/user/sparkbayes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sparkbayes](https://clawhub.ai/user/sparkbayes)
 
-## Use Case: <br>
-External users and developers use this skill to activate a Zhang Di persona for business analysis, product decisions, startup judgment, prioritization, and evidence-based action recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to impersonate a real person. <br>
-Mitigation: Use only with authorization from the represented person and keep the persona boundary clear to users. <br>
-Risk: The skill asks the agent to retain private communications and memory material. <br>
-Mitigation: Require explicit consent before saving conversations or source communications, and redact private chats, emails, workplace messages, and photos before storage. <br>
-Risk: The skill asks the agent to rewrite governing files such as SKILL.md, meta.json, and reference files. <br>
-Mitigation: Disable or manually gate writeback behavior and review proposed file changes before applying them. <br>
+## Use Case:
 
+External users use this skill to ask how the Zhang Di persona would analyze, judge, or decide business, product, startup, and prioritization questions. The skill frames responses through evidence checks, structured decision frameworks, and concise recommendations.
 
-## Reference(s): <br>
-- [Persona Core](references/persona-core.md) <br>
-- [Decision Methodology](references/decision-methodology.md) <br>
-- [Turing Test Protocol](references/turing-test-protocol.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sparkbayes/zhangdi-avatar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown-formatted persona responses with optional memory or reference file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may direct updates to memory logs, metadata, and reference files when its self-improvement conditions are met.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata) <br>
+Risk: The skill may answer as a named person rather than as a clearly disclosed AI simulation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the identity-emulation posture to users and require approval from the represented person before deployment.
+
+Risk: The skill describes memory updates and rewriting core instruction or reference files.
+
+Mitigation: Disable automatic writeback or require explicit owner approval and review for memory, SKILL.md, meta.json, and reference-file updates.
+
+Risk: The skill may encourage use of private chats, messages, photos, or third-party communications as memory evidence.
+
+Mitigation: Use only consented and retention-approved inputs, minimize private data, and avoid third-party communications unless consent is clear.
+
+## Reference(s):
+
+- [Zhang Di Persona Core Reference](references/persona-core.md)
+- [Zhang Di Decision Methodology Guide](references/decision-methodology.md)
+- [Zhang Di Avatar Turing Test Protocol](references/turing-test-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown prose with structured lists and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise judgments, evidence gaps, prioritization frameworks, and actionable recommendations.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

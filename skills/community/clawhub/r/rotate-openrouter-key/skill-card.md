@@ -1,41 +1,59 @@
-## Description: <br>
-Safely rotate the OpenRouter API key across all config files in an OpenClaw installation by finding every location, updating them, restarting the gateway, and verifying the key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely rotates OpenRouter API keys across OpenClaw config files by locating stored keys, updating .env and JSON configs, restarting the gateway, and verifying the new key.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to rotate OpenRouter API keys across environment, agent, and global configuration files while preserving backups and verifying that the new key works. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live OpenRouter API keys and can expose secrets through shared chats, reusable shell commands, backups, or shell history. <br>
-Mitigation: Use find or dry-run mode first, redact discovered key values before reporting them, avoid placing real keys in reusable commands or shared chats, and delete or protect backups and shell history that may contain old keys. <br>
-Risk: Updating the wrong host or path can leave stale keys active or modify unintended OpenClaw configurations. <br>
-Mitigation: Review the reported paths before making changes and limit SSH-based rotation to hosts the operator explicitly names. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Key Rotation Guide](references/key-rotation-guide.md) <br>
-- [OpenRouter Key Management](https://openrouter.ai/keys) <br>
-- [OpenRouter Key Authentication Endpoint](https://openrouter.ai/api/v1/auth/key) <br>
+## Use Case:
 
+Developers and operators use this skill to rotate OpenRouter credentials in OpenClaw installations, avoid priority-chain mistakes across .env and JSON config files, and verify the replacement key before disabling the old one.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper can scan OpenClaw configuration files, create timestamped backups, update OpenRouter key values, and verify the replacement key against OpenRouter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.yml, changelog released 2026-02-21) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OpenRouter API keys may be exposed through command lines, chat logs, terminal output, or script output.
+
+Mitigation: Use dry-run first, avoid pasting live keys into chat or reusable command history, and redact any reported key values.
+
+Risk: Timestamped backups may retain plaintext copies of old keys after rotation.
+
+Mitigation: Review and remove .bak files after rollback is no longer needed, and keep OpenClaw config paths owner-readable only.
+
+Risk: Gateway restarts and SSH-based remote updates can affect running services or other machines.
+
+Mitigation: Treat each restart or remote update as a separate user-approved maintenance action.
+
+## Reference(s):
+
+- [Changing OpenRouter API Key for an Existing OpenClaw Installation](references/key-rotation-guide.md)
+- [OpenRouter Key Management](https://openrouter.ai/keys)
+- [OpenRouter Key Authentication Endpoint](https://openrouter.ai/api/v1/auth/key)
+- [ClawHub Skill Page](https://clawhub.ai/chunhualiao/skills/rotate-openrouter-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and modify OpenClaw credential files, create timestamped backups, verify keys through the OpenRouter API, and propose gateway restart commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.yml, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

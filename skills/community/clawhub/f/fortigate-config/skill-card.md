@@ -1,42 +1,61 @@
-## Description: <br>
-Automates FortiGate firewall configuration, including basic policy management and security configuration for industrial protocols such as Modbus, IEC104, and S7. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates FortiGate firewall configuration, including policy and address management plus industrial protocol security configuration for Modbus, IEC104, S7, and related ICS protocols.
 
-## Publisher: <br>
-[jiansiting](https://clawhub.ai/user/jiansiting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiansiting](https://clawhub.ai/user/jiansiting)
 
-## Use Case: <br>
-Network, security, and industrial operations engineers use this skill to list and change FortiGate firewall policies, address objects, industrial protocol service objects, IPS profiles, and related ICS policy configuration through the FortiGate REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent production firewall changes through privileged FortiGate API access. <br>
-Mitigation: Review every write action before execution, test first against a non-production device, and use a least-privilege FortiGate API token. <br>
-Risk: The artifact defaults FORTIGATE_VERIFY_SSL to false, which can expose FortiGate API traffic to interception when used unchanged. <br>
-Mitigation: Set FORTIGATE_VERIFY_SSL=true and configure a valid certificate before using the skill outside a controlled test environment. <br>
-Risk: The skill requires a FortiGate API token that could grant sensitive network administration capability. <br>
-Mitigation: Store the token in protected secret storage and scope it only to the operations required for the intended workflow. <br>
+## Use Case:
 
+Network and security engineers use this skill to inspect and automate FortiGate firewall objects, policies, IPS profiles, industrial protocol service objects, and selected Industrial Connectivity settings through the FortiGate REST API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiansiting/fortigate-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text status messages, tabular policy listings when tabulate is available, and CLI guidance for unsupported Industrial Connectivity API paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON command parameters and reads FortiGate connection settings from environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill can make live changes to FortiGate firewall policies, address objects, services, IPS profiles, and interface access settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege FortiGate API token, review requested changes before execution, and test outside production before use on live devices.
+
+Risk: SSL verification defaults to false, which can expose administrative API traffic to interception when left unchanged.
+
+Mitigation: Set FORTIGATE_VERIFY_SSL=true and use a valid certificate for the target FortiGate device.
+
+Risk: Firewall policy automation can unintentionally broaden network access if inputs use overly broad source, destination, service, or action values.
+
+Mitigation: Require explicit narrow policy inputs, review generated policy parameters, and keep rollback steps available before applying changes.
+
+Risk: The configure-icond action changes interface access settings and may rely on FortiOS API behavior that needs environment-specific validation.
+
+Mitigation: Avoid configure-icond until interface access impact, rollback behavior, and exact FortiOS API support are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiansiting/skills/fortigate-config)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text tables and status messages, with CLI command snippets for manual icond fallback.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses tabulate for grid-style policy tables when installed; otherwise falls back to aligned text.]
+
+## Skill Version(s):
+
+2.0.0 (source: artifact frontmatter; target metadata version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+# 论衡流程真源 · 第二部分：节点 phase0_definition（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: phase0_definition
+  phase: "Phase 0"
+  phase_seq: 0
+  kind: owner_checkpoint
+  blocking: true        # v2.12.49：人环闸门 —— 无明确决策不得推进（真源 = owner_timeout_policy）
+  owner_visible: true   # v2.12.49：必须按 checkpoint-card-template 向主人呈现
+  decisions: [approved, revision_requested]   # v2.12.61：Phase 0 **进线**二态（approved=开始 / revision_requested=补充信息后重出简报）。
+  #   「暂停 / 拒绝」= **未进线出口**（流水线外前置门），不进本词表 → 记 status.md `pre_pipeline_exit`。
+  #   原 restart_phase 系 v2.12.28「与其余人工节点结构对齐」复制而来：Phase 0 即定题，无更早节点可回退，
+  #   该值在本节点自指不可达 ⇒ 移除（避免「真源声明了、卡与 status 却无从落到」）。
+  timeout_fallback: pending_owner_halt
+  blocks: [retrieval]   # v2.15.13 FB-12：局部阻塞 —— 本检查点只阻塞检索层；允许「呈现但不等」的并行准备（如顶配/三档路由探活、模板加载）可在等待期进行，全局停摆非本节点语义
+  output: 01-任务简报.md
+  next: pre_spawn_enforcement

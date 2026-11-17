@@ -1,43 +1,58 @@
-## Description: <br>
-Set up a non-custodial dollar-cost averaging strategy on Uniswap for recurring swaps, route selection, USDC approval, automation, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a non-custodial dollar-cost averaging strategy on Uniswap for recurring swaps, route selection, approval checks, automation setup, and monitoring.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users and developers use this skill to configure recurring, non-custodial token purchases on Uniswap with route selection, cost projection, optional first execution, and self-execute or Gelato automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize recurring on-chain trades rather than a single swap. <br>
-Mitigation: Confirm the wallet, token pair, per-trade amount, maximum total budget, schedule, end date, and cancellation process before enabling automation. <br>
-Risk: Gelato mode may require ongoing keeper funding and can continue executing autonomously. <br>
-Mitigation: Review the Gelato funding source, expected keeper fees, and pause or cancellation steps before creating the automation task. <br>
-Risk: A misconfigured DCA strategy can spend more than intended over time. <br>
-Mitigation: Require explicit user confirmation of the full strategy, total budget, slippage tolerance, and spending limits before any execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/setup-dca) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill specification](artifact/SKILL.md) <br>
+## Use Case:
 
+External users and developers use this skill to configure a non-custodial Uniswap DCA strategy, compare routes and costs, request confirmation, and set up either agent-triggered or Gelato-based recurring execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown status summaries with transaction details and optional JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .uniswap/dca-config.json for self-execute mode and may trigger a first on-chain swap after explicit confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may initiate real token approvals and swaps with financial consequences.
+
+Mitigation: Use it only in a wallet-enabled environment after reviewing the skill version, confirming the strategy details, and treating approvals and first swaps as real financial activity.
+
+Risk: Recurring automation or persistence may be overstated relative to the declared tools.
+
+Mitigation: Independently confirm that the local DCA config or Gelato task was created, funded, active, and cancellable before relying on recurring execution.
+
+Risk: Unreviewed install sources can expose wallet-enabled workflows to unexpected behavior.
+
+Mitigation: Install from pinned, reviewed sources and verify file hashes or release metadata before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/setup-dca)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style status updates, confirmation prompts, transaction summaries, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce wallet actions, token approval guidance, swap execution requests, local DCA configuration, and monitoring summaries after explicit user confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

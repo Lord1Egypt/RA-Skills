@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn77qx634tjhab2te78gmqt6p187ftz6",
-  "slug": "zhihu-aiops-skill",
-  "version": "2.1.0",
-  "publishedAt": 1779931334424
+  "name": "zhihu-aiops",
+  "version": "1.0.1",
+  "description": "智护运维平台 AIOps 集成技能。提供资产中心、CMDB 资产发现、监控告警、VictoriaMetrics、Categraf SNMP 指标和纳管设备智能巡检相关 API 参考与工作流。"
 }

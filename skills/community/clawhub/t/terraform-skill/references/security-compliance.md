@@ -288,7 +288,7 @@ resource "aws_db_instance" "this" {
 ```bash
 # Never commit these
 export TF_VAR_database_password="secret123"
-export AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"
+export AWS_ACCESS_KEY_ID="REDACTED-SECRET"
 export AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 ```
 

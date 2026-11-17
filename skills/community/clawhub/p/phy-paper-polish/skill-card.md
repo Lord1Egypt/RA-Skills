@@ -1,46 +1,59 @@
-## Description: <br>
-This skill helps agents review and polish LaTeX research papers, focusing on writing clarity, grammar, LaTeX best practices, and document structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents review and polish research papers written in LaTeX, focusing on writing clarity, grammar, LaTeX best practices, and document structure.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, researchers, and academic authors use this skill to have an agent review LaTeX manuscripts for clearer writing, grammar, consistent structure, and LaTeX best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested edits could alter technical meaning or introduce incorrect writing guidance. <br>
-Mitigation: Review proposed changes against the source manuscript before accepting them. <br>
-Risk: Unpublished or sensitive manuscript content may be exposed to an agent or connected service. <br>
-Mitigation: Use trusted agent environments and avoid sharing confidential material beyond approved systems. <br>
+## Use Case:
 
+Researchers, authors, and technical editors use this skill to review LaTeX research papers for clearer writing, grammar, consistent structure, and LaTeX best practices before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-paper-polish) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [Verb Tense in Scientific Manuscripts](https://www.unlv.edu/sites/default/files/page_files/27/GradCollege-VerbTenseScientificManuscripts.pdf) <br>
-- [Effective Writing](https://www.nature.com/scitable/topicpage/effective-writing-13815989/) <br>
-- [LuaLaTeX](https://www.luatex.org/) <br>
-- [BibLaTeX bibliography management](https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex) <br>
-- [Typefaces for Symbols in Scientific Manuscripts](https://physics.nist.gov/cuu/pdf/typefaces.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text review guidance with suggested edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Suggested edits may change technical meaning or introduce inappropriate wording into a manuscript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes against the author's technical intent before applying them.
+
+Risk: Manuscripts may contain unpublished or sensitive research content.
+
+Mitigation: Provide only the manuscript files intended for review and follow the applicable confidentiality requirements.
+
+## Reference(s):
+
+- [Phy Paper Polish on ClawHub](https://clawhub.ai/phy041/skills/phy-paper-polish)
+- [Canlah AI](https://canlah.ai)
+- [Verb Tense in Scientific Manuscripts](https://www.unlv.edu/sites/default/files/page_files/27/GradCollege-VerbTenseScientificManuscripts.pdf)
+- [Effective Writing](https://www.nature.com/scitable/topicpage/effective-writing-13815989/)
+- [LuaTeX](https://www.luatex.org/)
+- [BibLaTeX Documentation](https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex)
+- [NIST Typefaces for Symbols in Scientific Manuscripts](https://physics.nist.gov/cuu/pdf/typefaces.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with suggested edits and LaTeX guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output should be reviewed before applying changes to manuscripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

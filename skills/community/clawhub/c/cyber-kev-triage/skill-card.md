@@ -1,41 +1,53 @@
-## Description: <br>
-Prioritize vulnerability remediation using KEV-style exploitation context plus asset criticality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prioritize vulnerability remediation using KEV-style exploitation context plus asset criticality.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Security teams and vulnerability managers use this skill to rank CVEs by exploitation context, CVSS score, and affected asset criticality, then produce patch-priority and due-window guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper reads the local vulnerability JSON file selected by the user. <br>
-Mitigation: Use only intended input files and avoid including unnecessary sensitive asset or vulnerability data. <br>
-Risk: The helper writes a local report file and may overwrite an existing path chosen with --output. <br>
-Mitigation: Write reports to a dedicated output directory and avoid pointing --output at important files. <br>
-Risk: The --dry-run flag is recorded in output details but does not prevent report file creation. <br>
-Mitigation: Do not rely on --dry-run as a safeguard against file writes; choose a disposable output path when testing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [KEV Triage Method](references/triage-method.md) <br>
+## Use Case:
 
+Security teams, vulnerability managers, and remediation engineers use this skill to rank CVEs by exploitation status, severity, and asset criticality, then produce patch priority guidance and due windows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with optional JSON, Markdown, or CSV report files from the bundled triage script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script accepts a local JSON vulnerability input file and writes a selected local report artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reports can overwrite existing files, including when dry-run mode is supplied.
+
+Mitigation: Choose output paths deliberately and avoid pointing the report output at existing files that should be preserved.
+
+Risk: CSV reports can carry untrusted vulnerability or asset data into spreadsheet software.
+
+Mitigation: Prefer JSON or Markdown output, or sanitize CSV content before opening it in a spreadsheet.
+
+## Reference(s):
+
+- [KEV Triage Method](references/triage-method.md)
+- [Cyber KEV Triage on ClawHub](https://clawhub.ai/0x-professor/skills/cyber-kev-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, CSV, Shell commands, Guidance]
+
+**Output Format:** [JSON, Markdown, or CSV patch triage reports with ranked vulnerabilities, priority tiers, scores, and recommended due windows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script accepts JSON vulnerability and asset input up to 1048576 bytes and can emit json, md, or csv output.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

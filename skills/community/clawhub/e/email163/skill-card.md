@@ -1,43 +1,63 @@
-## Description: <br>
-基于Go的163邮箱SMTP发送工具，支持HTML格式邮件、多收件人、命令行发送和发送日志记录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a Go-based 163 Mail SMTP sender that supports HTML email, multiple recipients, command-line usage, and daily send logs.
 
-## Publisher: <br>
-[x760591483](https://clawhub.ai/user/x760591483) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x760591483](https://clawhub.ai/user/x760591483)
 
-## Use Case: <br>
-Developers and operators can use this skill to compile and run a 163 SMTP email sender for scripted notifications, HTML messages, and multi-recipient mail workflows. It requires a 163 email address and authorization code supplied through environment variables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles SMTP credentials through environment variables. <br>
-Mitigation: Use a dedicated 163 SMTP authorization code, keep credentials out of shared shell profiles and logs, and rotate the authorization code if it may have been exposed. <br>
-Risk: Send logs can include recipient addresses, subjects, message content, and send results. <br>
-Mitigation: Review logging settings before use, store logs in a private location, and avoid sending confidential content unless logs are protected or redacted. <br>
-Risk: The SMTP connection code disables TLS certificate verification. <br>
-Mitigation: Review and update the TLS configuration before relying on this skill for sensitive or production email workflows. <br>
+## Use Case:
 
+Developers and operators can use this skill to understand, build, and run a command-line mail sender for 163 Mail SMTP. It is suited for sending HTML notifications to one or more recipients when the required 163 Mail address and authorization code are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x760591483/email163) <br>
-- [Publisher profile](https://clawhub.ai/user/x760591483) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, Files, Guidance] <br>
-**Output Format:** [Markdown usage guidance, command-line flags, SMTP email output, status text, and dated log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EMAIL163_ADDRESS and EMAIL163_PASSWORD environment variables; sends through smtp.163.com and records send attempts to date-based log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SMTP certificate checks are disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove InsecureSkipVerify and require normal TLS certificate verification before using real mail credentials.
+
+Risk: Email details are logged by default, including subject, recipients, content excerpts, and send result.
+
+Mitigation: Make logs opt-in, keep log directories private, and redact sensitive message content before production use.
+
+Risk: Real mail credentials are required through environment variables.
+
+Mitigation: Use a 163 Mail authorization code stored in a secret manager or protected runtime environment, and do not commit credentials.
+
+Risk: Untrusted subject text may be unsafe until header validation is added.
+
+Mitigation: Do not pass untrusted text as the subject unless header validation is implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x760591483/skills/email163)
+- [Publisher profile](https://clawhub.ai/user/x760591483)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Go source code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI uses EMAIL163_ADDRESS and EMAIL163_PASSWORD environment variables, accepts subject, content, recipients, and log path flags, and can write daily log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

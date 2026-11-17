@@ -1,44 +1,65 @@
-## Description: <br>
-Helps an agent issue, cancel, and retrieve accounting reports for São Paulo NFS-e service invoices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent issue, cancel, and export Sao Paulo municipal service invoices (NFS-e) using local configuration, client records, and certificate-backed SOAP requests.
 
-## Publisher: <br>
-[Blackcoffee111](https://clawhub.ai/user/Blackcoffee111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blackcoffee111](https://clawhub.ai/user/blackcoffee111)
 
-## Use Case: <br>
-Business operators and their agents use this skill to prepare, issue, cancel, and export reports for São Paulo municipal NFS-e invoices. The workflow supports local configuration, customer records, certificate-backed SOAP calls, and human review before production tax actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Brazil (São Paulo municipal NFS-e system) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize real São Paulo municipal tax operations, including invoice issuance and cancellation. <br>
-Mitigation: Require explicit human confirmation before every production issue or cancel action. <br>
-Risk: The skill handles certificate material, .env secrets, debug XML, stored customer records, and exported accounting JSON. <br>
-Mitigation: Keep certificate and .env files out of synced or shared folders and source control, restrict file permissions, and periodically delete or protect debug and export files. <br>
-Risk: The skill can prepare invoice links or accounting exports for email sharing. <br>
-Mitigation: Confirm recipients and attachment contents before every email send. <br>
+## Use Case:
 
+Business users and their agents use this skill to prepare, issue, cancel, and reconcile Sao Paulo NFS-e invoices for local accounting workflows. It is intended for certificate-backed fiscal operations where a human reviews financial details before production actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Blackcoffee111/nota-fiscal-paulistana) <br>
-- [São Paulo NFS-e SOAP endpoint](https://nfews.prefeitura.sp.gov.br/lotenfe.asmx) <br>
-- [ACBr project reference](http://www.sourceforge.net/projects/acbr) <br>
+### Deployment Geography for Use:
 
+Brazil (Sao Paulo municipal NFS-e context)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown or text responses with shell commands, JSON command results, configuration updates, and exported accounting JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary RPS payload files, update local configuration and customer files, call municipal SOAP APIs, and produce invoice PDF links or accounting exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Certificate-backed invoice issuance or cancellation can create real tax effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-production data until reviewed, and require explicit human confirmation before every production issuance or cancellation.
+
+Risk: Client, fiscal, and certificate-related data may be retained locally in plaintext.
+
+Mitigation: Store secrets outside tracked files, restrict access to local configuration and client records, and remove temporary certificate material after each run.
+
+Risk: Unsafe XML construction and response logging can expose data or produce malformed fiscal requests.
+
+Mitigation: Fix XML escaping with structured XML generation and disable or redact response logs before production use.
+
+Risk: Invoice links or accounting exports may be sent by email without sufficiently scoped consent.
+
+Mitigation: Require recipient preview and explicit confirmation before sending each invoice link, report, or attachment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blackcoffee111/skills/nota-fiscal-paulistana)
+- [Artifact skill behavior](artifact/SKILL.md)
+- [Artifact user README](artifact/README.md)
+- [Sao Paulo ISS/NFS-e reference file](artifact/ISSSaoPaulo.txt)
+- [Sao Paulo NFS-e SOAP endpoint](https://nfews.prefeitura.sp.gov.br/lotenfe.asmx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payloads or summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON payloads and accounting exports, and may return official invoice numbers, cancellation status, and PDF links.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version; target metadata matches)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

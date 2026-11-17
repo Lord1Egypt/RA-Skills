@@ -1,43 +1,62 @@
-## Description: <br>
-购物省钱攻略，当用户询问网购、购物、买东西、划算时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+购物省钱攻略，当用户询问网购、购物、买东西、划算时调用。
 
-## Publisher: <br>
-[GeraldAlexanderrw](https://clawhub.ai/user/GeraldAlexanderrw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geraldalexanderrw](https://clawhub.ai/user/geraldalexanderrw)
 
-## Use Case: <br>
-External users can ask about online shopping, coupons, product categories, and platform-specific deals to get current discount suggestions for major Chinese e-commerce platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coupon data and links come from a third-party service and may be stale, unavailable, or point to destinations the user has not independently verified. <br>
-Mitigation: Verify coupon destinations before opening links, and treat offers as time-sensitive shopping information rather than authoritative pricing. <br>
-Risk: The skill can run a user-triggered upgrade command as a maintenance action. <br>
-Mitigation: Use the upgrade command deliberately, and install or update only when comfortable with the publisher and release source. <br>
-Risk: Shopping workflows can expose private account or payment information if users provide it unnecessarily. <br>
-Mitigation: Do not provide shopping account passwords, payment details, or private account data to this skill. <br>
+## Use Case:
 
+External shoppers use this skill to find current coupon and discount suggestions for Chinese e-commerce and delivery platforms such as JD, Taobao, Pinduoduo, Xianyu, Ele.me, and Meituan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GeraldAlexanderrw/shopping-helper) <br>
-- [Third-party coupon API endpoint](https://open.datadex.com.cn/dexserver/dex-api/v1/getcoupon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text shopping recommendations with coupon codes, links, and short usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include time-sensitive coupon links or copy-and-open app instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill contacts a third-party coupon service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external service relationship and network behavior before installation, and use it only where third-party coupon lookups are acceptable.
+
+Risk: The release ships exposed service credentials.
+
+Mitigation: Prefer a release that rotates the credentials and moves them out of the skill package before operational use.
+
+Risk: The skill writes coupon data to a shared temporary cache.
+
+Mitigation: Use a private per-user cache location or clear the temporary cache when coupon data should not be shared across local users.
+
+Risk: The skill can run a local self-update command when prompted.
+
+Mitigation: Review and approve update behavior manually, and prefer a release that removes in-band self-update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geraldalexanderrw/skills/shopping-helper)
+- [Third-party coupon service endpoint](https://open.datadex.com.cn/dexserver/dex-api/v1/getcoupon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-like text with coupon listings, links, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include time-sensitive coupon codes, platform names, app-opening instructions, and update command guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "mp-search-miniprograms",
+      "name": "搜一搜小程序",
+      "cat": "other",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-miniprograms/search/miniprograms",
+      "price": 0.7,
+      "params": [
+        "query",
+        "sort",
+        "cursor"
+      ],
+      "purpose": "按关键词搜小程序",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string"
+      },
+      "product_slug": "wechat-native-search-miniprograms"
+    }
+  ]
+}

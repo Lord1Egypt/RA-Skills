@@ -1,42 +1,54 @@
-## Description: <br>
-Hook Guard adds a three-level safety layer for agents by requiring confirmation for dangerous operations, backing up important changes, and logging routine activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hook Guard adds a three-level safety layer for AI agents by requiring confirmation for dangerous actions, backing up important edits, and recording routine activity in an audit log.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and agent users use Hook Guard to add operation-level guardrails around file edits, shell commands, external messages, and production-sensitive actions. The skill helps classify actions as confirmation-required, backup-required, or routine audit-log events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic or always-on activation could unexpectedly change how unrelated agent tasks are handled. <br>
-Mitigation: Review trigger phrases and automatic mode settings before installation; prefer explicit opt-in or visible guard status when enabling broad coverage. <br>
-Risk: Backups and audit logs may retain file paths or copies of modified files longer than intended. <br>
-Mitigation: Review backup and audit-log retention settings, restrict access to the guard storage directory, and avoid recording file contents in logs. <br>
+## Use Case:
 
+Developers and agent operators use Hook Guard to add operation-level safeguards around agent file edits, command execution, external messaging, backups, and audit reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wavmson/hook-guard) <br>
-- [Hook Guard README](artifact/README.md) <br>
-- [Hook Guard skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, confirmation prompts, backup notices, and audit summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trigger phrases, Red/Yellow/Green action classifications, backup retention guidance, and audit-log reporting behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automatic backups may retain plaintext copies of sensitive files such as .env, private keys, token stores, and production configs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Exclude secret-bearing files from automatic backup and restrict backup file permissions before enabling the skill broadly.
+
+Risk: Audit logs can record broad agent activity metadata and may be reused across sessions.
+
+Mitigation: Keep logs limited to operation metadata, restrict log permissions, and require explicit opt-in before cross-session audit reuse.
+
+## Reference(s):
+
+- [Hook Guard ClawHub release](https://clawhub.ai/wavmson/skills/hook-guard)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces confirmation prompts, backup notices, audit summaries, and AGENTS.md-style guard rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

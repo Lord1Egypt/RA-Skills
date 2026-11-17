@@ -1,48 +1,63 @@
-## Description: <br>
-Mp2rss helps agents manage WeChat Official Account and X (Twitter) RSS subscriptions, authentication, and content retrieval through the mp2rss CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage WeChat public-account RSS subscriptions and read subscribed WeChat and X content through the mp2rss CLI.
 
-## Publisher: <br>
-[areyoubugcoder](https://clawhub.ai/user/areyoubugcoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[areyoubugcoder](https://clawhub.ai/user/areyoubugcoder)
 
-## Use Case: <br>
-External users and developers use this skill to configure the mp2rss CLI, manage Feed Key authentication, manage WeChat Official Account RSS subscriptions, and retrieve WeChat articles or subscribed X posts and articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MP2RSS_FEED_KEY is a bearer credential and can expose the user's mp2rss account if logged or shared. <br>
-Mitigation: Use a trusted local terminal or secret store, avoid putting the key in shared shells or CI logs, and rely on mp2rss auth login when possible. <br>
-Risk: The documented curl pipe shell installer executes remote shell content. <br>
-Mitigation: Prefer the npm package or downloaded release binary; inspect installer content before using a piped shell install. <br>
-Risk: Authenticated mp2rss commands can change WeChat Official Account subscriptions. <br>
-Mitigation: Check login status, validate user-provided URLs, and confirm subscription identifiers from CLI output before changing subscriptions. <br>
+## Use Case:
 
+People and agents use this skill to subscribe to and manage WeChat public accounts, retrieve their articles, read posts and articles from subscribed X accounts, and manage mp2rss login. X account subscriptions must be changed in the web console.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/areyoubugcoder/mp2rss) <br>
-- [Mp2rss service homepage](https://mp2rss.bugcode.dev) <br>
-- [Installation reference](references/install.md) <br>
-- [Authentication reference](references/auth.md) <br>
-- [WeChat Official Account reference](references/mp.md) <br>
-- [X account reference](references/x.md) <br>
-- [Error handling reference](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON parsing notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose mp2rss CLI commands and summarize JSON command results; authenticated actions require a local mp2rss binary and a Feed Key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Installation and updates can run code from mutable remote sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install and update paths; prefer pinned packages or release downloads with verified checksums instead of piping a mutable-branch script to a shell.
+
+Risk: Skill synchronization during updates can change installed agent skills across sessions.
+
+Mitigation: Review skill-sync changes before applying updates; use the documented option to skip automatic skill synchronization when appropriate.
+
+Risk: Authentication stores a Feed Key locally.
+
+Mitigation: Protect the local credential and manage login through the CLI rather than exposing or editing the stored key.
+
+## Reference(s):
+
+- [Mp2rss service](https://mp2rss.bugcode.dev)
+- [Mp2rss documentation](https://areyoubugcoder.github.io/Mp2RSS/)
+- [Authentication guide](references/auth.md)
+- [Installation and updates](references/install.md)
+- [WeChat account commands](references/mp.md)
+- [X account commands](references/x.md)
+- [Error handling](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with CLI commands and content summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mp2rss CLI and an authorized Feed Key for account operations.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter, package.json, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,55 @@
-## Description: <br>
-ICP filing assistant for China websites that provides filing guidance, document checklists, provider selection help, timelines, common questions, domain filing query guidance, provincial prefixes, and footer code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ICP filing guidance for China websites, including filing workflows, document checklists, timelines, filing status query guidance, provincial ICP prefixes, and footer code snippets.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, site operators, and businesses preparing China website ICP filings can use this skill to generate filing checklists, process timelines, domain query instructions, provincial ICP prefixes, and footer markup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for websites subject to China ICP filing requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic helper commands can save user-entered text and command history in local plaintext under ICP_FILING_DIR or ~/.local/share/icp-filing. <br>
-Mitigation: Avoid entering IDs, filing materials, tokens, business details, or private notes; set ICP_FILING_DIR to a reviewed location before use. <br>
+## Use Case:
 
+Developers, site operators, and teams preparing China-hosted websites can use this skill to get concise ICP filing process guidance, document checklists, timeline expectations, and shell command outputs for related lookup and footer tasks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style summaries, with optional HTML footer code and shell-command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns summaries to stdout; generic helper commands may also write local data and command history under ICP_FILING_DIR or ~/.local/share/icp-filing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.6 (source: server release metadata) <br>
+Risk: The release is marked suspicious because it mixes an ICP filing guide with an unrelated persistent local utility that logs command inputs and has a misleading remove command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, avoid passing secrets or sensitive business details as command arguments, and set ICP_FILING_DIR to an isolated directory if running the utility script.
+
+Risk: The ICP helper provides local guidance and generated snippets that may become outdated or incomplete for a specific province, provider, or filing scenario.
+
+Mitigation: Verify filing requirements and generated footer or query guidance against the relevant filing provider and official MIIT resources before publication or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/icp-filing)
+- [MIIT ICP filing portal](https://beian.miit.gov.cn/)
+- [ChinaZ ICP lookup](https://icp.chinaz.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and stdout text with inline shell commands and optional HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local history and data files under ICP_FILING_DIR or ~/.local/share/icp-filing when the included utility script is used.]
+
+## Skill Version(s):
+
+2.3.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

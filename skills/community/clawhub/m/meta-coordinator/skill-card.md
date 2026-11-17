@@ -1,43 +1,56 @@
-## Description: <br>
-CS Coordinator agent turns customer support and operations input into structured triage records with conservative severity routing, owner suggestions, no-response follow-up guidance, and tracker or log-based case updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight CS and engineering issue triage with skeleton-first intake, conservative severity/category routing, ownership recommendation, no-response follow-up handling, and durable case tracking through either an issue tracker such as Linear or plain log files.
 
-## Publisher: <br>
-[yonghyeokrhee](https://clawhub.ai/user/yonghyeokrhee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yonghyeokrhee](https://clawhub.ai/user/yonghyeokrhee)
 
-## Use Case: <br>
-Support, operations, and engineering teams use this skill to convert customer-reported incidents, billing or entitlement issues, permission problems, and loose CS notes into durable issue records, owner recommendations, next actions, and follow-up updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Case records may include customer identifiers, payment or order references, and billing-adjacent support details. <br>
-Mitigation: Use approved issue trackers or controlled log locations, redact identifiers where possible, avoid full payment details and secrets, and apply organizational retention and access-control rules. <br>
-Risk: Incorrect triage or premature resolution could misroute active customer-impacting incidents. <br>
-Mitigation: Keep facts, guesses, and missing information separate; use conservative severity; and move cases to RESOLVED only after explicit recovery confirmation. <br>
+## Use Case:
 
+Support, CS operations, and engineering teams use this skill to convert customer-reported incidents, billing or entitlement delays, permission issues, and loose operational notes into structured triage records with severity, category, ownership, next actions, and follow-up handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yonghyeokrhee/meta-coordinator) <br>
-- [Korean demo script](references/demo-script-ko.md) <br>
-- [Tracker workflow mapping](references/tracker-workflow.md) <br>
-- [Log-only workflow](references/log-only-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured issue skeletons, triage sections, owner suggestions, status moves, and optional JSONL log shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance and record templates; it does not perform tracker writes or payment actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Support cases may include customer identifiers, payment or order references, billing details, or incident notes that are persisted in plain local case logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved tracker when possible; if local logs are used, mask sensitive fields, keep logs out of source control and shared sync folders, restrict access, and define retention and deletion rules.
+
+Risk: Weak or incomplete evidence may lead to incorrect severity, category, module, or owner recommendations.
+
+Mitigation: Keep facts, guesses, and missing information separated; do not invent a root cause; keep the issue at TRIAGED when ownership confidence is low; move to RESOLVED only after explicit recovery confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yonghyeokrhee/skills/meta-coordinator)
+- [Korean demo script](references/demo-script-ko.md)
+- [Tracker workflow mapping](references/tracker-workflow.md)
+- [Log-only workflow](references/log-only-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown triage record with optional JSONL-compatible case-event structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates facts, guesses, and missing information; includes issue skeleton, quick triage, likely module, owner suggestion, next actions, status move, and optional no-response follow-up.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn78kmemq2v76219wyznh49xpn846fvx",
-  "slug": "kemi-heartbeat-plugin",
+  "name": "kemi-heartbeat-plugin",
+  "displayName": "凯米心跳插件",
   "version": "1.0.0",
-  "publishedAt": 1775445586080
+  "description": "Adds a visual heartbeat animation and status indicator to the Web UI.",
+  "author": "Kemi (yang77160)",
+  "license": "MIT",
+  "tags": ["ui", "heartbeat", "status"],
+  "category": "enhancement"
 }

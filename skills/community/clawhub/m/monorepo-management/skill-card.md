@@ -1,41 +1,57 @@
-## Description: <br>
-Master monorepo management with Turborepo, Nx, and pnpm workspaces to build efficient, scalable multi-package repositories with optimized builds and dependency management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master monorepo management with Turborepo, Nx, and pnpm workspaces to build efficient, scalable multi-package repositories with optimized builds and dependency management.
 
-## Publisher: <br>
-[watermelon11](https://clawhub.ai/user/watermelon11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[watermelon11](https://clawhub.ai/user/watermelon11)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up, migrate, optimize, and operate monorepos with shared tooling, package workspaces, build caching, CI/CD, and package publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example npx, deploy, publish, cleanup, and package-management commands can modify repositories, registries, deployment targets, or local dependencies. <br>
-Mitigation: Review commands before execution and run them only against the intended repository, package registry, and environment. <br>
-Risk: CI and release examples include token-backed workflows such as GitHub and npm publishing. <br>
-Mitigation: Use scoped secrets, confirm the target environment, and avoid exposing tokens in logs or shared configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up, migrate, optimize, and operate JavaScript and TypeScript monorepos with Turborepo, Nx, and pnpm workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/watermelon11/monorepo-management) <br>
-- [Turborepo schema](https://turbo.build/schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Deploy and package-publishing snippets could cause unintended production deployments or package releases if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat deploy and publish snippets as templates, require manual approval gates, and review release workflow permissions before use.
+
+Risk: Unpinned npx tools and GitHub Actions can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin npx package versions and GitHub Actions to reviewed versions or commits.
+
+Risk: Long-lived npm tokens in CI increase blast radius if exposed.
+
+Mitigation: Prefer OIDC or trusted publishing and least-privilege workflow permissions over long-lived npm tokens.
+
+## Reference(s):
+
+- [Turborepo Schema](https://turbo.build/schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON, YAML, TypeScript, JavaScript, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes template snippets for monorepo setup, dependency management, CI/CD, and package publishing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

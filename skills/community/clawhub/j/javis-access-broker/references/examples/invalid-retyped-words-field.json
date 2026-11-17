@@ -1,0 +1,9 @@
+{
+  "decision": "answer",
+  "kind": "exact",
+  "points": [ { "text": "Jordan's words.", "sources": ["s3"] } ],
+  "exact_segments": [ { "source": "s3", "segs": ["g12"] } ],
+  "exact_text": "I need the budget by Friday, no later.",
+  "task_kind": "drafting_replies",
+  "topic": "Jordan's budget request"
+}

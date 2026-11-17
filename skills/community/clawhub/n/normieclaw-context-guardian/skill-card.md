@@ -1,41 +1,54 @@
-## Description: <br>
-Context Guardian helps agents manage long-running conversations by tracking session health, prompting for fresh starts, and saving important notes to workspace memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Guardian helps an agent manage long conversations by tracking session health, saving important notes, and suggesting fresh starts when continuity may degrade.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Developers, employees, and external agent users use this skill to keep long sessions organized, preserve decisions and preferences, and recover context through local workspace notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on local memory can preserve conversation details or preferences longer than the user expects. <br>
-Mitigation: Decide whether silent saves are acceptable before use, review generated memory files periodically, and avoid storing secrets or sensitive personal details. <br>
-Risk: The skill may create or load local notes during future sessions. <br>
-Mitigation: Use a dedicated workspace memory directory and instruct the agent to ask before saving or loading notes when tighter control is required. <br>
+## Use Case:
 
+External users, developers, and workspace agents use this skill to preserve conversation continuity during long or multi-topic sessions by saving notes, summarizing decisions, and guiding session resets.
 
-## Reference(s): <br>
-- [Context Guardian setup guide](references/setup-guide.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/nollio/normieclaw-context-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local note files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files when the agent follows the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Plaintext conversation notes may preserve secrets, personal data, or confidential business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local note saving is appropriate, redact sensitive content, and periodically review or delete memory files.
+
+Risk: Automatically reloading prior notes may carry stale or untrusted context into a new session.
+
+Mitigation: Keep memory files scoped to trusted workspaces and review saved notes before relying on them for sensitive decisions.
+
+## Reference(s):
+
+- [Context Guardian setup guide](references/setup-guide.md)
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-context-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and plaintext Markdown note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local memory notes such as daily Markdown files and optional long-term memory files.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

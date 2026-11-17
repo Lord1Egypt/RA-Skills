@@ -1,0 +1,52 @@
+{
+  "skill": "ta-chart-basics",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我刚开始学技术分析，K线图上一根根竖线到底代表什么意思？怎么看？",
+      "expected_behavior": "激活 ta-chart-basics，解释线图线段（最高-最低+收市短线）的含义与画法",
+      "notes": "典型新手读图场景"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "分析一只股票好几年的走势，用日线图好像不够，应该看周线还是月线？",
+      "expected_behavior": "激活 ta-chart-basics，说明长期趋势用周/月线、可回溯更久",
+      "notes": "时间尺度选择"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "画长期商品价格走势，算术刻度和对数刻度哪个更合适？",
+      "expected_behavior": "激活 ta-chart-basics，建议长期/大跨度用对数刻度",
+      "notes": "刻度选择"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "黄金突破了前高，是不是该买入了？",
+      "expected_behavior": "不应激活本 skill（这是买卖决策），应激活 trend-tools / reversal-patterns",
+      "notes": "诱饵：已会读图、要决策"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这家公司财报超预期，估值贵不贵？",
+      "expected_behavior": "不应激活本 skill（纯基本面），本 skill 只教读图",
+      "notes": "诱饵：基本面问题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我刚入门，想搞懂一根蜡烛图（K线）里的开盘、收盘、最高、最低四个价怎么读？",
+      "expected_behavior": "激活本 skill 并提示点数图无时间轴、只看价格转向，或引导至 point-figure skill",
+      "notes": "边界：点数图是独立制图法，本 skill 可初步区分"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should-not-trigger-01 为跨 skill 混淆测试（应触发 trend-tools）。"
+}

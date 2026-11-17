@@ -1,43 +1,57 @@
-## Description: <br>
-Query and analyze Tencent Cloud CLS logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze Tencent Cloud CLS logs.
 
-## Publisher: <br>
-[dbwang0130](https://clawhub.ai/user/dbwang0130) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dbwang0130](https://clawhub.ai/user/dbwang0130)
 
-## Use Case: <br>
-Developers and operators use this skill to configure clscli, list Tencent Cloud CLS topics, query logs over explicit regions and time ranges, and retrieve nearby log context for incident investigation or operational analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tencent Cloud credentials may grant access to sensitive CLS logs. <br>
-Mitigation: Use a dedicated least-privilege Tencent Cloud key and provide credentials only through the documented environment variables. <br>
-Risk: The clscli binary is installed from a third-party Homebrew tap/source. <br>
-Mitigation: Verify the clscli tap and source before installation. <br>
-Risk: Broad regions, topics, or time ranges can expose more log data than intended. <br>
-Mitigation: Keep regions, topics, and time ranges explicit before running queries. <br>
-Risk: Exported log files may contain secrets or user data. <br>
-Mitigation: Write exported logs only to protected local locations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tencent Cloud CLS API Documentation](https://cloud.tencent.com/document/api/614/56474) <br>
+## Use Case:
 
+Developers and operators use this skill to list Tencent Cloud CLS log topics, query logs, and retrieve context around specific log entries with clscli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide clscli output as JSON, CSV, or protected local files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned third-party CLI.
+
+Mitigation: Review the clscli source and installation path before use, and prefer a pinned, verified release.
+
+Risk: The skill uses Tencent Cloud credentials to access potentially sensitive logs.
+
+Mitigation: Use a dedicated least-privilege Tencent Cloud identity scoped to the required CLS regions, logsets, and topics.
+
+Risk: Exported log query results may contain sensitive data.
+
+Mitigation: Treat exported JSON or CSV files as sensitive data and avoid keeping long-lived credentials globally exported.
+
+## Reference(s):
+
+- [Tencent Cloud CLS API Documentation](https://cloud.tencent.com/document/api/614/56474)
+- [ClawHub skill page](https://clawhub.ai/dbwang0130/skills/clscli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI option tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference JSON or CSV CLI output from clscli.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

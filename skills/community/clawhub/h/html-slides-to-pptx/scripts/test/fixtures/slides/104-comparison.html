@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 双栏对照</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<!-- 原型 12:双栏对照(裸双栏+中缝线;右侧唯一高亮) -->
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">08 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      同一批文档,两种命运:试点组与对照组
+    </div>
+  </div>
+
+  <!-- 对照组:浅底描边面板(次要一侧) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:330px;width:800px;height:480px;background:#FFFFFF;border:2px solid var(--border-light);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:366px;width:720px;z-index:10;">
+    <div style="font-size:22px;font-weight:600;letter-spacing:2px;color:var(--text-tertiary);">对照组(沿用旧机制)</div>
+    <div style="font-size:26px;line-height:1.85;color:var(--text-primary);margin-top:28px;">
+      · 检索耗时基本持平,11.2 分钟
+      <br>
+      · 过期文档占比升到 34%
+      <br>
+      · "这还有效吗"确认工单月均 16 起
+      <br>
+      · 作者端零新增负担,读者端成本继续上升
+    </div>
+  </div>
+
+  <!-- 试点组:深色焦点面板(结构色面 + 明暗对比,主要一侧) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1020px;top:330px;width:800px;height:480px;background:var(--deep-navy);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1060px;top:366px;width:720px;z-index:10;">
+    <div style="font-size:22px;font-weight:600;letter-spacing:2px;color:var(--accent-orange);">试点组(保质期机制)</div>
+    <div style="font-size:26px;line-height:1.85;color:var(--on-navy-text);margin-top:28px;">
+      · 检索耗时降至 6.4 分钟,降 42%
+      <br>
+      · 过期文档占比压到 9%
+      <br>
+      · 确认工单月均 2 起,降 88%
+      <br>
+      · 作者端每篇多写 40 字,读者端省下一半时间
+    </div>
+  </div>
+
+  <!-- 底部结论带(浅底色块承载,不再是"细线凑底边") -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:840px;width:1720px;height:96px;background:#EEF2F7;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:868px;width:1640px;z-index:10;">
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);"><span style="font-weight:700;color:var(--charcoal);">结论:</span>同期同量级文档,唯一变量是机制——差距只能用机制解释。</div>
+  </div>
+</div>
+
+<template data-slide-notes>【核心逻辑】对照组是最强证据:同期、同量级文档,唯一变量是机制。</template>
+</body>
+</html>

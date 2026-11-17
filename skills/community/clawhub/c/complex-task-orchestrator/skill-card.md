@@ -1,41 +1,58 @@
-## Description: <br>
-Helps agents plan, split, checkpoint, monitor, and recover complex multi-step or batch tasks while managing sub-agent timeouts, context growth, and concurrent write risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complex Task Orchestrator helps agents break down long, multi-step, batch, or failure-prone tasks into checkpointed execution strategies with recovery guidance.
 
-## Publisher: <br>
-[xwz119](https://clawhub.ai/user/xwz119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwz119](https://clawhub.ai/user/xwz119)
 
-## Use Case: <br>
-Developers and agent operators use this skill to orchestrate long-running or high-volume work, choose serial, parallel, checkpointed, or hybrid execution patterns, and recover cleanly after failures or context loss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally writes task logs and checkpoint files, which may capture sensitive prompts, credentials, document tokens, file paths, or confidential content if used carelessly. <br>
-Mitigation: Avoid recording secrets or confidential data in logs, keep checkpoints scoped to operational status, and periodically review or delete generated logs. <br>
-Risk: Concurrent writes to shared files, documents, or APIs can cause conflicts, overwritten results, or partial outputs. <br>
-Mitigation: Use a single writer, give sub-agents separate output files, prefer incremental append or insert operations, and merge results in the main session. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan, checkpoint, monitor, and recover complex tasks such as batch research, multi-step engineering work, large document operations, and sub-agent coordination.
 
-## Reference(s): <br>
-- [Common Task Orchestration Patterns](artifact/references/common-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xwz119/complex-task-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code blocks, command examples, JSON checkpoint structures, and progress reporting templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent task logs and checkpoint files for recovery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Persistent task logging can capture secrets, customer data, document tokens, business plans, or sensitive file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep workspace boundaries clear and avoid recording raw sensitive details in daily notes or checkpoints.
+
+Risk: The checkpoint helper has an unvalidated file path risk when task IDs are not trusted.
+
+Mitigation: Do not run the checkpoint helper with untrusted task IDs until path validation is fixed.
+
+Risk: Orchestration proposals can introduce incorrect or misleading execution guidance.
+
+Mitigation: Review the selected strategy and validate outputs before deploying or acting on results.
+
+## Reference(s):
+
+- [Common Task Orchestration Patterns](artifact/references/common-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/xwz119/skills/complex-task-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with examples, checklists, tables, JSON checkpoint shapes, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend persistent checkpoints and workspace logs for long-running tasks.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

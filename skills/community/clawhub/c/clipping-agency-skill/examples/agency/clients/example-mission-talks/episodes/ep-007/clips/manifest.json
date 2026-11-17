@@ -1,0 +1,93 @@
+{
+ "client": "example-mission-talks",
+ "episode": "ep-007",
+ "video": "../source.mp4",
+ "video_sha256": "c65b1f558818e7085aa76743901b42180d04435f1b3011692f2eaaea319768e1",
+ "brand": {
+  "hook": true,
+  "uppercase": false,
+  "accent": "#FF6B6B",
+  "text": "#FFFFFF",
+  "hook_bg": "#FFFFFF",
+  "hook_text": "#B3262B",
+  "logo_position": "top-right",
+  "logo_scale": 0.14,
+  "mark": "EXAMPLE ONLY",
+  "logo_sha256": "c1486b67ceab96db3c6645bb5519f371695a36aa3af6672d23399052597444b0"
+ },
+ "clips": [
+  {
+   "id": "01",
+   "file": "clip-01.mp4",
+   "sha256": "8b94bd65abb02fa0b9223c129202a130ab1f7567071f47f94668243ce58a03e0",
+   "bytes": 922025,
+   "seconds": 37.4,
+   "end_card_seconds": 0.0,
+   "window": [
+    0.64,
+    37.65
+   ],
+   "ranges": [
+    [
+     0.45,
+     37.86
+    ]
+   ],
+   "framing": "crop",
+   "hook": "Were the first words on the Moon scripted?",
+   "names_fixed": [],
+   "cover": "clip-01-cover.jpg",
+   "spec": "d6d5495d2533d47e"
+  },
+  {
+   "id": "02",
+   "file": "clip-02.mp4",
+   "sha256": "db76d964db72a22b4f8a6a6705ff13a79fb0b0ca4b97de1af1afc83aa73368ce",
+   "bytes": 280840,
+   "seconds": 12.0,
+   "end_card_seconds": 0.0,
+   "window": [
+    55.19,
+    66.93
+   ],
+   "ranges": [
+    [
+     54.95,
+     66.95
+    ]
+   ],
+   "framing": "crop",
+   "hook": "The most dangerous part of Apollo 11",
+   "names_fixed": [],
+   "cover": "clip-02-cover.jpg",
+   "spec": "a4afccf9bb8627ec"
+  },
+  {
+   "id": "03",
+   "file": "clip-03.mp4",
+   "sha256": "3e1c3e9ecd369ef4d89e0b1ae32d20805e156c98e313abff40fcf36431c38b4a",
+   "bytes": 454031,
+   "seconds": 17.7,
+   "end_card_seconds": 0.0,
+   "window": [
+    75.33,
+    92.91
+   ],
+   "ranges": [
+    [
+     75.31,
+     93.05
+    ]
+   ],
+   "framing": "crop",
+   "hook": "The man who missed the Moonwalk on TV",
+   "names_fixed": [],
+   "cover": "clip-03-cover.jpg",
+   "spec": "eb8aa8f8d619824f"
+  }
+ ],
+ "contactSheet": "contact-sheet.jpg",
+ "warnings": [
+  "clip 03 starts mid-sentence: 'I do have one complaint'. Move it, or set \"snap\": false if this clause stands alone on purpose"
+ ]
+}

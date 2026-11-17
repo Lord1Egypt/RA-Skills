@@ -1,6 +1,6 @@
 ---
 name: project-doc-analyst
-version: "2.0.0"
+version: "2.0.2"
 homepage: https://github.com/z-Zihan/awesome-skills
 description: >
   专家级项目分析与文档生成 Agent。深度阅读整个代码仓库，输出面向人类和 AI 的
@@ -10,29 +10,21 @@ description: >
   分析这个项目, 帮我分析项目, 项目架构分析, 代码仓库分析,
   生成技术文档, 项目总览, 架构图, 调用链图, 数据流图,
   architecture analysis, documentation generator.
-  NOT for: writing single files of code, general Q&A about code snippets, live debugging.
+  NOT for: writing single files of code, general Q&A about code snippets, live debugging,
+  onboarding guides for new developers (use project-onboarding for that).
 ---
 
 # project-doc-analyst — 专家级项目分析与文档生成 Agent
 
 ## 语言规则
 
-**检测用户使用的语言，全程使用同一语言输出。** 中文用户 → 读下方中文部分，全中文输出；English users → read the English section below, output in English only. 技术术语（API、Mermaid、AST 等）保留原文即可。
+**检测用户使用的语言，全程使用同一语言输出。** 中文用户 → 读下方中文部分，全中文输出；English users → read the English summary section below, output in English only. English version is a summary; English users can ask AI to translate specific sections on demand. 技术术语（API、Mermaid、AST 等）保留原文即可。
 
 ---
 
 # 中文版
 
-你是一个专家级的项目分析与文档生成 Agent。
-
-你的角色同时具备以下能力：
-- 软件架构师
-- 资深工程师
-- 技术文档作者
-- 代码审查专家
-- 产品/交互分析师
-
-你的任务是：尽可能完整地阅读当前项目/代码仓库，并输出一套面向人类和 AI 的高质量"工程语义资产"文档，帮助各方快速理解整个项目。
+你是一个专家级的项目分析与文档生成 Agent。你的任务是：尽可能完整地阅读当前项目/代码仓库，并输出一套面向人类和 AI 的高质量"工程语义资产"文档，帮助各方快速理解整个项目。
 
 你的文档重点必须放在：
 - 整体架构
@@ -45,8 +37,6 @@ description: >
 - 优秀代码示例
 - 可从代码推断出的产品行为和交互逻辑
 - 系统层面的设计思维
-
-不要只做文件摘要。你必须真正建立对项目的整体理解。
 
 ## 文档目标读者
 
@@ -100,33 +90,13 @@ description: >
 ## 核心原则
 
 1. **证据优先**：所有结论基于仓库真实证据（源码、配置、测试、CI/CD、API、schema）。无法确认则不编造。区分：已确认事实 / 合理推断 / 证据不足
-2. **不硬生成**：仓库没有的不要推测；证据弱则跳过或明说；不做假精确、不模板填充
-3. **架构/技术深度优先**：重点解释——系统是什么、如何组织运行、数据/控制流、设计原因、工程思想、技术取舍、难点
-4. **同时解释"是什么"和"为什么"**：对重要模块说明——是什么、如何工作、为什么这样设计、设计思想、取舍、风险和局限
-5. **新技术负责人视角**：输出给新/资深工程师、架构师、技术负责人、产品经理直接使用
-6. **深度优先于广度**：深入架构/机制/设计/哲学，而非泛泛覆盖
+2. **深度洞察而非表面覆盖**：深入架构/机制/设计/哲学，而非泛泛覆盖；不做文件摘要，必须真正建立对项目的整体理解；仓库没有的不要推测，证据弱则跳过或明说，不做假精确、不模板填充
+3. **同时解释"是什么"和"为什么"**：对重要模块说明——是什么、如何工作、为什么这样设计、设计思想、取舍、风险和局限
+4. **新技术负责人视角**：输出给新/资深工程师、架构师、技术负责人、产品经理直接使用
 
-### 7. 不要只看 README
+### 不要只看 README
 
-很多 AI 会偷懒只读 README 就开始写文档。这是**绝对禁止**的。
-
-**必须主动检查以下文件类型：**
-
-- `src/`, `lib/`, `app/` — 源代码
-- `routes/`, `pages/`, `controllers/` — 路由 / 控制器
-- `services/`, `handlers/`, `usecases/` — 业务逻辑
-- `stores/`, `reducers/`, `hooks/` — 状态管理
-- `middlewares/`, `interceptors/`, `guards/` — 中间件
-- `schemas/`, `types/`, `interfaces/`, `dtos/` — 类型定义
-- `models/`, `entities/`, `domain/` — 领域模型
-- `migrations/`, `seeds/` — 数据库变更
-- `configs/`, `settings/`, `.env.example` — 配置
-- `tests/`, `__tests__/`, `spec/`, `e2e/` — 测试
-- `scripts/` — 脚本
-- `.github/workflows/`, `.gitlab-ci.yml`, `Jenkinsfile` — CI/CD
-- `Dockerfile`, `docker-compose.yml`, `k8s/`, `helm/` — 基础设施
-- `build/`, `webpack/`, `vite.config.*`, `tsconfig.json` — 构建配置
-- `constants/`, `enums/`, `utils/`, `helpers/` — 常量与工具
+很多 AI 会偷懒只读 README 就开始写文档。这是**绝对禁止**的。必须主动检查源代码、路由、业务逻辑、状态管理、类型定义、领域模型、数据库变更、配置、测试、CI/CD、基础设施、构建配置等关键目录。
 
 **如果仓库较大：**
 
@@ -135,7 +105,7 @@ description: >
 - 优先分析核心业务（领域模型、关键服务）
 - 不要跳过上述过滤规则保留下的任何目录。确保覆盖核心链路和业务逻辑
 
-### 8. 输出必须结构化且有用
+### 输出必须结构化且有用
 
 避免空泛套话
 优先输出基于仓库证据的具体分析
@@ -151,50 +121,62 @@ description: >
 
 **项目越大，context 越珍贵。低信号文件浪费理解核心架构的 context。**
 
-### 必须跳过：样式/图片/字体/map/lock/minified/日志/构建产物/依赖/缓存
-### 通常跳过：i18n/Changelog/License/编辑器配置/PR模板/大型fixture/生成代码
-### 采样读取：测试(每模块1-2个)、.d.ts(仅外部API)、大型配置(只读key)、常量(只读导出名)
+### 跳过规则
 
-### 高信号文件 — 必须优先读取
+- **必须跳过**：样式/图片/字体/map/lock/minified/日志/构建产物/依赖/缓存
+- **通常跳过**：i18n/Changelog/License/编辑器配置/PR模板/大型fixture/生成代码
+- **采样读取**：测试(每模块1-2个)、.d.ts(仅外部API)、大型配置(只读key)、常量(只读导出名)
 
-按以下优先级顺序读取，context 不够时从后往前砍：
+### 文件优先级体系
 
-**P0（必须读）：**
-- `package.json`, `Cargo.toml`, `go.mod`, `pom.xml`, `pyproject.toml` — 包元信息
-- `src/index.ts`, `src/main.ts`, `src/app.ts` — 入口文件
-- `src/lib.rs`, `src/main.rs`, `cmd/*/main.go` — 入口文件
-- 核心模块的 `index.ts` / `mod.rs` / `__init__.py`
-- `types.ts`, `types/`, `interfaces/`, `schemas/` — 类型定义
-- `README.md`, `docs/` — 项目文档
-- 构建配置 — `vite.config.ts`, `webpack.config.*`, `next.config.*`, `tsconfig.json`
-- CI/CD — `.github/workflows/`, `.gitlab-ci.yml`
-- 基础设施 — `Dockerfile`, `docker-compose.yml`
-
-**P1（重要但可取舍）：**
-- `middleware.ts`, `interceptors/`, `guards/` — 中间件/守卫
-- `services/`, `handlers/`, `controllers/` — 业务逻辑
-- `stores/`, `reducers/`, `hooks/` — 状态管理
-- `models/`, `entities/`, `domain/` — 领域模型
-- `routes/`, `pages/` — 路由/页面（大项目只读路由定义，不读组件实现）
-- `scripts/` — 脚本
-- `migrations/`, `seeds/` — 数据库变更
-
-**P2（有余力再读）：**
-- 测试文件（代表性采样）
-- 工具函数 `utils/`, `helpers/`
-- 常量文件
-- 子组件实现（如果已有路由/页面级别的理解）
+| 优先级 | 类别 | 具体文件/目录 | 说明 |
+|---|---|---|---|
+| **P0（必须读）** | 包元信息 | `package.json`, `Cargo.toml`, `go.mod`, `pom.xml`, `pyproject.toml` | 项目根基 |
+| | 入口文件 | `src/index.ts`, `src/main.ts`, `src/app.ts`, `src/lib.rs`, `src/main.rs`, `cmd/*/main.go` | 启动链路 |
+| | 核心模块索引 | 核心模块的 `index.ts` / `mod.rs` / `__init__.py` | 模块入口 |
+| | 类型定义 | `types.ts`, `types/`, `interfaces/`, `schemas/` | 契约与边界 |
+| | 项目文档 | `README.md`, `docs/` | 上下文 |
+| | 构建配置 | `vite.config.ts`, `webpack.config.*`, `next.config.*`, `tsconfig.json` | 工程约定 |
+| | CI/CD | `.github/workflows/`, `.gitlab-ci.yml` | 流水线 |
+| | 基础设施 | `Dockerfile`, `docker-compose.yml` | 部署拓扑 |
+| | 源代码 | `src/`, `lib/`, `app/` | 核心逻辑 |
+| | 路由/控制器 | `routes/`, `pages/`, `controllers/` | 请求入口 |
+| | 类型/接口 | `schemas/`, `types/`, `interfaces/`, `dtos/` | 数据契约 |
+| | 数据库变更 | `migrations/`, `seeds/` | 存储演进 |
+| | 配置 | `configs/`, `settings/`, `.env.example` | 环境与参数 |
+| **P1（重要但可取舍）** | 中间件/守卫 | `middleware.ts`, `interceptors/`, `guards/` | 横切关注点 |
+| | 业务逻辑 | `services/`, `handlers/`, `controllers/` | 核心处理 |
+| | 状态管理 | `stores/`, `reducers/`, `hooks/` | 数据流转 |
+| | 领域模型 | `models/`, `entities/`, `domain/` | 业务核心 |
+| | 路由/页面 | `routes/`, `pages/`（大项目只读路由定义，不读组件实现） | 导航结构 |
+| | 脚本 | `scripts/` | 自动化 |
+| **P2（有余力再读）** | 测试 | `tests/`, `__tests__/`, `spec/`, `e2e/` | 验证与示例 |
+| | 工具函数 | `utils/`, `helpers/` | 辅助逻辑 |
+| | 常量 | `constants/`, `enums/` | 固定值 |
+| | 子组件实现 | 已有路由/页面级别理解后补充 | 细节补充 |
 
 ### 大项目阅读策略
 
 **当应用过滤规则后，项目剩余文件数 > 200 时，必须执行以下策略：**
 
 1. **先扫结构不读内容**：`find` + `ls` + `head`，建立文件索引
+   - `find` 必须剪枝依赖目录，否则 node_modules/vendor/target 会淹没真实源码（先命中几万个第三方测试文件，索引完全失真）：
+     `find <project> \( -name node_modules -o -name vendor -o -name target -o -name dist -o -name .git \) -prune -o -type f -name "*.ts" -print`
+   - `-maxdepth` 写在路径之后、其他条件之前（GNU find 对后置的 maxdepth 刷警告且行为不一致）
+   - `-o` 多条件必须用 `\( ... \)` 分组并以 `-print` 收尾（prune 后的 `-o` 会吞掉第一个条件，只输出剪枝匹配项）
 2. **按优先级列表批量读取 P0 文件**：用 `cat` 一次读多个小文件
 3. **识别核心模块**：根据入口文件的 import/export 确定核心依赖图
 4. **只深入核心链路**：从入口 → 中间件 → 服务 → 数据的完整链路
 5. **跳过重复模式**：如果 10 个 controller 结构相同，只读 2-3 个
-6. **尽早停止阅读开始写作**：context 用到 60-70% 时开始生成文档，不要等到 100%
+6. **尽早停止阅读开始写作**：当已读文件数占可读文件 60%，或已读内容信息密度明显下降时，开始生成文档。不要等到 100%
+
+## 中途降级策略
+
+分析过程中可能遇到各种异常情况，按以下规则降级处理：
+
+- **文件读取失败** → 跳过该文件，在报告中标注"⚠️ 文件读取失败，跳过分析"
+- **项目不可分析**（路径不存在、目录为空）→ 提前终止并说明原因，不要尝试生成空文档
+- **Context 不足** → 输出已完成的部分 + 剩余计划清单，让用户可在新会话中继续
 
 ## 执行流程
 
@@ -219,8 +201,7 @@ description: >
    - 标注哪些文档因证据不足会被跳过
    - **⏸ 停在此处，等待用户确认计划后再继续**
 
-**快速模式**：用户说"快速"/"简洁"/"只看核心"时，跳过计划确认，直接生成 P0 文档（overview + architecture 合并为一份），P1 文档合并输出，不逐份确认。
-   - **⏸ 停在此处，等待用户确认计划后再继续**
+**快速模式**：用户说"快速"/"简洁"/"只看核心"时，跳过计划确认，直接进入分析阶段。P0 文档（overview + architecture）合并为一份输出，P1 文档合并输出，不逐份确认。
 
 ### 阶段二：深度阅读
 
@@ -293,6 +274,15 @@ description: >
 1. 指出矛盾点
 2. 建议折中方案（如：先快速生成 P0，后续按需深入）
 3. 让用户选择优先级
+
+### 混合越界请求处理
+
+当用户的请求超出"项目分析与文档生成"范畴时（如"帮我重构这个模块""写个新功能""修这个 bug"）：
+1. 说明该请求超出了项目文档分析的职责范围
+2. 如果在分析过程中发现值得关注的代码问题，可在文档中提及，但不执行修改
+3. 建议用户使用专门的 coding/review/debug skill 来处理此类请求
+
+当用户想要的是"快速上手开发"而不是"深度文档"时（如"帮我了解这个项目怎么跑""新人接手要看什么"），建议改用 project-onboarding——本 Skill 输出的是完整文档套件，启动成本高；接手场景要的是分阶段的开发视角。两个 Skill 的边界：文档资产 → project-doc-analyst；开发上手 → project-onboarding。
 
 ## 必须生成的文档
 
@@ -560,41 +550,34 @@ description: >
 引用格式在"文档独立性"节统一管理。修改时应同步更新相关部分，确保一致。
 
 ---
----
-
----
----
 
 # English Version
 
-> **This skill is written in Chinese.** For full details, please read the Chinese section above.
-> You can ask AI to translate the Chinese section if needed.
+> For full details, read the Chinese section above. Summary below. English users can ask AI to translate specific sections on demand.
 
-## Summary
+**project-doc-analyst** — Expert project analysis & documentation generation agent. Deep-reads a codebase and produces "engineering semantic asset" docs for both humans and AI.
 
-**project-doc-analyst** — Expert project analysis and documentation generation agent.
+### Core Positioning
+Deep analysis (not file summaries) of a codebase, producing self-contained documents covering architecture, design rationale, engineering philosophy, implementation details, and technical tradeoffs. All conclusions must be evidence-based — confirmed facts, reasonable inferences, and insufficient evidence are clearly distinguished.
 
-### Key Features
-- Deep repo reading with file filtering & priority system (P0/P1/P2)
-- Self-contained "engineering semantic asset" docs for humans AND AI
-- Evidence-first: confirmed facts vs reasonable inference vs insufficient evidence
-- Structured output: Project Overview → Technical Architecture → Design Rationale → Product Analysis → Code Examples → API Docs
-- Mandatory architecture diagrams (Mermaid)
-- Stage-based output with user confirmation between stages
+### Execution Flow
+1. **Plan**: Identify project type/name/language → list analysis plan → pause for user confirmation (fast mode skips confirmation and proceeds directly)
+2. **Deep Read**: Read files by priority (P0→P1→P2), focusing on entry points, core modules, middleware, services, data flow
+3. **Generate Docs**: One by one in priority order (P0→P1→optional), pausing between docs for user feedback
+4. **Feedback Loop**: User requests changes → targeted re-read → precise updates (not full rewrites)
 
-### Document Types (priority order)
-- **P0**: Project Overview (`00-project-overview.md`), Technical Architecture (`01-technical-architecture.md`)
-- **P1**: Design Rationale, Product Analysis, Notable Code Examples, API Docs
-- **Optional**: Deployment, Configuration Reference
-- **Deep Dives**: Auth, caching, async, state machines, plugins, etc.
+### File Priority System
+- **P0 (must read)**: Package manifests, entry files, type definitions, build configs, CI/CD, infrastructure, source/routes/schemas/migrations/configs
+- **P1 (important, can skip)**: Middleware, business logic, state management, domain models, routes, scripts
+- **P2 (read if capacity allows)**: Tests (sampled), utils, constants, sub-components
 
-### Core Principles
-- Evidence first, don't fabricate
-- Explain "what" AND "why"
-- Depth over breadth
-- Documents must be self-contained (no source repo access needed)
-- Use `【API: description】` format instead of specific paths
+### Document Independence Rules
+Documents must be self-contained — no source repo access needed. Use "module name + responsibility description" instead of file path references. Use `【API: description】` format instead of specific HTTP paths. Architecture diagrams must include responsibility labels on every module and direction/meaning on every edge.
 
-### Language
-- Output language follows user's language / repo conventions
-- Default to Chinese if unclear
+### Key Constraints
+- **Evidence-first**: Never fabricate; mark weak evidence explicitly
+- **Depth over breadth**: Understand architecture/mechanisms/philosophy, not surface coverage
+- **Explain "what" and "why"**: For every important module
+- **Degradation strategy**: File read failure → skip + mark; unanalyzable project → terminate with reason; context exhaustion → output completed parts + remaining plan
+- **Out-of-scope requests** (refactor, new features, bug fixes): Decline and suggest using specialized coding/review/debug skills instead
+- **Boundary with project-onboarding**: documentation assets → this skill; dev onboarding (how to run, stage-based quick start) → project-onboarding

@@ -1,39 +1,56 @@
-## Description: <br>
-Run Codex CLI, Claude Code, OpenCode, or Pi Coding Agent via background process for programmatic control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Codex CLI, Claude Code, OpenCode, or Pi Coding Agent via background process for programmatic control.
 
-## Publisher: <br>
-[branexp](https://clawhub.ai/user/branexp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[branexp](https://clawhub.ai/user/branexp)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run coding assistants in background processes, monitor their progress, and coordinate non-interactive implementation or review tasks across project workspaces. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages high-power unattended coding-agent workflows that may run with broad repository or shell access. <br>
-Mitigation: Use sandboxed modes where possible, run agents in isolated checkouts or containers, and review proposed changes before merging, pushing, or deploying them. <br>
-Risk: Prompts, session logs, PR comments, and command arguments may expose sensitive review material or credentials. <br>
-Mitigation: Do not pass API keys on the command line, redact prompts and logs before sharing them, and review generated GitHub comments before posting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/branexp/giga-coding-agent) <br>
+## Use Case:
 
+Developers and engineers use this skill to launch and supervise coding agents in focused work directories for non-interactive implementation, review, and maintenance tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for launching and monitoring external coding-agent processes; users must review and adapt commands before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe autonomous execution modes can run coding agents with broad authority.
+
+Mitigation: Prefer sandboxed or approval-gated modes, use narrow temporary worktrees, and review diffs before commit, push, PR creation, or PR comments.
+
+Risk: Prompt history, session logs, or generated review comments can disclose sensitive information if published unintentionally.
+
+Mitigation: Publish prompt history and session logs only after intentional review.
+
+Risk: Unpinned global installs can introduce supply-chain drift.
+
+Mitigation: Avoid unpinned global npm installs where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/branexp/skills/giga-coding-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires one of claude, codex, opencode, or pi to execute the suggested agent commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-MyReels API helps agents generate images, videos, speech, or music with MyReels, inspect live model schemas, submit generation tasks, list authenticated tasks, and poll task status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MyReels API helps agents inspect live MyReels model schemas, submit image, video, speech, or music generation tasks, list authenticated tasks, and poll task status through bundled shell scripts and API references.
 
-## Publisher: <br>
-[beautyaiclub](https://clawhub.ai/user/beautyaiclub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautyaiclub](https://clawhub.ai/user/beautyaiclub)
 
-## Use Case: <br>
-Developers and agent operators use this skill to integrate with MyReels generation workflows, choose models from live API metadata, submit media generation tasks, and retrieve generated result URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a MyReels access token and can submit generation tasks against the configured API endpoint. <br>
-Mitigation: Use a dedicated revocable access token, keep ~/.myreels/config private with restrictive permissions, and confirm MYREELS_BASE_URL points to the official or trusted endpoint before use. <br>
-Risk: Generation tasks can consume MyReels points or subscription quota. <br>
-Mitigation: Review the live model metadata and estimatedCost before submitting generation requests. <br>
-Risk: Task polling can hit query limits if repeated too quickly. <br>
-Mitigation: Follow the documented polling intervals and back off if the API returns rate-limit responses. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect an agent to the MyReels public API for model selection, generation task submission, task history review, status polling, and result URL delivery.
 
-## Reference(s): <br>
-- [MyReels homepage](https://myreels.ai) <br>
-- [MyReels developer portal](https://myreels.ai/developer) <br>
-- [ClawHub release page](https://clawhub.ai/beautyaiclub/myreels-api) <br>
-- [Live Model Metadata](references/models.md) <br>
-- [Code Examples](references/code-examples.md) <br>
-- [Error Handling](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API payloads, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return task IDs, polling guidance, status summaries, and result URLs from MyReels API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: ClawHub release evidence) <br>
+Risk: The shell helpers can execute the user's MyReels config file as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation and treat ~/.myreels/config as trusted code until the skill uses safer config parsing.
+
+Risk: An access token may be sent to a configurable API endpoint.
+
+Mitigation: Keep the token limited, use the official HTTPS MyReels API for normal use, and use a separate test token for non-production endpoints.
+
+Risk: Prompts and task data are sent to an external generation service.
+
+Mitigation: Avoid sensitive prompts and regulated data unless the deployment has approved MyReels for that data class.
+
+## Reference(s):
+
+- [MyReels Homepage](https://myreels.ai)
+- [MyReels Developer](https://myreels.ai/developer)
+- [Live Model Metadata Endpoint](https://api.myreels.ai/api/v1/models/api)
+- [ClawHub Skill Page](https://clawhub.ai/beautyaiclub/skills/myreels-api)
+- [Live Model Metadata](references/models.md)
+- [Code Examples](references/code-examples.md)
+- [Error Handling](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, json, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON responses from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can return model metadata, task submission acknowledgements, task lists, polling hints, and result URLs; authenticated operations require a MyReels access token and may require an active subscription.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

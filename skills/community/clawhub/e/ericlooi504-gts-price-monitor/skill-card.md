@@ -1,42 +1,54 @@
-## Description: <br>
-Monitor competitor product prices across Shopee, Lazada, Amazon, and others with automated tracking, alerts, and detailed comparison reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor competitor product prices across Shopee, Lazada, Amazon, and other e-commerce platforms with automated tracking, alerts, and comparison reports.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-External e-commerce sellers, dropshippers, and small business owners use this skill to track competitor product prices, compare pricing trends, and receive alerts when watched products cross configured thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep local records of competitor product URLs, prices, alerts, history, and reports. <br>
-Mitigation: Confirm the stored file locations and data-retention expectations before enabling tracking, and delete saved monitoring data when it is no longer needed. <br>
-Risk: Scheduled scans and external notifications can run repeatedly or send alerts to connected services. <br>
-Mitigation: Confirm scan interval, destination service, and how to disable the cron job or notification route before enabling automation. <br>
+## Use Case:
 
+External e-commerce sellers, dropshippers, and small business owners use this skill to track competitor product prices, receive price-change alerts, and generate comparison reports that inform pricing decisions.
 
-## Reference(s): <br>
-- [Platform-Specific Notes](references/PLATFORMS.md) <br>
-- [Advanced Configuration](references/CONFIG.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/ericlooi504-gts-price-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, comparison tables, alert guidance, and optional CSV report instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local tracking, alert, history, and report files when the agent follows the skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may visit configured product URLs, save local price and alert data, and create recurring scans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the tracked URLs, review stored data expectations, and approve any recurring scan schedule before enabling automation.
+
+Risk: E-commerce pages may show dynamic, region-specific, logged-in, or anti-bot-influenced prices.
+
+Mitigation: Validate extracted prices before logging, preserve raw price text, and flag unusually large price changes for review.
+
+## Reference(s):
+
+- [Advanced Configuration](references/CONFIG.md)
+- [Platform-Specific Notes](references/PLATFORMS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, local JSON/JSONL state files, and optional CSV reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save product, alert, and price-history data locally and may configure recurring scans when the user requests a schedule.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

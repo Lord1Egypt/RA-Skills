@@ -1,40 +1,53 @@
-## Description: <br>
-Simple time display for Abby. Use when you need to know the current time or count down to a specific time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple time display for Abby. Use when you need to know the current time or count down to a specific time.
 
-## Publisher: <br>
-[earnabitmore365](https://clawhub.ai/user/earnabitmore365) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[earnabitmore365](https://clawhub.ai/user/earnabitmore365)
 
-## Use Case: <br>
-External users and agents use Abby Watch to display the current local time in simple or verbose form and to count down to a specified 24-hour HH:MM time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Verbose output labels the time as Australia/Sydney while the script uses the machine's local time. <br>
-Mitigation: Verify the host timezone or update timezone handling before relying on verbose timezone labels. <br>
-Risk: Countdown input is limited to 24-hour HH:MM values and past target times roll forward. <br>
-Mitigation: Validate the requested target time and review countdown output for the intended date. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Time Formats Reference](references/time-formats.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/earnabitmore365/abby-watch) <br>
+## Use Case:
 
+External users and agents use this skill for quick local time checks and countdowns to a specified 24-hour time.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text time strings and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local system time; countdown accepts HH:MM 24-hour input.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some countdown and help text appears in Chinese, which may surprise users expecting English-only output.
+
+Mitigation: Review user-facing output before deployment and localize help/countdown strings for the intended audience.
+
+Risk: The countdown path may not work correctly for target times that have already passed on the current day.
+
+Mitigation: Test countdown behavior before relying on it and fix next-day countdown handling if needed.
+
+## Reference(s):
+
+- [Time Formats Reference](references/time-formats.md)
+- [ClawHub Skill Page](https://clawhub.ai/earnabitmore365/skills/abby-watch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current time, verbose date/time, timezone text, or countdown text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

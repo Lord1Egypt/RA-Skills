@@ -1,46 +1,67 @@
-## Description: <br>
-Multi-asset investment portfolio management framework with A/B/C asset-class differentiated rules, 7 red-line portfolio risk controls, and 4-factor QMS quality scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InvAssistant applies a multi-asset portfolio framework with A/B/C asset classes, portfolio risk controls, and quality scoring across US, A-share, and Hong Kong stocks.
 
-## Publisher: <br>
-[haiyangchenbj](https://clawhub.ai/user/haiyangchenbj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haiyangchenbj](https://clawhub.ai/user/haiyangchenbj)
 
-## Use Case: <br>
-Investors and portfolio reviewers use Invassistant to structure multi-market portfolio checks, risk-control reviews, entry and exit decisions, and notification-ready investment reports. It supports US stocks, China A-shares, and Hong Kong stocks with differentiated strategy rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment guidance may be incorrect, stale, or unsuitable for the user's financial situation. <br>
-Mitigation: Review the financial logic independently and require explicit human approval before acting on any recommendation. <br>
-Risk: Optional webhook notifications may send holdings, prices, signals, and risk commentary to third-party chat platforms. <br>
-Mitigation: Keep notification webhooks disabled unless the destination and data-sharing implications are understood and approved. <br>
-Risk: Automating this skill into live trading could turn advisory output into financial execution without sufficient controls. <br>
-Mitigation: Do not connect outputs directly to live trading systems without independent confirmation, access controls, and explicit approval. <br>
+## Use Case:
 
+Investors can use the skill to review portfolio holdings, apply asset-class and risk rules, score candidates, and examine trade records across US, A-share, and Hong Kong stocks. Its reports support human decisions and do not place trades.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/haiyangchenbj/invassistant) <br>
-- [US Stock Strategy](references/us_stock_strategy.md) <br>
-- [A-Share Strategy](references/a_share_strategy.md) <br>
-- [Risk Control and Overrides](references/risk_control_and_overrides.md) <br>
-- [Yahoo Finance Chart API](https://query1.finance.yahoo.com/v8/finance/chart/{symbol}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with optional Python-generated reports and notification payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and require human review before trading or notification delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: server release metadata and target metadata) <br>
+Risk: The security review found recommendation-logic flaws that may produce misleading financial guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check outputs against current, sourced portfolio and market data, and require human review before acting.
+
+Risk: Review coverage is partial because a referenced path was missing.
+
+Mitigation: Review or restore the missing reference before relying on conclusions that depend on it.
+
+Risk: The security review did not establish that dependency versions are safe.
+
+Mitigation: Review the dependencies and installation environment before installing the bundled scripts.
+
+Risk: When optional notifications are enabled, report content is sent to a user-configured webhook.
+
+Mitigation: Verify the endpoint and report contents before configuring or sending notifications.
+
+## Reference(s):
+
+- [InvAssistant release on ClawHub](https://clawhub.ai/haiyangchenbj/skills/invassistant)
+- [US stock strategy](artifact/references/us_stock_strategy.md)
+- [A-share strategy](artifact/references/a_share_strategy.md)
+- [Risk control and overrides](artifact/references/risk_control_and_overrides.md)
+- [Candidate admission gates](artifact/references/candidate_admission_gates.md)
+- [Capital plan audit](artifact/references/capital_plan_audit.md)
+- [Derived price governance](artifact/references/derived_price_governance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Structured portfolio review with classification and risk tables, observations, and data-source annotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on supplied portfolio information and available market data; outputs require human review and do not execute trades.]
+
+## Skill Version(s):
+
+2.3.21 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

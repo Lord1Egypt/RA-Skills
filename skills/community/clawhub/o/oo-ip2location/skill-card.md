@@ -1,44 +1,55 @@
-## Description: <br>
-IP2Location.io helps agents retrieve IP geolocation, network metadata, hosted domains, and domain WHOIS data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up domain WHOIS details, IP geolocation and network metadata, and hosted domains through IP2Location.io.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs read-only IP2Location.io lookups for IP geolocation, hosted-domain discovery, or domain WHOIS registration details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected IP2Location.io API key through OOMOL. <br>
-Mitigation: Confirm the account connection and credential-sharing posture before installation or use. <br>
-Risk: Connector payloads can drift if IP2Location.io action schemas change. <br>
-Mitigation: Fetch the live connector schema before each action and build payloads from that schema. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve domain registration details and IP geolocation, network, or hosted-domain information from IP2Location.io.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-ip2location) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [IP2Location.io homepage](https://www.ip2location.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution so payloads match the current IP2Location.io action contract.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup can execute downloaded software without a clear approval step or defined limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed CLI version yourself or require explicit approval before installation; review which additional agent skills it installs or synchronizes.
+
+Risk: Lookup targets pass through OOMOL to IP2Location.io.
+
+Mitigation: Submit sensitive targets only when that disclosure is intended.
+
+## Reference(s):
+
+- [IP2Location.io](https://www.ip2location.io)
+- [IP2Location.io API documentation](https://www.ip2location.io/ip2location-documentation)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON lookup results, presented as concise text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lookup results depend on IP2Location.io data and account access.]
+
+## Skill Version(s):
+
+1.0.5 (source: skill metadata and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

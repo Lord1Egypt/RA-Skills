@@ -1,42 +1,57 @@
-## Description: <br>
-Uses DataLens MCP tools to scrape structured lists, tables, comments, products, reviews, and other repeating data from a website open in Chrome. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use DataLens MCP tools to scrape structured data from any website open in Chrome.
 
-## Publisher: <br>
-[weird94](https://clawhub.ai/user/weird94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weird94](https://clawhub.ai/user/weird94)
 
-## Use Case: <br>
-Developers and external users use this skill to extract structured webpage data from an active Chrome session, preview small scraping runs, manage jobs, and export results for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad access to a live Chrome session and exported webpage data. <br>
-Mitigation: Use it only on pages intentionally selected for scraping, avoid sensitive logged-in accounts unless data exposure is understood, and review exports after use. <br>
-Risk: The workflow depends on third-party DataLens npm and Chrome extension components. <br>
-Mitigation: Install and use the DataLens package and extension only when the publisher and extension source are trusted. <br>
-Risk: A scraping job can collect incorrect or unintended fields if started without validating the detected structure. <br>
-Mitigation: Run column analysis first, inspect the returned fields, and perform a small preview run before full extraction. <br>
+## Use Case:
 
+Developers and agents use this skill to guide structured scraping of lists, tables, comments, products, reviews, and other repeated webpage data through DataLens browser tooling.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/weird94/datalens-web-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON arguments; scraped data can be exported as JSON, CSV, or XLSX.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or newer, the DataLens npm package, the DataLens Chrome extension, and Chrome access to the target page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can process authenticated browser pages and may expose sensitive or regulated data during scraping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on pages the user is allowed to scrape, and avoid secrets or regulated/internal data unless approved.
+
+Risk: The skill relies on unpinned npm tooling for DataLens commands.
+
+Mitigation: Prefer a pinned and vetted DataLens package version before installing or running the tooling.
+
+Risk: Scraped results and debug logs may be saved locally.
+
+Mitigation: Clean up exported data and debug logs after use, especially when scraping private or authenticated pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weird94/skills/datalens-web-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create local JSON, CSV, or XLSX export files when scraping jobs are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

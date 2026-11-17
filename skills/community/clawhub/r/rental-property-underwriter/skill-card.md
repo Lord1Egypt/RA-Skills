@@ -1,41 +1,59 @@
-## Description: <br>
-Use this skill when a real estate investor, agent, or analyst needs to underwrite a residential rental property such as a single-family, small multi-family, or short-term rental; it computes NOI, cap rate, cash-on-cash return, DSCR, a 5-year pro-forma, sensitivity results, and a go/no-go memo with deal-breaker flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a real estate investor, agent, or analyst needs to underwrite a residential rental property, compute NOI, cap rate, cash-on-cash return, DSCR, a 5-year pro-forma, sensitivity scenarios, and a go/no-go memo with deal-breaker flags.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External real estate investors, agents, and analysts use this skill to evaluate a residential rental opportunity before making an offer, renegotiating, or walking away. It guides intake, confirms assumptions, calculates underwriting metrics, stress-tests the deal, and produces a draft decision memo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The intake can involve sensitive property identifiers, financing details, and personal capital information. <br>
-Mitigation: Use a property code instead of a full address when discretion is needed, and avoid sharing unnecessary personal or loan details. <br>
-Risk: The underwriting memo can be misleading if rent comps, taxes, insurance, HOA rules, STR regulations, or legal and tax assumptions are incomplete or stale. <br>
-Mitigation: Independently verify rent comps, binding insurance quotes, taxes, HOA documents, STR eligibility, inspection findings, and legal or tax implications before acting on the memo. <br>
-Risk: Users may mistake the draft underwriting memo for investment, tax, or legal advice. <br>
-Mitigation: Keep the memo labeled as a draft underwriting aid and treat local broker, CPA, attorney, lender, and insurance review as required before an offer or financing decision. <br>
+## Use Case:
 
+External real estate investors, agents, and analysts use this skill to evaluate residential rental opportunities before submitting an offer, renegotiating, or walking away. It gathers property and financing assumptions, confirms them, then produces an underwriting memo with metrics, pro-forma projections, sensitivity analysis, red flags, and a verdict.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown underwriting memo with tables and a GO / CONDITIONAL / NO-GO verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes formulas, a 5-year pro-forma, sensitivity matrix, deal-breaker flags, unresolved information, and a draft/non-advice reminder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release and changelog, released 2026-05-28) <br>
+Risk: The skill asks for property, financing, and personal capital details that may be private.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a property code instead of a full address when possible and avoid sharing unnecessary identifying or financial details.
+
+Risk: The memo may rely on assumptions or user-provided figures that are incomplete, stale, or optimistic.
+
+Mitigation: Independently verify rent comps, taxes, insurance quotes, HOA rules, STR regulations, financing terms, and inspection findings before using the memo to make an offer or financing decision.
+
+Risk: The output could be mistaken for investment, tax, or legal advice.
+
+Mitigation: Treat the memo as decision support only and review legal, tax, regulatory, and financing questions with qualified local professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/rental-property-underwriter)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown underwriting memo with tables and plain-English verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumption confirmation, formulas for key metrics, a 5-year pro-forma, sensitivity matrix, deal-breaker flags, unresolved information, and a draft-only reminder that outputs are not investment, tax, or legal advice.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

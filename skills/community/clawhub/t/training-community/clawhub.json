@@ -1,0 +1,13 @@
+{
+  "name": "training-community",
+  "displayName": "社区转化引擎",
+  "version": "1.0.0",
+  "description": "从单次培训到持续社区的转化引擎：学员社群搭建、后续活动推送、老学员裂变邀约、终身学习社群运营，实现培训-社区-复购的闭环。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "community", "conversion", "retention", "membership"],
+  "minOpenClawVersion": "1.2.0"
+}

@@ -23,13 +23,24 @@ Comandos:
                           tipo-prop, temas, tipos-evento, tipos-orgao, uf)
 """
 
-import sys
 import json
-import urllib.request
+import sys
 import urllib.parse
+import urllib.request
 from datetime import date
 
 BASE = "https://dadosabertos.camara.leg.br/api/v2"
+
+
+def legislatura_atual():
+    """Resolve a legislatura vigente sem manter um número fixo no CLI."""
+    hoje = date.today().isoformat()
+    legislaturas = get("/legislaturas", {"itens": 100}).get("dados", [])
+    for legislatura in legislaturas:
+        if legislatura.get("dataInicio", "") <= hoje <= legislatura.get("dataFim", "9999-12-31"):
+            return legislatura["id"]
+    raise RuntimeError("Não foi possível resolver a legislatura atual")
+
 
 def get(path, params=None):
     url = f"{BASE}{path}"
@@ -38,8 +49,10 @@ def get(path, params=None):
     with urllib.request.urlopen(url, timeout=15) as r:
         return json.loads(r.read())
 
+
 def fmt(obj):
     print(json.dumps(obj, ensure_ascii=False, indent=2))
+
 
 def agenda(data=None):
     d = data or date.today().isoformat()
@@ -48,26 +61,28 @@ def agenda(data=None):
     if not eventos:
         print(f"Sem eventos para {d}.")
         return
-    print(f"\n📅 Agenda da Câmara — {d}\n{'='*50}")
+    print(f"\n📅 Agenda da Câmara — {d}\n{'=' * 50}")
     for e in eventos:
         hora = e.get("dataHoraInicio", "")[-5:] if e.get("dataHoraInicio") else "?"
-        orgaos = ", ".join(o.get("sigla","") for o in e.get("orgaos",[]))
+        orgaos = ", ".join(o.get("sigla", "") for o in e.get("orgaos", []))
         local = e.get("localCamara", {}).get("nome") or e.get("localExterno") or ""
-        print(f"  {hora} | {orgaos:10} | {e.get('descricaoTipo',''):30} | {e.get('descricao','')[:60]}")
+        print(f"  {hora} | {orgaos:10} | {e.get('descricaoTipo', ''):30} | {e.get('descricao', '')[:60]}")
         if local:
             print(f"         Local: {local}")
     print()
 
+
 def buscar_deputado(nome):
-    r = get("/deputados", {"nome": nome, "idLegislatura": 57, "ordem": "ASC", "ordenarPor": "nome"})
+    r = get("/deputados", {"nome": nome, "ordem": "ASC", "ordenarPor": "nome"})
     deps = r.get("dados", [])
     if not deps:
         print(f"Nenhum deputado encontrado para '{nome}'.")
         return
-    print(f"\n👤 Deputados — '{nome}'\n{'='*50}")
+    print(f"\n👤 Deputados — '{nome}'\n{'=' * 50}")
     for d in deps:
         print(f"  ID {d['id']} | {d['nome']:40} | {d['siglaPartido']:12} | {d['siglaUf']}")
     print()
+
 
 def deputado_id(dep_id):
     r = get(f"/deputados/{dep_id}")
@@ -82,6 +97,7 @@ def deputado_id(dep_id):
     print(f"  URL foto: {status.get('urlFoto')}")
     print()
 
+
 def proposicao(prop_id):
     r = get(f"/proposicoes/{prop_id}")
     p = r.get("dados", {})
@@ -95,10 +111,14 @@ def proposicao(prop_id):
     tr = get(f"/proposicoes/{prop_id}/tramitacoes")
     trams = tr.get("dados", [])[-5:]
     if trams:
-        print(f"\n  📋 Últimas 5 tramitações:")
+        print("\n  📋 Últimas 5 tramitações:")
         for t in trams:
-            print(f"    {t.get('dataHora','')[:10]} | {t.get('siglaOrgao',''):8} | {t.get('descricaoSituacao','')[:50]}")
+            print(
+                f"    {t.get('dataHora', '')[:10]} | {t.get('siglaOrgao', ''):8} | "
+                f"{t.get('descricaoSituacao', '')[:50]}"
+            )
     print()
+
 
 def buscar_pl(keywords, tipo="PL", ano=None):
     params = {"keywords": keywords, "siglaTipo": tipo, "ordem": "DESC", "ordenarPor": "id", "itens": 15}
@@ -109,28 +129,36 @@ def buscar_pl(keywords, tipo="PL", ano=None):
     if not pls:
         print(f"Nenhuma proposição encontrada para '{keywords}'.")
         return
-    print(f"\n📑 Proposições — '{keywords}'\n{'='*50}")
+    print(f"\n📑 Proposições — '{keywords}'\n{'=' * 50}")
     for p in pls:
-        print(f"  ID {p['id']} | {p['siglaTipo']} {p['numero']}/{p['ano']} | {p.get('dataApresentacao','')[:10]} | {p['ementa'][:70]}")
+        print(
+            f"  ID {p['id']} | {p['siglaTipo']} {p['numero']}/{p['ano']} | "
+            f"{p.get('dataApresentacao', '')[:10]} | {p['ementa'][:70]}"
+        )
     print()
+
 
 def votacoes(data=None):
     d = data or date.today().isoformat()
-    r = get("/votacoes", {"dataInicio": d, "dataFim": d, "idOrgao": 180, "ordem": "DESC", "ordenarPor": "dataHoraRegistro", "itens": 20})
+    r = get(
+        "/votacoes",
+        {"dataInicio": d, "dataFim": d, "idOrgao": 180, "ordem": "DESC", "ordenarPor": "dataHoraRegistro", "itens": 20},
+    )
     vots = r.get("dados", [])
     if not vots:
         print(f"Sem votações no plenário em {d}.")
         return
-    print(f"\n🗳️  Votações — Plenário — {d}\n{'='*50}")
+    print(f"\n🗳️  Votações — Plenário — {d}\n{'=' * 50}")
     for v in vots:
         ap = "✅ APROVADA" if v.get("aprovacao") == 1 else "❌ REJEITADA" if v.get("aprovacao") == 0 else "⏳"
-        print(f"  {v['id']} | {ap} | {v.get('descricao','')[:70]}")
+        print(f"  {v['id']} | {ap} | {v.get('descricao', '')[:70]}")
     print()
+
 
 def votos(votacao_id):
     r = get(f"/votacoes/{votacao_id}/votos")
     votos_list = r.get("dados", [])
-    print(f"\n🗳️  Votos na votação {votacao_id}\n{'='*50}")
+    print(f"\n🗳️  Votos na votação {votacao_id}\n{'=' * 50}")
     contagem = {}
     for v in votos_list:
         voto = v.get("tipoVoto", "?")
@@ -139,6 +167,7 @@ def votos(votacao_id):
         print(f"  {tipo:10}: {qtd}")
     print(f"  Total: {len(votos_list)}")
     print()
+
 
 def comissao(sigla):
     r = get("/orgaos", {"sigla": sigla})
@@ -155,12 +184,13 @@ def comissao(sigla):
         membros = mr.get("dados", [])
         print(f"  Membros: {len(membros)}")
         for m in membros[:5]:
-            print(f"    {m.get('nome',''):40} | {m.get('siglaPartido',''):8} | {m.get('titulo','')}")
+            print(f"    {m.get('nome', ''):40} | {m.get('siglaPartido', ''):8} | {m.get('titulo', '')}")
         if len(membros) > 5:
-            print(f"    ... e mais {len(membros)-5}")
+            print(f"    ... e mais {len(membros) - 5}")
     except Exception:
         pass
     print()
+
 
 def ocupacoes(dep_id):
     r = get(f"/deputados/{dep_id}/ocupacoes")
@@ -168,11 +198,12 @@ def ocupacoes(dep_id):
     if not ocups:
         print(f"Sem ocupações registradas para deputado {dep_id}.")
         return
-    print(f"\n💼 Ocupações — Deputado {dep_id}\n{'='*50}")
+    print(f"\n💼 Ocupações — Deputado {dep_id}\n{'=' * 50}")
     for o in ocups:
         periodo = f"{o.get('anoInicio', '?')}-{o.get('anoFim', 'atual')}"
         print(f"  {periodo:12} | {o.get('titulo', ''):30} | {o.get('entidade', '')}")
     print()
+
 
 def relacionadas(prop_id):
     r = get(f"/proposicoes/{prop_id}/relacionadas")
@@ -180,10 +211,14 @@ def relacionadas(prop_id):
     if not rels:
         print(f"Sem proposições relacionadas para {prop_id}.")
         return
-    print(f"\n🔗 Proposições Relacionadas — {prop_id}\n{'='*50}")
+    print(f"\n🔗 Proposições Relacionadas — {prop_id}\n{'=' * 50}")
     for p in rels:
-        print(f"  ID {p.get('id','')} | {p.get('siglaTipo','')} {p.get('numero','')}/{p.get('ano','')} | {p.get('ementa','')[:60]}")
+        print(
+            f"  ID {p.get('id', '')} | {p.get('siglaTipo', '')} "
+            f"{p.get('numero', '')}/{p.get('ano', '')} | {p.get('ementa', '')[:60]}"
+        )
     print()
+
 
 def blocos():
     r = get("/blocos")
@@ -191,27 +226,26 @@ def blocos():
     if not blocs:
         print("Nenhum bloco parlamentar encontrado.")
         return
-    print(f"\n🏛️  Blocos Parlamentares\n{'='*50}")
+    print(f"\n🏛️  Blocos Parlamentares\n{'=' * 50}")
     for b in blocs:
-        print(f"  ID {b.get('id','')} | {b.get('nome',''):50} | Leg. {b.get('idLegislatura','')}")
+        print(f"  ID {b.get('id', '')} | {b.get('nome', ''):50} | Leg. {b.get('idLegislatura', '')}")
     print()
+
 
 def frentes(legislatura=None):
     params = {"itens": 50}
-    if legislatura:
-        params["idLegislatura"] = legislatura
-    else:
-        params["idLegislatura"] = 57
+    params["idLegislatura"] = legislatura or legislatura_atual()
     r = get("/frentes", params)
     frs = r.get("dados", [])
     if not frs:
         print("Nenhuma frente parlamentar encontrada.")
         return
-    print(f"\n🤝 Frentes Parlamentares\n{'='*50}")
+    print(f"\n🤝 Frentes Parlamentares\n{'=' * 50}")
     for f in frs:
-        print(f"  ID {f.get('id','')} | {f.get('titulo','')[:70]}")
+        print(f"  ID {f.get('id', '')} | {f.get('titulo', '')[:70]}")
     print(f"  Total: {len(frs)}")
     print()
+
 
 def frente(id_frente):
     r = get(f"/frentes/{id_frente}")
@@ -225,12 +259,13 @@ def frente(id_frente):
         membros = mr.get("dados", [])
         print(f"  Membros: {len(membros)}")
         for m in membros[:10]:
-            print(f"    {m.get('nome',''):40} | {m.get('siglaPartido',''):8} | {m.get('titulo','')}")
+            print(f"    {m.get('nome', ''):40} | {m.get('siglaPartido', ''):8} | {m.get('titulo', '')}")
         if len(membros) > 10:
-            print(f"    ... e mais {len(membros)-10}")
+            print(f"    ... e mais {len(membros) - 10}")
     except Exception:
         pass
     print()
+
 
 def partido(id_partido):
     r = get(f"/partidos/{id_partido}")
@@ -246,31 +281,36 @@ def partido(id_partido):
         membros = mr.get("dados", [])
         print(f"\n  Deputados ({len(membros)}):")
         for m in membros[:10]:
-            print(f"    {m.get('nome',''):40} | {m.get('siglaUf','')}")
+            print(f"    {m.get('nome', ''):40} | {m.get('siglaUf', '')}")
         if len(membros) > 10:
-            print(f"    ... e mais {len(membros)-10}")
+            print(f"    ... e mais {len(membros) - 10}")
     except Exception:
         pass
     print()
 
+
 def mesa(legislatura=None):
-    leg = legislatura or "57"
+    leg = legislatura or legislatura_atual()
     r = get(f"/legislaturas/{leg}/mesa")
     membros = r.get("dados", [])
     if not membros:
         print(f"Sem dados da mesa para legislatura {leg}.")
         return
-    print(f"\n🏛️  Mesa Diretora — Legislatura {leg}\n{'='*50}")
+    print(f"\n🏛️  Mesa Diretora — Legislatura {leg}\n{'=' * 50}")
     for m in membros:
-        print(f"  {m.get('titulo',''):30} | {m.get('nome',''):30} | {m.get('siglaPartido',''):8} | {m.get('siglaUf','')}")
+        print(
+            f"  {m.get('titulo', ''):30} | {m.get('nome', ''):30} | "
+            f"{m.get('siglaPartido', ''):8} | {m.get('siglaUf', '')}"
+        )
     print()
+
 
 def referencias(tipo):
     REF_MAP = {
         "situacao-dep": "/referencias/deputados/codSituacao",
-        "situacao-prop": "/referencias/proposicoes/codSituacaoProposicao",
+        "situacao-prop": "/referencias/proposicoes/codSituacao",
         "tipo-prop": "/referencias/proposicoes/siglaTipo",
-        "temas": "/referencias/proposicoes/tema",
+        "temas": "/referencias/proposicoes/codTema",
         "tipos-evento": "/referencias/tiposEvento",
         "tipos-orgao": "/referencias/tiposOrgao",
         "uf": "/referencias/uf",
@@ -283,13 +323,14 @@ def referencias(tipo):
     if not dados:
         print(f"Sem dados para '{tipo}'.")
         return
-    print(f"\n📋 Referências — {tipo}\n{'='*50}")
+    print(f"\n📋 Referências — {tipo}\n{'=' * 50}")
     for item in dados:
         # Formatar de forma genérica
         parts = [str(v) for v in item.values()]
         print(f"  {' | '.join(parts)}")
     print(f"  Total: {len(dados)}")
     print()
+
 
 COMMANDS = {
     "agenda": lambda args: agenda(args[0] if args else None),

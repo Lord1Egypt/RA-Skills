@@ -1,0 +1,13 @@
+interface:
+  display_name: "Reddit Hot Stocks"
+  short_description: "Find Reddit stock momentum with AgentKey"
+  default_prompt: "Use $reddit-hot-stocks to identify Reddit-driven stock tickers from today."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentkey"
+      description: "AgentKey MCP for live Reddit social data and finance market data"
+      transport: "streamable_http"
+      url: "https://api.agentkey.app/v1/mcp"
+policy:
+  allow_implicit_invocation: true

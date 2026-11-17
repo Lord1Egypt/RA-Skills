@@ -1,0 +1,80 @@
+{
+  "id": "redreplier",
+  "name": "RedReplier",
+  "description": "Monitor Reddit, Hacker News, X, Bluesky and Facebook for keyword mentions of your product, AI-scored 0-100 for relevance.",
+  "version": "0.5.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiToken": {
+        "type": "string",
+        "description": "RedReplier API token (redreplier_...). Create a dedicated, revocable one at https://redreplier.com under Settings then API Tokens."
+      }
+    },
+    "required": [
+      "apiToken"
+    ]
+  },
+  "contracts": {
+    "tools": [
+      "redreplier_websites",
+      "redreplier_mentions",
+      "redreplier_explain_mention",
+      "redreplier_set_mention_status",
+      "redreplier_add_keywords"
+    ]
+  },
+  "toolMetadata": {
+    "redreplier_websites": {
+      "configSignals": [
+        {
+          "rootPath": "plugins.entries.redreplier.config",
+          "required": [
+            "apiToken"
+          ]
+        }
+      ]
+    },
+    "redreplier_mentions": {
+      "configSignals": [
+        {
+          "rootPath": "plugins.entries.redreplier.config",
+          "required": [
+            "apiToken"
+          ]
+        }
+      ]
+    },
+    "redreplier_explain_mention": {
+      "configSignals": [
+        {
+          "rootPath": "plugins.entries.redreplier.config",
+          "required": [
+            "apiToken"
+          ]
+        }
+      ]
+    },
+    "redreplier_set_mention_status": {
+      "configSignals": [
+        {
+          "rootPath": "plugins.entries.redreplier.config",
+          "required": [
+            "apiToken"
+          ]
+        }
+      ]
+    },
+    "redreplier_add_keywords": {
+      "configSignals": [
+        {
+          "rootPath": "plugins.entries.redreplier.config",
+          "required": [
+            "apiToken"
+          ]
+        }
+      ]
+    }
+  }
+}

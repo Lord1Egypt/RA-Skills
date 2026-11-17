@@ -1,7 +1,7 @@
 interface:
   display_name: "Dataify Amazon Seller"
-  short_description: "Submit Dataify Amazon seller information collection tasks"
-  default_prompt: "Use $dataify-amazon-seller to submit Amazon seller information collection tasks through Dataify and return the task_id."
+  short_description: "Collect Amazon Seller data and return results"
+  default_prompt: "Use $dataify-amazon-seller to complete the requested Dataify collection, wait for the asynchronous task, and return the final collected result. Stop at task submission only when I explicitly request no-wait behavior."
 
 policy:
   allow_implicit_invocation: true

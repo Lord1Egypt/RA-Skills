@@ -1,0 +1,106 @@
+{
+  "description": "per-stage pipeline 契约完整往返示例（Block A 选题阶段）。_kind 字段仅供 test_contract.py 识别校验方向，不属于契约字段。",
+  "messages": [
+    {
+      "_kind": "request",
+      "contract_version": "1.0.0",
+      "schema": "meta.pipeline.stage/v1",
+      "request_id": "req-001",
+      "query_origin": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "pipeline_id": "pipe-abc",
+      "pipeline": { "name": "meta_full_flow", "block": "A", "cfg": { "locale": "zh" } },
+      "stage": { "id": "A1.topic_selection", "index": 0, "total": 14, "intent": "run", "prev_stage_id": null },
+      "stage_context": { "human_decisions": [], "tool_card_outputs": [], "artifacts": [] },
+      "data": { "user_prompt": "我想做一篇关于 SGLT2 抑制剂对心衰患者全因死亡率影响的 meta 分析，帮我评估这个选题可行性。" }
+    },
+
+    {
+      "_kind": "response",
+      "contract_version": "1.0.0",
+      "schema": "meta.pipeline.stage/v1",
+      "request_id": "req-001",
+      "pipeline_id": "pipe-abc",
+      "stage": { "id": "A1.topic_selection", "index": 0, "status": "need_tool" },
+      "stage_result": {
+        "summary": "选题评估：SGLT2 抑制剂 vs 安慰剂/其他活性药，终点=心衰患者全因死亡（HR）。Cochrane+PubMed 双库探针命中 38 篇相关 SR/MA，提示选题已较拥挤但仍有细分空间（如不同 SGLT2 药物头对头、或特定心衰分型）。给出 11 节选题报告要点（见 artifacts）。",
+        "artifacts": [
+          { "type": "topic_report", "format": "json", "data": {
+              "pico": { "P": "心力衰竭患者", "I": "SGLT2 抑制剂", "C": "安慰剂/标准治疗", "O": "全因死亡率(HR)", "S": "RCT" },
+              "novelty_score": 0.62,
+              "feasibility_score": 0.85,
+              "existing_reviews": 38,
+              "gap": "细分人群（HFrEF vs HFpEF）与药物头对头证据尚不充分",
+              "sections": 11
+            }
+          }
+        ],
+        "data_for_next_stage": { "pico_locked": true, "topic": "SGLT2 抑制剂对心衰患者全因死亡率" }
+      },
+      "next_human_action": {
+        "type": "confirm",
+        "prompt": "选题可行性评分 0.62/0.85。是否确认按此 PICOS 推进？或调整纳入人群/对照？",
+        "required": true,
+        "gate": "none",
+        "options": ["确认推进", "缩小至 HFrEF 亚组", "改为药物头对头"]
+      },
+      "tool_cards": [
+        {
+          "card_ref": "tc_001",
+          "need_tool": "ct-literature",
+          "params": { "topic": "SGLT2 inhibitor heart failure all-cause mortality meta-analysis", "max": 30, "year_from": 2015 },
+          "draft_answer": "已生成选题报告草稿，待检索文献列表回填。",
+          "run_id": "run-tc-001",
+          "sync": "blocking",
+          "timeout_sec": 120
+        }
+      ],
+      "status": "ok",
+      "notes": "选题评估完成，等待人工确认 + 文献检索回填。"
+    },
+
+    {
+      "_kind": "request",
+      "contract_version": "1.0.0",
+      "schema": "meta.pipeline.stage/v1",
+      "request_id": "req-002",
+      "query_origin": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "pipeline_id": "pipe-abc",
+      "pipeline": { "name": "meta_full_flow", "block": "A", "cfg": { "locale": "zh" } },
+      "stage": { "id": "A1.topic_selection", "index": 0, "total": 14, "intent": "human_callback", "prev_stage_id": null },
+      "stage_context": {
+        "human_decisions": [
+          { "stage_id": "A1.topic_selection", "action": "approved", "by": "user", "at": "2026-08-31T10:35:00+08:00", "note": "确认按 HFrEF 亚组推进", "payload": { "subgroup": "HFrEF" } }
+        ],
+        "tool_card_outputs": [
+          { "card_ref": "tc_001", "need_tool": "ct-literature", "status": "ok",
+            "result": { "count": 27, "top": [
+              { "title": "SGLT2 inhibitors and mortality in heart failure: a systematic review", "year": 2023, "pmid": "37000001" },
+              { "title": "Dapagliflozin in HFrEF: DAPA-HF subgroup meta", "year": 2022, "pmid": "35000002" }
+            ] } }
+        ],
+        "artifacts": []
+      },
+      "data": { "confirmed_subgroup": "HFrEF" }
+    },
+
+    {
+      "_kind": "response",
+      "contract_version": "1.0.0",
+      "schema": "meta.pipeline.stage/v1",
+      "request_id": "req-002",
+      "pipeline_id": "pipe-abc",
+      "stage": { "id": "A1.topic_selection", "index": 0, "status": "completed" },
+      "stage_result": {
+        "summary": "选题阶段完成：HFrEF 亚组确认，27 篇相关文献已检索并归档，可进入 A2 检索精修。",
+        "artifacts": [
+          { "type": "literature_pool", "format": "json", "data": { "count": 27, "pool_ref": "pipe-abc/A1/lit_pool.json" } }
+        ],
+        "data_for_next_stage": { "pico": { "P": "HFrEF 患者", "I": "SGLT2 抑制剂", "C": "安慰剂/标准治疗", "O": "全因死亡率(HR)" }, "subgroup": "HFrEF", "literature_pool_ref": "pipe-abc/A1/lit_pool.json" }
+      },
+      "next_human_action": { "type": "none", "required": false, "gate": "none" },
+      "tool_cards": [],
+      "status": "ok",
+      "notes": "A1 完成，流转 A2.literature_search。"
+    }
+  ]
+}

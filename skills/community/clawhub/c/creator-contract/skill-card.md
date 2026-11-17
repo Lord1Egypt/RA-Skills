@@ -1,45 +1,57 @@
-## Description: <br>
-Draft influencer and creator collaboration agreements covering deliverables, usage rights, exclusivity terms, payment schedules, performance bonuses, and content approval workflows for ecommerce brands working with TikTok, Instagram, and YouTube creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft influencer and creator collaboration agreements covering deliverables, usage rights, exclusivity terms, payment schedules, performance bonuses, and content approval workflows for ecommerce brands working with TikTok, Instagram, and YouTube creators.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce brand teams and creator-program operators use this skill to draft creator collaboration agreements with defined deliverables, usage rights, exclusivity, payment terms, approval workflows, and negotiation fallback positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agreements may be incomplete, jurisdiction-specific, or unsuitable for regulated categories if used without legal review. <br>
-Mitigation: Treat outputs as drafts, localize terms for the relevant jurisdiction, and have a qualified attorney review before signing. <br>
-Risk: Server evidence notes capability tags for crypto and purchase permissions that do not match the markdown-only skill content. <br>
-Mitigation: Check the install UI for unrelated permissions before enabling the skill. <br>
+## Use Case:
 
+External brand, ecommerce, and creator-program teams use this skill to draft creator collaboration agreement templates and negotiation notes covering deliverables, usage rights, exclusivity, approvals, compensation, and localization review items.
 
-## Reference(s): <br>
-- [Creator Contract ClawHub Page](https://clawhub.ai/leooooooow/creator-contract) <br>
-- [Contract Variant Templates](references/contract-templates.md) <br>
-- [Usage Rights Glossary](references/usage-rights-glossary.md) <br>
-- [Jurisdiction Flags](references/jurisdiction-flags.md) <br>
-- [Output Template](references/output-template.md) <br>
-- [Contract Quality Checklist](assets/contract-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown contract draft with plain-English section summaries, negotiation cheat sheet, localization callout, and legal-review disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drafting assistance only; agreements should be reviewed by a qualified attorney before signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated agreements may omit or misstate deal-specific compensation, usage rights, exclusivity, tax, or jurisdiction-specific compliance terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each draft carefully against the provided inputs and have a qualified attorney review it before signing, especially for high-value deals or regulated categories.
+
+Risk: Contract terms can vary materially across jurisdictions and may not be fully localized by the skill.
+
+Mitigation: Use the localization callout and jurisdiction reference as prompts for local legal review before the agreement is used.
+
+## Reference(s):
+
+- [Contract Variant Templates](references/contract-templates.md)
+- [Jurisdiction Flags](references/jurisdiction-flags.md)
+- [Output Template - Creator Collaboration Agreement](references/output-template.md)
+- [Usage Rights Glossary](references/usage-rights-glossary.md)
+- [Creator Contract - Pre-Send Quality Checklist](assets/contract-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown contract draft with a separate negotiation cheat sheet and localization callout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a draft-not-legal-advice disclaimer and attorney review handoff.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

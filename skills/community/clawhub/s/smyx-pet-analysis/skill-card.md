@@ -1,45 +1,51 @@
-## Description: <br>
-Analyzes uploaded or URL-based pet media through cloud APIs to produce structured pet health reports with condition signals, care suggestions, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes submitted cat, dog, or bird videos and returns a structured pet health report with potential conditions and care suggestions.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and pet-care assistants use this skill to submit cat, dog, bird, or other pet videos or image files for cloud health analysis and to retrieve prior Pet Safety Guardian reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet videos or URLs are sent to the Life Emergence backend for analysis. <br>
-Mitigation: Use the skill only with media and URLs that are acceptable to share with that backend; avoid private home footage or sensitive URLs unless authorization and retention terms are clear. <br>
-Risk: The skill silently creates or reuses an internal identity and stores auth tokens in a local workspace database. <br>
-Mitigation: Deploy only where this identity and token behavior is acceptable, and review account-control and local storage handling before use. <br>
-Risk: Cloud report history can be fetched automatically when prompted with under-scoped identity controls. <br>
-Mitigation: Limit use to contexts where the publisher's report-history authorization behavior is understood and acceptable. <br>
+## Use Case:
 
+Pet owners use the skill to request a video-based health analysis for a cat, dog, or bird, receive a structured report, and review prior reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-analysis) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [API Documentation](references/api_doc.md) <br>
-- [SMYX Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, JSON responses, report links, and optional output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include structured health findings, care suggestions, historical report tables, and links to exported reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Scanners rate the skill suspicious due to reported access to report history, misleading command behavior, and risks involving account data and local videos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, clarify where videos are sent, how report history and cached accounts are separated, and whether registration or token storage is necessary and disclosed; submit only videos you intend to share.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-analysis)
+- [Skill introduction](https://lifeemergence.com/sample.html)
+- [API interface notes](artifact/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Text, Report links]
+
+**Output Format:** [Text containing structured analysis results and report links; report history is returned as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Health observations and care suggestions are informational and do not replace veterinary diagnosis. Reports may be associated with an automatically resolved account.]
+
+## Skill Version(s):
+
+999.999.1013 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Generate QR codes from text, URLs, or images. Use when users ask to 'generate QR code', 'create QR', or 'make QR code for'. Supports text content, URLs, and local images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QR codes from text, URLs, or images, including local images that are automatically compressed when possible.
 
-## Publisher: <br>
-[nbf819-web](https://clawhub.ai/user/nbf819-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nbf819-web](https://clawhub.ai/user/nbf819-web)
 
-## Use Case: <br>
-External users and developers use this skill to generate scannable QR code images from text, URLs, or intentionally selected local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The image path input can read and encode arbitrary small local files, which may include secrets or private documents. <br>
-Mitigation: Only pass paths to files that are intentionally meant to be converted into a scannable QR code; avoid secrets, keys, configuration files, and private documents. <br>
-Risk: The image behavior is described as image-only and auto-compressed, but the security summary says arbitrary small local files may be embedded and compression is not clearly performed. <br>
-Mitigation: Validate the selected file type and contents before use, and review generated QR outputs before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to create QR code images from text, URLs, or explicitly provided local image files for sharing or scanning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nbf819-web/pr-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Guidance] <br>
-**Output Format:** [JSON-style response containing a generated image path, error, or message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated QR code PNG files to the system temporary directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Image mode can read and encode arbitrary small local files when given a path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, explicit image paths; avoid secrets or private configuration files; restrict allowed paths and validate image contents before deployment.
+
+Risk: Generated QR codes may embed sensitive or unintended local data.
+
+Mitigation: Review input content and generated QR output before sharing, and prefer URLs for image sharing when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nbf819-web/skills/pr-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [JSON-compatible object containing an image path, error, or message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates PNG QR code files in the system temporary directory.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

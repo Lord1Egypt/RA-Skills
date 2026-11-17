@@ -1,42 +1,59 @@
-## Description: <br>
-Fetches A-share market data including fund flow, stock news, chip distribution, dragon-tiger list entries, limit-up stocks, market anomalies, sector anomalies, and individual stock details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取A股市场资金流向、新闻、筹码分布、龙虎榜、涨停板、盘口异动、板块异动和单只股票详情等多维度数据。
 
-## Publisher: <br>
-[Glory904649854](https://clawhub.ai/user/Glory904649854) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[glory904649854](https://clawhub.ai/user/glory904649854)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve public A-share market datasets through OpenClaw-compatible Python functions or a command-line entry point. It is suited for data collection workflows that need current market snapshots, stock-specific details, and structured result objects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Install metadata includes mismatched and unpinned dependencies. <br>
-Mitigation: Review package metadata before installation and install in an isolated Python environment with pinned, vetted dependency versions. <br>
-Risk: Live public finance data requests can fail or return incomplete data when network access or upstream APIs are unavailable. <br>
-Mitigation: Handle unsuccessful result objects explicitly and validate returned market data before using it in downstream workflows. <br>
+## Use Case:
 
+Developers and market-data agents use this skill to query A-share market data and return normalized OpenClaw-style results for stock research workflows. It is suited for retrieving current records and details, not for making unsupervised investment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Glory904649854/clouddream-a-data) <br>
-- [Eastmoney](https://www.eastmoney.com) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Tabular data, Shell commands, Code] <br>
-**Output Format:** [OpenClaw-style JSON objects with success, data, and message fields; command-line and Python function outputs may contain tabular market records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live public finance data requests and retry logic; results depend on network availability and upstream API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, setup.py, __init__.py) <br>
+Risk: Unpinned Python dependencies can change behavior across installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin or lock pandas, requests, and beautifulsoup4 before deployment.
+
+Risk: The skill sends requested stock symbols to Eastmoney and Sina Finance and depends on those services being reachable.
+
+Mitigation: Use it only where those external requests are acceptable, and handle request failures or rate limits in the calling workflow.
+
+Risk: Yesterday limit-up and market-anomaly outputs may be unreliable until the referenced endpoints are corrected.
+
+Mitigation: Treat those outputs as advisory data and cross-check them before using them in downstream market analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/glory904649854/skills/clouddream-a-data)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [OpenClaw-style JSON objects with success, data, and message fields; data contains stock records, news records, market lists, or stock detail dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Functions may contact Eastmoney and Sina Finance endpoints and may return failure messages when remote requests fail or data is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, setup.py, and __init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

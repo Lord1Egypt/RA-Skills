@@ -1,44 +1,58 @@
-## Description: <br>
-Auto Workflow helps agents define and run multi-step automation workflows for file operations, data conversion, HTTP requests, shell commands, backups, and related repeatable tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Workflow automates repetitive tasks with file processing, data conversion, scheduled jobs, API calls, and multi-step workflows.
 
-## Publisher: <br>
-[yofoan](https://clawhub.ai/user/yofoan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yofoan](https://clawhub.ai/user/yofoan)
 
-## Use Case: <br>
-Developers and operators use this skill to automate repeatable local workflows such as backups, file handling, data conversion, HTTP calls, and scripted multi-step jobs. It is best suited for reviewed workflow definitions in controlled workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow files can exercise broad command, file, network, and environment-variable access. <br>
-Mitigation: Review workflow definitions like code before execution, run only trusted workflows, and limit execution to a restricted directory or sandbox. <br>
-Risk: Workflow runs may expose more environment data than intended through variable expansion or shell commands. <br>
-Mitigation: Provide only the environment variables required for the workflow and avoid running workflows with broad credentials in the process environment. <br>
-Risk: Dry-run behavior is documented but should not be assumed to prevent side effects unless verified. <br>
-Mitigation: Validate workflows separately and test them in a disposable workspace before using them on important files or systems. <br>
+## Use Case:
 
+Developers and operators use this skill to define and run repeatable local workflows for backups, file handling, data conversion, HTTP/API calls, and multi-step automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yofoan/ai-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/yofoan) <br>
-- [Example backup workflow](examples/backup-workflow.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON workflow examples, shell commands, and Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow definitions and command guidance for agent execution; actual workflow runs may create, modify, download, archive, delete, or log files depending on the reviewed workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Custom workflow JSON can behave like executable code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only workflows that have been locally reviewed and come from trusted sources.
+
+Risk: Workflows can access shell commands, files, network requests, and environment variables without adequate safeguards.
+
+Mitigation: Execute workflows in a restricted environment with least-privilege filesystem and network access, and remove secrets from the environment before running them.
+
+Risk: File deletion, archive extraction, and cleanup-style actions can damage or overwrite local data.
+
+Mitigation: Avoid destructive workflows unless paths are explicitly reviewed, backups exist, and path restrictions or reliable dry-run behavior have been added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yofoan/skills/ai-workflow)
+- [Publisher profile](https://clawhub.ai/user/yofoan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON workflow definitions, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workflow JSON files and local execution logs when its bundled workflow engine is run.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

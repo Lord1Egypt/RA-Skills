@@ -1,43 +1,64 @@
-## Description: <br>
-Blocks YouTube Shorts on Fire TV by monitoring Shorts watch time, enforcing a daily limit, and closing YouTube when the limit is reached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blocks YouTube Shorts on Fire TV by monitoring watch time and closing YouTube after a daily limit is reached.
 
-## Publisher: <br>
-[cindulasai](https://clawhub.ai/user/cindulasai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindulasai](https://clawhub.ai/user/cindulasai)
 
-## Use Case: <br>
-Household users and administrators use this skill through an agent to set up, check, reset, start, stop, and troubleshoot a local Fire TV YouTube Shorts limiter. The skill is intended for Fire TV or Fire Stick devices on a trusted local network with ADB debugging enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a background local daemon that controls YouTube on configured Fire TV devices over ADB. <br>
-Mitigation: Install it only for intended Fire TV devices on a trusted home network, and keep ADB debugging disabled when this control is not needed. <br>
-Risk: The auto-start service can persist on the host after setup. <br>
-Mitigation: Review the launchd or systemd service created during installation, and use the uninstall command when the limiter should no longer run automatically. <br>
-Risk: Logs and status output can include device IPs and viewing-status details. <br>
-Mitigation: Avoid sharing logs publicly and redact local network addresses or usage details before sending troubleshooting information. <br>
+## Use Case:
 
+External users and developers use this skill to install, configure, monitor, and troubleshoot a local Fire TV YouTube Shorts limiter on trusted home networks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cindulasai/clawshorts-pkg) <br>
-- [Android Debug Bridge documentation](https://developer.android.com/tools/adb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local device IPs, daemon status, usage counters, and log paths when needed for setup or troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: The skill enables a persistent local service with ADB control over Fire TV devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted home networks, keep ADB limited to intended devices, and uninstall the limiter when it is no longer needed.
+
+Risk: Security evidence reports a command-injection flaw in the deprecated bash daemon fallback.
+
+Mitigation: Fix or remove the deprecated bash daemon argument handling before broad use.
+
+Risk: The service can inspect Fire TV UI state and force-stop YouTube.
+
+Mitigation: Review the stored ~/.clawshorts history and log files and confirm the behavior is acceptable for the household or deployment.
+
+Risk: Security guidance flags fixed /tmp UI files.
+
+Mitigation: Replace fixed /tmp UI files with private temporary files before wider deployment.
+
+## Reference(s):
+
+- [Clawshorts Pkg on ClawHub](https://clawhub.ai/cindulasai/skills/clawshorts-pkg)
+- [Android Debug Bridge documentation](https://developer.android.com/tools/adb)
+- [README](README.md)
+- [Troubleshooting Guide](TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-oriented guidance for local Fire TV device setup, quota checks, daemon control, usage history, logs, and troubleshooting.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

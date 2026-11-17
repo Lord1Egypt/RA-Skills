@@ -1,43 +1,51 @@
-## Description: <br>
-Generate a weekly Torah portion summary from Sefaria with optional Hebrew text, verse count, sample verses, and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates weekly Torah portion summaries from Sefaria, with optional Hebrew text, verse counts, sample verses, and JSON output.
 
-## Publisher: <br>
-[abeperl](https://clawhub.ai/user/abeperl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeperl](https://clawhub.ai/user/abeperl)
 
-## Use Case: <br>
-External users and agents use this skill to get concise weekly Torah portion overviews, select a named parsha, include Hebrew availability, or produce JSON suitable for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes internet requests to public Hebcal and Sefaria APIs when used. <br>
-Mitigation: Use it only in environments where outbound access to those services is acceptable, and review network access expectations before installation. <br>
-Risk: Broad Torah-related triggers may activate the skill during adjacent religious-content discussions. <br>
-Mitigation: Confirm the user wants a parsha summary before invoking it when the request is ambiguous. <br>
+## Use Case:
 
+External users and developers use this skill to get quick weekly parsha overviews or parsha content for a dvar Torah outline, either for the current week or by selecting a named Torah portion.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abeperl/parsha-summary) <br>
-- [Publisher Profile](https://clawhub.ai/user/abeperl) <br>
-- [Sefaria API](https://www.sefaria.org/api) <br>
-- [Hebcal API](https://www.hebcal.com/hebcal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Plain text summary or JSON object, with command examples documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional word limit, named parsha selection, Hebrew availability flag, verse count, and sample verses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill depends on outbound requests to Hebcal and Sefaria for calendar and Torah text data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access policy before installation and use it only where outbound requests to those public APIs are acceptable.
+
+## Reference(s):
+
+- [Sefaria API](https://www.sefaria.org/api)
+- [Hebcal API](https://www.hebcal.com/hebcal)
+- [ClawHub Skill Page](https://clawhub.ai/abeperl/skills/parsha-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON, with command examples shown in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional Hebrew text; configurable summary length; requires outbound requests to Hebcal and Sefaria for current calendar and Torah text data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

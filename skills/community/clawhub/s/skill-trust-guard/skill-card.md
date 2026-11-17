@@ -1,42 +1,63 @@
-## Description: <br>
-Enforces skill-trust-scanner security checks before installing ClawHub skills, blocking or warning based on risk scores to reduce supply chain threats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces skill-trust-scanner security checks before installing skills, blocking or alerting based on risk scores to reduce supply chain threats.
 
-## Publisher: <br>
-[Walkman1W](https://clawhub.ai/user/Walkman1W) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[walkman1w](https://clawhub.ai/user/walkman1w)
 
-## Use Case: <br>
-Developers and operators use this skill to add a security gate before ClawHub skill installation. It scans local, Git, or registry-sourced skills and applies allow, warn, or reject decisions before installation proceeds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The wrapper depends on a separate local scanner that is not bundled with this release. <br>
-Mitigation: Pin and review the scanner installation path before relying on guard decisions. <br>
-Risk: The PATH shim can intercept future `clawhub install` commands. <br>
-Mitigation: Prefer explicit `install.sh` use until the shim path, uninstall process, and revert steps have been reviewed. <br>
-Risk: `--yes` can auto-approve warning-range skills. <br>
-Mitigation: Review scanner output before using `--yes` for skills that receive a warning decision. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Trust Guard ClawHub page](https://clawhub.ai/Walkman1W/skill-trust-guard) <br>
-- [Walkman1W publisher profile](https://clawhub.ai/user/Walkman1W) <br>
+## Use Case:
 
+Developers and operators use this skill to scan skills before installation, block high-risk packages, and require confirmation for medium-risk packages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes security scan decisions such as allow, warn, or reject, plus installation and PATH configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can replace the user's clawhub command path through a PATH shim.
+
+Mitigation: Use it in a controlled environment, review the generated shim path before enabling it, and keep a documented uninstall or repair path.
+
+Risk: The install flow performs broad install and deletion operations.
+
+Mitigation: Validate destination paths before use and avoid running it against untrusted targets until path validation is reviewed.
+
+Risk: The scanner is executed through npx without a pinned runtime package.
+
+Mitigation: Pin scanner execution dependencies or run the scanner from a reviewed local checkout before using the wrapper for production installs.
+
+Risk: Artifact identity binding is not proven by the provided evidence.
+
+Mitigation: Confirm the artifact being scanned is the exact artifact being installed before relying on the install decision.
+
+## Reference(s):
+
+- [Skill Trust Guard on ClawHub](https://clawhub.ai/walkman1w/skills/skill-trust-guard)
+- [Publisher profile](https://clawhub.ai/user/walkman1w)
+- [README.md](artifact/README.md)
+- [TEST_REPORT.md](artifact/TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces allow, warn, or reject decisions from scan scores; installation may require interactive confirmation unless --yes is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

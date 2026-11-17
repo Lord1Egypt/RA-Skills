@@ -1,0 +1,11 @@
+interface:
+  display_name: "Mermail Research Agent"
+  short_description: "Run a customer research inbox with sourced reports"
+  default_prompt: "Use $mermail-research-agent to turn an owner-verified customer order into a sourced protocol comparison or market-report draft, then deliver in the same email thread under my exact authorization."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

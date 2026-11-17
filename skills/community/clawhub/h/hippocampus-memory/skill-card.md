@@ -1,47 +1,61 @@
-## Description: <br>
-Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement - just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system for AI agents with automatic encoding, decay, and semantic reinforcement based on Stanford Generative Agents (Park et al., 2023).
 
-## Publisher: <br>
-[ImpKind](https://clawhub.ai/user/ImpKind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[impkind](https://clawhub.ai/user/impkind)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to create persistent long-term memory from agent conversations, including indexed memories, recall output, decay, reinforcement, and session-start context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently scan conversation history and store sensitive personal memories. <br>
-Mitigation: Install only when long-lived agent memory is intended, review the generated memory files, and periodically delete unneeded data under ~/.openclaw/workspace/memory/ and HIPPOCAMPUS_CORE.md. <br>
-Risk: The --whole option can ingest historical conversation data beyond recent context. <br>
-Mitigation: Start with the default recent-signal setup or a small --signals value, and use --whole only after confirming historical ingestion is desired. <br>
-Risk: Cron or background-agent setup can run recurring memory updates without an active manual prompt. <br>
-Mitigation: Prefer a manual non-cron setup first, and enable recurring jobs only after confirming how to inspect, pause, or remove them. <br>
-Risk: Generated memory files may contain private user, relationship, or project context. <br>
-Mitigation: Keep memory files out of version control and avoid sharing workspace artifacts that include memory/index.json, HIPPOCAMPUS_CORE.md, signals, pending memories, or dashboard output. <br>
+## Use Case:
 
+Developers and agent operators use Hippocampus to give OpenClaw agents persistent, searchable memory with importance scoring, scheduled encoding, decay, and semantic reinforcement. It supports session-start memory loading, recall queries, memory consolidation, and dashboard generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ImpKind/hippocampus-memory) <br>
-- [Repository listed in metadata](https://github.com/ImpKind/hippocampus-skill) <br>
-- [Stanford Generative Agents paper](https://arxiv.org/abs/2304.03442) <br>
-- [Generative Agents reference implementation](https://github.com/joonspk-research/generative_agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal output with JSON memory files and optional HTML dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local memory artifacts under the configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.6 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Persistent conversation scanning and plaintext memory storage can retain sensitive personal data or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy fit before installation, avoid use around secrets or sensitive personal data, and avoid whole-history processing unless explicitly intended.
+
+Risk: Optional cron processing can repeatedly summarize conversations into persistent memory without active review.
+
+Mitigation: Enable scheduled encoding or decay only when background memory processing is intended and reviewed.
+
+Risk: The security evidence reports exploitable local scripting and dashboard-rendering issues.
+
+Mitigation: Fix code-injection, prompt-injection, dashboard escaping, retention, permissions, approval, and deletion controls before sensitive or trusted deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/impkind/skills/hippocampus-memory)
+- [Publisher Profile](https://clawhub.ai/user/impkind)
+- [GitHub Repository](https://github.com/ImpKind/hippocampus-skill)
+- [Stanford Generative Agents Paper](https://arxiv.org/abs/2304.03442)
+- [Generative Agents Reference Implementation](https://github.com/joonspk-research/generative_agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown and shell command output, plus generated JSON, Markdown, and HTML files in the configured workspace.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent plaintext memory files under WORKSPACE and can optionally schedule recurring encoding and decay jobs.]
+
+## Skill Version(s):
+
+3.8.6 (source: server release, openclaw metadata, and changelog released 2026-02-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

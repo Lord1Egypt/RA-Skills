@@ -1,43 +1,61 @@
-## Description: <br>
-ElevenLabs text-to-speech with mac-style say UX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ElevenLabs text-to-speech with mac-style say UX.
 
-## Publisher: <br>
-[jeffpignataro](https://clawhub.ai/user/jeffpignataro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeffpignataro](https://clawhub.ai/user/jeffpignataro)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate ElevenLabs text-to-speech responses with local playback and voice-selection guidance. It helps prepare short spoken replies, voice prompts, and sag CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Text sent for speech generation may be processed by ElevenLabs and could expose confidential content. <br>
-Mitigation: Avoid sending secrets or confidential text for speech generation and use a revocable ElevenLabs API key. <br>
-Risk: Generated audio files in /tmp may contain sensitive spoken content. <br>
-Mitigation: Delete generated /tmp audio files when they contain sensitive material. <br>
-Risk: Use depends on the sag Homebrew formula and local sag CLI behavior. <br>
-Mitigation: Install only if the sag Homebrew formula is trusted and monitor ElevenLabs API usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [sag homepage](https://sag.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/jeffpignataro/miranda-sag) <br>
-- [Publisher profile](https://clawhub.ai/user/jeffpignataro) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate ElevenLabs speech audio through the sag CLI, preview voices, and return MP3 voice replies when spoken responses are requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks and generated audio file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the sag CLI and an ElevenLabs API key; may write MP3 audio files under /tmp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Text passed to the voice command may be sent to ElevenLabs and can include secrets, personal data, or regulated content.
+
+Mitigation: Do not pass sensitive or regulated content unless that use is acceptable for the configured ElevenLabs account.
+
+Risk: Installation depends on the sag Homebrew tap and local CLI availability.
+
+Mitigation: Confirm the Homebrew tap and CLI are trusted before installation or execution.
+
+Risk: Generated MP3 files can persist locally and may contain sensitive speech.
+
+Mitigation: Delete generated audio files when they contain sensitive or private content.
+
+Risk: Long or character-specific voice output can use an unintended speaker or voice style.
+
+Mitigation: Confirm the voice and speaker settings before generating long output.
+
+## Reference(s):
+
+- [sag homepage](https://sag.sh)
+- [ClawHub skill page](https://clawhub.ai/jeffpignataro/skills/miranda-sag)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash code blocks and optional local audio file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the sag CLI and an ElevenLabs API key; voice responses may create local MP3 files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

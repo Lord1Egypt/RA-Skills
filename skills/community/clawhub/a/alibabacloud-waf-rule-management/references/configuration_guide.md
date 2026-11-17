@@ -11,10 +11,10 @@ When users need to skip a specific rule (e.g., rule 900904) while keeping other 
 
 - **Use whitelist**, NOT custom rule (custom rules cannot "pass" requests)
 - Configuration path: `Protection Configuration` → `Whitelist`
-- In "不检测模块" (Skip Modules) section:
-  - Select **Custom** (自定义)
-  - Expand **Web Core Protection Rules** (Web 核心防护规则)
-  - Select **Specific Rule ID** (特定规则 ID)
+- In the "Skip Modules" section:
+  - Select **Custom**
+  - Expand **Web Core Protection Rules**
+  - Select **Specific Rule ID**
   - Enter the rule ID (e.g., `900904`) and press Enter
   - Maximum 50 rule IDs supported
 - This allows the request to skip only the specified rule ID, other WAF rules continue to detect
@@ -23,7 +23,7 @@ When users need to skip a specific rule (e.g., rule 900904) while keeping other 
 
 - Rule name: `whitelist_scan_900904_20260412`
 - Match condition: IP contains `116.62.56.98` AND URI Path equals `/assets/something/services/AppModule.class/`
-- Skip module: Web 核心防护规则 → 特定规则 ID → `900904`
+- Skip module: Web Core Protection Rules → Specific Rule ID → `900904`
 
 ---
 

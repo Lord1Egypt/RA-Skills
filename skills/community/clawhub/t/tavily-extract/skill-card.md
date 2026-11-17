@@ -1,42 +1,60 @@
-## Description: <br>
-Extract content from specific URLs using Tavily's extraction API and return clean markdown or text from web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract content from specific URLs using Tavily's extraction API and return clean markdown or text from web pages.
 
-## Publisher: <br>
-[evanYDL](https://clawhub.ai/user/evanYDL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanydl](https://clawhub.ai/user/evanydl)
 
-## Use Case: <br>
-Developers and agents use this skill to extract readable content from known web URLs without writing custom Tavily API code. It supports single-page and batch extraction, focused extraction by query, and advanced extraction for dynamic pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided URLs, query text, and extraction options to Tavily under the user's account. <br>
-Mitigation: Use it only with URLs and extraction inputs approved for sharing with Tavily; avoid private, internal, authenticated, regulated, or confidential URLs unless that sharing is approved. <br>
-Risk: The OAuth flow and MCP token cache may retain Tavily credentials on shared machines. <br>
-Mitigation: Review local OAuth/token cache behavior before use on shared systems, or configure an approved Tavily API key through the agent environment. <br>
+## Use Case:
 
+Developers and agents use this skill when they already have target URLs and need page content extracted as markdown or text for analysis, summarization, or downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub Tavily Extract Release](https://clawhub.ai/evanYDL/tavily-extract) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Extract API Endpoint](https://api.tavily.com/extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON response containing extracted markdown or text content, failed URLs, and response timing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes up to 20 URLs per request and supports query-focused chunking, extraction depth, output format, image inclusion, and timeout options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Tavily receives submitted URLs, query text, and extraction request context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid internal, private, authenticated, or sensitive URLs unless that disclosure is acceptable for the deployment.
+
+Risk: The automatic authentication path can read cached MCP tokens from the local environment.
+
+Mitigation: Prefer setting TAVILY_API_KEY explicitly and review local token handling before use.
+
+Risk: First-run OAuth can invoke an unpinned npm package through mcp-remote.
+
+Mitigation: Review or pin the mcp-remote execution path before relying on the automatic OAuth flow.
+
+## Reference(s):
+
+- [ClawHub Tavily Extract Skill Page](https://clawhub.ai/evanydl/skills/tavily-extract)
+- [evanydl ClawHub Publisher Profile](https://clawhub.ai/user/evanydl)
+- [Tavily](https://tavily.com)
+- [Tavily Extract API Endpoint](https://api.tavily.com/extract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses containing extracted markdown or text, with shell command examples and configuration guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Extraction accepts up to 20 URLs per request and may include failed URL results and response timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

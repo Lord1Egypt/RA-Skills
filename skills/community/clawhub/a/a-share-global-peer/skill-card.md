@@ -1,43 +1,54 @@
-## Description: <br>
-Finds global peer companies for A-share listed companies and produces comparison reports with product, market-share, and benchmark rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds overseas listed peer companies for A-share companies by matching similar products or services and producing comparison reports with market-share context.
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-External finance analysts, investors, and researchers use this skill to identify publicly listed overseas peers for A-share companies and compare product overlap, market position, and market-share data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, market-share, or peer-comparison data may be incomplete, stale, or unsuitable for investment or business decisions. <br>
-Mitigation: Independently verify figures and cited sources before relying on the report. <br>
-Risk: The skill may run a bundled Python helper and perform web or finance-data lookups using optional API keys. <br>
-Mitigation: Review the helper before execution and provide only API keys intended for this skill's use. <br>
-Risk: The bundled global leader reference table can become outdated as market leadership changes. <br>
-Mitigation: Refresh peer and market-share claims with current web search and source-date labels. <br>
+## Use Case:
 
+Investors, analysts, and agents use this skill to identify overseas listed companies comparable to A-share companies and produce Chinese peer-comparison reports with product overlap, market position, and sourced market-share data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laigen/a-share-global-peer) <br>
-- [Global Industry Leaders Reference Table](references/global_leaders_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Chinese Markdown comparison report with tables and labeled data sources; the helper script can emit JSON or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits the report to the most representative peer companies, labels data sources, includes a data timestamp, and flags estimates for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Crafted company names in documented shell commands could execute unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass company names as argument-array values or apply proper shell escaping, and review commands before execution.
+
+Risk: Peer rankings and market-share data can become stale or incomplete.
+
+Mitigation: Verify market-share figures against current sources and clearly label uncertain or estimated data in the report.
+
+## Reference(s):
+
+- [Global Industry Leaders Reference Table](references/global_leaders_reference.md)
+- [ClawHub skill page](https://clawhub.ai/laigen/skills/a-share-global-peer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown comparison report with source labels; helper script output may be JSON or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current source verification for market-share figures and can fall back to recommended web searches when optional APIs are unavailable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

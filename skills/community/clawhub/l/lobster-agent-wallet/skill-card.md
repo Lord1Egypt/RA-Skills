@@ -1,42 +1,54 @@
-## Description: <br>
-Manage a USDC wallet for AI agents on Base, supporting balance checks and x402 payments with configurable network and key settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a USDC wallet for AI agents on Base, supporting balance checks and x402 payments with configurable network and key settings.
 
-## Publisher: <br>
-[chengtang05-hash](https://clawhub.ai/user/chengtang05-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengtang05-hash](https://clawhub.ai/user/chengtang05-hash)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure a Base or Base Sepolia USDC wallet, check ETH and USDC balances, and make x402 payments from agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize real USDC payments from server-provided terms without enough user-visible limits or checks. <br>
-Mitigation: Install only with a dedicated low-balance or testnet wallet, avoid untrusted payment URLs, and require explicit review of payment details before signing. <br>
-Risk: Payment terms may lack enforced checks for recipient, token contract, network, amount, expiry, domain allowlists, or spend limits. <br>
-Mitigation: Prefer a version that previews and enforces those constraints before any signature is created. <br>
+## Use Case:
 
+Developers and agent builders use this skill to inspect Base USDC and ETH balances and prepare x402 payments for paid resources from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chengtang05-hash/lobster-agent-wallet) <br>
-- [Skill usage documentation](artifact/SKILL.md) <br>
-- [Package metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Console text, Markdown usage guidance, and JavaScript CLI/module patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses environment-based wallet configuration; signed x402 payments require a private key and explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Payment signing can authorize real USDC transfers without sufficiently constrained or disclosed transaction terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment terms before use, prefer testnet first, use a dedicated low-balance wallet, and validate the network, USDC contract, recipient, amount, and expiration before signing.
+
+Risk: Arbitrary payment URLs can present payment requirements that are not appropriate for the wallet holder.
+
+Mitigation: Avoid arbitrary payment URLs and only use endpoints whose operator, price, token contract, recipient, and timeout are independently trusted.
+
+## Reference(s):
+
+- [Agent Wallet (Lobster) ClawHub listing](https://clawhub.ai/chengtang05-hash/skills/lobster-agent-wallet)
+- [Publisher profile](https://clawhub.ai/user/chengtang05-hash)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JavaScript snippets; CLI commands return plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate network RPC calls and x402 payment requests when run with wallet environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

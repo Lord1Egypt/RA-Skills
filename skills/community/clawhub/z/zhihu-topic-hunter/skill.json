@@ -1,0 +1,24 @@
+{
+  "slug": "zhihu-topic-hunter",
+  "title": "Zhihu Topic Hunter",
+  "category": "content",
+  "summary": "Generate ranked Zhihu topic candidates from a theme using current discussion signals, platform fit, debate value, and author writability.",
+  "keywords": [
+    "Zhihu",
+    "topic hunting",
+    "content strategy",
+    "discussion signals",
+    "writing angles"
+  ],
+  "user_needs": [
+    "generate Zhihu topic ideas around a theme",
+    "turn recent discussion signals into debatable questions",
+    "rank topics by platform fit and author writability",
+    "decide which hot topics are not worth chasing"
+  ],
+  "source_dir": "skills/content/zhihu-topic-hunter",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

@@ -1,43 +1,54 @@
-## Description: <br>
-SkillMe helps agents search ClawHub and skills.sh in parallel, compare discovered skills, install selected ClawHub skills, and convert skills.sh skills into OpenClaw-compatible SKILL.md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillMe helps agents search ClawHub and skills.sh, compare discovered skills, install ClawHub skills, and convert skills.sh skills into OpenClaw-compatible format.
 
-## Publisher: <br>
-[GHesericsu](https://clawhub.ai/user/GHesericsu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghesericsu](https://clawhub.ai/user/ghesericsu)
 
-## Use Case: <br>
-External developers and agent users use SkillMe to discover skills across ClawHub and skills.sh, compare candidates, and install or convert selected skills into an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing discovered skills can add persistent third-party agent instructions, including global installs shared across workspaces. <br>
-Mitigation: Inspect third-party SKILL.md content before enabling it and prefer workspace installs unless a global install is intentionally needed. <br>
-Risk: Search queries and installation commands are passed through shell commands, which can be unsafe if queries include shell metacharacters. <br>
-Mitigation: Quote or sanitize search terms and avoid shell metacharacters when running registry searches or install commands. <br>
-Risk: The converter can fetch remote skill content and write a SKILL.md file to a chosen path. <br>
-Mitigation: Verify the converter path points to this reviewed script, confirm the destination path, and review the converted file before use. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover relevant agent skills across ClawHub and skills.sh, evaluate basic quality signals, choose an install location, and convert skills.sh skills into OpenClaw-compatible SKILL.md files.
 
-## Reference(s): <br>
-- [ClawHub SkillMe listing](https://clawhub.ai/GHesericsu/skillme) <br>
-- [skills.sh registry](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with comparison results, inline shell commands, and generated SKILL.md content when converting skills.sh entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a converted SKILL.md file when the conversion script is run with an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can install unverified remote instructions into active skill folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local workspace installs, inspect converted SKILL.md content before activation, and avoid global unattended installs.
+
+Risk: The skill runs unpinned external commands while searching or installing skills.
+
+Mitigation: Pin or verify external packages and remote skill sources before installation.
+
+## Reference(s):
+
+- [SkillMe on ClawHub](https://clawhub.ai/ghesericsu/skills/skillme)
+- [skills.sh registry](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with result tables, install commands, and generated SKILL.md content when converting skills.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce filesystem changes when the user confirms an installation or conversion workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

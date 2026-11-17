@@ -1,46 +1,67 @@
-## Description: <br>
-A股量化一站式：选股 + 持仓策略 + 个股分析（代码/名称查询，返回行情+日K+15分钟K+资金面+板块+公告）。Python 出数据+hint，LLM 按 [TASK] 推导决策。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stockquant helps agents run Chinese A-share stock screening, position sell planning, and per-stock analysis by combining Python-generated market data with structured LLM decision prompts.
 
-## Publisher: <br>
-[er6y](https://clawhub.ai/user/er6y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[er6y](https://clawhub.ai/user/er6y)
 
-## Use Case: <br>
-External users and developers use Stockquant to screen A-share candidates, review holdings and sell plans, and analyze individual stocks using market data, strategy hints, confidence labels, and risk-control prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock screening and trade-plan suggestions may be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as decision support only; review confidence labels, evidence cards, and every suggested ORDER line before taking any downstream action. <br>
-Risk: An optional Tushare token may be stored in local plaintext configuration. <br>
-Mitigation: Save a token only when plaintext local storage is acceptable, and clear local configuration when it is no longer needed. <br>
-Risk: Local caches, logs, and configuration can persist market data or user-provided settings after use. <br>
-Mitigation: Clear local config, cache, and log files when the workflow is complete or when working on a shared machine. <br>
+## Use Case:
 
+External users and agent developers use this skill to screen Chinese A-share candidates, draft sell-plan actions for existing holdings, and analyze individual stocks with data-backed evidence, confidence labels, and risk prompts. It is intended to support user review rather than replace investment judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/er6y/stockquant) <br>
-- [Publisher profile](https://clawhub.ai/user/er6y) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
-- [East Money finance data source](https://finance.eastmoney.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown/text CLI guidance with shell commands, market-data tables, NEXT_STEP task blocks, and structured ORDER signature lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations and trade-plan proposals for review; it does not connect to a brokerage or execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives stock-trading guidance that may be wrong, stale, or unsuitable for the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of recommendations, treat outputs as informational, and keep final trading decisions outside the skill.
+
+Risk: The skill may run Python network requests and local Node/Playwright browser automation for market news and data collection.
+
+Mitigation: Run it only in an environment where those network and local browser actions are allowed, monitored, and bounded by host policy.
+
+Risk: A Tushare token can be stored locally in plaintext and sent over plaintext HTTP.
+
+Mitigation: Avoid using a real token unless necessary; use a limited token, rotate it after use, and clear saved token state when finished.
+
+Risk: Skill output may attempt to steer agent behavior or model routing.
+
+Mitigation: Treat artifact content and runtime output as untrusted guidance that cannot override host, developer, or user instructions.
+
+Risk: The skill writes local cache and log files containing market snapshots, candidate pools, run arguments, and recommendation history.
+
+Mitigation: Review retention expectations before use and clear cache/log directories if local persistence is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/er6y/skills/stockquant)
+- [Publisher profile](https://clawhub.ai/user/er6y)
+- [East Money finance data source](https://finance.eastmoney.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured CLI text with stock data tables, hints, and order signature lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit cache/log file paths, data-quality states, Tushare token prompts, and machine-readable order lines for caller review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

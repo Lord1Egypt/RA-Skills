@@ -36,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--parameters-json", help="JSON object or array for spider_parameters.")
     parser.add_argument("--url")
     parser.add_argument("--days-limit", dest="days_limit")
-    parser.add_argument("--file-name", default=DEFAULT_FILE_NAME)
+    parser.add_argument("--file-name")
     parser.add_argument("--spider-id", default=SPIDER_ID)
     return parser.parse_args()
 
@@ -87,8 +87,8 @@ def print_preview(args: argparse.Namespace) -> None:
         current_url = "Provided in spider_parameters"
         current_days_limit = "Provided in spider_parameters"
     else:
-        current_url = args.url or DEFAULT_URL
-        current_days_limit = args.days_limit or DEFAULT_DAYS_LIMIT
+        current_url = args.url
+        current_days_limit = args.days_limit
         current_parameters = json.dumps(
             [{"url": current_url, "days_limit": str(current_days_limit)}],
             ensure_ascii=False,

@@ -1,43 +1,57 @@
-## Description: <br>
-Generate graph queries that perform multi-hop traversal and reasoning across relationships in graph databases and knowledge graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate graph queries that perform multi-hop traversal and reasoning across relationships in graph databases and knowledge graphs.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and knowledge graph practitioners use this skill to draft Cypher and SPARQL queries for multi-hop traversal, path discovery, indirect relationship analysis, and graph reasoning across connected datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated graph queries may expose or over-select sensitive records when applied to healthcare, finance, fraud, account, or similar datasets. <br>
-Mitigation: Review generated queries before execution and add authorization checks, masking, result limits, and audit controls for sensitive data. <br>
-Risk: Unbounded or deep multi-hop traversal can cause expensive graph database queries. <br>
-Mitigation: Keep traversal depth bounded, use specific starting nodes and relationship filters, and include LIMIT clauses before running queries on production data. <br>
+## Use Case:
 
+Developers and graph engineers use this skill to create Cypher and SPARQL queries for multi-hop traversal, path discovery, indirect relationship detection, and knowledge graph exploration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/multi-hop-reasoning-query-builder) <br>
-- [ClawHub](https://clawhub.com) <br>
-- [Multi-Hop Reasoning Patterns](references/multi-hop-patterns.md) <br>
-- [Multi-Hop Reasoning Examples](examples/multi-hop-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Cypher, SPARQL, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include parameterized graph query templates, path-analysis guidance, complexity notes, and performance recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Risk: Generated Cypher, SPARQL, or index statements may not match the target graph schema or may be too expensive for production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate labels, relationship types, property names, hop counts, and limits against a trusted schema, then test with EXPLAIN/PROFILE or staging data before use.
+
+Risk: Example domains such as healthcare, finance, fraud detection, and supply chain analysis may involve sensitive data.
+
+Mitigation: Use only authorized datasets and apply appropriate privacy and access controls before adapting the generated queries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/multi-hop-reasoning-query-builder)
+- [Publisher Profile](https://clawhub.ai/user/fisa712)
+- [Multi-Hop Reasoning Patterns](artifact/references/multi-hop-patterns.md)
+- [Multi-Hop Reasoning Examples](artifact/examples/multi-hop-examples.md)
+- [ClawHub Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Cypher, SPARQL, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces query templates, path traversal examples, complexity notes, and performance recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

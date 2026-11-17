@@ -1,0 +1,3 @@
+lunar-python==1.4.8
+icalendar>=6.3,<7
+tzdata>=2025.1

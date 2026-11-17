@@ -1,42 +1,55 @@
-## Description: <br>
-Enables agents to operate ClickSend through the OOMOL `oo` CLI for account lookup, SMS pricing and sending, contact list management, and contact management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read and manage ClickSend contacts and lists, calculate SMS prices, and send SMS through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent perform ClickSend account, SMS, contact list, and contact operations through an OOMOL-connected account while inspecting live action schemas before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send SMS messages, update contacts, and delete ClickSend data, which can cost money, message real recipients, or remove business data. <br>
-Mitigation: Review and explicitly approve SMS sends, contact updates, and destructive actions before execution. <br>
-Risk: The skill depends on OOMOL-connected ClickSend credentials and the remote `oo` CLI setup path. <br>
-Mitigation: Install and connect OOMOL only when the user intends to operate ClickSend through OOMOL, and treat the remote installer as a normal third-party setup step. <br>
+## Use Case:
 
+External users and teams can use an agent to work with a connected ClickSend account, including reading account and contact data, managing contacts and lists, calculating SMS prices, and sending messages. The skill requires confirmation before writes and explicit approval before destructive actions.
 
-## Reference(s): <br>
-- [ClickSend Homepage](https://www.clicksend.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-clicksend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before payload construction; write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Skill setup may execute downloaded installer code and introduce broader agent changes through automatic skill synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation before setup commands; consider disabling automatic synchronization with the publisher-documented OO_SKILLS_SYNC_DISABLED setting.
+
+Risk: Sending messages and changing or deleting contacts can affect the connected ClickSend account.
+
+Mitigation: Confirm the exact payload and effect before write actions, and get explicit approval for the target before destructive actions.
+
+## Reference(s):
+
+- [ClickSend homepage](https://www.clicksend.com/)
+- [ClickSend API documentation](https://developers.clicksend.com/docs/#authentication)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON connector responses with concise natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields depend on the requested ClickSend action; state-changing actions require confirmation under the skill's safety rules.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

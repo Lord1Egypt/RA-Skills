@@ -1,0 +1,180 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  --color-bg: #0e0e12;
+  --color-fg: #f2f2f5;
+  --color-muted: #a0a0ac;
+  --color-primary: #3a5fff;
+  --color-border: rgb(255 255 255 / 0.12);
+
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-lg: 1rem;
+  --shadow-lg: 0 8px 30px rgb(0 0 0 / 0.35);
+
+  --duration-base: 250ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: var(--space-8);
+  font-family: system-ui, sans-serif;
+  color: var(--color-fg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Layered mesh gradient background — the page's one signature moment here
+   is the background itself, so the cards on top stay quiet. */
+.mesh-bg {
+  background:
+    radial-gradient(at 20% 20%, oklch(55% 0.15 250 / 0.55) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, oklch(60% 0.18 320 / 0.45) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, oklch(50% 0.16 180 / 0.35) 0px, transparent 50%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+.showcase-section {
+  max-width: 640px;
+}
+
+.showcase-section__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+}
+
+.showcase-section__hint {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  margin: 0 0 var(--space-4);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  padding: var(--space-6);
+  background: rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgb(255 255 255 / 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-panel {
+    background: rgb(30 30 34 / 0.92);
+  }
+}
+
+/* Animated gradient border via @property */
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle), #3a5fff, #7c3aed, #3a5fff);
+  z-index: -1;
+  animation: spin-border 4s linear infinite;
+}
+
+.gradient-border__content {
+  padding: var(--space-6);
+  background: var(--color-bg);
+  border-radius: calc(var(--radius-lg) - 2px);
+}
+
+@keyframes spin-border {
+  to { --angle: 360deg; }
+}
+
+/* 3D tilt card, mouse-tracked via JS-set custom properties */
+.tilt-card {
+  padding: var(--space-6);
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform var(--duration-base) var(--ease-standard);
+  will-change: transform;
+}
+
+/* Scroll-driven reveal */
+.reveal-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.card-basic {
+  padding: var(--space-6);
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: reveal-in linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+@keyframes reveal-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@supports not (animation-timeline: view()) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Houdini Paint API with radial-gradient fallback */
+.dotted-bg {
+  --dot-color: rgb(255 255 255 / 0.25);
+  --dot-size: 1.5px;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background-image: paint(dottedPattern);
+  border: 1px solid var(--color-border);
+}
+
+@supports not (background: paint(dottedPattern)) {
+  .dotted-bg {
+    background-image: radial-gradient(rgb(255 255 255 / 0.25) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-border::before,
+  .tilt-card,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -28,14 +28,16 @@ def resolve_trigger_defaults(trigger_source: str) -> dict:
     return dict(TRIGGER_DEFAULTS.get(trigger_source, TRIGGER_DEFAULTS["manual_probe"]))
 
 
-def candidate_payload(note: dict, relevance: float, meta: dict, today: date) -> dict:
-    return {
+def candidate_payload(note: dict, relevance: float, meta: dict, today: date, *, include_sensitive: bool = False) -> dict:
+    payload = {
         "title": note.get("title"),
         "path": note.get("path"),
         "relevance": relevance,
         "confidence": meta.get("confidence", "none"),
         "matched_fields": meta.get("matched_fields", []),
-        "overlap_terms": meta.get("overlap_terms", []),
         "raw_score": meta.get("raw_score", 0.0),
         "evaluated_at": today.isoformat(),
     }
+    if include_sensitive:
+        payload["overlap_terms"] = meta.get("overlap_terms", [])
+    return payload

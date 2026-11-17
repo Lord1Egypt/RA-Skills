@@ -1,0 +1,115 @@
+{
+ "category": "education",
+ "zh": "教育培训机构专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "lesson-hour-check",
+   "name": "课时核销核对",
+   "layer": "local",
+   "entry": "lesson-hour-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "课时核销核对",
+    "课时核销表"
+   ],
+   "cols": [
+    "剩余课时",
+    "学员",
+    "已耗课时",
+    "耗课金额",
+    "课时单价",
+    "购买课时"
+   ]
+  },
+  {
+   "id": "teacher-hour-pay-check",
+   "name": "课时消耗与教师课时费核对",
+   "layer": "local",
+   "entry": "teacher-hour-pay-check-full.js",
+   "kw": [
+    "免费",
+    "学员消课",
+    "课时消耗与教师课时费核对",
+    "课时费核对",
+    "课耗勾稽"
+   ],
+   "cols": [
+    "上课日期",
+    "代课补贴",
+    "合同保底单价",
+    "学员消课课时",
+    "教师",
+    "校区",
+    "系统课耗课时",
+    "课时单价",
+    "课时数",
+    "课时费",
+    "课程类型"
+   ]
+  },
+  {
+   "id": "training-hour-consumption-check",
+   "name": "教培课消与预收学费核对",
+   "layer": "local",
+   "entry": "training-hour-consumption-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "教培课消与预收学费核对",
+    "教培课消与预收学费核对表",
+    "核对"
+   ],
+   "cols": [
+    "剩余课时",
+    "学员姓名",
+    "学员编号",
+    "已收学费",
+    "所属期间",
+    "期初课时",
+    "本期课消课时",
+    "本期购买课时",
+    "本期退费课时",
+    "课时单价",
+    "课消金额",
+    "课程名称",
+    "退费金额",
+    "预收学费结转"
+   ]
+  },
+  {
+   "id": "tuition-refund-check",
+   "name": "学费与退费核对",
+   "layer": "local",
+   "entry": "tuition-refund-check-full.js",
+   "kw": [
+    "免费",
+    "学费与退费核对",
+    "对账",
+    "核算核对",
+    "退费核对表"
+   ],
+   "cols": [
+    "学员",
+    "实退学费",
+    "差额",
+    "已上课时",
+    "已缴学费",
+    "已耗课费",
+    "应退学费",
+    "总课时",
+    "课时单价"
+   ]
+  }
+ ],
+ "coverage": {
+  "local": 4,
+  "total": 4,
+  "note": "本公开包内可本地运行 4 个子技能；本类共 4 个，其余 0 个只在订阅版里提供"
+ }
+}

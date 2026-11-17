@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7c428e5q7jvfjdm9xbgcj8hd7zw7nx",
-  "slug": "20-crm",
-  "version": "0.0.2",
-  "publishedAt": 1772846651820
+  "owner": "jhumanj",
+  "slug": "twenty-crm",
+  "displayName": "Twenty CRM",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1768824153928,
+    "commit": "https://github.com/clawdbot/skills/commit/63fd85e86c63c23f7d9390260b8b6f77d452b8ed"
+  },
+  "history": []
 }

@@ -1,41 +1,59 @@
-## Description: <br>
-生成小红书内容策略、选题日历和文案骨架，帮助创作者系统规划高互动内容并设计 A/B 测试假设。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu content strategies, topic calendars, post templates, and A/B testing guidance for creators planning systematic audience growth.
 
-## Publisher: <br>
-[lz0311-zhen](https://clawhub.ai/user/lz0311-zhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lz0311-zhen](https://clawhub.ai/user/lz0311-zhen)
 
-## Use Case: <br>
-Creators, marketers, and content operators use this skill to plan Xiaohongshu posts, weekly topic calendars, hooks, CTAs, hashtags, and A/B testing hypotheses for audience growth workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated content-marketing guidance as guaranteed growth science. <br>
-Mitigation: Treat recommendations as hypotheses, review them for brand fit, and validate performance with platform metrics. <br>
-Risk: Users may include account credentials, private messages, or sensitive analytics in prompts. <br>
-Mitigation: Avoid sharing credentials, private messages, or sensitive analytics unless that information is approved for prompt use. <br>
+## Use Case:
 
+Creators, social media operators, and content strategists use this skill to plan Xiaohongshu posts, generate high-engagement copy structures, and design lightweight A/B tests for content optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lz0311-zhen/xiaohongshu-growth-engine) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lz0311-zhen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code] <br>
-**Output Format:** [Markdown text with content strategies, topic calendars, post skeletons, hooks, CTAs, hashtags, and optional A/B testing snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are content-marketing drafts and planning guidance that require human review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The malformed skill header may reduce parser reliability or obscure release metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the header before installation or redistribution.
+
+Risk: Broad trigger keywords may activate the skill outside explicit Xiaohongshu content-planning requests.
+
+Mitigation: Limit activation to clearly scoped Xiaohongshu strategy, calendar, or copywriting tasks.
+
+Risk: Generated A/B testing guidance may involve platform engagement or audience data.
+
+Mitigation: Review data collection and analysis steps for platform policy, consent, and privacy compliance before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lz0311-zhen/skills/xiaohongshu-growth-engine)
+- [Publisher profile](https://clawhub.ai/user/lz0311-zhen)
+- [Source skill artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with draft content templates, topic calendars, hashtags, calls to action, and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning and drafting guidance; final content should be reviewed for brand fit, accuracy, platform policy, and privacy compliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

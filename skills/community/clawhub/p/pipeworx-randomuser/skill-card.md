@@ -1,41 +1,58 @@
-## Description: <br>
-Generates realistic fake user profiles with names, contact details, addresses, nationalities, and profile photo URLs through the Pipeworx randomuser MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates realistic synthetic user profiles with names, contact details, addresses, nationality, and profile picture URLs through a Pipeworx-hosted MCP service.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to request fake user profile data for testing, placeholder content, and sample workflows that need realistic personal details without using real people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests are sent to an external Pipeworx endpoint and generated profile-picture URLs may come from external services. <br>
-Mitigation: Confirm that external network use is acceptable before installing or using the skill. <br>
-Risk: Generated fake identity data could be misused for impersonation or fraud. <br>
-Mitigation: Use generated profiles only for testing, placeholder content, and sample data workflows. <br>
+## Use Case:
 
+Developers, QA teams, and agents use this skill to generate synthetic user profiles for testing, demos, and workflows that need realistic placeholder people data without using real personal data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-randomuser) <br>
-- [Pipeworx randomuser MCP endpoint](https://gateway.pipeworx.io/randomuser/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fake profile fields including name, email, username, UUID, date of birth, phone numbers, nationality, address, and profile picture URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated profiles look like personal data and could be confused with real people records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned profiles as synthetic test data and avoid mixing them with real personal data.
+
+Risk: Using the skill sends generation requests to a Pipeworx-hosted MCP endpoint.
+
+Mitigation: Confirm the endpoint is acceptable for the deployment environment before installing or using the skill.
+
+Risk: Profile picture URLs may cause clients to fetch images from third-party-hosted locations.
+
+Mitigation: Review client image-fetch behavior and network policy before rendering returned profile photos.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-randomuser)
+- [Pipeworx randomuser MCP endpoint](https://gateway.pipeworx.io/randomuser/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profiles may include personal-looking synthetic fields and profile picture URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, created 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

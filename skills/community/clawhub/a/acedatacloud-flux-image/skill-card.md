@@ -1,44 +1,60 @@
-## Description: <br>
-Flux Image helps agents generate and edit images with Flux models through the AceDataCloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in generating and editing Flux images and generating FLUX 3 videos through AceDataCloud's API.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers, designers, and other external users use this skill to create images from prompts, edit existing images with text instructions, choose appropriate Flux models and size options, and poll AceDataCloud image tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and generated outputs may contain sensitive or confidential content. <br>
-Mitigation: Do not submit confidential prompts, private images, internal URLs, or signed URLs unless your organization permits that data to be processed by AceDataCloud. <br>
-Risk: An exposed AceDataCloud API token could allow unauthorized use or unexpected costs. <br>
-Mitigation: Store the token in an environment variable or secret manager, avoid committing or sharing it, use a dedicated token where possible, and monitor usage. <br>
-Risk: Higher-quality models, large counts, and repeated retries can increase cost and latency. <br>
-Mitigation: Use faster models for iteration, set the count parameter deliberately, and reserve ultra or kontext models for final generation or editing tasks. <br>
+## Use Case:
 
+Developers and creative teams use this skill to prepare image-generation, image-editing, and video-generation requests for AceDataCloud's hosted Flux service and follow up on asynchronous tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Germey/acedatacloud-flux-image) <br>
-- [AceDataCloud Flux image API endpoint](https://api.acedata.cloud/flux/images) <br>
-- [AceDataCloud hosted Flux MCP server](https://flux.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACEDATACLOUD_API_TOKEN; image generation can be asynchronous and may require task polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and supplied image or video inputs are sent to AceDataCloud's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only when sharing those inputs with the provider is acceptable.
+
+Risk: An exposed service API key can allow unauthorized requests.
+
+Mitigation: Keep the key out of prompts and commits, and consider restricting its allowed APIs.
+
+Risk: The optional MCP integration requires installing an additional package.
+
+Mitigation: Verify the MCP package before installing it.
+
+## Reference(s):
+
+- [Flux Image on ClawHub](https://clawhub.ai/acedatacloud/skills/flux)
+- [AceDataCloud API key setup](https://platform.acedata.cloud/console/applications)
+- [AceDataCloud authentication guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud asynchronous task guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API request examples]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model selection, asynchronous task polling, and optional MCP setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

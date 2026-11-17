@@ -1,40 +1,58 @@
-## Description: <br>
-Coordinates a content creation workflow from topic planning through editorial review, drafting, final review, and platform-agnostic Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates a Chinese-language content creation workflow from topic ideation through editorial review and Markdown final draft, with a prerequisite content-creation team skill.
 
-## Publisher: <br>
-[Little-ke](https://clawhub.ai/user/Little-ke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-ke](https://clawhub.ai/user/little-ke)
 
-## Use Case: <br>
-Content creators and editorial teams use this skill to coordinate article ideation, editor review, drafting, and final Markdown preparation. It supports starting from a new topic, a supplied topic, or a direct drafting request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as writing an article or content creation may activate the workflow more often than intended. <br>
-Mitigation: Use narrower trigger wording or ask for confirmation before entering the workflow. <br>
-Risk: Generated article drafts and topic proposals may contain factual errors or misleading claims. <br>
-Mitigation: Keep the editor review gate active and fact-check claims before publication. <br>
+## Use Case:
 
+Content creators, editors, and content teams use this skill to coordinate topic proposals, editorial review, article drafting, and final Markdown output for general content workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Little-ke/content-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft with title options, pull quotes, review guidance, and publishing next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the content-creation team skill to be installed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow can activate on general article or content-creation requests in Chinese-language writing contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this activation behavior is intended before installation, as recommended by the security guidance.
+
+Risk: Generated article drafts or editorial feedback may contain factual errors.
+
+Mitigation: Use the skill's editorial quality gate to require correction when factual errors are found, and review the final Markdown before publishing.
+
+Risk: The workflow depends on a separate content-creation team skill.
+
+Mitigation: Install and review the referenced content-creation prerequisite before using this workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-ke/skills/content-workflow)
+- [ClawHub publisher profile](https://clawhub.ai/user/little-ke)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown draft with title options, shareable excerpts, review notes, and publishing suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the content-creation team skill and supports limited review iterations: 2 for topic selection and 3 for drafting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

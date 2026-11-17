@@ -1,41 +1,52 @@
-## Description: <br>
-A multi-round deep-thinking skill that structures reasoning through repeated loops to deepen understanding for important decisions, complex problems, creative generation, and problem discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多轮深度思考技能。借鉴OpenMythos循环推理架构，每次循环都注入新输入，逐轮深化理解。适用于重要决策、复杂问题、创意生成、问题发现。
 
-## Publisher: <br>
-[jaxint](https://clawhub.ai/user/jaxint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jaxint](https://clawhub.ai/user/jaxint)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, researchers, entrepreneurs, and agents use this skill to structure multi-round reasoning for important decisions, complex problems, creative generation, and risk discovery.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to record user identity, feedback, and future needs after use, which can capture sensitive or identifying information.
+
+Mitigation: Configure the agent to avoid storing identity, sensitive problem details, or future needs unless the user explicitly consents and a retention and deletion policy is defined.
+
+Risk: The skill is primarily Chinese-language, which may reduce reviewability for teams that cannot assess Chinese prompts and outputs.
+
+Mitigation: Have a Chinese-capable reviewer inspect outputs and feedback records before deployment in workflows that affect users or business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, analysts, researchers, and AI agents use this skill to break down high-impact or recurring questions into up to six structured reasoning rounds, then produce action-oriented reflection points. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to record user identity, context, feedback, and future needs after each use without explicit consent, retention limits, or deletion guidance. <br>
-Mitigation: Disable or control the feedback-recording behavior unless users clearly opt in and a defined storage location, retention period, and deletion process are in place. <br>
-Risk: The skill is intended for important decisions and may produce confident but incomplete reasoning. <br>
-Mitigation: Treat outputs as structured guidance for review, not as final professional, financial, legal, medical, or strategic advice. <br>
+**Output Format:** [Markdown-style Chinese-language reasoning report with staged prompts, action planning, risk review, and self-reflection.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jaxint/deep-loop-thinker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jaxint) <br>
+**Other Properties Related to Output:** [The included script can print a local console report for one to six reasoning rounds.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style structured reasoning report or terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Python helper accepts a question and optional round count, capped at six rounds.] <br>
+2.1.0 (source: server release metadata and skill title)
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

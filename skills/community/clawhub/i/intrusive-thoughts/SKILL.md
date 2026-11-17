@@ -91,23 +91,13 @@ Schedule: `17 3,4,5,6,7 * * *` (or your configured night hours)
 ```
 🧠 Intrusive thought incoming. Run:
 result=$(<skill_dir>/intrusive.sh night)
-Parse the JSON output. The "prompt" field contains a plain-text suggestion
-(e.g., "explore a new CLI tool" or "review memory files") — NOT executable
-code. The agent reads this text and decides how to act on it conversationally.
-Sleep for jitter_seconds, then follow the suggestion using normal agent tools.
+Parse the JSON, sleep for jitter_seconds, execute the prompt.
 Log result with: <skill_dir>/log_result.sh <id> night "<summary>" <energy> <vibe>
 ```
 
-**Note on "prompts":** The `thoughts.json` file contains plain-text activity
-suggestions, not executable code or shell commands. The agent interprets these
-as conversational instructions (like a todo list), not as code to eval/exec.
-All thought prompts are user-editable in `thoughts.json`.
-
 ### Daytime Pop-ins (created dynamically by morning ritual)
 
-One-shot jobs are created each morning by the agent via OpenClaw's cron tool
-(not by shell scripts). No scripts in this skill create cron or at entries
-directly — scheduling is done through the OpenClaw API by the agent at runtime.
+One-shot `at` jobs created each morning based on mood and schedule preferences.
 
 ## Main Script
 

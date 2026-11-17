@@ -1,40 +1,54 @@
-## Description: <br>
-Cn Habits Tracker helps agents guide Chinese-language habit tracking through a local Python CLI for adding habits, daily check-ins, streaks, reminders, and weekly or monthly reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Habits Tracker helps Chinese-language users manage habit check-ins, local streaks, daily completion status, and weekly or monthly habit reports.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users and agents can use this skill to manage personal habit tracking in Chinese, including local check-ins, habit lists, reminders, streak summaries, and progress reports. It is suited for local productivity workflows where user-entered habit data remains on the device. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Habit names, notes, amounts, and check-in history are stored locally and may contain personal routine information. <br>
-Mitigation: Review the local JSON data file before sharing the device, workspace, backups, or logs. <br>
-Risk: The README includes promotional links unrelated to the local tracking script. <br>
-Mitigation: Treat promotional links as optional external websites; the script itself showed no evidence of network access in the security evidence. <br>
+## Use Case:
 
+Individuals using an agent in Chinese can add habits, record daily check-ins, review what remains for the day, and generate weekly or monthly progress reports from local data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-habits-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script stores habit names, notes, amounts, and check-in history in a local JSON file at ~/.qclaw/workspace/habits.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata) <br>
+Risk: Deleting a habit removes its stored records and the skill has no built-in undo or backup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.qclaw/workspace/habits.json before deleting habits or before using the tracker for records that matter.
+
+Risk: Reused habit IDs after deletions can affect local data integrity.
+
+Mitigation: Review habit records after deletions and preserve a copy of the JSON data file before adding replacement habits.
+
+## Reference(s):
+
+- [Cn Habits Tracker ClawHub listing](https://clawhub.ai/freedompixels/skills/cn-habits-tracker)
+- [freedompixels publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores habit definitions and records in a local JSON file at ~/.qclaw/workspace/habits.json.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

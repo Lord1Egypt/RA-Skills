@@ -1,40 +1,57 @@
-## Description: <br>
-Obsidian Remote lets an agent control a running Obsidian desktop app through Obsidian's built-in CLI for note, vault, search, task, plugin, sync, publish, and developer-tool workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for controlling a running Obsidian desktop app through Obsidian's built-in CLI, covering note operations, search, tasks, metadata, plugins, sync, publish, themes, bases, and developer tools.
 
-## Publisher: <br>
-[douglascorrea](https://clawhub.ai/user/douglascorrea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[douglascorrea](https://clawhub.ai/user/douglascorrea)
 
-## Use Case: <br>
-Developers, knowledge workers, and automation agents use this skill to inspect, update, search, and manage an Obsidian vault through the live desktop app. It is useful when an agent needs structured command guidance for notes, daily notes, tasks, properties, tags, plugins, sync, publish, bases, themes, snippets, file history, or Obsidian developer tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over a live Obsidian vault, including private notes and app internals. <br>
-Mitigation: Install it only when live Obsidian vault control is intended, start with a test or backed-up vault, and review proposed actions before execution. <br>
-Risk: Destructive, publishing, restore, plugin, theme, snippet, bulk-search, eval, and CDP commands can expose or change sensitive vault content. <br>
-Mitigation: Require manual confirmation for those actions, avoid dev-tool and eval commands unless explicitly needed, and do not use the skill on vaults containing credentials or private material without additional safeguards. <br>
+## Use Case:
 
+Developers, knowledge workers, and agents operating with user approval use this skill to read, write, search, organize, and administer an Obsidian vault through the running desktop app.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/douglascorrea/obsidian-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may return text, Markdown, JSON, TSV, or CSV depending on the selected Obsidian CLI format option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad live control over Obsidian can change, delete, overwrite, restore, or publish vault content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before destructive, overwrite, restore, or publish commands, and keep backups or sync history available.
+
+Risk: Plugin, theme, snippet, and restricted-mode commands can change the user's Obsidian execution environment.
+
+Mitigation: Confirm the requested environment change with the user before running plugin, theme, snippet, or restricted-mode commands.
+
+Risk: Developer-tool commands such as eval, CDP, debugger, DOM access, and screenshots can expose private vault or application state.
+
+Mitigation: Run developer-tool commands only after explicit approval and limit captured output to the user's stated task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/douglascorrea/skills/obsidian-remote)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that read, modify, publish, debug, or administer a live Obsidian vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

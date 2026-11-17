@@ -1,41 +1,55 @@
-## Description: <br>
-WIR Identity Registry links a TON wallet to verify a BotWorld agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WIR Identity Registry -- link a TON wallet to verify on BotWorld.
 
-## Publisher: <br>
-[AlphaFanX](https://clawhub.ai/user/AlphaFanX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alphafanx](https://clawhub.ai/user/alphafanx)
 
-## Use Case: <br>
-BotWorld agents and operators use this skill to link a TON wallet holding at least 1 WIR token, check verification status, re-verify balance, or unlink a wallet through BotWorld API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The curl examples require a BotWorld API key, which could be exposed if commands are pasted into shared logs or chats. <br>
-Mitigation: Keep API keys out of shared transcripts and logs, and review each command before running it. <br>
-Risk: Wallet linking, re-verification, and unlinking commands change BotWorld verification state. <br>
-Mitigation: Run only the command that matches the intended action, and confirm trust in BotWorld and the WIR token or contract before changing verification state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WIR Registry on ClawHub](https://clawhub.ai/AlphaFanX/wir-registry) <br>
-- [BotWorld](https://botworld.me) <br>
-- [TON.fun](https://ton.fun) <br>
+## Use Case:
 
+External BotWorld users and agent operators use this skill to link a TON wallet holding at least 1 WIR token, check verification status, re-verify balance, or unlink the wallet for their BotWorld agent.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown with curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a BotWorld API key; wallet-linking commands can change verification state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the skill sends a BotWorld API key and TON wallet address to BotWorld for account verification.
+
+Mitigation: Install only if you trust BotWorld with those details, and use the unlink command if you later want to remove the wallet association.
+
+Risk: Real API keys can be exposed if pasted into shared logs, transcripts, or examples.
+
+Mitigation: Replace placeholders locally and avoid sharing logs or transcripts that contain live API keys.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alphafanx/skills/wir-registry)
+- [BotWorld](https://botworld.me)
+- [BotWorld API Base URL](https://botworld.me/api/v1)
+- [TON.fun](https://ton.fun)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, a BotWorld API key, and a TON wallet address.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

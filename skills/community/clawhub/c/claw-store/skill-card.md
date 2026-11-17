@@ -1,42 +1,60 @@
-## Description: <br>
-Sovereign, recoverable memory for AI agents backed by Jackal decentralized storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sovereign, recoverable memory for AI agents backed by Jackal decentralized storage.
 
-## Publisher: <br>
-[Regan-Milne](https://clawhub.ai/user/Regan-Milne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[regan-milne](https://clawhub.ai/user/regan-milne)
 
-## Use Case: <br>
-Developers and agent users use Claw Store to save, load, and migrate encrypted AI-agent memory across sessions and machines. Review is recommended before deployment because the skill persists sensitive memory and includes first-run setup flows for wallet, encryption-key, and API-key handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists durable agent memory that may contain sensitive personal or operational data. <br>
-Mitigation: Use a dedicated wallet, avoid storing secrets or regulated data, and require explicit user approval before saving new memories. <br>
-Risk: First-run setup and backup commands can expose API keys, encryption keys, or wallet mnemonics if handled carelessly. <br>
-Mitigation: Set secrets only through local environment variables, run dependency installation in a controlled environment, and treat displayed keys or mnemonics as high-value secrets. <br>
+## Use Case:
 
+External users and agent developers use this skill to save, load, list, and migrate persistent encrypted agent memory across sessions and machines using Jackal decentralized storage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Regan-Milne/claw-store) <br>
-- [Obsideo homepage](https://obsideo.io) <br>
-- [Repository](https://github.com/Regan-Milne/jackal-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for encrypted memory save, load, list, usage, wallet, key backup, and manifest export workflows; users should avoid storing secrets or regulated data unless explicitly intended.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: server release evidence) <br>
+Risk: The skill handles API keys, encryption keys, wallet mnemonics, and memory content that may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set required secrets directly in the local environment, avoid pasting them into chat or logs, and run the skill in a clean environment with only the required Jackal variables.
+
+Risk: Persistent memory depends on local wallet and encryption material; losing these values can prevent recovery of stored memories.
+
+Mitigation: Back up and protect the wallet mnemonic, encryption key, and local key manifest before relying on the skill for important memory.
+
+Risk: The skill uses a Railway-hosted API, external Jackal providers, and Node dependencies.
+
+Mitigation: Verify endpoint trust in the deployment environment and review or update the npm dependency tree before using the skill with sensitive memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/regan-milne/skills/claw-store)
+- [Obsideo homepage](https://obsideo.io)
+- [Repository listed in OpenClaw metadata](https://github.com/Regan-Milne/jackal-memory)
+- [Runtime API host](https://web-production-5cce7.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and text or JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local encrypted-memory configuration, wallet, and manifest files under the user's home configuration directory.]
+
+## Skill Version(s):
+
+1.3.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

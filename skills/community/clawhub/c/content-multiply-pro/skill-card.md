@@ -1,43 +1,54 @@
-## Description: <br>
-Turn one blog post or video into 15+ pieces of content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn one blog post or video into 15+ pieces of content.
 
-## Publisher: <br>
-[kennywayn3](https://clawhub.ai/user/kennywayn3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennywayn3](https://clawhub.ai/user/kennywayn3)
 
-## Use Case: <br>
-Content marketers, founders, and social media teams use this skill to repurpose a blog post, video, or podcast transcript into platform-specific posts, newsletters, scripts, and summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes user content to an unidentified ngrok-hosted API. <br>
-Mitigation: Use only public or non-confidential content unless the API operator and data handling are trusted. <br>
-Risk: The skill includes a credit-purchase path if the API returns a 402 response. <br>
-Mitigation: Require explicit approval, pricing, and spending limits before allowing any payment or credit purchase flow. <br>
-Risk: Repurposed marketing drafts may lose context, overstate claims, or become unsuitable for a target platform. <br>
-Mitigation: Review generated content for accuracy, tone, rights, and platform policy fit before publishing. <br>
+## Use Case:
 
+Marketing teams, creators, and agents use this skill to repurpose a source blog post, video, or podcast transcript into platform-specific social posts, newsletters, scripts, and summaries.
 
-## Reference(s): <br>
-- [Content Multiply Pro on ClawHub](https://clawhub.ai/kennywayn3/content-multiply-pro) <br>
-- [Declared content API endpoint](https://extant-torrie-nonrepealable.ngrok-free.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text content drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces multiple platform-specific content variants from a single source input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter, server release evidence) <br>
+Risk: User content is sent to an opaque external web API with insufficient operator, privacy, retention, and deletion disclosures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public or approved-for-sharing content unless the publisher provides acceptable privacy and data-handling assurances.
+
+Risk: The skill points users to an unverified credit-purchase path after a 402 response.
+
+Mitigation: Do not use the payment flow until the publisher and payment terms are independently verified.
+
+## Reference(s):
+
+- [Content Multiply Pro ClawHub listing](https://clawhub.ai/kennywayn3/skills/content-multiply-pro)
+- [Content Multiply Pro web API endpoint](https://extant-torrie-nonrepealable.ngrok-free.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces multiple platform-specific content drafts from a single supplied source.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter and server release metadata; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

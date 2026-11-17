@@ -1,39 +1,53 @@
-## Description: <br>
-OpenClaw Quick Start helps new users configure OpenClaw, install common skills, set up basic models, and run a validation test. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Quick Start is a Chinese-language OpenClaw setup guide for first-time configuration, base model setup, common skill installation, and validation on macOS or Linux.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and new OpenClaw users use this skill to complete first-time setup on macOS or Linux, including environment checks, OpenClaw installation, model configuration, skill installation, and validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad setup authority for OpenClaw installation, model configuration changes, and additional skill installs without fully enumerating each change in the artifact. <br>
-Mitigation: Before allowing changes, ask the agent or publisher to show the exact commands, files changed, five skills installed, and rollback steps. <br>
+## Use Case:
 
+Developers and new OpenClaw users use this skill to quickly prepare a local OpenClaw environment, configure a base model, install common skills, and run a basic validation flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-quick-start) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with setup instructions and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide installation, model configuration changes, additional skill installs, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The setup flow may change the user's OpenClaw installation, model configuration, and installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to show the exact commands and the list of skills before approving setup changes.
+
+Risk: The setup guidance is in Chinese, which may make installation implications harder to review for some users.
+
+Mitigation: Review a translation of the proposed steps before approving changes if the user is not comfortable reading Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-quick-start)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown setup guidance with command-oriented steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language setup flow that may propose OpenClaw installation, model configuration, common skill installation, and validation steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

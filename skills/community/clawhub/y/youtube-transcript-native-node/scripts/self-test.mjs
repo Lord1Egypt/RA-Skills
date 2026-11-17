@@ -4,9 +4,9 @@
 
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { delimiter, join } from "node:path";
+import { dirname, join } from "node:path";
 import {
   dedupRollingCues,
   dedupRollingPhrases,
@@ -18,10 +18,14 @@ import {
 const skillRoot = new URL("..", import.meta.url);
 
 function runFetch(args, env = process.env) {
-  return spawnSync(process.execPath, ["scripts/fetch.mjs", ...args], {
+  const fixtureScript = env.YOUTUBE_TRANSCRIPT_SELFTEST_FIXTURE_ARG || "";
+  const childEnv = { ...env };
+  delete childEnv.YOUTUBE_TRANSCRIPT_SELFTEST_FIXTURE_ARG;
+  const fetchArgs = fixtureScript ? ["--self-test-fixture", fixtureScript, ...args] : args;
+  return spawnSync(process.execPath, ["scripts/fetch.mjs", ...fetchArgs], {
     cwd: skillRoot,
     encoding: "utf8",
-    env,
+    env: childEnv,
   });
 }
 
@@ -36,6 +40,9 @@ function withFakeYtDlp(callback) {
 import { dirname, join } from "node:path";
 import { mkdirSync, writeFileSync } from "node:fs";
 const args = process.argv.slice(2);
+if (process.env.FAKE_YTDLP_ARGV_FILE) {
+  writeFileSync(process.env.FAKE_YTDLP_ARGV_FILE, JSON.stringify({ args, env: process.env }, null, 2), "utf8");
+}
 const outIndex = args.indexOf("-o");
 const outTemplate = outIndex >= 0 ? args[outIndex + 1] : join(process.cwd(), "%(id)s.%(ext)s");
 const dir = dirname(outTemplate);
@@ -48,13 +55,15 @@ const lang = process.env.FAKE_YTDLP_LANG || "en";
 if (!process.env.FAKE_YTDLP_NO_VTT) writeFileSync(join(dir, "abc." + lang + ".vtt"), vtt, "utf8");
 const stderr = process.env.FAKE_YTDLP_STDERR || "";
 if (stderr) process.stderr.write(stderr.replaceAll("<TMPDIR>", dir));
+if (process.env.FAKE_YTDLP_STDOUT_SPAM) process.stdout.write("x".repeat(Number(process.env.FAKE_YTDLP_STDOUT_SPAM)));
+if (process.env.FAKE_YTDLP_STDERR_SPAM) process.stderr.write("e".repeat(Number(process.env.FAKE_YTDLP_STDERR_SPAM)));
 const meta = process.env.FAKE_YTDLP_MANUAL
   ? { title: "Fixture Video", subtitles: { [lang]: [{}] }, automatic_captions: {} }
   : { title: "Fixture Video", subtitles: {}, automatic_captions: { [lang]: [{}] } };
 process.stdout.write(JSON.stringify(meta) + "\\n");
 process.exit(Number(process.env.FAKE_YTDLP_CODE || "0"));
 `, "utf8");
-  const env = selfTestEnv({ PATH: `${fakeDir}${delimiter}${process.env.PATH || ""}`, YOUTUBE_TRANSCRIPT_TEST_YTDLP_SCRIPT: fakeScript });
+  const env = selfTestEnv({ YOUTUBE_TRANSCRIPT_SELFTEST_FIXTURE_ARG: fakeScript });
   try { return callback(env, fakeScript); }
   finally { rmSync(fakeDir, { recursive: true, force: true }); }
 }
@@ -107,24 +116,82 @@ for (const url of [
   "https://youtu.be/abc123",
   "https://www.youtube.com/watch?v=abc123",
   "https://m.youtube.com/watch?v=abc123",
+  "https://www.youtube.com/shorts/abc123def",
+  "https://www.youtube.com/live/abc123def",
+  "https://www.youtube.com/embed/abc123def",
 ]) assert.equal(isAllowedYouTubeUrl(url), true, `${url} should pass`);
 for (const url of [
+  "http://youtu.be/abc123",
+  "https://user:pass@youtube.com/watch?v=abc123",
   "https://example.com/watch?v=abc123",
   "https://youtube.com.evil.com/watch?v=abc123",
   "https://youtube.com@evil.com/watch?v=abc123",
+  "https://www.youtube.com/playlist?list=PLsecret",
+  "https://www.youtube.com/@channel/videos",
+  "https://www.youtube.com/results?search_query=secret",
+  "https://www.youtube.com/redirect?q=https://evil.example",
+  "https://youtu.be/",
   "file:///tmp/video",
 ]) assert.equal(isAllowedYouTubeUrl(url), false, `${url} should fail`);
 
-for (const lang of ["../../etc", "en;rm-rf", "", "a".repeat(33)]) {
+for (const lang of ["../../etc", "en;rm-rf", "", "a".repeat(33), "-o", "_en", ".en", "all", "en--x", "en.x"]) {
   const r = runFetch(["--url", "https://youtu.be/abc123", "--lang", lang]);
   assert.notEqual(r.status, 0, `${lang} should be rejected`);
   assert.match(r.stderr, /--lang must/);
 }
 assert.equal(parseArgs(["--url", "https://youtu.be/abc123", "--lang", "en-US"]).lang, "en-US");
+assert.equal(parseArgs(["--url", "https://youtu.be/abc123", "--lang", "zh-Hans"]).lang, "zh-Hans");
 for (const argv of [["--url", "https://example.com/watch?v=nope"], ["--url", "https://youtu.be/abc123", "--unknown"]]) {
   const r = runFetch(argv);
   assert.notEqual(r.status, 0, `${argv.join(" ")} should fail`);
 }
+
+const credentialedUrl = "https://user:secret-pass@youtube.com/watch?v=abc123";
+const credentialedReject = runFetch(["--url", credentialedUrl]);
+assert.notEqual(credentialedReject.status, 0);
+assert.match(credentialedReject.stderr, /<redacted-credentials>/);
+assert.doesNotMatch(credentialedReject.stderr, /user|secret-pass/);
+for (const malformedCredentialLikeUrl of [
+  "https://user:secret-pass@",
+  "user:secret-pass@youtube.com/watch?v=abc123",
+  "//user:secret-pass@youtube.com/watch?v=abc123",
+  "https://user:p@ss@",
+  "https://user:sec@ret-pass@",
+  "user:p@ss@youtube.com/watch?v=abc123",
+  "//user:sec@ret-pass@youtube.com/watch?v=abc123",
+]) {
+  const malformedCredentialedReject = runFetch(["--url", malformedCredentialLikeUrl]);
+  assert.notEqual(malformedCredentialedReject.status, 0, malformedCredentialLikeUrl + " should be rejected");
+  assert.match(malformedCredentialedReject.stderr, /<redacted-credentials>/);
+  assert.doesNotMatch(malformedCredentialedReject.stderr, /user|secret-pass|p@ss|sec@ret-pass|ret-pass/);
+}
+
+const malformedQuerySecretReject = runFetch(["--url", "not-a-youtube-url?token=sk_test_secret_url_canary_1234567890", "--json"]);
+assert.notEqual(malformedQuerySecretReject.status, 0);
+assert.match(malformedQuerySecretReject.stderr, /<redacted-query>/);
+assert.doesNotMatch(malformedQuerySecretReject.stderr, /sk_test_secret_url_canary_1234567890|token=/);
+
+const playlistReject = runFetch(["--url", "https://www.youtube.com/playlist?list=secret-playlist-canary&token=secret-query-canary", "--json"]);
+assert.notEqual(playlistReject.status, 0);
+assert.match(playlistReject.stderr, /single-video YouTube URL/);
+assert.match(playlistReject.stderr, /<redacted-query>/);
+assert.doesNotMatch(playlistReject.stderr, /secret-playlist-canary|secret-query-canary|token=/);
+
+const invalidDomainQueryReject = runFetch(["--url", "https://www.youtube.invalid/watch?v=secret-video-id&token=secret-query-canary", "--json"]);
+assert.notEqual(invalidDomainQueryReject.status, 0);
+assert.match(invalidDomainQueryReject.stderr, /<redacted-query>/);
+assert.doesNotMatch(invalidDomainQueryReject.stderr, /secret-video-id|secret-query-canary|token=/);
+
+const longMalformedPrefix = `not-a-youtube-url-${"x".repeat(260)}`;
+const longMalformedQueryReject = runFetch(["--url", `${longMalformedPrefix}?token=LONG_QUERY_CANARY_1234567890`, "--json"]);
+assert.notEqual(longMalformedQueryReject.status, 0);
+assert.match(longMalformedQueryReject.stderr, /<redacted-query>/);
+assert.doesNotMatch(longMalformedQueryReject.stderr, /LONG_QUERY_CANARY_1234567890|token=/);
+
+const longMalformedFragmentReject = runFetch(["--url", `${longMalformedPrefix}#frag=LONG_FRAGMENT_CANARY_1234567890`, "--json"]);
+assert.notEqual(longMalformedFragmentReject.status, 0);
+assert.match(longMalformedFragmentReject.stderr, /<redacted-fragment>/);
+assert.doesNotMatch(longMalformedFragmentReject.stderr, /LONG_FRAGMENT_CANARY_1234567890|frag=/);
 
 const missingDepDir = mkdtempSync(join(tmpdir(), "missing-ytdlp-"));
 try {
@@ -151,13 +218,20 @@ assert.doesNotMatch(thrownForwardSlashPath.stderr, /Users|youtube-transcript-nat
 assert.match(thrownForwardSlashPath.stderr, /<home>/);
 
 withFakeYtDlp((env, fakeScript) => {
-  const inertHook = runFetch(["--url", "https://youtu.be/abc123"], {
-    ...process.env,
-    PATH: mkdtempSync(join(tmpdir(), "no-real-ytdlp-")),
-    YOUTUBE_TRANSCRIPT_TEST_YTDLP_SCRIPT: fakeScript,
-  });
-  assert.notEqual(inertHook.status, 0);
-  assert.match(inertHook.stderr, /yt-dlp not found on PATH/);
+  const noRealYtDlpDir = mkdtempSync(join(tmpdir(), "no-real-ytdlp-"));
+  try {
+    const inertHook = runFetch(["--url", "https://youtu.be/abc123"], {
+      ...process.env,
+      PATH: noRealYtDlpDir,
+      ...(process.platform === "win32" ? { Path: noRealYtDlpDir } : {}),
+      YOUTUBE_TRANSCRIPT_SELFTEST: "1",
+      YOUTUBE_TRANSCRIPT_TEST_YTDLP_SCRIPT: fakeScript,
+    });
+    assert.notEqual(inertHook.status, 0);
+    assert.match(inertHook.stderr, /yt-dlp not found on PATH/);
+  } finally {
+    rmSync(noRealYtDlpDir, { recursive: true, force: true });
+  }
 
   const ok = runFetch(["--url", "https://youtu.be/abc123", "--json"], env);
   assert.equal(ok.status, 0, ok.stderr);
@@ -165,6 +239,25 @@ withFakeYtDlp((env, fakeScript) => {
   assert.equal(payload.title, "Fixture Video");
   assert.equal(payload.auto, true);
   assert.match(payload.transcript, /alpha beta gamma delta/);
+
+  const argvCapture = join(dirname(fakeScript), "argv-capture.json");
+  const envSanitized = runFetch(["--url", "https://youtu.be/abc123", "--json"], {
+    ...env,
+    FAKE_YTDLP_ARGV_FILE: argvCapture,
+    YOUTUBE_TRANSCRIPT_FAKE_SECRET: "must-not-reach-child",
+  });
+  assert.equal(envSanitized.status, 0, envSanitized.stderr);
+  const captured = JSON.parse(readFileSync(argvCapture, "utf8"));
+  for (const requiredArg of ["--ignore-config", "--no-cache-dir", "--no-plugin-dirs", "--skip-download", "--no-playlist"]) {
+    assert.ok(captured.args.includes(requiredArg), `${requiredArg} should be passed to yt-dlp`);
+  }
+  assert.equal(captured.env.YOUTUBE_TRANSCRIPT_FAKE_SECRET, undefined);
+  assert.equal(captured.env.HOME || "", "");
+  assert.equal(captured.env.USERPROFILE || "", "");
+  assert.equal(captured.env.APPDATA || "", "");
+  assert.equal(captured.env.LOCALAPPDATA || "", "");
+  assert.equal(captured.env.XDG_CONFIG_HOME || "", "");
+  assert.equal(captured.env.XDG_CACHE_HOME || "", "");
 
   const plain = runFetch(["--url", "https://youtu.be/abc123"], env);
   assert.equal(plain.status, 0, plain.stderr);
@@ -206,6 +299,16 @@ withFakeYtDlp((env, fakeScript) => {
   assert.notEqual(tooLarge.status, 0);
   assert.equal(tooLarge.stdout, "");
   assert.match(tooLarge.stderr, /transcript exceeds max output size/);
+
+  const childStdoutTooLarge = runFetch(["--url", "https://youtu.be/abc123", "--json"], { ...env, FAKE_YTDLP_STDOUT_SPAM: "500", YOUTUBE_TRANSCRIPT_TEST_MAX_STDOUT_CHARS: "100" });
+  assert.notEqual(childStdoutTooLarge.status, 0);
+  assert.equal(childStdoutTooLarge.stdout, "");
+  assert.match(childStdoutTooLarge.stderr, /yt-dlp stdout exceeded max capture size/);
+
+  const childStderrTooLarge = runFetch(["--url", "https://youtu.be/abc123", "--json"], { ...env, FAKE_YTDLP_STDERR_SPAM: "500", YOUTUBE_TRANSCRIPT_TEST_MAX_STDERR_CHARS: "100" });
+  assert.notEqual(childStderrTooLarge.status, 0);
+  assert.equal(childStderrTooLarge.stdout, "");
+  assert.match(childStderrTooLarge.stderr, /yt-dlp stderr exceeded max diagnostic size/);
 
   const timeout = runFetch(["--url", "https://youtu.be/abc123"], { ...env, FAKE_YTDLP_SLEEP_MS: "200", YOUTUBE_TRANSCRIPT_TEST_TIMEOUT_MS: "20" });
   assert.notEqual(timeout.status, 0);

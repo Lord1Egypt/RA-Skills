@@ -1,44 +1,59 @@
-## Description: <br>
-OfficeX helps agents guide consumers and developers through the OfficeX REST API for marketplace apps, billing, installations, webhooks, embedded apps, and AI chat integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete OfficeX platform skill for end-user consumers and app developers interacting with the OfficeX REST API and its credit-based app marketplace.
 
-## Publisher: <br>
-[mevdragon](https://clawhub.ai/user/mevdragon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mevdragon](https://clawhub.ai/user/mevdragon)
 
-## Use Case: <br>
-Developers, app vendors, and OfficeX consumers use this skill to call the OfficeX cloud API, build or publish marketplace apps, manage installs and wallets, implement credit billing, handle webhooks, and integrate OfficeX context with AI chat agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill covers billing, payouts, deletion, wallet, key-rotation, and admin workflows that can affect funds or account state. <br>
-Mitigation: Require explicit human approval before executing billing, payout, deletion, wallet, key-rotation, or admin actions. <br>
-Risk: The skill discusses API keys, install secrets, master keys, admin secrets, and agent-visible credential context. <br>
-Mitigation: Keep raw secrets out of agent-visible context; prefer backend-held secrets or short-lived scoped tokens. <br>
-Risk: The artifact includes URL-parameter patterns for install secrets that are not appropriate for production secrets. <br>
-Mitigation: Avoid URL parameters for production secrets and use secure server-side session or token exchange patterns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OfficeX ClawHub Skill Page](https://clawhub.ai/mevdragon/officex) <br>
-- [OfficeX Developer Portal](https://officex.app/store/en/developer/) <br>
-- [OfficeX Production REST API](https://cloud.officex.app/v1) <br>
-- [OfficeX Production Chat Stream](https://chat.cloud.officex.app/) <br>
+## Use Case:
 
+External OfficeX users and app developers use this skill to make OfficeX API calls, build and publish marketplace apps, manage installs and wallets, implement credit billing, handle webhooks, embed iframe app experiences, and debug authentication or API errors.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with REST endpoint examples, JSON schemas, TypeScript snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OfficeX API request patterns, credential handling guidance, billing workflows, webhook examples, iframe integration notes, and error references.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill covers broad billing, wallet, payout, deletion, and admin workflows that could cause unwanted financial or account changes.
+
+Mitigation: Use a dedicated low-privilege OfficeX account and require explicit confirmation before any billing, deletion, payout, wallet, or admin operation.
+
+Risk: The skill discusses master keys, superadmin secrets, payment tokens, install secrets, and reusable third-party API credentials.
+
+Mitigation: Avoid giving the agent master keys, superadmin secrets, payment tokens, or reusable third-party API keys; scope credentials narrowly and rotate them when exposure is suspected.
+
+Risk: App documentation, context_prompt, downloaded skill text, iframe parameters, and agent_context values may be untrusted.
+
+Mitigation: Review and isolate those inputs before use, and do not let them override local security policy or approval requirements.
+
+## Reference(s):
+
+- [OfficeX Developer Portal](https://officex.app/store/en/developer/)
+- [OfficeX Production API](https://cloud.officex.app/v1)
+- [OfficeX Staging API](https://staging-backend.cloud.officex.app/v1)
+- [OfficeX Skill Page](https://clawhub.ai/mevdragon/skills/officex)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, TypeScript, JavaScript, Python, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST endpoint patterns, authentication header guidance, billing flow examples, webhook handling, iframe embedding configuration, and fault-tolerance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

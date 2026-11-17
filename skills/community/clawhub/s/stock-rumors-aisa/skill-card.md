@@ -1,40 +1,53 @@
-## Description: <br>
-Scan M&A, insider, analyst, social, and regulatory rumor signals through AISA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans M&A, insider, analyst, social, and regulatory rumor signals through AISA for early market-signal analysis.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users and analysts use this skill to scan early market signals, including M&A chatter, insider activity, analyst changes, social signals, and regulatory activity. Outputs should be treated as leads for further review, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-rumor outputs can be incomplete, unconfirmed, or misleading if treated as financial advice. <br>
-Mitigation: Use outputs only as leads and verify every signal against primary sources before acting. <br>
-Risk: The skill sends market-analysis prompts through an AISA-compatible API using AISA_API_KEY. <br>
-Mitigation: Install only if you trust the AISA API provider and avoid sending sensitive information beyond the intended market-analysis request. <br>
+## Use Case:
 
+External users and developers use this skill to request early market-signal scans for takeover chatter, insider activity, analyst changes, social/news whispers, and regulatory activity. Its outputs are informational and should be independently verified before any financial decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/stock-rumors-aisa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report with an optional compact JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; supports focus filters for all signals, M&A, insider activity, analyst actions, and social signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The runtime can send the AISA API key to an arbitrary endpoint if AISA_BASE_URL is set unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped and revocable AISA credential, run only in a trusted environment, avoid setting AISA_BASE_URL unless the endpoint is intentionally trusted, and rotate the key after unexpected endpoint use.
+
+Risk: The skill analyzes rumors and early signals that may be unconfirmed or misleading.
+
+Mitigation: Treat results as informational, verify claims against primary market and regulatory sources, and do not rely on the output as financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/stock-rumors-aisa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown report with an optional compact JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; reports unconfirmed market signals and rumor evidence quality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

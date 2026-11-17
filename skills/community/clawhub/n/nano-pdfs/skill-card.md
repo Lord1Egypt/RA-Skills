@@ -1,50 +1,65 @@
-## Description: <br>
-Pub Nanopdf helps agents edit PDFs with natural-language instructions through the nano-pdf CLI and access SkillBoss models for generation, transcription, search, document parsing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pub Nanopdf helps agents edit PDFs with natural-language instructions through the nano-pdf CLI and access SkillBoss API models for media generation, chat, search, document parsing, email, and SMS.
 
-## Publisher: <br>
-[TobeyRebecca](https://clawhub.ai/user/TobeyRebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External developers and agents use this skill to call SkillBoss APIs for PDF/document workflows, multimodal model generation, chat, search, scraping, email, SMS, and related automation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad external AI/API gateway presented under a PDF-focused name, so users may underestimate its scope. <br>
-Mitigation: Install only when broad SkillBoss API access is intended, and review the available model, email, SMS, scraping, and paid-action capabilities before use. <br>
-Risk: The skill can support email, SMS, batch messaging, scraping, and costly model actions. <br>
-Mitigation: Require explicit user approval before any email, SMS, batch messaging, scraping, or paid model action, and use a limited or test API key where possible. <br>
-Risk: Document parsing and model calls may send user content to external providers. <br>
-Mitigation: Avoid sensitive documents unless approved, and confirm billing and provider data-handling expectations before processing user data. <br>
+## Use Case:
 
+Developers and external users can use this skill to have an agent draft shell commands and API requests for PDF/document processing and broader SkillBoss model calls, including chat, media generation, search, email, and SMS.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TobeyRebecca/nano-pdfs) <br>
-- [SkillBoss Website](https://www.skillboss.co) <br>
-- [SkillBoss API Base URL](https://api.heybossai.com/v1) <br>
-- [Audio Models](audio-models.md) <br>
-- [Chat Models](chat-models.md) <br>
-- [Image Models](image-models.md) <br>
-- [Search & Scraping Models](search-models.md) <br>
-- [Tool Models](tools-models.md) <br>
-- [Video Models](video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and API request snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may return external API responses, generated media URLs, parsed document text, search results, email/SMS status, or model output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, documents, media, URLs, phone numbers, and message contents can be sent to an external service and downstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted API key and avoid sensitive or regulated data unless those services are approved for that data.
+
+Risk: The skill supports email, SMS, scraping, and file-writing workflows.
+
+Mitigation: Require manual confirmation before outbound messages, scraping, downloads, or local file writes.
+
+Risk: The release is broader than PDF editing and functions as a general SkillBoss API gateway.
+
+Mitigation: Install it only when the broader gateway behavior is intended and limit use to expected model categories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/nano-pdfs)
+- [SkillBoss](https://www.skillboss.co)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [Audio Models](audio-models.md)
+- [Chat Models](chat-models.md)
+- [Image Models](image-models.md)
+- [Search & Scraping Models](search-models.md)
+- [Tool Models](tools-models.md)
+- [Video Models](video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and curl examples, API request bodies, and model identifiers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; outputs may trigger external API calls and downstream provider processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

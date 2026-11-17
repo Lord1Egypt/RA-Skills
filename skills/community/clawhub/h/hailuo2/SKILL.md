@@ -1,10 +1,16 @@
 ---
 name: poyo-hailuo-02
 description: Use PoYo AI Hailuo 02 for prompt-optimized video generation and image-to-video workflows through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants standard or pro video jobs, optional prompt optimization, end-frame control, or PoYo payloads for `hailuo-02` and `hailuo-02-pro`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/hailuo-02", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage": "https://poyo.ai/models/hailuo-02", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Hailuo 02 Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/hailuo-02>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/hailuo-02>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill to submit and track PoYo jobs for the Hailuo 02 family.
 
@@ -49,8 +55,3 @@ When helping with this model family, include:
 - whether reference images are involved
 - returned `task_id` if a request was actually submitted
 - next step: poll status or wait for webhook
-
-Notes:
-
-Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

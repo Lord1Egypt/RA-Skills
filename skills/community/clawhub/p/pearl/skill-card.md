@@ -1,44 +1,59 @@
-## Description: <br>
-Pearl lets agents connect a user's Pearl wallet, check balances and transactions, and route paid skill calls while preserving user approval and spending controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pearl lets agents set up and use a Pearl wallet to check balances, view transactions, and call Pearl-powered paid skills with user-controlled charge approvals.
 
-## Publisher: <br>
-[misteeka](https://clawhub.ai/user/misteeka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misteeka](https://clawhub.ai/user/misteeka)
 
-## Use Case: <br>
-External users and developers use Pearl to set up wallet credentials for paid ClawHub skills, inspect wallet balance and transaction history, and let Pearl-powered skills request charge approval through user-controlled limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Pearl credentials connect this machine to a user's wallet. <br>
-Mitigation: Run setup only for users who intend to use Pearl, keep ~/.pearl/config.json user-only, and remove or revoke the credentials when the machine should no longer be connected. <br>
-Risk: Paid skill providers receive a limited skill token and may initiate charge approval flows. <br>
-Mitigation: Use Pearl-powered skills only from trusted providers and review Pearl dashboard approvals and spending limits before accepting charges. <br>
-Risk: Calling a paid skill URL shares the limited skill token with that provider. <br>
-Mitigation: Use HTTPS domain URLs from trusted providers; the artifact rejects non-HTTPS URLs, IP addresses, localhost, and redirects. <br>
+## Use Case:
 
+External users and developers use Pearl to connect a wallet once, inspect spending state, and allow Pearl-powered agent skills to request paid service calls subject to user approvals and spending limits.
 
-## Reference(s): <br>
-- [Pearl ClawHub listing](https://clawhub.ai/misteeka/pearl) <br>
-- [Pearl homepage](https://pearlcash.ai) <br>
-- [Publisher profile](https://clawhub.ai/user/misteeka) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Plain text CLI output, local JSON configuration, and returned paid-skill response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; setup writes Pearl credentials and pending-charge state under ~/.pearl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.14 (source: server release metadata and artifact _meta.json; package.json lists client package 0.0.15) <br>
+Risk: Pearl stores reusable tokens locally in ~/.pearl/config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.pearl/config.json as a credential file, keep it user-readable only, and install Pearl only on machines where local account access is trusted.
+
+Risk: Pearl-powered skills can send a limited reusable skill token to third-party HTTPS provider servers.
+
+Mitigation: Use Pearl only with trusted skills and providers, review approval requests, and monitor Pearl transactions after use.
+
+Risk: Approved providers may create charges that settle automatically within configured spending limits.
+
+Mitigation: Set strict per-charge and daily spending limits and revisit provider approvals when a paid skill is no longer needed.
+
+## Reference(s):
+
+- [Pearl homepage](https://pearlcash.ai)
+- [ClawHub Pearl listing](https://clawhub.ai/misteeka/skills/pearl)
+- [ClawHub publisher profile](https://clawhub.ai/user/misteeka)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Plain text and command output from Node.js scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads local Pearl configuration and pending-charge files under ~/.pearl during setup and paid-skill approval flows.]
+
+## Skill Version(s):
+
+0.0.14 (source: server release evidence and _meta.json; package.json reports 0.0.15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

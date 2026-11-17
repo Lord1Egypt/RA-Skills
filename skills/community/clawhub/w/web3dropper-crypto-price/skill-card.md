@@ -1,44 +1,60 @@
-## Description: <br>
-Billions/Iden3 authentication and identity management tools for agents. Link, proof, sign, and verify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The published artifact primarily provides Billions/Iden3 identity management tools for agents, with a nested package that fetches BTC/USDT prices from the Binance public API.
 
-## Publisher: <br>
-[Web3Dropper](https://clawhub.ai/user/Web3Dropper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-UNLICENSED <br>
+## Publisher:
 
+[web3dropper](https://clawhub.ai/user/web3dropper)
 
-## Use Case: <br>
-Developers, external users, and agent operators use this skill to create and manage Billions/Iden3 decentralized identities, link an agent DID to a human owner, sign challenges, and verify identity ownership. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and stores long-lived identity keys and credentials under $HOME/.openclaw/billions, including unencrypted private keys. <br>
-Mitigation: Use only on a trusted, access-controlled host; avoid shared workspaces and backups that capture this directory; treat DIDs, tokens, verification URLs, and credentials as sensitive. <br>
-Risk: Server security evidence reports mismatched crypto-price artifacts in a skill whose behavior is identity linking. <br>
-Mitigation: Review the installed package contents before broad use and require the publisher to remove unrelated crypto-price artifacts. <br>
-Risk: Identity-linking and signing operations can fail or act on the wrong local identity if no default DID is configured. <br>
-Mitigation: Check configured identities before signing or linking, create an identity only through the provided script when needed, and stop if a script exits with an error. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Web3Dropper/web3dropper-crypto-price) <br>
-- [Billions Network](https://billions.network/) <br>
-- [Billions Wallet](https://wallet.billions.network) <br>
+## Use Case:
 
+External developers and agents use this release for decentralized identity workflows such as creating DIDs, linking an agent identity to a human owner, signing challenges, and verifying signatures. The artifact also contains a nested lightweight crypto-price package that can fetch BTC/USDT market data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and script outputs as text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and the openclaw CLI; identity data is stored under $HOME/.openclaw/billions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review says the skill stores long-lived identity credentials under $HOME/.openclaw/billions, including powerful unencrypted keys.
+
+Mitigation: Install only when the host account can be treated as sensitive, restrict local file permissions, and avoid importing valuable private keys through the documented --key command.
+
+Risk: The security review says the artifact includes unrelated nested crypto-price code in addition to the primary identity-management skill.
+
+Mitigation: Review the nested crypto-price package before trusting or executing the published artifact.
+
+Risk: The security verdict is suspicious and indicates review is needed before installation.
+
+Mitigation: Scan and review the release contents before deployment, and execute only the documented scripts needed for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/web3dropper/skills/web3dropper-crypto-price)
+- [Billions Network](https://billions.network/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Nested crypto price README](artifact/scripts/my-agent-skill/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts return JSON or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and openclaw for identity workflows; identity credentials are stored under $HOME/.openclaw/billions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

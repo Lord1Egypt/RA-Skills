@@ -1,38 +1,48 @@
-## Description: <br>
-Daily Report Zh helps workplace users turn notes about the day's work into a structured Chinese daily report with completed items, in-progress tasks, tomorrow's plan, highlights, and coordination needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能日报生成助手，帮助职场人士将当天零散的工作事项快速整理成结构清晰的工作日报/每日汇报/今日工作总结。
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[olina1ye](https://clawhub.ai/user/olina1ye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and workplace teams use this skill to turn loose notes about the day's work into a structured Chinese daily report for upward reporting, team synchronization, and project follow-up.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated reports may include internal business details or inaccuracies if shared without review.
+
+Mitigation: Review and edit each report before sending, especially for sensitive work, customer, or project information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and managers use this skill to draft professional Chinese daily work reports from the day's raw activity notes for upward reporting, team syncs, and project follow-up. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Daily reports can contain sensitive business details. <br>
-Mitigation: Review generated text before sharing and grant read/write access only to specific files intentionally selected for the report. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/daily-report-zh) <br>
+**Other Properties Related to Output:** [Chinese daily report organized into completed items, in-progress tasks, next-day plans, highlights, and coordination needs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown daily report in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write only user-selected report files when file access is granted.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

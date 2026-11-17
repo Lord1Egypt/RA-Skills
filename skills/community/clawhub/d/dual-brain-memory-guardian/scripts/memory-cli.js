@@ -1215,7 +1215,7 @@ async function main() {
               mode: "auto-task-complete",
               auto: true,
               skipped: true,
-              reason: "task-complete-already-recorded-for-session",
+              reason: "taREDACTED-SECRET",
               guard,
               stateFile: TRIGGER_STATE_FILE,
               sessionStartedAt: state.sessionStartedAt,

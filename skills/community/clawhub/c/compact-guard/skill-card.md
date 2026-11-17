@@ -1,41 +1,53 @@
-## Description: <br>
-Compact Guard helps OpenClaw agents prepare for context compaction by scanning tool output, saving important details to memory, and producing a pre-compaction checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart context compaction for OpenClaw agents that scans tool outputs, extracts valuable information into memory files, and generates a pre-compact checklist before running /compact.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve important conversation and tool-output details before context compaction. It is intended for sessions where the user wants a checklist and selected local memory notes before confirming compaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive conversation or tool-output details may be saved into local memory during pre-compaction. <br>
-Mitigation: Avoid using the skill in sessions containing secrets, tokens, customer data, or confidential internal details unless the saved content is reviewed and redacted. <br>
-Risk: Important or sensitive details may be preserved more broadly than intended. <br>
-Mitigation: Review the generated checklist and memory entries before confirming context compaction. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill before context compaction to identify large tool outputs, preserve important facts, and produce a pre-compact checklist.
 
-## Reference(s): <br>
-- [Compact Guard release page](https://clawhub.ai/wavmson/compact-guard) <br>
-- [wavmson publisher profile](https://clawhub.ai/user/wavmson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown checklist with appended local memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts review before compaction and may save selected context details to local memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Sensitive conversation details, credentials, private endpoints, personal information, customer data, or tool output could be written to memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact extracted details before any memory append, and use the skill only when persistent memory is acceptable.
+
+Risk: Broad conversation and tool-output details may be persisted without a clear opt-out gate.
+
+Mitigation: Ask for explicit confirmation before writing memory and store only the details needed to preserve task continuity.
+
+## Reference(s):
+
+- [Compact Guard on ClawHub](https://clawhub.ai/wavmson/skills/compact-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown checklist and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append extracted context to memory/YYYY-MM-DD.md when persistent memory is appropriate.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

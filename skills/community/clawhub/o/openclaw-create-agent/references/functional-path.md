@@ -75,7 +75,7 @@ bash scripts/create_workspace.sh <agentId> --type functional --notify-open-id <�
 - 明确不处理什么
 - 超出范围时如何告知调用方
 
-**⑤ 记忆规则**（写入引用句，记忆规则模板由 create_workspace.sh 生成到独立文件 memory-rules.md）
+**⑤ 记忆规则**（从 `references/evolve-rules.md` 逐字复制，方向是任务知识而非用户知识）
 
 ⚠️ 字数控制（先写完再剪枝）：
 1. 先完整写入所有内容，不限制字数

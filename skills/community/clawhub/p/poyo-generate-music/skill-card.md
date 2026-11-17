@@ -1,44 +1,62 @@
-## Description: <br>
-Generate Music on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `generate-music`, AI music generation, background tracks, soundtrack drafts, instrumental songs, custom mode, music callbacks, and music detail retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Music on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `generate-music`, AI music generation, background tracks, soundtrack drafts, instrumental songs, custom mode, music callbacks, and music detail retrieval.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo music-generation payloads, choose simple or custom music mode, submit asynchronous tasks, and explain callback or result retrieval steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses POYO_API_KEY to call PoYo and submit prompts, lyrics, style details, callback URLs, and related task data to a third-party API. <br>
-Mitigation: Keep POYO_API_KEY server-side in an environment variable or secret manager, avoid exposing it in browser code or logs, and review payload files before submission. <br>
-Risk: Prepared payloads may include private prompts, lyrics, callback URLs, or generated audio URLs. <br>
-Mitigation: Avoid logging private request data or generated URLs unless the product policy explicitly allows it. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo music-generation payloads, choose simple or custom mode, submit async generation tasks, and retrieve or route generated music results.
 
-## Reference(s): <br>
-- [PoYo Generate Music API Reference](references/api.md) <br>
-- [PoYo Generate Music Documentation](https://docs.poyo.ai/api-manual/music-series/generate-music) <br>
-- [PoYo Query Music Detail Documentation](https://docs.poyo.ai/api-manual/music-series/query-music-detail) <br>
-- [PoYo Music Webhook Documentation](https://docs.poyo.ai/api-manual/music-series/music-webhook) <br>
-- [PoYo Generate Music Model Page](https://poyo.ai/models/generate-music) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and bash or curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model choice, mode selection, instrumental or vocal intent, payload summary, task_id, and follow-up retrieval or webhook guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API credentials could be exposed if used in browser code, logs, screenshots, public repositories, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager and avoid echoing it in generated commands or logs.
+
+Risk: Payload files may contain private lyrics, prompts, callback URLs, or generated audio URLs.
+
+Mitigation: Review JSON payloads before submission and avoid logging sensitive prompts, callback URLs, or generated asset URLs unless policy allows it.
+
+Risk: Callback URLs can send task events to unintended recipients if they are not controlled by the user.
+
+Mitigation: Use callback URLs only on trusted HTTPS endpoints the user controls.
+
+## Reference(s):
+
+- [PoYo Generate Music API Reference](references/api.md)
+- [PoYo Generate Music model page](https://poyo.ai/models/generate-music)
+- [PoYo Generate Music API docs](https://docs.poyo.ai/api-manual/music-series/generate-music)
+- [PoYo Music Detail API docs](https://docs.poyo.ai/api-manual/music-series/query-music-detail)
+- [PoYo Music Webhook docs](https://docs.poyo.ai/api-manual/music-series/music-webhook)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-generate-music)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with JSON payloads and inline bash or curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a chosen model id, generation mode, instrumental or vocal intent, final payload or parameter summary, returned task_id, and next retrieval or webhook step.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

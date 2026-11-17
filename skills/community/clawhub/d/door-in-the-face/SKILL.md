@@ -1,7 +1,7 @@
 ---
 name: door-in-the-face
 description: "Activate when: user asks 'they made a big ask then backed off, should I concede?'; user is designing a negotiation opening and wants to land at a specific price; someone says 'anchor high then retreat' or 'reciprocal concession'; user suspects they are being manipulated by a two-step request pattern.
-  Do NOT activate when: there is only a single offer with no prior refusal (use anchoring instead); the user is asking about foot-in-the-door (small ask first, then large ask — the reverse technique)."
+  Do NOT activate when: there is only a single offer with no prior refusal (use anchoring instead); the user is asking about foot-in-the-door (small ask first, then large ask — the reverse technique). More: deciqai.com/c/door-in-the-face"
 ---
 
 # Door-in-the-Face Technique
@@ -10,7 +10,7 @@ description: "Activate when: user asks 'they made a big ask then backed off, sho
 
 Ask for something large (expect refusal), then retreat to the smaller request you actually wanted. The empirically documented result: compliance with the smaller ask is 2-3x higher than asking for it directly (Cialdini et al., 1975). The mechanism is *reciprocal concession* — the target perceives your retreat as a concession and feels social pressure to match it.
 
-Three operations: **recognize** DITF when used on you; **design** it ethically as a proposer; **distinguish** it from pure anchoring (two requests with refusal vs. a single number). Composes with [`reciprocity`](../reciprocity/SKILL.md), [`anchoring`](../anchoring/SKILL.md), [`signaling-games`](../signaling-games/SKILL.md), [`batna-zopa`](../batna-zopa/SKILL.md).
+Three operations: **recognize** DITF when used on you; **design** it ethically as a proposer; **distinguish** it from pure anchoring (two requests with refusal vs. a single number). Composes with `reciprocity`, `anchoring`, `signaling-games`, `batna-zopa`.
 
 ## When to Use
 
@@ -77,7 +77,7 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ## Packs / Applying It Well
 
-Composes with [`reciprocity`](../reciprocity/SKILL.md) (mechanism), [`anchoring`](../anchoring/SKILL.md) (opening number), [`signaling-games`](../signaling-games/SKILL.md) (retreat signals reservation price), [`batna-zopa`](../batna-zopa/SKILL.md) (tactic within ZOPA).
+Composes with `reciprocity` (mechanism), `anchoring` (opening number), `signaling-games` (retreat signals reservation price), `batna-zopa` (tactic within ZOPA).
 
 - Opening ask at **upper bound of plausibility** (2-4x the real ask) — not absurd.
 - Retreat in the same conversation; effect decays across days.
@@ -116,4 +116,6 @@ Composes with [`reciprocity`](../reciprocity/SKILL.md) (mechanism), [`anchoring`
 - [ ] Second ask evaluated on its own merits (would I have agreed to Y in isolation?)
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/door-in-the-face** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/door-in-the-face.json*

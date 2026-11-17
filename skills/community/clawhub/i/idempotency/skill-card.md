@@ -1,37 +1,54 @@
-## Description: <br>
-Guides agents through idempotency design for retry surfaces, idempotency keys, storage and TTL, exactly-once pitfalls, and duplicate-delivery testing for APIs, workers, and payment flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through designing idempotent APIs, workers, and payment flows by identifying retry surfaces, choosing idempotency keys, defining storage and TTL, avoiding exactly-once assumptions, and testing duplicate delivery.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and engineers use this skill to design idempotent HTTP APIs, background workers, message consumers, and payment-related flows that remain safe under retries and at-least-once delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment and financial-flow guidance could be applied without enough review of auditability, retention windows, or duplicate-delivery behavior. <br>
-Mitigation: Review financial designs with engineering and risk owners, define retention and audit requirements, and test duplicate delivery before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill when designing safe mutating APIs, queue consumers, background jobs, and payment or inventory workflows that must tolerate retries and duplicate delivery.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and design-review steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow; no code execution, tool calls, or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Applying idempotency guidance incorrectly to payment or business-critical systems can affect production data behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review retention windows, tenant scoping, audit requirements, and conflict rules before deploying changes.
+
+Risk: The skill provides design guidance that may be incomplete for a specific architecture or delivery system.
+
+Mitigation: Validate the chosen API and worker patterns with duplicate-delivery tests before relying on them in production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codenova58/skills/idempotency)
+- [Publisher Profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill provides structured workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

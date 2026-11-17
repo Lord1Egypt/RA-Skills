@@ -1,47 +1,57 @@
-## Description: <br>
-Provides guidance on forming a Delaware LLC, including costs, filing steps, registered agent rules, franchise tax, startup benefits, and state comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides LLC formation guidance for Delaware topics such as costs, filing steps, registered agents, franchise tax, startup considerations, and state comparisons, with a documented risk that bundled demo code returns Wyoming-specific guidance.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-Entrepreneurs, startup operators, and business formation researchers use this skill to ask for Delaware LLC formation steps, costs, registered agent requirements, franchise tax considerations, and comparisons with other states. Users should verify current filing and tax requirements with official sources or a qualified professional before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for Delaware LLC formation research. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runnable assistant can answer Delaware-branded prompts with Wyoming LLC guidance. <br>
-Mitigation: Review responses before use and verify Delaware-specific fees, timelines, registered agent requirements, and compliance obligations against official sources or a qualified professional. <br>
-Risk: Business formation, tax, and compliance details may change or depend on the user's facts. <br>
-Mitigation: Treat outputs as informational guidance and confirm current requirements before filing or making legal, tax, or business decisions. <br>
-Risk: The server license evidence and artifact documentation do not name the same license. <br>
-Mitigation: Confirm the exact license terms before redistribution or commercial reliance. <br>
+## Use Case:
 
+Entrepreneurs, startup teams, and business formation researchers use this skill to ask for LLC formation guidance, estimated fees, compliance milestones, and comparisons involving Delaware. Users should verify legal, tax, fee, and filing information with official sources before relying on the output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zlc000190/delaware-llc-formation) <br>
-- [Publisher profile](https://clawhub.ai/user/zlc000190) <br>
-- [LLCClass Delaware guide](https://llcclass.com/delaware) <br>
-- [LLCClass formation hub](https://llcclass.com/get-started) <br>
-- [LLCClass LLC name generator](https://llcclass.com/llc-name-generator) <br>
-- [LLCClass state comparison](https://llcclass.com/best-state) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown-style natural language with optional terminal command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include business-formation cost tables, step-by-step guidance, state comparisons, links, and disclaimers that requirements can change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The Delaware-branded release includes demo code that returns Wyoming-specific LLC guidance, which could mislead users making legal, tax, or compliance decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for state mismatch before use and verify fees, deadlines, filing steps, BOI obligations, and tax implications with official Delaware, IRS, and FinCEN sources.
+
+Risk: The skill promotes LLCClass links and may present commercial formation guidance as authoritative.
+
+Mitigation: Treat linked service guidance as commercial information, disclose that it is not legal or tax advice, and recommend qualified professional review for complex or high-stakes formation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlc000190/skills/delaware-llc-formation)
+- [LLCClass Delaware guide](https://llcclass.com/delaware)
+- [LLCClass formation hub](https://llcclass.com/get-started)
+- [LLCClass state comparison](https://llcclass.com/best-state)
+- [LLCClass name generator](https://llcclass.com/llc-name-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with links and cautionary notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include legal and compliance guidance that should be independently verified before filing or making business decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

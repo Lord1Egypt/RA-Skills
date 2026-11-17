@@ -1,45 +1,64 @@
-## Description: <br>
-Charge 0.01 USDT to export 4 bundled miner signature libraries. No scanning or detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Charge 0.01 USDT to export 4 bundled miner signature libraries. No scanning or detection.
 
-## Publisher: <br>
-[gwjt1234](https://clawhub.ai/user/gwjt1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwjt1234](https://clawhub.ai/user/gwjt1234)
 
-## Use Case: <br>
-External users and developers use this skill to check SkillPay balance, create payment links, and export four bundled miner indicator libraries as files or JSON. It does not perform scanning, detection, remediation, or local comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can charge a billing account when fetch is run, and the security summary reports weak just-in-time consent controls. <br>
-Mitigation: Review before installing, confirm the exact charge amount and destination before fetch, and avoid passing --amount unless intentional. <br>
-Risk: The billing host can be overridden with MINERDETECTOR_BILLING_API_URL. <br>
-Mitigation: Leave MINERDETECTOR_BILLING_API_URL unset or set it only to a billing host the user trusts. <br>
-Risk: Users may mistake the exported indicator libraries for completed miner detection. <br>
-Mitigation: State that this skill only exports libraries and that scanning, comparison, and remediation must be handled by OpenClaw or the user's own tooling. <br>
+## Use Case:
 
+External users and developers use this skill to check SkillPay balance, generate a payment link, and export bundled miner indicator libraries as files or JSON. The skill provides reference data only; scanning, comparison, and remediation are outside its scope.
 
-## Reference(s): <br>
-- [MinerDetector ClawHub page](https://clawhub.ai/gwjt1234/minerdetector) <br>
-- [Publisher profile](https://clawhub.ai/user/gwjt1234) <br>
-- [Billing API key and homepage](https://x.com/MaZhenZi1/status/2034654798906269916) <br>
-- [Default billing host](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script output is JSON and exported text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied MINERDETECTOR_API_KEY and Python runtime; fetch charges a billing account before exporting the libraries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The fetch command can charge 0.01 USDT against the user's balance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before running fetch or any command that charges a balance.
+
+Risk: The billing API key and user ID are sent to a network billing service.
+
+Mitigation: Use the billing service only when trusted, keep API keys in environment variables, and avoid passing API keys on the command line.
+
+Risk: Overriding MINERDETECTOR_BILLING_API_URL can redirect billing requests.
+
+Mitigation: Do not set MINERDETECTOR_BILLING_API_URL unless the destination is fully trusted.
+
+Risk: The exported indicator libraries are reference data and do not perform detection.
+
+Mitigation: Tell users that scanning, comparison, and remediation require separate local tooling.
+
+## Reference(s):
+
+- [MinerDetector ClawHub skill page](https://clawhub.ai/gwjt1234/skills/minerdetector)
+- [gwjt1234 publisher profile](https://clawhub.ai/user/gwjt1234)
+- [MinerDetector homepage](https://x.com/MaZhenZi1/status/2034654798906269916)
+- [SkillPay billing service](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; command output may be JSON or exported text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exports four bundled text libraries after a successful billing charge; no scanning or remediation output is produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

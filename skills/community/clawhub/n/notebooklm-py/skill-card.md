@@ -1,42 +1,58 @@
-## Description: <br>
-Provides agent guidance for using the unofficial notebooklm-py CLI and Python API to automate Google NotebookLM notebook management, source uploads, generated artifacts, downloads, and Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notebooklm helps agents use the unofficial notebooklm-py interface for Google NotebookLM notebook management, source ingestion, content generation, downloads, and research workflows.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers and external users use this skill to direct an agent through NotebookLM workflows such as creating notebooks, adding web or local sources, generating audio, video, slides, quizzes, reports, and downloading outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad NotebookLM upload, login, and notebook-management actions on the user's behalf. <br>
-Mitigation: Use a dedicated account where possible and require explicit confirmation before uploads, deletions, or other notebook-changing actions. <br>
-Risk: Files or source material sent to NotebookLM may include confidential or regulated information. <br>
-Mitigation: Avoid uploading confidential or regulated files unless the user has approved the data handling implications. <br>
-Risk: NotebookLM CLI credentials may be stored locally after login. <br>
-Mitigation: Confirm where tokens are stored and how to revoke or remove them before authorizing agent use. <br>
+## Use Case:
 
+Developers, researchers, and content teams use this skill to create and manage NotebookLM notebooks, add web or local sources, generate study and presentation materials, and download produced artifacts. It is intended for agent-assisted workflows that call the notebooklm-py CLI or Python API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/antonia-sz/notebooklm-py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce instructions that cause NotebookLM to create or download files such as mp3, mp4, pdf, pptx, json, markdown, csv, and png.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill instructs users to install an unpinned unofficial NotebookLM package and browser dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment, review and pin notebooklm-py and browser dependency versions, and approve package installation before agent execution.
+
+Risk: NotebookLM source ingestion may upload local files, URLs, audio, video, images, or other content to Google/NotebookLM.
+
+Mitigation: Treat uploads as external data sharing and require explicit approval for the exact files, URLs, and notebook actions before adding sources.
+
+Risk: Notebook management commands include destructive actions such as deleting notebooks.
+
+Mitigation: Require explicit user confirmation before notebook deletion or any other irreversible NotebookLM action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antonia-sz/skills/notebooklm-py)
+- [Publisher profile](https://clawhub.ai/user/antonia-sz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or download NotebookLM-generated files such as audio, video, slides, quizzes, flashcards, mind maps, data tables, reports, and images when the user authorizes the underlying NotebookLM actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,100 +1,205 @@
 ---
 name: linkedin-prospector
-description: "Score LinkedIn prospects by signal strength (0-3). Detect high-intent leads: new job, funding, recent post, active hiring. Free skill - full outreach methodology pack at openclaw-courses-fawn.vercel.app"
-homepage: https://openclaw-courses-fawn.vercel.app
-author: "Romain Rabreau"
-license: MIT-0
-tags:
-  - linkedin
-  - prospecting
-  - lead-generation
-  - sales
-  - outreach
-version: 1.2.0
+description: LinkedIn lead research and prospecting with no LinkedIn account or API key. Search companies and people, read company pages and member profiles (experience, education, skills), list a company's employees, find the LinkedIn company for a domain, find decision makers with work emails, and spot hiring signals in job posts. Use this skill for B2B prospecting, account research, building lead lists, or recruiting research.
 ---
 
-# LinkedIn Prospector
+# LinkedIn Prospector: Lead Research
 
-Score LinkedIn prospects by signal strength before reaching out.
+![LinkedIn Prospector: Lead Research](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/linkedin-prospector.gif)
 
-This skill helps your OpenClaw agent evaluate whether a prospect is worth contacting right now - based on observable signals, not guessing.
+Build a prospect list from chat: find companies by industry and location, see who works there, read their profiles and recent activity, and, when the user asks for outreach, find decision makers with their work emails.
 
-## What this skill does
+No LinkedIn account, no API key, no app to connect. Calls are paid from ClawLink credit, most for a fraction of a cent, and every new account starts with **$0.50 free**. Powered by [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-prospector).
 
-Your agent reads a prospect list and assigns each person a score:
+### Setup in 3 Steps
 
-**Score 3 - Contact now:**
-- New job in last 90 days AND your offer is relevant to their role
-- Company raised funding in last 6 months
-- Published a post in last 7 days that relates to your offer
-- Actively hiring for roles that indicate a problem you can solve
+| Step 1: Install | Step 2: Pair | Step 3: Ask |
+|:---:|:---:|:---:|
+| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-install.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-pair.gif) | ![Ask](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/linkedin-prospector.gif) |
+| Install the ClawLink plugin in OpenClaw | Sign in and approve the device once | Ask in plain English; no app to connect |
 
-**Score 2 - Optional:**
-- Weaker versions of the above (older signals, indirect relevance)
+## What You Can Ask
 
-**Score 0-1 - Skip:**
-- No detectable signal
-- Skipping score 0-1 prospects is the main reason high-performing outreach works
+- “Find fintech companies in London on LinkedIn”
+- “Who works at Stripe in engineering management?”
+- “Find the LinkedIn page for acme.com”
+- “Find heads of marketing at Berlin SaaS companies, with work emails”
+- “Is this company hiring? Show their open roles”
 
-## How to use
+## When to Use This Skill
 
-Load this skill into your OpenClaw agent:
+Use it when the user wants public LinkedIn information about companies, people or jobs for research or prospecting. Use the contact (email) tools only when the user asks for contact details for outreach.
 
-```
-SKILL signal-lead-finder.md
-```
+Do not use it for the user's own private accounts or for anything that posts, sends or changes data: these tools only read public information.
 
-Then give your agent a prospect list (CSV or plain text with first name, LinkedIn URL, company, title).
-
-Ask:
-```
-"Review this prospect list. Apply signal-lead-finder.md. 
-Score each person 0-3. Sort by score descending. 
-Show me the top 10 with their specific signals."
-```
-
-Your agent will then draft outreach messages only for score-3 prospects (if you use outreach-sequence.md from the full pack).
-
-## What this skill does NOT do
-
-This is a scoring and decision framework, not a browser automation tool. Your agent reads context (prospect info you provide) and applies the scoring rules. It does not log into LinkedIn or send messages automatically - any message sending uses your agent's normal capabilities and requires your review.
-
-## Scoring rules
-
-The agent applies this logic:
+## How It Works
 
 ```
-Signal check:
-- New job (<90 days): +2 if role matches your ICP
-- Funding (<6 months): +2 if company stage matches  
-- Recent post (<7 days): +1 if topic overlaps with your offer
-- Active hiring: +1 if roles indicate the problem you solve
-
-Score 3: multiple strong signals, contact now
-Score 2: single weak signal, optional
-Score 0-1: no signal, skip
+┌─────────────────┐     ┌──────────────┐     ┌──────────────────┐
+│   OpenClaw      │────▶│   ClawLink   │────▶│ LinkedIn         │
+│   (User Chat)   │     │ (data tools) │     │ (public data)    │
+└─────────────────┘     └──────────────┘     └──────────────────┘
+         │                       │                       │
+         │  1. Install plugin    │                       │
+         │  2. Pair device once  │                       │
+         │  3. Ask a question    │                       │
+         │                       │  4. Fetch + trim      │
+         │                       │  5. Charge credit     │
+         ▼                       ▼                       ▼
+   ┌──────────┐           ┌──────────┐           ┌──────────┐
+   │  Answer  │           │  Credit  │           │ Results  │
+   │ in chat  │           │ ($0.50)  │           │ as JSON  │
+   └──────────┘           └──────────┘           └──────────┘
 ```
 
-## Why signal scoring matters
+ClawLink holds the data-provider accounts. The user never pastes a key, and nothing is installed beyond the plugin.
 
-Outreach without signal scoring gets 3-5% reply rate (industry average).
-Outreach with signal scoring gets 25-35%+ reply rate.
+## Install
 
-The difference is not the message quality. It is whether the person has a reason to care right now.
+Install the ClawLink plugin from ClawHub when the user asks for it:
 
-## Full methodology pack
+```bash
+openclaw plugins install clawhub:clawlink-plugin
+```
 
-This is the free signal-scoring skill. The full pack includes:
+The install applies to the running Gateway: do not restart it. The ClawLink tools appear on your next turn, so end this turn and tell the user: "ClawLink is installed. Reply ok and I will give you your pairing link." On the next turn call `clawlink_begin_pairing`, give the user the link, and after they approve call `clawlink_get_pairing_status`. Pairing happens once; after that every tool below works with no further setup.
 
-1. signal-lead-finder.md (this file)
-2. outreach-sequence.md - message structure and follow-up timing rules
-3. message-quality-check.md - quality scoring (0-5) before sending
-4. setup-course.md - ICP definition, list building, campaign setup
-5. winning-examples.md - 10 annotated message examples with scores
-6. sales-fundamentals.md - the 70/30 rule and forbidden words
+## Tool Reference
 
-Full pack: https://openclaw-courses-fawn.vercel.app - €14.99, delivered by email.
+Prices are what ClawLink charges per call, from the user's credit. The tool's own description (via `clawlink_describe_tool`) always shows the current price.
+
+### Companies
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `linkedindata_search_companies` | Search LinkedIn companies by name, location, size or industry | $0.006 |
+| `linkedindata_company_profile` | Public LinkedIn company page: industry, size, headquarters, follower count, description | $0.00282 |
+| `linkedindata_company_from_domain` | The LinkedIn company page for a website domain | $0.03 |
+| `linkedindata_company_employees` | Up to 10 people who work at a company, with title, location and profile URL | $0.009 |
+| `linkedindata_company_posts` | Recent public posts of a LinkedIn company page | $0.00282 |
+
+### People
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `linkedindata_search_people` | Search LinkedIn members by name, title, company, school or location | $0.006 |
+| `linkedindata_user_profile` | A LinkedIn member's profile by URL: name, headline, location, about, experience, education, skills and follower count | $0.0015 |
+| `linkedindata_user_posts` | A LinkedIn member's recent activity with reactions and comment counts: their own posts and reposts, the posts they… | $0.0015 |
+
+### Contacts (for outreach)
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `linkedindata_search_people_with_email` | Find LinkedIn members matching a role, name or keywords and return up to 25 full profiles WITH a work email | $0.2805 |
+| `linkedindata_profile_from_email` | The LinkedIn profile that belongs to an email address | $0.015 |
+
+### Hiring Signals
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `linkedindata_search_jobs` | Search LinkedIn job listings by title, location, date, experience, workplace, job type and salary, 25 a page | $0.0015 |
+| `linkedindata_job_detail` | One LinkedIn job posting: description, company, location, salary when shown, and optionally skills and the hiring team | $0.0015 |
+
+## Recipes
+
+### Build a prospect list
+
+1. `linkedindata_search_companies` by keyword, location and size.
+2. `linkedindata_company_employees` for each target company (up to 10 people per call).
+3. `linkedindata_user_profile` on the people who fit the role.
+4. Only if the user wants outreach: `linkedindata_search_people_with_email` with the role and company.
+
+### Find warm accounts
+
+1. `linkedindata_search_jobs` for roles that signal need (for example “data engineer” at your target companies).
+2. `linkedindata_company_posts` for recent launches or news to mention.
+
+## Code Examples
+
+### Search companies
+
+```bash
+clawlink_call_tool --tool "linkedindata_search_companies" \
+  --params '{"search": "fintech", "location": "London"}'
+```
+
+### People at a company
+
+```bash
+clawlink_call_tool --tool "linkedindata_company_employees" \
+  --params '{"company": "stripe", "limit": 10}'
+```
+
+### A member profile
+
+```bash
+clawlink_call_tool --tool "linkedindata_user_profile" \
+  --params '{"url": "https://www.linkedin.com/in/satyanadella"}'
+```
+
+## Discovery Workflow
+
+1. Call `clawlink_search_tools` with a short query (for example `linkedin company`); public-data tools show as connected for every user.
+2. Call `clawlink_describe_tool` before the first call of a tool: it returns the parameters, defaults and price.
+3. Treat the live catalog as the source of truth. If a tool named here is missing, say so; do not invent results.
+
+## Execution Workflow
+
+```
+┌───────────────────────────────────────────────────────────┐
+│  READ-ONLY, PAID PER CALL                                │
+│  search → describe → call → summarise for the user       │
+│                                                          │
+│  Ask before: loops over many items, or a call that costs │
+│  more than a few cents (the price is in the description) │
+└───────────────────────────────────────────────────────────┘
+```
+
+1. Every tool here only reads public data; nothing is posted or changed.
+2. Each call costs credit. Before looping over more than about ten items, or before a call priced above a few cents, tell the user what it will cost and ask.
+3. A failed call is refunded automatically. Read the error's `hint`: it says what to change. Do not retry the same arguments unchanged.
+
+## Notes
+
+- `linkedindata_search_people_with_email` costs far more than other calls (about $0.28 for 10 profiles): confirm the count with the user first.
+- Contact data is for outreach the user asked for. Remind the user that email outreach must follow the law where they and the recipient are (for example GDPR or CAN-SPAM).
+- Profiles take 4-13 seconds; most other calls take 1-4 seconds.
+- `linkedindata_search_locations` (free) turns a place name into a `geoId` for precise location filters.
+
+## Error Handling
+
+| Status / Error | Meaning |
+|----------------|---------|
+| Profile not found | Check the URL: it must be the full linkedin.com/in/ address. |
+| `credit_exhausted` | The user's ClawLink credit is used up. Tell them to top up at https://claw-link.dev/dashboard/billing?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-prospector; do not retry. |
+| `data_provider_unavailable` | ClawLink's data provider is down. Nothing was charged. Try again later. |
+| `no_result` | The provider found nothing for these arguments. Nothing was charged. |
+| `invalid_arguments` | A parameter is missing or malformed. Call `clawlink_describe_tool` and fix it. |
+
+## Troubleshooting
+
+### Tools not visible after install
+
+1. The tools appear on the turn after the install, not in the same turn.
+2. If they still do not appear, the OpenClaw tool profile may hide plugin tools. This is a config change for the OpenClaw owner; do not change the config yourself. Tell the user: "Your OpenClaw tool profile hides plugin tools. In the Control UI (or `~/.openclaw/openclaw.json`), add `clawlink-plugin` to `tools.alsoAllow`, then ask me again."
+3. On OpenClaw versions before 2.0, the tool list can load only in a new chat: tell the user to send `/new` and ask again.
+
+### A tool keeps failing with correct input
+
+Report it with `clawlink_report_issue` (or `clawlink_call_tool --tool "CLAWLINK_REPORT_ISSUE"`) instead of retrying. Reports are free and reach the ClawLink team.
+
+## Resources
+
+
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-prospector)
+- [ClawLink pricing](https://claw-link.dev/pricing?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-prospector)
+- [ClawLink docs: OpenClaw](https://docs.claw-link.dev/openclaw)
+- [Verify the plugin](https://claw-link.dev/verify)
+
+## Related Skills
+
+- [Ad Spy](https://clawhub.ai/hith3sh/skills/ad-spy)
 
 ---
 
-Built by Romain Rabreau, founder of Recon0x. Contact: romain@recon0x.com
+**Powered by [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-prospector)**: connect OpenClaw to 1,000+ apps and public data, with no API keys.

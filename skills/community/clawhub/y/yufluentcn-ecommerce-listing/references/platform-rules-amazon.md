@@ -1,19 +1,36 @@
 # 亚马逊平台规则库（Harness 权威源 · RAG 数据源）
 
-> 更新日期：2026-05-24（v1.1 扩库）  
+> 更新日期：2026-06-26（v1.2 — Amazon 搜索栈：关键词排名 + COSMO + Rufus）  
 > 用途：Listing / SEO / 客服 scene 注入；超长时由关键词 RAG 按 query 选段。  
 > 数据来源：Seller Central 政策摘要 + 行业实践（生成文案须可核对，勿编造认证）。
 
 ---
 
-## A9 搜索与排名核心要素
+## Amazon 搜索与发现（关键词排名 + COSMO / Rufus）
 
-### 相关性信号
+Amazon 站内发现是**多层体系**，不是单一「A9 算法」：
+
+| 层 | 说明 | 文案侧重 |
+|----|------|----------|
+| **传统搜索排名**（卖家圈常称 A9/A10） | 关键词匹配、相关性、转化、销量、评价、FBA 等 | 标题/五点/Backend 埋词、类目准确 |
+| **COSMO** | 常识知识图谱：用途、人群、场景、购物意图（Amazon Science 2024） | 自然语言场景、解决什么问题、给谁用 |
+| **Rufus** | AI 购物助手：自然语言问答、对比、推荐 | 可回答买家追问的要点写进 Listing |
+
+**原则**：Backend Search Terms 与标题关键词**仍然必要**（索引、Sponsored Products、精确搜索）；同时避免无意义堆词，写清**场景与意图**，便于 COSMO/Rufus 语义发现。
+
+### 相关性信号（关键词层）
 
 - **标题**权重最高：核心搜索词应出现在标题前 80 字符内。
 - **Bullet Points**：补充标题未覆盖的长尾词与使用场景。
 - **Backend Search Terms**：250 字节上限，不重复标题已有词，用空格分隔。
 - **类目节点（Browse Node）**：选错类目会导致流量错位，文案需与类目属性一致。
+
+### 语义与意图信号（COSMO / Rufus 层）
+
+- 五点/描述用**完整句子**说明场景与痛点，而非关键词串。
+- 明确适用人群、使用情境（如 travel / office / camping / gift）。
+- 参数与兼容性写可验证事实，便于 AI 问答引用。
+- 品牌故事、A+ 与主 Listing 表述一致，避免语义冲突。
 
 ### 转化信号
 
@@ -23,13 +40,15 @@
 ---
 
 ## 标题（Title）规则
+- ### 2026年7月27日起的标题长度变更
+- 自2026年7月27日起，除媒体类目外，所有类目标题长度上限将调整为75字符（包括空格）。请提前优化标题以适应新要求。
 
 ### 通用限制
 
 - 大多数类目上限 **200 字符**（部分类目 150 字符，以 Seller Central 为准）。
 - 结构建议：`[品牌] + [核心关键词] + [核心功能/规格] + [型号/数量] + [适用场景]`。
 - 每个单词首字母大写（介词 in/on/for、连词 and/or 除外）。
-- **禁止**：全部大写、促销用语（Sale、Free Shipping）、特殊符号（! ? $ # @）。
+- **禁止**：全部大写、促销用语（Sale、Free Shipping）、特殊符号（! $ ? _ { } ^ ¬ ¦ # @）。
 
 ### 标题禁用模式
 
@@ -151,6 +170,7 @@
 - 禁止：立即见效、100% 有效、替代医疗。
 
 ### 食品与补充剂
+- - **膳食补充剂**：自2026年起，亚马逊要求膳食补充剂卖家必须提供第三方检测或认证证明。Listing 中不得宣称未经认证的功效或成分。
 
 - 保质期、储存条件、过敏原、净含量。
 - 健康声称受严格限制；有机需 USDA Organic 等。
@@ -199,7 +219,8 @@
 
 ## 2025–2026 政策趋势（运营关注）
 
-- **AI 生成内容**：亚马逊要求卖家对 Listing 准确性负责；AI 输出必须人工审核。
+- **AI 生成内容与自动化工具**：自2026年3月起，亚马逊要求卖家对使用AI代理或自动化工具（如定价、列表、库存管理）进行明确披露，并保持对自动化操作的监督。AI输出必须人工审核，卖家对Listing准确性全责。
+- **COSMO / Rufus 语义发现**：模糊、场景型搜索占比上升；Listing 需同时服务关键词索引与意图理解。
 - **合规审查加严**：消费品安全（CPSC、GPSR）与环保声明抽查增加。
 - **Brand Registry**：A+、Brand Store、vine 与文案品牌调性绑定更紧。
 - **Low-price store / 低价商城**：部分 SKU 需简化五点，强调极致性价比与合规底价。
@@ -208,7 +229,8 @@
 
 ## 关键词策略（与 SEO scene 协同）
 
-- 核心词 1–3 个放标题；长尾词放五点与 Backend。
+- 核心词 1–3 个放标题；长尾与场景词放五点与 Backend。
+- 标题/五点补充**买家意图与使用场景**（COSMO/Rufus），不只堆同义词。
 - 使用 Brand Analytics / 第三方词库验证搜索量（Harness 输出为建议，需运营确认）。
 - 避免高竞争泛词独占标题（如仅写 "Headphones"）。
 
@@ -376,6 +398,8 @@ General Product Safety Regulation (GPSR) 影响在欧销售的大多数非食品
 ---
 
 ## 2026 政策与平台动态（运营日历）
+- - **ASIN 创建政策变更**：自 2026 年 6 月 1 日起，品牌所有者对 ASIN 创建拥有近乎完全的控制权。独立卖家须获得品牌授权或许可才能注册新 ASIN。卖家应确保品牌名称正确授权，避免创建未授权的 ASIN。具体细节请参考 Seller Central 帮助页面。
+- - **FBM 处理时间准确性要求**：自2026年6月29日起，亚马逊要求卖家为Seller-fulfilled SKU设置准确的处理时间。实际处理时间必须与配置的处理时间持续匹配。这是订单管理政策的一部分，要求按时配送，并保持延迟发货率低于4%。
 
 | 时间 | 事项 | 对 Listing 的影响 |
 |------|------|-------------------|
@@ -421,3 +445,19 @@ Harness 效果闭环（`external_id` + outcomes）用于对比 template 版本�
 ---
 
 *本文件为 TokenApi Harness Layer 2 权威规则源；技能目录 references/ 仅为副本。*
+
+## 政策与平台动态
+
+- ### FBA准备规则（2026年）
+
+自2026年1月1日起，亚马逊实施新的FBA准备规则。卖家须确保所有FBA库存按照最新准备要求进行包装、标签和预处理，否则可能产生意外准备费用（Unplanned Prep Fees）。具体准备要求请参考 Seller Central 最新帮助文档或官方论坛公告。
+
+<!-- EVOLUTION CHANGELOG -->
+
+- 2026-06-20 08:46 | ADD: 食品与补充剂 | source: https://certified-laboratories.com/blog/amazon-supplements-update-2026-what-sellers-need-to-know
+- 2026-06-22 08:47 | ADD: FBA准备规则 | source: https://sellercentral.amazon.com/seller-forums/discussions/t/32e1d348-10b4-46ae-ae29-74a0cb3b182a
+- 2026-06-22 08:48 | REPLACE: 2025–2026 政策趋势（运营关注） | source: https://www.digitalapplied.com/blog/amazon-ai-agent-policy-march-2026-automated-seller-rules
+- 2026-06-23 11:19 | ADD: 2026 政策与平台动态 | source: https://sellercentral.amazon.com/help/hub/reference/external/GQHQGBTD7XB7EECN?locale=en-US
+- 2026-06-25 04:54 | ADD: 2026 政策与平台动态（运营日历） | source: https://amazonsellerslawyer.com/blog/amazon-news-updates/amazon-asin-creation-policy-changes
+- 2026-06-26 00:20 | REPLACE: ## 标题（Title）规则 > 通用限制 | source: https://sellercentral.amazon.com/seller-forums/discussions/t/3c9f0b3c-4594-4efc-a05f-0f8d371fa466
+- 2026-06-26 00:20 | ADD: ## 标题（Title）规则 | source: https://sellercentral.amazon.com/seller-forums/discussions/t/ac660707-60c7-43e3-a3fd-420d7321cc4e

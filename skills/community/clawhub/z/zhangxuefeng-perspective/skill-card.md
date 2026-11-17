@@ -1,39 +1,57 @@
-## Description: <br>
-Simulates Zhang Xuefeng's public education and career-planning perspective to help users analyze school, major, career, and social-mobility choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Zhang Xuefeng-inspired thinking framework and communication style for education choices, career planning, and social mobility analysis.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users use this skill to enter an in-character simulation for education and career-planning discussions. It is best suited for exploring options and tradeoffs, not for treating the output as authentic advice from Zhang Xuefeng or as professional counseling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the roleplay output for authentic advice from Zhang Xuefeng or for professional education and career counseling. <br>
-Mitigation: Treat the responses as a simulation based on public materials, and seek neutral analysis or qualified human advice before important decisions. <br>
-Risk: The in-character style can present strong recommendations with high certainty for high-stakes school, major, or career choices. <br>
-Mitigation: Ask the agent to exit roleplay or provide neutral analysis, and verify admissions, employment, financial, and policy facts with authoritative sources. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for education and career-planning analysis framed through a Zhang Xuefeng-inspired perspective. It is intended for advice-style reasoning about school, major, city, and job-market tradeoffs rather than for executing code or calling external services.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only roleplay; no files, shell commands, code, data access, persistence, or external tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make the assistant sound like an actual person rather than a simulation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep clear attribution visible during use and require responses to remain framed as a perspective-based simulation.
+
+Risk: The artifact asks for limited ongoing disclosure after first activation.
+
+Mitigation: Prefer deployment settings or wrapper instructions that preserve recurring disclosure when identity confusion or sensitive advice is possible.
+
+Risk: Advice about education, careers, and social mobility may be overconfident or persona-driven.
+
+Mitigation: Ask the agent to separate persona-style framing from evidence-calibrated recommendations and encourage users to verify high-impact decisions with current sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/zhangxuefeng-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces conversational advice and roleplay-style responses; no code execution or tool calls are described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

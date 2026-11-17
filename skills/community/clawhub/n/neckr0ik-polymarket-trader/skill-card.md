@@ -1,43 +1,60 @@
-## Description: <br>
-Detect arbitrage opportunities on Polymarket, including spread arbitrage, cross-market correlations, and news-driven opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect arbitrage opportunities on Polymarket, including spread arbitrage, cross-market correlations, and news-driven opportunities.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Polymarket market data for potential arbitrage signals, market-pricing inconsistencies, and related trading opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Arbitrage findings may be incorrect or become stale as market prices, fees, liquidity, and execution conditions change. <br>
-Mitigation: Verify market data, fee assumptions, liquidity, and resolution terms independently before making any trading decision. <br>
-Risk: POLYMARKET_API_KEY may expose account access if broad credentials are configured. <br>
-Mitigation: Use limited-scope credentials where available and avoid sharing or committing credential values. <br>
-Risk: Some documented features, including webhook alerts and monitoring behavior, may not be present in the packaged script. <br>
-Mitigation: Confirm packaged behavior in a controlled environment before relying on alerts or continuous monitoring. <br>
+## Use Case:
 
+External developers and prediction-market operators use this skill to scan Polymarket market data for possible arbitrage, correlation, news-related, and near-resolution trading signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-polymarket-trader) <br>
-- [Polymarket CLOB API endpoint](https://clob.polymarket.com) <br>
-- [Polymarket public API endpoint](https://polymarket.com/public-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and tabular or JSON-style arbitrage findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use POLYMARKET_API_KEY for market data access; outputs are informational and do not execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may contact Polymarket services and use POLYMARKET_API_KEY when present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an environment where outbound Polymarket access and that credential use are approved.
+
+Risk: Some documented commands and webhook behavior are not implemented in the artifact.
+
+Mitigation: Validate the available CLI commands before relying on operational workflows or alerts.
+
+Risk: Outputs are trading signals and may be incomplete, stale, or based on fallback sample data.
+
+Mitigation: Confirm market data, fees, liquidity, and execution assumptions independently before making trades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-polymarket-trader)
+- [ClawHub publisher profile](https://clawhub.ai/user/neckr0ik)
+- [Polymarket CLOB API endpoint](https://clob.polymarket.com)
+- [Polymarket public API endpoint](https://polymarket.com/public-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with CLI commands and arbitrage signal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market IDs, prices, spreads, confidence estimates, volumes, expiration dates, and trading-signal notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Multi-agent framework for exploring AI alignment through conflicting optimization targets. Spawn Gemini agents with engineered chaos and observe emergent behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent framework for exploring AI alignment through conflicting optimization targets. Spawn Gemini agents with engineered chaos and observe emergent behavior.
 
-## Publisher: <br>
-[jbbottoms](https://clawhub.ai/user/jbbottoms) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbbottoms](https://clawhub.ai/user/jbbottoms)
 
-## Use Case: <br>
-Developers, educators, and AI safety practitioners use Chaos Lab to run Gemini-based multi-agent experiments, compare conflicting optimization goals, and study how prompt design affects recommendations and emergent behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sandbox file contents are sent to Gemini during experiments. <br>
-Mitigation: Use dummy or deliberately selected files only, and do not place secrets, credentials, or private project data in /tmp/chaos-sandbox. <br>
-Risk: The skill requires a Gemini API key and makes multiple API calls per experiment. <br>
-Mitigation: Store the key in the documented local config file with restrictive permissions, keep the key scoped, and monitor usage costs. <br>
-Risk: Optional tool-access extensions could let agents modify or delete files. <br>
-Mitigation: Keep the default text-only mode unless strict sandbox validation, approval prompts, action logging, rollback, and a kill switch are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chaos Lab on ClawHub](https://clawhub.ai/jbbottoms/chaos-lab) <br>
-- [Tool Access Notes](docs/tool-access.md) <br>
-- [Flash Experiment Results](examples/flash-results.md) <br>
-- [Pro Experiment Results](examples/pro-results.md) <br>
-- [Trio Experiment Results](examples/trio-results.md) <br>
+## Use Case:
 
+Developers, prompt engineers, educators, and AI safety researchers use this skill to run Gemini-based multi-agent experiments that show how conflicting optimization targets can produce incompatible recommendations and emergent behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown experiment logs with setup and run commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key; experiment logs are written under /tmp/chaos-sandbox.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The experiment scripts can send the contents of /tmp/chaos-sandbox to Google Gemini without filtering, preview, or explicit runtime confirmation.
+
+Mitigation: Use synthetic data only, keep secrets and private configuration out of the sandbox, and add an allowlist, redaction, file-size limits, and a confirmation preview before API calls.
+
+Risk: The skill depends on a Gemini API key and the requests package.
+
+Mitigation: Store the Gemini key carefully and run experiments in an isolated virtual environment with pinned dependencies.
+
+Risk: The advanced tool-access path could turn model recommendations into file operations.
+
+Mitigation: Keep tool access disabled unless intentionally testing execution; if enabled, restrict paths to /tmp/chaos-sandbox, require confirmation, log actions, keep rollback snapshots, and use a kill switch.
+
+## Reference(s):
+
+- [Chaos Lab ClawHub Skill Page](https://clawhub.ai/jbbottoms/skills/chaos-lab)
+- [Tool Access](artifact/docs/tool-access.md)
+- [Flash Results](artifact/examples/flash-results.md)
+- [Pro Results](artifact/examples/pro-results.md)
+- [Trio Results](artifact/examples/trio-results.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown experiment logs, terminal summaries, and setup or run commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Gemini API key and reads files from /tmp/chaos-sandbox when running the bundled experiment scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

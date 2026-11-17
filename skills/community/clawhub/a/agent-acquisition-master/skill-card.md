@@ -1,50 +1,64 @@
-## Description: <br>
-Agent Acquisition Master helps an agent plan and operate client-acquisition workflows across cold email, LinkedIn outreach, organic content funnels, lead qualification, follow-up, and closing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Acquisition Master helps an agent run client acquisition across cold email, LinkedIn outreach, organic content funnels, lead qualification, follow-up sequences, and closing.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-External users and revenue teams use this skill to have an agent build prospect lists, draft outreach, manage follow-up cadences, create content funnels, qualify interested leads, and summarize acquisition performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run persistent outreach and follow-up workflows that contact prospects without enough human approval. <br>
-Mitigation: Disable crons until reviewed and require manual approval or draft-only mode before any message is sent. <br>
-Risk: The skill can read inbox replies, scrape prospect data, and forward lead information through Telegram or third-party enrichment services. <br>
-Mitigation: Use dedicated accounts, restrict API keys and connected services, minimize shared data, and define retention and redaction rules for prospect and inbox data. <br>
-Risk: Sales outreach can create legal, privacy, deliverability, or platform-compliance exposure. <br>
-Mitigation: Review campaigns for applicable outreach laws and platform terms, honor opt-out requests immediately, and confirm compliance before deployment. <br>
+## Use Case:
 
+External users and growth operators use this skill to plan and run client-acquisition workflows for B2B and B2C offerings. It supports prospecting, outreach copy, social content planning, qualification, follow-up, reporting, and closing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/georges91560/agent-acquisition-master) <br>
-- [Publisher profile](https://clawhub.ai/user/georges91560) <br>
-- [Homepage from skill metadata](https://github.com/wesley-agent/wesley-acquisition-master) <br>
-- [Gmail outreach target](https://gmail.com) <br>
-- [LinkedIn prospecting target](https://linkedin.com) <br>
-- [X/Twitter organic acquisition target](https://twitter.com) <br>
-- [Reddit community acquisition target](https://reddit.com) <br>
-- [Hunter.io optional email-finding target](https://hunter.io) <br>
-- [Apollo.io optional lead-database target](https://apollo.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update acquisition files, outreach sequences, campaign reports, and operational logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Persistent autonomous outreach, posting, inbox reading, scraping, Telegram forwarding, and broad state writes can operate without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and disable default crons before installation, scope account and file access, and require human approval before any email, social post, LinkedIn action, purchase, DNS change, or Telegram forwarding.
+
+Risk: Secrets, lead data, inbox content, and outreach logs may contain sensitive personal or commercial data.
+
+Mitigation: Store secrets and lead or inbox data in scoped, redacted storage with clear retention, unsubscribe, and access controls.
+
+Risk: Automated acquisition messages can create compliance, reputation, or platform-policy risk if sent without review.
+
+Mitigation: Review recipient targeting and message copy before sending, honor unsubscribe requests immediately, and keep volume limits conservative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/georges91560/skills/agent-acquisition-master)
+- [Project homepage](https://github.com/wesley-agent/wesley-acquisition-master)
+- [Gmail](https://gmail.com)
+- [LinkedIn](https://linkedin.com)
+- [X / Twitter](https://twitter.com)
+- [Reddit](https://reddit.com)
+- [Hunter.io](https://hunter.io)
+- [Apollo.io](https://apollo.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce acquisition plans, outreach copy, schedules, lead data, logs, reports, and follow-up recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

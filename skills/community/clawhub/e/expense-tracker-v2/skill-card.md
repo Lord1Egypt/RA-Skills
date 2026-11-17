@@ -1,43 +1,56 @@
-## Description: <br>
-Track expenses and income with multi-backend storage (local/Notion/Google Sheet/Supabase). Credentials are encrypted with AES-256-GCM. Use when user wants to record expenses, view transaction history, or check monthly spending statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks expenses and income with local, Notion, Google Sheet, or Supabase storage and encrypted credential configuration.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-External users and developers use this skill to record expense and income entries, view transaction history, and summarize monthly spending across local or configured provider-backed storage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Expense records may be stored locally or sent to the selected Notion or Supabase backend. <br>
-Mitigation: Choose the local backend when records should remain on-device, and review provider access before enabling cloud-backed storage. <br>
-Risk: Provider credentials and expense data are sensitive even when configuration credentials are encrypted. <br>
-Mitigation: Use least-privilege Notion or Supabase credentials and protect the local expense data file according to the user's privacy requirements. <br>
-Risk: Passing the master password on the command line can expose it through shell history or process inspection. <br>
-Mitigation: Prefer interactive password entry or safer secret handling instead of `expense-tracker pass <password>`. <br>
-Risk: The Google Sheet backend is listed as an option, but the artifact implementation reports it as not implemented. <br>
-Mitigation: Use the local, Notion, or Supabase backend unless Google Sheet behavior is verified in a later release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/expense-tracker-v2) <br>
+## Use Case:
 
+External users and developers use this skill to record income and expenses, review recent or filtered transactions, and generate monthly spending summaries across local or configured third-party storage backends.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent to invoke the expense-tracker CLI for setup, record creation, listing, and monthly statistics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Financial records and backend credentials are sensitive, and the security summary flags under-disclosed or unsafe secret and data handling practices.
+
+Mitigation: Review the skill carefully before installing and use only test or narrowly scoped Notion, Google Sheet, or Supabase credentials.
+
+Risk: Supplying the master password with the pass command can expose secrets in terminal history, process listings, or recorded sessions.
+
+Mitigation: Use interactive password entry when possible, and do not enter secrets while screen-sharing or recording a terminal.
+
+Risk: Local expense records may be stored unencrypted.
+
+Mitigation: Treat local storage as sensitive, restrict filesystem access, and avoid storing real financial data until local record handling is verified.
+
+## Reference(s):
+
+- [Expense Tracker v2 ClawHub listing](https://clawhub.ai/codeblackhole1024/skills/expense-tracker-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require interactive credential configuration and password input.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

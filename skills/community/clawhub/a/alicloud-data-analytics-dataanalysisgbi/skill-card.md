@@ -1,44 +1,61 @@
-## Description: <br>
-Manage Alibaba Cloud DataAnalysisGBI via OpenAPI/SDK for resource lifecycle operations, configuration changes, status inspection, and troubleshooting for analytics service workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud DataAnalysisGBI via OpenAPI/SDK for resource lifecycle operations, configuration changes, status inspection, and troubleshooting for analytics service workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to discover Alibaba Cloud DataAnalysisGBI APIs, manage service resources, inspect status, and troubleshoot analytics workflows with least-privilege cloud credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud management actions can change Alibaba Cloud DataAnalysisGBI resources if the agent proceeds with Create, Update, Modify, or Set operations. <br>
-Mitigation: Use a least-privilege RAM user or role and confirm the account, region, resource IDs, parameters, and intended operation before any mutating API call. <br>
-Risk: Saved outputs may contain sensitive cloud metadata or response details. <br>
-Mitigation: Review files written under output/alicloud-data-analytics-dataanalysisgbi/ before sharing, committing, or retaining them. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to discover Alibaba Cloud DataAnalysisGBI APIs, prepare required parameters, run lifecycle or configuration operations, and verify service state with list, describe, get, or query APIs.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud DataAnalysisGBI OpenAPI product page](https://api.aliyun.com/product/DataAnalysisGBI) <br>
-- [DataAnalysisGBI API list metadata](https://api.aliyun.com/meta/v1/products/DataAnalysisGBI/versions/2024-08-23/api-docs.json) <br>
-- [DataAnalysisGBI single API metadata template](https://api.aliyun.com/meta/v1/products/DataAnalysisGBI/versions/2024-08-23/apis/{ApiName}/api.json) <br>
-- [ClawHub release page](https://clawhub.ai/cinience/alicloud-data-analytics-dataanalysisgbi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON or Markdown output artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saved command outputs, API metadata, and response summaries should be written under output/alicloud-data-analytics-dataanalysisgbi/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub server release metadata) <br>
+Risk: Alibaba Cloud credentials may grant broader access than the DataAnalysisGBI task requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and prefer the documented environment variables or shared credentials file only for the intended account and region.
+
+Risk: Create, Update, Modify, or Set operations can change cloud resources or service configuration.
+
+Mitigation: Review the target region, resource identifiers, parameters, and proposed mutating API call before execution; ask for clarification when the region is unclear.
+
+Risk: Saved API responses and generated artifacts may contain operational details.
+
+Mitigation: Write generated API-response artifacts only under output/alicloud-data-analytics-dataanalysisgbi/ and handle that directory according to the user's data retention requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/alicloud-data-analytics-dataanalysisgbi)
+- [OpenAPI product page](https://api.aliyun.com/product/DataAnalysisGBI)
+- [API list metadata](https://api.aliyun.com/meta/v1/products/DataAnalysisGBI/versions/2024-08-23/api-docs.json)
+- [API definition metadata](https://api.aliyun.com/meta/v1/products/DataAnalysisGBI/versions/2024-08-23/apis/{ApiName}/api.json)
+- [Artifact sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, configuration names, and generated file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated API inventory artifacts and response summaries should be written under output/alicloud-data-analytics-dataanalysisgbi/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

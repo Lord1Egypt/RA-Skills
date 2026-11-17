@@ -1,42 +1,49 @@
-## Description: <br>
-Generates a visually rich, card-based HTML info page covering city safety overview, local taboos and legal etiquette, emergency contacts, and transportation tips for a given travel destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese-language, card-based HTML travel briefing with destination safety overview, local etiquette and legal taboos, emergency contacts, transportation tips, and common scam awareness.
 
-## Publisher: <br>
-[lmercy](https://clawhub.ai/user/lmercy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmercy](https://clawhub.ai/user/lmercy)
 
-## Use Case: <br>
-External travelers and travel planners use this skill to generate a Chinese-language HTML travel-safety and etiquette card for a specific destination, including safety overview, local taboos, emergency contacts, and transportation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Emergency numbers, embassy details, legal guidance, and local safety conditions may be outdated or destination-specific. <br>
-Mitigation: Verify emergency contacts, legal guidance, consular information, and safety advice against current official sources before relying on them. <br>
-Risk: Generated HTML may include the user's destination, travel timing, party type, and preferences. <br>
-Mitigation: Review the completed HTML before sharing or publishing it, and remove private travel details when needed. <br>
-Risk: Requests for slum locations, dangerous blocks, or restricted areas could lead to unsafe or exploitative travel guidance. <br>
-Mitigation: Keep responses at the level of neutral general safety awareness, avoid coordinates or street-level routing, and redirect to legitimate cultural alternatives. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to produce a Chinese-language destination safety and etiquette HTML card for a specific country, city, or region before a trip.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lmercy/travel-safety-etiquette) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, files] <br>
-**Output Format:** [Single-file HTML with Chinese-language travel safety and etiquette guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a card-based dashboard populated from destination, travel time, party type, and interest inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML may include user-supplied destination names or pasted content without explicit escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted destination input, avoid pasted HTML, review generated files before opening or sharing them in sensitive browser contexts, and add HTML escaping plus a restrictive CSP before broader distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lmercy/skills/travel-safety-etiquette)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Files, Guidance]
+
+**Output Format:** [Single-file HTML with Chinese-language travel safety and etiquette content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes destination-specific safety zones, etiquette notes, emergency contacts, transport advice, app suggestions, and scam-awareness guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

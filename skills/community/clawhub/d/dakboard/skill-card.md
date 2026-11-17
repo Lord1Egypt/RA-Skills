@@ -1,40 +1,53 @@
-## Description: <br>
-Manage DAKboard screens, devices, and push custom display data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage DAKboard screens, devices, and push custom display data.
 
-## Publisher: <br>
-[krisclarkdev](https://clawhub.ai/user/krisclarkdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krisclarkdev](https://clawhub.ai/user/krisclarkdev)
 
-## Use Case: <br>
-External users and developers use this skill to query DAKboard devices and screens, change a device's screen layout, and push metrics or JSON data to DAKboard display blocks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The DAKBOARD_API_KEY can update screens and push display data. <br>
-Mitigation: Use a dedicated or limited key where possible and rotate it if logs or shared environments may have exposed it. <br>
-Risk: Metrics or fetch payloads may contain sensitive data that is sent to DAKboard or shown on a display. <br>
-Mitigation: Avoid passing secrets or sensitive personal data as metric values or fetch content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krisclarkdev/dakboard) <br>
-- [Publisher profile](https://clawhub.ai/user/krisclarkdev) <br>
+## Use Case:
 
+External users and developers use this skill to list DAKboard devices and screens, update a device's assigned screen, and push metric or JSON fetch data to DAKboard displays.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DAKBOARD_API_KEY; sends command arguments and the API key to dakboard.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The DAKBOARD_API_KEY is sent to DAKboard in request URLs, which can increase exposure through logs or diagnostics.
+
+Mitigation: Use a dedicated, revocable DAKboard API key and rotate it if logs, diagnostics, or shared command history may have exposed it.
+
+Risk: The skill can change DAKboard screen assignments and publish user-provided metric or fetch data to DAKboard displays.
+
+Mitigation: Install only for trusted DAKboard accounts and review requested device, screen, metric, and fetch data before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krisclarkdev/skills/dakboard)
+- [DAKboard API endpoint](https://dakboard.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DAKBOARD_API_KEY in the environment and sends requested device, screen, metric, and fetch data to DAKboard.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

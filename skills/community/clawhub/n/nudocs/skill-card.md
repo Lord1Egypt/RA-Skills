@@ -1,44 +1,63 @@
-## Description: <br>
-Upload, edit, and export documents via Nudocs.ai for collaborative document editing, shareable document links, and pulling edited content back into the agent workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+nudocs helps agents upload documents to Nudocs.ai for hosted editing, retrieve private edit links, list or export documents, and delete exact remote documents through the authenticated Nudocs CLI.
 
-## Publisher: <br>
-[jdrhyne](https://clawhub.ai/user/jdrhyne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jdrhyne](https://clawhub.ai/user/jdrhyne)
 
-## Use Case: <br>
-Developers and document-focused users use this skill to send local documents to Nudocs.ai for rich editing, retrieve shareable links, list or delete cloud documents, and pull edited files back in formats such as DOCX, Markdown, or PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload, share, download, list, and delete cloud documents using a Nudocs API key. <br>
-Mitigation: Use it only with documents intended for Nudocs.ai, treat returned links as sensitive, and confirm document IDs before pull, link, or delete operations. <br>
-Risk: The skill depends on local Nudocs credentials in NUDOCS_API_KEY or ~/.config/nudocs/api_key. <br>
-Mitigation: Store credentials securely, avoid exposing them in prompts or shared files, and rotate the API key if it may have been disclosed. <br>
+## Use Case:
 
+Developers and knowledge workers use nudocs to move Markdown, document, and other supported files into Nudocs.ai for hosted collaborative editing and to export edited content back to local files. It also guides exact-ID link retrieval, listing, and deletion workflows with confirmation around sensitive uploads, sharing, overwrites, and destructive actions.
 
-## Reference(s): <br>
-- [Nudocs](https://nudocs.ai) <br>
-- [Nudocs CLI](https://github.com/PSPDFKit/nudocs-cli) <br>
-- [Nudocs MCP Server](https://github.com/PSPDFKit/nudocs-mcp-server) <br>
-- [Document Design Reference](references/document-design.md) <br>
-- [Nudocs Format Reference](references/formats.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jdrhyne/nudocs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and document links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local files, Nudocs document IDs, downloaded document files, and shareable Nudocs.ai links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Uploads send selected documents to Nudocs for processing and may expose sensitive content outside the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the data boundary before upload and require explicit action-time confirmation for files containing credentials, health, financial, legal, customer, employee, or other sensitive data.
+
+Risk: API keys or authentication details could be exposed during setup or troubleshooting.
+
+Mitigation: Use protected local or CI secret storage, never ask users to paste keys into chat, and verify authentication through bounded CLI behavior instead of printing configuration or environment contents.
+
+Risk: Returned edit links may grant access to hosted content if forwarded or posted.
+
+Mitigation: Treat edit links as private by default and require separate action-time approval before sharing them with a stated audience or destination.
+
+Risk: Pull operations can overwrite local files, and delete operations can irreversibly change remote state.
+
+Mitigation: Resolve exact document IDs and output paths, confirm before overwrites, and obtain immediate approval before deleting the resolved document ID.
+
+## Reference(s):
+
+- [Nudocs CLI formats](references/formats.md)
+- [Nudocs CLI source](https://github.com/PSPDFKit-labs/nudocs-cli)
+- [Nudocs](https://nudocs.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include private edit links, document IDs, local file paths, and action-time confirmation prompts.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

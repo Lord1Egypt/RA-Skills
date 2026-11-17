@@ -1,48 +1,61 @@
-## Description: <br>
-微信支付（WeChat Pay）接入支持 skill，帮助开发者进行产品选型、官方文档问答、示例代码查找、接入质量评估和 APIv3 排障。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助开发者选择微信支付产品、查找官方接入资料与示例、实现和检查支付集成，并排查接口问题。
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate, validate, and troubleshoot domestic WeChat Pay merchant and service-provider flows. It guides product selection, official-documentation lookup, example-code discovery, payment-code quality review, and APIv3 request signing or query troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China domestic merchant scenarios <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting flows can involve live payment API authorization material, signatures, certificate serial numbers, and merchant identifiers. <br>
-Mitigation: Use test or least-privilege WeChat Pay credentials where possible, run signing and API calls locally, and share only sanitized status codes, request IDs, and error bodies. <br>
-Risk: Payment integration guidance can affect funds movement, reconciliation, callbacks, and customer-facing checkout behavior. <br>
-Mitigation: Require developer review and production testing, keep private keys and APIv3 keys out of client code, and verify signature checks, idempotency, fallback queries, and reconciliation before release. <br>
-Risk: The skill may ask the user to execute local documentation sync, CLI, signing, or API query commands. <br>
-Mitigation: Review commands before execution, use a controlled local environment, and obtain explicit user consent before operations that access credentials, networks, or payment APIs. <br>
+## Use Case:
 
+开发者和工程团队用它为境内商户选择微信支付接入方案、查阅接口文档、编写或审查支付代码，以及排查交易和验签问题。
 
-## Reference(s): <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [基础概念及业务介绍](artifact/references/基础概念及业务介绍.md) <br>
-- [文档检索与问答](artifact/references/文档检索与问答.md) <br>
-- [APIv3 接口动态排障](artifact/references/APIv3接口动态排障.md) <br>
-- [接入质量检查清单](artifact/references/接入质量检查清单.md) <br>
-- [wechatpay-dev-cli 使用说明](artifact/references/wechatpay-dev-cli使用说明.md) <br>
-- [WeChat Pay official documentation knowledge base archive](https://wx.gtimg.com/resource/wechatpay_api/wechatpay-docs.zip) <br>
+### Deployment Geography for Use:
 
+Mainland China (domestic merchants only)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with code blocks, CLI commands, JSON snippets, and documentation references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sanitized API troubleshooting status, request IDs, and error bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0) <br>
+Risk: The skill requests network access and can automatically replace its own files with an unsigned remote update.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review updates and their source before allowing the updater to run; restrict network access to necessary domains.
+
+Risk: Payment credentials, merchant identifiers, certificates, signatures, and authorization headers could appear in chats, commands, or logs.
+
+Mitigation: Keep secrets out of prompts and logs; use placeholders where possible and protect any credentials needed for local tests.
+
+Risk: Live payment API calls or generated integration code can affect financial transactions.
+
+Mitigation: Confirm the target environment and scope before executing calls; review and test code before production use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tencent-adm/skills/wechatpay-payment-integration)
+- [微信支付接入质量检查清单](artifact/references/接入质量检查清单.md)
+- [产品、角色、API 版本与验签方式的确认](artifact/references/产品角色版本与验签方式的确认.md)
+- [APIv3 签名验签本地测试](artifact/references/APIv3签名验签本地测试.md)
+- [wechatpay-dev-cli 使用说明](artifact/references/wechatpay-dev-cli使用说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Analysis]
+
+**Output Format:** [Markdown with code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include integration checklists and test findings.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

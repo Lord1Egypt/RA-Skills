@@ -1,43 +1,55 @@
-## Description: <br>
-AI-agent Skill for PPTX OOXML localization workflows. Use it to unpack PPTX, extract and apply text translations, normalize terminology, enforce language-specific fonts, validate XML integrity, and repack outputs with machine-readable JSON interfaces for automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-agent Skill for PPTX OOXML localization workflows. Use it to unpack PPTX, extract and apply text translations, normalize terminology, enforce language-specific fonts, validate XML integrity, and repack outputs with machine-readable JSON interfaces for automation.
 
-## Publisher: <br>
-[jason2be](https://clawhub.ai/user/jason2be) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jason2be](https://clawhub.ai/user/jason2be)
 
-## Use Case: <br>
-Developers and external automation agents use this skill to run PPTX OOXML localization workflows: unpacking presentations, extracting text, applying translated TSV content, normalizing terminology and fonts, validating XML, and repacking output PPTX files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes user-selected presentation files and directories, so an incorrect input, output, or root path could process the wrong local content. <br>
-Mitigation: Run it only on presentations intended for localization and choose input, output, and root directories carefully before execution. <br>
-Risk: Generated TSV files and repacked PPTX files may contain translation, terminology, or formatting issues. <br>
-Mitigation: Review generated TSV and output PPTX files before production use, and run the XML and font validation steps. <br>
+## Use Case:
 
+Developers and automation agents use this skill to run repeatable PPTX localization workflows: unpacking presentations, extracting text, applying translated TSV content, normalizing terminology and fonts, validating OOXML, and repacking outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason2be/ppt-ooxml-tool) <br>
-- [README](artifact/README.md) <br>
-- [Release notes v0.1.0](artifact/RELEASE_NOTES_v0.1.0.md) <br>
-- [Example job file](artifact/examples/job.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON job specifications, TSV translation files, and PPTX output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports machine-readable JSON responses through the CLI --json mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence, target metadata, pyproject.toml) <br>
+Risk: A crafted TSV file can steer one write path outside the intended presentation folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only trusted TSV/job inputs, run workflows on copies in a restricted workspace, and require path containment under the OOXML root before broader deployment.
+
+Risk: Untrusted PPTX, glossary, or job files may cause unwanted changes during automated localization runs.
+
+Mitigation: Review input files before execution and keep workflow outputs isolated from source presentations until validation is complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jason2be/skills/ppt-ooxml-tool)
+- [README](README.md)
+- [Release Notes v0.1.0](RELEASE_NOTES_v0.1.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-oriented workflow contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI workflows can produce TSV, JSON status output, unpacked OOXML files, and repacked PPTX files.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata, pyproject.toml, RELEASE_NOTES_v0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-AlphaLens API turns the AlphaLens API into agent workflows for company discovery, product research, competitive landscape maps, investor networks, peer benchmarks, white space analysis, and pipeline enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AlphaLens API helps agents research companies, products, competitors, investor networks, peer benchmarks, and white-space opportunities using the AlphaLens API.
 
-## Publisher: <br>
-[walidmustapha](https://clawhub.ai/user/walidmustapha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walidmustapha](https://clawhub.ai/user/walidmustapha)
 
-## Use Case: <br>
-Business development, investment, and market research users use this skill through an agent to query AlphaLens, find and compare companies or products, map competitive landscapes, analyze investor networks, benchmark peers, identify white space, and enrich AlphaLens pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive company names, domains, product descriptions, organization IDs, and submitted pipeline documents may be sent to AlphaLens. <br>
-Mitigation: Use the skill only with an approved AlphaLens account and avoid confidential deal materials unless internal policy allows that use. <br>
-Risk: Public company domains may be sent to Google's favicon service when workflows fetch logos. <br>
-Mitigation: Use only public domains returned by AlphaLens and avoid internal or confidential hostnames. <br>
-Risk: The skill requires a sensitive AlphaLens API key. <br>
-Mitigation: Store ALPHALENS_API_KEY as a secret, alias it to KEY before API calls, and never paste literal credentials into generated commands or documents. <br>
-Risk: Pipeline enrichment can mutate AlphaLens pipeline state and credit-gated workflows may consume account credits. <br>
-Mitigation: Inspect existing pipeline items first and confirm budget or user approval before large enrichment runs or bottom-up suite workflows. <br>
+## Use Case:
 
+Developers, operators, and market analysts use this skill to turn AlphaLens subscription access into repeatable company discovery, competitive mapping, investor network, peer benchmark, pipeline enrichment, and white-space analysis workflows.
 
-## Reference(s): <br>
-- [AlphaLens](https://alphalens.ai) <br>
-- [AlphaLens API Reference](references/REFERENCE.md) <br>
-- [AlphaLens API Examples](references/EXAMPLES.md) <br>
-- [AlphaLens ClawHub Listing](https://clawhub.ai/walidmustapha/alphalens-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash curl commands and generated self-contained HTML report code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALPHALENS_API_KEY and an active AlphaLens subscription with API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter, skill.yaml, release metadata) <br>
+Risk: The skill requires an AlphaLens API key and sends selected company, product, feature, document, or pipeline data to AlphaLens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, keep ALPHALENS_API_KEY secret, and avoid printing or persisting any part of the key.
+
+Risk: Some workflow templates can place user-controlled text into shell commands.
+
+Mitigation: Validate domains, URL-encode query text, and avoid copying raw user input directly into shell commands before execution.
+
+Risk: Generated reports may depend on remote scripts or public favicon fetching.
+
+Mitigation: Review generated HTML before opening or sharing it, and avoid remote dependencies unless that behavior is acceptable for the environment.
+
+## Reference(s):
+
+- [AlphaLens homepage](https://alphalens.ai)
+- [AlphaLens API Reference](references/REFERENCE.md)
+- [AlphaLens API Examples](references/EXAMPLES.md)
+- [AlphaLens API docs](https://api-production.alphalens.ai/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated self-contained HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ALPHALENS_API_KEY and an active AlphaLens subscription; workflows may produce HTML reports suitable for browser viewing or PDF export.]
+
+## Skill Version(s):
+
+2.1.1 (source: SKILL.md frontmatter, skill.yaml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

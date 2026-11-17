@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pathway-atlas/schemas/province.schema.json",
+  "title": "Province dataset metadata",
+  "$comment": "This Schema validates structure; every ordinary_batch_policy must also pass the declared runtime threshold-order validator.",
+  "x-semantic-validator": {
+    "policy": "scripts.province_registry.validate_ordinary_batch_policy",
+    "checks": ["threshold_order"]
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "province",
+    "mode",
+    "primary_subjects",
+    "secondary_subjects",
+    "score_scale",
+    "schema_version",
+    "ordinary_batch_policy"
+  ],
+  "properties": {
+    "province": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["3+1+2", "3+3"]
+    },
+    "primary_subjects": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!.*[\\r\\n])\\S(?:[^\\r\\n]*\\S)?$"
+      }
+    },
+    "secondary_subjects": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!.*[\\r\\n])\\S(?:[^\\r\\n]*\\S)?$"
+      }
+    },
+    "score_scale": {
+      "type": "number",
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "schema_version": {
+      "type": "string",
+      "enum": ["1.0"]
+    },
+    "ordinary_batch_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "policy_id",
+        "basis_id",
+        "search_delta_min",
+        "search_delta_max",
+        "challenge_delta_lt",
+        "stable_delta_le",
+        "tier_caps"
+      ],
+      "properties": {
+        "schema_version": {"type": "string", "enum": ["1.0"]},
+        "policy_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "basis_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "search_delta_min": {"type": "integer"},
+        "search_delta_max": {"type": "integer"},
+        "challenge_delta_lt": {"type": "integer"},
+        "stable_delta_le": {"type": "integer"},
+        "tier_caps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["冲", "稳", "保"],
+          "properties": {
+            "冲": {"type": "integer", "minimum": 1},
+            "稳": {"type": "integer", "minimum": 1},
+            "保": {"type": "integer", "minimum": 1}
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "3+1+2"}}},
+      "then": {"properties": {"secondary_subjects": {"minItems": 2}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "3+3"}}},
+      "then": {
+        "anyOf": [
+          {"properties": {"primary_subjects": {"minItems": 2}}},
+          {"properties": {"secondary_subjects": {"minItems": 2}}}
+        ]
+      }
+    }
+  ]
+}

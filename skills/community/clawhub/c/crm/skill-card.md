@@ -1,39 +1,67 @@
-## Description: <br>
-Guide users building a personal CRM from simple files to structured database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a CRM for contacts, companies, deals, pipeline stages, follow-ups, data hygiene, imports, migrations, forecasting, and deletion or do-not-contact requests.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to build a lightweight personal CRM that starts with local JSON or CSV files, then evolves to interactions, companies, deals, helper scripts, or SQLite only when the user's workflow needs them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local CRM folder may contain names, emails, phone numbers, notes, tags, and other personal contact data. <br>
-Mitigation: Confirm the folder path before writing and back up data before bulk edits or migrations. <br>
-Risk: Cloud sync or Git can copy CRM data outside the original local folder. <br>
-Mitigation: Enable sync or version control only deliberately after the user understands where the data will be copied. <br>
+## Use Case:
 
+External users and operators use this skill to set up, rescue, and operate a CRM for sales, fundraising, donor, job-search, freelance, or relationship pipelines. It helps maintain local records, review deals and follow-ups, clean or import data, choose tools, and handle suppression or deletion requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/crm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown text with optional code blocks, shell commands, and structured data examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local files such as contacts.json, CSV exports, SQLite migration scripts, and backup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may maintain durable CRM and contact records containing personal or commercial relationship data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured data paths before use, minimize stored fields and notes, and keep records within the declared local Clawic data folders.
+
+Risk: Bulk imports, merges, edits, migrations, or deletions can affect many records at once.
+
+Mitigation: Require explicit confirmation for bulk changes and write a dated export or backup before the operation.
+
+Risk: CRM integrations may require API tokens, BCC logging addresses, signed URLs, or other credentials.
+
+Mitigation: Store only credential pointers such as environment, keychain, or password-manager references, and strip pasted secret values before writing notes.
+
+Risk: A contact suggestion, import, or outreach list could include someone who opted out or requested deletion.
+
+Mitigation: Read the do-not-contact list before naming contacts for outreach and preserve suppression entries even when the underlying contact record is removed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/crm)
+- [Clawic CRM Skill Page](https://clawic.com/skills/crm)
+- [CRM Skill Definition](artifact/SKILL.md)
+- [Privacy Procedures](artifact/privacy.md)
+- [Import and Migration Procedures](artifact/import.md)
+- [Working File Templates](artifact/memory-template.md)
+- [CRM Tool Selection](artifact/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, tables, local file updates, configuration values, and occasional SQL or shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local CRM and shared contact notes under configured Clawic data paths, or produce exact rows and changes for a user to apply in an external CRM.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

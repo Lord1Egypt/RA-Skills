@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.keys-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.key {
+  min-width: 64px;
+  padding: 14px 20px;
+  background: #fff;
+  border-radius: var(--r-key);
+  border: 1px solid var(--gray-line);
+  box-shadow: var(--shadow-key);
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  min-height: 56px;
+}
+.key.wide { padding-left: 28px; padding-right: 28px; }
+.plus {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  color: var(--coral-dark);
+  font-weight: 700;
+}
+.keys-label {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  text-align: center;
+}
+.keys-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.keys-label.hidden { display: none; }
+</style>
+</head>
+<body data-bg="{{bg}}">
+<div class="stage" data-bg="{{bg}}">
+  <div class="keys-block">
+    <div class="keys-row">{{keys_html}}</div>
+    <div class="keys-label {{label_hidden}}">{{label}}</div>
+  </div>
+</div>
+</body>
+</html>

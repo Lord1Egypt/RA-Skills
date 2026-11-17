@@ -1,45 +1,54 @@
-## Description: <br>
-Pre-defined business workflows combine MCP tools for CRM, sales, purchase, inventory, project, payments, and utility tasks in ERPNext. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-defined business workflows combining multiple MCP tools for CRM, sales, purchase, inventory, project, payments, and utility tasks in ERPNext.
 
-## Publisher: <br>
-[Ravana-indus](https://clawhub.ai/user/Ravana-indus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ravana-indus](https://clawhub.ai/user/ravana-indus)
 
-## Use Case: <br>
-ERPNext operators, developers, and business teams use this skill to execute repeatable ERP workflows such as creating customers, quotations, sales orders, purchase orders, stock entries, payments, projects, and bulk record operations through an MCP-enabled Frappe environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad, high-impact ERP record changes, including create, update, delete, import, export, submit, cancel, and payment actions. <br>
-Mitigation: Install only with a trusted ERPNext/MCP server and a least-privileged ERP account; require previews and explicit confirmation for update, delete, export, import, submit, cancel, and payment actions. <br>
-Risk: The generic_task and bulk_operation workflows have limited scoping and can target many DocTypes. <br>
-Mitigation: Restrict or disable generic_task and bulk_operation before production use, and add DocType and method allowlists. <br>
-Risk: Incorrect workflow inputs could create or submit inaccurate financial, inventory, sales, purchase, or project records. <br>
-Mitigation: Verify backups and audit logging are enabled, and keep business guardrails such as credit checks, stock validation, amount limits, and batch-size limits active. <br>
+## Use Case:
 
+ERPNext teams and agent developers use this skill to trigger repeatable business workflows for CRM, sales, purchase, inventory, project, payment, search, and bulk record operations. It requires a Frappe/ERPNext environment and the bc_mcp module.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Ravana-indus/erpnext-frappe) <br>
-- [Publisher profile](https://clawhub.ai/user/Ravana-indus) <br>
-- [Business Claw Skills documentation](artifact/SKILL.md) <br>
-- [Skill definitions](artifact/definitions/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Structured workflow results and formatted status messages from ERPNext/Frappe MCP actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted Frappe/ERPNext environment and the bc_mcp module for tool routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact definition versions) <br>
+Risk: The skill can create, update, submit, cancel, delete, export, and run custom methods on ERP business records with broad authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for tightly controlled ERPNext accounts with least-privilege roles and require human review before record-changing, payment, stock, export, and custom-method operations.
+
+Risk: The generic_task and bulk_operation workflows can operate across DocTypes with weak scoping.
+
+Mitigation: Enable those workflows only when the runtime enforces DocType allowlists, field and method allowlists, non-empty filters, dry runs, audit logs, and confirmation gates.
+
+## Reference(s):
+
+- [Artifact skill documentation](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/ravana-indus/skills/erpnext-frappe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command examples, plus ERPNext workflow output templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow definitions and execution guidance for ERPNext/Frappe MCP operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

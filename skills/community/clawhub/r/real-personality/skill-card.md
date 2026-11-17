@@ -1,46 +1,62 @@
-## Description: <br>
-REAL 人格测试 scans a user's logged-in social media accounts, analyzes posts, likes, saves, follows, and interactions, and classifies the user into one of 16 data-driven REAL personality types with a match score and report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+REAL Personality Test scans a user's social media behavior, including posts, likes, saves, and follows, and classifies the account into one of 16 data-driven personality types with a match score.
 
-## Publisher: <br>
-[sophie-xin9](https://clawhub.ai/user/sophie-xin9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophie-xin9](https://clawhub.ai/user/sophie-xin9)
 
-## Use Case: <br>
-External users ask an agent to inspect their own social media behavior and produce a data-driven personality analysis. The skill is intended for entertainment-oriented self-discovery, not psychological diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect logged-in social media histories, including posts, likes, saves, follows, and other behavior that can reveal sensitive interests or relationships. <br>
-Mitigation: Run the skill only on accounts the user owns or controls, use a separate browser profile where possible, and confirm the platforms and data categories before scanning. <br>
-Risk: The skill stores behavioral data and generated reports locally, which may expose private information if shared or left behind. <br>
-Mitigation: Review, redact, or delete generated real-data files and reports after use, and share only intentionally selected excerpts. <br>
-Risk: Personality labels and match scores may be treated as more authoritative than the underlying social-media behavior supports. <br>
-Mitigation: Present results as entertainment-oriented data analysis, not as psychological diagnosis or advice. <br>
+## Use Case:
 
+External users and agents use this skill to collect data from a user's own logged-in social media accounts and generate a REAL personality profile. The output includes a four-letter type code, match score, detailed report, and optional shareable card.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sophie-xin9/real-personality) <br>
-- [README](artifact/README.md) <br>
-- [REAL type system](artifact/types/type_system.md) <br>
-- [Example REAL report](artifact/examples/xiaokai_real_report.md) <br>
-- [ManoBrowser dependency](https://github.com/ClawCap/ManoBrowser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report, shareable text card, local JSON data, and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include local real-data files and personality reports derived from logged-in social media account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill broadly collects sensitive social-media activity from logged-in accounts and stores raw data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each platform and data category before scanning, run it only against accounts the user intends to analyze, and delete generated raw data after use unless retention is intentional.
+
+Risk: The skill uses logged-in browser sessions to access supported social platforms.
+
+Mitigation: Use a dedicated browser profile where practical, review the account context before execution, and stop if the user is not comfortable with the requested collection scope.
+
+Risk: The skill can bootstrap an unpinned browser-control dependency.
+
+Mitigation: Avoid the unpinned auto-clone path; install and review a trusted ManoBrowser version before running collection steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sophie-xin9/skills/real-personality)
+- [Publisher profile](https://clawhub.ai/user/sophie-xin9)
+- [Artifact README](artifact/README.md)
+- [REAL type system](artifact/types/type_system.md)
+- [Example REAL report](artifact/examples/xiaokai_real_report.md)
+- [ManoBrowser dependency](https://github.com/ClawCap/ManoBrowser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with JSON data files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a four-letter REAL type code, match score, detailed report, and optional shareable card; may save raw collection data locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

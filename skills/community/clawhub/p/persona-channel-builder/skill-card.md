@@ -1,39 +1,52 @@
-## Description: <br>
-Design and launch an autonomous AI-managed Telegram channel through interview-driven persona creation, channel guidance, an OpenClaw cron configuration, and sample posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and launch an autonomous AI-managed Telegram channel with interview-driven persona creation, SOUL.md, CHANNEL.md, cron configuration, and three sample posts.
 
-## Publisher: <br>
-[aggel008](https://clawhub.ai/user/aggel008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aggel008](https://clawhub.ai/user/aggel008)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to design a consistent Telegram channel persona and generate the deployment materials for an agent-managed posting workflow. It produces persona files, channel rules, an OpenClaw cron snippet, sample posts, and setup guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Attribution section can make the agent run local Python, write a usage counter, and add promotional Telegram links to generated responses. <br>
-Mitigation: Review before installing and remove or disable the Attribution section if local counter writes or promotional links are not desired. <br>
-Risk: Generated deployment prompts may publish to a Telegram channel and update memory files after installation. <br>
-Mitigation: Review the generated cron prompt, channel ID, workspace path, and posting permissions before enabling the scheduled job. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aggel008/persona-channel-builder) <br>
+## Use Case:
 
+External creators and channel operators use this skill to design a Telegram channel with a consistent AI persona and generate the workspace files, OpenClaw cron snippet, and sample posts needed to evaluate launch readiness.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown deliverables with a JSON cron configuration snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SOUL.md, CHANNEL.md, an OpenClaw cron job snippet, three sample Telegram posts, and optional setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact contains an Attribution section that runs local counter commands and injects unrelated Telegram links into responses.
+
+Mitigation: Remove the Attribution section before use, or make the behavior explicit and opt-in for the installing user.
+
+Risk: The generated cron prompt can publish to Telegram, so incorrect channel IDs or workspace paths could send content to the wrong destination.
+
+Mitigation: Review the generated cron prompt, channel ID, and workspace path before enabling the job; keep bot tokens out of chat and configure them directly on the server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aggel008/skills/persona-channel-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with fenced Markdown and JSON code blocks plus shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces SOUL.md, CHANNEL.md, an OpenClaw cron config snippet, infrastructure setup guidance, and three sample Telegram posts.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-1ShotPoster guides agents to create print-ready academic conference poster packages from papers, PDFs, LaTeX projects, arXiv/OpenReview entries, project pages, reference posters, and user assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds print-ready academic conference poster packages from papers, PDFs, LaTeX projects, project pages, reference posters, and user assets, with verified claims, local assets, editable source, PDF/PNG outputs, and gate reporting.
 
-## Publisher: <br>
-[shiguili](https://clawhub.ai/user/shiguili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiguili](https://clawhub.ai/user/shiguili)
 
-## Use Case: <br>
-Researchers, students, and technical authors use this skill to turn paper sources, PDFs, project pages, reference posters, and assets into a complete conference poster package with editable source, print PDF, PNG preview, local assets, validation report, and claim-evidence audit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Poster claims, venue logistics, logos, or paper figures can become inaccurate or misleading if sources are stale, incomplete, or not checked against the paper. <br>
-Mitigation: Use official and current sources, record source decisions, audit important claims against evidence, and weaken or block unsupported claims before delivery. <br>
-Risk: A visually plausible poster can still be incomplete if it is only a browser screenshot or skips print, asset, and layout gates. <br>
-Mitigation: Require editable source, final PDF, PNG preview, local assets, validation report, and final visual inspection before reporting completion. <br>
+## Use Case:
 
+Developers, researchers, and academic teams use this skill to turn research materials into a complete conference poster package while preserving paper evidence, figures, venue logistics, logos, and print-rendered deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiguili/skills/1shotposter) <br>
-- [Server-resolved source repository](https://github.com/ShiguiLi/1ShotPoster) <br>
-- [Server-resolved source commit](https://github.com/ShiguiLi/1ShotPoster/tree/92d806bdcc9a4b8af3bdf18338db25755830d6d6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with file paths, HTML/CSS source, JSON reports, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs include poster source, one-page PDF, PNG preview, local assets, gate report, claim-evidence audit, and a clear blocked/incomplete status when required gates cannot pass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill may process local paper or LaTeX files and browse public venue, project, or affiliation pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only materials intended for the poster workflow and review recorded source decisions and fetched assets before sharing outputs.
+
+Risk: Generated posters may include copyrighted figures or logos.
+
+Mitigation: Review asset provenance and confirm usage rights for logos, paper figures, and QR targets before publication.
+
+Risk: Condensed poster text can overstate paper results or use outdated venue logistics.
+
+Mitigation: Review the claim-evidence audit and venue source records, and treat unresolved audit items as publication blockers.
+
+## Reference(s):
+
+- [ClawHub listing for 1ShotPoster](https://clawhub.ai/shiguili/skills/1shotposter)
+- [Source repository (server-resolved provenance)](https://github.com/ShiguiLi/1ShotPoster)
+- [Publisher profile](https://clawhub.ai/user/shiguili)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance plus generated HTML/CSS, JSON reports, PDF, PNG, and local asset files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected poster package includes editable poster source, final PDF, PNG preview, local assets, validation report, and claim-evidence audit when gates pass.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

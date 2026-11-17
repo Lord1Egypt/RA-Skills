@@ -1,0 +1,50 @@
+version: 1
+title: "{{TITLE}}"
+language: zh-CN
+scope:
+  statement: "描述本 Wiki 负责回答的知识范围"
+  audience:
+    - "主要读者"
+  non_goals:
+    - "明确不覆盖的领域"
+success_questions:
+  - "这个 Wiki 必须稳定回答的问题"
+page_types:
+  - concept
+  - entity
+  - source-summary
+  - how-to
+  - reference
+  - explanation
+  - decision
+  - archive
+allowed_statuses:
+  - draft
+  - active
+  - disputed
+  - stale
+  - deprecated
+source_policy:
+  raw_is_immutable: true
+  require_origin: true
+  require_ingested_date: true
+  require_hash: true
+citation_policy:
+  exact_facts_require_source: true
+  inference_must_be_labeled: true
+  unresolved_conflicts_are_visible: true
+freshness:
+  default_max_age_days: 180
+  high_drift_max_age_days: 30
+ownership:
+  require_owner: true
+  default_owner: "{{OWNER}}"
+retrieval:
+  baseline: index-and-full-text
+  semantic_upgrade_requires_evaluation: true
+promotion:
+  require_reusable_value: true
+  require_stable_evidence: true
+privacy:
+  secrets_forbidden: true
+  derived_content_inherits_source_access: true

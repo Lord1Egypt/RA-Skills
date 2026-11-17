@@ -33,4 +33,11 @@ the cart — it does **not** pay. It prints a `checkoutUrl` (`https://www.htm.nl
 open in a browser and finish payment manually (iDEAL etc. needs interactive bank authorization,
 which can't be scripted). `validFrom` defaults to today; HTM rejects a start date more than ~30
 days out with a clear error. Re-running `reorder` for the same pass+product reuses the same draft
-line instead of creating a duplicate, so it's safe to call again to change the date.
+line instead of creating a duplicate, so it's safe to call again to change the date; a line for the
+same product on a *different* pass is left alone, so family members each get their own line.
+
+Age-based products (e.g. Regio Vrij "Reductie", productIds from `regio-advies`) require the pass
+owner's birthdate on every order — HTM checks it against the one registered on the card but can't
+read it back itself. Set `HTM_BIRTHDATE_<tokenId>=YYYY-MM-DD` per pass and `reorder` fills it in
+automatically; without it, `reorder` fails with "The birthdate of the added OVpay-token his owner
+is required for this product".

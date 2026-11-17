@@ -1,0 +1,17 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_query_task_info",
+		"description": "Query workbench workflow task details, including task info, its parent process instance and comments. No moduleId required.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"taskId": {
+					"type": "string",
+					"description": "The task ID."
+				}
+			},
+			"required": ["taskId"]
+		}
+	}
+}

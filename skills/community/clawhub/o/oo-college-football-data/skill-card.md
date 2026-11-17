@@ -1,42 +1,56 @@
-## Description: <br>
-CollegeFootballData helps agents query college football account, conference, game, team, and venue data through the OOMOL CollegeFootballData connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read CollegeFootballData information through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to inspect CollegeFootballData connector schemas and run college football data lookups for account information, conferences, games and results, teams, and venues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence marks the release verdict as suspicious and notes full-access helper behavior that deserves manual review before installation. <br>
-Mitigation: Install only if you trust the publisher, verify command targets before execution, and avoid full-access autoreview mode unless that authority is explicitly intended. <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected CollegeFootballData account. <br>
-Mitigation: Use the server-side credential flow, avoid exposing raw API keys, and run auth or connection setup only after a command fails for that reason. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve CollegeFootballData account information, conferences, games, teams, and venues through their connected OOMOL account.
 
-## Reference(s): <br>
-- [CollegeFootballData ClawHub Skill Page](https://clawhub.ai/oomol/oo-college-football-data) <br>
-- [CollegeFootballData Homepage](https://collegefootballdata.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector action responses are JSON objects containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: CLI setup can execute unverified installation code, and automatic skill installation or synchronization can make broader agent changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately using a verified release, and check and limit automatic skill installation and synchronization before use.
+
+Risk: Requests through the connected OOMOL account may incur charges.
+
+Mitigation: Check the connected account's terms and expected request costs before use.
+
+## Reference(s):
+
+- [CollegeFootballData](https://collegefootballdata.com/)
+- [CollegeFootballData API documentation](https://api.collegefootballdata.com/getting-started)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [CollegeFootballData skill on ClawHub](https://clawhub.ai/oomol/skills/oo-college-football-data)
+
+## Skill Output:
+
+**Output Type(s):** [API data, JSON, Text]
+
+**Output Format:** [Structured JSON responses from CollegeFootballData queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns data for the selected read action; available actions cover account information, conferences, games, teams, and venues.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

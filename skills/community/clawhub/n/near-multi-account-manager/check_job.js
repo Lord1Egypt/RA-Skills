@@ -6,7 +6,7 @@ const options = {
   path: '/v1/jobs/6b2a1efe-07bd-4e2b-b817-77f938209215',
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer sk_live_iOQS6NKYgLCf8sAcIsjeNpIvsN9ml7fK6CVrfIyPIVs'
+    'Authorization': 'Bearer REDACTED-SECRET'
   }
 };
 

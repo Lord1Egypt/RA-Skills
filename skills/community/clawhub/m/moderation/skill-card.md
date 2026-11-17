@@ -1,37 +1,52 @@
-## Description: <br>
-Moderation workflows, thresholds, and appeals. Use when handling UGC at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moderation workflows, thresholds, and appeals. Use when handling UGC at scale.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and teams use this skill to structure content moderation planning for UGC policy, severity thresholds, human review workflows, appeals, transparency, and operational follow-through.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Moderation workflow guidance may be mistaken for final legal, trust-and-safety, or policy approval for high-impact decisions.
+
+Mitigation: Treat the skill as advisory planning support and require legal, policy, and trust-and-safety review for consequential moderation changes.
+
+Risk: Poorly tuned moderation thresholds or appeals workflows can produce inconsistent decisions or user-impacting operational issues.
+
+Mitigation: Use measurable validation, human review checkpoints, monitoring, documentation, and rollback plans before broad rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external teams, and developers use this skill to plan content moderation workflows for user-generated content, including policy thresholds, human review, escalation, appeals, and operational follow-through. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Moderation recommendations may conflict with an organization's policies, legal obligations, escalation paths, or appeal processes. <br>
-Mitigation: Review recommendations against current policy, legal requirements, escalation criteria, and appeals procedures before applying them to real user content. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Advisory workflow guidance; no code execution or unusual access requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only workflow output; no code execution, hidden access, or persistence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

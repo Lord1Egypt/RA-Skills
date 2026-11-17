@@ -1,43 +1,55 @@
-## Description: <br>
-Analyzes local OpenClaw session logs to generate usage reports covering token consumption, cost estimates, model distribution, tool usage, errors, and activity trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Usage Stats analyzes local OpenClaw session records and generates a usage report covering token consumption, estimated cost, model distribution, tool usage, errors, and activity trends.
 
-## Publisher: <br>
-[qqq664590975-del](https://clawhub.ai/user/qqq664590975-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqq664590975-del](https://clawhub.ai/user/qqq664590975-del)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect their local main-agent usage history, understand costs and token consumption, identify frequent tools and errors, and compare trends over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local OpenClaw main-agent session logs, which may contain sensitive usage details, prompts, command output, or error text. <br>
-Mitigation: Install and run it only when local log analysis is intended, and review generated reports before sharing them. <br>
-Risk: The skill saves derived usage history and the latest Markdown report under ~/.qclaw/workspace/memory. <br>
-Mitigation: Delete usage_stats_latest.md and usage_stats_history.json if retained reports are no longer wanted. <br>
-Risk: Cost figures are estimates derived from recorded usage data and may differ from actual billing. <br>
-Mitigation: Use the report for local trend analysis and verify billing-sensitive conclusions against the provider bill. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to summarize their local main-agent session history into usage, cost, model, tool, error, and trend reports. It is most useful for local usage auditing and troubleshooting.
 
-## Reference(s): <br>
-- [Usage Stats changelog](references/changelog.md) <br>
-- [Usage Stats output format](references/output-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report with tabular sections plus JSON history snapshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the latest report and rolling history under ~/.qclaw/workspace/memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and references/changelog.md, released 2026-04-12) <br>
+Risk: The skill reads all local OpenClaw main-agent session history, which may contain sensitive conversations, command output, file paths, or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when an all-history report is intended; restrict or delete the generated report and history files after use.
+
+Risk: The skill saves ongoing usage summaries without date filters, explicit confirmation, or a no-persist mode.
+
+Mitigation: Review the generated files before sharing them and prefer a filtered or non-persistent variant for sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qqq664590975-del/skills/usage-stats)
+- [Changelog](references/changelog.md)
+- [Output Format](references/output-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown report with a JSON history snapshot]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes usage_stats_latest.md and retains up to 90 usage_stats_history.json snapshots.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and changelog, released 2026-04-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

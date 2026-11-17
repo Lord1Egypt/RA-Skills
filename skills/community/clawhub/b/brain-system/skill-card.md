@@ -1,41 +1,61 @@
-## Description: <br>
-人脑系统 is a brain-inspired operating protocol for agents that organizes attention, memory, task control, reflection, verification, and self-maintenance for longer-running collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+人脑系统 is an agent workflow skill for long-term memory, task continuity, context checkpoints, reflection, and local self-maintenance without claiming consciousness.
 
-## Publisher: <br>
-[xiaxia01-1](https://clawhub.ai/user/xiaxia01-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaxia01-1](https://clawhub.ai/user/xiaxia01-1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add structured long-term memory, context checkpoints, task queues, status dashboards, and post-task consolidation to an AI assistant. It is intended for sustained project work, repeated troubleshooting, preference learning, and self-maintenance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The memory, checkpoint, consolidation, dream, and backup flows can copy broad local memory or authority state into durable files. <br>
-Mitigation: Before running those flows, remove or redact authority.json and other sensitive files, and review generated state before sharing or retaining it. <br>
-Risk: The hot-reload watcher can run as long-lived automatic maintenance and generate additional checkpoint or consolidation state. <br>
-Mitigation: Enable the watcher only intentionally, avoid cron-style maintenance unless it is actively managed, and keep a clear stop and cleanup procedure. <br>
-Risk: The security scan verdict is suspicious because the skill can preserve local memory and self-maintenance state beyond the current interaction. <br>
-Mitigation: Install only when a local agent memory system is intended, and scan and review the skill before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add durable memory routines, task queues, checkpoints, recall, and post-task consolidation to long-running assistant workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with optional local script commands and generated state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read local memory, checkpoint, consolidation, backup, dashboard, and task-queue files when the operator runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release evidence) <br>
+Risk: Durable memory and backup scripts can duplicate private workspace state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where durable local memory is intended; review backup paths and prune sensitive files before running backup or consolidation scripts.
+
+Risk: Recall and checkpoint scripts can expose private memory, tool notes, or cross-skill authority state in agent output.
+
+Mitigation: Review scope before recall or checkpoint use and redact unrelated private state from generated notes.
+
+Risk: Watcher behavior can automatically trigger checkpoint and consolidation when watched files change.
+
+Mitigation: Run the watcher only when continuous local refresh is desired; disable or remove it in sensitive workspaces.
+
+Risk: Status and fullness scripts inspect local workspace state and use shell process checks.
+
+Mitigation: Review shell checks before use and run with the least necessary local permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaxia01-1/skills/brain-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local memory, checkpoint, queue, consolidation, and backup files under the agent workspace.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

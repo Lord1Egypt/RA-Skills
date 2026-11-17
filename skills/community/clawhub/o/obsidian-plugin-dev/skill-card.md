@@ -1,44 +1,57 @@
-## Description: <br>
-Create and develop Obsidian plugins from scratch, including scaffolding from the sample-plugin-plus template, manifest configuration, TypeScript development, settings UI, commands, ribbons, modals, and Obsidian API patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and develop Obsidian plugins from scratch. Use when building a new Obsidian plugin, scaffolding from the sample-plugin-plus template, or developing plugin features. Covers project setup, manifest configuration, TypeScript development, settings UI, commands, ribbons, modals, and Obsidian API patterns.
 
-## Publisher: <br>
-[davidvkimball](https://clawhub.ai/user/davidvkimball) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidvkimball](https://clawhub.ai/user/davidvkimball)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, configure, test, and release Obsidian plugins using TypeScript, Obsidian API patterns, and the sample-plugin-plus template. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example setup commands can create a public GitHub repository or run package scripts from an external template. <br>
-Mitigation: Confirm repository visibility, review the external template and package scripts, and run commands only after approval. <br>
-Risk: Generated or modified Obsidian plugins may affect vault contents through file API patterns. <br>
-Mitigation: Test generated plugins in a non-critical vault before enabling them in a production vault. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Settings UI Pattern](references/settings.md) <br>
-- [Common Obsidian Plugin Patterns](references/patterns.md) <br>
-- [Obsidian API Docs](https://docs.obsidian.md) <br>
-- [obsidian-sample-plugin-plus template](https://github.com/davidvkimball/obsidian-sample-plugin-plus) <br>
-- [Hot Reload plugin](https://github.com/pjeby/hot-reload) <br>
-- [Lucide icons](https://lucide.dev/icons/) <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold, configure, build, test, and release Obsidian plugins. It provides guidance for TypeScript plugin architecture, settings UI, commands, ribbon icons, modals, lifecycle events, file operations, and editor manipulation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces development instructions and code patterns; does not itself execute commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may direct an agent to use an unpinned third-party template repository and run setup commands from that checkout.
+
+Mitigation: Review the template repository, package scripts, lockfile, and setup scripts before execution; prefer a pinned commit or trusted fork in a constrained development environment.
+
+Risk: The skill includes steps that can create public GitHub repositories or publish releases.
+
+Mitigation: Require explicit user approval before GitHub repository creation, commits, pushes, release creation, or public publishing.
+
+## Reference(s):
+
+- [Settings UI Pattern](references/settings.md)
+- [Common Obsidian Plugin Patterns](references/patterns.md)
+- [obsidian-sample-plugin-plus template](https://github.com/davidvkimball/obsidian-sample-plugin-plus)
+- [Obsidian API Docs](https://docs.obsidian.md)
+- [Hot Reload plugin](https://github.com/pjeby/hot-reload)
+- [Lucide icons](https://lucide.dev/icons/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local development commands and release steps that require explicit user approval before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

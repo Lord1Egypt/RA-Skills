@@ -57,7 +57,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
   --org-id <org-id> \
   --pipeline-id <pipeline-id> \
   --deploy-order-id <deploy-order-id> \
-  --token <token> \
   --domain <domain>
 ```
 
@@ -65,8 +64,9 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
 - `--org-id`: Organization ID (required for central edition)
 - `--pipeline-id`: Pipeline ID
 - `--deploy-order-id`: Deployment order ID
-- `--token`: Personal access token (can also be provided via environment variable YUNXIAO_ACCESS_TOKEN; if the environment variable is set, this can be omitted)
 - `--domain`: Domain name (default: openapi-rdc.aliyuncs.com)
+
+Token is read from environment variable `YUNXIAO_ACCESS_TOKEN`.
 
 
 ### Step 2: Get Deployment Logs
@@ -78,8 +78,7 @@ python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
   --org-id 5ebbc0228123212b59xxxxx \
   --pipeline-id 123 \
   --deploy-order-id 1111 \
-  --machine-sn asssssssxsx \
-  --token pt-xxx
+  --machine-sn asssssssxsx
 ```
 
 ### Step 3: Analyze Based on Problem Description, Deployment Order Details, and Pipeline Run Status

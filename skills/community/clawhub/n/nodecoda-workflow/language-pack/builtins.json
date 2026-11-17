@@ -1,0 +1,149 @@
+{
+  "language": "nodecoda/1",
+  "pack_version": "1.0.0",
+  "generated_from": [
+    "references/language-reference.md",
+    "references/target-capabilities.md"
+  ],
+  "builtins": [
+    {
+      "name": "llm",
+      "kind": "function",
+      "signature": "llm(model: string, opts: map) -> { text: string }",
+      "target_node": "LLM",
+      "effects": [
+        "llm_call"
+      ],
+      "retry_supported": true,
+      "notes": "temperature/max_tokens 直传；opts.messages 的 content 必须为 string（先 extract_text）",
+      "output_fields": [
+        "text"
+      ]
+    },
+    {
+      "name": "extract",
+      "kind": "function",
+      "signature": "extract<T>(model, text, opts) -> { ok: bool, reason: string, value: T }",
+      "target_node": "Parameter Extractor",
+      "effects": [
+        "llm_call"
+      ],
+      "retry_supported": false,
+      "notes": "仅 prompt strategy；T 为具名非空 record；必须检查 .ok 后再用 .value；字段类型限 string/float/bool/string[]/float[]/bool[]",
+      "output_fields": [
+        "ok",
+        "reason",
+        "value"
+      ]
+    },
+    {
+      "name": "extract_text",
+      "kind": "function",
+      "signature": "extract_text(doc: file<document; .pdf,...>) -> { text: string }",
+      "target_node": "document-extractor",
+      "effects": [],
+      "retry_supported": false,
+      "notes": "file 类型必须声明可提取扩展名（如 file<document; .pdf>）；输出字段为 text",
+      "output_fields": [
+        "text"
+      ]
+    },
+    {
+      "name": "http",
+      "kind": "function",
+      "signature": "http(method: string, url: string, opts: map) -> response",
+      "target_node": "HTTP Request",
+      "effects": [
+        "network"
+      ],
+      "retry_supported": true,
+      "notes": "body/headers 全支持"
+    },
+    {
+      "name": "tool",
+      "kind": "function",
+      "signature": "tool(\"name\", \"action\", params: map) -> result",
+      "target_node": "Tool",
+      "effects": [
+        "tool_call"
+      ],
+      "retry_supported": false,
+      "notes": "工具需先在 Dify 配置"
+    },
+    {
+      "name": "knowledge",
+      "kind": "function",
+      "signature": "knowledge(\"ds-id\", query, opts) -> chunks",
+      "target_node": "Knowledge Retrieval",
+      "effects": [
+        "retrieval"
+      ],
+      "retry_supported": false,
+      "notes": "多 ds 用逗号分隔"
+    },
+    {
+      "name": "split",
+      "kind": "function",
+      "signature": "split(str: string, delimiter: string) -> string[]",
+      "target_node": "lowered loop",
+      "notes": "大数组慎用（显式循环节点）"
+    },
+    {
+      "name": "filter",
+      "kind": "function",
+      "signature": "filter(array, predicate: lambda) -> array",
+      "target_node": "lowered loop",
+      "notes": "大数组慎用"
+    },
+    {
+      "name": "take",
+      "kind": "function",
+      "signature": "take(array, n: int) -> array",
+      "target_node": "lowered loop",
+      "notes": "大数组慎用"
+    },
+    {
+      "name": "std.v1.rag_answer",
+      "kind": "stdlib",
+      "signature": "std.v1.rag_answer(...) -> answer",
+      "target_node": "RAG 复合节点",
+      "notes": "dataset-id 和 model 必须为字面量"
+    },
+    {
+      "name": "std.v1.fetch_and_summarize",
+      "kind": "stdlib",
+      "signature": "std.v1.fetch_and_summarize(...) -> answer",
+      "target_node": "HTTP + LLM 复合节点",
+      "notes": "参数必须为字面量"
+    }
+  ],
+  "operation_policies": [
+    {
+      "name": "retry",
+      "signature": "retry(max: int[, interval: duration])",
+      "applies_to": [
+        "llm",
+        "http",
+        "tool"
+      ],
+      "notes": "extract<T> 不支持(用则报 E1045);白名单见主仓 operation_registry.py"
+    },
+    {
+      "name": "timeout",
+      "signature": "timeout(duration)",
+      "applies_to": [
+        "http"
+      ],
+      "notes": "仅 http 支持;llm 拒绝(timeout 实证 2026-08-13 e2e: OPERATION_POLICY)"
+    },
+    {
+      "name": "default",
+      "signature": "default(expression)",
+      "applies_to": [
+        "llm",
+        "http"
+      ],
+      "notes": "attempt 组合冲突(default policy cannot be combined with an explicit failure branch);default 值须匹配响应契约(E1045)"
+    }
+  ]
+}

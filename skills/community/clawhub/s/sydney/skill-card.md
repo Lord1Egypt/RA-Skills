@@ -1,42 +1,63 @@
-## Description: <br>
-Navigate Sydney as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, beaches, transport, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Sydney as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, beaches, transport, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to answer practical questions about visiting, moving to, working in, studying in, or starting a business in Sydney. It provides city guidance across neighborhoods, beaches, transport, costs, visas, healthcare, education, food, safety, and local customs. <br>
-
-### Deployment Geography for Use: <br>
-Global use; content is focused on Sydney, New South Wales, Australia. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Some guidance covers high-stakes areas such as prices, healthcare triage, visa rules, employment law, tax, and business compliance. <br>
-Mitigation: Treat these details as starting points and verify them with official Australian or NSW sources before making decisions. <br>
-Risk: Neighborhood recommendations may include biased wording or frame areas by protected characteristics. <br>
-Mitigation: Review neighborhood guidance for fairness and avoid relying on protected-characteristic framing when making housing, travel, or relocation decisions. <br>
-Risk: City facts such as costs, transport rules, fees, and local requirements can change over time. <br>
-Mitigation: Check current official or primary sources before acting on time-sensitive guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Sydney skill page](https://clawhub.ai/ivangdavila/sydney) <br>
-- [Skill homepage](https://clawic.com/skills/sydney) <br>
+## Use Case:
 
+External users and agents use this skill to answer Sydney travel, relocation, work, study, and business-planning questions with static local reference material.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text city guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tools, credentials, or install-time binaries are required by the skill evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The guide contains visa, pricing, transport, legal, healthcare, housing, and market figures that are dated February 2026 and may become stale.
+
+Mitigation: Verify consequential decisions against official or current sources before acting on the guidance.
+
+Risk: Neighborhood advice can overgeneralize local conditions or demographic patterns.
+
+Mitigation: Use concrete factors such as commute, budget, amenities, schools, and safety when comparing areas.
+
+## Reference(s):
+
+- [ClawHub Sydney skill page](https://clawhub.ai/ivangdavila/skills/sydney)
+- [Sydney skill homepage](https://clawic.com/skills/sydney)
+- [Skill overview and routing](artifact/SKILL.md)
+- [Cost of living guide](artifact/cost.md)
+- [Visa guide](artifact/visas.md)
+- [Transport guide](artifact/transport.md)
+- [Safety guide](artifact/safety.md)
+- [Healthcare guide](artifact/healthcare.md)
+- [Neighborhood comparison](artifact/neighborhoods-index.md)
+- [Business Registration Service](https://register.business.gov.au)
+- [ASIC Connect](https://connectonline.asic.gov.au/RegistrySearch)
+- [NSW School Finder](https://schoolfinder.education.nsw.gov.au/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and short-form text answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no shell commands, tools, credential access, persistence, or install-time behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,304 @@
+# Vibe Audit Configuration Template
+# Copy this to .vibe-audit.yaml or .vibe-audit.json in your project root
+
+# Version
+version: "1.0"
+
+# Audit Configuration
+audit:
+  # Primary LLM provider (preferred)
+  # Options: agent_llm, openai, claude, ollama, deepseek, qwen
+  primary_provider: agent_llm
+  
+  # Fallback provider if primary fails
+  fallback_provider: openai_compatible
+  
+  # Cache settings
+  cache_enabled: true
+  cache_dir: .vibe-audit-cache
+  cache_expire_days: 7
+  
+  # Performance settings
+  parallel_workers: 4
+  max_file_size: 1048576  # 1MB
+  
+  # Severity threshold for reporting
+  severity_threshold: low  # critical, high, medium, low, info
+
+# LLM Provider Configuration
+providers:
+  # Agent LLM (uses current agent's connection)
+  agent_llm:
+    enabled: true
+    # Auto-detected based on environment
+  
+  # OpenAI / OpenAI-compatible APIs
+  openai_compatible:
+    enabled: true
+    # Supports: OpenAI, DeepSeek, Qwen, local models, etc.
+    base_url: "${OPENAI_API_BASE:-https://api.openai.com/v1}"
+    api_key: "${OPENAI_API_KEY}"
+    model: "${OPENAI_MODEL:-gpt-4}"
+    
+  # DeepSeek (via OpenAI-compatible API)
+  deepseek:
+    enabled: false
+    base_url: "https://api.deepseek.com/v1"
+    api_key: "${DEEPSEEK_API_KEY}"
+    model: "deepseek-chat"
+    
+  # Qwen / Tongyi Qianwen (via OpenAI-compatible API)
+  qwen:
+    enabled: false
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    api_key: "${DASHSCOPE_API_KEY}"
+    model: "qwen-turbo"
+    
+  # Claude / Anthropic
+  claude:
+    enabled: false
+    api_key: "${ANTHROPIC_API_KEY}"
+    model: "claude-3-sonnet-20240229"
+    
+  # Ollama (local models)
+  ollama:
+    enabled: false
+    base_url: "http://localhost:11434"
+    model: "llama2"
+
+# File Scanning Configuration
+scan:
+  # Files to include
+  include:
+    - "**/*.py"
+    - "**/*.js"
+    - "**/*.ts"
+    - "**/*.jsx"
+    - "**/*.tsx"
+    - "**/*.java"
+    - "**/*.go"
+    - "**/*.rs"
+    - "**/*.php"
+    - "**/*.rb"
+    - "**/*.c"
+    - "**/*.cpp"
+    - "**/*.h"
+    - "**/*.cs"
+    - "**/*.swift"
+    - "**/*.kt"
+    - "**/*.scala"
+  
+  # Directories/files to exclude
+  exclude:
+    - "**/node_modules/**"
+    - "**/venv/**"
+    - "**/.venv/**"
+    - "**/env/**"
+    - "**/.git/**"
+    - "**/.svn/**"
+    - "**/.hg/**"
+    - "**/dist/**"
+    - "**/build/**"
+    - "**/target/**"
+    - "**/__pycache__/**"
+    - "**/*.pyc"
+    - "**/*.pyo"
+    - "**/*.exe"
+    - "**/*.dll"
+    - "**/*.so"
+    - "**/*.dylib"
+    - "**/.DS_Store"
+    - "**/Thumbs.db"
+
+# Security Check Configuration
+security:
+  # Secrets and credentials
+  secrets_check: true
+  custom_secret_patterns: {}
+  
+  # Personal data
+  personal_data_check: true
+  
+  # File paths
+  file_path_check: true
+  
+  # Security vulnerabilities
+  vulnerability_check: true
+  languages:
+    - python
+    - javascript
+    - typescript
+    - java
+    - go
+    - php
+    - ruby
+
+# Dependency Scanning
+dependency:
+  enabled: true
+  
+  # Check for known vulnerabilities
+  check_vulnerabilities: true
+  
+  # Check for outdated dependencies
+  check_outdated: true
+  
+  # Check for license issues
+  check_licenses: true
+  
+  # Package managers to scan
+  package_managers:
+    - npm      # package.json, package-lock.json, yarn.lock
+    - pip      # requirements.txt, Pipfile, poetry.lock
+    - maven    # pom.xml
+    - gradle   # build.gradle
+    - cargo    # Cargo.toml
+    - go       # go.mod
+
+# Configuration File Security Check
+config:
+  enabled: true
+  
+  # Check for exposed .env files
+  check_env_files: true
+  
+  # Check CORS configuration
+  check_cors: true
+  
+  # Check authentication configuration
+  check_auth: true
+  
+  # Check encryption configuration
+  check_encryption: true
+  
+  # Check for debug mode enabled
+  check_debug_mode: true
+
+# Custom Rules
+rules:
+  enabled: true
+  
+  # Rule sets to apply
+  rulesets:
+    - owasp_top_10
+    - cwe_top_25
+    - sans_top_25
+  
+  # Custom rules file
+  custom_rules_file: null  # Path to custom-rules.yaml
+  
+  # Severity thresholds
+  fail_on_severity: high  # critical, high, medium, low
+  
+  # Enable all security rules
+  enable_all: true
+
+# Compliance Checks
+compliance:
+  enabled: false
+  
+  # Compliance standards to check
+  standards:
+    - owasp
+    - pci_dss
+    - gdpr
+    - hipaa
+    - soc2
+
+# Output Configuration
+output:
+  # Output formats
+  formats:
+    - json
+    - markdown
+  
+  # Save reports to file
+  save_to_file: true
+  output_dir: ./audit-reports
+  
+  # Include detailed findings
+  detailed_findings: true
+  
+  # Include fix suggestions
+  fix_suggestions: true
+
+# CI/CD Integration
+ci:
+  enabled: false
+  
+  # Fail build if issues found
+  fail_on_issues: true
+  
+  # Minimum severity to fail
+  fail_on_severity: high
+  
+  # Output format for CI tools
+  report_format: junit  # junit, sarif, github
+  
+  # Post results as PR comment (for GitHub Actions)
+  post_pr_comment: true
+
+# Incremental Audit
+incremental:
+  enabled: false
+  
+  # Git integration
+  git_integration: true
+  
+  # Base branch for comparison
+  base_branch: main
+  
+  # Only audit changed files
+  audit_changed_only: true
+
+# Diff Audit
+diff:
+  enabled: false
+  
+  # Compare between commits
+  base_commit: null
+  head_commit: HEAD
+
+# History and Trends
+history:
+  enabled: true
+  
+  # Maximum number of historical records
+  max_records: 100
+  
+  # Track risk score trends
+  track_trends: true
+  
+  # History storage
+  storage_dir: .vibe-audit-history
+
+# Notifications
+notifications:
+  enabled: false
+  
+  # Webhook URL
+  webhook_url: null
+  
+  # Email notifications
+  email:
+    enabled: false
+    recipients: []
+    
+  # Slack notifications
+  slack:
+    enabled: false
+    webhook_url: null
+
+# Advanced Settings
+advanced:
+  # Enable verbose logging
+  verbose: false
+  
+  # Timeout for LLM API calls (seconds)
+  api_timeout: 120
+  
+  # Maximum retries for failed API calls
+  max_retries: 3
+  
+  # Enable experimental features
+  experimental: false

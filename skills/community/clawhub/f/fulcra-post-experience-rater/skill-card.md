@@ -1,42 +1,58 @@
-## Description: <br>
-Captures quick ratings after restaurants, hotels, trips, events, or meetings and stores them in Fulcra as structured annotations for a personal taste graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures quick post-experience ratings for restaurants, hotels, trips, events, or meetings and stores them as Fulcra annotations for a personal preference graph.
 
-## Publisher: <br>
-[keng009](https://clawhub.ai/user/keng009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keng009](https://clawhub.ai/user/keng009)
 
-## Use Case: <br>
-External users and personal-agent operators use this skill to capture low-friction post-experience feedback, including scores, return intent, notes, companions, and tags. The skill writes the resulting rating to Fulcra as a Post-Experience Rating annotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes bundled helpers beyond the rating workflow, including CRM, health/calendar read, and deletion/admin capabilities. <br>
-Mitigation: Review the installed files before use and prefer a narrowed package that keeps only post_experience.py and the minimal Fulcra write helper. <br>
-Risk: Saved ratings can include sensitive personal context such as companions, locations, and experience notes. <br>
-Mitigation: Use --dry-run or explicit confirmation before saving sensitive ratings, and avoid surfacing ratings in public or group contexts. <br>
-Risk: Bundled helpers can reach Fulcra or Attio environments when credentials are available. <br>
-Mitigation: Install only in environments where Fulcra and any Attio access are intended, remove unrelated Attio/delete/admin helpers when not needed, and pin API hosts. <br>
+## Use Case:
 
+External users and personal-agent operators use this skill to capture a fast, low-friction rating after an experience and save structured notes, scores, tags, and companions into Fulcra.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keng009/skills/fulcra-post-experience-rater) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Conversational guidance with JSON payloads and a shell command for saving ratings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode before writing a Fulcra moment annotation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release ships broader credentialed Fulcra and CRM utilities than the quick rating workflow requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a trusted agent environment, and remove or isolate unused Attio, health/calendar, historical-read, update, and delete utilities when only rating capture is needed.
+
+Risk: Credentialed API endpoint overrides could redirect requests away from expected Fulcra or Attio services.
+
+Mitigation: Keep default API base settings, avoid custom API base environment variables, and pin the Fulcra CLI version used by the runtime.
+
+Risk: Ratings, companions, and free-text notes can contain sensitive personal preference and relationship data.
+
+Mitigation: Keep outputs private, avoid using the skill in public or group contexts, and use dry-run review when the user has not clearly confirmed what should be stored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keng009/skills/fulcra-post-experience-rater)
+- [Publisher profile](https://clawhub.ai/user/keng009)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a Fulcra Post-Experience Rating annotation after user confirmation; supports dry-run previews through the bundled save command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-비라틴 문자(한글, 일본어, 중국어 등)를 AI 이미지에 정확히 렌더링하는 스킬. Canvas 프리렌더링과 Gemini를 활용하여 텍스트 깨짐 없이 이미지를 생성합니다. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with accurately rendered Korean and other non-Latin text by prerendering text with Canvas and using Gemini for prompt analysis and image generation.
 
-## Publisher: <br>
-[wonyoung-Huh](https://clawhub.ai/user/wonyoung-Huh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wonyoung-huh](https://clawhub.ai/user/wonyoung-huh)
 
-## Use Case: <br>
-Developers, agents, and content creators use this skill to generate images that include Korean and other non-Latin text by pre-rendering text with Canvas and passing it into Gemini image generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images may be sent to Google's Gemini service. <br>
-Mitigation: Avoid sensitive text or reference images unless you intend to upload them to Gemini. <br>
-Risk: Setup installs npm dependencies and may download font files. <br>
-Mitigation: Review the dependency installation and font download behavior before running setup in controlled environments. <br>
-Risk: The skill requires access to a Gemini API key for the full analyze and generate workflow. <br>
-Mitigation: Use a limited Gemini API key scoped for this workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wonyoung-Huh/nano-banana-korean-rendering) <br>
-- [Publisher Profile](https://clawhub.ai/user/wonyoung-Huh) <br>
+## Use Case:
 
+Developers and image-generation users use this skill to create posters, banners, logos, and other generated images that need legible Korean, Japanese, Chinese, Thai, Arabic, Devanagari, Cyrillic, or other non-Latin text. It detects text that needs prerendering, extracts the intended text and style, renders a PNG with local fonts, and can send the rendered text image to Gemini for final image generation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI commands emit JSON status and PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY for Gemini analysis and image generation; setup may install npm dependencies and download font files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, rendered text images, and user-provided reference images may be sent to Google Gemini during analysis or final image generation.
+
+Mitigation: Use the skill only with content approved for Gemini processing, avoid unnecessary sensitive reference images, and configure GEMINI_API_KEY in an environment intended for this workflow.
+
+Risk: Setup installs npm dependencies and may download font files from external sources, which can affect reproducibility and supply-chain review.
+
+Mitigation: Run setup in a minimal environment without unrelated secrets, and review or pin dependencies and downloaded fonts when reproducible builds are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wonyoung-huh/skills/nano-banana-korean-rendering)
+- [ClawHub publisher profile](https://clawhub.ai/user/wonyoung-huh)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, image files, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON command responses, and PNG image outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js dependencies, local font assets, and GEMINI_API_KEY for Gemini-backed analysis and image generation; render-only mode can produce a prerendered PNG without final Gemini image generation.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact package.json: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

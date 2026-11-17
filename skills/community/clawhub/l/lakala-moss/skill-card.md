@@ -1,45 +1,56 @@
-## Description: <br>
-拉卡拉MOSS统一接口功能演示，创建测试订单并生成演示链接，用于流程体验与功能验证。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+拉卡拉MOSS统一接口功能演示，创建测试订单并生成演示链接，用于流程体验与功能验证。
 
-## Publisher: <br>
-[mars9043](https://clawhub.ai/user/mars9043) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars9043](https://clawhub.ai/user/mars9043)
 
-## Use Case: <br>
-Developers and integrators use this skill to exercise a Lakala MOSS test order flow, create non-production payment-style orders, and inspect the returned demo link and order details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates payment-style orders through an external API endpoint. <br>
-Mitigation: Use only the disclosed non-production test flow and test order data; do not use real merchant credentials, real customer information, or real payment scenarios. <br>
-Risk: A callback URL may receive transaction test callbacks. <br>
-Mitigation: Provide only callback URLs you control and expect to receive Lakala MOSS test callbacks. <br>
-Risk: Generated links may be mistaken for production payment links. <br>
-Mitigation: Treat returned links and order details as demonstration artifacts with no real payment effect. <br>
+## Use Case:
 
+Developers and payment-integration testers use this skill to create Lakala MOSS test orders and inspect returned demo payment links and order details during API flow validation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mars9043/lakala-moss) <br>
-- [mars9043 Publisher Profile](https://clawhub.ai/user/mars9043) <br>
-- [拉卡拉MOSS支付API指南](references/moss-api-guide.md) <br>
-- [Lakala MOSS unified order API](https://moss.lakala.com/ord-api/unified/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python usage examples, shell commands, and JSON-like API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates test orders through an external Lakala MOSS API and reports success, error details, order metadata, and a demo payment link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata) <br>
+Risk: The script sends order number, amount, subject, remark, and callback URL to Lakala's external MOSS endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only test order data and non-sensitive callback URLs unless the endpoint, merchant, and data-handling expectations have been independently approved.
+
+Risk: The release describes the skill as test-only, but sandbox-only behavior and no-real-payment guarantees are not enforced in code.
+
+Mitigation: Treat generated links as potentially payment-capable, confirm the merchant and endpoint are sandbox-only, and add sandbox enforcement and confirmation prompts before using production amounts or real merchant data.
+
+## Reference(s):
+
+- [拉卡拉MOSS支付API指南](references/moss-api-guide.md)
+- [Lakala MOSS unified API endpoint](https://moss.lakala.com/ord-api/unified/v3)
+- [ClawHub skill page](https://clawhub.ai/mars9043/skills/lakala-moss)
+- [Publisher profile](https://clawhub.ai/user/mars9043)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated demo payment links, order numbers, amounts, service serial numbers, and full API responses.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

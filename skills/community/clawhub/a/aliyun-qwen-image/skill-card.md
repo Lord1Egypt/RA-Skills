@@ -1,43 +1,63 @@
-## Description: <br>
-Qwen Image helps an agent use Aliyun DashScope/Model Studio models for text-to-image generation, image editing, and mixed text/image Wan 2.6 workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qwen Image helps agents call Alibaba Cloud DashScope/Model Studio Qwen Image and Wanxiang 2.6 models for text-to-image generation, image editing, and interleaved text-image output.
 
-## Publisher: <br>
-[awsl1110](https://clawhub.ai/user/awsl1110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awsl1110](https://clawhub.ai/user/awsl1110)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate images, edit images, and produce mixed text/image outputs through Aliyun DashScope or Model Studio. It provides command examples, region selection guidance, dependency setup, and a bundled CLI script for the agent to run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and input images to external Aliyun DashScope or Model Studio APIs. <br>
-Mitigation: Only submit prompts and images that are appropriate to share with the external provider, and confirm the intended region before running commands. <br>
-Risk: The skill requires a DASHSCOPE_API_KEY and can also accept an API key as a command-line argument. <br>
-Mitigation: Use a scoped key, prefer environment variables over command-line arguments, and avoid printing the full key in shared logs. <br>
-Risk: Generated images and Wan 2.6 text outputs are saved to the selected local output directory. <br>
-Mitigation: Review the output directory and generated files before reusing, publishing, or committing them. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or edit images through Alibaba Cloud DashScope/Model Studio models and to prepare the required shell commands, parameters, and environment setup. It is most useful for workflows involving qwen-image, wan2.6-image, or wan2.6-t2i model access.
 
-## Reference(s): <br>
-- [Aliyun Model Studio text-to-image documentation](https://help.aliyun.com/zh/model-studio/text-to-image) <br>
-- [PEP 723 inline script metadata](https://peps.python.org/pep-0723/) <br>
+### Deployment Geography for Use:
 
+Global, subject to DashScope/Model Studio regional endpoint and model availability.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the bundled CLI writes image files and optional text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and either uv or pip with Python 3.9 or newer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: Setup guidance can expose the DashScope API key if users print the environment variable value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a presence-only environment check and never display, log, or paste the API key into shared output.
+
+Risk: Fallback installation guidance can alter system Python packages.
+
+Mitigation: Run the skill through uv or an isolated virtual environment and avoid --break-system-packages.
+
+Risk: Prompts and source images are sent to Alibaba Cloud DashScope endpoints.
+
+Mitigation: Submit only prompts and images that are approved for processing by that external service.
+
+Risk: Unpinned or loosely pinned Python dependencies can change behavior over time.
+
+Mitigation: Pin dependency versions where operational reproducibility or review requirements apply.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio text-to-image documentation](https://help.aliyun.com/zh/model-studio/text-to-image)
+- [PEP 723 inline script metadata](https://peps.python.org/pep-0723/)
+- [ClawHub Qwen Image skill page](https://clawhub.ai/awsl1110/skills/aliyun-qwen-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; script execution saves generated image files and, for interleaved Wanxiang output, optional text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and uv or pip; supports cn, intl, and us region flags with model-specific availability limits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

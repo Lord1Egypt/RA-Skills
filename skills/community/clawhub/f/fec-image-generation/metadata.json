@@ -14,7 +14,7 @@
     "autofix"
   ],
   "summary": "Image and diagram generation workflow for deterministic diagrams, themed HTML/SVG technical diagrams, raster visual assets, image edits, and bounded PNG QA repair loops.",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -55,12 +55,23 @@
   "source": "skills/fec-image-generation",
   "references": [
     "assets/interactive-diagram.html",
+    "assets/quality-examples/README.md",
+    "assets/quality-examples/architecture.json",
+    "assets/quality-examples/invalid-explicit.json",
+    "assets/quality-examples/sequence.json",
+    "assets/quality-examples/sequence.mmd",
+    "assets/quality-examples/workflow.json",
+    "assets/quality-examples/workflow.mmd",
     "references/artifact-routing.md",
     "references/diagram-workflows.md",
     "references/html-technical-diagrams.md",
     "references/png-qa-autofix.md",
+    "scripts/diagram-browser.mjs",
+    "scripts/diagram-layout.mjs",
     "scripts/export-diagram.mjs",
     "scripts/interactive-diagram-server.mjs",
+    "scripts/mermaid-render.mjs",
+    "scripts/png-qa.mjs",
     "scripts/tech-diagram-render.mjs"
   ],
   "relations": {

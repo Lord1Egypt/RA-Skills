@@ -1,43 +1,58 @@
-## Description: <br>
-Web search API for AI agents that returns search result titles, URLs, snippets, and positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search API for AI agents. Get search results with titles and snippets.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-Developers and AI agent builders use this skill to add web search through the GetPost API, including signup, authentication, and search request examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and returned results are sent through a third-party web search API. <br>
-Mitigation: Avoid confidential searches unless the provider is trusted and approved for the intended data. <br>
-Risk: API keys may be exposed through shared logs, transcripts, or command history. <br>
-Mitigation: Store the GetPost API key outside shared outputs and redact bearer tokens before sharing logs. <br>
-Risk: Each search consumes credits, which can create unexpected usage costs. <br>
-Mitigation: Monitor credit usage and constrain automated search volume. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add web search through the GetPost API and retrieve result titles, URLs, and snippets for agent workflows.
 
-## Reference(s): <br>
-- [GetPost API Search Documentation](https://getpost.dev/docs/api-reference#search) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dommholland/getpost-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search requests require a GetPost API key; each search consumes credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Signup details and search queries are sent to getpost.dev.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive signup details and avoid submitting secrets or private data in search queries.
+
+Risk: The skill requires a bearer API key for GetPost requests.
+
+Mitigation: Store the API key securely and avoid exposing it in prompts, logs, shared files, or public transcripts.
+
+Risk: Searches consume credits.
+
+Mitigation: Set usage expectations before enabling the skill and monitor query volume.
+
+## Reference(s):
+
+- [GetPost Search API documentation](https://getpost.dev/docs/api-reference#search)
+- [ClawHub skill page](https://clawhub.ai/dommholland/skills/getpost-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses include position, title, URL, and snippet; each search costs 3 credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

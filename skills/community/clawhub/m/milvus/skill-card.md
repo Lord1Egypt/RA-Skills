@@ -1,45 +1,59 @@
-## Description: <br>
-Operate Milvus vector database with pymilvus - collections, vector search, hybrid search, indexes, RBAC, partitions, and more via Python code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Milvus vector databases with pymilvus for collections, vector search, hybrid search, indexes, RBAC, partitions, and related Python workflows.
 
-## Publisher: <br>
-[Lumina2025](https://clawhub.ai/user/Lumina2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lumina2025](https://clawhub.ai/user/lumina2025)
 
-## Use Case: <br>
-Developers and engineers use this skill to work with Milvus vector databases through pymilvus for collection design, vector CRUD, similarity and hybrid search, indexing, partitions, databases, RBAC, RAG pipelines, semantic search, and recommendation systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Milvus credentials or broad privileges could allow unintended database access or administrative actions. <br>
-Mitigation: Use least-privilege Milvus credentials and avoid default admin credentials in production. <br>
-Risk: Delete, drop, and RBAC operations can remove data or change access controls. <br>
-Mitigation: Confirm destructive and permission-changing actions before execution. <br>
-Risk: Vector collections may store sensitive or untrusted content. <br>
-Mitigation: Review data sensitivity before ingestion and avoid storing content that should not be persisted or searched. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Milvus vector databases from Python, including connection setup, schema and collection management, vector CRUD, similarity and hybrid search, indexing, partitions, databases, and RBAC tasks.
 
-## Reference(s): <br>
-- [pymilvus GitHub Repository](https://github.com/milvus-io/pymilvus) <br>
-- [Milvus](https://milvus.io/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Lumina2025/milvus) <br>
-- [Publisher Profile](https://clawhub.ai/user/Lumina2025) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+, pymilvus, and a Milvus URI or local Milvus Lite database path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide destructive Milvus operations such as drop, delete, and RBAC changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and confirm destructive database or access-control changes before allowing them to run.
+
+Risk: The examples include a default root:Milvus credential for local or standalone Milvus connections.
+
+Mitigation: Replace default credentials with hardened secrets before using the skill against non-development systems.
+
+Risk: Installing pymilvus adds a Python dependency to the agent environment.
+
+Mitigation: Install only in approved environments and pin or lock the dependency when possible.
+
+## Reference(s):
+
+- [ClawHub Milvus Skill Page](https://clawhub.ai/lumina2025/skills/milvus)
+- [pymilvus Project Homepage](https://github.com/milvus-io/pymilvus)
+- [Milvus Website](https://milvus.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database operation examples and cautions for destructive Milvus actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,64 @@
-## Description: <br>
-Generates HTML, CSS, and JavaScript front-end pages from user requirements, saves them locally, previews them in a browser, and uses bundled design-learning resources to improve generated pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates static front-end web pages from user requests, saves HTML/CSS/JS project files, opens local previews, and uses bundled design learning notes to guide page quality.
 
-## Publisher: <br>
-[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz)
 
-## Use Case: <br>
-Developers and creators use this skill to generate, preview, modify, rename, delete, and inspect static website projects. It is intended for local front-end prototyping and design-oriented page generation using bundled layout, color, animation, component, and typography guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project deletion can remove local website folders irreversibly. <br>
-Mitigation: Require explicit user confirmation and review the exact project path before deleting or renaming generated folders. <br>
-Risk: The included checkout demo asks for payment-card details while making an unsupported encryption claim. <br>
-Mitigation: Use only test data in checkout demos and do not enter real payment-card information. <br>
-Risk: Generated local HTML and JavaScript may contain incorrect, unsafe, or misleading behavior. <br>
-Mitigation: Review generated source files before opening or sharing them, especially when scripts, forms, or external references are included. <br>
+## Use Case:
 
+Developers, designers, and content creators use this skill to generate static website prototypes, landing pages, forms, portfolio pages, and small interactive pages from natural-language requirements. It also supports local project management tasks such as listing, opening, modifying, renaming, and deleting generated website folders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uwvwko-zzz/uwvwko-web-front) <br>
-- [Dribbble](https://dribbble.com) <br>
-- [Awwwards](https://www.awwwards.com) <br>
-- [CodePen](https://codepen.io) <br>
-- [CSS-Tricks](https://css-tricks.com) <br>
-- [Tailwind UI](https://tailwindui.com) <br>
-- [Stripe](https://stripe.com) <br>
-- [Apple](https://apple.com) <br>
-- [Vercel](https://vercel.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local static website files and browser-preview commands; may update bundled learning notes when improving design guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Delete and rename workflows could remove or move unintended files if project names or paths are unsafe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a disposable or well-contained website directory, validate simple project names, and review exact paths before delete or rename operations.
+
+Risk: Generated checkout examples may look like production payment flows without providing production-grade payment handling.
+
+Mitigation: Treat included checkout pages as front-end prototypes and add separately reviewed payment integration before any real transaction use.
+
+Risk: Generated front-end code can contain incorrect layout, accessibility, browser compatibility, or interaction behavior.
+
+Mitigation: Review generated HTML/CSS/JavaScript, test responsive behavior and accessibility, and scan files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uwvwko-zzz/skills/uwvwko-web-front)
+- [Design patterns learning notes](learning/design-patterns.md)
+- [Advanced CSS techniques learning notes](learning/advanced-techniques.md)
+- [Components learning notes](learning/components.md)
+- [Typography learning notes](learning/typography.md)
+- [CSS-Tricks](https://css-tricks.com)
+- [Tailwind UI](https://tailwindui.com)
+- [CodePen](https://codepen.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local static website files under html/<project>/ and may provide OS-specific browser preview commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

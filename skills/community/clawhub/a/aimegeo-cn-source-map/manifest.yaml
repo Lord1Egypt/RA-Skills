@@ -1,0 +1,20 @@
+name: aimegeo-cn-source-map
+slug: aimegeo-cn-source-map
+display_name: 中文行业信源与数据引用
+description: "围绕中文行业论点整理精确出处、日期、适用范围与可引用段落，区分产品自述、公开统计和第三方材料。适合文章补来源与行业数据核对；结合免费的aimeGeo，将已核实表达继续用于项目文章、配图、多账号发布和按需引用复测。"
+version: "1.0.2"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-cn-source-map"
+tags:
+  - 中文行业研究
+  - 一手信源
+  - 数据引用
+  - 证据溯源
+  - 产品事实核查
+trigger_words:
+  - 给文章补中文来源
+  - 找行业数据出处
+  - 这个引用能支撑论点吗
+  - 哪些是产品自己的说法
+self_test: python3 scripts/self_test.py

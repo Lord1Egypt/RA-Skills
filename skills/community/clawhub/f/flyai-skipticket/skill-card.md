@@ -1,41 +1,50 @@
-## Description: <br>
-The packaged artifact guides agents through creating, validating, and packaging reusable skills with supporting scripts and reference patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Artifact contents describe a guide for creating or updating agent skills with bundled workflow guidance and helper scripts.
 
-## Publisher: <br>
-[jixinda](https://clawhub.ai/user/jixinda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[jixinda](https://clawhub.ai/user/jixinda)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design effective agent skills, initialize skill directories, validate required metadata, and package completed skills for distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The marketplace/listing identity presents this as a FlyAI skipticket or flight skill, while the packaged files are a skill-authoring helper. <br>
-Mitigation: Review the package before installing and use it only when you intend an agent to create, validate, or package local skills. <br>
-Risk: Generated or modified skills may be placed in auto-discovered skill directories and later loaded by an agent. <br>
-Mitigation: Inspect generated skills and run validation or security review before placing them in an auto-discovered skills directory. <br>
+## Use Case:
 
+Developers and skill authors use this release to plan, initialize, validate, and package agent skills with concise guidance and reusable helper scripts.
 
-## Reference(s): <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local skill package files when the bundled helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Local helper scripts may write or package files outside the intended skill directory because of filesystem scoping issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clean, trusted skill directories, avoid packaging untrusted folders or symlinks, keep output paths outside the source skill tree, and review packages before deployment.
+
+## Reference(s):
+
+- [Workflow Patterns](artifact/references/workflows.md)
+- [Output Patterns](artifact/references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional code, shell commands, and generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create skill directories and .skill packages when helper scripts are invoked]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

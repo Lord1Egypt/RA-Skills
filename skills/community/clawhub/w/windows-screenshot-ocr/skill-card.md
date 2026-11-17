@@ -1,43 +1,57 @@
-## Description: <br>
-Windows full-screen screenshot capture with automatic mouse-position marking and native OCR text recognition, running locally without network access or API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures full-screen Windows screenshots with a mouse-position marker and runs local OCR through the Windows native OCR engine.
 
-## Publisher: <br>
-[a770438678](https://clawhub.ai/user/a770438678) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a770438678](https://clawhub.ai/user/a770438678)
 
-## Use Case: <br>
-Developers and automation users use this skill on Windows 10 or 11 to capture the current screen, mark the mouse position, and extract text from images with the Windows OCR engine. It is useful for local screen analysis and OCR workflows where screenshots and recognized text should remain on disk instead of being uploaded to an external service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The screenshot script captures the full screen and may save sensitive visible content to disk. <br>
-Mitigation: Close or hide sensitive windows before use, review the fixed output folder, and delete screenshots that should not be retained. <br>
-Risk: OCR results may contain sensitive text extracted from local images. <br>
-Mitigation: Review and delete generated OCR text files when they are no longer needed. <br>
-Risk: The scripts use fixed Windows paths for screenshot and OCR outputs. <br>
-Mitigation: Confirm or edit the configured output paths before running the scripts. <br>
+## Use Case:
 
+Developers and automation users use this skill to capture Windows screen state, mark the cursor location, and extract text from screenshots without sending data to an external OCR service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/a770438678/windows-screenshot-ocr) <br>
-- [Publisher Profile](https://clawhub.ai/user/a770438678) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime scripts write PNG screenshots and TXT OCR results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshots and OCR output are saved to a fixed local Windows folder unless the user edits the scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Full-screen capture can save visible passwords, tokens, private messages, or confidential documents to disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only when sensitive content is hidden, store captures in an appropriate folder, and delete screenshots and OCR output when no longer needed.
+
+Risk: The scripts use a fixed Windows output path and a hard-coded OCR input path.
+
+Mitigation: Review and change the paths before execution so files are saved and read from the intended location.
+
+Risk: Unpinned Python dependencies may resolve to unexpected package versions.
+
+Mitigation: Install in a non-admin virtual environment and pin dependency versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a770438678/skills/windows-screenshot-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local PNG screenshots and UTF-8 OCR text files on Windows; no network upload behavior was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

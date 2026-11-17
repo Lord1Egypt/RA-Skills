@@ -1,41 +1,51 @@
-## Description: <br>
-Identify and reduce AWS data transfer costs across inter-region, cross-AZ, internet egress, and NAT Gateway traffic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and reduce AWS data transfer costs across inter-region, cross-AZ, and NAT Gateway charges.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Developers, cloud engineers, and FinOps teams use this skill to analyze AWS data transfer spend, identify costly traffic patterns, estimate savings, and produce Terraform configuration for recommended VPC Endpoint changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS billing, flow-log, and architecture data may contain sensitive operational details. <br>
-Mitigation: Provide only the billing, flow-log, and architecture data needed for the cost analysis. <br>
-Risk: Generated Terraform can change network routing or service access if applied without review. <br>
-Mitigation: Have an AWS networking owner review generated Terraform before applying it. <br>
-Risk: The skill references shell use through its tool metadata. <br>
-Mitigation: Explicitly approve any shell command before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anmolnagpal/data-transfer-optimizer) <br>
+## Use Case:
+
+Developers, cloud engineers, and FinOps teams use this skill to analyze AWS data-transfer spend, identify costly traffic patterns, and produce optimization recommendations with Terraform configuration for VPC endpoint candidates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Terraform may not be appropriate for the user's AWS environment if applied without review.
+
+Mitigation: Review any generated Terraform before applying it.
+
+Risk: AWS billing, VPC, and traffic data used for analysis may include sensitive operational details.
+
+Mitigation: Provide only the data needed for the analysis, preferably through read-only access.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with cost breakdowns, ROI tables, and Terraform configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ready-to-apply VPC Endpoint Terraform for top optimization candidates.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with analysis tables and Terraform configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cost breakdowns, traffic-pattern summaries, ROI estimates, optimization guidance, and VPC Endpoint Terraform for review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

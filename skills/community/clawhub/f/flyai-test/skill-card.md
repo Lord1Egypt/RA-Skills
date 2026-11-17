@@ -1,44 +1,55 @@
-## Description: <br>
-Guides users through creating or updating effective skills that extend an agent with specialized knowledge, workflows, or tool integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills that extend an agent with specialized knowledge, workflows, and tool integrations.
 
-## Publisher: <br>
-[jixinda](https://clawhub.ai/user/jixinda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[jixinda](https://clawhub.ai/user/jixinda)
 
-## Use Case: <br>
-Developers and skill authors use this skill to plan, implement, validate, package, and iterate on agent skills with concise instructions, reusable resources, and bundled helper scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing declares crypto and purchase capabilities that do not fit the artifact files. <br>
-Mitigation: Verify the declared capabilities before enabling or releasing the skill, and install it only when a local skill-building toolkit is intended. <br>
-Risk: Bundled helper scripts can create, validate, and package files in a workspace. <br>
-Mitigation: Run the scripts in a dedicated workspace and review generated files before packaging or sharing them. <br>
-Risk: Skill-authoring guidance can produce incorrect, incomplete, or misleading skill instructions. <br>
-Mitigation: Review generated skill content and run validation before deploying or publishing the resulting skill. <br>
+## Use Case:
 
+Developers and skill authors use this skill to design, implement, validate, and package agent skills with clear triggering metadata, concise instructions, and reusable resources.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jixinda/flyai-test) <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference bundled Python scripts for skill initialization, validation, and packaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The packaging workflow can accidentally include files outside the intended skill directory through symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect skill directories for symlinks before packaging and package only reviewed, trusted directories.
+
+Risk: Untrusted skill names or output paths passed to initialization tooling can create unexpected filesystem changes.
+
+Mitigation: Use trusted, validated skill names and explicit output directories when initializing new skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jixinda/skills/flyai-test)
+- [Workflow Patterns](references/workflows.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and generated skill files or shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update skill package files, validation output, and packaging commands depending on the user request.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Regulatory change tracking, filing deadline management, audit prep checklists, and compliance calendar maintenance for accounting and finance firms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Regulatory change tracking, filing deadline management, audit prep checklists, and compliance calendar maintenance for accounting and finance firms.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Accounting and finance firm staff use this skill to track IRS and state filing deadlines, monitor GAAP, FASB, IRS, and state tax changes, prepare audit checklists, and maintain client compliance calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance deadlines or regulatory summaries may become outdated or incomplete. <br>
-Mitigation: Verify deadlines and regulatory updates with IRS, state, FASB, FinCEN, or other primary sources before acting. <br>
-Risk: Users may treat checklist output as legal advice, tax-filing authority, or securities-compliance guidance. <br>
-Mitigation: Use the skill as a checklist and research aid, and escalate legal, tax preparation, securities, SEC, FINRA, or CFTC matters to qualified professionals. <br>
+## Use Case:
 
+Accounting and finance professionals use this skill to organize US federal and state filing deadlines, monitor regulatory updates, prepare audit checklists, and maintain client compliance calendars. It is not a substitute for legal advice, tax preparation, securities compliance, or primary-source deadline verification.
 
-## Reference(s): <br>
-- [Compliance Monitor on ClawHub](https://clawhub.ai/samledger67-dotcom/compliance-monitor) <br>
-- [IRS Tax Calendar for Businesses](https://www.irs.gov/businesses/small-businesses-self-employed/online-tax-calendar) <br>
-- [IRS Newsroom](https://www.irs.gov/newsroom) <br>
-- [FASB Standards and Accounting Standards Updates](https://www.fasb.org/page/PageContent?pageId=/standards/accounting-standards-updates.html) <br>
-- [AICPA Professional Standards](https://www.aicpa-cima.com/resources/landing/professional-standards) <br>
-- [Federal Register IRS Documents](https://www.federalregister.gov/agencies/internal-revenue-service) <br>
-- [State Tax Authority Directory](https://taxfoundation.org/state-tax-agencies/) <br>
-- [FinCEN](https://www.fincen.gov) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Checklists, Search queries] <br>
-**Output Format:** [Markdown with checklists, calendar entries, and suggested web_search queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs should be verified against primary regulatory sources before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: ClawHub release evidence) <br>
+Risk: Deadline or regulatory examples may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify deadlines and rule changes against current IRS, state, FASB, FinCEN, or other primary sources before relying on the output.
+
+Risk: Users may mistake checklist output for legal advice, tax preparation, or securities compliance guidance.
+
+Mitigation: Use the skill for organization and preparation only, and escalate filing, legal, tax, or securities compliance decisions to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/skills/compliance-monitor)
+- [IRS Online Tax Calendar](https://www.irs.gov/businesses/small-businesses-self-employed/online-tax-calendar)
+- [IRS Newsroom](https://www.irs.gov/newsroom)
+- [FASB Accounting Standards Updates](https://www.fasb.org/page/PageContent?pageId=/standards/accounting-standards-updates.html)
+- [AICPA Professional Standards](https://www.aicpa-cima.com/resources/landing/professional-standards)
+- [Federal Register IRS Documents](https://www.federalregister.gov/agencies/internal-revenue-service)
+- [State Tax Authority Directory](https://taxfoundation.org/state-tax-agencies/)
+- [FinCEN](https://www.fincen.gov)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklists, deadline summaries, compliance calendars, and action lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; deadline-sensitive content should be checked against current primary sources before use.]
+
+## Skill Version(s):
+
+98.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

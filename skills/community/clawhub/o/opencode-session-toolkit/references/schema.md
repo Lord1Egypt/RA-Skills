@@ -1,83 +1,47 @@
-# OpenCode SQLite Schema Reference
+# Live schema compatibility
 
-Warning: This file is reference material only. Treat source code as the canonical definition:
-- SQL migration file: `opencode/packages/opencode/migration/20260127222353_familiar_lady_ursula/migration.sql`
-- TypeScript schema: `opencode/packages/opencode/src/session/session.sql.ts` (`SessionTable`, `MessageTable`, `PartTable`)
-- TypeScript schema: `opencode/packages/opencode/src/project/project.sql.ts` (`ProjectTable`)
+Treat the database itself as authoritative. OpenCode adds tables and columns over time, and the CLI detects capabilities at runtime instead of assuming one migration snapshot.
 
-This document captures commonly used OpenCode tables, fields, and indexes for precise field lookups and advanced SQL queries.
+## Core requirements
 
-Note: Actual indexes in your live database may differ from `migration.sql` after upgrades. Use `.indexes` to verify what exists.
+| Command | Required structures |
+| --- | --- |
+| `list` and title search | `session`: `id`, `project_id`, `directory`, `title`, `time_created`, `time_updated` |
+| message search | the `session` fields above plus `message`: `id`, `session_id`, `time_created`, `data` |
+| `show` and `export` | the structures above plus `part`: `id`, `message_id`, `session_id`, `time_created`, `data` |
 
-## `session` table
+The `project` table and fields such as `session.version`, summary counts, and archive time are optional enhancements. Their absence must not break commands that do not need them.
 
-| Field             | Type             | Description                     |
-| ----------------- | ---------------- | ------------------------------- |
-| id                | TEXT PRIMARY KEY | Session ID                      |
-| project_id        | TEXT NOT NULL    | Linked project                  |
-| workspace_id      | TEXT             | Workspace ID (cloud mode)       |
-| parent_id         | TEXT             | Parent session (fork source)    |
-| slug              | TEXT NOT NULL    | URL slug                        |
-| directory         | TEXT NOT NULL    | Working directory               |
-| title             | TEXT NOT NULL    | Session title                   |
-| version           | TEXT NOT NULL    | OpenCode version                |
-| share_url         | TEXT             | Share URL                       |
-| summary_additions | INTEGER          | Added lines                     |
-| summary_deletions | INTEGER          | Deleted lines                   |
-| summary_files     | INTEGER          | Changed file count              |
-| summary_diffs     | TEXT (JSON)      | Detailed diffs                  |
-| revert            | TEXT (JSON)      | Revert metadata                 |
-| permission        | TEXT (JSON)      | Permission rules                |
-| time_created      | INTEGER          | Created time (milliseconds)     |
-| time_updated      | INTEGER          | Updated time (milliseconds)     |
-| time_compacting   | INTEGER          | Compaction time                 |
-| time_archived     | INTEGER          | Archived time                   |
+## Inspect the actual database
 
-Indexes: `session_project_idx`, `session_parent_idx`, `session_workspace_idx`
+Start with:
 
-Note: In many current DBs, `message` uses composite index `message_session_time_created_id_idx`, and `part` uses `part_message_id_id_idx`. Names can differ by version.
+```bash
+./scripts/opencode_sessions.py doctor --format json
+./scripts/opencode_sessions.py schema --format json
+```
 
-## `message` table
+Limit schema output when investigating one table:
 
-| Field        | Type             | Description                            |
-| ------------ | ---------------- | -------------------------------------- |
-| id           | TEXT PRIMARY KEY | Message ID                             |
-| session_id   | TEXT NOT NULL    | Linked session                         |
-| time_created | INTEGER          | Created time                           |
-| time_updated | INTEGER          | Updated time                           |
-| data         | TEXT (JSON)      | Message payload (`role`, `parts`, etc) |
+```bash
+./scripts/opencode_sessions.py schema --table session --table message
+```
 
-Indexes: `message_session_time_created_id_idx` (`session_id + time_created + id`)
+The CLI only reports the four core tables. For an advanced fallback, inspect a named core table without dumping data:
 
-Note: Older migrations may show names like `message_session_idx`; trust `.indexes message` from the live DB.
+```bash
+DB_PATH="$(opencode db path)"
+sqlite3 -readonly "$DB_PATH" ".schema session"
+sqlite3 -readonly "$DB_PATH" ".indexes session"
+```
 
-## `part` table
+## Data conventions
 
-| Field        | Type             | Description                                |
-| ------------ | ---------------- | ------------------------------------------ |
-| id           | TEXT PRIMARY KEY | Part ID                                    |
-| message_id   | TEXT NOT NULL    | Linked message                             |
-| session_id   | TEXT NOT NULL    | Linked session                             |
-| time_created | INTEGER          | Created time                               |
-| time_updated | INTEGER          | Updated time                               |
-| data         | TEXT (JSON)      | Part payload (`tool_use`, `text`, etc)     |
+- Time fields are Unix milliseconds. CLI output renders them as UTC ISO-8601.
+- A date-only `--start` begins at local midnight.
+- A date-only `--end` includes the whole local calendar day.
+- `message.data` and `part.data` are JSON text. Payload shapes vary by OpenCode version and part type.
+- Join sessions to projects with `session.project_id = project.id` when `project` is available.
+- Order messages by `(time_created, id)` and parts within each message by `(time_created, id)`. Do not rely on a join order that can interleave equal-timestamp messages.
 
-Indexes: `part_message_id_id_idx` (`message_id + id`), `part_session_idx`
-
-Note: Older migrations may use names like `part_message_idx`; trust `.indexes part` from the live DB.
-
-## `project` table
-
-| Field            | Type             | Description                               |
-| ---------------- | ---------------- | ----------------------------------------- |
-| id               | TEXT PRIMARY KEY | Project ID (= git worktree UUID)          |
-| worktree         | TEXT NOT NULL    | Git worktree path                         |
-| vcs              | TEXT             | Version control system                    |
-| name             | TEXT             | Project name                              |
-| icon_url         | TEXT             | Project icon URL                          |
-| icon_color       | TEXT             | Project icon color                        |
-| time_created     | INTEGER          | Created time                              |
-| time_updated     | INTEGER          | Updated time                              |
-| time_initialized | INTEGER          | Initialized time                          |
-| sandboxes        | TEXT (JSON)      | Sandbox list                              |
-| commands         | TEXT (JSON)      | Custom commands                           |
+If a required column is absent, stop and report the `doctor` output. Do not guess an old or future schema and do not mutate the database to make it fit.

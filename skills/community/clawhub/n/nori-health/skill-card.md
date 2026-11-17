@@ -1,43 +1,58 @@
-## Description: <br>
-Query personal health data from wearables and nutrition logs and get AI coaching on sleep, workouts, heart rate, recovery, and health insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nori Health sends health-related questions about sleep, workouts, nutrition, weight, heart rate, HRV, and related insights to Nori and returns the coach's plain-text reply.
 
-## Publisher: <br>
-[danmurphy1217](https://clawhub.ai/user/danmurphy1217) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danmurphy1217](https://clawhub.ai/user/danmurphy1217)
 
-## Use Case: <br>
-External users use this skill to relay health, fitness, sleep, nutrition, and recovery questions to Nori for coaching based on their connected health account data. It is not for medical diagnosis, prescriptions, or emergency health situations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Health-related prompts and connected account data are sent to Nori for processing. <br>
-Mitigation: Use the skill only when the user intends Nori to receive the prompt and process connected health account data, and review Nori's privacy and retention practices before use. <br>
-Risk: The Nori API key grants access to the user's Nori integration. <br>
-Mitigation: Keep the NORI_API_KEY value private, store it only in the intended local configuration, and regenerate it if exposure is suspected. <br>
-Risk: The skill is not intended for diagnosis, prescriptions, or emergency health situations. <br>
-Mitigation: Direct medical, prescription, or emergency requests to qualified medical professionals or emergency services instead of using this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nori Health](https://nori.health) <br>
-- [Nori Health on ClawHub](https://clawhub.ai/danmurphy1217/nori-health) <br>
-- [Publisher profile: danmurphy1217](https://clawhub.ai/user/danmurphy1217) <br>
+## Use Case:
 
+External users use this skill to ask Nori health-coaching questions based on connected wearable, nutrition, workout, weight, and lab data. It is not intended for emergencies, medical diagnosis, or prescriptions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses with setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Relays the user's prompt to Nori and returns Nori's reply without reformatting when the API call succeeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Health-related questions and context are sent to Nori's service for processing.
+
+Mitigation: Use the skill only for information you are comfortable sharing with Nori and avoid submitting sensitive health details you do not want processed there.
+
+Risk: The skill requires a Nori API key to be stored for OpenClaw use.
+
+Mitigation: Store the API key in the documented environment variable or OpenClaw configuration and regenerate it in the Nori app if it is invalid or exposed.
+
+Risk: The skill is not intended for emergency care, diagnosis, or prescriptions.
+
+Mitigation: Direct emergency, diagnostic, or prescription requests to a doctor or emergency services instead of using this skill.
+
+## Reference(s):
+
+- [Nori Health](https://nori.health)
+- [ClawHub Skill Page](https://clawhub.ai/danmurphy1217/skills/nori-health)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/danmurphy1217)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses with setup and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For successful requests, the skill returns Nori's reply directly without additional formatting.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

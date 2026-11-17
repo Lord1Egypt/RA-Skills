@@ -1,47 +1,60 @@
-## Description: <br>
-MnemoPay helps agents use governed memory, payments, reputation, identity, approvals, audit evidence, and durable jobs for consequential workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MnemoPay is a Trust OS for AI agents that handle money or consequential actions, adding governed memory, payments, reputation, identity, approvals, audit evidence, and durable browser, code, and computer jobs.
 
-## Publisher: <br>
-[t49qnsx7qt-kpanks](https://clawhub.ai/user/t49qnsx7qt-kpanks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t49qnsx7qt-kpanks](https://clawhub.ai/user/t49qnsx7qt-kpanks)
 
-## Use Case: <br>
-Use when an agent needs persistent memory, scoped authority, budgets, approvals, payment rails, identity, reputation, or verifiable evidence for high-impact actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Not specified in the supplied evidence. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence identifies payment, identity, memory, and durable job capabilities as high-impact agent powers. <br>
-Mitigation: Start with the default essentials tool group, keep admin/operator/all groups disabled unless authorized, and require explicit approvals for payments or other high-impact actions. <br>
-Risk: Payment actions can move money or create financial obligations. <br>
-Mitigation: Require an explicit amount, currency, recipient, and reason before initiating payment-related actions. <br>
-Risk: Credential, invitation token, or worker secret exposure could compromise privileged systems. <br>
-Mitigation: Do not return API keys, invitation tokens, worker credentials, or secrets in agent responses. <br>
+## Use Case:
 
+Developers and operators use MnemoPay to give agents governed memory, payment, identity, approval, audit, and durable job capabilities while controlling high-impact or monetary actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/t49qnsx7qt-kpanks/mnemopay) <br>
-- [Publisher Profile](https://clawhub.ai/user/t49qnsx7qt-kpanks) <br>
-- [Website listed in skill artifact](https://mnemopay.com) <br>
-- [npm package listed in skill artifact](https://www.npmjs.com/package/@mnemopay/sdk) <br>
-- [Python package listed in skill artifact](https://pypi.org/project/mnemopay/) <br>
-- [Source link listed in skill artifact](https://github.com/mnemopay/mnemopay-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Agent-facing installation steps, MCP tool group guidance, safety rules, and operational guidance for MnemoPay integrations.] <br>
-**Output Parameters:** [May depend on the user's requested workflow, install environment, MCP tool groups, payment amount, currency, recipient, reason, identity context, budget, approval policy, and credential scope.] <br>
-**Other Properties Related to Output:** [The artifact says the essentials tool group is exposed by default and admin, operator, or all tool groups should remain disabled unless used by authorized operators with explicit credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 <br>
+Risk: The skill directs users to run a money and identity MCP service from unpinned packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, reviewed SDK version or a fixed local executable instead of unattended npx package resolution.
+
+Risk: Payment and other high-impact actions could execute without sufficient user intent if exposed too broadly.
+
+Mitigation: Require explicit approval and a clear amount, currency, recipient, and reason before payment actions or other consequential operations.
+
+Risk: Admin, operator, or broad tool groups could give ordinary agents excessive authority.
+
+Mitigation: Use only the minimum needed tool group and keep organization_admin, operator, and all outside ordinary or untrusted agent configurations.
+
+## Reference(s):
+
+- [MnemoPay website](https://mnemopay.com)
+- [MnemoPay SDK on npm](https://www.npmjs.com/package/@mnemopay/sdk)
+- [MnemoPay Python package](https://pypi.org/project/mnemopay/)
+- [MnemoPay SDK repository](https://github.com/mnemopay/mnemopay-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

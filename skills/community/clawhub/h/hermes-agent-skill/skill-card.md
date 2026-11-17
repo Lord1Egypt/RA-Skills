@@ -1,42 +1,54 @@
-## Description: <br>
-Hermes Agent coordinates multi-agent task routing, OpenClaw session integration, opt-in local memory, and GEPA-style skill evolution for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Agent Skill helps OpenClaw agents coordinate work through topic-based routing, session integration, opt-in memory search, and GEPA-style workflow summaries.
 
-## Publisher: <br>
-[briefness](https://clawhub.ai/user/briefness) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[briefness](https://clawhub.ai/user/briefness)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register specialized sub-agents, route tasks by topic, retain opt-in local workflow memory, and derive reusable skill patterns from successful executions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When persistence is enabled, task inputs, outputs, step results, and reusable examples may be stored locally without broad redaction or retention controls. <br>
-Mitigation: Keep persistence disabled for sensitive work, or enable it only with non-secret task data until stronger redaction, retention, deletion, and data-separation controls are added. <br>
-Risk: Session fallback logging can expose more task payload detail if configured for full logs. <br>
-Mitigation: Use the default summary logging or set fallback logging to off for sensitive workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to coordinate multiple OpenClaw subagents, distribute task events, track progress, search optional local memory, and summarize repeated successful workflows into reusable skill cards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/briefness/hermes-agent-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/briefness) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and Python examples, runtime task messages, configuration snippets, and optional local SQLite-backed memory and skill records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistence is disabled by default and must be explicitly enabled through environment variables or runtime configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: Shared agent routing and session integration can expose sensitive task payloads, tags, metadata, or step results across agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in mixed-trust environments, avoid secrets in task data, and use the skill only with agents and sessions that are intended to share this information.
+
+Risk: When persistence is enabled, local ~/.hermes databases can retain sensitive memory and execution data.
+
+Mitigation: Keep persistence disabled unless needed, leave sensitive filtering enabled, and treat the local databases as sensitive files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/briefness/skills/hermes-agent-skill)
+- [Publisher Profile](https://clawhub.ai/user/briefness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and environment-variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local SQLite databases under ~/.hermes only when persistence is explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

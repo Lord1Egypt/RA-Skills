@@ -1,46 +1,60 @@
-## Description: <br>
-Tiny Builder helps kids ages 5-8 build simple single-file HTML games, drawings, animations, and stories through guided choices and fast playable results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiny Builder helps kids ages 5-8 build games, drawings, animations, and stories through guided choices, fast feedback, and colorful single-file HTML projects.
 
-## Publisher: <br>
-[dylanfeltus](https://clawhub.ai/user/dylanfeltus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dylanfeltus](https://clawhub.ai/user/dylanfeltus)
 
-## Use Case: <br>
-Children ages 5-8 use this agent with parent supervision to create browser-playable HTML projects such as games, drawing pads, animations, and interactive stories. Parents and guardians use the logs and generated files to review what was built and whether the session stayed age-appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores detailed child activity and behavior logs. <br>
-Mitigation: Use only with parent supervision, keep the tiny-builder workspace private, and periodically delete or trim parent-log.md and projects/build-log.md when long-term records are not wanted. <br>
-Risk: Generated gui.new links may expose child-created content if shared. <br>
-Mitigation: Review gui.new links before sharing them and avoid including personal details in generated projects or session notes. <br>
-Risk: The skill is designed for direct interaction with young children. <br>
-Mitigation: Review before installing for a child and supervise usage to confirm redirects, content boundaries, and generated projects remain age-appropriate. <br>
+## Use Case:
 
+Children ages 5-8, with a parent or guardian nearby, use this agent to create simple browser-playable games, drawings, animations, and stories. Parents can use the generated local logs to review what was built and note any safety flags.
 
-## Reference(s): <br>
-- [Tiny Builder on ClawHub](https://clawhub.ai/dylanfeltus/tiny-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/dylanfeltus) <br>
-- [ESRB ratings guide](https://www.esrb.org/ratings-guide/) <br>
-- [UNICEF Policy Guidance on AI for Children](https://www.unicef.org/innocenti/reports/policy-guidance-ai-children) <br>
-- [Common Sense Media](https://www.commonsensemedia.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline HTML/CSS/JavaScript and shell commands; generated projects are single-file HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local HTML project files, gui.new canvas links when publishing is available, and parent/build log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Projects may be uploaded to gui.new as shareable links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with parent or guardian consent, avoid entering personal details, and review shared project links before distributing them.
+
+Risk: Local files can store a child's requests, session history, and build logs.
+
+Mitigation: Regularly review and delete old projects and logs, and add explicit consent plus retention controls before broad use.
+
+Risk: The security summary reports insufficient privacy controls for a child-focused builder.
+
+Mitigation: Prefer supervised use, avoid names, locations, school details, and other personal information, and require a local-only mode or clearer publishing controls for stricter deployments.
+
+## Reference(s):
+
+- [Tiny Builder ClawHub listing](https://clawhub.ai/dylanfeltus/skills/tiny-builder)
+- [ESRB Ratings Guide](https://www.esrb.org/ratings-guide/)
+- [UNICEF Policy Guidance on AI for Children](https://www.unicef.org/innocenti/reports/policy-guidance-ai-children)
+- [Common Sense Media](https://www.commonsensemedia.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown responses with single-file HTML/CSS/JavaScript, gui.new canvas commands, shareable links, and local markdown logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated projects are intended to be self-contained browser-playable HTML files with touch-friendly controls and parent-facing activity summaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1483 @@
+{
+  "_meta": {
+    "description": "中文药物名 → 标准英文 INN/通用名 映射表（用于 openFDA FAERS 检索预处理）",
+    "version": "1.1",
+    "updated": "2026-09-06",
+    "note": "一个中文名可对应多个英文名（如复方制剂、不同盐基）；检索时多候选列出让用户确认。仅覆盖常见药，不在表中时提示用户手动输入英文名。"
+  },
+  "阿司匹林": [
+    "aspirin"
+  ],
+  "布洛芬": [
+    "ibuprofen"
+  ],
+  "对乙酰氨基酚": [
+    "acetaminophen",
+    "paracetamol"
+  ],
+  "阿莫西林": [
+    "amoxicillin"
+  ],
+  "头孢氨苄": [
+    "cefalexin",
+    "cephalexin"
+  ],
+  "头孢呋辛": [
+    "cefuroxime"
+  ],
+  "头孢曲松": [
+    "ceftriaxone"
+  ],
+  "阿奇霉素": [
+    "azithromycin"
+  ],
+  "克拉霉素": [
+    "clarithromycin"
+  ],
+  "左氧氟沙星": [
+    "levofloxacin"
+  ],
+  "莫西沙星": [
+    "moxifloxacin"
+  ],
+  "甲硝唑": [
+    "metronidazole"
+  ],
+  "奥美拉唑": [
+    "omeprazole"
+  ],
+  "兰索拉唑": [
+    "lansoprazole"
+  ],
+  "泮托拉唑": [
+    "pantoprazole"
+  ],
+  "雷贝拉唑": [
+    "rabeprazole"
+  ],
+  "艾司奥美拉唑": [
+    "esomeprazole"
+  ],
+  "法莫替丁": [
+    "famotidine"
+  ],
+  "雷尼替丁": [
+    "ranitidine"
+  ],
+  "西咪替丁": [
+    "cimetidine"
+  ],
+  "二甲双胍": [
+    "metformin"
+  ],
+  "格列美脲": [
+    "glimepiride"
+  ],
+  "格列齐特": [
+    "gliclazide"
+  ],
+  "格列吡嗪": [
+    "glipizide"
+  ],
+  "格列本脲": [
+    "glibenclamide",
+    "glyburide"
+  ],
+  "阿卡波糖": [
+    "acarbose"
+  ],
+  "伏格列波糖": [
+    "voglibose"
+  ],
+  "瑞格列奈": [
+    "repaglinide"
+  ],
+  "那格列奈": [
+    "nateglinide"
+  ],
+  "西格列汀": [
+    "sitagliptin"
+  ],
+  "沙格列汀": [
+    "saxagliptin"
+  ],
+  "利格列汀": [
+    "linagliptin"
+  ],
+  "维格列汀": [
+    "vildagliptin"
+  ],
+  "恩格列净": [
+    "empagliflozin"
+  ],
+  "达格列净": [
+    "dapagliflozin"
+  ],
+  "卡格列净": [
+    "canagliflozin"
+  ],
+  "吡格列酮": [
+    "pioglitazone"
+  ],
+  "罗格列酮": [
+    "rosiglitazone"
+  ],
+  "胰岛素": [
+    "insulin"
+  ],
+  "甘精胰岛素": [
+    "insulin glargine"
+  ],
+  "门冬胰岛素": [
+    "insulin aspart"
+  ],
+  "赖脯胰岛素": [
+    "insulin lispro"
+  ],
+  "地特胰岛素": [
+    "insulin detemir"
+  ],
+  "格列喹酮": [
+    "gliquidone"
+  ],
+  "阿托伐他汀": [
+    "atorvastatin"
+  ],
+  "瑞舒伐他汀": [
+    "rosuvastatin"
+  ],
+  "辛伐他汀": [
+    "simvastatin"
+  ],
+  "普伐他汀": [
+    "pravastatin"
+  ],
+  "氟伐他汀": [
+    "fluvastatin"
+  ],
+  "匹伐他汀": [
+    "pitavastatin"
+  ],
+  "洛伐他汀": [
+    "lovastatin"
+  ],
+  "依折麦布": [
+    "ezetimibe"
+  ],
+  "非诺贝特": [
+    "fenofibrate"
+  ],
+  "吉非贝齐": [
+    "gemfibrozil"
+  ],
+  "苯扎贝特": [
+    "bezafibrate"
+  ],
+  "考来烯胺": [
+    "cholestyramine"
+  ],
+  "阿昔单抗": [
+    "abciximab"
+  ],
+  "氯吡格雷": [
+    "clopidogrel"
+  ],
+  "替格瑞洛": [
+    "ticagrelor"
+  ],
+  "普拉格雷": [
+    "prasugrel"
+  ],
+  "华法林": [
+    "warfarin"
+  ],
+  "利伐沙班": [
+    "rivaroxaban"
+  ],
+  "阿哌沙班": [
+    "apixaban"
+  ],
+  "达比加群": [
+    "dabigatran"
+  ],
+  "依度沙班": [
+    "edoxaban"
+  ],
+  "肝素": [
+    "heparin"
+  ],
+  "低分子肝素": [
+    "enoxaparin",
+    "low molecular weight heparin"
+  ],
+  "达肝素": [
+    "dalteparin"
+  ],
+  "那屈肝素": [
+    "nadroparin"
+  ],
+  "磺达肝癸钠": [
+    "fondaparinux"
+  ],
+  "阿替普酶": [
+    "alteplase"
+  ],
+  "尿激酶": [
+    "urokinase"
+  ],
+  "链激酶": [
+    "streptokinase"
+  ],
+  "氨甲环酸": [
+    "tranexamic acid"
+  ],
+  "氨基己酸": [
+    "aminocaproic acid"
+  ],
+  "鱼精蛋白": [
+    "protamine"
+  ],
+  "维生素K": [
+    "vitamin k",
+    "phytomenadione"
+  ],
+  "酚磺乙胺": [
+    "etamsylate"
+  ],
+  "卡巴克络": [
+    "carbazochrome"
+  ],
+  "硝苯地平": [
+    "nifedipine"
+  ],
+  "氨氯地平": [
+    "amlodipine"
+  ],
+  "非洛地平": [
+    "felodipine"
+  ],
+  "拉西地平": [
+    "lacidipine"
+  ],
+  "尼群地平": [
+    "nitrendipine"
+  ],
+  "尼莫地平": [
+    "nimodipine"
+  ],
+  "地尔硫卓": [
+    "diltiazem"
+  ],
+  "维拉帕米": [
+    "verapamil"
+  ],
+  "卡托普利": [
+    "captopril"
+  ],
+  "依那普利": [
+    "enalapril"
+  ],
+  "贝那普利": [
+    "benazepril"
+  ],
+  "培哚普利": [
+    "perindopril"
+  ],
+  "雷米普利": [
+    "ramipril"
+  ],
+  "福辛普利": [
+    "fosinopril"
+  ],
+  "西拉普利": [
+    "cilazapril"
+  ],
+  "赖诺普利": [
+    "lisinopril"
+  ],
+  "氯沙坦": [
+    "losartan"
+  ],
+  "缬沙坦": [
+    "valsartan"
+  ],
+  "厄贝沙坦": [
+    "irbesartan"
+  ],
+  "替米沙坦": [
+    "telmisartan"
+  ],
+  "坎地沙坦": [
+    "candesartan"
+  ],
+  "奥美沙坦": [
+    "olmesartan"
+  ],
+  "阿利沙坦": [
+    "allisartan"
+  ],
+  "氢氯噻嗪": [
+    "hydrochlorothiazide"
+  ],
+  "呋塞米": [
+    "furosemide"
+  ],
+  "托拉塞米": [
+    "torasemide"
+  ],
+  "螺内酯": [
+    "spironolactone"
+  ],
+  "氨苯蝶啶": [
+    "triamterene"
+  ],
+  "阿米洛利": [
+    "amiloride"
+  ],
+  "吲达帕胺": [
+    "indapamide"
+  ],
+  "美托洛尔": [
+    "metoprolol"
+  ],
+  "比索洛尔": [
+    "bisoprolol"
+  ],
+  "阿替洛尔": [
+    "atenolol"
+  ],
+  "普萘洛尔": [
+    "propranolol"
+  ],
+  "卡维地洛": [
+    "carvedilol"
+  ],
+  "拉贝洛尔": [
+    "labetalol"
+  ],
+  "艾司洛尔": [
+    "esmolol"
+  ],
+  "富马酸比索洛尔": [
+    "bisoprolol"
+  ],
+  "琥珀酸美托洛尔": [
+    "metoprolol succinate"
+  ],
+  "酒石酸美托洛尔": [
+    "metoprolol tartrate"
+  ],
+  "地高辛": [
+    "digoxin"
+  ],
+  "去乙酰毛花苷": [
+    "deslanoside"
+  ],
+  "胺碘酮": [
+    "amiodarone"
+  ],
+  "普罗帕酮": [
+    "propafenone"
+  ],
+  "利多卡因": [
+    "lidocaine"
+  ],
+  "腺苷": [
+    "adenosine"
+  ],
+  "阿托品": [
+    "atropine"
+  ],
+  "异丙肾上腺素": [
+    "isoprenaline",
+    "isoproterenol"
+  ],
+  "肾上腺素": [
+    "epinephrine",
+    "adrenaline"
+  ],
+  "去甲肾上腺素": [
+    "norepinephrine",
+    "noradrenaline"
+  ],
+  "多巴胺": [
+    "dopamine"
+  ],
+  "多巴酚丁胺": [
+    "dobutamine"
+  ],
+  "米力农": [
+    "milrinone"
+  ],
+  "左西孟旦": [
+    "levosimendan"
+  ],
+  "硝酸甘油": [
+    "nitroglycerin"
+  ],
+  "单硝酸异山梨酯": [
+    "isosorbide mononitrate"
+  ],
+  "硝酸异山梨酯": [
+    "isosorbide dinitrate"
+  ],
+  "尼可地尔": [
+    "nicorandil"
+  ],
+  "曲美他嗪": [
+    "trimetazidine"
+  ],
+  "尼可刹米": [
+    "nikethamide"
+  ],
+  "洛贝林": [
+    "lobeline"
+  ],
+  "咖啡因": [
+    "caffeine"
+  ],
+  "二甲硅油": [
+    "dimeticone"
+  ],
+  "酚妥拉明": [
+    "phentolamine"
+  ],
+  "酚苄明": [
+    "phenoxybenzamine"
+  ],
+  "利血平": [
+    "reserpine"
+  ],
+  "硫酸镁": [
+    "magnesium sulfate"
+  ],
+  "葡萄糖酸钙": [
+    "calcium gluconate"
+  ],
+  "氯化钾": [
+    "potassium chloride"
+  ],
+  "氯化钠": [
+    "sodium chloride"
+  ],
+  "葡萄糖": [
+    "glucose"
+  ],
+  "乳果糖": [
+    "lactulose"
+  ],
+  "聚乙二醇": [
+    "polyethylene glycol"
+  ],
+  "双歧杆菌": [
+    "bifidobacterium"
+  ],
+  "枯草杆菌": [
+    "bacillus subtilis"
+  ],
+  "蒙脱石": [
+    "smectite"
+  ],
+  "洛哌丁胺": [
+    "loperamide"
+  ],
+  "奥曲肽": [
+    "octreotide"
+  ],
+  "生长抑素": [
+    "somatostatin"
+  ],
+  "垂体后叶素": [
+    "pituitrin"
+  ],
+  "缩宫素": [
+    "oxytocin"
+  ],
+  "麦角新碱": [
+    "ergometrine"
+  ],
+  "卡前列素": [
+    "carboprost"
+  ],
+  "米索前列醇": [
+    "misoprostol"
+  ],
+  "地诺前列酮": [
+    "dinoprostone"
+  ],
+  "利托君": [
+    "ritodrine"
+  ],
+  "硫酸沙丁胺醇": [
+    "salbutamol"
+  ],
+  "特布他林": [
+    "terbutaline"
+  ],
+  "异丙托溴铵": [
+    "ipratropium bromide"
+  ],
+  "噻托溴铵": [
+    "tiotropium bromide"
+  ],
+  "布地奈德": [
+    "budesonide"
+  ],
+  "丙酸氟替卡松": [
+    "fluticasone propionate"
+  ],
+  "沙美特罗": [
+    "salmeterol"
+  ],
+  "福莫特罗": [
+    "formoterol"
+  ],
+  "孟鲁司特": [
+    "montelukast"
+  ],
+  "扎鲁司特": [
+    "zafirlukast"
+  ],
+  "齐留通": [
+    "zileuton"
+  ],
+  "色甘酸钠": [
+    "sodium cromoglicate"
+  ],
+  "多索茶碱": [
+    "doxofylline"
+  ],
+  "氨茶碱": [
+    "aminophylline"
+  ],
+  "二羟丙茶碱": [
+    "dyphylline"
+  ],
+  "乙酰半胱氨酸": [
+    "acetylcysteine"
+  ],
+  "羧甲司坦": [
+    "carbocisteine"
+  ],
+  "盐酸氨溴索": [
+    "ambroxol"
+  ],
+  "溴己新": [
+    "bromhexine"
+  ],
+  "桉柠蒎": [
+    "eucalyptus"
+  ],
+  "标准桃金娘油": [
+    "myrtol"
+  ],
+  "可待因": [
+    "codeine"
+  ],
+  "福尔可定": [
+    "pholcodine"
+  ],
+  "右美沙芬": [
+    "dextromethorphan"
+  ],
+  "喷托维林": [
+    "pentoxyverine"
+  ],
+  "氯哌斯汀": [
+    "cloperastine"
+  ],
+  "复方甘草": [
+    "glycyrrhiza"
+  ],
+  "阿桔片": [
+    "platycodon"
+  ],
+  "苯丙哌林": [
+    "properidine"
+  ],
+  "二氧丙嗪": [
+    "dioxopromethazine"
+  ],
+  "异丙嗪": [
+    "promethazine"
+  ],
+  "氯苯那敏": [
+    "chlorpheniramine"
+  ],
+  "苯海拉明": [
+    "diphenhydramine"
+  ],
+  "赛庚啶": [
+    "cyproheptadine"
+  ],
+  "酮替芬": [
+    "ketotifen"
+  ],
+  "西替利嗪": [
+    "cetirizine"
+  ],
+  "氯雷他定": [
+    "loratadine"
+  ],
+  "依巴斯汀": [
+    "ebastine"
+  ],
+  "咪唑斯汀": [
+    "mizolastine"
+  ],
+  "氮卓斯汀": [
+    "azelastine"
+  ],
+  "非索非那定": [
+    "fexofenadine"
+  ],
+  "地氯雷他定": [
+    "desloratadine"
+  ],
+  "左西替利嗪": [
+    "levocetirizine"
+  ],
+  "奥洛他定": [
+    "olopatadine"
+  ],
+  "阿伐斯汀": [
+    "acrivastine"
+  ],
+  "曲普利啶": [
+    "triprolidine"
+  ],
+  "阿司咪唑": [
+    "astemizole"
+  ],
+  "特非那定": [
+    "terfenadine"
+  ],
+  "卡马西平": [
+    "carbamazepine"
+  ],
+  "苯妥英钠": [
+    "phenytoin sodium"
+  ],
+  "丙戊酸钠": [
+    "sodium valproate"
+  ],
+  "苯巴比妥": [
+    "phenobarbital"
+  ],
+  "拉莫三嗪": [
+    "lamotrigine"
+  ],
+  "左乙拉西坦": [
+    "levetiracetam"
+  ],
+  "奥卡西平": [
+    "oxcarbazepine"
+  ],
+  "托吡酯": [
+    "topiramate"
+  ],
+  "加巴喷丁": [
+    "gabapentin"
+  ],
+  "普瑞巴林": [
+    "pregabalin"
+  ],
+  "乙琥胺": [
+    "ethosuximide"
+  ],
+  "氯硝西泮": [
+    "clonazepam"
+  ],
+  "地西泮": [
+    "diazepam"
+  ],
+  "硝西泮": [
+    "nitrazepam"
+  ],
+  "艾司唑仑": [
+    "estazolam"
+  ],
+  "阿普唑仑": [
+    "alprazolam"
+  ],
+  "劳拉西泮": [
+    "lorazepam"
+  ],
+  "咪达唑仑": [
+    "midazolam"
+  ],
+  "唑吡坦": [
+    "zolpidem"
+  ],
+  "佐匹克隆": [
+    "zopiclone"
+  ],
+  "扎来普隆": [
+    "zaleplon"
+  ],
+  "水合氯醛": [
+    "chloral hydrate"
+  ],
+  "丁螺环酮": [
+    "buspirone"
+  ],
+  "坦度螺酮": [
+    "tandospirone"
+  ],
+  "氟西汀": [
+    "fluoxetine"
+  ],
+  "帕罗西汀": [
+    "paroxetine"
+  ],
+  "舍曲林": [
+    "sertraline"
+  ],
+  "氟伏沙明": [
+    "fluvoxamine"
+  ],
+  "西酞普兰": [
+    "citalopram"
+  ],
+  "艾司西酞普兰": [
+    "escitalopram"
+  ],
+  "文拉法辛": [
+    "venlafaxine"
+  ],
+  "度洛西汀": [
+    "duloxetine"
+  ],
+  "米那普仑": [
+    "milnacipran"
+  ],
+  "米氮平": [
+    "mirtazapine"
+  ],
+  "阿戈美拉汀": [
+    "agomelatine"
+  ],
+  "安非他酮": [
+    "bupropion"
+  ],
+  "瑞波西汀": [
+    "reboxetine"
+  ],
+  "曲唑酮": [
+    "trazodone"
+  ],
+  "奈法唑酮": [
+    "nefazodone"
+  ],
+  "吗氯贝胺": [
+    "moclobemide"
+  ],
+  "苯乙肼": [
+    "phenelzine"
+  ],
+  "反苯环丙胺": [
+    "tranylcypromine"
+  ],
+  "碳酸锂": [
+    "lithium carbonate"
+  ],
+  "奥氮平": [
+    "olanzapine"
+  ],
+  "喹硫平": [
+    "quetiapine"
+  ],
+  "利培酮": [
+    "risperidone"
+  ],
+  "帕利哌酮": [
+    "paliperidone"
+  ],
+  "齐拉西酮": [
+    "ziprasidone"
+  ],
+  "阿立哌唑": [
+    "aripiprazole"
+  ],
+  "鲁拉西酮": [
+    "lurasidone"
+  ],
+  "布南色尔": [
+    "blonanserin"
+  ],
+  "氨磺必利": [
+    "amisulpride"
+  ],
+  "氯氮平": [
+    "clozapine"
+  ],
+  "氟哌啶醇": [
+    "haloperidol"
+  ],
+  "奋乃静": [
+    "perphenazine"
+  ],
+  "氟奋乃静": [
+    "fluphenazine"
+  ],
+  "三氟拉嗪": [
+    "trifluoperazine"
+  ],
+  "硫必利": [
+    "tiapride"
+  ],
+  "舒必利": [
+    "sulpiride"
+  ],
+  "左舒必利": [
+    "levosulpiride"
+  ],
+  "扑米酮": [
+    "primidone"
+  ],
+  "拉考沙胺": [
+    "lacosamide"
+  ],
+  "吡仑帕奈": [
+    "perampanel"
+  ],
+  "司替戊醇": [
+    "stiripentol"
+  ],
+  "卡立普多": [
+    "carisoprodol"
+  ],
+  "巴氯芬": [
+    "baclofen"
+  ],
+  "替扎尼定": [
+    "tizanidine"
+  ],
+  "丹曲林": [
+    "dantrolene"
+  ],
+  "乙哌立松": [
+    "eperisone"
+  ],
+  "苯海索": [
+    "trihexyphenidyl"
+  ],
+  "丙环定": [
+    "procyclidine"
+  ],
+  "左旋多巴": [
+    "levodopa"
+  ],
+  "卡比多巴": [
+    "carbidopa"
+  ],
+  "恩他卡朋": [
+    "entacapone"
+  ],
+  "托卡朋": [
+    "tolcapone"
+  ],
+  "司来吉兰": [
+    "selegiline"
+  ],
+  "雷沙吉兰": [
+    "rasagiline"
+  ],
+  "金刚烷胺": [
+    "amantadine"
+  ],
+  "普拉克索": [
+    "pramipexole"
+  ],
+  "罗匹尼罗": [
+    "ropinirole"
+  ],
+  "罗替高汀": [
+    "rotigotine"
+  ],
+  "培高利特": [
+    "pergolide"
+  ],
+  "阿扑吗啡": [
+    "apomorphine"
+  ],
+  "多奈哌齐": [
+    "donepezil"
+  ],
+  "卡巴拉汀": [
+    "rivastigmine"
+  ],
+  "加兰他敏": [
+    "galantamine"
+  ],
+  "美金刚": [
+    "memantine"
+  ],
+  "尼麦角林": [
+    "nicergoline"
+  ],
+  "倍他司汀": [
+    "betahistine"
+  ],
+  "氟桂利嗪": [
+    "flunarizine"
+  ],
+  "桂利嗪": [
+    "cinnarizine"
+  ],
+  "罂粟碱": [
+    "papaverine"
+  ],
+  "川芎嗪": [
+    "ligustrazine"
+  ],
+  "丁苯酞": [
+    "dl-3-n-butylphthalide"
+  ],
+  "依达拉奉": [
+    "edaravone"
+  ],
+  "脑苷肌苷": [
+    "cattle encephaloglycan"
+  ],
+  "鼠神经生长因子": [
+    "mouse nerve growth factor"
+  ],
+  "奥拉西坦": [
+    "oxiracetam"
+  ],
+  "吡拉西坦": [
+    "piracetam"
+  ],
+  "胞磷胆碱": [
+    "citicoline"
+  ],
+  "神经节苷脂": [
+    "ganglioside"
+  ],
+  "艾地苯醌": [
+    "idebenone"
+  ],
+  "维生素B1": [
+    "vitamin b1",
+    "thiamine"
+  ],
+  "维生素B2": [
+    "vitamin b2",
+    "riboflavin"
+  ],
+  "维生素B6": [
+    "vitamin b6",
+    "pyridoxine"
+  ],
+  "维生素B12": [
+    "vitamin b12",
+    "cyanocobalamin"
+  ],
+  "维生素C": [
+    "vitamin c",
+    "ascorbic acid"
+  ],
+  "维生素D": [
+    "vitamin d",
+    "cholecalciferol"
+  ],
+  "维生素E": [
+    "vitamin e",
+    "tocopherol"
+  ],
+  "维生素K1": [
+    "vitamin k1",
+    "phytomenadione"
+  ],
+  "叶酸": [
+    "folic acid"
+  ],
+  "烟酸": [
+    "niacin",
+    "nicotinic acid"
+  ],
+  "烟酰胺": [
+    "niacinamide"
+  ],
+  "复合维生素B": [
+    "vitamin b complex"
+  ],
+  "葡萄糖酸锌": [
+    "zinc gluconate"
+  ],
+  "硫酸亚铁": [
+    "ferrous sulfate"
+  ],
+  "富马酸亚铁": [
+    "ferrous fumarate"
+  ],
+  "琥珀酸亚铁": [
+    "ferrous succinate"
+  ],
+  "多糖铁复合物": [
+    "polysaccharide iron complex"
+  ],
+  "右旋糖酐铁": [
+    "iron dextran"
+  ],
+  "蔗糖铁": [
+    "iron sucrose"
+  ],
+  "重组人促红素": [
+    "erythropoietin"
+  ],
+  "聚乙二醇化重组人粒细胞集落刺激因子": [
+    "pegfilgrastim"
+  ],
+  "重组人粒细胞集落刺激因子": [
+    "filgrastim"
+  ],
+  "粒细胞-巨噬细胞集落刺激因子": [
+    "sargramostim"
+  ],
+  "白介素-2": [
+    "interleukin-2"
+  ],
+  "白介素-11": [
+    "interleukin-11"
+  ],
+  "干扰素": [
+    "interferon"
+  ],
+  "聚乙二醇干扰素": [
+    "peginterferon"
+  ],
+  "利巴韦林": [
+    "ribavirin"
+  ],
+  "阿昔洛韦": [
+    "acyclovir"
+  ],
+  "更昔洛韦": [
+    "ganciclovir"
+  ],
+  "伐昔洛韦": [
+    "valacyclovir"
+  ],
+  "泛昔洛韦": [
+    "famciclovir"
+  ],
+  "膦甲酸钠": [
+    "foscarnet sodium"
+  ],
+  "奥司他韦": [
+    "oseltamivir"
+  ],
+  "扎那米韦": [
+    "zanamivir"
+  ],
+  "帕拉米韦": [
+    "peramivir"
+  ],
+  "法匹拉韦": [
+    "favipiravir"
+  ],
+  "瑞德西韦": [
+    "remdesivir"
+  ],
+  "莫诺拉韦": [
+    "molnupiravir"
+  ],
+  "奈玛特韦": [
+    "nirmatrelvir"
+  ],
+  "利托那韦": [
+    "ritonavir"
+  ],
+  "洛匹那韦": [
+    "lopinavir"
+  ],
+  "达芦那韦": [
+    "darunavir"
+  ],
+  "阿扎那韦": [
+    "atazanavir"
+  ],
+  "拉替拉韦": [
+    "raltegravir"
+  ],
+  "多替拉韦": [
+    "dolutegravir"
+  ],
+  "艾维雷韦": [
+    "elvitegravir"
+  ],
+  "比克替拉韦": [
+    "bictegravir"
+  ],
+  "恩曲他滨": [
+    "emtricitabine"
+  ],
+  "替诺福韦": [
+    "tenofovir"
+  ],
+  "恩替卡韦": [
+    "entecavir"
+  ],
+  "拉米夫定": [
+    "lamivudine"
+  ],
+  "阿德福韦": [
+    "adefovir"
+  ],
+  "替比夫定": [
+    "telbivudine"
+  ],
+  "索磷布韦": [
+    "sofosbuvir"
+  ],
+  "维帕他韦": [
+    "velpatasvir"
+  ],
+  "格卡瑞韦": [
+    "grazoprevir"
+  ],
+  "哌仑他韦": [
+    "pibrentasvir"
+  ],
+  "伏西瑞韦": [
+    "voxilaprevir"
+  ],
+  "艾尔巴韦": [
+    "elbasvir"
+  ],
+  "达拉他韦": [
+    "daclatasvir"
+  ],
+  "阿舒瑞韦": [
+    "asunaprevir"
+  ],
+  "达塞布韦": [
+    "dasabuvir"
+  ],
+  "波普瑞韦": [
+    "boceprevir"
+  ],
+  "特拉匹拉韦": [
+    "telaprevir"
+  ],
+  "西咪匹韦": [
+    "simeprevir"
+  ],
+  "帕利瑞韦": [
+    "paritaprevir"
+  ],
+  "奥比他韦": [
+    "ombitasvir"
+  ],
+  "异烟肼": [
+    "isoniazid"
+  ],
+  "利福平": [
+    "rifampicin"
+  ],
+  "吡嗪酰胺": [
+    "pyrazinamide"
+  ],
+  "乙胺丁醇": [
+    "ethambutol"
+  ],
+  "链霉素": [
+    "streptomycin"
+  ],
+  "对氨基水杨酸": [
+    "para-aminosalicylic acid"
+  ],
+  "利福布汀": [
+    "rifabutin"
+  ],
+  "利福喷丁": [
+    "rifapentine"
+  ],
+  "贝达喹啉": [
+    "bedaquiline"
+  ],
+  "德拉马尼": [
+    "delamanid"
+  ],
+  "氯法齐明": [
+    "clofazimine"
+  ],
+  "环丝氨酸": [
+    "cycloserine"
+  ],
+  "丙硫异烟胺": [
+    "protionamide"
+  ],
+  "氨硫脲": [
+    "thioacetazone"
+  ],
+  "卷曲霉素": [
+    "capreomycin"
+  ],
+  "卡那霉素": [
+    "kanamycin"
+  ],
+  "阿米卡星": [
+    "amikacin"
+  ],
+  "加替沙星": [
+    "gatifloxacin"
+  ],
+  "环丙沙星": [
+    "ciprofloxacin"
+  ],
+  "氧氟沙星": [
+    "ofloxacin"
+  ],
+  "诺氟沙星": [
+    "norfloxacin"
+  ],
+  "依诺沙星": [
+    "enoxacin"
+  ],
+  "洛美沙星": [
+    "lomefloxacin"
+  ],
+  "司帕沙星": [
+    "sparfloxacin"
+  ],
+  "培氟沙星": [
+    "pefloxacin"
+  ],
+  "妥舒沙星": [
+    "tosufloxacin"
+  ],
+  "芦氟沙星": [
+    "rufloxacin"
+  ],
+  "克林霉素": [
+    "clindamycin"
+  ],
+  "林可霉素": [
+    "lincomycin"
+  ],
+  "磷霉素": [
+    "fosfomycin"
+  ],
+  "夫西地酸": [
+    "fusidic acid"
+  ],
+  "利奈唑胺": [
+    "linezolid"
+  ],
+  "替加环素": [
+    "tigecycline"
+  ],
+  "替考拉宁": [
+    "teicoplanin"
+  ],
+  "万古霉素": [
+    "vancomycin"
+  ],
+  "去甲万古霉素": [
+    "norvancomycin"
+  ],
+  "达托霉素": [
+    "daptomycin"
+  ],
+  "特拉万星": [
+    "telavancin"
+  ],
+  "头孢洛林": [
+    "ceftaroline"
+  ],
+  "头孢他啶": [
+    "ceftazidime"
+  ],
+  "头孢哌酮": [
+    "cefoperazone"
+  ],
+  "头孢吡肟": [
+    "cefepime"
+  ],
+  "头孢噻肟": [
+    "cefotaxime"
+  ],
+  "头孢唑林": [
+    "cefazolin"
+  ],
+  "头孢拉定": [
+    "cefradine"
+  ],
+  "头孢克洛": [
+    "cefaclor"
+  ],
+  "头孢丙烯": [
+    "cefprozil"
+  ],
+  "头孢地尼": [
+    "cefdinir"
+  ],
+  "头孢克肟": [
+    "cefixime"
+  ],
+  "头孢布烯": [
+    "ceftibuten"
+  ],
+  "头孢泊肟酯": [
+    "cefpodoxime proxetil"
+  ],
+  "亚胺培南": [
+    "imipenem"
+  ],
+  "美罗培南": [
+    "meropenem"
+  ],
+  "厄他培南": [
+    "ertapenem"
+  ],
+  "比阿培南": [
+    "biapenem"
+  ],
+  "帕尼培南": [
+    "panipenem"
+  ],
+  "氨曲南": [
+    "aztreonam"
+  ],
+  "克拉维酸": [
+    "clavulanic acid"
+  ],
+  "舒巴坦": [
+    "sulbactam"
+  ],
+  "他唑巴坦": [
+    "tazobactam"
+  ],
+  "阿维巴坦": [
+    "avibactam"
+  ],
+  "瑞来巴坦": [
+    "relebactam"
+  ],
+  "法硼巴坦": [
+    "vaborbactam"
+  ],
+  "多尼培南": [
+    "doripenem"
+  ],
+  "头孢他啶阿维巴坦": [
+    "ceftazidime-avibactam"
+  ],
+  "美罗培南法硼巴坦": [
+    "meropenem-vaborbactam"
+  ],
+  "亚胺培南西司他丁": [
+    "imipenem-cilastatin"
+  ],
+  "头孢哌酮舒巴坦": [
+    "cefoperazone-sulbactam"
+  ],
+  "哌拉西林他唑巴坦": [
+    "piperacillin-tazobactam"
+  ],
+  "阿莫西林克拉维酸": [
+    "amoxicillin-clavulanate"
+  ],
+  "氟康唑": [
+    "fluconazole"
+  ],
+  "伊曲康唑": [
+    "itraconazole"
+  ],
+  "伏立康唑": [
+    "voriconazole"
+  ],
+  "泊沙康唑": [
+    "posaconazole"
+  ],
+  "卡泊芬净": [
+    "caspofungin"
+  ],
+  "米卡芬净": [
+    "micafungin"
+  ],
+  "阿尼芬净": [
+    "anidulafungin"
+  ],
+  "两性霉素B": [
+    "amphotericin b"
+  ],
+  "氟胞嘧啶": [
+    "flucytosine"
+  ],
+  "特比萘芬": [
+    "terbinafine"
+  ],
+  "酮康唑": [
+    "ketoconazole"
+  ],
+  "咪康唑": [
+    "miconazole"
+  ],
+  "克霉唑": [
+    "clotrimazole"
+  ],
+  "益康唑": [
+    "econazole"
+  ],
+  "制霉菌素": [
+    "nystatin"
+  ],
+  "环吡酮胺": [
+    "ciclopirox olamine"
+  ],
+  "阿莫罗芬": [
+    "amorolfine"
+  ],
+  "艾沙康唑": [
+    "isavuconazole"
+  ],
+  "奥希替尼": [
+    "osimertinib"
+  ],
+  "吉非替尼": [
+    "gefitinib"
+  ],
+  "厄洛替尼": [
+    "erlotinib"
+  ],
+  "阿法替尼": [
+    "afatinib"
+  ],
+  "克唑替尼": [
+    "crizotinib"
+  ],
+  "伊马替尼": [
+    "imatinib"
+  ],
+  "索拉非尼": [
+    "sorafenib"
+  ],
+  "帕博利珠单抗": [
+    "pembrolizumab"
+  ],
+  "纳武利尤单抗": [
+    "nivolumab"
+  ],
+  "信迪利单抗": [
+    "sintilimab"
+  ],
+  "卡瑞利珠单抗": [
+    "camrelizumab"
+  ],
+  "曲妥珠单抗": [
+    "trastuzumab"
+  ],
+  "贝伐珠单抗": [
+    "bevacizumab"
+  ],
+  "利妥昔单抗": [
+    "rituximab"
+  ],
+  "佐妥昔单抗": [
+    "zolbetuximab"
+  ]
+}

@@ -1,40 +1,56 @@
-## Description: <br>
-QSearch Agent is a general search assistant that responds to /sp, /search, /找, and /搜 commands to find movies, novels, stocks, news, images, tutorials, and other web content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QSearch Agent is a general-purpose search assistant that responds to /sp, /search, /\u627e, and /\u641c prompts to find results for movies, novels, stocks, news, images, tutorials, and other topics while filtering advertising, phishing, and illegal content.
 
-## Publisher: <br>
-[kany2000](https://clawhub.ai/user/kany2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kany2000](https://clawhub.ai/user/kany2000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this skill to request concise web search results across Chinese and English topics through short slash commands. It is intended for broad information lookup, including media, tutorials, news, images, and stock-related queries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Search queries may be sent to external search or model providers.
+
+Mitigation: Do not submit secrets, private personal data, or confidential business information as search queries.
+
+Risk: The trigger language is broad and may activate for general search requests beyond explicit slash commands.
+
+Mitigation: Review activation wording before deployment if the release should only respond to /sp, /search, /\u627e, or /\u641c commands.
+
+Risk: Returned search results can still be incomplete, outdated, or misleading despite filtering.
+
+Mitigation: Verify important results against trusted sources before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to trigger web searches from short commands and receive concise result lists for general information discovery. It is appropriate when users can review the returned sources and independently verify important results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to external search providers. <br>
-Mitigation: Avoid submitting sensitive, confidential, personal, or regulated queries through the skill. <br>
-Risk: Search results, links, financial information, downloads, or safety-critical claims may be incomplete, outdated, or misleading. <br>
-Mitigation: Independently verify important results and inspect links before relying on them or taking action. <br>
+**Output Format:** [Markdown search-result summaries with titles, descriptions, and source links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kany2000/qsearch-agent) <br>
+**Other Properties Related to Output:** [Typically returns 5-10 filtered search results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown search-result summaries with titles, descriptions, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically returns 5-10 filtered search results; external search-provider behavior may affect freshness and coverage.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

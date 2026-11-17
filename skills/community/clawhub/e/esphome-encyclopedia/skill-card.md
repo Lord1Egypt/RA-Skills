@@ -1,43 +1,60 @@
-## Description: <br>
-Guides agents through ESPHome-specific documentation lookup, YAML/config authoring and review, component selection, troubleshooting, dashboard or node maintenance, and local note caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ESPHome Encyclopedia guides agents through official-doc-first ESPHome configuration help, YAML authoring and review, component selection, troubleshooting, local documentation caching, and operational notes.
 
-## Publisher: <br>
-[kklouzal](https://clawhub.ai/user/kklouzal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklouzal](https://clawhub.ai/user/kklouzal)
 
-## Use Case: <br>
-Developers, engineers, and home automation operators use this skill for ESPHome-specific YAML authoring, configuration review, component selection, troubleshooting, and device maintenance grounded in official ESPHome documentation and local project notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local encyclopedia notes can accidentally capture Wi-Fi passwords, API keys, dashboard private URLs, tokens, or other sensitive operational details. <br>
-Mitigation: Keep .ESPHome-Encyclopedia notes inside the intended project and redact or omit credentials, tokens, private URLs, recovery codes, and other secrets. <br>
-Risk: ESPHome configuration, pin, package, substitution, framework, or OTA changes can affect device availability or behavior. <br>
-Mitigation: Consult the relevant official ESPHome docs, inspect current configuration first, and review proposed config or OTA-impacting changes before applying them to devices. <br>
+## Use Case:
 
+Developers and operators use this skill when working on ESPHome nodes and configurations, especially when they need current component documentation, YAML guidance, config review, troubleshooting, or cautious live node maintenance.
 
-## Reference(s): <br>
-- [ESPHome Components Documentation](https://esphome.io/components/) <br>
-- [ESPHome Encyclopedia Workflow Notes](references/workflow.md) <br>
-- [ESPHome Topic Map](references/topic-map.md) <br>
-- [.ESPHome-Encyclopedia Cache Layout](references/cache-layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional YAML/code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace-local .ESPHome-Encyclopedia cache and notes; cache fetches are restricted to official ESPHome docs URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: The documentation cache helper may fetch and persist off-domain or oversized content when redirects and response sizes are not bounded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the cache helper only after validating redirects on every hop, bounding content type and response size, and keeping cached source URLs auditable.
+
+Risk: Workspace notes and inventories can accidentally capture sensitive ESPHome operational details.
+
+Mitigation: Do not store plaintext credentials, API keys, session tokens, private URLs, recovery codes, or other secrets in the encyclopedia cache, notes, or inventory files.
+
+Risk: Cached pages and local observations can become stale or be mistaken for authoritative ESPHome behavior.
+
+Mitigation: Treat cached pages as reference material, distinguish official documentation from local observations, and recheck current ESPHome docs before device-impacting configuration or OTA work.
+
+## Reference(s):
+
+- [ESPHome Components Documentation](https://esphome.io/components/)
+- [ESPHome Encyclopedia Workflow Notes](references/workflow.md)
+- [.ESPHome-Encyclopedia Cache Layout](references/cache-layout.md)
+- [ESPHome Topic Map](references/topic-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with ESPHome YAML, code snippets, and shell commands when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses workspace-local ESPHome documentation cache and notes when available]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

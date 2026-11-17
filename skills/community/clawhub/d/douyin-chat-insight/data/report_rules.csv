@@ -1,0 +1,6 @@
+id,keyword,action,note
+1,硬事实,block_hard_facts,必须带原话出处
+2,矛盾,block_contradictions,未闭合标 clear
+3,需求墙,block_demand_quotes,排除主理人与分享卡片
+4,动作,block_actions,每条指回上文
+5,单页,single_page_only,禁止默认多页 PPT

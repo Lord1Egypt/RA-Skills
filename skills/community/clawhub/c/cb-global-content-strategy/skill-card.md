@@ -1,39 +1,53 @@
-## Description: <br>
-Build a localized content engine for any market - editorial calendars, SEO keyword maps, platform-native content templates, and translation-quality frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a localized content engine for any market with editorial calendars, SEO keyword maps, platform-native content templates, and translation-quality frameworks.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Content leads, brand teams, localization managers, and overseas marketing operators use this skill to plan multilingual content programs, choose between translation, localization, and transcreation, and build market-specific calendars, workflows, and benchmarks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cb-global-content-strategy) <br>
-- [Global Content Strategy Designer README](artifact/README.md) <br>
-- [Acceptance Criteria](artifact/ACCEPTANCE.md) <br>
+Content leads, brand teams, localization managers, and overseas marketing operators use this skill to plan multilingual content programs, decide what stays global or local, and produce market-specific calendars, workflows, and quality checkpoints.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown strategy plans with tables, calendars, workflows, and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill with no API calls, code execution, credentials, or hidden system access. Treat cultural, legal, and regulated-claims recommendations as draft strategy requiring local expert review before publication.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated content strategy may be insufficient for regulated claims or sensitive cultural, religious, political, or historical topics.
+
+Mitigation: Use local legal or cultural expert review before publishing in regulated or sensitive markets.
+
+Risk: Marketing guidance can be mistaken for approval that a message is legally compliant or culturally appropriate.
+
+Mitigation: Treat outputs as strategic planning support and validate final claims, translations, and cultural references with qualified local reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-global-content-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown with tables, decision frameworks, calendar templates, workflow steps, and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API access, code execution, persistence, or hidden high-impact behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

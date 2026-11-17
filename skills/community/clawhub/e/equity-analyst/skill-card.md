@@ -1,41 +1,54 @@
-## Description: <br>
-전문 투자 분석가 AI로, 한국 주식 종목의 재무제표, 뉴스, 차트를 분석하여 Investment Attractiveness Score (0-100)와 BUY/HOLD/AVOID 추천을 제공합니다. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Equity Analyst analyzes Korean KRX stocks using Naver Finance financial metrics, news, and simple chart context to produce an Investment Attractiveness Score and a conservative BUY_LEAN, HOLD, or AVOID-style verdict.
 
-## Publisher: <br>
-[Saebyeok-Im](https://clawhub.ai/user/Saebyeok-Im) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saebyeok-im](https://clawhub.ai/user/saebyeok-im)
 
-## Use Case: <br>
-External users and analysts use this skill to evaluate Korean KRX-listed equities with a conservative framework that prioritizes financial fundamentals, then news outlook, then chart timing. It produces a structured score and BUY, BUY_LEAN, HOLD, or AVOID verdict for supported Korean stock tickers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional scripts scrape Naver Finance and may depend on live page structure, browser state, local command execution, or hardcoded paths. <br>
-Mitigation: Review scripts before execution, run them in a clean browser profile, adjust local paths, and verify scraped data against source pages before relying on reports. <br>
-Risk: Generated equity scores can be incomplete or misleading if market data, news summaries, or chart descriptions are missing, stale, or incorrectly extracted. <br>
-Mitigation: Treat outputs as analysis support rather than financial advice, confirm source data manually, and preserve the framework's financial-priority scoring rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Equity Analysis Framework](references/framework.md) <br>
-- [Naver Finance ticker page](https://finance.naver.com/item/main.naver?code={ticker}) <br>
-- [ClawHub skill page](https://clawhub.ai/Saebyeok-Im/equity-analyst) <br>
+## Use Case:
 
+External users and analysts use this skill to structure Korean stock research around financial fundamentals, recent news, and basic chart conditions. The output is intended as informational analysis that supports review, not as financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown report with numeric scores, verdict, and reasoning summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on Korean stocks; optional scripts can create report files from Naver Finance data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes local Python reporting scripts that can open an OpenClaw browser profile, scrape Naver Finance, and write files into the local workspace.
+
+Mitigation: Review scripts before installation, use only the documented analyzer and scraper workflow when possible, and avoid daily or morning report scripts until their shell invocation and hardcoded paths are fixed.
+
+Risk: Stock scores and verdicts may be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as informational analysis only and require qualified human review before making investment decisions.
+
+## Reference(s):
+
+- [Equity Analysis Framework](references/framework.md)
+- [Naver Finance ticker page](https://finance.naver.com/item/main.naver?code={ticker})
+- [ClawHub skill page](https://clawhub.ai/saebyeok-im/skills/equity-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Structured Markdown-style investment analysis report with scores, verdict, and reasoning; scripts may also emit local report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores are 0-100 and follow the documented Financial, News, and Chart weighting framework.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

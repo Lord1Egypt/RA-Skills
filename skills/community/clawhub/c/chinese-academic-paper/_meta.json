@@ -1,0 +1,25 @@
+{
+  "description": "Generates Chinese-language academic course paper reviews (课程论文综述) with strict formatting (小四 + 宋体 + 双倍行距) and exports to both .docx and .pdf via python-docx + libreoffice headless. Enforces GB/T 7714-2015 citation format with mandatory web verification of all references before inclusion.",
+  "publisher": "huanmeng9527",
+  "license": "MIT-0",
+  "useCase": "Students writing Chinese university course papers (typically ~20 pages on a specific algorithm or technology) need references verified to publisher/journal pages, a 9-chapter outline approved by the user, and final output in both Word and PDF formats. Manual formatting and reference hunting typically takes days; this skill automates the entire pipeline with academic integrity safeguards.",
+  "deploymentGeography": "Global",
+  "risks": [
+    {
+      "risk": "AI-generated content can include fabricated references that look plausible but do not exist.",
+      "mitigation": "Mandatory web verification of every reference against DOI or journal page before inclusion in the bibliography."
+    },
+    {
+      "risk": "Chinese font rendering on Linux requires Noto Serif CJK fallback when 宋体 is not installed locally.",
+      "mitigation": "OOXML eastAsia attribute is set correctly in python-docx so Word/WPS renders Chinese; LibreOffice falls back to Noto Serif CJK for PDF."
+    },
+    {
+      "risk": "matplotlib dependency install can hang silently during skill setup on some systems.",
+      "mitigation": "Use Pillow (PIL) for academic diagram generation instead, which is typically pre-installed and faster to set up."
+    }
+  ],
+  "output": {
+    "types": ["text", "markdown", "docx", "pdf", "image"],
+    "format": "20+ page .docx (Word) and .pdf (via soffice --headless) with embedded Chinese font fallback and inline academic figures."
+  }
+}

@@ -13,7 +13,7 @@ description: >
 
 ## Prerequisites
 
-- Rust toolchain: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+- Rust toolchain（避免管道执行远程脚本）: `brew install rustup`（推荐）；或下载官方脚本先检查再执行：`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup-init.sh && less rustup-init.sh && sh rustup-init.sh`
 - System dependencies: https://v2.tauri.app/start/prerequisites/
 
 ## Workflow
@@ -50,8 +50,8 @@ bun create tauri-app <project-name> --template react-ts --manager bun
 | Selection | Packages |
 |---|---|
 | Tailwind CSS | `tailwindcss @tailwindcss/vite` |
-| shadcn/ui (React) | `npx shadcn@latest init` + `lucide-react` |
-| shadcn-vue (Vue) | `npx shadcn-vue@latest init` + `lucide-vue-next` |
+| shadcn/ui (React) | `bun add -d shadcn && bunx shadcn init`（固定版本）+ `lucide-react` |
+| shadcn-vue (Vue) | `bun add -d shadcn-vue && bunx shadcn-vue init`（固定版本）+ `lucide-vue-next` |
 | Zustand | `zustand` |
 | Ant Design | `antd @ant-design/icons` |
 | Element Plus | `element-plus @element-plus/icons-vue` |

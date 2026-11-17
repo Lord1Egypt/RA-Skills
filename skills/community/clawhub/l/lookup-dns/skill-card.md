@@ -1,38 +1,53 @@
-## Description: <br>
-DNS Lookup provides DNS record lookups, reverse DNS, WHOIS/RDAP domain information, and IP geolocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DNS record lookups, reverse DNS, WHOIS via RDAP, and IP geolocation.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Developers, network administrators, and support engineers use this skill to inspect public DNS records, reverse DNS, RDAP/WHOIS data, and IP geolocation for troubleshooting and investigation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Domain names and IP addresses are sent to an external DNS lookup service, which may expose sensitive internal hostnames, private infrastructure, or confidential investigation targets. <br>
-Mitigation: Use the skill for ordinary public lookups, and avoid submitting sensitive domains or IPs unless sharing them with dns.agentutil.net is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DNS Lookup on ClawHub](https://clawhub.ai/CutTheMustard/lookup-dns) <br>
-- [DNS Lookup service homepage](https://dns.agentutil.net) <br>
+## Use Case:
 
+Developers and operators use this skill to query DNS records, reverse DNS, RDAP domain information, and IP geolocation through the dns.agentutil.net service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DNS records, reverse DNS names, RDAP/WHOIS fields, IP geolocation details, request IDs, and service metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Domain names and IP addresses submitted for lookup are sent to dns.agentutil.net.
+
+Mitigation: Avoid querying sensitive internal hostnames, private infrastructure, or other data whose disclosure to the external service is not acceptable.
+
+Risk: Returned DNS, RDAP, WHOIS, or geolocation data may be incomplete, stale, or unsuitable as the sole basis for security decisions.
+
+Mitigation: Verify consequential findings with authoritative DNS, registrar, network, or security sources before acting on them.
+
+## Reference(s):
+
+- [DNS Lookup service homepage](https://dns.agentutil.net)
+- [ClawHub skill listing](https://clawhub.ai/cutthemustard/skills/lookup-dns)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send queried domains and IP addresses to dns.agentutil.net; free tier allows 10 queries per day.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,68 @@
-## Description: <br>
-Guides an agent through researching, planning, prompting, and generating Xiaohongshu cover images and content cards with Lovart and optional Python/PIL text-card generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu and RedNote cover images and content cards through a structured workflow for visual research, concepting, prompt writing, Lovart generation, and final review.
 
-## Publisher: <br>
-[velmavalienteqejimu22-jpg](https://clawhub.ai/user/velmavalienteqejimu22-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[velmavalienteqejimu22-jpg](https://clawhub.ai/user/velmavalienteqejimu22-jpg)
 
-## Use Case: <br>
-External creators and agents use this skill to turn Xiaohongshu post drafts, brand references, and optional source materials into cover concepts, Lovart prompts, generated image files, and supporting text-card assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide Lovart session cookies that can act as their account. <br>
-Mitigation: Use a dedicated Lovart account when possible, keep .lovart_cookies.json private, and exclude it from version control. <br>
-Risk: The download helper disables HTTPS certificate checks for image downloads. <br>
-Mitigation: Patch the helper to use certificate verification or avoid the helper until the download path is corrected. <br>
+## Use Case:
 
+External users, content creators, marketers, and agent operators use this skill to turn Xiaohongshu or RedNote post copy, brand preferences, and optional source material into cover concepts, image-generation prompts, generated images, and text cards.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/velmavalienteqejimu22-jpg/xiaohongshu-cover-gen) <br>
-- [Lovart operation guide](artifact/references/lovart-operation.md) <br>
-- [Prompt checklist](artifact/references/prompt-checklist.md) <br>
-- [Research platforms guide](artifact/references/research-platforms.md) <br>
-- [Aesthetic guide](artifact/references/aesthetic-guide.md) <br>
-- [Design tokens template](artifact/templates/design-tokens.md) <br>
-- [Lovart](https://lovart.ai) <br>
-- [Dribbble](https://dribbble.com) <br>
-- [Xiaohongshu](https://xiaohongshu.com) <br>
-- [Pillow documentation](https://pillow.readthedocs.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with prompts, shell commands, Python-generated image files, and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Lovart-ready prompts, visual direction notes, design tokens, iteration logs, and PNG/JPEG image assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can require Lovart login cookies, giving an agent access to a Lovart session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value Lovart account, keep cookies outside the project and source control, and refresh or revoke them when no longer needed.
+
+Risk: The included image downloader disables TLS certificate verification for Lovart image downloads.
+
+Mitigation: Avoid the TLS-disabled downloader when possible, replace it with a reviewed download path, and inspect shell scripts before execution.
+
+Risk: Generated images, prompts, and visual concepts may be misleading, low quality, or poorly matched to the source post.
+
+Mitigation: Review concepts, prompts, and generated images against the provided checklist before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/velmavalienteqejimu22-jpg/skills/xiaohongshu-cover-gen)
+- [Lovart Operation Guide](references/lovart-operation.md)
+- [Prompt Checklist](references/prompt-checklist.md)
+- [Research Platforms Guide](references/research-platforms.md)
+- [Aesthetic Guide](references/aesthetic-guide.md)
+- [Design Tokens Template](templates/design-tokens.md)
+- [Iteration Log Template](templates/iteration-log.md)
+- [Lovart](https://lovart.ai)
+- [Dribbble](https://dribbble.com)
+- [Xiaohongshu](https://xiaohongshu.com)
+- [Pinterest](https://pinterest.com)
+- [Pillow Documentation](https://pillow.readthedocs.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance, image-generation prompts, shell commands, Python/Pillow configuration, and generated PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Lovart session cookies for image generation and may produce 1080x1440 PNG text cards through the bundled Pillow script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

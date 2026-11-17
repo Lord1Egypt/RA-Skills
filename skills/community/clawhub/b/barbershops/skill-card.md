@@ -1,40 +1,54 @@
-## Description: <br>
-Find nearby barbershops. Invoke when user asks for a haircut near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby barbershops. Invoke when user asks for a haircut near me.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External users use this skill to find nearby barbershops from an authorized location, optionally filtered by rating, price level, open status, or keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs user location data to find nearby barbershops. <br>
-Mitigation: Request location authorization before use, prefer approximate or fuzzed coordinates when exact location is unnecessary, and avoid retaining precise coordinates beyond short-term caching. <br>
-Risk: Nearby search results can be unavailable, rate limited, or constrained by invalid location input. <br>
-Mitigation: Use the documented error codes for invalid location, excessive radius, provider unavailability, and rate limiting so callers can handle failures clearly. <br>
+## Use Case:
 
+External users and agents use this skill to find barbershops near an authorized location and return a standardized point-of-interest list with filters such as open status, rating, price level, and keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/barbershops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Structured text describing standardized place results, filters, and error codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-approved location data and returns the barbershops category.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill uses precise location data to find nearby barbershops.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use location only after user authorization, avoid retaining precise coordinates, and apply grid-based fuzzing when exact coordinates are not required.
+
+Risk: Place lookup results may fail or be throttled by an upstream data source.
+
+Mitigation: Surface standard errors such as PROVIDER_UNAVAILABLE and RATE_LIMITED, and use short-term caching for repeated nearby queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/barbershops)
+- [Publisher profile](https://clawhub.ai/user/clawkk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON-compatible structured point-of-interest list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include standard location, category, radius, result limit, filter, and error-code fields.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Iteratively densifies text summaries with Chain-of-Density for compressing verbose documentation, condensing requirements, or creating executive summaries while preserving information density. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iteratively densifies text summaries using the Chain-of-Density technique for compressing verbose documentation, condensing requirements, or creating executive summaries while preserving information density.
 
-## Publisher: <br>
-[killerapp](https://clawhub.ai/user/killerapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[killerapp](https://clawhub.ai/user/killerapp)
 
-## Use Case: <br>
-Developers, analysts, and content authors use this skill to compress long documentation, requirements, and reports into dense summaries with optional entity history and deterministic word-count checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The original source text is passed through repeated summarization iterations, which can expose private or regulated content to the configured cod-iteration subagent. <br>
-Mitigation: Use only an approved cod-iteration subagent and data-handling environment for sensitive documents, or avoid using the skill on regulated content. <br>
-Risk: Dense summaries can omit nuance and the artifact explicitly discourages use on legal, compliance, tutorial, already concise, or specification content. <br>
-Mitigation: Reserve the skill for ordinary summarization tasks and require human review before relying on dense summaries for high-precision materials. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to turn verbose source text into denser summaries through iterative entity injection while tracking added entities and preserving a target word count.
 
-## Reference(s): <br>
-- [From Sparse to Dense: GPT-4 Summarization with Chain of Density Prompting](https://arxiv.org/abs/2309.04269) <br>
-- [Hugging Face chain_of_density dataset](https://huggingface.co/datasets/griffin/chain_of_density) <br>
-- [ClawHub Chain of Density release](https://clawhub.ai/killerapp/chain-of-density) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text summary or YAML-style Markdown history, with optional shell commands for deterministic text metrics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final summaries maintain a target word count across iterations; optional history records missing entities and per-iteration summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The summarization workflow can change meaning if used where exact wording must be preserved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using it for legal, compliance, specification, or other precision-critical text; review the final summary against the source before use.
+
+Risk: Source text may be sent through a serial subagent process during summarization.
+
+Mitigation: Do not provide sensitive or restricted text unless the agent environment and subagent handling are approved for that data.
+
+## Reference(s):
+
+- [From Sparse to Dense: GPT-4 Summarization with Chain of Density Prompting](https://arxiv.org/abs/2309.04269)
+- [HuggingFace griffin/chain_of_density dataset](https://huggingface.co/datasets/griffin/chain_of_density)
+- [Chain of Density ClawHub page](https://clawhub.ai/killerapp/skills/chain-of-density)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown summary, with optional YAML history and inline shell commands for text metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final summaries are intended to preserve a target word count across iterative densification passes; the helper script can return word, character, byte, or JSON metrics.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

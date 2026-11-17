@@ -1,44 +1,59 @@
-## Description: <br>
-Credit card rewards optimizer that helps agents query 150+ US cards, compare benefits, track a card portfolio, check Chase 5/24 status, and find sign-up bonuses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Credit card rewards optimizer that helps agents query card data, compare benefits, track a user portfolio, check Chase 5/24 status, and find sign-up bonuses.
 
-## Publisher: <br>
-[troyt-666](https://clawhub.ai/user/troyt-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[troyt-666](https://clawhub.ai/user/troyt-666)
 
-## Use Case: <br>
-External users and agents use this skill to answer credit-card rewards questions, compare card benefits and offers, maintain a local card portfolio, and check issuer application rules such as Chase 5/24. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup installs and runs the third-party luca-assistant package and initializes card data from external sources. <br>
-Mitigation: Install only after trusting the publisher and package source, and run setup in an environment where uv-based tool installation is permitted. <br>
-Risk: Portfolio records are stored locally and may include personal card history used for recommendations and 5/24 checks. <br>
-Mitigation: Enter only portfolio details needed for the task and manage the local database at ~/.local/share/luca/luca.db according to the user's privacy requirements. <br>
-Risk: Credit-card offers, benefits, fees, and issuer rules can become stale or incomplete. <br>
-Mitigation: Refresh data with luca_import_cards when needed and avoid fabricating card details when the database has no matching record. <br>
+## Use Case:
 
+External users and agents use this skill to answer credit card rewards questions, compare cards and welcome offers, and manage a local card portfolio. It is intended for US credit card rewards workflows backed by Luca's card database rather than fabricated card details.
 
-## Reference(s): <br>
-- [Luca Assistant GitHub homepage](https://github.com/troyt-666/luca-assistant) <br>
-- [Luca Assistant on ClawHub](https://clawhub.ai/troyt-666/luca-assistant) <br>
-- [Nitan companion skill on ClawHub](https://clawhub.ai/nitansde/nitan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-formatted MCP tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local MCP server and local SQLite database for card data and portfolio records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The setup installs the external luca-assistant package from PyPI via uv.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and package are trusted, and review the package source or lock deployment inputs before use.
+
+Risk: Portfolio actions can persistently add, close, import, or update card data in a local database.
+
+Mitigation: Have the agent confirm before performing portfolio write actions or refreshing card data.
+
+Risk: Credit card offer or rule data may be stale or incomplete.
+
+Mitigation: Use database-backed answers, refresh data when appropriate, and avoid guessing when a card is not found.
+
+## Reference(s):
+
+- [Luca Assistant project homepage](https://github.com/troyt-666/luca-assistant)
+- [Luca Assistant ClawHub listing](https://clawhub.ai/troyt-666/skills/luca-assistant)
+- [nitan companion skill](https://clawhub.ai/nitansde/nitan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional shell command examples and JSON-formatted MCP tool arguments or results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call luca-mcp tools and update a persistent local portfolio database at ~/.local/share/luca/luca.db.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

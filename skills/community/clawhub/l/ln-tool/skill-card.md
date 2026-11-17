@@ -1,40 +1,52 @@
-## Description: <br>
-Create hard and symbolic links between files. Use for file referencing, shortcuts, and directory organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create hard and symbolic links between files for file referencing, shortcuts, and directory organization.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to ask an agent for guidance or commands that create filesystem links for shared resources, shortcuts, and directory organization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can create local filesystem links, which may point into sensitive directories or replace expected paths if used carelessly.
+
+Mitigation: Review target and link paths before use, avoid force replacement in sensitive directories, and execute only commands that match the intended path layout.
+
+Risk: The documentation describes hard-link and force options, while the bundled script evidence only supports creating symbolic links.
+
+Mitigation: Confirm the actual command or script behavior before relying on hard-link or force-replacement semantics.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to create local file links for file referencing, shortcuts, and directory organization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local filesystem links and can affect existing paths. <br>
-Mitigation: Check target and link paths before execution, and use force replacement only when replacing the destination is intended. <br>
-Risk: The documentation describes hard and symbolic links, while the included Python script creates symbolic links only. <br>
-Mitigation: Treat symbolic-link creation as the implemented behavior unless the artifact is updated to support hard links. <br>
+**Output Format:** [Markdown with inline shell commands and file-linking guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/ln-tool) <br>
+**Other Properties Related to Output:** [May reference local filesystem paths supplied by the user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local filesystem links when executed; the included script supports symbolic links.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

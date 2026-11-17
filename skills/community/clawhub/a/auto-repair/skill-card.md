@@ -1,42 +1,57 @@
-## Description: <br>
-Find nearby auto repair. Invoke when user asks for car repair near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby auto repair services when a user asks for car repair near them.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users and assistant agents use this skill to structure nearby auto repair lookup from an authorized user location, including radius, limit, filter inputs, and consistent POI-style results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on precise user location to find nearby services. <br>
-Mitigation: Query only after user location authorization and avoid retaining exact coordinates; use coarse or grid-blurred coordinates when persistence is needed. <br>
-Risk: The referenced STANDARD_RESPONSE.md is not included, so the full response contract is not inspectable from this artifact. <br>
-Mitigation: Confirm the expected response schema before integrating the skill into an interface or downstream workflow. <br>
-Risk: Provider availability, invalid coordinates, large radii, or rate limits may prevent useful results. <br>
-Mitigation: Handle the declared error codes and keep radius and result limits within the documented defaults and maximums. <br>
+## Use Case:
 
+External users invoke this skill to find nearby auto repair services from an authorized location, with optional radius, result limit, and service filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/auto-repair) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown instructions with structured input and response field guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines location, radius, limit, filters, category, and expected error codes for nearby auto repair lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The artifact references a non-portable absolute STANDARD_RESPONSE.md path outside the reviewed skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the publisher fixes or accepts the packaging issue before installation; do not rely on that external local path as reviewed content.
+
+Risk: The skill requires user location input for nearby auto repair lookup.
+
+Mitigation: Use it only after location authorization and avoid retaining precise coordinates; blur or grid coordinates when storage or forwarding is necessary.
+
+Risk: Broad trigger wording may cause the skill to be invoked for general car repair questions.
+
+Mitigation: Invoke it only when the user asks for nearby repair options or otherwise authorizes a location-based auto repair search.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/auto-repair)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Structured text describing nearby auto repair points of interest and related error codes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-authorized location; defaults to a 3000 meter radius and 20 results, with a maximum of 50 results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

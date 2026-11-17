@@ -1,44 +1,58 @@
-## Description: <br>
-Access Spotify listening history, top artists/tracks, and get personalized recommendations via the Spotify Web API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Spotify listening history, top artists/tracks, and get personalized recommendations via the Spotify Web API.
 
-## Publisher: <br>
-[braydoncoyer](https://clawhub.ai/user/braydoncoyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[braydoncoyer](https://clawhub.ai/user/braydoncoyer)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve Spotify listening history, top artists and tracks, current playback state, and personalized music recommendations after one-time OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private Spotify listening and preference data through OAuth scopes. <br>
-Mitigation: Review the requested Spotify scopes before authorizing and revoke the Spotify app authorization when the skill is no longer needed. <br>
-Risk: Spotify client secrets and OAuth tokens are stored locally. <br>
-Mitigation: Keep credential and token files private, preserve user-only file permissions, and avoid sharing workspaces that contain those files. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent fetch Spotify listening history, top artists, top tracks, and recommendation data after one-time OAuth setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/braydoncoyer/spotify-history) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
-- [Spotify Accounts authorization endpoint](https://accounts.spotify.com/authorize) <br>
-- [Spotify Accounts token endpoint](https://accounts.spotify.com/api/token) <br>
-- [Spotify Web API base endpoint](https://api.spotify.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Spotify API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local Spotify OAuth tokens and user listening data after authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill grants and stores Spotify account access broader than its music-history purpose requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a trusted machine, grant the minimum Spotify scopes needed, and treat the stored OAuth token as sensitive account access.
+
+Risk: The raw JSON command can query arbitrary Spotify API endpoints available to the granted token.
+
+Mitigation: Avoid the raw json endpoint unless the endpoint and data exposure are understood before use.
+
+Risk: Spotify client credentials and tokens are stored on disk for setup and reuse.
+
+Mitigation: Keep credential and token files private, preserve user-only file permissions, and rotate credentials if they are exposed.
+
+## Reference(s):
+
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+- [Spotify History skill page](https://clawhub.ai/braydoncoyer/skills/spotify-history)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text summaries, JSON API responses, and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Spotify OAuth credentials and stores an access token for future API calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,54 @@
-## Description: <br>
-POLICY-MANAGER manages insurance policy JSON files by creating records after product selection, updating materials and extracted policy data, changing completion status, and reading task state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+POLICY-MANAGER creates, reads, and updates insurance policy JSON files for selected products, uploaded materials, extracted policy data, and completion status.
 
-## Publisher: <br>
-[erveynight](https://clawhub.ai/user/erveynight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erveynight](https://clawhub.ai/user/erveynight)
 
-## Use Case: <br>
-Insurance operations agents and developers use this skill to coordinate policy intake workflows, preserve user- or document-sourced policy data, and return standard JSON responses for create, update, status, and read operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive personal, policy, and payment-related data. <br>
-Mitigation: Use it only in a controlled insurance-processing environment with consent, access controls, retention and deletion procedures, and redaction controls for real identity documents or bank-card data. <br>
-Risk: Policy records are scoped to a policies directory and may be exposed if that location is not protected. <br>
-Mitigation: Protect the policies directory, restrict filesystem access, and run the skill only under accounts authorized to process the relevant policy tasks. <br>
-Risk: A configured POLICY_API_URL can enable network calls to a policy-template endpoint. <br>
-Mitigation: Disable the endpoint unless needed, tightly allowlist destinations, require HTTPS, and review endpoint configuration before processing real customer data. <br>
-Risk: Invalid task numbers or update types could read or alter the wrong policy record. <br>
-Mitigation: Validate task numbers before use, restrict allowed update types, and require authorization for each policy operation. <br>
+## Use Case:
 
+External users and insurance operations teams use this skill to coordinate policy-file creation, uploaded-material tracking, policy data mapping, status updates, and policy reads during an insurance application workflow.
 
-## Reference(s): <br>
-- [POLICY-MANAGER on ClawHub](https://clawhub.ai/erveynight/policy-manager) <br>
-- [Publisher profile: erveynight](https://clawhub.ai/user/erveynight) <br>
-- [PolicyDTO field reference](artifact/PolicyDTO字段说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [JSON responses with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, updates, and reads policy JSON records through the policy-manager command workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive insurance records may be created, read, or updated without strong file boundaries or implemented authorization checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a controlled environment with trusted callers, limited filesystem access, task number validation, authorization checks, update allowlists, schema validation, and safe writes.
+
+Risk: Network and storage behavior is under-disclosed, including optional remote policy-template access through POLICY_API_URL.
+
+Mitigation: Require explicit opt-in and privacy notices for remote policy-template calls, and document where policy records and uploaded-material metadata are stored before using real customer data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erveynight/skills/policy-manager)
+- [PolicyDTO field reference](artifact/PolicyDTO字段说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses policy task identifiers, insurance/product codes, uploaded-material metadata, policy data JSON, and status JSON as workflow inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

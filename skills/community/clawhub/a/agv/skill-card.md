@@ -1,41 +1,58 @@
-## Description: <br>
-Automated guided vehicle route planner. Use when json agv tasks, csv agv tasks, checking agv status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agv is presented as an automated guided vehicle route planner, while server security review identifies this artifact as a local record store with status, add, list, search, remove, export, stats, and config commands.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and operators can invoke this CLI-style skill to add, list, search, remove, export, and configure local AGV-labeled entries. Based on the security review, treat it as a local note/config tracker rather than an authoritative AGV routing or vehicle-status system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is labeled as an AGV route planner, but security evidence says it behaves like a local note/config store that can persist, delete, and export arbitrary entries. <br>
-Mitigation: Use it only for simple local entry tracking; do not rely on it for real AGV routing, vehicle status, facility operations, or industrial automation. <br>
-Risk: Local entries and configuration may be persisted under the user's home directory and exported into the current working directory. <br>
-Mitigation: Review stored data before export or deletion, set AGV_DIR deliberately when isolation is needed, and avoid entering sensitive operational data. <br>
+## Use Case:
 
+Developers and operators can use this skill to run a local command-line record manager for AGV-related entries, exports, and configuration. It should not be used as an operational AGV route planner or status system without correcting the documented purpose mismatch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/agv) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Plain text CLI output, JSONL local data, and JSON or CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under ~/.agv by default, or under AGV_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The artifact is advertised as an AGV route planner, but server security review says it behaves like a generic local record store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it for safety-critical AGV routing or operational status decisions unless the implementation is corrected and independently validated.
+
+Risk: The script writes persistent data, can delete entries, can export files, and can change configuration.
+
+Mitigation: Run it with a controlled AGV_DIR in a non-production workspace and review delete, export, and config commands before execution.
+
+Risk: Server security guidance identifies an unsafe config update path and shell escaping concerns.
+
+Mitigation: Avoid untrusted input for config and search operations until input handling is fixed and retested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/agv)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text command output with optional JSONL or CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AGV_DIR to choose the local data directory; defaults to ~/.agv.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

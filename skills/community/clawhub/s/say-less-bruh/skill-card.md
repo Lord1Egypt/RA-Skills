@@ -1,40 +1,53 @@
-## Description: <br>
-Compresses assistant replies into short, natural, human-sounding chunks without dropping critical context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user explicitly asks for shorter, more human responses with minimal formatting, usually by saying "Say Less Bruh" or asking for shorter replies.
 
-## Publisher: <br>
-[jakeacp](https://clawhub.ai/user/jakeacp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jakeacp](https://clawhub.ai/user/jakeacp)
 
-## Use Case: <br>
-External users and agent operators use this skill when they want an assistant to keep responses brief, conversational, and minimally formatted while preserving critical warnings, blockers, commands, code, and configuration details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ordinary requests such as "keep it short" can enable brief-response mode for the rest of the conversation, which may reduce detail unexpectedly. <br>
-Mitigation: Tell the assistant to disable SLB, turn off brief mode, or provide a full response when detailed guidance is needed. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent respond in shorter, more natural messages while preserving critical warnings, blockers, and key facts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jakeacp/say-less-bruh) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Publisher profile](https://clawhub.ai/user/jakeacp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Short plain-text or Markdown assistant replies, normally prefixed with SLB when the mode is active] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 1 to 2 sentences and caps normal replies at 5 sentences unless more detail is needed for correctness or safety.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Short-answer mode can compress responses enough that important nuance is lost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve warnings, blockers, irreversible-risk notes, and key facts, and exceed the target length when needed for correctness.
+
+Risk: The mode can keep responses brief for the rest of a conversation after activation.
+
+Mitigation: Allow clear user instructions such as "Disable SLB", "turn off SLB", or "full response" to deactivate the mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jakeacp/skills/say-less-bruh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Short natural-language replies with minimal formatting; exact code, shell commands, JSON, YAML, and configuration blocks may remain as long as needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefixes normal user-facing replies with "SLB: " while active and allows longer answers when brevity would omit critical details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

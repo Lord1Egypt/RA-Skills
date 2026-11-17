@@ -1,46 +1,61 @@
-## Description: <br>
-Trades Polymarket crypto prediction markets for Solana, Bitcoin, and Ethereum using CoinGecko momentum signals, with Simmer context checks for flip-flop detection and slippage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket crypto prediction markets for Solana, Bitcoin, and Ethereum using CoinGecko momentum signals, Simmer context checks, and configurable dry-run or live execution.
 
-## Publisher: <br>
-[chokle](https://clawhub.ai/user/chokle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chokle](https://clawhub.ai/user/chokle)
 
-## Use Case: <br>
-External developers and trading agents use this skill to scan crypto prediction markets, compare market prices against CoinGecko momentum signals, and place simulated or live trades through Simmer when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The strategy can run scheduled live trades with real funds through a Simmer-connected venue. <br>
-Mitigation: Start with TRADING_VENUE=sim, keep TRADE_AMOUNT_USD and MAX_TRADES_PER_RUN low, and enable live venues only after reviewing account limits and accepting loss risk. <br>
-Risk: Automated market selection can act on weak, stale, or misleading momentum signals. <br>
-Mitigation: Review the signal source and thresholds before deployment, monitor dry-run behavior, and customize the strategy for the intended market conditions. <br>
-Risk: A live-capable API key permits recurring automated trading from the configured environment. <br>
-Mitigation: Protect SIMMER_API_KEY, scope account permissions where possible, and do not provide live-capable credentials unless live trading is intended. <br>
+## Use Case:
 
+External developers and trading agents use this skill to run a configurable momentum strategy that scans crypto prediction markets, estimates divergence from CoinGecko price trends, and simulates or places trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chokle/polymarket-sol-momentum) <br>
-- [Simmer Docs](https://docs.simmer.markets) <br>
-- [Simmer Skill Building Guide](https://docs.simmer.markets/skills/building) <br>
-- [CoinGecko Free API](https://www.coingecko.com/en/api/documentation) <br>
-- [Polymarket](https://polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Code, API calls] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and can run on a cron schedule; live trading requires explicit live configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automated trading can run every 15 minutes and place live prediction-market trades through the Simmer credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TRADING_VENUE on sim until tested, cap trade size and trade count, and enforce strict Simmer account limits before enabling live venues.
+
+Risk: Context-check failures may allow trading to proceed without flip-flop, slippage, or HOLD safeguards.
+
+Mitigation: Review or change the context-check path to fail closed before allowing real-money trading.
+
+Risk: A broad or exposed Simmer credential could allow unintended trading activity.
+
+Mitigation: Use a limited-purpose SIMMER_API_KEY and rotate it if it is exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chokle/skills/polymarket-sol-momentum)
+- [Simmer docs](https://docs.simmer.markets)
+- [Simmer skill building guide](https://docs.simmer.markets/skills/building)
+- [CoinGecko free API](https://www.coingecko.com/en/api/documentation)
+- [Polymarket](https://polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with Python strategy code and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and supports scheduled runs, dry-run testing, and live trading configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,232 @@
+# ═══════════════════════════════════════════════════════════
+#  隐私搜索 V1.2 - 配置文件模板
+#  复制为 config.yaml 后修改
+#  cp config.yaml.example config.yaml
+#
+#  V1.2 新增: cache 结果缓存与搜索历史
+#  V1.2 新增: search.retry_max 网络错误自动重试
+#  V1.2 新增: privacy.strict.proxy 代理出口
+#  V1.2 新增: ranking 排序权重可调
+# ═══════════════════════════════════════════════════════════
+
+# ═══════ 搜索设置 ═══════
+search:
+  # 默认搜索引擎（可多选）
+  # 全部可选值（共 10 个，与 --list-engines 输出一致）:
+  #   baidu, bing, sogou, 360, duckduckgo,
+  #   yandex, startpage, qwant, brave, searxng
+  default_engines:        # [推荐修改] 修改你想用的引擎
+    - baidu
+    - bing
+    - duckduckgo
+    - searxng
+
+  # 每个引擎返回结果数（V1.2 起真正生效，CLI 的 --num 优先级更高）
+  num_results: 10
+
+  # 请求超时（秒）
+  timeout: 15             # [推荐修改] 网速慢可增大到 20
+
+  # 网络错误自动重试次数（V1.2 新增）
+  # 仅对超时/连接失败等网络类错误重试，解析失败不重试
+  # 采用指数退避 + 随机抖动，避免多引擎同时重试造成请求尖峰
+  retry_max: 2
+
+  # 并发请求数上限
+  max_concurrent: 6
+
+  # 单引擎每日请求上限（防封禁）
+  daily_request_limit: 200
+
+  # 请求间隔随机化范围（秒）
+  request_delay_min: 1.0
+  request_delay_max: 5.0
+
+# ═══════ 结果缓存与搜索历史（V1.2 新增） ═══════
+cache:
+  # 是否启用缓存。关闭后每次都实时请求
+  # 单次跳过缓存可用 CLI 参数 --no-cache
+  enabled: true
+
+  # 缓存有效期（秒），默认 1 小时
+  # 设为 0 等同于关闭缓存（而非永不过期），避免隐私数据长期滞留
+  ttl_seconds: 3600
+
+  # 缓存文件容量上限（MB），超出后按最近最少使用淘汰
+  max_size_mb: 50
+
+  # 缓存数据库路径
+  path: "~/.workbuddy/output/privacy-search-cache.db"
+
+# ═══════ 隐私模式 ═══════
+privacy:
+  # 默认模式: normal | strict
+  # 可选 normal / strict；也接受写作 mode，两者等价
+  default_mode: strict    # [推荐修改] strict 为默认隐私模式
+
+  # strict 模式配置
+  strict:
+    # strict 模式下使用的引擎（按优先级排序）
+    # 留空时自动取引擎注册表中所有标记 strict_ok 的引擎：
+    #   searxng, yandex, startpage, qwant, brave, duckduckgo
+    allowed_engines:
+      - searxng
+      - yandex
+      - startpage
+      - qwant
+      - brave
+      - duckduckgo
+
+    # 降级引擎列表（按成功率动态排序，不再固定顺序）
+    # 推荐选 2-3 个候选，系统按历史成功率自动选最优
+    fallback_engines:
+      - bing
+      - baidu
+
+    # 强制 DNT (Do Not Track)
+    dnt: true
+    # 不发送 Cookie
+    no_cookie: true
+    # 不发送 Referrer
+    no_referrer: true
+    # 自定义 User-Agent
+    # 留空时自动从内置 UA 池随机取用，降低指纹一致性（V1.2 推荐留空）
+    user_agent: ""
+    # 追加 User-Agent（可选）
+    # 在内置 UA 池基础上额外添加，一行一个。自己的 UA 优先于内置池
+    # user_agent_pool:
+    #   - "MyCustomUA/1.0 MyApp/1.0"
+    # 代理出口（V1.2 新增），支持 http:// 与 socks5://
+    # 留空表示直连。设置后所有搜索请求经由该代理，可隐藏真实 IP
+    # 示例: "http://127.0.0.1:7890"
+    proxy: ""
+    # 隐私引擎全部失败时，是否允许降级到国内引擎（V1.2 新增）
+    # 默认 false：宁可返回空结果，也不把查询词发给隐私保护不足的引擎
+    # 改为 true 后等同于每次搜索都带 --allow-fallback
+    allow_fallback: false
+
+# ═══════ 结果排序权重（V1.2 新增，可选） ═══════
+# 多因子加权排序，数值越大该因子影响越强。不确定时保持默认
+ranking:
+  consensus: 6.0          # 多引擎共同命中的加权
+  position: 3.0           # 引擎内原始位次（对数衰减）
+  relevance: 4.0          # 查询词覆盖率
+  authority: 2.0          # 引擎权威度
+  domain: 1.5             # 域名质量
+
+# ═══════ SearXNG 本地实例 ═══════
+searxng:
+  # 总开关（V1.2 起真正生效）
+  # false 时搜索自动跳过该引擎，且拒绝执行 searxng_manager 的 install/start
+  enabled: true
+
+  # 监听地址（强制 127.0.0.1，禁止 0.0.0.0）
+  host: "127.0.0.1"
+  port: 8888
+
+  # 安装方式: docker | pip
+  install_method: docker
+
+  # Docker 配置
+  docker:
+    image: "searxng/searxng:latest"
+    container_name: "privacy-search-searxng"
+    auto_remove: true
+
+  # pip 配置
+  pip:
+    use_venv: true
+    venv_path: "~/.workbuddy/output/.privacy-search-venv"
+
+# ═══════ LLM 摘要（V1.5 新增） ═══════
+llm_summary:
+  enabled: true
+  provider: auto        # auto=有key调LLM，无key降级；extractive=强制抽取式
+  api_key: ""           # 智谱 GLM API Key，留空则自动降级为抽取式摘要
+  model: glm-4-flash
+
+# ═══════ 版本更新检查（死规则 11） ═══════
+update_check:
+  enabled: true
+  check_on_startup: true
+  cache_hours: 24
+  api_url: "https://api.skillhub.cn/api/v1/skills/privacy-search"
+  github_url: "https://api.github.com/repos/njskills/privacy-search/releases/latest"
+
+# ═══════ 日志 ═══════
+logging:
+  level: INFO
+  file: "~/.workbuddy/output/privacy-search.log"
+
+# ═══════ Perplexity 式答案合成（V1.6 新增） ═══════
+synthesis:
+  enabled: true
+  provider: auto        # auto=有key调LLM，无key降级；extractive=强制抽取式
+  api_key: ""           # 智谱 GLM API Key，留空则自动降级为抽取式
+  model: glm-4-flash
+  max_sources: 5        # 最多引用几个来源
+  chunk_size: 2000      # 每个正文块的最大字符数
+  fetch_timeout: 10     # 单个页面抓取超时（秒）
+
+# ═══════ 定时 selftest 调度（V1.6 新增） ═══════
+selftest_schedule:
+  enabled: true
+  interval: daily       # daily / hourly
+  alert_channel: log    # log / webhook / both
+  webhook_url: ""       # 企业微信/webhook 地址
+  notify_on: failure    # all / failure（failure = 只在异常时通知）
+
+# ═══════ MCP Server（V1.7 新增） ═══════
+mcp_server:
+  # 是否启用 MCP Server 模式
+  # 启用后，运行 `python scripts/mcp_server.py` 即启动 stdio JSON-RPC 2.0 服务
+  enabled: true
+
+  # 暴露的工具列表（默认全部暴露）
+  # 可缩减为 ["search"] 或 ["search", "fetch"] 等子集
+  tools:
+    - search
+    - synthesize
+    - fetch
+
+  # 单次工具调用超时（秒）
+  # 超时后返回错误响应，不中断服务
+  timeout: 30
+
+  # 降级策略
+  # auto = LLM 不可用时自动降级为抽取式
+  # extractive = 强制抽取式（不调用 LLM）
+  degradation: auto
+
+# ═══════ 事实核查层（V1.8 新增） ═══════
+fact_check:
+  # 是否启用事实核查（配合 --synthesize-pro 使用）
+  enabled: true
+  
+  # 无源论断处理方式：remove=默认剔除；keep=保留但标注 [无源]
+  remove_unsupported: true
+  
+  # 支撑度阈值（余弦相似度，0-1）
+  sufficient_threshold: 0.55     # ≥此值 = 充分支撑
+  partial_threshold: 0.25        # ≥此值 = 部分支撑，<此值 = 无源
+
+# ═══════ 垂直搜索配置（V1.8 新增） ═══════
+vertical_search:
+  # 学术搜索配置
+  academic:
+    # Semanticscholar API 地址（留空使用官方公开接口）
+    semanticscholar_url: "https://api.semanticscholar.org/graph/v1/paper/search"
+    # API 超时（秒）
+    api_timeout: 15
+    # 降级配置：Semanticscholar 不可用时
+    fallback_suffix: "论文"   # 给查询添加的学术关键词后缀
+  
+  # 新闻搜索配置
+  news:
+    # 时间过滤：day/week/month
+    time_filter: day
+  
+  # 图片搜索配置
+  image:
+    # 缩略图最大返回数
+    max_thumbnails: 10

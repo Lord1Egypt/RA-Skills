@@ -1,43 +1,58 @@
-## Description: <br>
-Implements agents using Deep Agents. Use when building agents with create_deep_agent, configuring backends, defining subagents, adding middleware, or setting up human-in-the-loop workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements agents using Deep Agents. Use when building agents with create_deep_agent, configuring backends, defining subagents, adding middleware, or setting up human-in-the-loop workflows.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill for implementation guidance when creating Deep Agents with custom models, tools, backends, subagents, persistence, MCP integrations, and human approval flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deep Agents can be configured to read and write real files or run shell commands. <br>
-Mitigation: Keep filesystem roots narrow, test in disposable directories before production use, and require approval for shell commands and file writes. <br>
-Risk: Persistence, MCP servers, and external tools can expose credentials or retain user data if configured loosely. <br>
-Mitigation: Store secrets in environment variables or secret managers, verify MCP command and environment configuration, and define how persistent memories are scoped and cleared. <br>
-Risk: Human-in-the-loop workflows may proceed without intended review if interrupts, checkpointers, or thread IDs are misconfigured. <br>
-Mitigation: Configure a checkpointer and thread ID for interrupting flows, then test pause and resume behavior before relying on the workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Deep Agents with create_deep_agent, LangGraph-compatible persistence and streaming, backend storage choices, subagents, middleware, MCP tools, and human approval workflows.
 
-## Reference(s): <br>
-- [Common Patterns](references/patterns.md) <br>
-- [Built-in Tools Reference](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with Python code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes implementation gates for disk access, interrupts, persistence, and MCP subprocess setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: FilesystemBackend and execute examples can grant real disk and shell access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope root_dir narrowly, sandbox filesystem and shell access, and require approval for writes, deletes, and external actions.
+
+Risk: MCP subprocess examples and token use can expand host access or expose credentials if copied directly.
+
+Mitigation: Pin MCP packages, avoid copying npx -y examples unchanged, and use short-lived least-privilege credentials from environment or secret management.
+
+Risk: Persistent stores and checkpoints can retain data beyond a single conversation.
+
+Mitigation: Use deliberate thread identifiers, limit stored paths to intended memory locations, and apply retention and access controls for production stores.
+
+## Reference(s):
+
+- [Built-in Tools Reference](references/tools.md)
+- [Common Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides implementation patterns for Deep Agents, including persistence, filesystem access, MCP integration, subagents, middleware, streaming, and human-in-the-loop controls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

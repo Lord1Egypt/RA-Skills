@@ -1,43 +1,58 @@
-## Description: <br>
-Session Memory Extractor scans older OpenClaw session transcripts, extracts durable decisions, preferences, facts, and tasks into memory files, and can clean up successfully processed raw session files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans old OpenClaw session files, uses AI to extract durable decisions, preferences, facts, and tasks into memory/, then cleans up source session files while quarantining failed extractions.
 
-## Publisher: <br>
-[lmqiang-711](https://clawhub.ai/user/lmqiang-711) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmqiang-711](https://clawhub.ai/user/lmqiang-711)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preview and extract long-term memories from older session transcripts before optionally cleaning up raw transcript files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes old session transcripts that may contain secrets, credentials, or sensitive conversations. <br>
-Mitigation: Run preview first, use dry-run to inspect extraction behavior, and review generated memory for secrets before normal cleanup. <br>
-Risk: Normal runs can permanently delete successfully extracted raw session files after extraction. <br>
-Mitigation: Require explicit user confirmation before cleanup, keep backups for sensitive sessions, and rely on the v1.0.6 quarantine behavior for failed or invalid extractions. <br>
-Risk: Optional Feishu notifications can send extraction summaries outside the local workspace. <br>
-Mitigation: Keep notifications disabled unless needed and only send notifications to trusted targets. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to convert older .jsonl and .trajectory.jsonl session history into persistent memory entries before removing or quarantining the original session files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lmqiang-711/session-memory-extractor) <br>
-- [ClawHub metadata homepage](https://clawhub.ai/hasakyi/session-memory-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime scripts write memory Markdown, JSON reports, and quarantine logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview and dry-run modes are available; normal runs can delete successfully extracted raw session files after confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Private session history may be sent to MiniMax and persisted into memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on agents whose old sessions are acceptable for external processing, run preview or dry-run first, and review or skip sessions that may contain secrets or sensitive business content.
+
+Risk: Normal execution can permanently remove raw session history after writing summarized memories.
+
+Mitigation: Keep backups, use dry-run review workflows before normal execution, and confirm that quarantine logs preserve failed extraction cases for audit.
+
+Risk: Feishu notifications can expose extracted summaries to unintended recipients.
+
+Mitigation: Keep Feishu notifications disabled unless the recipient or webhook target is trusted and verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lmqiang-711/skills/session-memory-extractor)
+- [ClawHub metadata homepage](https://clawhub.ai/hasakyi/session-memory-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown memory entries, console summaries, JSON reports, and optional notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send session content to MiniMax, append extracted memories to memory/YYYY-MM-DD.md, write quarantine audit logs, and delete successfully processed raw session files.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

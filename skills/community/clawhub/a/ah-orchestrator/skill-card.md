@@ -1,41 +1,53 @@
-## Description: <br>
-Coordinates agent work by routing tasks to specialists, planning sequential or parallel execution, adding quality checks, and introducing human checkpoints for complex decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrator helps agents analyze software project requests, route work to specialist agents, plan sequential or parallel execution, and add quality checkpoints.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and technical teams use this skill to plan and coordinate multi-agent software work, including routing tasks, sequencing dependent phases, identifying parallel workstreams, and adding review checkpoints before major decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Routing and orchestration suggestions may be unsuitable for high-impact security, deployment, architecture, or large code-change decisions if accepted automatically. <br>
-Mitigation: Review suggested routing, execution plans, and checkpoints before acting on security-sensitive, deployment, architecture, or broad code-change work. <br>
-Risk: Prompts or checkpoint summaries could expose secrets or confidential project details if users paste sensitive data into the agent conversation. <br>
-Mitigation: Avoid including secrets in prompts or checkpoint summaries, and redact sensitive project data before using the skill. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to decompose software project requests, select specialist agents, coordinate sequential or parallel workstreams, and add review checkpoints before major decisions or broad changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-orchestrator) <br>
-- [Reference examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown plans, routing recommendations, checkpoints, and command-style agent invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; does not execute tools or install code by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad routing and parallel-workflow suggestions may lead an agent to share sensitive project context with more specialist agents or sessions than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed agent choices and limit shared context before approving routing, parallel sessions, or large changes.
+
+Risk: Generated execution plans may be incomplete or may recommend an unsuitable specialist for a specific project.
+
+Mitigation: Use the skill's checkpoint and self-review steps to confirm agent selection, dependencies, risks, and success criteria before proceeding.
+
+## Reference(s):
+
+- [AI Project Orchestrator V4 code examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans, routing analyses, checklists, checkpoint prompts, and session command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning and coordination guidance; it does not include executable code in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

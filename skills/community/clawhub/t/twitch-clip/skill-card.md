@@ -1,44 +1,56 @@
-## Description: <br>
-Creates Twitch clips of the current live stream via the Twitch API using configured Twitch credentials and a 30-second cooldown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Twitch clips of the current live stream via the Twitch API. Use when a streamer says "clip that", "clip the last X seconds", "make a clip", "clip it", or any variation requesting a clip of the current broadcast. Requires Twitch API credentials configured in environment variables. Has a 30-second cooldown between clips to prevent spam.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Streamers, moderators, and agent operators use this skill to create Twitch clips from the current live broadcast when an explicit clip request is made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Short trigger phrases may create unwanted Twitch clips if the agent listens too broadly. <br>
-Mitigation: Configure the agent to run the skill only after explicit authorized clip requests, and rely on the built-in 30-second cooldown to reduce repeated clip creation. <br>
-Risk: The skill requires Twitch credentials that can create clips for the configured broadcaster. <br>
-Mitigation: Use a narrow Twitch token with only the clips:edit scope, keep it private, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Streamers and their assistants use this skill to create a clip from a live Twitch broadcast and share the resulting clip link. It is intended for explicit clip requests and requires Twitch API credentials.
 
-## Reference(s): <br>
-- [Twitch App Console](https://dev.twitch.tv/console/apps) <br>
-- [Twitch OAuth Authorization](https://id.twitch.tv/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://localhost&response_type=token&scope=clips:edit) <br>
-- [Twitch Helix Users API](https://api.twitch.tv/helix/users) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/twitch-clip) <br>
-- [Publisher Profile](https://clawhub.ai/user/djc00p) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text] <br>
-**Output Format:** [Shell output with clip identifiers and Twitch clip URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and Twitch environment variables; exits with a cooldown status when clip requests occur too frequently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Invoking the script immediately attempts to create a public Twitch clip.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for an explicit clip request and confirm the request before invoking the script.
+
+Risk: The Twitch access token grants clip-creation authority and could be exposed if mishandled.
+
+Mitigation: Use a token limited to the documented clips:edit scope and keep it private.
+
+## Reference(s):
+
+- [Twitch Clip skill release](https://clawhub.ai/djc00p/skills/twitch-clip)
+- [Twitch Developer Console](https://dev.twitch.tv/console/apps)
+- [Twitch Helix Users API](https://api.twitch.tv/helix/users)
+- [Twitch Clips API endpoint](https://api.twitch.tv/helix/clips)
+
+## Skill Output:
+
+**Output Type(s):** [Text, URLs, Shell commands]
+
+**Output Format:** [Plain text status messages and a Twitch clip URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Clip duration from 5 to 60 seconds (30 seconds by default); 30-second cooldown between clips.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

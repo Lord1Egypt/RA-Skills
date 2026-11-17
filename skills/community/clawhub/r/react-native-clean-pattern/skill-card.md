@@ -1,42 +1,59 @@
-## Description: <br>
-Guides Expo and React Native application provisioning and scaffolding using MVC-Lite separation, RTL-first styling, typed state access, API client setup, and observability patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawhub master skill for Expo/React Native. Production-grade patterns: MVC-Lite, RTL-First, Centralized Hook Styles, Zero-Any TS, and Sentry-Integrated Logging.
 
-## Publisher: <br>
-[yahongie2014](https://clawhub.ai/user/yahongie2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yahongie2014](https://clawhub.ai/user/yahongie2014)
 
-## Use Case: <br>
-Developers and mobile engineers use this skill to create or extend Expo and React Native apps with consistent screen, component, navigation, API, localization, logging, and verification patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scaffolding may include bearer-token API clients, local token storage, Firebase, Sentry, and request logging patterns that can expose sensitive data if accepted without review. <br>
-Mitigation: Review generated code before use, keep real secrets out of committed .env files, use secure token storage, and verify logger and Sentry sanitization before deployment. <br>
-Risk: Installation and setup guidance may add or update npm or bun dependencies in a mobile project. <br>
-Mitigation: Verify package names, versions, lockfile changes, and dependency trust before running install commands or committing generated changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to provision and extend Expo/React Native applications with MVC-Lite screen structure, type-safe controllers, RTL-aware styling, navigation, API logging, notifications, and app verification checklists.
 
-## Reference(s): <br>
-- [React Native Clean Pattern ClawHub listing](https://clawhub.ai/yahongie2014/react-native-clean-pattern) <br>
-- [Coder 79 ClawHub profile](https://clawhub.ai/user/yahongie2014) <br>
-- [Coder 79 website](https://coder79.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing implementation guidance and scaffolding patterns; generated app code should be reviewed before execution or deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Broad or unpinned install commands can introduce unexpected package versions or tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install commands before execution and prefer project-local pinned dependencies.
+
+Risk: Authentication tokens and notification, Sentry, Firebase, or auth metadata can become privacy-impacting if handled without clear controls.
+
+Mitigation: Use SecureStore, Keychain, or Keystore for authentication secrets, minimize collected data, require user consent, and implement logout or revocation handling.
+
+Risk: Generated production app guidance can introduce incorrect or insecure behavior if applied without review.
+
+Mitigation: Review generated changes, run type checks, verify RTL/LTR behavior, and scan the result before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yahongie2014/skills/react-native-clean-pattern)
+- [Publisher profile](https://clawhub.ai/user/yahongie2014)
+- [Publisher website](https://coder79.me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are implementation guidance and generated project changes that should be reviewed, type-checked, and security-checked before deployment.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

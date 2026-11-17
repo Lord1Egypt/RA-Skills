@@ -1,0 +1,11 @@
+interface:
+  display_name: "Automate Mermail Triage"
+  short_description: "Create, debug, and update triage automation"
+  default_prompt: "Use $mermail-automate-triage when the task is to create, inspect, debug, or update mailbox triagers and automation, not to process one live email manually."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

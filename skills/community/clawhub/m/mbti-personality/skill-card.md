@@ -1,47 +1,60 @@
-## Description: <br>
-MBTI Personality lets agents switch communication tone, thinking style, and work rhythm across presets, MBTI types, and custom combinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MBTI personality system for AI agents that switches communication tone, thinking style, and work rhythm across presets, MBTI types, and custom combinations.
 
-## Publisher: <br>
-[codesstar](https://clawhub.ai/user/codesstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codesstar](https://clawhub.ai/user/codesstar)
 
-## Use Case: <br>
-Developers and agent users use this skill to choose an MBTI-inspired working style for an AI coding assistant, including session-only personality changes and optional saved personality blocks for future Claude Code or OpenClaw sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent personality blocks can change future agent behavior in project or global configuration files. <br>
-Mitigation: Keep the skill session-only unless persistence is intentional, and inspect any CLAUDE.md or SOUL.md personality block before saving it globally. <br>
-Risk: Some persona styles may encourage unsafe coding habits such as skipping tests or standards. <br>
-Mitigation: Review selected presets before use and keep normal code review, testing, and project quality gates in place. <br>
-Risk: The skill changes coding behavior as well as communication tone. <br>
-Mitigation: Install and enable it only where behavior-shaping assistant instructions are acceptable for the project. <br>
+## Use Case:
 
+External developers and agent users use this skill to adjust an AI coding assistant's personality, communication style, and working rhythm for brainstorming, mentoring, review, fast delivery, or custom collaboration styles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codesstar/mbti-personality) <br>
-- [README](artifact/README.md) <br>
-- [Personality Presets](artifact/references/presets.md) <br>
-- [MBTI Types](artifact/references/mbti-types.md) <br>
-- [Custom Dimensions](artifact/references/dimensions.md) <br>
-- [MBTI Research Notes](artifact/references/mbti-research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text, with optional CLAUDE.md or SOUL.md personality blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can operate session-only by default or persist a selected personality when the user explicitly asks to save it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The skill can persist behavior-changing instructions into agent configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep personality changes session-only by default, and inspect any CLAUDE.md or SOUL.md changes before saving them, especially at global scope.
+
+Risk: Some profiles encourage skipping tests, documentation, standards, review, or production safeguards.
+
+Mitigation: Do not use those profiles for production-sensitive work, and retain normal engineering review, testing, documentation, and security practices regardless of personality style.
+
+Risk: Changing personality can also change coding workflow, not only tone.
+
+Mitigation: Treat the skill as a collaboration-style aid and confirm that correctness, security, tool usage, and technical decisions remain governed by project requirements.
+
+## Reference(s):
+
+- [Personality Presets](references/presets.md)
+- [MBTI Personality Type Definitions](references/mbti-types.md)
+- [Custom Personality Dimensions](references/dimensions.md)
+- [MBTI Research Notes](references/mbti-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and conversational text, with optional configuration blocks written to agent instruction files when the user chooses persistent mode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese flows; default behavior is session-only unless the user asks to save a personality]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

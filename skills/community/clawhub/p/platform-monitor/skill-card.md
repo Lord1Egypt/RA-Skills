@@ -1,42 +1,60 @@
-## Description: <br>
-全平台状态监控助手，用于监控 AI 平台可达性、关键词变化、响应时间、竞品动态，并支持飞书、微信、钉钉通知、定时巡检和健康度评分。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全平台状态监控助手。监控AI平台可达性、关键词变化、响应时间、竞品动态，支持飞书/微信/钉钉通知、定时巡检、健康度评分。
 
-## Publisher: <br>
-[laozhang-tou](https://clawhub.ai/user/laozhang-tou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laozhang-tou](https://clawhub.ai/user/laozhang-tou)
 
-## Use Case: <br>
-Developers, operators, and external agent users use this skill to check AI platform availability, custom URLs, product pages, announcements, and competitor changes. It supports one-off checks, saved platform configurations, notification reports, and scheduled monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes periodic web requests to monitored platforms and custom URLs. <br>
-Mitigation: Use it only for URLs you intend to monitor, and avoid adding sensitive internal URLs unless that monitoring is approved. <br>
-Risk: The skill writes local monitoring configuration and history files. <br>
-Mitigation: Review stored configuration for webhook URLs or private targets, and delete local config and history files when monitoring is no longer needed. <br>
-Risk: The installation flow may add cron entries or Windows scheduled tasks for recurring checks. <br>
-Mitigation: Review scheduled tasks before enabling them, and remove the task if you stop using the skill. <br>
+## Use Case:
 
+External users and developers use this skill to check AI platform and product availability, response time, keyword changes, announcements, competitor status changes, and scheduled monitoring reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laozhang-tou/platform-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, configuration snippets, and JSON monitoring results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Monitoring results include platform status, response time, alerts, summaries, and optional notification-ready reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The tool can make repeated network requests to configured URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review monitored URLs before use and avoid private, internal, or token-bearing URLs.
+
+Risk: Installer scripts can persist scheduled checks through cron or Windows scheduled tasks.
+
+Mitigation: Inspect scheduled task settings after installation and disable automatic checks when they are not needed.
+
+Risk: The scanner classified the release as suspicious because broad URL fetching and opt-out scheduled execution need review.
+
+Mitigation: Install only after reviewing the security guidance, dependency state, and intended monitoring scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laozhang-tou/skills/platform-monitor)
+- [Skill instructions](artifact/SKILL.md)
+- [Platform Monitor README](artifact/scripts/README.md)
+- [Coze manifest](artifact/coze_manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON monitoring results and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Monitoring results may include platform status, response time, alerts, summaries, trend analysis, and exported CSV content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

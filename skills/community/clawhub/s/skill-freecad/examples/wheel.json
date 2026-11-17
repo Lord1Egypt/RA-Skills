@@ -1,0 +1,15 @@
+{
+  "doc": "wheel.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "torus", "name": "Rim", "radius1": 40, "radius2": 6},
+    {"op": "cylinder", "name": "Hub", "radius": 8, "height": 10, "position": [0, 0, -5]},
+    {"op": "box", "name": "Spoke", "length": 34, "width": 4, "height": 4, "position": [6, -2, -2]},
+    {"op": "polar_array", "name": "Spokes", "target": "Spoke", "count": 6},
+    {"op": "fuse", "name": "WheelBody", "objects": ["Rim", "Hub", "Spokes"], "expect": {"solids": 1}},
+    {"op": "cylinder", "name": "Axle", "radius": 3, "height": 20, "position": [0, 0, -10]},
+    {"op": "cut", "name": "Wheel", "base": "WheelBody", "tool": "Axle",
+     "expect": {"bbox_size": [92, 92, 12], "solids": 1}},
+    {"op": "export", "filename": "wheel.3mf"}
+  ]
+}

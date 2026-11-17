@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for blockchain and crypto that covers intro, formulas, regulations, risks, instruments, strategies, glossary terms, and checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for blockchain and crypto that provides static plain-text material for intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist topics.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to print local educational reference material for crypto news feed concepts and blockchain workflows. It is useful for quick lookup of terminology, risk categories, regulatory topics, formulas, and operational checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto, financial, and regulatory reference text may be incomplete or outdated. <br>
-Mitigation: Treat outputs as general educational material and verify current financial, legal, and regulatory requirements with authoritative sources before acting. <br>
-Risk: Future releases could add live feeds, network access, credential handling, or file-writing behavior. <br>
-Mitigation: Re-review future versions before deployment, especially if behavior expands beyond static local text output. <br>
+## Use Case:
 
+External developers and agent users use this skill as a static blockchain and crypto reference helper for short reference notes, formulas, regulatory topic outlines, risk summaries, strategy summaries, glossary terms, and checklists. It should not be used as a live crypto news source or as investment, legal, or compliance advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-crypto-news-feed) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference sections printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no credentials, network access, or file changes shown in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill name implies a crypto news feed, but the artifact provides static reference text and does not fetch live data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a static reference helper; verify current market, regulatory, and security information with authoritative live sources.
+
+Risk: The crypto-specific content is generic and may be insufficient for investment, legal, compliance, or production blockchain decisions.
+
+Mitigation: Treat the output as introductory guidance and require domain expert review before using it in financial, legal, compliance, or operational workflows.
+
+## Reference(s):
+
+- [Crypto News Feed on ClawHub](https://clawhub.ai/loutai0307-prog/skills/bytesagain-crypto-news-feed)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local output; no external API calls, credentials, or network access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact declares 3.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

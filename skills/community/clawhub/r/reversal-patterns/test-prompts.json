@@ -1,0 +1,52 @@
+{
+  "skill": "reversal-patterns",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我看这个股票走出了头肩顶，颈线好像要跌破，是不是可以做空了？",
+      "expected_behavior": "激活 reversal-patterns，强调须颈线有效突破+量能确认才算完成",
+      "notes": "头肩顶"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "价格到了前高附近又下来了，是不是双重顶要做空？",
+      "expected_behavior": "激活 reversal-patterns，提示'前高阻挡≠反转'，须等颈线(中间谷)跌破",
+      "notes": "双重顶滥用警告"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "头肩底完成的话，目标位大概到哪里？",
+      "expected_behavior": "激活 reversal-patterns，用头到颈线垂直距离投影测算",
+      "notes": "目标测算"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "这个三角形整理完了，是要继续上涨吗？",
+      "expected_behavior": "不应激活本 skill（持续形态），应激活 continuation-patterns",
+      "notes": "跨 skill 混淆：应触发 continuation-patterns"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这条上升趋势线还没破，趋势应该还在吧？",
+      "expected_behavior": "不应激活本 skill（通用趋势线），应激活 trend-tools",
+      "notes": "诱饵：趋势线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "价格快速暴跌又快速拉回，是不是 V 形反转？",
+      "expected_behavior": "激活本 skill 并提示 V 形极难提前判别、均线滞后，只能事后确认，不盲目抄底",
+      "notes": "边界：V形"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 continuation-patterns；should-not-trigger-02 指向 trend-tools。"
+}

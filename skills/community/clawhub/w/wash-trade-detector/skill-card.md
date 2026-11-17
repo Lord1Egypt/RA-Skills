@@ -1,39 +1,47 @@
-## Description: <br>
-Detects and flags wash trades in NFT transaction data using 7 confidence-weighted patterns, protecting all downstream scoring and signals from artificial inflation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and flags wash trades in NFT transaction data using 7 confidence-weighted patterns, protecting all downstream scoring and signals from artificial inflation.
 
-## Publisher: <br>
-[PaperBuddha](https://clawhub.ai/user/PaperBuddha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paperbuddha](https://clawhub.ai/user/paperbuddha)
 
-## Use Case: <br>
-Developers and analysts use this skill to assess NFT sales records for wash-trade indicators and return a structured confidence, status, weighting, and exclusion assessment for downstream scoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: NFT transactions may be under- or over-flagged if the calling agent uses thresholds or exclusion handling that do not match its scoring policy. <br>
-Mitigation: Confirm confidence thresholds, weight multipliers, and downstream exclusion behavior before installing or relying on the skill. <br>
-Risk: The skill analyzes transaction data supplied by the caller and does not independently verify wallet history or marketplace context. <br>
-Mitigation: Provide complete transaction records, prior trades, wallet funding data, floor price context, and auction-house status before using its assessment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PaperBuddha/wash-trade-detector) <br>
+## Use Case:
+
+Developers and marketplace analysts use this skill to assess NFT sales transaction records for wash-trade patterns and produce structured risk results for downstream review or scoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Heuristic wash-trade flags may be mistaken for definitive fraud determinations.
+
+Mitigation: Treat the structured result as an assessment and keep human or policy review around consequential marketplace or scoring actions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, JSON, guidance] <br>
-**Output Format:** [Structured JSON assessment object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns wash-trade flag, confidence, matched pattern names, status, weight applied, exclusion flag, and analysis timestamp.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [analysis, text, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Structured assessment object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns wash-trade flag, confidence, matched pattern, status, applied weight, exclusion indicator, and analysis timestamp.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

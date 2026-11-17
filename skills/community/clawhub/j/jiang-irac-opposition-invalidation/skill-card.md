@@ -1,41 +1,56 @@
-## Description: <br>
-商标异议·无效申请推理引擎（SJ-IRAC）：基于法条要件、证据链与风险分级的专业级审查与攻防系统。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+商标异议·无效申请推理引擎（SJ-IRAC）：基于法条要件、证据链与风险分级的专业级审查与攻防系统。
 
-## Publisher: <br>
-[jisngzhongling](https://clawhub.ai/user/jisngzhongling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jisngzhongling](https://clawhub.ai/user/jisngzhongling)
 
-## Use Case: <br>
-Trademark practitioners and IP teams use this skill to triage CNIPA opposition and invalidation matters, select legally viable grounds, map evidence to legal elements, and draft examiner-readable argument structures. It supports quick triage, full IRAC/SJ-6 risk analysis, and submission-oriented document organization when the user provides case facts and evidence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trademark analysis may be incomplete or incorrect if case materials, statutes, deadlines, evidence, or citations are inaccurate or outdated. <br>
-Mitigation: Provide only the case materials needed for the analysis, independently verify statutes, deadlines, evidence, and citations, and have a qualified professional review any filing before submission. <br>
-Risk: The skill handles legal dispute facts and evidence inventories that may contain sensitive client or case information. <br>
-Mitigation: Limit inputs to necessary case materials and avoid providing unrelated confidential or personal data. <br>
-Risk: The artifact is designed to surface stop-loss and kill-gate issues, but user-provided facts may still leave procedural or evidentiary gaps. <br>
-Mitigation: Treat risk ratings and go/no-go outputs as decision support, then confirm standing, limitation periods, admissibility, evidence integrity, and filing strategy before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisngzhongling/jiang-irac-opposition-invalidation) <br>
+## Use Case:
 
+External trademark practitioners and legal teams use this skill to triage, reason through, and structure CNIPA opposition or invalidation matters with IRAC analysis, SJ-6 evidence mapping, route selection, and A-E risk gates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured legal analysis, evidence checklists, route rankings, risk ratings, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided trademark registry data, case facts, timelines, and evidence inventory; the skill is instruction-only and does not call external tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and artifact version notes) <br>
+China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Client or legal matter materials may include personal, privileged, trade-secret, or commercially sensitive information.
+
+Mitigation: Use the skill only in an approved environment and redact unnecessary sensitive material before providing case packets.
+
+Risk: CNIPA rules, deadlines, classifications, and filing requirements may require current professional judgment.
+
+Mitigation: Have a qualified professional verify current legal requirements, deadlines, classifications, and any submission-ready text before filing.
+
+Risk: Incomplete or unverifiable evidence can produce weak or misleading opposition or invalidation reasoning.
+
+Mitigation: Provide source, date, type, proof purpose, and verification status for each evidence item, and treat weak-link findings as required review items.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisngzhongling/skills/jiang-irac-opposition-invalidation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown or structured text legal-analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-first CNIPA reasoning with route selection, evidence-chain diagnosis, risk rating, and optional submission-ready structure.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-记忆整理技能 — 审查结构化记忆，提取洞察，更新 MEMORY.md，清理过期条目。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+记忆整理技能 — 审查结构化记忆，提取洞察，更新 MEMORY.md，清理过期条目。
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Agents and users use this skill to periodically review persistent structured memory, remove stale entries, merge duplicates, and summarize important long-term context into MEMORY.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deleting or rewriting persistent memory can remove user feedback, project history, or other context that is hard to reconstruct. <br>
-Mitigation: Ask for a proposed change report or backup before allowing deletions or MEMORY.md rewrites. <br>
-Risk: Outdated project or reference memory can be mistaken for current information during cleanup. <br>
-Mitigation: Verify project status and referenced resources before deleting entries or promoting summaries into MEMORY.md. <br>
+## Use Case:
 
+Developers and agents use this skill to review persistent memory entries, remove stale or duplicate records, and summarize high-value memories into MEMORY.md.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/enhance-memory-curator) <br>
-- [Project homepage](https://github.com/jobzhao15/openclaw-enhance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, file updates] <br>
-**Output Format:** [Markdown report with proposed memory maintenance actions and MEMORY.md updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; review persistent memory deletions and MEMORY.md rewrites before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can delete persistent memory entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to show the memory IDs it plans to delete and the reason for each deletion before applying changes.
+
+Risk: The skill can update MEMORY.md with summaries that may be incomplete or too broad.
+
+Mitigation: Review the MEMORY.md diff before applying changes and keep only long-lived, high-importance information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/enhance-memory-curator)
+- [Publisher profile](https://clawhub.ai/user/jobzhao15)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown report with memory review statistics, proposed memory actions, and MEMORY.md update notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May identify memory IDs for deletion or merging and summarize proposed MEMORY.md changes for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

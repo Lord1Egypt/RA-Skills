@@ -1,43 +1,55 @@
-## Description: <br>
-Check Point R80+/R81.x firewall audit guidance for rulebase layer analysis, blade activation, SmartConsole management-plane validation, NAT policy review, identity awareness assessment, and compliance verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Point R80+/R81.x rulebase layer analysis with blade activation audit, SmartConsole management plane validation, NAT policy review, identity awareness assessment, and compliance verification for Security Gateways managed by a Management Server or Multi-Domain Server.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network security engineers, firewall administrators, and compliance reviewers use this skill to audit Check Point R80+/R81.x environments for policy exposure, management-plane health, NAT behavior, blade coverage, identity awareness, and logging gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firewall audits can expose sensitive rulebases, gateway topology, identity sources, and logging details. <br>
-Mitigation: Use only authorized target environments, least-privilege read-only accounts, and organization-approved handling for reports and command output. <br>
-Risk: Management API passwords, SSH credentials, or session tokens could be exposed if included in prompts, logs, or generated reports. <br>
-Mitigation: Keep credentials and session tokens out of prompts and logs, and redact sensitive values before sharing audit material. <br>
-Risk: Remediation recommendations may affect production firewall policy if applied without review. <br>
-Mitigation: Have a firewall administrator validate findings and apply changes only through the normal change-control process. <br>
+## Use Case:
 
+Network security engineers and auditors use this skill to conduct read-only Check Point firewall policy audits across rulebases, Software Blades, NAT, identity awareness, logging, and compliance posture. It is intended for authorized reviews of R80.x and R81.x environments managed through SmartConsole, Management Server, or Multi-Domain Server.
 
-## Reference(s): <br>
-- [Check Point CLI and API Reference](references/cli-reference.md) <br>
-- [Check Point R80+ Policy Architecture](references/policy-model.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and an audit report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit workflow for Check Point Management Server, Security Gateway, and Multi-Domain Server environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The audit can reveal sensitive firewall rules, objects, identity roles, and logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in authorized environments, use read-only accounts where possible, and handle outputs as sensitive security data.
+
+Risk: Remediation recommendations could affect production traffic if applied without review.
+
+Mitigation: Treat remediation steps as advisory until approved through a separate change-management window.
+
+## Reference(s):
+
+- [Check Point R80+ Policy Architecture](references/policy-model.md)
+- [Check Point CLI and API Reference](references/cli-reference.md)
+- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/skills/checkpoint-firewall-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, API examples, findings, and audit report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit workflow; remediation steps are advisory and should be reviewed before any approved change window.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

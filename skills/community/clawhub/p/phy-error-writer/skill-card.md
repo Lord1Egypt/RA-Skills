@@ -1,42 +1,51 @@
-## Description: <br>
-Rewrites unclear or unhelpful error messages into clear, actionable text for users, logs, and APIs, auditing for common anti-patterns across all languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites unclear or unhelpful error messages into clear, actionable text for users, logs, and APIs, while auditing common error-message anti-patterns across languages.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, API designers, UX writers, and support teams use this skill to audit confusing error messages and rewrite them for end-user UI text, API responses, and operational logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit mode may expose unrelated private source code, secrets, or credentials if pointed at a broad directory. <br>
-Mitigation: Point audit mode only at the smallest relevant folder and avoid including secrets, credentials, or unrelated private code. <br>
-Risk: Generated rewrites may be unsuitable for a product's support, compliance, or security disclosure policy. <br>
-Mitigation: Review rewritten UI, API, and log messages before deployment, especially messages involving security, payments, health, legal, or account access. <br>
+## Use Case:
 
+Developers, API designers, support engineers, and product teams use this skill to rewrite confusing error strings into audience-specific UI messages, API responses, log entries, and style guidance. It can also audit existing error messages for vague wording, leaked internals, missing context, and unclear recovery steps.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/PHY041/phy-error-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured rewrite sections and optional JSON or code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces separate variants for user-facing messages, API response bodies, and log output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and skill frontmatter) <br>
+Risk: Generated log guidance may encourage inclusion of sensitive data such as credentials, tokens, cookies, personal data, payment data, request bodies, or broadly exposed stack traces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated log guidance before use, prefer allowlisted diagnostic fields, redact sensitive values, and keep stack traces in access-controlled diagnostic systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-error-writer)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Project homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown report with rewritten messages, audit tables, JSON API examples, log-line examples, and optional code constants.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces separate variants for end-user UI text, API response bodies, server logs, and project-specific error-message style guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

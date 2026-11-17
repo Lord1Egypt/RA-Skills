@@ -1,11 +1,9 @@
 # eda variable
 
-扩展用户 API 接口
-
 ## Signature
 
 ```typescript
-eda: EDA
+eda: EDA;
 ```
 
 ---
@@ -19,7 +17,7 @@ eda: EDA
 ## Signature
 
 ```typescript
-dmt_Board: DMT_Board;
+function dmt_Board: DMT_Board;
 ```
 
 ### dmt_editorcontrol
@@ -29,7 +27,17 @@ dmt_Board: DMT_Board;
 ## Signature
 
 ```typescript
-dmt_EditorControl: DMT_EditorControl;
+function dmt_EditorControl: DMT_EditorControl;
+```
+
+### dmt_event
+
+# EDA.dmt\_Event property
+
+## Signature
+
+```typescript
+function dmt_Event: DMT_Event;
 ```
 
 ### dmt_folder
@@ -39,7 +47,7 @@ dmt_EditorControl: DMT_EditorControl;
 ## Signature
 
 ```typescript
-dmt_Folder: DMT_Folder;
+function dmt_Folder: DMT_Folder;
 ```
 
 ### dmt_panel
@@ -49,7 +57,7 @@ dmt_Folder: DMT_Folder;
 ## Signature
 
 ```typescript
-dmt_Panel: DMT_Panel;
+function dmt_Panel: DMT_Panel;
 ```
 
 ### dmt_pcb
@@ -59,7 +67,7 @@ dmt_Panel: DMT_Panel;
 ## Signature
 
 ```typescript
-dmt_Pcb: DMT_Pcb;
+function dmt_Pcb: DMT_Pcb;
 ```
 
 ### dmt_project
@@ -69,7 +77,7 @@ dmt_Pcb: DMT_Pcb;
 ## Signature
 
 ```typescript
-dmt_Project: DMT_Project;
+function dmt_Project: DMT_Project;
 ```
 
 ### dmt_schematic
@@ -79,7 +87,7 @@ dmt_Project: DMT_Project;
 ## Signature
 
 ```typescript
-dmt_Schematic: DMT_Schematic;
+function dmt_Schematic: DMT_Schematic;
 ```
 
 ### dmt_selectcontrol
@@ -89,7 +97,7 @@ dmt_Schematic: DMT_Schematic;
 ## Signature
 
 ```typescript
-dmt_SelectControl: DMT_SelectControl;
+function dmt_SelectControl: DMT_SelectControl;
 ```
 
 ### dmt_team
@@ -99,7 +107,7 @@ dmt_SelectControl: DMT_SelectControl;
 ## Signature
 
 ```typescript
-dmt_Team: DMT_Team;
+function dmt_Team: DMT_Team;
 ```
 
 ### dmt_workspace
@@ -109,7 +117,7 @@ dmt_Team: DMT_Team;
 ## Signature
 
 ```typescript
-dmt_Workspace: DMT_Workspace;
+function dmt_Workspace: DMT_Workspace;
 ```
 
 ### lib_3dmodel
@@ -119,7 +127,7 @@ dmt_Workspace: DMT_Workspace;
 ## Signature
 
 ```typescript
-lib_3DModel: LIB_3DModel;
+function lib_3DModel: LIB_3DModel;
 ```
 
 ### lib_cbb
@@ -129,7 +137,7 @@ lib_3DModel: LIB_3DModel;
 ## Signature
 
 ```typescript
-lib_Cbb: LIB_Cbb;
+function lib_Cbb: LIB_Cbb;
 ```
 
 ### lib_classification
@@ -139,7 +147,7 @@ lib_Cbb: LIB_Cbb;
 ## Signature
 
 ```typescript
-lib_Classification: LIB_Classification;
+function lib_Classification: LIB_Classification;
 ```
 
 ### lib_device
@@ -149,7 +157,7 @@ lib_Classification: LIB_Classification;
 ## Signature
 
 ```typescript
-lib_Device: LIB_Device;
+function lib_Device: LIB_Device;
 ```
 
 ### lib_footprint
@@ -159,7 +167,7 @@ lib_Device: LIB_Device;
 ## Signature
 
 ```typescript
-lib_Footprint: LIB_Footprint;
+function lib_Footprint: LIB_Footprint;
 ```
 
 ### lib_librarieslist
@@ -169,7 +177,7 @@ lib_Footprint: LIB_Footprint;
 ## Signature
 
 ```typescript
-lib_LibrariesList: LIB_LibrariesList;
+function lib_LibrariesList: LIB_LibrariesList;
 ```
 
 ### lib_panellibrary
@@ -179,7 +187,7 @@ lib_LibrariesList: LIB_LibrariesList;
 ## Signature
 
 ```typescript
-lib_PanelLibrary: LIB_PanelLibrary;
+function lib_PanelLibrary: LIB_PanelLibrary;
 ```
 
 ### lib_selectcontrol
@@ -189,7 +197,17 @@ lib_PanelLibrary: LIB_PanelLibrary;
 ## Signature
 
 ```typescript
-lib_SelectControl: LIB_SelectControl;
+function lib_SelectControl: LIB_SelectControl;
+```
+
+### lib_simulationmodel
+
+# EDA.lib\_SimulationModel property
+
+## Signature
+
+```typescript
+function lib_SimulationModel: LIB_SimulationModel;
 ```
 
 ### lib_symbol
@@ -199,7 +217,7 @@ lib_SelectControl: LIB_SelectControl;
 ## Signature
 
 ```typescript
-lib_Symbol: LIB_Symbol;
+function lib_Symbol: LIB_Symbol;
 ```
 
 ### pcb_document
@@ -209,7 +227,7 @@ lib_Symbol: LIB_Symbol;
 ## Signature
 
 ```typescript
-pcb_Document: PCB_Document;
+function pcb_Document: PCB_Document;
 ```
 
 ### pcb_drc
@@ -219,7 +237,7 @@ pcb_Document: PCB_Document;
 ## Signature
 
 ```typescript
-pcb_Drc: PCB_Drc;
+function pcb_Drc: PCB_Drc;
 ```
 
 ### pcb_event
@@ -229,7 +247,17 @@ pcb_Drc: PCB_Drc;
 ## Signature
 
 ```typescript
-pcb_Event: PCB_Event;
+function pcb_Event: PCB_Event;
+```
+
+### pcb_imagetool
+
+# EDA.pcb\_ImageTool property
+
+## Signature
+
+```typescript
+function pcb_ImageTool: PCB_ImageTool;
 ```
 
 ### pcb_layer
@@ -239,7 +267,7 @@ pcb_Event: PCB_Event;
 ## Signature
 
 ```typescript
-pcb_Layer: PCB_Layer;
+function pcb_Layer: PCB_Layer;
 ```
 
 ### pcb_manufacturedata
@@ -249,7 +277,7 @@ pcb_Layer: PCB_Layer;
 ## Signature
 
 ```typescript
-pcb_ManufactureData: PCB_ManufactureData;
+function pcb_ManufactureData: PCB_ManufactureData;
 ```
 
 ### pcb_mathpolygon
@@ -259,7 +287,7 @@ pcb_ManufactureData: PCB_ManufactureData;
 ## Signature
 
 ```typescript
-pcb_MathPolygon: PCB_MathPolygon;
+function pcb_MathPolygon: PCB_MathPolygon;
 ```
 
 ### pcb_net
@@ -269,7 +297,7 @@ pcb_MathPolygon: PCB_MathPolygon;
 ## Signature
 
 ```typescript
-pcb_Net: PCB_Net;
+function pcb_Net: PCB_Net;
 ```
 
 ### pcb_primitive
@@ -279,7 +307,7 @@ pcb_Net: PCB_Net;
 ## Signature
 
 ```typescript
-pcb_Primitive: PCB_Primitive;
+function pcb_Primitive: PCB_Primitive;
 ```
 
 ### pcb_primitivearc
@@ -289,7 +317,7 @@ pcb_Primitive: PCB_Primitive;
 ## Signature
 
 ```typescript
-pcb_PrimitiveArc: PCB_PrimitiveArc;
+function pcb_PrimitiveArc: PCB_PrimitiveArc;
 ```
 
 ### pcb_primitiveattribute
@@ -299,7 +327,7 @@ pcb_PrimitiveArc: PCB_PrimitiveArc;
 ## Signature
 
 ```typescript
-pcb_PrimitiveAttribute: PCB_PrimitiveAttribute;
+function pcb_PrimitiveAttribute: PCB_PrimitiveAttribute;
 ```
 
 ### pcb_primitivecomponent
@@ -309,7 +337,7 @@ pcb_PrimitiveAttribute: PCB_PrimitiveAttribute;
 ## Signature
 
 ```typescript
-pcb_PrimitiveComponent: PCB_PrimitiveComponent;
+function pcb_PrimitiveComponent: PCB_PrimitiveComponent;
 ```
 
 ### pcb_primitivedimension
@@ -319,7 +347,7 @@ pcb_PrimitiveComponent: PCB_PrimitiveComponent;
 ## Signature
 
 ```typescript
-pcb_PrimitiveDimension: PCB_PrimitiveDimension;
+function pcb_PrimitiveDimension: PCB_PrimitiveDimension;
 ```
 
 ### pcb_primitivefill
@@ -329,7 +357,7 @@ pcb_PrimitiveDimension: PCB_PrimitiveDimension;
 ## Signature
 
 ```typescript
-pcb_PrimitiveFill: PCB_PrimitiveFill;
+function pcb_PrimitiveFill: PCB_PrimitiveFill;
 ```
 
 ### pcb_primitiveimage
@@ -339,7 +367,7 @@ pcb_PrimitiveFill: PCB_PrimitiveFill;
 ## Signature
 
 ```typescript
-pcb_PrimitiveImage: PCB_PrimitiveImage;
+function pcb_PrimitiveImage: PCB_PrimitiveImage;
 ```
 
 ### pcb_primitiveline
@@ -349,7 +377,7 @@ pcb_PrimitiveImage: PCB_PrimitiveImage;
 ## Signature
 
 ```typescript
-pcb_PrimitiveLine: PCB_PrimitiveLine;
+function pcb_PrimitiveLine: PCB_PrimitiveLine;
 ```
 
 ### pcb_primitiveobject
@@ -359,7 +387,7 @@ pcb_PrimitiveLine: PCB_PrimitiveLine;
 ## Signature
 
 ```typescript
-pcb_PrimitiveObject: PCB_PrimitiveObject;
+function pcb_PrimitiveObject: PCB_PrimitiveObject;
 ```
 
 ### pcb_primitivepad
@@ -369,7 +397,7 @@ pcb_PrimitiveObject: PCB_PrimitiveObject;
 ## Signature
 
 ```typescript
-pcb_PrimitivePad: PCB_PrimitivePad;
+function pcb_PrimitivePad: PCB_PrimitivePad;
 ```
 
 ### pcb_primitivepolyline
@@ -379,7 +407,7 @@ pcb_PrimitivePad: PCB_PrimitivePad;
 ## Signature
 
 ```typescript
-pcb_PrimitivePolyline: PCB_PrimitivePolyline;
+function pcb_PrimitivePolyline: PCB_PrimitivePolyline;
 ```
 
 ### pcb_primitivepour
@@ -389,7 +417,7 @@ pcb_PrimitivePolyline: PCB_PrimitivePolyline;
 ## Signature
 
 ```typescript
-pcb_PrimitivePour: PCB_PrimitivePour;
+function pcb_PrimitivePour: PCB_PrimitivePour;
 ```
 
 ### pcb_primitivepoured
@@ -399,7 +427,7 @@ pcb_PrimitivePour: PCB_PrimitivePour;
 ## Signature
 
 ```typescript
-pcb_PrimitivePoured: PCB_PrimitivePoured;
+function pcb_PrimitivePoured: PCB_PrimitivePoured;
 ```
 
 ### pcb_primitiveregion
@@ -409,7 +437,7 @@ pcb_PrimitivePoured: PCB_PrimitivePoured;
 ## Signature
 
 ```typescript
-pcb_PrimitiveRegion: PCB_PrimitiveRegion;
+function pcb_PrimitiveRegion: PCB_PrimitiveRegion;
 ```
 
 ### pcb_primitivestring
@@ -419,7 +447,7 @@ pcb_PrimitiveRegion: PCB_PrimitiveRegion;
 ## Signature
 
 ```typescript
-pcb_PrimitiveString: PCB_PrimitiveString;
+function pcb_PrimitiveString: PCB_PrimitiveString;
 ```
 
 ### pcb_primitivevia
@@ -429,7 +457,7 @@ pcb_PrimitiveString: PCB_PrimitiveString;
 ## Signature
 
 ```typescript
-pcb_PrimitiveVia: PCB_PrimitiveVia;
+function pcb_PrimitiveVia: PCB_PrimitiveVia;
 ```
 
 ### pcb_raytracerengine
@@ -439,7 +467,7 @@ pcb_PrimitiveVia: PCB_PrimitiveVia;
 ## Signature
 
 ```typescript
-pcb_RayTracerEngine: PCB_RayTracerEngine;
+function pcb_RayTracerEngine: PCB_RayTracerEngine;
 ```
 
 ### pcb_selectcontrol
@@ -449,7 +477,7 @@ pcb_RayTracerEngine: PCB_RayTracerEngine;
 ## Signature
 
 ```typescript
-pcb_SelectControl: PCB_SelectControl;
+function pcb_SelectControl: PCB_SelectControl;
 ```
 
 ### pnl_document
@@ -459,7 +487,7 @@ pcb_SelectControl: PCB_SelectControl;
 ## Signature
 
 ```typescript
-pnl_Document: PNL_Document;
+function pnl_Document: PNL_Document;
 ```
 
 ### sch_document
@@ -469,7 +497,7 @@ pnl_Document: PNL_Document;
 ## Signature
 
 ```typescript
-sch_Document: SCH_Document;
+function sch_Document: SCH_Document;
 ```
 
 ### sch_drc
@@ -479,7 +507,7 @@ sch_Document: SCH_Document;
 ## Signature
 
 ```typescript
-sch_Drc: SCH_Drc;
+function sch_Drc: SCH_Drc;
 ```
 
 ### sch_event
@@ -489,7 +517,7 @@ sch_Drc: SCH_Drc;
 ## Signature
 
 ```typescript
-sch_Event: SCH_Event;
+function sch_Event: SCH_Event;
 ```
 
 ### sch_manufacturedata
@@ -499,7 +527,7 @@ sch_Event: SCH_Event;
 ## Signature
 
 ```typescript
-sch_ManufactureData: SCH_ManufactureData;
+function sch_ManufactureData: SCH_ManufactureData;
 ```
 
 ### sch_net
@@ -509,7 +537,7 @@ sch_ManufactureData: SCH_ManufactureData;
 ## Signature
 
 ```typescript
-sch_Net: SCH_Net;
+function sch_Net: SCH_Net;
 ```
 
 ### sch_netlist
@@ -519,7 +547,7 @@ sch_Net: SCH_Net;
 ## Signature
 
 ```typescript
-sch_Netlist: SCH_Netlist;
+function sch_Netlist: SCH_Netlist;
 ```
 
 ### sch_primitive
@@ -529,7 +557,7 @@ sch_Netlist: SCH_Netlist;
 ## Signature
 
 ```typescript
-sch_Primitive: SCH_Primitive;
+function sch_Primitive: SCH_Primitive;
 ```
 
 ### sch_primitivearc
@@ -539,7 +567,7 @@ sch_Primitive: SCH_Primitive;
 ## Signature
 
 ```typescript
-sch_PrimitiveArc: SCH_PrimitiveArc;
+function sch_PrimitiveArc: SCH_PrimitiveArc;
 ```
 
 ### sch_primitiveattribute
@@ -549,7 +577,7 @@ sch_PrimitiveArc: SCH_PrimitiveArc;
 ## Signature
 
 ```typescript
-sch_PrimitiveAttribute: SCH_PrimitiveAttribute;
+function sch_PrimitiveAttribute: SCH_PrimitiveAttribute;
 ```
 
 ### sch_primitivebus
@@ -559,7 +587,7 @@ sch_PrimitiveAttribute: SCH_PrimitiveAttribute;
 ## Signature
 
 ```typescript
-sch_PrimitiveBus: SCH_PrimitiveBus;
+function sch_PrimitiveBus: SCH_PrimitiveBus;
 ```
 
 ### sch_primitivecircle
@@ -569,7 +597,7 @@ sch_PrimitiveBus: SCH_PrimitiveBus;
 ## Signature
 
 ```typescript
-sch_PrimitiveCircle: SCH_PrimitiveCircle;
+function sch_PrimitiveCircle: SCH_PrimitiveCircle;
 ```
 
 ### sch_primitivecomponent
@@ -579,7 +607,7 @@ sch_PrimitiveCircle: SCH_PrimitiveCircle;
 ## Signature
 
 ```typescript
-sch_PrimitiveComponent: SCH_PrimitiveComponent | SCH_PrimitiveComponent3;
+function sch_PrimitiveComponent: SCH_PrimitiveComponent;
 ```
 
 ### sch_primitiveobject
@@ -589,7 +617,7 @@ sch_PrimitiveComponent: SCH_PrimitiveComponent | SCH_PrimitiveComponent3;
 ## Signature
 
 ```typescript
-sch_PrimitiveObject: SCH_PrimitiveObject;
+function sch_PrimitiveObject: SCH_PrimitiveObject;
 ```
 
 ### sch_primitivepin
@@ -599,7 +627,7 @@ sch_PrimitiveObject: SCH_PrimitiveObject;
 ## Signature
 
 ```typescript
-sch_PrimitivePin: SCH_PrimitivePin;
+function sch_PrimitivePin: SCH_PrimitivePin;
 ```
 
 ### sch_primitivepolygon
@@ -609,7 +637,7 @@ sch_PrimitivePin: SCH_PrimitivePin;
 ## Signature
 
 ```typescript
-sch_PrimitivePolygon: SCH_PrimitivePolygon;
+function sch_PrimitivePolygon: SCH_PrimitivePolygon;
 ```
 
 ### sch_primitiverectangle
@@ -619,7 +647,7 @@ sch_PrimitivePolygon: SCH_PrimitivePolygon;
 ## Signature
 
 ```typescript
-sch_PrimitiveRectangle: SCH_PrimitiveRectangle;
+function sch_PrimitiveRectangle: SCH_PrimitiveRectangle;
 ```
 
 ### sch_primitivetext
@@ -629,7 +657,7 @@ sch_PrimitiveRectangle: SCH_PrimitiveRectangle;
 ## Signature
 
 ```typescript
-sch_PrimitiveText: SCH_PrimitiveText;
+function sch_PrimitiveText: SCH_PrimitiveText;
 ```
 
 ### sch_primitivewire
@@ -639,7 +667,7 @@ sch_PrimitiveText: SCH_PrimitiveText;
 ## Signature
 
 ```typescript
-sch_PrimitiveWire: SCH_PrimitiveWire;
+function sch_PrimitiveWire: SCH_PrimitiveWire;
 ```
 
 ### sch_selectcontrol
@@ -649,7 +677,7 @@ sch_PrimitiveWire: SCH_PrimitiveWire;
 ## Signature
 
 ```typescript
-sch_SelectControl: SCH_SelectControl;
+function sch_SelectControl: SCH_SelectControl;
 ```
 
 ### sch_simulationengine
@@ -659,7 +687,7 @@ sch_SelectControl: SCH_SelectControl;
 ## Signature
 
 ```typescript
-sch_SimulationEngine: SCH_SimulationEngine;
+function sch_SimulationEngine: SCH_SimulationEngine;
 ```
 
 ### sch_utils
@@ -669,7 +697,7 @@ sch_SimulationEngine: SCH_SimulationEngine;
 ## Signature
 
 ```typescript
-sch_Utils: SCH_Utils;
+function sch_Utils: SCH_Utils;
 ```
 
 ### sys_clienturl
@@ -679,7 +707,7 @@ sch_Utils: SCH_Utils;
 ## Signature
 
 ```typescript
-sys_ClientUrl: SYS_ClientUrl;
+function sys_ClientUrl: SYS_ClientUrl;
 ```
 
 ### sys_dialog
@@ -689,7 +717,7 @@ sys_ClientUrl: SYS_ClientUrl;
 ## Signature
 
 ```typescript
-sys_Dialog: SYS_Dialog;
+function sys_Dialog: SYS_Dialog;
 ```
 
 ### sys_environment
@@ -699,7 +727,17 @@ sys_Dialog: SYS_Dialog;
 ## Signature
 
 ```typescript
-sys_Environment: SYS_Environment;
+function sys_Environment: SYS_Environment;
+```
+
+### sys_externalapi
+
+# EDA.sys\_ExternalApi property
+
+## Signature
+
+```typescript
+function sys_ExternalApi: SYS_ExternalApi;
 ```
 
 ### sys_filemanager
@@ -709,7 +747,7 @@ sys_Environment: SYS_Environment;
 ## Signature
 
 ```typescript
-sys_FileManager: SYS_FileManager;
+function sys_FileManager: SYS_FileManager;
 ```
 
 ### sys_filesystem
@@ -719,7 +757,7 @@ sys_FileManager: SYS_FileManager;
 ## Signature
 
 ```typescript
-sys_FileSystem: SYS_FileSystem;
+function sys_FileSystem: SYS_FileSystem;
 ```
 
 ### sys_fontmanager
@@ -729,7 +767,7 @@ sys_FileSystem: SYS_FileSystem;
 ## Signature
 
 ```typescript
-sys_FontManager: SYS_FontManager;
+function sys_FontManager: SYS_FontManager;
 ```
 
 ### sys_formatconversion
@@ -739,7 +777,7 @@ sys_FontManager: SYS_FontManager;
 ## Signature
 
 ```typescript
-sys_FormatConversion: SYS_FormatConversion;
+function sys_FormatConversion: SYS_FormatConversion;
 ```
 
 ### sys_headermenu
@@ -749,7 +787,17 @@ sys_FormatConversion: SYS_FormatConversion;
 ## Signature
 
 ```typescript
-sys_HeaderMenu: SYS_HeaderMenu;
+function sys_HeaderMenu: SYS_HeaderMenu;
+```
+
+### sys_help
+
+# EDA.sys\_Help property
+
+## Signature
+
+```typescript
+function sys_Help: SYS_Help;
 ```
 
 ### sys_i18n
@@ -759,7 +807,7 @@ sys_HeaderMenu: SYS_HeaderMenu;
 ## Signature
 
 ```typescript
-sys_I18n: SYS_I18n;
+function sys_I18n: SYS_I18n;
 ```
 
 ### sys_iframe
@@ -769,7 +817,7 @@ sys_I18n: SYS_I18n;
 ## Signature
 
 ```typescript
-sys_IFrame: SYS_IFrame;
+function sys_IFrame: SYS_IFrame;
 ```
 
 ### sys_loadingandprogressbar
@@ -779,7 +827,7 @@ sys_IFrame: SYS_IFrame;
 ## Signature
 
 ```typescript
-sys_LoadingAndProgressBar: SYS_LoadingAndProgressBar;
+function sys_LoadingAndProgressBar: SYS_LoadingAndProgressBar;
 ```
 
 ### sys_log
@@ -789,7 +837,17 @@ sys_LoadingAndProgressBar: SYS_LoadingAndProgressBar;
 ## Signature
 
 ```typescript
-sys_Log: SYS_Log;
+function sys_Log: SYS_Log;
+```
+
+### sys_math
+
+# EDA.sys\_Math property
+
+## Signature
+
+```typescript
+function sys_Math: SYS_Math;
 ```
 
 ### sys_message
@@ -799,7 +857,7 @@ sys_Log: SYS_Log;
 ## Signature
 
 ```typescript
-sys_Message: SYS_Message;
+function sys_Message: SYS_Message;
 ```
 
 ### sys_messagebox
@@ -809,7 +867,7 @@ sys_Message: SYS_Message;
 ## Signature
 
 ```typescript
-sys_MessageBox: SYS_MessageBox;
+function sys_MessageBox: SYS_MessageBox;
 ```
 
 ### sys_messagebus
@@ -819,7 +877,7 @@ sys_MessageBox: SYS_MessageBox;
 ## Signature
 
 ```typescript
-sys_MessageBus: SYS_MessageBus;
+function sys_MessageBus: SYS_MessageBus;
 ```
 
 ### sys_panelcontrol
@@ -829,7 +887,7 @@ sys_MessageBus: SYS_MessageBus;
 ## Signature
 
 ```typescript
-sys_PanelControl: SYS_PanelControl;
+function sys_PanelControl: SYS_PanelControl;
 ```
 
 ### sys_rightclickmenu
@@ -839,7 +897,7 @@ sys_PanelControl: SYS_PanelControl;
 ## Signature
 
 ```typescript
-sys_RightClickMenu: SYS_RightClickMenu;
+function sys_RightClickMenu: SYS_RightClickMenu;
 ```
 
 ### sys_setting
@@ -849,7 +907,7 @@ sys_RightClickMenu: SYS_RightClickMenu;
 ## Signature
 
 ```typescript
-sys_Setting: SYS_Setting;
+function sys_Setting: SYS_Setting;
 ```
 
 ### sys_shortcutkey
@@ -859,7 +917,7 @@ sys_Setting: SYS_Setting;
 ## Signature
 
 ```typescript
-sys_ShortcutKey: SYS_ShortcutKey;
+function sys_ShortcutKey: SYS_ShortcutKey;
 ```
 
 ### sys_storage
@@ -869,7 +927,7 @@ sys_ShortcutKey: SYS_ShortcutKey;
 ## Signature
 
 ```typescript
-sys_Storage: SYS_Storage;
+function sys_Storage: SYS_Storage;
 ```
 
 ### sys_timer
@@ -879,7 +937,7 @@ sys_Storage: SYS_Storage;
 ## Signature
 
 ```typescript
-sys_Timer: SYS_Timer;
+function sys_Timer: SYS_Timer;
 ```
 
 ### sys_toastmessage
@@ -889,7 +947,7 @@ sys_Timer: SYS_Timer;
 ## Signature
 
 ```typescript
-sys_ToastMessage: SYS_ToastMessage;
+function sys_ToastMessage: SYS_ToastMessage;
 ```
 
 ### sys_tool
@@ -899,7 +957,7 @@ sys_ToastMessage: SYS_ToastMessage;
 ## Signature
 
 ```typescript
-sys_Tool: SYS_Tool;
+function sys_Tool: SYS_Tool;
 ```
 
 ### sys_unit
@@ -909,7 +967,7 @@ sys_Tool: SYS_Tool;
 ## Signature
 
 ```typescript
-sys_Unit: SYS_Unit;
+function sys_Unit: SYS_Unit;
 ```
 
 ### sys_websocket
@@ -919,7 +977,7 @@ sys_Unit: SYS_Unit;
 ## Signature
 
 ```typescript
-sys_WebSocket: SYS_WebSocket;
+function sys_WebSocket: SYS_WebSocket;
 ```
 
 ### sys_window
@@ -929,5 +987,5 @@ sys_WebSocket: SYS_WebSocket;
 ## Signature
 
 ```typescript
-sys_Window: SYS_Window;
+function sys_Window: SYS_Window;
 ```

@@ -1,42 +1,60 @@
-## Description: <br>
-Provides International Women's Day support content, resource lists, hotline suggestions, quotes, and country-based support organization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides women-centered support resources, inspirational content, local organization information, and self-care guidance for International Women's Day and year-round use.
 
-## Publisher: <br>
-[whyseu](https://clawhub.ai/user/whyseu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[whyseu](https://clawhub.ai/user/whyseu)
 
-## Use Case: <br>
-People looking for International Women's Day support can use this skill to receive resource lists, hotline suggestions, inspirational quotes, and local organization suggestions. Agents can use it to provide supportive Markdown responses without storing user data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Resource links and hotlines are static suggestions and may become outdated or inappropriate for urgent situations. <br>
-Mitigation: Verify critical services against current official sources before relying on them, and direct urgent safety needs to current local emergency channels. <br>
-Risk: Broad Women's Day triggers may activate for some general women-support queries. <br>
-Mitigation: Review trigger settings before deployment and narrow them if unintended activation would be disruptive. <br>
-Risk: Some resource categories may require additional functional testing before use. <br>
-Mitigation: Run the skill in the target agent runtime and confirm each advertised resource type responds correctly before publishing it to users. <br>
+## Use Case:
 
+External users can ask the agent for Women's Day resources, support service information, inspirational quotes, women-owned business discovery, women's history content, self-care guidance, and local event suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/whyseu/womens-day-support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can vary output by country code and requested resource type when provided by the agent runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Listed hotlines and support resources may not be appropriate or current for every user's location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify hotline and resource details against local authoritative sources before relying on them, especially for crisis or emergency support.
+
+Risk: Quality issues in the artifact may reduce reliability, including a career resource typo and a test script that calls a missing handler.
+
+Mitigation: Exercise the supported command paths before deployment and correct the implementation defects before depending on career-resource or test behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whyseu/skills/womens-day-support)
+- [Publisher profile](https://clawhub.ai/user/whyseu)
+- [Global Fund for Women](https://www.globalfundforwomen.org/)
+- [Women's Mental Health Resources](https://www.womenshealth.gov/mental-health)
+- [Lean In Circles](https://leanin.org/circles)
+- [Women Who Code](https://www.womenwhocode.com/)
+- [Ellevate Network](https://ellevatenetwork.com/)
+- [American Association of University Women](https://www.aauw.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted text with resource lists, hotline information, quotes, and self-care guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses vary by countryCode and resourceType when those context values are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Refines vague or poorly structured prompts into clear, structured prompts using the OPTIMIZE framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Optimizer refines vague or poorly structured prompts into clear, structured prompts using prompt engineering techniques.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Prompt authors, developers, and other agent users use this skill to diagnose weak prompts and rewrite them into structured instructions with clearer objectives, roles, inputs, constraints, and output formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optimized prompts may add personas, constraints, or sensitive context that change tone, accuracy, or what information is sent to an AI model. <br>
-Mitigation: Review optimized prompts before reuse, especially for sensitive workflows or prompts that add expert personas, constraints, or private context. <br>
+## Use Case:
 
+Developers, writers, and prompt authors use this skill to diagnose weak prompts and rewrite them into structured briefs with clear objectives, roles, inputs, constraints, and output formats.
 
-## Reference(s): <br>
-- [Prompt Optimizer on ClawHub](https://clawhub.ai/371166758-qq/qf-prompt-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with diagnosis, optimized prompt, and explanation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt-writing guidance only; no code execution, credential access, persistence, or hidden behavior is identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optimized prompts may preserve or introduce unwanted fixed-language requirements or overly specific constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the optimized prompt before reuse and adjust language, persona, constraints, and output format to match the user's actual context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/371166758-qq/skills/qf-prompt-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/371166758-qq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with diagnosis, optimized prompt, and explanation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include code blocks, tables, or JSON schemas when those formats are appropriate for the optimized prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

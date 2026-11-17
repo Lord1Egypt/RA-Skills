@@ -1,43 +1,57 @@
-## Description: <br>
-Operate an Obsidian knowledge base as a persistent LLM wiki using a raw-to-source-to-wiki pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate an Obsidian knowledge base as a persistent LLM wiki using a raw-to-source-to-wiki pattern for ingesting notes, maintaining source summaries, compiling formal wiki pages, writing back reusable outputs, and running recurring maintenance.
 
-## Publisher: <br>
-[ducheneadas-source](https://clawhub.ai/user/ducheneadas-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ducheneadas-source](https://clawhub.ai/user/ducheneadas-source)
 
-## Use Case: <br>
-Developers, operators, and knowledge workers use this skill to maintain an Obsidian vault as a living knowledge base by ingesting raw notes, maintaining source summaries, compiling formal wiki pages, preserving reusable outputs, and running recurring maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vault maintenance can move, rewrite, or reorganize notes in ways that may be hard to reverse. <br>
-Mitigation: Use a backed-up or version-controlled vault and require a preview before bulk moves, rewrites, heartbeat maintenance, or write-back work. <br>
-Risk: Sensitive query outputs or private source material could be saved into reusable wiki pages. <br>
-Mitigation: Restrict the agent to the intended vault directory and review proposed saved outputs before they are written. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to have an agent maintain an Obsidian vault as a living wiki, including ingesting raw notes, preserving source summaries, promoting stable knowledge, saving reusable query outputs, and running scheduled maintenance checks.
 
-## Reference(s): <br>
-- [Adaptation Checklist](references/adaptation-checklist.md) <br>
-- [Heartbeat](references/heartbeat.md) <br>
-- [Object Model](references/object-model.md) <br>
-- [Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes, Obsidian wiki pages, maintenance findings, source summaries, structured answers, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update or reorganize vault files when the user authorizes maintenance work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent may reorganize or write local Obsidian notes during maintenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set the vault path, folder scope, loose-note movement policy, and approval requirements before broad runs.
+
+Risk: Raw notes, source summaries, formal conclusions, and reusable outputs may be mixed together if the vault model is not adapted first.
+
+Mitigation: Use the adaptation checklist to define raw, source, wiki, and output folders before ingest or migration work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ducheneadas-source/skills/obsidian-karpathy-wiki)
+- [Object Model](references/object-model.md)
+- [Workflow](references/workflow.md)
+- [Adaptation Checklist](references/adaptation-checklist.md)
+- [Heartbeat](references/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance and Obsidian-compatible note structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Obsidian wiki links and YAML frontmatter for formal pages when maintaining a vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+{
+  "standard": "ISO 37301:2021 合规管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "合规", "相关方"],
+    "5": ["领导作用", "合规方针", "合规职责", "举报"],
+    "6": ["策划", "合规义务", "合规风险", "合规目标"],
+    "7": ["支持", "能力", "培训", "意识", "沟通", "成文信息"],
+    "8": ["运行", "合规义务管理", "尽职调查", "举报与调查"],
+    "9": ["绩效评价", "监视测量", "合规审计", "管理评审"],
+    "10": ["改进", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-cm-obligation", "name_zh": "合规义务识别与维护", "name_en": "Compliance obligations",
+     "keywords_zh": ["合规义务", "法律法规", "监管要求"], "keywords_en": ["compliance obligation", "legal requirement"],
+     "description_zh": "须系统识别并维护适用的合规义务清单，作为体系基础。",
+     "compliance_statement": ["已建立合规义务清单", "清单动态更新"]},
+    {"id": "hv-cm-whistle", "name_zh": "举报机制与反报复", "name_en": "Whistleblowing",
+     "keywords_zh": ["举报", " whistleblowing", "反报复", "投诉渠道"], "keywords_en": ["whistleblowing", "reporting channel"],
+     "description_zh": "须建立保密的举报渠道并保护举报人免受报复。",
+     "compliance_statement": ["已设立保密举报渠道", "有反报复与保护机制"]},
+    {"id": "hv-cm-risk", "name_zh": "合规风险评估", "name_en": "Compliance risk assessment",
+     "keywords_zh": ["合规风险", "风险评估", "违规"], "keywords_en": ["compliance risk"],
+     "description_zh": "须评估合规风险并制定控制措施与合规目标。",
+     "compliance_statement": ["已开展合规风险评估", "高风险有控制措施"]},
+    {"id": "hv-cm-investigate", "name_zh": "不合规事件调查与整改", "name_en": "Investigation & remediation",
+     "keywords_zh": ["调查", "整改", "违规处理"], "keywords_en": ["investigation", "remediation"],
+     "description_zh": "须对不合规进行调查、问责并整改，纳入持续改进。",
+     "compliance_statement": ["已建立调查程序", "整改经验用于体系改进"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-RA", "name": "风险与机遇管理程序", "clause": "6.1", "match_keywords": ["风险管理"], "priority": "medium"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核", "合规审计"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-CM-001", "name": "合规义务管理程序", "clause": "4.3", "match_keywords": ["合规义务", "法律法规"], "priority": "high"},
+    {"id": "SP-CM-002", "name": "举报与调查管理程序", "clause": "8.2/8.3", "match_keywords": ["举报", "调查"], "priority": "high"}
+  ]
+}

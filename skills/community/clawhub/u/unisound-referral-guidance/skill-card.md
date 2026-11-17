@@ -1,42 +1,54 @@
-## Description: <br>
-Provides primary-care referral guidance from a patient case summary, including transfer need, urgency, target department and hospital level, pre-transfer measures, required documents, structured JSON, and a natural-language summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides primary-care referral guidance from a patient condition summary, including referral need, urgency, target department or hospital level, pre-transfer measures, and required transfer documents.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Primary-care and community-clinic clinicians use this skill to turn a patient case summary into referral decision support, including urgency, target department, hospital level, pre-transfer actions, and transfer-document checklist. It is a clinical decision-support aid and does not replace professional medical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient case text may be sent to a remote model endpoint without enforced de-identification or explicit consent checks. <br>
-Mitigation: Review before clinical installation, remove patient identifiers before input, avoid real PHI unless organizational policy permits it, and use only approved medical-model endpoints. <br>
-Risk: The command-line app key is sensitive and may be exposed through local shell history, process listings, or logs. <br>
-Mitigation: Handle the app key as a secret, limit access to authorized operators, and avoid recording command invocations that include the key. <br>
+## Use Case:
 
+Clinicians in community clinics and primary-care settings use this skill to convert de-identified patient summaries into referral decision support. The output helps review referral urgency, destination, pre-transfer actions, and materials to accompany the patient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-referral-guidance) <br>
-- [Unisound publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Unisound medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [JSON followed by a natural-language summary; command-line output may be printed to stdout or written to a file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a patient case-summary input file and an app key for the configured remote medical model endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Patient summaries and API credentials may be sent to configurable remote services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified patient summaries, keep the base URL on an approved HTTPS endpoint, and use a limited, revocable API key.
+
+Risk: Referral recommendations may be incorrect or incomplete for a specific clinical context.
+
+Mitigation: Treat the output as clinical decision support and require qualified clinical review before acting, especially in urgent cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-referral-guidance)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON followed by a natural-language summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write UTF-8 output to a file; accepts plain-text or JSON patient summaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

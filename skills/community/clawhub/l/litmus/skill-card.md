@@ -1,56 +1,68 @@
-## Description: <br>
-Parallel autonomous ML research agents with a Director, git worktrees for per-agent experiment branches, a Skills library for validated technique reuse, a Synthesizer that distills collective knowledge overnight, and circadian rhythm for paper reading and creative thinking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Litmus turns an OpenClaw instance on a GPU machine into a parallel autonomous ML research lab with worker subagents, git-backed experiments, scheduled direction, synthesis, and morning digests.
 
-## Publisher: <br>
-[kuberwastaken](https://clawhub.ai/user/kuberwastaken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuberwastaken](https://clawhub.ai/user/kuberwastaken)
 
-## Use Case: <br>
-Developers and ML researchers use Litmus to run autonomous OpenClaw subagents that prepare GPU-backed experiment worktrees, execute overnight ML research loops, track results, steer agents, and summarize findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Litmus creates persistent scheduled autonomous agents with broad local tool authority. <br>
-Mitigation: Install it only on a dedicated GPU machine where overnight autonomous execution, cron jobs, and local repository mutation are acceptable; review scheduled jobs before enabling them. <br>
-Risk: Optional ClawRxiv publishing can send research content outside the local environment. <br>
-Mitigation: Keep ClawRxiv disabled unless external posting is intended, restrict the API key to that service, and review what agents publish. <br>
-Risk: Runtime state, experiment worktrees, and configuration are written under ~/.litmus/. <br>
-Mitigation: Know how to stop agents, remove scheduled jobs, and delete ~/.litmus/ before deployment; avoid storing valuable API keys in plaintext configuration. <br>
+## Use Case:
 
+Developers and ML researchers use Litmus to set up, run, steer, and monitor autonomous OpenClaw agents that explore machine learning experiments overnight on a dedicated GPU machine.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kuberwastaken/litmus) <br>
-- [README](README.md) <br>
-- [Installation guide](INSTALL.md) <br>
-- [Onboarding guide](references/onboarding.md) <br>
-- [Worker agent loop](references/program.md) <br>
-- [Director workflow](references/director.md) <br>
-- [Leisure workflow](references/leisure.md) <br>
-- [Dawn workflow](references/dawn.md) <br>
-- [Watchdog workflow](references/watchdog.md) <br>
-- [Digest workflow](references/digest.md) <br>
-- [ClawRxiv integration](references/clawrxiv.md) <br>
-- [Default configuration](configs/default.json) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Karpathy autoresearch](https://github.com/karpathy/autoresearch) <br>
-- [Litmus documentation](https://litmus.kuber.studio/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration paths, agent prompts, and JSON result records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Linux or macOS machines with an NVIDIA CUDA GPU; writes runtime state under ~/.litmus/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Long-running autonomous research agents and persistent cron jobs can continue consuming local compute after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a dedicated GPU machine, review setup and cron scripts before use, and confirm you can list, remove, and stop all litmus jobs and worker sessions.
+
+Risk: Setup downloads and runs an upstream ML harness and creates local git worktrees and runtime state under ~/.litmus/.
+
+Mitigation: Pin or verify the upstream harness before running setup and review generated worktrees, commits, and attempt records during operation.
+
+Risk: Optional ClawRxiv publishing can send research writeups outside the local machine and stores an API key in local configuration when enabled.
+
+Mitigation: Keep ClawRxiv disabled unless external publication and local key storage are acceptable, and send the key only to clawrxiv.io.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kuberwastaken/skills/litmus)
+- [Litmus documentation](https://litmus.kuber.studio/docs)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [Karpathy autoresearch harness](https://github.com/karpathy/autoresearch)
+- [Onboarding guide](references/onboarding.md)
+- [Research agent program](references/program.md)
+- [Director agent](references/director.md)
+- [Leisure mode agent](references/leisure.md)
+- [Dawn agent](references/dawn.md)
+- [Watchdog agent](references/watchdog.md)
+- [Daily digest agent](references/digest.md)
+- [ClawRxiv integration](references/clawrxiv.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, OpenClaw tool call examples, JSON configuration, and generated research notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv, git, and python3; supports Linux and macOS; recommends nvidia-smi and an NVIDIA CUDA GPU; uses ~/.litmus/ for runtime state.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,49 @@
-## Description: <br>
-Davos helps agents create HTML-based poster templates for Chinese social posts and capture them with a browser screenshot workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Davos helps agents create vertical HTML poster templates and capture them with a browser screenshot for social sharing.
 
-## Publisher: <br>
-[zhsongchao](https://clawhub.ai/user/zhsongchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhsongchao](https://clawhub.ai/user/zhsongchao)
 
-## Use Case: <br>
-Content creators, marketers, and agents assisting them use this skill to draft vertical HTML poster templates for agriculture, legal, warning, or social-sharing messages, then capture the result in a browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary HTML files or screenshots can be mixed with unrelated desktop files or overwrite existing work. <br>
-Mitigation: Create posters in a dedicated temporary folder, use explicit filenames, and remove temporary files after capture. <br>
-Risk: A local HTTP server can expose files if it serves a broad directory or is left running. <br>
-Mitigation: Serve only the poster folder, bind the server to 127.0.0.1, and stop it immediately after screenshotting. <br>
-Risk: Generated poster content may be inaccurate, sensitive, or unsuitable for public sharing. <br>
-Mitigation: Review the rendered poster and screenshot before publishing or sending it. <br>
+## Use Case:
 
+External creators and agents use Davos to draft 800x1200 Chinese-language posters for social channels, especially agriculture, livestock, legal, and consulting layouts. The skill guides creation of an HTML file, browser preview, screenshot capture, and cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhsongchao/easy-html-poster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with HTML/CSS snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local poster files and screenshot workflow guidance; no API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The preview workflow can expose the user's entire Desktop over an unauthenticated local web server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Serve only a temporary folder containing the poster, bind the server to 127.0.0.1, stop the exact server process after screenshotting, and avoid storing sensitive files in the served directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhsongchao/skills/easy-html-poster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with HTML/CSS and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshot-ready HTML poster files and local preview commands when an agent follows the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

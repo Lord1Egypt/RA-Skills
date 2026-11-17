@@ -1,44 +1,66 @@
-## Description: <br>
-Redacta pseudonymises medical and clinical documents by replacing patient identifiers with labelled tokens while preserving clinical meaning, then returns redacted text and a redaction report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redacta pseudonymises medical and clinical text by replacing patient identifiers with stable labelled tokens, returning redacted text, a redaction report, and optional re-identification support.
 
-## Publisher: <br>
-[nickjlamb](https://clawhub.ai/user/nickjlamb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickjlamb](https://clawhub.ai/user/nickjlamb)
 
-## Use Case: <br>
-Healthcare, compliance, and AI-assisted documentation users use Redacta to pseudonymise clinical text before sharing it or sending it to another AI tool. It can also restore original identifiers from a token map when re-identification is intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reversible token maps contain or can restore sensitive PHI/PII. <br>
-Mitigation: Protect token maps like the original clinical text, avoid sharing them with redacted output unless re-identification is intended, and delete or secure temporary files. <br>
-Risk: Redaction may miss residual identifiers in clinical text. <br>
-Mitigation: Review the redacted output and redaction report before sharing, and treat Redacta as a first line of defence rather than a substitute for formal data-protection review. <br>
+## Use Case:
 
+Healthcare users, developers, and agents use Redacta to pseudonymise clinical letters, notes, referrals, discharge summaries, and patient records before sharing them or processing them with other tools. It can also restore original values from a protected token map when reversible redaction is required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickjlamb/redacta) <br>
-- [Redacta reference](reference.md) <br>
-- [Redacta product page](https://www.pharmatools.ai/redacta) <br>
-- [Agent Skills open standard](https://agentskills.io) <br>
-- [redacta-mcp npm package](https://www.npmjs.com/package/redacta-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown response with redacted or re-identified text, a redaction report, an optional token map, and limits guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token maps can restore original identifiers and should be separated from redacted output unless re-identification is intended.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Sensitive medical text may be written to a predictable temporary file path during the skill workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stdin or a secure per-run temporary file, delete it immediately after processing, and avoid shared temporary paths for clinical or regulated data.
+
+Risk: The MCP setup example can install the latest package version without pinning.
+
+Mitigation: Pin MCP npm invocations to an exact reviewed version before deployment, especially in clinical or regulated environments.
+
+Risk: The skill produces token maps that can reverse pseudonymisation.
+
+Mitigation: Store token maps separately from redacted text, restrict access, and handle them with the same care as the source clinical data.
+
+Risk: Residual identifiers may remain because deterministic and reasoning-based redaction is not a guarantee.
+
+Mitigation: Review the redaction report and self-check output before sharing, and use formal data-protection review where required.
+
+## Reference(s):
+
+- [Redacta Skill Page](https://clawhub.ai/nickjlamb/skills/redacta)
+- [Redacta Reference](reference.md)
+- [Redacta README](README.md)
+- [Redacta MCP Server README](mcp-server/README.md)
+- [Redacta npm Package](https://www.npmjs.com/package/redacta-mcp)
+- [PharmaTools Redacta](https://www.pharmatools.ai/redacta)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown response with redacted clinical text, a redaction report, optional token map table or JSON, and shell command snippets when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reversible token maps; token maps should be kept separate and protected when the user wants identifiers isolated.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter, release evidence, npm package metadata, MCP package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

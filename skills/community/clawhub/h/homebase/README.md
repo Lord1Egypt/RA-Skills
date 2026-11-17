@@ -2,30 +2,33 @@
 
 A WhatsApp-based household coordinator for families, built as a native OpenClaw skill. The OpenClaw agent IS the intelligence — it reads messages, reasons about them, and calls Python data tools via bash. Homebase is model-agnostic: whichever model OpenClaw is configured with (Claude, Gemma, GPT, Llama, ...) does the reasoning. No LLM SDK is bundled in this skill.
 
-Clone, edit `config.json`, add Google credentials, run. Zero Python code changes.
+Clone, edit `config.json`, authorize Google in the `gog` CLI, run. Zero Python code changes.
 
 ---
 
 ## What It Does
 
 **Calendar & Schedule**
-- Syncs with Google Calendar (read + write) via OAuth
-- Adds, edits, and deletes events via WhatsApp chat
-- Daily morning briefing at 7 AM with weather, clothing suggestions for kids, events, meal plan, and snack schedule
-- Pre-flight health check at 6:45 AM validates Google auth, calendar ID, weather API, and WhatsApp gateway before the briefing runs
+- Syncs Google Calendar into a local cache (`calendar_data/family_calendar.json`) through the `gog` CLI — 1 day back, 30 days forward, every `enabled` entry in `supported_calendars`
+- **No calendar tools.** All eight (`get_events_for_date`, `get_events_for_range`, `get_next_event`, `get_tomorrow_events`, `check_calendar_for_date`, `add_calendar_event`, `update_calendar_event`, `delete_calendar_event`) were deleted on 2026-09-07 when Google access moved to `gog`. The agent reads and writes the calendar with the `gog` skill directly; homebase owns household state only
+- The one calendar write left is `confirm_pending_school_events`, which creates school events the family has explicitly approved
+- Morning briefing data (`get_morning_briefing`) and school-window hourly weather + UV + air quality + sun times (`get_weather_context`)
+- Composition and delivery of the daily briefing happen OUTSIDE this skill — see "Morning briefing" below
 - Output validation catches missing data (wrong calendar, missing weather, missing kid meals) before it reaches the family
-- 30-day reliability tracker records daily briefing health (`household/briefing_reliability.json`)
+- 60-day reliability tracker records daily briefing health (`household/briefing_reliability.json`)
+- The 5:50 AM pre-flight health check is gone — deleted 2026-08-17 with the cron job it guarded (see "Scheduled Tasks")
 
 **Meal Planning**
 - Per-child meal rules defined in `config.json` (breakfast options, lunch options, dietary restrictions)
-- Saturday evening draft meal plan sent to family WhatsApp group for approval
-- The agent applies revision requests directly; auto-locks at 9 PM Sunday if no reply
+- Draft meal plan posted to the family WhatsApp group for approval; the agent applies revision requests, and the plan auto-locks after 2 revisions
+- **On-demand only.** The Saturday-draft / Sunday-9-PM-auto-lock cadence was a pair of OpenClaw cron jobs and went with them on 2026-08-17. The flow works whenever it is called; nothing schedules it
 - Tracks what kids actually ate (learned daily via morning check-in)
 
 **School**
-- Monitors Gmail for school emails (domains configured in `config.json`) every 2 hours (weekdays)
+- Reads Gmail for school emails (domains configured in `config.json`) through the `gog` CLI, on the `school` runner's schedule — 8:07/12:07/16:07/20:07 Mon–Fri
 - Extracts calendar events from email bodies and PDF attachments via the agent + pypdf
-- Deduplicates against existing Google Calendar entries before adding
+- Deduplicates against existing Google Calendar entries before proposing; since 2026-09-07 that lookup is a `gog calendar events` call in the runner, not a homebase tool
+- Propose → family confirms → create: nothing reaches Google Calendar until the family replies
 
 **Health — Medication & Symptom Tracker**
 - Logs medication doses per child (Tylenol, Ibuprofen, and variants)
@@ -33,7 +36,7 @@ Clone, edit `config.json`, add Google credentials, run. Zero Python code changes
 - Safety checks: early-dose warnings, dosage range vs. child weight, 24-hour max dose count
 - Logs fevers (confirmed temperature or subjective "feels warm"), symptoms (free-text)
 - Health summary formatted for doctor visits
-- `at`-command reminder when the next dose window opens
+- `schedule_medication_reminder` returns a structured reminder payload for the next dose window; Python never schedules or sends anything — the agent creates the one-shot job and delivers it
 
 **Kid Profiles & Trip Prep**
 - Per-child observation log: food sensitivities, car-sickness notes, gear preferences, etc.
@@ -58,22 +61,28 @@ Clone, edit `config.json`, add Google credentials, run. Zero Python code changes
 ```
 WhatsApp message
       ↓
-  OpenClaw → agent        ← reads SOUL.md, agent.md (model-agnostic)
+  OpenClaw → agent        ← reads SKILL.md, references/agent.md (model-agnostic)
       ↓
   tools.py (CLI)          ← python3 tools.py <action> '<json>'
       ↓
-  core/                   ← config_loader, keychain_secrets, whatsapp
-  features/briefing/      ← morning_briefing, weather, preflight
+  core/                   ← config_loader, gcal, gmail, pdf_attachments
+  features/briefing/      ← morning_briefing, weather, daily_thought
   features/calendar/      ← calendar_aggregator, calendar_manager
-  features/school/        ← school_email_monitor, snack_manager
+  features/school/        ← school_email_monitor, school_calendar_sync, snack_manager
   features/meals/         ← meal_tracker, weekly_meal_planner
-  features/trips/         ← trip_detector
+  features/trips/         ← trip_detector, travel_window
   features/health/        ← health_tracker
   features/shopping/      ← shopping_list
   features/dining/        ← restaurant_tracker, media_watcher
+  features/bills/         ← watcher
       ↓
   household/*.json        ← local state files (no database)
 ```
+
+`core/gcal.py` and `core/gmail.py` are the only modules that reach Google, and
+they do it by shelling out to the `gog` CLI. Since 2026-09-07 nothing here
+imports a Google client library or holds a credential —
+The skill holds no credentials of its own; see `CHANGELOG.md`.
 
 **The OpenClaw agent is the dispatcher.** Python scripts are pure data tools — they never call any LLM. `tools.py` stays at the root as the entry point. Feature modules are organized by domain in `features/`, with shared infrastructure in `core/`. The reasoning model is whatever OpenClaw is configured with; this skill has no opinion.
 
@@ -83,8 +92,7 @@ WhatsApp message
 
 - **Python 3.12+** (uses `zoneinfo` and `__future__` annotations)
 - **OpenClaw** installed and linked to a WhatsApp account — Homebase is a skill, not a standalone bot
-- **Google Cloud project** with Calendar API + Gmail API enabled
-- **macOS Keychain** is optional. On macOS, secrets can be stored in Keychain via `migrate_to_keychain.py`. On other platforms, the skill reads secrets from environment variables.
+- **The `gog` CLI** (gogcli.sh), authenticated for Gmail + Calendar. This is a binary dependency, not a pip one, and it is the only path to Google. It owns the OAuth refresh token in the macOS Keychain; homebase stores no credential of its own.
 
 Python dependencies live in [pyproject.toml](pyproject.toml). Install with:
 
@@ -122,74 +130,86 @@ Key fields to set:
 - `school.email_domains` — school email domains for the email monitor
 - `stores` — grocery store names
 
-**Do not put Google OAuth credentials in `config.json`.** Use `.env` and/or Keychain. Homebase needs no LLM API key — the OpenClaw agent handles all reasoning.
+**Do not put Google OAuth credentials in `config.json`.** Do not put them
+anywhere in this skill — it holds none. `config.json` does hold PII (group jid,
+phone numbers, kid names, calendar id), so `chmod 600 config.json`.
+Homebase needs no LLM API key — the OpenClaw agent handles all reasoning.
 
-### 3. Add secrets to `.env`
-
-```
-GOOGLE_CLIENT_ID=your-client-id
-GOOGLE_CLIENT_SECRET=your-client-secret
-GOOGLE_REFRESH_TOKEN=your-refresh-token
-```
-
-Get these from Google Cloud Console → APIs & Services → Credentials → OAuth 2.0
-Client ID. Make sure Calendar API and Gmail API are both enabled in your project.
-Run `python core/reauth_google.py` once to mint the refresh token.
-
-On macOS, optionally migrate the credentials into Keychain so `.env` can be deleted:
-```bash
-python migrate_to_keychain.py
-python migrate_to_keychain.py --check   # verify
-```
-
-### 4. Re-auth Google OAuth (when tokens expire)
+### 3. Authorize Google in `gog`
 
 ```bash
-python core/reauth_google.py
+gog auth add <your-google-account> --services gmail,calendar
+gog auth status                     # verify
 ```
 
-The school email monitor will WhatsApp the family exactly once when the
-refresh token expires, then go silent until it's fixed.
+That is the whole credential story. **Homebase stores no credential of its
+own** — no `.env`, no client id, no refresh token, no Keychain entry. `gog`
+owns the refresh token and mints an access token per invocation, and
+`core/gcal.py` / `core/gmail.py` reach Google only by exec'ing it. See
+`CHANGELOG.md` for what this replaced.
 
-### 5. Install the launchd daemon *(run once)*
+### 4. Re-auth Google (when the token expires or is revoked)
 
 ```bash
-cp ~/.openclaw/workspace/skills/homebase/com.openclaw.daemon.plist \
-   ~/Library/LaunchAgents/com.openclaw.daemon.plist
-
-launchctl load ~/Library/LaunchAgents/com.openclaw.daemon.plist
+gog auth status
+gog auth add <your-google-account> --services gmail,calendar
 ```
 
-Check it's running:
+The school email monitor will WhatsApp the family exactly once when a fetch
+fails on auth, then go silent until it's fixed.
+
+### 5. Gateway daemon — nothing to do
+
+OpenClaw installs and owns its own launchd agent, `ai.openclaw.gateway`. Homebase
+needs no daemon of its own and ships no plist. Check the real one:
+
 ```bash
-launchctl list | grep openclaw
-tail -f /tmp/openclaw/openclaw-launchd.log
+launchctl list | grep ai.openclaw.gateway
+openclaw gateway status --deep      # expect Runtime: running
 ```
 
 ### 6. Verify
 
 ```bash
-python tools.py get_todays_events
-python setup_check.py   # full dependency + auth check
+python tools.py get_morning_briefing '{}'
+python setup_check.py   # config + gog auth + live calendar read
 python -m pytest -q     # all tests should pass
 ```
 
 ---
 
-## Scheduled Tasks (OpenClaw)
+## Driving homebase from a scheduler
 
-Six tasks are managed by OpenClaw (see the Scheduled section in sidebar):
+**Nothing in this skill schedules anything.** There is no cron job, no timer and
+no daemon. Homebase returns data; a caller you write decides when to ask and
+what to do with the answer.
 
-| Task ID | Schedule (PT) | Description |
-|---------|--------------|-------------|
-| `homebase-briefing-preflight` | 6:45 AM daily | Pre-flight health check: auth, calendar, weather, gateway |
-| `homebase-morning-briefing` | 7:00 AM daily | Agent composes briefing from `--data-only` output |
-| `homebase-school-emails` | Every 2h, 8 AM–6 PM, weekdays | Scan Gmail for school updates |
-| `homebase-rating-reminders` | Every 2 hours | Rating reminders for unrated restaurant visits |
-| `homebase-meal-plan-draft` | 6:00 PM Saturday | Generate and send draft meal plan |
-| `homebase-trip-detector` | 9:00 AM daily | Check for trips; agent composes prep message |
+The pattern that works: a small shell script, run by whatever scheduler your OS
+provides (launchd, systemd, cron), that
 
----
+1. pulls what it needs through `bin/homebase.sh` — one tool per call,
+2. composes the message itself (or hands the JSON to a model with no tools),
+3. sends it through whatever channel it owns, and
+4. calls the matching `mark_*` tool **after** the send succeeds.
+
+Step 4 is the one worth spelling out. `fetch_school_emails` and
+`fetch_bill_emails` return work *unmarked* on purpose, because marking before
+delivery means a failed send silently consumes the email. Fetch → deliver →
+then mark.
+
+Two things a scheduler must supply that an interactive shell gives you for free:
+
+- **A full `PATH`.** launchd hands a process only `/usr/bin:/bin:/usr/sbin:/sbin`,
+  which contains neither `gog` nor a modern `python3`. A runner without an
+  explicit `PATH` dies at its first call and cannot even report it. Testing by
+  running the script yourself proves nothing — invoke it the way the scheduler
+  will.
+- **The shim, not `tools.py`.** `bin/homebase.sh` pins the venv interpreter.
+  `tools.py` can self-heal by re-exec, but not from every interpreter.
+
+Scheduled callers never talk to the agent, so anything both must know — a trip,
+for instance — belongs on the calendar rather than in a state file or a chat
+message.
 
 ## Data Storage
 
@@ -204,18 +224,25 @@ gitignored — they live on your machine only:
 | `calendar_data/family_calendar.json` | Cached Google Calendar events |
 | `calendar_data/processed_email_ids.json` | Gmail message IDs already sent to WhatsApp |
 | `calendar_data/calendar_synced_ids.json` | Gmail message IDs already synced to calendar |
-| `calendar_data/auth_error_state.json` | Auth-error notify-once state |
+| `calendar_data/auth_error_state.json` | School auth-error notify-once state |
+| `calendar_data/pending_school_events.json` | Proposed school events awaiting family confirmation |
+| `calendar_data/last_sync.json` | Calendar sync marker |
 | `household/shopping_list.json` | Per-store shopping list |
 | `household/meal_history.json` | What kids actually ate |
-| `household/meal_plan_pending.json` | Saturday draft plan (pending approval) |
+| `household/meal_plan_pending.json` | Draft weekly plan (pending approval) |
 | `household/weekly_meal_plan.json` | Locked weekly plan |
+| `household/learned_catalog.json` | Per-installation meal catalog additions |
+| `household/catalog_pending_review.json` | Off-catalog meals awaiting owner approval |
 | `household/restaurants.json` | Restaurant visit log and ratings |
 | `household/snack_schedule.json` | School snack schedule |
 | `household/health_config.json` | Kid weights for dosage calculations |
 | `household/health_log.json` | Append-only medication/fever/symptom log |
 | `household/kid_profiles.json` | Per-child observation notes for trip prep |
 | `household/trip_prep_sent.json` | Sent trip prep messages (idempotency) |
-| `household/briefing_reliability.json` | 30-day morning briefing reliability tracker |
+| `household/briefing_reliability.json` | 60-day morning briefing reliability tracker |
+| `household/bills_processed.json` | One-way ledger of bills already delivered |
+| `household/bills_auth_error_state.json` | Bills auth-error notify-once state |
+| `household/media_watcher_state.json` | Directory-scanner triage state |
 
 ---
 
@@ -223,22 +250,25 @@ gitignored — they live on your machine only:
 
 | File | Purpose |
 |------|---------|
-| `SOUL.md` | Agent's household assistant rules and photo handling |
-| `agent.md` | Full tool reference — what to call for every request type |
+| `SKILL.md` | Skill manifest — what the OpenClaw agent loads, plus the tool-invocation contract |
+| `references/agent.md` | Full tool reference — what to call for every request type |
 | `tools.py` | CLI tool library — `python3 tools.py <action> '<json>'` |
 | `core/config_loader.py` | Centralized config — all settings from `config.json` |
-| `core/keychain_secrets.py` | Secure credential loader (macOS Keychain + .env fallback) |
-| `core/whatsapp.py` | WhatsApp message sending via OpenClaw CLI |
-| `features/calendar/calendar_manager.py` | Google Calendar API integration |
+| `core/gcal.py` | The only path to Google Calendar — shells out to the `gog` CLI, holds no credentials |
+| `core/gmail.py` | The only path to Gmail — same, read-only by construction |
+| `core/pdf_attachments.py` | MIME walk + `pypdf` text extraction for bill and school PDFs |
+| `features/calendar/calendar_aggregator.py` | Google Calendar → local cache sync (1 day back, 30 forward) |
+| `features/calendar/calendar_manager.py` | Calendar create/update/delete over `core/gcal.py`; owns the inclusive→exclusive all-day end-date conversion |
 | `features/school/school_email_monitor.py` | Gmail monitoring for school emails |
 | `features/school/school_calendar_sync.py` | Email/PDF → Google Calendar event sync |
 | `features/health/health_tracker.py` | Medication, fever, and symptom tracker |
 | `features/trips/trip_detector.py` | Trip detection (outputs JSON for the agent to compose) |
-| `features/meals/weekly_meal_planner.py` | Saturday meal plan draft + approval flow |
+| `features/trips/travel_window.py` | Travel mode — is the household away on this date, and where |
+| `features/bills/watcher.py` | Bill email fetch + PDF extraction (optional module) |
+| `features/meals/weekly_meal_planner.py` | Weekly meal plan draft + approval flow |
 | `features/meals/meal_tracker.py` | Per-child meal history and config-driven suggestions |
 | `features/briefing/morning_briefing.py` | Briefing data aggregator with output validation and reliability tracking |
-| `features/briefing/briefing_preflight.py` | Pre-flight health check (runs 15 min before briefing) |
-| `features/briefing/weather.py` | Open-Meteo weather fetch |
+| `features/briefing/weather.py` | Open-Meteo weather fetch: current conditions, plus `fetch_weather_context()` for hourly school-window figures, UV, air quality and sun times |
 
 ---
 
@@ -249,11 +279,16 @@ cd ~/.openclaw/workspace/skills/homebase
 python -m pytest -q
 ```
 
-297 tests cover: weather, meal planner, school email monitor, keychain secrets,
-morning briefing, briefing hardening (output validation, reliability tracker,
-config regressions, preflight checks), restaurant tracker, shopping list,
-health tracker, school calendar sync, trip detector, media watcher, and
-integration flows. All external dependencies (Google APIs, network) are mocked.
+587 tests cover: weather, meal planner, school email monitor, school roster,
+school pending queue, morning briefing, briefing hardening (output validation,
+reliability tracker, config regressions), restaurant tracker, shopping list,
+health tracker, bills watcher, school calendar sync, calendar aggregator sync,
+calendar manager, `core/gcal.py`, trip detector, travel window, media watcher,
+the stdout contract, the docs-in-sync contract, and integration flows. All
+external dependencies are mocked — since 2026-09-07 the Google seam is a patch
+over `core.gcal` / `core.gmail` (i.e. over the `gog` subprocess) rather than
+over a Google client library. The keychain-secrets tests went with the module
+they covered.
 
 ## License
 

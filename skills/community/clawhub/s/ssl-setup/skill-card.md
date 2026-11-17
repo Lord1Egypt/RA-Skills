@@ -1,45 +1,56 @@
-## Description: <br>
-Configure Nginx as a reverse proxy with SSL/TLS via Let's Encrypt, security headers, HTTP/2, and gzip compression for any application on any VPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Nginx as a reverse proxy with SSL/TLS via Let's Encrypt, security headers, HTTP/2, and gzip compression for any application on any VPS.
 
-## Publisher: <br>
-[llcsamih](https://clawhub.ai/user/llcsamih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[llcsamih](https://clawhub.ai/user/llcsamih)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to configure a VPS-hosted application behind Nginx with HTTPS, reverse proxying, certificate renewal, and production-oriented security headers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unsafe live-server defaults or unreviewed commands could disrupt a production Nginx deployment.
+
+Mitigation: Review the skill before installing or using it on a production server, and back up existing Nginx configs before changes.
+
+Risk: Removing the default Nginx site, enabling HSTS includeSubDomains/preload, or adding renewal hooks can have lasting operational effects.
+
+Mitigation: Require explicit approval before those actions, and test Nginx configuration before reloads.
+
+Risk: DNS API tokens for automated wildcard certificates can expose domain control if over-scoped or mishandled.
+
+Mitigation: Use narrowly scoped DNS tokens, store credential files with restrictive permissions, and review token handling before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to configure production HTTPS for VPS-hosted applications by setting up Nginx reverse proxying, Let's Encrypt certificates, security headers, redirects, and renewal checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration, code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides production server changes that can disrupt live sites if commands or generated Nginx configuration are applied without review. <br>
-Mitigation: Review each command before execution, back up existing Nginx site files, run nginx -t before reloads, and stop to diagnose failures instead of continuing. <br>
-Risk: The hardened configuration includes an HSTS preload header that can make a domain and its subdomains HTTPS-only long term. <br>
-Mitigation: Do not enable HSTS preload unless the operator has explicitly decided that the domain and all subdomains should remain HTTPS-only long term. <br>
-Risk: Wildcard certificate automation can require DNS provider API tokens, and exposed tokens can permit unauthorized DNS changes. <br>
-Mitigation: Use a dedicated least-privilege DNS token scoped only to the needed zone, keep it out of shared transcripts and logs, store it with restrictive file permissions, and rotate it if exposed. <br>
-Risk: Certificate issuance can fail or hit rate limits when DNS is not pointed at the target server before Certbot runs. <br>
-Mitigation: Verify DNS A records against the server public IP before running Certbot and stop until DNS is corrected when records do not match. <br>
+**Output Format:** [Markdown with bash and Nginx configuration blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/llcsamih/ssl-setup) <br>
-- [Publisher profile](https://clawhub.ai/user/llcsamih) <br>
+**Other Properties Related to Output:** [Uses placeholders for domain, app port, VPS IP, email, certificate mode, and extra domains.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Nginx configuration code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step-by-step server administration guidance for DNS checks, Nginx configuration, Certbot certificate issuance, renewal setup, and verification.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

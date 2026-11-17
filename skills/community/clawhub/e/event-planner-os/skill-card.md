@@ -1,41 +1,51 @@
-## Description: <br>
-A conversational OpenClaw skill for planning and managing events from start to finish, including tasks, timelines, vendors, volunteers, budgets, and built-in planning templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and manage any event from start to finish, including timelines, task checklists, vendors, volunteers, and budgets.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External users use this skill to plan and track events of many sizes, from dinner parties to conferences, by maintaining event records, task checklists, vendor details, volunteer assignments, and budgets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores event details, contacts, vendors, helpers, and budgets in a local event-data.json file. <br>
-Mitigation: Avoid entering sensitive contact or budget details unless local storage is acceptable, and review or delete event-data.json when saved planning data is no longer needed. <br>
+## Use Case:
 
+External users use this skill to plan and manage parties, conferences, weddings, fundraisers, retreats, and other organized events. It helps track event records, task checklists, vendors, helpers, budgets, status summaries, and post-event wrap-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris-openclaw/event-planner-os) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [Evaluation scenarios](artifact/evals/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with persisted structured JSON event data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists event records, task lists, vendor details, volunteer assignments, and budgets in event-data.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Local event records can include names, vendor contacts, budgets, venue details, and notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing highly sensitive personal details, and periodically review or delete old event-data.json records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris/skills/event-planner-os)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown responses with structured JSON event records stored locally]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains event records, task lists, vendor details, volunteer assignments, and budget totals in event-data.json.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

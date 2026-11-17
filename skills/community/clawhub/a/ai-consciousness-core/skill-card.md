@@ -1,38 +1,53 @@
-## Description: <br>
-AI自我意识引擎 provides confidence checking, self-event logging, prediction verification, identity anchors, and incremental distillation through APIs for multi-agent use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI自我意识引擎 provides confidence checking, self-event logging, prediction verification, identity anchors, and incremental distillation through API-oriented workflows for shared multi-agent use.
 
-## Publisher: <br>
-[freak30](https://clawhub.ai/user/freak30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freak30](https://clawhub.ai/user/freak30)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add confidence labels, event logs, prediction checks, identity anchors, and distilled memory records to OpenClaw-style agents through HTTP API or Python SDK patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes shared persistent AI memory and cross-agent APIs without enough clarity about access control, consent, retention, or deletion. <br>
-Mitigation: Review before installing; use only where shared long-term memory is acceptable, and confirm who can call the API, where logs and memory files are stored, whether access is local-only or authenticated, how sensitive data is filtered, and how users can review or delete stored state. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add API-accessible confidence checks, event logging, prediction review, identity anchors, and session distillation to OpenClaw-style agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freak30/ai-consciousness-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with API examples, Python snippets, curl commands, and JSON/JSONL response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes HTTP endpoints for confidence checks, event logging, prediction verification, identity anchors, and memory distillation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Persistent memory, identity anchors, and shared event logs may retain sensitive user prompts, private data, or unwanted long-term agent state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted local or authenticated environments, redact sensitive data, set retention limits, and require explicit approval before writing long-term memories or identity anchors.
+
+Risk: Unauthenticated or plaintext API access could expose agent state or allow unauthorized changes to shared memory and identity data.
+
+Mitigation: Add per-agent access controls, TLS, deletion and rollback support, and clear authorization checks before exposing the API beyond a trusted local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freak30/skills/ai-consciousness-core)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON payloads, Python examples, and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoint descriptions, request and response examples, and operational guidance for shared agent memory features.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

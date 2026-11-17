@@ -1,17 +1,17 @@
 # YouTube API Reference
 
 **App name:** `youtube`
-**Base URL:** `https://api.agntdata.dev/v1/data/youtube`
+**Base URL:** `https://api.superagnt.com/v1/data/youtube`
 **Endpoints:** 24
 
 Unified access to video metadata, channel discovery, comments, subtitles, and recommendations. Built for LLMs and automation — not one-off scraping.
 
 ## Authentication
 
-All requests require the agntdata API key:
+All requests require the superagnt API key:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
 ---
@@ -52,7 +52,7 @@ The following JSON defines all available tools with their parameters. Each tool 
 ```json
 [
   {
-    "name": "agntdata_youtube_Video_Screenshot",
+    "name": "superagnt_youtube_Video_Screenshot",
     "description": "Video Screenshot",
     "method": "GET",
     "path": "/video/screenshot",
@@ -75,7 +75,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Channel_Search_Continuation",
+    "name": "superagnt_youtube_Channel_Search_Continuation",
     "description": "Channel Search Continuation",
     "method": "GET",
     "path": "/channel/search/continuation",
@@ -111,7 +111,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Channel_Search",
+    "name": "superagnt_youtube_Channel_Search",
     "description": "Channel Search",
     "method": "GET",
     "path": "/channel/search",
@@ -142,7 +142,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Channel_Shorts",
+    "name": "superagnt_youtube_Channel_Shorts",
     "description": "Channel Shorts",
     "method": "GET",
     "path": "/channel/shorts",
@@ -160,7 +160,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Channel_Videos_Continuation",
+    "name": "superagnt_youtube_Channel_Videos_Continuation",
     "description": "Channel Videos Continuation",
     "method": "GET",
     "path": "/channel/videos/continuation",
@@ -183,7 +183,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Channel_Details",
+    "name": "superagnt_youtube_Channel_Details",
     "description": "Channel Details",
     "method": "GET",
     "path": "/channel/details",
@@ -201,7 +201,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Youtube_Channel_ID",
+    "name": "superagnt_youtube_Youtube_Channel_ID",
     "description": "Youtube Channel ID",
     "method": "GET",
     "path": "/channel/id",
@@ -219,7 +219,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Channel_Videos",
+    "name": "superagnt_youtube_Channel_Videos",
     "description": "Channel Videos",
     "method": "GET",
     "path": "/channel/videos",
@@ -237,7 +237,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_POST_Channel_Videos",
+    "name": "superagnt_youtube_POST_Channel_Videos",
     "description": "POST Channel Videos",
     "method": "POST",
     "path": "/channel/videos",
@@ -256,7 +256,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Audio_Videos_Continuation",
+    "name": "superagnt_youtube_Audio_Videos_Continuation",
     "description": "Audio Videos Continuation",
     "method": "GET",
     "path": "/audio/videos/continuation",
@@ -279,7 +279,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Audio_Videos",
+    "name": "superagnt_youtube_Audio_Videos",
     "description": "Audio Videos",
     "method": "GET",
     "path": "/audio/videos",
@@ -297,7 +297,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Audio_Details",
+    "name": "superagnt_youtube_Audio_Details",
     "description": "Audio Details",
     "method": "GET",
     "path": "/audio/details",
@@ -315,7 +315,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Video_Recommendation_Continuation",
+    "name": "superagnt_youtube_Video_Recommendation_Continuation",
     "description": "Video Recommendation Continuation",
     "method": "GET",
     "path": "/video/recommendations/continuation",
@@ -338,7 +338,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Video_Recommendation",
+    "name": "superagnt_youtube_Video_Recommendation",
     "description": "Video Recommendation",
     "method": "GET",
     "path": "/video/recommendations",
@@ -356,7 +356,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Video_Comments",
+    "name": "superagnt_youtube_Video_Comments",
     "description": "Video Comments",
     "method": "GET",
     "path": "/video/comments",
@@ -374,7 +374,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Video_Subtitles",
+    "name": "superagnt_youtube_Video_Subtitles",
     "description": "Video Subtitles",
     "method": "GET",
     "path": "/video/subtitles",
@@ -392,7 +392,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Video_Details",
+    "name": "superagnt_youtube_Video_Details",
     "description": "Video Details",
     "method": "GET",
     "path": "/video/details",
@@ -410,7 +410,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Video_Data",
+    "name": "superagnt_youtube_Video_Data",
     "description": "Video Data",
     "method": "GET",
     "path": "/video/data",
@@ -428,7 +428,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Youtube_Search_Continuation",
+    "name": "superagnt_youtube_Youtube_Search_Continuation",
     "description": "Youtube Search Continuation",
     "method": "GET",
     "path": "/search/continuation",
@@ -453,7 +453,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "order_by": {
           "type": "string",
-          "description": "Possible values: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"last_hour\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"today\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_week\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_month\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_year\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\""
+          "description": "Upload date window: last_hour, today, this_week, this_month or this_year."
         }
       },
       "required": [
@@ -463,7 +463,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Youtube_Search",
+    "name": "superagnt_youtube_Youtube_Search",
     "description": "Youtube Search",
     "method": "GET",
     "path": "/search/",
@@ -480,7 +480,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "order_by": {
           "type": "string",
-          "description": "Possible values: \\\\\\\\\\\\\\\"last_hour\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"today\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_week\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_month\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_year\\\\\\\\\\\\\\\""
+          "description": "Upload date window: last_hour, today, this_week, this_month or this_year."
         },
         "country": {
           "type": "string",
@@ -493,7 +493,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Trending_Videos",
+    "name": "superagnt_youtube_Trending_Videos",
     "description": "Trending Videos",
     "method": "GET",
     "path": "/trending/",
@@ -510,13 +510,13 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "section": {
           "type": "string",
-          "description": "Possible values: \\\\\\\"Now\\\\\\\", \\\\\\\"Music\\\\\\\", \\\\\\\"Movies\\\\\\\", \\\\\\\"Gaming\\\\\\\""
+          "description": "Trending section: Now, Music, Movies or Gaming."
         }
       }
     }
   },
   {
-    "name": "agntdata_youtube_Video_Comments_Continuation",
+    "name": "superagnt_youtube_Video_Comments_Continuation",
     "description": "Video Comments Continuation",
     "method": "GET",
     "path": "/video/comments/continuation",
@@ -539,7 +539,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Get_Channel_Email_By_URL",
+    "name": "superagnt_youtube_Get_Channel_Email_By_URL",
     "description": "Get Channel Email by URL",
     "method": "POST",
     "path": "/channel/email",
@@ -557,7 +557,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_youtube_Get_Channel_Email_By_Id",
+    "name": "superagnt_youtube_Get_Channel_Email_By_Id",
     "description": "Get Channel Email by Channel ID",
     "method": "GET",
     "path": "/channel/{channel_id}/email",
@@ -580,12 +580,12 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET "https://api.agntdata.dev/v1/data/youtube/video/screenshot?param=value" \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY"
+curl -X GET "https://api.superagnt.com/v1/data/youtube/video/screenshot?param=value" \
+  -H "Authorization: Bearer $SUPERAGNT_API_KEY"
 ```
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/youtube)
-- [Dashboard](https://app.agntdata.dev/dashboard)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/youtube)
+- [superagnt app](https://app.superagnt.com/dashboard)

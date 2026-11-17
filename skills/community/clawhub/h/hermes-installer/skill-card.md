@@ -1,50 +1,66 @@
-## Description: <br>
-Hermes Installer guides agents through installing, updating, diagnosing, and configuring Hermes Agent for CLI use, model providers, and messaging gateways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Installer guides agents through installing, updating, diagnosing, and configuring Hermes Agent, including model-provider APIs and Feishu, Telegram, and Discord gateways.
 
-## Publisher: <br>
-[dongyu23](https://clawhub.ai/user/dongyu23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongyu23](https://clawhub.ai/user/dongyu23)
 
-## Use Case: <br>
-Developers and operators use this skill to install Hermes Agent, choose CLI or Docker deployment, configure model API providers, migrate OpenClaw settings, and set up Telegram, Discord, Feishu, or related gateway access. It also provides shell commands for updating, uninstalling, and running health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation, update, Docker, and uninstall commands can modify or remove local Hermes files and configuration. <br>
-Mitigation: Review commands before execution, confirm install and uninstall paths, use --keep-config when preserving configuration, and avoid running destructive steps without explicit user confirmation. <br>
-Risk: Configuration workflows handle API keys, bot tokens, gateway secrets, and migrated OpenClaw credentials. <br>
-Mitigation: Keep ~/.hermes/.env private and out of source control, import API keys only when needed, and use migration dry-run or user-data presets before importing secrets. <br>
-Risk: Gateway setup can expose messaging access if pairing codes or allowed users are misconfigured. <br>
-Mitigation: Verify gateway pairing codes, restrict GATEWAY_ALLOWED_USERS, and review platform credentials before starting gateway services. <br>
-Risk: The health-check script can send an authenticated test request to the configured API endpoint. <br>
-Mitigation: Run doctor.sh only against trusted endpoints and understand that it uses the configured API key and base URL. <br>
+## Use Case:
 
+Developers and operators use this skill to install Hermes Agent, configure supported model providers, set up messaging gateways, run diagnostics, update deployments, and remove local installations when needed.
 
-## Reference(s): <br>
-- [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/) <br>
-- [Hermes Agent GitHub repository](https://github.com/NousResearch/hermes-agent) <br>
-- [OpenRouter documentation](https://openrouter.ai/docs) <br>
-- [Zhipu AI API documentation](https://open.bigmodel.cn/dev/api) <br>
-- [Kimi API documentation](https://platform.kimi.com/docs/api/chat) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [Discord Developer Portal](https://discord.com/developers/applications) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, PowerShell, YAML, and environment-variable snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file changes under ~/.hermes, Docker commands, package installation commands, and authenticated API connectivity checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.7 (source: server release metadata) <br>
+Risk: The skill gives broad installation, update, and container commands that can execute mutable code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and pin the Hermes Agent repository revision and dependencies for controlled deployments.
+
+Risk: Hermes credentials are stored under ~/.hermes and diagnostics may expose configuration or log details.
+
+Mitigation: Protect ~/.hermes, avoid sharing raw diagnostic output, and redact API keys, tokens, base URLs, and logs before disclosure.
+
+Risk: The diagnostic script can send configured API keys to the user-provided OPENAI_BASE_URL endpoint.
+
+Mitigation: Run diagnostics only after verifying the endpoint is trusted and not mistyped.
+
+Risk: Docker deployment mounts ~/.hermes into the container, exposing persistent configuration and credentials to the container runtime.
+
+Mitigation: Use trusted images and host paths, restrict container access, and separate sensitive configuration for shared or multi-user hosts.
+
+## Reference(s):
+
+- [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/)
+- [Hermes Agent repository](https://github.com/NousResearch/hermes-agent)
+- [ClawHub skill page](https://clawhub.ai/dongyu23/skills/hermes-installer)
+- [OpenRouter documentation](https://openrouter.ai/docs)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [Discord Developer Portal](https://discord.com/developers/applications)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell, YAML, environment-variable, and PowerShell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that install packages, clone repositories, build Docker images, manage gateway processes, and edit files under ~/.hermes.]
+
+## Skill Version(s):
+
+1.1.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

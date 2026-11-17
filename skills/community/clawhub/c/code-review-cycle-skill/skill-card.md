@@ -1,43 +1,53 @@
-## Description: <br>
-Coordinates a coding agent and a read-only reviewer through a coding, review, and optional revision loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates a Coding to Review cycle where one agent implements code changes, another reviews them in read-only mode, and the user decides whether to continue.
 
-## Publisher: <br>
-[raccoon-office](https://clawhub.ai/user/raccoon-office) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raccoon-office](https://clawhub.ai/user/raccoon-office)
 
-## Use Case: <br>
-Developers use this skill to coordinate a two-agent code review workflow where one agent implements changes and another reviews them before the user decides whether to continue, revise, or finish. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The coding agent can make user-directed edits to the current workspace. <br>
-Mitigation: Use the skill in a version-controlled workspace and review diffs before accepting changes. <br>
-Risk: Repeated automatic review cycles can compound unwanted edits. <br>
-Mitigation: Keep --rounds low and pause for user review when changes affect important files. <br>
-Risk: Prompts or code shared with agents may include secrets. <br>
-Mitigation: Avoid including secrets in task prompts, source snippets, or review context. <br>
+## Use Case:
 
+Developers use this skill to coordinate a two-agent coding and review loop for code changes, keeping the reviewer read-only while the main session decides whether to request fixes or finish.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raccoon-office/code-review-cycle-skill) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured review sections, command examples, and JSON-style agent invocation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include code change summaries, read-only review findings, and follow-up revision instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The coder role can modify files in the current workspace when the workflow is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the workflow from the intended workspace and review the coder output and reviewer findings before accepting changes.
+
+Risk: Automatic rounds can repeat coding changes up to the requested round count.
+
+Mitigation: Use a low round count for supervised work and inspect each review decision before continuing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raccoon-office/skills/code-review-cycle-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with structured coder and reviewer sections, plus task prompts and JSON session invocation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include coder diffs, review findings, follow-up decisions, and optional automatic review cycles.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

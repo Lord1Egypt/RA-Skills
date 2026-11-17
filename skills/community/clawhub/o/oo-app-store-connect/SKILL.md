@@ -1,0 +1,733 @@
+---
+name: oo-app-store-connect
+description: "App Store Connect (appstoreconnect.apple.com). Use this skill for ANY App Store Connect request — reading, creating, updating, and deleting data. Whenever a task involves App Store Connect, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "App Store Connect"
+  author: "OOMOL"
+  version: "1.0.7"
+  services: ["app_store_connect"]
+  icon: "https://static.oomol.com/logo/third-party/app_store_connect.png"
+---
+
+# App Store Connect
+
+Operate **App Store Connect** through your OOMOL-connected account. This skill calls the `app_store_connect` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
+
+## Running an action
+
+Assume the user has already installed the oo CLI, signed in, and connected App Store Connect. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
+
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
+
+```bash
+oo connector schema "app_store_connect" --action "<action_name>"
+```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "app_store_connect" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `add_achievements_to_game_center_activity` — Attach achievements to a Game Center activity so players can earn them while the activity is played. Achievements already attached are left as they are. [write]
+- `add_beta_testers_to_group` — Add existing TestFlight testers to one group so they receive the builds that group can install. [write]
+- `add_build_to_beta_groups` — Make one build available to TestFlight groups so their testers can install it. [write]
+- `add_builds_to_beta_group` — Make several builds available to one TestFlight group so its testers can install them. [write]
+- `add_compatibility_versions_to_game_center_app_version` — Mark earlier Game Center app versions as multiplayer compatible with this one. Adds to the versions already listed instead of replacing them. [write]
+- `add_individual_testers_to_build` — Assign existing TestFlight testers to one build individually so they can install it without belonging to a group. [write]
+- `add_leaderboards_to_game_center_activity` — Attach leaderboards to a Game Center activity so scores made while it is played are posted to them. Leaderboards already attached are left as they are. [write]
+- `add_leaderboards_to_game_center_leaderboard_set` — Put more existing leaderboards into a Game Center leaderboard set. The leaderboards already in the set are kept. [write]
+- `add_review_submission_item` — Add one record to an open review submission. Give exactly one of appStoreVersionId, appCustomProductPageVersionId, appStoreVersionExperimentId, appStoreVersionExperimentV2Id, or appEventId. The item can be removed again with delete_review_submission_item before the submission is sent. [write]
+- `add_visible_apps_to_user` — Make additional apps visible to a team member who does not have access to all apps. [write]
+- `cancel_review_submission` — Cancel a review submission, removing it from the App Review queue. Its items return to their previous state and a new submission is needed to submit them again. [destructive]
+- `cancel_user_invitation` — Cancel a pending team invitation. The activation link stops working; invite the person again if needed. [destructive]
+- `clear_sandbox_tester_purchase_history` — Erase the purchase history of sandbox testers so they can test first-time purchases again. The history cannot be restored. [destructive]
+- `create_accessibility_declaration` — Create a draft accessibility declaration for one device family of an app. The draft is not shown on the App Store until update_accessibility_declaration publishes it. [write]
+- `create_alternative_distribution_domain` — Register the base web domain that serves a marketplace app or web distribution app. All app pages and the marketplace sitemap must live on this domain, and it is enabled for every alternative distribution app on the account. [write]
+- `create_alternative_distribution_key` — Upload the public half of an alternative distribution key pair. Without appId the key applies to every alternative distribution app on the account; with appId it is tied to that marketplace or web distribution app. The private half never goes to Apple and signs the marketplace JWTs or install verification. [write]
+- `create_alternative_distribution_package` — Generate the alternative distribution package for an already approved App Store version. Versions approved after alternative distribution was enabled get their package automatically; use this for versions that were approved before. [write]
+- `create_analytics_report_request` — Ask App Store Connect to generate analytics reports for an app. ONGOING produces new daily, weekly, and monthly reports until the request is deleted or stops for inactivity; ONE_TIME_SNAPSHOT delivers historical data once. Reports appear asynchronously, so list them later. [write]
+- `create_android_to_ios_app_mapping_detail` — Map an Android app to this app by its package name and signing certificate fingerprints, so Android users migrating to iPhone are offered this app. [write]
+- `create_app_availability` — Set the territory availability of an app: whether it is offered in new territories automatically, and for each listed territory whether it is available, its release date and whether pre-orders are enabled. The new configuration replaces the current availability of the app in every territory, so list every territory the app should stay available in. [destructive]
+- `create_app_clip_advanced_experience` — Create an advanced App Clip experience for an invocation URL with its localized card text and optional place. App Store Connect requires a header image reserved beforehand through the appClipAdvancedExperienceImages endpoint (a binary upload, available through the proxy); pass its identifier as headerImageId. [write]
+- `create_app_clip_app_store_review_detail` — Provide the invocation URLs App Review uses to test a default App Clip experience. Each experience has at most one review detail; use update_app_clip_app_store_review_detail to change it. [write]
+- `create_app_clip_default_experience` — Create a default experience for an App Clip, optionally attached to the App Store version it ships with or copied from an existing experience. [write]
+- `create_app_clip_default_experience_localization` — Add a locale to a default App Clip experience with the subtitle shown on the App Clip card in that locale. The header image is uploaded separately in App Store Connect. [write]
+- `create_app_custom_product_page` — Create a custom product page for an app. Copy the metadata of an App Store version (appStoreVersionTemplateId) or of another custom product page (customProductPageTemplateId), or create the first page version inline with a deep link and localized promotional text. The page starts hidden until its first version passes App Review; use list_app_custom_product_page_versions to find the version to work on. [write]
+- `create_app_custom_product_page_localization` — Add a locale to a custom product page version with optional promotional text. Screenshots and app previews for the locale are uploaded separately. App Store Connect rejects a locale the version already has. [write]
+- `create_app_custom_product_page_version` — Create a new editable version of a custom product page, for example to change it after the current version was approved. App Store Connect rejects a new version while the page already has one that is still being prepared or reviewed. [write]
+- `create_app_encryption_declaration` — Create an export compliance declaration for an app that uses non-exempt encryption. App Store Connect reviews it and assigns a compliance code; the declaration cannot be edited afterwards, only replaced by a new one. Supporting documents must be uploaded separately. [write]
+- `create_app_event` — Create a draft in-app event for an app. Add localizations with create_app_event_localization before submitting the event for review in App Store Connect. [write]
+- `create_app_event_localization` — Add a locale to an in-app event with the name and descriptions shown in that locale. App Store Connect rejects a locale the event already has. [write]
+- `create_app_info_localization` — Add a locale to an app info record with the app name and optional subtitle and privacy URLs shown in that locale. App Store Connect rejects a locale the record already has. [write]
+- `create_app_price_schedule` — Set the price schedule of an app: the base territory plus the manual prices, each a price point (which already encodes its territory) with an optional date range. App Store Connect derives the prices of every other territory from the base territory price. The new schedule replaces the current prices and any scheduled price changes of the app. Find price point identifiers with list_app_price_points. [destructive]
+- `create_app_store_review_detail` — Enter the App Review contact details, demo account, and notes for an App Store version that has none yet. [write]
+- `create_app_store_version` — Create a new App Store version for an app on one platform. The version starts in PREPARE_FOR_SUBMISSION and can be deleted again until it is submitted for review. [write]
+- `create_app_store_version_experiment` — Create a product page optimization test for an app on one platform. The test starts in PREPARE_FOR_SUBMISSION; add treatments with create_app_store_version_experiment_treatment, then start it with update_app_store_version_experiment once its treatments are approved. [write]
+- `create_app_store_version_experiment_treatment` — Add a treatment to a product page optimization test, optionally using an alternate app icon bundled with the app. Add locales to the treatment with create_app_store_version_experiment_treatment_localization before uploading its screenshots. [write]
+- `create_app_store_version_experiment_treatment_localization` — Add a locale to a treatment so screenshots and app previews can be uploaded for it. App Store Connect rejects a locale the treatment already has. [write]
+- `create_app_store_version_localization` — Add App Store metadata for one locale to an App Store version. The locale must be enabled for the app and must not already have a localization on this version. [write]
+- `create_app_store_version_phased_release` — Enable phased release for an App Store version so an approved update rolls out to automatic-update users over seven days. Can be removed again with delete_app_store_version_phased_release before the version is released. [write]
+- `create_app_store_version_promotion` — Promote the winning treatment of a product page optimization test to the default product page: its screenshots, previews, and app icon are applied to the given App Store version, replacing that version's current product page assets. Use list_app_store_version_experiments to find the control version (latestControlVersionId) the test ran against. [destructive]
+- `create_background_asset` — Create an Apple-hosted background asset pack record for an app. The record starts without versions; create a version next, then upload and commit the asset pack archive through the generic proxy or Xcode. [write]
+- `create_background_asset_version` — Create a new version record for a background asset pack. App Store Connect assigns the next version number automatically; the version stays in AWAITING_UPLOAD until the asset pack archive is uploaded and committed, which needs the binary upload endpoints outside these actions. [write]
+- `create_beta_app_clip_invocation` — Add an App Clip experience that testers launch from the TestFlight app, creating its localized titles in the same request. At least one localization is required. [write]
+- `create_beta_app_clip_invocation_localization` — Add a localized title in one more locale to an existing TestFlight App Clip invocation. [write]
+- `create_beta_app_localization` — Create the TestFlight test information of an app for a locale that has none yet: the description, feedback email, and URLs testers see in TestFlight. [write]
+- `create_beta_build_localization` — Create the "What to Test" notes of one build for a locale that has none yet. App Store Connect rejects a second record for the same locale; use update_build_test_notes to change existing notes. [write]
+- `create_beta_group` — Create a TestFlight group for an app, optionally enabling its public invitation link. [write]
+- `create_beta_recruitment_criterion` — Set recruitment criteria on a TestFlight group so only testers on the listed device families and OS versions can join through its public link. A group can hold one set of criteria; update or delete it afterwards. [write]
+- `create_beta_tester` — Invite a TestFlight tester by email. App Store Connect only creates a tester that is assigned to something, so pass at least one of betaGroupIds or buildIds. [write]
+- `create_bundle_id` — Register a new bundle ID (App ID) with the team. Capabilities are added afterwards with enable_bundle_id_capability. [write]
+- `create_certificate` — Issue a new signing certificate from a certificate signing request (CSR). Apple Pay and pass type certificates also take the merchant ID or pass type ID they belong to. Developer ID certificates for macOS can only be created in the Apple Developer website or Xcode, and Apple caps how many certificates of each type a team may hold. [write]
+- `create_ci_workflow` — Create an Xcode Cloud workflow for a product. Give it at least one action and, for automatic builds, one or more start conditions; without start conditions it can only be started manually. [write]
+- `create_end_app_availability_pre_order` — End the pre-order of an app in the given territories and release it there immediately. This is how a pre-order for the whole app is ended: pass the territory availabilities of every territory the app is on pre-order in. The pre-order cannot be resumed afterwards. [destructive]
+- `create_end_user_license_agreement` — Attach a custom end user license agreement to an app for the given territories. Apple's standard EULA keeps applying elsewhere. App Store Connect rejects a second agreement for the same app. [write]
+- `create_game_center_achievement` — Create a Game Center achievement together with its first version. Pass gameCenterDetailId when the achievement belongs to a single app, or gameCenterGroupId when it is shared by every app of a Game Center group. The achievement has no player-facing text yet; read the first version with list_game_center_achievement_versions and add locales with create_game_center_achievement_localization. [write]
+- `create_game_center_achievement_localization` — Add a locale to a Game Center achievement version with the name and the two descriptions players see before and after they earn the achievement. The achievement image for the locale is uploaded separately. App Store Connect rejects a locale the version already has. [write]
+- `create_game_center_achievement_version` — Create a new version of a Game Center achievement. Editing the player-facing text of an achievement that is already live goes through a new version: add or change its localizations, and the version carries them through App Review. [write]
+- `create_game_center_activity` — Create a Game Center activity for one app (gameCenterDetailId) or for a group of apps (gameCenterGroupId). Pass fallbackUrl to create the first activity version together with the activity; leave it out and no version is created, so add one afterwards with create_game_center_activity_version before the activity can be localized. [write]
+- `create_game_center_activity_localization` — Add a locale to a Game Center activity version with the name and description players see in it. App Store Connect rejects a locale the version already has. [write]
+- `create_game_center_activity_version` — Create a new version of a Game Center activity, for example to change its localizations or its default image after the current version was released. The new version starts in PREPARE_FOR_SUBMISSION. [write]
+- `create_game_center_app_version` — Turn Game Center on for one App Store version by creating its Game Center app version record. Everything Game Center knows about that release hangs off this record: use update_game_center_app_version to toggle it again, and add_compatibility_versions_to_game_center_app_version to keep earlier releases multiplayer compatible with it. [write]
+- `create_game_center_challenge` — Create a Game Center challenge on the Game Center detail of one app or on a group, scored on one leaderboard. The challenge starts without a version; create its first version with create_game_center_challenge_version and add the localized text to that version. [write]
+- `create_game_center_challenge_localization` — Add a locale with the name and description players see to a Game Center challenge version. App Store Connect rejects a locale the version already has. [write]
+- `create_game_center_challenge_version` — Create a new version of a Game Center challenge, for example to change its localized text after the current version went live. The version starts empty; add its locales with create_game_center_challenge_localization. [write]
+- `create_game_center_detail` — Enable Game Center for an app by creating its Game Center detail. The detail owns the achievements, leaderboards and leaderboard sets of the app, and an app has at most one of them. [write]
+- `create_game_center_group` — Create a Game Center group. The group starts empty: an app joins it through its Game Center detail, and the achievements, leaderboards and leaderboard sets it shares are set with the replace actions. [write]
+- `create_game_center_leaderboard` — Create a Game Center leaderboard owned by one app or shared by a group. App Store Connect always creates the first leaderboard version alongside it, so the player-facing text is added with create_game_center_leaderboard_localization against that version. Give recurrenceStartDate, recurrenceDuration and recurrenceRule together to make the leaderboard recurring. [write]
+- `create_game_center_leaderboard_localization` — Add a locale to a Game Center leaderboard version with the name and score text players see there. The image shown next to the leaderboard is uploaded separately and is not covered by this connector. [write]
+- `create_game_center_leaderboard_set` — Create a Game Center leaderboard set that groups related leaderboards under one entry in the Game Center dashboard, and optionally put existing leaderboards into it. App Store Connect always creates the first set version together with the set; add the localized set names with create_game_center_leaderboard_set_localization. [write]
+- `create_game_center_leaderboard_set_localization` — Add a locale to a Game Center leaderboard set version with the set name players see in that locale. App Store Connect rejects a locale the version already has. [write]
+- `create_game_center_leaderboard_set_member_localization` — Give one leaderboard a name of its own inside one leaderboard set, for one locale. Without a member localization the leaderboard keeps its usual localized name inside the set. [write]
+- `create_game_center_leaderboard_set_version` — Create a new editable version of a Game Center leaderboard set, for example to change its localized names after the current version went live. [write]
+- `create_game_center_leaderboard_version` — Create a new version of a Game Center leaderboard so its localized text can be edited and taken through App Review again. Add the text with create_game_center_leaderboard_localization against the new version. [write]
+- `create_game_center_matchmaking_queue` — Create a Game Center matchmaking queue and attach the rule set its requests are matched with. Optionally attach a second rule set to experiment with, and list the bundle identifiers whose classic matchmaking requests should reach this queue. [write]
+- `create_game_center_matchmaking_rule` — Add a rule to a Game Center matchmaking rule set. The expression is evaluated for every candidate match: a COMPATIBLE, DISTANCE or TEAM rule decides whether the candidate is acceptable, and a MATCH rule scores it. Try the rule set with test_game_center_matchmaking_rule_set before attaching it to a queue. [write]
+- `create_game_center_matchmaking_rule_set` — Create a Game Center matchmaking rule set with the player limits a match must stay within. Add its teams and rules afterwards with create_game_center_matchmaking_team and create_game_center_matchmaking_rule, then attach the rule set to a queue. [write]
+- `create_game_center_matchmaking_team` — Add a team to a Game Center matchmaking rule set. Rule expressions refer to the team by its name, and Game Center fills the team with between minPlayers and maxPlayers players. [write]
+- `create_in_app_purchase` — Create an in-app purchase for an app. The product identifier is permanent and cannot be reused after deletion, so choose it carefully. The purchase starts in MISSING_METADATA until localizations, a price schedule, and a review screenshot are added. [write]
+- `create_in_app_purchase_availability` — Set the territories an in-app purchase is sold in. The list replaces the current availability entirely, so territories left out are removed from sale. [destructive]
+- `create_in_app_purchase_localization` — Add the display name and description of an in-app purchase for one locale. Each locale can have only one localization per purchase. [write]
+- `create_in_app_purchase_offer_code` — Create an offer code configuration for an in-app purchase: who may redeem it and the discounted price per territory. Generate redeemable codes afterwards with the custom code or one-time-use code actions. [write]
+- `create_in_app_purchase_offer_code_custom_code` — Create a custom code for an in-app purchase offer that customers redeem by typing it, with a redemption limit and optional expiration date. [write]
+- `create_in_app_purchase_offer_code_one_time_use_code` — Generate a batch of one-time-use codes for an in-app purchase offer. Download the generated code values from App Store Connect afterwards; they are not returned here. [write]
+- `create_in_app_purchase_price_schedule` — Set the price schedule of an in-app purchase: a base territory plus manual prices for specific territories. Territories without a manual price get automatic prices equalized from the base territory. Posting a schedule replaces the prices App Store Connect currently has for the purchase. [destructive]
+- `create_in_app_purchase_version` — Create a new metadata version of an in-app purchase so its display text and images can be edited and reviewed without taking the approved version off sale. [write]
+- `create_in_app_purchase_version_localization` — Add the display name and description of an in-app purchase version for one locale. [write]
+- `create_marketplace_search_detail` — Set the sitemap catalog URL of an alternative marketplace app so Apple can crawl it and include the marketplace apps in Spotlight search. Each marketplace app holds one search detail. [write]
+- `create_merchant_id` — Register an Apple Pay merchant ID with the team. Payment processing and merchant identity certificates are issued for it afterwards with create_certificate. [write]
+- `create_nomination` — Create a featuring nomination for one or more apps. With submitted false it stays a draft you can edit; with submitted true it is sent to Apple's editorial team right away. [write]
+- `create_pass_type_id` — Register a Wallet pass type ID with the team. Pass signing certificates are issued for it afterwards with create_certificate. [write]
+- `create_profile` — Create a provisioning profile for one bundle ID from the given certificates and, for development and ad hoc profiles, the devices allowed to install the app. App Store and in-house profile types take no devices. [write]
+- `create_promoted_purchase` — Promote an in-app purchase or a subscription on the App Store product page of an app. Pass exactly one of inAppPurchaseId or subscriptionId. A promotional image must still be uploaded in App Store Connect before the promotion can be submitted. [write]
+- `create_review_submission` — Start a new review submission for an app on one platform. Add items with add_review_submission_item, then send it with submit_review_submission. An app can have only one open submission per platform. [write]
+- `create_subscription` — Create an auto-renewable subscription inside a subscription group. The product identifier cannot be changed afterwards, and the subscription still needs localizations, a price, availability, and a review submission before it can go on sale. [write]
+- `create_subscription_group` — Create a subscription group for an app. Subscriptions are created inside a group, and customers can switch between the subscriptions of one group. [write]
+- `create_subscription_group_localization` — Add the customer-facing name of a subscription group in one locale. Each locale can only be added once per group. [write]
+- `create_subscription_group_version` — Create a new draft version of a subscription group so its localized names can be edited and submitted for review while the approved version stays live. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [write]
+- `create_subscription_group_version_localization` — Add the customer-facing name of a subscription group in one locale to a subscription group version. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [write]
+- `create_subscription_introductory_offer` — Create an introductory offer for an auto-renewable subscription. A FREE_TRIAL offer needs no price point; PAY_AS_YOU_GO and PAY_UP_FRONT offers need the subscription price point of the territory. Apple allows one active introductory offer per territory at a time. Sandbox may take up to an hour to reflect the change. [write]
+- `create_subscription_localization` — Add the customer-facing name and description of a subscription in one locale. Each locale can only be added once per subscription. [write]
+- `create_subscription_offer_code` — Create an offer code configuration for an auto-renewable subscription together with its territory prices. Generate the redeemable codes afterwards with create_subscription_offer_code_custom_code or create_subscription_offer_code_one_time_use_code. [write]
+- `create_subscription_offer_code_custom_code` — Generate a custom code for an offer code configuration, which many customers can redeem up to the given number of times. The code text cannot be changed once created. [write]
+- `create_subscription_offer_code_one_time_use_code` — Generate a batch of one-time use codes for an offer code configuration. Each code can be redeemed once; download the code values from App Store Connect afterwards. [write]
+- `create_subscription_plan_availability` — Make one payment plan of a subscription available in a set of territories. Each plan type can only have one availability record per subscription; use update_subscription_plan_availability to change an existing one. [write]
+- `create_subscription_price` — Set the price of a subscription in one territory from a subscription price point, either as the initial price or as a scheduled price change. Use list_subscription_price_points to find the price point identifier. A scheduled change can be removed again with delete_subscription_price. [write]
+- `create_subscription_promotional_offer` — Create a promotional offer for an auto-renewable subscription together with its territory prices. The offer code becomes the identifier your app passes to StoreKit and cannot be changed later. [write]
+- `create_subscription_version` — Create a new draft version of a subscription so its localized metadata can be edited and submitted for review while the approved version stays live. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [write]
+- `create_subscription_version_localization` — Add the customer-facing name and description of a subscription in one locale to a subscription version. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [write]
+- `create_webhook` — Register a webhook on an app so App Store Connect posts a signed notification to the URL whenever one of the chosen events happens. Use ping_webhook afterwards to test the endpoint. [write]
+- `create_win_back_offer` — Create a win-back offer for lapsed subscribers of an auto-renewable subscription together with its prices, one subscription price point per territory. The offer identifier, duration, mode, and period count cannot be changed later. [write]
+- `delete_accessibility_declaration` — Delete an accessibility declaration. [destructive]
+- `delete_alternative_distribution_domain` — Delete an alternative distribution domain. Apps served from that domain can no longer be installed through it. [destructive]
+- `delete_alternative_distribution_key` — Remove an alternative distribution key from the account. Tokens signed with the matching private key stop being accepted. [destructive]
+- `delete_analytics_report_request` — Delete an analytics report request. App Store Connect stops producing its reports and the existing report instances are no longer listed. [destructive]
+- `delete_android_to_ios_app_mapping_detail` — Delete an Android app mapping. [destructive]
+- `delete_app_clip_advanced_experience` — Delete an advanced App Clip experience. App Store Connect has no DELETE endpoint for it; the experience is removed by setting its documented removed flag, after which users can no longer invoke it. [destructive]
+- `delete_app_clip_default_experience` — Delete a default App Clip experience together with its localizations and review detail. [destructive]
+- `delete_app_clip_default_experience_localization` — Remove a locale from a default App Clip experience together with its header image. [destructive]
+- `delete_app_custom_product_page` — Delete a custom product page together with all of its versions and localizations. Its App Store URL stops working. [destructive]
+- `delete_app_custom_product_page_localization` — Remove a locale from a custom product page version, including the screenshots and previews attached to it. [destructive]
+- `delete_app_event` — Delete an in-app event together with its localizations. A published event is removed from the App Store. [destructive]
+- `delete_app_event_localization` — Remove a locale from an in-app event together with the screenshots and video clips uploaded for it. [destructive]
+- `delete_app_info_localization` — Remove a locale from an app info record. The app stops being listed in that language once the change is submitted. [destructive]
+- `delete_app_store_version` — Delete an App Store version that has not been submitted yet, together with its localizations and review information. [destructive]
+- `delete_app_store_version_experiment` — Delete a product page optimization test together with its treatments. A running test is stopped; results already collected are lost. [destructive]
+- `delete_app_store_version_experiment_treatment` — Delete a treatment from a product page optimization test, including its localizations and screenshots. [destructive]
+- `delete_app_store_version_experiment_treatment_localization` — Remove a locale from a treatment, including the screenshots and previews attached to it. [destructive]
+- `delete_app_store_version_localization` — Remove the App Store metadata of one locale from an App Store version, including its screenshots and previews. [destructive]
+- `delete_app_store_version_phased_release` — Turn off phased release for an App Store version so the approved update reaches every user at once. [destructive]
+- `delete_beta_app_clip_invocation` — Delete a TestFlight App Clip invocation and its localized titles. Testers can no longer launch that experience from TestFlight. [destructive]
+- `delete_beta_app_clip_invocation_localization` — Delete one localized title of a TestFlight App Clip invocation. [destructive]
+- `delete_beta_app_localization` — Delete the TestFlight test information of an app in one locale. Testers in that locale fall back to the primary locale. [destructive]
+- `delete_beta_build_localization` — Delete the "What to Test" notes of one build in one locale. Testers in that locale fall back to the notes of the primary locale. [destructive]
+- `delete_beta_feedback_crash_submission` — Delete a crash feedback submission from App Store Connect. The crash log and comment are removed permanently. [destructive]
+- `delete_beta_feedback_screenshot_submission` — Delete a screenshot feedback submission from App Store Connect. The screenshots and comment are removed permanently. [destructive]
+- `delete_beta_group` — Delete a TestFlight group. Testers who only belonged to that group lose access to its builds. [destructive]
+- `delete_beta_recruitment_criterion` — Delete the recruitment criteria of a TestFlight group, so anyone with the public link can join again. [destructive]
+- `delete_beta_tester` — Remove a TestFlight tester from the team, revoking their access to every build and group. [destructive]
+- `delete_bundle_id` — Delete a bundle ID from the team. App Store Connect refuses to delete a bundle ID that an app record still uses. [destructive]
+- `delete_ci_product` — Delete an Xcode Cloud product, which removes every workflow and build history of that app or framework from Xcode Cloud. [destructive]
+- `delete_ci_workflow` — Delete an Xcode Cloud workflow together with its build history. Builds already delivered to TestFlight or App Store Connect are kept. [destructive]
+- `delete_customer_review_response` — Remove a published developer response from an App Store review. [destructive]
+- `delete_end_user_license_agreement` — Remove the custom end user license agreement of an app so Apple's standard EULA applies in every territory. [destructive]
+- `delete_game_center_achievement` — Delete a Game Center achievement together with all of its versions and localizations. Players lose the achievement and the progress recorded for it. [destructive]
+- `delete_game_center_achievement_localization` — Remove a locale from a Game Center achievement version, including the achievement image uploaded for it. [destructive]
+- `delete_game_center_activity` — Delete a Game Center activity together with its versions, localizations and images. Archive it with update_game_center_activity instead when players may still hold invitations to it. [destructive]
+- `delete_game_center_activity_localization` — Remove a locale from a Game Center activity version, including the image attached to it. [destructive]
+- `delete_game_center_challenge` — Delete a Game Center challenge together with all of its versions, localizations and images. [destructive]
+- `delete_game_center_challenge_localization` — Remove one locale from a Game Center challenge version, including the image attached to it. [destructive]
+- `delete_game_center_group` — Delete a Game Center group. The apps that were in the group keep their own Game Center records and stop sharing progress with each other. [destructive]
+- `delete_game_center_leaderboard` — Delete a Game Center leaderboard together with its versions, localizations and the scores players submitted to it. [destructive]
+- `delete_game_center_leaderboard_localization` — Remove a locale from a Game Center leaderboard version, including the image uploaded for it. [destructive]
+- `delete_game_center_leaderboard_set` — Delete a Game Center leaderboard set together with its versions and localizations. The leaderboards that were in the set are kept and stay available on their own. [destructive]
+- `delete_game_center_leaderboard_set_localization` — Remove a locale from a Game Center leaderboard set version, including the image uploaded for that locale. [destructive]
+- `delete_game_center_leaderboard_set_member_localization` — Delete the name a leaderboard is shown under inside a leaderboard set for one locale. The leaderboard stays in the set and falls back to its usual localized name. [destructive]
+- `delete_game_center_matchmaking_queue` — Delete a Game Center matchmaking queue. Requests the game sends to the deleted queue are no longer matched. [destructive]
+- `delete_game_center_matchmaking_rule` — Delete a rule from its Game Center matchmaking rule set. Candidate matches are no longer checked against it. [destructive]
+- `delete_game_center_matchmaking_rule_set` — Delete a Game Center matchmaking rule set together with its teams and rules. A queue that still points at the rule set stops matching requests. [destructive]
+- `delete_game_center_matchmaking_team` — Delete a team from its Game Center matchmaking rule set. Rule expressions that still refer to the team by name stop working. [destructive]
+- `delete_in_app_purchase` — Delete an in-app purchase that has never been approved. Its product identifier can never be used again for this app. [destructive]
+- `delete_in_app_purchase_localization` — Delete one locale of an in-app purchase's display name and description. [destructive]
+- `delete_in_app_purchase_version_localization` — Delete one locale from an in-app purchase version. [destructive]
+- `delete_marketplace_search_detail` — Delete the marketplace search detail of an alternative marketplace app. Apple stops crawling the catalog URL. [destructive]
+- `delete_merchant_id` — Delete an Apple Pay merchant ID from the team. Apple Pay transactions and certificates that reference it stop working. [destructive]
+- `delete_nomination` — Delete a featuring nomination. [destructive]
+- `delete_pass_type_id` — Delete a Wallet pass type ID from the team. Passes signed for it can no longer be updated and its certificates stop working. [destructive]
+- `delete_profile` — Delete a provisioning profile so it can no longer be downloaded or used to sign new builds. Create a replacement with create_profile when the bundle ID still needs one. [destructive]
+- `delete_promoted_purchase` — Remove a promotion from the App Store product page of an app. [destructive]
+- `delete_review_submission_item` — Delete an item from a review submission that has not been sent to App Review yet. [destructive]
+- `delete_subscription` — Delete an auto-renewable subscription. App Store Connect only deletes subscriptions that have never been approved; approved subscriptions can only be removed from sale. [destructive]
+- `delete_subscription_group` — Delete a subscription group. App Store Connect only deletes groups that no longer contain subscriptions that have been approved. [destructive]
+- `delete_subscription_group_localization` — Delete the customer-facing name of a subscription group in one locale. [destructive]
+- `delete_subscription_group_version_localization` — Delete one localization from a subscription group version. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [destructive]
+- `delete_subscription_introductory_offer` — Delete an introductory offer. Customers who already redeemed it keep their discounted period. [destructive]
+- `delete_subscription_localization` — Delete the customer-facing name and description of a subscription in one locale. [destructive]
+- `delete_subscription_price` — Delete a scheduled price change of a subscription before it takes effect. The price that is already in effect cannot be deleted. [destructive]
+- `delete_subscription_promotional_offer` — Delete a promotional offer. Apps can no longer present it, and customers who already redeemed it keep their discounted period. [destructive]
+- `delete_subscription_version_localization` — Delete one localization from a subscription version. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [destructive]
+- `delete_user` — Remove a member from the App Store Connect team. They lose access to every app and to any API keys tied to their account. [destructive]
+- `delete_webhook` — Delete a webhook. App Store Connect stops sending notifications to its URL and its delivery history is no longer reachable. [destructive]
+- `delete_win_back_offer` — Delete a win-back offer. Apps can no longer present it, and customers who already redeemed it keep their discounted period. [destructive]
+- `disable_bundle_id_capability` — Disable a capability on a bundle ID and discard its configuration. Provisioning profiles that relied on the capability become invalid. [destructive]
+- `enable_bundle_id_capability` — Enable a capability such as push notifications or associated domains on a bundle ID. Provisioning profiles created for the bundle ID before the change may need to be regenerated to carry the new entitlement. [write]
+- `get_accessibility_declaration` — Read one accessibility declaration by its identifier.
+- `get_actor` — Read one audit-log actor by identifier.
+- `get_age_rating_declaration` — Read the age rating questionnaire answers attached to an app info record, including any manual rating overrides.
+- `get_alternative_distribution_domain` — Read one alternative distribution domain.
+- `get_alternative_distribution_key` — Read one alternative distribution key and its public key.
+- `get_alternative_distribution_package` — Read one alternative distribution package and the checksums of the source build it was generated from. Use list_alternative_distribution_package_versions for its downloadable versions.
+- `get_alternative_distribution_package_delta` — Read one delta update of an alternative distribution package version, with its download URL and encrypted key blob.
+- `get_alternative_distribution_package_variant` — Read one variant of an alternative distribution package version, with its download URL and encrypted key blob.
+- `get_alternative_distribution_package_version` — Read one alternative distribution package version and its time-limited download URL.
+- `get_analytics_report` — Read one analytics report type by identifier.
+- `get_analytics_report_instance` — Read one analytics report instance by identifier.
+- `get_analytics_report_request` — Read one analytics report request by identifier.
+- `get_android_to_ios_app_mapping_detail` — Read one Android app mapping by its identifier.
+- `get_app` — Read one app record by its App Store Connect identifier.
+- `get_app_alternative_distribution_key` — Read the alternative distribution key tied to one app, or null when the app has no key of its own.
+- `get_app_availability` — Read the availability configuration of an app, which says whether it is automatically offered in new territories. Returns null when App Store Connect has no availability record for the app yet. Use list_territory_availabilities for the per-territory settings.
+- `get_app_beta_tester_usages` — Read TestFlight usage metrics for one app: sessions, crashes, and feedback over the chosen period, either as one aggregate row or as one row per tester.
+- `get_app_category` — Read one App Store category with its platforms, parent category, and subcategory identifiers.
+- `get_app_clip` — Read one App Clip by its identifier.
+- `get_app_clip_advanced_experience` — Read one advanced App Clip experience with its invocation URL, place, status, and localized card text.
+- `get_app_clip_default_experience` — Read one default App Clip experience with its action and the App Store version it is released with.
+- `get_app_clip_default_experience_localization` — Read one default App Clip experience localization by its identifier.
+- `get_app_clip_default_experience_review_detail` — Read the invocation URLs App Review uses to test a default App Clip experience, or null when none were provided yet.
+- `get_app_custom_product_page` — Read one custom product page by its App Store Connect identifier.
+- `get_app_custom_product_page_localization` — Read one custom product page localization by its App Store Connect identifier.
+- `get_app_custom_product_page_version` — Read one custom product page version by its App Store Connect identifier.
+- `get_app_encryption_declaration` — Read one export compliance (encryption) declaration by its identifier.
+- `get_app_event` — Read one in-app event with its state, badge, purpose, and territory schedules.
+- `get_app_event_localization` — Read one in-app event localization by its identifier.
+- `get_app_game_center_detail` — Read the Game Center configuration of one app, including the group it belongs to and the leaderboards shown by default. Returns null when the app has never been enabled for Game Center.
+- `get_app_info` — Read one app info record with its review state, derived age ratings, and App Store category identifiers.
+- `get_app_info_localization` — Read one app info localization by its identifier.
+- `get_app_perf_power_metrics` — Fetch the performance and power metrics of the most recent versions of an app, such as launch time, hang rate, memory, and battery use, in the xcodeMetrics document format. Use get_build_perf_power_metrics for one specific build.
+- `get_app_price_point` — Read one price point by its App Store Connect identifier, including the territory it belongs to.
+- `get_app_price_schedule` — Read the price schedule of an app, including the base territory its automatic prices derive from. Returns null when App Store Connect has no price schedule for the app yet. Use list_app_price_schedule_manual_prices and list_app_price_schedule_automatic_prices for the individual prices.
+- `get_app_price_schedule_base_territory` — Read the base territory of a price schedule, the territory whose price the automatic prices of the other territories are derived from.
+- `get_app_store_review_detail` — Read the App Review contact details, demo account, and notes attached to an App Store version, or null when none were entered yet.
+- `get_app_store_version` — Read one App Store version by its App Store Connect identifier.
+- `get_app_store_version_alternative_distribution_package` — Read the alternative distribution package generated for one App Store version, or null when none exists yet.
+- `get_app_store_version_build` — Read the build currently attached to an App Store version, or null when no build has been selected.
+- `get_app_store_version_experiment` — Read one product page optimization test, including the App Store version that serves as its control.
+- `get_app_store_version_experiment_treatment` — Read one treatment of a product page optimization test.
+- `get_app_store_version_experiment_treatment_localization` — Read one treatment localization by its App Store Connect identifier.
+- `get_app_store_version_game_center_app_version` — Read the Game Center app version of one App Store version. Returns null when Game Center was never enabled for that version.
+- `get_app_store_version_localization` — Read the localized App Store metadata of one version in one locale.
+- `get_app_store_version_phased_release` — Read the phased release configuration of an App Store version, or null when phased release is not configured for it.
+- `get_background_asset` — Read one background asset pack, with the version currently in each of the App Store, internal TestFlight, and external TestFlight slots.
+- `get_background_asset_version` — Read one background asset version with its processing state, validation messages, parent asset pack, and release records.
+- `get_background_asset_version_app_store_release` — Read the App Store release record of a background asset version, which tracks its App Review and distribution state.
+- `get_background_asset_version_external_beta_release` — Read the external TestFlight release record of a background asset version, which tracks its beta review state.
+- `get_background_asset_version_internal_beta_release` — Read the internal TestFlight release record of a background asset version. App Store Connect creates it once the version finishes processing.
+- `get_beta_app_clip_invocation` — Read one TestFlight App Clip invocation together with its localized titles.
+- `get_beta_app_localization` — Read the TestFlight test information of one app and locale by its identifier.
+- `get_beta_app_review_detail` — Read the contact person, demo account, and notes Apple uses when reviewing an app for TestFlight external testing.
+- `get_beta_app_review_submission` — Read one TestFlight beta review submission by its identifier.
+- `get_beta_build_localization` — Read the "What to Test" notes record of one build and locale by its identifier.
+- `get_beta_feedback_crash_log` — Read the full crash log text attached to one crash feedback submission.
+- `get_beta_feedback_crash_submission` — Read one crash feedback submission with its device details and the build and tester it came from.
+- `get_beta_feedback_screenshot_submission` — Read one screenshot feedback submission with its device details, attached screenshots, and the build and tester it came from.
+- `get_beta_group` — Read one TestFlight group by its identifier, including its public link settings.
+- `get_beta_group_beta_tester_usages` — Read TestFlight usage metrics for one group: sessions, crashes, and feedback over the chosen period, either as one aggregate row or as one row per tester.
+- `get_beta_license_agreement` — Read the license agreement TestFlight testers of an app must accept.
+- `get_beta_recruitment_criterion` — Read the recruitment criteria of a TestFlight group, which restrict who can join through its public link by device family and OS version. Returns null when the group has no criteria.
+- `get_beta_recruitment_criterion_compatible_build_check` — Check whether a TestFlight group has a build that testers matching its recruitment criteria could install.
+- `get_beta_tester` — Read one TestFlight tester by its identifier, including the invitation state and the devices the app is installed on.
+- `get_beta_tester_usages` — Read TestFlight usage metrics of one tester in one app: sessions, crashes, and feedback over the chosen period.
+- `get_build` — Read one build together with its prerelease version, its TestFlight review submission, and the app it belongs to.
+- `get_build_beta_build_usages` — Read TestFlight usage metrics of one build: invitations, installs, sessions, crashes, and feedback since the build became available.
+- `get_build_beta_detail` — Read the TestFlight distribution details of one build: its internal and external testing states and whether testers are notified automatically.
+- `get_build_bundle_app_clip_domain_cache_status` — Read the cached validation status of the associated domains an App Clip build bundle declares, as Apple's CDN last recorded it. Returns null when App Store Connect has no status for the bundle.
+- `get_build_bundle_app_clip_domain_debug_status` — Read the debug-mode validation status of the associated domains an App Clip build bundle declares, which checks the domains directly instead of Apple's CDN cache. Returns null when App Store Connect has no status for the bundle.
+- `get_build_perf_power_metrics` — Fetch the performance and power metrics collected for one build in the xcodeMetrics document format.
+- `get_bundle_id` — Read one bundle ID record by its App Store Connect identifier.
+- `get_bundle_id_app` — Read the App Store Connect app that uses one bundle ID. Returns null when no app has been created for the bundle ID yet.
+- `get_certificate` — Read one certificate by its App Store Connect identifier, including its base64 DER content.
+- `get_ci_artifact` — Read one build artifact, including a fresh time-limited download URL for its file.
+- `get_ci_build_action` — Read one action of a build run, with its progress, outcome, and issue counts.
+- `get_ci_build_action_build_run` — Read the build run a build action belongs to.
+- `get_ci_build_run` — Read one Xcode Cloud build run, including its progress, completion status, issue counts, and the commit it built. Poll it to follow a run started with start_ci_build_run.
+- `get_ci_issue` — Read one issue a build action reported, with the file and line it points at.
+- `get_ci_mac_os_version` — Read one macOS version available in Xcode Cloud.
+- `get_ci_product` — Read one Xcode Cloud product by its App Store Connect identifier.
+- `get_ci_test_result` — Read the result of one test method across the destinations it ran on.
+- `get_ci_workflow` — Read one Xcode Cloud workflow with its start conditions, actions, and the product, repository, Xcode version, and macOS version it uses.
+- `get_ci_workflow_repository` — Read the source repository an Xcode Cloud workflow builds from.
+- `get_ci_xcode_version` — Read one Xcode version available in Xcode Cloud, with the simulators and Macs available for tests.
+- `get_customer_review` — Read one App Store review together with the developer response published for it.
+- `get_device` — Read one registered device by its App Store Connect identifier.
+- `get_diagnostic_signature_logs` — Fetch the anonymized backtrace logs App Store Connect recorded for one diagnostic signature, including call stack trees and device metadata.
+- `get_end_user_license_agreement` — Read the custom end user license agreement of an app together with the territories it applies in. Returns null when the app uses Apple's standard EULA everywhere.
+- `get_game_center_achievement` — Read one Game Center achievement by its App Store Connect identifier.
+- `get_game_center_achievement_localization` — Read one Game Center achievement localization by its App Store Connect identifier.
+- `get_game_center_achievement_localization_image` — Read the achievement image uploaded for one Game Center achievement localization, including its delivery state, or null when no image has been uploaded. Uploading an image is not covered by this connector; only the already uploaded image can be read.
+- `get_game_center_achievement_version` — Read one Game Center achievement version by its App Store Connect identifier.
+- `get_game_center_activity` — Read one Game Center activity by its App Store Connect identifier.
+- `get_game_center_activity_localization` — Read one Game Center activity localization by its App Store Connect identifier.
+- `get_game_center_activity_localization_image` — Read the image of one Game Center activity localization. Returns null when the locale has no image of its own and falls back to the default image of the version; uploading an image is not covered by this connector.
+- `get_game_center_activity_version` — Read one Game Center activity version by its App Store Connect identifier.
+- `get_game_center_activity_version_default_image` — Read the default image of a Game Center activity version, shown wherever a locale has no image of its own. Returns null when no default image has been uploaded yet; uploading one is not covered by this connector.
+- `get_game_center_app_version` — Read one Game Center app version by its App Store Connect identifier.
+- `get_game_center_app_version_app_store_version` — Read the App Store version a Game Center app version belongs to, for example to learn its version string and review state.
+- `get_game_center_challenge` — Read one Game Center challenge by its App Store Connect identifier.
+- `get_game_center_challenge_localization` — Read one Game Center challenge localization by its App Store Connect identifier.
+- `get_game_center_challenge_localization_image` — Read the image of one Game Center challenge localization, or null when the locale has no image of its own and falls back to the default image of the version. Uploading an image is not covered by this connector.
+- `get_game_center_challenge_version` — Read one Game Center challenge version by its App Store Connect identifier.
+- `get_game_center_challenge_version_default_image` — Read the default image of a Game Center challenge version, the one shown for locales without their own image. Returns null when the version has no default image. Uploading an image is not covered by this connector.
+- `get_game_center_classic_matchmaking_request_metrics` — Read the matchmaking requests an app made through classic (non rule based) matchmaking, as time series of request counts and queue wait times. Each data point covers the granularity you pass.
+- `get_game_center_detail` — Read one Game Center detail by its App Store Connect identifier, together with the group and the default leaderboards it links to.
+- `get_game_center_detail_group` — Read the Game Center group a Game Center detail belongs to. Returns null when the app does not share its achievements and leaderboards with other apps.
+- `get_game_center_group` — Read one Game Center group by its App Store Connect identifier.
+- `get_game_center_leaderboard` — Read one Game Center leaderboard by its App Store Connect identifier.
+- `get_game_center_leaderboard_localization` — Read one Game Center leaderboard localization by its App Store Connect identifier.
+- `get_game_center_leaderboard_localization_image` — Read the image shown with a Game Center leaderboard localization, including its delivery state. Returns null when no image has been uploaded for the locale. Uploading an image is not covered by this connector, only reading the one already uploaded.
+- `get_game_center_leaderboard_set` — Read one Game Center leaderboard set by its App Store Connect identifier.
+- `get_game_center_leaderboard_set_localization` — Read one Game Center leaderboard set localization by its App Store Connect identifier.
+- `get_game_center_leaderboard_set_localization_image` — Read the image attached to one Game Center leaderboard set localization, with its delivery URL and upload state. Uploading an image is not covered by this connector; only an image that was already uploaded can be read.
+- `get_game_center_leaderboard_set_version` — Read one Game Center leaderboard set version by its App Store Connect identifier, including its review state.
+- `get_game_center_leaderboard_version` — Read one Game Center leaderboard version by its App Store Connect identifier.
+- `get_game_center_matchmaking_queue` — Read one Game Center matchmaking queue by its App Store Connect identifier, including the rule set it matches requests with and the rule set of a running experiment.
+- `get_game_center_matchmaking_queue_experiment_request_metrics` — Read the share of a queue's traffic that was matched with the experiment rule set, as time series of request counts and queue wait times. Compare it with get_game_center_matchmaking_queue_request_metrics to judge whether the experiment rule set is an improvement.
+- `get_game_center_matchmaking_queue_experiment_size_metrics` — Read how many requests were waiting in the part of a matchmaking queue served by the experiment rule set, as time series of average and percentile queue sizes.
+- `get_game_center_matchmaking_queue_request_metrics` — Read the matchmaking requests one queue handled, as time series of request counts and queue wait times, optionally split by result or by the app that sent the requests.
+- `get_game_center_matchmaking_queue_session_metrics` — Read the matchmaking sessions one queue produced, as time series of session counts and of how many players each session held.
+- `get_game_center_matchmaking_queue_size_metrics` — Read how many requests were waiting in one matchmaking queue, as time series of average and percentile queue sizes.
+- `get_game_center_matchmaking_rule_boolean_result_metrics` — Read how often one matchmaking rule returned each boolean result, as time series of evaluation counts.
+- `get_game_center_matchmaking_rule_error_metrics` — Read how often one matchmaking rule failed to evaluate, as time series of error counts.
+- `get_game_center_matchmaking_rule_number_result_metrics` — Read the values one matchmaking rule expression returned, as time series of evaluation counts with average and percentile results.
+- `get_game_center_matchmaking_rule_set` — Read one Game Center matchmaking rule set by its App Store Connect identifier.
+- `get_game_center_rule_based_matchmaking_request_metrics` — Read the matchmaking requests an app made through rule based matchmaking, as time series of request counts and queue wait times.
+- `get_in_app_purchase` — Read one in-app purchase by its App Store Connect identifier.
+- `get_in_app_purchase_availability` — Read the availability record of an in-app purchase, which says whether it is offered in new territories automatically. Returns null when no availability has been set. Use list_in_app_purchase_available_territories for the territory list.
+- `get_in_app_purchase_content` — Read the metadata and temporary download URL of the hosted content package of an in-app purchase. Returns null when no content has been uploaded.
+- `get_in_app_purchase_localization` — Read one in-app purchase localization by its identifier.
+- `get_in_app_purchase_offer_code` — Read one in-app purchase offer code configuration by its identifier.
+- `get_in_app_purchase_price_schedule` — Read the price schedule of an in-app purchase together with its base territory. Returns null when the purchase has no price schedule yet.
+- `get_in_app_purchase_price_schedule_base_territory` — Read the base territory of an in-app purchase price schedule, including its currency.
+- `get_in_app_purchase_version` — Read one in-app purchase version by its identifier.
+- `get_in_app_purchase_version_localization` — Read one localization of an in-app purchase version by its identifier.
+- `get_marketplace_search_detail` — Read the marketplace search detail of an alternative marketplace app, or null when no catalog URL has been configured.
+- `get_merchant_id` — Read one Apple Pay merchant ID record by its App Store Connect identifier.
+- `get_nomination` — Read one featuring nomination by its identifier.
+- `get_pass_type_id` — Read one Wallet pass type ID record by its App Store Connect identifier.
+- `get_pre_release_version` — Read one prerelease version by its identifier.
+- `get_profile` — Read one provisioning profile by its App Store Connect identifier, including its base64 content.
+- `get_profile_bundle_id` — Read the bundle ID a provisioning profile was created for.
+- `get_promoted_purchase` — Read one promoted purchase by its identifier.
+- `get_review_submission` — Read one review submission with its state and the App Store version it carries.
+- `get_scm_git_reference` — Read one branch or tag of a repository as Xcode Cloud sees it.
+- `get_scm_provider` — Read one source control provider connected to Xcode Cloud.
+- `get_scm_pull_request` — Read one pull request of a repository as Xcode Cloud sees it.
+- `get_scm_repository` — Read one source repository, with its provider and default branch identifiers.
+- `get_subscription` — Read one auto-renewable subscription by its App Store Connect identifier.
+- `get_subscription_grace_period` — Read the billing grace period settings of an app, either by app or by the grace period record identifier. Pass exactly one of appId or subscriptionGracePeriodId.
+- `get_subscription_group` — Read one subscription group by its App Store Connect identifier.
+- `get_subscription_group_localization` — Read one subscription group localization by its App Store Connect identifier.
+- `get_subscription_group_version` — Read one subscription group version by its App Store Connect identifier. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `get_subscription_group_version_localization` — Read one subscription group version localization by its App Store Connect identifier. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `get_subscription_localization` — Read one subscription localization by its App Store Connect identifier.
+- `get_subscription_offer_code` — Read one offer code configuration by its App Store Connect identifier.
+- `get_subscription_offer_code_custom_code` — Read one custom code batch by its App Store Connect identifier.
+- `get_subscription_offer_code_one_time_use_code` — Read one one-time use code batch by its App Store Connect identifier.
+- `get_subscription_plan_availability` — Read one subscription plan availability by its App Store Connect identifier.
+- `get_subscription_price_point` — Read one subscription price point by its App Store Connect identifier.
+- `get_subscription_promotional_offer` — Read one promotional offer by its App Store Connect identifier.
+- `get_subscription_version` — Read one subscription version by its App Store Connect identifier. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `get_subscription_version_localization` — Read one subscription version localization by its App Store Connect identifier. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `get_user` — Read one App Store Connect team member by identifier.
+- `get_user_invitation` — Read one pending team invitation by identifier.
+- `get_webhook` — Read one webhook by its App Store Connect identifier.
+- `get_win_back_offer` — Read one win-back offer by its App Store Connect identifier.
+- `invite_user` — Invite someone to join the App Store Connect team with the given roles. Apple emails them an activation link that expires after three days; the invitation can be cancelled until it is accepted. [write]
+- `list_accessibility_declarations` — List the accessibility declarations (Accessibility Nutrition Labels) of an app, optionally filtered by device family or publication state.
+- `list_actors` — Resolve audit-log actor identifiers, such as the submitter of a review submission, to the team member, API key, or system that performed the action. App Store Connect requires at least one identifier.
+- `list_alternative_distribution_domains` — List the base web domains registered for alternative distribution on the account.
+- `list_alternative_distribution_keys` — List the alternative distribution public keys of the team. A key without an app applies to every alternative distribution app on the account.
+- `list_alternative_distribution_package_version_deltas` — List the delta updates of an alternative distribution package version, each with its download URL and encrypted key blob.
+- `list_alternative_distribution_package_version_variants` — List the device-specific variants of an alternative distribution package version, each with its download URL and encrypted key blob.
+- `list_alternative_distribution_package_versions` — List the versions of an alternative distribution package with their time-limited download URLs.
+- `list_analytics_report_instances` — List the processed instances of one analytics report, each covering a daily, weekly, or monthly period.
+- `list_analytics_report_requests` — List the analytics report requests of one app, which are the entry point to its analytics reports.
+- `list_analytics_report_segments` — List the downloadable segments of one analytics report instance. Each url points at a gzip-compressed file that the caller downloads itself; the links expire five minutes after they are issued, so call this action right before downloading.
+- `list_analytics_reports` — List the report types available under one analytics report request, optionally narrowed by category or exact name.
+- `list_android_to_ios_app_mapping_details` — List the Android app mappings of an app, which link an Android package to this app for Android to iPhone migration.
+- `list_app_categories` — List App Store categories with their platforms, parent, and subcategory identifiers. Filter by platform or list only top-level categories or only subcategories.
+- `list_app_clip_advanced_experiences` — List the advanced experiences of an App Clip with their localized card text. Filter by status, place match status, or action.
+- `list_app_clip_default_experience_localizations` — List the localized subtitles of a default App Clip experience, optionally narrowed to some locales.
+- `list_app_clip_default_experiences` — List the default experiences of an App Clip with the App Store version each one is released with. Optionally keep only experiences that are, or are not, attached to a version.
+- `list_app_clips` — List the App Clips of an app, optionally filtered by bundle identifier.
+- `list_app_custom_product_page_localizations` — List the localizations of one custom product page version, optionally narrowed to some locales.
+- `list_app_custom_product_page_versions` — List the versions of one custom product page, optionally narrowed to some review states.
+- `list_app_custom_product_pages` — List the custom product pages of one app, optionally only the visible or only the hidden ones.
+- `list_app_encryption_declarations` — List the export compliance (encryption) declarations of an app with their review state and compliance code, optionally filtered by platform or by the builds they cover.
+- `list_app_event_localizations` — List the localized name and descriptions of an in-app event for every locale.
+- `list_app_events` — List the in-app events of an app, optionally narrowed to some review states or identifiers.
+- `list_app_info_localizations` — List the localized names, subtitles, and privacy URLs of an app info record, optionally narrowed to some locales.
+- `list_app_infos` — List the app info records of an app, each with its review state, derived age ratings, and the identifiers of its App Store categories. An app usually has one editable record plus the record of the version on the App Store.
+- `list_app_price_point_equalizations` — List the price points in other territories that App Store Connect considers equivalent to one price point, optionally narrowed to some territories. Use it to pick matching manual prices across territories.
+- `list_app_price_points` — List the price points an app can be sold at, optionally narrowed to some territories. Each price point carries the customer price and developer proceeds in the territory currency; pass its identifier to create_app_price_schedule.
+- `list_app_price_schedule_automatic_prices` — List the automatic prices of a price schedule, which App Store Connect derives from the base territory price for every territory without a manual price. Each entry carries its price point, territory, customer price and proceeds.
+- `list_app_price_schedule_manual_prices` — List the manual prices of a price schedule, each with the price point it uses, the territory it applies to and the customer price and proceeds of that price point.
+- `list_app_store_version_experiment_treatment_localizations` — List the locales of one treatment, optionally narrowed to some locales. Screenshots and previews of a treatment are attached to these localizations.
+- `list_app_store_version_experiment_treatments` — List the treatments of one product page optimization test.
+- `list_app_store_version_experiments` — List the product page optimization tests of one app, optionally narrowed to some states, with the App Store version each test uses as its control.
+- `list_app_store_version_localizations` — List the localized App Store metadata (description, keywords, release notes, URLs) of one App Store version, optionally narrowed to specific locales.
+- `list_app_store_versions` — List the App Store versions of one app, with the review and release state of each version.
+- `list_app_tags` — List the tags App Store Connect assigned to an app for App Store discovery, optionally only those shown or hidden on the App Store.
+- `list_apps` — List the apps the API key can see, optionally filtered by bundle identifier, name, or SKU.
+- `list_background_asset_versions` — List the versions of one background asset pack with their processing state and their internal TestFlight, external TestFlight, and App Store release records.
+- `list_background_assets` — List the Apple-hosted background asset packs of one app, with the version currently in each of the App Store, internal TestFlight, and external TestFlight slots.
+- `list_beta_app_clip_invocations` — List the App Clip invocations testers can launch from TestFlight for one App Clip build bundle, with the localized titles of each. Find build bundle identifiers with list_build_bundles.
+- `list_beta_app_localizations` — List the TestFlight test information of one app, one record per locale, optionally narrowed to a single locale.
+- `list_beta_app_review_submissions` — List the TestFlight beta review submissions of one build, optionally narrowed to one review state.
+- `list_beta_build_localizations` — List the "What to Test" notes of one build, one record per locale, optionally narrowed to a single locale.
+- `list_beta_feedback_crash_submissions` — List the crash feedback testers sent from TestFlight for one app, with the build and tester each submission came from. Use get_beta_feedback_crash_log to read the crash log text of one submission.
+- `list_beta_feedback_screenshot_submissions` — List the screenshot feedback testers sent from TestFlight for one app, with the build and tester each submission came from. Screenshot download URLs expire, so fetch them soon after listing.
+- `list_beta_group_builds` — List the builds one TestFlight group can install, with the prerelease version each build belongs to.
+- `list_beta_groups` — List the TestFlight groups of one app, including the public invitation link of each group.
+- `list_beta_recruitment_criterion_options` — List the device families and OS versions App Store Connect accepts in recruitment criteria, to pick valid minimumOsInclusive and maximumOsInclusive values.
+- `list_beta_tester_apps` — List the apps one TestFlight tester has access to.
+- `list_beta_tester_beta_groups` — List the TestFlight groups one tester belongs to.
+- `list_beta_testers` — List TestFlight testers, optionally narrowed to one app, group, or build.
+- `list_build_beta_groups` — List the TestFlight groups that can install one build.
+- `list_build_bundle_file_sizes` — List the download and install sizes of one build bundle per device model and OS version, as App Store Connect computed them after processing.
+- `list_build_bundles` — List the bundles (app, App Clip, and watch app) contained in one uploaded build, with their bundle identifiers, architectures, entitlements, and dSYM download URL. Every bundle of the build is returned in one call: App Store Connect only exposes bundles as an include of the build, capped at 50, and offers no cursor. Build bundle identifiers are needed for the App Clip and file size actions.
+- `list_build_individual_testers` — List the TestFlight testers who were assigned one build individually, outside of any group.
+- `list_builds` — List builds uploaded for one app, with the prerelease version each build belongs to. Filter by version, platform, processing state, or TestFlight review state.
+- `list_bundle_id_capabilities` — List the capabilities enabled on one bundle ID, with their configured settings.
+- `list_bundle_id_profiles` — List the provisioning profiles that were created for one bundle ID.
+- `list_bundle_ids` — List the bundle IDs (App IDs) registered with the team, optionally filtered by identifier, name, platform, or seed ID.
+- `list_certificates` — List the signing certificates of the team, including their base64 DER content, optionally filtered by type, display name, or serial number.
+- `list_ci_build_action_artifacts` — List the artifacts a build action produced, such as archives, log bundles, and result bundles, each with a time-limited download URL.
+- `list_ci_build_action_issues` — List the errors, warnings, analyzer warnings, and test failures a build action reported.
+- `list_ci_build_action_test_results` — List the per-test results of a test action, with the outcome on each destination.
+- `list_ci_build_run_actions` — List the actions (build, analyze, test, archive) of one build run with the progress and outcome of each.
+- `list_ci_build_run_builds` — List the App Store Connect builds an Xcode Cloud build run delivered, with the prerelease version each build belongs to. Use it to find the build to distribute after an archive action.
+- `list_ci_mac_os_version_xcode_versions` — List the Xcode versions that can run on one macOS version in Xcode Cloud.
+- `list_ci_mac_os_versions` — List the macOS versions Xcode Cloud can build on.
+- `list_ci_product_additional_repositories` — List the additional repositories of one Xcode Cloud product, such as Swift package dependencies Xcode Cloud has been granted access to.
+- `list_ci_product_build_runs` — List the build runs of one Xcode Cloud product across all of its workflows, optionally narrowed to the run that produced one build.
+- `list_ci_product_primary_repositories` — List the primary repositories of one Xcode Cloud product, the repositories that hold the project or package its workflows build.
+- `list_ci_product_workflows` — List the workflows of one Xcode Cloud product.
+- `list_ci_products` — List the Xcode Cloud products of the team, optionally narrowed to one app or to app or framework products. A product holds the workflows and build runs of one app or framework.
+- `list_ci_workflow_build_runs` — List the build runs of one Xcode Cloud workflow, optionally narrowed to the run that produced one build.
+- `list_ci_xcode_version_mac_os_versions` — List the macOS versions one Xcode version can run on in Xcode Cloud.
+- `list_ci_xcode_versions` — List the Xcode versions Xcode Cloud can build with, each with the simulators and Macs available for tests.
+- `list_customer_reviews` — List the App Store reviews of one app together with the developer response published for each review.
+- `list_devices` — List the devices registered with the team, optionally filtered by name, platform, UDID, or status.
+- `list_diagnostic_signatures` — List the diagnostic signatures App Store Connect collected for one build: recurring call patterns behind disk writes, hangs, or slow launches, weighted by how critical they are.
+- `list_game_center_achievement_version_localizations` — List the localizations of one Game Center achievement version, one per locale the achievement is shown in.
+- `list_game_center_achievement_versions` — List the versions of one Game Center achievement, each with the review and release state of the localizations it carries.
+- `list_game_center_activity_version_localizations` — List the locales one Game Center activity version has text for.
+- `list_game_center_activity_versions` — List the versions of one Game Center activity, each with its review and release state.
+- `list_game_center_app_version_compatibility_versions` — List the earlier app versions that stay multiplayer compatible with this one, so players who have not updated yet can still be matched with players who have. Optionally narrowed to the compatible versions that have Game Center enabled.
+- `list_game_center_challenge_version_localizations` — List the locales one Game Center challenge version carries text for.
+- `list_game_center_challenge_versions` — List the versions of one Game Center challenge, each with the review and release state it is in.
+- `list_game_center_detail_achievements` — List the achievements of one Game Center detail, optionally narrowed by reference name, archived state or identifier.
+- `list_game_center_detail_activities` — List the Game Center activities of one app, reached through its Game Center detail record. App Store Connect offers no filters here, so page through the results with limit and cursor.
+- `list_game_center_detail_app_versions` — List the App Store versions of the app together with their Game Center enablement, optionally narrowed to the enabled or the disabled ones.
+- `list_game_center_detail_challenges` — List the challenges configured on the Game Center detail of one app, optionally narrowed by reference name, archived state or identifier.
+- `list_game_center_detail_leaderboard_sets` — List the leaderboard sets of one Game Center detail, optionally narrowed by reference name or identifier.
+- `list_game_center_detail_leaderboards` — List the leaderboards of one Game Center detail, optionally narrowed by reference name, archived state or identifier.
+- `list_game_center_group_achievements` — List the achievements shared by one Game Center group, optionally narrowed by reference name, archived state or identifier.
+- `list_game_center_group_activities` — List the Game Center activities shared by the apps of one Game Center group. App Store Connect offers no filters here, so page through the results with limit and cursor.
+- `list_game_center_group_challenges` — List the challenges shared by the games of one Game Center group, optionally narrowed by reference name, archived state or identifier.
+- `list_game_center_group_details` — List the Game Center details of the apps that belong to one group, that is the apps sharing the achievements, leaderboards and leaderboard sets of the group.
+- `list_game_center_group_leaderboard_sets` — List the leaderboard sets shared by one Game Center group, optionally narrowed by reference name or identifier.
+- `list_game_center_group_leaderboards` — List the leaderboards shared by one Game Center group, optionally narrowed by reference name, archived state or identifier.
+- `list_game_center_groups` — List the Game Center groups of the team. Apps in a group share their achievements, leaderboards and leaderboard sets, so players keep one progress across the apps.
+- `list_game_center_leaderboard_set_leaderboards` — List the leaderboards that belong to one Game Center leaderboard set, optionally narrowed by reference name, by archived state, or to specific leaderboards.
+- `list_game_center_leaderboard_set_member_localizations` — List the member localizations of one leaderboard inside one leaderboard set. A member localization is the name a leaderboard is shown under while a player browses the set, which can differ from the name of the leaderboard on its own. App Store Connect requires both the set and the leaderboard.
+- `list_game_center_leaderboard_set_version_localizations` — List the locales one Game Center leaderboard set version is translated into.
+- `list_game_center_leaderboard_set_versions` — List the versions of one Game Center leaderboard set. Each version carries its own localized names through App Review.
+- `list_game_center_leaderboard_version_localizations` — List the locales of one Game Center leaderboard version, each with the name, score description and score formatting shown to players.
+- `list_game_center_leaderboard_versions` — List the versions of one Game Center leaderboard. Each version carries its own localizations through App Review.
+- `list_game_center_matchmaking_queues` — List every Game Center matchmaking queue of the team, each with the rule set it matches requests with and the rule set of a running experiment.
+- `list_game_center_matchmaking_rule_set_queues` — List the matchmaking queues that match their requests with one rule set, either as their rule set or as their experiment rule set.
+- `list_game_center_matchmaking_rule_set_rules` — List the rules of one Game Center matchmaking rule set, with the expression each rule evaluates for a candidate match.
+- `list_game_center_matchmaking_rule_set_teams` — List the teams of one Game Center matchmaking rule set, with the player limits of each team.
+- `list_game_center_matchmaking_rule_sets` — List every Game Center matchmaking rule set of the team, with the player limits and the rule language version each one uses.
+- `list_in_app_purchase_available_territories` — List the territories an in-app purchase is currently sold in, using the availability record identifier from get_in_app_purchase_availability.
+- `list_in_app_purchase_localizations` — List the localized display names and descriptions of one in-app purchase, one record per locale.
+- `list_in_app_purchase_offer_code_custom_codes` — List the custom codes generated for an in-app purchase offer code.
+- `list_in_app_purchase_offer_code_one_time_use_codes` — List the one-time-use code batches generated for an in-app purchase offer code. The code values are only available as a CSV download in App Store Connect.
+- `list_in_app_purchase_offer_code_prices` — List the discounted prices of an in-app purchase offer code per territory, with the price point, customer price, and proceeds of each.
+- `list_in_app_purchase_offer_codes` — List the offer code configurations of an in-app purchase, optionally narrowed to offers priced in one territory.
+- `list_in_app_purchase_price_point_equalizations` — List the price points in other territories that Apple considers equivalent to one price point, which is how automatic prices for a base territory are derived.
+- `list_in_app_purchase_price_points` — List the price points available to an in-app purchase, with the customer price and proceeds per territory. Use a price point identifier from here when building a price schedule or offer code price.
+- `list_in_app_purchase_price_schedule_automatic_prices` — List the prices App Store Connect derived automatically from the base territory of an in-app purchase price schedule.
+- `list_in_app_purchase_price_schedule_manual_prices` — List the manually set prices of an in-app purchase price schedule, with the price point, customer price, and proceeds of each.
+- `list_in_app_purchase_version_localizations` — List the localized display names and descriptions attached to one in-app purchase version.
+- `list_in_app_purchase_versions` — List the metadata versions of an in-app purchase, optionally narrowed to one review state.
+- `list_in_app_purchases` — List the in-app purchases of one app (consumables, non-consumables, and non-renewing subscriptions; auto-renewable subscriptions are a separate family). Filter by type, state, name, or product identifier.
+- `list_merchant_id_certificates` — List the Apple Pay certificates issued for one merchant ID, optionally filtered by type, display name, or serial number.
+- `list_merchant_ids` — List the Apple Pay merchant IDs registered with the team, optionally filtered by name or identifier.
+- `list_nominations` — List the featuring nominations of the team in the given states, optionally narrowed by type, related app, or whether they include in-app events.
+- `list_pass_type_id_certificates` — List the pass signing certificates issued for one pass type ID, optionally filtered by type, display name, or serial number.
+- `list_pass_type_ids` — List the Wallet pass type IDs registered with the team, optionally filtered by name or identifier.
+- `list_pre_release_versions` — List the prerelease versions of one app, which group its TestFlight builds by marketing version.
+- `list_profile_certificates` — List the certificates embedded in one provisioning profile.
+- `list_profile_devices` — List the devices a development or ad hoc provisioning profile allows.
+- `list_profiles` — List the provisioning profiles of the team, including their base64 content, optionally filtered by name, profile type, or validity state.
+- `list_promoted_purchases` — List the in-app purchases and subscriptions promoted on the App Store product page of one app, in display order.
+- `list_review_submission_items` — List the items in a review submission, each naming the App Store version, custom product page version, experiment, or in-app event it reviews.
+- `list_review_submissions` — List the review submissions of one app, with the App Store version each submission carries. Filter by platform or review state.
+- `list_sandbox_testers` — List the Sandbox Apple Accounts of the team used to test in-app purchases. Sandbox accounts are created and deleted in App Store Connect, not through the API.
+- `list_scm_provider_repositories` — List the repositories Xcode Cloud can access on one source control provider.
+- `list_scm_providers` — List the source control providers (GitHub, GitLab, Bitbucket) connected to Xcode Cloud for the team.
+- `list_scm_repositories` — List every source repository Xcode Cloud can access across all connected providers, optionally narrowed to specific repository identifiers.
+- `list_scm_repository_git_references` — List the branches and tags of one repository as Xcode Cloud sees them. Their identifiers are what start_ci_build_run takes as sourceBranchOrTagId.
+- `list_scm_repository_pull_requests` — List the pull requests of one repository as Xcode Cloud sees them. Their identifiers are what start_ci_build_run takes as scmPullRequestId.
+- `list_subscription_group_localizations` — List the customer-facing localized names of one subscription group.
+- `list_subscription_group_version_localizations` — List the localized names attached to one subscription group version. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `list_subscription_group_versions` — List the versions of one subscription group, optionally narrowed by review state. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `list_subscription_groups` — List the subscription groups of one app, optionally narrowed by reference name or by the state of the subscriptions they contain.
+- `list_subscription_introductory_offers` — List the introductory offers of one auto-renewable subscription, with the territory and price point of each offer. Filter by territory to inspect one storefront.
+- `list_subscription_localizations` — List the customer-facing localized names and descriptions of one subscription.
+- `list_subscription_offer_code_custom_codes` — List the custom codes generated for one offer code configuration.
+- `list_subscription_offer_code_one_time_use_codes` — List the one-time use code batches generated for one offer code configuration. The code values themselves are only available as a CSV download in App Store Connect.
+- `list_subscription_offer_code_prices` — List the territory prices of one offer code configuration, with the currency and customer price of each price point.
+- `list_subscription_offer_codes` — List the offer code configurations of one auto-renewable subscription, with the code counts and active state of each configuration.
+- `list_subscription_plan_availabilities` — List the territory availability records of one subscription, one per payment plan. Use list_subscription_plan_availability_territories for the full territory list of a record.
+- `list_subscription_plan_availability_territories` — List the territories in which one subscription plan availability sells the plan.
+- `list_subscription_price_point_adjusted_equalizations` — List the adjusted territory equalizations of one subscription price point, the equivalents App Store Connect proposes after its territory-specific price adjustments.
+- `list_subscription_price_point_equalizations` — List the price points in other territories that App Store Connect considers equivalent to one subscription price point, which is how a price set in one territory is carried over to the rest.
+- `list_subscription_price_points` — List the price points a subscription can be priced at, with the customer price and developer proceeds of each. Apple recommends filtering by territory and plans to make that filter mandatory.
+- `list_subscription_prices` — List the current and scheduled prices of one subscription, with the territory and price point of each price. Filter by territory, payment plan, or price point.
+- `list_subscription_promotional_offer_prices` — List the territory prices of one promotional offer, with the currency and customer price of each price point.
+- `list_subscription_promotional_offers` — List the promotional offers of one auto-renewable subscription. Use list_subscription_promotional_offer_prices to read the territory prices of an offer.
+- `list_subscription_version_localizations` — List the localized names and descriptions attached to one subscription version. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `list_subscription_versions` — List the versions of one subscription, optionally narrowed by review state. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved.
+- `list_subscriptions` — List the auto-renewable subscriptions of one subscription group, optionally narrowed by name, product identifier, or state.
+- `list_territories` — List every App Store territory with its currency. Territory identifiers are used for license agreements, availability, and pricing.
+- `list_territory_availabilities` — List the per-territory availability of an app availability configuration: whether the app is on sale in each territory, its release date, pre-order settings and the content statuses that explain why it is or is not available.
+- `list_user_invitation_visible_apps` — List the apps a pending invitation will make visible to the invited user.
+- `list_user_invitations` — List pending invitations to join the App Store Connect team, optionally narrowed by email, role, or visible app.
+- `list_user_visible_apps` — List the apps a team member can see. For a user with allAppsVisible the list reflects every app on the team.
+- `list_users` — List the members of the App Store Connect team, with the roles granted to each of them.
+- `list_webhook_deliveries` — List the delivery attempts of one webhook, newest first as App Store Connect orders them, with the event each attempt carried and the response the endpoint returned. Filter by delivery state or creation time to find failed deliveries to resend.
+- `list_webhooks` — List the webhooks registered on one app, with the URL, enabled state, and subscribed event types of each.
+- `list_win_back_offer_prices` — List the territory prices of one win-back offer, with the currency and customer price of each price point.
+- `list_win_back_offers` — List the win-back offers of one auto-renewable subscription. Use list_win_back_offer_prices to read the territory prices of an offer.
+- `notify_build_testers` — Send the TestFlight availability notification for one build to every tester who can install it. The notification cannot be recalled, so use it only when automatic notifications were off. [write]
+- `ping_webhook` — Send a test ping notification to a webhook so the endpoint and its signature check can be verified. The ping shows up in the webhook deliveries with ping set to true. [write]
+- `redeliver_webhook_delivery` — Send the event of an earlier delivery again, for example after the endpoint was down. App Store Connect creates a new delivery marked as a redelivery; the original delivery record is kept. [write]
+- `register_device` — Register a device with the team so development and ad hoc profiles can include it. Apple limits how many devices a team registers per membership year, and registered devices can only be removed in the Apple Developer website; use update_device to disable one instead. [write]
+- `release_app_store_version` — Release an approved App Store version that is waiting in PENDING_DEVELOPER_RELEASE to the App Store. The release starts immediately and cannot be undone. [destructive]
+- `remove_achievements_from_game_center_activity` — Detach achievements from a Game Center activity. The achievements themselves are kept and stay available outside the activity. [destructive]
+- `remove_beta_tester_from_apps` — Revoke a TestFlight tester's access to specific apps, removing them from every group and build of those apps while keeping them on the team. [destructive]
+- `remove_beta_testers_from_group` — Remove testers from one TestFlight group. The testers stay on the team and keep access through their other groups. [destructive]
+- `remove_build_from_beta_groups` — Withdraw one build from TestFlight groups so their testers can no longer install it. [destructive]
+- `remove_builds_from_beta_group` — Withdraw several builds from one TestFlight group so its testers can no longer install them. [destructive]
+- `remove_compatibility_versions_from_game_center_app_version` — Stop treating earlier Game Center app versions as multiplayer compatible with this one. Players still on a removed version can no longer be matched with players on this one. [destructive]
+- `remove_individual_testers_from_build` — Remove the individual assignment of TestFlight testers from one build. Testers keep access through any group that has the build. [destructive]
+- `remove_leaderboards_from_game_center_activity` — Detach leaderboards from a Game Center activity. The leaderboards themselves are kept together with the scores already posted to them. [destructive]
+- `remove_leaderboards_from_game_center_leaderboard_set` — Take leaderboards out of a Game Center leaderboard set. The leaderboards themselves are kept and stay available on their own. [destructive]
+- `remove_visible_apps_from_user` — Hide apps from a team member so they can no longer open them in App Store Connect. [destructive]
+- `reorder_promoted_purchases` — Set the display order of the promoted purchases of an app. The list replaces the current order, so include every promoted purchase that should stay listed. [destructive]
+- `replace_game_center_detail_achievements` — Replace the achievements attached to a Game Center detail. The identifiers you pass become the complete set, so an achievement left out is detached from the app. [destructive]
+- `replace_game_center_detail_challenges_minimum_platform_versions` — Replace the earliest App Store versions, one per platform, that may take part in Game Center challenges. The identifiers you pass become the complete set, so a platform left out no longer has a minimum version. [destructive]
+- `replace_game_center_detail_leaderboard_sets` — Replace the leaderboard sets attached to a Game Center detail. The identifiers you pass become the complete set, so a leaderboard set left out is detached from the app. [destructive]
+- `replace_game_center_detail_leaderboards` — Replace the leaderboards attached to a Game Center detail. The identifiers you pass become the complete set, so a leaderboard left out is detached from the app. [destructive]
+- `replace_game_center_group_achievements` — Set which achievements one Game Center group shares. Pass the complete list: an achievement left out is no longer shared through the group. [destructive]
+- `replace_game_center_group_leaderboard_sets` — Set which leaderboard sets one Game Center group shares. Pass the complete list: a leaderboard set left out is no longer shared through the group. [destructive]
+- `replace_game_center_group_leaderboards` — Set which leaderboards one Game Center group shares. Pass the complete list: a leaderboard left out is no longer shared through the group. [destructive]
+- `replace_game_center_leaderboard_set_leaderboards` — Replace the whole list of leaderboards in a Game Center leaderboard set. Leaderboards missing from the new list leave the set but are not deleted. [destructive]
+- `replace_user_visible_apps` — Replace the whole set of apps a team member can see. Apps missing from the new list are hidden from the user. [destructive]
+- `resend_beta_tester_invitation` — Send the TestFlight invitation email again to a tester who has not accepted the invitation for one app. [write]
+- `respond_to_customer_review` — Publish a developer response to an App Store review. App Store Connect treats this as an upsert: an existing response for the same review is replaced, and publication is asynchronous. [destructive]
+- `revoke_certificate` — Revoke a certificate that was lost, stolen, compromised, or is expiring. Revocation is permanent and cannot be undone: apps signed with the certificate can no longer be re-signed with it, every provisioning profile that contains it becomes invalid, and Developer ID or Apple Pay certificates may need Apple to restore service. Issue a replacement with create_certificate first when the certificate is still in use. [destructive]
+- `set_app_clip_default_experience_release_version` — Attach a default App Clip experience to the App Store version it is released with, replacing any version attached before. [destructive]
+- `set_app_store_version_build` — Select the build an App Store version submits for review, replacing any build selected before. Pass null as buildId to detach the current build. [destructive]
+- `set_game_center_achievement_activity` — Attach a Game Center achievement to a game activity, replacing the activity it was attached to before. [destructive]
+- `set_game_center_challenge_leaderboard` — Score a Game Center challenge on another leaderboard, replacing the leaderboard it used before. App Store Connect does not accept detaching the leaderboard, so a leaderboard identifier is always required. [destructive]
+- `set_game_center_leaderboard_activity` — Link a Game Center leaderboard to the game activity it belongs to, replacing any activity linked before. App Store Connect confirms the change without returning the leaderboard. [destructive]
+- `set_game_center_leaderboard_challenge` — Link a Game Center leaderboard to the challenge that ranks players against it, replacing any challenge linked before. App Store Connect confirms the change without returning the leaderboard. [destructive]
+- `start_ci_build_run` — Start an Xcode Cloud build run for a workflow. Pass the Git reference of the branch or tag to build, or the pull request to build; the run is queued and progresses asynchronously, so read it back with get_ci_build_run. [write]
+- `submit_build_for_beta_review` — Submit a build for TestFlight beta review, which external groups require before they can install it. [write]
+- `submit_game_center_leaderboard_entry` — Post a score to a Game Center leaderboard on behalf of a player. This is how a server-authoritative game reports scores its own backend computed instead of letting the game client submit them. [write]
+- `submit_game_center_player_achievement` — Report a player's progress towards a Game Center achievement from a server instead of from the game client. Submitting 100 marks the achievement earned. [write]
+- `submit_in_app_purchase_for_review` — Submit an in-app purchase to App Review. The purchase must be in READY_TO_SUBMIT; once submitted it cannot be edited until review finishes. [write]
+- `submit_review_submission` — Send a prepared review submission and all of its items to App Review. The submission moves to WAITING_FOR_REVIEW and can only be taken back with cancel_review_submission. [write]
+- `test_game_center_matchmaking_rule_set` — Run a Game Center matchmaking rule set against a set of simulated requests and return the matches it would have formed, with the team each simulated player was assigned to. Nothing is stored and no real player is matched, so this is safe to run against a rule set that is already attached to a queue. [write]
+- `update_accessibility_declaration` — Change the supported accessibility features of a declaration, or publish it by passing publish: true, which replaces the currently published declaration for that device family. Pass at least one field. [destructive]
+- `update_age_rating_declaration` — Answer or change questions of the age rating questionnaire. Only the given answers are overwritten; App Store Connect recalculates the derived age ratings. Pass at least one answer. [destructive]
+- `update_android_to_ios_app_mapping_detail` — Change the package name or replace the full list of signing certificate fingerprints of an Android app mapping. Pass at least one field. [destructive]
+- `update_app` — Update app-level settings such as the primary locale, third-party content rights declaration, server notification URLs, or accessibility URL. Overwrites the given attributes; pass null for a URL to clear it. Pass at least one attribute. [destructive]
+- `update_app_clip_advanced_experience` — Change the action, business category, default language, place, header image, or localized card text of an advanced App Clip experience. Overwrites the given fields; a given localizations list is written inline and replaces the relationship. Pass at least one field. [destructive]
+- `update_app_clip_app_store_review_detail` — Replace the invocation URLs App Review uses to test a default App Clip experience. Pass an empty list to remove them all. [destructive]
+- `update_app_clip_default_experience` — Change the action of a default App Clip experience or the App Store version it is released with. Pass at least one field. [destructive]
+- `update_app_clip_default_experience_localization` — Change the subtitle of a default App Clip experience localization, or pass null to remove it. [destructive]
+- `update_app_custom_product_page` — Rename a custom product page or toggle its visibility on the App Store. Overwrites the given fields; pass at least one. [destructive]
+- `update_app_custom_product_page_localization` — Replace the promotional text of a custom product page localization, or clear it with null. [destructive]
+- `update_app_custom_product_page_version` — Set or clear the deep link of a custom product page version. Overwrites the existing deep link; pass null to remove it. [destructive]
+- `update_app_event` — Change the reference name, badge, deep link, purchase requirement, locale, priority, purpose, or territory schedules of an in-app event. Overwrites the given fields; pass null for deepLink or purchaseRequirement to clear it. Pass at least one field. [destructive]
+- `update_app_event_localization` — Change the name or descriptions of an in-app event localization. Overwrites the given fields; pass null to clear a field. Pass at least one field. [destructive]
+- `update_app_info` — Set the App Store categories of an app info record. Each given category replaces the current one; subcategories only apply when the matching category is Games or Stickers. Pass at least one category. Use list_app_categories to find identifiers. [destructive]
+- `update_app_info_localization` — Change the name, subtitle, or privacy URLs of an app info localization. Overwrites the given fields; pass null to clear a subtitle, URL, or privacy text. Pass at least one field. [destructive]
+- `update_app_store_review_detail` — Overwrite the App Review contact details, demo account, or notes of an App Store version. Only the given fields change; pass null to clear a text field. [destructive]
+- `update_app_store_version` — Change the version string, copyright, review or release settings, or attached build of an App Store version. Each given field overwrites the current value; pass null for copyright or earliestReleaseDate to clear them. [destructive]
+- `update_app_store_version_experiment` — Rename a product page optimization test, change its traffic proportion, or start it by passing started true. Starting a test is not reversible: it begins serving treatments to App Store traffic and can only be stopped, not returned to draft. Pass at least one field. [destructive]
+- `update_app_store_version_experiment_treatment` — Rename a treatment or change its alternate app icon. Overwrites the given fields; pass null as appIconName to return to the default icon. Pass at least one field. [destructive]
+- `update_app_store_version_localization` — Overwrite the localized App Store metadata of one version in one locale. Only the given fields change; pass null to clear a field. [destructive]
+- `update_app_store_version_phased_release` — Pause, resume, or complete the phased rollout of a released version. COMPLETE releases the version to every user at once and cannot be undone. [destructive]
+- `update_background_asset` — Archive or unarchive a background asset pack. Archiving is the only change App Store Connect accepts on an asset pack; the identifier and versions stay as they are. [destructive]
+- `update_beta_app_clip_invocation` — Change the invocation URL of a TestFlight App Clip invocation. The previous URL is overwritten. [destructive]
+- `update_beta_app_clip_invocation_localization` — Change the title of one localized App Clip invocation title. The locale itself cannot be changed; the previous title is overwritten. [write]
+- `update_beta_app_localization` — Change the TestFlight test information of one app localization. Each field given replaces the stored value; pass at least one. [destructive]
+- `update_beta_app_review_detail` — Change the contact person, demo account, or notes Apple uses when reviewing an app for TestFlight. Each field given replaces the stored value; pass at least one. The identifier comes from get_beta_app_review_detail. [destructive]
+- `update_beta_build_localization` — Replace the "What to Test" notes of one existing build localization. The previous text is overwritten. [destructive]
+- `update_beta_group` — Change the name, public link, feedback, or Apple silicon and Apple Vision availability settings of one TestFlight group. Each field given replaces the stored value; pass at least one. [destructive]
+- `update_beta_license_agreement` — Replace the license agreement text TestFlight testers of an app must accept. The identifier comes from get_beta_license_agreement. [destructive]
+- `update_beta_recruitment_criterion` — Replace the device family and OS version filters of existing recruitment criteria. The previous filters are overwritten. [destructive]
+- `update_build` — Change the TestFlight flags of one build: expire it so testers can no longer install it, or record whether it uses non-exempt encryption. Expiring a build cannot be undone. Pass at least one field. [destructive]
+- `update_build_beta_detail` — Turn automatic tester notifications on or off for one build. The build beta detail identifier comes from get_build_beta_detail. [destructive]
+- `update_build_test_notes` — Set the "What to Test" notes a build shows testers in one locale. Updates the existing notes for that locale, or creates them when the locale has none yet. [destructive]
+- `update_bundle_id` — Rename a bundle ID. The name is the only attribute App Store Connect lets you change; the identifier string and platform are fixed once registered. [write]
+- `update_bundle_id_capability` — Replace the configuration of a capability that is already enabled on a bundle ID, for example the iCloud version or data protection level. Provide at least one of capabilityType or settings; the settings given replace the current ones. [destructive]
+- `update_certificate` — Activate or deactivate a certificate. App Store Connect only exposes the activation state, which applies to Apple Pay payment processing certificates; a deactivated certificate stops being used for payment processing until it is activated again. [destructive]
+- `update_ci_workflow` — Change an Xcode Cloud workflow. Every field given replaces the current value; a start condition or the actions array is replaced as a whole, so pass the complete new object. Give at least one field to change. [destructive]
+- `update_device` — Rename a registered device or change its status. Provide at least one of name or status. Disabling a device invalidates the development and ad hoc profiles that include it, while the device keeps counting toward the yearly device limit; re-enabling it keeps the same record. [destructive]
+- `update_end_user_license_agreement` — Replace the text of a custom end user license agreement or the full set of territories it applies in. Pass at least one of agreementText or territoryIds. [destructive]
+- `update_game_center_achievement` — Change the configuration of a Game Center achievement, or archive it so it is no longer offered to players. Overwrites the given fields; pass at least one. The vendor identifier cannot be changed after the achievement was created. [destructive]
+- `update_game_center_achievement_localization` — Change the name or the descriptions of a Game Center achievement localization, or clear one of them with null. Overwrites the given fields; pass at least one. The locale cannot be changed; delete the localization and create it again instead. [destructive]
+- `update_game_center_activity` — Change the configuration of a Game Center activity or archive it. Overwrites the given fields and passing null clears one; vendorIdentifier cannot change once the activity exists. Pass at least one field. [destructive]
+- `update_game_center_activity_localization` — Replace the name or the description of a Game Center activity localization, or clear one with null. The locale cannot change; delete the localization and create it again instead. Pass at least one field. [destructive]
+- `update_game_center_activity_version` — Set or clear the fallback URL of a Game Center activity version. Overwrites the existing URL; pass null to remove it. [destructive]
+- `update_game_center_app_version` — Enable or disable Game Center for the App Store version this record belongs to. Disabling it hides Game Center from players on that release without deleting its achievements or leaderboards. [destructive]
+- `update_game_center_challenge` — Rename a Game Center challenge, archive it, change whether players may repeat it, or score it on another leaderboard. Overwrites the given fields; pass at least one. The vendor identifier and the challenge type cannot be changed after creation. [destructive]
+- `update_game_center_challenge_localization` — Replace the name or the description of a Game Center challenge localization, or clear one of them with null. Overwrites the given fields; pass at least one. The locale cannot be changed, so replace the localization to move the text to another locale. [destructive]
+- `update_game_center_detail` — Move a Game Center detail into a group, or change the leaderboards shown by default in the Game Center dashboard. Overwrites the relationships you pass; pass at least one. App Store Connect does not echo the linked identifiers on this call, so read them back with get_game_center_detail. [destructive]
+- `update_game_center_group` — Rename a Game Center group. Overwrites the reference name; pass null to clear it. The apps and the shared records of the group are not touched. [write]
+- `update_game_center_leaderboard` — Change the configuration of a Game Center leaderboard or archive it. Overwrites the given fields and clears the ones passed as null; pass at least one. The vendorIdentifier cannot be changed. Archiving retires the leaderboard so it stops accepting scores. [destructive]
+- `update_game_center_leaderboard_localization` — Change the text or score formatting of a Game Center leaderboard localization. Overwrites the given fields and clears the ones passed as null; pass at least one. The locale cannot be changed. [destructive]
+- `update_game_center_leaderboard_set` — Rename a Game Center leaderboard set, or clear its reference name with null. The vendor identifier is fixed once the set exists and cannot be changed. [write]
+- `update_game_center_leaderboard_set_localization` — Replace the set name of a Game Center leaderboard set localization, or clear it with null. The locale is fixed once the localization exists; delete and recreate it to change the locale. [destructive]
+- `update_game_center_leaderboard_set_member_localization` — Replace the name a leaderboard is shown under inside a leaderboard set, or clear it with null so the leaderboard falls back to its usual localized name. [destructive]
+- `update_game_center_matchmaking_queue` — Point a Game Center matchmaking queue at another rule set, change the rule set its experiment runs with, or replace the classic matchmaking bundle identifiers. Overwrites the given fields; pass at least one. The queue name cannot be changed after creation. [destructive]
+- `update_game_center_matchmaking_rule` — Change the expression, the description or the weight of a Game Center matchmaking rule, or clear one of them with null. Overwrites the given fields; pass at least one. The rule name and its type cannot be changed. [destructive]
+- `update_game_center_matchmaking_rule_set` — Change the player limits of a Game Center matchmaking rule set, or clear a limit with null. Overwrites the given fields; pass at least one. The rule set name and its rule language version cannot be changed. [destructive]
+- `update_game_center_matchmaking_team` — Change the player limits of a Game Center matchmaking team, or clear a limit with null. Overwrites the given fields; pass at least one. The team name cannot be changed, because rule expressions refer to it. [destructive]
+- `update_in_app_purchase` — Update the reference name, review note, or Family Sharing flag of an in-app purchase. Pass at least one field; each given field overwrites the current value. [destructive]
+- `update_in_app_purchase_localization` — Overwrite the display name or description of an in-app purchase localization. Pass at least one field; the locale itself cannot be changed. [write]
+- `update_in_app_purchase_offer_code` — Activate or deactivate an in-app purchase offer code. Deactivating stops every custom and one-time-use code of the offer from being redeemed. [destructive]
+- `update_in_app_purchase_offer_code_custom_code` — Activate or deactivate one custom code of an in-app purchase offer without touching the other codes of the offer. [destructive]
+- `update_in_app_purchase_offer_code_one_time_use_code` — Activate or deactivate one batch of one-time-use codes of an in-app purchase offer. [destructive]
+- `update_in_app_purchase_version_localization` — Overwrite the display name or description of an in-app purchase version localization. Pass at least one field. [write]
+- `update_marketplace_search_detail` — Replace the sitemap catalog URL of an existing marketplace search detail. [destructive]
+- `update_merchant_id` — Rename an Apple Pay merchant ID. The name is the only attribute App Store Connect lets you change. [write]
+- `update_nomination` — Change a featuring nomination, submit a draft with submitted true, or archive it with archived true. Overwrites the given fields; a given list of apps, events, or territories replaces the current one. Pass null for publishEndDate or notes to clear it. Pass at least one field. [destructive]
+- `update_pass_type_id` — Rename a Wallet pass type ID. The name is the only attribute App Store Connect lets you change. [write]
+- `update_promoted_purchase` — Change whether a promoted purchase is enabled or visible to all customers. Pass at least one field. [destructive]
+- `update_review_submission_item` — Mark a review submission item as resolved after fixing the issues App Review raised, or mark it as removed so the submission continues without it. [destructive]
+- `update_sandbox_tester` — Change the territory, interrupted-purchase setting, or subscription renewal rate of a sandbox tester. Changes can take up to an hour to reach the sandbox environment. Pass at least one field to change. [destructive]
+- `update_subscription` — Change the reference name, subscription period, Family Sharing setting, review note, or group level of a subscription. Pass at least one field; each given field overwrites the existing value. Family Sharing cannot be turned off again once enabled for an approved subscription. [destructive]
+- `update_subscription_grace_period` — Change the billing grace period settings of an app: turn it on or off in production or the sandbox, set its length, or choose which renewals it covers. Pass at least one field; the change applies to every subscription of the app. [destructive]
+- `update_subscription_group` — Rename a subscription group. The new reference name replaces the existing one. [write]
+- `update_subscription_group_localization` — Change the customer-facing name or custom app name of a subscription group in one locale. Pass at least one field; the locale itself cannot be changed. [write]
+- `update_subscription_group_version_localization` — Change the customer-facing name or custom app name of a subscription group version localization. Pass at least one field; the locale itself cannot be changed. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [destructive]
+- `update_subscription_introductory_offer` — Change the end date of an introductory offer, or remove the end date so the offer runs until it is deleted. Apple allows no other change; create a new offer to change the price, duration, or mode. [destructive]
+- `update_subscription_localization` — Change the customer-facing name or description of a subscription in one locale. Pass at least one field; the locale itself cannot be changed. [write]
+- `update_subscription_offer_code` — Activate or deactivate an offer code configuration. Deactivating it stops every custom and one-time use code of the configuration from being redeemed; Apple allows no other change after creation. [destructive]
+- `update_subscription_offer_code_custom_code` — Activate or deactivate a custom code. A deactivated code can no longer be redeemed until it is activated again. [destructive]
+- `update_subscription_offer_code_one_time_use_code` — Activate or deactivate a one-time use code batch. Deactivating it stops every unredeemed code in the batch from being redeemed. [destructive]
+- `update_subscription_plan_availability` — Change the territories a subscription payment plan is sold in, or whether it opens automatically in new territories. Pass at least one field; availableTerritoryIds replaces the whole territory list, so territories left out stop selling the plan. [destructive]
+- `update_subscription_promotional_offer` — Set territory prices on an existing promotional offer. Each submitted territory replaces the price already stored for it; other attributes of the offer cannot be changed after creation. [destructive]
+- `update_subscription_version_localization` — Change the customer-facing name or description of a subscription version localization. Pass at least one field; the locale itself cannot be changed. Versions belong to the App Store Connect API 4.4 review flow: a version is a draft of the localized metadata that goes through App Review, and the live record is replaced once the version is approved. [destructive]
+- `update_territory_availability` — Change the availability of an app in one territory: toggle whether it is available, set or clear its release date, or enable pre-orders. Pass at least one field; the others keep their current values. [destructive]
+- `update_user` — Change the roles, app visibility, or provisioning access of a team member. Roles and visible apps replace the current values rather than adding to them. Pass at least one field to change. [destructive]
+- `update_webhook` — Change the name, URL, secret, event types, or enabled state of a webhook. Each given field replaces the current value; eventTypes replaces the whole list. [destructive]
+- `update_win_back_offer` — Change the schedule, priority, promotion intent, or customer eligibility of a win-back offer. Only the given fields change; the identifier, duration, mode, period count, and prices cannot be changed after creation. [destructive]
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change App Store Connect state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — App Store Connect is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
+
+  ```text
+  https://console.oomol.com/connections/app_store_connect
+  ```
+
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
+
+## Resources
+
+- App Store Connect homepage: https://appstoreconnect.apple.com/
+- API documentation: https://developer.apple.com/documentation/appstoreconnectapi

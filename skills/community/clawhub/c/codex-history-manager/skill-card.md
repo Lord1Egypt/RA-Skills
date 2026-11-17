@@ -1,45 +1,60 @@
-## Description: <br>
-Search, read, export, hand off, clone, move, or rebind local Codex history stored under ~/.codex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, read, export, hand off, clone, move, or rebind local Codex history stored under ~/.codex.
 
-## Publisher: <br>
-[severinzhong](https://clawhub.ai/user/severinzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[severinzhong](https://clawhub.ai/user/severinzhong)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect local Codex sessions, export transcripts, create handoff notes, clone or move threads between workspaces, and rebind local provider metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exports, handoff notes, and backups can contain full conversation text, workspace paths, and local metadata. <br>
-Mitigation: Treat generated files as sensitive, store them only in intended locations, and review them before sharing. <br>
-Risk: Move, clone, and provider-rebinding commands can affect local Codex history metadata across one or many threads. <br>
-Mitigation: Run dry runs first, review the affected thread counts and paths, and apply changes only after the scope matches the request. <br>
-Risk: Dangerous history rewrites can modify stored conversation content. <br>
-Mitigation: Generate a plan, present the warning and exact change list, and require explicit user approval before running the apply command. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect local Codex sessions, export transcripts or handoff notes, clone or move threads between workspaces, and rebind local provider metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/severinzhong/codex-history-manager) <br>
-- [Command Details](references/commands.md) <br>
-- [Write Safety and Backups](references/safety.md) <br>
-- [Storage Model](references/storage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, jsonl, shell commands, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON, JSONL, and shell command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local transcript exports, deterministic handoff notes, dry-run plans, and guarded apply commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Exports and handoff notes can expose sensitive local Codex history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat exported files as sensitive, review their contents before sharing, and limit output paths and recipients to the intended scope.
+
+Risk: History rewriting and bulk metadata changes can alter many local Codex records.
+
+Mitigation: Run dry runs first, review scope counts and planned changes, rely on backups for write operations, and require explicit approval before applying dangerous edits.
+
+Risk: The security verdict flags guardrail weaknesses around high-impact operations.
+
+Mitigation: Avoid broad commands such as change-provider-all unless intended, and independently review dangerous edit plan files immediately before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/severinzhong/skills/codex-history-manager)
+- [Command reference](artifact/references/commands.md)
+- [Safety reference](artifact/references/safety.md)
+- [Storage model](artifact/references/storage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, jsonl, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus optional Markdown, JSON, or JSONL exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain sensitive local Codex history and should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Reviews requirement documents across completeness, clarity, consistency, testability, and feasibility before QA planning or test design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews PRDs and requirements for completeness, clarity, consistency, testability, and feasibility before test design.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, product reviewers, and developers use this skill to assess PRDs or requirement descriptions before creating test plans or test cases. It produces a structured review with five-dimension scoring, issue severity, and improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for broader testing tasks that include requirements even when the user expected a narrower workflow. <br>
-Mitigation: Call it explicitly when requirement-quality review is desired, or confirm scope before applying its findings to downstream QA planning. <br>
-Risk: Requirement-review findings can affect test strategy and may overstate or miss issues in ambiguous source requirements. <br>
-Mitigation: Have the product owner or QA lead review P0/P1 findings and clarify missing requirement details before test design proceeds. <br>
+## Use Case:
 
+QA teams, product managers, and developers use this skill to review requirements before test design, identify gaps or ambiguities, and suggest actionable revisions.
 
-## Reference(s): <br>
-- [Review Standards](references/review-standards.md) <br>
-- [Report Template](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown requirement review report with scoring, issue lists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes completeness, clarity, consistency, testability, and feasibility scoring plus P0-P2 issue classification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: The optional companion-skill installation command is not version-pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify its source and use a pinned or reviewed version before running it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-requirement-review)
+- [Review report template](artifact/references/report-template.md)
+- [Five-dimension review standards](artifact/references/review-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown requirement-review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Five-dimension scores, an overall decision, prioritized P0–P2 findings, traceable issue IDs, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill metadata and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

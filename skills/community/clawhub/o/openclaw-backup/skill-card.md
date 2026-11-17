@@ -1,43 +1,52 @@
-## Description: <br>
-Backup and restore OpenClaw data, including backup creation, automatic backup schedules, restore steps, and backup rotation for the ~/.openclaw directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Handles ~/.openclaw directory archiving with proper exclusions.
 
-## Publisher: <br>
-[alex3alex](https://clawhub.ai/user/alex3alex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alex3alex](https://clawhub.ai/user/alex3alex)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill to create local backups of OpenClaw configuration, credentials, workspace data, scheduled tasks, and session data, then restore those backups when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated backup archives may contain credentials, tokens, session data, configuration, and workspace files. <br>
-Mitigation: Store backup archives privately, prefer encrypted storage, and avoid sharing or syncing them to untrusted locations. <br>
-Risk: Restore commands can replace the current ~/.openclaw directory. <br>
-Mitigation: Stop OpenClaw first, keep the current directory as ~/.openclaw-old, and verify the backup path before extraction. <br>
-Risk: Scheduled backups can run an unexpected script path if cron configuration is copied without review. <br>
-Mitigation: Review the cron payload path before enabling scheduled backups. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Backup on ClawHub](https://clawhub.ai/alex3alex/openclaw-backup) <br>
-- [alex3alex ClawHub profile](https://clawhub.ai/user/alex3alex) <br>
-- [Restore OpenClaw from Backup](references/restore.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create and rotate local backups of ~/.openclaw, configure scheduled backups, and restore OpenClaw state from an archive.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local compressed backup archives when the backup script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backups include credentials, API keys, tokens, and session data in plaintext archives.
+
+Mitigation: Use only trusted local backup locations, restrict archive access, and consider encrypting backup archives.
+
+Risk: Restore and rollback steps can overwrite or delete the active ~/.openclaw directory.
+
+Mitigation: Verify backup contents first and make a separate safety copy of the current ~/.openclaw directory before running restore or rollback commands.
+
+## Reference(s):
+
+- [Restore OpenClaw from Backup](references/restore.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backup file paths, cron schedule examples, restore steps, and safety checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

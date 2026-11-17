@@ -1,48 +1,62 @@
-## Description: <br>
-Uds Diagnostic Test helps automotive engineers parse UDS diagnostic survey files, generate test scripts, run SocketCAN-based ECU tests, and produce reports and CAN logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UDS Diagnostic Test helps agents parse UDS diagnostic survey files, generate Python-based diagnostic test scripts, initialize SocketCAN, execute authorized ECU tests, and produce test reports and CAN trace logs.
 
-## Publisher: <br>
-[tongli0406](https://clawhub.ai/user/tongli0406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tongli0406](https://clawhub.ai/user/tongli0406)
 
-## Use Case: <br>
-Developers and automotive diagnostic engineers use this skill for authorized bench or lab workflows that parse diagnostic survey inputs, confirm CAN and default-value assumptions, generate UDS test scripts, and review Markdown reports and CAN traces from ECU testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated UDS tests can change ECU state or host CAN settings. <br>
-Mitigation: Use only on authorized bench or lab systems, review the generated test script before execution, and avoid running against live vehicles or shared workstations without review. <br>
-Risk: Passwordless sudoers configuration for CAN setup can expand host-level risk. <br>
-Mitigation: Avoid the passwordless sudoers rule unless the operator accepts the host risk; prefer reviewed, least-privilege setup on controlled machines. <br>
-Risk: Pipeline mode can combine parsing, generation, and execution with fewer manual checks. <br>
-Mitigation: Use the standard parse, confirm, generate, verify, and execute flow by default; reserve pipeline mode for explicit operator requests. <br>
-Risk: SeedKey DLL loading can introduce untrusted executable logic. <br>
-Mitigation: Load SeedKey DLLs only from trusted sources and review their use before SecurityAccess testing. <br>
+## Use Case:
 
+Developers and automotive test engineers use this skill to turn diagnostic survey data into UDS test scripts, validate CAN connectivity, and run ECU diagnostic tests on an authorized SocketCAN test bench.
 
-## Reference(s): <br>
-- [UDS NRC Reference](references/uds_nrc_reference.md) <br>
-- [Linux CAN Project](https://github.com/linux-can) <br>
-- [PEAK Linux Driver](https://github.com/linux-can/peak-linux-driver) <br>
-- [Microsoft WSL USB Connection Guide](https://learn.microsoft.com/windows/wsl/connect-usb) <br>
-- [usbipd-win WSL Support](https://github.com/dorssel/usbipd-win/wiki/WSL-support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated Python scripts, JSON parser output, Markdown reports, and CAN log files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for authorized UDS diagnostic testing with SocketCAN-compatible hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.1 (source: server release metadata; artifact frontmatter reports 2.9.0) <br>
+Risk: The skill can make persistent privileged host changes, including CAN kernel module loading, CAN interface configuration, and optional sudoers changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only on a dedicated, authorized ECU test bench or isolated lab machine, and do not apply the NOPASSWD sudoers rule on shared workstations.
+
+Risk: Generated and executed UDS tests can change ECU state through reset, clear-DTC, write, SecurityAccess, memory, transfer, IOControl, RoutineControl, or ControlDTCSetting paths.
+
+Mitigation: Review generated scripts before execution and require explicit approval for state-changing tests, especially before running against production vehicles or ECUs.
+
+Risk: Missing or defaulted CAN parameters can cause tests to target the wrong bus configuration or produce misleading results.
+
+Mitigation: Preserve the documented confirmation step for TX/RX CAN IDs, bitrate, CAN FD settings, defaults, and missing survey attributes before generating scripts with the confirmed flag.
+
+## Reference(s):
+
+- [UDS NRC Reference](references/uds_nrc_reference.md)
+- [PEAK Linux Driver Repository](https://github.com/linux-can/peak-linux-driver)
+- [Linux CAN Project](https://github.com/linux-can)
+- [Microsoft WSL USB Connection Guide](https://learn.microsoft.com/windows/wsl/connect-usb)
+- [usbipd-win WSL Support](https://github.com/dorssel/usbipd-win/wiki/WSL-support)
+- [usbipd-win Troubleshooting](https://github.com/dorssel/usbipd-win/wiki/Troubleshooting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Python test scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce Markdown UDS test reports and ASC CAN trace logs when executed on authorized SocketCAN hardware.]
+
+## Skill Version(s):
+
+2.9.1 (source: server release evidence; artifact frontmatter and changelog list 2.9.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

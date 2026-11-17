@@ -1,42 +1,54 @@
-## Description: <br>
-Query the OpenAI developer documentation via the OpenAI Docs MCP server using CLI (curl/jq). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the OpenAI developer documentation via the OpenAI Docs MCP server using CLI (curl/jq) for current OpenAI API, SDK, ChatGPT Apps SDK, Codex, MCP, endpoint, parameter, limit, and migration guidance.
 
-## Publisher: <br>
-[am-will](https://clawhub.ai/user/am-will) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[am-will](https://clawhub.ai/user/am-will)
 
-## Use Case: <br>
-Developers and technical agents use this skill to search and fetch official OpenAI documentation for API, SDK, ChatGPT Apps SDK, Codex, MCP integration, endpoint schema, parameter, limit, and migration questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper makes documentation queries over the network. <br>
-Mitigation: Keep the default OpenAI MCP endpoint unless an override is trusted. <br>
-Risk: Search or fetch queries could disclose sensitive project details. <br>
-Mitigation: Do not include secrets or private project data in documentation queries. <br>
-Risk: The wrapper depends on local curl and jq binaries. <br>
-Mitigation: Confirm curl and jq are installed before using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenAI Docs MCP endpoint](https://developers.openai.com/mcp) <br>
-- [Migrate to the Responses API](https://platform.openai.com/docs/guides/migrate-to-responses) <br>
+## Use Case:
 
+Developers and agents use this skill when OpenAI platform work requires current official documentation instead of memory or non-official sources. It supports searching and fetching OpenAI docs, browsing docs indexes, listing API endpoints, and retrieving OpenAPI schemas or code samples.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with sourced documentation summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses network queries to the OpenAI Docs MCP endpoint through curl and jq; MCP_URL can override the default endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Documentation search terms and fetched URLs are sent to the configured MCP endpoint.
+
+Mitigation: Avoid including secrets, private customer data, or confidential implementation details in documentation queries.
+
+Risk: Returned guidance can become misleading if the configured MCP endpoint is changed to an untrusted or stale source.
+
+Mitigation: Use the default OpenAI Docs MCP endpoint or verify any MCP_URL override before relying on retrieved documentation.
+
+## Reference(s):
+
+- [OpenAI Docs MCP Server](https://developers.openai.com/mcp)
+- [Migrate to Responses API](https://platform.openai.com/docs/guides/migrate-to-responses)
+- [OpenAI Developer Docs Skill on ClawHub](https://clawhub.ai/am-will/skills/openai-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell command output from OpenAI documentation queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fetched documentation URLs, excerpts, OpenAPI schema details, and code samples from the configured MCP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

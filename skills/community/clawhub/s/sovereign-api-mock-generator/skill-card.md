@@ -1,41 +1,51 @@
-## Description: <br>
-Generates mock API servers from OpenAPI specs or examples. Realistic fake data, configurable delays, error simulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates mock API servers from OpenAPI specs or examples with realistic fake data, configurable delays, and error simulation.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate mock API server implementations or guidance from OpenAPI specifications or example payloads, including fake data, response delays, and error simulation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated mock-server code could behave incorrectly or expose unintended behavior if run without review. <br>
-Mitigation: Review generated code and configuration before execution, especially routes, generated responses, and error simulation behavior. <br>
-Risk: Using real API examples may expose sensitive request or response data in generated mock data. <br>
-Mitigation: Sanitize real API examples before using them as inputs and replace secrets, personal data, and proprietary payloads with safe samples. <br>
-Risk: Binding a generated mock server to a public network interface can expose test endpoints outside the intended environment. <br>
-Mitigation: Run mock servers on local or restricted interfaces by default and require explicit review before public network exposure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-api-mock-generator) <br>
+## Use Case:
+
+Developers and engineers use this skill to generate mock API server plans, code examples, and configuration guidance from OpenAPI specifications or representative API examples.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated mock server code or dependency suggestions could be unsafe if run without review.
+
+Mitigation: Review generated code and dependencies before execution, especially when binding network ports or adding packages.
+
+Risk: Real API examples used as prompts may contain sensitive data.
+
+Mitigation: Remove secrets, personal data, and production identifiers from API examples before using the skill.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated mock-server code, setup commands, configuration examples, and trade-off guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with code examples and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated mock server code, dependency suggestions, delay configuration, fake data generation patterns, and error simulation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

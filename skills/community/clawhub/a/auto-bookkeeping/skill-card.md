@@ -1,41 +1,67 @@
-## Description: <br>
-智能自动记账 helps an agent parse natural-language bookkeeping requests, store local SQLite ledger entries, query records, and generate monthly HTML spending reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能自动记账 helps an agent parse natural-language income and expense notes, store local SQLite bookkeeping records, query or delete entries, and generate monthly HTML reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Individuals and agents use this skill to turn short expense or income phrases into structured bookkeeping records, review monthly ledger summaries, search entries, delete mistaken records, and create local visual reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can record, reveal, report, and delete personal financial data from broad conversational triggers. <br>
-Mitigation: Use explicit bookkeeping commands, review parsed entries before saving, and confirm delete or report actions before executing them. <br>
-Risk: Automatically saved entries may be incorrect when amount, date, category, or transaction type parsing is uncertain. <br>
-Mitigation: Show the parsed entry to the user and require confirmation whenever confidence is low or any required value is missing. <br>
-Risk: The artifact references Python scripts that are not included, so bookkeeping, deletion, and report flows may fail or behave differently after local repair. <br>
-Mitigation: Verify the installed files before use and add backups or dry-run checks before relying on delete and report workflows. <br>
+## Use Case:
 
+External users and personal finance operators use this skill to record expenses or income with short natural-language prompts, review monthly activity, search records, and generate local spending reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, files] <br>
-**Output Format:** [Markdown responses with shell commands, JSON parser results, SQLite-backed ledger data, and generated local HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python. The release artifact references parser, bookkeeping, and reporter scripts that were not included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: User-controlled text may be passed through shell command invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid shell-string invocation for user text and pass user input through structured arguments or a reviewed parser boundary.
+
+Risk: Financial records can be deleted without a required confirmation step.
+
+Mitigation: Require explicit user confirmation before deleting records and show the target record before execution.
+
+Risk: Financial records and generated reports may expose sensitive personal finance data.
+
+Mitigation: Require confirmation before exposing records or reports and keep generated files local unless the user explicitly requests sharing.
+
+Risk: Referenced helper scripts are not included in the artifact for audit.
+
+Mitigation: Provide and review the parser, bookkeeper, and reporter scripts before routine use.
+
+Risk: Broad bookkeeping trigger phrases may activate the skill in ambiguous contexts.
+
+Mitigation: Narrow activation triggers or ask for clarification before recording, deleting, or displaying financial data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/auto-bookkeeping)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+- [Skill artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files]
+
+**Output Format:** [Markdown-style agent responses with JSON snippets, shell commands, and generated HTML report file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Python runtime and stores bookkeeping data in a local SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

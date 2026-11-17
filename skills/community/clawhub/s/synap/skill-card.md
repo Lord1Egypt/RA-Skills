@@ -1,45 +1,56 @@
-## Description: <br>
-Sovereign AI knowledge infrastructure with typed entity graphs, documents, long-term memory, messaging relay, and AI governance backed by PostgreSQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sovereign AI knowledge infrastructure with a typed entity graph, documents, long-term memory, messaging relay, and AI governance backed by PostgreSQL.
 
-## Publisher: <br>
-[antoinesrvt](https://clawhub.ai/user/antoinesrvt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoinesrvt](https://clawhub.ai/user/antoinesrvt)
 
-## Use Case: <br>
-Developers and agent operators use Synap to connect an agent to persistent structured memory, knowledge graph records, documents, and governed message relay workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Synap API key grants access to knowledge-memory and relay operations. <br>
-Mitigation: Use least-privilege API keys, keep keys out of logs and source control, and rotate keys if exposed. <br>
-Risk: Connected messaging channels may contain sensitive participant messages. <br>
-Mitigation: Connect only channels whose participants are allowed to have messages stored and processed by Synap. <br>
-Risk: A managed or self-hosted pod becomes the system of record for stored memory and documents. <br>
-Mitigation: Install only when the configured Synap pod is trusted, or self-host the pod in an environment the user controls. <br>
+## Use Case:
 
+Developers and agents use Synap to store, search, update, and relate persistent knowledge in a configured Synap pod. It supports memory, documents, typed entities, relations, and external message relay with governance controls for writes.
 
-## Reference(s): <br>
-- [Synap OpenClaw Homepage](https://synap.live/openclaw) <br>
-- [Synap](https://synap.live) <br>
-- [Hub Protocol Documentation](https://synap.live/docs/hub-protocol) <br>
-- [ClawHub Skill Page](https://clawhub.ai/antoinesrvt/synap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline HTTP examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update records in a configured Synap pod through governed API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The agent can store facts, documents, relationships, and relayed channel messages in the configured Synap pod.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Synap pod whose storage and privacy expectations are acceptable for the data being handled.
+
+Risk: The skill requires write authority for its intended memory, document, entity, relation, and relay workflows.
+
+Mitigation: Use least-privilege API keys where available and configure governance so important business data changes require review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/antoinesrvt/skills/synap)
+- [Synap OpenClaw](https://synap.live/openclaw)
+- [Synap](https://synap.live)
+- [Hub Protocol](https://synap.live/docs/hub-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON request bodies, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Synap Hub API key and a configured Synap pod URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

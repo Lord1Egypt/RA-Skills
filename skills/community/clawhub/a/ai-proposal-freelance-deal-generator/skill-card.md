@@ -1,42 +1,60 @@
-## Description: <br>
-Generates personalized freelance proposals, pricing strategies, objection handlers, follow-up messages, proposal variations, and upsell or retainer scripts for freelancers and agencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-converting freelance proposals, pricing strategies, objection handlers, and client follow-ups. Designed to help freelancers and agencies win more deals on Upwork, Fiverr, and direct outreach.
 
-## Publisher: <br>
-[DTTNpole-commits](https://clawhub.ai/user/DTTNpole-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits)
 
-## Use Case: <br>
-External freelancers, agencies, consultants, and service providers use this skill to draft client-specific proposal packages for Upwork, Fiverr, direct outreach, and retainer sales. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste private client messages, personal contact details, platform account links, contract terms, or confidential business information into the prompt. <br>
-Mitigation: Redact unnecessary personal, account, credential, contract, and confidential business details before using the skill. <br>
-Risk: Generated proposals can include inaccurate claims about results, availability, team size, scarcity, or pricing. <br>
-Mitigation: Verify every factual claim and adjust the proposal to match the user's actual experience, offer, availability, and pricing before sending it to a client. <br>
-Risk: Sales copy may overstate capabilities or create misleading client expectations. <br>
-Mitigation: Keep claims aligned to services the user can actually deliver and revise objection, upsell, and retainer language for truthful, non-deceptive positioning. <br>
+## Use Case:
 
+Freelancers, agencies, consultants, and service providers use this skill to draft client-specific proposal packages for marketplace and direct outreach sales workflows. It helps produce proposal copy, pricing presentation, objection responses, follow-up messages, A/B openers, and upsell or retainer scripts based on the selected tier.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DTTNpole-commits/ai-proposal-freelance-deal-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal package with tier-dependent sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tier controls the generated sections; outputs may include short and long proposals, pricing strategy, objection responses, follow-up messages, A/B variations, and upsell or retainer scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, manifest.json, config.json) <br>
+Risk: Users may paste confidential client emails, personal contact details, proprietary business information, or regulated data into the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive or regulated details unless authorized before using the skill.
+
+Risk: Generated proposal text may include incorrect, overstated, or insufficiently reviewed claims before it is sent to a client.
+
+Mitigation: Review and personalize generated sections before sending, including any credibility signals, pricing claims, and recommended next steps.
+
+Risk: FREE-tier outputs may include an upgrade prompt that is not appropriate for client-facing proposals.
+
+Mitigation: Remove upgrade prompts and any platform-specific internal messaging before sending outputs externally.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [Skill Prompt](artifact/prompt.txt)
+- [Skill Manifest](artifact/manifest.json)
+- [Skill Configuration](artifact/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with proposal copy, pricing guidance, objection handlers, follow-up messages, A/B openers, and optional upsell or retainer scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tier selection controls which sections are generated: FREE, PRO, GROWTH, or PREMIUM.]
+
+## Skill Version(s):
+
+1.0.0 (source: manifest.json, config.json, release metadata, README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

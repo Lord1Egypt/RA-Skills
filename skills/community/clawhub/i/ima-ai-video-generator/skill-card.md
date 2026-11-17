@@ -1,44 +1,60 @@
-## Description: <br>
-AI video generator with premier models including Wan 2.6, Kling O1/2.6, Google Veo 3.1, Sora 2 Pro, Pixverse V5.5, Hailuo 2.0/2.3, SeeDance 1.5 Pro, and Vidu Q2 for text-to-video, image-to-video, first-last-frame, and reference-image video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short and promotional videos from text prompts or images using IMA Studio models for text-to-video, image-to-video, first-last-frame, and reference-image workflows.
 
-## Publisher: <br>
-[dai-shuo](https://clawhub.ai/user/dai-shuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dai-shuo](https://clawhub.ai/user/dai-shuo)
 
-## Use Case: <br>
-External users and creators use this skill to generate short videos, promotional clips, social media content, animated images, and multi-shot video concepts through IMA Studio models. Developers and agents can use it to select video modes, run the bundled API helper, and return generated video URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an IMA API key and sends prompts and selected images to IMA services. <br>
-Mitigation: Install only if you trust IMA Studio with those inputs, use a revocable or low-quota API key, and avoid sensitive media. <br>
-Risk: Video generation can consume paid credits through the configured IMA account. <br>
-Mitigation: Monitor credit usage and prefer low-quota or scoped keys for testing. <br>
-Risk: The skill keeps small local preference and log files. <br>
-Mitigation: Periodically review or delete ~/.openclaw/memory/ima_prefs.json and ~/.openclaw/logs/ima_skills/ if local history matters. <br>
+## Use Case:
 
+Agents serving content creators, marketers, agencies, and developers use this skill to create AI-generated video clips from prompts or source images. It supports model selection, parameter guidance, image upload handling, polling, and returning a remote video URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dai-shuo/ima-ai-video-generator) <br>
-- [IMA Studio homepage](https://imastudio.com) <br>
-- [IMA API key management](https://www.imaclaw.ai/imaclaw/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated video URL results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY; image-based tasks may upload provided images to IMA services and return remote video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill uses an IMA API key and may send prompts, model parameters, and input images to IMA services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-quota test key first, avoid sensitive prompts or images, and rotate keys after testing or suspected exposure.
+
+Risk: Local model preferences and generation logs may remain under ~/.openclaw.
+
+Mitigation: Clear ~/.openclaw/memory/ima_prefs.json and ~/.openclaw/logs/ima_skills/ when local history should not be retained.
+
+Risk: Endpoint overrides or third-party upload examples can change where credentials or images are sent.
+
+Mitigation: Use the default IMA endpoints, avoid custom endpoint overrides, and review or remove the ImgBB example before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dai-shuo/skills/ima-ai-video-generator)
+- [IMA Studio Homepage](https://imastudio.com)
+- [IMA Studio Privacy Policy](https://imastudio.com/privacy)
+- [IMA API Keys](https://imastudio.com/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Configuration, Video URL]
+
+**Output Format:** [Markdown guidance with bash commands, JSON command output, and remote video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMA_API_KEY; image workflows may upload input images to IMA services and local logs/preferences may be retained under ~/.openclaw.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

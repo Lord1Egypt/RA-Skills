@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn76nq41ma07c1bcewnm98ryf982mnkg",
-  "slug": "generate-alias",
-  "version": "2.1.1",
-  "publishedAt": 1774420488163
+  "name": "generate-alias",
+  "version": "3.0.0",
+  "displayName": "企业别名智能生成",
+  "description": "根据企业名称智能生成可用于匹配的关键字/别名，支持品牌映射、核心词提取、维基百科查询",
+  "author": "Q-Claw",
+  "tags": ["企业", "别名", "关键字", "品牌", "匹配"],
+  "homepage": "https://clawhub.ai/hyqdq888/generate-alias"
 }

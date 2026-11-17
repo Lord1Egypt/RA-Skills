@@ -1,11 +1,11 @@
 # ESCH\_PrimitiveEventType enum
 
-图元事件类型
+Primitive event type
 
 ## Signature
 
 ```typescript
-declare enum ESCH_PrimitiveEventType 
+enum ESCH_PrimitiveEventType
 ```
 
 ## Enumeration Members
@@ -14,80 +14,57 @@ declare enum ESCH_PrimitiveEventType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 CHANGE
 
-
 </td><td>
 
-`"change"`
-
+`'change'`
 
 </td><td>
-
-属性变更（除位置外的属性变更）
-
 
 </td></tr>
 <tr><td>
 
 CREATE
 
-
 </td><td>
 
-`"create"`
-
+`'create'`
 
 </td><td>
-
-创建
-
 
 </td></tr>
 <tr><td>
 
 DELETE
 
-
 </td><td>
 
-`"delete"`
-
+`'delete'`
 
 </td><td>
-
-删除
-
 
 </td></tr>
 <tr><td>
 
 MOVE
 
-
 </td><td>
 
-`"move"`
-
+`'move'`
 
 </td><td>
-
-移动
-
 
 </td></tr>
 </tbody></table>

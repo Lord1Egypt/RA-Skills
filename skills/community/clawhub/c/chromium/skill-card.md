@@ -1,43 +1,57 @@
-## Description: <br>
-Launches a persistent headless Chromium session with Chrome DevTools Protocol access for browser automation, screenshots, and cookie import. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch a persistent headless Chromium with remote debugging (CDP) for browser automation, including page navigation, clicks, form filling, screenshots, and cookie import.
 
-## Publisher: <br>
-[redf426](https://clawhub.ai/user/redf426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redf426](https://clawhub.ai/user/redf426)
 
-## Use Case: <br>
-Developers and operators use this skill to give OpenClaw agents a persistent headless browser for navigation, page inspection, clicks, form filling, screenshots, and authenticated browsing via imported cookies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent browser profiles and imported cookies can expose authenticated sessions. <br>
-Mitigation: Use an isolated machine or container, avoid importing valuable account cookies, delete cookie export files after import, and clear the browser profile when finished. <br>
-Risk: The supplied launcher disables Chromium sandboxing. <br>
-Mitigation: Run Chromium on a least-privileged isolated host or container and avoid combining unsandboxed browsing with sensitive accounts or files. <br>
-Risk: Remote debugging enables browser control through the local CDP endpoint. <br>
-Mitigation: Keep the endpoint bound to 127.0.0.1, do not forward the debug port, and close Chromium when browser automation is no longer needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give OpenClaw agents a persistent headless browser for web navigation, interaction, screenshots, and authenticated browsing workflows.
 
-## Reference(s): <br>
-- [ClawHub Chromium Skill](https://clawhub.ai/redf426/chromium) <br>
-- [Cookie-Editor](https://cookie-editor.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and browser-control instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist browser profile state and imported cookies; uses a local CDP endpoint for browser automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can run a persistent authenticated headless browser and import cookies, which may expose account sessions if used with sensitive accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated unprivileged environment, avoid importing high-value account cookies, and delete imported cookie files and browser profiles when finished.
+
+Risk: The Chromium launch script disables Chromium sandboxing, increasing exposure when visiting untrusted websites.
+
+Mitigation: Treat the disabled sandbox as a serious risk, browse only necessary sites, and isolate the runtime from sensitive host resources.
+
+Risk: Optional always-on browser startup can keep authenticated browsing state available longer than intended.
+
+Mitigation: Do not add the optional cron startup unless continuous browsing is required.
+
+## Reference(s):
+
+- [Cookie-Editor](https://cookie-editor.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser-tool guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch and manage a persistent local browser profile and CDP endpoint when installed and executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

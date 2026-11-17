@@ -1,45 +1,60 @@
-## Description: <br>
-Triggers Botlington's A2A Agent Token Audit for AI agent token efficiency, returning a score, findings, and a prioritized remediation plan with estimated euro savings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger an Agent Token Audit via Botlington's A2A endpoint to audit an AI agent's token efficiency, identify model waste, context bloat, tool mismatches, and redundant work, and return a score, findings, and a prioritized remediation plan with estimated euro savings.
 
-## Publisher: <br>
-[gary-botlington](https://clawhub.ai/user/gary-botlington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gary-botlington](https://clawhub.ai/user/gary-botlington)
 
-## Use Case: <br>
-Developers and agent operators use this skill to submit conversational or direct configuration inputs to Botlington for token-efficiency audits of AI agents. It helps identify model waste, context bloat, tool mismatches, prompt density issues, and repeated work, then returns findings and prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits agent configuration details to an external paid audit provider. <br>
-Mitigation: Confirm that Botlington is an acceptable provider before use and remove secrets, customer data, and unnecessary proprietary prompt or configuration details from submitted inputs. <br>
-Risk: The workflow requires an API key for Botlington's A2A endpoint. <br>
-Mitigation: Keep the API key private, pass it only through the documented x-api-key header or environment handling, and avoid committing it to logs or source files. <br>
-Risk: Audit credits are consumed when a consultation starts. <br>
-Mitigation: Confirm credit usage and pricing before starting an audit, and resume with the same taskId when continuing an existing conversation. <br>
+## Use Case:
 
+Developers and teams use this skill to submit AI-agent configuration details to Botlington for a token-efficiency audit. The service returns scoring, findings, prioritized remediation actions, and estimated savings to guide agent optimization.
 
-## Reference(s): <br>
-- [Botlington A2A Endpoint](https://botlington.com/a2a) <br>
-- [Botlington Agent Card](https://botlington.com/.well-known/agent.json) <br>
-- [Sample Botlington Audit](https://botlington.com/audits/stripe) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gary-botlington/botlington-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with JSON examples and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes JSON-RPC requests, API-key header usage, SSE streaming, and the expected audit result JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill sends agent configuration, prompts, schedules, tool lists, and audit answers to Botlington's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact internal identifiers, credentials, personal data, and regulated information before submitting an audit.
+
+Risk: The Botlington API key is required for paid audit requests and could authorize credit-consuming actions if exposed.
+
+Mitigation: Store the API key in an environment variable or secrets manager and avoid placing it in prompts, source files, logs, or shared transcripts.
+
+Risk: Audit findings and savings estimates may influence production agent changes.
+
+Mitigation: Review recommendations before implementation and test changes against representative workloads before deployment.
+
+## Reference(s):
+
+- [Botlington A2A Endpoint](https://botlington.com/a2a)
+- [Botlington Agent Card](https://botlington.com/.well-known/agent.json)
+- [Sample Botlington Audit](https://botlington.com/audits/stripe)
+- [ClawHub Skill Page](https://clawhub.ai/gary-botlington/skills/botlington-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit responses include a score, findings, priority actions, and estimated savings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

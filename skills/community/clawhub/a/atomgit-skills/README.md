@@ -5,7 +5,7 @@
 ## 结构
 
 - `SKILL.md`：给 agent 读的主入口，只保留触发语义、工具命名约定和高频工作流
-- `references/`：按 17 个 AtomGit 分类拆分的渐进披露文档，另含独立 setup/safety 文档
+- `references/`：按 19 个 AtomGit 分类拆分的渐进披露文档，另含独立 setup/safety 文档
 
 ## 依赖
 
@@ -20,6 +20,7 @@
 
 - Skill 源仓库：<https://atomgit.com/zkxw2008/AtomGit-Skills>
 - MCP Server 源仓库：<https://atomgit.com/zkxw2008/AtomGit-MCP-Server>
+- 文档对齐版本：AtomGit MCP Server v2.8.1（305 个工具）
 - MCP Server npm 包：<https://www.npmjs.com/package/@atomgit.com/atomgit-mcp-server>
 
 ## 设计目标

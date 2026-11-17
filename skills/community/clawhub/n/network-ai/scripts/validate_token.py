@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-# SECURITY: This script makes NO network calls and spawns NO subprocesses.
+# SECURITY: Local-only. No network access and no child processes.
 # All I/O is local file operations only:
 #   READS:  data[/<env>]/active_grants.json, data[/<env>]/.signing_key
 #   WRITES: none
-# Imports used: argparse, json, sys, hmac, hashlib, datetime, pathlib, typing
-# No imports of: requests, socket, subprocess, urllib, http, ssl, ftplib, smtplib
+#   <env> must be one of dev|st|sit|qa|sandbox|preprod|prod (anything else is rejected).
+# Imports used: argparse, json, os, sys, hmac, hashlib, datetime, pathlib, typing
+# Standard library only; no networking or process-spawning modules are imported.
 """
 Validate Grant Token
 
@@ -21,21 +22,29 @@ import argparse
 import hashlib
 import hmac
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
+_DATA_ROOT = Path(__file__).resolve().parent.parent / "data"
+
+# The only environments a data/<env>/ directory is used for.
+_ENVIRONMENTS = ("dev", "st", "sit", "qa", "sandbox", "preprod", "prod")
+
+
 def _resolve_data_dir(env: str = "") -> Path:
-    """Return the active data directory, scoped to <env> when set."""
-    import re as _re, os as _os
-    _env = env or _os.environ.get("NETWORK_AI_ENV", "")
-    base = Path(__file__).parent.parent / "data"
-    if _env:
-        if not _re.match(r'^[a-zA-Z0-9_-]+$', _env):
-            raise ValueError(f"Invalid NETWORK_AI_ENV value: {_env!r}")
-        return base / _env
-    return base
+    """Return data/, or data/<env>/ for one of the documented environments."""
+    requested = env or os.environ.get("NETWORK_AI_ENV", "")
+    if not requested:
+        return _DATA_ROOT
+    for name in _ENVIRONMENTS:
+        if requested == name:
+            return _DATA_ROOT / name  # built from the fixed list, not the input
+    raise ValueError(
+        f"Unknown environment {requested!r}; expected one of: {', '.join(_ENVIRONMENTS)}"
+    )
 
 GRANTS_FILE = _resolve_data_dir() / "active_grants.json"
 
@@ -61,22 +70,21 @@ def _verify_grant_sig(grant: "dict[str, Any]") -> "Optional[bool]":
     Returns:
       True  — signature present and valid
       False — signature present but invalid (tampered)
-      None  — no signature (pre-v5.5.2 token) or key unavailable
+      None  — no signature, or the signing key is unavailable (cannot verify)
     """
     stored_sig = grant.get("_sig")
     if not stored_sig:
-        return None  # Backward-compatible: unsigned token from before v5.5.2
+        return None
+    if not isinstance(stored_sig, str):
+        return False
     key = _load_signing_key()
     if key is None:
-        return None  # Key not present — cannot verify; treat as unverified
-    payload = "|".join([
-        grant.get("token", ""),
-        grant.get("agent_id", ""),
-        grant.get("resource_type", ""),
-        grant.get("scope") or "",
-        grant.get("expires_at", ""),
-        grant.get("granted_at", ""),
-    ])
+        return None
+    fields = [grant.get("token", ""), grant.get("agent_id", ""), grant.get("resource_type", ""),
+              grant.get("scope") or "", grant.get("expires_at", ""), grant.get("granted_at", "")]
+    if not all(isinstance(f, str) for f in fields):
+        return False  # malformed record: cannot match what check_permission.py signed
+    payload = "|".join(fields)
     expected = hmac.new(key, payload.encode("utf-8"), hashlib.sha256).hexdigest()
     return hmac.compare_digest(expected, stored_sig)
 
@@ -112,28 +120,46 @@ def validate_token(token: str) -> dict[str, Any]:
             "valid": False,
             "reason": "Token signature invalid — grant record may have been tampered with",
         }
+    # Fail closed: a grant that cannot be verified (no signature, or no signing key) is never valid.
+    if sig_result is None:
+        return {
+            "valid": False,
+            "reason": "Token is unsigned or its signature cannot be verified (signing key unavailable)",
+        }
 
-    # Check expiration
-    expires_at = grant.get("expires_at")
-    if expires_at:
-        try:
-            expiry = datetime.fromisoformat(str(expires_at).replace("Z", "+00:00"))
-            now = datetime.now(timezone.utc)
-            
-            if now > expiry:
-                return {
-                    "valid": False,
-                    "reason": "Token has expired",
-                    "expired_at": expires_at
-                }
-        except Exception:
-            pass  # unparseable expiry field — treat token as non-expired
-    
+    # Check expiration. A grant without a parseable expiry is rejected: a
+    # corrupted or edited expires_at must never extend a token's lifetime.
+    expiry = _parse_expiry(grant.get("expires_at"))
+    if expiry is None:
+        return {
+            "valid": False,
+            "reason": "Token has no valid expiry timestamp",
+        }
+    if datetime.now(timezone.utc) >= expiry:
+        return {
+            "valid": False,
+            "reason": "Token has expired",
+            "expired_at": grant.get("expires_at"),
+        }
+
     return {
         "valid": True,
         "grant": grant,
         "sig_verified": sig_result is True,
     }
+
+
+def _parse_expiry(value: Any) -> "Optional[datetime]":
+    """Parse an ISO-8601 expiry as an aware UTC datetime; None if unusable."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
 
 
 def main():

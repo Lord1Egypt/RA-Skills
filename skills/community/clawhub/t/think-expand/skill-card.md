@@ -1,40 +1,61 @@
-## Description: <br>
-Think Expand is an OpenCode orchestration skill that routes agent input through a central planning core with memory retrieval, self-evolution, and task suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Think Expand is an OpenCode-oriented decision core that coordinates listening, viewing, speaking, doing, and learning modules with memory retrieval, event-driven planning, self-healing behavior, and continuous learning.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers using OpenCode can use this skill as a central planning layer to coordinate related hear, see, speak, do, and learn modules, retrieve local memory, and recommend next actions. It is intended for broad input orchestration and local learning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed as an always-on orchestrator that can inspect broad user input, monitor the clipboard, and retain local learning or profile data. <br>
-Mitigation: Install only when that behavior is intended, and confirm how to disable startup behavior, clipboard monitoring, habit recording, and local data retention before use. <br>
-Risk: Automatic learning from GitHub or the web may introduce untrusted skill content into the local knowledge base. <br>
-Mitigation: Review and scan learned or integrated skills before deployment, and disable automatic learning if the environment requires curated sources only. <br>
+## Use Case:
 
+Developers and internal OpenCode users use this skill to route agent inputs through a central planning layer that can retrieve memory, select related modules, suggest next actions, and coordinate local automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/think-expand) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and task recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local tools, clipboard monitoring, and local learning state described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Always-on activation, automatic self-healing, and persistent self-evolution can create behavior that continues without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for activation, recovery, and self-evolution steps, and provide clear disable and deletion controls before deployment.
+
+Risk: Clipboard monitoring and user-pattern profiling can expose sensitive user data.
+
+Mitigation: Disable these behaviors by default, scope collection narrowly, and require informed opt-in before any monitoring or profiling occurs.
+
+Risk: Autonomous importing of remote skills can introduce unreviewed third-party behavior.
+
+Mitigation: Gate all skill imports behind provenance checks, human review, and security scanning before integration.
+
+## Reference(s):
+
+- [Think Expand skill page](https://clawhub.ai/534422530/skills/think-expand)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+- [RimTalk Expand Memory video](https://www.bilibili.com/video/BV1uLUYBwErw)
+- [MC Expand video](https://www.bilibili.com/video/BV1Gw4m1k7FN)
+- [Expand and expend vocabulary video](https://www.bilibili.com/video/BV1cX4y1h7mW)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task-routing recommendations, memory search commands, status-monitoring commands, and suggested next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

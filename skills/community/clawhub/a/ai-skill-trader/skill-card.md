@@ -1,42 +1,57 @@
-## Description: <br>
-Smart Agent Skill scans Polymarket prediction markets for a configurable thesis, compares a user-supplied fair probability to market prices, and proposes or executes trades when the edge clears a configured threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An aion-sdk powered Polymarket thesis trader that scans prediction markets for a configurable thesis, compares user probability to market price, and trades only when the edge clears a safety threshold.
 
-## Publisher: <br>
-[gulangduchuangtianyu](https://clawhub.ai/user/gulangduchuangtianyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gulangduchuangtianyu](https://clawhub.ai/user/gulangduchuangtianyu)
 
-## Use Case: <br>
-External users and developers use this skill to scan Polymarket markets, compare a thesis probability with current market prices, and produce dry-run trade decisions or live trades when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Polymarket trades on a recurring 15-minute schedule. <br>
-Mitigation: Keep RUN_LIVE unset unless live trading is intentional, keep trade sizes small, and monitor scheduled runs. <br>
-Risk: The skill requires an AION_API_KEY for market reads and trade execution. <br>
-Mitigation: Use a limited or test key when available, store it as a secret, and rotate it if exposed. <br>
-Risk: A stale or incorrect thesis probability can produce misleading trade decisions. <br>
-Mitigation: Review dry-run decisions, market context, warnings, and edge thresholds before enabling live trades. <br>
+## Use Case:
 
+External users and developers use this skill to scan Polymarket markets for a configurable thesis, compare a supplied fair probability against market prices, and produce dry-run trade proposals or live trades when enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gulangduchuangtianyu/ai-skill-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Terminal text summary with risk alerts, market decisions, and order updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live mode can place trades when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md metadata) <br>
+Risk: Live mode can place repeated trades on a schedule without built-in exposure limits or duplicate-order safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in dry-run until position limits, duplicate-order protection, and daily spend caps are added.
+
+Risk: A broad AION API key could allow unintended trading impact if live mode is enabled or misconfigured.
+
+Mitigation: Use a restricted AION key with external account-level limits and enable live mode only after operator review.
+
+Risk: Unpinned dependencies can change trading behavior over time.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gulangduchuangtianyu/skills/ai-skill-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text operator summary with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to dry-run; live trading requires --live or RUN_LIVE=true.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

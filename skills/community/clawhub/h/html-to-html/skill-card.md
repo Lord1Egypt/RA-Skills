@@ -1,43 +1,60 @@
-## Description: <br>
-Clean and restructure messy or complex HTML documents using MinerU, producing clean, well-formatted HTML while preserving core content structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML to HTML helps agents clean and restructure remote or local HTML into clean, structured HTML using MinerU while preserving core content.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, content migration teams, and web content maintainers use this skill to clean scraped pages, CMS exports, legacy HTML, or local HTML files into structured HTML through MinerU. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML pages, URLs, or local exports may contain confidential, regulated, or proprietary information. <br>
-Mitigation: Only process content with MinerU when its data handling is acceptable for the use case. <br>
-Risk: The skill requires MINERU_TOKEN for HTML output. <br>
-Mitigation: Treat MINERU_TOKEN as a secret and avoid exposing it in logs, shared shell history, or generated documents. <br>
+## Use Case:
 
+Developers, content migration teams, and automation agents use this skill to convert cluttered web pages, CMS exports, scraped pages, or local HTML files into cleaner structured HTML.
 
-## Reference(s): <br>
-- [HTML to HTML ClawHub release](https://clawhub.ai/mzlzyca/html-to-html) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the agent workflow produces clean structured HTML through MinerU CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN; document content is written to stdout by default or saved with -o.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Pages, local HTML files, and extracted content may contain confidential, regulated, proprietary, or internal-only information before they are submitted to MinerU's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content approved for MinerU processing, and avoid sending sensitive HTML unless organizational policy permits it.
+
+Risk: MINERU_TOKEN is sensitive credential material that could be exposed through logs, shell history, or source control.
+
+Mitigation: Keep MINERU_TOKEN out of logs and repositories, prefer environment-variable or interactive authentication, and rotate the token if exposure is suspected.
+
+Risk: Installing mineru-open-api globally or from an unpinned source can increase supply-chain or environment-change risk.
+
+Mitigation: Prefer pinned or isolated installation of mineru-open-api when practical, and review installation commands before execution.
+
+## Reference(s):
+
+- [HTML to HTML on ClawHub](https://clawhub.ai/mzlzyca/skills/html-to-html)
+- [MinerU](https://mineru.net)
+- [MinerU API token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, HTML]
+
+**Output Format:** [Markdown guidance with inline shell commands and clean HTML output from MinerU.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN; remote crawl and local extract commands can write output to stdout or a selected directory.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

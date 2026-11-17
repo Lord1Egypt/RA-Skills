@@ -1,42 +1,49 @@
-## Description: <br>
-Use Python for practical project setup, dependency install, script execution, and environment troubleshooting with safe defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Python for practical project setup, dependency install, script execution, and environment troubleshooting with safe defaults.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up project-local Python virtual environments, install dependencies, run scripts or tests, and troubleshoot common Python environment errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can recursively delete the selected virtual environment path when bootstrap is run with --recreate. <br>
-Mitigation: Keep the virtual environment path project-local, normally .venv, and use --recreate only after confirming the target directory. <br>
-Risk: Dependency installation can change the local Python environment and execute package build behavior. <br>
-Mitigation: Inspect dependency files before installation and prefer project-local virtual environments over global installs. <br>
-Risk: The skill can auto-activate for Python tasks. <br>
-Mitigation: Review proposed environment changes before execution and avoid unknown setup hooks or random install scripts without approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to create project-local Python environments, install dependencies, run scripts and tests, and troubleshoot common interpreter, pip, and build issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/python3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference project-local virtual environments, dependency files, and bundled helper commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The documented recreate path can delete an arbitrary writable folder if the virtual-environment path is misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a clearly project-local .venv path, avoid absolute paths or parent directories for --venv, and prefer a version that validates the target before deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jvy/skills/python3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local virtual environment setup, dependency installation commands, and Python helper script usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

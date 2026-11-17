@@ -1,40 +1,58 @@
-## Description: <br>
-Security scanner for ClawHub skills. Analyze before you install. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for ClawHub skills. Analyze before you install.
 
-## Publisher: <br>
-[ChloePark85](https://clawhub.ai/user/ChloePark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and engineers use this skill to statically inspect ClawHub skill directories or named skills before installation, with advisory labels for network endpoints, credential patterns, destructive commands, and related risky code patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static scan labels can miss runtime behavior or overstate benign patterns. <br>
-Mitigation: Treat SAFE, CAUTION, and DANGEROUS labels as advisory and manually review flagged code before relying on the result. <br>
-Risk: Flagged network endpoints, credential access, or destructive commands may require context-specific judgment. <br>
-Mitigation: Review any reported endpoints, credential patterns, and file deletion commands before installing or running the scanned skill. <br>
+## Use Case:
 
+Developers and skill reviewers use this skill to statically scan ClawHub or local skill directories before installation and review reported security findings.
 
-## Reference(s): <br>
-- [Skill Guard Pro on ClawHub](https://clawhub.ai/ChloePark85/skill-guard-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain-text or JSON security report with SAFE, CAUTION, or DANGEROUS risk labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes advisory scan findings, discovered URLs, risk score, files scanned, lines scanned, and exit codes suitable for scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The scanner can incorrectly mark risky skills as safe because of known allowlist matching and scoring gate issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not treat a SAFE result as the final security decision; manually review the scanned skill before installation.
+
+Risk: The scanner can read outside a selected scan directory through symlinks.
+
+Mitigation: Run scans of untrusted skill directories in a contained environment.
+
+Risk: The release has a suspicious security verdict from ClawHub's security evidence.
+
+Mitigation: Install only after review and inspect any downloaded or scanned skill before installation.
+
+## Reference(s):
+
+- [Skill Guard Pro on ClawHub](https://clawhub.ai/chloepark85/skills/skill-guard-pro)
+- [Publisher profile: chloepark85](https://clawhub.ai/user/chloepark85)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Human-readable security report or JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include risk level, risk score, files scanned, lines scanned, findings, URLs, and installation guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,52 @@
+{
+  "schema": "wb-safe-security-test/1.0",
+  "target": "wb-safe-team",
+  "version": "1.0.0",
+  "mode": "local-closed-loop",
+  "credentials_used": "none",
+  "network": "none",
+  "reproducible": true,
+  "overall": 5.0,
+  "dimensions": [
+    {
+      "key": "pkg_integrity",
+      "name": "包结构完整性",
+      "score": 5.0
+    },
+    {
+      "key": "credential_security",
+      "name": "凭据安全",
+      "score": 5.0
+    },
+    {
+      "key": "cost_governance",
+      "name": "用量治理",
+      "score": 5.0
+    },
+    {
+      "key": "connectivity",
+      "name": "连通监控",
+      "score": 5.0
+    },
+    {
+      "key": "config_baseline",
+      "name": "配置基线",
+      "score": 5.0
+    },
+    {
+      "key": "encryption",
+      "name": "加解密",
+      "score": 5.0
+    },
+    {
+      "key": "health_monitor",
+      "name": "健康监护",
+      "score": 5.0
+    },
+    {
+      "key": "recovery",
+      "name": "灾备恢复",
+      "score": 5.0
+    }
+  ]
+}

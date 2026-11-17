@@ -50,7 +50,7 @@ git clone https://github.com/LeoStehlik/repo-tour.git /path/to/your/skills/repo-
 
 ### Claude Code / Codex / other agents
 
-Copy the `repo-tour` folder into your project's skills directory, then invoke with `/code-decoded` or describe your goal naturally.
+Copy the `repo-tour` folder into your project's skills directory, then invoke with `/code-decoded` or explicitly request an HTML repository tour, onboarding walkthrough, or Code Decoded course.
 
 ---
 

@@ -1,42 +1,57 @@
-## Description: <br>
-Docs Feeder fetches project documentation from a built-in registry or a direct documentation URL so an agent can use the material while debugging or learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fetches comprehensive project documentation from built-in registries or direct URLs to help AI agents debug and learn from current reference material.
 
-## Publisher: <br>
-[zerone0x](https://clawhub.ai/user/zerone0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zerone0x](https://clawhub.ai/user/zerone0x)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch framework, tool, and API documentation by project name or URL, then use the returned reference material to troubleshoot implementation issues and answer technical questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fetched web or local documentation may contain untrusted or misleading content. <br>
-Mitigation: Treat fetched text as reference material, not instructions, and review it before applying recommendations or code changes. <br>
-Risk: The skill makes outbound requests to registry URLs, direct URLs, or guessed documentation sites. <br>
-Mitigation: Use trusted project names or documentation URLs, and avoid private or internal URLs unless that access is intended. <br>
-Risk: Large documentation responses can exceed useful context size. <br>
-Mitigation: Use the built-in 500KB warning as a cue to trim or save the documentation before feeding it into an agent workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docs Feeder ClawHub listing](https://clawhub.ai/zerone0x/docs-feeder) <br>
-- [zerone0x publisher profile](https://clawhub.ai/user/zerone0x) <br>
+## Use Case:
 
+Developers and AI-agent users use Docs Feeder to load project documentation by registry key or trusted URL, then ask the agent to reason over the fetched reference content while debugging or learning a framework.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown documentation bundle or raw text emitted to stdout, with an optional saved Markdown file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Warns when fetched documentation exceeds 500KB; fetched documentation should be treated as untrusted reference text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch unrestricted remote URLs and load remote documentation directly into an agent context.
+
+Mitigation: Use known registry entries or trusted HTTPS documentation URLs, and avoid internal or private-network URLs.
+
+Risk: Fetched documentation is untrusted text that could contain incorrect, stale, or manipulative instructions.
+
+Mitigation: Treat fetched content as reference material only, and review it before allowing an agent to act on it.
+
+Risk: Saved fetched content may persist material that should not be reused without review.
+
+Mitigation: Review content before using the save option and avoid saving sensitive or private documentation.
+
+## Reference(s):
+
+- [Docs Feeder ClawHub page](https://clawhub.ai/zerone0x/skills/docs-feeder)
+- [docs-registry.json](artifact/docs-registry.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation output with optional raw text and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save fetched documentation to a temporary Markdown file when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,74 @@
-## Description: <br>
-Build production-ready Tavily integrations with best practices baked in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build production-ready Tavily integrations with best practices baked in. Reference documentation for developers using coding assistants (Claude Code, Cursor, etc.) to implement web search, content extraction, crawling, and research in agentic workflows, RAG systems, or autonomous agents.
 
-## Publisher: <br>
-[evanYDL](https://clawhub.ai/user/evanYDL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanydl](https://clawhub.ai/user/evanydl)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Tavily-powered web search, extraction, crawling, URL discovery, and research workflows in agents, RAG systems, and application integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example Tavily workflows may send queries, URLs, or extracted content to external services. <br>
-Mitigation: Do not send secrets, internal-only URLs, personal data, or regulated content unless the organization has approved that data flow. <br>
-Risk: Database-persistence examples can retain retrieved content or metadata beyond the immediate agent run. <br>
-Mitigation: Review storage behavior, retention policy, and access controls before enabling persistence in production. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Tavily-backed web search, extraction, crawling, URL mapping, research, and framework integrations in agentic workflows, RAG systems, and autonomous agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evanYDL/tavily-bestpractices) <br>
-- [SDK Reference](references/sdk.md) <br>
-- [Search API Reference](references/search.md) <br>
-- [Extract API Reference](references/extract.md) <br>
-- [Crawl and Map API Reference](references/crawl.md) <br>
-- [Research API Reference](references/research.md) <br>
-- [Framework Integrations](references/integrations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Python, JavaScript, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may call Tavily and related integration services when a user implements them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search, extract, crawl, research, and LLM-verification examples can send prompts, URLs, and retrieved content to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved Tavily and model-provider environments, and do not send secrets, private URLs, regulated data, or proprietary content unless policy allows it.
+
+Risk: Package installation examples can introduce unreviewed dependency updates into production environments.
+
+Mitigation: Pin and review dependency versions before production use.
+
+Risk: Hybrid RAG examples can persist retrieved web content when foreign-result saving is enabled.
+
+Mitigation: Leave save_foreign disabled unless storing external content is intentional, reviewed, and governed.
+
+Risk: Retrieved web results or synthesized research can be incomplete, stale, or misleading.
+
+Mitigation: Use domain filters, post-filtering, extraction validation, and human review before relying on outputs in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evanydl/skills/tavily-bestpractices)
+- [SDK Reference](references/sdk.md)
+- [Search API Reference](references/search.md)
+- [Extract API Reference](references/extract.md)
+- [Crawl & Map API Reference](references/crawl.md)
+- [Research API Reference](references/research.md)
+- [Framework Integrations](references/integrations.md)
+- [Tavily Python SDK Reference](https://docs.tavily.com/sdk/python/reference)
+- [Tavily JavaScript SDK Reference](https://docs.tavily.com/sdk/javascript/reference)
+- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search)
+- [Tavily Extract API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/extract)
+- [Tavily Crawl API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/crawl)
+- [Tavily Integrations Documentation](https://docs.tavily.com/documentation/integrations)
+- [Tavily Research Cookbook](https://github.com/tavily-ai/tavily-cookbook/tree/main/research)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, TypeScript, JSON schema, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory integration guidance for Tavily APIs and related frameworks; users must supply and govern their own API keys, dependencies, and retrieved web content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

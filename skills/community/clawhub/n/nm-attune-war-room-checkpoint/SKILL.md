@@ -1,7 +1,7 @@
 ---
 name: war-room-checkpoint
 description: Assesses decision reversibility and risk at critical checkpoints
-version: 1.9.8
+version: 1.10.3
 triggers:
   - checkpoint
   - embedded
@@ -14,27 +14,17 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # War Room Checkpoint Skill
 
 Lightweight inline assessment for determining whether a decision point within a command warrants War Room escalation.
 
-## Table of Contents
-
-1. [Purpose](#purpose)
-2. [When Commands Should Invoke This](#when-commands-should-invoke-this)
-3. [Invocation Pattern](#invocation-pattern)
-4. [Checkpoint Flow](#checkpoint-flow)
-5. [Confidence Calculation](#confidence-calculation)
-6. [Profile Thresholds](#profile-thresholds)
-7. [Output Format](#output-format)
-8. [Examples](#examples)
-
 ## Verification
 
-Run `make test-checkpoint` to verify checkpoint logic works correctly after changes.
+Run `make attune-test` from the repository root to verify checkpoint
+logic still works after changes.
 
 ## Purpose
 
@@ -52,6 +42,19 @@ This skill is **not invoked directly by users**. It is called by other commands 
 | `/pr-review` | >3 blocking issues, architecture changes, ADR violations |
 | `/architecture-review` | ADR violations, high coupling, boundary violations |
 | `/fix-pr` | Major scope, conflicting reviewer feedback |
+
+## When NOT To Use
+
+| Situation | Use instead |
+|-----------|-------------|
+| A user asks for deliberation directly | `Skill(attune:war-room)` |
+| The decision is cheap to reverse (high RS) | Proceed without a checkpoint |
+| A panel already ruled on this decision | The prior verdict |
+
+This skill decides *whether* deliberation is warranted and returns fast when
+it is not. A command that checkpoints every decision pays the scoring cost to
+be told to proceed almost every time, and re-checkpointing a settled call
+re-litigates it.
 
 ## Invocation Pattern
 
@@ -92,14 +95,25 @@ Score each 1-5, calculate RS = Sum / 25.
 
 ### Step 3: Mode Selection
 
-Apply profile thresholds to determine mode:
+Apply profile thresholds, with any command adjustment, to determine
+mode. Compare in integer hundredths: in floats, the cautious express
+ceiling 0.30 with the do-issue adjustment -0.10 is
+0.19999999999999998, and an all-1s decision (RS = 0.2) would escalate.
 
 ```
-if RS <= profile.express_ceiling:
+# Inputs: score_sum (Step 2), profile (the profile table below), and
+# command_adjustment (Command-Specific Adjustments, 0 when none applies).
+rs_pct = 4 * score_sum  # RS * 100, exact for Sum / 25
+adjustment = command_adjustment
+
+def ceiling_pct(ceiling, adjustment):  # table values in hundredths
+    return round(ceiling * 100) + round(adjustment * 100)
+
+if rs_pct <= ceiling_pct(profile.express, adjustment):
     mode = "express"
-elif RS <= profile.lightweight_ceiling:
+elif rs_pct <= ceiling_pct(profile.lightweight, adjustment):
     mode = "lightweight"
-elif RS <= profile.full_council_ceiling:
+elif rs_pct <= ceiling_pct(profile.full_council, adjustment):
     mode = "full_council"
 else:
     mode = "delphi"
@@ -327,3 +341,16 @@ requires_user_confirmation: true
 - `/pr-review` - PR review (uses this checkpoint)
 - `/architecture-review` - Architecture review (uses this checkpoint)
 - `/fix-pr` - PR fix (uses this checkpoint)
+
+## Exit Criteria
+
+- [ ] A structured checkpoint response is returned with all required fields: `reversibility_score`
+  (0.0-1.0), `selected_mode` (express / lightweight / full_council / delphi), `should_escalate`
+  (boolean), and `recommendation` or `orders`.
+- [ ] Any response with `reversibility_score` > profile threshold has `should_escalate: true`
+  and triggers the full War Room via `Skill(attune:war-room)` before returning.
+- [ ] Any response with `confidence` <= 0.8 sets `requires_user_confirmation: true` and presents
+  a confirmation prompt to the user rather than auto-continuing.
+- [ ] The checkpoint is logged to
+  `~/.claude/memory-palace/strategeion/checkpoints/{date}/{checkpoint-id}.json`; if this write
+  fails, the calling command proceeds and logs a warning rather than blocking the workflow.

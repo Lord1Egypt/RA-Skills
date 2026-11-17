@@ -1,38 +1,52 @@
-## Description: <br>
-Audit .env alias groups for missing required config, conflicting values, and canonical-key drift before deploy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit .env alias groups for missing required config, conflicting values, and canonical-key drift before deploy.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit .env-style configuration before deployment, checking required environment-variable groups, conflicting alias values, and canonical-key drift. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit output can reveal short secret values or fragments of longer secrets from .env files. <br>
-Mitigation: Run the skill only in a trusted workspace and avoid sharing transcripts, logs, or reports that include audit output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/env-alias-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/daniellummis) <br>
+## Use Case:
 
+Developers and engineers use this skill to check .env-style configuration before deployment, especially for missing required values, conflicting aliases, and canonical-key drift.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell script prints per-group OK, WARN, and FAIL statuses, a summary, and nonzero exit status for strict failures.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can print full or partial environment secret values to terminal or CI logs.
+
+Mitigation: Run it only on local files you are comfortable exposing in terminal output, avoid production secrets unless output is changed to show only variable names and set or unset status, and rotate any credentials that may already have appeared in retained logs.
+
+Risk: The release was flagged as suspicious by the authoritative security evidence because of possible secret exposure.
+
+Mitigation: Review before installing or running in CI, and keep audit output out of retained logs when sensitive environment files are used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/env-alias-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text output with OK, WARN, FAIL, summary, warnings, and failures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code 0 indicates no strict failures; exit code 1 indicates invalid input, missing required groups in strict mode, or conflicting alias values.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Creates and configures multiple isolated Feishu bots with separate memory, workspace, model settings, personality files, and Feishu application credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates multiple independent Feishu bot configurations for OpenClaw, including per-bot memory, workspace, model, personality, and Feishu credentials.
 
-## Publisher: <br>
-[lcz5221-svg](https://clawhub.ai/user/lcz5221-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lcz5221-svg](https://clawhub.ai/user/lcz5221-svg)
 
-## Use Case: <br>
-Developers and operators use this skill to batch-create and manage multiple Feishu-connected OpenClaw agents with independent identities, workspaces, routing, credentials, and model configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow persists bot and gateway configuration changes, including Feishu credentials and routing settings. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before use, run the setup only with trusted configuration files, and review generated account and route entries before restarting the gateway. <br>
-Risk: Broad default access settings may allow unintended users to interact with bots. <br>
-Mitigation: Tighten each bot with allowlists or mention requirements before production use, then verify gateway logs for blocked or unexpected senders. <br>
-Risk: Configuration files contain app secrets, encryption keys, and verification tokens. <br>
-Mitigation: Protect generated and input configuration files, avoid committing secrets, and store credentials using the deployment environment's approved secret-handling process. <br>
+## Use Case:
 
+Developers and operators use this skill to set up batches of isolated Feishu bots in OpenClaw with separate workspaces, memory files, route bindings, model settings, and Feishu app credentials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lcz5221-svg/feishu-duoge002) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Setup script](artifact/scripts/setup_bots.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON configuration examples, shell commands, and a Python setup script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local OpenClaw configuration and per-agent workspace files when the setup script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, artifact _meta.json, and target metadata) <br>
+Risk: The setup workflow modifies persistent OpenClaw configuration and creates files under per-agent workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw/openclaw.json and review generated account, agent, binding, and workspace files before restarting the gateway.
+
+Risk: The security evidence reports unsafe default access policies for shared or production Feishu use.
+
+Mitigation: Change generated bot policies to allowlist access and mention-required behavior before use outside a trusted test environment.
+
+Risk: The security evidence reports a command-injection risk if untrusted agentId values reach the setup script.
+
+Mitigation: Run the script only with trusted configuration files and manually review bot identifiers before execution.
+
+Risk: Feishu app secrets and tokens appear in the input and generated configuration.
+
+Mitigation: Store configuration files securely, limit file access, and rotate secrets if they are exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lcz5221-svg/skills/feishu-duoge002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify persistent OpenClaw configuration and create per-bot workspace files when its setup script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

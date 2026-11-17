@@ -1,41 +1,53 @@
-## Description: <br>
-Build and execute command lines from standard input for batch argument processing, parallel execution, argument substitution, and delimiter control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and execute command lines from standard input for batch processing, argument substitution, and command pipeline workflows.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to construct and run repeated local command invocations from piped input, such as processing file lists or applying one command to many arguments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local batch commands, including file deletion or modification commands. <br>
-Mitigation: Require explicit human review before executing destructive or file-modifying commands, and run only commands the user intentionally approved. <br>
-Risk: The documentation advertises dry-run and interactive options that the included script does not implement. <br>
-Mitigation: Do not rely on documented dry-run or interactive safeguards unless the implementation is fixed and revalidated. <br>
+## Use Case:
 
+Developers and engineers use this skill to construct and run command-line batch operations from piped input. It is intended for xargs-style workflows such as processing file lists, applying substitutions, and chaining shell commands.
 
-## Reference(s): <br>
-- [Xargs Tool release page](https://clawhub.ai/dinghaibin/xargs-tool) <br>
-- [dinghaibin publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local subprocesses when used through the included script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release security summary says the skill advertises safety and control options that the included script does not implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command behavior before installation and do not rely on --dry-run, -p, -0, -P, -n, or delimiter options unless the implementation is fixed.
+
+Risk: The included script executes user-supplied commands over stdin-derived values.
+
+Mitigation: Avoid destructive commands and untrusted pipeline input; test commands on non-sensitive paths before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/xargs-tool)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text]
+
+**Output Format:** [Command-line invocation with command output from executed subprocesses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute commands and produce filesystem or process side effects depending on the supplied command.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

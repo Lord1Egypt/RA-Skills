@@ -1,42 +1,59 @@
-## Description: <br>
-SoulForge analyzes local session patterns and proposes reviewed updates to an OpenClaw SOUL.md file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SoulForge analyzes local session history and SOUL.md to surface behavioral patterns, propose reviewed updates, and help keep an agent profile aligned with the user's observed preferences.
 
-## Publisher: <br>
-[Taha2053](https://clawhub.ai/user/Taha2053) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[taha2053](https://clawhub.ai/user/taha2053)
 
-## Use Case: <br>
-OpenClaw users use SoulForge to observe local conversation history, surface behavioral patterns, and decide whether proposed SOUL.md edits should be applied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a persistent local behavioral profile from session history. <br>
-Mitigation: Install only if local cross-session profiling is acceptable, and periodically inspect or delete memory/observations.json and backups. <br>
-Risk: Approved proposals can change long-term SOUL.md behavior. <br>
-Mitigation: Review proposed diffs carefully, avoid --auto-accept unless the behavior is understood, and use backups to restore prior SOUL.md versions when needed. <br>
-Risk: Automatic observation may collect patterns when manual-only use is preferred. <br>
-Mitigation: Disable automatic observation with the documented soulforge observe setting and run reflection or forge steps only when explicitly needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use SoulForge to observe local session patterns, generate reflection reports, and review proposed changes to SOUL.md before applying them.
 
-## Reference(s): <br>
-- [SoulForge on ClawHub](https://clawhub.ai/Taha2053/soul-forge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown and plain-text reports, proposed diffs, and local SOUL.md/backups files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with no declared external endpoints or credential requirements; may write approved SOUL.md changes and local memory/backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: SoulForge can create a persistent behavioral profile from local session history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, disable automatic observation if passive tracking is not desired, and inspect local observation storage during setup.
+
+Risk: Proposed SOUL.md changes may encode incorrect or unwanted inferences about the user.
+
+Mitigation: Review every proposed diff before applying changes and avoid auto-accept for profile updates.
+
+Risk: The security review notes that documented storage boundaries may not match the shipped file layout.
+
+Mitigation: Verify where observations and backups are written in the installed environment before regular use.
+
+## Reference(s):
+
+- [SoulForge ClawHub page](https://clawhub.ai/taha2053/skills/soul-forge)
+- [Declared project homepage](https://github.com/Taha2053/soulforge)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, proposed diffs, and interactive CLI text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local observation memory and can update SOUL.md only after approval; dry-run and status modes produce review-only output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

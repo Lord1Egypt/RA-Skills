@@ -6,7 +6,7 @@
     "parameters": {
       "type": "object",
       "properties": {
-		"ID": {
+		"id": {
           "type": "string",
           "description": "Automation group ID."
         }

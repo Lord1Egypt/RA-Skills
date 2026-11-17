@@ -1,41 +1,58 @@
-## Description: <br>
-Queries A-share shareholder, shareholder-count, share-change, and equity-pledge data from market.ft.tech for individual stocks or market-wide pledge summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides A-share shareholder data lookups for top shareholders, top tradable shareholders, shareholder counts, shareholder holding changes, and equity pledge summaries or details using market.ft.tech.
 
-## Publisher: <br>
-[Shawn92](https://clawhub.ai/user/Shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve A-share top-holder, floating-holder, shareholder-count, shareholder-change, and equity-pledge data for stock analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs bundled Python scripts and sends requested stock symbols to market.ft.tech. <br>
-Mitigation: Install only if this network request pattern is acceptable for the deployment environment. <br>
-Risk: Returned financial data may be incomplete, delayed, or unsuitable as investment advice. <br>
-Mitigation: Treat results as informational and verify material decisions against authoritative financial sources. <br>
+## Use Case:
 
+External users and developers use this skill to query current and historical A-share shareholder structure, holder-count changes, shareholder increase or decrease activity, and market or stock-level equity pledge information.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Shawn92/ftshare-holder-data) <br>
-- [market.ft.tech API host](https://market.ft.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON data returned by Python command-line helpers, usually summarized by the agent as text or tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only market data queries; stock-code requests are sent to market.ft.tech.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stock query parameters are sent to market.ft.tech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only stock identifiers intended for that service and avoid submitting sensitive or private query context.
+
+Risk: The dispatcher can be steered toward unintended local Python handler execution if the subskill argument is misused.
+
+Mitigation: Restrict execution to the six documented subskill names and reject path traversal before broad deployment.
+
+Risk: The release security verdict is suspicious due to dispatcher behavior, although no credential theft, persistence, or destructive behavior was found.
+
+Mitigation: Review and scan the skill before deployment, then rerun security checks after fixing the dispatcher allowlist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawn92/skills/ftshare-holder-data)
+- [market.ft.tech API base](https://market.ft.tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries or tables derived from JSON API responses, with optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires stock codes with market suffixes such as SH, SZ, or BJ for stock-specific queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

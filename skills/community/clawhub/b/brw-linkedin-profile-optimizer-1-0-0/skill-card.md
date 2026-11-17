@@ -1,38 +1,53 @@
-## Description: <br>
-Audits and rewrites a LinkedIn profile by scoring sections, rewriting headline and About copy, optimizing experience bullets, and producing an AI visibility checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and rewrite your LinkedIn profile to attract the right people by scoring each section, rewriting headline and About copy, optimizing experience bullets, and checking AI visibility.
 
-## Publisher: <br>
-[rezcarbon](https://clawhub.ai/user/rezcarbon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rezcarbon](https://clawhub.ai/user/rezcarbon)
 
-## Use Case: <br>
-External users use this skill to improve LinkedIn positioning for job search, client attraction, or thought leadership by turning pasted profile content into an audit, rewritten profile sections, and practical visibility guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may paste private contact details, confidential employer or client information, or non-public performance metrics into the chat. <br>
-Mitigation: Redact sensitive details before using the skill unless they are necessary for the requested rewrite. <br>
-Risk: Generated profile copy may overstate, misframe, or otherwise misrepresent the user's experience if posted without review. <br>
-Mitigation: Review and edit generated LinkedIn copy before publishing it publicly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and professionals use this skill to audit a LinkedIn profile, sharpen positioning, rewrite profile sections, and improve discoverability for recruiters, clients, followers, or other target audiences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown profile audit with rewritten LinkedIn copy, scored checklist items, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided LinkedIn profile text and positioning goals; does not access LinkedIn directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may paste private metrics, confidential client names, or non-public employer information into the agent.
+
+Mitigation: Share only information acceptable for the chat context, anonymize sensitive examples, and omit confidential employer or client details.
+
+Risk: Profile rewrites and post drafts may overstate claims if the provided source material is incomplete or unverified.
+
+Mitigation: Review all generated copy against verifiable experience, metrics, client permissions, and publication standards before using it publicly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rezcarbon/skills/brw-linkedin-profile-optimizer-1-0-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/rezcarbon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with scored audit tables, headline variants, rewritten profile copy, before/after bullets, an AI visibility checklist, and optional LinkedIn post drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided LinkedIn profile content and positioning goals; outputs are advisory drafts for review before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

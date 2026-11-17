@@ -1,43 +1,57 @@
-## Description: <br>
-Chrome Automation helps agents run Chrome and Playwright automation on Linux servers for high-resolution screenshots, form filling, automated login flows, and stealth-style browsing behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Linux server Chrome browser automation skill for high-resolution screenshots, form filling, login workflows, and Playwright-based stealth automation for sites such as Bilibili and YouTube.
 
-## Publisher: <br>
-[kanoha222](https://clawhub.ai/user/kanoha222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kanoha222](https://clawhub.ai/user/kanoha222)
 
-## Use Case: <br>
-Developers and automation agents use this skill to configure Linux server browser automation, capture screenshots, and run Playwright-based page interactions such as form filling or login workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill supports stealth anti-bot browsing and automated login or form submission. <br>
-Mitigation: Use it only on systems and websites where automation is authorized, and require explicit approval before login, posting, or form submission. <br>
-Risk: Headless browser execution and package installation can expand the runtime attack surface. <br>
-Mitigation: Run the skill in an isolated, low-privilege environment rather than a shared or privileged host. <br>
-Risk: Credential use in automated forms can expose sensitive account data. <br>
-Mitigation: Avoid real credentials until logging is removed and credential handling has been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chrome Automation ClawHub page](https://clawhub.ai/kanoha222/chrome-automation) <br>
-- [Google Chrome Linux package](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb) <br>
-- [Playwright stealth script](scripts/playwright_stealth.py) <br>
+## Use Case:
 
+Developers and operators use this skill to run headless Chrome or Playwright on Linux servers for webpage screenshots and scripted form or login automation on websites they are authorized to automate.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create screenshot files in the configured workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill promotes stealth browser automation and anti-bot evasion, which can violate website terms or trigger abuse controls.
+
+Mitigation: Use it only for websites and accounts the operator is authorized to automate, and review site policies before running automated workflows.
+
+Risk: Form and login automation can expose credentials or change account or website state.
+
+Mitigation: Avoid entering real passwords or cookies where possible, use scoped test accounts, and review each automated action before submitting forms.
+
+Risk: The install and browser launch steps include unsafe defaults such as package installation commands and running Chrome without a sandbox.
+
+Mitigation: Run in a sandboxed browser or container, avoid root execution, and prefer pinned dependencies and reviewed install steps.
+
+## Reference(s):
+
+- [Chrome Automation ClawHub release](https://clawhub.ai/kanoha222/skills/chrome-automation)
+- [Google Chrome Linux package](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshot files when the generated automation commands or helper script are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

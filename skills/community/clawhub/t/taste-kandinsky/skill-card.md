@@ -1,38 +1,51 @@
-## Description: <br>
-Aesthetic skill for AI agents that helps analyze and create pure abstract art using color as emotion and geometric forms as musical notes, inspired by Kandinsky's synesthetic style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Kandinsky-inspired creative guidance for analyzing abstract art and applying its principles to creative work.
 
-## Publisher: <br>
-[johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnyzijianwu](https://clawhub.ai/user/johnnyzijianwu)
 
-## Use Case: <br>
-Developers and creative teams use this skill to steer an agent toward Kandinsky-inspired abstraction for visual art analysis, creative direction, UI design, branding, and writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence an agent's creative style and evaluation criteria. <br>
-Mitigation: Review the visible instructions and generated creative output before relying on it in a user-facing or brand-sensitive setting. <br>
+## Use Case:
 
+AI agents use this skill to analyze Kandinsky-inspired abstract art and to guide creative work in writing, interface design, and branding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnnyzijianwu/taste-kandinsky) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and style criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable reference skill; no file, network, credential, or persistence behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional InspiredHub links lead to external services whose privacy claims were not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the links only if appropriate, and review InspiredHub's current privacy information before sharing information with the service.
+
+## Reference(s):
+
+- [Taste Kandinsky on ClawHub](https://clawhub.ai/johnnyzijianwu/skills/taste-kandinsky)
+- [InspiredHub live demo](https://inspiredhub.ai/demo)
+- [Optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-kandinsky)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Guidance]
+
+**Output Format:** [Natural-language creative analysis and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

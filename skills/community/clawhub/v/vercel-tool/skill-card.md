@@ -1,44 +1,59 @@
-## Description: <br>
-Generate Vercel API commands for deployment management, including deployment status, build logs, domain SSL checks, recent deployments, rollback, and environment-variable audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Vercel API commands for deployment management, including deployment status, build logs, domain SSL checks, recent deployments, rollbacks, and environment variable audits.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and site operators use this skill to generate reviewable Vercel API commands for checking deployment status, viewing logs, inspecting domains, listing deployments, promoting rollbacks, auditing environment-variable metadata, and seeing deployment setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commands require a Vercel token and may expose credentials if copied into shared chats, terminals, or logs. <br>
-Mitigation: Use the least-privileged token available, replace placeholders locally, and avoid sharing token-bearing commands or environment output. <br>
-Risk: Rollback commands promote a deployment to production and can change live site behavior. <br>
-Mitigation: Review the project name and deployment ID before running a rollback command, and treat rollback as a live production change. <br>
-Risk: Environment-variable auditing can reveal sensitive project configuration metadata. <br>
-Mitigation: Review command output locally and avoid pasting environment-variable details into shared chats or logs. <br>
+## Use Case:
 
+Developers and site operators use this skill to generate Vercel API curl commands for checking deployments, logs, domains, environment variables, and rollback actions before running those commands themselves.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/vercel-tool) <br>
-- [Vercel API](https://api.vercel.com) <br>
-- [Vercel account tokens](https://vercel.com/account/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated commands use placeholder credentials and are intended for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated shell commands can become unsafe when project or deployment names contain unexpected quotes, semicolons, pipes, backticks, or command substitutions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted project and deployment identifiers, inspect generated commands before execution, and reject commands containing unexpected shell metacharacters.
+
+Risk: Token setup guidance may encourage users to store Vercel tokens in shell profiles.
+
+Mitigation: Avoid storing long-lived Vercel tokens in shell profiles; prefer short-lived or scoped credential handling appropriate for the user's environment.
+
+Risk: Rollback command generation supports a production-changing action.
+
+Mitigation: Require explicit human confirmation and deployment review before running rollback or promotion commands.
+
+## Reference(s):
+
+- [Vercel API endpoint](https://api.vercel.com)
+- [Vercel account tokens](https://vercel.com/account/tokens)
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/vercel-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with bash commands and inline setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are generated for human review and execution; no credentials are stored by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

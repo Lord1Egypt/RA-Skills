@@ -1,42 +1,54 @@
-## Description: <br>
-Traffic Monitor helps an agent inspect local server network traffic with vnstat, generate monthly usage reports, and warn when usage approaches a configured 2 TB monthly limit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Traffic Monitor helps agents check server network usage for a configured interface, generate monthly traffic reports, and warn when usage crosses an 80% threshold.
 
-## Publisher: <br>
-[binyuli](https://clawhub.ai/user/binyuli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binyuli](https://clawhub.ai/user/binyuli)
 
-## Use Case: <br>
-Developers and server operators use this skill to check monthly, daily, and real-time traffic on a local network interface and to surface threshold warnings for bandwidth-limited servers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local traffic-reporting commands and service-administration commands on the target server. <br>
-Mitigation: Install it only on servers where local traffic monitoring is intended, and run systemctl commands only when administering the vnstat service. <br>
-Risk: Traffic reports can be misleading if vnstat is not installed, trusted, running, or tracking the intended network interface. <br>
-Mitigation: Verify that vnstat is trusted, active, and configured for the intended interface before relying on monthly usage reports. <br>
-Risk: Heartbeat mode stores a small local state file that can affect repeated alert behavior. <br>
-Mitigation: Clear the heartbeat state file if alert behavior appears stale or after intentionally resetting reporting state. <br>
+## Use Case:
 
+Developers and server operators use this skill to inspect vnstat-based monthly, daily, and live network traffic for a server interface. It is especially suited to monitoring a configured 2 TB monthly traffic limit and surfacing warnings before overage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binyuli/traffic-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation and human-readable terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports inbound, outbound, total, remaining, and threshold status for the configured interface when vnstat data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md) <br>
+Risk: Traffic reports may be incorrect if the server does not use the configured interface name or monthly traffic limit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust the interface name and monthly limit before relying on usage reports or alerts.
+
+Risk: Administrative service commands can affect traffic collection if run without review.
+
+Mitigation: Treat systemctl examples as manual administrative actions and run them only after confirming the intended service state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binyuli/skills/traffic-monitor)
+- [Publisher profile](https://clawhub.ai/user/binyuli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and human-readable text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports depend on vnstat data for the configured network interface and threshold settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

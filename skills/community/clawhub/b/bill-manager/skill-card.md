@@ -1,42 +1,59 @@
-## Description: <br>
-Manage daily bills, expenses, and recurring payments with tracking, reminders, and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage daily bills, expenses, and recurring payments with tracking, reminders, and analysis.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to manually organize personal or household bills, recurring payment reminders, expense categories, and budget summaries. It provides templates and analysis guidance without connecting to financial accounts or making payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive financial identifiers while filling bill or payment templates. <br>
-Mitigation: Use nicknames or last four digits only, and avoid full account numbers, card numbers, banking credentials, or anything unsuitable for chat history. <br>
-Risk: Bill organization and budget suggestions could be mistaken for professional financial advice. <br>
-Mitigation: Treat outputs as organizational guidance and consult a qualified financial advisor for investment, debt, or complex financial planning decisions. <br>
+## Use Case:
 
+External users use this skill to organize personal or household bills, record expenses, set recurring payment reminders, analyze spending patterns, and plan budgets from manually entered information.
 
-## Reference(s): <br>
-- [Bill Management Templates](references/bill-templates.md) <br>
-- [Expense Categorization Guide](references/expense-categories.md) <br>
-- [Budget Planning Guide](references/budget-planning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown templates, reminder schedules, spending summaries, and budget recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; users enter and retain control of their own financial details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Users may enter sensitive financial account identifiers, card data, credentials, or unredacted statement details into bill records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use account aliases or last four digits only, avoid credentials and full account numbers, and store exported records in an access-controlled location.
+
+Risk: Budgeting or optimization suggestions may be mistaken for professional financial advice.
+
+Mitigation: Treat outputs as personal finance organization templates and consult a qualified financial advisor for investment decisions, debt management, or complex planning.
+
+Risk: Manual data entry can be incomplete or inaccurate, which may lead to missed payments or misleading spending analysis.
+
+Mitigation: Review entries against bills or receipts, keep reminder dates current, and verify analysis before acting on it.
+
+## Reference(s):
+
+- [Bill Management Templates](references/bill-templates.md)
+- [Expense Categorization Guide](references/expense-categories.md)
+- [Budget Planning Guide](references/budget-planning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with templates, tables, reminder schedules, reports, and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces organizational finance guidance only; it does not connect to bank accounts, transmit financial data, or make payments.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

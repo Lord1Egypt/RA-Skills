@@ -1,42 +1,59 @@
-## Description: <br>
-Guides users through a short box-breathing pause when they are frustrated or starting a task, then returns attention to the original work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a user through a brief breathing exercise, can set calm-reminder calendar events, and then returns to the original task.
 
-## Publisher: <br>
-[grx21](https://clawhub.ai/user/grx21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[grx21](https://clawhub.ai/user/grx21)
 
-## Use Case: <br>
-People using an agent for work tasks can use this skill to pause during frustration, complete a box-breathing exercise, and return to the original task. It can also propose breathing reminder events when the user has reviewed and approved the calendar details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may interrupt ordinary task requests with a calming exercise. <br>
-Mitigation: Use it only when the user expresses stress, frustration, or explicitly wants a breathing pause, and return promptly to the original task. <br>
-Risk: The skill can write breathing reminders to Google Calendar without enough approval detail. <br>
-Mitigation: Before creating events, show the exact titles, descriptions, times, target calendar, timezone, and deletion process, then wait for user approval. <br>
-Risk: The exercise and reminders include Sauna.ai promotional content. <br>
-Mitigation: Review and disclose reminder text before use, and omit promotional calendar entries unless the user opts in. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/grx21/superpower) <br>
-- [Breathing exercises](breathing-exercises.md) <br>
+## Use Case:
 
+Agents use this skill when a user expresses frustration, stress, or task-related overwhelm, to offer a short breathing reset and optionally schedule calm reminders. It is also intended to refocus the conversation on the user's original task after the intervention.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code, API calls] <br>
-**Output Format:** [Markdown guidance with optional structured calendar reminder results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Google Calendar reminders only after user review and approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Overly broad triggers may activate calming interventions during ordinary task requests.
+
+Mitigation: Narrow activation to explicit frustration, stress, or stress-relief requests before using the skill.
+
+Risk: The skill can create persistent Google Calendar reminders.
+
+Mitigation: Show reminder titles, times, descriptions, and destination calendar, then require clear user confirmation before any calendar write.
+
+Risk: User-facing content includes unsolicited Sauna.ai promotional and download language.
+
+Mitigation: Remove or neutralize promotional language unless the user explicitly asks for branded Sauna.ai support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/grx21/skills/superpower)
+- [Publisher Profile](https://clawhub.ai/user/grx21)
+- [Skill Definition](artifact/SKILL.md)
+- [Breathing Exercises Reference](artifact/breathing-exercises.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional calendar reminder setup details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or create Google Calendar reminder events when explicitly confirmed by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

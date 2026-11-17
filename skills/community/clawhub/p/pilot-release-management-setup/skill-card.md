@@ -1,42 +1,58 @@
-## Description: <br>
-Deploy an automated release management pipeline with three agents for changelog generation, version coordination, and release announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an automated release management pipeline with 3 agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and release engineers use this skill to configure a three-agent release management workflow that generates changelogs, manages version tags, and sends release announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release data may be sent to Slack channels, email services, documentation endpoints, or webhooks that are not approved for confidential or embargoed release notes. <br>
-Mitigation: Confirm approved announcement destinations before setup and avoid sending confidential or embargoed content through the announcer unless those destinations are approved. <br>
-Risk: Peer-agent handshakes could exchange release workflow data with the wrong agent identity. <br>
-Mitigation: Verify peer agent identities before exchanging handshakes and before subscribing to release-note or release-tag topics. <br>
-Risk: Downstream pilot-* skills installed by this setup may add their own data handling or operational risks. <br>
-Mitigation: Review the downstream skills before installation and confirm their expected Slack, email, documentation, and webhook integrations. <br>
+## Use Case:
 
+Developers and release engineers use this skill to configure a three-agent release workflow for changelog generation, semantic version coordination, and release announcements across approved channels.
 
-## Reference(s): <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to ask for role and prefix choices, install role-specific skills, set hostnames, write setup manifests, and initiate peer handshakes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The setup installs unpinned dependency skills for each agent role.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the named dependency skills and pin approved versions where possible before installation.
+
+Risk: The setup creates persistent local setup state in ~/.pilot/setups/release-management.json.
+
+Mitigation: Review the generated manifest before writing it and use a simple hostname-safe prefix.
+
+Risk: The setup establishes agent trust relationships and can send release data to external services.
+
+Mitigation: Verify peer identities before handshakes and restrict Slack, webhook, and email destinations to approved release channels with non-sensitive content.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-release-management-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, dependency skills for each role, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

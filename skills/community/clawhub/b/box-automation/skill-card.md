@@ -1,40 +1,53 @@
-## Description: <br>
-Automate Box cloud storage operations including file upload/download, search, folder management, sharing, collaborations, and metadata queries via Rube MCP (Composio). Always search tools first for current schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Box cloud storage operations including file upload/download, search, folder management, sharing, collaborations, and metadata queries via Rube MCP (Composio). Always search tools first for current schemas.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Box through Rube MCP, including upload and download workflows, content search, folder management, sharing, collaborations, metadata queries, and Box Sign request management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect real Box files and sharing settings through a connected account. <br>
-Mitigation: Use the least-privileged Box account that fits the task and require explicit confirmation before recursive deletes, permanent deletes, sensitive downloads, or sharing changes. <br>
-Risk: Incorrect file, folder, or collaboration identifiers can target the wrong Box resource. <br>
-Mitigation: Verify file and folder IDs before changes and search current tool schemas before executing workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Box Automation ClawHub Page](https://clawhub.ai/sohamganatra/box-automation) <br>
-- [Rube MCP Endpoint](https://rube.app/mcp) <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents through Box storage workflows via Rube MCP, including file transfer, search, folder administration, sharing, collaboration management, metadata queries, and sign request handling.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with MCP tool sequences, parameters, and operational notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active Box connection through Rube MCP and current tool schema lookup before workflow execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Delete, permanent removal, sharing, and collaborator role changes can affect cloud files and access permissions.
+
+Mitigation: Verify the item ID, target user or link scope, and permission level before those actions; prefer reversible trash moves unless permanent deletion is intended.
+
+Risk: Stale Box tool schemas can lead to failed or unintended operations.
+
+Mitigation: Search Rube tools first and confirm the current schema before executing each workflow.
+
+## Reference(s):
+
+- [Box Automation on ClawHub](https://clawhub.ai/sohamganatra/skills/box-automation)
+- [Rube MCP endpoint](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Tool calls]
+
+**Output Format:** [Markdown guidance with ordered MCP tool sequences, parameter notes, and operational cautions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Box connection through Rube MCP and current tool schemas from RUBE_SEARCH_TOOLS before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

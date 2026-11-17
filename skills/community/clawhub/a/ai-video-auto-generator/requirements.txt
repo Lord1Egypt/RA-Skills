@@ -1,0 +1,6 @@
+opencv-python-headless
+Pillow
+numpy
+edge-tts
+python-docx
+imageio-ffmpeg

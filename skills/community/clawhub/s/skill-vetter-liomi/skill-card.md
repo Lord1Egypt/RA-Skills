@@ -1,38 +1,53 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents before installing skills from ClawdHub, GitHub, or other sources.
 
-## Publisher: <br>
-[Liomichan](https://clawhub.ai/user/Liomichan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liomichan](https://clawhub.ai/user/liomichan)
 
-## Use Case: <br>
-Developers and agent users use this skill to review agent skills before installation, checking source trust, permission scope, red flags, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides review of other skills and could produce incomplete or misleading safety conclusions if used mechanically. <br>
-Mitigation: Review the listing and publisher before relying on it, and separately approve any instructions embedded in the skill being inspected. <br>
+## Use Case:
 
+Developers and agents use this skill to vet third-party agent skills before installation by checking source, permissions, suspicious patterns, and risk level.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Liomichan/skill-vetter-liomi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with checklist guidance and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a skill vetting report with source, metrics, red flags, permission needs, risk level, verdict, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill includes example GitHub network requests for vetting GitHub-hosted skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use those commands only for intended public repositories, or when exposing repository identifiers to GitHub API calls is acceptable.
+
+Risk: Users may expose private tokens or sensitive repository information while reviewing skills.
+
+Mitigation: Do not paste private tokens, credentials, or sensitive private repository content into vetting prompts or command examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liomichan/skills/skill-vetter-liomi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with checklist guidance and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured skill vetting report with risk level, permissions, red flags, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

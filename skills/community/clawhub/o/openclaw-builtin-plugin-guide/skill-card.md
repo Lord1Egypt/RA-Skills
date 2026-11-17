@@ -1,41 +1,54 @@
-## Description: <br>
-查询 OpenClaw 的内置插件清单、当前启用或禁用的插件列表，以及单个插件的详细说明。适用于用户想看全部内置插件、启用状态、禁用状态、插件详情、插件说明文档时。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Chinese-speaking OpenClaw users list bundled plugins, view enabled or disabled plugin status, and inspect individual plugin details.
 
-## Publisher: <br>
-[henryczq](https://clawhub.ai/user/henryczq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henryczq](https://clawhub.ai/user/henryczq)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to list bundled plugins, check which plugins are enabled or disabled in the current environment, and inspect details for a specific plugin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs the local OpenClaw CLI and reports plugin status, diagnostics, capabilities, and documentation excerpts from the user's environment. <br>
-Mitigation: Install it only when local OpenClaw catalog inspection is intended, keep a trusted openclaw binary on PATH, and review returned environment details before sharing them. <br>
-Risk: Plugin details may show enabled plugins that are currently failing to load. <br>
-Mitigation: Describe those plugins as enabled but failed when status is error, matching the artifact's stated handling guidance. <br>
+## Use Case:
 
+Developers and operators use this skill to understand OpenClaw built-in plugins, check which plugins are enabled or disabled in the current environment, and inspect details for a named plugin.
 
-## Reference(s): <br>
-- [OpenClaw 内置插件说明](references/builtin-plugins.md) <br>
-- [ClawHub skill release](https://clawhub.ai/henryczq/openclaw-builtin-plugin-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or text summaries with optional shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local OpenClaw plugin status, diagnostics, capabilities, and documentation excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can reveal local OpenClaw plugin inventory, enabled or disabled status, capabilities, and documentation excerpts to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where the agent is allowed to inspect local OpenClaw plugin configuration and avoid sharing generated inventory outside authorized contexts.
+
+Risk: Plugin status and inspection commands depend on the locally installed OpenClaw CLI and current workspace state.
+
+Mitigation: Confirm the `openclaw` and `python` binaries are available before relying on status or inspection output.
+
+## Reference(s):
+
+- [OpenClaw built-in plugin reference](artifact/references/builtin-plugins.md)
+- [ClawHub skill page](https://clawhub.ai/henryczq/skills/openclaw-builtin-plugin-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local OpenClaw plugin inventory, status, capability, and documentation excerpts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

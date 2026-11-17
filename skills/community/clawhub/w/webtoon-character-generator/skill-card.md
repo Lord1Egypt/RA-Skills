@@ -1,42 +1,58 @@
-## Description: <br>
-AI webtoon character generator - create manhwa-style portraits, Korean comic characters, and webtoon OCs with clean line art, expressive eyes, and vibrant colors via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI webtoon character generator that creates manhwa-style portraits, Korean comic characters, and webtoon OCs with clean line art, expressive eyes, and vibrant colors via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External creators, comic artists, and developers use this skill to generate webtoon-style character image URLs from text prompts, with optional size selection and reference-image UUID style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts, optional reference UUIDs, and the Neta API token are sent to api.talesofai.com. <br>
-Mitigation: Avoid private, confidential, or regulated information in prompts or reference identifiers, and install only if that third-party API use is acceptable. <br>
-Risk: Passing the token directly on the command line can expose it in shell history or process listings. <br>
-Mitigation: Prefer environment variable expansion for the token and rotate credentials if accidental exposure is suspected. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to generate webtoon and manhwa-style character images from text prompts, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [Webtoon Character Generator on ClawHub](https://clawhub.ai/omactiengartelle/webtoon-character-generator) <br>
-- [Neta API token signup](https://www.neta.art/open/) <br>
-- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text image URL, with command-line usage examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall image dimensions plus an optional reference UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Prompts, reference IDs, and generation settings are sent to an external Neta/TalesOfAI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential, personal, or proprietary content in prompts or reference IDs unless that external service is approved for the intended use.
+
+Risk: Passing long-lived API tokens on the command line can expose them through shell history or logs.
+
+Mitigation: Use short-lived or revocable Neta API tokens where possible, avoid storing tokens in shared logs, and rotate tokens if exposure is suspected.
+
+Risk: Unpinned installs may change behavior when upstream skill releases change.
+
+Mitigation: Prefer a pinned or ClawHub-managed install path for production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/webtoon-character-generator)
+- [Neta AI token and API access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Text]
+
+**Output Format:** [Plain text image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and sends prompts, optional reference IDs, and generation settings to the external Neta/TalesOfAI service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

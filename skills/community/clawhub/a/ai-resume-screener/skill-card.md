@@ -1,41 +1,53 @@
-## Description: <br>
-AI Resume Screener helps parse, score, and rank resumes against job requirements for high-volume recruiting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically parse, score, and rank large batches of resumes by matching candidate information against job requirements, with support for multiple resume formats and screening analytics.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Recruiters and HR teams use this skill to screen batches of resumes, extract candidate attributes, score matches to a role, and review ranked candidates with supporting analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive candidate data and may create hiring rankings without explicit privacy, retention, or access controls. <br>
-Mitigation: Use only authorized candidate data, define storage, retention, and deletion rules before use, and restrict access to resume data and outputs. <br>
-Risk: Automated resume scoring can affect hiring decisions and may introduce fairness or compliance concerns. <br>
-Mitigation: Require human review plus legal and compliance checks before using scores or rankings in hiring decisions. <br>
+## Use Case:
 
+HR teams and recruiters use this skill to configure resume parsing, batch screening, candidate scoring, ranking, and analytics against defined job requirements. It is intended for hiring workflows that include authorization to process candidate data and human review of screening results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-resume-screener) <br>
-- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML configuration examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces resume parsing, scoring, ranking, and analytics guidance; human review is required before employment decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill supports bulk processing and ranking of sensitive candidate data without built-in privacy, consent, retention, or access-control guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorization to process the resumes, define where candidate data may be stored or sent, and apply privacy, deletion, and audit controls before use.
+
+Risk: Automated resume scoring can affect hiring outcomes and may produce incorrect or biased rankings.
+
+Mitigation: Require human review of recommendations, validate scoring criteria against job requirements, and monitor outcomes for bias before making hiring decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-resume-screener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides resume-screening workflow guidance, job-requirement configuration examples, and ranking-oriented command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

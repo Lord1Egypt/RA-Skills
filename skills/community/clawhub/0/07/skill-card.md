@@ -1,46 +1,65 @@
-## Description: <br>
-为 AI Agent 提供多个主流互联网平台的数据访问能力，包括搜索、内容读取、字幕提取和社交内容检索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agents with internet access across major web, social, video, and forum platforms.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an agent search and read web, social, video, RSS, and platform content, then return retrieved text, metadata, summaries, or setup guidance. It is suited for news lookup, content aggregation, transcript retrieval, and social discussion research where the user accepts the target platform terms and credential handling requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle account or browser session credentials for services such as Twitter/X, XiaoHongShu, and Bilibili. <br>
-Mitigation: Use dedicated low-privilege accounts, avoid sending cookies or API keys through chat, encrypt stored cookies, rotate credentials, and remove saved configuration when access is no longer needed. <br>
-Risk: Installation and setup can change the host environment by installing packages, creating scripts, and modifying shell configuration. <br>
-Mitigation: Prefer a virtual environment or dry-run review, inspect install actions before execution, and review changes to ~/.bashrc and skill directories after setup. <br>
-Risk: Real web access and platform scraping can trigger rate limits, account restrictions, or policy issues. <br>
-Mitigation: Keep request volume low, respect target platform terms, use user-approved proxies only where appropriate, and review retrieved content before using it in downstream workflows. <br>
+## Use Case:
 
+Developers and external users can use this skill to search and retrieve public web, social, video, and forum content for news discovery, content aggregation, transcript retrieval, and discussion lookup. Some platform access depends on user-provided cookies, proxy settings, or optional service credentials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nidhov01/07) <br>
-- [Security tools documentation](artifact/security/README.md) <br>
-- [Integration guide](artifact/integration/README.md) <br>
-- [Exa MCP endpoint](https://mcp.exa.ai/mcp) <br>
-- [Xiaohongshu MCP project](https://github.com/xpzouying/xiaohongshu-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, Python examples, JSON-like records, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include retrieved platform content, URLs, authors, timestamps, subtitles, comments, metadata, configuration steps, and security guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security evidence flags broad installer and credential-handling behavior as suspicious for normal installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in a virtual environment or sandbox, and prefer manually pinned dependencies from trusted sources.
+
+Risk: Some platform features rely on browser cookies or social-session credentials.
+
+Mitigation: Use dedicated low-risk accounts, provide only the cookies required for the task, encrypt stored cookies, and rotate or revoke them regularly.
+
+Risk: The installer and setup guides may configure external tools, global packages, proxies, or containers.
+
+Mitigation: Avoid automatic global installs where possible, verify each external tool and endpoint, and disable unused platform integrations.
+
+Risk: Retrieved content may be subject to platform rate limits, access restrictions, or terms of use.
+
+Mitigation: Use conservative request rates, respect platform terms, and confirm downstream use rights before storing or redistributing collected data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nidhov01/skills/07)
+- [Agent Reach repository](https://github.com/Panniantong/agent-reach)
+- [Xiaohongshu MCP repository](https://github.com/xpzouying/xiaohongshu-mcp)
+- [Exa MCP endpoint](https://mcp.exa.ai/mcp)
+- [Groq console](https://console.groq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and retrieved platform content as text or structured records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include search results, post metadata, comments, subtitles, web summaries, and setup guidance for platform-specific access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

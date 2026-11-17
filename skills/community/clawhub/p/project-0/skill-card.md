@@ -1,49 +1,64 @@
-## Description: <br>
-Project 0 guides agents through permissionless DeFi yield, borrowing, and rate-arbitrage workflows on Solana using P0 data APIs and wallet-authorized transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Permissionless DeFi yield and credit on Solana via Project 0 (P0), enabling agents to review wallet holdings, recommend deposits, borrows, swaps, and strategies, and execute user-confirmed on-chain actions.
 
-## Publisher: <br>
-[borcherd](https://clawhub.ai/user/borcherd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[borcherd](https://clawhub.ai/user/borcherd)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate P0 deposit yields, borrowing options, and advanced Solana DeFi strategies, then prepare or execute wallet-authorized deposits, borrows, repayments, withdrawals, and swaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through Solana transactions that require wallet signing and may move funds. <br>
-Mitigation: Use only a dedicated, low-balance wallet and require explicit review of amounts, protocols, destination accounts, fees, and slippage before each signing step. <br>
-Risk: Using a primary wallet or seed-derived key can expose high-value funds to agent mistakes or misuse. <br>
-Mitigation: Do not use a primary wallet or seed-derived keypair; provide a limited-purpose keypair only for the intended P0 activity. <br>
-Risk: The security summary says confirmation before moving funds is not consistently required. <br>
-Mitigation: Require the agent to present the full plan and obtain user confirmation before every transaction that signs or broadcasts on-chain. <br>
-Risk: Swap flows may share transaction details with a third-party routing service. <br>
-Mitigation: Review any Jupiter swap request, including token route, slippage, fees, and third-party data sharing, before approving execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/borcherd/project-0) <br>
-- [Project 0 Homepage](https://0.xyz) <br>
-- [Project 0 Protocol Overview](https://docs.0.xyz/) <br>
-- [Project 0 TypeScript SDK](https://docs.0.xyz/typescript-sdk/overview) <br>
-- [P0 Banks API](https://ai.0.xyz/api/banks) <br>
-- [P0 Strategies API](https://ai.0.xyz/api/strategies) <br>
-- [P0 Wallet API](https://ai.0.xyz/api/wallet/{address}) <br>
+## Use Case:
 
+External users and developers use this skill to evaluate P0 lending opportunities on Solana, compare yield and borrowing strategies, and carry out wallet-authorized DeFi actions with explicit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis can use public P0 APIs; on-chain actions require user-provided wallet and RPC configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.6 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent through high-impact wallet signing for Solana DeFi transactions.
+
+Mitigation: Use only a dedicated wallet with limited funds and require explicit user approval immediately before every signature.
+
+Risk: Swap transactions may not be sufficiently verified before signing.
+
+Mitigation: Do not sign Jupiter swap transactions unless the transaction is decoded and checked against the user-approved quote.
+
+Risk: Wallet portfolio lookups disclose the wallet address and holdings to ai.0.xyz.
+
+Mitigation: Use read-only wallet lookup only when the user accepts this disclosure.
+
+Risk: Borrowing and looping strategies can become unhealthy or liquidatable as market prices move.
+
+Mitigation: Check account health, leave a borrow buffer, monitor active positions, and stop for user approval before increasing risk.
+
+## Reference(s):
+
+- [Project 0](https://0.xyz)
+- [Project 0 Protocol Overview](https://docs.0.xyz/)
+- [Project 0 TypeScript SDK](https://docs.0.xyz/typescript-sdk/overview)
+- [Project 0 Skill on ClawHub](https://clawhub.ai/borcherd/skills/project-0)
+- [Borcherd ClawHub Profile](https://clawhub.ai/user/borcherd)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Solana transaction links, wallet-position summaries, API-derived yield data, and credential setup guidance.]
+
+## Skill Version(s):
+
+2.2.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

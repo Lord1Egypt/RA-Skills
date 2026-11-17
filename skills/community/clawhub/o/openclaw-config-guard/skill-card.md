@@ -1,48 +1,63 @@
-## Description: <br>
-Audit and safely repair OpenClaw configuration with deterministic validation, backups, rollback, and change reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and safely repair OpenClaw configuration with deterministic validation, backups, rollback, and change reporting.
 
-## Publisher: <br>
-[soal2](https://clawhub.ai/user/soal2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soal2](https://clawhub.ai/user/soal2)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw JSON configuration, identify startup-blocking problems, apply documented repairs only after backup, and report validation results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and propose repairs for local OpenClaw configuration. <br>
-Mitigation: Install only when that local configuration access is intended, and review proposed edits before applying them. <br>
-Risk: Incorrect configuration edits can prevent OpenClaw from starting. <br>
-Mitigation: Create a backup before any write, apply only documented startup-blocking repairs, and require successful post-change validation before trusting the repair. <br>
-Risk: A failed repair could leave the configuration in an invalid state. <br>
-Mitigation: Roll back immediately from the generated backup if post-change validation fails, and report the backup path and validation result. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw configuration, determine whether configuration issues block startup, and apply only documented repairs with backups, rollback, validation, and a clear Markdown report.
 
-## Reference(s): <br>
-- [Official source list](references/official-sources.md) <br>
-- [OpenClaw gateway configuration](https://docs.openclaw.ai/gateway/configuration) <br>
-- [OpenClaw configuration reference](https://docs.openclaw.ai/gateway/configuration-reference) <br>
-- [OpenClaw CLI config](https://docs.openclaw.ai/cli/config) <br>
-- [OpenClaw CLI doctor](https://docs.openclaw.ai/cli/doctor) <br>
-- [ClawHub skill page](https://clawhub.ai/soal2/openclaw-config-guard) <br>
-- [Publisher GitHub profile](https://github.com/soal2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with command guidance and JSON validation details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include official sources consulted, active config path, backup path, modified config paths, validation results, rollback status, and restart guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and changelog) <br>
+Risk: The skill can lead an agent to inspect and modify local OpenClaw configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed configuration changes before allowing writes, require a backup before each write, and verify the configuration again after changes.
+
+Risk: Backup naming may not be hardened enough for shared or adversarial local environments.
+
+Mitigation: Keep the configuration directory private and harden backup handling before relying on it in shared environments.
+
+Risk: Undocumented configuration assumptions could produce incorrect repairs.
+
+Mitigation: Use the listed OpenClaw documentation and local CLI validation as the source of truth, and defer changes when the correct repair is not documented.
+
+## Reference(s):
+
+- [OpenClaw gateway configuration](https://docs.openclaw.ai/gateway/configuration)
+- [OpenClaw configuration reference](https://docs.openclaw.ai/gateway/configuration-reference)
+- [OpenClaw CLI config](https://docs.openclaw.ai/cli/config)
+- [OpenClaw CLI doctor](https://docs.openclaw.ai/cli/doctor)
+- [Official source list](references/official-sources.md)
+- [ClawHub skill page](https://clawhub.ai/soal2/skills/openclaw-config-guard)
+- [Author GitHub profile](https://github.com/soal2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and JSON command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports official sources consulted, active config path, validation results, startup blockers, fixes, deferred issues, recommendations, modified paths, backup path, and restart guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

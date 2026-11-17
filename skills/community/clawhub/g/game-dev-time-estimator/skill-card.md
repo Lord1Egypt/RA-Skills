@@ -1,43 +1,50 @@
-## Description: <br>
-Help a beginner or early-stage game team estimate the likely development time for a game concept based on scope, target milestone, current team, skill coverage, work model, and production constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help a beginner or early-stage game team estimate the likely development time for a game concept based on scope, target milestone, current team, skill coverage, work model, and production constraints.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-External game creators, early-stage teams, and developers use this skill to estimate practical development timelines for game concepts, milestones, staffing plans, and target-date feasibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timeline estimates may be mistaken for delivery commitments or precise launch predictions. <br>
-Mitigation: Treat outputs as rough planning ranges, validate assumptions with project owners, and revisit estimates after scope, staffing, and milestone details change. <br>
-Risk: Users may include sensitive unreleased business plans, budgets, or personnel details while asking for estimates. <br>
-Mitigation: Avoid sharing sensitive business, budget, or personnel information unless it is appropriate to include in the conversation. <br>
+## Use Case:
 
+External creators, indie teams, and developers use this skill to estimate game development timeline ranges, assess target-date realism, and identify scope or staffing changes that would shorten the path.
 
-## Reference(s): <br>
-- [Time Drivers](references/time-drivers.md) <br>
-- [Estimation Modes](references/estimation-modes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-dev-time-estimator) <br>
-- [Publisher Profile](https://clawhub.ai/user/stanestane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured sections, assumptions, schedule drivers, rough time ranges, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rough planning estimates, not delivery guarantees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may share project, team, availability, budget-like constraints, or schedule goals while requesting an estimate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the planning details needed for the estimate and review the skill's assumptions before acting on timeline guidance.
+
+## Reference(s):
+
+- [Estimation Modes](references/estimation-modes.md)
+- [Time Drivers](references/time-drivers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured timeline estimates with assumptions, schedule drivers, hidden time sinks, rough ranges, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

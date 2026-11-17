@@ -1,42 +1,55 @@
-## Description: <br>
-Helps users discover and install agent skills from skills.sh, clawhub.com, and tessl.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills from skills.sh, clawhub.com, and tessl.io. Use when the user asks to find a skill for a task, extend agent capabilities, or search for tools/workflows.
 
-## Publisher: <br>
-[bdwelle](https://clawhub.ai/user/bdwelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bdwelle](https://clawhub.ai/user/bdwelle)
 
-## Use Case: <br>
-Developers and agents use this skill to search multiple skill registries, compare results, and provide install commands or guidance for extending an agent with task-specific skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Third-party skills found through registries may be unsafe, outdated, or unsuitable for the user's environment. <br>
-Mitigation: Review the selected skill's registry page, source, publisher, and version before installing or using it. <br>
-Risk: Search terms and install commands can expose sensitive context or make broad changes, especially with global installs or commands that skip confirmation prompts. <br>
-Mitigation: Avoid sensitive search terms and confirm install commands before execution, particularly global installs and commands using automatic confirmation flags. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bdwelle/unified-find-skills) <br>
-- [skills.sh registry](https://skills.sh/) <br>
-- [ClawHub registry](https://clawhub.ai/) <br>
-- [tessl.io skill registry](https://tessl.io/registry/discover?contentType=skills) <br>
+## Use Case:
 
+Developers and agent users use this skill to find relevant agent skills across multiple registries, compare installation options, and decide whether to install a skill for a specific task.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with registry result summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links to registry pages and install commands for selected skills.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide users to search public registries and install third-party agent skills globally.
+
+Mitigation: Check the selected skill's publisher, source, version, and instructions before installation.
+
+Risk: The skill includes install flows that can skip confirmation prompts for skills.sh global installs.
+
+Mitigation: Prefer pinned versions or immutable commits, avoid global installs unless needed, and do not use skipped-confirmation flags for unreviewed skills.
+
+## Reference(s):
+
+- [Unified Find Skills on ClawHub](https://clawhub.ai/bdwelle/skills/unified-find-skills)
+- [skills.sh](https://skills.sh/)
+- [ClawHub](https://clawhub.ai/)
+- [Tessl Skills Registry](https://tessl.io/registry/discover?contentType=skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include registry-specific install commands and links for matching skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

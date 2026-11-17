@@ -1,47 +1,61 @@
-## Description: <br>
-Turn emails into Google Calendar events by reading Gmail messages, extracting meetings, appointments, RSVPs, and deadlines, and creating or updating Google Calendar entries after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email To Calendar helps an agent find meetings, appointments, RSVPs, and deadlines in Gmail messages, present them for confirmation, and create or update Google Calendar events through a configured Google Calendar tool.
 
-## Publisher: <br>
-[tonimelisma](https://clawhub.ai/user/tonimelisma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tonimelisma](https://clawhub.ai/user/tonimelisma)
 
-## Use Case: <br>
-External users and developers use this skill to turn email-based meetings, appointments, RSVP requests, and deadlines into reviewed Google Calendar events. It is useful for inbox-to-calendar workflows where the agent should present extracted events, check for duplicates, and apply confirmed changes through local wrapper scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change Gmail state and persistent workspace behavior after setup. <br>
-Mitigation: Review setup defaults before installing, and turn off mark_read, archive, and auto_dispose_calendar_replies for preview-only behavior. <br>
-Risk: Local logs and state may contain email IDs, subjects, event titles, and calendar metadata. <br>
-Mitigation: Keep the workspace and data directory access controlled, and review local log retention before using the skill with sensitive mailboxes. <br>
-Risk: Persistent HEARTBEAT.md changes can affect ongoing behavior. <br>
-Mitigation: Inspect any HEARTBEAT.md changes before allowing them. <br>
+## Use Case:
 
+Individuals, families, and teams use this skill to turn email invitations, appointments, RSVP requests, and deadlines into reviewed Google Calendar entries without manually copying event details.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/tonimelisma/skills/email-to-calendar) <br>
-- [Setup guide](SETUP.md) <br>
-- [Extraction patterns](references/extraction-patterns.md) <br>
-- [gog command reference](references/gog-commands.md) <br>
-- [Workflow example](references/workflow-example.md) <br>
-- [gog CLI](https://github.com/tonimelisma/gogcli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured event details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewed event proposals, confirmation prompts, local wrapper-script commands, setup guidance, and undo or follow-up instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.13.3 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The security evidence reports persistent heartbeat behavior that can continue scanning and modifying email after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if recurring inbox checks are intended; review HEARTBEAT.md and remove the Email Scanning or Pending Calendar Invites sections to disable that behavior.
+
+Risk: The skill can read Gmail, modify Gmail labels, manage Google Calendar events, send optional deadline emails, and write local tracking logs.
+
+Mitigation: Use a dedicated or least-privileged Google account and review the selected calendar, email mode, attendees, and deadline notification settings before use.
+
+Risk: Default email handling can mark processed messages as read, archive them, and auto-process calendar reply notifications.
+
+Mitigation: Set email_handling.mark_read, email_handling.archive, or email_handling.auto_dispose_calendar_replies to false when those automatic actions are not desired.
+
+## Reference(s):
+
+- [Setup Guide](SETUP.md)
+- [CLI Reference](references/gog-commands.md)
+- [Extraction Patterns](references/extraction-patterns.md)
+- [Workflow Example](references/workflow-example.md)
+- [gog CLI](https://github.com/tonimelisma/gogcli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured event summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before calendar creation or updates; can write local tracking, pending invite, activity, and changelog JSON through its scripts.]
+
+## Skill Version(s):
+
+1.13.3 (source: SKILL.md frontmatter, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

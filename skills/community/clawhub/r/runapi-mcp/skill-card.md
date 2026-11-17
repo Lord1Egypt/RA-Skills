@@ -1,41 +1,56 @@
-## Description: <br>
-RunAPI MCP Server helps agents generate images, video, music, audio, speech, and other media through RunAPI task submission and polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use RunAPI MCP tools to generate images, videos, music, audio, and speech, submit media tasks, and check task status.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill to route media generation requests through RunAPI, validate model parameters, create or poll tasks, and receive task IDs, statuses, output URLs, and cost fields when available.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: RunAPI media task submission may incur costs.
+
+Mitigation: Confirm video, music, or batch requests before task creation and present available cost fields when available.
+
+Risk: Generated file URLs are temporary and valid for 7 days.
+
+Mitigation: For durable use, download and store generated files in user-controlled storage.
+
+Risk: The broad "check this task" trigger may activate on ambiguous requests.
+
+Mitigation: Confirm the request concerns RunAPI task status before polling when the context is unclear.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to turn media-generation requests into validated RunAPI tasks, track task status, and present generated output URLs and cost fields when available. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may be sent to RunAPI for external task processing. <br>
-Mitigation: Confirm sensitive, ambiguous, or expensive media requests before submitting tasks. <br>
-Risk: Some task creation can incur provider costs. <br>
-Mitigation: Ask for confirmation before video, music, batch, or otherwise costly task creation. <br>
-Risk: Generated output URLs may be temporary. <br>
-Mitigation: Download and store generated files in durable storage before treating outputs as production assets. <br>
+**Output Format:** [Markdown with task identifiers, task status, output URLs, and cost fields when available]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [RunAPI-generated file URLs are temporary and valid for 7 days; durable workflows need separate storage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown status updates with task identifiers, output URLs, cost fields when available, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated file URLs may be temporary; durable use requires downloading and storing generated files separately.] <br>
+0.1.9 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.9 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

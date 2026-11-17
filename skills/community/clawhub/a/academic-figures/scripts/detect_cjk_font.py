@@ -24,6 +24,14 @@ CJK_FONT_PRIORITY = [
     "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
 ]
 
+if os.environ.get("AF_SKETCH") == "1":
+    # v7.6.1 sketch 手绘模式：中文走清晰手写字形（霞鹜文楷=清晰楷体；清松潦草备选）
+    # （环境变量仅在 --style sketch 进程树内置位，全局默认不受影响）
+    CJK_FONT_PRIORITY = [
+        os.path.expanduser("~/.local/share/fonts/LXGWWenKai-Regular.ttf"),
+        os.path.expanduser("~/.local/share/fonts/ChienShongHandwriting7-Piaoyi.ttf"),
+    ] + CJK_FONT_PRIORITY
+
 def detect_cjk_font():
     """Return path to first available CJK font, or None."""
     for p in CJK_FONT_PRIORITY:

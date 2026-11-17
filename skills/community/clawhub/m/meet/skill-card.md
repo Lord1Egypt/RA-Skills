@@ -1,37 +1,47 @@
-## Description: <br>
-Meet helps agents prepare, facilitate, document, and improve meetings with agendas, attendee audits, decision frameworks, action items, and meeting-culture checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meet helps people prepare, run, document, and improve meetings with guidance for agendas, attendee selection, facilitation, decision-making, notes, and meeting-culture audits.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-Developers, operators, managers, and agents use this skill to plan productive meetings, decide whether a meeting should happen, run structured discussions, capture decisions and actions, and audit recurring meeting culture. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to be applied to sensitive workplace, personnel, or interpersonal situations where generic meeting advice is not enough. <br>
-Mitigation: Confirm the skill is relevant before use, and apply human judgment and organization-specific policy before relying on its guidance in sensitive situations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AGImodel/meet) <br>
+## Use Case:
+
+Employees and workplace teams use Meet to decide whether a meeting is needed, prepare agendas, facilitate decision and alignment discussions, capture action items, and audit recurring meeting culture.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger on a wide range of meeting or workplace-conversation prompts, which can make it noisy in normal work discussions.
+
+Mitigation: Use it when meeting preparation, facilitation, notes, or meeting-culture guidance is actually needed, and ignore or disable it for unrelated workplace conversations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured meeting templates, facilitation prompts, checklists, and action-item guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory meeting content only; it does not request tools, credentials, data access, or background execution.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable commands, tools, or external service calls are defined by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

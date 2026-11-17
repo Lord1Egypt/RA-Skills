@@ -1,0 +1,118 @@
+{
+  "skill_name": "huawei-cloud-as-group-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "list scaling groups (default compact output)",
+      "command": "python3 scripts/list_as_groups.py --region={region}",
+      "expected": "compact 名称 | 组ID | 状态 list plus 共 N 个伸缩组 summary, rc=0 (or a clear 403 permission hint)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "full group table output",
+      "command": "python3 scripts/list_as_groups.py --table --region={region}",
+      "expected": "11 columns: 组ID / 名称 / 状态 / 期望实例数 / 当前实例数 / 最小-最大 / VPC / 子网 / 关联ELB / 创建时间 / region",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "raw JSON output",
+      "command": "python3 scripts/list_as_groups.py --json --region={region}",
+      "expected": "valid JSON with scaling_groups / total_number / region",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "name filter (exact)",
+      "command": "python3 scripts/list_as_groups.py --name=web-prod --region={region}",
+      "expected": "only groups whose name equals web-prod, or 未找到匹配的伸缩组",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "name filter (fuzzy)",
+      "command": "python3 scripts/list_as_groups.py --name=web --fuzzy --region={region}",
+      "expected": "groups whose name contains web",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "abnormal status filter",
+      "command": "python3 scripts/list_as_groups.py --table --status=abnormal --region={region}",
+      "expected": "only groups with desired != current or status != INSERVICE, or 未找到匹配的伸缩组",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "pagination with limit=1",
+      "command": "python3 scripts/list_as_groups.py --limit=1 --region={region}",
+      "expected": "all pages fetched via total_number, rc=0",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "SDK fallback",
+      "command": "python3 scripts/list_as_groups.py --backend=sdk --region={region}",
+      "expected": "same output shape through huaweicloudsdkas v1 (requires AK/SK env vars)",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-09",
+      "name": "write-intent guard: action",
+      "command": "python3 scripts/list_as_groups.py --action=delete",
+      "expected": "read-only guard error, rc=1, no cloud call",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-10",
+      "name": "write-intent guard: name",
+      "command": "python3 scripts/list_as_groups.py --name=create-me",
+      "expected": "read-only guard error, rc=1, no cloud call",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-11",
+      "name": "limit out of range",
+      "command": "python3 scripts/list_as_groups.py --limit=101",
+      "expected": "--limit must be 1~100, rc=1",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-12",
+      "name": "empty scaling-group list hint",
+      "command": "python3 scripts/list_as_groups.py --region={region}",
+      "expected": "当前区域无伸缩组（区域: cn-north-4）。 rc=0 when the account has no AS groups",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-13",
+      "name": "hcloud AS ListScalingGroups exists",
+      "command": "hcloud AS ListScalingGroups --cli-region={region} --help",
+      "expected": "KooCLI prints Method: GET and the ListScalingGroups parameters",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-14",
+      "name": "hcloud AS ListScalingInstances exists",
+      "command": "hcloud AS ListScalingInstances --cli-region={region} --help",
+      "expected": "KooCLI prints Method: GET and the --scaling_group_id parameter",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

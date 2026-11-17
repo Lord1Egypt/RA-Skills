@@ -1,40 +1,57 @@
-## Description: <br>
-Connects an agent to OKKI (Xiaoman) CRM for customer lookup, follow-up records, order management, and channel-limited execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to OKKI CRM so it can query customers, create follow-up records, manage orders, and keep activity limited to the configured OKKI channel.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and CRM operators use this skill to let an agent query OKKI CRM records, review follow-up activity, manage leads and orders, and gate CRM actions to an authorized #okki channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify CRM business records and send email through an external OKKI client. <br>
-Mitigation: Require explicit human approval for create, update, delete, order, and email actions before execution. <br>
-Risk: The referenced OKKI client, configuration, and token cache behavior are not included or fully described in the artifact. <br>
-Mitigation: Review and trust the referenced okki_client.py and config before installation, use a least-privilege sandbox account, and restrict the #okki channel to authorized users. <br>
+## Use Case:
 
+CRM operators and support or sales agents use this skill to retrieve OKKI customer, product, lead, follow-up, user, and order information, and to perform CRM write actions with confirmation based on operation risk.
 
-## Reference(s): <br>
-- [OKKI CRM ClawHub release](https://clawhub.ai/cjboy007/ssa-okki-crm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with table outputs and inline shell or Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Customer and follow-up results are intended to hide internal IDs by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read and write CRM data, including creating leads, companies, follow-up records, orders, and emails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented risk tiers: execute read-only actions directly, require first-use confirmation for medium-risk actions, and require confirmation every time for high-risk write or email actions.
+
+Risk: CRM commands may trigger outside the intended OKKI workflow if channel gating or keyword triggers are configured incorrectly.
+
+Mitigation: Confirm that execution is limited to the configured #okki channel and narrow or remove broad keyword triggers before deployment.
+
+Risk: Authentication and live CRM behavior depend on an external OKKI client and token storage that are not bundled in the artifact.
+
+Mitigation: Review the external OKKI client, configuration path, and token cache handling before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cjboy007/skills/ssa-okki-crm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and concise text with optional shell commands or Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Customer and user IDs should be withheld from normal customer-facing output according to the skill instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Axiomata Skill Evaluator Zh evaluates OpenClaw agent skills with a five-dimension Axioma rubric and ISO 25010 structural checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Axiomata Skill Evaluator Zh helps agents evaluate OpenClaw skill quality with bundled Axioma five-dimension scoring and ISO 25010 structural checks.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit skill directories before release, review quality scores, and identify improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evaluation tools read local skill files and can scan sibling skill folders when run with broad options such as --all. <br>
-Mitigation: Run the tools on specific intended skill directories by default and use broad scans only when reviewing sibling folders is intentional. <br>
-Risk: Providing credentials is unnecessary for this local evaluator and could expose sensitive material in scanned files or reports. <br>
-Mitigation: Do not provide credentials or secrets when using the skill, and review generated reports before sharing them. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to run local, Chinese-language heuristic quality checks before release, during improvement work, or as part of skill audits.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text, Markdown guidance, and optional JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local skill directories and does not require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: ClawHub release evidence; artifact documentation mentions 3.0.0) <br>
+Risk: The evaluator's quality scores are heuristic and may overstate production readiness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as advisory and use manual review before relying on results for release decisions.
+
+Risk: The --all mode can inspect every sibling skill directory rather than a single intended target.
+
+Mitigation: Run the evaluator on an explicit skill path unless broad local auditing is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiomata-skill-evaluator-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and optional JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces heuristic quality scores, structural check summaries, and improvement recommendations.]
+
+## Skill Version(s):
+
+3.0.1 (source: release evidence; artifact body and script mention 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

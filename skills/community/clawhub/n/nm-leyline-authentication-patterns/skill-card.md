@@ -1,46 +1,49 @@
-## Description: <br>
-Provides authentication patterns for API keys, OAuth, and token management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides auth patterns for API keys, OAuth, and token management
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill when designing or reviewing service authentication, credential verification, token refresh, OAuth flows, and CI-friendly authentication checks. It is most useful for agent workflows that need consistent auth failure handling and practical examples for API keys, tokens, and service CLIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential examples could be copied into shared files with plaintext long-lived secrets. <br>
-Mitigation: Prefer environment variables or managed secret stores, avoid committing local secret files, and set restrictive permissions on any local credential cache or secret file. <br>
-Risk: Service command examples may execute unintended commands if adapted with untrusted service names. <br>
-Mitigation: Restrict supported service commands to a trusted allowlist before using the patterns in production workflows. <br>
-Risk: The skill references external leyline plugin scripts for interactive authentication. <br>
-Mitigation: Review external plugin scripts before sourcing them and verify they match the expected authentication behavior. <br>
+## Use Case:
 
+Developers use this skill to plan or review API key, OAuth, and token based authentication for external services. It provides credential checks, verification patterns, failure handling, and interactive authentication guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-authentication-patterns) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Authentication methods module](artifact/modules/auth-methods.md) <br>
-- [Interactive authentication module](artifact/modules/interactive-auth.md) <br>
-- [Verification patterns module](artifact/modules/verification-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python, Bash, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-oriented output; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security assessment is incomplete: it reports authentication actions beyond the skill’s stated guidance purpose, and a referenced authentication script is missing from scan evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced script and clarify reported repository, cloud-resource, and cache-clearing actions before installation or execution.
+
+## Reference(s):
+
+- [Leyline project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline Python, shell, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

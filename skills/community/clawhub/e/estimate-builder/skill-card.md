@@ -1,41 +1,58 @@
-## Description: <br>
-Build construction project estimates. Generate detailed cost breakdowns with labor, materials, equipment, and overhead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build construction project estimates. Generate detailed cost breakdowns with labor, materials, equipment, and overhead.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction estimators, project managers, and cost engineers use this skill to assemble project line items, apply overhead, profit, and contingency markups, and produce category-level cost summaries for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Filesystem exports can overwrite or place estimate workbooks in unintended locations. <br>
-Mitigation: Choose output paths deliberately and review destination filenames before allowing the agent to create files. <br>
-Risk: Construction estimates can be misleading if quantities, unit costs, markups, or categories are incomplete or incorrect. <br>
-Mitigation: Review line items, category totals, and validation warnings before using outputs for bids, budgets, or approvals. <br>
+## Use Case:
 
+External construction professionals and project teams use this skill to assemble cost estimates, categorize labor, material, equipment, subcontractor, and other costs, apply markups, and review estimates for common data issues.
 
-## Reference(s): <br>
-- [Data Driven Construction Website](https://datadrivenconstruction.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/estimate-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown tables and Python-oriented estimate data; optional Excel workbook output when exported.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses USD by default unless the user specifies another currency; monetary values are rounded to two decimal places.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Excel exports that include client, contractor, or other untrusted text can carry unsafe spreadsheet content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or sanitize text fields that begin with =, +, -, or @ before export.
+
+Risk: Exporting to a user-supplied workbook path can overwrite an existing estimate file.
+
+Mitigation: Confirm the output filename before writing an Excel workbook.
+
+Risk: The default currency may not match the project context.
+
+Mitigation: Specify a currency other than USD when the estimate requires it.
+
+## Reference(s):
+
+- [DataDrivenConstruction homepage](https://datadrivenconstruction.io)
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/estimate-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown tables, validation notes, and Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce cost category summaries, markup breakdowns, grand totals, validation warnings, and Excel export guidance.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

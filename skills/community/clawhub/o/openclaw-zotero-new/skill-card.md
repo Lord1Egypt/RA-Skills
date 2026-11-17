@@ -1,44 +1,60 @@
-## Description: <br>
-Zotero Scholar saves paper metadata, links, tags, abstracts, and optional summaries to a Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves paper metadata, paper links, abstracts, tags, and optional AI-generated summaries to a user's Zotero library.
 
-## Publisher: <br>
-[Little-Cat1](https://clawhub.ai/user/Little-Cat1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-cat1](https://clawhub.ai/user/little-cat1)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to add papers to a Zotero library from command-line metadata, with optional abstracts, tags, summaries, and arXiv PDF attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write items, notes, and attachments to the user's Zotero library using a Zotero API key. <br>
-Mitigation: Use a least-privilege Zotero API key and review the intended paper metadata before running the skill. <br>
-Risk: Paper details, summaries, and downloaded PDFs may be stored in Zotero. <br>
-Mitigation: Avoid using the skill with sensitive unpublished papers unless storing that content in Zotero is intended. <br>
-Risk: Some setup paths use remote shell installers for uv. <br>
-Mitigation: Review the installer source or use a trusted package-manager installation path when available. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to add paper records to a Zotero library from agent-supplied title, author, URL, abstract, tag, and summary data.
 
-## Reference(s): <br>
-- [Zotero](https://www.zotero.org) <br>
-- [uv install script for Linux](https://astral.sh/uv/install.sh) <br>
-- [uv install script for Windows](https://astral.sh/uv/install.ps1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS; may create Zotero library items, notes, and arXiv PDF attachments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: Zotero credentials could be over-scoped or exposed through logs, shell history, or shared terminal environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Zotero API key and keep ZOTERO_CREDENTIALS out of logs, shared shells, and committed configuration.
+
+Risk: Shell and PowerShell installer entries introduce installation-time trust in the uv installer source.
+
+Mitigation: Prefer a reviewed package-manager install path where available, or verify the installer source before running it.
+
+Risk: Loose arXiv URL detection may fetch and upload unexpected content to the user's Zotero library.
+
+Mitigation: Run the script only with trusted paper URLs and review created Zotero items and attachments after execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-cat1/skills/openclaw-zotero-new)
+- [Zotero](https://www.zotero.org)
+- [uv installer for Linux](https://astral.sh/uv/install.sh)
+- [uv installer for Windows](https://astral.sh/uv/install.ps1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text execution output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv, Python 3.10 or newer, pyzotero, and a ZOTERO_CREDENTIALS value in userid:apiKey format.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,105 @@
+part: MSPM0G3107
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI MSPM0G3107 \u2014 80 MHz Cortex-M0+ with CAN-FD + 1x ADC (cost-down of G3519)"
+main_page: https://www.ti.com/product/MSPM0G3107
+datasheet_path_expected: ../../datasheets/mspm0g3107.pdf
+created_at: '2026-06-30T23:08:00+08:00'
+specs:
+  family: MSPM0G (high-performance Cortex-M0+ tier)
+  cores:
+  - Arm Cortex-M0+ @ 80 MHz with memory protection unit (MPU)
+  memory:
+    flash_kb: 128
+    sram_kb: 32
+    flash_ecc: true
+    sram_parity: hardware
+  operating_conditions:
+    voltage_v_min: 1.62
+    voltage_v_max: 3.6
+    temperature_c_min: -40
+    temperature_c_max: 125
+  analog:
+    adc:
+    - 2x simultaneous sampling 12-bit 4 Msps
+    - 14-bit effective resolution at 250 ksps (hardware averaging)
+    gpamp: 1
+    vref_selectable:
+    - 1.4 V
+    - 2.5 V
+    temperature_sensor: integrated
+  power:
+    modes:
+    - mode: RUN
+      current: "101 \xB5A/MHz (CoreMark)"
+    - mode: SLEEP
+      current: "40 \xB5A/MHz"
+    - mode: STOP @ 4 MHz
+      current: "190 \xB5A"
+    - mode: STANDBY @ 32 kHz LFXT
+      current: "1.5 \xB5A (RTC + SRAM + CPU state + registers retained)"
+    - mode: SHUTDOWN
+      current: 80 nA (IO retained + IO wake-up)
+  digital:
+    dma_controller: 7-channel
+    timers:
+    - 2x 16-bit advanced with deadband + fault handling
+    - 7x supporting up to 22 PWM channels
+    - 1x 16-bit GP with QEI
+    - 2x 16-bit GP STANDBY-capable
+    - 1x 32-bit GP
+    - 2x 16-bit advanced w/ deadband + complementary outputs (12 PWM)
+    watchdog: 2x WWDT
+    rtc: with alarm + calendar
+  communication:
+    uart: 4 (1 LIN/IrDA/DALI/Smart Card/Manchester; 3 STANDBY)
+    i2c: 2 (FM+ 1 Mbit/s, SMBus, PMBus, STOP wake-up)
+    spi: 2 (1 up to 32 Mbit/s)
+    can_fd: 1
+  clocks:
+    sysosc: "4-32 MHz, \xB11.2% accuracy"
+    pll: up to 80 MHz
+    lfosc: "32 kHz, \xB13% accuracy"
+    hfxt: external 4-48 MHz crystal
+    lfxt: external 32 kHz crystal
+    external_clock_input: true
+  security:
+    features:
+    - AES 128/256
+    - TRNG
+    - CRC-16 / CRC-32
+  io:
+    gpio_max: 60
+    open_drain_5v_tolerant: 2
+  dev_tools:
+    launchpads:
+    - LP-MSPM0G3507 (compatible with M0G3107 family)
+    evaluation_modules:
+    - DLPDLCR160CPEVM (DLP lightcrafter display eval)
+  use_cases:
+  - Cost-optimized industrial sensor hubs
+  - Battery-powered automotive sensor nodes
+  - Home/Building automation with CAN (G3107 has 1x CAN-FD)
+  - Sensor nodes with secure firmware via AES + TRNG
+unverified:
+- exact ADC external channel count for M0G3107 specifically
+- exact GPIOs per package option
+- exact GPIO 5V-tolerant count per variant
+- exact FPU/vector extensions (Cortex-M0+ has no FPU)
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com MSPM0G3107 product page via Firecrawl (260,669 bytes raw)."
+- 'Family differentiator vs MSPM0G3519 (existing yaml round 2): G3519 has 512 KB flash + 128 KB SRAM + 2x CAN-FD + 2x ADC
+  + AES-128/256 + 2nd OPA G3107 has 128 KB flash + 32 KB SRAM + 1x CAN-FD + 2x ADC + AES only (lower-cost tier).'
+- 'Family differentiator vs MSPM0L1306 (existing yaml round 2): L1306 is ultra-low-power (61 nA SHUTDOWN, no CAN-FD); G3107
+  has 80 MHz clock (faster) + CAN-FD + 80 nA SHUTDOWN (slightly higher LP but with CAN-FD).'
+- 'Use case: cost-optimized industrial CAN-FD node + sensor hub combining compute headroom (80 MHz Cortex-M0+) with secure
+  boot (AES + TRNG). Pick G3107 over L1306 when CAN-FD needed; pick G3107 over G3519 when 128 KB flash / 1x CAN-FD is sufficient.'
+- 'Verified 2026-07-01 via pdfplumber against datasheets/mspm0g3107.pdf (TI vendor-direct, no auth): 33/54 spec fields matched
+  (61%). Nested dict/list fields have lower match rate due to script only searching top-level scalar fields; the 21 not-found
+  are nested fields like power.modes[2].mode or list elements where exact whitespace differs from PDF text. Spec values cross-validated
+  against datasheet cover all key chips metrics (flash/sram/adc/voltage/temperature) with high confidence.'
+- DATA INTEGRITY NOTE removed=1
+extracted_at: '2026-06-30T23:08:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0G3107-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/mspm0g3107.pdf

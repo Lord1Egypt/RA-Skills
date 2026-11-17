@@ -1,46 +1,59 @@
-## Description: <br>
-Guides agents through Trading 212 API authentication, environment selection, account and portfolio queries, instrument lookup, order placement, transaction history, and CSV report export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Trading 212 API authentication, environment selection, account and portfolio queries, instrument lookup, historical data retrieval, CSV exports, and order-related API calls.
 
-## Publisher: <br>
-[tsvetelin-kulinski](https://clawhub.ai/user/tsvetelin-kulinski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[tsvetelin-kulinski](https://clawhub.ai/user/tsvetelin-kulinski)
 
-## Use Case: <br>
-External users and developers use this skill to connect agents to Trading 212 demo or live API accounts for account review, portfolio monitoring, instrument lookup, order management, transaction history, and CSV report workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward live trading actions and financial-data access without enough action-level safeguards. <br>
-Mitigation: Review carefully before installing, use DEMO mode first, and require explicit confirmation before every live order or cancellation. <br>
-Risk: Credential exposure could allow unauthorized access to Trading 212 accounts. <br>
-Mitigation: Do not paste API secrets into chat; keep credentials in private environment variables and avoid logging authorization headers. <br>
-Risk: Downloaded reports can contain sensitive financial information. <br>
-Mitigation: Store downloaded reports only in a private location and remove them when no longer needed. <br>
-Risk: Trading 212 API behavior may change because the skill states that the API is in beta. <br>
-Mitigation: Verify Trading 212 API details with official documentation before relying on generated commands or workflows. <br>
+## Use Case:
 
+External developers and Trading 212 account holders use this skill to configure API credentials, choose DEMO or LIVE environments, inspect account and portfolio data, search instruments, retrieve history, and prepare Trading 212 API requests.
 
-## Reference(s): <br>
-- [Trading 212 Demo API Endpoint](https://demo.trading212.com/api/v0) <br>
-- [Trading 212 Live API Endpoint](https://live.trading212.com/api/v0) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tsvetelin-kulinski/trading212-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curl commands and environment variable names; API calls require a user-selected demo or live environment and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and artifact metadata) <br>
+Risk: The skill can guide API calls that place or cancel real-money trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use DEMO first and require explicit confirmation before any LIVE order placement or cancellation.
+
+Risk: Credentials could be sent to the wrong destination if a custom base URL or precomputed authorization header is used carelessly.
+
+Mitigation: Use only the official live.trading212.com or demo.trading212.com hosts and confirm the selected environment before API calls.
+
+Risk: Shared temporary instrument metadata caches can become stale or be unsuitable for trade decisions.
+
+Mitigation: Refresh and validate Trading 212 instrument data before trading, and do not rely on a shared /tmp cache for final decisions.
+
+## Reference(s):
+
+- [Trading212 API ClawHub skill page](https://clawhub.ai/tsvetelin-kulinski/skills/trading212-api)
+- [Trading 212 demo API base URL](https://demo.trading212.com/api/v0)
+- [Trading 212 live API base URL](https://live.trading212.com/api/v0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API Calls, Code]
+
+**Output Format:** [Markdown with inline bash, curl, JSON, and CSV examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit environment selection and confirmation before live order placement or cancellation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

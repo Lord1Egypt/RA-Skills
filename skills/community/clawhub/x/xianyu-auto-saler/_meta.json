@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn78j3bjzs8kahabmqwkgqjex181vqpz",
-  "slug": "xianyu-auto-saler",
+  "name": "xianyu-auto-fulfillment",
   "version": "1.0.0",
-  "publishedAt": 1772335108757
+  "description": "闲鱼自动发货自动化技能 - 通过浏览器自动监控聊天并发送虚拟商品秘钥",
+  "author": "Sliverp",
+  "tags": ["xianyu", "闲鱼", "automation", "fulfillment", "virtual-goods"],
+  "requires": ["agent-browser"],
+  "category": "ecommerce"
 }

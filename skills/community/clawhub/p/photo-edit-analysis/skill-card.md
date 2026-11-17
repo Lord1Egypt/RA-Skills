@@ -1,41 +1,50 @@
-## Description: <br>
-Analyze the composition, editing, and post-processing quality of a photograph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a shared photograph's composition, editing, and post-processing quality with direct, specific critique and a letter grade.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-External users and photographers use this skill to get concise editorial critique of a photograph's composition, exposure, tone, color grade, white balance, crop, grain, and texture. It provides specific notes and a letter grade to guide practical edit improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad photo-feedback questions may invoke the skill on images the user did not intend to have critiqued. <br>
-Mitigation: Use the skill only with images the user is comfortable having reviewed by their agent. <br>
-Risk: Photo critique is subjective and may not match the photographer's creative intent. <br>
-Mitigation: Treat the output as editorial guidance and compare recommendations against the intended mood, subject, and use of the image. <br>
+## Use Case:
 
+External users, photographers, and photo editors use this skill to get concise editorial feedback on a photo's composition, exposure, tone, color grade, crop, texture, and overall edit quality.
 
-## Reference(s): <br>
-- [Photo Edit Analysis on ClawHub](https://clawhub.ai/pfrederiksen/photo-edit-analysis) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with Composition and Edit sections, followed by an A-D letter grade and one improvement note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise editorial feedback, normally 200-300 words, based on the provided photograph.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and README badge) <br>
+Risk: The skill is intended to produce frank subjective photo critique, which may feel harsh or overconfident for creative work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when direct editorial feedback is desired, and treat the letter grade and edit recommendations as subjective guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/photo-edit-analysis)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with Composition and Edit sections, followed by an A-D letter grade and one actionable improvement note.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise editorial critique, typically 150-300 words; does not generate files, run commands, or call tools.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and README badge)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

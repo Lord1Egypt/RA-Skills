@@ -1,41 +1,60 @@
-## Description: <br>
-Generates Studio Ghibli style AI images through the Neta AI image generation API and returns a direct image URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate studio ghibli ai art generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
 
-## Publisher: <br>
-[wkl-nieta](https://clawhub.ai/user/wkl-nieta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wkl-nieta](https://clawhub.ai/user/wkl-nieta)
 
-## Use Case: <br>
-External users and developers use this skill to generate stylized AI images from text prompts, with optional size and reference-image parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image IDs, and API credentials are sent to the disclosed Neta/TalesOfAI service. <br>
-Mitigation: Avoid confidential or personal content, verify trust in the service before use, and use a limited-scope API token that can be revoked. <br>
-Risk: The skill depends on an external image-generation service, so availability, moderation, and output quality are outside the local agent's control. <br>
-Mitigation: Review generated image URLs and outputs before relying on them, and handle service errors or timeouts in downstream workflows. <br>
+## Use Case:
 
+External users and developers use this skill to generate AI images from text prompts through the Neta image generation API and receive a direct image URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wkl-nieta/ghibli-style-skill) <br>
-- [Neta API access](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL printed to stdout, with setup and command guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; prompts and reference image IDs are sent to the Neta/TalesOfAI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill sends prompts and an API token to an external image generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and account credentials appropriate for that provider, and verify the provider relationship between Neta and api.talesofai.com before use.
+
+Risk: The script accepts the API token through a command-line flag, which can expose credentials in local shell history or process listings.
+
+Mitigation: Avoid placing real tokens directly on the command line; use a controlled environment variable flow or wrapper that does not persist the token.
+
+Risk: The runtime API destination is not consistently disclosed across skill metadata.
+
+Mitigation: Review the documented endpoints and pin the installed skill version before using a real account token.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wkl-nieta/skills/ghibli-style-skill)
+- [Neta API token signup](https://www.neta.art/open/)
+- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image)
+- [Neta image task polling endpoint](https://api.talesofai.com/v1/artifact/task/${task_uuid})
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Configuration]
+
+**Output Format:** [Plain text image URL with command-line status or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and accepts prompt, size, style, and optional reference image parameters.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

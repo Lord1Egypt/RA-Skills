@@ -1,47 +1,62 @@
-## Description: <br>
-Guides OpenClaw administrators through configuring SiliconFlow as an OpenAI-compatible model provider, including provider registration, model definitions, aliases, fallback setup, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw to use SiliconFlow as an OpenAI-compatible model provider, including provider registration, model definitions, aliases, fallback setup, and verification steps.
 
-## Publisher: <br>
-[sunerw-dev](https://clawhub.ai/user/sunerw-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunerw-dev](https://clawhub.ai/user/sunerw-dev)
 
-## Use Case: <br>
-Developers and OpenClaw administrators use this skill to add SiliconFlow model access to an OpenClaw configuration. It helps define provider settings, model aliases, fallback behavior, and validation commands for the integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The SiliconFlow API key is a secret used in provider configuration. <br>
-Mitigation: Store and handle the API key as a secret, and avoid committing it to shared configuration files or logs. <br>
-Risk: Fallback configuration changes can alter model routing behavior in OpenClaw. <br>
-Mitigation: Review fallback changes before applying them and run the documented OpenClaw validation commands after configuration. <br>
-Risk: Prompts and metadata sent through the configured provider may leave the local system for SiliconFlow's service. <br>
-Mitigation: Use the provider only for workloads where sending data to SiliconFlow is acceptable under the user's data handling requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sunerw-dev/add-siliconflow-provider-1) <br>
-- [Publisher profile](https://clawhub.ai/user/sunerw-dev) <br>
-- [SiliconFlow](https://siliconflow.cn) <br>
-- [SiliconFlow documentation](https://docs.siliconflow.cn) <br>
-- [SiliconFlow pricing](https://siliconflow.cn/pricing) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to add SiliconFlow as a third-party model provider, configure recommended model aliases, and optionally add SiliconFlow models to the OpenClaw fallback chain.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw provider configuration, model alias examples, fallback guidance, and SiliconFlow API verification commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fallback-chain changes could route future OpenClaw prompts to a third-party provider unexpectedly.
+
+Mitigation: Review and explicitly approve the fallback-chain configuration before applying it, and keep the documented backup so the provider can be removed.
+
+Risk: SiliconFlow API keys could be exposed if stored directly in shared configuration.
+
+Mitigation: Use a protected environment variable or secret store for the API key where possible.
+
+Risk: Sensitive prompts could be sent to a third-party model provider during testing or fallback use.
+
+Mitigation: Avoid testing with sensitive prompts and install the skill only when SiliconFlow routing is intended.
+
+## Reference(s):
+
+- [SiliconFlow documentation](https://docs.siliconflow.cn)
+- [SiliconFlow pricing](https://siliconflow.cn/pricing)
+- [SiliconFlow website](https://siliconflow.cn)
+- [OpenClaw repository](https://github.com/openclaw/openclaw)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/sunerw-dev/skills/add-siliconflow-provider-1)
+- [Publisher profile](https://clawhub.ai/user/sunerw-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw provider, alias, fallback, and verification guidance for SiliconFlow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

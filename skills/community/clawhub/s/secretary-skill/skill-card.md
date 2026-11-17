@@ -1,41 +1,57 @@
-## Description: <br>
-Full lifecycle goal management: from vague vision to filed, tracked, and automated long-term plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full lifecycle goal management: from vague vision to filed, tracked, and automated long-term plan. 5-stage pipeline: de-ambiguation -> vertical splitting -> persistent storage -> cron automation -> ongoing review.
 
-## Publisher: <br>
-[joeyxin-del](https://clawhub.ai/user/joeyxin-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyxin-del](https://clawhub.ai/user/joeyxin-del)
 
-## Use Case: <br>
-External users and agent operators use this skill to clarify long-term goals, split them into milestones and atomic tasks, persist goal plans as Markdown files, generate reminder payloads, and review progress over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Goal details may include sensitive personal, financial, career, or health information that is saved locally and may be remembered across sessions. <br>
-Mitigation: Use explicit save commands, avoid storing unnecessary sensitive details, and periodically review or delete generated goal files and memory pointers. <br>
-Risk: Generated reminder payloads can keep resurfacing outdated or sensitive goal details after the user's situation changes. <br>
-Mitigation: Review scheduled reminders after material plan changes and remove or update reminders that no longer match the current goal. <br>
+## Use Case:
 
+External users and productivity-focused agents use this skill to clarify vague long-term goals, split them into milestones and atomic tasks, persist plans as Markdown files, generate reminder payloads, and review progress over time.
 
-## Reference(s): <br>
-- [Shenzhen Financial Planning Reference](references/shenzhen-financial-planning.md) <br>
-- [Secretary Skill ClawHub Page](https://clawhub.ai/joeyxin-del/secretary-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance, Markdown plan files, and JSON cron reminder payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local goal and plan files when the user saves a goal; produces reminder configuration payloads when scheduling is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Goal plans, progress metrics, and review notes can include sensitive personal, financial, health, or workplace details saved locally and referenced across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or highly sensitive details unless the user understands where files and memory pointers are kept; periodically review and delete local plan files that are no longer needed.
+
+Risk: Recurring reminders can surface outdated or overly specific goal context after circumstances change.
+
+Mitigation: Review reminder payloads before enabling them and update or disable recurring reminders when the plan changes.
+
+Risk: The included Shenzhen financial planning reference contains time-sensitive rates and calculation assumptions.
+
+Mitigation: Verify financial, tax, social insurance, and housing fund values against current official sources before using them for decisions.
+
+## Reference(s):
+
+- [Shenzhen Financial Planning](references/shenzhen-financial-planning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans, conversational text, JSON cron payloads, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists goal plans and progress notes to local Markdown files when the workflow saves or updates a plan.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

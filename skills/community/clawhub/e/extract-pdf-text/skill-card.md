@@ -1,45 +1,60 @@
-## Description: <br>
-Extract text from PDF files using PyMuPDF. Parse tables, forms, and complex layouts. Supports OCR for scanned documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from PDF files using PyMuPDF. Parse tables, forms, and complex layouts. Supports OCR for scanned documents.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text, metadata, tables, and OCR text from PDFs using local Python tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing Python and OCR dependencies can introduce package-source and environment risk. <br>
-Mitigation: Use a virtual environment, install packages only from trusted sources, and run OCR system-package commands only when OCR is needed. <br>
-Risk: Example code includes placeholder password handling for protected PDFs. <br>
-Mitigation: Replace example passwords with prompted or otherwise protected credential handling in production code. <br>
-Risk: OCR or complex PDF layout extraction can produce incomplete or incorrectly ordered text. <br>
-Mitigation: Check whether pages need OCR, use sorted or structured extraction for complex layouts, and review OCR results before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/extract-pdf-text) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Code examples](examples.md) <br>
-- [OCR setup](ocr.md) <br>
-- [Troubleshooting](troubleshooting.md) <br>
+## Use Case:
 
+Developers and agents use this skill to extract text, metadata, tables, and structured content from local PDF files, with OCR setup guidance for scanned documents.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local PDF extraction, OCR setup, structured text output, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Confidential PDF text or metadata may appear in local output when files are printed, logged, or batch processed.
+
+Mitigation: Process sensitive PDFs only when that local output is intended, and control where extracted text and metadata are displayed or stored.
+
+Risk: Dependency installation and OCR setup may require system-level package managers or sudo.
+
+Mitigation: Install dependencies in a dedicated environment when possible, and review package sources before authorizing sudo or system-wide installs.
+
+Risk: OCR and complex-layout extraction can produce incomplete, out-of-order, or inaccurate text.
+
+Mitigation: Check extracted results, use PyMuPDF options such as sorted text or table extraction when appropriate, and apply OCR only when native text extraction is insufficient.
+
+## Reference(s):
+
+- [Extract PDF Text on ClawHub](https://clawhub.ai/ivangdavila/skills/extract-pdf-text)
+- [Skill homepage](https://clawic.com/skills/extract-pdf-text)
+- [Code examples](examples.md)
+- [OCR setup](ocr.md)
+- [Troubleshooting](troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of extracted text, structured dictionaries, JSON strings, PDF metadata, and OCR setup steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Love Companion is a general AI agent skill for romantic roleplay companionship with configurable personas, preset templates, emotional conversation, local memory, and JSON import/export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds an adult-only AI companion roleplay mode with customizable personas, emotional dialogue, and persistent local memory.
 
-## Publisher: <br>
-[moyan1638](https://clawhub.ai/user/moyan1638) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moyan1638](https://clawhub.ai/user/moyan1638)
 
-## Use Case: <br>
-AI agent users use this skill to create and manage a configurable romantic roleplay companion, including persona setup, preset switching, memory review, and persona configuration import or export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store intimate preferences, emotional states, dates, and relationship-style history in local memory. <br>
-Mitigation: Use a dedicated storage directory, avoid saving unnecessary sensitive details, and regularly review or clear memories. <br>
-Risk: Configurable storage paths and persona imports can expose users to unwanted local file writes or untrusted imported configuration. <br>
-Mitigation: Keep storage in a dedicated directory, avoid path-like scheme names, and import only reviewed JSON configurations. <br>
-Risk: Romantic companion roleplay may be mistaken for real relationship support or mental-health support. <br>
-Mitigation: Treat outputs as AI-generated roleplay and seek qualified professional help for mental-health concerns. <br>
+## Use Case:
 
+Adults use the skill with an AI agent for fictional romantic-companion conversations, persona customization, and locally retained relationship memories. It is not a replacement for human relationships or professional mental-health support.
 
-## Reference(s): <br>
-- [Complete command reference](references/commands.md) <br>
-- [Detailed usage guide](references/instructions.md) <br>
-- [Preset persona templates](references/personas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown conversation with JSON configuration snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local persona, scheme, settings, and memory JSON files under the configured storage directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Optional trend awareness can carry untrusted web text into privileged agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave trend awareness off unless the source pipeline is trusted; review external content before enabling it.
+
+Risk: Locally stored relationship memories and profiles may contain sensitive personal information.
+
+Mitigation: Limit what is shared, protect local storage, and export, delete, or purge retained data when no longer needed.
+
+Risk: Romantic roleplay is intended for adults and should not substitute for human or professional support.
+
+Mitigation: Require age confirmation before activation and retain clear AI-roleplay and support disclaimers.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/moyan1638/skills/love-companion)
+- [Usage and commands](references/commands.md)
+- [Persona presets](references/personas.md)
+- [Architecture and data handling](docs/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Conversational text and JSON persona configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports persona presets, memory management, and optional trend-aware conversation.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

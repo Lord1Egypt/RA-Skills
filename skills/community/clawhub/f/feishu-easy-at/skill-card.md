@@ -1,42 +1,54 @@
-## Description: <br>
-Guides agents to create real @ mentions in Feishu by using post rich text messages with at nodes and user_id or open_id values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents on how to create real Feishu @ mentions by using post rich text messages with at tags and the correct user_id or open_id.
 
-## Publisher: <br>
-[Lens-lzy](https://clawhub.ai/user/Lens-lzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lens-lzy](https://clawhub.ai/user/lens-lzy)
 
-## Use Case: <br>
-Developers and agent builders use this skill to answer Feishu mention-formatting questions, explain why plain @ text does not notify users, and provide a reusable post-message JSON pattern for correct mentions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu user_id, open_id, member lists, and mention metadata can identify workplace users. <br>
-Mitigation: Treat those values as workplace identity data and avoid exposing them beyond the intended Feishu workflow. <br>
-Risk: Generated mention payloads could notify the wrong person if the identifier is stale, guessed, or mapped from an ambiguous nickname. <br>
-Mitigation: Confirm the user_id or open_id from reliable Feishu member data or prior message mentions before sending. <br>
-Risk: A generated Feishu message may have unintended notification impact. <br>
-Mitigation: Review the final message content and target identifiers before sending it. <br>
+## Use Case:
 
+Developers and agents use this skill when composing Feishu messages that must notify a specific person. It explains why plain @ text is insufficient and gives the expected rich text message structure plus ways to obtain the needed user identifier.
 
-## Reference(s): <br>
-- [Complete mention skill for Feishu on ClawHub](https://clawhub.ai/Lens-lzy/feishu-easy-at) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu post message content examples that require user_id or open_id values supplied by the user or workspace tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may lead an agent to access Feishu user identifiers from group members or message mentions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with Feishu integrations that are authorized to access and use that identity information.
+
+Risk: Plain @ text may be mistaken for a real notification mention.
+
+Mitigation: Use Feishu post rich text messages with at tags and a valid user_id or open_id when a real mention is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lens-lzy/skills/feishu-easy-at)
+- [ClawHub publisher profile](https://clawhub.ai/user/lens-lzy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Code]
+
+**Output Format:** [Markdown guidance with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu post message JSON examples and identifier lookup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

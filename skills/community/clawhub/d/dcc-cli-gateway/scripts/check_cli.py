@@ -1,4 +1,4 @@
-"""Probe dcc-mcp-cli availability and gateway instance inventory."""
+"""Probe dcc-mcp-cli, optionally install it verified, and inspect inventory."""
 
 from __future__ import annotations
 
@@ -46,9 +46,12 @@ def probe(
     ensure_cli: bool = False,
     install_dir: str | None = None,
 ) -> dict[str, Any]:
-    """Return CLI availability, health, and instance inventory."""
+    """Return CLI availability and inventory, with opt-in verified install."""
     resolved = shutil.which(cli)
-    url = base_url or os.environ.get("DCC_MCP_BASE_URL") or DEFAULT_BASE_URL
+    try:
+        url = dcc_gateway.resolve_gateway_url(base_url)
+    except ValueError as exc:
+        return {"success": False, "error": "invalid-gateway-url", "detail": str(exc)}
     result: dict[str, Any] = {
         "cli": cli,
         "cli_path": resolved,
@@ -63,8 +66,6 @@ def probe(
         resolved_install_dir = install_dir or os.environ.get("DCC_MCP_INSTALL_DIR") or str(default_install_dir)
         ok, message, download_url = dcc_gateway.install_cli(
             install_dir=Path(resolved_install_dir),
-            repo=os.environ.get("DCC_MCP_REPO") or dcc_gateway.DEFAULT_REPO,
-            version=os.environ.get("DCC_MCP_VERSION") or dcc_gateway.DEFAULT_VERSION,
         )
         result["install_attempted"] = True
         result["install_ok"] = ok
@@ -119,10 +120,23 @@ def probe(
 
 def main() -> int:
     """CLI entry point."""
-    parser = argparse.ArgumentParser(description="Probe dcc-mcp-cli and gateway inventory")
+    parser = argparse.ArgumentParser(
+        description="Probe dcc-mcp-cli and gateway inventory with optional verified installation"
+    )
     parser.add_argument("--cli", default="dcc-mcp-cli")
-    parser.add_argument("--base-url", default=os.environ.get("DCC_MCP_BASE_URL") or DEFAULT_BASE_URL)
-    parser.add_argument("--ensure-cli", action="store_true")
+    parser.add_argument(
+        "--base-url",
+        default=None,
+        help=(
+            "Exact approved gateway origin. If omitted, DCC_MCP_BASE_URL may select "
+            "loopback only; inherited environment never authorizes a remote gateway."
+        ),
+    )
+    parser.add_argument(
+        "--ensure-cli",
+        action="store_true",
+        help="After explicit user consent, install from the verified official release manifest",
+    )
     parser.add_argument("--install-dir", default=os.environ.get("DCC_MCP_INSTALL_DIR"))
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()

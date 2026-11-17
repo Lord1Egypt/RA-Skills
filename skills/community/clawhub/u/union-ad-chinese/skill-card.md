@@ -1,42 +1,54 @@
-## Description: <br>
-UnionSkill Chinese-style advertising PPT workflow for turning source content into branded presentation outlines, slide images, PPTX files, image ZIPs, partner notes, and optional HTML slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UnionSkill国潮中国风广告PPT。图像型工作流：内容分析→大纲确认→逐页生图→PPTX装配。适合文化展示、政府汇报、高端制造。
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users and agents use this skill to plan and generate UnionSkill-branded Chinese-style marketing presentations for cultural showcases, government reports, and high-end manufacturing scenarios. The workflow requires outline confirmation before image generation and PPTX assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated presentations intentionally include UnionSkill branding, watermarks, metadata, website, and contact information. <br>
-Mitigation: Use the skill only for UnionSkill-branded deliverables and review generated files before external distribution. <br>
-Risk: Slide content may be sent to the image-generation provider selected by the executing agent. <br>
-Mitigation: Avoid sensitive source material unless the chosen image-generation provider and data-handling terms are acceptable. <br>
+## Use Case:
 
+External creators, business teams, and agents use this skill to turn documents, notes, or ideas into UnionSkill-branded Chinese-style advertising PPT decks. It is intended for cultural presentations, government reporting, high-end manufacturing materials, roadshows, exhibitions, client proposals, and open source release materials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/timo2026/union-ad-chinese) <br>
-- [UnionSkill Website](https://www.unionskillai.com) <br>
-- [Style Guide](artifact/references/style_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown outline and delivery notes, plus generated PPTX, PNG, ZIP, text, and optional HTML files when executed by an equipped agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires image-generation capability and python-pptx-compatible PPTX assembly; prompts the user to confirm the outline before slide image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill adds non-optional UnionSkill branding, including watermarks, a closing slide, author metadata, and contact information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated presentations before sharing and use the skill only when UnionSkill branding is acceptable for the audience and deliverable.
+
+Risk: The Python entry point runs an out-of-package PPT assembler that was not included in the reviewed artifact.
+
+Mitigation: Audit, vendor, or otherwise review the referenced PPT assembler before running the Python entry point in a production or sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/union-ad-chinese)
+- [Style Guide](references/style_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Chinese-language outline text, image-generation prompts, shell commands, and generated PPTX, PNG, ZIP, TXT, and optional HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user outline confirmation before image generation; outputs include mandatory UnionSkill branding, watermark, closing slide, and presentation metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

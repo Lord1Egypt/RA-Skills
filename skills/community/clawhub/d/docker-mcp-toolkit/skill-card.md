@@ -1,43 +1,62 @@
-## Description: <br>
-Control and use an MCP Toolkit running in Docker for setup, status checks, server and tool management, environment configuration, and local MCP tool invocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and use an MCP Toolkit running in Docker. Use when setting up Docker MCP Toolkit (docker compose up/down), checking status/logs, configuring environment variables/secrets, listing available MCP tools/servers, or invoking MCP tools (typically via a local HTTP endpoint) to connect OpenClaw workflows to external systems like Postgres/Neon.
 
-## Publisher: <br>
-[pcauhi](https://clawhub.ai/user/pcauhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pcauhi](https://clawhub.ai/user/pcauhi)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Docker Desktop MCP Toolkit servers and tools, run preflight checks, and invoke local MCP tools from OpenClaw workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable, disable, and invoke Docker MCP tools, which may give an agent broad access to connected systems. <br>
-Mitigation: Keep enabled MCP servers minimal, use least-privilege credentials, and require explicit confirmation before configuration changes, writes, deletes, code execution, or sensitive tool calls. <br>
-Risk: Exposing an MCP endpoint publicly could allow unintended remote access to local tools or credentials. <br>
-Mitigation: Keep MCP endpoints local by default, bind ports to 127.0.0.1, and prefer SSH tunneling or WireGuard if remote access is required. <br>
-Risk: Credential-bearing MCP tools can expose or misuse secrets when credentials are pasted into chat or shared broadly. <br>
-Mitigation: Prefer Docker Desktop secrets or keychain integration, use dedicated least-privilege accounts, and rotate credentials immediately if exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Security Notes](references/security.md) <br>
-- [Docker MCP Toolkit Interface](references/toolkit-interface.md) <br>
-- [Compose Template](references/compose-template.yml) <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Docker Desktop's MCP Toolkit from an agent workflow, including preflight checks, server management, tool discovery, and simple MCP tool invocation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool invocation wrapper supports primitive JSON values only; nested objects and arrays require direct docker mcp commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Enabled Docker MCP servers can expose access to external systems such as databases or service APIs.
+
+Mitigation: Review enabled servers before use and configure least-privilege credentials for each external service.
+
+Risk: Publicly exposed MCP gateway endpoints could allow unintended remote tool access.
+
+Mitigation: Keep gateway endpoints bound to localhost and use SSH tunnels or WireGuard when remote access is required.
+
+Risk: Secrets pasted into chat or stored in broad-scope credentials can be reused beyond the intended workflow.
+
+Mitigation: Prefer Docker Desktop secrets or keychain integration and rotate credentials immediately if they are pasted into chat.
+
+Risk: The bundled tool-call wrapper supports only primitive JSON values, so nested tool arguments may fail or require manual invocation.
+
+Mitigation: Inspect the target tool schema and run docker mcp tools call directly for tools that require object or array arguments.
+
+## Reference(s):
+
+- [Docker MCP Toolkit interface notes](references/toolkit-interface.md)
+- [Security notes](references/security.md)
+- [Compose template reference](references/compose-template.yml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local docker mcp commands through bundled shell scripts when the required CLI tools are available.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

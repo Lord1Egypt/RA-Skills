@@ -1,42 +1,50 @@
-## Description: <br>
-Audits project CLAUDE.md files as runtime configuration, returning a scorecard, prioritized fixes, and optional user-approved edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits project AGENTS.md and CLAUDE.md files for runtime-configuration quality and produces a scored review with prioritized fixes.
 
-## Publisher: <br>
-[huiyonghkw](https://clawhub.ai/user/huiyonghkw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huiyonghkw](https://clawhub.ai/user/huiyonghkw)
 
-## Use Case: <br>
-Developers and teams use this skill to audit CLAUDE.md guidance for bloat, vague rules, missing safeguards, broken documentation pointers, and hardcoded secrets, then prioritize edits that keep agent context leaner and safer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved fixes can change project guidance files and influence future agent sessions. <br>
-Mitigation: Review each proposed change before applying it, especially Hook and MEMORY.md additions. <br>
-Risk: Project CLAUDE.md files may contain sensitive instructions or hardcoded credentials that should not be kept in agent context. <br>
-Mitigation: Keep secrets out of CLAUDE.md and rotate any discovered credential as part of remediation. <br>
+## Use Case:
 
+Developers use this skill to assess a project's AGENTS.md or CLAUDE.md for clarity, useful routing, maintainability, and security guidance, then receive a scorecard and prioritized recommendations. It can also propose file edits when the user approves.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huiyonghkw/hekouwang-claude-md-doctor-skill) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with optional JSON checker output, shell commands, and proposed file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [File edits require user approval; the command-line checker can emit JSON for CI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release metadata) <br>
+Risk: ClawScan rates this release suspicious with medium confidence, citing an unpinned Docker image, a CI workflow that runs a remotely downloaded script, and audits beyond the stated configuration-file purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using Docker or CI flows, assess whether you trust the image source and remote script, and review whether the broader skill and environment audits fit your needs. Scanner coverage is partial, and the verdict does not establish malicious intent.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/huiyonghkw/hekouwang-claude-md-doctor-skill)
+- [Doctor suite guide](artifact/references/doctor-suite.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, JSON, Configuration guidance]
+
+**Output Format:** [Markdown scorecard and prioritized recommendations, with an optional JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to project configuration files after user approval.]
+
+## Skill Version(s):
+
+1.3.4 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

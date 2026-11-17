@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Real Mars Shot transfer</title>
+  <style>
+    body { margin: 0; background: #0c1020; color: #f3efe6; font-family: sans-serif; }
+    #fallback-canvas { width: 100%; height: 70vh; display: block; }
+    #three-root { width: 100%; height: 70vh; display: none; }
+    p { margin: 12px 16px; max-width: 70ch; line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <p>Optional three.js view of a Hohmann-class Earth–Mars transfer. If the network cannot load three.js, the canvas below is the diagram. Windows are 779.94 days apart. This is not a trajectory design tool.</p>
+  <div id="three-root"></div>
+  <canvas id="fallback-canvas" width="960" height="640"></canvas>
+  <script>
+    const DATA = {"earth_au": 1.0, "mars_au": 1.5237, "synodic_days": 779.94};
+    const canvas = document.getElementById('fallback-canvas');
+    const ctx = canvas.getContext('2d');
+    function draw2d() {
+      const w = canvas.width, h = canvas.height;
+      ctx.fillStyle = '#0c1020';
+      ctx.fillRect(0, 0, w, h);
+      const cx = w / 2, cy = h / 2 + 10;
+      const au = 150;
+      ctx.strokeStyle = '#6eb5ff';
+      ctx.beginPath(); ctx.arc(cx, cy, DATA.earth_au * au, 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeStyle = '#d36b4f';
+      ctx.beginPath(); ctx.ellipse(cx, cy, DATA.mars_au * au, DATA.mars_au * au * 0.97, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([6, 6]); ctx.strokeStyle = '#f3efe6';
+      const a = (DATA.earth_au + DATA.mars_au) / 2 * au;
+      ctx.beginPath(); ctx.ellipse(cx, cy - 16, a, a * 0.72, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#e6c36a'; ctx.beginPath(); ctx.arc(cx, cy, 10, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#6eb5ff'; ctx.beginPath(); ctx.arc(cx + DATA.earth_au * au, cy, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#d36b4f'; ctx.beginPath(); ctx.arc(cx + DATA.mars_au * au, cy, 7, 0, Math.PI * 2); ctx.fill();
+    }
+    draw2d();
+  </script>
+  <script type="module">
+    try {
+      const THREE = await import('https://unpkg.com/three@0.160.0/build/three.module.js');
+      const root = document.getElementById('three-root');
+      root.style.display = 'block';
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(root.clientWidth || 960, 480);
+      root.appendChild(renderer.domElement);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 960/480, 0.1, 100);
+      camera.position.set(0, 6, 8);
+      camera.lookAt(0, 0, 0);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+      const sun = new THREE.Mesh(new THREE.SphereGeometry(0.25, 24, 24), new THREE.MeshBasicMaterial({ color: 0xe6c36a }));
+      scene.add(sun);
+      function ring(radius, color) {
+        const geo = new THREE.BufferGeometry();
+        const pts = [];
+        for (let i = 0; i <= 128; i++) {
+          const t = i / 128 * Math.PI * 2;
+          pts.push(new THREE.Vector3(Math.cos(t) * radius, 0, Math.sin(t) * radius));
+        }
+        geo.setFromPoints(pts);
+        scene.add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color })));
+      }
+      ring(DATA.earth_au * 2.2, 0x6eb5ff);
+      ring(DATA.mars_au * 2.2, 0xd36b4f);
+      const earth = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), new THREE.MeshBasicMaterial({ color: 0x6eb5ff }));
+      earth.position.set(DATA.earth_au * 2.2, 0, 0);
+      const mars = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), new THREE.MeshBasicMaterial({ color: 0xd36b4f }));
+      mars.position.set(DATA.mars_au * 2.2, 0, 0);
+      scene.add(earth); scene.add(mars);
+      renderer.render(scene, camera);
+      document.getElementById('fallback-canvas').style.display = 'none';
+    } catch (err) {
+      console.warn('three.js unavailable', err);
+    }
+  </script>
+  <template id="static-svg"><svg xmlns="http://www.w3.org/2000/svg" width="880" height="640" viewBox="0 0 880 640" id="orbit-svg">
+  <rect width="880" height="640" fill="#0c1020"/>
+  <circle cx="440" cy="320" r="18" fill="#e6c36a"/>
+  <ellipse cx="440" cy="320" rx="160.0" ry="160.0" fill="none" stroke="#6eb5ff" stroke-width="2"/>
+  <ellipse cx="440" cy="320" rx="243.8" ry="236.5" fill="none" stroke="#d36b4f" stroke-width="2"/>
+  <ellipse cx="440" cy="300" rx="201.9" ry="145.4" fill="none" stroke="#f3efe6" stroke-dasharray="6 6"/>
+  <circle cx="600.0" cy="320" r="6" fill="#6eb5ff"/>
+  <circle cx="683.8" cy="320" r="7" fill="#d36b4f"/>
+  <text x="24" y="36" fill="#f3efe6" font-family="sans-serif" font-size="16">Hohmann-class sketch, not a porkchop. Synodic period 779.94 days.</text>
+  <text x="24" y="60" fill="#c9d2df" font-family="sans-serif" font-size="13">Earth orbit 1 AU. Mars semi-major axis 1.5237 AU (NSSDC). Dashed curve is the transfer ellipse.</text>
+</svg>
+</template>
+</body>
+</html>

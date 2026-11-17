@@ -1,12 +1,12 @@
-# Next.js 项目规范
+# Next.js project specifications
 
-Frontend Craft skill for Next.js 项目规范.
+Design Next.js App Router routes, server/client boundaries, rendering, and project structure.
 
 ## Skill
 
 - ID: `fec-nextjs-project-standard`
 - Category: `project-standard`
-- Version: `2.4.0`
+- Version: `2.9.0`
 - Source: `skills/fec-nextjs-project-standard/SKILL.md`
 
 ## Description
@@ -19,11 +19,11 @@ Install or import this package with any skill runtime that understands the stand
 
 ## Optional Related Packages
 
-- `@frontend-craft/fec-react-project-standard`
-- `@frontend-craft/fec-route-protection`
-- `@frontend-craft/fec-data-fetching`
-- `@frontend-craft/fec-api-integration`
-- `@frontend-craft/fec-motion-interaction`
+- `@bovinphang/fec-react-project-standard`
+- `@bovinphang/fec-route-protection`
+- `@bovinphang/fec-data-fetching`
+- `@bovinphang/fec-api-integration`
+- `@bovinphang/fec-motion-interaction`
 
 ## License
 

@@ -1,46 +1,65 @@
-## Description: <br>
-Helps an agent escalate difficult or low-confidence tasks to named third-party AI services, then validates and summarizes candidate solutions before acting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically escalates difficult or low-confidence tasks to Doubao, Qianwen, Kimi, or DeepSeek for proposed solutions and follow-up validation.
 
-## Publisher: <br>
-[danielwang20150225-source](https://clawhub.ai/user/danielwang20150225-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielwang20150225-source](https://clawhub.ai/user/danielwang20150225-source)
 
-## Use Case: <br>
-Agents and developers use this skill when the primary assistant is blocked, low-confidence, or has offered an incomplete path and needs to ask external AI services for a more executable solution. It is intended to produce a checked plan, follow-up questions, and a final decision on whether to proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user task details to third-party AI providers. <br>
-Mitigation: Confirm the exact prompt before sending, remove secrets and private personal or business data, and use the named providers only with user approval. <br>
-Risk: The skill may use existing browser sessions or logged-in accounts for external AI services. <br>
-Mitigation: Avoid automatic cookie or session use unless intentionally approved, and stop for user action when login or captcha prompts appear. <br>
-Risk: External AI responses can be incorrect, incomplete, or unsuitable for direct execution. <br>
-Mitigation: Review any returned plan before acting, validate concrete steps, and preserve the skill's final self-check before closure. <br>
+## Use Case:
 
+Agents use this skill when they cannot confidently solve a task or when a proposed solution requires manual user work. It sends a structured prompt to prioritized third-party AI assistants, checks for responses, asks follow-up questions, and returns executable guidance to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielwang20150225-source/ask-ai-assistant) <br>
-- [Doubao](https://www.doubao.com) <br>
-- [Qianwen](https://qianwen.aliyun.com) <br>
-- [Kimi](https://kimi.moonshot.cn) <br>
-- [DeepSeek](https://www.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with status markers, follow-up prompts, AI response summaries, and executable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include saved external AI responses, polling status, validation results, and final execution notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Task context may be sent to named third-party AI providers automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval and show the exact outbound prompt before sending sensitive or proprietary context.
+
+Risk: The skill may use the user's logged-in accounts, sessions, or quotas when contacting external AI services.
+
+Mitigation: Confirm account usage before provider access, avoid cookie or session handling where possible, and stop for login or captcha prompts.
+
+Risk: AI replies may be saved to memory without enough consent or retention control.
+
+Mitigation: Make memory retention opt-in and avoid storing sensitive prompts or responses unless the user approves.
+
+Risk: Provider fallback and multi-turn polling can broaden disclosure beyond the first selected AI service.
+
+Mitigation: Limit provider switching to approved services and ask again before forwarding the same task to another provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielwang20150225-source/skills/ask-ai-assistant)
+- [Doubao](https://www.doubao.com)
+- [Qianwen](https://qianwen.aliyun.com)
+- [Kimi](https://kimi.moonshot.cn)
+- [DeepSeek](https://www.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with structured status markers and optional code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multi-turn AI responses, feasibility checks, execution notes, and final status labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

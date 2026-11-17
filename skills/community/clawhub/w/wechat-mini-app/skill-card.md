@@ -1,41 +1,55 @@
-## Description: <br>
-Helps developers generate WeChat Mini Program scaffolds, page templates, API snippets, review checklists, and related Markdown guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers generate WeChat mini app scaffolds, page templates, API snippets, configuration guidance, deployment guidance, and review checklists.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers building WeChat Mini Programs use this skill to produce starter project structures, page boilerplate, WeChat API examples, terminal command guidance, and submission review checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an unrelated content-writing command script that can retain command input text in a local history file. <br>
-Mitigation: Review before installing or invoking, avoid passing secrets or private drafts, and check or clear ~/.local/share/wechat-mini-app/history.log after use when appropriate. <br>
-Risk: Generated WeChat Mini Program snippets are templates and may not satisfy production privacy, authentication, payment, or submission requirements without review. <br>
-Mitigation: Review generated code and configuration against the target app's WeChat platform requirements before deployment or release. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly draft WeChat mini app project structures, pages, components, API examples, configuration snippets, deployment notes, and release review checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/wechat-mini-app) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with code snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated WeChat Mini Program file snippets, app configuration examples, and review checklist text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.6 (source: server release metadata) <br>
+Risk: One included script can retain user-provided text from writing, translation, polishing, and similar commands in a local history file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, avoid entering sensitive text, and inspect or clear the configured local data directory after use.
+
+Risk: Generated examples for authentication, storage, payment, location, and network behavior are illustrative and may be unsafe if copied directly into production.
+
+Mitigation: Treat generated mini app code as starter material and complete security, privacy, and platform compliance review before release.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ckchzh/skills/wechat-mini-app)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Source URL listed by skill metadata](https://github.com/bytesagain/ai-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell commands and WeChat mini app code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated snippets are illustrative and require review before production use.]
+
+## Skill Version(s):
+
+2.3.6 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

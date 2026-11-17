@@ -1,46 +1,64 @@
-## Description: <br>
-Boheng Investment Workflow runs an eight-analyst investment research workflow for A-share stocks, funds, ETFs, and convertible bonds using market data and optional financial statement data, with outputs framed as informational only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment research multi-agent decision system that runs eight analyst roles in parallel, applies weighted voting, and produces informational analysis for A-share stocks, funds, ETFs, and convertible bonds.
 
-## Publisher: <br>
-[zhangboheng](https://clawhub.ai/user/zhangboheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangboheng](https://clawhub.ai/user/zhangboheng)
 
-## Use Case: <br>
-External users and agents use this skill to analyze Chinese-market stocks, funds, ETFs, and convertible bonds and generate multi-analyst investment research reports. The reports are for learning and reference, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes third-party financial and news requests, plus optional browser automation, are not disclosed consistently enough for automatic approval. <br>
-Mitigation: Install only if that network and optional browser behavior is acceptable, keep browser news disabled unless needed, and review the configured domains before use. <br>
-Risk: The skill reads USER.md for investment preferences and saves local reports. <br>
-Mitigation: Keep sensitive information out of USER.md and review generated reports before sharing or relying on them. <br>
-Risk: Investment analysis can be incomplete, stale, or misleading. <br>
-Mitigation: Treat outputs as informational, verify against official filings and market data, and do not use the reports as financial advice. <br>
+## Use Case:
 
+External users and developers use this skill to research Chinese A-share stocks, funds, ETFs, and convertible bonds through multi-agent financial analysis, data-source labeling, and generated research reports. Outputs are informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangboheng/boheng-investment-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangboheng) <br>
-- [Author website](https://www.luckydesigner.space) <br>
-- [AKShare documentation](https://akshare.akfamily.xyz/) <br>
-- [AKShare GitHub](https://github.com/akfamily/akshare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown and plain-text investment analysis reports with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be saved under ~/.openclaw/workspace/investment/reports/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: server release evidence and SKILL.md frontmatter; changelog released 2026-05-19) <br>
+Risk: The skill automatically reads USER.md investment preferences and can persist derived profile details in local reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove sensitive details from USER.md before use, run the skill in an isolated workspace, and review or delete generated reports before sharing the workspace.
+
+Risk: The skill performs external financial and news data requests, and optional browser news collection can launch browser subprocesses.
+
+Mitigation: Keep browser news disabled unless needed, use a virtual environment with pinned dependencies, and review allowed network domains before deployment.
+
+Risk: Generated investment recommendations may be incomplete, stale, or misleading.
+
+Mitigation: Treat outputs as informational research only, verify data against official filings or trusted market sources, and consult a qualified professional before making investment decisions.
+
+Risk: Security disclosures in the artifact may not fully match saved-data, HTTP-traffic, and browser-subprocess behavior reported by server scanning.
+
+Mitigation: Use evidence.security as the authoritative risk source during review and update public disclosures before broad release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangboheng/skills/boheng-investment-workflow)
+- [Author Website](https://www.luckydesigner.space)
+- [AKShare Official Documentation](https://akshare.akfamily.xyz/)
+- [AKShare GitHub](https://github.com/akfamily/akshare)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain-text reports with shell command examples and structured analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis scripts can write reports under ~/.openclaw/workspace/investment/reports/.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release evidence, frontmatter, and changelog released 2026-05-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

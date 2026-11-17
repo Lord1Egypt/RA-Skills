@@ -1,8 +1,35 @@
-# 关键词规划师工作流
+﻿# 关键词规划师工作流
+
+> 流程见 `workflows.md` **W5**；建系列见 **W3** + `google-ads-campaign-plan.md`。
+
+## Contents
+
+- 路径选择（拓词前先定分支）
+- 九类场景索引
+- §8 · URL/文章 + 多核心词 + 搜索量/竞争度（§零·C 典型）
+- 指定拓词市场地区（geoTargetConstant）
+- 无接口能力（勿过度承诺）
+- 通用执行规范
+- 场景编排
+- 单命令速查
+
+---
 
 > **拓词命令**读本文；**建户 JSON + validate + create** 读 `references/google-ads/google-ads-campaign-plan.md`。关键词数量规则：`references/google-ads/rules/google-ads-keyword-taxonomy.md`。
->
 > **数据口径**：`siluzan-tso keyword` 默认走 `keywordidea/google`（共享 MCC，出价 **USD**）；传 **`-a <mediaCustomerId>`** 时走 `keywordrecommendation/recommend/{id}/google`，出价币种为 `list-accounts` 的 **`currencyCode`**（如 CNY）。可选 `--url` 叠加 **网址拓词**（`websitereco`）。与 **`google-analysis` 投放表现**不是同一套数据。
+
+## 一次拓词（默认）
+
+竞品词、产品词、核心词全部放进 **同一次** `-k`。用户要「有搜索热度」时加 `--min-monthly-search 1`（缺搜索量视为 0，会被丢掉）。用户给了具体下限（如约 3000）就用该下限。
+
+```bash
+siluzan-tso keyword -k "scania truck,scania tipper,daf truck,daf tipper" -a 4460948284 --google-only --min-monthly-search 1
+```
+
+- 命令打印的表就是交付物。不要为洗词、按品牌分桶、逐条查看 JSON 再写一轮 Python / Node。
+- 用户没点名国家时 **不要** `--geo`，也 **不要** `keyword geo-list`。常见 ID 已写在下文，点名了国家再加 `--geo`。
+- 某几个种子完全没有量时，只为这几个种子再补 **一次** `-k`。不要按品牌循环改脚本。
+- 用户明确要 Excel 时才加 `--json-out`，并用 **一次** 脚本把已经滤好的 `items` 写成 xlsx，然后 `present_files`。不要边滤边改脚本。
 
 ---
 
@@ -37,32 +64,32 @@
 
 1. 种子词仅来自：**用户已给出的词**、账户内 `google-analysis` 抽词、或（可选）**RAG 知识库**片段——**不要**再联网搜索补种子。
 2. ```bash
-   siluzan-tso keyword -k "种子1,种子2,..." --google-only --json-out ./snap-kw
+   siluzan-tso keyword -k "种子1,种子2,..." --google-only --min-monthly-search 1
    ```
-   （`--google-only` 即使误传 `--url` 也会忽略网址拓词。）
-3. 词包说明首行标注：**数据来源：Google Keyword Planner（`keywordidea/google`）**；表格只列落盘 JSON 中有 `montlySearch` 等字段的词。
+   （`--google-only` 即使误传 `--url` 也会忽略网址拓词。命令打印的表就是交付物，不要再写脚本洗词。）
+3. 词包说明首行标注：**数据来源：Google Keyword Planner（`keywordidea/google`）**。用户要 Excel 时才加 `--json-out`，并只写一次导出脚本。
 4. 若 `source` 为 `"Cgy"` 的条目仍存在，须在说明中单独标注，勿称为 Google Planner 原生建议。
 
 ---
 
 ## 九类场景索引
 
-洗词、分组、否词表、匹配策略等多依赖对 **`--json-out` 落盘 JSON** 的解析或 Agent 归纳；逐步命令见「场景编排」。
+月搜索量下限用 `--min-monthly-search`，不要再写脚本滤掉 0 搜索量。分组、否词、匹配策略仍可读落盘 JSON；逐步命令见「场景编排」。
 
-| #   | 场景                                                                            | 编排                            |
-| --- | ------------------------------------------------------------------------------- | ------------------------------- |
-| —   | **仅 Google Planner 数据**（不联网搜索、不用 `--url`）                          | 上文「分支 B」                  |
-| 0   | **先 RAG 再拓词**：客户产品/行业背景 → 种子词与 `--url`                         | §0                              |
-| 1   | 竞品网址 + 种子拓词：至少一个 `-k` + `--url`，落盘后去重/排序/截 Top N          | §1                              |
-| 2   | 多种子长尾：`-k "种子1,种子2,..."`                                              | §2                              |
-| 3   | 按规则洗词：月搜索量阈值、排除词根、排除类意图等                                | §2（JSON）                      |
-| 4   | 账户关键词表现 + 市场侧指标：`google-analysis` keywords → 抽词 → 分批 `keyword` | §3                              |
-| 5   | 搜索词 + 拓词：浪费流量 / 否词线索                                              | §4                              |
-| 6   | 高商业意图粗筛：CPC、竞争度、搜索量                                             | §5                              |
-| 7   | 否词或否词根落地：`ad keyword-negative-create` 等                               | §4 + `references/google-ads/google-ads.md` |
-| 8   | Campaign → AdGroup → JSON：`ad campaign-validate` → `ad campaign-create`        | §6                              |
-| 9   | 拓词结果导出：`keyword … --json-out`，供脚本消费                                | §7                              |
-| 10  | **URL/文章 + 多核心词 + 搜索量/竞争度筛选**（B2B 典型）                         | §8                              |
+| #   | 场景                                                                            | 编排                                             |
+| --- | ------------------------------------------------------------------------------- | ------------------------------------------------ |
+| —   | **仅 Google Planner 数据**（不联网搜索、不用 `--url`）                          | 上文「分支 B」                                   |
+| 0   | **先 RAG 再拓词**：客户产品/行业背景 → 种子词与 `--url`                         | §0                                               |
+| 1   | 竞品网址 + 种子拓词：至少一个 `-k` + `--url`，落盘后去重/排序/截 Top N          | §1                                               |
+| 2   | 多种子长尾：`-k "种子1,种子2,..."`                                              | §2                                               |
+| 3   | 按规则洗词：月搜索量阈值用 `--min-monthly-search`；排除词根用 `--exclude`     | §2                                               |
+| 4   | 账户关键词表现 + 市场侧指标：`google-analysis` keywords → 抽词 → 分批 `keyword` | §3                                               |
+| 5   | 搜索词 + 拓词：浪费流量 / 否词线索                                              | §4                                               |
+| 6   | 高商业意图粗筛：CPC、竞争度、搜索量                                             | §5                                               |
+| 7   | 否词或否词根落地：`ad keyword-negative-create` 等                               | §4 + `references/google-ads/google-ads-write.md` |
+| 8   | Campaign → AdGroup → JSON：`ad campaign-validate` → `ad campaign-create`        | §6                                               |
+| 9   | 拓词结果导出：`keyword … --json-out`，供脚本消费                                | §7                                               |
+| 10  | **URL/文章 + 多核心词 + 搜索量/竞争度筛选**（B2B 典型）                         | §8                                               |
 
 ---
 
@@ -75,16 +102,16 @@
 **执行**：
 
 1. （可选）WebFetch 用户 URL，提取产品语境与同义词，**补充** `-k` 种子；**禁止**用文章臆测搜索量。
-2. 将核心词 **分批**（每批 3–8 个）调用：
+2. 核心词放进 **同一次** `-k`。搜索量下限用 `--min-monthly-search`，不要分批，也不要再写脚本滤搜索量：
+
    ```bash
-   siluzan-tso keyword -k "fish gelatin,porcine gelatin,..." --url "https://example.com/" --geo 2840 --google-only --json-out ./snap-kw-batch1
+   siluzan-tso keyword -k "fish gelatin,porcine gelatin,..." --google-only --min-monthly-search 1500
    ```
-   - 目标市场未指定时默认 `--geo 2840`（美国）并在交付说明中写明；要其它市场先 `keyword geo-list`。
-3. 脚本读各批 `items[]`：
-   - 按 `montlySearch` 过滤（如 1500–6000 视为「约 3000」区间）；
-   - 按 `competition` / `competitionV2` 筛「中低」（LOW / MEDIUM 或数值阈值，以当次 outline 为准）；
-   - 每个核心词保留 Top N（用户指定如 30 条）；不足时扩大 `-k` 变体或放宽阈值并在说明中标注。
-4. 交付 Markdown/表格：**英文关键词 | 中文翻译 | 核心词 | 月搜索量 | 竞争度**；首行注明 **Google Keyword Planner（`keywordidea/google`）**。
+
+   - 用户没点名国家时不要加 `--geo`，也不要先跑 `keyword geo-list`。点名了市场再用下文的常见 ID，例如美国 `--geo 2840`。
+
+3. 竞争度「中低」看命令输出的 `competitionV2`（LOW / MEDIUM）。某个核心词一条都没有时，只为这个词再补一次 `-k`。用户指定了每个核心词保留 Top N 时，在这一次结果里截断并在说明里写明。
+4. 交付 Markdown/表格：**英文关键词 | 中文翻译 | 所属核心词 | 月搜索量 | 竞争度 | 目标市场**。目标市场用落盘 JSON 根上的 `targetMarket.label`（例如「美国（2840）」），表题写明 **月搜索量不是全球**。把 `targetMarket.note` 写进表头说明。首行仍注明 **Google Keyword Planner（`keywordidea/google`）**。用户拿官方规划师对数字时，先核对规划师选的是不是同一个国家；选「全球」或别的国家时数字本来就不会一致。
 
 **禁止**：纯 WebSearch/WebFetch 输出带「月搜索量」的终稿；禁止跳过 `keyword` CLI。
 
@@ -92,7 +119,7 @@
 
 ## 指定拓词市场地区（geoTargetConstant）
 
-Google Keyword Planner 的搜索量/CPC 与**目标国家/地区**相关。指定地区：
+Google Keyword Planner 的搜索量/CPC 与**目标国家/地区**相关，**不是全球**。指定地区：
 
 1. **查国家 ID**：
    ```bash
@@ -104,26 +131,26 @@ Google Keyword Planner 的搜索量/CPC 与**目标国家/地区**相关。指�
    siluzan-tso keyword -k "pipe" --geo 2840 --json-out ./snap-kw-us
    ```
 
-常见 ID（与 `ad campaign-create --location-ids` 同源）：美国 `2840`，中国 `2826`。
+常见 ID（以 `keyword geo-list` 为准）：美国 `2840`，中国 `2156`，英国 `2826`。`2826` 不是中国。
 
 ### 多地区 `--geo`：返回汇总数据，无法按地区拆分
 
-`--geo` 可传多个 ID（逗号分隔，如 `--geo 2840,2826`），网关会把它们一并传给 `keywordidea/google?geoTargetConstantIds=...`。此时 Google Keyword Planner 返回的 `montlySearch`、CPC、竞争度等是**跨所传地区的汇总/合并口径**，**不是**「每个国家各一行」或 JSON 里带 `geoTargetConstantId` 分字段。
+`--geo` 可传多个 ID（逗号分隔，如 `--geo 2840,2156`），网关会把它们一并传给 `keywordidea/google?geoTargetConstantIds=...`。此时 Google Keyword Planner 返回的 `montlySearch`、CPC、竞争度等是**跨所传地区的汇总/合并口径**，**不是**「每个国家各一行」或 JSON 里带 `geoTargetConstantId` 分字段。
 
 | 需求                                | 做法                                                                                                          |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| 只要「美国+中国合在一起」的市场参考 | 一次调用：`--geo 2840,2826`                                                                                   |
+| 只要「美国+中国合在一起」的市场参考 | 一次调用：`--geo 2840,2156`                                                                                   |
 | 要对比美国 vs 中国各自搜索量/CPC    | **多次调用**，每次 `--geo` **只传一个** ID，分别 `--json-out` 到不同目录（如 `./snap-kw-us`、`./snap-kw-cn`） |
 
-**禁止**把 `--geo 2840,2826` 的单次落盘结果当成「美国一套、中国一套」两张表；报告里若写多市场对比，须注明数据来源为分次 `keyword` 调用。
+**禁止**把 `--geo 2840,2156` 的单次落盘结果当成「美国一套、中国一套」两张表；报告里若写多市场对比，须注明数据来源为分次 `keyword` 调用。
 
 ```bash
 # 正确：分市场各查一次
 siluzan-tso keyword -k "pipe" --geo 2840 --json-out ./snap-kw-us
-siluzan-tso keyword -k "pipe" --geo 2826 --json-out ./snap-kw-cn
+siluzan-tso keyword -k "pipe" --geo 2156 --json-out ./snap-kw-cn
 
 # 易误解：单次多 geo 只有汇总指标，无法在 items[] 内按国家拆开
-siluzan-tso keyword -k "pipe" --geo 2840,2826 --json-out ./snap-kw-merged
+siluzan-tso keyword -k "pipe" --geo 2840,2156 --json-out ./snap-kw-merged
 ```
 
 ---
@@ -144,7 +171,7 @@ siluzan-tso keyword -k "pipe" --geo 2840,2826 --json-out ./snap-kw-merged
 ## 通用执行规范
 
 - **一律**对可复用中间结果使用 `--json-out <目录>`（或等价快照参数），再读 `cli-manifest*.json` / 各 section 的 `*.outline.txt` 了解字段；详见 **`references/core/tips.md`**。
-- **写账户**（新建系列/加词/加否词）：新建系列走 **`references/google-ads/google-ads-campaign-plan.md`**（含 `campaign-validate`）；其余写操作先与用户确认，写后用成对读命令复核（命令见 `references/google-ads/google-ads.md`）。
+- **写账户**（新建系列/加词/加否词）：新建系列走 **`references/google-ads/google-ads-campaign-plan.md`**（含 `campaign-validate`）；其余写操作先与用户确认，写后用成对读命令复核（命令见 `references/google-ads/google-ads-write.md`）。
 
 ---
 
@@ -179,9 +206,9 @@ siluzan-tso keyword -k "structural adhesive,SG-200,curtain wall bonding" --url "
 ### 2）核心词长尾裂变 + 自定义过滤
 
 1. ```bash
-   siluzan-tso keyword -k "种子1,种子2,..." [--include "<须含片段>"] [--exclude "<排除片段>"] --json-out ./snap-kw
+   siluzan-tso keyword -k "种子1,种子2,..." [--include "<须含片段>"] [--exclude "<排除片段>"] [--min-monthly-search <下限>] --google-only
    ```
-2. 月搜索量阈值、排除求职/零售等意图：**对 JSON 中 `montlySearch`（字段名与网关一致）等做程序或 AI 过滤**；`--exclude` 仅做子串级粗滤。
+2. 月搜索量下限用 `--min-monthly-search`，排除求职/零售等词根用 `--exclude`。不要再写脚本把 `montlySearch` 滤一轮。
 
 ### 3）旧账户关键词 + 叠市场侧 CPC/热度
 
@@ -190,15 +217,15 @@ siluzan-tso keyword -k "structural adhesive,SG-200,curtain wall bonding" --url "
 1. 拉账户表现：  
    `siluzan-tso google-analysis -a <mediaCustomerId> --sections keywords --start <S> --end <E> --json-out ./snap-ga`
 2. 从落盘 JSON 抽取关键词文案（字段路径以该次 **`keywords-*.outline.txt`** 为准）。
-3. 分批调用（避免单次 body 过大）：  
-   `siluzan-tso keyword -k "词A,词B,..." --json-out ./snap-kw-batchN`
+3. 抽出来的词放进 **同一次** `-k`（要有搜索热度时加 `--min-monthly-search 1`）。只有接口明确拒绝过长 body 时才拆成第二次，不要按品牌循环。  
+   `siluzan-tso keyword -k "词A,词B,..." --google-only --min-monthly-search 1`
 4. 报告中**分栏说明**：左列为账户内指标（花费/转化等），右列为 `keyword` 返回的搜索量/CPC/竞争度（市场参考）。
 
 ### 4）搜索词辅助（浪费流量 / 否词线索）
 
 1. `siluzan-tso google-analysis -a <id> --sections search-terms --start <S> --end <E> --json-out ./snap-st`
 2. 与 `keyword` 拓词结果对照，由 AI 列否词根或精确否词；落地执行：  
-   `siluzan-tso ad keyword-negative-create …`（见 `references/google-ads/google-ads.md`）。
+   `siluzan-tso ad keyword-negative-create …`（见 `references/google-ads/google-ads-write.md`）。
 
 ### 5）高商业意图粗筛（出价 + 竞争度 + 搜索量）
 
@@ -221,7 +248,7 @@ siluzan-tso keyword -k "structural adhesive,SG-200,curtain wall bonding" --url "
 ## 单命令速查
 
 ```bash
-siluzan-tso keyword -k "<必填，逗号分隔多词>" [-a <mediaCustomerId>] [--geo <id[,id...]>] [--url <url>] [--google-only] [--include <words>] [--exclude <words>] [--json-out ./snap] [--json-out <dir>] [--verbose]
+siluzan-tso keyword -k "<必填，逗号分隔多词>" [-a <mediaCustomerId>] [--geo <id[,id...]>] [--url <url>] [--google-only] [--min-monthly-search <n>] [--include <words>] [--exclude <words>] [--json-out ./snap] [--json-out <dir>] [--verbose]
 siluzan-tso keyword geo-list [--country-code <codes>] [--name-contains <text>] [--json-out ./snap] [--json-out <dir>]
 ```
 
@@ -229,6 +256,8 @@ siluzan-tso keyword geo-list [--country-code <codes>] [--name-contains <text>] [
 
 `--google-only`：只调 Google 推荐主接口（有 `-a` 为账户接口，无 `-a` 为 `keywordidea/google`），不叠加 `--url` 的网址拓词；**分支 B（仅 Google）必加**。
 
-**返回字段**（与后端 `Samm.Core.Service.KeywordRecommendation` 对齐）：根级与每条 **`bidAmountCurrency`**（无账户=`USD`；有账户=`list-accounts` 的 `currencyCode`）；`averageCpc` / `lowTopOfPageBid` / `highTopOfPageBid`（微元 ÷1,000,000，**与 `bidAmountCurrency` 一致**）。另有 `keyword` / `montlySearch` / `monthlySearchVolumes` / `competition` / `competitionV2` / `source` 等；**有 `-a` 时**每条多 **`alreadyInAccount`**（`0` | `1`）。
+`--min-monthly-search`：丢掉 `montlySearch` 低于该值的行；字段缺失视为 0。用户要「有搜索热度」时传 `1`。
 
-与只读账户关键词列表、否词 CRUD 的对照仍归 **`references/google-ads/google-ads.md`** 中 `ad keywords` / `ad keyword-*` 各节。
+**返回字段**（与后端 `Samm.Core.Service.KeywordRecommendation` 对齐）：根级 **`targetMarket`**（`label` 是给用户看的目标市场，如「美国（2840）」；没传 `--geo` 时为「未限定国家」；`note` 说明搜索量不是全球）。根级与每条 **`bidAmountCurrency`**（无账户=`USD`；有账户=`list-accounts` 的 `currencyCode`）；`averageCpc` / `lowTopOfPageBid` / `highTopOfPageBid`（微元 ÷1,000,000，**与 `bidAmountCurrency` 一致**）。另有 `keyword` / `montlySearch` / `monthlySearchVolumes` / `competition` / `competitionV2` / `source` 等；**有 `-a` 时**每条多 **`alreadyInAccount`**（`0` | `1`）。交给用户的表必须带 `targetMarket.label`，并写明不是全球。
+
+与只读账户关键词列表、否词 CRUD 的对照：查询见 **`google-ads-read.md`**，写入见 **`google-ads-write.md`**。

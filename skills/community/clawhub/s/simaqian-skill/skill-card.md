@@ -1,44 +1,60 @@
-## Description: <br>
-Turns a person's existing materials, answers, or optional interview into a concise Personal OS: a Markdown persona document for AI agents and a polished HTML personal homepage for humans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a person's existing materials, answers, or optional interview into a concise Personal OS: a Markdown persona document for AI agents and a polished HTML personal homepage for humans.
 
-## Publisher: <br>
-[shaohuadavidlee](https://clawhub.ai/user/shaohuadavidlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaohuadavidlee](https://clawhub.ai/user/shaohuadavidlee)
 
-## Use Case: <br>
-Individuals, creators, founders, and collaborators use this skill to distill public materials, private answers, or an optional interview into reusable identity and collaboration assets. Agents use it to produce a persona file for AI assistance and a human-facing personal homepage while preserving explicit privacy boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary notes that the skill includes copyable installation guidance for cloning an unpinned GitHub skill into a persistent agent directory. <br>
-Mitigation: Prefer the reviewed ClawHub package, or inspect and pin the repository before allowing an agent to clone it into a persistent skills directory. <br>
-Risk: The skill processes broad personal context and can turn it into shareable persona and homepage outputs. <br>
-Mitigation: Provide only intended materials, remove secrets and confidential employer or third-party data, and manually review or redact generated persona, homepage, and card links before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to organize personal materials, optional interview answers, and public-facing links into reusable identity assets for AI collaboration and human collaboration discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaohuadavidlee/simaqian-skill) <br>
-- [Output Specification](artifact/references/output-spec.md) <br>
-- [Intake and Interview Framework](artifact/references/intake-and-interview.md) <br>
-- [Skill README](artifact/README.md) <br>
-- [Live Experience](https://simaqian.caojuege.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown persona document and single-file HTML homepage, with optional interview questions and revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default outputs are persona-agent.md and personal-homepage.html; generated content should distinguish facts, inferences, unknowns, and public/private boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: ClawHub release evidence) <br>
+Risk: Broad memory-based personal profiling can include details the user did not intend to publish.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use long-term memory, past chats, resumes, and private materials only with explicit user intent, and review generated persona content before sharing or reuse.
+
+Risk: Generated profile pages and links can expose personal or third-party private information.
+
+Mitigation: Keep generated persona and homepage files private by default, remove secrets and private third-party details, and publish only after user review.
+
+Risk: Unpinned external skill installation can make the installed behavior differ from the reviewed release.
+
+Mitigation: Pin the reviewed release or manually inspect the installed source before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaohuadavidlee/skills/simaqian-skill)
+- [司马迁.skill public site](https://simaqian.caojuege.com)
+- [Intake and interview framework](references/intake-and-interview.md)
+- [Output specification](references/output-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown persona document and single-file HTML personal homepage, with optional interview questions and revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated personal profile content should be reviewed before sharing and kept private unless the user intentionally publishes it.]
+
+## Skill Version(s):
+
+1.3.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

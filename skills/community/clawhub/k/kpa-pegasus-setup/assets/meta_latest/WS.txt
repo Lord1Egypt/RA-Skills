@@ -1,0 +1,1214 @@
+collection: WS
+sort-by: 10
+shortname: ws
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mednafen_wswan_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: DJ快打
+file: DJ快打.zip
+assets.box_front: Imgs/DJ快打.png
+description: 《DJ快打》，由 Bandai 出品，Music / Dancing类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Music / Dancing
+players: 2
+game: FLASH恋人
+file: FLASH恋人.zip
+assets.box_front: Imgs/FLASH恋人.png
+description: 《FLASH恋人》，由 Kobunsha 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Kobunsha
+genre: Puzzle
+players: 1
+game: SD高达 U.C.行动
+file: SD高达 U.C.行动.zip
+assets.box_front: Imgs/SD高达 U.C.行动.png
+description: 《SD高达 U.C.行动》，由 Bandai 出品，射击类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Shooter
+players: 2
+game: SD高达G世纪 独眼高达
+file: SD高达G世纪 独眼高达.zip
+assets.box_front: Imgs/SD高达G世纪 独眼高达.png
+description: 《SD高达G世纪 独眼高达》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: SD高达G世纪 集结节拍2
+file: SD高达G世纪 集结节拍2.zip
+assets.box_front: Imgs/SD高达G世纪 集结节拍2.png
+description: 《SD高达G世纪 集结节拍2》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: SD高达G世纪
+file: SD高达G世纪.zip
+assets.box_front: Imgs/SD高达G世纪.png
+description: 《SD高达G世纪》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: SD高达加藤战记 第一章
+file: SD高达加藤战记 第一章.zip
+assets.box_front: Imgs/SD高达加藤战记 第一章.png
+description: 《SD高达加藤战记 第一章》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: SD高达激震篇
+file: SD高达激震篇.zip
+assets.box_front: Imgs/SD高达激震篇.png
+description: 《SD高达激震篇》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: SD高达英雄传 武者传说
+file: SD高达英雄传 武者传说.zip
+assets.box_front: Imgs/SD高达英雄传 武者传说.png
+description: 《SD高达英雄传 武者传说》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: SD高达英雄传 骑士传说
+file: SD高达英雄传 骑士传说.zip
+assets.box_front: Imgs/SD高达英雄传 骑士传说.png
+description: 《SD高达英雄传 骑士传说》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 七夜怪谈
+file: 七夜怪谈.zip
+assets.box_front: Imgs/七夜怪谈.png
+description: 《七夜怪谈》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 三京柏青哥机模拟
+file: 三京柏青哥机模拟.zip
+assets.box_front: Imgs/三京柏青哥机模拟.png
+description: 《三京柏青哥机模拟》，由 BEC 出品，模拟类游戏，WonderSwan 平台，单人游玩。
+publisher: BEC
+genre: Simulation
+players: 1
+game: 三国志1
+file: 三国志1.zip
+assets.box_front: Imgs/三国志1.png
+description: 《三国志1》，由 Koei 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Koei
+genre: Strategy
+players: 2
+game: 三毛猫福尔摩斯 幽灵恐慌
+file: 三毛猫福尔摩斯 幽灵恐慌.zip
+assets.box_front: Imgs/三毛猫福尔摩斯 幽灵恐慌.png
+description: 《三毛猫福尔摩斯 幽灵恐慌》，由 Kobunsha 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Kobunsha
+genre: Adventure
+players: 1
+game: 上海口袋版
+file: 上海口袋版.zip
+assets.box_front: Imgs/上海口袋版.png
+description: 《上海口袋版》，由 Sunsoft 出品，Board类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+genre: Board
+players: 2
+game: 与你同在 注视着你
+file: 与你同在 注视着你.zip
+assets.box_front: Imgs/与你同在 注视着你.png
+description: 《与你同在 注视着你》，由 Shall Luck 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Shall Luck
+genre: Adventure
+players: 1
+game: 东京魔人学园 符咒封魔录
+file: 东京魔人学园 符咒封魔录.zip
+assets.box_front: Imgs/东京魔人学园 符咒封魔录.png
+description: 《东京魔人学园 符咒封魔录》，由 Asmik 出品，冒险类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Asmik
+genre: Adventure
+players: 2
+game: 东风庄
+file: 东风庄.zip
+assets.box_front: Imgs/东风庄.png
+description: 《东风庄》，由 Bandai 出品，Board类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Board
+players: 2
+game: 丸町战神 回归地球
+file: 丸町战神 回归地球.zip
+assets.box_front: Imgs/丸町战神 回归地球.png
+description: 《丸町战神 回归地球》，由 Digital Dream Studios 出品，Shoot'em Up类游戏，WonderSwan 平台，单人游玩。
+publisher: Digital Dream Studios
+genre: Shoot'em Up
+players: 1
+game: 五子棋&黑白棋 登龙门
+file: 五子棋&黑白棋 登龙门.zip
+assets.box_front: Imgs/五子棋&黑白棋 登龙门.png
+description: 《五子棋&黑白棋 登龙门》，WonderSwan 平台。
+game: 仙界传 封神演义
+file: 仙界传 封神演义.zip
+assets.box_front: Imgs/仙界传 封神演义.png
+description: 《仙界传 封神演义》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 仙界传 封神演义2
+file: 仙界传 封神演义2.zip
+assets.box_front: Imgs/仙界传 封神演义2.png
+description: 《仙界传 封神演义2》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 便携声纳
+file: 便携声纳.zip
+assets.box_front: Imgs/便携声纳.png
+description: 《便携声纳》，由 Bandai 出品，Hunting and Fishing类游戏，WonderSwan 平台。
+publisher: Bandai
+genre: Hunting and Fishing
+game: 信长之野望
+file: 信长之野望.zip
+assets.box_front: Imgs/信长之野望.png
+description: 《信长之野望》，WonderSwan 平台。
+game: 元祖忍者茶茶丸君
+file: 元祖忍者茶茶丸君.zip
+assets.box_front: Imgs/元祖忍者茶茶丸君.png
+description: 《元祖忍者茶茶丸君》，由 Jaleco 出品，动作类游戏，WonderSwan 平台，单人游玩。
+publisher: Jaleco
+genre: Action
+players: 1
+game: 全职猎人 各自的抉择
+file: 全职猎人 各自的抉择.zip
+assets.box_front: Imgs/全职猎人 各自的抉择.png
+description: 《全职猎人 各自的抉择》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 全职猎人 引导者
+file: 全职猎人 引导者.zip
+assets.box_front: Imgs/全职猎人 引导者.png
+description: 《全职猎人 引导者》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 全职猎人 意志继承者
+file: 全职猎人 意志继承者.zip
+assets.box_front: Imgs/全职猎人 意志继承者.png
+description: 《全职猎人 意志继承者》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 全职猎人 贪婪岛
+file: 全职猎人 贪婪岛.zip
+assets.box_front: Imgs/全职猎人 贪婪岛.png
+description: 《全职猎人 贪婪岛》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 六角拼盘
+file: 六角拼盘.zip
+assets.box_front: Imgs/六角拼盘.png
+description: 《六角拼盘》，WonderSwan 平台。
+game: 兽人竞走
+file: 兽人竞走.zip
+assets.box_front: Imgs/兽人竞走.png
+description: 《兽人竞走》，由 Bandai 出品，平台跳跃类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Platform
+players: 1
+game: 前线任务
+file: 前线任务.zip
+assets.box_front: Imgs/前线任务.png
+description: 《前线任务》，由 Square Enix 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Square Enix
+genre: Strategy
+players: 2
+game: 动感娃娃
+file: 动感娃娃.zip
+assets.box_front: Imgs/动感娃娃.png
+description: 《动感娃娃》，由 Bandai 出品，Music / Dancing类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Music / Dancing
+players: 1
+game: 劲上果岭
+file: 劲上果岭.zip
+assets.box_front: Imgs/劲上果岭.png
+description: 《劲上果岭》，由 Sammy Studios 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Sammy Studios
+genre: Sports
+players: 2
+game: 半熟英雄
+file: 半熟英雄.zip
+assets.box_front: Imgs/半熟英雄.png
+description: 《半熟英雄》，由 Square Enix 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Square Enix
+genre: Strategy
+players: 2
+game: 华尔兹之剑
+file: 华尔兹之剑.zip
+assets.box_front: Imgs/华尔兹之剑.png
+description: 《华尔兹之剑》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 卒业 Graduation
+file: 卒业 Graduation.zip
+assets.box_front: Imgs/卒业 Graduation.png
+description: 《卒业 Graduation》，由 Bandai Visual 出品，模拟类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai Visual
+genre: Simulation
+players: 1
+game: 南梦宫超级战争
+file: 南梦宫超级战争.zip
+assets.box_front: Imgs/南梦宫超级战争.png
+description: 《南梦宫超级战争》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 口袋中的哆啦A梦
+file: 口袋中的哆啦A梦.zip
+assets.box_front: Imgs/口袋中的哆啦A梦.png
+description: 《口袋中的哆啦A梦》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 另一个天堂 记忆中的日子
+file: 另一个天堂 记忆中的日子.zip
+assets.box_front: Imgs/另一个天堂 记忆中的日子.png
+description: 《另一个天堂 记忆中的日子》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 名侦探柯南 西之名侦探 最大危机
+file: 名侦探柯南 西之名侦探 最大危机.zip
+assets.box_front: Imgs/名侦探柯南 西之名侦探 最大危机.png
+description: 《名侦探柯南 西之名侦探 最大危机》，由 Bandai 出品，教育类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Educational
+players: 1
+game: 名侦探柯南 魔术师的挑战书
+file: 名侦探柯南 魔术师的挑战书.zip
+assets.box_front: Imgs/名侦探柯南 魔术师的挑战书.png
+description: 《名侦探柯南 魔术师的挑战书》，由 Bandai 出品，教育类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Educational
+players: 1
+game: 名侦探柯南 黄昏的公主
+file: 名侦探柯南 黄昏的公主.zip
+assets.box_front: Imgs/名侦探柯南 黄昏的公主.png
+description: 《名侦探柯南 黄昏的公主》，由 Bandai Namco 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai Namco
+genre: Adventure
+players: 1
+game: 命运之卡牌 X
+file: 命运之卡牌 X.zip
+assets.box_front: Imgs/命运之卡牌 X.png
+description: 《命运之卡牌 X》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 哈罗机器人
+file: 哈罗机器人.zip
+assets.box_front: Imgs/哈罗机器人.png
+description: 《哈罗机器人》，由 Sunrise Software 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Sunrise Software
+genre: Role-playing (RPG)
+players: 1
+game: 噗哟噗哟通
+file: 噗哟噗哟通.zip
+assets.box_front: Imgs/噗哟噗哟通.png
+description: 《噗哟噗哟通》，由 SEGA 出品，1999 年发行，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1999
+genre: Puzzle
+players: 2
+game: 圣斗士星矢 黄金传说篇完
+file: 圣斗士星矢 黄金传说篇完.zip
+assets.box_front: Imgs/圣斗士星矢 黄金传说篇完.png
+description: 《圣斗士星矢 黄金传说篇完》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 大家来海钓
+file: 大家来海钓.zip
+assets.box_front: Imgs/大家来海钓.png
+description: 《大家来海钓》，由 Coconuts Japan 出品，Hunting and Fishing类游戏，WonderSwan 平台，单人游玩。
+publisher: Coconuts Japan
+genre: Hunting and Fishing
+players: 1
+game: 太空侵略者
+file: 太空侵略者.zip
+assets.box_front: Imgs/太空侵略者.png
+description: 《太空侵略者》，由 Sunsoft 出品，Shoot'em Up类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+genre: Shoot'em Up
+players: 2
+game: 奇迹棒球
+file: 奇迹棒球.zip
+assets.box_front: Imgs/奇迹棒球.png
+description: 《奇迹棒球》，由 Bandai 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Sports
+players: 2
+game: 奇迹棒球99
+file: 奇迹棒球99.zip
+assets.box_front: Imgs/奇迹棒球99.png
+description: 《奇迹棒球99》，由 Bandai 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Sports
+players: 2
+game: 奥特曼 光之国的使者
+file: 奥特曼 光之国的使者.zip
+assets.box_front: Imgs/奥特曼 光之国的使者.png
+description: 《奥特曼 光之国的使者》，WonderSwan 平台。
+game: 妖符魔界
+file: 妖符魔界.zip
+assets.box_front: Imgs/妖符魔界.png
+description: 《妖符魔界》，由 Kobunsha 出品，冒险类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Kobunsha
+genre: Adventure
+players: 2
+game: 妖精战士 机神复活
+file: 妖精战士 机神复活.zip
+assets.box_front: Imgs/妖精战士 机神复活.png
+description: 《妖精战士 机神复活》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 子育问答 我的天使
+file: 子育问答 我的天使.zip
+assets.box_front: Imgs/子育问答 我的天使.png
+description: 《子育问答 我的天使》，由 Namco 出品，Quiz类游戏，WonderSwan 平台，支持 4-4 人游玩。
+publisher: Namco
+genre: Quiz
+players: 4
+game: 宇宙战舰大和号
+file: 宇宙战舰大和号.zip
+assets.box_front: Imgs/宇宙战舰大和号.png
+description: 《宇宙战舰大和号》，由 Bandai Namco 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai Namco
+genre: Strategy
+players: 1
+game: 对局围棋 平成棋院
+file: 对局围棋 平成棋院.zip
+assets.box_front: Imgs/对局围棋 平成棋院.png
+description: 《对局围棋 平成棋院》，WonderSwan 平台。
+game: 将棋 登龙门
+file: 将棋 登龙门.zip
+assets.box_front: Imgs/将棋 登龙门.png
+description: 《将棋 登龙门》，WonderSwan 平台。
+game: 小双侠 杜伦布贼党
+file: 小双侠 杜伦布贼党.zip
+assets.box_front: Imgs/小双侠 杜伦布贼党.png
+description: 《小双侠 杜伦布贼党》，由 Banpresto 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Banpresto
+genre: Role-playing (RPG)
+players: 1
+game: 巫术1 狂王的试炼场
+file: 巫术1 狂王的试炼场.zip
+assets.box_front: Imgs/巫术1 狂王的试炼场.png
+description: 《巫术1 狂王的试炼场》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 彩虹岛
+file: 彩虹岛.zip
+assets.box_front: Imgs/彩虹岛.png
+description: 《彩虹岛》，由 Takara 出品，平台跳跃类游戏，WonderSwan 平台，单人游玩。
+publisher: Takara
+genre: Platform
+players: 1
+game: 恋爱时代 海边小夜曲
+file: 恋爱时代 海边小夜曲.zip
+assets.box_front: Imgs/恋爱时代 海边小夜曲.png
+description: 《恋爱时代 海边小夜曲》，由 Kindle Imagine Develop 出品，冒险类游戏，WonderSwan 平台。
+publisher: Kindle Imagine Develop
+genre: Adventure
+game: 恐怖传说
+file: 恐怖传说.zip
+assets.box_front: Imgs/恐怖传说.png
+description: 《恐怖传说》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 恐怖传说2
+file: 恐怖传说2.zip
+assets.box_front: Imgs/恐怖传说2.png
+description: 《恐怖传说2》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 手机连接器
+file: 手机连接器.zip
+assets.box_front: Imgs/手机连接器.png
+description: 《手机连接器》，WonderSwan 平台。
+game: 播种鸟
+file: 播种鸟.zip
+assets.box_front: Imgs/播种鸟.png
+description: 《播种鸟》，由 Bandai 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Strategy
+players: 2
+game: 数回
+file: 数回.zip
+assets.box_front: Imgs/数回.png
+description: 《数回》，WonderSwan 平台。
+game: 数码宝贝 D计划
+file: 数码宝贝 D计划.zip
+assets.box_front: Imgs/数码宝贝 D计划.png
+description: 《数码宝贝 D计划》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 数码宝贝 卡片游戏WSC
+file: 数码宝贝 卡片游戏WSC.zip
+assets.box_front: Imgs/数码宝贝 卡片游戏WSC.png
+description: 《数码宝贝 卡片游戏WSC》，由 Bandai 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Strategy
+players: 2
+game: 数码宝贝WS
+file: 数码宝贝WS.zip
+assets.box_front: Imgs/数码宝贝WS.png
+description: 《数码宝贝WS》，由 Bandai 出品，2000 年发行，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 2000
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝大冒险1 阳极驯兽师
+file: 数码宝贝大冒险1 阳极驯兽师.zip
+assets.box_front: Imgs/数码宝贝大冒险1 阳极驯兽师.png
+description: 《数码宝贝大冒险1 阳极驯兽师》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝大冒险1 阴极&阳极
+file: 数码宝贝大冒险1 阴极&阳极.zip
+assets.box_front: Imgs/数码宝贝大冒险1 阴极&阳极.png
+description: 《数码宝贝大冒险1 阴极&阳极》，由 Bandai 出品，2001 年发行，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 2001
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝大冒险1 阴极驯兽师
+file: 数码宝贝大冒险1 阴极驯兽师.zip
+assets.box_front: Imgs/数码宝贝大冒险1 阴极驯兽师.png
+description: 《数码宝贝大冒险1 阴极驯兽师》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝大冒险2 D1驯兽师
+file: 数码宝贝大冒险2 D1驯兽师.zip
+assets.box_front: Imgs/数码宝贝大冒险2 D1驯兽师.png
+description: 《数码宝贝大冒险2 D1驯兽师》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝大冒险2 数码搭档
+file: 数码宝贝大冒险2 数码搭档.zip
+assets.box_front: Imgs/数码宝贝大冒险2 数码搭档.png
+description: 《数码宝贝大冒险2 数码搭档》，由 Bandai 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Strategy
+players: 2
+game: 数码宝贝大冒险2 黑暗驯兽师
+file: 数码宝贝大冒险2 黑暗驯兽师.zip
+assets.box_front: Imgs/数码宝贝大冒险2 黑暗驯兽师.png
+description: 《数码宝贝大冒险2 黑暗驯兽师》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝驯兽师 勇气
+file: 数码宝贝驯兽师 勇气.zip
+assets.box_front: Imgs/数码宝贝驯兽师 勇气.png
+description: 《数码宝贝驯兽师 勇气》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 数码宝贝驯兽师 战斗之魂1
+file: 数码宝贝驯兽师 战斗之魂1.zip
+assets.box_front: Imgs/数码宝贝驯兽师 战斗之魂1.png
+description: 《数码宝贝驯兽师 战斗之魂1》，由 Bandai 出品，格斗类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Fighting
+players: 2
+game: 数码宝贝驯兽师 战斗之魂2
+file: 数码宝贝驯兽师 战斗之魂2.zip
+assets.box_front: Imgs/数码宝贝驯兽师 战斗之魂2.png
+description: 《数码宝贝驯兽师 战斗之魂2》，由 Bandai 出品，格斗类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Fighting
+players: 2
+game: 数码宝贝驯兽师 数码混合
+file: 数码宝贝驯兽师 数码混合.zip
+assets.box_front: Imgs/数码宝贝驯兽师 数码混合.png
+description: 《数码宝贝驯兽师 数码混合》，WonderSwan 平台。
+game: 新世纪福音战士 使徒育成
+file: 新世纪福音战士 使徒育成.zip
+assets.box_front: Imgs/新世纪福音战士 使徒育成.png
+description: 《新世纪福音战士 使徒育成》，WonderSwan 平台。
+game: 新日本职业摔跤 斗魂烈传
+file: 新日本职业摔跤 斗魂烈传.zip
+assets.box_front: Imgs/新日本职业摔跤 斗魂烈传.png
+description: 《新日本职业摔跤 斗魂烈传》，由 Tomy 出品，体育类游戏，WonderSwan 平台，单人游玩。
+publisher: Tomy
+genre: Sports
+players: 1
+game: 星辰战士 星空大地的使者
+file: 星辰战士 星空大地的使者.zip
+assets.box_front: Imgs/星辰战士 星空大地的使者.png
+description: 《星辰战士 星空大地的使者》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 最后冲刺 特別版GT
+file: 最后冲刺 特別版GT.zip
+assets.box_front: Imgs/最后冲刺 特別版GT.png
+description: 《最后冲刺 特別版GT》，由 Bandai 出品，竞速类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Racing
+players: 2
+game: 最后冲刺2000
+file: 最后冲刺2000.zip
+assets.box_front: Imgs/最后冲刺2000.png
+description: 《最后冲刺2000》，由 Bandai 出品，竞速类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Racing
+players: 2
+game: 最后生存者
+file: 最后生存者.zip
+assets.box_front: Imgs/最后生存者.png
+description: 《最后生存者》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 最后防线
+file: 最后防线.zip
+assets.box_front: Imgs/最后防线.png
+description: 《最后防线》，由 Bandai 出品，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Puzzle
+players: 2
+game: 最终幻想1
+file: 最终幻想1.zip
+assets.box_front: Imgs/最终幻想1.png
+description: 《最终幻想1》，由 Squaresoft 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Squaresoft
+genre: Role-playing (RPG)
+players: 1
+game: 最终幻想2
+file: 最终幻想2.zip
+assets.box_front: Imgs/最终幻想2.png
+description: 《最终幻想2》，由 Squaresoft 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Squaresoft
+genre: Role-playing (RPG)
+players: 1
+game: 最终幻想4
+file: 最终幻想4.zip
+assets.box_front: Imgs/最终幻想4.png
+description: 《最终幻想4》，由 Squaresoft 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Squaresoft
+genre: Role-playing (RPG)
+players: 1
+game: 机动战士高达Vol.1 Side 7
+file: 机动战士高达Vol.1 Side 7.zip
+assets.box_front: Imgs/机动战士高达Vol.1 Side 7.png
+description: 《机动战士高达Vol.1 Side 7》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 机动战士高达Vol.2 查布罗
+file: 机动战士高达Vol.2 查布罗.zip
+assets.box_front: Imgs/机动战士高达Vol.2 查布罗.png
+description: 《机动战士高达Vol.2 查布罗》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 机动战士高达Vol.3 阿巴瓦库
+file: 机动战士高达Vol.3 阿巴瓦库.zip
+assets.box_front: Imgs/机动战士高达Vol.3 阿巴瓦库.png
+description: 《机动战士高达Vol.3 阿巴瓦库》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 机器甲虫控制程式
+file: 机器甲虫控制程式.zip
+assets.box_front: Imgs/机器甲虫控制程式.png
+description: 《机器甲虫控制程式》，由 Bandai 出品，教育类游戏，WonderSwan 平台，支持 8-8 人游玩。
+publisher: Bandai
+genre: Educational
+players: 8
+game: 格斗料理传说
+file: 格斗料理传说.zip
+assets.box_front: Imgs/格斗料理传说.png
+description: 《格斗料理传说》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 2
+game: 格雷斯塔战记
+file: 格雷斯塔战记.zip
+assets.box_front: Imgs/格雷斯塔战记.png
+description: 《格雷斯塔战记》，由 Omega Micott Inc. 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Omega Micott Inc.
+genre: Role-playing (RPG)
+players: 2
+game: 梦幻模拟战 千年纪
+file: 梦幻模拟战 千年纪.zip
+assets.box_front: Imgs/梦幻模拟战 千年纪.png
+description: 《梦幻模拟战 千年纪》，由 NCS Corporation 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: NCS Corporation
+genre: Role-playing (RPG)
+players: 1
+game: 森田将棋
+file: 森田将棋.zip
+assets.box_front: Imgs/森田将棋.png
+description: 《森田将棋》，WonderSwan 平台。
+game: 沟通疗法 听我说
+file: 沟通疗法 听我说.zip
+assets.box_front: Imgs/沟通疗法 听我说.png
+description: 《沟通疗法 听我说》，由 Media Enterprise 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Media Enterprise
+genre: Strategy
+players: 2
+game: 泡泡龙
+file: 泡泡龙.zip
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，WonderSwan 平台。
+game: 浪漫沙加
+file: 浪漫沙加.zip
+assets.box_front: Imgs/浪漫沙加.png
+description: 《浪漫沙加》，由 Square Enix 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Square Enix
+genre: Role-playing (RPG)
+players: 1
+game: 海贼王TV 乔巴的大冒险
+file: 海贼王TV 乔巴的大冒险.zip
+assets.box_front: Imgs/海贼王TV 乔巴的大冒险.png
+description: 《海贼王TV 乔巴的大冒险》，由 Bandai 出品，格斗类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Fighting
+players: 2
+game: 海贼王TV 伟大之战
+file: 海贼王TV 伟大之战.zip
+assets.box_front: Imgs/海贼王TV 伟大之战.png
+description: 《海贼王TV 伟大之战》，由 Bandai 出品，2002 年发行，格斗类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 2002
+genre: Fighting
+players: 2
+game: 海贼王TV 彩虹岛传说
+file: 海贼王TV 彩虹岛传说.zip
+assets.box_front: Imgs/海贼王TV 彩虹岛传说.png
+description: 《海贼王TV 彩虹岛传说》，由 Bandai 出品，WonderSwan 平台，单人游玩。
+publisher: Bandai
+players: 1
+game: 海贼王TV 目标是海贼王
+file: 海贼王TV 目标是海贼王.zip
+assets.box_front: Imgs/海贼王TV 目标是海贼王.png
+description: 《海贼王TV 目标是海贼王》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 海贼王TV 财宝大战
+file: 海贼王TV 财宝大战.zip
+assets.box_front: Imgs/海贼王TV 财宝大战.png
+description: 《海贼王TV 财宝大战》，由 Bandai 出品，Board类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Board
+players: 2
+game: 海贼王TV 财宝大战2
+file: 海贼王TV 财宝大战2.zip
+assets.box_front: Imgs/海贼王TV 财宝大战2.png
+description: 《海贼王TV 财宝大战2》，由 Bandai 出品，Board类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Board
+players: 2
+game: 混乱齿轮
+file: 混乱齿轮.zip
+assets.box_front: Imgs/混乱齿轮.png
+description: 《混乱齿轮》，由 Bandai 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Strategy
+players: 1
+game: 漩涡 电视怪奇篇
+file: 漩涡 电视怪奇篇.zip
+assets.box_front: Imgs/漩涡 电视怪奇篇.png
+description: 《漩涡 电视怪奇篇》，由 Omega Micott Inc. 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Omega Micott Inc.
+genre: Adventure
+players: 1
+game: 漩涡 魔咒篇
+file: 漩涡 魔咒篇.zip
+assets.box_front: Imgs/漩涡 魔咒篇.png
+description: 《漩涡 魔咒篇》，由 Omega Micott Inc. 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Omega Micott Inc.
+genre: Adventure
+players: 1
+game: 激斗战车 齿轮冠军联盟
+file: 激斗战车 齿轮冠军联盟.zip
+assets.box_front: Imgs/激斗战车 齿轮冠军联盟.png
+description: 《激斗战车 齿轮冠军联盟》，由 Bandai 出品，动作类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Action
+players: 2
+game: 火影忍者 木叶忍法帖
+file: 火影忍者 木叶忍法帖.zip
+assets.box_front: Imgs/火影忍者 木叶忍法帖.png
+description: 《火影忍者 木叶忍法帖》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 火爆职业摔角
+file: 火爆职业摔角.zip
+assets.box_front: Imgs/火爆职业摔角.png
+description: 《火爆职业摔角》，由 Kaga Tech 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Kaga Tech
+genre: Sports
+players: 2
+game: 炼金术士玛莉&艾莉 两人的工作室
+file: 炼金术士玛莉&艾莉 两人的工作室.zip
+assets.box_front: Imgs/炼金术士玛莉&艾莉 两人的工作室.png
+description: 《炼金术士玛莉&艾莉 两人的工作室》，由 Gust 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Gust
+genre: Role-playing (RPG)
+players: 2
+game: 燃烧野球
+file: 燃烧野球.zip
+assets.box_front: Imgs/燃烧野球.png
+description: 《燃烧野球》，由 Jaleco 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Jaleco
+genre: Sports
+players: 2
+game: 爆走卡车传说
+file: 爆走卡车传说.zip
+assets.box_front: Imgs/爆走卡车传说.png
+description: 《爆走卡车传说》，由 Human 出品，模拟类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Human
+genre: Simulation
+players: 2
+game: 犬夜叉 戈薇的梦日记
+file: 犬夜叉 戈薇的梦日记.zip
+assets.box_front: Imgs/犬夜叉 戈薇的梦日记.png
+description: 《犬夜叉 戈薇的梦日记》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 犬夜叉 风云绘卷
+file: 犬夜叉 风云绘卷.zip
+assets.box_front: Imgs/犬夜叉 风云绘卷.png
+description: 《犬夜叉 风云绘卷》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 狂热节拍
+file: 狂热节拍.zip
+assets.box_front: Imgs/狂热节拍.png
+description: 《狂热节拍》，由 Konami 出品，动作类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Konami
+genre: Action
+players: 2
+game: 狂钓黑巴斯
+file: 狂钓黑巴斯.zip
+assets.box_front: Imgs/狂钓黑巴斯.png
+description: 《狂钓黑巴斯》，由 BEC 出品，Hunting and Fishing类游戏，WonderSwan 平台，单人游玩。
+publisher: BEC
+genre: Hunting and Fishing
+players: 1
+game: 电车 Go! 1
+file: 电车 Go! 1.zip
+assets.box_front: Imgs/电车 Go! 1.png
+description: 《电车 Go! 1》，由 Taito 出品，模拟类游戏，WonderSwan 平台，单人游玩。
+publisher: Taito
+genre: Simulation
+players: 1
+game: 电车 Go! 2
+file: 电车 Go! 2.zip
+assets.box_front: Imgs/电车 Go! 2.png
+description: 《电车 Go! 2》，由 Cyberfront Corporation 出品，模拟类游戏，WonderSwan 平台，单人游玩。
+publisher: Cyberfront Corporation
+genre: Simulation
+players: 1
+game: 疯狂爬梯者
+file: 疯狂爬梯者.zip
+assets.box_front: Imgs/疯狂爬梯者.png
+description: 《疯狂爬梯者》，WonderSwan 平台。
+game: 百搭牌
+file: 百搭牌.zip
+assets.box_front: Imgs/百搭牌.png
+description: 《百搭牌》，由 Square Enix 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Square Enix
+genre: Role-playing (RPG)
+players: 1
+game: 磁力方块
+file: 磁力方块.zip
+assets.box_front: Imgs/磁力方块.png
+description: 《磁力方块》，由 HAL Laboratory 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: HAL Laboratory
+genre: Puzzle
+players: 1
+game: 秋之回忆 聚会
+file: 秋之回忆 聚会.zip
+assets.box_front: Imgs/秋之回忆 聚会.png
+description: 《秋之回忆 聚会》，由 Kindle Imagine Develop 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Kindle Imagine Develop
+genre: Adventure
+players: 1
+game: 竞走马育成 竞马
+file: 竞走马育成 竞马.zip
+assets.box_front: Imgs/竞走马育成 竞马.png
+description: 《竞走马育成 竞马》，由 BEC 出品，Sports with Animals类游戏，WonderSwan 平台，单人游玩。
+publisher: BEC
+genre: Sports with Animals
+players: 1
+game: 筋肉人二世 梦之对决
+file: 筋肉人二世 梦之对决.zip
+assets.box_front: Imgs/筋肉人二世 梦之对决.png
+description: 《筋肉人二世 梦之对决》，由 Bandai 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Sports
+players: 2
+game: 筋肉人二世 超人圣战史
+file: 筋肉人二世 超人圣战史.zip
+assets.box_front: Imgs/筋肉人二世 超人圣战史.png
+description: 《筋肉人二世 超人圣战史》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 约束之地 利维艾拉
+file: 约束之地 利维艾拉.zip
+assets.box_front: Imgs/约束之地 利维艾拉.png
+description: 《约束之地 利维艾拉》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 纸牌革命1
+file: 纸牌革命1.zip
+assets.box_front: Imgs/纸牌革命1.png
+description: 《纸牌革命1》，WonderSwan 平台。
+game: 纸牌革命2
+file: 纸牌革命2.zip
+assets.box_front: Imgs/纸牌革命2.png
+description: 《纸牌革命2》，WonderSwan 平台。
+game: 线条方块
+file: 线条方块.zip
+assets.box_front: Imgs/线条方块.png
+description: 《线条方块》，由 Bandai 出品，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Puzzle
+players: 2
+game: 线条方块EX
+file: 线条方块EX.zip
+assets.box_front: Imgs/线条方块EX.png
+description: 《线条方块EX》，由 Bandai 出品，2000 年发行，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 2000
+genre: Puzzle
+players: 2
+game: 线脑 千禧版
+file: 线脑 千禧版.zip
+assets.box_front: Imgs/线脑 千禧版.png
+description: 《线脑 千禧版》，由 Bandai 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Puzzle
+players: 1
+game: 经典高尔夫
+file: 经典高尔夫.zip
+assets.box_front: Imgs/经典高尔夫.png
+description: 《经典高尔夫》，由 Bandai 出品，体育类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Sports
+players: 1
+game: 绘图逻辑方块
+file: 绘图逻辑方块.zip
+assets.box_front: Imgs/绘图逻辑方块.png
+description: 《绘图逻辑方块》，由 Sunsoft 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Sunsoft
+genre: Puzzle
+players: 1
+game: 罪恶装备Petit 1
+file: 罪恶装备Petit 1.zip
+assets.box_front: Imgs/罪恶装备Petit 1.png
+description: 《罪恶装备Petit 1》，由 Sammy 出品，动作类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Sammy
+genre: Action
+players: 2
+game: 罪恶装备Petit 2
+file: 罪恶装备Petit 2.zip
+assets.box_front: Imgs/罪恶装备Petit 2.png
+description: 《罪恶装备Petit 2》，WonderSwan 平台。
+game: 花式台球
+file: 花式台球.zip
+assets.box_front: Imgs/花式台球.png
+description: 《花式台球》，由 Data East 出品，体育类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Data East
+genre: Sports
+players: 2
+game: 花札
+file: 花札.zip
+assets.box_front: Imgs/花札.png
+description: 《花札》，WonderSwan 平台。
+game: 落雀
+file: 落雀.zip
+assets.box_front: Imgs/落雀.png
+description: 《落雀》，由 Bandai 出品，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Puzzle
+players: 2
+game: 蓝翼闪电战
+file: 蓝翼闪电战.zip
+assets.box_front: Imgs/蓝翼闪电战.png
+description: 《蓝翼闪电战》，由 Squaresoft 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Squaresoft
+genre: Role-playing (RPG)
+players: 1
+game: 街头舞者
+file: 街头舞者.zip
+assets.box_front: Imgs/街头舞者.png
+description: 《街头舞者》，由 Bandai 出品，动作类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Action
+players: 2
+game: 裁决银剑 重生
+file: 裁决银剑 重生.zip
+assets.box_front: Imgs/裁决银剑 重生.png
+description: 《裁决银剑 重生》，WonderSwan 平台。
+game: 装甲部队
+file: 装甲部队.zip
+assets.box_front: Imgs/装甲部队.png
+description: 《装甲部队》，WonderSwan 平台。
+game: 诞生 Debut
+file: 诞生 Debut.zip
+assets.box_front: Imgs/诞生 Debut.png
+description: 《诞生 Debut》，由 Bandai Visual 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai Visual
+genre: Puzzle
+players: 1
+game: 语乐王
+file: 语乐王.zip
+assets.box_front: Imgs/语乐王.png
+description: 《语乐王》，由 Mebius 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Mebius
+genre: Puzzle
+players: 1
+game: 谜王口袋版
+file: 谜王口袋版.zip
+assets.box_front: Imgs/谜王口袋版.png
+description: 《谜王口袋版》，由 Kaga Tech 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Kaga Tech
+genre: Adventure
+players: 1
+game: 超兄贵 男之魂札
+file: 超兄贵 男之魂札.zip
+assets.box_front: Imgs/超兄贵 男之魂札.png
+description: 《超兄贵 男之魂札》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 超时空要塞 真爱之歌
+file: 超时空要塞 真爱之歌.zip
+assets.box_front: Imgs/超时空要塞 真爱之歌.png
+description: 《超时空要塞 真爱之歌》，由 Layup - Upstar 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Layup - Upstar
+genre: Puzzle
+players: 1
+game: 超级机器人大战精华版3
+file: 超级机器人大战精华版3.zip
+assets.box_front: Imgs/超级机器人大战精华版3.png
+description: 《超级机器人大战精华版3》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 1
+game: 超级机器人大战精华版WSC
+file: 超级机器人大战精华版WSC.zip
+assets.box_front: Imgs/超级机器人大战精华版WSC.png
+description: 《超级机器人大战精华版WSC》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 1
+game: 超级机器人大战精华篇1
+file: 超级机器人大战精华篇1.zip
+assets.box_front: Imgs/超级机器人大战精华篇1.png
+description: 《超级机器人大战精华篇1》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 2
+game: 超级机器人大战精华篇2 第1部
+file: 超级机器人大战精华篇2 第1部.zip
+assets.box_front: Imgs/超级机器人大战精华篇2 第1部.png
+description: 《超级机器人大战精华篇2 第1部》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 1
+game: 超级机器人大战精华篇2 第2部
+file: 超级机器人大战精华篇2 第2部.zip
+assets.box_front: Imgs/超级机器人大战精华篇2 第2部.png
+description: 《超级机器人大战精华篇2 第2部》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 1
+game: 超级机器人大战精华篇2 第3部
+file: 超级机器人大战精华篇2 第3部.zip
+assets.box_front: Imgs/超级机器人大战精华篇2 第3部.png
+description: 《超级机器人大战精华篇2 第3部》，由 Banpresto 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Banpresto
+genre: Strategy
+players: 1
+game: 足球野郎 挑战世界
+file: 足球野郎 挑战世界.zip
+assets.box_front: Imgs/足球野郎 挑战世界.png
+description: 《足球野郎 挑战世界》，WonderSwan 平台。
+game: 趴趴熊方块
+file: 趴趴熊方块.zip
+assets.box_front: Imgs/趴趴熊方块.png
+description: 《趴趴熊方块》，由 Bandai 出品，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Puzzle
+players: 2
+game: 返家十万里
+file: 返家十万里.zip
+assets.box_front: Imgs/返家十万里.png
+description: 《返家十万里》，由 Nihon Application 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Nihon Application
+genre: Strategy
+players: 2
+game: 连锁翻翻乐
+file: 连锁翻翻乐.zip
+assets.box_front: Imgs/连锁翻翻乐.png
+description: 《连锁翻翻乐》，由 Tomcreate 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Tomcreate
+genre: Puzzle
+players: 1
+game: 通灵王 未来的意志
+file: 通灵王 未来的意志.zip
+assets.box_front: Imgs/通灵王 未来的意志.png
+description: 《通灵王 未来的意志》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 金属机器人战记完美版 独角仙版
+file: 金属机器人战记完美版 独角仙版.zip
+assets.box_front: Imgs/金属机器人战记完美版 独角仙版.png
+description: 《金属机器人战记完美版 独角仙版》，由 Imagineer 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Imagineer
+genre: Role-playing (RPG)
+players: 1
+game: 金属机器人战记完美版 锹形虫版
+file: 金属机器人战记完美版 锹形虫版.zip
+assets.box_front: Imgs/金属机器人战记完美版 锹形虫版.png
+description: 《金属机器人战记完美版 锹形虫版》，由 Imagineer 出品，Role-playing (RPG)类游戏，WonderSwan 平台。
+publisher: Imagineer
+genre: Role-playing (RPG)
+game: 钻地小子
+file: 钻地小子.zip
+assets.box_front: Imgs/钻地小子.png
+description: 《钻地小子》，由 Namco 出品，策略类游戏，WonderSwan 平台，单人游玩。
+publisher: Namco
+genre: Strategy
+players: 1
+game: 铁人28号
+file: 铁人28号.zip
+assets.box_front: Imgs/铁人28号.png
+description: 《铁人28号》，由 Mega House 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Mega House
+genre: Adventure
+players: 1
+game: 铁拳 卡片挑战赛
+file: 铁拳 卡片挑战赛.zip
+assets.box_front: Imgs/铁拳 卡片挑战赛.png
+description: 《铁拳 卡片挑战赛》，由 Bandai 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Strategy
+players: 2
+game: 陆行鸟打工
+file: 陆行鸟打工.zip
+assets.box_front: Imgs/陆行鸟打工.png
+description: 《陆行鸟打工》，由 Square Enix 出品，模拟类游戏，WonderSwan 平台，单人游玩。
+publisher: Square Enix
+genre: Simulation
+players: 1
+game: 陆行鸟的不可思议迷宫
+file: 陆行鸟的不可思议迷宫.zip
+assets.box_front: Imgs/陆行鸟的不可思议迷宫.png
+description: 《陆行鸟的不可思议迷宫》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1
+game: 随身仓鼠
+file: 随身仓鼠.zip
+assets.box_front: Imgs/随身仓鼠.png
+description: 《随身仓鼠》，由 BEC 出品，模拟类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: BEC
+genre: Simulation
+players: 2
+game: 随身仓鼠3
+file: 随身仓鼠3.zip
+assets.box_front: Imgs/随身仓鼠3.png
+description: 《随身仓鼠3》，由 Bandai 出品，模拟类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Simulation
+players: 1
+game: 预想进化论
+file: 预想进化论.zip
+assets.box_front: Imgs/预想进化论.png
+description: 《预想进化论》，WonderSwan 平台。
+game: 领域争夺战
+file: 领域争夺战.zip
+assets.box_front: Imgs/领域争夺战.png
+description: 《领域争夺战》，由 Sammy Studios 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Sammy Studios
+genre: Strategy
+players: 2
+game: 风之克罗诺亚
+file: 风之克罗诺亚.zip
+assets.box_front: Imgs/风之克罗诺亚.png
+description: 《风之克罗诺亚》，由 Bandai 出品，动作类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Action
+players: 1
+game: 骰子
+file: 骰子.zip
+assets.box_front: Imgs/骰子.png
+description: 《骰子》，由 Bandai 出品，益智类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Puzzle
+players: 2
+game: 骰子骑士
+file: 骰子骑士.zip
+assets.box_front: Imgs/骰子骑士.png
+description: 《骰子骑士》，WonderSwan 平台。
+game: 魔卡少女樱
+file: 魔卡少女樱.zip
+assets.box_front: Imgs/魔卡少女樱.png
+description: 《魔卡少女樱》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 2
+game: 魔术算盘
+file: 魔术算盘.zip
+assets.box_front: Imgs/魔术算盘.png
+description: 《魔术算盘》，由 Naxat Soft 出品，益智类游戏，WonderSwan 平台，单人游玩。
+publisher: Naxat Soft
+genre: Puzzle
+players: 1
+game: 魔法方块大战
+file: 魔法方块大战.zip
+assets.box_front: Imgs/魔法方块大战.png
+description: 《魔法方块大战》，由 Data East 出品，策略类游戏，WonderSwan 平台，支持 2-2 人游玩。
+publisher: Data East
+genre: Strategy
+players: 2
+game: 魔界塔士沙加
+file: 魔界塔士沙加.zip
+assets.box_front: Imgs/魔界塔士沙加.png
+description: 《魔界塔士沙加》，由 Squaresoft 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Squaresoft
+genre: Role-playing (RPG)
+players: 1
+game: 黑暗之眼 战斗之门
+file: 黑暗之眼 战斗之门.zip
+assets.box_front: Imgs/黑暗之眼 战斗之门.png
+description: 《黑暗之眼 战斗之门》，由 Bandai 出品，冒险类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Adventure
+players: 1
+game: 龙珠
+file: 龙珠.zip
+assets.box_front: Imgs/龙珠.png
+description: 《龙珠》，由 Bandai 出品，Role-playing (RPG)类游戏，WonderSwan 平台，单人游玩。
+publisher: Bandai
+genre: Role-playing (RPG)
+players: 1

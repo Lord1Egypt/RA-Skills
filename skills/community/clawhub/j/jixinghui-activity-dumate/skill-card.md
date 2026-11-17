@@ -1,43 +1,60 @@
-## Description: <br>
-自动化参与极星会 DuMate 体验活动。当用户说"参加极星会活动"、"报名极星会"、"帮我参与 DuMate 活动"、"自动完成极星会活动"或类似表达时触发。自动完成报名、体验、截图、获取账号 ID 和提交信息的全流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动化引导用户参与极星会 DuMate 体验活动，包括报名、安装或打开 DuMate、体验功能、准备全屏截图、获取百度云账号 ID，并提交活动参与信息。
 
-## Publisher: <br>
-[kaiyuanjianghu](https://clawhub.ai/user/kaiyuanjianghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuanjianghu](https://clawhub.ai/user/kaiyuanjianghu)
 
-## Use Case: <br>
-External users use this skill to guide and partially automate participation in the Jixinghui DuMate experience activity, including registration, DuMate setup guidance, full-screen screenshot collection, Baidu Cloud account ID lookup, and activity form submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full-screen screenshots may capture sensitive desktop content or notifications. <br>
-Mitigation: Close sensitive windows, disable notifications, review each screenshot before upload, and delete saved screenshots after submission. <br>
-Risk: The workflow submits account-linked Baidu Cloud information. <br>
-Mitigation: Confirm the exact Baidu Cloud account ID before submission and do not use a phone number or nickname in its place. <br>
+## Use Case:
 
+External users use this skill to automate or receive guided assistance for completing a DuMate activity participation workflow. The skill helps navigate activity signup, client setup, screenshots, Baidu Cloud account ID collection, and final information submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuanjianghu/jixinghui-activity-dumate) <br>
-- [Jixinghui activity page](https://wxaurl.cn/3kzrkXaZ4Dh) <br>
-- [DuMate download page](https://www.dumate.cn?track=sfhzjxh) <br>
-- [Baidu Cloud console](https://cloud.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Step-by-step guidance and status reporting, with shell command or script execution where applicable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local screenshot file paths under ~/Desktop/jixinghui_screenshots/ and report registration, account ID, and submission status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Full-screen screenshots may capture unrelated private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Close unrelated applications and notifications, then manually review each screenshot before upload.
+
+Risk: The workflow submits screenshots and a Baidu Cloud account ID through a shortened external activity link.
+
+Mitigation: Resolve the shortened URL destination and approve the exact account ID and files before submission.
+
+Risk: Login and authorization steps can expose account access if delegated too broadly.
+
+Mitigation: Keep login and authorization under direct user control and resume automation only after the user confirms completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuanjianghu/skills/jixinghui-activity-dumate)
+- [Activity page](https://wxaurl.cn/3kzrkXaZ4Dh)
+- [DuMate download page](https://www.dumate.cn?track=sfhzjxh)
+- [Baidu Cloud console](https://cloud.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, files]
+
+**Output Format:** [Markdown guidance with optional shell command output and generated screenshot file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local screenshot paths and status reports for signup, account ID collection, and submission steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

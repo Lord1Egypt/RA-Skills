@@ -1,48 +1,57 @@
-## Description: <br>
-Finds family-friendly hotels with multi-bed rooms, kid-friendly amenities, nearby playgrounds, and family-oriented services using flyai CLI and Fliggy travel data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds family-friendly hotels with multi-bed rooms, kid-friendly amenities, nearby playgrounds, and family-oriented services using flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search for family-oriented hotels, collect destination and date parameters, run flyai hotel searches, and format real-time results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a third-party npm CLI package on the local system. <br>
-Mitigation: Review the flyai CLI package and run it only in a trusted environment before allowing global installation or command execution. <br>
-Risk: Travel-search details may be sent to an external travel booking service. <br>
-Mitigation: Avoid entering sensitive personal information and confirm the user is comfortable sharing destination, date, budget, and preference details with the travel service. <br>
-Risk: Local execution logs may retain raw travel queries. <br>
-Mitigation: Limit or disable log persistence where possible, avoid sensitive query content, and review or delete local execution logs after use. <br>
-Risk: The skill can produce misleading travel guidance if it answers without live CLI results. <br>
-Mitigation: Require successful flyai CLI execution and verify that each displayed hotel result includes a Book link sourced from detailUrl. <br>
+## Use Case:
 
+External users use this skill to search for family-oriented hotel options, compare real-time travel results, and receive booking links. Agents use it to collect required destination and date parameters, run flyai CLI hotel searches, and return concise Markdown recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/family-hotel) <br>
-- [Parameter and Output Templates](artifact/references/templates.md) <br>
-- [Hotel Search Playbooks](artifact/references/playbooks.md) <br>
-- [Hotel Fallbacks](artifact/references/fallbacks.md) <br>
-- [Execution Log Runbook](artifact/references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with hotel comparison tables, booking links, and inline shell commands for CLI execution or fallback steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; hotel results should include Book links from detailUrl and should not expose raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.3 (source: ClawHub release metadata; artifact frontmatter states 3.2.0) <br>
+Risk: The skill can install and run an unpinned global third-party travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI package and version before installation, pin it in managed environments, and run commands in a sandboxed shell.
+
+Risk: The runbook describes persisting raw travel requests that may include personal travel details, children's information, budgets, or dates.
+
+Mitigation: Disable or remove execution-log persistence before handling sensitive travel queries and avoid storing raw personal details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/family-hotel)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations with booking links and inline shell commands when setup or recovery is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel recommendations must be based on flyai CLI output and include detailUrl booking links.]
+
+## Skill Version(s):
+
+v3.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

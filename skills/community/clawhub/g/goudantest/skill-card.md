@@ -1,41 +1,56 @@
-## Description: <br>
-Advanced code review assistant with intelligent analysis, multi-language support, and structured feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced code review assistant with intelligent analysis, multi-language support, and structured feedback for correctness, security, performance, maintainability, and observability reviews.
 
-## Publisher: <br>
-[gou1995](https://clawhub.ai/user/gou1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gou1995](https://clawhub.ai/user/gou1995)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review pull requests, code changes, security-sensitive changes, performance work, and maintainability issues across common programming languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill can use full-access nested review and run local test commands by default, which may inspect sensitive repositories or execute commands in local development workflows. <br>
-Mitigation: Install only in trusted development workflows, review generated feedback before acting on it, use restricted execution for untrusted repositories, and disable automatic test execution when command execution is not expected. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to conduct structured code reviews for pull requests, code changes, audits, and performance or security reviews across multiple programming languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gou1995/goudantest) <br>
-- [Code review checklist](CHECKLIST.md) <br>
-- [Feedback templates](TEMPLATES.md) <br>
-- [Review examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown review feedback, optional JSON reports, checklist reports, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity labels, file and line references, recommendations, and suggested code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for a broad range of code review and code analysis requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when broad structured review support is desired, or choose a narrower specialized skill for more constrained routing.
+
+Risk: Review feedback can influence code changes and may be incomplete or context-dependent.
+
+Mitigation: Have developers verify findings against project requirements, tests, and security policies before applying recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gou1995/skills/goudantest)
+- [Comprehensive Code Review Checklist](artifact/CHECKLIST.md)
+- [Code Review Feedback Templates](artifact/TEMPLATES.md)
+- [Code Review Examples (v2)](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or checklist-style review feedback with optional code suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured findings, severity labels, recommendations, and review summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

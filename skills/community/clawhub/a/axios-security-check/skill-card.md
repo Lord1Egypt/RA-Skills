@@ -1,41 +1,53 @@
-## Description: <br>
-Checks for the March 2026 axios supply chain attack, including malicious axios versions, the plain-crypto-js dropper, RAT artifacts, and recommended remediation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks npm projects and systems for the March 2026 axios supply-chain compromise involving axios@1.14.1, axios@0.30.4, and plain-crypto-js@4.2.1, then produces detection and remediation guidance.
 
-## Publisher: <br>
-[vjumpkung](https://clawhub.ai/user/vjumpkung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vjumpkung](https://clawhub.ai/user/vjumpkung)
 
-## Use Case: <br>
-Developers, security engineers, and incident responders use this skill to check projects and systems for indicators tied to the March 2026 axios supply-chain compromise and to choose appropriate remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that can modify packages, remove directories, edit hosts files, or change firewall rules. <br>
-Mitigation: Run read-only checks first and require explicit approval before sudo, firewall, hosts-file, npm install, or rm -rf actions. <br>
-Risk: Credential rotation and rebuild guidance can disrupt systems if applied without confirming incident scope. <br>
-Mitigation: Follow the organization's incident-response process before rotating credentials or rebuilding systems. <br>
+## Use Case:
 
+Developers, security engineers, and CI/CD maintainers use this skill to assess whether a project or build environment was exposed to the March 2026 axios compromise and to choose appropriate remediation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vjumpkung/axios-security-check) <br>
-- [StepSecurity Harden-Runner](https://github.com/step-security/harden-runner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with checklists, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an axios security check report with findings, verdict, and recommended actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Remediation guidance includes elevated hosts-file and firewall commands that can affect the whole system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm indicators match the environment, review package files first, and treat sudo-level network blocking changes as manual changes that may need reversal.
+
+Risk: Confirmed dropper execution or RAT artifacts indicate the affected machine or CI job may have exposed credentials.
+
+Mitigation: Rebuild from a known-good state and rotate credentials that were accessible at install time, including npm tokens, cloud keys, SSH keys, environment secrets, and CI/CD secrets.
+
+## Reference(s):
+
+- [StepSecurity Harden-Runner](https://github.com/step-security/harden-runner)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown security check report with shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes project and system findings, a clean/exposed/compromised verdict, and recommended remediation actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

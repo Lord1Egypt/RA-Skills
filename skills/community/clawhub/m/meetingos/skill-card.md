@@ -1,51 +1,66 @@
-## Description: <br>
-Auto meeting notes and action item execution loop for transcripts, recordings, summaries, action items, and follow-up workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto meeting notes and action item execution loop. Trigger this skill whenever the user mentions meeting notes, meeting summary, action items, follow-up, transcript, recording, Zoom summary, Teams meeting, Tencent Meeting, Feishu meeting, WeCom meeting, upload audio, upload video, meeting template, task creation.
 
-## Publisher: <br>
-[DTTNpole-commits](https://clawhub.ai/user/DTTNpole-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits)
 
-## Use Case: <br>
-Employees and teams use this skill to turn meeting recordings or transcripts into notes, decisions, and action items, with optional delivery to workplace tools such as Feishu, WeCom, and Notion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts, summaries, action items, and user identifiers may be sent to configured external services. <br>
-Mitigation: Enable only the integrations needed, use local transcription mode when appropriate, and confirm destinations before posting or creating records. <br>
-Risk: Broad trigger wording could cause the skill to run or post meeting content in more situations than intended. <br>
-Mitigation: Narrow invocation triggers and require explicit user confirmation before sending messages, creating tasks, or charging usage. <br>
-Risk: Webhook or download URLs could send data to unintended hosts if not reviewed. <br>
-Mitigation: Validate webhook and recording-download hosts against approved workplace domains before use. <br>
-Risk: Cleanup behavior can delete local recordings passed into the workflow. <br>
-Mitigation: Limit cleanup to temporary downloaded or extracted files and avoid deleting original user-provided recordings. <br>
-Risk: Packaging and entry-point issues may prevent expected installation or execution. <br>
-Mitigation: Add the missing requirements file, verify imports and entry points, and test the core processor before deployment. <br>
+## Use Case:
 
+Employees, meeting owners, and operators use this skill to turn meeting transcripts or recordings into notes, decisions, and action items, then optionally push follow-up work to Notion, Feishu, or WeCom.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DTTNpole-commits/meetingos) <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
-- [Feishu Open Platform API](https://open.feishu.cn/open-apis) <br>
-- [WeCom API](https://qyapi.weixin.qq.com/cgi-bin) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [SkillPay](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, text summaries, action-item lists, Python helper scripts, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can process local audio or video files, optionally call configured external services, and may create or post meeting records when credentials are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Meeting recordings and transcripts may contain sensitive information, and cloud transcription can send audio to OpenAI when enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local privacy mode for sensitive meetings and require an explicit user choice before enabling cloud transcription.
+
+Risk: The security evidence reports unrelated review instructions, hidden promotional links, and under-scoped network behavior.
+
+Mitigation: Review the skill before installation, remove unrelated review/promotion content, and validate all outbound URLs before use.
+
+Risk: The recording downloader accepts external URLs and the security guidance calls for download size limits.
+
+Mitigation: Restrict downloads to trusted sources and enforce configured file size limits before processing recordings.
+
+Risk: Optional integrations require API keys for Feishu, WeCom, Notion, OpenAI, and SkillPay.
+
+Mitigation: Use test credentials during review, store secrets only in a local .env file, and configure only the services needed for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dttnpole-commits/skills/meetingos)
+- [MeetingOS API integration guide](artifact/api_integrations.md)
+- [Notion integrations](https://www.notion.so/my-integrations)
+- [Feishu OpenAPI](https://open.feishu.cn/open-apis)
+- [WeCom API token endpoint](https://qyapi.weixin.qq.com/cgi-bin/gettoken)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, task text, Python helper code output, shell commands, and service configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local transcript text, meeting-note Markdown, action-item summaries, and optional outbound API updates when the user configures credentials.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

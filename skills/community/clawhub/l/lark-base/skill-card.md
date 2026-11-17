@@ -1,49 +1,78 @@
-## Description: <br>
-Guides agents through Lark Base operations including table, field, record, view, analytics, formula, lookup, form, dashboard, workflow, and role-permission tasks using lark-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using lark-cli base commands to manage Lark Base tables, fields, records, views, analytics, formulas, lookup fields, forms, dashboards, workflows, roles, and permissions.
 
-## Publisher: <br>
-[gu2003li](https://clawhub.ai/user/gu2003li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu2003li](https://clawhub.ai/user/gu2003li)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to locate, read, write, analyze, or administer Lark Base resources through lark-cli. It is intended for Base-specific workflows that require real resource IDs, user-scoped permissions, and careful confirmation before changing business data or permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad changes to Lark Base content, schema, roles, workflows, attachments, and integrations using the user's account permissions. <br>
-Mitigation: Require explicit confirmation and review target Base, table, field, record, role, workflow IDs, and payloads before schema changes, deletes, role changes, bulk writes, attachment uploads, workflow enablement, or workflows that send data to third-party URLs. <br>
-Risk: Incorrect query scope or pagination handling can produce misleading analytics or incomplete conclusions. <br>
-Mitigation: Use Base-side filtering, sorting, grouping, aggregation, and documented query ranges for global conclusions, and do not treat a partial page as a complete dataset. <br>
+## Use Case:
 
+Developers and operators use this skill when they need an agent to route, prepare, and review Lark Base operations through an authenticated lark-cli installation. It supports Base resource discovery, table and field management, record reads and writes, aggregation queries, forms, dashboards, workflows, and role or advanced permission tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gu2003li/lark-base) <br>
-- [Lark Base data analysis SOP](references/lark-base-data-analysis-sop.md) <br>
-- [Lark Base data query guide](references/lark-base-data-query-guide.md) <br>
-- [Lark Base field JSON](references/lark-base-field-json.md) <br>
-- [Lark Base cell value](references/lark-base-cell-value.md) <br>
-- [Formula field guide](references/formula-field-guide.md) <br>
-- [Lookup field guide](references/lookup-field-guide.md) <br>
-- [Lark Base dashboard guide](references/lark-base-dashboard.md) <br>
-- [Lark Base workflow guide](references/lark-base-workflow-guide.md) <br>
-- [Lark Base role guide](references/lark-base-role-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with lark-cli commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires lark-cli and operates within the user's Lark account permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide operations against live Lark Base data, roles, permissions, and workflows through lark-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands that update or delete records, change roles or advanced permissions, enable workflows, or upload and download attachments before execution.
+
+Risk: Base data may be sent to external HTTP endpoints during workflow or integration tasks.
+
+Mitigation: Use approved endpoints only and avoid sending unnecessary personal or business-sensitive fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gu2003li/skills/lark-base)
+- [Base data analysis SOP](references/lark-base-data-analysis-sop.md)
+- [Base data-query guide](references/lark-base-data-query-guide.md)
+- [Base data-query DSL SSOT](references/lark-base-data-query.md)
+- [Base CellValue specification](references/lark-base-cell-value.md)
+- [Base field JSON SSOT](references/lark-base-field-json.md)
+- [Base formula writing guide](references/formula-field-guide.md)
+- [Base lookup field configuration guide](references/lookup-field-guide.md)
+- [base +field-create](references/lark-base-field-create.md)
+- [base +field-update](references/lark-base-field-update.md)
+- [base +record-upsert](references/lark-base-record-upsert.md)
+- [base +record-batch-create](references/lark-base-record-batch-create.md)
+- [base +record-batch-update](references/lark-base-record-batch-update.md)
+- [base +record-history-list](references/lark-base-record-history-list.md)
+- [base +view-set-filter](references/lark-base-view-set-filter.md)
+- [base +form-detail](references/lark-base-form-detail.md)
+- [base +form-submit](references/lark-base-form-submit.md)
+- [base +form-questions-create](references/lark-base-form-questions-create.md)
+- [base +form-questions-update](references/lark-base-form-questions-update.md)
+- [Dashboard module guide](references/lark-base-dashboard.md)
+- [dashboard block data_config SSOT](references/dashboard-block-data-config.md)
+- [base +dashboard-block-get-data](references/lark-base-dashboard-block-get-data.md)
+- [Workflow guide](references/lark-base-workflow-guide.md)
+- [Workflow steps JSON SSOT](references/lark-base-workflow-schema.md)
+- [Base advanced permission and role guide](references/lark-base-role-guide.md)
+- [Base role permission JSON SSOT](references/role-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated lark-cli installation and access to the target Lark Base resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog text report 1.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

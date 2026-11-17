@@ -1,45 +1,59 @@
-## Description: <br>
-Automates ChatGPT Web conversations through a local browser session with persistent login state, one-shot prompts, reusable multi-turn sessions, and conversation metadata storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ChatGPT Web conversations through a local browser session with persistent login state, one-shot prompts, reusable multi-turn sessions, and conversation metadata storage.
 
-## Publisher: <br>
-[PlacidusaxAlarak](https://clawhub.ai/user/PlacidusaxAlarak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[placidusaxalarak](https://clawhub.ai/user/placidusaxalarak)
 
-## Use Case: <br>
-Developers and agent users use this skill to route prompts through a logged-in ChatGPT Web browser session when they need web-UI behavior such as persisted conversations, model selection, extended thinking toggles, proof screenshots, or browser troubleshooting instead of OpenAI API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a logged-in ChatGPT Web browser session and can access account-authenticated browser state. <br>
-Mitigation: Install only for workflows where that access is acceptable, avoid submitting private credentials or sensitive business data in prompts, and validate authentication state before use. <br>
-Risk: Runtime browser_state, temporary chatgpt-profile directories, session metadata, and screenshots may contain account-access secrets or sensitive conversation content. <br>
-Mitigation: Treat these files as secrets, restrict local file access, and clean up screenshots, sessions, temporary profile copies, and other runtime artifacts after use. <br>
-Risk: ChatGPT Web selectors, login challenges, CAPTCHA, 2FA, risk-review pages, and network or proxy conditions can interrupt automation. <br>
-Mitigation: Use visible-browser troubleshooting, inspect JSON error payloads and screenshots, and complete login or verification flows manually when required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PlacidusaxAlarak/chatgpt-skill) <br>
-- [CLI Reference](references/api_reference.md) <br>
-- [Usage Patterns](references/usage_patterns.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ChatGPT Web](https://chatgpt.com/) <br>
+## Use Case:
 
+Developers and agent operators use this skill when they need browser-based ChatGPT Web conversations instead of the OpenAI API, including login setup, one-shot prompts, continued conversations, reusable sessions, model selection, and troubleshooting.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands; runtime scripts return JSON payloads containing ChatGPT responses and session metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist conversation and session metadata, browser auth state, temporary runtime files, and optional proof screenshots under data/ during local execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reuses a logged-in ChatGPT Web session and stores browser/session artifacts locally.
+
+Mitigation: Use a dedicated low-privilege account or isolated environment, avoid sensitive prompts, and review or clear data/ and any chatgpt-profile-* temporary directories.
+
+Risk: Browser automation can fail when ChatGPT login, CAPTCHA, 2FA, risk review, network, proxy, or page-layout conditions change.
+
+Mitigation: Validate authentication before use, run with a visible browser for inspection when needed, and use the troubleshooting guidance for proxy, selector, and verification failures.
+
+Risk: First-run setup downloads dependencies and a browser into the local environment.
+
+Mitigation: Review requirements and install only in an environment where those downloads and local runtime artifacts are acceptable.
+
+## Reference(s):
+
+- [CLI Reference](references/api_reference.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Usage Patterns](references/usage_patterns.md)
+- [ChatGPT Web](https://chatgpt.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON command output from browser-driven ChatGPT Web conversations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local browser/session artifacts and optional proof screenshots under data/.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

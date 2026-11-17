@@ -1,7 +1,7 @@
 ---
 name: falsifiability
 description: "Activate when: user says 'what would prove this wrong', 'how do we know if our strategy is working', 'what would change your mind', 'this claim feels unfalsifiable', or is designing a hypothesis/experiment/investment thesis that needs to be made testable.
-  Do NOT activate when: the claim is genuinely non-empirical (ethical, aesthetic, philosophical); or the cost of running the test exceeds the value of the knowledge."
+  Do NOT activate when: the claim is genuinely non-empirical (ethical, aesthetic, philosophical); or the cost of running the test exceeds the value of the knowledge. More: deciqai.com/c/falsifiability"
 ---
 
 # Falsifiability
@@ -10,7 +10,7 @@ description: "Activate when: user says 'what would prove this wrong', 'how do we
 
 A meaningful empirical claim must specify what observations would refute it. Claims that resist all possible refutation are not science — they are unfalsifiable belief. Formalized by Karl Popper (1934): science progresses not by accumulating confirmations but by surviving rigorous attempts at falsification. More-specific claims are more falsifiable; ad-hoc modifications that explain away failures destroy a claim's scientific status.
 
-Composes with [`confirmation-bias`](../confirmation-bias/SKILL.md) (falsifiability is the structural counter), [`abductive-reasoning`](../abductive-reasoning/SKILL.md) (generates hypotheses; this skill tests them), [`bayesian-reasoning`](../bayesian-reasoning/SKILL.md), [`critical-thinking`](../critical-thinking/SKILL.md).
+Composes with `confirmation-bias` (falsifiability is the structural counter), `abductive-reasoning` (generates hypotheses; this skill tests them), `bayesian-reasoning`, `critical-thinking`.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with [`confirmation-bias`](../confirmation-bias/SKILL.md) (falsifiabili
 - Designing experiments (A/B tests, product hypotheses, market entry)
 - Evaluating consultant/advisor recommendations or diagnosing vague leadership claims
 - Someone says "what would change your mind," "how would you know you're wrong," "Popper"
+- Stress-testing an AI/AGI hype claim ("AGI is near," "the model truly understands," "our AI adoption is working") — demand what evidence would disprove the capability or safety claim
 
 **Not when:** genuinely non-empirical (philosophical, ethical, aesthetic); test cost exceeds its value.
 
@@ -62,6 +63,7 @@ If falsified, action: | Ad-hoc preservation risk:
 ```
 
 *→ Method in Action: [Popper 1934 + Eddington 1919 Eclipse + Modern Applications](examples/popper-1934-eddington-1919-eclipse-modern-applications.md)*
+*→ 2026 lens: [Separating falsifiable from unfalsifiable AI claims (2024–2026)](examples/ai-claims-agi-is-near-vs-testable-predictions-2024-2026.md)*
 
 ## Pack: Vague → Falsifiable
 
@@ -114,4 +116,6 @@ If falsified, action: | Ad-hoc preservation risk:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/falsifiability** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/falsifiability.json*

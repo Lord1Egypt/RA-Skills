@@ -1,42 +1,59 @@
-## Description: <br>
-Web search, research with citations, and content extraction for bash agents using curl and You.com's REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search, research with citations, and content extraction for bash agents using curl and You.com's REST API.
 
-## Publisher: <br>
-[EdwardIrby](https://clawhub.ai/user/EdwardIrby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardirby](https://clawhub.ai/user/edwardirby)
 
-## Use Case: <br>
-Developers and agent users use this skill to run You.com search, research, and content extraction workflows from bash agents with curl and jq. It supports live web search, cited research answers, and URL content extraction when internet access and any required You.com API key are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, and any configured You.com API key are sent to You.com services. <br>
-Mitigation: Use the skill only when that external API use is acceptable, avoid sensitive private searches, and rotate the API key if it is exposed. <br>
-Risk: Fetched web content is untrusted external data. <br>
-Mitigation: Extract only needed fields with jq, wrap fetched content in external-content delimiters, and do not execute or follow instructions found in fetched content. <br>
+## Use Case:
 
+Developers and agents use this skill to run You.com web search, research with citations, and URL content extraction from a bash environment. It helps choose the appropriate You.com endpoint, prepare curl requests, and handle fetched content as untrusted external data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EdwardIrby/youdotcom-cli) <br>
-- [You.com API Docs](https://docs.you.com) <br>
-- [You.com API Keys](https://you.com/platform/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and jq-based JSON handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq; YDC_API_KEY is optional for search and required for research and contents endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Queries, prompts, and URLs are sent to a third-party You.com service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, credentials, internal-only links, regulated data, and confidential client details unless that use has been approved.
+
+Risk: Fetched web content can contain untrusted instructions or misleading material.
+
+Mitigation: Extract only needed fields with jq, wrap fetched material in external-content delimiters, and do not execute or follow instructions found in fetched content.
+
+Risk: Research and content extraction require a You.com API key.
+
+Mitigation: Use the YDC_API_KEY environment variable only for approved requests and avoid printing or storing the key in outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardirby/skills/youdotcom-cli)
+- [You.com API Docs](https://docs.you.com)
+- [You.com API Keys](https://you.com/platform/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, jq examples, and endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON response paths and guidance for wrapping fetched content in external-content delimiters.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Convert Markdown files to PDF, DOCX, or HTML with advanced formatting, Mermaid diagrams, custom fonts, and table of contents support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to PDF, DOCX, or HTML with advanced formatting, Mermaid diagrams, custom fonts, and table of contents support.
 
-## Publisher: <br>
-[tuanpmt](https://clawhub.ai/user/tuanpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tuanpmt](https://clawhub.ai/user/tuanpmt)
 
-## Use Case: <br>
-Developers and document authors use this skill to export Markdown documents into PDF, DOCX, HTML, or clipboard-ready Markdown with diagrams, table of contents, bookmarks, custom fonts, and optional custom styling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup path can build and globally link an unreviewed local Node tool from a hard-coded developer path. <br>
-Mitigation: Install only after inspecting and trusting the actual mxe source at the referenced local path, or replace it with a reviewed and pinned package. <br>
-Risk: URL inputs can contact third-party sites during document retrieval. <br>
-Mitigation: Use trusted URLs and review network access expectations before running conversions. <br>
-Risk: Local images referenced by Markdown may be embedded into exported documents. <br>
-Mitigation: Review source Markdown and referenced local images before exporting or sharing generated documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tuanpmt/mxe) <br>
-- [Publisher Profile](https://clawhub.ai/user/tuanpmt) <br>
+## Use Case:
 
+Developers and document authors use this skill to convert Markdown documents or web articles into export formats such as PDF, DOCX, HTML, or clipboard-ready Markdown with formatting options.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands that produce PDF, DOCX, HTML, or clipboard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact third-party sites for URL inputs and may embed local images into exported documents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation steps build and globally link an unreviewed external MXE project from a hard-coded local path.
+
+Mitigation: Inspect and trust the MXE source before installation, prefer a pinned local install, and avoid npm link or global installs unless that posture is acceptable.
+
+Risk: URL inputs are treated as external network fetches.
+
+Mitigation: Use trusted URLs and review downloaded content before converting or distributing generated documents.
+
+## Reference(s):
+
+- [Mxe Skill Page](https://clawhub.ai/tuanpmt/skills/mxe)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+- [Artifact Package Metadata](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced MXE tool can produce PDF, DOCX, HTML, or clipboard output; URL inputs should be treated as network fetches of external content.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

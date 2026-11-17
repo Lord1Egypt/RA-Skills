@@ -1,44 +1,61 @@
-## Description: <br>
-Access and manage Notion workspaces through Maton-managed OAuth to search, query databases and data sources, manage pages and blocks, and list users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage Notion workspaces through Maton-managed OAuth to search pages, query data sources and databases, manage pages and blocks, and retrieve user information.
 
-## Publisher: <br>
-[otman-ai](https://clawhub.ai/user/otman-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otman-ai](https://clawhub.ai/user/otman-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare authenticated Notion API requests for workspace search, data source and database work, page and block management, user lookup, and Maton connection administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent read, create, update, archive, or delete Notion workspace content through a third-party OAuth gateway. <br>
-Mitigation: Use a least-privileged or test Notion workspace first and require explicit confirmation before write, archive, delete, or connection-management requests. <br>
-Risk: MATON_API_KEY authorizes the gateway and could expose workspace access if shared or logged. <br>
-Mitigation: Keep MATON_API_KEY private, avoid placing it in shared transcripts or logs, and rotate it if exposure is suspected. <br>
-Risk: Notion OAuth access is brokered by Maton rather than a direct Notion integration. <br>
-Mitigation: Install only if you trust Maton with the connected Notion workspace and are comfortable with the gateway proxying Notion API requests. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to have an agent generate Notion API requests through Maton's OAuth gateway for workspace search, database and data source operations, page and block management, and user lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/otman-ai/notion-maton) <br>
-- [Maton account settings](https://maton.ai/settings) <br>
-- [Maton connection management](https://ctrl.maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl examples and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and Notion-Version headers; write, archive, delete, and connection-management requests should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad Notion workspace access is concentrated through a third-party gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Maton is trusted with the Notion workspace content and operations sent through the gateway, and use the least-privileged Notion connection possible.
+
+Risk: Generated requests can archive pages, delete blocks, or change database and data source schemas.
+
+Mitigation: Require explicit confirmation before archive, delete, or schema-changing operations.
+
+Risk: Troubleshooting guidance may expose the Maton API key if credential output is shared.
+
+Mitigation: Do not run or share output from commands that print MATON_API_KEY; rotate the key if it has already been exposed.
+
+## Reference(s):
+
+- [ClawHub Notion Skill](https://clawhub.ai/otman-ai/skills/notion-maton)
+- [otman-ai Publisher Profile](https://clawhub.ai/user/otman-ai)
+- [Maton](https://maton.ai)
+- [Maton Connection Management](https://ctrl.maton.ai)
+- [Notion API](https://api.notion.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with cURL examples and request snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Maton API key, a Notion OAuth connection, and the Notion-Version request header.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

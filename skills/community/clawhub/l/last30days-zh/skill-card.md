@@ -1,43 +1,60 @@
-## Description: <br>
-Aggregates recent Reddit, X/Twitter, YouTube, TikTok, Instagram, Hacker News, Polymarket, and web search results from the last 30 days into a research brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates recent results from Reddit, X/Twitter, YouTube, TikTok, Instagram, Hacker News, Polymarket, and web search into a last-30-days research brief.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to research recent topics, companies, products, markets, tools, trends, competitor activity, launch reactions, and community sentiment across multiple social, community, prediction-market, and web sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and public-result snippets may be sent to AISA and other enabled public-data services. <br>
-Mitigation: Install and run the skill only when those external lookups are acceptable for the topic and deployment context. <br>
-Risk: The skill requires an AISA API key. <br>
-Mitigation: Keep the AISA key scoped, provide it through the documented environment variable or config file, and store ./.last30days-data/config.env with restrictive permissions. <br>
-Risk: Optional source expansions can increase the number of external lookups. <br>
-Mitigation: Avoid enabling optional YouTube transcripts, auto-resolve, Xiaohongshu, Threads, or Pinterest lookups unless those additional retrievals are intended. <br>
+## Use Case:
 
+External users and developers use this skill to research people, companies, products, markets, tools, or trends across recent social, community, prediction-market, and grounded web sources. It is suited for release reactions, competitor comparisons, community sentiment, and recent-dynamics summaries over a configurable lookback window.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/last30days-zh) <br>
-- [AISA](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, compact text, or structured JSON depending on the selected emit mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit compact summaries, full Markdown reports, contextual summaries, or JSON with query plans, ranked candidates, clusters, and source-grouped items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence and skill frontmatter) <br>
+Risk: Research topics and selected result context may be sent to AISA and public source APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that data sharing is acceptable for the user's topic and organization.
+
+Risk: API keys can be exposed if passed directly on the command line or stored in overly permissive files.
+
+Mitigation: Store AISA_API_KEY in ./.last30days-data/config.env with restrictive permissions, such as chmod 600.
+
+Risk: Recent web and social snippets can be incomplete, biased, or misleading.
+
+Mitigation: Treat generated briefs as research aids and verify important claims against primary sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/last30days-zh)
+- [Publisher profile](https://clawhub.ai/user/bibaofeng)
+- [AISA homepage](https://aisa.one)
+- [AISA API endpoint](https://api.aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON research brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include query plans, ranked candidates, clusters, and items grouped by source when JSON output is requested.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Nex Keyring helps agents manage and track local API keys, secrets, and tokens with rotation status, risk levels, auditing, and policy enforcement without storing actual secret values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Keyring helps agents guide users through local API key and secret rotation tracking, stale credential checks, audit log review, and metadata-only exports.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Developers, DevOps engineers, and system administrators use this skill to inventory local credential metadata, check rotation status, identify stale credentials, and export audit-oriented reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans .env files and environment variables, which can reveal sensitive credential metadata and local file paths. <br>
-Mitigation: Scan only intended local files or environments, avoid casual production scans, and review outputs before sharing or storing them. <br>
-Risk: The local database and exported reports can contain sensitive secret metadata even when actual secret values are not stored. <br>
-Mitigation: Treat ~/.nex-keyring and all JSON, CSV, or Markdown exports as sensitive files; keep them out of shared folders and repositories. <br>
-Risk: Security evidence warns that advertised protection may be overstated, especially when cryptography is unavailable. <br>
-Mitigation: Verify the local protection model before relying on it, install cryptography when appropriate, and do not treat base64 obfuscation as encryption. <br>
+## Use Case:
 
+Developers, DevOps engineers, system administrators, and security reviewers use this skill to track credential metadata, check rotation posture, scan environment key names, and prepare audit-oriented reports without storing plaintext secret values.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nexaiguy/nex-keyring) <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI guidance with optional JSON, CSV, or Markdown registry exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may describe sensitive credential metadata and local file paths; exported reports should be handled as sensitive files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security evidence reports an arbitrary-code-execution path flaw in setup.sh path handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix setup.sh before installation, and run it only from a trusted local skill directory.
+
+Risk: The security evidence says the encryption claims are not backed by the implementation.
+
+Mitigation: Treat the local database, audit log, hashes, paths, and exports as sensitive metadata; protect ~/.nex-keyring and exported files with local access controls.
+
+Risk: Scanning broad environments or production .env files can expose sensitive metadata about credential names and usage.
+
+Mitigation: Use explicit file paths, scan only what is necessary, and avoid broad environment scans on production systems unless reviewed.
+
+## Reference(s):
+
+- [Nex Keyring on ClawHub](https://clawhub.ai/nexaiguy/skills/nex-keyring)
+- [Publisher profile: nexaiguy](https://clawhub.ai/user/nexaiguy)
+- [Nex AI homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce metadata-only JSON, CSV, or Markdown exports when the user runs the documented CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Transforms static Vue index.vue pages into data-driven Vue 2 and Element UI Custom.vue pages using only the target page and directly referenced styles or assets as page evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms a static Vue index.vue page into a data-driven Vue 2 + Element UI Custom.vue component using only the target page and its directly referenced styles and assets.
 
-## Publisher: <br>
-[781818761](https://clawhub.ai/user/781818761) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[781818761](https://clawhub.ai/user/781818761)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert an existing static Vue page into a dynamic Vue 2 single-file component with Element UI controls, structured data, scoped styling, and optional route registration. It is intended for static-to-dynamic page migration work, not new page creation or non-Vue 2 stacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite Custom.vue and edit router files during the conversion workflow. <br>
-Mitigation: Run it in a disposable branch or with backups, and require explicit approval before overwriting Custom.vue or changing routing. <br>
-Risk: The skill may install dependencies, start the project, or follow a function.md file outside its advertised source boundary. <br>
-Mitigation: Require approval before package installation or project startup, and do not allow reading or executing function.md unless it is separately reviewed. <br>
+## Use Case:
 
+Developers use this skill to convert an existing static Vue page into a self-contained Vue 2 + Element UI component with extracted data, v-for rendering, Element UI component replacements, scoped styles, and route registration when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/781818761/lanhu-code-2-el-vue) <br>
-- [Artifact documentation index](artifact/data/INDEX.md) <br>
-- [Element UI documentation](https://element.eleme.cn/#/zh-CN/component/installation) <br>
-- [Vue 2 documentation](https://cn.vuejs.org/v2/guide/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Vue single-file component code, Markdown progress notes, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or overwrites Custom.vue and may propose router registration or project commands after review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an unbundled ui-ux-max-pro prerequisite skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin ui-ux-max-pro before using this skill, and pause execution if that dependency is unavailable.
+
+Risk: The skill writes Custom.vue, may update router files, and may run npm commands.
+
+Mitigation: Require explicit confirmation before package installation, npm script execution, or router changes, and review generated code before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/781818761/skills/lanhu-code-2-el-vue)
+- [Skill documentation index](data/INDEX.md)
+- [Element UI documentation](https://element.eleme.cn/#/zh-CN/component/installation)
+- [Vue 2 documentation](https://cn.vuejs.org/v2/guide/)
+- [Router synchronization guidance](data/router-sync.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Vue single-file component code with concise Markdown status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite Custom.vue and may propose dependency or router updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

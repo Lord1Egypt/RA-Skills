@@ -45,7 +45,7 @@ See [GitHub Actions Integration](#github-actions-integration) for full setup ins
 | Credentials in URL | HCS002 | ERROR | `https://user:pass@host` |
 | Hardcoded IP address | HCS003 | ERROR | `HOST = "10.0.0.5"` |
 | Hardcoded localhost URL | HCS004 | ERROR | `"http://localhost:8000"` |
-| AWS/GCP access key | HCS005 | ERROR | `AKIAIOSFODNN7EXAMPLE` |
+| AWS/GCP access key | HCS005 | ERROR | `REDACTED-SECRET` |
 | FastAPI missing docstring | FAD001 | WARNING | `@router.get("/")` without docstring |
 | useEffect missing deps | RUE001 | WARNING | `useEffect(() => { ... })` with no `[]` |
 | useEffect suspicious deps | RUE002 | INFO | `useEffect(..., [])` references outer vars |

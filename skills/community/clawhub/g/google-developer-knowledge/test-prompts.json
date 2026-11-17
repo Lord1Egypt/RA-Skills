@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "skill": "google-developer-knowledge",
+  "cases": [
+    {
+      "id": "official-source-retrieval",
+      "mode": "full_test",
+      "prompt": "Cloud Run 的 minimum instances 如何計費？請附官方來源。",
+      "assertions": [
+        "Uses search_documents before making a version-sensitive claim.",
+        "Uses get_documents when search snippets do not establish billing detail.",
+        "Includes an official Google source URL or retrieved document URI."
+      ]
+    },
+    {
+      "id": "answer-query-rate-limit-fallback",
+      "mode": "full_test",
+      "prompt": "比較 Cloud Run 與 Cloud Functions 適合新 HTTP microservice 的情境。",
+      "assertions": [
+        "May use answer_query for a concise synthesis.",
+        "On answer_query timeout, 429, or insufficient references, falls back to search_documents plus get_documents.",
+        "Does not claim an unverified grounded answer after a failed answer_query call."
+      ]
+    },
+    {
+      "id": "runtime-neutral-discovery",
+      "mode": "full_test",
+      "prompt": "這個環境沒有名為 bifrost 的 MCP server，如何查 Firebase Android 13 POST_NOTIFICATIONS 文件？",
+      "assertions": [
+        "Discovers a healthy server by Google Developer Knowledge tool capability rather than a fixed alias.",
+        "Reports whether it used MCP, REST, or an official-document fallback and why.",
+        "Reports whether each configured candidate timed out, was offline, or lacked required tools when discovery fails.",
+        "Does not hardcode an environment-specific server name or credentials."
+      ]
+    },
+    {
+      "id": "rate-limit-without-retry-after",
+      "mode": "full_test",
+      "prompt": "answer_query 收到 429 但沒有 Retry-After 時，如何繼續查 Cloud Run quota 文件？",
+      "assertions": [
+        "Waits one second and retries answer_query no more than once.",
+        "Falls back to search_documents plus get_documents after the bounded retry fails.",
+        "Reports the fallback instead of claiming answer_query succeeded."
+      ]
+    },
+    {
+      "id": "auth-failure-and-no-rest-key",
+      "mode": "full_test",
+      "prompt": "MCP 回傳 403，且沒有 DEVELOPERKNOWLEDGE_API_KEY；我要查 Firebase App Check 文件。",
+      "assertions": [
+        "Stops retrying after the authentication or authorization failure.",
+        "Does not issue a REST request without an API key.",
+        "Uses an official-document fallback and discloses the reason."
+      ]
+    },
+    {
+      "id": "oauth-rest-fallback-and-budget",
+      "mode": "full_test",
+      "prompt": "沒有可用 MCP，但有 OAuth access token 和 quota project；查 Cloud Run minimum instances 計費並附來源。",
+      "assertions": [
+        "Uses the REST OAuth fallback with an Authorization header and x-goog-user-project header.",
+        "Retrieves no more than three parent documents unless broad extraction was explicitly requested.",
+        "Reports a retrieval record with method, fallback reason, sources, and verification level."
+      ]
+    }
+  ]
+}

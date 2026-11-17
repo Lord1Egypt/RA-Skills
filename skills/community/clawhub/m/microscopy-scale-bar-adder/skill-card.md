@@ -1,40 +1,53 @@
-## Description: <br>
-Add accurate, publication-ready scale bars to microscopy images given pixel-to-unit calibration data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add accurate, publication-ready scale bars to microscopy images given pixel-to-unit calibration data.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, imaging practitioners, and developers use this skill to add calibrated scale bars to microscopy images for publication figures or consistent batch annotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or untrusted calibration data can produce a misleading scale bar. <br>
-Mitigation: Use trusted pixels-per-unit calibration or verified TIFF XResolution metadata and review the annotated output before publication. <br>
-Risk: The local image-processing script reads and writes user-selected file paths, so accidental reads or overwrites are possible if paths are chosen carelessly. <br>
-Mitigation: Keep input and output paths inside the intended workspace and choose explicit output filenames. <br>
+## Use Case:
 
+External users, developers, and microscopy researchers use this skill to add calibrated scale bars to TIFF, PNG, JPG, or BMP microscopy images for publication figures and batch image preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/microscopy-scale-bar-adder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples; script execution saves an annotated image file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Pillow and trusted calibration data from TIFF metadata or a user-supplied pixels-per-unit value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The security evidence reports that the script can read from or write to absolute paths outside the workspace despite claiming those paths are blocked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted image paths and explicit output locations only; fix path validation to reject absolute paths, resolve symlinks, and avoid overwriting files unless explicitly requested before relying on workspace isolation.
+
+Risk: Incorrect or missing calibration data can produce misleading scale bars.
+
+Mitigation: Require explicit pixels-per-unit data when TIFF calibration metadata is unavailable, and do not fabricate scale values or calibration assumptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/microscopy-scale-bar-adder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown response with CLI commands, fallback reports when blocked, and generated annotated image file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit image paths and calibration data; outputs depend on Pillow image processing and user-supplied or TIFF-derived pixels-per-unit values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

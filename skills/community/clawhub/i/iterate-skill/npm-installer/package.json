@@ -1,0 +1,42 @@
+{
+  "name": "iterate-skill-installer",
+  "version": "3.15.0",
+  "description": "One-command installer for iterate-skill across AI coding assistants",
+  "main": "lib/installer.js",
+  "files": [
+    "bin/",
+    "lib/",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "bin": {
+    "iterate-skill-installer": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "node --check bin/cli.js && node --check lib/installer.js && node test/mode.test.js && node test/tarball.test.js && node test/security.test.js"
+  },
+  "keywords": [
+    "iterate-skill",
+    "ai-assistant",
+    "skills",
+    "claude",
+    "cursor",
+    "trae",
+    "windsurf",
+    "installer"
+  ],
+  "author": "jingzhao-l",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jingzhao-l/iterate-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jingzhao-l/iterate-skill/issues"
+  },
+  "homepage": "https://github.com/jingzhao-l/iterate-skill#readme"
+}

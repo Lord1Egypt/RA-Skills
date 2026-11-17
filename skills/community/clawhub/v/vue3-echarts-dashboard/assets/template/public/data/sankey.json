@@ -1,0 +1,31 @@
+{
+  "title": "流量转化桑基",
+  "nodes": [
+    { "name": "直接访问" },
+    { "name": "搜索引擎" },
+    { "name": "社交媒体" },
+    { "name": "广告投放" },
+    { "name": "其他" },
+    { "name": "访问" },
+    { "name": "浏览商品" },
+    { "name": "加购" },
+    { "name": "提交订单" },
+    { "name": "支付成功" },
+    { "name": "流失" }
+  ],
+  "links": [
+    { "source": "直接访问", "target": "访问", "value": 3200 },
+    { "source": "搜索引擎", "target": "访问", "value": 5400 },
+    { "source": "社交媒体", "target": "访问", "value": 2800 },
+    { "source": "广告投放", "target": "访问", "value": 1900 },
+    { "source": "其他", "target": "访问", "value": 700 },
+    { "source": "访问", "target": "浏览商品", "value": 10080 },
+    { "source": "访问", "target": "流失", "value": 3920 },
+    { "source": "浏览商品", "target": "加购", "value": 6020 },
+    { "source": "浏览商品", "target": "流失", "value": 4060 },
+    { "source": "加购", "target": "提交订单", "value": 3640 },
+    { "source": "加购", "target": "流失", "value": 2380 },
+    { "source": "提交订单", "target": "支付成功", "value": 2772 },
+    { "source": "提交订单", "target": "流失", "value": 868 }
+  ]
+}

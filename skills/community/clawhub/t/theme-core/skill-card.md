@@ -1,38 +1,55 @@
-## Description: <br>
-Theme Core helps plan novels by defining a story's core theme question and validating whether it can sustain long-form projects from 300k to 8M words. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Theme design for novels. Define the core question of the story and validate sustainability for 300k-8M words. Use when starting a new novel project or entering PLANNING phase.
 
-## Publisher: <br>
-[zhaozy](https://clawhub.ai/user/zhaozy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaozy](https://clawhub.ai/user/zhaozy)
 
-## Use Case: <br>
-Authors and story-planning agents use this skill to define a novel's core theme question, antithesis, stance, and long-form sustainability before or during planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references full-guide and prototype files that are not included in the package. <br>
-Mitigation: Use the packaged SKILL.md template as the authoritative local guidance and verify any referenced supporting material before relying on it. <br>
+## Use Case:
 
+Writers and story-planning agents use this skill to define a novel's central thematic question, antithesis, and final stance before or during planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaozy/theme-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with a JSON theme template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, credential requests, installs, or background behavior are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Referenced supplemental guide files may be unavailable in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm required reference files are present or remove those links before relying on the skill for a planning workflow.
+
+Risk: Theme guidance can be too narrow or too vague for very long novel projects.
+
+Mitigation: Review the generated core question, antithesis, and stance against the intended story length and revise before drafting.
+
+## Reference(s):
+
+- [Theme Core on ClawHub](https://clawhub.ai/zhaozy/skills/theme-core)
+- [Full guide](references/full-guide.md)
+- [Prototypes](references/prototypes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with a JSON theme template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; may reference supplemental guide files that are not included in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

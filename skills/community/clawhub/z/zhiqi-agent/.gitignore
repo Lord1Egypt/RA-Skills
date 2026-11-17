@@ -1,0 +1,42 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+
+# --- Node (npm companion entry) ---
+node_modules/
+npm-debug.log*
+
+# --- Local agent state / identities (NEVER commit) ---
+.zhiqi/
+.source
+device.key
+device.pub
+*.key
+*.pem
+*.p12
+*.pfx
+identity.json
+config.json
+ratelimit.json
+collab-state.json
+agent.json
+
+# --- Local credentials / env ---
+.env
+.env.*
+*.token
+.npmrc
+.pypirc
+
+# --- Logs and editors ---
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

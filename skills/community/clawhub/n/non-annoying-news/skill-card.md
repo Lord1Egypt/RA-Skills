@@ -1,49 +1,63 @@
-## Description: <br>
-Create, configure, and render a source-grounded personal newspaper/news digest from URLs, bookmarks, X/Twitter bookmarks, browser reading lists/bookmarks, read-later apps, feeds, newsletters, web research, or pasted notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, configure, and render a source-grounded personal newspaper or news digest from user-provided and configured sources, with onboarding gates before personal issues, recurring schedules, cron jobs, or external delivery.
 
-## Publisher: <br>
-[iret77](https://clawhub.ai/user/iret77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iret77](https://clawhub.ai/user/iret77)
 
-## Use Case: <br>
-External users and developers use this skill to set up and run a personalized, source-grounded news digest or newspaper from supplied links, saved items, feeds, notes, and configured source adapters. It supports onboarding, source selection, configuration, editorial QA, and rendering of HTML/PDF issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private source adapters, saved items, bookmarks, and reading lists may expose sensitive interests or personal information. <br>
-Mitigation: Prefer pasted URLs or exports for lower risk, approve private-source adapters deliberately, and keep user-specific settings outside the public skill. <br>
-Risk: Credentialed source collection can mishandle secrets if tokens, cookies, or private credentials are pasted into chat. <br>
-Mitigation: Do not paste secrets into chat; use locally configured tools, exports, or manually supplied source manifests instead. <br>
-Risk: Cron jobs or external delivery can create recurring behavior or send content beyond the local workspace. <br>
-Mitigation: Require explicit approval before enabling any cron, schedule, or external delivery channel. <br>
-Risk: Bookmarks and saved items are signals of interest, not verified factual sources. <br>
-Mitigation: Fetch and verify linked content where possible, preserve source boundaries, and mark inaccessible material rather than treating metadata as read content. <br>
+## Use Case:
 
+External users and developers use this skill to set up and produce source-grounded personal newspapers or news digests from URLs, saved items, feeds, newsletters, exports, and web research. It supports first-run onboarding, source configuration, editorial QA, HTML/PDF rendering, and recurring issue setup with explicit consent gates.
 
-## Reference(s): <br>
-- [Onboarding Guide](references/onboarding.md) <br>
-- [Local Configuration](references/config-schema.md) <br>
-- [Source and Signal Adapters](references/source-adapters.md) <br>
-- [Editorial Standard](references/editorial-standard.md) <br>
-- [Design Presets and Personalization](references/design-presets.md) <br>
-- [Layout and Render QA](references/layout-and-render-qa.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance, JSON configuration, source manifests, and generated HTML/PDF/PNG issue files when rendering tools are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Personalized issues, cron jobs, and external delivery require completed onboarding or explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and SKILL.md package version) <br>
+Risk: Optional browser, X/Twitter, mailbox, delivery, or scheduling access can expose personal data or trigger future actions if enabled without clear consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable those sources and actions only after explicit user approval, keep credentials configured locally, and use the Personalization Gate before creating personal issues, recurring jobs, cron entries, or external delivery.
+
+Risk: Rendering arbitrary or untrusted HTML can carry content and browser-rendering risks.
+
+Mitigation: Render only reviewed or sanitized HTML, run with network and JavaScript disabled when possible, and use reviewed, pinned renderer dependencies.
+
+Risk: Saved bookmarks, reading-list entries, and social posts are intent signals, not verified factual sources.
+
+Mitigation: Fetch and read linked content where possible, mark inaccessible or metadata-only items, and state source boundaries in the issue.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iret77/skills/non-annoying-news)
+- [Onboarding Guide](artifact/references/onboarding.md)
+- [Local Configuration](artifact/references/config-schema.md)
+- [Source and Signal Adapters](artifact/references/source-adapters.md)
+- [Editorial Standard](artifact/references/editorial-standard.md)
+- [Layout and Render QA](artifact/references/layout-and-render-qa.md)
+- [Design Presets and Personalization](artifact/references/design-presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration, source manifests, HTML/PDF issue artifacts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local HTML, PDF, and PNG preview files when renderer dependencies are available; external delivery and scheduling require explicit user approval.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence and SKILL.md package version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

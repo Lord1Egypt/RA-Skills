@@ -1,38 +1,55 @@
-## Description: <br>
-InvestLog AI lets agents query the InvestLog API for real-time U.S. stock quotes, valuation, financials, analyst views, ownership data, market news, technical indicators, and related stock research in English or Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InvestLog AI helps agents answer US stock research questions with real-time quotes, valuation metrics, financials, analyst ratings, ownership data, technical indicators, dividends, splits, news, and related market data through the InvestLog API.
 
-## Publisher: <br>
-[nblicb](https://clawhub.ai/user/nblicb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nblicb](https://clawhub.ai/user/nblicb)
 
-## Use Case: <br>
-External users and agents use this skill to answer natural-language questions about U.S. stocks, including price action, valuation, financial statements, analyst ratings, ownership, trades, dividends, technical indicators, and market news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passing an API key in a URL query string can expose the credential through logs, browser history, or shared request traces. <br>
-Mitigation: Use the free trial without a key when possible; if a key was placed in a URL, rotate it and avoid high-privilege or billing-sensitive keys until a header-based key pattern is available. <br>
+## Use Case:
 
+External users and agents use this skill to research publicly traded US equities and market activity in English or Chinese. It is suited for stock quote checks, earnings and valuation analysis, ownership research, analyst sentiment review, and market overview queries.
 
-## Reference(s): <br>
-- [InvestLog API homepage](https://api.investlog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Natural-language answer with optional Markdown tables, based on JSON responses from the InvestLog API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock tickers, tabular metrics, trends, and remaining query count from the API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: API keys passed in URL query strings can be exposed in browser history, server logs, proxy logs, or shared transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing valuable API keys in URLs; prefer an Authorization header when supported and rotate any key that may have been exposed.
+
+Risk: Stock questions are sent to the InvestLog API and may reveal sensitive portfolio interests or personal context.
+
+Mitigation: Avoid including private portfolio details, account data, personal identifiers, or secrets in prompts sent through this skill.
+
+## Reference(s):
+
+- [InvestLog API homepage](https://api.investlog.ai)
+- [ClawHub skill page](https://clawhub.ai/nblicb/skills/investlog-ai)
+- [Publisher profile](https://clawhub.ai/user/nblicb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or text summaries based on JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include stock tickers, tables, metrics, trends, and query quota information.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

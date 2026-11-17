@@ -1,47 +1,59 @@
-## Description: <br>
-Generates automated daily and weekly research paper reports by searching arXiv, using an LLM to select and summarize relevant papers, and publishing the results to Feishu Wiki. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese daily and weekly research-paper reports by retrieving arXiv papers, using an LLM to score and summarize them, and publishing the result to Feishu Wiki.
 
-## Publisher: <br>
-[leogoat2004](https://clawhub.ai/user/leogoat2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leogoat2004](https://clawhub.ai/user/leogoat2004)
 
-## Use Case: <br>
-Developers and research teams use this skill to monitor a configured research direction, filter recent arXiv papers, generate concise Chinese-language research digests, and publish the results into a Feishu Wiki space. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Feishu app credentials and can create remote Wiki documents automatically. <br>
-Mitigation: Confirm the target Feishu space and parent node before running, keep credentials out of logs and shared prompts, and require manual approval before scheduled or agent-triggered publication. <br>
-Risk: The Feishu document creation script prints a tenant access token prefix during execution. <br>
-Mitigation: Remove token-prefix logging before use and avoid sharing execution logs that may expose credential material. <br>
-Risk: Generated reports are based on arXiv abstracts and LLM scoring, so relevance and summaries may be incomplete or misleading. <br>
-Mitigation: Review selected papers and generated summaries before publishing reports to a shared workspace. <br>
+## Use Case:
 
+Researchers, research engineers, and developer teams use this skill to automate daily and weekly monitoring of arXiv papers for a configured research direction and publish concise Chinese reports to Feishu Wiki.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leogoat2004/paper-lark-report) <br>
-- [Publisher profile](https://clawhub.ai/user/leogoat2004) <br>
-- [arXiv API](https://export.arxiv.org/api/query) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Daily report template](artifact/templates/daily_report.md) <br>
-- [Weekly report template](artifact/templates/weekly_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown report templates, JSON paper selection files, CLI commands, and Feishu Wiki document content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local data files and can publish documents to the configured Feishu Wiki space.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Feishu credentials may be exposed or over-permissioned because the workflow reads app credentials from OpenClaw configuration and security evidence reports unsafe credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Feishu app whose permissions are narrowly scoped to the intended Wiki location and avoid shared logs until token-fragment logging is removed.
+
+Risk: The security evidence reports an argument path issue that can overwrite JSON files outside the intended log directory.
+
+Mitigation: Run save and register commands only with trusted arguments, and review file paths before scheduled execution.
+
+Risk: Using `npx clawhub@latest` can pull an installer version that differs from the reviewed release environment.
+
+Mitigation: Pin the installer version in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leogoat2004/skills/paper-lark-report)
+- [arXiv API](https://export.arxiv.org/api/query)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report templates, JSON paper data, shell commands, and Feishu Wiki document content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily and weekly workflows are configured by research direction, arXiv limits, cron schedules, and Feishu Wiki identifiers.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

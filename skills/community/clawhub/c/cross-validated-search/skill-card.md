@@ -1,43 +1,58 @@
-## Description: <br>
-OpenClaw skill for source-backed web search, page reading, and evidence-aware claim checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for source-backed web search, page reading, and evidence-aware claim checking that helps verify factual answers with live search results and explicit source handling.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web, read source pages, verify concrete factual claims, and produce citation-ready evidence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised external Python package source may be unavailable or may not match the intended release. <br>
-Mitigation: Confirm the package source before installing, and prefer a reviewed, pinned repository or release. <br>
-Risk: Search queries can disclose secrets, confidential business claims, or private personal data to a search provider. <br>
-Mitigation: Do not send sensitive content through third-party search providers; use a trusted self-hosted SearXNG instance when privacy is required. <br>
-Risk: Claim verification is heuristic and may surface conflicting evidence without resolving it. <br>
-Mitigation: Review cited URLs and conflict signals before relying on the verdict in user-facing or high-impact answers. <br>
+## Use Case:
 
+Developers and agent builders use this skill to run live web searches, read source pages, verify factual claims, and prepare citation-ready evidence summaries for answers that need current or source-backed support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wd041216-bit/cross-validated-search) <br>
-- [Project homepage](https://github.com/wd041216-bit/cross-validated-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-capable command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, explicit verdicts, support and conflict scores, page-aware verification status, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-16.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installing an unpinned package version can change reviewed behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment as a non-privileged user and pin cross-validated-search==16.0.0 before use.
+
+Risk: Search queries and page-fetch requests are sent to configured search providers during normal operation.
+
+Mitigation: Avoid sensitive queries unless the provider path is approved, and consider a self-hosted SearXNG configuration for more control.
+
+Risk: Claim verification is heuristic and may surface conflicting evidence without resolving it.
+
+Mitigation: Review the cited source URLs and any conflicts before relying on or publishing conclusions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wd041216-bit/skills/cross-validated-search)
+- [Project Homepage](https://github.com/wd041216-bit/cross-validated-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text, Markdown, and JSON from command-line verification workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include support and conflict scores, page-aware verification status, source URLs, and recommended next steps.]
+
+## Skill Version(s):
+
+16.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

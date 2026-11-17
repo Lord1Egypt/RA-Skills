@@ -1,0 +1,12 @@
+{
+  "keywords": ["熟龄肌抗老", "抗老面霜", "40+护肤", "垮脸怎么办"],
+  "sorts": ["综合", "最新", "最多点赞", "最多收藏", "最多评论"],
+  "max_notes_per_query": 20,
+  "scroll_times": 5,
+  "delay_sec": 3,
+  "output_dir": "output",
+  "enable_comments": false,
+  "comment_note_limit": 3,
+  "comments_per_note": 10,
+  "comment_scrolls": 5
+}

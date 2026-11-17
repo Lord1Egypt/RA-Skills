@@ -1,0 +1,8 @@
+{
+  "name": "markdown-browser",
+  "version": "1.0.0",
+  "description": "Smart Wrapper for OpenClaw web_fetch - privacy redaction, policy enforcement, HTML to Markdown fallback",
+  "author": "sarahmirrand001",
+  "tags": ["webfetch", "markdown", "privacy", "browser"],
+  "homepage": "https://github.com/sarahmirrand001-oss/markdown-browser"
+}

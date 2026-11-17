@@ -1,0 +1,61 @@
+{
+  "id": "domain-facebook",
+  "label": "Facebook — Social Feed & Group Browser",
+  "emoji": "👍",
+  "domain": "facebook.com",
+  "description": "Extracted from: ScrapeClaw facebook-scraper, generic Playwright social scrapers. Verified 2026-07-16: main page times out (anti-bot). mbasic redirects to facebook.com with __mmr=1 param. body is null after redirect — strong anti-automation. Requires main mode with active session.",
+  "source_patterns": [
+    "News Feed: infinite scroll, 3-8s pause per 3-4 posts (reading)",
+    "Photo: click → modal loads 1-2s → arrow next → hold 2-5s → close",
+    "Group: scroll slower, more text content (spend 4-10s per post)",
+    "Like/Reaction: hover on like button → 1-2s → pick reaction → click",
+    "Comment: click comment → 2s load → type → 2-4s → Enter",
+    "Share: click → 1-2s menu → click share method"
+  ],
+  "active_hours": {
+    "description": "Broad — all ages, peaks at lunch and evening",
+    "peak": [8, 10, 12, 14, 17, 21],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "wpm": { "min": 50, "max": 85 },
+    "profile": "careful",
+    "think_prob": 0.02,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.04
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Feed: slow browsing with content consumption pauses. Source: facebook-scraper patterns",
+    "speed_px_per_ms": { "min": 12, "max": 35 },
+    "pause_between_passes_ms": { "min": 3000, "max": 8000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.5 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 5000 },
+    "pre_click_pause_ms": { "min": 400, "max": 1200 },
+    "inter_action_pause_ms": { "min": 500, "max": 2000 },
+    "post_modal_pause_ms": { "min": 1500, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 0.7,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Slow — reading-heavy platform"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "like_button": "[aria-label='Like']",
+      "comment_box": "form[aria-label*='comment'] textarea",
+      "photo": "div[role='article'] a[href*='photo']"
+    },
+    "requires_login": true,
+    "anti_bot_strong": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 500, "max": 1500 },
+      "post_login_wait_ms": { "min": 4000, "max": 8000 }
+    },
+    "sequence_hint": "navigate feed → scroll slowly (4-6 passes, 3-8s pauses) → pause on post → click photo → wait modal → scroll → close → like → scroll more"
+  }
+}

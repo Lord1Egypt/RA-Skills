@@ -1,46 +1,59 @@
-## Description: <br>
-Helps an OpenClaw agent combine practical user support with autonomous reflection, exploration, memory updates, and scheduled background thinking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Living Agent configures an OpenClaw agent to run persistent autonomous reflection, exploration, memory updates, schedule management, and optional user reports.
 
-## Publisher: <br>
-[Linsongrong](https://clawhub.ai/user/Linsongrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linsongrong](https://clawhub.ai/user/linsongrong)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure a persistent agent posture that records important context, schedules reflection tasks, explores topics during idle periods, and reports notable findings back to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent autonomous background tasks can read prior conversations, update cron jobs, and store inferred user context. <br>
-Mitigation: Review each cron job before enabling it, limit readable files and exploration topics, and enable the skill only when persistent autonomous behavior is intended. <br>
-Risk: The skill can message users and includes weak consent boundaries around notification behavior. <br>
-Mitigation: Configure the target user ID deliberately and disable or remove messaging behavior unless the user explicitly wants those notifications. <br>
-Risk: Stored state, queue, and memory files may retain sensitive or inaccurate inferred information over time. <br>
-Mitigation: Regularly inspect or delete thinking-state.json, thinking-queue.json, and memory/thoughts files, and correct retained information before relying on it. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to make an agent proactively reflect on recent conversations, manage a thinking queue, append memory notes, schedule periodic exploration, and report selected findings to the user.
 
-## Reference(s): <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Setup guide](artifact/SETTING.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Linsongrong/living-agent-v1) <br>
-- [Heartbeat-Like-A-Man design reference](https://github.com/loryoncloud/Heartbeat-Like-A-Man) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw cron jobs and workspace memory files when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Persistent autonomous operation can review conversations, write long-term memory files, and change scheduled jobs after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a deliberate workspace, review every payload before enabling it, and keep cron jobs disabled until the user understands how to stop and delete them.
+
+Risk: Conversation history and memory writes may retain sensitive or stale user context.
+
+Mitigation: Set retention and cleanup rules for memory files, and periodically review generated notes before relying on or preserving them.
+
+Risk: Configured messaging can send proactive reports to a Telegram or other user target.
+
+Mitigation: Configure the messaging target explicitly or remove messaging behavior before enabling scheduled exploration.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/linsongrong/skills/living-agent-v1)
+- [OpenClaw skills repository referenced by the artifact](https://github.com/openclaw/skills)
+- [Heartbeat-Like-A-Man repository referenced by the artifact](https://github.com/loryoncloud/Heartbeat-Like-A-Man)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append memory files, update thinking queue and state JSON, manage cron jobs, search topics, and send configured user messages.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, changelog, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Scans locally installed music apps, opens them, and helps an agent recommend, search, or play music, with macOS AppleScript controls for Spotify and Apple Music plus an optional Spotify precise-play path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans the local desktop for installed music apps, launches them, and helps an agent recommend, search, or play music, with macOS AppleScript control for Spotify and Apple Music plus optional Spotify precise playback.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users and agent developers use this skill to inspect desktop music-player availability, open players, generate searchable music recommendations, and control playback where local permissions and player capabilities allow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can open and control local desktop music apps, including macOS desktop automation. <br>
-Mitigation: Install only when that local control is desired, and grant Accessibility or Automation only to trusted host applications. <br>
-Risk: Optional Spotify access tokens may be exposed through shell history or logs if handled carelessly. <br>
-Mitigation: Use short-lived, minimally scoped tokens and avoid placing them in shared logs or persistent command history. <br>
-Risk: Search or playback may fail or select a different result because local player state, permissions, account status, region, subscriptions, and client UI vary. <br>
-Mitigation: Treat playback as best effort and rely on returned command results instead of asserting success without verification. <br>
+## Use Case:
 
+External users and agents use this skill to find installed music players, open a selected app, generate scene- or mood-based search suggestions, and initiate playback or control supported desktop players.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/desktop-music-launcher) <br>
-- [OpenClaw skill format documentation](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should reflect script-returned results and should not claim playback succeeded unless the local command output confirms it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.0) <br>
+Risk: The skill can launch local music apps and open music or search URLs, including user-provided file and URL targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the returned JSON target and result fields before treating an action as successful, and pass only files or URLs that the user explicitly requested.
+
+Risk: macOS playback control depends on Accessibility and Automation permissions and can vary by client version, UI language, focus state, subscription status, and regional availability.
+
+Mitigation: Grant only the required permissions to the host application, treat macOS UI playback as best effort, and fall back to search or open flows when control fails.
+
+Risk: Optional Spotify precise playback uses an access token that could leak through command-line history or shared logs if supplied as an argument.
+
+Mitigation: Prefer SPOTIFY_ACCESS_TOKEN over command-line token arguments, use a short-lived limited-scope token, and avoid sharing logs that contain token values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/desktop-music-launcher)
+- [OpenClaw skill format documentation](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local app capability results, playback or search targets, best-effort flags, and permission requirements when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Use TIA Openness to compare hardware and I/O configuration between field and master backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use TIA Openness to compare hardware and I/O configuration between field and master backups.
 
-## Publisher: <br>
-[cjmore66](https://clawhub.ai/user/cjmore66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cjmore66](https://clawhub.ai/user/cjmore66)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to audit Siemens TIA Portal hardware and I/O differences between field and master backups. It helps identify device additions or removals, address shifts, firmware changes, and module changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can access engineering network shares and backup files.
+
+Mitigation: Use explicitly configured NAS and vault paths and grant read-only access to required backup files.
+
+Risk: The skill can run an external TIA Openness audit script.
+
+Mitigation: Use a trusted, version-pinned audit script and review it before installation or execution.
+
+Risk: Heartbeat-triggered runs may execute audits automatically.
+
+Mitigation: Require clear approval or monitoring for heartbeat-triggered runs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Automation engineers and maintenance teams use this skill to compare Siemens TIA Portal field and master backups, detect hardware and I/O changes, and return audit results for review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Code, Files, Analysis, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access network backup paths and run an external audit script. <br>
-Mitigation: Use a vetted audit script from a fixed trusted location and restrict the agent to read-only allowlisted backup paths. <br>
-Risk: Heartbeat automation could trigger audits without appropriate operator control. <br>
-Mitigation: Allow heartbeat automation only from trusted operators or systems and review generated CSV and JSON before acting on reported changes. <br>
+**Output Format:** [Markdown guidance with PowerShell commands, CSV output, and JSON summary output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [TIA Hardware Auditor Scripts](Scripts/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cjmore66/tia-hw-auditor) <br>
+**Other Properties Related to Output:** [Produces hardware-diff.csv for detailed changes and summary.json for agent consumption.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CSV change report and JSON summary, with concise text or markdown guidance for the calling agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces hardware-diff.csv and summary.json from compared .zap18 backups when the external audit script is available.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

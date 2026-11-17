@@ -400,7 +400,7 @@ Generated JSON parameter schema:
 
 Action slug: `get-my-channel`
 
-Price: `25` credits
+Price: `3` credits
 
 Fetch channel details for the connected account or a supplied channel ID.
 
@@ -434,7 +434,7 @@ Generated JSON parameter schema:
 
 Action slug: `get-playlist`
 
-Price: `25` credits
+Price: `3` credits
 
 Fetch a playlist by ID.
 
@@ -468,7 +468,7 @@ Generated JSON parameter schema:
 
 Action slug: `get-video`
 
-Price: `25` credits
+Price: `3` credits
 
 Fetch a YouTube video by ID with supported read parts.
 
@@ -502,7 +502,7 @@ Generated JSON parameter schema:
 
 Action slug: `get-youtube-capabilities`
 
-Price: `25` credits
+Price: `3` credits
 
 Return supported and unsupported YouTube public API capabilities.
 
@@ -526,7 +526,7 @@ Generated JSON parameter schema:
 
 Action slug: `list-captions`
 
-Price: `25` credits
+Price: `3` credits
 
 List caption tracks associated with a video.
 
@@ -560,7 +560,7 @@ Generated JSON parameter schema:
 
 Action slug: `list-channel-sections`
 
-Price: `25` credits
+Price: `3` credits
 
 List channel sections for the connected account, a channel, or a section ID.
 
@@ -601,7 +601,7 @@ Generated JSON parameter schema:
 
 Action slug: `list-playlist-items`
 
-Price: `25` credits
+Price: `3` credits
 
 List items in a playlist.
 
@@ -649,7 +649,7 @@ Generated JSON parameter schema:
 
 Action slug: `list-playlists`
 
-Price: `25` credits
+Price: `3` credits
 
 List playlists for the connected YouTube channel.
 
@@ -690,7 +690,7 @@ Generated JSON parameter schema:
 
 Action slug: `list-video-categories`
 
-Price: `25` credits
+Price: `3` credits
 
 List supported YouTube video categories for a region.
 

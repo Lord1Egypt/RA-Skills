@@ -1,42 +1,58 @@
-## Description: <br>
-中文天气查询工具 - 使用中国天气网获取实时天气（无需API密钥，不依赖大模型） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese weather query tool that uses China Weather Network to fetch real-time weather without an API key or model dependency.
 
-## Publisher: <br>
-[ziqi-jin](https://clawhub.ai/user/ziqi-jin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziqi-jin](https://clawhub.ai/user/ziqi-jin)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to query real-time Chinese weather for supported city names from China Weather without an API key or model-based parsing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; weather lookup coverage is focused on cities in China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports command-execution risk because weather-cn.sh evaluates parsed website data as shell code. <br>
-Mitigation: Patch the script to avoid eval, parse only expected fields explicitly, and treat website responses as untrusted before installing or running the skill. <br>
-Risk: Weather results depend on live access to China Weather and may be delayed or unavailable when the site or local network is unavailable. <br>
-Mitigation: Check network access to www.weather.com.cn, keep weather_codes.txt current, and treat weather and lifestyle indexes as informational guidance. <br>
+## Use Case:
 
+External users and developers can use this skill to look up current Chinese weather, temperature ranges, and lifestyle indices for supported cities through a shell script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziqi-jin/weather-cn-fixed) <br>
-- [China Weather](https://www.weather.com.cn/) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=39.9042&longitude=116.4074&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Asia%2FShanghai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text terminal weather output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and grep; uses a city-code mapping file for supported Chinese cities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The shell script evaluates parsed weather data, so manipulated network content could run commands as the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove eval before routine use and parse returned key-value data without shell evaluation.
+
+Risk: Weather lookup depends on network access to www.weather.com.cn and may return delayed or unavailable data.
+
+Mitigation: Review results before acting on them and keep documented fallback weather sources available.
+
+Risk: The optional shell alias modifies the user's persistent shell startup configuration.
+
+Mitigation: Add the alias only when persistent convenience behavior is desired and review the target shell profile first.
+
+## Reference(s):
+
+- [China Weather Network](https://www.weather.com.cn/)
+- [ClawHub skill page](https://clawhub.ai/ziqi-jin/skills/weather-cn-fixed)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Formatted terminal text with Chinese weather fields and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and grep; fetches network data from www.weather.com.cn.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

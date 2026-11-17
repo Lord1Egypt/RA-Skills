@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# fake gem — `list` and `specification <name> description`
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+c1="${1:-}"; c2="${2:-}"; c3="${3:-}"; c4="${4:-}"
+case "$c1" in
+  list) cat "$DATA/gem-list.txt" ;;
+  specification) [ "$c3" = "description" ] && awk -F': ' -v n="$c2" '$1==n{print $2}' "$DATA/gem-desc.txt" || exit 64 ;;
+  *) exit 64 ;;
+esac

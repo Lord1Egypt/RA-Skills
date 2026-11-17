@@ -1,46 +1,58 @@
-## Description: <br>
-Enables OpenClaw agents to store, recall, update, list, and forget persistent hierarchical memories across sessions via the SQ protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw agents to store, recall, update, list, and forget persistent hierarchical memories across sessions via the SQ protocol.
 
-## Publisher: <br>
-[wbic16](https://clawhub.ai/user/wbic16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wbic16](https://clawhub.ai/user/wbic16)
 
-## Use Case: <br>
-Developers and agent builders use SQ Memory to give OpenClaw agents durable memory for user preferences, conversation history, long-running project context, and multi-agent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Durable agent memory can retain sensitive user, project, or organizational information beyond the current session. <br>
-Mitigation: Do not store secrets or sensitive personal or regulated data; review and delete stored memories regularly. <br>
-Risk: Weak memory scoping, prefix listing, or query-string storage issues could expose private memories to unintended agents or users. <br>
-Mitigation: Use separate namespaces per user and agent, prefer local or HTTPS endpoints with verified authentication, and patch or account for the known scoping and query-string issues before private workflows. <br>
-Risk: Self-hosted deployments may run without authentication by default. <br>
-Mitigation: Keep self-hosted endpoints local or behind network controls, and add HTTPS plus authentication before exposing the service beyond a trusted machine. <br>
+## Use Case:
 
+Developers and agent builders use SQ Memory to give OpenClaw agents persistent text memory for user preferences, conversation summaries, project notes, and multi-agent coordination across sessions.
 
-## Reference(s): <br>
-- [ClawHub SQ Memory release page](https://clawhub.ai/wbic16/sq-memory) <br>
-- [Quick Start](QUICKSTART.md) <br>
-- [Self-Hosted SQ Setup](SELF-HOSTED.md) <br>
-- [SQ source repository](https://github.com/wbic16/SQ) <br>
-- [SQ hosted documentation](https://mirrorborn.us/help.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands, guidance] <br>
-**Output Format:** [Plain text and JSON-like tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and retrieves durable text memories by endpoint, phext, namespace, and coordinate; documentation states a maximum of 1 MB per coordinate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, skill.json, package.json, and index.js) <br>
+Risk: Persistent memory can expose or over-share stored agent data if users store secrets, regulated data, or full transcripts without consent and retention planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data path before installation, avoid storing secrets or regulated data, and store full transcripts only with explicit user consent and a retention plan.
+
+Risk: API keys or memory contents may be sent over plain HTTP when the skill is configured with a non-HTTPS endpoint.
+
+Mitigation: Prefer HTTPS endpoints, never send API keys over plain HTTP, and pin the installer or Docker image used for deployment.
+
+Risk: A self-hosted SQ endpoint can over-share memory across users or agents if exposed broadly or configured with shared scopes.
+
+Mitigation: Bind self-hosted SQ to localhost or place it behind authenticated TLS, and use separate backend scopes or namespaces for separate users and agents.
+
+## Reference(s):
+
+- [SQ Memory on ClawHub](https://clawhub.ai/wbic16/skills/sq-memory)
+- [Mirrorborn Help](https://mirrorborn.us/help.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain text and JSON-like tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory tools store and retrieve text by coordinate; delete operations return success or error status, and list operations return coordinate arrays.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

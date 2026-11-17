@@ -1,0 +1,27 @@
+{
+ "note": "EXAMPLE ONLY: a made-up WoopSocial reply with invented ids and numbers",
+ "postId": "example-post-orbit-03",
+ "socialAccountPosts": [
+  {
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "platform": "TIKTOK",
+   "deliveryStatus": "PUBLISHED",
+   "deliveryCompletedAt": "2026-10-10T16:30:21Z",
+   "externalPostUrl": "https://www.tiktok.com/@example.orbit/video/70000000000000003"
+  },
+  {
+   "socialAccountId": "example-acct-orbit-instagram",
+   "platform": "INSTAGRAM",
+   "deliveryStatus": "PUBLISHED",
+   "deliveryCompletedAt": "2026-10-10T16:30:21Z",
+   "externalPostUrl": "https://www.instagram.com/reel/EXAMPLEORBIT03/"
+  },
+  {
+   "socialAccountId": "example-acct-orbit-youtube",
+   "platform": "YOUTUBE",
+   "deliveryStatus": "PUBLISHED",
+   "deliveryCompletedAt": "2026-10-10T16:30:21Z",
+   "externalPostUrl": "https://www.youtube.com/shorts/EXAMPLEorb03"
+  }
+ ]
+}

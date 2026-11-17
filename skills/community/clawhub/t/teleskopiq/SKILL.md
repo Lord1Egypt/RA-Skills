@@ -1,226 +1,120 @@
-# Teleskopiq Skill
-
-YouTube content creation platform — AI-generated scripts, metadata, and thumbnails via GraphQL API.
-
-## Setup
-
-Set environment variables:
-```bash
-export TELESKOPIQ_API_KEY="tsk_..."
-export TELESKOPIQ_ENDPOINT="https://teleskopiq.com/api/graphql"  # optional, this is the default
-```
-
-## Script Content Format
-
-Script `content` is **Markdown** with special production tags. Use all of these when writing scripts.
-
-### Structure
-
-```markdown
-## Section Title
-### Sub-section
-
-Your spoken narration goes here. Write as you'd actually say it aloud.
-```
-
-### Production Tags
-
-These are rendered with distinct colors in the Teleskopiq editor and exported to PDF. Always use them to mark non-spoken directions:
-
-| Tag | Syntax | Purpose | Color |
-|---|---|---|---|
-| B-Roll | `[B-ROLL: description of footage]` | Cut-away video footage | Cyan |
-| Visual Cue | `[VISUAL: prop, action or camera move]` | On-screen action/prop | Purple |
-| Graphic | `[GRAPHIC: text overlay or lower-third]` | Text overlay, title card | Yellow |
-| Music | `[MUSIC: track name or mood]` | Background music cue | Pink |
-| SFX | `[SFX: sound effect description]` | Sound effect or ambient | Red |
-
-### Full Example
-
-```markdown
-## Hook
-
-What happens when you give an AI agent full control of your computer?
-
-[B-ROLL: terminal window running automated scripts, fast-forward timelapse]
-
-I tried it for 24 hours. Here's what I learned.
-
-## The Setup
-
-[GRAPHIC: "OpenClaw — AI Agent Framework"]
-
-OpenClaw gives your AI access to your machine — calendar, email, terminal, browser.
-
-[VISUAL: screen recording of OpenClaw dashboard]
-
-Today I set it completely loose.
-
-## What It Did Well
-
-[MUSIC: upbeat lo-fi background]
-
-- Scheduled my week automatically
-- Organized 3 months of project files
-
-[B-ROLL: clean desktop, organized folders]
-
-## Where It Got Weird
-
-[SFX: error chime]
-
-It tried to commit code without asking.
-
-[VISUAL: shocked face, zoom in]
-
-## Call to Action
-
-Would you let an AI run your computer for a day? Drop your answer in the comments.
-
-[GRAPHIC: Subscribe button animation]
-```
-
+---
+name: teleskopiq
+description: Create, edit, and manage Teleskopiq YouTube scripts, AI conversations, metadata, thumbnails, history, and publishing schedules through its authenticated API with browser OAuth or an API key. Use when the user asks to automate teleskopiq.com or work with Teleskopiq content.
+metadata:
+  openclaw:
+    requires:
+      bins: [python3]
+    homepage: https://teleskopiq.com
+    envVars:
+      - name: TELESKOPIQ_API_KEY
+        required: false
+        description: Optional fallback API key; browser OAuth login is preferred.
+      - name: TELESKOPIQ_OAUTH_FILE
+        required: false
+        description: Private OAuth credential-file path; defaults to ~/.config/teleskopiq/oauth.json.
+      - name: TELESKOPIQ_ENDPOINT
+        required: false
+        description: API endpoint override; defaults to https://teleskopiq.com/api/graphql.
+      - name: TELESKOPIQ_ENV_FILE
+        required: false
+        description: Private credential-file path; defaults to ~/.config/teleskopiq/env.
 ---
 
-## CLI Script
+# Teleskopiq
 
-Located at `scripts/teleskopiq.py` relative to this skill directory.
+Use the bundled client for channel-scoped content work. Teleskopiq also provides an OAuth-enabled MCP endpoint;
+see [references/oauth.md](references/oauth.md) for MCP setup and OAuth deployment requirements.
+
+## Run
+
+Set `SKILL_DIR` to the absolute directory containing this `SKILL.md`. Use the actual installed location;
+do not assume an OpenClaw or Codex directory layout. For a fresh installation:
 
 ```bash
-SKILL_DIR="$HOME/.openclaw/workspace/skills/teleskopiq"
-python3 "$SKILL_DIR/scripts/teleskopiq.py" <command> [options]
+python3 -m venv "$SKILL_DIR/.venv"
+"$SKILL_DIR/.venv/bin/python" -m pip install -r "$SKILL_DIR/requirements.txt"
+"$SKILL_DIR/.venv/bin/python" "$SKILL_DIR/scripts/teleskopiq.py" --help
 ```
 
-## Before Writing a Script
-
-Always fetch the channel style profile first with `get-style` and include it in the agent brief. This ensures the writing matches the channel's tone, vocabulary, pacing, and structure.
+Reuse an existing `.venv` when the dependencies are already installed.
+Connect once with browser OAuth (Linux/macOS):
 
 ```bash
-python3 "$SKILL_DIR/scripts/teleskopiq.py" get-style
+"$SKILL_DIR/.venv/bin/python" "$SKILL_DIR/scripts/teleskopiq.py" login --no-browser
 ```
 
-Include the output in your writing context before using `ai-write` or writing content manually.
+Show the verification link and code to the user. Keep login running while they sign in, select a channel,
+complete onboarding if their channel is not set up, and approve access. Never approve on their behalf. The CLI waits up to one hour; it stores tokens privately
+in `~/.config/teleskopiq/oauth.json` (0600), renews access before requests, and never prints tokens.
+`auth-status` shows saved connection metadata (it does not verify server access); `logout` revokes that connection.
+OAuth takes precedence when a saved login exists. Revoked/expired logins require `login` again; never silently
+fall back to a broader API key. Changing endpoints requires a separate `TELESKOPIQ_OAUTH_FILE` or a new login.
 
----
+For API-key fallback, the client loads `TELESKOPIQ_API_KEY` from the environment or `~/.config/teleskopiq/env` (mode 0600).
+`TELESKOPIQ_ENV_FILE` overrides that file. It reads assignments as data and never executes shell code.
+Environment values take precedence. Never display or commit credentials.
+The default endpoint is `https://teleskopiq.com/api/graphql`; `TELESKOPIQ_ENDPOINT` overrides it.
 
-### Commands
+OAuth connections and API keys are channel-bound. Read scripts/history with `scripts:read`, modify scripts or run AI/metadata/ideas with
+`scripts:write`, read channel/style with `channel:read`, and generate/upload thumbnails with `thumbnails:write`.
+Full production workflows need all four. Delegated connections cannot manage keys, billing, channel membership,
+style changes, or channel memory administration. Use the web app for those account operations.
 
-| Command | Description |
-|---|---|
-| `get-style` | Fetch and display the channel's style profile |
-| `list-scripts` | List all scripts with status and schedule |
-| `create-script --title "..." [--content "..."]` | Create a script, prints ID |
-| `generate-metadata --script-id ID` | Start metadata job, poll until done, print results |
-| `generate-thumbnails --script-id ID` | Start thumbnail jobs for all ideas |
-| `auto-schedule --script-id ID` | Auto-schedule to next available preferred day slot |
-| `schedule --script-id ID [--date YYYY-MM-DD] [--time HH:MM] [--status ReadyToShoot]` | Schedule (omit --date to auto-schedule) |
-| `ai-write --title "..." [--prompt "..."]` | Create a script and have Teleskopiq AI write it |
-| `full-flow --title "..." --content "..." [--date YYYY-MM-DD]` | Create + metadata + thumbnails + auto-schedule |
-| `full-flow --title "..." --ai-write [--prompt "..."]` | Same as above but AI writes the script |
+Output is JSON on stdout; progress and created script IDs go to stderr. Exit codes: 0 success, 1 failure,
+2 AI question awaiting an answer, 130 interrupted. `--timeout SECONDS` goes before the command and controls
+generation read timeout. Mutations are never automatically retried. On an interrupted request, inspect the existing
+script/history before deciding whether to retry; generation may already have completed server-side.
 
----
+## Workflows
 
-## AI Writing
+- Fetch `get-style` before writing content; use its tone, vocabulary, structure, speakers, and pacing. A null profile
+  means none exists. A profile access error is not an empty profile: stop and report the actual error.
+- `get-channel` returns the connected channel and preferred publishing day. `list-scripts` and `search-scripts --query TEXT`
+  find records; `get-script --script-id ID` retrieves complete content, comments, metadata, and generated thumbnails.
+- `create-script --title TITLE --content-file script.md` creates a draft. `update-script --script-id ID --content-file script.md`
+  edits it and snapshots existing content first. `--title`, `--status`, or `--input-file update.json` update other fields.
+  `delete-script --script-id ID` permanently deletes a script; run only when the user's task calls for deletion.
+- `ai-write --title TITLE [--prompt TEXT]` creates and writes a script. Supply `--script-id ID` to reuse an existing script.
+  `chat --script-id ID --prompt TEXT` edits or discusses it using current content and visible chat history.
+- AI may ask a question. Show the returned question/options, obtain the user's answer, and resume with
+  `chat --script-id ID --call-id CALL_ID --answer TEXT`. Do not invent answers or create another script.
+  `history --script-id ID` can recover the question after interruption. A completed chat can be a discussion with no
+  script change. The server owns saved content, title, patches, and checkpoints; do not overwrite it with streamed text.
+- Chat accepts `--apply-comments`, `--request-kind lengthen|shorten`, `--pacing-file pacing.json`, `--files-json files.json`,
+  and `--selection-file selection.json`. `set-comments --script-id ID --comments-file comments.json` replaces the entire
+  comment list: fetch existing comments and preserve unrelated entries.
+- `generate-metadata --script-id ID` waits for the metadata SSE completion/error event and returns the persisted script.
+  Metadata generation also creates thumbnail ideas. `ideas [--script-id ID]` generates topic ideas without creating a script.
+- `generate-thumbnails --script-id ID` generates all idea slots, using both each visual description and text overlay.
+  `--idea-index 0|1|2` regenerates one slot; `--prompt TEXT` targets the single custom slot instead.
+  Repeat `--asset IMAGE` to provide references. Each request returns its own completed result; old thumbnails are not
+  treated as completion of a new job. Slots are limited to three ideas plus one custom thumbnail.
+- `save-asset --script-id ID --file IMAGE` and `remove-asset --script-id ID --url URL` manage saved thumbnail references.
+  `select-thumbnail --script-id ID --url URL` selects an existing generated thumbnail.
+- `auto-schedule --script-id ID` finds the next free preferred publishing day. `--urgent` displaces other scripts;
+  use it only when the user requests that behavior. `schedule --script-id ID --date YYYY-MM-DD` sets a day explicitly.
+  Omitting the date auto-schedules. Publishing schedules represent **days, not times**; legacy `--time` is ignored with
+  a warning. Scheduling preserves status unless `--status` is explicitly supplied.
+- `full-flow --title TITLE --content-file script.md` runs create → metadata → thumbnails → schedule.
+  Use `--ai-write [--prompt TEXT]` instead of supplied content for AI writing. Any error or unanswered question stops
+  later stages. Use the emitted script ID to inspect/reuse the record; do not restart blindly and create duplicates.
+  `full-flow --script-id ID` processes an existing script. `--date`, `--urgent`, `--status`, and `--asset` are optional.
+- `versions --script-id ID`, `save-version --script-id ID`, `restore-version --script-id ID --version-id ID`, and
+  `revert-checkpoint --script-id ID --version-id CHECKPOINT_ID` expose the server's grouped history and restoration.
 
-### `ai-write` command
+For JSON inputs and operations outside the named commands, read [references/api.md](references/api.md).
 
-Creates a new script and uses Teleskopiq's AI to write it via WebSocket subscription:
+## Script format
 
-```bash
-python3 "$SKILL_DIR/scripts/teleskopiq.py" ai-write --title "My Video Title"
-python3 "$SKILL_DIR/scripts/teleskopiq.py" ai-write --title "My Video Title" --prompt "Write a tutorial about..."
-```
+Content is Markdown: `# Title`, `## Section`, `### Subsection`, with spoken narration as normal text.
+Use relevant non-spoken directions: `[B-ROLL: footage]`, `[VISUAL: action]`, `[GRAPHIC: overlay]`,
+`[MUSIC: mood]`, and `[SFX: sound]`. Do not force every tag into every script.
+Do not add `[END]`, `[FADE OUT]`, or other script-end markers.
 
-### `--ai-write` flag on `full-flow`
+## Compatibility
 
-Instead of providing `--content`, use `--ai-write` to have the AI generate the script, then continue with metadata, thumbnails, and scheduling:
-
-```bash
-python3 "$SKILL_DIR/scripts/teleskopiq.py" full-flow --title "My Video Title" --ai-write
-python3 "$SKILL_DIR/scripts/teleskopiq.py" full-flow --title "My Video Title" --ai-write --prompt "Focus on beginner tips"
-```
-
-### `--prompt` option
-
-Custom instruction for the AI writer. If omitted, a default prompt is used that requests proper section headers and production tags.
-
----
-
-## Direct GraphQL Usage
-
-All queries go to `$TELESKOPIQ_ENDPOINT` with header `Authorization: Bearer $TELESKOPIQ_API_KEY`.
-
-### List scripts
-```graphql
-{ scripts { id title status { name } scheduledFor } }
-```
-
-### Create script
-```graphql
-mutation CreateScript($input: CreateScriptInput!) {
-  createScript(input: $input) { id title status { name } }
-}
-# variables: { "input": { "title": "...", "content": "..." } }
-```
-
-### Read script (full detail)
-```graphql
-{ script(id: "...") {
-    title status { name } scheduledFor
-    metadata { titles description tags }
-    thumbnailIdeas { text visual }
-    thumbnails { url }
-  }
-}
-```
-
-### Generate metadata (async)
-```graphql
-mutation { startMetadataJob(scriptId: "...", scriptContent: "...") { success } }
-```
-⚠️ **Async** — poll `script(id)` query every 5s for ~30s until `metadata` is populated.
-`generateScriptMetadata` is **deprecated** — always use `startMetadataJob`.
-
-### Generate thumbnails (async, one per idea)
-```graphql
-mutation { startThumbnailJob(scriptId: "...", idea: "...", ideaIndex: 0) { success } }
-```
-Run once per thumbnail idea (typically 3). Poll `script(id)` for `thumbnails` array.
-
-### Auto-schedule (server-side, uses channel's preferred publishing day)
-```graphql
-# Normal: finds next empty preferred slot
-mutation { autoScheduleScript(scriptId: "...") { scriptId scheduledFor slotsChecked bumped } }
-
-# Urgent: takes the very next preferred slot, bumps displaced scripts forward
-mutation { autoScheduleScript(scriptId: "...", urgent: true) { scriptId scheduledFor slotsChecked bumped } }
-```
-- Default (`urgent` omitted or `false`): finds the next preferred publishing day with no script already scheduled. `bumped` is always 0.
-- `urgent: true`: takes the very next preferred day (even if occupied). Any script on that day gets cascaded to the next preferred day, and so on. `bumped` returns the count of displaced scripts.
-- Always prefer this over computing dates yourself.
-
-### Update / schedule script manually
-```graphql
-mutation { updateScript(input: { id: "...", scheduledFor: "2025-03-09T12:00:00-05:00", status: ReadyToShoot }) { success } }
-```
-
-**Status enum:** `Draft` | `InProgress` | `ReadyToShoot` | `Recorded` | `Editing` | `Ready` | `Published` | `OnIce`
-
----
-
-## Async Job Polling Pattern
-
-1. Fire the mutation (`startMetadataJob` / `startThumbnailJob`)
-2. Wait 5 seconds
-3. Query `script(id)` and check if `metadata` / `thumbnails` is populated
-4. Repeat up to 6 times (30s total)
-5. If still empty, report timeout
-
----
-
-## Tips
-
-- Always use production tags (`[B-ROLL: ...]`, `[GRAPHIC: ...]`, etc.) when writing scripts — they render visually in the editor
-- Use `autoScheduleScript` for scheduling — don't compute dates manually
-- Content is plain Markdown; `##` = section, `###` = sub-section
-- `generateScriptMetadata` mutation is **deprecated** — use `startMetadataJob`
+Maintained source: `skills/teleskopiq/` in the Teleskopiq repository. The client is checked against that repository's
+GraphQL schema. OAuth and MCP require the new server routes to be deployed; a skill update alone does not enable login.
+Older deployments may still reject API-key `styleProfile` reads; that needs the accompanying server
+fix deployed, not a different key or repeated retries. Keep account changes in the app until explicit key scopes exist.

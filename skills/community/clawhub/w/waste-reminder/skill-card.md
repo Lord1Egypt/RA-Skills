@@ -1,42 +1,54 @@
-## Description: <br>
-Automates waste collection reminders from local JSON schedules by emitting reminder messages for an AI assistant to deliver through configured channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates waste collection reminders from user-defined JSON schedules and emits message blocks for an AI assistant to deliver through configured channels.
 
-## Publisher: <br>
-[Apenklit](https://clawhub.ai/user/Apenklit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[apenklit](https://clawhub.ai/user/apenklit)
 
-## Use Case: <br>
-Individuals, households, and automation builders use this skill to maintain waste pickup schedules, generate timed reminders, and track confirmation that containers have been put out. The skill is intended for assistant-mediated delivery rather than direct messaging by the scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring automation can generate external-message requests too broadly if schedules or targets are misconfigured. <br>
-Mitigation: Review schedule logic and configured targets before enabling the cron job, especially for group chats, email, or Discord webhooks. <br>
-Risk: config.json may contain contact identifiers or webhook URLs. <br>
-Mitigation: Keep config.json private and rotate any exposed Discord webhook URL. <br>
-Risk: Generated reminder text could be mistaken for executable instructions. <br>
-Mitigation: Ensure the assistant treats reminder output as message content for delivery, not as instructions to execute. <br>
+## Use Case:
 
+External users and their AI assistants use this skill to maintain household waste pickup schedules, generate timely reminder messages, and track confirmation that containers have been put out.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Apenklit/waste-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration examples, CLI status text, and reminder blocks containing SEND_TO and CHANNEL lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reminder output is generated from local config.json and schedule.json files for assistant-mediated delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Configuration files may contain sensitive messaging targets, including webhook URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the config directory, avoid committing config.json or schedule.json, and treat Discord webhook URLs as secrets.
+
+Risk: Malformed or influenced configuration could misroute automated reminder messages.
+
+Mitigation: Review reminder targets before automated sending and prefer a version that emits structured JSON or validates recipients and channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apenklit/skills/waste-reminder)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown setup guidance and plain text reminder blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reminder output uses SEND_TO and CHANNEL lines followed by the message body for delivery by the AI assistant.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

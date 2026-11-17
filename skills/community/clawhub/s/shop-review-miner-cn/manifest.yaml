@@ -1,0 +1,23 @@
+name: shop-review-miner-cn
+slug: shop-review-miner-cn
+display_name: 商品评价需求提炼
+description: 将用户合法提供的真实商品评价整理为可执行的需求洞察：保留原始资料字段，提炼常见诉求、正负反馈主题与详情页补充点，适合中文小店、小说作者和自媒体创作者复盘自有反馈；资料缺少评价文本或关键上下文时明确指出缺口，不编造结论，也不用于公开同款比价或平台评论抓取。
+icon: icon-512.png
+version: 1.0.1
+repository: https://github.com/xxjrq/shop-review-miner-cn
+tags:
+  - 商品评价
+  - 用户反馈
+  - 需求洞察
+  - 详情页优化
+triggers:
+  - 商品评价分析
+  - 提炼用户需求
+  - 整理买家反馈
+trigger_words:
+  - 评价
+  - 反馈
+  - 详情页
+entrypoint: SKILL.md
+self_test: python3 scripts/self_test.py
+license: MIT-0

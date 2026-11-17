@@ -1,44 +1,60 @@
-## Description: <br>
-Route tasks to the optimal cloud or local model based on task characteristics: coding, analysis, reasoning, creative, or general. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route tasks to the optimal cloud or local model based on task characteristics — coding, analysis, reasoning, creative, or general.
 
-## Publisher: <br>
-[tooled-app](https://clawhub.ai/user/tooled-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tooled-app](https://clawhub.ai/user/tooled-app)
 
-## Use Case: <br>
-Developers and agent users use this skill to classify prompts and choose a suitable Ollama model before or during task execution. It helps balance quality, latency, local privacy preference, and availability across configured local and cloud model options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Routing may select cloud models for prompts that contain confidential code, personal data, credentials, or proprietary material. <br>
-Mitigation: Prefer local mode for sensitive tasks and review routing preferences before sending prompt content to a cloud-hosted model. <br>
-Risk: The helper prints the task text to the terminal, which may expose sensitive prompt content in shell history, logs, or shared screens. <br>
-Mitigation: Avoid passing secrets or private content as task text, and run the helper only in terminals where command output is appropriately protected. <br>
-Risk: Model recommendations depend on keyword classification and the configured registry, so a poor registry or ambiguous prompt can choose a less suitable model. <br>
-Mitigation: Review the recommended model and reason before execution, and maintain the registry to reflect available models and current task preferences. <br>
+## Use Case:
 
+Developers and agent operators use this skill to classify prompts and select an appropriate Ollama model for coding, analysis, reasoning, creative, general, or technical work. It supports manual routing, OpenClaw configuration, local-versus-cloud preference, speed preference, and fallback when a preferred model is unavailable.
 
-## Reference(s): <br>
-- [Ollama](https://ollama.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/tooled-app/ollama-model-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; router.sh emits terminal text plus a JSON model recommendation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, a model registry JSON file, and Ollama availability checks for local models.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Automatic routing may select a cloud-hosted model for prompts that contain private, regulated, credential-bearing, or sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the registry before enabling auto_route or auto_classify, and prefer local-only settings for sensitive workloads.
+
+Risk: A stale or incorrect model registry can produce poor recommendations or unavailable model selections.
+
+Mitigation: Keep the model registry current and review model strengths, host settings, and fallback ordering before deployment.
+
+Risk: The router checks local Ollama availability and assumes cloud models are available.
+
+Mitigation: Validate cloud model access separately when relying on cloud-hosted entries in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tooled-app/skills/ollama-model-router)
+- [Tooled-app publisher profile](https://clawhub.ai/user/tooled-app)
+- [Ollama](https://ollama.com)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON configuration, and plain-text routing output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit a recommended model ID, reason, task type, and an ollama run command for the supplied task.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

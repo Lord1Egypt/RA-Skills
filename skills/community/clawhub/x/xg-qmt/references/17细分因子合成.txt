@@ -1,0 +1,44 @@
+#encoding:gbk
+'''
+17细分因子合成
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.datasets.samples_generator import make_blobs
+from sklearn.decomposition import PCA
+
+def init(ContextInfo):
+	ContextInfo.number = 0
+	ContextInfo.accID = 'test'
+def handlebar(ContextInfo):
+	if ContextInfo.number == 0:
+		
+		VOL20= pd.read_csv('C:/Users/QZM/Desktop/finally/VOL20.csv',index_col=[0])
+		VSTD20= pd.read_csv('C:/Users/QZM/Desktop/finally/VSTD20.csv',index_col=[0])
+		emotion_pca= pd.DataFrame()
+		for i in VOL20.index:
+			x = pd.DataFrame()
+			x['VOL20']= VOL20.loc[i]
+			x['VSTD20']= VSTD20.loc[i]
+			pca = PCA(n_components=1)
+			pca.fit(np.array(x)) 
+			#print(pca.explained_variance_ratio_)
+			#print(pca.explained_variance_)
+			emotion_pca[i]= pd.DataFrame(pca.transform(np.array(x)))[0]
+			#print('情绪',pd.DataFrame(pca.transform(np.array(x)))[0])
+			#print(type(pd.DataFrame(pca.transform(np.array(x)))[0]))
+		emotion = np.array(emotion_pca.T) + VOL20*0
+		print(emotion)
+		emotion.to_csv('C:/Users/QZM/Desktop/finally/emotion.csv')
+		'''
+		X, y = make_blobs(n_samples=10000, n_features=3, centers=[[3,3, 3], [0,0,0], [1,1,1], [2,2,2]], cluster_std=[0.2, 0.1, 0.2, 0.2],random_state =9)
+		print(X,y,type(X),type(y))
+		fig = plt.figure()
+		ax = Axes3D(fig, rect=[0, 0, 1, 1], elev=30, azim=20)
+		plt.scatter(X[:, 0], X[:, 1], X[:, 2],marker='o')
+		plt.show()
+		'''
+	ContextInfo.number += 1

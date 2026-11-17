@@ -1,40 +1,57 @@
-## Description: <br>
-Extracts Feishu Whiteboard image-node file tokens and exports board images so agents can support download, OCR, and archive workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts image node file tokens from Feishu Whiteboards and supports media download or full-board image export for OCR and archiving.
 
-## Publisher: <br>
-[forevershu](https://clawhub.ai/user/forevershu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forevershu](https://clawhub.ai/user/forevershu)
 
-## Use Case: <br>
-Developers and operators use this skill to extract image tokens from Feishu Whiteboards, download media for OCR, and export full-board images for review or archival handoff. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Feishu app credentials to access whiteboards and media. <br>
-Mitigation: Use a dedicated least-privilege Feishu app and share only the specific whiteboards needed with that app. <br>
-Risk: The raw node export can print full board node data to stdout or logs. <br>
-Mitigation: Run export_nodes_raw.js only when full node data is intentionally needed, and keep logs out of shared or long-retention locations. <br>
-Risk: The release includes dependency lock entries resolved from a non-HTTPS registry mirror. <br>
-Mitigation: Regenerate dependencies from an HTTPS registry before deploying in a sensitive environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to extract Feishu whiteboard image node tokens, download the related media, and export a full-board image for OCR, review, and archival workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts can output image-token JSON, downloaded media paths, raw node JSON, or exported board image files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses Feishu app credentials and can retrieve whiteboard contents.
+
+Mitigation: Install only when the publisher is trusted, use least-privilege Feishu app credentials, and do not paste app secrets, tokens, cookies, or webhooks into chat.
+
+Risk: The raw node exporter can expose more board data than image file tokens.
+
+Mitigation: Use export_nodes_raw.js only when full node data is explicitly needed, and review exported JSON for sensitive content before sharing or archiving.
+
+Risk: The security evidence flags unsafe file and dependency handling.
+
+Mitigation: Constrain output paths and regenerate or update dependencies from a trusted HTTPS registry before operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/forevershu/skills/feishu-whiteboard-extract)
+- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts emit structured JSON, downloaded media files, and full-board SVG/PNG/JPG exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu whiteboard ID and Feishu app credentials with access to the target whiteboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

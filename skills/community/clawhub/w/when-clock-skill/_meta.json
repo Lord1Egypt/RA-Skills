@@ -1,6 +1,156 @@
-{
-  "ownerId": "kn70yrs9d7v5bg4aak8pavwr8d83fqzh",
-  "slug": "when-clock-skill",
+﻿{
+  "id": "when-clock-skill",
+  "name": "when-clock-skill",
   "version": "1.0.1",
-  "publishedAt": 1774253425784
+  "description": "Control WHEN/WHEN Voice LAN clock. Supports voice chime, weather broadcast (WHEN Voice only), alarm CRUD, and countdown timer. Use --device-id to specify device.",
+  "runtime": {
+    "type": "python",
+    "entry": "when-clock-skill.py"
+  },
+  "invocation": {
+    "command": "python when-clock-skill.py --mode <mode> --device-id <id> [options]",
+    "arguments": [
+      {
+        "name": "mode",
+        "flag": "--mode",
+        "type": "string",
+        "required": true,
+        "enum": ["chime", "weather", "get_alarm", "set_alarm", "delete_alarm", "edit_alarm", "set_timer"],
+        "description": "操作模式。chime=语音报时(仅WHEN Voice), weather=播报天气(仅WHEN Voice), get_alarm=查询闹钟列表, set_alarm=新增闹钟, edit_alarm=修改闹钟, delete_alarm=删除闹钟, set_timer=定时提醒。"
+      },
+      {
+        "name": "device_id",
+        "flag": "--device-id",
+        "type": "string",
+        "required": false,
+        "default": "default",
+        "description": "设备ID，对应 config.json devices[].id。默认为 default（兼容旧单设备配置）。建议实际使用时显式指定。"
+      },
+      {
+        "name": "volume",
+        "flag": "--volume",
+        "type": "integer",
+        "required": false,
+        "minimum": 1,
+        "maximum": 30,
+        "appliesTo": ["chime", "weather"],
+        "description": "音量(1~30)。chime/weather 可选，不传则使用设备当前音量，下发时自动减1。"
+      },
+      {
+        "name": "alarm_time",
+        "flag": "--alarm-time",
+        "type": "string",
+        "required": false,
+        "pattern": "HH:MM 或 HH:MM:SS",
+        "appliesTo": ["set_alarm", "edit_alarm"],
+        "description": "闹钟时间(HH:MM 或 HH:MM:SS)。set_alarm 必填，edit_alarm 可选。"
+      },
+      {
+        "name": "alarm_mode",
+        "flag": "--alarm-mode",
+        "type": "string",
+        "required": false,
+        "enum": ["once", "weekly", "workday", "restday", "off"],
+        "appliesTo": ["set_alarm", "edit_alarm"],
+        "description": "闹钟模式。once=单次(set_alarm默认), weekly=每周, workday=工作日, restday=休息日, off=关闭。"
+      },
+      {
+        "name": "alarm_week",
+        "flag": "--alarm-week",
+        "type": "string",
+        "required": false,
+        "appliesTo": ["set_alarm", "edit_alarm"],
+        "description": "每周模式生效星期，逗号分隔。例: '1,2,3,4,5' 或 '周一,周三,周五'。weekly 模式时必填。"
+      },
+      {
+        "name": "alarm_ring",
+        "flag": "--alarm-ring",
+        "type": "integer",
+        "required": false,
+        "minimum": 1,
+        "appliesTo": ["set_alarm", "edit_alarm", "set_timer"],
+        "description": "铃音编号(1基)。WHEN Voice: 1~50；WHEN: 1~6 (beep1-beep6)。不传则使用 config.json alarm_defaults.ring_id。"
+      },
+      {
+        "name": "alarm_delay",
+        "flag": "--alarm-delay",
+        "type": "integer",
+        "required": false,
+        "minimum": 0,
+        "maximum": 11,
+        "appliesTo": ["set_alarm", "edit_alarm", "set_timer"],
+        "description": "响铃时长档位(0基，0~11)。0=10S,1=20S,2=30S,3=40S,4=50S,5=1min,6=2min,7=3min,8=5min,9=10min,10=15min,11=20min。不传则使用 config.json alarm_defaults.ring_duration_id-1。"
+      },
+      {
+        "name": "alarm_volume",
+        "flag": "--alarm-volume",
+        "type": "integer",
+        "required": false,
+        "minimum": 1,
+        "maximum": 30,
+        "appliesTo": ["set_alarm", "edit_alarm", "set_timer"],
+        "description": "闹钟音量(1~30)。（仅 WHEN Voice 支持，WHEN 设备无音量参数）"
+      },
+      {
+        "name": "alarm_index",
+        "flag": "--alarm-index",
+        "type": "integer",
+        "required": false,
+        "minimum": 1,
+        "appliesTo": ["delete_alarm", "edit_alarm"],
+        "description": "目标闹钟序号(1基)。delete_alarm/edit_alarm 必填。可先用 get_alarm 查询当前列表获取序号。"
+      },
+      {
+        "name": "timer_offset",
+        "flag": "--timer-offset",
+        "type": "string",
+        "required": false,
+        "appliesTo": ["set_timer"],
+        "description": "延迟时长，set_timer 必填。示例: '5m'=5分钟, '1h'=1小时, '1h30m'=1.5小时, '90s'=90秒, '1h30m20s'=组合，纯数字按分钟。"
+      },
+      {
+        "name": "timeout",
+        "flag": "--timeout",
+        "type": "number",
+        "required": false,
+        "minimum": 0.1,
+        "description": "HTTP 超时秒数。覆盖 config.json 中的 timeout 值。"
+      },
+      {
+        "name": "config",
+        "flag": "--config",
+        "type": "string",
+        "required": false,
+        "default": "config.json",
+        "description": "配置文件路径。默认使用脚本同目录下的 config.json。"
+      }
+    ]
+  },
+  "configFiles": [
+    "config.json"
+  ],
+  "output": {
+    "type": "json",
+    "exitCodes": {
+      "0": "成功（设备返回 status=0）",
+      "1": "设备返回失败状态",
+      "2": "参数/配置/响应格式错误",
+      "3": "HTTP 错误",
+      "4": "网络错误"
+    },
+    "fields": {
+      "ok": "boolean — 调用是否成功",
+      "mode": "string — 本次调用的模式名",
+      "action": "string — 执行的动作描述（非 get_alarm 模式均有）",
+      "result": "\"success\"|\"failed\" — 操作结果",
+      "status": "integer — 设备返回状态码，0 为成功",
+      "message": "string — 设备返回消息",
+      "alarm_count": "integer — 操作后设备上的闹钟总数（set_alarm/edit_alarm/delete_alarm/set_timer 有此字段）",
+      "alarms": "array — 闹钟条目列表（仅 get_alarm 模式）",
+      "added_alarm": "object — 新增的闹钟详情（仅 set_alarm）",
+      "updated_alarm": "object — 修改后的闹钟详情（仅 edit_alarm）",
+      "removed_alarm": "object — 被删除的闹钟详情（仅 delete_alarm）",
+      "timer": "object — 含 offset/offset_seconds/trigger_at/ring/ring_duration_level，WHEN Voice 额外含 volume（仅 set_timer）"
+    }
+  }
 }

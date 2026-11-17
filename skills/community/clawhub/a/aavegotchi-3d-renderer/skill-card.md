@@ -1,41 +1,54 @@
-## Description: <br>
-Render Aavegotchi assets by deriving renderer hashes from Goldsky Base core data, calling the Aavegotchi renderer batch API, and returning deterministic hashes plus image artifact paths for a token ID or inventory URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Aavegotchi assets by deriving renderer hashes from Goldsky Base core data and calling POST /api/renderer/batch on www.aavegotchi.com.
 
-## Publisher: <br>
-[cinnabarhorse](https://clawhub.ai/user/cinnabarhorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinnabarhorse](https://clawhub.ai/user/cinnabarhorse)
 
-## Use Case: <br>
-Developers and agents use this skill to render Aavegotchi assets from a token ID or inventory URL, collect the derived renderer hash, and save returned JSON and PNG artifacts for downstream inspection or workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled Node script contacts Goldsky and Aavegotchi with the token or inventory URL supplied by the user. <br>
-Mitigation: Run it only when public API access for that token is acceptable and avoid supplying sensitive or private URLs. <br>
-Risk: The script writes JSON and PNG artifacts to /tmp by default or to a user-selected output directory. <br>
-Mitigation: Choose a non-sensitive output directory and do not run the script with elevated privileges. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinnabarhorse/aavegotchi-3d-renderer) <br>
-- [Goldsky Base core subgraph endpoint](https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn) <br>
-- [Aavegotchi renderer batch API](https://www.aavegotchi.com/api/renderer/batch) <br>
+## Use Case:
 
+External users and developers use this skill to render Aavegotchi token assets from a token ID or inventory URL, producing a deterministic renderer hash plus image and availability artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, guidance] <br>
-**Output Format:** [Text summary with JSON and PNG files saved to disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns token ID, renderer hash, kickoff and verification statuses, poll summary, saved artifact paths, and GLB availability when present.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script may fetch renderer-provided download URLs too broadly, which could cause arbitrary or oversized remote content to be downloaded.
+
+Mitigation: Use the skill only where outbound network requests are acceptable, avoid hosts with sensitive internal HTTP services, and prefer a restricted output directory.
+
+Risk: The security guidance says the skill would be safer with stricter artifact URL validation, request timeouts, and download size limits.
+
+Mitigation: Review before installing and validate artifact URLs against expected Aavegotchi or CDN hosts before using the downloaded outputs.
+
+## Reference(s):
+
+- [Goldsky Base Core Subgraph](https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn)
+- [Aavegotchi Renderer Batch API](https://www.aavegotchi.com/api/renderer/batch)
+- [Aavegotchi](https://www.aavegotchi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a renderer hash, HTTP statuses, raw batch JSON paths, poll summary, PNG artifact paths when available, and GLB availability information.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

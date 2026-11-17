@@ -1,46 +1,60 @@
-## Description: <br>
-Turn ideas into podcasts, explainer videos, voice narration, and AI images via ListenHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ListenHub turns ideas, text, URLs, and prompts into podcasts, explainer videos, voice narration, multi-speaker speech, and AI images through provided ListenHub scripts.
 
-## Publisher: <br>
-[kkaticld](https://clawhub.ai/user/kkaticld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kkaticld](https://clawhub.ai/user/kkaticld)
 
-## Use Case: <br>
-Creators, developers, and agents use this skill to submit topics, URLs, text, scripts, or image prompts to ListenHub-related services for podcast, explainer video, text-to-speech, speech, and image generation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted content, source URLs, prompts, and reference-image URLs are sent to ListenHub, Marswave, or Labnana services. <br>
-Mitigation: Use this skill only for content you are comfortable sending to those services, and avoid submitting secrets, regulated data, or confidential material. <br>
-Risk: The image generation script can install system packages. <br>
-Mitigation: Review scripts/generate-image.sh before use and install dependencies manually when automatic package installation is not acceptable. <br>
-Risk: The image generation script can persist API keys and output directory settings in shell startup files. <br>
-Mitigation: Prefer setting LISTENHUB_API_KEY temporarily or through OpenClaw configuration, and avoid workflows that write credentials into shell startup files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kkaticld/listenhub-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/kkaticld) <br>
-- [ListenHub podcast library](https://listenhub.ai/app/podcast) <br>
-- [ListenHub explainer library](https://listenhub.ai/app/explainer) <br>
-- [ListenHub text-to-speech library](https://listenhub.ai/app/text-to-speech) <br>
-- [Marswave Labnana image API documentation](https://docs.marswave.ai/openapi-labnana.html) <br>
+## Use Case:
 
+External users and developers use this skill to generate audio, video, and image assets from topics, article URLs, YouTube links, plain text, or image prompts. It is intended for agent-assisted media creation through the packaged shell scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON/status responses, hosted result links, and local generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LISTENHUB_API_KEY; image generation can use LISTENHUB_OUTPUT_DIR and may write generated image files to the local filesystem.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release evidence and target metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated media requests may send sensitive text, private URLs, prompts, or reference images to external cloud services.
+
+Mitigation: Avoid submitting confidential material unless the user has approved sending it to the disclosed services.
+
+Risk: The image workflow is flagged as higher risk because it can make persistent shell changes, attempt elevated package installation, and use a differently branded provider than the main ListenHub description.
+
+Mitigation: Review the image script before use, preinstall dependencies manually, configure LISTENHUB_API_KEY through the agent environment, and treat image generation as higher risk until provider and credential-handling concerns are resolved.
+
+Risk: Long-running media generation can remain pending, fail, or hit rate limits.
+
+Mitigation: Use the packaged status checker with bounded polling and retry only after short waits when timeout or rate-limit responses occur.
+
+## Reference(s):
+
+- [ListenHub skill page](https://clawhub.ai/kkaticld/skills/listenhub-ai)
+- [ListenHub podcast library](https://listenhub.ai/app/podcast)
+- [ListenHub explainer library](https://listenhub.ai/app/explainer)
+- [ListenHub text-to-speech library](https://listenhub.ai/app/text-to-speech)
+- [Marswave OpenAPI documentation](https://docs.marswave.ai/openapi-labnana.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return ListenHub job identifiers, status JSON, hosted result links, and local image files saved to the configured output directory.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

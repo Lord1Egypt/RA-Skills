@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_group_list",
+    "description": "Get team application group list.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+
+      }
+    }
+  }
+}

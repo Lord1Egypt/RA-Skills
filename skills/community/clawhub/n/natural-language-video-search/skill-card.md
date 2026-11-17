@@ -1,42 +1,58 @@
-## Description: <br>
-Semantic search over video files using Gemini embeddings, with indexing and natural-language retrieval for dashcam, security camera, or MP4 footage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic search over video files using Gemini embeddings to index dashcam, security camera, or mp4 footage and find and auto-trim matching clips from natural language queries.
 
-## Publisher: <br>
-[ssrajadh](https://clawhub.ai/user/ssrajadh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssrajadh](https://clawhub.ai/user/ssrajadh)
 
-## Use Case: <br>
-External users, developers, and video operators use this skill to index local footage, search it with natural-language descriptions, and extract matching clips. It is suited to dashcam, security, surveillance, and Tesla footage workflows where visual moments need to be found quickly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed footage, generated clips, GPS overlays, and location names may expose sensitive personal or location data. <br>
-Mitigation: Use a limited API key or local backend for sensitive footage, avoid indexing broad private folders, and review clips before sharing. <br>
-Risk: The skill depends on an external repository, runtime dependencies, and video-processing tools. <br>
-Mitigation: Install only when the external repository and dependencies are trusted, and review the skill before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to index local video footage, search it with natural language, and extract matching clips. It is especially relevant for dashcam, security camera, surveillance, and Tesla footage workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssrajadh/natural-language-video-search) <br>
-- [Project homepage](https://github.com/ssrajadh/sentrysearch) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local video indexes, trimmed clips, and optional telemetry-overlaid video files through the external sentrysearch tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server evidence and frontmatter) <br>
+Risk: Setup installs mutable external code and dependencies from the sentrysearch repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository before installation, use a dedicated environment, and pin a known commit where possible.
+
+Risk: Video indexing can process sensitive footage through the Gemini API.
+
+Mitigation: Limit indexed folders to intended footage and avoid sensitive videos unless API processing is acceptable.
+
+Risk: Generated clips or Tesla overlays may expose GPS, location, speed, or other telemetry.
+
+Mitigation: Review trimmed clips and overlays before sharing them outside the intended audience.
+
+## Reference(s):
+
+- [sentrysearch homepage](https://github.com/ssrajadh/sentrysearch)
+- [uv installation documentation](https://docs.astral.sh/uv/getting-started/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local video clips through the referenced sentrysearch commands.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

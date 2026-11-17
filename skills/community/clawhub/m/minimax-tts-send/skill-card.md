@@ -1,43 +1,54 @@
-## Description: <br>
-Generates speech audio from text with MiniMax TTS, supports system and cloned voices, and can help send generated audio through OpenClaw messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用 MiniMax 语音合成 API 生成语音,发送语音消息。支持系统音色、克隆音色、流式/非流式输出。使用场景：用户需要生成高质量中文语音、语音合成、文本转语音。
 
-## Publisher: <br>
-[seacozz2007](https://clawhub.ai/user/seacozz2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seacozz2007](https://clawhub.ai/user/seacozz2007)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert text into speech audio with MiniMax voices and optionally send the generated media to a selected messaging channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds a provider API key. <br>
-Mitigation: Rotate the exposed credential and replace it with a user-controlled configured credential before use. <br>
-Risk: Text entered for speech generation is sent to the external MiniMax service. <br>
-Mitigation: Avoid submitting sensitive text unless the provider terms and privacy handling are acceptable for the use case. <br>
-Risk: Generated audio can be sent to a messaging channel and recipient. <br>
-Mitigation: Confirm the channel, recipient, and media file before sending generated audio. <br>
+## Use Case:
 
+External users and developers can use this skill to generate Chinese text-to-speech audio with MiniMax voices, list available voices, and send generated audio through supported messaging channels.
 
-## Reference(s): <br>
-- [MiniMax Speech T2A API documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http) <br>
-- [ClawHub skill page](https://clawhub.ai/seacozz2007/minimax-tts-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [CLI text output with a generated audio file path; audio file output in MP3 or the selected audio format.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the external MiniMax service and may send generated audio through configured OpenClaw messaging channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release evidence reports an embedded MiniMax API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded key, rotate the exposed credential, and require each user to supply credentials through a protected secret source before use.
+
+Risk: Text and generated audio may be sent to MiniMax or messaging platforms.
+
+Mitigation: Clearly warn users before sending content externally and require explicit user control over destination channels, targets, and media paths.
+
+## Reference(s):
+
+- [MiniMax Speech T2A HTTP API documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http)
+- [ClawHub skill page](https://clawhub.ai/seacozz2007/skills/minimax-tts-send)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with inline bash commands and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce MP3 audio files and outbound messaging commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

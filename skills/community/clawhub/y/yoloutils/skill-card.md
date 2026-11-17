@@ -1,40 +1,57 @@
-## Description: <br>
-Yolo Utilities helps agents give command-level guidance for the yoloutils label, merge, copy, remove, change, crop, labelimg, resize, classify, and test workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yolo Utilities guides agents in choosing and running yoloutils CLI subcommands for YOLO dataset inspection, conversion, copying, cleanup, cropping, resizing, classification dataset preparation, and model testing.
 
-## Publisher: <br>
-[netkiller](https://clawhub.ai/user/netkiller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netkiller](https://clawhub.ai/user/netkiller)
 
-## Use Case: <br>
-Developers and computer vision engineers use this skill when preparing, inspecting, transforming, and testing YOLO datasets or model outputs with the yoloutils command-line toolkit. It focuses on required parameters, command behavior, side effects, limitations, and execution examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Several documented yoloutils workflows can overwrite, remove, or clean local dataset files and output directories. <br>
-Mitigation: Run commands on copied sample data first, verify source and target paths, and use --clean, remove, or in-place change only when file deletion or overwriting is acceptable. <br>
-Risk: The skill depends on local yoloutils behavior and local dependencies, models, paths, and classes.txt files being present and correct. <br>
-Mitigation: Confirm the command or script is trusted and installed locally, check required Python packages and model files, and validate outputs with label statistics, sampled output directories, CSV files, or generated data.yaml files. <br>
+## Use Case:
 
+Developers and ML practitioners use this skill when they need an agent to provide precise yoloutils commands, parameter checks, side-effect warnings, and verification steps for YOLO dataset workflows. It is suited for dataset maintenance tasks such as label statistics, label merging, sample copying, label removal or replacement, image cropping and resizing, dataset conversion, classification splits, and model test reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/netkiller/yoloutils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples, pre-checks, side-effect notes, and validation steps for local YOLO utility workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Commands using --clean can delete target, output, or checklist directories before processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm all destination paths, keep backups, and test on a small sample before running the command on the full dataset.
+
+Risk: The remove command without --target and the change command modify label files in place.
+
+Mitigation: Prefer a separate target directory when supported, and create a backup before any in-place label removal or replacement.
+
+Risk: Some workflows can overwrite files when output paths flatten directories or reuse inferred filenames.
+
+Mitigation: Inspect planned source and target layouts for duplicate basenames, and verify output counts and sample files after execution.
+
+## Reference(s):
+
+- [Yolo Utilities on ClawHub](https://clawhub.ai/netkiller/skills/yoloutils)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command prerequisites, side-effect notes, and post-run verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

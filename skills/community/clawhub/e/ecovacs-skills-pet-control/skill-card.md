@@ -1,51 +1,66 @@
-## Description: <br>
-Controls Ecovacs FAMIBOT pet robots through the Ecovacs Open Platform Access Key for device discovery, state queries, settings, sounds, motion actions, sleep, reset, and the showcase_custom dance preset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Ecovacs FAMIBOT pet robots via the Open Platform Access Key and POST /robot/skill/pet/cmd for device discovery, state queries, everyday settings, display and sound actions, single motions, and the showcase_custom dance preset.
 
-## Publisher: <br>
-[ecovacs-ai](https://clawhub.ai/user/ecovacs-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecovacs-ai](https://clawhub.ai/user/ecovacs-ai)
 
-## Use Case: <br>
-Users and integrators use this skill to let an assistant operate supported Ecovacs FAMIBOT pet robots with an Open Platform AK. It supports checking robot state, adjusting everyday device settings, playing built-in sounds, and running bounded motion or dance routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with Mainland China as the default gateway and a non-China gateway override documented by the skill. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change privacy-sensitive robot settings, including camera, microphone, wake word, nickname, sleep, and reset behavior. <br>
-Mitigation: Use explicit confirmation before sensitive settings or disruptive actions, and restrict use to trusted publishers and trusted operators. <br>
-Risk: Motion commands may automatically wake the robot by enabling camera before running visible actions. <br>
-Mitigation: Tell users when a motion request may wake the robot or enable camera, and allow them to cancel before execution. <br>
-Risk: The Access Key can be exposed through URLs, shell history, or the local session file. <br>
-Mitigation: Prefer environment variables or protected local storage, avoid placing the AK in URLs or saved command history, and remove or protect ~/.ecovacs_session.json when no longer needed. <br>
+## Use Case:
 
+External users and integrators use this skill to let an agent operate supported Ecovacs FAMIBOT pet robots by reading device state, adjusting routine settings, playing built-in sounds, running motions, and sending the documented showcase dance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ecovacs-ai/ecovacs-skills-pet-control) <br>
-- [Ecovacs Open Platform (Mainland China)](https://open.ecovacs.cn/) <br>
-- [Ecovacs Open Platform (non-China regions)](https://open.ecovacs.com/) <br>
-- [API reference](references/api.md) <br>
-- [Schema notes](references/schema.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Single-action protocol](references/phoenix-single-action.md) <br>
-- [Action-sequence protocol](references/phoenix-action-control.md) <br>
-- [Action sequence timing](references/action-sequence.md) <br>
-- [Dance routines](references/dance-routines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON payloads] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Ecovacs Open Platform AK and a device nickname fragment; responses depend on robot model, firmware, deployment, and online status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles an Ecovacs Open Platform Access Key that can authorize pet-robot control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer ECOVACS_AK environment injection, avoid persistent set-ak storage when possible, and protect or delete ~/.ecovacs_session.json if local storage is used.
+
+Risk: The skill can trigger physical movement, repeated sounds, device reset, scheduling, and camera or microphone state changes.
+
+Mitigation: Require clear user intent before sensitive actions, start with read-only get commands for verification, and review commands before execution.
+
+Risk: A custom ECOVACS_PORTAL_URL could route requests to an untrusted gateway.
+
+Mitigation: Use only official HTTPS Ecovacs gateways unless the alternate endpoint is explicitly trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ecovacs-ai/skills/ecovacs-skills-pet-control)
+- [Ecovacs Mainland China Open Platform](https://open.ecovacs.cn/)
+- [Ecovacs Non-China Open Platform](https://open.ecovacs.com/)
+- [API Reference](references/api.md)
+- [Pet Schema Notes](references/schema.md)
+- [Phoenix Single Action](references/phoenix-single-action.md)
+- [Phoenix Action Control](references/phoenix-action-control.md)
+- [Action Sequence](references/action-sequence.md)
+- [Dance Routines](references/dance-routines.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for Ecovacs Open Platform requests and local helper-script usage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-第二阶段面试前简历匹配度分析 - 仅基于简历和岗位要求，生成面试匹配度分析报告（面试问答清单已整合） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+第二阶段面试前简历匹配度分析，仅基于简历和岗位要求生成面试匹配度分析报告，并整合面试问答清单。
 
-## Publisher: <br>
-[suql82](https://clawhub.ai/user/suql82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suql82](https://clawhub.ai/user/suql82)
 
-## Use Case: <br>
-HR and recruiting teams use this skill before interviews to compare a candidate resume against a job description and generate a standardized matching analysis report with interview focus questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate resumes can contain personal data. <br>
-Mitigation: Use only with appropriate authorization and limit input handling to the intended resume and job description materials. <br>
-Risk: A generic matching-report request may be ambiguous about whether this HR workflow is intended. <br>
-Mitigation: Confirm the user's intent before processing when the request does not clearly involve pre-interview resume-to-job matching. <br>
-Risk: Missing resume or job description inputs can lead to incomplete or misleading analysis. <br>
-Mitigation: Ask the user whether to continue and how to handle missing required documents before generating the report. <br>
+## Use Case:
 
+HR teams and interviewers use this skill to compare a candidate resume with a job description before an interview and generate a standardized matching report with interview focus questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suql82/suql-interview-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured report content for a DOCX matching analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a six-chapter pre-interview matching report based on candidate resume and job description inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Candidate resumes may contain sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the intended candidate folder and job description, and handle generated reports according to the organization's candidate-data policies.
+
+Risk: A report may be incomplete or misleading if the resume or job description is missing.
+
+Mitigation: Confirm with the user before proceeding when required materials are missing or the request is not clearly about resume matching.
+
+Risk: Resume-to-job analysis can overstate facts if information outside the source documents is introduced.
+
+Mitigation: Keep conclusions grounded in the provided resume and job description, and review the final report for unsupported additions or omissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suql82/skills/suql-interview-analysis)
+- [Publisher profile](https://clawhub.ai/user/suql82)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [DOCX report with structured narrative sections, tables, and interview questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one `{姓名}-匹配度分析报告.docx` file based only on the candidate resume and job description.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

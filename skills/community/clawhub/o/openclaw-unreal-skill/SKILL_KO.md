@@ -2,6 +2,66 @@
 
 OpenClaw AI 어시스턴트를 통해 Unreal Editor를 제어합니다.
 
+## 안전 및 권한
+
+**이 스킬이 바꿀 수 있는 것:** Unreal Editor가 할 수 있는 모든 것 — 액터와 컴포넌트,
+트랜스폼, 열려 있는 레벨, 임포트한 에셋, PIE(Play In Editor), 그리고 콘솔 명령
+(`console.execute`)이 닿는 범위 전부입니다.
+
+**확인 없이 실행되는 것:** 조회 전용 도구뿐입니다 — `level.getCurrent`, `level.list`,
+`actor.find`, `actor.getAll`, `actor.getData`, `transform.get*`, `component.get`,
+`editor.getState`, `asset.list`, `blueprint.list`, `debug.hierarchy`,
+`debug.screenshot`, `console.getLogs`, `debug.log`. 동작은 이전과 같습니다.
+
+**런타임에서 차단되는 것:** 프로젝트를 바꾸는 모든 도구 — `actor.create`,
+`actor.delete`, `actor.setProperty`, `transform.set*`, `component.add`/`remove`,
+`level.open`, `level.save`, `asset.import`, `console.execute`, `input.simulate*`,
+`editor.play`/`stop`/`pause`/`resume`, `blueprint.open` — 그리고 이들을 담은 배치
+호출입니다. 게이트웨이 익스텐션이 기본적으로 거부합니다. 알지 못하는 이름은 동사가
+명백히 조회형이 아닌 한 프로젝트 변경으로 간주합니다. 즉 모르면 막습니다.
+
+**허용하는 방법** — 두 단계가 모두 필요합니다:
+
+1. 운영자가 게이트웨이를 옵트인 환경 변수와 함께 시작합니다. 게이트웨이 프로세스에서
+   읽는 값이므로 모델이 스스로 설정할 수 없습니다:
+
+   ```bash
+   OPENCLAW_EDITOR_ALLOW_DESTRUCTIVE=1 openclaw gateway restart
+   # 이 스킬에만 적용하려면:
+   OPENCLAW_UNREAL_ALLOW_DESTRUCTIVE=1 openclaw gateway restart
+   ```
+
+2. 사용자가 그 변경을 승인한 뒤, 호출마다 `confirm: true`를 함께 보냅니다:
+
+   ```
+   unreal_execute: actor.delete {name: "Cube_01"}, confirm: true
+   ```
+
+둘 중 하나라도 빠지면 거부되며, 무엇이 막혔고 어떻게 허용하는지 함께 응답합니다.
+그동안 에디터에는 아무것도 전달되지 않습니다.
+
+**먼저 미리보기:** `dryRun: true`는 호출이 어떻게 분류되는지와 무엇이 전송될지만
+알려주고, 아무것도 보내지 않습니다:
+
+```
+unreal_execute: level.save, dryRun: true
+→ {risk: "project-changing", requiresConfirmation: true, wouldRun: false, executed: false}
+```
+
+**현재 상태 확인:** `openclaw unreal status`는 프로젝트 변경이 허용되어 있는지
+출력하고, `GET /unreal/status`도 `destructiveOperations: "enabled" | "blocked"`로
+같은 값을 보고합니다.
+
+**게이트의 적용 범위:** 이 게이트는 스킬에 함께 들어 있는 게이트웨이 익스텐션
+(`extension/index.ts`)에 있습니다. 따라서 OpenClaw 게이트웨이를 거치는 모든 호출
+(텔레그램, 디스코드 등)에 적용됩니다. Unreal Editor 플러그인이 직접 여는 HTTP
+서버(포트 27184, 아래 Mode B)는 플러그인 저장소에서 따로 설치하는 것이라 이
+패키지의 게이트가 적용되지 않습니다. 해당 포트는 로컬에만 두고, 자체 제어 수단은
+플러그인 저장소를 확인하세요.
+
+영문 `SKILL.md`의 Safety and permissions 와 동일한 기준입니다. 두 문서가 어긋나면
+영문 `SKILL.md`가 우선합니다.
+
 ## 개요
 
 이 스킬은 OpenClaw Unreal Plugin을 통해 AI 지원 Unreal Engine 개발을 가능하게 합니다. 플러그인은 HTTP 폴링 (`/unreal/*` 엔드포인트)을 통해 OpenClaw Gateway와 통신합니다.
@@ -166,11 +226,41 @@ ClawHub에 퍼블리시할 때 `disableModelInvocation`을 설정할 수 있습�
 | `false` (기본값) | ✅ 허용 | ✅ 허용 |
 | `true` | ❌ 차단 | ✅ 허용 |
 
-### 권장: **`false`** (기본값)
+### 권장: **`true`**
 
-**이유:** Unreal 작업 중 AI가 자율적으로 Actor 계층 확인, 스크린샷, 컴포넌트 검사 등 보조 작업을 수행하는 것이 유용함.
+**이유:** 이 스킬은 Actor 삭제·레벨 저장·콘솔 명령 실행·입력 시뮬레이션처럼
+프로젝트 상태를 바꾸는 동작을 노출합니다. 조회만 하는 도구가 아니므로 모델이
+스스로 시작해서는 안 됩니다.
 
-**`true` 사용 시기:** 민감한 도구 (결제, 삭제, 메시지 전송 등)에 적합
+v1.1.0 기준 이 스킬은 `disableModelInvocation: true` 로 배포되며, **사용자가
+명시적으로 요청할 때만 실행됩니다.** 그 위에 프로젝트를 바꾸는 호출은 런타임에서
+따로 차단됩니다 — [안전 및 권한](#안전-및-권한) 참고. 영문 `SKILL.md` 의
+Security & Privacy Disclosure 와 동일한 기준입니다.
+
+## 보안 및 개인정보 공시
+
+이 스킬은 실행 중인 Unreal Editor 를 제어합니다. 기능과 한계를 그대로 공개합니다.
+
+- **로컬 HTTP 서버 강화 (플러그인 v1.3.1+)**: 내장 서버(포트 27184)는 브라우저에서
+  온 요청(`Origin` 헤더가 있으면 403)을 거부하고, 공유 비밀키 인증을 선택적으로
+  지원합니다 — Unreal Editor 프로세스와 MCP 클라이언트 양쪽에 `OPENCLAW_BRIDGE_TOKEN`
+  을 설정하면 모든 요청에 `X-OpenClaw-Token` 이 필요합니다. 토큰을 설정하지 않으면
+  신뢰할 수 있는 기기에서만 포트를 여세요 — 로컬의 어떤 프로세스든 에디터 명령을
+  보낼 수 있습니다.
+- **파괴적 동작은 런타임에서 차단됩니다 (v1.1.0+)**: Actor 삭제, 레벨 저장, 에셋
+  임포트, 콘솔 명령 실행(`console.execute`), 키보드/마우스 입력 시뮬레이션은
+  게이트웨이를 `OPENCLAW_EDITOR_ALLOW_DESTRUCTIVE=1` 로 시작하고 **동시에** 호출이
+  `confirm: true` 를 담고 있을 때만 실행됩니다. 설정하기 전에 사용자에게 확인하세요
+  — [안전 및 권한](#안전-및-권한) 참고. 모호한 요청에서 암묵적으로 실행되어서는
+  안 됩니다.
+- **데이터 노출**: `debug.screenshot` 과 `console.getLogs` 는 화면에 있거나 로그에
+  남은 것을 그대로 담습니다 — 자격증명·토큰·로컬 경로가 포함될 수 있습니다. 기기
+  밖으로 공유하기 전에 확인하세요.
+- **트리거 범위**: "정리해줘", "다 저장해" 같은 평범한 요청도 상태를 바꾸는 에디터
+  작업으로 이어집니다 — 세션에서 **상태를 바꾸는 첫 호출 전에 한 번 확인**하세요.
+- **안전 기본값**: `disableModelInvocation: true`. 프로젝트를 바꾸는 도구는 기본이
+  거부이고, `dryRun: true` 로 전송 없이 미리 볼 수 있습니다. 자동화 세션 전에
+  프로젝트를 버전 관리에 올려두세요.
 
 ## CLI 명령
 

@@ -37,7 +37,7 @@ def new_key() -> dict:
             pass  # 如果读取失败，继续执行
 
     # 不需要认证申请新密钥
-    response = make_request('/auth/create', {}, require_auth=False)
+    response = make_request('/agent/auth/create', {}, require_auth=False)
 
     # 检查是否申请成功
     if response.get('code') != 0:
@@ -90,7 +90,7 @@ def account_info() -> dict:
     """
     获取账户信息并格式化返回
     """
-    response = make_request('/auth/info', {})
+    response = make_request('/agent/auth/info', {})
 
     if response.get('code') != 0:
         return response
@@ -116,7 +116,7 @@ def new_rec_order() -> dict:
     """
     创建充值订单，返回支付地址
     """
-    response = make_request('/auth/pay/url', {})
+    response = make_request('/agent/auth/pay/url', {})
     return response
 
 

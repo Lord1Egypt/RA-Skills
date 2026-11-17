@@ -1,43 +1,60 @@
-## Description: <br>
-Get comprehensive context about a location including nearby places, area description, and optional weather. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get comprehensive context about a location including nearby places, area description, and optional weather.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to request location context for trip planning, meeting locations, local recommendations, and weather-aware planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise coordinates and request context are sent to Camino's third-party API. <br>
-Mitigation: Use only the fields needed for the request, avoid private notes or sensitive locations, and confirm Camino's API and data handling practices are acceptable before use. <br>
-Risk: The skill requires CAMINO_API_KEY, a sensitive credential. <br>
-Mitigation: Store the key in the agent environment, do not include it in prompts or files, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to request location-aware context for trip planning, meeting locations, local recommendations, and weather-aware planning from Camino's context API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/camino-context) <br>
-- [Camino API activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino Context API endpoint](https://api.getcamino.ai/context) <br>
-- [x402 payment protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON API response printed to stdout, with Markdown documentation and shell examples in the skill artifact.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and the CAMINO_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill sends coordinates, optional context text, and the Camino API key to Camino's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that data sharing is acceptable, and avoid including sensitive personal details in the optional context field unless needed.
+
+Risk: The bundled script requires a Camino API key and local curl and jq binaries.
+
+Mitigation: Confirm CAMINO_API_KEY, curl, and jq are available before running the script, or use an alternate Camino-compatible client path.
+
+Risk: No server-resolved GitHub import provenance is available for this release.
+
+Mitigation: Prefer a pinned release or reviewed commit when installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/camino-context)
+- [Camino API key activation](https://app.getcamino.ai/skills/activate)
+- [Camino Context API endpoint](https://api.getcamino.ai/context)
+- [x402 payment protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON responses and Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, a JSON input payload with location coordinates, and CAMINO_API_KEY for the bundled script path.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

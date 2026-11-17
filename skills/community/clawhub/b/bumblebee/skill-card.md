@@ -1,46 +1,60 @@
-## Description: <br>
-Bumblebee lets an agent control Spotify in two modes: speaking through exact lyric clips and curating context-aware music queues from time, mood, activity, and recent listening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bumblebee lets an OpenClaw agent control Spotify to communicate through exact lyric clips and curate context-aware music queues based on mood, activity, time, and recent listening.
 
-## Publisher: <br>
-[r2d2-minero](https://clawhub.ai/user/r2d2-minero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[r2d2-minero](https://clawhub.ai/user/r2d2-minero)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search lyric indexes, play timestamped Spotify clips, manage playback, and queue music matched to the current context or requested mood. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control Spotify playback and read listening context through OAuth access. <br>
-Mitigation: Install only if this level of Spotify account access is acceptable, review playback actions before use, and revoke the Spotify app authorization when no longer needed. <br>
-Risk: The visible setup requests broader Spotify OAuth scopes than the core playback features require and stores long-lived credentials locally. <br>
-Mitigation: Reduce OAuth scopes where possible, avoid playlist or library modification scopes unless needed, and keep .env and tokens.json private. <br>
-Risk: Lyric indexes may contain copyrighted lyrics if users populate them from external sources. <br>
-Mitigation: Build lyric indexes only from sources the user is authorized to use and do not distribute copyrighted lyric content with the skill. <br>
+## Use Case:
 
+External OpenClaw users and developers use Bumblebee to make an agent play Spotify lyric clips as short messages or build a music queue for a requested vibe. It requires Spotify Premium, an active Spotify device, and locally stored Spotify OAuth credentials.
 
-## Reference(s): <br>
-- [Spotify Setup Guide](artifact/SETUP.md) <br>
-- [Song Library Management](artifact/references/song-library.md) <br>
-- [Building Your Lyric Index](artifact/scripts/build-lyric-index.md) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
-- [Bumblebee on ClawHub](https://clawhub.ai/r2d2-minero/bumblebee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON summaries from local Node.js scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Spotify Premium, an active Spotify device, local Spotify OAuth credentials, and a user-managed lyric index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: ClawHub release evidence) <br>
+Risk: Broad Spotify OAuth scopes may grant more account access than basic playback needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested scopes before authorization and grant playlist or library permissions only when those features are needed.
+
+Risk: Local Spotify client secrets and refresh tokens can affect account playback if exposed.
+
+Mitigation: Store projects/spotify/.env and tokens.json with owner-only permissions, keep them out of shared artifacts and version control, and rotate credentials if exposed.
+
+Risk: The helper scripts can change the active Spotify device, queue, volume, and playback state.
+
+Mitigation: Check the target device before playback and confirm user intent before queue, volume, or playback changes.
+
+## Reference(s):
+
+- [Bumblebee ClawHub Release](https://clawhub.ai/r2d2-minero/skills/bumblebee)
+- [Song Library Management](references/song-library.md)
+- [Building Your Lyric Index](scripts/build-lyric-index.md)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, terminal commands, and JSON summaries from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Spotify credentials and an active Spotify device; lyric indexes must be user-provided or built from permitted sources.]
+
+## Skill Version(s):
+
+1.2.2 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

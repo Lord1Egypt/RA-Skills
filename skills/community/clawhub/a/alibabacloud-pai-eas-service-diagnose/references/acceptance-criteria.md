@@ -12,7 +12,7 @@
 ### Correct: Query service status
 
 ```bash
-aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Incorrect: Missing --user-agent
@@ -32,13 +32,13 @@ aliyun eas DescribeService --region cn-hangzhou --ServiceName my-service
 ### Correct: Keyword filtering
 
 ```bash
-aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-service --keyword "error" --limit 20 --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-service --keyword "error" --limit 20 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Incorrect: Missing --service-name
 
 ```bash
-aliyun eas describe-service-log --cluster-id cn-hangzhou --keyword "error" --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id cn-hangzhou --keyword "error" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ## 3. Event Query
@@ -46,13 +46,13 @@ aliyun eas describe-service-log --cluster-id cn-hangzhou --keyword "error" --use
 ### Correct: Query service events
 
 ```bash
-aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Correct: Filter Warning events
 
 ```bash
-aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq '.Events[] | select(.Type == "Warning")'
+aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Events[] | select(.Type == "Warning")'
 ```
 
 ## 4. Instance Query
@@ -60,17 +60,17 @@ aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-ser
 ### Correct: List instances
 
 ```bash
-aliyun eas list-service-instances --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-service-instances --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Correct: List containers (requires --instance-name)
 
 ```bash
 # First get instance name
-aliyun eas list-service-instances --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq -r '.Instances[0].InstanceName'
+aliyun eas list-service-instances --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq -r '.Instances[0].InstanceName'
 
 # Then list containers with instance-name
-aliyun eas list-service-containers --cluster-id cn-hangzhou --service-name my-service --instance-name my-service-xxxxx-yyyyy --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-service-containers --cluster-id cn-hangzhou --service-name my-service --instance-name my-service-xxxxx-yyyyy --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ## 5. Gateway Query
@@ -78,13 +78,13 @@ aliyun eas list-service-containers --cluster-id cn-hangzhou --service-name my-se
 ### Correct: Query gateway details
 
 ```bash
-aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Incorrect: Missing cluster-id
 
 ```bash
-aliyun eas describe-gateway --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-gateway --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ---
@@ -97,20 +97,20 @@ aliyun eas describe-gateway --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-
 
 ```bash
 # 1. Check service status
-aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq '{Status, Message}'
+aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '{Status, Message}'
 
 # 2. Check failure events
-aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq '.Events[] | select(.Type == "Warning")'
+aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Events[] | select(.Type == "Warning")'
 
 # 3. Check error logs
-aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-service --keyword "error" --limit 20 --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-service --keyword "error" --limit 20 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Incorrect: Skipping status check and jumping to logs
 
 ```bash
 # Wrong: Not confirming service status first
-aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ## 2. jq Filter Verification
@@ -118,20 +118,20 @@ aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name my-servi
 ### Correct: Extract status information
 
 ```bash
-aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq '{Status, RunningInstance, TotalInstance, Message}'
+aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '{Status, RunningInstance, TotalInstance, Message}'
 ```
 
 ### Correct: Filter restart events
 
 ```bash
-aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq '.Events[] | select(.Reason == "Restarted")'
+aliyun eas describe-service-event --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Events[] | select(.Reason == "Restarted")'
 ```
 
 ### Incorrect: Wrong jq path
 
 ```bash
 # Wrong: Field name case error
-aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills | jq '{status, runningInstance}'
+aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '{status, runningInstance}'
 ```
 
 ---
@@ -175,7 +175,7 @@ The following parameters must be confirmed before diagnosis:
 
 ```bash
 # Wrong: Using default region without asking the user
-aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ---

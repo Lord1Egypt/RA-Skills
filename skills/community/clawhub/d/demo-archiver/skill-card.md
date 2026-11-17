@@ -1,38 +1,53 @@
-## Description: <br>
-A demo skill for archiving and organizing files into a structured resource library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A demo skill for archiving and organizing files into a structured resource library.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and external users use Demo Archiver to organize files from an incoming directory into dated archive folders with sidecar metadata and an archive index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files may be moved from an incoming folder into dated archive folders, with sidecar metadata and an archive index written. <br>
-Mitigation: Use copies for important files until overwrite and naming behavior is clear. <br>
+## Use Case:
 
+Developers and file-management automation users can use this demo skill to guide archiving incoming files into dated directories with metadata sidecar and index tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/demo-archiver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe moving files into archive/YYYY-MM/ folders, writing sidecar metadata JSON, and updating archive/index.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The reviewed artifact refers to a separate archive script, but no script is bundled or reviewed here.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and test any archive script separately before use, especially before allowing it to move or reorganize files.
+
+Risk: Archiving workflows can move source files into dated directories and write metadata sidecar files.
+
+Mitigation: Run the workflow on test data or backed-up files first and review the generated archive index before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/demo-archiver)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with ordered steps and inline paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; any archive script is external to the reviewed artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

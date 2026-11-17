@@ -1,42 +1,62 @@
-## Description: <br>
-Guides an OpenClaw user through creating an independent Feishu bot agent, including collecting configuration, backing up existing settings, creating a workspace, patching configuration, and validating the new bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在 OpenClaw 上创建新的独立飞书机器人（多账号模式）。当用户要求创建新的飞书机器人、新增 Agent、部署第二个机器人时使用。流程包括：收集配置信息、备份、创建工作区、修改配置和验证。
 
-## Publisher: <br>
-[itzhouq](https://clawhub.ai/user/itzhouq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itzhouq](https://clawhub.ai/user/itzhouq)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to add a separate Feishu bot agent to an existing OpenClaw installation without manually editing the full nested configuration. It helps collect bot credentials, create a parallel workspace, patch allowlist settings, and verify that routing works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to provide a Feishu App Secret and modifies the local OpenClaw configuration. <br>
-Mitigation: Use a dedicated low-privilege Feishu app, avoid sharing secrets in public or shared chats, review the config patch before restart, keep a backup, and rotate any secret that may have been exposed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add another independent Feishu bot agent to an existing OpenClaw setup. It guides collection of bot credentials, configuration backup, workspace creation, OpenClaw configuration patching, and post-change validation.
 
-## Reference(s): <br>
-- [OpenClaw New Agent on ClawHub](https://clawhub.ai/itzhouq/openclaw-new-agent) <br>
-- [ClawHub](https://clawhub.com) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Feishu OpenClaw multi-agent template](https://open.feishu.cn/page/openclaw?form=multiAgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step-by-step operational guidance for an agent to create workspace files, patch OpenClaw configuration, and validate Feishu bot routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill may modify ~/.openclaw and OpenClaw gateway configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed configuration patches, keep a backup of openclaw.json, and validate with openclaw doctor before relying on the new bot.
+
+Risk: Feishu App Secrets may be exposed if pasted into ordinary chat or retained in logs/transcripts.
+
+Mitigation: Enter secrets locally or through a secret manager when possible, restrict permissions on openclaw.json and backups, and rotate any secret that was already exposed.
+
+Risk: Mutable installer commands such as clawhub@latest can change what is installed over time.
+
+Mitigation: Prefer a pinned, reviewed installer version for repeatable installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itzhouq/skills/openclaw-new-agent)
+- [Publisher profile](https://clawhub.ai/user/itzhouq)
+- [ClawHub homepage from clawdis metadata](https://clawhub.com)
+- [Feishu OpenClaw multi-agent app template](https://open.feishu.cn/page/openclaw?form=multiAgent)
+- [Introduction video](https://www.bilibili.com/video/BV16fXLBkEwo)
+- [Demo video](https://www.bilibili.com/video/BV1cUXaBsEM1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user for Feishu App ID, App Secret, bot name, workspace name, and testing details before proposing local OpenClaw configuration changes.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata, SKILL.md frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Manages Tencent Cloud COS vector buckets, indexes, vectors, vector search, and bucket policies across the vector storage lifecycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Tencent Cloud COS vector buckets, indexes, vector data, and bucket policies across their lifecycle.
 
-## Publisher: <br>
-[jimmyyan](https://clawhub.ai/user/jimmyyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmyyan](https://clawhub.ai/user/jimmyyan)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to administer Tencent Cloud COS vector storage, including vector bucket creation, index management, vector insertion, search, deletion, and bucket policy changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact Tencent Cloud COS operations, including deletes, policy changes, and bulk vector data operations. <br>
-Mitigation: Use least-privilege Tencent Cloud credentials and require explicit workflow approval before destructive operations or policy updates. <br>
-Risk: The scanner reported that the skill defaults to insecure HTTP. <br>
-Mitigation: Set the protocol to HTTPS before using the skill with real credentials or production data. <br>
-Risk: Credentials may be exposed if supplied directly on the command line. <br>
-Mitigation: Prefer environment variables or a secret manager for COS_VECTORS_SECRET_ID and COS_VECTORS_SECRET_KEY. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to perform Tencent Cloud COS vector storage operations, including bucket, index, policy, and vector data management.
 
-## Reference(s): <br>
-- [COS Vector Bucket API Reference](artifact/references/api_reference.md) <br>
-- [Tencent Cloud COS Vector Bucket API Documentation](https://cloud.tencent.com/document/product/436/127755) <br>
-- [Tencent Cloud API Key Management](https://console.cloud.tencent.com/cam/capi) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimmyyan/cos-vectors-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud COS credentials via COS_VECTORS_SECRET_ID and COS_VECTORS_SECRET_KEY or command-line arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill handles Tencent Cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials and secure environment or secret injection instead of passing secrets on the command line.
+
+Risk: The skill can perform destructive bucket, index, vector, and bucket-policy operations.
+
+Mitigation: Manually confirm delete and bucket-policy actions before allowing an agent to run them.
+
+Risk: The shared connection option defaults to plain HTTP.
+
+Mitigation: Force HTTPS for every Tencent Cloud COS vector call.
+
+## Reference(s):
+
+- [COS Vector Bucket API Reference](artifact/references/api_reference.md)
+- [Tencent Cloud COS Vector Bucket Documentation](https://cloud.tencent.com/document/product/436/127755)
+- [ClawHub Skill Page](https://clawhub.ai/jimmyyan/skills/cos-vectors-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud COS vector credentials plus region and bucket inputs; scripts return JSON success or error objects.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

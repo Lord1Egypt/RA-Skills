@@ -1,47 +1,64 @@
-## Description: <br>
-科技行业投资日报生成与推送。当用户要求生成科技投资日报、发送每日投资报告、或cron定时触发日报任务时使用。自动抓取财联社实时新闻、获取涉及上市公司股价、生成深度分析报告并通过飞书一条消息发送完整Markdown报告，同时生成PDF附件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成科技行业投资日报，抓取财联社科技新闻和相关上市公司股价，产出深度分析报告并通过飞书发送 Markdown 与 PDF 附件。
 
-## Publisher: <br>
-[ilove323](https://clawhub.ai/user/ilove323) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ilove323](https://clawhub.ai/user/ilove323)
 
-## Use Case: <br>
-External users and analysts use this skill to generate Chinese-language daily technology investment reports from current news and market-price data. It can prepare a Markdown report, create a PDF attachment, and send the report through Feishu. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use stored Feishu app credentials to send generated reports and PDF files to a fixed recipient. <br>
-Mitigation: Confirm the recipient before use, restrict Feishu credentials to the minimum message and file permissions, and require approval before scheduled or automatic sends. <br>
-Risk: The report includes generated market analysis and investment suggestions. <br>
-Mitigation: Treat the output as informational, require human review, and do not use it as sole basis for investment decisions. <br>
-Risk: PDF generation depends on external conversion tooling. <br>
-Mitigation: Verify the PDF converter dependency and execution path before enabling report attachment delivery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilove323/tech-invest-daily) <br>
-- [财联社实时新闻流](https://www.cls.cn/telegraph) <br>
-- [财联社新闻详情](https://www.cls.cn/detail/{id}) <br>
-- [腾讯行情数据接口](http://qt.gtimg.cn/q=代码1,代码2) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload endpoint](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+## Use Case:
 
+External users and scheduled automation workflows use this skill to collect technology-sector news, retrieve related public-company price data, and produce a daily investment report for delivery through Feishu.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown investment report, JSON stock-price data, and PDF attachment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated market analysis is informational and should not be treated as financial advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reports and PDF attachments are sent to a fixed Feishu recipient without adequate user control.
+
+Mitigation: Use only where that recipient is intended, or require recipient confirmation before every send.
+
+Risk: The workflow accesses central Feishu app credentials from /root/.openclaw/openclaw.json.
+
+Mitigation: Run only in environments where those credentials are safe for agent-executed code to access; prefer platform-managed messaging credentials.
+
+Risk: Market data is fetched through an unauthenticated HTTP quote endpoint.
+
+Mitigation: Prefer HTTPS and authenticated market data sources before using reports for operational decisions.
+
+Risk: Markdown-to-PDF rendering processes generated report content.
+
+Mitigation: Sandbox PDF rendering and review generated files before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilove323/skills/tech-invest-daily)
+- [财联社电报实时新闻流](https://www.cls.cn/telegraph)
+- [财联社新闻详情](https://www.cls.cn/detail/{id})
+- [腾讯行情接口](http://qt.gtimg.cn/q=代码1,代码2)
+- [Feishu Open Platform message API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with JSON stock quote data and PDF attachment workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write temporary Markdown/PDF files under /tmp and send a Markdown message plus PDF attachment through Feishu.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

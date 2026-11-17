@@ -1,44 +1,53 @@
-## Description: <br>
-Syncs song lyrics with music playback timing in Discord by generating timed lyric audio segments and synchronized playback instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync song lyrics with music playback timing in Discord and generate timed lyric audio segments plus synchronized playback instructions.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External users use this skill to create karaoke-style Discord playback from timestamped lyrics, including TTS audio segment generation, playback instructions, and timed lyric posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided lyric text may be sent to Minimax TTS and posted into a Discord channel during playback. <br>
-Mitigation: Confirm the lyrics are appropriate to share with the selected TTS service and Discord channel before generating or posting them. <br>
-Risk: The helper script writes playback files into the output directory chosen by the user. <br>
-Mitigation: Use an intended output folder and inspect generated playback files before using them for Discord playback. <br>
-Risk: Incorrect or estimated timestamps can cause poorly synchronized karaoke playback. <br>
-Mitigation: Review and adjust timestamped lyrics before generating audio segments or sending timed Discord messages. <br>
+## Use Case:
 
+Developers and Discord automation users use this skill to turn timestamped lyrics into karaoke-style playback assets and timing instructions for synchronized Discord messages or audio playback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/discord-music-sync) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Lyric timing helper script](artifact/scripts/sync_lyrics.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated playback text, TTS audio file instructions, and timed Discord message steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided timed lyrics file, writes playback files to the selected output directory, and can guide TTS generation and Discord posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads user-provided lyric files and may process sensitive or copyrighted lyrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only lyrics you are allowed to process and review generated Discord messages before sending them.
+
+Risk: The skill writes generated audio assets and playback.txt to the selected output directory.
+
+Mitigation: Use a dedicated per-project output directory instead of a broad shared folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/discord-music-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and generated playback.txt text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces timestamped lyric playback guidance and local output files in the user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

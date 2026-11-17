@@ -1,44 +1,59 @@
-## Description: <br>
-Provides persistent IRC presence through ii with event-driven mention detection for monitoring IRC channels, sending messages, and integrating OpenClaw with IRC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent IRC presence using ii (minimalist file-based IRC client) with event-driven mention detection.
 
-## Publisher: <br>
-[destructatron](https://clawhub.ai/user/destructatron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[destructatron](https://clawhub.ai/user/destructatron)
 
-## Use Case: <br>
-Developers and operators use this skill to set up an AI agent on IRC, watch channel mentions, read recent IRC context, and send replies through the ii file interface. It is intended for Linux environments where OpenClaw can receive events from a mention watcher. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Watched-channel mentions can pass untrusted IRC text directly into OpenClaw events. <br>
-Mitigation: Use private or moderated channels, add sender and channel allowlists, and require review before broad deployment. <br>
-Risk: Frequent or hostile channel traffic can repeatedly wake the agent. <br>
-Mitigation: Add rate limits for mention handling and disable the watcher service when the bot should be inactive. <br>
-Risk: Channel logs under ~/irc grow indefinitely and may retain sensitive IRC content. <br>
-Mitigation: Read logs with bounded tail commands, rotate or delete logs as needed, and keep the agent's filesystem permissions limited. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ii IRC client](https://tools.suckless.org/ii/) <br>
-- [ii source repository](https://git.suckless.org/ii) <br>
-- [ClawHub skill page](https://clawhub.ai/destructatron/ii-irc) <br>
-- [Publisher profile](https://clawhub.ai/user/destructatron) <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a persistent IRC bridge with ii, monitor channel mentions, send IRC messages, and trigger OpenClaw events from IRC activity.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and service configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, operation, troubleshooting, and message-handling guidance for ii-based IRC integration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted IRC messages can trigger immediate OpenClaw events.
+
+Mitigation: Use a low-privilege account, restrict server and channel access, avoid sensitive channels, and review who can send messages before enabling the bridge.
+
+Risk: The setup script includes unsafe argument serialization for generated scripts.
+
+Mitigation: Fix the setup script's argument serialization before using untrusted or automated configuration values.
+
+Risk: The bridge creates persistent IRC presence and auto-start behavior when configured with systemd.
+
+Mitigation: Disable auto-start when persistent connectivity is not needed and review the generated service files before deployment.
+
+## Reference(s):
+
+- [ii tools documentation](https://tools.suckless.org/ii/)
+- [ii source repository](https://git.suckless.org/ii)
+- [ClawHub skill page](https://clawhub.ai/destructatron/skills/ii-irc)
+- [ClawHub publisher profile](https://clawhub.ai/user/destructatron)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Linux-focused setup guidance and scripts for ii, systemd user services, IRC message sending, and mention monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

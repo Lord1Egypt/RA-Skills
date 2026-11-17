@@ -1,43 +1,60 @@
-## Description: <br>
-Practice management assistant for small CPA firms and solo bookkeepers: client onboarding, document chase, tax deadline tracking, entity compliance reminders, workflow automation, and recurring engagement management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practice management assistant for small CPA firms and solo bookkeepers: client onboarding, document chase, tax deadline tracking, entity compliance reminders, workflow automation, and recurring engagement management.
 
-## Publisher: <br>
-[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit)
 
-## Use Case: <br>
-Small CPA firms, solo CPAs, and bookkeeping practices use this skill to draft onboarding packets, document request messages, deadline alerts, compliance reminders, practice dashboards, and entity compliance reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive tax records and client emails without clear safety controls. <br>
-Mitigation: Run it with human review, secure document-handling rules, and least-privilege access for any connected email, calendar, or client portal systems. <br>
-Risk: Generated emails, deadline notices, and compliance reminders could be sent to the wrong recipient or include incorrect guidance. <br>
-Mitigation: Treat generated communications as drafts, verify recipients and deadlines before sending, and prefer a secure client portal over email attachments. <br>
+## Use Case:
 
+External small CPA firms, solo CPAs, and bookkeeping services use this skill to organize client intake, tax document follow-up, deadline reminders, entity compliance tasks, and recurring practice-management workflows.
 
-## Reference(s): <br>
-- [Federal + Ohio Tax Deadline Calendar](references/tax-deadline-calendar.md) <br>
-- [Entity Compliance Checklist](references/entity-compliance-checklist.md) <br>
-- [Document Request Templates by Return Type](references/document-request-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/joshbuildswithdoit/small-cpa-firm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text drafts, checklists, reminders, dashboard summaries, and compliance reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include client-facing email drafts and deadline notices that require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill may encourage collection or exchange of highly sensitive tax, banking, BOI, and identity records through ordinary email attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a secure client portal or encrypted file-exchange process, remove ordinary email attachment collection paths, and avoid collecting SSNs unless legally necessary.
+
+Risk: Generated CPA workflow, deadline, and compliance materials may be incomplete or unsuitable for a specific client, jurisdiction, or filing year.
+
+Mitigation: Require review by qualified tax or accounting staff before sending client communications, filing reminders, or compliance reports.
+
+Risk: Long-lived client tax and identity records create retention, access-control, and deletion exposure.
+
+Mitigation: Define retention, access-control, and deletion rules before use, especially for tax, BOI, banking, and identity records.
+
+## Reference(s):
+
+- [Small CPA Firm ClawHub Release](https://clawhub.ai/joshbuildswithdoit/skills/small-cpa-firm)
+- [Federal + Ohio Tax Deadline Calendar](references/tax-deadline-calendar.md)
+- [Entity Compliance Checklist](references/entity-compliance-checklist.md)
+- [Document Request Templates by Return Type](references/document-request-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured checklist-style text for reminders, packets, dashboards, templates, and reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tax, banking, identity, and client-record handling recommendations that require professional review and secure delivery controls.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

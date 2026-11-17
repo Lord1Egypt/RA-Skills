@@ -1,48 +1,60 @@
-## Description: <br>
-Generates customized travel packing checklists from destination, season, trip type, and activities using flyai/Fliggy-powered search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a customized packing list based on your destination, season, trip type, and activities. Never forget essentials again. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more — powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to turn packing-related travel questions into destination-aware packing checklists and related travel-commerce results. The skill is intended for SKILL.md-compatible coding and agent environments that can run shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may install a global npm package and run flyai commands. <br>
-Mitigation: Install and run it only in an environment where global npm packages and outbound travel-service queries are acceptable. <br>
-Risk: Travel queries may be sent to flyai/Fliggy-powered services and can include sensitive trip details. <br>
-Mitigation: Avoid entering sensitive itinerary, identity, visa, or booking information unless clear consent, redaction, and retention controls are in place. <br>
-Risk: Booking links and travel-commerce results may influence purchases. <br>
-Mitigation: Treat prices, availability, and booking pages as third-party commerce information and verify details before purchasing. <br>
-Risk: The runbook describes local execution logs that may retain raw user queries. <br>
-Mitigation: Review local log handling and clear or restrict logs when travel queries contain personal or sensitive information. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer packing-list and travel-essentials requests by collecting trip details, running flyai search commands, and formatting retrieved results with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/pack-list) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; raw JSON is not shown; results include booking links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks agents to install and use a third-party travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the npm package before installation, and avoid automatic global installs unless the execution environment explicitly permits them.
+
+Risk: Travel-planning requests may include sensitive itinerary, identity, visa, payment, or booking-reference details, and the artifact describes raw-query execution logging.
+
+Mitigation: Do not use the skill with sensitive travel or identity details unless logging and query disclosure are removed or tightly controlled.
+
+Risk: The skill requires flyai or Fliggy-style search results and booking links, which can bias responses toward commercial booking outputs.
+
+Mitigation: Review generated results for relevance, clearly report retrieval failures, and avoid fabricating prices, venues, or travel details.
+
+## Reference(s):
+
+- [Parameter and Output Templates](references/templates.md)
+- [Packing List Playbooks](references/playbooks.md)
+- [Fallback Procedures](references/fallbacks.md)
+- [Execution Log Schema](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, inline booking links, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include detailUrl booking links when results are shown, and follow the user's language.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

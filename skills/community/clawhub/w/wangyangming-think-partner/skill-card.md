@@ -1,41 +1,53 @@
-## Description: <br>
-Helps users apply Wang Yangming's philosophy to identify barriers to action, clarify conscience-based decisions, and choose practical next steps in difficult situations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+以王阳明心学框架帮助使用者梳理行动阻碍、反思价值冲突，并形成可复核的下一步行动草稿。
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Users seeking reflective coaching use this skill to apply Wang Yangming's mind philosophy to procrastination, moral uncertainty, lack of direction, workplace frustration, fear of failure, and interpersonal or organizational stress. The skill frames the problem, asks conscience- and action-oriented questions, and recommends a practical first step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat reflective philosophy coaching as professional advice for mental-health, legal, medical, HR, or safety-critical decisions. <br>
-Mitigation: Use it only for reflection and motivation; seek qualified professional support for crisis, legal, medical, HR, or safety-critical matters. <br>
-Risk: The Wang Yangming/心学 framing may be inappropriate for some user goals or contexts. <br>
-Mitigation: Ask the agent to switch frameworks when a philosophy-based reflection lens does not fit the task. <br>
+## Use Case:
 
+个人使用者可用它梳理拖延、选择冲突、压力和协作问题，并把反思整理成小步行动草稿。涉及投资或组织等高影响决定时，内容仅作参考，应由有相应资质的人员独立复核。
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gechengling/wangyangming-think-partner) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured reflective guidance with prompts, questions, quotes, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution or system access] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact SKILL.md) <br>
+Risk: The reflective framework could be mistaken for a final professional or high-impact decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafts; independently verify facts and have qualified people review decisions involving investments, employment, or formal organizational action.
+
+Risk: Prompts may receive sensitive personal, financial, health, customer, or unpublished business information.
+
+Mitigation: Use abstract or redacted details and provide only the minimum information needed for the reflection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/wangyangming-think-partner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-first Markdown with structured prompts, checklists, and tables; English can be requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reflective guidance and draft action steps for user review.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

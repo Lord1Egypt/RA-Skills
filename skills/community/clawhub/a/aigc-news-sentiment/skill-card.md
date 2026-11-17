@@ -1,40 +1,57 @@
-## Description: <br>
-Analyze financial news sentiment, assess short- to long-term impact, and classify news by event type such as earnings, contracts, investments, policies, and research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze financial news, announcements, and research reports for sentiment, impact horizon, importance, and news category.
 
-## Publisher: <br>
-[GBABYZS](https://clawhub.ai/user/GBABYZS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbabyzs](https://clawhub.ai/user/gbabyzs)
 
-## Use Case: <br>
-Developers and finance-focused agent builders use this skill to add financial news sentiment, event classification, and impact summaries to stock analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The current implementation returns hardcoded sample results, so outputs may be mistaken for live financial news analysis. <br>
-Mitigation: Treat the analysis as illustrative unless live news ingestion and NLP analysis are integrated and verified. <br>
-Risk: Financial sentiment summaries can be over-relied on for trading or investment decisions. <br>
-Mitigation: Use human review and corroborate results against authoritative market news, exchange announcements, and research sources before acting. <br>
+## Use Case:
 
+Developers and finance analysts use this skill to ask an agent for a structured sentiment snapshot of market news for a stock code, including positive, neutral, and negative counts, a sentiment score, key events, and expected impact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBABYZS/aigc-news-sentiment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown guidance and Python dictionary results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The current implementation returns illustrative sample sentiment data rather than live news analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The declared third-party dependencies are unpinned and unused in the current artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove unused dependencies before installation, or pin and review them if live data collection features are added.
+
+Risk: The current Python helper returns sample sentiment data that could be mistaken for live market analysis.
+
+Mitigation: Clearly label sample outputs and integrate validated news sources and NLP models before using the result for financial decisions.
+
+Risk: Chinese-language documentation and output may not fit every deployment audience.
+
+Mitigation: Confirm the intended user language and localize documentation or output labels where needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gbabyzs/skills/aigc-news-sentiment)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Markdown guidance and Python dictionary/JSON-like sentiment results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a compact sentiment summary for a supplied stock code; current artifact behavior uses sample data and notes that live news crawling and NLP integration are still needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

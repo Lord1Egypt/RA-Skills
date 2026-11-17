@@ -1,0 +1,135 @@
+{
+  "version": "2.0",
+  "updated": "2026-07-01",
+  "description": "Bidding platform website list (50+ platforms, credentials not included)",
+  "categories": {
+    "gov_public": {
+      "name": "Gov Public Resource Centers",
+      "auth_required": false,
+      "sites": [
+        {"name": "Nanning Public Resource Center", "url": "https://www.nnggzy.org.cn/gxnnzbw/default.aspx", "region": "Nanning"},
+        {"name": "Guangxi Public Resource Center", "url": "http://202.103.240.162:8081/GgzyjySSO/login/oauth2login", "region": "Guangxi"},
+        {"name": "Hechi Public Resource Center", "url": "http://www.hcjyxxw.com/gxhczbw/default.aspx", "region": "Hechi"},
+        {"name": "Huanjiang E-bidding", "url": "http://219.159.164.18:8211/TPBidder/memberLogin", "region": "Huanjiang"},
+        {"name": "National Platform (Guangxi)", "url": "http://ggzy.jgswj.gxzf.gov.cn/gxggzy/", "region": "Guangxi"},
+        {"name": "Nanning Trading Center", "url": "http://ggzy.nanning.gov.cn/nnzfcg/sjcggg/index.htm", "region": "Nanning"},
+        {"name": "Liuzhou Trading Center", "url": "http://ggzy.liuzhou.gov.cn/", "region": "Liuzhou"},
+        {"name": "Guilin Trading Center", "url": "https://ggzy.jgswj.gxzf.gov.cn/glggzy/jyxx/", "region": "Guilin"},
+        {"name": "Yulin Trading Center", "url": "http://ggzy.jgswj.gxzf.gov.cn/ylggzy/jyxx/", "region": "Yulin"}
+      ]
+    },
+    "power_grid": {
+      "name": "Power Grid Platforms",
+      "auth_required": false,
+      "sites": [
+        {"name": "CSG E-bidding", "url": "http://www.bidding.csg.cn/", "region": "National"},
+        {"name": "ECSG", "url": "https://ecsg.com.cn/", "region": "National"},
+        {"name": "SPIC E-bidding", "url": "https://ebid.espic.com.cn/bidweb/#/procurement/procurementDesktopSupplier", "region": "National"},
+        {"name": "Huadian E-Commerce", "url": "https://www.chdtp.com/pages/wzglS/homepage/index.jsp", "region": "National"},
+        {"name": "Datang E-Commerce", "url": "http://www.cdt-ec.com", "region": "National"}
+      ]
+    },
+    "energy": {
+      "name": "Energy Platforms",
+      "auth_required": false,
+      "sites": [
+        {"name": "NEEP Shop", "url": "https://www.neep.shop/", "region": "National"},
+        {"name": "CHN Energy Bidding", "url": "http://www.chnenergybidding.com.cn/bidhy/memberframe/FrameAll", "region": "National"},
+        {"name": "China Tower E-Procurement", "url": "https://ebid.chinatowercom.cn", "region": "National"},
+        {"name": "PipeChina SCM", "url": "https://iscm.pipechina.com.cn:8443/home/", "region": "National"}
+      ]
+    },
+    "real_estate": {
+      "name": "Real Estate Group Procurement",
+      "auth_required": false,
+      "sites": [
+        {"name": "Jinke", "url": "https://www.jinke.com/", "region": "National"},
+        {"name": "Zhangtai", "url": "http://caigou.mingyuanyun.com/glztjt", "region": "Guangxi"},
+        {"name": "Wanda", "url": "https://vendor.wanda.cn/", "region": "National"},
+        {"name": "CR Land (Huaren)", "url": "http://szecp.crc.com.cn/", "region": "National"},
+        {"name": "CIFI", "url": "https://supplier.cifi.com.cn/out-sky//", "region": "National"},
+        {"name": "Aoyuan", "url": "https://ayjc.aoyuan.net/ierp/index.html?formId=resp_portal&userId=guest&needReset=true", "region": "National"},
+        {"name": "Guangxi Poly", "url": "http://polygx.julytech.cn", "region": "Guangxi"},
+        {"name": "Agile Group", "url": "https://gys.nimble.cn:8443/sign-in", "region": "National"},
+        {"name": "Zhongnan", "url": "http://go.zoina.cn/reg/new", "region": "National"},
+        {"name": "C&D Group", "url": "https://supplier.cndservice.com/app/hiam/user/info", "region": "National"},
+        {"name": "Liando U-Valley", "url": "http://sup.liando.cn/", "region": "National"},
+        {"name": "Liando Supplier Portal", "url": "http://gyswy.liando.cn/suppliers-portal/", "region": "National"},
+        {"name": "Alnan Group", "url": "http://oms.alnan.com:8089/soms/buy/orderlist.html", "region": "Guangxi"}
+      ]
+    },
+    "state_owned": {
+      "name": "Provincial SOEs",
+      "auth_required": false,
+      "sites": [
+        {"name": "Beibu Gulf Investment", "url": "https://ebidding.bgigc.com/", "region": "Guangxi"},
+        {"name": "Guangxi Communications", "url": "http://sp.jc.gxjttz.com/", "region": "Guangxi"},
+        {"name": "Guangxi Road & Bridge", "url": "https://client.lxyun.cn/#/home", "region": "Guangxi"},
+        {"name": "Glory Group", "url": "http://ec.gxry.cn/", "region": "Guangxi"},
+        {"name": "Guangxi Exchange Group", "url": "https://mh.gxcq.com.cn/#/index.html", "region": "Guangxi"},
+        {"name": "Guangxi United Property Rights", "url": "https://mh.gxcq.com.cn/#/", "region": "Guangxi"},
+        {"name": "Guangxi Sunshine Procurement", "url": "https://gxygcg.ejy365.com/#/register", "region": "Guangxi"}
+      ]
+    },
+    "central_enterprises": {
+      "name": "Central Enterprise Platforms",
+      "auth_required": false,
+      "sites": [
+        {"name": "CRCC Supply Chain", "url": "https://yx.crcc.cn/scm-web/register/toRegister.htm", "region": "National"},
+        {"name": "CCCC Procurement", "url": "https://zjzcw.iccec.cn/", "region": "National"},
+        {"name": "PowerChina Contractor", "url": "https://bid.powerchina.cn/Contractor/register", "region": "National"},
+        {"name": "China ComService", "url": "https://szyc.chinaccs.cn/portal/index", "region": "National"},
+        {"name": "China Rongtong", "url": "https://www.ronghw.cn/eb/notice/", "region": "National"},
+        {"name": "AVIC Construction", "url": "https://scm.avicjs.com/", "region": "National"},
+        {"name": "AVIC SCM", "url": "https://scm.avicjs.com/", "region": "National"}
+      ]
+    },
+    "industry": {
+      "name": "Industry Vertical Platforms",
+      "auth_required": false,
+      "sites": [
+        {"name": "Gov Procurement Cloud", "url": "https://www.zcygov.cn/", "region": "National"},
+        {"name": "Yunzhu", "url": "https://auth.yzw.cn/login/v2", "region": "National"},
+        {"name": "BQPoint", "url": "https://zhidao.bqpoint.com/", "region": "National"},
+        {"name": "National Rail Procurement", "url": "https://cg.95306.cn/", "region": "National"},
+        {"name": "Yingcai Cross", "url": "https://passport.yingcaicheng.com/register", "region": "National"},
+        {"name": "JD Enterprise", "url": "https://wcjt.jd.com", "region": "National"},
+        {"name": "CCB Sunshine Procurement", "url": "https://ibuy.ccb.com/cms/index.htm", "region": "National"}
+      ]
+    },
+    "other": {
+      "name": "Other Enterprise Procurement",
+      "auth_required": false,
+      "sites": [
+        {"name": "China Mobile", "url": "https://b2b.10086.cn/b2b/main/preIndex.html#1", "region": "National"},
+        {"name": "Dahua Supplier", "url": "http://cg.dahuahome.com/pc/#/", "region": "National"},
+        {"name": "China Southern Airlines", "url": "https://csbidding.csair.cn/cms/channel/czzngys/96540.htm", "region": "National"},
+        {"name": "Wuhan Wugang", "url": "https://www.obei.com.cn/obei-web-ec/MC/login/register.html", "region": "National"},
+        {"name": "Shuangbaotai Group", "url": "https://portal.us.bn.cloud.ariba.com/dashboard/appext/company-profile", "region": "National"}
+      ]
+    }
+  },
+  "auth_required": {
+    "name": "Auth-Required Platforms",
+    "description": "Platforms that require login to view detailed notices. Add your own credentials.",
+    "sites": [
+      {"name": "Gov Procurement Cloud", "url": "https://www.zcygov.cn/", "note": "Guangxi government procurement core"},
+      {"name": "NEEP Shop", "url": "https://www.neep.shop/", "note": "SMS login"},
+      {"name": "CHN Energy Bidding", "url": "http://www.chnenergybidding.com.cn/bidhy/memberframe/FrameAll", "note": "Phone number as login name"},
+      {"name": "Yunzhu", "url": "https://auth.yzw.cn/login/v2", "note": "CSCEC group platform"},
+      {"name": "Liando U-Valley", "url": "http://sup.liando.cn/", "note": "Real estate procurement"},
+      {"name": "Guangxi Communications", "url": "http://jthg.zcjb.com.cn/ebidding/#/login", "note": "Procurement platform"},
+      {"name": "CRCC Supply Chain", "url": "https://yx.crcc.cn/scm-web/register/toRegister.htm", "note": ""},
+      {"name": "Wuhan Wugang", "url": "https://www.obei.com.cn/obei-web-ec/MC/login/register.html", "note": ""},
+      {"name": "CCCC Supply Chain", "url": "https://emp.iccec.cn/", "note": ""},
+      {"name": "BQPoint", "url": "https://zhidao.bqpoint.com/", "note": ""},
+      {"name": "Alnan Group", "url": "http://oms.alnan.com:8089/soms/buy/orderlist.html", "note": ""},
+      {"name": "SPIC E-bidding", "url": "https://ebid.espic.com.cn/bidweb/#/procurement/procurementDesktopSupplier", "note": ""},
+      {"name": "Liando Supplier Portal", "url": "http://gyswy.liando.cn/suppliers-portal/", "note": "SMS login"},
+      {"name": "PowerChina Contractor", "url": "https://bid.powerchina.cn/Contractor/register", "note": ""},
+      {"name": "Cloud Construction", "url": "http://w.cloudcj.cn/", "note": ""},
+      {"name": "CREC E-Commerce", "url": "https://datasrvportal.crecgec.com/portal/#/pages/enterprise-maintenance", "note": ""},
+      {"name": "Shuangbaotai Group", "url": "https://portal.us.bn.cloud.ariba.com/dashboard/appext/company-profile", "note": ""}
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "task_id": "nav-labels-proof",
+  "checks": [
+    {
+      "name": "nav label fixture check",
+      "command": "python3 examples/demo-repo/check_nav_labels.py examples/demo-repo/nav_labels.json",
+      "status": "PASS",
+      "raw_log": "raw/check-nav-labels.txt"
+    }
+  ],
+  "raw_logs": [
+    "raw/check-nav-labels.txt"
+  ]
+}

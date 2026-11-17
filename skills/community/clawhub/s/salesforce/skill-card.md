@@ -1,42 +1,58 @@
-## Description: <br>
-Query and manage Salesforce CRM data via the Salesforce CLI (`sf`). Run SOQL/SOSL queries, inspect object schemas, create/update/delete records, bulk import/export, execute Apex, deploy metadata, and make raw REST API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage Salesforce CRM data via the Salesforce CLI (`sf`), including SOQL/SOSL queries, schema inspection, record operations, bulk import/export, Apex execution, metadata deployment, and raw REST API calls.
 
-## Publisher: <br>
-[ArvorCo](https://clawhub.ai/user/ArvorCo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arvorco](https://clawhub.ai/user/arvorco)
 
-## Use Case: <br>
-Developers and Salesforce administrators use this skill to query, inspect, and manage Salesforce org data and metadata through the authenticated Salesforce CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Salesforce CLI access can expose or modify CRM data and org configuration. <br>
-Mitigation: Use a sandbox or least-privilege Salesforce account and verify the target org before running commands. <br>
-Risk: Write, delete, bulk, Apex, deployment, and raw API operations can have high-impact effects. <br>
-Mitigation: Require explicit approval for those operations and review files, queries, and command targets before execution. <br>
-Risk: Authentication output may contain sensitive tokens or key material. <br>
-Mitigation: Do not paste or summarize tokens, SFDX auth URLs, JWT keys, or verbose auth output into chat or logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli) <br>
-- [ClawHub Salesforce Skill](https://clawhub.ai/ArvorCo/salesforce) <br>
+## Use Case:
 
+Developers, Salesforce administrators, and CRM operations teams use this skill to ask an agent for Salesforce CLI commands and guidance for querying data, managing records, inspecting schemas, running Apex, deploying metadata, and making authenticated API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands generally request structured Salesforce CLI output with --json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated Salesforce CLI sessions can access or mutate sensitive CRM data.
+
+Mitigation: Use least-privileged Salesforce users and sandbox orgs where possible, and require explicit confirmation before write, deploy, Apex, bulk, or raw REST operations.
+
+Risk: Credential-revealing org display and auth URL commands can expose access tokens or refresh-token auth URLs.
+
+Mitigation: Prefer browser login and do not print, save, or summarize access tokens, refresh-token auth URLs, or full org display JSON.
+
+Risk: Bulk import, bulk delete, metadata deployment, Apex execution, and raw REST calls can create large or hard-to-reverse org changes.
+
+Mitigation: Review files, queries, target org, and operation scope before execution; use small query limits for exploration.
+
+## Reference(s):
+
+- [Salesforce CLI Developer Tools](https://developer.salesforce.com/tools/salesforcecli)
+- [Salesforce Skill on ClawHub](https://clawhub.ai/arvorco/skills/salesforce)
+- [Salesforce CLI npm package](https://www.npmjs.com/package/@salesforce/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Salesforce CLI session; commands should prefer --json and prompt before write, deploy, Apex, bulk, or raw REST operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

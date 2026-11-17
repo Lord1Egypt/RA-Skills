@@ -1,45 +1,61 @@
-## Description: <br>
-Teach agents how to design, implement, explain, and debug gameplay randomness with the RNGNeeds Unity plugin for weighted picks, loot tables, gacha, spawn tables, repeat prevention, depletable lists, ordered card decks, influence providers, seeding, and custom selection methods in Unity/C#. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach agents how to design, implement, explain, and debug gameplay randomness with the RNGNeeds Unity plugin.
 
-## Publisher: <br>
-[starphaselab](https://clawhub.ai/user/starphaselab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[starphaselab](https://clawhub.ai/user/starphaselab)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose, implement, explain, and debug RNGNeeds-based gameplay randomness in Unity/C#. It helps route requests to the right RNGNeeds mechanic for weighted selection, finite stock, dynamic odds, repeat prevention, deterministic seeding, and ordered card-deck workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Unity/C# snippets or gameplay balancing guidance may not match the user's installed RNGNeeds version or intended gameplay behavior. <br>
-Mitigation: Review generated snippets before applying them and verify behavior in Unity against the installed RNGNeeds package. <br>
+## Use Case:
 
+Developers and technical agents use this skill to choose RNGNeeds Unity patterns, generate focused C# examples, explain probability behavior, and debug gameplay randomness setups such as loot tables, gacha, repeat prevention, influence providers, depletable lists, and ordered card decks.
 
-## Reference(s): <br>
-- [API Surface](references/api-surface.md) <br>
-- [Common Patterns](references/common-patterns.md) <br>
-- [Core Concepts](references/core-concepts.md) <br>
-- [Decision Guide](references/decision-guide.md) <br>
-- [Examples](references/examples.md) <br>
-- [Guide Workflows](references/guide-workflows.md) <br>
-- [Pitfalls](references/pitfalls.md) <br>
-- [Test Prompts](references/test-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with focused Unity/C# code snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded in RNGNeeds terminology and API names; generated Unity/C# snippets should be reviewed against the installed RNGNeeds version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: Generated Unity/C# examples may not match the installed RNGNeeds package version or a project's gameplay architecture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated gameplay code before use and check local RNGNeeds package documentation or source when API details are uncertain.
+
+Risk: Incorrectly choosing between weighted picks, depletable lists, repeat prevention, and deck-order operations can produce misleading probability or card-flow behavior.
+
+Mitigation: Use the skill's decision guidance to select the RNGNeeds mechanic that matches the gameplay requirement, then test probability and deck behavior in the Unity project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/starphaselab/skills/rngneeds-unity)
+- [API Surface](references/api-surface.md)
+- [Common Patterns](references/common-patterns.md)
+- [Core Concepts](references/core-concepts.md)
+- [Decision Guide](references/decision-guide.md)
+- [Examples](references/examples.md)
+- [Guide Workflows](references/guide-workflows.md)
+- [Pitfalls](references/pitfalls.md)
+- [Test Prompts](references/test-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions]
+
+**Output Format:** [Markdown with concise Unity/C# code blocks when code is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounded in RNGNeeds terminology and API names; generated gameplay code should be reviewed for project fit.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

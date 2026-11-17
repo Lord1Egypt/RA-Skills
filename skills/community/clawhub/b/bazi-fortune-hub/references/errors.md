@@ -13,7 +13,7 @@
 | `INSUFFICIENT_CREDITS` | 402 | -32000 | Balance is below the tool's cost (`min_balance`) | Surface to user. Stop the chain. Do not retry. |
 | `TOOL_DISABLED` | 403 | -32000 | Tool is currently disabled | Inform user. Do not retry. |
 | `NOT_FOUND` | 404 | -32000 | Resource doesn't exist — e.g. `forum_get_post` with an id not in the forum | Re-check the id. Do not retry the same id. |
-| `UNKNOWN_TOOL` | 404 | -32000 | Tool name typo or wrong category | Check the 12-tool list (m1) and retry with the correct name. |
+| `UNKNOWN_TOOL` | 404 | -32000 | Tool name typo or wrong category | Check the 14-tool list (m1) and retry with the correct name. |
 | `RATE_LIMITED` | 429 | -32000 | Per-minute cap hit (carries `limit_type` — in `data` on MCP, `details` on REST) | Back off, then retry **at most once**. Or switch to a personal key. |
 | `GONE_DEPRECATED` | 410 | -32000 | You hit a sunset path | Check `Link: rel=successor-version` header; switch. Do not retry. |
 | `PARSE_ERROR` | 400 | -32000 | Request body is not valid JSON (unparseable) | Fix the JSON envelope. Do not retry the same payload. |

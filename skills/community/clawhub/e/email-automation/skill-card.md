@@ -1,44 +1,59 @@
-## Description: <br>
-Automate email processing: smart triage, auto-categorization, draft replies, and inbox zero. Works with Gmail, Outlook, and IMAP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate email processing: smart triage, auto-categorization, draft replies, and inbox zero. Works with Gmail, Outlook, and IMAP.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-Employees and external users use this skill to triage Gmail, Outlook, or IMAP inboxes, categorize messages, draft replies, summarize inbox activity, and archive lower-priority email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires mailbox access credentials or tokens for Gmail, Outlook, or IMAP. <br>
-Mitigation: Use least-privilege OAuth scopes or app passwords where available, store credentials outside shared workspaces, and rotate or revoke credentials after testing. <br>
-Risk: Auto-archive defaults to enabled and can move newsletters, notifications, and receipts without additional confirmation. <br>
-Mitigation: Set AUTO_ARCHIVE=false for initial runs, test against a noncritical inbox, and review categorized actions before enabling automatic archiving. <br>
-Risk: The skill records processed email identifiers and run history in .email-automation/processed.json. <br>
-Mitigation: Set EMAIL_AUTOMATION_DATA_DIR to a protected location and review retention or deletion practices for the local processing-history file. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to triage email, categorize messages, draft replies, summarize inbox activity, and guide Gmail, Outlook, or IMAP setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fly3094/email-automation) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Microsoft Azure Portal](https://portal.azure.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with setup commands, inbox summaries, categorized email lists, draft reply text, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local .email-automation/processed.json processing-history file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Mailbox credentials or tokens may grant sensitive email access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege OAuth or scoped app-specific credentials, store secrets outside shared workspaces, and rotate tokens if exposed.
+
+Risk: Automatic archiving can move or hide messages before the user has reviewed behavior.
+
+Mitigation: Set AUTO_ARCHIVE=false until rules and categories have been reviewed against a test account or low-risk mailbox.
+
+Risk: The documented test mode should not be treated as a no-write dry run for connected mailbox integrations.
+
+Mitigation: Confirm provider-side permissions and run with non-production credentials before enabling actions on a real inbox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/email-automation)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Microsoft Azure Portal](https://portal.azure.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with shell command snippets and generated email summaries, categories, and reply drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce mailbox triage guidance, reply draft text, category labels, inbox summaries, and setup steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

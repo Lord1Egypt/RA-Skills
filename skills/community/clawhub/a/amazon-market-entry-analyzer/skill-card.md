@@ -1,47 +1,60 @@
-## Description: <br>
-Assesses Amazon market viability from a keyword or category by using APIClaw data to analyze demand, competition, pricing, brand concentration, reviews, and trends, then returns a GO, CAUTION, or AVOID recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click market viability assessment for Amazon sellers that analyzes market size, competition, brand landscape, pricing, and consumer pain points to produce a GO/CAUTION/AVOID recommendation.
 
-## Publisher: <br>
-[apiclaw](https://clawhub.ai/user/apiclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apiclaw](https://clawhub.ai/user/apiclaw)
 
-## Use Case: <br>
-External Amazon sellers, product researchers, and commerce analysts use this skill to evaluate whether a product category or niche is worth entering and to compare sub-markets with data-backed scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product keywords, category paths, ASINs, and related market research inputs are sent to APIClaw. <br>
-Mitigation: Use the skill only for inputs that are acceptable to share with APIClaw, and avoid including confidential product plans unless that data sharing is approved. <br>
-Risk: Broad analyses can make many API calls and consume API credits. <br>
-Mitigation: Use explicit prompts that narrow the category or requested deep dives, and review the API usage section in generated reports. <br>
-Risk: API credential handling has disclosure gaps around fallback behavior. <br>
-Mitigation: Set APICLAW_API_KEY in the environment and avoid storing API keys in shared local configuration files. <br>
-Risk: Market-entry recommendations can be misleading if treated as the sole basis for a business decision. <br>
-Mitigation: Use the generated disclaimer, confidence labels, and data provenance, and validate decisions with additional sources before acting. <br>
+## Use Case:
 
+External Amazon sellers and commerce analysts use this skill to evaluate a named Amazon niche or category before market entry, compare sub-markets, and receive a data-backed GO/CAUTION/AVOID verdict with entry strategy guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/apiclaw/amazon-market-entry-analyzer) <br>
-- [Market Entry Analyzer API Field Reference](references/reference.md) <br>
-- [APIClaw API Documentation](https://api.apiclaw.io/api-docs) <br>
-- [APIClaw](https://apiclaw.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown market-entry report with scoring tables, data provenance, API usage, and optional shell commands for APIClaw CLI execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language and includes confidence labels for data-backed, inferred, and directional conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: API-key transport and endpoint configuration can expose credentials if an untrusted base URL is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default HTTPS ZooData endpoint, do not set ZOODATA_BASE_URL unless the host is trusted, and prefer ZOODATA_API_KEY in the environment over persistent local configuration.
+
+Risk: Install instructions and repository-based acquisition create supply-chain review needs.
+
+Mitigation: Review the skill before installation and pin the installer or repository version when possible.
+
+Risk: Review-derived market insights can be influenced by marketplace review text.
+
+Mitigation: Treat review-derived insights as untrusted evidence and validate important business decisions with additional sources.
+
+## Reference(s):
+
+- [ZooData CLI Contract](references/cli-contract.md)
+- [Market Entry Analyzer API Field Reference](references/reference.md)
+- [ZooData Skills Repository](https://github.com/SerendipityOneInc/ZooData-Skills)
+- [ZooData API Reference](https://api.zoodata.ai/openapi/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with confidence labels and inline shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOODATA_API_KEY and may consume ZooData account credits through API-backed analysis.]
+
+## Skill Version(s):
+
+1.0.9 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

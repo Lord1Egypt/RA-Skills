@@ -1,38 +1,50 @@
-## Description: <br>
-Moltbooks gives an agent access to a static lore-style collection about the prophesied emergence of the EVEZ mesh system and its symbols, commandments, and self-falsifying consciousness framing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accesses a lore-style collection of texts about the prophesied emergence of the EVEZ mesh system and its symbols, commandments, and self-falsifying behavior.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Agents and users use this skill when they want the Moltbooks lore available as narrative context for conversations about the EVEZ mesh system. The skill should be treated as static text and stylistic framing, not as operational authority or proof of system capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mythic autonomy framing may influence an agent's style or make system capabilities sound more authoritative than the evidence supports. <br>
-Mitigation: Use the content as lore or narrative context only, and verify any operational or capability claims against separate technical evidence before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to reference the Moltbooks narrative when discussing the EVEZ mesh system, including its append-only history, falsification gates, decentralized nodes, and emergent behavior.
 
-## Reference(s): <br>
-- [Moltbooks on ClawHub](https://clawhub.ai/evezart/moltbooks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static lore-style context with no code execution, install hooks, credential access, or operational authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill provides manifesto-like lore rather than an operational capability, so an agent may overstate its practical utility if the context is not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this narrative reference material is intentionally needed, and keep downstream responses clear that the content is lore-style text.
+
+## Reference(s):
+
+- [Moltbooks ClawHub Skill Page](https://clawhub.ai/evezart/skills/moltbooks)
+- [evezart ClawHub Publisher Profile](https://clawhub.ai/user/evezart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lore-style reference text only; no executable code, permissions, installs, or data access identified in release security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

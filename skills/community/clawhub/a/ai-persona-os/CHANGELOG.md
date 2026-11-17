@@ -4,6 +4,32 @@ All notable changes to the AI Persona OS skill.
 
 ---
 
+## v2.1.0 — November 3, 2026
+
+**Heartbeat removed: OpenClaw runs it now.** OpenClaw retired workspace `HEARTBEAT.md` files in 2026.8.1. The heartbeat is a system-owned scheduled job, and `openclaw doctor --fix` imports any `HEARTBEAT.md` into that job's scratch word for word, including old instructions that point at files this skill no longer ships. v2.1.0 stops managing the heartbeat and leaves one optional, much smaller piece.
+
+**Requires OpenClaw 2026.8.1 or later.** On older OpenClaw, stay on v2.0.0.
+
+### Removed
+- `assets/HEARTBEAT-template.md` and the `HEARTBEAT.md` in all three starter packs. Setup no longer copies a heartbeat file, and `status` no longer checks for one.
+- The heartbeat prompt override. OpenClaw's default heartbeat prompt already handles `NO_REPLY` and stops the agent from repeating old tasks; overriding it lost that.
+- The "Heartbeat Protocol v2" section and its version history, and the "HEARTBEAT runs every session" line in the AGENTS template.
+
+### Added
+- **Pulse (optional, `set up pulse`):** a five-line context + memory check written into the heartbeat job's scratch (`openclaw cron scratch`). Silent when all green.
+- **`upgrade` command** and a one-time upgrade prompt at session start for v2.0.x / v1.x workspaces: archives `HEARTBEAT.md` to `memory/archive/`, offers to replace or clear an old AI Persona OS checklist in the heartbeat scratch, removes an old AI Persona OS prompt override, updates `VERSION.md`. Every step asks first.
+
+### Changed
+- `references/heartbeat-automation.md` is now `references/automations.md`: pulse, cron briefings, routing, upgrading, troubleshooting.
+- Discord routing uses `agents.defaults.heartbeat.target: "discord"` plus `to: "user:<id>"`; the old `{ "kind": "discordUser" }` object form is gone. The default target is `owner` (the owner's DM). `route check` also reads `to`.
+- Cron briefings on multi-channel hosts name their channel: `--announce --channel discord --to "user:<id>"` (OpenClaw requires `--channel` there). The non-existent `--target` flag is gone from the docs.
+- Includes the unpublished 2026-09-21 compatibility candidate: "OpenClaw 2026.x" branding, the corrected `openclaw system heartbeat last` command, `ackMaxChars` removal, frontmatter cleanup, and the `security-audit.sh` fail-open fix.
+
+### Tested
+- OpenClaw 2026.10.10 and 2026.10.5 (isolated installs): `doctor --fix` on 2.0.0-style workspaces imports `HEARTBEAT.md` into the "Heartbeat (main)" scratch and archives the file; with the heartbeat disabled (`every: "0m"`) the job is created disabled and the file is left alone; heartbeat config keys are kept; `cron add` flags used by the templates are accepted.
+
+---
+
 ## v2.0.0 — May 19, 2026
 
 **SKILL.md restructure — pitch on top, agent instructions below the fold**

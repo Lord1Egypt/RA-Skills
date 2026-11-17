@@ -1,44 +1,60 @@
-## Description: <br>
-Ultra-fast speech transcription using the iFLYTEK Speed Transcription API for MP3 audio up to 5 hours, with Chinese, English, Chinese dialect, and automatic language detection support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultra-fast speech transcription using iFLYTEK Speed Transcription API for audio files up to 5 hours in about 20 seconds per hour, with support for Chinese, English, and Chinese dialect detection.
 
-## Publisher: <br>
-[qingzhe2020](https://clawhub.ai/user/qingzhe2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingzhe2020](https://clawhub.ai/user/qingzhe2020)
 
-## Use Case: <br>
-Developers and external users use this skill to transcribe MP3 audio through the iFLYTEK/XFYUN Speed Transcription API, including meetings, interviews, lectures, voice notes, call center recordings, legal proceedings, and medical consultations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files and multipart metadata may be sent to iFLYTEK/XFYUN for processing. <br>
-Mitigation: Use the skill only for recordings that are approved for third-party processing, obtain required consent, and avoid confidential or regulated audio unless policy permits it. <br>
-Risk: API credentials are required for use. <br>
-Mitigation: Use scoped credentials through environment variables and rotate or revoke keys if exposure is suspected. <br>
-Risk: The documentation mentions WAV/PCM, but the script currently accepts MP3 files only. <br>
-Mitigation: Convert recordings to the documented MP3 requirements before use and do not rely on WAV/PCM support without reviewing the implementation. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to transcribe MP3 audio through iFLYTEK/XFYUN, including meetings, interviews, lectures, voice notes, call center recordings, legal proceedings, and medical consultations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qingzhe2020/ifly-speed-transcription) <br>
-- [iFLYTEK Open Platform](https://www.xfyun.cn/) <br>
-- [iFLYTEK Speed Transcription API documentation](https://console.xfyun.cn/services/ost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON transcription results, with Markdown setup and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save transcription text or JSON to a local output file when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Audio and file-path metadata are sent to iFLYTEK/XFYUN for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with appropriate user consent and data handling approval, and avoid sending audio that should not leave the user's environment.
+
+Risk: The artifact bundles a local .claude/settings.local.json with permissions unrelated to normal transcription use.
+
+Mitigation: Remove .claude/settings.local.json before installing or using the skill.
+
+Risk: The skill description advertises multiple audio formats, while the implementation and security guidance identify MP3-only behavior.
+
+Mitigation: Treat input as MP3-only unless the implementation is updated and retested.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/qingzhe2020/skills/ifly-speed-transcription)
+- [iFLYTEK Open Platform](https://www.xfyun.cn/)
+- [iFLYTEK speed transcription API documentation](https://console.xfyun.cn/services/ost)
+- [iFLYTEK fast transcription service pricing](https://www.xfyun.cn/services/fast_lfasr?target=price)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text transcript or JSON containing task metadata, transcript text, segments, and raw API response; output may be printed or saved to a file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XFEI_APP_ID, XFEI_API_KEY, and XFEI_API_SECRET; the implementation uploads audio to iFLYTEK/XFYUN and enforces MP3 input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

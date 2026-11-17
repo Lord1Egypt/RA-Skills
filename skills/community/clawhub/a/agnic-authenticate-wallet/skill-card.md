@@ -1,40 +1,54 @@
-## Description: <br>
-Authenticates an Agnic wallet through browser OAuth or a headless API token for CLI, CI, server, or agent environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authenticates an Agnic wallet through browser OAuth or a headless API token for CLI and agent environments.
 
-## Publisher: <br>
-[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to check Agnic wallet authentication, connect through browser OAuth, configure AGNIC_TOKEN for headless use, verify status, or log out. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens or OAuth credentials can grant access to an Agnic wallet. <br>
-Mitigation: Prefer browser OAuth or a secure secret store for AGNIC_TOKEN, and avoid putting token values in shared terminals, shell history, logs, or transcripts. <br>
-Risk: OAuth approval may include wallet spending limits. <br>
-Mitigation: Review the account, wallet, and spending limits before approving access, and log out or revoke tokens when access is no longer needed. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to authenticate an Agnic wallet, verify authentication status, configure API-token based headless access, run browser OAuth login, or resolve not-authenticated CLI errors.
 
-## Reference(s): <br>
-- [Agnic API token settings](https://app.agnic.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user-provided Agnic credentials or OAuth approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: The skill runs a mutable npm CLI while handling wallet credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed Agnic CLI version and install only when the Agnic npm package and publisher are trusted.
+
+Risk: API tokens can be exposed through command lines, shell history, or agent-visible transcripts.
+
+Mitigation: Prefer protected environment variables or a secret manager, avoid inline token flags for real credentials, keep token scopes and spending limits tight, and revoke or log out when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agnicpay-prog/skills/agnic-authenticate-wallet)
+- [Agnic App API Tokens](https://app.agnic.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers browser OAuth, AGNIC_TOKEN, --token authentication, status checks, token storage, and logout.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

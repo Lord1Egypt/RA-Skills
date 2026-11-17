@@ -1,42 +1,51 @@
-## Description: <br>
-Extract structured data from Office documents (DOCX, PPTX, XLSX, HWP, HWPX) using the Polaris AI DataInsight Doc Extract API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from Office documents (DOCX, PPTX, XLSX, HWP, HWPX) using the Polaris AI DataInsight Doc Extract API.
 
-## Publisher: <br>
-[jacob-g-park](https://clawhub.ai/user/jacob-g-park) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 for the skill definition; Polaris DataInsight service terms apply to API usage. <br>
+## Publisher:
 
+[jacob-g-park](https://clawhub.ai/user/jacob-g-park)
 
-## Use Case: <br>
-Developers and engineers use this skill to extract text, tables, charts, images, shapes, equations, headers, and footers from Office-format documents for document parsing, data analysis, RAG pipelines, and automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0 for the skill definition; Polaris AI DataInsight Terms of Service for service usage
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to Polaris DataInsight for processing, which can expose confidential, regulated, customer, or proprietary content to an external service. <br>
-Mitigation: Use the skill only with documents your organization permits for Polaris DataInsight processing, and avoid confidential or regulated files unless that use is approved. <br>
-Risk: The Polaris DataInsight API key could be exposed if pasted into chats, scripts, or logs. <br>
-Mitigation: Store the API key in POLARIS_DATAINSIGHT_API_KEY and avoid hardcoding or sharing it in generated examples, logs, or chat transcripts. <br>
+## Use Case:
 
+Developers and engineers use this skill to extract text, tables, charts, images, shapes, equations, headers, and footers from Office-format documents for document analysis, data migration, search, and RAG workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacob-g-park/polaris-datainsight-doc-extract) <br>
-- [Polaris DataInsight](https://datainsight.polarisoffice.com) <br>
-- [Polaris DataInsight Doc Extract API endpoint](https://datainsight-api.polarisoffice.com/api/v1/datainsight/doc-extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with Python and shell code blocks; API responses are ZIP files containing unifiedSchema JSON and table or chart CSV data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POLARIS_DATAINSIGHT_API_KEY and uploads selected documents to Polaris DataInsight for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send Office document contents to a third-party Polaris DataInsight API under broad document-extraction trigger conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents you are authorized to process externally, and confirm the vendor's data handling, retention, regional processing, and API key controls before handling confidential, regulated, customer, employee, legal, or proprietary content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacob-g-park/skills/polaris-datainsight-doc-extract)
+- [Polaris AI DataInsight](https://datainsight.polarisoffice.com)
+- [Polaris DataInsight Doc Extract endpoint](https://datainsight-api.polarisoffice.com/api/v1/datainsight/doc-extract)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown with Python, curl, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced API returns a ZIP file containing unifiedSchema JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

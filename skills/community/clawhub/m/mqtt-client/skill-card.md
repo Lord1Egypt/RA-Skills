@@ -1,42 +1,61 @@
-## Description: <br>
-This skill connects to an MQTT broker and tracks messages from subscribed topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This is a simple client for connecting to an mqtt instance.
 
-## Publisher: <br>
-[enchantedmotorcycle](https://clawhub.ai/user/enchantedmotorcycle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[enchantedmotorcycle](https://clawhub.ai/user/enchantedmotorcycle)
 
-## Use Case: <br>
-Developers and operators use this skill to run a background MQTT client that connects with environment-provided broker settings and observes broker messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The client may subscribe to and print all broker topics visible to the configured account. <br>
-Mitigation: Use least-privilege MQTT credentials and prefer a version that honors MQTT_TOPIC or otherwise limits subscriptions to expected topics. <br>
-Risk: MQTT payloads may be logged to stdout, which can expose sensitive message contents. <br>
-Mitigation: Use only non-sensitive test topics or configure downstream logging to redact, restrict, or discard payload output. <br>
-Risk: Connection details are loaded from a .env file before the client runs. <br>
-Mitigation: Inspect the .env file before running bootstrap.sh and keep broker credentials scoped to the minimum required permissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MQTT Homepage](https://mqtt.org/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/enchantedmotorcycle/mqtt-client) <br>
+## Use Case:
 
+Developers and engineers use this skill to run a background MQTT client that connects to a broker, subscribes to messages, and logs received topic payloads.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text logs and shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs for 60 seconds and prints received MQTT topics and payloads to stdout.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The client subscribes broadly to broker topics, which can expose more message data than intended.
+
+Mitigation: Use a dedicated least-privileged MQTT account and narrow the subscription topic before deployment.
+
+Risk: Raw MQTT payload logging can disclose sensitive message contents.
+
+Mitigation: Disable payload logging or redact message contents before using the skill with sensitive brokers.
+
+Risk: Shell-sourcing a .env file can mishandle credentials or execute unintended shell content.
+
+Mitigation: Replace shell-sourcing with safe parsing of named configuration keys and restrict access to the configuration file.
+
+Risk: Non-local MQTT connections without TLS can expose broker traffic and credentials.
+
+Mitigation: Require TLS for non-local broker connections.
+
+## Reference(s):
+
+- [MQTT project website](https://mqtt.org/)
+- [ClawHub skill page](https://clawhub.ai/enchantedmotorcycle/skills/mqtt-client)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text logs and shell command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and MQTT connection details from environment variables.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Audits local skill packages or archives with a bundled Rust scanner engine and can optionally bridge to an external scanner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits local skill packages or archives with auto, native, or external scanner engines, with optional LLM semantic analysis.
 
-## Publisher: <br>
-[cyzlmh](https://clawhub.ai/user/cyzlmh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyzlmh](https://clawhub.ai/user/cyzlmh)
 
-## Use Case: <br>
-Developers and security reviewers use this skill before installing local skills, archives, or release bundles to inspect scanner findings, risk levels, and installation readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled or downloaded scanner binary requires trust in the release host. <br>
-Mitigation: Verify the scanner binary SHA-256 against the documented checksum before execution, or build the scanner from source. <br>
-Risk: Optional upload of scan reports can expose findings about private skills or internal packages. <br>
-Mitigation: Use --upload-url only with a trusted endpoint and confirm the upload destination before sending reports. <br>
-Risk: The optional external scanner bridge delegates analysis to a user-configured local tool. <br>
-Mitigation: Enable the external engine only for trusted local scanner tools and review their behavior separately. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to run pre-install checks on local skill packages, archives, or release bundles and review findings before installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyzlmh/cmic-skill-scanner-darwin-arm64) <br>
-- [Publisher profile](https://clawhub.ai/user/cyzlmh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and scanner findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local scan summaries, risk levels, engine status, and optional report output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata and build-info.json) <br>
+Risk: Package integrity is inconsistent because the advertised executable and checksum are missing and the fallback source build is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain and verify the missing binary and checksum from a trusted release, or build from a pinned and reviewed source revision before installation.
+
+Risk: The auto engine may invoke a locally resolved external scanner with the current user's permissions.
+
+Mitigation: Use --engine native unless the external scanner and its configuration are trusted.
+
+Risk: Optional upload or LLM review can send reports or sampled target text to configured endpoints.
+
+Mitigation: Enable --upload-url or --use-llm only with trusted endpoints after reviewing their data-handling expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyzlmh/skills/cmic-skill-scanner-darwin-arm64)
+- [Install guide](artifact/INSTALL.md)
+- [Build metadata](artifact/assets/build/build-info.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and scan-result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local report files when --output-dir is used.]
+
+## Skill Version(s):
+
+0.11.1 (source: server release metadata; binary build-info reports v0.11.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

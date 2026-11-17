@@ -1,43 +1,56 @@
-## Description: <br>
-Autonomous signup for external web services through browser automation, email verification, API key generation, and secure storage in 1Password. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through autonomous signup for external web services, including browser automation, email verification, API key generation, and secure storage in 1Password.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nissan](https://clawhub.ai/user/nissan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to create and bootstrap accounts on external web services while preserving authenticated browser session continuity, completing email or passkey verification, generating API keys, and storing resulting credentials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill grants broad authority for autonomous account creation, email access, API key creation, secret storage, and environment changes.
+
+Mitigation: Use only in approved environments and require explicit approval before signup, paid tiers, API key generation, secret storage, or environment changes.
+
+Risk: Signup details are sent to a hard-coded Notion registry.
+
+Mitigation: Remove the registry requirement or make it opt-in before using the skill for general users.
+
+Risk: Credential handling depends on access to email, browser sessions, and 1Password vault writes.
+
+Mitigation: Limit email and vault scope, review generated secrets before reuse, and ensure credentials belong only to intended agent-controlled accounts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to onboard accounts for explicitly named external web services, complete verification flows, create API credentials, store them in 1Password, and wire local environment configuration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create external service accounts and credentials with broad operational impact. <br>
-Mitigation: Use it only for explicitly named services and confirm account creation, paid tier selection, API key creation, and credential storage before execution. <br>
-Risk: The skill writes generated credentials to 1Password and may edit local environment configuration. <br>
-Mitigation: Review the target vault, item names, credential fields, and .env changes before applying them. <br>
-Risk: The skill requires signup metadata to be logged to Notion. <br>
-Mitigation: Install and run only if the user accepts the mandatory Notion logging requirement for service name, email, date, and purpose. <br>
+**Output Format:** [Markdown guidance with code blocks and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/web-service-onboarding) <br>
-- [Publisher profile](https://clawhub.ai/user/nissan) <br>
+**Other Properties Related to Output:** [May include browser automation steps, API calls, credential storage commands, and environment variable wiring guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account setup steps, browser automation patterns, API key creation guidance, 1Password storage commands, and environment configuration edits.] <br>
+1.0.2 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Productivity helper tool #5 for task management, time tracking, and workflow optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Productivity helper tool #5 for task management, time tracking, and workflow optimization. Helps organize daily tasks and boost efficiency.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-OpenClaw users can use this skill to organize daily tasks, track time, plan work, optimize workflows, and review progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares shell-capable and file-write permissions, so proposed actions can affect local files or run commands. <br>
-Mitigation: Invoke it explicitly, review proposed commands and file changes before approval, and install it only in environments where those permissions are acceptable. <br>
-Risk: Broad productivity guidance can produce plans or tracking suggestions that do not fit the user's actual priorities. <br>
-Mitigation: Review and adjust generated plans before relying on them for scheduling or workflow decisions. <br>
+## Use Case:
 
+External OpenClaw users use this skill to organize daily tasks, track time, optimize workflows, plan their day, and review progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-productivity-helper-5) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with task-planning guidance and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file or command actions because the skill declares Bash, Read, and Write access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad shell and file read/write access that is not justified by the productivity planning behavior described in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill carefully before installing and prefer a version without Bash access and with storage scoped only to what the workflow requires.
+
+Risk: The security verdict is suspicious even though no destructive or exfiltration behavior was found.
+
+Mitigation: Scan and review the skill before deployment, and use pinned or verified installation sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-productivity-helper-5)
+- [Complete setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown task planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized task lists, time tracking suggestions, workflow optimization guidance, daily plans, and progress review prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

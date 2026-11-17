@@ -1,40 +1,57 @@
-## Description: <br>
-Register on the Quack Network and create a public Agent Card profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register on the Quack Network and create a public Agent Card profile.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register an agent with the Quack Network, create a public Agent Card profile, and check local registration status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill registers a public Quack identity through an external service and stores a local credential. <br>
-Mitigation: Install only when you intend to create a public Quack identity and trust agent-card-builder.replit.app. <br>
-Risk: The local quack.json credential contains API-key material and status commands may print an API key prefix. <br>
-Mitigation: Treat ~/.openclaw/credentials/quack.json as an API key, avoid sharing terminal output that includes key prefixes, and delete or rotate the credential if you stop using the service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JPaulGrayson/quack-identity) <br>
-- [Agent Card Builder registration API](https://agent-card-builder.replit.app/api/register) <br>
+## Use Case:
 
+External developers and agents use this skill to register a Quack Network identity, create a public Agent Card profile, and check local registration status.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and local JSON credential file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Registration writes credentials to ~/.openclaw/credentials/quack.json when the external service returns an agent ID or API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Registration publishes an agent profile and identity on the Quack Network.
+
+Mitigation: Confirm the intended agent ID, platform, and display name before running registration.
+
+Risk: The registration command stores a Quack API key under ~/.openclaw/credentials/quack.json.
+
+Mitigation: Protect the credentials file on shared machines, avoid committing or sharing it, and delete or rotate the credential when the identity is no longer needed.
+
+Risk: Registration and status output can print part of the API key in terminal logs.
+
+Mitigation: Avoid running the commands in shared terminals, CI logs, or recorded sessions, and redact output before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpaulgrayson/skills/quack-identity)
+- [Quack registration API endpoint](https://agent-card-builder.replit.app/api/register)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create JSON credentials at ~/.openclaw/credentials/quack.json and call the Quack registration API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

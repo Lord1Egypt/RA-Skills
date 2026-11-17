@@ -1,43 +1,60 @@
-## Description: <br>
-Hot dog or not? Classify food photos and battle Nemotron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hot dog or not? Classify food photos and battle Nemotron.
 
-## Publisher: <br>
-[mishafyi](https://clawhub.ai/user/mishafyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mishafyi](https://clawhub.ai/user/mishafyi)
 
-## Use Case: <br>
-External users and developers use this skill to classify submitted food photos as hot dogs or not, compare the agent's description against Nemotron in a blind battle, and return the battle result and reveal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected food photos, model names, answers, and descriptions to a third-party service. <br>
-Mitigation: Use only when the user explicitly requests a hotdog battle or consents to the upload, and review the service's retention and sharing practices before deployment. <br>
-Risk: The skill text exposes a shared API token used for the battle API. <br>
-Mitigation: Remove or rotate the exposed token and use a scoped secret supplied by the runtime before deployment. <br>
-Risk: The security verdict is suspicious because the upload behavior and exposed token create privacy and credential exposure concerns. <br>
-Mitigation: Review the clawscan guidance, narrow activation to explicit requests, and document the data sent to the third-party API. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hotdog ClawHub Page](https://clawhub.ai/mishafyi/hotdog) <br>
-- [Publisher Profile](https://clawhub.ai/user/mishafyi) <br>
-- [Hot Dog or Not Battle](https://hotdogornot.xyz/battle) <br>
+## Use Case:
 
+External users and agent operators use this skill to classify food photos as hot dogs or not hot dogs, compare the result against Nemotron in a blind battle, and report the battle result.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown text with shell command execution steps and API-derived battle results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and image input for the battle workflow; no-photo activation returns a prompt to send a photo.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-10.1.1 (source: server release evidence; artifact frontmatter lists 10.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Submitted photos and generated details are sent to api.hotdogornot.xyz without an explicit consent step.
+
+Mitigation: Require explicit user consent before upload and avoid private images, faces, documents, location-sensitive scenes, or regulated data.
+
+Risk: The skill includes a bundled bearer token for the third-party service.
+
+Mitigation: Remove the embedded bearer token and use documented, secure credential handling before release.
+
+Risk: The skill relies on shell-based request construction for image upload and voting.
+
+Mitigation: Use safer non-shell request construction or tightly validate substituted values before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mishafyi/skills/hotdog)
+- [Publisher Profile](https://clawhub.ai/user/mishafyi)
+- [Hot Dog Battle](https://hotdogornot.xyz/battle)
+- [Battle API Round Endpoint](https://api.hotdogornot.xyz/api/arena/round)
+- [Battle API Vote Endpoint](https://api.hotdogornot.xyz/api/arena/vote/submit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with generated food-description analysis and battle results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute curl requests that upload the submitted image and generated details to a third-party battle service.]
+
+## Skill Version(s):
+
+10.1.1 (source: server release evidence; artifact frontmatter says 10.0.0 and artifact _meta.json says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

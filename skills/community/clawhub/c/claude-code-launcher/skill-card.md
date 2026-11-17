@@ -1,42 +1,61 @@
-## Description: <br>
-Launches Claude Code in a new macOS Terminal window, navigates to a project, enables Remote Control, and captures the session state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launches Claude Code in a new Terminal window with Remote Control enabled, including project navigation, startup, activation, screenshots, and error recovery.
 
-## Publisher: <br>
-[QusaiiSaleem](https://clawhub.ai/user/QusaiiSaleem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qusaiisaleem](https://clawhub.ai/user/qusaiisaleem)
 
-## Use Case: <br>
-Developers and engineers use this skill to start Claude Code in a selected project and enable Remote Control for access from another trusted device. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Desktop automation can send commands to the wrong foreground window or operate on an unexpected project path. <br>
-Mitigation: Review before installing or running, use only trusted project paths with ordinary characters, and keep the intended Terminal session focused during execution. <br>
-Risk: Remote Control can expose sensitive repository context through session URLs or QR codes. <br>
-Mitigation: Avoid enabling Remote Control for sensitive repositories unless the exposure is understood, and share session access only in trusted environments. <br>
-Risk: Saved logs and screenshots can contain sensitive project or session information. <br>
-Mitigation: Protect or periodically delete screenshots and logs saved under ~/.openclaw/workspace/logs/claude-code-launcher. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/QusaiiSaleem/claude-code-launcher) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to start Claude Code sessions for a chosen project and enable Remote Control so the session can be accessed from another device.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style status text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local logs and screenshots under ~/.openclaw/workspace/logs/claude-code-launcher.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote Control activation can expose a Claude Code session URL or QR code.
+
+Mitigation: Use the skill only in trusted environments and share the session details only with intended devices or users.
+
+Risk: The skill requires macOS screen and input automation permissions.
+
+Mitigation: Grant Screen Recording and Accessibility permissions only after verifying the Peekaboo and Claude CLI installations.
+
+Risk: Screenshots and launch logs are retained locally.
+
+Mitigation: Review and clear stored screenshots and logs after use, especially when working in sensitive projects.
+
+Risk: Terminal command construction around project paths can be unsafe for unusual directory names.
+
+Mitigation: Run the skill only on trusted project paths and avoid paths with unusual shell characters.
+
+## Reference(s):
+
+- [Troubleshooting Claude Code Launcher](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/qusaiisaleem/skills/claude-code-launcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text status messages with shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a locally stored screenshot path and Remote Control access details when activation succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

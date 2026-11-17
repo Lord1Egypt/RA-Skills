@@ -1,40 +1,53 @@
-## Description: <br>
-Rewrite raw experience descriptions into stronger, clearer, and more job-relevant resume bullets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite raw experience descriptions into stronger, clearer, and more job-relevant resume bullets.
 
-## Publisher: <br>
-[Andrewgufx](https://clawhub.ai/user/Andrewgufx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andrewgufx](https://clawhub.ai/user/andrewgufx)
 
-## Use Case: <br>
-External users, students, recent graduates, and early-career candidates use this skill to convert rough project, internship, coursework, or job descriptions into credible resume bullets aligned to target roles or job descriptions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated resume bullets could overstate a user's actual experience, metrics, technologies, or impact. <br>
-Mitigation: Review each rewritten bullet for factual accuracy before use, especially quantified outcomes, tools, and business impact claims. <br>
-Risk: Role- or job-description alignment could introduce language that is not supported by the user's source experience. <br>
-Mitigation: Keep only phrasing that truthfully matches the user's work and add missing context or measurable outcomes only when they can be verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Andrewgufx/bullet-rewriter) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/Andrewgufx) <br>
+## Use Case:
 
+External users, students, recent graduates, and early-career candidates use this skill to turn rough experience descriptions into recruiter-ready resume bullets aligned to a target role or job description.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown sections with resume bullet rewrites, rationale, and improvement tips.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces professional, quantified, JD-aligned, and best-recommended bullet variants; prompts for metrics when missing instead of fabricating them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated resume bullets may overstate a user's experience if the source description is ambiguous or job-description alignment is applied too aggressively.
+
+Mitigation: Review generated bullets for factual accuracy and do not include metrics, tools, technologies, or outcomes that the user did not actually provide or confirm.
+
+Risk: Users may include sensitive resume details, employer information, or private job materials in prompts.
+
+Mitigation: Avoid sharing private details or job materials that should not be processed by the assistant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andrewgufx/skills/bullet-rewriter)
+- [Publisher profile](https://clawhub.ai/user/andrewgufx)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with rewritten resume bullet sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces input understanding, issues in the original wording, professional, quantified, JD-aligned, and recommended bullet versions, plus improvement tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

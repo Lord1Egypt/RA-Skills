@@ -1,0 +1,83 @@
+{
+  "name": "周报生成",
+  "description": "基于本周完成的流水线执行记录，自动汇总生成周报。含完成率、耗时对比、成本统计、下周建议。",
+  "category": "analysis",
+  "version": "1.0",
+  "tags": ["周报", "汇总", "自动化"],
+  "three_elements": {
+    "time_estimate": "3-5 分钟",
+    "api_key_required": "不需要",
+    "output_files": ["weekly_report.md", "weekly_report_state.json"]
+  },
+  "dependencies": [
+    {
+      "skill_id": "tencent-docs",
+      "install_link": "https://skillhub.cn/skill/tencent-docs",
+      "description": "腾讯文档（用于周报协作编辑）",
+      "required": false
+    }
+  ],
+  "pipeline": {
+    "pipeline_name": "周报生成",
+    "version": "1.0",
+    "description": "基于本周流水线执行记录自动生成周报",
+    "agents": [
+      {
+        "id": "collector",
+        "name": "执行记录汇总Agent",
+        "role": "读取本周所有 pipeline_state.json 执行历史，提取完成率、耗时、重试次数",
+        "type": "task",
+        "inputs": ["state_files", "date_range"],
+        "outputs": ["weekly_stats"],
+        "depends_on": [],
+        "retry": 3,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"weekly_stats": {}}
+      },
+      {
+        "id": "cost_analyst",
+        "name": "成本分析Agent",
+        "role": "汇总本周所有流水线的 token 消耗与费用，识别异常高耗任务",
+        "type": "task",
+        "inputs": ["weekly_stats"],
+        "outputs": ["cost_summary"],
+        "depends_on": ["collector"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"cost_summary": {}}
+      },
+      {
+        "id": "approver",
+        "name": "TL 审核",
+        "role": "团队负责人审核周报内容，补充定性评价",
+        "type": "approval",
+        "inputs": ["weekly_stats", "cost_summary"],
+        "outputs": ["approved_report"],
+        "depends_on": ["cost_analyst"],
+        "retry": 0,
+        "timeout": 0,
+        "fallback": "abort",
+        "timeout_seconds": 600,
+        "timeout_action": "reject"
+      },
+      {
+        "id": "reporter",
+        "name": "周报排版Agent",
+        "role": "将周报数据渲染为结构化 Markdown，含表格、趋势图描述、下周建议",
+        "type": "task",
+        "inputs": ["weekly_stats", "cost_summary"],
+        "outputs": ["weekly_report"],
+        "depends_on": ["approver"],
+        "retry": 2,
+        "timeout": 120,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./weekly_report_state.json"
+    }
+  }
+}

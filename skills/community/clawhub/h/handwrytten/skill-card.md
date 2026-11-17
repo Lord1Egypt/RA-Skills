@@ -1,45 +1,61 @@
-## Description: <br>
-Send real handwritten notes through robots with real pens - physical cards mailed to recipients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send real handwritten notes through robots with real pens -- physical cards mailed to recipients.
 
-## Publisher: <br>
-[davidwachs](https://clawhub.ai/user/davidwachs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidwachs](https://clawhub.ai/user/davidwachs)
 
-## Use Case: <br>
-External users and teams use this skill to let an AI assistant browse Handwrytten card options, prepare handwritten-card orders, manage address-book assets, and send single or bulk physical mail after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place paid physical-mail orders, including bulk sends and basket submissions. <br>
-Mitigation: Require explicit human confirmation of the card, font, message, recipients, sender, extras, schedule, and cost before send_order or basket_send. <br>
-Risk: The Handwrytten API key authorizes account actions and account data access. <br>
-Mitigation: Use a dedicated or revocable API key if available, keep it out of chat, and configure it only as HANDWRYTTEN_API_KEY in the client environment. <br>
-Risk: The skill can create, update, delete, or upload account assets such as recipients, senders, QR codes, images, and custom cards. <br>
-Mitigation: Review destructive or asset-changing operations before execution and confirm uploads use intended public image URLs. <br>
+## Use Case:
 
+External developers and business users connect an AI assistant to Handwrytten so it can browse cards and fonts, manage address data, create custom card assets, and submit handwritten-note mailings. The skill is suited to customer outreach, thank-you notes, bulk mailings, and order tracking workflows where physical mail is intended.
 
-## Reference(s): <br>
-- [Handwrytten MCP Server](https://github.com/handwrytten/handwrytten-mcp-server) <br>
-- [Handwrytten API](https://www.handwrytten.com/api/) <br>
-- [Handwrytten](https://www.handwrytten.com) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Text and JSON returned by MCP tools, with configuration snippets for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and HANDWRYTTEN_API_KEY; tool actions can create paid physical-mail orders and modify Handwrytten account assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact package.json and MCP server report 1.2.0) <br>
+Risk: The skill can submit paid physical-mail orders, including bulk sends and gift-card orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review and explicit approval in the client before live sends, bulk sends, gift-card orders, or basket submission.
+
+Risk: The skill can process recipient addresses and mutate saved recipients, senders, custom cards, images, and QR codes.
+
+Mitigation: Use an API key tied to an account where the assistant is allowed to process that data, and prefer a limited or test account when evaluating the skill.
+
+Risk: The server does not enforce confirmation safeguards before actions that spend credits or change account data.
+
+Mitigation: Add client-side confirmation gates for order placement, deletions, asset changes, and other irreversible or costly actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidwachs/skills/handwrytten)
+- [Project homepage from ClawHub metadata](https://github.com/handwrytten/handwrytten-mcp-server)
+- [Handwrytten website](https://www.handwrytten.com)
+- [Handwrytten API settings](https://www.handwrytten.com/api/)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [MCP tool results as JSON-formatted text, plus concise agent-facing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and HANDWRYTTEN_API_KEY; tool calls can submit paid mail orders and mutate saved Handwrytten account data.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact package.json and MCP server report 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

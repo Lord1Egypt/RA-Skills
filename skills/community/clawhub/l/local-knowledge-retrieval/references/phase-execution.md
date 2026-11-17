@@ -11,14 +11,10 @@
 
 ### 0.1 路径验证：原始文件夹还在吗？
 
-**方式：** 读取 `data_structure.md` 中 `实际位置` 记录的路径，检查是否存在。
+**方式：** 读取 `data_structure.md` 中 `实际位置` 记录的路径，并与项目目录 `source_manifest.json` 中的已确认路径进行精确核验。
 
 → **存在** → 进入 0.2
-→ **不存在** → 执行路径恢复流程：
-  1. 从已知根路径出发，搜索可能的候选位置
-  2. 上报用户确认
-  3. 更新 data_structure.md 中的 `实际位置`
-  4. 进入 0.2
+→ **不存在、不匹配、或为 symlink/junction** → 停止自动维护；上报用户并重新确认源目录。确认后同时更新 `data_structure.md` 和 `source_manifest.json`，再进入 0.2。
 
 ### 0.2 文件索引新鲜度检查
 
@@ -27,7 +23,7 @@
 → **无差异** → 进入 0.3
 → **有差异** → 自动处理：
   - 新增文件 → 补条目到 data_structure.md（初始描述来自文件名+目录）
-  - 已删文件 → 移除条目 + 清对应缓存
+  - 已删文件 → 移除索引条目；不自动删除缓存
   - 标记 BM25 状态为 `stale` → 进入 0.3
 
 > 毫秒级操作，只读文件名，不读文件内容。
@@ -42,7 +38,7 @@ python .agents/skills/knowledge-retrieval/scripts/build_kb_index.py --project <�
 → 告知用户「已重建搜索索引」→ 进入 Phase A
 → BM25 索引缺失/损坏 → `search_kb.py` 调用时会自动触发重建（代码级兜底，由 `scripts/search_kb.py` 内的 auto-rebuild 逻辑实现）
 → BM25 未安装 → 告知用户「未检测到 BM25 搜索库，是否安装？如不安装将使用纯 AI 语义匹配」
-   → 用户确认 → 优先运行 `scripts/setup.bat`（自动检测 Python + 安装全部依赖）
+   → 用户确认 → 优先运行本包内 `scripts/setup.bat`（自动检测 Python + 安装固定版本依赖）
      → setup.bat 可用 → 安装完成 → 重建索引 → 进入 Phase A
      → setup.bat 不可用（非 Windows/无权限等）→ 备用：`pip install bm25s==0.3.8` → 重建索引 → 进入 Phase A
    → 用户拒绝 → 跳过 BM25 通道，仅用 AI 语义匹配 → 进入 Phase A

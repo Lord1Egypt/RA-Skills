@@ -1,41 +1,59 @@
-## Description: <br>
-中文 Word 文档自动化校对工具，用于对中文文本或 Word 文档进行标点符号检查、语法检查和错别字检查。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文 Word 文档自动化校对工具。当用户需要对中文文本或 Word 文档进行标点符号检查、语法检查、错别字检查时使用此 skill。触发词：语法检查、错别字、标点符号、校对、检查文档。
 
-## Publisher: <br>
-[bbxiudeyi](https://clawhub.ai/user/bbxiudeyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbxiudeyi](https://clawhub.ai/user/bbxiudeyi)
 
-## Use Case: <br>
-External users and document authors use this skill to proofread Chinese Word documents, split document text into sentences, identify punctuation, typo, and grammar issues, and produce correction data, a review report, or a corrected document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate a corrected Word document, so accepted changes may alter user documents. <br>
-Mitigation: Keep the original document, review the generated corrected .docx against the proofreading report, and rely on the corrected document only after human approval. <br>
-Risk: Proofreading suggestions may be incorrect, especially for context-dependent wording or professional terms the skill says it does not handle. <br>
-Mitigation: Use the report as review guidance, preserve specialized terminology, and require a human editor to approve punctuation, typo, and grammar changes before publication. <br>
+## Use Case:
 
+External users and developers use this skill to proofread Chinese Word documents for punctuation, typo, and sentence-level grammar issues, then generate structured corrections, a Word review report, and a corrected document copy.
 
-## Reference(s): <br>
-- [Common sentence errors](references/common-sentence-errors.md) <br>
-- [Common typos](references/common-typos.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON correction data, Word .docx reports, corrected Word .docx files, and shell commands for the bundled Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a corrections.json structure with punctuation, typo, grammar, and summary sections; corrected document output is written as a new .docx file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local JSON, report, and corrected document outputs may contain extracted or modified text from sensitive Word documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a workspace appropriate for the document sensitivity and handle generated files under the same confidentiality controls as the source document.
+
+Risk: The workflow depends on python-docx for reading and writing Word files.
+
+Mitigation: Install python-docx from a trusted, pinned Python environment before use.
+
+Risk: Automated proofreading suggestions can be incorrect or change intended meaning if applied without review.
+
+Mitigation: Review corrections.json and the generated proofreading report before applying changes to the document.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bbxiudeyi/skills/word-chinese-automation)
+- [Common Sentence Errors](references/common-sentence-errors.md)
+- [Common Typos](references/common-typos.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON correction data and generated Word document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local outputs may include sentences JSON, corrections JSON, a Word proofreading report, and a corrected Word document copy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

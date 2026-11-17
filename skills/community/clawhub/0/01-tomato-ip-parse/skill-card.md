@@ -1,40 +1,55 @@
-## Description: <br>
-Analyzes Tomato novel IP content to extract worldbuilding, character details, core conflict, highlight points, and a basic compliance result for AI short-drama adaptation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Tomato novel IP content to extract worldbuilding, character settings, core conflicts, highlight points, and an initial compliance result for short-drama adaptation workflows.
 
-## Publisher: <br>
-[ghwyever](https://clawhub.ai/user/ghwyever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghwyever](https://clawhub.ai/user/ghwyever)
 
-## Use Case: <br>
-Content adaptation teams and agents use this skill to turn Chinese web novel text into structured adaptation notes for short-drama development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full manuscript text is sent to the configured model API. <br>
-Mitigation: Use only an API_BASE provider you trust and avoid sending sensitive or unauthorized manuscript content. <br>
-Risk: The returned compliance_check is not a real compliance review and may mark unsafe content as safe. <br>
-Mitigation: Treat compliance_check as non-authoritative and run a separate content, legal, or policy review before relying on it. <br>
+## Use Case:
 
+Developers and content teams use this skill to turn Tomato novel text into structured IP analysis for AI short-drama adaptation. It is intended for extracting story facts and creative planning signals, not for final content moderation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghwyever/01-tomato-ip-parse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON object with ip_info and compliance_check fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY, API_BASE, and MODEL_NAME; sends novel text to the configured model API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill sends full novel text and the configured API key to an external endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive novel text and a trusted HTTPS API endpoint that you control.
+
+Risk: The compliance_check result should not be treated as reliable final moderation because the inspected code always marks content as safe.
+
+Mitigation: Run independent content review or a dedicated moderation workflow before relying on compliance conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghwyever/skills/01-tomato-ip-parse)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact manifest.json](artifact/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object containing structured IP information and a compliance_check object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API_KEY, API_BASE, and MODEL_NAME configuration for the external model endpoint.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

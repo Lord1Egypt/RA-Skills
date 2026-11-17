@@ -1,41 +1,56 @@
-## Description: <br>
-Helps update OpenClaw on fnOS by checking the running version, finding the latest stable version, running npm install in the managed-install directory, and verifying the updated gateway version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through checking and updating OpenClaw on fnOS by comparing the running version with the latest npm package and installing the update in the managed-install directory.
 
-## Publisher: <br>
-[pandaltsgo](https://clawhub.ai/user/pandaltsgo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pandaltsgo](https://clawhub.ai/user/pandaltsgo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and OpenClaw administrators use this skill to update an fnOS OpenClaw gateway without writing to global npm or system application paths.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can overwrite the active OpenClaw gateway from a mutable npm package.
+
+Mitigation: Confirm the target OpenClaw version and package source before running the install.
+
+Risk: The update workflow does not include rollback or staging steps.
+
+Mitigation: Back up or stage the managed install before updating an important gateway.
+
+Risk: Changing npm registry settings can affect later npm commands.
+
+Mitigation: Avoid changing the global npm registry unless that persistent setting is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers maintaining OpenClaw on fnOS use this skill to choose the managed-install update path, avoid global-install permission failures, and verify that the active gateway package has been updated. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The update command replaces the OpenClaw package currently used by the gateway. <br>
-Mitigation: Confirm the current and target versions first, run the command only for the intended managed install, and keep a rollback or backup plan. <br>
-Risk: An incorrect OPENCLAW_DATA_DIR could point the update at the wrong OpenClaw installation. <br>
-Mitigation: Verify OPENCLAW_DATA_DIR resolves to the intended managed-install path before running npm install. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pandaltsgo/fnos-openclaw-updater) <br>
-- [Publisher profile](https://clawhub.ai/user/pandaltsgo) <br>
+**Other Properties Related to Output:** [Guidance is intended to be reviewed before executing npm install against an active OpenClaw gateway.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides version checks, managed-install npm update commands, and post-update verification.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

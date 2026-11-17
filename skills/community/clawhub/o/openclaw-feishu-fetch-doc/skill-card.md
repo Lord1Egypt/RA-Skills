@@ -1,43 +1,49 @@
-## Description: <br>
-Fetches user-provided Feishu/Lark cloud document content as Markdown and explains how to handle embedded images, files, and whiteboards with companion Feishu tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取飞书云文档内容。返回文档的 Markdown 内容，支持处理文档中的图片、文件和画板（需配合 feishu_doc_media 工具）。
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenfa188](https://clawhub.ai/user/chenfa188)
 
-## Use Case: <br>
-Agents and users use this skill to read Feishu/Lark document or wiki URLs they provide, retrieve Markdown content, and route media or non-document wiki objects to the appropriate Feishu tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose content from Feishu/Lark document tokens or URLs provided to the agent. <br>
-Mitigation: Use a Feishu account with appropriate access limits and review requested document tokens or URLs before fetching. <br>
-Risk: Embedded images, files, whiteboards, sheets, or bitables may trigger additional access or download actions through companion tools. <br>
-Mitigation: Explicitly approve attachment or media downloads and any sheet or bitable operations before execution. <br>
-Risk: Wiki links may resolve to object types other than cloud documents. <br>
-Mitigation: Resolve the wiki node type first and call the matching Feishu tool only after confirming the returned object type. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch Feishu/Lark cloud document content as Markdown and identify referenced images, files, and whiteboards that require separate media download handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenfa188/openclaw-feishu-fetch-doc) <br>
-- [Publisher profile](https://clawhub.ai/user/chenfa188) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown document content with structured guidance for related Feishu tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Media objects are represented by tokens that require explicit companion-tool downloads when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Private Feishu/Lark document links and downloaded media can contain sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent should access configured Feishu/Lark documents, treat document links and media as sensitive, and confirm attachment save locations before downloading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenfa188/skills/openclaw-feishu-fetch-doc)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown with Feishu/Lark media token references and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Media items such as images, files, and whiteboards are represented as tokens and require a separate download tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Injects a visual heartbeat animation and real-time status indicator into the OpenClaw Web UI to show Kemi's active state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Injects a visual "heartbeat" animation and real-time status indicator into the OpenClaw Web UI to show Kemi's active state.
 
-## Publisher: <br>
-[yang77160](https://clawhub.ai/user/yang77160) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang77160](https://clawhub.ai/user/yang77160)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to add a visible heartbeat effect and status indicator to the Web UI so Kemi's online, thinking, or busy state is easier to see. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The npx install step may fetch and execute package code outside the provided skill artifact. <br>
-Mitigation: Review the install command and package source before running it. <br>
-Risk: The skill intentionally changes visible OpenClaw Web UI behavior. <br>
-Mitigation: Install it only when the heartbeat animation and status indicator are desired, and verify the UI change in the target environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add a visual heartbeat animation and Chinese-language status indicator to the Web UI so the agent's apparent activity state is visible during interaction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang77160/kemi-heartbeat-plugin) <br>
-- [Publisher profile](https://clawhub.ai/user/yang77160) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and inline shell command instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces UI injection guidance for an agent; no credentials, data access, or network calls are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The install path relies on unpinned external package execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the command before running it, prefer a pinned and trusted clawhub CLI or plugin version, and install in a low-privilege or isolated environment.
+
+Risk: The status indicator mainly reflects visual UI styling rather than verified real-time agent state.
+
+Mitigation: Treat the indicator as a presentation hint and verify operational state through trusted OpenClaw or system signals when accuracy matters.
+
+Risk: The UI injection script modifies page styles and fixed-position DOM content.
+
+Mitigation: Inspect the script and test it in an isolated browser profile before enabling it in a regular Web UI session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang77160/skills/kemi-heartbeat-plugin)
+- [ClawHub publisher profile](https://clawhub.ai/user/yang77160)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript and installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a UI injection script and setup guidance for an OpenClaw Web UI plugin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact frontmatter, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

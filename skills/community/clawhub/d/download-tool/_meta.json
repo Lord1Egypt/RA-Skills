@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn73317q9xaw5rh45066hgdmjx82g8rs",
+  "ownerId": "kn7c56fmw1b0xy60rz75be0ds1816468",
   "slug": "download-tool",
   "version": "1.1.0",
-  "publishedAt": 1773999390524
+  "name": "Video Download Tool",
+  "description": "支持下载 YouTube、TikTok、抖音、小红书等平台的视频到 OSS 存储",
+  "author": "NBCIO-Boot Team",
+  "tags": ["video", "download", "youtube", "tiktok", "douyin", "xiaohongshu", "media", "oss", "redbook", "short-video", "video-downloader"],
+  "license": "MIT",
+  "repository": "https://github.com/nbcio-boot/download-tool",
+  "homepage": "https://github.com/nbcio-boot/download-tool#readme",
+  "publishedAt": 1742025600000
 }

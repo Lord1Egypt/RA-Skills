@@ -1,53 +1,69 @@
-## Description: <br>
-Runs an end-to-end vnstock workflow for free-tier-safe Vietnam stock valuation, ranking, and API operations with strict rate-limit control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs an end-to-end vnstock workflow for free-tier-safe Vietnam stock valuation, ranking, and API operations with strict rate-limit control; used when users request Vietnamese stock analysis under free-tier constraints.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-External analysts and developers use this skill to run a free-tier-safe vnstock workflow for Vietnam stock screening, valuation, ranking, and analyst-style reporting while tracking coverage and missing data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python scripts, contact financial data providers, and write result files. <br>
-Mitigation: Review commands before execution, run in a controlled workspace, and inspect generated files before reuse. <br>
-Risk: The universal invocation helper accepts module, class, method, and argument values that can broaden what code is executed. <br>
-Mitigation: Prefer the fixed valuation pipeline scripts and use only trusted vnstock class and method values. <br>
-Risk: The skill may read an optional VNSTOCK_API_KEY from the environment or a skill-local .env file. <br>
-Mitigation: Store credentials only in local environment configuration, avoid sharing output directories that may reveal run context, and rotate keys if exposure is suspected. <br>
-Risk: Financial provider limits, blocking, stale data, or missing fields can affect analysis quality. <br>
-Mitigation: Keep free-tier pacing, do not bypass provider blocking with rotating proxies, and report coverage, missing fields, and confidence with any ranking or valuation. <br>
-Risk: Brokerage-related connectors or DNSE material could be mistaken for authorization to support real-money trading. <br>
-Mitigation: Treat brokerage and trade-execution behavior as out of scope unless explicit controls and authorization are in place. <br>
+## Use Case:
 
+External users and developers use this skill to screen, value, rank, and summarize Vietnamese equities with vnstock while observing free-tier request limits. It supports both end-to-end valuation runs and targeted vnstock API calls for market data, company data, financial ratios, trading data, and fund listings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ndtchan/vnstock-free-expert) <br>
-- [VNStock Capability Reference](references/capabilities.md) <br>
-- [Free-Tier Playbook](references/free_tier_playbook.md) <br>
-- [VNStock Method Matrix](references/method_matrix.md) <br>
-- [Vnstock Overview](references/vnstock/01-overview.md) <br>
-- [Vnstock Installation and API Key Configuration](references/vnstock/02-installation.md) <br>
-- [Vnstock Insiders Program](https://vnstocks.com/insiders-program) <br>
-- [Vnstock Login](https://vnstocks.com/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON/CSV output files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local outputs/ files and load optional VNSTOCK_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The dynamic vnstock invocation helper can execute broad local Python class and method calls when supplied untrusted module, class, method, or argument values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated environment and allow only reviewed, trusted invocation arguments.
+
+Risk: API keys passed with command-line flags can be exposed through process listings, logs, shell history, or generated output files.
+
+Mitigation: Prefer environment-based or skill-local key loading, avoid inline --api-key values, restrict file permissions, and redact generated artifacts before sharing.
+
+Risk: The skill depends on external vnstock packages and live data providers while server-resolved import provenance is unavailable for this release.
+
+Mitigation: Pin and review vnstock dependencies before installation, install in a disposable environment, and confirm package sources before execution.
+
+Risk: Market, financial, and ranking outputs can be incomplete, stale, or source-dependent, which can make investment conclusions misleading.
+
+Mitigation: Require the documented coverage, missing-field, confidence, and risk sections, and treat generated rankings as screening inputs rather than final investment advice.
+
+## Reference(s):
+
+- [VNStock Capability Reference](artifact/references/capabilities.md)
+- [Free-Tier Playbook](artifact/references/free_tier_playbook.md)
+- [VNStock Method Matrix](artifact/references/method_matrix.md)
+- [Invocation Recipes](artifact/references/invocation_recipes.md)
+- [VNStock Documentation README](artifact/references/vnstock/README.md)
+- [VNStock Overview](artifact/references/vnstock/01-overview.md)
+- [VNStock Installation](artifact/references/vnstock/02-installation.md)
+- [VNStock Official Website](https://vnstocks.com)
+- [VNStock Plans and Rate Limits](https://vnstocks.com/insiders-program)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON handoff bundles, CSV/JSON data artifacts, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis outputs should include what was run, coverage, top results, key risks, confidence, and gaps.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

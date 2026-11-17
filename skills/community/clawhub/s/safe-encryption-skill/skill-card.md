@@ -1,45 +1,60 @@
-## Description: <br>
-Encrypt, decrypt, and manage keys with the SAFE CLI, a modern GPG alternative with post-quantum support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypt, decrypt, and manage keys with the SAFE CLI - a modern GPG alternative with post-quantum support.
 
-## Publisher: <br>
-[grittygrease](https://clawhub.ai/user/grittygrease) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[grittygrease](https://clawhub.ai/user/grittygrease)
 
-## Use Case: <br>
-Developers and agents use this skill to encrypt, decrypt, generate keys, and exchange SAFE messages through the SAFE CLI or browser fallback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may install a downloaded SAFE binary with elevated privileges. <br>
-Mitigation: Require user approval before installation, verify the binary checksum, and prefer a user-local install path. <br>
-Risk: The skill handles sensitive plaintext, private keys, and passphrases. <br>
-Mitigation: Confirm the exact files, keys, recipients, and operations before encryption or decryption, and avoid browser fallback for highly sensitive material. <br>
-Risk: Browser and network sharing workflows may expose sensitive material or route it to unintended destinations. <br>
-Mitigation: Use the CLI for sensitive workflows where possible and confirm each network destination before sharing encrypted messages or keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/grittygrease/safe-encryption-skill) <br>
-- [SAFE Web Interface](https://thesafe.dev) <br>
-- [SAFE Downloads](https://thesafe.dev/download/) <br>
-- [SAFE Download Checksums](https://thesafe.dev/downloads/checksums.txt) <br>
-- [SAFE GitHub Repository](https://github.com/grittygrease/safe) <br>
+## Use Case:
 
+Developers and agents use this skill to encrypt, decrypt, inspect, and manage encrypted files and key material with the SAFE CLI or the SAFE browser interface when the CLI is unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and automation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI commands, browser automation steps, encryption recipient guidance, and key-management guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may attempt automatic installation of a remote SAFE binary with elevated permissions.
+
+Mitigation: Use a user-controlled install path, verify the downloaded binary and checksum before use, and do not permit automatic sudo installation.
+
+Risk: The skill handles private keys and may reuse existing SSH keys for decryption workflows.
+
+Mitigation: Prefer dedicated SAFE keys, keep private keys out of browser forms unless explicitly required, and review any workflow that accesses existing SSH keys.
+
+Risk: Passwords entered directly in command lines or automation traces can be exposed.
+
+Mitigation: Use interactive prompts or environment-variable based password references instead of literal command-line passwords.
+
+## Reference(s):
+
+- [SAFE web interface](https://thesafe.dev)
+- [SAFE downloads](https://thesafe.dev/download/)
+- [SAFE download checksums](https://thesafe.dev/downloads/checksums.txt)
+- [SAFE GitHub repository](https://github.com/grittygrease/safe)
+- [ClawHub skill release](https://clawhub.ai/grittygrease/skills/safe-encryption-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands and workflow guidance for SAFE CLI operations, browser-based encryption workflows, key management, and encrypted file handling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

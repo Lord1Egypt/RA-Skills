@@ -1,43 +1,59 @@
-## Description: <br>
-玄空数术·六爻占卜 supports divination readings and follow-up chat, using user-provided numbers, question context, and a provider API key to call the Yao Liuyao service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+玄空数术·六爻占卜，支持起卦占卜和问答聊天两种模式。
 
-## Publisher: <br>
-[bigbigtooth](https://clawhub.ai/user/bigbigtooth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigbigtooth](https://clawhub.ai/user/bigbigtooth)
 
-## Use Case: <br>
-External users and agent operators use this skill to request Liuyao divination readings, select an appropriate divination category, and ask follow-up questions about the generated reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a chat-supplied provider API key in ~/.liuyao_key. <br>
-Mitigation: Use a dedicated revocable key, delete ~/.liuyao_key when finished, and prefer platform-managed secrets before deployment. <br>
-Risk: The skill instructs the agent to run shell commands that include raw user text. <br>
-Mitigation: Review command arguments before execution and revise the skill to use safe argument passing for user-supplied questions. <br>
-Risk: Divination questions and provider API keys are sent to yao.gizzap.com. <br>
-Mitigation: Avoid sensitive personal, health, financial, or account details and install only when this data sharing is acceptable. <br>
+## Use Case:
 
+External users use this skill to request Liuyao divination readings or follow-up divination chat through the Yao Yao persona. The agent collects a clear question, required divination numbers, and a category, then calls the bundled service client and returns text guidance and optional hexagram imagery.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bigbigtooth/yuenkong-liuyao) <br>
-- [Yao Liuyao service endpoint](https://yao.gizzap.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and service JSON responses interpreted for the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a separate downloaded divination image followed by text when the service returns an image URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: API keys may be pasted into chat and stored in a plaintext home-directory file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret store where available, avoid exposing keys in shared chats, and restrict any local key file permissions.
+
+Risk: Personal divination questions are sent to the external yao.gizzap.com service.
+
+Mitigation: Tell users before sending sensitive questions to the third-party service and avoid transmitting unnecessary personal data.
+
+Risk: Returned image URLs may be downloaded locally and sent through OpenClaw messaging with weak safeguards.
+
+Mitigation: Validate remote image URLs and content types, send media only to the intended recipient, and clean up temporary image files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigbigtooth/skills/yuenkong-liuyao)
+- [Publisher profile](https://clawhub.ai/user/bigbigtooth)
+- [Yao service endpoint](https://yao.gizzap.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Files]
+
+**Output Format:** [Markdown text with inline shell commands and optional image media]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a divination answer and an image URL that the agent downloads and sends as separate media.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

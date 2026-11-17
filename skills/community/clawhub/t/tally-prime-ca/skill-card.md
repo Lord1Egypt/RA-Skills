@@ -1,47 +1,62 @@
-## Description: <br>
-Tally Prime CA receives structured accounting JSON, posts vouchers to a locally running TallyPrime instance, reads accounting reports, manages masters, and generates invoice or receipt PDFs through the tallyca CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tally Prime CA receives structured bridge JSON to post vouchers to a local TallyPrime instance, read accounting reports, manage accounting masters, and generate invoice or receipt PDFs through tallyca.
 
-## Publisher: <br>
-[meetpaladiya44](https://clawhub.ai/user/meetpaladiya44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meetpaladiya44](https://clawhub.ai/user/meetpaladiya44)
 
-## Use Case: <br>
-External accountants, chartered accountants, and accounting operators use this skill to move validated voucher data into TallyPrime, create or update required accounting masters, review standard reports, and generate GST-compliant PDFs. It is intended for controlled Tally environments where write actions are approved before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live accounting data, including creating, altering, importing, or cancelling Tally entries. <br>
-Mitigation: Use it only in a controlled Tally environment with backups, least-privilege access, and explicit operator approval for every write action. <br>
-Risk: The skill depends on host-level CLI installation and a Tally bridge or tunnel endpoint. <br>
-Mitigation: Pin and preinstall tallyca, avoid sudo package installation from agent sessions, and restrict TALLY_URL and bridge access to trusted endpoints. <br>
-Risk: Accounting reports and company exports may expose sensitive financial data. <br>
-Mitigation: Minimize full company, account, and report exports and share only the fields needed for the current accounting task. <br>
+## Use Case:
 
+External accounting professionals and CA teams use this skill to automate TallyPrime voucher posting, report exports, ledger and inventory setup, and GST-oriented invoice or receipt PDF generation while retaining confirmation checkpoints for live accounting changes.
 
-## Reference(s): <br>
-- [Bridge Input Schema](artifact/reference/bridge-input.md) <br>
-- [Masters](artifact/reference/masters.md) <br>
-- [Vouchers](artifact/reference/vouchers.md) <br>
-- [Reports and Data Export](artifact/reference/reports.md) <br>
-- [Inventory](artifact/reference/inventory.md) <br>
-- [Errors](artifact/reference/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON summaries, XML request templates, and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TALLY_URL and a reachable local TallyPrime XML-over-HTTP endpoint; PDF flows require the tallyca CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can create, alter, cancel, and export live financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for the company and intended write operation, verify required ledgers and voucher totals before posting, and treat exported reports as confidential financial data.
+
+Risk: An incorrectly scoped TALLY_URL could target the wrong TallyPrime instance.
+
+Mitigation: Lock TALLY_URL to the intended TallyPrime endpoint, preferably loopback in production, and verify the target company before any accounting activity.
+
+Risk: Global package installation or sudo setup commands can change the host environment.
+
+Mitigation: Preinstall and pin tallyca and related dependencies through an administrator-controlled process; avoid agent-run sudo or global npm installation during normal use.
+
+## Reference(s):
+
+- [Bridge Input Schema](reference/bridge-input.md)
+- [Voucher Templates](reference/vouchers.md)
+- [Masters Templates](reference/masters.md)
+- [Reports and Data Export](reference/reports.md)
+- [Inventory Templates](reference/inventory.md)
+- [Errors and Troubleshooting](reference/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, structured result summaries, and generated PDF files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include TallyPrime posting summaries, report summaries, setup guidance, and PDF files generated by tallyca.]
+
+## Skill Version(s):
+
+1.0.9 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

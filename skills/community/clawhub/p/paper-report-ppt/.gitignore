@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Runtime temp
+.env
+*.log
+tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+scripts/test_output.pptx

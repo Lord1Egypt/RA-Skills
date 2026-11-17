@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn7cgyt2t4yj784tr22pednhbn81ac6r",
+  "ownerId": "bkamuz",
   "slug": "yandex-tracker-cli",
   "version": "1.2.8",
-  "publishedAt": 1772812710674
+  "config": {
+    "env": {
+      "TOKEN": {
+        "description": "OAuth токен для Yandex Tracker (получить: Tracker UI → Settings → Applications → OAuth)",
+        "required": true,
+        "sensitive": true,
+        "example": "y0__..."
+      },
+      "ORG_ID": {
+        "description": "Org ID (on-premise) или Cloud Org ID. Можно найти в DevTools → Network → заголовок X-Org-Id",
+        "required": true,
+        "sensitive": false,
+        "example": "1234567"
+      }
+    },
+    "files": [
+      {
+        "path": "~/.yandex-tracker-env",
+        "description": "Опционально: используется только если TOKEN и ORG_ID не заданы в окружении. Читается как key=value (парсятся только TOKEN и ORG_ID), без выполнения кода. Предпочтительно — переменные окружения.",
+        "required": false,
+        "sensitive": true
+      }
+    ],
+    "bins": [
+      "curl",
+      "jq"
+    ]
+  }
 }

@@ -1,48 +1,64 @@
-## Description: <br>
-uView UI provides documentation, component references, utility references, and Vue sample code for building uni-app Vue 2 mobile interfaces with the uView UI 2.x component library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+uView UI helps agents provide component references, setup guidance, and Vue examples for uni-app Vue 2 projects using the uView UI 2.x component library.
 
-## Publisher: <br>
-[wufengsheng](https://clawhub.ai/user/wufengsheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufengsheng](https://clawhub.ai/user/wufengsheng)
 
-## Use Case: <br>
-Developers and engineers use this skill when building uni-app Vue 2 pages that need uView UI components, utility functions, component props, events, slots, configuration notes, or ready-to-adapt Vue examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes example code for upload endpoints, auth headers, clipboard behavior, dev-server settings, and verification-code handling. <br>
-Mitigation: Treat examples as reference material and review or adapt security-sensitive code before using it in an application. <br>
-Risk: The reference content includes privacy-unfriendly donor ledger material. <br>
-Mitigation: Avoid rendering or redistributing donor ledger content unless that privacy exposure is acceptable. <br>
+## Use Case:
 
+Developers use this skill while building uni-app Vue 2 mobile and multi-platform pages with uView UI components, utility functions, layout patterns, and common interaction examples. It supports fast lookup of component APIs and generation of Vue-oriented implementation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wufengsheng/skills/uview-ui) <br>
-- [uView UI Documentation](https://www.uviewui.com/) <br>
-- [Introduction](references/dev-guide/intro.md) <br>
-- [Installation](references/dev-guide/install.md) <br>
-- [Quick Start](references/dev-guide/quickstart.md) <br>
-- [Changelog](references/dev-guide/changelog.md) <br>
-- [Button Component Reference](references/basic/button.md) <br>
-- [Form Component Reference](references/form/form.md) <br>
-- [HTTP Utility Reference](references/js/http.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Vue code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only agent output; examples should be reviewed before use in an application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, created 2026-06-24) <br>
+Risk: Generated HTTP interceptor or token-injection examples could expose credentials or apply authentication logic too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated request configuration, token handling, and interceptor behavior before using it in production.
+
+Risk: Upload and rich-text parsing examples can process untrusted files, URLs, or markup.
+
+Mitigation: Validate uploads server-side and sanitize or constrain rendered rich-text content before deployment.
+
+Risk: OTP and sharing examples can affect user verification flows or global page behavior.
+
+Mitigation: Confirm rate limits, backend verification, and global mixin scope before integrating these examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wufengsheng/skills/uview-ui)
+- [uView UI Introduction](https://www.uviewui.com/components/intro.html)
+- [uView UI Installation](https://www.uviewui.com/components/install.html)
+- [uView UI Quickstart](https://www.uviewui.com/components/quickstart.html)
+- [uView UI Compatibility Notes](https://www.uviewui.com/components/feature.html)
+- [uView HTTP Utility](https://www.uviewui.com/js/http.html)
+- [uView Upload Component](https://www.uviewui.com/components/upload.html)
+- [uView Parse Component](https://www.uviewui.com/components/parse.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Vue, JavaScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include component API summaries, setup steps, code snippets, and review notes for security-relevant examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

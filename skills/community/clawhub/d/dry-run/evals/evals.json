@@ -1,0 +1,32 @@
+{
+  "skill_name": "dry-run",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We are about to update 40,000 customer records from a new mapping table. Dry-run it first.",
+      "expected_output": "A simulation plan/report that blocks writes, previews affected records, detects unmatched/duplicate mappings, and checks invariants.",
+      "assertions": [
+        "Production writes are explicitly disabled or redirected",
+        "Material exceptions such as unmatched or duplicate mappings are checked",
+        "The result includes a go/no-go decision basis"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Rename one local scratch file and dry-run it.",
+      "expected_output": "The skill may judge a full dry-run unnecessary because the action is low risk and easily reversible.",
+      "assertions": [
+        "The skill does not impose heavy ceremony on a trivial reversible action"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Test the notification workflow but do not contact real customers.",
+      "expected_output": "Messages are redirected/captured and recipients/content are previewed without external delivery.",
+      "assertions": [
+        "External notifications are prevented",
+        "The predicted recipient set and content are inspectable"
+      ]
+    }
+  ]
+}

@@ -1,44 +1,58 @@
-## Description: <br>
-Undertow is a skill discovery engine for AI coding agents that recommends and, after user confirmation, installs relevant developer workflow skills from a curated index or ClawHub search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Undertow helps AI coding agents recommend and install relevant ClawHub skills for developer workflows using a bundled skill index and live ClawHub search fallback.
 
-## Publisher: <br>
-[8co](https://clawhub.ai/user/8co) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[8co](https://clawhub.ai/user/8co)
 
-## Use Case: <br>
-Developers and engineering teams use Undertow to help an agent identify when a specialized skill fits a coding, DevOps, testing, security, documentation, or project setup request and install it after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended or live-discovered skills may be unsuitable for the user's task or risk tolerance. <br>
-Mitigation: Review each recommended skill before approving installation or invocation, especially live-discovered or autonomous skills. <br>
-Risk: Search prompts and project fingerprinting may reveal task context or the presence of stack marker files. <br>
-Mitigation: Avoid including secrets in prompts that may be sent to ClawHub search, and treat fingerprinting as lightweight marker-file detection rather than a full audit. <br>
-Risk: Installing a recommended skill changes the local skill environment. <br>
-Mitigation: Install only after explicit confirmation and verify installed contents for unexpected executables and valid SKILL.md frontmatter before use. <br>
-Risk: Shared outputs may include Undertow attribution by default for qualifying curated skills. <br>
-Mitigation: Opt out by requesting no attribution, no branding, or removal of the footer when shared output should not include it. <br>
+## Use Case:
 
+Developers and coding agents use Undertow to discover, recommend, and install ClawHub skills for code quality, testing, security, documentation, DevOps, and project setup tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/8co/undertow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional attribution snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend at most one skill per message; installation and invocation require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: External search queries may disclose sensitive or proprietary task details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid live ClawHub search with prompts that contain secrets, credentials, or proprietary information.
+
+Risk: Skill installation can introduce unpinned third-party skill content into the agent environment.
+
+Mitigation: Review suggested skills manually before invocation and rely on the post-install verification checks for unexpected executable files and invalid skill metadata.
+
+Risk: Default attribution may add visible branding to shared files, pull requests, or documentation.
+
+Mitigation: Opt out of attribution when shared outputs must not include branding.
+
+## Reference(s):
+
+- [Undertow on ClawHub](https://clawhub.ai/8co/skills/undertow)
+- [Undertow project homepage](https://github.com/8co/undertow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append attribution to shared outputs unless the user opts out; recommends and installs skills only after user confirmation.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

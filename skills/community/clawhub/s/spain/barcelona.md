@@ -1,159 +1,159 @@
 # Barcelona
 
-## Barrios
+## Neighborhoods
 
-| Barrio | Para qué | Realidad |
+| Neighborhood | For what | Reality |
 |--------|----------|----------|
-| **Gótico** | Casco antiguo | Bonito pero turístico, carteristas |
-| **Born/Ribera** | Tapas, museos | Trendy, caro |
-| **Raval** | Multicultural | Animado noche, cuidado zonas |
-| **Barceloneta** | Playa | Muy turístico, paella trampa |
-| **Gràcia** | Local, plazas | El Barcelona real |
-| **Eixample** | Modernismo, Gaudí | Cuadrícula, tiendas |
-| **Poble Sec** | Tapas baratas | Carrer Blai, poco turista |
-| **Poblenou** | Playa alternativa | Más tranquilo, creativo |
+| **Gothic Quarter** | Old town | Pretty but touristy, pickpockets |
+| **Born/Ribera** | Tapas, museums | Trendy, expensive |
+| **Raval** | Multicultural | Lively at night, watch some spots |
+| **Barceloneta** | Beach | Very touristy, paella tourist trap |
+| **Gràcia** | Local, plazas | The real Barcelona |
+| **Eixample** | Modernisme, Gaudí | Grid layout, shops |
+| **Poble Sec** | Cheap tapas | Carrer Blai, few tourists |
+| **Poblenou** | Alternative beach | Quieter, creative |
 
-## Gaudí (Cómo Hacerlo)
+## Gaudí (How to Do It)
 
 ### Sagrada Família
-- **Reservar:** SIEMPRE online, semanas antes
-- **Precio:** €26-36 según torres
-- **Mejor hora:** 9am (menos gente) o atardecer (luz)
-- **Tiempo:** 1.5-2 horas
-- **Torres:** Nativity mejor vistas que Passion
+- **Book:** ALWAYS online, weeks ahead
+- **Price:** €26-36 depending on towers
+- **Best time:** 9am (fewer people) or sunset (light)
+- **Time:** 1.5-2 hours
+- **Towers:** Nativity has better views than Passion
 
 ### Park Güell
-- **Zona monumental:** €10, reserva horaria
-- **Zona gratuita:** Arriba, mejores vistas de Barcelona
-- **Tip:** Ve a la gratuita, luego decide si vale pagar
+- **Monumental zone:** €10, timed entry
+- **Free zone:** Uphill, best views of Barcelona
+- **Tip:** Go to the free part, then decide if it's worth paying
 
 ### Casa Batlló
-- **Precio:** €35-45 (caro)
-- **Alternativa:** Mírala desde fuera, entra a Casa Amatller (gratis)
+- **Price:** €35-45 (expensive)
+- **Alternative:** View it from outside, go into Casa Amatller (free)
 
 ### La Pedrera
-- **Precio:** €25-28
-- **Noche:** Conciertos en azotea (verano)
-- **Mejor:** Azotea con chimeneas
+- **Price:** €25-28
+- **Night:** Rooftop concerts (summer)
+- **Best:** Rooftop with the chimneys
 
-### Gratis/Barato
-- **Casa Vicens:** €18 pero primera casa de Gaudí
-- **Palau Güell:** €12, menos gente
-- **Fachadas:** Pasear Passeig de Gràcia gratis
+### Free/Cheap
+- **Casa Vicens:** €18 but Gaudí's first house
+- **Palau Güell:** €12, fewer people
+- **Facades:** Stroll Passeig de Gràcia for free
 
-## Dónde Comer
+## Where to Eat
 
-### Tapas de Verdad
-| Sitio | Barrio | Especialidad |
+### Real Tapas
+| Place | Neighborhood | Specialty |
 |-------|--------|--------------|
-| Bar del Pla | Born | Cocina catalana moderna |
-| El Xampanyet | Born | Cava y anchoas, histórico |
-| Can Paixano | Barceloneta | Cava €1, bocatas |
-| Quimet y Quimet | Poble Sec | Montaditos, conservas |
-| La Pepita | Gràcia | Hamburguesas, pintxos |
-| Cervecería Catalana | Eixample | Tapas variadas, popular |
+| Bar del Pla | Born | Modern Catalan cooking |
+| El Xampanyet | Born | Cava and anchovies, historic |
+| Can Paixano | Barceloneta | €1 cava, sandwiches |
+| Quimet y Quimet | Poble Sec | Montaditos, tinned seafood |
+| La Pepita | Gràcia | Burgers, pintxos |
+| Cervecería Catalana | Eixample | Varied tapas, popular |
 
-### Vermut (Tradición Domingo)
-| Sitio | Barrio | Nota |
+### Vermouth (Sunday Tradition)
+| Place | Neighborhood | Note |
 |-------|--------|------|
-| Bar Calders | Sant Antoni | El epicentro |
-| Els Sortidors del Parlament | Sant Antoni | Terraza |
-| Morro Fi | Poble Sec | Clásico |
+| Bar Calders | Sant Antoni | The epicenter |
+| Els Sortidors del Parlament | Sant Antoni | Terrace |
+| Morro Fi | Poble Sec | Classic |
 
-### Mercados
-| Mercado | Realidad |
+### Markets
+| Market | Reality |
 |---------|----------|
-| Boqueria | 70% turístico, 30% real. Ir temprano (8-9am) |
-| Santa Caterina | Arquitectura bonita, menos turistas |
-| Sant Antoni | Renovado, local, domingos libros |
+| Boqueria | Mostly touristy now; go early (8-9am) for the working side |
+| Santa Caterina | Nice architecture, fewer tourists |
+| Sant Antoni | Renovated, local, Sunday book market |
 
-### Paella (Dónde NO)
-- ❌ Barceloneta paseo marítimo (trampa)
-- ❌ Cualquier sitio con foto de paella fuera
-- ✅ Can Solé (Barceloneta, caro pero real)
-- ✅ Escribà (Barceloneta, decente)
-- ✅ Elx (Gràcia, arroces buenos)
+### Paella (Where NOT to)
+- ❌ Barceloneta seafront promenade (trap)
+- ❌ Anywhere with a photo of paella outside
+- ✅ Can Solé (Barceloneta, expensive but real)
+- ✅ Escribà (Barceloneta, decent)
+- ✅ Elx (Gràcia, good rice dishes)
 
-## Playas
+## Beaches
 
-| Playa | Ambiente | Nota |
+| Beach | Vibe | Note |
 |-------|----------|------|
-| Barceloneta | Masificada | Evitar agosto |
-| Sant Sebastià | Nudista parcial | Restaurantes caros |
-| Nova Icària | Familias | Volley, deportes |
-| Bogatell | Más tranquila | Menos chiringuitos |
-| Mar Bella | LGBTQ+ nudista | Más alternativa |
+| Barceloneta | Packed | Avoid in August |
+| Sant Sebastià | Partly nudist | Expensive restaurants |
+| Nova Icària | Families | Volleyball, sports |
+| Bogatell | Quieter | Fewer beach bars |
+| Mar Bella | LGBTQ+ nudist | More alternative |
 
-**Mejor:** Ir en mayo-junio o septiembre. Julio-agosto = sardinas.
+**Best:** Go in May-June or September. July-August = packed like sardines.
 
-## Vida Nocturna
+## Nightlife
 
-### Copas
-| Zona | Tipo | Hora |
+### Drinks
+| Area | Type | Hours |
 |------|------|------|
-| Born | Cócteles, trendy | 21-02h |
-| Gótico (Pl. Reial) | Terrazas, turístico | 20-02h |
-| Raval | Alternativo | 22-03h |
-| Gràcia | Local, tranquilo | 21-01h |
-| Eixample | LGBTQ+ (Gaixample) | 22-05h |
+| Born | Cocktails, trendy | 9pm-2am |
+| Gothic (Pl. Reial) | Terraces, touristy | 8pm-2am |
+| Raval | Alternative | 10pm-3am |
+| Gràcia | Local, chill | 9pm-1am |
+| Eixample | LGBTQ+ (Gaixample) | 10pm-5am |
 
-### Discotecas
-| Club | Tipo | Entrada |
+### Clubs
+| Club | Type | Cover |
 |------|------|---------|
-| Razzmatazz | 5 salas, variado | €15-20 |
-| Apolo | Electrónica, indie | €12-18 |
-| Pacha | Comercial, turístico | €20-30 |
-| Moog | Techno, pequeño | €10-15 |
+| Razzmatazz | 5 rooms, varied | €15-20 |
+| Apolo | Electronic, indie | €12-18 |
+| Pacha | Commercial, touristy | €20-30 |
+| Moog | Techno, small | €10-15 |
 | Sala Bikini | Rock, indie | €10-15 |
 
-**Hora:** Discotecas abren 00:00, llenas desde 02:00
+**Timing:** Clubs open at midnight, packed from 2am
 
-## Carteristas (Serio)
+## Pickpockets (Serious)
 
-**Zonas peligrosas:**
-- La Rambla (top España en robos)
+**Dangerous spots:**
+- La Rambla (top of Spain for thefts)
 - Metro L3 (Liceu, Drassanes)
-- Sagrada Família exterior
-- Park Güell entrada
+- Outside the Sagrada Família
+- Park Güell entrance
 
-**Técnicas:**
-- "Firma petición" (distracción)
-- Grupo rodea en escalera mecánica
-- Tirón de móvil (motos)
+**Techniques:**
+- "Sign this petition" (distraction)
+- A group surrounds you on the escalator
+- Phone snatching (from motorbikes)
 
-**Protección:**
-- Riñonera bajo ropa
-- Móvil bolsillo delantero
-- Mochila delante en metro
-- Nada en mesa de terraza
+**Protection:**
+- Money belt under clothing
+- Phone in front pocket
+- Backpack worn on your front in the metro
+- Nothing on the terrace table
 
-## Excursiones
+## Day Trips
 
-| Destino | Cómo | Tiempo | Qué |
+| Destination | How | Time | What |
 |---------|------|--------|-----|
-| Montserrat | Tren+cremallera | 5-6h | Monasterio, vistas |
-| Sitges | Tren 40min | 4-6h | Playa, pueblo gay-friendly |
-| Girona | AVE 38min | 6h | Judería, río, Celler Can Roca |
-| Figueres | Tren 1h | 5h | Museo Dalí |
-| Costa Brava | Coche | Día entero | Tossa, Cadaqués |
-| Vic | Tren 1h | 4h | Mercado, embutidos |
+| Montserrat | Train + rack railway | 5-6h | Monastery, views |
+| Sitges | Train 40min | 4-6h | Beach, gay-friendly town |
+| Girona | AVE 38min | 6h | Jewish quarter, river, Celler Can Roca |
+| Figueres | Train 1h | 5h | Dalí Museum |
+| Costa Brava | Car | Full day | Tossa, Cadaqués |
+| Vic | Train 1h | 4h | Market, cured meats |
 
-## Calendario
+## Calendar
 
-| Mes | Evento | Nota |
+| Month | Event | Note |
 |-----|--------|------|
-| Febrero | Santa Eulàlia | Gigantes, correfocs |
-| Abril | Sant Jordi (23) | Libros y rosas |
-| Junio | Sónar | Festival electrónica |
-| Junio | Primavera Sound | Festival música |
-| Junio | Sant Joan (23-24) | Hogueras playa |
-| Agosto | Gràcia | Calles decoradas |
-| Septiembre | La Mercè | Fiestas mayores |
+| February | Santa Eulàlia | Giants, correfocs (fire runs) |
+| April | Sant Jordi (23) | Books and roses |
+| June | Sónar | Electronic music festival |
+| June | Primavera Sound | Music festival |
+| June | Sant Joan (23-24) | Beach bonfires |
+| August | Gràcia | Decorated streets |
+| September | La Mercè | Main city festival |
 
-## Ahorro
+## Saving Money
 
-- **Artículo T-Casual:** 10 viajes metro/bus €11.35
-- **Museos gratis:** Primer domingo mes (MNAC, Picasso)
-- **Fuentes agua:** Potable en toda la ciudad
-- **Vermut:** €3-4 con olivas incluidas
-- **Menú del día:** €12-15 en Gràcia, Poble Sec
+- **T-Casual pass:** 10 metro/bus rides €11.35
+- **Free museums:** First Sunday of the month (MNAC, Picasso)
+- **Water fountains:** Drinkable all over the city
+- **Vermouth:** €3-4 with olives included
+- **Menú del día:** €12-15 in Gràcia, Poble Sec

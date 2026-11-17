@@ -1,46 +1,56 @@
-## Description: <br>
-Qa Team Skills provides six standardized QA assistant prompts for requirement review, test case design, agent testing, bug analysis, reporting, and team management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language QA assistant for requirements reviews, test-case design, agent testing, defect analysis, reports, team workflows, and exploratory testing.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers and test managers use this skill to standardize AI-assisted QA workflows across requirement review, test design, AI agent testing, defect analysis, reporting, and team management. It is intended to support human review and decision-making rather than replace QA judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: QA reports, bug exports, team metrics, and agent system prompts may contain sensitive business, personal, customer, or credential data. <br>
-Mitigation: Redact secrets and personal or customer data before use, and only provide files or system prompts when organizational policy permits it. <br>
-Risk: Generated QA reviews, test cases, root-cause suggestions, and management summaries can be incomplete or misleading if used without review. <br>
-Mitigation: Apply the skill's human review posture for high-severity findings, P0 test cases, lower-confidence root-cause analysis, and management-facing reports. <br>
+## Use Case:
 
+QA engineers and test managers use this skill to review requirements, design and assess tests, analyze defects, prepare reports, and reuse local testing history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-team-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/kokxi) <br>
-- [skills.sh listing](https://skills.sh/Kokxi/qa-team-skills) <br>
-- [README](artifact/README.md) <br>
-- [User manual](artifact/docs/user-manual.md) <br>
-- [Process integration guide](artifact/docs/process-integration.md) <br>
-- [Changelog](artifact/docs/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown and structured text templates, with occasional shell commands for installation or validation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; it does not directly initiate network requests or external tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Local testing history may retain sensitive input or customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide real credentials, personal data, payment identifiers, or sensitive screenshots; review and confirm memory writes and cleanup.
+
+Risk: Generated test cases, security-test payloads, and reports may be unsafe or inaccurate if used without review.
+
+Mitigation: Review payloads before running them, check critical cases and report figures against test systems, and keep final QA decisions with a human reviewer.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/kokxi/skills/qa-team-skills)
+- [QA skill user manual](docs/user-manual.md)
+- [QA workflow reference](references/qa-team.md)
+- [Local memory guide](memory/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured Markdown responses and reports, with optional local JSON testing records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language QA output; local test history may be retained with user confirmation]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release, skill frontmatter, VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

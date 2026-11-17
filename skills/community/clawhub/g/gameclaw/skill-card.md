@@ -1,42 +1,56 @@
-## Description: <br>
-GameClaw helps users identify available terminal games, choose supported Linux or macOS release assets, and run downloaded CLI binaries from GitHub Releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, update, and launch GameClaw terminal games. Use when a user asks which GameClaw games exist, wants to download or update a GameClaw game binary, needs the correct macOS/Linux/Windows asset, or hits a GitHub network failure while fetching game bundles. Look up the live game list from the latest GitHub Release and catalog/games.json; this skill does not contain that list.
 
-## Publisher: <br>
-[Arcobalneo](https://clawhub.ai/user/Arcobalneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arcobalneo](https://clawhub.ai/user/arcobalneo)
 
-## Use Case: <br>
-External users and developers use this prompt-only skill to find GameClaw terminal games, select the correct supported platform package, and receive concise unpack and run instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may download and run a third-party game binary from GitHub. <br>
-Mitigation: Confirm the repository, release asset name, and platform before running the binary. <br>
-Risk: Users may request an unsupported platform or a missing release asset. <br>
-Mitigation: Ask for the target platform when unknown, only claim linux-x86_64 and darwin-arm64 support, and state plainly when an asset is unavailable. <br>
+## Use Case:
 
+External users can ask an agent to check the current GameClaw catalog and latest release, then choose the correct platform asset, install or update it while preserving saves, launch a game, or troubleshoot download failures.
 
-## Reference(s): <br>
-- [GameClaw on ClawHub](https://clawhub.ai/Arcobalneo/gameclaw) <br>
-- [GameClaw GitHub repository](https://github.com/Arcobalneo/gameclaw) <br>
-- [GameClaw latest releases](https://github.com/Arcobalneo/gameclaw/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no local source files or runtime tools are required by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Download troubleshooting may change system-wide hosts settings, while mirrored downloads and bundled checksums do not by themselves establish publisher authenticity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep installation within the user's account; avoid the hosts workaround, preserve existing proxy settings, and verify checksums or signatures through a trusted publisher source before using a mirror. Do not dismiss operating-system warnings solely because a bundled checksum matches.
+
+Risk: Downloaded game binaries and future remote release or catalog content were not audited with the skill text.
+
+Mitigation: Review the selected release and its authenticity information before running a downloaded binary, and treat live catalog or release content as unverified until checked.
+
+## Reference(s):
+
+- [GameClaw repository](https://github.com/Arcobalneo/gameclaw)
+- [Latest GameClaw release](https://github.com/Arcobalneo/gameclaw/releases/latest)
+- [Live game catalog](https://raw.githubusercontent.com/Arcobalneo/gameclaw/main/catalog/games.json)
+- [GameClaw on ClawHub](https://clawhub.ai/arcobalneo/skills/gameclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Bash and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Platform- and release-dependent; the game list and available assets are looked up live.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

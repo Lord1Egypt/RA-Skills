@@ -1,42 +1,55 @@
-## Description: <br>
-查询上海落户公示信息，包括人才引进公示和居转户公示。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries public Shanghai residency notice information, including talent-introduction and residence-permit-to-hukou notice lists from the Shanghai International Talent Network.
 
-## Publisher: <br>
-[luduoxin](https://clawhub.ai/user/luduoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luduoxin](https://clawhub.ai/user/luduoxin)
 
-## Use Case: <br>
-External users and agents use this skill to find public Shanghai settlement notice pages for talent-introduction and residence-permit-to-household-registration processes, then review the official links or printed summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public sh-italent.com pages and may open browser tabs automatically. <br>
-Mitigation: Run with --no-browser when only printed results are needed, and review the official URLs before relying on the results. <br>
-Risk: Company and person query options are limited and may not filter results as expected. <br>
-Mitigation: Treat company or person-specific results as preliminary, then open the official notice pages and verify names or organizations manually. <br>
+## Use Case:
 
+Agents use this skill to help users find current Shanghai residency public notice pages and report official links for talent-introduction and residence-permit conversion notices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luduoxin/shanghai-luohu) <br>
-- [Shanghai International Talent official site](https://www.sh-italent.com/) <br>
-- [Shanghai settlement notice list](https://www.sh-italent.com/News/NewsList.aspx?TagID=5696) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with official notice URLs; may open browser tabs unless --no-browser is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public web pages at runtime and does not require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill makes live requests to sh-italent.com and opens notice pages in a local browser by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this network and browser behavior is acceptable; use --no-browser when printed results are sufficient.
+
+Risk: Company and person filtering is described in examples, but the inspected code does not implement that filtering.
+
+Mitigation: Treat company or person searches as unsupported unless the skill code is updated and re-reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luduoxin/skills/shanghai-luohu)
+- [Shanghai International Talent Network](https://www.sh-italent.com/)
+- [Shanghai residency notice list](https://www.sh-italent.com/News/NewsList.aspx?TagID=5696)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text with official notice titles, dates, and URLs; may also open pages in a local browser.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Use --no-browser when only printed results are desired.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

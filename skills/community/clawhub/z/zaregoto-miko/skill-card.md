@@ -1,37 +1,54 @@
-## Description: <br>
-Transforms user-provided text into a lively Zaregoto Miko-inspired character voice using absurd contrast metaphors and energetic phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided material into a Chinese, fictional-character-inspired Zaregoto Miko speaking style with absurd contrast metaphors and lively phrasing.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-External users and agents use this skill to rewrite supplied material in a niche Chinese character-voice style. It is suited to creative style conversion requests and should be constrained by the caller when a specific response language or tone is required. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Skill examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/niracler/zaregoto-miko) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language text, typically Chinese, optionally in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only style conversion; may answer in Chinese unless the caller constrains language.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+External users and agents use this skill to rewrite supplied text into a lively Chinese style inspired by the Zaregoto character Miko Aoii, emphasizing playful tone and absurd contrast metaphors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill does not clearly require preserving the input language unless the user asks.
+
+Mitigation: Ask the user whether to preserve the original language when multilingual fidelity matters.
+
+Risk: Style rewriting can change tone or meaning from the source material.
+
+Mitigation: Review rewritten output against the original intent before using it in user-facing or sensitive contexts.
+
+## Reference(s):
+
+- [Style Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/niracler/skills/zaregoto-miko)
+- [Publisher Profile](https://clawhub.ai/user/niracler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Text or Markdown style-rewrite guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are generated prose based on user-provided source material.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Multi-platform Order Profit Calculator that processes e-commerce or ERP order exports and returns profit reports by order, store, SKU, and platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform order profit calculator that analyzes Excel order exports and produces profit reports by order, store, SKU, and platform.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-External sellers, operators, and developers use this skill to analyze Excel order exports from e-commerce platforms or ERPs, map platform-specific fields, and calculate revenue, costs, net profit, and margin by order, store, SKU, and platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Order exports and generated reports can contain sensitive order, store, SKU, financial, or customer-related data. <br>
-Mitigation: Use only authorized exports, prefer redacted or minimal spreadsheets, and treat stdout, JSON, Markdown, and header-analysis outputs as sensitive. <br>
-Risk: The README describes a hosted API path that is not documented with data handling, storage, or retention details in the provided evidence. <br>
-Mitigation: Use the local workflow by default and avoid the hosted API path unless a future release documents what data is sent, stored, and retained. <br>
+## Use Case:
 
+External e-commerce sellers and operators use this skill to inspect Excel order exports, map order fields, and calculate per-order and aggregate profit metrics for operational review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiji0802/seller-profit-calculator) <br>
-- [Publisher Profile](https://clawhub.ai/user/qiji0802) <br>
-- [YK Global Website](https://yk-global.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports printed to stdout, optional JSON result files, optional Markdown files, and JSON header-analysis files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local Excel .xlsx and .xls order exports; optional field-map JSON can be supplied inline or from a file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Order exports can contain customer data and business-sensitive revenue, cost, and profit columns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary customer or sensitive business columns before sharing files with an agent or running analysis.
+
+Risk: The skill writes optional JSON and Markdown outputs to user-supplied paths.
+
+Mitigation: Verify output paths before using --json or --markdown so reports are written only to intended locations.
+
+Risk: The advertised hosted API/API key path is not implemented in the inspected parser.
+
+Mitigation: Use the local Excel workflow unless hosted API behavior is separately verified.
+
+Risk: The broad any-platform claim depends on exports containing recognizable order, revenue, cost, and profit fields.
+
+Mitigation: Inspect headers first and provide an explicit field-map JSON when automatic column matching is incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiji0802/skills/seller-profit-calculator)
+- [YK-Global website](https://yk-global.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report printed to stdout with optional JSON or Markdown output files and field-map JSON guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local Excel .xlsx and .xls order exports; output quality depends on recognizable revenue, cost, status, store, SKU, and platform fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

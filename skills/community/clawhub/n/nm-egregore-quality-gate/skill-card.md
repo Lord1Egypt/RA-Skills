@@ -1,39 +1,54 @@
-## Description: <br>
-Orchestrates the QUALITY pipeline stage for egregore work items, running code review, unbloat, and test updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates the QUALITY pipeline stage for egregore work items, running code review, unbloat, and test updates.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run egregore QUALITY checks for work items and pull requests. It applies convention checks, invokes mapped review/refinement/test/documentation skills, collects findings, and records or posts a quality verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send code diffs to external reviewer CLIs, and one optional reviewer path may not enforce the read-only isolation it describes. <br>
-Mitigation: Use the default Codex path or engines with explicit read-only/tool-limited controls, avoid the Droid engine unless independently confirmed safe, and review findings or fixes before committing or posting them. <br>
+## Use Case:
 
+Developers using the egregore workflow use this skill to run convention checks, code review, refinement, test updates, and documentation updates for work items or pull requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-egregore-quality-gate) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/egregore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce quality findings, pass or fix-required verdicts, suggested fixes, and PR review comments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The workflow can commit fixes or submit a GitHub review, and the security guidance notes a possible command-name conflict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands, changes, review target, and publication effects before allowing the workflow to proceed.
+
+Risk: Security analysis was partial because two local references could not be resolved.
+
+Mitigation: Resolve and review the referenced material before relying on the analysis.
+
+## Reference(s):
+
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-egregore-quality-gate)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands]
+
+**Output Format:** [Review findings and a pipeline verdict, with shell commands as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed fixes and a recorded review verdict.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

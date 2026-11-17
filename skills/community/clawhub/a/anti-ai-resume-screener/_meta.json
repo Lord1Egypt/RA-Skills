@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7cxx2etjsv32mtpsbz5cyhsn85mm8t",
+  "owner": "custom",
   "slug": "anti-ai-resume-screener",
-  "version": "1.0.0",
-  "publishedAt": 1777443239778
+  "displayName": "Anti-AI Resume Screener Pro",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1774900000000
+  },
+  "mergedFrom": [
+    "cn-resume-optimizer-1.0.0",
+    "anti-ai-resume-screener"
+  ],
+  "history": []
 }

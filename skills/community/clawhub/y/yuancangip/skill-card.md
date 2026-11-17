@@ -1,41 +1,54 @@
-## Description: <br>
-输入一个 IP（动漫、影视、文创等）名称，自动获取其近两年电商销售数据，并生成含年度对比、趋势、潜力评估的专业报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入一个 IP（动漫、影视、文创等）名称，自动获取其近两年电商销售数据，并生成含年度对比、趋势、潜力评估的专业报告。
 
-## Publisher: <br>
-[luoshanya](https://clawhub.ai/user/luoshanya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoshanya](https://clawhub.ai/user/luoshanya)
 
-## Use Case: <br>
-External users and business analysts use this skill to evaluate IP merchandising performance from ecommerce sales data, compare recent yearly metrics, and produce a concise commercialization assessment with operating recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to place a paid bearer token in persistent MCP configuration. <br>
-Mitigation: Use a dedicated revocable token with limited balance or scope where available, monitor paid usage, and rotate or revoke the token after testing. <br>
-Risk: The configured MCP endpoint uses raw HTTP, which can expose bearer credentials in transit. <br>
-Mitigation: Prefer an HTTPS endpoint on a verified domain before production use, and install only if the provider and endpoint are trusted. <br>
+## Use Case:
 
+External users and business analysts use this skill to look up IP ecommerce data and produce a structured commercial potential report with year-over-year comparisons, trend interpretation, and operating suggestions. Users may also use it to configure the required ip-data MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoshanya/yuancangip) <br>
-- [Yuancang IP service](https://www.yuancangip.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown report with configuration JSON guidance when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the configured ip-data MCP service and use returned JSON sales fields to calculate year-over-year changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill instructs users to configure a paid bearer token against a plaintext HTTP endpoint at a raw IP address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use a real or paid token with this endpoint unless the publisher provides HTTPS, clear data-handling terms, and safe secret storage guidance.
+
+Risk: The skill may ask for an API token during setup.
+
+Mitigation: Avoid pasting secrets into chat; configure credentials directly in the local MCP configuration using a disposable or least-privilege token where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoshanya/skills/yuancangip)
+- [Yuancang IP service website](https://www.yuancangip.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown report with optional JSON configuration snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces IP ecommerce analysis from MCP-returned JSON data; configuration guidance requires a user-provided bearer token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

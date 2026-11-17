@@ -1,43 +1,62 @@
-## Description: <br>
-Automates WeChat message sending and semi-automatic reply suggestions on macOS by searching contacts, using OCR for chat context, and pasting or sending messages through the desktop client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates and assists WeChat desktop replies on macOS by finding a contact or group chat, using OCR when needed, pasting a prepared or suggested reply, and sending it.
 
-## Publisher: <br>
-[chenjunlei1989-glitch](https://clawhub.ai/user/chenjunlei1989-glitch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjunlei1989-glitch](https://clawhub.ai/user/chenjunlei1989-glitch)
 
-## Use Case: <br>
-External users and developers use this skill to send messages or prepare OCR-based reply suggestions in a logged-in macOS WeChat desktop environment. It is intended for local chat automation where the user can grant accessibility permissions, verify the target contact, and test behavior before relying on automated sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages from a logged-in WeChat account after receiving local UI-control permissions. <br>
-Mitigation: Grant accessibility permissions only after reviewing the installed scripts, confirm the target contact before use, and test with a safe recipient such as 文件传输助手 before normal operation. <br>
-Risk: OCR and UI automation can misread the chat state or select the wrong search result, especially across WeChat versions, window layouts, or group-chat search results. <br>
-Mitigation: Run initial single-chat and group-chat tests, keep automatic sending disabled or manually confirmed until behavior is verified, and recalibrate click paths if the interface layout differs. <br>
-Risk: The reviewed artifact references a Homebrew-installed AppleScript runtime file that is not included in the artifact evidence. <br>
-Mitigation: Inspect the installed AppleScript from the Homebrew package before executing the wrapper and avoid relying on the skill if the runtime file cannot be verified. <br>
+## Use Case:
 
+External users and developers on macOS use this skill to automate sending WeChat messages and to generate OCR-based suggested replies for desktop chats after configuring local permissions and dependencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjunlei1989-glitch/wechat-auto-reply-mac) <br>
-- [Publisher profile](https://clawhub.ai/user/chenjunlei1989-glitch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, WeChat Desktop, local accessibility permissions, and local OCR dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can control WeChat, the clipboard, screen capture, and message sending, which could send unintended messages or expose private chat content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after accepting those permissions, test first with File Transfer Assistant or a test contact, and avoid auto-send where possible.
+
+Risk: OCR and UI automation depend on local WeChat layout, macOS permissions, and screen state, so contact or group selection may be unreliable across environments.
+
+Mitigation: Run a basic local validation after installation and recalibrate click areas or single-chat/group-chat paths when the WeChat version, window size, or display layout differs.
+
+Risk: OCR screenshots and logs may contain private chat data.
+
+Mitigation: Treat generated screenshots and log output as sensitive local data and remove temporary files after testing.
+
+Risk: The Homebrew installation path uses a third-party tap/formula.
+
+Mitigation: Review the tap and formula before installation or upgrade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjunlei1989-glitch/skills/wechat-auto-reply-mac)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and user-facing message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local macOS WeChat, Accessibility permissions, clipboard access, screen capture, cliclick, and macOS Vision OCR dependencies.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

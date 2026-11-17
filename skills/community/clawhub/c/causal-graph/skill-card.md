@@ -1,40 +1,54 @@
-## Description: <br>
-Automatically extracts entities, events, and causal relationships from logs and memory files to build a dynamic knowledge graph for querying and visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a local causal knowledge graph by extracting entities, dated events, and causal relationships from workspace memory and log files.
 
-## Publisher: <br>
-[weidadong2359](https://clawhub.ai/user/weidadong2359) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[weidadong2359](https://clawhub.ai/user/weidadong2359)
 
-## Use Case: <br>
-Developers and agents use this skill to scan OpenClaw memory files, derive entities, dated events, and causal links, and produce a local graph for analysis or visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The graph can preserve sensitive names, projects, incidents, and relationships from OpenClaw memory files. <br>
-Mitigation: Review and redact memory files before running the skill, and restrict access to the generated memory/causal-graph.json file. <br>
-Risk: Future LLM-based extraction could send private memory content to an external provider. <br>
-Mitigation: Use only approved providers and redact sensitive content before enabling any LLM extraction path. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn workspace memory files, daily logs, and task notes into a causal graph for analysis, querying, and visualization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidadong2359/causal-graph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Console text summary and local JSON graph file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes memory/causal-graph.json in the configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill reads local memory and log files that may contain sensitive workspace information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or redact MEMORY.md and memory logs before use, as recommended by the server security guidance.
+
+Risk: The documented LLM extraction option may send memory text to a model provider if enabled.
+
+Mitigation: Use the local rule-based flow by default, and enable LLM extraction only after confirming that the chosen provider may process the workspace text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidadong2359/skills/causal-graph)
+- [Publisher profile](https://clawhub.ai/user/weidadong2359)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command examples; runtime output includes console text and a JSON graph file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the generated graph to memory/causal-graph.json when executed in a workspace with matching memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Reviews outpatient chronic disease materials for diabetes or hypertension from OCR-derived medical records and returns a structured decision with reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews outpatient chronic disease claim materials for diabetes or hypertension from OCR-derived medical text and returns an audit decision with reasons.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Claims and operations reviewers can use this skill to review OCR-derived outpatient chronic disease materials for diabetes or hypertension and produce an initial pass, fail, or needs-more-information decision with a reason. The output is assistance for review workflows and should not be treated as medical diagnosis or standalone clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical text can be sent to the configured remote LLM endpoint and saved locally by default. <br>
-Mitigation: Use only with authorization for the records and endpoint; add independent redaction if required, restrict output locations, and apply retention and deletion controls. <br>
-Risk: The skill output can influence medical insurance review decisions. <br>
-Mitigation: Require qualified human review before acting on pass, fail, or needs-more-information decisions. <br>
+## Use Case:
 
+Healthcare claims and operations teams use this skill to review OCR text from outpatient chronic disease documents for diabetes or hypertension eligibility decisions. Developers can integrate the command-line scripts into document preprocessing and model-review workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-chronic-disease) <br>
-- [Unisound-LLM publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Configured medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Structured JSON review response plus natural-language text summary saved as files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey except in dry-run; supports OCR-array JSON and document inputs normalized through the bundled preprocessing entry point.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: OCR medical text may be sent unredacted to a configurable model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved HTTPS endpoints and do not process real patient records unless the receiving endpoint is allowed by the applicable compliance process.
+
+Risk: Review outputs may be saved locally in plaintext JSON and text files.
+
+Mitigation: Route outputs to approved storage, limit local retention, and remove generated files after review when patient data is involved.
+
+Risk: The skill documentation promises de-identification and no local persistence, while the security evidence reports behavior that does not match those promises.
+
+Mitigation: Require the publisher to implement the promised protections or update documentation so operators understand the actual data handling behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-chronic-disease)
+- [Medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON review result plus natural-language text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save raw JSON and text outputs to caller-specified or default output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

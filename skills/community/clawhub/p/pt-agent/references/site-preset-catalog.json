@@ -1,0 +1,5934 @@
+{
+  "version": "2026-07-07",
+  "source": "Derived from PT-depiler site definition metadata; no secrets, passkeys, cookies, torrent data, or private endpoint credentials are included.",
+  "count": 295,
+  "schemaAdapterMap": {
+    "NexusPHP": "nexusphp",
+    "Unit3D": "unit3d",
+    "Gazelle": "gazelle",
+    "GazelleJSONAPI": "gazelle-json",
+    "AvistazNetwork": "avistaz-network",
+    "Luminance": "luminance",
+    "TCG": "tcg",
+    "Rartracker": "rartracker",
+    "TNode": "tnode",
+    "AbstractPrivateSite": "custom-private",
+    "AidoruOnline": "aidoruonline",
+    "CGBTSource": "cgbtsource",
+    "Discuz": "discuz",
+    "F3NIX": "f3nix",
+    "FSM": "fsm",
+    "FileList": "filelist",
+    "Rousi": "rousi",
+    "TBDev": "tbdev",
+    "TBSource": "tbsource",
+    "XBTIT": "xbtit",
+    "YemaPT": "yemapt",
+    "mTorrent": "mtorrent",
+    "meanTorrent": "meantorrent",
+    "custom": "selector"
+  },
+  "sites": [
+    {
+      "id": "0magnet",
+      "displayName": "0Magnet",
+      "aka": [
+        "ØMagnet",
+        "无极磁链"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "成人",
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "0magnet.ts"
+    },
+    {
+      "id": "1337x",
+      "displayName": "1337x",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "1337x.ts"
+    },
+    {
+      "id": "13city",
+      "displayName": "13city",
+      "aka": [
+        "13城"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "13city.ts"
+    },
+    {
+      "id": "1ptba",
+      "displayName": "1PTBar",
+      "aka": [
+        "壹PT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "1ptba.ts"
+    },
+    {
+      "id": "2xfree",
+      "displayName": "2xFree",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "VR",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "2xfree.ts"
+    },
+    {
+      "id": "52movie",
+      "displayName": "52movie",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "52movie.ts"
+    },
+    {
+      "id": "52pt",
+      "displayName": "52PT",
+      "aka": [
+        "我爱PT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "高清",
+        "电影",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "52pt.ts"
+    },
+    {
+      "id": "acgrip",
+      "displayName": "ACG.RIP",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "acgrip.ts"
+    },
+    {
+      "id": "afun",
+      "displayName": "Afun",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "电影",
+        "电视剧",
+        "纪录片",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "afun.ts"
+    },
+    {
+      "id": "agsvpt",
+      "displayName": "AGSVPT",
+      "aka": [
+        "末日种子库"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "短剧",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "agsvpt.ts"
+    },
+    {
+      "id": "aidoruonline",
+      "displayName": "Aidoru!Online",
+      "aka": [],
+      "schemaId": "AidoruOnline",
+      "adapterId": "aidoruonline",
+      "type": "private",
+      "tags": [
+        "偶像"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "aidoruonline.ts"
+    },
+    {
+      "id": "aither",
+      "displayName": "Aither",
+      "aka": [
+        "ATH"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "aither.ts"
+    },
+    {
+      "id": "alingpt",
+      "displayName": "alingPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "alingpt.ts"
+    },
+    {
+      "id": "alpharatio",
+      "displayName": "AlphaRatio",
+      "aka": [
+        "AR"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "综合",
+        "0day"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "alpharatio.ts"
+    },
+    {
+      "id": "animebytes",
+      "displayName": "AnimeBytes",
+      "aka": [
+        "AB"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "动漫",
+        "音乐",
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "animebytes.ts"
+    },
+    {
+      "id": "animelovers",
+      "displayName": "ANIMELOVERS",
+      "aka": [
+        "动漫爱好者"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "animelovers.ts"
+    },
+    {
+      "id": "animetosho",
+      "displayName": "AnimeTosho",
+      "aka": [
+        "AT",
+        "アニメ等所"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "动画",
+        "漫画"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "animetosho.ts"
+    },
+    {
+      "id": "animez",
+      "displayName": "AnimeZ",
+      "aka": [
+        "AnimeTorrents"
+      ],
+      "schemaId": "AvistazNetwork",
+      "adapterId": "avistaz-network",
+      "type": "private",
+      "tags": [
+        "动漫",
+        "漫画"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "animez.ts"
+    },
+    {
+      "id": "anirena",
+      "displayName": "AniRena",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "Anime"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "anirena.ts"
+    },
+    {
+      "id": "anisource",
+      "displayName": "AniSource",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "Anime"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "anisource.ts"
+    },
+    {
+      "id": "anthelion",
+      "displayName": "Anthelion",
+      "aka": [
+        "ANT"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "电影"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "anthelion.ts"
+    },
+    {
+      "id": "asiancinema",
+      "displayName": "AsianCinema",
+      "aka": [
+        "ACM"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "asiancinema.ts"
+    },
+    {
+      "id": "asmrpt",
+      "displayName": "ASMR PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "视频",
+        "ASMR"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "asmrpt.ts"
+    },
+    {
+      "id": "audiences",
+      "displayName": "Audiences",
+      "aka": [
+        "观众",
+        "人人人"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视",
+        "音乐",
+        "电子书",
+        "有声书",
+        "体育",
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "audiences.ts"
+    },
+    {
+      "id": "audiobookbay",
+      "displayName": "AudioBook Bay",
+      "aka": [
+        "ABB"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "有声书"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "audiobookbay.ts"
+    },
+    {
+      "id": "audionews",
+      "displayName": "AudioNews",
+      "aka": [
+        "AN"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "软件",
+        "0day",
+        "素材",
+        "学习",
+        "音乐制作"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "audionews.ts"
+    },
+    {
+      "id": "aura4k",
+      "displayName": "Aura4k",
+      "aka": [
+        "A4K"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "aura4k.ts"
+    },
+    {
+      "id": "avgv",
+      "displayName": "爱薇网",
+      "aka": [
+        "AVGV"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "成人",
+        "AV",
+        "GAY",
+        "LES"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "avgv.ts"
+    },
+    {
+      "id": "avistaz",
+      "displayName": "AvistaZ",
+      "aka": [
+        "Avz"
+      ],
+      "schemaId": "AvistazNetwork",
+      "adapterId": "avistaz-network",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "avistaz.ts"
+    },
+    {
+      "id": "awesomehd",
+      "displayName": "Awesome-HD",
+      "aka": [
+        "AHD"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "awesomehd.ts"
+    },
+    {
+      "id": "azusa",
+      "displayName": "梓喵",
+      "aka": [
+        "Azusa"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "漫画",
+        "轻小说",
+        "Galgame",
+        "画集"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "azusa.ts"
+    },
+    {
+      "id": "baconbits",
+      "displayName": "baconBits",
+      "aka": [
+        "bB"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "download_torrent"
+      ],
+      "status": "disabled",
+      "sourceFile": "baconbits.ts"
+    },
+    {
+      "id": "bakabt",
+      "displayName": "BakaBT",
+      "aka": [
+        "BBT"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "bakabt.ts"
+    },
+    {
+      "id": "baozi",
+      "displayName": "包子",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "baozi.ts"
+    },
+    {
+      "id": "beitai",
+      "displayName": "备胎",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "beitai.ts"
+    },
+    {
+      "id": "beyondhd",
+      "displayName": "BeyondHD",
+      "aka": [
+        "BHD"
+      ],
+      "schemaId": "F3NIX",
+      "adapterId": "f3nix",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "beyondhd.ts"
+    },
+    {
+      "id": "bitporn",
+      "displayName": "BitPorn",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "bitporn.ts"
+    },
+    {
+      "id": "bitpt",
+      "displayName": "极速之星",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "bitpt.ts"
+    },
+    {
+      "id": "blutopia",
+      "displayName": "Blutopia",
+      "aka": [
+        "BLU"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "blutopia.ts"
+    },
+    {
+      "id": "broadcasthenet",
+      "displayName": "BroadcastTheNet",
+      "aka": [
+        "BTN"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "broadcasthenet.ts"
+    },
+    {
+      "id": "brokenstones",
+      "displayName": "BrokenStones",
+      "aka": [
+        "BRKs"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "软件",
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "brokenstones.ts"
+    },
+    {
+      "id": "btetree",
+      "displayName": "BT.etree",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "btetree.ts"
+    },
+    {
+      "id": "btschool",
+      "displayName": "BTSCHOOL",
+      "aka": [
+        "学校"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "学习"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "btschool.ts"
+    },
+    {
+      "id": "byrbt",
+      "displayName": "北邮人-BYRBT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "byrbt.ts"
+    },
+    {
+      "id": "capybarabr",
+      "displayName": "CapybaraBR",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "巴西"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "capybarabr.ts"
+    },
+    {
+      "id": "carpt",
+      "displayName": "CarPT",
+      "aka": [
+        "车PT",
+        "车站"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "carpt.ts"
+    },
+    {
+      "id": "cathoderaytube",
+      "displayName": "Cathode-Ray.Tube",
+      "aka": [
+        "CRT"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cathoderaytube.ts"
+    },
+    {
+      "id": "cbg",
+      "displayName": "藏宝阁",
+      "aka": [
+        "藏宝阁",
+        "cbg",
+        "CangBaoGe"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cbg.ts"
+    },
+    {
+      "id": "ccfbits",
+      "displayName": "CCFBits",
+      "aka": [],
+      "schemaId": "TBSource",
+      "adapterId": "tbsource",
+      "type": "private",
+      "tags": [
+        "影视",
+        "剧集",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "download_torrent"
+      ],
+      "status": "disabled",
+      "sourceFile": "ccfbits.ts"
+    },
+    {
+      "id": "cdfile",
+      "displayName": "CD File",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "cdfile.ts"
+    },
+    {
+      "id": "cdy",
+      "displayName": "传道院",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cdy.ts"
+    },
+    {
+      "id": "cgpeers",
+      "displayName": "CGPeers",
+      "aka": [
+        "CGP"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "设计",
+        "教育",
+        "软件",
+        "学习",
+        "素材"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cgpeers.ts"
+    },
+    {
+      "id": "chdbits",
+      "displayName": "CHDBits",
+      "aka": [
+        "彩虹岛",
+        "CHD"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "chdbits.ts"
+    },
+    {
+      "id": "cinemageddon",
+      "displayName": "Cinemageddon",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cinemageddon.ts"
+    },
+    {
+      "id": "cinematik",
+      "displayName": "Cinematik",
+      "aka": [
+        "tik"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视,原盘"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cinematik.ts"
+    },
+    {
+      "id": "cinemaz",
+      "displayName": "CinemaZ",
+      "aka": [],
+      "schemaId": "AvistazNetwork",
+      "adapterId": "avistaz-network",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧",
+        "外语"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cinemaz.ts"
+    },
+    {
+      "id": "clearjav",
+      "displayName": "ClearJAV",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "成人",
+        "xxx"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "clearjav.ts"
+    },
+    {
+      "id": "cnlang",
+      "displayName": "国语视界",
+      "aka": [],
+      "schemaId": "Discuz",
+      "adapterId": "discuz",
+      "type": "private",
+      "tags": [
+        "特效字幕",
+        "国语音轨"
+      ],
+      "supportedCapabilities": [
+        "download_torrent"
+      ],
+      "status": "disabled",
+      "sourceFile": "cnlang.ts"
+    },
+    {
+      "id": "cnscg",
+      "displayName": "圣城家园PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "cnscg.ts"
+    },
+    {
+      "id": "crabpt",
+      "displayName": "CrabPt",
+      "aka": [
+        "蟹黄堡"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "crabpt.ts"
+    },
+    {
+      "id": "cspt",
+      "displayName": "财神",
+      "aka": [
+        "CSPT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "中文",
+        "综合",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cspt.ts"
+    },
+    {
+      "id": "cyanbug",
+      "displayName": "CyanBug",
+      "aka": [
+        "大青虫"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "cyanbug.ts"
+    },
+    {
+      "id": "dajiao",
+      "displayName": "DAJIAO",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "纪录片"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "dajiao.ts"
+    },
+    {
+      "id": "darkpeers",
+      "displayName": "darkpeers",
+      "aka": [
+        "DP"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "darkpeers.ts"
+    },
+    {
+      "id": "desigaane",
+      "displayName": "DesiGaane",
+      "aka": [
+        "DG"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "音楽",
+        "印度音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "desigaane.ts"
+    },
+    {
+      "id": "dhtclub",
+      "displayName": "DHTCLUB PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "dhtclub.ts"
+    },
+    {
+      "id": "dicmusic",
+      "displayName": "DICMusic",
+      "aka": [
+        "DIC",
+        "海豚"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "dicmusic.ts"
+    },
+    {
+      "id": "digitalcore",
+      "displayName": "DigitalCore",
+      "aka": [
+        "DC",
+        "DCC"
+      ],
+      "schemaId": "Rartracker",
+      "adapterId": "rartracker",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "digitalcore.ts"
+    },
+    {
+      "id": "discfan",
+      "displayName": "DiscFan",
+      "aka": [
+        "碟粉"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "discfan.ts"
+    },
+    {
+      "id": "dmhy",
+      "displayName": "動漫花園資源網",
+      "aka": [
+        "動漫花園",
+        "DMHY"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "dmhy.ts"
+    },
+    {
+      "id": "dragonhd",
+      "displayName": "龍之家",
+      "aka": [
+        "DragonHD"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "dragonhd.ts"
+    },
+    {
+      "id": "dstudio",
+      "displayName": "Depth Studio",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "dstudio.ts"
+    },
+    {
+      "id": "dubhe",
+      "displayName": "天枢",
+      "aka": [
+        "Dubhe"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "dubhe.ts"
+    },
+    {
+      "id": "dxdhd",
+      "displayName": "DXDHD",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "dxdhd.ts"
+    },
+    {
+      "id": "ecustpt",
+      "displayName": "ECUSTPT",
+      "aka": [
+        "花梨月下"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ecustpt.ts"
+    },
+    {
+      "id": "ehentai",
+      "displayName": "E-Hentai",
+      "aka": [
+        "EH"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "漫画",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "ehentai.ts"
+    },
+    {
+      "id": "empornium",
+      "displayName": "Empornium",
+      "aka": [
+        "EMP"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "成人",
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "empornium.ts"
+    },
+    {
+      "id": "exoticaz",
+      "displayName": "ExoticaZ",
+      "aka": [
+        "Exo",
+        "YourExotic"
+      ],
+      "schemaId": "AvistazNetwork",
+      "adapterId": "avistaz-network",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "exoticaz.ts"
+    },
+    {
+      "id": "exttorrents",
+      "displayName": "EXT Torrents",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "exttorrents.ts"
+    },
+    {
+      "id": "fearnopeer",
+      "displayName": "FearNoPeer",
+      "aka": [
+        "FNP"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "fearnopeer.ts"
+    },
+    {
+      "id": "filelist",
+      "displayName": "FileList",
+      "aka": [
+        "FL"
+      ],
+      "schemaId": "FileList",
+      "adapterId": "filelist",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "filelist.ts"
+    },
+    {
+      "id": "filept",
+      "displayName": "Filept",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "filept.ts"
+    },
+    {
+      "id": "freefarm",
+      "displayName": "自由农场",
+      "aka": [
+        "FreeFarm",
+        "Farmm"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电视剧",
+        "韩剧",
+        "日剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "freefarm.ts"
+    },
+    {
+      "id": "fsm",
+      "displayName": "FSM",
+      "aka": [
+        "飞天拉面神教"
+      ],
+      "schemaId": "FSM",
+      "adapterId": "fsm",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "fsm.ts"
+    },
+    {
+      "id": "gainbound",
+      "displayName": "丐帮",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "高清",
+        "电影",
+        "纪录片"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "gainbound.ts"
+    },
+    {
+      "id": "gazellegames",
+      "displayName": "GazelleGames",
+      "aka": [
+        "GGn"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "gazellegames.ts"
+    },
+    {
+      "id": "gfxpeers",
+      "displayName": "GFXPeers",
+      "aka": [],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "gfxpeers.ts"
+    },
+    {
+      "id": "ggpt",
+      "displayName": "GGPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ggpt.ts"
+    },
+    {
+      "id": "greatposterwall",
+      "displayName": "GreatPosterWall",
+      "aka": [
+        "海豹",
+        "GPW"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "电影"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "greatposterwall.ts"
+    },
+    {
+      "id": "gtnet",
+      "displayName": "Gay-Torrents.net",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "gtnet.ts"
+    },
+    {
+      "id": "gtorg",
+      "displayName": "Gay-Torrents.Org",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "gtorg.ts"
+    },
+    {
+      "id": "gtru",
+      "displayName": "GayTorrent.ru",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "gtru.ts"
+    },
+    {
+      "id": "haidan",
+      "displayName": "海胆",
+      "aka": [
+        "海胆之家",
+        "HaiDan"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "haidan.ts"
+    },
+    {
+      "id": "happyfappy",
+      "displayName": "HappyFappy",
+      "aka": [
+        "HF"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "happyfappy.ts"
+    },
+    {
+      "id": "hares",
+      "displayName": "HaresClub",
+      "aka": [
+        "白兔",
+        "白兔俱乐部"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "纪录片",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hares.ts"
+    },
+    {
+      "id": "hd4fans",
+      "displayName": "HD4FANS",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "兽组"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hd4fans.ts"
+    },
+    {
+      "id": "hd4free",
+      "displayName": "HD4Free",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hd4free.ts"
+    },
+    {
+      "id": "hdai",
+      "displayName": "HDAI",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdai.ts"
+    },
+    {
+      "id": "hdarea",
+      "displayName": "HDArea",
+      "aka": [
+        "高清视界",
+        "好大"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdarea.ts"
+    },
+    {
+      "id": "hdatmos",
+      "displayName": "HDATMOS",
+      "aka": [
+        "阿童木"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdatmos.ts"
+    },
+    {
+      "id": "hdbao",
+      "displayName": "HDBao",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdbao.ts"
+    },
+    {
+      "id": "hdbits",
+      "displayName": "HDBits",
+      "aka": [
+        "HDB"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdbits.ts"
+    },
+    {
+      "id": "hdchina",
+      "displayName": "HDChina",
+      "aka": [
+        "瓷器"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "音乐",
+        "纪录片",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdchina.ts"
+    },
+    {
+      "id": "hdcity",
+      "displayName": "HDCity",
+      "aka": [
+        "城市"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdcity.ts"
+    },
+    {
+      "id": "hdclone",
+      "displayName": "HDClone",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdclone.ts"
+    },
+    {
+      "id": "hddisk",
+      "displayName": "HDDisk",
+      "aka": [
+        "HDD"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hddisk.ts"
+    },
+    {
+      "id": "hddolby",
+      "displayName": "HD Dolby",
+      "aka": [
+        "高清杜比"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hddolby.ts"
+    },
+    {
+      "id": "hdf",
+      "displayName": "HD-Forever",
+      "aka": [
+        "HD-F",
+        "HDF"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "法国"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdf.ts"
+    },
+    {
+      "id": "hdfans",
+      "displayName": "HDFans",
+      "aka": [
+        "红豆饭"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdfans.ts"
+    },
+    {
+      "id": "hdhome",
+      "displayName": "HDHome",
+      "aka": [
+        "家园"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdhome.ts"
+    },
+    {
+      "id": "hdkylin",
+      "displayName": "HDKylin",
+      "aka": [
+        "麒麟"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "电影",
+        "电视剧",
+        "纪录片"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdkylin.ts"
+    },
+    {
+      "id": "hdmayi",
+      "displayName": "HDmayi",
+      "aka": [
+        "小蚂蚁PT",
+        "XiaoMayi"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdmayi.ts"
+    },
+    {
+      "id": "hdpost",
+      "displayName": "HDPOST",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdpost.ts"
+    },
+    {
+      "id": "hdpt",
+      "displayName": "明教",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdpt.ts"
+    },
+    {
+      "id": "hdroute",
+      "displayName": "HDRoute",
+      "aka": [],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdroute.ts"
+    },
+    {
+      "id": "hdsky",
+      "displayName": "HDSky",
+      "aka": [
+        "HDS",
+        "天空"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "纪录片",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdsky.ts"
+    },
+    {
+      "id": "hdspace",
+      "displayName": "HD-Space",
+      "aka": [
+        "HD-S"
+      ],
+      "schemaId": "XBTIT",
+      "adapterId": "xbtit",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdspace.ts"
+    },
+    {
+      "id": "hdstreet",
+      "displayName": "高清街",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdstreet.ts"
+    },
+    {
+      "id": "hdtime",
+      "displayName": "HDTime",
+      "aka": [
+        "时间",
+        "时光"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdtime.ts"
+    },
+    {
+      "id": "hdtorrents",
+      "displayName": "HD-Torrents",
+      "aka": [
+        "HDT"
+      ],
+      "schemaId": "XBTIT",
+      "adapterId": "xbtit",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdtorrents.ts"
+    },
+    {
+      "id": "hdupt",
+      "displayName": "HDU",
+      "aka": [
+        "好多油"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdupt.ts"
+    },
+    {
+      "id": "hdvideo",
+      "displayName": "HDVideo",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hdvideo.ts"
+    },
+    {
+      "id": "hdzone",
+      "displayName": "HDZone",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电影"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hdzone.ts"
+    },
+    {
+      "id": "hhanclub",
+      "displayName": "憨憨",
+      "aka": [
+        "HHanClub"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hhanclub.ts"
+    },
+    {
+      "id": "hitpt",
+      "displayName": "百川PT",
+      "aka": [
+        "百川PT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hitpt.ts"
+    },
+    {
+      "id": "hspt",
+      "displayName": "回声PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "hspt.ts"
+    },
+    {
+      "id": "htpt",
+      "displayName": "海棠PT",
+      "aka": [
+        "海棠曲艺园",
+        "海棠"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "曲艺",
+        "小品",
+        "有声小说"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "htpt.ts"
+    },
+    {
+      "id": "hudbt",
+      "displayName": "蝴蝶-HUDBT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hudbt.ts"
+    },
+    {
+      "id": "huno",
+      "displayName": "HUNO",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "huno.ts"
+    },
+    {
+      "id": "hxpt",
+      "displayName": "好学",
+      "aka": [
+        "HXPT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "学习"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "hxpt.ts"
+    },
+    {
+      "id": "ianon",
+      "displayName": "iAnon",
+      "aka": [],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "Apple",
+        "macOS",
+        "软件"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ianon.ts"
+    },
+    {
+      "id": "icc2022",
+      "displayName": "ICC",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "icc2022.ts"
+    },
+    {
+      "id": "ihdbits",
+      "displayName": "iHDBits",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ihdbits.ts"
+    },
+    {
+      "id": "ilolicon",
+      "displayName": "ilolicon",
+      "aka": [
+        "爱萝莉"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "萝莉",
+        "动漫",
+        "成人",
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ilolicon.ts"
+    },
+    {
+      "id": "iptorrents",
+      "displayName": "IPTorrents",
+      "aka": [
+        "IPT"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "iptorrents.ts"
+    },
+    {
+      "id": "itzmx",
+      "displayName": "PT分享站",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "itzmx.ts"
+    },
+    {
+      "id": "joyhd",
+      "displayName": "JoyHD",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "joyhd.ts"
+    },
+    {
+      "id": "jpopsuki",
+      "displayName": "JPopSuki",
+      "aka": [
+        "JPS",
+        "JPOP"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "音乐",
+        "日韩"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "jpopsuki.ts"
+    },
+    {
+      "id": "jptv4us",
+      "displayName": "JPTV4us",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "jptv4us.ts"
+    },
+    {
+      "id": "jptvclub",
+      "displayName": "JPTVClub",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视",
+        "剧集",
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "jptvclub.ts"
+    },
+    {
+      "id": "kamept",
+      "displayName": "KamePT",
+      "aka": [
+        "龟站"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "成人",
+        "COS",
+        "动漫",
+        "音乐",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "kamept.ts"
+    },
+    {
+      "id": "karagarga",
+      "displayName": "KaraGarga",
+      "aka": [
+        "KG"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "电影",
+        "音乐",
+        "文学"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "karagarga.ts"
+    },
+    {
+      "id": "keepfrds",
+      "displayName": "PT@KEEPFRDS",
+      "aka": [
+        "FRDS",
+        "朋友"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "keepfrds.ts"
+    },
+    {
+      "id": "kelu",
+      "displayName": "Kelu",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "kelu.ts"
+    },
+    {
+      "id": "kimoji",
+      "displayName": "KIMOJI",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "kimoji.ts"
+    },
+    {
+      "id": "kufei",
+      "displayName": "库非",
+      "aka": [
+        "Kufei"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "kufei.ts"
+    },
+    {
+      "id": "kufirc",
+      "displayName": "kufirc",
+      "aka": [
+        "kf"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "成人",
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "kufirc.ts"
+    },
+    {
+      "id": "kunlun",
+      "displayName": "昆仑",
+      "aka": [
+        "Kunlun",
+        "YHPP"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "kunlun.ts"
+    },
+    {
+      "id": "lajidui",
+      "displayName": "lajidui",
+      "aka": [
+        "垃圾堆"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视综艺",
+        "游戏软件",
+        "电子书"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "lajidui.ts"
+    },
+    {
+      "id": "latteam",
+      "displayName": "LAT-Team",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "西班牙语"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "latteam.ts"
+    },
+    {
+      "id": "lemonhd",
+      "displayName": "LemonHD",
+      "aka": [
+        "柠檬不酸"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "lemonhd.ts"
+    },
+    {
+      "id": "lemonhdnet",
+      "displayName": "柠檬不甜",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "lemonhdnet.ts"
+    },
+    {
+      "id": "lemonhdorg",
+      "displayName": "LemonHD",
+      "aka": [
+        "柠檬"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "lemonhdorg.ts"
+    },
+    {
+      "id": "longpt",
+      "displayName": "LongPT",
+      "aka": [
+        "LongPT",
+        "龙PT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视",
+        "动漫",
+        "有声书"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "longpt.ts"
+    },
+    {
+      "id": "lst",
+      "displayName": "LST",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "lst.ts"
+    },
+    {
+      "id": "luckpt",
+      "displayName": "LuckPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "luckpt.ts"
+    },
+    {
+      "id": "luminarr",
+      "displayName": "Luminarr",
+      "aka": [
+        "LUME"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "luminarr.ts"
+    },
+    {
+      "id": "march",
+      "displayName": "March-Media",
+      "aka": [
+        "三月传媒"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "WEB",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "march.ts"
+    },
+    {
+      "id": "midnightscene",
+      "displayName": "MidnightScene",
+      "aka": [
+        "MS"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "midnightscene.ts"
+    },
+    {
+      "id": "milkie",
+      "displayName": "Milkie",
+      "aka": [
+        "ME",
+        "奶昔"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "milkie.ts"
+    },
+    {
+      "id": "minept",
+      "displayName": "MINE.pt",
+      "aka": [
+        "MINE",
+        "地雷站",
+        "矿站"
+      ],
+      "schemaId": "meanTorrent",
+      "adapterId": "meantorrent",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "download_torrent"
+      ],
+      "status": "disabled",
+      "sourceFile": "minept.ts"
+    },
+    {
+      "id": "moecat",
+      "displayName": "MoeCat",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "动漫",
+        "电影",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "moecat.ts"
+    },
+    {
+      "id": "momentpt",
+      "displayName": "MomentPT",
+      "aka": [
+        "瞬间"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "摄影",
+        "图片",
+        "艺术"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "momentpt.ts"
+    },
+    {
+      "id": "monikadesign",
+      "displayName": "Monikadesign",
+      "aka": [
+        "MDU",
+        "莫妮卡"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "monikadesign.ts"
+    },
+    {
+      "id": "mooko",
+      "displayName": "parseTime",
+      "aka": [],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "mooko.ts"
+    },
+    {
+      "id": "morethantv",
+      "displayName": "MoreThanTV",
+      "aka": [
+        "MTV"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "电视剧",
+        "剧集",
+        "电影"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "morethantv.ts"
+    },
+    {
+      "id": "mteam",
+      "displayName": "M-Team - TP",
+      "aka": [
+        "MTeam",
+        "馒头"
+      ],
+      "schemaId": "mTorrent",
+      "adapterId": "mtorrent",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "mteam.ts"
+    },
+    {
+      "id": "musopia",
+      "displayName": "音乐乌托邦",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "musopia.ts"
+    },
+    {
+      "id": "muxuege",
+      "displayName": "慕雪阁",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "muxuege.ts"
+    },
+    {
+      "id": "myanonamouse",
+      "displayName": "MyAnonamouse",
+      "aka": [
+        "MAM"
+      ],
+      "schemaId": "TBDev",
+      "adapterId": "tbdev",
+      "type": "private",
+      "tags": [
+        "电子书",
+        "有声书"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "myanonamouse.ts"
+    },
+    {
+      "id": "mypt",
+      "displayName": "MyPT",
+      "aka": [
+        "我的PT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "mypt.ts"
+    },
+    {
+      "id": "nanyangpt",
+      "displayName": "南洋PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "nanyangpt.ts"
+    },
+    {
+      "id": "ncore",
+      "displayName": "nCore",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "匈牙利"
+      ],
+      "supportedCapabilities": [
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ncore.ts"
+    },
+    {
+      "id": "nebulance",
+      "displayName": "Nebulance",
+      "aka": [
+        "NBL"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "nebulance.ts"
+    },
+    {
+      "id": "nekobt",
+      "displayName": "nekoBT",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "nekobt.ts"
+    },
+    {
+      "id": "neu6",
+      "displayName": "六维空间",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "neu6.ts"
+    },
+    {
+      "id": "nexushd",
+      "displayName": "NexusHD",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "nexushd.ts"
+    },
+    {
+      "id": "nicept",
+      "displayName": "NicePT",
+      "aka": [
+        "老师"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "nicept.ts"
+    },
+    {
+      "id": "njtupt",
+      "displayName": "浦园",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "njtupt.ts"
+    },
+    {
+      "id": "nordicbytes",
+      "displayName": "NordicBytes",
+      "aka": [
+        "NBy",
+        "DanishBytes"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "北欧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "nordicbytes.ts"
+    },
+    {
+      "id": "nordicquality",
+      "displayName": "NordicQuality",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "北欧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "nordicquality.ts"
+    },
+    {
+      "id": "novahd",
+      "displayName": "NovaHD",
+      "aka": [
+        "星云"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "novahd.ts"
+    },
+    {
+      "id": "npupt",
+      "displayName": "NPUBits",
+      "aka": [
+        "蒲公英"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "npupt.ts"
+    },
+    {
+      "id": "nwsuaf6",
+      "displayName": "麦田PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "nwsuaf6.ts"
+    },
+    {
+      "id": "nyaa",
+      "displayName": "Nyaa",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "nyaa.ts"
+    },
+    {
+      "id": "okpt",
+      "displayName": "OKPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "okpt.ts"
+    },
+    {
+      "id": "oldtoonsworld",
+      "displayName": "OldToonsWorld",
+      "aka": [
+        "OTW"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "动画",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "oldtoonsworld.ts"
+    },
+    {
+      "id": "onlyencodes",
+      "displayName": "OnlyEncodes+",
+      "aka": [
+        "OE"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "onlyencodes.ts"
+    },
+    {
+      "id": "opencd",
+      "displayName": "OpenCD",
+      "aka": [
+        "皇后"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "opencd.ts"
+    },
+    {
+      "id": "oppaiti",
+      "displayName": "Oppaitime",
+      "aka": [],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "动画",
+        "漫画",
+        "游戏",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "oppaiti.ts"
+    },
+    {
+      "id": "orpheus",
+      "displayName": "Orpheus",
+      "aka": [
+        "OPS"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "orpheus.ts"
+    },
+    {
+      "id": "oshenpt",
+      "displayName": "OshenPT",
+      "aka": [
+        "奥申"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "oshenpt.ts"
+    },
+    {
+      "id": "ourbits",
+      "displayName": "OurBits",
+      "aka": [
+        "我堡",
+        "OB"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "动漫",
+        "纪录片",
+        "综艺"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ourbits.ts"
+    },
+    {
+      "id": "pandapt",
+      "displayName": "PandaPT",
+      "aka": [
+        "熊猫高清"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pandapt.ts"
+    },
+    {
+      "id": "passthepopcorn",
+      "displayName": "PassThePopcorn",
+      "aka": [
+        "PTP"
+      ],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "电影"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "passthepopcorn.ts"
+    },
+    {
+      "id": "piggo",
+      "displayName": "Piggo",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "少儿"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "piggo.ts"
+    },
+    {
+      "id": "pixelcove",
+      "displayName": "PixelCove",
+      "aka": [
+        "PxC"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pixelcove.ts"
+    },
+    {
+      "id": "playletpt",
+      "displayName": "PlayLet",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "短剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "playletpt.ts"
+    },
+    {
+      "id": "pornbay",
+      "displayName": "Pornbay",
+      "aka": [
+        "PB"
+      ],
+      "schemaId": "Luminance",
+      "adapterId": "luminance",
+      "type": "private",
+      "tags": [
+        "成人",
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "pornbay.ts"
+    },
+    {
+      "id": "pornbits",
+      "displayName": "Pornbits",
+      "aka": [],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "Adult"
+      ],
+      "supportedCapabilities": [
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "pornbits.ts"
+    },
+    {
+      "id": "pornolab",
+      "displayName": "PornoLab",
+      "aka": [],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "成人",
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pornolab.ts"
+    },
+    {
+      "id": "portugas",
+      "displayName": "Portugas",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "葡萄牙"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "portugas.ts"
+    },
+    {
+      "id": "privatehd",
+      "displayName": "PrivateHD",
+      "aka": [
+        "PHD"
+      ],
+      "schemaId": "AvistazNetwork",
+      "adapterId": "avistaz-network",
+      "type": "private",
+      "tags": [
+        "电影",
+        "高清"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "privatehd.ts"
+    },
+    {
+      "id": "pt99",
+      "displayName": "PT99",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "记录片",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "pt99.ts"
+    },
+    {
+      "id": "ptcafe",
+      "displayName": "咖啡",
+      "aka": [
+        "PTCafe",
+        "咖啡PT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptcafe.ts"
+    },
+    {
+      "id": "ptchina",
+      "displayName": "PTChina",
+      "aka": [
+        "铂金学院"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ptchina.ts"
+    },
+    {
+      "id": "ptdream",
+      "displayName": "PTDream",
+      "aka": [
+        "PT梦想"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "剧集",
+        "电影",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ptdream.ts"
+    },
+    {
+      "id": "pter",
+      "displayName": "PTer",
+      "aka": [
+        "PTerClub",
+        "猫站"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pter.ts"
+    },
+    {
+      "id": "ptfans",
+      "displayName": "PTFans",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptfans.ts"
+    },
+    {
+      "id": "ptgtk",
+      "displayName": "PT GTK",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptgtk.ts"
+    },
+    {
+      "id": "pthome",
+      "displayName": "PTHome",
+      "aka": [
+        "PT之家",
+        "铂金家"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pthome.ts"
+    },
+    {
+      "id": "ptlao",
+      "displayName": "PTLAO",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "成人",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptlao.ts"
+    },
+    {
+      "id": "ptlgs",
+      "displayName": "PTLGS",
+      "aka": [
+        "劳改所"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptlgs.ts"
+    },
+    {
+      "id": "ptlsp",
+      "displayName": "PTLSP",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ptlsp.ts"
+    },
+    {
+      "id": "ptmsg",
+      "displayName": "PTMSG",
+      "aka": [
+        "马杀鸡"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ptmsg.ts"
+    },
+    {
+      "id": "ptneko",
+      "displayName": "超科学PT喵",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptneko.ts"
+    },
+    {
+      "id": "ptsbao",
+      "displayName": "PTSBao",
+      "aka": [
+        "烧包",
+        "骚包"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptsbao.ts"
+    },
+    {
+      "id": "ptskit",
+      "displayName": "PTSkit",
+      "aka": [
+        "拾刻"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "短剧",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptskit.ts"
+    },
+    {
+      "id": "pttime",
+      "displayName": "PTTime",
+      "aka": [
+        "PT时间"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pttime.ts"
+    },
+    {
+      "id": "ptvicomo",
+      "displayName": "象岛",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ptvicomo.ts"
+    },
+    {
+      "id": "ptzone",
+      "displayName": "PTzone",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ptzone.ts"
+    },
+    {
+      "id": "pussytorrents",
+      "displayName": "Pussytorrents",
+      "aka": [
+        "PT"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "pussytorrents.ts"
+    },
+    {
+      "id": "qingwa",
+      "displayName": "QingWa",
+      "aka": [
+        "青蛙PT"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视",
+        "动漫",
+        "儿童区",
+        "纪录片"
+      ],
+      "supportedCapabilities": [
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "qingwa.ts"
+    },
+    {
+      "id": "qingyingpt",
+      "displayName": "清影PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "qingyingpt.ts"
+    },
+    {
+      "id": "railgunpt",
+      "displayName": "RailgunPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "railgunpt.ts"
+    },
+    {
+      "id": "raingfh",
+      "displayName": "雨",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "raingfh.ts"
+    },
+    {
+      "id": "redacted",
+      "displayName": "Redacted",
+      "aka": [
+        "RED",
+        "红"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "redacted.ts"
+    },
+    {
+      "id": "redleaves",
+      "displayName": "红叶",
+      "aka": [
+        "RedLeaves"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "有声书",
+        "综合",
+        "影视",
+        "游戏"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "redleaves.ts"
+    },
+    {
+      "id": "reelflix",
+      "displayName": "ReelFliX",
+      "aka": [
+        "RFX"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "电影"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "reelflix.ts"
+    },
+    {
+      "id": "retroflix",
+      "displayName": "RetroFlix",
+      "aka": [
+        "RF"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "retroflix.ts"
+    },
+    {
+      "id": "rousi",
+      "displayName": "Rousi",
+      "aka": [
+        "肉丝"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "rousi.ts"
+    },
+    {
+      "id": "rousipro",
+      "displayName": "Rousi Pro",
+      "aka": [
+        "Rousi",
+        "肉丝"
+      ],
+      "schemaId": "Rousi",
+      "adapterId": "rousi",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "rousipro.ts"
+    },
+    {
+      "id": "rs",
+      "displayName": "睿思",
+      "aka": [
+        "西电睿思"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "rs.ts"
+    },
+    {
+      "id": "rutracker",
+      "displayName": "RuTracker.org",
+      "aka": [
+        "RUT"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "rutracker.ts"
+    },
+    {
+      "id": "sanpro",
+      "displayName": "伞",
+      "aka": [],
+      "schemaId": "Gazelle",
+      "adapterId": "gazelle",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "sanpro.ts"
+    },
+    {
+      "id": "sbpt",
+      "displayName": "SBPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "sbpt.ts"
+    },
+    {
+      "id": "sdbits",
+      "displayName": "SDBits",
+      "aka": [],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "download_torrent"
+      ],
+      "status": "disabled",
+      "sourceFile": "sdbits.ts"
+    },
+    {
+      "id": "secretcinema",
+      "displayName": "Secret Cinema",
+      "aka": [
+        "SC"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电子书",
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "secretcinema.ts"
+    },
+    {
+      "id": "seedpool",
+      "displayName": "seedpool",
+      "aka": [
+        "SP"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "seedpool.ts"
+    },
+    {
+      "id": "sewerpt",
+      "displayName": "下水道",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "冷门",
+        "低分",
+        "粤语",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "sewerpt.ts"
+    },
+    {
+      "id": "shareisland",
+      "displayName": "ShareIsland",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "shareisland.ts"
+    },
+    {
+      "id": "sharkpt",
+      "displayName": "鲨鱼PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "sharkpt.ts"
+    },
+    {
+      "id": "siqi",
+      "displayName": "思齐",
+      "aka": [
+        "SiQi"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "图书"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "siqi.ts"
+    },
+    {
+      "id": "sjtu",
+      "displayName": "葡萄",
+      "aka": [
+        "PuTao",
+        "SJTU"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "sjtu.ts"
+    },
+    {
+      "id": "skyeysnow",
+      "displayName": "SkyeySnow",
+      "aka": [
+        "天雪"
+      ],
+      "schemaId": "Discuz",
+      "adapterId": "discuz",
+      "type": "private",
+      "tags": [
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "skyeysnow.ts"
+    },
+    {
+      "id": "snakepop",
+      "displayName": "Snakepop",
+      "aka": [],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "snakepop.ts"
+    },
+    {
+      "id": "soulvoice",
+      "displayName": "SoulVoice",
+      "aka": [
+        "聆音"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "电子书",
+        "有声书"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "soulvoice.ts"
+    },
+    {
+      "id": "speedapp",
+      "displayName": "SpeedApp",
+      "aka": [],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "speedapp.ts"
+    },
+    {
+      "id": "sportscult",
+      "displayName": "SportsCult",
+      "aka": [
+        "SC"
+      ],
+      "schemaId": "XBTIT",
+      "adapterId": "xbtit",
+      "type": "private",
+      "tags": [
+        "运动"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "sportscult.ts"
+    },
+    {
+      "id": "springsunday",
+      "displayName": "SpringSunday",
+      "aka": [
+        "CMCT",
+        "SSD",
+        "春天"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "音乐",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "springsunday.ts"
+    },
+    {
+      "id": "starspace",
+      "displayName": "星空",
+      "aka": [
+        "StarSpace",
+        "影"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "影视",
+        "音乐",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "starspace.ts"
+    },
+    {
+      "id": "stspt",
+      "displayName": "STSPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "stspt.ts"
+    },
+    {
+      "id": "sugoimusic",
+      "displayName": "SugoiMusic",
+      "aka": [
+        "SM"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "音乐",
+        "亚洲音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "sugoimusic.ts"
+    },
+    {
+      "id": "sunnypt",
+      "displayName": "Sunny",
+      "aka": [
+        "SunnyPT",
+        "阳光"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "sunnypt.ts"
+    },
+    {
+      "id": "superbits",
+      "displayName": "Superbits",
+      "aka": [],
+      "schemaId": "Rartracker",
+      "adapterId": "rartracker",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视",
+        "瑞典"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "superbits.ts"
+    },
+    {
+      "id": "tangpt",
+      "displayName": "躺平",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tangpt.ts"
+    },
+    {
+      "id": "tccf",
+      "displayName": "TorrentCCF",
+      "aka": [
+        "TCCF",
+        "ET8"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "学习"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tccf.ts"
+    },
+    {
+      "id": "telly",
+      "displayName": "Telly",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合",
+        "印度"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "telly.ts"
+    },
+    {
+      "id": "tey",
+      "displayName": "tey",
+      "aka": [
+        "太乙"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电视剧",
+        "韩剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tey.ts"
+    },
+    {
+      "id": "thegeeks",
+      "displayName": "TheGeeks",
+      "aka": [
+        "TG"
+      ],
+      "schemaId": "TCG",
+      "adapterId": "tcg",
+      "type": "private",
+      "tags": [
+        "学习"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "thegeeks.ts"
+    },
+    {
+      "id": "thevault",
+      "displayName": "TheVault",
+      "aka": [
+        "TV"
+      ],
+      "schemaId": "TCG",
+      "adapterId": "tcg",
+      "type": "private",
+      "tags": [
+        "学习"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "thevault.ts"
+    },
+    {
+      "id": "tjupt",
+      "displayName": "北洋园PT",
+      "aka": [
+        "北洋园"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tjupt.ts"
+    },
+    {
+      "id": "tlfbits",
+      "displayName": "TLFBits",
+      "aka": [
+        "TLF Bits",
+        "The Last Fantasy",
+        "TLF",
+        "吐鲁番"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tlfbits.ts"
+    },
+    {
+      "id": "tmpt",
+      "displayName": "唐门",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tmpt.ts"
+    },
+    {
+      "id": "tokyopt",
+      "displayName": "Tokyo",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "tokyopt.ts"
+    },
+    {
+      "id": "tokyotosho",
+      "displayName": "Tokyo Toshokan",
+      "aka": [
+        "東京 図書館"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "tokyotosho.ts"
+    },
+    {
+      "id": "torrenthub",
+      "displayName": "TorrentHub",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "教育",
+        "音乐"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "torrenthub.ts"
+    },
+    {
+      "id": "torrentleech",
+      "displayName": "TorrentLeech",
+      "aka": [
+        "TL"
+      ],
+      "schemaId": "AbstractPrivateSite",
+      "adapterId": "custom-private",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "torrentleech.ts"
+    },
+    {
+      "id": "torrentscsv",
+      "displayName": "Torrents-CSV",
+      "aka": [
+        "TorrentsCSV"
+      ],
+      "schemaId": "custom",
+      "adapterId": "selector",
+      "type": "public",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent"
+      ],
+      "status": "mapped",
+      "sourceFile": "torrentscsv.ts"
+    },
+    {
+      "id": "torrentseeds",
+      "displayName": "TorrentSeeds",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "torrentseeds.ts"
+    },
+    {
+      "id": "tosky",
+      "displayName": "ToSky",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "tosky.ts"
+    },
+    {
+      "id": "totheglory",
+      "displayName": "ToTheGlory",
+      "aka": [
+        "TTG",
+        "套套哥",
+        "听听歌"
+      ],
+      "schemaId": "TBSource",
+      "adapterId": "tbsource",
+      "type": "private",
+      "tags": [
+        "影视",
+        "音乐",
+        "游戏",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "totheglory.ts"
+    },
+    {
+      "id": "tu88",
+      "displayName": "TU88",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "漫画",
+        "图集",
+        "绘本",
+        "成人"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "tu88.ts"
+    },
+    {
+      "id": "u2",
+      "displayName": "U2",
+      "aka": [
+        "幼儿园"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "u2.ts"
+    },
+    {
+      "id": "ubits",
+      "displayName": "UBits",
+      "aka": [
+        "UB",
+        "U堡"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ubits.ts"
+    },
+    {
+      "id": "uhdbits",
+      "displayName": "UHDBits",
+      "aka": [
+        "UHD"
+      ],
+      "schemaId": "GazelleJSONAPI",
+      "adapterId": "gazelle-json",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "uhdbits.ts"
+    },
+    {
+      "id": "ultrahd",
+      "displayName": "UltraHD",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧",
+        "综艺",
+        "纪录片",
+        "动漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "ultrahd.ts"
+    },
+    {
+      "id": "uploadcx",
+      "displayName": "ULCX",
+      "aka": [],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "uploadcx.ts"
+    },
+    {
+      "id": "vclib",
+      "displayName": "VC-Lib",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "虚拟歌姬",
+        "音乐",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "vclib.ts"
+    },
+    {
+      "id": "whupt",
+      "displayName": "珞樱-WHUPT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "whupt.ts"
+    },
+    {
+      "id": "wintersakura",
+      "displayName": "WinterSakura",
+      "aka": [
+        "冬樱"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "电影",
+        "电视剧"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "wintersakura.ts"
+    },
+    {
+      "id": "wukongwendao",
+      "displayName": "悟空问道",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "人工智能"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "wukongwendao.ts"
+    },
+    {
+      "id": "xauat6",
+      "displayName": "溪涧草堂PT",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "xauat6.ts"
+    },
+    {
+      "id": "xingtan",
+      "displayName": "杏坛",
+      "aka": [
+        "杏林",
+        "XingTan"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "医学",
+        "电子书",
+        "学术"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "xingtan.ts"
+    },
+    {
+      "id": "xingwan",
+      "displayName": "星湾",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "xingwan.ts"
+    },
+    {
+      "id": "xingyunge",
+      "displayName": "星陨阁",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视",
+        "国漫"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "xingyunge.ts"
+    },
+    {
+      "id": "ydypt",
+      "displayName": "伊甸园",
+      "aka": [],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "XXX"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "ydypt.ts"
+    },
+    {
+      "id": "yemapt",
+      "displayName": "YemaPT",
+      "aka": [],
+      "schemaId": "YemaPT",
+      "adapterId": "yemapt",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "yemapt.ts"
+    },
+    {
+      "id": "yingk",
+      "displayName": "影客",
+      "aka": [
+        "影客PT",
+        "YingkPT",
+        "美盒子",
+        "MeiHeZi"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "disabled",
+      "sourceFile": "yingk.ts"
+    },
+    {
+      "id": "yinguskg",
+      "displayName": "樱花",
+      "aka": [
+        "YingUSKG",
+        "ying.us.kg",
+        "Ying"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "yinguskg.ts"
+    },
+    {
+      "id": "yuscene",
+      "displayName": "YUSCENE",
+      "aka": [
+        "YS"
+      ],
+      "schemaId": "Unit3D",
+      "adapterId": "unit3d",
+      "type": "private",
+      "tags": [
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "yuscene.ts"
+    },
+    {
+      "id": "zhixing",
+      "displayName": "知行PT",
+      "aka": [],
+      "schemaId": "CGBTSource",
+      "adapterId": "cgbtsource",
+      "type": "private",
+      "tags": [
+        "教育网",
+        "综合",
+        "影视"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "zhixing.ts"
+    },
+    {
+      "id": "zhuque",
+      "displayName": "朱雀",
+      "aka": [
+        "Zhuque"
+      ],
+      "schemaId": "TNode",
+      "adapterId": "tnode",
+      "type": "private",
+      "tags": [
+        "影视",
+        "综合"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "zhuque.ts"
+    },
+    {
+      "id": "zmpt",
+      "displayName": "织梦",
+      "aka": [
+        "织梦PT",
+        "ZMPT"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "zmpt.ts"
+    },
+    {
+      "id": "zrpt",
+      "displayName": "ZRPT",
+      "aka": [
+        "探索自然美",
+        "专注纪录片"
+      ],
+      "schemaId": "NexusPHP",
+      "adapterId": "nexusphp",
+      "type": "private",
+      "tags": [
+        "纪录片",
+        "自然",
+        "教育"
+      ],
+      "supportedCapabilities": [
+        "search",
+        "download_torrent",
+        "user_stats"
+      ],
+      "status": "mapped",
+      "sourceFile": "zrpt.ts"
+    }
+  ]
+}

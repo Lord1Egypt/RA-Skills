@@ -1,40 +1,59 @@
-## Description: <br>
-Creates or updates a proxied Cloudflare DNS A record. Use when you need to programmatically point a subdomain to an IP address. Takes record name, zone name, and IP address as input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates or updates a proxied Cloudflare DNS A record. Use when you need to programmatically point a subdomain to an IP address. Takes record name, zone name, and IP address as input.
 
-## Publisher: <br>
-[xieyuanqing](https://clawhub.ai/user/xieyuanqing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xieyuanqing](https://clawhub.ai/user/xieyuanqing)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to create or update Cloudflare DNS A records for a specified zone, record name, IP address, and proxy setting during deployment or DNS management workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live Cloudflare DNS changes using an API token. <br>
-Mitigation: Use a least-privilege Cloudflare API token scoped to the intended zone and confirm the zone, record, IP address, and proxied setting before execution. <br>
-Risk: The Cloudflare API token could be exposed through shared logs or shell history. <br>
-Mitigation: Set CLOUDFLARE_API_TOKEN through the host environment or a secret manager and avoid echoing it in commands or logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cloudflare Dns Updater on ClawHub](https://clawhub.ai/xieyuanqing/cloudflare-dns-updater) <br>
-- [README.md](artifact/README.md) <br>
+## Use Case:
 
+Developers and operators use this skill to create or update proxied Cloudflare DNS A records for a specified zone, record name, and IPv4 address during deployment or DNS maintenance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output from the DNS update script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script prints progress messages and, on success, the created or updated Cloudflare DNS record as formatted JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Changing a Cloudflare DNS A record can misdirect traffic if the zone, record name, or IP address is wrong.
+
+Mitigation: Verify the zone, record, and IP address before execution and use a token limited to the intended zone.
+
+Risk: A public-IP lookup example may resolve the machine running the agent rather than the intended target server.
+
+Mitigation: Confirm the target server IP independently before applying DNS changes.
+
+Risk: A broadly scoped Cloudflare API token could change unintended DNS records if exposed or misused.
+
+Mitigation: Use a least-privilege Cloudflare token with DNS edit access only for the required zone and avoid exposing the token in logs or prompts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xieyuanqing/skills/cloudflare-dns-updater)
+- [Cloudflare zones API endpoint](https://api.cloudflare.com/client/v4/zones?name={args.zone})
+- [Cloudflare DNS records API endpoint](https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records)
+- [Public IPv4 lookup example](https://ipv4.icanhazip.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text progress messages, JSON DNS record details, and Markdown guidance with inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No persistent local files are produced by the script.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

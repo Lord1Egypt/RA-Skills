@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7dxs4wwe3z2ak5jdhejwq7f582jq19",
-  "slug": "librag-knowledge-recall",
-  "version": "1.0.0",
-  "publishedAt": 1773128876709
+  "name": "librag-knowledge-recall-zh",
+  "display_name": "LibRAG 中文召回",
+  "description": "使用 LibRAG 做中文知识库检索与数据召回。",
+  "version": "0.1.0",
+  "author": "workspace",
+  "homepage": "https://github.com/openclaw/skills",
+  "tags": [
+    "librag",
+    "rag",
+    "retrieval",
+    "knowledge-base",
+    "chinese",
+    "openclaw"
+  ],
+  "entry": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "config.json",
+    "scripts/recall.py"
+  ]
 }

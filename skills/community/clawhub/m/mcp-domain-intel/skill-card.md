@@ -1,44 +1,56 @@
-## Description: <br>
-Provides domain intelligence through WHOIS lookups and domain availability checks via the L402 API for brand research, cybersecurity investigations, and domain acquisition planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domain intelligence for WHOIS lookups and domain availability checks via the L402 API.
 
-## Publisher: <br>
-[haveblue997](https://clawhub.ai/user/haveblue997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haveblue997](https://clawhub.ai/user/haveblue997)
 
-## Use Case: <br>
-Developers, security analysts, brand-protection teams, and domain acquisition researchers use this skill to query WHOIS/DNS intelligence and check domain registration availability from an MCP client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Domain names submitted to the lookup or availability tools may be sent to the configured external API provider. <br>
-Mitigation: Use the skill only with providers whose privacy and retention practices are acceptable for the queried domains. <br>
-Risk: Sensitive internal domains, acquisition targets, or investigation subjects could disclose confidential intent if queried through an untrusted provider. <br>
-Mitigation: Avoid sensitive queries unless the provider is trusted and approved for the investigation context. <br>
-Risk: The release license evidence conflicts with artifact-level license text. <br>
-Mitigation: Confirm whether MIT-0 or MIT governs the release before public publication or downstream redistribution. <br>
+## Use Case:
 
+Developers, security analysts, and brand teams use this skill to gather WHOIS and DNS intelligence, check domain availability, and support domain acquisition, brand monitoring, competitor analysis, and cybersecurity investigations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haveblue997/mcp-domain-intel) <br>
-- [Blue-Trianon-Ventures GitHub profile](https://github.com/Blue-Trianon-Ventures) <br>
-- [Configured Nautdev API base URL](https://api.nautdev.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [MCP tool responses containing JSON-formatted text, plus JSON configuration snippets for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tools accept a domain string and return lookup, availability, or error details from the configured API provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, and server release evidence) <br>
+Risk: Security review verdict is suspicious because installation instructions run an unpinned npm package and documentation is inconsistent about package name, tool names, and environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, prefer a pinned reviewed package version or a local build from inspected source, confirm the intended package name, and use the correct NAUTDEV_BASE_URL setting when controlling the API endpoint.
+
+Risk: The skill sends domain queries to a configurable external API endpoint.
+
+Mitigation: Confirm the endpoint is trusted for the intended environment and avoid submitting sensitive domain investigation data unless that disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haveblue997/skills/mcp-domain-intel)
+- [Publisher profile](https://clawhub.ai/user/haveblue997)
+- [NautDev API endpoint](https://api.nautdev.com)
+- [Blue-Trianon-Ventures GitHub profile](https://github.com/Blue-Trianon-Ventures)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [MCP tool responses as JSON-formatted text, with setup guidance in Markdown and JSON configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns WHOIS/DNS lookup results or domain availability results for a single domain input.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,129 @@
+{
+ "_chart_type": "rob",
+ "_command": "python3 scripts/gen_figure.py -t rob -d examples/realworld/evidence_rob2_metformin.json -o rob2.png --cjk",
+ "_note": "真实数据：robvis R 包 data_rob2（McGuinness & Higgins 2019, JOSS；ROB2 工具示例评估，9 项研究×5 域+Overall）。交通灯网格+加权摘要条（Overall 只入网格不入摘要——robvis 惯例）。判定应来自预设工具与两人独立评估。",
+ "title": "偏倚风险图（ROB2，示例来自 robvis 包真实评估数据）",
+ "domains": [
+  {
+   "key": "D1",
+   "label": "偏倚来自随机化"
+  },
+  {
+   "key": "D2",
+   "label": "偏倚来自偏离既定干预"
+  },
+  {
+   "key": "D3",
+   "label": "偏倚来自结局数据缺失"
+  },
+  {
+   "key": "D4",
+   "label": "偏倚来自结局测量"
+  },
+  {
+   "key": "D5",
+   "label": "偏倚来自结果选择性报告"
+  }
+ ],
+ "studies": [
+  {
+   "name": "Study 1",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "Low"
+   }
+  },
+  {
+   "name": "Study 2",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 3",
+   "judgements": {
+    "D1": "No information",
+    "D2": "Low",
+    "D3": "Some concerns",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 4",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "High",
+    "D4": "Low",
+    "D5": "Some concerns",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 5",
+   "judgements": {
+    "D1": "High",
+    "D2": "High",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Some concerns",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 6",
+   "judgements": {
+    "D1": "Low",
+    "D2": "High",
+    "D3": "Some concerns",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 7",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Some concerns",
+    "D3": "Some concerns",
+    "D4": "High",
+    "D5": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 8",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Some concerns",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 9",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "High",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "High"
+   }
+  }
+ ]
+}

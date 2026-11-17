@@ -1,41 +1,63 @@
-## Description: <br>
-Access the user's biohub across wearable biometrics, continuous glucose, blood panels, supplements, nutrition, body composition, physiological age, and tracking phases to answer wellness and health-status questions grounded in local biometric data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+biohub lets an agent answer wellness questions using the user's local biometric, glucose, blood-panel, supplement, nutrition, and body-composition data, while keeping guidance non-medical.
 
-## Publisher: <br>
-[maxnau89](https://clawhub.ai/user/maxnau89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxnau89](https://clawhub.ai/user/maxnau89)
 
-## Use Case: <br>
-External users and agents use this skill to query local biometric and wellness databases, summarize recovery, sleep, glucose, blood-marker, supplement, nutrition, and body-composition trends, and provide non-medical wellness coaching grounded in the user's own data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to read sensitive local biometric and health data. <br>
-Mitigation: Use explicit prompts for biohub data access, avoid sharing unnecessary identifiers, and choose a local model or privacy-appropriate LLM provider for sensitive health discussions. <br>
-Risk: Wellness summaries may be mistaken for clinical advice. <br>
-Mitigation: Treat outputs as non-medical wellness guidance and defer diagnosis, treatment, or disease-related decisions to qualified clinicians. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent query locally stored wellness and biometric data for recovery, sleep, glucose, blood-marker, supplement, nutrition, and body-composition status checks. It is for personal wellness analysis and explicitly not medical advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maxnau89/skills/biohub) <br>
-- [Project Homepage](https://github.com/maxnau89/openclaw-biohub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and SQL query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces non-medical wellness analysis from local user-controlled data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release evidence) <br>
+Risk: The skill handles sensitive health and biometric data that may be exposed to the agent or the user's model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only health data the user is comfortable exposing, and do not write user-identifying biometric data into public or shipped files.
+
+Risk: The backing biohub software is external and unpinned in the skill evidence.
+
+Mitigation: Install the backing software from a specific trusted release where possible and review it before use.
+
+Risk: Watch-folder importers and the Apple Health receiver expand the local data-ingestion surface when enabled.
+
+Mitigation: Avoid enabling watch-folder importers or the Apple Health LAN receiver unless needed, and keep receiver exposure limited to the intended local interface.
+
+Risk: Optional persona and profile files are editable local data and may influence agent behavior.
+
+Mitigation: Treat persona and profile files as data, not trusted instructions, and avoid placing agent instructions in those files.
+
+## Reference(s):
+
+- [biohub ClawHub skill page](https://clawhub.ai/maxnau89/skills/biohub)
+- [openclaw-biohub homepage](https://github.com/maxnau89/openclaw-biohub)
+- [openclaw-biohub disclaimer](https://github.com/maxnau89/openclaw-biohub/blob/main/DISCLAIMER.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, shell command examples, and optional JSON analytics summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance should preserve non-medical boundaries and avoid writing user-identifying biometric data into shipped or public files.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

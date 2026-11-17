@@ -1,45 +1,56 @@
-## Description: <br>
-Compares two to five cryptocurrencies using Gate Info market snapshots, coin fundamentals, and optional technical analysis to produce a side-by-side report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coin comparison. Use this skill whenever the user asks to compare two or more coins. Trigger phrases include: compare, versus, vs, which is better, difference. MCP tools: info_marketsnapshot_get_market_snapshot, info_coin_get_coin_info per coin (or batch/search when available).
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to compare two to five crypto assets across market metrics, fundamentals, and technical signals. It supports neutral, data-driven comparison reports while avoiding buy/sell recommendations and price predictions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto comparison output may be mistaken for investment advice. <br>
-Mitigation: Keep analysis neutral and data-driven, avoid buy/sell recommendations or price predictions, and include a not-investment-advice disclaimer. <br>
-Risk: Market, fundamentals, or technical data may be missing or temporarily unavailable from the Gate Info MCP provider. <br>
-Mitigation: Label unavailable dimensions clearly, continue with remaining data when possible, and avoid false rankings when data is incomplete. <br>
-Risk: Users may include private portfolio, account, or trading details in prompts. <br>
-Mitigation: Advise users to avoid private financial details unless they intend those details to be used in the comparison. <br>
+## Use Case:
 
+External users and developers use this skill to compare 2-5 cryptocurrencies side by side using public market snapshots, fundamentals, rankings, and optional technical signals. It produces a neutral, data-driven comparison report and avoids buy/sell recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gate-exchange/gate-info-coin-compare) <br>
-- [Gate Info Coin Compare Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
-- [Gate Info CoinCompare MCP Specification](references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown comparison report with tables, summary, dimension-by-dimension notes, and risk warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Gate Info MCP market and coin data; marks unavailable dimensions instead of fabricating data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Users may treat comparative crypto analysis as investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the report informational, avoid buy/sell recommendations and price predictions, and include the skill's not-investment-advice disclaimer.
+
+Risk: Unavailable or incomplete Gate Info MCP data could lead to misleading comparisons.
+
+Mitigation: Confirm the Gate Info MCP integration is available, label missing dimensions as unavailable, and continue only with sourced public market, project, ranking, and technical data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-info-coin-compare)
+- [Gate Info CoinCompare MCP Specification](artifact/references/mcp.md)
+- [Gate Info Coin Compare Runtime Rules](artifact/references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](artifact/references/info-news-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison report with tables, concise analysis, risk warnings, and data availability notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only Gate Info MCP data; output is informational and not investment advice.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata); packaged skill frontmatter reports 2026.4.6-1
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

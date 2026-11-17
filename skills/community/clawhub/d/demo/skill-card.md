@@ -1,38 +1,54 @@
-## Description: <br>
-Summarizes technical documents into structured Markdown with key points and potential risks for clear analysis and review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes technical documents into structured Markdown.
 
-## Publisher: <br>
-[kelevis](https://clawhub.ai/user/kelevis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kelevis](https://clawhub.ai/user/kelevis)
 
-## Use Case: <br>
-Developers, reviewers, and other users can use this skill to turn provided technical text into a concise Markdown summary with key points and potential risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries can omit context or present inaccurate interpretations of the source document. <br>
-Mitigation: Review the Markdown summary against the original document before using it for decisions. <br>
-Risk: Provided documents may contain confidential or sensitive information. <br>
-Mitigation: Only submit content you are comfortable having your agent process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and reviewers use this skill to summarize technical documents, extract key points, and surface potential risks in a concise Markdown structure.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with summary, key points, and risks sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are based on user-provided content and should be reviewed for accuracy before relying on them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may cause the skill to be selected for generic text-analysis requests.
+
+Mitigation: Provide sensitive content only when summarization is intended for the current session.
+
+Risk: Generated summaries and risk lists may omit nuance from the source document.
+
+Mitigation: Review the Markdown output against the original document before relying on it for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelevis/skills/demo)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown with summary, key points, and risks sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns valid Markdown only; the summary is capped at five lines by the skill behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

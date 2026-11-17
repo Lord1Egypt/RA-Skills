@@ -1,41 +1,58 @@
-## Description: <br>
-日常小助手 MCP Server provides daily task management over MCP, including next-task recommendations, task inheritance, overdue checks, daily reviews, and split detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered daily task management MCP Server — recommend next task, inherit uncompleted todos, detect overdue, generate reviews. Deterministic ops in code (zero tokens), AI only when needed.
 
-## Publisher: <br>
-[asuranale](https://clawhub.ai/user/asuranale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asuranale](https://clawhub.ai/user/asuranale)
 
-## Use Case: <br>
-External users and developers use this MCP server with MCP-compatible agents to manage daily Markdown task files, choose the next task, inherit unfinished work, detect overdue items, and generate daily reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The automatic setup creates a local virtual environment, data directory, config.json, and persistent MCP registrations in detected editors. <br>
-Mitigation: Review src/setup.py before installation, run the interactive setup for manual control, and back up editor MCP config files before using --auto. <br>
-Risk: The MCP tools read daily task files and can write inherited tasks or generated reviews into the configured Markdown data directory. <br>
-Mitigation: Use a dedicated task-data directory, confirm config.json points to the intended path, and review generated file changes before relying on them. <br>
+## Use Case:
 
+External users and developers use this MCP server with compatible AI agents to manage daily Markdown task files, choose the next task, carry forward unfinished work, check overdue tasks, and generate end-of-day reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asuranale/daily-assistant) <br>
-- [Project homepage](https://github.com/AsuraNale/daily-assistant-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown returned by MCP tools, with JSON snippets and shell commands in setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese or English responses are controlled by the local config language setting; tools read and write local Markdown task files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and server-resolved release metadata) <br>
+Risk: The installer can run code from a mutable remote source and install an unpinned dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned, reviewed commit or packaged artifact, and pin or review the fastmcp dependency before use.
+
+Risk: The --auto setup path can modify MCP configuration files for detected AI editors.
+
+Mitigation: Back up existing editor configuration files and prefer manual MCP configuration unless automatic changes are acceptable.
+
+Risk: The MCP server reads and writes local daily task and review Markdown files in the configured data directory.
+
+Mitigation: Configure a dedicated task-data directory and review generated daily reviews before relying on them for planning or records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asuranale/skills/daily-assistant)
+- [Project homepage](https://github.com/AsuraNale/daily-assistant-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown task-management responses, with JSON MCP configuration generated during setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English response text through config.json; task data is stored in local Markdown files.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

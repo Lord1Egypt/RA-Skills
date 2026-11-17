@@ -1,45 +1,52 @@
-## Description: <br>
-Algolia (algolia.com). Use this skill for ANY Algolia request: reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Algolia (algolia.com). Use this skill for ANY Algolia request — reading, creating, updating, and deleting data. Whenever a task involves Algolia, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Algolia indices, search or browse records, and manage records, rules, and synonyms through an OOMOL-connected Algolia account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Algolia records, rules, and synonyms. <br>
-Mitigation: Review the exact action schema and payload with the user before running write actions. <br>
-Risk: The skill can delete records by filter. <br>
-Mitigation: Require explicit approval for the target index and filter before running destructive delete operations. <br>
-Risk: The skill requires sensitive Algolia credentials through the OOMOL connector. <br>
-Mitigation: Use a least-privilege Algolia API key and install only when OOMOL is trusted as the connector provider. <br>
+## Use Case:
 
+Developers and operators use the skill to search and browse Algolia indices and to retrieve, add, update, or delete records, rules, and synonyms through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Algolia Skill](https://clawhub.ai/oomol/oo-algolia) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Algolia](https://www.algolia.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses may include JSON data and an execution id when actions are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Setup may run an unchecked installer whose broader changes to agent skills are under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately, consult its command reference and startup-sync opt-out, connect only needed Algolia permissions, and retain approval checks for changes and deletions.
+
+## Reference(s):
+
+- [Algolia](https://www.algolia.com)
+- [Algolia Search REST API documentation](https://www.algolia.com/doc/rest-api/search/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request and response payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read or change Algolia data; writes and destructive actions require user confirmation according to the skill's instructions.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

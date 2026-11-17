@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мониторинг квот и балансов AI</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0b0f17">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0b0f17; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .card { background-color: #131924; border: 1px solid #242e3f; border-radius: 14px; }
+    .bar-bg { background-color: #1a2232; border-radius: 6px; overflow: hidden; position: relative; }
+    
+    .bar-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-glow::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: translateX(-100%);
+    }
+
+    /* Зеленый: спокойный, медленный (4.8 сек) */
+    .glow-green { box-shadow: 0 0 8px rgba(16, 185, 129, 0.25); }
+    .glow-green::after { animation: shimmer-slow 4.8s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* Желтый: умеренный (2.4 сек) */
+    .glow-yellow { box-shadow: 0 0 10px rgba(245, 158, 11, 0.35); }
+    .glow-yellow::after { animation: shimmer-med 2.4s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* Красный: быстрый (1.2 сек) */
+    .glow-red { box-shadow: 0 0 12px rgba(244, 63, 94, 0.45); }
+    .glow-red::after { animation: shimmer-fast 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+
+    @keyframes shimmer-slow {
+      0% { transform: translateX(-100%); }
+      50%, 100% { transform: translateX(200%); }
+    }
+    @keyframes shimmer-med {
+      0% { transform: translateX(-100%); }
+      60%, 100% { transform: translateX(200%); }
+    }
+    @keyframes shimmer-fast {
+      0% { transform: translateX(-100%); }
+      75%, 100% { transform: translateX(200%); }
+    }
+
+    .tab-btn {
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background-color: #2563eb;
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 max-w-6xl mx-auto">
+  <!-- Header -->
+  <div class="flex flex-wrap items-center justify-between mb-8 pb-4 border-b border-gray-800 gap-4">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
+        <span>⚡ AI Quotas & Limits Live</span>
+      </h1>
+      <p class="text-sm text-gray-400 mt-1" id="last-update">Загрузка данных...</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="openPwaModal()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-medium rounded-lg text-sm flex items-center gap-2 transition-all">
+        <span>📱</span> <span>На телефон</span>
+      </button>
+      <button onclick="manualRefresh()" id="btn-refresh" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-sm transition shadow-lg flex items-center gap-2">
+        <svg class="w-4 h-4 animate-spin hidden" id="spinner" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+        <span id="btn-text">Обновить данные</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+
+    <!-- 1. Google Antigravity -->
+    <div class="card p-6 shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>🪐 Google Antigravity (Cloud Code)</span>
+          </h2>
+          <p class="text-xs text-gray-400 mt-0.5">Скользящее окно восстановления: 5 часов (каждый запрос оттаивает ровно через 5 ч)</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-800 rounded-full font-medium" id="ag-badge">3 аккаунта активны</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="antigravity-grid">
+        <!-- Аккаунты -->
+      </div>
+    </div>
+
+    <!-- 2. xAI Grok (Единый недельный пул) -->
+    <div class="card p-6 shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>🚀 xAI SuperGrok (Недельный пул использования)</span>
+          </h2>
+          <p class="text-xs text-gray-400 mt-0.5">Единый compute-пул подписки (чат, кодинг, генерация видео 1.5, картинки и голос)</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 bg-amber-950 text-amber-400 border border-amber-800 rounded-full font-medium">Синхронизировано с xAI</span>
+      </div>
+      <div id="grok-container" class="bg-gray-900/80 p-5 rounded-xl border border-gray-800/80">
+        <!-- Grok прогресс-бар -->
+      </div>
+    </div>
+
+    <!-- 3. OpenCode-Go (Zen Routing + Топ-3 модели) -->
+    <div class="card p-6 shadow-md">
+      <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>⚡ OpenCode-Go (Zen Router)</span>
+          </h2>
+          <p class="text-xs text-gray-400 mt-0.5">Qwen 3.8, DeepSeek V4.1 Flash, MiMo, Kimi, MiniMax</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 bg-indigo-950 text-indigo-400 border border-indigo-800 rounded-full font-medium">Квоты роутера</span>
+      </div>
+      
+      <!-- Шкалы лимитов плана -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5" id="opencode-grid">
+        <!-- OpenCode лимиты -->
+      </div>
+
+      <!-- Статистика Топ-3 моделей OpenCode -->
+      <div class="pt-4 border-t border-gray-800/80">
+        <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
+          <div class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span>📊 Топ-3 используемых моделей OpenCode-Go</span>
+          </div>
+          <!-- Табы: День / Неделя / Месяц -->
+          <div class="flex items-center bg-gray-900 p-0.5 rounded-lg border border-gray-800 text-xs">
+            <button onclick="setOpenCodeTab('day')" id="og-tab-day" class="tab-btn px-2.5 py-1 rounded-md text-gray-400 hover:text-white">День</button>
+            <button onclick="setOpenCodeTab('week')" id="og-tab-week" class="tab-btn active px-2.5 py-1 rounded-md">Неделя</button>
+            <button onclick="setOpenCodeTab('month')" id="og-tab-month" class="tab-btn px-2.5 py-1 rounded-md text-gray-400 hover:text-white">Месяц</button>
+          </div>
+        </div>
+        <div id="opencode-top-models" class="space-y-2">
+          <!-- Топ-3 модели OpenCode -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Балансы в $ (OpenRouter + Perplexity) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- OpenRouter (+ Топ-3 модели) -->
+      <div class="card p-6 shadow-md flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span>🌐 OpenRouter API</span>
+            </h2>
+            <span class="text-xs px-2.5 py-0.5 bg-blue-950 text-blue-400 border border-blue-800 rounded-full font-medium">Баланс активен</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-4">Эмбеддинги памяти Qwen3-8B и фоллбэк модели</p>
+          <div id="openrouter-box" class="space-y-3 mb-5">
+            <!-- OpenRouter баланс -->
+          </div>
+
+          <!-- Статистика Топ-3 моделей OpenRouter -->
+          <div class="pt-4 border-t border-gray-800/80">
+            <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
+              <div class="text-xs font-bold text-gray-300 uppercase tracking-wider">
+                <span>📊 Топ моделей OpenRouter</span>
+              </div>
+              <!-- Табы: День / Неделя / Месяц -->
+              <div class="flex items-center bg-gray-900 p-0.5 rounded-lg border border-gray-800 text-xs">
+                <button onclick="setOpenRouterTab('day')" id="or-tab-day" class="tab-btn px-2 py-0.5 rounded-md text-gray-400 hover:text-white">День</button>
+                <button onclick="setOpenRouterTab('week')" id="or-tab-week" class="tab-btn active px-2 py-0.5 rounded-md">Неделя</button>
+                <button onclick="setOpenRouterTab('month')" id="or-tab-month" class="tab-btn px-2 py-0.5 rounded-md text-gray-400 hover:text-white">Месяц</button>
+              </div>
+            </div>
+            <div id="openrouter-top-models" class="space-y-2">
+              <!-- Топ-3 модели OpenRouter -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Perplexity Search -->
+      <div class="card p-6 shadow-md flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span>🔍 Perplexity API (Веб-поиск)</span>
+            </h2>
+            <span class="text-xs px-2.5 py-0.5 bg-purple-950 text-purple-400 border border-purple-800 rounded-full font-medium">Авто-трекинг ($0.005/поиск)</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-4">Инструмент веб-поиска (Sonar) в реальном времени</p>
+          <div id="perplexity-box" class="space-y-3">
+            <!-- Perplexity -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ElevenLabs TTS -->
+    <div class="card p-6 shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>🎙️ ElevenLabs TTS (Голосовой пул)</span>
+          </h2>
+          <p class="text-xs text-gray-400 mt-0.5">Основной голос Орли (Lily, eleven_v4) с авто-ротацией ключей</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 bg-cyan-950 text-cyan-400 border border-cyan-800 rounded-full font-medium" id="eleven-summary">...</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="eleven-grid">
+        <!-- Ключи -->
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let globalData = null;
+    let currentOgPeriod = 'week';
+    let currentOrPeriod = 'week';
+
+    function getBarInfo(pct) {
+      if (pct > 50) return { bg: 'bg-emerald-500', glow: 'glow-green' };
+      if (pct > 15) return { bg: 'bg-amber-500', glow: 'glow-yellow' };
+      return { bg: 'bg-rose-500', glow: 'glow-red' };
+    }
+
+    async function loadCachedData() {
+      try {
+        const res = await fetch('/api/quotas?t=' + Date.now());
+        globalData = await res.json();
+        render(globalData);
+      } catch (e) {
+        console.error("Load error:", e);
+      }
+    }
+
+    async function manualRefresh() {
+      const btn = document.getElementById('btn-refresh');
+      const spinner = document.getElementById('spinner');
+      const btnText = document.getElementById('btn-text');
+      btn.disabled = true;
+      spinner.classList.remove('hidden');
+      btnText.innerText = 'Синхронизация...';
+      try {
+        const res = await fetch('/api/refresh', { method: 'POST' });
+        globalData = await res.json();
+        render(globalData);
+      } catch (e) {
+        console.error("Refresh error:", e);
+      } finally {
+        btn.disabled = false;
+        spinner.classList.add('hidden');
+        btnText.innerText = 'Обновить данные';
+      }
+    }
+
+    function setOpenCodeTab(period) {
+      currentOgPeriod = period;
+      ['day', 'week', 'month'].forEach(p => {
+        const el = document.getElementById('og-tab-' + p);
+        if (el) el.className = (p === period) ? 'tab-btn active px-2.5 py-1 rounded-md' : 'tab-btn px-2.5 py-1 rounded-md text-gray-400 hover:text-white';
+      });
+      renderTopModels('opencode-go', currentOgPeriod, 'opencode-top-models');
+    }
+
+    function setOpenRouterTab(period) {
+      currentOrPeriod = period;
+      ['day', 'week', 'month'].forEach(p => {
+        const el = document.getElementById('or-tab-' + p);
+        if (el) el.className = (p === period) ? 'tab-btn active px-2 py-0.5 rounded-md' : 'tab-btn px-2 py-0.5 rounded-md text-gray-400 hover:text-white';
+      });
+      renderTopModels('openrouter', currentOrPeriod, 'openrouter-top-models');
+    }
+
+    function renderTopModels(prov, period, containerId) {
+      const box = document.getElementById(containerId);
+      if (!box) return;
+      box.innerHTML = '';
+      const stats = (globalData && globalData.model_stats && globalData.model_stats[prov]) ? globalData.model_stats[prov][period] : [];
+      if (!stats || stats.length === 0) {
+        box.innerHTML = '<div class="text-xs text-gray-500 py-2.5 px-3 bg-gray-900/40 rounded-lg border border-gray-800/60">За выбранный период вызовов не зафиксировано (запросы шли через основной Antigravity / Grok).</div>';
+        return;
+      }
+
+      stats.forEach((m, idx) => {
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap items-center justify-between p-2.5 bg-gray-900/60 hover:bg-gray-900/90 rounded-lg border border-gray-800 text-xs gap-2 transition';
+        row.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 flex items-center justify-center rounded-full bg-gray-800 font-bold text-[10px] text-gray-400">${idx+1}</span>
+            <span class="font-semibold text-white truncate max-w-[170px]" title="${m.model}">${m.model}</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 text-gray-400">
+              <span>Вход: <b class="text-gray-200">${m.input_fmt}</b></span>
+              <span class="text-gray-600">|</span>
+              <span>Исх: <b class="text-blue-400">${m.output_fmt}</b></span>
+            </div>
+            <div class="font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-900">
+              ${m.cost_usd}
+            </div>
+          </div>
+        `;
+        box.appendChild(row);
+      });
+    }
+
+    function render(data) {
+      const d = new Date(data.timestamp);
+      document.getElementById('last-update').innerText = 'Синхронизировано: ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'}) + ' (авто-обновление раз в 5 мин)';
+
+      // 1. Antigravity
+      const agGrid = document.getElementById('antigravity-grid');
+      agGrid.innerHTML = '';
+      (data.antigravity || []).forEach(acc => {
+        const box = document.createElement('div');
+        box.className = 'bg-gray-900/80 p-4 rounded-xl border border-gray-800/80 flex flex-col justify-between';
+        
+        let modelsHtml = '';
+        if (acc.models && acc.models.length > 0) {
+          acc.models.forEach(m => {
+            const bi = getBarInfo(m.remaining);
+            let resetInfo = '';
+            if (m.reset && m.remaining < 100) {
+              const dt = new Date(m.reset);
+              const diffMin = Math.round((dt - new Date()) / 60000);
+              if (diffMin > 0) {
+                const h = Math.floor(diffMin / 60);
+                const mn = diffMin % 60;
+                const diffStr = h > 0 ? (h + 'ч ' + mn + 'м') : (mn + 'м');
+                resetInfo = '<span class="text-[10px] text-amber-400 font-semibold">сброс через ' + diffStr + ' (' + dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ')</span>';
+              } else {
+                resetInfo = '<span class="text-[10px] text-emerald-400">сброс прямо сейчас</span>';
+              }
+            } else if (m.remaining >= 100) {
+              resetInfo = '<span class="text-[10px] text-emerald-400/80">100% (полный пул)</span>';
+            }
+            modelsHtml += `
+              <div class="mb-3">
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-gray-300 font-medium">${m.name}</span>
+                  <div class="flex items-center gap-1.5">
+                    ${resetInfo}
+                    <span class="font-bold text-white">${m.remaining}%</span>
+                  </div>
+                </div>
+                <div class="bar-bg h-2 w-full">
+                  <div class="${bi.bg} bar-glow ${bi.glow} h-2 rounded transition-all duration-500" style="width: ${m.remaining}%"></div>
+                </div>
+              </div>
+            `;
+          });
+        } else {
+          modelsHtml = '<div class="text-xs text-rose-400 py-3">Ошибка сессии / авто-обновление токена...</div>';
+        }
+
+        box.innerHTML = `
+          <div>
+            <div class="text-xs font-semibold text-blue-400 mb-3 truncate" title="${acc.account}">${acc.account}</div>
+            ${modelsHtml}
+          </div>
+        `;
+        agGrid.appendChild(box);
+      });
+
+      // 2. Grok
+      const grBox = document.getElementById('grok-container');
+      if (data.grok && data.grok.status === 'ok') {
+        const g = data.grok;
+        const bi = getBarInfo(g.remaining_percent);
+        let resetStr = '';
+        if (g.resets_at) {
+          const dt = new Date(g.resets_at);
+          resetStr = dt.toLocaleDateString([], {day:'numeric', month:'long'}) + ' в ' + dt.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+        }
+        grBox.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
+            <div>
+              <span class="text-sm font-semibold text-gray-200">Использование пула за текущую неделю:</span>
+              <span class="text-xs text-gray-400 ml-2">(съело: <b class="text-amber-400 font-bold">${g.used_percent}%</b>)</span>
+            </div>
+            <div class="text-sm font-bold text-emerald-400">
+              Свободно: ${g.remaining_percent}%
+            </div>
+          </div>
+          <div class="bar-bg h-3.5 w-full mb-3">
+            <div class="${bi.bg} bar-glow ${bi.glow} h-3.5 rounded transition-all duration-500" style="width: ${g.remaining_percent}%"></div>
+          </div>
+          <div class="flex flex-wrap items-center justify-between text-xs text-gray-400 pt-1 border-t border-gray-800/60">
+            <span>Период: <b>Недельный (Weekly)</b></span>
+            <span>Сброс пула: <b class="text-gray-200">${resetStr}</b></span>
+          </div>
+        `;
+      } else {
+        grBox.innerHTML = '<div class="text-xs text-gray-400">Синхронизация с xAI billing API...</div>';
+      }
+
+      // 3. OpenCode-Go Шкалы
+      const ogGrid = document.getElementById('opencode-grid');
+      ogGrid.innerHTML = '';
+      if (data.opencode_go && !data.opencode_go.error) {
+        ['rolling', 'weekly', 'monthly'].forEach(k => {
+          const item = data.opencode_go[k];
+          if (!item) return;
+          const bi = getBarInfo(item.remaining_pct);
+          let resetStr = '';
+          if (item.resets_at) {
+            const dt = new Date(item.resets_at);
+            resetStr = 'сброс: ' + dt.toLocaleDateString([], {day:'numeric', month:'short'}) + ' ' + dt.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+          }
+          const card = document.createElement('div');
+          card.className = 'bg-gray-900/80 p-4 rounded-xl border border-gray-800/80';
+          card.innerHTML = `
+            <div class="flex justify-between items-center text-xs mb-1">
+              <span class="text-gray-200 font-semibold">${item.name}</span>
+              <span class="font-bold text-emerald-400">${item.remaining_pct}% свободно</span>
+            </div>
+            <div class="bar-bg h-2.5 w-full my-2">
+              <div class="${bi.bg} bar-glow ${bi.glow} h-2.5 rounded" style="width: ${item.remaining_pct}%"></div>
+            </div>
+            <div class="flex justify-between text-[11px] text-gray-500">
+              <span>Израсходовано: ${item.used_pct}%</span>
+              <span>${resetStr}</span>
+            </div>
+          `;
+          ogGrid.appendChild(card);
+        });
+      }
+
+      // Рендер Топ моделей OpenCode
+      renderTopModels('opencode-go', currentOgPeriod, 'opencode-top-models');
+
+      // 4. OpenRouter Баланс
+      const orBox = document.getElementById('openrouter-box');
+      if (data.openrouter) {
+        const r = data.openrouter;
+        orBox.innerHTML = `
+          <div>
+            <div class="text-xs text-gray-400 mb-1">Текущий доступный баланс:</div>
+            <div class="text-3xl font-black text-white tracking-tight">$${r.remaining_usd}</div>
+          </div>
+        `;
+      }
+
+      // Рендер Топ моделей OpenRouter
+      renderTopModels('openrouter', currentOrPeriod, 'openrouter-top-models');
+
+      // 5. Perplexity
+      const pBox = document.getElementById('perplexity-box');
+      if (data.perplexity) {
+        const p = data.perplexity;
+        const balVal = p.balance_usd !== undefined ? p.balance_usd : 9.34;
+        const remSearches = p.remaining_searches || Math.floor(balVal / 0.005);
+        pBox.innerHTML = `
+          <div>
+            <div class="text-xs text-gray-400 mb-1">Текущий остаток баланса:</div>
+            <div class="text-3xl font-black text-purple-400 tracking-tight">$${balVal.toFixed(2)}</div>
+          </div>
+          <div class="bg-gray-900/60 p-2.5 rounded-lg border border-gray-800 text-xs text-gray-400 mt-2">
+            Запас хода: <b>~${remSearches.toLocaleString()} поисков</b> (авто-списание $0.005 за поиск Sonar).
+          </div>
+        `;
+      }
+
+      // 6. ElevenLabs
+      const elGrid = document.getElementById('eleven-grid');
+      elGrid.innerHTML = '';
+      let totalRem = 0;
+      let totalLimit = 0;
+      (data.elevenlabs || []).forEach(k => {
+        totalRem += (k.remaining || 0);
+        totalLimit += (k.limit || 10000);
+        const bi = getBarInfo(k.percent || 0);
+        const card = document.createElement('div');
+        card.className = 'bg-gray-900/80 p-4 rounded-xl border border-gray-800/80';
+        const statusLabel = (k.percent > 0) ? 'Готов к озвучке' : 'Исчерпан (0%)';
+        card.innerHTML = `
+          <div class="flex justify-between items-center text-xs mb-2">
+            <span class="text-gray-200 font-semibold">${k.key_id}</span>
+            <span class="text-white font-bold">${(k.remaining || 0).toLocaleString()} / ${(k.limit || 10000).toLocaleString()}</span>
+          </div>
+          <div class="bar-bg h-2 w-full mb-1.5">
+            <div class="${bi.bg} bar-glow ${bi.glow} h-2 rounded" style="width: ${k.percent || 0}%"></div>
+          </div>
+          <div class="flex justify-between text-[11px] text-gray-400">
+            <span>${statusLabel}</span>
+            <span class="text-gray-300 font-medium">${k.percent || 0}% свободно</span>
+          </div>
+        `;
+        elGrid.appendChild(card);
+      });
+      document.getElementById('eleven-summary').innerText = `Свободно ${totalRem.toLocaleString()} из ${totalLimit.toLocaleString()} симв`;
+    }
+
+    loadCachedData();
+    setInterval(loadCachedData, 30000);
+  </script>
+
+  <!-- PWA Install Modal -->
+  <div id="pwa-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closePwaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>
+      <h3 class="text-xl font-bold text-white flex items-center gap-2 mb-4">
+        <span>📱</span> Установка на телефон (PWA)
+      </h3>
+      <p class="text-sm text-gray-300 mb-4">
+        Вы можете сохранить дашборд как отдельное полноэкранное приложение на рабочий стол без рамок браузера:
+      </p>
+      
+      <div class="space-y-4 text-sm">
+        <div class="p-3 bg-gray-800/80 rounded-xl border border-gray-700/60">
+          <div class="font-semibold text-blue-400 mb-1 flex items-center gap-1.5">
+            <span>🍏</span> iPhone / iPad (Safari)
+          </div>
+          <ol class="list-decimal list-inside text-gray-300 space-y-1">
+            <li>Откройте дашборд в браузере <strong>Safari</strong></li>
+            <li>Нажмите кнопку <strong>«Поделиться»</strong> (квадрат со стрелкой вверх внизу экрана)</li>
+            <li>Пролистайте вниз и выберите <strong>«На экран "Домой"»</strong></li>
+            <li>Нажмите <strong>«Добавить»</strong> в правом верхнем углу</li>
+          </ol>
+        </div>
+
+        <div class="p-3 bg-gray-800/80 rounded-xl border border-gray-700/60">
+          <div class="font-semibold text-green-400 mb-1 flex items-center gap-1.5">
+            <span>🤖</span> Android (Chrome / Яндекс)
+          </div>
+          <ol class="list-decimal list-inside text-gray-300 space-y-1">
+            <li>Откройте дашборд в <strong>Google Chrome</strong></li>
+            <li>Нажмите меню <strong>(три точки)</strong> в правом верхнем углу</li>
+            <li>Выберите <strong>«Установить приложение»</strong> или <strong>«Добавить на главный экран»</strong></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center">
+        <button onclick="closePwaModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg text-sm transition-all">
+          Понятно
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPwaModal() { document.getElementById("pwa-modal").classList.remove("hidden"); }
+    function closePwaModal() { document.getElementById("pwa-modal").classList.add("hidden"); }
+  </script>
+</body>
+
+</html>

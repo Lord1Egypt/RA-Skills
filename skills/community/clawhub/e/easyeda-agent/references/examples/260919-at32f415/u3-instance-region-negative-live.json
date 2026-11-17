@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "status": "live-verified-negative-with-rollback",
+  "capturedAt": "2026-09-21T01:12:49+08:00",
+  "project": "ceshi",
+  "pcbDocumentUuid": "2e719e9419653c72",
+  "objective": "Test a parameterized board-level no-components region for the existing U3 without changing its device, footprint or 3D-model binding.",
+  "input": {
+    "ownerRef": "U3",
+    "ownerPrimitiveId": "f086401280b13c2e",
+    "ownerFootprintAnchorMil": [
+      650,
+      900
+    ],
+    "ownerRenderedBBoxMil": [
+      379.151,
+      410.751,
+      920.903,
+      1552.738
+    ],
+    "regionLayer": 12,
+    "ruleType": [
+      2
+    ],
+    "locked": true,
+    "source": "layout-plan-lcd-peripherals.json keepout proxy; exam instructions p3"
+  },
+  "experiment": {
+    "createdRegion": {
+      "layer": 12,
+      "primitiveId": "c3f65afc1e9fe1de",
+      "regionName": "U3_LCD_BODY",
+      "ruleType": [
+        2
+      ],
+      "ruleTypeNames": [
+        "no-components"
+      ]
+    },
+    "readback": {
+      "count": 1,
+      "primitiveId": "c3f65afc1e9fe1de",
+      "layer": 12,
+      "ruleType": [
+        2
+      ],
+      "locked": true,
+      "bboxMil": [
+        379.051,
+        410.651,
+        921.003,
+        1552.838
+      ]
+    },
+    "drcBefore": {
+      "total": 216,
+      "counts": {
+        "Connection Error": 216
+      },
+      "sha256": "024132fab05491bc67d05b2792a9e327d0df11fbc2c35936216823941086cc7a"
+    },
+    "drcWithRegion": {
+      "total": 217,
+      "counts": {
+        "Clearance Error": 1,
+        "Connection Error": 216
+      },
+      "additionalViolations": [
+        {
+          "rule": "Clearance Error",
+          "objType": "Device to Prohibited Region",
+          "ruleName": "otherClearance",
+          "x": 379.15,
+          "y": 410.75,
+          "layer": "Top Layer",
+          "objs": [
+            "c3f65afc1e9fe1de",
+            "f086401280b13c2e"
+          ],
+          "message": ": e1 and : U3 overlap",
+          "globalIndex": "err217"
+        }
+      ],
+      "sha256": "4d3c81630cdd67a00e45deb8266511edb8ab61c1fe8a15924d906dc2a307dce1"
+    },
+    "finding": "The top-level region overlaps its owner U3 and creates one Device to Prohibited Region clearance error. The public region API has no parent/owner exemption."
+  },
+  "rollback": {
+    "deleted": true,
+    "saved": true,
+    "reloaded": true,
+    "regionReadback": {
+      "count": 0,
+      "regions": []
+    },
+    "drcAfter": {
+      "total": 216,
+      "counts": {
+        "Connection Error": 216
+      },
+      "sha256": "024132fab05491bc67d05b2792a9e327d0df11fbc2c35936216823941086cc7a"
+    },
+    "restoredBaseline": true
+  },
+  "conclusion": [
+    "A board-level no-components region over U3 is not an acceptable instance-level substitute because it flags U3 itself.",
+    "The failed candidate was removed through typed actions; save, real reload, fresh region list and fresh DRC prove rollback.",
+    "Keep the LCD footprint-region requirement incomplete until an official owner-aware instance path exists; do not rebind the system-library footprint and do not use GUI repair."
+  ]
+}

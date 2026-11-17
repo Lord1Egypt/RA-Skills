@@ -1,41 +1,57 @@
-## Description: <br>
-校验法律文本中的法规、法条、案例和案号引用，调用权威来源比对语义一致性和时效性，并输出判定与依据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+校验文本中的法律引用，抽取法规、法条、案例和案号，并通过权威来源比对语义一致性与法规时效性，输出准确、时效风险、语义不一致或未命中的判定。
 
-## Publisher: <br>
-[doudoudou12138-design](https://clawhub.ai/user/doudoudou12138-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doudoudou12138-design](https://clawhub.ai/user/doudoudou12138-design)
 
-## Use Case: <br>
-法律从业者、合规人员和使用代理撰写法律文本的用户可用该技能复核正式文本中的中国法律引用，识别过期法规、语义不一致和未命中的案例或案号。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal text submitted for checking is sent to the ChineseLaw API through the configured API key. <br>
-Mitigation: Use only when authorized to share the material, and avoid privileged, confidential, or personal content unless appropriate approvals are in place. <br>
-Risk: Local body.json, response.json, and .env files can contain sensitive legal text, API responses, or credentials. <br>
-Mitigation: Protect environment files, avoid committing credentials, and remove generated request and response files when they contain sensitive content. <br>
+## Use Case:
 
+Legal professionals, compliance reviewers, and developers use this skill to check whether legal citations in formal Chinese legal text match authoritative source content and remain valid. It supports review of cited regulations, statutes, cases, and case numbers before legal text is finalized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/doudoudou12138-design/legal-verify) <br>
-- [ChineseLaw hall_detect API endpoint](https://open.chineselaw.com/open/hall_detect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown table with request IDs, source excerpts, links, and optional shell commands plus JSON request and response files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YUANDIAN_API_KEY; API calls may create body.json and response.json containing submitted legal text and returned source material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Confidential or privileged legal text may be sent to the disclosed chineselaw.com API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that service is approved for the matter, and avoid privileged or highly confidential material unless approval is explicit.
+
+Risk: API keys or generated request and response files may expose secrets or sensitive legal text.
+
+Mitigation: Keep YUANDIAN_API_KEY out of chats and source control, and delete or protect body.json and response.json after use.
+
+Risk: Failed or incomplete API responses could otherwise lead to unsupported legal claims.
+
+Mitigation: Do not fabricate legal authority when the API fails or returns no authoritative source content; report the failure or missing result instead.
+
+## Reference(s):
+
+- [ChineseLaw hall_detect API endpoint](https://open.chineselaw.com/open/hall_detect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown table with concise text and API-backed citation-check results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses YUANDIAN_API_KEY and may create local body.json and response.json files during citation checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Manage your agent's crypto wallet. Check balances, send tokens, track spending across Hedera, Base, and EVM chains. Built for agents who earn and spend on-chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your agent's crypto wallet. Check balances, send tokens, track spending across Hedera, Base, and EVM chains. Built for agents who earn and spend on-chain.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-External developers and agents use this skill to check crypto wallet balances, track bounty income and spending, inspect gas prices, and prepare HBAR transfer code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes live crypto-transfer code and examples that can move funds if credentials, account IDs, recipient IDs, and amounts are filled in. <br>
-Mitigation: Use a dedicated low-balance wallet, require manual approval for every transfer, and verify recipient and amount outside the agent before execution. <br>
-Risk: The transfer snippet places an operator private key directly in code. <br>
-Mitigation: Do not paste production private keys into generated scripts; use safer secret handling and restrict wallet permissions before testing. <br>
-Risk: The artifact contains an unexplained onlyflies.buzz registration and ping marker. <br>
-Mitigation: Review the hidden endpoint marker and network behavior before trusting or deploying the skill. <br>
-Risk: The skill writes a local treasury ledger that may expose financial activity. <br>
-Mitigation: Protect the ledger file and limit access to the local configuration directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaflytok/agent-treasury) <br>
+## Use Case:
 
+Agents and developers use this skill to inspect crypto balances, track bounty income and spending, check gas prices, and prepare wallet operation commands across Hedera, Base, and EVM chains.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JavaScript, and checklist snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live wallet balance queries, local ledger commands, gas price checks, and crypto transfer snippets requiring manual review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mainnet transfer examples can move real assets if account credentials, recipient, network, or amount are wrong.
+
+Mitigation: Require explicit human review before transfer execution, prefer testnet first, and use low-value accounts for initial runs.
+
+Risk: Private keys or operator credentials could be pasted into source files or command history.
+
+Mitigation: Keep secrets out of source files, avoid committing credentials, and use a dedicated secret store or reviewed local environment variables.
+
+Risk: The skill contains unexplained external OADP registration and ping endpoints.
+
+Mitigation: Do not allow a host to auto-consume those endpoints unless the publisher and destination are trusted and the user has approved the network behavior.
+
+Risk: The HBAR transfer example recommends a global unpinned SDK install.
+
+Mitigation: Install dependencies locally where possible and pin or review SDK versions before using wallet operations.
+
+## Reference(s):
+
+- [Agent Treasury on ClawHub](https://clawhub.ai/imaflytok/skills/agent-treasury)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet balance checks, local ledger examples, gas checks, and HBAR transfer guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

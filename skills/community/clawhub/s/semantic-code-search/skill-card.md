@@ -1,40 +1,53 @@
-## Description: <br>
-Semantic search engine for codebases that understands intent and finds functionally similar code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic search engine for codebases that understands intent and finds functionally similar code.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and engineers use this skill to index a local codebase and search for functions, classes, similar implementations, and possible duplicate logic by meaning rather than exact text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local index can contain copied source snippets from indexed repositories. <br>
-Mitigation: Index only repositories whose contents may be stored locally, avoid codebases with sensitive secrets, and keep .code_index.json out of commits and shared folders. <br>
-Risk: The documented CLI path differs from the included script name. <br>
-Mitigation: Verify the actual CLI entrypoint in the installed artifact before running commands from the documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to search codebases by intent, find functionally similar implementations, discover duplicate logic, and navigate unfamiliar code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/semantic-code-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples; Python APIs return lists of dictionaries and optional JSON index files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local .code_index.json file containing copied code snippets from repositories the user indexes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Indexing can persist raw source snippets and docstrings locally in .code_index.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated indexes as sensitive project artifacts and do not commit or share them until their contents are reviewed.
+
+Risk: Directory traversal during indexing can follow symlinks outside the intended project.
+
+Mitigation: Run the skill only on trusted directories and inspect or constrain symlinks before indexing private or untrusted repositories.
+
+## Reference(s):
+
+- [Semantic Code Search on ClawHub](https://clawhub.ai/evezart/skills/semantic-code-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or describe a local code index containing source snippets, docstrings, file paths, line numbers, and similarity scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

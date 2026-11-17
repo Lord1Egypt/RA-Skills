@@ -1,44 +1,59 @@
-## Description: <br>
-Converts Chinese or English text, including text extracted from images, into natural-sounding MP3 speech with selectable Edge TTS voices and speech rate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Chinese or English text, including OCR-extracted image text, into natural-sounding MP3 speech using edge-tts and Microsoft Edge TTS voices.
 
-## Publisher: <br>
-[figo6228-spec](https://clawhub.ai/user/figo6228-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenzje228](https://clawhub.ai/user/kenzje228)
 
-## Use Case: <br>
-External users and developers use this skill to turn lessons, stories, essays, articles, or OCR text into MP3 narration. It supports single-file and batch conversion with Chinese and English voice choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text, including OCR text from images, is sent to Microsoft's online TTS service. <br>
-Mitigation: Use only when the user is comfortable sending the text to that service, and avoid submitting sensitive or confidential content. <br>
-Risk: The setup helper may install the edge-tts package into the active Python environment. <br>
-Mitigation: Run setup in a virtual environment where possible and review dependency installation before use. <br>
-Risk: Mismatching text language and voice language can produce accented or lower-quality narration. <br>
-Mitigation: Detect the text language first and choose a matching Chinese or English voice before generating audio. <br>
+## Use Case:
 
+External users and developers use this skill to turn provided text or OCR-extracted image text into MP3 narration for lessons, essays, stories, articles, and batch audio generation.
 
-## Reference(s): <br>
-- [Voice Catalog](references/voice_catalog.md) <br>
-- [ClawHub skill page](https://clawhub.ai/figo6228-spec/text-to-audio) <br>
-- [Publisher profile](https://clawhub.ai/user/figo6228-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON batch configuration, and generated MP3 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is MP3; batch mode reads a JSON configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Text submitted for audio generation is sent to an online Microsoft TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential, regulated, or private text unless cloud processing is acceptable for the user and organization.
+
+Risk: The environment check can install edge-tts without a pinned version.
+
+Mitigation: Run the skill in a virtual environment and install a pinned, reviewed edge-tts version before use.
+
+Risk: Audio generation depends on network access to the Microsoft TTS service.
+
+Mitigation: Confirm network access before relying on the skill, especially for batch generation workflows.
+
+## Reference(s):
+
+- [edge-tts voice catalog](artifact/references/voice_catalog.md)
+- [Microsoft TTS service endpoint](https://speech.platform.bing.com)
+- [ClawHub skill page](https://clawhub.ai/kenzje228/skills/text-to-audio)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [MP3 audio files, JSON batch configuration, and Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads UTF-8 text files, supports voice and speech-rate options, and can process multiple files from a batch JSON configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

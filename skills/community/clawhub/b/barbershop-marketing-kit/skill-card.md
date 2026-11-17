@@ -1,46 +1,59 @@
-## Description: <br>
-Generates compliance-oriented marketing content for Nevada barbershops, including campaigns, ads, service pages, review workflows, referral assets, and local SEO materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates compliance-oriented marketing content for Nevada barbershops and master barbers, including campaigns, service pages, ads, local SEO, review responses, and referral materials.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Barbershop owners, master barbers, and marketers use this skill to draft Nevada-specific marketing assets with checkpoints for license disclosures, sanitation language, endorsements, product claims, booth-rental wording, and SMS opt-out requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, focused on Nevada barbershops. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include outdated or unverified regulatory, license, review-count, SMS-consent, or advertising claims. <br>
-Mitigation: Verify current Nevada barber regulations, license numbers, review counts, SMS consent requirements, and advertising claims before public use. <br>
-Risk: The skill produces compliance-sensitive drafting guidance rather than professional legal advice. <br>
-Mitigation: Use qualified human review for legal, regulatory, and platform-policy claims before publishing or deploying generated materials. <br>
+## Use Case:
 
+Barbershop owners, master barbers, and local marketing operators use this skill to draft Nevada-focused marketing assets that account for NBHSB licensing, sanitation, review, SMS, product-claim, and booth-rental advertising constraints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gitflopez/barbershop-marketing-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill behavior summary](artifact/SKILL.md) <br>
-- [Seasonal campaigns prompt](artifact/prompts/01-seasonal-campaigns.md) <br>
-- [Service pages and schema prompt](artifact/prompts/02-service-pages-schema.md) <br>
-- [Reputation and referral prompt](artifact/prompts/03-reputation-referral.md) <br>
-- [Digital ads and local SEO prompt](artifact/prompts/04-digital-ads-local-seo.md) <br>
+### Deployment Geography for Use:
 
+Nevada, United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown marketing copy with checklist guidance and occasional JSON-LD code blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only output; users must provide and verify shop, license, service, review, consent, and advertising details before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated marketing copy may contain outdated or incomplete regulatory guidance for Nevada barber advertising, SMS, email, reviews, gift cards, or product claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Nevada State Barber Health & Sanitation Board, advertising, TCPA, email, FTC, FDA, OSHA, and gift-card requirements before publishing or sending generated content.
+
+Risk: Public review responses, SMS campaigns, and ad copy may create liability if they admit fault, omit required opt-out language, misstate credentials, or use unsupported claims.
+
+Mitigation: Review generated content before use, confirm all license numbers and business facts, preserve neutral review-request language, include SMS opt-out text, and avoid unsupported sanitation, product, or employment relationship claims.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/gitflopez/skills/barbershop-marketing-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [Skill overview](artifact/SKILL.md)
+- [Seasonal campaigns prompt](artifact/prompts/01-seasonal-campaigns.md)
+- [Service pages and schema prompt](artifact/prompts/02-service-pages-schema.md)
+- [Reputation and referral prompt](artifact/prompts/03-reputation-referral.md)
+- [Digital ads and local SEO prompt](artifact/prompts/04-digital-ads-local-seo.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with campaign copy, ad briefs, tables, checklists, JSON-LD schema snippets, and ready-to-use response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only skill; generated marketing assets should be reviewed against current Nevada barber, advertising, SMS, email, review, and gift-card rules before publication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

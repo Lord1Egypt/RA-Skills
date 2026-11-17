@@ -1,45 +1,58 @@
-## Description: <br>
-Agent Link Relay Server helps developers deploy and configure a Python WebSocket relay for cross-device OpenClaw agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Link Relay Server helps OpenClaw instances and agents communicate across devices through a Python relay server that receives, verifies, routes, and forwards agent messages.
 
-## Publisher: <br>
-[ericshpych](https://clawhub.ai/user/ericshpych) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericshpych](https://clawhub.ai/user/ericshpych)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy a relay server and configure agents so OpenClaw instances on different machines can exchange messages through the relay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent messages can be relayed over plaintext WebSockets if deployed with ws://. <br>
-Mitigation: Use WSS/TLS for non-local connections and avoid sending confidential prompts, credentials, or sensitive payloads through the relay. <br>
-Risk: The relay uses a shared secret across participating agents and instances. <br>
-Mitigation: Generate a strong secret, store it outside version control, rotate it regularly, and limit relay access to trusted infrastructure. <br>
-Risk: The public_key configuration field may imply stronger protection than the implementation provides. <br>
-Mitigation: Do not rely on public_key for signature verification or encryption unless the implementation is updated to enforce it. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and configure a WebSocket relay for cross-device OpenClaw agent messaging. It is intended for teams that need agent-to-agent communication across machines through a shared relay service.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ericshpych/agent-link-relay-server) <br>
-- [Publisher profile](https://clawhub.ai/user/ericshpych) <br>
-- [README](README.md) <br>
-- [Relay installation guide](docs/install-relay.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON, Python, shell, and systemd examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance and configuration examples for a relay server; the bundled Python script runs a WebSocket relay when installed separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and _meta.json) <br>
+Risk: The security evidence says the skill's security claims and deployment guidance do not match the relay implementation closely enough for sensitive agent communication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and treat the current implementation as a prototype rather than a production-secure relay.
+
+Risk: The security evidence warns against exposing the relay to the public internet or relaying sensitive agent commands without additional protections.
+
+Mitigation: Add TLS/WSS, restrict firewall access to trusted clients, protect secrets, use per-instance credentials, bind sender identity to authenticated connections, bound replay history, and verify the registered_instances allowlist is loaded.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericshpych/skills/agent-link-relay-server)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Relay installation guide](artifact/docs/install-relay.md)
+- [Relay server script](artifact/scripts/relay-server/relay_server.py)
+- [Relay configuration example](artifact/scripts/relay-server/relay-config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, Python examples, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and the websockets package; the OpenClaw metadata also lists python3, python, and openclaw requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

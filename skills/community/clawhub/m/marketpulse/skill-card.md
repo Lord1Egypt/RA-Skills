@@ -1,43 +1,60 @@
-## Description: <br>
-Query real-time and historical financial data for equities, including prices, news, financial statements, metrics, analyst estimates, insider and institutional activity, SEC filings, earnings press releases, segmented revenues, stock screening, and macro interest rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time and historical financial data for equities, including prices, news, financial statements, metrics, analyst estimates, insider and institutional activity, SEC filings, earnings press releases, segmented revenues, stock screening, and macro interest rates.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users, developers, and finance-focused agents use Marketpulse to retrieve AIsa market data for stock research, watchlists, portfolio workflows, screening, SEC filing review, and macro interest-rate queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AISA_API_KEY to send tickers, filters, dates, and similar financial research parameters to api.aisa.one. <br>
-Mitigation: Install only when external transmission to AIsa is acceptable, avoid sensitive portfolio or client-specific screens unless approved, and scope the API key according to organizational policy. <br>
-Risk: API requests may consume paid credits. <br>
-Mitigation: Monitor usage, review command parameters before execution, and prefer narrower queries when testing or exploring data. <br>
+## Use Case:
 
+Developers and market-research agents use this skill to retrieve equity market data, financial filings, company fundamentals, analyst estimates, ownership activity, stock screens, and macro interest-rate data through the AIsa API.
 
-## Reference(s): <br>
-- [Marketpulse on ClawHub](https://clawhub.ai/aisadocs/marketpulse) <br>
-- [AIsa API Reference](https://aisa.one/docs/api-reference/) <br>
-- [AIsa](https://aisa.one) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python command examples; bundled CLI commands return JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; API calls send financial query parameters to AIsa endpoints and may consume paid credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requires an AISA_API_KEY to call AIsa market-data endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege API key where available, store it in an environment variable or secrets manager, and avoid pasting it into prompts or shared logs.
+
+Risk: Ticker symbols, watchlists, screener filters, and similar market-research parameters are sent to AIsa's API.
+
+Mitigation: Review requests before execution and avoid sending sensitive portfolio notes unless they are necessary for the task.
+
+Risk: Some endpoint coverage is limited, and unsupported tickers can return errors.
+
+Mitigation: Check API responses for errors and verify critical market data against an authoritative source before using it for decisions.
+
+## Reference(s):
+
+- [Marketpulse on ClawHub](https://clawhub.ai/aisadocs/skills/marketpulse)
+- [AIsa API Reference](https://aisa.one/docs/api-reference/)
+- [AIsa](https://aisa.one)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell commands, curl examples, Python CLI usage, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and AISA_API_KEY; API calls send requested market-data parameters to AIsa.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

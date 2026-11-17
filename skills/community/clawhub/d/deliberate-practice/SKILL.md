@@ -1,7 +1,7 @@
 ---
 name: deliberate-practice
 description: "Activate when: user says 'I've been doing this for years but I'm not getting better'; someone suspects a skill plateau despite continued effort; designing a learning program for a high-performance outcome; an organization reports high training hours but low skill transfer.
-  Do NOT activate when: goal is execution of existing skills rather than acquiring new ones (use deep-work instead); there is no identifiable expert performance benchmark to target."
+  Do NOT activate when: goal is execution of existing skills rather than acquiring new ones (use deep-work instead); there is no identifiable expert performance benchmark to target. More: deciqai.com/c/deliberate-practice"
 ---
 
 # Deliberate Practice
@@ -10,13 +10,13 @@ description: "Activate when: user says 'I've been doing this for years but I'm n
 
 Most people confuse repetition with learning — they accumulate years of experience and plateau. Once an activity becomes automatic, executing it no longer builds new neural architecture. Ericsson, Krampe & Tesch-Römer (1993) showed the predictive variable is not hours of doing but hours of *specifically deliberate practice* — targeted, uncomfortable, feedback-rich repetition designed to build mental representations.
 
-**Cross-skill composition:** Use [`feedback-loops`](../feedback-loops/SKILL.md) first (audit your error signal); then [`metacognition`](../metacognition/SKILL.md) (surface your current representation gap); use instead of [`deep-work`](../deep-work/SKILL.md) when acquiring skills, not producing output; use alongside [`cognitive-evolution-stages`](../cognitive-evolution-stages/SKILL.md) for stage-aware practice design.
+**Cross-skill composition:** Use `feedback-loops` first (audit your error signal); then `metacognition` (surface your current representation gap); use instead of `deep-work` when acquiring skills, not producing output; use alongside `cognitive-evolution-stages` for stage-aware practice design.
 
 ---
 
 ## When to Use
 
-**Trigger:** plateau despite experience; designing high-performance learning program; training hours high but skill transfer low; evaluating whether practice is building capability or maintaining it.
+**Trigger:** plateau despite experience; designing high-performance learning program; training hours high but skill transfer low; evaluating whether practice is building capability or maintaining it; skill atrophy or deskilling as AI copilots absorb the routine reps (AI adoption, AI hype, "will AI make me worse at my craft").
 **When NOT:** goal is execution not acquisition (use deep-work); no expert benchmark exists; bottleneck is motivational not representational.
 
 ---
@@ -60,7 +60,8 @@ Progress indicator (representation-level, not output): [what I will perceive by 
 Stop-rule triggers: comfortable → redesign; concentration drops → end; latency >24h → redesign
 ```
 
-*→ Method in Action: [Berlin Violin Study (1991–1993)](examples/berlin-violin-study-1991-1993.md)*
+*→ Method in Action: [Berlin Violin Study (1991–1993)](examples/berlin-violin-study-1991-1993.md) · [Franklin's Spectator Method](examples/franklin-spectator-writing-method.md)*
+*→ 2026 lens: [Keeping Skill Alive When AI Does the Reps (2024–2026)](examples/skill-atrophy-when-ai-does-the-reps-2024-2026.md)*
 
 ---
 
@@ -113,4 +114,6 @@ Contribute packs via the deciqAI repo — requires sub-skill, expert representat
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/deliberate-practice** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/deliberate-practice.json*

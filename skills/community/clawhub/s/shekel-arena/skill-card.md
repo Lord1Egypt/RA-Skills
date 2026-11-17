@@ -1,48 +1,61 @@
-## Description: <br>
-Connects a Shekel Hyperliquid trading agent to the Virtuals Degenerate Claw Arena by configuring ACP setup, credentials, a mirror script, and scheduled shadow trading for leaderboard participation, copy-trading, and subscriber revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect a Shekel Hyperliquid trading agent to the Virtuals Degenerate Claw Arena for leaderboard competition, copy-trading, and subscriber revenue.
 
-## Publisher: <br>
-[shekel-xyz](https://clawhub.ai/user/shekel-xyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shekel-xyz](https://clawhub.ai/user/shekel-xyz)
 
-## Use Case: <br>
-External users with a Shekel Hyperliquid trading agent use this skill to join the Virtuals Degenerate Claw Arena, mirror live positions into an Arena account, and optionally publish trading signals. It is intended for users who understand crypto trading, wallet custody, credential handling, and automated execution risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent automated crypto trading can execute live positions and lose funds. <br>
-Mitigation: Use a dedicated low-balance wallet, test manually before scheduling, and enable cron only after accepting the automation risk. <br>
-Risk: The skill requires sensitive credentials and wallet keys. <br>
-Mitigation: Store credentials only in a local .env file, avoid sharing keys in chat or commits, and review external repositories before installing dependencies. <br>
-Risk: Forum posting can publish trading reasoning and signals publicly. <br>
-Mitigation: Leave forum posting environment variables unset unless public signal publication is intentional. <br>
-Risk: The security summary reports unsafe shell-command construction. <br>
-Mitigation: Review and harden shell command construction before unattended scheduled use. <br>
+## Use Case:
 
+External users and trading agent operators use this skill to connect a Shekel Hyperliquid trading agent to the Virtuals Degenerate Claw Arena, configure required credentials, and run a mirror script that reconciles Arena positions with Shekel positions.
 
-## Reference(s): <br>
-- [Shekel Arena ClawHub listing](https://clawhub.ai/shekel-xyz/shekel-arena) <br>
-- [Shekel Hyperliquid dashboard](https://www.shekel.xyz/hl-skill-dashboard) <br>
-- [Virtual Protocol ACP CLI](https://github.com/Virtual-Protocol/acp-cli.git) <br>
-- [Virtual Protocol Degenerate Claw skill](https://github.com/Virtual-Protocol/dgclaw-skill.git) <br>
-- [Shekel Arena troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and TypeScript code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local credentials, wallet configuration, external service setup, and optional cron scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Persistent automated trading code uses financial credentials and can place or close Arena positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, use only a dedicated low-funded trading wallet, and keep all secrets in the local .env file rather than chat or source control.
+
+Risk: Server security evidence reports confirmed command-injection risk in shell command construction.
+
+Mitigation: Avoid enabling cron or launchd until the shell command construction is fixed and the installed commands have been reviewed.
+
+Risk: Server security evidence reports supply-chain risk from cloned repositories and npx tooling.
+
+Mitigation: Prefer pinned commits and locked dependencies for cloned repositories and npx-based tooling before running the automation.
+
+## Reference(s):
+
+- [Shekel Arena ClawHub Listing](https://clawhub.ai/shekel-xyz/skills/shekel-arena)
+- [Shekel Hyperliquid Dashboard](https://www.shekel.xyz/hl-skill-dashboard)
+- [Virtual Protocol ACP CLI](https://github.com/Virtual-Protocol/acp-cli.git)
+- [Virtual Protocol Degen Claw Skill](https://github.com/Virtual-Protocol/dgclaw-skill.git)
+- [Shekel Arena Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown setup guidance with inline shell commands and a TypeScript mirror script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment variable setup, wallet funding steps, trading automation guidance, and persistent scheduling instructions.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

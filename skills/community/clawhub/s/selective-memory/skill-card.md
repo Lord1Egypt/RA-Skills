@@ -1,38 +1,56 @@
-## Description: <br>
-A persistent memory system for AI agents that saves only meaningful wisdom, goals, mistakes, and preferences, with optional automatic learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A persistent memory system for AI agents that saves only meaningful wisdom, goals, mistakes, and preferences, with optional automatic learning from interaction outcomes.
 
-## Publisher: <br>
-[m7madash](https://clawhub.ai/user/m7madash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[m7madash](https://clawhub.ai/user/m7madash)
 
-## Use Case: <br>
-Developers and agent users use this skill to give an agent curated local memory that can inform future responses and record selected lessons, goals, mistakes, and preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses local memory notes, which can preserve sensitive, biased, outdated, or unwanted information. <br>
-Mitigation: Before installation, review the memory files, remove content that is not yours, enable automatic learning only when persistent notes are acceptable, and periodically review or clear the memory folder. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m7madash/selective-memory) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+External developers and agent users use this skill to give an agent a curated file-backed memory workflow for retaining durable preferences, goals, mistakes, and lessons across interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for reading and updating local markdown memory files; it does not change the base model.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled memory files may contain behavior-shaping notes that affect future agent responses.
+
+Mitigation: Review and clear the memory files before enabling the skill in a new workspace.
+
+Risk: Automatic learning can preserve incorrect, stale, or sensitive lessons across sessions.
+
+Mitigation: Require explicit approval for durable memory writes and provide a regular review path to inspect, edit, expire, or delete stored memories.
+
+Risk: Shared or sensitive workspaces can expose remembered preferences, goals, or lessons to unintended users or tasks.
+
+Mitigation: Use the skill only in controlled workspaces with appropriate access controls and memory hygiene procedures.
+
+## Reference(s):
+
+- [Selective Memory ClawHub release](https://clawhub.ai/m7madash/skills/selective-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and pseudocode examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommendations for reading and updating local memory files; durable writes should be reviewed before use.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

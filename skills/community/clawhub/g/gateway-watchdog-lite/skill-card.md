@@ -1,44 +1,63 @@
-## Description: <br>
-Installs a macOS or Linux service that probes the OpenClaw gateway every 2 minutes and auto-recovers it on failure, sending Telegram alerts when configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs a macOS or Linux service that probes the OpenClaw gateway every 2 minutes and auto-recovers it on failure, sending Telegram alerts.
 
-## Publisher: <br>
-[judas-oc](https://clawhub.ai/user/judas-oc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[judas-oc](https://clawhub.ai/user/judas-oc)
 
-## Use Case: <br>
-Developers and operators use this skill to install a user-level watchdog for an OpenClaw gateway on macOS or Linux. It monitors local gateway health, attempts recovery after failed probes, and can send Telegram status alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a background user service that keeps running and can restart the local OpenClaw gateway. <br>
-Mitigation: Install it only when continuous watchdog recovery is desired, verify WORKSPACE_PATH and OC_PORT before installation, and use the documented launchctl or systemctl uninstall commands when it is no longer needed. <br>
-Risk: Telegram alerts may send gateway status messages when TELEGRAM_ID is configured. <br>
-Mitigation: Set TELEGRAM_ID to an empty string to disable Telegram alerts. <br>
-Risk: The Lite release does not include crash loop detection or auto-mitigation. <br>
-Mitigation: Review the watchdog logs after recoveries and handle repeated gateway failures manually or use a version that includes crash loop mitigation. <br>
+## Use Case:
 
+Developers and operators managing OpenClaw deployments use this skill to install a lightweight macOS LaunchAgent or Linux systemd user service that monitors the gateway and attempts automatic recovery when health checks fail.
 
-## Reference(s): <br>
-- [Gateway Watchdog Lite on ClawHub](https://clawhub.ai/judas-oc/gateway-watchdog-lite) <br>
-- [Gateway Watchdog Gotchas](references/gotchas.md) <br>
-- [ConfusedUser.com](https://confuseduser.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command blocks and environment-variable instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation and operations guidance for a background launchd or systemd watchdog service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Installers can turn unvalidated setup values into persistent user-level shell or service execution risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch installers before installing; validate OC_PORT as a numeric port, restrict TELEGRAM_ID to the expected format, and avoid unusual or attacker-controlled workspace paths and environment variables.
+
+Risk: The skill installs a persistent user-level watchdog that automatically restarts the gateway and can send Telegram alerts when configured.
+
+Mitigation: Install only when that persistent recovery behavior is acceptable, and verify the generated LaunchAgent or systemd user service before enabling it.
+
+Risk: State and logs are written under shared /tmp paths.
+
+Mitigation: Move state and log files out of shared /tmp when using the skill in environments where local users or cleanup policies could affect those files.
+
+Risk: The Linux watchdog includes a pkill fallback if the expected systemd service is not active.
+
+Mitigation: Remove the fallback unless the target gateway process can be identified exactly.
+
+## Reference(s):
+
+- [Gateway Watchdog Lite on ClawHub](https://clawhub.ai/judas-oc/skills/gateway-watchdog-lite)
+- [Gateway Recovery Gotchas](references/gotchas.md)
+- [ConfusedUser.com](https://confuseduser.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, verification, logging, manual recovery, and uninstall guidance for macOS and Linux OpenClaw gateway watchdog setup.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

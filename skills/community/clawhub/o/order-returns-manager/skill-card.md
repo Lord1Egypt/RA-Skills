@@ -1,44 +1,66 @@
-## Description: <br>
-Manage UK-compliant Shopify and WooCommerce orders via chat, including status checks, returns, refunds, exchanges, fulfilment updates, fraud flags, lost parcels, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage UK-focused Shopify and WooCommerce order operations through chat, including order lookup, tracking links, returns, refunds, exchanges, fulfilment, fraud holds, lost-parcel handling, and reports.
 
-## Publisher: <br>
-[hussainpatan9](https://clawhub.ai/user/hussainpatan9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hussainpatan9](https://clawhub.ai/user/hussainpatan9)
 
-## Use Case: <br>
-Store operators and commerce support teams use this skill to manage Shopify and WooCommerce order operations from chat, including returns, refunds, fulfilment changes, inventory restocking, fraud review, and customer updates. It is especially focused on UK merchants that need workflows aligned with UK consumer-rights rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for powerful live store credentials through chat. <br>
-Mitigation: Use dedicated least-privilege API keys, avoid sharing production secrets in ordinary chat where possible, and plan credential rotation or deletion before use. <br>
-Risk: The skill can change live orders, refunds, inventory, and customer messages. <br>
-Mitigation: Restrict who can invoke the bot and keep refund and mutation confirmations enabled, especially for high-value or irreversible actions. <br>
+## Use Case:
 
+Store operators and support teams use this skill to manage customer order and return workflows from OpenClaw chat channels. It is tailored for UK Shopify and WooCommerce merchants that need approval gates, refund handling, carrier links, and Consumer Rights Act-aware guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hussainpatan9/order-returns-manager) <br>
-- [README](artifact/README.md) <br>
-- [Setup guide](artifact/CONFIG.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
-- [Skill workflow source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown-style chat responses with API request examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may propose or execute live commerce actions such as refunds, order updates, fulfilment changes, inventory restocks, and customer notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles powerful Shopify and WooCommerce credentials and can affect orders, refunds, inventory, and customer messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where encrypted secret storage and redaction are available; use least-privilege, rotatable credentials and avoid pasting live credentials into ordinary chat.
+
+Risk: Refunds, cancellations, address changes, fulfilment updates, fraud holds, and customer emails can materially affect customers and store records.
+
+Mitigation: Keep explicit merchant approval required for each sensitive action, especially refunds above the configured value threshold.
+
+Risk: The scanner verdict is suspicious because credential capture is part of normal setup behavior.
+
+Mitigation: Review the skill before installation and confirm the OpenClaw environment stores secrets securely before using production store access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hussainpatan9/skills/order-returns-manager)
+- [Publisher profile](https://clawhub.ai/user/hussainpatan9)
+- [Artifact README](artifact/README.md)
+- [Setup guide](artifact/CONFIG.md)
+- [Workflow examples](artifact/EXAMPLES.md)
+- [Royal Mail claims](https://www.royalmail.com/help/claims)
+- [DPD claims](https://www.dpd.co.uk/content/products_services/claims.jsp)
+- [Evri parcel claims](https://www.evri.com/help/claim-for-a-parcel)
+- [DHL parcel claim support](https://www.dhl.com/gb-en/home/our-divisions/parcel/customer-service/submit-a-claim.html)
+- [Parcelforce compensation claims](https://www.parcelforce.com/help-and-advice/sending/compensation-claims)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational Markdown with order summaries, approval prompts, API request examples, reports, and customer-message drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GBP, UK date conventions, approval gates for sensitive store actions, and direct carrier links when live tracking cannot be fetched.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

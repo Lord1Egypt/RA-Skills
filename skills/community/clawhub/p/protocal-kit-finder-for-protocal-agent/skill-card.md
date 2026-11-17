@@ -1,42 +1,58 @@
-## Description: <br>
-Find specific reagent kit part numbers and catalog numbers for laboratory protocol steps, searching vendor websites for options with catalog numbers and direct product links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find specific reagent kit part numbers and catalog numbers for laboratory protocol steps. Searches vendor websites for options with catalog numbers and direct product links.
 
-## Publisher: <br>
-[mengbingrock](https://clawhub.ai/user/mengbingrock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengbingrock](https://clawhub.ai/user/mengbingrock)
 
-## Use Case: <br>
-Lab researchers, procurement specialists, and protocol authors use this skill to convert protocol steps or reagent lists into vendor-specific kit options, catalog numbers, direct product links, and a user-confirmed bill of materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read unrelated Markdown files while looking for protocol context. <br>
-Mitigation: Run it in a project folder containing only relevant protocol materials, or tell the agent exactly which files to read. <br>
-Risk: The skill may create local vendor documentation files under references/kit-docs. <br>
-Mitigation: Review saved product documentation before committing it or relying on it for ordering decisions. <br>
-Risk: Catalog numbers, pack sizes, and product availability can change across vendor sites. <br>
-Mitigation: Confirm direct product pages, catalog numbers, and current availability before placing orders. <br>
+## Use Case:
 
+Laboratory researchers, protocol developers, and procurement staff use this skill to turn protocol steps or reagent lists into vendor options with catalog numbers, pack sizes, direct product links, and a confirmed bill of materials. It can also collect product manuals, protocols, safety data sheets, or product-page Markdown for selected kits.
 
-## Reference(s): <br>
-- [Vendor Catalog Reference](references/vendor-catalog-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown summaries and tables, with local PDF or product-page files when documentation is collected.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation between workflow phases; may read project Markdown files and save documentation under references/kit-docs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill may inspect broad local Markdown protocol and plan files while identifying reagents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a narrow workspace or tell the agent to use only explicitly named files before starting the workflow.
+
+Risk: The skill may save vendor PDFs or product-page Markdown into the project.
+
+Mitigation: Confirm selected products and documentation downloads before allowing files to be saved.
+
+Risk: Catalog numbers or vendor availability can be incorrect if product pages are not verified.
+
+Mitigation: Require direct product-page verification and review the final bill of materials before ordering.
+
+## Reference(s):
+
+- [Vendor Catalog Reference](artifact/references/vendor-catalog-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/mengbingrock/skills/protocal-kit-finder-for-protocal-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown summaries and tables, direct product links, and saved PDF or Markdown documentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes interactive confirmation prompts for reagent requirements, vendor preferences, result selection, BOM finalization, and documentation follow-up.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

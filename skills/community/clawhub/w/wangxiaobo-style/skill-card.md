@@ -1,41 +1,49 @@
-## Description: <br>
-A Chinese writing assistant that helps agents draft, rewrite, or analyze prose in a Wang Xiaobo-inspired essay style emphasizing logical deduction, intellectual playfulness, and deadpan humor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese writing assistant that helps agents write, rewrite, and analyze prose in a Wang Xiaobo-inspired essay style using logical deduction, intellectual playfulness, and dry humor.
 
-## Publisher: <br>
-[roberning](https://clawhub.ai/user/roberning) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roberning](https://clawhub.ai/user/roberning)
 
-## Use Case: <br>
-External users and writers use this skill for Chinese-language prose drafting, rewriting, and style analysis. It is intended for popular science, essays, social commentary, and transforming academic or professional content into accessible, logically structured writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad triggers and may be selected for adjacent writing tasks where this named style is not actually desired. <br>
-Mitigation: Confirm that the user explicitly wants this style framework before applying it to the response. <br>
-Risk: Style-focused generation can overuse or copy source examples instead of producing original prose. <br>
-Mitigation: Use the referenced techniques as a framework and review generated text for originality before publication. <br>
+## Use Case:
 
+External users, writers, editors, and developers use this skill for Chinese-language essay writing, popular-science adaptation, style analysis, and rewriting academic or professional material into engaging prose with logical rigor and humor.
 
-## Reference(s): <br>
-- [王小波行文风格深度分析](artifact/references/王小波行文风格深度分析.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/roberning/wangxiaobo-style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Chinese prose, style analysis, or Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no executable code, network access, credential use, or persistence according to server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad activation wording may cause the style guidance to be applied to general Chinese popular-science, humorous writing, or prose requests when the user did not intend that style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent not to use the Wang Xiaobo-inspired style when it is not desired, and review generated prose for tone, fidelity, and appropriateness before publication.
+
+## Reference(s):
+
+- [王小波行文风格深度分析](artifact/references/王小波行文风格深度分析.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text Chinese prose, rewrites, style analysis, and writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external tools, sensitive access, persistence, or hidden actions are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

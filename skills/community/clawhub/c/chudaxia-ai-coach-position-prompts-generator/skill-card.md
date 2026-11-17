@@ -1,42 +1,59 @@
-## Description: <br>
-Converts traditional job description documents into structured, deployable Markdown system prompts for AI Agents using Chudaxia's seven-layer digital employee template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms job description manuals into structured Markdown system prompts for digital employee AI agents using Chudaxia's seven-layer template.
 
-## Publisher: <br>
-[charleschor](https://clawhub.ai/user/charleschor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charleschor](https://clawhub.ai/user/charleschor)
 
-## Use Case: <br>
-Employees, operators, and agent builders use this skill to transform role descriptions into consistent AI Agent system prompts with identity, persona, capability, knowledge, workflow, compliance, and KPI layers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated role prompts may contain inferred responsibilities, permissions, or compliance limits that do not match the source job description. <br>
-Mitigation: Review generated prompts before deployment, with special attention to duties, authority boundaries, KPI definitions, and compliance constraints. <br>
-Risk: The skill searches a user-selected knowledge base for job descriptions, which may expose or reuse internal information if the source is not approved. <br>
-Mitigation: Confirm the permitted knowledge base before use and remove sensitive internal details from reusable prompts. <br>
+## Use Case:
 
+Business users and AI-agent builders use this skill to convert role or job description manuals from a selected knowledge base into deployable AI-agent system prompts. It supports single-role and batch prompt generation with a required Markdown quality self-check.
 
-## Reference(s): <br>
-- [Chudaxia Ai Coach Tools Position Agent Prompts Generator on ClawHub](https://clawhub.ai/charleschor/chudaxia-ai-coach-position-prompts-generator) <br>
-- [Seven-layer template reference](references/seven-layer-template.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a complete seven-layer prompt document and may include a Markdown quality self-check when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated prompts may expose sensitive or overly specific internal role information from the selected knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Markdown before sharing or deploying it, and remove company names, people, internal systems, and other sensitive role details.
+
+Risk: Generated prompts may include fixed Chudaxia template attribution or branding.
+
+Mitigation: Confirm that template attribution is acceptable for the intended deployment before publishing or distributing generated prompts.
+
+Risk: Incomplete or ambiguous job descriptions can lead to generic or unsupported role assumptions in the generated prompt.
+
+Mitigation: Check the generated seven-layer prompt against the source job description and require corrections when duties, permissions, KPIs, or boundaries are missing.
+
+## Reference(s):
+
+- [Seven-layer prompt template](references/seven-layer-template.md)
+- [Quality checklist](references/quality-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/charleschor/skills/chudaxia-ai-coach-position-prompts-generator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a seven-layer prompt structure and may include a Markdown self-check section or batch summary table.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

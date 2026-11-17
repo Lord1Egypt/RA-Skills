@@ -1,44 +1,59 @@
-## Description: <br>
-Secure Python Code Sandbox executes arbitrary Python code in an isolated sandbox with pre-installed libraries including requests, NumPy, and pandas, returning stdout, stderr, and execution results through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure Python Code Sandbox executes arbitrary Python code in an isolated AgentPMT-hosted sandbox with pre-installed libraries including requests, NumPy, and pandas, returning stdout, stderr, and execution results.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to invoke AgentPMT's remote Python sandbox for quick computations, data manipulation, dynamic API calls, and self-contained scripting without provisioning local execution infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute arbitrary Python code and make network requests through a remote sandbox. <br>
-Mitigation: Review code before invocation, constrain inputs to the minimum needed, and avoid executing attacker-supplied code unless it has been independently reviewed. <br>
-Risk: Secrets, wallet material, payment headers, proprietary data, or other sensitive credentials could be exposed if included in sandbox inputs or logs. <br>
-Mitigation: Do not send secrets or proprietary data to the tool; use AgentPMT setup skills and platform controls for credential handling. <br>
-Risk: Long-running or oversized code can fail or consume unnecessary remote execution resources. <br>
-Mitigation: Keep code self-contained, respect the documented 50,000 character input limit, and set timeout_seconds within the documented 10 to 60 second range. <br>
+## Use Case:
 
+Developers and agents use this skill to run self-contained Python snippets for quick computations, data transformations, API calls, data analysis, and custom scripting through an AgentPMT-hosted remote sandbox.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/secure-python-code-sandbox) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/secure-python-code-sandbox) <br>
-- [Secure Python Code Sandbox Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and Python code strings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines an invoke action with required code and optional timeout_seconds parameters; remote tool responses are returned as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Submitted Python code and embedded data are sent to AgentPMT for remote execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, proprietary source, personal data, payment credentials, wallet material, or internal API tokens unless explicitly approved.
+
+Risk: The skill directs agents to fetch live remote schemas or instructions that may change after release.
+
+Mitigation: Treat live remote instructions as reference data and keep local user, privacy, and safety requirements authoritative.
+
+Risk: Mutable setup commands and remote sandbox behavior require review before operational use.
+
+Mitigation: Prefer pinned or ClawHub-reviewed setup paths and review the skill before deployment.
+
+## Reference(s):
+
+- [Secure Python Code Sandbox Schema](artifact/schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/secure-python-code-sandbox)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/secure-python-code-sandbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and returned execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The remote action accepts self-contained Python code up to 50000 characters and an optional timeout between 10 and 60 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

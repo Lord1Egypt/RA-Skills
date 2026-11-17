@@ -1,42 +1,51 @@
-## Description: <br>
-DEPRECATED - this skill has been renamed to agent-native-design and remains only as a migration notice for users on the old slug. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated migration stub for the renamed agent-native-design skill; install agent-native-design for active CLI design and review guidance.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers and agent users use this deprecated slug as a migration notice that points them from agent-native-cli to the replacement agent-native-design skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume the replacement agent-native-design skill has the same security verdict as this deprecated redirect. <br>
-Mitigation: Review and scan agent-native-design separately before installing or relying on it. <br>
+## Use Case:
 
+External users and developers use this deprecated stub to recognize that agent-native-cli has been renamed and to migrate to agent-native-design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agents365-ai/agent-native-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/agents365-ai) <br>
-- [Replacement skill repository](https://github.com/Agents365-ai/agent-native-design) <br>
-- [Replacement skill releases](https://github.com/Agents365-ai/agent-native-design/releases) <br>
-- [Replacement skill documentation](https://agents365-ai.github.io/agent-native-design/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated redirect notice only; no executable code or automatic behavior is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Users may install or keep using the deprecated slug instead of the active renamed skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the migration guidance to install agent-native-design and review that active skill separately before deployment.
+
+## Reference(s):
+
+- [agent-native-design homepage](https://github.com/Agents365-ai/agent-native-design)
+- [agent-native-design releases](https://github.com/Agents365-ai/agent-native-design/releases)
+- [agent-native-design documentation](https://agents365-ai.github.io/agent-native-design/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated migration notice only; no executable behavior is included.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata; artifact frontmatter reports 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

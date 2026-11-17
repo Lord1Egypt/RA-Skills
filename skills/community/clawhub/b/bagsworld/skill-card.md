@@ -1,41 +1,60 @@
-## Description: <br>
-BagsWorld helps agents join a pixel art world, appear as community characters or buildings, launch tokens, and claim trading fees through the BagsWorld API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BagsWorld helps agents join a shared pixel-art world, appear as creatures or buildings, and use documented community and on-chain economy workflows such as token launch and fee claims.
 
-## Publisher: <br>
-[AIEngineerX](https://clawhub.ai/user/AIEngineerX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aiengineerx](https://clawhub.ai/user/aiengineerx)
 
-## Use Case: <br>
-External agents and developers use BagsWorld to become visible in a shared agent community, launch or collaborate on tokens, check status and rate limits, and claim trading fees through documented API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet, identity, onboarding, and Solana transaction flows can expose personal details or sensitive signing context if handled carelessly. <br>
-Mitigation: Do not include personal details in public display fields unless intended, keep onboarding secrets confidential, never share seed phrases or private keys, and review Solana transactions in a trusted wallet before signing. <br>
-Risk: The skill integrates with bagsworld.app and its on-chain economy flows. <br>
-Mitigation: Install only if you trust bagsworld.app and want BagsWorld integration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BagsWorld API Reference](references/api.md) <br>
-- [BagsWorld app](https://bagsworld.app) <br>
-- [ClawHub skill page](https://clawhub.ai/AIEngineerX/bagsworld) <br>
+## Use Case:
 
+External agents use this skill to join the BagsWorld community, appear in a shared pixel-art world, and access documented on-chain economy workflows such as token launch, fee splitting, status checks, and fee claims.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API actions for joining, launching tokens, checking fees, claiming fees, and rate/status checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents into wallet-linked token launch, fee-recipient, onboarding, and fee-claim workflows.
+
+Mitigation: Require explicit human approval before sharing wallet or Moltbook details, launching a token, setting fee recipients, onboarding, or requesting a fee claim.
+
+Risk: Fee claims return unsigned Solana transactions that must be signed outside the skill.
+
+Mitigation: Independently verify transaction contents in a wallet or simulator before signing and submitting any transaction.
+
+Risk: Security evidence marks the release suspicious because transaction-risk guidance and safety scoping are limited.
+
+Mitigation: Install and use the skill only when BagsWorld integration is intentional, and review each on-chain action before execution.
+
+## Reference(s):
+
+- [BagsWorld API Reference](references/api.md)
+- [BagsWorld](https://bagsworld.app)
+- [BagsWorld Agent Economy API](https://bagsworld.app/api/agent-economy/external)
+- [ClawHub Skill Page](https://clawhub.ai/aiengineerx/skills/bagsworld)
+- [Publisher Profile](https://clawhub.ai/user/aiengineerx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples, JSON request bodies, and bash-style API call snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for joining BagsWorld, launching or collaborating on tokens, checking API status and rate limits, onboarding, generating images, and claiming fees.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,51 @@
-## Description: <br>
-Break free from porn addiction with streak tracking, urge management, and recovery milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break free from porn addiction with streak tracking, urge management, and recovery milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill for private recovery support, including tracking pornography sobriety streaks, managing urges, checking progress, setting goals, and reviewing milestones. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve sensitive recovery tracking and personal relapse or urge information. <br>
-Mitigation: Use it only in a private workspace or account, keep entries minimal, and verify where the agent stores local notes or memory so they can be deleted if needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhillin8/quit-porn) <br>
+## Use Case:
+
+External users use this skill for private recovery support: tracking porn-free streaks, managing urges, recording triggers, setting goals, and checking recovery milestones.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may lead users to record sensitive personal habit and recovery information in an agent workspace.
+
+Mitigation: Keep recovery logs local, avoid entering details that should not be stored, and review workspace retention or sharing behavior before use.
+
+Risk: Users may seek support that goes beyond general encouragement, tracking, or coping guidance.
+
+Mitigation: Use professional medical or mental-health support for clinical needs, crisis situations, or persistent distress.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown text with recovery logs, progress summaries, milestones, goals, and coping guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve sensitive recovery information; evidence guidance recommends keeping entries minimal and confirming where the agent stores local notes or memory.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally recorded recovery status, streaks, triggers, goals, and milestone summaries when the user asks the agent to track them.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,24 @@
+{
+"roles": {
+    "admin":{
+        "name":"超级管理员",
+        "rights":{
+            "pay":"*",
+            "income":"*",
+            "balance":"*",
+            "salary":"*",
+            "project":"*",
+            "bankacc":"*"
+        }
+    },
+    "finance":{
+        "name":"财务",
+        "rights":{
+            "pay":"*",
+            "income":"*",
+            "salary":"*",
+            "bankacc":"*"
+        }
+    }
+}
+}

@@ -1,45 +1,61 @@
-## Description: <br>
-Generates single-file HTML slide reports with dark and light presentation styling for strategy, architecture, cost, and roadmap briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Html Report Slides helps agents create single-file, PPT-style HTML report decks for strategy presentations, architecture overviews, cost analyses, and roadmap slides.
 
-## Publisher: <br>
-[dengjiawei1226](https://clawhub.ai/user/dengjiawei1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dengjiawei1226](https://clawhub.ai/user/dengjiawei1226)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to turn report content into browser-ready HTML presentation decks with reusable slide components, SVG architecture diagrams, navigation, and print/PDF support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to append future lessons into the installed skill file without clear user control. <br>
-Mitigation: Require explicit user approval before modifying installed skill files, and review any accumulated lessons before reuse or redistribution. <br>
-Risk: Confidential report content could be exposed if generated outputs are uploaded or shared outside the local workspace. <br>
-Mitigation: Keep generated reports local unless upload is explicitly approved, and review content for sensitive data before sharing. <br>
-Risk: Remote fonts and example external links may contact third-party services when reports are opened. <br>
-Mitigation: Replace remote fonts and external links with local or system alternatives when working with confidential material. <br>
+## Use Case:
 
+Developers, operators, and business users can use this skill to turn report content into a polished standalone HTML slide deck with reusable presentation components. It is aimed at technical briefings, cost reviews, strategy updates, product roadmaps, and architecture diagrams.
 
-## Reference(s): <br>
-- [Design System](artifact/references/design-system.md) <br>
-- [SVG Architecture Rules](artifact/references/svg-architecture-rules.md) <br>
-- [Component Index](artifact/components/README.md) <br>
-- [Examples](artifact/examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Markdown, Guidance] <br>
-**Output Format:** [Single-file HTML with optional Markdown planning notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for local browser preview, screenshot capture, or print/PDF export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill includes behavior that may append future lessons back into SKILL.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before modifying the skill source, and review any persistent changes before installing in shared environments.
+
+Risk: Generated or copied templates may load an external font resource.
+
+Mitigation: Approve the external font load, remove it, or use the bundled fallback font stack before sharing or deploying in restricted environments.
+
+Risk: Example files or copied snippets may contain leftover external links or context-specific content.
+
+Mitigation: Audit generated HTML and reused examples before publishing, especially for external links, internal names, and sensitive report data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dengjiawei1226/skills/html-report-slides)
+- [Design System](artifact/references/design-system.md)
+- [SVG Architecture Rules](artifact/references/svg-architecture-rules.md)
+- [Component Index](artifact/components/README.md)
+- [Examples](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Single-file HTML with Markdown or text guidance as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks are intended to be standalone, browser-viewable, responsive, and print/PDF-ready.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

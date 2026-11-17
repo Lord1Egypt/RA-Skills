@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "dataset_kind": "simulated",
+  "note": "纯合成回归样例；青禾工具与速记表仅为演示名称，非真实用户案例，未查询任何平台。",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": [
+      "青禾",
+      "Qinghe Tools"
+    ],
+    "domains": [
+      "example.com"
+    ],
+    "include_subdomains": true
+  },
+  "platforms": [
+    "demo-platform"
+  ],
+  "queries": [
+    {
+      "id": "q1",
+      "text": "青禾工具是什么，适合谁使用？",
+      "category": "品牌",
+      "priority": "critical",
+      "expected_native_citation": true
+    },
+    {
+      "id": "q2",
+      "text": "小团队有哪些知识整理工具？",
+      "category": "品类"
+    },
+    {
+      "id": "q3",
+      "text": "青禾工具和速记表有哪些区别？",
+      "category": "比较"
+    },
+    {
+      "id": "q4",
+      "text": "怎样整理多人协作的会议记录？",
+      "category": "场景"
+    },
+    {
+      "id": "q5",
+      "text": "青禾工具的价格信息在哪里看？",
+      "category": "价格",
+      "priority": "high"
+    },
+    {
+      "id": "q6",
+      "text": "选知识整理工具时要核对哪些限制？",
+      "category": "限制"
+    }
+  ],
+  "runs": [
+    {
+      "id": "before",
+      "started_at": "2026-10-01T09:00:00+08:00",
+      "records": [
+        {
+          "platform": "demo-platform",
+          "query_id": "q1",
+          "query": "青禾工具是什么，适合谁使用？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q1"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具是本样例中的虚构知识整理产品，可在示例说明页查看功能。",
+          "citations": [
+            "https://example.com/guide"
+          ]
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q2",
+          "query": "小团队有哪些知识整理工具？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q2"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "可先比较笔记、表格和知识库的协作方式。",
+          "citations": []
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q3",
+          "query": "青禾工具和速记表有哪些区别？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q3"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具与速记表的差异应按实际功能资料核对。",
+          "citations": [
+            "https://evil-example.com/compare"
+          ]
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q4",
+          "query": "怎样整理多人协作的会议记录？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q4"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "会议记录应保留决定、责任人和后续日期。",
+          "citations": [
+            "https://other.invalid/read?target=example.com"
+          ]
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q5",
+          "query": "青禾工具的价格信息在哪里看？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q5"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具的价格需要查看当前价格页。",
+          "citations": []
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q6",
+          "query": "选知识整理工具时要核对哪些限制？",
+          "status": "simulated",
+          "collected_at": "2026-10-01T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:before/q6"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "应核对存储上限、导出格式与成员权限。",
+          "citations": null
+        }
+      ]
+    },
+    {
+      "id": "after",
+      "started_at": "2026-10-08T09:00:00+08:00",
+      "records": [
+        {
+          "platform": "demo-platform",
+          "query_id": "q1",
+          "query": "青禾工具是什么，适合谁使用？",
+          "status": "simulated",
+          "collected_at": "2026-10-08T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:after/q1"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具的示例说明页介绍了知识整理用途。",
+          "citations": [
+            {
+              "url": "https://docs.example.com/intro",
+              "title": "模拟说明页"
+            }
+          ]
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q2",
+          "query": "小团队有哪些知识整理工具？",
+          "status": "simulated",
+          "collected_at": "2026-10-08T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:after/q2"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具可以作为本演示里的一个候选名称。",
+          "citations": [
+            "https://example.com/features"
+          ]
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q3",
+          "query": "青禾工具和速记表有哪些区别？",
+          "status": "simulated",
+          "collected_at": "2026-10-08T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:after/q3"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具与速记表的比较需要可靠来源。",
+          "citations": [
+            "https://example.com.evil.invalid/review"
+          ]
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q4",
+          "query": "怎样整理多人协作的会议记录？",
+          "status": "simulated",
+          "collected_at": "2026-10-08T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:after/q4"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "青禾工具这一名称出现在模拟会议整理建议里。",
+          "citations": []
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q5",
+          "query": "青禾工具的价格信息在哪里看？",
+          "status": "simulated",
+          "collected_at": "2026-10-08T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:after/q5"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "本次模拟回答没有给出产品价格。",
+          "citations": []
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q6",
+          "query": "选知识整理工具时要核对哪些限制？",
+          "status": "simulated",
+          "collected_at": "2026-10-08T09:00:00+08:00",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:after/q6"
+          },
+          "conditions": {
+            "model": "demo-model",
+            "search_mode": "demo-search",
+            "context": "fresh"
+          },
+          "answer": "选型时需要查看青禾工具的数据导出限制。",
+          "citations": [
+            "https://example.com/export"
+          ]
+        }
+      ]
+    }
+  ]
+}

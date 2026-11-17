@@ -1,37 +1,54 @@
-## Description: <br>
-Captain Adam Assistant helps users organize schedules, tasks, errands, shopping, appointments, communication, routines, and family or household plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captain Adam Assistant helps users manage daily schedules, tasks, family and household coordination, shopping, appointments, travel planning, communication drafts, and personal productivity.
 
-## Publisher: <br>
-[Adamwang929](https://clawhub.ai/user/Adamwang929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamwang929](https://clawhub.ai/user/adamwang929)
 
-## Use Case: <br>
-Individuals, families, and household coordinators use this skill to create plans, reminders, checklists, priorities, and drafted communications for everyday life management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive personal, family, work, medical, financial, or account details during planning and drafting tasks. <br>
-Mitigation: Share only the details needed for the task and review drafted messages before sending them. <br>
+## Use Case:
 
+Individuals, families, and household coordinators use this skill to organize everyday plans, reminders, checklists, errands, appointments, meals, travel, and communication drafts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text planning guidance, checklists, reminders, priorities, and drafted messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or external tool calls are included in the artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may invite users to share personal, family, work, shopping, or scheduling details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for planning and drafting support, and avoid sharing sensitive information unless it is needed for the task.
+
+Risk: Broad life-planning guidance can be incomplete or unsuitable for a user's actual constraints.
+
+Mitigation: Review generated plans, reminders, and recommendations before relying on them for important commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamwang929/skills/adam-skill)
+- [Publisher profile](https://clawhub.ai/user/adamwang929)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text plans, lists, reminders, drafts, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include schedules, prioritized task lists, checklists, meal or shopping plans, and message or email drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,76 @@
-## Description: <br>
-Webhook Relay guides an agent through forwarding webhooks, exposing local or private HTTP/TCP services through public tunnels, debugging webhook payloads, transforming requests, and scheduling recurring webhooks with the relay CLI and bin API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webhook Relay helps agents guide users through receiving, forwarding, tunneling, debugging, transforming, and scheduling webhooks with the relay CLI and public bin API.
 
-## Publisher: <br>
-[rusenask](https://clawhub.ai/user/rusenask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rusenask](https://clawhub.ai/user/rusenask)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Webhook Relay workflows for receiving provider webhooks, forwarding traffic to local or private services, creating public tunnels, inspecting webhook payloads, and adding transforms or cron-triggered webhook calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public tunnels and forwarding workflows can expose local or private services to the internet. <br>
-Mitigation: Confirm the destination is intended to be public, use authentication where appropriate, and avoid exposing admin panels, databases, SSH, or internal dashboards unless the exposure is explicitly approved. <br>
-Risk: Webhook bins are public and temporary, so captured request data may be readable by anyone with the bin identifier. <br>
-Mitigation: Do not send secrets, production credentials, or sensitive personal data to bins; use them only for inspection and switch to the real handler after debugging. <br>
-Risk: Buckets, tunnels, functions, cron jobs, or background relay services may continue forwarding traffic after testing. <br>
-Mitigation: Remove temporary resources and stop background services when finished. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Webhook Relay for local webhook development, private-network forwarding, public tunnels, webhook capture, payload transformation, and scheduled webhook delivery. It is most useful when an agent needs to produce practical relay CLI commands, curl examples, setup guidance, and safety notes for exposing or inspecting HTTP traffic.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rusenask/webhook-relay) <br>
-- [Webhook Relay Homepage](https://webhookrelay.com) <br>
-- [Webhook Relay Docs Index](https://webhookrelay.com/llms.txt) <br>
-- [Webhook Relay CLI Installation](https://webhookrelay.com/docs/installation/cli.md) <br>
-- [Receive Webhooks on Localhost or Private Networks](https://webhookrelay.com/docs/webhooks/internal/localhost.md) <br>
-- [Forward Webhooks to Public Destinations](https://webhookrelay.com/docs/webhooks/public/public-destination.md) <br>
-- [Webhook Relay Tunnels](https://webhookrelay.com/tunnels.md) <br>
-- [Webhook Transformation Functions](https://webhookrelay.com/docs/webhooks/functions.md) <br>
-- [Cron Webhooks](https://webhookrelay.com/docs/webhooks/cron/using-cron-webhooks.md) <br>
-- [Webhook Bin](https://webhookrelay.com/webhook-bin.md) <br>
-- [Forwarding Rules](https://webhookrelay.com/features/forwarding-rules.md) <br>
-- [Custom Domains](https://webhookrelay.com/docs/webhooks/custom-domains.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell command, JSON, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes relay CLI and curl examples for buckets, inputs, outputs, tunnels, bins, functions, cron jobs, verification, and cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Webhook forwarding and tunnels can expose private or local services to public endpoints, including persistent exposure when the relay runs as a background service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive demo endpoints until the exposure model is understood, review created buckets and tunnels before sharing URLs, and know how to stop and remove any installed relay service.
+
+Risk: The HMAC example can send a real webhook signing secret to an external /v1/hmac endpoint.
+
+Mitigation: Compute webhook signatures locally for real secrets and use the external HMAC endpoint only with test or throwaway values.
+
+Risk: Putting tunnel passwords directly on the command line can expose them through shell history or process listings.
+
+Mitigation: Avoid real tunnel passwords in command-line arguments and prefer safer credential handling approved for the deployment environment.
+
+Risk: Public webhook bins are temporary and readable by anyone with the bin ID.
+
+Mitigation: Do not send secrets, credentials, or personal data to bins; switch to the real protected destination after debugging.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rusenask/skills/webhook-relay)
+- [Webhook Relay Homepage](https://webhookrelay.com)
+- [Webhook Relay Docs](https://webhookrelay.com/docs)
+- [Webhook Relay Plain-Markdown Docs Index](https://webhookrelay.com/llms.txt)
+- [Install the CLI](https://webhookrelay.com/docs/installation/cli.md)
+- [Receive Webhooks on Localhost and Private Networks](https://webhookrelay.com/docs/webhooks/internal/localhost.md)
+- [Forward to a Public URL](https://webhookrelay.com/docs/webhooks/public/public-destination.md)
+- [Multiple Destination URLs](https://webhookrelay.com/docs/webhooks/public/multiple-destination-urls.md)
+- [Tunnels Overview](https://webhookrelay.com/tunnels.md)
+- [Tunnel Regions](https://webhookrelay.com/docs/tunnels/regions.md)
+- [Webhook Transformation Functions](https://webhookrelay.com/docs/webhooks/functions.md)
+- [Recurring Cron Webhooks](https://webhookrelay.com/docs/webhooks/cron/using-cron-webhooks.md)
+- [Webhook Bin Debugging](https://webhookrelay.com/webhook-bin.md)
+- [Forwarding Rules](https://webhookrelay.com/features/forwarding-rules.md)
+- [Custom Subdomains](https://webhookrelay.com/docs/webhooks/custom-subdomains.md)
+- [Custom Domains](https://webhookrelay.com/docs/webhooks/custom-domains.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, curl examples, JavaScript snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public endpoint URLs, relay CLI command sequences, webhook bin API calls, and operational cleanup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

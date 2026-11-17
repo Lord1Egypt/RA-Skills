@@ -1,48 +1,58 @@
-## Description: <br>
-1688-shopkeeper helps agents search 1688 products, inspect product and shop details, publish selected products to connected downstream stores, configure the 1688 access key, review opportunity and trend signals, and generate shop operation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688-shopkeeper helps agents search 1688 products, inspect product details, manage bound downstream stores, publish products, configure a 1688 AK, review opportunity and trend data, and generate shop operation reports.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External commerce operators and their agents use this skill to source products from 1688, manage connected stores, publish selected listings to supported downstream platforms, and review market or shop-operation signals. Developers and operators can also use its CLI commands for structured search, product-detail retrieval, configuration, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a 1688 access key and can access linked shop operations. <br>
-Mitigation: Treat the AK like a password, avoid pasting it into chat, rotate it if exposed, and review where OpenClaw stores it before installation. <br>
-Risk: The publish command can create or distribute listings to connected downstream stores. <br>
-Mitigation: Run a dry-run first and require explicit final confirmation of the exact shop and products before formal publishing. <br>
-Risk: Product research, product-detail, and publish workflows may create local snapshot files containing sensitive commerce data. <br>
-Mitigation: Review or clear local snapshot files when product research, shop data, or publish activity is sensitive. <br>
+## Use Case:
 
+External e-commerce operators and their agents use this skill to find 1688 merchandise, evaluate product and trend data, publish selected goods to connected stores, and receive shop operation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-shopkeeper-official) <br>
-- [1688 AI App](https://air.1688.com/kapp/1688-ai-app/pages/home?from=1688-shopkeeper) <br>
-- [Search capability guide](artifact/references/capabilities/search.md) <br>
-- [Publish capability guide](artifact/references/capabilities/publish.md) <br>
-- [Shop daily report guide](artifact/references/capabilities/shop_daily.md) <br>
-- [Data contracts](artifact/references/common/data-contracts.md) <br>
-- [Error handling](artifact/references/common/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses containing a success flag, human-readable Markdown, and structured data; agents typically present the Markdown and may add concise analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands save local product, product-detail, or publish snapshots for later reference; publishing is a write operation that should be preceded by dry-run validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact constant) <br>
+Risk: The skill uses a sensitive 1688 AK to query shop data and publish products to connected stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or revocable AK, protect the OpenClaw config file, and verify the gateway URL before configuration.
+
+Risk: Publishing products can modify connected downstream stores.
+
+Mitigation: Run the dry-run check first and require explicit operator confirmation before any publish action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-shopkeeper-official)
+- [1688 AI app setup](https://air.1688.com/kapp/1688-ai-app/pages/home?from=1688-shopkeeper)
+- [Capability reference: search](artifact/references/capabilities/search.md)
+- [Capability reference: publish](artifact/references/capabilities/publish.md)
+- [Common error handling](artifact/references/common/error-handling.md)
+- [Data contracts](artifact/references/common/data-contracts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output with a human-readable markdown field and structured data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and a configured ALI_1688_AK for authenticated 1688 API operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact constants)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,65 @@
-## Description: <br>
-Comprehensive protein family phylogenetic analysis workflow with quality control, conservation analysis, coevolution network analysis, and publication-ready visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive workflow for protein family phylogenetic analysis, including sequence quality control, conservation and coevolution analysis, tree reconstruction, visualization, and report generation.
 
-## Publisher: <br>
-[billwanttobetop](https://clawhub.ai/user/billwanttobetop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billwanttobetop](https://clawhub.ai/user/billwanttobetop)
 
-## Use Case: <br>
-Developers, researchers, and bioinformatics practitioners use this skill to analyze homologous protein sequence families, build phylogenetic trees, identify conserved and coevolved residues, and generate publication-ready figures and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release requests unrelated high-impact capability tags, including crypto and purchase-related permissions. <br>
-Mitigation: Do not grant crypto or purchase-related permissions for ordinary protein phylogeny analysis. <br>
-Risk: The dependency installer can change the local host environment and install scientific packages. <br>
-Mitigation: Review the installer first and run it in a container, conda environment, or other isolated environment. <br>
-Risk: The workflow mentions optional Feishu/Lark export, which can upload generated reports and figures outside the local machine. <br>
-Mitigation: Skip Feishu/Lark export unless the user explicitly intends to upload those outputs to that service. <br>
+## Use Case:
 
+Developers, bioinformatics practitioners, and research teams use this skill to run a protein family evolutionary analysis workflow from FASTA inputs through quality-controlled alignments, conservation and coevolution results, phylogenetic trees, figures, and reports.
 
-## Reference(s): <br>
-- [Quality Control Reference](artifact/references/01-quality-control.md) <br>
-- [Conservation Analysis - Shannon Entropy Method](artifact/references/02-conservation.md) <br>
-- [Coevolution Analysis - Normalized Mutual Information Method](artifact/references/03-coevolution.md) <br>
-- [Phylogenetic Analysis - Maximum Likelihood Method](artifact/references/04-phylogeny.md) <br>
-- [Visualization - Publication-Quality Figures](artifact/references/05-visualization.md) <br>
-- [Report Generation - Comprehensive Analysis Report](artifact/references/06-report.md) <br>
-- [Protein Family Phylogenetic Analysis - Implementation Guide](artifact/references/IMPLEMENTATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, and R commands; generated workflow artifacts include FASTA, CSV, JSON, PNG, PDF, SVG, Newick/tree files, and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analysis artifacts under the chosen output directory; optional Feishu/Lark export is user-initiated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: Dependency installation may invoke privileged package managers or download bioinformatics binaries without built-in verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated container, virtual machine, or dedicated conda/venv; avoid sudo where possible and verify downloaded binaries before use.
+
+Risk: Publishing guidance can upload generated reports and figures to Feishu/Lark.
+
+Mitigation: Use upload steps only when data sharing is intended and approved for the research outputs being processed.
+
+Risk: Poor-quality or unsuitable sequence inputs can lead to misleading conservation, coevolution, or phylogenetic conclusions.
+
+Mitigation: Review quality-control outputs, alignment quality, bootstrap support, and documented method assumptions before using results for downstream decisions.
+
+## Reference(s):
+
+- [Quality Control Reference](references/01-quality-control.md)
+- [Conservation Analysis - Shannon Entropy Method](references/02-conservation.md)
+- [Coevolution Analysis - Mutual Information Method](references/03-coevolution.md)
+- [Phylogenetic Analysis - Maximum Likelihood Method](references/04-phylogeny.md)
+- [Visualization - Publication-Quality Figures](references/05-visualization.md)
+- [Report Generation - Comprehensive Analysis Report](references/06-report.md)
+- [Protein Family Phylogenetic Analysis - Implementation Guide](references/IMPLEMENTATION.md)
+- [Complete Installation and Usage Test](TESTING.md)
+- [ClawHub skill page](https://clawhub.ai/billwanttobetop/skills/protein-phylogeny)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, and R command examples; workflow outputs include CSV, JSON, figures, tree files, and Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local analysis artifacts under the selected output directory.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

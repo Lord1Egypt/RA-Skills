@@ -57,34 +57,28 @@ def _entity_overlap(entities_a: set[str], entities_b: set[str]) -> float:
 
 def _mmr_representatives(
     candidates: list[schema.Candidate],
-    text_cache: dict[str, dedupe._PreparedText],
     limit: int = 3,
     diversity_lambda: float = 0.75,
 ) -> list[str]:
     selected: list[schema.Candidate] = []
-    remaining_set = {c.candidate_id for c in candidates}
     remaining = list(candidates)
     while remaining and len(selected) < limit:
         if not selected:
             best = max(remaining, key=lambda candidate: candidate.final_score)
             selected.append(best)
-            remaining_set.discard(best.candidate_id)
-            remaining = [c for c in remaining if c.candidate_id in remaining_set]
+            remaining.remove(best)
             continue
 
-        selected_preps = [text_cache[c.candidate_id] for c in selected]
-
         def score(candidate: schema.Candidate) -> float:
-            prep = text_cache[candidate.candidate_id]
             diversity_penalty = max(
-                dedupe.prepared_similarity(prep, sp) for sp in selected_preps
+                dedupe.hybrid_similarity(_candidate_text(candidate), _candidate_text(existing))
+                for existing in selected
             )
             return (diversity_lambda * candidate.final_score) - ((1 - diversity_lambda) * diversity_penalty * 100)
 
         best = max(remaining, key=score)
         selected.append(best)
-        remaining_set.discard(best.candidate_id)
-        remaining = [c for c in remaining if c.candidate_id in remaining_set]
+        remaining.remove(best)
     return [candidate.candidate_id for candidate in selected]
 
 
@@ -111,21 +105,15 @@ def cluster_candidates(
             )
         return clusters
 
-    text_cache: dict[str, dedupe._PreparedText] = {
-        c.candidate_id: dedupe._PreparedText(_candidate_text(c))
-        for c in candidates
-    }
-
     groups: list[list[schema.Candidate]] = []
     # Lower threshold for breaking_news: related articles share fewer exact
     # words but cover the same event.
     threshold = 0.42 if plan.intent == "breaking_news" else 0.48
     for candidate in candidates:
         assigned = False
-        cand_prep = text_cache[candidate.candidate_id]
         for group in groups:
             leader = group[0]
-            similarity = dedupe.prepared_similarity(cand_prep, text_cache[leader.candidate_id])
+            similarity = dedupe.hybrid_similarity(_candidate_text(candidate), _candidate_text(leader))
             if similarity >= threshold:
                 group.append(candidate)
                 assigned = True
@@ -137,7 +125,7 @@ def cluster_candidates(
     for index, group in enumerate(groups, start=1):
         group.sort(key=lambda candidate: candidate.final_score, reverse=True)
         cluster_id = f"cluster-{index}"
-        representatives = _mmr_representatives(group, text_cache)
+        representatives = _mmr_representatives(group)
         for candidate in group:
             candidate.cluster_id = cluster_id
         clusters.append(
@@ -237,11 +225,7 @@ def _merge_entity_clusters(
         # Pick representatives from combined pool
         combined_candidates = [candidate_map[cid] for cid in combined_cids if cid in candidate_map]
         combined_candidates.sort(key=lambda c: c.final_score, reverse=True)
-        merge_text_cache = {
-            c.candidate_id: dedupe._PreparedText(_candidate_text(c))
-            for c in combined_candidates
-        }
-        reps = _mmr_representatives(combined_candidates, merge_text_cache)
+        reps = _mmr_representatives(combined_candidates)
 
         cluster_id = cl.cluster_id
         for cid in combined_cids:

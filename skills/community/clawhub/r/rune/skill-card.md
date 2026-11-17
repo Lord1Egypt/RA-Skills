@@ -1,48 +1,61 @@
-## Description: <br>
-Self-improving AI memory system with intelligent context injection and adaptive learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving AI memory system with intelligent context injection and adaptive learning.
 
-## Publisher: <br>
-[TheBobLoblaw](https://clawhub.ai/user/TheBobLoblaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thebobloblaw](https://clawhub.ai/user/thebobloblaw)
 
-## Use Case: <br>
-Developers and OpenClaw users use Rune to add persistent memory, relevant context injection, project recommendations, and session-learning workflows to agent interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer persistently changes the OpenClaw workflow and may modify HEARTBEAT.md and create or update memory files. <br>
-Mitigation: Install only when persistent workflow integration is desired; review added files under ~/.openclaw/workspace and keep backups of HEARTBEAT.md and memory.db. <br>
-Risk: Stored memories and extracted facts can contain sensitive session, document, project, or personal context if the user adds or extracts it. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, periodically review stored facts and generated FACTS.md, and use dry-run or review flows before importing documents. <br>
-Risk: Optional cloud extraction can send document context to OpenAI or Anthropic when API keys are configured. <br>
-Mitigation: Use local Ollama extraction for private documents, or unset OPENAI_API_KEY and ANTHROPIC_API_KEY before processing sensitive material. <br>
-Risk: The package installs npm dependencies and a global CLI. <br>
-Mitigation: Review package.json, run npm audit or the installer verification mode, and use an isolated environment for high-security deployments. <br>
+## Use Case:
 
+Developers and OpenClaw users use Rune to give agents persistent memory, context injection, task recommendations, and adaptive workflow behavior across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheBobLoblaw/rune) <br>
-- [Publisher profile](https://clawhub.ai/user/TheBobLoblaw) <br>
-- [README](artifact/README.md) <br>
-- [Security information](artifact/SECURITY.md) <br>
-- [Integration guide](artifact/INTEGRATION-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local files, CLI commands, workflow hooks, and memory maintenance steps for the agent environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: SKILL.md frontmatter, package.json, skill.json, CHANGELOG) <br>
+Risk: The skill installs persistent workflow hooks and changes OpenClaw workspace behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the HEARTBEAT.md changes and generated workflow files before installation, and avoid --force unless the changes have already been checked.
+
+Risk: Selected documents or extracted context can be sent to cloud AI providers when cloud engines are configured.
+
+Mitigation: Prefer Ollama or local-only operation for sensitive files, and configure cloud API use only after reviewing the data flow.
+
+Risk: The bundled uninstaller may not fully clean up current Rune artifacts.
+
+Mitigation: After uninstalling, manually verify removal of Rune files, hooks, and local memory data that should no longer persist.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thebobloblaw/skills/rune)
+- [README](README.md)
+- [Security Information](SECURITY.md)
+- [Integration Guide](INTEGRATION-GUIDE.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CLI commands, shell snippets, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent memory guidance and installable workflow integration; runtime commands may create or update local files in the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

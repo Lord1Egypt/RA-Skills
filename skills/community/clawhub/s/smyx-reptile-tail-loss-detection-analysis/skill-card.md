@@ -1,44 +1,55 @@
-## Description: <br>
-Analyzes gecko and lizard tail images or video URLs to detect abnormal tail shortening, tail-tip wounds, scabs, regenerated-tail baselines, and tail-loss event alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes gecko and lizard tail images for possible shortening, wounds, scabs, and tail-loss events, then returns an analysis report.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External keepers, vivarium operators, and breeding-farm staff use this skill to analyze reptile tail imagery, compare tail length against baseline signals, and produce event reports or history tables for suspected autotomy or injury. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send supplied reptile images, video URLs, user open-id values, and analysis history to the configured LifeEmergence/Open API service. <br>
-Mitigation: Use only with appropriate authorization and privacy review; avoid submitting media or identifiers that are not acceptable for the configured service. <br>
-Risk: Service tokens or open-id configuration may be cached locally in the OpenClaw workspace, which can be sensitive on shared machines. <br>
-Mitigation: Review local workspace configuration and token storage before installation or use, especially in shared or managed environments. <br>
-Risk: Low-quality or incomplete images can produce unreliable tail-loss findings. <br>
-Mitigation: Require clear imagery with the full tail visible, adequate lighting, sufficient resolution, and SVL or baseline reference data; return an unreliable-signal result when those inputs are missing. <br>
-Risk: Health-related visual findings may be mistaken for veterinary diagnosis or treatment instructions. <br>
-Mitigation: Keep outputs limited to visual observations and conservative actions, avoid drug names, doses, brands, and surgical guidance, and direct infection-risk cases to a qualified reptile veterinarian. <br>
+## Use Case:
 
+Reptile keepers can submit enclosure images for possible tail-loss flags and review saved reports, using alerts as prompts for further inspection.
 
-## Reference(s): <br>
-- [API Interface Documentation](references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON analysis report with optional shell commands for local invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include event IDs, timestamps, enclosure and individual identifiers, tail-length measurements, morphology signals, alert levels, recommended non-prescription actions, disclaimers, and optional saved output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Security scanners flag unclear account and credential handling, remote media uploads without clear disclosure, and behavior that does not match the stated purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid installation until account and credential handling, upload disclosure, and export-only behavior are clarified.
+
+Risk: The security analysis is incomplete because one local path-like reference was missing.
+
+Mitigation: Obtain a complete security analysis before relying on the release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-reptile-tail-loss-detection-analysis)
+- [API documentation](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis results, JSON, Text reports, Report links]
+
+**Output Format:** [Text or JSON analysis results with report export links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can also list saved reports.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

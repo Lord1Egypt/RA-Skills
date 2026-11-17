@@ -1,41 +1,61 @@
-## Description: <br>
-OpenClaw Agent Dashboard - A Bloomberg Terminal-style web interface for real-time monitoring of all Agent status, session history, and session file sizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Kanban provides a Bloomberg Terminal-style web dashboard for monitoring OpenClaw agent status, session history, session file sizes, and related agent files.
 
-## Publisher: <br>
-[dyh](https://clawhub.ai/user/dyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyh](https://clawhub.ai/user/dyh)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy a local OpenClaw dashboard for monitoring agent status, recent session history, heartbeat information, selected agent files, and session file sizes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default deployment can expose agent sessions, local agent files, and gateway access more broadly than users are told. <br>
-Mitigation: Bind the server to 127.0.0.1, restrict CORS, add authentication before exposing the dashboard, and avoid running it on shared or untrusted networks. <br>
-Risk: A committed or reused gateway token can allow unintended access to OpenClaw Gateway APIs. <br>
-Mitigation: Remove the default token, rotate any exposed credential, and keep credentials in an untracked local secret or environment variable. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and operate a local OpenClaw dashboard for checking agent availability, recent session activity, session file size, and selected agent workspace files.
 
-## Reference(s): <br>
-- [Agent Kanban Reference README](references/README.md) <br>
-- [ClawHub release page](https://clawhub.ai/dyh/agent-kanban) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and bundled Node.js, HTML, CSS, and JavaScript project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local dashboard assets under assets/agent-kanban and configuration guidance for OpenClaw Gateway access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The dashboard can expose sensitive agent status, histories, and workspace files too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted local hosts, add authentication and per-agent authorization before broader use, and avoid showing raw histories or files by default with sensitive agents.
+
+Risk: The release includes unsafe credential handling for the OpenClaw Gateway token.
+
+Mitigation: Remove and rotate the embedded token, then load credentials from a local private configuration or another secret-management mechanism.
+
+Risk: Network exposure and permissive browser access can increase the blast radius of a local monitoring tool.
+
+Mitigation: Bind the server to localhost, restrict CORS to trusted origins, and do not expose the dashboard on a network as shipped.
+
+Risk: Remote frontend scripts and avatar calls can leak usage metadata or add supply-chain exposure.
+
+Mitigation: Replace remote scripts and avatar calls with local, pinned assets before use with sensitive agents.
+
+## Reference(s):
+
+- [Agent Kanban README](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Node.js application files, configuration examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local dashboard deployment instructions and supporting application assets for OpenClaw monitoring.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

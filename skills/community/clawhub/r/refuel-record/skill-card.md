@@ -1,38 +1,57 @@
-## Description: <br>
-达鑫车队加气记录录入技能：当用户提供日期、车牌、站点、升数、单价、金额和公里数等原始加气信息时，生成加气记录汇总表和扣卡记录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+达鑫车队加气记录录入技能。触发指令：「加气汇总」。当用户提供加气原始信息（日期、车牌、站点、升数、单价、金额、公里数）时，自动生成加气记录汇总表和扣卡记录。
 
-## Publisher: <br>
-[V31981](https://clawhub.ai/user/V31981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[v31981](https://clawhub.ai/user/v31981)
 
-## Use Case: <br>
-Fleet operations and accounting users can use this skill to convert raw vehicle refueling messages into a standardized refueling CSV and matching card-deduction accounting records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves generated CSV files to a fixed Desktop path and the files may contain sensitive fleet refueling and accounting records. <br>
-Mitigation: Confirm the save location before use and handle generated CSV files as sensitive business records. <br>
+## Use Case:
 
+Fleet operations or administrative users use this skill to turn raw Chinese refueling entries into a CSV summary with a main refueling table and deduction-card records.
 
-## Reference(s): <br>
-- [加气记录格式参考](references/format-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [CSV file with refueling summary and card-deduction records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output as 加气汇总_YYYY-MM-DD.csv and uses the documented field order for both tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Fleet and payment reports may be written to a fixed Windows Desktop path without a user-selected destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the output location before use or modify the workflow to request an output folder.
+
+Risk: Repeated runs may overwrite reports or make it hard to distinguish generated files.
+
+Mitigation: Use unique filenames and add overwrite confirmation before saving generated CSV files.
+
+Risk: Spreadsheet fields from untrusted records could trigger CSV formula injection.
+
+Mitigation: Neutralize exported fields that begin with =, +, -, or @ before opening the CSV in spreadsheet software.
+
+## Reference(s):
+
+- [加气记录格式参考](references/format-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Guidance]
+
+**Output Format:** [CSV file with Chinese-language refueling and deduction-card tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact instructs the agent to save 加气汇总_YYYY-MM-DD.csv to C:\Users\35794\Desktop.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

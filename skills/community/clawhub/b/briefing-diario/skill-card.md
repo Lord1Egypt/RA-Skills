@@ -1,42 +1,55 @@
-## Description: <br>
-Provides a Portuguese daily dashboard for location, weather, forecasts, currency exchange rates, holidays, and contextual daily tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fornece um dashboard visual para informações do dia a dia como localização, clima, economia, previsão do tempo.
 
-## Publisher: <br>
-[ExtAlisson3](https://clawhub.ai/user/ExtAlisson3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[extalisson3](https://clawhub.ai/user/extalisson3)
 
-## Use Case: <br>
-External users invoke this skill to receive a concise Portuguese daily briefing with local conditions, Brazil-focused calendar context, currency quotes, and a fixed visual markdown layout. <br>
-
-### Deployment Geography for Use: <br>
-Brazil <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Briefing generation contacts public services for weather, currency, and holiday data, which may reveal the requested city or approximate location. <br>
-Mitigation: Invoke the skill intentionally with an explicit briefing command and adjust or omit location details when location disclosure is a concern. <br>
-Risk: The broad alternate trigger "dia" could start the briefing unexpectedly. <br>
-Mitigation: Prefer explicit commands such as "briefing diario" or "briefing" when configuring or invoking the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ExtAlisson3/briefing-diario) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=-19.9208&longitude=-43.9378&daily=uv_index_max,sunset,sunrise&hourly=precipitation_probability&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=auto) <br>
-- [AwesomeAPI currency quote endpoint](https://economia.awesomeapi.com.br/json/last/USD-BRL,JPY-BRL,BTC-BRL,KRW-BRL,EUR-BRL) <br>
-- [Nager.Date Brazil public holidays endpoint](https://date.nager.at/api/v3/PublicHolidays/2026/BR) <br>
+## Use Case:
 
+External users invoke this skill for a Brazil-focused Portuguese daily briefing that summarizes local weather, UV guidance, sunrise and sunset, exchange rates, holiday status, and a contextual daily tip.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown code block with a fixed visual briefing layout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Portuguese output with placeholders filled from public weather, exchange-rate, and holiday sources; friendly fallback text is used when a source is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may contact public weather, exchange-rate, holiday, and time data services when preparing the briefing.
+
+Mitigation: Use it only when a Brazil-focused daily briefing is desired and review network access expectations before deployment.
+
+Risk: Generic trigger words such as dia could invoke the skill unintentionally.
+
+Mitigation: Prefer explicit invocation phrases such as briefing diario or briefing in agent routing configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/extalisson3/skills/briefing-diario)
+- [Open-Meteo forecast API endpoint used by the skill](https://api.open-meteo.com/v1/forecast?latitude=-19.9208&longitude=-43.9378&daily=uv_index_max,sunset,sunrise&hourly=precipitation_probability&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=auto)
+- [AwesomeAPI exchange-rate endpoint used by the skill](https://economia.awesomeapi.com.br/json/last/USD-BRL,JPY-BRL,BTC-BRL,KRW-BRL,EUR-BRL)
+- [Nager public holidays endpoint used by the skill](https://date.nager.at/api/v3/PublicHolidays/2026/BR)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown code block containing a fixed-width Portuguese daily briefing dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes weather, UV, sunrise and sunset, exchange rates, holiday status, and a contextual tip; uses friendly fallback messages if a public data source fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

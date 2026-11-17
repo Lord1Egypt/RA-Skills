@@ -1,37 +1,54 @@
-## Description: <br>
-SkillGuard is a Chinese-language assistant for static review of agent skill files before installation, publication, and post-install health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillGuard helps Chinese skill creators run static pre-release, dependency, multi-platform, and installation-source safety checks on agent skill packages.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-Developers and skill creators use SkillGuard to review SKILL.md content for publication readiness, runtime dependency declarations, multi-platform compatibility, and installation-source risk before release or installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub SkillGuard listing](https://clawhub.ai/huangjihua007-rgb/skill-butler-cn) <br>
+Developers and skill publishers use this agent to review SKILL.md content before release or installation, receive P0/P1/P2 findings, and copy proposed YAML or Markdown fixes for platform and security issues.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with structured findings, YAML or Markdown snippets, and occasional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only static analysis; GitHub or ClawHub source checks may contact those services, and separate SkillPick install suggestions should be verified before running.] <br>
+Global
 
-## Skill Version(s): <br>
-4.2.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: A passing SkillGuard report could be mistaken for approval to run suggested third-party installation commands.
+
+Mitigation: Independently verify the referenced package, publisher, and version before running npm, SkillPick, or ClawHub installation commands.
+
+Risk: Promotional branding and fixed identity responses may distract from objective risk review.
+
+Mitigation: Treat the branding as publisher-supplied content and base deployment decisions on independent source, permission, and security checks.
+
+## Reference(s):
+
+- [ClawHub SkillGuard release page](https://clawhub.ai/huangjihua007-rgb/skills/skill-butler-cn)
+- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with YAML, Markdown, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static text analysis only; reports include severity labels and copyable fix samples.]
+
+## Skill Version(s):
+
+4.2.0 (source: frontmatter and server release evidence, released 2026-05-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

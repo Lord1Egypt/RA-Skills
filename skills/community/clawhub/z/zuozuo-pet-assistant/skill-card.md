@@ -1,43 +1,58 @@
-## Description: <br>
-zuozuo PET Assistant - AI Pet Nutritionist, Private Doctor & Smart Shopping Assistant <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZUOZUO PET Assistant helps pet owners maintain a local pet profile, request pet nutrition or routine care guidance, and receive shopping suggestions.
 
-## Publisher: <br>
-[rorschachshan](https://clawhub.ai/user/rorschachshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rorschachshan](https://clawhub.ai/user/rorschachshan)
 
-## Use Case: <br>
-External pet owners use this skill to create a local pet profile, receive general nutrition or veterinary-style guidance, and get region-aware pet product suggestions in Markdown tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a local pet profile that can include health notes and region. <br>
-Mitigation: Install only when local storage of this information is acceptable, and remove or protect the local profile according to the user's device security needs. <br>
-Risk: Veterinary-style guidance may be mistaken for diagnosis or treatment. <br>
-Mitigation: Treat the guidance as general information and direct urgent or uncertain medical concerns to a physical veterinarian. <br>
-Risk: Shopping results are mock suggestions rather than verified deals or medically vetted recommendations. <br>
-Mitigation: Verify product suitability, retailer availability, and price before purchase, especially for health-related products. <br>
+## Use Case:
 
+Pet owners use this skill to create and reuse a local pet profile for personalized nutrition, routine care, and shopping conversations. Agents can call the included tools to read or save profile data and generate region-aware product search suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rorschachshan/zuozuo-pet-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/rorschachshan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON] <br>
-**Output Format:** [Markdown responses with product recommendation tables and JSON tool outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save and read a local pet profile containing pet health notes and region.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Pet health and region data are saved locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile storage behavior before installing and avoid saving sensitive details unless local plaintext storage is acceptable.
+
+Risk: Product recommendations may appear precise even though search results are randomly generated synthetic suggestions.
+
+Mitigation: Verify product names, prices, ingredients, medical suitability, availability, and purchase links independently before acting on recommendations.
+
+Risk: Pet health guidance can be mistaken for professional veterinary advice.
+
+Mitigation: Use the skill for general guidance only and consult a veterinarian for medical decisions, urgent symptoms, or treatment plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rorschachshan/skills/zuozuo-pet-assistant)
+- [Publisher profile](https://clawhub.ai/user/rorschachshan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with JSON tool outputs and Markdown product tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and reads a local plaintext pet profile under the user's OpenClaw profile directory; product search output is synthetic and should be verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

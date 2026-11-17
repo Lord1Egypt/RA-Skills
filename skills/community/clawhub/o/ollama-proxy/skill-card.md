@@ -1,40 +1,62 @@
-## Description: <br>
-Ollama proxy - one endpoint that routes to multiple Ollama instances as a drop-in Ollama API replacement for localhost:11434, with automatic node discovery, routing, scoring, and retry behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ollama Proxy provides guidance for installing and using a local-network proxy that routes Ollama API requests across multiple Ollama instances with discovery, scoring, and retry behavior.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure agents and applications to route Ollama-compatible chat, generation, model, and OpenAI-compatible API requests through an Ollama proxy across trusted local Ollama nodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The proxy and dashboard are intended for a trusted LAN or VPN; public exposure could reveal traffic patterns or operational details. <br>
-Mitigation: Deploy only on trusted networks, avoid public internet exposure, and review request traces stored under ~/.fleet-manager before use. <br>
-Risk: The setup flow installs and runs the ollama-herd package from PyPI. <br>
-Mitigation: Pin or review the package version before installation in managed or production environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a drop-in Ollama proxy endpoint for multi-machine local Ollama fleets, including setup commands, compatible client configuration, and monitoring requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/ollama-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and integration instructions for a local Ollama proxy; it does not itself run the proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence and frontmatter) <br>
+Risk: The skill routes prompts through a proxy host and local network, so untrusted hosts or networks could expose prompts or responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only route prompts through a proxy host and local network you trust, as stated in the server security guidance.
+
+Risk: The documented workflow installs and runs the third-party ollama-herd package.
+
+Mitigation: Review the ollama-herd package or source before production use and install it in a virtual environment or container when possible.
+
+Risk: The proxy stores latency and request-tracing data under ~/.fleet-manager.
+
+Mitigation: Review local storage behavior before deployment and avoid deleting or modifying ~/.fleet-manager files manually.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/ollama-proxy)
+- [Ollama Herd Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [PyPI: ollama-herd](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash, Python, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local-network endpoint URLs and commands; no credential environment variables are disclosed.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

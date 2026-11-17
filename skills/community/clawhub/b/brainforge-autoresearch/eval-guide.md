@@ -1,6 +1,6 @@
 # Eval Guide: Writing Effective Eval Criteria
 
-How to write eval criteria that actually improve your skill's output. This guide covers the hybrid rule+LLM eval system used by brainforge-autoresearch (previously `openclaw-autoresearch`).
+How to write eval criteria that actually improve your skill's output. This guide covers the hybrid rule+LLM eval system used by brainharness-autoresearch (previously `openclaw-autoresearch`).
 
 ## The Golden Rule
 

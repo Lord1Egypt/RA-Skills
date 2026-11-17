@@ -1,43 +1,55 @@
-## Description: <br>
-A Chinese-language QA requirement analysis skill that decomposes vague requirements into testable input, operation, state, output, and rule dimensions while surfacing explicit, implicit, and derived requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deconstructs requirements into testable inputs, operations, states, outputs, and rules while identifying explicit, implied, and derived requirements.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, product reviewers, and developers use this skill to break down PRDs, requirement text, URLs, or uploaded requirement documents into structured requirement IDs, business rules, five-dimension analysis, risks, and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad requirement-analysis prompts. <br>
-Mitigation: Use it intentionally for requirement decomposition tasks and review its output before feeding it into downstream QA or risk-analysis workflows. <br>
-Risk: The skill may default to Chinese-language output. <br>
-Mitigation: Ask the agent for the desired output language when a non-Chinese review artifact is needed. <br>
-Risk: Requirement files or URLs supplied to the agent may contain sensitive product or business information. <br>
-Mitigation: Provide only requirement content and links that are appropriate for the agent to read in the target environment. <br>
+## Use Case:
 
+QA engineers and product teams use this skill to turn requirements documents or brief feature descriptions into traceable requirement and business-rule tables, risks, and questions for clarification before test-case design.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kokxi/skills/qa-req-deconstruction) <br>
-- [Publisher Profile](https://clawhub.ai/user/kokxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown tables and lists, usually in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include requirement IDs, explicit and implicit requirements, derived requirements, business rules, five-dimension decomposition, risk points, and questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Requirements may contain sensitive customer, payment, identity, or production information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or mask sensitive data before supplying requirements or examples.
+
+Risk: The optional command to install the larger skill set fetches unpinned remote content.
+
+Mitigation: Run it only after reviewing and trusting the source and accepting the remote-install risk.
+
+## Reference(s):
+
+- [Requirement table template](assets/requirement-table.md)
+- [Five dimensions framework](references/five-dimensions.md)
+- [Three layers of requirements](references/three-layers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown requirement and business-rule tables with risks and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses REQ-, RISK-, and RULE- identifiers; flags assumptions and derived requirements for confirmation.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

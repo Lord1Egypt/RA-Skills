@@ -1,0 +1,27 @@
+{
+  "SessionID": "xxxxxxxxxxxxxxxxxxxxxx",
+  "Inventory": [
+    {
+      "ItemID": "BBS44",
+      "SKU": "BBS44ABS",
+      "MORE_EXPECTED_ON": "7/13/2025",
+      "Warehouses": [
+        {"WarehouseLocation": "IL", "Quantity": 532},
+        {"WarehouseLocation": "CA", "Quantity": 24},
+        {"WarehouseLocation": "DR", "Quantity": 0}
+      ]
+    },
+    {
+      "ItemID": "HJ2",
+      "SKU": "HJ2ABM",
+      "MORE_EXPECTED_ON": "",
+      "Warehouses": [
+        {"WarehouseLocation": "IL", "Quantity": 4},
+        {"WarehouseLocation": "CA", "Quantity": 3},
+        {"WarehouseLocation": "DR", "Quantity": null}
+      ]
+    }
+  ],
+  "ResponseMessage": "OK",
+  "ErrorMessages": ["E3.1: NOSUCHSKU - SKU does not Exist."]
+}

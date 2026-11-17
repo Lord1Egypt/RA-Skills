@@ -1,42 +1,55 @@
-## Description: <br>
-Fetches Weibo, Baidu, and Douyin hot-search rankings, links, scores, and update times through the JisuAPI hotsearch service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets current Weibo, Baidu, and Douyin hot-search rankings, links, scores, and update times through JisuAPI.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current hot-search lists from Weibo, Baidu, or Douyin and summarize the ranked topics with links and popularity signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JisuAPI AppKey and sends it to JisuAPI when retrieving hot-search rankings. <br>
-Mitigation: Use only an intended JisuAPI key, scope and rotate it according to the provider account controls, and do not expose the key in prompts or logs. <br>
-Risk: The skill contacts JisuAPI for live Weibo, Baidu, or Douyin hot-search data whenever a platform command is run. <br>
-Mitigation: Run it only when current hot-search results are needed, and ask for a specific platform name to avoid unnecessary external API calls. <br>
+## Use Case:
 
+External users and developers use this skill to answer hot-search questions by retrieving current Weibo, Baidu, and Douyin rankings from JisuAPI and summarizing titles, links, scores, and update times.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/hotsearch) <br>
-- [JisuAPI homepage](https://www.jisuapi.com/) <br>
-- [JisuAPI hotsearch API documentation](https://www.jisuapi.com/api/hotsearch/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON arrays or JSON error objects from the Python script, with agent-authored text or Markdown summaries for users.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, a JISU_API_KEY environment variable, and one platform argument: weibo, baidu, or douyin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill contacts JisuAPI and uses JISU_API_KEY, so the API key is a credential exposed to the configured runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JISU_API_KEY only in trusted agent runtimes, avoid logging it, and review JisuAPI terms, pricing, and privacy practices before use.
+
+Risk: Hot-search results are live third-party API data and may be unavailable, delayed, or returned with API errors.
+
+Mitigation: Handle api_error, http_error, request_failed, and invalid_json outputs, and include update times when summarizing trends.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/hotsearch)
+- [JisuAPI](https://www.jisuapi.com/)
+- [JisuAPI hot-search API](https://www.jisuapi.com/api/hotsearch/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the helper script; text or Markdown summaries from the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; returns one platform's hot-search result list per invocation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

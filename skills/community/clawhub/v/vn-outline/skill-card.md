@@ -1,41 +1,52 @@
-## Description: <br>
-Converts raw story ideas into structured, character-anchored scene outlines with authentic dialogue and mapped emotional beats for chapter planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scene Blueprint converts raw story ideas and lorebook data into strict, POV-anchored chapter outlines with character-authentic dialogue, emotional beats, and micro-actions without writing prose.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External writers and creative-writing agents use this skill to turn story ideas and lorebook character profiles into flat, chapter-by-chapter scene blueprints. It is intended for outlining POV, sensory anchors, dialogue subtext, and character-specific actions before prose drafting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses user-provided story ideas and lorebook character profiles, so generated outlines may expose or reuse sensitive creative material supplied in the prompt.
+
+Mitigation: Review inputs before use and avoid providing confidential lore, unpublished plot details, or personal data unless the deployment context permits it.
+
+Risk: The artifact contains duplicate version metadata, which can create packaging or release-tracking ambiguity.
+
+Mitigation: Confirm the server release version and normalize artifact metadata during packaging if exact version consistency is required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators and writing agents use this skill to turn story ideas and lorebook character state into chapter-by-chapter scene outlines. It focuses on POV anchoring, character-authentic dialogue, emotional beat mapping, and outline structure rather than finished prose. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Story ideas, lorebook entries, and character state may contain private notes or sensitive creative material. <br>
-Mitigation: Avoid providing private or sensitive material unless it is acceptable for that content to be used in model context. <br>
-Risk: Generated outlines may contain inaccurate character interpretation or misleading creative direction. <br>
-Mitigation: Review the outline against the source lorebook and story intent before using it for drafting. <br>
+**Output Format:** [Markdown outline with strict flat-list markers, POV headers, sensory anchors, dialogue lines, internal state fragments, physical actions, and memory layers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaibazax-dev/vn-outline) <br>
-- [Publisher profile](https://clawhub.ai/user/kaibazax-dev) <br>
+**Other Properties Related to Output:** [Produces outlines only; it does not write prose or execute code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown outline with structured scene setup, POV blocks, sensory anchors, dialogue, actions, and memory fragments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not write prose; produces a flat chapter and scene outline for later drafting.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

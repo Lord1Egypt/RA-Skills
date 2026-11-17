@@ -1,41 +1,54 @@
-## Description: <br>
-Advanced sample size and power calculations for complex study designs including survival analysis, clustered designs, and multiple comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced sample size and power calculations for complex study designs including survival analysis, clustered designs, and multiple comparisons.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to run local sample size and power estimates for supported statistical tests and document assumptions for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release may overstate advanced power-analysis capabilities compared with the implemented local calculator. <br>
-Mitigation: Treat outputs as preliminary planning estimates, verify formulas and assumptions independently, and do not rely on it as a validated clinical or regulated study-planning package. <br>
-Risk: Dependency versions are not pinned, which can affect reproducibility and numerical behavior. <br>
-Mitigation: Pin and audit numpy and scipy versions before relying on results in scientific, clinical, or regulated study planning. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to estimate sample sizes, power, and sensitivity details for study designs such as t-tests, chi-square tests, log-rank survival analysis, ANOVA, and non-inferiority trials. It is intended to produce reviewable calculations with explicit assumptions and caveats.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/sample-size-power-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and plain-text calculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied statistical design parameters; results should be independently verified before regulated use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence says the documentation overstates supported methods and has inconsistent data-flow and security claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review formulas and assumptions before use, and do not rely on it for clustered designs, multiple comparisons, regression, validated power analysis, or regulated study design without independent statistical review.
+
+Risk: The skill runs local Python code with unpinned numpy and scipy dependencies.
+
+Mitigation: Install dependencies in an isolated environment and pin numpy and scipy versions before execution.
+
+## Reference(s):
+
+- [Audit Reference](artifact/references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/sample-size-power-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with calculation results, assumptions, risks, limits, and inline shell commands when execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include required sample size, power curve data, sensitivity analysis, and dropout-adjusted sample size; results require independent statistical review for complex or regulated study designs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

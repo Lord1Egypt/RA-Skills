@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kamroncorp/propaymun-information-architecture-skill/blob/main/schema/semantic-ia.schema.json",
+  "title": "ProPaymun Semantic IA Model",
+  "description": "Canonical, renderer-independent information architecture model.",
+  "type": "object",
+  "required": ["meta", "domains", "items", "relationships"],
+  "$defs": {
+    "evidenceState": {
+      "enum": ["Provided", "Observed", "Confirmed", "Inferred", "Proposed", "Unknown"]
+    },
+    "localizedLabel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"$ref": "#/$defs/localizedLabel"},
+        "description": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "model_version", "status", "language", "direction", "scope", "handoff"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "model_version": {"const": "2.0"},
+        "status": {"enum": ["draft", "proposed", "reviewed", "approved"]},
+        "language": {"type": "string", "minLength": 2},
+        "direction": {"enum": ["ltr", "rtl"]},
+        "scope": {"type": "string", "minLength": 1},
+        "decision_intent": {"type": "string"},
+        "problem_shape": {"enum": ["content-taxonomy", "object-operation", "hybrid"]},
+        "locale_context": {
+          "type": "object",
+          "properties": {
+            "country": {"type": ["string", "null"]},
+            "region": {"type": ["string", "null"]},
+            "jurisdiction": {"type": ["string", "null"]},
+            "currency": {"type": ["string", "null"]},
+            "date_system": {"type": ["string", "null"]},
+            "operating_model": {"type": ["string", "null"]},
+            "evidence_status": {"$ref": "#/$defs/evidenceState"}
+          },
+          "additionalProperties": true
+        },
+        "handoff": {
+          "type": "object",
+          "required": ["purpose", "readiness"],
+          "properties": {
+            "purpose": {"enum": ["conversation", "workshop", "review", "implementation"]},
+            "readiness": {"enum": ["not-ready", "provisional", "reviewable", "approved"]}
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "contexts": {"type": "array"},
+    "audiences": {"type": "array"},
+    "tasks": {"type": "array"},
+    "information_needs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "audience_or_context", "information_sought", "entry_points", "item_ids", "access_scope", "recovery", "evidence_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "audience_or_context": {"type": "string", "minLength": 1},
+          "information_sought": {"type": "string", "minLength": 1},
+          "entry_points": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "organizing_cues": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "item_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "access_scope": {"type": "string", "minLength": 1},
+          "recovery": {"type": "string", "minLength": 1},
+          "evidence_status": {"$ref": "#/$defs/evidenceState"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "description", "evidence_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "label": {"$ref": "#/$defs/localizedLabel"},
+          "description": {"type": "string"},
+          "order": {"type": "integer"},
+          "evidence_status": {"$ref": "#/$defs/evidenceState"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "domain_id", "label", "kind", "parent_id", "evidence_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "domain_id": {"type": "string", "minLength": 1},
+          "label": {"$ref": "#/$defs/localizedLabel"},
+          "kind": {"enum": ["object", "content_type", "record", "concept", "classification", "retrieval_system"]},
+          "description": {"type": "string"},
+          "parent_id": {"type": ["string", "null"]},
+          "alternative_parent_ids": {"type": "array", "items": {"type": "string"}},
+          "attributes": {"type": "array"},
+          "states": {"type": "array", "items": {"$ref": "#/$defs/state"}},
+          "findability": {"type": "array"},
+          "evidence_status": {"$ref": "#/$defs/evidenceState"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "type", "label", "meaning", "direction", "evidence_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "from": {"type": "string", "minLength": 1},
+          "to": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "minLength": 1},
+          "label": {"$ref": "#/$defs/localizedLabel"},
+          "meaning": {"type": "string", "minLength": 1},
+          "direction": {"enum": ["directed", "bidirectional", "undirected"]},
+          "cardinality": {"type": "string"},
+          "evidence_status": {"$ref": "#/$defs/evidenceState"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "evidence_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "label": {"$ref": "#/$defs/localizedLabel"},
+          "description": {"type": "string"},
+          "evidence_status": {"$ref": "#/$defs/evidenceState"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role_id", "item_id", "scope", "actions", "evidence_status"],
+        "properties": {
+          "role_id": {"type": "string", "minLength": 1},
+          "item_id": {"type": "string", "minLength": 1},
+          "scope": {"type": "string", "minLength": 1},
+          "actions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "evidence_status": {"$ref": "#/$defs/evidenceState"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "lifecycles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "states", "transitions"],
+        "properties": {
+          "item_id": {"type": "string", "minLength": 1},
+          "states": {"type": "array", "items": {"$ref": "#/$defs/state"}},
+          "transitions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["from", "to", "actor_role_ids", "evidence_status"],
+              "properties": {
+                "from": {"type": "string", "minLength": 1},
+                "to": {"type": "string", "minLength": 1},
+                "actor_role_ids": {"type": "array", "items": {"type": "string"}},
+                "condition": {"type": "string"},
+                "evidence_status": {"$ref": "#/$defs/evidenceState"}
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "organization_schemes": {"type": "array"},
+    "taxonomy": {"type": "object"},
+    "labels": {"type": "array"},
+    "metadata_model": {"type": "array"},
+    "navigation_systems": {"type": "array"},
+    "search": {"type": "object"},
+    "governance": {"type": "object"},
+    "evidence_ledger": {"type": "array"},
+    "assumptions": {"type": "array"},
+    "unknowns": {"type": "array"},
+    "conflicts": {"type": "array"},
+    "decisions": {"type": "array"},
+    "validation": {"type": "array"}
+  },
+  "additionalProperties": true
+}

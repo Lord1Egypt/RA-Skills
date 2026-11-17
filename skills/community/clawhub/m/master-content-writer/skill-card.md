@@ -1,43 +1,53 @@
-## Description: <br>
-Multi-platform content generator for Chinese social media that produces publish-ready posts for Xiaohongshu, Zhihu, WeChat Official Accounts, and Douyin with platform-native formatting, hooks, and CTAs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Content Writer generates publish-ready Chinese social media content for 小红书, 知乎, 公众号, and 抖音 with platform-native formatting, hooks, and CTAs.
 
-## Publisher: <br>
-[davidunderwood7970](https://clawhub.ai/user/davidunderwood7970) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidunderwood7970](https://clawhub.ai/user/davidunderwood7970)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to draft Chinese social-media posts after providing a topic, platform, word count, style, and image-suggestion preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous writing prompts may produce platform-style Chinese drafts that do not match the user's intended channel or tone. <br>
-Mitigation: Confirm the topic, target platform, word count, style, and image-suggestion preference before generating final content. <br>
-Risk: Generated content could include unverifiable data, overly absolute claims, or implied personal experiences. <br>
-Mitigation: Review claims before publication, verify cited data, avoid absolute claims, and do not publish fake reviews or experiences. <br>
-Risk: The release metadata slug/version does not perfectly match the SKILL.md metadata. <br>
-Mitigation: Verify the ClawHub skill page, publisher handle, release version, and package identity before installation or redistribution. <br>
+## Use Case:
 
+External creators, marketers, and social media operators use this skill to draft Chinese posts, articles, and short-video scripts for 小红书, 知乎, 公众号, and 抖音. The skill helps structure content with platform-specific hooks, body formats, CTAs, captions, tags, and optional image suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidunderwood7970/master-content-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/davidunderwood7970) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted Chinese social-media drafts with platform-specific sections, hooks, CTAs, captions, and tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include image suggestion requests and platform-specific SEO tagging guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; SKILL.md frontmatter states 1.0.1) <br>
+Risk: Generated posts may include unverifiable data, citations, absolute claims, banned words, or CTAs that are unsuitable for the target platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims, citations, banned-word checks, and CTAs before publishing, and ask for verifiable sources for factual assertions.
+
+Risk: Product-review or promotional drafts could mislead readers if presented as personal experience or independent endorsement.
+
+Mitigation: Do not publish fake reviews or experiences, and label sponsored or promotional content according to applicable platform rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidunderwood7970/skills/master-content-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted platform drafts with titles, hooks, body copy, CTAs, captions, and tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific word-count targets, SEO tags, and image suggestions when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact/SKILL.md frontmatter and changelog text indicate 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Routes OpenClaw companion, correction, and verification requests to VeriClaw and its ClawHub or OpenClaw install surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Companion routes OpenClaw correction, verification, and companion-skill discovery requests to VeriClaw.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to identify VeriClaw as a correction or verification companion and choose the appropriate discovery or install route. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is opinionated and preferentially routes OpenClaw correction or verification requests to VeriClaw, which may be too narrow when a neutral comparison is needed. <br>
-Mitigation: Ask for alternatives or compare multiple skills before following the recommended install route. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to route correction, verification, hallucination-correction, and companion-skill discovery intents toward VeriClaw.
 
-## Reference(s): <br>
-- [VeriClaw ClawHub page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [OpenClaw companion page](https://sheygoodbai.github.io/vericlaw/openclaw-companion/) <br>
-- [OpenClaw plugin explainer](https://sheygoodbai.github.io/vericlaw/openclaw-plugin/) <br>
-- [VeriClaw ClawHub plugin page](https://clawhub.ai/plugins/vericlaw) <br>
-- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with inline install commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable code or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill intentionally routes OpenClaw correction and verification discovery requests toward VeriClaw, which may be too narrow for broad or neutral recommendation workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a VeriClaw-oriented OpenClaw companion route is desired; compare alternatives before relying on it for neutral recommendations.
+
+Risk: Suggested install commands can change an operator's OpenClaw or ClawHub setup.
+
+Mitigation: Review the target package and command before execution, especially in shared or production agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sheygoodbai/skills/openclaw-companion)
+- [ClawHub VeriClaw page](https://clawhub.ai/sheygoodbai/vericlaw)
+- [OpenClaw companion page](https://sheygoodbai.github.io/vericlaw/openclaw-companion/)
+- [OpenClaw plugin explainer](https://sheygoodbai.github.io/vericlaw/openclaw-plugin/)
+- [ClawHub plugin page](https://clawhub.ai/plugins/vericlaw)
+- [Review kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with URLs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes discovery requests; does not include executable code.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

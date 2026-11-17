@@ -1,6 +1,5 @@
-# Google 广告受众策略与分析指南
+﻿# Google 广告受众策略与分析指南
 
-> **所属 skill:** siluzan-tso
 > **适用场景:** 受众数据分析（`google-analysis --sections audience`）、受众策略建议、再营销策略规划、RLSA 策略
 > **更新日期:** 2026-04-01
 

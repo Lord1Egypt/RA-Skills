@@ -1,46 +1,64 @@
-## Description: <br>
-Looks up current free and limited-time game offers from Steam and Epic Games and formats the results for an agent response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches free and limited-time game deal information from Epic Games and Steam.
 
-## Publisher: <br>
-[testmtcode](https://clawhub.ai/user/testmtcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[testmtcode](https://clawhub.ai/user/testmtcode)
 
-## Use Case: <br>
-External users and agent operators use this skill to check current free-game offers and limited-time promotions from Steam and Epic Games. It is useful for generating concise game-deal summaries with claim links and offer timing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with Epic Games Store results configured for the China region. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Steam and Epic public services when invoked. <br>
-Mitigation: Use explicit prompts to control activation, and only configure recurring cron checks when ongoing network access is intended. <br>
-Risk: Steam results may be general free-to-play recommendations rather than limited-time promotions. <br>
-Mitigation: Treat Steam output as recommendations and verify availability on Steam before presenting a deal as time-limited. <br>
-Risk: Epic Games Store results are configured for the China region. <br>
-Mitigation: Confirm regional availability before using Epic results for users outside that region. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to check current Epic Games and Steam free-game offers, then share formatted results or set up recurring deal checks.
 
-## Reference(s): <br>
-- [ClawHub Game Deals release page](https://clawhub.ai/testmtcode/game-deals) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/testmtcode) <br>
-- [Epic Games Store free games promotions endpoint](https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions) <br>
-- [Steam Store search endpoint](https://store.steampowered.com/api/search) <br>
-- [Steam Free to Play page](https://store.steampowered.com/genre/Free%20to%20Play/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Formatted text or Markdown with game titles, offer status, dates, and links; scripts may also be invoked from shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on public Steam and Epic services; Epic queries are configured with zh-CN locale and CN country parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill contacts public Steam and Epic endpoints that may be unavailable, rate-limited, region-specific, or changed without notice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned deals as leads and verify availability on the official store pages before relying on them.
+
+Risk: Steam results may include free-to-play recommendations rather than true limited-time giveaways.
+
+Mitigation: Label Steam results as free-to-play or recommended free games unless the store page confirms a limited-time promotion.
+
+Risk: Optional cron setup can create recurring background checks.
+
+Mitigation: Add the cron job only when daily checks are desired and document how to remove or disable it.
+
+Risk: The Python scripts require the third-party requests package.
+
+Mitigation: Install dependencies in a virtual environment and pin versions for managed deployments.
+
+## Reference(s):
+
+- [ClawHub Game Deals release page](https://clawhub.ai/testmtcode/skills/game-deals)
+- [Epic Games Store free games promotions endpoint](https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions)
+- [Steam Store search endpoint](https://store.steampowered.com/api/search)
+- [Steam free-to-play store page](https://store.steampowered.com/genre/Free%20to%20Play/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted text and Markdown with store links and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on public Steam and Epic endpoints, regional availability, and current store data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

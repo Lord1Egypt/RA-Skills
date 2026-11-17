@@ -1,41 +1,54 @@
-## Description: <br>
-Corecoder guides coding agents through precise code edits, parallel file handling, subtask delegation, hazardous-command checks, and local task logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corecoder guides a coding agent through structured code editing, parallel file work, subtask isolation, dangerous-command checks, session logging, and project-style analysis.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and coding agents use Corecoder to structure code-writing, bug-fixing, refactoring, review, and project-analysis workflows with scoped edits, validation, and task logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run commands, edit workspace files, and spawn subagents as part of normal coding workflows. <br>
-Mitigation: Review proposed edits and commands before execution, keep work scoped to the active workspace, and run available tests or validation checks after changes. <br>
-Risk: The skill documents local dated memory logs that may contain file paths, bug details, or code-change rationale. <br>
-Mitigation: Review, disable, or routinely clean local memory logging when those details are sensitive in the deployment environment. <br>
+## Use Case:
 
+Developers and coding agents use Corecoder to plan, edit, review, and verify code changes while following a structured workflow for scoped edits, command review, and task logging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/corecoder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/paudyyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose workspace edits, command execution, subagent tasks, and local memory log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can guide command execution and subtask delegation during development work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before running them and use dry runs or explicit confirmation for broad file operations.
+
+Risk: The skill describes local memory logs for coding-task outcomes, which could capture sensitive task details.
+
+Mitigation: Avoid placing secrets in prompts, code comments, or task descriptions that may be written to local logs.
+
+## Reference(s):
+
+- [Corecoder on ClawHub](https://clawhub.ai/paudyyin/skills/corecoder)
+- [paudyyin publisher profile](https://clawhub.ai/user/paudyyin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with code blocks, command snippets, and task summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local session-log entries for coding task outcomes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

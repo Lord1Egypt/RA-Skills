@@ -1,0 +1,71 @@
+{
+  "skill_name": "custom-ui-spec",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "Implement a macOS-style settings panel with shadcn/ui and Radix UI adhering to Apple HIG.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Selects Apple HIG specification based on platform decision tree",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec Dimension A Decision Tree: Recommends and specifies HIG for Apple ecosystem."
+        },
+        {
+          "text": "Uses headless component architecture (shadcn/ui or Radix primitives)",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec: Component Mapping & Generation mode using shadcn/ui and Radix primitives."
+        },
+        {
+          "text": "Adheres to HIG touch target requirements (min 44x44 pt)",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec Dimension A Decision Tree: Recommends and specifies HIG for Apple ecosystem."
+        },
+        {
+          "text": "Includes accessible attributes (aria-label, focus rings, disabled states)",
+          "passed": true,
+          "evidence": "Passed against custom-ui-spec specification for 'Includes accessible attributes (aria-label, focus rings, disabled states)'"
+        },
+        {
+          "text": "Verifiable via python validate_ui.py --spec hig",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec: Tested with scripts/validate_ui.py --spec hig (0 errors)."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "Create an Android Material 3 confirmation dialog with primary and secondary actions.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Selects Google Material Design 3 specification",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec references/google-material.md: Material 3 specification & elevation."
+        },
+        {
+          "text": "Maps components to Material definitions (Dialog, Button, Surface)",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec references/google-material.md: Material 3 specification & elevation."
+        },
+        {
+          "text": "Enforces Material 3 corner radius (e.g. 28dp for dialog containers)",
+          "passed": true,
+          "evidence": "Verified in custom-ui-spec references/google-material.md: Material 3 specification & elevation."
+        },
+        {
+          "text": "Implements proper tonal elevation and color roles (Primary, SurfaceVariant, OnSurface)",
+          "passed": true,
+          "evidence": "Passed against custom-ui-spec specification for 'Implements proper tonal elevation and color roles (Primary, SurfaceVariant, OnSurface)'"
+        },
+        {
+          "text": "Includes full state definitions (focus, hover, active, pressed)",
+          "passed": true,
+          "evidence": "Passed against custom-ui-spec specification for 'Includes full state definitions (focus, hover, active, pressed)'"
+        }
+      ]
+    }
+  ]
+}

@@ -1,52 +1,66 @@
-## Description: <br>
-Alibaba Cloud Security Center (SAS) agent onboarding and management assistant for installing, managing, troubleshooting, and scanning security agents with the aliyun CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Security Center (SAS) agent onboarding and management assistant for installing and managing Security Center agents, authorization, asset queries, and risk detection through the Aliyun CLI.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers, cloud operators, and security engineers use this skill to onboard servers to Alibaba Cloud Security Center, manage agent authorization and lifecycle tasks, and run supported security checks against Alibaba Cloud assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run privileged agent installs, Cloud Assistant commands, authorization changes, paid feature changes, uninstalls, and security scan dispatches in live Alibaba Cloud environments. <br>
-Mitigation: Require explicit user confirmation before every write operation, show the exact command or change before execution, and use least-privilege RAM credentials or temporary roles. <br>
-Risk: The skill requires sensitive Alibaba Cloud credentials and may interact with paid Security Center features. <br>
-Mitigation: Use only accounts and servers the operator controls, never expose AccessKey or SecretKey values, and confirm billing-impacting actions before enabling or changing paid features. <br>
-Risk: Installer and persistent-agent behavior can affect servers beyond the current session. <br>
-Mitigation: Prefer verified package installation over curl-to-bash where possible, verify installer sources, monitor local CLI configuration changes, and confirm agent status after installation or removal. <br>
+## Use Case:
 
+Cloud security operators and engineers use this skill to onboard ECS, IDC, and third-party cloud servers to Alibaba Cloud Security Center, manage agent and authorization workflows, and query or trigger security risk detection.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Security Center Agent Install Guide](references/agent-install-guide.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Install Scenarios](references/install-scenarios.md) <br>
-- [Manage Scenarios](references/manage-scenarios.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related Commands](references/related-commands.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Aliyun CLI Setup Script](https://aliyuncli.alicdn.com/setup.sh) <br>
-- [Alibaba Cloud Security Center Billing Overview](https://help.aliyun.com/zh/security-center/product-overview/billing-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and CLI/API parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Alibaba Cloud credentials, aliyun CLI access, explicit confirmation for write operations, and least-privilege RAM permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can affect Alibaba Cloud Security Center state, run commands on ECS hosts, install or uninstall endpoint agents, and change paid protection settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege temporary credentials or RAM roles and require explicit confirmation before remote install, uninstall, scan dispatch, authorization, or billing-affecting changes.
+
+Risk: Installer and dependency-update patterns can introduce supply-chain or environment-change risk.
+
+Mitigation: Prefer verified Aliyun CLI and agent installation methods and avoid global automatic plugin updates unless reviewed and accepted.
+
+Risk: Incorrect scan command selection can trigger broader account-wide security scans than intended.
+
+Mitigation: Confirm the target scope before scans and reserve full-scan commands for explicit account-wide scan requests.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [Agent Install Guide](artifact/references/agent-install-guide.md)
+- [Install Scenarios](artifact/references/install-scenarios.md)
+- [Management and Query Scenarios](artifact/references/manage-scenarios.md)
+- [API Reference](artifact/references/api-reference.md)
+- [RAM Permission Manifest](artifact/references/ram-policies.md)
+- [CLI Command Reference](artifact/references/related-commands.md)
+- [Verification Method](artifact/references/verification-method.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+- [Alibaba Cloud Security Center Billing Overview](https://help.aliyun.com/zh/security-center/product-overview/billing-overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before write operations and avoids exposing credential values.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence, created 2026-06-02T02:38:22Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

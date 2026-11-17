@@ -1,51 +1,66 @@
-## Description: <br>
-Trade on Hyperliquid spot and perpetual futures with market orders, limit orders, leverage setting, WDK wallet support, balance checks, and USDC deposit or withdrawal flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Hyperliquid for spot and perpetual futures with market orders, limit orders, leverage setting, WDK wallet support, and USDC deposits from Arbitrum.
 
-## Publisher: <br>
-[aure-duncan](https://clawhub.ai/user/aure-duncan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aure-duncan](https://clawhub.ai/user/aure-duncan)
 
-## Use Case: <br>
-External users and developers use this skill to inspect balances and place, manage, deposit, or withdraw USDC-backed Hyperliquid spot and perpetual trades through an AI assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign transactions, place trades, and move funds from a wallet. <br>
-Mitigation: Use a dedicated low-balance wallet, review transaction previews, and set confirm_trade_usd to 0 to require confirmation for every trade. <br>
-Risk: Wallet address and nickname may be shared with xaue.com if activity rankings are enabled. <br>
-Mitigation: Decline rankings unless sharing this data is intentional. <br>
-Risk: The skill can source or modify ~/.aurehub/.env as part of setup and wallet registration behavior. <br>
-Mitigation: Inspect ~/.aurehub/.env before allowing the skill to source or modify it. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent check Hyperliquid balances, place spot and perpetual trades, manage limit orders, and bridge or withdraw USDC through configured wallet scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aure-duncan/aurehub-hyperliquid-trade) <br>
-- [Hyperliquid](https://hyperliquid.xyz) <br>
-- [Hyperliquid app](https://app.hyperliquid.xyz) <br>
-- [Hyperliquid API endpoint](https://api.hyperliquid.xyz) <br>
-- [Balance](references/balance.md) <br>
-- [Limit Order Flow](references/limit-order.md) <br>
-- [Onboarding](references/onboarding.md) <br>
-- [Perp Trade](references/perp-trade.md) <br>
-- [Spot Trade](references/spot-trade.md) <br>
-- [Wallet Modes](references/wallet-modes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and structured JSON parsing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >= 20.19.0, WDK wallet vault files, Hyperliquid configuration, and explicit confirmation thresholds for higher-risk operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can decrypt a local wallet and sign trades, leverage changes, deposits, withdrawals, order cancellations, and order modifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, review previews carefully, keep confirmation thresholds conservative, and verify each financial action before approving execution.
+
+Risk: Optional rankings registration can share a wallet address and nickname with xaue.com.
+
+Mitigation: Decline rankings opt-in unless that disclosure is intended, and use a nickname that does not expose sensitive personal information.
+
+Risk: Shared or untrusted local wallet and environment files can expose secrets or alter runtime behavior.
+
+Mitigation: Keep ~/.aurehub files private, avoid shared configuration, and review ~/.aurehub/.env before use.
+
+## Reference(s):
+
+- [Balance](references/balance.md)
+- [Limit Order](references/limit-order.md)
+- [Onboarding](references/onboarding.md)
+- [Perp Trade](references/perp-trade.md)
+- [Spot Trade](references/spot-trade.md)
+- [Wallet Modes](references/wallet-modes.md)
+- [Hyperliquid](https://hyperliquid.xyz)
+- [Hyperliquid App](https://app.hyperliquid.xyz)
+- [Hyperliquid API Endpoint](https://api.hyperliquid.xyz)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local configuration, wallet state, and external Hyperliquid or Arbitrum API responses when executing user-approved flows.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata, skill metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

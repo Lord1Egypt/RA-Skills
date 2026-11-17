@@ -1,42 +1,56 @@
-## Description: <br>
-Intelligent loading performance analysis with automated workflows for TTFB investigation, render-blocking detection, script performance attribution, font optimization, resource hints validation, and Chrome DevTools MCP execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webperf Loading helps agents analyze web page loading performance in Chrome DevTools, including TTFB, FCP, render-blocking resources, script loading, font behavior, resource hints, images, CSS, service workers, and SSR hydration data.
 
-## Publisher: <br>
-[nucliweb](https://clawhub.ai/user/nucliweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nucliweb](https://clawhub.ai/user/nucliweb)
 
-## Use Case: <br>
-Developers and performance engineers use this skill to run Chrome DevTools based audits for page loading bottlenecks, including TTFB, FCP, render-blocking resources, script loading, fonts, images, CSS, service workers, and resource hints. It helps agents turn browser measurements into concise optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The snippets inspect page and resource metadata, which can expose sensitive details on banking, admin, internal, or authenticated pages. <br>
-Mitigation: Run the skill only on sites the user is authorized to inspect and avoid sensitive authenticated contexts unless the data exposure is acceptable. <br>
-Risk: One CSS analysis path can make additional stylesheet requests from the browser. <br>
-Mitigation: Use the CSS analysis workflow only where additional browser-side stylesheet requests are acceptable for the target site. <br>
+## Use Case:
 
+Developers and web performance engineers use this skill to audit page loading behavior in Chrome DevTools and identify bottlenecks in server response, initial rendering, scripts, fonts, resource hints, images, CSS, service workers, and SSR hydration. It helps turn browser performance measurements into targeted optimization guidance.
 
-## Reference(s): <br>
-- [Script Return Value Schema](references/schema.md) <br>
-- [Script Descriptions and Thresholds](references/snippets.md) <br>
-- [webperf-snippets repository](https://github.com/nucliweb/webperf-snippets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets and structured JSON script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authorized page inspection context through Chrome DevTools MCP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can expose page structure, resource URLs, service worker/cache metadata, and embedded hydration-size signals to the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running it on pages with highly sensitive account data unless that browser telemetry is intended to be shared with the agent session.
+
+Risk: Audit output may lead to incorrect optimization decisions if browser measurements are stale, incomplete, or captured in a non-representative environment.
+
+Mitigation: Review the reported findings against current Chrome DevTools data and validate material changes in the target site's normal testing workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nucliweb/skills/webperf-loading)
+- [Source repository](https://github.com/nucliweb/webperf-snippets)
+- [Snippet descriptions and thresholds](references/snippets.md)
+- [Script return value schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript snippets and structured JSON audit results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome DevTools MCP access to the page being audited.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

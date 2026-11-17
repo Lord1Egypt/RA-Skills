@@ -1,42 +1,56 @@
-## Description: <br>
-Convert Word documents (.docx/.doc) to high-quality JPG images using Microsoft Word COM export to PDF and PyMuPDF rendering at 300 DPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Word documents (.docx/.doc) to high-quality JPG images with 100% formatting fidelity.
 
-## Publisher: <br>
-[jerryxue185-png](https://clawhub.ai/user/jerryxue185-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jerryxue185-png](https://clawhub.ai/user/jerryxue185-png)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to convert local Word documents into page-by-page JPG image files while preserving document layout.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Existing JPG or PNG files in the shared output folder may be deleted during conversion.
+
+Mitigation: Review the output folder before running the skill, or use a revised version that writes each conversion to a per-run output folder.
+
+Risk: Converted document content may remain in generated JPG files and in a predictable temporary source copy.
+
+Mitigation: Use the skill only for documents intended for conversion and remove temporary source copies and generated images when they are no longer needed.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Install reviewed dependency versions or prefer a revised release that pins comtypes and PyMuPDF versions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to convert Word documents into high-resolution JPG page images while preserving document formatting. It supports explicit document paths, directory-based latest-file selection, and the OpenClaw inbound media folder workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process the most recent Word document from the inbound folder when no explicit path is provided. <br>
-Mitigation: Use explicit file paths for sensitive documents so the agent converts the intended file. <br>
-Risk: The converter deletes prior .jpg and .png files from its fixed output folder before writing new page images. <br>
-Mitigation: Move or rename generated images that need to be retained before rerunning the skill. <br>
-Risk: The workflow uses local Microsoft Word automation and creates a temporary source copy. <br>
-Mitigation: Run it only where local Word automation is acceptable and delete the temporary source copy after conversion when the document is confidential. <br>
+**Output Format:** [JPG image files with brief terminal status messages]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxue185-png/word-to-jpg) <br>
+**Other Properties Related to Output:** [Produces page_1.jpg, page_2.jpg, and subsequent page images at JPG 95% quality in ~/.openclaw/media/outbound/word-images.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Text] <br>
-**Output Format:** [JPG image files with console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes page_1.jpg, page_2.jpg, and subsequent page images to ~/.openclaw/media/outbound/word-images at JPG quality 95.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

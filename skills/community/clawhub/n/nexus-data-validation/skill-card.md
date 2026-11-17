@@ -1,48 +1,62 @@
-## Description: <br>
-Intelligent data quality checks and schema validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent data quality checks and schema validation.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and agents use this skill to send input text to the NEXUS data validation API for data quality checks and schema validation. The service requires network access and a NEXUS payment proof or supported payment credential. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input data is sent to an external paid AI validation service. <br>
-Mitigation: Install only when the user trusts NEXUS with the data being validated, and redact secrets or regulated data before use. <br>
-Risk: Automatic invocation can trigger payment-backed requests. <br>
-Mitigation: Require explicit confirmation before sending paid requests, and use sandbox_test or narrowly scoped payment credentials where possible. <br>
-Risk: The skill requires payment proof or payment credentials for normal operation. <br>
-Mitigation: Configure the NEXUS_PAYMENT_PROOF environment variable only in trusted environments and avoid broad credential reuse. <br>
+## Use Case:
 
+Developers and agents use this skill to submit text or data inputs to the NEXUS remote service for data quality checks and schema validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-data-validation) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [Data validation API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/data-validation) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing a result string from the external validation service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and NEXUS_PAYMENT_PROOF or a supported payment credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Submitted input is sent to NEXUS for server-side AI processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit passwords, private keys, personal data, regulated records, or confidential business data unless your organization has approved this provider and payment flow.
+
+Risk: Requests may incur the disclosed per-request fee when not using the sandbox.
+
+Mitigation: Use the sandbox for testing and verify the payment requirement before sending paid payment credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-data-validation)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [Data Validation API Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/data-validation)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [Stellar Information](https://ai-service-hub-15.emergent.host/api/mpp/stellar)
+- [Stellar Fee Sponsorship](https://ai-service-hub-15.emergent.host/api/mpp/stellar/sponsor-info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON service response with result text, plus Markdown guidance with curl examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF for paid or sandbox access; submitted input is processed by the remote NEXUS service.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Render PDF pages to images, extract embedded images, and inspect PDF page metadata using PyMuPDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render PDF pages to images, extract embedded images, annotate PDFs, and perform advanced PDF inspection using pymupdf (fitz).
 
-## Publisher: <br>
-[Maverick-AI-Tech](https://clawhub.ai/user/Maverick-AI-Tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-ai-tech](https://clawhub.ai/user/maverick-ai-tech)
 
-## Use Case: <br>
-Developers and document automation users use this skill to render local PDF pages as image files, extract embedded PDF images, and inspect page dimensions or document metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PDF rendering and image extraction read caller-selected local PDF files and write generated files to disk. <br>
-Mitigation: Use a dedicated output folder and review the generated files before relying on them downstream. <br>
-Risk: The artifact describes annotation and redaction capabilities, but the included CLI exposes only info, export-images, and extract-images commands. <br>
-Mitigation: Do not rely on this skill for annotation or redaction unless those commands are added and reviewed. <br>
-Risk: The skill depends on the external PyMuPDF package. <br>
-Mitigation: Pin or verify the PyMuPDF package version where supply-chain control matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Maverick-AI-Tech/pymupdf) <br>
+## Use Case:
 
+Developers and document-processing agents use this skill to render PDF pages as image files, extract embedded images, and inspect document page metadata with deterministic PyMuPDF commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated operations write image files or print text summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local PDF paths and caller-selected output directories; page numbers are 0-indexed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes local PDF files and can render or extract document content into separate image files.
+
+Mitigation: Use it only with PDFs the agent is authorized to inspect and choose output directories deliberately.
+
+Risk: Exported image filenames are deterministic and may replace same-named prior outputs in a reused directory.
+
+Mitigation: Write to a fresh or task-specific output directory before preserving or sharing generated images.
+
+Risk: The evidence guidance treats this release as a local rendering and extraction helper, not a reviewed redaction or annotation tool.
+
+Mitigation: Do not rely on it for final redaction or annotation workflows without separate review of the resulting PDF handling.
+
+Risk: PyMuPDF is an external dependency installed into the agent environment.
+
+Mitigation: Install PyMuPDF in a virtual environment and pin a reviewed version when used in managed workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-ai-tech/skills/pymupdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output may include image files or plain text document metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operates on local PDF files and writes exported or extracted images to user-selected output directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

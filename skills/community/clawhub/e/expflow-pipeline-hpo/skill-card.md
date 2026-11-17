@@ -1,39 +1,58 @@
-## Description: <br>
-PDEBench competition workflow orchestration with expflow: three pipeline modes, distributed HPO, pruner integration, and ClearML HyperParameterOptimizer native mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDEBench competition workflow orchestration with expflow, covering full, fast, and skip pipeline modes, distributed HPO, pruner integration, and ClearML HyperParameterOptimizer native mode.
 
-## Publisher: <br>
-[diamond2nv](https://clawhub.ai/user/diamond2nv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diamond2nv](https://clawhub.ai/user/diamond2nv)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan expflow-based PDEBench competition workflows, including full HPO-to-train-to-eval pipelines, faster train-and-eval runs, and selective step skipping. It helps configure ClearML and Optuna execution choices, required script outputs, pruner behavior, metrics, queues, and timeout controls before launching experiments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that can launch costly training or hyperparameter optimization jobs. <br>
-Mitigation: Before running commands, review the ClearML queue, trial count, parallelism, timeout, and target scripts to avoid unintended GPU use or wrong experiment submissions. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to orchestrate PDEBench competition training, evaluation, submission, and hyperparameter optimization workflows with expflow, ClearML, and Optuna.
 
-## Reference(s): <br>
-- [expflow project homepage](https://github.com/diamond2nv/expflow) <br>
-- [ClawHub skill page](https://clawhub.ai/diamond2nv/expflow-pipeline-hpo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for expflow, ClearML, Optuna, and PDEBench-style experiment pipelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Risk: HPO, distributed jobs, and pipeline submissions can spend GPU time, queue capacity, and artifact storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit go-ahead before launching these workflows and use recorded run data rather than estimates when discussing cost.
+
+Risk: ClearML and Langfuse credentials or dataset paths may be needed for the workflow.
+
+Mitigation: Keep credentials and local paths in untracked local configuration such as .env or config.yaml files.
+
+Risk: Unpinned or stale expflow-pde launches can run an unexpected package version.
+
+Mitigation: Verify the expflow-pde package and version before use, and pin uvx or tool-run invocations when launching the CLI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diamond2nv/skills/expflow-pipeline-hpo)
+- [expflow repository](https://github.com/diamond2nv/expflow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples for expflow, uv, pip, pipx, ClearML, Optuna, and Hermes MCP configuration.]
+
+## Skill Version(s):
+
+0.7.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

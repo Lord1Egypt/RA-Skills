@@ -1,41 +1,48 @@
-## Description: <br>
-Generates concise work-report PowerPoint presentations for weekly reports, monthly summaries, and project updates using python-pptx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language work report PowerPoint presentations from a user-provided title and section content.
 
-## Publisher: <br>
-[xwzai](https://clawhub.ai/user/xwzai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xwzai](https://clawhub.ai/user/xwzai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and teams use this skill to create concise weekly, monthly, and project status presentation decks with structured Chinese-language sections.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The generated presentation defaults to writing under ~/Documents and uses fixed Chinese formatting and text.
+
+Mitigation: Review or provide the output path before execution, and adjust the script or inputs if a different location, language, or formatting standard is required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and teams use this skill to create simple local PPT reports from a title and section text for work summaries, project status updates, and planning reviews. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A custom or default output path could overwrite an existing local presentation file. <br>
-Mitigation: Review the output path before running the skill and choose a unique filename for important reports. <br>
-Risk: The skill depends on python-pptx being installed in the local Python environment. <br>
-Mitigation: Install python-pptx only from a trusted package source and use an environment appropriate for local file generation. <br>
+**Output Format:** [PPTX presentation file with concise command-line status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwzai/work-report) <br>
-- [Publisher profile](https://clawhub.ai/user/xwzai) <br>
+**Other Properties Related to Output:** [Limits output to at most 10 slides, uses fixed Chinese presentation formatting, and defaults to saving under ~/Documents unless an output path is supplied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated artifact is a local .pptx file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates up to 10 slides and saves the presentation to a user-specified path or a dated file under ~/Documents.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

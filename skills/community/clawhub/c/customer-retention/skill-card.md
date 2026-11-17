@@ -1,38 +1,47 @@
-## Description: <br>
-Build and execute customer retention strategies for a solopreneur business, including churn analysis, retention cohorts, lifecycle marketing, win-back campaigns, and loyalty mechanics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds customer retention strategies for solopreneur businesses, including churn analysis, lifecycle marketing, win-back campaigns, loyalty mechanics, and customer lifetime value improvement.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External solopreneurs and small-business operators use this skill to measure churn, identify retention problems, design lifecycle interventions, run win-back campaigns, and plan loyalty or engagement experiments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Customer tracking and churn analysis can use personal or behavioral data. <br>
-Mitigation: Use only disclosed and necessary customer data, minimize profiling, and follow applicable privacy requirements before operationalizing recommendations. <br>
-Risk: Re-engagement and win-back outreach can conflict with unsubscribe, email, or telecom preferences. <br>
-Mitigation: Honor opt-outs and communication preferences, and review campaigns for applicable email and telecom compliance before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External solopreneurs and small-business operators use this skill to measure churn, analyze retention cohorts, design lifecycle retention tactics, run re-engagement campaigns, and plan loyalty experiments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Retention campaign advice may rely on customer activity or billing signals and can create privacy or email-compliance issues if used without proper authorization.
+
+Mitigation: Confirm lawful basis or consent, honor unsubscribe and communication preferences, minimize profiling, and review outreach against applicable privacy and anti-spam rules before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with metrics, checklists, email sequence drafts, and retention experiment ideas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational playbook only; no executable code, install scripts, API calls, or credential handling.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+**Output Type(s):** [Guidance, Text, Markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with formulas, checklists, tables, and reusable campaign copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not install code, access data, or run actions itself.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

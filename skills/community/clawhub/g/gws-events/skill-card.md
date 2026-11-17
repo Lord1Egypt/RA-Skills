@@ -1,47 +1,55 @@
-## Description: <br>
-Subscribe to Google Workspace events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscribe to Google Workspace events.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to discover and run Google Workspace Events commands for creating, listing, updating, renewing, reactivating, deleting, and streaming event subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can create, patch, reactivate, renew, or delete Google Workspace event subscriptions. <br>
-Mitigation: Confirm the active Google account and scopes, inspect each method with gws schema, and require explicit approval before account-changing operations. <br>
-Risk: The skill depends on a local gws CLI and shared authentication guidance that are not bundled in this artifact. <br>
-Mitigation: Install gws from a trusted source and review the shared auth and security skill before use. <br>
+## Use Case:
 
+Developers and workspace administrators use this skill to inspect and run Google Workspace Events commands, including subscription creation, deletion, listing, renewal, and reactivation workflows through the gws CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-events) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
-- [Create a Google Workspace subscription](https://developers.google.com/workspace/events/guides/create-subscription) <br>
-- [Delete a Google Workspace subscription](https://developers.google.com/workspace/events/guides/delete-subscription) <br>
-- [Get details about a Google Workspace subscription](https://developers.google.com/workspace/events/guides/get-subscription) <br>
-- [List Google Workspace subscriptions](https://developers.google.com/workspace/events/guides/list-subscriptions) <br>
-- [Update or renew a Google Workspace subscription](https://developers.google.com/workspace/events/guides/update-subscription) <br>
-- [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and may produce or guide NDJSON event streams when subscription streaming commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Subscription-management operations can create, delete, update, renew, or reactivate persistent Google Workspace event subscriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shared gws authentication and security guidance, confirm the Google account and scopes, and inspect gws schema output before running state-changing operations.
+
+## Reference(s):
+
+- [Gws Events skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-events)
+- [Create a Google Workspace subscription](https://developers.google.com/workspace/events/guides/create-subscription)
+- [Delete a Google Workspace subscription](https://developers.google.com/workspace/events/guides/delete-subscription)
+- [Get details about a Google Workspace subscription](https://developers.google.com/workspace/events/guides/get-subscription)
+- [List Google Workspace subscriptions](https://developers.google.com/workspace/events/guides/list-subscriptions)
+- [Update or renew a Google Workspace subscription](https://developers.google.com/workspace/events/guides/update-subscription)
+- [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command-reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and shared gws authentication guidance.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Novel Scraper helps agents fetch online novel chapters with curl and BeautifulSoup, handle pagination and chapter ranges, skip non-novel content, and save formatted TXT files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Scraper helps agents fetch web novel chapters from configured novel sites, detect pagination and chapter numbers, skip non-novel content, and save formatted TXT files.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Developers and external users can use this skill to direct an agent through batch downloading public web-novel chapters, filling paginated chapters, checking chapter continuity, and storing merged TXT outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound web requests to novel websites and downloads page content. <br>
-Mitigation: Use it only for public pages you intentionally want to download, and review target URLs before running scraper commands. <br>
-Risk: Downloaded chapters, cache, logs, and progress files may remain on disk. <br>
-Mitigation: Clear ~/.openclaw/workspace/novels, the skill state and log folders, and /tmp/novel_scraper_cache when retained content is no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to download and organize web novel chapters as local TXT files, including chapter-range scraping, pagination completion, and merged output files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuzhihui886/novel-scraper) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [Release Notes](artifact/RELEASE_NOTES.md) <br>
-- [Supported Site Configuration](artifact/configs/sites.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, Text] <br>
-**Output Format:** [Markdown guidance with inline bash commands; scraper scripts produce formatted TXT novel files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloaded chapters are saved locally and may be merged into multi-chapter TXT files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata and changelog, released 2026-04-04) <br>
+Risk: The skill makes outbound web requests and follows redirects when fetching novel pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with public novel-site URLs you trust and review target URLs before execution.
+
+Risk: Fetched text, logs, cache, catalog, and progress data are stored locally.
+
+Mitigation: Review generated files before sharing them and clear local cache or logs when they are no longer needed.
+
+Risk: Dependency ranges are not fully pinned, which can affect reproducibility.
+
+Mitigation: Pin dependencies in controlled environments that require repeatable installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuzhihui886/skills/novel-scraper)
+- [Skill documentation](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Release notes](artifact/RELEASE_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; generated scraper outputs are UTF-8 TXT files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes novel text, logs, cache, catalog, and progress files locally under the OpenClaw workspace and /tmp cache paths.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence, _meta.json, CHANGELOG.md; changelog released 2026-04-04)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

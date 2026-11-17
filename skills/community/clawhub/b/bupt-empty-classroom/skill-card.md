@@ -1,41 +1,54 @@
-## Description: <br>
-Query empty classrooms at BUPT (Beijing University of Posts and Telecommunications) Xitucheng campus for a selected building and time period. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query empty classrooms at BUPT (Beijing University of Posts and Telecommunications) Xitucheng campus for a selected building and time period.
 
-## Publisher: <br>
-[hlcle](https://clawhub.ai/user/hlcle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hlcle](https://clawhub.ai/user/hlcle)
 
-## Use Case: <br>
-Students, campus visitors, and agents assisting them use this skill to check classroom availability at BUPT's Xitucheng campus for a specific building and class period. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party classroom-query website for availability data. <br>
-Mitigation: Use the results for non-sensitive classroom availability checks and verify important room decisions against an authoritative campus source when needed. <br>
-Risk: Users could be prompted by the external site for information outside the skill's stated workflow. <br>
-Mitigation: Do not enter credentials or personal information on the site unless it has been independently trusted. <br>
+## Use Case:
 
+External users and agents use this skill to check BUPT Xitucheng campus classroom availability for a selected building and class period.
 
-## Reference(s): <br>
-- [BUPT Empty Classroom query website](https://ec.jray.xyz/) <br>
-- [ClawHub skill page](https://clawhub.ai/hlcle/bupt-empty-classroom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown with inline shell commands and summarized classroom availability results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the third-party classroom-query website and the current date selected by that site.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and artifact/_meta.json) <br>
+Risk: Classroom availability may be unavailable or inaccurate if the external classroom-query website changes or is down.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important room decisions against the university's authoritative scheduling or academic system before relying on the result.
+
+Risk: Browser element references and enabled time periods can change after each page interaction.
+
+Mitigation: Refresh the browser snapshot after selecting a building or time period and avoid clicking disabled time-period controls.
+
+## Reference(s):
+
+- [BUPT Empty Classroom web app](https://ec.jray.xyz/)
+- [ClawHub skill page](https://clawhub.ai/hlcle/skills/bupt-empty-classroom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with browser command examples and tabular classroom availability results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the external classroom-query website, current date defaults, selected building, and selected time period.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

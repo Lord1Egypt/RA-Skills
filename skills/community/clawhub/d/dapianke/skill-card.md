@@ -1,45 +1,56 @@
-## Description: <br>
-dapianke is a course design consultant based on the "好课像大片" methodology that guides users through positioning, framework, opening, middle, closing, and sales design for courses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dapianke is a Chinese-language course design consultant based on the "好课像大片" methodology that guides users through positioning, structure, opening, middle, closing, and sales stages.
 
-## Publisher: <br>
-[rampagepeter](https://clawhub.ai/user/rampagepeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rampagepeter](https://clawhub.ai/user/rampagepeter)
 
-## Use Case: <br>
-External course creators, trainers, and curriculum designers use this skill to design, refine, self-check, and sell courses through a structured six-stage workflow. The skill can also maintain project markdown files so multi-session course polishing can continue from saved progress. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill saves and later reloads course project notes as markdown, so broad project paths or stale notes could expose unrelated personal content or reintroduce outdated context. <br>
-Mitigation: Use a dedicated course project folder and review saved markdown before continuing a project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rampagepeter/dapianke) <br>
-- [01-定位方法论](references/01-定位方法论.md) <br>
-- [02-框架方法论](references/02-框架方法论.md) <br>
-- [03-开场方法论](references/03-开场方法论.md) <br>
-- [04-中场方法论](references/04-中场方法论.md) <br>
-- [05-收场方法论](references/05-收场方法论.md) <br>
-- [06-说销方法论](references/06-说销方法论.md) <br>
-- [共情方法论](references/共情方法论.md) <br>
-- [悬疑方法论](references/悬疑方法论.md) <br>
+## Use Case:
 
+Course creators, trainers, and curriculum designers use this skill to design and refine commercial training courses with structured prompts, self-checks, and reusable Markdown project notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown guidance and project markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save and reload course project notes in a user-specified project directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create, read, and update Markdown files in a user-selected project directory.
+
+Mitigation: Use a dedicated course project folder and avoid placing unrelated sensitive documents in that directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rampagepeter/skills/dapianke)
+- [01-定位方法论](references/01-定位方法论.md)
+- [02-框架方法论](references/02-框架方法论.md)
+- [03-开场方法论](references/03-开场方法论.md)
+- [04-中场方法论](references/04-中场方法论.md)
+- [05-收场方法论](references/05-收场方法论.md)
+- [06-说销方法论](references/06-说销方法论.md)
+- [共情方法论](references/共情方法论.md)
+- [悬疑方法论](references/悬疑方法论.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Files]
+
+**Output Format:** [Markdown project notes and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates, reads, and updates Markdown files in a user-provided course project folder.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

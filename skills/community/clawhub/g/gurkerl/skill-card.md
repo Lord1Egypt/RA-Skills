@@ -1,42 +1,58 @@
-## Description: <br>
-Gurkerl.at grocery shopping via MCP - search products, manage cart, orders, recipes, favorites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gurkerl.at grocery shopping via MCP - search products, manage cart, orders, recipes, favorites.
 
-## Publisher: <br>
-[florianbeer](https://clawhub.ai/user/florianbeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[florianbeer](https://clawhub.ai/user/florianbeer)
 
-## Use Case: <br>
-External users and agents use this skill to search Gurkerl.at products, manage carts, review orders, browse recipes, and interact with grocery-shopping account workflows through the official MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Austria <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses account password environment variables and shows a persistent systemd configuration path that can store credentials. <br>
-Mitigation: Protect any service configuration containing credentials, avoid persistent password storage unless necessary, and install only after verifying the Gurkerl CLI and MCP endpoint. <br>
-Risk: The available tools can place orders, change checkout payment or delivery details, cancel orders, file claims, request credits, adjust deposits, and send support email. <br>
-Mitigation: Require explicit user confirmation before order, payment, delivery, cancellation, claim, credit, deposit, or support-email actions. <br>
+## Use Case:
 
+Developers and agents use this skill to interact with Gurkerl.at grocery delivery through MCP, including product search, cart management, checkout, order management, recipes, favorites, and customer-care workflows.
 
-## Reference(s): <br>
-- [Gurkerl MCP server page](https://www.gurkerl.at/seite/mcp-server) <br>
-- [ClawHub Gurkerl skill page](https://clawhub.ai/florianbeer/gurkerl) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/florianbeer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq, plus GURKERL_EMAIL and GURKERL_PASS environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill requires a reusable Gurkerl account password through GURKERL_PASS and documents persistent storage in a user service override.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account where possible, protect local credential files with strict permissions, and do not commit, paste, or share the service override.
+
+Risk: The available tools can submit checkout, update payment method, repeat or cancel orders, change delivery timeslots, and modify cart or order contents.
+
+Mitigation: Require explicit user review and confirmation before any checkout, payment, order cancellation, reorder, delivery-slot change, or cart-clearing action.
+
+Risk: The skill can delete shopping lists and send support email or customer-care requests on the user's behalf.
+
+Mitigation: Treat list deletion and customer-care messaging as irreversible or externally visible actions and confirm the exact content and target before execution.
+
+## Reference(s):
+
+- [Gurkerl MCP server](https://www.gurkerl.at/seite/mcp-server)
+- [ClawHub skill page](https://clawhub.ai/florianbeer/skills/gurkerl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, INI, and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq plus GURKERL_EMAIL and GURKERL_PASS for authenticated account access.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

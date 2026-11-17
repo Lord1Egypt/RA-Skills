@@ -1,7 +1,7 @@
 ---
 name: ansoff-matrix
 description: "Activate when: user says 'where should we grow next', 'should we enter a new market', 'thinking about diversifying', 'new product vs new market', 'growth strategy', 'adjacent expansion', 'Ansoff', or is spreading resources across too many directions at once.
-  Do NOT activate when: the firm has one clear unsaturated market (answer is always penetration — no matrix needed); or the question is about portfolio allocation across existing BUs (use BCG Matrix instead)."
+  Do NOT activate when: the firm has one clear unsaturated market (answer is always penetration — no matrix needed); or the question is about portfolio allocation across existing BUs (use BCG Matrix instead). More: deciqai.com/c/ansoff-matrix"
 ---
 
 # Ansoff Matrix
@@ -12,7 +12,7 @@ Every growth option a firm has falls into one of four quadrants defined by two a
 
 AI has compressed execution time for Market Development and Product Development moves, but the relative risk ordering still holds.
 
-Composes with: [`swot-analysis`](../swot-analysis/SKILL.md) (assess strengths per quadrant first); [`bcg-matrix`](../bcg-matrix/SKILL.md) (which BU needs growth, then Ansoff picks direction); [`porters-five-forces`](../porters-five-forces/SKILL.md) (validate target market attractiveness before committing).
+Composes with: `swot-analysis` (assess strengths per quadrant first); `bcg-matrix` (which BU needs growth, then Ansoff picks direction); `porters-five-forces` (validate target market attractiveness before committing).
 
 ## When to Use
 
@@ -22,6 +22,7 @@ Apply when:
 - The firm is considering **entering a new geography or demographic** with an existing product
 - A product team is **developing a new product** and needs strategic context
 - A startup is **past initial PMF** and planning its next phase
+- An **AI-native company** is weighing deeper penetration vs. new segments vs. shipping autonomous agents vs. diversifying — under rising AI capex, fast AI adoption, and AI-native competition
 
 **When NOT to use:** single product with clear unsaturated demand (penetration is the obvious answer); portfolio-level resource allocation across existing BUs (BCG Matrix); industry-level competitive assessment (Porter's Five Forces first); evaluating a single acquisition or partnership deal.
 
@@ -69,7 +70,8 @@ Entry criteria for next quadrant: <metric> ≥ <threshold> by <date>
 90-day agenda: milestone | resource commitment | accelerate/stop metric
 ```
 
-*→ Method in Action: [Amazon's Sequenced Growth (1994–2006)](examples/amazon-sequenced-growth-1994-2006.md)*
+*→ Method in Action: [Amazon's Sequenced Growth (1994–2006)](examples/amazon-sequenced-growth-1994-2006.md) · [Disney's Diversification Sequence (1928–1955)](examples/disney-diversification-sequence-1928-1955.md)*
+*→ 2026 lens: [An AI Startup's Growth Options (2024–2026)](examples/ai-startup-growth-options-2024-2026.md)*
 
 ## Growth Direction Packs
 
@@ -117,4 +119,6 @@ Entry criteria for next quadrant: <metric> ≥ <threshold> by <date>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/ansoff-matrix** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/ansoff-matrix.json*

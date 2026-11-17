@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors and prevents conversation flow issues by implementing robust error handling, timeouts, and recovery mechanisms for reliable agent interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors and prevents conversation flow issues by implementing robust error handling, timeouts, and recovery mechanisms for reliable agent interactions.
 
-## Publisher: <br>
-[edkuo7](https://clawhub.ai/user/edkuo7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edkuo7](https://clawhub.ai/user/edkuo7)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor long-running agent interactions, add timeout-aware wrappers, log conversation health, and recover from common stuck states such as browser hangs, missing files, network timeouts, and cascading workflow failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete shared local log files during heartbeat cleanup. <br>
-Mitigation: Restrict cleanup to this skill's own log files and disable automatic heartbeat cleanup unless needed. <br>
-Risk: The skill encourages persistent workspace changes such as updates to .learnings, SOUL.md, TOOLS.md, or similar files. <br>
-Mitigation: Require explicit user approval before writing or promoting persistent workspace changes. <br>
-Risk: Wrapped tool calls may log context that contains sensitive information. <br>
-Mitigation: Avoid wrapping calls that carry secrets and review log contents before sharing or retaining them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add timeout handling, recovery patterns, health checks, and diagnostic logging to agent conversations that may otherwise stall during browser, file, network, or multi-step workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/edkuo7/conversation-flow-monitor) <br>
-- [README](artifact/README.md) <br>
-- [Usage examples](artifact/examples.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local monitoring logs and structured error dictionaries when its wrappers are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, package.json, CHANGELOG) <br>
+Risk: Persistent memory promotion or workspace-document edits can change future agent behavior without enough scoping or user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable automatic memory promotion and AGENTS.md/SOUL.md/TOOLS.md edits unless each proposed change is inspected and approved.
+
+Risk: Heartbeat log cleanup and diagnostic logging can remove audit history or retain sensitive conversation details.
+
+Mitigation: Configure log retention and redaction before use, and require review before enabling automatic cleanup in sensitive workspaces.
+
+Risk: Placeholder or unpinned installation commands can install code from an unverifiable source.
+
+Mitigation: Install only from an immutable, verified release source and avoid placeholder npx or GitHub commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edkuo7/skills/conversation-flow-monitor)
+- [README](artifact/README.md)
+- [Usage Examples](artifact/examples.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, JSON, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or maintain local diagnostic logs when integrated with the provided monitoring scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, package.json, CHANGELOG, released 2026-03-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

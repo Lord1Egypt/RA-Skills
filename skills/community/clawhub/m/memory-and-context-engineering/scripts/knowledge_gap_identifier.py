@@ -408,7 +408,7 @@ class KnowledgeGapIdentifier:
                     category=GapCategory.UNVERIFIED,
                     knowledge_type=required.knowledge_type,
                     blocking_level=BlockingLevel.LOW,
-                    suggested_strategy=FillStrategy.VERIFICATION,
+                    suggested_strategy=FillStrategy.RETRIEVAL,
                 )
                 gaps.append(gap)
 

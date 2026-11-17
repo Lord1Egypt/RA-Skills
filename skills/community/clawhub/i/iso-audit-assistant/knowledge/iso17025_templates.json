@@ -1,0 +1,41 @@
+{
+  "standard": "ISO/IEC 17025:2017 检测和校准实验室 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-LB-001", "name": "人员管理与授权程序", "name_en": "Personnel & Authorization", "clause": "6.2",
+     "meta": {"owner": "人力资源/技术负责人", "frequency": "年度/上岗时"},
+     "sections": [
+       {"title": "1 目的", "content": "确保检测/校准人员具备能力并经授权后上岗。"},
+       {"title": "2 适用范围", "content": "适用于{org}所有影响检测结果的人员。"},
+       {"title": "3 职责", "content": "3.1 技术负责人评定能力；3.2 管理层授权；3.3 人力资源建档案。"},
+       {"title": "4 工作程序", "content": "4.1 明确岗位能力要求；4.2 培训与考核；4.3 能力确认与授权签字；4.4 建立技术档案并定期复评。"}
+     ],
+     "high_voltage_check": ["hv-lab-person"]},
+    {"id": "SP-LB-002", "name": "设备管理与量值溯源程序", "name_en": "Equipment & Traceability", "clause": "6.4/6.5",
+     "meta": {"owner": "设备管理员", "frequency": "持续/校准周期"},
+     "sections": [
+       {"title": "1 目的", "content": "确保设备受控、量值可溯源，保障结果准确。"},
+       {"title": "2 适用范围", "content": "适用于{org}检测/校准设备的管理。"},
+       {"title": "3 职责", "content": "3.1 设备管理员建台账；3.2 使用人日常维护；3.3 技术负责人审批。"},
+       {"title": "4 工作程序", "content": "4.1 设备验收与建档；4.2 周期校准并标识状态；4.3 期间核查；4.4 故障隔离与追溯影响；4.5 量值溯源至基准。"}
+     ],
+     "high_voltage_check": ["hv-lab-equip"]},
+    {"id": "SP-LB-003", "name": "方法确认与验证程序", "name_en": "Method Validation", "clause": "7.2",
+     "meta": {"owner": "技术负责人", "frequency": "新方法/变更时"},
+     "sections": [
+       {"title": "1 目的", "content": "确认实验室所用方法的科学有效，尤其非标/自制方法。"},
+       {"title": "2 适用范围", "content": "适用于{org}检测/校准方法的选择与确认。"},
+       {"title": "3 职责", "content": "3.1 技术负责人组织确认；3.2 检测组实施；3.3 授权签字人审批。"},
+       {"title": "4 工作程序", "content": "4.1 选用标准方法并查新；4.2 非标方法设计与确认（精密度/偏倚等）；4.3 转化为作业指导书；4.4 方法变更再确认。"}
+     ],
+     "high_voltage_check": ["hv-lab-method"]},
+    {"id": "SP-LB-004", "name": "检测结果质量保证程序", "name_en": "QC of Results", "clause": "7.7",
+     "meta": {"owner": "质量负责人", "frequency": "定期"},
+     "sections": [
+       {"title": "1 目的", "content": "通过质控活动监控检测结果的有效性。"},
+       {"title": "2 适用范围", "content": "适用于{org}检测/校准全过程质量控制。"},
+       {"title": "3 职责", "content": "3.1 质量负责人制定质控计划；3.2 各室实施；3.3 技术负责人评审。"},
+       {"title": "4 工作程序", "content": "4.1 选用质控手段（空白/平行/加标/留样再测）；4.2 参加能力验证/实验室间比对；4.3 绘制质控图；4.4 异常时追溯与纠正。"}
+     ],
+     "high_voltage_check": ["hv-lab-qc"]}
+  ]
+}

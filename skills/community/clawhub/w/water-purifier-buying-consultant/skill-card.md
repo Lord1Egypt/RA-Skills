@@ -1,41 +1,54 @@
-## Description: <br>
-Guide users buying a water purifier through source water, household size, contaminant, and usage questions to determine the exact purification technology, flow rate, and certifications they need - region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a water purifier through source water, household size, contaminant, and usage questions to determine the exact purification technology, flow rate, and certifications they need -- region-aware, brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and buying-assistant agents use this skill to run a structured, brand-neutral consultation for first-time or replacement water purifier purchases. It turns user answers about water source, contaminants, household demand, infrastructure, and region into purifier specifications and a small set of research-starting product suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions or certification claims may become outdated or vary by region. <br>
-Mitigation: Verify current model availability, certifications, contaminant-removal claims, and local water-quality guidance before making a purchase. <br>
-Risk: The skill can influence purchase research but does not inspect a user's actual water quality. <br>
-Mitigation: Use measured water data, local utility reports, or qualified testing for contaminants before treating the recommendation as purchase-ready. <br>
+## Use Case:
 
+External users use this agent skill to decide what water purifier specifications they need before buying, based on source water, contaminant concerns, household demand, infrastructure, and region.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/water-purifier-buying-consultant) <br>
-- [Publisher profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown consultation questions, specification lists, and product research suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Brand-neutral recommendations; product suggestions are capped at five and should be verified for current availability and certifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Water purifier recommendations can be wrong if local water quality, contaminant levels, or product certifications are outdated or unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to confirm local water quality through a utility report, certified lab test, or reliable home measurement, and to verify product certifications and current model specifications independently.
+
+Risk: The skill produces health-related buying guidance that may be mistaken for a guarantee of water safety.
+
+Mitigation: Frame recommendations as purchasing guidance and direct users to validate water safety against local testing and applicable certification standards before relying on a product.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/water-purifier-buying-consultant)
+- [ClawHub publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown consultation questions, tiered specification recommendations, and concise product suggestion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; no external APIs, environment variables, or runtime dependencies are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

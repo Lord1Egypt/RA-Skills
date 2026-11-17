@@ -1,41 +1,53 @@
-## Description: <br>
-Fetches popular posts from a specified subreddit from the last 24 hours, retrieves post details and comments, and generates a concise Chinese Markdown digest with summaries, key points, practical suggestions, inspirations, and social media copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects the last 24 hours of popular posts from a specified subreddit, fetches post details and comments, and produces a Simplified Chinese daily digest in Markdown.
 
-## Publisher: <br>
-[redisread](https://clawhub.ai/user/redisread) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redisread](https://clawhub.ai/user/redisread)
 
-## Use Case: <br>
-External users and content analysts use this skill to turn a target subreddit's recent popular discussion into a daily Markdown brief for review, ideation, and social media drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public Reddit content through autocli and writes digest artifacts locally. <br>
-Mitigation: Set REDDIT_DIGEST_BASE_DIR to a workspace-owned folder, review the target subreddit before running, and inspect retained temporary JSON plus Markdown outputs. <br>
-Risk: Collected post details or comments may be incomplete when fetching fails. <br>
-Mitigation: Review per-post error fields in the temporary JSON files and treat summaries based only on metadata as lower confidence. <br>
+## Use Case:
 
+Developers, analysts, and content teams use this skill to gather recent activity from one subreddit and turn the posts and comments into a concise daily digest with summaries, key points, practical suggestions, inspiration, and social sharing copy.
 
-## Reference(s): <br>
-- [Reddit Digest Skill Page](https://clawhub.ai/redisread/reddit-digest) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown document with front matter, per-post summaries, key points, practical suggestions, inspirations, and social media copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes temporary JSON files and a final daily Markdown digest under the configured base directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Documented shell snippets use unquoted user-controlled subreddit and output path placeholders, which could allow a crafted value to run unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted subreddit names and output paths, and review or quote shell values before executing the generated command.
+
+Risk: The skill runs a background Reddit-fetching command and creates local digest, temporary, and log files.
+
+Mitigation: Run it in an expected workspace, confirm the configured output path, and review generated files before relying on or sharing the digest.
+
+## Reference(s):
+
+- [Output template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, configuration]
+
+**Output Format:** [Markdown daily digest in Simplified Chinese, with temporary JSON files used during collection.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local digest, temporary detail, and log files under the configured output path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Extract entities and relationships from unstructured text and convert them into graph-ready structures such as triples, nodes, and edges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract entities and relationships from unstructured text and convert them into graph-ready structures such as triples, nodes, and edges.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data engineers use this skill to turn documents, articles, transcripts, and raw text into graph-ready entity and relationship structures for knowledge graphs, semantic systems, or graph databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to surface names, dates, diagnoses, organizations, and relationships from input text, which can expose sensitive personal or domain-specific information. <br>
-Mitigation: Use only authorized inputs, prefer de-identified text for medical, legal, or personal records, and review extracted entities and relationships before sharing or storing them. <br>
+## Use Case:
 
+Developers and data engineers use this skill to turn documents, articles, transcripts, or raw text into graph-ready entities, relationships, triples, and node-edge structures for knowledge graphs and semantic systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/text-entity-relation-extractor) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [Extraction patterns](references/extraction-patterns.md) <br>
-- [Example extractions](examples/example-extractions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, configuration snippets, RDF/Turtle, graph JSON, triples, and tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include entity types, relationships, confidence scores, normalized entities, RDF triples, graph nodes and edges, and tabular summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: Extracted graph outputs may preserve confidential, medical, legal, financial, or other sensitive details from source text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriate privacy controls, review outputs before sharing, and avoid processing sensitive documents unless authorized.
+
+Risk: Rule-based or pattern-based extraction can miss entities or produce incorrect relationships.
+
+Mitigation: Validate extracted entities, relationships, triples, and confidence scores against source documents and domain knowledge before downstream use.
+
+## Reference(s):
+
+- [Text Extraction Design Patterns](references/extraction-patterns.md)
+- [Text Entity Relation Extraction Examples](examples/example-extractions.md)
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/text-entity-relation-extractor)
+- [ClawHub Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, plus optional JSON, RDF/Turtle, triples, and tabular extraction outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include entity types, relationships, confidence scores, normalized entity names, graph nodes and edges, and semantic triples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

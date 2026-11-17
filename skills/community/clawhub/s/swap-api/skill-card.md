@@ -1,41 +1,58 @@
-## Description: <br>
-Exchange cryptocurrencies via kyc.rip aggregator API. Use when swapping, converting, or exchanging crypto assets. Supports 700+ coins, no KYC, best rates across 10+ providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exchange cryptocurrencies via kyc.rip aggregator API. Use when swapping, converting, or exchanging crypto assets. Supports 700+ coins, no KYC, best rates across 10+ providers.
 
-## Publisher: <br>
-[xbtoshi](https://clawhub.ai/user/xbtoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbtoshi](https://clawhub.ai/user/xbtoshi)
 
-## Use Case: <br>
-External users and developers use this skill for agent guidance when estimating cryptocurrency swaps, creating trades, validating wallet addresses, and checking trade status through the kyc.rip swap aggregator API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides real cryptocurrency transfers, which may be irreversible once funds are sent. <br>
-Mitigation: Before creating a trade or sending funds, independently verify the provider, asset, network, amount, rate, destination address, refund address, memo or tag, minimums, and deposit address. <br>
-Risk: Wallet and transaction metadata may be shared with third-party swap providers. <br>
-Mitigation: Review provider privacy, KYC, and logging policies before using a route, especially when selecting no-KYC or privacy bridge options. <br>
+## Use Case:
 
+Developers and agents use this skill to estimate, create, and monitor cryptocurrency swaps through the kyc.rip aggregator API, including address validation and supported-currency lookup. It is intended for workflows that need API guidance for comparing providers and preparing swap requests.
 
-## Reference(s): <br>
-- [KYC.RIP API base URL](https://api.kyc.rip) <br>
-- [ClawHub release page](https://clawhub.ai/xbtoshi/swap-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, JSON, Shell commands] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cryptocurrency swap parameters, provider routes, wallet addresses, memos, and trade status fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles real-value cryptocurrency transfers where deposit instructions can be irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual verification of destination addresses, deposit addresses, deposit amounts, memos, provider selection, and trade details before sending funds.
+
+Risk: The skill may send wallet addresses, refund addresses, transaction amounts, provider choices, and status details to a third-party crypto API.
+
+Mitigation: Use only when the user accepts disclosure of this wallet and transaction data to the third-party API.
+
+Risk: The security evidence marks the release as suspicious because user-control safeguards and warnings are insufficient for financial actions.
+
+Mitigation: Keep the agent in an advisory posture, estimate first, validate addresses, and ask for explicit user confirmation before creating trades or acting on deposit instructions.
+
+## Reference(s):
+
+- [KYC.RIP API](https://api.kyc.rip)
+- [ClawHub skill page](https://clawhub.ai/xbtoshi/skills/swap-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON, markdown]
+
+**Output Format:** [Markdown guidance with HTTP endpoint examples and JSON request/response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes public API endpoints, query parameters, request fields, response examples, workflow steps, and error-handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

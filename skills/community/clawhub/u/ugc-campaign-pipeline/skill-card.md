@@ -1,38 +1,52 @@
-## Description: <br>
-Complete UGC video campaign pipeline: product to hero image, image variations, UGC videos, and an edited final video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete UGC video campaign pipeline from product input through hero image, variations, UGC videos, and final edited video.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Creators, marketers, and campaign operators use this skill to turn a product image or product URL into a short UGC-style promotional video with scene selection, dialogue, subtitles, transitions, and logo placement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Product images, scripts, branding, and campaign materials may be sent to configured generation providers. <br>
-Mitigation: Confirm the materials are approved for use with the configured providers before running the pipeline. <br>
-Risk: Generated campaign assets and intermediate files are retained under ~/clawd/outputs/{project}/. <br>
-Mitigation: Review the generated files after completion and remove anything that should not be retained locally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External creators, marketers, and campaign operators use this skill to guide an agent through an end-to-end UGC-style promotional video workflow from product media to a final edited MP4 with subtitles and branding.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local campaign output structure under ~/clawd/outputs/{project}/, including generated images, scene videos, assets, and a final MP4.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Product images, branding assets, prompts, and scripts may be processed by referenced external generation tools.
+
+Mitigation: Confirm the user is comfortable sending campaign inputs to those tools before use.
+
+Risk: Generated campaign files may remain under ~/clawd/outputs/{project} after the workflow is complete.
+
+Mitigation: Review or delete generated files when the campaign is finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pauldelavallaz/skills/ugc-campaign-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown with inline bash code blocks and file path conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides generation of image and video assets, then final edited MP4 output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

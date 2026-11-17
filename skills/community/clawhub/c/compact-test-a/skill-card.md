@@ -1,41 +1,50 @@
-## Description: <br>
-Smart context compaction for OpenClaw agents that scans tool outputs, extracts valuable information into memory files, and generates a pre-compact checklist before /compact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Compact helps OpenClaw agents scan conversation and tool-output context before compaction, extract important details into memory files, and produce a checklist before optional compaction.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill before context compaction to preserve important facts, decisions, errors, preferences, and task progress in local memory notes. It helps generate a transparent pre-compaction checklist and prompts for confirmation before compression. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist broad conversation and tool-output details, including authentication-related information, to local memory files. <br>
-Mitigation: Review what gets saved, avoid sessions containing raw secrets or tokens, and delete or redact memory files when needed. <br>
-Risk: Unpinned clone or curl installation paths can bypass ClawHub package controls. <br>
-Mitigation: Prefer installing the ClawHub package over unpinned GitHub curl or clone installation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill before context compaction to preserve important tool-output details, decisions, paths, and troubleshooting notes in local memory files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wavmson/compact-test-a) <br>
-- [Publisher profile](https://clawhub.ai/user/wavmson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown checklist and appended local memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write summaries of conversation and tool-output details to local memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can save broad conversation and tool-output details into durable local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before memory writes and redact tokens, passwords, cookies, private keys, authorization headers, connection strings, personal data, and raw sensitive tool output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wavmson/skills/compact-test-a)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown checklist with optional appended local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append selected conversation facts to memory/YYYY-MM-DD.md; sensitive data handling should be reviewed before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

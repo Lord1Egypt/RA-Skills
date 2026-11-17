@@ -1,52 +1,63 @@
-## Description: <br>
-用于帮助大陆高考学生或家长选择大学、专业、院校专业组，或制定志愿填报策略。支持省份规则、位次匹配、用户上传录取数据，以及谨慎的冲稳保垫规划。不会保证录取。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于帮助大陆高考学生或家长选择大学、专业、院校专业组，或制定志愿填报策略。支持省份规则、位次匹配、用户上传录取数据，以及谨慎的冲稳保垫规划。不会保证录取。
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Students, parents, and education advisors use this skill to build cautious mainland China Gaokao application plans from province rules, rank, selected subjects, preferences, and official or user-provided admission data. It produces risk-labeled shortlists, ordering guidance, and final verification checklists without guaranteeing admission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Application advice may be mistaken for an admissions guarantee. <br>
-Mitigation: State that the skill is decision support only, avoid guaranteed-admission language, and require users to verify final choices against current official sources. <br>
-Risk: Outdated or unofficial admission data can lead to incorrect shortlists or ordering. <br>
-Mitigation: Use official provincial examination authority, university admissions, and Sunshine Gaokao sources for current rules, codes, plans, restrictions, tuition, and source dates. <br>
-Risk: Province-specific rules, selected-subject requirements, or special-category restrictions may materially change eligibility. <br>
-Mitigation: Confirm province, year, batch, subject track, filing model, special category, physical examination, language, single-subject, gender, political review, and transfer-adjustment restrictions before recommending a final plan. <br>
-Risk: CSV helper outputs may contain normalization or data-quality errors. <br>
-Mitigation: Validate required columns, preserve official codes as strings, flag missing ranks or source fields, and review generated CSV outputs before relying on them. <br>
+## Use Case:
 
+External users, especially mainland China Gaokao students and parents, use this skill to prepare cautious college application plans from province rules, rank, subject choices, admission data, preferences, and risk tolerance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/gaokao-application) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Workflow](artifact/references/workflow.md) <br>
-- [Data Contract](artifact/references/data-contract.md) <br>
-- [Province Rule Checklist](artifact/references/province-rules.md) <br>
-- [Risk Policy](artifact/references/risk-policy.md) <br>
-- [Output Templates](artifact/references/output-templates.md) <br>
-- [Source Checklist](artifact/references/source-checklist.md) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, CSV-oriented helper commands, and optional generated CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should use Chinese by default, rely on rank as the primary matching signal, label risk bands, and include official-source verification before final submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Generated application plans can be wrong or outdated if current province rules, enrollment plans, codes, tuition, campus details, or restrictions have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify final choices against current official sources such as the provincial examination authority, university admissions documents, and Sunshine Gaokao before submission.
+
+Risk: Untrusted CSV admission data can mislead recommendations or create spreadsheet risk when opened outside the agent workflow.
+
+Mitigation: Prefer official data, validate CSV columns before use, and avoid opening generated CSVs in spreadsheets unless the source is trusted or formula-prefixed cells are neutralized.
+
+Risk: Historical rank matching is decision support, not an admission guarantee.
+
+Mitigation: Present rank bands and shortlist results with cautious language, explain uncertainty, and avoid guaranteed-admission claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/gaokao-application)
+- [Workflow](references/workflow.md)
+- [Data Contract](references/data-contract.md)
+- [Province Rule Checklist](references/province-rules.md)
+- [Risk Policy](references/risk-policy.md)
+- [Output Templates](references/output-templates.md)
+- [Source Checklist](references/source-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown guidance with optional CSV files and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask intake questions before making recommendations; optional helpers produce local CSV outputs from user-provided admissions data.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

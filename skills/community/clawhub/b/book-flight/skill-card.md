@@ -1,43 +1,60 @@
-## Description: <br>
-Find, book, change, and cancel flights through BonBook using email-based travel requests and human-approved checkout steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, book, and change flights for your human via email. One message, and done. (by BonBook)
 
-## Publisher: <br>
-[aSzelem](https://clawhub.ai/user/aSzelem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aszelem](https://clawhub.ai/user/aszelem)
 
-## Use Case: <br>
-Travelers and their agents use this skill to search flight options, book trips, and manage changes or cancellations through BonBook. The workflow is designed for email-based requests, with explicit human confirmation for account setup, traveler data entry, payments, bookings, changes, cancellations, and optional calendar sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Flight booking and account setup can involve sensitive personal, itinerary, and payment information. <br>
-Mitigation: Use the skill only with explicit human approval for account creation, traveler data entry, payment, booking, changes, cancellations, and calendar sync; keep sensitive payment and identity entry on BonBook's approved website channel. <br>
-Risk: Agent email permissions may expose broader mailbox access than the booking workflow itself requires. <br>
-Mitigation: Limit skill use to messages to and from book@bonbook.co where possible, and have the human review offers, checkout pages, confirmations, cancellation details, and refund eligibility before final action. <br>
+## Use Case:
 
+External users delegate flight search, booking, changes, and cancellations to an agent that communicates with BonBook by email, with human approval for account setup, payment, identity information, calendar sync, and final travel actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aSzelem/book-flight) <br>
-- [BonBook access](https://bonbook.co/access) <br>
-- [BonBook terms](https://bonbook.co/terms) <br>
-- [BonBook privacy](https://bonbook.co/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown instructions and plain-text email workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires existing email send and receive permissions; optional web, calendar, and form-completion actions require explicit human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill can lead to paid travel bookings and changes through email-driven workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for account setup, checkout, payment confirmation, itinerary changes, cancellations, and any financial transaction.
+
+Risk: Using the skill requires the agent to have email send and receive access, which may expose mailbox content beyond this specific workflow.
+
+Mitigation: Install only when the user is comfortable granting email access for BonBook travel messages, and restrict agent handling to messages needed for booking operations.
+
+Risk: Optional account setup, payment, identity-document, and calendar-sync steps may involve sensitive personal or financial data.
+
+Mitigation: Keep payment and identity-document entry human-approved unless the user has intentionally granted the agent that access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aszelem/skills/book-flight)
+- [Publisher Profile](https://clawhub.ai/user/aszelem)
+- [BonBook Website](https://bonbook.co)
+- [BonBook Access](https://bonbook.co/access)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Email messages, Guidance]
+
+**Output Format:** [Markdown and plain-text email instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce human-facing booking requests, option summaries, change or cancellation instructions, and approval prompts.]
+
+## Skill Version(s):
+
+2.4.1 (source: release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

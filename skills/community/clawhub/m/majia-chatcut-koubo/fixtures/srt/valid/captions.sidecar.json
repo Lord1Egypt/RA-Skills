@@ -1,0 +1,79 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/srt-sidecar.schema.json",
+  "schemaVersion": "1.0.0",
+  "bridgeId": "bridge_07dea23157e6",
+  "projectId": "proj_demo",
+  "timelineId": "timeline_demo",
+  "timelineRevision": "rev_demo",
+  "transcriptId": "transcript_demo",
+  "transcriptRevision": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "captionPlanHash": "sha256:07dea23157e68e591d43308c878ab3cbb0ee0d282022d3785e018bb20e75a241",
+  "rate": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "cues": [
+    {
+      "cueId": "cue_001",
+      "pageId": "caption_001",
+      "ordinal": 1,
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 45
+      },
+      "emitted": {
+        "startMs": 0,
+        "endMs": 1500
+      },
+      "quantization": {
+        "startResidual": 0,
+        "endResidual": 0,
+        "denominator": 30
+      },
+      "sourceWordIds": [
+        "word_001"
+      ],
+      "sourceText": "先",
+      "displayText": "先",
+      "evidenceRefs": [
+        "evidence_transcript"
+      ]
+    },
+    {
+      "cueId": "cue_002",
+      "pageId": "caption_002",
+      "ordinal": 2,
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 45,
+        "end": 90
+      },
+      "emitted": {
+        "startMs": 1500,
+        "endMs": 3000
+      },
+      "quantization": {
+        "startResidual": 0,
+        "endResidual": 0,
+        "denominator": 30
+      },
+      "sourceWordIds": [
+        "word_002"
+      ],
+      "sourceText": "验证",
+      "displayText": "验证",
+      "evidenceRefs": [
+        "evidence_transcript"
+      ]
+    }
+  ]
+}

@@ -20,6 +20,15 @@ This skill is for routing Claude 4.6 questions to the right APIDot docs, model p
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Claude 4.6 model page: https://apidot.ai/models/claude-4-6
+- Read Claude 4.6 API docs: https://apidot.ai/docs/claude-4-6
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

@@ -1,44 +1,60 @@
-## Description: <br>
-PinkyBrain helps an OpenClaw agent act as a P2P distributed AI node that can share compute, query specialist profiles, and sync memory using Ed25519 identity, Web of Trust, and end-to-end encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P2P distributed AI platform for every domain: health, education, science, art, music, agriculture, and law; it helps agents share compute, query specialists, and sync memory with Ed25519 identity, Web of Trust, and end-to-end encryption.
 
-## Publisher: <br>
-[azilbugpinky-ai](https://clawhub.ai/user/azilbugpinky-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[azilbugpinky-ai](https://clawhub.ai/user/azilbugpinky-ai)
 
-## Use Case: <br>
-Developers and external agent users use PinkyBrain to configure an OpenClaw agent as a local or mesh-connected P2P AI node for specialist routing, distributed memory, model sharing, peer discovery, and node health operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a disclosed P2P AI networking tool that can run as a background network service and share local compute. <br>
-Mitigation: Install it only when that behavior is intended, review the cloned repository and dependencies before running, and keep public mesh participation disabled unless needed. <br>
-Risk: Misconfigured sharing or weak P2P secrets could expose resources or make unintended models available to peers. <br>
-Mitigation: Use a strong P2P secret, restrict shared content to shared_models/, and require explicit user approval before sharing cloud-backed models or joining a public mesh. <br>
-Risk: Persistent conversations and mesh memory can retain sensitive prompts or responses. <br>
-Mitigation: Avoid sensitive data in persisted conversations, review privacy settings and retention, and prefer a pinned PINKYBRAIN_URL in sensitive environments instead of network auto-discovery. <br>
+## Use Case:
 
+Developers and engineers use PinkyBrain to turn an OpenClaw agent into a P2P AI node for distributed inference, specialist routing, peer discovery, CRDT memory sync, model sharing, and node administration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/azilbugpinky-ai/skills/pinkybrain) <br>
-- [PinkyBrain Repository](https://github.com/PinkyBrain-ai/pinkybrain) <br>
-- [PinkyBrain Website](https://PinkyBrain-ai.github.io/pinkybrain/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with shell commands, configuration examples, and API endpoint references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to start or manage a local PinkyBrain node and interact with its authenticated HTTP API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.3.3 (source: server release metadata; artifact frontmatter reports 5.2.0) <br>
+Risk: Installation and update steps rely on mutable external code from the publisher repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned commit or signed release, review upstream code and dependencies, and avoid applying updates automatically until the source is verified.
+
+Risk: Public mesh, auto-discovery, and model sharing can expose local resources and network metadata.
+
+Mitigation: Keep the node local/private during setup and enable public mesh, auto-discovery, and model sharing only after configuration and trust settings are reviewed.
+
+Risk: Conversation storage and mesh queries may retain or expose sensitive prompts depending on privacy and retention settings.
+
+Mitigation: Avoid sensitive prompts until privacy levels, retention settings, and conversation export behavior are understood and configured.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/azilbugpinky-ai/skills/pinkybrain)
+- [Publisher Profile](https://clawhub.ai/user/azilbugpinky-ai)
+- [Project Repository](https://github.com/PinkyBrain-ai/pinkybrain)
+- [Project Website](https://PinkyBrain-ai.github.io/pinkybrain/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, API endpoint descriptions, and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes a configured PinkyBrain node and may involve local services, peer discovery, mesh participation, model sharing, and update commands.]
+
+## Skill Version(s):
+
+5.3.3 (source: server release evidence; artifact frontmatter reports 5.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

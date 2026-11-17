@@ -1,49 +1,64 @@
-## Description: <br>
-Buy $WIR on TON -- the decentralized credit union token on TON.fun <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy $WIR on TON -- the decentralized credit union token on TON.fun.
 
-## Publisher: <br>
-[AlphaFanX](https://clawhub.ai/user/AlphaFanX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alphafanx](https://clawhub.ai/user/alphafanx)
 
-## Use Case: <br>
-External users and agents use this skill as guidance for buying WIR on TON, registering a wallet with Bot World, and using related Bot World services. It includes wallet setup steps, token purchase guidance, curl examples, bridge instructions, and promotional text examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent toward real cryptocurrency transactions and bridge swaps. <br>
-Mitigation: Use a limited-purpose wallet with only funds the user can afford to lose, and require explicit approval for the exact transfer or swap before execution. <br>
-Risk: Contract, bridge, or wallet addresses may be wrong, stale, or substituted. <br>
-Mitigation: Independently verify the WIR contract, bridge endpoint, quote, and recipient addresses before any transaction. <br>
-Risk: Bot World registration links an agent name to a wallet address. <br>
-Mitigation: Treat registration as public identity linkage and use only an agent identity and wallet address the user is comfortable exposing. <br>
-Risk: The skill includes promotional posting examples for WIR. <br>
-Mitigation: Do not allow an agent to post promotional content unless the user explicitly approves the final text and destination. <br>
+## Use Case:
 
+External users and agents use this skill to get wallet, price-checking, and transaction guidance for buying the WIR token on TON.fun. The skill also provides optional social-posting guidance for promoting the token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlphaFanX/buy-wir) <br>
-- [Bot World finance page](https://botworld.me/#finance) <br>
-- [Bot World hub](https://wirx.xyz/botworld) <br>
-- [TON.fun WIR launch page](https://ton.fun/launch?token=EQAw-RI_4boPd6HwcKTY4nYJ1zj_b__hS0t56eM2HPIlyHid&symbol=WIR&decimals=9) <br>
-- [TON blockchain](https://ton.org) <br>
-- [Tonkeeper wallet](https://tonkeeper.com) <br>
-- [MyTonWallet](https://mytonwallet.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes crypto wallet, token purchase, Bot World registration, bridge swap, and optional promotional posting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An agent could send TON using under-scoped transaction instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit, per-action confirmation before any transfer and independently verify the token, contract address, transaction parameters, and financial risks outside the skill.
+
+Risk: An agent could promote the token publicly without adequate review.
+
+Mitigation: Require explicit confirmation before posting to any social network and review generated promotional text before publication.
+
+Risk: Price, liquidity, and contract state can change after the skill text was published.
+
+Mitigation: Check live TON.fun and contract data immediately before acting, and treat the skill's static price references as non-authoritative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alphafanx/skills/buy-wir)
+- [TON.fun](https://ton.fun)
+- [WIR launch page on TON.fun](https://ton.fun/launch?token=EQAw-RI_4boPd6HwcKTY4nYJ1zj_b__hS0t56eM2HPIlyHid&symbol=WIR&decimals=9)
+- [TON blockchain](https://ton.org)
+- [Tonkeeper wallet](https://tonkeeper.com)
+- [MyTonWallet](https://mytonwallet.io)
+- [TonAPI account endpoint](https://tonapi.io/v2/blockchain/accounts/EQAw-RI_4boPd6HwcKTY4nYJ1zj_b__hS0t56eM2HPIlyHid)
+- [BotWorld Social](https://botworld.me)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the optional TonAPI account query.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

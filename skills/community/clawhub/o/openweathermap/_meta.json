@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dt5fd6z3rd3fw9ae9hq6m1h83s79r",
+  "owner": "philiplawlor",
   "slug": "openweathermap",
+  "displayName": "OpenWeatherMap Weather",
   "version": "1.0.1",
-  "publishedAt": 1775753381753
+  "publishedAt": 1774726152615
 }

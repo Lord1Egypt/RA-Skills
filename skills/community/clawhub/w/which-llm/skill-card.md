@@ -1,45 +1,63 @@
-## Description: <br>
-Deterministic decision-ranking API with HTTP 402 payments and outcome credits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic decision-ranking API with HTTP 402 payments and outcome credits.
 
-## Publisher: <br>
-[Zapkid](https://clawhub.ai/user/Zapkid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zapkid](https://clawhub.ai/user/zapkid)
 
-## Use Case: <br>
-Developers and agents use this skill to choose an LLM deterministically under explicit cost and quality constraints, then report outcomes to receive credits for later paid requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid Which-LLM API requests may require wallet-backed USDC payments. <br>
-Mitigation: Use per-request confirmation, a low-balance wallet, spending caps, and independent verification of recipient and amount before payment. <br>
-Risk: Wallet addresses, transaction IDs, payment headers, and credit tokens can expose sensitive payment metadata if logged. <br>
-Mitigation: Redact payment identifiers, payment proof headers, and credit tokens from prompts, logs, tickets, and shared transcripts. <br>
-Risk: The skill depends on an external API and may retry paid requests after payment is satisfied. <br>
-Mitigation: Check free status, pricing, and capabilities endpoints before paid use, and require host-managed approval for outbound API calls and payment retries. <br>
+## Use Case:
 
+Developers and agent builders use this skill to request deterministic LLM recommendations under cost, quality, workload, and fallback constraints. It also supports reporting execution outcomes to receive credits for later paid requests.
 
-## Reference(s): <br>
-- [Which-LLM homepage](https://which-llm.com) <br>
-- [Which-LLM API](https://api.which-llm.com) <br>
-- [Which-LLM payment addresses](https://which-llm.com/docs/payment-addresses) <br>
-- [ClawHub skill page](https://clawhub.ai/Zapkid/which-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; paid requests may require host-managed wallet payment handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release metadata) <br>
+Risk: Model-selection goals, constraints, workload estimates, and outcome data are sent to an external Which-LLM API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing this data with the external service is acceptable for the task and organization.
+
+Risk: Paid requests may require wallet-backed USDC payment after an HTTP 402 response.
+
+Mitigation: Require explicit user approval for every transfer and verify the chain, recipient, exact amount, and payment reference before sending funds.
+
+Risk: Incorrect payment proof headers or mismatched transaction details can cause payment failure.
+
+Mitigation: Match retry headers to the confirmed transaction and use the API troubleshooting guidance for PAYMENT_INVALID responses.
+
+## Reference(s):
+
+- [Which-LLM homepage](https://which-llm.com)
+- [Which-LLM API base](https://api.which-llm.com)
+- [Payment address documentation](https://which-llm.com/docs/payment-addresses)
+- [Well-known agent metadata](https://which-llm.com/.well-known/agent.json)
+- [Payment address text record](https://which-llm.com/.well-known/payment-address.txt)
+- [ClawHub skill page](https://clawhub.ai/zapkid/skills/which-llm)
+- [Publisher profile](https://clawhub.ai/user/zapkid)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides outbound HTTPS JSON calls to Which-LLM endpoints and handling of payment proof headers for paid requests.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

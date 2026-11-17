@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "sample_notice": "青禾为本包演示规格，非真实商业产品、用户案例或实测。",
+  "sources": [
+    {
+      "id": "S01",
+      "kind": "local_file",
+      "path": "青禾产品资料.md",
+      "label": "青禾知识卡：离线演示产品规格 QH-DEMO-1",
+      "as_of": "2026-10-19",
+      "verification": "author_supplied_demo_spec"
+    }
+  ],
+  "facts": [
+    {
+      "id": "F01",
+      "canonical": "UTF-8 编码的 CSV",
+      "source_id": "S01",
+      "source_quote": "它接收 UTF-8 编码的 CSV（允许 UTF-8 BOM）",
+      "occurrences": [
+        {"article": "zhihu.md", "quote": "UTF-8 编码的 CSV"},
+        {"article": "csdn.md", "quote": "UTF-8 编码的 CSV"},
+        {"article": "xiaohongshu.md", "quote": "UTF-8 编码的 CSV"}
+      ]
+    },
+    {
+      "id": "F02",
+      "canonical": "每批最多 200 行",
+      "source_id": "S01",
+      "source_quote": "本例设定每批最多 200 行，表头不计入。",
+      "occurrences": [
+        {"article": "zhihu.md", "quote": "每批最多 200 行"},
+        {"article": "csdn.md", "quote": "每批最多 200 行"},
+        {"article": "xiaohongshu.md", "quote": "每批最多 200 行"}
+      ]
+    },
+    {
+      "id": "F03",
+      "canonical": "不支持扫描件 OCR",
+      "source_id": "S01",
+      "source_quote": "本例不支持扫描件 OCR，不提供云端同步或自动发布。",
+      "occurrences": [
+        {"article": "zhihu.md", "quote": "不支持扫描件 OCR"},
+        {"article": "csdn.md", "quote": "不支持扫描件 OCR"},
+        {"article": "xiaohongshu.md", "quote": "不支持扫描件 OCR"}
+      ]
+    },
+    {
+      "id": "F04",
+      "canonical": "不提供云端同步或自动发布",
+      "source_id": "S01",
+      "source_quote": "本例不支持扫描件 OCR，不提供云端同步或自动发布。",
+      "occurrences": [
+        {"article": "zhihu.md", "quote": "不提供云端同步或自动发布"},
+        {"article": "csdn.md", "quote": "不提供云端同步或自动发布"},
+        {"article": "xiaohongshu.md", "quote": "不提供云端同步或自动发布"}
+      ]
+    },
+    {
+      "id": "F05",
+      "canonical": "不判断资料真实性",
+      "source_id": "S01",
+      "source_quote": "预检只检查必填列、空值、CSV 结构和行数，不判断资料真实性。",
+      "occurrences": [
+        {"article": "zhihu.md", "quote": "不判断资料真实性"},
+        {"article": "csdn.md", "quote": "不判断资料真实性"},
+        {"article": "xiaohongshu.md", "quote": "不判断资料真实性"}
+      ]
+    },
+    {
+      "id": "F06",
+      "canonical": "title 和 source 为必填列",
+      "source_id": "S01",
+      "source_quote": "title 和 source 为必填列，note 可选，允许额外列",
+      "occurrences": [
+        {"article": "csdn.md", "quote": "title 和 source 为必填列"}
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "A01",
+      "state": "pending_creation",
+      "path": null,
+      "brief": "小红书选用前检查图：依次呈现 CSV 格式、单批 200 行、无 OCR、无同步或自动发布；适配目标账号当前图文画幅，图片待制作，不使用虚构界面、客户评价或 Logo。"
+    }
+  ],
+  "platform_rules": [
+    {
+      "platform": "zhihu",
+      "state": "pending_confirmation",
+      "note": "目标账号当前标题、外链和编辑器格式规则待确认；本稿未使用表格。"
+    },
+    {
+      "platform": "csdn",
+      "state": "pending_confirmation",
+      "note": "目标账号当前标题、代码块和附件呈现方式待确认。"
+    },
+    {
+      "platform": "xiaohongshu",
+      "state": "pending_confirmation",
+      "note": "目标账号当前标题、图文图片要求与标签规则待确认。"
+    }
+  ],
+  "geo_observations": [
+    {
+      "status": "not_run",
+      "engine": null,
+      "query": null,
+      "collected_at": null,
+      "answer": null,
+      "mention_count": null,
+      "native_citations": null,
+      "error": null
+    }
+  ]
+}

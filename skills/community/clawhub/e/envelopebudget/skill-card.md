@@ -1,41 +1,59 @@
-## Description: <br>
-Manage budgets, transactions, accounts, envelopes, payees, and reports using the EnvelopeBudget.com API for tracking and organizing finances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage EnvelopeBudget budgets, transactions, accounts, envelopes, payees, and reports through the EnvelopeBudget.com API.
 
-## Publisher: <br>
-[djedi](https://clawhub.ai/user/djedi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djedi](https://clawhub.ai/user/djedi)
 
-## Use Case: <br>
-External users and agents use this skill to inspect and manage EnvelopeBudget finances, including budgets, transactions, accounts, envelopes, payees, transfers, reconciliation, and spending reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change sensitive budget records using a broad EnvelopeBudget API surface. <br>
-Mitigation: Require the agent to show the exact budget, account, envelope, payee or transaction IDs, amount, date, API method, and request body before any create, update, delete, transfer, reconcile, merge, archive, allocate, or bulk operation. <br>
-Risk: Financial records may be changed incorrectly if the requested amount, sign, date, or destination is misunderstood. <br>
-Mitigation: Confirm cents-based amounts, inflow or outflow direction, dates, and source and destination IDs before allowing write operations. <br>
+## Use Case:
 
+EnvelopeBudget users can ask an agent to inspect budgets, accounts, envelopes, transactions, payees, and spending reports, and to prepare or run EnvelopeBudget API calls for routine personal finance management. The skill can also help create, update, transfer, reconcile, archive, or delete budget records when the user explicitly approves those live changes.
 
-## Reference(s): <br>
-- [EnvelopeBudget API Reference](references/api-reference.md) <br>
-- [EnvelopeBudget](https://envelopebudget.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and formatted JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ENVELOPE_BUDGET_API_KEY and uses curl plus python3 for API requests and JSON formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill requires an EnvelopeBudget API key and can access financial budgeting data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key only in the ENVELOPE_BUDGET_API_KEY environment variable, avoid displaying it in agent responses or logs, and install only when API-key access is acceptable.
+
+Risk: POST, PUT, PATCH, and DELETE requests can make live changes to budget records.
+
+Mitigation: Require the agent to show the proposed method, endpoint, and JSON body, then obtain explicit user approval before running any mutating request.
+
+Risk: Incorrect budget, account, envelope, payee, date, amount, or sign values can create misleading financial records.
+
+Mitigation: Fetch the relevant budget, account, envelope, and payee IDs first, confirm cents-based amounts and positive or negative direction with the user, and prefer read-only calls when the requested action is ambiguous.
+
+## Reference(s):
+
+- [EnvelopeBudget API Reference](artifact/references/api-reference.md)
+- [EnvelopeBudget Website](https://envelopebudget.com)
+- [ClawHub EnvelopeBudget Skill Page](https://clawhub.ai/djedi/skills/envelopebudget)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include formatted JSON API responses from EnvelopeBudget.com.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Controls and manages the Claude Code coding assistant for project-aware coding, code review, refactoring, debugging, documentation, and feature implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls and manages Claude Code coding assistant workflows for project-aware coding, code review, refactoring, feature implementation, debugging, documentation, and OpenClaw ACP sessions.
 
-## Publisher: <br>
-[RocherKong](https://clawhub.ai/user/RocherKong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rocherkong](https://clawhub.ai/user/rocherkong)
 
-## Use Case: <br>
-Developers and engineers use this skill to launch or configure Claude Code for software development tasks such as feature work, code review, refactoring, debugging, and project documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The launcher can grant Claude Code broad read, write, edit, and shell access in the selected project. <br>
-Mitigation: Review or replace `.claude/settings.json` before use, restrict allowed tools and directories, and prefer approval-based permission modes for sensitive repositories. <br>
-Risk: The included launcher creates a permissive default project configuration automatically. <br>
-Mitigation: Inspect generated `.claude/settings.json` before running tasks and adjust `allowedTools`, `maxTurns`, and `permissionMode` to match the project risk level. <br>
-Risk: The artifact claims isolated ACP execution, but the included files do not substantiate that isolation behavior. <br>
-Mitigation: Do not rely on isolation claims alone; run the skill only in contained workspaces with a clear plan for secrets, repository access, and generated changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to launch and configure Claude Code for coding tasks, reviews, refactors, debugging, documentation generation, and isolated OpenClaw ACP sessions.
 
-## Reference(s): <br>
-- [Claude Code Documentation](https://docs.anthropic.com/claude-code) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Claude Code Configuration Reference](references/config-reference.md) <br>
-- [Claude Code Workflow Reference](references/workflows.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RocherKong/claudecode-controller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, code snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch Claude Code with broad project read, write, edit, and shell permissions depending on local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can create a broad auto-approval Claude Code configuration that permits shell commands and file edits without per-action confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .claude/settings.json before use, prefer explicit approval or read-only settings for code review and untrusted repositories, and narrow allowed tools and directories to the task.
+
+Risk: API keys or database credentials may be exposed if real secrets are placed in examples, committed configuration files, shell history, or logs.
+
+Mitigation: Use environment variables or a secret manager for real credentials, keep examples as placeholders, and avoid committing or logging sensitive values.
+
+Risk: Unpinned npm or npx tools can add supply-chain risk when installing or launching Claude Code-related tooling.
+
+Mitigation: Pin, audit, or preinstall trusted npm packages before using the skill in sensitive projects.
+
+## Reference(s):
+
+- [Claude Code configuration reference](references/config-reference.md)
+- [Claude Code workflow reference](references/workflows.md)
+- [Claude Code documentation](https://docs.anthropic.com/claude-code)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/rocherkong/skills/claudecode-controller)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Claude Code CLI commands and create or update project-level .claude/settings.json configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

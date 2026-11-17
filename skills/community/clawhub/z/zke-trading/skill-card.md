@@ -1,45 +1,59 @@
-## Description: <br>
-ZKE Exchange Trading Skill provides agent tools for spot and futures trading, wallet operations, asset transfers, withdrawals, and real-time market data on ZKE Exchange. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZKE AI Master Trader (Official). Control spot and futures trading, manage assets, and access real-time market data on ZKE Exchange.
 
-## Publisher: <br>
-[ZKE-Exchange](https://clawhub.ai/user/ZKE-Exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zke-exchange](https://clawhub.ai/user/zke-exchange)
 
-## Use Case: <br>
-External users and developers with a ZKE account use this skill to query market and account data, manage spot and futures orders, transfer funds between account types, and request withdrawals through an agent interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a live ZKE account, including trading, transfers, withdrawals, leverage changes, order cancellation, and cancel-all actions. <br>
-Mitigation: Install only for intentional live account control; use API keys with withdrawals disabled, IP allowlisting, and the narrowest trade permissions possible, and require manual confirmation outside the agent before high-impact actions. <br>
-Risk: Local logs may contain sensitive account activity, order details, amounts, and withdrawal addresses. <br>
-Mitigation: Treat ~/.zke-trading/openclaw-plugin.log as sensitive, restrict local access, avoid sharing it, and remove or rotate it according to the user's security policy. <br>
-Risk: Large balances can be exposed to agent-controlled keys if broad account permissions are used. <br>
-Mitigation: Avoid storing large balances under API keys available to the plugin and separate operational funds from longer-term holdings. <br>
+## Use Case:
 
+External traders and developers use this skill to access ZKE Exchange market data, account balances, spot and margin orders, futures positions, transfers, and withdrawals through an OpenClaw/MCP tool interface.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZKE-Exchange/zke-trading) <br>
-- [ZKE-Exchange publisher profile](https://clawhub.ai/user/ZKE-Exchange) <br>
-- [ZKE skill guide](https://support.zke.com/skills/) <br>
-- [ZKE Exchange](https://zke.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Tool responses as JSON or text, with setup guidance and shell commands in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZKE_API_KEY and ZKE_SECRET_KEY environment variables for authenticated account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can place real trades, move funds between accounts, change futures settings, cancel orders, and request withdrawals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use API keys with withdrawals disabled, minimal trading permissions, IP allowlisting, and account-level limits; require explicit user confirmation before any trade or fund movement.
+
+Risk: Sensitive trading activity, balances, parameters, or withdrawal addresses may be written to the local OpenClaw plugin log.
+
+Mitigation: Review or disable the local log at ~/.zke-trading/openclaw-plugin.log before using the skill with sensitive balances or withdrawal addresses.
+
+Risk: The security evidence reports weak enforced safeguards for high-impact trading and withdrawal operations.
+
+Mitigation: Install only in a trusted host environment where operators understand the live-account impact and can enforce account-level limits and approval workflows.
+
+## Reference(s):
+
+- [ZKE Skill Guide](https://support.zke.com/skills/)
+- [ZKE Website](https://zke.com)
+- [ZKE Trading SDK GitHub Repository](https://github.com/ZKE-Exchange/zke-trading-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON tool responses and concise Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZKE_API_KEY and ZKE_SECRET_KEY; actions can affect live ZKE Exchange accounts.]
+
+## Skill Version(s):
+
+1.0.13 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

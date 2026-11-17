@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents request market entity statistics such as active enterprise counts, monthly additions, regional distributions, enterprise scale distributions, and financing statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides market-entity statistics for an L1 mini-program home page, including active enterprise counts, monthly additions, and regional distribution data.
 
-## Publisher: <br>
-[xinxin970620-prog](https://clawhub.ai/user/xinxin970620-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinxin970620-prog](https://clawhub.ai/user/xinxin970620-prog)
 
-## Use Case: <br>
-External developers or operators use this skill when a user needs market entity statistics for a province, city, or district, with a required query year and optional industry or enterprise-nature filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API_KEY is a sensitive credential required by the skill. <br>
-Mitigation: Store the key in a local secret or environment mechanism and avoid pasting it into ordinary chat unless explicitly intended. <br>
-Risk: The skill is specialized for market entity statistics and may be misapplied to broader business-data tasks. <br>
-Mitigation: Use it only for specific market-statistics requests with the required dateValue and exactly one supported region-code level. <br>
-Risk: The API response is passed through without additional processing. <br>
-Mitigation: Review returned rows and status codes before relying on the data in downstream reports or decisions. <br>
+## Use Case:
 
+External users or agents use this skill to retrieve market-entity statistics such as active enterprise counts, year-to-date growth, regional and scale distributions, enterprise pyramid data, financing statistics, and deregistration trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xinxin970620-prog/marketsub-statistics) <br>
-- [Market statistics unified invoke endpoint](https://rcd-test.dfwycredit.com/s1/skill/unified-invoke) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and raw JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY, category 3.3, dateValue, and one of provinceCode, cityCode, or districtCode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill calls a documented external dfwycredit endpoint for market-entity statistics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that network call is intended and confirm the rcd-test endpoint is appropriate for the deployment environment.
+
+Risk: The API requires an API key.
+
+Mitigation: Provide the key through a secure secret mechanism and avoid placing real keys in prompts, examples, logs, or shared transcripts.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/xinxin970620-prog/skills/marketsub-statistics)
+- [Unified invoke endpoint](https://rcd-test.dfwycredit.com/s1/skill/unified-invoke)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with a bash curl example and JSON request/response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the API result directly; requires an API key and one province, city, or district code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

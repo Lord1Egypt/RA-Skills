@@ -49,7 +49,7 @@ Example `agent.json`:
 ```json
 {
   "agent_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "api_key": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "api_key": "REDACTED-SECRET",
   "created_at": "2026-03-28T09:00:00.000Z"
 }
 ```

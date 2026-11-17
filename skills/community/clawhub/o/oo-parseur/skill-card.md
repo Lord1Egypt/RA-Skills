@@ -1,44 +1,55 @@
-## Description: <br>
-Parseur (parseur.com). Use this skill for any Parseur request involving searching or reading mailbox and document data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Parseur mailboxes and read mailbox schemas, documents, and parsed document data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to inspect Parseur mailboxes, mailbox schemas, and parsed document data through an OOMOL-connected Parseur account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Parseur account and may expose mailbox or document data through read actions. <br>
-Mitigation: Install only when comfortable connecting Parseur through OOMOL, keep use to listed read actions, and review returned data handling before sharing outputs. <br>
-Risk: Future write or destructive Parseur actions could change or remove data if added to the connector surface. <br>
-Mitigation: Require separate review and explicit user approval before running any action tagged write or destructive. <br>
-Risk: Remote CLI install commands are referenced for setup. <br>
-Mitigation: Inspect remote install commands before running them and use setup steps only after a matching command failure. <br>
+## Use Case:
 
+Developers and operations teams use this skill to search Parseur mailboxes and retrieve mailbox schemas, document metadata, and parsed document data through their connected account.
 
-## Reference(s): <br>
-- [Parseur homepage](https://parseur.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution and returns Parseur data through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Setup can execute downloaded code whose effects have not been inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer contents and verify the CLI separately; require approval for local changes and review or disable automatic additional-skill synchronization.
+
+Risk: Connecting Parseur gives OOMOL access to credentials and Parseur data.
+
+Mitigation: Review the connection and its data access before connecting, and only use an account whose data is appropriate to share with the service.
+
+## Reference(s):
+
+- [Parseur](https://parseur.com)
+- [Parseur API documentation](https://developer.parseur.com/)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON action results with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only retrieval; results depend on the connected Parseur account and selected mailbox.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

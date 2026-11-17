@@ -1,0 +1,203 @@
+{
+  "card_id": "WQ-EXP-015",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授从湿热体质论治痤疮的理论探析_俞若熙.pdf",
+  "title": "王琦教授从湿热体质论治痤疮的理论探析",
+  "authors": [
+    "俞若熙"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨体论治在治疗痤疮中的临床优越性和指导意义。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "清热利湿",
+    "herbs": [
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体质可分”、“体病相关”、“体质可调”的体质理论，痤疮的发病与湿热体质密切相关，痤疮的临床表现符合湿热体质特征，痤疮的病机要点以湿热体质为本，毒瘀痰结为标，主张从湿热体质论治痤疮。文章在分析痤疮的临床特征、发病的病因病机与湿热体质相关性的基础上，佐以王琦教授从清热利湿干预湿热体质论治痤疮的病例加以说明，从而显示出辨体论治在治疗痤疮中的临床优越性和指导意义。 为黑白粉刺、丘疹、脓疱、结节、瘢痕。王琦教授在其倡导中医体质学的基础上，基于“体病相关”、“体质可调”的体质相关理论，并通过临床观察总结出痤疮患者的体质类型以湿热体质居多，从湿热体质论治痤疮，具有其优势性，现探析从湿热体质调治痤疮的理论如下。 体质是易患痤疮的主要因素中医认为“有诸内，必形诸外”，人体某一局部的病理变化，往往与内在体质相关。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "王琦教授在其倡导中医体质学的基础上，基于“体病相关”、“体质可调”的体质相关理论，并通过临床观察总结出痤疮患者的体质类型以湿热体质居多，从湿热体质论治痤疮，具有其优势性，现探析从湿热体质调治痤疮的理论如下",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "湿热体质是易患痤疮的主要因素中医认为“有诸内，必形诸外”，人体某一局部的病理变化，往往与内在体质相关",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "个体体质的差异性可导致个体对某些致病因素有着易感性，或对某些疾病有着易罹性、倾向性 [1]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨体论治在治疗痤疮中的临床优越性和指导意义。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为清热利湿。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体质可分”、“体病相关”、“体质可调”的体质理论，痤疮的发病与湿热体质密切相关，痤疮的临床表现符合湿热体质特征，痤疮的病机要点以湿热体质为本，毒瘀痰结为标，主张从湿热体质论治痤疮",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "文章在分析痤疮的临床特征、发病的病因病机与湿热体质相关性的基础上，佐以王琦教授从清热利湿干预湿热体质论治痤疮的病例加以说明，从而显示出辨体论治在治疗痤疮中的临床优越性和指导意义",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为黑白粉刺、丘疹、脓疱、结节、瘢痕",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "湿热质"
+  ],
+  "related_diseases": [
+    "肥胖"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "王琦教授在其倡导中医体质学的基础上，基于“体病相关”、“体质可调”的体质相关理论，并通过临床观察总结出痤疮患者的体质类型以湿热体质居多，从湿热体质论治痤疮，具有其优势性，现探析从湿热体质调治痤疮的理论如下",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "湿热体质是易患痤疮的主要因素中医认为“有诸内，必形诸外”，人体某一局部的病理变化，往往与内在体质相关",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "个体体质的差异性可导致个体对某些致病因素有着易感性，或对某些疾病有着易罹性、倾向性 [1]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "湿热质"
+    ],
+    "disease": [
+      "肥胖"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 4,
+    "sections": {
+      "discussion": {
+        "start": 3,
+        "end": 3
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.682961",
+  "methods": {
+    "sample_size": 3,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.536495",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.536501"
+  }
+}

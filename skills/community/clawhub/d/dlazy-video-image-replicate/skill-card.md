@@ -1,43 +1,55 @@
-## Description: <br>
-Studies a user-provided reference image or video and helps recreate the same look and structure with the user's own subject, product, or characters through the dLazy hosted service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study a user-provided reference image or video, then recreate its look and structure with the user's own subject, product, or characters.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers, creators, and agent users invoke this skill when they want dLazy to analyze a reference image or video and guide recreation of a similar result with their own content. It is suited for project-scoped, multi-turn image or video replication workflows that may include local file attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and attached files are sent to dLazy's hosted API and media storage. <br>
-Mitigation: Install only when this data sharing is acceptable, use the pinned npx command if a persistent global CLI is not desired, and rotate or revoke the dLazy API key when needed. <br>
-Risk: The skill requires sensitive credentials for dLazy service access. <br>
-Mitigation: Authenticate with `dlazy login`, `dlazy auth set`, or `DLAZY_API_KEY`, and keep the saved key restricted to the intended OS user account. <br>
+## Use Case:
 
+External users can provide a reference image or video and use this skill to create a similar image or video featuring their own subject, product, or characters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-video-image-replicate) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and streamed CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key; file attachments may be uploaded to dLazy media storage through the pinned CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad trigger terms may match requests outside the intended image or video recreation task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only when the user clearly asks to recreate or adapt a reference image or video.
+
+Risk: Prompts and attached reference files are sent to dLazy services, and the CLI uses authenticated project actions.
+
+Mitigation: Avoid attaching sensitive media, review the requested action before running it, and use an API key the user is comfortable associating with their dLazy organization.
+
+## Reference(s):
+
+- [dLazy website](https://dlazy.com)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-video-image-replicate)
+
+## Skill Output:
+
+**Output Type(s):** [Images, Videos, Text]
+
+**Output Format:** [Generated image or video media with accompanying text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-provided reference and subject description; attached files are uploaded to dLazy media storage.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

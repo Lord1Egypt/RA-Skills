@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn7545cdqbn524tp2szvsm4w9h82zhdp",
-  "slug": "conflict-coordination",
+  "name": "conflict-coordination",
   "version": "1.0.0",
-  "publishedAt": 1773573254309
+  "slug": "conflict-coordination",
+  "description": "机制冲突协调机制 - crontab/systemd/脚本/日志冲突检测与协调",
+  "author": "虾球 🦐",
+  "license": "MIT",
+  "tags": ["conflict", "coordination", "detection", "harmony", "monitoring"],
+  "category": "automation",
+  "features": [
+    "crontab 冲突检测",
+    "systemd 服务冲突检测",
+    "脚本功能重叠检测",
+    "日志路径一致性检查",
+    "文档一致性检查",
+    "每周六 22:00 自动执行"
+  ],
+  "scripts": [
+    "detect-conflicts.sh"
+  ]
 }

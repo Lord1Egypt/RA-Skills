@@ -1,50 +1,65 @@
-## Description: <br>
-ecloud-eos helps an agent configure and manage China Mobile Cloud EOS object storage, including bucket and object operations, ACLs, signed URLs, and image processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents configure credentials and upload, download, manage, delete, share, and process files in China Mobile Cloud EOS object storage using bundled Node.js scripts.
 
-## Publisher: <br>
-[ecloud-eos](https://clawhub.ai/user/ecloud-eos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecloud-eos](https://clawhub.ai/user/ecloud-eos)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent perform EOS storage administration tasks through bundled Node.js and setup scripts. It is suited for configuring credentials, managing buckets and objects, generating signed access links, and applying supported image-processing operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist long-lived EOS credentials in user-level or shell configuration. <br>
-Mitigation: Use a dedicated least-privilege or temporary credential, avoid exposing secrets in chat, and remove persisted EOS_* variables when the work is complete. <br>
-Risk: The skill can delete buckets or objects and can empty a bucket. <br>
-Mitigation: Review destructive commands before execution, require explicit confirmation for bucket-emptying operations, and back up important data before deletion. <br>
-Risk: The skill can change public access controls, referer policy, signed URL behavior, and image save-as writes. <br>
-Mitigation: Prefer private ACLs, inspect public-read or public-read-write changes, validate signed URL expiry and referer rules, and confirm image save-as target buckets and keys before running. <br>
+## Use Case:
 
+Developers, operators, and external users can use this skill through an agent to configure China Mobile Cloud EOS access, manage buckets and objects, generate signed sharing URLs, and perform supported image-processing operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ecloud-eos/ecloud-eos) <br>
-- [Mobile Cloud EOS operation reference](references/api_reference.md) <br>
-- [EOS image processing reference](references/image_process_reference.md) <br>
-- [EOS configuration template](references/config_template.properties) <br>
-- [China Mobile Cloud EOS product documentation](https://ecloud.10086.cn/op-help-center/doc/category/729) <br>
-- [China Mobile Cloud credential creation](https://ecloud.10086.cn/op-help-center/doc/article/24501) <br>
-- [China Mobile Cloud regions and endpoints](https://ecloud.10086.cn/op-help-center/doc/article/48082) <br>
-- [China Mobile Cloud EOS API documentation](https://ecloud.10086.cn/op-help-center/doc/outline/56247) <br>
-- [China Mobile Cloud image processing overview](https://ecloud.10086.cn/op-help-center/doc/article/95187) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses EOS environment variables and can persist configuration through platform-specific setup scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill asks for EOS credentials and can persist them in the user environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, short-lived credentials when possible, avoid sharing secrets in conversation, and review shell profile or user environment changes after setup.
+
+Risk: The skill includes powerful bucket, object deletion, ACL, policy, and public-access operations.
+
+Mitigation: Review target bucket and object keys before execution, keep destructive actions behind explicit confirmation, and avoid public-read-write ACLs.
+
+Risk: Incorrect or untrusted endpoints could expose credentials or send operations to the wrong service.
+
+Mitigation: Verify that the endpoint is the official EOS HTTPS endpoint for the selected region before configuring or running operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ecloud-eos/skills/ecloud-eos)
+- [Publisher profile](https://clawhub.ai/user/ecloud-eos)
+- [EOS API operation reference](references/api_reference.md)
+- [EOS image processing reference](references/image_process_reference.md)
+- [EOS configuration template](references/config_template.properties)
+- [China Mobile Cloud EOS product documentation](https://ecloud.10086.cn/op-help-center/doc/outline/56247)
+- [China Mobile Cloud credential setup](https://ecloud.10086.cn/op-help-center/doc/article/24501)
+- [China Mobile Cloud EOS regions and endpoints](https://ecloud.10086.cn/op-help-center/doc/article/48082)
+- [China Mobile Cloud EOS image processing overview](https://ecloud.10086.cn/op-help-center/doc/article/95187)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; invoked scripts return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EOS credentials and region, bucket, and endpoint configuration; setup scripts may persist environment variables for future sessions.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

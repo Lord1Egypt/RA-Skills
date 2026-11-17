@@ -1,0 +1,19 @@
+[
+  {
+    "name": "PPO",
+    "monthly_premium": 520,
+    "deductible": 1500,
+    "coinsurance": 0.20,
+    "oop_max": 6000,
+    "copays": {"primary": [25, {"per_year": 3}], "specialist": [50, {"per_year": 2}]}
+  },
+  {
+    "name": "HDHP+HSA",
+    "monthly_premium": 360,
+    "deductible": 3000,
+    "coinsurance": 0.20,
+    "oop_max": 8000,
+    "copays": {},
+    "hsa_seed": 1000
+  }
+]

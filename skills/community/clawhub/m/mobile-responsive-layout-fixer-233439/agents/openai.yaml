@@ -1,0 +1,7 @@
+interface:
+  display_name: "Mobile Responsive Layout Fixer"
+  short_description: "Helps with Product teams need reliable workflows for fixing m..."
+  default_prompt: "Use $mobile-responsive-layout-fixer to help me Product teams need reliable workflows for fixing mobile responsiveness, navigation layout, and cross-device UI issues."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,36 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "medical-device-data-privacy-compliance",
+  "version": "1.0.0",
+  "author": "注册老炮 (MedXpert)",
+  "year": "2026",
+  "timestamp_utc": "2026-09-05T09:36:43.442568+00:00",
+  "timestamp_local": "2026-09-05T17:36:43.442582",
+  "package_fingerprint_sha256": "627dba4d681a77df3e6c0dc8d16335a6c8079caa5ee80718a4c5dd952102f1a1",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "4be6a7ff9a6ab9dce3eb0dc73213ecc995b5ea37bd574190e66e3d69b4a4f4ad"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "746a135127d61b8c9474559179961f23ba10a1de62b8236d6c9deef0bc5be887"
+    },
+    {
+      "path": "references/01-GDPR与医疗器械.md",
+      "sha256": "7f27fd1da6ab54022ab497d3b2ddfa397bcac79b898f1b38036385b799958aca"
+    },
+    {
+      "path": "references/02-HIPAA与医疗器械.md",
+      "sha256": "2a361ed0ddf0c6a416422a5aa50f3efb5e10336b30ca3326c7dbb6ca7c6cac42"
+    },
+    {
+      "path": "references/03-个保法与数据出境评估.md",
+      "sha256": "becc7df55ee9060fb7ef5769d1bb473d625b7630c1abc8c89f9332e583dfd6a1"
+    },
+    {
+      "path": "references/04-出海器械数据流映射模板.md",
+      "sha256": "504e9f49bfd9157e7de1f8b54fe1872c9f76113e26dbab9e0889ac12ae075bf3"
+    }
+  ]
+}

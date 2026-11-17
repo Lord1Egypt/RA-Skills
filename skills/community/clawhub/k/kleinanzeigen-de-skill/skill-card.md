@@ -1,42 +1,59 @@
-## Description: <br>
-Creates and manages draft sales listings on kleinanzeigen.de for users who want to sell an item, excluding buying, buyer communication, and other platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Erstelle und verwalte Verkaufsanzeigen speziell auf kleinanzeigen.de.
 
-## Publisher: <br>
-[simon83s](https://clawhub.ai/user/simon83s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simon83s](https://clawhub.ai/user/simon83s)
 
-## Use Case: <br>
-External users use this skill to prepare a Kleinanzeigen sales listing by collecting product details, researching comparable prices, drafting listing text, selecting categories, and saving the listing as a draft for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the assistant to handle Kleinanzeigen account credentials and an SMS code. <br>
-Mitigation: Have the user log in directly in the browser instead of sharing a password, SMS code, or recovery details with the assistant. <br>
-Risk: Draft listings can contain incorrect product details, price, location, shipping settings, or images that the user may not have rights to use. <br>
-Mitigation: Review the draft, photos, price, location, shipping settings, and image rights before publishing; prefer user-owned photos. <br>
+## Use Case:
 
+External users use this skill to prepare Kleinanzeigen.de sale listings by collecting item details, researching comparable prices, drafting listing text, and creating a saved draft for user review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simon83s/kleinanzeigen-de-skill) <br>
-- [Kleinanzeigen Kategorien](references/categories.md) <br>
-- [Preisrecherche](references/pricing.md) <br>
+### Deployment Geography for Use:
 
+Germany
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text with product questions, price rationale, listing copy, and a draft listing link.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill saves listings as drafts and requires human review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the user to provide a password and SMS login code in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pause at authentication and have the user enter credentials and one-time codes directly on Kleinanzeigen.de, then resume only after login succeeds.
+
+Risk: Using third-party product photos can create copyright issues.
+
+Mitigation: Prefer user-provided photos; use only clearly licensed sources such as Wikimedia Commons or official press pages, and ask the user to take photos when rights are uncertain.
+
+Risk: Generated listing details or price recommendations may be inaccurate or incomplete.
+
+Mitigation: Keep listings as drafts and require user review of item details, price, shipping, photos, and publication decision.
+
+## Reference(s):
+
+- [Kleinanzeigen Kategorien](references/categories.md)
+- [Preisrecherche](references/pricing.md)
+- [ClawHub skill page](https://clawhub.ai/simon83s/skills/kleinanzeigen-de-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with listing fields, price rationale, and browser workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft listing content and a saved-draft handoff; the user remains responsible for review and publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

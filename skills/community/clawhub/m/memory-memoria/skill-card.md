@@ -1,46 +1,65 @@
-## Description: <br>
-Use Memoria as OpenClaw's durable memory slot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Memoria as OpenClaw's durable memory slot for cross-session recall, storage, correction, deletion, snapshots, rollback, branches, merge, and long-term memory workflows.
 
-## Publisher: <br>
-[randomradio](https://clawhub.ai/user/randomradio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[randomradio](https://clawhub.ai/user/randomradio)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to route durable memory tasks to Memoria, including storing reusable facts, retrieving prior context, correcting or forgetting memory, and managing snapshots or branches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory can persist and later reuse personal or project context. <br>
-Mitigation: Store only durable, reusable information; avoid secrets or highly sensitive personal data; periodically review, correct, forget, or purge stored memories. <br>
-Risk: Memory setup may require database, API, and embedding-provider credentials. <br>
-Mitigation: Verify the external Memoria plugin source and use dedicated credentials before enabling the memory plugin. <br>
-Risk: Bulk memory deletion or major rewrites can remove useful context. <br>
-Mitigation: Create a snapshot before risky memory maintenance, then verify retrieval or list results after changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure and operate Memoria as durable external memory, including storing reusable facts, retrieving prior context, repairing incorrect memories, and managing snapshots or branches for reversible memory changes.
 
-## Reference(s): <br>
-- [Memory Slot Operations](references/operations.md) <br>
-- [Usage Patterns](references/patterns.md) <br>
-- [OpenClaw Setup](references/setup.md) <br>
-- [Tool Surface](references/tool-surface.md) <br>
-- [Memoria Homepage](https://github.com/matrixorigin/Memoria) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and tool-selection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on explicit memory writes, retrieval, correction, deletion, snapshots, rollback, branches, and maintenance workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The setup flow installs and enables an unpinned third-party plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin before installation and prefer a pinned, verified version.
+
+Risk: The setup example includes weak root database credentials.
+
+Mitigation: Do not copy the root:111 example; create a dedicated least-privilege database account with a strong secret.
+
+Risk: Durable memory can retain credentials or other sensitive data if deliberately stored.
+
+Mitigation: Avoid storing secrets or sensitive data in durable memory unless the user explicitly accepts the persistence risk.
+
+Risk: Forget, purge, rollback, and merge operations can remove or alter stored memory.
+
+Mitigation: Preview target records and confirm before applying destructive or broad memory changes.
+
+## Reference(s):
+
+- [Memoria homepage](https://github.com/matrixorigin/Memoria)
+- [OpenClaw Setup](references/setup.md)
+- [Tool Surface](references/tool-surface.md)
+- [Memory Slot Operations](references/operations.md)
+- [Usage Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline shell commands and tool-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides explicit durable-memory operations; outputs may include setup commands, memory workflow recommendations, and verification steps.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

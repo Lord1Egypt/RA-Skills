@@ -1,41 +1,54 @@
-## Description: <br>
-提供线下快闪店、专柜小样免费领券指南及全国网点查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供线下快闪店、专柜小样免费领券指南及全国网点查询。
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users can use this skill to ask an agent for nearby pop-up shop and counter sample pickup guidance, including filters for distance, social popularity, and spending tier. The skill helps summarize queue, reservation, hours, parking, navigation, and community-note information for in-person freebie planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nearby store and navigation requests can reveal sensitive location preferences. <br>
-Mitigation: Share only the location details needed for the lookup and avoid providing more precise location data than necessary. <br>
-Risk: Queue, hours, reservation, and promotion details may change before an in-person visit. <br>
-Mitigation: Confirm time-sensitive store details before traveling or relying on a promotion. <br>
+## Use Case:
 
+External users can use this Chinese-language skill to find offline pop-up store freebies, counter samples, free coupon opportunities, and nearby participating locations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codenova58/freebie) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include store lookup details, queue and reservation notes, hours, parking, navigation guidance, community images, visit notes, and caution summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may ask for location context to find nearby freebie, sample, coupon, or store-visit options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the location detail needed for a specific search, such as a neighborhood or approximate area when exact location is unnecessary.
+
+Risk: Store availability, queue status, appointment channels, hours, and coupon terms may change after the assistant responds.
+
+Mitigation: Verify real-time details with the merchant or source shown by the assistant before traveling, reserving, or relying on an offer.
+
+## Reference(s):
+
+- [Freebie skill page](https://clawhub.ai/codenova58/skills/freebie)
+- [codenova58 publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include filtered store, queue, appointment, hours, parking, navigation, community-image, and coupon guidance when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

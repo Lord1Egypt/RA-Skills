@@ -1,43 +1,60 @@
-## Description: <br>
-Use when generating expressive portrait videos from a person image and speech audio with Alibaba Cloud Model Studio EMO (`emo-v1`), especially non-Wan avatar clips with stronger expression style control from a detected portrait image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate expressive portrait videos from a person image and speech audio using Alibaba Cloud Model Studio EMO (`emo-v1`) with detected portrait boxes and style control.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Alibaba Cloud Model Studio EMO detection and generation requests for portrait talking-head videos. It helps normalize request payloads, bounding boxes, style level selection, and output evidence paths for workflows that use public portrait-image and speech-audio URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland (Beijing region) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portrait image and speech audio URLs must be reachable for Alibaba Cloud processing, which can expose sensitive media if broad public URLs are used. <br>
-Mitigation: Use non-sensitive media when possible, prefer limited-lifetime signed URLs, and avoid embedding private assets in persistent public locations. <br>
-Risk: The skill requires Alibaba Cloud credentials for EMO workflows. <br>
-Mitigation: Use limited-purpose API keys or scoped credentials, keep credentials out of generated request files, and rotate them according to local security policy. <br>
+## Use Case:
 
+Developers and external agents use this skill to prepare Alibaba Cloud Model Studio EMO detection and generation requests for expressive talking-head portrait videos from public image and audio URLs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-emo) <br>
-- [Video generation overview, EMO entry](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [EMO video generation API reference](https://help.aliyun.com/zh/model-studio/emo-api) <br>
-- [Artifact source references](references/sources.md) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing)
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request payloads and related evidence under output/aliyun-emo/ by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Portrait images, speech audio, public media URLs, and generated request artifacts may expose sensitive biometric, voice, or request metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled public or provider-accessible URLs, avoid sensitive media unless exposure is understood, and review files under output/aliyun-emo before sharing.
+
+Risk: Alibaba Cloud credentials could be exposed if placed directly in prompts, scripts, or generated files.
+
+Mitigation: Keep DASHSCOPE_API_KEY in normal credential storage or Alibaba Cloud credentials, and do not embed API keys in request artifacts.
+
+Risk: Incorrect or invented face_bbox and ext_bbox values can lead to invalid or poor-quality generation requests.
+
+Mitigation: Run EMO detection first and use the returned face_bbox and ext_bbox values before submitting an emo-v1 generation request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-emo)
+- [sources.md](references/sources.md)
+- [Alibaba Cloud Model Studio video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation)
+- [Alibaba Cloud Model Studio EMO API reference](https://help.aliyun.com/zh/model-studio/emo-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON request files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes normalized request payloads under output/aliyun-emo/ and records style_level, face_bbox, and ext_bbox values for traceability.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

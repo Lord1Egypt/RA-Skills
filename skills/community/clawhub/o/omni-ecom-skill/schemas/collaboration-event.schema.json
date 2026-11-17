@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/collaboration-event-2.0.json",
+  "title": "Omni E-commerce Collaboration Runtime Event",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "event_type", "created_by_team_version", "legacy_compatibility", "role", "host", "agent_task_id"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "collaboration_runtime_event"},
+    "contract_name": {"const": "omni-ecom.collaboration-event"},
+    "contract_version": {"const": "2.0"},
+    "event_type": {"enum": ["member_started", "member_returned", "member_failed", "member_rejected", "challenge_started", "challenge_returned", "challenge_failed", "challenge_rejected"]},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.collaboration-event@1.0"], "current_collaboration_evidence": false}},
+    "role": {"type": "string", "minLength": 1},
+    "host": {"type": "string", "minLength": 1},
+    "agent_task_id": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "round_id": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {"if": {"properties": {"event_type": {"pattern": "^member_"}}}, "then": {"required": ["attempt_id"]}},
+    {"if": {"properties": {"event_type": {"pattern": "^challenge_"}}}, "then": {"required": ["round_id"]}}
+  ]
+}

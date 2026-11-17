@@ -1,41 +1,54 @@
-## Description: <br>
-Deep wireframing workflow for problem framing, fidelity choice, flows and edge cases, information architecture, components, critique, iteration, and handoff to design and development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep wireframing workflow - problem framing, fidelity choice, flows and edge cases, IA and components, critique and iteration, handoff to design/dev.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Designers, product managers, developers, and agents use this skill to structure low- to mid-fidelity wireframing work before visual design or implementation. It helps align stakeholders on layout, flows, states, edge cases, critique, and handoff notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wireframing guidance can introduce misleading product direction if adopted without review. <br>
-Mitigation: Review proposed flows, screen states, edge cases, and handoff notes with relevant design, product, and engineering stakeholders before implementation. <br>
-Risk: The workflow may not fit every team's design process. <br>
-Mitigation: Compare the staged process against the team's existing design and review practices before installing or relying on it. <br>
+## Use Case:
 
+Product teams, designers, developers, and stakeholders use this skill to structure early UI planning before visual design or implementation. It guides low- to mid-fidelity wireframing across intent, user scenarios, information architecture, screen states, critique, and handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/wireframing) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists, staged workflow steps, review prompts, and handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill; no code, credentials, network access, file access, or elevated permissions requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill shapes design conversations and may ask for project context such as wireframing tool preference and deadline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only project details appropriate for the workspace and confirm wireframe decisions with stakeholders before handoff.
+
+Risk: Wireframing guidance can leave gaps if important scenarios, permissions, or edge states are omitted.
+
+Mitigation: Use the included scenario, state, critique, and final review checklists before design or engineering handoff.
+
+## Reference(s):
+
+- [Wireframing Skill Page](https://clawhub.ai/codenova58/skills/wireframing)
+- [Publisher Profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, review prompts, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden data access identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

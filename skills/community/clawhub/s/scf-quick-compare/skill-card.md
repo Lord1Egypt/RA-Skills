@@ -1,40 +1,52 @@
-## Description: <br>
-Period-over-period variance analysis on the Statement of Cash Flows pulled from QuickBooks Online, producing a four-tab Excel workbook with summary, detail, flags, and CDC log views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Period-over-period variance analysis on the Statement of Cash Flows pulled from QuickBooks Online, producing a four-tab Excel workbook with summary, detail, flagged variances, and change-data-capture log outputs.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Finance and accounting teams use this skill to compare QuickBooks Online Statement of Cash Flows periods during monthly close, YTD review, or cash-swing investigation. It highlights material operating, investing, and financing cash-flow changes and records line-item changes across runs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated workbooks and local CDC cache files may contain sensitive client financial data.
+
+Mitigation: Run only in an environment approved for client financial data, keep outputs out of shared or synced locations unless approved, and treat the local cache as confidential.
+
+Risk: The workflow depends on QuickBooks Online credentials and a Python Excel dependency.
+
+Mitigation: Use a managed or pinned Python environment for openpyxl and ensure QBO credentials are configured only in the intended runtime environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Accountants, finance teams, and agents supporting client close workflows use this skill to compare QuickBooks Statement of Cash Flows periods and produce a variance workbook with summary, detail, flags, and CDC log tabs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Excel reports and the local CDC cache may contain sensitive client financial data. <br>
-Mitigation: Use the skill only in a trusted workspace, limit QuickBooks access to the intended company, and delete or protect generated reports and .cache/scf-quick-compare data when no longer needed. <br>
-Risk: The skill depends on a referenced local Python pipeline and QuickBooks credentials that are not included in the artifact. <br>
-Mitigation: Verify the referenced script and QuickBooks configuration before use, and scope credentials to the intended QuickBooks company. <br>
+**Output Format:** [Markdown guidance with shell command examples and generated Excel workbook output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [SCF Quick Compare on ClawHub](https://clawhub.ai/samledger67-dotcom/scf-quick-compare) <br>
+**Other Properties Related to Output:** [Produces a four-tab workbook with Summary, Detail, Flags, and CDC Log sheets; local cache data should be handled as confidential financial information.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples; the referenced pipeline writes an Excel workbook.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workbook output includes Summary, Detail, Flags, and CDC Log tabs; repeated runs may use a local .cache/scf-quick-compare cache.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

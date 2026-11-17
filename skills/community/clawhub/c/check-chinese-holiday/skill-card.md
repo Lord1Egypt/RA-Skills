@@ -1,37 +1,52 @@
-## Description: <br>
-基于 chinesecalendar 包的中国节假日检测，判断是否为节假日/调休日工作日。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether Chinese calendar dates are statutory holidays, adjusted workdays, ordinary weekends, or workdays using the chinesecalendar Python package.
 
-## Publisher: <br>
-[xuehongyanL](https://clawhub.ai/user/xuehongyanL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xuehongyanl](https://clawhub.ai/user/xuehongyanl)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether a China calendar date is a legal holiday, adjusted workday, ordinary weekend, or reminder-worthy workday. It also reports whether the local chinesecalendar dependency appears current enough for the current year. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the local chinesecalendar Python package, whose holiday data can become outdated. <br>
-Mitigation: Use a virtual environment, review any suggested pip install or upgrade command before running it, and confirm the package supports the queried year. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuehongyanL/check-chinese-holiday) <br>
+## Use Case:
 
+Developers and agents use this skill to answer China holiday and adjusted workday questions or to gate reminder workflows before scheduled jobs run.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs date status, workday or holiday classification, reminder guidance, and local package freshness status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an unpinned third-party Python package.
+
+Mitigation: Install in an isolated Python environment, review or pin the chinesecalendar package version when supply-chain control matters, and treat dependency upgrades as user-approved maintenance.
+
+Risk: Holiday data can be unavailable for unsupported far-past or far-future years, and repeated package upgrades may not resolve that.
+
+Mitigation: Limit date queries to the supported year range, return an unsupported-year response for out-of-range dates, and avoid repeated upgrade attempts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuehongyanl/skills/check-chinese-holiday)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; optional JSON results from check.py.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the chinesecalendar Python package and bounded date queries near supported calendar-data years.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

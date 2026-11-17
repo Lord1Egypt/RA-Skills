@@ -1,42 +1,52 @@
-## Description: <br>
-Semi-automates WeChat replies by reading chat content with OCR, sending high-confidence replies automatically, asking for confirmation on lower-confidence replies, or sending a specified message directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates semi-automatic WeChat replies by reading chat text, selecting a reply with a confidence threshold, and either sending it or asking for confirmation.
 
-## Publisher: <br>
-[bjdzliu](https://clawhub.ai/user/bjdzliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bjdzliu](https://clawhub.ai/user/bjdzliu)
 
-## Use Case: <br>
-External users and developers use this skill to automate routine WeChat replies on macOS, either by letting the tool inspect recent chat text and propose a reply or by sending a specified message to a named contact. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private WeChat conversations through OCR and macOS desktop automation. <br>
-Mitigation: Use it only on accounts and conversations where this access is acceptable, and avoid sensitive or high-stakes conversations. <br>
-Risk: The skill can send messages from the user's WeChat account automatically for high-confidence matches. <br>
-Mitigation: Prefer manual confirmation for every send by reviewing or adjusting the confidence threshold and reply rules before use. <br>
-Risk: Installation relies on a Homebrew tap and installed automation scripts. <br>
-Mitigation: Review the Homebrew tap and installed script before running the global command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bjdzliu/wechat-auto-reply) <br>
-- [Publisher profile](https://clawhub.ai/user/bjdzliu) <br>
+## Use Case:
 
+External users and agent operators use this skill to install and run a WeChat auto-reply workflow for a named contact, with optional direct message sending and confirmation for lower-confidence replies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [WeChat message text with Markdown usage instructions and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can send messages automatically when confidence exceeds the configured threshold; lower-confidence replies require confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install external Homebrew tap code that can change after review.
+
+Mitigation: Install only from trusted sources and review the Homebrew formula and installed script before use.
+
+Risk: The automation can inspect WeChat conversations and send messages automatically.
+
+Mitigation: Prefer confirmation mode, avoid sensitive chats, and confirm the data-processing path before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bjdzliu/skills/wechat-auto-reply)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and AppleScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeChat reply guidance and command-oriented setup instructions; execution can inspect chats and send messages through local automation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

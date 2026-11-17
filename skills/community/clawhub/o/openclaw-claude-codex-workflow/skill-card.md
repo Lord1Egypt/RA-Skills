@@ -1,41 +1,55 @@
-## Description: <br>
-Coordinates a multi-model OpenClaw workflow where Claude Code plans and reviews, Codex implements backend work, and Gemini handles frontend or UX tasks through staged artifacts and an orchestrator script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates an OpenClaw multi-model coding workflow where Claude Code plans and reviews, Codex handles backend and infrastructure implementation, and Gemini handles frontend work through staged artifacts and a local orchestrator.
 
-## Publisher: <br>
-[shennng](https://clawhub.ai/user/shennng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shennng](https://clawhub.ai/user/shennng)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, execute, verify, and review coding tasks that split responsibilities across Claude Code, Codex, and Gemini. It is most useful when a task needs OPSX or specification alignment, staged .claude artifacts, model-specific implementation work, and a final review handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow routes local coding tasks through Claude, Codex, and Gemini provider CLIs that may read project files and prompts. <br>
-Mitigation: Install only when that routing is intended, use scoped API keys, and avoid placing secrets or sensitive customer data in prompts or .claude files. <br>
-Risk: Generated commands, diffs, and .claude artifacts can affect a local working tree if accepted without review. <br>
-Mitigation: Run dry-run first where available, keep provider work scoped to approved paths, and review generated diffs and artifacts before committing, pushing, or attaching them to tickets. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate full-stack implementation work across Claude Code, Codex, and Gemini while preserving staged plans, logs, test matrices, and review artifacts. It is intended for OpenClaw workflows that require OPSX or specification alignment before local code changes are made.
 
-## Reference(s): <br>
-- [Model Routing Guide](references/model-routing.md) <br>
-- [Workflow Checklist](references/workflow-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and workflow artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans, scope notes, execution logs, test matrices, review notes, and orchestrator command guidance for local agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The workflow asks users to persist API keys and run powerful model CLIs with access to the local repository, environment variables, and user credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use temporary or secret-manager based API keys, run the workflow in a dedicated workspace or container, and avoid storing secrets in .claude artifacts or commits.
+
+Risk: Model-generated commands or diffs may modify sensitive files or introduce unintended behavior before review.
+
+Mitigation: Review dry-run output, generated plans, diffs, and test results before execution or merge, and require explicit approval for destructive commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shennng/skills/openclaw-claude-codex-workflow)
+- [Model Routing Guide](references/model-routing.md)
+- [Workflow Checklist](references/workflow-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated workflow artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged planning, execution, verification, and review artifacts under .claude/ when used as documented.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

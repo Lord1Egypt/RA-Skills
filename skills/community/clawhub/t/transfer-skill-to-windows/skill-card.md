@@ -1,39 +1,49 @@
-## Description: <br>
-Adapt an existing agent skill so it works cleanly on Windows when the input is either a skill folder path or a zip file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapt an existing agent skill so it works cleanly on Windows when the input is either a skill folder path or a zip file.
 
-## Publisher: <br>
-[iideas18](https://clawhub.ai/user/iideas18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iideas18](https://clawhub.ai/user/iideas18)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert an existing agent skill folder or zip package into a Windows-ready version while preserving the original workflow and intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: In-place conversion can alter the source skill unexpectedly. <br>
-Mitigation: Use the default separate Windows-ready output folder and review converted files before installing or sharing the converted skill. <br>
-Risk: Converted commands, paths, or package contents may not preserve the original behavior on Windows. <br>
-Mitigation: Validate referenced files, Windows commands, rebuilt zip contents, and any remaining tool requirements before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert agent skills distributed as folders or zip files so their instructions, paths, scripts, and packaging work cleanly on Windows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with code edits, shell command examples, and optional converted skill files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a separate Windows-ready skill folder and rebuilt zip when the source input is a zip file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs an agent to edit or copy skill folders and may rebuild zip artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Windows-ready folder or rebuilt zip before using it, especially when the original skill contains scripts.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/iideas18/skills/transfer-skill-to-windows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with edited skill files and optional rebuilt zip artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a sibling Windows-ready skill folder and, when the input is a zip file, a rebuilt Windows-ready zip.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

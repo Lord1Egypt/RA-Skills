@@ -1,45 +1,62 @@
-## Description: <br>
-Maintains a personal cross-session TODO list from natural-language requests, with SQLite persistence, priorities, tags, CLI commands, and optional WorkBuddy or DingTalk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personal TODO management skill that lets an agent add, list, complete, update, and delete cross-session tasks from natural language, with local persistence, priorities, tags, and reminders.
 
-## Publisher: <br>
-[chenqing24](https://clawhub.ai/user/chenqing24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenqing24](https://clawhub.ai/user/chenqing24)
 
-## Use Case: <br>
-Individuals and agents use this skill to add, list, update, complete, and delete personal tasks from conversational requests or CLI commands. It is intended for single-user task tracking with local history, audit logging, and optional scheduled reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task records and audit history may retain exact user wording, including sensitive personal or financial details. <br>
-Mitigation: Avoid putting secrets or highly sensitive details in tasks, review local retention behavior, and back up the database before uninstalling or cleanup. <br>
-Risk: Reminder features can create scheduled jobs through WorkBuddy or cron-like automation. <br>
-Mitigation: Choose the reminder channel explicitly and inspect created automations before relying on or leaving them enabled. <br>
-Risk: DingTalk notifications may send task details outside the local workspace. <br>
-Mitigation: Use DingTalk only for task content appropriate for that channel and disable or reconfigure external notification paths when not needed. <br>
+## Use Case:
 
+Individuals and agent users use this skill to manage personal tasks in Chinese or English across sessions, including reminders, priorities, tags, and simple CLI-backed task operations. It is suited to personal productivity workflows rather than team project management or calendar synchronization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenqing24/todo-list-skill) <br>
-- [Command reference](references/commands.md) <br>
-- [Trigger reference](references/triggers.md) <br>
-- [Error handling and fallback paths](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language guidance with CLI examples, status messages, and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local SQLite task data, local configuration, fallback files, and scheduled reminder jobs when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata, artifact changelog, pyproject.toml, manifest.yaml) <br>
+Risk: Task titles and raw task text are stored locally and may be sent through WorkBuddy or DingTalk reminder channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets, credentials, highly sensitive instructions, or confidential business data in TODO titles or reminder text.
+
+Risk: Persistent reminders and cron-style jobs may continue running after initial setup.
+
+Mitigation: Inspect reminder and cron entries after setup and uninstall, and remove any jobs that are no longer needed.
+
+Risk: Broad natural-language triggers can mutate tasks when user intent is ambiguous.
+
+Mitigation: Review and narrow trigger phrases before enabling automatic mutations, and require clarification for ambiguous complete, delete, or update requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenqing24/skills/todo-list-skill)
+- [Trigger reference](references/triggers.md)
+- [Command reference](references/commands.md)
+- [Error handling reference](references/errors.md)
+- [Project source declared in package metadata](https://gitee.com/ccq/todo-list-skill)
+- [python-dateutil documentation](https://dateutil.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language responses, Markdown guidance, JSON-capable CLI output, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local SQLite task data, local configuration, fallback files, reminder setup, and cron-style automation instructions.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence, pyproject.toml, manifest.yaml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

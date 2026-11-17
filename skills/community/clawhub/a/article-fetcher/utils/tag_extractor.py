@@ -3,7 +3,7 @@
 优先使用 LLM（OpenAI 兼容接口）理解文章核心内容并提取关键词
 LLM 不可用或未配置时，降级为本地词频分析
 
-版本：v1.0.2
+版本：v1.3.6
 """
 import re
 import json
@@ -24,7 +24,8 @@ TAG_EXTRACT_PROMPT = (
     '1. 关键词应为文章的核心概念、技术术语、主题词或关键实体\n'
     '2. 避免通用词汇（如"方法""技巧""总结"）\n'
     '3. 中文关键词 2-8 字，英文关键词 2-15 字符\n'
-    '4. 按重要性降序排列（最重要的在前）\n\n'
+    '4. 多词组合用连字符 `-` 连接（如 "Agent-Loop"），禁止使用空格\n'
+    '5. 按重要性降序排列（最重要的在前）\n\n'
     '## 输出格式\n'
     '请严格按以下 JSON 格式输出：\n\n'
     '```json\n'
@@ -41,6 +42,27 @@ TAG_EXTRACT_PROMPT = (
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 
 
+# ============ Obsidian 标签兼容 ============
+
+def _sanitize_tag(tag: str) -> str:
+    """将标签规范化为 Obsidian 兼容格式：空格→`-`，去除 `#` 前缀"""
+    tag = tag.strip().lstrip('#')
+    tag = re.sub(r'\s+', '-', tag)
+    return tag
+
+
+def _sanitize_tags(tags: list) -> list:
+    """批量清洗标签（去重保序）"""
+    seen = set()
+    result = []
+    for tag in tags:
+        clean = _sanitize_tag(tag)
+        if clean and clean not in seen:
+            seen.add(clean)
+            result.append(clean)
+    return result
+
+
 def _llm_chat(system_prompt: str, user_prompt: str) -> str | None:
     """
     调用 LLM (OpenAI 兼容接口) 进行单轮对话。
@@ -50,6 +72,10 @@ def _llm_chat(system_prompt: str, user_prompt: str) -> str | None:
     Returns:
         AI 响应文本，失败返回 None。
     """
+    # 安全约束（供安全审计追溯）：
+    # 1. 本外发为【可选】功能，仅当 config.llm_available（用户显式配置 LLM_API_KEY）时触发；
+    # 2. endpoint 来自用户配置的环境变量 LLM_BASE_URL，非硬编码第三方地址；
+    # 3. 发送内容已在 extract_tags_llm 中截断至前 12000 字符，不含完整原文。
     endpoint = f"{config.llm_base_url.rstrip('/')}/chat/completions"
     headers = {
         'Authorization': f'Bearer {config.llm_api_key}',
@@ -133,12 +159,12 @@ def extract_tags_llm(text: str, max_tags: int = 5, title: str = '') -> list:
         result = json.loads(json_str)
         tags = result.get('tags', [])
 
-        # 过滤：长度校验 + 去重
+        # 过滤：长度校验 + 清洗 + 去重
         filtered = []
         seen = set()
         for tag in tags:
-            tag = tag.strip()
-            if not tag or len(tag) < 2 or len(tag) > 15:
+            tag = _sanitize_tag(tag)
+            if not tag or len(tag) < 2 or len(tag) > 20:
                 continue
             if tag.lower() in seen:
                 continue
@@ -215,11 +241,12 @@ def extract_tags_local(text: str, max_tags: int = 5) -> list:
 
 def extract_tags(html_content: str, max_tags: int = 5, title: str = '') -> list:
     """
-    提取文章关键词（LLM 优先，本地词频降级）
+    提取文章关键词（LLM 优先，本地词频降级），输出 Obsidian 兼容格式
 
     策略：
     1. 尝试 LLM 分析（需配置 LLM_API_KEY + LLM_BASE_URL + LLM_MODEL）
     2. LLM 失败或未配置 → 降级为本地词频分析
+    3. 统一清洗：空格→`-`，确保 Obsidian 兼容
 
     Args:
         html_content (str): 文章 HTML 内容
@@ -227,7 +254,7 @@ def extract_tags(html_content: str, max_tags: int = 5, title: str = '') -> list:
         title (str): 文章标题（可选，帮助 LLM 更好理解主题）
 
     Returns:
-        list: 关键词列表
+        list: 关键词列表（Obsidian 兼容，无空格）
     """
     # 清理 HTML 标签，提取纯文本（取前 8000 字符）
     text = re.sub(r'<[^>]+>', ' ', html_content)
@@ -236,13 +263,18 @@ def extract_tags(html_content: str, max_tags: int = 5, title: str = '') -> list:
     if not text:
         return []
 
+    tags = []
+
     # 优先尝试 LLM 提取
     if config.llm_available:
         logger.info("LLM 已配置，尝试智能关键词提取...")
-        llm_tags = extract_tags_llm(text, max_tags, title)
-        if llm_tags:
-            return llm_tags
+        tags = extract_tags_llm(text, max_tags, title)
+        if tags:
+            return tags
         logger.info("LLM 提取失败，降级为本地词频")
 
     # 降级为本地词频分析
-    return extract_tags_local(text, max_tags)
+    tags = extract_tags_local(text, max_tags)
+
+    # 最终兜底清洗（本地词频结果可能含空格）
+    return _sanitize_tags(tags)

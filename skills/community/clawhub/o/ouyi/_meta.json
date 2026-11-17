@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7czxc8esj3z05cxkw9s3h6fx82ka6p",
-  "slug": "ouyi",
+  "name": "ouyi",
   "version": "1.0.0",
-  "publishedAt": 1774688881006
+  "description": "欧亿（ouyi）API 调用工具，支持直接对话分析",
+  "slug": "ouyi",
+  "author": "zhongshu",
+  "tags": ["ouyi", "api", "chat", "chinese"],
+  "requirements": {
+    "node": ">=16"
+  }
 }

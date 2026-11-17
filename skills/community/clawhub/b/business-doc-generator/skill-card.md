@@ -1,40 +1,57 @@
-## Description: <br>
-Generate polished, customizable business documents including proposals, quotes, invoices, contracts, and letters tailored to the user's industry and needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate polished, customizable business documents including proposals, quotes, invoices, contracts, and letters tailored to the user's industry and needs.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Business users and professional services teams use this skill to draft ready-to-edit proposals, quotes, invoices, contracts, NDAs, statements of work, business letters, reports, and follow-up emails from structured templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contracts, NDAs, invoices, payment terms, and legal clauses may be incomplete, inaccurate, or unsuitable for a specific jurisdiction or transaction. <br>
-Mitigation: Review legal and financial documents before sending, and involve qualified legal or financial reviewers for binding or high-value uses. <br>
-Risk: Generated templates may be stored in the local workspace and can contain confidential client, business, or payment information. <br>
-Mitigation: Avoid adding sensitive details unless storage is acceptable, and handle generated files according to the user's confidentiality and retention policies. <br>
+## Use Case:
 
+External users, employees, and service providers use this skill to draft structured business documents such as proposals, quotes, invoices, contracts, NDAs, statements of work, letters, and reports from user-provided details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/business-doc-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown business-document drafts and template-driven guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated documents may include business, financial, contract, invoice, or client-specific details that require user review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact body) <br>
+Risk: Generated contracts, NDAs, service agreements, or other legal documents may not meet the user's legal obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review legal documents with a qualified professional before use.
+
+Risk: Generated quotes, invoices, or proposals may contain incorrect financial figures, taxes, totals, or payment terms.
+
+Mitigation: Confirm all financial figures with the user before finalizing or sending the document.
+
+Risk: Business documents may include confidential client, payment, or company details in shared workspaces.
+
+Mitigation: Avoid saving confidential client or payment details in shared workspaces unless that storage location is appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/business-doc-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown business documents and structured drafting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-provided business, financial, legal, and recipient details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-A literary listening and writing skill that uses layered questions to help users turn real experiences, feelings, travel memories, life fragments, inner monologues, or photos into restrained prose diary entries without fabricating details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+My Prose Poem helps users turn real experiences, daily reflections, travel memories, and photo-supported moments into restrained prose diary entries through layered questioning without fabricating details.
 
-## Publisher: <br>
-[justzerox](https://clawhub.ai/user/justzerox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justzerox](https://clawhub.ai/user/justzerox)
 
-## Use Case: <br>
-External users use this skill to organize real experiences, emotions, reflections, and optional photo context into concise prose diary entries. The agent asks focused follow-up questions, preserves user-provided details, and avoids inventing events, dialogue, relationships, causes, or emotional states. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Photos can contain EXIF timestamps, GPS coordinates, and device details. <br>
-Mitigation: Process photos only when the user chooses photo-based writing, use EXIF only as objective timeline or scene context, and fall back to asking for approximate time or place when metadata is unavailable or sensitive. <br>
-Risk: Optional auto-install can fetch Python packages at runtime. <br>
-Mitigation: Leave auto-install disabled unless the user is comfortable installing Pillow; otherwise use the manual fallback workflow. <br>
+## Use Case:
 
+External users use this skill to record daily experiences, travel memories, emotional reflections, and photo-based recollections as prose diary entries. The skill asks focused follow-up questions, preserves user-provided facts and phrasing, and avoids inventing relationships, dialogue, causality, or emotions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justzerox/my-prose-poem) <br>
-- [Style anchors](references/style-anchors.md) <br>
-- [Writing rules](references/writing-rules.md) <br>
-- [Writing samples](references/writing-samples.md) <br>
-- [Pillow 10.0.0](https://pypi.org/project/Pillow/10.0.0/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Conversational prompts and Markdown prose, with optional JSON EXIF summaries from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional local photo metadata processing can sort images by EXIF time and use DateTime, GPSParsed, and camera model as objective context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Photo processing may expose sensitive timestamps, GPS coordinates, device model information, or other EXIF metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only photos intended for journaling, remove unnecessary EXIF fields before use when privacy matters, and avoid sharing generated EXIF summaries beyond the intended conversation.
+
+Risk: Optional auto-install behavior can install an unpinned Pillow package at runtime.
+
+Mitigation: Leave --auto-install and MY_PROSE_POEM_AUTO_INSTALL disabled unless runtime installation is acceptable; install dependencies from requirements.txt in a controlled environment and pin Pillow if stricter dependency control is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justzerox/skills/my-prose-poem)
+- [README](artifact/README.md)
+- [Style anchors](artifact/references/style-anchors.md)
+- [Writing rules](artifact/references/writing-rules.md)
+- [Writing samples](artifact/references/writing-samples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose, brief conversational prompts, optional shell command suggestions, and optional JSON EXIF summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt diary length to the amount of user-provided material; optional photo handling may use EXIF DateTime, GPS, and camera model as factual context.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

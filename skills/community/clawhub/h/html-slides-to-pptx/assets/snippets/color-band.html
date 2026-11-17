@@ -1,0 +1,23 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:色带行(图标 + 主张 + 支撑句 + 右侧编号)—— 原型 30 的单元,stack 3-4 条
+  结构色带(合法):纯色,禁渐变(装饰指纹);深→浅单向递进。
+  参数:
+    {{Y}}        带顶(3 带:330/530/730,h180;4 带:330/486/642/798,h140)
+    {{H}}        带高(180 或 140)
+    {{BG}}       带底色(深带 var(--deep-navy)/中带 var(--deep-navy-light)/浅带 var(--card-bg))
+    {{ICON}}     图标整行(icons.md;深带用亮色 stroke,浅带用主色)
+    {{TITLE}}    主张(28px,≤16 字)      {{SUB}}  支撑句(20px,一行)
+    {{NUM}}      右侧编号(01/02…;浅带换主色)
+  深浅两套文字色:深带=白标题 + var(--brand-dark-tint) 副行 + 亮图标;浅带=var(--charcoal) 标题 + var(--text-secondary) 副行 + 主色图标/编号(按带色二选一)
+  z 序: 单带即一个 data-object(对象内 flex 排布,方式 B)
+  纪律: 带色单向递进或全浅带+主色左边条;编号/图标各就各位,别双侧堆满
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:{{Y}};width:1720px;height:{{H}};background:{{BG}};border-radius:10px;display:flex;align-items:center;padding:0 48px;">
+  {{ICON}}
+  <div style="margin-left:32px;flex:1;">
+    <!-- 深带:color var(--white) / 副行 var(--brand-dark-tint);浅带:color var(--charcoal) / 副行 var(--text-secondary) -->
+    <div style="font-size:28px;font-weight:700;color:var(--white);line-height:1.3;">{{TITLE}}</div>
+    <div style="font-size:22px;line-height:1.5;color:var(--brand-dark-tint);margin-top:8px;">{{SUB}}</div>
+  </div>
+  <div class="num" style="font-size:56px;font-weight:800;color:var(--accent-orange);line-height:1;">{{NUM}}</div>
+</div>

@@ -1,0 +1,4 @@
+[
+  {"label": "btnReset", "event": "onClick", "script": "SetValue(a, 1)\nSetValue(h, 0.8)"},
+  {"label": "btnRand", "event": "onClick", "script": "SetValue(a, RandomUniform(-2, 2))"}
+]

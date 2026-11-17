@@ -1,0 +1,128 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "lexiang-knowledge-base",
+  "version": "2.2.0",
+  "author": "注册老炮@MedXpert",
+  "year": "2026",
+  "timestamp_utc": "2026-08-31T09:28:38.723809+00:00",
+  "timestamp_local": "2026-08-31T17:28:38.723818",
+  "package_fingerprint_sha256": "0baade01bc479bd8b2a4432133a45fbc87db8c938fdeec6455bb849fc8447b5d",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "5110d4131af3bd008cd2745e618dba32bc4308b30e2a89bffa3d9722d590f82a"
+    },
+    {
+      "path": "mcp.json",
+      "sha256": "205dbe4190a742076944c5a21bb12f095831746ead972414344e931e7b234e0f"
+    },
+    {
+      "path": "references/base.md",
+      "sha256": "12a6686f23c8fcbc42f2a806b02df8ff266a1cd62c106d9d158e294d7e17c983"
+    },
+    {
+      "path": "references/block-schema.md",
+      "sha256": "0dada59afbc85178adda30ecec842d3fdbdbf25464b8fd5e1a60efed4d710797"
+    },
+    {
+      "path": "references/block-update.md",
+      "sha256": "1765ba00a1b1f2c6fd1a8097eebf82ffbd014740934f221c6ef24b29b2607b77"
+    },
+    {
+      "path": "references/blocks.md",
+      "sha256": "a99ae0a36e57d6a292ccf4b8a62181b47aac00a84579bea4565e02963ef2a8f1"
+    },
+    {
+      "path": "references/comment.md",
+      "sha256": "7904d2183c1a309b63117e8f042d8265cdb2a6e319ac32536c5b3241da81421a"
+    },
+    {
+      "path": "references/common-errors.md",
+      "sha256": "ecb0515c8332ff08a1b382d83902deb9f4969fa14eec39a5585dce79a70c989c"
+    },
+    {
+      "path": "references/connectors.md",
+      "sha256": "4caefc5dc7efd9d64b5a29ba1d87f6af24080ce44c4baaf1d21e820a516f0b32"
+    },
+    {
+      "path": "references/content-reorganize.md",
+      "sha256": "0965daf27155322478a06bc8083a9b4df0e6598295e80891f4cede7586ed5a66"
+    },
+    {
+      "path": "references/doc-templates.md",
+      "sha256": "face9850e3fa72a862043303704c98cb577e366df062178aa11de37e06d18b22"
+    },
+    {
+      "path": "references/draft.md",
+      "sha256": "488bdc30e9366f4c205333e2ad44f180c3b2afaf35dedf9a520f9e597b02b49d"
+    },
+    {
+      "path": "references/files.md",
+      "sha256": "daadf9ba327f31a44e7f1f3bfeca263ba2478a4351cf7bffe7df8316348a1b71"
+    },
+    {
+      "path": "references/folder-sync.md",
+      "sha256": "535165536ae853836102ccf536933cf1b5db08db386157c66070dd00f4ca6d78"
+    },
+    {
+      "path": "references/index.md",
+      "sha256": "ff3ca7afeca29b508a868c1f0f1050734302dbd125211cf853d67dcc2ba421ee"
+    },
+    {
+      "path": "references/markdown-import.md",
+      "sha256": "bb64db4bcda5d7c1e32a4ecc363f6dd0a27f748191c2fbafb9b0cc282b270dba"
+    },
+    {
+      "path": "references/markdown-to-block.md",
+      "sha256": "d5d7027325e3c89a6aacf272812857bc88cebbc40538e09c672aa7ef2921df6d"
+    },
+    {
+      "path": "references/mcp-examples.md",
+      "sha256": "664aa2312c4c15263afcca3905f5487f9ce6780d6440ffaeb2033a451712f63d"
+    },
+    {
+      "path": "references/search.md",
+      "sha256": "01b2b4c3f41468918cd3d179293804e05b2217e419dad42814d2c28bca597db0"
+    },
+    {
+      "path": "references/setup.md",
+      "sha256": "26e1f86499c1ec2463b399e8dc5b7f4d3566f299e59f06a05eecc50746547d48"
+    },
+    {
+      "path": "references/skill-maintenance.md",
+      "sha256": "053807f5b6af671a6e8f5137167271cffeaf201ef786a45a3755510187fd62e4"
+    },
+    {
+      "path": "references/smartsheet.md",
+      "sha256": "e0a194512d52ec0c76f9e6a12578572d0e09fe6a37610da0c011ef68c1aecdc4"
+    },
+    {
+      "path": "references/theme-config.md",
+      "sha256": "86ca23306642a6aec6d82d92ba2c941108a9164501b2872389a1d583fb940405"
+    },
+    {
+      "path": "references/writer.md",
+      "sha256": "00abff26579b9fd1bb7c659a968f669a150626ce961c5a158ac1d6fc3c6dfd4a"
+    },
+    {
+      "path": "scripts/README.md",
+      "sha256": "1d375e31269bbe94ac8ce4d93169ba4ebc8cf0a90cf834ef11f4d8cdcbe35fda"
+    },
+    {
+      "path": "scripts/sync-folder.ts",
+      "sha256": "80becca76c9c31ed3287aecca658434b3b1cd11adf6b23dd70e4fae7f6e4880d"
+    },
+    {
+      "path": "scripts/test_upload_files.py",
+      "sha256": "6ff7dfd466ec529fc216c1c8e8b5840e41730ae4e53851e62fe0af8d1ecf1d57"
+    },
+    {
+      "path": "scripts/upload-files.py",
+      "sha256": "187efc0a6ff444178fc8678418a37bf894a656218f311f45bf867c78489f9878"
+    },
+    {
+      "path": "workbuddy.json",
+      "sha256": "b6cc41007df4d06b8462068e00774b209cb47ad6fd8b56d6d2a4582973be35e3"
+    }
+  ]
+}

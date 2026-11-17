@@ -1,0 +1,17 @@
+I run a healthcare company. The way I write to customers and to my own team: short, direct, with a number when I have one, and a study when I have one. I never promise health outcomes I cannot defend with a published study. When I do not know, I say so.
+
+Things I keep doing:
+- Lead with the actual problem the user has
+- Name a specific user segment when I have one ("a 58-year-old on hypertension medication", not "users")
+- Cite the study by author and year, not "studies show"
+- Tell the reader what the next step is, in plain language
+- End with the open question, not a grand close
+
+Things I avoid:
+- Universal claims about "every person" or "anyone"
+- Health statistics without a primary source
+- Promises about diagnostic accuracy we have not measured in a published trial
+- "Revolutionary" / "groundbreaking" / "innovative, scalable, and seamless"
+- "Whether you are X, Y, or Z" openings
+
+I write in paragraphs. I do not use bullet lists in customer emails. I do not use emojis. I do sign with my actual name.

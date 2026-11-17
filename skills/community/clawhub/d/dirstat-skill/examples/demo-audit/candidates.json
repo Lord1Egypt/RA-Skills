@@ -1,0 +1,41 @@
+[
+  {
+    "path": "examples/sample-data/downloads/pack.bin.part",
+    "dsize": 901120,
+    "is_dir": false,
+    "analysis_kind": "signature heuristics",
+    "attention_level": "review first",
+    "review_reason": "incomplete download pattern surfaced by the dominant-space walk",
+    "evidence": "matched partial-download suffix",
+    "dependency_check_confidence": "high",
+    "selection_source": "dominant_leaf",
+    "group_key": "",
+    "configured_dominant_percent": 0.8
+  },
+  {
+    "path": "examples/sample-data/backup/models/model.gguf",
+    "dsize": 102400,
+    "is_dir": false,
+    "analysis_kind": "probable duplicates",
+    "attention_level": "review carefully",
+    "review_reason": "large asset appears structurally duplicated across different directories",
+    "evidence": "same basename and same size across 2 directories",
+    "dependency_check_confidence": "medium",
+    "selection_source": "duplicate_cluster",
+    "group_key": "duplicate:model.gguf:102400",
+    "configured_dominant_percent": 0.8
+  },
+  {
+    "path": "examples/sample-data/models/model.gguf",
+    "dsize": 102400,
+    "is_dir": false,
+    "analysis_kind": "probable duplicates",
+    "attention_level": "review carefully",
+    "review_reason": "large asset appears structurally duplicated across different directories",
+    "evidence": "same basename and same size across 2 directories",
+    "dependency_check_confidence": "medium",
+    "selection_source": "duplicate_cluster",
+    "group_key": "duplicate:model.gguf:102400",
+    "configured_dominant_percent": 0.8
+  }
+]

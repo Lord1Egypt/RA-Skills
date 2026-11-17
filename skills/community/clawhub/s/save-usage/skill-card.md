@@ -1,39 +1,53 @@
-## Description: <br>
-Classifies tasks by safety and complexity to route safe, negligible queries to gpt-5.1-codex-mini and escalate critical or executable tasks to gpt-5.3-codex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies tasks by safety and complexity to route safe, negligible queries to gpt-5.1-codex-mini and escalate critical, executable, uncertain, or high-impact tasks to gpt-5.3-codex.
 
-## Publisher: <br>
-[jacks3tr](https://clawhub.ai/user/jacks3tr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jacks3tr](https://clawhub.ai/user/jacks3tr)
 
-## Use Case: <br>
-External users and developers use this skill to conserve Codex oAuth usage by routing only safe, low-impact interactions to a mini model and escalating executable, uncertain, or high-impact work to a stronger Codex model. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic escalation may pass the full user prompt to a stronger-model session. <br>
-Mitigation: Avoid unnecessary secrets in prompts and require approval or disclosure before escalation in sensitive workflows. <br>
-Risk: Model switches may not be announced unless the user asks. <br>
-Mitigation: Add a local requirement for explicit escalation disclosure when users need auditability or cost visibility. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jacks3tr/save-usage) <br>
+## Use Case:
 
+Developers and Codex users use this skill to decide when a task can stay on a smaller model for safe, low-impact work and when it should be escalated to a stronger Codex model.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger model escalation for executable, uncertain, or high-impact tasks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may forward the full task description into a spawned session, which can include secrets, proprietary code, personal data, or cost-sensitive work.
+
+Mitigation: Review tasks before use in sensitive conversations and avoid invoking the skill where full-task forwarding is not acceptable.
+
+Risk: The skill broadly escalates executable, uncertain, structured, or high-impact tasks, which may increase cost-sensitive model usage.
+
+Mitigation: Use in contexts where the routing tradeoff is acceptable and review cost-sensitive workflows before installing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jacks3tr/skills/save-usage)
+- [Publisher profile](https://clawhub.ai/user/jacks3tr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with model-routing decisions and escalation criteria]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to spawn a stronger model session for executable, uncertain, structured, or high-impact tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

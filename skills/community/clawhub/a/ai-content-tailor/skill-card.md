@@ -1,44 +1,57 @@
-## Description: <br>
-Repurposes an article into platform-adapted versions for WeChat Official Account, Xiaohongshu, Zhihu, and Douyin while preserving the core ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurposes one article into platform-specific versions for WeChat Official Account, Xiaohongshu, Zhihu, and Douyin.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Content creators, editors, and marketing teams use this skill to repurpose Markdown or text articles into platform-specific posts and scripts for WeChat Official Account, Xiaohongshu, Zhihu, and Douyin, including preview and batch workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input articles are sent to OpenAI for rewriting. <br>
-Mitigation: Use only content approved for external processing; avoid confidential, personal, regulated, or unpublished material unless that data flow is acceptable. <br>
-Risk: The skill requires an OpenAI API key and installs Python dependencies. <br>
-Mitigation: Use a dedicated API key, protect the local .env file, and install dependencies in a virtual environment. <br>
-Risk: AI-generated rewrites can be inaccurate, misleading, or poorly matched to a target platform. <br>
-Mitigation: Review generated drafts before publication and edit them for factual accuracy, brand fit, and platform policy compliance. <br>
+## Use Case:
 
+External content creators and operators use this skill to turn a Markdown or text article into channel-ready drafts for WeChat Official Account, Xiaohongshu, Zhihu, and Douyin while preserving the source article's main ideas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utopiabenben/ai-content-tailor) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Skill metadata](skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown and plain-text article variants, with CLI status messages and optional preview output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write one file per selected platform; batch mode processes Markdown and text inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, and skill.json) <br>
+Risk: Installer and uninstaller behavior can write or delete files outside the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh and uninstall.sh before use, verify the exact .env and output paths they affect, and avoid running uninstall.sh until the BASE_DIR path issue is fixed or manually checked.
+
+Risk: Input articles are sent to OpenAI for rewriting.
+
+Mitigation: Use only articles you are comfortable sending to OpenAI, and remove sensitive drafts, secrets, or confidential material before processing.
+
+Risk: The provided setup installs Python packages globally and creates a plaintext .env template for the API key.
+
+Mitigation: Prefer a virtual environment and store the API key in a securely permissioned environment file or shell environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utopiabenben/skills/ai-content-tailor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown and plain text content, optionally written as platform-specific Markdown files or shown in a terminal preview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenAI API key; supports single-article and batch processing, platform selection, model selection, tone selection, and preview mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

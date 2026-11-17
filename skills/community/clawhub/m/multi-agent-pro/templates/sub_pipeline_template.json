@@ -1,0 +1,47 @@
+{
+  "pipeline_name": "子流水线示例 - 发票处理",
+  "version": "1.0",
+  "description": "可复用的发票处理子流水线，可被其他流水线通过 type: pipeline 引用",
+  "agents": [
+    {
+      "id": "recognize",
+      "name": "发票识别",
+      "role": "识别发票图片中的关键字段",
+      "type": "task",
+      "inputs": ["file_path"],
+      "outputs": ["raw_text"],
+      "depends_on": []
+    },
+    {
+      "id": "extract",
+      "name": "字段提取",
+      "role": "从识别文本中提取发票号码、金额、日期等关键字段",
+      "type": "task",
+      "inputs": ["raw_text"],
+      "outputs": ["invoice_no", "amount", "date"],
+      "depends_on": ["recognize"]
+    },
+    {
+      "id": "validate",
+      "name": "发票校验",
+      "role": "校验发票真伪和字段合法性",
+      "type": "task",
+      "inputs": ["invoice_no", "amount"],
+      "outputs": ["valid", "score"],
+      "depends_on": ["extract"]
+    },
+    {
+      "id": "_terminal_",
+      "name": "结果汇总",
+      "role": "汇总校验结果",
+      "type": "task",
+      "inputs": ["invoice_no", "amount", "date", "valid", "score"],
+      "outputs": ["invoice_no", "amount", "valid", "score"],
+      "depends_on": ["validate"]
+    }
+  ],
+  "state_store": {
+    "type": "json",
+    "path": "./sub_pipeline_state.json"
+  }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Measures whether a skill improvement actually improves AI task execution by running YAML task suites, judging pass/fail results, and reporting execution_pass_rate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improvement Evaluator runs predefined YAML task suites against skill changes, judges pass/fail outcomes, and reports execution pass rate for comparing candidate and baseline performance.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to run predefined task suites against a candidate SKILL.md, compare results with a baseline, and decide whether the change improves execution quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real evaluations can send skill content, task prompts, rubrics, and model outputs through the configured local Claude CLI. <br>
-Mitigation: Use --mock or deterministic judges for sensitive or CI runs, and keep secrets or proprietary data out of task prompts, rubrics, and SKILL.md content. <br>
-Risk: Evaluator runs local scripts and can write state, cache, and evaluation output files. <br>
-Mitigation: Run only trusted task suites and write state, cache, and outputs to a dedicated workspace. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to evaluate whether changes to a SKILL.md improve real task execution by running task suites, comparing against a baseline, and producing pass-rate metrics.
 
-## Reference(s): <br>
-- [Task Suite Format](artifact/references/task-format.md) <br>
-- [Writing Effective Task Suites](artifact/references/writing-tasks-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/auto-improvement-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON evaluation artifacts with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports execution_pass_rate, baseline_pass_rate, delta, verdict, per-task results, and output file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 0.1.0) <br>
+Risk: The skill runs local Claude and pytest-based evaluations on skill and task content without clear sandbox or permission boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a contained evaluation environment, prefer mock mode or a locked-down Claude CLI, and restrict filesystem and network access.
+
+Risk: Task suites and candidate SKILL.md content are untrusted inputs that can influence prompts and local evaluation behavior.
+
+Mitigation: Review task suites before execution, remove unrelated secrets from the environment, and keep pytest fixtures limited to intended evaluation files.
+
+## Reference(s):
+
+- [Task Suite Format](artifact/references/task-format.md)
+- [Writing Effective Task Suites](artifact/references/writing-tasks-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/auto-improvement-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON evaluation artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pass/fail task results, execution pass rate, baseline pass rate, delta, and a verdict; mock mode is available for contained evaluation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

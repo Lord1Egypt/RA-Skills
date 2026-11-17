@@ -1,46 +1,56 @@
-## Description: <br>
-Run Twitter/X read context, approved likes, follows, replies, and OAuth-gated posting through AIsa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Twitter/X likes, follows, replies, and OAuth-gated posting through AIsa for approved account, tweet, and campaign workflows.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users and agent developers use this skill to run explicit Twitter/X engagement and posting workflows when the target account, tweet, campaign, or content has already been chosen and approved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AISA_API_KEY may be exposed in posting or authorization output if scripts print or return credentials. <br>
-Mitigation: Inspect or patch scripts before authorization or posting, use a scoped and revocable key, and avoid running the skill where terminal output is logged or shared. <br>
-Risk: The skill can post, reply, like, follow, unfollow, and upload media to Twitter/X through AIsa. <br>
-Mitigation: Require explicit user approval for external actions, verify relay responses before reporting success, and upload only local files the user attached. <br>
-Risk: Twitter/X queries, account actions, and uploaded media are sent to AIsa's API endpoint. <br>
-Mitigation: Install only if you trust AIsa with that data, and provide only AISA_API_KEY rather than passwords, cookies, or browser credential exports. <br>
+## Use Case:
 
+External users and developers use this skill to research Twitter/X context, request explicit engagement actions, and publish approved posts or replies through AIsa without sharing passwords or browser credentials.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/aisadocs/twitter-post-aisa-aisa-one) <br>
-- [AIsa Twitter Engagement](references/engage_twitter.md) <br>
-- [AIsa Twitter OAuth](references/post_twitter.md) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa Twitter API endpoint](https://api.aisa.one/apis/v1/twitter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON responses from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and user approval for posting, engagement actions, and media uploads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The security summary reports that normal authorize or post commands can expose the full AISA API key in terminal output, agent transcripts, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command output before sharing logs, avoid retaining transcripts that include secrets, and rotate any AISA_API_KEY that may have been exposed.
+
+Risk: The skill sends post content, attached media, and Twitter/X engagement requests to AIsa's relay service.
+
+Mitigation: Install only when the user trusts AIsa with those actions and confirm target accounts, tweets, media, and post text before execution.
+
+## Reference(s):
+
+- [AIsa Twitter Engagement](references/engage_twitter.md)
+- [AIsa Twitter OAuth](references/post_twitter.md)
+- [AIsa](https://aisa.one)
+- [ClawHub Skill Page](https://clawhub.ai/aisadocs/skills/twitter-post-aisa-aisa-one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return authorization links, Twitter/X action status, tweet links or IDs, and API error details.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

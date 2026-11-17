@@ -1,41 +1,53 @@
-## Description: <br>
-Implement UCP Checkout over the MCP (Model Context Protocol) binding to expose checkout operations as MCP tools for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement UCP Checkout over the MCP (Model Context Protocol) binding by exposing checkout operations as MCP tools for AI agents.
 
-## Publisher: <br>
-[ichiorca](https://clawhub.ai/user/ichiorca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichiorca](https://clawhub.ai/user/ichiorca)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement merchant MCP servers or connect agents to existing UCP Checkout MCP endpoints, including Shopify's documented checkout MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may be guided toward completing real checkout purchases without explicit user approval. <br>
-Mitigation: Require affirmative user approval before every purchase or checkout mutation. <br>
-Risk: Checkout integrations can expose payment data, merchant credentials, or purchase authority beyond the intended scope. <br>
-Mitigation: Use least-privilege credentials, redact logs, set spending and merchant limits, and keep audit records for checkout mutations. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement or integrate UCP Checkout as MCP tools for commerce agents, including merchant MCP servers and Shopify MCP integrations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ichiorca/ucp-checkout-mcp) <br>
-- [Shopify checkout MCP documentation](https://shopify.dev/docs/agents/checkout/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; outputs should be reviewed before applying checkout or payment workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agent-driven checkout actions can complete purchases without sufficient user confirmation or spending controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before purchase completion, default to test mode, set spending limits, and log checkout actions.
+
+Risk: Checkout integrations can send credentials or purchase requests to unintended merchants or domains.
+
+Mitigation: Use clear credential handling and enforce merchant and domain allowlists before production use.
+
+## Reference(s):
+
+- [Shopify Checkout MCP documentation](https://shopify.dev/docs/agents/checkout/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with inline code, endpoint mappings, and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides MCP tool definitions, JSON-RPC error handling, metadata requirements, authentication, and checkout integration behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

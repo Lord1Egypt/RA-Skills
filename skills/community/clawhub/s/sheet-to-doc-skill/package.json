@@ -1,0 +1,28 @@
+{
+  "name": "sheet-to-doc-skill",
+  "version": "1.0.0",
+  "description": "Sheet-to-Doc AI Skill - Generate Word documents from Word templates and JSON data",
+  "type": "module",
+  "main": "scripts/generate.js",
+  "scripts": {
+    "generate": "node scripts/generate.js"
+  },
+  "dependencies": {
+    "docxtemplater": "^3.67.6",
+    "pizzip": "^3.2.0"
+  },
+  "keywords": [
+    "document",
+    "generator",
+    "word",
+    "template",
+    "json",
+    "docx",
+    "sheet-to-doc",
+    "skill",
+    "ai-agent"
+  ],
+  "author": "WTSolutions",
+  "license": "MIT License",
+  "homepage": "https://sheet-to-doc.wtsolutions.cn"
+}

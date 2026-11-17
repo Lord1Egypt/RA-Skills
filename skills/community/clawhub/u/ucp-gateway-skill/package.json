@@ -1,6 +1,6 @@
 {
   "name": "@theagenttimes/ucp-gateway-skill",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "OpenClaw MCP Tools skill and local Python helpers for The Agent Times UCP Gateway MCP server, Shopping search, cart, and checkout handoff flow.",
   "private": false,
   "files": [
@@ -15,7 +15,8 @@
     "init": "python3 scripts/init_ucpgateway.py",
     "register": "python3 scripts/register_profile.py",
     "call": "python3 scripts/call_mcp.py",
-    "check": "python3 scripts/check_skill.py && python3 scripts/init_ucpgateway.py --dry-run && python3 scripts/call_mcp.py --help"
+    "check": "python3 scripts/check_skill.py && python3 scripts/init_ucpgateway.py --dry-run && python3 scripts/call_mcp.py --help",
+    "check:live": "uv run python scripts/call_mcp.py --shopping-tools"
   },
   "bin": {
     "ucpgateway-init": "./scripts/init_ucpgateway.py",
@@ -40,7 +41,7 @@
     "type": "git",
     "url": "git+https://github.com/theagenttimes/ucp-gateway-skill.git"
   },
-  "homepage": "https://ucpgateway.theagenttimes.com/",
+  "homepage": "https://ucpg.ai/",
   "bugs": {
     "url": "https://github.com/theagenttimes/ucp-gateway-skill/issues",
     "email": "contact@theagenttimes.com"

@@ -1,44 +1,57 @@
-## Description: <br>
-Helps BSA officers, AML investigators, and FIU staff draft confidential FinCEN SAR Part V narrative packets with 5 W's + H coverage, keyword tagging, quality checks, and BSA-officer review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps BSA officers, AML investigators, and FIU staff draft confidential FinCEN SAR Part V narratives with 5 W's + H coverage, FinCEN keyword tagging, FFIEC quality checks, and a BSA-officer review block.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-BSA officers, AML investigators, transaction-monitoring analysts, and FIU staff at U.S. financial institutions use this skill to turn case files into draft FinCEN SAR Part V narratives. It structures the draft around the required facts, highlights missing information, and keeps the final filing decision with a qualified BSA officer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential SAR material or unnecessary customer identifiers could be exposed in a chat or draft. <br>
-Mitigation: Use only for authorized BSA/AML work; avoid full SSNs, full account numbers, filing credentials, and unnecessary customer identifiers; keep narrative identifiers to last-4 or the institution's approved minimum. <br>
-Risk: A draft narrative could be mistaken for a filing decision or a completed SAR submission. <br>
-Mitigation: Keep every output labeled as a draft, require qualified BSA-officer review, and do not use the skill to submit SARs, contact outside parties, or decide whether the filing threshold is met. <br>
-Risk: Outdated FinCEN keywords, deadlines, or incomplete case facts could produce a misleading draft. <br>
-Mitigation: Verify current FinCEN advisory keywords and filing deadlines, resolve missing 5 W's + H facts before drafting, and review the final packet against institution policy before filing. <br>
+## Use Case:
 
+BSA officers, AML investigators, transaction-monitoring analysts, and FIU staff use this skill to turn suspicious-activity case files into draft FinCEN SAR Part V narrative packets for institutional review before any filing decision or submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/sar-narrative-drafter) <br>
-- [README.md](artifact/README.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft narrative packet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a draft label, FinCEN keyword list, Part V narrative, 5 W's + H coverage matrix, weak-language audit, FFIEC quality self-check, document-retention block, unresolved-information list, and BSA-officer review block.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Confidential SAR material or sensitive identifiers could be exposed if users paste full SSNs, EINs, account numbers, or card numbers into the chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in authorized BSA/AML compliance workflows and provide last-4 identifiers in narrative drafting unless institutional policy requires otherwise.
+
+Risk: Draft narratives, FinCEN keyword tags, or filing posture could be incorrect without institutional review.
+
+Mitigation: Verify current FinCEN keywords, facts, deadlines, and filing decisions through the institution's approved BSA officer review process before any submission.
+
+Risk: A user could misunderstand the draft as a SAR filing or as contact with FinCEN or law enforcement.
+
+Mitigation: Treat every output as a draft only; the skill does not submit SARs, access FinCEN BSA E-Filing, contact law enforcement, or decide whether the filing threshold is met.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/sar-narrative-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft narrative packet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output includes FinCEN keyword tags, a 5 W's + H coverage matrix, FFIEC quality self-check, weak-language audit, retention note, unresolved-information list, and BSA-officer review block.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

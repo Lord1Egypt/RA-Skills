@@ -1,0 +1,15 @@
+{
+  "region": "global",
+  "locale": "en",
+  "market": "ClawHub and all non-domestic Agent Skills stores",
+  "displayName": "550W Watermark & Text Eraser",
+  "description": "Upload images to remove watermarks, upload local videos to erase subtitles or visual watermarks, or paste a TikTok, X or other supported share link to resolve a watermark-free video URL.",
+  "credentialUrl": "https://eraser.550wai.com/api/",
+  "archiveDirectory": "global",
+  "supportedAccess": [
+    "oauth-mcp",
+    "openapi"
+  ],
+  "preferredAccess": "oauth-mcp",
+  "version": "3.1.4"
+}

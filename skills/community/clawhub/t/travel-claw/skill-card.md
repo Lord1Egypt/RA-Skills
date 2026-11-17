@@ -1,40 +1,54 @@
-## Description: <br>
-A whimsical travel adventure generator inspired by the Japanese Travel Frog game. Claw randomly travels to destinations, encounters events, and generates 500-800 word travel logs with optional landscape images. Language adapts to user - Chinese for Chinese users, English otherwise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A whimsical travel adventure generator inspired by the Japanese Travel Frog game that sends Claw to random destinations, creates 500-800 word travel logs, and can include optional landscape images with user consent.
 
-## Publisher: <br>
-[whx405831799](https://clawhub.ai/user/whx405831799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whx405831799](https://clawhub.ai/user/whx405831799)
 
-## Use Case: <br>
-External users use this skill to create whimsical bilingual travel journal entries for a fictional lobster companion, including random destinations, narrative events, optional poetic items, and optional hidden-message hints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic language and nickname inference can surprise users if the conversation context is ambiguous. <br>
-Mitigation: State the preferred language and nickname explicitly when starting the travel prompt. <br>
-Risk: Optional image search contacts public image services when the user asks for a travel photo. <br>
-Mitigation: Use the default text-only mode unless a public landscape image is desired, and approve image search only for that request. <br>
+## Use Case:
 
+External users use this skill for playful bilingual travel storytelling, including randomized destinations, poetic items, hidden location hints, and an optional travel photo prompt.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whx405831799/travel-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Media] <br>
-**Output Format:** [Markdown travel log with optional single landscape image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a 500-800 word Chinese or English story with optional item and hidden-message sections; image output is opt-in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release evidence) <br>
+Risk: The skill uses current conversation context to infer a nickname and output language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the preferred nickname and language explicitly when automatic inference is not desired.
+
+Risk: Optional landscape images rely on public image search after user consent.
+
+Mitigation: Keep the interaction text-only when public image search is not appropriate.
+
+## Reference(s):
+
+- [Travel Claw ClawHub Page](https://clawhub.ai/whx405831799/skills/travel-claw)
+- [Publisher Profile](https://clawhub.ai/user/whx405831799)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown travel log with optional image media after consent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates 500-800 words in Chinese for Chinese users and English otherwise; optional public image search is text-only by default and requires user consent.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

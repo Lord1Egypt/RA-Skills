@@ -1,0 +1,28 @@
+{
+  "name": "iqiyi-skill",
+  "version": "0.3.0",
+  "description": "iQiyi video search, recommendation, and playback skill with a package-style CLI entry.",
+  "license": "Proprietary",
+  "type": "module",
+  "bin": {
+    "iqiyi-cli": "./scripts/iqiyi-cli.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "agents",
+    "docs",
+    "references",
+    "scripts"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "agent-skill",
+    "iqiyi",
+    "video",
+    "search",
+    "recommendation",
+    "playback"
+  ]
+}

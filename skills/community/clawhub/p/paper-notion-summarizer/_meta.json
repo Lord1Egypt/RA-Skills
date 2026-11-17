@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7d0s2010jvvepjxnaphtqfgn81pj20",
-  "slug": "paper-notion-summarizer",
+  "name": "paper-notion-summarizer",
+  "description": "Fetch paper metadata by title or arXiv/DOI link, create a deep structured summary, and post it as a Notion page. The agent reads the paper and writes a seminar-quality summary adapted to the user's language.",
   "version": "1.0.0",
-  "publishedAt": 1771921722472
+  "author": "openclaw-community",
+  "tags": ["research", "papers", "notion", "summarizer", "arxiv"],
+  "requires": ["notion"]
 }

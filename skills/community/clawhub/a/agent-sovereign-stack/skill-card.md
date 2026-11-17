@@ -1,43 +1,56 @@
-## Description: <br>
-Agent Sovereign Stack helps agents register identity on-chain, upload memory to decentralized storage, configure treasury controls, and set up agent-to-agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Sovereign Stack helps developers onboard an agent by uploading identity and memory files to FilStream, registering the agent on Base, optionally deploying a treasury, and setting up agent-to-agent messaging.
 
-## Publisher: <br>
-[quriustus](https://clawhub.ai/user/quriustus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[quriustus](https://clawhub.ai/user/quriustus)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agent operators use this skill to provision decentralized identity, persistent memory, treasury controls, and messaging for OpenClaw-style agents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive identity, memory, and message content may be sent to the configured FilStream service without transport encryption or client-side encryption.
+
+Mitigation: Use only data you are comfortable exposing, inspect files before upload, and add transport encryption or client-side encryption before handling sensitive material.
+
+Risk: The onboarding flow uses wallet private keys for blockchain actions.
+
+Mitigation: Use a dedicated low-balance wallet, avoid passing private keys on the command line, and keep signing credentials outside shared workspaces.
+
+Risk: On-chain registration and treasury deployment can create persistent or irreversible state.
+
+Mitigation: Start on Base Sepolia, confirm addresses and spending policies before execution, and require human review before mainnet transactions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to onboard an AI agent into decentralized identity, memory storage, on-chain registration, treasury policy setup, and mailbox-style agent communication workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles wallet private keys and may initiate blockchain transactions or treasury deployment. <br>
-Mitigation: Use only a fresh low-balance testnet wallet, verify contract addresses and Foundry commands before signing, and avoid primary wallet keys. <br>
-Risk: The skill uploads identity and memory files to external decentralized storage endpoints where data may be exposed or difficult to remove. <br>
-Mitigation: Inspect and redact SOUL.md, MEMORY.md, identity snapshots, and other files before upload, and assume uploaded data may persist. <br>
-Risk: The security review notes advertised encryption or signing should not be relied on until implemented. <br>
-Mitigation: Treat messages and uploaded memory as unencrypted unless independent code review confirms encryption and signing behavior. <br>
+**Output Format:** [Markdown guidance with shell commands, plus terminal summaries and JSON configuration files from scripts.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quriustus/agent-sovereign-stack) <br>
-- [Publisher profile](https://clawhub.ai/user/quriustus) <br>
+**Other Properties Related to Output:** [Execution can upload local identity and memory files, write local agent state, and submit blockchain transactions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown instructions with Python scripts and command-line configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces onboarding summaries, local configuration files, memory CIDs, contract addresses, and mailbox endpoints when executed.] <br>
+1.0.0 (source: evidence.release.version)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

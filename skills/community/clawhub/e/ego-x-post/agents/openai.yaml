@@ -1,0 +1,4 @@
+interface:
+  display_name: "X post"
+  short_description: "Post on X via Ego Lite page.fetch; optional images; login-check first; --yes to send"
+  default_prompt: "Use x-post: run check-login first (exit 2 means stop and ask the human to sign in to x.com inside Ego). Show the draft, including any --image files, and do not pass --yes until the user confirms. --image accepts up to 4 png, jpeg, or webp files; nothing uploads without --yes. Success is the status URL. Do not click the composer. Never type a password or paste cookies."

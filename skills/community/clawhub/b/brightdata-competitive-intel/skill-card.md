@@ -1,47 +1,61 @@
-## Description: <br>
-Real-time competitive intelligence and market research using Bright Data's web scraping infrastructure to analyze competitors' pricing, features, reviews, hiring patterns, content strategy, and market positioning with live web data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time competitive intelligence and market research using Bright Data's web scraping infrastructure, covering competitors' pricing, features, reviews, hiring patterns, content strategy, and market positioning with live web data.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-External users, developers, and business teams use this skill to gather live competitive and market data with Bright Data and turn it into sourced competitor snapshots, pricing comparisons, review intelligence, hiring-signal analysis, SEO/content analysis, market landscape maps, and battlecards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive research queries, target URLs, and market interests may be sent to Bright Data during data collection. <br>
-Mitigation: Avoid confidential internal strategy in scraping queries and review what will be collected before running Bright Data commands. <br>
-Risk: Bright Data usage can incur account costs when broad competitive deep dives run many collection calls. <br>
-Mitigation: Use a quota-limited Bright Data account where possible and set a budget or call limit before running broad research. <br>
-Risk: The skill installs and relies on the Bright Data CLI from an external installer URL. <br>
-Mitigation: Verify the CLI installer source before installation and use the documented one-time login flow. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to gather live competitive and market intelligence, then synthesize it into competitor snapshots, pricing comparisons, review analyses, hiring-signal reports, content and SEO assessments, market landscape maps, and battlecards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meirk-brd/brightdata-competitive-intel) <br>
-- [Bright Data CLI installer](https://cli.brightdata.com/install.sh) <br>
-- [Analysis Frameworks](references/analysis-frameworks.md) <br>
-- [Data Source Guide](references/data-source-guide.md) <br>
-- [Industry Signals](references/industry-signals.md) <br>
-- [Output Templates](references/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with sourced findings, comparison tables, strategic recommendations, and inline shell commands for Bright Data collection.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite source URLs, separate facts from analysis, date-stamp collected data, and identify gaps when live data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install Bright Data CLI through a curl-to-bash command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the installer blindly; prefer an official signed or package-manager install path, or download and verify the installer before executing it.
+
+Risk: The skill depends on live web scraping and a Bright Data CLI login.
+
+Mitigation: Install only where Bright Data use and CLI authentication are acceptable, and limit operation to explicit competitive-research requests.
+
+Risk: Competitive intelligence reports can mislead users if scraped data is incomplete, gated, stale, or uncited.
+
+Mitigation: Require source URLs, collection dates, clear gap disclosure, and separation between gathered facts and strategic interpretation.
+
+## Reference(s):
+
+- [Analysis Frameworks](references/analysis-frameworks.md)
+- [Data Source Selection Guide](references/data-source-guide.md)
+- [Industry Signal Interpretation Guide](references/industry-signals.md)
+- [Output Templates](references/output-templates.md)
+- [Bright Data CLI Installer](https://cli.brightdata.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, analysis, guidance]
+
+**Output Format:** [Markdown reports with tables, source URLs, strategic recommendations, and inline Bright Data CLI commands where data collection is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should cite every data point, separate facts from analysis, state data collection date, and note unavailable or gated sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "before": {
+    "complete": true,
+    "slots": [
+      {
+        "id": "main",
+        "capacity": 1
+      }
+    ],
+    "claims": [
+      {
+        "id": "c-1",
+        "slot_id": "main",
+        "units": 1,
+        "portions": 8,
+        "status": "confirmed",
+        "dish": "Vegetable casserole"
+      }
+    ]
+  },
+  "after": {
+    "complete": false,
+    "slots": [
+      {
+        "id": "main",
+        "capacity": 1
+      }
+    ],
+    "claims": []
+  }
+}

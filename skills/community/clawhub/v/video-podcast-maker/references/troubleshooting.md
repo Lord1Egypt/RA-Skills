@@ -1,6 +1,29 @@
 # Video Podcast Maker — Troubleshooting & Reference
 
-> **When to load:** Claude loads this file when encountering errors, when user asks about preferences, or when user asks about BGM options.
+> **When to load:** Load this file when encountering errors, when the user asks about preferences, or when the user asks about BGM options.
+
+## Contents
+
+- [Discovery (when you're not sure which script to run)](#discovery-when-youre-not-sure-which-script-to-run) — `cli.py` entry point + envelope error codes
+- [Troubleshooting](#troubleshooting) — TTS, FFmpeg, Remotion, encoding, audio-sync fixes
+- [Background Music Options](#background-music-options)
+- [Preference Commands](#preference-commands)
+- [Preference Learning](#preference-learning)
+- [Design Learning Troubleshooting](#design-learning-troubleshooting)
+
+## Discovery (when you're not sure which script to run)
+
+The suite is reachable through one hierarchical entry point at `scripts/cli.py`:
+
+```bash
+python3 scripts/cli.py --help                       # 9 resources
+python3 scripts/cli.py <resource> --help            # actions for one resource
+python3 scripts/cli.py <resource> <action> --help   # full args (forwards to underlying script)
+python3 scripts/cli.py schema                       # JSON list of all 15 methods
+python3 scripts/cli.py schema <method>              # typed parameter schema for one method
+```
+
+When a script fails with a structured envelope (most do — see `--format json`), the `code` field tells an agent how to recover: `input_not_found`, `input_invalid`, `auth_missing_env`, `tool_missing`, `validation_failed`, `confirmation_required`, `ffmpeg_failed`, `backend_failed`, `internal_error`. Direct invocations (`python3 scripts/<name>.py ...`) still work — the dispatcher is additive.
 
 ## Troubleshooting
 
@@ -165,7 +188,7 @@ sudo apt install fonts-noto-cjk
 
 ### Included Tracks
 
-Available at `${CLAUDE_SKILL_DIR}/assets/`:
+Available at `${SKILL_DIR}/assets/`:
 
 | Track | Mood | Best For |
 |-------|------|----------|
@@ -212,14 +235,14 @@ Users can manage preferences in conversation:
 
 User says: "show preferences" / "显示偏好设置"
 
-Claude outputs current settings summary (visual, TTS, content, topic patterns, learning history count).
+The agent outputs the current settings summary (visual, TTS, content, topic patterns, learning history count).
 
 ### Reset Preferences
 
 User says: "reset preferences" / "重置偏好"
 
 ```bash
-cp ${CLAUDE_SKILL_DIR}/user_prefs.template.json ${CLAUDE_SKILL_DIR}/user_prefs.json
+cp ${SKILL_DIR}/user_prefs.template.json ${SKILL_DIR}/user_prefs.json
 echo "✓ Preferences reset to defaults"
 ```
 
@@ -227,13 +250,13 @@ echo "✓ Preferences reset to defaults"
 
 User says: "save this as tech default" / "把这个设置保存为科技类默认"
 
-Claude extracts current visual/tts/content settings, updates `topic_patterns.tech`.
+The agent extracts current visual/TTS/content settings and updates `topic_patterns.tech`.
 
 ### Manual Preference Setting
 
 User says: "set speech rate to +10%" / "dark theme as default" / "title always 100px"
 
-Claude directly updates the corresponding field in `user_prefs.json`.
+The agent directly updates the corresponding field in `user_prefs.json`.
 
 ### Platform & Language Commands
 
@@ -283,14 +306,14 @@ URL extraction is experimental. Fallback options:
 
 ### Vision analysis colors look wrong
 
-Color values from Claude Vision are approximate. After reviewing the report:
+Color values from image analysis are approximate. After reviewing the report:
 - Adjust colors manually: edit report.json or override when creating the style profile
 - Use a color picker tool on the screenshots for precise hex values
 
 ### Style profile not applied
 
 Check priority chain: `style_profiles` only override when explicitly specified by name.
-Verify: `python3 learn_design.py --list` shows the reference exists.
+Verify: `python3 scripts/learn_design.py --list` shows the reference exists.
 Verify: `user_prefs.json` → `style_profiles` → your profile name exists with correct props_override.
 
 ### Orphaned references (deleted directory but still in index)

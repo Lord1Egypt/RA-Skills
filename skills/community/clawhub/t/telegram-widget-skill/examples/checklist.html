@@ -1,0 +1,47 @@
+<style>
+body{margin:0;padding:12px 14px max(10px,env(safe-area-inset-bottom))}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+h3{margin:0;font-size:1.05em}
+.count{color:var(--tg-theme-hint-color);font-variant-numeric:tabular-nums;font-size:.9em}
+.track{height:6px;border-radius:3px;background:var(--tg-theme-secondary-bg-color);margin:8px 0 6px}
+.fill{height:100%;border-radius:3px;background:var(--tg-theme-button-color);transition:width .5s}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;gap:10px;align-items:center;padding:6px 0;border-top:1px solid var(--tg-theme-section-separator-color)}
+li:first-child{border-top:0}
+.box{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--tg-theme-hint-color);
+  display:grid;place-items:center;font-size:12px;line-height:1;color:var(--tg-theme-button-text-color)}
+.done .box{background:var(--tg-theme-button-color);border-color:var(--tg-theme-button-color)}
+.done .txt{color:var(--tg-theme-hint-color);text-decoration:line-through}
+.more{color:var(--tg-theme-hint-color);font-size:.85em;padding-top:4px}
+</style>
+<div class="head"><h3 id="title">Checklist</h3><span class="count" id="count"></span></div>
+<div class="track"><div class="fill" id="fill" style="width:0"></div></div>
+<ul id="list"></ul>
+<div class="more" id="more"></div>
+<script>
+const TW = window.TelegramWidget;
+const $ = (id) => document.getElementById(id);
+const MAX = 12;
+function draw() {
+  let s = null;
+  try { s = JSON.parse(TW && TW.chatData); } catch (e) {}
+  if (!s || !Array.isArray(s.i)) return;
+  const done = s.i.filter((x) => x[1]).length;
+  $('title').textContent = s.t || 'Checklist';
+  $('count').textContent = done + ' / ' + s.i.length;
+  $('fill').style.width = (s.i.length ? done / s.i.length * 100 : 0) + '%';
+  $('list').replaceChildren(...s.i.slice(0, MAX).map(([text, ok]) => {
+    const li = document.createElement('li'), box = document.createElement('span'), t = document.createElement('span');
+    li.className = ok ? 'done' : '';
+    box.className = 'box';
+    box.textContent = ok ? '✓' : '';
+    t.className = 'txt';
+    t.textContent = text;
+    li.append(box, t);
+    return li;
+  }));
+  $('more').textContent = s.i.length > MAX ? '+' + (s.i.length - MAX) + ' more' : '';
+}
+if (TW) TW.onEvent('chatDataChanged', draw);
+draw();
+</script>

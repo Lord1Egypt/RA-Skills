@@ -1,43 +1,53 @@
-## Description: <br>
-Helps creators draft Xiaohongshu-style viral titles, post copy, emoji guidance, hashtag strategies, publishing suggestions, and platform adaptation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu Copywriter helps creators draft high-engagement Xiaohongshu posts, including title options, structured body copy, emoji guidance, hashtag strategy, publishing suggestions, and beta features for rewriting post structures and adapting content across platforms.
 
-## Publisher: <br>
-[ysy88092144](https://clawhub.ai/user/ysy88092144) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysy88092144](https://clawhub.ai/user/ysy88092144)
 
-## Use Case: <br>
-Content creators, brand operators, ecommerce teams, and individual professionals use this skill to draft Xiaohongshu posts, generate title options, structure copy, choose hashtags, and adapt content ideas for other social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose credentials when configuring beta or Pro features. <br>
-Mitigation: Do not paste real API keys into chats, screenshots, issue reports, or shared logs. <br>
-Risk: The viral-post imitation workflow may encourage copying content without permission. <br>
-Mitigation: Use referenced posts only for high-level inspiration and only when the user owns or has permission to reference the content. <br>
-Risk: Beta, Pro, or distribution claims may be inaccurate or require off-platform trust decisions. <br>
-Mitigation: Verify beta, Pro, API key, and distribution claims with the publisher before providing credentials or relying on access promises. <br>
+## Use Case:
 
+Content creators, brand operators, e-commerce teams, and personal IP builders use this skill to draft Xiaohongshu posts, create title/body/hashtag suggestions, and adapt content for Douyin, Weibo, WeChat public accounts, and Bilibili.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ysy88092144/xiaohongshu-viral-writer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ysy88092144) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured copywriting guidance and generated post text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include title options, body copy, emoji usage advice, hashtag groups, publishing suggestions, and platform adaptation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Pro API keys may be exposed if pasted into shared prompts, transcripts, or configuration text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat any Pro API key as a secret credential and avoid sharing it in public or collaborative contexts.
+
+Risk: The rewrite feature can be misused to copy another creator's text, style, or platform-protected content.
+
+Mitigation: Use rewrite outputs to learn general structure and generate original content rather than duplicating another creator's expression.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysy88092144/skills/xiaohongshu-viral-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese copywriting guidance and generated content blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include title options, body copy, emoji guidance, hashtag recommendations, publishing suggestions, structure analysis, and platform adaptation guidance.]
+
+## Skill Version(s):
+
+1.4.0 (source: server evidence and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

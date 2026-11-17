@@ -1,37 +1,48 @@
-## Description: <br>
-Opinionated constraints for building better interfaces with agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opinionated constraints for building better interfaces with agents.
 
-## Publisher: <br>
-[CorrectRoadH](https://clawhub.ai/user/CorrectRoadH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[correctroadh](https://clawhub.ai/user/correctroadh)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to apply consistent frontend implementation preferences around accessible components, Tailwind CSS conventions, animation limits, layout, typography, and UI polish. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer frontend choices toward specific UI conventions, libraries, and animation limits that do not fit every target project. <br>
-Mitigation: Review the design constraints against the target stack, design system, and product style before installing or applying the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Base UI React Components](https://base-ui.com/react/components) <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to guide agents toward accessible, performant, and consistent interface implementation choices.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance for agent behavior and frontend implementation decisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool calls, credentials, or data access are included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contains opinionated UI requirements that can influence library, styling, and component choices during frontend work.
+
+Mitigation: Review project-specific design and technology requirements before applying the guidance, and give the agent explicit instructions when local preferences should take precedence.
+
+## Reference(s):
+
+- [Base UI React Components](https://base-ui.com/react/components)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown guidance that agents apply to frontend code and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden code, persistence, or sensitive access was identified by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

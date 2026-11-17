@@ -1,43 +1,53 @@
-## Description: <br>
-Scan your installed ClawHub skills for dangerous code patterns, including credential harvesting, shell injection, unauthorized network calls, and known malicious signatures, and produce a per-skill safety report with SAFE, WARN, or DANGEROUS ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Safety Scanner audits installed ClawHub skills for dangerous code patterns and produces per-skill SAFE, WARN, or DANGEROUS reports with removal guidance.
 
-## Publisher: <br>
-[infectit007](https://clawhub.ai/user/infectit007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infectit007](https://clawhub.ai/user/infectit007)
 
-## Use Case: <br>
-Developers and operators use this skill to audit installed ClawHub skills before trusting them, after installing new skills, or when they want a local summary of scanner findings. It formats OpenClaw security audit results into actionable safety ratings and review or removal guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup commands can remove installed skills if the wrong skill name or path is approved. <br>
-Mitigation: Confirm the DANGEROUS rating, skill name, and filesystem path before approving uninstall or rm -rf commands. <br>
-Risk: Recurring scans can create persistent scheduled activity and store scan summaries in memory. <br>
-Mitigation: Only add the cron schedule when recurring local audits and retained summaries are desired. <br>
-Risk: WARN ratings may reflect legitimate shell execution or environment access rather than malicious behavior. <br>
-Mitigation: Review the cited source path and evidence before treating WARN findings as malicious. <br>
+## Use Case:
 
+Developers, security reviewers, and ClawHub users use this skill to locally audit installed skills before trusting them, after installing new skills, or during incident response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infectit007/skill-safety-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/infectit007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Per-skill SAFE, WARN, or DANGEROUS ratings with evidence, recommendations, and optional user-approved cleanup or scheduling commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review classifies the release as suspicious because its removal template includes an unsafe raw rm -rf command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the official uninstall command or remove only a validated, canonical skill path after reviewing the exact command.
+
+Risk: The scheduling example can persistently report scan findings to memory.
+
+Mitigation: Enable scheduled reporting only after confirming where findings are stored and how untrusted evidence is sanitized.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/infectit007/skills/skill-safety-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes SAFE/WARN/DANGEROUS ratings, evidence snippets, recommendations, and optional removal commands requiring confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

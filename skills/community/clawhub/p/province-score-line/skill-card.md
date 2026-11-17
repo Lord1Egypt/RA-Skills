@@ -1,44 +1,55 @@
-## Description: <br>
-An information retrieval assistant for GaoKao regional score lines, designed to help candidates query admission cut-off scores, admission batches, and corresponding rankings across different regions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An information retrieval assistant for GaoKao regional score lines, designed to help candidates query admission cut-off scores, admission batches, and corresponding rankings across different regions.
 
-## Publisher: <br>
-[jhl-det](https://clawhub.ai/user/jhl-det) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhl-det](https://clawhub.ai/user/jhl-det)
 
-## Use Case: <br>
-External candidates, families, and education advisors use this skill to look up GaoKao regional admission score lines, admission batches, and rankings by province, year, subject track, and batch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup filters are sent to Tencent's GaoKao endpoint. <br>
-Mitigation: Avoid including unnecessary personal information in prompts or lookup parameters. <br>
-Risk: The trigger phrase is broad and may activate on unrelated score-line queries. <br>
-Mitigation: Review whether the user's request is about GaoKao regional score lines before using the skill's result. <br>
-Risk: Admission score-line data can be stale or mismatched if the inferred province, year, subject track, or batch is wrong. <br>
-Mitigation: Confirm ambiguous lookup filters with the user and cite the queried filters in the response. <br>
+## Use Case:
 
+External users and education-focused agents use this skill to answer Chinese GaoKao score-line questions by province, year, student category, and admission batch. It helps candidates retrieve and summarize regional cut-off scores and rankings.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jhl-det/province-score-line) <br>
-- [Tencent GaoKao score-line data page](https://m.gaokao.cn/proscore?fromcoop=sougou) <br>
-- [Tencent GaoKao lookup endpoint](https://gaokao.search.qq.com/skills_data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise natural-language answers, with shell command invocation when the helper script is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers are based on matched province, year, subject track, and admission batch filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Query details are sent to Tencent's GaoKao data endpoint when the bundled lookup script runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the external data request before deployment where policy requires it, and avoid sending unnecessary sensitive personal information in lookup prompts.
+
+Risk: Admission score-line data may be incomplete, unavailable, or stale relative to official admissions notices.
+
+Mitigation: Use retrieved results as informational guidance and verify high-impact admissions decisions against official provincial examination authority publications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhl-det/skills/province-score-line)
+- [Tencent GaoKao score data endpoint](https://gaokao.search.qq.com/skills_data)
+- [GaoKao score reference page](https://m.gaokao.cn/proscore?fromcoop=sougou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise natural-language answer with retrieved score-line data and optional command-backed query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses province, year, student category, and admission batch filters when present; asks for a province when the user query does not identify one.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence, released 2026-05-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -67,8 +67,11 @@ airbnb-gateway/
 
 ## Status
 
-v0.1.0 — read operations + verified single-send. Calendar/pricing/listing
-mutations are intentionally **out of scope** until v2 (refuse + escalate).
+v0.2.x — read operations, verified single-send, and **approval-gated calendar
+mutations** (block/open dates, nightly price) under an explicit per-operation
+approval gate with mandatory fresh-load verification (tier MUTATE-CAL). Listing
+edits, accept/decline, and refunds remain intentionally **out of scope** (tier
+MUTATE-RESTRICTED — refuse + escalate).
 
 ## License
 

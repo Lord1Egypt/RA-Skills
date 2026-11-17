@@ -1,0 +1,60 @@
+# LLM-Wiki 配置文件
+# 将此文件复制为 config.yaml 并修改为你的环境
+
+lint:
+  depth:
+    # 启发式内容深度检查默认启用，但只报告 warning，不改变 lint 退出码。
+    enabled: true
+    min_knowledge_chars: 500
+    min_meaningful_paragraphs: 3
+    multi_source_threshold: 3
+    multi_source_min_knowledge_chars: 800
+    source_volume_threshold: 10000
+    compression_ratio_warning: 0.01
+    extreme_source_volume_threshold: 20000
+    extreme_compression_max_knowledge_chars: 1500
+    # 下列标签默认跳过深度检查；页面也可用 frontmatter `lint_depth: skip` 显式豁免。
+    skip_tags:
+      - QRF
+
+embedding:
+  # 是否启用 embedding 检索（默认 false，保持纯符号导航）
+  enabled: false
+
+  # 提供者: ollama | openai | mcp
+  provider: ollama
+
+  # 模型名称（Provider 特定）
+  model: nomic-embed-text
+
+  ollama:
+    base_url: http://localhost:11434
+
+  openai:
+    api_key: "${OPENAI_API_KEY}"
+    # 可选：自定义 endpoint（如兼容 OpenAI 的第三方服务）
+    # base_url: https://api.openai.com/v1
+
+  mcp:
+    # 传输方式: stdio | sse
+    transport: stdio
+    # stdio 配置
+    command: python
+    args: ["-m", "my_embedding_server"]
+    env: {}
+    # sse 配置
+    # url: http://localhost:3000/sse
+    # 工具名（可选，留空则自动发现）
+    tool_name: embed
+
+retrieval:
+  # 混合搜索返回的 top-k 结果数
+  top_k: 10
+
+  # 各信号权重（总和不必为 1，仅影响相对比例）
+  keyword_weight: 0.3
+  vector_weight: 0.5
+  link_weight: 0.2
+
+  # 是否启用链接遍历增强
+  enable_link_traversal: true

@@ -1,43 +1,54 @@
-## Description: <br>
-Perform web searches using various search engines and APIs. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Perform web searches using various search engines and APIs.
 
-## Publisher: <br>
-[roryyu](https://clawhub.ai/user/roryyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roryyu](https://clawhub.ai/user/roryyu)
 
-## Use Case: <br>
-Developers and agents use this skill as documentation and sample guidance for web content extraction and keyword search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact is documentation/sample material and does not include the scripts or package files needed to run the described commands. <br>
-Mitigation: Treat this version as guidance; verify or provide the missing implementation before execution. <br>
-Risk: Search queries, URLs, and retrieved page content may be shared with named external web providers. <br>
-Mitigation: Do not submit private intranet URLs, tokenized links, secrets, customer data, or confidential search terms unless approved for those providers. <br>
-Risk: A future version that adds executable scripts or package files may change the security posture. <br>
-Mitigation: Re-review and rescan any future version that includes executable code or dependency manifests. <br>
+## Use Case:
 
+Developers and agents use this skill as a documented pattern for reading web page content with Jina Reader and running keyword searches through Exa. The published 0.1.1 artifact is documentation-only, so referenced runtime scripts and package files should be supplied or restored before use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/roryyu/websearch-free-skill) <br>
-- [Jina Reader API](https://r.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with JavaScript examples and shell command snippets; sample runtime outputs are JSON or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current artifact contains documentation and sample code only; no executable payload is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence release.version) <br>
+Risk: URLs and search queries may be sent to Jina Reader or Exa, which can expose secret tokens in URLs, private internal links, or confidential research terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using secret-bearing URLs, private internal links, or confidential search terms unless sharing those inputs with those services is acceptable.
+
+Risk: The published artifact is documentation-only and may not run as described because referenced scripts and package files are absent.
+
+Mitigation: Verify or restore the runtime scripts, package metadata, and dependencies before deploying or invoking the described Node commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roryyu/skills/websearch-free-skill)
+- [Jina Reader API](https://r.jina.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown documentation with JavaScript and bash examples; described runtime outputs are JSON or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Published artifact contains documentation only and requires node and npm if the described scripts are restored.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Construction estimating for the Russian market: local estimates, BOQ, KS-2, KS-3, defect inspection, material calculation and estimate audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Construction estimating for the Russian market: local estimates, BOQ, KS-2, KS-3, defect inspection, material calculation and estimate audit.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-External construction companies, foremen, estimators, customers, developers, and technical clients use this skill to prepare and review Russian-market estimates, material calculations, BOQs, defect reports, KS-2/KS-3 documents, tender packages, and estimate audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Russian Federation <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive project, contractor, pricing, and company details. <br>
-Mitigation: Use it only in an agent environment approved for that data and avoid entering confidential details unless the surrounding agent and storage are authorized. <br>
-Risk: Installer and packaging files reference a .env.example file that is not present in the artifact. <br>
-Mitigation: Review the installer before running it and fix or confirm the missing template before deployment. <br>
-Risk: Construction norms, regional coefficients, tax treatment, and legal document requirements can change or vary by project. <br>
-Mitigation: Independently verify current regional coefficients, norms, and legal requirements before using outputs for contracts, tenders, or payment documents. <br>
+## Use Case:
 
+External construction teams, estimators, foremen, customers, contractors, and developers use this skill to draft Russian-market estimates, bills of quantities, material calculations, KS-2/KS-3 documents, tender proposals, and estimate audits.
 
-## Reference(s): <br>
-- [ClawHub listing: Estimator Pro](https://clawhub.ai/raaipro/raai-estimator-pro) <br>
-- [Publisher profile: raaipro](https://clawhub.ai/user/raaipro) <br>
-- [README](README.md) <br>
-- [Onboarding Guide](docs/onboarding.md) <br>
-- [ROI Guide](docs/roi.md) <br>
-- [Anti-Fail Guide](docs/anti-fail.md) <br>
+### Deployment Geography for Use:
 
+Russia
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables and structured estimating documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on project measurements, region, price base, tax treatment, and current construction norms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.4 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Generated prices, Russian norms, KS-2/KS-3 forms, and audit recommendations may be outdated or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafts and verify them against current official sources with a qualified estimator or legal/commercial reviewer.
+
+Risk: Bundled helper shell scripts are reported as malformed.
+
+Mitigation: Do not rely on the helper scripts until they are fixed and reviewed.
+
+Risk: Weak input data such as missing measurements, unclear work scope, or missing region can make estimates misleading.
+
+Mitigation: Require measured volumes, work composition, region, pricing base, and relevant source documents before using outputs for decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/raaipro/skills/raai-estimator-pro)
+- [README](README.md)
+- [Anti-fail and limits](docs/anti-fail.md)
+- [Onboarding](docs/onboarding.md)
+- [ROI model](docs/roi.md)
+- [Quick start examples](examples/quick-start.md)
+- [Full example library](examples/full-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and structured construction-estimate documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language estimating outputs; reliable use requires region, scope of work, measured volumes, and current official pricing inputs.]
+
+## Skill Version(s):
+
+3.5.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

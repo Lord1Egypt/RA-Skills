@@ -1,44 +1,61 @@
-## Description: <br>
-Full Confluence Cloud REST API v2 skill for pages, spaces, folders, databases, whiteboards, comments, labels, tasks, properties, authentication, pagination, and migration from confluence-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full Confluence Cloud REST API v2 skill for pages, spaces, folders, databases, whiteboards, comments, labels, tasks, properties, and related workflows with Basic or OAuth authentication, pagination, and confluence-cli migration helpers.
 
-## Publisher: <br>
-[pangin](https://clawhub.ai/user/pangin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pangin](https://clawhub.ai/user/pangin)
 
-## Use Case: <br>
-Developers and Confluence administrators use this skill to let an agent work with Confluence Cloud REST API v2 resources, including content, spaces, permissions, labels, tasks, and administrative endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use broad Confluence credentials for creating, updating, deleting, inviting users, redacting content, and admin-key actions. <br>
-Mitigation: Use least-privilege tokens or OAuth scopes and require explicit human review before destructive, invite, redaction, or admin-key commands. <br>
-Risk: Credential configuration may expose Confluence email, API token, OAuth token, or admin-key settings if stored carelessly. <br>
-Mitigation: Keep local .env files out of source control and restrict file permissions for credential files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pangin/openclaw-confluence-skill) <br>
-- [OpenAPI spec](refs/openapi-v2.v3.json) <br>
-- [Endpoints list](refs/endpoints.md) <br>
-- [OAuth scopes](refs/scopes.md) <br>
-- [Usage tips](refs/usage.md) <br>
-- [Quick test checklist](refs/tests.md) <br>
+## Use Case:
 
+Developers and Confluence workspace administrators use this skill to automate Confluence Cloud REST API v2 workflows, including content, spaces, permissions, labels, tasks, properties, and migration-related operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports paginated Confluence API calls and Basic or OAuth authentication through environment configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live credentials can authorize broad Confluence read, write, delete, invite, role, admin-key, redaction, and ad-hoc API operations.
+
+Mitigation: Use least-privilege credentials, verify the tenant URL before use, and require separate human review for delete, invite, role, admin-key, redaction, and ad-hoc calls.
+
+Risk: Credential storage and destination safeguards are weak for a skill that can load tokens from environment or local configuration.
+
+Mitigation: Keep tokens out of project .env files, prefer managed secret storage, rotate credentials regularly, and avoid sharing configured workspaces.
+
+Risk: Ad-hoc API calls can target high-impact endpoints when supplied with an arbitrary method, path, and body.
+
+Mitigation: Review the exact HTTP method, endpoint path, payload, and expected tenant impact before running generated ad-hoc commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pangin/skills/openclaw-confluence-skill)
+- [OpenAPI spec](refs/openapi-v2.v3.json)
+- [Endpoints list](refs/endpoints.md)
+- [OAuth scopes](refs/scopes.md)
+- [Usage tips](refs/usage.md)
+- [Test checklist](refs/tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API request or response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Confluence Cloud Basic or OAuth credentials; list commands may follow pagination with --all.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

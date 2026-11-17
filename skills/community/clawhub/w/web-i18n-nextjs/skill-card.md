@@ -1,43 +1,56 @@
-## Description: <br>
-Internationalization (i18n) guide for Next.js / Node.js web applications using the App Router, covering translation file structure, locale routing, locale-aware SEO metadata, hreflang, structured JSON-LD data, UI component translations, and multi-language sitemap generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Internationalization (i18n) guide for Next.js and Node.js web applications using the App Router, covering translation file structure, locale routing, SEO metadata, hreflang, JSON-LD, UI translations, and multi-language sitemaps.
 
-## Publisher: <br>
-[javainthinking](https://clawhub.ai/user/javainthinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[javainthinking](https://clawhub.ai/user/javainthinking)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or maintain internationalization in Next.js App Router projects, including locale dictionaries, routing, metadata, structured data, and sitemaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example code that renders HTML or interpolates translation values can become unsafe if copied into production with user-controlled, CMS, or external API content. <br>
-Mitigation: Review uses of dangerouslySetInnerHTML and translation interpolation before production use, and sanitize or escape any values that may come from untrusted sources. <br>
-Risk: This is a coding guidance skill, not a security library. <br>
-Mitigation: Treat generated implementation suggestions as reviewable guidance and apply project security review before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Translation Files Reference](references/translation-files.md) <br>
-- [Routing & Middleware Reference](references/routing.md) <br>
-- [SEO Metadata Reference](references/seo-metadata.md) <br>
-- [Structured JSON-LD Data Reference](references/structured-data.md) <br>
-- [Multi-Language Sitemap Reference](references/sitemap.md) <br>
+## Use Case:
 
+Developers and web engineers use this skill to add or maintain internationalization in Next.js App Router applications, including locale-aware translations, routing, metadata, structured data, and sitemaps.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and XML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools, MCP servers, API calls, or credential environment variables are detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review flags one JSON-LD example as unsafe when dynamic CMS or translation-controlled content is inserted into script tags.
+
+Mitigation: Use an HTML-safe JSON serializer or equivalent escaping before rendering dynamic JSON-LD in script tags.
+
+Risk: The skill assumes English clean URLs as the root/default locale convention.
+
+Mitigation: Confirm the project's default-locale URL policy and adjust examples when English should not be the unprefixed root locale.
+
+## Reference(s):
+
+- [Translation Files Reference](references/translation-files.md)
+- [Routing & Middleware Reference](references/routing.md)
+- [SEO Metadata Reference](references/seo-metadata.md)
+- [Structured JSON-LD Data Reference](references/structured-data.md)
+- [Multi-Language Sitemap Reference](references/sitemap.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and XML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on implementation checklists and project-specific adaptation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

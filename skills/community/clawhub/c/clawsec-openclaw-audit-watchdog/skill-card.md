@@ -1,41 +1,68 @@
-## Description: <br>
-Automates daily OpenClaw security audits by creating or updating a recurring cron job and delivering formatted reports to configured DM and optional email recipients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated daily security audits for OpenClaw agents with DM delivery and optional email reporting.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and security operators use this skill to schedule recurring OpenClaw security audits, summarize standard and deep audit findings, and deliver reports to configured recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can create an unattended recurring security-audit job and send reports to external DM or email recipients. <br>
-Mitigation: Enable it only when recurring audits are intended; verify recipients, schedule, install directory, SMTP/sendmail settings, and how to disable or remove the OpenClaw cron job. <br>
-Risk: Broad triggers and limited final confirmation can make accidental activation plausible. <br>
-Mitigation: Invoke it by exact skill name, review the preflight details before persistence, and keep required recipient environment variables unset until setup is intended. <br>
+## Use Case:
 
+Developers and security operators use this skill to schedule recurring OpenClaw security audits, summarize findings, and deliver reports to configured DM targets with optional email copies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-openclaw-audit-watchdog) <br>
-- [Skill homepage](https://clawsec.prompt.security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text reports with shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates an unattended OpenClaw cron job when configured; requires bash, openclaw, node, and DM recipient environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: frontmatter, changelog, skill.json, and server release evidence) <br>
+Risk: The skill creates or updates a recurring unattended OpenClaw audit job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only on hosts where persistent auditing is intended; review the schedule, timezone, install directory, and runtime requirements before setup.
+
+Risk: Audit reports are delivered to a configured DM target and may also be sent by email.
+
+Mitigation: Verify PROMPTSEC_DM_CHANNEL, PROMPTSEC_DM_TO, and PROMPTSEC_EMAIL_TO before installation; leave email unset when external copies are not required.
+
+Risk: PROMPTSEC_GIT_PULL can update the installed skill before audits run when enabled.
+
+Mitigation: Leave PROMPTSEC_GIT_PULL disabled unless updates are controlled by a trusted release process.
+
+Risk: SMTP fallback may send reports through a configured relay.
+
+Mitigation: Prefer local sendmail or a trusted SMTP relay and avoid remote plaintext SMTP for sensitive audit output.
+
+Risk: Standalone installs rely on release artifact integrity.
+
+Mitigation: Verify the signed release manifest, public key fingerprint, archive checksum, and SKILL.md/skill.json hashes before extraction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/clawsec-openclaw-audit-watchdog)
+- [Skill Homepage](https://clawsec.prompt.security)
+- [README](README.md)
+- [Security Audit Configuration Examples](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audit setup guidance and formatted security audit reports; requires bash, openclaw, node, and configured DM recipient environment variables.]
+
+## Skill Version(s):
+
+0.1.9 (source: SKILL.md frontmatter, skill.json, changelog released 2026-06-23, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

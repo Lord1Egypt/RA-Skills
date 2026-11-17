@@ -1,37 +1,53 @@
-## Description: <br>
-Classifies the current crypto macro regime using Fear & Greed Index, BTC dominance, Reddit sentiment, on-chain signals, and macro news, returning a regime label, bias direction, and asset-specific adjustments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies crypto market regimes using Fear & Greed, BTC dominance, sentiment, on-chain signals, and macro news, then returns a regime label, confidence, drivers, and bias adjustments.
 
-## Publisher: <br>
-[JamieRossouw](https://clawhub.ai/user/JamieRossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamierossouw](https://clawhub.ai/user/jamierossouw)
 
-## Use Case: <br>
-External users and developers use this skill for crypto market context, macro regime detection, portfolio bias analysis, and asset-specific trading posture adjustments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market regime and allocation outputs can be wrong or stale if public data, sentiment, or news inputs change. <br>
-Mitigation: Treat outputs as analysis, verify current data at the time of use, and do not rely on them as guaranteed financial advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JamieRossouw/crypto-macro-regime) <br>
+## Use Case:
 
+External users and agents use this skill for crypto macro analysis, market regime detection, portfolio bias context, and daily market briefings. Outputs should be treated as market context rather than personalized financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with a regime label, confidence, market drivers, bias adjustments, and allocation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are analytical guidance and should be checked against current market data before trading decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Outputs may sound like actionable crypto trading or portfolio-allocation advice.
+
+Mitigation: Use outputs only as market context, and require independent review before making trades, allocation changes, or personalized financial decisions.
+
+Risk: Market regime labels can become stale when sentiment, macro news, or crypto market conditions change quickly.
+
+Mitigation: Refresh source data and check timestamped market inputs before relying on a regime classification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamierossouw/skills/crypto-macro-regime)
+- [Publisher profile](https://clawhub.ai/user/jamierossouw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown or plain text analysis with regime labels, confidence, drivers, and allocation or bias guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-context commentary based on external sentiment, macro, dominance, and Fear & Greed signals.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

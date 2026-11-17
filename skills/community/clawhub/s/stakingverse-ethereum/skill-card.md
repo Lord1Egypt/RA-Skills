@@ -1,44 +1,59 @@
-## Description: <br>
-Helps agents prepare StakeWise V3 Ethereum staking workflows, check vault state, and inspect staked positions using keeper and subgraph data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stake ETH on StakeWise V3, check staked positions, and inspect vault state using Ethereum mainnet scripts that query keeper and harvest proof data.
 
-## Publisher: <br>
-[LUKSOAgent](https://clawhub.ai/user/LUKSOAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luksoagent](https://clawhub.ai/user/luksoagent)
 
-## Use Case: <br>
-External users and developers can use this skill to work with StakeWise V3 liquid staking on Ethereum mainnet, including staking ETH, checking vault state, and reviewing osETH-backed positions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and broadcast real Ethereum mainnet staking transactions using a raw private key. <br>
-Mitigation: Use a dedicated low-balance wallet, never a primary wallet key, and verify the amount, gas, network, vault address, receiver address, and transaction data before broadcasting. <br>
-Risk: The reviewed package advertises unstaking but does not include the advertised unstake command. <br>
-Mitigation: Confirm the available scripts before relying on unstaking behavior, and review or implement any unstake flow separately before use. <br>
-Risk: The staking flow depends on external RPC and StakeWise subgraph data for live Ethereum mainnet operations. <br>
-Mitigation: Independently verify StakeWise endpoints and contract addresses, and inspect fetched harvest parameters before submitting a transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stakingverse Ethereum ClawHub page](https://clawhub.ai/LUKSOAgent/stakingverse-ethereum) <br>
-- [StakeWise Docs](https://docs.stakewise.io) <br>
-- [StakeWise App](https://app.stakewise.io) <br>
-- [StakeWise Mainnet Subgraph](https://graphs.stakewise.io/mainnet-a/subgraphs/name/stakewise/prod) <br>
+## Use Case:
 
+Developers and Ethereum wallet operators use this skill to stake ETH on StakeWise V3, check osETH-backed positions, and inspect whether vault state updates are required before deposits.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Ethereum mainnet transaction commands and environment-variable configuration that require human review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The staking command can submit live Ethereum mainnet transactions that spend ETH and incur gas immediately.
+
+Mitigation: Use only a dedicated low-balance wallet and verify the vault, chain, amount, receiver, and gas before every run.
+
+Risk: The staking flow relies on a raw private key supplied through the environment.
+
+Mitigation: Avoid using a valuable raw private key; prefer a disposable wallet or a safer key-management workflow outside the skill.
+
+Risk: StakeWise deposits depend on current vault state and harvest proof data.
+
+Mitigation: Check vault state and query fresh harvest data immediately before staking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luksoagent/skills/stakingverse-ethereum)
+- [StakeWise App](https://app.stakewise.io)
+- [StakeWise Docs](https://docs.stakewise.io)
+- [StakeWise Mainnet Subgraph](https://graphs.stakewise.io/mainnet-a/subgraphs/name/stakewise/prod)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ethereum mainnet transaction commands and configuration values for wallet, address, vault, and RPC settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

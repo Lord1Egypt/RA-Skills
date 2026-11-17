@@ -1,41 +1,59 @@
-## Description: <br>
-Conducts industry, keyword, search-intent, audience-question, content-gap, competitor-keyword, and SERP research using Ahrefs, Firecrawl, and Exa to produce a comprehensive intelligence brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates industry, keyword, search-intent, audience, content-gap, and competitor research using Ahrefs, Firecrawl, and Exa to produce a comprehensive intelligence brief.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, content, and campaign teams use this skill to understand search demand, map keyword intent, collect audience questions and pain points, identify content gaps, and summarize competitor positioning before campaign planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client details, proprietary strategy, or campaign inputs may be sent to external research services. <br>
-Mitigation: Use only information approved for third-party research tools, and avoid confidential or sensitive client material unless that sharing is acceptable. <br>
-Risk: The skill saves a local research brief under .agents, which may retain client or campaign context. <br>
-Mitigation: Review the generated brief before sharing or committing it, and remove sensitive details that should not persist in local artifacts. <br>
+## Use Case:
 
+Marketing, SEO, and campaign-planning users use this skill to understand search demand, audience questions, keyword intent, content gaps, and competitor positioning before creating campaign briefs or content plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-industry-research) <br>
-- [Ahrefs API v3](https://api.ahrefs.com/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research brief with tables and concise synthesized findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local .agents/industry-research-{client}.md brief and records per-section research dates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Client names, seed keywords, competitor URLs, and research queries may be sent to external research services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs for confidential or regulated information before running the skill, and use approved Ahrefs, Exa, and Firecrawl accounts or credentials.
+
+Risk: The skill persists a synthesized research brief in the workspace.
+
+Mitigation: Store the generated report only in approved workspaces and review retention or sharing requirements before distributing it.
+
+Risk: Search, forum, and scraped-page findings can be stale, incomplete, or misleading.
+
+Mitigation: Use the per-section research timestamps and review cited sources before relying on the brief for campaign or business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-industry-research)
+- [Publisher profile](https://clawhub.ai/user/mariokarras)
+- [Ahrefs API v3 endpoint](https://api.ahrefs.com/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research brief with tables, dated sections, summarized findings, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local .agents/industry-research-{client}.md report; target artifact size is 3,000-5,000 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

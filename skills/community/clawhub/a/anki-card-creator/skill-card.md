@@ -1,41 +1,60 @@
-## Description: <br>
-Creates simple local Anki-compatible TSV flashcards from Q&A text, drug facts, or anatomy details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert medical textbook content, lecture notes, and study materials into Anki flashcards using spaced repetition optimization.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External learners and developers use this skill to generate Anki-compatible flashcards from medical study materials and simple Q&A inputs. It is best suited for local TSV card generation that is reviewed before import into Anki.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package documentation advertises advanced PDF, image occlusion, APKG export, media, and tagging features that the included script does not implement.
+
+Mitigation: Treat the current package as a simple local TSV generator unless the package is corrected.
+
+Risk: The dependency file lists Python standard-library modules as requirements.
+
+Mitigation: Do not run the included requirements.txt as-is; run the script with Python's standard library.
+
+Risk: Generated medical flashcards may contain inaccurate, incomplete, or outdated content from the input material.
+
+Mitigation: Use trusted input files only and review generated cards before importing them into Anki.
+
+Risk: The script writes to the user-selected output path and may overwrite an existing file.
+
+Mitigation: Choose an output path that does not contain important existing data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students, educators, and agent users can generate local Anki import files for medical study cards from structured Q&A input or a small set of drug and anatomy parameters. Generated cards should be reviewed for medical accuracy before import or study use. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises PDF, image occlusion, cloze, automated tagging, media, and .apkg features that are not supported by the reviewed implementation. <br>
-Mitigation: Use this release as a basic local TSV generator only, and do not rely on the advertised advanced features unless a future reviewed version includes them. <br>
-Risk: Generated medical study cards can contain incomplete or inaccurate information. <br>
-Mitigation: Review generated cards against trusted source material before importing them into Anki or using them for study. <br>
-Risk: The output path is written by the local script and may overwrite an existing file. <br>
-Mitigation: Run the tool in a dedicated study folder and provide explicit input and output paths. <br>
+**Output Format:** [Markdown guidance with Python CLI commands and Anki-compatible TSV text output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The included script reads local text input, prints a card summary, and writes a TSV output file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with example shell commands and local TSV output for Anki import] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The implementation uses local files only and has no external dependencies beyond the Python standard library.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

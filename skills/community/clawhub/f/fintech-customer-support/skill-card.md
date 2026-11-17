@@ -1,43 +1,62 @@
-## Description: <br>
-AI-powered customer support agent for fintech and remittance products that handles transfer status lookups, refund requests, account suspensions, KYC document guidance, and complaint escalation across messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered customer support agent for fintech and remittance products that handles transfer status lookups, refund requests, account suspensions, KYC document guidance, and complaint escalation across messaging channels.
 
-## Publisher: <br>
-[gameotivity](https://clawhub.ai/user/gameotivity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gameotivity](https://clawhub.ai/user/gameotivity)
 
-## Use Case: <br>
-External support and operations teams use this skill to triage and answer fintech or remittance customer requests, look up transaction and account state, guide KYC completion, and prepare human escalations with context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access, store, transmit, and modify sensitive customer financial support data. <br>
-Mitigation: Deploy only in a controlled support environment with verified customer identity, least-privilege API keys, approved webhook destinations, and a retention/deletion policy for local ticket memory. <br>
-Risk: Refund, recall, dispute, and account-impacting flows may affect customers financially or operationally. <br>
-Mitigation: Require human confirmation or equivalent authorization before running account-impacting actions. <br>
-Risk: Customer messages may be sent to an external LLM provider for intent classification. <br>
-Mitigation: Disclose external processing where required and ensure the configured LLM provider is approved for the support data being processed. <br>
+## Use Case:
 
+Customer support and operations teams use this agent to triage fintech and remittance support messages, look up transfer, account, and KYC status, attempt permitted refund workflows, escalate complaints, and produce weekly operations digests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gameotivity/fintech-customer-support) <br>
-- [Project homepage](https://github.com/nabeel/fintech-support-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain-language support replies, structured handler text, markdown weekly digests, and setup commands/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handler output should be reviewed before customer-facing use when it affects refunds, disputes, account status, KYC, or escalations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill handles sensitive customer, transaction, account, and KYC-related support data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define retention, access permissions, redaction rules, and approved storage and transmission destinations before production use.
+
+Risk: Customer messages may be sent to a third-party LLM classifier.
+
+Mitigation: Disable the LLM classifier or explicitly approve it with documented data handling, minimization, and provider controls.
+
+Risk: The workflow examples use shell command patterns with customer-controlled identifiers and references.
+
+Mitigation: Replace shell-string examples with structured tool calls and validate customer IDs, transaction references, and summaries before invoking handlers.
+
+Risk: The release depends on installable package and API/webhook destinations configured outside the skill.
+
+Mitigation: Install only from a trusted, pinned package source and restrict API and webhook endpoints to approved production destinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gameotivity/skills/fintech-customer-support)
+- [Project homepage](https://github.com/nabeel/fintech-support-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Handlers print structured plain text for the agent; weekly digest output is Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

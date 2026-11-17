@@ -1,40 +1,54 @@
-## Description: <br>
-Industry-specific newsletter creation with cadence recommendations and automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry-specific newsletter creation with cadence recommendations and automation workflows.
 
-## Publisher: <br>
-[shashwatgtm](https://clawhub.ai/user/shashwatgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shashwatgtm](https://clawhub.ai/user/shashwatgtm)
 
-## Use Case: <br>
-Marketing teams, founders, and B2B SaaS operators use this skill to plan, structure, write, and curate newsletters across sales tech, HR tech, fintech, and operations tech contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global; includes India-first and US-first publishing guidance. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked broadly because its metadata marks it as always active. <br>
-Mitigation: Confirm the user's newsletter goal, market, industry, and role before applying its recommendations. <br>
-Risk: Publishing, legal, compliance, advertising, or platform-spend guidance may be inappropriate for a real account without review. <br>
-Mitigation: Have the responsible marketing, legal, compliance, or budget owner review recommendations before publishing or spending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shashwatgtm/newsletter-creation-curation) <br>
-- [Publisher homepage](https://github.com/shashwatgtm) <br>
+## Use Case:
 
+Founders, marketing leaders, and B2B SaaS teams use this skill to plan, structure, write, and curate industry-specific newsletters for lead generation, thought leadership, personal brand building, and category ownership.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, checklists, and editorial plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not connect to email service providers, manage subscribers, retrieve analytics, or automate sending.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Subscriber-growth tactics could be applied in ways that add people to mailing lists without clear consent.
+
+Mitigation: Use explicit optional opt-in consent, preserve unsubscribe handling, and review applicable email marketing and privacy rules for the target jurisdiction.
+
+Risk: Newsletter advice involving compliance-heavy sectors can be mistaken for legal, financial, or regulatory advice.
+
+Mitigation: Treat compliance-related outputs as drafting guidance and have qualified counsel review jurisdiction-specific claims before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shashwatgtm/skills/newsletter-creation-curation)
+- [Publisher Profile](https://clawhub.ai/user/shashwatgtm)
+- [Publisher Homepage](https://github.com/shashwatgtm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with templates, checklists, editorial plans, and example newsletter structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces strategic newsletter recommendations and writing frameworks; it does not execute automation, connect to email platforms, or manage subscribers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

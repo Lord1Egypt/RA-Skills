@@ -1,48 +1,63 @@
-## Description: <br>
-Unofficial MCP-first skill for using Karakeep with AI agents to save, search, organize, tag, list, summarize, and highlight Karakeep bookmarks through MCP first, with CLI/API fallback only when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unofficial MCP-first skill for using Karakeep with AI agents to save, search, organize, tag, list, summarize, and highlight bookmarks, with CLI/API fallback only when needed.
 
-## Publisher: <br>
-[thethomasjfellows](https://clawhub.ai/user/thethomasjfellows) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thethomasjfellows](https://clawhub.ai/user/thethomasjfellows)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent work with a Karakeep instance through MCP-first bookmark, list, tag, search, summarization, and highlighting workflows. It is intended for personal or team bookmark management where CLI and API fallbacks are used only when MCP does not expose the needed operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Karakeep API key and may interact with private bookmark data. <br>
-Mitigation: Use a limited Karakeep API key if available, avoid exposing secrets in chat or logs, and keep credentials in environment variables. <br>
-Risk: Administrative fallback commands can dump, migrate, wipe, delete, archive, or bulk-clean bookmark data. <br>
-Mitigation: Require explicit user approval and backups before destructive or bulk operations, and prefer MCP for normal bookmark workflows. <br>
-Risk: The skill may fall back from MCP to CLI or API operations when MCP does not support a task. <br>
-Mitigation: Explain why fallback was used, keep fallback scope narrow, and verify results only when needed. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent work with their Karakeep bookmark library through MCP-first workflows. It supports saving, searching, organizing, tagging, listing, summarizing, and creating selective highlights while reserving CLI or API fallback for unsupported, bulk, debugging, or raw verification tasks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/thethomasjfellows/karakeep-mcp-first) <br>
-- [Karakeep MCP-First skill repository](https://github.com/thethomasjfellows/karakeep-mcp-first-skill) <br>
-- [Karakeep](https://karakeep.app) <br>
-- [Karakeep documentation](https://docs.karakeep.app) <br>
-- [Karakeep MCP package](https://www.npmjs.com/package/@karakeep/mcp) <br>
-- [Video walkthrough](https://youtu.be/WQNhRyYyl64) <br>
-- [Karakeep Details](references/karakeep-details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Karakeep workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agent use of MCP tools, Karakeep CLI commands, and direct API calls against a user-configured Karakeep instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill gives an agent access to view and modify Karakeep bookmark data using an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for intended Karakeep automation, keep API keys out of command-line arguments and transcripts, and avoid exposing local secrets.
+
+Risk: Fallback CLI and API workflows can perform broader or more direct actions than normal MCP-first operations.
+
+Mitigation: Prefer the configured MCP server, keep CLI fallback optional, and use direct API access only when MCP and CLI do not expose the needed operation.
+
+Risk: Destructive deletes, wipes, migrations, and broad cleanup sweeps can remove or reorganize many bookmarks.
+
+Mitigation: Require confirmation before delete, wipe, migration, or broad cleanup requests.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/thethomasjfellows/skills/karakeep-mcp-first)
+- [Skill homepage](https://github.com/thethomasjfellows/karakeep-mcp-first-skill)
+- [Karakeep](https://karakeep.app)
+- [Karakeep docs](https://docs.karakeep.app)
+- [Karakeep MCP package](https://www.npmjs.com/package/@karakeep/mcp)
+- [Video walkthrough](https://youtu.be/WQNhRyYyl64)
+- [Karakeep details](references/karakeep-details.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown and plain text guidance with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to use configured Karakeep MCP tools first, with optional CLI or API fallback when MCP does not expose the needed operation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

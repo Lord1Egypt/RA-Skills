@@ -1,44 +1,59 @@
-## Description: <br>
-Generates images from text prompts with ERNIE-Image and ERNIE-Image-Turbo models via AMD Radeon Cloud, with configurable size, batch count, seed, inference steps, guidance scale, and prompt enhancement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ernie Image Radeon helps agents generate PNG images from Chinese or English text prompts using ERNIE-Image and ERNIE-Image-Turbo models via AMD Radeon Cloud.
 
-## Publisher: <br>
-[aiwork4me](https://clawhub.ai/user/aiwork4me) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiwork4me](https://clawhub.ai/user/aiwork4me)
 
-## Use Case: <br>
-External users and developers use this skill to turn explicit text-to-image requests into locally saved PNG image files, with optional JSON output for automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters are sent to an external image-generation service, and the default endpoint uses HTTP. <br>
-Mitigation: Use only non-sensitive prompts with the default endpoint; for confidential or business prompts, configure a trusted HTTPS endpoint. <br>
-Risk: Generated files are written to a local output directory. <br>
-Mitigation: Review or explicitly set the output directory before generation, especially in shared or automated environments. <br>
-Risk: Custom HTTPS endpoints may receive AI_STUDIO_API_KEY when configured. <br>
-Mitigation: Set ERNIE_BASE_URL and AI_STUDIO_API_KEY only for trusted HTTPS endpoints. <br>
+## Use Case:
 
+Developers and external users can use this skill to turn explicit image-generation requests into local image files with configurable model, size, batch count, seed, inference steps, guidance scale, and prompt enhancement options.
 
-## Reference(s): <br>
-- [ERNIE-Image API Reference](references/api-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aiwork4me/ernie-image-radeon) <br>
-- [Upstream ClawHub Skill](https://clawhub.ai/aiwork4me/ernie-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [PNG image files with MEDIA lines, optional JSON status, and markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports one to four generated images per run and avoids overwriting existing output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The default AMD Radeon Cloud endpoint uses HTTP, so prompts sent to it are not transport encrypted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts with the default endpoint, or configure a trusted HTTPS endpoint with `ERNIE_BASE_URL` before sending confidential or business-related prompts.
+
+Risk: The optional URL response format downloads image data from provider-returned URLs.
+
+Mitigation: Prefer the default `b64_json` response format unless the provider response path is trusted.
+
+Risk: The documentation includes `curl | sh` installer guidance for `uv`, which can execute remote installer content directly.
+
+Mitigation: Install `uv` through an approved package source or independently verify the installer before running it.
+
+## Reference(s):
+
+- [ERNIE-Image API Reference - AMD Radeon Cloud Edition](references/api-guide.md)
+- [ClawHub skill page](https://clawhub.ai/aiwork4me/skills/ernie-image-radeon)
+- [ernie-image-gen fork source page](https://clawhub.ai/aiwork4me/ernie-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, files, json, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated output is PNG files, MEDIA paths, or optional JSON status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports ERNIE-Image and ERNIE-Image-Turbo, seven image sizes, batches of 1-4 images, seed control, 4-20 inference steps, guidance scale from 1.0-7.5, prompt enhancement, quiet mode, and custom output directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,64 @@
-## Description: <br>
-Weave maintains a private, provenance-backed social graph of people, relationships, preferences, and shared experiences for meeting prep, gift ideas, hosting, introductions, city connections, and serendipity discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weave maintains a private, provenance-backed social graph of people, relationships, preferences, and shared experiences for meeting prep, gift ideas, hosting, introductions, city connections, and serendipity discovery.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-External users and agents use Weave to store and retrieve private social-graph facts, prepare for meetings, find gift ideas, discover connections, and sync contact data with explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retains private information about people and relationships. <br>
-Mitigation: Store only durable information needed for the user's social-graph workflows and preserve provenance, timestamps, and confidence for facts. <br>
-Risk: Optional Google Contacts or Clay sync can read from and write to external contact systems. <br>
-Mitigation: Keep writeback disabled unless needed and require explicit approval for each sync or writeback action. <br>
-Risk: The automatic daily self-update job can replace the installed skill from GitHub without per-update review. <br>
-Mitigation: Disable or audit the scheduled update job and review updates manually before relying on changed behavior. <br>
+## Use Case:
 
+Developers and external users use Weave to store, retrieve, query, import, export, and synchronize private relationship knowledge with provenance-backed records and explicit writeback approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/indigokarasu/ocas-weave) <br>
-- [README](README.md) <br>
-- [Connectors](references/connectors.md) <br>
-- [Cross-DB Linking](references/cross_db.md) <br>
-- [Import & Export](references/import_export.md) <br>
-- [Weave Initialization Pattern](references/init_pattern.md) <br>
-- [Journal](references/journal.md) <br>
-- [Query Patterns](references/query_patterns.md) <br>
-- [Schemas](references/schemas.md) <br>
-- [vCard Projection](references/vcard_projection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown, JSON, Cypher snippets, and shell command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be grounded in stored facts with provenance; writeback and sync actions require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server evidence release.version and artifact skill.json) <br>
+Risk: Daily automatic self-update can silently replace skill files from the configured source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove automatic updates or make them explicit opt-in with signed, pinned releases and visible approval before replacement.
+
+Risk: The skill stores and exports personal relationship and contact data in local database, staging, and journal paths.
+
+Mitigation: Limit filesystem access, protect exported and staged files, and review retention and sharing practices before use.
+
+Risk: Google Contacts and Clay sync can write data back to external systems.
+
+Mitigation: Keep writeback disabled by default and require explicit approval for each sync or writeback action.
+
+## Reference(s):
+
+- [Weave ClawHub Page](https://clawhub.ai/indigokarasu/skills/ocas-weave)
+- [README](README.md)
+- [Connectors](references/connectors.md)
+- [Schemas](references/schemas.md)
+- [Query Patterns](references/query_patterns.md)
+- [Import & Export](references/import_export.md)
+- [Journal](references/journal.md)
+- [vCard Projection](references/vcard_projection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Cypher, JSON, shell command, configuration, journal, and vCard text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local database, staging, configuration, export, and journal files; external writeback requires explicit per-sync approval.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release metadata, README changelog, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

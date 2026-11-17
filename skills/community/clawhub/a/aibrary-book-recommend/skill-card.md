@@ -1,39 +1,53 @@
-## Description: <br>
-[Aibrary] Recommend books based on user interests, goals, challenges, or career stage. Use when the user asks for book recommendations, says they don't know what to read, wants personalized suggestions, or needs guidance on which book to pick next. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Aibrary] Recommend books based on user interests, goals, challenges, or career stage. Use when the user asks for book recommendations, says they don't know what to read, wants personalized suggestions, or needs guidance on which book to pick next.
 
-## Publisher: <br>
-[asoiso](https://clawhub.ai/user/asoiso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asoiso](https://clawhub.ai/user/asoiso)
 
-## Use Case: <br>
-External users use this skill to get personalized book recommendations based on their interests, goals, current challenges, career stage, recent reads, and reading preferences. The skill helps narrow choices to one to three books, explain why each fits the user's situation, and suggest a practical reading approach. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for personal context such as interests, challenges, career stage, and recent reads. <br>
-Mitigation: Share only details that are appropriate for the conversation and avoid sensitive personal information unless it is necessary for the recommendation. <br>
-Risk: Recommended titles and bibliographic details may need confirmation before purchase or citation. <br>
-Mitigation: Verify author, publication year, page count, availability, and edition details with a trusted book source before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asoiso/aibrary-book-recommend) <br>
+## Use Case:
 
+External users use this skill to receive personalized book recommendations based on interests, goals, challenges, career stage, and reading preferences. The skill guides an agent to provide a concise rationale, reading strategy, and follow-up recommendation instead of a broad book list.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown recommendation with book rationale, takeaways, reading strategy, and follow-up suggestion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and may ask one to two clarifying questions when the user's needs are unclear.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may use personal context shared in the conversation to tailor recommendations.
+
+Mitigation: Avoid sharing sensitive details that are not needed for book recommendations.
+
+Risk: Book suggestions may be incomplete or not fit the user's actual needs when the initial context is unclear.
+
+Mitigation: Ask 1-2 clarifying questions before recommending books when user needs are ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asoiso/skills/aibrary-book-recommend)
+- [Publisher profile](https://clawhub.ai/user/asoiso)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recommendation with book metadata, rationale, takeaways, reading strategy, and follow-up suggestion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and limits recommendations to 1-3 books.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

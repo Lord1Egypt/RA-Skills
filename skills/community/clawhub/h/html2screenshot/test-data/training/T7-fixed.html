@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T7 - position: fixed 固定元素</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #f5f5f5; }
+
+    /* 固定头部 */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(135deg, #1a73e8, #1557b0);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .fixed-header h1 { font-size: 20px; }
+    .fixed-header nav a { color: white; text-decoration: none; margin-left: 24px; font-size: 14px; }
+
+    /* 固定侧边栏 */
+    .fixed-sidebar {
+      position: fixed;
+      left: 20px;
+      top: 80px;
+      width: 200px;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .fixed-sidebar h3 { font-size: 16px; margin-bottom: 12px; color: #333; }
+    .fixed-sidebar ul { list-style: none; }
+    .fixed-sidebar li { padding: 8px 0; color: #666; font-size: 14px; cursor: pointer; }
+    .fixed-sidebar li:hover { color: #1a73e8; }
+
+    /* 主内容区 */
+    .main-content {
+      margin-left: 240px;
+      margin-top: 80px;
+      padding: 40px;
+      max-width: 800px;
+    }
+    .main-content h2 { font-size: 28px; margin-bottom: 20px; color: #333; }
+    .main-content p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 16px; }
+
+    /* 固定底部按钮 */
+    .fixed-footer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1a73e8;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(26,115,232,0.4);
+    }
+
+    /* 长内容 */
+    .content-block {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed-header">
+    <h1>📌 T7 - Fixed 元素测试</h1>
+    <nav>
+      <a href="#">首页</a>
+      <a href="#">文档</a>
+      <a href="#">关于</a>
+    </nav>
+  </header>
+
+  <aside class="fixed-sidebar">
+    <h3>📑 目录</h3>
+    <ul>
+      <li>📖 第一章</li>
+      <li>📖 第二章</li>
+      <li>📖 第三章</li>
+      <li>📖 第四章</li>
+      <li>📖 第五章</li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <h2>测试固定元素是否被正确捕获</h2>
+    <p>这个页面包含多个 position: fixed 元素：固定头部、固定侧边栏、固定底部按钮。</p>
+    <p>关键测试点：截图时这些固定元素是否出现在正确位置，而不是被截断或遗漏。</p>
+
+    <div class="content-block">
+      <h3>📋 内容区块 1</h3>
+      <p>这是第一个内容区块。滚动页面时，固定头部和侧边栏应该保持可见。截图时，这些元素应该出现在正确的位置。</p>
+      <p>如果截图顶部缺少头部，说明 fullPage 截图时 viewport 未正确调整。</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 2</h3>
+      <p>这是第二个内容区块。继续添加内容以测试长页面滚动。</p>
+      <p>固定侧边栏应该在左侧保持可见，无论页面滚动到哪里。</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 3</h3>
+      <p>这是第三个内容区块。固定底部按钮应该在右下角可见。</p>
+      <p>如果底部按钮未出现在截图中，说明固定元素在长截图时被遗漏。</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 4</h3>
+      <p>这是第四个内容区块。继续测试...</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 5</h3>
+      <p>这是第五个内容区块。接近页面底部。</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 6</h3>
+      <p>这是第六个内容区块。如果能看到这个区块，说明长页面截图正常。</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 7</h3>
+      <p>这是第七个内容区块。页面接近结束。</p>
+    </div>
+
+    <div class="content-block">
+      <h3>📋 内容区块 8</h3>
+      <p>这是最后一个内容区块。✅ 如果能看到固定头部、侧边栏和底部按钮，说明 fixed 元素截图功能正常！</p>
+    </div>
+  </main>
+
+  <div class="fixed-footer">
+    💬 固定底部按钮
+  </div>
+</body>
+</html>

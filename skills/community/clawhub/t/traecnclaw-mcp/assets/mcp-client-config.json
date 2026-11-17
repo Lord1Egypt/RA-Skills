@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/mcp-servers.json",
+  "mcpServers": {
+    "traecn": {
+      "command": "node",
+      "args": ["SKILL_DIR/scripts/start-mcp.js"],
+      "env": {
+        "TRAECN_GATEWAY_HOST": "127.0.0.1",
+        "TRAECN_GATEWAY_PORT": "8788",
+        "TRAECN_GATEWAY_TOKEN": ""
+      }
+    }
+  }
+}

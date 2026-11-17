@@ -1,42 +1,58 @@
-## Description: <br>
-Chat with a real person or fictional character in a generated voice by finding public speech online, extracting a clean reference sample, generating audio replies, or designing a voice from an uploaded image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat With Anyone helps an agent create synthetic roleplay speech by finding public reference audio for a named character or designing a voice from a provided image.
 
-## Publisher: <br>
-[Ksuriuri](https://clawhub.ai/user/Ksuriuri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksuriuri](https://clawhub.ai/user/ksuriuri)
 
-## Use Case: <br>
-External users and agent operators use this skill to roleplay or converse with public figures or fictional characters using synthetic speech. The skill supports name-based voice cloning from public online media and image-based voice design when a person is not recognizable from name alone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can imitate real-person voices and could be misused for deception, harassment, defamation, or undisclosed synthetic speech. <br>
-Mitigation: Use only for consented, lawful, clearly disclosed synthetic-audio scenarios; decline requests targeting private individuals or harmful impersonation. <br>
-Risk: The workflows may download public speech, upload images or descriptions to Noiz, use a Noiz API key, and store generated voice artifacts locally. <br>
-Mitigation: Keep the default Noiz endpoint, protect the NOIZ_API_KEY value, disclose third-party uploads, and delete local outputs that should not be retained. <br>
+## Use Case:
 
+External users and developers can use this skill to create voice-based roleplay interactions that return synthesized speech and accompanying text. The workflow covers target clarification, public reference-audio collection or image-based voice design, reference extraction, and speech generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Ksuriuri/noizai-chat-with-anyone) <br>
-- [Publisher profile](https://clawhub.ai/user/Ksuriuri) <br>
-- [Noiz API base URL](https://noiz.ai/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, audio files, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and generated WAV file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local MP3, SRT, WAV, preview audio, and voice_id.txt files under tmp/chat_with_anyone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can create synthetic voice audio that may be mistaken for genuine speech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with consent or clearly permissible public-figure and media cases, inform users that audio is synthetic, and decline deceptive, harassing, defamatory, or private-person impersonation requests.
+
+Risk: The skill may download public speech and upload selected images or descriptions to Noiz.
+
+Mitigation: Review source media rights and privacy expectations before use, avoid sensitive or non-consensual images, and share only the minimum material needed for the requested voice workflow.
+
+Risk: The skill handles API credentials and exposes a configurable API base URL.
+
+Mitigation: Protect NOIZ_API_KEY, prefer trusted default endpoints, pin dependencies where possible, and do not use or expose custom base URLs unless the endpoint is fully trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ksuriuri/skills/noizai-chat-with-anyone)
+- [Noiz API Endpoint](https://noiz.ai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WAV audio files, selected reference clips, voice preview files, and a reusable voice ID.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

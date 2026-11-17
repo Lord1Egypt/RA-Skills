@@ -1,41 +1,55 @@
-## Description: <br>
-Fetches the latest 50 posts from a specified Jike Topic, filters posts from the last 24 hours, analyzes valuable posts, and writes a daily digest Markdown document in Simplified Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the latest posts from a specified Jike Topic, filters recent valuable content, and produces a Simplified Chinese daily Markdown digest with summaries, practical suggestions, and inspiration notes.
 
-## Publisher: <br>
-[redisread](https://clawhub.ai/user/redisread) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redisread](https://clawhub.ai/user/redisread)
 
-## Use Case: <br>
-Agents use this skill to help readers and operators of Jike Topics produce a concise daily digest of recent, valuable posts. The workflow is intended for users who can provide a Topic ID and want a Markdown summary with analysis, practical suggestions, and inspiration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rerunning the skill for the same topic and date may clear or replace existing related digest files in the chosen output folder. <br>
-Mitigation: Set the base directory deliberately, preferably to a dedicated digest folder, and review the target path before rerunning. <br>
-Risk: The workflow depends on a local autocli setup to fetch Jike content. <br>
-Mitigation: Install and use the skill only where that local autocli access is intended, configured, and authorized for the requested Topic ID. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily digest for a chosen Jike Topic, filtering recent posts and turning selected content into concise Markdown analysis. It is useful for monitoring community topics and extracting trends, recommendations, and follow-up ideas.
 
-## Reference(s): <br>
-- [Output template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/redisread/jike-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown daily digest with YAML frontmatter, per-post analysis, a topic summary, Top 3 selections, and reader suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a required Jike Topic ID, an optional base directory, and a default 24-hour filtering window.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can clean existing output for the current topic and date before writing a new digest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JIKE_DIGEST_BASE_DIR to a dedicated digest directory and review the cleanup behavior before running it against directories that contain files you want to keep.
+
+Risk: The skill depends on a separate autocli Jike command to fetch topic content.
+
+Mitigation: Install and review the autocli Jike command separately, and only run it in environments where that dependency is trusted.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/redisread/skills/jike-digest)
+- [Publisher Profile](https://clawhub.ai/user/redisread)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Simplified Chinese Markdown daily digest with frontmatter, post summaries, value notes, practical suggestions, inspiration notes, topic summary, and top-three selections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 50 posts for one configured topic and filters posts to a recent time window, defaulting to 24 hours.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,6 +8,7 @@ Commands:
 - logout: delete saved storage state
 - accounts: fetch wallet accounts via Revolut Web API
 - transactions: fetch latest transactions via Revolut Web API
+- invest-statements: download Invest account statement, realised P&L and costs report
 """
 
 import sys
@@ -636,11 +637,16 @@ def canonicalize_revolut_portfolio(payload, tickers_by_ref: dict[str, dict] | No
     if not isinstance(holdings, list):
         holdings = []
 
+    cash: list[dict] = []
     for h in holdings:
         if not isinstance(h, dict):
             continue
         htype = h.get("assetType")
         if htype == "CASH":
+            bal = _extract_amount(h.get("balance") or h.get("total"))
+            if bal is not None:
+                cash.append({"currency": h.get("currency") or _extract_currency(h.get("balance")), "amount": bal,
+                             "availableToInvest": _extract_amount(h.get("availableToInvest")), "unsettled": _extract_amount(h.get("unsettled"))})
             continue
 
         symbol = h.get("symbol")
@@ -706,7 +712,7 @@ def canonicalize_revolut_portfolio(payload, tickers_by_ref: dict[str, dict] | No
 
         positions.append(pos)
 
-    return {"positions": positions}
+    return {"positions": positions, "cash": cash}
 
 def canonicalize_revolut_invest_tx(payload, name_map: dict | None = None) -> list[dict]:
     """Canonicalize Revolut Invest trade history into banker 'depot transactions' shape.
@@ -735,8 +741,13 @@ def canonicalize_revolut_invest_tx(payload, name_map: dict | None = None) -> lis
         if t.get("state") != "COMPLETED":
             continue
 
-        # We focus on TRADE (buy/sell securities)
-        if t.get("type") != "TRADE":
+        ttype = t.get("type")
+        if ttype != "TRADE":
+            # Cash movements of the brokerage account, dividends and anything new: keep them as cash rows
+            # so the account's cash balance can be reconstructed (issue #1).
+            cash_tx = _canonicalize_non_trade(t, name_map)
+            if cash_tx is not None:
+                out.append(cash_tx)
             continue
 
         symbol = t.get("symbol")
@@ -785,10 +796,59 @@ def canonicalize_revolut_invest_tx(payload, name_map: dict | None = None) -> lis
 
         # Also keep a convenient fallback field (some older code paths look at tx['isin']).
         tx["isin"] = (ref or symbol)
+        if t.get("id"):
+            tx["id"] = str(t["id"])
 
         out.append(tx)
 
     return out
+
+
+def _canonicalize_non_trade(t: dict, name_map: dict) -> dict | None:
+    """Non-trade items of the Revolut Invest feed as canonical cash rows.
+
+    CASH items are top-ups into (side BUY) or withdrawals from (side SELL) the brokerage account,
+    DIVIDENDS carry net/gross/tax. Unknown types are exported with their raw type as kind so they
+    never vanish silently. Amounts are signed from the brokerage account's point of view.
+    """
+    ttype = str(t.get("type") or "").upper()
+    side = str(t.get("side") or "").upper()
+    value = _extract_amount(t.get("value"))
+    cur = _extract_currency(t.get("value")) or _extract_currency(t.get("total")) or t.get("currency")
+    if value is None:
+        value = _extract_amount(t.get("total"))
+    if value is None:
+        return None
+    d = _to_date_iso(t.get("completedAt") or t.get("createdAt"))
+    symbol = t.get("symbol")
+    ref = t.get("ref")
+    if ttype == "CASH":
+        if side == "SELL":
+            kind, amount = "withdrawal", -abs(value)
+        else:
+            kind, amount = "cash_top_up", abs(value)
+        desc = t.get("localisedDescription") or f"{kind} {cur or ''}".strip()
+        tx = {"bookingDate": d, "status": "booked", "kind": kind, "amount": {"amount": amount, "currency": cur}, "description": desc}
+    elif ttype == "DIVIDENDS":
+        name = t.get("instrumentName") or (t.get("baseInstrument") or {}).get("name") or name_map.get(ref) or name_map.get(symbol) or symbol
+        tx = {"bookingDate": d, "status": "booked", "kind": "dividend", "security": {"isin": ref or symbol, "name": name}, "isin": ref or symbol,
+              "amount": {"amount": abs(value), "currency": cur}, "description": f"DIVIDEND {symbol}" if symbol else "DIVIDEND"}
+        gross, tax = _extract_amount(t.get("gross")), _extract_amount(t.get("tax"))
+        if gross is not None:
+            tx["gross"] = {"amount": gross, "currency": cur}
+        if tax is not None:
+            tx["tax"] = {"amount": tax, "currency": cur}
+    else:
+        sign = -1 if side == "SELL" or ttype in ("FEE", "FEES", "WITHDRAWAL") else 1
+        tx = {"bookingDate": d, "status": "booked", "kind": ttype.lower(), "amount": {"amount": sign * abs(value), "currency": cur},
+              "description": t.get("localisedDescription") or f"{ttype} {symbol or ''}".strip()}
+        if symbol or ref:
+            tx["security"] = {"isin": ref or symbol, "name": name_map.get(ref) or name_map.get(symbol) or symbol}
+            tx["isin"] = ref or symbol
+    tx["venue"] = "REVOLUT"
+    if t.get("id"):
+        tx["id"] = str(t["id"])
+    return tx
 
 
 def _resolve_account_selector(accounts: list[dict], selector: str) -> dict:
@@ -1167,17 +1227,11 @@ def cmd_accounts(args) -> int:
             invest_headers = _get_api_headers(page)
 
             # Determine portfolio id if not provided.
-            pid = portfolio_id
-            if not pid:
-                raw_list = _fetch_via_api_call(page, "/api/retail/trading-access/portfolios", invest_headers)
-                if isinstance(raw_list, list):
-                    for p0 in raw_list:
-                        if isinstance(p0, dict) and p0.get("state") == "ACTIVE" and p0.get("accountType") == "GIA":
-                            pid = p0.get("id")
-                            break
+            pid = portfolio_id or _pick_portfolio_id(page, invest_headers)
 
             depot_currency = "USD"
             depot_value = None
+            canon_pf: dict = {}  # stays empty when no active GIA portfolio was found
             depot_pl = None
             depot_pct = None
 
@@ -1254,6 +1308,13 @@ def cmd_accounts(args) -> int:
                     "profitLoss": {"amount": depot_pl, "currency": depot_currency, "percent": depot_pct},
                 }
 
+            # Uninvested cash held inside the brokerage account (issue #1)
+            cash_rows = canon_pf.get("cash") or []
+            cash_main = next((c for c in cash_rows if c.get("currency") == depot_currency), None) or (cash_rows[0] if cash_rows else None)
+            if cash_main and cash_main.get("amount") is not None:
+                depot_acct["balances"] = {"booked": {"amount": cash_main["amount"], "currency": cash_main.get("currency") or depot_currency},
+                                          "available": {"amount": cash_main.get("availableToInvest", cash_main["amount"]), "currency": cash_main.get("currency") or depot_currency}}
+                depot_acct["cash"] = cash_rows
             # Replace existing synthetic depot entry if present
             accounts = [a for a in accounts if a.get("id") != depot_account_id]
             accounts.append(depot_acct)
@@ -1417,6 +1478,14 @@ def cmd_transactions(args) -> int:
             return 2
         from_date = datetime.strptime(date_from, "%Y-%m-%d").date()
         until_date = datetime.strptime(date_until, "%Y-%m-%d").date()
+        
+        # Clamp future dates to today to prevent Revolut API 400 Bad Request
+        today = datetime.now().date()
+        if until_date > today:
+            until_date = today
+            date_until = today.strftime("%Y-%m-%d")
+            print(f"[revolut] Clamped --until to today: {date_until}", file=sys.stderr)
+
         if from_date > until_date:
             print("[revolut] ERROR: --from must be on or before --until.", file=sys.stderr)
             return 2
@@ -1611,6 +1680,7 @@ def cmd_portfolio(args) -> int:
 
         # If caller provided a portfolio id, fetch that directly.
         raw = None
+        portfolio_id = portfolio_id or _pick_portfolio_id(page, headers)
         if portfolio_id:
             raw = _fetch_via_api_call(page, f"/api/retail/trading-access/portfolios/{portfolio_id}", headers)
 
@@ -1790,7 +1860,14 @@ def cmd_invest_transactions(args) -> int:
     import datetime
     try:
         datetime.datetime.strptime(date_from, "%Y-%m-%d")
-        datetime.datetime.strptime(date_until, "%Y-%m-%d")
+        
+        # Clamp future dates to today to prevent Revolut API 400 Bad Request
+        parsed_until = datetime.datetime.strptime(date_until, "%Y-%m-%d").date()
+        today = datetime.datetime.now().date()
+        if parsed_until > today:
+            date_until = today.strftime("%Y-%m-%d")
+            print(f"[revolut] Clamped --until to today: {date_until}", file=sys.stderr)
+            
     except ValueError:
         print("[revolut] ERROR: Dates must be in YYYY-MM-DD format.", file=sys.stderr)
         return 2
@@ -1923,7 +2000,7 @@ def cmd_invest_transactions(args) -> int:
             txs = canonicalize_revolut_invest_tx(raw, name_map=name_map)
             # de-dupe overlapping pages
             for tx in txs:
-                key = (
+                key = ("id", tx["id"]) if tx.get("id") else (
                     tx.get("bookingDate"),
                     tx.get("kind"),
                     (tx.get("security") or {}).get("isin"),
@@ -1979,6 +2056,173 @@ def cmd_invest_transactions(args) -> int:
         return 0
 
 
+# Statement documents offered in the Invest web app (Documents popup). Each entry:
+# (url suffix after /trading/accounts/{portfolioId}/, fixed query params, file stem).
+# The endpoint answers {"state": "IN_PREPARATION"} until the file is generated, then
+# {"state": "READY", "url": <signed download URL>}.
+INVEST_STATEMENTS = {
+    "account": ("statements/account-statement", {"type": "MONTHLY"}, "account-statement"),
+    "pnl": ("statements/account-statement", {"type": "REALISED_PNL"}, "pnl-statement"),
+    "costs": ("reports/costs-and-charges", {}, "costs-and-charges"),
+}
+
+
+def _pick_portfolio_id(page, headers: dict) -> str | None:
+    """Return the id of the active GIA brokerage account, which is also its portfolio id.
+
+    /trading/accounts groups the accounts by state ({"created": [...], ...}); the GIA account's
+    id is what the statement endpoints expect.
+    """
+    raw = _fetch_via_api_call(page, "/api/retail/trading/accounts", headers)
+    groups = raw.values() if isinstance(raw, dict) else [raw]
+    accounts = [a for g in groups if isinstance(g, list) for a in g if isinstance(a, dict)]
+    for acc in accounts:
+        if acc.get("accountType") == "GIA" and acc.get("state") == "ACTIVE" and acc.get("id"):
+            return acc["id"]
+    for acc in accounts:
+        if acc.get("accountType") == "GIA" and acc.get("id"):
+            return acc["id"]
+    return None
+
+
+def _await_statement_url(page, url: str, headers: dict, timeout_s: int = 120) -> str | None:
+    """Poll a statement endpoint until Revolut has generated the file; return its download URL."""
+    deadline = time.time() + timeout_s
+    while True:
+        res = _fetch_via_api_call(page, url, headers)
+        state = res.get("state") if isinstance(res, dict) else None
+        if state == "READY" and res.get("url"):
+            return res["url"]
+        if state != "IN_PREPARATION" or time.time() > deadline:
+            print(f"[revolut] Statement not available (state={state!r}).", file=sys.stderr)
+            return None
+        time.sleep(1)
+
+
+def cmd_invest_statements(args) -> int:
+    _require_playwright()
+    state_file = _state_file_from_args(args)
+    profile_dir = _profile_dir_from_args(args)
+    if (not state_file.exists()) and (not profile_dir.exists()):
+        print(f"[revolut] ERROR: No session found. Run: revolut.py login", file=sys.stderr)
+        return 2
+
+    headless = not bool(getattr(args, "visible", False))
+
+    year = getattr(args, "year", None)
+    date_from = getattr(args, "date_from", None)
+    date_until = getattr(args, "date_until", None)
+    if year:
+        date_from = date_from or f"{year:04d}-01-01"
+        date_until = date_until or f"{year:04d}-12-31"
+    if not date_from or not date_until:
+        print("[revolut] ERROR: Give --year or both --from and --until.", file=sys.stderr)
+        return 2
+    try:
+        d_from = datetime.strptime(date_from, "%Y-%m-%d").date()
+        d_until = datetime.strptime(date_until, "%Y-%m-%d").date()
+    except ValueError:
+        print("[revolut] ERROR: Dates must be in YYYY-MM-DD format.", file=sys.stderr)
+        return 2
+    # Like the web app: statements cannot reach into the future.
+    if d_until > date.today():
+        d_until = date.today()
+        print(f"[revolut] Clamped --until to today: {d_until.isoformat()}", file=sys.stderr)
+    if d_from > d_until:
+        print("[revolut] ERROR: --from is after --until.", file=sys.stderr)
+        return 2
+
+    kinds = list(INVEST_STATEMENTS) if args.type == "all" else [args.type]
+    fmt = args.format.upper()
+
+    out_dir = _safe_output_path(args.dir) if getattr(args, "dir", None) else TMP_DIR / "statements"
+    # Statements hold holdings, transactions and the postal address: keep them owner-only.
+    out_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
+    user_part = _safe_filename_component(getattr(args, "_user_name", None) or "revolut")
+
+    with sync_playwright() as p:
+        context = _launch_persistent_context(p, args, headless=headless)
+        page = context.new_page()
+
+        try:
+            page.goto(INVEST_HOME_URL, wait_until="domcontentloaded", timeout=15000)
+            ok = _handle_auth_challenge(page, success_url_pattern="**/home**", pin=getattr(args, "_pin", None))
+            if not ok:
+                if _LAST_AUTH_EXPIRED:
+                    print("QR code expired, please try again", file=sys.stderr)
+                else:
+                    print("[revolut] Auth not completed.", file=sys.stderr)
+                context.close()
+                return 3
+            time.sleep(2)
+        except:  # noqa: E722
+            pass
+
+        headers = _get_api_headers(page, trigger_reload=True)
+
+        portfolio_id = getattr(args, "id", None) or _pick_portfolio_id(page, headers)
+        if not portfolio_id:
+            print("[revolut] Could not determine the Invest portfolio id.", file=sys.stderr)
+            context.close()
+            return 3
+
+        files = []
+        failed = []
+        for kind in kinds:
+            suffix, params, stem = INVEST_STATEMENTS[kind]
+            query = {**params, "fromDate": d_from.isoformat(), "toDate": d_until.isoformat()}
+            # Costs and charges is only offered as PDF and takes no format parameter.
+            ext = "pdf"
+            if kind != "costs":
+                query["format"] = fmt
+                ext = fmt.lower()
+            qs = "&".join(f"{k}={v}" for k, v in query.items())
+            download_url = _await_statement_url(
+                page, f"/api/retail/trading/accounts/{portfolio_id}/{suffix}?{qs}", headers
+            )
+            if not download_url:
+                failed.append(kind)
+                continue
+
+            resp = context.request.get(download_url, timeout=60000)
+            if not resp.ok:
+                print(f"[revolut] Download of {kind} statement failed: HTTP {resp.status}", file=sys.stderr)
+                failed.append(kind)
+                continue
+
+            path = out_dir / f"revolut_{user_part}_{stem}_{d_from.isoformat()}_{d_until.isoformat()}.{ext}"
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+            with os.fdopen(fd, "wb") as fh:
+                fh.write(resp.body())
+            os.chmod(path, 0o600)  # also tighten a file left over from an earlier run
+            print(f"[revolut] Saved {kind} statement: {path}", file=sys.stderr)
+            files.append({"kind": kind, "format": ext, "path": str(path)})
+
+        context.close()
+
+    wrapper = {
+        "institution": "revolut",
+        "fetchedAt": _now_iso_local(),
+        "kind": "invest-statements",
+        "portfolioId": portfolio_id,
+        "range": {"from": d_from.isoformat(), "until": d_until.isoformat()},
+        "files": files,
+    }
+    if failed:
+        wrapper["failed"] = failed
+
+    out_path = getattr(args, "out", None)
+    if out_path:
+        _safe_output_path(out_path).write_text(
+            json.dumps(wrapper, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        print(f"[revolut] Wrote JSON: {out_path}", file=sys.stderr)
+    else:
+        print(json.dumps(wrapper, ensure_ascii=False, indent=2))
+    return 3 if failed else 0
+
+
 # ------------------------- CLI -------------------------
 
 
@@ -2025,6 +2269,16 @@ def main() -> int:
     p_itx.add_argument("--from", dest="date_from", required=True, help="Start date (YYYY-MM-DD)")
     p_itx.add_argument("--until", dest="date_until", required=True, help="End date (YYYY-MM-DD)")
     p_itx.set_defaults(func=cmd_invest_transactions)
+
+    p_ist = sub.add_parser("invest-statements", help="Download Revolut Invest statements (account statement, realised P&L, costs and charges)")
+    p_ist.add_argument("--year", type=int, default=None, help="Calendar year (sets --from/--until to Jan 1 – Dec 31)")
+    p_ist.add_argument("--from", dest="date_from", default=None, help="Start date (YYYY-MM-DD)")
+    p_ist.add_argument("--until", dest="date_until", default=None, help="End date (YYYY-MM-DD)")
+    p_ist.add_argument("--type", choices=["all", *INVEST_STATEMENTS], default="all", help="Which statement to download (default: all)")
+    p_ist.add_argument("--format", choices=["pdf", "csv"], default="pdf", help="File format for account and P&L statements (default: pdf)")
+    p_ist.add_argument("--dir", default=None, help="Directory for the files (under workspace or /tmp; default: /tmp/openclaw/revolut/statements)")
+    p_ist.add_argument("--id", default=None, help="Portfolio id (optional; auto-pick if omitted)")
+    p_ist.set_defaults(func=cmd_invest_statements)
 
     p_iscan = sub.add_parser("invest-scan", help="Debug: list observed Revolut Invest /api/retail endpoints")
     p_iscan.set_defaults(func=cmd_invest_scan)

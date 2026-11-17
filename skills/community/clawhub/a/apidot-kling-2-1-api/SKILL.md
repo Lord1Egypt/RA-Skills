@@ -20,6 +20,15 @@ This skill is for routing Kling 2.1 questions to the right APIDot docs, model pa
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Kling 2.1 model page: https://apidot.ai/models/kling-2-1
+- Read Kling 2.1 API docs: https://apidot.ai/docs/kling-2-1
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

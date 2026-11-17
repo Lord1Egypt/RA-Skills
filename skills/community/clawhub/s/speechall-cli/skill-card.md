@@ -1,42 +1,57 @@
-## Description: <br>
-Install and use the speechall CLI tool for speech-to-text transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and use the Speechall CLI for speech-to-text transcription of audio and video files, model discovery, diarization, subtitles, and terminal-based provider workflows.
 
-## Publisher: <br>
-[atacan](https://clawhub.ai/user/atacan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atacan](https://clawhub.ai/user/atacan)
 
-## Use Case: <br>
-Developers, engineers, and terminal users use this skill to install and operate the speechall CLI for transcribing audio or video files, listing speech-to-text models, and configuring transcription options such as diarization, subtitles, language, and model selection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audio or video selected for transcription is sent to an external transcription service and may contain sensitive content. <br>
-Mitigation: Only transcribe recordings the user is authorized and comfortable sending to the service. <br>
-Risk: The Speechall API key can be exposed if placed directly in shell commands or logs. <br>
-Mitigation: Prefer the SPEECHALL_API_KEY environment variable and keep the key private. <br>
-Risk: Installing the CLI from an unexpected Homebrew tap or release source could install software the user did not intend to trust. <br>
-Mitigation: Confirm the Homebrew tap or GitHub release is the intended Speechall source before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Speechall CLI GitHub releases](https://github.com/Speechall/speechall-cli/releases) <br>
-- [Speechall API keys](https://speechall.com/console/api-keys) <br>
+## Use Case:
 
+Developers, engineers, and terminal users use this skill to install and operate the Speechall CLI for transcribing local audio or video files, listing speech-to-text models, and selecting transcription features such as diarization, subtitles, language, and provider model.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI commands, option tables, JSON model-list output guidance, and redirection examples for transcript files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to install an unpinned third-party executable.
+
+Mitigation: Prefer a pinned release with verified checksums or signatures, and install it in a user-scoped location.
+
+Risk: Transcription can send confidential, personal, regulated, or consent-sensitive recordings to external services.
+
+Mitigation: Review Speechall and provider data-handling terms before use, and avoid submitting sensitive media without appropriate authorization.
+
+Risk: Passing the Speechall API key on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Provide the API key with the SPEECHALL_API_KEY environment variable when possible.
+
+## Reference(s):
+
+- [Speechall CLI GitHub releases](https://github.com/Speechall/speechall-cli/releases)
+- [Speechall API key creation page](https://speechall.com/console/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI options, environment variable setup, provider/model selection guidance, and stdout redirection examples.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

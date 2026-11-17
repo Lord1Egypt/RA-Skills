@@ -1,42 +1,56 @@
-## Description: <br>
-Security scanner for OpenClaw skills. Scans skills for malware, credential theft, data exfiltration, prompt injection, and permission overreach before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills. Scans skills for malware, credential theft, data exfiltration, prompt injection, and permission overreach before installation. Run: python3 scripts/skillguard.py scan <skill-directory>
 
-## Publisher: <br>
-[minduploadedcrab](https://clawhub.ai/user/minduploadedcrab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[minduploadedcrab](https://clawhub.ai/user/minduploadedcrab)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan OpenClaw skill directories before installation and review findings for malware, credential access, exfiltration, prompt injection, permission overreach, and related risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads local skill files and may inspect sensitive-looking text in the directories it is asked to scan. <br>
-Mitigation: Review scan targets before running and avoid sharing scan output that contains sensitive snippets. <br>
-Risk: Pattern-based security scanning can produce false positives or miss novel threats. <br>
-Mitigation: Use the verdict and findings as review guidance, then manually inspect higher-risk results before installation or deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minduploadedcrab/minduploadedcrab-skillguard) <br>
-- [Publisher profile](https://clawhub.ai/user/minduploadedcrab) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Detection patterns](artifact/data/patterns.json) <br>
+## Use Case:
 
+Developers and operators use this skill to scan OpenClaw skills before installation for credential access, data exfiltration, prompt injection, dependency issues, symlink attacks, and related permission risks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text or JSON scan reports with risk score, verdict, and findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI supports single-skill scans, all-skill scans, audit summaries, quiet output, and JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner can cross the intended scan boundary when handling symlinks or filesystem traversal cases.
+
+Mitigation: Run scans in a low-privilege or isolated environment and inspect untrusted packages with symlinks before relying on results.
+
+Risk: A package-provided .skillguard-ignore file can cause files to be skipped.
+
+Mitigation: Do not trust package-provided ignore exclusions; review ignored paths manually before accepting a PASS verdict.
+
+Risk: Automated scanner output is not a definitive security gate.
+
+Mitigation: Manually review SKILL.md and high-risk behavior even when the tool reports PASS.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minduploadedcrab/skills/minduploadedcrab-skillguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Terminal text, audit tables, quiet verdict strings, or JSON scan reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan reports include file counts, risk score, PASS/WARN/FAIL verdict, findings, severity, category, location, and evidence when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

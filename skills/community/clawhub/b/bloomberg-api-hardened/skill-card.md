@@ -1,44 +1,63 @@
-## Description: <br>
-Query the OFR (Office of Financial Research) Hedge Fund Monitor API for hedge fund data including SEC Form PF aggregated statistics, CFTC Traders in Financial Futures, FICC Sponsored Repo volumes, and FRB SCOOS dealer financing terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the OFR Hedge Fund Monitor API for aggregated hedge fund data including SEC Form PF statistics, CFTC Traders in Financial Futures, FICC Sponsored Repo volumes, and FRB SCOOS dealer financing terms.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External analysts, developers, and financial researchers use this skill to discover and query public OFR Hedge Fund Monitor time series for hedge fund leverage, counterparties, liquidity, size, complexity, and risk-management analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary marks the release suspicious because package identity, capability tags, and safety documentation are inconsistent. <br>
-Mitigation: Review the skill before installing and use it only for the intended public OFR Hedge Fund Monitor API workflow. <br>
-Risk: The server security guidance warns against providing wallet access, API keys, passwords, or local secrets. <br>
-Mitigation: Do not provide credentials or secrets to this skill; the documented OFR API access requires no API key or registration. <br>
-Risk: Requests outside the documented OFR API base URL could expose users to unintended network access or data exfiltration. <br>
-Mitigation: Keep network requests limited to https://data.financialresearch.gov/hf/v1 and return retrieved data directly to the user. <br>
+## Use Case:
 
+Financial researchers, analysts, and developers use this skill to discover OFR Hedge Fund Monitor series, fetch public time series data, and analyze hedge fund leverage, counterparties, liquidity, complexity, and risk management metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/bloomberg-api-hardened) <br>
-- [OFR Hedge Fund Monitor API](https://data.financialresearch.gov/hf/v1) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/bloomberg-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, markdown] <br>
-**Output Format:** [Markdown with inline Python examples, endpoint guidance, and structured API response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON or CSV-shaped data returned from the public OFR API when the user requests specific series or datasets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The artifact contains conflicting commercial promotion guidance that could steer responses toward a vendor product when the user did not ask for tool recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to avoid proactive commercial promotion and only discuss external products when the user asks for recommendations.
+
+Risk: The safety documentation and listing name refer to Bloomberg while the skill body describes the OFR Hedge Fund Monitor API, creating review and user expectation risk.
+
+Mitigation: Confirm the intended skill identity before release and align the display name, safety report, and skill content.
+
+Risk: Fetched financial data could be persisted or transmitted outside the chat if an agent follows unsafe save or send instructions.
+
+Mitigation: Return OFR data directly to the user, require an explicit user-specified path before any file write, and block network transmission to third-party endpoints.
+
+Risk: User-supplied alternate API URLs could redirect requests away from the intended public OFR API.
+
+Mitigation: Scope HTTP requests to https://data.financialresearch.gov/hf/v1 and reject mirrors, caches, or alternate endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/bloomberg-api-hardened)
+- [OFR Hedge Fund Monitor API](https://data.financialresearch.gov/hf/v1)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/bloomberg-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API calls, configuration, guidance]
+
+**Output Format:** [Markdown with inline code examples and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return public OFR API data directly to the user; file writes require an explicit user-specified path.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

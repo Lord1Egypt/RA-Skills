@@ -1,39 +1,55 @@
-## Description: <br>
-Query Korean school information, meal menus, and timetables from the official NEIS OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Korean school information, meals, and timetables from the official NEIS OpenAPI.
 
-## Publisher: <br>
-[techkwon](https://clawhub.ai/user/techkwon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[techkwon](https://clawhub.ai/user/techkwon)
 
-## Use Case: <br>
-External users and agents use this skill to look up Korean school codes, meal menus, and class timetables through a bundled CLI. Agents can request JSON output when the result will be consumed by another tool, script, or UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to the official NEIS API and can include NEIS_API_KEY in request URLs when the key is set. <br>
-Mitigation: Install only when NEIS school, meal, or timetable lookup is needed, and set NEIS_API_KEY only in environments where that request-url exposure is acceptable. <br>
+## Use Case:
 
+Developers, agents, and users who need Korean school data use this skill to look up school codes, meal menus, and class timetables from NEIS, with JSON output available for downstream agent or tool consumption.
 
-## Reference(s): <br>
-- [NEIS API Notes](artifact/references/neis-api.md) <br>
-- [Official NEIS OpenAPI Portal](https://open.neis.go.kr/portal/mainPage.do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes ok, command, endpoint, query, count, and data fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: release evidence and CLI version) <br>
+Risk: School lookup details are sent to the official NEIS service when the CLI queries school, meal, or timetable data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended NEIS lookups and avoid entering unrelated sensitive data.
+
+Risk: If NEIS_API_KEY is used and the fallback curl path runs, the key could be visible through local process-argument logging or inspection.
+
+Mitigation: Prefer environments where Python networking succeeds, set NEIS_API_KEY only when needed, and run on trusted local or managed systems.
+
+## Reference(s):
+
+- [NEIS API Notes](references/neis-api.md)
+- [Official NEIS OpenAPI Portal](https://open.neis.go.kr/portal/mainPage.do)
+- [NEIS OpenAPI Hub](https://open.neis.go.kr/hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; CLI responses are plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional NEIS_API_KEY and queries official NEIS OpenAPI endpoints.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata, scripts/neis_cli.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

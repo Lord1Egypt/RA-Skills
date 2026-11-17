@@ -1,44 +1,53 @@
-## Description: <br>
-Use when the user asks to "find content gaps"; maps competitor topics, missing keywords, and editorial calendar opportunities. 内容缺口/选题规划 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds competitor-relative coverage maps of missing topics, keyword gaps, and editorial-calendar opportunities for content strategy.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-Content strategists, SEO practitioners, and marketing teams use this skill to compare their site against competitors, identify missing keyword, topic, format, funnel, and GEO opportunities, and turn the findings into a prioritized content backlog and editorial calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use connected SEO, search console, analytics, or AI-monitoring tools that may expose account, site, competitor, keyword, and business-strategy data. <br>
-Mitigation: Confirm which connected accounts and site data the agent can access before running research integrations. <br>
-Risk: Saved research notes can preserve competitor observations, keyword priorities, and business strategy in project memory. <br>
-Mitigation: Review the user-facing analysis and reusable summary before approving memory writes. <br>
+## Use Case:
 
+Marketing, SEO, and content teams use this skill to compare their site with competitor domains, identify keyword, topic, format, and GEO gaps, and turn priority gaps into an editorial calendar.
 
-## Reference(s): <br>
-- [Analysis Templates](references/analysis-templates.md) <br>
-- [Gap Analysis Frameworks](references/gap-analysis-frameworks.md) <br>
-- [Example Report](references/example-report.md) <br>
-- [Project homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/content-gap-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Files, Guidance] <br>
-**Output Format:** [Markdown gap brief with tables, prioritized recommendations, handoff summary, and optional saved research notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve approved keyword priorities, competitor facts, and strategy decisions in project memory when the user chooses to save results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and skill frontmatter) <br>
+Risk: The security review flags durable shared-memory writes that may exceed the declared inline-output and state-read capability posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing where capability declarations or shared agent memory matter; require inline-only output or explicit approval before memory updates.
+
+## Reference(s):
+
+- [Analysis Templates](references/analysis-templates.md)
+- [Gap Analysis Frameworks](references/gap-analysis-frameworks.md)
+- [Example Report](references/example-report.md)
+- [Project homepage listed in metadata](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/skills/content-gap-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with evidence-labeled tables, prioritized backlog items, and editorial-calendar entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Metrics should be labeled as Measured, User-provided, Estimated, or N/A; durable memory updates should require review when shared memory is used.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

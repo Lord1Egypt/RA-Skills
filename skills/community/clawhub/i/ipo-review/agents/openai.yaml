@@ -1,0 +1,4 @@
+interface:
+  display_name: "IPO Review"
+  short_description: "Local IPO filing review and evidence checklist"
+  default_prompt: "Review the IPO filing materials in input/ and summarize the high-priority manual review items from the generated report."

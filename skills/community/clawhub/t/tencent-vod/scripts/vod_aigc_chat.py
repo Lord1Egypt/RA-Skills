@@ -8,10 +8,14 @@
 接口地址：https://text-aigc.vod-qcloud.com/v1/chat/completions
 认证方式：Bearer Token（通过 vod_aigc_token.py 创建）
 
-支持的模型（截至 2026-03-19）：
-  OpenAI: gpt-5.4, gpt-5.2, gpt-5.1, gpt-5-chat, gpt-5-nano, gpt-4o
-  Gemini: gemini-3.1-pro-preview, gemini-3.1-flash-lite-preview,
-          gemini-3-flash-preview, gemini-2.5-pro, gemini-2.5-flash
+支持的模型（截至 2026-05-18）：
+  OpenAI: gpt-5.5, gpt-5.4-pro, gpt-5.4, gpt-5.4-mini, gpt-5.2, gpt-5.1,
+          gpt-5.1-chat, gpt-5-nano, gpt-4o
+          （gpt-5-chat 已于 2026-04-15 下架）
+  Gemini: gemini-3.5-flash, gemini-3.1-flash-lite, gemini-3.1-pro-preview,
+          gemini-3.1-flash-lite-preview, gemini-3-flash-preview, gemini-2.5-pro, gemini-2.5-flash
+  GK (Grok): gk-4-1-fast-reasoning, gk-4-20-non-reasoning, gk-4-20-reasoning, gk-4.3
+  CD (Claude): cd-opus-4.7, cd-sonnet-4.6, cd-opus-4.6, cd-opus-4.5, cd-haiku-4.5
 
 支持多模态输入：文本、图片（URL）、音频（Base64）、文件/视频（URL）
 
@@ -21,46 +25,46 @@
 
 用法示例：
   # 基础对话
-  python scripts/vod_aigc_chat.py chat \\
+  python3 scripts/vod_aigc_chat.py chat \\
       --token <YOUR_API_TOKEN> \\
       --model gpt-5.1 \\
       --message "你好，请介绍一下腾讯云 VOD"
 
   # 流式输出
-  python scripts/vod_aigc_chat.py stream \\
+  python3 scripts/vod_aigc_chat.py stream \\
       --token <YOUR_API_TOKEN> \\
       --model gemini-2.5-flash \\
       --message "写一首关于云计算的诗"
 
   # 带系统提示词
-  python scripts/vod_aigc_chat.py chat \\
+  python3 scripts/vod_aigc_chat.py chat \\
       --token <YOUR_API_TOKEN> \\
       --model gpt-5.1 \\
       --system "你是一个专业的视频处理专家" \\
       --message "H.264 和 H.265 的区别是什么？"
 
   # 多轮对话（JSON 格式指定完整 messages）
-  python scripts/vod_aigc_chat.py chat \\
+  python3 scripts/vod_aigc_chat.py chat \\
       --token <YOUR_API_TOKEN> \\
       --model gpt-5.1 \\
       --messages '[{"role":"user","content":"你好"},{"role":"assistant","content":"你好！"},{"role":"user","content":"介绍一下你自己"}]'  # NOCA:line-too-long(content cannot be shortened)
 
   # 图片理解
-  python scripts/vod_aigc_chat.py chat \\
+  python3 scripts/vod_aigc_chat.py chat \\
       --token <YOUR_API_TOKEN> \\
       --model gpt-5.1 \\
       --message "请描述这张图片的内容" \\
       --image-url "https://example.com/image.jpg"
 
   # 开启推理思考模式
-  python scripts/vod_aigc_chat.py chat \\
+  python3 scripts/vod_aigc_chat.py chat \\
       --token <YOUR_API_TOKEN> \\
       --model gpt-5.4 \\
       --message "请解一道数学题：..." \\
       --thinking
 
   # Function Calling（工具调用）
-  python scripts/vod_aigc_chat.py chat \\
+  python3 scripts/vod_aigc_chat.py chat \\
       --token <YOUR_API_TOKEN> \\
       --model gpt-5.1 \\
       --message "北京今天天气怎么样？" \\
@@ -69,7 +73,7 @@
 
   # 从环境变量读取 Token
   export TENCENTCLOUD_VOD_AIGC_TOKEN=<YOUR_API_TOKEN>
-  python scripts/vod_aigc_chat.py chat --model gpt-5.1 --message "你好"
+  python3 scripts/vod_aigc_chat.py chat --model gpt-5.1 --message "你好"
 """
 
 import argparse
@@ -101,7 +105,7 @@ if _LOAD_ENV_AVAILABLE and not os.environ.get("TENCENTCLOUD_VOD_AIGC_TOKEN"):
 try:
     import requests
 except ImportError:
-    print("❌ 缺少依赖，请先安装：pip install requests", file=sys.stderr)
+    print("❌ 缺少依赖，请先安装：python3 -m pip install requests", file=sys.stderr)
     sys.exit(1)
 
 # ─────────────────────────────────────────────
@@ -135,6 +139,7 @@ SUPPORTED_MODELS = [
     # Gemini 系列
     "gemini-3.5-flash",
     "gemini-3.1-flash-lite",
+    "gemini-3.1-flash-lite-preview",
     "gemini-3.1-pro-preview",
     "gemini-3-flash-preview",
     "gemini-2.5-pro",
@@ -161,7 +166,7 @@ ANTHROPIC_MODELS = {
 RESPONSES_MODELS = {"gpt-5.4-pro", "gpt-5.3-codex"}
 
 # 不支持 thinking_enabled 的模型
-NO_THINKING_MODELS = {"gpt-5.1", "gpt-5.2", "gpt-4o"}
+NO_THINKING_MODELS = {"gpt-5.1", "gpt-5.2", "gpt-5.4-mini", "gpt-4o"}
 
 
 # ─────────────────────────────────────────────
@@ -913,7 +918,7 @@ def add_common_args(parser):
     parser.add_argument(
         "--thinking",
         action="store_true",
-        help="开启推理思考模式（CoT，适合复杂逻辑/数学/代码，注意：gpt-5.1/5.2/4o 不支持）",
+        help="开启推理思考模式（CoT，适合复杂逻辑/数学/代码，注意：gpt-5.1/5.2/4o/5.4-mini 不支持）",
     )
     parser.add_argument(
         "--reasoning-effort",
@@ -1041,7 +1046,10 @@ def main():
             print(f"    {m}{note}")
         print("\n  Gemini 系列（支持文本、代码、图片、音频、视频输入，协议：OpenAI completions）：")
         for m in [m for m in SUPPORTED_MODELS if m.startswith("gemini")]:
-            print(f"    {m}")
+            note = " ⚠️ 资源紧缺" if m == "gemini-3.1-pro-preview" else ""
+            note += " ⚠️ 超过200w TPM需提前3天申请" if m == "gemini-3.1-flash-lite-preview" else ""
+            note += " ⚠️ 超过200w TPM需提前3天申请" if m == "gemini-3.1-flash-lite" else ""
+            print(f"    {m}{note}")
         print("\n  GK (Grok) 系列（支持文本、图片输入，协议：OpenAI completions）：")
         for m in [m for m in SUPPORTED_MODELS if m.startswith("gk")]:
             print(f"    {m}")
@@ -1049,7 +1057,10 @@ def main():
         for m in [m for m in SUPPORTED_MODELS if m.startswith("cd")]:
             print(f"    {m}")
         print("\n⚠️  限速：默认 RPM 30次/分钟，TPM 30W tokens/分钟")
-        print("📌 CD 系列模型使用 Anthropic 协议（x-api-key 认证），其他模型使用 OpenAI 兼容协议\n")
+        print("⚠️  gpt-5.5 超过200w TPM需提前3天申请")
+        print("📌 CD 系列模型使用 Anthropic 协议（x-api-key 认证），其他模型使用 OpenAI 兼容协议")
+        print("📌 gemini-3-pro-preview 已于 3 月 9 日下线")
+        print("📌 gpt-5-chat 已于 2026-04-15 下架\n")
         return
 
     validate_args(args)

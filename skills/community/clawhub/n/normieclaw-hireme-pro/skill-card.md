@@ -1,46 +1,63 @@
-## Description: <br>
-HireMe Pro helps users build ATS-friendly resumes, tailor resumes and cover letters to job postings, prepare for interviews, track applications, and generate resume PDFs from local templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HireMe Pro helps job seekers build ATS-friendly resumes, tailor cover letters, score job matches, prepare for interviews, track applications, and export resume PDFs from chat.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Job seekers use this agent skill to convert career history and target job postings into resumes, cover letters, interview-prep notes, match reports, application tracking records, and locally rendered resume PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated resumes and cover letters may include overstated or unverified claims, especially metrics, tools, budgets, or achievements introduced during tailoring. <br>
-Mitigation: Review every generated artifact against the user's actual experience before use, and require confirmation for any new quantified claim. <br>
-Risk: The skill stores sensitive career and contact data locally under the skill data directory. <br>
-Mitigation: Install only on trusted devices, use encrypted local storage where possible, and avoid syncing or sharing the data directory. <br>
-Risk: The optional dashboard kit handles sensitive career data and the security evidence says its safeguards are under-scoped. <br>
-Mitigation: Do not deploy the dashboard kit as written; add complete RLS policies, scoped authorization, and strong confirmation flows for export and deletion before deployment. <br>
+## Use Case:
 
+Job seekers use this skill to turn career history and target job postings into tailored resumes, cover letters, interview prep notes, application tracking records, salary negotiation guidance, and exportable resume PDFs. Agents use it as a structured workflow for local resume data management and job-search coaching.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-hireme-pro) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Security audit report](artifact/SECURITY.md) <br>
-- [Dashboard kit specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON data files, HTML templates, shell-command guidance, and locally generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Resume PDFs are rendered locally from HTML templates using the bundled shell script and Playwright.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Resume and application workflows can involve sensitive personal data such as contact details, employment history, salary targets, and interview notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the data needed for the task, keep resume data local where possible, avoid sending PII in web queries, and use restrictive local permissions and encrypted storage for real user data.
+
+Risk: The optional dashboard kit is intended to store profile, resume, application, and activity data, and server security evidence identifies an access-control gap.
+
+Mitigation: Do not deploy the dashboard with real data until all user/profile tables and storage policies have proper row-level access controls reviewed and tested.
+
+Risk: PDF generation depends on Playwright and executes a bundled shell workflow over user-provided resume data and templates.
+
+Mitigation: Pin and review Playwright before installation, run the script only from the skill directory, and use trusted templates and resume JSON inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-hireme-pro)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Setup instructions](artifact/SETUP-PROMPT.md)
+- [Security report](artifact/SECURITY.md)
+- [Dashboard kit specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Chat guidance, Markdown documents, JSON resume and application data, HTML templates, and PDF files generated through the bundled shell workflow.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PDF generation requires Python 3 and Playwright; the optional dashboard kit should be reviewed before deployment with real personal data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata, created 2026-03-31; changelog notes security fixes for script confinement and setup traversal removal)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

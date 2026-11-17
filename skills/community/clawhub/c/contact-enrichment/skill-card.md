@@ -1,43 +1,58 @@
-## Description: <br>
-Extract contact information from a website using a 3-tier approach: direct HTML scraping, WHOIS lookup, then Hunter.io API domain search for verified business emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract contact information from a website using a 3-tier approach: direct HTML scraping, WHOIS lookup, then Hunter.io API domain search for verified business emails.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and agents use this skill to enrich a business website or domain with public contact details, including emails, phone numbers, business names, WHOIS information, and optional Hunter.io results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may visit public business websites and query WHOIS data while enriching contacts. <br>
-Mitigation: Use the skill only for public business sites and respect robots.txt, login boundaries, and applicable privacy requirements. <br>
-Risk: Hunter.io lookup can send domains or email addresses to a third-party service and consume paid quota. <br>
-Mitigation: Set HUNTER_API_KEY only when that sharing and cost profile is acceptable, and monitor API usage. <br>
-Risk: Enriched contact data could be used for outreach subject to privacy and anti-spam rules. <br>
-Mitigation: Confirm outreach workflows include opt-out handling and comply with applicable CAN-SPAM, GDPR, and similar requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/contact-enrichment) <br>
-- [Hunter.io domain search API](https://api.hunter.io/v2/domain-search) <br>
-- [Hunter.io email verifier API](https://api.hunter.io/v2/email-verifier) <br>
+## Use Case:
 
+Developers and agents use this skill to enrich a public business website or domain with likely contact emails, phone numbers, business names, WHOIS details, and confidence indicators.
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and JSON-shaped contact-enrichment examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a public website URL or domain; HUNTER_API_KEY is optional for Hunter.io lookups.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch arbitrary user-provided URLs, which may expose internal or untrusted network locations if used without URL controls.
+
+Mitigation: Run it only against approved public business websites and add URL validation, redirect controls, and private-IP blocking before broader use.
+
+Risk: Optional Hunter.io enrichment sends domain and contact data to a third-party service.
+
+Mitigation: Provide HUNTER_API_KEY only when third-party enrichment is intended and the data-sharing implications are acceptable.
+
+Risk: Collected contact data may be used for outreach.
+
+Mitigation: Use public contact data only, honor opt-out requests, and review CAN-SPAM, GDPR, and other applicable outreach requirements before emailing.
+
+## Reference(s):
+
+- [Contact Enrichment ClawHub listing](https://clawhub.ai/maverick-software/skills/contact-enrichment)
+- [Hunter.io Domain Search API endpoint](https://api.hunter.io/v2/domain-search)
+- [Hunter.io Email Verifier API endpoint](https://api.hunter.io/v2/email-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown with Python code blocks and a JSON-like contact enrichment result schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires outbound requests to public websites and WHOIS services; Hunter.io enrichment is optional and requires HUNTER_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

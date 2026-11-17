@@ -1,41 +1,56 @@
-## Description: <br>
-Automate web form interactions including login, file upload, text input, and form submission using Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web form interactions with Playwright, including login session reuse, file upload, text entry, and form submission.
 
-## Publisher: <br>
-[flyingzl](https://clawhub.ai/user/flyingzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flyingzl](https://clawhub.ai/user/flyingzl)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser-based form workflows, including authenticated sessions, file uploads, text entry, option selection, submission, and screenshots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent browser-control power over arbitrary websites, including form submission. <br>
-Mitigation: Inspect the configuration before execution and confirm the exact website, fields, files, and submit action. <br>
-Risk: The skill can load login sessions from cookies, localStorage, or sessionStorage. <br>
-Mitigation: Avoid sensitive session files unless necessary and run browser automation in an isolated environment. <br>
-Risk: The skill can upload local files and force-click submit controls. <br>
-Mitigation: Confirm upload paths and target selectors before running, especially on untrusted or production websites. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Web Form Automation ClawHub Page](https://clawhub.ai/flyingzl/web-form-automation) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to generate or adapt Playwright workflows for filling web forms, uploading files, restoring browser sessions, and submitting web applications.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript, shell command, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser automation scripts, form-submission configuration, image-compression commands, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Restored cookies and browser storage can grant access to logged-in web accounts.
+
+Mitigation: Treat session files like passwords, verify the destination domain before reuse, and avoid sharing or committing session data.
+
+Risk: Automated form submission can cause unintended account changes, purchases, or legal submissions.
+
+Mitigation: Add dry-run, review, and explicit confirmation steps before clicking submit, especially on sensitive workflows.
+
+Risk: Forced clicks and broad selectors can bypass visible UI safeguards or target the wrong control.
+
+Mitigation: Use specific selectors, check button visibility and enabled state, and capture a before-submit screenshot for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyingzl/skills/web-form-automation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JavaScript, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Playwright automation snippets, image compression commands, and form submission configuration examples; actions should be reviewed before submitting forms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

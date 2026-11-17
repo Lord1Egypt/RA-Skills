@@ -1,37 +1,53 @@
-## Description: <br>
-Convert colors between HEX, RGB, HSL, HSV, and CMYK, generate palettes, check WCAG contrast, and export CSS variables using pure Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts colors between common formats, generates palette options, checks WCAG contrast, and helps prepare color output using a local pure-Python utility.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darbling](https://clawhub.ai/user/darbling)
 
-## Use Case: <br>
-Developers, designers, and accessibility reviewers use this skill to convert color formats, generate palette options, and check WCAG contrast for interface and brand work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Color Convert on ClawHub](https://clawhub.ai/darbling/color-convert) <br>
+Developers, designers, and other external users use this skill to convert color values, generate palette options, and evaluate WCAG contrast for UI and design work.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with color values, contrast results, palette entries, and CSS snippets when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure Python utility behavior with no declared external dependencies.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Documented named-color lookup and CSS export behavior may be incomplete in the inspected script.
+
+Mitigation: Verify required color commands in the local utility before relying on those features in release or production workflows.
+
+Risk: Color and contrast results can still be misapplied if design context, text size, or accessibility requirements are not reviewed.
+
+Mitigation: Review generated colors and WCAG contrast outputs against the target UI requirements before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/darbling/skills/color-convert)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown prose with optional inline code and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local pure-Python utility; security evidence found no hidden access, persistence, credential use, or network behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

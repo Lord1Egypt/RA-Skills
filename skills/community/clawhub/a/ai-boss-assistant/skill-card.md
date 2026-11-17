@@ -1,46 +1,64 @@
-## Description: <br>
-Transform any AI into a professional executive assistant with battle-tested personas and workflows, including Google Workspace integration templates, milestone delivery, and security guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Boss Assistant provides persona and workflow templates for training an AI agent as an executive assistant with Google Workspace workflows, staged delivery, and security guidance.
 
-## Publisher: <br>
-[jacky6658](https://clawhub.ai/user/jacky6658) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jacky6658](https://clawhub.ai/user/jacky6658)
 
-## Use Case: <br>
-Solo entrepreneurs, small team founders, busy professionals, and AI enthusiasts use this skill to train an agent as an executive assistant for scheduling, email handling, document workflows, task tracking, and staged project delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad account, browser, local-command, and persistence capabilities for an executive-assistant workflow. <br>
-Mitigation: Install first in a sandbox or dedicated assistant workspace, use a dedicated Google account where possible, and grant only the OAuth scopes needed for the intended workflow. <br>
-Risk: Credential and token files may expose connected Google Workspace or other service accounts if mishandled. <br>
-Mitigation: Protect credential and token files, keep them out of public repositories and unsafely synced folders, and revoke or rotate access when no longer needed. <br>
-Risk: Automated workflows can affect email, files, calendars, forms, git changes, or payments. <br>
-Mitigation: Require explicit user confirmation before sending email, sharing files, modifying calendars, pushing git changes, spending money, or submitting forms. <br>
+## Use Case:
 
+Solo entrepreneurs, small team founders, busy professionals, and AI builders use this skill to configure an AI agent for executive-assistant work such as schedule management, email handling, document workflows, task tracking, and staged project delivery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jacky6658/ai-boss-assistant) <br>
-- [AI Boss Assistant GitHub Repository](https://github.com/jacky6658/ai-boss-assistant) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [gog Google Workspace CLI](https://github.com/steipete/gog) <br>
-- [Google Cloud OAuth Credentials](https://console.cloud.google.com/apis/credentials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown templates and setup instructions with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes persona, workflow, setup, task, browser automation, Google Workspace, and security guidance templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The setup can grant broad Google Workspace access for Gmail, Calendar, Drive, Docs, and Sheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum OAuth scopes needed for the deployment, keep account authorizations separated by purpose, review granted services, and revoke unused tokens.
+
+Risk: OAuth credentials, Telegram bot tokens, API keys, or local token files could be exposed through configuration files, backups, or Git history.
+
+Mitigation: Store secrets in environment or gateway configuration, protect local credential paths, create a .gitignore before committing, and require explicit confirmation before any push or public action.
+
+Risk: Browser automation and assistant autonomy could perform sensitive external actions such as form submission, messaging, booking, or payment steps.
+
+Mitigation: Stop at confirmation pages for bookings or payments, require human approval for sensitive external actions, and avoid automation where site terms or anti-bot controls make it inappropriate.
+
+Risk: Installation and gateway setup instructions include global package installs, pipe-to-shell commands, service configuration, and optional communication channels.
+
+Mitigation: Review package identities and setup commands before running them, avoid unpinned or pipe-to-shell installs where possible, and disable gateway, admin, camera, or messaging capabilities unless intentionally needed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jacky6658/skills/ai-boss-assistant)
+- [Project repository](https://github.com/jacky6658/ai-boss-assistant)
+- [OpenClaw](https://openclaw.ai)
+- [gog Google Workspace CLI](https://github.com/steipete/gog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable assistant persona, workflow, setup, task, browser automation, and security guidance artifacts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-Xena Protocol scans a user's Gmail inbox for phishing, crypto scams, impersonation, and business email compromise, with an optional Reporter mode that submits hashed detections to an Ethereum Sepolia registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xena Protocol scans Gmail for phishing, crypto scams, impersonation, and business email compromise, with an optional Reporter mode that submits hashed reports to an on-chain registry on Ethereum Sepolia.
 
-## Publisher: <br>
-[nickvanzo](https://clawhub.ai/user/nickvanzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickvanzo](https://clawhub.ai/user/nickvanzo)
 
-## Use Case: <br>
-External users and developers use this skill to monitor Gmail for suspicious messages, triage phishing signals, and optionally publish hashed threat reports to a shared Sepolia registry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Gmail inbox state during background scans. <br>
-Mitigation: Grant Gmail OAuth access only for accounts where background phishing scans and unread-state changes are acceptable. <br>
-Risk: Reporter mode can automatically publish Sepolia blockchain reports. <br>
-Mitigation: Use Watcher mode unless automatic blockchain reporting is explicitly desired, and review setup choices before enabling Reporter mode. <br>
-Risk: The generated reporting wallet key is stored locally and should not protect other assets. <br>
-Mitigation: Do not reuse the generated wallet or fund it beyond the Sepolia test ETH needed for reporting. <br>
+## Use Case:
 
+External users and developers use this skill to connect a Gmail inbox, detect likely phishing and scam messages, and optionally participate in Reporter mode for shared on-chain threat reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickvanzo/xena-protocol) <br>
-- [Publisher profile](https://clawhub.ai/user/nickvanzo) <br>
-- [Project homepage](https://github.com/NickVanzo/royal-hackathon-itu) <br>
-- [OpenClaw package](https://www.npmjs.com/package/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-derived alert details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide OAuth setup, local wallet setup, inbox scanning, and optional Sepolia registry reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill requires powerful Gmail read/modify access and may change inbox unread state during heartbeat processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Gmail permissions and unread-label behavior before enabling heartbeat use; prefer manual runs until the workflow is understood.
+
+Risk: Selected email content may be sent to an external LLM for ambiguous classifications.
+
+Mitigation: Use the skill only with inboxes where that disclosure is acceptable, and avoid connecting accounts that may contain sensitive messages outside the intended security review scope.
+
+Risk: Reporter mode uses a locally stored plaintext testnet wallet private key and may submit reports automatically.
+
+Mitigation: Prefer Watcher mode unless reporting is required, fund the Reporter wallet only with tiny testnet amounts, and review Reporter behavior before enabling it.
+
+Risk: Reporter mode can expose sender-domain metadata to an RPC provider and publish hashed reports to the Sepolia registry.
+
+Mitigation: Enable Reporter mode only when this metadata exposure is acceptable; use Watcher mode for local detection without on-chain submissions.
+
+## Reference(s):
+
+- [Xena Protocol ClawHub release](https://clawhub.ai/nickvanzo/skills/xena-protocol)
+- [Publisher profile](https://clawhub.ai/user/nickvanzo)
+- [Project homepage from ClawHub metadata](https://github.com/NickVanzo/royal-hackathon-itu)
+- [OpenClaw package](https://www.npmjs.com/package/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON parser outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces phishing classification summaries, setup instructions, status guidance, and optional transaction references; does not output full email contents as a primary result.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

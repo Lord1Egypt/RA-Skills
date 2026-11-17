@@ -1,40 +1,53 @@
-## Description: <br>
-Self-Learn helps an agent improve over time by learning from user corrections and task self-evaluation, storing concise lessons in memory/corrections.md and memory storage for later recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous self-improvement through learning from user corrections and task self-evaluation, with learnings stored in persistent memory for human review.
 
-## Publisher: <br>
-[tonylnng](https://clawhub.ai/user/tonylnng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tonylnng](https://clawhub.ai/user/tonylnng)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an agent record user corrections, preferences, and repeatable lessons from completed tasks. It is intended for workflows where persistent learning is desired and where stored memories can be reviewed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent correction and lesson storage can retain secrets, personal details, or sensitive workflow information if those details are included in examples. <br>
-Mitigation: Avoid logging credentials, personal data, or sensitive information, and periodically review memory/corrections.md and stored memories. <br>
-Risk: Incorrect or overly broad lessons can influence future agent behavior. <br>
-Mitigation: Keep entries atomic, under 100 words, and review stored corrections before relying on them across tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Corrections template](artifact/references/corrections-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tonylnng/tonic-self-learn) <br>
+## Use Case:
 
+Developers and agent operators use this skill to help an OpenClaw agent record user corrections, self-evaluation lessons, and recent learned patterns. It is intended for environments where persistent correction and lesson memory is expected and reviewable.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown log entries and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory/corrections.md and store short correction or lesson entries for recall.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically store broad task and user-correction history in persistent memory without clear consent or deletion controls.
+
+Mitigation: Use it only where persistent memory is expected, and provide users a clear way to review, edit, and delete stored entries.
+
+Risk: Correction and lesson logs may capture sensitive or personal information if users or agents include it in memory entries.
+
+Mitigation: Review entries before retention where possible, follow the skill's no-secrets rule, and keep each stored lesson narrow and concise.
+
+## Reference(s):
+
+- [Corrections Template](references/corrections-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/tonylnng/skills/tonic-self-learn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown log entries and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write correction and lesson entries to persistent memory when memory tools and files are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

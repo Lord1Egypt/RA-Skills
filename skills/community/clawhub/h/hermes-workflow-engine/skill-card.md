@@ -1,53 +1,71 @@
-## Description: <br>
-Hermes Workflow Engine orchestrates goal-driven multi-step workflows with DAG dependencies, parallel execution, failover, resource monitoring, version management, pattern detection, dashboards, and community sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Workflow Engine orchestrates multi-step agent workflows with DAG dependencies, parallel execution planning, failover, resource monitoring, version management, pattern detection, dashboards, and community sharing.
 
-## Publisher: <br>
-[lgx281227231](https://clawhub.ai/user/lgx281227231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgx281227231](https://clawhub.ai/user/lgx281227231)
 
-## Use Case: <br>
-Developers and agent operators use this skill to define, validate, plan, and execute reusable YAML workflows for repetitive or long-running multi-step tasks that need dependency ordering, retries, pause/resume, dashboards, or version management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can orchestrate shell commands, subagents, and workflow steps that affect local files or external services. <br>
-Mitigation: Review each workflow, run validation and planning first, and execute only in an environment with appropriate permissions and resource limits. <br>
-Risk: The artifact includes guidance for copying private keys or ClawHub tokens between machines. <br>
-Mitigation: Do not follow credential-copy instructions; use freshly generated, scoped credentials and standard secret-management practices. <br>
-Risk: Automatic trigger and session-history scanning features may inspect prior activity or propose workflows without an explicit command. <br>
-Mitigation: Disable or avoid history-based and automatic trigger features unless the operator explicitly wants that behavior. <br>
-Risk: Community archive import can introduce untrusted workflow content. <br>
-Mitigation: Avoid importing untrusted community archives; inspect archives and workflow YAML before installation or execution. <br>
+## Use Case:
 
+Developers and automation-focused agent users use this skill to define, validate, plan, and run YAML workflows for repeatable multi-step tasks that may need pausing, resuming, delegation, or parallel work.
 
-## Reference(s): <br>
-- [Hermes Workflow Engine on ClawHub](https://clawhub.ai/lgx281227231/hermes-workflow-engine) <br>
-- [Workflow YAML Format Specification](scripts/FORMAT.md) <br>
-- [Cross-System Deployment Guide](references/cross-system-deployment.md) <br>
-- [Cross-Server Deployment Guide](references/cross-server-deployment.md) <br>
-- [ClawHub Publishing Workflow](references/clawhub-publishing.md) <br>
-- [Apache Airflow DAG Concepts](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html) <br>
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) <br>
-- [Prefect Documentation](https://docs.prefect.io/) <br>
-- [Temporal Documentation](https://docs.temporal.io/) <br>
-- [Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML snippets, Python CLI commands, and generated workflow, run, archive, or dashboard files when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow execution may create local state, run logs, community archives, and HTML dashboards through the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata; artifact frontmatter reports 3.0.0) <br>
+Risk: Broad workflow automation can execute or delegate unsafe steps if a workflow is accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate and inspect workflow plans before execution, review generated shell commands and delegation payloads, and require user approval for creation, execution, rollback, deletion, publishing, and large parallel runs.
+
+Risk: The artifact includes deployment guidance that copies SSH private keys and ClawHub config tokens between machines.
+
+Mitigation: Do not copy private keys or ClawHub config tokens across systems; generate fresh credentials per machine and rotate any credentials that were copied.
+
+Risk: History-based pattern detection and scheduled triggers can read private session history or trigger automation from past behavior.
+
+Mitigation: Disable or tightly scope history scanning and scheduled triggers when session privacy matters, and scrub sensitive session data before enabling pattern detection.
+
+Risk: Imported .tgz workflow packages are handled weakly and should be treated as untrusted until path validation is fixed.
+
+Mitigation: Import only trusted packages after inspecting archive members and metadata, or test imports in a sandboxed workspace before using the workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lgx281227231/skills/hermes-workflow-engine)
+- [Workflow YAML Format Specification](scripts/FORMAT.md)
+- [ClawHub Publishing Workflow](references/clawhub-publishing.md)
+- [Cross-System Deployment: Hermes to OpenClaw](references/cross-system-deployment.md)
+- [Workflow Engine Optimization - Darwin 2.0 Cycle](references/darwin-optimization-cycle.md)
+- [Darwin Optimization Log](references/darwin-optimization-log.md)
+- [Apache Airflow DAGs](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html)
+- [LangGraph documentation](https://langchain-ai.github.io/langgraph/)
+- [Prefect documentation](https://docs.prefect.io/)
+- [Temporal documentation](https://docs.temporal.io/)
+- [Directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-oriented CLI output with YAML workflow configuration and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce execution plans, delegate-task payloads, workflow state files, version metadata, tgz workflow packages, and HTML dashboards.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release evidence; artifact frontmatter says 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

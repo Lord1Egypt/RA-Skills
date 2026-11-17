@@ -1,41 +1,56 @@
-## Description: <br>
-Adds single, batch, stdin, file, or interactive items to Bring! shopping lists with dry-run preview and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user wants to add items to Bring! shopping lists. For adding single items, batch items, or items from stdin/files. Supports dry-run preview and JSON output.
 
-## Publisher: <br>
-[darkdevelopers](https://clawhub.ai/user/darkdevelopers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[darkdevelopers](https://clawhub.ai/user/darkdevelopers)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers use this skill to add one or more items to Bring! shopping lists from an agent-controlled command line, including batch, stdin, dry-run, and JSON-output workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Bring! account credentials may be exposed because the CLI requires BRING_EMAIL and BRING_PASSWORD.
+
+Mitigation: Use the least-privileged Bring! account available, avoid shared shell profiles and CI logs, and unset credentials after use.
+
+Risk: Dependency setup needs review because bring-shopping is unpinned and the lockfile points to a local linked path outside the package.
+
+Mitigation: Pin or replace the dependency with a reviewed registry version that includes an integrity hash before installation.
+
+Risk: The CLI can modify Bring! shopping lists when invoked.
+
+Mitigation: Use --dry-run for previews and pass an explicit list name or UUID when list selection matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to add one or more items to Bring! shopping lists from a command-line workflow, including batch, stdin/file, interactive, dry-run, and JSON-output modes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Bring! account credentials are required to use the CLI. <br>
-Mitigation: Treat BRING_EMAIL and BRING_PASSWORD as secrets; avoid shared shell history, CI logs, and committed files, and unset them after use. <br>
-Risk: Items may be added to the wrong shopping list if the default or selected list is incorrect. <br>
-Mitigation: Use the lists command to confirm available lists and use --dry-run before adding items when the target list is uncertain. <br>
+**Output Format:** [Markdown guidance with inline shell commands; CLI workflows can emit plain text or JSON.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/darkdevelopers/bring-add) <br>
-- [README](README.md) <br>
+**Other Properties Related to Output:** [Requires Bring! account credentials and supports dry-run previews before modifying a shopping list.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bring! account credentials in BRING_EMAIL and BRING_PASSWORD; supports dry-run mode before modifying a list.] <br>
+1.0.0 (source: server release metadata, target metadata, package.json, and package-lock.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

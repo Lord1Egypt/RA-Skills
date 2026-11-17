@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/run-state-0.4.json",
+  "title": "MoSoCanvas Run State 0.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "task_id", "mode", "phase", "approved_checkpoint", "allowed_changes", "protected_elements", "attempt_budget", "output_requirements", "verification", "direction_approval_status", "quality_status"],
+  "properties": {
+    "schema": { "const": "moso.run-state/0.4" },
+    "task_id": { "type": "string", "minLength": 1 },
+    "mode": { "enum": ["direction", "production", "repair", "review", "bypass"] },
+    "phase": { "enum": ["route", "proposition", "native-directions", "composition-proof", "freeze", "preflight", "execute", "independent-review", "decision", "accept", "stopped"] },
+    "spec_ref": { "type": "string", "minLength": 1 },
+    "shot_plan_ref": { "type": "string", "minLength": 1 },
+    "series_plan_ref": { "type": "string", "minLength": 1 },
+    "evidence_registry_ref": { "type": "string", "minLength": 1 },
+    "approved_checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_ref", "role"],
+      "properties": {
+        "source_ref": { "type": "string", "minLength": 1 },
+        "role": { "enum": ["reference", "composition-proof", "approved-pilot", "approved-mockup", "production-master", "approved-output", "none"] },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "width_px": { "type": "integer", "minimum": 1 },
+        "height_px": { "type": "integer", "minimum": 1 },
+        "user_confirmed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "allowed_changes": { "$ref": "#/$defs/stringArray" },
+    "protected_elements": { "$ref": "#/$defs/stringArray" },
+    "required_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "source_ref", "status"],
+        "properties": {
+          "role": { "type": "string", "minLength": 1 },
+          "source_ref": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["authoritative", "approved", "placeholder", "missing", "unverified"] },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+        }
+      }
+    },
+    "attempt_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generative", "repair", "generative_used", "repair_used"],
+      "properties": {
+        "generative": { "type": "integer", "minimum": 0 },
+        "repair": { "type": "integer", "minimum": 0 },
+        "generative_used": { "type": "integer", "minimum": 0 },
+        "repair_used": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parent_ref", "operation"],
+      "properties": {
+        "parent_ref": { "type": "string", "minLength": 1 },
+        "operation": { "enum": ["deterministic", "masked-generative", "full-frame-generative", "full-regeneration", "handoff"] },
+        "depends_on_parent": { "type": "boolean" },
+        "branch_reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "output_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["carrier"],
+      "properties": {
+        "carrier": { "type": "string", "minLength": 1 },
+        "formats": { "$ref": "#/$defs/stringArray" },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "enum": ["px", "mm", "cm", "in"] },
+        "dpi": { "type": "number", "exclusiveMinimum": 0 },
+        "frame_count": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "verification": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check", "method", "status"],
+        "properties": {
+          "check": { "type": "string", "minLength": 1 },
+          "method": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["pending", "pass", "fail", "unobservable", "user-judgment"] },
+          "evidence_ref": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "direction_approval_status": { "enum": ["pending", "approved", "rejected", "user-overrode", "not-required"] },
+    "quality_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["use_scale", "detail_scale", "protected_drift", "trajectory", "independent_review", "user_acceptance"],
+      "properties": {
+        "use_scale": { "enum": ["pending", "pass", "risk", "fail", "unobservable"] },
+        "detail_scale": { "enum": ["pending", "pass", "risk", "fail", "not-required", "unobservable"] },
+        "protected_drift": { "enum": ["pending", "none", "within-tolerance", "exceeded", "unobservable"] },
+        "trajectory": { "enum": ["pending", "improving", "stable", "worsening", "unknown"] },
+        "independent_review": { "enum": ["pending", "pass", "conditional", "fail", "not-required"] },
+        "user_acceptance": { "enum": ["pending", "accepted", "rejected", "accepted-with-tradeoff"] }
+      }
+    },
+    "generation_attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["attempt_id", "status", "pre_generation_brief"],
+        "properties": {
+          "attempt_id": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["planned", "generated", "reviewed", "rejected"] },
+          "pre_generation_brief": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["objective", "viewer_position", "first_read", "composition_geometry", "narrative_beat", "color_light_logic", "required_content", "protected_content", "main_risk", "communicated_to_user"],
+            "properties": {
+              "objective": { "type": "string", "minLength": 1 },
+              "viewer_position": { "type": "string", "minLength": 1 },
+              "first_read": { "type": "string", "minLength": 1 },
+              "composition_geometry": { "type": "string", "minLength": 1 },
+              "narrative_beat": { "type": "string", "minLength": 1 },
+              "color_light_logic": { "type": "string", "minLength": 1 },
+              "required_content": { "$ref": "#/$defs/stringArray" },
+              "protected_content": { "$ref": "#/$defs/stringArray" },
+              "main_risk": { "type": "string", "minLength": 1 },
+              "communicated_to_user": { "const": true }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["backend", "interface", "model", "model_version", "prompt_ref", "prompt_sha256", "parameters", "generated_at", "output_ref"],
+            "properties": {
+              "backend": { "type": "string", "minLength": 1 },
+              "interface": { "type": "string", "minLength": 1 },
+              "model": { "type": "string", "minLength": 1 },
+              "model_version": { "type": "string", "minLength": 1 },
+              "prompt_ref": { "type": "string", "minLength": 1 },
+              "prompt_sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+              "parameters": { "type": "object" },
+              "reference_inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["ref", "role"],
+                  "properties": {
+                    "ref": { "type": "string", "minLength": 1 },
+                    "role": { "enum": ["image-prompt", "style-reference", "omni-reference", "moodboard", "personalization", "mask", "source-image"] },
+                    "weight": { "type": "number" },
+                    "resolved_code": { "type": "string", "minLength": 1 }
+                  }
+                }
+              },
+              "seed": { "type": "integer", "minimum": 0 },
+              "generated_at": { "type": "string", "format": "date-time" },
+              "output_ref": { "type": "string", "minLength": 1 },
+              "output_sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+              "job_ref": { "type": "string", "minLength": 1 }
+            }
+          },
+          "self_review_ref": { "type": "string", "minLength": 1 },
+          "independent_review_ref": { "type": "string", "minLength": 1 }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "status": { "enum": ["generated", "reviewed", "rejected"] } } },
+            "then": { "required": ["execution"] }
+          },
+          {
+            "if": { "properties": { "status": { "const": "reviewed" } } },
+            "then": { "required": ["self_review_ref", "independent_review_ref"] }
+          }
+        ]
+      }
+    },
+    "release_review_ref": { "type": "string", "minLength": 1 },
+    "user_decision_ref": { "type": "string", "minLength": 1 },
+    "stop_reason": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "mode": { "const": "repair" } } },
+      "then": { "required": ["lineage"] }
+    },
+    {
+      "if": { "properties": { "phase": { "enum": ["preflight", "execute", "independent-review", "decision", "accept"] } } },
+      "then": { "required": ["spec_ref"] }
+    },
+    {
+      "if": { "properties": { "phase": { "enum": ["execute", "independent-review", "decision", "accept"] } } },
+      "then": {
+        "properties": { "direction_approval_status": { "enum": ["approved", "user-overrode", "not-required"] } }
+      }
+    },
+    {
+      "if": { "properties": { "phase": { "const": "accept" } } },
+      "then": {
+        "required": ["release_review_ref", "user_decision_ref", "evidence_registry_ref"],
+        "properties": {
+          "quality_status": {
+            "properties": {
+              "independent_review": { "enum": ["pass", "conditional"] },
+              "user_acceptance": { "enum": ["accepted", "accepted-with-tradeoff"] }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+  }
+}

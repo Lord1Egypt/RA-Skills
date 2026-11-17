@@ -1,46 +1,61 @@
-## Description: <br>
-Musashi provides conviction-weighted crypto token analysis through seven elimination gates, cross-domain pattern detection, adversarial debate, and optional on-chain STRIKE publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conviction-weighted token intelligence. Analyze any token through 7 elimination gates, cross-domain pattern detection, and adversarial debate. Triggers on "analyze token", "musashi scan", "check conviction", "narrative meta".
 
-## Publisher: <br>
-[yeheskieltame](https://clawhub.ai/user/yeheskieltame) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeheskieltame](https://clawhub.ai/user/yeheskieltame)
 
-## Use Case: <br>
-External users, crypto analysts, and agent operators use Musashi to confirm token identity, run gate-based due diligence, compare social, on-chain, safety, and market signals, and produce a PASS/FAIL conviction report before optionally publishing a STRIKE on-chain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configuring OG_CHAIN_PRIVATE_KEY enables wallet-signing operations and can spend gas or create durable public records. <br>
-Mitigation: Use analysis mode without a private key when possible; if publishing is needed, use a dedicated low-funds wallet and require explicit user confirmation before signing. <br>
-Risk: The bundled binary exposes additional wallet-signing admin commands beyond the normal analysis flow. <br>
-Mitigation: Review the installed binary commands before use and only provide wallet credentials if those admin capabilities are acceptable in the deployment environment. <br>
-Risk: Token intelligence can be wrong or stale and may influence financial decisions. <br>
-Mitigation: Treat outputs as due-diligence support, verify token identity and chain selection with the user, and do not treat a PASS verdict as financial advice. <br>
+## Use Case:
 
+External users and developers use Musashi to evaluate crypto tokens through gated safety, liquidity, wallet, social, narrative, market timing, and cross-validation checks. The skill can produce analysis-only verdicts without a private key, and can optionally publish high-conviction STRIKE records on-chain after explicit user confirmation.
 
-## Reference(s): <br>
-- [Musashi ClawHub page](https://clawhub.ai/yeheskieltame/musashi) <br>
-- [Gate Reference](references/GATES.md) <br>
-- [Pattern Detection Reference](references/PATTERNS.md) <br>
-- [API Endpoints Reference](references/API_ENDPOINTS.md) <br>
-- [0G Storage CLI install docs](https://docs.0g.ai/developer-hub/building-on-0g/storage/storage-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PASS/FAIL gate reports, STRIKE transaction hashes, 0G Storage root hashes, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can publish on-chain records and run admin-style blockchain write commands when publish mode is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use analysis mode without a private key when possible, and review every transaction prompt before approving any on-chain action.
+
+Risk: Private-key handling is security-sensitive and was flagged by the server security evidence.
+
+Mitigation: Use a dedicated low-balance wallet for Musashi operations and avoid using a main wallet or broadly funded key.
+
+Risk: Crypto-token analysis can be misleading or financially harmful if outputs are treated as investment advice.
+
+Mitigation: Require explicit token confirmation before analysis and treat PASS/FAIL results as decision-support signals that need human review.
+
+## Reference(s):
+
+- [Musashi Skill Page](https://clawhub.ai/yeheskieltame/skills/musashi)
+- [Gate Reference](references/GATES.md)
+- [Pattern Detection Reference](references/PATTERNS.md)
+- [API Endpoints Reference](references/API_ENDPOINTS.md)
+- [0G Storage CLI Install Docs](https://docs.0g.ai/developer-hub/building-on-0g/storage/storage-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PASS/FAIL gate results, specialist analyses, debate summaries, conviction judgments, configuration snippets, transaction prompts, transaction hashes, explorer links, and storage hashes.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

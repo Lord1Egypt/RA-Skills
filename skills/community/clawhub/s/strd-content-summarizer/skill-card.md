@@ -1,43 +1,57 @@
-## Description: <br>
-Fetch any URL and produce a structured content summary with extractive summarization, AI enhancement prompts, and structured output templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches URLs or raw text and produces structured Markdown summaries with extractive key sentences, metadata, and AI enhancement prompts.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers, researchers, and content teams use this skill to turn URLs or raw text into structured markdown summaries, extractive key sentences, tweet hooks, key takeaways, and prompts for optional LLM refinement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs and stores extracted text in local markdown files. <br>
-Mitigation: Use it for public or shareable content, set OUTPUT_DIR appropriately for sensitive work, and clean up generated files when they are no longer needed. <br>
-Risk: Generated AI enhancement prompts may contain copied source text that a user could paste into an external AI service. <br>
-Mitigation: Review extracted text before sending prompts to any external service and avoid including private or confidential material. <br>
-Risk: Extractive summaries and templates may omit nuance or preserve misleading source phrasing. <br>
-Mitigation: Review key sentences and generated templates against the source before publishing or using them for decisions. <br>
+## Use Case:
 
+Developers, researchers, and content teams use this skill to triage, repurpose, or prepare articles and text for newsletters, research workflows, and LLM-assisted summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/strd-content-summarizer) <br>
-- [Publisher profile](https://clawhub.ai/user/kryzl19) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown summaries and terminal output with generated local markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [URL summaries are saved under the configured OUTPUT_DIR, defaulting to /tmp/summaries; URL extraction limits article text to 15,000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The URL scripts can fetch arbitrary locations, including sensitive internal or authenticated sources if a user supplies them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive URLs or raw text; do not provide localhost, internal network, cloud metadata, file://, authenticated, or confidential sources.
+
+Risk: Generated summaries and extracted content may be written to shared temporary storage.
+
+Mitigation: Set OUTPUT_DIR to a private directory for sensitive workflows and delete generated summary files when they are no longer needed.
+
+Risk: Generated AI enhancement prompts may contain untrusted source content.
+
+Mitigation: Review prompts before using them with any tool-enabled agent and treat copied source content as untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/strd-content-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown written to files and printed to the terminal]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [URL summaries are saved under OUTPUT_DIR, defaulting to /tmp/summaries; extracted URL text is capped at 15,000 characters before prompt generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

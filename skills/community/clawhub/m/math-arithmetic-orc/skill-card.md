@@ -1,43 +1,58 @@
-## Description: <br>
-Recognizes K-12 arithmetic expressions in uploaded math images, including handwritten and printed equations, and returns structured OCR text results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes K12 arithmetic and math-problem images, including handwritten or printed operations, vertical calculations, fractions, and equations, and returns structured OCR text results.
 
-## Publisher: <br>
-[hzheigege](https://clawhub.ai/user/hzheigege) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hzheigege](https://clawhub.ai/user/hzheigege)
 
-## Use Case: <br>
-External users and developers use this skill to extract editable arithmetic text and detection details from K-12 math problem images, including vertical calculations, fractions, and equations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Math images or image URLs are sent to Tencent Cloud for OCR processing. <br>
-Mitigation: Use the skill only with images appropriate for Tencent Cloud processing and follow applicable privacy or data-handling requirements. <br>
-Risk: Tencent Cloud credentials are required to call the OCR API. <br>
-Mitigation: Use a dedicated least-privilege Tencent Cloud OCR key and store it in platform secret storage or environment variables rather than normal parameters. <br>
-Risk: The artifact depends on axios ^1.6.0. <br>
-Mitigation: Pin or update axios to a vetted patched version before deployment. <br>
+## Use Case:
 
+External users and agents use this skill to convert math-problem images or image URLs into editable text and structured OCR detection data. It is suited for arithmetic recognition workflows that can use Tencent Cloud OCR and configured Tencent Cloud credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hzheigege/math-arithmetic-orc) <br>
-- [Tencent Cloud OCR API endpoint](https://ocr.tencentcloudapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured data] <br>
-**Output Format:** [JSON-compatible object containing status, message, recognized text, detection metadata, rotation angle, raw response, and request ID.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud OCR credentials; optional settings can reject non-arithmetic images and include vertical-calculation intermediate results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Math-problem images or image URLs are sent to Tencent Cloud OCR.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images appropriate for Tencent Cloud processing, and avoid submitting sensitive student or personal information unless policy allows it.
+
+Risk: The skill requires Tencent Cloud credentials.
+
+Mitigation: Configure credentials through environment or platform secrets, rotate them as needed, and avoid exposing them in prompts, logs, or shared configuration.
+
+Risk: The release evidence flags malformed plugin.json and dependency pinning concerns.
+
+Mitigation: Fix the plugin manifest JSON and pin dependency versions before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hzheigege/skills/math-arithmetic-orc)
+- [Tencent Cloud OCR API endpoint](https://ocr.tencentcloudapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing success status, a human-readable message, recognized text, text detection details, image angle, and request ID when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may return Tencent Cloud OCR errors or an empty result when no text is detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

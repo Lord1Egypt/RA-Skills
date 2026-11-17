@@ -1,41 +1,54 @@
-## Description: <br>
-Provides BTC market direction signals with UP, DOWN, or NEUTRAL bias, confidence, and optional structured ACP signal details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides BTC UP/DOWN/NEUTRAL trading-bias snapshots with confidence bands using claimed RSI, Fear & Greed, and whale-flow signals.
 
-## Publisher: <br>
-[kokoju007](https://clawhub.ai/user/kokoju007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokoju007](https://clawhub.ai/user/kokoju007)
 
-## Use Case: <br>
-External users and trading agents use this skill to get a quick BTC bias and confidence snapshot before deciding whether to continue with a separate trade or ACP signal workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat BTC bias output as financial advice or rely on it as the sole basis for a trade. <br>
-Mitigation: Treat outputs as market commentary, verify independently, and require explicit confirmation before acting on any trade. <br>
-Risk: The paid ACP path can create unexpected spend if an agent hires Orion without clear user approval. <br>
-Mitigation: Require explicit confirmation before hiring Orion through ACP or paying for any signal offering. <br>
+## Use Case:
 
+External users and agents can request a quick BTC market-direction gate before swaps or execution, then optionally use Orion ACP for structured multi-timeframe signal data. Outputs should be treated as third-party trading signals requiring independent verification, not standalone financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokoju007/btc-direction-orion) <br>
-- [Orion ACP agent page](https://app.virtuals.io/virtuals/1809) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown text with optional structured JSON signal details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Free preview returns bias, confidence, timeframe, and timestamp; paid ACP offering may return multi-timeframe structured signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may influence BTC trading decisions with unsupported or unaudited market-direction claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require users to verify data sources, freshness, calculations, and market context independently before acting on any signal.
+
+Risk: The skill promotes paid third-party signal offerings that may be mistaken for financial advice.
+
+Mitigation: Present outputs as informational third-party signals, keep financial-risk disclosures visible, and avoid automated execution without separate review controls.
+
+## Reference(s):
+
+- [BTC Direction — Orion on ClawHub](https://clawhub.ai/kokoju007/skills/btc-direction-orion)
+- [Orion ACP listing](https://app.virtuals.io/virtuals/1809)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain text snapshot; structured JSON for paid signal offerings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include BTC bias, confidence band or score, timeframe, timestamp, and optional multi-timeframe market indicators.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

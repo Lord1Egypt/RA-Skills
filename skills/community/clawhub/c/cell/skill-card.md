@@ -1,44 +1,56 @@
-## Description: <br>
-根据移动/联通/电信基站参数查询大致位置（经纬度与地址）。当用户说：根据基站小区号查大概位置，或类似基站定位问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries JisuAPI with mobile carrier base-station identifiers to return approximate latitude, longitude, address, and accuracy details.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers, agents, and end users use this skill to query approximate latitude, longitude, address, and accuracy from mobile, Unicom, or Telecom base-station identifiers through JisuAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried base-station identifiers and returned locations may be privacy-sensitive. <br>
-Mitigation: Share only necessary tower data with JisuAPI, avoid submitting sensitive or unauthorized location queries, and handle returned coordinates and addresses as sensitive data. <br>
-Risk: The skill requires a JISU_API_KEY and sends requests to the JisuAPI cell query service. <br>
-Mitigation: Store the API key in the environment, avoid logging or sharing it, rotate it if exposed, and confirm the account is allowed to use the cell query API. <br>
-Risk: Returned tower locations are approximate and may be incomplete when the provider has no matching information. <br>
-Mitigation: Treat the result as coarse location context, surface uncertainty to users, and verify important decisions with another trusted location source. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to answer explicit base-station lookup requests by turning MNC, LAC, and cell ID values into approximate location details from JisuAPI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/cell) <br>
-- [JisuAPI cell query API documentation](https://www.jisuapi.com/api/cell/) <br>
-- [JisuAPI homepage](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; returns the API result object or an error object.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Base-station identifiers can be location-sensitive, and lookups send those identifiers plus the configured API key to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit authorized requests, avoid querying another person's location-related data without proper authorization, and confirm users understand the lookup uses JisuAPI.
+
+Risk: Returned coordinates and addresses are approximate and depend on upstream JisuAPI coverage.
+
+Mitigation: Present results as approximate and avoid using them as sole evidence for safety-critical, legal, or emergency decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/cell)
+- [JisuAPI Cell Query Documentation](https://www.jisuapi.com/api/cell/)
+- [JisuAPI](https://www.jisuapi.com/)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jisuapi)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON result data plus human-facing setup and invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JISU_API_KEY and base-station identifiers; returns approximate location data when the upstream API has a match.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

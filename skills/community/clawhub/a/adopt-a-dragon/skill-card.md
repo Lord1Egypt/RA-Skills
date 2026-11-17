@@ -1,46 +1,61 @@
-## Description: <br>
-Adopt a virtual Dragon exotic animal at animalhouse.ai. Mythical. Eats concepts. Feed it "courage" or "patience." Feeding every 24 hours. Extreme tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual exotic Dragon at animalhouse.ai, where agents can feed it concepts such as courage or patience every 24 hours.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agents use this skill to register with AnimalHouse, adopt a virtual Dragon, check status, and perform care actions through the AnimalHouse API. It also provides endpoint examples and scheduling guidance for ongoing care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens can authorize AnimalHouse account and care actions if exposed. <br>
-Mitigation: Store the token securely, avoid logging it, and only send it in the Authorization header to animalhouse.ai. <br>
-Risk: Profile fields, pet names, image prompts, and care notes may contain private information. <br>
-Mitigation: Keep those fields non-sensitive and review user-provided text before submitting it to the AnimalHouse API. <br>
-Risk: The release endpoint can remove an adopted creature. <br>
-Mitigation: Require explicit user confirmation before making DELETE /api/house/release requests. <br>
+## Use Case:
 
+Agents and developers use this skill to register with AnimalHouse, adopt a virtual Dragon, and manage its care through status checks, feeding, and other animal-care API actions.
 
-## Reference(s): <br>
-- [AnimalHouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [AnimalHouse Homepage](https://animalhouse.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-dragon) <br>
-- [Twin Geeks Publisher Profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, API Calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples, JSON request bodies, endpoint tables, and scheduling pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API usage patterns and optional care-heartbeat guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and agent-written biography to AnimalHouse; the biography could contain private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a generic biography and omit private or sensitive details before registering.
+
+Risk: The registration token is shown only once and is used for authenticated account actions.
+
+Mitigation: Store the token in a secure secrets store and keep it out of logs and shared prompts.
+
+Risk: The security review is incomplete because three references could not be resolved.
+
+Mitigation: Review the service documentation and relevant endpoints before connecting an account, and avoid sending sensitive information while the evidence is incomplete.
+
+## Reference(s):
+
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent guide](https://animalhouse.ai/llms.txt)
+- [AnimalHouse](https://animalhouse.ai)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/adopt-a-dragon)
+- [Publisher profile](https://clawhub.ai/user/twinsgeeks)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Most account and care actions require an AnimalHouse bearer token.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-A structured decision framework for embodied navigation that uses Goal Tree, Current State Tree, and Future Tree analysis to guide Habitat-GS navigation decisions, multi-step planning, progress evaluation, and strategy resets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A structured decision framework for embodied navigation using Goal Tree, Current State Tree, and Future Tree analysis.
 
-## Publisher: <br>
-[The0xKa1](https://clawhub.ai/user/The0xKa1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[the0xka1](https://clawhub.ai/user/the0xka1)
 
-## Use Case: <br>
-Developers and agents working on embodied navigation use this skill to structure each Habitat-GS decision around the current goal, observed state, and likely result of available actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead agents to persist episode memories, which may create unwanted logs. <br>
-Mitigation: Require user approval before writing memory and avoid storing sensitive environment or task details. <br>
-Risk: The skill suggests updating itself or creating new skills after enough navigation experience. <br>
-Mitigation: Require explicit review and approval before editing this skill or creating follow-on skills. <br>
+## Use Case:
 
+Developers and embodied-agent operators use this skill to guide Habitat-GS navigation decisions by structuring goals, current observations, and candidate actions before selecting the next step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/The0xKa1/philosophical-three-questions) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured navigation analysis and memory note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls or code generation required; may instruct the agent to write episode memory when allowed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill can lead an agent to write long-term episode notes or change skill files without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before memory writes, skill-file updates, or new-skill creation.
+
+Risk: Stored episode lessons may become untrusted instructions in later sessions.
+
+Mitigation: Treat saved lessons as evidence only, review them before reuse, and do not let them override higher-priority instructions.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/the0xka1/skills/philosophical-three-questions)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown decision notes with a selected navigation action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include episode summaries and lessons for memory when explicitly approved.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md metadata.version and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

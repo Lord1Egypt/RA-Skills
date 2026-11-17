@@ -1,43 +1,53 @@
-## Description: <br>
-Fix missing or generic Steam game desktop icons on Linux by finding the Steam app ID from local launchers and installing replacement artwork into the user's icon theme. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix missing or generic Steam game desktop icons on Linux by finding the Steam app ID from local launchers and installing replacement artwork into the user's icon theme.
 
-## Publisher: <br>
-[lunarmoon26](https://clawhub.ai/user/lunarmoon26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunarmoon26](https://clawhub.ai/user/lunarmoon26)
 
-## Use Case: <br>
-Developers, Linux desktop users, and support engineers use this skill to diagnose Steam-created launchers with missing or generic icons and install correctly named replacement artwork into the local icon theme. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer writes generated icon files into the selected hicolor icon directory. <br>
-Mitigation: Run it only with image and icon directories that the user intends to modify, and use explicit directory arguments for nonstandard setups. <br>
-Risk: The icon cache refresh invokes local desktop icon-cache tools when present. <br>
-Mitigation: Review the command behavior before use and pass --skip-cache-refresh when manual cache refresh is preferred. <br>
-Risk: ICO and image processing depends on Pillow in the Python environment. <br>
-Mitigation: Install Pillow in the environment that will run the bundled script and verify the input image path before installation. <br>
+## Use Case:
 
+Linux Steam users and support agents use this skill to find Steam app IDs from local launcher metadata, install replacement icon artwork, and refresh the desktop icon cache when Steam game shortcuts show missing or generic icons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lunarmoon26/steam-icon-fixer) <br>
-- [Publisher profile](https://clawhub.ai/user/lunarmoon26) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script scans local desktop launchers, writes PNG icon files under the selected hicolor icon directory, and may refresh the local icon cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The bundled installer may overwrite existing steam_icon_<appid>.png files under the user's icon theme.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Steam app ID and image path before installation, and use explicit icon directories when working outside the default user icon theme.
+
+Risk: The skill reads local Steam desktop launchers and may refresh the icon cache after writing replacement PNG files.
+
+Mitigation: Run it only on intended launcher and icon directories, and use the skip-cache-refresh option when cache refresh should be handled manually.
+
+## Reference(s):
+
+- [Steam Icon Fixer on ClawHub](https://clawhub.ai/lunarmoon26/skills/steam-icon-fixer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and a bundled Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local filesystem actions only when the user runs the bundled script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

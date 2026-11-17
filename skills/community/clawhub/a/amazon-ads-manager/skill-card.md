@@ -1,41 +1,55 @@
-## Description: <br>
-Manage Amazon Advertising campaigns via the official Advertising API by reading live campaign, keyword, and search-term performance, calculating ACOS, ROAS, and CTR, identifying wasted spend, adjusting bids, pausing keywords, and adding negatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Amazon Advertising campaigns through the official Advertising API by reading live performance data, calculating ad metrics, and supporting keyword, bid, state, and negative-keyword changes.
 
-## Publisher: <br>
-[linbeihanda](https://clawhub.ai/user/linbeihanda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbeihanda](https://clawhub.ai/user/linbeihanda)
 
-## Use Case: <br>
-Amazon Ads operators, sellers, and marketing teams use this skill to inspect live Sponsored Products campaign performance, produce optimization reports, and apply confirmed bid, state, and negative-keyword changes through the Amazon Advertising API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires live Amazon Ads OAuth credentials and can access sensitive advertising account data. <br>
-Mitigation: Install it only for intended Amazon Ads accounts, store credentials locally in the skill .env file, and use the narrowest practical profile access. <br>
-Risk: Bid, pause, archive, and negative-keyword operations can change live campaign performance and spend. <br>
-Mitigation: Review reports before acting and require an explicit summary and confirmation before applying bid, state, archive, or negative-keyword changes. <br>
+## Use Case:
 
+Developers, operators, and advertisers use this skill to inspect Amazon Ads account performance, produce optimization reports, and carry out campaign-management actions after confirmation.
 
-## Reference(s): <br>
-- [Amazon Ads API onboarding](https://advertising.amazon.com/API/docs/en-us/onboarding/overview) <br>
-- [ClawHub skill page](https://clawhub.ai/linbeihanda/amazon-ads-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown reports with tables, inline shell commands, and JSON-backed API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Amazon Ads OAuth credentials and profile configuration before commands can access account data or modify campaigns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill uses long-lived Amazon Ads credentials and documents storing them in a skill-root .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret store or tightly permissioned environment variables, grant the least privilege possible, and rotate credentials if they are exposed.
+
+Risk: The skill can make live campaign changes such as bid updates, keyword pauses, archives, and negative-keyword additions.
+
+Mitigation: Require explicit user confirmation before executing business-impacting changes and review proposed actions against account goals before running them.
+
+## Reference(s):
+
+- [Amazon Ads API onboarding](https://advertising.amazon.com/API/docs/en-us/onboarding/overview)
+- [ClawHub skill page](https://clawhub.ai/linbeihanda/skills/amazon-ads-manager)
+- [Publisher profile](https://clawhub.ai/user/linbeihanda)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, JSON command output, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Amazon Ads API credentials and account profile configuration before live API commands can run.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-Helps users collect political news, analyze events from multiple perspectives, and generate commentary articles, scripts, social posts, visual-card outlines, or newsletter drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists users in collecting public political news, analyzing events, and generating political commentary in multiple formats.
 
-## Publisher: <br>
-[qpooqp777](https://clawhub.ai/user/qpooqp777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qpooqp777](https://clawhub.ai/user/qpooqp777)
 
-## Use Case: <br>
-External users and content creators use this skill to monitor political news, choose topics of interest, analyze events with structured political frameworks, and draft commentary in several publishing formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain sensitive political interests and topic preferences locally. <br>
-Mitigation: Review the local memory behavior before installation, and clear or disable preference tracking when a retained political-interest profile is not desired. <br>
-Risk: News and search requests may reach external public sources and expose political topics of interest. <br>
-Mitigation: Use the skill only when external news/search activity is acceptable, and avoid submitting sensitive personal context in search prompts. <br>
-Risk: Generated political commentary may reflect source bias, incomplete reporting, or fast-changing facts. <br>
-Mitigation: Check generated claims against current primary or reputable news sources before publishing or making decisions from the output. <br>
+## Use Case:
 
+External users and content creators use this skill to gather public political news, choose topics of interest, and produce structured political analysis or commentary in a selected format and tone.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qpooqp777/topskill) <br>
-- [news-sources.md](references/news-sources.md) <br>
-- [analysis-framework.md](references/analysis-framework.md) <br>
-- [article-template.md](references/templates/article-template.md) <br>
-- [script-template.md](references/templates/script-template.md) <br>
-- [social-template.md](references/templates/social-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text commentary, scripts, social posts, visual-card outlines, and newsletter drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can vary by selected topic, region, commentary style, and requested publishing format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Political-news searches and selected topics can expose sensitive political interests to search engines or news sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit consent before proactive news searches and offer link-only analysis for users who do not want search activity.
+
+Risk: Saved topic preferences can create a local profile of the user's political interests.
+
+Mitigation: Keep preference saving opt-in, store only selected topics or keywords, and provide clear commands to view, clear, or disable stored preferences.
+
+Risk: Recurring topic tracking can repeatedly disclose political interests through ongoing news searches.
+
+Mitigation: Keep tracking disabled by default and require explicit user consent before enabling scheduled or repeated searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qpooqp777/skills/topskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text commentary, scripts, social posts, newsletters, and structured analysis summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public news summaries, source links, selected topic labels, commentary style choices, and optional locally stored topic preferences when the user explicitly consents.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

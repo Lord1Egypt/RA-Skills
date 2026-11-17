@@ -1,47 +1,61 @@
-## Description: <br>
-Unified operating system for controlling embodied intelligent robots with AI agents - the control hub bridging AI agents and physical world. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified operating system for controlling embodied intelligent robots with AI agents - the control hub bridging AI agents and physical world.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to install and apply Embodied-OS guidance for AI-assisted robot control, perception, task planning, and safety configuration. It is intended for agents helping users work with simulated or supervised physical robot systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact physical robot actions. <br>
-Mitigation: Use only in simulation or in a supervised, bounded robot workspace until hardware limits, emergency stop behavior, and package behavior are verified. <br>
-Risk: The artifact bundles unrelated old video-generator files with extra install and API-use instructions. <br>
-Mitigation: Remove or ignore the bundled video-generator files before deployment and review only the Embodied-OS skill path for operational use. <br>
-Risk: The skill may submit data to external AI providers through Anthropic or OpenAI API keys. <br>
-Mitigation: Use dedicated API keys with spend limits and confirm provider data flows before sending robot, environment, or user data. <br>
-Risk: Unreviewed commands could install repositories or run long-running monitoring or robot actions. <br>
-Mitigation: Require explicit user confirmation before repository installation, external API submission, long-running monitoring, or any real robot movement. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to connect AI agents with simulated or physical robot platforms, generate setup commands and configuration, and draft code for robot perception, planning, safety, and action APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ZhenStaff/embodied-os) <br>
-- [Embodied-OS GitHub Project](https://github.com/ZhenRobotics/openclaw-embodied-os) <br>
-- [Embodied-OS PyPI Package](https://pypi.org/project/openclaw-embodied-os/) <br>
-- [Embodied-OS npm Package](https://www.npmjs.com/package/openclaw-embodied-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python, YAML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include robot-control setup and execution guidance that should be reviewed before use with physical hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can guide high-impact physical robot operation without enough safety scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it first in simulation or a controlled robotics environment, require explicit human confirmation before live-hardware execution, and enforce robot-side workspace, velocity, force, collision, and emergency-stop limits independently.
+
+Risk: The artifact includes unrelated legacy video-generator files that could auto-trigger risky command execution from user-supplied text.
+
+Mitigation: Exclude or ignore the legacy video-generator files for this release and ensure only the Embodied-OS skill file can trigger agent behavior.
+
+Risk: The security review calls for dependency pinning and review before installation.
+
+Mitigation: Pin and inspect Python, npm, ROS, CUDA, and robot-control dependencies before deployment, especially in environments connected to physical hardware.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/embodied-os)
+- [Project homepage](https://github.com/ZhenRobotics/openclaw-embodied-os)
+- [npm package](https://www.npmjs.com/package/openclaw-embodied-os)
+- [PyPI package](https://pypi.org/project/openclaw-embodied-os/)
+- [v0.1.0 release](https://github.com/ZhenRobotics/openclaw-embodied-os/releases/tag/v0.1.0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, YAML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include package installation commands, API-key configuration guidance, robot-control code snippets, and safety setup examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

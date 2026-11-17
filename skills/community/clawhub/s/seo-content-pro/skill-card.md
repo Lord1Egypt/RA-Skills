@@ -1,42 +1,58 @@
-## Description: <br>
-Advanced SEO content creation with AI humanization, image generation, multi-language support, content refresh, SEO scoring, and competitor analysis for content creators and agencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced SEO content creation with AI humanization, image generation, multi-language support, content refresh, SEO scoring, and competitor analysis.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-External content creators, marketers, SEO agencies, and developers use this skill to research topics, draft multilingual SEO articles and video metadata, refresh existing content, generate title variants, and receive SEO score guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes AI-humanization and detector-bypass features that can be used to misrepresent authorship or evade disclosure rules. <br>
-Mitigation: Use those features only where publisher, client, school, and platform policies allow them, and require human review and appropriate disclosure before publication. <br>
-Risk: Prompts, drafts, client assets, or images may be sent to Gemini or to the configured SearXNG endpoint. <br>
-Mitigation: Do not process confidential material unless the endpoints are trusted and approved, and manage GEMINI_API_KEY as a sensitive credential. <br>
-Risk: Generated SEO recommendations, articles, metadata, and scores may be inaccurate or misleading. <br>
-Mitigation: Review facts, claims, keywords, links, and compliance-sensitive language before publishing or delivering content to clients. <br>
+## Use Case:
 
+External content creators, marketers, agencies, and developers use this skill to draft and refresh SEO articles, generate title variants, score content, optimize video metadata, and prepare supporting image-generation prompts or assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fly3094/seo-content-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown and text content with optional shell commands, JSON configuration examples, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use configurable tone, word count, language, SearXNG endpoint, and Gemini API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill includes AI-detector bypass language and tooling that could be used to misrepresent AI-generated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for transparent, policy-compliant editing and require human review before publication.
+
+Risk: Image generation can send prompts or input images to an external Gemini API and uses a GEMINI_API_KEY credential.
+
+Mitigation: Keep GEMINI_API_KEY in a protected environment, avoid passing confidential prompts or images, and prefer environment variables over command-line API keys.
+
+Risk: Local output paths can overwrite existing files.
+
+Mitigation: Review target paths before execution and write generated content to a controlled workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/seo-content-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/fly3094)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON reports, generated files, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local article, report, title-test, humanized-text, or image files when invoked with output paths.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Find and compare gas prices across multiple EVM chains to identify the cheapest option for transactions and contract deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and compare gas prices across multiple EVM chains to identify the cheapest option for transactions and contract deployments.
 
-## Publisher: <br>
-[dlrjsdl200-byte](https://clawhub.ai/user/dlrjsdl200-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlrjsdl200-byte](https://clawhub.ai/user/dlrjsdl200-byte)
 
-## Use Case: <br>
-Developers and agents use this skill to compare current EVM gas costs and choose lower-cost chains for transactions or contract deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls a disclosed external Chain Ops MGO API, so results depend on that operator and service availability. <br>
-Mitigation: Confirm the operator is trusted before installation and treat gas recommendations as decision support rather than a guaranteed execution outcome. <br>
-Risk: Paid endpoints can spend small amounts of USDC when an agent environment supports automatic x402 payments. <br>
-Mitigation: Keep payment approval, spending limits, or wallet controls enabled for agents that may call paid endpoints. <br>
+## Use Case:
 
+Developers and agent operators use this skill to compare gas prices across EVM chains and choose lower-cost chains for transactions, contract deployments, or chain selection decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlrjsdl200-byte/chain-ops-mgo) <br>
-- [MGO dashboard](https://mgo.chain-ops.xyz) <br>
-- [MGO llms.txt](https://api.mgo.chain-ops.xyz/llms.txt) <br>
-- [GitHub link listed by skill documentation](https://github.com/dlrjsdl200-byte/x402-gas-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise text or Markdown with chain comparisons, endpoint details, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference live gas-price API responses and x402-paid endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paid /gas/basic and /gas/premium requests cost real USDC through x402 on Base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure agents to ask before making paid requests, or use /gas/demo when payment is not intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlrjsdl200-byte/skills/chain-ops-mgo)
+- [MGO dashboard](https://mgo.chain-ops.xyz)
+- [MGO llms.txt](https://api.mgo.chain-ops.xyz/llms.txt)
+- [GitHub repository](https://github.com/dlrjsdl200-byte/x402-gas-api)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, guidance, text]
+
+**Output Format:** [Plain text or Markdown with endpoint URLs, chain comparisons, recommendations, and payment notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some API endpoints require x402 payment on Base using USDC; the demo endpoint is free but rate limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

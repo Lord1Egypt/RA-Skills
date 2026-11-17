@@ -1,0 +1,1 @@
+A driver needs to decide when to brake based on the distance to the car in front and their current speed. The situation presents a conflict between adhering to traffic rules (stopping for the pedestrian) and the potential risk of collision behind the driver if they stop. Design a state machine xxxxx

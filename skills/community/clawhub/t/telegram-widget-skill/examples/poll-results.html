@@ -1,0 +1,49 @@
+<style>
+body{margin:0;padding:12px 14px max(10px,env(safe-area-inset-bottom))}
+h3{margin:0 0 10px;font-size:1.05em}
+.row{margin:8px 0}
+.lbl{display:flex;justify-content:space-between;gap:8px}
+.pct{font-variant-numeric:tabular-nums;color:var(--tg-theme-hint-color)}
+.track{height:8px;border-radius:4px;background:var(--tg-theme-secondary-bg-color);margin-top:4px;overflow:hidden}
+.bar{height:100%;border-radius:4px;background:var(--tg-theme-hint-color);width:0;transition:width .6s ease}
+.lead .bar{background:var(--tg-theme-button-color)}
+.lead .name{font-weight:600}
+.meta{color:var(--tg-theme-hint-color);font-size:.85em;margin-top:10px}
+@media (prefers-reduced-motion:reduce){.bar{transition:none}}
+</style>
+<h3 id="q">No results yet</h3>
+<div id="rows"></div>
+<div class="meta" id="meta"></div>
+<script>
+const TW = window.TelegramWidget;
+const $ = (id) => document.getElementById(id);
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+function draw() {
+  let s = null;
+  try { s = JSON.parse(TW && TW.chatData); } catch (e) {}
+  if (!s || !Array.isArray(s.o)) return;
+  const total = s.o.reduce((a, o) => a + (o[1] || 0), 0);
+  const top = Math.max(...s.o.map((o) => o[1] || 0));
+  $('q').textContent = s.q || '';
+  $('rows').replaceChildren(...s.o.map(([name, n]) => {
+    const pct = total ? Math.round((n || 0) / total * 100) : 0;
+    const row = el('div', 'row' + (n === top && n > 0 ? ' lead' : ''));
+    const lbl = el('div', 'lbl');
+    lbl.append(el('span', 'name', name), el('span', 'pct', pct + '%'));
+    const track = el('div', 'track'), bar = el('div', 'bar');
+    track.append(bar);
+    row.append(lbl, track);
+    requestAnimationFrame(() => { bar.style.width = pct + '%'; });
+    return row;
+  }));
+  const fmt = new Intl.NumberFormat(navigator.language);
+  $('meta').textContent = fmt.format(total) + (total === 1 ? ' vote' : ' votes') + (s.t ? ' · ' + s.t : '');
+}
+if (TW) TW.onEvent('chatDataChanged', draw);
+draw();
+</script>

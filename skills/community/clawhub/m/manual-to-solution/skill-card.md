@@ -1,42 +1,55 @@
-## Description: <br>
-Converts software or system operation manuals into professional solution proposals with business value, technical architecture, implementation planning, ROI analysis, diagrams, and optional DOCX output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts software or system operation manuals into professional solution proposals with business value, technical architecture, implementation planning, ROI analysis, and standard diagrams.
 
-## Publisher: <br>
-[kingluu](https://clawhub.ai/user/kingluu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingluu](https://clawhub.ai/user/kingluu)
 
-## Use Case: <br>
-Developers, consultants, and proposal writers use this skill to transform user-supplied operation manuals into business-facing solution proposals, bid documents, or implementation plans. It helps extract system functions, identify gaps, apply a seven-layer proposal framework, and generate supporting diagrams and DOCX deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read manuals and reference files supplied by the user. <br>
-Mitigation: Use explicit prompts that name the intended manual-to-proposal task and provide only files intended for conversion. <br>
-Risk: The skill includes shell-based setup and generation steps, including package installation commands. <br>
-Mitigation: Review package-install and local generation commands before approving execution. <br>
+## Use Case:
 
+External users, proposal writers, and solution consultants use this skill to transform uploaded DOCX, PDF, or Markdown operation manuals into complete solution proposal materials. The skill helps reframe feature documentation into business value, architecture, implementation, security, training, and ROI sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingluu/manual-to-solution) <br>
-- [Seven-layer conversion methodology](references/methodology.md) <br>
-- [Solution proposal document structure](references/doc_structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks; generated Markdown proposals, PNG diagrams, and DOCX documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-provided manuals and local reference files; optional local scripts require matplotlib and python-docx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Setup guidance uses unpinned package installation with --break-system-packages, which can modify the host Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a dedicated virtual environment, avoid --break-system-packages for normal use, and pin or verify matplotlib and python-docx before running the helper scripts.
+
+Risk: Generated proposals may contain business assumptions, ROI estimates, compliance mappings, or Chinese-language templates that do not fit the target domain.
+
+Mitigation: Review and tailor generated proposal sections, diagrams, and assumptions against the specific customer, industry, and compliance requirements before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingluu/skills/manual-to-solution)
+- [Solution proposal document structure](artifact/references/doc_structure.md)
+- [Seven-layer conversion methodology](artifact/references/methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown proposal content, DOCX document output, PNG diagram files, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires matplotlib for diagram generation and python-docx for DOCX assembly; Chinese font support improves generated diagram and document rendering.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

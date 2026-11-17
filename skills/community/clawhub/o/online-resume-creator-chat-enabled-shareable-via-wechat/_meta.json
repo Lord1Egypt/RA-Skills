@@ -1,0 +1,8 @@
+{
+  "name": "talkable-resume",
+  "version": "1.0.0",
+  "description": "Generate a talkable single-file HTML resume webpage with a built-in keyword-matched resume assistant, WeChat sharing assets, and a deployable shareable link.",
+  "author": "女儿 (WorkBuddy AI Assistant)",
+  "tags": ["resume","cv","personal-homepage","portfolio","wechat-share","html-resume","ai-resume","job-hunting","single-file-html","conversational-resume"],
+  "requires": { "env": ["PYTHON"], "credentials": [] }
+}

@@ -1,40 +1,58 @@
-## Description: <br>
-AI-powered knowledge base builder that automatically captures, organizes, and retrieves information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta Knowledge Base helps agents build, organize, search, and query a local knowledge base from conversations, documents, files, URLs, and other user-provided content.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to build a local personal or team knowledge base that captures text, documents, URLs, and conversations for semantic search, knowledge graph exploration, and Q&A. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes broad automatic capture and persistent storage of private content. <br>
-Mitigation: Enable only intentional sources, avoid secrets and private folders, and inspect or remove stored data under ~/.meta_knowledge as needed. <br>
-Risk: Conversation hooks, watched folders, email ingestion, and automatic learning can collect more information than intended. <br>
-Mitigation: Keep automatic capture disabled until source boundaries, retention expectations, and review procedures are clear. <br>
+## Use Case:
 
+Developers and external users use this skill to create a local knowledge base, ingest selected content, perform semantic or hybrid search, and answer questions with source snippets from retained knowledge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/meta-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local knowledge-base guidance and example API usage for adding, searching, querying, exporting, and managing stored knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Automatic capture and durable local storage may retain conversations or files beyond user expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable ingestion only for explicitly approved sources, document consent expectations, and define retention or deletion practices before use.
+
+Risk: The knowledge base may store secrets, credentials, private mailboxes, or broad home-directory content if pointed at sensitive locations.
+
+Mitigation: Exclude sensitive paths and data classes, review inputs before ingestion, and avoid using the tool for confidential material unless appropriate controls are in place.
+
+Risk: Dependency installation from broad package names may introduce supply-chain or environment risk.
+
+Mitigation: Install in an isolated environment and use pinned, reviewed package versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/skills/meta-knowledge-base)
+- [Publisher profile](https://clawhub.ai/user/jason-aka-chen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local knowledge-base APIs and example usage for ingestion, search, Q&A, graph access, export, and management.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Skill Orchestra routes agent tasks using skill demands, competence scores, performance history, and cost trade-offs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill-aware agent routing with explicit competence/cost modeling. +22.5% accuracy, 700x cheaper than RL routers. Based on arXiv:2602.19672.
 
-## Publisher: <br>
-[tobisamaa](https://clawhub.ai/user/tobisamaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobisamaa](https://clawhub.ai/user/tobisamaa)
 
-## Use Case: <br>
-Developers and agent operators use this skill to select suitable downstream skills or agents for a task while balancing expected performance, cost, and routing diversity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Routing decisions can be imprecise and may select a less suitable downstream skill or agent. <br>
-Mitigation: Review routing recommendations before acting on them and keep normal approvals enabled for downstream skills, especially skills that can automate desktop actions, post publicly, modify data, or store memory. <br>
-Risk: Routing history or pattern-learning data can retain task prompts or context if persistence is enabled. <br>
-Mitigation: Avoid persisting raw prompts unless retention limits and redaction controls are in place. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Orchestra release page](https://clawhub.ai/tobisamaa/skill-orchestra) <br>
-- [SkillOrchestra research code referenced by artifact](https://github.com/jiayuww/SkillOrchestra) <br>
-- [arXiv:2602.19672](https://arxiv.org/abs/2602.19672) <br>
+## Use Case:
 
+Developers and agent operators use this skill to route tasks to suitable skills or agents by comparing task demands, competence, cost, and recent performance signals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python dictionary results, and CLI-style command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return selected skill names, routing explanations, candidate rankings, and success or error dictionaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Future pattern-learning examples may keep or learn from routing decisions.
+
+Mitigation: Review any enabled history or pattern-learning storage before deployment and avoid storing sensitive task context unless retention is intended.
+
+Risk: The bundled wrapper and documentation are incomplete, which may cause functional failures in an agent runtime.
+
+Mitigation: Test routing, wrapper loading, and model-router integration in a staging runtime before relying on the skill for production routing.
+
+## Reference(s):
+
+- [ClawHub Skill Orchestra release page](https://clawhub.ai/tobisamaa/skills/skill-orchestra)
+- [SkillOrchestra paper](https://arxiv.org/abs/2602.19672)
+- [Research code referenced by artifact](https://github.com/jiayuww/SkillOrchestra)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code examples; runtime routing APIs return strings or dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on model-router integration and local skill catalog state when used in an agent runtime.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

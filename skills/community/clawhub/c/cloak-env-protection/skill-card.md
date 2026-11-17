@@ -1,42 +1,52 @@
-## Description: <br>
-Protect .env secrets from AI agents. Real credentials encrypted in a vault — agents see structurally valid sandbox values on disk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protect .env secrets from AI agents by keeping real credentials encrypted in a vault while agents see structurally valid sandbox values on disk.
 
-## Publisher: <br>
-[danieltamas](https://clawhub.ai/user/danieltamas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[danieltamas](https://clawhub.ai/user/danieltamas)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill to recognize Cloak-protected projects, avoid direct access to real secrets, and use Cloak commands for safe .env handling when real environment values are needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Remote installer commands may execute unverified scripts directly in a shell.
+
+Mitigation: Review the Cloak project and installer source first; prefer a signed, versioned package or a download, verify, inspect, then run workflow.
+
+Risk: Commands that reveal, edit, set, or run processes with real secrets can expose sensitive credentials if used without user direction.
+
+Mitigation: Keep Cloak actions user-directed and rely on Cloak authentication prompts instead of attempting manual vault access or secret injection.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to recognize Cloak-protected projects, avoid exposing real .env secrets, and use Cloak commands for secret-aware workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes remote installer commands that fetch and execute scripts. <br>
-Mitigation: Inspect the installer first and verify its source or checksum/signature when available before running it on machines with sensitive files or credentials. <br>
-Risk: Incorrect handling of a Cloak-protected project could expose or overwrite secret-management state. <br>
-Mitigation: Use Cloak commands such as `cloak run`, `cloak set`, and `cloak edit`; do not read vault, recovery, or Cloak config files, and do not directly edit `.env` when `.cloak` is present. <br>
+**Output Format:** [Markdown guidance with inline shell command examples and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Cloak skill listing](https://clawhub.ai/danieltamas/cloak-env-protection) <br>
-- [Cloak installer for macOS and Linux](https://getcloak.dev/install.sh) <br>
-- [Cloak installer for Windows](https://getcloak.dev/install.ps1) <br>
+**Other Properties Related to Output:** [Outputs should preserve secret-handling boundaries and avoid revealing or reconstructing real secret values.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing instructions for Cloak detection, .env handling, command use, and recovery guidance.] <br>
+0.1.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

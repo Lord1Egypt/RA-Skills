@@ -1,44 +1,54 @@
-## Description: <br>
-Compare multiple documents to identify conflicting, missing, or ambiguous fields across contracts, reports, forms, specs, and other document sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares multiple documents for congruency and consistency, helping identify conflicting data points, missing fields, inconsistent terminology, and version mismatches.
 
-## Publisher: <br>
-[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim)
 
-## Use Case: <br>
-External users, analysts, and agent developers use this skill to compare two or more user-provided documents for consistency. It highlights critical mismatches in dates, amounts, names, identifiers, legal terms, missing fields, and ambiguous values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and locally parses user-provided documents, which may contain confidential, personal, legal, or financial information. <br>
-Mitigation: Redact unnecessary secrets, credentials, personal data, and confidential fields before use; process documents locally where possible. <br>
-Risk: Generated reports may reproduce sensitive discrepancies or source document values. <br>
-Mitigation: Review and redact congruence reports before sharing them outside the intended audience. <br>
-Risk: Scanned PDFs, handwritten content, images, charts, and semantic equivalence can be difficult to parse or compare reliably. <br>
-Mitigation: Treat OCR, image-derived, handwritten, and semantic comparison results as review cues and confirm material findings manually. <br>
+## Use Case:
 
+Employees, external reviewers, developers, and analysts use this skill to compare contracts, reports, forms, specifications, and other document sets for mismatches, missing fields, ambiguous values, and version inconsistencies.
 
-## Reference(s): <br>
-- [Document Congruence Checker skill page](https://clawhub.ai/dorjenorbulim/document-congruence-checker) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact agent configuration](artifact/agent-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown discrepancy report with comparison tables, congruence summaries, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local document parsing tools such as pdftotext or docx2txt when available; reports can reproduce sensitive document values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: Confidential documents or report excerpts could be exposed if sent to unapproved external parsing, OCR, or sharing services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process documents locally when possible, redact sensitive content from shared reports, and use external parsing or OCR only with explicit approval.
+
+Risk: Automated comparisons can misclassify ambiguous fields, OCR errors, or semantically equivalent wording as matches or conflicts.
+
+Mitigation: Review discrepancy reports before relying on them, especially for legal, financial, identity, date, amount, and other critical fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/skills/document-congruence-checker)
+- [Publisher profile](https://clawhub.ai/user/dorjenorbulim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown discrepancy report with tables, congruence summary, criticality labels, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted fields, document-by-document comparisons, congruence percentages, ambiguity notes, and prioritized action items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

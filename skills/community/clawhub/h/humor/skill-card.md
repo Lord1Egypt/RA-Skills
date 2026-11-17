@@ -1,43 +1,60 @@
-## Description: <br>
-Develop adaptive humor that learns what makes each user laugh through signal detection, graduated testing, and graceful failure recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calibrates when and how an agent uses humor: wit, jokes, banter, and playful tone matched to each user, context, and platform.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Agents use this skill to decide when humor is appropriate, calibrate humor style from user signals, and recover gracefully when a joke does not land. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local notes about humor preferences and interaction history under ~/humor/. <br>
-Mitigation: Review or delete ~/humor/ to inspect or reset saved humor history, callbacks, and inferred preferences. <br>
-Risk: Humor can be inappropriate in stressed, task-focused, professional, or external communication contexts. <br>
-Mitigation: Follow the skill's default zero-humor posture for serious contexts and only increase humor after clear positive signals. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent decide when humor is appropriate, adapt joke style and intensity to user feedback, and draft humorous text when explicitly requested.
 
-## Reference(s): <br>
-- [Humor Skill Page](https://clawhub.ai/ivangdavila/humor) <br>
-- [Context-Aware Humor](artifact/contexts.md) <br>
-- [Feedback System](artifact/feedback.md) <br>
-- [Signal Detection](artifact/signals.md) <br>
-- [Humor Types](artifact/types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance and local preference notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain a local humor profile under ~/humor/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can retain humor preferences, reaction history, callbacks, and some exact joke text in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive personal details in jokes or preferences, and delete ~/Clawic/data/humor/ to reset the profile.
+
+Risk: Humor may be inappropriate in stressful, high-stakes, group, cultural, or persistent external-artifact contexts.
+
+Mitigation: Apply the skill's zero-humor gates for stress, debugging, serious topics, external artifacts, and least-tolerant-reader group settings.
+
+## Reference(s):
+
+- [ClawHub Humor Skill](https://clawhub.ai/ivangdavila/skills/humor)
+- [Clawic Humor Skill](https://clawic.com/skills/humor)
+- [Setup - Humor](artifact/setup.md)
+- [Memory Templates - Humor](artifact/memory-template.md)
+- [Context-Aware Humor](artifact/contexts.md)
+- [Off-Limits](artifact/off-limits.md)
+- [Feedback System](artifact/feedback.md)
+- [Humor Types](artifact/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Configuration]
+
+**Output Format:** [Conversational text and markdown-backed local preference files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local YAML and Markdown state under ~/Clawic/data/humor/ when the host agent persists humor preferences and reactions.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

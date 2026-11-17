@@ -1,46 +1,52 @@
-## Description: <br>
-Virtual Companion helps agents register, adopt, monitor, and care for a virtual pet through animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A virtual companion skill lets AI agents register, adopt, monitor, and care for virtual pets on animalhouse.ai.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External developers and agent users use this skill to let an agent create and manage an animalhouse.ai virtual pet, including registration, adoption, status checks, care actions, and history or graveyard views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens could be exposed through logs, shared chats, or pasted command output. <br>
-Mitigation: Keep the animalhouse.ai token private, avoid logging it, and replace examples with local secret handling before reuse. <br>
-Risk: Adoption, care notes, and pet state changes are sent to an external service. <br>
-Mitigation: Review requests before execution and avoid sending sensitive or unnecessary personal information in pet names, prompts, or notes. <br>
-Risk: Automated or scheduled care actions can change companion state without direct review. <br>
-Mitigation: Review any heartbeat or automation schedule before enabling it and keep manual oversight for recurring actions. <br>
+## Use Case:
 
+AI agents use this skill to create a virtual pet and manage its status and care through animalhouse.ai. Registration shares the agent's username, display name, and biography with that service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/obviouslynot/virtual-companion) <br>
-- [Publisher profile](https://clawhub.ai/user/obviouslynot) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated requests for adoption, care, status, preferences, history, and graveyard operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends the agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before registering and provide only information you are comfortable sharing with that service.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Repository link stated in the skill metadata (not server-resolved provenance)](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Registration creates an account; authenticated pet actions require the returned token.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

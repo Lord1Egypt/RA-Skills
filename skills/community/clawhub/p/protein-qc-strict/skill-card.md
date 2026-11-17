@@ -1,42 +1,60 @@
-## Description: <br>
-Strict protein sequence quality-control workflow for protein family analysis, including literature validation, CD-HIT redundancy removal, complexity checks, motif verification, MSA quality assessment, and conservation and co-evolution analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strictest protein sequence analysis quality control workflow (3365->456 sequences), including literature validation, CD-HIT redundancy removal, complexity checks, motif verification, MSA quality assessment, and conservation/coevolution analysis.
 
-## Publisher: <br>
-[billwanttobetop](https://clawhub.ai/user/billwanttobetop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billwanttobetop](https://clawhub.ai/user/billwanttobetop)
 
-## Use Case: <br>
-Developers, researchers, and bioinformatics analysts use this skill to prepare protein family sequence sets for publication-quality analysis through staged filtering, redundancy removal, motif checks, alignment, trimming, and QC reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs shell commands and third-party bioinformatics tools against user-provided sequence files. <br>
-Mitigation: Run it in a controlled conda or container environment, review the generated commands before execution, and use trusted input FASTA files. <br>
-Risk: Scientific conclusions can be misleading if sequence provenance, motif assumptions, or gap-heavy alignment positions are not independently checked. <br>
-Mitigation: Verify literature support, inspect each QC report, and review high-gap sites and threshold choices before using results in publication or downstream analysis. <br>
+## Use Case:
 
+Developers, researchers, and bioinformatics practitioners use this skill to run or follow a strict protein sequence quality-control workflow before downstream alignment, phylogenetic, conservation, or coevolution analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billwanttobetop/protein-qc-strict) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python examples plus workflow-generated FASTA, alignment, log, and quality-report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow expects an input FASTA file and an output directory, and depends on CD-HIT, MAFFT, trimAl, Python, BioPython, and NumPy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence and skill documentation) <br>
+Risk: The workflow creates local output files and depends on conda-installed bioinformatics tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where CD-HIT, MAFFT, trimAl, and local file generation are acceptable.
+
+Risk: The security summary reports correctness and path-handling weaknesses in the shell workflow.
+
+Mitigation: Use simple trusted input and output paths until the shell quoting issue is fixed.
+
+Risk: The security guidance says literature validation, motif verification, and coevolution claims may be advisory or incomplete.
+
+Mitigation: Independently validate scientific claims and review quality reports before relying on results for research decisions.
+
+## Reference(s):
+
+- [Protein QC Strict ClawHub listing](https://clawhub.ai/billwanttobetop/skills/protein-qc-strict)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [protein_qc_workflow.sh](artifact/protein_qc_workflow.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local workflow files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow creates FASTA, alignment, log, and quality-report files in a user-provided output directory.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

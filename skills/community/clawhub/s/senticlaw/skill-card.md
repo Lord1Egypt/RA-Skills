@@ -1,46 +1,67 @@
-## Description: <br>
-SentiClaw helps OpenClaw developers add runtime checks for prompt injection, identity spoofing, PII leakage, outbound data exposure, rate limiting, audit logging, and threat alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SentiClaw provides Python middleware for OpenClaw agents that checks inbound and outbound text for prompt-injection patterns, identity spoofing claims, PII or secret leakage, rate and loop issues, and selected access risks.
 
-## Publisher: <br>
-[SuperTechGod](https://clawhub.ai/user/SuperTechGod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supertechgod](https://clawhub.ai/user/supertechgod)
 
-## Use Case: <br>
-Developers and OpenClaw operators use SentiClaw to add inbound and outbound runtime guardrails, PII redaction, audit logging, and alerting around agent workflows. It is intended for AI-layer hardening and monitoring, not network or firewall security. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit records can contain security-event details plus session, sender, and channel identifiers. <br>
-Mitigation: Use a protected audit_db_path, restrict file permissions, rotate or purge logs as needed, or disable auditing when local retention is not acceptable. <br>
-Risk: Configured threat alerts can send session and sender identifiers to external messaging channels. <br>
-Mitigation: Configure alerts only for private approved channels and review channel membership before enabling alert_channel_id. <br>
-Risk: The path-check helper may allow broader local paths than intended if allowed_dirs is left at the default. <br>
-Mitigation: Narrow allowed_dirs to the minimum directories required by the agent workflow. <br>
-Risk: SentiClaw is AI-layer middleware and is not a network or firewall security control. <br>
-Mitigation: Use it as one control in a broader security program rather than the only enforcement layer. <br>
+## Use Case:
 
+Developers use SentiClaw to add lightweight runtime checks, redaction, audit logging, and alert hooks around OpenClaw agent message handling. It is intended as AI-layer middleware, not as a replacement for sandboxing, tool authorization, network controls, or other execution-boundary protections.
 
-## Reference(s): <br>
-- [SentiClaw on ClawHub](https://clawhub.ai/SuperTechGod/senticlaw) <br>
-- [SuperTechGod publisher profile](https://clawhub.ai/user/SuperTechGod) <br>
-- [PHRAIMWORK LLC](https://phraimwork.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python API results, Markdown instructions, inline shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local SQLite audit records and send configured security alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md metadata, pyproject.toml) <br>
+Risk: Users may over-rely on this package as a complete agent security boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as lightweight text filtering and audit support unless additional enforcement exists at the tool, network, sandbox, and authorization boundaries.
+
+Risk: Security evidence says the package overstates protections and has flawed or missing enforcement.
+
+Mitigation: Review the behavior carefully before installing it as a security control, and validate critical protections with tests in the target agent environment.
+
+Risk: SQLite audit logging may retain message metadata and security event details locally.
+
+Mitigation: Set an explicit audit retention policy, choose an acceptable audit database path, and disable audit logging when local retention is not appropriate.
+
+Risk: Alert integration can send security event metadata through external messaging channels.
+
+Mitigation: Configure alert destinations deliberately and confirm that the selected Discord, Telegram, Slack, WhatsApp, or OpenClaw channel is approved for the data being sent.
+
+Risk: Outbound filtering and access checks are helper-layer controls and may not cover all secrets, URLs, paths, or tool execution paths.
+
+Mitigation: Keep independent secret scanning, allowlists, SSRF protections, spend controls, and tool authorization in the actual execution path.
+
+## Reference(s):
+
+- [SentiClaw on ClawHub](https://clawhub.ai/supertechgod/skills/senticlaw)
+- [supertechgod Publisher Profile](https://clawhub.ai/user/supertechgod)
+- [PHRAIMWORK LLC](https://phraimwork.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include configuration examples for owner IDs, trusted senders, redaction settings, audit logging, rate limits, and alert routing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, openclaw metadata, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

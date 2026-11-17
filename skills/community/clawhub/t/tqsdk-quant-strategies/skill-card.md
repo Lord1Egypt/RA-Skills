@@ -1,47 +1,61 @@
-## Description: <br>
-Provides TqSdk-based quantitative trading strategy guidance, backtesting support, optimization suggestions, and code templates covering trend, arbitrage, hedging, multi-factor, and AI-assisted strategies. <br>
+## Description:
 
-This skill is for research and development only. <br>
+提供基于 TqSdk 的量化策略开发、回测和优化，涵盖趋势、套利、多因子等 61 种策略模板。
 
-## Publisher: <br>
-[gaingush](https://clawhub.ai/user/gaingush) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaingush](https://clawhub.ai/user/gaingush)
 
-## Use Case: <br>
-Developers and quantitative trading researchers use this skill to select, inspect, adapt, and test TqSdk strategy templates for futures-oriented research, simulation, and strategy prototyping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executable TqSdk strategy scripts can place or manage trades and may affect real accounts if connected to live credentials. <br>
-Mitigation: Run only with TqSim or paper-trading accounts until the user has added explicit live-mode controls, position limits, and stop or kill-switch behavior. <br>
-Risk: Security evidence reports embedded live-looking credentials in the trading scripts. <br>
-Mitigation: Remove and rotate exposed credentials, then use environment variables or interactive prompts for authentication. <br>
-Risk: Trading strategy templates may be mistaken for investment advice or production-ready systems. <br>
-Mitigation: Treat outputs as research and development guidance, validate with simulation and backtesting, and require human review before any live deployment. <br>
+## Use Case:
 
+Developers and quantitative researchers use this skill to inspect, adapt, debug, and compare TqSdk-based futures trading strategy templates for research, simulation, backtesting, and optimization. It supports strategy selection across trend, mean-reversion, arbitrage, multi-factor, and machine-learning-assisted patterns before any live trading decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaingush/tqsdk-quant-strategies) <br>
-- [TqSdk official documentation](https://doc.shinnytech.com/tqsdk/latest/) <br>
-- [TqSdk quickstart](https://doc.shinnytech.com/tqsdk/latest/quickstart.html) <br>
-- [TqSdk API reference](https://doc.shinnytech.com/tqsdk/latest/reference/index.html) <br>
-- [TqSdk GitHub repository](https://github.com/shinnytech/tqsdk-python) <br>
-- [ShinnyTech](https://www.shinnytech.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown explanations with Python code references, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include trading-strategy recommendations, code-level debugging notes, TqSdk usage guidance, and risk reminders for simulation-first validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Bundled strategy files include plaintext TqSdk credential placeholders and sample credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use bundled plaintext credentials, rotate any exposed credentials that belong to you, and keep real TqSdk credentials outside source files.
+
+Risk: Executable strategy code can change orders or target positions and may affect financial accounts if configured for live trading.
+
+Mitigation: Run only in TqSim or another simulation account unless live trading has been intentionally configured, each strategy's order logic has been reviewed, and position and loss limits are set.
+
+Risk: Backtests and historical strategy examples may not predict future live-market performance.
+
+Mitigation: Treat the bundled strategies as research material, perform independent validation, and avoid presenting outputs as investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gaingush/skills/tqsdk-quant-strategies)
+- [TqSdk Official Documentation](https://doc.shinnytech.com/tqsdk/latest/)
+- [TqSdk Quickstart](https://doc.shinnytech.com/tqsdk/latest/quickstart.html)
+- [TqSdk API Reference](https://doc.shinnytech.com/tqsdk/latest/reference/index.html)
+- [TqSdk GitHub Repository](https://github.com/shinnytech/tqsdk-python)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code references and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reference bundled Python strategy files and should preserve simulation-first risk guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

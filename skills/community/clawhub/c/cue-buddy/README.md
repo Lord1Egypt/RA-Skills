@@ -52,8 +52,8 @@ Agent: [reads SKILL.md → triggers +author flow]
 
 - **Domain experts**: finance / banking credit / asset management / private fund DD / regulatory compliance / corporate-strategy research / industry analyst
 - Knows their scenario deeply but does not write Python and does not read API specs
-- Has a Cue account (sign up at [cuecue.cn](https://cuecue.cn))
-- Has an API key (create one at [cuecue.cn/api-key](https://cuecue.cn/api-key))
+- Has a Cue account (sign up at [cuecue.cn](https://cuecue.cn) — new users get a one-time **500 credits**, plus **10 free credits every day**)
+- Has an API key (create one at [cuecue.cn/hub/api-key](https://cuecue.cn/hub/api-key))
 
 If you are a developer integrating Cue into a custom application, use the [Cue API docs](https://cuecue.cn) directly. This skill is opinionated for non-technical authoring.
 
@@ -70,7 +70,7 @@ Clone this repo (or download the directory) and tell your agent to load it.
 
 ### 2. Configure your API key (one-time)
 
-Create a key at [https://cuecue.cn/api-key](https://cuecue.cn/api-key), then set it as an environment variable:
+Create a key at [https://cuecue.cn/hub/api-key](https://cuecue.cn/hub/api-key) (sign up there if you don't have an account — new users get a one-time **500 credits**, plus **10 free credits every day**), then set it as an environment variable:
 
 ```bash
 export CUE_API_KEY=sk...
@@ -81,6 +81,8 @@ Or write to `~/.cue/config.json`:
 ```json
 { "api_key": "sk...", "base": "https://cuecue.cn/api" }
 ```
+
+**Out of credits?** Open [https://cuecue.cn/](https://cuecue.cn/), click the **bottom-left corner** of the page to get your **personal invite link** — **each friend who joins earns you another 500 credits**. Or top up at [cuecue.cn/pay](https://cuecue.cn/pay) (first top-up is discounted), or just wait for the next day's free credits. Once topped up, **re-run the same command** — it won't be billed twice.
 
 Verify it works:
 

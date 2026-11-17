@@ -122,13 +122,18 @@ This command has no parameters and is used to list all supported models, version
 | Kling | 3.0 | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9 | 1K, 2K (default 1K) | 0–1 image | Kling 3.0 |
 | Kling | 3.0-Omni | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9, **auto** | 1K, 2K, **4K** (default 1K) | 0–10 images | Kling 3.0-Omni; **multi-subject generation supported**; output supports 1-9 images at once (`--output-image-count`) |
 | Kling | **O1** | 16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9, **auto** | 1K, 2K, **4K** (default 1K) | 0–10 images | Kling O1; similar to 3.0-Omni; confirmed by interface testing |
+| Kling | **scene** | N/A (controlled via 4 ratio fields in `--ext-info`) | Proportional to original, area ≤ 3× original | **1 image only (required)** | **Dedicated outpainting version**, not a regular generation version; must be paired with `--scene-type image_expand`; see §10.3 |
 | MJ | v8.1, v7 | Specified in prompt (e.g. `--ar 16:9`) | Specified in prompt (e.g. `--q 2`) | 0–3 images | Midjourney model; **interface name is `MJ`** (`Midjourney` is rejected); v8.1 is the latest |
+| MJ | **v8.2** | Specified in prompt | Specified in prompt (`--q` supports only `1`/`4`) | 0–3 images | Latest MJ version (added 2026-08-03); `--q` quality tiers differ from v7/niji_7 (which support `1`/`2`/`4`) |
+| MJ | **niji_7** | Specified in prompt | Specified in prompt (`--q` supports `1`/`2`/`4`) | 0–3 images | Anime-focused model (added 2026-07-23); still fixed at 4 images per generation |
 | GG | 2.5 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9 | 1K, 2K, 4K (default 1K) | 0–3 images | nano banana (GG 2.5); **interface name is `GG`; historical alias `GEM` is also accepted** |
 | GG | 3.0 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9 | 1K, 2K, 4K (default 1K) | 0–14 images | nano banana pro (GG 3.0); supports outpainting |
 | GG | 3.1 | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9, **1:4, 4:1, 1:8, 8:1** | **512**, 1K, 2K, 4K (default 1K) | 0–14 images | nano2 (GG 3.1); extra 512 resolution; extra 4 extreme aspect ratios |
+| GG | **3.1-lite** | 1:1, 3:2, 2:3, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9 | 1K (**native output only**), 2K/4K via super-resolution | 0–14 images | nano banana 2 lite (GG 3.1-lite, added 2026-07-08); lightweight version, native 1K only, 2K/4K require super-resolution upscaling |
 | SI | **4.0** | Specified in prompt | 1K, 2K, 4K (default 1K) | 0–14 images | Seedream 4.0; **multi-image output supported**: prompt specifies count + `--ext-info '{"AdditionalParameters": "{\"sequential_image_generation\":\"auto\"}"}'` |
 | SI | 4.5 | Specified in prompt | 2K, 4K (default 2K) | 0–14 images | Seedream 4.5 |
 | SI | 5.0-lite | Specified in prompt | 2K, **3K**, 4K (default 2K) | 0–14 images | Seedream 5.0-lite; extra 3K resolution |
+| SI | **5.0-pro** | Specified in prompt | 1K, 2K, 4K (default 1K) | 0–14 images | Seedream 5.0-pro (added 2026-07-16); flagship version with better quality |
 | OG | image2_low, image2_medium, image2_high | 1:1, 3:2, 2:3, 3:4, 4:3, 16:9, 9:16, 21:9, 9:21 | 1K, 2K, 4K (default 1K) | 0–16 images | **GPT-Image2**: strong multilingual text rendering; supports jpeg/png output (`--output-format`); supports 1–8 images per task (`--output-image-count`); supports mask editing (`ReferenceType=mask`); supports custom size (multiple of 16, via `--ext-info`); transparent background not supported; billed per input image |
 | Jimeng | 4.0 | AspectRatio not supported | Via ExtInfo `width`/`height`, range [1024×1024, 4096×4096] | 0–10 images | Jimeng 4.0; **custom resolution example**: `--ext-info '{"AdditionalParameters": "{\"width\":1920, \"height\":1080}"}'`; strong stylized output |
 
@@ -523,30 +528,53 @@ The length of `Output.FileInfos` array equals `OutputImageCount`.
 
 ### 10.3 Kling Outpainting
 
-> 🚨 **Mandatory rule**: Kling outpainting is an **image-to-image** variant. **A single reference image is required** (`--file-id` or `--file-url`), and 4 directional expansion ratios must be passed via `--ext-info`. Use `--output-image-count` (1-9) for multi-image output.
+> 🚨 **Mandatory rule** (per official integration guide §3.9.11, verified against document spec):
+> - **`--model-version` must be the fixed value `scene`** (not 2.1/3.0/3.0-Omni/O1 — this is a dedicated special version identifier for outpainting)
+> - **`--scene-type` must be `image_expand`**
+> - Only a **single** reference image is supported (`--file-id` or `--file-url`, either one; **`--file-infos` multi-image is NOT supported**)
+> - All 4 directional expansion ratios must be passed via `--ext-info` (all 4 fields are **required**)
+> - `--prompt` is optional, max 2500 characters
+> - `--output-image-count` range `[1, 9]`, default 1
+> - `--output-storage-mode Permanent` is recommended
 
 **ratio fields** (range `[0, 2]`; new image total area cannot exceed 3× the original):
 
-| Field | Meaning |
-|---|---|
-| `up_expansion_ratio` | Upward expansion as a multiplier of the original **height** |
-| `down_expansion_ratio` | Downward expansion as a multiplier of the original **height** |
-| `left_expansion_ratio` | Leftward expansion as a multiplier of the original **width** |
-| `right_expansion_ratio` | Rightward expansion as a multiplier of the original **width** |
+| Field | Required | Meaning |
+|---|---|---|
+| `up_expansion_ratio` | ✅ | Upward expansion as a multiplier of the original **height** (e.g. original height 20, value 0.1 → expand up by 20×0.1=2) |
+| `down_expansion_ratio` | ✅ | Downward expansion as a multiplier of the original **height** |
+| `left_expansion_ratio` | ✅ | Leftward expansion as a multiplier of the original **width** |
+| `right_expansion_ratio` | ✅ | Rightward expansion as a multiplier of the original **width** |
 
-**Command template**:
+**Command template (URL input)**:
 
 ```bash
 python3 scripts/vod_aigc_image.py create \
-    --model Kling \
-    --file-id <reference image FileId> \
+    --model Kling --model-version scene \
+    --scene-type image_expand \
+    --file-url "https://example.com/source.jpg" \
     --prompt "Fill the surrounding sky and sea (≤2500 chars)" \
     --output-image-count 2 \
+    --output-storage-mode Permanent \
+    --ext-info '{"AdditionalParameters":"{\"up_expansion_ratio\":0.1,\"down_expansion_ratio\":0.2,\"left_expansion_ratio\":0.3,\"right_expansion_ratio\":0.4}"}' \
+    --sub-app-id 1308104797
+```
+
+**Command template (FileId input)**:
+
+```bash
+python3 scripts/vod_aigc_image.py create \
+    --model Kling --model-version scene \
+    --scene-type image_expand \
+    --file-id <reference image FileId> \
+    --prompt "Fill the surrounding sky and sea" \
+    --output-image-count 2 \
+    --output-storage-mode Permanent \
     --ext-info '{"AdditionalParameters":"{\"up_expansion_ratio\":0.2,\"down_expansion_ratio\":0.2,\"left_expansion_ratio\":0.3,\"right_expansion_ratio\":0.3}"}' \
     --sub-app-id 1308104797
 ```
 
-> ⚠️ **Undocumented field**: the Tencent Cloud API doc does not specify the exact mounting location of the ratio fields; the current implementation passes them through `ExtInfo.AdditionalParameters`. If the server returns "parameter not recognized", contact the Tencent Cloud business team for the correct format.
+> ✅ **Verified via `--dry-run`**: no script code changes were needed; the parameter system already correctly constructs this request, and the generated JSON exactly matches the official documentation. The previous doc version was missing the two required fields `--model-version scene` and `--scene-type image_expand`, now corrected.
 
 ### 10.4 Multi-Subject Generation (3.0-Omni / O1, up to 10 reference images)
 
@@ -676,6 +704,7 @@ python3 scripts/vod_aigc_image.py create \
 | SI 4.0 | 1K, 2K, 4K | 1K | 0–14 |
 | SI 4.5 | 2K, 4K | 2K | 0–14 |
 | SI 5.0-lite | 2K, 3K, 4K | 2K | 0–14 |
+| SI 5.0-pro | 1K, 2K, 4K | 1K | 0–14 |
 
 > SI series specifies aspect ratio via Prompt (describe 16:9, 9:16, etc. in the text), not via the `--output-aspect-ratio` parameter.
 

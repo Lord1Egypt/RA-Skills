@@ -1,46 +1,61 @@
-## Description: <br>
-KB Framework builds a local hybrid knowledge base with Markdown, PDF, OCR, SQLite, ChromaDB, Obsidian, and optional local LLM support for source-traceable agent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KB Framework builds a local hybrid knowledge base for Markdown, PDF, OCR, and Obsidian content with SQLite, ChromaDB, line-level source pointers, and optional local LLM generation.
 
-## Publisher: <br>
-[minenclown](https://clawhub.ai/user/minenclown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minenclown](https://clawhub.ai/user/minenclown)
 
-## Use Case: <br>
-Developers and agent builders use KB Framework to index local Markdown, PDFs, OCR output, and Obsidian vaults, then provide agents with source-location pointers, hybrid search, audits, and optional local LLM summaries or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can exercise broad local file, database, watcher, scheduler, cleanup, and update authority. <br>
-Mitigation: Use it in a dedicated environment, keep watched and indexed directories narrow, and avoid the built-in updater unless the release source is trusted. <br>
-Risk: Write, delete, watcher, scheduler, or cleanup commands can affect Obsidian vaults and KB databases. <br>
-Mitigation: Back up Obsidian vaults and KB databases before enabling those commands. <br>
+## Use Case:
 
+Developers and agent builders use this skill to index local Markdown, PDF, and Obsidian content, run hybrid search with line-level source pointers, and generate LLM essences or reports from indexed material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minenclown/knowledge-base-framework) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [INSTALL.md](artifact/INSTALL.md) <br>
-- [HOW_TO_KB.md](artifact/HOW_TO_KB.md) <br>
-- [SECURITY_FUNCTIONS.txt](artifact/SECURITY_FUNCTIONS.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, database operation guidance, search commands, and LLM engine configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, artifact SKILL.md, artifact CHANGELOG.md) <br>
+Risk: Installation and update flows can change the local environment or install host-wide OCR dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer and updater behavior first, use a virtual environment with locked dependencies, and avoid sudo-level OCR installation unless host-wide packages are intended.
+
+Risk: LLM processing and remote Ollama configuration can expose indexed content to an unintended model endpoint.
+
+Mitigation: Keep Ollama bound to localhost unless a remote endpoint is explicitly trusted, and restrict indexed source paths to non-sensitive directories.
+
+Risk: Obsidian writer and cleanup commands can modify or delete notes in a vault.
+
+Mitigation: Back up the vault before using writer or cleanup commands and review target paths before running write operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minenclown/skills/knowledge-base-framework)
+- [README](artifact/README.md)
+- [Installation guide](artifact/INSTALL.md)
+- [KB usage guide](artifact/HOW_TO_KB.md)
+- [Transformers engine reference](artifact/kb/biblio/TRANSFORMERS_ENGINE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python examples, search results, and JSON-like audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local file paths, line references, model or engine status, and generated knowledge summaries or reports.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, SKILL.md, README.md, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

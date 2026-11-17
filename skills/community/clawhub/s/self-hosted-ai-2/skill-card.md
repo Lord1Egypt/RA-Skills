@@ -1,41 +1,59 @@
-## Description: <br>
-Self Hosted Ai helps users deploy, operate, and troubleshoot self-hosted AI tools such as Ollama, N8N, Open WebUI, Docker, nginx, and HTTPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Hosted Ai helps developers and operators deploy and troubleshoot self-hosted AI tools including Ollama, N8N, Open WebUI, Docker Compose, nginx reverse proxying, and HTTPS.
 
-## Publisher: <br>
-[nima54851](https://clawhub.ai/user/nima54851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nima54851](https://clawhub.ai/user/nima54851)
 
-## Use Case: <br>
-Developers and operators use this skill for deployment and operations guidance when setting up local or self-hosted AI services on servers they control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested deployment commands may download install scripts, change service configuration, or affect running server workloads. <br>
-Mitigation: Review commands and downloaded scripts before execution, and test changes in a controlled environment before applying them to production systems. <br>
-Risk: Binding services such as Ollama or N8N to 0.0.0.0 can expose them beyond the local host if network controls are not configured. <br>
-Mitigation: Expose services only when remote access is intentional, and protect them with firewall rules, TLS, strong credentials, and a reverse proxy. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate deployment commands, configuration guidance, and troubleshooting steps for self-hosted AI services on servers. It is intended for operating local model runtimes, workflow automation, web UI access, reverse proxies, and HTTPS setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nima54851/skills/self-hosted-ai-2) <br>
-- [Server-resolved GitHub source](https://github.com/nima54851/agent-studio/tree/main/skills/self-hosted-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, Docker Compose, and nginx configuration code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance output should be reviewed and adapted before commands are run on live servers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill includes commands that may execute mutable remote installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer commands before use and prefer verified package or release installation for Ollama where available.
+
+Risk: The skill shows service bindings and port mappings that can expose Ollama, N8N, or web interfaces beyond localhost.
+
+Mitigation: Bind services to localhost by default and expose remote access only through authenticated TLS, a VPN, or a restricted reverse proxy.
+
+Risk: Container images and service credentials may be unsafe if left at mutable defaults.
+
+Mitigation: Pin container image versions and set strong N8N credentials before exposing any service.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/nima54851/agent-studio/tree/main/skills/self-hosted-ai)
+- [ClawHub skill page](https://clawhub.ai/nima54851/skills/self-hosted-ai-2)
+- [Ollama installer referenced by the skill](https://ollama.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, YAML, and nginx configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment steps, environment variables, container configuration, reverse proxy snippets, and troubleshooting commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

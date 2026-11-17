@@ -1,41 +1,56 @@
-## Description: <br>
-Summarize noisy WeChat group chats into decisions, action items, mentions, risks, and tracked keywords for OpenClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize noisy WeChat group chats into decisions, action items, mentions, risks, and tracked keywords for OpenClaw workflows.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-External users, operators, and project teams use QClaw to turn user-provided WeChat group transcripts into concise summaries, decisions, action items, keyword hits, and risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat group transcripts can contain personal, client, employee, financial, or confidential details. <br>
-Mitigation: Redact unnecessary sensitive details before pasting or exporting chat content into the agent workflow. <br>
-Risk: Summaries may omit nuance or be unsuitable where exact records are required. <br>
-Mitigation: Avoid using the skill for legal or compliance workflows that require verbatim records. <br>
+## Use Case:
 
+External users and developers use QClaw to turn busy WeChat group transcripts into concise summaries, confirmed decisions, action items, keyword hits, mentions, and risk signals for OpenClaw workflows.
 
-## Reference(s): <br>
-- [QClaw ClawHub skill page](https://clawhub.ai/ProjectSnowWork/qclaw) <br>
-- [ProjectSnowWork ClawHub publisher profile](https://clawhub.ai/user/ProjectSnowWork) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown digest with sections for summary, decisions, action items, keyword hits, and risks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill summarizes user-provided chat content and should mark uncertainty rather than fabricate missing context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: User-provided chat logs may contain private business or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive names, credentials, financial details, and confidential client content before using the skill when possible.
+
+Risk: Summaries may omit nuance or mark uncertain facts incorrectly when the transcript lacks context.
+
+Mitigation: Review decisions, action items, mentions, and risk labels against the source chat before acting on them.
+
+## Reference(s):
+
+- [QClaw on ClawHub](https://clawhub.ai/projectsnowwork/skills/qclaw)
+- [README](artifact/README.md)
+- [Examples](artifact/examples.md)
+- [System Prompt Template](artifact/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown sections with concise bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include uncertainty markers, action-item checkboxes, urgency labels, and risk status labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

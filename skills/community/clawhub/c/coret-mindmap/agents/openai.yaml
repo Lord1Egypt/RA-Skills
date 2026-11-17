@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coret Mind Map"
+  short_description: "Kelola mind map Coret lewat agen AI"
+  default_prompt: "Gunakan $coret-mindmap untuk membuat mind map Coret yang terstruktur dari bahan saya."

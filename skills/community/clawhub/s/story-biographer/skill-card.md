@@ -1,41 +1,53 @@
-## Description: <br>
-Turn reminiscence, oral-history, or life-review transcripts into clear narrative biography drafts while preserving the speaker's voice, keeping to evidence in the conversation, and choosing a story structure that fits the material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn reminiscence, oral-history, or life-review transcripts into clear narrative biography drafts while preserving the speaker's voice, keeping to evidence in the conversation, and choosing a story structure that fits the material.
 
-## Publisher: <br>
-[OiiOAI](https://clawhub.ai/user/OiiOAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oiioai](https://clawhub.ai/user/oiioai)
 
-## Use Case: <br>
-External users and writing agents use this skill to turn life-review conversations, oral-history interviews, and reminiscence notes into grounded biography drafts. It is intended for source material with concrete memories, relationships, routines, scenes, or turning points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive personal life-story details while using the skill. <br>
-Mitigation: Only provide material the subject is comfortable using, and review generated drafts for privacy before sharing. <br>
-Risk: Biography drafts may over-interpret motives, sequence, names, places, or facts from limited source material. <br>
-Mitigation: Compare drafts against the source conversation and revise unsupported interpretation, names, places, and chronology before publication. <br>
+## Use Case:
 
+External users and agents use this skill to turn reminiscence, oral-history, life-review conversations, or interview notes into biography drafts grounded in the provided material.
 
-## Reference(s): <br>
-- [Narrative Templates](references/narrative-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/OiiOAI/story-biographer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative draft or revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typical story drafts are 500 to 1500 words unless the user asks otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Biographical transcripts may contain personal or sensitive memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide details that are appropriate to include in a generated draft, and review the draft before sharing it.
+
+Risk: A biography draft can misstate names, places, sequence, or motives if the source material is thin or ambiguous.
+
+Mitigation: Keep the draft grounded in the conversation, ask for clarifying details when needed, and revise for accuracy before use.
+
+## Reference(s):
+
+- [Narrative Templates](references/narrative-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown narrative draft or revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft length guidance is 500 to 1500 words unless the user asks otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-analytics-report · 作品集</title>
+<style>
+  :root{
+    --bg:#0d1117;--bg2:#161b22;--fg:#e6edf3;--muted:#8b949e;--border:#30363d;
+    --green:#3fb950;--green-bg:#12261f;--blue:#58a6ff;--amber:#d29922;--red:#f85149;
+    --card:#161b22;--hover:#1c2330;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);line-height:1.6;
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:960px;margin:0 auto;padding:56px 24px 64px}
+  .hero{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .badge-pass{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);
+       color:var(--green);border:1px solid #1c3d2e;border-radius:20px;font-size:12px;font-weight:700;padding:4px 12px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+  h1{font-size:30px;margin:14px 0 6px;letter-spacing:-.3px}
+  .tagline{color:var(--muted);font-size:15px;margin:0 0 14px}
+  .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+       margin:34px 0 12px;font-weight:700}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:8px}
+  .cards.min{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  a.card{display:block;background:var(--card);border:1px solid var(--border);border-radius:12px;
+       padding:20px 18px;text-decoration:none;color:var(--fg);transition:.15s}
+  a.card:hover{background:var(--hover);border-color:#485061;transform:translateY(-2px)}
+  a.card.hl{border-color:#2a4a6b;background:linear-gradient(180deg,#13203033,#161b22)}
+  a.card.hl:hover{border-color:var(--blue)}
+  a.card .t{font-weight:700;font-size:16px;margin-bottom:6px}
+  a.card .d{color:var(--muted);font-size:13px}
+  .arrow{float:right;color:var(--blue);font-weight:700}
+  .kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;
+       color:var(--blue);margin-bottom:8px;text-transform:uppercase}
+  h2{font-size:18px;border-bottom:1px solid var(--border);padding-bottom:8px;margin:38px 0 16px}
+  p.lead{color:var(--muted);font-size:14px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:10px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  td code{background:var(--bg2);padding:1px 6px;border-radius:5px;font-size:12px;color:var(--blue)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .chip{font-size:12px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:3px 12px;color:var(--muted)}
+  footer{margin-top:46px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border);padding-top:18px}
+  footer a{color:var(--blue);text-decoration:none}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <span class="badge-pass"><span class="dot"></span>312 tests passing</span>
+  </div>
+  <h1>agent-analytics-report</h1>
+  <p class="tagline">Agent 用量分析报告生成器 · 从本地数据源一键产出可读、可分享的多格式报告（日 / 周 / 月 / 年）。</p>
+
+  <div class="section-title">快速入口</div>
+  <div class="cards">
+    <a class="card hl" href="examples/sample-report.html">
+      <span class="arrow">→</span>
+      <div class="kicker">示例报告</div>
+      <div class="t">工具实际产出的使用分析报告</div>
+      <div class="d">概览统计 · Token 消耗可视化 · 模型成本对比 · 任务类型统计 · 核心洞察</div>
+    </a>
+    <a class="card hl" href="test-report.html">
+      <span class="arrow">→</span>
+      <div class="kicker">Allure 测试结果</div>
+      <div class="t">pytest + allure 测试矩阵（L0–L4）</div>
+      <div class="d">312 用例全绿 · 按 Feature / Story 展开 · 严重度与耗时明细</div>
+    </a>
+  </div>
+
+  <div class="section-title">文档与源码</div>
+  <div class="cards min">
+    <a class="card" href="README.html">
+      <span class="arrow">→</span>
+      <div class="t">README</div>
+      <div class="d">项目说明、安装、使用与测试指南（自渲染）</div>
+    </a>
+    <a class="card" href="SKILL.html">
+      <span class="arrow">→</span>
+      <div class="t">SKILL.md</div>
+      <div class="d">技能定义、模型与计价库、质量保障（自渲染）</div>
+    </a>
+    <a class="card" href="https://github.com/Elisabeth15501/agent-analytics-report">
+      <span class="arrow">→</span>
+      <div class="t">源码仓库</div>
+      <div class="d">GitHub · Elisabeth15501/agent-analytics-report</div>
+    </a>
+  </div>
+
+  <h2>关于这个项目</h2>
+  <p class="lead">这是一个 <strong>vibe coding</strong> 作品集项目：从采集层（<code>collect_usage_data.py</code>）到报告层（<code>generate_report.py</code> / <code>analyze_tokens.py</code>），覆盖工作区 traces、<code>workbuddy.db</code>、<code>usage-log.json</code> 等多源数据，支持 Markdown / HTML / JSON 输出，并内置 GLM 系列模型的人民币计价库。</p>
+  <p class="lead">页面顶部的两个入口分别展示了 <strong>工具实际产出的示例报告</strong>（<a href="examples/sample-report.html" style="color:var(--blue)">示例报告</a>）与 <strong>CI 自动生成的 Allure 测试结果</strong>（<a href="test-report.html" style="color:var(--blue)">Allure 测试结果</a>），可直接点开查看。</p>
+
+  <h2>测试分层 (L0 – L4)</h2>
+  <table>
+    <thead><tr><th>层级</th><th>范围</th><th>代表用例</th></tr></thead>
+    <tbody>
+      <tr><td><code>L0</code> 数据采集</td><td>采集层单测、schema 校验</td><td>test_aggregation / test_calendar_period</td></tr>
+      <tr><td><code>L1</code> 报告生成</td><td>多格式渲染、XSS 转义、汇总正确</td><td>test_report_generation / test_cost_math</td></tr>
+      <tr><td><code>L2</code> 定价边界</td><td>显式 channel、delisted 历史计价、compute_cost</td><td>test_pricing_boundary</td></tr>
+      <tr><td><code>L3</code> CLI E2E</td><td>subprocess 驱动三格式输出、--help、非法拦截</td><td>test_e2e_cli</td></tr>
+      <tr><td><code>L4</code> 发布一致性</td><td>版本门禁、交付物齐全、.gitignore 闸门</td><td>test_publish_parity</td></tr>
+    </tbody>
+  </table>
+
+  <h2>技术栈</h2>
+  <div class="chips">
+    <span class="chip">Python 3.13</span>
+    <span class="chip">pytest 9.1.1</span>
+    <span class="chip">allure-pytest 2.16.0</span>
+    <span class="chip">零 Java 自包含 HTML 报告</span>
+    <span class="chip">GitHub Pages (Actions)</span>
+    <span class="chip">SkillHub 发布</span>
+  </div>
+
+  <footer>
+    示例报告由技能在本地数据上生成后随仓库提交；Allure 测试报告由 CI（pytest + allure-pytest）每次 push 重新生成并部署。
+    项目仓库：<a href="https://github.com/Elisabeth15501/agent-analytics-report">Elisabeth15501/agent-analytics-report</a>
+  </footer>
+
+</div></body></html>

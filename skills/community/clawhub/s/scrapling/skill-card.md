@@ -1,45 +1,61 @@
-## Description: <br>
-Adaptive web scraping framework with anti-bot bypass and spider crawling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive web scraping framework with anti-bot bypass and spider crawling.
 
-## Publisher: <br>
-[zendenho7](https://clawhub.ai/user/zendenho7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSD-3-Clause <br>
+## Publisher:
 
+[zendenho7](https://clawhub.ai/user/zendenho7)
 
-## Use Case: <br>
-Developers and agents use Scrapling to fetch, parse, and crawl website content for research, summaries, brand data extraction, and structured data collection from permitted sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+BSD-3-Clause
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes bypass and API-replication guidance that could be misused on paid, protected, rate-limited, or terms-prohibited services. <br>
-Mitigation: Use it only on sites where scraping is permitted, respect robots.txt and site terms, and avoid protected, paywalled, or rate-limited services unless explicitly authorized. <br>
-Risk: The helper script can install packages and run local Python spider files. <br>
-Mitigation: Review run.sh and any spider file before execution, use an isolated virtual environment or container, and run only trusted local files. <br>
-Risk: Untrusted URLs or selectors can cause unwanted network requests or unreliable extraction results. <br>
-Mitigation: Pass only reviewed URLs and selectors, limit crawl scope and concurrency, and validate scraped outputs before relying on them. <br>
+## Use Case:
 
+Developers and agents use Scrapling to fetch, parse, and crawl permitted public websites for research, content extraction, brand data gathering, and structured data collection.
 
-## Reference(s): <br>
-- [Scrapling ClawHub Page](https://clawhub.ai/zendenho7/scrapling) <br>
-- [Scrapling Documentation](https://scrapling.readthedocs.io) <br>
-- [Scrapling Core Library Repository](https://github.com/D4Vinci/Scrapling) <br>
-- [API Reverse Engineering Methodology Repository](https://github.com/paoloanzn/free-solscan-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce scraping snippets, crawl patterns, selector examples, and helper-script commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter, release evidence, and changelog dated 2026-02-25) <br>
+Risk: The skill includes API reverse-engineering and anti-bot or Cloudflare bypass guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on public sites or systems where scraping is permitted, and avoid the reverse-engineering and stealth bypass sections unless they have been specifically reviewed and authorized.
+
+Risk: The run script accepts URLs, selectors, and spider files that can drive external requests or execute a local spider script.
+
+Mitigation: Do not pass untrusted URLs, selectors, or spider files to run.sh; review inputs and run in an isolated environment.
+
+Risk: The run script may install dependencies dynamically and the security guidance recommends pinned dependencies.
+
+Mitigation: Prefer a reviewed environment with pinned Scrapling dependencies before running the script.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zendenho7/skills/scrapling)
+- [Scrapling Documentation](https://scrapling.readthedocs.io)
+- [Scrapling Repository](https://github.com/D4Vinci/Scrapling)
+- [free-solscan-api Repository](https://github.com/paoloanzn/free-solscan-api)
+- [API Reverse Engineering Methodology Post](https://x.com/paoloanzn/status/2026361234032046319)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scraped page snippets, structured dictionaries, URLs, or local install and run commands depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter, server release metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

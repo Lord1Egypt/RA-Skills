@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7czj6jxaqc4q38hxt6mptcqn82de8g",
-  "slug": "wechat-gzh",
+  "name": "wechat-gzh",
   "version": "1.0.0",
-  "publishedAt": 1774836199293
+  "description": "微信公众号管理 skill - 支持 Access Token、素材管理、发布能力",
+  "created": "2026-03-25",
+  "author": "adventurer",
+  "dependencies": {
+    "python": ">=3.7",
+    "requests": ">=2.25.0"
+  }
 }

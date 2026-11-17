@@ -1,39 +1,61 @@
-## Description: <br>
-SiliconFlow media service skill for image generation with FLUX and Qwen models, video generation with Wan models, text-to-speech, and automatic speech recognition using voucher-backed SiliconFlow API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SiliconFlow multimodal media service for image generation with FLUX and Qwen models, video generation with Wan models, text-to-speech synthesis, and automatic speech recognition using voucher-based payment.
 
-## Publisher: <br>
-[axdlee](https://clawhub.ai/user/axdlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[axdlee](https://clawhub.ai/user/axdlee)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images, videos, speech audio, and speech transcriptions through SiliconFlow from prompts or selected media files. It is intended for workflows where sending those prompts, text, images, or audio to SiliconFlow under the user's API key is acceptable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, text, images, and audio selected by the user are sent to SiliconFlow under the user's API key. <br>
-Mitigation: Use only inputs that are acceptable for third-party processing and avoid confidential or regulated media unless SiliconFlow handling terms meet the user's requirements. <br>
-Risk: Media generation and transcription consume the user's SiliconFlow account balance or vouchers. <br>
-Mitigation: Confirm the intended API key, billing arrangement, and voucher balance before running high-volume or long video generation jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axdlee/siliconflow-media) <br>
+## Use Case:
 
+Developers and external users use this skill to call SiliconFlow multimodal APIs from an agent workflow for image and video generation, speech synthesis, and speech-to-text transcription.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text] <br>
-**Output Format:** [Markdown guidance with command examples; generated media files and text transcription output from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SILICONFLOW_API_KEY and saves generated media locally when applicable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and selected media are sent to SiliconFlow using the user's SILICONFLOW_API_KEY.
+
+Mitigation: Use only approved prompts and media, and avoid sensitive or regulated inputs unless the transfer to SiliconFlow has been approved.
+
+Risk: The skill saves generated images, audio, and video files locally.
+
+Mitigation: Run the skill in a constrained environment and review requested output paths before regular use.
+
+Risk: Runtime dependencies are declared inline and no reviewed lockfile was provided in the evidence.
+
+Mitigation: Pin dependencies or use a reviewed lockfile before sustained or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axdlee/skills/siliconflow-media)
+- [Publisher profile](https://clawhub.ai/user/axdlee)
+- [SiliconFlow image generation endpoint](https://api.siliconflow.cn/v1/images/generations)
+- [SiliconFlow video generation endpoint](https://api.siliconflow.cn/v1/video/generations)
+- [SiliconFlow text-to-speech endpoint](https://api.siliconflow.cn/v1/audio/speech)
+- [SiliconFlow transcription endpoint](https://api.siliconflow.cn/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands; runtime outputs include generated media files and transcription text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SILICONFLOW_API_KEY. Media-producing scripts print MEDIA lines for generated image, audio, and video files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

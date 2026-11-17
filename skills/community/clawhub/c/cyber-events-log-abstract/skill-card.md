@@ -1,43 +1,57 @@
-## Description: <br>
-Generates concise summaries of XDR security-event aggregates, including trends, peak times, attack sources, victims, and risk-focused event tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise security-event summary reports from XDR aggregate event statistics.
 
-## Publisher: <br>
-[haoweijie](https://clawhub.ai/user/haoweijie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoweijie](https://clawhub.ai/user/haoweijie)
 
-## Use Case: <br>
-Security operations teams and developers use this skill to pull XDR event aggregates for a chosen time range and turn them into a concise Markdown security-event summary report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships with an embedded XDR API credential. <br>
-Mitigation: Remove and rotate the bundled key before installation, then require a user-provided least-privilege credential. <br>
-Risk: The release disables TLS verification for XDR requests. <br>
-Mitigation: Restore TLS certificate verification and require users to configure the intended XDR endpoint. <br>
-Risk: The release saves raw security-event data locally without clear upfront controls. <br>
-Mitigation: Make raw-data persistence opt-in and document retention, file location, and access-control expectations. <br>
+## Use Case:
 
+Security operations teams and developers use this skill to query authorized XDR event aggregates over a selected time window and generate a concise incident summary report covering trends, peak periods, source and victim IPs, high-risk events, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haoweijie/cyber-events-log-abstract) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/haoweijie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with command-line execution guidance and optional local output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports a days parameter for the reporting window and an optional output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The security evidence reports an embedded XDR API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the published key and require users to supply secrets through a protected configuration or secret store.
+
+Risk: The security evidence reports disabled TLS verification.
+
+Mitigation: Enable certificate verification and require an authorized, configurable XDR endpoint before use.
+
+Risk: The security evidence reports local storage of sensitive raw event data.
+
+Mitigation: Disable raw-data retention by default or document retention, access controls, and cleanup requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haoweijie/skills/cyber-events-log-abstract)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, files, shell commands, guidance]
+
+**Output Format:** [Markdown report text with command-line status messages and optional saved files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports a day-range parameter and optional report path; may save raw event data locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

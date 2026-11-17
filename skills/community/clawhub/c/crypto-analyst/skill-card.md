@@ -1,47 +1,62 @@
-## Description: <br>
-Crypto Analyst provides cryptocurrency market analysis across OKX and Binance, including price checks, technical indicators, trading signals, fund-flow checks, position sizing, DCA planning, and risk calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Analyst helps agents gather cryptocurrency market data from OKX and Binance, run technical and sentiment analysis, compare exchanges, size positions, plan DCA purchases, and summarize risk.
 
-## Publisher: <br>
-[erongcao](https://clawhub.ai/user/erongcao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erongcao](https://clawhub.ai/user/erongcao)
 
-## Use Case: <br>
-External users and agents use this skill to gather crypto market data, run technical and sentiment checks, compare exchanges, and produce trading-oriented analysis with position sizing and DCA calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that OKX account credentials are used for private balance access. <br>
-Mitigation: Use read-only OKX API keys, disable trading and withdrawals, and avoid storing powerful exchange credentials in the skill directory. <br>
-Risk: The security scan reports default execution of hard-coded local helper scripts for news collection. <br>
-Mitigation: Run OKX analysis with news disabled unless the local crypto-monitor and wire-news-aggregator helper scripts are present and trusted. <br>
-Risk: The security scan verdict is suspicious and recommends review before installation. <br>
-Mitigation: Review and scan the artifact before deployment, with attention to credential handling and local helper-script execution. <br>
+## Use Case:
 
+External users and developers use this skill to produce informational cryptocurrency market reports, trading-signal summaries, exchange comparisons, DCA plans, and position-sizing calculations from exchange and sentiment data.
 
-## Reference(s): <br>
-- [Crypto Analyst on ClawHub](https://clawhub.ai/erongcao/crypto-analyst) <br>
-- [OKX API](https://www.okx.com) <br>
-- [Binance Public Market Data API](https://data-api.binance.vision) <br>
-- [Binance US API](https://api.binance.us) <br>
-- [Binance Futures API](https://fapi.binance.com) <br>
-- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with inline shell commands and text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call public market-data APIs and OKX account APIs when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill may run unbundled local helper scripts when fetching news.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust those helper scripts before use, or run okx_analyst.py with --no-news.
+
+Risk: The skill reads OKX exchange credentials from environment or .env files.
+
+Mitigation: Use read-only OKX API keys with no trading or withdrawal permissions, and avoid placing broad credentials in the project .env.
+
+Risk: Market signals, DCA plans, and position-sizing outputs can be incomplete or misleading if upstream market data is unavailable or volatile.
+
+Mitigation: Treat outputs as informational analysis and independently review market data, assumptions, and risk limits before acting.
+
+## Reference(s):
+
+- [Crypto Analyst on ClawHub](https://clawhub.ai/erongcao/skills/crypto-analyst)
+- [Publisher profile: erongcao](https://clawhub.ai/user/erongcao)
+- [OKX API](https://www.okx.com)
+- [Binance public market data](https://data-api.binance.vision)
+- [Binance US API](https://api.binance.us)
+- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market prices, technical indicators, trading-signal summaries, DCA schedules, position-sizing calculations, account-balance summaries, and risk notes.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

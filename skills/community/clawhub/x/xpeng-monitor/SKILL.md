@@ -47,7 +47,7 @@ description: |
 本 Skill 用于获取小鹏汽车的综合数据，持续集成各市场、各维度的指标。目前已包含以下两大模块（其他数据待补充）：
 
 - **第一部分 · 中国市场交付周期**：查询指定小鹏车型各配置版本的交付周期信息（单位：**周**）。数据来源：小鹏官方商城 API（`store.xiaopeng.com`）。
-- **第二部分 · 欧洲市场纯电动车日更数据**：监控 XPENG 在欧洲披露日更数据国家的 BEV 每日上牌/交付销量，输出最近 12 个月的日更明细与环比对比。数据来源：eu-evs.com。
+- **第二部分 · 欧洲市场纯电动车日更数据**：监控 XPENG 在欧洲披露日更数据国家的 BEV 每日上牌/交付销量，输出最近 12 个月的日更明细与环比对比，含工作日口径的当月 vs 上月对比。数据来源：eu-evs.com。
 
 所有网络请求通过 `scripts/` 目录下的 Node.js 脚本执行（`node <script>.js`），不使用 Python、curl 或其他方式。脚本目录：`scripts/`（相对于 skill 根目录）。
 
@@ -76,6 +76,7 @@ description: |
 2. **脚本失败只能"重跑同一脚本"或"把错误原样上报"**，不得改用替代手段。即脚本返回 `ERROR|...` 或非零退出码时，允许间隔片刻后重跑同一脚本（最多 2~3 次）；重跑仍失败则将错误信息转述给用户并停止，**不得**临时起意用 curl/WebFetch/Python 重新请求。
 3. **瞬时网络错误脚本已内置重试**（socket hang up、ECONNRESET、连接超时等会在脚本内部退避重试 3 次），agent 不需要、也不应该对瞬时网络错误自行编排重试逻辑；只有当脚本输出明确的 `ERROR|...` 时才需要 agent 介入。
 4. **判断脚本是否可用，只看 stdout**：正常数据、`LOGIN_REQUIRED`、`ERROR|...` 都在 stdout。不要因为 stderr 有输出或退出码非零就认定脚本不可用。
+5. **所有数据输出必须使用 markdown 表格（强制）**：向用户展示任何数值型数据（销量、交付周期、环比、日均、占比等）时，**一律用 markdown 表格呈现，禁止用纯文字段落、行内罗列或代码块逐行输出数据**。每个表格必须有表头和分隔行。只有非数值的结论性分析（如「④/⑤ 综合分析」的文字洞察）可以用列表或段落。此规则无例外——如果数据适合二维呈现（如「车型 × 月份」），表格是唯一正确形式。
 
 ---
 
@@ -147,7 +148,8 @@ node scripts/fetch_delivery_period.js <carVersionCode> <carSeriesCode>
 4. 请求 `listCarInfoList?carVersionSn=${carVersionCode}` 获取 SKU 列表
 5. 对每个 SKU，提取其 `specList` 中所有 `specCode` 组成列表并排序
 6. 找到 `specCode` 列表与默认配置列表完全匹配的 SKU（应唯一）
-7. 输出该 SKU 的 `minDeliveryPeriod`、`maxDeliveryPeriod` 和 `carName`
+7. 请求 `listDeliveryPeriodByVersion?carVersionSn=${carVersionCode}` 获取**页面口径**的交付周期（按 `carCode` 维度），用匹配 SKU 的 `carCode` 覆盖其 `minDeliveryPeriod`/`maxDeliveryPeriod`；该接口失败或未命中 `carCode` 时回退 SKU 自带字段
+8. 输出该 SKU 的 `minDeliveryPeriod`、`maxDeliveryPeriod` 和 `carName`
 
 输出格式：`OK|minDeliveryPeriod|maxDeliveryPeriod|carName` 或 `NO_DATA|0|0|` 或 `ERROR|0|0|`
 
@@ -164,6 +166,7 @@ node scripts/fetch_delivery_period.js <carSeriesCode> --all
 3. 对每个 `carVersionCode`：
    - 从 `carSpecGroupVoMap` 中找到默认配置规格（同 Case 1 的匹配逻辑）
    - 从 `carInfoVoMap` 中找到匹配的 SKU
+   - 请求 `listDeliveryPeriodByVersion?carVersionSn=${carVersionCode}` 获取**页面口径**交付周期，按 `carCode` 覆盖 SKU 的周期字段（失败回退 SKU 自带字段）
    - 输出该版本的交付周期
 
 输出格式（每行一个版本）：`carVersionCode|OK|minDeliveryPeriod|maxDeliveryPeriod|carName` 或 `carVersionCode|NO_DATA|0|0|`
@@ -198,6 +201,7 @@ node scripts/fetch_delivery_period.js <carVersionCode> <carSeriesCode>
 5. **Case 2 优先批量**：对于非 GX/M03/P7 车型，优先使用 `--all` 模式一次获取全部版本，减少 API 请求次数。
 6. **容错**：某个车型请求失败时，输出该车型查询失败，继续查询其他车型，不中断整个流程。
 7. **完整输出 carName**：脚本输出的最后一个字段是 `carName`，输出表格时必须将其完整填入"车辆名称"列，不得省略、截断或简写。
+8. **交付周期以页面口径为准**：官网配置页实际展示的周期来自 `listDeliveryPeriodByVersion` 接口（按 `carCode` 维度），`listCarInfoList`/`allInOne` 里 SKU 自带的 `min/maxDeliveryPeriod` 是旧快照，两者可能不一致。脚本已内置"新接口覆盖、失败回退旧字段"的逻辑，无需 agent 额外处理；如再遇到与页面不一致，先用 `scripts/diag_period_by_version.js <carSeriesCode>` 对比排查。
 
 ## 异常处理
 
@@ -230,7 +234,7 @@ URL 模板：`https://eu-evs.com/brands/XPENG/ALL_DAILY/Models-Daily/Year/${year
 
 | 脚本文件 | 用途 | 用法 |
 |---------|------|------|
-| `xpeng_eu_daily.js` | 获取最近 12 个月每日各车型交付销量明细，支持 JSON 和 markdown 报告两种输出 | `node xpeng_eu_daily.js [year] [--report] [--email <email> --password <password>]` |
+| `xpeng_eu_daily.js` | 获取最近 12 个月每日各车型交付销量明细，支持 JSON 和 markdown 报告两种输出（`--report` 含 ①②③④ 四个表格模块） | `node xpeng_eu_daily.js [year] [--report] [--email <email> --password <password>]` |
 
 ## xpeng_eu_daily.js 说明
 
@@ -239,11 +243,13 @@ URL 模板：`https://eu-evs.com/brands/XPENG/ALL_DAILY/Models-Daily/Year/${year
 **用法**：
 ```
 node scripts/xpeng_eu_daily.js [year]                  # 输出 JSON（含 daily/monthly_full/monthly_partial）
-node scripts/xpeng_eu_daily.js [year] --report         # 输出 markdown 报告（①②③ 表格，默认入口）
+node scripts/xpeng_eu_daily.js [year] --report         # 输出 markdown 报告（①②③④ 表格，默认入口）
 node scripts/xpeng_eu_daily.js [year] --email <email> --password <password>
 ```
 - `year` 可选，默认当前年份
-- `--report` 输出 3 个 markdown 表格（月度环比 / 全月总销量 / 车型明细），供 LLM 直接展示并附加 ④ 综合分析；**默认入口优先用此模式**
+- `--report` 输出 4 个 markdown 表格模块（① 月度环比 / ② 全月总销量 / ③ 车型明细 / ④ 工作日销量对比），供 LLM 直接展示并附加 ⑤ 综合分析；**默认入口优先用此模式**
+
+**④ 工作日销量对比口径**：当前月 vs 上个自然月，范围 1 日 ~ T-2（T = 脚本运行日；最近两天数据可能未上报完整，故截到 T-2）。仅统计工作日（周一~周五），两月按「第 n 个工作日」对齐（跳过周六日，与日历日期无关），输出 2 个表：逐工作日对比表（两月日期、销量、差异）+ 日均汇总表（工作日数、合计、日均、差异与百分比）。缺数据的工作日按 0 处理（节假日/未上报）。
 - `--email` / `--password` 可选，用于登录 eu-evs.com（见下方登录流程）
 
 **跨年处理（自动）**：12 个月通常跨越两个自然年（如最新月为 2026-06，则范围为 2025-07 至 2026-06），脚本自动获取所需年份并合并。
@@ -290,7 +296,7 @@ node scripts/xpeng_eu_daily.js [year] --email <email> --password <password>
 
 ### 步骤一：运行 daily 脚本（默认 `--report` 模式）
 
-默认运行 `node scripts/xpeng_eu_daily.js --report`（当前年份），直接获取 ①②③ 三个 markdown 表格。如果用户指定了年份（如"查看 2025 年数据"），传入年份参数：`node scripts/xpeng_eu_daily.js 2025 --report`。
+默认运行 `node scripts/xpeng_eu_daily.js --report`（当前年份），直接获取 ①②③④ 四个 markdown 表格模块。如果用户指定了年份（如"查看 2025 年数据"），传入年份参数：`node scripts/xpeng_eu_daily.js 2025 --report`。
 
 **何时用 JSON 模式（不加 `--report`）**：用户有非默认需求（某车型长期趋势、单日异常定位、工作日/周末分析、同比对比等），需要基于 `daily` / `monthly_full` 灵活计算时，去掉 `--report` 运行获取 JSON。
 
@@ -331,33 +337,34 @@ node scripts/xpeng_eu_daily.js [year] --email <email> --password <password>
 
 脚本返回数据后，按以下规则完成展示与分析。
 
-### 步骤二：展示 ①②③ 表格 + 生成 ④ 综合分析
+### 步骤二：展示 ①②③④ 表格 + 生成 ⑤ 综合分析
 
-#### ①②③ 表格：原样展示脚本输出
+#### ①②③④ 表格：原样展示脚本输出
 
-**输出必须包含范围说明：** 在展示 ①②③ 表格前后，需明确注明「以下数据仅覆盖披露日更数据的少数欧洲国家，并非 XPeng 全欧洲总销量」。该说明是必填项，不得省略，以免误导用户将数据解读为欧洲整体销量。
+**输出必须包含范围说明：** 在展示 ①②③④ 表格前后，需明确注明「以下数据仅覆盖披露日更数据的少数欧洲国家，并非 XPeng 全欧洲总销量」。该说明是必填项，不得省略，以免误导用户将数据解读为欧洲整体销量。
 
-`--report` 模式输出的 3 个 markdown 表格（① 月度环比对比 / ② 全月总销量 / ③ 各车型销量明细）**已由脚本预计算并格式化完成，LLM 原样展示即可，不要重新计算或改写表格数据**。
+`--report` 模式输出的 4 个 markdown 表格模块（① 月度环比对比 / ② 全月总销量 / ③ 各车型销量明细 / ④ 工作日销量对比）**已由脚本预计算并格式化完成，LLM 原样展示即可，不要重新计算或改写表格数据**。
 
 脚本内部已处理：
 - 环比变化量与百分比的 +/- 符号、四舍五入（保留 1 位小数）、分母为 0 标 N/A
 - 当前月"月未结束"的标注
 - 车型顺序按 `meta.models` 固定，0 值保留
+- ④ 工作日口径：1 日 ~ T-2 截止、周末剔除、两月第 n 个工作日对齐、缺数据补 0
 
-#### ④ 综合分析：LLM 生成 4 条核心洞察
+#### ⑤ 综合分析：LLM 生成 4 条核心洞察
 
-基于 ①②③ 表格的数据，输出 **4 条核心洞察**，建议覆盖以下维度：
+基于 ①②③④ 表格的数据，输出 **4 条核心洞察**，建议覆盖以下维度：
 
 1. **整体趋势**：当前月环比方向与幅度，是否延续上月走势
 2. **主力车型**：销量最高的 1–2 个车型及其贡献率、环比表现
 3. **异动车型**：环比变化最显著的车型（新投放放量、大幅增长或下滑）
-4. **结构性变化**：新车型出现、产品组合迁移、市场份额相关的信号
+4. **结构性变化**：新车型出现、产品组合迁移、市场份额相关的信号；结合 ④ 工作日日均对比判断真实经营节奏（剔除周末干扰、避开未上报完整的最近两天）
 
 分析必须**具体引用数字**（如「G6 当前月 535 辆，环比 +19.2%，贡献增量的 X%」），避免空泛描述。
 
 ### 步骤三：按需扩展（JSON 模式）
 
-当用户需求超出默认 4 模块时，运行无 `--report` 版本获取 JSON，根据下表选择数据层级灵活计算：
+当用户需求超出默认模块时，运行无 `--report` 版本获取 JSON，根据下表选择数据层级灵活计算：
 
 | 需求 | 使用数据 |
 |------|---------|
@@ -370,7 +377,8 @@ node scripts/xpeng_eu_daily.js [year] --email <email> --password <password>
 
 ## 执行约束
 
-1. **默认入口用 `--report`，不要手动计算 ①②③**：`--report` 模式输出的 3 个表格已由脚本完成所有计算与格式化（环比变化量、百分比、车型对齐、"月未结束"标注），LLM 原样展示即可，**不要重新计算或改写表格数据**。只有步骤三的按需扩展场景才需要从 JSON 手动计算，此时优先用 `monthly_partial`/`monthly_full`，不要从 `daily` 累加。
+1. **默认入口用 `--report`，不要手动计算 ①②③④**：`--report` 模式输出的 4 个表格模块已由脚本完成所有计算与格式化（环比变化量、百分比、车型对齐、"月未结束"标注、工作日对齐），LLM 原样展示即可，**不要重新计算或改写表格数据**。只有步骤三的按需扩展场景才需要从 JSON 手动计算，此时优先用 `monthly_partial`/`monthly_full`，不要从 `daily` 累加。
+2. **按需扩展的输出也必须用表格**：从 JSON 手动计算的任何数值结果（单日明细、工作日/周末分析、同比对比等），同样必须以 markdown 表格呈现，禁止行内罗列数值（见「全局执行铁律」第 5 条）。
 2. **PARTIAL 才是公平对比**：最新月尚未结束，必须用「1 号到最新日」的数据与历史月同范围对比（即 `monthly_partial`），不能用全月数据（`monthly_full`）对比。
 3. **日销量可为 0 或缺失**：部分日期（如周末）可能没有数据，`daily` 数组中不会出现这些日期，这是正常现象；`monthly_full`/`monthly_partial` 的 `days` 字段反映实际有数据的天数。
 4. **车型可能变化**：不同年份车型列表可能不同（如 2026 年新增 M03、P7+、X9、F30），脚本已自动对齐，展示时以 `meta.models` 为准。

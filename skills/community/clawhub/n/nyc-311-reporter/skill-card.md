@@ -1,43 +1,59 @@
-## Description: <br>
-Automate NYC 311 service request filing by browsing the 311 portal with Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates NYC 311 service request filing with Playwright by scraping complaint categories, finding forms, filling them with user data, and optionally submitting reports.
 
-## Publisher: <br>
-[pranjalminocha](https://clawhub.ai/user/pranjalminocha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pranjalminocha](https://clawhub.ai/user/pranjalminocha)
 
-## Use Case: <br>
-External users and agents use this skill to prepare, preview, and optionally submit NYC 311 service requests through browser automation when a complaint needs end-to-end filing assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit a real NYC 311 report when run with the submit option. <br>
-Mitigation: Run the dry run first, inspect the generated screenshot, and submit only after the user confirms the complaint details are accurate. <br>
-Risk: Reporter contact details and address data may be stored in assets/config.json or passed through command arguments. <br>
-Mitigation: Use only user-approved contact details, avoid storing real personal data unless needed, and remove or replace sensitive values after the report is complete. <br>
-Risk: Screenshots saved under /tmp may contain personal data or complaint details. <br>
-Mitigation: Delete /tmp/311_*.png screenshots after review or after the report workflow is complete. <br>
+## Use Case:
 
+External users or agents assisting NYC residents use this skill to gather complaint details, browse the NYC 311 portal, and prepare or submit service requests through browser automation.
 
-## Reference(s): <br>
-- [NYC 311 Portal](https://portal.311.nyc.gov/) <br>
-- [ClawHub skill page](https://clawhub.ai/pranjalminocha/nyc-311-reporter) <br>
+### Deployment Geography for Use:
 
+New York City, United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local screenshots under /tmp for user review during dry runs or submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill handles personal contact and address data, and the artifact includes sample identity data in configuration and command examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace all sample identity data before use, and avoid storing real personal information in package-local configuration.
+
+Risk: The browser automation can submit an official NYC 311 service request when run with the live submit option.
+
+Mitigation: Run dry-run mode first, inspect the filled form and screenshots, and manually confirm the report before enabling live submission.
+
+Risk: Screenshots saved under /tmp may contain complaint details or personal information.
+
+Mitigation: Treat generated screenshots as sensitive and delete them after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pranjalminocha/skills/nyc-311-reporter)
+- [NYC 311 portal](https://portal.311.nyc.gov/)
+- [NYC 311 report problems](https://portal.311.nyc.gov/report-problems/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save browser screenshots under /tmp for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

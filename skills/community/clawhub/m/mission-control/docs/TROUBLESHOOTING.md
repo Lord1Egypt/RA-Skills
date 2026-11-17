@@ -162,7 +162,7 @@ If using Slack notifications, verify:
 cat ~/.clawdbot/mission-control.json | jq '.slack'
 
 # Verify bot token works
-curl -H "Authorization: Bearer xoxb-YOUR-TOKEN" \
+curl -H "Authorization: Bearer REDACTED-SECRET" \
      https://slack.com/api/auth.test
 ```
 

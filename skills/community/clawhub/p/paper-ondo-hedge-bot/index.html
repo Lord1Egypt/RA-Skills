@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PaperTrade + ONDO 对冲机器人控制面板</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    text-align: center;
+    padding: 20px 0 30px;
+  }
+  h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .subtitle { color: #94a3b8; font-size: 0.9rem; }
+
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+  }
+  .status-left { display: flex; align-items: center; gap: 12px; }
+  .status-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #64748b;
+  }
+  .status-dot.running { background: #22c55e; box-shadow: 0 0 8px #22c55e; animation: pulse 1.5s infinite; }
+  .status-dot.stopped { background: #ef4444; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .status-text { font-size: 1rem; font-weight: 600; }
+  .pid-text { color: #94a3b8; font-size: 0.85rem; margin-top: 2px; }
+
+  .btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary { background: #3b82f6; color: white; }
+  .btn-primary:hover:not(:disabled) { background: #2563eb; }
+  .btn-danger { background: #ef4444; color: white; }
+  .btn-danger:hover:not(:disabled) { background: #dc2626; }
+  .btn-success { background: #22c55e; color: white; }
+  .btn-success:hover:not(:disabled) { background: #16a34a; }
+  .btn-ghost { background: #334155; color: #e2e8f0; }
+  .btn-ghost:hover:not(:disabled) { background: #475569; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h2::before {
+    content: "";
+    width: 4px; height: 18px;
+    background: #3b82f6;
+    border-radius: 2px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+    font-family: "SF Mono", "Monaco", monospace;
+  }
+  .form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+  .form-group input[readonly] {
+    opacity: 0.6;
+    background: #1e293b;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .log-section { margin-top: 24px; }
+  .log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .log-box {
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 12px;
+    height: 320px;
+    overflow-y: auto;
+    font-family: "SF Mono", "Monaco", "Consolas", monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+  .log-line { color: #94a3b8; }
+  .log-line.info { color: #94a3b8; }
+  .log-line.success { color: #22c55e; }
+  .log-line.warn { color: #f59e0b; }
+  .log-line.error { color: #ef4444; }
+
+  .toast {
+    position: fixed;
+    top: 20px; right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+  }
+  .toast.success { background: #166534; color: #bbf7d0; border: 1px solid #22c55e; }
+  .toast.error { background: #991b1b; color: #fecaca; border: 1px solid #ef4444; }
+  @keyframes slideIn {
+    from { transform: translateX(120%); }
+    to { transform: translateX(0); }
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-blue { background: #1e40af; color: #bfdbfe; }
+  .badge-green { background: #14532d; color: #bbf7d0; }
+
+  /* 模式切换开关 */
+  .mode-switch {
+    display: inline-flex;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .mode-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mode-btn.active.mock {
+    background: #f59e0b;
+    color: #1e293b;
+  }
+  .mode-btn.active.real {
+    background: #ef4444;
+    color: white;
+  }
+  .mode-warning {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: none;
+  }
+  .mode-warning.mock {
+    display: block;
+    background: #78350f;
+    color: #fde68a;
+    border: 1px solid #f59e0b;
+  }
+  .mode-warning.real {
+    display: block;
+    background: #7f1d1d;
+    color: #fecaca;
+    border: 1px solid #ef4444;
+  }
+
+  /* 语言切换 */
+  .lang-switch {
+    display: inline-flex;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .lang-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: #3b82f6;
+    color: white;
+  }
+
+  /* 获取 Key 链接 */
+  .get-key-link {
+    display: inline-block;
+    margin-top: 6px;
+    color: #60a5fa;
+    font-size: 0.78rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .get-key-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1 data-i18n="title">PaperTrade + ONDO 对冲机器人</h1>
+    <div class="subtitle" data-i18n="subtitle">亏损挖矿 · 中性对冲 · PAPER + ONDO 积分</div>
+  </header>
+
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <div class="status-left">
+      <div class="status-dot stopped" id="statusDot"></div>
+      <div>
+        <div class="status-text" id="statusText" data-i18n="stopped">已停止</div>
+        <div class="pid-text" id="pidText">—</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div>
+        <div style="font-size:0.75rem;color:#64748b;margin-bottom:4px;text-align:right;" data-i18n="language">语言</div>
+        <div class="lang-switch">
+          <button class="lang-btn active" id="langZh" onclick="setLang('zh')">中文</button>
+          <button class="lang-btn" id="langEn" onclick="setLang('en')">EN</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.75rem;color:#64748b;margin-bottom:4px;text-align:right;" data-i18n="run_mode">运行模式</div>
+        <div class="mode-switch">
+          <button class="mode-btn active mock" id="modeMock" onclick="setMode('mock')"><span data-i18n="mock_mode">🧪 模拟</span></button>
+          <button class="mode-btn" id="modeReal" onclick="setMode('real')"><span data-i18n="real_mode">💰 真实</span></button>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-success" id="startBtn" onclick="startBot()"><span data-i18n="start_btn">▶ 启动机器人</span></button>
+        <button class="btn btn-danger" id="stopBtn" onclick="stopBot()" disabled><span data-i18n="stop_btn">■ 停止</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mode-warning mock" id="modeWarning">
+    <span data-i18n="warning_mock">⚠️ 当前为<strong>模拟模式</strong>：不会进行真实交易，所有开仓/平仓均为模拟，用于演示流程。</span>
+  </div>
+
+  <div class="grid">
+    <!-- PaperTrade 配置 -->
+    <div class="card">
+      <h2 style="display:flex;justify-content:space-between;align-items:center;">
+        <span data-i18n="paper_config">PaperTrade 配置</span>
+        <a class="get-key-link" href="https://papertrade.xyz/" target="_blank" data-i18n="visit_site">🌐 访问官网</a>
+      </h2>
+      <div class="form-group">
+        <label data-i18n="wallet_private_key">钱包私钥 (PAPER_WALLET_PRIVATE_KEY)</label>
+        <input type="password" id="PAPER_WALLET_PRIVATE_KEY" data-i18n-placeholder="ph_wallet_key" placeholder="0x 开头的 64 位 hex">
+      </div>
+      <div class="form-group">
+        <label data-i18n="session_key">Session Key (可选，PAPER_SESSION_KEY)</label>
+        <input type="password" id="PAPER_SESSION_KEY" data-i18n-placeholder="ph_session_key" placeholder="留空则启动时自动注册">
+      </div>
+      <button class="btn btn-ghost" onclick="registerSession()" style="width:100%"><span data-i18n="register_session">🔑 注册新 Session Key</span></button>
+    </div>
+
+    <!-- ONDO 配置 -->
+    <div class="card">
+      <h2 style="display:flex;justify-content:space-between;align-items:center;">
+        <span data-i18n="ondo_config">ONDO Perps 配置</span>
+        <a class="get-key-link" href="https://app.ondoperps.xyz/?ref=8RU3VB" target="_blank" data-i18n="visit_site">🌐 访问官网</a>
+      </h2>
+      <div class="form-group">
+        <label data-i18n="ondo_key_id">API Key ID (ONDO_KEY_ID)</label>
+        <input type="text" id="ONDO_KEY_ID" data-i18n-placeholder="ph_ondo_key" placeholder="ondoKeyId_xxx">
+        <a class="get-key-link" href="https://app.ondoperps.xyz/?ref=8RU3VB" target="_blank" data-i18n="get_ondo_key">🔗 获取 ONDO API Key</a>
+      </div>
+      <div class="form-group">
+        <label data-i18n="ondo_secret">API Secret (ONDO_API_SECRET)</label>
+        <input type="password" id="ONDO_API_SECRET" data-i18n-placeholder="ph_ondo_secret" placeholder="ondoApiSecret_xxx">
+      </div>
+    </div>
+
+    <!-- 对冲策略参数 -->
+    <div class="card">
+      <h2 data-i18n="strategy_params">对冲策略参数</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="symbol">交易对</label>
+          <select id="HEDGE_SYMBOL">
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="position_size">仓位大小 (USD)</label>
+          <input type="number" id="HEDGE_POSITION_SIZE" value="50" min="1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="paper_leverage">PaperTrade 杠杆</label>
+          <input type="number" id="HEDGE_PAPER_LEVERAGE" value="10" min="1" max="1000">
+        </div>
+        <div class="form-group">
+          <label data-i18n="ondo_leverage">ONDO 杠杆</label>
+          <input type="number" id="HEDGE_ONDO_LEVERAGE" value="10" min="1" max="25">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="target_move">目标波动 (%)</label>
+          <input type="number" id="HEDGE_TARGET_MOVE_PCT" value="1.0" step="0.1" min="0.1">
+        </div>
+        <div class="form-group">
+          <label data-i18n="max_hold">最长持仓 (秒)</label>
+          <input type="number" id="HEDGE_MAX_HOLD_SECONDS" value="3600" min="60">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="poll_interval">轮询间隔 (秒)</label>
+          <input type="number" id="HEDGE_POLL_INTERVAL" value="10" min="1">
+        </div>
+        <div class="form-group">
+          <label data-i18n="max_cycles">最大循环</label>
+          <input type="number" id="HEDGE_MAX_CYCLES" value="200" min="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-i18n="direction">开仓方向</label>
+        <select id="HEDGE_DIRECTION">
+          <option value="random" data-i18n="dir_random">随机 (推荐)</option>
+          <option value="paper_long" data-i18n="dir_pl">PaperTrade 做多 / ONDO 做空</option>
+          <option value="paper_short" data-i18n="dir_ps">PaperTrade 做空 / ONDO 做多</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 操作面板 -->
+    <div class="card">
+      <h2 data-i18n="quick_actions">快捷操作</h2>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button class="btn btn-primary" onclick="saveConfig()" style="width:100%"><span data-i18n="save_config">💾 保存配置</span></button>
+        <button class="btn btn-ghost" onclick="viewStatus()" style="width:100%"><span data-i18n="view_status">📊 查看账户状态</span></button>
+        <button class="btn btn-ghost" onclick="closeAll()" style="width:100%"><span data-i18n="close_all">🛑 平掉所有持仓</span></button>
+        <button class="btn btn-ghost" onclick="loadConfig()" style="width:100%"><span data-i18n="reload_config">🔄 重新加载配置</span></button>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid #334155;font-size:0.8rem;color:#64748b;line-height:1.6;">
+        <strong style="color:#94a3b8" data-i18n="strategy_title">策略说明：</strong><br>
+        <span data-i18n="strategy_desc">PaperTrade 亏损 → mint PAPER（约 95/$1）<br>ONDO 盈利 → 获得积分 + USDC<br>净 PnL ≈ 0，收益 = PAPER + ONDO 积分</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 日志 -->
+  <div class="log-section">
+    <div class="log-header">
+      <h2 style="font-size:1.1rem;color:#cbd5e1;" data-i18n="log_title">运行日志</h2>
+      <button class="btn btn-ghost" onclick="refreshLog()"><span data-i18n="refresh">刷新</span></button>
+    </div>
+    <div class="log-box" id="logBox"></div>
+  </div>
+
+  <!-- 隐藏字段：运行模式 -->
+  <input type="hidden" id="HEDGE_MODE" value="mock">
+</div>
+
+<script>
+// ── 国际化翻译 ──
+const I18N = {
+  zh: {
+    title: "PaperTrade + ONDO 对冲机器人",
+    subtitle: "亏损挖矿 · 中性对冲 · PAPER + ONDO 积分",
+    stopped: "已停止",
+    running: "运行中",
+    language: "语言",
+    run_mode: "运行模式",
+    mock_mode: "🧪 模拟",
+    real_mode: "💰 真实",
+    start_btn: "▶ 启动机器人",
+    stop_btn: "■ 停止",
+    warning_mock: '⚠️ 当前为<strong>模拟模式</strong>：不会进行真实交易，所有开仓/平仓均为模拟，用于演示流程。',
+    warning_real: '⚠️ 当前为<strong>真实模式</strong>：将进行真实交易，请确保已配置正确的私钥和 API 凭证，且钱包有足够 USDC。',
+    paper_config: "PaperTrade 配置",
+    wallet_private_key: "钱包私钥 (PAPER_WALLET_PRIVATE_KEY)",
+    ph_wallet_key: "0x 开头的 64 位 hex",
+    session_key: "Session Key (可选，PAPER_SESSION_KEY)",
+    ph_session_key: "留空则启动时自动注册",
+    register_session: "🔑 注册新 Session Key",
+    ondo_config: "ONDO Perps 配置",
+    ondo_key_id: "API Key ID (ONDO_KEY_ID)",
+    ph_ondo_key: "ondoKeyId_xxx",
+    get_ondo_key: "🔗 获取 ONDO API Key",
+    ondo_secret: "API Secret (ONDO_API_SECRET)",
+    ph_ondo_secret: "ondoApiSecret_xxx",
+    strategy_params: "对冲策略参数",
+    symbol: "交易对",
+    position_size: "仓位大小 (USD)",
+    paper_leverage: "PaperTrade 杠杆",
+    ondo_leverage: "ONDO 杠杆",
+    target_move: "目标波动 (%)",
+    max_hold: "最长持仓 (秒)",
+    poll_interval: "轮询间隔 (秒)",
+    max_cycles: "最大循环",
+    direction: "开仓方向",
+    dir_random: "随机 (推荐)",
+    dir_pl: "PaperTrade 做多 / ONDO 做空",
+    dir_ps: "PaperTrade 做空 / ONDO 做多",
+    quick_actions: "快捷操作",
+    save_config: "💾 保存配置",
+    view_status: "📊 查看账户状态",
+    close_all: "🛑 平掉所有持仓",
+    reload_config: "🔄 重新加载配置",
+    strategy_title: "策略说明：",
+    strategy_desc: "PaperTrade 亏损 → mint PAPER（约 95/$1）<br>ONDO 盈利 → 获得积分 + USDC<br>净 PnL ≈ 0，收益 = PAPER + ONDO 积分",
+    log_title: "运行日志",
+    refresh: "刷新",
+    visit_site: "🌐 访问官网",
+  },
+  en: {
+    title: "PaperTrade + ONDO Hedge Bot",
+    subtitle: "Loss Mining · Neutral Hedge · PAPER + ONDO Points",
+    stopped: "Stopped",
+    running: "Running",
+    language: "Language",
+    run_mode: "Run Mode",
+    mock_mode: "🧪 Mock",
+    real_mode: "💰 Real",
+    start_btn: "▶ Start Bot",
+    stop_btn: "■ Stop",
+    warning_mock: '⚠️ <strong>Mock Mode</strong>: No real trades will be executed. All orders are simulated for demo purposes.',
+    warning_real: '⚠️ <strong>Real Mode</strong>: Real trades will be executed. Ensure correct keys are configured and wallet has enough USDC.',
+    paper_config: "PaperTrade Config",
+    wallet_private_key: "Wallet Private Key (PAPER_WALLET_PRIVATE_KEY)",
+    ph_wallet_key: "0x-prefixed 64-char hex",
+    session_key: "Session Key (optional, PAPER_SESSION_KEY)",
+    ph_session_key: "Leave empty to auto-register on start",
+    register_session: "🔑 Register New Session Key",
+    ondo_config: "ONDO Perps Config",
+    ondo_key_id: "API Key ID (ONDO_KEY_ID)",
+    ph_ondo_key: "ondoKeyId_xxx",
+    get_ondo_key: "🔗 Get ONDO API Key",
+    ondo_secret: "API Secret (ONDO_API_SECRET)",
+    ph_ondo_secret: "ondoApiSecret_xxx",
+    strategy_params: "Strategy Parameters",
+    symbol: "Symbol",
+    position_size: "Position Size (USD)",
+    paper_leverage: "PaperTrade Leverage",
+    ondo_leverage: "ONDO Leverage",
+    target_move: "Target Move (%)",
+    max_hold: "Max Hold (sec)",
+    poll_interval: "Poll Interval (sec)",
+    max_cycles: "Max Cycles",
+    direction: "Direction",
+    dir_random: "Random (Recommended)",
+    dir_pl: "PaperTrade Long / ONDO Short",
+    dir_ps: "PaperTrade Short / ONDO Long",
+    quick_actions: "Quick Actions",
+    save_config: "💾 Save Config",
+    view_status: "📊 View Account Status",
+    close_all: "🛑 Close All Positions",
+    reload_config: "🔄 Reload Config",
+    strategy_title: "Strategy:",
+    strategy_desc: "PaperTrade loss → mint PAPER (~95/$1)<br>ONDO profit → earn points + USDC<br>Net PnL ≈ 0, profit = PAPER + ONDO points",
+    log_title: "Runtime Log",
+    refresh: "Refresh",
+    visit_site: "🌐 Visit Site",
+  }
+};
+
+let currentLang = "zh";
+
+function setLang(lang) {
+  currentLang = lang;
+  const dict = I18N[lang];
+  // 切换按钮状态
+  document.getElementById("langZh").className = "lang-btn" + (lang === "zh" ? " active" : "");
+  document.getElementById("langEn").className = "lang-btn" + (lang === "en" ? " active" : "");
+  // 应用翻译到所有 data-i18n 元素
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) {
+      el.innerHTML = dict[key];
+    }
+  });
+  // 应用翻译到 placeholder
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (dict[key]) {
+      el.placeholder = dict[key];
+    }
+  });
+  // 更新文档标题
+  document.title = dict.title;
+  // 保存语言偏好
+  localStorage.setItem("lang", lang);
+  // 重新应用当前模式的警告文本和 placeholder
+  setMode(currentMode, false);
+}
+
+const CONFIG_KEYS = [
+  "HEDGE_MODE",
+  "PAPER_WALLET_PRIVATE_KEY", "PAPER_SESSION_KEY",
+  "ONDO_KEY_ID", "ONDO_API_SECRET",
+  "HEDGE_SYMBOL", "HEDGE_POSITION_SIZE", "HEDGE_PAPER_LEVERAGE",
+  "HEDGE_ONDO_LEVERAGE", "HEDGE_TARGET_MOVE_PCT", "HEDGE_MAX_HOLD_SECONDS",
+  "HEDGE_POLL_INTERVAL", "HEDGE_MAX_CYCLES", "HEDGE_DIRECTION"
+];
+
+let currentMode = "mock";
+
+let logTimer = null;
+let statusTimer = null;
+
+// ── 工具函数 ──
+function toast(msg, type = "success") {
+  const t = document.createElement("div");
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+async function api(path, method = "GET", body = null) {
+  const opts = { method, headers: {} };
+  if (body) {
+    opts.headers["Content-Type"] = "application/json";
+    opts.body = JSON.stringify(body);
+  }
+  const res = await fetch(path, opts);
+  return res.json();
+}
+
+// ── 配置 ──
+function getConfigFromForm() {
+  const cfg = {};
+  CONFIG_KEYS.forEach(k => {
+    const el = document.getElementById(k);
+    if (el) cfg[k] = el.value;
+  });
+  return cfg;
+}
+
+function fillForm(cfg) {
+  CONFIG_KEYS.forEach(k => {
+    const el = document.getElementById(k);
+    if (el && cfg[k] !== undefined) el.value = cfg[k];
+  });
+  // 应用模式
+  const mode = cfg.HEDGE_MODE || "mock";
+  setMode(mode, false);
+}
+
+function setMode(mode, autoSave = true) {
+  currentMode = mode;
+  document.getElementById("HEDGE_MODE").value = mode;
+  const mockBtn = document.getElementById("modeMock");
+  const realBtn = document.getElementById("modeReal");
+  const warning = document.getElementById("modeWarning");
+
+  mockBtn.className = "mode-btn" + (mode === "mock" ? " active mock" : "");
+  realBtn.className = "mode-btn" + (mode === "real" ? " active real" : "");
+  warning.className = "mode-warning " + mode;
+
+  if (mode === "real") {
+    warning.innerHTML = I18N[currentLang].warning_real;
+  } else {
+    warning.innerHTML = I18N[currentLang].warning_mock;
+  }
+
+  // 真实模式下禁用凭证输入框的提示，模拟模式下不要求凭证
+  const paperKey = document.getElementById("PAPER_WALLET_PRIVATE_KEY");
+  const ondoKey = document.getElementById("ONDO_KEY_ID");
+  if (mode === "mock") {
+    paperKey.placeholder = currentLang === "en" ? "Leave empty (mock mode)" : "留空自动生成测试钱包（模拟模式）";
+    ondoKey.placeholder = currentLang === "en" ? "Not required in mock mode" : "模拟模式无需真实 API";
+  } else {
+    paperKey.placeholder = I18N[currentLang].ph_wallet_key;
+    ondoKey.placeholder = I18N[currentLang].ph_ondo_key;
+  }
+
+  if (autoSave) saveConfig();
+}
+
+async function loadConfig() {
+  try {
+    const res = await api("/api/config");
+    if (res.success) fillForm(res.config);
+  } catch (e) {
+    toast("加载配置失败: " + e.message, "error");
+  }
+}
+
+async function saveConfig() {
+  const cfg = getConfigFromForm();
+  const mode = cfg.HEDGE_MODE || "mock";
+  // 真实模式下验证必填项，模拟模式不要求
+  if (mode === "real") {
+    if (!cfg.PAPER_WALLET_PRIVATE_KEY || cfg.PAPER_WALLET_PRIVATE_KEY === "your_private_key_here") {
+      toast("请填写 PaperTrade 钱包私钥", "error");
+      return;
+    }
+    if (!cfg.ONDO_KEY_ID || !cfg.ONDO_API_SECRET) {
+      toast("请填写 ONDO API 凭证", "error");
+      return;
+    }
+  }
+  try {
+    const res = await api("/api/config", "POST", cfg);
+    if (res.success) toast("配置已保存到 .env");
+    else toast(res.message, "error");
+  } catch (e) {
+    toast("保存失败: " + e.message, "error");
+  }
+}
+
+// ── 进程控制 ──
+async function startBot() {
+  await saveConfig();
+  const btn = document.getElementById("startBtn");
+  btn.disabled = true;
+  const res = await api("/api/start", "POST");
+  if (res.success) {
+    toast(res.message);
+    updateStatus();
+    startLogPolling();
+  } else {
+    toast(res.message, "error");
+    btn.disabled = false;
+  }
+}
+
+async function stopBot() {
+  const res = await api("/api/stop", "POST");
+  if (res.success) toast(res.message);
+  else toast(res.message, "error");
+  updateStatus();
+  refreshLog();
+}
+
+// ── 状态与日志 ──
+async function updateStatus() {
+  const res = await api("/api/status");
+  const dot = document.getElementById("statusDot");
+  const text = document.getElementById("statusText");
+  const pid = document.getElementById("pidText");
+  const startBtn = document.getElementById("startBtn");
+  const stopBtn = document.getElementById("stopBtn");
+
+  if (res.running) {
+    dot.className = "status-dot running";
+    text.textContent = I18N[currentLang].running;
+    pid.textContent = "PID: " + (res.pid || "?");
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+  } else {
+    dot.className = "status-dot stopped";
+    text.textContent = I18N[currentLang].stopped;
+    pid.textContent = "—";
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    stopLogPolling();
+  }
+}
+
+async function refreshLog() {
+  const res = await api("/api/log");
+  const box = document.getElementById("logBox");
+  box.innerHTML = "";
+  (res.log || []).forEach(line => {
+    const div = document.createElement("div");
+    div.className = "log-line " + classifyLog(line);
+    div.textContent = line;
+    box.appendChild(div);
+  });
+  box.scrollTop = box.scrollHeight;
+}
+
+function classifyLog(line) {
+  const l = line.toLowerCase();
+  if (l.includes("error") || l.includes("失败") || l.includes("错误")) return "error";
+  if (l.includes("成功") || l.includes("ok") || l.includes("已提交")) return "success";
+  if (l.includes("警告") || l.includes("warn")) return "warn";
+  return "info";
+}
+
+function startLogPolling() {
+  if (logTimer) return;
+  refreshLog();
+  logTimer = setInterval(refreshLog, 3000);
+}
+
+function stopLogPolling() {
+  if (logTimer) {
+    clearInterval(logTimer);
+    logTimer = null;
+  }
+}
+
+// ── 快捷操作 ──
+async function registerSession() {
+  toast("请先保存配置，然后在终端运行: python main.py register", "error");
+}
+
+async function viewStatus() {
+  toast("账户状态功能需要在终端运行: python main.py status", "error");
+}
+
+async function closeAll() {
+  if (!confirm("确定要平掉所有持仓吗？")) return;
+  toast("请在终端运行: python main.py close-all", "error");
+}
+
+// ── 初始化 ──
+// 加载语言偏好
+const savedLang = localStorage.getItem("lang") || "zh";
+setLang(savedLang);
+loadConfig();
+updateStatus();
+statusTimer = setInterval(updateStatus, 3000);
+</script>
+</body>
+</html>

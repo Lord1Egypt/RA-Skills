@@ -1,39 +1,50 @@
-## Description: <br>
-Supports API management workflows including visual API design, automatic documentation generation, interface testing, version management, and performance monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API 管理，接口设计 + 文档 + 测试。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and API teams use this skill to manage API design, documentation, interface testing, version control, and performance monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install commands reference an external GitHub repository and requirements.txt whose Python code is not part of the reviewed package. <br>
-Mitigation: Review the referenced repository and dependency file before running installation commands. <br>
+## Use Case:
 
+Developers and API teams use this skill as guidance for an API management system covering visual API design, generated documentation, automated interface testing, version management, and performance monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-api-management) <br>
-- [Referenced project repository](https://github.com/openclaw-skills/ai-intelligent-api-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe installation and API-management workflows; no credentials or privileged access are requested by the reviewed skill artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install instructions clone and run unpinned remote code and dependencies that were not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the referenced repository and dependency list, pin to a known commit, and run installation and startup commands only inside an isolated virtual environment or sandbox.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-api-management)
+- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-api-management)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with bullet lists and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to clone and run an external repository; review dependencies and commands before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Industry-aware e-commerce customer-service skill that drafts compliant, ready-to-send responses and handling notes for presales, in-order support, logistics, refunds, returns, complaints, FAQ/SOP creation, and creator or channel business outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+行业可选的智能电商客服技能。用于售前咨询、售中跟进、催付催单、发货物流、售后处理、退款退换、投诉安抚、差评挽回、FAQ整理、达人与机构商务沟通等场景；先识别行业与场景，再输出全面、合规、可直接发送的话术与处理建议。
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External e-commerce support, private-domain operations, brand teams, and channel or creator partnership teams use this skill to produce customer replies, internal handling notes, FAQ/SOP material, and business outreach language that fits the selected industry, platform, and service scenario. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may request or expose more customer information than needed for the support task. <br>
-Mitigation: Request only the minimum customer information needed and keep order changes or refunds in authenticated private support channels. <br>
-Risk: Drafts may accidentally overstate store policies, product effects, availability, refund eligibility, or shipping timing if the operator has not supplied exact facts. <br>
-Mitigation: Verify store policies and order status before sending generated replies; keep uncertain details as placeholders or state that they require confirmation. <br>
+## Use Case:
 
+E-commerce customer service, private-domain operations, brand teams, and channel or influencer business users use this skill to draft Chinese customer-service replies, FAQ/SOP content, escalation notes, and cooperation messages for presales, order support, after-sales, complaints, logistics, refunds, and follow-up scenarios.
 
-## Reference(s): <br>
-- [Compliance Guide](references/compliance-guide.md) <br>
-- [Industry Profiles](references/industry-profiles.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [Platform Notes](references/platform-notes.md) <br>
-- [Scene Playbooks](references/scene-playbooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with ready-to-send reply drafts, internal handling notes, replacement fields, FAQ/SOP tables, or outreach templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses conservative placeholders when order, policy, platform, product, or customer details are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Generated customer messages may include unverified operational details such as stock, gifts, promotions, prices, delivery times, refund rules, or platform-policy claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm live business and platform details before sending generated replies to customers.
+
+Risk: Sales-oriented templates, especially payment reminders, may overstate urgency or commercial terms if used without review.
+
+Mitigation: Review payment-reminder and sales follow-up drafts for accurate terms, non-coercive tone, and compliance with platform rules.
+
+Risk: High-sensitivity industries such as food, health supplements, beauty, maternal and infant products, fresh goods, travel, and cross-border commerce can create misleading or overconfident claims.
+
+Mitigation: Keep claims conservative, avoid absolute guarantees or medical/legal conclusions, and use the compliance guide before publishing replies.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/52yuanchangxing/skills/ecommerce-customer-service-pro)
+- [Industry profiles](references/industry-profiles.md)
+- [Scene playbooks](references/scene-playbooks.md)
+- [Compliance guide](references/compliance-guide.md)
+- [Platform notes](references/platform-notes.md)
+- [Output templates](references/output-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with reusable customer-service templates, internal handling notes, and replaceable fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be checked against live stock, promotions, prices, delivery times, refund rules, and platform policy before being sent to customers.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and changelog list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

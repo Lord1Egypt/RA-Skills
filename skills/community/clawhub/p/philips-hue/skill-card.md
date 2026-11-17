@@ -1,40 +1,57 @@
-## Description: <br>
-Local control of Philips Hue lights via API v1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local control of Philips Hue lights via API v1.
 
-## Publisher: <br>
-[Aprilox](https://clawhub.ai/user/Aprilox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aprilox](https://clawhub.ai/user/aprilox)
 
-## Use Case: <br>
-Developers and home automation users can use this skill to check and update Philips Hue lights on a local network through a Hue Bridge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crafted color values can cause hue.sh to run unintended local Python code. <br>
-Mitigation: Validate hex colors with a strict pattern such as #[0-9A-Fa-f]{6}, and pass only trusted color values until the script is patched. <br>
-Risk: The Hue Bridge API key is stored in a skill-local .env file. <br>
-Mitigation: Keep the .env file private, do not commit it, and avoid placing the API key in shared prompts, screenshots, or workspace documentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Philips Hue Developer Portal](https://developers.meethue.com/) <br>
-- [ClawHub Philips Hue skill page](https://clawhub.ai/Aprilox/philips-hue) <br>
+## Use Case:
 
+Developers and home automation users use this skill to configure and run shell commands that control Philips Hue lights on a local network, including power, brightness, named colors, hex colors, hue, saturation, and color temperature.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Philips Hue Bridge settings from a skill-local .env file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary reports input-handling flaws that can allow local code execution in normal use paths.
+
+Mitigation: Review before installing, use only trusted color values, and prefer a version that validates hex colors and passes values to Python as data.
+
+Risk: The security guidance reports that the .env file is sourced by the shell script.
+
+Mitigation: Keep the skill directory and .env file writable only by the local user, and prefer a version that parses .env without executing it.
+
+Risk: The security guidance reports that the Hue API username may be exposed to devices able to observe the local network.
+
+Mitigation: Use the skill only on trusted local networks and document the HTTP credential exposure before deployment.
+
+## Reference(s):
+
+- [Philips Hue Developer Documentation](https://developers.meethue.com/)
+- [ClawHub Philips Hue Skill](https://clawhub.ai/aprilox/skills/philips-hue)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, python3, a local Philips Hue Bridge, and a configured .env file containing BRIDGE_IP and USERNAME.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7f02f2cadwwr38b9k8byw1w9834znp",
   "slug": "minimax-tavily-search",
   "version": "1.0.0",
-  "publishedAt": 1776180412709
+  "publishedAt": 1768114920544,
+  "author": "your-name",
+  "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for Minimax AI agents.",
+  "keywords": ["search", "web", "ai", "research", "minimax"]
 }

@@ -1,41 +1,55 @@
-## Description: <br>
-ProxyGate CLI routes ProxyGate-related user requests to setup, status, buying, selling, jobs, or update sub-skills for marketplace workflows involving proxy requests, USDC payments, Solana wallets, listings, tunnels, and jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProxyGate CLI router directs ProxyGate-related requests to the appropriate setup, status, buying, selling, jobs, or update sub-skill.
 
-## Publisher: <br>
-[jwelten](https://clawhub.ai/user/jwelten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwelten](https://clawhub.ai/user/jwelten)
 
-## Use Case: <br>
-Developers and agent operators use this router skill to choose the right ProxyGate sub-skill for setup, account status, API buying, API selling, bounty jobs, and CLI or SDK updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Routed workflows can involve deposits, withdrawals, wallet signing, listing changes, job submissions, proxy requests, and tunnels. <br>
-Mitigation: Require explicit approval before those actions and review the selected ProxyGate sub-skill before use. <br>
-Risk: Proxy calls may transmit secrets or sensitive payloads through a gateway and selected listing. <br>
-Mitigation: Avoid sending secrets through ProxyGate proxy calls unless the user trusts the gateway and the selected listing. <br>
+## Use Case:
 
+Developers and agents use this router to select the correct ProxyGate sub-skill for setup, wallet and balance checks, marketplace buying, seller operations, bounties, jobs, and CLI or SDK updates.
 
-## Reference(s): <br>
-- [ProxyGate Gateway](https://gateway.proxygate.ai) <br>
-- [ProxyGate Docs](https://gateway.proxygate.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes requests to ProxyGate sub-skills; no executable code is included in this router artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Broad trigger conditions may route unrelated requests into sub-skills that can touch wallets, payments, tunnels, listings, withdrawals, or jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for ProxyGate-specific routing and verify explicit ProxyGate intent before routing.
+
+Risk: Downstream sub-skills may support account-changing or financial operations.
+
+Mitigation: Require confirmation before wallet, payment, withdrawal, listing, tunnel, or job actions.
+
+## Reference(s):
+
+- [ProxyGate gateway documentation](https://gateway.proxygate.ai/docs)
+- [ProxyGate gateway](https://gateway.proxygate.ai)
+- [ClawHub skill page](https://clawhub.ai/jwelten/skills/proxygate)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and routing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes ProxyGate requests to specialized sub-skills and may propose CLI commands for wallet, payments, listings, tunnels, and jobs.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

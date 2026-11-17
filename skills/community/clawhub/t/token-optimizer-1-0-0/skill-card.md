@@ -1,43 +1,54 @@
-## Description: <br>
-Token Optimizer is a workflow-control skill that guides agents through pre-checks, path validation, progress checkpoints, and error triage to reduce repeated work and token waste. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Optimizer is a workflow controller that helps agents reduce repeated work by using pre-checks, path validation, progress checkpoints, log analysis, and fast error localization across Windows, macOS, Linux, MaxClaw, and ClawHub.
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-Developers and agent users use this skill to structure troubleshooting and implementation work with pre-flight checks, checkpointing, log review, and fast error localization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes process stop, kill, restart, and cleanup guidance that could disrupt unrelated local services. <br>
-Mitigation: Require explicit approval before any process-control command and verify the exact process ID, executable path, and ownership before terminating anything. <br>
-Risk: The skill may inspect local ports, processes, files, and logs during troubleshooting. <br>
-Mitigation: Limit diagnostics to the intended system and avoid exposing secrets or unrelated personal data from files and logs. <br>
-Risk: Shell-interpolated diagnostic examples can be unsafe if untrusted names, ports, or paths are inserted directly. <br>
-Mitigation: Validate and quote command inputs, prefer read-only inspection first, and review generated commands before execution. <br>
+## Use Case:
 
+Developers and agent users use this skill to structure work with upfront checks, path validation, checkpoints, and error-pattern analysis so repeated troubleshooting loops consume fewer tokens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smxtx/token-optimizer-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/smxtx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, code examples, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local diagnostic commands and process-management steps that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Shell diagnostic and process-management examples may be unsafe if user-supplied ports or process names are passed through without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or rewrite command examples before use, validate any port or process input, and require confirmation before terminating processes.
+
+Risk: Checkpoint examples may save local task state to disk.
+
+Mitigation: Choose an appropriate storage path, avoid sensitive content in checkpoint data, and clean up local checkpoint files according to the deployment policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smxtx/skills/token-optimizer-1-0-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/smxtx)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists, command examples, and JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local checkpoint data examples and shell diagnostics that require review before execution.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

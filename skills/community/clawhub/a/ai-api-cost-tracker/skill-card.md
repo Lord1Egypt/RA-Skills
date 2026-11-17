@@ -1,40 +1,53 @@
-## Description: <br>
-Track, analyze, and optimize AI API costs across OpenAI, Anthropic, OpenRouter, Google, and other LLM providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks, analyzes, and optimizes AI API costs across OpenAI, Anthropic, OpenRouter, Google AI, and generic usage exports.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, engineers, and teams use this skill to analyze LLM billing exports or usage logs, summarize API spending by model or time period, and identify optimization opportunities such as model substitution, caching, and prompt compression. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Billing and usage exports may reveal spend, model choices, usage patterns, and other operational details. <br>
-Mitigation: Run the tool only on exports you are comfortable analyzing locally, and review generated reports before sharing them. <br>
-Risk: The advertised environment/API auto-detection appears unsupported by the included script. <br>
-Mitigation: Provide explicit local usage export files and verify the selected provider and report output before relying on results. <br>
+## Use Case:
 
+Developers and teams use this skill to analyze local billing exports or usage logs, summarize AI API spending by model or time period, and identify cost optimization opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/ai-api-cost-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, JSON, CSV, Shell commands] <br>
-**Output Format:** [Terminal text, Markdown reports, JSON summaries, or CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes local billing or usage export files and supports grouping, trend analysis, optimization suggestions, top-spender views, budget alerts, and custom pricing input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Usage logs and billing exports may contain sensitive account, project, or spend data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on trusted local files and review generated reports before sharing them.
+
+Risk: The documented environment/API auto mode has disclosure gaps about credentials and account data handling.
+
+Mitigation: Prefer explicit file-based analysis unless the publisher updates the implementation and documents credential behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/ai-api-cost-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, csv, shell commands, guidance]
+
+**Output Format:** [Terminal reports, Markdown reports, JSON summaries, CSV-compatible output, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include cost breakdowns, trends, budget warnings, top spenders, and optimization suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

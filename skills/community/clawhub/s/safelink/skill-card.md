@@ -1,45 +1,60 @@
-## Description: <br>
-Secure agent-to-agent hiring and execution skill for OpenClaw MCP with escrowed settlement, x402 facilitator payments, ERC-8004 identity and reputation checks, replay protection, endpoint validation, and MPC wallet signing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure agent-to-agent hiring and execution skill for OpenClaw MCP with escrowed settlement, x402 facilitator payments, ERC-8004 identity/reputation checks, strict replay protection, DNS-safe endpoint validation, and MPC wallet signing.
 
-## Publisher: <br>
-[licc921](https://clawhub.ai/user/licc921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[licc921](https://clawhub.ai/user/licc921)
 
-## Use Case: <br>
-Developers and MCP operators use SafeLink to build or run agent-to-agent hiring workflows that require escrowed settlement, proof verification, x402 payments, reputation checks, and policy-gated transaction execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and broadcast wallet or payment transactions and was assigned a suspicious security verdict because it handles wallet/payment authority with limited safeguards around sensitive data. <br>
-Mitigation: Use testnet first, verify RPC endpoints and balances independently, require explicit approval for high-risk actions, and avoid mainnet deployment until reviewed. <br>
-Risk: Sensitive wallet and configuration values may be persisted or exposed during setup, including .env updates and Coinbase wallet data printed on first wallet creation. <br>
-Mitigation: Use a throwaway deployer key, keep .env out of source control, discard deployment keys after use, and treat COINBASE_WALLET_DATA and wallet provider credentials as secrets. <br>
-Risk: The HTTP task listener can accept paid inbound work when explicitly started. <br>
-Mitigation: Keep the listener bound to localhost unless intentionally exposed, use a high-entropy TASK_AUTH_SHARED_SECRET when task authentication is required, and use Redis for replay protection in multi-instance deployments. <br>
+## Use Case:
 
+Developers and MCP operators use SafeLink to let agents hire other agents, receive paid tasks, manage escrowed settlement, and gate on-chain actions with proof, reputation, replay protection, and human approval controls.
 
-## Reference(s): <br>
-- [SafeLink ClawHub listing](https://clawhub.ai/licc921/safelink) <br>
-- [Publisher profile](https://clawhub.ai/user/licc921) <br>
-- [Repository metadata](https://github.com/charliebot8888/SafeLink) <br>
-- [x402 facilitator](https://x402.org/facilitator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [MCP tool responses, JSON payloads, markdown guidance, shell commands, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open a local HTTP listener when requested and may write .env during setup or contract deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: release.version and package.json) <br>
+Risk: Wallet, payment, and deployment flows can affect funds if used with real wallets or mainnet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use only testnet funds, and do not use x402 or escrow flows with valuable wallets until recipient and amount validation, allowance limits, and credential handling are hardened.
+
+Risk: Generated environment files and wallet export output can contain sensitive material.
+
+Mitigation: Avoid long-lived secrets in .env, treat Coinbase wallet export output as secret material, and rotate or discard deployment keys after one-time setup.
+
+Risk: Deployment setup may execute commands or scripts that deserve inspection before use.
+
+Mitigation: Do not run documented curl-to-bash commands, and inspect or patch the deployment script before using it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/licc921/skills/safelink)
+- [Source Repository](https://github.com/charliebot8888/SafeLink)
+- [x402 Facilitator](https://x402.org/facilitator)
+- [Foundry](https://getfoundry.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON examples, TypeScript code, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool outputs include wallet readiness, escrow and payment receipts, transaction hashes, proof hashes, agent cards, reputation data, and analytics summaries.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata and package.json; SKILL.md metadata reports 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

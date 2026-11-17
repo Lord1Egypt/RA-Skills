@@ -1,0 +1,70 @@
+name: hongshu-note-parser
+version: "1.0.1"
+license: MIT
+author: zhouq2039-lang
+description: >
+  Xiaohongshu note parser.
+  Drop a Xiaohongshu note link, get note content + images + interactions,
+  AI analysis, then an interactive capsule-card HTML report.
+  Uses Python stdlib only (urllib/json/re/html/base64). No API Key needed.
+
+  小红书笔记解析。
+  丢一条小红书笔记链接，自动抓取笔记内容（标题/正文/图片/标签/互动数据），
+  AI 分析后输出交互式胶囊卡片 HTML 报告。
+  纯 Python 标准库，零外部依赖，不需要 API Key。
+
+capabilities:
+  - name: "HTTP GET request"
+    description: "Access Xiaohongshu note pages and image CDN to download note content and images"
+    trigger: "When user provides a note link"
+    scope: "Only accesses URLs from user-provided links and Xiaohongshu image CDN"
+  - name: "Local file write"
+    description: "Save note data JSON, downloaded images, and HTML reports to output/ directory"
+    trigger: "During collection and report generation"
+    scope: "Only writes to output/ directory specified by --out-dir"
+  - name: "Local file read"
+    description: "Read AI-generated analysis JSON to generate HTML report"
+    trigger: "When --generate-html flag is used"
+    scope: "Only reads the specified JSON file path"
+  - name: "Image download and base64 encoding"
+    description: "Download note images from CDN and encode as base64 for HTML embedding"
+    trigger: "During HTML report generation"
+    scope: "Only images referenced in the analysis JSON from the collection step"
+
+capabilities_not_used:
+  - "Does not execute subprocess or system commands"
+  - "Does not read arbitrary local files (only the specified analysis JSON)"
+  - "Does not access arbitrary URLs (only user-provided Xiaohongshu links and image CDN)"
+  - "Does not send data to third-party services or external LLM APIs"
+  - "Does not modify or delete existing files"
+  - "Does not collect environment variables or system information"
+
+triggers:
+  - hongshu-note-parser
+  - 小红书笔记解析
+  - 小红书图文解析
+  - 小红书笔记分析
+  - 解析小红书笔记
+  - 小红书笔记拆解
+
+instructions: SKILL.md
+
+dependencies: {}
+
+tags:
+  - xiaohongshu
+  - note
+  - parser
+  - analysis
+  - brand
+  - visual-strategy
+
+files:
+  - skill.yaml
+  - SKILL.md
+  - README.md
+  - scripts/parse.py
+  - examples/example1-猫粮笔记-分析JSON.json
+  - examples/example1-猫粮笔记-报告.html
+  - examples/example2-阿那亚攻略-分析JSON.json
+  - examples/example2-阿那亚攻略-报告.html

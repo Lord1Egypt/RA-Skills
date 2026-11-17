@@ -1,39 +1,56 @@
-## Description: <br>
-General-purpose AI assistant using Gemini API with voice and text support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General-purpose AI assistant using Gemini API with voice and text support.
 
-## Publisher: <br>
-[AliMostafaRadwan](https://clawhub.ai/user/AliMostafaRadwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alimostafaradwan](https://clawhub.ai/user/alimostafaradwan)
 
-## Use Case: <br>
-External users and developers use this skill to ask general questions, have short conversations, and process text or voice prompts through Google's Gemini API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad WhatsApp text, voice, and audio triggers may activate the skill on ordinary chat messages. <br>
-Mitigation: Narrow the configured triggers before using the skill in chats where accidental activation matters. <br>
-Risk: Text and audio handled by the skill are sent to Google's Gemini API under the user's API key. <br>
-Mitigation: Use a dedicated Gemini API key, monitor billing or quota, and avoid sensitive or regulated data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AliMostafaRadwan/gemini-assistant) <br>
+## Use Case:
 
+External users and developers use this skill to send text or voice prompts to Google's Gemini models and receive conversational responses, including voice output when configured.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON response containing message text and optional generated voice media path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OGG Opus voice output in /tmp when audio response data is returned.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Text and voice content may be sent to Google Gemini without enough user scoping or consent.
+
+Mitigation: Use only where users knowingly opt in to external Gemini processing for text and voice content.
+
+Risk: Broad WhatsApp routing could process unrelated text or audio messages.
+
+Mitigation: Constrain routing and require confirmation before connecting the skill to broad WhatsApp text or audio flows.
+
+Risk: Caller-supplied audio_path or system_instruction values can expose local files or alter assistant behavior if accepted from untrusted callers.
+
+Mitigation: Accept audio paths only from trusted upload storage, restrict caller control over system instructions, and use safer temporary output handling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alimostafaradwan/skills/gemini-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, audio, guidance]
+
+**Output Format:** [JSON response with optional audio media path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEMINI_API_KEY; may produce temporary OGG voice output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

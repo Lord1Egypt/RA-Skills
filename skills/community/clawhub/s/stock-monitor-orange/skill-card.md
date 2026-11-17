@@ -1,48 +1,68 @@
-## Description: <br>
-股票监控分析技能 - 自定义股票池监控、实时行情、技术指标分析、涨跌趋势预测、信号提醒 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+股票监控分析技能 - 自定义股票池监控、实时行情、技术指标分析、涨跌趋势预测、信号提醒
 
-## Publisher: <br>
-[xsqorange](https://clawhub.ai/user/xsqorange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xsqorange](https://clawhub.ai/user/xsqorange)
 
-## Use Case: <br>
-External OpenClaw users use this skill to monitor A-share and Hong Kong stock watchlists, holdings, trade records, technical indicators, market news, and scheduled market reports. The skill supports manual CLI checks and automated report delivery for portfolio monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled reports may include holdings, cost basis, profit/loss, or trade history and send them to a Feishu group. <br>
-Mitigation: Before enabling scheduled delivery, verify the recipient group, preview the generated report, and remove or redact portfolio and trade details unless that sharing is intentional. <br>
-Risk: The skill stores portfolio and trade records under ~/.openclaw on the local machine. <br>
-Mitigation: Install only in an environment where local users and backups are controlled, and avoid entering sensitive portfolio details unless local storage is acceptable. <br>
+## Use Case:
 
+External users and investors use this skill with OpenClaw to monitor custom A-share and Hong Kong stock pools, manage local positions and trades, generate technical analysis, alerts, and market reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xsqorange/stock-monitor-orange) <br>
-- [Publisher profile](https://clawhub.ai/user/xsqorange) <br>
-- [Reference index](references/index.md) <br>
-- [Command reference](references/commands.md) <br>
-- [Configuration reference](references/config.md) <br>
-- [Scheduled tasks reference](references/scheduled-tasks.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
-- [Report templates](reports/templates.md) <br>
-- [Cron prompt templates](reports/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON-backed local configuration, and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OpenClaw JSON files for watchlists, holdings, trades, alerts, and cron jobs; market data and news are fetched from public finance endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill stores portfolio positions and trade history in local plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted machines and avoid entering sensitive holdings unless local file access and backups are acceptable.
+
+Risk: The skill may send reports containing holdings and profit or loss details to a Feishu group.
+
+Mitigation: Configure the recipient deliberately, test delivery manually, and avoid scheduled delivery until the destination is verified.
+
+Risk: The skill provides stock signals and trading suggestions that may be incorrect or stale.
+
+Mitigation: Independently verify market data and treat the reports as informational rather than investment advice.
+
+Risk: The skill makes outbound requests to market-data and news providers.
+
+Mitigation: Run it only where those network calls are expected and permitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xsqorange/skills/stock-monitor-orange)
+- [Reference index](references/index.md)
+- [Commands](references/commands.md)
+- [Configuration](references/config.md)
+- [Scheduled tasks](references/scheduled-tasks.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Report templates](reports/templates.md)
+- [Cron prompt templates](reports/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON-style analysis output, and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local plaintext JSON configuration and portfolio files; may make outbound market-data requests and send reports to Feishu when configured.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

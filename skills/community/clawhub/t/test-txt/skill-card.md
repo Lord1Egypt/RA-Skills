@@ -1,40 +1,54 @@
-## Description: <br>
-Selects and outputs a Chinese poem based on user input, mapping A to "Yong Liu" and B to "Chun Xiao", with results intended for /workspace/assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outputs a corresponding Chinese poem based on the user's selected option: input A returns Yong Liu, input B returns Chun Xiao, and results are written to /workspace/assets.
 
-## Publisher: <br>
-[luokeer52](https://clawhub.ai/user/luokeer52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luokeer52](https://clawhub.ai/user/luokeer52)
 
-## Use Case: <br>
-External users can request one of two Chinese poems and receive the selected text. Reviewers should treat this release as a remote Prana/OpenClaw wrapper rather than a purely local poem selector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks this release suspicious because its artifacts operate as a credentialed remote Prana/OpenClaw wrapper, not only as a local poem selector. <br>
-Mitigation: Install only when remote Prana/OpenClaw execution is intended; for simple poem selection, prefer a local implementation that writes the selected poem directly. <br>
-Risk: The artifacts can obtain or use PRANA API keys, send prompts to claw-uat.ebonex.io, persist conversation thread IDs, and access purchase-history links. <br>
-Mitigation: Review credential and network access before running, isolate required environment variables, avoid sharing secrets, and clear persisted session state when it is no longer needed. <br>
+## Use Case:
 
+External users and developers can use this skill to route a simple A/B selection to a poem result and save the result under /workspace/assets. Review is recommended because the packaged behavior also operates as an authenticated remote-service client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luokeer52/test-txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text poem output, file output, and command-oriented Markdown guidance; wrapper clients may emit JSON for status or errors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require PRANA/OpenClaw credentials and network access; wrapper clients can persist conversation thread state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary says the skill presents as a simple poem selector but operates as an authenticated remote-service client with credential use, network forwarding, payment-history access, and persistent session state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation; restrict endpoints, credentials, and session persistence, and require an explicit privacy notice before use.
+
+Risk: The security guidance warns against installing this as a simple poem utility without review.
+
+Mitigation: Rewrite the poem selection locally or republish the skill with an accurate remote-client purpose, safer credential handling, pinned dependencies, and opt-in session persistence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luokeer52/skills/test-txt)
+- [Publisher profile](https://clawhub.ai/user/luokeer52)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Plain text or JSON responses surfaced from the remote service, with setup instructions in Markdown and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save results to /workspace/assets and may return purchase-history URLs or full JSON envelopes when content is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

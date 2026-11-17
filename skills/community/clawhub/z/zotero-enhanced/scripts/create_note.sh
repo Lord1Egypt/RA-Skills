@@ -4,7 +4,7 @@ set -o pipefail
 
 # Zotero note creation script
 # Creates a new note with plain text converted to HTML
-# Version: 1.3.6
+# Version: 1.3.14
 # Safety: Only calls Zotero API. No eval, no obfuscation.
 
 # Argument handling
@@ -40,7 +40,7 @@ EOF
             exit 0
             ;;
         --version)
-            echo "zotero-enhanced create_note.sh v1.3.8"
+            echo "zotero-enhanced create_note.sh v1.3.14"
             exit 0
             ;;
         --dry-run)

@@ -1,49 +1,63 @@
-## Description: <br>
-Vibe Coding Cn is an OpenClaw skill that coordinates a five-agent workflow to turn Chinese natural-language project requirements into SPEC.md, architecture, code, tests, and traceability outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI team collaboration skill for generating complete projects from natural-language requirements, including SPEC.md, multi-agent voting approval, and requirements traceability in an OpenClaw environment.
 
-## Publisher: <br>
-[gotomanutd-dot](https://clawhub.ai/user/gotomanutd-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gotomanutd-dot](https://clawhub.ai/user/gotomanutd-dot)
 
-## Use Case: <br>
-Developers and builders use this skill in OpenClaw to generate or incrementally update small software projects from Chinese requirements. It produces project documentation, implementation files, tests, quality-gate feedback, version history, and traceability artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write project files and run local execution flows in the active workspace. <br>
-Mitigation: Install and run it in a disposable or well-scoped workspace, and review generated diffs before using or merging the output. <br>
-Risk: Optional local server and CLI modes may introduce local network and filesystem effects. <br>
-Mitigation: Avoid those modes unless their behavior has been reviewed, and run them with minimal local permissions. <br>
-Risk: Prompts, code, or credentials may be sent to configured LLM providers or recorded in generated logs or metadata. <br>
-Mitigation: Do not provide sensitive prompts, source code, secrets, or credentials unless the configured providers and logging behavior are acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to turn a project request into requirements, architecture, implementation files, tests, and a summary report. It is suited for prototypes, learning projects, internal tools, MVP validation, and UI component generation where generated code will be reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gotomanutd-dot/vibe-coding-cn) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [OpenClaw Integration](artifact/OPENCLAW-INTEGRATION.md) <br>
-- [Orchestrator Guide](artifact/ORCHESTRATOR-GUIDE.md) <br>
-- [SPEC.md Format](artifact/SPEC-MD-FORMAT.md) <br>
-- [Traceability Matrix](artifact/TRACEABILITY-MATRIX.md) <br>
-- [Versioning Guide](artifact/VERSIONING-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated project files, including SPEC.md, requirements and architecture docs, application code, tests, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes project output and version metadata under the configured workspace output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Unsafe path handling may allow generated files to be written outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a constrained workspace, avoid untrusted projectId and outputDir values, and inspect generated file paths before approving writes.
+
+Risk: Folder-opening behavior can invoke shell commands from generated or user-influenced paths.
+
+Mitigation: Review path values before allowing folder-opening actions and disable or remove automatic open-folder behavior in stricter environments.
+
+Risk: The optional local monitor introduces dependency and server exposure concerns.
+
+Mitigation: Keep the optional monitor disabled unless its dependencies and network exposure have been reviewed for the deployment environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gotomanutd-dot/skills/vibe-coding-cn)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [OpenClaw Integration](artifact/OPENCLAW-INTEGRATION.md)
+- [Versioning Guide](artifact/VERSIONING-GUIDE.md)
+- [Traceability Matrix](artifact/TRACEABILITY-MATRIX.md)
+- [SPEC.md Format](artifact/SPEC-MD-FORMAT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated project files, tests, progress updates, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated artifacts under an output directory and can emit real-time progress updates through OpenClaw callbacks or an optional local monitor.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release evidence, target metadata, SKILL.md frontmatter, and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

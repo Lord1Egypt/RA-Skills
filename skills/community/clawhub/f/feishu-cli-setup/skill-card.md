@@ -1,46 +1,60 @@
-## Description: <br>
-Guides agents through installing, configuring, authenticating, and verifying lark-cli for Feishu/Lark, including browser-based OAuth handoff steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through installing and configuring lark-cli for Feishu/Lark, including environment checks, npm installation, app credential setup, OAuth login handoff, verification, and first commands.
 
-## Publisher: <br>
-[cosmofang](https://clawhub.ai/user/cosmofang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmofang](https://clawhub.ai/user/cosmofang)
 
-## Use Case: <br>
-Developers and agent users use this skill to set up lark-cli, configure Feishu/Lark app credentials, complete OAuth in a browser, and verify available Lark agent skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can lead users to install global tooling and global agent skills on the host. <br>
-Mitigation: Install only when Feishu/Lark CLI setup is intended, prefer non-sudo npm permission fixes, and confirm global skill installation is acceptable before proceeding. <br>
-Risk: OAuth authorization can grant broad access to Feishu/Lark workspace data. <br>
-Mitigation: Grant only the scopes needed for the intended workflow and use domain-specific login when broad access is unnecessary. <br>
-Risk: After authentication, lark-cli commands can send messages, create documents, modify tasks, or change workspace data. <br>
-Mitigation: Use dry-run before commands with side effects and review generated commands before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to have an agent guide Feishu/Lark CLI setup, prompting for local commands and browser-based OAuth or configuration steps the user must complete.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cosmofang/feishu-cli-setup) <br>
-- [larksuite/cli GitHub repository](https://github.com/larksuite/cli) <br>
-- [Feishu Open Platform apps](https://open.feishu.cn/app) <br>
-- [Node.js](https://nodejs.org) <br>
-- [npm EACCES permission guidance](https://docs.npmjs.com/resolving-eacces-permissions-errors) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown-like text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese prompt output; includes dry-run guidance for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The setup flow asks agents to install unpinned global packages and globally added skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned package versions, avoid sudo npm install, and review the exact globally added skills before activation.
+
+Risk: The setup flow handles Feishu App Secrets and authenticates lark-cli under the user's Feishu/Lark identity.
+
+Mitigation: Enter secrets only into the local CLI prompt, do not share app credentials, and use dry-run checks before commands with side effects.
+
+Risk: Generated commands can include user-provided domain values.
+
+Mitigation: Validate domain values before execution and treat commands containing unvalidated domains as unsafe.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cosmofang/skills/feishu-cli-setup)
+- [larksuite/cli repository](https://github.com/larksuite/cli)
+- [Feishu Open Platform app console](https://open.feishu.cn/app)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style guidance with shell commands and user handoff prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-completed browser authorization and local credential entry for Feishu/Lark setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

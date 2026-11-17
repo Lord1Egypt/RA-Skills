@@ -1,43 +1,59 @@
-## Description: <br>
-BrowserAgent provides Playwright-based browser automation guidance for JavaScript-heavy sites, login sessions, form filling, clicking, scrolling, screenshots, downloads, and complex interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation with human-like behavior for JavaScript-rendered sites, login sessions, form filling, clicking, scrolling, screenshots, downloads, and complex interactions.
 
-## Publisher: <br>
-[LesliePie](https://clawhub.ai/user/LesliePie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lesliepie](https://clawhub.ai/user/lesliepie)
 
-## Use Case: <br>
-Developers and automation engineers use BrowserAgent to produce Playwright automation for dynamic web workflows such as authenticated navigation, form submission, testing, screenshots, downloads, and data extraction. It should be used only for authorized automation that respects site policies and terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes stealth and anti-detection guidance that could be misused to bypass site rules. <br>
-Mitigation: Use only for authorized browser automation, testing, or accessibility work, and do not use stealth guidance to evade third-party policies or terms. <br>
-Risk: Persistent browser sessions, screenshots, videos, downloads, and extracted data can contain sensitive information. <br>
-Mitigation: Keep session.json and captured artifacts out of version control, restrict access, and delete them when they are no longer needed. <br>
-Risk: Automated interaction can create unwanted load or violate site expectations. <br>
-Mitigation: Apply rate limits, respect robots.txt and terms of service, and avoid high-volume scraping or sites that explicitly block automation. <br>
+## Use Case:
 
+Developers and agents use this skill to plan and generate Playwright-based browser automation for dynamic websites, authenticated workflows, forms, screenshots, downloads, and data extraction tasks.
 
-## Reference(s): <br>
-- [Playwright documentation](https://playwright.dev) <br>
-- [BrowserAgent ClawHub listing](https://clawhub.ai/LesliePie/browseragent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Playwright scripts, install commands, browser launch options, session handling patterns, and operational safeguards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill includes bot-detection evasion and stealth guidance that can create policy, terms-of-service, or authorization risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stealth or bot-detection bypass techniques only for explicitly authorized testing and respect site terms, robots policies, and rate limits.
+
+Risk: Browser session state files, screenshots, recordings, and downloads may contain sensitive data.
+
+Mitigation: Store these artifacts securely, minimize retention, and avoid sharing them unless they have been reviewed for secrets and personal data.
+
+Risk: Commands may install global dependencies or run browser launch options that weaken isolation, including disabling the Chromium sandbox.
+
+Mitigation: Prefer project-local, pinned Playwright dependencies and do not disable the browser sandbox unless a reviewed environment requires it.
+
+## Reference(s):
+
+- [Playwright documentation](https://playwright.dev)
+- [ClawHub skill page](https://clawhub.ai/lesliepie/skills/browseragent)
+- [Publisher profile](https://clawhub.ai/user/lesliepie)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may produce browser automation snippets that require Node.js, npx, and Playwright.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

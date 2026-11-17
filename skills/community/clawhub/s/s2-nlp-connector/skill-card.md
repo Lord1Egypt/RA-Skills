@@ -1,44 +1,59 @@
-## Description: <br>
-Generates declarative IoT control templates from device API documentation using a local LLM, mapping open devices into S2 spatial primitive elements and blocking unsupported closed protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates declarative IoT control templates from device API documentation with a local LLM, mapping open devices to S2 six-element interfaces and blocking unsupported closed protocols.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and IoT integrators use this skill to prototype adapter templates that translate open device APIs into S2 spatial primitive control mappings. It is intended for reviewing and staging generated templates before any real hardware execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated IoT control templates may contain incorrect methods, endpoints, payloads, or target-device mappings. <br>
-Mitigation: Manually inspect each generated method, endpoint, payload, and device target before another system uses the template on real hardware. <br>
-Risk: API documentation, device details, or proprietary integration notes entered into the skill may be sent to a local model server. <br>
-Mitigation: Use only trusted local model servers and avoid entering secrets or proprietary API details unless that server is approved for the data. <br>
-Risk: Saved templates can become a path for unintended physical device actions if used without review. <br>
-Mitigation: Test generated templates in simulation or a controlled environment before enabling execution against live hardware. <br>
+## Use Case:
 
+Developers and IoT integration engineers use this skill to turn device API or protocol descriptions into S2-compatible declarative control templates. It is intended for cross-protocol device mapping and simulation before any approved downstream execution against physical hardware.
 
-## Reference(s): <br>
-- [S2-Spatial-Primitive OS Whitepaper](artifact/S2-Spatial-Primitive-OS-Whitepaper.md) <br>
-- [ClawHub release page](https://clawhub.ai/SpaceSQ/s2-nlp-connector) <br>
-- [Project homepage](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, configuration, guidance] <br>
-**Output Format:** [Interactive console text with generated JSON control templates saved to local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated templates include connection status, device mapping, protocol method, endpoint suffix, and payload schema when adapter generation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and manifest.json) <br>
+Risk: Generated IoT control templates may be stored as active mounts without enough validation for a physical-device control context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated adapters and add an approval and validation layer before any downstream engine uses them with real devices.
+
+Risk: Sensitive device documentation or internal endpoint details could be sent to the configured local LLM endpoint.
+
+Mitigation: Use only a trusted local LLM setup and avoid entering proprietary documentation, credentials, or sensitive internal endpoints.
+
+Risk: Connecting generated active_hardware_mounts.json output directly to real hardware could cause unsafe or unintended device behavior.
+
+Mitigation: Keep generated mounts in simulation or staging until they pass human review, policy checks, and device-specific validation.
+
+## Reference(s):
+
+- [S2 Spatial Primitive OS Whitepaper](artifact/S2-Spatial-Primitive-OS-Whitepaper.md)
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-nlp-connector)
+- [Space2.world](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, configuration, guidance]
+
+**Output Format:** [Console text plus JSON declarative control-template objects written to active_hardware_mounts.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local OpenAI-compatible chat completions endpoint and stores successful generated adapters as active hardware mounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

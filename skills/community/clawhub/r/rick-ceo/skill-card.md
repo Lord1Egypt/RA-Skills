@@ -1,41 +1,58 @@
-## Description: <br>
-Turn an OpenClaw agent into an operator for daily briefings, revenue monitoring, task prioritization, heartbeat checks, and weekly synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rick CEO turns an OpenClaw agent into an operator assistant for solo founders, generating daily briefings, revenue checks, task prioritization, heartbeat checks, and weekly synthesis.
 
-## Publisher: <br>
-[ricksmartbrain-boop](https://clawhub.ai/user/ricksmartbrain-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricksmartbrain-boop](https://clawhub.ai/user/ricksmartbrain-boop)
 
-## Use Case: <br>
-Solo founders and developers use this skill to have an agent prepare daily business briefings, rank work by revenue impact, check project health, and summarize weekly operating progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad operator-style authority to inspect local repositories, processes, sessions, uptime, and possible financial accounts. <br>
-Mitigation: Run it only in intended workspaces and require approval before file edits, deployments, customer contact, purchases, account changes, process termination, or authenticated business-tool use. <br>
-Risk: Daily briefing output may include promotional upsell text. <br>
-Mitigation: Set RICK_QUIET=1 when promotional output is not desired. <br>
+## Use Case:
 
+External solo founders and developers use this skill with OpenClaw to prioritize work by revenue impact, gather workspace status, and produce operator-style daily briefings, revenue checks, health checks, and weekly reviews.
 
-## Reference(s): <br>
-- [Rick's Revenue-First Prioritization Framework](references/prioritization-framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ricksmartbrain-boop/rick-ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefings, ranked lists, health summaries, and memos with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect local git status, TODO markers, tmux sessions, site uptime, and Stripe CLI data when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad autonomous action before confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before allowing it to modify projects or query revenue, calendar, or other business systems.
+
+Risk: The daily briefing and heartbeat flows can inspect local repository details and host tmux sessions.
+
+Mitigation: Use only in workspaces where local project context may be surfaced to the agent, and review generated briefings before sharing them.
+
+Risk: Default output can include commercial promotion.
+
+Mitigation: Set RICK_QUIET=1 to suppress promotional messages.
+
+## Reference(s):
+
+- [Rick's Revenue-First Prioritization Framework](artifact/references/prioritization-framework.md)
+- [ClawHub skill page](https://clawhub.ai/ricksmartbrain-boop/skills/rick-ceo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily briefing behavior may include local git status, recent commits, TODO/FIXME matches, tmux sessions, and optional promotional lines unless RICK_QUIET=1 is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

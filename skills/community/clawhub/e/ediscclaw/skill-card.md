@@ -1,42 +1,58 @@
-## Description: <br>
-edisclaw helps legal teams process, deduplicate, cull, search, review, and produce ESI collections locally through a command-line workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+edisclaw processes, deduplicates, culls, and searches ESI collections locally for a fraction of outsourced e-discovery costs, giving small firms litigation-support capabilities from the terminal.
 
-## Publisher: <br>
-[jagadeeshmurali-coder](https://clawhub.ai/user/jagadeeshmurali-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jagadeeshmurali-coder](https://clawhub.ai/user/jagadeeshmurali-coder)
 
-## Use Case: <br>
-Litigators, paralegals, solo attorneys, and in-house investigation teams use this skill to run local e-discovery workflows for authorized matters, including ingestion, culling, review, tagging, and production exports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external Homebrew formula and edisclaw binary. <br>
-Mitigation: Verify the legal-tools/tap/edisclaw formula, binary source, and publisher before installing or running it. <br>
-Risk: The CLI processes legal ESI and stores matter data locally under ~/.edisclaw/. <br>
-Mitigation: Use it only for authorized matters, limit ingestion to approved custodians and scopes, protect local matter storage, and remove retained ESI when no longer required. <br>
-Risk: Paid Pro or Litigation features may introduce network behavior for TAR models. <br>
-Mitigation: Review paid-tier network behavior before using those features with sensitive client or investigation data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [edisclaw project homepage](https://github.com/legal-tools/edisclaw) <br>
-- [ClawHub release page](https://clawhub.ai/jagadeeshmurali-coder/ediscclaw) <br>
+## Use Case:
 
+External legal practitioners, paralegals, solo attorneys, small firms, and litigation teams use this skill to operate the edisclaw CLI for local e-discovery ingestion, deduplication, culling, search, review, production, reporting, and audit workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI command examples and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the edisclaw command-line binary installed from the legal-tools/tap/edisclaw Homebrew formula.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow handles sensitive legal matter data and stores local ESI under ~/.edisclaw/.
+
+Mitigation: Run the skill only on authorized matter data, protect the host and local storage, and apply normal legal-data access controls.
+
+Risk: Privilege, redaction, TAR, and production decisions can affect litigation outcomes.
+
+Mitigation: Require qualified legal review of privilege calls, redactions, production sets, audit logs, and defensibility reports before production use.
+
+Risk: The skill depends on an external edisclaw Homebrew package and some Pro or Litigation features may use external API-backed functionality.
+
+Mitigation: Install only if the edisclaw package source is trusted, and review paid-tier behavior before allowing external API use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jagadeeshmurali-coder/skills/ediscclaw)
+- [Publisher profile](https://clawhub.ai/user/jagadeeshmurali-coder)
+- [edisclaw homepage](https://github.com/legal-tools/edisclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assumes the edisclaw binary is installed; commands may operate on sensitive local legal matter data under ~/.edisclaw/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

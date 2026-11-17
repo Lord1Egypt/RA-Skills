@@ -1,0 +1,777 @@
+分析器#
+无论是回测还是交易，能够分析交易系统的表现对于理解是否不仅仅获得了利润，而且是否在实现利润的过程中承担了过多的风险，或者与参考资产（或无风险资产）相比是否真的值得付出努力，都是关键。
+
+这就是分析器对象的作用：提供对已发生情况或当前情况的分析。
+
+分析器的性质 接口的设计参照了线条对象，例如具有 next 方法，但有一个主要的区别：分析器不包含线条。
+
+这意味着它们在内存方面不是很消耗资源，因为即使在分析了成千上万个价格条之后，它们可能仍然只在内存中保存单个结果。
+
+在生态系统中的位置#
+分析器对象（如同策略、观察者和数据）通过 cerebro 实例添加到系统中：
+
+addanalyzer(ancls, *args, **kwargs)
+但在 cerebro.run 操作期间，对于系统中存在的每个策略，将会发生以下情况：
+
+ancls 在 cerebro.run 期间会用 *args 和 **kwargs 实例化
+ancls 实例将会附加到策略上
+这意味着：
+
+如果回测运行包含例如 3 个策略，那么将创建 3 个 ancls 实例，并且每个实例将附加到不同的策略上。
+
+结论：分析器分析单个策略的表现，而不是整个系统的表现。
+
+附加位置#
+某些分析器对象可能实际上使用其他分析器来完成其工作。例如：SharpeRatio 使用 TimeReturn 的输出进行计算。
+
+这些子分析器或从属分析器也将插入到创建它们的同一策略中。但它们对用户是完全不可见的。
+
+属性#
+为了完成预期的工作，分析器对象提供了一些默认属性，这些属性会自动传递并在实例中设置，以便于使用：
+
+self.strategy：对分析器对象正在运行的策略子类的引用。策略可以访问的任何内容，分析器也可以访问。
+self.datas[x]：策略中存在的数据源数组。虽然可以通过策略引用访问，但快捷方式使工作更舒适。
+self.data：对 self.datas[0] 的快捷方式，以增加舒适度。
+self.dataX：对不同的 self.datas[x] 的快捷方式。
+还有一些其他别名可用，尽管它们可能有些多余：
+
+self.dataX_Y，其中 X 是对 self.datas[X] 的引用，Y 指的是线条，最终指向 self.datas[X].lines[Y]。 如果线条有名称，还可以使用以下命名：
+
+self.dataX_Name，解析为 self.datas[X].Name，按名称而不是按索引返回线条。 对于第一个数据，最后两个快捷方式在没有初始 X 数字引用的情况下可用。例如：
+
+self.data_2 指 self.datas[0].lines[2]。
+
+self.data_close 指 self.datas[0].close。
+
+返回分析结果#
+Analyzer 基类创建了一个 self.rets（类型为 collections.OrderedDict）成员属性来返回分析结果。这是在 create_analysis 方法中完成的，子类可以覆盖该方法以创建自定义分析器。
+
+操作模式#
+虽然分析器对象不是线条对象，因此不迭代线条，但它们被设计为遵循相同的操作模式。
+
+在系统启动之前实例化（因此调用 __init__）。
+使用 start 信号表示操作开始。
+prenext / nextstart / next 方法将根据策略的计算最小周期被调用。
+prenext 和 nextstart 的默认行为是调用 next，因为分析器可能会从系统开始运行的第一刻起进行分析。
+在线条对象中通常调用 len(self) 以检查实际条数。这在分析器中也适用，通过返回 self.strategy 的值。
+订单和交易将像通知策略一样通过 notify_order 和 notify_trade 进行通知。
+现金和价值也将通过 notify_cashvalue 方法像对策略那样进行通知。
+现金、价值、基金价值和基金份额也将通过 notify_fund 方法像对策略那样进行通知。
+使用 stop 信号表示操作结束。
+一旦常规操作周期完成，分析器将提供用于提取/输出信息的附加方法：
+get_analysis：理想情况下（不是强制的）返回一个包含分析结果的字典样对象。
+print 使用标准的 backtrader.WriterFile（除非被覆盖）写出 get_analysis 的分析结果。
+pprint（漂亮打印）使用 Python 的 pprint 模块打印 get_analysis 结果。
+最后：
+
+get_analysis 创建一个类型为 collections.OrderedDict 的成员属性 self.ret，分析器将分析结果写入其中。
+
+分析器的子类可以覆盖此方法以改变此行为。
+
+分析器模式#
+在 backtrader 平台中开发分析器对象揭示了生成分析的两种不同使用模式：
+
+在执行过程中通过 notify_xxx 和 next 方法收集信息，并在 next 中生成当前的分析信息。
+例如，TradeAnalyzer 仅使用 notify_trade 方法生成统计数据。
+如上所述收集信息（或不收集），但在 stop 方法期间进行单次生成分析。
+SQN（系统质量编号）在 notify_trade 期间收集交易信息，但在 stop 方法期间生成统计数据。
+快速示例#
+尽可能简单：
+
+from __future__ import (absolute_import, division, print_function, unicode_literals)
+import datetime
+import backtrader as bt
+import backtrader.analyzers as btanalyzers
+import backtrader.feeds as btfeeds
+import backtrader.strategies as btstrats
+
+cerebro = bt.Cerebro()
+
+# 数据
+dataname = '../datas/sample/2005-2006-day-001.txt'
+data = btfeeds.BacktraderCSVData(dataname=dataname)
+
+cerebro.adddata(data)
+
+# 策略
+cerebro.addstrategy(btstrats.SMA_CrossOver)
+
+# 分析器
+cerebro.addanalyzer(btanalyzers.SharpeRatio, _name='mysharpe')
+
+thestrats = cerebro.run()
+thestrat = thestrats[0]
+
+print('Sharpe Ratio:', thestrat.analyzers.mysharpe.get_analysis())
+执行它（已将其存储在 analyzer-test.py 中）：
+
+$ ./analyzer-test.py
+Sharpe Ratio: {'sharperatio': 11.647332609673256}
+没有绘图，因为 SharpeRatio 是在计算结束时的单一值。
+
+分析器的取证分析 让我们重复一下，分析器不是线条对象，但为了无缝集成到 backtrader 生态系统中，遵循了几个线条对象的内部 API 约定（实际上是它们的混合）。
+
+注意
+
+SharpeRatio 的代码已经演变，例如考虑了年化，此版本仅应作为参考。
+
+请查看分析器参考。
+
+此外还有一个 SharpeRatio_A 提供了直接以年化形式给出的值，而不管所需的时间范围。
+
+SharpeRatio 的代码作为基础（简化版本）：
+
+from __future__ import (absolute_import, division, print_function, unicode_literals)
+import operator
+from backtrader.utils.py3 import map
+from backtrader import Analyzer, TimeFrame
+from backtrader.mathsupport import average, standarddev
+from backtrader.analyzers import AnnualReturn
+
+class SharpeRatio(Analyzer):
+    params = (('timeframe', TimeFrame.Years), ('riskfreerate', 0.01),)
+
+    def __init__(self):
+        super(SharpeRatio, self).__init__()
+        self.anret = AnnualReturn()
+
+    def start(self):
+        # Not needed ... but could be used
+        pass
+
+    def next(self):
+        # Not needed ... but could be used
+        pass
+
+    def stop(self):
+        retfree = [self.p.riskfreerate] * len(self.anret.rets)
+        retavg = average(list(map(operator.sub, self.anret.rets, retfree)))
+        retdev = standarddev(self.anret.rets)
+        self.ratio = retavg / retdev
+
+    def get_analysis(self):
+        return dict(sharperatio=self.ratio)
+代码可以分解为：
+
+params 声明
+尽管声明的参数没有使用（作为示例），分析器像大多数其他对象一样支持参数。
+__init__ 方法
+就像策略在 __init__ 中声明指标一样，分析器也声明支持对象。
+在这种情况下：SharpeRatio 使用年度回报计算。计算将是自动的，并且将可用于 SharpeRatio 进行自己的计算。
+next 方法
+SharpeRatio 不需要它，但此方法将在父策略 next 的每次调用后被调用。
+start 方法
+在回测开始前调用。可以用于额外的初始化任务。
+SharpeRatio 不需要它。
+
+stop 方法
+在回测结束后调用。就像 SharpeRatio 所做的那样，它可以用于完成/进行计算。
+get_analysis 方法（返回字典）
+为外部调用者提供生成的分析。
+返回：包含分析结果的字典。
+
+参考#
+class backtrader.Analyzer()
+Analyzer 基类。所有分析器都是此类的子类。
+
+分析器实例在策略的框架内运行，并为该策略提供分析。
+
+自动设置的成员属性：
+
+self.strategy（提供对策略及其可访问内容的访问）
+self.datas[x] 提供对系统中存在的数据源数组的访问，这些数据源也可以通过策略引用访问
+self.data 提供对 self.datas[0] 的访问
+self.dataX -> self.datas[X]
+self.dataX_Y -> self.datas[X].lines[Y]
+self.dataX_name -> self.datas[X].name
+self.data_name -> self.datas[0].name
+self.data_Y -> self.datas[0].lines[Y]
+这不是线条对象，但方法和操作遵循相同的设计：
+
+在实例化和初始设置期间 __init__
+使用 start / stop 表示操作的开始和结束
+prenext / nextstart / next 方法家族，遵循策略中相同方法的调用
+notify_trade / notify_order / notify_cashvalue / notify_fund 接收与策略等效方法相同的通知
+操作模式是开放的，没有首选模式。因此，分析可以通过 next 调用生成，在 stop 期间生成，也可以通过单个方法如 notify_trade 生成。
+
+重要的是覆盖 get_analysis 以返回包含分析结果的字典样对象（实际格式取决于实现）。
+
+start()
+调用以指示操作开始，给分析器时间设置所需内容。
+stop()
+调用以指示操作结束，给分析器时间关闭所需内容。
+prenext()
+在策略的每次 prenext 调用期间调用，直到达到策略的最小周期。
+分析器的默认行为是调用 next。
+nextstart()
+在策略的 nextstart 调用时调用一次，当首次达到最小周期时。
+next()
+在策略的每次 next 调用期间调用，一旦达到策略的最小周期。
+notify_cashvalue(cash, value)
+在每个 next 周期之前接收现金/价值通知。
+notify_fund(cash, value, fundvalue, shares)
+接收当前现金、价值、基金价值和基金份额。
+notify_order(order)
+在每个 next 周期之前接收订单通知。
+notify_trade(trade)
+在每个 next 周期之前接收交易通知。
+get_analysis()
+返回包含分析结果的字典样对象。
+字典中分析结果的键和值的格式取决于实现。
+甚至不强制结果是字典样对象，只是一种约定。
+默认实现返回由默认 create_analysis 方法创建的默认 OrderedDict rets。
+create_analysis()
+供子类覆盖。提供创建保存分析结果的结构的机会。
+默认行为是创建名为 rets 的 OrderedDict。
+print(*args, **kwargs)
+使用标准 Writerfile 对象打印 get_analysis 返回的结果，默认写入标准输出。
+pprint(*args, **kwargs)
+使用 Python 的 pprint 模块打印 get_analysis 返回的结果。
+len()
+支持在分析器上调用 len，实际上返回分析器运行的策略的当前长度。
+############################################################################################################################################
+PyFolio#
+注意，截至（至少）2017-07-25，pyfolio 的 API 已更改，create_full_tear_sheet 不再有 gross_lev 作为命名参数。因此，集成示例无法正常工作。
+
+引用 pyfolio 主页面 http://quantopian.github.io/pyfolio/ 的内容： pyfolio 是一个由 Quantopian Inc. 开发的用于金融投资组合的表现和风险分析的 Python 库。它与开源回测库 Zipline 配合良好，现在它也可以很好地与 backtrader 配合。所需的内容包括：
+
+显然需要 pyfolio
+以及它的依赖项（如 pandas、seaborn 等）
+注意，在与 0.5.1 版本集成期间，需要更新依赖项的最新版本，例如将之前安装的 seaborn 从 0.7.0-dev 更新到 0.7.1，显然是由于缺少方法 swarmplot。
+
+用法#
+将 PyFolio 分析器添加到 cerebro 中：
+
+cerebro.addanalyzer(bt.analyzers.PyFolio)
+运行并检索第一个策略：
+
+strats = cerebro.run()
+strat0 = strats[0]
+使用你给分析器命名的名称或默认名称（pyfolio）来检索分析器。例如：
+
+pyfolio = strats.analyzers.getbyname('pyfolio')
+使用分析器方法 get_pf_items 检索 pyfolio 后续需要的四个组件：
+
+returns, positions, transactions, gross_lev = pyfolio.get_pf_items()
+注意
+
+集成是通过查看 pyfolio 的测试样本并复制相同的标题（或缺少的部分）来完成的。
+
+与 pyfolio 一起工作（这已经超出了 backtrader 生态系统的范围）
+
+一些与 backtrader 无关的使用注意事项：
+
+pyfolio 自动绘图在 Jupyter Notebook 之外也能工作，但在 Notebook 内部效果最好。
+pyfolio 数据表的输出在 Jupyter Notebook 之外几乎不起作用，但在 Notebook 内部可以正常工作。
+结论很简单，如果希望使用 pyfolio：在 Jupyter Notebook 内工作。
+
+示例代码 代码看起来像这样：
+
+...
+cerebro.addanalyzer(bt.analyzers.PyFolio, _name='pyfolio')
+...
+results = cerebro.run()
+strat = results[0]
+pyfoliozer = strat.analyzers.getbyname('pyfolio')
+returns, positions, transactions, gross_lev = pyfoliozer.get_pf_items()
+...
+...
+# pyfolio showtime
+import pyfolio as pf
+pf.create_full_tear_sheet(
+    returns,
+    positions=positions,
+    transactions=transactions,
+    gross_lev=gross_lev,
+    live_start_date='2005-05-01',  # 此日期是样本特定的
+    round_trips=True)
+
+# 此时表格和图表将显示
+参考#
+查看分析器参考以了解 PyFolio 分析器及其内部使用的分析器。
+#############################################################################################################
+Pyfolio 集成#
+在 Ticket #108 中提出了一个投资组合工具，即 pyfolio 的集成。
+
+一开始看教程觉得很难，因为 zipline 和 pyfolio 之间的紧密集成，但 pyfolio 提供的一些其他用途的示例测试数据实际上非常有用，可以解码幕后运行的内容，从而实现集成。
+
+在 backtrader 中大多数部分已经就位：
+
+分析器基础设施
+子分析器
+TimeReturn 分析器
+只需要一个主 PyFolio 分析器和三个简单的子分析器。再加上依赖于 pyfolio 所需的依赖项之一，即 pandas 的方法。
+
+最具挑战的部分是…“正确获取所有依赖项”。
+
+更新 pandas
+更新 numpy
+更新 scikit-lean
+更新 seaborn
+在类似 Unix 的环境中，有一个 C 编译器，一切都是时间问题。在 Windows 上，即使安装了特定的 Microsoft 编译器（在这种情况下是 Python 2.7 的链），事情也失败了。但一个知名网站拥有最新的 Windows 软件包集合，提供了帮助。如果你需要它，可以访问：
+
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+如果没有测试集成，它就不会完成，这就是为什么通常的示例总是存在的原因。
+
+没有 PyFolio#
+示例使用 random.randint 来决定何时买卖，因此这只是检查事情是否正常运行：
+
+$ ./pyfoliotest.py --printout --no-pyfolio --plot
+输出：
+
+Len,Datetime,Open,High,Low,Close,Volume,OpenInterest
+0001,2005-01-03T23:59:59,38.36,38.90,37.65,38.18,25482800.00,0.00
+BUY  1000 @%23.58
+0002,2005-01-04T23:59:59,38.45,38.54,36.46,36.58,26625300.00,0.00
+BUY  1000 @%36.58
+SELL 500 @%22.47
+0003,2005-01-05T23:59:59,36.69,36.98,36.06,36.13,18469100.00,0.00
+...
+SELL 500 @%37.51
+0502,2006-12-28T23:59:59,25.62,25.72,25.30,25.36,11908400.00,0.00
+0503,2006-12-29T23:59:59,25.42,25.82,25.33,25.54,16297800.00,0.00
+SELL 250 @%17.14
+SELL 250 @%37.01
+有 3 个数据，多个买卖操作在测试运行的默认两年期间随机选择和分散。
+
+一个 PyFolio 运行#
+pyfolio 在 Jupyter Notebook 内运行效果很好，包括内联绘图。以下是 notebook 示例：
+
+%matplotlib inline
+
+from __future__ import (absolute_import, division, print_function, unicode_literals)
+
+import argparse
+import datetime
+import random
+
+import backtrader as bt
+
+class St(bt.Strategy):
+    params = (
+        ('printout', False),
+        ('stake', 1000),
+    )
+
+    def __init__(self):
+        pass
+
+    def start(self):
+        if self.p.printout:
+            txtfields = list()
+            txtfields.append('Len')
+            txtfields.append('Datetime')
+            txtfields.append('Open')
+            txtfields.append('High')
+            txtfields.append('Low')
+            txtfields.append('Close')
+            txtfields.append('Volume')
+            txtfields.append('OpenInterest')
+            print(','.join(txtfields))
+
+    def next(self):
+        if self.p.printout:
+            txtfields = list()
+            txtfields.append('%04d' % len(self))
+            txtfields.append(self.data.datetime.datetime(0).isoformat())
+            txtfields.append('%.2f' % self.data0.open[0])
+            txtfields.append('%.2f' % self.data0.high[0])
+            txtfields.append('%.2f' % self.data0.low[0])
+            txtfields.append('%.2f' % self.data0.close[0])
+            txtfields.append('%.2f' % self.data0.volume[0])
+            txtfields.append('%.2f' % self.data0.openinterest[0])
+            print(','.join(txtfields))
+
+        for data in self.datas:
+            toss = random.randint(1, 10)
+            curpos = self.getposition(data)
+            if curpos.size:
+                if toss > 5:
+                    size = curpos.size // 2
+                    self.sell(data=data, size=size)
+                    if self.p.printout:
+                        print('SELL {} @%{}'.format(size, data.close[0]))
+
+            elif toss < 5:
+                self.buy(data=data, size=self.p.stake)
+                if self.p.printout:
+                    print('BUY  {} @%{}'.format(self.p.stake, data.close[0]))
+
+def runstrat(args=None):
+    args = parse_args(args)
+
+    cerebro = bt.Cerebro()
+    cerebro.broker.set_cash(args.cash)
+
+    dkwargs = dict()
+    if args.fromdate:
+        fromdate = datetime.datetime.strptime(args.fromdate, '%Y-%m-%d')
+        dkwargs['fromdate'] = fromdate
+
+    if args.todate:
+        todate = datetime.datetime.strptime(args.todate, '%Y-%m-%d')
+        dkwargs['todate'] = todate
+
+    data0 = bt.feeds.BacktraderCSVData(dataname=args.data0, **dkwargs)
+    cerebro.adddata(data0, name='Data0')
+
+    data1 = bt.feeds.BacktraderCSVData(dataname=args.data1, **dkwargs)
+    cerebro.adddata(data1, name='Data1')
+
+    data2 = bt.feeds.BacktraderCSVData(dataname=args.data2, **dkwargs)
+    cerebro.adddata(data2, name='Data2')
+
+    cerebro.addstrategy(St, printout=args.printout)
+    if not args.no_pyfolio:
+        cerebro.addanalyzer(bt.analyzers.PyFolio, _name='pyfolio')
+
+    results = cerebro.run()
+    if not args.no_pyfolio:
+        strat = results[0]
+        pyfoliozer = strat.analyzers.getbyname('pyfolio')
+
+        returns, positions, transactions, gross_lev = pyfoliozer.get_pf_items()
+        if args.printout:
+            print('-- RETURNS')
+            print(returns)
+            print('-- POSITIONS')
+            print(positions)
+            print('-- TRANSACTIONS')
+            print(transactions)
+            print('-- GROSS LEVERAGE')
+            print(gross_lev)
+
+        import pyfolio as pf
+        pf.create_full_tear_sheet(
+            returns,
+            positions=positions,
+            transactions=transactions,
+            gross_lev=gross_lev,
+            live_start_date='2005-05-01',
+            round_trips=True)
+
+    if args.plot:
+        cerebro.plot(style=args.plot_style)
+
+def parse_args(args=None):
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        description='Sample for pivot point and cross plotting')
+
+    parser.add_argument('--data0', required=False,
+                        default='../../datas/yhoo-1996-2015.txt',
+                        help='Data to be read in')
+
+    parser.add_argument('--data1', required=False,
+                        default='../../datas/orcl-1995-2014.txt',
+                        help='Data to be read in')
+
+    parser.add_argument('--data2', required=False,
+                        default='../../datas/nvda-1999-2014.txt',
+                        help='Data to be read in')
+
+    parser.add_argument('--fromdate', required=False,
+                        default='2005-01-01',
+                        help='Starting date in YYYY-MM-DD format')
+
+    parser.add_argument('--todate', required=False,
+                        default='2006-12-31',
+                        help='Ending date in YYYY-MM-DD format')
+
+    parser.add_argument('--printout', required=False, action='store_true',
+                        help=('Print data lines'))
+
+    parser.add_argument('--cash', required=False, action='store',
+                        type=float, default=50000,
+                        help=('Cash to start with'))
+
+    parser.add_argument('--plot', required=False, action='store_true',
+                        help=('Plot the result'))
+
+    parser.add_argument('--plot-style', required=False, action='store',
+                        default='bar', choices=['bar', 'candle', 'line'],
+                        help=('Plot style'))
+
+    parser.add_argument('--no-pyfolio', required=False, action='store_true',
+                        help=('Do not do pyfolio things'))
+
+    import sys
+    aargs = args if args is not None else sys.argv[1:]
+    return parser.parse_args(aargs)
+
+runstrat([])
+整个数据开始日期：2005-01-03
+整个数据结束日期：2006-12-29
+
+$ ./pyfoliotest.py --help
+使用：
+
+usage: pyfoliotest.py [-h] [--data0 DATA0] [--data1 DATA1] [--data2 DATA2]
+                      [--fromdate FROMDATE] [--todate TODATE] [--printout]
+                      [--cash CASH] [--plot] [--plot-style {
+
+bar,candle,line}]
+                      [--no-pyfolio]
+
+Sample for pivot point and cross plotting
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --data0 DATA0         Data to be read in (default: ../../datas/yhoo-1996-2015.txt)
+  --data1 DATA1         Data to be read in (default: ../../datas/orcl-1995-2014.txt)
+  --data2 DATA2         Data to be read in (default: ../../datas/nvda-1999-2014.txt)
+  --fromdate FROMDATE   Starting date in YYYY-MM-DD format (default: 2005-01-01)
+  --todate TODATE       Ending date in YYYY-MM-DD format (default: 2006-12-31)
+  --printout            Print data lines (default: False)
+  --cash CASH           Cash to start with (default: 50000)
+  --plot                Plot the result (default: False)
+  --plot-style {bar,candle,line}
+                        Plot style (default: bar)
+  --no-pyfolio          Do not do pyfolio things (default: False)
+##################################################################################################
+参考#
+AnnualReturn#
+class backtrader.analyzers.AnnualReturn()
+该分析器通过查看年的起点和终点来计算年度回报率。
+
+参数：
+
+无
+成员属性：
+
+rets：计算出的年度回报率列表
+ret：年度回报率字典（键：年份）
+get_analysis： 返回包含年度回报率的字典（键：年份）
+
+Calmar#
+class backtrader.analyzers.Calmar()
+该分析器计算 Calmar 比率，时间框架可以与基础数据使用的不同。
+
+参数：
+
+timeframe（默认：无）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个包含时间段键和对应滚动 Calmar 比率的 OrderedDict。
+
+DrawDown#
+class backtrader.analyzers.DrawDown()
+该分析器计算交易系统的回撤统计数据，如百分比和美元的回撤值、最大回撤值、回撤长度和最大回撤长度。
+
+参数：
+
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个包含回撤统计数据的字典（支持 . 符号表示法和子字典），可用的键/属性包括：
+
+drawdown：回撤值（百分比）
+moneydown：回撤值（货币单位）
+len：回撤长度
+max.drawdown：最大回撤值（百分比）
+max.moneydown：最大回撤值（货币单位）
+max.len：最大回撤长度
+TimeDrawDown#
+class backtrader.analyzers.TimeDrawDown()
+该分析器计算在选定时间框架上的交易系统回撤，可以与基础数据使用的时间框架不同。
+
+参数：
+
+timeframe（默认：无）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个包含回撤统计数据的字典（支持 . 符号表示法和子字典），可用的键/属性包括：
+
+drawdown：回撤值（百分比）
+maxdrawdown：最大回撤值（货币单位）
+maxdrawdownperiod：回撤长度
+GrossLeverage#
+class backtrader.analyzers.GrossLeverage()
+该分析器计算当前策略的总杠杆。
+
+参数：
+
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。
+
+PositionsValue#
+class backtrader.analyzers.PositionsValue()
+该分析器报告当前数据集的仓位价值。
+
+参数：
+
+timeframe（默认：无）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+headers（默认：False）：在保存结果的字典中添加一个初始键，名称为数据的名称（‘Datetime’ 为键）。
+cash（默认：False）：包括实际现金作为额外仓位（对于标头，将使用名称 ‘cash’）。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。
+
+PyFolio#
+class backtrader.analyzers.PyFolio()
+该分析器使用 4 个子分析器收集数据，并将其转换为与 pyfolio 兼容的数据集。
+
+子分析器：
+
+TimeReturn：用于计算全球投资组合价值的回报。
+PositionsValue：用于计算每个数据的仓位价值。设置 headers 和 cash 参数为 True。
+Transactions：用于记录每个数据上的每笔交易（数量、价格、价值）。设置 headers 参数为 True。
+GrossLeverage：跟踪总杠杆（策略投资的程度）。
+参数： 这些参数透明地传递给子分析器。
+
+timeframe（默认：bt.TimeFrame.Days）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：1）：如果为 None，将使用系统中第一个数据的压缩。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。
+
+get_pf_items： 返回一个包含 4 个元素的元组，可用于进一步处理 pyfolio。
+
+returns，positions，transactions，gross_leverage
+由于这些对象旨在作为 pyfolio 的直接输入，因此此方法会本地导入 pandas，将内部 backtrader 结果转换为 pandas DataFrames，这是例如 pyfolio.create_full_tear_sheet 预期的输入。如果未安装 pandas，该方法将失败。
+
+LogReturnsRolling#
+class backtrader.analyzers.LogReturnsRolling()
+该分析器计算给定时间框架和压缩的滚动回报。
+
+参数：
+
+timeframe（默认：无）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+data（默认：无）：跟踪的参考资产，而不是投资组合价值。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。
+
+PeriodStats#
+class backtrader.analyzers.PeriodStats()
+计算给定时间框架的基本统计数据。
+
+参数：
+
+timeframe（默认：Years）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：1）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个包含以下键的字典：
+
+average
+stddev
+positive
+negative
+nochange
+best
+worst
+如果参数 zeroispos 设置为 True，则没有变化的周期将计为正数。
+
+Returns#
+class backtrader.analyzers.Returns()
+使用对数方法计算总回报、平均回报、复合回报和年化回报。
+
+参数：
+
+timeframe（默认：无）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+tann（默认：无）：用于年化（归一化）回报的周期数：
+天：252
+周：52
+月：12
+年：1
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期
+
+时间点为键。返回的字典包含以下键：
+
+rtot：总复合回报
+ravg：整个期间的平均回报（特定时间框架）
+rnorm：年化/归一化回报
+rnorm100：以 100% 表示的年化/归一化回报
+SharpeRatio#
+class backtrader.analyzers.SharpeRatio()
+该分析器使用风险资产（即利率）计算策略的夏普比率。
+
+参数：
+
+timeframe（默认：TimeFrame.Years）
+compression（默认：1）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+riskfreerate（默认：0.01 -> 1%）：以年利率表示（见下文 convertrate）。
+convertrate（默认：True）：将年利率转换为月、周或日利率。不支持子日转换。
+factor（默认：无）：如果为 None，将从预定义表中选择年到所选时间框架的转换因子。天：252，周：52，月：12，年：1。否则将使用指定的值。
+annualize（默认：False）：如果 convertrate 为 True，夏普比率将在所选时间框架内提供。在大多数情况下，夏普比率以年化形式提供。
+stddev_sample（默认：False）：如果设置为 True，将在均值中减少分母 1 来计算标准差。这在计算标准差时使用，如果认为并非所有样本都用于计算。这被称为贝塞尔修正。
+daysfactor（默认：无）：旧命名为因子。如果设置为除 None 之外的任何值，并且时间框架为 TimeFrame.Days，将假设这是旧代码并使用该值。
+legacyannual（默认：False）：使用 AnnualReturn 分析器，顾名思义仅适用于年份。
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个包含键 “sharperatio” 的字典，其中包含比率。
+
+SharpeRatio_A#
+class backtrader.analyzers.SharpeRatio_A()
+夏普比率的扩展，直接以年化形式返回夏普比率。
+
+更改的参数：
+
+annualize（默认：True）
+SQN#
+class backtrader.analyzers.SQN()
+SQN 或系统质量数。由 Van K. Tharp 定义，用于分类交易系统。
+
+1.6 - 1.9 低于平均水平 2.0 - 2.4 平均水平 2.5 - 2.9 良好 3.0 - 5.0 优秀 5.1 - 6.9 杰出 7.0 - 圣杯？
+
+公式：
+
+SquareRoot(NumberTrades) * Average(TradesProfit) / StdDev(TradesProfit)
+当交易数量 >= 30 时，sqn 值应被认为是可靠的。
+
+get_analysis： 返回一个包含键 “sqn” 和 “trades” 的字典（已考虑的交易数量）。
+
+TimeReturn#
+class backtrader.analyzers.TimeReturn()
+该分析器通过查看时间框架的起点和终点来计算回报。
+
+参数：
+
+timeframe（默认：无）：如果为 None，将使用系统中第一个数据的时间框架。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+data（默认：无）：跟踪的参考资产，而不是投资组合价值。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。
+
+TradeAnalyzer#
+class backtrader.analyzers.TradeAnalyzer()
+提供已平仓交易的统计数据（还保持未平仓交易的计数）。
+
+总开仓/平仓交易
+连胜/连败 当前/最长
+总损益/平均损益
+胜/负 计数/总损益/平均损益/最大损益
+多/空 计数/总损益/平均损益/最大损益
+胜/负 计数/总损益/平均损益/最大损益
+注意： 分析器使用“自动”字典字段，这意味着如果没有执行交易，则不会生成统计数据。在这种情况下，get_analysis 返回的字典中将有一个单独的字段/子字段：
+
+dictname[‘total’][‘total’] 将具有值 0（该字段也可以使用点符号 dictname.total.total 访问）。
+Transactions#
+class backtrader.analyzers.Transactions()
+该分析器报告系统中每个数据的交易情况。
+
+参数：
+
+headers（默认：True）：在保存结果的字典中添加一个初始键，名称为数据的名称。
+该分析器旨在便于与 pyfolio 集成，并从用于它的样本中获取标题名称：
+
+‘date’, ‘amount’, ‘price’, ‘sid’, ‘symbol’, ‘value’
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。
+
+VWR#
+class backtrader.analyzers.VWR()
+可变性加权回报：使用对数回报的更好的夏普比率。
+
+别名：
+
+VariabilityWeightedReturn
+参数：
+
+timeframe（默认：无）：如果为 None，则整个回测期间的回报将被报告。
+compression（默认：无）：仅用于子日时间框架，例如通过指定 “TimeFrame.Minutes” 和 60 作为压缩在每小时时间框架上工作。
+tann（默认：无）：用于年化（归一化）平均回报的周期数。如果为 None，则使用标准 t 值，即：
+天：252
+周：52
+月：12
+年：1
+tau（默认：2.0）：计算因子（见文献）
+sdev_max（默认：0.20）：最大标准差（见文献）
+fund（默认：无）：如果为 None，将自动检测经纪人的实际模式（fundmode - True/False）来决定回报率是基于总净资产价值还是基金价值。见经纪人文档中的 set_fundmode。
+get_analysis： 返回一个字典，其中返回值为值，每个返回值的日期时间点为键。返回的字典包含以下键：
+
+vwr：可变性加权回报

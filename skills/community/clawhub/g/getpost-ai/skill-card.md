@@ -1,41 +1,49 @@
-## Description: <br>
-Access 24+ LLM chat models and 16+ image/video generation models via one API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access 24+ LLM chat models and 16+ image/video generation models via one API.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-Developers and agents use this skill to call a single AI gateway for chat completions, image generation, and video generation examples. It provides API authentication guidance and curl-based request patterns for integrating supported model providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced service domain may not serve the claimed API or may not be controlled by the intended provider. <br>
-Mitigation: Confirm the getpost.dev service identity and documentation before sending prompts, private data, or bearer keys. <br>
-Risk: Example requests send prompts and credentials to an external AI gateway. <br>
-Mitigation: Start with test prompts and limited-scope credentials, and avoid sensitive data until the provider and API behavior are independently verified. <br>
+## Use Case:
 
+External developers and agent builders use this skill to configure GetPost API calls for chat, image generation, and video generation through a single gateway.
 
-## Reference(s): <br>
-- [GetPost AI API documentation](https://getpost.dev/docs/api-reference#ai) <br>
-- [ClawHub skill page](https://clawhub.ai/dommholland/getpost-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token authentication examples and polling guidance for long-running video jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and server release metadata) <br>
+Risk: Signup details and generation prompts are sent to getpost.dev for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, regulated data, proprietary prompts, or sensitive personal information unless the provider's terms, privacy policy, and retention practices have been reviewed and accepted.
+
+## Reference(s):
+
+- [GetPost AI API Reference](https://getpost.dev/docs/api-reference#ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes signup, authentication, chat, image generation, video generation, and job polling examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

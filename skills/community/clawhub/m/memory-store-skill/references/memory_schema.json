@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Memory Entry v2",
+  "description": "Schema for a single memory entry (v2: two-layer scope + three-tier visibility, back-compat with v1 fields).",
+  "type": "object",
+  "required": ["id", "schema_version", "scope", "visibility", "type", "title", "summary", "tags", "importance", "priority", "access_count", "status"],
+  "allOf": [
+    {
+      "if": {
+        "properties": { "visibility": { "const": "private" } },
+        "required": ["visibility"]
+      },
+      "then": {
+        "properties": { "owner_agent": { "type": "string", "minLength": 1 } },
+        "required": ["owner_agent"]
+      }
+    }
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique memory identifier. Format: mem_YYYYMMDD_HHMMSS_<random6>",
+      "pattern": "^mem_[0-9]{8}_[0-9]{6}_[a-z0-9]{6}$"
+    },
+    "schema_version": {
+      "type": "integer",
+      "const": 2,
+      "description": "Data model version."
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["global", "workspace"],
+      "description": "Layer: global = cross-project shared store; workspace = current project/task store."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["private", "shared", "global"],
+      "description": "Shared switch: private = owner only; shared = same workspace/collaborators; global = all agents."
+    },
+    "owner_agent": {
+      "type": ["string", "null"],
+      "description": "Agent ID that created the memory (from --agent-id or MEMORY_AGENT_ID env)."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when the memory was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of last modification."
+    },
+    "source_conversation_id": {
+      "type": ["string", "null"],
+      "description": "Conversation ID from which the memory was extracted. Null if manually created."
+    },
+    "write_intent": {
+      "type": "string",
+      "enum": ["explicit", "automatic"],
+      "description": "Whether the write came from an explicit user request or an opted-in automatic memory policy."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["workflow", "decision", "fact", "preference", "debug_solution", "state", "event", "relation"],
+      "description": "Category of the memory."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Short title summarizing the memory (< 50 chars recommended)."
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Concise summary of the memory content (< 200 chars recommended)."
+    },
+    "details": {
+      "type": ["string", "null"],
+      "description": "Optional extended context or explanation."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of lowercase, hyphenated tags for categorization and search."
+    },
+    "importance": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Importance score. 0.0 = trivial, 1.0 = critical."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3"],
+      "description": "Discrete priority tier. P1 = critical decisions/debug/user-explicit; P3 = routine state."
+    },
+    "access_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of explicit recalls plus search hits selected with --touch."
+    },
+    "last_accessed": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of last recall. Null if never accessed."
+    },
+    "related_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths to related source files."
+    },
+    "ttl_days": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Time-to-live in days. Null means never expires."
+    },
+    "expires_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Computed absolute expiry = created_at + ttl_days."
+    },
+    "decay_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Ebbinghaus-style decayed importance used for archive decisions."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "archived"],
+      "description": "Lifecycle status. archived entries are moved to archive/ directory."
+    },
+    "archived_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the entry was moved to an archive file. Present only while archived."
+    },
+    "_archive_reason": {
+      "type": "string",
+      "description": "Human-readable rule that caused archival. Present only while archived."
+    },
+    "embedding": {
+      "type": ["array", "null"],
+      "items": { "type": "number" },
+      "description": "Optional semantic vector. Reserved for future use; keyword search works without it."
+    },
+    "embedding_model": {
+      "type": ["string", "null"],
+      "description": "Name of the embedding model that produced the vector."
+    }
+  }
+}

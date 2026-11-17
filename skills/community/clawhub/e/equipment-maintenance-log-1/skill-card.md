@@ -1,38 +1,54 @@
-## Description: <br>
-Track lab equipment calibration dates and send maintenance reminders for pipettes, balances, centrifuges, and other instruments. Validates date formats and supports update/delete operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks lab equipment calibration dates, maintenance reminders, date validation, and update/delete operations for pipettes, balances, centrifuges, and other instruments.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Lab staff, compliance owners, and developers use this skill to maintain local equipment calibration records, check overdue or upcoming maintenance, and generate audit-oriented reminder reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Equipment names, calibration dates, intervals, and locations are stored locally on the user's machine. <br>
-Mitigation: Use the skill only when local storage of equipment and location metadata is acceptable, and protect or delete ~/.openclaw/equipment_log.json when that metadata is sensitive. <br>
+## Use Case:
 
+Lab staff, compliance teams, and developers use this skill to maintain local calibration records, check overdue or upcoming equipment maintenance, and generate audit-ready compliance reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/equipment-maintenance-log-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON compliance reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local equipment records are stored in ~/.openclaw/equipment_log.json by the packaged script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local equipment records can be permanently deleted when delete operations are requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups for audit-sensitive logs and confirm deletion requests before running the packaged script.
+
+Risk: Bad or extreme interval values may corrupt maintenance schedules because range validation is not documented as present.
+
+Mitigation: Use trusted interval values and review the local JSON log after changes until range validation is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/equipment-maintenance-log-1)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON compliance reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the packaged script is run, it reads and writes a local JSON equipment log.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

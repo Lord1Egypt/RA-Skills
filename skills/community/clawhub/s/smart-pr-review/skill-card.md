@@ -1,46 +1,69 @@
-## Description: <br>
-Opinionated AI code reviewer for pull requests, local diffs, commits, and files, with six-layer review across logic, edge cases, performance, security, maintainability, and architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart PR Review is an opinionated code-review skill that analyzes PR URLs, local diffs, commits, or files across logic, edge cases, performance, security, maintainability, and architecture, then returns a prioritized review verdict.
 
-## Publisher: <br>
-[fullstackcrew-alpha](https://clawhub.ai/user/fullstackcrew-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fullstackcrew-alpha](https://clawhub.ai/user/fullstackcrew-alpha)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review GitHub pull requests, local diffs, commits, or individual files and receive prioritized, paste-ready review findings. It is intended for code quality, security, performance, maintainability, and architecture review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook mode can send repository diffs to Anthropic and post GitHub reviews using repository credentials. <br>
-Mitigation: Deploy webhook mode only after review; use a dedicated least-privilege GitHub bot or GitHub App, restrict network exposure, and avoid repositories whose code cannot be shared with Anthropic. <br>
-Risk: Automated webhook reviews can post APPROVE or REQUEST_CHANGES without human judgment. <br>
-Mitigation: Consider comment-only behavior or require human approval before posting merge verdicts. <br>
-Risk: Webhook requests are higher risk if the webhook signature secret is missing or misconfigured. <br>
-Mitigation: Always configure GITHUB_WEBHOOK_SECRET and verify deployment settings before exposing the service. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests, local diffs, commits, or individual files before merge. It produces severity-ranked findings, concrete remediation guidance, and an APPROVE, REQUEST CHANGES, or COMMENT verdict.
 
-## Reference(s): <br>
-- [Smart PR Review on ClawHub](https://clawhub.ai/fullstackcrew-alpha/smart-pr-review) <br>
-- [README](README.md) <br>
-- [Code Review Checklist](references/review-checklist.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [Review Examples](references/review-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown code review report with severity sections, replacement code examples, and merge verdict guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can output Chinese or English review text and may include shell commands for collecting PR, diff, commit, or file context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: Webhook mode can send pull request content to Anthropic for automated review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable, document the review boundary, and avoid sending repositories or pull requests that should not leave the deployment environment.
+
+Risk: The webhook service uses GitHub credentials that can access repository data and post pull request reviews.
+
+Mitigation: Use least-privilege GitHub credentials, protect the token as a secret, rotate it on exposure, and scope access to the repositories that need automated review.
+
+Risk: A public webhook endpoint without strong controls can be abused or triggered by untrusted requests.
+
+Mitigation: Require a non-empty webhook secret, validate GitHub signatures, add body-size and rate limits, and expose the service only through controlled infrastructure.
+
+Risk: Automated review verdicts can be mistaken for human approval.
+
+Mitigation: Do not count bot approvals as human approval and require human maintainers to review blocking findings and merge decisions.
+
+Risk: Unpinned runtime dependencies can change behavior or introduce vulnerabilities after deployment.
+
+Mitigation: Pin dependencies before deployment and review dependency updates through the same code-review process.
+
+## Reference(s):
+
+- [Smart PR Review ClawHub Page](https://clawhub.ai/fullstackcrew-alpha/skills/smart-pr-review)
+- [Review Checklist](references/review-checklist.md)
+- [Anti-Patterns](references/anti-patterns.md)
+- [Review Examples](references/review-examples.md)
+- [GitHub CLI](https://cli.github.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review report with severity sections, code snippets, remediation guidance, and a merge verdict; webhook mode can post the report as a GitHub PR review comment.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese or English output and optional focus on security, performance, logic, or all review dimensions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

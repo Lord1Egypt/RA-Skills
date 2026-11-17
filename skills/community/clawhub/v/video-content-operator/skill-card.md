@@ -1,44 +1,58 @@
-## Description: <br>
-Helps creators decide what video or social content to make, how to package it for platforms, which source materials to use, and what content move to make next. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps creators decide what video or social content to make, how to package it for platforms, which source materials to use, and what to do next.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External creators, founder-builders, operator creators, and small teams use this skill to clarify creator state, choose source material, package content for platforms, draft content directions, and prepare handoffs for video execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personalization may use local OpenClaw memory/profile files that contain sensitive creator context. <br>
-Mitigation: Review MEMORY.md and USER.md before use, pass only the intended workspace path, and avoid saving extracted context to shared or insecure locations. <br>
-Risk: Content recommendations are strategic drafts and may be incomplete or misaligned with the creator's real goals. <br>
-Mitigation: Review the recommended direction and draft packages before handing them off to a video execution tool. <br>
+## Use Case:
 
+External creators, founder-builders, operators, and small teams use this skill to turn creator context, goals, platforms, and available source materials into content direction, draft packages, and execution handoff briefs.
 
-## Reference(s): <br>
-- [Video Content Operator MVP](references/mvp.md) <br>
-- [Sparki Content Operator MVP Spec](references/mvp-spec.md) <br>
-- [Input Schema](references/input-schema.md) <br>
-- [Output Examples](references/output-examples.md) <br>
-- [Implementation Notes](references/implementation-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown recommendations and JSON execution briefs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local OpenClaw memory/profile files when an explicit workspace path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can read local OpenClaw MEMORY.md and USER.md files and print or write derived creator profile details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against an explicit workspace, avoid --output unless a profile file is intended, and review logs and generated artifacts before sharing them.
+
+Risk: Content recommendations may be based on incomplete creator state, inferred goals, or lightweight platform defaults.
+
+Mitigation: Confirm the creator goal, platform priority, and source material before using a recommendation for public content or handing it off to an editing tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/video-content-operator)
+- [Video Content Operator MVP](artifact/references/mvp.md)
+- [Sparki Content Operator MVP Spec](artifact/references/mvp-spec.md)
+- [Input Schema (MVP)](artifact/references/input-schema.md)
+- [Output Examples](artifact/references/output-examples.md)
+- [Implementation Notes](artifact/references/implementation-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Structured Markdown recommendations and JSON execution briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve creator context, separate content decisions from editing execution, and avoid exposing private memory-derived context unless the user chooses to share or save it.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

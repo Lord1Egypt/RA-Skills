@@ -1,42 +1,57 @@
-## Description: <br>
-Find and engage warm leads on Reddit, X/Twitter, and forums by monitoring for relevant questions, drafting helpful replies, and tracking outreach activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and engage warm leads on Reddit, X/Twitter, and forums by monitoring for relevant questions, drafting helpful replies for approval, and tracking outreach activity.
 
-## Publisher: <br>
-[aisoftgg](https://clawhub.ai/user/aisoftgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisoftgg](https://clawhub.ai/user/aisoftgg)
 
-## Use Case: <br>
-Developers, founders, and growth teams use this skill to find public conversations where their product can help, draft platform-appropriate replies, and maintain a log of outreach sessions and outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repeated lead searches and outreach drafts can become spammy or violate community rules if used without review. <br>
-Mitigation: Keep approval required, use narrow platform and keyword targets, follow community rules, and review every draft before posting. <br>
-Risk: The outreach log can accumulate public-thread history and campaign notes over time. <br>
-Mitigation: Periodically delete or prune the outreach log and avoid recording unnecessary personal data. <br>
-Risk: Direct public posting may occur if the user configures posting platforms without safeguards. <br>
-Mitigation: Set direct-posting platforms to none unless intentional, and require human approval for all public replies. <br>
+## Use Case:
 
+External teams, founders, marketers, and product builders use this skill to find public conversations that match configured products and keywords, draft non-spammy outreach replies, and maintain an activity log.
 
-## Reference(s): <br>
-- [Platform-Specific Tips](references/platform-tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, draft replies, scout configuration, and tracking-log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review before posting replies; can be used with heartbeat-based scouting cadence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automated or repeated outreach could violate platform rules or be perceived as spam.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check each platform and community's rules before engaging, keep replies helpful and customized, and retain approval-required posting.
+
+Risk: The scout log may collect unnecessary personal data from public threads.
+
+Mitigation: Record only the minimum lead and activity details needed for tracking, and define a retention policy for the local scout log.
+
+Risk: Heartbeat-based scouting can increase outreach frequency beyond the user's intent.
+
+Mitigation: Use the documented session interval controls and keep posting disabled unless the user explicitly approves each reply.
+
+## Reference(s):
+
+- [Platform-Specific Tips](references/platform-tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with draft replies, lead summaries, configuration templates, and tracking log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User approval is expected before posting outreach replies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

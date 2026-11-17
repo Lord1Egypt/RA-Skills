@@ -1,117 +1,122 @@
 ---
-name: rollinggo-hotel
-description: Hotel search and pricing via the RollingGo CLI. Use when the user wants to search hotels by destination, filter by date/star/budget/tags/distance, inspect hotel detail and room pricing, or look up hotel tags. Trigger phrases — "search hotels", "find hotels near", "hotel detail", "hotel pricing", "hotel tags", "rollinggo".
-homepage: https://mcp.agentichotel.cn
+name: rollinggo-searchhotel
+version: 1.0.0
+description: 使用 RollingGo CLI 查询酒店信息、筛选结果、读取酒店标签和获取房型价格。当用户需要按目的地 / 日期 / 星级 / 预算 / 标签 / 距离搜索酒店、查看酒店详情与房型报价，或读取酒店标签库时触发本技能。触发短语——"搜索酒店"、"查酒店"、"酒店详情"、"房型价格"、"酒店标签"、"附近酒店"、"rollinggo"。
+homepage: https://rollinggo.store
 metadata:
   {
     "openclaw": {
       "emoji": "🏨",
-      "primaryEnv": "AIGOHOTEL_API_KEY",
+      "skillKey": "rollinggo-searchhotel",
+      "primaryEnv": "RollingGo_API_KEY",
       "requires": {
         "anyBins": ["rollinggo", "npx", "node", "uvx", "uv"],
-        "env": ["AIGOHOTEL_API_KEY"]
-      },
-      "install": [
-        {
-          "id": "node",
-          "kind": "node",
-          "package": "rollinggo",
-          "bins": ["rollinggo"],
-          "label": "Install rollinggo (npm)"
-        },
-        {
-          "id": "uv",
-          "kind": "uv",
-          "package": "rollinggo",
-          "bins": ["rollinggo"],
-          "label": "Install rollinggo (uv)"
-        }
-      ]
+        "env": ["RollingGo_API_KEY"]
+      }
     }
   }
 ---
 
-# RollingGo Hotel CLI
+# RollingGo 酒店 CLI
 
-## When to Use
+## 🚨 前置检查 (Pre-flight Check)
 
-✅ **Use this skill when:**
-- **Searching Candidates:** User wants to find hotels near a specific city, landmark, or address (e.g., "Find hotels near Tokyo Disneyland").
-- **Complex Filtering:** User needs to narrow down options using natural language queries combined with exact dates, guest count, star ratings, budget limits, or distance radius.
-- **Tag & Brand Matching:** User wants to find hotels with specific attributes (e.g., "family friendly", "breakfast included", "Marriott") by first checking the tag dictionary to build exact filters.
-- **Deep Dive & Pricing:** User wants to inspect detailed room plans, real-time pricing, cancellation policies, or availability for a specific hotel ID.
-- **Comparison & Evaluation:** User wants to compare multiple candidate hotels based on returning structured data and current rates.
-- **Hotel Booking:** User is ready to select a room and book a hotel. The returned booking URLs and detail page links can be provided to guide the user to complete their reservation.
+在发起任何命令行查询或执行动作前，**必须首先检查**环境是否具备 `ROLLINGGO_API_KEY`：
+- **无 Key 时**：**严禁发起 CLI 命令**，直接向用户输出友好提示：
+  > “您好！我是您的 RollingGo 酒店服务管家 🏨。
+  > 为了为您查询真实房型与最新实时报价，需要配置 RollingGo API Key 凭证。
+  > 请前往 RollingGo 官方门户免费申请获取：🔗 **https://rollinggo.store**
+  > 获取后在环境中配置 `ROLLINGGO_API_KEY` 即可开启使用！”
 
-❌ **Don't use this skill when:**
-- User asks about non-hotel travel booking (flights, trains, transfers, car rentals).
+---
+
+## 适用范围
+
+✅ **在以下情况使用本技能：**
+- **查找候选酒店：** 用户需要按城市、地标、机场或具体地址搜索附近酒店（例如：“查找东京迪士尼附近的酒店”）。
+- **多条件精准筛选：** 用户需要在搜索时结合自然语言意图，并严格限制入离日期、入住人数、预算上限、星级区间或距离范围。
+- **基于标签与品牌匹配：** 用户想寻找包含特定设施或属于特定品牌的酒店（如“亲子友好”、“包含早餐”、“万豪”等），技能可先查询标签库以进行精准筛选。
+- **查询房型与实时报价：** 用户想深入了解某家具体酒店（通过 hotelId）的可用房型、实时价格、退款政策或具体配置。
+- **酒店对比与评估：** 用户需要基于真实的结构化数据和当前报价，在多个候选酒店中进行对比分析。
+- **预订引导：** 用户选定酒店想要完成预订时。可提取并提供结果中的预订 URL 或酒店主页链接，引导用户直接点击完成购买。
+
+❌ **以下情况不适用：**
+- 用户询问非酒店类的旅游预订业务（如机票、火车票、接送机、租车等）。
 
 ## API Key
 
-Resolution order: `--api-key` flag → `AIGOHOTEL_API_KEY` env var.
+解析顺序：`--api-key` 参数 → `RollingGo_API_KEY` 环境变量。
 
-No key yet? Apply at: https://mcp.agentichotel.cn/apply
+还没有 Key？前往申请：https://rollinggo.store/apply
 
-## Runtime
+## 运行环境
 
-Choose based on user's environment. Load the matching reference file and keep it for the session.
+默认加载 [references/rollinggo-npx.md](references/rollinggo-npx.md)；用户明确使用 `uv`/`uvx`/Python 时改加载 [references/rollinggo-uv.md](references/rollinggo-uv.md)。API Key 持久化配置见 [references/claw-host-env.md](references/claw-host-env.md)。
 
-- **`npm`, `npx`, Node, or no preference:** Load [references/rollinggo-npx.md](references/rollinggo-npx.md)
-- **`uv`, `uvx`, PyPI, or Python:** Load [references/rollinggo-uv.md](references/rollinggo-uv.md)
-- **Parity check or both:** Load both references
+## 版本新鲜度（始终使用最新版）
 
-Default when unspecified → **npm/npx** (broader env compatibility).
+本技能默认策略：每次执行都使用最新发布版本。
 
-## Primary Workflow
+- **npm/npx：** `npx --yes --package rollinggo@latest rollinggo ...`
+- **uvx：** `uvx --refresh --from rollinggo@latest rollinggo ...`
 
-Run these steps in order unless the user is already at a later step.
+如果使用已安装命令而不是临时执行，先升级再运行：
 
-1. Clarify: destination, dates, nights, occupancy, budget, stars, tags, distance
-2. If tag filters needed → run `hotel-tags` first to get valid tag strings
-3. Run `search-hotels` → parse JSON → extract `hotelId`
-4. Run `hotel-detail --hotel-id <id>` for room plans and pricing
-5. If results are weak → loosen filters and retry
+- **npm 全局：** `npm install -g rollinggo@latest`
+- **uv 工具：** `uv tool upgrade rollinggo@latest`
 
-## Commands Quick Reference
+## 主要工作流
+
+除非用户已经把问题限定在某个具体步骤，否则按顺序执行：
+
+1. 明确需求：目的地、日期、晚数、入住人数、预算、星级、标签、距离
+2. 如果需要标签筛选 → 先执行 `hotel-tags` 获取有效标签字符串
+3. 执行 `search-hotels` → 解析 JSON → 提取 `hotelId`
+4. 执行 `hotel-detail --hotel-id <id>` 查询房型和价格
+5. 如果结果不理想 → 放宽筛选条件后重新搜索
+
+## 常用命令速查
 
 ```bash
-# Discover tags
+# 获取标签库
 rollinggo hotel-tags
 
-# Search hotels (minimum required flags)
+# 搜索酒店（最少必填参数）
 rollinggo search-hotels \
-  --origin-query "<user's natural language request>" \
-  --place "<destination>" \
-  --place-type "<value from --help>"
+  --origin-query "<用户的自然语言描述>" \
+  --place "<目的地>" \
+  --place-type "<查看 --help 获取合法值>"
 
-# Hotel detail with pricing
+# 查询酒店详情与价格
 rollinggo hotel-detail \
   --hotel-id <id> \
   --check-in-date YYYY-MM-DD \
   --check-out-date YYYY-MM-DD \
   --adult-count 2 --room-count 1
 
-# Discover all flags
+# 查看所有可用参数
 rollinggo search-hotels --help
 rollinggo hotel-detail --help
 ```
 
-## Key Rules
+## 关键规则
 
-- `--place-type` must use exact values from `rollinggo search-hotels --help`
-- `--star-ratings` format: `min,max` e.g. `4.0,5.0`
-- `--format table` allowed **only** on `search-hotels`; rejected by `hotel-detail` and `hotel-tags`
-- `--child-count` must match the count of `--child-age` flags
-- `--check-out-date` must be later than `--check-in-date`
-- Prefer `--hotel-id` over `--name` whenever available
+- **API Key 前置检查**：调用命令行前，确认环境包含 `ROLLINGGO_API_KEY`。若缺失，停止发起 CLI 命令，提示用户前往 `https://rollinggo.store` 申请获取 API Key 并配置。
+- `--place-type` 必须使用 `rollinggo search-hotels --help` 里显示的精确值
+- `--star-ratings` 格式：`最小值,最大值`，如 `4.0,5.0`
+- `--format table` **只允许**用于 `search-hotels`；`hotel-detail` 和 `hotel-tags` 会拒绝该参数
+- `--child-count` 的数量必须与 `--child-age` 参数的个数一致
+- `--check-out-date` 必须晚于 `--check-in-date`
+- 有 `hotelId` 时优先使用 `--hotel-id`，不要依赖 `--name`
 
-## Output
+## 输出说明
 
-- stdout → result payload (JSON by default)
-- stderr → errors only
-- Exit `0` success · `1` HTTP/network failure · `2` CLI validation failure
-- Results include booking URLs and hotel detail page links for downstream use
+- stdout → 结果数据（默认 JSON）
+- stderr → 仅错误信息
+- 退出码 `0` 成功 · `1` HTTP/网络失败 · `2` CLI 参数校验失败
+- 结果中包含预订 URL 与酒店详情页链接，可供下游直接使用
 
-## Filter Loosening (when no results)
+## 无结果时的放宽策略
 
-Try in order: remove `--star-ratings` → increase `--size` → increase `--distance-in-meter` → remove tag filters → widen dates or budget
+按顺序尝试：移除 `--star-ratings` → 增大 `--size` → 增大 `--distance-in-meter` → 移除标签筛选 → 放宽日期或预算
+

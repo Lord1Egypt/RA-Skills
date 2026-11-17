@@ -1,46 +1,64 @@
-## Description: <br>
-Audio2srtlocal helps an agent generate and run a local Audio2SRT web app for Apple Silicon Macs that transcribes audio with MLX Whisper, translates SRT output, and launches a Python aiohttp backend with a Vite React frontend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-generate and deploy the Audio2SRT project, a MLX Whisper audio transcription and translation Web GUI for Apple Silicon Macs.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-Developers and engineers use this skill to create a local audio transcription and SRT translation project without cloning a remote source repository. It is intended for Apple Silicon macOS environments with Python and Node.js available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated backend exposes unauthenticated transcription APIs beyond the documented localhost-only use. <br>
-Mitigation: Bind the backend to localhost or otherwise restrict network access before processing private audio. <br>
-Risk: The setup writes a project directory, installs dependencies, downloads several gigabytes of models, and runs local web services. <br>
-Mitigation: Run it on a trusted machine and network, preferably in a fresh empty target directory, and review the generated files before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to create a local Audio2SRT transcription and translation web application from bundled templates, install its Python and Node.js dependencies, and launch the local backend and frontend services. It is aimed at Apple Silicon Mac workflows that need local audio-to-SRT generation without cloning source code from a remote repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yun520-1/audio2srtlocal) <br>
-- [File mapping](references/file-mapping.md) <br>
-- [Startup script](references/start.sh) <br>
-- [Backend transcription server](references/transcribe_server.py) <br>
-- [Frontend application](references/src/App.tsx) <br>
-- [Whisper ModelScope model](https://www.modelscope.cn/models/mlx-community/whisper-large-v3-turbo-4bit) <br>
-- [Qwen ModelScope model](https://www.modelscope.cn/models/mlx-community/Qwen2.5-3B-Instruct-4bit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with generated project files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project scaffolding for a Python backend, React frontend, model directory, dependency installation, and startup workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated backend exposes unauthenticated APIs that may be reachable beyond the local browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the backend to 127.0.0.1, restrict CORS to the frontend origin, and add a session token before use on a shared network.
+
+Risk: The backend can process local audio file paths and uploaded files, which can consume local disk, memory, or compute resources.
+
+Mitigation: Remove arbitrary file_path processing, cap upload sizes and job duration, and clean temporary files after processing.
+
+Risk: Dependency and model downloads occur at install or startup time and are not pinned by lockfiles.
+
+Mitigation: Review and pin Python and Node.js dependencies and verify model sources before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/audio2srtlocal)
+- [Publisher profile](https://clawhub.ai/user/yun520-1)
+- [Skill instructions](artifact/SKILL.md)
+- [File mapping](artifact/references/file-mapping.md)
+- [Startup script](artifact/references/start.sh)
+- [Backend server template](artifact/references/transcribe_server.py)
+- [Whisper model on ModelScope](https://www.modelscope.cn/models/mlx-community/whisper-large-v3-turbo-4bit)
+- [Qwen translation model on ModelScope](https://www.modelscope.cn/models/mlx-community/Qwen2.5-3B-Instruct-4bit)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local React/Vite frontend, Python aiohttp backend, dependency files, and a startup script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

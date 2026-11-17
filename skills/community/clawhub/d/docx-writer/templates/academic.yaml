@@ -1,0 +1,41 @@
+# ============================================================
+# docx-writer 模板：academic（标准学术文档 / 论文体例）
+# 用法：Template.load('academic')
+# ============================================================
+name: academic
+base_docx: ../template.docx      # 承载原生脚注样式的基底 docx
+
+page:
+  size: A4
+  margin: { top: 2.54cm, bottom: 2.54cm, left: 3.18cm, right: 3.18cm }
+  background: null               # 例：{ color: "F7F7F7" }
+
+styles:
+  title:    { cn: 黑体, en: Arial,            size: 14pt,   bold: true,  align: center, indent: 0,    line_spacing: 1.5 }
+  author:   { cn: 楷体, en: Times New Roman,  size: 10.5pt, align: center, indent: 0,    line_spacing: 1.5 }
+  abstract: { cn: 宋体, en: Times New Roman,  size: 9pt,    align: left,   indent: 0.74cm, line_spacing: 1.5 }
+  h1:       { cn: 黑体, en: Arial,            size: 12pt,   bold: true,  align: center, indent: 0,    line_spacing: 1.5 }
+  h2:       { cn: 黑体, en: Arial,            size: 12pt,   bold: true,  align: left,   indent: 0.74cm, line_spacing: 1.5 }
+  h3:       { cn: 黑体, en: Arial,            size: 10.5pt, bold: true,  align: left,   indent: 0.74cm, line_spacing: 1.5 }
+  body:     { cn: 宋体, en: Times New Roman,  size: 10.5pt, align: left,   indent: 0.74cm, line_spacing: 1.5 }
+  caption:  { cn: 宋体, en: Times New Roman,  size: 9pt,    align: center, indent: 0,    line_spacing: 1.5 }
+  image:    { align: center, width: 14cm }
+  formula:  { align: center, indent: 0, scale: 0.90, line_spacing: 1.5, inline_scale: 0.96, inline_border: 1pt, mode: auto }
+  signature: { cn: 楷体, en: Times New Roman,  size: 10.5pt, align: right,  indent: 0,    line_spacing: 1.5 }
+  table:
+    mode: three_line
+    word_style: Normal Table
+    header: { cn: 黑体, en: Arial,           size: 9pt, bold: true, align: center }
+    cell:   { cn: 宋体, en: Times New Roman, size: 9pt, align: center }
+
+footnote:
+  enabled: true
+  cn: 宋体
+  en: Times New Roman
+  size: 9pt
+  numbering: per_page        # per_page | continuous
+  num_fmt: decimal
+
+features:
+  fix_quotes: true
+  superscript_footnotes: true

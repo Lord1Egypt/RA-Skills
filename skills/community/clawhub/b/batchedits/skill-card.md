@@ -1,43 +1,59 @@
-## Description: <br>
-Autonomously edit videos, add captions, and remove silences via BatchEdits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit videos in bulk with BatchEdits - add captions, remove silences, crop to 9:16, zoom and cut long videos into clips with the BatchEdits CLI (or MCP server), then download the results.
 
-## Publisher: <br>
-[chuckwhisler](https://clawhub.ai/user/chuckwhisler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuckwhisler](https://clawhub.ai/user/chuckwhisler)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw to BatchEdits for captioning videos, removing silences, applying reusable editing styles, uploading local videos, starting remote processing jobs, and checking job status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected local videos to BatchEdits for remote processing. <br>
-Mitigation: Confirm the exact file path before upload and use the skill only for videos that may be sent to BatchEdits. <br>
-Risk: The workflow asks the agent to execute a server-generated curl command. <br>
-Mitigation: Inspect the full curl command and destination domain before running it. <br>
-Risk: The skill requires a sensitive OAuth client token. <br>
-Mitigation: Use a scoped, revocable BatchEdits token and avoid exposing it in shared logs or prompts. <br>
+## Use Case:
 
+Content creators and teams use this skill to batch edit videos by adding captions, removing silence, reframing to 9:16, zooming on key moments, and cutting long videos into clips, then downloading the results.
 
-## Reference(s): <br>
-- [BatchEdits MCP endpoint](https://batchedits.com/api/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/chuckwhisler/batchedits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OAuth token setup, MCP server configuration, tool-call sequencing, and upload curl command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The security review had partial coverage; the referenced package and unresolved local references were not fully assessed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and resolve relevant local references before installing.
+
+Risk: Video files selected for processing are sent to BatchEdits.com.
+
+Mitigation: Choose only videos approved for processing and confirm they may be sent to the service.
+
+Risk: An exposed BATCHEDITS_API_KEY could allow unauthorized account access.
+
+Mitigation: Keep the key in the environment and never include it in commands, URLs, or chat messages.
+
+## Reference(s):
+
+- [BatchEdits CLI documentation](https://batchedits.com/docs/cli?utm_source=clawhub&utm_medium=skill)
+- [BatchEdits MCP setup guide](https://batchedits.com/docs/mcp?utm_source=clawhub&utm_medium=skill)
+- [BatchEdits npm package](https://www.npmjs.com/package/batchedits)
+
+## Skill Output:
+
+**Output Type(s):** [Edited video files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Video files with Markdown workflow guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports batches of up to 50 videos; processing and AI clips use credits.]
+
+## Skill Version(s):
+
+1.0.11 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

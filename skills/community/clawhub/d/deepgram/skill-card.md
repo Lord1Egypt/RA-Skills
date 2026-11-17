@@ -1,42 +1,55 @@
-## Description: <br>
-Command-line guidance for using Deepgram's CLI to transcribe local files, URLs, microphone input, and piped audio with configurable speech-to-text options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line guidance for using the Deepgram CLI to transcribe local files, remote audio URLs, stdin streams, and live microphone input.
 
-## Publisher: <br>
-[nerkn](https://clawhub.ai/user/nerkn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nerkn](https://clawhub.ai/user/nerkn)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate the Deepgram CLI for speech-to-text transcription from files, URLs, live microphone input, or STDIN. It supports scripting workflows that capture transcripts as JSON, text, subtitles, or other CLI-supported formats for downstream processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Deepgram CLI uses a locally stored API key. <br>
-Mitigation: Protect the API key, avoid committing it to source control, and rotate it if exposure is suspected. <br>
-Risk: Audio submitted for transcription may contain confidential, personal, or regulated information. <br>
-Mitigation: Transcribe only audio the user is authorized to send to Deepgram and review applicable data-handling requirements before use. <br>
-Risk: Installing the wrong package could expose credentials or audio data. <br>
-Mitigation: Verify that @deepgram/cli is the official package before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerkn/deepgram) <br>
-- [Publisher profile](https://clawhub.ai/user/nerkn) <br>
+## Use Case:
+
+Developers and operators use this skill to install and authenticate the Deepgram CLI, run speech-to-text transcription jobs, and capture transcript output for scripts, search, summarization, or subtitle workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Audio files, remote audio, stdin streams, or microphone input may be sent to Deepgram for transcription.
+
+Mitigation: Use the skill only with audio that is allowed under the user's Deepgram account settings and applicable data handling obligations.
+
+Risk: Authentication uses a Deepgram API key stored locally by the CLI.
+
+Mitigation: Use a revocable, least-privilege API key and rotate it if the local environment is shared or compromised.
+
+Risk: The documented install command uses a global npm package.
+
+Mitigation: Prefer a pinned or isolated installation when possible and install only if the Deepgram CLI package is trusted.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcript output depends on Deepgram CLI flags and may include JSON, text, SRT, or VTT.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CLI usage patterns for JSON, text, SRT, and VTT transcript output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

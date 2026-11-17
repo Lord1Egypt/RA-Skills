@@ -1,40 +1,56 @@
-## Description: <br>
-Analyze federal government contracting data from SAM.gov, USAspending, and SBIR to profile contractors, find opportunities, and assess agency spending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze federal government contracting data from SAM.gov, USAspending, and SBIR to profile contractors, find opportunities, and assess agency spending.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Government contracting, capture, and business development analysts use this skill to research contractors, scan federal opportunities, and assess agency spending patterns from public GovCon data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GovCon searches, contractor names, opportunity interests, and related analysis prompts are sent to the remote Pipeworx MCP gateway. <br>
-Mitigation: Do not submit confidential procurement strategy, sensitive business findings, or other information that should not be processed by the gateway. <br>
-Risk: The skill exposes remember and recall behavior for saving intermediate findings. <br>
-Mitigation: Store only information intended to persist, and avoid saving confidential or sensitive procurement analysis. <br>
+## Use Case:
 
+Developers, GovCon analysts, and capture teams use this skill to connect an agent to Pipeworx GovCon Intel MCP for contractor profiles, opportunity scans, agency spending landscapes, award searches, and SBIR/STTR research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-govcon-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with MCP server configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing GovCon analysis, search guidance, and setup configuration for a remote Pipeworx MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: GovCon research may be sent to a third-party remote MCP service operated by Pipeworx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only information you are comfortable sending to Pipeworx; avoid confidential bids, customer names, procurement strategy, controlled information, and personal data unless approved for that service.
+
+Risk: The skill recommends remember/recall persistent memory tools without documented retention or deletion controls.
+
+Mitigation: Avoid remember/recall for sensitive intermediate findings until retention, deletion, and user-control policies are understood.
+
+## Reference(s):
+
+- [Pipeworx Govcon Analyst ClawHub listing](https://clawhub.ai/brucegutman/skills/pipeworx-govcon-analyst)
+- [SAM.gov](https://sam.gov/)
+- [USAspending.gov](https://www.usaspending.gov/)
+- [SBIR.gov](https://www.sbir.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown text with MCP configuration JSON and structured research findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include contractor, opportunity, agency, award, spending, and SBIR/STTR findings returned through a third-party remote MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

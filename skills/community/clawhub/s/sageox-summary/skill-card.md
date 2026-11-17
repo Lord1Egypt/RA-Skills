@@ -1,45 +1,61 @@
-## Description: <br>
-Generate an overall team summary covering the last 24 hours across all SageOx-enabled teams. Reads distilled daily entries via `ox distill history` and produces a structured, Slack-ready overview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate an overall team summary covering the last 24 hours across all SageOx-enabled teams. Reads distilled daily entries via `ox distill history` and produces a structured, Slack-ready overview.
 
-## Publisher: <br>
-[galexy](https://clawhub.ai/user/galexy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[galexy](https://clawhub.ai/user/galexy)
 
-## Use Case: <br>
-Developers, product managers, and team leads use this skill to convert new SageOx distilled daily entries across configured teams into a Slack-ready 24-hour activity summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected SageOx distilled team entries are sent through the Claude CLI using the user's existing Claude credentials. <br>
-Mitigation: Use the skill only in environments where sending the selected team summaries through the configured Claude CLI account is approved. <br>
-Risk: The skill installs and checks a pinned ox binary under the user's home directory. <br>
-Mitigation: Keep the checksum-verified pinned install flow, review the pinned ox version during upgrades, and avoid substituting package-manager installs for this skill. <br>
-Risk: The skill depends on local OpenClaw memory files for install and summary state. <br>
-Mitigation: Treat local state as user-writable, keep the artifact's validation checks for paths and entry ids, and review local state paths in stricter environments. <br>
+## Use Case:
 
+Developers and team leads use this skill to collect new SageOx daily distill entries across configured teams and synthesize them into a Slack-ready status summary.
 
-## Reference(s): <br>
-- [SageOx](https://sageox.ai) <br>
-- [sageox-distill skill](https://clawhub.ai/skills/sageox-distill) <br>
-- [ox distill history PR](https://github.com/sageox/ox/pull/507) <br>
-- [Installing ox](references/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Slack mrkdwn summary, with concise shell-command or configuration guidance when prerequisites fail.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes new SageOx distilled daily entries from the last 24-hour window and uses local state to avoid repeat summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs and checks a pinned local ox binary under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the bundled checksum-pinned install flow and review the install guidance before running it.
+
+Risk: Selected SageOx team activity is sent to Claude through the user's existing Claude credentials.
+
+Mitigation: Confirm the data is appropriate for Claude processing and review the generated Slack summary before posting.
+
+Risk: Distilled entries may contain user-supplied or adversarial text that can influence the generated summary.
+
+Mitigation: Treat the summary as a draft and check citations and claims against the underlying distill entries.
+
+## Reference(s):
+
+- [SageOx homepage](https://sageox.ai)
+- [SageOx Distill skill](https://clawhub.ai/skills/sageox-distill)
+- [ClawHub skill page](https://clawhub.ai/galexy/skills/sageox-summary)
+- [ox distill history PR](https://github.com/sageox/ox/pull/507)
+- [Installing ox](references/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Slack mrkdwn summary with setup and shell-command guidance when prerequisites need attention.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ox, claude, and jq; uses existing Claude credentials to summarize selected SageOx distill entries.]
+
+## Skill Version(s):
+
+0.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

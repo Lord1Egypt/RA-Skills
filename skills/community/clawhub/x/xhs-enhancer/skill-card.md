@@ -1,38 +1,49 @@
-## Description: <br>
-Xhs Enhancer is a Xiaohongshu content-helper stub that defines placeholder trend analysis, note generation, and competitor monitoring helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Enhancer is a Xiaohongshu ecommerce helper stub that sketches trend analysis, note generation, and competitor monitoring workflows.
 
-## Publisher: <br>
-[reroc8](https://clawhub.ai/user/reroc8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reroc8](https://clawhub.ai/user/reroc8)
 
-## Use Case: <br>
-Developers and creators can use this release as a starting point for Xiaohongshu content-assistance workflows. The current implementation is placeholder-only and should be reviewed before relying on it for automation or generated content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release appears unfinished, so users may expect real Xiaohongshu automation that is not implemented yet. <br>
-Mitigation: Treat the skill as a placeholder, inspect outputs before use, and wait for a future version with working code before depending on it. <br>
-Risk: Server-resolved provenance is unavailable for this version. <br>
-Mitigation: Review the publisher and source package before using the skill in production or sensitive workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and ecommerce operators can use this skill as a starting point for Xiaohongshu content generation, trend analysis, and competitor-monitoring workflows. The current artifact is sparse and should be reviewed before relying on it for real automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown usage notes and JavaScript object results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current implementation returns placeholder empty results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sparse documentation may cause users to overestimate the current Xiaohongshu automation capabilities.
+
+Mitigation: Review the Chinese-language documentation and artifact behavior before installing; treat this release as a placeholder unless future versions document integrations and permissions clearly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reroc8/skills/xhs-enhancer)
+- [Publisher profile](https://clawhub.ai/user/reroc8)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript object outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included JavaScript methods currently return placeholder objects for trends, generated notes, hashtags, images, competitors, and insights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

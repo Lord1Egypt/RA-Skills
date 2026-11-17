@@ -1,39 +1,58 @@
-## Description: <br>
-Provides agents with Markdown-formatted search results from a local SearXNG instance for private market, technical, news, and research queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw agents with a local SearXNG search helper that queries a trusted localhost SearXNG instance and returns agent-friendly Markdown search results.
 
-## Publisher: <br>
-[upsurge911-lgtm](https://clawhub.ai/user/upsurge911-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[upsurge911-lgtm](https://clawhub.ai/user/upsurge911-lgtm)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to query a local SearXNG service for market intelligence, technical research, real-time briefings, and searches where data sovereignty matters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive searches may be logged or forwarded by the configured SearXNG instance or its enabled upstream engines. <br>
-Mitigation: Use a trusted local SearXNG instance and review enabled engines, logging, and forwarding behavior before running sensitive queries. <br>
-Risk: The skill depends on a local SearXNG service being reachable at http://localhost:8080. <br>
-Mitigation: Confirm the service is running and configured before relying on the generated search results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/upsurge911-lgtm/upsurge-searxng) <br>
+## Use Case:
 
+Developers and agent operators use this skill to run local SearXNG queries for market intelligence, technical research, real-time briefings, and data-sovereignty-sensitive searches, with results formatted for agent ingestion.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown search results with titles, source names, URLs, and excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local SearXNG service at http://localhost:8080 and supports category, count, time range, and engine filters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a local SearXNG service, so search privacy depends on how that service is deployed, logged, and configured.
+
+Mitigation: Run it only against a trusted SearXNG instance bound to loopback or a trusted Docker network, and review enabled engines and logging before sensitive searches.
+
+Risk: The documentation makes strong privacy claims that the security evidence characterizes as overclaiming.
+
+Mitigation: Treat the skill as a local search helper rather than a complete privacy guarantee, and validate the SearXNG deployment against organizational data-handling requirements.
+
+Risk: Default output appends Upsurge attribution, which may be inappropriate in some downstream agent reports.
+
+Mitigation: Review generated Markdown before external use and adjust downstream formatting policies where attribution is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/upsurge911-lgtm/skills/upsurge-searxng)
+- [Expected local SearXNG service](http://localhost:8080)
+- [Expected SearXNG search endpoint](http://localhost:8080/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown search results with result titles, source URLs, snippets, and an optional time-filter note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted local SearXNG service at http://localhost:8080; defaults to English results with safe search enabled.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

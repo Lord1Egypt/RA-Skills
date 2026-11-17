@@ -1,41 +1,52 @@
-## Description: <br>
-Handles programming requests asynchronously by delegating coding work to background sub-agents, confirming receipt immediately, and reporting progress or completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Async Programming delegates programming requests to background subagents so the agent can acknowledge the request immediately and continue the conversation while work runs.
 
-## Publisher: <br>
-[broommonk](https://clawhub.ai/user/broommonk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[broommonk](https://clawhub.ai/user/broommonk)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineering agents use this skill to handle coding, bug fixing, refactoring, configuration, dependency, and scripting requests asynchronously through subagents while keeping the user informed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill automatically delegates broad programming requests to background coding agents, which can lead to file edits, configuration changes, or dependency additions without a clear consent boundary.
+
+Mitigation: Install only where asynchronous coding delegation is acceptable, and add an explicit confirmation requirement for sensitive or ambiguous tasks.
+
+Risk: Concurrent background tasks may make it harder for users to track scope and outcomes across repositories.
+
+Mitigation: Use clear task labels, progress summaries, and completion reports before relying on generated changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding assistants use this skill to keep a conversation responsive while programming tasks are delegated to background sub-agents. It is intended for coding, bug fixing, refactoring, scripting, project configuration, dependency installation, progress tracking, and completion reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad programming requests may start background coding agents without a clear per-task opt-in. <br>
-Mitigation: Confirm scope and user intent before spawning sub-agents, and require review before applying or accepting generated code changes. <br>
-Risk: Concurrent background agents may modify files or repositories beyond the user's intended scope. <br>
-Mitigation: Constrain sub-agent filesystem and repository access, cap concurrency, monitor running tasks, and stop jobs that exceed the approved scope. <br>
+**Output Format:** [Markdown status updates with inline command and configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/broommonk/async-programming) <br>
-- [Artifact repository reference](https://git.kingcms.cn/OpenClaw/Skills-Collection) <br>
+**Other Properties Related to Output:** [Produces task confirmations, progress summaries, completion reports, and failure explanations for delegated programming work.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with sub-agent invocation examples, task confirmation templates, progress summaries, and completion reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate up to 8 concurrent background coding sub-agents according to the artifact configuration.] <br>
+1.0.0 (source: server release metadata and skill.yaml)
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact skill.yaml) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

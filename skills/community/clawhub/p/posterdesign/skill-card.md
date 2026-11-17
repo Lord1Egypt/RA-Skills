@@ -1,42 +1,54 @@
-## Description: <br>
-Generates poster and social image designs by selecting visual-rag templates, filling template slots, and returning rendered PNG images through the disclosed MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+claw_poster helps agents create posters and social images by searching visual-rag templates, filling text slots, rendering PNGs, and checking output quality.
 
-## Publisher: <br>
-[zooagentpm](https://clawhub.ai/user/zooagentpm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zooagentpm](https://clawhub.ai/user/zooagentpm)
 
-## Use Case: <br>
-Creators, marketers, and agents use this skill to generate promotional posters, event notices, Xiaohongshu covers, and similar campaign images. It guides template search, slot filling, rendering, and quality checks before delivering the final PNG output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design prompts and any brand, account, date, or campaign details are sent to an external visual-rag MCP service on an ngrok domain. <br>
-Mitigation: Avoid confidential, regulated, or unreleased business information unless the service operator and its data handling are trusted. <br>
-Risk: Template slot content can be inaccurate or visually flawed if required factual details are missing or text exceeds slot constraints. <br>
-Mitigation: Ask for real account, brand, date, or campaign details when required; follow slot limits and inspect the returned quality report and rendered image before delivery. <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to turn poster, cover, and event-image requests into rendered PNG designs. It guides template selection, slot filling, rendering, and quality checks for models with or without visual inspection capabilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zooagentpm/posterdesign) <br>
-- [visual-rag MCP service endpoint](https://syncopated-retractively-anitra.ngrok-free.dev/mcp) <br>
-- [v2.5 changelog](artifact/v2.5/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Images, Text, Guidance] <br>
-**Output Format:** [PNG images with accompanying text quality report and download links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns render and inspect images; may include slot crop checks and adjustment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: User design content is sent to a temporary external MCP service whose operator cannot be clearly verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the publisher and endpoint operator, and avoid sending confidential campaign plans, customer data, credentials, or sensitive brand material.
+
+Risk: Generated images and download links may be unsuitable for public use without review.
+
+Mitigation: Review generated images, quality reports, and download links before publishing or sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zooagentpm/skills/posterdesign)
+- [visual-rag MCP endpoint](https://syncopated-retractively-anitra.ngrok-free.dev/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Files]
+
+**Output Format:** [Chat text with MCP tool calls, PNG image outputs, download links, and quality-check reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill expects agents to inspect generated render and annotation images before returning final assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Avoid common TensorFlow mistakes around tf.function retracing, GPU memory, data pipeline bottlenecks, shape handling, gradients, training, and model saving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common TensorFlow mistakes: tf.function retracing, GPU memory, data pipeline bottlenecks, and gradient traps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and machine learning engineers use this skill as a TensorFlow troubleshooting reference when diagnosing common graph tracing, GPU memory, input pipeline, shape, gradient, training, and model saving issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: TensorFlow GPU memory or training configuration advice can affect important workloads if applied without review. <br>
-Mitigation: Review proposed GPU memory and training configuration changes in a non-critical environment before applying them to production or high-value workloads. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/tensorflow) <br>
+## Use Case:
 
+Developers and engineers use this skill for concise TensorFlow implementation guidance while writing, debugging, or reviewing model training and inference code.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference guidance for TensorFlow troubleshooting; no commands are requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TensorFlow guidance may be incomplete for a project's TensorFlow version, hardware, or training setup.
+
+Mitigation: Review suggestions against the project's installed TensorFlow version and test changes on representative workloads before relying on them.
+
+Risk: Configuration suggestions such as GPU memory growth or CUDA_VISIBLE_DEVICES can change runtime behavior.
+
+Mitigation: Apply configuration changes in a controlled environment before using them in production jobs.
+
+## Reference(s):
+
+- [ClawHub TensorFlow skill page](https://clawhub.ai/ivangdavila/skills/tensorflow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline TensorFlow and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; no executable files or automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

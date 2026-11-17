@@ -1,46 +1,61 @@
-## Description: <br>
-YouTube Shorts 자동 생성 및 업로드 파이프라인. Deevid AI Agent로 이미지→영상(BGM+음성 포함) 생성 후 YouTube에 업로드. 크론잡으로 매일 자동 실행 가능. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a YouTube Shorts pipeline that creates short vertical videos with Deevid AI Agent and uploads them to YouTube.
 
-## Publisher: <br>
-[kangjjang](https://clawhub.ai/user/kangjjang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kangjjang](https://clawhub.ai/user/kangjjang)
 
-## Use Case: <br>
-Developers and creators use this skill to generate short-form vertical videos with Deevid AI Agent, download the rendered media, and upload it to YouTube Shorts. It also provides configuration guidance for repeatable channel-specific posting workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The upload flow can publish videos publicly even when a non-public privacy option is selected. <br>
-Mitigation: Review and fix the upload script's privacy handling before enabling automated uploads or cron jobs. <br>
-Risk: OAuth credential files such as client_secret.json and token.json grant access to YouTube upload capabilities. <br>
-Mitigation: Protect credential files, limit access to the execution environment, and rotate credentials if they are exposed. <br>
-Risk: Automated uploads can affect a live YouTube channel without additional human review. <br>
-Mitigation: Test with a dedicated YouTube channel and require manual review before connecting the workflow to production channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kangjjang/youtube-shorts-automation) <br>
-- [Config Example](references/config_example.json) <br>
-- [Deevid Agent Video Workflow](references/deevid-agent-workflow.md) <br>
-- [YouTube Shorts Upload](references/youtube-upload.md) <br>
-- [Deevid AI Agent](https://deevid.ai/ko/agent) <br>
-- [YouTube Upload OAuth Scope](https://www.googleapis.com/auth/youtube.upload) <br>
+## Use Case:
 
+Content creators and channel operators use this skill to generate 9:16 AI-assisted Shorts, configure upload metadata, publish with YouTube OAuth, and optionally run the workflow on a daily schedule.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OAuth setup steps, Deevid workflow instructions, YouTube upload commands, and channel-specific configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Uploads may publish publicly even when private or unlisted visibility is requested.
+
+Mitigation: Fix or remove the broken privacy option, then confirm upload visibility and target channel before publishing.
+
+Risk: OAuth client secrets and tokens may expose YouTube upload access if stored in shared folders or source control.
+
+Mitigation: Keep OAuth files outside shared locations, exclude them from source control, and rotate credentials if exposure is suspected.
+
+Risk: Scheduled runs can repeatedly publish generated content without a final human visibility check.
+
+Mitigation: Enable scheduling only after publication visibility, channel identity, and content review expectations are explicit.
+
+## Reference(s):
+
+- [Deevid Agent Video Generation Workflow](references/deevid-agent-workflow.md)
+- [YouTube Shorts Upload](references/youtube-upload.md)
+- [Channel Configuration Example](references/config_example.json)
+- [Deevid Agent](https://deevid.ai/ko/agent)
+- [Deevid AI](https://deevid.ai/ko/)
+- [YouTube Shorts Output URL Pattern](https://youtube.com/shorts/{video_id})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference OAuth credential files, generated video files, and scheduled execution settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

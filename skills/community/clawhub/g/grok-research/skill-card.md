@@ -1,38 +1,52 @@
-## Description: <br>
-Crypto research via Grok model's real-time X/Twitter knowledge; forwards the user's query as-is to a Grok API for token narrative, story, sentiment, and crypto Twitter research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto research via Grok model real-time X/Twitter knowledge, forwarding the user's query as-is to the Grok API for token narrative, story, and sentiment research.
 
-## Publisher: <br>
-[arespollo](https://clawhub.ai/user/arespollo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arespollo](https://clawhub.ai/user/arespollo)
 
-## Use Case: <br>
-Developers and agents use this skill to send a user's crypto research question to a Grok API and return narrative, story, sentiment, or crypto Twitter context about a token or project. It is not intended for price analysis, on-chain data analysis, or trading execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's full research message verbatim to an external Grok API endpoint. <br>
-Mitigation: Avoid including secrets, private wallet details, nonpublic project information, or trading strategy in prompts. <br>
-Risk: The activation wording is broad enough that it may be invoked for general research requests. <br>
-Mitigation: Invoke it explicitly for crypto narrative or sentiment research and review whether the request should be sent to the external service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and crypto researchers use this skill to ask Grok-compatible models what X/Twitter discourse says about a token or project narrative. It is not intended for price analysis, on-chain data retrieval, or trade execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text response on stdout with status and errors on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires A9_GROK_API_KEY and supports a selectable Grok model; requests are sent to the disclosed external API endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research prompts are sent to https://ai.a9.bot/v1 using A9_GROK_API_KEY.
+
+Mitigation: Do not include wallet secrets, private strategies, unreleased project details, or unrelated sensitive text in prompts.
+
+Risk: The skill is scoped for crypto narrative research and can produce misleading results if used for trading or price decisions.
+
+Mitigation: Use it only for token narrative, story, sentiment, or CT-discourse research, and avoid invoking it for price analysis, on-chain data, or trade execution.
+
+## Reference(s):
+
+- [Grok-compatible API endpoint](https://ai.a9.bot/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Discord-ready Markdown response from Grok]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forwards the exact user research prompt to the external API and requests up to 8192 output tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

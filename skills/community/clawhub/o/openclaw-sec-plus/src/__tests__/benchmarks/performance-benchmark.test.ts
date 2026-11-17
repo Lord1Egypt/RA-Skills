@@ -475,7 +475,7 @@ openclaw_security:
     test('SecretDetector - with secrets', async () => {
       const config = await ConfigManager.load(configPath);
       const detector = new SecretDetector(config.modules.secret_detector);
-      const secretText = 'My AWS key is AKIAIOSFODNN7EXAMPLE and my password is SuperSecret123!';
+      const secretText = 'My AWS key is REDACTED-SECRET and my password is SuperSecret123!';
 
       const result = await benchmark.runBenchmark(
         'SecretDetector (secrets)',

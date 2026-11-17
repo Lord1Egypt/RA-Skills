@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn74x69mw08hvhhb507vg349c184v1qq",
+  "name": "Hermes AGI 指令迭代与执行监督",
   "slug": "hermes-agi-supervisor",
-  "version": "1.2.0",
-  "publishedAt": 1776180963332
+  "version": "1.0.0",
+  "description": "AGI指令迭代与执行监督工具，解决假大空、不落地问题",
+  "author": "mengxiangshu666"
 }

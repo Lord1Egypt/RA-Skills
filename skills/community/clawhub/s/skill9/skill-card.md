@@ -1,44 +1,59 @@
-## Description: <br>
-Cloud-synced skill vault - backup, version, and sync your AI agent skills across machines and platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud-synced skill vault - backup, version, and sync your AI agent skills across machines and platforms.
 
-## Publisher: <br>
-[shonge](https://clawhub.ai/user/shonge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shonge](https://clawhub.ai/user/shonge)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, configure, back up, sync, version, migrate, and uninstall AI agent skills across supported tools and machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sync local skill files to skill9's cloud service, which may expose secrets, proprietary content, or sensitive skill logic. <br>
-Mitigation: Review local skills before syncing, remove secrets or proprietary content, and use the cloud sync only when the user accepts that data transfer. <br>
-Risk: Setup and automation instructions can add ongoing sync behavior through agent rules or editor hooks. <br>
-Mitigation: Inspect configured AGENTS.md rules and Claude or Cursor hooks, and disable automatic syncing when continuous backup is not desired. <br>
-Risk: Installation depends on an npm package and GitHub login flow whose scopes and package integrity are outside the artifact. <br>
-Mitigation: Verify the npm package source and requested GitHub permissions before login or installation. <br>
+## Use Case:
 
+Developers and agent users use this skill to install, configure, back up, version, sync, restore, and remove AI agent skills across supported local platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shonge/skill9) <br>
-- [skill9 setup guide](https://skill9.ai/SETUP.md) <br>
-- [skill9 uninstall guide](https://skill9.ai/UNINSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands support --json and --platform options where documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may upload broad sets of local skill files to a cloud service, including files that contain secrets, private prompts, credentials, internal URLs, or proprietary workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review skill contents before sync, remove sensitive material, and prefer selective or manual backup when the full skill set should not leave the machine.
+
+Risk: Setup behavior can encourage persistent auto-backup after skill changes without enough scoping or consent detail.
+
+Mitigation: Confirm the desired backup scope before enabling automation and inspect AGENTS.md or hook changes before allowing persistent auto-backup.
+
+Risk: Direct installation through a remote shell script can run code before local review.
+
+Mitigation: Avoid direct `curl | sh`; inspect the installer and CLI behavior before running installation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shonge/skills/skill9)
+- [Setup guide](https://skill9.ai/SETUP.md)
+- [Uninstall guide](https://skill9.ai/UNINSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands commonly support --json and --platform options.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

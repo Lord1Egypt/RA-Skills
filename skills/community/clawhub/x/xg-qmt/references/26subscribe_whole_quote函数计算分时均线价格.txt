@@ -1,0 +1,25 @@
+#encoding:gbk
+
+"""
+计算分时均线demo
+根据全推行情实时计算分时均线价格
+此demo采用的宁德时代作为演示
+"""
+def init(ContextInfo):
+	ContextInfo.subscribe_whole_quote(['300750.SZ'], on_quote)
+
+def on_quote(datas):
+	print(datas)
+	for s in datas:
+		tick_data = datas[s]
+		cur_amount = tick_data['amount']
+		cur_vol = tick_data['pvolume']
+		avg_tick_price = cur_amount / cur_vol
+		print(f'合约: {s} 当前均价: {avg_tick_price}, 最新价:{tick_data["lastPrice"]}')
+
+def after_init(C):
+	pass
+
+def handlebar(ContextInfo):
+	#计算当前主图的cci
+	pass

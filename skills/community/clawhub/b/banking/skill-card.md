@@ -1,45 +1,64 @@
-## Description: <br>
-Manage retail and business banking workflows with payment operations, account controls, reconciliation, fraud response, and compliant communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage retail and business banking workflows with payment operations, account controls, reconciliation, fraud response, and compliant communication.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and operations teams use this skill to classify banking requests, verify payment controls, triage reconciliation and fraud incidents, and draft compliant customer-facing updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local notes in ~/banking/ may contain sensitive banking workflow context if users over-collect details. <br>
-Mitigation: Keep notes minimal and operational, avoid credentials and full account numbers, and periodically remove stale incident details. <br>
-Risk: Payment, fraud, or compliance guidance could be mistaken for approval to move funds or make legal determinations. <br>
-Mitigation: Use the skill as support for official procedures only, confirm required controls and approvals, and escalate legal, sanctions, AML, or irreversible-funds decisions to qualified owners. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/banking) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill homepage](https://clawic.com/skills/banking) <br>
-- [Banking setup](setup.md) <br>
-- [Payment operations guide](payment-ops.md) <br>
-- [Banking incident response](incident-response.md) <br>
-- [Compliance scope boundaries](compliance-scope.md) <br>
+## Use Case:
 
+Employees and operations teams use this skill to structure retail and business banking workflows for onboarding, payments, reconciliation, fraud incidents, and customer-safe communications. It helps classify requests, collect jurisdiction and account context, confirm controls, and escalate compliance-sensitive cases.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, status summaries, customer message drafts, and local memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference or update concise local notes under ~/banking/ when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local banking notes may capture sensitive banking context if used carelessly.
+
+Mitigation: Keep notes under ~/banking/ limited to operational controls, status, decisions, and non-sensitive context; do not store customer secrets, full account numbers, credentials, or regulated personal data.
+
+Risk: Banking workflow guidance could be mistaken for legal advice or authorization to execute financial actions.
+
+Mitigation: Use the skill as an operational checklist and escalation aid; route legal determinations, KYC, AML, sanctions issues, and irreversible fund movement to qualified owners with documented approvals.
+
+Risk: Payment guidance without verified controls can increase fraud or operational loss risk.
+
+Mitigation: Confirm sender authority, beneficiary validation, amount, cutoff timing, approvals, and rollback or recall paths before giving execution steps.
+
+## Reference(s):
+
+- [ClawHub Banking Skill](https://clawhub.ai/ivangdavila/skills/banking)
+- [Banking Skill Homepage](https://clawic.com/skills/banking)
+- [Setup - Banking](artifact/setup.md)
+- [Banking Intake Checklist](artifact/intake-checklist.md)
+- [Payment Operations Guide](artifact/payment-ops.md)
+- [Banking Incident Response](artifact/incident-response.md)
+- [Customer Messaging Patterns](artifact/customer-messaging.md)
+- [Compliance Scope Boundaries](artifact/compliance-scope.md)
+- [Memory Template - Banking](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance, checklists, communication templates, and local memory file structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain concise local operational notes under ~/banking/ when the agent uses the memory template.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Creates Word-compatible .docx documents from structured HTML and edits existing DOCX files through text replacement, unpacking, repacking, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WPS Word Document helps agents create or edit Word .docx documents, including HTML-to-DOCX generation, targeted text replacement, DOCX unpacking, validation, and repacking.
 
-## Publisher: <br>
-[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123)
 
-## Use Case: <br>
-Developers and document-producing agents use this skill to generate WPS/Word-compatible .docx deliverables from HTML or to make controlled text replacements in existing Word documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML-to-DOCX conversion can contact remote image URLs embedded in input HTML. <br>
-Mitigation: Use trusted HTML, prefer local or embedded images, and avoid converting untrusted HTML that references remote image URLs. <br>
-Risk: DOCX unpacking can remove the selected output directory before extraction. <br>
-Mitigation: Run the skill in a dedicated working directory and never point unpack output at a folder containing important files. <br>
-Risk: The server security verdict is suspicious even though static scanning was clean. <br>
-Mitigation: Review the skill before installing and inspect generated or modified documents before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to deliver a Word document or make targeted edits to an existing DOCX file. It is most useful for generating DOCX files from Word-compatible HTML, replacing text in document bodies, headers, and footers, and inspecting or repacking DOCX XML structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihaha123123123123/wps-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [DOCX files with supporting HTML or Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated DOCX output should be validated and reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence reports under-disclosed network fetching during HTML-to-DOCX conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandbox with limited network access and avoid converting HTML that contains remote images or other attacker-controlled remote resources.
+
+Risk: The security evidence reports unsafe file and archive handling around DOCX unpacking and output paths.
+
+Mitigation: Process only trusted DOCX files, write unpacked content to disposable directories, and avoid pointing outputs at existing important directories.
+
+Risk: The security verdict is suspicious for this release.
+
+Mitigation: Review the skill before deployment and install it only in environments with limited filesystem and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihaha123123123123/skills/wps-docx)
+- [Publisher profile](https://clawhub.ai/user/xixihaha123123123123)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python snippets and generated DOCX files as the intended artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to create HTML, convert it to DOCX, edit DOCX XML content, and report structured success or validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

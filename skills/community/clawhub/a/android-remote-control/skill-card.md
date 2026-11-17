@@ -1,35 +1,51 @@
-## Description: <br>
-Controls a connected Android device over ADB and uiautomator2 to capture screenshots, tap coordinates, and launch apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls USB-debug-enabled Android devices through uiautomator2 and ADB to capture screenshots, tap coordinates, and launch apps.
 
-## Publisher: <br>
-[eyedark](https://clawhub.ai/user/eyedark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eyedark](https://clawhub.ai/user/eyedark)
 
-## Use Case: <br>
-Developers and automation users use this skill to inspect and operate a trusted connected Android device when they need screenshots, coordinate taps, or app launch commands. Use it only when remote control of that device is intentional. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ADB and uiautomator2 access to a trusted Android device; screenshots and tap actions can expose or change device state.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Developers and device automation testers use this skill to inspect and drive connected Android devices during app workflows, including screenshots, taps, and app launches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can manipulate a connected Android phone without clear safety gates.
+
+Mitigation: Install only when remote device control is intended, review each requested tap or app launch, and avoid unattended use with sensitive apps.
+
+Risk: The release evidence says the skill overstates some capabilities.
+
+Mitigation: Treat documented install or uninstall behavior as unverified unless the artifact implementation supports it.
+
+## Reference(s):
+
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown with inline bash commands and generated device screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a locally connected Android device through ADB and uiautomator2.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

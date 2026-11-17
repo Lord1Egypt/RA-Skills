@@ -1,48 +1,61 @@
-## Description: <br>
-在 OpenClaw 上搭建有记忆、能发语音/自拍/文字的 AI 陪伴 agent（完整踩坑指南） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for setting up an OpenClaw AI companion agent with memory that can send Feishu text messages, voice messages, selfies, and shared content.
 
-## Publisher: <br>
-[evan966890](https://clawhub.ai/user/evan966890) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[evan966890](https://clawhub.ai/user/evan966890)
 
-## Use Case: <br>
-Developers and advanced OpenClaw users use this skill as a setup guide for a Feishu-based AI companion agent that can keep memory, send proactive text messages, generate voice messages, and send AI-generated selfies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad command and credential access for Feishu and fal.ai messaging can expose accounts or secrets if configured carelessly. <br>
-Mitigation: Use a dedicated low-privilege Feishu app, grant only required messaging and file permissions, keep credentials out of shared files, and rotate any exposed secrets. <br>
-Risk: Scheduled proactive messages can continue running after initial setup. <br>
-Mitigation: Review every cron entry before enabling it, remove schedules that are not needed, and maintain a clear disable path for all automated messaging. <br>
-Risk: The memory workflow can store sensitive personal context. <br>
-Mitigation: Avoid storing sensitive personal information, review memory files regularly, and provide a documented deletion process. <br>
-Risk: Identity-hiding and silent-operation behavior can make automation unclear to recipients or operators. <br>
-Mitigation: Edit out identity-hiding instructions and require transparent controls before deploying the companion agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/evan966890/clawgirl) <br>
-- [Publisher Profile](https://clawhub.ai/user/evan966890) <br>
-- [fal.ai Grok Imagine Image Edit Endpoint](https://fal.run/xai/grok-imagine-image/edit) <br>
-- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu File Upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu Message Send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+## Use Case:
 
+Developers and agent builders use this skill as a practical setup guide for creating an OpenClaw companion agent that maintains memories, runs scheduled heartbeats, and sends Feishu messages, voice, and generated images.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guide with bash snippets, file templates, setup checklists, and troubleshooting notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires review of Feishu app permissions, cron schedules, local memory files, and credentials such as FAL_KEY before deployment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes an autonomous scheduled companion that can repeatedly send messages and generated media.
+
+Mitigation: Require recipient opt-in, clearly disclose automation and AI-generated media, and add stop commands, quotas, or expiration for scheduled jobs before deployment.
+
+Risk: The setup uses broad local authority, shell commands, and service credentials.
+
+Mitigation: Restrict Bash and credential access, store secrets safely, and review generated scripts before use.
+
+Risk: The companion pattern can involve personal memories or likeness-like generated images.
+
+Mitigation: Avoid sensitive memories and personal likenesses unless everyone involved has clearly consented.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evan966890/skills/clawgirl)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/evan966890)
+- [fal.ai Grok Imagine Image Edit Endpoint](https://fal.run/xai/grok-imagine-image/edit)
+- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu File Upload API](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu Message Send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and setup checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu messaging, scheduled OpenClaw heartbeats, memory files, voice generation, and generated image setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

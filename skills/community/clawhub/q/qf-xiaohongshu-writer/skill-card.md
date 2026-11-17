@@ -1,41 +1,54 @@
-## Description: <br>
-Xiaohongshu Writer helps agents draft Xiaohongshu-style notes with platform-native titles, emoji formatting, content structures, hashtag strategy, and image guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Xiaohongshu-style notes with platform-native structure, title formulas, emoji formatting, hashtag strategy, and image guidance.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Content creators, marketers, and social media operators use this skill to draft product reviews, tutorials, experience-sharing posts, listicles, hashtags, and visual briefs for Xiaohongshu. Users should review generated posts before publication for accuracy, appropriateness, platform policy fit, and any required advertising disclosures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated public posts may contain inaccurate claims, inappropriate tone, platform-policy issues, or missing advertising disclosures. <br>
-Mitigation: Review and edit every post before publishing, especially product claims, sponsored content, regulated topics, and audience-sensitive language. <br>
-Risk: Platform trends, hashtag performance, peak posting times, and title conventions can change over time. <br>
-Mitigation: Check current Xiaohongshu trends and category norms before relying on generated title, hashtag, or posting-time suggestions. <br>
+## Use Case:
 
+Creators, marketers, and content teams use this skill to draft product reviews, experience-sharing posts, tutorials, listicles, and adapted content for Xiaohongshu. It helps structure posts with concise titles, native emoji usage, hashtag sets, and cover or supporting image guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/371166758-qq/qf-xiaohongshu-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/371166758-qq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text Xiaohongshu note drafts, title options, hashtag sets, and image guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewable social content suggestions; it does not request code execution, credentials, file access, or account control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated posts may contain inaccurate claims or unsupported product, travel, food, lifestyle, or tutorial details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fact-check generated copy before posting.
+
+Risk: Click-oriented title formulas and engagement tactics may not match a brand voice, audience expectations, or platform policy.
+
+Mitigation: Adjust titles, calls to action, hashtags, and timing recommendations for brand fit and current Xiaohongshu rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/qf-xiaohongshu-writer)
+- [Publisher profile](https://clawhub.ai/user/371166758-qq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text social post drafts with titles, body sections, hashtags, and image guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language post copy, emoji formatting, hashtag recommendations, and title variations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Read EPUB, PDF, and TXT books from Project Gutenberg, direct URLs, or local files with progress tracking and chunked reading for agent learning workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read EPUB, PDF, or TXT books from Project Gutenberg, direct URLs, or local files with progress tracking and chunked reading for agent learning workflows.
 
-## Publisher: <br>
-[josharsh](https://clawhub.ai/user/josharsh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[josharsh](https://clawhub.ai/user/josharsh)
 
-## Use Case: <br>
-Agents and developers use this skill to search public-domain books, download readable book files, read local EPUB/PDF/TXT files in chunks, and resume reading from saved progress. It is suited to learning, research preparation, summarization, and knowledge extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download book files from Project Gutenberg IDs or direct URLs. <br>
-Mitigation: Review direct URLs before use and keep downloads in the OpenClaw workspace or another non-sensitive books folder. <br>
-Risk: The skill reads local book files selected by the user and saves reading progress locally. <br>
-Mitigation: Point it only at intended EPUB, PDF, or TXT files and avoid using sensitive directories for book storage or progress state. <br>
-Risk: Some sources or books may have copyright or local-law restrictions. <br>
-Mitigation: Prefer public-domain Project Gutenberg sources and verify rights before using copyrighted or non-public-domain material. <br>
+## Use Case:
 
+Agents and developers use this skill to search, download, and read long-form books in manageable chunks while preserving reading progress. It is suited for learning, research, summarization, and knowledge extraction from public-domain, owned, or otherwise permitted reading material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josharsh/book-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/josharsh) <br>
-- [Project Gutenberg](https://www.gutenberg.org/) <br>
-- [Gutendex Project Gutenberg API](https://gutendex.com/) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal text and Markdown-style command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads book content in configurable chunks and stores progress in a local reading-state JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: Unsafe page-count input can turn the --pages argument into local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not allow untrusted users or content to choose --pages until numeric argument validation is fixed.
+
+Risk: Untrusted download URLs or unauthorized book sources can expose agents to unsafe or impermissible content.
+
+Mitigation: Use public-domain or owned books, avoid untrusted download URLs, and check local law before using copyrighted sources.
+
+Risk: Unpinned Python dependencies can change behavior across installs.
+
+Mitigation: Install dependencies in a pinned virtual environment before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josharsh/skills/book-reader)
+- [Publisher profile](https://clawhub.ai/user/josharsh)
+- [Gutendex Project Gutenberg API](https://gutendex.com)
+- [Anna's Archive](https://annas-archive.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output with JSON progress state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads selected chunks of books, reports progress, lists downloaded files, and stores reading state under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

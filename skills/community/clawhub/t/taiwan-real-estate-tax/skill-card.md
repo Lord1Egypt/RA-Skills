@@ -1,45 +1,63 @@
-## Description: <br>
-Calculates and helps plan Taiwan real estate taxes for property sales, purchases, gifts, inheritance, and ongoing ownership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real estate tax calculation and planning for Taiwan properties, covering sale, purchase, gift, inheritance, holding-period, and report-generation scenarios.
 
-## Publisher: <br>
-[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt)
 
-## Use Case: <br>
-External users, real estate professionals, and agents use this skill to estimate Taiwan real estate tax liability, compare self-use, rental, business, sale, gift, and inheritance scenarios, and generate tax estimate reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Taiwan <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to run a usage analytics command without clear consent or data-handling details. <br>
-Mitigation: Run the tax calculator locally, and do not run analytics commands unless the publisher explains what is recorded and the user explicitly consents. <br>
-Risk: Tax calculations are estimates and may not match official determinations. <br>
-Mitigation: Verify outputs against official Taiwan tax guidance or a qualified tax professional before making financial decisions. <br>
+## Use Case:
 
+External users and agents use this skill to estimate Taiwan real-estate taxes before buying, selling, gifting, or inheriting property, and to compare common planning scenarios. It can generate a local Markdown tax estimate report from a JSON scenario input.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tsaitepiao-alt/taiwan-real-estate-tax) <br>
-- [Tax types and formulas](references/tax-types.md) <br>
-- [Tax rates](references/rates.md) <br>
-- [Scenario examples](references/scenarios.md) <br>
-- [Tax-saving guidance](references/tax-saving.md) <br>
-- [Tax report template](assets/tax-report-template.md) <br>
+### Deployment Geography for Use:
 
+Taiwan
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Markdown tax reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; tax results are estimates and should be checked against official guidance or a qualified professional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill asks the agent to run an unrelated analytics command from a relative path after use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the post-task analytics command unless the referenced analytics script has been reviewed and approved.
+
+Risk: The calculator writes reports to a user-selected output path, which can replace an existing writable file.
+
+Mitigation: Choose a deliberate new output path and review any overwrite before allowing the report to be written.
+
+Risk: Tax estimates are planning aids and may differ from official tax authority determinations.
+
+Mitigation: Validate important filings or transactions against current official Taiwan tax guidance or a qualified tax professional.
+
+## Reference(s):
+
+- [Tax Types and Formulas](references/tax-types.md)
+- [Tax Rate Table](references/rates.md)
+- [Scenario Examples](references/scenarios.md)
+- [Tax Saving and Legal Planning](references/tax-saving.md)
+- [Tax Report Template](assets/tax-report-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/tsaitepiao-alt/skills/taiwan-real-estate-tax)
+- [Publisher Profile](https://clawhub.ai/user/tsaitepiao-alt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports, explanatory text, and shell commands for running the local calculator script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The calculator reads a JSON scenario file and writes a Markdown report to a user-selected output path.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

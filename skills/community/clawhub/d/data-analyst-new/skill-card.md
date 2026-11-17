@@ -1,42 +1,49 @@
-## Description: <br>
-SQL, pandas, and statistical analysis expertise for data exploration and insight generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL, pandas, and statistical analysis expertise for data exploration and insights.
 
-## Publisher: <br>
-[2072932870wh-ui](https://clawhub.ai/user/2072932870wh-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2072932870wh-ui](https://clawhub.ai/user/2072932870wh-ui)
 
-## Use Case: <br>
-Developers, analysts, and data practitioners use this skill to write SQL queries, analyze datasets with pandas, perform statistical analysis, clean data, transform data, and interpret patterns or insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL or pandas code may be incorrect or unsuitable for the target data environment. <br>
-Mitigation: Review generated code before running it and validate results against representative non-production data. <br>
-Risk: Write-capable SQL statements such as UPDATE or DELETE can change or remove data. <br>
-Mitigation: Test write-capable queries on non-production data first and apply normal database backup, review, and permission controls. <br>
-Risk: Prompts or examples may expose sensitive datasets, credentials, or business information. <br>
-Mitigation: Avoid sharing sensitive data or credentials in prompts and use redacted or sampled data where possible. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to write SQL queries, analyze datasets with pandas, perform statistical analysis, clean and transform data, and interpret findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2072932870wh-ui/data-analyst-new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance, analysis] <br>
-**Output Format:** [Markdown with SQL and Python pandas code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include comments, example results, performance considerations, and interpretation of findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: The skill may activate for broad data-analysis requests where generated analysis or queries could be incorrect or inapplicable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL, pandas code, statistical conclusions, and applicability to the dataset before using the results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/2072932870wh-ui/skills/data-analyst-new)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Guidance]
+
+**Output Format:** [Markdown with SQL and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include comments, example results, performance considerations, and interpretation of findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

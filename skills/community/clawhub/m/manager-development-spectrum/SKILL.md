@@ -1,6 +1,6 @@
 ---
 name: manager-development-spectrum
-description: "Activate when: a promoted manager is failing without clear cause; someone says 'leadership training isn't working'; a leader asks 'why can't I get to the next level'; an org wonders why its best performers plateau after promotion; a coach needs to match development intervention to a specific individual. Do NOT activate when: the issue is a skill gap (new manager needs how-to training, not stage diagnosis); the timeline is weeks (stage development takes months to years)."
+description: "Activate when: a promoted manager is failing without clear cause; someone says 'leadership training isn't working'; a leader asks 'why can't I get to the next level'; an org wonders why its best performers plateau after promotion; a coach needs to match development intervention to a specific individual. Do NOT activate when: the issue is a skill gap (new manager needs how-to training, not stage diagnosis); the timeline is weeks (stage development takes months to years). More: deciqai.com/c/manager-development-spectrum"
 ---
 
 # Manager Development Spectrum
@@ -116,4 +116,6 @@ What This Framework Does NOT Address: [skill gaps, motivational issues, performa
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/manager-development-spectrum** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/manager-development-spectrum.json*

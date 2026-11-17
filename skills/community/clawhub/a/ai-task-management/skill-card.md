@@ -1,44 +1,57 @@
-## Description: <br>
-Task Management is a local task-management skill for creating, finding, updating, deleting, and summarizing tasks from an agent workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Management is a local task management skill for creating, querying, updating, deleting, recycling, and reporting on tasks through a CLI or optional web interface.
 
-## Publisher: <br>
-[xfwgithub](https://clawhub.ai/user/xfwgithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xfwgithub](https://clawhub.ai/user/xfwgithub)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to manage project tasks through agent or CLI commands and an optional local web UI. It supports task lifecycle tracking, review handoffs, task statistics, and cleanup of stale in-progress work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional web UI can expose or modify local task data without authentication if reachable from a shared network. <br>
-Mitigation: Bind the web UI to localhost or protect it with a firewall; add authentication before exposing it beyond the local machine. <br>
-Risk: State-changing commands can create, update, approve, cancel, or delete task records. <br>
-Mitigation: Review command intent before execution and require explicit human approval for completion or destructive deletion workflows. <br>
-Risk: Latest-download installation paths may pull unpinned artifacts. <br>
-Mitigation: Prefer pinned releases or verified source packages for installation. <br>
+## Use Case:
 
+Developers, agents, and project operators use this skill to manage task lifecycles, including creation, assignment, status transitions, review handoffs, deletion, recycling overdue work, and dashboard statistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xfwgithub/ai-task-management) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Agent Configuration](artifact/claude.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses from task commands, with Markdown and shell-command guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task state in a local SQLite database when used with the packaged command or web UI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The optional web interface can expose and change tasks over the network without login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the web server only on localhost or behind authentication, and do not expose it on an untrusted network.
+
+Risk: Task data may include sensitive business or personal information while the release has data-handling weaknesses.
+
+Mitigation: Avoid storing sensitive data until API authentication, status validation, XSS handling, and database-permission issues are fixed.
+
+Risk: Unverified installation sources or mutable downloads can increase supply-chain risk.
+
+Mitigation: Prefer pinned, verified releases and review the local task database behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xfwgithub/skills/ai-task-management)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON task responses and Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill manages local task records and can expose an optional web interface on a configured port.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter; artifact runtime files also reference 0.4.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

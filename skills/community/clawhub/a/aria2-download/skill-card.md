@@ -1,41 +1,59 @@
-## Description: <br>
-Adds download tasks through Aria2 RPC and monitors download progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds download tasks through Aria2 RPC and supports real-time progress monitoring.
 
-## Publisher: <br>
-[Ingress007](https://clawhub.ai/user/Ingress007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ingress007](https://clawhub.ai/user/ingress007)
 
-## Use Case: <br>
-Developers and operators use this skill to add HTTP, FTP, M3U8, and related download tasks to an Aria2 RPC service and inspect task status or progress from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Aria2 RPC access can expose download control if the endpoint is reachable by untrusted clients or protected by a weak secret. <br>
-Mitigation: Use the skill only with an Aria2 RPC server you control, keep RPC bound to localhost unless remote access is intentionally protected, and configure a strong unique secret. <br>
-Risk: Progress and watch behavior relies on parsing responses from the Aria2 RPC server, which evidence flags as unsafe with untrusted or compromised servers. <br>
-Mitigation: Treat progress and watch commands as unsafe for untrusted Aria2 servers until response parsing handles JSON strictly as data. <br>
-Risk: Plain HTTP RPC endpoints can expose Aria2 RPC traffic when used across a network. <br>
-Mitigation: Avoid plain HTTP for remote RPC endpoints; use local-only access or a protected transport when remote access is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ingress007/aria2-download) <br>
+## Use Case:
+
+Developers and operators use this skill to add, inspect, list, and monitor Aria2 download jobs through an RPC endpoint.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Aria2 RPC access can expose control over downloads if port 6800 or a remote endpoint is reachable by untrusted parties.
+
+Mitigation: Use only trusted localhost or private-network RPC endpoints, require a strong unique RPC secret, and avoid exposing port 6800 publicly.
+
+Risk: Remote Aria2 RPC use may expose requests or credentials without transport protection.
+
+Mitigation: Use TLS or equivalent network protection for remote access.
+
+Risk: The security review notes shell parsing and JSON handling that can expose local code execution risk.
+
+Mitigation: Review before installing and patch the script to build JSON with a real encoder and parse RPC responses as data rather than interpolating them into node -e.
+
+Risk: The documented Docker setup relies on an external Aria2 image.
+
+Mitigation: Pin the Docker image before deployment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Command-line output and JSON status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Aria2 RPC URL, secret, and download directory configuration from environment variables.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Aria2 RPC configuration from environment variables and reports download identifiers, status, progress, and completion details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

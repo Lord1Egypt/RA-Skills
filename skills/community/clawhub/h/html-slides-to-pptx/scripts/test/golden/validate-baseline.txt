@@ -1,0 +1,249 @@
+
+=== 01.html ===
+  ✅ 无违规
+
+=== 02.html ===
+  ⚠️  WARN 圆角卡片使用非统一边框(0px/0px/0px/5px),逐边细条不贴合圆角
+     → 修复: 圆角卡改用统一边框,或强调条用独立细长 shape
+  ⚠️  WARN 圆角卡片使用非统一边框(0px/0px/0px/5px),逐边细条不贴合圆角
+     → 修复: 圆角卡改用统一边框,或强调条用独立细长 shape
+  ⚠️  WARN 圆角卡片使用非统一边框(0px/0px/0px/5px),逐边细条不贴合圆角
+     → 修复: 圆角卡改用统一边框,或强调条用独立细长 shape
+  ⚠️  WARN 圆角卡片使用非统一边框(0px/0px/0px/5px),逐边细条不贴合圆角
+     → 修复: 圆角卡改用统一边框,或强调条用独立细长 shape
+
+=== 03.html ===
+  ✅ 无违规
+
+=== 05-four-questions-ai-capabilities.html ===
+  ✅ 无违规
+
+=== 05.html ===
+  ✅ 无违规
+
+=== 07-journey-map.html ===
+  ⚠️  WARN L41 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L57 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L73 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L89 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+
+=== 08.html ===
+  ✅ 无违规
+
+=== 09.html ===
+  ✅ 无违规
+
+=== 100-agenda.html ===
+  ✅ 无违规
+
+=== 101-big-statement.html ===
+  ✅ 无违规
+
+=== 102-quote.html ===
+  ✅ 无违规
+
+=== 103-split-7-5.html ===
+  ✅ 无违规
+
+=== 104-comparison.html ===
+  ✅ 无违规
+
+=== 105-timeline.html ===
+  ✅ 无违规
+
+=== 106-table-focus.html ===
+  ✅ 无违规
+
+=== 107-dashboard.html ===
+  ✅ 无违规
+
+=== 11.html ===
+  ✅ 无违规
+
+=== 110-icon-grid.html ===
+  ✅ 无违规
+
+=== 111-chevron-flow.html ===
+  ✅ 无违规
+
+=== 112-funnel.html ===
+  ✅ 无违规
+
+=== 113-cycle.html ===
+  ✅ 无违规
+
+=== 114-hub-spoke.html ===
+  ✅ 无违规
+
+=== 115-color-band.html ===
+  ✅ 无违规
+
+=== 116-pyramid.html ===
+  ✅ 无违规
+
+=== 117-vs-cards.html ===
+  ✅ 无违规
+
+=== 118-exec-summary.html ===
+  ✅ 无违规
+
+=== 119-issue-tree.html ===
+  ✅ 无违规
+
+=== 12.html ===
+  ⚠️  WARN 圆角卡片使用非统一边框(4px/0px/0px/0px),逐边细条不贴合圆角
+     → 修复: 圆角卡改用统一边框,或强调条用独立细长 shape
+  ⚠️  WARN 圆角卡片使用非统一边框(4px/0px/0px/0px),逐边细条不贴合圆角
+     → 修复: 圆角卡改用统一边框,或强调条用独立细长 shape
+
+=== 120-harvey-matrix.html ===
+  ✅ 无违规
+
+=== 121-waterfall.html ===
+  ✅ 无违规
+
+=== 122-swimlane-gantt.html ===
+  ✅ 无违规
+
+=== 123-scatter-map.html ===
+  ✅ 无违规
+
+=== 124-driver-tree.html ===
+  ✅ 无违规
+
+=== 125-heatmap-matrix.html ===
+  ✅ 无违规
+
+=== 126-scenario.html ===
+  ✅ 无违规
+
+=== 127-market-sizing.html ===
+  ✅ 无违规
+
+=== 128-maturity-ladder.html ===
+  ✅ 无违规
+
+=== 129-value-chain.html ===
+  ✅ 无违规
+
+=== 130-benchmark.html ===
+  ✅ 无违规
+
+=== 15.html ===
+  ✅ 无违规
+
+=== 21.html ===
+  ✅ 无违规
+
+=== 49-four-layer-overview.html ===
+  ⚠️  WARN L88 竖排文字为实验性支持(eaVert)
+     → 修复: 逐字 <br> 换行是更稳的替代
+
+=== 90-p0-features.html ===
+  ⚠️  WARN L60 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+
+=== 91-p1-forms.html ===
+  ✅ 无违规
+
+=== 92-p1-chart-visual.html ===
+  ⚠️  WARN mix-blend-mode:multiply 元素整体转截图(不可编辑)
+     → 修复: 文字放在特效元素之外的独立 textbox 叠加
+  ⚠️  WARN clip-path:polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 50%) 元素整体转截图(不可编辑)
+     → 修复: 裁剪形状内的文字改放独立 textbox
+
+=== 93-p2-sup-sub-geo.html ===
+  ⚠️  WARN 多行文字未设显式 line-height,行距将不可控: "rtTriangle"
+     → 修复: 给该文本加 line-height(如 1.5 或 31px)
+  ⚠️  WARN 多行文字未设显式 line-height,行距将不可控: "chevron↓(rot 180)"
+     → 修复: 给该文本加 line-height(如 1.5 或 31px)
+  ⚠️  WARN 多行文字未设显式 line-height,行距将不可控: "diamond+shadow"
+     → 修复: 给该文本加 line-height(如 1.5 或 31px)
+  ⚠️  WARN 多行文字未设显式 line-height,行距将不可控: "triangle+dashed"
+     → 修复: 给该文本加 line-height(如 1.5 或 31px)
+  ⚠️  WARN L131 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+
+=== 94-p2-gradient.html ===
+  ⚠️  WARN 文字颜色带透明度,转换后变为纯色: "智能工作流让协作更高效,让创意更自由,让" (rgba(255, 255, 255, 0.85))
+     → 修复: 改用不透明的混合色值(手算与底色的混合结果)
+  ⚠️  WARN L74 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L79 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+
+=== 95-p2-master-media.html ===
+  ⚠️  WARN 元素完全在画布外,不会显示: <audio> ""
+     → 修复: 移入 1920x1080 画布内,或删除
+  ⚠️  WARN <video> 未指定 src,将仅用封面图展示
+     → 修复: 加 src 属性指向本地视频文件
+  ⚠️  WARN <video> 未设 poster,将截取浏览器渲染帧做封面(可能黑屏)
+     → 修复: 加 poster 属性指向封面图
+
+=== 96-archetype-editorial.html ===
+  ✅ 无违规
+
+=== 97-archetype-divider.html ===
+  ✅ 无违规
+
+=== 98-archetype-statband.html ===
+  ✅ 无违规
+
+=== 99-archetype-chart.html ===
+  ✅ 无违规
+
+=== advice-for-newcomers.html ===
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "员工工作满意度提升 · Gallup"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "全球增长最快的岗位 · LinkedIn"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "AI 增强团队生产力提升"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "人机协作的三条纪律"
+     → 修复: 改用 400(常规)或 600(粗体)
+
+=== ai-trends-2026.html ===
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "企业软件将内置 Agent · Gart"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "近两年多模态模型发布量增速"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "AI 原生团队人均产出差距"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "问答工具"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "副驾驶"
+     → 修复: 改用 400(常规)或 600(粗体)
+
+=== chip-market-share.html ===
+  ✅ 无违规
+
+=== data-limit-boundary.html ===
+  ⚠️  WARN L47 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L48 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L49 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L50 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L51 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L65 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+  ⚠️  WARN L71 box-shadow 只还原第一层非 inset 阴影(spread 与多层不还原)
+     → 修复: 如需精确阴影,改用渐变/多层形状模拟
+
+=== four-revolutions.html ===
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "基础体力"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "多数体力"
+     → 修复: 改用 400(常规)或 600(粗体)
+  ⚠️  WARN font-weight:500 在 PPTX 中退化为常规体: "计算智力"
+     → 修复: 改用 400(常规)或 600(粗体)
+
+──────────────────────────────
+共 57 个文件: 0 个 ERROR, 44 个 WARN

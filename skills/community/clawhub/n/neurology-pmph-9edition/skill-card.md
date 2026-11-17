@@ -1,43 +1,61 @@
-## Description: <br>
-A neurology and neurosurgery clinical skill collection based on People's Medical Publishing House's Neurology, 9th Edition, covering 66 core skills across cerebrovascular disease, neurodegeneration and cognition, spinal cord and peripheral nerve disorders, neurological emergencies, epilepsy, neuromuscular disease, neuroimaging, and electrophysiology interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A neurology and neurosurgery clinical reference skill collection based on the 9th edition of Neurology from People's Medical Publishing House, covering 66 core skills across cerebrovascular care, neurodegeneration, epilepsy, neuromuscular disease, neuroimaging, electrophysiology, and neurological emergencies.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Clinicians, medical trainees, and clinical reviewers use this skill as educational or clinician-reviewed reference material for neurology and neurosurgery scenarios such as stroke management, neuroemergency assessment, dementia differentiation, epilepsy workflows, neuromuscular disease evaluation, and diagnostic interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce high-stakes neurology diagnosis, emergency treatment, medication dosing, surgery, and interventional guidance. <br>
-Mitigation: Use outputs only as educational or clinician-reviewed reference material, and verify recommendations against current local protocols and qualified medical judgment. <br>
-Risk: Users could rely on the skill for self-diagnosis, emergency care, prescribing, dosing, surgery, or interventional decisions. <br>
-Mitigation: Deploy with clear medical safety policies requiring escalation to qualified clinicians for diagnosis, treatment, dosing, emergency, and procedure decisions. <br>
+## Use Case:
 
+Clinicians, medical students, emergency and critical care teams, and interventional physicians use this skill as an educational and clinician-review reference for neurology assessment, diagnosis support, treatment planning, procedural indication review, and related safety checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/neurology-pmph-9edition) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xllgreen) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
-- [People's Medical Publishing House Neurology, 9th Edition](artifact/README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown clinical reference guidance with structured steps, cautions, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include high-stakes medical content and should be reviewed against current local protocols and qualified clinical judgment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Medical guidance may be mistaken for standalone diagnosis, prescribing, dosing, emergency care, or procedure advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only for education or clinician review, and verify recommendations against current official guidelines, local protocols, and qualified neurology specialists.
+
+Risk: The artifact does not consistently enforce clinician-only boundaries for high-risk neurology workflows.
+
+Mitigation: Deploy system-level medical safety policies requiring escalation to qualified clinicians for diagnosis, prescribing, dosing, emergency care, and self-treatment decisions.
+
+Risk: The release security verdict is suspicious because the skill contains high-risk treatment and procedure guidance despite no malware indicators.
+
+Mitigation: Install only in controlled medical education or clinician-review settings and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/neurology-pmph-9edition)
+- [ClawHub publisher profile](https://clawhub.ai/user/xllgreen)
+- [ClawHub homepage](https://clawhub.ai)
+- [README_EN.md](README_EN.md)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text clinical reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clinical reasoning steps, risk flags, medication or procedure considerations, monitoring targets, and escalation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

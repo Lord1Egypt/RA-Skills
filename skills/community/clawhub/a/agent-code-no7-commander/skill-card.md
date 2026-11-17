@@ -1,41 +1,57 @@
-## Description: <br>
-Coordinates complex office tasks by understanding user requests, decomposing them into subtasks, routing work to specialized agent roles, reviewing results, and producing structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Code No.7 Commander interprets complex office requests, breaks them into subtasks, routes them to specialized agents, reviews their results, and assembles structured reports.
 
-## Publisher: <br>
-[monarchmio](https://clawhub.ai/user/monarchmio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[monarchmio](https://clawhub.ai/user/monarchmio)
 
-## Use Case: <br>
-Employees or external professional-services users can use this skill to organize complex business, legal, finance, tax, research, or due-diligence requests into routed subtasks and consolidated report outputs. It is intended to support coordination and drafting, with professional conclusions verified by qualified experts where appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat legal, tax, financial, audit, or due-diligence outputs as professional advice. <br>
-Mitigation: Treat those outputs as reference material and verify conclusions with qualified professionals before acting. <br>
-Risk: Complex office workflows may involve sensitive business, financial, legal, or personal documents. <br>
-Mitigation: Share only the information required for the task and avoid providing unnecessary sensitive documents. <br>
+## Use Case:
 
+Developers and end users can use this Chinese-language orchestration skill to coordinate office, contract, legal, finance, tax, research, and due-diligence assistance into a structured final response. Outputs are suited for drafting and research support, not as a substitute for licensed professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/monarchmio/agent-code-no7-commander) <br>
-- [Publisher profile](https://clawhub.ai/user/monarchmio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured prose report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task decomposition, agent routing, review notes, consolidated findings, and professional-advice disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/package.json) <br>
+Risk: Users may share sensitive business, legal, tax, or financial data while requesting assistance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information needed for the task and remove confidential or regulated data when possible.
+
+Risk: Legal, tax, finance, or due-diligence outputs may be mistaken for licensed professional advice.
+
+Mitigation: Treat outputs as drafts or research support and have qualified professionals review them before relying on them.
+
+Risk: Broad multi-agent reports can reflect incomplete user inputs or unstated assumptions.
+
+Mitigation: Review assumptions, requested scope, and final conclusions before using the generated report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/monarchmio/skills/agent-code-no7-commander)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured Chinese-language prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task routing plans, synthesized findings, and structured reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "provenance_note": "文本由调用方撰写；证据类型照录。时长、日期、地址及附件均为输入值，脚本未探测媒体或验证附件。",
+  "schema_note": "JSON-LD仅含已提供字段；fields_present只表示本工具列出的交接字段齐全，不表示搜索资格、收录或引用。",
+  "summary": {
+    "total": 4,
+    "by_type": {
+      "image": 3,
+      "video": 1,
+      "audio": 0
+    },
+    "needs_information": 4,
+    "by_evidence": {
+      "reviewed": 0,
+      "user_description": 3,
+      "unavailable": 1
+    }
+  },
+  "assets": [
+    {
+      "id": "shot-01",
+      "type": "image",
+      "original_filename": "截图 01.PNG",
+      "suggested_filename": "教程-新建项目-入口.PNG",
+      "title": "新建项目入口",
+      "evidence": {
+        "kind": "user_description",
+        "scope": "full",
+        "reference": "受控样例的素材说明，第1项",
+        "details": "项目列表右上角有“新建项目”按钮。"
+      },
+      "caption": "第一步：从项目列表进入新建项目。",
+      "content_url": null,
+      "page_url": null,
+      "decorative": false,
+      "alt": "项目列表右上角的“新建项目”按钮。",
+      "gaps": [
+        "content_url"
+      ],
+      "status": "needs_information",
+      "schema": {
+        "status": "partial",
+        "jsonld": {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "name": "新建项目入口",
+          "description": "第一步：从项目列表进入新建项目。"
+        },
+        "missing_fields": [
+          "contentUrl"
+        ]
+      }
+    },
+    {
+      "id": "shot-02",
+      "type": "image",
+      "original_filename": "截图 02.webp",
+      "suggested_filename": "教程-填写项目名称.webp",
+      "title": "填写项目名称",
+      "evidence": {
+        "kind": "user_description",
+        "scope": "full",
+        "reference": "受控样例的素材说明，第2项",
+        "details": "新建项目对话框包含项目名称输入框和保存按钮。"
+      },
+      "caption": "第二步：填写项目名称并保存。",
+      "content_url": null,
+      "page_url": null,
+      "decorative": false,
+      "alt": "新建项目对话框中的项目名称输入框和保存按钮。",
+      "gaps": [
+        "content_url"
+      ],
+      "status": "needs_information",
+      "schema": {
+        "status": "partial",
+        "jsonld": {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "name": "填写项目名称",
+          "description": "第二步：填写项目名称并保存。"
+        },
+        "missing_fields": [
+          "contentUrl"
+        ]
+      }
+    },
+    {
+      "id": "shot-03",
+      "type": "image",
+      "original_filename": "截图 03.png",
+      "suggested_filename": "教程-导入资料.png",
+      "title": "导入项目资料",
+      "evidence": {
+        "kind": "user_description",
+        "scope": "full",
+        "reference": "受控样例的素材说明，第3项",
+        "details": "资料页有文件上传区域，下方列出两个待导入文件。"
+      },
+      "caption": "第三步：上传文件，核对待导入清单。",
+      "content_url": null,
+      "page_url": null,
+      "decorative": false,
+      "alt": "资料页的文件上传区域，下方列出两个待导入文件。",
+      "gaps": [
+        "content_url"
+      ],
+      "status": "needs_information",
+      "schema": {
+        "status": "partial",
+        "jsonld": {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "name": "导入项目资料",
+          "description": "第三步：上传文件，核对待导入清单。"
+        },
+        "missing_fields": [
+          "contentUrl"
+        ]
+      }
+    },
+    {
+      "id": "demo-01",
+      "type": "video",
+      "original_filename": "项目操作演示.MOV",
+      "suggested_filename": "教程-项目操作演示.MOV",
+      "title": "项目操作演示",
+      "evidence": {
+        "kind": "unavailable",
+        "scope": "none",
+        "reference": "受控样例仅提供文件名和时长，未提供可查看的视频",
+        "details": null
+      },
+      "caption": null,
+      "content_url": null,
+      "page_url": null,
+      "description": null,
+      "duration_seconds": 125,
+      "duration_iso8601": "PT2M5S",
+      "upload_date": null,
+      "chapters": null,
+      "subtitles": {
+        "status": "missing",
+        "reference": null,
+        "reason": null
+      },
+      "thumbnail_url": null,
+      "gaps": [
+        "evidence",
+        "content_url",
+        "caption",
+        "description",
+        "upload_date",
+        "subtitles",
+        "thumbnail_url",
+        "chapters"
+      ],
+      "status": "needs_information",
+      "schema": {
+        "status": "partial",
+        "jsonld": {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "项目操作演示",
+          "duration": "PT2M5S"
+        },
+        "missing_fields": [
+          "description",
+          "contentUrl",
+          "uploadDate",
+          "thumbnailUrl"
+        ]
+      }
+    }
+  ]
+}

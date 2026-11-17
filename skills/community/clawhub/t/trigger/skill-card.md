@@ -1,41 +1,58 @@
-## Description: <br>
-Trigger helps agents use a local command-line productivity logger for everyday task, planning, review, tagging, search, status, and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger is a command-line productivity tracker for recording, reviewing, searching, and exporting local workflow entries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Agents and command-line users use Trigger to capture local productivity notes, review recent activity, inspect simple statistics, search logs, and export records for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trigger stores user-entered entries and exported history in local files. <br>
-Mitigation: Avoid entering passwords, API keys, private client data, or other secrets, and review or delete local logs and exports when they are no longer needed. <br>
-Risk: The documented TRIGGER_DIR setting does not appear to be honored by the script. <br>
-Mitigation: Assume data is written under ~/.local/share/trigger unless the script is updated and verified in the target environment. <br>
+## Use Case:
 
+Developers and external users can use Trigger to capture plans, reminders, reviews, reports, and other workflow notes from a shell, then inspect or export the local activity history.
 
-## Reference(s): <br>
-- [Trigger on ClawHub](https://clawhub.ai/ckchzh/trigger) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output, with optional JSON, CSV, or TXT exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local log and export files under ~/.local/share/trigger.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill persistently stores user-entered plans, reminders, reviews, and similar workflow data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal, business, or credential-like information unless the storage location, permissions, and retention are acceptable.
+
+Risk: Export commands can consolidate stored history into JSON, CSV, or TXT files.
+
+Mitigation: Review exported files before sharing, archiving, or moving them outside the approved environment.
+
+Risk: The security summary notes vague documentation and behavior that includes persistent storage, search, and export.
+
+Mitigation: Review the command behavior before installation or deployment and set an approved data directory when local storage controls are required.
+
+## Reference(s):
+
+- [Trigger Skill Page](https://clawhub.ai/ckchzh/skills/trigger)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text command output with optional JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-entered workflow data in local log files and can consolidate that history into export files.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

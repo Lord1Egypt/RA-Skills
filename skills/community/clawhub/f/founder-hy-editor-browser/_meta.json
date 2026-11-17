@@ -1,6 +1,90 @@
 {
-  "ownerId": "kn7143ff0vnqy95r5qkhd396ad82zx1j",
-  "slug": "founder-hy-editor-browser",
+  "name": "Founder-HongYun Editor Automation",
+  "description": "Automation skill for Founder academic publishing cloud platform, support journal editing, DOI registration, WeChat article promotion, review reminder and other operations.",
+  "nameZh": "方正鸿云编辑助手",
+  "descriptionZh": "方正鸿云学术出版平台自动化技能。使用 browser 工具处理登录和页面交互，API 调用使用 browser.evaluate() 执行。支持刊物管理、稿件催修催审、微信发布、DOI 注册等功能。",
   "version": "0.1.9",
-  "publishedAt": 1773831769279
+  "author": "Founder-HongYun Team",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/behurry/founder-hy-editor-browser",
+  "repository": "https://clawhub.ai/behurry/founder-hy-editor-browser",
+  "keywords": [
+    "academic-publishing",
+    "journal-editing",
+    "automation",
+    "DOI-registration",
+    "WeChat-promotion",
+    "browser-automation"
+  ],
+  "tags": {
+    "en": [
+      "academic-publishing",
+      "journal-editing",
+      "DOI-registration",
+      "WeChat-promotion",
+      "browser-automation"
+    ],
+    "zh": [
+      "方正鸿云",
+      "期刊编辑",
+      "学术出版"
+    ]
+  },
+  "env": {
+    "FOUNDER_PLATFORM_URL": {
+      "type": "string",
+      "required": false,
+      "default": "http://journal.portal.founderss.cn/",
+      "description": "Platform login URL"
+    },
+    "WECHAT_APP_ID": {
+      "type": "string",
+      "required": false,
+      "description": "WeChat Official Account AppID (required for WeChat publishing feature)"
+    },
+    "WECHAT_APP_SECRET": {
+      "type": "string",
+      "required": false,
+      "description": "WeChat Official Account AppSecret (required for WeChat publishing feature)"
+    }
+  },
+  "triggers": [
+    "登录方正鸿云",
+    "切换刊物",
+    "自动催修",
+    "自动催审",
+    "催审第 X 条",
+    "鸿云任务提醒",
+    "自动填写送审单",
+    "自动注册 DOI",
+    "获取登录 Cookie",
+    "调用获取刊物信息接口",
+    "调用获取发布站点接口",
+    "调用获取刊期列表接口",
+    "调用获取刊期论文列表接口",
+    "调用 DOI 注册接口",
+    "将文章{标题}发布到微信公众号"
+  ],
+  "capabilities": [
+    "browser",
+    "browser.evaluate"
+  ],
+  "permissions": {
+    "browser": true,
+    "exec": true
+  },
+  "metadata": {
+    "platform": "方正鸿云学术出版云服务平台",
+    "platformUrl": "http://journal.portal.founderss.cn/",
+    "features": [
+      "登录认证",
+      "刊物管理",
+      "稿件催修",
+      "稿件催审",
+      "任务提醒",
+      "DOI 注册",
+      "送审单填写",
+      "微信格式发布"
+    ]
+  }
 }

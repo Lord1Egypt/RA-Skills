@@ -1,45 +1,55 @@
-## Description: <br>
-Newsletter Curation helps agents plan and draft curated newsletters with content sourcing, editorial structure, issue formats, commentary patterns, sending cadence, and subscriber growth guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Newsletter curation with content sourcing, editorial structure, and subscriber growth strategies for email newsletters, link roundups, weekly digests, curated content, and creator newsletters.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-External creators, marketers, and editorial operators use this skill to curate newsletter issues, select content formats, write value-added commentary, plan sending cadence, and draft growth-oriented distribution material. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party inference.sh CLI installer and command workflow. <br>
-Mitigation: Install only if the publisher and inference.sh are trusted, and review the installer or use the documented checksum verification path before running commands. <br>
-Risk: Generated infsh commands may search external services or publish public social posts. <br>
-Mitigation: Review every proposed command before execution, especially x/post-create or any command that could post publicly. <br>
-Risk: Newsletter topics, subscriber details, or business plans could be sent to external search or generation apps. <br>
-Mitigation: Avoid sending confidential topics, subscriber data, or sensitive business plans to external apps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Newsletter Curation on ClawHub](https://clawhub.ai/okaris/newsletter-curation) <br>
-- [okaris ClawHub Publisher Profile](https://clawhub.ai/user/okaris) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI Installer](https://cli.inference.sh) <br>
-- [inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Newsletter writers, content marketers, creators, and editorial teams use this skill to source links, structure issues, write commentary, plan sending cadence, and improve subscriber growth.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and newsletter templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested inference.sh commands for content search, image generation, and public social post drafting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote installer and related-skill install commands rely on mutable remote code paths.
+
+Mitigation: Review the installer before running it and prefer manual download with independent checksum or signature verification.
+
+Risk: Posting and related external-service examples may affect connected external accounts.
+
+Mitigation: Review commands and account targets before execution, and avoid elevated shells for installation or operation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/okaris/skills/newsletter-curation)
+- [Inference.sh](https://inference.sh)
+- [Inference.sh CLI Installer](https://cli.inference.sh)
+- [Inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include newsletter templates, issue structures, curation criteria, commentary patterns, cadence guidance, and CLI commands for external services.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

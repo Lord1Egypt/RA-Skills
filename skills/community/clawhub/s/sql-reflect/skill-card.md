@@ -1,40 +1,53 @@
-## Description: <br>
-sql-reflect helps developers trace a SQL query back to the PHP/Laravel code that likely generated it by comparing table names, fields, conditions, relationships, and call paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速定位 SQL 语句在 PHP/Laravel 代码中的触发位置，通过分析 SQL 结构反向追踪到具体的代码文件、方法和行号
 
-## Publisher: <br>
-[willing-lin](https://clawhub.ai/user/willing-lin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willing-lin](https://clawhub.ai/user/willing-lin)
 
-## Use Case: <br>
-Developers maintaining PHP/Laravel applications use this skill to investigate which files, methods, model relationships, and calling paths may have generated a given SQL statement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose snippets or paths from proprietary PHP/Laravel source while searching for SQL origins. <br>
-Mitigation: Use it only in repositories where source-code inspection and sharing matching snippets are acceptable. <br>
-Risk: Static table, field, and relationship matching can misidentify dynamically generated SQL or ambiguous query builders. <br>
-Mitigation: Treat findings as candidate locations and verify them against runtime logs, bindings, and application call paths before acting. <br>
+## Use Case:
 
+Developers and engineers use this skill to trace a SQL query back to the PHP/Laravel code path that likely generated it, including files, methods, model relationships, and calling chain.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willing-lin/sql-reflect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with PHP and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, method names, line numbers, Laravel relationship chains, SQL structure notes, and multiple candidate source locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow guides the agent to search and inspect local PHP/Laravel application code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where agent access to application source code is acceptable.
+
+Risk: SQL-to-code tracing can produce multiple possible source locations when query patterns are ambiguous.
+
+Mitigation: Review the reported file paths, methods, line numbers, relationship mappings, and match rationale before acting on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willing-lin/skills/sql-reflect)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code]
+
+**Output Format:** [Markdown analysis with inline PHP, SQL, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, method names, line numbers, relationship mappings, and multiple candidate source locations when the match is ambiguous.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

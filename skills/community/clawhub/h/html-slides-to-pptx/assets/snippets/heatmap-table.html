@@ -1,0 +1,57 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:热力评估矩阵(表格 + 逐格三档底纹 + 图例)—— 原型 38
+  参数:
+    {{DIM1}}..{{DIM5}}   维度列名(≤6 字;5 列)
+    {{R1_NAME}}..        对象行名(业务单元/风险项)
+    {{R1C1_BG}}..        每格底纹,**三档单色系**:
+                           弱 = var(--brand-primary)      文字 var(--white) / 700
+                           中 = var(--brand-primary-soft)(主色 18% 混白)   文字 var(--charcoal) / 600
+                           强 = var(--card-bg)            文字 var(--text-secondary) / 600
+    {{R1C1_FG}}..        与底纹配套的文字色(见上)
+    {{R1C1}}..           格内文字:只写"弱/中/强"或分数,**不写句子**(要写句子用原型 19)
+    {{LEGEND_NOTE}}      打分口径(分数区间 + 打分方式 + 分歧处理)
+    {{SOURCE}}           来源/口径注
+  表格 y=330;图例色块 y=890(3 档,x 步进 250);口径注 y=930;来源 y=990
+  ✅ 换色板预设**不需要重算中档色**(2026-08-17 第九轮起):中档用 `var(--brand-primary-soft)`,
+     该令牌已在 theme.css 与 16 套预设里按各自主色自动推导(tools/gen-ladder.js),换肤自动跟随。
+  纪律: ❌ 红黄绿交通灯(AI 味 + 约 8% 男性无法区分红绿);
+        ❌ 五档以上色阶(超过三档人眼无法可靠比较);❌ 每格加图标、❌ 渐变底纹;
+        action title 写**扫出来的结论**("数据治理是全线短板"),不写"能力评估矩阵"
+  ══════════════════════════════════════════════════════════════ -->
+<table data-object="true" style="position:absolute;left:100px;top:330px;width:1720px;border-collapse:collapse;">
+  <tr style="background:var(--brand-dark);">
+    <th style="width:340px;padding:20px 24px;text-align:left;font-size:22px;font-weight:700;color:var(--white);border:1px solid var(--brand-dark);">{{ROW_HEADER}}</th>
+    <th style="padding:20px 16px;text-align:center;font-size:20px;font-weight:700;color:var(--white);border:1px solid var(--brand-dark);">{{DIM1}}</th>
+    <th style="padding:20px 16px;text-align:center;font-size:20px;font-weight:700;color:var(--white);border:1px solid var(--brand-dark);">{{DIM2}}</th>
+    <th style="padding:20px 16px;text-align:center;font-size:20px;font-weight:700;color:var(--white);border:1px solid var(--brand-dark);">{{DIM3}}</th>
+    <th style="padding:20px 16px;text-align:center;font-size:20px;font-weight:700;color:var(--white);border:1px solid var(--brand-dark);">{{DIM4}}</th>
+    <th style="padding:20px 16px;text-align:center;font-size:20px;font-weight:700;color:var(--white);border:1px solid var(--brand-dark);">{{DIM5}}</th>
+  </tr>
+  <tr>
+    <td style="padding:24px;font-size:24px;font-weight:700;color:var(--charcoal);border:1px solid var(--border-light);">{{R1_NAME}}</td>
+    <td style="padding:24px 16px;text-align:center;font-size:22px;font-weight:700;color:{{R1C1_FG}};background:{{R1C1_BG}};border:1px solid var(--border-light);">{{R1C1}}</td>
+    <td style="padding:24px 16px;text-align:center;font-size:22px;font-weight:600;color:{{R1C2_FG}};background:{{R1C2_BG}};border:1px solid var(--border-light);">{{R1C2}}</td>
+    <td style="padding:24px 16px;text-align:center;font-size:22px;font-weight:600;color:{{R1C3_FG}};background:{{R1C3_BG}};border:1px solid var(--border-light);">{{R1C3}}</td>
+    <td style="padding:24px 16px;text-align:center;font-size:22px;font-weight:600;color:{{R1C4_FG}};background:{{R1C4_BG}};border:1px solid var(--border-light);">{{R1C4}}</td>
+    <td style="padding:24px 16px;text-align:center;font-size:22px;font-weight:600;color:{{R1C5_FG}};background:{{R1C5_BG}};border:1px solid var(--border-light);">{{R1C5}}</td>
+  </tr>
+  <!-- 其余 3-4 行同构(演讲档表格 ≤6 行含表头;超了拆页,别缩字号) -->
+</table>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:890px;width:36px;height:24px;background:var(--brand-primary);"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:148px;top:890px;width:200px;height:24px;">
+  <div style="font-size:18px;color:var(--text-tertiary);line-height:24px;">弱(1-2 分)</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:350px;top:890px;width:36px;height:24px;background:var(--brand-primary-soft);"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:398px;top:890px;width:200px;height:24px;">
+  <div style="font-size:18px;color:var(--text-tertiary);line-height:24px;">中(3 分)</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:600px;top:890px;width:36px;height:24px;background:var(--card-bg);border:1px solid var(--border-medium);"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:648px;top:890px;width:200px;height:24px;">
+  <div style="font-size:18px;color:var(--text-tertiary);line-height:24px;">强(4-5 分)</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:930px;width:1720px;">
+  <div style="font-size:18px;line-height:1.5;color:var(--text-tertiary);">{{LEGEND_NOTE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:990px;width:1720px;">
+  <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">{{SOURCE}}</div>
+</div>

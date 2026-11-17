@@ -1,41 +1,57 @@
-## Description: <br>
-Use this skill when a veterinarian, vet technician, or resident needs to build a patient-specific anesthesia plan for a scheduled procedure, producing a draft plan with weight-based dose ranges, monitoring and recovery protocols, an emergency-drug worksheet, and an equipment checklist for licensed-veterinarian review before any drug is drawn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a veterinarian, vet technician, or resident needs to build a patient-specific draft anesthesia plan with weight-based dose ranges, monitoring and recovery protocols, an emergency-drug worksheet, and an equipment checklist for licensed-veterinarian review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Veterinary teams use this skill to draft patient-specific anesthesia plans, monitoring and recovery protocols, emergency-drug worksheets, and equipment checklists for clinician review. It is intended to support, not replace, licensed veterinarian judgment and sign-off. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft dose ranges or protocol suggestions could be incorrect, incomplete, or inconsistent with the clinic's current formulary. <br>
-Mitigation: Verify all dose ranges against the current formulary and require attending veterinarian review and sign-off before any drug is drawn or administered. <br>
-Risk: Dose calculations based on an estimated or outdated weight could misstate patient-specific totals and volumes. <br>
-Mitigation: Use the current day-of measured weight and recalculate all dose totals before administration. <br>
-Risk: Prompts may contain unnecessary owner personal information or sensitive clinical details. <br>
-Mitigation: Keep owner personal information out of prompts and include only the clinical details needed for the anesthesia draft. <br>
+## Use Case:
 
+Veterinary teams use this skill to gather case details and draft anesthesia planning material for scheduled or emergency procedures. It structures protocol modifications, dose ranges, monitoring, recovery, emergency-drug worksheets, and equipment checks for attending veterinarian review and sign-off.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown draft plan with tables, worksheets, checklists, and sign-off items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only clinical support requiring licensed veterinarian review before use] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and changelog, released 2026-05-28) <br>
+Risk: The skill supports high-stakes veterinary anesthesia planning and may produce incorrect or incomplete clinical guidance if case facts, formularies, or dose references are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the attending veterinarian to verify every dose and source against the practice formulary, review the complete draft, and sign before any drug is drawn or administered.
+
+Risk: Clinical case details may contain sensitive patient or owner information.
+
+Mitigation: Provide only the minimum necessary clinical details and avoid owner PII unless essential.
+
+Risk: Using an estimated or historical body weight can make calculated doses unsafe.
+
+Mitigation: Use the current measured day-of-procedure weight before finalizing any dose; otherwise keep dose calculations marked for recalculation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/veterinary-anesthesia-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft anesthesia plan with tables, checklists, evidence matrix, unresolved questions, and sign-off block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Every plan is labeled as a draft for licensed veterinarian review before administration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

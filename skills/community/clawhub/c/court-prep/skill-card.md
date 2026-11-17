@@ -1,40 +1,53 @@
-## Description: <br>
-Court Prep provides command-line court preparation guidance for checklists, complaint templates, evidence organization, timeline estimates, and fee estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Court Prep helps agents provide court preparation guidance, including document preparation, evidence organization, litigation timelines, fee estimates, and small-claims support.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers use this skill to generate court-prep checklists, complaint templates, evidence guides, timeline estimates, and fee calculations from the command line. It is reference material only and users should consult a licensed attorney for legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local notes and history helper can retain sensitive case names, facts, identifiers, or strategy in local log files. <br>
-Mitigation: Avoid entering sensitive case details unless local retention is acceptable, review stored files before sharing a machine or workspace, and do not rely on the remove command to erase previous entries. <br>
+## Use Case:
 
+External users and developers use this skill to get command-line court-preparation assistance, including checklists, complaint templates, evidence guidance, litigation timeline estimates, and fee calculations.
 
-## Reference(s): <br>
-- [ClawHub Court Prep release page](https://clawhub.ai/xueyetianya/court-prep) <br>
-- [xueyetianya publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output with Markdown-style usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local data and history files when helper commands such as add, search, run, or export are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: server release evidence) <br>
+Risk: A bundled script can store legal entries and command history on local disk, which may expose case details, names, financial amounts, or legal strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive placeholders unless storage location, logging behavior, and deletion controls are documented and acceptable for the deployment environment.
+
+Risk: The generated court materials and fee or timeline estimates may be jurisdiction-specific, incomplete, or unsuitable for a real case.
+
+Mitigation: Treat outputs as preparation aids only and have a licensed legal professional or qualified reviewer verify filings, deadlines, fees, and strategy before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/court-prep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal-oriented plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces checklists, complaint templates, evidence guidance, timeline estimates, fee estimates, and command usage guidance.]
+
+## Skill Version(s):
+
+2.3.5 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

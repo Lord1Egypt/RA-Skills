@@ -102,7 +102,7 @@ session-keys/
 
 ```bash
 # ❌ BAD
-PRIVATE_KEY=sk-ant-api03-real-key-here
+PRIVATE_KEY=REDACTED-SECRET
 
 # ✅ GOOD
 PRIVATE_KEY=your-key-here

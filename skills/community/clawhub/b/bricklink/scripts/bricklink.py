@@ -808,11 +808,13 @@ def _add_inventory_common_args(parser: argparse.ArgumentParser, *, include_item:
 def _compose_include_exclude(raw: str | None, include: list[str] | None, exclude: list[str] | None) -> str | None:
     if raw and str(raw).strip():
         return str(raw).strip()
-    inc = include or []
-    exc = exclude or []
+    def _split(values: list[str] | None) -> list[str]:
+        # Each flag may carry a comma-separated list (e.g. --exclude-status purged,completed)
+        return [v.strip() for s in (values or []) for v in str(s).split(",") if v.strip()]
+
     parts: list[str] = []
-    parts.extend([str(s).strip() for s in inc if str(s).strip()])
-    parts.extend([f"-{str(s).strip()}" for s in exc if str(s).strip()])
+    parts.extend(_split(include))
+    parts.extend([f"-{s.lstrip('-')}" for s in _split(exclude)])
     if parts:
         return ",".join(parts)
     return None
@@ -1346,8 +1348,8 @@ def main() -> int:
     # 1) Raw passthrough: --status "pending,completed" or "-purged"
     # 2) Structured: --include-status pending --include-status completed --exclude-status purged
     p.add_argument("--status", default=None, help="Raw BrickLink status filter string (e.g. pending,completed or -purged)")
-    p.add_argument("--include-status", action="append", default=None, help="Include status (repeatable)")
-    p.add_argument("--exclude-status", action="append", default=None, help="Exclude status (repeatable)")
+    p.add_argument("--include-status", action="append", default=None, help="Include status (repeatable and/or comma-separated)")
+    p.add_argument("--exclude-status", action="append", default=None, help="Exclude status (repeatable and/or comma-separated)")
 
     p.add_argument("--filed", default=None, choices=["true", "false"], help="Filter filed/unfiled")
     p.set_defaults(func=cmd_get_orders)

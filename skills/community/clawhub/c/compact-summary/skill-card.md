@@ -1,41 +1,49 @@
-## Description: <br>
-Generates structured, concise memory summaries during flush or compaction, detailing conversation stats, tools, user requests, tasks, files, progress, and timeline context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured, concise memory summaries during flush or compaction, including conversation stats, tools, user requests, tasks, files, progress, and timeline context.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to produce structured OpenClaw memory summaries during flush or compaction. The summaries preserve user requests, tool usage, todos, key files, current work, and timeline context so an agent can resume work cleanly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The resume instruction tells the agent not to acknowledge or recap that it is continuing from a compacted memory summary. <br>
-Mitigation: Review that instruction before enabling the skill, and remove or soften it if users should be told when the agent is resuming from compacted context. <br>
-Risk: Memory summaries may include conversation details, tool usage, todos, and key file paths. <br>
-Mitigation: Store generated summaries only where the workspace's normal memory and access controls are appropriate for that context. <br>
+## Use Case:
 
+Developers and operators use this skill to create structured memory summaries during OpenClaw flush or compaction so future agent sessions can resume with key requests, files, progress, and timeline context.
 
-## Reference(s): <br>
-- [Compact Summary on ClawHub](https://clawhub.ai/hanxiao-bot/compact-summary) <br>
-- [Publisher profile](https://clawhub.ai/user/hanxiao-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, installer, credentials, or hidden data movement were reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Compaction summaries can influence future agent behavior and reduce transparency if treated as authoritative instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review summaries before using them as resume context, and keep factual resume state separate from instructions where practical.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanxiao-bot/skills/compact-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a compact resume-oriented memory summary; does not execute code or shell commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

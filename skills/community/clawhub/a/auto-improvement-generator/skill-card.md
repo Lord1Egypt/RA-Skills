@@ -1,41 +1,58 @@
-## Description: <br>
-Generates ranked improvement candidates for a target skill from feedback signals, failure traces, and evaluator baseline failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improvement Generator produces ranked improvement candidates for a target skill from target analysis, feedback signals, failure traces, and evaluator failures.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this tool to generate structured improvement candidates for a target skill, incorporate prior failure traces, and prioritize changes from feedback or evaluator failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send target SKILL.md excerpts and evaluator failure details through a local Claude CLI path. <br>
-Mitigation: Use sanitized inputs, avoid secrets and private benchmark data in sources or traces, and require review before applying generated changes. <br>
-Risk: Generated improvement proposals may be incorrect or misleading if applied directly. <br>
-Mitigation: Review candidate JSON, scan the target skill, and run relevant tests or evaluation gates before deployment. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to propose documentation, guardrail, prompt, workflow, and test improvements for agent skills. It also helps retry improvement attempts by injecting prior failure traces and deprioritizing repeatedly failed strategies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/auto-improvement-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/lanyasheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, shell commands, guidance] <br>
-**Output Format:** [JSON candidate artifact with a stdout path to the written file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ranked candidate objects with IDs, categories, risk levels, execution plans, failure trace status, and a truth anchor; human review is needed before applying prompt, workflow, test, or code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: Candidate generation may call a local Claude CLI and send target SKILL.md plus evaluator failure details to it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where that data sharing is acceptable, and review inputs before enabling evaluator-driven fixes.
+
+Risk: Model-generated SKILL.md changes can affect future agent behavior while being labeled low-risk and executor-supported.
+
+Mitigation: Require human review and security scanning before applying generated SKILL.md changes.
+
+Risk: Improvement proposals could introduce incorrect or misleading guidance into a skill.
+
+Mitigation: Review proposed changes against the target skill's intended behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/auto-improvement-generator)
+- [Publisher Profile](https://clawhub.ai/user/lanyasheng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON candidate artifact with supporting Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes candidate identifiers, categories, risk levels, rationale, source references, executor support, execution plans, failure trace usage, and a truth anchor.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

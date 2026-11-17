@@ -1,40 +1,50 @@
-## Description: <br>
-Uses miaoda-studio-cli image-understanding to describe, question, analyze, and extract information from local image files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze local image files with `miaoda-studio-cli image-understanding`, including image description, targeted questions, text extraction, style analysis, and text or JSON output.
 
-## Publisher: <br>
-[nice1234-h](https://clawhub.ai/user/nice1234-h) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nice1234-h](https://clawhub.ai/user/nice1234-h)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need an agent to inspect a local image, answer targeted questions about it, extract visible text, or return image-analysis results in text or JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images submitted for analysis may contain confidential screenshots, IDs, documents, or private photos and are processed through an external AI CLI. <br>
-Mitigation: Use only intentionally selected images and avoid sensitive content unless that external image processing is acceptable. <br>
-Risk: Vague prompts or mismatched document inputs can produce unhelpful or incorrect analysis. <br>
-Mitigation: Ask specific image-focused questions and use a document parsing workflow for PDF or Word files. <br>
+## Use Case:
 
+Developers and agents use this skill when they need to understand, describe, question, or extract information from local image files through the Miaoda CLI. It is useful for image description, object or scene analysis, OCR-style extraction, visual style review, and structured JSON output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nice1234-h/miaoda-image-understanding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output can be text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local image path and can accept an optional prompt and output format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local screenshots or photos may expose sensitive visual contents to the backend used by `miaoda-studio-cli`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images appropriate for that CLI and avoid submitting confidential, regulated, or private images unless the backend is approved for that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nice1234-h/skills/miaoda-image-understanding)
+- [Publisher Profile](https://clawhub.ai/user/nice1234-h)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; the underlying CLI can return text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local image file path and can accept an optional prompt and output-format option.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

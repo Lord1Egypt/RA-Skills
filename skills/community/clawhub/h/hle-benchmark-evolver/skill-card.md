@@ -1,43 +1,57 @@
-## Description: <br>
-Runs HLE-oriented benchmark reward ingestion and curriculum generation for capability-evolver. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs HLE-oriented benchmark reward ingestion and curriculum generation for capability-evolver.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and engineers use this skill to ingest Humanity's Last Exam benchmark reports, convert question-level results into reward signals, and generate an easy-first curriculum queue for capability-evolver workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The benchmark pipeline can execute a user-provided evaluator command through --eval_cmd. <br>
-Mitigation: Only pass evaluator commands from trusted sources, avoid untrusted paths or input, and run the pipeline in a sandboxed environment without sensitive credentials. <br>
-Risk: Pipeline mode can mutate local evolver state when evolution and solidification are enabled. <br>
-Mitigation: Run result mode first, review the generated summary, and use --skip_evolve=true unless state changes are intended. <br>
-Risk: The skill depends on local capability-evolver or feishu-evolver-wrapper code being present and trustworthy. <br>
-Mitigation: Install only in workspaces where those local dependencies have been reviewed and scanned before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/hle-benchmark-evolver) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Sample HLE report](artifact/assets/hle_report.sample.json) <br>
+## Use Case:
 
+Developers and engineers use this skill to ingest Humanity's Last Exam benchmark reports, convert results into reward state, generate curriculum focus signals, and run benchmark-linked evolution loops.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON result summaries and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs compact benchmark progress metrics, curriculum stage, queue size, focus subjects, focus modalities, and next questions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The pipeline can run arbitrary local shell commands through evaluator command arguments.
+
+Mitigation: Install only for trusted users or automation, avoid untrusted evaluator templates, and prefer sandboxed or allowlisted evaluator wrappers.
+
+Risk: Pipeline execution can trigger broader evolution and solidify actions.
+
+Mitigation: Keep solidify dry-run enabled unless mutation is intended, and review pipeline arguments before execution.
+
+Risk: Untrusted benchmark report paths or malformed report inputs may affect local workflow state.
+
+Mitigation: Use trusted report paths, validate report provenance, and run the skill in a scoped workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/hle-benchmark-evolver)
+- [Publisher profile](https://clawhub.ai/user/wanng-ide)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON summaries and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result output includes benchmark identifiers, accuracy, reward, trend, curriculum stage, queue size, focus areas, and next questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Generates interactive D3.js Sankey-style causal network diagrams that show hierarchical cause-effect relationships with evidence, directional links, and adjustable nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates interactive D3.js Sankey-style causal network diagrams that show hierarchical cause-and-effect relationships with evidence, draggable nodes, directional arrows, and color-coded relationship strengths.
 
-## Publisher: <br>
-[zmqnk](https://clawhub.ai/user/zmqnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmqnk](https://clawhub.ai/user/zmqnk)
 
-## Use Case: <br>
-Developers, analysts, educators, and researchers use this skill to turn structured causal factors and relationships into standalone browser visualizations for historical analysis, business root cause analysis, scientific cause-effect chains, and decision mapping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML loads D3.js from an external CDN, which may not fit sensitive, offline, or supply-chain-controlled environments. <br>
-Mitigation: Review the generated HTML and use a vetted local copy of D3.js when offline operation or stricter dependency control is required. <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to turn causal factors and relationships into interactive browser visualizations for historical analysis, business root cause analysis, scientific cause-effect chains, problem diagnosis, and decision mapping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmqnk/complex-causal-analysis) <br>
-- [D3.js v7](https://d3js.org/d3.v7.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON input structure and standalone HTML visualization code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML loads D3.js v7 from a CDN unless the user reviews or replaces it with a local copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML can execute unsafe browser JavaScript when graph data comes from an untrusted source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening it, escape graph labels and descriptions, and validate color and strength values before rendering.
+
+Risk: The generated page may load D3 from a remote script URL.
+
+Mitigation: Bundle D3 locally or pin the remote dependency with integrity checking before controlled or commercial use.
+
+## Reference(s):
+
+- [Complex Causal Analysis on ClawHub](https://clawhub.ai/zmqnk/skills/complex-causal-analysis)
+- [D3.js](https://d3js.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance and standalone HTML/CSS/JavaScript output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates browser-viewable D3.js causal network visualizations from supplied node and link data; generated HTML may load D3 from a CDN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

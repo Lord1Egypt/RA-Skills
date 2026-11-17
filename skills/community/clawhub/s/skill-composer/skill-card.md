@@ -1,44 +1,64 @@
-## Description: <br>
-Skill Composer orchestrates multiple OpenClaw skills into YAML-defined workflows that can be previewed, validated, and run from a CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Composer orchestrates multiple OpenClaw skills into YAML-defined automation workflows so an agent can run multi-step tasks with one command.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers and automation users use this skill to define multi-step OpenClaw workflows in YAML, pass outputs between steps, preview workflow execution, validate workflow syntax, and run installed skills in sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow manifests can invoke any installed skill, which gives a workflow broad authority over local files, credentials, publishing steps, and external service calls. <br>
-Mitigation: Run only trusted workflow manifests, review each step before execution, and require explicit confirmation before workflows write files, use credentials, publish content, or call external services. <br>
-Risk: The security evidence flags unsafe condition evaluation in workflow logic. <br>
-Mitigation: Avoid untrusted condition expressions and review the condition-handling code before installing or running workflows from outside trusted sources. <br>
-Risk: The install script may install PyYAML through system or user package managers. <br>
-Mitigation: Install in a controlled environment and review dependency installation commands before running the installer. <br>
+## Use Case:
 
+Developers and automation builders use this skill to define serial OpenClaw workflows in YAML, preview or validate those workflows, and execute installed skills in sequence for content creation, video processing, and data-reporting pipelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utopiabenben/skill-composer) <br>
-- [Project homepage](https://github.com/utopiabenben/ai-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/utopiabenben) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and YAML workflow configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflows can pass file path references between sequential steps and may produce additional files through the invoked skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Workflow files can invoke any installed OpenClaw skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workflow YAML before execution, run previews first, and restrict callable skills where deployment policy allows.
+
+Risk: Workflow conditions are evaluated as Python code.
+
+Mitigation: Replace condition evaluation with a strict condition parser and fail closed when conditions are invalid.
+
+Risk: Untrusted third-party workflow YAML can trigger unexpected skill execution.
+
+Mitigation: Use workflows from trusted sources only and avoid running external workflow files without review.
+
+Risk: Dependencies are not pinned in the provided install flow.
+
+Mitigation: Pin dependency versions before broad deployment and validate the installation environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/utopiabenben/skills/skill-composer)
+- [Project Homepage](https://github.com/utopiabenben/ai-skills)
+- [Project Issues](https://github.com/utopiabenben/ai-skills/issues)
+- [Portfolio Site](https://utopiabenben.github.io/ai-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text and Markdown with YAML workflow configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflow execution can create files or directories through the installed skills it invokes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

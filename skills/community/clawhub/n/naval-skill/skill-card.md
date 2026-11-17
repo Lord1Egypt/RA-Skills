@@ -1,38 +1,53 @@
-## Description: <br>
-Provides Chinese-language guidance based on Naval Ravikant's wealth philosophy, leverage thinking, specific knowledge, judgment, AI-era career strategy, and personal clarity frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance in the style of Naval Ravikant's thinking on wealth, leverage, specific knowledge, judgment, AI-era careers, and inner peace.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Chinese-speaking users can use this skill to ask an agent for Naval Ravikant-inspired coaching on wealth philosophy, leverage, judgment, AI-era career strategy, and inner calm. It is best treated as reflective guidance rather than authoritative professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides opinion and coaching content, including 2026 claims and quoted advice that the security evidence says should be treated as unverified. <br>
-Mitigation: Treat responses as reflective guidance rather than authoritative financial, legal, medical, or career advice, and verify important claims independently before acting. <br>
+## Use Case:
 
+External users and agents can use this skill for Chinese-language coaching, advisory framing, and decision support inspired by Naval Ravikant's public philosophy. It is suited for reflective guidance on careers, entrepreneurship, AI-era leverage, judgment, happiness, and personal strategy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ruiyongwang/naval-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only skill; no code execution, install steps, credentials, file access, network calls, or persistence are identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and artifact version history) <br>
+Risk: Persona-style investment, career, and biographical claims may be mistaken for verified factual advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as perspective and decision framing, and verify factual or high-impact claims with authoritative sources before acting.
+
+Risk: The skill is written primarily for Chinese-language interaction.
+
+Mitigation: Ask the agent to respond in the user's preferred language when Chinese output is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/naval-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown prose with lists, decision heuristics, and conversational examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses should treat investment, career, and biographical claims as perspective rather than verified fact.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

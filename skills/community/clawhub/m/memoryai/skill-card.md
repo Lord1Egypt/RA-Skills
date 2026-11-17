@@ -1,44 +1,59 @@
-## Description: <br>
-Long-term memory for AI agents that stores and recalls preferences, decisions, and context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory for AI agents. Your AI remembers everything - preferences, decisions, context - across sessions, forever.
 
-## Publisher: <br>
-[ch270035](https://clawhub.ai/user/ch270035) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ch270035](https://clawhub.ai/user/ch270035)
 
-## Use Case: <br>
-Developers and agent operators use MemoryAI to give an OpenClaw agent persistent memory, session bootstrap context, recall, profile lookup, and session summaries. It is suited for workflows where the agent is intentionally allowed to retain long-term user and project context through a cloud memory service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local conversation excerpts and long-term memory content to a cloud service. <br>
-Mitigation: Install only when cloud retention is intended, configure the endpoint deliberately, and avoid syncing transcripts or memories that should not leave the local environment. <br>
-Risk: The sync and tracking flows may run repeatedly in the background and process local session transcripts. <br>
-Mitigation: Confirm whether background transcript syncing should be enabled, limit or disable cron and per-message hooks when continuous syncing is not required, and review endpoint retention, deletion, and redaction policies. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Provide HM_API_KEY through environment or local configuration with normal secret-handling controls, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and agent operators use MemoryAI to give an AI agent persistent memory across sessions, including preferences, decisions, identity, goals, procedures, and session summaries. The skill supports explicit store, recall, bootstrap, track, save, profile, and health commands.
 
-## Reference(s): <br>
-- [MemoryAI service](https://memoryai.dev) <br>
-- [ClawHub MemoryAI release](https://clawhub.ai/ch270035/memoryai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ch270035) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with CLI command examples and plain-text command output from the memory client.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an HM_API_KEY credential; default endpoint is https://memoryai.dev.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata, SKILL.md frontmatter, CHANGELOG) <br>
+Risk: Conversation text, summaries, and inferred profile information may be sent to and persisted by a third-party memory service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, credentials, regulated personal data, private business content, or sensitive chats unless there is explicit consent and trusted retention and deletion controls.
+
+Risk: A configurable remote endpoint receives memory and profile requests.
+
+Mitigation: Verify that the endpoint is HTTPS and trusted before adding an API key or sending conversation content.
+
+Risk: The HM_API_KEY credential grants access to the configured memory service.
+
+Mitigation: Treat the API key as sensitive, store it outside shared artifacts when possible, and rotate it regularly.
+
+## Reference(s):
+
+- [MemoryAI service](https://memoryai.dev)
+- [MemoryAI ClawHub skill page](https://clawhub.ai/ch270035/skills/memoryai)
+- [Publisher profile](https://clawhub.ai/user/ch270035)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and HM_API_KEY; commands make explicit HTTPS requests to the configured MemoryAI endpoint.]
+
+## Skill Version(s):
+
+2.4.0 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

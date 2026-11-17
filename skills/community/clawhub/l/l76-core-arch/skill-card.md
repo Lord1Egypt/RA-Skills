@@ -1,47 +1,64 @@
-## Description: <br>
-Demonstration skill showcasing complete AgentSkills core architecture, including SKILL.md structure, main entry logic, tool integration patterns, error handling, and production-ready patterns for building new skills. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Demonstration skill showcasing complete AgentSkills core architecture, including SKILL.md structure, main entry logic, tool integration patterns, error handling, and production-ready patterns as a template for building new skills.
 
-## Publisher: <br>
-[wyblhl](https://clawhub.ai/user/wyblhl) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyblhl](https://clawhub.ai/user/wyblhl)
 
-## Use Case: <br>
-Developers and engineers use this template to build, audit, teach, or extend AgentSkills with documented structure, tool integration patterns, error handling, validation, and publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example shell and publishing workflows may be copied into real projects without enough review. <br>
-Mitigation: Review commands before execution, add dry-run and confirmation steps, and prefer argument-vector execution or safer APIs over shell string interpolation. <br>
-Risk: State, report, cache, or memory files can expose sensitive details if adapted without controls. <br>
-Mitigation: Avoid logging or storing secrets, restrict watch/API/report scopes, and scan generated files before sharing or publishing. <br>
+## Use Case:
 
+Developers and engineers use this skill as a reference template for creating, auditing, teaching, debugging, extending, and validating AgentSkills architecture and publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyblhl/l76-core-arch) <br>
-- [AgentSkills Spec](https://github.com/OpenClaw/spec) <br>
-- [ClawHub Documentation](https://clawhub.com/docs) <br>
-- [Basic usage examples](references/examples.md) <br>
-- [Advanced examples](references/examples-advanced.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Performance tuning](references/performance-tuning.md) <br>
-- [Extension points](references/extension-points.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and optional Node.js execution output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for the optional index.js runtime and validation workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Advanced examples include shell-string execution, file changes, Git mutations, and external API calls that may be unsafe if copied directly into a real skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the package only as a reference after manual review; replace shell-string execution with safer APIs and require explicit confirmation before file or Git mutations.
+
+Risk: State, cache, report, and memory outputs may persist sensitive data.
+
+Mitigation: Redact logs and reports, review persisted artifacts before sharing, and treat generated state or memory files as sensitive.
+
+Risk: Template guidance may be incomplete or misleading for a production skill without additional review.
+
+Mitigation: Review and scan any derived skill before deployment, and adapt the examples to the target environment and security policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyblhl/skills/l76-core-arch)
+- [AgentSkills Spec](https://github.com/OpenClaw/spec)
+- [ClawHub Documentation](https://clawhub.com/docs)
+- [L76 Core Architecture - Usage Examples](references/examples.md)
+- [L76 Core Architecture - Advanced Examples](references/examples-advanced.md)
+- [L76 Core Architecture - Troubleshooting Guide](references/troubleshooting.md)
+- [L76 Core Architecture - Performance Tuning Guide](references/performance-tuning.md)
+- [L76 Core Architecture - Extension Points Guide](references/extension-points.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and optional command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js for the bundled executable example and validation workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

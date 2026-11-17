@@ -1,44 +1,59 @@
-## Description: <br>
-Automates citation handling for Chinese academic papers by converting DOCX and Markdown, extracting references, inserting citation markers, expanding manuscript content, and generating final Word documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents process Chinese academic papers by converting Word documents to Markdown, extracting references, inserting citation markers, expanding manuscript text, and converting processed drafts back to Word.
 
-## Publisher: <br>
-[codhealer](https://clawhub.ai/user/codhealer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codhealer](https://clawhub.ai/user/codhealer)
 
-## Use Case: <br>
-Academic writers, developers, and agents use this skill to process Chinese thesis-style manuscripts, manage references, insert citation markers, convert between DOCX and Markdown, and run final document checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill modifies academic drafts and creates persistent outputs, including possible overwrites of thesis files. <br>
-Mitigation: Run it only on backed-up working copies and review all generated files before replacing an original manuscript. <br>
-Risk: Hard-coded local paths may direct processing to an unintended workspace. <br>
-Mitigation: Inspect and update hard-coded /Users/openclaw2026/.qclaw/workspace paths before execution. <br>
-Risk: Expanded or injected content can create authorship, institutional-header, or academic-integrity concerns. <br>
-Mitigation: Review generated and expanded text manually and confirm it meets the applicable academic and institutional requirements. <br>
-Risk: Running generated JavaScript from document text can be unsafe for confidential or untrusted manuscripts. <br>
-Mitigation: Avoid confidential manuscripts and inspect generated scripts and document-derived content before execution. <br>
+## Use Case:
 
+Developers, researchers, and academic-writing assistants use this skill to automate citation formatting, reference extraction, manuscript expansion, and Word/Markdown document conversion for Chinese theses and papers.
 
-## Reference(s): <br>
-- [Implementation Details](references/implementation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Word documents, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, JSON, DOCX, and command-line instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local document artifacts and intermediate reference or report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may rewrite thesis files at hardcoded local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, replace hardcoded paths with explicit user-selected paths, and add backups or dry-run diffs before write operations.
+
+Risk: Document conversion may run generated code while producing DOCX output.
+
+Mitigation: Fix the Markdown-to-DOCX converter so document text is serialized as data rather than executable JavaScript before using it on untrusted content.
+
+Risk: Unpinned npm dependencies can change behavior between installs.
+
+Mitigation: Pin npm dependencies and review dependency changes before deployment.
+
+## Reference(s):
+
+- [Implementation Details](references/implementation.md)
+- [ClawHub Skill Page](https://clawhub.ai/codhealer/skills/academic-paper-citation)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/codhealer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and generated document files such as Markdown, JSON, and DOCX]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or rewrite local manuscript, reference, report, JavaScript, and Word document files when scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

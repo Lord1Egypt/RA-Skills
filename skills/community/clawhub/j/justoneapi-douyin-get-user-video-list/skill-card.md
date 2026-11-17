@@ -1,40 +1,56 @@
-## Description: <br>
-Call GET /api/douyin/get-user-video-list/v3 for Douyin (TikTok China) User Published Videos through JustOneAPI with secUid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin/get-user-video-list/v3 for Douyin (TikTok China) User Published Videos through JustOneAPI with secUid.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve a Douyin user's published videos through JustOneAPI for account monitoring, including captions, covers, and publish times. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent in the request URL, where it may be captured by URL logs or command argument logs. <br>
-Mitigation: Use a narrowly scoped or disposable token when available, avoid environments that log full URLs or process arguments, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users use this skill to call JustOneAPI's Douyin user published videos endpoint with a Douyin secUid and optional pagination cursor, then summarize captions, covers, publish times, and related response data for account monitoring.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_video_list&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_video_list&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Short Markdown summary followed by raw JSON from the JustOneAPI endpoint] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and secUid; maxCursor supports pagination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token and Douyin lookup data may be exposed through command lines, logs, screenshots, or process telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege, revocable token where available, avoid sharing run logs or screenshots containing commands, and rotate the token if exposure is suspected.
+
+Risk: Use of this skill sends the requested Douyin account lookup data to JustOneAPI.
+
+Mitigation: Install and use the skill only when the publisher and API service are trusted for the token and lookup data being submitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-get-user-video-list)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_video_list&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_video_list&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JUST_ONE_API_TOKEN, requires Node.js, and returns raw JSON after a short endpoint-specific summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

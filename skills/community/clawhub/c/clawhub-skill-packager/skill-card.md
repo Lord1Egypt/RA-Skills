@@ -1,39 +1,53 @@
-## Description: <br>
-Turn rough, partial, or broken ClawHub/OpenClaw skill material into one publish-ready skill bundle plus one separate plain-text review file using an inference-first, low-friction workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn rough, partial, or broken ClawHub/OpenClaw skill material into one publish-ready skill bundle plus one separate plain-text review file using an inference-first, low-friction workflow.
 
-## Publisher: <br>
-[neomagnetar](https://clawhub.ai/user/neomagnetar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neomagnetar](https://clawhub.ai/user/neomagnetar)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to convert draft, incomplete, or inconsistent ClawHub/OpenClaw skill material into a publish-ready bundle and a separate review record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may infer missing names, metadata, or packaging details that affect a release. <br>
-Mitigation: Review the generated bundle and separate review file before publishing or installing the output. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to convert draft, incomplete, or inconsistent ClawHub/OpenClaw skill material into a release-style skill package with a separate review record.
 
-## Reference(s): <br>
-- [ClawHub Skill Packager listing](https://clawhub.ai/neomagnetar/clawhub-skill-packager) <br>
-- [neomagnetar publisher profile](https://clawhub.ai/user/neomagnetar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Skill bundle files and a separate plain-text review record] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces exactly two user-facing deliverables: a publish-ready skill package zip and a separate review file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The skill can guide an agent to rewrite, normalize, and package skill files using inferred defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated review file and final bundle before publishing or installing the resulting skill.
+
+Risk: Input skills may include credentials, APIs, scripts, binaries, or elevated permission assumptions that affect deployment risk.
+
+Mitigation: Confirm the packaged skill's runtime and security declarations before release, especially when the input skill uses external services or executable components.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/neomagnetar/skills/clawhub-skill-packager)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [A publish-ready skill bundle plus a separate plain-text review file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The review output records inferred fields, automatic fixes, publish-readiness notes, and handoff details.]
+
+## Skill Version(s):
+
+1.5.2 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

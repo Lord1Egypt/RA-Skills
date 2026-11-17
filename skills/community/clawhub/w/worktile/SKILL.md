@@ -1,35 +1,49 @@
 ---
-name: "Worktile"
-description: "Extract and summarize public project and announcement information from Worktile shared pages without requiring login or accessing private data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/worktile"
-sourceUrl: "https://clawhub.ai/skills/worktile"
+name: worktile-hot-trend
+description: 注册“Worktile”技能；用于公开项目/公告页信息整理与任务摘要。
+homepage: `https://worktile.com/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
 # Worktile
 
-> Extract and summarize public project and announcement information from Worktile shared pages without requiring login or accessing private data.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/worktile`
-- **Source URL:** [https://clawhub.ai/skills/worktile](https://clawhub.ai/skills/worktile)
+- 面向公开项目与公告页的信息提取与摘要
+- 不提供账号登录或任务操作能力
+- 仅处理公开可访问页面
 
-## Overview
+关键入口
 
+- 主页：https://worktile.com/
+- 项目/公告分享页：公开链接
+- 帮助中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/worktile
-```
+常见任务
+
+- 公告分享页的标题/作者/更新时间与正文摘要
+- 公开项目页的任务分组与状态分布统计
+- 项目文档与资源链接整理
+
+数据字段
+
+- 标题、作者、更新时间、正文摘要、标签、来源链接
+- 任务分组、任务数量、状态分布（待办/进行/已完成）
+- 文档标题、资源链接
+
+自动化要点
+
+- 内容动态加载，需等待渲染完成后解析
+- 无账号鉴权能力，仅处理公开分享
+- 频率控制避免重复访问
+
+示例流程
+
+- 公告摘要：访问分享页 → 解析标题/作者/更新时间 → 抽取正文摘要
+- 项目统计：进入项目页 → 抽取任务分组 → 统计状态分布
+- 资源整理：访问项目文档 → 汇总资源链接 → 输出清单
+
+合规提示
+
+- 遵守平台与团队信息安全规定，不处理非公开内容
+- 输出仅用于内部分析与提醒

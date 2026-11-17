@@ -1,41 +1,54 @@
-## Description: <br>
-中考短文填空识别与格式化技能，用于在用户上传题目图片和可选答案图片后识别内容、还原格式，并按需输出Word文档或推送到飞书多维表格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中考短文填空识别与格式化技能，在用户上传题目图片和可选答案图片时，识别并标准化短文填空内容，输出 Word 文档结构或推送到飞书多维表格。
 
-## Publisher: <br>
-[abendeng](https://clawhub.ai/user/abendeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abendeng](https://clawhub.ai/user/abendeng)
 
-## Use Case: <br>
-Teachers, tutors, and education-content operators use this skill to OCR Chinese middle-school cloze-test images, preserve the original exam layout, align answers by blank number, and export the result as a Word document or Feishu table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR may misread exam text, blank numbers, candidate words, or answers. <br>
-Mitigation: Review the recognized text and aligned answers against the uploaded images before relying on or distributing the result. <br>
-Risk: Feishu export can store or share recognized exam content outside the chat. <br>
-Mitigation: Confirm the intended Feishu destination and permissions before pushing a document or table link. <br>
+## Use Case:
 
+External users, educators, and content operators use this skill to convert Chinese middle-school cloze exam images into clean, reusable question-and-answer formats. It helps preserve paragraph structure, numbering, blanks, punctuation, answer alignment, and Feishu delivery format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abendeng/zk-cloze-format) <br>
-- [中考短文填空格式规范参考](artifact/references/format-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown text, DOCX document, or Feishu table/link depending on the user's requested channel.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves paragraph breaks, numbered blanks, underscores, punctuation, candidate words, and answer alignment when the uploaded images provide them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Uploaded images and generated text may contain student information, unpublished exam content, or copyrighted material before Feishu sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source images, generated text, and selected Feishu destination before sending or storing the output.
+
+Risk: OCR errors can misread blanks, numbering, answer words, punctuation, or paragraph breaks in low-quality images.
+
+Mitigation: Check the formatted output against the original images before using it as assessment material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abendeng/skills/zk-cloze-format)
+- [中考短文填空格式规范参考](artifact/references/format-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, API Calls, Guidance]
+
+**Output Format:** [OCR-derived formatted text, Markdown or Word document structure, and Feishu table or message content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original paragraphs, fill-in numbering, blanks, punctuation, candidate-word order, and answer-number alignment when evidence is legible.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

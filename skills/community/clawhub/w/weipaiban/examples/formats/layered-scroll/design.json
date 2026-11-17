@@ -1,0 +1,151 @@
+{
+  "title": "江岸夜巡",
+  "description": "中间固定航标悬在三层滑动情境之上，背景内容沿江推进",
+  "theme": "江岸夜巡",
+  "audience": "本地居民与访客",
+  "format": "layered-scroll",
+  "shell": {
+    "viewportHeight": 620,
+    "canvasHeight": 600,
+    "middleFixed": {
+      "id": "middleFixed",
+      "role": "overlay-fixed",
+      "purpose": "固定透明航标"
+    },
+    "scroll": {
+      "id": "scroll",
+      "role": "scroller",
+      "layers": [
+        {
+          "id": "backgroundImage",
+          "role": "overlay-background-image",
+          "purpose": "可循环江岸长背景",
+          "assetId": "background-tile",
+          "tileHeight": 1170,
+          "repeatCount": 2,
+          "totalHeight": 2340
+        },
+        {
+          "id": "foregroundContent",
+          "role": "overlay-foreground-content",
+          "purpose": "透明窗棂框景与前景弹窗交互"
+        },
+        {
+          "id": "backgroundContent",
+          "role": "flow-background-content",
+          "purpose": "主要剧情、交互与滚动高度",
+          "contentHeight": 1972
+        }
+      ]
+    }
+  },
+  "visual": {
+    "colorRoute": "chromatic-dark",
+    "imageMedium": "夜间纪实摄影与纸张颗粒叠印",
+    "lightingHint": "蓝灰夜色，暖红航标侧光，主体轮廓清楚",
+    "throughline": "暖红航标与左侧窗棂在各屏保持同一方向感",
+    "palette": {
+      "bg": "#17252B",
+      "panel": "#21373D",
+      "text": "#E8DFC8",
+      "muted": "#B8C7BE",
+      "accent": "#C9664A"
+    }
+  },
+  "blocks": [
+    {
+      "id": "middle-marker",
+      "kind": "svg",
+      "layer": "middleFixed",
+      "name": "固定航标",
+      "height": 600,
+      "placement": { "x": 278, "y": 34, "width": 90, "height": 90 },
+      "assets": ["middle-marker"],
+      "layout": "390×600 透明画布；航标位于右上，画布不接管指针"
+    },
+    {
+      "id": "background-stack",
+      "kind": "imageStack",
+      "layer": "backgroundImage",
+      "name": "可循环长背景",
+      "height": 2340,
+      "assets": ["background-tile"],
+      "tileHeight": 1170,
+      "repeatCount": 2,
+      "layout": "不用 SVG；同一背景 URL 以两个直接 image 自然纵向堆叠，总高度 2340 覆盖背景内容高度 1972"
+    },
+    {
+      "id": "foreground-lattice",
+      "kind": "svg",
+      "layer": "foregroundContent",
+      "name": "窗棂前景",
+      "height": 600,
+      "features": ["animationGroup-autoplay"],
+      "assets": ["foreground-lattice"],
+      "layout": "透明窗棂占左侧 220×600；动画组做一次渐现，不阻断滑动"
+    },
+    {
+      "id": "story-open",
+      "kind": "svg",
+      "layer": "backgroundContent",
+      "name": "开场",
+      "height": 600,
+      "assets": ["story-boat"],
+      "layout": "上半屏透明留白露出江岸底景；下半局部有彩色块承载 foreignObject 标题与正文"
+    },
+    {
+      "id": "scene-popup",
+      "kind": "clickPopup",
+      "layer": "foregroundContent",
+      "name": "场景探索",
+      "height": 520,
+      "placement": { "x": 0, "y": 600, "width": 390, "height": 520 },
+      "hint": "点亮航标，看两处码头细节 ›",
+      "assets": ["popup-scene", "popup-detail", "popup-open"],
+      "layout": "前景层 y=600 的 390×520 场景底图；左右两个 72px 透明图片热点，共用同风格细节图；只让实际按钮与弹层接管点击"
+    },
+    {
+      "id": "scene-popup-spacer",
+      "kind": "svg",
+      "layer": "backgroundContent",
+      "name": "场景探索占位",
+      "height": 520,
+      "layout": "与前景 scene-popup 同高的全透明占位画布，只负责撑高和纵向对齐"
+    },
+    {
+      "id": "route-slideshow",
+      "kind": "slideshow",
+      "layer": "backgroundContent",
+      "name": "沿途图集",
+      "height": 520,
+      "assets": ["slideshow-1", "slideshow-2", "slideshow-3"],
+      "layout": "三张 390×520 cover 图片，fade 自动切换"
+    },
+    {
+      "id": "route-caption",
+      "kind": "svg",
+      "layer": "backgroundContent",
+      "name": "沿途图注",
+      "height": 72,
+      "layout": "相邻 SVG 内用 text 写图注，不使用独立 richText"
+    },
+    {
+      "id": "story-close",
+      "kind": "svg",
+      "layer": "backgroundContent",
+      "name": "带走",
+      "height": 220,
+      "assets": ["story-boat"],
+      "layout": "透明船影与可独立截图的收口金句"
+    },
+    {
+      "id": "ai-credit",
+      "kind": "svg",
+      "layer": "backgroundContent",
+      "name": "AI声明",
+      "height": 40,
+      "copy": { "body": "文章部分内容由AI辅助设计和制作" },
+      "layout": "背景内容层最后一个直接子节点；单行居中，无底无动效"
+    }
+  ]
+}

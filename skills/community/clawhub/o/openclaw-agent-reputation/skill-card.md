@@ -1,42 +1,60 @@
-## Description: <br>
-On-chain credit scoring and soulbound identity for autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On-chain credit scoring and soulbound identity for autonomous agents.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create or query on-chain agent identities, retrieve credit scores, record attestations, compare agents, and generate reputation reports for AI-agent markets, DeFi access, collaboration, and risk assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend wallet gas and create permanent public on-chain identity or attestation records. <br>
-Mitigation: Use a dedicated low-balance wallet, prefer Base Sepolia or another testnet, and require explicit approval after reviewing the action, wallet, network, gas estimate, target identity, and permanence. <br>
-Risk: The skill requires an Ethereum private key for transaction signing. <br>
-Mitigation: Keep private keys out of prompts, logs, and shared files; use a dedicated wallet with minimal funds and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users can use this skill to create soulbound on-chain identities for autonomous agents, query reputation scores, record attestations, compare agents, and generate reputation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/openclaw-agent-reputation) <br>
-- [Project homepage](https://github.com/ZhenRobotics/openclaw-agent-reputation) <br>
-- [Project documentation](https://github.com/ZhenRobotics/openclaw-agent-reputation/blob/main/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language responses with transaction hashes, Markdown tables, JSON reports, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a wallet private key for transaction signing; on-chain writes can spend gas and create permanent public records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires access to a wallet private key for transaction signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated testnet-only wallet with minimal funds and avoid exposing mainnet or private asset wallets.
+
+Risk: Identity creation and attestation actions can spend gas.
+
+Mitigation: Require explicit user confirmation before any transaction that creates an identity or records an attestation.
+
+Risk: On-chain identity and reputation data can be permanent and reputation-affecting.
+
+Mitigation: Review all agent identity details and attestation content before signing transactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/openclaw-agent-reputation)
+- [Publisher Profile](https://clawhub.ai/user/zhenstaff)
+- [Project Homepage](https://github.com/ZhenRobotics/openclaw-agent-reputation)
+- [Documentation](https://github.com/ZhenRobotics/openclaw-agent-reputation/blob/main/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown or text guidance with optional JSON reports and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction hashes, token IDs, credit score metrics, comparison tables, and formatted reputation reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and changelog; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+{
+  "name": "lygo-immutable-anchor",
+  "displayName": "LYGO Immutable Anchor (Biophase7)",
+  "version": "1.0.0",
+  "description": "Local CA geodesic seals + mycelium fold. Turbo and autonomy worker stay on the protocol stack. No network, no subprocess, consent writes.",
+  "slug": "lygo-immutable-anchor",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/blob/main/docs/ANCHOR_DEPLOYMENT.md",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-immutable-anchor",
+  "signature": "Delta9Phi963-IMMUTABLE-ANCHOR-v1.0.0",
+  "proposed_by": "@grok",
+  "tags": [
+    "latest",
+    "lygo",
+    "biophase7",
+    "immutable-anchor",
+    "local-ca",
+    "geodesic",
+    "mycelium",
+    "slm",
+    "p7",
+    "delta9",
+    "openclaw",
+    "security"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "seal-geodesic": "scripts/anchor_cli.py seal-geodesic",
+    "fold-mycelium": "scripts/anchor_cli.py fold-mycelium",
+    "verify": "scripts/anchor_cli.py verify",
+    "emit-receipt": "scripts/anchor_cli.py emit-receipt",
+    "status": "scripts/anchor_cli.py status",
+    "worker-plan": "scripts/anchor_cli.py worker-plan",
+    "demo": "scripts/anchor_cli.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "⚓",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/blob/main/docs/ANCHOR_DEPLOYMENT.md",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "write": "only --write with --i-consent"
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network": true,
+    "version": "1.0.0"
+  }
+}

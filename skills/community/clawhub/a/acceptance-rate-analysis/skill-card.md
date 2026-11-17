@@ -1,41 +1,58 @@
-## Description: <br>
-Analyzes declines in acceptance rate through staged attribution, locating anomalous slices and escalating through capital, asset, and sensitive-funding checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes acceptance-rate declines by locating abnormal slices and attributing changes across customer mix, funder distribution, asset dimensions, and sensitive-funder contraction.
 
-## Publisher: <br>
-[mzhou1982](https://clawhub.ai/user/mzhou1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzhou1982](https://clawhub.ai/user/mzhou1982)
 
-## Use Case: <br>
-Analysts, operations teams, and data engineers use this skill to investigate why acceptance rate declined over a day or week. It guides the agent through a scripted, staged workflow that compares periods, identifies affected customer/product slices, and presents markdown evidence for the attribution path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a browser-derived DataWorks access token and may persist it in user-level environment variables. <br>
-Mitigation: Use a short-lived or least-privilege token, avoid shared machines, pass credentials explicitly when possible, and remove BIGDATA_ACCESS_TOKEN after use when persistence is not intended. <br>
-Risk: Debug or verbose query logging could expose sensitive query or account context if enabled. <br>
-Mitigation: Keep debug logging disabled unless troubleshooting, disable verbose query logging, and review generated logs before sharing them. <br>
+## Use Case:
 
+Business analysts and operations teams use this skill to run staged day or week acceptance-rate decline analysis. It helps identify abnormal customer or product slices and attribute the decline to mix shift, funder volume or distribution changes, asset-dimension signals, or sensitive-funder contraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzhou1982/acceptance-rate-analysis) <br>
-- [DataWorks access-token source page](https://data.jirongyunke.net/data-pc-bdopr-fe/hoc-inquiry/index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis with tables, status blocks, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BIGDATA_ACCESS_TOKEN to query DataWorks; debug output is disabled by default unless explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Browser-derived DataWorks access tokens may be persisted or exposed during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review token handling before installation, avoid passing tokens on the command line, keep credentials in memory or a secure credential store, and remove any persisted BIGDATA_ACCESS_TOKEN values after use.
+
+Risk: Endpoint overrides could direct protected analytics requests away from the intended DataWorks host.
+
+Mitigation: Use a reviewed version that removes endpoint overrides or restricts requests to an allowlisted DataWorks endpoint.
+
+Risk: Debug or raw query logging could expose sensitive request details.
+
+Mitigation: Keep raw query logging disabled by default and inspect logs before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzhou1982/skills/acceptance-rate-analysis)
+- [DataWorks inquiry page](https://data.jirongyunke.net/data-pc-bdopr-fe/hoc-inquiry/index)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, analysis]
+
+**Output Format:** [Markdown reports with staged status blocks, tables, shell commands, and JSON-derived analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided analysis windows and a DataWorks access token to query protected data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

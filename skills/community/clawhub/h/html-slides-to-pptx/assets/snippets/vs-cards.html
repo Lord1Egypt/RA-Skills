@@ -1,0 +1,31 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:对比卡阵(双卡 + 中央 VS 徽章 + 图标特征行)—— 原型 29
+  参数:
+    {{L_KICKER}}/{{L_NAME}}   左卡眉题/名称(旧/保守侧,白底)
+    {{R_KICKER}}/{{R_NAME}}   右卡眉题/名称(新/推荐侧,深底)
+    {{L_ITEMS}} 左卡特征行(每行一段 <div flex> 含 20px 灰 x 图标 + 21px 文字;3-4 行)
+    {{R_ITEMS}} 右卡特征行(绿勾图标;行数与左卡相等)
+    {{VS_BG}}    VS 徽章底色(主色)
+  坐标定死:双卡 800×560 @(100,340)/(1020,340);徽章 110 @905,565(压缝,DOM 在双卡后)
+  纪律: 左右行数必须相等(视觉天平);图标语义对立(灰 x vs 绿勾);VS 是语义件非装饰
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:340px;width:800px;height:560px;background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:44px;">
+  <div style="font-size:22px;font-weight:600;letter-spacing:2px;color:var(--text-tertiary);">{{L_KICKER}}</div>
+  <div style="font-size:34px;font-weight:700;color:var(--charcoal);margin-top:10px;line-height:1.25;">{{L_NAME}}</div>
+  {{L_ITEMS}}
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:1020px;top:340px;width:800px;height:560px;background:var(--deep-navy);border-radius:12px;padding:44px;">
+  <div style="font-size:22px;font-weight:600;letter-spacing:2px;color:var(--accent-orange);">{{R_KICKER}}</div>
+  <div style="font-size:34px;font-weight:700;color:var(--white);margin-top:10px;line-height:1.25;">{{R_NAME}}</div>
+  {{R_ITEMS}}
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:905px;top:565px;width:110px;height:110px;border-radius:50%;background:{{VS_BG}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:905px;top:565px;width:110px;height:110px;text-align:center;">
+  <div style="font-size:36px;font-weight:800;color:var(--white);line-height:110px;">VS</div>
+</div>
+<!-- 特征行写法(放 {{L_ITEMS}}/{{R_ITEMS}} 处;首行 margin-top:34px,其余 22px):
+<div style="display:flex;align-items:center;gap:14px;margin-top:34px;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+  <div style="font-size:26px;line-height:1.5;color:var(--text-primary);">特征文字(右卡文字色换 var(--brand-dark-pale),图标换 i-check 绿)</div>
+</div>
+-->

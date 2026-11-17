@@ -1,49 +1,68 @@
-## Description: <br>
-Extracts YouTube video transcripts and subtitles through the YouMind API, batch-processing up to five videos and saving timestamped markdown transcripts to a YouMind board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts YouTube video transcripts and subtitles through the YouMind API, supports batches of up to five videos, saves videos to a YouMind board, and returns timestamped transcripts as markdown.
 
-## Publisher: <br>
-[DophinL](https://clawhub.ai/user/DophinL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve YouTube subtitles or transcripts, save the source video to YouMind, and receive transcript files suitable for review or summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad YouMind shell access. <br>
-Mitigation: Review commands before execution and limit use to the documented install, board lookup, createMaterialByUrl, getMaterial, and transcript-file workflow. <br>
-Risk: Video data may be sent to and saved in the user's YouMind account. <br>
-Mitigation: Use the skill only for explicit transcript requests and avoid private or sensitive videos unless that storage is acceptable. <br>
-Risk: The workflow requires an API key. <br>
-Mitigation: Keep YouMind API keys in environment variables and do not paste them into chat. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve YouTube captions or transcripts, save videos to YouMind, and optionally summarize transcript contents without relying on local media extraction tools.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/DophinL/youmind-youtube-transcript) <br>
-- [Setup](references/setup.md) <br>
-- [Environment configuration](references/environment.md) <br>
-- [Error handling](references/error-handling.md) <br>
-- [Long-running tasks](references/long-running-tasks.md) <br>
-- [YouMind API keys](https://youmind.com/settings/api-keys?utm_source=youmind-youtube-transcript) <br>
-- [YouMind skills gallery](https://youmind.com/skills?utm_source=youmind-youtube-transcript) <br>
-- [YouMind issue tracker](https://github.com/YouMindInc/youmind/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown transcript files with brief status messages, links, and optional summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes up to five YouTube URLs per batch and writes one transcript file per completed video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: server release evidence) <br>
+Risk: The skill may install the YouMind npm CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit confirmation before global installation and prefer a controlled environment where global npm changes are acceptable.
+
+Risk: YouTube URLs and resulting transcript material may be sent to and saved in YouMind.
+
+Mitigation: Use the skill only for videos the user is comfortable saving to YouMind, and avoid sensitive or private content unless the user explicitly approves.
+
+Risk: API-key command forms can expose credentials on shared or logged systems.
+
+Mitigation: Check for configured environment variables without printing secrets, and avoid pasting or echoing API keys in chat, shell history, or logs.
+
+Risk: The workflow may show promotional, upgrade, or pricing links.
+
+Mitigation: Keep such messages relevant to actual service limits or setup needs and make clear when YouMind account or plan requirements affect execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dophinl/skills/youmind-youtube-transcript)
+- [Publisher Profile](https://clawhub.ai/user/dophinl)
+- [Setup](references/setup.md)
+- [Environment Configuration](references/environment.md)
+- [Long-Running Tasks](references/long-running-tasks.md)
+- [Error Handling](references/error-handling.md)
+- [YouMind API Keys](https://youmind.com/settings/api-keys?utm_source=youmind-youtube-transcript)
+- [YouMind Skills Gallery](https://youmind.com/skills?utm_source=youmind-youtube-transcript)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown transcript files plus concise chat status messages and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one transcript markdown file per completed video; batches up to five YouTube URLs and reports title, language, word count, file name, and YouMind link.]
+
+## Skill Version(s):
+
+1.3.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

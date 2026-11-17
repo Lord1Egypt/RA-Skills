@@ -1,42 +1,57 @@
-## Description: <br>
-FocusAI helps an agent monitor local screen activity, evaluate focus state, and query same-day visual activity history with user consent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+本地监控屏幕活动，评估专注度，记录视觉历史，支持工作内容分析与专注状态查询，需用户许可启动。
 
-## Publisher: <br>
-[HR2AY](https://clawhub.ai/user/HR2AY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hr2ay](https://clawhub.ai/user/hr2ay)
 
-## Use Case: <br>
-Chinese-speaking end users and their local agent use this skill to start focus monitoring, check current focus status, and summarize same-day screen activity. The workflow is intended for local personal productivity analysis and requires user consent before monitoring begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can periodically capture the whole screen, store local screen history, and send images to a vision-model provider. <br>
-Mitigation: Use it only after explicit consent, confirm which provider receives images, avoid sensitive windows while monitoring, and regularly manage or delete ~/Desktop/FocusOS_Data/. <br>
-Risk: Installation relies on running an unpinned external setup script. <br>
-Mitigation: Review the external repository and start.bat before running the installer, and install only from a source the user trusts. <br>
-Risk: The local HTTP API can start, stop, and reconfigure monitoring. <br>
-Mitigation: Run the service only on trusted local machines and keep access limited to localhost. <br>
+## Use Case:
 
+Chinese-speaking users and agents use this skill to start or query a local FocusAI monitor that records screen activity, scores focus, recalls same-day activity history, and controls model/provider settings after user consent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HR2AY/focus-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP API examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs an agent to check for same-day local data before querying history or analyzing screenshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill is designed for periodic screen monitoring, activity history storage, and screenshot analysis by configured visual model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only with explicit user consent, and limit invocations to clear FocusAI monitoring or history requests.
+
+Risk: The install path may run unpinned external code through start.bat.
+
+Mitigation: Review or pin the upstream code before running start.bat.
+
+Risk: Broad natural-language triggers can expose sensitive same-day screen history.
+
+Mitigation: Check that FocusAI data exists for the current day and answer history questions only when the user explicitly asks for that recall.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hr2ay/skills/focus-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, Analysis]
+
+**Output Format:** [Markdown guidance with inline code, local HTTP API calls, and concise activity summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language interaction guidance; requires explicit user consent before monitoring and same-day FocusAI data before history analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

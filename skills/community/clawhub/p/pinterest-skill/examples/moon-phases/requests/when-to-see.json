@@ -1,0 +1,26 @@
+{
+ "content": [
+  {
+   "text": "When can you see the main Moon phases? A first quarter Moon rises around midday and is best in the evening; a full Moon rises at sunset and sets at sunrise; a third quarter Moon rises around midnight. Save it for your next clear night. Photo: NASA/Bill Ingalls, the full Moon over the U.S. Capitol in the early evening.",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for when-to-see.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "PINTEREST",
+   "socialAccountId": "<socialAccountId for main>",
+   "pinterestBoardId": "<board id for 'Moon and night sky'>",
+   "title": "Moon phases viewing guide: when the main phases rise and set",
+   "link": "https://science.nasa.gov/moon/moon-phases/"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-12-15T01:30:00Z"
+ }
+}

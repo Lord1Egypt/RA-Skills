@@ -1,39 +1,52 @@
-## Description: <br>
-Manage YouTrack issues, projects, and workflows via CLI for creating, updating, searching, commenting, listing projects, checking states, and automating issue workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTrack issues, projects, and workflows via CLI.
 
-## Publisher: <br>
-[iAhmadZain](https://clawhub.ai/user/iAhmadZain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iahmadzain](https://clawhub.ai/user/iahmadzain)
 
-## Use Case: <br>
-Developers and support teams use this skill to manage YouTrack projects and issues from an agent workflow, including querying work, updating fields, adding comments, and producing reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill references ytctl, but that CLI is not packaged in the artifact. <br>
-Mitigation: Verify the available ytctl implementation and commands before installing or executing the skill. <br>
-Risk: Create, update, assign, comment, and bulk commands can change multiple YouTrack issues. <br>
-Mitigation: Use a least-privilege token, narrow queries, dry-run previews, and explicit confirmation before multi-issue changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iAhmadZain/youtrack) <br>
+## Use Case:
 
+Developers and project teams use this skill to manage YouTrack issues from an agent workflow, including listing projects, searching issues, creating and updating issues, adding comments, reviewing workflow states, and producing project or user reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown guidance with bash examples; command output may be table text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and curl; uses a YouTrack URL and token supplied by the user environment or config.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on a local YouTrack API token that can expose or modify issue data if over-privileged or mishandled.
+
+Mitigation: Use a least-privilege YouTrack token, store it carefully, and avoid exposing token values in prompts, logs, or shared output.
+
+Risk: Bulk update, comment, and assignment commands can change many YouTrack issues at once.
+
+Mitigation: Run bulk commands with narrow queries and use --dry-run first to preview affected issues before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iahmadzain/skills/youtrack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to produce YouTrack CLI commands and request table or raw JSON output from ytctl.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

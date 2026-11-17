@@ -1,46 +1,56 @@
-## Description: <br>
-Professional quantitative trading API integration for Chinese securities that supports major Chinese brokers with order management, position tracking, real-time market data, and automated trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Python mock trading API examples and agent guidance for Chinese securities workflows, including market data, order management, position tracking, and automated trading patterns.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and quantitative trading workflow builders use this skill to prototype Python interfaces for Chinese broker market data, account views, order handling, and strategy automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents live broker trading workflows while the included implementation is mostly simulated. <br>
-Mitigation: Treat it as a mock trading prototype until live or paper mode separation, broker behavior, and order-risk controls are clearly verified. <br>
-Risk: The examples involve brokerage account credentials. <br>
-Mitigation: Do not enter real brokerage credentials; test only in an isolated Python environment and use reviewed secret handling before any real integration. <br>
-Risk: Quotes, balances, positions, and order results may be mock or inaccurate. <br>
-Mitigation: Do not rely on the outputs for financial decisions or real orders without independent validation and explicit risk limits. <br>
+## Use Case:
 
+Developers and technically proficient trading workflow authors can use this skill to draft or inspect simulated Chinese securities trading API examples for market data, order management, account views, and strategy automation. Users should treat generated trading behavior as illustrative until real broker integration, controls, and reconciliation are independently verified.
 
-## Reference(s): <br>
-- [Quant Trading Api on ClawHub](https://clawhub.ai/jason-aka-chen/quant-trading-api) <br>
-- [jason-aka-chen publisher profile](https://clawhub.ai/user/jason-aka-chen) <br>
-- [Huatai API documentation](https://openapi.htsc.com) <br>
-- [Galaxy API documentation](https://api.galaxy.com) <br>
-- [Tushare API](https://tushare.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Python API examples and configuration snippets; treat trading data and order behavior as prototype output unless verified against a live or paper brokerage environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill presents broker trading operations while the bundled implementation returns simulated login, market data, account, position, and order results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated behavior as examples or simulation only until real broker authentication, paper/live separation, order confirmation, risk limits, and authoritative broker reconciliation are documented and reviewed.
+
+Risk: The workflow accepts account and password inputs for broker-style operations.
+
+Mitigation: Do not provide production broker credentials to this version; use non-sensitive test values until credential handling is independently reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/skills/quant-trading-api)
+- [Huatai OpenAPI documentation](https://openapi.htsc.com)
+- [Galaxy API documentation](https://api.galaxy.com)
+- [Tushare Pro API](https://tushare.pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include broker configuration examples, API usage snippets, and simulated trading workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

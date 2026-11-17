@@ -1,38 +1,53 @@
-## Description: <br>
-Reviews skills for staleness, missing gotchas, and improvement opportunities so procedural memory stays accurate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews skills for staleness, missing gotchas, and improvement opportunities so procedural memory stays accurate.
 
-## Publisher: <br>
-[truenorth-lj](https://clawhub.ai/user/truenorth-lj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[truenorth-lj](https://clawhub.ai/user/truenorth-lj)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to periodically audit agent skills, identify stale instructions or missing lessons, and propose focused updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify and commit changes to other skills without a clear approval gate. <br>
-Mitigation: Run a read-only audit first, review proposed diffs, and require separate approval before editing files or creating a commit. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to audit skill files, identify stale guidance or missing lessons, and produce reviewed maintenance updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/truenorth-lj/adaptive-agent-skill-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with shell commands and optional file patches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce proposed or applied edits to skill files and a summary table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can read memory and skill files, edit multiple skill instructions, and commit persistent agent-behavior changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled skills repository, require a read-only audit first, review diffs before applying them, and require explicit approval before edits, staging, commits, or delegated agent work.
+
+Risk: Memory inputs may contain sensitive or unapproved feedback that should not be incorporated into shared skill instructions.
+
+Mitigation: Restrict memory review to approved non-sensitive feedback files and exclude secrets or private user data from skill updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/truenorth-lj/skills/adaptive-agent-skill-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with summary tables, shell commands, and proposed file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply skill documentation updates when authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

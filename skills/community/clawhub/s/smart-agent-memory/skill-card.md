@@ -1,45 +1,59 @@
-## Description: <br>
-Smart Agent Memory provides a local long-term memory CLI for OpenClaw agents, with layered context retrieval, fact, lesson, entity, and session storage, search, reflection, archiving, and optional SQLite/FTS5 storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Agent Memory provides a local long-term memory system for agents with layered context loading, per-skill experience memory, structured storage, search, reflection, and archival.
 
-## Publisher: <br>
-[beyound87](https://clawhub.ai/user/beyound87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beyound87](https://clawhub.ai/user/beyound87)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give OpenClaw agents a durable local memory across sessions. It supports recording and retrieving facts, lessons, entities, skill experience, and session summaries while encouraging scoped retrieval instead of loading all memory at once. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can modify every ~/.openclaw/workspace* workspace by appending BOOTSTRAP.md memory-start instructions. <br>
-Mitigation: Review the BOOTSTRAP text before running setup, run setup only where workspace-wide memory behavior is intended, and inspect workspace changes afterward. <br>
-Risk: Durable local memory can retain secrets, regulated data, or private personal details if users record them. <br>
-Mitigation: Do not store credentials, regulated data, or private personal details; periodically review and delete memory entries that should not persist. <br>
-Risk: The extract command can generate new skills from lessons that may carry over incorrect or unsafe guidance. <br>
-Mitigation: Manually review and scan generated skills before enabling or publishing them. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain local, searchable long-term memory for facts, lessons, entities, session summaries, and per-skill experience across OpenClaw workspaces. The CLI supports session startup and shutdown workflows, scoped recall, memory maintenance, and optional skill extraction from recorded lessons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beyound87/smart-agent-memory) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/beyound87) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and JSON output, Markdown memory files, generated SKILL.md files, and BOOTSTRAP.md configuration text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OpenClaw memory files by default; setup appends BOOTSTRAP.md instructions to discovered workspaces; SQLite/FTS5 storage requires a Node.js runtime with node:sqlite support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.6 (source: server release evidence; artifact frontmatter reports 2.1.0) <br>
+Risk: The setup command persistently adds BOOTSTRAP.md startup instructions across ~/.openclaw/workspace* directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only after review, confirm that all targeted workspaces should receive the startup instructions, and inspect BOOTSTRAP.md changes before relying on them.
+
+Risk: Stored memory can contain secrets or untrusted instructions that may influence later agent sessions.
+
+Mitigation: Do not store secrets or untrusted content in memory; review and sanitize memory entries before using them as context.
+
+Risk: The extract flow can generate new skill files from remembered lessons.
+
+Mitigation: Review generated skills and their filenames before installation or execution, especially when lesson content or skill names came from untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beyound87/skills/smart-agent-memory)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output may be text or JSON and may create local Markdown, JSON, or SQLite-backed memory files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js. SQLite storage requires Node.js >= 22.5.0; otherwise the skill falls back to JSON storage.]
+
+## Skill Version(s):
+
+3.0.6 (source: server release metadata; source frontmatter remains 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

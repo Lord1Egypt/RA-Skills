@@ -1,0 +1,13 @@
+{
+  "name": "training-finance",
+  "displayName": "学员与财务管理",
+  "version": "1.0.0",
+  "description": "培训学员管理与财务结算一体化工具：报名登记、收费确认、成本核算、讲师分成、利润报表。支持多人团购、早鸟价、阶梯定价等多种收费模式。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "finance", "student-management", "accounting", "payment"],
+  "minOpenClawVersion": "1.2.0"
+}

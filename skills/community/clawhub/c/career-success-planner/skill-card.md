@@ -1,42 +1,56 @@
-## Description: <br>
-Generate personalized 120-day career success plans based on professional assessment data and onboarding goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized 120-day career success plans based on professional assessment data and onboarding goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-HR teams, managers, career coaches, and professionals use this skill to generate structured 120-day onboarding and career-transition plans from role, experience, and goal data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workplace profile data may include sensitive personal, team, manager, project, or HR information. <br>
-Mitigation: Use only data the organization has approved for the provider and omit unnecessary identifiers or confidential internal details. <br>
-Risk: Generated career plans may be incomplete, generic, or inappropriate for employment decisions if used without review. <br>
-Mitigation: Have a qualified manager, HR partner, coach, or the professional receiving the plan review outputs before relying on them. <br>
+## Use Case:
 
+Employees, HR teams, managers, career coaches, and professionals use this skill to generate personalized 120-day onboarding and career transition plans from role, experience, and goal data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/career-success-planner) <br>
-- [Career Success Planner API docs](https://api.mkkpro.com:8073/docs) <br>
-- [Career Success Planner API route](https://api.mkkpro.com/career/120-day-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON response containing a 120-day plan with phases, weekly focus, skill paths, risk mitigation, and checkpoints.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structured assessment input with sessionId, timestamp, role information, experience, and goals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Employee onboarding and career assessment details are sent to a disclosed external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm organizational approval, consent, and data-handling policy fit before use.
+
+Risk: Assessment payloads may include direct identifiers, manager names, confidential performance information, or sensitive HR records.
+
+Mitigation: Send only necessary information and avoid sensitive or identifying details unless policy approval is in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/career-success-planner)
+- [OpenAPI specification](artifact/openapi.json)
+- [API documentation](https://api.mkkpro.com:8073/docs)
+- [Career planner API route](https://api.mkkpro.com/career/120-day-planner)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, json]
+
+**Output Format:** [JSON career plan with structured phases, weekly focus, skill development path, risk mitigation, and checkpoints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sessionId, timestamp, and assessmentData; userId is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

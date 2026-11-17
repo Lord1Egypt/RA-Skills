@@ -1,42 +1,52 @@
-## Description: <br>
-Track and control token consumption across OpenClaw cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and control token consumption across OpenClaw cron jobs.
 
-## Publisher: <br>
-[aviclaw](https://clawhub.ai/user/aviclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[aviclaw](https://clawhub.ai/user/aviclaw)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operators use this skill to monitor token usage for OpenClaw cron jobs, enforce daily and per-job budgets, and identify lower-cost model alternatives.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented cron integration uses shell command string concatenation, which could execute unintended commands if attacker-influenced values reach job names, token counts, or model identifiers.
+
+Mitigation: Use execFile() or spawn() with argument arrays and validate job names, token counts, and model identifiers before invoking the tracker.
+
+Risk: The tracker persists local per-job usage and model data under ~/.openclaw/workspace/outputs.
+
+Mitigation: Confirm that storing usage logs at that path is acceptable for the workflow and restrict filesystem access as needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to monitor token usage across OpenClaw cron jobs, sessions, and fallback chains, with daily and per-job budget checks, alerts, and model recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The tool stores local records of job names, model names, run counts, and token totals. <br>
-Mitigation: Review where the local OpenClaw workspace output file is stored and avoid recording sensitive job or model identifiers. <br>
-Risk: The documented exec integration pattern can be risky if untrusted values are interpolated into shell commands. <br>
-Mitigation: Use an argument-array API such as spawn or execFile, or strictly validate job and model names before passing them to the tracker. <br>
-Risk: Budget checks and model recommendations are monitoring support, not automatic enforcement. <br>
-Mitigation: Keep separate enforcement controls for jobs that must stop or change models when budgets are exceeded. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aviclaw/token-budget-monitor) <br>
+**Other Properties Related to Output:** [When the tracking script is used, it writes local token usage state to ~/.openclaw/workspace/outputs/token-usage.json.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and local JSON usage log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes token usage records to a local token-usage.json file under the user's OpenClaw workspace outputs directory.] <br>
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

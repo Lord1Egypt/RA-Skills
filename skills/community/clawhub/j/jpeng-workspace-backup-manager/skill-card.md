@@ -1,40 +1,57 @@
-## Description: <br>
-Manages workspace backups by creating snapshots and enabling restore points for recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages workspace backups by creating snapshots and enabling restore points for recovery.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to create, list, restore, and clean up snapshots of important workspace files and directories for recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore operations can overwrite current workspace files. <br>
-Mitigation: Create a fresh backup or commit current changes before restoring from an older backup. <br>
-Risk: Cleanup operations can permanently delete older backup snapshots. <br>
-Mitigation: Review the backup list and retention count before running cleanup. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create named recovery snapshots of an OpenClaw workspace, list available backups, restore from a selected backup, and remove older backup snapshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-workspace-backup-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Markdown, Shell commands] <br>
-**Output Format:** [JavaScript return objects, backup snapshot files, Markdown-formatted backup lists, and CLI invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates backups under /root/.openclaw/workspace/backups/ and can restore workspace files or delete older backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Restore and cleanup operations can overwrite or delete important workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation and a preview of affected files before restore or cleanup operations.
+
+Risk: Untrusted backup names or backup directories can direct file operations outside the intended backup location.
+
+Mitigation: Validate backup names and paths, reject unsafe path components and symlinks, and require valid backup metadata before restore.
+
+Risk: Backup snapshots may contain sensitive workspace state from root files, memory/, or logs/.
+
+Mitigation: Store backups in a trusted access-controlled location and review backup contents before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-workspace-backup-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Markdown, Text]
+
+**Output Format:** [Backup snapshot files, JavaScript result objects, and formatted Markdown or text backup lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and restores selected root workspace files plus memory/ and logs/ directories under /root/.openclaw/workspace/backups/ by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

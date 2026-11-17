@@ -1,38 +1,54 @@
-## Description: <br>
-Perform a UX audit on any website or web app using Steve Krug's proven methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs a practical UX audit of a website or web app using Steve Krug's usability methodology and returns prioritized findings, quick wins, and recommendations.
 
-## Publisher: <br>
-[couriard](https://clawhub.ai/user/couriard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[couriard](https://clawhub.ai/user/couriard)
 
-## Use Case: <br>
-External users, designers, product teams, and developers use this skill to review websites, web apps, prototypes, and key task flows for practical usability issues grounded in Steve Krug's UX principles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may open and summarize user-provided pages, including private or sensitive pages if the user supplies them. <br>
-Mitigation: Use the skill only on pages intended for review, and avoid authenticated, private, sensitive, or local pages unless their contents may be included in the audit. <br>
+## Use Case:
 
+Designers, product teams, developers, and external reviewers use this skill to audit websites, web apps, wireframes, prototypes, or competitor pages before launch or improvement planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/couriard/steve-krug-ux-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown usability audit report with tables, prioritized issues, quick wins, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference browser screenshots, snapshots, pages reviewed, URLs, and concrete page elements when those are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Audits may capture page content in screenshots or browser snapshots, including non-public information from user-supplied sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit only pages the user is authorized to inspect and avoid entering credentials or sensitive personal data during capture.
+
+Risk: UX findings are evaluative guidance and may be incomplete or subjective for high-impact product decisions.
+
+Mitigation: Review recommendations with the product or design owner and validate major changes with users or additional accessibility testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/couriard/skills/steve-krug-ux-audit)
+- [Publisher profile](https://clawhub.ai/user/couriard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an executive summary, trunk test results, Krug's laws assessment, accessibility quick check, prioritized issues, quick wins, and recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

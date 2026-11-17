@@ -1,43 +1,58 @@
-## Description: <br>
-Self-healing backup and update guidance for protecting system updates with snapshots, health checks, canary testing, monitoring, and rollback workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-healing backup and update guidance for protected system updates, health monitoring, and rollback recovery.
 
-## Publisher: <br>
-[huseyinrencber](https://clawhub.ai/user/huseyinrencber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huseyinrencber](https://clawhub.ai/user/huseyinrencber)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to plan update and deployment workflows that create backups, run health checks, monitor services, and prepare rollback commands for production systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill depends on an unverified external installer and executable. <br>
-Mitigation: Verify the external publisher, source, signature or checksum, and exact version before installing or running the CLI. <br>
-Risk: The security review says the documented commands can affect production backups, updates, deployments, monitoring, and rollback. <br>
-Mitigation: Test in an isolated environment and require human approval before applying updates or rollbacks to production systems. <br>
-Risk: The security review advises avoiding sensitive systems until the external executable is independently trusted. <br>
-Mitigation: Do not run the workflow on systems containing sensitive data until the executable and installation path are independently validated. <br>
+## Use Case:
 
+Developers, operators, and system administrators use this skill to plan critical updates and deployments with backup snapshots, canary checks, health monitoring, and rollback commands.
 
-## Reference(s): <br>
-- [OpenClaw CLI download](https://openclawcli.vercel.app/) <br>
-- [ClawHub skill release](https://clawhub.ai/huseyinrencber/testvercel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes production-impacting command examples that require verification and human approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs users to install an external OpenClaw CLI without server-resolved provenance for the release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after independently verifying the CLI source and exact binary with trusted release, checksum, or signature information.
+
+Risk: Example update and deployment commands can affect production services or multiple servers.
+
+Mitigation: Review every command, test in a non-production environment, require explicit approvals, and avoid privileged or multi-server execution until rollback behavior is validated.
+
+Risk: Rollback and backup workflows may not match a specific environment's failure modes.
+
+Mitigation: Validate backup integrity, health checks, dry-run rollback behavior, and restore procedures before relying on automated recovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huseyinrencber/skills/testvercel)
+- [OpenClaw CLI](https://openclawcli.vercel.app/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include production-impacting update, backup, monitoring, and rollback commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

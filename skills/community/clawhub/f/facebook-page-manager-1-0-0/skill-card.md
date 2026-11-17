@@ -1,43 +1,59 @@
-## Description: <br>
-Manage Facebook Pages via Meta Graph API by posting text, photo, or link content, listing posts, and handling comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Facebook Pages via Meta Graph API by publishing text, photo, or link posts; listing Page posts; and listing, replying to, hiding, or deleting comments.
 
-## Publisher: <br>
-[Loui1979](https://clawhub.ai/user/Loui1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[loui1979](https://clawhub.ai/user/loui1979)
 
-## Use Case: <br>
-External users and developers use this skill to manage Facebook Page publishing and moderation workflows from an agent-assisted CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish to Facebook Pages and moderate comments using granted Page tokens. <br>
-Mitigation: Review posts, target Page IDs, and moderation actions before execution, and grant only the permissions needed for the intended workflow. <br>
-Risk: The bundled X/Twitter digest scripts require AUTH_TOKEN and CT0 credentials and an unmanaged bird binary. <br>
-Mitigation: Do not provide AUTH_TOKEN or CT0 or run x_digest_* scripts unless that workflow is explicitly desired and the bird binary has been verified. <br>
-Risk: Local tokens.json may contain Facebook Page access tokens. <br>
-Mitigation: Protect the token file during use and remove it when access is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Graph API Reference](references/graph-api.md) <br>
-- [Meta Developers Apps](https://developers.facebook.com/apps/) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/Loui1979/facebook-page-manager-1-0-0) <br>
+## Use Case:
 
+External users, developers, and page operators use this skill to configure Meta OAuth, select managed Facebook Pages, publish Page content, and manage Page comments from an agent-assisted CLI workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may call Meta Graph API endpoints and may read or write local credential files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports undisclosed X/Twitter-to-Facebook automation that can publish promotional content.
+
+Mitigation: Remove or disable the X/Twitter digest scripts before use unless that automation is explicitly intended and reviewed.
+
+Risk: The skill can post publicly, hide or delete comments, and reply on managed Facebook Pages.
+
+Mitigation: Use test Pages first and review the exact Page, post, comment, and final public content before running write, hide, reply, or delete commands.
+
+Risk: The skill handles Meta Page tokens and X/Twitter credentials.
+
+Mitigation: Store credentials in a protected secret store or isolated environment, avoid broad environment variables, and verify any external executable used for X/Twitter collection.
+
+## Reference(s):
+
+- [Graph API Reference](references/graph-api.md)
+- [Meta App Dashboard](https://developers.facebook.com/apps/)
+- [Facebook Graph API v21.0](https://graph.facebook.com/v21.0)
+- [ClawHub Skill Page](https://clawhub.ai/loui1979/skills/facebook-page-manager-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript CLI scripts, environment configuration, and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Meta app credentials, OAuth tokens, and explicit review before public posting or comment moderation actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Stop your AI agent from claiming it lacks access. One rule + one inventory table = no more hedging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop your AI agent from claiming it lacks access. One rule + one inventory table = no more hedging.
 
-## Publisher: <br>
-[joeytbuilds](https://clawhub.ai/user/joeytbuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeytbuilds](https://clawhub.ai/user/joeytbuilds)
 
-## Use Case: <br>
-Developers and agent users use this skill to create AGENTS.md guidance and an access inventory so agents can identify configured tools, services, and credentials before claiming access is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says the skill tells agents to persistently find and use local credentials before asking the user. <br>
-Mitigation: Require explicit user approval before reading credential files, scanning environment variables, using authenticated services, or verifying credentials; record only non-secret service names, scopes, and status notes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create an access inventory and operating rule that helps an agent recognize available local tools, services, and credentials before declaring it lacks access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeytbuilds/access-inventory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for maintaining an access inventory; it does not execute commands itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad discovery and use of local credentials and authenticated sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an allowlist for approved services, avoid printing or storing secrets, and require explicit approval before using credentials or authenticated sessions.
+
+Risk: Persistent access instructions can make an agent overconfident about stale, revoked, or sensitive credentials.
+
+Mitigation: Keep persistent instructions limited to non-sensitive capability labels and regularly verify or remove stale entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeytbuilds/skills/access-inventory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inventory-table examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for maintaining an agent access inventory; it does not execute commands itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents manage DingTalk calendars by creating, querying, updating, and deleting events; checking availability; and finding or booking meeting rooms through mcporter-connected DingTalk MCP services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dingtalk Calendar helps agents use mcporter to connect to DingTalk MCP calendar and contacts services for creating and managing events, checking free/busy status, and booking meeting rooms.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Employees and agent users use this skill to coordinate DingTalk schedules, check participant availability, search contacts, and reserve meeting rooms from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read coworker availability and contact data and can change, delete, or book calendar resources. <br>
-Mitigation: Use an account with the least necessary DingTalk permissions and require explicit preview and confirmation before reading others' availability or modifying calendar resources. <br>
-Risk: The configured mcporter package and DingTalk MCP URLs determine which external services the agent connects to. <br>
-Mitigation: Verify the mcporter package and copy DingTalk MCP URLs from the official DingTalk MCP marketplace before configuration. <br>
+## Use Case:
 
+Employees and assistants managing DingTalk schedules use this skill to create, query, update, and delete calendar events, check attendee availability, search contact details, and reserve meeting rooms.
 
-## Reference(s): <br>
-- [DingTalk MCP Marketplace](https://mcp.dingtalk.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/dingtalk-cal-v1) <br>
-- [Publisher Profile](https://clawhub.ai/user/onlyloveher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON argument examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for mcporter CLI calls to DingTalk calendar and contacts MCP services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence, released 2026-03-27) <br>
+Risk: The skill can create, update, and delete DingTalk calendar data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum calendar permissions needed and confirm event IDs before updates or deletions.
+
+Risk: The skill relies on a globally installed third-party mcporter CLI and configured DingTalk MCP endpoints.
+
+Mitigation: Install only if you trust mcporter and the DingTalk MCP endpoints you configure.
+
+Risk: Calendar free/busy and contact lookups can expose coworker availability or details.
+
+Mitigation: Follow organizational policy before looking up coworkers' details or free/busy status.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/dingtalk-cal-v1)
+- [DingTalk MCP Plaza](https://mcp.dingtalk.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands generally request JSON output from mcporter.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

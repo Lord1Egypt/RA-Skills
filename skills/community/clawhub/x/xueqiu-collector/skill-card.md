@@ -1,43 +1,64 @@
-## Description: <br>
-xueqiu-collector collects full or incremental Xueqiu user posts, downloads images for OCR, applies local V4 rule analysis, and exports SQLite, JSON, and Markdown backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Xueqiu user posts, extracts full text and images with optional OCR, analyzes investment-related signals with local rules, and exports the results to SQLite, JSON, and Markdown.
 
-## Publisher: <br>
-[zhangjia-ie](https://clawhub.ai/user/zhangjia-ie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangjia-ie](https://clawhub.ai/user/zhangjia-ie)
 
-## Use Case: <br>
-Developers and analysts use this skill to archive, update, and analyze Xueqiu posts for personal investment records, monitored accounts, market discussion tracking, or knowledge-base workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses logged-in Edge browser automation to collect Xueqiu posts, images, and OCR data at broad scope. <br>
-Mitigation: Use a dedicated Edge profile and Xueqiu account, and confirm that the target account and collection scope are authorized before running collection. <br>
-Risk: Large or repeated scraping may violate site rules or trigger rate limits. <br>
-Mitigation: Avoid large or repeated scraping, respect Xueqiu terms, and keep the built-in delays, retry limits, and collection limits enabled. <br>
-Risk: Exported databases, Markdown, JSON, images, OCR text, and logs may contain sensitive or private data. <br>
-Mitigation: Store outputs in a private folder, restrict access, and define a deletion plan before collecting data. <br>
+## Use Case:
 
+Developers, analysts, and individual investors use this skill to archive posts from a specified Xueqiu user, preserve associated images and OCR text, and classify investment-related content for later review.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [category_keywords.json](artifact/references/category_keywords.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime artifacts include SQLite databases, JSON exports, Markdown exports, downloaded images, OCR text, and logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a logged-in Edge browser profile and local rule-based analysis; no AI API is required by the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill drives a logged-in Edge browser session for Xueqiu collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Edge profile and least-privilege Xueqiu account, and collect only content you are authorized to process.
+
+Risk: User-provided authors, Xueqiu URLs, and discovered image URLs can cause unintended navigation, fetching, or collection.
+
+Mitigation: Review the author and profile URL before execution, avoid untrusted inputs, and confirm the target is the intended Xueqiu profile.
+
+Risk: Collected posts, OCR text, images, logs, and exports can accumulate sensitive local data.
+
+Mitigation: Choose a controlled output directory, restrict local access, monitor storage growth, and review outputs before sharing.
+
+Risk: The environment checker can install optional local packages when run with --fix.
+
+Mitigation: Run the checker without --fix first and approve any package changes before enabling automatic fixes.
+
+## Reference(s):
+
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Category keywords](references/category_keywords.json)
+- [ClawHub skill page](https://clawhub.ai/zhangjia-ie/skills/xueqiu-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [SQLite database rows, JSON exports, Markdown backups, downloaded image files, OCR text, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written under the configured data directory, grouped by Xueqiu author, with full and per-category JSON and Markdown exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

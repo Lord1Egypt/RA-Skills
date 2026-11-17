@@ -1,38 +1,48 @@
-## Description: <br>
-Provides answers by retrieving and synthesizing information from local text or markdown files using retrieval-augmented generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides answers by retrieving and synthesizing information from local text or markdown files using a retrieval-augmented generation approach.
 
-## Publisher: <br>
-[Metatronsdoob369](https://clawhub.ai/user/Metatronsdoob369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[metatronsdoob369](https://clawhub.ai/user/metatronsdoob369)
 
-## Use Case: <br>
-Developers and analysts use this skill to ask questions over a local folder of text or markdown documents and receive synthesized answers with matching source snippets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected local documents may contain secrets, credentials, personal records, or unrelated private files. <br>
-Mitigation: Use a dedicated docs folder and avoid indexing sensitive or unrelated files. <br>
-Risk: Queries and selected document snippets may be processed by the OpenAI API provider. <br>
-Mitigation: Install and use the skill only when that processing is acceptable for the selected documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to answer questions against a focused folder of local text or markdown documents and return supporting matches.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Synthesized answer with retrieved match paths, scores, and snippets.] <br>
-**Output Parameters:** [query, optional docsPath, optional k] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY in the environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries and document snippets may be sent to an external OpenAI-backed workflow.
+
+Mitigation: Keep docsPath pointed at a narrow, non-sensitive folder and avoid private, regulated, credential-containing, or broad directories unless that content is intended for model requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metatronsdoob369/skills/hk101-living-rag)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Synthesized answer with matched document paths, scores, and snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses query, optional docsPath, and optional top-k match count; requires OPENAI_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

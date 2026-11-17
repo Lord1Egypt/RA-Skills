@@ -1,44 +1,60 @@
-## Description: <br>
-Auto video production, TTS voiceover, media management, batch export | AI 自动成片、TTS 配音、素材管理、批量导出. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FCP Assistant helps agents assemble videos from scripts, collect stock footage, generate local TTS voiceovers, create subtitles and thumbnails, and run ffmpeg-based editing helpers for Final Cut Pro workflows.
 
-## Publisher: <br>
-[lasbder-ops](https://clawhub.ai/user/lasbder-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lasbder-ops](https://clawhub.ai/user/lasbder-ops)
 
-## Use Case: <br>
-Video creators, editors, and automation developers use this skill to collect stock footage, generate voiceover, assemble videos, create subtitles, normalize audio, and assist Final Cut Pro workflows from shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scripts may write or overwrite generated media files in the selected project folders. <br>
-Mitigation: Review output paths before running or rerunning scripts, and keep project outputs in a dedicated working directory. <br>
-Risk: Narration text and media paths may be sent to local Qwen TTS or ASR services. <br>
-Mitigation: Use trusted local services only and avoid passing sensitive scripts or media unless the local service is approved for that content. <br>
-Risk: The media collector downloads stock footage from external services. <br>
-Mitigation: Use trusted API keys and review downloaded media metadata and licensing before publication. <br>
+## Use Case:
 
+External creators, editors, and developers use this skill to draft script-to-video workflows, collect media, generate voiceover audio, assemble finished videos, and produce editing support files for Final Cut Pro-oriented projects.
 
-## Reference(s): <br>
-- [FCP Assistant on ClawHub](https://clawhub.ai/lasbder-ops/fcp-assistant) <br>
-- [lasbder-ops ClawHub profile](https://clawhub.ai/user/lasbder-ops) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can guide scripts that create or overwrite local media files, metadata, subtitles, thumbnails, and audio/video outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The security evidence reports suspicious shell-script handling where crafted subtitle language input could run local code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review shell scripts before installation, avoid passing untrusted values to multi-lang-subtitles.sh, and prefer manually running checked commands with known-safe arguments.
+
+Risk: The shipped files rely on local command execution and media-processing tools such as ffmpeg, ffprobe, curl, jq, and osascript.
+
+Mitigation: Run the skill in a controlled local environment with the required binaries installed, and inspect generated commands and file paths before execution.
+
+Risk: The security guidance states that advertised Final Cut Pro automation and batch export features are not fully present in the shipped files.
+
+Mitigation: Treat FCP automation claims as limited to the included artifacts, verify expected scripts exist before planning a workflow, and fall back to manual Final Cut Pro steps where needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lasbder-ops/skills/fcp-assistant)
+- [FCP Assistant Skill Definition](artifact/SKILL.md)
+- [FCP Assistant Quick Start Guide](artifact/GUIDE.md)
+- [Pexels API](https://www.pexels.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated media/configuration file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for running local shell scripts that can create media files, metadata, subtitles, thumbnails, tags, and edited video outputs.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

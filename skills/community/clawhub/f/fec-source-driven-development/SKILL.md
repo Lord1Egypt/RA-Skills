@@ -1,61 +1,87 @@
 ---
 name: fec-source-driven-development
-description: Use when frontend decisions depend on framework, library, browser, runtime, package, API, or platform behavior that may have changed, including official documentation checks, version-sensitive patterns, migration choices, or public interface assumptions; Chinese triggers include 查官方文档, 以源码为准, source-driven, 版本差异.
+description: Use when frontend decisions depend on framework, library, browser, runtime, package, API, or platform behavior that may have changed, including official documentation checks, version-sensitive patterns, migration choices, or public interface assumptions; Chinese triggers include Check official documentation, source code shall prevail, source-driven, version differences.
 ---
 
-# 来源驱动开发
+# Source driven development
 
 ## Purpose
 
-在前端实现、评审和架构决策中优先依据项目内事实、官方文档和当前版本行为，避免沿用过时经验或未经验证的假设。
+Prioritize the use of in-project facts, official documentation, and current version behavior in front-end implementation, review, and architecture decisions, and avoid relying on outdated experience or unverified assumptions.
 
 ## Procedure
 
-1. 判断是否需要查源
-   - 涉及框架新版本、路由、渲染模式、缓存、构建工具、浏览器 API、包发布格式、鉴权协议或公共接口时必须查源。
-   - 涉及项目约定时先读本仓库 README、配置、模板、已有实现、测试和迁移记录。
-   - 只是稳定语言语法或明显局部重构时，可使用项目现有模式作为事实来源。
+1. Determine whether it is necessary to check the source
+   - Source checking is required when new versions of frameworks, routing, rendering modes, caches, build tools, browser APIs, package publishing formats, authentication protocols, or public interfaces are involved.
+   - When it comes to project commitments, read the README, configuration, templates, existing implementations, testing and migration records of this warehouse first.
+   - Use the project's existing schema as a source of truth when simply stabilizing the language syntax or significantly partial refactoring.
 
-2. 收集权威材料
-   - 首选官方文档、规范、源码、release notes、migration guide、类型定义和项目内测试。
-   - 第三方文章只能作为线索，不能作为最终依据。
-   - 对快速变化的库记录包名、版本、文档日期或页面标题。
+2. Collect authoritative materials
+   - Preferred official documentation, specifications, source code, release notes, migration guide, type definitions and in-project testing.
+   - Third-party articles can only be used as clues and cannot be used as the final basis.
+   - Record package name, version, document date or page title for rapidly changing libraries.
+   - When a user asks to answer a question from a local knowledge base, project repository or `knowledge/` directory, perform local knowledge retrieval first and do not use network search to fill in the facts.
 
-3. 提炼决策
-   - 写清当前版本推荐做法、弃用做法、限制条件和迁移注意事项。
-   - 对多个可行方案说明选择理由、兼容性、维护成本和回退方式。
-   - 若文档和项目现状冲突，优先解释冲突并给出渐进调整，不直接推翻已运行系统。
-   - 对依赖升级、框架迁移和公共 API 变化，记录 release notes、migration guide、版本范围、破坏性变更和回滚方案。
+3. Refine decisions
+   - Write down recommended practices, deprecated practices, limitations and migration considerations for the current version.
+   - Explain the reasons for selection, compatibility, maintenance costs and fallback methods for multiple feasible options.
+   - If there is a conflict between the document and the current status of the project, priority will be given to explaining the conflict and making incremental adjustments instead of directly overturning the running system.
+   - Record release notes, migration guide, version scope, breaking changes and rollback plans for dependency upgrades, framework migrations and public API changes.
 
-4. 落到实现
-   - 将外部行为隔离在适配层、配置层或小型工具函数中，避免在组件里散落版本假设。
-   - 公共接口变化要保持命名、错误形状、默认值和兼容策略清晰。
-   - 代码注释只记录非显而易见的来源约束，不粘贴大段文档。
+4. Fall to implementation
+- Isolate external behavior in the adaptation layer, configuration layer or small utility functions to avoid spreading version assumptions throughout the component.
+   - Public interface changes should keep naming, error shapes, default values, and compatibility policies clear.
+   - Code comments only record non-obvious source constraints and do not paste large sections of documentation.
 
-5. 验证假设
-   - 用类型检查、最小复现、单元测试、组件测试、E2E、构建或浏览器验证证明关键假设。
-   - 如果无法验证，报告不确定性、风险范围和需要用户或团队确认的信息。
-6. 留下轻量决策记录
-   - 当结论会影响公共接口、依赖版本、目录规范或团队工作流时，补充 ADR/变更记录或交给文档同步流程。
+5. Test your hypothesis
+   - Prove key assumptions with type checking, minimal reproduction, unit testing, component testing, E2E, build or browser validation.
+   - If verification is not possible, report uncertainty, risk range, and information that requires confirmation by the user or team.
+6. Leave a lightweight record of decisions
+   - Supplement ADR/change records or hand off to the document sync process when conclusions impact public interfaces, dependency versions, catalog specifications or team workflows.
+
+## Local Knowledge Retrieval
+
+When the user specifies the local knowledge base path, or the default `knowledge/` directory exists, this process can be used to answer database questions, extract evidence, or assist decision-making.
+
+1. Locate the root directory
+   - Use this path when the user explicitly specifies the path.
+   - Otherwise, check whether `knowledge/` under the current project exists; if it does not exist, it means that the default knowledge base is not found and the path is requested.
+   - No need to use file glob to determine whether the directory exists.
+
+2. Hierarchical navigation
+   - Read `data_structure.md` in the root directory and subdirectories first.
+   - Select the most relevant few branches according to the directory description, without traversing the entire knowledge base at once.
+   - Document candidate files, topics, time/version range and why they are relevant.
+
+3. Progressive search
+   - Markdown, text, log: first search with keywords, and then partially read the hit context.
+   - PDF: Confirm the available tools and extraction routes before processing, and prioritize extraction of temporary text before retrieval to avoid putting the entire PDF into context.
+   - Excel: Confirm the read/analysis route before processing, first look at the worksheet, column names and a few samples, and then filter or aggregate by field.
+   - Default to up to 5 rounds of keyword iteration; each round adjusts synonyms, abbreviations, and scope based on found evidence.
+
+4. Answer and traceability
+   - Give the conclusion first, and then list the file path, chapter, page number, worksheet or line number as a basis.
+   - If there is insufficient evidence, explain which paths have been checked, what information is missing, and how the user can narrow down the scope.
+   - Do not mix online information from outside the knowledge base into answers unless the user requests otherwise to check external sources.
 
 ## Source Priority
 
 | Priority | Source | Use |
 | -------- | ------ | --- |
-| 1 | 项目内配置、测试、已有实现 | 判断本仓库真实约定 |
-| 2 | 官方文档、源码、类型定义 | 判断当前推荐行为 |
-| 3 | 标准规范、浏览器兼容数据 | 判断平台能力和兼容边界 |
-| 4 | Issue、讨论、第三方文章 | 辅助排查，不能单独定案 |
+| 1 | Configuration, testing, and implementation within the project | Determine the true agreement of this warehouse |
+| 2 | Official documents, source code, type definitions | Determine current recommended behavior |
+| 3 | Standard specifications, browser compatibility data | Determine platform capabilities and compatibility boundaries |
+| 4 | Issues, discussions, third-party articles | Auxiliary investigation, cannot be finalized alone |
 
 ## Constraints
 
-- 不凭记忆给版本敏感结论。
-- 不把过时教程当作当前最佳实践。
-- 不引用无法复核的来源作为关键依据。
-- 不为追新而改动稳定项目约定；必须说明收益和迁移成本。
-- 不在交付中复制长篇外部文档；只保留必要结论和链接或文件路径。
-- 不把“查过文档”停留在口头；版本敏感决策需要能追溯到具体版本、路径或官方页面。
+- Don't give version-sensitive conclusions from memory.
+- Do not treat outdated tutorials as current best practices.
+- Do not cite sources that cannot be reviewed as critical evidence.
+- Do not change the stable project agreement to pursue new developments; the benefits and migration costs must be explained.
+- Do not copy long external documents in the delivery; keep only necessary conclusions and links or file paths.
+- Don't just say "checked the documentation"; version-sensitive decisions need to be traceable to a specific version, path or official page.
 
 ## Expected Output
 
-输出来源清单、版本或项目事实、决策结论、实现影响、验证命令和未决风险。若修改代码，关键行为应有测试或构建验证支撑。
+Output source lists, version or project facts, decision conclusions, implementation impacts, validation orders, and open risks. If code is modified, key behaviors should be supported by tests or build verification.

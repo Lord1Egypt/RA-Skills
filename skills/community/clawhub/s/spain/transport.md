@@ -1,79 +1,75 @@
 # Transport — Spain
 
-## Trenes (AVE)
+## Trains (AVE)
 
-| Ruta | Tiempo | Tip |
+| Route | Time | Tip |
 |------|--------|-----|
-| Madrid - Barcelona | 2h 30m | Compra con semanas de antelación, precio x3 cerca de fecha |
-| Madrid - Sevilla | 2h 20m | Mejor que volar contando aeropuerto |
-| Madrid - Valencia | 1h 40m | Frecuente, fácil |
-| Madrid - Málaga | 2h 20m | Conexión Costa del Sol |
+| Madrid - Barcelona | 2h 30m | Buy weeks ahead, price x3 near the date |
+| Madrid - Seville | 2h 20m | Better than flying once you count the airport |
+| Madrid - Valencia | 1h 40m | Frequent, easy |
+| Madrid - Málaga | 2h 20m | Costa del Sol connection |
+| Barcelona - Seville | ~5h 30m | The one long haul where flying wins |
 
-**Operadores:** Renfe (oficial), OUIGO y Iryo (low-cost, mismas vías)
+**Four operators, same tracks — compare all:** Renfe (full service), Avlo (Renfe's low-cost), OUIGO, Iryo. Low-cost fares include a cabin bag only; large luggage costs extra — Renfe includes it. Renfe's website works better than its app for booking.
 
-**Truco:** Billetes Promo en renfe.com con 2-3 semanas de antelación. €25-40 vs €100+ última hora.
+**Fare rule:** promo fares appear 2-3 weeks ahead: €25-40 vs €100+ last minute on Madrid-Barcelona. Buy the AVE the same week you book flights, never on arrival.
 
-**Cercanías gratis:** Tu billete AVE incluye cercanías en origen y destino (Madrid, Barcelona).
+**Free commuter trains:** an AVE ticket includes Cercanías at origin and destination (combination code printed on the ticket) — don't buy a separate ticket for the station leg in Madrid or Barcelona.
 
-## Vuelos Internos
+## Train vs Fly vs Bus vs Car
 
-| Ruta | Mejor opción |
-|------|--------------|
-| Península a Baleares/Canarias | Vuelo (no hay alternativa) |
-| Madrid-Barcelona | AVE gana (tiempo total similar, más cómodo) |
-| Madrid-Bilbao | AVE o vuelo similar |
+| Situation | Take |
+|-----------|------|
+| Mainland to Balearics/Canaries | Flight — no alternative (ferry only if the crossing IS the plan) |
+| City pairs under ~3h by AVE | Train — center-to-center beats any flight door to door |
+| Barcelona ↔ Andalusia | Flight (5h30+ by rail) |
+| Villages without a station | ALSA bus — slower, cheaper, goes everywhere |
+| White villages, Rioja/Ribera wineries, Asturias/Galicia interior | Car — public transport is sparse |
+| Tight budget between big cities | BlaBlaCar or bus |
+| Default | AVE if it serves both ends — it usually does |
 
-**Low-cost:** Vueling (hub Barcelona), Ryanair, Volotea (ciudades pequeñas)
+**Low-cost flights:** Vueling (Barcelona hub), Ryanair, Volotea (small cities).
 
-## Autobuses
-
-**ALSA** es el grande. Más barato que tren, más lento.
-
-Útil para:
-- Pueblos sin estación de tren
-- Rutas que AVE no cubre
-- Presupuesto ajustado
-
-## En Ciudades
+## In Cities
 
 ### Madrid
-- **Metro:** Cubre todo. Tarjeta Multi contactless.
-- **Abono Joven (<26):** €20/mes todo Madrid
-- **Aeropuerto:** Metro L8 (€4.50 suplemento) o bus exprés (€5)
+- **Metro:** Covers everything. Buy a Multi card (contactless) at any machine.
+- **Abono Joven (<26):** €20/month, all zones — pays for itself in ~10 rides (singles run €1.50-2)
+- **Airport:** Metro L8 (airport supplement on top of the fare) or Exprés bus — €5, runs 24h, ~40 min to Atocha
 
 ### Barcelona
-- **Metro + Bus:** TMB. T-Casual (10 viajes) o T-Usual (mes)
-- **Aeropuerto:** Aerobus (€7, 35min a Plaça Catalunya) o metro L9
+- **Metro + Bus:** TMB. T-Casual (10 rides) or T-Usual (month).
+- **Trap:** T-Casual is NOT valid at the L9 airport stations — the airport ride needs its own fare. Aerobus (€7, 35 min to Plaça Catalunya) is simpler.
 
-### Otras ciudades
-- Valencia, Bilbao, Sevilla, Málaga tienen metro
-- Ciudades pequeñas: bus urbano suficiente
+### Other cities
+- Valencia, Bilbao, Seville, Málaga have a metro
+- Small cities: the city bus is enough
 
-## Alquiler de Coche
+## Car Rental
 
-**Cuándo vale la pena:**
-- Costa Brava, pueblos blancos Andalucía, interior
-- Asturias/Galicia (transporte público limitado)
-- Rutas de vino (Rioja, Ribera)
+**When it's worth it:**
+- Costa Brava, Andalusia's white villages, the interior
+- Asturias/Galicia (limited public transport)
+- Wine routes (Rioja, Ribera)
 
-**Cuándo NO:**
-- Ciudades grandes (aparcar imposible/caro)
-- Barcelona-Madrid (AVE mejor)
+**When NOT:**
+- Big cities (parking impossible/expensive)
+- Barcelona-Madrid (AVE better)
 
-**Carnet:** EU válido. USA/otros: permiso internacional recomendado.
+**Low-emission zones (ZBE):** Madrid and Barcelona restrict center driving and fine by camera, automatically. Rental cars are new enough to qualify, but Madrid's central zone still requires access registration (your hotel or garage registers the plate). Simplest: park at a garage on the edge and go in by metro.
 
-**Peajes:** Cataluña y norte tienen más autopistas de pago. Alternativas gratuitas existen pero más lentas.
+**Tolls:** the big Mediterranean and Ebro tolls (AP-7, AP-2, AP-4) were abolished 2019-2021. Tolls remain mainly on AP-6 (Madrid–northwest) and AP-9 (Galicia). Free parallel N-roads exist, slower.
 
-## Taxi y VTC
+**License:** EU valid. USA/others: international permit recommended.
 
-- **Taxi:** Blanco con franja de color según ciudad. Taxímetro obligatorio.
-- **Madrid-Barajas:** Tarifa fija €33 al centro. No aceptes otra cosa.
-- **Uber/Cabify:** Funciona en ciudades grandes. Uber limitado en Barcelona.
+## Taxi and Ride-hailing
+
+- **Taxi:** White with a colored stripe depending on the city. Meter mandatory.
+- **Madrid-Barajas:** Flat rate €33 to the center. Don't accept anything else.
+- **Uber/Cabify:** Big cities. Uber limited in Barcelona — FreeNow (regular taxis) works nationwide.
 
 ## Tips
 
-1. **Reserva AVE temprano** — los precios suben mucho
-2. **Google Maps** funciona bien para transporte público
-3. **No conduzcas en Barcelona/Madrid** — no merece la pena
-4. **BlaBlaCar** popular para compartir coche entre ciudades
-5. **Agosto** — menos frecuencias de transporte, todo más lleno
+1. **BlaBlaCar** is mainstream in Spain for intercity ride-sharing — real option, not a fringe one
+2. **August** — reduced frequencies, everything busier; book intercity legs ahead
+3. **Google Maps** handles Spanish public transport well; Moovit better for local buses

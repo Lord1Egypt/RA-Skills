@@ -1,39 +1,49 @@
-## Description: <br>
-提供混沌理论核心知识，解释非线性敏感初值导致短期可测、长期不可测及混沌与随机的区别。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供中文混沌理论参考，帮助代理解释非线性系统、初值敏感性、长期预测限制以及混沌与随机的区别。
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, students, and analysts use this Chinese-language reference skill to answer questions about chaos theory, nonlinear systems, sensitive dependence on initial conditions, and practical examples such as weather, ecology, markets, and decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Educational explanations may be mistaken for authoritative scientific, forecasting, or financial advice. <br>
-Mitigation: Treat the skill as a reference aid and verify scientific, forecasting, or financial claims with qualified sources before making decisions. <br>
-Risk: Illustrative code and formulas may be copied into analysis without validation for the user's data or assumptions. <br>
-Mitigation: Review examples, assumptions, and numerical outputs before reuse in coursework, research, planning, or investment workflows. <br>
+## Use Case:
 
+Developers and agents use this Chinese-language skill to answer educational questions about chaos theory, including nonlinear dynamics, sensitive dependence on initial conditions, logistic maps, fractals, and practical examples in natural and social systems.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown educational reference with tables, equations, and illustrative code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Knowledge-only output; no shell execution, network access, persistence, or data handling behavior is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Non-Chinese readers may misunderstand or be unable to use the skill content effectively.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate or adapt the responses for the intended audience before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/chaos-theory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with explanatory tables, formulas, and short code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational reference content; no executable behavior is requested by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

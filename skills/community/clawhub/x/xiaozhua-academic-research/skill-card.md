@@ -1,41 +1,49 @@
-## Description: <br>
-Academic Research helps agents search and organize academic literature from PubMed, Springer, PLOS, and related sources into structured reports and presentation-ready citation formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Research helps agents retrieve and organize academic literature from sources such as PubMed, Springer, and PLOS, with emphasis on epidemiology, medical, and market research evidence.
 
-## Publisher: <br>
-[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops)
 
-## Use Case: <br>
-External researchers, analysts, and developers use this skill to guide literature searches and synthesize epidemiology, medical, and market research findings into structured regional reports and PPT-ready citation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research summaries may contain incorrect PubMed IDs, study dates, sample sizes, or unsupported medical or market-research claims. <br>
-Mitigation: Validate important outputs against the cited papers and PubMed records before use. <br>
-Risk: Generated reports or PPT-ready citation notes may be incomplete when sources are paywalled or difficult to verify. <br>
-Mitigation: Check paywalled-source claims against accessible abstracts, institutional access, or authoritative secondary sources before relying on them. <br>
+## Use Case:
 
+Researchers, analysts, and agents use this skill to search recent academic literature, prioritize higher-quality study types, extract prevalence, incidence, sample size, year, and country data, and prepare structured regional reports or presentation-ready outputs with citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirowangl-ops/xiaozhua-academic-research) <br>
-- [PubMed PMID pages](https://pubmed.ncbi.nlm.nih.gov/PMID/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and PPT-ready citation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes region-grouped data tables, inline reference markers, appendix citation details, and PubMed links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated citations, medical claims, or market claims may be inaccurate or insufficiently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source citations, PubMed links, study definitions, and extracted statistics before relying on the generated report or presentation.
+
+## Reference(s):
+
+- [PubMed citation URL format](https://pubmed.ncbi.nlm.nih.gov/PMID/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured reports and presentation-ready citation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are organized by region and include inline or appendix citation markup when source records are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Autonomous Razorpay payment monitoring for Indian merchants. Tracks daily settlements, detects failed payments, sends WhatsApp/Telegram alerts for anomalies, and delivers weekly revenue summaries. Connects to the Razorpay API using your key and secret. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Razorpay payment monitoring for Indian merchants that tracks daily settlements, detects failed payments, sends WhatsApp/Telegram anomaly alerts, delivers weekly revenue summaries, and connects to the Razorpay API using merchant keys.
 
-## Publisher: <br>
-[utsavs](https://clawhub.ai/user/utsavs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[utsavs](https://clawhub.ai/user/utsavs)
 
-## Use Case: <br>
-Indian merchants and their operators use this skill to monitor Razorpay payments, settlements, refunds, disputes, and revenue trends through scheduled reports, anomaly alerts, and on-demand commands. <br>
-
-### Deployment Geography for Use: <br>
-India <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment-monitoring reports and anomaly alerts can contain sensitive financial, customer, refund, settlement, or dispute information. <br>
-Mitigation: Configure recipients carefully, send only masked customer details, and keep alert content limited to what operators need to act. <br>
-Risk: Razorpay API keys provide access to merchant payment data and must not be exposed in logs, messages, or generated output. <br>
-Mitigation: Store RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET only in environment variables, avoid echoing secrets, and rotate keys if exposure is suspected. <br>
-Risk: WhatsApp or Telegram delivery can send financial notifications outside the merchant's primary Razorpay dashboard. <br>
-Mitigation: Use approved recipient accounts or groups, verify destinations before enabling alerts, and avoid sending unnecessary personal or payment details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Razorpay Monitor ClawHub Release](https://clawhub.ai/utsavs/razorpay-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/utsavs) <br>
-- [Razorpay API Base URL](https://api.razorpay.com/v1/) <br>
+## Use Case:
 
+External merchants and operators use this skill to monitor Razorpay payment activity, settlements, refunds, disputes, and revenue summaries through an agent. It supports proactive alerts and on-demand payment-status questions without requiring routine dashboard checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text payment reports, alert messages, command responses, Razorpay API requests, cron examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET; optional thresholds tune large-payment, failure-spike, and polling behavior; alerts may be routed through WhatsApp or Telegram.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+India
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent can read Razorpay payment, settlement, refund, dispute, and limited customer-contact data when configured with merchant API keys.
+
+Mitigation: Install only for intended merchant accounts, use appropriately scoped Razorpay keys where possible, and keep API keys in environment variables rather than messages or logs.
+
+Risk: WhatsApp or Telegram alerts may send operational payment details to unintended recipients if alert destinations are misconfigured.
+
+Mitigation: Confirm all alert recipients before enabling delivery and keep customer emails, phone numbers, and other contact details masked in reports.
+
+Risk: Cron-style polling can create recurring background access to payment data.
+
+Mitigation: Enable daily reports, anomaly polling, and weekly summaries only when recurring monitoring is required.
+
+## Reference(s):
+
+- [Razorpay API](https://api.razorpay.com/v1/)
+- [ClawHub skill page](https://clawhub.ai/utsavs/skills/razorpay-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style reports and alerts with inline shell and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include masked customer-contact fields, payment summaries, settlement status, refund summaries, dispute reminders, and alert thresholds.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

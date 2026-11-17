@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-seedance-2
 description: Seedance 2 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `seedance-2`, `seedance-2-fast`, text-to-video, first/last-frame image-to-video, multimodal image/video/audio references, 4s-15s clips, optional audio, and seed control.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/seedance-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/seedance-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Seedance 2 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/seedance-2>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/seedance-2>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Seedance 2 jobs on PoYo. It covers standard and fast variants, text-to-video, first/last-frame control, and multimodal reference-to-video workflows.
 

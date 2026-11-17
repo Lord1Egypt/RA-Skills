@@ -1,39 +1,52 @@
-## Description: <br>
-Generate professional freelance contracts, SOWs, and NDAs for client projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional freelance contracts, SOWs, and NDAs for client projects.
 
-## Publisher: <br>
-[seanwyngaard](https://clawhub.ai/user/seanwyngaard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanwyngaard](https://clawhub.ai/user/seanwyngaard)
 
-## Use Case: <br>
-Freelancers, consultants, and small teams use this skill to draft first-pass service agreements, statements of work, NDAs, retainers, and hourly agreements from project terms. Generated contracts should be customized for the engagement and reviewed by a qualified attorney before use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad shell-command and local file read/search/edit permissions beyond what ordinary contract generation needs. <br>
-Mitigation: Install only in a trusted workspace and prefer a constrained version that writes generated files only under output/contracts/. <br>
-Risk: Generated agreements are templates and may be incomplete, inaccurate, or unsuitable for a user's jurisdiction or engagement. <br>
-Mitigation: Customize all business terms and have the generated contract reviewed by a qualified attorney before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanwyngaard/contract-generator) <br>
+## Use Case:
 
+Freelancers, consultants, and business users use this skill to draft contract templates, statements of work, NDAs, retainers, and hourly agreements for client engagements.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, files, guidance] <br>
-**Output Format:** [Markdown and print-friendly HTML contract files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves generated contracts under output/contracts/ and includes customization notes and legal disclaimers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated contracts may contain unsuitable legal terms for a user's jurisdiction or engagement.
+
+Mitigation: Customize the template for the specific engagement and have it reviewed by a qualified attorney before relying on it.
+
+Risk: Generated files can include sensitive client, payment, and legal details stored under output/contracts/.
+
+Mitigation: Use an appropriate secure local location and normal access controls for client data.
+
+## Reference(s):
+
+- [Contract Generator ClawHub listing](https://clawhub.ai/seanwyngaard/skills/contract-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML, Guidance]
+
+**Output Format:** [Markdown and print-friendly HTML contract files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated contracts under output/contracts/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

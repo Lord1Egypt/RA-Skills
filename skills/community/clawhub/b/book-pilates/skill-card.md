@@ -1,40 +1,53 @@
-## Description: <br>
-Book Pilates helps users search for pilates services, check availability, and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Pilates helps agents search for Pilates services, check availability, and create bookings through Lokuli's MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can ask an agent to find nearby pilates services, check provider availability, and create a booking through Lokuli after reviewing the provider, service, time, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact an external booking service and create real reservations with personal contact details. <br>
-Mitigation: Require the agent to show the provider, service, time, and contact details for explicit user approval before sending personal information or creating a reservation. <br>
-Risk: The release security verdict is suspicious and recommends review before installation. <br>
-Mitigation: Review the skill before installing and use it only when the user intends to search for or book pilates through Lokuli. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Pilates ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/book-pilates) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users or assistants use this skill to find Pilates services, check available times, and book a selected class or service through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [Markdown with JSON-RPC request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, availability, time slot, and customer contact details for booking approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details to an external Lokuli booking endpoint.
+
+Mitigation: Obtain user consent before booking and explain that contact information will be sent to Lokuli.
+
+Risk: A booking call could reserve the wrong Pilates class, provider, time, or contact details.
+
+Mitigation: Confirm the exact class, provider, time, and customer contact details with the user before creating a booking.
+
+## Reference(s):
+
+- [Book Pilates on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-pilates)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Text and JSON-RPC tool call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include booking search criteria, provider and service identifiers, time slots, and customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

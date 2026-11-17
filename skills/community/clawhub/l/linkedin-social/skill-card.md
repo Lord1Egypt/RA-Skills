@@ -1,44 +1,60 @@
-## Description: <br>
-Manage LinkedIn presence via the LinkedIn API. Create posts and articles, manage comments, handle media uploads, search ad targeting entities, and retrieve user profile and image data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage LinkedIn presence via the LinkedIn API, including posts, comments, media, profile data, and ad targeting searches.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage a connected LinkedIn account through ClawLink, including profile lookup, posting, comments, media retrieval, and ad targeting discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on a connected LinkedIn account through ClawLink, including publishing comments or posts and deleting content. <br>
-Mitigation: Review previews carefully and confirm only write or delete actions that match the intended target and effect. <br>
-Risk: LinkedIn organization posting and ad targeting actions may fail or behave differently when the connected account lacks the required role, scope, or Marketing API access. <br>
-Mitigation: Verify account permissions before using organization posting or ad targeting workflows, and report the real tool error if permission checks fail. <br>
+## Use Case:
 
+LinkedIn users and their agents can read profiles and public content, draft and publish posts or comments, manage media, and look up ad targeting options through ClawLink. Publishing and deletion require the user's confirmation.
 
-## Reference(s): <br>
-- [LinkedIn API Documentation](https://learn.microsoft.com/en-us/linkedin/) <br>
-- [LinkedIn Marketing API](https://learn.microsoft.com/en-us/linkedin/marketing/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/linkedin-social) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected LinkedIn account through ClawLink; write and delete actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server evidence) <br>
+Risk: ClawLink brokers access to the connected LinkedIn account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that you trust ClawLink to handle LinkedIn OAuth access before connecting the account.
+
+Risk: Publishing, commenting, or deleting can change the user's public LinkedIn presence.
+
+Mitigation: Preview each write and obtain explicit confirmation of the exact content, target, and effect before execution.
+
+Risk: Reading other people's public LinkedIn content consumes ClawLink credit.
+
+Mitigation: Disclose the credit cost and obtain the user's agreement before making paid public-data requests.
+
+## Reference(s):
+
+- [ClawHub LinkedIn skill](https://clawhub.ai/hith3sh/skills/linkedin-social)
+- [ClawLink OpenClaw documentation](https://docs.claw-link.dev/openclaw)
+- [LinkedIn API documentation](https://learn.microsoft.com/en-us/linkedin/)
+- [LinkedIn Marketing API documentation](https://learn.microsoft.com/en-us/linkedin/marketing/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance and tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions require a matching preview and explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

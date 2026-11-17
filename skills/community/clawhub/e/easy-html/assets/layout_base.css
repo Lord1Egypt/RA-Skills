@@ -1,0 +1,301 @@
+/* ============================================================
+   easy-html 基础布局骨架（layout-only）
+   只管「布局/留白/呼吸感」：max-width 居中、卡片网格、模块间距、
+   圆角、阴影、表格排版。 **不写任何配色**（color/background 交给 11 套样式 CSS）。
+   设计目标：在任何一套皮肤 CSS 下都保持杂志级留白与结构感。
+   ============================================================ */
+
+:root {
+  --eh-maxw: 880px;          /* 内容最大宽度，居中 */
+  --eh-inset: 40px;          /* 内容区左右安全边距（防贴边）*/
+
+  /* ── B1 间距刻度系统（4px 基准，Refactoring UI 风格）──
+     所有 margin/padding/gap 一律从此刻度取值，杜绝散乱的 18/22/26px。 */
+  --eh-s1: 4px;
+  --eh-s2: 8px;
+  --eh-s3: 12px;
+  --eh-s4: 16px;
+  --eh-s5: 24px;
+  --eh-s6: 32px;
+  --eh-s7: 48px;
+  --eh-s8: 64px;
+
+  --eh-gap: var(--eh-s6);    /* 模块/卡片间距 = 32px */
+  --eh-radius: 16px;         /* 卡片圆角 */
+  --eh-pad: var(--eh-s5);    /* 卡片内边距 = 24px */
+
+  /* ── B2 阴影分层（双层柔阴影，表达高度层次）──
+     不用单层硬阴影；近距小投影定边界 + 远距大投影给浮起感。 */
+  --eh-shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  --eh-shadow:    0 2px 4px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.08);
+  --eh-shadow-lg: 0 4px 8px rgba(0,0,0,0.05), 0 12px 28px rgba(0,0,0,0.10);
+
+  /* ── B3 字重层级（用字重而非字号拉开层级）── */
+  --eh-fw-normal: 400;
+  --eh-fw-medium: 500;
+  --eh-fw-semibold: 650;
+  --eh-fw-bold: 750;
+  --eh-fw-black: 850;
+}
+
+/* 页面外层：居中 + 上下留白 */
+body {
+  margin: 0;
+  padding: 48px 20px 96px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 最外容器：限宽居中 + 左右安全内边距（防止内容贴边）*/
+[data-role="container"] {
+  max-width: calc(var(--eh-maxw) + var(--eh-inset) * 2);
+  margin: 0 auto;
+  padding: 0 var(--eh-inset);
+  box-sizing: border-box;
+}
+
+/* ── HEADER 标题条（整宽渐变横条，内容居中）──
+   保留主题的 [data-role="header"] 渐变背景条（背景色由主题接管，贯穿整宽），
+   layout 层只负责把横条内的「图标+标题+元信息」单行居中排列，不写任何配色。
+   这是无版式内容（Word/Excel/Markdown）的标准标题条样式。 */
+[data-role="header"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* 内容居中（关键）*/
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 0 32px;          /* 整宽，不收窄 */
+  padding: 14px 28px;
+  border-radius: 12px;
+}
+[data-role="header-logo"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  font-size: 17px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+[data-role="header-title"] {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+[data-role="header-meta"] {
+  font-size: 12.5px;
+  opacity: 0.72;
+}
+
+/* ── HERO 英雄区（保留，用于内容型大块）── */
+[data-role="hero"] {
+  padding: 44px var(--eh-pad) 40px;
+  border-radius: 24px;
+  margin-bottom: var(--eh-gap);
+}
+[data-role="page-title"] {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+[data-role="page-subtitle"] {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ── 目录/标签导航 ── */
+[data-role="tab-bar"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 16px var(--eh-pad);
+  border-radius: 14px;
+  margin-bottom: var(--eh-gap);
+  font-size: 14px;
+}
+[data-role="tab-bar"] a { text-decoration: none; white-space: nowrap; }
+
+/* ── 链接配色：跟随主题强调色，避免默认浏览器蓝在各主题下突兀 ──
+   绑定主题暴露的 --primary（11 套主题都定义了），主题缺变量时回退到当前文字色，
+   保证深浅主题、暖冷色调下链接都和谐不刺眼。container 内所有 a 生效。 */
+[data-role="container"] a,
+[data-eh-layout] a {
+  color: var(--primary, var(--text-main, currentColor));
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary, currentColor) 35%, transparent);
+  transition: border-color .15s, opacity .15s;
+}
+[data-role="container"] a:hover,
+[data-eh-layout] a:hover {
+  border-bottom-color: var(--primary, currentColor);
+  opacity: .82;
+}
+/* 目录导航/页脚里的链接：不要下划线（已是按钮/标签样式），仅跟色 */
+[data-role="tab-bar"] a,
+[data-role="footer"] a { border-bottom: none; }
+[data-role="tab-bar"] a:hover,
+[data-role="footer"] a:hover { border-bottom: none; opacity: .7; }
+
+/* ── 内容区块 section ── */
+[data-role="section"] {
+  margin-bottom: var(--eh-s7);   /* 48px */
+  scroll-margin-top: var(--eh-s5);
+}
+[data-role="section"] > h2 {
+  font-size: 23px;
+  font-weight: var(--eh-fw-bold);
+  margin: 0 0 var(--eh-s5);
+  padding-bottom: var(--eh-s3);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+[data-role="section"] h3 {
+  font-size: 17px;
+  font-weight: var(--eh-fw-semibold);
+  margin: var(--eh-s6) 0 var(--eh-s3);
+}
+[data-role="section"] p { margin: 0 0 var(--eh-s4); }
+[data-role="section"] ul,
+[data-role="section"] ol { margin: 0 0 var(--eh-s4); padding-left: var(--eh-s5); }
+[data-role="section"] li { margin: var(--eh-s2) 0; }
+
+/* ── 卡片网格（自适应多列）── */
+[data-role="card-grid"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--eh-gap);
+  margin: var(--eh-s5) 0;
+}
+[data-role="card"] {
+  padding: var(--eh-pad);
+  border-radius: var(--eh-radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--eh-s3);
+  box-shadow: var(--eh-shadow-sm);   /* B2 卡片柔阴影定边界 */
+}
+/* card 顶部行：badge + 标题并排（更匀称，badge 作左侧视觉锚点）
+   要求 HTML 把 badge + title 包在 [data-role="card-head"] 里；
+   兼容旧结构（badge/title 直接是 card 子元素）时退化为竖排。 */
+[data-role="card-head"] {
+  display: flex;
+  align-items: center;
+  gap: var(--eh-s3);
+}
+[data-role="card-head"] [data-role="card-badge"] { margin: 0; }
+[data-role="card-head"] [data-role="card-title"] { margin: 0; }
+[data-role="card-badge"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px; height: 40px;
+  padding: 0 var(--eh-s2);
+  border-radius: 12px;
+  font-weight: var(--eh-fw-black);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;   /* B4 数字等宽 */
+  flex-shrink: 0;
+  align-self: flex-start;   /* 防御：即使漏包 card-head（badge 直接是 card 子元素），
+                               flex column 下也不会被拉伸成全宽椭圆 */
+}
+[data-role="card-title"] { font-size: 16px; font-weight: var(--eh-fw-bold); line-height: 1.35; }
+[data-role="card-label"] { font-size: 13px; font-weight: var(--eh-fw-medium); }
+[data-role="card-body"] { font-size: 14px; line-height: 1.7; margin: 0; }
+[data-role="card-body"] ul { margin: var(--eh-s2) 0; padding-left: var(--eh-s5); }
+
+/* ── 统计卡片 ── */
+[data-role="stat-block"] {
+  padding: var(--eh-pad);
+  border-radius: var(--eh-radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--eh-s1);
+  box-shadow: var(--eh-shadow-sm);   /* B2 */
+}
+[data-role="stat-value"] { font-size: 30px; font-weight: var(--eh-fw-black); line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -0.5px; }
+[data-role="stat-trend"] { font-size: 14px; font-weight: var(--eh-fw-semibold); font-variant-numeric: tabular-nums; }
+
+/* ── 提示/高亮块 callout ── */
+[data-role="callout"] {
+  padding: 18px 22px;
+  border-radius: 14px;
+  margin: 20px 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+/* ── 引用块 quote ── */
+[data-role="quote"] {
+  padding: 18px 24px;
+  border-radius: 12px;
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ── 时间轴/步骤 ── */
+[data-role="timeline"] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+  padding-left: 8px;
+}
+[data-role="step-item"] {
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 14.5px;
+}
+
+/* ── 表格 ── */
+[data-role="data-table"] {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 14px;
+  display: table;
+}
+[data-role="data-table"] th,
+[data-role="data-table"] td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+[data-role="data-table"] th { font-weight: 700; }
+
+/* ── 代码片段 ── */
+code {
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  word-break: break-all;
+}
+
+/* ── 分割线 / 页脚 ── */
+[data-role="divider"] { border: 0; height: 1px; margin: 32px 0; }
+[data-role="footer"] {
+  margin-top: 48px;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ── 响应式：移动端单列 ── */
+@media (max-width: 600px) {
+  body { padding: 24px 14px 64px; }
+  [data-role="card-grid"] { grid-template-columns: 1fr; }
+  [data-role="page-title"] { font-size: 26px; }
+  [data-role="hero"] { padding: 32px 22px; }
+  [data-role="data-table"] { font-size: 13px; }
+  [data-role="data-table"] th,
+  [data-role="data-table"] td { padding: 10px 12px; }
+}

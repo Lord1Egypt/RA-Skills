@@ -1,39 +1,54 @@
-## Description: <br>
-Builds revenue models, pricing tools, and forecasting spreadsheets for financial forecasts, unit economics, pricing calculators, LBO models, DCF analyses, and other structured financial models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build revenue models, pricing tools, and forecasting spreadsheets with assumptions, scenarios, and projections.
 
-## Publisher: <br>
-[jimmy974](https://clawhub.ai/user/jimmy974) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmy974](https://clawhub.ai/user/jimmy974)
 
-## Use Case: <br>
-Finance teams, operators, analysts, and investment professionals use this skill to create Excel financial models with assumptions, scenarios, sensitivity analysis, valuation outputs, and validation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated financial models may contain incorrect assumptions, formulas, WACC, tax rates, scenario toggles, validation checks, or valuation outputs. <br>
-Mitigation: Review all assumptions, formulas, rates, scenario controls, validation checks, and valuation outputs before using the model for business or investment decisions. <br>
-Risk: Spreadsheet outputs may be treated as decision support for finance, valuation, or investment workflows where errors can materially affect conclusions. <br>
-Mitigation: Have qualified finance reviewers validate source inputs, model logic, and final outputs against the intended use case before relying on the results. <br>
+## Use Case:
 
+Finance, FP&A, investment, and startup operators use this skill to build structured spreadsheet models for forecasts, valuation, pricing, SaaS metrics, cohort analysis, DCF, LBO, and scenario planning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Excel formulas, Python examples, and expected .xlsx workbook structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workbook outputs should include labeled tabs, assumptions, scenarios, validation checks, and a README tab.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated financial assumptions, formulas, valuation outputs, or investment metrics may be incorrect or misleading if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review assumptions, formulas, validation checks, and outputs before using the model for business or investment decisions.
+
+Risk: Spreadsheet models can contain reconciliation, circular-reference, or sensitivity-analysis errors that affect forecasts and valuations.
+
+Mitigation: Use the skill's balance sheet, cash flow, terminal value, leverage, MOIC, and SaaS metric checks, and investigate any flagged issue before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmy974/skills/financial-model-builder)
+- [Publisher profile](https://clawhub.ai/user/jimmy974)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance, spreadsheet files]
+
+**Output Format:** [XLSX spreadsheet model with labeled tabs, formulas, README guidance, and optional Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated financial assumptions and formulas require user review before business or investment use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents exhaustively verify English and Chinese manuscript references for authenticity, metadata accuracy, traceability, duplication, source-type risks, and formatting consistency before submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exhaustively verify English and Chinese manuscript references before journal submission.
 
-## Publisher: <br>
-[liuxiangjian-ai](https://clawhub.ai/user/liuxiangjian-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxiangjian-ai](https://clawhub.ai/user/liuxiangjian-ai)
 
-## Use Case: <br>
-External researchers, academic authors, editors, reviewers, and manuscript-preparation assistants use this skill to audit reference lists item by item before journal or thesis submission. It guides agents to verify English and Chinese sources through appropriate identifiers, scholarly databases, publisher pages, official sources, and manual-check paths when evidence is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference verification can be incomplete when scholarly databases, Chinese databases, paywalled records, or official sources are inaccessible or conflicting. <br>
-Mitigation: Require manual review for references marked Critical, Major, or Manual check, especially when paywalled Chinese databases are involved. <br>
-Risk: An agent could overstate verification confidence when authoritative metadata is unavailable. <br>
-Mitigation: Use the skill's required verification-route, match-quality, status, and confidence fields, and mark ambiguous or inaccessible cases as Manual check instead of verified. <br>
+## Use Case:
 
+Researchers, graduate students, editors, reviewers, and academic writers use this skill to audit manuscript reference lists item by item for authenticity, metadata accuracy, identifier traceability, source-type risks, duplication, and citation-format consistency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuxiangjian-ai/reference-checker) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit tables with concise summaries and suggested fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes per-reference verification route, match quality, status, confidence, issue description, and continuation or completion notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Reference verification can require searching manuscript citation details against external scholarly or official sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the reference-list content needed for verification, and avoid sharing confidential manuscript content unless external lookup is acceptable.
+
+Risk: The skill may flag citation issues based on incomplete, paywalled, conflicting, or inaccessible metadata.
+
+Mitigation: Use the audit table as review guidance and manually confirm ambiguous or manual-check items before journal submission.
+
+## Reference(s):
+
+- [Reference Checker Skill on ClawHub](https://clawhub.ai/liuxiangjian-ai/skills/reference-checker)
+- [Publisher profile: liuxiangjian-ai](https://clawhub.ai/user/liuxiangjian-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown audit tables with concise summaries and follow-up guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be produced in sequential batches for long reference lists, with each round stating which references were checked and which remain.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

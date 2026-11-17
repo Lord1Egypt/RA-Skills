@@ -1,45 +1,61 @@
-## Description: <br>
-VBTI analyzes local Claude coding transcripts, classifies the user into one of 16 playful vibe-coder types, and generates a shareable HTML diagnostic card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VBTI scans local Claude Code transcript history, classifies the user as one of 16 vibe-coder types, and generates a diagnostic-style HTML card on the Desktop.
 
-## Publisher: <br>
-[tinadu-ai](https://clawhub.ai/user/tinadu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinadu-ai](https://clawhub.ai/user/tinadu-ai)
 
-## Use Case: <br>
-Developers and vibe-coding tool users run this skill to summarize their local Claude coding-session history into a novelty personality-style classification and HTML card. It is intended for local analysis and optional sharing after the user reviews the generated report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly analyzes private Claude transcript history, including prompts, pasted tool results, command patterns, file paths, and timing metadata. <br>
-Mitigation: Run it only when the user is comfortable with local transcript analysis, and review the source behavior before installing or executing it. <br>
-Risk: The generated Desktop HTML report may contain sensitive or identifying information derived from local coding history. <br>
-Mitigation: Inspect the generated HTML card before sharing screenshots or the file publicly. <br>
-Risk: Opening the generated HTML may contact Google Fonts through the browser. <br>
-Mitigation: Open the file with network access disabled or replace remote font imports when external font requests are not acceptable. <br>
+## Use Case:
 
+External developers and coding-agent users use this novelty diagnostic skill to summarize local vibe-coding habits from Claude transcript history and produce a shareable HTML report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tinadu-ai/vbti) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill manifest](artifact/SKILL.md) <br>
-- [Type definitions](artifact/vbti_types.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Console text plus a generated HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the diagnostic card to the user's Desktop and attempts to open it in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill scans all local Claude project transcripts, which may contain private prompts, command output, file paths, code, secrets, or work information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on accounts and machines where scanning local transcript history is acceptable; review transcript sensitivity before execution.
+
+Risk: The generated Desktop HTML card is easy to share and may expose derived behavioral information from private coding history.
+
+Mitigation: Inspect the generated card before sharing it and delete the file when it is no longer needed.
+
+Risk: The HTML template imports Google Fonts even though the artifact claims it does not use the network.
+
+Mitigation: Remove the external font import or run in an offline or sandboxed environment before relying on the no-network claim.
+
+Risk: The script auto-opens the generated report in a browser.
+
+Mitigation: Disable auto-open before running if browser launch or visible local output is not appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tinadu-ai/skills/vbti)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Text guidance with inline shell commands; the runtime script writes a local HTML file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a Desktop HTML report and may auto-open it in the browser.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

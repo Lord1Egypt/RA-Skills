@@ -1,40 +1,52 @@
-## Description: <br>
-Logs trades with full context, generates weekly and monthly performance reports, and helps identify patterns in wins, losses, emotions, and strategy updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs trades with context, generates weekly and monthly performance reports, and helps identify win/loss patterns for strategy review.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Traders and trading-system operators use this skill to record entries, exits, PnL, thesis, emotion, and lessons. They can use the journal to generate weekly and monthly reviews that support strategy updates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Trade history, strategy notes, PnL, and emotion tags may be sensitive if stored on a shared machine or synced folder.
+
+Mitigation: Use appropriate local file permissions, backups, and deletion practices for the journal file before installing or using the skill.
+
+Risk: Generated reports and strategy adjustments may influence trading decisions.
+
+Mitigation: Review performance summaries and proposed rule updates before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External traders and trading-system builders use this skill to maintain a structured local trade journal, review weekly or monthly performance, and refine strategy rules from logged outcomes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local journal can contain sensitive trade history, PnL, strategy notes, and emotion labels. <br>
-Mitigation: Keep the journal private, avoid synced or shared workspaces unless intended, and review file contents before sharing logs or reports. <br>
-Risk: Generated strategy adjustments or trading-system updates may be incomplete, incorrect, or unsuitable for the user's risk tolerance. <br>
-Mitigation: Manually review and approve any suggested strategy or trading-system change before applying it. <br>
+**Output Format:** [Markdown reports and structured JSON trade records]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-trading-journal) <br>
+**Other Properties Related to Output:** [Uses a local journal file path described by the skill when the agent follows the workflow.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON trade-record examples and report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or updates a local trading journal file at ~/.openclaw/workspace/trading/journal.json when the agent follows the skill.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

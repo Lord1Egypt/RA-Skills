@@ -1,45 +1,61 @@
-## Description: <br>
-Helps Amazon sellers assess listing copy across multiple markets, classify compliance risk, and draft Rufus-friendly seasonal copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Compliance Copy Pro helps Amazon sellers analyze listing copy across multiple markets, assess claim risk, and generate compliant listing, Q&A, and seasonal promotion copy.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon sellers and ecommerce operators use this skill to review listing claims for US, EU, Japanese, and seasonal promotion contexts. It helps produce market-specific risk assessments, safer replacement copy, and Rufus-style question-and-answer content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated compliance guidance may be outdated, incomplete, or unsuitable for regulated product categories. <br>
-Mitigation: Verify claims against current Amazon policy, applicable market regulations, and qualified legal or regulatory advice before publishing listing copy. <br>
-Risk: The artifact includes a known multi-market best/worst scoring issue noted by the security guidance. <br>
-Mitigation: Treat comparative market labels cautiously and review the underlying scores and findings before using them for decisions. <br>
-Risk: The skill may draft copy for medical, health, cosmetics, electronics, children's products, certifications, or promotions where claim rules are strict. <br>
-Mitigation: Use the output as a drafting and checklist aid, and require specialist review for high-risk categories and certification claims. <br>
+## Use Case:
 
+External marketplace operators, Amazon sellers, and ecommerce copy teams use this skill to review listing claims, compare regulatory expectations across the United States, European Union, Japan, and other markets, and produce lower-risk marketing copy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/miaoji-compliance-copy-pro) <br>
-- [Project Homepage](https://xiaping.coze.site) <br>
-- [Skill Repository](https://xiaping.coze.site/skills/miaoji-compliance-copy-pro) <br>
-- [README](./README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style compliance reports, risk tables, rewritten listing copy, and Q&A drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-specific regulatory summaries, green/yellow/red risk classifications, replacement wording, and seasonal promotion templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill may produce compliance suggestions that are incomplete, outdated, or unsuitable for regulated products or market-entry decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory and have qualified legal or regulatory specialists review final claims before publication.
+
+Risk: Health, cosmetics, electronics, medical, and other regulated product claims can carry higher legal and platform risk.
+
+Mitigation: Use the skill for preliminary copy review only and escalate high-risk product categories to counsel or regulatory specialists.
+
+Risk: The included scanner's market summary has a known best/worst market issue.
+
+Mitigation: Review market comparison summaries manually until the scanner issue is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-compliance-copy-pro)
+- [Publisher profile](https://clawhub.ai/user/wangm-a3)
+- [Homepage](https://xiaping.coze.site)
+- [Skill repository](https://xiaping.coze.site/skills/miaoji-compliance-copy-pro)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text, code, shell commands]
+
+**Output Format:** [Markdown reports, tables, rewritten listing copy, Q&A content, and optional command-line compliance scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory compliance analysis only; final claims should be reviewed by qualified legal or regulatory specialists.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

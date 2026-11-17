@@ -1,40 +1,53 @@
-## Description: <br>
-OCR and text extraction from Word documents (.docx, .doc) using the MinerU API, including scanned Word documents, image-based Word files, embedded images, quick OCR, and advanced OCR with table and formula recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OCR and text extraction from Word documents (.docx, .doc) using the MinerU API and mineru-open-api CLI.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to extract text from scanned, image-heavy, or legacy Word documents and to choose the appropriate MinerU OCR command for quick or higher-precision extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Word documents may be processed by MinerU's external CLI/API, creating privacy considerations for confidential, regulated, client, or personal documents. <br>
-Mitigation: Use only documents approved for external OCR processing and follow the security guidance before uploading or extracting sensitive content. <br>
-Risk: Advanced OCR extraction can require a MinerU token. <br>
-Mitigation: Protect the token and configure it only when precision OCR, table recognition, or formula detection is needed. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to run OCR on scanned or image-based Word documents, including contracts, reports, and legacy .doc files, with quick or advanced MinerU extraction workflows.
 
-## Reference(s): <br>
-- [MinerU API token management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for MinerU CLI output directories and may result in extracted text or document output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Sensitive or regulated Word documents may be sent through a third-party OCR CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MinerU data handling before use; prefer an isolated environment and avoid remote OCR for confidential, regulated, client, legal, or financial documents unless approved.
+
+Risk: The skill recommends a global unpinned npm install for mineru-open-api.
+
+Mitigation: Avoid administrator/root installs where possible, pin and verify the CLI package, and review token and billing terms before precision extraction.
+
+## Reference(s):
+
+- [MinerU API Token Management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and output file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OCR output files under a generated MinerU-Skill output directory.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

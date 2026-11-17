@@ -1,41 +1,58 @@
-## Description: <br>
-Generates Zen-style huatou prompts from scene-based templates, with documented future support for LLM-generated self-inquiry prompts from user context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Zen-style huatou prompts by selecting or creating thought-provoking questions based on user context to aid mindfulness and self-inquiry.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-External users or agents use this skill to produce short Zen-style prompts for mindfulness or self-inquiry based on scenes such as anxiety, overthinking, decisions, emotion, or free reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive emotional or crisis-related user input may be routed to an external model service in the dynamic flow without clear privacy controls. <br>
-Mitigation: Avoid personal identifiers, private health details, and crisis details unless clear disclosure, opt-in, and data-minimization guidance are added. <br>
-Risk: Generated self-inquiry prompts may be inappropriate when a user expresses self-harm or severe psychological crisis. <br>
-Mitigation: Do not generate huatou prompts for self-harm or severe-crisis language; route those cases to help information as described in the skill. <br>
+## Use Case:
 
+External users and agent builders can use this skill to produce concise Chinese-language Zen-style huatou prompts for mindfulness and self-inquiry across contexts such as anxiety, overthinking, decisions, emotions, and open reflection.
 
-## Reference(s): <br>
-- [Source skill instructions](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/now-huatou-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Plain text prompts or JSON for dynamic generation output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [MVP output is selected from static scene-tagged templates with emotion and time-word variable filling; the dynamic flow targets one short huatou.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Future dynamic generation may send user situation text to a model route.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any implementation that adds qclaw/modelroute integration, including what user input is sent and how it is handled.
+
+Risk: Meditation-style prompts may be inappropriate when a user expresses severe psychological crisis or self-harm intent.
+
+Mitigation: Preserve and test the documented crisis-support behavior that avoids huatou generation and shows help information for crisis keywords.
+
+Risk: The MVP references a static template data file that is not present in the submitted artifact.
+
+Mitigation: Confirm the template file is supplied and reviewed before relying on static template selection behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/now-huatou-engine)
+- [Source skill file](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Chinese-language prompt text, with markdown or JSON snippets only when describing generation behavior.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documented MVP selects a static template, fills variables such as emotion and time wording, and returns one huatou prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

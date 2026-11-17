@@ -1,0 +1,52 @@
+{
+  "skill": "time-cycles",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "CRB 指数好像有个 10 个月的周期，能不能用来择时？",
+      "expected_behavior": "激活 time-cycles，讲主流周期决定方向、谷到谷测量、须传统信号确认",
+      "notes": "CRB 周期"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "最近这波上涨的天数比下跌天数长，周期上怎么看后面对？",
+      "expected_behavior": "激活 time-cycles，解释波峰右移看涨、左移看跌的判据",
+      "notes": "波峰左右移"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "大豆是不是每年 4 到 7 月容易见顶？这算季节性吗？",
+      "expected_behavior": "激活 time-cycles，讲季节性概率及反常即反向信号(ce33)",
+      "notes": "季节性"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我数一下现在是第几浪、这波是不是延长浪？",
+      "expected_behavior": "不应激活本 skill（数浪），应激活 elliott-wave",
+      "notes": "跨 skill 混淆：应触发 elliott-wave"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "均线刚金叉，是不是趋势要起来了可以买？",
+      "expected_behavior": "不应激活本 skill（均线），应激活 moving-averages",
+      "notes": "诱饵：均线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "周期说该到底了，但价格明明还在往下破位，能不能抄底？",
+      "expected_behavior": "激活本 skill 并提示熊市周期抄底倾向(ce32)，周期只给概率窗口，须顺趋势、等传统反转信号确认，不可逆势接刀",
+      "notes": "边界：熊市周期抄底"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 elliott-wave；should-not-trigger-02 指向 moving-averages。"
+}

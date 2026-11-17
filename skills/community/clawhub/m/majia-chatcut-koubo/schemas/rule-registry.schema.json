@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/rule-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "registryVersion",
+    "policyVersion",
+    "defaultDecision",
+    "rules"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "registryVersion": {
+      "const": "1.1.0"
+    },
+    "policyVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "defaultDecision": {
+      "const": "fail-closed"
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/rule"
+      }
+    }
+  },
+  "$defs": {
+    "repositoryReference": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001F\\u007F\\s\\\\:#]+(?:#[^\\u0000-\\u001F\\u007F\\s\\\\#]+)?$"
+    },
+    "ruleValue": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ruleId",
+        "domain",
+        "title",
+        "kind",
+        "severity",
+        "status",
+        "overridePolicy",
+        "waiverPolicy",
+        "canonical",
+        "source",
+        "enforcement",
+        "fixtureRefs",
+        "fallback"
+      ],
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){2,}$"
+        },
+        "domain": {
+          "enum": [
+            "content-truth",
+            "captions",
+            "privacy",
+            "timeline-integrity",
+            "execution-safety",
+            "export-authorization"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "hard-policy",
+            "structural-invariant",
+            "host-observation",
+            "heuristic",
+            "profile",
+            "experiment"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ]
+        },
+        "status": {
+          "enum": [
+            "active",
+            "experimental",
+            "deprecated"
+          ]
+        },
+        "overridePolicy": {
+          "enum": [
+            "deny",
+            "tighten-only",
+            "local",
+            "experiment"
+          ]
+        },
+        "waiverPolicy": {
+          "enum": [
+            "deny",
+            "review-required",
+            "allowed"
+          ]
+        },
+        "canonical": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "comparison",
+            "value"
+          ],
+          "properties": {
+            "comparison": {
+              "enum": [
+                "equal",
+                "maximum",
+                "minimum",
+                "subset"
+              ]
+            },
+            "value": {
+              "$ref": "#/$defs/ruleValue"
+            }
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "reference",
+            "introducedIn"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "repository-policy",
+                "repository-contract",
+                "field-observation",
+                "research-hypothesis"
+              ]
+            },
+            "reference": {
+              "$ref": "#/$defs/repositoryReference"
+            },
+            "introducedIn": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+$"
+            },
+            "lastVerifiedAt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date"
+            },
+            "expiresAt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date"
+            }
+          }
+        },
+        "enforcement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "level",
+            "checkId",
+            "implementedBy"
+          ],
+          "properties": {
+            "level": {
+              "enum": [
+                "runtime",
+                "registry-contract"
+              ]
+            },
+            "checkId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$"
+            },
+            "implementedBy": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/repositoryReference"
+              }
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "level": {
+                    "const": "runtime"
+                  }
+                },
+                "required": [
+                  "level"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "checkId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "checkId": {
+                    "const": null
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "fixtureRefs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pass",
+            "fail"
+          ],
+          "properties": {
+            "pass": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/repositoryReference"
+              }
+            },
+            "fail": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/repositoryReference"
+              }
+            }
+          }
+        },
+        "fallback": {
+          "enum": [
+            "block",
+            "manual-review",
+            "report-only",
+            "not-applicable"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "hard-policy",
+                  "structural-invariant"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "severity": {
+                "const": "error"
+              },
+              "status": {
+                "const": "active"
+              },
+              "overridePolicy": {
+                "enum": [
+                  "deny",
+                  "tighten-only"
+                ]
+              },
+              "waiverPolicy": {
+                "const": "deny"
+              },
+              "fallback": {
+                "const": "block"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "overridePolicy": {
+                "const": "deny"
+              }
+            },
+            "required": [
+              "overridePolicy"
+            ]
+          },
+          "then": {
+            "properties": {
+              "canonical": {
+                "type": "object",
+                "properties": {
+                  "comparison": {
+                    "const": "equal"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "overridePolicy": {
+                "const": "tighten-only"
+              }
+            },
+            "required": [
+              "overridePolicy"
+            ]
+          },
+          "then": {
+            "properties": {
+              "canonical": {
+                "type": "object",
+                "properties": {
+                  "comparison": {
+                    "enum": [
+                      "maximum",
+                      "minimum",
+                      "subset"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "host-observation"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "field-observation"
+                  },
+                  "lastVerifiedAt": {
+                    "type": "string"
+                  },
+                  "expiresAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "lastVerifiedAt",
+                  "expiresAt"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

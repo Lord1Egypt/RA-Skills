@@ -1,46 +1,57 @@
-## Description: <br>
-Generate full songs and instrumental tracks with ElevenLabs Music on RunComfy via the runcomfy CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate full songs and instrumental tracks with ElevenLabs Music on RunComfy via the runcomfy CLI.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and creative operators use this skill to draft and generate vocal songs, instrumental beds, jingles, podcast intros, game loops, and other music tracks through RunComfy's ElevenLabs Music endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music generation uses an external paid model API, so long generations can create unexpected cost. <br>
-Mitigation: Review music_length_ms before execution and draft shorter clips before generating full-length tracks. <br>
-Risk: RunComfy credentials and generated prompts may expose sensitive account or creative information if mishandled. <br>
-Mitigation: Keep RUNCOMFY_TOKEN private, avoid logging tokens, and do not submit confidential lyrics, brand material, or unreleased creative work unless the operator accepts sending it to RunComfy and ElevenLabs. <br>
-Risk: User-supplied lyrics or brand material may have rights or licensing constraints. <br>
-Mitigation: Confirm the operator has the rights to any provided lyrics or creative material before using it for generation. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to generate vocal songs, instrumental beds, jingles, podcast intros, game loops, and soundtrack-style music from structured text prompts through RunComfy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kalvinrv/elevenlabs-music-generation) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [ElevenLabs Music model on RunComfy](https://www.runcomfy.com/models/elevenlabs/elevenlabs/music-generation?utm_source=clawhub&utm_medium=skill&utm_campaign=elevenlabs-music-generation) <br>
-- [RunComfy CLI docs](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=elevenlabs-music-generation) <br>
-- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=elevenlabs-music-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples; generated music is downloaded as audio files by the RunComfy CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the runcomfy CLI and RunComfy authentication; music length is controlled from 5 seconds to 5 minutes per generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The setup guidance may lead users to install or execute an unpinned third-party CLI that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the RunComfy CLI package before installing, use a pinned reviewed version, and avoid unpinned npx or global installs in controlled environments.
+
+Risk: The skill requires a RunComfy token and local RunComfy configuration.
+
+Mitigation: Run the CLI with only the RunComfy token and project directories needed for music generation, and avoid logging or committing credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/permew/skills/elevenlabs-music-generation)
+- [RunComfy](https://www.runcomfy.com)
+- [ElevenLabs Music model on RunComfy](https://www.runcomfy.com/models/elevenlabs/elevenlabs/music-generation?utm_source=clawhub&utm_medium=skill&utm_campaign=elevenlabs-music-generation)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=elevenlabs-music-generation)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=elevenlabs-music-generation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to call the RunComfy CLI, prepare JSON inputs, and save generated audio files to an output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Activates the Chinese-language "Tuotuo" personal productivity assistant for business writing, speeches, business plans, meeting minutes, emails, PPT outlines, reports, schedule planning, material organization, internal notices, announcements, reading summaries, and task lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tuotuo-10agents provides a Chinese-language productivity assistant for drafting and organizing business writing, meeting notes, presentation outlines, reports, schedules, and task lists.
 
-## Publisher: <br>
-[lanxy32](https://clawhub.ai/user/lanxy32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lanxy32](https://clawhub.ai/user/lanxy32)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Chinese-speaking employees and external business users can use this skill to produce first drafts and structured formats for speeches, business emails, meeting minutes, business plans, presentation outlines, reports, notices, schedules, and task lists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad activation wording may route ordinary writing or summarization requests into this Chinese-language assistant style.
+
+Mitigation: Review and narrow the trigger wording if the deployment needs multilingual behavior or a more limited set of productivity tasks.
+
+Risk: Business drafts, meeting minutes, plans, and schedules may contain omissions or assumptions if the user provides incomplete context.
+
+Mitigation: Review generated content before external use and supply missing audience, deadline, purpose, and factual details when needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, operators, and external users can use this skill for Chinese-language office writing and productivity support, including drafting speeches, business emails, meeting minutes, business plans, PPT outlines, reports, schedules, notices, summaries, and task lists. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for many generic writing, summarizing, or organizing requests. <br>
-Mitigation: Users who prefer another language, tone, or narrower routing should state those preferences explicitly or adjust invocation rules. <br>
-Risk: Business-writing drafts, schedules, and summaries may contain incomplete context, factual errors, or unsuitable tone for the target audience. <br>
-Mitigation: Review generated content for facts, audience, approvals, confidentiality, and tone before external or executive use. <br>
+**Output Format:** [Markdown or plain text with structured templates, lists, tables, and draft prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxy32/tuotuo-asst) <br>
+**Other Properties Related to Output:** [Outputs are intended as editable drafts and organizational guidance for business productivity tasks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text business-writing drafts and structured templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language productivity and office-writing outputs; no code execution, persistence, hidden access, or data exfiltration indicated by the security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

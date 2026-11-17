@@ -168,15 +168,16 @@ When context approaches 70%+:
 
 ---
 
-## Integration with HEARTBEAT
+## How It Fits Together
 
-**Step 0 (HEARTBEAT.md):** Check context % before anything else
-**Step 1.5 (HEARTBEAT.md):** Write checkpoint every ~10 exchanges
+**Every message:** Check context % before anything else (Ambient Context Monitoring in SKILL.md)
+**Every ~10 exchanges:** Write a routine checkpoint
 **Never-Forget Protocol:** Emergency procedures when context is critical
+**Optional pulse:** The same context check on OpenClaw's heartbeat, every 30 min (`set up pulse`, see `references/automations.md`)
 
 These work together:
-- Step 0 = Prevention (catch it early)
-- Step 1.5 = Routine checkpointing
+- Per-message check = Prevention (catch it early)
+- Routine checkpoints = Steady capture
 - Never-Forget = Emergency recovery
 
 ---

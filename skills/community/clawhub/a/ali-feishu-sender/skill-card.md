@@ -1,47 +1,54 @@
-## Description: <br>
-Ali Feishu Sender helps an agent send text, images, audio, video, rich text, and interactive cards to Feishu/Lark users or groups through Feishu APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send multimedia content to Feishu (Lark) via API, including images, audio, video, rich text, and interactive cards for users or groups.
 
-## Publisher: <br>
-[yuan-huicheng](https://clawhub.ai/user/yuan-huicheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuan-huicheng](https://clawhub.ai/user/yuan-huicheng)
 
-## Use Case: <br>
-Developers and workflow builders use this skill to have an agent upload selected local or generated media and send it to Feishu/Lark recipients. It is suited for workflows that need formatted Feishu delivery of images, voice bubbles, inline video, rich text, or cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text or media may be uploaded to Feishu/Lark and delivered to the wrong recipient or group. <br>
-Mitigation: Confirm the destination recipient or group before sending and avoid sending sensitive files unless the workflow explicitly requires it. <br>
-Risk: Feishu app credentials can authorize uploads and messages if exposed or over-permissioned. <br>
-Mitigation: Use least-privilege Feishu credentials, provide them through environment variables or a secure secret store, and rotate them if exposure is suspected. <br>
-Risk: Media conversion can leave .opus, .mp4, or _fs.mp4 files next to the originals. <br>
-Mitigation: Review generated media artifacts after use and remove temporary converted files when they are no longer needed. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send generated or local media content to Feishu or Lark users and groups through API calls. It is suited for posting text, images, audio, video, rich text posts, and interactive cards when Feishu credentials and recipients are configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuan-huicheng/ali-feishu-sender) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/yuan-huicheng) <br>
-- [Feishu File Upload API Endpoint](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu Image Upload API Endpoint](https://open.feishu.cn/open-apis/im/v1/images) <br>
-- [Feishu Message API Endpoint](https://open.feishu.cn/open-apis/im/v1/messages) <br>
-- [Feishu Tenant Access Token API Endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Python function calls, CLI commands, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads selected content to Feishu/Lark and may create converted media files such as .opus, .mp4, or _fs.mp4 next to source files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send private media or workplace chat content externally to Feishu immediately after invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials and recipients deliberately, and confirm the content and destination before invoking send functions or CLI commands.
+
+Risk: Audio and video conversion can overwrite derived local media files without safeguards.
+
+Mitigation: Avoid running conversion in shared or untrusted directories until overwrite and cleanup behavior is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuan-huicheng/skills/ali-feishu-sender)
+- [Publisher profile](https://clawhub.ai/user/yuan-huicheng)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Python function calls, CLI commands, and JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload media files and send messages to external Feishu or Lark recipients.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

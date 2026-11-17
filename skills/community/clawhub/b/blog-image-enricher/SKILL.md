@@ -43,7 +43,7 @@ Your job is to:
 
 The skill must be **safe**, **deterministic**, and **transparent** to the user.
 Never attempt to access unrelated files, secrets, or network resources. Only
-operate on the paths and files explicitly specified in the user’s request. [web:1][web:8]
+operate on the paths and files explicitly specified in the user’s request. 
 
 ---
 

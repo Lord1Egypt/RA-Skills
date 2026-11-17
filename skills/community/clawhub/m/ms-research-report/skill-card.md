@@ -1,42 +1,60 @@
-## Description: <br>
-Generates Morgan Stanley-style stock research report Word documents for sell-side and buy-side research workflows, including initiation, earnings update, industry deep dive, valuation, and investment memo reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Morgan Stanley-style equity research DOCX reports with structured sections, financial tables, and publication-grade charts.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-External developers, analysts, and fund managers can use this skill to generate structured DOCX equity research report templates from JSON data for review, editing, and internal workflow support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may falsely appear to be authentic Morgan Stanley research because the skill embeds Morgan Stanley branding, source lines, entity defaults, and disclosures. <br>
-Mitigation: Remove or replace Morgan Stanley source lines, entity defaults, logo text, and disclosures before distribution, and clearly label outputs as user-generated templates not affiliated with Morgan Stanley. <br>
-Risk: Financial report outputs could be mistaken for institutionally authored investment research. <br>
-Mitigation: Require human financial, legal, and compliance review before sharing generated reports outside the user's organization. <br>
+## Use Case:
 
+External analysts, fund managers, and finance professionals use this skill to create sell-side research reports, buy-side investment memos, industry deep dives, earnings updates, valuation analyses, and related DOCX report packages.
 
-## Reference(s): <br>
-- [MS Research Report ClawHub Release](https://clawhub.ai/yjkj999999/ms-research-report) <br>
-- [Publisher Profile](https://clawhub.ai/user/yjkj999999) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [DOCX report files with optional Python API usage and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local .docx equity research reports; matplotlib charts are optional and fall back to text placeholders when unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata, README) <br>
+Risk: The skill can create or overwrite local DOCX files at the selected output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination path before running the CLI or API and review generated files before distributing them.
+
+Risk: Reports may include private data, local image content, or draft financial analysis supplied by the user.
+
+Mitigation: Use only intended inputs and avoid embedding private local images or confidential data unless the report is meant to contain them.
+
+Risk: Morgan Stanley-style branding and disclaimer text could be misleading if shared externally without review.
+
+Mitigation: Review and adjust branding, source labels, disclaimers, and financial claims before external publication.
+
+## Reference(s):
+
+- [Skill documentation](SKILL.md)
+- [README](README.md)
+- [Project link from README](https://github.com/yjkj999999/ms-research-report)
+- [ClawHub skill listing](https://clawhub.ai/yjkj999999/skills/ms-research-report)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [DOCX files generated from Python API or CLI inputs, with Markdown and code guidance for agent use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Word documents and optional chart images during rendering; matplotlib charts degrade to text placeholders when matplotlib is unavailable.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

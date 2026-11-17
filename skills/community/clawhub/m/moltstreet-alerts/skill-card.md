@@ -1,44 +1,61 @@
-## Description: <br>
-High-conviction AI trading signals - only the strongest ETF calls from 6 opposing analysts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-conviction AI trading signals - only the strongest ETF calls from 6 opposing analysts. Free, no API key.
 
-## Publisher: <br>
-[fredxyt](https://clawhub.ai/user/fredxyt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredxyt](https://clawhub.ai/user/fredxyt)
 
-## Use Case: <br>
-External users and market-focused agents use this skill to fetch public MoltStreet ETF signal summaries and present concise high-conviction trading alerts. It is intended for quick market monitoring, not for automated trading or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts moltstreet.com to retrieve public AI-generated ETF signal summaries. <br>
-Mitigation: Install and run it only where outbound requests to moltstreet.com are acceptable. <br>
-Risk: ETF alerts and summaries may be inaccurate, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Verify important market information independently and do not trade solely from these alerts. <br>
+## Use Case:
 
+External users and agents use this skill to fetch public MoltStreet ETF alert data and summarize only high-conviction trading signals or ticker details. Outputs should be treated as informational market signal summaries, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fredxyt/moltstreet-alerts) <br>
-- [MoltStreet](https://moltstreet.com) <br>
-- [MoltStreet skill documentation](https://moltstreet.com/skill.md) <br>
-- [MoltStreet API base](https://moltstreet.com/api/v1) <br>
-- [MoltStreet disclaimer](https://moltstreet.com/disclaimer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline curl commands and summarized market signals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and calls public MoltStreet API endpoints; responses should include the skill's AI-generated, not-financial-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact manifest.json) <br>
+Risk: Users may mistake AI-generated ETF signals for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present MoltStreet results as informational market signals, include the not-financial-advice disclaimer, and avoid framing outputs as investment recommendations.
+
+Risk: Agents may fetch external market signal data for vague market questions where the user did not ask for alert data.
+
+Mitigation: Call the skill only when the user explicitly asks for alerts, strong signals, top picks, best opportunities, or a quick signal-focused market summary.
+
+Risk: Signal data may be stale or unavailable because updates are not real-time and some days have no high-conviction signals.
+
+Mitigation: Tell users when no signals pass the threshold and avoid implying real-time quote coverage.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fredxyt/skills/moltstreet-alerts)
+- [Publisher profile](https://clawhub.ai/user/fredxyt)
+- [MoltStreet homepage](https://moltstreet.com)
+- [MoltStreet skill documentation](https://moltstreet.com/skill.md)
+- [MoltStreet disclaimer](https://moltstreet.com/disclaimer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise market-alert summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public MoltStreet API data with curl; no API key is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

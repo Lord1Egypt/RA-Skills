@@ -1,0 +1,13 @@
+{
+  "module": "今日工作签",
+  "route": "sign-strip",
+  "time_label": "09:30",
+  "title": "判了：先交60",
+  "reason": "低电量日，先保完成感",
+  "action": "写最小可交付",
+  "tags": ["低耗", "交付"],
+  "corner": "现实点",
+  "footer": "今天先这么过。",
+  "alt_text": "今日工作签。判了：先交60。低电量日，先保完成感。现在做：写最小可交付。",
+  "share_safe": true
+}

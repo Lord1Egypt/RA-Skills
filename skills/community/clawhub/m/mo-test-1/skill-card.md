@@ -1,41 +1,59 @@
-## Description: <br>
-Creates original algorithmic art with p5.js using seeded randomness, interactive parameters, flow fields, and particle systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps create original algorithmic art using p5.js, seeded randomness, flow fields, particle systems, and interactive parameter exploration.
 
-## Publisher: <br>
-[moyu0032](https://clawhub.ai/user/moyu0032) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[moyu0032](https://clawhub.ai/user/moyu0032)
 
-## Use Case: <br>
-External users, developers, and creative coders use this skill to turn an art request into an algorithmic philosophy and a self-contained p5.js HTML viewer with adjustable parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated browser artifacts may contact public CDNs for p5.js or fonts. <br>
-Mitigation: Review generated HTML before sharing or deployment and vendor dependencies locally when offline or restricted-network use is required. <br>
-Risk: Generated outputs may preserve Anthropic-style branding from the included viewer template. <br>
-Mitigation: Remove or replace third-party branding before publishing outputs to avoid implying affiliation. <br>
+## Use Case:
 
+Developers and creative practitioners use this skill to create original generative art workflows: a concise algorithmic philosophy followed by p5.js code for an interactive viewer with seeded variation and parameter controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moyu0032/mo-test-1) <br>
-- [p5.js 1.7.0 CDN](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown prose and self-contained HTML with inline JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML may use public CDN assets for p5.js and fonts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML viewers load p5.js from cdnjs and fonts from Google, so opening them may contact third-party services and may not work fully offline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For privacy-sensitive or offline use, bundle dependencies locally, add subresource integrity where remote assets remain, or remove remote fonts.
+
+Risk: The artifact template asks agents to preserve Anthropic-styled UI branding in generated viewers.
+
+Mitigation: Use neutral branding unless Anthropic-styled output is explicitly desired and permitted for the release context.
+
+Risk: Requests for generative art can drift toward imitating a living artist or protected style.
+
+Mitigation: Keep outputs original and frame user references as abstract algorithmic concepts rather than copying existing artists' work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moyu0032/skills/mo-test-1)
+- [p5.js CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js)
+- [Google Fonts dependency](https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400;500&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, html, guidance]
+
+**Output Format:** [Markdown philosophy plus self-contained HTML and JavaScript artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize seeded randomness, p5.js generative algorithms, interactive parameter controls, and reproducible visual variations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

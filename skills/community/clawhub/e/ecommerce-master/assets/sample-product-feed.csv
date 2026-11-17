@@ -1,0 +1,6 @@
+sku,title,price,currency,availability
+SKU001,Blue Cotton Shirt,19.99,USD,in stock
+SKU002,Red Wool Hat,29.99,EUR,in stock
+SKU003,Black Running Shoes,49.99,GBP,out of stock
+SKU004,Green Canvas Tote,12.0,USD,preorder
+SKU005,White Cotton Socks,9.99,AUD,in stock

@@ -1,42 +1,58 @@
-## Description: <br>
-Helps an agent correct availability-biased probability and risk estimates by identifying reference classes, checking base rates, diagnosing salience distortions, and documenting a corrected estimate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to check probability and risk estimates against reference-class base rates when vivid or recent examples may skew judgment.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate claims about event frequency or risk that are driven by memorable examples, recent news, or personal anecdotes. It guides them to choose a reference class, retrieve base-rate evidence, diagnose availability distortions, and state decision implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on examples or uncited base rates for medical, legal, financial, safety, or other high-stakes decisions. <br>
-Mitigation: Verify base-rate data and sources for the specific reference class before relying on the skill's output. <br>
-Risk: A recent vivid event may be representative of a changed reference class, or the decision may warrant precautionary weight for rare catastrophic or irreversible outcomes. <br>
-Mitigation: Check whether recent evidence is representative and preserve precautionary reasoning when the consequences justify it. <br>
+## Use Case:
 
+Analysts, planners, and decision-makers use the skill to evaluate estimates shaped by memorable events and document a more base-rate-grounded correction.
 
-## Reference(s): <br>
-- [Primary sources for availability heuristic](references/sources.md) <br>
-- [Method in Action: Tversky and Kahneman's 1973 Availability Studies](examples/tversky-and-kahnemans-1973-availability-studies.md) <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/availability-heuristic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with a structured availability-correction template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; may recommend consulting external base-rate sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Example statistics may be inaccurate or unsuitable for the case, leading to a misleading base-rate correction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the original data source and confirm that it represents the relevant reference class before relying on example statistics.
+
+Risk: Calibration logs may retain sensitive details about individual cases.
+
+Mitigation: Review what case details are recorded and minimize or remove identifying information from calibration logs.
+
+## Reference(s):
+
+- [Sources and further reading](references/sources.md)
+- [Availability Heuristic skill page](https://www.deciqai.com/c/availability-heuristic)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/availability-heuristic)
+- [Stanford HAI AI Index](https://hai.stanford.edu/ai-index)
+- [International Labour Organization](https://www.ilo.org/)
+- [Project repository (linked from the skill)](https://github.com/deciqAI/knowledge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured text with a Markdown estimate template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a reference class, base rate and source, availability-distortion checks, corrected estimate, decision implications, and calibration notes.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

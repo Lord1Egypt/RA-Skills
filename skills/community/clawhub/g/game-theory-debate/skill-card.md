@@ -1,41 +1,58 @@
-## Description: <br>
-Game Theory Debate frames user decision requests as multi-strategy game theory analysis, comparing payoffs, equilibrium points, alternatives, and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game Theory Debate helps an agent respond to decision requests with structured game-theory analysis, including strategy viewpoints, payoff matrices, equilibrium analysis, recommendations, and risk notes.
 
-## Publisher: <br>
-[anfengxiaoguo](https://clawhub.ai/user/anfengxiaoguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anfengxiaoguo](https://clawhub.ai/user/anfengxiaoguo)
 
-## Use Case: <br>
-External users and agents use this skill to structure ambiguous decisions as game-theory debates with strategy perspectives, payoff estimates, equilibrium analysis, recommendations, alternatives, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad decision triggers may cause ordinary judgment, comparison, or reflection requests to be reframed as game-theory analysis. <br>
-Mitigation: Review the trigger behavior before deployment and disable or narrow the skill when lightweight responses are preferred. <br>
-Risk: Optional review and strategy-library update behavior may capture sensitive personal, business, or financial decision details when paired with memory or self-improvement skills. <br>
-Mitigation: Avoid persistent-memory pairings for sensitive decisions, or require explicit user confirmation before storing decision outcomes. <br>
+## Use Case:
 
+External users and agents use this skill to structure ambiguous choices as a game-theory debate. It is intended for decision comparison, post-decision review, and recommendation workflows where payoff tradeoffs, alternatives, and risks should be made explicit.
 
-## Reference(s): <br>
-- [Game Theory Debate ClawHub release](https://clawhub.ai/anfengxiaoguo/game-theory-debate) <br>
-- [AnFengxiaoGuo publisher profile](https://clawhub.ai/user/anfengxiaoguo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision analysis with payoff matrices, confidence scores, recommendations, alternatives, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional post-decision review notes when the user provides outcome feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may trigger on ordinary indecision or comparison questions where a full game-theory debate is more structure than the user needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when structured decision analysis is desired, and let simple factual, casual, or purely emotional support requests proceed without the debate format.
+
+Risk: Optional post-decision archival or memory updates may cause past outcomes to influence later recommendations.
+
+Mitigation: Require explicit user consent before saving decision outcomes or updating any long-term strategy library.
+
+Risk: Payoff scores, confidence values, and equilibrium labels are heuristic judgments that can appear more precise than the available information supports.
+
+Mitigation: State key assumptions, call out information gaps, and treat quantitative scores as decision aids rather than objective measurements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anfengxiaoguo/skills/game-theory-debate)
+- [ClawHub publisher profile](https://clawhub.ai/user/anfengxiaoguo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision analysis with structured sections and payoff matrices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommendations, confidence scores, alternative strategies, Nash equilibrium notes, risk prompts, and optional post-decision review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

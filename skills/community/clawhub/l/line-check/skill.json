@@ -1,0 +1,8 @@
+{
+  "id": "line-check",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh line-check"
+  ],
+  "trust_level": "workspace"
+}

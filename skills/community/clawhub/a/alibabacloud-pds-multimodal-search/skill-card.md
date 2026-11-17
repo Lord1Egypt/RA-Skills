@@ -1,54 +1,65 @@
-## Description: <br>
-Implements exact filename search, fuzzy filename search, semantic file search, and image-based image search for Alibaba Cloud PDS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements exact filename search, fuzzy filename search, semantic file search, and image-based image search for Alibaba Cloud PDS drives.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and enterprise users use this skill to search Alibaba Cloud PDS drives by filename, metadata, semantic content, and image similarity. The skill also guides related PDS file operations, including upload, download, and document or media analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential-backed PDS access can authorize more than search, including file upload, download, analysis, and cloud writes. <br>
-Mitigation: Use a least-privilege or short-lived Alibaba Cloud account and confirm the configured PDS domain, user, and target space before running workflows. <br>
-Risk: Upload, download, and analysis workflows can move sensitive files between local storage and PDS or write result files locally. <br>
-Mitigation: Review every source path, destination path, drive, file ID, and output location before execution, and avoid sensitive files unless the user explicitly selects them. <br>
-Risk: Analysis and download flows may create signed-URL result files that can expose access to PDS content. <br>
-Mitigation: Protect raw JSON outputs and signed URLs, delete them when no longer needed, and avoid sharing them in conversation or logs. <br>
-Risk: The skill changes Aliyun CLI execution mode and relies on plugin updates. <br>
-Mitigation: Review CLI and plugin updates before running them, ensure AI-mode is disabled at every exit point, and keep CLI configuration files protected. <br>
+## Use Case:
 
+Developers and cloud storage operators use this skill to search, upload, download, and analyze files across Alibaba Cloud PDS enterprise, team, and personal spaces. It supports filename search, semantic file search, and image-based similar-image retrieval through Aliyun CLI and helper scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-pds-multimodal-search) <br>
-- [PDS Multimodal Search Skill](SKILL.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [PDS Aliyun CLI Configuration Guide](references/config.md) <br>
-- [PDS Drive Concepts and API Reference](references/drive.md) <br>
-- [PDS File Search](references/search-file.md) <br>
-- [Alibaba Cloud PDS Visual Similar Search Guide](references/visual-similar-search.md) <br>
-- [PDS Document and Audio/Video Analysis](references/multianalysis-file.md) <br>
-- [PDS File Upload Guide](references/upload-file.md) <br>
-- [PDS File Download Guide](references/download-file.md) <br>
-- [RAM Permission Requirements](references/ram-policies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON query payloads, and helper-script outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local downloaded files, formatted analysis text, raw JSON analysis results, or PPTX files when requested by the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill can install or update local Aliyun CLI tooling and plugins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use verified Aliyun CLI and PDS plugin sources, and avoid curl-pipe-to-bash or global plugin updates in managed environments.
+
+Risk: The skill can use persistent Alibaba Cloud credentials to access PDS resources.
+
+Mitigation: Use least-privilege temporary credentials and verify the active CLI profile without exposing access keys or secrets.
+
+Risk: The skill can upload local files, download PDS files, save signed analysis results, and generate local output files.
+
+Mitigation: Require explicit approval before file transfer, analysis-result saving, or local output generation, and keep operations scoped to the user-selected PDS space.
+
+## Reference(s):
+
+- [PDS Drive Concepts and API Reference](references/drive.md)
+- [PDS File Search](references/search-file.md)
+- [Alibaba Cloud PDS Visual Similar Search Guide](references/visual-similar-search.md)
+- [PDS Document and Audio/Video Analysis](references/multianalysis-file.md)
+- [PDS File Upload Guide](references/upload-file.md)
+- [PDS File Download Guide](references/download-file.md)
+- [PDS Aliyun CLI Configuration Guide](references/config.md)
+- [RAM Permission Requirements](references/ram-policies.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and generated local file paths when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Aliyun CLI invocations, search result summaries, formatted analysis text, JSON query payloads, downloaded files, uploaded file confirmations, and optional PPTX or text outputs.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

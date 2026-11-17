@@ -1,44 +1,67 @@
-## Description: <br>
-Integrates the Didit Face Search standalone API to perform 1:N facial search against previously verified sessions and return ranked matches with similarity percentages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Didit Face Search standalone API to perform 1:N facial search against previously verified sessions, helping detect duplicate accounts, matching faces, blocklist hits, and facial deduplication results with ranked similarity percentages.
 
-## Publisher: <br>
-[rosasalberto](https://clawhub.ai/user/rosasalberto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rosasalberto](https://clawhub.ai/user/rosasalberto)
 
-## Use Case: <br>
-Developers and identity operations teams use this skill to integrate Didit's face-search API for duplicate-account detection, blocklist checks, and facial deduplication workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Face images and biometric match results are sent to Didit for processing. <br>
-Mitigation: Use the skill only when authorized to process biometric data and when proper user consent and legal basis are in place. <br>
-Risk: The DIDIT_API_KEY grants access to the Didit API. <br>
-Mitigation: Store the API key in a secret manager or protected environment variable, avoid logging it, and rotate it if exposure is suspected. <br>
-Risk: Face-search request saving and retention settings may affect privacy obligations. <br>
-Mitigation: Review Didit's retention and request-saving settings before deployment and store only the minimum match metadata needed for the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Didit Face Search skill page](https://clawhub.ai/rosasalberto/didit-face-search) <br>
-- [Didit documentation](https://docs.didit.me) <br>
-- [Didit Face Search API reference](https://docs.didit.me/standalone-apis/face-search) <br>
-- [Didit Face Search feature guide](https://docs.didit.me/core-technology/face-search/overview) <br>
+## Use Case:
 
+Developers and identity-platform operators use this skill to integrate Didit's face-search API into account registration, duplicate-account detection, blocklist review, and verification workflows. The skill provides API usage guidance, example requests, and a CLI utility for submitting face images and reviewing returned match data.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, environment variable setup, response interpretation, and command-line usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends face images to Didit and may return sensitive identity and biometric match data.
+
+Mitigation: Install and use only with a lawful basis and user consent; limit storage to necessary fields such as session IDs and similarity scores.
+
+Risk: CLI and API examples can expose full face-search responses in logs or terminal history.
+
+Mitigation: Avoid logging full responses, redact identity fields, and handle returned match details as sensitive identity data.
+
+Risk: The DIDIT_API_KEY grants access to Didit API operations.
+
+Mitigation: Store DIDIT_API_KEY in a managed secret store, restrict access, rotate it when exposed, and never commit it to source control.
+
+Risk: The Face Search API documentation lists saved API requests as enabled by default.
+
+Mitigation: Disable saved API requests in code or API parameters unless retention is explicitly required and approved.
+
+Risk: Free-form vendor_data can contain directly identifying user information.
+
+Mitigation: Use pseudonymous vendor_data values and keep mappings in systems with appropriate access controls.
+
+## Reference(s):
+
+- [Didit Documentation](https://docs.didit.me)
+- [Didit Face Search API Reference](https://docs.didit.me/standalone-apis/face-search)
+- [Didit Face Search Feature Guide](https://docs.didit.me/core-technology/face-search/overview)
+- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/skills/didit-face-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, shell commands, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DIDIT_API_KEY; outputs may include sensitive face-search match metadata and API JSON.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

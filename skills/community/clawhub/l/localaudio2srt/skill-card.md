@@ -1,48 +1,59 @@
-## Description: <br>
-Local Audio2SRT helps an agent generate and deploy a local Audio2SRT web application for Apple Silicon Macs, including embedded React and Python project files, dependency installation steps, ModelScope model downloads, and local backend and frontend startup commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Audio2SRT helps an agent generate and deploy a local Apple Silicon audio transcription and translation web app using embedded project templates, Python and Node.js dependencies, MLX Whisper, and a Qwen translation model.
 
-## Publisher: <br>
-[tsingchou](https://clawhub.ai/user/tsingchou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsingchou](https://clawhub.ai/user/tsingchou)
 
-## Use Case: <br>
-Developers and engineers use this skill to create a local MLX Whisper transcription and translation web GUI without cloning source code from a remote repository. It is intended for Apple Silicon macOS environments with Python and Node.js available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated backend is exposed broadly for a local-only transcription tool. <br>
-Mitigation: Run only on trusted networks unless the backend is changed to bind to 127.0.0.1 and CORS is restricted. <br>
-Risk: The setup installs Python and Node.js dependencies and downloads multi-GB ModelScope models. <br>
-Mitigation: Use a fresh dedicated project directory and a virtual environment before installation. <br>
-Risk: The generated service can process uploaded files or local file paths. <br>
-Mitigation: Limit transcription inputs to uploaded files or an allowlisted directory. <br>
+## Use Case:
 
+Developers and technical users use this skill to create a local Audio2SRT project for transcribing audio to SRT subtitles and translating transcript segments on Apple Silicon Macs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tsingchou/localaudio2srt) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [File mapping](artifact/references/file-mapping.md) <br>
-- [Backend transcription server template](artifact/references/transcribe_server.py) <br>
-- [Startup script template](artifact/references/start.sh) <br>
-- [Python requirements template](artifact/references/requirements.txt) <br>
-- [Node package template](artifact/references/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated project files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local React and Python Audio2SRT project, installs dependencies, downloads MLX Whisper and Qwen models, and launches local services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated backend exposes unauthenticated APIs that can process local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated local environment, bind the backend to 127.0.0.1, restrict CORS, and add an auth token before processing sensitive audio.
+
+Risk: Audio transcription and translation can consume significant host CPU, memory, disk, and model download bandwidth.
+
+Mitigation: Limit access to trusted local users, monitor resource usage, and pin dependency and model revisions before regular use.
+
+Risk: Arbitrary file_path transcription can expose local files if the service is reachable by untrusted clients.
+
+Mitigation: Disable arbitrary file paths or constrain them to a controlled upload directory before exposing the backend beyond a private local session.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsingchou/skills/localaudio2srt)
+- [MLX Whisper Large v3 Turbo 4-bit Model](https://www.modelscope.cn/models/mlx-community/whisper-large-v3-turbo-4bit)
+- [Qwen2.5 3B Instruct 4-bit Model](https://www.modelscope.cn/models/mlx-community/Qwen2.5-3B-Instruct-4bit)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with generated project files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local web app project and startup workflow for macOS on Apple Silicon.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Quiet logic guard for risky multi-skill workflows. Checks order before delete, send, booking, publishing, or other high-impact actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quiet logic guard for risky multi-skill workflows. Checks order before delete, send, booking, publishing, or other high-impact actions.
 
-## Publisher: <br>
-[zc502](https://clawhub.ai/user/zc502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zc502](https://clawhub.ai/user/zc502)
 
-## Use Case: <br>
-Developers and agent operators use Sara to audit risky multi-step tool plans before actions such as deletion, publishing, booking, payment, or sensitive data access. It returns warnings and a safer suggested order when a proposed sequence violates its ordering rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sara can suggest safer ordering, but it cannot guarantee that a proposed action is appropriate, authorized, or reversible. <br>
-Mitigation: Review plans involving deletion, publishing, payments, scheduling, or private data before allowing the agent to continue. <br>
-Risk: A safe ordering result may still include a high-impact or irreversible action. <br>
-Mitigation: Ask for confirmation before continuing when the workflow touches destructive, externally visible, permissioned, or sensitive operations. <br>
+## Use Case:
 
+Developers and agents use Sara to audit risky multi-step tool or skill plans before destructive, externally visible, scheduling, payment, permission, or sensitive-data actions. It returns warnings and a safer suggested order when prerequisite safety steps are missing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zc502/sara) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, text] <br>
-**Output Format:** [JSON audit results and concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local deterministic audit over an ordered list of proposed tools or steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter and changelog describe 0.1.0 preview behavior) <br>
+Risk: Sara is an advisory safety guard and should not be treated as a complete safety gate for risky actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify backups, previews, checks, permissions, and user approval before deletion, publishing, payment, booking, permission, or sensitive-data workflows.
+
+Risk: A safe Sara result may miss workflow-specific risks outside its four ordering rules.
+
+Mitigation: Review the full plan and confirm domain-specific prerequisites before executing high-impact or irreversible actions.
+
+## Reference(s):
+
+- [Sara ClawHub skill page](https://clawhub.ai/zc502/skills/sara)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and JSON audit results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local advisory audit output includes is_safe, risk_level, warnings, violations, normalized_tools, and suggested_order.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and changelog describe v0.1.0 preview behavior)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

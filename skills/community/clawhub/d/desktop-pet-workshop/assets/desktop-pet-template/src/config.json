@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "id": "idle_breathing",
+      "name": "待机呼吸",
+      "file": "01_idle_breathing.png",
+      "duration": 3,
+      "loop": "seamless"
+    },
+    {
+      "id": "happy_jumping",
+      "name": "开心蹦跳",
+      "file": "02_happy_jumping.png",
+      "duration": 2,
+      "loop": "once"
+    },
+    {
+      "id": "cute_cuddling",
+      "name": "软萌撒娇",
+      "file": "03_cute_cuddling.png",
+      "duration": 3,
+      "loop": "seamless"
+    },
+    {
+      "id": "sleepy_dozing",
+      "name": "犯困打盹",
+      "file": "04_sleepy_dozing.png",
+      "duration": 4,
+      "loop": "seamless"
+    },
+    {
+      "id": "waving_greeting",
+      "name": "挥手打招呼",
+      "file": "05_waving_greeting.png",
+      "duration": 2,
+      "loop": "once"
+    }
+  ],
+  "interaction": {
+    "default_action": "idle_breathing",
+    "click_action": "happy_jumping",
+    "hover_action": "cute_cuddling",
+    "idle_timeout_action": "sleepy_dozing",
+    "idle_timeout_seconds": 30
+  }
+}

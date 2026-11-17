@@ -1,39 +1,54 @@
-## Description: <br>
-Maintain persistent cross-session agent memory in the Mneme plain-text format for decisions, facts, preferences, gotchas, and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain persistent cross-session agent memory in the Mneme plain-text format (.mneme files) for decisions, facts, preferences, gotchas, and goals.
 
-## Publisher: <br>
-[casperkwok](https://clawhub.ai/user/casperkwok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperkwok](https://clawhub.ai/user/casperkwok)
 
-## Use Case: <br>
-Developers and agent users use Mneme to preserve durable project memory across sessions, including decisions, constraints, preferences, and lessons that future agent runs should recall. The skill is intended for local plaintext memory files and should not be used for secrets or sensitive personal or confidential data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mneme stores durable local project memory in plaintext .mneme files, which may persist decisions, preferences, facts, and project context across sessions. <br>
-Mitigation: Review .mneme files like documentation and do not store secrets, credentials, personal data, or confidential material unless plaintext retention is intentional. <br>
+## Use Case:
 
+Developers and agent users use this skill to give an agent durable, project-local memory across sessions. It guides the agent to read a Mneme spine, recall relevant cells by cue, write or supersede memory cells, and lint local memory files.
 
-## Reference(s): <br>
-- [Mneme specification](https://github.com/casperkwok/mneme) <br>
-- [ClawHub Mneme listing](https://clawhub.ai/casperkwok/mneme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with plaintext .mneme examples and optional shell commands for the bundled tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local .mneme files and the zero-dependency scripts/mneme_tool.py helper for spine, lint, and new-id operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can lead an agent to store durable plaintext memory in local .mneme files, which may retain sensitive or unnecessary personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended project memory, do not store secrets, tokens, passwords, regulated data, or unnecessary personal information, and periodically review, delete, or supersede retained entries.
+
+Risk: Long-lived memories can become stale and later mislead the agent.
+
+Mitigation: Use the Mneme state, confidence, and seen fields, and run the bundled lint tool to identify live cells that need verification or state updates.
+
+## Reference(s):
+
+- [Mneme specification](https://github.com/casperkwok/mneme)
+- [ClawHub skill page](https://clawhub.ai/casperkwok/skills/mneme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and plain-text Mneme cells]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local .mneme memory files and suggest linting with the bundled zero-dependency Python tool.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

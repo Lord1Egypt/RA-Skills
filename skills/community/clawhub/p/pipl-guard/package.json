@@ -1,0 +1,52 @@
+{
+  "name": "pipl-guard",
+  "version": "1.0.0",
+  "description": "PIPL 运行时护栏。在 AI 应用输入/输出链路中实时检测个人信息（身份证、手机号、银行卡、护照、车牌、邮箱、生物识别线索等），按风险分级脱敏或阻断，供 Agent 主动调用。纯本地运行，零网络、零动态执行。内核与规则分离，可扩展行业版。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "keywords": [
+    "护栏",
+    "guardrail",
+    "运行时防护",
+    "实时脱敏",
+    "pipl",
+    "个人信息保护",
+    "敏感信息",
+    "数据合规",
+    "输入输出过滤",
+    "AI安全",
+    "compliance"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "guard": "python3 scripts/guard.py",
+    "detect": "python3 scripts/guard.py --action detect --format json",
+    "mask": "python3 scripts/guard.py --action mask",
+    "block": "python3 scripts/guard.py --action block",
+    "profiles": "python3 scripts/guard.py --list-profiles"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "cn",
+    "dependencies": [],
+    "emoji": "🛡️"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/pipl-guard"
+  },
+  "homepage": "https://github.com/wwumit/pipl-guard"
+}

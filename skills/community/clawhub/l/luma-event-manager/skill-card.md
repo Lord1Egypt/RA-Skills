@@ -1,45 +1,62 @@
-## Description: <br>
-Luma Event Manager helps Clawdbot users discover Luma events by topic or location, view event details and guest lists, RSVP, and sync events to Google Calendar without a Luma API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Luma Event Manager for Clawdbot helps users discover Luma events by topic or location, view event details and guest lists, manage RSVPs, and sync events to Google Calendar.
 
-## Publisher: <br>
-[mariovallereyes](https://clawhub.ai/user/mariovallereyes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariovallereyes](https://clawhub.ai/user/mariovallereyes)
 
-## Use Case: <br>
-Event hosts and attendees use this skill to find Luma events, inspect event details, manage their RSVPs, review host guest lists when authorized, and create Google Calendar entries through Clawdbot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Luma session cookies grant access to private Luma account data. <br>
-Mitigation: Store cookies only in pass, treat them like passwords, and install the skill only if that access is acceptable. <br>
-Risk: Guest-list features can expose private attendee information. <br>
-Mitigation: Use guest-list commands only for events where you are authorized to view attendees. <br>
-Risk: RSVP and calendar-sync commands can change Luma or Google account data. <br>
-Mitigation: Run those commands only when you intend to update RSVP status or create a calendar entry, and confirm the target event and account first. <br>
-Risk: Web scraping can fail or return incomplete data when Luma changes page structure or rate limits requests. <br>
-Mitigation: Review returned event details before acting on them and retry later if the skill reports scraping or rate-limit errors. <br>
+## Use Case:
 
+External users and developers use this skill to manage Luma event discovery, attendee workflows, host guest-list checks, RSVP updates, and optional Google Calendar sync from a Clawdbot interface.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mariovallereyes/luma-event-manager) <br>
-- [Luma](https://lu.ma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured text and JSON-like tool results with occasional Markdown instructions and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include public event listings, authenticated account-specific event data, RSVP status, calendar sync status, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: The skill uses raw Luma session cookies and can access private event and guest-list data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when ongoing cookie access is acceptable, store cookies in a password manager, and rotate or remove the cookies when access is no longer needed.
+
+Risk: RSVP and calendar tools can change external state.
+
+Mitigation: Review the exact event slug, RSVP response, Google account, and calendar target before approving those actions.
+
+Risk: Web scraping selectors and Luma endpoints may change.
+
+Mitigation: Check returned event details before acting on them and update the skill when scraping or RSVP behavior degrades.
+
+Risk: Dependencies may age after release.
+
+Mitigation: Review and update dependencies before use in a sensitive environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mariovallereyes/skills/luma-event-manager)
+- [Luma](https://lu.ma)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-like tool results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include event lists, event details, RSVP status, calendar sync status, setup instructions, and actionable error messages.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

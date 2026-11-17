@@ -1,0 +1,18 @@
+﻿{
+  "name": "unity3d-game-dev",
+  "version": "1.0.0",
+  "display_name": "Unity3D 游戏开发助手",
+  "description": "AI驱动的Unity游戏开发插件，涵盖场景管理、脚本生成、资源优化、自动化构建打包全流程",
+  "icon": "🎮",
+  "categories": ["game-development", "unity", "automation", "editor-extension"],
+  "tags": ["unity3d", "game-engine", "csharp", "game-dev", "build-automation", "code-generation", "paid"],
+  "author": "@cx75227-ops",
+  "license": "MIT-0",
+  "pricing": {
+    "currency": "USDT",
+    "plans": [
+      { "type": "subscription", "name": "月付", "price": 29, "period": "monthly" },
+      { "type": "pay_per_request", "name": "按次", "price": 0.035, "unit": "request" }
+    ]
+  }
+}

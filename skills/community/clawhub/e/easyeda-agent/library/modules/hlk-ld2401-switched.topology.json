@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.hlk_ld2401_switched_live",
+    "title": "HLK-LD2401 可控电源与接口",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "SENSOR",
+        "lcsc": "C48935080",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "47a312d4e5de4ed99c7830bb191605f9",
+          "name": "HLK-LD2401"
+        },
+        "footprint": "WIRELM-SMD_HLK-LD2401",
+        "pins": [
+          {
+            "number": "1",
+            "name": "TX",
+            "net": "port.UART_TO_HOST"
+          },
+          {
+            "number": "2",
+            "name": "RX",
+            "net": "port.UART_FROM_HOST"
+          },
+          {
+            "number": "3",
+            "name": "OUT",
+            "net": "port.PRESENCE_OUT"
+          },
+          {
+            "number": "4",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "5",
+            "name": "VIN",
+            "net": "internal.03"
+          },
+          {
+            "number": "6",
+            "name": "3.3V",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "7",
+            "name": "DM",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "8",
+            "name": "DP",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "9",
+            "name": "PB4",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "10",
+            "name": "GND",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "LOAD_SWITCH",
+        "lcsc": "C15127",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "be56508f80684877b262e15e4d50e175",
+          "name": "AO3401A"
+        },
+        "footprint": "SOT-23_L2.9-W1.3-P1.90-LS2.4-BR",
+        "pins": [
+          {
+            "number": "3",
+            "name": "D",
+            "net": "internal.03"
+          },
+          {
+            "number": "1",
+            "name": "G",
+            "net": "internal.02"
+          },
+          {
+            "number": "2",
+            "name": "S",
+            "net": "port.POWER_IN"
+          }
+        ]
+      },
+      {
+        "role": "GATE_DRIVER",
+        "lcsc": "C20069125",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "f714063fa18048f2956344f6558686ce",
+          "name": "S8050"
+        },
+        "footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.3-BR",
+        "pins": [
+          {
+            "number": "1",
+            "name": "B",
+            "net": "internal.01"
+          },
+          {
+            "number": "3",
+            "name": "C",
+            "net": "internal.02"
+          },
+          {
+            "number": "2",
+            "name": "E",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "GATE_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_IN"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.02"
+          }
+        ]
+      },
+      {
+        "role": "DRIVER_BASE",
+        "lcsc": "C23138",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "7c80abced0d649bab9903f9c239fa540",
+          "name": "0603WAF3300T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_ENABLE"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.01"
+          }
+        ]
+      },
+      {
+        "role": "BASE_PULLDOWN",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "internal.01"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "BULK",
+        "lcsc": "C45783",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "footprint": "C0805",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "internal.03"
+          }
+        ]
+      },
+      {
+        "role": "DECOUP",
+        "lcsc": "C14663",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "96b39256cc3f4d80bd3b503deb4f3328",
+          "name": "CC0603KRX7R9BB104"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "internal.03"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "internal.01",
+        "members": [
+          "BASE_PULLDOWN.2",
+          "DRIVER_BASE.1",
+          "GATE_DRIVER.1"
+        ]
+      },
+      {
+        "id": "internal.02",
+        "members": [
+          "GATE_DRIVER.3",
+          "GATE_PULLUP.1",
+          "LOAD_SWITCH.1"
+        ]
+      },
+      {
+        "id": "internal.03",
+        "members": [
+          "BULK.2",
+          "DECOUP.2",
+          "LOAD_SWITCH.3",
+          "SENSOR.5"
+        ]
+      },
+      {
+        "id": "port.POWER_IN",
+        "members": [
+          "GATE_PULLUP.2",
+          "LOAD_SWITCH.2"
+        ],
+        "port": "POWER_IN"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "BASE_PULLDOWN.1",
+          "BULK.1",
+          "DECOUP.1",
+          "GATE_DRIVER.2",
+          "SENSOR.10",
+          "SENSOR.4"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.POWER_ENABLE",
+        "members": [
+          "DRIVER_BASE.2"
+        ],
+        "port": "POWER_ENABLE"
+      },
+      {
+        "id": "port.PRESENCE_OUT",
+        "members": [
+          "SENSOR.3"
+        ],
+        "port": "PRESENCE_OUT"
+      },
+      {
+        "id": "port.UART_TO_HOST",
+        "members": [
+          "SENSOR.1"
+        ],
+        "port": "UART_TO_HOST"
+      },
+      {
+        "id": "port.UART_FROM_HOST",
+        "members": [
+          "SENSOR.2"
+        ],
+        "port": "UART_FROM_HOST"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

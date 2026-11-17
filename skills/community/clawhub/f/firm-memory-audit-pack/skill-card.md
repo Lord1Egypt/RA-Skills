@@ -1,42 +1,52 @@
-## Description: <br>
-Memory infrastructure audit pack for pgvector configuration validation and knowledge graph integrity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory infrastructure audit pack for pgvector configuration validation and knowledge graph integrity checks.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and infrastructure engineers use this skill to audit memory infrastructure by checking pgvector configuration and knowledge graph integrity before relying on memory-backed agent workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The required OpenClaw extension package or target configuration path could be untrusted or unintended.
+
+Mitigation: Confirm the extension package is trusted and run audit commands only against intended configuration files.
+
+Risk: Audit findings may be incomplete or misleading if accepted without human review.
+
+Mitigation: Have a qualified reviewer validate audit results before using them to change memory infrastructure.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to audit memory infrastructure, including pgvector extension settings and knowledge graph integrity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audit guidance or findings may be incorrect or incomplete. <br>
-Mitigation: Review audit results against the actual pgvector and knowledge graph configuration before changing memory infrastructure. <br>
-Risk: The skill invokes audit tools against caller-provided configuration paths. <br>
-Mitigation: Confirm each config_path targets the intended file and review commands before execution in operator environments. <br>
-Risk: The skill depends on mcp-openclaw-extensions >= 3.0.0. <br>
-Mitigation: Verify the installed extension version and source before enabling the skill. <br>
+**Output Format:** [Markdown with tool-call style commands and audit findings]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-memory-audit-pack) <br>
+**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0 and a configuration path for each audit tool.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

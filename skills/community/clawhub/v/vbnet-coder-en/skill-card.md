@@ -1,44 +1,55 @@
-## Description: <br>
-Provides VB.NET coding guidance for AI coding agents, covering modern .NET conventions, strict typing, naming, async patterns, error handling, LINQ, strings, collections, and class design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides VB.NET coding assistance aligned with modern .NET conventions, strict typing, naming guidelines, async patterns, error handling, and performance practices.
 
-## Publisher: <br>
-[alexwoo-awso](https://clawhub.ai/user/alexwoo-awso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexwoo-awso](https://clawhub.ai/user/alexwoo-awso)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to generate, review, and refine VB.NET code that follows strict compiler settings, maintainable structure, async and LINQ best practices, explicit error handling, and modern .NET conventions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated VB.NET code may include file, database, HTTP, or credential-handling logic when requested by the user. <br>
-Mitigation: Review generated code before running it, especially around external I/O, persistence, and credential handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vbnet Coder En ClawHub Release](https://clawhub.ai/alexwoo-awso/vbnet-coder-en) <br>
-- [Type System and Declarations](docs/types-and-declarations.md) <br>
-- [Control Flow](docs/control-flow.md) <br>
-- [Async/Await Patterns](docs/async-patterns.md) <br>
-- [Exception Handling and Resource Management](docs/error-handling.md) <br>
-- [LINQ Patterns](docs/linq-patterns.md) <br>
-- [String Handling and Collections](docs/strings-and-collections.md) <br>
-- [Class and Interface Design / Common Patterns](docs/class-design-and-patterns.md) <br>
+## Use Case:
 
+Developers and coding agents use this skill to generate, review, and revise VB.NET code that follows strict compiler settings, modern naming conventions, async patterns, resource management, LINQ usage, and class design guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with VB.NET code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; generated code should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Strong style guidance can steer generated VB.NET code formatting, structure, and idioms even when a project has different local conventions.
+
+Mitigation: Review generated changes against the target repository's existing VB.NET standards and project-level compiler settings before accepting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexwoo-awso/skills/vbnet-coder-en)
+- [Type System and Declarations](artifact/docs/types-and-declarations.md)
+- [Control Flow](artifact/docs/control-flow.md)
+- [Async/Await Patterns](artifact/docs/async-patterns.md)
+- [Exception Handling and Resource Management](artifact/docs/error-handling.md)
+- [LINQ Patterns](artifact/docs/linq-patterns.md)
+- [String Handling and Collections](artifact/docs/strings-and-collections.md)
+- [Class and Interface Design / Common Patterns](artifact/docs/class-design-and-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with VB.NET code examples and review recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential access, or hidden install behavior was identified in the release security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

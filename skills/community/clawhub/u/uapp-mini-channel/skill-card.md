@@ -1,46 +1,59 @@
-## Description: <br>
-Helps agents query Umeng U-MiniProgram channel, campaign, and scene-source analytics through read-only umeng-cli OpenAPI calls for rankings, details, and trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Umeng mini-program acquisition sources and promotion performance through five read-only umeng-cli OpenAPI calls for channel, campaign, scene, and trend analysis.
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers, operators, and growth analysts use this skill to inspect mini-program acquisition sources, compare channel or campaign performance, and analyze trends. It is limited to mini-program, H5, and mini-game data, and does not cover Android or iOS app channel reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires umeng-cli account login and local credential caching. <br>
-Mitigation: Use it only in approved environments and review local credential handling before deployment. <br>
-Risk: The artifact instructs agents to send telemetry, including an AppKey-bearing trace, without a clear consent step. <br>
-Mitigation: Remove or disable trace commands unless the organization has explicitly approved that reporting. <br>
-Risk: Using the wrong identifier for channel or campaign detail queries can produce misleading zero-data results. <br>
-Mitigation: Use getCustomerSourceOverview.data[].id for channel or campaign detail calls, not getSceneInfoList.code. <br>
+## Use Case:
 
+External developers, analytics operators, and growth teams use this skill to inspect Umeng mini-program, H5, and mini-game acquisition rankings, promotion-channel results, campaign results, scene values, and time-series trends. It helps agents choose the correct read-only Umeng endpoint and construct the required umeng-cli command payloads.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/squall0925/uapp-mini-channel) <br>
-- [umeng-cli project homepage](https://github.com/umeng/umeng-cli) <br>
-- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi) <br>
-- [Umeng web console](https://web.umeng.com) <br>
-- [Umeng scene value documentation](https://developer.umeng.com/docs/147615/detail/175369) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only analytics workflows and interpretation guidance; requires umeng-cli login credentials and a dataSourceId appkey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill depends on a globally installed umeng-cli and authenticated Umeng credential storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified npm package version and confirm local credential storage policies before installation or use.
+
+Risk: The skill text requests telemetry calls that can include the application identifier.
+
+Mitigation: Avoid or disable trace commands unless the user explicitly consents, and treat dataSourceId/AppKey values as sensitive application metadata.
+
+Risk: The artifact documents a curl-to-shell installer path.
+
+Mitigation: Prefer the pinned npm installation path over curl-to-shell installation.
+
+## Reference(s):
+
+- [Umeng CLI homepage](https://github.com/umeng/umeng-cli)
+- [Umeng web console](https://web.umeng.com)
+- [Umeng scene value documentation](https://developer.umeng.com/docs/147615/detail/175369)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only analytics query guidance for authenticated umeng-cli use and requires a mini-program dataSourceId/AppKey for all five business endpoints.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

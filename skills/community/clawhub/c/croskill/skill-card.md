@@ -1,44 +1,53 @@
-## Description: <br>
-Provides a Chief Risk Officer assistant skill for assessing market, credit, operational, and other enterprise risks and generating impact analysis and response guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cro_skill helps agents assess business risks, analyze likely impacts, and generate response recommendations for market, credit, operational, and related risk categories.
 
-## Publisher: <br>
-[Wen-Si](https://clawhub.ai/user/Wen-Si) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wen-si](https://clawhub.ai/user/wen-si)
 
-## Use Case: <br>
-Enterprise risk, compliance, audit, and investment-support teams can use this skill to perform lightweight risk assessments, summarize likely financial, reputational, and operational impacts, and receive response recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's simplified scoring and recommendation logic may be mistaken for professional financial, legal, compliance, or investment advice. <br>
-Mitigation: Use outputs as decision support only and require qualified review before acting on business-critical recommendations. <br>
-Risk: Release provenance is unavailable, which limits independent auditability of the skill's origin. <br>
-Mitigation: Review the publisher profile, release metadata, and artifact source before deployment. <br>
-Risk: Static risk levels may not reflect an organization's actual exposure, controls, thresholds, or regulatory obligations. <br>
-Mitigation: Validate and adapt the risk model against organization-specific policies, data, and review procedures. <br>
+## Use Case:
 
+Developers and risk-management teams can use this skill to let an agent classify enterprise risk inputs, summarize financial, reputational, and operational impact, and return mitigation recommendations for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wen-Si/croskill) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact ClawHub metadata](artifact/clawhub.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, code] <br>
-**Output Format:** [JSON object with risk status, risk type, assessment details, recommendations, and timestamp] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external dependencies; scoring is based on simple local heuristics keyed primarily by risk type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Risk scores, impact ranges, and recommendations may be too generic or inaccurate for real financial, compliance, or operational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review by qualified risk, compliance, or business-continuity staff before acting on generated assessments.
+
+Risk: The artifact includes publishing commands that require ClawHub CLI credentials.
+
+Mitigation: Run publishing commands only with a pinned, trusted ClawHub CLI in a clean environment with the minimum credentials needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wen-si/skills/croskill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON object with status, risk type, assessment, impact analysis, recommendations, and timestamp]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies; inputs include risk_type, optional company_info, and optional risk_factors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Podcast Pipeline helps creators prepare interviews, turn transcripts into show notes and promotional assets, plan solo episodes, and track episode, sponsor, and season records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podcast Pipeline helps podcast creators prepare interviews, turn transcripts or solo episode ideas into publish-ready assets, and track episodes, sponsors, and seasons across a local history file.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External podcast creators and production teams use this skill to prepare guest interviews, convert recordings or transcripts into publication-ready notes and social assets, plan solo episodes, and maintain lightweight local records for episodes, sponsors, and seasons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local podcast records can contain sensitive transcripts, sponsor contacts, ad scripts, or production notes. <br>
-Mitigation: Log only information that is needed, review podcast-data.json periodically, and avoid storing sensitive transcript or sponsor details unless required. <br>
-Risk: Generated social posts, guest emails, chapters, and timestamps may be inaccurate or unsuitable for publication without review. <br>
-Mitigation: Check generated emails, posts, chapter markers, and timestamps before sending or publishing. <br>
+## Use Case:
 
+External podcast creators and production teams use this skill to prepare guest interviews, generate show notes, chapter markers, short-form clip ideas, platform-specific social posts, YouTube descriptions, and lightweight episode or sponsor records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris-openclaw/podcast-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/chris-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown sections with optional JSON records for local podcast tracking] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local podcast-data.json file only when the user explicitly asks to log episode, sponsor, or season records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and changelog, released 2026-05-12) <br>
+Risk: Podcast episode history, transcripts, sponsor contacts, and ad scripts may be sensitive when retained in podcast-data.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Save records only when retention is intended, avoid storing confidential material, and review or delete podcast-data.json when the project no longer needs it.
+
+Risk: Generated chapter timestamps, show notes, social posts, and YouTube descriptions may need editorial review before publication.
+
+Mitigation: Verify timestamps against the recording and review generated publishing copy before using it externally.
+
+## Reference(s):
+
+- [Podcast Pipeline on ClawHub](https://clawhub.ai/chris/skills/podcast-pipeline)
+- [Publisher profile](https://clawhub.ai/user/chris)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown sections with optional local JSON record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update a local podcast-data.json when the user explicitly asks to log episodes, sponsors, or seasons; chapter timestamps are estimates that should be checked before publishing.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

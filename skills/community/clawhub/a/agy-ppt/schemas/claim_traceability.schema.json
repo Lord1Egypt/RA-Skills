@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/claim_traceability.schema.json",
+  "title": "AGY PPT claim traceability (Phase 12)",
+  "description": "Layer B (deterministic) contract for the claim-traceability sidecar artifact. AGY (Layer A) decides which source units support a claim and whether that support holds (support_status); the deterministic validator here only checks that referenced IDs exist, required fields are present, and status values are legal. It never independently proves a claim is true.",
+  "type": "object",
+  "required": ["schema_version", "project_id", "claims"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1" },
+    "project_id": { "type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9._-]+$" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "claims": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/claim" }
+    }
+  },
+  "definitions": {
+    "claim": {
+      "type": "object",
+      "required": ["claim_id", "slide_id", "claim_text", "source_unit_ids", "support_status"],
+      "additionalProperties": true,
+      "properties": {
+        "claim_id": {
+          "type": "string",
+          "pattern": "^cl:[A-Za-z0-9._-]+:[0-9]{2,}$",
+          "description": "Stable id, e.g. 'cl:slide_03:01'. Deterministic per (slide_id, sequence); resume-safe."
+        },
+        "slide_id": {
+          "type": "string",
+          "pattern": "^slide_[0-9]{2,}$",
+          "description": "Must reference a slide known to project_state.json. This artifact never duplicates or overrides slide state."
+        },
+        "claim_text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Normalized claim representation (AGY's paraphrase/summary), not necessarily the verbatim slide text."
+        },
+        "source_unit_ids": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^su:[A-Za-z0-9._-]+:[a-f0-9]{8,}$" },
+          "minItems": 0,
+          "description": "Every id here must exist in source_inventory.json's units[]. An empty array is legal (e.g. support_status='unsupported')."
+        },
+        "support_status": {
+          "type": "string",
+          "enum": ["supported", "partially_supported", "unsupported", "not_applicable", "pending_review"],
+          "description": "AGY's semantic judgement, persisted verbatim. The deterministic validator only checks this is one of the legal values; it never computes it."
+        },
+        "evidence_note": { "type": ["string", "null"] },
+        "numeric_evidence": {
+          "type": ["object", "null"],
+          "properties": {
+            "source_value": { "type": ["string", "number", "null"] },
+            "slide_value": { "type": ["string", "number", "null"] },
+            "unit": { "type": ["string", "null"] },
+            "comparison_status": {
+              "type": ["string", "null"],
+              "enum": [null, "match", "mismatch", "not_comparable"]
+            }
+          }
+        },
+        "modal_evidence": {
+          "type": ["object", "null"],
+          "properties": {
+            "source_modality": { "type": ["string", "null"] },
+            "slide_modality": { "type": ["string", "null"] },
+            "responsible_party": { "type": ["string", "null"] },
+            "comparison_status": {
+              "type": ["string", "null"],
+              "enum": [null, "match", "mismatch", "not_comparable"]
+            }
+          }
+        },
+        "qa_status": {
+          "type": "string",
+          "enum": ["pending", "reviewed"],
+          "default": "pending"
+        }
+      }
+    }
+  }
+}

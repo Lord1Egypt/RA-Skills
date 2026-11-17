@@ -1,40 +1,54 @@
-## Description: <br>
-Detect hype cycles and neutralize emotional triggers by rewriting claims into verifiable structures with explicit risk and uncertainty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect hype cycles and neutralize emotional triggers by rewriting claims into verifiable structures and explicit risk/uncertainty.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers, operators, and reviewers use this skill to evaluate promotional or speculative text, identify hype triggers, and turn claims into verifiable language with explicit uncertainty and risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for financial, legal, or moderation authority when it is only a writing and risk-framing aid. <br>
-Mitigation: Treat outputs as review assistance and require human judgment before acting on classifications or response drafts. <br>
-Risk: Broad hype triggers may flag legitimate promotional or speculative language more often than expected. <br>
-Mitigation: Review the detected triggers, missing information, and rewritten claim before using the result. <br>
+## Use Case:
 
+Developers, community managers, analysts, and agent users can use this skill to evaluate hype-heavy messages, identify unsupported urgency or certainty, and convert claims into evidence-seeking responses with explicit risk and uncertainty.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/anti-hype-filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured analysis, guidance] <br>
-**Output Format:** [Structured text with classification, detected triggers, missing information, a verifiable rewrite, and a response draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code execution or sensitive access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generic hype trigger words can activate the filter when the user did not intend anti-hype review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when hype filtering is requested or when the message clearly contains urgency, certainty, vague upside, or unsupported social-proof claims.
+
+Risk: A message may be framed as manipulation risk without enough context.
+
+Mitigation: Label risk rather than intent, avoid accusations of malice, and require falsifiable evidence requests before treating the message as manipulation risk.
+
+## Reference(s):
+
+- [Anti-Hype Filter ClawHub page](https://clawhub.ai/mzfshark/skills/anti-hype-filter)
+- [Publisher profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Guidance]
+
+**Output Format:** [Structured text with anti_hype_result fields for classification, detected triggers, missing information, rewrite, and response draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May apply max_response_words guidance; default response draft target is 100 words when policy does not override it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

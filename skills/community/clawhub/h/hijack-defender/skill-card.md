@@ -1,44 +1,56 @@
-## Description: <br>
-Detect, document, and remove unauthorized third-party sellers hijacking your Amazon listings or ecommerce product pages — with step-by-step enforcement workflows for brand registry, cease-and-desist, and test buy procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect, document, and remove unauthorized third-party sellers hijacking your Amazon listings or ecommerce product pages - with step-by-step enforcement workflows for brand registry, cease-and-desist, and test buy procedures.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External brand owners, ecommerce operators, and their advisors use this skill to identify listing hijacking, collect evidence, prepare enforcement reports, draft seller communications, and plan prevention steps for marketplace listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace enforcement rules and seller reporting requirements may change or differ by situation. <br>
-Mitigation: Verify the current Amazon rules and required evidence before submitting reports or contacting sellers. <br>
-Risk: Legal letters and infringement claims can create legal or business exposure if the seller is not actually unauthorized or counterfeit. <br>
-Mitigation: Preserve accurate evidence, confirm the seller status, and consult qualified counsel before sending legal demands or making damages threats. <br>
+## Use Case:
 
+Brands, ecommerce operators, and authorized sellers use this skill to detect listing hijacks, assemble evidence packages, pursue marketplace enforcement, prepare cease-and-desist communications, and reduce recurrence.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leooooooow/hijack-defender) <br>
-- [Output Template](output-template.md) <br>
-- [Evidence Collection Guide](evidence-collection-guide.md) <br>
-- [Cease-and-Desist Template](cease-and-desist-template.md) <br>
-- [Enforcement Readiness Checklist](checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, incident-report templates, and letter templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guidance; no API keys, MCP tools, or shell commands detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Test buys, marketplace reports, and cease-and-desist workflows can create legal or policy compliance risk if used without proper authority or review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts, addresses, trademarks, listings, and evidence you are authorized to control; verify marketplace policy and consult legal counsel before sending enforcement letters.
+
+Risk: Evidence packages may contain customer, seller, address, order, or product data that requires careful handling.
+
+Mitigation: Store evidence with restricted access, redact sensitive details where possible, and define retention and deletion practices before sharing.
+
+## Reference(s):
+
+- [Hijack Incident Report and Enforcement Tracker](artifact/output-template.md)
+- [Cease-and-Desist Letter Templates](artifact/cease-and-desist-template.md)
+- [Evidence Collection Guide](artifact/evidence-collection-guide.md)
+- [Enforcement Readiness Checklist](artifact/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance, checklists, incident tracking tables, and letter templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-filled enforcement documentation and procedural guidance; does not call tools or APIs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Generates fashion product photography composition plans and AI art prompts for apparel model shots, with guidance for scenes, lighting, angles, props, and batch planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates apparel model-shot composition plans, shooting guidance, and AI image prompts from clothing or accessory descriptions.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-E-commerce sellers, apparel brands, independent designers, and buying teams use this skill to plan model-shot compositions and create AI image prompts or shoot guidance for apparel product listings and social content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts may lead to marketplace, brand, likeness, or content-policy issues when used with third-party image tools. <br>
-Mitigation: Review prompts and any resulting images for commercial rights, platform image rules, brand or logo use, likeness concerns, and content-policy compliance before publication. <br>
+## Use Case:
 
+E-commerce sellers, apparel brands, designers, and merchandising teams use this skill to plan model-shot concepts, multi-angle compositions, props, lighting, and AI drawing prompts for clothing product displays. It is intended for planning and prompt generation, not for creating or replacing images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/miaoji-model-shot) <br>
-- [Style templates reference](references/style-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown-style planning guidance with AI prompt text; the helper script can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are planning artifacts and prompts only; the skill does not generate images, replace people, call image platforms, store image data, or publish content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The artifact is primarily Chinese-language, which may lead to misunderstanding for teams that cannot review Chinese instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Chinese-language usage is acceptable, or ask the publisher for clearer language support before operational use.
+
+Risk: The bundled prompt generator accepts an unbounded count value, which can produce excessive output if used carelessly.
+
+Mitigation: Keep --count to a small reasonable number until the publisher adds bounds checking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-model-shot)
+- [Style templates](artifact/references/style-templates.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and optional JSON or plain-text output from the bundled prompt generator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces planning guidance and prompts only; it does not generate image files or call image-generation APIs.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

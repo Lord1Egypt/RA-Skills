@@ -1,38 +1,53 @@
-## Description: <br>
-Guides AIC Team users through ClawHub skill discovery, installation, publishing, validation, and the s/skills URL distinction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub Skills Guide provides AIC team guidance for discovering, installing, publishing, validating, and understanding ClawHub and OpenClaw skills.
 
-## Publisher: <br>
-[chii726](https://clawhub.ai/user/chii726) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chii726](https://clawhub.ai/user/chii726)
 
-## Use Case: <br>
-AIC Team members and developers use this skill to answer ClawHub workflow questions and produce practical guidance for searching, installing, publishing, syncing, and validating skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following example ClawHub install, update, or publish commands can modify local skill setup or publish content. <br>
-Mitigation: Review each command, target path, and slug before execution; use inspect or dry-run commands where available. <br>
+## Use Case:
 
+Developers and AIC team members use this skill when they need concise ClawHub workflow guidance, including skill search, installation, publishing, validation, and the difference between legacy s links and skills links.
 
-## Reference(s): <br>
-- [ClawHub Skills Guide release page](https://clawhub.ai/chii726/clawhub-skills-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The guide includes install, update, publish, and sync CLI commands that can change installed skills or publish content when run by a user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target skill, path, and intended ClawHub action before running any listed command.
+
+Risk: Following workflow guidance without review could lead to publishing incomplete or incorrect skill content.
+
+Mitigation: Run the referenced validation checks and review SKILL.md frontmatter and body content before publishing.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/chii726/skills/clawhub-skills-guide)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; it does not execute commands itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

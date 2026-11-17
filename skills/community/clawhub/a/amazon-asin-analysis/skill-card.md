@@ -1,40 +1,51 @@
-## Description: <br>
-Provides AI-assisted cross-border ecommerce market analysis, competitor comparison, product insight, and keyword optimization guidance through Novai360 services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novai360 跨境电商智能分析 helps agents answer ecommerce market, competitor, Amazon ASIN, and keyword research questions using Novai360 market data and AI-generated analysis.
 
-## Publisher: <br>
-[chopinau](https://clawhub.ai/user/chopinau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chopinau](https://clawhub.ai/user/chopinau)
 
-## Use Case: <br>
-Ecommerce sellers and operators use this skill to ask product, ASIN, category, competitor, and keyword questions and receive market-oriented analysis reports and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends ecommerce questions, ASINs, keywords, and runtime or session context to Novai360. <br>
-Mitigation: Avoid entering confidential product plans, credentials, tokens, private customer data, or other sensitive business information unless Novai360's privacy terms and data handling are acceptable. <br>
-Risk: Market analysis and recommendations can be incomplete, outdated, or based on provider-side data outside the user's direct control. <br>
-Mitigation: Validate important business decisions against trusted first-party sales, advertising, and marketplace data before acting. <br>
+## Use Case:
 
+External sellers, analysts, and agents use this skill to evaluate ecommerce products, compare competitors, review Amazon ASINs, and generate keyword or pricing recommendations from Novai360 data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chopinau/amazon-asin-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style analysis report with structured market data summaries and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include intent metadata, market data summaries, report URLs, or interactive menu data when returned by the provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release evidence) <br>
+Risk: The skill sends broad caller context to an external Novai360 service and may expose constructed prompts or full API responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use for non-sensitive market research unless context minimization, redaction, privacy disclosure, and safer prompt handling are added and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chopinau/skills/amazon-asin-analysis)
+- [Publisher profile](https://clawhub.ai/user/chopinau)
+- [Novai360 API service](https://api.novai360.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Analysis, Guidance]
+
+**Output Format:** [Markdown or structured JSON-like analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market data summaries, analysis reports, intent metadata, report URLs, and interactive menu data when returned by the Novai360 service.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

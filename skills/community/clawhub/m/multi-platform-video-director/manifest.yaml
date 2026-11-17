@@ -1,0 +1,25 @@
+name: multi-platform-video-director
+displayName: 多平台生成视频导演
+version: 1.0.0
+description: 将一张或多张参考图片或文字描述转化为可执行的视频方案、平台适配 Prompt、负向 Prompt、分镜设计、运动参数，并在有可用视频生成工具时直接生成视频。支持图生视频、文生视频、首尾帧、配乐、语气词配音、字幕、多镜头拼接全流程。
+slug: multi-platform-video-director
+category: media
+author: 葛伊娜
+tags:
+  - 视频生成
+  - 图生视频
+  - 文生视频
+  - 分镜设计
+  - 配乐配音
+  - 多镜头拼接
+  - 字幕
+triggers:
+  - 图生视频
+  - 文生视频
+  - 视频生成
+  - 图片转视频
+  - 分镜
+  - 首尾帧
+  - 视频配乐
+  - 视频配音
+requiresApiKeys: false

@@ -1,41 +1,53 @@
-## Description: <br>
-Pilot Discover helps agents discover Pilot Protocol peers by tags, polo score, status, hostname, or node ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pilot Discover helps agents find Pilot Protocol peers by tags, polo score, status, hostname, or node ID.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to search the Pilot Protocol overlay network for peers with specific capabilities, quality scores, hostnames, or node identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the workflow example can contact a discovered peer through lookup and ping. <br>
-Mitigation: Run the skill only with trusted Pilot Protocol, pilotctl, and daemon configurations, and review target peers before issuing lookup or ping commands. <br>
-Risk: The skill depends on pilotctl, a running Pilot Protocol daemon, registry access, and jq for the filtering example. <br>
-Mitigation: Confirm required tools and daemon access are available before using the command examples. <br>
+## Use Case:
 
+Developers and agents use this skill to discover Pilot Protocol peers by capability, quality score, and identity. It supports registry lookup workflows that require `pilotctl`, the Pilot Protocol core skill, and a running daemon.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Discover on ClawHub](https://clawhub.ai/teoslayer/pilot-discover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples use JSON output from pilotctl and may require jq for filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Discovery examples can perform reachability checks with `pilotctl ping`, which may make discovery less passive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove ping behavior when the intended workflow should only query registry and peer metadata.
+
+Risk: The skill depends on a running Pilot Protocol daemon and registry access, so results depend on that local environment.
+
+Mitigation: Confirm `pilotctl` is installed, the daemon is running, and registry access is expected before use.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires `pilotctl` on PATH and a running Pilot Protocol daemon with registry access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

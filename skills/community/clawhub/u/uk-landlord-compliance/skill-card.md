@@ -1,46 +1,57 @@
-## Description: <br>
-Generates English landlord compliance document templates and guidance, including Section 8 notices, tenancy agreements, rent increase notices, deposit prescribed information, Right to Rent records, safety trackers, and eviction procedure guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates English landlord document templates and compliance checklists for Section 8 notices, tenancy agreements, rent increases, deposit prescribed information, Right to Rent records, safety trackers, and eviction procedures.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-Private residential landlords, HMO landlords, letting agents, and property managers use this skill to draft England-only landlord compliance documents and review legal procedure steps before professional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-England <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-stakes legal-document drafting may produce incorrect, incomplete, or outdated notices or procedure guidance. <br>
-Mitigation: Have a qualified English housing solicitor or regulated housing professional review every notice, agreement, and possession step before use. <br>
-Risk: The skill is scoped to England and could be misapplied to Wales, Scotland, or Northern Ireland, where tenancy regimes differ. <br>
-Mitigation: Use it only for English residential landlord scenarios and seek jurisdiction-specific advice for other UK nations. <br>
-Risk: Commencement dates, prescribed forms, and housing legislation may change after the skill's April 2026 update basis. <br>
-Mitigation: Verify current commencement orders, prescribed forms, and government guidance before serving legal documents. <br>
-Risk: Landlord scenarios can involve tenant personal data. <br>
-Mitigation: Avoid entering unnecessary tenant personal data and redact sensitive details unless they are needed for drafting. <br>
+## Use Case:
 
+External landlords, letting agents, and property managers use this skill to draft landlord compliance documents, notices, checklists, and portfolio trackers for residential rental properties in England. Outputs are templates and guidance for review, not legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/uk-landlord-compliance) <br>
-- [README.md](artifact/README.md) <br>
-- [listing.md](artifact/listing.md) <br>
+### Deployment Geography for Use:
 
+England
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown document templates, checklists, and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Every output is expected to include the skill's England-only scope note, legislative citations, and legal-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated legal notices or compliance steps may be wrong if the law, commencement dates, prescribed forms, or tenancy facts have changed or were provided incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current law, commencement dates, prescribed forms, and case-specific facts before use, and get solicitor review before serving eviction or other legal documents.
+
+Risk: The skill is limited to English landlord obligations and could produce invalid guidance if applied to Wales, Scotland, or Northern Ireland.
+
+Mitigation: Use the skill only for residential landlord matters in England and seek jurisdiction-specific advice for other UK nations.
+
+Risk: Users may treat generated templates as legal advice.
+
+Mitigation: Present outputs as draft templates and compliance guidance with a clear legal disclaimer and professional-review recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/uk-landlord-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown document templates, checklists, trackers, and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Every output should include a legal disclaimer, an England-only coverage note, and instructions to verify current law before serving legal notices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

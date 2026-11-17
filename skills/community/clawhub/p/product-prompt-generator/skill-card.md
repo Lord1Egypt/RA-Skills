@@ -1,40 +1,54 @@
-## Description: <br>
-Generate high-quality product image prompts for AI image generation tools based on user-provided product information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality product image prompts for AI image generation tools based on user-provided product information.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and creators use this skill to turn product details, selling points, and optional reference-image observations into concise English prompts for product image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts could include inaccurate or misleading product details if the input information is incomplete. <br>
-Mitigation: Review prompts against the supplied product facts and remove unsupported claims before using them for image generation. <br>
-Risk: Product images or product descriptions may contain sensitive or proprietary information when optional image or search tools are used. <br>
-Mitigation: Use only approved product inputs and avoid sharing sensitive material with external tools unless permitted. <br>
+## Use Case:
 
+External users and creators use this skill to turn product details into concise English prompts for product photography or AI image generation. It is intended for single-product prompt generation across categories such as electronics, apparel, beauty, home goods, food, and sports equipment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/product-prompt-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text English prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single product subject; 500 characters or fewer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated prompts could overstate product features or introduce details not present in the user's product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts against the source product details before using them in listings, advertisements, or image-generation workflows.
+
+Risk: User-provided reference images or category searches may introduce irrelevant visual details into the generated prompt.
+
+Mitigation: Use only product-relevant visual features and keep the final prompt focused on a single product subject.
+
+## Reference(s):
+
+- [Product Prompt Generator on ClawHub](https://clawhub.ai/openlark/skills/product-prompt-generator)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text English prompt, no additional notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt is constrained to 500 characters or fewer and should describe one product subject accurately.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

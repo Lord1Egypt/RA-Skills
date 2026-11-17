@@ -1,0 +1,51 @@
+{
+  "$schema": ".kiro/pdlc/ai-ppm-rule-details/data-schema/ppm-data.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-ppm",
+  "data": {
+    "currentPhase": "Monitoring",
+    "currentStage": "4 - Roll-Up",
+    "lastActivity": "2026-06-22T12:00:00Z",
+    "depthLevel": "Standard",
+    "activeExtensions": [],
+    "summary": {
+      "totalProjects": 1,
+      "active": 1,
+      "paused": 0,
+      "retired": 0,
+      "pendingRegistration": 0
+    },
+    "lastRollUp": {
+      "timestamp": "2026-06-22T12:00:00Z",
+      "projectsRefreshed": 1,
+      "anomaliesFlagged": 0,
+      "floStatus": "connected"
+    },
+    "strategicObjectives": [
+      "Sample objective"
+    ],
+    "prioritization": {
+      "model": "WSJF",
+      "lastRanked": "2026-06-22T12:00:00Z"
+    },
+    "cadence": {
+      "nextPortfolioSync": "2026-06-22T12:00:00Z",
+      "nextHealthReview": "2026-06-22T12:00:00Z",
+      "nextStrategicReview": "2026-06-22T12:00:00Z"
+    },
+    "projects": [
+      {
+        "projectId": "PRJ-SMP-2026-001",
+        "name": "Sample Project",
+        "status": "active",
+        "priority": 1,
+        "healthRag": "Green",
+        "strategicAlignment": "High"
+      }
+    ],
+    "decisions": []
+  }
+}

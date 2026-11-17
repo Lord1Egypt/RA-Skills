@@ -1,0 +1,35 @@
+{
+  "title": "Configure 550W Open API",
+  "title_en": "Configure 550W Open API",
+  "description": "Enter your user ID and API key. Credentials stay in your local WorkBuddy environment; selected media or public URLs are sent to the 550W Open API for processing. Privacy: https://eraser.550wai.com/privacy/ Terms: https://eraser.550wai.com/terms/",
+  "description_en": "Enter your user ID and API key. Credentials stay in your local WorkBuddy environment; selected media or public URLs are sent to the 550W Open API for processing. Privacy: https://eraser.550wai.com/privacy/ Terms: https://eraser.550wai.com/terms/",
+  "docUrl": "https://eraser.550wai.com/api/",
+  "docUrl_en": "https://eraser.550wai.com/api/",
+  "docLabel": "Get a user ID and API key",
+  "docLabel_en": "Get a user ID and API key",
+  "fields": [
+    {
+      "key": "SUBTITLE_REMOVER_USER_NO",
+      "label": "User ID",
+      "label_en": "User ID",
+      "type": "text",
+      "required": true,
+      "placeholder": "Find your user ID on the API page",
+      "placeholder_en": "Find your user ID on the API page",
+      "description": "Must belong to the same 550W account as the API key. Get it at https://eraser.550wai.com/api/.",
+      "description_en": "Must belong to the same 550W account as the API key. Get it at https://eraser.550wai.com/api/."
+    },
+    {
+      "key": "SUBTITLE_REMOVER_API_KEY",
+      "label": "API Key",
+      "label_en": "API Key",
+      "type": "password",
+      "required": true,
+      "placeholder": "sk-550w-…",
+      "placeholder_en": "sk-550w-…",
+      "description": "Create or rotate it at https://eraser.550wai.com/api/.",
+      "description_en": "Create or rotate it at https://eraser.550wai.com/api/."
+    }
+  ],
+  "distributionRegion": "global"
+}

@@ -1,43 +1,57 @@
-## Description: <br>
-Provides Yahoo Finance based market analysis, technical indicator scoring, historical data export, portfolio alerts, and trade logging for BIST, U.S. equities, crypto, commodities, and currency pairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Yahoo Finance based market analysis for BIST and other symbols, including technical indicator scoring, historical data export, portfolio alerts, and trade logging.
 
-## Publisher: <br>
-[Nikolayco](https://clawhub.ai/user/Nikolayco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nikolayco](https://clawhub.ai/user/nikolayco)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to fetch Yahoo Finance market data, run technical indicators, export historical price data, maintain portfolio alerts, and record buy or sell activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python scripts that can create or change watchlists, alerts, trade logs, CSVs, and HTML reports on disk. <br>
-Mitigation: Run explicit commands only after confirming the intended action, symbol, quantity, price, and install path; periodically review or delete generated JSON, CSV, and HTML files. <br>
-Risk: Broad finance prompts can trigger record-changing behavior without enough scoping or confirmation. <br>
-Mitigation: Require confirmation before buy, sell, add, remove, or report commands, and treat analysis output as informational rather than as a substitute for financial review. <br>
-Risk: The scripts contact Yahoo Finance over the network to fetch market data. <br>
-Mitigation: Install and run the skill only where outbound Yahoo Finance requests are acceptable and avoid sensitive or untrusted symbol and name inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Nikolayco/yahoo-finance-bist) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Nikolayco) <br>
-- [Yahoo Finance chart endpoint used by scripts](https://query1.finance.yahoo.com/v8/finance/chart/{symbol}) <br>
+## Use Case:
 
+External users use this skill to have an agent retrieve Yahoo Finance market data, calculate technical indicators, export historical data, track portfolio alerts, and record trade history for BIST, U.S., crypto, commodity, and FX symbols.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, CSV, and HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may update portfolio_alerts.json and trade_history.json and may generate Nikos_Islem_Gecmisi.csv and Nikos_Portfoy_Analiz.html.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is marked suspicious because its instructions pressure the agent to execute scripts and limit explanatory context.
+
+Mitigation: Review requests before execution and let the agent provide necessary safety, uncertainty, and financial-risk context instead of following restrictive response instructions blindly.
+
+Risk: The skill writes local portfolio, trade history, CSV, and HTML report files that may contain sensitive financial records.
+
+Mitigation: Store generated files in an appropriate private workspace, avoid sharing reports publicly, and remove records that are no longer needed.
+
+Risk: Untrusted symbols or asset names can flow into Yahoo Finance lookups and generated reports.
+
+Mitigation: Use only intended symbols and asset names, and review generated CSV or HTML before opening, forwarding, or publishing it.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nikolayco/skills/yahoo-finance-bist)
+- [Yahoo Finance chart data endpoint](https://query1.finance.yahoo.com/v8/finance/chart/{symbol})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal output, with generated JSON, CSV, and HTML report files when tracking or export tools are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local portfolio alerts, trade history, CSV exports, and HTML reports containing financial records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

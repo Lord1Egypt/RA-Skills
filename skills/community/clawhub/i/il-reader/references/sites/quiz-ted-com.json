@@ -1,0 +1,1088 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-ted-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:24.199Z",
+  "entry": {
+    "url": "https://www.ted.com",
+    "final_url": "https://www.ted.com/",
+    "title": "TED: Ideas change everything",
+    "status": "accessible",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:05:24.199Z",
+    "identity": {
+      "declared_name": "TED",
+      "hostname": "www.ted.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Organize a local TEDx Event\nRules and resources to help you plan a local TEDx event",
+        "href": "https://www.ted.com/tedx/organize",
+        "target": ""
+      },
+      {
+        "text": "How imaginary worlds help kids learn",
+        "href": "https://www.ted.com/talks/190490",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Menu",
+      "label": "",
+      "aria_label": "Menu",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Menu",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "WATCH",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "WATCH",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "DISCOVER",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "DISCOVER",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "ATTEND",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "ATTEND",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "PARTICIPATE",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "PARTICIPATE",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "ABOUT",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "ABOUT",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Type to search",
+      "label": "",
+      "aria_label": "Type to search",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.ted.com/",
+      "locator": {
+        "role": "button",
+        "name": "Type to search",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "Type to search",
+      "label": "Type to search",
+      "aria_label": "Type to search",
+      "placeholder": "Type to search",
+      "name": null,
+      "id": "navigation-search",
+      "css": "#navigation-search",
+      "role": null,
+      "form_action": "https://www.ted.com/",
+      "locator": {
+        "css": "#navigation-search"
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Cancel",
+      "label": "",
+      "aria_label": "Cancel",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.ted.com/",
+      "locator": {
+        "role": "button",
+        "name": "Cancel",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Select",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Select",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "email",
+      "id": "",
+      "css": "input[name=\"email\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[name=\"email\"]"
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Subscribe now",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Subscribe now",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "input",
+      "type": "email",
+      "text": "What's your email?",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "What's your email?",
+      "name": null,
+      "id": "newsletter-email",
+      "css": "#newsletter-email",
+      "role": null,
+      "form_action": "https://www.ted.com/",
+      "locator": {
+        "css": "#newsletter-email"
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "Subscribe",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.ted.com/",
+      "locator": {
+        "role": "button",
+        "name": "Subscribe",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Become a TED Member",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Become a TED Member",
+        "exact": true
+      },
+      "observed_url": "https://www.ted.com/",
+      "observed_at": "2026-10-09T09:05:20.186Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-ted-com:record-lookup",
+      "source_id": "quiz-ted-com",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.ted.com/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Menu",
+          "label": "",
+          "aria_label": "Menu",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Menu",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "WATCH",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "WATCH",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "DISCOVER",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "DISCOVER",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "ATTEND",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "ATTEND",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "PARTICIPATE",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "PARTICIPATE",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "ABOUT",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "ABOUT",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Type to search",
+          "label": "",
+          "aria_label": "Type to search",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.ted.com/",
+          "locator": {
+            "role": "button",
+            "name": "Type to search",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "Type to search",
+          "label": "Type to search",
+          "aria_label": "Type to search",
+          "placeholder": "Type to search",
+          "name": null,
+          "id": "navigation-search",
+          "css": "#navigation-search",
+          "role": null,
+          "form_action": "https://www.ted.com/",
+          "locator": {
+            "css": "#navigation-search"
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Cancel",
+          "label": "",
+          "aria_label": "Cancel",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.ted.com/",
+          "locator": {
+            "role": "button",
+            "name": "Cancel",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Select",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Select",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "email",
+          "id": "",
+          "css": "input[name=\"email\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[name=\"email\"]"
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Subscribe now",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Subscribe now",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "input",
+          "type": "email",
+          "text": "What's your email?",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "What's your email?",
+          "name": null,
+          "id": "newsletter-email",
+          "css": "#newsletter-email",
+          "role": null,
+          "form_action": "https://www.ted.com/",
+          "locator": {
+            "css": "#newsletter-email"
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Subscribe",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.ted.com/",
+          "locator": {
+            "role": "button",
+            "name": "Subscribe",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Become a TED Member",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Become a TED Member",
+            "exact": true
+          },
+          "observed_url": "https://www.ted.com/",
+          "observed_at": "2026-10-09T09:05:20.186Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.ted.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-069"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:24.199Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-ted-com-partial.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-ted-com-partial.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

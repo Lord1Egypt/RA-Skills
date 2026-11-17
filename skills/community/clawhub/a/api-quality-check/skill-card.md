@@ -1,46 +1,58 @@
-## Description: <br>
-Check coding-model API quality, capability fit, and drift with LT-lite and B3IT-lite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check coding-model API quality, capability fit, and drift with LT-lite and B3IT-lite for OpenAI, OpenAI-compatible, and Anthropic endpoints used by coding CLIs, terminal agents, and OpenClaw-style workflows.
 
-## Publisher: <br>
-[chekhovin](https://clawhub.ai/user/chekhovin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chekhovin](https://clawhub.ai/user/chekhovin)
 
-## Use Case: <br>
-Developers and engineers use this skill to verify whether OpenAI, OpenAI-compatible, or Anthropic-style coding-model endpoints support smoke checks, first-token detection, logprob-based LT-lite checks, and baseline-vs-current drift monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API credentials and generated reports may expose provider keys or sensitive endpoint details. <br>
-Mitigation: Use scoped test keys, keep provider configuration and output directories out of source control and shared hosting, and rotate any key that may have been printed to logs or published. <br>
-Risk: Batch and daily output files may be shared before their contents are reviewed. <br>
-Mitigation: Review generated batch, daily, JSON, and HTML files before publishing or attaching them to issues, reports, or support requests. <br>
+## Use Case:
 
+Developers and engineers use this skill to check whether coding-model API endpoints are fit for CLI and agent workflows. It supports smoke checks, first-token detection, logprob tracking, baseline creation, and drift detection for OpenAI, OpenAI-compatible, and Anthropic-style endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chekhovin/api-quality-check) <br>
-- [Config Schema](references/config-schema.md) <br>
-- [Endpoint Types Playbook](references/endpoint-types-playbook.md) <br>
-- [Kimi Anthropic Quickstart](references/kimi-anthropic-quickstart.md) <br>
-- [Kimi Coding Quickstart](references/kimi-coding-quickstart.md) <br>
-- [Workflow Notes](references/workflows.md) <br>
-- [Example Provider List](references/providers.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with command examples and file-based JSON/HTML report outputs from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include provider configuration files, smoke-test reports, LT-lite and B3IT-lite baselines, drift reports, and HTML summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Provider configs, generated outputs, logs, or transcripts can expose plaintext API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep provider configs and generated output directories private, avoid publishing report folders as CI artifacts or static pages, avoid commands that print keys into logged stdout, and rotate any keys already copied into shared reports or transcripts.
+
+Risk: Unsupported endpoint capabilities can make LT-lite or B3IT-lite checks unsuitable for a target API.
+
+Mitigation: Run the smoke check first, use LT-lite only when logprobs are present, use B3IT-lite only when first-token text is usable, and review generated JSON or HTML reports before acting on drift results.
+
+## Reference(s):
+
+- [Config Schema](references/config-schema.md)
+- [Endpoint Types Playbook](references/endpoint-types-playbook.md)
+- [Kimi Anthropic Quickstart](references/kimi-anthropic-quickstart.md)
+- [Kimi Coding Quickstart](references/kimi-coding-quickstart.md)
+- [Example Provider List](references/providers.example.json)
+- [Workflow Notes](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with bash examples, plus generated JSON and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [File-based outputs include provider configs, smoke results, baselines, drift reports, and optional HTML summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

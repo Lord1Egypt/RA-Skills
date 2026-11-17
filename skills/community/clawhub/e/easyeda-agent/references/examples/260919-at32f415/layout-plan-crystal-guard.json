@@ -1,0 +1,910 @@
+{
+  "schemaVersion": 3,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "475cc0f773ed4a6fb7a02336c8a6a67f",
+    "doc": "2e719e9419653c72"
+  },
+  "routing": {
+    "owners": [
+      "U6"
+    ],
+    "demands": [
+      {
+        "id": "u6-1-p3v3",
+        "kind": "power",
+        "from": "U6.1",
+        "net": "+3V3",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "C14.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1716.5,
+            865.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-2-osc_in",
+        "kind": "signal",
+        "from": "U6.2",
+        "net": "OSC_IN",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "to": "X1.1",
+        "congested": {
+          "minX": 1681.003,
+          "minY": 879.529,
+          "maxX": 1862.305,
+          "maxY": 1074.903
+        },
+        "exits": [
+          [
+            1732.3,
+            845.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-3-osc_out",
+        "kind": "signal",
+        "from": "U6.3",
+        "net": "OSC_OUT",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "to": "X1.3",
+        "congested": {
+          "minX": 1681.003,
+          "minY": 879.529,
+          "maxX": 1862.305,
+          "maxY": 1074.903
+        },
+        "exits": [
+          [
+            1748.0,
+            845.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-4-nrst",
+        "kind": "signal",
+        "from": "U6.4",
+        "net": "NRST",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R7.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1763.8,
+            865.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-5-p3v3",
+        "kind": "power",
+        "from": "U6.5",
+        "net": "+3V3",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "C15.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1779.5,
+            865.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-6-pa0",
+        "kind": "signal",
+        "from": "U6.6",
+        "net": "PA0",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "SW2.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1795.3,
+            865.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-7-pa1",
+        "kind": "signal",
+        "from": "U6.7",
+        "net": "PA1",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "SW3.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1811,
+            865.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-8-pa2",
+        "kind": "signal",
+        "from": "U6.8",
+        "net": "PA2",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "CARD1.5",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1826.8,
+            865.529
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-9-pa3",
+        "kind": "signal",
+        "from": "U6.9",
+        "net": "PA3",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R20.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            929.1
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-10-pa4",
+        "kind": "signal",
+        "from": "U6.10",
+        "net": "PA4",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R21.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            944.9
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-11-pa5",
+        "kind": "signal",
+        "from": "U6.11",
+        "net": "PA5",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R22.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            960.6
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-12-pa6",
+        "kind": "signal",
+        "from": "U6.12",
+        "net": "PA6",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R18.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            976.4
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-13-pa7",
+        "kind": "signal",
+        "from": "U6.13",
+        "net": "PA7",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R19.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            992.1
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-14-pb0",
+        "kind": "signal",
+        "from": "U6.14",
+        "net": "PB0",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R23.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            1007.9
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-15-pb1",
+        "kind": "signal",
+        "from": "U6.15",
+        "net": "PB1",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "C11.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            1023.6
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-16-pb2",
+        "kind": "signal",
+        "from": "U6.16",
+        "net": "PB2",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R14.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1876.305,
+            1039.4
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-17-p3v3",
+        "kind": "power",
+        "from": "U6.17",
+        "net": "+3V3",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "C16.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1826.8,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-18-pa8",
+        "kind": "signal",
+        "from": "U6.18",
+        "net": "PA8",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R3.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1811,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-19-pa9",
+        "kind": "signal",
+        "from": "U6.19",
+        "net": "PA9",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "toward": "U4.7",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1795.3,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-20-pa10",
+        "kind": "signal",
+        "from": "U6.20",
+        "net": "PA10",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "toward": "U4.6",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1779.5,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-21-pa11",
+        "kind": "signal",
+        "from": "U6.21",
+        "net": "PA11",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "toward": "U5.4",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1763.8,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-22-pa12",
+        "kind": "signal",
+        "from": "U6.22",
+        "net": "PA12",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "toward": "U5.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1748,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-23-pa13",
+        "kind": "signal",
+        "from": "U6.23",
+        "net": "PA13",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "toward": "H1.3",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1732.3,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-24-pa14",
+        "kind": "signal",
+        "from": "U6.24",
+        "net": "PA14",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 0,
+        "toward": "H1.2",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1716.5,
+            1088.903
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-25-pa15",
+        "kind": "signal",
+        "from": "U6.25",
+        "net": "PA15",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R4.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            1039.4
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-26-pb3",
+        "kind": "signal",
+        "from": "U6.26",
+        "net": "PB3",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "U3.4",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            1023.6
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-27-pb4",
+        "kind": "signal",
+        "from": "U6.27",
+        "net": "PB4",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "U3.5",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            1007.9
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-28-pb5",
+        "kind": "signal",
+        "from": "U6.28",
+        "net": "PB5",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "U3.3",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            992.1
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-29-pb6",
+        "kind": "signal",
+        "from": "U6.29",
+        "net": "PB6",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "U3.6",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            976.4
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-30-pb7",
+        "kind": "signal",
+        "from": "U6.30",
+        "net": "PB7",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "U3.7",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            960.6
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-31-boot0",
+        "kind": "signal",
+        "from": "U6.31",
+        "net": "BOOT0",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R13.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            944.9
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-32-pb8",
+        "kind": "signal",
+        "from": "U6.32",
+        "net": "PB8",
+        "widthMil": 8,
+        "layer": 1,
+        "maxVias": 2,
+        "toward": "R16.1",
+        "congested": {
+          "minX": 1681.0030000000002,
+          "minY": 879.5289999999999,
+          "maxX": 1862.305,
+          "maxY": 1074.9029999999998
+        },
+        "exits": [
+          [
+            1667.003,
+            929.1
+          ]
+        ],
+        "maxAwayMil": 60
+      },
+      {
+        "id": "u6-33-gnd",
+        "kind": "ground",
+        "from": "U6.33",
+        "net": "GND",
+        "widthMil": 20,
+        "layer": 1,
+        "maxVias": 0,
+        "existingViaIds": [
+          "68d0bd205de616f9",
+          "12274fe7ffd6658b"
+        ],
+        "existingViaInPadAnchors": {
+          "68d0bd205de616f9": "U6.33",
+          "12274fe7ffd6658b": "U6.33"
+        },
+        "existingViasOnly": true
+      }
+    ],
+    "requiredTopNets": [
+      "OSC_IN",
+      "OSC_OUT",
+      "PA10",
+      "PA11",
+      "PA12",
+      "PA13",
+      "PA14",
+      "PA9"
+    ],
+    "stepMil": 4,
+    "maxDetourMil": 160,
+    "maxStates": 250000
+  },
+  "modules": [
+    {
+      "id": "crystal-guard",
+      "strategy": "crystal-guard",
+      "copperPolicy": "module-owned",
+      "anchorRef": "X1",
+      "existingObjects": [],
+      "members": [
+        {
+          "ref": "X1",
+          "side": "top",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        {
+          "ref": "C20",
+          "side": "top"
+        },
+        {
+          "ref": "C21",
+          "side": "top"
+        }
+      ],
+      "search": {
+        "gapsMil": [
+          30,
+          35,
+          40
+        ],
+        "rotationDeltasDeg": [
+          0
+        ],
+        "offsetsMil": [
+          {
+            "xMil": 96.584,
+            "yMil": 0,
+            "label": "old-lateral-more-gap"
+          },
+          {
+            "xMil": 160,
+            "yMil": 0,
+            "label": "right-160"
+          },
+          {
+            "xMil": 220,
+            "yMil": 0,
+            "label": "right-220"
+          },
+          {
+            "xMil": -120,
+            "yMil": 0,
+            "label": "left-120"
+          },
+          {
+            "xMil": -200,
+            "yMil": 0,
+            "label": "left-200"
+          }
+        ]
+      },
+      "crystalGuard": {
+        "groundImplementation": "tracks-vias",
+        "reuseGroundAnchorViaIds": [
+          "68d0bd205de616f9",
+          "12274fe7ffd6658b"
+        ],
+        "crystalRef": "X1",
+        "ownerRef": "U6",
+        "ownerSide": "bottom",
+        "ports": [
+          {
+            "net": "OSC_IN",
+            "ownerPad": "2",
+            "crystalPad": "1",
+            "capacitorRef": "C21",
+            "capacitorSignalPad": "1",
+            "capacitorGroundPad": "2",
+            "capacitorSide": "left",
+            "capacitorRotationDeg": 180
+          },
+          {
+            "net": "OSC_OUT",
+            "ownerPad": "3",
+            "crystalPad": "3",
+            "capacitorRef": "C20",
+            "capacitorSignalPad": "1",
+            "capacitorGroundPad": "2",
+            "capacitorSide": "right",
+            "capacitorRotationDeg": 0
+          }
+        ],
+        "groundNet": "GND",
+        "crystalGroundPads": [
+          "2",
+          "4"
+        ],
+        "groundAnchors": [
+          "U6.33"
+        ],
+        "signalLayer": 1,
+        "signalWidthMil": 8,
+        "componentGapMil": 15,
+        "guardLayer": 1,
+        "guardWidthMil": 8,
+        "guardGapMil": 10,
+        "keepoutMarginMil": 10,
+        "fencePitchMil": 180,
+        "fenceMarginMil": 18.01,
+        "viaHoleMil": 12.01,
+        "viaDiameterMil": 24.02,
+        "localPourMarginMil": 20,
+        "replacePrimitiveIds": [],
+        "protectionSearch": {
+          "stepMil": 4,
+          "maxDetourMil": 120,
+          "guardOffsetsMil": [
+            0
+          ]
+        }
+      }
+    }
+  ]
+}

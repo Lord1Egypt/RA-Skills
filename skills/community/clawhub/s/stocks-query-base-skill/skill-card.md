@@ -1,43 +1,63 @@
-## Description: <br>
-中国 A 股/港股只读数据查询与分析技能，支持将自然语言需求映射到 stocks 接口，并输出行情、基本面、指数和文本数据的结构化分析结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国 A 股/港股只读数据查询与分析技能，将自然语言需求映射到 /stocks/... 数据接口，检索行情、基本面、指数和文本数据，并输出带风险提示的结构化分析结果。
 
-## Publisher: <br>
-[roamer-remote](https://clawhub.ai/user/roamer-remote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roamer-remote](https://clawhub.ai/user/roamer-remote)
 
-## Use Case: <br>
-External users and analysts use this skill to query public historical A-share and Hong Kong stock data, then review structured market, fundamental, index, text-source, and risk analysis. It is intended for research support and does not place trades or provide guaranteed investment outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis may rely on historical market data plus external web or forum sources, which can be incomplete, delayed, or misleading. <br>
-Mitigation: Treat outputs as research support, verify important claims against source data, and keep the skill's non-investment-advice framing in user-facing analysis. <br>
-Risk: The skill requires TAX_API_KEY, a sensitive credential. <br>
-Mitigation: Configure TAX_API_KEY only through the agent platform's secret or environment-variable mechanism and do not paste, echo, store, or request the key in chat. <br>
-Risk: Notification pushing and cross-agent processing are described without detailed user-control boundaries. <br>
-Mitigation: Require explicit user confirmation before sending notifications or sharing results beyond the current analysis workflow. <br>
+## Use Case:
 
+External users and analysts use this skill to query public China A-share and Hong Kong stock data, combine market, fundamental, index, and text signals, and produce research-oriented analysis reports. The skill is for data review and market research only; it does not place trades, promise returns, or provide personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roamer-remote/stocks-query-base-skill) <br>
-- [TAX API homepage](https://tax.yyyou.top/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API query guidance, Configuration guidance] <br>
-**Output Format:** [Markdown structured analysis with API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAX_API_KEY configured as a secret; outputs should include risk notes and a non-investment-advice disclaimer for investment-related analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: frontmatter and server release evidence) <br>
+Risk: The security summary flags behavior beyond the stated /stocks-only boundary, including web/forum search and unspecified notification pushing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to public stock-data analysis and treat notification pushing as disabled unless the destination is known and the user explicitly requests it.
+
+Risk: Web, news, or forum searches may reveal the stocks or topics a user asks about to external providers.
+
+Mitigation: Avoid entering sensitive watchlists or private strategies when search is enabled, and disclose that external search may be used for text signals.
+
+Risk: The skill requires TAX_API_KEY credentials.
+
+Mitigation: Provide TAX_API_KEY only through the platform environment setting and never paste or request the key in chat.
+
+Risk: Market data may be historical, delayed, incomplete, or insufficient for high-confidence conclusions.
+
+Mitigation: State data limits, cross-check market, fundamental, index, and text signals, and include that outputs are for research rather than investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roamer-remote/skills/stocks-query-base-skill)
+- [Publisher profile](https://clawhub.ai/user/roamer-remote)
+- [TAX API homepage](https://tax.yyyou.top/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured analysis sections and inline API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAX_API_KEY configured through the platform environment; outputs should include uncertainty and non-investment-advice risk language.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,57 @@
-## Description: <br>
-Osori is a local project registry and context loader that helps agents find, inspect, switch between, and manage projects through Telegram slash commands or shell scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Osori helps agents manage a local project registry, find and switch projects, inspect Git and GitHub status, run registry health checks, and expose project-management workflows through Telegram slash commands and shell scripts.
 
-## Publisher: <br>
-[oozoofrog](https://clawhub.ai/user/oozoofrog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[oozoofrog](https://clawhub.ai/user/oozoofrog)
 
-## Use Case: <br>
-Developers and engineers use Osori to maintain a local project registry, discover projects, inspect git status and repository fingerprints, and load project context before working in an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Osori reads local project metadata and writes registry and cache files. <br>
-Mitigation: Review configured discovery roots, OSORI_SEARCH_PATHS, OSORI_REGISTRY, and OSORI_CACHE_FILE before enabling broad scans or fixes. <br>
-Risk: GitHub PR and issue counts may reveal repository identifiers and request timing to GitHub when gh is used. <br>
-Mitigation: Use GitHub-backed commands only for repositories where that disclosure is acceptable, and rely on the TTL cache to reduce repeated queries. <br>
-Risk: Registry repair commands can change or reinitialize local registry data when fix flags are used. <br>
-Mitigation: Run doctor in its default preview mode first, review the risk plan, and use generated backups for recovery if a fix is applied. <br>
-Risk: Fuzzy project switching can select the wrong project when names are similar. <br>
-Mitigation: Use root filters and explicit --index selection when multiple candidates are shown. <br>
+## Use Case:
 
+Developers and agent operators use Osori to keep local projects searchable, switch an agent into the right project context, inspect repository status, and manage project roots, aliases, favorites, and health checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oozoofrog/osori) <br>
-- [README](README.md) <br>
-- [Multi-root Design](docs/multi-root-design.md) <br>
-- [v1.5 Roadmap](docs/roadmap-v1.5.md) <br>
-- [Entire CLI](https://entire.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands; selected health checks can return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local project paths, git status summaries, repository fingerprints, and registry health findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release evidence) <br>
+Risk: A registry-repair bug can rewrite the active project registry even when high-risk repair is supposed to be blocked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw/osori.json before installation or repair, prefer /doctor without --fix or with --dry-run, and avoid relying on the high-risk gate until corrupt-registry recovery is fixed.
+
+Risk: Project scans and fingerprint commands can inspect local paths and call external command-line tools such as gh and optional entire.
+
+Mitigation: Use narrow scan paths, review configured roots before scanning, and ensure external CLIs are authenticated only for the intended accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oozoofrog/skills/osori)
+- [README](README.md)
+- [Doctor Safe Fix Guide](docs/examples/doctor-safe-fix.md)
+- [Multi-root design](docs/multi-root-design.md)
+- [Entire CLI](https://entire.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command output, with optional JSON for doctor checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or update a local registry file and may invoke git, gh, mdfind or find, and optional entire commands depending on the requested workflow.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release metadata and target metadata, released 2026-02-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

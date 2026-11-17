@@ -1,0 +1,87 @@
+{
+  "auth": "Authorization: Bearer YOUR_FETCHER_KEY",
+  "gateway": "https://api.replynodes.com",
+  "operations": [
+    {
+      "name": "leaderboard",
+      "route": "/v1/fomo/leaderboard/{window}",
+      "summary": "Read public Fomo leaderboard data"
+    },
+    {
+      "name": "tokens_trending",
+      "route": "/v1/fomo/tokens/trending",
+      "summary": "Read public trending-token data"
+    },
+    {
+      "name": "tokens_most_held",
+      "route": "/v1/fomo/tokens/most-held",
+      "summary": "Read public most-held-token data"
+    },
+    {
+      "name": "tokens_graduated",
+      "route": "/v1/fomo/tokens/graduated",
+      "summary": "Read public graduated-token data"
+    },
+    {
+      "name": "token_holders",
+      "route": "/v1/fomo/tokens/{address}/holders",
+      "summary": "Read public token-holder data"
+    },
+    {
+      "name": "user_profile",
+      "route": "/v1/fomo/users/{handle}",
+      "summary": "Read a public Fomo user profile"
+    },
+    {
+      "name": "user_trades",
+      "route": "/v1/fomo/users/{handle}/trades",
+      "summary": "Read public user trade history"
+    },
+    {
+      "name": "user_balances",
+      "route": "/v1/fomo/users/{handle}/balances",
+      "summary": "Read public user balance data"
+    },
+    {
+      "name": "trade",
+      "route": "/v1/fomo/trades/{trade_id}",
+      "summary": "Read one public trade"
+    },
+    {
+      "name": "thesis",
+      "route": "/v1/fomo/thesis",
+      "summary": "Read public Fomo theses"
+    },
+    {
+      "name": "thesis_by_token",
+      "route": "/v1/fomo/thesis/token/{mint}",
+      "summary": "Read public theses for a token"
+    },
+    {
+      "name": "thesis_by_user",
+      "route": "/v1/fomo/thesis/user/{id}",
+      "summary": "Read public theses by a user"
+    },
+    {
+      "name": "thesis_by_user_token",
+      "route": "/v1/fomo/thesis/user/{id}/token/{address}",
+      "summary": "Read public user-token theses"
+    },
+    {
+      "name": "search",
+      "route": "/v1/fomo/search",
+      "summary": "Search public Fomo data"
+    },
+    {
+      "name": "alerts",
+      "route": "/v1/fomo/alerts",
+      "summary": "Read public Fomo alerts"
+    },
+    {
+      "name": "notifications",
+      "route": "/v1/fomo/notifications",
+      "summary": "Read public Fomo notifications"
+    }
+  ],
+  "payment_mode": "prepaid_credit"
+}

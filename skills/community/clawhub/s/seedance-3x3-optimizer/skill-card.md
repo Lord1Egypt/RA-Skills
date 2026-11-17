@@ -1,41 +1,58 @@
-## Description: <br>
-Rewrites ordinary story text into Seedance-ready 3x3 visual scripts with nine staged segments for action or emotional conflict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites short story ideas into nine-part Seedance 3x3 visual scripts for action or emotional conflict scenes.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-External creators and agent users use this skill to convert a short story premise into a visually specific nine-part Seedance script, including action or emotion structure, scene details, and optional style guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad creative-writing prompts may route to this Seedance-specific 3x3 format when the user wanted a more general rewrite. <br>
-Mitigation: Use narrower trigger wording or confirm that the user wants Seedance 3x3 output before applying the skill. <br>
-Risk: Generated visual scripts may still need creative review for accuracy, tone, and suitability before use in video generation. <br>
-Mitigation: Review the nine segments and adjust character, scene, style, and pacing details before pasting them into Seedance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [3x3 Patterns](references/3x3-patterns.md) <br>
-- [Original X source attribution](https://x.com/ponyodong/status/2021534195659816995) <br>
-- [ClawHub skill page](https://clawhub.ai/reed1898/seedance-3x3-optimizer) <br>
+## Use Case:
 
+External creators and agents use this skill to turn a short plot idea into a structured Seedance-ready visual script. It is intended for action-conflict or emotion-conflict stories that benefit from a fixed nine-segment scene arc.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON from the bundled script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces nine Seedance 3x3 segments plus usage tips; each segment is intended to be concise and visually grounded.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The trigger wording may match some general requests to make text into a video-generation script.
+
+Mitigation: Confirm the user wants a Seedance 3x3 rewrite before applying the skill to broad video-script requests.
+
+Risk: The output is tailored to Chinese Seedance prompt and script workflows.
+
+Mitigation: Review and adapt the generated scenes before using them with a different video model, language, or production workflow.
+
+Risk: The formatter follows fixed action and emotion 3x3 patterns, so some generated scenes may need story-specific refinement.
+
+Mitigation: Edit the nine generated segments for character details, setting continuity, and desired pacing before final publication.
+
+## Reference(s):
+
+- [3x3 Patterns (Seedance)](references/3x3-patterns.md)
+- [Original 3x3 Reference Post](https://x.com/ponyodong/status/2021534195659816995)
+- [ClawHub Skill Page](https://clawhub.ai/reed1898/skills/seedance-3x3-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown by default, with optional JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces nine scene paragraphs plus usage tips; supports action or emotion mode, title, style, and JSON output.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

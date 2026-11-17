@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}｜管理层会议纪要 · 飞书版</title>
+  <style>
+{{ css }}
+  </style>
+</head>
+<body class="{{ body_class }}">
+  <main class="minutes-sheet executive-sheet" aria-labelledby="minutes-title">
+    <nav class="bundle-nav" aria-label="输出版本">{{ bundle_nav }}</nav>
+    <section class="copy-toolbar" aria-label="飞书文档复制工具">
+      <div>
+        <strong>飞书文档成稿</strong>
+        <p>复制后直接粘贴到飞书，标题、分级和列表会随正文带入。</p>
+      </div>
+      <button id="copy-feishu-document" type="button" data-copy-target="feishu-document">复制飞书文档</button>
+      <span id="copy-status" role="status" aria-live="polite"></span>
+    </section>
+
+    <article id="feishu-document" class="feishu-document">
+      <header class="minutes-header executive-header">
+        <div class="document-label">管理层会议纪要</div>
+        <h1 id="minutes-title">{{ title }}</h1>
+        <p class="document-meta">会议日期：{{ date }}　整理状态：{{ close_status }}</p>
+      </header>
+
+      <section class="executive-summary feishu-section">
+        <h2>结论摘要</h2>
+        <p>{{ executive_summary }}</p>
+        <p class="status-line">数据概览：{{ status_line }}</p>
+      </section>
+
+      <section class="minutes-section section-primary feishu-section">
+        <h2>一、核心结论</h2>
+        {{ decisions }}
+      </section>
+
+      <section class="minutes-section feishu-section">
+        <h2>二、已确认责任</h2>
+        {{ progress }}
+      </section>
+
+      <section class="minutes-section section-warning feishu-section">
+        <h2>三、待协调事项</h2>
+        {{ risks }}
+      </section>
+
+      {{ escalation_section }}
+
+      <section class="minutes-section feishu-section">
+        <h2>{{ next_nodes_title }}</h2>
+        {{ next_nodes }}
+      </section>
+
+      <footer>整理说明：{{ footer }}</footer>
+    </article>
+  </main>
+  <script>
+    (() => {
+      const button = document.getElementById("copy-feishu-document");
+      const status = document.getElementById("copy-status");
+      const target = document.getElementById(button.dataset.copyTarget);
+
+      const fallbackCopy = () => {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(target);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const copied = document.execCommand("copy");
+        selection.removeAllRanges();
+        if (!copied) throw new Error("copy command unavailable");
+      };
+
+      button.addEventListener("click", async () => {
+        try {
+          const plainText = target.innerText.trim();
+          const richText = `<!doctype html><html><body>${target.innerHTML}</body></html>`;
+          if (navigator.clipboard && window.ClipboardItem) {
+            await navigator.clipboard.write([
+              new ClipboardItem({
+                "text/plain": new Blob([plainText], { type: "text/plain" }),
+                "text/html": new Blob([richText], { type: "text/html" })
+              })
+            ]);
+          } else {
+            fallbackCopy();
+          }
+          button.textContent = "已复制，可粘贴到飞书";
+          status.textContent = "复制成功";
+        } catch (error) {
+          try {
+            fallbackCopy();
+            button.textContent = "已复制，可粘贴到飞书";
+            status.textContent = "复制成功";
+          } catch (fallbackError) {
+            status.textContent = "复制未完成，请手动选择正文";
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

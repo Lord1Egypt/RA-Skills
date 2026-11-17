@@ -1,47 +1,59 @@
-## Description: <br>
-Tracks cryptocurrency portfolios, calculates P&L with custom cost basis, fetches live prices from CoinGecko, and generates text or JSON reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe cryptocurrency portfolio tracking and P&L analysis that monitors portfolio value, calculates profit and loss with custom cost basis, tracks live prices via CoinGecko, and generates detailed reports.
 
-## Publisher: <br>
-[iamcooper2026](https://clawhub.ai/user/iamcooper2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamcooper2026](https://clawhub.ai/user/iamcooper2026)
 
-## Use Case: <br>
-Developers and crypto portfolio operators use this skill to analyze holdings, monitor allocation and P&L, and generate reports for manual review or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes under-disclosed trading-signal and aggressive strategy behavior. <br>
-Mitigation: Review the trading-signal script and configuration before installation, and disable or avoid automation that you do not intend to use. <br>
-Risk: Holdings, cost basis, wallet addresses, generated reports, and Discord outputs can expose sensitive financial information. <br>
-Mitigation: Keep portfolio files and generated reports private, limit where Discord or automation outputs are posted, and avoid sharing wallet details unnecessarily. <br>
-Risk: Market-data calls send watchlist data to third-party services. <br>
-Mitigation: Run the skill only when you accept the third-party API calls needed for live pricing, market overview, sentiment, and scanner outputs. <br>
+## Use Case:
 
+External users and developers use this skill to analyze cryptocurrency holdings, monitor live portfolio value, calculate cost-basis profit and loss, review allocations, and produce text or JSON portfolio reports.
 
-## Reference(s): <br>
-- [Usage Examples](references/usage-examples.md) <br>
-- [Example Configuration](references/config-example.json) <br>
-- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price) <br>
-- [CoinGecko Markets API](https://api.coingecko.com/api/v3/coins/markets) <br>
-- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/) <br>
-- [Coinbase Spot Price API](https://api.coinbase.com/v2/prices/BTC-USD/spot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Text or Markdown reports with optional JSON output and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public market-data APIs and local JSON holdings or configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The release includes trading alert code and aggressive strategy examples beyond basic portfolio tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated market signals before use and do not treat them as financial advice.
+
+Risk: Portfolio holdings, wallet addresses, and cost-basis data may expose sensitive financial information if shared through reports or automation.
+
+Mitigation: Keep holdings and cost-basis files private and avoid posting detailed portfolio reports to shared channels.
+
+Risk: Live market data and third-party API availability can affect report accuracy or completeness.
+
+Mitigation: Check source data and API status before relying on generated portfolio or market summaries.
+
+## Reference(s):
+
+- [Usage Examples](references/usage-examples.md)
+- [Configuration Example](references/config-example.json)
+- [ClawHub Skill Page](https://clawhub.ai/iamcooper2026/skills/crypto-safe-portfolio-analyzer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and text or JSON analysis reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live market data, portfolio values, P&L calculations, allocation breakdowns, and market-signal summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Donad Skill provides an OpenClaw skill-template utility for scaffold generation plus local shell commands for logging, searching, and exporting text entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Donad Skill helps agents generate OpenClaw skill scaffolds, validate skill structure, improve SKILL.md content, generate command frameworks and tips, and prepare publish checklists.
 
-## Publisher: <br>
-[onad1ocrypto](https://clawhub.ai/user/onad1ocrypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onad1ocrypto](https://clawhub.ai/user/onad1ocrypto)
 
-## Use Case: <br>
-Developers and agent authors use this skill to generate OpenClaw skill scaffolds, validate skill structure, and manage simple local text records through a Bash CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is listed as a skill-template generator, but the package also includes a persistent local logging tool. <br>
-Mitigation: Review the installed commands before use and confirm that the logging behavior matches the intended workflow. <br>
-Risk: User entries and command history are stored locally and can later be exported to stdout. <br>
-Mitigation: Do not store secrets or sensitive notes unless local storage and export behavior are acceptable. <br>
-Risk: The security verdict is suspicious due to metadata and default script behavior alignment concerns, although the evidence reports no malware or exfiltration. <br>
-Mitigation: Review before installing, run in a controlled workspace, and set SKILL_TEMPLATE_DIR to an appropriate local path. <br>
+## Use Case:
 
+Developers and skill authors use this skill to scaffold OpenClaw skills, validate their file structure, generate bash command frameworks and tips, and manage simple local data-log workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/onad1ocrypto/donad-skill) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command snippets and generated Bash/Python code templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content is written to stdout; local data commands may read and write files under SKILL_TEMPLATE_DIR or ~/.local/share/skill-template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persists local plaintext data and command history, which may capture sensitive records if users log them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or private records, and set SKILL_TEMPLATE_DIR to an isolated location before use.
+
+Risk: The advertised purpose does not match all observed behavior, including simple data-log commands alongside scaffold generation.
+
+Mitigation: Review the skill behavior and generated files before installing, publishing, or reusing its output.
+
+Risk: Generated downstream skill templates include a BytesAgain brand footer.
+
+Mitigation: Remove or update the generated brand footer before publishing downstream skills.
+
+## Reference(s):
+
+- [Donad Skill on ClawHub](https://clawhub.ai/onad1ocrypto/skills/donad-skill)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command snippets and generated file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local plaintext data.log and history.log files when its CLI data-log commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

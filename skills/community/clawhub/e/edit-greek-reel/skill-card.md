@@ -1,42 +1,59 @@
-## Description: <br>
-Edit a raw talking-head video into a polished short-form reel with Greek karaoke subtitles. Trims silence, adds Manrope Bold subtitles, zoom effects, SFX, and image overlays. Usage - /edit-greek-reel <path-to-video> [options] <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit a raw talking-head video into a polished short-form reel with Greek karaoke subtitles, silence trimming, Manrope Bold subtitles, zoom effects, SFX, and image overlays.
 
-## Publisher: <br>
-[artemisln](https://clawhub.ai/user/artemisln) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artemisln](https://clawhub.ai/user/artemisln)
 
-## Use Case: <br>
-Content creators, social media editors, and Claude Code users use this skill to turn raw Greek talking-head footage into short vertical reels with subtitles, trims, zooms, sound effects, and overlays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs local ffmpeg and Python tools against user video files. <br>
-Mitigation: Install dependencies in a virtual environment and review commands and local file paths before execution. <br>
-Risk: Generated transcripts, temporary files, and output videos may contain private speech or sensitive media. <br>
-Mitigation: Review video and transcript sensitivity before use, and delete transcript.json and temporary files when they are no longer needed. <br>
+## Use Case:
 
+Content creators and video editors use this skill in Claude Code to transform raw Greek talking-head footage into vertical Instagram/TikTok reels with subtitles, tight cuts, zooms, image overlays, and sound effects.
 
-## Reference(s): <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Manrope font](https://fonts.google.com/specimen/Manrope) <br>
-- [ClawHub skill page](https://clawhub.ai/artemisln/edit-greek-reel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown instructions with shell and Python snippets; the workflow writes transcript JSON, temporary media files, and a final MP4 video.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local ffmpeg, Python, Whisper, Pillow, and optional image or audio assets supplied near the input video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing required Python packages can introduce dependency and environment risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a dedicated virtual environment and review or pin openai-whisper, Pillow, and cairosvg before use.
+
+Risk: Input audio, generated transcripts, and processed videos may contain sensitive personal or business content.
+
+Mitigation: Run the skill only on videos whose audio and generated transcript can be stored in the video directory, and remove temporary files when no longer needed.
+
+Risk: Greek transcription and brand-name recognition can be incorrect, which may burn misleading subtitles into the final video.
+
+Mitigation: Proofread the transcript before rendering subtitles and ask the user about uncertain words or use the manual text option for exact wording.
+
+## Reference(s):
+
+- [Greek Reel Video Editor Skill Page](https://clawhub.ai/artemisln/skills/edit-greek-reel)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Manrope Font](https://fonts.google.com/specimen/Manrope)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell and Python code blocks; media files are produced when the generated workflow is executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an edited MP4, transcript JSON, and temporary media-processing files in or near the input video directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

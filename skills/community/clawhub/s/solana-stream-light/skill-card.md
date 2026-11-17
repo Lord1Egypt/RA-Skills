@@ -1,50 +1,67 @@
-## Description: <br>
-For data pipelines, aggregators, or indexers, real-time account state streaming on Solana with light account hot/cold lifecycle tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+For data pipelines, aggregators, or indexers, real-time account state streaming on Solana with light account hot/cold lifecycle tracking. Stream Light token accounts, mint accounts, and PDAs via Laserstream gRPC.
 
-## Publisher: <br>
-[tilo-14](https://clawhub.ai/user/tilo-14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tilo-14](https://clawhub.ai/user/tilo-14)
 
-## Use Case: <br>
-Developers building Solana data pipelines, aggregators, market makers, or indexers use this skill to design continuous Laserstream gRPC account-state streaming for Light token accounts, mint accounts, and compressible PDAs. It is intended for real-time state change notifications rather than simple point lookups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example streaming code may require RPC provider keys such as HELIUS_API_KEY. <br>
-Mitigation: Keep RPC provider keys in environment variables or a secrets manager and avoid committing them to project files. <br>
-Risk: Rust examples depend on external crates and provider endpoints. <br>
-Mitigation: Review and pin Rust dependencies before production use. <br>
-Risk: Repository search by helper agents can inspect files outside the intended task area. <br>
-Mitigation: Limit any subagent or MCP file search to the intended project directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Light Protocol documentation](https://www.zkcompression.com) <br>
-- [Shared Streaming Architecture](references/shared.md) <br>
-- [Streaming Token Accounts](references/token-accounts.md) <br>
-- [Streaming Mint Accounts](references/mint-accounts.md) <br>
-- [Streaming Compressible PDAs](references/pdas.md) <br>
-- [Streaming tokens toolkit](https://www.zkcompression.com/light-token/toolkits/for-streaming-tokens) <br>
-- [Streaming mints toolkit](https://www.zkcompression.com/light-token/toolkits/for-streaming-mints) <br>
-- [@lightprotocol/stateless.js API docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html) <br>
-- [light-client docs](https://docs.rs/light-client/latest/light_client/) <br>
-- [Photon indexer](https://github.com/helius-labs/photon) <br>
+## Use Case:
 
+Developers and engineers use this skill to build continuous Solana data pipelines, aggregators, market-making infrastructure, or indexers that need real-time Light Protocol token account, mint account, and PDA state changes instead of point lookups.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Rust and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires cargo to build referenced Rust examples; examples use user-supplied RPC provider keys.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install command is not pinned to a source commit or installer version.
+
+Mitigation: Verify the repository before installing and pin the installer version and source commit when possible.
+
+Risk: Project environments may contain wallet keys, API credentials, or other secrets unrelated to the skill.
+
+Mitigation: Run installation and example work from a restricted project environment without unnecessary wallet keys or API credentials present.
+
+Risk: Rust examples copied into production may panic or mishandle network-supplied account data if used without hardening.
+
+Mitigation: Add length checks and avoid unwrap() on network-supplied account data before using the examples in production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tilo-14/skills/solana-stream-light)
+- [ZK Compression Documentation](https://www.zkcompression.com)
+- [Shared Streaming Architecture](references/shared.md)
+- [Streaming Token Accounts](references/token-accounts.md)
+- [Streaming Mint Accounts](references/mint-accounts.md)
+- [Streaming Compressible PDAs](references/pdas.md)
+- [Photon Indexer](https://github.com/helius-labs/photon)
+- [Streaming Tokens Toolkit](https://www.zkcompression.com/light-token/toolkits/for-streaming-tokens)
+- [Streaming Mints Toolkit](https://www.zkcompression.com/light-token/toolkits/for-streaming-mints)
+- [@lightprotocol/stateless.js API Docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html)
+- [light-client Documentation](https://docs.rs/light-client/latest/light_client/)
+- [Light Protocol Audits](https://github.com/Lightprotocol/light-protocol/tree/main/audits)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with Rust code examples, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires cargo for building referenced Rust streaming examples; no environment variables are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.2 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

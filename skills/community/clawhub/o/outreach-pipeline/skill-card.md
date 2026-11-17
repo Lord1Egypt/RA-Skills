@@ -1,48 +1,61 @@
-## Description: <br>
-Email outreach automation for importing CSV contacts, merging templates, sending personalized messages through SMTP, SendGrid, or Mailgun, and applying rate limits, unsubscribe language, and deliverability guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates email outreach by importing contact CSVs, merging message templates, throttling delivery, and sending via SMTP, SendGrid, or Mailgun.
 
-## Publisher: <br>
-[xianji520](https://clawhub.ai/user/xianji520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xianji520](https://clawhub.ai/user/xianji520)
 
-## Use Case: <br>
-Developers, operators, and growth teams use this skill to prepare and send small or bulk B2B outreach from a CSV contact list with templated personalization, provider selection, throttling, and send-result logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real outreach emails to recipients. <br>
-Mitigation: Review recipient lists and rendered messages before sending, begin with a very small --max-per-run test, and keep rate limits conservative. <br>
-Risk: Provider credentials or app passwords are required for SMTP, SendGrid, or Mailgun. <br>
-Mitigation: Use limited app passwords or scoped ESP API keys, pass secrets through environment variables where supported, and avoid storing credentials in files. <br>
-Risk: Bulk outreach can create compliance, unsubscribe, or deliverability issues. <br>
-Mitigation: Send only to appropriate contacts, include unsubscribe or opt-out language, respect opt-out requests, and configure SPF, DKIM, and DMARC for the sending domain. <br>
-Risk: The results CSV contains recipient data and delivery status. <br>
-Mitigation: Protect the log file, restrict access to it, and delete it when it is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to prepare and send authorized B2B outreach campaigns from CSV contact lists with personalized templates, provider configuration, rate limiting, and result logging.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xianji520/outreach-pipeline) <br>
-- [CSV Format](artifact/references/csv-format.md) <br>
-- [Deliverability and Account Configuration Tips](artifact/references/tips.md) <br>
-- [Compliance and Anti-Spam Tips](artifact/references/risks.md) <br>
-- [First-Touch Template](artifact/assets/templates/first-touch.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plain-text email templates, CSV inputs, and CSV send-result logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call SMTP, SendGrid, or Mailgun using user-provided credentials and writes per-recipient status results to a local CSV log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send real bulk email and may overstate compliance safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized contact lists, include unsubscribe language, comply with applicable email rules and platform policies, and send a small confirmed test batch before scaling.
+
+Risk: SMTP passwords and provider API keys may be exposed if passed on the command line or stored insecurely.
+
+Mitigation: Prefer scoped provider API keys, app passwords, OAuth where available, and environment variables or secret storage instead of primary mailbox passwords or command-line secrets.
+
+Risk: Generated CSV logs contain recipient data and may contain untrusted cells.
+
+Mitigation: Treat result logs as sensitive data, restrict access, and sanitize or review CSV content before opening it in spreadsheet tools.
+
+## Reference(s):
+
+- [CSV format guide](references/csv-format.md)
+- [Compliance and anti-spam guidance](references/risks.md)
+- [Deliverability and account configuration tips](references/tips.md)
+- [First-touch template](assets/templates/first-touch.txt)
+- [ClawHub skill listing](https://clawhub.ai/xianji520/skills/outreach-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with shell commands, configuration values, email templates, and CSV log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update recipient CSV logs containing email addresses and delivery status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

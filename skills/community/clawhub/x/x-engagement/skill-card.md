@@ -1,48 +1,67 @@
-## Description: <br>
-X/Twitter engagement assistant for onboarding, persona learning, Browser Relay browser control, local memory, manual reminders, For You follow suggestions, and Following interaction suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Engagement helps an agent support X/Twitter operations through onboarding, persona learning, Browser Relay assisted browsing, memory-backed comment suggestions, manual reminders, follow recommendations, and interaction review.
 
-## Publisher: <br>
-[jasoncodespace](https://clawhub.ai/user/jasoncodespace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasoncodespace](https://clawhub.ai/user/jasoncodespace)
 
-## Use Case: <br>
-External users and creators use this skill to review X/Twitter timelines, generate candidate follows, likes, and comments, and execute account actions only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a logged-in X/Twitter browser session to like, follow, or comment. <br>
-Mitigation: Keep per-action approval enabled and require explicit confirmation before every account write. <br>
-Risk: The skill stores long-lived local memory about user facts, personas, daily activity, and comment history. <br>
-Mitigation: Regularly inspect or delete local memory, especially user facts, personas, and daily logs. <br>
-Risk: Browser Relay drives a local browser and should be trusted before use. <br>
-Mitigation: Review the Browser Relay package and run it only in an environment where the user accepts browser-control risk. <br>
+## Use Case:
 
+External users and developers use this skill to plan and review X/Twitter engagement workflows, generate persona-aware comment candidates, inspect recent interactions, and prepare browser actions that require explicit user confirmation before posting, liking, or following.
 
-## Reference(s): <br>
-- [X Engagement on ClawHub](https://clawhub.ai/jasoncodespace/x-engagement) <br>
-- [Browser Relay](https://github.com/jasonCodeSpace/browser-relay) <br>
-- [Browser Operations](artifact/docs/browser-operations.md) <br>
-- [Human Behavior and Confirmation](artifact/docs/human-behavior.md) <br>
-- [Comment Rules](artifact/docs/comment-rules.md) <br>
-- [Memory System](artifact/docs/memory-system.md) <br>
-- [Manual Reminders and Maintenance](artifact/docs/cron-jobs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text with inline shell commands, JSON configuration examples, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include candidate comments, follow or like recommendations, local memory guidance, and Browser Relay commands that require user confirmation before account writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.3 (source: server release metadata) <br>
+Risk: Authenticated browser control can act on a user's X/Twitter account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile and require explicit confirmation before every like, follow, comment, or send action.
+
+Risk: Unpinned bare npx commands can execute changing third-party Browser Relay CLI code.
+
+Mitigation: Pin and verify browser-relay-cli before use instead of running unversioned commands.
+
+Risk: The memory system is designed to retain comment history, preferences, and personal facts, including some long-lived records.
+
+Mitigation: Periodically inspect or delete the memory directory and run cleanup in preview mode before applying changes.
+
+Risk: Playbook updates can change future engagement behavior.
+
+Mitigation: Require explicit user review and confirmation before applying Playbook changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasoncodespace/skills/x-engagement)
+- [Browser Relay repository](https://github.com/jasonCodeSpace/browser-relay)
+- [README](artifact/README.md)
+- [Browser operations](artifact/docs/browser-operations.md)
+- [Comment rules](artifact/docs/comment-rules.md)
+- [Manual reminders and maintenance](artifact/docs/cron-jobs.md)
+- [Memory system](artifact/docs/memory-system.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets, shell command examples, and browser-operation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposals and operational instructions for an agent; authenticated X/Twitter write actions are expected to remain user-confirmed.]
+
+## Skill Version(s):
+
+4.1.3 (source: server release evidence; artifact frontmatter reports 4.2.0-local)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

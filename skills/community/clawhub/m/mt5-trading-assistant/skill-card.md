@@ -1,48 +1,61 @@
-## Description: <br>
-Automates MetaTrader 5 account monitoring, market data retrieval, and buy, sell, and position-closing workflows through Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive MetaTrader 5 (MT5) trading automation and monitoring skill for connecting to MT5 platforms, executing trades, monitoring accounts, analyzing market data, and automating trading strategies.
 
-## Publisher: <br>
-[canvascn00-crypto](https://clawhub.ai/user/canvascn00-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canvascn00-crypto](https://clawhub.ai/user/canvascn00-crypto)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent workflow to MetaTrader 5 for account checks, market snapshots, scripted trade execution, and position management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports embedded brokerage credentials. <br>
-Mitigation: Remove embedded credentials, rotate any exposed credentials, and load secrets from a secure runtime source before installation or use. <br>
-Risk: The security evidence reports scripts that can immediately place or close trades without strong safeguards. <br>
-Mitigation: Do not use the skill with a funded or live account until every trade and close-position action has an explicit preview and confirmation step. <br>
-Risk: The security guidance calls for output minimization or redaction. <br>
-Mitigation: Minimize or redact account, position, and financial output before sharing logs or agent transcripts. <br>
+## Use Case:
 
+Developers and trading automation users use this skill to connect agents to MetaTrader 5, inspect account and market state, run buy or sell orders, and manage positions through MT5 scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canvascn00-crypto/mt5-trading-assistant) <br>
-- [Setup guide](references/setup_guide.md) <br>
-- [Configuration template](references/config_template.py) <br>
-- [MetaTrader5 Python Documentation](https://www.mql5.com/en/docs/integration/python_metatrader5) <br>
-- [MT5 API Reference](https://www.mql5.com/en/docs/constants/structures) <br>
-- [Exness API Guide](https://exness.com/developers/) <br>
-- [IC Markets API](https://www.icmarkets.com/development-api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account-monitoring summaries, market-data summaries, and MT5 script invocation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled scripts include reusable MT5 broker credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hardcoded credentials before use, rotate any exposed password, and load account settings from a private config file or environment variables.
+
+Risk: Trade and close-position scripts can submit live MT5 orders without strong confirmation.
+
+Mitigation: Add explicit confirmation or dry-run mode before every trade or close action, and test only with a demo account until the code is reviewed.
+
+Risk: Unpinned runtime dependencies and broker-specific settings can change behavior in a real trading environment.
+
+Mitigation: Pin dependencies, verify broker symbols and servers, and review risk limits before connecting to any non-demo account.
+
+## Reference(s):
+
+- [Config Template](references/config_template.py)
+- [Setup Guide](references/setup_guide.md)
+- [MetaTrader5 Python Documentation](https://www.mql5.com/en/docs/integration/python_metatrader5)
+- [MT5 API Reference](https://www.mql5.com/en/docs/constants/structures)
+- [Skill Page](https://clawhub.ai/canvascn00-crypto/skills/mt5-trading-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to run MT5 Python scripts that require a local MT5 desktop client, broker credentials, and AutoTrading enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

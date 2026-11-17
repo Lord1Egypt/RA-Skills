@@ -1,0 +1,63 @@
+{
+ "pins": [
+  {
+   "id": "phases-grid",
+   "file": "pins/phases-grid.jpg",
+   "layout": "grid",
+   "headline": "The 8 Moon phases, in order",
+   "headline_px": 84,
+   "headline_px_in_feed": 19.8,
+   "spec_dir": "..",
+   "images": [
+    "media/phase-1.jpg",
+    "media/phase-2.jpg",
+    "media/phase-3.jpg",
+    "media/phase-4.jpg",
+    "media/phase-5.jpg",
+    "media/phase-6.jpg",
+    "media/phase-7.jpg",
+    "media/phase-8.jpg"
+   ],
+   "warnings": []
+  },
+  {
+   "id": "same-side",
+   "file": "pins/same-side.jpg",
+   "layout": "photo",
+   "headline": "Why we always see the same side of the Moon",
+   "headline_px": 92,
+   "headline_px_in_feed": 21.7,
+   "spec_dir": "..",
+   "images": [
+    "media/ksc-full-moon.jpg"
+   ],
+   "warnings": []
+  },
+  {
+   "id": "cycle",
+   "file": "pins/cycle.jpg",
+   "layout": "fact",
+   "headline": "days from one new Moon to the next",
+   "headline_px": 80,
+   "headline_px_in_feed": 18.9,
+   "spec_dir": "..",
+   "images": [
+    "media/crescent-over-earth.jpg"
+   ],
+   "warnings": []
+  },
+  {
+   "id": "when-to-see",
+   "file": "pins/when-to-see.jpg",
+   "layout": "list",
+   "headline": "When to see the main Moon phases",
+   "headline_px": 84,
+   "headline_px_in_feed": 19.8,
+   "spec_dir": "..",
+   "images": [
+    "media/capitol-moon.jpg"
+   ],
+   "warnings": []
+  }
+ ]
+}

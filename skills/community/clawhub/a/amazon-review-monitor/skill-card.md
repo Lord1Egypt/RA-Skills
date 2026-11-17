@@ -1,42 +1,53 @@
-## Description: <br>
-Monitor Amazon product reviews by ASIN, analyze rating distribution and sentiment, identify negative themes, and draft seller response text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Amazon product reviews by ASIN, analyze ratings and sentiment, identify issues, and draft seller response text for negative feedback.
 
-## Publisher: <br>
-[avmw2025](https://clawhub.ai/user/avmw2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avmw2025](https://clawhub.ai/user/avmw2025)
 
-## Use Case: <br>
-E-commerce sellers and support teams use this skill to review recent Amazon customer feedback for a product ASIN, spot negative themes, and prepare draft seller responses for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill contacts Amazon and scrapes public review pages for a user-provided ASIN. <br>
-Mitigation: Use reasonable page counts and confirm the activity fits the user's marketplace, account, and site-policy constraints before repeated runs. <br>
-Risk: Saved reports contain scraped review text and generated analysis that may be sensitive business data. <br>
-Mitigation: Store reports in an appropriate local workspace, limit sharing, and delete reports when they are no longer needed. <br>
-Risk: Seller response drafts may be incomplete, inaccurate, or unsuitable for direct posting. <br>
-Mitigation: Manually review and edit every drafted response before publishing it or sending it to customers. <br>
+## Use Case:
 
+Amazon sellers and ecommerce operators use this skill to monitor product reviews by ASIN, summarize rating and sentiment patterns, identify negative themes, and draft professional seller responses.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/avmw2025/amazon-review-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [Console text with local JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves scraped review text, sentiment analysis, rating summaries, and draft responses to a local reports folder when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The script can be steered to make arbitrary HTTPS requests and lacks basic limits on scraping volume.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before execution, use only trusted ASIN and marketplace values, keep page counts low, and add marketplace allowlisting, ASIN validation, page limits, response-size limits, and redirect validation.
+
+Risk: The skill scrapes live Amazon pages and saves review data locally.
+
+Mitigation: Make scraping and local report storage clear to users, and manage generated review reports appropriately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/avmw2025/skills/amazon-review-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with saved JSON report files and seller response drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves review reports locally under the skill reports directory when analysis succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

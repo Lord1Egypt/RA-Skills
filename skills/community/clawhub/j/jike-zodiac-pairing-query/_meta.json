@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-zodiac-pairing-query",
   "version": "1.0.0",
-  "publishedAt": 1778294757810
+  "title": "星座配对 - 即刻数据",
+  "description": "星座配对。输入男生星座和女生星座，查询配对指数、比例、同情指数、天长地久指数、结果评述和恋爱建议。",
+  "env": "JIKE_ZODIAC_PAIRING_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/zodiac_pairing",
+  "homepage": "https://www.jikeapi.cn/"
 }

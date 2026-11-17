@@ -1,44 +1,59 @@
-## Description: <br>
-Browse and search music from monochrome.tf (Tidal-based Hi-Fi streaming), including artists, albums, tracks, lyrics, recommendations, and streaming URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search music from monochrome.tf (Tidal-based Hi-Fi streaming), including artists, albums, tracks, lyrics, recommendations, and streaming URLs.
 
-## Publisher: <br>
-[ricanwarfare](https://clawhub.ai/user/ricanwarfare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricanwarfare](https://clawhub.ai/user/ricanwarfare)
 
-## Use Case: <br>
-External users and developers use this skill to search music catalogs and retrieve track metadata, lyrics, recommendations, and stream URLs for music discovery and playback workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music searches, track identifiers, and stream requests are sent to external Monochrome or Hi-Fi API instances. <br>
-Mitigation: Use the primary instance when possible and avoid community endpoints that are not trusted for the user's workflow. <br>
-Risk: Returned stream URLs may involve copyright, licensing, or service-term obligations. <br>
-Mitigation: Use streams only in compliance with applicable copyright rules and service terms. <br>
-Risk: Bulk or repeated API usage may hit service rate limits. <br>
-Mitigation: Apply reasonable delays and retry behavior for batch searches or repeated metadata requests. <br>
+## Use Case:
 
+External users and developers use this skill to discover music metadata and request streaming-related URLs through Monochrome/Tidal-proxy endpoints. It is suited for music search, album and artist lookup, lyrics retrieval, and recommendation workflows where the user is authorized to access the requested music.
 
-## Reference(s): <br>
-- [Monochrome Web](https://monochrome.tf) <br>
-- [Primary Monochrome Hi-Fi API](https://eu-central.monochrome.tf) <br>
-- [Monochrome API Status](https://tidal-uptime.jiffy-puffs-1j.workers.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with API endpoint examples and inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to call external Monochrome or Hi-Fi API instances that return JSON metadata and stream URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can direct users to third-party Tidal-proxy endpoints and generated streaming URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for music the user is legally authorized to access, and avoid unauthorized downloading or redistribution.
+
+Risk: Community API instances may receive queries, track identifiers, or other request metadata.
+
+Mitigation: Prefer the documented primary instance, avoid account-related or sensitive identifiers, and do not send private data through community endpoints.
+
+Risk: Streaming quality and URL behavior may depend on external service compatibility and rate limits.
+
+Mitigation: Validate endpoint responses before use and apply delays for bulk requests.
+
+## Reference(s):
+
+- [Monochrome Web](https://monochrome.tf)
+- [Primary Monochrome API Instance](https://eu-central.monochrome.tf)
+- [API Status](https://tidal-uptime.jiffy-puffs-1j.workers.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with endpoint examples and JSON API response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tidal-proxy endpoint paths, curl examples, streaming URL guidance, metadata fields, and quality options.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

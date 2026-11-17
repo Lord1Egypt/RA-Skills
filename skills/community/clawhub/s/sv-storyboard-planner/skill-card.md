@@ -1,39 +1,51 @@
-## Description: <br>
-Guides video creators to plan shot-by-shot storyboards with framing, composition, overlays, timing, and camera movements for short videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides video creators to plan shot-by-shot storyboards with framing, composition, overlays, timing, and camera movements for short videos.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Video creators, directors, content producers, marketing teams, and beginner filmmakers use this skill to turn scripts or scene outlines into shot-by-shot storyboard plans for short-form video production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sv-storyboard-planner) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+Video creators, directors, content producers, marketing teams, and beginner filmmakers use this skill to turn scripts or scene outlines into practical storyboard plans for short-form video production.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with storyboard tables and bullet-point planning notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only guidance; users should confirm the skill is being applied to an intended storyboard or shot-list workflow.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad storyboard and pre-production trigger terms may activate the skill during general creative-planning requests.
+
+Mitigation: Review trigger behavior when installing it alongside other creative-planning skills and narrow activation terms if overlap becomes noisy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sv-storyboard-planner)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown storyboard plans, shot lists, visual planning notes, and feasibility guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not produce visual assets, drawings, animations, code, network calls, credentials, or persistent state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

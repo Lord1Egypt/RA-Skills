@@ -1,39 +1,49 @@
-## Description: <br>
-Apply Gmail labels to matching messages and archive them to keep your inbox clean. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply Gmail labels to matching messages and archive them to keep your inbox clean.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-People who manage Gmail use this recipe to search matching messages, apply Gmail labels, and remove the messages from the inbox without deleting them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can change Gmail labels and remove messages from the inbox. <br>
-Mitigation: Before running modify commands, confirm the Google account, search results, message ID, and label ID; archiving removes messages from the inbox but does not delete them. <br>
+## Use Case:
 
+Users who manage Gmail inboxes use this recipe to find matching messages, apply an existing Gmail label, and archive those messages after checking the selected results.
 
-## Reference(s): <br>
-- [Recipe Label And Archive Emails on ClawHub](https://clawhub.ai/googleworkspace-bot/recipe-label-and-archive-emails) <br>
-- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gws and the gws-gmail skill; commands can modify Gmail labels and inbox visibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; embedded skill metadata version 0.22.5) <br>
+Risk: Messages can be labeled or archived incorrectly if the Gmail query, message ID, or label ID is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review search results, message IDs, and label IDs before running modify commands; archiving removes messages from the inbox but does not delete them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-label-and-archive-emails)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gws and gws-gmail; the commands modify Gmail messages by adding labels and removing the INBOX label.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

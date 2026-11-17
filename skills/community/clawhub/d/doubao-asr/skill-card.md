@@ -1,48 +1,58 @@
-## Description: <br>
-Transcribes recorded audio files to speaker-labeled text, JSON, or SRT subtitles using ByteDance Volcengine Doubao Seed-ASR 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes recorded audio files through ByteDance/Volcengine Doubao Seed-ASR 2.0, with Chinese-focused speech recognition, speaker diarization, JSON output, and SRT subtitle export.
 
-## Publisher: <br>
-[vahnxu](https://clawhub.ai/user/vahnxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahnxu](https://clawhub.ai/user/vahnxu)
 
-## Use Case: <br>
-Developers and external users use this skill to transcribe recorded meetings, voice memos, and other audio files through Doubao ASR, including speaker diarization and subtitle export when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio content is processed by Volcengine/Doubao, and local files are uploaded to the configured TOS bucket. <br>
-Mitigation: Use a dedicated TOS bucket, least-privilege credentials, and a retention or deletion policy for sensitive recordings. <br>
-Risk: Misconfigured TOS permissions can cause upload failures or broaden access to uploaded audio. <br>
-Mitigation: Use the documented bucket policy approach instead of broad IAM permissions, and verify the bucket policy before processing sensitive files. <br>
-Risk: Incorrect TOS region selection can make uploads very slow for servers outside mainland China. <br>
-Mitigation: Choose a TOS region close to the runtime environment, such as cn-hongkong or ap-southeast-1 for overseas servers. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to configure Volcengine credentials and transcribe recorded audio, meeting recordings, or voice memos into speaker-labeled text, JSON, or SRT subtitles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vahnxu/doubao-asr) <br>
-- [Volcengine Doubao audio file recognition docs](https://www.volcengine.com/docs/6561/1354868) <br>
-- [Volcengine Speech console](https://console.volcengine.com/speech/new/) <br>
-- [Volcengine IAM user management](https://console.volcengine.com/iam/usermanage) <br>
-- [Volcengine TOS console](https://console.volcengine.com/tos) <br>
-- [Skill guide insights](references/skill-guide-insights.md) <br>
-- [Trigger tests](references/trigger-tests.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcripts, JSON API results, SRT subtitles, and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include speaker labels; off-peak mode can return a request ID for later query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.19.0 (source: server release metadata) <br>
+Risk: Selected audio is sent to Volcengine for transcription and local files are uploaded to the user's Volcengine TOS bucket.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated TOS bucket, least-privileged Volcengine credentials, lifecycle deletion for uploaded recordings, and avoid confidential audio unless Volcengine retention and compliance terms fit the use case.
+
+Risk: Incorrect bucket permissions can prevent transcription or expose recordings if users make objects public as a workaround.
+
+Mitigation: Grant read and write access through the scoped bucket policy described by the skill, and avoid public-read object ACLs except as a temporary diagnostic.
+
+Risk: Using an unreviewed dependency version could change the code that handles audio, credentials, and network requests.
+
+Mitigation: Install the pinned dependency set from requirements.txt and re-review the skill before changing dependency versions.
+
+## Reference(s):
+
+- [Volcengine Doubao Audio File Recognition 2.0 Documentation](https://www.volcengine.com/docs/6561/1354868)
+- [ClawHub Doubao Asr Skill Page](https://clawhub.ai/vahnxu/skills/doubao-asr)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, SRT subtitles, shell commands, configuration guidance]
+
+**Output Format:** [Plain text transcripts, JSON service responses, SRT subtitle files, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write transcript outputs under the working directory or /tmp; the offpeak tier can return a request ID for later retrieval.]
+
+## Skill Version(s):
+
+0.23.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Helps OpenClaw users diagnose and reduce token consumption and API costs through context control, model routing, monitoring, cleanup, and scheduled task tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through diagnosing token consumption and reducing API costs with context controls, model routing, workflow adjustments, cleanup checks, and monitoring practices.
 
-## Publisher: <br>
-[taod7062-a11y](https://clawhub.ai/user/taod7062-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taod7062-a11y](https://clawhub.ai/user/taod7062-a11y)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to identify token and API cost drivers, tune context, model, and workflow settings, and set up ongoing monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance may delete local OpenClaw workspace or memory files if commands are run without review. <br>
-Mitigation: Require a dry run or explicit file listing, confirm backups, and approve exact paths before running deletion commands. <br>
-Risk: Aggressive compaction or low-cost model routing may reduce context quality for complex tasks. <br>
-Mitigation: Apply changes incrementally, compare task outputs after each change, and reserve stronger models for complex analysis or high-impact work. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to investigate high token usage, rising API costs, long context windows, repeated agent calls, frequent scheduled tasks, and model routing choices. It provides a cost-reduction workflow covering diagnosis, analysis, optimization, and ongoing monitoring.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes diagnostic steps, cleanup guidance, model routing suggestions, and monitoring recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Cleanup commands may delete workspace or memory files without safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: List candidate files first, make backups, and require an explicit user decision before deleting files.
+
+Risk: Suggested edits to openclaw.json or soul.md can persistently alter OpenClaw behavior.
+
+Mitigation: Review and version configuration changes before applying them, then verify the resulting model routing and compaction behavior.
+
+Risk: Broad activation guidance may cause the skill to be used for loosely related cost or optimization requests.
+
+Mitigation: Confirm the user is working on OpenClaw token usage or API cost control before applying the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taod7062-a11y/skills/token-cost-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest persistent OpenClaw configuration and memory or workspace cleanup actions that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

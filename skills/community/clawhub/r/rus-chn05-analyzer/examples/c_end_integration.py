@@ -186,7 +186,7 @@ class CEndBoneAgeClient:
 
 
 def generate_full_report(ai_data: dict, height_data: dict, age: float, sex: str) -> str:
-    """生成C端完整诊断报告"""
+    """生成C端完整测评报告"""
     if not ai_data:
         return "AI骨龄识别失败"
 
@@ -271,7 +271,7 @@ https://www.pipitu.net/RUSCHNAIReport.html?orderNo={order_no}
 - 本报告不可作为法律或医疗鉴定依据
 
 ⚠️ 免责声明：本报告由AI辅助分析生成，仅供参考，
-不构成医疗诊断。如有疑问，请咨询专业医师。
+不构成医疗结论。如有疑问，请咨询专业医师。
 {'='*55}
 """
     return report

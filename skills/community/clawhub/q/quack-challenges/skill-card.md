@@ -1,39 +1,53 @@
-## Description: <br>
-Browse and complete Quack Network challenges by listing challenges, submitting proof, checking the leaderboard, and competing with other agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and complete Quack Network challenges by listing active challenges, submitting proof, and checking the leaderboard.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to interact with Quack Network challenges: they can list available challenges, submit proof for a selected challenge, and view the current leaderboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local Quack API key stored at ~/.openclaw/credentials/quack.json. <br>
-Mitigation: Install only if you trust quack.us.com and intend the agent to use that credential. <br>
-Risk: Challenge proof submissions may expose secrets, personal data, or proprietary information if included in proof text. <br>
-Mitigation: Review challenge IDs and proof text before submitting, and avoid including sensitive information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quack Network API](https://quack.us.com) <br>
+## Use Case:
 
+External users and developers use this skill to participate in Quack Network challenges through an agent, including browsing available challenges, submitting proof text, and viewing leaderboard results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts return JSON responses from the Quack API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Quack API key in ~/.openclaw/credentials/quack.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Invoking the scripts reads a local Quack API key and sends authenticated requests, including submitted proof text, to quack.us.com.
+
+Mitigation: Install and invoke the skill only when connecting an agent to Quack Network is intended, and avoid submitting sensitive proof text.
+
+Risk: Some trigger phrases are broad and may cause the skill to run in contexts that are not clearly Quack-related.
+
+Mitigation: Use explicit Quack-related prompts when listing challenges, submitting proof, or checking leaderboards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpaulgrayson/skills/quack-challenges)
+- [Quack API base URL](https://quack.us.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authenticated Quack Network API requests when scripts are invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,6 +9,7 @@ import re
 from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from docx.oxml.ns import qn
+from docx.oxml.shared import OxmlElement
 
 # 导入配置模块
 from config import Config, get_config
@@ -74,7 +75,10 @@ def convert_quotes_to_chinese(text):
             # 保留英文缩写/所有格中的撇号：字母-撇号-字母
             prev_c = text[i - 1] if i > 0 else ''
             next_c = text[i + 1] if i + 1 < len(text) else ''
-            if prev_c.isalpha() and next_c.isalpha():
+            # 只对 ASCII 字母保留撇号（英文缩写/所有格 don't/it's/O'Brien）。
+            # 中文 isalpha() 也返回 True，必须 isascii() 限定，否则「中文'中文」
+            # 被误判为英文所有格、本该转中文单引号却保留 ASCII 撇号（bug fix）。
+            if prev_c.isascii() and prev_c.isalpha() and next_c.isascii() and next_c.isalpha():
                 result.append("'")
                 i += 1
                 continue
@@ -118,8 +122,15 @@ def parse_text_formatting(paragraph, text, title_level=0, is_quote=False):
         (r'__(.*?)__', {'bold': True}),
         (r'(?<!\*)\*([^*\n]+?)\*(?!\*)', {'italic': True}),
         (r'(?<!_)_([^_\n]+?)_(?!_)', {'italic': True}),
+        (r'<strong>(.*?)</strong>', {'bold': True}),
+        (r'<b>(.*?)</b>', {'bold': True}),
+        (r'<em>(.*?)</em>', {'italic': True}),
+        (r'<i>(.*?)</i>', {'italic': True}),
         (r'<u>(.*?)</u>', {'underline': True}),
         (r'~~(.*?)~~', {'strikethrough': True}),
+        (r'<s>(.*?)</s>', {'strikethrough': True}),
+        (r'<del>(.*?)</del>', {'strikethrough': True}),
+        (r'<strike>(.*?)</strike>', {'strikethrough': True}),
         (r'`([^`\n]+)`', {'code': True}),
         (r'\$([^$\n]+?)\$', {'math': True}),  # LaTeX数学公式支持
     ]
@@ -291,7 +302,7 @@ def set_run_format_with_styles(run, formats, title_level=0, is_quote=False):
         font.bold = title_config.get('bold', True)
     elif is_quote:
         # 引用使用较小字号
-        font.size = Pt(9)
+        font.size = Pt(12)
         font.bold = False
     else:
         font.size = Pt(font_config.get('size', 12))
@@ -300,12 +311,28 @@ def set_run_format_with_styles(run, formats, title_level=0, is_quote=False):
     # 应用Markdown格式
     if formats.get('code', False):
         code_config = config.get('inline_code', {})
-        font.name = code_config.get('font', 'Times New Roman')
+        code_font = code_config.get('font', 'Consolas')
+        font.name = code_font
         font.size = Pt(code_config.get('size', 10))
         font.color.rgb = hex_to_rgb(code_config.get('color', '#333333'))
-        run._element.rPr.rFonts.set(qn('w:ascii'), font.name)
-        run._element.rPr.rFonts.set(qn('w:hAnsi'), font.name)
-        run._element.rPr.rFonts.set(qn('w:eastAsia'), font.name)
+        rPr = run._element.get_or_add_rPr()
+        rFonts = rPr.find(qn('w:rFonts'))
+        if rFonts is None:
+            rFonts = OxmlElement('w:rFonts')
+            rPr.insert(0, rFonts)
+        rFonts.set(qn('w:ascii'), code_font)
+        rFonts.set(qn('w:hAnsi'), code_font)
+        rFonts.set(qn('w:eastAsia'), code_config.get('east_asia_font', '等线'))
+        rFonts.set(qn('w:cs'), code_font)
+        bg = code_config.get('background_color')
+        if bg:
+            shd = rPr.find(qn('w:shd'))
+            if shd is None:
+                shd = OxmlElement('w:shd')
+                rPr.append(shd)
+            shd.set(qn('w:val'), 'clear')
+            shd.set(qn('w:color'), 'auto')
+            shd.set(qn('w:fill'), bg.lstrip('#'))
     elif formats.get('math', False):
         math_config = config.get('math', {})
         font.name = math_config.get('font', 'Times New Roman')
@@ -348,24 +375,24 @@ def set_paragraph_format(paragraph, title_level=0, is_quote=False):
         title_config = config.get('titles.level2', {})
         align_str = title_config.get('align', 'justify')
         paragraph_format.alignment = parse_alignment(align_str)
-        paragraph_format.space_before = Pt(0)
-        paragraph_format.space_after = Pt(0)
+        paragraph_format.space_before = Pt(title_config.get('space_before', 9))
+        paragraph_format.space_after = Pt(title_config.get('space_after', 9))
         paragraph_format.first_line_indent = Pt(title_config.get('indent', 24))
     elif title_level == 3:
         # 三级标题配置
         title_config = config.get('titles.level3', {})
         align_str = title_config.get('align', 'justify')
         paragraph_format.alignment = parse_alignment(align_str)
-        paragraph_format.space_before = Pt(0)
-        paragraph_format.space_after = Pt(0)
+        paragraph_format.space_before = Pt(title_config.get('space_before', 9))
+        paragraph_format.space_after = Pt(title_config.get('space_after', 9))
         paragraph_format.first_line_indent = Pt(title_config.get('indent', 24))
     elif title_level == 4:
-        # 四级标题配置
+        # 四级标题配置（与 H1-H3 对齐读 titles.level4，未配置时回退 0）
         title_config = config.get('titles.level4', {})
         align_str = title_config.get('align', 'justify')
         paragraph_format.alignment = parse_alignment(align_str)
-        paragraph_format.space_before = Pt(0)
-        paragraph_format.space_after = Pt(0)
+        paragraph_format.space_before = Pt(title_config.get('space_before', 0))
+        paragraph_format.space_after = Pt(title_config.get('space_after', 0))
         paragraph_format.first_line_indent = Pt(title_config.get('indent', 24))
     elif is_quote:
         # 引用：两端对齐，无首行缩进
@@ -398,6 +425,39 @@ def parse_alignment(align_str: str):
         return WD_PARAGRAPH_ALIGNMENT.RIGHT
     else:  # justify
         return WD_PARAGRAPH_ALIGNMENT.JUSTIFY
+
+
+_ALIGN_VALUES = r'(left|center|right|justify)'
+# 支持的引号字符：ASCII 双/单 + 中文双开/闭 + 中文单开/闭
+_QUOTE_CHARS = r'["\'“”‘’]'
+
+
+def extract_alignment(style_attr: str):
+    """从 HTML 标签属性串中解析对齐方式。
+
+    支持写法（按优先级）：
+    1. CSS  ``text-align: <value>`` （如 ``<div style="text-align: right">``）
+    2. HTML ``align="<value>"`` / ``align=<value>`` / ``align='<value>'`` （ASCII 与中文引号均支持）
+
+    大小写不敏感。未命中时返回 ``None``，调用方保持默认行为。
+    """
+    if not style_attr:
+        return None
+    # 1. CSS text-align
+    m = re.search(r'text-align\s*:\s*' + _ALIGN_VALUES, style_attr, re.IGNORECASE)
+    if m:
+        return parse_alignment(m.group(1).lower())
+    # 2. HTML align 属性
+    # 要求 align 前面不是 word 字符也不是 `-`（避免误匹配 data-align / xalign），
+    # 且 value 之后必须是引号、空白或字符串末尾（避免误匹配 justifyAll）
+    m = re.search(
+        r'(?<![\w-])align\s*=\s*' + _QUOTE_CHARS + '?' + _ALIGN_VALUES + r'(?:' + _QUOTE_CHARS + r'|\s|$)',
+        style_attr,
+        re.IGNORECASE,
+    )
+    if m:
+        return parse_alignment(m.group(1).lower())
+    return None
 
 
 def hex_to_rgb(hex_color: str):

@@ -1,41 +1,60 @@
-## Description: <br>
-Unifies intent engineering, execution, and feedback into an autonomous loop that detects drift, learns patterns, revises specifications, transfers prior goal knowledge, and produces verifiable improvement records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unifies intent-engineering, execution, and feedback into an autonomous loop that detects drift, learns patterns, adjusts specs, transfers skills, and produces auditable improvement artifacts.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a local self-improvement pipeline from a goal or existing specification through analysis, revision, state tracking, and improvement reporting. It is suited for workflows that need repeatable audit files and human review points around automated changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local pipeline writes audit and state files and can auto-revise targets across runs. <br>
-Mitigation: Use a dedicated output directory, review revision_rationale.md and revised_specification.json before accepting changed targets, and run with --no-auto-revise or --no-transfer when stricter human control is needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to run an autonomous improvement loop over goals, specifications, outcomes, and feedback. It is intended to produce specifications, analysis, regression tests, run reports, revised criteria, and cross-cycle learning artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/agentic-loop-triad) <br>
-- [Integration Guide](artifact/references/integration_guide.md) <br>
-- [Paradigm Shifts Reference](artifact/references/paradigm_shifts_reference.md) <br>
-- [Pipeline Configuration](artifact/references/pipeline_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSON and Markdown audit, state, specification, analysis, and improvement files in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist run history and learning artifacts that may contain goal details, outcomes, or operational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated output directory and review generated artifacts before sharing, retaining, or reusing them.
+
+Risk: The skill may automatically revise success criteria, which can change the standard used to judge whether a goal was met.
+
+Mitigation: Review generated revised_specification.json before relying on it, and use --no-auto-revise for important targets that require fixed criteria.
+
+Risk: The improvement chain should not be treated as tamper-proof audit evidence.
+
+Mitigation: Use the chain as local traceability support only, and keep independent review or audit controls for high-stakes governance claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/skills/agentic-loop-triad)
+- [Integration Guide](artifact/references/integration_guide.md)
+- [Paradigm Shifts Reference](artifact/references/paradigm_shifts_reference.md)
+- [Pipeline Configuration](artifact/references/pipeline_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python CLI commands and JSON or Markdown run artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent run artifacts to the selected output directory, including pipeline state, analysis, improvement reports, learning logs, and optional revised specifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+diff --git a/README.md b/README.md
+index c919a35..97c8f3c 100644
+--- a/README.md
++++ b/README.md
+@@ -4,6 +4,8 @@
+ 
+ Nostr Wallet Connect (NIP-47) bridge that exposes a local **@moneydevkit/agent-wallet** instance as an NWC wallet-service.
+ 
++> ⚠️ **Security warning:** This bridge creates a remotely-reachable payment interface via Nostr relays. Any client that possesses a valid NWC connection URI can query your balance, create invoices, and (depending on connection permissions) spend funds. Keep your `state.json` file secret, do not share NWC URIs, and review the security notes below before running as a systemd service.
++
+ This is used to connect Stacker.News (or any NWC client) to a self-custodial local Lightning wallet.
+ 
+ ## Support / donate
+@@ -21,6 +23,15 @@ If this project is useful, you can send sats to:
+ - Executes the requested wallet method by calling `npx @moneydevkit/agent-wallet ...`.
+ - Responds with NWC responses (kind `23195`).
+ 
++## Security notes
++
++- **`state.json` contains your wallet-service secret key.** Treat it like wallet credentials. The file is created with `0o600` permissions (owner-only read/write).
++- **Each NWC connection is a spending authorization.** The `new-connection` command generates a URI that grants access. Do not share URIs or commit them.
++- **`NWC_AUTO_REGISTER` (disabled by default):** If enabled, any unknown Nostr pubkey that sends a request is automatically added as an authorized connection. This is convenient for testing but dangerous in production — anyone who discovers your wallet-service pubkey can connect and spend. Only enable if you understand the risk.
++- **Connection name heuristics:** Names containing "recv"/"receive" disable spending (`pay_invoice`); names containing "send" allow it. This is a best-effort filter — always verify permissions before sharing a connection.
++- **Logs:** The bridge logs request details (method, client pubkey). Avoid logging to shared or persistent locations if possible.
++- **Budgets:** Per-connection budgets are best-effort. The bridge tracks `spent_sats` but cannot account for routing fees or concurrent requests precisely. The underlying `agent-wallet` enforces the real balance limit.
++
+ ## Files
+ 
+ - `index.js` — the bridge
+diff --git a/nwc.env.example b/nwc.env.example
+index a3c843a..fcfda63 100644
+--- a/nwc.env.example
++++ b/nwc.env.example
+@@ -6,3 +6,11 @@ NWC_RELAYS=wss://nos.lol,wss://relay.damus.io
+ 
+ # Optional: override state path (state.json contains wallet-service secret key)
+ # NWC_STATE=state.json
++
++# ⚠️ DANGER: Enable auto-registration only for testing. When enabled, any
++# Nostr pubkey that sends a request to your wallet service is automatically
++# added as an authorized connection with optional default budget.
++# NWC_AUTO_REGISTER=0
++
++# Optional: default budget (sats) for auto-registered connections.
++# NWC_DEFAULT_BUDGET_SATS=0

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7fvzgcp5s1b420711z4z9tfh80fwb3",
-  "slug": "minimax-tts-generator",
+  "name": "minimax-tts",
   "version": "1.0.0",
-  "publishedAt": 1774787658586
+  "description": "Text-to-speech generation using MiniMax API",
+  "author": "MiniMax",
+  "license": "MIT",
+  "homepage": "https://platform.minimaxi.com"
 }

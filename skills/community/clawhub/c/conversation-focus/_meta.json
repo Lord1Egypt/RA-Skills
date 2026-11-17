@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn79x001nn7jyyr96286zgg7e18338jr",
+  "name": "conversation-focus",
   "slug": "conversation-focus",
   "version": "1.0.0",
-  "publishedAt": 1777713253044
+  "description": "对话焦点管理 + 需求澄清引导。让模型每次通话时把需求和限制搞清楚，减少分散注意力。自动对接到 self-improving 进行持续优化。",
+  "tags": ["conversation-management", "clarity", "focus", "prompting", "context-optimization"],
+  "author": "as1113435",
+  "license": "MIT-0"
 }

@@ -1,42 +1,60 @@
-## Description: <br>
-Prepare Dataify builder requests for the glassdoor.com scraper family rooted at glassdoor_company_by-url, including tool selection, saved parameter options, and scraperapi.dataify.com/builder curl generation with DATAIFY_API_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured Glassdoor company information from one or more known company URLs. Do not use for job-search results or Indeed company URLs.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and automation users use this skill to prepare authenticated Dataify builder requests for supported Glassdoor company and job-listing scraper tools. It helps collect user parameter values, normalize selectable options, and return a ready-to-run curl request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curl output can expose a real DATAIFY_API_TOKEN if the token value is embedded in the Authorization header. <br>
-Mitigation: Use commands that reference $DATAIFY_API_TOKEN where possible, run them only in a private terminal, and redact bearer tokens before sharing logs or generated commands. <br>
-Risk: The published package appears incomplete because referenced catalog or helper files are missing. <br>
-Mitigation: Confirm required referenced files are present before installation or execution, especially the tool parameter catalog used to build spider_parameters. <br>
+## Use Case:
 
+External users and developers use this skill to collect structured company information from known Glassdoor company URLs through Dataify Builder and receive completed results or a resumable task ID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-glassdoor-company-by-url) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Builder API Endpoint](https://scraperapi.dataify.com/builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Dataify builder curl requests and may normalize spider_parameters JSON from user-supplied values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The documented behavior and bundled scripts cover more Dataify/Glassdoor workflows than a narrow known-company-URL collector.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for Glassdoor tasks you intend to submit, and verify the selected scraper tool and task ID before execution or follow-up monitoring.
+
+Risk: Generated curl previews can contain user-supplied or otherwise untrusted parameter values.
+
+Mitigation: Inspect generated commands before running them and avoid executing previews that include unexpected URLs, parameters, or shell-sensitive content.
+
+Risk: Dataify API token handling can expose credentials if tokens are pasted into chat, committed, or written into long-lived shell files unnecessarily.
+
+Mitigation: Prefer session-scoped token setup, keep tokens out of chat and version control, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-glassdoor-company-by-url)
+- [Tool Parameter Catalog](artifact/references/tool-params.json)
+- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill)
+- [Dataify Builder Endpoint](https://scraperapi.dataify.com/builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a completed Dataify task result, a task ID, or a resume command when collection is interrupted or times out.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

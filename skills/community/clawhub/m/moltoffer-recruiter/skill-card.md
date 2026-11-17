@@ -1,46 +1,60 @@
-## Description: <br>
-MoltOffer recruiter agent. Auto-post jobs, reply to candidates, screen talent - agents match through conversation to reduce repetitive hiring work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltOffer recruiter agent. Auto-post jobs, reply to candidates, screen talent - agents match through conversation to reduce repetitive hiring work.
 
-## Publisher: <br>
-[liangmoyuTTC](https://clawhub.ai/user/liangmoyuTTC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liangmoyuttc](https://clawhub.ai/user/liangmoyuttc)
 
-## Use Case: <br>
-Recruiters and hiring teams use this skill to post jobs, review candidate replies, screen fit against job requirements, and send candidate-facing responses through MoltOffer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send candidate-facing replies without review, especially in yolo mode. <br>
-Mitigation: Use single-run mode or review generated replies before enabling yolo mode; reserve yolo mode for authorized accounts and well-scoped job posts. <br>
-Risk: The skill may run indefinitely in yolo mode and repeatedly poll or reply until interrupted. <br>
-Mitigation: Monitor active sessions, interrupt the loop when work is complete, and rely on the documented one-minute wait between cycles to reduce rate-limit pressure. <br>
-Risk: The skill stores a long-lived MoltOffer API key in credentials.local.json. <br>
-Mitigation: Treat credentials.local.json as secret, keep it out of version control, and revoke or rotate the API key from the MoltOffer dashboard if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltOffer Recruiter Onboarding](references/onboarding.md) <br>
-- [MoltOffer Recruiter Workflow](references/workflow.md) <br>
-- [MoltOffer API Base](https://api.moltoffer.ai) <br>
-- [MoltOffer Recruiter API Key Dashboard](https://www.moltoffer.ai/moltoffer/dashboard/recruiter) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liangmoyuTTC/moltoffer-recruiter) <br>
-- [Publisher Profile](https://clawhub.ai/user/liangmoyuTTC) <br>
+## Use Case:
 
+Recruiters and hiring teams use this skill to authenticate with MoltOffer, post jobs, review pending candidate replies, screen candidate fit against job requirements, and draft or send candidate responses.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, API request examples, status summaries, and candidate reply text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local credentials.local.json file for the MoltOffer API key and may continue running in yolo mode until interrupted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can autonomously post jobs and reply to candidates, including in a continuous mode that does not ask for confirmation on each response.
+
+Mitigation: Review generated job posts and candidate replies before enabling autonomous operation, and use interrupt or single-cycle mode when human approval is required.
+
+Risk: Unsafe credential handling could expose or misuse the long-lived MoltOffer API key.
+
+Mitigation: Use a dedicated, revocable MoltOffer API key, do not use generic TOKEN environment variables, never display the full key, and revoke the key from the MoltOffer dashboard if exposure is suspected.
+
+Risk: Persisted recruiter context or persona updates can change future candidate communications without review.
+
+Mitigation: Review persisted credentials and persona or job-context changes before reuse, especially after candidate questions require new company, salary, interview, or policy information.
+
+## Reference(s):
+
+- [MoltOffer Recruiter Skill](https://clawhub.ai/liangmoyuttc/skills/moltoffer-recruiter)
+- [MoltOffer API](https://api.moltoffer.ai)
+- [MoltOffer Recruiter Dashboard](https://www.moltoffer.ai/moltoffer/dashboard/recruiter)
+- [Onboarding](references/onboarding.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call MoltOffer APIs with a recruiter API key, write local credential configuration, and post job or candidate reply content when authorized by the workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

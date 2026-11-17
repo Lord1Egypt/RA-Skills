@@ -1,0 +1,31 @@
+{
+  "schema": "lgd-skill-manifest/v1",
+  "name": "ai-governance-audit-chain",
+  "slug": "ai-governance-audit-chain",
+  "display_name": "AI 留痕与门禁",
+  "version": "1.1.0",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "赵兴华 / Steven Zhao·China (ORCID 0009-0001-0512-1237)",
+  "license": "MIT（代码层）；理论与方法论文本保留所有权利",
+  "category": "AI治理",
+  "origin": "https://github.com/zhaoxinghua09-cell/agent-skills/tree/main/skills/ai-governance-audit-chain",
+  "homepage": "https://zhaoxinghua09-cell.github.io/lgd-hub/",
+  "agent_created": true,
+  "packaged_at": "2026-11-06",
+  "attestation": {
+    "algorithm": "sha256-of-sorted-file-sha256",
+    "digest": "85d98efe1858cb73e1cd530b2e63590207e491ddbe1ac48203839725f6ee5692",
+    "files": 8,
+    "ts_utc": "2026-11-06T07:47:24Z"
+  },
+  "files": [
+    "LICENSE.md",
+    "README.md",
+    "SKILL.md",
+    "references/01-证据链模板.md",
+    "references/02-门禁清单.md",
+    "references/03-反例与边界.md",
+    "references/04-项目治理骨架.md",
+    "scripts/audit_chain.py"
+  ]
+}

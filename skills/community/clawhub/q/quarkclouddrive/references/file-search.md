@@ -1,244 +1,174 @@
 # 文件检索
 
-所有命令的 stdout 输出遵循 NDJSON 协议，每行一个 JSON 对象（统一为 `IApiType` 格式）。提示信息输出到 stderr（仅 `--verbose` 模式可见）。
+> **notice.text 展示（强制）**：每次必须读取最终 `result.notice.text`；只要非空，无论命令成功或失败、`notice.kind` 为何值，都必须在搜索结果或错误说明之后另起一段，完整、原样展示，不得省略、概括或改写。仅在工具输出中出现，不算已向用户展示。只展示实际返回的内容，不自行追加引导文案。详见 [SKILL.md](../SKILL.md) 的“notice.text 展示（强制）”。
 
-## NDJSON 统一输出格式（IApiType）
+> **升级提示展示**：本文件内所有命令及子命令成功时，若 `result.notice.kind` 为 `"skill_updated"`，先按原规则展示业务结果，再另起一段完整原样展示 `result.notice.text`。不展示字段名，不改写提示，也不将提示并入业务 `msg`。每次是否携带 `--skill-updated`，按 [SKILL.md](../SKILL.md) 中 `install.sh` 的实际返回结果判断。 升级提示和会员提示中的 URL 与搜索结果表格“查看链接”列采用相同展示规则：优先使用 Markdown 渲染为可点击的蓝链（升级提示使用 `[查看会员权益介绍](URL)`，普通会员提示使用 `[去升级](URL)`）；若当前环境不支持可点击链接，则直接展示完整原始 URL，方便用户复制访问。禁止将链接放入代码块或行内代码，禁止截断、改写 URL，或只展示无法点击且不含地址的“查看会员权益介绍”/“去升级”文字。此降级仅改变链接展示形式，提示文案和 URL 原值保持不变；未返回链接时仅展示原有文案，不自行补造地址。
 
-所有 stdout 输出行均遵循以下结构：
+所有 Search 与 `browse --all` 会自动完成服务端分页。单页 browse 也落盘并返回 Artifact，但只包含本页，是否有剩余以 result.data.hasMore 为准。browse 默认写到当前工作目录的 browse/，传 --task-dir 则写到任务目录的 browse/；Search 路径不变。以下 Artifact 输出约定适用于 browse 未传 `--task-dir`；整理任务的 browse 输出见下方“整理中的查询”。成功时 stdout 输出 NDJSON `result` 和 `artifact`；`artifact.data.file_path` 指向包含完整结果的 JSONL 文件，每行一个 `BrowseFileItem`。
 
-```typescript
-{
-  code?: number;       // 状态码，0 为成功，负数为 CLI 错误码（progress 类型不含 code）
-  msg: string;         // 状态描述
-  action: string;      // 命令名称（如 "search"）
-  type: string;        // 输出类型："result" | "progress" | "list" | "artifact"
-  data: object;        // 业务数据
-}
-```
+`notice.text` 从最终 `result` 行读取；后续 `artifact` 行只提供文件指针，不替代业务结果或 notice。禁止只读取 stdout 最后一行而遗漏 `notice.text`。
 
-- **`type: "result"`** — 命令最终结果，每个命令的最后一行（降级场景下也是最后一行）
-- **`type: "progress"`** — 长任务（上传/下载）的中间进度
-- **`type: "list"`** — 列表条目（如 search 的文件列表）
-- **`type: "artifact"`** — 副产物指针（如 search 落盘 jsonl 的路径）；`search` 命令落盘成功时追加在 result 行之后
+## 查询路由
 
-**失败处理**：命令失败时通过 `CliExitError` 抛出（进程退出码 1），顶层 `quark-drive.ts` 的 catch 捕获后输出一行 `IApiType` 格式的错误结果到 stdout：
+**搜索意图优先使用 `search`**：用户说“搜索/查找/找一下 xx”“有没有 xx”或“在 xx 目录搜索 yy”时，优先调用 `search`。目录是搜索范围，不是改用 `browse` 的理由；不要先列出目录再在本地按文件名筛选来替代搜索。已有完整且匹配的 Artifact 时，仍按下方规则优先复用。
 
-```jsonl
-{"code":<错误码>,"msg":"<错误信息>","data":{},"action":"<命令名>","type":"result"}
-```
+| 用户意图 | 命令 |
+| --- | --- |
+| “搜索合同”“找一下年终汇报”，未限定目录 | `search --keyword "<关键词>"`，不传 `--parent-fid` |
+| “在工作目录搜索合同”“工作目录里有没有年终汇报” | `search --parent-fid "<folder_fid>" --keyword "<关键词>"` |
+| “在资料目录搜索 PDF”“在相册目录找照片”，仅包含类型或后缀条件的搜索 | 仍优先 `search --parent-fid "<folder_fid>" --keyword "<用户的类型或后缀词>"`；单一支持类型可加 `--search-type` |
+| 找到目标文件夹 | `search --keyword "<文件夹名>" --search-type dir` |
+| “列出这个目录的内容”“看看这个文件夹下有哪些文件”，列举全部直接子项 | `browse --parent-fid "<folder_fid>" --all` |
+| 明确要求基于目录直接子项清单按类型或后缀筛选（如“列出该目录当前层全部 .pdf 文件”） | `browse --parent-fid "<folder_fid>" --all`，再读取 Artifact 按返回字段筛选；不用于替代上述搜索意图 |
 
-- **`code`**：来自 `CliExitError.errorCode`，即 `error_constants.ts` 中定义的负数错误码
-- **`msg`**：来自 `CliExitError.message`，为 `CLI_ERROR_MAP` 中的默认消息或命令中通过 `customMsg` 覆盖的动态消息
-- **`data`**：固定为 `{}`
-- **`action`**：来自 `CliExitError.action`，即命令名称
-- **`type`**：固定为 `"result"`
+指定目录内搜索时：
 
----
+1. 已知目标目录 FID 时直接传入 `--parent-fid`。只有目录名称、尚无可靠 FID 时，先用 `search --keyword "<文件夹名>" --search-type dir --stdout-only` 定位目录，并读取其 Artifact 获取 FID；不要先用 `browse` 逐层枚举目录来找 FID。
+2. 文件夹匹配不唯一时先让用户确认；未找到目标目录时告知用户，不擅自扩大到全盘搜索。确定目录后，再调用 `search --parent-fid "<folder_fid>" --keyword "<关键词>"`。目录名不能直接作为 FID。
+3. 用户只说“在 xx 目录搜索”，且上下文没有给出搜索对象时，先澄清要搜索什么，不改用 `browse`，也不编造关键词。
 
-## 命令
+`browse --all` 只列出直接子项；带 `--parent-fid` 的 Search 是直接子项还是整个子树由服务端决定，Agent 不递归补查。仅在需要目录直接子项清单时使用 `browse`；搜索无结果时不自动切换为 `browse` 扫描。
 
-### 搜索文件（search）
+## 调用与结果范围边界
 
-在用户网盘中搜索文件。不支持分页，一次最多返回 100 条结果。
+- 无依赖的 browse、search 查询可以并发，例如查询已知 FID 的不同目录；依赖前次结果才能确定参数的查询仍按依赖顺序执行。每次调用独立收集输出，使用各自返回的 file_path，不共用会被覆盖的临时输出文件；所需查询结束后再汇总，失败项单独处理，不能把部分成功当成全部查完。
+- Search 不设固定调用次数，只按用户尚未完成或已更新的检索条件执行。已有完整且匹配的 Artifact 时优先复用；禁止无新信息重复相同查询、无依据改词或仅为规避条数限制而机械拆分。
+- 上一次调用因技术失败或未生成后续操作所需 Artifact 时，可以用相同条件重试。
+- 聚合时只使用本次任务中、与用户当前请求范围逐一匹配的 Artifact；范围变化后废弃不再匹配的结果，禁止混入会话中的旧查询。
 
-#### 适用与分流
-
-用户可以一句话查找网盘里的文件，可以用关键词找文件，可以描述图片画面（比如"咖啡馆里的小猫"），也可以通过时间、地点、人物、场景、物体等多个维度的组合进行搜索（比如"2025年和妈妈在西安大雁塔下拍的合照"），或者根据主题找文件（比如"考研资料"）。
-
-> **搜索 vs AI 助手区分规则**：当用户 query 同时包含位置描述（"网盘里的…文件夹"）和内容理解意图（「总结」「分析」「讲解」等动词 + 具体提问），应走 **AI 助手**流程（search --stdout-only → summary/qa），而非搜索即交付。搜索仅用于「查找文件」本身，不用于「理解文件内容」。
-> - ✅ "在夸克网盘的工作文档文件夹里，帮我总结一下上个季度的DAU环比增长是多少" → AI 助手（qa），不是搜索
-> - ✅ "网盘里的周报，上季度业务数据表现怎么样" → AI 助手（summary），不是搜索
-> - ✅ "找一下网盘里的年终汇报" → 搜索（纯粹查找文件，无内容理解意图）
-
-用户通常这样进行查找：
-
-- 找一下网盘里xxx
-- 夸克网盘里三亚日落的照片
-- 夸克网盘里的英语四六级报名表
-- 我的网盘里存的李永乐真题试卷
-- 找一下网盘里我和妈妈的合照
-- 找一下夸克网盘我存的易烊千玺的照片
-- 我昨天备份的照片帮我找出来
-- 查找网盘所有图片和视频
-
-#### 入参
+## Search
 
 ```bash
-quarkclouddrive search --keyword <KEYWORD> [--size <NUMBER>] [--category <NUMBER>] [--stdout-only]
+node scripts/quark-drive.cjs search \
+  --keyword "<KEYWORD>" \
+  [--parent-fid "<FOLDER_FID>"] \
+  [--size <1-100>] \
+  [--search-type <type>] \
+  [--stdout-only]
 ```
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
-|------|------|------|--------|------|
-| `--keyword <string>` | string | 必填 | — | 搜索关键词（最大 50 字符） |
-| `--size <number>` | number | 选填 | `100` | 返回结果数量（1-100），完整结果请查看落盘 artifact |
-| `--category <number>` | number | 选填 | — | 按分类过滤（0:文件夹 1:视频 2:音频 3:图片 4:文档 5:种子 6:其他 7:压缩包 8:应用） |
-| `--stdout-only` | string | 选填 | — | 仅输出到标准输出（用于中间步骤，搜索结果不作为最终结果展示） |
+| 参数 | 默认值 | 说明 |
+| --- | --- | --- |
+| `--keyword` | — | 必填，搜索关键词，最大 50 字符 |
+| `--parent-fid` | — | 可选，将搜索范围限定到指定文件夹 |
+| `--size` | `100` | 单页大小，范围 1～100；不是结果总量上限 |
+| `--search-type` | `mix` | 搜索类型：`mix`、`video`、`album`、`doc`、`audio`、`dir`、`package`、`other`、`app` |
+| `--stdout-only` | 关闭 | 中间步骤使用，不展示搜索结果；CLI 不返回会员提示和升级提示 `notice` |
 
-> **重要：`--category` 使用规则**
-> - keyword 提取必须保留文件类型描述词（如"照片""视频""文档"等），不能只提取主题词而丢弃类型词。搜索 API 会根据 keyword 自动识别并限定返回的文件类型，**绝大多数场景不需要传 `--category`**
-> - 仅当用户明确要求搜索单一类型（如"找所有视频"）且 keyword 不足以表达类型意图时，才传 `--category`
-> - **禁止**为了搜索多种类型（如"图片和视频"）而拆分成多次调用（分别传 `--category 3` 和 `--category 1`），直接用自然语言 keyword 搜索一次即可
-> - 示例：
->   - 用户说"搜索网盘里的康乃馨照片" → `--keyword "康乃馨照片"`，不传 `--category`（保留"照片"类型词）
->   - ❌ 错误：`--keyword "康乃馨"`（丢失了文件类型"照片"）
->   - 用户说"查找网盘所有图片和视频" → `--keyword "图片和视频"`，不传 `--category`
->   - 用户说"查找网盘大海的照片" → `--keyword "大海的照片"`，不传 `--category`
+所有 Search 都自动分页：CLI 使用 `has_more` 判断是否继续，并在后续页复用同一 `search_id`。空页或只有重复项的页不是失败。分页协议错误、任一页请求失败或 Artifact 写入失败时命令整体失败，不发布本次 Artifact。
 
-> **重要：搜索无结果时规则（严格执行）**
-> - 当搜索返回 `total=0` 时，agent 必须**立即停止**，直接告知用户未找到匹配文件，并建议用户自行调整搜索词或检查网盘中是否存在该文件
-> - **绝对禁止 agent 自行更换、缩短、拆分或改写 keyword 后重新调用 search**——即使 agent 认为换词可能找到结果也不允许
-> - 每次搜索任务只调用一次 search，无结果即终止，不做任何重试
+提取 keyword 时保留用户原话中的主题和文件类型词。例如「康乃馨照片」应传完整关键词，不能删成「康乃馨」。找文件夹必须传 `--search-type dir`；用户明确要求单一支持类型时可传对应值（图片/相册用 `album`，文档用 `doc`）。多类型或无对应值（如种子）时保留类型词并使用默认 `mix`；只有用户明确要求分别查看不同结果集时才拆分。
 
-> **搜索即交付原则（严格执行）**
-> - 当用户意图是「查找/搜索/浏览」文件时（"找几张…给我""帮我找出来""搜一下""有没有…的照片"等），**search 执行完毕即为任务完成**——搜索结果卡片会自动呈现给用户，这就是「给用户」的方式
-> - "给我""帮我找出来""发给我看看"在搜索语境下等同于"展示搜索结果"，**绝对禁止**将其解读为需要额外执行 share（分享）、download（下载）、organize（整理）等操作
-> - search 之后**禁止自行追加任何操作**，除非用户在搜索结果呈现后**明确发出新指令**（如"把这些分享给朋友""整理到一个文件夹""下载到本地"）
-> - 判断标准：用户原始 query 中是否包含明确的操作动词（"分享""整理""下载""移动""上传"）或内容理解动词（"总结""分析""讲解""解读"）。仅包含"找""搜""查""看""有没有"等检索意图词时，search 即终止；包含内容理解动词时不适用搜索即交付，应走 AI 助手流程（search --stdout-only → summary/qa）
+搜索无结果是成功结果，不是命令失败：直接告知用户未找到匹配文件，不自行换词重搜；原请求还有其他检索条件时继续完成其余条件。
 
-> **重要：`--stdout-only` 使用规则**
-> - 搜索结果需要最终展示给用户时，不传 `--stdout-only`
-> - 搜索仅作为中间步骤获取文件 FID 时（如助手场景），传 `--stdout-only`
+`--stdout-only` 的选择：
 
-#### 成功出参
+- 搜索结果就是最终交付：不传，展示搜索结果。
+- Search 只是重命名、分享或 AI 助手等操作的中间步骤：传入。
 
-无论搜索是否有结果，**stdout 始终输出 NDJSON `type: "result"` 行**。
+Wild 调用命令时还须按主 Skill 约束传入本次用户原始提问和同一会话复用的公共参数。
 
-##### NDJSON result 输出
+## Browse
 
-每次搜索成功都以标准 NDJSON result 格式输出：
+`browse` 的命令参数、单页输出、`--all`、`file/list` 分页及失败约束见 [file-ops.md](file-ops.md)。本文件只保留 Search/Browse 的查询路由与共同结果消费规则。
+
+## 整理中的查询
+
+整理流程见 [file-batch-organize.md](file-batch-organize.md)。Search 保持当前参数和 Artifact 路径；作为整理中间步骤时传 `--stdout-only`，不传 `--task-dir`。可使用匹配用户范围的完整搜索结果编排，但不能据此宣称全盘覆盖。
+
+整理 browse 传 `--task-dir`，从最终 `result.data.file_path` 读取 JSONL，不等待 artifact 行；`data.count` 包含文件与目录，`data.hasMore` 表示是否还有未取完的页。后续字段解释与 FID 去重规则不变。递归整理由 Agent 按已确认范围逐目录 browse，不改变普通关键词搜索的路由规则。
+
+## Artifact 与预览
+
+Search 的 Artifact 行示例：
 
 ```jsonl
-{"code":0,"msg":"成功","data":{"total":2274,"file_list":[...],"check_all_link":"https://pan.quark.cn/skill#/search-result?sp=xxx"},"action":"search","type":"result"}
+{"code":0,"msg":"成功","data":{"file_path":"/absolute/path/results.jsonl","count":3200,"format":"jsonl","description":"完整查询结果"},"action":"search","type":"artifact"}
 ```
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `data.total` | number | 搜索结果总数（服务端返回的实际匹配数量） |
-| `data.file_list` | array | `BrowseFileItem` 数组，wild 模式**最多输出前 5 条预览**，完整结果见 artifact 落盘文件 |
-| `data.check_all_link` | string | **wild 模式特有字段**。当结果多于 5 条（即有记录未在 `file_list` 展示）时提供，指向在网盘中查看全部搜索结果的地址；agent 须在列表展示后透出该链接。结果不超过 5 条时可能不返回该字段 |
+browse 未传 `--task-dir` 时输出相同结构（不带 `--all` 则只包含本页），其中 `action` 为 `browse`；`action` 始终与实际执行的查询命令一致。
 
-无结果时 `data.total` 为 `0`，`data.file_list` 为空数组 `[]`。
+- `file_path`：JSONL 绝对路径。
+- `count`：本次落盘条数；Search / browse --all 为完整分页去重结果，单页 browse 仅为本页条数。
+- `format`：固定为 `jsonl`。
+- `description`：Artifact 用途说明。
 
-> **agent 须知**：当输出的 `data.total` 为 `0` 且 `data.file_list` 为空数组 `[]` 时，表示用户网盘中**没有找到任何匹配的文件**。agent 应明确告知用户搜索结果为空（如"未在网盘中搜索到与 XXX 相关的文件"），并建议用户自行调整搜索词。禁止将空结果误解为命令执行失败——`code: 0` 表示命令本身执行成功，只是没有匹配项。**禁止 agent 在收到空结果后自行更换 keyword 重新搜索。**
+Search 和未传 `--task-dir` 的 `browse --all` 的完整结果只以 Artifact 为准。`data.total` 仅用于展示和诊断，不参与完整性判断。命令成功并发布 Artifact 即表示分页与落盘完成；缺少 Artifact 时不得用预览生成批量操作计划。
 
-##### 搜索结果展示
+Wild 的 `data.file_list` 最多预览 5 条。纯搜索任务按 CLI 返回条目展示 Markdown 表格，不读取 Artifact 补充预览；完整候选只在后续操作时读取 Artifact。结果包含 `check_all_link` 时输出可点击链接和完整 URL，包含 `browse_hint` 时原样展示提示。
 
-> **agent 须知**：搜索完成后，agent 必须将搜索结果以**表格**形式展示给用户。表格列包括：**缩略图**、**文件名**、**大小（或文件数量）**、**类型**、**修改时间**、**查看链接**。同时用 **1-2 句话**简要概括搜索结果的整体情况（如"为你找到了 N 个相关文件，主要是旅行照片"）。
->
-> **⚠️ 缩略图列约束（必须遵守）**：「缩略图」是**条件列**——仅当 CLI 返回的展示条目中**存在至少一条带非空 `big_thumbnail`** 时才出现。**若本次展示的所有条目都没有返回 `big_thumbnail`（字段缺失或为空），表格一定不能出现「缩略图」这一列**（整列删除，而非保留空列或填"—"）。**禁止**为没有缩略图的结果（如纯文件夹、无缩略图的文档）虚构、补全或留空占位缩略图列。
->
-> **展示按 CLI 返回条数即可**：CLI 的 result 中 `file_list` **最多 5 条预览**，**有几条就在表格中展示几条**；**不要**为了补充展示而去读取 artifact 落盘文件。当 `data.total` 大于实际展示条数时，须注明"共找到 N 个文件，以上为部分结果"，并透出 `check_all_link`。
->
-> **落盘文件何时读**：artifact 落盘文件**不用于**搜索结果展示，仅在用户**连续发起新指令**、需对搜索到的全部文件执行后续操作（share / download / organize 等）时才读取以获取全量 FID。例：用户先"搜索 xxx 图片"（仅展示 `file_list`），再说"分享这些图片"——此时才从落盘文件读取全量结果。
->
-> **透出查看全部地址（wild 模式必做）**：列表展示完毕后，当 `data.check_all_link` 存在且非空时，agent 必须透出固定文案「**点击查看全部搜索结果：{check_all_link}**」（`{check_all_link}` 替换为实际 URL，并以可点击链接形式展示，如 Markdown `[点击查看全部搜索结果](check_all_link)`）。`check_all_link` 为空时省略该提示。
-
-> **搜索后操作强制流程**：仅当用户在搜索结果呈现后连续发起新指令、要对搜索到的文件执行后续操作（share、download、organize 等）时，才需要读取落盘文件；展示搜索结果阶段不需要读。触发后必须按以下步骤执行：
-> 1. 从 search 的 stdout 中提取 `type:"artifact"` 行的 `data.file_path`
-> 2. 读取该 jsonl 文件，逐行解析获取全量 FID 列表
-> 3. 将全量 FID 列表传入后续命令（如 `share <FID1> <FID2> ...`）
->
-> 禁止直接使用上下文中至多 5 条的预览 list（`file_list`）作为后续命令的输入，该 list 是截断的预览数据，不代表完整搜索结果。
-
-**表格列与 `BrowseFileItem` 字段映射**（字段值取自 NDJSON result 的 `data.file_list` 条目）：
+表格字段保持以下展示规则：
 
 | 表格列 | 字段 | 展示规则 |
-|--------|------|---------|
-| 缩略图 | `big_thumbnail` | wild 模式特有字段、**条件列**。当存在缩略图时**尽量以图片形式展示**——表格内用 Markdown 图片语法 `![](big_thumbnail)` 渲染；部分条目 `big_thumbnail` 为空时该格留空或填"—"。**但若展示的全部条目都没有 `big_thumbnail`，则整列不要出现**（见上方「缩略图列约束」） |
-| 文件名 | `filename` | 直接展示完整文件名 |
-| 大小 / 文件数量 | `size` / `includeItems` | **表头随数据自适应**：① 条目含 `size`（文件类型）→ 将字节数换算为人类可读单位（如 `1572864` → "1.5 MB"）；② 条目含 `includeItems`（文件夹类型，无 `size`）→ 展示「**xx 个文件**」（如 `12 个文件`）。**表头取值规则**：本次结果全部为文件（仅 `size`）→ 表头「大小」；全部为文件夹（仅 `includeItems`）→ 表头「文件数量」；**混合时**统一用表头「文件数量」，各行按自身字段分别展示大小或「xx 个文件」 |
-| 类型 | `category` / `obj_category` | 将 `category` 数字映射为中文类型（0:文件夹 1:视频 2:音频 3:图片 4:文档 5:种子 6:其他 7:压缩包 8:应用），或直接使用 `obj_category` 文案 |
-| 修改时间 | `updated_at` | 毫秒时间戳，格式化为 `YYYY-MM-DD HH:mm` 等可读时间 |
-| 查看链接 | `check_link` | wild 模式特有字段。以可点击链接形式展示（如 Markdown `[查看](check_link)`）；为空时留空或填"—" |
+| --- | --- | --- |
+| 缩略图 | `big_thumbnail` | 条件列；至少一条预览有非空值时才出现，并用 Markdown 图片展示。部分条目无值时该格留空；全部无值时删除整列，禁止虚构缩略图 |
+| 文件名 | `filename` | 展示完整文件名 |
+| 大小 / 文件数量 | `size` / `includeItems` | 表头保持“大小 / 文件数量”；文件的 `size` 转为人类可读单位，文件夹的 `includeItems` 展示为“xx 个文件” |
+| 类型 | `category` / `obj_category` | 优先使用 `obj_category` 文案，否则将 category 0～8 映射为文件夹、视频、音频、图片、文档、种子、其他、压缩包、应用 |
+| 修改时间 | `updated_at` | 将毫秒时间戳格式化为可读时间 |
+| 查看链接 | `check_link` | 优先使用 Markdown 可点击蓝链；不支持可点击渲染时展示完整原始 URL，不用代码块或行内代码包裹、不截断；缺失时留空，禁止拼接或猜测 |
 
-> **⚠️ 注意**：`big_thumbnail` 与 `check_link` 为 **wild 模式特有字段**，千问模式不返回。展示时优先用图片渲染缩略图、用可点击链接渲染查看链接，提升用户浏览体验。
+表格只展示 CLI 返回的预览条目；`data.total` 大于预览条数时说明“共找到 N 个文件，以上为部分结果”，但不读取 Artifact 补充表格。
 
-##### 追加 `type: "artifact"` 行
+## BrowseFileItem
 
-`search` 命令每次成功执行都会把完整搜索结果写入本地 jsonl 文件，并在 stdout 末尾追加一行 `type: "artifact"` NDJSON 回传绝对路径：
+Search 与 `browse --all` 的完整 Artifact 仅透传条目实际存在的字段，缺失字段不得猜测或补默认值。stdout 有界预览保持既有展示字段，不自动携带下表新增元数据。
 
-```jsonl
-{"code":0,"msg":"成功","data":{"file_path":"/Users/x/.quarkclouddrive/search-results/<userId>/search-20260416-153012-a7b3c9.jsonl","count":100,"format":"jsonl","description":"完整搜索结果已写入此文件。每行一个 BrowseFileItem JSON，无 code/msg/type 包装。需要全量数据（过滤、排序、二次处理）时读此文件；stdout 的 list/result 行仅供预览。"},"action":"search","type":"artifact"}
-```
-
-**artifact data 字段**：
+Artifact 保留的 FileVO 字段：
 
 | 字段 | 类型 | 说明 |
-|------|------|------|
-| `file_path` | string | 落盘 jsonl 文件的绝对路径 |
-| `count` | number | 文件实际写入的条数（= `result.data.total`） |
-| `format` | string | 固定 `"jsonl"`，标识文件内容格式 |
-| `description` | string | 固定文案：说明文件是全量搜索结果、每行一条 BrowseFileItem、如何消费 |
+| --- | --- | --- |
+| `fid` | string | 文件 ID；接口操作始终使用完整值 |
+| `parent_fid` | string | 父级目录 ID |
+| `category` | int | 0 文件夹、1 视频、2 音频、3 图片、4 文档、5 种子、6 其他、7 压缩包、8 应用 |
+| `filename` | string | 文件或文件夹名称 |
+| `size` | int | 文件大小，单位 B |
+| `content_hash` | string | 云端哈希，由夸克网盘自定义规则生成，服务端定义为相同物理文件唯一；重命名候选身份与去重仍只遵循 FID 规则，不使用该字段 |
+| `file_type` | string | `"0"` 表示文件夹，`"1"` 表示文件 |
+| `created_at` | long | 上传时间，毫秒时间戳 |
+| `updated_at` | long | 修改时间，毫秒时间戳 |
+| `full_path` | list of pair of string | 全路径；pair 的具体 JSON 结构未在协议中定义，保持服务端原始结构 |
+| `format_type` | 协议未注明 | 文件详细格式；按服务端原值透传，不推断扩展名或 MIME，只有字符串值才可参与文件类型判断 |
+| `duration` | int | 时长，单位秒 |
+| `video_width` | int | 视频宽度 |
+| `video_height` | int | 视频高度 |
+| `video_max_resolution` | string | `low`、`normal`、`high`、`super`、`2k`、`4k`、`raw`、`unknown` 或 `unsupported` |
+| `image_info.width` | int | 图片宽度；字段位于 `image_info` 嵌套对象中 |
+| `image_info.height` | int | 图片高度；字段位于 `image_info` 嵌套对象中 |
+| `l_shot_at` | int | 拍摄时间戳；当前 FileVO 协议未注明单位 |
+| `series_info_v2.series_id` | string | 合辑 ID；字段位于 `series_info_v2` 嵌套对象中 |
+| `series_info_v2.series_name` | string | 合辑名称；字段位于 `series_info_v2` 嵌套对象中 |
+| `source_display` | string | 文件来源 |
+| `upload_device` | string | 上传设备 |
+| `shoot_device` | string | 拍摄设备 |
+| `shoot_address` | string | 拍摄地点 |
+| `file_local_path` | string | 服务端记录的本地存储路径 |
 
-artifact 行是纯增量（可按调用方需求选择读或忽略）。
+CLI 兼容与展示字段：
 
-##### 落盘产物
+| 字段 | 说明 |
+| --- | --- |
+| `includeItems` | 文件夹包含数量，取自服务端 `include_items`，返回时才存在 |
+| `obj_category` / `file` / `path` | 既有服务端条件字段，按原值使用；`path` 与 `full_path` 不得混为一谈 |
+| `big_thumbnail` / `check_link` | Wild 展示字段，不参与文件身份判断 |
 
-| 维度 | 规则 |
-|------|------|
-| 目录 | `~/.quarkclouddrive/search-results/<userId>/`（`userId` 来自本地 config 登录账号，按用户隔离；未登录时为 `default`） |
-| 文件名 | `search-<YYYYMMDD-HHMMSS>-<hex6>.jsonl`（秒级时间戳 + 6 字节随机后缀） |
-| 内容 | 每行一个 `BrowseFileItem` JSON，**无 `code/msg/type` 包装** |
-| 生命周期 | 每次 `search` 前自动清理目录下 mtime > 24h 的旧 `.jsonl` / `.jsonl.tmp` |
-| 原子性 | tmp + rename 原子写，失败时残留 `.tmp` 由后续清理兜底 |
+候选条目中实际存在且语义明确的 FileVO 元数据，可按用户明确的规则或 [file-rename.md](file-rename.md) 的模糊命名字段路由，用于筛选、分组、排序或生成新名称。`content_hash` 即使相同也不得用于判断两个候选是同一文件或自动去重；跨 Artifact 去重仍只遵守下方 FID 规则。`parent_fid` 是目录 ID，不得当作可读目录名；`full_path` 和 `file_local_path` 只是服务端元数据，不代表 Agent 可访问的本机路径。字段结构、时间单位或含义无法可靠解释时不得猜测。默认预览和最终话术不得主动复述 `content_hash`、合辑 ID、完整路径或本地存储路径；用户明确要求核对依据时也只展示完成核对所需的信息。
 
-##### 降级行为
+## 聚合与 FID 去重
 
-当目录创建或文件写入失败（如磁盘满、权限问题），CLI **不会**报错退出，而是：
+需要合并一个或多个 Artifact 时，在筛选、排序、编号和生成新名称之前完成全局去重：
 
-- stdout **不输出** `type: "artifact"` 行
-- `--verbose` 下 stderr 打印 `[WARN] 搜索结果落盘失败: <message>`
-- 进程退出码仍为 0，原 list / result 行完全不受影响
+1. FID 中存在 `|` 且最后一个 `|` 后有非空尾串时，以该原始尾串作为大小写敏感的文件指纹精确比较，不 trim、不转码。
+2. 没有有效尾串时退化为按完整 FID 去重，不阻止生成计划。
+3. 相同身份保留首次出现的条目，保持结果顺序稳定。
+4. 指纹只用于本地识别同一文件；传给 Search、Browse、Rename 等接口的始终是完整 FID。
 
-调用方判定：`stdout` 中出现 `type: "artifact"` → 可读 `data.file_path`；未出现 → 搜索结果仅通过 NDJSON result 输出。
+文件名中的 `|` 是普通字符，不参与 FID 指纹解析。重命名的确认、切批和提交规则见 [file-rename.md](file-rename.md)。
 
-##### 消费示例
+## 会员提示输出
 
-**bash + jq**：按 category 过滤文档类文件
+`search` 正常成功（包括无搜索结果）时，将服务端 `member_hint` 和 `metadata.skill_vip_url` 转换为顶层 `notice: { kind: "member_hint", text: "会员文案\n\n[去升级](URL)" }`，业务 `data` 和后续 `artifact` 不增加会员字段。提示或链接缺失时仅输出已有部分；两者均未下发时省略会员 notice。
 
-```bash
-file_path=$(quarkclouddrive search --keyword 报告 --size 100 --aggregate \
-  | jq -r 'select(.type=="artifact") | .data.file_path')
-jq -c 'select(.category==4)' "$file_path"
-```
+分页使用最近一个下发会员提示或非空链接的响应，文案和链接取自同一页；后续页未下发时保留之前的提示。`--stdout-only` 不输出会员 notice。Wild 成功结果若同时触发升级提示，升级 notice 覆盖整个会员 notice（含会员链接）。失败输出规则不变。
 
-**Node.js**：逐行读取全量结果
-
-```javascript
-const readline = require('readline');
-const fs = require('fs');
-
-const rl = readline.createInterface({
-  input: fs.createReadStream(filePath),
-  crlfDelay: Infinity,
-});
-for await (const line of rl) {
-  if (!line) continue;
-  const item = JSON.parse(line); // 完整 BrowseFileItem
-}
-```
-
-**何时读 artifact / 何时解析 stdout**：
-
-- 仅展示搜索结果 → 从 NDJSON result 的 `data.file_list` 中解析并以表格展示给用户
-- **对搜索结果执行后续操作（share、download 等）** → **必须**读 `artifact.data.file_path` 指向的 jsonl 获取全量 FID
-- 大数据过滤排序二次处理 → 读 `artifact.data.file_path` 指向的 jsonl
-
-#### 失败出参
-
-| 错误码 | 默认错误信息 | 触发场景 |
-|--------|-------------|---------|
-| -1301 | 文件浏览器实例不存在 | SDK 文件浏览器初始化失败 |
-| -1302 | --size 必须为 1-100 的正整数 | `--size` 参数不是 1-100 的正整数 |
-| -1303 | 搜索操作失败 | SDK `searchFiles` 返回 `status !== 0`，`msg` 附带 SDK 返回的 `error_info` |
-| -1304 | --category 必须为 0-8 的整数 | `--category` 参数不是 0-8 的整数 |
-
-**失败示例**：
-
-```jsonl
-{"code":-1302,"msg":"--size 必须为 1-100 的正整数","data":{},"action":"search","type":"result"}
-```
-
-```jsonl
-{"code":-1303,"msg":"search failed: errno=31001, message=invalid token","data":{},"action":"search","type":"result"}
-```
+**Agent 必须在业务结果之后另起一段，完整原样展示本次最终结果中非空的 `notice.text`，不得省略、概括或改写，也不能只保留在工具输出中。** 只展示实际返回的内容，不自行追加引导文案；已有链接优先渲染为可点击蓝链，不支持时直接展示完整原始 URL。发送回复前核对非空原文未遗漏。

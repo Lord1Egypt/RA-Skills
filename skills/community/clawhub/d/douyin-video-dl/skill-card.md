@@ -1,43 +1,59 @@
-## Description: <br>
-Download Douyin videos via the TikHub API without requiring Douyin login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Douyin videos through the TikHub API from short links, full Douyin URLs, query-parameter modal IDs, or bare video IDs.
 
-## Publisher: <br>
-[mfang0126](https://clawhub.ai/user/mfang0126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mfang0126](https://clawhub.ai/user/mfang0126)
 
-## Use Case: <br>
-External users and agents use this skill to identify Douyin links or video IDs, retrieve a TikHub-parsed video URL, and optionally save the video as an MP4 file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires storing a TikHub API token locally. <br>
-Mitigation: Keep the token in the local OpenClaw config file and do not paste it into chat, logs, or shared outputs. <br>
-Risk: Douyin links or video IDs are sent to TikHub for parsing. <br>
-Mitigation: Use the skill only when sending the target Douyin link or ID to TikHub is acceptable. <br>
-Risk: The script may download video files when the download option is used. <br>
-Mitigation: Confirm the destination directory before downloading and use a specific output directory when needed. <br>
+## Use Case:
 
+External users and developers use this skill to fetch a direct Douyin video URL or save a Douyin video file from a supported Douyin link or video ID.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mfang0126/douyin-video-dl) <br>
-- [TikHub user registration](https://user.tikhub.io/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, URLs, and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print a Douyin modal_id and direct video URL, or save an MP4 file to the configured download directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run on incidental Douyin links or bare long numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before invoking the downloader, especially when the input was only an incidental URL or number.
+
+Risk: The skill sends Douyin links or IDs to TikHub using a local TikHub API token.
+
+Mitigation: Use only when the user is comfortable sharing the link or ID with TikHub, and protect the local API token configuration.
+
+Risk: Network requests may be made before the input host is narrowly validated.
+
+Mitigation: Prefer a revised version that validates v.douyin.com hostnames before making network requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mfang0126/skills/douyin-video-dl)
+- [TikHub API Token Registration](https://user.tikhub.io/register)
+- [TikHub Douyin Fetch Video API](https://api.tikhub.io/api/v1/douyin/web/fetch_one_video)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print a direct video URL or save an MP4 file to the default or user-specified download directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

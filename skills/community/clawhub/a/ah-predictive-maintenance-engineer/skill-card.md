@@ -1,38 +1,52 @@
-## Description: <br>
-Predictive Maintenance Engineer helps developers and reliability teams analyze system health, predict operational failures, optimize maintenance plans, and design monitoring and alerting strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predictive Maintenance Engineer helps reliability teams analyze failure patterns, design monitoring strategies, optimize maintenance schedules, and produce proactive reliability recommendations.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, SREs, and operations teams use this skill to assess service health, predict likely failures, plan maintenance windows, optimize alerts, and structure reliability reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Reliability recommendations may lead to service restarts, file cleanup, certificate changes, or traffic-routing changes.
+
+Mitigation: Require operator approval, confirm the affected environment, validate rollback options, and follow existing change controls before executing operational changes.
+
+Risk: Predictions and alert recommendations can be incorrect or incomplete when logs, metrics, incident history, or maintenance records are sparse.
+
+Mitigation: Review available evidence, state confidence levels, and validate recommendations against current telemetry before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to review service metrics, incident history, and maintenance records, then produce predictive maintenance findings, monitoring recommendations, alert tuning, and maintenance schedules. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Operational remediation advice could lead to production changes with service impact if applied without review. <br>
-Mitigation: Require explicit approval, verify the target environment, use change-management controls, and prepare rollback steps before acting on recommendations. <br>
+**Output Format:** [Markdown guidance with optional structured JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-predictive-maintenance-engineer) <br>
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before operational changes are made.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, checklists, recommendations, and optional structured JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before production changes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

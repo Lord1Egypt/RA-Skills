@@ -1,0 +1,44 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # Required for OIDC trusted publishing
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: npm install
+      - name: Release surface check
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const skill = fs.readFileSync('SKILL.md', 'utf8');
+          const match = skill.match(/^version:\s*(\S+)/m);
+          if (!match) { console.error('SKILL.md: version missing'); process.exit(1); }
+          if (match[1] !== pkg.version) { console.error(`version mismatch: package=${pkg.version} skill=${match[1]}`); process.exit(1); }
+          const required = ['SKILL.md', 'README.md', 'LICENSE'];
+          const missing = required.filter((name) => !fs.existsSync(name));
+          if (missing.length) { console.error(`missing: ${missing.join(', ')}`); process.exit(1); }
+          const forbidden = (pkg.files || []).filter((name) => /(^|\/)license\//i.test(name));
+          if (forbidden.length) { console.error(`license/ must not be packaged: ${forbidden.join(', ')}`); process.exit(1); }
+          console.log('release surface OK');
+          NODE
+      - run: npm test
+      - run: npm publish --access public

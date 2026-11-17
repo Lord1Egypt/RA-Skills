@@ -1,44 +1,55 @@
-## Description: <br>
-查询指定日期的公历、农历、星座、生肖、黄历要点与节假日。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询指定日期的公历、农历、星座、生肖、黄历要点与节假日。当用户说：明天农历几号？今年春节是哪天？或类似万年历问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to answer natural-language calendar questions by querying JisuAPI for Gregorian dates, lunar calendar fields, zodiac details, almanac notes, and holiday schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a JisuAPI key and sends calendar requests to an external provider. <br>
-Mitigation: Use a dedicated JisuAPI key, monitor quota and provider policy, and avoid sending sensitive context when only a date is needed. <br>
-Risk: Calendar and holiday answers depend on the external JisuAPI service response. <br>
-Mitigation: Surface API errors clearly and verify high-impact date or holiday decisions against an authoritative source before relying on them. <br>
+## Use Case:
 
+External users and agent builders use this skill to answer Chinese calendar, lunar date, zodiac, almanac, and statutory holiday questions through JisuAPI calendar lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/jisu-calendar) <br>
-- [JisuAPI website](https://www.jisuapi.com/) <br>
-- [JisuAPI calendar documentation](https://www.jisuapi.com/api/calendar/) <br>
-- [JisuAPI calendar query endpoint](https://api.jisuapi.com/calendar/query) <br>
-- [JisuAPI holiday endpoint](https://api.jisuapi.com/calendar/holiday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable; API results are returned from JisuAPI without additional transformation. Security guidance recommends using a dedicated key, monitoring quota and provider policy, and avoiding sensitive context when only a date is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Calendar queries and the configured API key are sent to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-privilege JISU_API_KEY and avoid sending sensitive free-form context.
+
+Risk: Quota, billing, permission, or provider availability issues can cause lookup failures.
+
+Mitigation: Monitor JisuAPI quota and handle API error responses before relying on answers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-calendar)
+- [JisuAPI calendar documentation](https://www.jisuapi.com/api/calendar/)
+- [JisuAPI website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON from the calendar script, with Markdown guidance and shell commands in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; transmits calendar query parameters to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

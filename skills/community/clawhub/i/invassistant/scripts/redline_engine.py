@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 入场引擎 v1.5
 支持双模式入场：模式A（恐慌入场/三红线）+ 模式B（趋势确认入场）。
@@ -314,7 +313,7 @@ def check_trend_entry(df, params=None):
     条件1：趋势确立 — 价格站上MA50且MA50向上
     条件2：突破确认 — 突破近20日高点 + 放量(>5日均量120%)
     条件3：基本面支持 — 最近一季营收+利润双增长（需手动配置）
-    条件4：估值不离谱 — 按标的分类使用对应标尺
+    条件4：估值不离谱 — 需在 params 显式配置 valuation_ok=true（人工按分类标尺判断后确认）
 
     Args:
         df: 股票 OHLCV DataFrame
@@ -367,7 +366,7 @@ def check_trend_entry(df, params=None):
         if today_vol >= vol_avg_5 * vol_surge:
             signals.append(f"✓ 突破确认：突破{break_period}日高点(${high_period:.2f})+放量(量比{today_vol/vol_avg_5:.1f}x)")
         else:
-            signals.append(f"✓ 突破确认：突破{break_period}日高点(${high_period:.2f})，但放量不足")
+            signals.append(f"✗ 突破确认失败：突破{break_period}日高点(${high_period:.2f})但放量不足(量比{today_vol/vol_avg_5:.1f}x)")
             failed.append("放量不足")
     else:
         failed.append(f"突破：未突破{break_period}日高点(现价${latest_close:.2f} vs ${high_period:.2f})")
@@ -379,12 +378,16 @@ def check_trend_entry(df, params=None):
     else:
         failed.append("基本面：未配置 fundamental_ok=true")
 
-    # 条件4：估值不离谱（需在 params 中配置 valuation_category）
+    # 条件4：估值不离谱（fail-closed：需在 params 中显式配置 valuation_ok=true）
+    valuation_ok = params.get("valuation_ok", False) if params else False
     valuation_category = params.get("valuation_category", "standard") if params else "standard"
-    if valuation_category == "narrative_growth":
-        signals.append("⚠️ 叙事成长股：需手动确认估值不离谱（用自身历史中枢判断）")
+    if valuation_ok:
+        if valuation_category == "narrative_growth":
+            signals.append("✓ 估值：叙事成长股，已人工确认不离谱（valuation_ok=true）")
+        else:
+            signals.append("✓ 估值：传统估值标的，已人工确认不离谱（valuation_ok=true）")
     else:
-        signals.append("✓ 估值：传统估值标的（按行业中位数判断）")
+        failed.append("估值：未配置 valuation_ok=true（按分类标尺人工判断后确认）")
 
     all_passed = len(failed) == 0
     detail = "; ".join(signals)
@@ -494,11 +497,12 @@ def run_trend_check(df, market_data, params=None, market_params=None):
     today_vol = latest["Volume"]
     if close >= high_period and today_vol >= vol_avg_5 * vol_surge:
         trend2_pass = True
-        trend2_detail = f"✓ 突破{break_period}日高点+放量"
+        trend2_detail = f"✓ 突破{break_period}日高点+放量(量比{today_vol/vol_avg_5:.1f}x)"
     elif close >= high_period:
-        trend2_pass = True
-        trend2_detail = f"✓ 突破{break_period}日高点（放量不足）"
-    if not trend2_pass:
+        trend2_pass = False  # fail-closed：突破但放量不足不构成确认
+        trend2_detail = f"✗ 突破{break_period}日高点但放量不足(量比{today_vol/vol_avg_5:.1f}x < {vol_surge}x)"
+        failed_conditions.append("突破未确认（放量不足）")
+    else:
         failed_conditions.append("突破未确认")
 
     # 条件3：基本面
@@ -506,10 +510,15 @@ def run_trend_check(df, market_data, params=None, market_params=None):
     trend3_pass = fundamental_ok
     trend3_detail = "✓ 基本面支持" if fundamental_ok else "✗ 未配置基本面确认"
 
-    # 条件4：估值
+    # 条件4：估值（fail-closed：需在 params 中显式配置 valuation_ok=true）
     valuation_category = params.get("valuation_category", "standard") if params else "standard"
-    trend4_pass = True  # 传统标的默认通过，叙事股需手动确认
-    trend4_detail = f"✓ 估值类别: {valuation_category}"
+    valuation_ok = params.get("valuation_ok", False) if params else False
+    if valuation_ok:
+        trend4_pass = True
+        trend4_detail = f"✓ 估值确认（类别 {valuation_category}，已人工确认不离谱）"
+    else:
+        trend4_pass = False
+        trend4_detail = f"✗ 未配置估值确认（valuation_ok=true；类别 {valuation_category} 需按对应标尺人工判断后确认）"
 
     all_passed = trend1_pass and trend2_pass and trend3_pass and trend4_pass
 

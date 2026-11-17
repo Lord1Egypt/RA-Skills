@@ -1,43 +1,60 @@
-## Description: <br>
-Automates Instagram engagement by monitoring a post for a keyword, then replying publicly and sending a direct message to matching commenters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the Golden Hour Instagram engagement workflow by watching comments on a Reel or Post for a specified keyword and then sending a DM and public reply.
 
-## Publisher: <br>
-[yadavabhijeet4](https://clawhub.ai/user/yadavabhijeet4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yadavabhijeet4](https://clawhub.ai/user/yadavabhijeet4)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and social media operators use this skill to configure and run an Instagram comment-to-DM automation for a specified media item, keyword, message, and duration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send Instagram DMs and public replies automatically from a business account.
+
+Mitigation: Use it only when this automation is intended, review the DM and reply text before running, and monitor the session.
+
+Risk: The skill relies on a long-lived Instagram Graph API access token.
+
+Mitigation: Use a least-privileged token, keep it out of source control, and rotate it if exposed.
+
+Risk: The skill can send an extra OpenClaw webchat notification after a successful action.
+
+Mitigation: Remove or disable that notification path if it is not intended for the deployment.
+
+Risk: Token handling and social posting automation require careful review before installation.
+
+Mitigation: Review the skill before deployment and prefer safer authorization-header handling where supported.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, social media operators, and developers use this skill to configure and run timed Instagram comment-to-DM automation for a specific post or Reel. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates Instagram public replies and direct messages without safeguards for account-impacting automation. <br>
-Mitigation: Install only when intentional, verify the post ID, keyword, DM text, duration, and token permissions before running, and monitor the session. <br>
-Risk: The script sends an extra OpenClaw notification command with a misleading fixed status message outside Instagram. <br>
-Mitigation: Remove or disable the OpenClaw notification command unless that extra notification is expected and the message has been reviewed. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yadavabhijeet4/golden-rule) <br>
-- [Publisher profile](https://clawhub.ai/user/yadavabhijeet4) <br>
-- [Instagram Graph API comments endpoint used by the script](https://graph.facebook.com/v19.0/{media_id}/comments) <br>
-- [Instagram Graph API messages endpoint used by the script](https://graph.facebook.com/v19.0/me/messages) <br>
+**Other Properties Related to Output:** [Requires Instagram Graph API credentials, a target media ID, a trigger keyword, message text, and a polling duration.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and script-driven HTTP API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Instagram Graph API access token, Instagram business account ID, target media ID, trigger keyword, DM text, and run duration.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

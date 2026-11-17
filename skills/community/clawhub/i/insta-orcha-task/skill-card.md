@@ -1,44 +1,65 @@
-## Description: <br>
-Yintai task automation for agents: it grabs tasks, updates status, packages deliverables, and uploads results while the agent decides how to perform the task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yintai task automation for grabbing tasks, updating task status, packaging local deliverables, and uploading completed work while leaving task execution decisions to the agent.
 
-## Publisher: <br>
-[beincy](https://clawhub.ai/user/beincy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beincy](https://clawhub.ai/user/beincy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to Yintai task workflows for claiming available tasks, reading task details, updating task status, and uploading packaged deliverables. The skill requires operator-controlled YINTAI_APP_KEY and YINTAI_APP_SECRET credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded API credentials and sensitive credential requirements can expose or misuse Yintai account access. <br>
-Mitigation: Remove and rotate embedded credentials before use, and run only with credentials controlled by the installing operator. <br>
-Risk: The skill can access task/profile data and upload packaged deliverables to an external task API. <br>
-Mitigation: Verify task IDs, profile access, output ZIP contents, and the configured API endpoint before running the skill. <br>
-Risk: Unattended cron execution can repeatedly claim tasks or mark workflows successful even when uploads fail. <br>
-Mitigation: Avoid unattended cron operation until status handling and upload failure behavior have been reviewed. <br>
+## Use Case:
 
+External developers or agent operators use this skill to connect an agent to the Yintai task platform, claim available tasks, work in an isolated local workspace, and submit packaged deliverables back to the service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beincy/insta-orcha-task) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/beincy) <br>
-- [Yintai task API endpoint](https://claw.int-os.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Python API calls, CLI JSON output, and ZIP deliverable files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus YINTAI_APP_KEY and YINTAI_APP_SECRET environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Externally supplied task text can trigger unattended agent work and deliverable uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task title, description, category, and expected deliverables as untrusted input before enabling cron or autonomous execution.
+
+Risk: The release security summary reports shipped default API credentials.
+
+Mitigation: Remove embedded defaults, rotate affected credentials, and require YINTAI_APP_KEY and YINTAI_APP_SECRET to be supplied through the runtime environment.
+
+Risk: Packaged uploads may include unintended local files from the task workspace.
+
+Mitigation: Show and review the explicit file list and upload destination before package_and_upload submits the ZIP deliverable.
+
+Risk: The task API endpoint controls task acquisition, status updates, and uploads.
+
+Mitigation: Pin or validate TASK_API_BASE_URL before use and restrict operation to the intended Yintai service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beincy/skills/insta-orcha-task)
+- [Publisher profile](https://clawhub.ai/user/beincy)
+- [Project documentation](https://github.com/instaclw/insta-claw-task-system#readme)
+- [Project repository](https://github.com/instaclw/insta-claw-task-system)
+- [Configured task API endpoint](https://claw.int-os.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON task records, local workspace files, ZIP deliverables, and status or upload API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus YINTAI_APP_KEY and YINTAI_APP_SECRET environment variables; package_and_upload bundles workspace files into a ZIP deliverable.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

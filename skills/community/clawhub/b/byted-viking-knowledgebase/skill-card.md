@@ -1,42 +1,57 @@
-## Description: <br>
-Searches a configured Viking knowledge base for query keywords and returns relevant knowledge content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches a configured Volcengine Viking knowledge base for content relevant to a user-supplied query.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Agents and users use this skill to turn a Viking knowledge-base search request into a Python command that queries a configured knowledge service and returns matching text results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to the configured Volcengine/Viking service region. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and an API token may be sent to the external knowledge service over unencrypted HTTP. <br>
-Mitigation: Review before use, switch requests to HTTPS where possible, and treat both queries and credentials as sensitive. <br>
-Risk: The skill may activate too broadly for general knowledge-base mentions. <br>
-Mitigation: Invoke it only for explicit Viking knowledge-base search requests and confirm the search query before sending it to the service. <br>
-Risk: Unpinned Python dependencies can change behavior across installations. <br>
-Mitigation: Pin and review dependencies in the deployment environment before installing or running the skill. <br>
+## Use Case:
 
+External agents and developers use this skill to search a configured Viking knowledge base and return matching knowledge content for a user's request.
 
-## Reference(s): <br>
-- [Byted Viking Knowledgebase on ClawHub](https://clawhub.ai/volcengine-skills/byted-viking-knowledgebase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text results and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Viking knowledge-base service credentials and Python dependencies before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends the API bearer key and user queries over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an isolated environment and avoid sensitive queries until the transport is changed to HTTPS.
+
+Risk: The skill depends on unpinned Python packages.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+Risk: The skill requires live Viking knowledge base credentials.
+
+Mitigation: Use least-privileged, rotating credentials and revoke them if logs or network traces may have exposed them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-viking-knowledgebase)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text search results with shell command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Viking knowledge base credentials and a configured service ID before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

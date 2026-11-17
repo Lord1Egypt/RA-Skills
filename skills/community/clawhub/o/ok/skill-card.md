@@ -1,38 +1,53 @@
-## Description: <br>
-Provides comprehensive information about the word "OK", including its origin, etymology theories, global cultural impact, usage patterns, and related facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill about "OK", covering its origin, etymology theories, global cultural impact, usage patterns, and related facts.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users, language enthusiasts, trivia writers, and agents use this skill to answer questions about the word "OK" and summarize its linguistic, historical, cultural, and technology usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides informational prose that may be used in contexts where historical or cultural accuracy matters. <br>
-Mitigation: Review important claims against authoritative sources before using the output in educational, legal, or public-facing materials. <br>
+## Use Case:
 
+External users, educators, writers, linguists, and language enthusiasts use this skill to get background on OK's origin, etymology theories, linguistic roles, global usage, technology references, and trivia.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/ok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational content only; no tools, credentials, or external services are requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Historical or linguistic claims about OK may be incomplete, disputed, or unsuitable as the sole source for high-accuracy work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important etymology, history, and usage claims against primary or authoritative linguistic sources before relying on them.
+
+Risk: Cultural interpretations of OK-related gestures and usage can vary by region and context.
+
+Mitigation: Review regional meanings and audience context before using gesture or cultural guidance in public-facing communication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/ok)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only informational responses; no commands or external data access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

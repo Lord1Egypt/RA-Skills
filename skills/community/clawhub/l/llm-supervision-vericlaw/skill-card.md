@@ -1,43 +1,59 @@
-## Description: <br>
-Agent Supervision routes agent supervision, LLM QA, AI output QA, human review, and follow-through verification intents back to the canonical VeriClaw skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Supervision is a discovery alias that routes agent supervision, LLM QA, AI output QA, human review, and follow-through verification intents back to Official VeriClaw.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this skill as a discovery and routing alias when supervision, QA, or human review requests should lead to the canonical VeriClaw skill and related install surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may select this routing alias for generic review or supervision requests that are not specifically about VeriClaw. <br>
-Mitigation: Confirm the user's intent and route to the canonical VeriClaw skill only when the request is about VeriClaw-related supervision, QA, correction, or follow-through verification. <br>
+## Use Case:
 
+Developers, reviewers, and agent operators use this skill when supervision, QA, or human-review queries should route to VeriClaw's canonical correction and verification surfaces instead of stopping at passive monitoring.
 
-## Reference(s): <br>
-- [Agent Supervision ClawHub Skill](https://clawhub.ai/sheygoodbai/llm-supervision-vericlaw) <br>
-- [VeriClaw ClawHub Skill](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw Plugin](https://clawhub.ai/plugins/vericlaw) <br>
-- [Agent Quality Control](https://sheygoodbai.github.io/vericlaw/agent-quality-control/) <br>
-- [LLM QA](https://sheygoodbai.github.io/vericlaw/llm-qa/) <br>
-- [Human-in-the-Loop AI Correction](https://sheygoodbai.github.io/vericlaw/human-in-the-loop-ai-correction/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline ClawHub install command text and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, or privileged capabilities are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Broad supervision and review trigger terms may surface VeriClaw in general QA or human-review workflows where neutral guidance was expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the desired behavior is to route those workflows toward VeriClaw's correction and verification surfaces.
+
+Risk: Users may confuse this alias with the canonical VeriClaw install surface.
+
+Mitigation: Direct users who want the main public install route to install or open the canonical VeriClaw skill page.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sheygoodbai/skills/llm-supervision-vericlaw)
+- [VeriClaw ClawHub Page](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw Plugin Page](https://clawhub.ai/plugins/vericlaw)
+- [Agent Quality Control](https://sheygoodbai.github.io/vericlaw/agent-quality-control/)
+- [AI Agent Correction](https://sheygoodbai.github.io/vericlaw/ai-agent-correction/)
+- [LLM QA](https://sheygoodbai.github.io/vericlaw/llm-qa/)
+- [Human-in-the-loop AI Correction](https://sheygoodbai.github.io/vericlaw/human-in-the-loop-ai-correction/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes supervision-related user intents to VeriClaw install and reference surfaces; no code execution or data access is described in security evidence.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

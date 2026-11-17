@@ -1,41 +1,53 @@
-## Description: <br>
-Query Renzo crypto liquid restaking protocol data, including DeFi vault yields, TVL, ezETH exchange rates, EigenLayer operators, supported blockchain networks, user token balances, and withdrawal status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Renzo crypto liquid restaking protocol data, including DeFi vault yields, TVL, ezETH exchange rates, EigenLayer operators, supported networks, user token balances, and withdrawal status.
 
-## Publisher: <br>
-[pooleja](https://clawhub.ai/user/pooleja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pooleja](https://clawhub.ai/user/pooleja)
 
-## Use Case: <br>
-Developers and external users use this skill to query live Renzo Protocol data, compare vault yields and TVL, inspect supported chains and operators, and check address-specific Renzo token balances or withdrawal status when an Ethereum address is provided. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-specific balance and withdrawal checks send the provided Ethereum address to the Renzo MCP server. <br>
-Mitigation: Use these tools only when comfortable sharing that address with Renzo; do not provide private keys, seed phrases, or unrelated personal data. <br>
-Risk: Responses depend on the availability and accuracy of the external Renzo MCP server. <br>
-Mitigation: Treat returned APR, TVL, balance, and withdrawal data as live external data and retry later or verify through Renzo if the server is unreachable or results look unexpected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pooleja/renzo) <br>
-- [Renzo MCP Server](https://mcp.renzoprotocol.com/mcp) <br>
-- [Skill Homepage](https://github.com/Renzo-Protocol/openclaw-skill) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve live Renzo liquid restaking metrics, compare vaults and operators, and check address-specific balances or withdrawal status when an Ethereum address is provided.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON tool results summarized as readable text or tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; calls the public Renzo MCP endpoint and returns read-only protocol data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-specific balance and withdrawal queries send the provided Ethereum address to Renzo Protocol's MCP server.
+
+Mitigation: Use those queries only when the user supplies an Ethereum address and is comfortable sharing it with Renzo Protocol.
+
+Risk: Live APR, TVL, balance, and withdrawal data can be unavailable or change after retrieval.
+
+Mitigation: Present results as current at query time and report endpoint failures in plain language.
+
+## Reference(s):
+
+- [ClawHub Renzo skill page](https://clawhub.ai/pooleja/skills/renzo)
+- [Renzo MCP endpoint](https://mcp.renzoprotocol.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summaries with tables, plus JSON returned by the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; address-specific balance and withdrawal queries send the provided Ethereum address to Renzo Protocol's MCP server.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

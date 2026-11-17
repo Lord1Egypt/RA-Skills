@@ -1,46 +1,56 @@
-## Description: <br>
-Public-safe FitClaw coaching workflow covering onboarding, hydration, nutrition, and training structure. Use when demonstrating a reusable AI fitness coaching method without exposing private user data or live production configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FitClaw Public Core provides a public-safe AI fitness coaching workflow for onboarding, hydration, nutrition, and training structure without exposing private user data or live production configuration.
 
-## Publisher: <br>
-[BeAChanger](https://clawhub.ai/user/BeAChanger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beachanger](https://clawhub.ai/user/beachanger)
 
-## Use Case: <br>
-External users and AI fitness coaching builders use this skill to demonstrate a public-safe coaching method for onboarding, hydration, nutrition, and training structure without exposing private user data or live production configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle body metrics, nutrition habits, injuries, progress details, or other personal fitness information that could be retained by an agent with memory enabled. <br>
-Mitigation: Check memory settings before use, share only information you are comfortable retaining, and clear or disable memory for session-only coaching. <br>
-Risk: Fitness, hydration, nutrition, and training recommendations can be over-specific when baseline data is missing or uncertain. <br>
-Mitigation: Label estimates clearly, ask only the next necessary clarifying questions, keep starting guidance conservative, and avoid presenting coaching estimates as medical prescriptions. <br>
-Risk: Packaging or adapting the skill could expose private user data or operational material if sanitization is skipped. <br>
-Mitigation: Apply the bundled public sanitization checklist and review the package before publication or reuse. <br>
+## Use Case:
 
+External users and agent developers use this skill to run a reusable AI fitness coaching workflow for lightweight onboarding, hydration habits, practical nutrition guidance, and training-plan structure while keeping private FitClaw data out of the package.
 
-## Reference(s): <br>
-- [FitClaw Onboarding Public](references/fitclaw-onboarding-public.md) <br>
-- [FitClaw Hydration Public](references/fitclaw-hydration-public.md) <br>
-- [FitClaw Nutrition Public](references/fitclaw-nutrition-public.md) <br>
-- [FitClaw Training Public](references/fitclaw-training-public.md) <br>
-- [FitClaw Public Sanitization Checklist](templates/public-sanitization-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured coaching recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include practical estimates, intake questions, coaching next steps, and public-safe memory guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, created 2026-03-18) <br>
+Risk: The skill may lead an agent to retain health-adjacent fitness, body, nutrition, or habit information without clear consent, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, configure the agent to ask before saving health-adjacent details, store only necessary information, and tell users how remembered data can be reviewed or deleted.
+
+Risk: Nutrition, hydration, and training outputs can be mistaken for precise medical or individualized professional advice.
+
+Mitigation: Keep coaching language practical and uncertainty-aware, label estimates as estimates, and avoid exact prescriptions when baseline data is incomplete.
+
+## Reference(s):
+
+- [FitClaw Onboarding Public](references/fitclaw-onboarding-public.md)
+- [FitClaw Hydration Public](references/fitclaw-hydration-public.md)
+- [FitClaw Nutrition Public](references/fitclaw-nutrition-public.md)
+- [FitClaw Training Public](references/fitclaw-training-public.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown coaching guidance, structured checklists, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should label estimates as estimates and avoid exact prescriptions when baseline data is incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

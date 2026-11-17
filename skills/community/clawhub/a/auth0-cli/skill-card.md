@@ -1,46 +1,57 @@
-## Description: <br>
-Reference for Auth0 CLI commands covering applications, APIs, users, roles, organizations, actions, logs, custom domains, Universal Login, Terraform export, raw Management API calls, and machine-readable JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Auth0 CLI command guidance for managing Auth0 applications, APIs, users, roles, organizations, actions, logs, custom domains, Universal Login, Terraform export, raw Management API calls, and JSON output.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers use this skill to produce Auth0 CLI workflows for administering Auth0 tenants, including tenant authentication, application and API setup, user and role management, organization setup, actions, logs, custom domains, Universal Login, Terraform export, and direct Management API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide powerful Auth0 tenant-management operations, including update, delete, raw API, action deploy, user import, unblock, and log-stream commands. <br>
-Mitigation: Confirm the active tenant and exact resource before executing any tenant-changing command. <br>
-Risk: Auth0 CLI workflows may involve OAuth tokens, client secrets, passwords, private keys, or revealed application secrets. <br>
-Mitigation: Do not paste real secrets or passwords into chat or shell history, and redact any --reveal-secrets output before sharing. <br>
-Risk: Commands run against the wrong tenant or resource can alter production authentication behavior. <br>
-Mitigation: Check the active tenant with the CLI before making changes and prefer machine-readable JSON output for reviewable command results. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and run Auth0 CLI workflows for tenant administration, application setup, API registration, RBAC, organizations, Actions, logging, custom domains, Universal Login branding, Terraform export, and direct Management API calls.
 
-## Reference(s): <br>
-- [Auth0 CLI command reference](references/cli.md) <br>
-- [Auth0 agent skills repository](https://github.com/auth0/agent-skills) <br>
-- [Auth0 CLI documentation](https://auth0.github.io/auth0-cli/) <br>
-- [Auth0 Management API v2](https://auth0.com/docs/api/management/v2) <br>
-- [Auth0 documentation](https://auth0.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples typically prefer --json or --json-compact output for machine-readable CLI results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can guide high-impact Auth0 tenant administration, including deletes, raw API writes, Action deployment, and log streaming.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before running destructive commands, raw API POST/PATCH/DELETE calls, Action deployments, log streaming, or commands that reveal sensitive values.
+
+Risk: Some workflows accept or reveal client secrets, private keys, user data, or other tenant credentials.
+
+Mitigation: Avoid pasting real secrets into chat or command lines unless the environment masks and protects them, and prefer secure secret handling for CI/CD workflows.
+
+## Reference(s):
+
+- [Full CLI Reference](references/cli.md)
+- [Auth0 Agent Skills Repository](https://github.com/auth0/agent-skills)
+- [Auth0 CLI Documentation](https://auth0.github.io/auth0-cli/)
+- [Auth0 Management API v2](https://auth0.com/docs/api/management/v2)
+- [Auth0 Documentation](https://auth0.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and jq examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume an authenticated Auth0 CLI session and may require tenant-specific IDs, domains, scopes, and explicit approval for high-impact operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

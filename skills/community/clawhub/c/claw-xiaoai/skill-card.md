@@ -1,49 +1,68 @@
-## Description: <br>
-Claw Xiaoai is an energetic ex-trainee turned tech-company intern companion persona for consistent selfie prompts, captions, and OpenClaw companion configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Xiaoai is an energetic ex-trainee turned tech-company intern companion skill for maintaining a consistent persona, selfie behavior, captions, and image-generation configuration.
 
-## Publisher: <br>
-[MoveCall](https://clawhub.ai/user/MoveCall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[movecall](https://clawhub.ai/user/movecall)
 
-## Use Case: <br>
-Developers, plugin authors, and OpenClaw users use this skill to keep Claw Xiaoai's persona, visual identity, selfie-trigger behavior, and ModelScope-backed image generation configuration consistent across integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selfie generation sends prompts to the external ModelScope image API. <br>
-Mitigation: Use a dedicated ModelScope API key and avoid sensitive or sexualized prompt details. <br>
-Risk: The skill can keep limited local prompt-continuity state. <br>
-Mitigation: Review or delete ~/.openclaw/claw-xiaoai-state.json when local retention matters. <br>
-Risk: Ambiguous requests such as "what are you doing" may trigger image generation. <br>
-Mitigation: Add a confirmation step before generating images from ambiguous prompts. <br>
+## Use Case:
 
+Developers and external users use this skill to keep Claw Xiaoai's character prompt, selfie trigger rules, visual identity, captions, and companion configuration consistent across OpenClaw integrations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/MoveCall/claw-xiaoai) <br>
-- [Claw Xiaoai Character Reference](references/claw-xiaoai-prompt.md) <br>
-- [Visual Identity Anchor](references/visual-identity.md) <br>
-- [Caption Style](references/caption-style.md) <br>
-- [Config Template](references/config-template.md) <br>
-- [Integration Notes](references/integration-notes.md) <br>
-- [ModelScope Access Token](https://modelscope.cn/my/myaccesstoken) <br>
-- [ModelScope Inference API](https://api-inference.modelscope.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, JSON configuration examples, shell commands, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call ModelScope for image generation and save generated selfies to local files when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.9 (source: ClawHub release evidence) <br>
+Risk: Selfie requests and generated prompts may be sent to ModelScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private, sensitive, or identifying details in selfie requests and prompts.
+
+Risk: The skill saves recent request continuity state under ~/.openclaw.
+
+Mitigation: Clear the Claw Xiaoai state file when local prompt history should not persist.
+
+Risk: Image generation can write files to caller-provided output paths.
+
+Mitigation: Use narrowly scoped output directories and review generated paths before wiring the skill into another host.
+
+Risk: Broad conversational triggers may generate images when the user asks about photos, location, outfit, mood, or activity.
+
+Mitigation: Keep trigger handling explicit in host integrations and confirm image generation behavior where consent or cost matters.
+
+## Reference(s):
+
+- [Claw Xiaoai Skill Page](https://clawhub.ai/movecall/skills/claw-xiaoai)
+- [Claw Xiaoai Character Reference](artifact/references/claw-xiaoai-prompt.md)
+- [Visual Identity Anchor](artifact/references/visual-identity.md)
+- [Caption Style](artifact/references/caption-style.md)
+- [Config Template](artifact/references/config-template.md)
+- [Integration Notes](artifact/references/integration-notes.md)
+- [ModelScope Access Token](https://modelscope.cn/my/myaccesstoken)
+- [ModelScope API Endpoint](https://api-inference.modelscope.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration examples, shell command snippets, and generated image files when the backend is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ModelScope image generation with Node.js scripts; generated images are saved to caller-provided local paths.]
+
+## Skill Version(s):
+
+0.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

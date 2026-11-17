@@ -1,37 +1,48 @@
-## Description: <br>
-Produce a copyable handoff prompt so a fresh agent can continue the current conversation in a new chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produce a copyable handoff prompt so a fresh agent can continue the current conversation in a new chat.
 
-## Publisher: <br>
-[vyctorbrzezowski](https://clawhub.ai/user/vyctorbrzezowski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[vyctorbrzezowski](https://clawhub.ai/user/vyctorbrzezowski)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and agent users use this skill to produce a compact Markdown handoff prompt when continuing work in a new chat or recovering from a long-running session.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated handoff prompts can include project context such as paths, commands, URLs, work status, or private repository details.
+
+Mitigation: Review the generated prompt before sharing it in another chat and remove sensitive or private details that should not be carried forward.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to create a compact handoff prompt when continuing work in a new chat or recovering from a long session. It preserves durable context, remaining work, constraints, files, references, and first actions without duplicating existing artifacts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vyctorbrzezowski/session-migrate) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Produces a directly pasteable handoff prompt in chat and does not write a document unless explicitly requested.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Copyable Markdown prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated handoff should be reviewed for secrets, credentials, private customer data, or sensitive local paths before reuse.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.0.0 (source: server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

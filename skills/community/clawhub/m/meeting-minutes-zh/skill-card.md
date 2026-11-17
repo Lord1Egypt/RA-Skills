@@ -1,38 +1,56 @@
-## Description: <br>
-This skill turns Chinese meeting transcripts, rough notes, or oral summaries into structured meeting minutes with topics, attendees, discussion points, decisions, and action plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Minutes Zh turns Chinese meeting transcripts, rough notes, or spoken summaries into structured meeting minutes with topics, participants, discussion points, decisions, owners, and due dates.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[olina1ye](https://clawhub.ai/user/olina1ye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, project teams, and administrative users use this skill to turn Chinese meeting notes, transcripts, or oral summaries into formal minutes suitable for business records and follow-up tracking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Meeting notes and transcripts may contain confidential business details.
+
+Mitigation: Review and redact sensitive content before sharing the generated minutes or using the output outside the intended audience.
+
+Risk: Action owners, decisions, and deadlines can be incomplete or ambiguous when source notes are rough.
+
+Mitigation: Confirm decisions, responsibilities, and dates with meeting participants before treating the minutes as an official record.
+
+Risk: The skill is designed for Chinese meeting-minutes output and may not match expectations for another language.
+
+Mitigation: Ask explicitly when output should use another language or format.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and business teams use this skill to convert Chinese meeting notes or transcript text into formal minutes for weekly meetings, project reviews, client discussions, board meetings, and follow-up tracking. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes can include confidential business, personnel, or client information. <br>
-Mitigation: Provide only content approved for agent processing and review generated minutes before saving, distributing, or archiving them. <br>
+**Output Format:** [Chinese Markdown meeting-minutes document with headings, lists, and an action-item table.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/meeting-minutes-zh) <br>
+**Other Properties Related to Output:** [May include placeholders for unknown meeting dates or inferred deadlines that require user review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting minutes with headings, numbered lists, and an action-plan table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes meeting topic, time placeholder when absent, attendees, discussion points, decisions, owners, deadlines, and next-meeting details when supported by the input.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

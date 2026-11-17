@@ -1,41 +1,52 @@
-## Description: <br>
-Guides agents through safe Java feature, refactor, or bugfix changes using minimal diffs, targeted tests, and PR-ready evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through minimal Java code changes, targeted tests, verification commands, and PR-ready summaries with evidence.
 
-## Publisher: <br>
-[tanerilyazov](https://clawhub.ai/user/tanerilyazov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tanerilyazov](https://clawhub.ai/user/tanerilyazov)
 
-## Use Case: <br>
-Developers and engineers use this skill when asking an agent to make Java feature, refactor, or bugfix changes that need reviewable implementation steps, test evidence, and PR-ready summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-produced Java changes may be incorrect, incomplete, or broader than the requested acceptance criteria. <br>
-Mitigation: Review the diff before committing and keep implementation scoped to the smallest change that satisfies the stated criteria. <br>
-Risk: The workflow may run project test commands such as Maven tests in the target repository. <br>
-Mitigation: Use the skill only in repositories you trust and record the exact commands and results for reviewer verification. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanerilyazov/java-change-with-tests) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to make Java feature, refactor, or bug-fix changes with minimal edits, targeted tests, verification commands, and a PR-ready summary.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with implementation plan, changed-file summary, command results, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes exact verification commands and results when tests are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can lead an agent to edit project files and run Java build or test commands.
+
+Mitigation: Use it only in repositories where such edits and verification commands are expected, and review the reported changed files and command results.
+
+Risk: A minimal Java change can miss behavior that is outside the provided acceptance criteria or targeted test scope.
+
+Mitigation: Provide acceptance criteria, module context, build and test conventions, and whether integration tests are required before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanerilyazov/skills/java-change-with-tests)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with plan, changed files, commands, risks, and follow-ups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records exact verification commands and results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

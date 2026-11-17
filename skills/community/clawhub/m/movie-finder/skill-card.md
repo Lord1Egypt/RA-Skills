@@ -1,41 +1,60 @@
-## Description: <br>
-搜索并播放电影。功能包括：(1) 按类型、年份、评分筛选电影；(2) 支持中英文输入；(3) 展示电影海报、评分、剧情简介；(4) 生成可点击的 iframe 播放页面，直接在线观看。触发场景包括：搜索电影、想看电影、找最新电影、按类型/年份/评分筛选电影。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for movies in Chinese or English, filters by genre, year, or rating, and can generate a local HTML playback page with embedded iframe sources.
 
-## Publisher: <br>
-[chugenice](https://clawhub.ai/user/chugenice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chugenice](https://clawhub.ai/user/chugenice)
 
-## Use Case: <br>
-External users use this skill to search for movies by title, genre, year, rating, or language and to generate local HTML playback pages when a source is selected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search unvetted free-streaming sites and create local HTML pages that load arbitrary third-party iframe content. <br>
-Mitigation: Review every playback URL before opening generated files, avoid entering personal information in embedded pages, and prefer domain allowlists, iframe sandboxing, HTML escaping, and explicit confirmation before file creation. <br>
-Risk: Streaming source reliability and legitimacy may vary because the skill selects third-party sources discovered through search. <br>
-Mitigation: Prefer licensed providers, verify source domains before use, and fall back to metadata-only results when a trusted playback source is unavailable. <br>
+## Use Case:
 
+Agents use this skill to help users find movie metadata, recommend movies by genre, year, or rating, and produce a local HTML page that embeds selected third-party playback sources when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chugenice/movie-finder) <br>
-- [Installation guide](INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown responses plus generated HTML files and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local HTML pages that embed third-party iframe playback URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated playback pages can load unverified third-party streaming sites inside iframes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated playback pages as untrusted web content and avoid entering credentials, payment details, or other sensitive information in embedded frames.
+
+Risk: Free or third-party embed sources may be unreliable, unavailable, or unsuitable for the user's licensing expectations.
+
+Mitigation: Prefer licensed streaming links or metadata-only use, and review generated source URLs before opening or sharing playback pages.
+
+Risk: User-wide installation can cause the skill to activate during ordinary movie-related requests.
+
+Mitigation: Install only when this behavior is intended, and scope or remove the skill when third-party playback discovery is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chugenice/skills/movie-finder)
+- [Publisher profile](https://clawhub.ai/user/chugenice)
+- [Skill instructions](artifact/SKILL.md)
+- [Installation notes](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown responses with optional generated HTML files and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated playback pages may contain third-party iframe embeds and source-switching controls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

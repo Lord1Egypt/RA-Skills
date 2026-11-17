@@ -1,39 +1,53 @@
-## Description: <br>
-Guides quantitative trading teams through closed-loop task management with clear ownership, progress reporting, verification, and archived summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+任务闭环管理 provides a Chinese-language task-management workflow for creating, assigning, executing, verifying, and summarizing team tasks with clear ownership and acceptance criteria.
 
-## Publisher: <br>
-[allenwenpeng](https://clawhub.ai/user/allenwenpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenwenpeng](https://clawhub.ai/user/allenwenpeng)
 
-## Use Case: <br>
-Team leads and agents use this skill to create, assign, execute, verify, and close tasks with explicit acceptance criteria and documented outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting this workflow to real task trackers, Cron jobs, CI systems, or trading infrastructure can expand permissions and automation impact. <br>
-Mitigation: Review the separate integration code and grant only the minimum permissions needed before deployment. <br>
+## Use Case:
 
+Quantitative trading team members use this skill to standardize task lifecycle management across creation, assignment, execution, verification, and archival summary. It is intended for teams that need recurring progress reports, explicit acceptance criteria, and documented closure.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/allenwenpeng/task-closed-loop) <br>
-- [Release Artifact: SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown templates, checklists, and status tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only workflow guidance with no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow uses specific Chinese-language role names and templates that may not match every team's operating model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the templates, role names, reporting cadence, and acceptance criteria before adopting the workflow.
+
+Risk: Process guidance can create misleading status signals if teams close tasks without verifying outcomes.
+
+Mitigation: Require documented verification and summary steps before marking tasks closed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allenwenpeng/skills/task-closed-loop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with task templates, checklists, tables, and workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only workflow guidance; no code execution or credential handling is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

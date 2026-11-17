@@ -1,46 +1,60 @@
-## Description: <br>
-Captures learnings, errors, corrections, feature requests, and recurring patterns so coding agents can review and promote durable guidance across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections to enable continuous improvement for coding agents across OpenClaw, Claude Code, Codex, GitHub Copilot, and similar environments.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to capture corrections, command failures, feature requests, and non-obvious solutions as reusable learning records. It supports later review and promotion of verified learnings into project or workspace agent guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning logs and promoted memory may persist sensitive session details into future agent context. <br>
-Mitigation: Keep logs local by default and redact tokens, credentials, personal data, customer data, and raw command payloads before logging or promotion. <br>
-Risk: Broad or empty-matcher hooks can inject reminders on every prompt and expand the skill's influence beyond intended workflows. <br>
-Mitigation: Enable hooks only in trusted workspaces and scope matchers to the events or commands that need learning capture. <br>
-Risk: Unreviewed learning entries can promote incorrect or misleading guidance into agent instruction files. <br>
-Mitigation: Review and scan entries before promotion; keep low-confidence entries pending until verified. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture command failures, user corrections, feature requests, knowledge gaps, and recurring workflow improvements as structured learning records. They can optionally promote reviewed learnings into agent memory files, hook reminders, or reusable skill scaffolds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asterisk622/xiaoding-self-improving-agent) <br>
-- [OpenClaw integration guide](references/openclaw-integration.md) <br>
-- [Hook setup guide](references/hooks-setup.md) <br>
-- [Self-improvement examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or updates of .learnings markdown files and reviewed agent instruction files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.15 (source: ClawHub release evidence) <br>
+Risk: Persistent self-improvement memory can capture private details or incorrect guidance that later steers agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings out of version control when it may contain sensitive details, review entries before promotion, and require human review before updating CLAUDE.md, AGENTS.md, Copilot instructions, SOUL.md, or TOOLS.md.
+
+Risk: Automatic hooks can inject reminders broadly and may inspect command output for error detection.
+
+Mitigation: Prefer project-local, opt-in hook setup; avoid global hooks unless the scripts have been reviewed; disable error-detection hooks when command output may contain sensitive data.
+
+Risk: The extraction helper can write new skill scaffolds into a relative skills directory.
+
+Mitigation: Run the helper with --dry-run first and review generated files before relying on or sharing the new skill.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown learning entries, inline shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .learnings records, agent memory files, hook settings, and generated skill scaffolds when explicitly used.]
+
+## Skill Version(s):
+
+3.0.15 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Fetches Amazon Ads Sponsored Products keyword reporting and live bid data using Amazon Ads credentials supplied by the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Amazon Ads Sponsored Products campaign and keyword reports, including keyword performance analysis and live bid inspection, using user-provided Amazon Ads credentials.
 
-## Publisher: <br>
-[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Advertisers, operators, and marketing analysts use this skill to configure and run Amazon Ads API reporting scripts that inspect Sponsored Products campaign performance, keyword winners and dead keywords, and current keyword bids.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses Amazon Ads API credentials from a local JSON file.
+
+Mitigation: Install only when Amazon Ads API access is intended, keep the credential file protected, and set AMAZON_ADS_PATH deliberately when the default path should not be used.
+
+Risk: Some documented campaign-level commands reference scripts not included in this artifact.
+
+Mitigation: Verify the available scripts before using campaign-level examples; this artifact includes keyword-report.js and get-bids.js.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Advertisers, operators, and developers who manage Amazon Sponsored Products campaigns use this skill to inspect keyword bids and generate keyword-level performance analysis from their own Amazon Ads profile. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Europe, Middle East, and Africa (EMEA); the included scripts use Amazon Ads EU endpoints. <br>
+**Output Type(s):** [text, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts read an Amazon Ads OAuth credential file and exchange the refresh token for access tokens. <br>
-Mitigation: Use credentials scoped only to the intended advertising profile, store the credential file securely, and rotate or revoke tokens when access is no longer needed. <br>
-Risk: The current implementation is EU-focused and uses Amazon Ads EU endpoints. <br>
-Mitigation: Confirm the advertising profile region and endpoint before running the scripts against non-EU accounts. <br>
-Risk: The documentation references campaign-level commands whose scripts are not included in this artifact. <br>
-Mitigation: Use only the included keyword-report.js and get-bids.js commands unless the missing scripts are supplied and reviewed. <br>
+**Output Format:** [Markdown guidance with bash commands and console or table report output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skill-amazon-ads-reporter) <br>
+**Other Properties Related to Output:** [Reads Amazon Ads credentials from a local JSON file and can produce local JSON report files or live keyword bid listings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON credential examples, console tables, and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the configured Amazon Ads profile and credential file; included scripts may write temporary report state and print keyword or bid tables.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

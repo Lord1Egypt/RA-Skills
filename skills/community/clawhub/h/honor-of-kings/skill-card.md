@@ -1,41 +1,54 @@
-## Description: <br>
-Provides organized information on Honor of Kings official events, updates, tournaments, rules, and community announcements from public sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides organized information on Honor of Kings official events, updates, tournaments, rules, and community announcements from public pages.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Honor of Kings announcements, events, version updates, tournament information, rules, and help pages while preserving dates and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for public Honor of Kings content and does not need private account data, login cookies, payment information, or non-public game data. <br>
-Mitigation: Use only public pages and refuse requests for private account details, credentials, payment information, or non-public game data. <br>
-Risk: The artifact excludes cheating, account trading, restriction bypass, and similar misuse guidance. <br>
-Mitigation: Keep outputs limited to public announcements, events, rules, help information, and compliance-safe summaries. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Honor of Kings official pages for events, version updates, tournament information, community rules, and help content while preserving dates and source links.
 
-## Reference(s): <br>
-- [Honor of Kings official website](https://pvp.qq.com/) <br>
-- [ClawHub Honor Of Kings release page](https://clawhub.ai/CodeKungfu/honor-of-kings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and checklists with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dates and source links for time-sensitive public content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Honor of Kings event schedules, rewards, and version details change frequently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve dates and source links in outputs, and verify current official pages before relying on summarized details.
+
+Risk: Requests about account restrictions, transactions, cheating, or bypassing platform controls could create misuse risk.
+
+Mitigation: Keep responses limited to public official information and decline cheating, bypass, account transaction, private data, or non-public testing requests.
+
+## Reference(s):
+
+- [Honor of Kings official website](https://pvp.qq.com/)
+- [ClawHub skill listing](https://clawhub.ai/codekungfu/skills/honor-of-kings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and checklists with dates and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limited to public information; does not handle private player data, cheating guidance, account transactions, or bypass advice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

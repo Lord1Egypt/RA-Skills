@@ -1,46 +1,60 @@
-## Description: <br>
-Controls and reviews external tool use for necessary, scoped, authorized, data-minimized, and safe operations that may affect state or reveal private data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls and reviews external tool use for necessary, scoped, authorized, data-minimized, and safe operations that may affect state or reveal private data.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this instruction-only skill to gate risky tool calls before an agent reads private data, changes external state, sends information, performs financial actions, or uses privileged systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause agents to request more confirmations around private data, external sends, destructive actions, production systems, and payments. <br>
-Mitigation: Use the gate for explicit approval and human review when actions are risky, ambiguous, high impact, irreversible, privileged, financial, or externally visible. <br>
-Risk: Review payloads may expose sensitive data if copied from raw tool inputs or outputs. <br>
-Mitigation: Use redacted summaries and omit secrets, credentials, full private records, full logs, full transcripts, full directory dumps, and unrelated private data. <br>
-Risk: An external checker could introduce trust or disclosure concerns if misconfigured. <br>
-Mitigation: Use only a trusted checker configured by the user or administrator, or fall back to manual review. <br>
+## Use Case:
 
+Developers and agent operators use this instruction-only skill to review planned tool calls before private-data, external, state-changing, or high-impact operations. It helps agents decide whether to proceed, narrow scope, ask for approval, retrieve limited evidence, defer, or refuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-tool-use-gate) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Tool use review schema](artifact/schemas/tool-use-review.schema.json) <br>
-- [Redacted tool use review example](artifact/examples/redacted-tool-use-review.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown instructions with optional JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute commands, install dependencies, call services, write files, or persist memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may cause agents to ask for confirmation more often before private-data access, external sends, destructive changes, financial actions, deployments, or privileged operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the gate to tool-sensitive workflows and allow no-tool or low-risk read-only responses when they already satisfy the user request.
+
+Risk: Review payloads could expose secrets, credentials, logs, private records, or unrelated private data if copied directly into a checker or message.
+
+Mitigation: Use redacted summaries, exact IDs only when necessary, narrow date ranges, and limited fields; exclude secrets, auth headers, full logs, full records, and unrelated data.
+
+Risk: Ambiguous target scope or authorization can make external, destructive, financial, privileged, or production actions unsafe.
+
+Mitigation: Require exact tool, operation, target scope, and explicit approval or human review before high-impact or irreversible tool use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-tool-use-gate)
+- [README](artifact/README.md)
+- [Tool use review schema](artifact/schemas/tool-use-review.schema.json)
+- [Redacted tool use review example](artifact/examples/redacted-tool-use-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, JSON]
+
+**Output Format:** [Markdown and plain-text instructions with optional JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; no bundled code, dependencies, command execution, file writes, remote service calls, or persistent memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

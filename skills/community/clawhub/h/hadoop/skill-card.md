@@ -1,47 +1,62 @@
-## Description: <br>
-Manage Hadoop clusters with HDFS operations, YARN job tuning, and distributed processing diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Hadoop clusters with HDFS operations, YARN job tuning, and distributed processing diagnostics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, data engineers, and Hadoop administrators use this skill to diagnose HDFS and YARN issues, tune distributed jobs, manage cluster storage, and troubleshoot Hadoop ecosystem failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HDFS and YARN commands can affect production cluster state or data when run with the user's current permissions. <br>
-Mitigation: Confirm cluster state, exact HDFS paths, application IDs, and intended impact before executing destructive or administrative commands. <br>
-Risk: Cluster notes may capture sensitive operational details if users paste credentials, keytabs, private hostnames, or production context. <br>
-Mitigation: Keep credentials, keytabs, private hostnames, and sensitive production details out of local Hadoop memory files. <br>
-Risk: Troubleshooting steps include commands that can delete data, kill applications, or change replication and queue behavior. <br>
-Mitigation: Review proposed commands before execution, prefer reversible operations where possible, and use maintenance windows for disruptive actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/hadoop) <br>
-- [Skill homepage](https://clawic.com/skills/hadoop) <br>
-- [HDFS operations](hdfs.md) <br>
-- [YARN operations](yarn.md) <br>
-- [Troubleshooting](troubleshooting.md) <br>
-- [Setup](setup.md) <br>
-- [Memory template](memory-template.md) <br>
+## Use Case:
 
+Developers, data engineers, and Hadoop administrators use this skill to diagnose Hadoop cluster health, manage HDFS storage, tune YARN and MapReduce jobs, and troubleshoot distributed processing failures.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local hdfs, yarn, and hadoop commands on Linux or macOS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: High-impact Hadoop operations can delete data, kill workloads, alter permissions, change replication, trigger failover, decommission nodes, or affect service availability.
+
+Mitigation: Require explicit user confirmation before delete, skipTrash, kill, failover, decommission, chmod, chown, or service-impacting commands, and check cluster state before acting.
+
+Risk: The skill retains Hadoop cluster context locally, which may include sensitive cluster names, workflows, access notes, or operational details.
+
+Mitigation: Avoid saving credentials or unnecessary sensitive access details, keep Kerberos and keytab handling separate, and review local notes for sensitive information.
+
+Risk: Hadoop guidance can be wrong for a specific distribution, scheduler, security model, or cluster state.
+
+Mitigation: Verify the Hadoop distribution, active scheduler, health reports, quotas, logs, and Kerberos or ACL context before applying tuning or repair steps.
+
+## Reference(s):
+
+- [ClawHub Hadoop Skill](https://clawhub.ai/ivangdavila/skills/hadoop)
+- [Hadoop Skill Homepage](https://clawic.com/skills/hadoop)
+- [HDFS Operations](hdfs.md)
+- [YARN Operations](yarn.md)
+- [Troubleshooting](troubleshooting.md)
+- [Setup](setup.md)
+- [Memory Template](memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local Hadoop CLI commands and local memory updates for cluster context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

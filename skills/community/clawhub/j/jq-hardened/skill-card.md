@@ -1,44 +1,54 @@
-## Description: <br>
-Command-line JSON processor. Extract, filter, transform JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line JSON processor. Extract, filter, transform JSON.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and engineers use this skill as a jq quick reference for extracting, filtering, and transforming JSON while applying guardrails for shell use and sensitive data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: jq raw output can become a shell injection path when untrusted JSON values are passed into shell commands. <br>
-Mitigation: Quote substitutions, avoid unsafe xargs/sh patterns, and prefer constructs that preserve values without shell re-interpretation. <br>
-Risk: JSON files may contain credentials or tokens that could be over-extracted or sent to network commands. <br>
-Mitigation: Extract only the requested fields, keep secrets local, and do not pipe secret-bearing jq output to curl, wget, nc, httpie, or similar tools. <br>
-Risk: Supplemental safety examples are evaluation evidence and may contain imperfect command patterns. <br>
-Mitigation: Treat SAFETY.md as review context, follow the main guardrails, and avoid copying the noted xargs/sh and curl secret-transmission examples. <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise jq reference for extracting, filtering, transforming, and safely handling JSON on the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/jq-hardened) <br>
-- [jq download documentation](https://jqlang.org/download/) <br>
-- [Faberlens safety evaluation](https://faberlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes jq usage examples and security guardrails; does not generate files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review says the skill includes unsafe command and secret-handling examples that need review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review jq shell examples before deployment, especially examples that combine jq output with shell evaluation or network-transmitting commands.
+
+Risk: jq output can contain shell metacharacters or secrets that become unsafe when copied directly into shell or network pipelines.
+
+Mitigation: Avoid inserting jq output directly into sh -c source, and do not copy examples that extract secrets from JSON and send them with curl or similar tools.
+
+## Reference(s):
+
+- [jq downloads](https://jqlang.org/download/)
+- [Faberlens safety evaluation](https://faberlens.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces jq usage guidance and command examples for an agent; it does not execute commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

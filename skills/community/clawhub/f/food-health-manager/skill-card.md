@@ -1,41 +1,52 @@
-## Description: <br>
-食品健康管家。识别食品配料表，分析成分健康程度，给出打分和建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+食品健康管家。识别食品配料表，分析成分健康程度，给出打分和建议。
 
-## Publisher: <br>
-[liny2046](https://clawhub.ai/user/liny2046) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liny2046](https://clawhub.ai/user/liny2046)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this Chinese-language skill to analyze food ingredient lists, score nutritional health from 1 to 10, and receive practical eating recommendations. It is intended for general food guidance rather than medical decision-making.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Nutrition scores and health recommendations could be mistaken for medical advice.
+
+Mitigation: Treat outputs as general guidance and consult qualified medical professionals for children, pregnant users, patients, allergies, or diet-restricted users.
+
+Risk: Ingredient recognition from user-provided label images may be incomplete or inaccurate.
+
+Mitigation: Review the extracted ingredient list before relying on the score or recommendation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to analyze food ingredient lists or ingredient-label images, receive a 1-10 health score, and get concise eating recommendations. It is general nutrition guidance and not medical advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Food and nutrition scores may be misunderstood as medical or dietetic advice. <br>
-Mitigation: Present results as general guidance and direct users with pregnancy, allergies, medical conditions, or prescribed diets to qualified medical advice. <br>
-Risk: Ingredient-label image recognition or user-provided ingredient text can be incomplete or inaccurate. <br>
-Mitigation: Ask users to verify ingredients and treat the generated score as advisory rather than authoritative. <br>
+**Output Format:** [Chinese-language Markdown with scoring tables, ingredient risk notes, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liny2046/food-health-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/liny2046) <br>
+**Other Properties Related to Output:** [May include category-level score adjustments, risk explanations for complex ingredient lists, and a brief humorous closing line.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with ingredient tables, score calculations, recommendation text, and optional risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General food and nutrition guidance only; users with pregnancy, allergies, medical conditions, or prescribed diets should seek qualified medical advice.] <br>
+2.2.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

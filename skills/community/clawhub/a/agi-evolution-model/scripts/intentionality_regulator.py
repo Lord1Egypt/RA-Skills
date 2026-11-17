@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 意向性调节模块
 
@@ -20,6 +26,7 @@ import sys
 import uuid
 from datetime import datetime
 from typing import Dict, Any, List, Optional
+from interfaces import TraceContext, create_trace_context
 
 
 class IntentionalityRegulator:

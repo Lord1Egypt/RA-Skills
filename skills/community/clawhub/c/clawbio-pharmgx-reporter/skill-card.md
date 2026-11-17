@@ -1,41 +1,60 @@
-## Description: <br>
-Generates a pharmacogenomic Markdown report from 23andMe or AncestryDNA raw genetic data. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Generates pharmacogenomic reports from DTC genetic data from 23andMe or AncestryDNA.
 
-## Publisher: <br>
-[manuelcorpas](https://clawhub.ai/user/manuelcorpas) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manuelcorpas](https://clawhub.ai/user/manuelcorpas)
 
-## Use Case: <br>
-Developers and bioinformatics users can use this skill to process local DTC genetic data and generate a structured pharmacogenomic report with gene profiles, drug-response recommendations, and safety alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive genetic data and writes a report that may contain private health-related information. <br>
-Mitigation: Run it locally with private input and output paths, avoid shared or synced folders unless appropriate, and delete generated reports when no longer needed. <br>
-Risk: The report includes medication guidance derived from DTC genetic data and is not a diagnostic device. <br>
-Mitigation: Do not make medication or dose decisions from the report without a qualified healthcare professional and confirmatory clinical-grade testing. <br>
+## Use Case:
 
+Developers and bioinformatics users use this skill to process raw consumer genotype files and generate educational pharmacogenomic markdown reports with gene profiles, drug-response tables, and alerts. The reports are not clinical advice and should not be used for medication decisions without healthcare-professional review and confirmatory testing.
 
-## Reference(s): <br>
-- [ClawBio project homepage](https://github.com/manuelcorpas/ClawBio) <br>
-- [PharmGx Reporter on ClawHub](https://clawhub.ai/manuelcorpas/clawbio-pharmgx-reporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes gene profiles, drug recommendation tables, actionable alerts, input checksum, and reproducibility command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated reports can contain actionable medication recommendations based on consumer genetic data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reports only for education and review any medication-related interpretation with a qualified healthcare professional and confirmatory clinical-grade testing.
+
+Risk: Input files and generated reports contain sensitive genetic health information.
+
+Mitigation: Process files locally, restrict access to outputs, and store or delete generated reports according to sensitive health-record handling expectations.
+
+Risk: Report integrity may be affected by untrusted files or filenames while markdown escaping and genotype validation remain areas for review.
+
+Mitigation: Use trusted local input files and review generated markdown before sharing or relying on the report.
+
+## Reference(s):
+
+- [ClawBio GitHub Homepage](https://github.com/manuelcorpas/ClawBio)
+- [CPIC](https://cpicpgx.org/)
+- [PharmGKB](https://www.pharmgkb.org/)
+- [ClawHub Skill Page](https://clawhub.ai/manuelcorpas/skills/clawbio-pharmgx-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local report files from a user-provided raw genotype file; reports may contain sensitive genetic health information.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Engineering Manager Intelligence tracks team performance, engineer contributions, and project health across GitLab or GitHub and Jira or GitHub Issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Engineering Manager Intelligence tracks team performance, engineer contributions, and project health across GitLab/GitHub and Jira/GitHub Issues, including briefings, reports, branch-to-ticket mapping, and optional Slack, Telegram, or email delivery.
 
-## Publisher: <br>
-[larryfang](https://clawhub.ai/user/larryfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larryfang](https://clawhub.ai/user/larryfang)
 
-## Use Case: <br>
-Engineering managers and technical leads use this skill to generate morning briefs, end-of-day reviews, team reports, quiet-engineer alerts, epic health checks, contribution maps, and weekly newsletters from code and ticket-system activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores engineering platform, ticket-system, SMTP, Slack, or Telegram credentials in a generated .env file. <br>
-Mitigation: Use narrowly scoped read-only tokens where possible, protect and exclude the .env file from source control, and review generated configuration before running live commands. <br>
-Risk: The setup and launcher paths may install dependencies automatically. <br>
-Mitigation: Review the setup flow and requirements before execution, and run inside a virtual environment or container. <br>
-Risk: Generated reports may contain sensitive engineering activity or project-health information and can be sent to chat or email destinations. <br>
-Mitigation: Verify Slack webhook, Telegram chat, SMTP recipient, and project scope settings, then test with dry-run or print delivery before sending reports. <br>
+## Use Case:
 
+Engineering managers, team leads, and delivery stakeholders use this skill to generate morning briefs, end-of-day reviews, team performance reports, contribution maps, quiet-engineer alerts, epic health checks, and weekly newsletters from code and ticketing systems.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/larryfang/em-intel) <br>
-- [Setup guide](artifact/SETUP.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or terminal text with optional delivery to Slack, Telegram, email, or stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run mode with synthetic data and configured live API calls for GitLab, GitHub, Jira, and GitHub Issues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill handles powerful service credentials for code, ticketing, and delivery systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or print mode first, keep the skill directory private, and use fine-grained least-privilege tokens with expirations.
+
+Risk: Credential setup writes secrets to a local .env file and may prompt for tokens in a terminal.
+
+Mitigation: Ensure .env is owner-readable only, avoid entering tokens in recorded or shared terminals, and verify GitLab and Jira URLs are HTTPS and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/larryfang/skills/em-intel)
+- [SETUP.md](artifact/SETUP.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain-text reports with console tables, shell command snippets, and optional HTML email rendering]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run output with synthetic data; delivery can route to stdout, Slack, Telegram, or email.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

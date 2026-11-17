@@ -1,42 +1,56 @@
-## Description: <br>
-Safely and thoroughly delete an OpenClaw agent and its artifacts, including workspace, agent files, bindings, Telegram group routing config, a dedicated Telegram group, and related cron jobs, with dry-run and explicit confirmation gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely and thoroughly deletes an OpenClaw agent and related artifacts, including workspace files, agent configuration, bindings, Telegram routing configuration, optional dedicated Telegram group deletion guidance, and cron jobs.
 
-## Publisher: <br>
-[Sheetaa](https://clawhub.ai/user/Sheetaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sheetaa](https://clawhub.ai/user/sheetaa)
 
-## Use Case: <br>
-Developers and operators use this skill to remove an OpenClaw agent and its related local files, routing configuration, cron jobs, and optionally a dedicated Telegram group after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can permanently delete an OpenClaw agent and related local artifacts. <br>
-Mitigation: Review the dry-run output, verify the agent ID, workspace path, Telegram group, and cron jobs, and approve execution only after confirming the intended targets. <br>
-Risk: Deleting a Telegram group through browser or session control can be irreversible. <br>
-Mitigation: Require separate explicit confirmation for Telegram group deletion, or use manual Telegram deletion if browser/session control is not acceptable. <br>
-Risk: Accidental removal of configuration or scheduled jobs can affect recovery. <br>
-Mitigation: Keep the generated backup files and review the final deletion summary before discarding recovery points. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sheetaa/delete-agent-with-telegram-group) <br>
-- [Publisher profile](https://clawhub.ai/user/Sheetaa) <br>
+## Use Case:
 
+OpenClaw operators and developers use this skill when they need an agent removed from local OpenClaw configuration, workspace files, Telegram routing, and scheduled jobs while preserving dry-run and confirmation checkpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce dry-run JSON output, backup file paths, deletion summaries, and Telegram group status values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local cleanup can permanently remove OpenClaw agent directories, workspace folders, Telegram routing entries, and cron jobs.
+
+Mitigation: Run the dry-run first, inspect the planned removals, verify the exact workspace path, and keep generated backups before executing deletion.
+
+Risk: The authoritative security summary flags the deletion checks as too loose for the possible impact.
+
+Mitigation: Avoid workspace deletion unless the OpenClaw configuration is trusted, and confirm the target path is under the user home and matches the expected claw-* workspace pattern.
+
+Risk: Dedicated Telegram group deletion is irreversible and may affect group members.
+
+Mitigation: Require a separate explicit confirmation for browser or session control, then report the final group status as deleted, left-only, or pending-manual.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sheetaa/skills/delete-agent-with-telegram-group)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires dry-run review and explicit confirmations before destructive local deletion or Telegram group deletion.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

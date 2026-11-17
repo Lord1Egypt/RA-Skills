@@ -1,43 +1,60 @@
-## Description: <br>
-Search and download books from Z-Library. Caches login session to ~/.zlibrary-session.json. Downloads book files (EPUB/PDF) to ~/Downloads/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and download books from Z-Library. Caches login session to ~/.zlibrary-session.json. Downloads book files (EPUB/PDF) to ~/Downloads/.
 
-## Publisher: <br>
-[imnoahcook](https://clawhub.ai/user/imnoahcook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imnoahcook](https://clawhub.ai/user/imnoahcook)
 
-## Use Case: <br>
-External users and developers use this skill to search Z-Library, inspect available book formats, and download selected files through an agent-assisted command workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Z-Library account credentials and may cache session tokens in ~/.zlibrary-session.json. <br>
-Mitigation: Keep ZLIBRARY_EMAIL and ZLIBRARY_PASSWORD private, restrict permissions on ~/.zlibrary-session.json if it is created, and delete that file to clear the cached login. <br>
-Risk: The skill downloads external book files to ~/Downloads/. <br>
-Mitigation: Download only content you trust and are allowed to access, and review downloaded files before opening or sharing them. <br>
-Risk: The service domain can change, which could expose credentials if the wrong domain is used. <br>
-Mitigation: Verify the service domain before entering credentials or running login commands. <br>
+## Use Case:
 
+External users and developers use this skill to search Z-Library by book metadata, inspect available formats, and download selected book files through an agent-assisted command workflow.
 
-## Reference(s): <br>
-- [ClawHub Z-Library skill page](https://clawhub.ai/imnoahcook/zlibrary) <br>
-- [Publisher profile](https://clawhub.ai/user/imnoahcook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with inline bash commands and downloaded book files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl, ZLIBRARY_EMAIL, ZLIBRARY_PASSWORD, and an optional ~/.zlibrary-session.json session cache; downloads files to ~/Downloads/ unless the user specifies otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill handles account credentials and cached Z-Library session tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique password, restrict permissions on ~/.zlibrary-session.json, and delete the session cache when it is no longer needed.
+
+Risk: The password may be briefly exposed in process arguments during login commands.
+
+Mitigation: Run commands only in trusted local environments and avoid shared systems or process monitors when authenticating.
+
+Risk: Downloads are written to ~/Downloads/ by default.
+
+Mitigation: Specify another destination when needed and review downloaded files before opening or sharing them.
+
+## Reference(s):
+
+- [Z-Library ClawHub Skill Page](https://clawhub.ai/imnoahcook/skills/zlibrary)
+- [Z-Library eAPI Login Endpoint](https://z-lib.sk/eapi/user/login)
+- [Z-Library eAPI Book Search Endpoint](https://z-lib.sk/eapi/book/search)
+- [Z-Library eAPI User Profile Endpoint](https://z-lib.sk/eapi/user/profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and numbered search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a reusable session cache to ~/.zlibrary-session.json and downloaded files to ~/Downloads/ unless another destination is specified.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

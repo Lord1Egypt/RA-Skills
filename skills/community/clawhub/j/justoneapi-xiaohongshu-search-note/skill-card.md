@@ -1,43 +1,56 @@
-## Description: <br>
-Search Xiaohongshu (RedNote) notes through JustOneAPI using keyword-based query parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call Xiaohongshu (RedNote) note search endpoints through JustOneAPI by keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI endpoints that return Xiaohongshu (RedNote) note search data, including snippets, authors, and media for topic discovery. It supports versioned GET operations for keyword-based searches with optional pagination, sort, note type, and note time filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends RedNote search keywords and a JustOneAPI token to api.justoneapi.com. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, keep tokens out of chat messages and logs, and rotate the token if it may have been exposed. <br>
-Risk: The helper places the token into query parameters for the API request, which can expose credentials through command history, process listings, logs, or monitoring systems. <br>
-Mitigation: Prefer passing the token from an environment variable on trusted systems, avoid shared shells and verbose logging, and limit token scope where the provider supports it. <br>
+## Use Case:
 
+Developers and agents use this skill to search Xiaohongshu (RedNote) notes by keyword through JustOneAPI, with optional filters for endpoint version, page, sort order, note type, and note publish time.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_search_note&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_search_note&utm_content=project_link) <br>
-- [ClawHub release page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-search-note) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Short endpoint-specific summary followed by raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a JustOneAPI token supplied through JUST_ONE_API_TOKEN or the helper's token argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: JustOneAPI tokens may be exposed through command-line arguments, shell history, process logs, proxy logs, or API request logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, low-scope token, avoid logging command invocations or full request URLs, and rotate the token if exposure is suspected.
+
+Risk: Search terms and filters are sent to JustOneAPI when the skill calls Xiaohongshu note search endpoints.
+
+Mitigation: Install and use the skill only when sharing those lookup terms with JustOneAPI is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-search-note)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_search_note&utm_content=project_link)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_search_note&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks for missing required parameters, reports the operation ID and endpoint path used, summarizes results before raw JSON, and includes API error payloads when requests fail.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

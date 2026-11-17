@@ -1,41 +1,54 @@
-## Description: <br>
-Manages OpenClaw skill installation, discovery, updates, movement, and custom skill spaces through CLI-guided workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages OpenClaw skill installation, listing, updates, moves, and custom skill spaces through CLI-guided workflows.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage skill spaces, install or update skills, list installed skills, and move skills between configured OpenClaw locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The manual install flow can unpack arbitrary remote archives into agent-loaded skill directories without safety checks. <br>
-Mitigation: Prefer ClawHub registry installs, inspect and trust any URL archive before use, and add only custom skill directories that the user controls. <br>
-Risk: The skill modifies OpenClaw skill paths and configuration. <br>
-Mitigation: Confirm target paths before changes, keep the documented backups for moves and updates, and verify the OpenClaw skill list after configuration changes. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to manage skill spaces, install skills, inspect available skills, update existing skills, and move skills between configured spaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liberalchang/openclaw-skill-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/liberalchang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user confirmations before path, install, update, and move operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: ClawHub release metadata; artifact frontmatter says 3.1.0) <br>
+Risk: The skill can guide installation from arbitrary URLs into active skill folders without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted skill sources, independently verify downloaded archives and publishers, and review the target directory before confirming an install.
+
+Risk: The skill can guide changes to OpenClaw skill directories and gateway state.
+
+Mitigation: Review proposed updates, moves, configuration edits, backups, and gateway restarts before execution.
+
+## Reference(s):
+
+- [OpenClaw Skill Manager on ClawHub](https://clawhub.ai/liberalchang/skills/openclaw-skill-manager)
+- [Publisher profile: liberalchang](https://clawhub.ai/user/liberalchang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confirmation prompts, status reports, troubleshooting guidance, and suggested OpenClaw or ClawHub CLI commands.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-High-performance Node.js implementation for monitoring Vietnamese Air Quality Indexes with localized city mapping, WAQI data retrieval, and AQI health interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance Node.js implementation for monitoring Vietnamese Air Quality Indexes, with localized city mapping and multi-parameter environmental data retrieval.
 
-## Publisher: <br>
-[guchigangz](https://clawhub.ai/user/guchigangz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guchigangz](https://clawhub.ai/user/guchigangz)
 
-## Use Case: <br>
-Developers and AI agents use this skill to look up air quality for Vietnamese cities and return current AQI, weather, pollutant, and health-level data from WAQI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City names are sent to WAQI for lookup. <br>
-Mitigation: Use only city inputs that are appropriate to share with the WAQI service. <br>
-Risk: The skill uses an embedded shared WAQI token that could be revoked, rate-limited, or tied to the publisher's provider account. <br>
-Mitigation: Monitor failures and replace the token with an approved service credential before relying on the skill in operational workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to query real-time air quality data for supported Vietnamese cities and return an interpreted AQI result for downstream user-facing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guchigangz/js-hanoi-air) <br>
-- [Project homepage](https://github.com/picoclaw-skill/aqi-hanoi) <br>
-- [WAQI API](https://api.waqi.info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Pretty-printed JSON written to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes success and error objects with city, AQI, level, weather, pollutant, and update timestamp fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: City queries are sent to the WAQI API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users that city lookups leave the local environment and require outbound access to https://api.waqi.info.
+
+Risk: The bundled WAQI token is exposed in the source.
+
+Mitigation: Prefer a release that uses a user-provided secret from the environment and rotates the exposed token before deployment.
+
+Risk: Network calls do not document request timeouts or response-size limits.
+
+Mitigation: Add operational controls for request timeout, response-size limits, and failure handling before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guchigangz/skills/js-hanoi-air)
+- [Project homepage](https://github.com/picoclaw-skill/aqi-hanoi)
+- [WAQI API](https://api.waqi.info)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns AQI, city, health level, selected weather fields, main pollutant, update timestamp, or an error message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 3.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

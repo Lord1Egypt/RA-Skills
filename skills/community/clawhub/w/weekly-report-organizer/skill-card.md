@@ -1,39 +1,52 @@
-## Description: <br>
-将零散工作记录整理成符合企业规范的结构化周报，包含本周完成情况、下周计划及待协调问题三部分。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将零散工作记录整理成符合企业规范的结构化周报，包含本周完成情况、下周计划及待协调问题三部分。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and business users use this skill to turn notes, chat fragments, task lists, or timelines into a formal Chinese weekly report. The skill organizes work into completed items, next-week plans, and coordination issues while preserving the user's supplied facts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may infer dates, work statuses, or quantified wording from incomplete notes.
+
+Mitigation: Review inferred dates, statuses, and quantitative claims before sending or publishing the weekly report.
+
+Risk: The default report structure or Chinese-language phrasing may not match every organization's internal template.
+
+Mitigation: Compare the generated report against the organization's required template and adjust headings, language, or fields before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and managers use this skill to turn notes, chat fragments, task lists, or spoken work updates into a polished weekly report with completed work, next-week plans, and coordination issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may preserve vague or confidential workplace details from the user's notes. <br>
-Mitigation: Review the report before sharing and remove sensitive details or clarify ambiguous items. <br>
+**Output Format:** [Markdown weekly report with structured tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/weekly-report-organizer) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
+**Other Properties Related to Output:** [Chinese-language report text; includes inferred date ranges and status classifications when the user does not specify them.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown weekly report with structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report contains required sections for current-week work, next-week plans, and coordination issues.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

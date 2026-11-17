@@ -1,40 +1,59 @@
-## Description: <br>
-Gate Exchange same-UID internal transfer skill. Use when the user asks to move funds between their own Gate accounts. Triggers on 'transfer funds', 'move USDT to futures', 'internal transfer'. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate Exchange same-UID internal transfer skill for moving funds between a user's own Gate accounts.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users use this skill to prepare and execute same-UID internal transfers between their own Gate spot, isolated margin, perpetual, delivery, and options accounts through a configured Gate MCP session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Gate Internal Transfer Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Gate Exchange Transfer MCP Specification](references/mcp.md) <br>
-- [Gate Skills Homepage](https://github.com/gate/gate-skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gaixianggeng/gate-exchange-transfer-staging) <br>
+External users and developers use this skill to draft, confirm, and execute same-UID internal transfers between Gate spot, isolated margin, perpetual, delivery, and options accounts through a configured Gate MCP session.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown transfer drafts, confirmation prompts, API-call results, and ledger verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Gate API credentials, balance pre-checks, explicit immediate confirmation before writes, and post-transfer ledger verification.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill requires wallet write access and can move funds within the user's Gate account.
+
+Mitigation: Use a Gate API key limited to the listed permissions, review every transfer draft, and confirm only when the amount, asset, source, and destination are correct.
+
+Risk: Ambiguous, stale, or changed transfer parameters could cause an unintended transfer.
+
+Mitigation: Execute only after an explicit confirmation in the immediately previous user turn, and require a new draft whenever amount, currency, source, or destination changes.
+
+Risk: Missing MCP configuration, authentication failures, unsupported account routes, or insufficient balances can affect fund safety.
+
+Mitigation: Stay in read-only guidance mode until configuration, permissions, account route, and source balance checks pass.
+
+## Reference(s):
+
+- [Gate Skills Homepage](https://github.com/gate/gate-skills)
+- [Gate Internal Transfer Runtime Rules](references/gate-runtime-rules.md)
+- [Gate Exchange Transfer MCP Specification](references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, API calls, guidance]
+
+**Output Format:** [Markdown transfer drafts, confirmation prompts, transfer result reports, and setup or recovery guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit immediate confirmation before wallet write actions and verifies transfers through account-book read endpoints when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata; artifact frontmatter version: 2026.4.6-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

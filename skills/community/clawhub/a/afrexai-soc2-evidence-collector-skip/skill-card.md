@@ -1,42 +1,58 @@
-## Description: <br>
-Generate SOC2 evidence collection checklists, evidence gathering scripts, and audit-ready evidence packages for SOC2 Type I and Type II work across the five Trust Service Criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SOC2 evidence collection checklists, automate evidence gathering scripts, and produce audit-ready evidence packages covering all 5 Trust Service Criteria.
 
-## Publisher: <br>
-[shark1973](https://clawhub.ai/user/shark1973) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shark1973](https://clawhub.ai/user/shark1973)
 
-## Use Case: <br>
-Compliance managers, engineering teams, startups, and audit firms use this skill to plan SOC2 evidence collection, generate control checklists, create collection scripts, identify gaps, and organize audit-ready evidence packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated collection scripts can gather sensitive cloud, GitHub, identity, HR, security, and business evidence. <br>
-Mitigation: Inspect generated scripts before running them, execute manually with least-privilege read-only credentials, and redact sensitive values before storing or sharing evidence packages. <br>
+## Use Case:
 
+External users, developers, engineering teams, and compliance managers use this skill to prepare SOC2 Type I or Type II evidence packages, build collection scripts, identify gaps, and schedule recurring evidence refreshes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shark1973/afrexai-soc2-evidence-collector-skip) <br>
-- [Publisher profile](https://clawhub.ai/user/shark1973) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [AfrexAI](https://afrexai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, evidence package structure, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts and evidence packages should be reviewed and redacted before use or sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Generated evidence collection scripts can operate as sensitive administrative tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run generated scripts only with authorized, least-privilege AWS, GitHub, or IdP credentials and review commands before execution.
+
+Risk: Collected SOC2 evidence may contain sensitive security, access, infrastructure, or audit data.
+
+Mitigation: Store evidence directories securely and redact sensitive values before sharing with auditors or third parties.
+
+Risk: Evidence packages may be incomplete or misaligned if the audit scope is wrong.
+
+Mitigation: Confirm the audit type, Trust Service Criteria, cloud providers, tech stack, team size, and audit boundary before generating or relying on the package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shark1973/skills/afrexai-soc2-evidence-collector-skip)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured tables, evidence-package outlines, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audit materials should be reviewed, authorized, securely stored, and redacted before auditor or third-party sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server evidence, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

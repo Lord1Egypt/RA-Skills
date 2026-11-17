@@ -1,40 +1,59 @@
-## Description: <br>
-Agent-to-Agent Commerce: Build Autonomous B2B Transactions. Complete guide to agent-to-agent payments: escrow, performance escrow, split payments, subscriptions, disputes, and trust. Includes detailed Python code examples with full API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A guide for building agent-to-agent payment workflows with GreenHelix, covering escrow, split payments, subscriptions, disputes, trust, and Python integration examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this guide to study and build agent-to-agent commerce flows with GreenHelix payment integrations, including escrow, subscriptions, disputes, trust scoring, and Python API examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy-pasted payment examples can reach live payment APIs or use financially privileged credentials. <br>
-Mitigation: Use sandbox or test credentials, explicitly configure the sandbox base URL, set spending caps before escrow or subscription workflows, and tightly monitor any live wallet, Stripe, or signing keys. <br>
+## Use Case:
 
+Developers and agent builders use this guide to design autonomous B2B payment flows between agents, including wallet setup, service discovery, escrow, subscriptions, disputes, and trust scoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-commerce-toolkit) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix developer documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied GREENHELIX_API_KEY, AGENT_SIGNING_KEY, and STRIPE_API_KEY values for real integrations; examples should be run with sandbox or test credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release and frontmatter) <br>
+Risk: The guide asks for sensitive credentials, including a Stripe API key and agent signing key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or tightly scoped test credentials, store secrets outside the skill content, and avoid real Stripe keys or long-lived signing keys unless a reviewed example truly requires them.
+
+Risk: Copy-paste payment, escrow, or subscription flows may be adapted without adequate spending safeguards.
+
+Mitigation: Add production gates, budget limits, human approval points, and recurring-subscription controls before using the flows with real funds.
+
+Risk: Illustrative code may not match a specific deployment environment or current API behavior.
+
+Mitigation: Review and test examples in the GreenHelix sandbox, verify endpoint behavior, and confirm authentication scopes before production use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mirni/skills/greenhelix-agent-commerce-toolkit)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API documentation](https://api.greenhelix.net/docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guide with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; live integrations require user-supplied credentials.]
+
+## Skill Version(s):
+
+1.3.1 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Monitor, report, and get AI-generated fixes for JavaScript and TypeScript production errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered error monitoring for reporting JavaScript and TypeScript production errors, retrieving AI-generated fixes, and listing recent project errors.
 
-## Publisher: <br>
-[hankmint](https://clawhub.ai/user/hankmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hankmint](https://clawhub.ai/user/hankmint)
 
-## Use Case: <br>
-Developers use Codemend to add JavaScript and TypeScript error monitoring, report production errors, check analysis status, and retrieve AI-generated fix guidance or pull request links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script contacts an unexpected AutoHeal domain and uses AUTOHEAL_API_KEY instead of the documented Codemend API key. <br>
-Mitigation: Review or disable scripts/check-errors.sh unless the publisher explains or fixes the AutoHeal domain and API key mismatch. <br>
-Risk: Production error monitoring can send stack traces, source URLs, and other application error data to an external service. <br>
-Mitigation: Treat API keys as secrets, redact sensitive stack traces and URLs, and confirm privacy and compliance requirements before enabling automatic production capture. <br>
+## Use Case:
 
+Developers and engineers use Codemend to add production error monitoring to JavaScript and TypeScript projects, report errors to Codemend, check analysis status, and retrieve AI-generated fix guidance or pull request links.
 
-## Reference(s): <br>
-- [Codemend skill page](https://clawhub.ai/hankmint/codemend) <br>
-- [Codemend homepage](https://codemend.ai) <br>
-- [OpenClaw registry](https://github.com/anthropics/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with shell commands, code snippets, and JSON API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CODEMEND_API_KEY; responses may include error IDs, status values, fix prompts, dashboard URLs, and pull request URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Production error reporting can transmit error messages, stack traces, page URLs, or other sensitive fields outside the user's system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what fields may leave the system, redact secrets and PII, and approve production-page use before enabling monitoring.
+
+Risk: The helper script sends AUTOHEAL_API_KEY to an undocumented AutoHeal service that differs from the Codemend API described elsewhere.
+
+Mitigation: Do not run scripts/check-errors.sh or provide AUTOHEAL_API_KEY unless autohealai.com has been separately reviewed and approved.
+
+Risk: Browser and npm setup examples can introduce third-party runtime code into production applications.
+
+Mitigation: Prefer pinned npm package versions and a pinned or self-hosted browser script with integrity controls where possible.
+
+## Reference(s):
+
+- [Codemend Skill on ClawHub](https://clawhub.ai/hankmint/skills/codemend)
+- [Codemend](https://codemend.ai)
+- [OpenClaw Registry](https://github.com/anthropics/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, code snippets, API request examples, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Codemend error identifiers, dashboard URLs, fix explanations, root-cause summaries, confidence scores, fix prompts, and pull request URLs when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

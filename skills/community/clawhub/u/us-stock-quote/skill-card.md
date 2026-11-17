@@ -1,45 +1,55 @@
-## Description: <br>
-Fetches real-time US stock and ETF quotes from Yahoo Finance, with crypto-style symbols routed to Binance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Tools fetches real-time market quotes for US stocks and ETFs through Yahoo Finance and can also query cryptocurrency prices through Binance for crypto-formatted symbols.
 
-## Publisher: <br>
-[wndagg](https://clawhub.ai/user/wndagg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wndagg](https://clawhub.ai/user/wndagg)
 
-## Use Case: <br>
-Developers and agents use this skill to run a Python quote script for common US tickers and ETF symbols, then read price, change, percentage change, and currency output in the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols are sent to Yahoo Finance, and crypto-style symbols are sent to Binance through the configured local proxy. <br>
-Mitigation: Run only if that data sharing is acceptable, and review or change the proxy setting before use. <br>
-Risk: The script depends on third-party market data services and may fail because of network issues, API changes, or rate limits. <br>
-Mitigation: Handle quote lookup failures in the calling workflow and verify important prices against an authoritative source. <br>
-Risk: The script requires the Python requests dependency and uses a local proxy on port 7891. <br>
-Mitigation: Use a trusted Python environment and confirm the local proxy is expected and trusted before execution. <br>
+## Use Case:
 
+External users and developers use this skill to request current quote data for common US stocks and ETFs from an agent workflow or command-line helper. Users should account for the local proxy requirement and the additional Binance crypto path described in security evidence.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wndagg/us-stock-quote) <br>
-- [Project Homepage](https://github.com/wNDAGG/mimi-scripts) <br>
-- [Yahoo Finance Chart API endpoint used by the script](https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d) <br>
-- [Binance ticker price endpoint used by the script](https://api.binance.com/api/v3/ticker/price?symbol={symbol}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain terminal text from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each requested symbol is printed as a separate line; errors are reported inline per symbol.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Ticker symbols are sent through a local proxy to Yahoo Finance and, for crypto-formatted inputs, to Binance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that routing is acceptable, document the proxy requirement for users, and avoid submitting sensitive or private ticker lists.
+
+Risk: The user-facing description understates Binance crypto support and external data-source behavior.
+
+Mitigation: Document or disable the Binance path before relying on the skill in a fully scoped release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wndagg/skills/us-stock-quote)
+- [Yahoo Finance chart endpoint](https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d)
+- [Binance ticker price endpoint](https://api.binance.com/api/v3/ticker/price?symbol={symbol})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown and command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quote output includes symbol, price, percentage change for equities and ETFs, and price for crypto symbols when supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

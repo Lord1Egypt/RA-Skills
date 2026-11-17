@@ -1,42 +1,54 @@
-## Description: <br>
-Manage Docker containers, images, volumes, networks, and Docker Compose projects for listing, control, logs, image builds, cleanup, compose authoring, and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Docker containers, images, volumes, networks, and Docker Compose projects, including logs, builds, cleanup, compose-file creation, and debugging.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers, DevOps engineers, and Docker operators use this skill to inspect, operate, troubleshoot, and clean up Docker environments and to draft Docker Compose configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect local containers, images, volumes, networks, and services when the user approves stop, remove, or prune commands. <br>
-Mitigation: Review exact resource names before approval, and avoid cleanup on important or production Docker hosts unless backups and rollback plans exist. <br>
-Risk: Generated Docker Compose files may expose ports, mount volumes, or set image and environment choices that are unsuitable for a deployment. <br>
-Mitigation: Review compose YAML, image tags, volume mounts, exposed ports, health checks, and secrets handling before applying generated configuration. <br>
-Risk: Docker logs, inspect output, and debugging commands may surface sensitive runtime information. <br>
-Mitigation: Inspect output before sharing it and redact credentials, tokens, internal hostnames, or sensitive file paths. <br>
+## Use Case:
 
+Developers, DevOps engineers, and server operators use this skill to inspect and control Docker resources, troubleshoot container failures, and generate Docker Compose configurations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/eric-docker-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker and Docker Compose binaries; destructive cleanup and removal commands require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release.version and SKILL.md frontmatter) <br>
+Risk: Docker cleanup and removal commands can stop services or delete containers, images, volumes, or other data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve destructive Docker operations such as container removal, image pruning, system pruning, and volume pruning before execution.
+
+Risk: The skill is intended to help run Docker commands on the user's machine.
+
+Mitigation: Install and use it only in environments where agent-assisted Docker command generation and execution review are acceptable.
+
+## Reference(s):
+
+- [Docker Helper ClawHub page](https://clawhub.ai/ericlooi504/skills/eric-docker-helper)
+- [ClawHub homepage](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Docker command proposals, docker-compose.yml content, and cleanup guidance that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,11 +7,9 @@ Covers:
   - log_kid_observation(): appends observation with correct fields
   - get_kid_profile(): returns readable summary / 'no profile' message
   - load_sent_log() / save_sent_log(): roundtrip I/O
-  - find_upcoming_trips(): keyword detection, location detection, multi-day detection
+  - list_candidate_events(): returns non-recurring events with sent_key/already_sent
   - geocode_location(): graceful failure returns None
-  - _fallback_trip_prep(): returns non-empty message without LLM
 """
-import json
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -21,12 +19,6 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Stub external dependencies
-for mod in ("google", "google.oauth2", "google.oauth2.credentials",
-            "google.auth", "google.auth.transport", "google.auth.transport.requests",
-            "googleapiclient", "googleapiclient.discovery"):
-    import types as _types
-    sys.modules.setdefault(mod, _types.ModuleType(mod))
 
 import features.trips.trip_detector as td
 
@@ -79,37 +71,37 @@ class TestKidProfiles:
         assert profiles == {}
 
     def test_save_and_load_roundtrip(self, isolated_paths):
-        data = {"Amyra": {"observations": [{"id": "abc", "text": "likes mountains"}]}}
+        data = {"Ana": {"observations": [{"id": "abc", "text": "likes mountains"}]}}
         td.save_kid_profiles(data)
         loaded = td.load_kid_profiles()
         assert loaded == data
 
     def test_log_observation_creates_profile(self):
-        result = td.log_kid_observation("Amyra", "gets car sick on long drives",
+        result = td.log_kid_observation("Ana", "gets car sick on long drives",
                                          category="health", tags=["long_drive"])
-        assert "Amyra" in result
+        assert "Ana" in result
         profiles = td.load_kid_profiles()
-        assert "Amyra" in profiles
-        assert len(profiles["Amyra"]["observations"]) == 1
-        obs = profiles["Amyra"]["observations"][0]
+        assert "Ana" in profiles
+        assert len(profiles["Ana"]["observations"]) == 1
+        obs = profiles["Ana"]["observations"][0]
         assert obs["text"] == "gets car sick on long drives"
         assert obs["category"] == "health"
         assert "long_drive" in obs["tags"]
 
     def test_log_observation_appends(self):
-        td.log_kid_observation("Amyra", "first obs")
-        td.log_kid_observation("Amyra", "second obs")
+        td.log_kid_observation("Ana", "first obs")
+        td.log_kid_observation("Ana", "second obs")
         profiles = td.load_kid_profiles()
-        assert len(profiles["Amyra"]["observations"]) == 2
+        assert len(profiles["Ana"]["observations"]) == 2
 
     def test_get_kid_profile_no_data(self):
-        result = td.get_kid_profile("Amyra")
+        result = td.get_kid_profile("Ana")
         assert "No profile" in result or "no profile" in result.lower()
 
     def test_get_kid_profile_with_data(self):
-        td.log_kid_observation("Amyra", "likes the beach")
-        result = td.get_kid_profile("Amyra")
-        assert "Amyra" in result
+        td.log_kid_observation("Ana", "likes the beach")
+        result = td.get_kid_profile("Ana")
+        assert "Ana" in result
         assert "likes the beach" in result
 
 
@@ -127,68 +119,147 @@ class TestSentLog:
         assert loaded == data
 
 
-# ─── find_upcoming_trips ─────────────────────────────────────────────────────
+# ─── list_candidate_events ───────────────────────────────────────────────────
 
-class TestFindUpcomingTrips:
-    def _make_cal_service(self, events: list) -> MagicMock:
-        svc = MagicMock()
-        svc.events.return_value.list.return_value.execute.return_value = {"items": events}
-        return svc
+class TestListCandidateEvents:
+    def _make_cal_service(self, events: list) -> list:
+        """Hands back the events unchanged.
+
+        list_candidate_events took a Google service and fetched for itself
+        until 2026-09-07; it now takes already-fetched events, so there is no
+        service to fake. Kept under the old name because eleven call sites use
+        it and the fixtures they build are the point, not the plumbing.
+        """
+        return events
 
     def _future_date(self, days: int) -> str:
         return (datetime.now(timezone.utc) + timedelta(days=days)).strftime("%Y-%m-%d")
 
-    def test_keyword_in_title_detected(self):
-        dt = self._future_date(2)
-        event = {
-            "id": "e1", "summary": "Big Bear Trip",
-            "location": "",
-            "start": {"date": dt}, "end": {"date": dt},
-        }
-        svc = self._make_cal_service([event])
-        trips = td.find_upcoming_trips(svc, days_ahead=4)
-        assert len(trips) == 1
-        assert trips[0]["title"] == "Big Bear Trip"
-
-    def test_location_field_detected(self):
+    def test_non_recurring_event_returned_regardless_of_location(self):
+        """Any non-recurring event is a candidate — agent makes the trip-vs-not call."""
         dt = self._future_date(1)
         event = {
-            "id": "e2", "summary": "Grandma visit",
-            "location": "San Diego, CA",
+            "id": "e1", "summary": "Notary appointment",
+            "location": "Irvine, CA",
             "start": {"date": dt}, "end": {"date": dt},
         }
         svc = self._make_cal_service([event])
-        trips = td.find_upcoming_trips(svc, days_ahead=4)
-        assert len(trips) == 1
-        assert trips[0]["location"] == "San Diego, CA"
+        candidates = td.list_candidate_events(svc)
+        assert len(candidates) == 1
+        assert candidates[0]["title"] == "Notary appointment"
 
-    def test_multi_day_event_detected(self):
-        start = self._future_date(1)
-        end = self._future_date(3)
-        event = {
-            "id": "e3", "summary": "Family visit",
-            "location": "",
-            "start": {"date": start}, "end": {"date": end},
-        }
-        svc = self._make_cal_service([event])
-        trips = td.find_upcoming_trips(svc, days_ahead=4)
-        assert len(trips) == 1
-
-    def test_plain_single_day_no_keyword_not_detected(self):
+    def test_non_recurring_event_without_location_returned(self):
+        """No-location, no-keyword events still surface — agent decides."""
         dt = self._future_date(1)
         event = {
-            "id": "e4", "summary": "Dentist appointment",
+            "id": "e2", "summary": "Lunch",
             "location": "",
             "start": {"date": dt}, "end": {"date": dt},
         }
         svc = self._make_cal_service([event])
-        trips = td.find_upcoming_trips(svc, days_ahead=4)
-        assert len(trips) == 0
+        candidates = td.list_candidate_events(svc)
+        assert len(candidates) == 1
+
+    def test_recurring_event_without_trip_keyword_skipped(self):
+        """A recurring activity (e.g., swim class) is NOT a candidate."""
+        dt = self._future_date(1)
+        event = {
+            "id": "e3", "summary": "Ana and Ben Swim Class",
+            "location": "Waterworks Aquatics, Irvine",
+            "start": {"dateTime": f"{dt}T10:40:00-07:00"},
+            "end": {"dateTime": f"{dt}T11:10:00-07:00"},
+            "recurringEventId": "abc123_recurring",
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert candidates == []
+
+    def test_recurring_event_with_trip_keyword_kept(self):
+        """A recurring 'Annual cabin trip' IS still a candidate."""
+        dt = self._future_date(1)
+        event = {
+            "id": "e4", "summary": "Annual cabin trip",
+            "location": "Big Bear Lake, CA",
+            "start": {"date": dt}, "end": {"date": dt},
+            "recurringEventId": "def456_recurring",
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert len(candidates) == 1
+
+    def test_event_without_title_skipped(self):
+        dt = self._future_date(1)
+        event = {
+            "id": "e5", "summary": "",
+            "location": "Somewhere",
+            "start": {"date": dt}, "end": {"date": dt},
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert candidates == []
 
     def test_empty_calendar_returns_empty(self):
         svc = self._make_cal_service([])
-        trips = td.find_upcoming_trips(svc, days_ahead=4)
-        assert trips == []
+        candidates = td.list_candidate_events(svc)
+        assert candidates == []
+
+    def test_already_sent_flag_true_when_in_log(self):
+        dt = self._future_date(1)
+        event = {
+            "id": "e6", "summary": "Big Bear Trip",
+            "location": "Big Bear Lake, CA",
+            "start": {"date": dt}, "end": {"date": dt},
+        }
+        td.save_sent_log({f"e6:{dt}": {"title": "Big Bear Trip", "sent_at": "x", "start_date": dt}})
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert len(candidates) == 1
+        assert candidates[0]["already_sent"] is True
+
+    def test_already_sent_flag_false_for_new_event(self):
+        dt = self._future_date(1)
+        event = {
+            "id": "e7", "summary": "Beach Day",
+            "location": "Laguna",
+            "start": {"date": dt}, "end": {"date": dt},
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert candidates[0]["already_sent"] is False
+
+    def test_multiday_flag_true_for_multiday_all_day(self):
+        start = self._future_date(1)
+        end = self._future_date(3)
+        event = {
+            "id": "e8", "summary": "Cabin getaway",
+            "location": "Tahoe",
+            "start": {"date": start}, "end": {"date": end},
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert candidates[0]["multiday"] is True
+
+    def test_multiday_flag_false_for_single_day(self):
+        dt = self._future_date(1)
+        event = {
+            "id": "e9", "summary": "Lunch meeting",
+            "location": "Office",
+            "start": {"date": dt}, "end": {"date": dt},
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert candidates[0]["multiday"] is False
+
+    def test_sent_key_format(self):
+        dt = self._future_date(1)
+        event = {
+            "id": "abc-123", "summary": "Some Event",
+            "location": "Anywhere",
+            "start": {"date": dt}, "end": {"date": dt},
+        }
+        svc = self._make_cal_service([event])
+        candidates = td.list_candidate_events(svc)
+        assert candidates[0]["sent_key"] == f"abc-123:{dt}"
 
 
 # ─── geocode_location ─────────────────────────────────────────────────────────
@@ -202,34 +273,3 @@ class TestGeocodeLocation:
         with patch("urllib.request.urlopen", side_effect=Exception("no network")):
             result = td.geocode_location("Big Bear Lake, CA")
         assert result is None
-
-
-# ─── _fallback_trip_prep ─────────────────────────────────────────────────────
-
-class TestFallbackTripPrep:
-    def test_returns_non_empty_message(self):
-        trip = {
-            "title": "Big Bear Cabin",
-            "start_date": (datetime.now() + timedelta(days=2)).strftime("%Y-%m-%d"),
-            "end_date": (datetime.now() + timedelta(days=4)).strftime("%Y-%m-%d"),
-            "location": "Big Bear Lake, CA",
-        }
-        weather = {
-            "temp_low": 35,
-            "temp_high": 55,
-            "condition": "Partly cloudy",
-            "humidity": 30,
-        }
-        result = td._fallback_trip_prep(trip, weather, ["mountain", "cold"], {})
-        assert "Big Bear" in result
-        assert "35" in result or "55" in result
-
-    def test_works_without_weather(self):
-        trip = {
-            "title": "Beach Day",
-            "start_date": datetime.now().strftime("%Y-%m-%d"),
-            "end_date": datetime.now().strftime("%Y-%m-%d"),
-            "location": "Laguna Beach",
-        }
-        result = td._fallback_trip_prep(trip, None, ["beach"], {})
-        assert "Beach Day" in result

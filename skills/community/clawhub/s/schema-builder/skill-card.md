@@ -1,44 +1,58 @@
-## Description: <br>
-Builds database schemas with SQL generation and relationship modeling for database design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build database schemas with SQL generation and relationship modeling. Use when designing databases.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and database designers use this skill to draft relational schemas, generate SQL and migration text, model relationships, validate schema files, and compare database designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL, migrations, seed data, and schema suggestions may be incorrect for a specific database or production environment. <br>
-Mitigation: Review and test all generated SQL before applying it to any real database. <br>
-Risk: Validation commands inspect local files selected by the user. <br>
-Mitigation: Run validation only on files you intend the skill to inspect. <br>
-Risk: The skill creates or uses a local data directory at ~/.local/share/schema-builder. <br>
-Mitigation: Remove ~/.local/share/schema-builder if you do not want the local directory retained. <br>
+## Use Case:
 
+Developers and engineers use Schema Builder to design database tables, model relationships, and generate SQL, migrations, seed data, schema comparisons, and related guidance for application databases.
 
-## Reference(s): <br>
-- [Schema Builder on ClawHub](https://clawhub.ai/ckchzh/schema-builder) <br>
-- [Publisher Profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and terminal text with SQL, JSON schema, migration, seed data, validation, comparison, and ER diagram output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands create or use a local data directory at ~/.local/share/schema-builder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated SQL, migrations, and schema comparison output may be unsafe or unsuitable for staging or production databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated database changes manually, test them in an isolated development environment, and apply normal migration, backup, and rollback controls before deployment.
+
+Risk: Generated seed data can include hardcoded administrator-style credentials or privileged roles.
+
+Mitigation: Do not import generated seed credentials into staging or production; replace credentials, emails, and roles with approved test data before use.
+
+Risk: The security evidence flags the skill as suspicious because richer generator behavior is under-disclosed.
+
+Mitigation: Review the skill before installation and limit execution to trusted workspaces until the generated database artifacts have been validated.
+
+## Reference(s):
+
+- [Schema Builder on ClawHub](https://clawhub.ai/ckchzh/skills/schema-builder)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with shell commands, SQL snippets, JSON schema examples, and ASCII diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes SQL, migration snippets, seed data, ER diagrams, optimization notes, and MongoDB schema JSON.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Extracts comments from Word documents, maps page numbers, and formats them into standardized review opinions for investment banking QC, legal review, and document audit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract comments from Word documents and format them into standardized review opinions. Auto-matches page numbers, agent-powered semantic polishing. Designed for investment banking QC, legal review, and document audit scenarios.
 
-## Publisher: <br>
-[tomyan-zhang](https://clawhub.ai/user/tomyan-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomyan-zhang](https://clawhub.ai/user/tomyan-zhang)
 
-## Use Case: <br>
-Employees and external reviewers use this skill to extract Word document comments and convert them into standardized review opinions. It is intended for investment banking quality control, legal review, and document audit workflows where page references and concise revision requests matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Microsoft Word automation and requires the pywin32 dependency on a Windows environment. <br>
-Mitigation: Install it only where Microsoft Word automation is acceptable and the pywin32 dependency has been approved. <br>
-Risk: Extracted comments and nearby document text become visible to the agent during rewriting. <br>
-Mitigation: Use trusted documents and avoid processing sensitive content unless the agent environment is approved for that data. <br>
-Risk: Physical page numbers may differ from displayed page numbers in documents with cover pages, front matter, or custom numbering. <br>
-Mitigation: Review the page number note and apply an offset correction when displayed numbering differs from physical page order. <br>
+## Use Case:
 
+External users and document review teams use this skill to extract Word document comments, anchor text, and page numbers, then turn those comments into standardized review opinions for investment banking quality control, legal review, and document audit workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomyan-zhang/word-comments-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON extraction output followed by a polished Markdown/plain-text review opinion list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows with Microsoft Word and pywin32 for page number retrieval; extracted comments and nearby document text are visible to the agent for rewriting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Opening and parsing untrusted DOCX files can expose users to unsafe document content or oversized archive behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the extractor only on trusted documents or in an isolated environment until archive size and member validation are added.
+
+Risk: The skill depends on Microsoft Word COM for page number lookup, so page data can be unavailable outside supported Windows and Word environments.
+
+Mitigation: Run on Windows with Microsoft Word installed and review any comments whose page field is reported as unknown.
+
+Risk: Agent-side polishing can change tone or omit nuance if the original comment and anchor text are ambiguous.
+
+Mitigation: Review the generated opinion list against the extracted JSON before using it in a formal document review workflow.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Install in an isolated Python environment and pin pywin32 where operational reproducibility is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomyan-zhang/skills/word-comments-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted review opinion list, with JSON produced by the local extraction script as an intermediate input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes physical page numbers when Microsoft Word COM page lookup succeeds; page numbers may differ from displayed document numbering.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

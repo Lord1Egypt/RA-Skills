@@ -1,48 +1,61 @@
-## Description: <br>
-Runs NoxInfluencer creator and marketing-ops workflows via CLI, including creator discovery for influencer marketing, creator marketing, UGC, social media marketing, and affiliate marketing; creator evaluation, contact retrieval for external use, video tracking, campaigns, collections, CRM channels, product center, short links, email/message tasks, brand monitoring, and exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate NoxInfluencer creator intelligence and marketing systems through the CLI, including search, analysis, contacts, monitoring, campaigns, CRM, outreach operations, products, affiliation, brand intelligence, exports, account setup, quota, and troubleshooting.
 
-## Publisher: <br>
-[noxinfluencer](https://clawhub.ai/user/noxinfluencer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noxinfluencer](https://clawhub.ai/user/noxinfluencer)
 
-## Use Case: <br>
-Marketing teams, creator partnerships operators, and agents use this skill to discover and evaluate creators, manage NoxInfluencer outreach workflows, monitor campaigns, retrieve approved contact data, and operate campaign, collection, CRM, product, short-link, export, and brand-monitor tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a NoxInfluencer account through the official CLI, including changes to campaigns, CRM records, email/message tasks, products, short links, and brand-monitor records. <br>
-Mitigation: Use dry-run, validate, or preview paths where available and execute writes only after the user approves the exact object and action. <br>
-Risk: The skill may retrieve visible creator contact information or create exports when explicitly requested. <br>
-Mitigation: Limit contact retrieval and exports to explicit user requests, report only the needed visible contact details, and preserve export IDs and output paths for auditability. <br>
-Risk: The CLI may rely on a locally stored API key and account quota or entitlements. <br>
-Mitigation: Use browser login or stdin-based key handling, run diagnostics and quota checks before blocked workflows, and pass through service-provided action links for billing or authorization issues. <br>
+## Use Case:
 
+External marketers and business teams use this skill to discover creators, assess fit and risk, manage NoxInfluencer campaign operations, run approved outreach workflows, export records, and troubleshoot account, quota, or CLI issues.
 
-## Reference(s): <br>
-- [NoxInfluencer Skills Homepage](https://www.noxinfluencer.com/skills) <br>
-- [CLI Response Format](references/cli-response-format.md) <br>
-- [Marketing Ops Workflows](references/marketing-ops.md) <br>
-- [Brand Monitor Workflows](references/brand-monitor.md) <br>
-- [Platform Support](references/platform-support.md) <br>
-- [Search Filter Semantics](references/search-filters.md) <br>
-- [Verdict Heuristics Reference](references/verdict-heuristics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise natural-language summaries with selected IDs, links, paths, and action confirmations when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute NoxInfluencer CLI commands, create or download files for exports, and preserve opaque IDs for follow-up operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.13 (source: server release metadata) <br>
+Risk: The skill installs an unpinned third-party CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the NoxInfluencer CLI package before installation and prefer a pinned, trusted version.
+
+Risk: Authenticated CLI actions can affect outreach, CRM, exports, account state, product records, and paid or quota-consuming operations.
+
+Mitigation: Use a restricted NoxInfluencer account, keep credentials scoped and revocable, and require explicit confirmation before sends, schedules, exports, unlocks, CRM changes, product changes, or deletions.
+
+## Reference(s):
+
+- [NoxInfluencer Skill Page](https://www.noxinfluencer.com/skills)
+- [ClawHub Skill Release](https://clawhub.ai/noxinfluencer/skills/nox-influencer-marketing)
+- [NoxInfluencer Usage Billing](https://www.noxinfluencer.com/skills/usage-billing)
+- [CLI Response Format](references/cli-response-format.md)
+- [Marketing Ops Workflows](references/marketing-ops.md)
+- [Brand Monitor Workflows](references/brand-monitor.md)
+- [Platform Support](references/platform-support.md)
+- [Search Filter Semantics](references/search-filters.md)
+- [Verdict Heuristics Reference](references/verdict-heuristics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-language Markdown summaries with verified IDs, system state, and action URLs when user action is required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or download files through approved NoxInfluencer CLI workflows; write actions require explicit approval and dry-run or preview where supported.]
+
+## Skill Version(s):
+
+0.1.18 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

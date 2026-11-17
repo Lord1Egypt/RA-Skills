@@ -1,47 +1,57 @@
-## Description: <br>
-Use when replacing lip sync in existing videos with Alibaba Cloud Model Studio VideoRetalk (`videoretalk`) for dubbed videos, replaced narration, or synchronized talking-head videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when replacing lip sync in existing videos with Alibaba Cloud Model Studio VideoRetalk (`videoretalk`). Use when creating dubbed videos, replacing narration, or synchronizing a talking-head video to a new speech track.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and media automation teams use this skill to prepare Alibaba Cloud Model Studio VideoRetalk requests for replacing a person video's lip sync with a new speech track. It supports public video and audio URLs, optional target-face selection, and video-extension settings for asynchronous VideoRetalk jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland (Beijing) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video and audio URLs are sent to Alibaba Cloud for processing. <br>
-Mitigation: Use only media that is approved for Alibaba Cloud processing, avoid secret-bearing or long-lived signed URLs, and confirm the required region and account controls before submitting jobs. <br>
-Risk: The helper stores full request details locally, including media URLs and task snapshots. <br>
-Mitigation: Keep generated output files private, store them only in approved locations, and delete them after use when they are no longer needed. <br>
-Risk: Multi-face videos can target the wrong person if face selection is ambiguous. <br>
-Mitigation: Provide a reference image URL for multi-face inputs and review generated outputs before publishing or downstream use. <br>
+## Use Case:
 
+Developers and media automation teams use this skill to prepare Alibaba Cloud Model Studio VideoRetalk requests for replacing lip sync in person videos with a new speech track. It supports dubbed videos, narration replacement, multi-face targeting with a reference image, and optional video extension for longer audio.
 
-## Reference(s): <br>
-- [Aliyun Videoretalk release page](https://clawhub.ai/cinience/aliyun-videoretalk) <br>
-- [Publisher profile](https://clawhub.ai/user/cinience) <br>
-- [Video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [VideoRetalk product documentation](https://help.aliyun.com/zh/model-studio/videoretalk/) <br>
-- [VideoRetalk API reference](https://help.aliyun.com/zh/model-studio/videoretalk-api) <br>
-- [Artifact reference sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request JSON and records input URLs, face-selection settings, video-extension choice, and polling snapshots under output/aliyun-videoretalk/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Input video and audio URLs are sent to Alibaba Cloud DashScope and the exact URLs may be stored locally under output/aliyun-videoretalk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved public media URLs, avoid sensitive links, and clean the output directory after work that includes sensitive media references.
+
+Risk: The workflow requires a DashScope API key for provider access.
+
+Mitigation: Use a scoped DashScope API key where possible and keep credentials in environment variables or the documented Alibaba Cloud credentials file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-videoretalk)
+- [Alibaba Cloud video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation)
+- [VideoRetalk product documentation](https://help.aliyun.com/zh/model-studio/videoretalk/)
+- [VideoRetalk API reference](https://help.aliyun.com/zh/model-studio/videoretalk-api)
+- [Source references](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files]
+
+**Output Format:** [Markdown guidance with shell commands and normalized JSON request payloads written to files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes request payloads, face selection settings, and task polling snapshots under output/aliyun-videoretalk; records exact input media URLs and video_extension settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

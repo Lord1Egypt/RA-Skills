@@ -1,39 +1,54 @@
-## Description: <br>
-Standardize OpenClaw cron wrappers, prompt contracts, and delivery-mode expectations for jobs that rely on ClankerHive claims, result JSON artifacts, cron delivery status, wrapper scripts, or reply-vs-message delivery behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardize OpenClaw cron wrappers, prompt contracts, and delivery-mode expectations for jobs that use ClankerHive claims, result JSON artifacts, cron delivery status, wrapper scripts, or reply-vs-message delivery behavior.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit or design OpenClaw cron jobs so wrapper behavior, prompt handling, result artifacts, and delivery.mode settings stay aligned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides operational guidance for cron-job contract cleanup but does not enforce safe wrapper or delivery.mode changes itself. <br>
-Mitigation: Review actual cron wrapper code and delivery.mode changes separately, then validate edited jobs before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit or update OpenClaw cron jobs so wrapper behavior, result artifacts, prompt handling, and delivery.mode settings stay aligned.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pfrederiksen/openclaw-cron-standard) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown guidance with checklists and contract recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for OpenClaw workflows that follow the documented contract.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Proposed cron prompt or delivery.mode edits can change whether a scheduled job notifies users or remains silent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review delivery.mode changes against the job's actual delivery contract before applying them.
+
+Risk: Cron contract drift can cause stale result artifacts, duplicate-run confusion, or silent not-delivered runs.
+
+Mitigation: Apply the audit checklist and validate wrapper, prompt, claim sentinel, result artifact, and delivery.mode behavior together.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/openclaw-cron-standard)
+- [Publisher profile](https://clawhub.ai/user/pfrederiksen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; no installer, network behavior, binaries, or auto-update behavior were identified in release security evidence.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

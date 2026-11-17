@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes staged Git diffs and helps generate detailed Angular-style commit messages in Chinese or English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Angular-style commit messages from staged Git diffs with automatic or user-selected Chinese and English output.
 
-## Publisher: <br>
-[ZenoLeee](https://clawhub.ai/user/ZenoLeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zenoleee](https://clawhub.ai/user/zenoleee)
 
-## Use Case: <br>
-Developers use this skill inside Git repositories to turn staged changes into concise, convention-compliant commit messages. It is most useful for teams that want richer commit descriptions, automatic Chinese or English language selection, and optional prepare-commit-msg hook reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Staged diffs can contain secrets, proprietary code, personal data, or internal URLs that may be included in AI analysis. <br>
-Mitigation: Review git diff --cached before use and remove sensitive material from staged changes before asking the agent to analyze the diff. <br>
-Risk: Installing the optional prepare-commit-msg hook changes repository behavior. <br>
-Mitigation: Use --install only when a persistent commit reminder is desired and review any existing hook before accepting the change. <br>
-Risk: Using --force with hook installation may replace an existing prepare-commit-msg hook. <br>
-Mitigation: Check and back up existing hook behavior before running --install --force. <br>
+## Use Case:
 
+Developers use this skill to analyze staged Git changes and draft concise conventional commit messages with an inferred scope, change type, and language. It can also install a Git prepare-commit-msg hook that reminds users to generate a message during commits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZenoLeee/git-commit-ai) <br>
-- [Angular commit convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) <br>
-- [Git diff documentation](https://git-scm.com/docs/git-diff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with diff code fences, warnings, and commit-message guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include warnings about sensitive staged content or large diffs; install mode can modify the repository prepare-commit-msg hook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact package.json) <br>
+Risk: Staged diffs may contain secrets or other sensitive code that would be included in the generated prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review staged changes for secrets before running the skill and remove sensitive content before asking the agent to generate a commit message.
+
+Risk: The optional Git hook is persistent, and forced installation can overwrite an existing prepare-commit-msg hook.
+
+Mitigation: Install the hook only after checking existing hook behavior and avoid --install --force unless the existing hook has been reviewed and backed up.
+
+Risk: Very large diffs can reduce commit-message accuracy.
+
+Mitigation: Split large staged changes into smaller commits before generating a message.
+
+## Reference(s):
+
+- [Angular Commit Convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
+- [Git diff Documentation](https://git-scm.com/docs/git-diff)
+- [ClawHub Skill Page](https://clawhub.ai/zenoleee/skills/git-commit-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prompt text containing a staged diff and instructions, or plain text status/help output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports language selection with auto, zh, or en; optional hook installation writes or updates prepare-commit-msg.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

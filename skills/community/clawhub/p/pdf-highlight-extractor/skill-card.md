@@ -1,40 +1,53 @@
-## Description: <br>
-Extracts highlight annotations from a user-provided PDF and helps create a Markdown reading-notes file with YAML front matter, excerpts by page, and a content summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts highlighted text annotations from a user-provided PDF and creates a Markdown notes file with YAML front matter, original excerpts grouped by page, and an AI-written summary.
 
-## Publisher: <br>
-[zhengbin1973](https://clawhub.ai/user/zhengbin1973) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengbin1973](https://clawhub.ai/user/zhengbin1973)
 
-## Use Case: <br>
-External users and knowledge workers use this skill when they want an agent to extract highlighted text from a PDF, organize excerpts by page, and prepare Markdown reading notes with a concise summary and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads highlighted text from user-selected PDFs and writes a Markdown file in the same directory, which can expose document content if that folder is shared, synced, or version-controlled. <br>
-Mitigation: Use the skill only with appropriate PDFs, review the output location before sharing or syncing, and avoid confidential documents unless the generated Markdown file is acceptable there. <br>
-Risk: The skill may install PyMuPDF before extraction. <br>
-Mitigation: Review and approve dependency installation in the target Python environment before running the install script. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn PDF highlight annotations into structured reading notes. It is useful when a user provides a PDF and asks to extract highlights, organize annotations, read marked passages, or generate study notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhengbin1973/pdf-highlight-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON highlight data and Markdown notes with YAML front matter] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Markdown next to the source PDF by default and can filter highlights by color.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs PyMuPDF into the active Python environment at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and pin or approve the PyMuPDF version before installation.
+
+Risk: The skill writes a highlights Markdown file beside the source PDF and may replace a same-named notes file.
+
+Mitigation: Check whether <pdf name>_highlights.md already exists, or choose a controlled output directory before running it on important documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengbin1973/skills/pdf-highlight-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON highlight records and a Markdown file with YAML front matter]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown is saved beside the source PDF as <pdf name>_highlights.md; optional color filtering supports yellow, green, red, blue, pink, orange, purple, and cyan.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

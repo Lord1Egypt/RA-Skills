@@ -1,0 +1,8 @@
+interface:
+  display_name: "Judgment Loop"
+  short_description: "Turn uncertainty into falsifiable judgment and owned action"
+  default_prompt: "Use $judgment-loop to examine this choice, separate target, constraints, and evidence, then close with the cheapest test and an owned action."
+  brand_color: "#2563EB"
+
+policy:
+  allow_implicit_invocation: true

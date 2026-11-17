@@ -1,40 +1,53 @@
-## Description: <br>
-EverMemory helps OpenClaw and ClawHub agents remember, recall, inspect memory state, manage preferences or profiles, generate briefings, review rules, explain memory decisions, export or import memory, restore archived memory, and measure memory growth and smartness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EverMemory helps OpenClaw and ClawHub agents store, recall, inspect, govern, export, import, and explain persistent memory, preferences, profiles, rules, and archived context.
 
-## Publisher: <br>
-[jiehao321](https://clawhub.ai/user/jiehao321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao321](https://clawhub.ai/user/jiehao321)
 
-## Use Case: <br>
-Developers and agent users use EverMemory to give OpenClaw or ClawHub agents persistent memory, profile awareness, governed recall, briefings, and maintenance workflows for memory import, export, archive review, and restore. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may retain sensitive personal, project, or credential-like details if users store them. <br>
-Mitigation: Review stored memories, profiles, and rules periodically, and avoid storing secrets or transient chatter. <br>
-Risk: Exports, imports, restores, and rule changes can expose or alter durable memory state. <br>
-Mitigation: Use review paths first and require clear confirmation before applying imports, restores, exports, or rule changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use EverMemory to give an agent durable continuity across sessions, including remembered facts, decisions, preferences, user profiles, behavior rules, briefings, backup and restore workflows, and explanations for memory actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiehao321/evermemory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Tool commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and tool-command names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes review-before-apply guidance for imports, restores, and rule changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata) <br>
+Risk: Persistent memory can retain sensitive facts, preferences, project context, profiles, and behavior rules longer than a user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when durable memory is intended, avoid saving secrets unless persistence is deliberate, and use inspect, export, archive, and restore review workflows to manage retained data.
+
+Risk: Imports and restores can reintroduce outdated, incorrect, or unwanted memory.
+
+Mitigation: Review imported or archived items before applying changes, and restore only the specific records the user approves.
+
+## Reference(s):
+
+- [EverMemory on ClawHub](https://clawhub.ai/jiehao321/skills/evermemory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with JSON examples and configuration names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agent use of persistent-memory tools; may reference memory exports, imports, restore reviews, status reports, profiles, rules, and briefings.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

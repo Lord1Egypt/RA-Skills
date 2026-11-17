@@ -1,47 +1,62 @@
-## Description: <br>
-Unified email management assistant supporting Outlook/M365 via Microsoft Graph OAuth2, 163, and QQ mailboxes for reading, sending, searching, summarizing, auto-reply rules, scheduled sync, attachments, CC/BCC, and read/unread status management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple Outlook, Microsoft 365, 163, and QQ email accounts to read, send, search, auto-reply, draft, summarize, sync, and handle attachments.
 
-## Publisher: <br>
-[fanfan-2011](https://clawhub.ai/user/fanfan-2011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanfan-2011](https://clawhub.ai/user/fanfan-2011)
 
-## Use Case: <br>
-End users and agents use this skill to configure local mailbox access and manage email workflows across Outlook/Microsoft 365, 163, and QQ accounts. It supports inbox review, search, message drafting and sending, auto-reply rule management, scheduled synchronization, and attachment handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests read, write, and send access to configured mailboxes. <br>
-Mitigation: Install only for accounts where that access is acceptable, review requested permissions during OAuth, and revoke access in the provider account portal when no longer needed. <br>
-Risk: Mailbox credentials and tokens are stored locally, and keyring support may depend on the user's environment. <br>
-Mitigation: Install keyring support where available, keep the email assistant data directory out of version control and backups that are broadly shared, and rotate provider authorization codes or tokens if exposure is suspected. <br>
-Risk: Auto-reply rules can create unwanted replies, reply loops, spam amplification, or accidental disclosure through attachments. <br>
-Mitigation: Preview rules with dry-run, prefer narrow sender or keyword conditions over catch-all rules, review attachments before enabling replies, and periodically remove stale rules. <br>
-Risk: The bundled shared Azure application may not match every organization's security requirements. <br>
-Mitigation: Use an organization-controlled Azure app registration when stricter tenant control, auditing, or application ownership is required. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to manage personal or work mailboxes across Outlook/Microsoft 365, 163, and QQ accounts. It supports reading, sending, searching, drafting, summarizing, scheduled syncing, attachment handling, and managed auto-reply rules.
 
-## Reference(s): <br>
-- [Microsoft Graph API Reference](artifact/references/microsoft_graph.md) <br>
-- [Email Protocol Configuration Reference](artifact/references/email_protocols.md) <br>
-- [Auto-Reply Rules Reference](artifact/references/auto_reply_rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fanfan-2011/mail-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include local OAuth setup, mailbox synchronization, and user-confirmed write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The skill can receive read, write, and send permissions for configured mailboxes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that level of mailbox access is acceptable, prefer a dedicated Microsoft app registration, and revoke provider tokens or app passwords when the skill is no longer needed.
+
+Risk: Mailbox credentials and tokens may persist locally, including plaintext fallback paths when system keyring support is unavailable.
+
+Mitigation: Install and verify a working system keyring, keep the email-assistant data directory private and out of backups or repositories, and avoid commands that print access tokens.
+
+Risk: Auto-reply behavior can send messages or attachments to unintended recipients, including broad catch-all matches.
+
+Mitigation: Use dry-run previews, require explicit user consent before sending, prefer narrow sender or keyword rules, and review attachments before enabling auto-replies.
+
+## Reference(s):
+
+- [Microsoft Graph API Reference](references/microsoft_graph.md)
+- [Email Protocols Reference](references/email_protocols.md)
+- [Auto Reply Rules Reference](references/auto_reply_rules.md)
+- [ClawHub Publishing Reference](references/clawhub_publishing.md)
+- [ClawHub Skill Page](https://clawhub.ai/fanfan-2011/skills/mail-assistant)
+- [Publisher Profile](https://clawhub.ai/user/fanfan-2011)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON outputs from mailbox and rule-management scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform mailbox API calls and local file updates when configured and user consent is provided for write or send operations.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

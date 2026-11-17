@@ -1,48 +1,63 @@
-## Description: <br>
-Talent advisor skill for AI agents that helps users clarify career direction, optimize profiles, discover opportunities, apply strategically, and communicate with employers through Coffee Shop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talent advisor skill for AI agents that helps users clarify career direction, build professional profiles, discover opportunities, apply strategically, and communicate with employers through Coffee Shop.
 
-## Publisher: <br>
-[jblue-ops](https://clawhub.ai/user/jblue-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jblue-ops](https://clawhub.ai/user/jblue-ops)
 
-## Use Case: <br>
-External users and their agents use this skill to run a job search: build and sync a career profile, search for roles, submit applications, track status, and reply to employer messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle sensitive job-search data and sync profile, application, and message data through Coffee Shop. <br>
-Mitigation: Review what will be stored or synced, avoid sharing sensitive PII, and require explicit approval before profile syncs. <br>
-Risk: The skill can submit applications and send recruiter messages on the user's behalf. <br>
-Mitigation: Require the agent to show each application, profile change, and outbound message for user approval before sending. <br>
-Risk: The artifact recommends a remote curl-to-bash installer. <br>
-Mitigation: Prefer manual or otherwise verifiable installation paths, and inspect any remote installer before execution. <br>
+## Use Case:
 
+External users and their agents use this skill to manage a job search: profile setup, opportunity discovery, targeted applications, application tracking, and employer messaging. It is intended for career advising workflows that combine guidance with Coffee Shop tool or CLI execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jblue-ops/talentclaw) <br>
-- [Talentclaw Homepage](https://github.com/artemyshq/talentclaw) <br>
-- [Coffee Shop CLI Package](https://www.npmjs.com/package/@artemyshq/coffeeshop) <br>
-- [Application Playbook](references/APPLICATION-PLAYBOOK.md) <br>
-- [Career Strategy Guide](references/CAREER-STRATEGY.md) <br>
-- [Profile Optimization Guide](references/PROFILE-OPTIMIZATION.md) <br>
-- [Tool & CLI Reference](references/TOOLS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline CLI commands and JSON/TOML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local career files and use Coffee Shop CLI/MCP workflows for profile, application, and messaging tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: release evidence and skill metadata) <br>
+Risk: Installer and onboarding flows can introduce supply-chain exposure through curl-to-bash installation, global npm package installation, and networked CLI setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before execution, avoid curl-to-bash where possible, and prefer pinned or otherwise verified package versions.
+
+Risk: Coffee Shop workflows may send professional profile, application, and message data to an external service.
+
+Mitigation: Confirm what data will be sent before registration, profile sync, application submission, or employer messaging, and avoid sharing sensitive personal information.
+
+Risk: The skill can draft or submit job applications and employer messages, which may affect a user's professional reputation.
+
+Mitigation: Require user review and confirmation before sending applications, match reasoning, or recruiter responses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jblue-ops/skills/talentclaw)
+- [TalentClaw Homepage](https://github.com/artemyshq/talentclaw)
+- [Coffee Shop CLI Package](https://www.npmjs.com/package/@artemyshq/coffeeshop)
+- [Application Playbook](references/APPLICATION-PLAYBOOK.md)
+- [Career Strategy Guide](references/CAREER-STRATEGY.md)
+- [Profile Optimization Guide](references/PROFILE-OPTIMIZATION.md)
+- [Tool & CLI Reference](references/TOOLS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, configuration snippets, and professional communication drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local career profile, opportunity, application, company, contact, message, and activity log files when Coffee Shop workflows are used.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

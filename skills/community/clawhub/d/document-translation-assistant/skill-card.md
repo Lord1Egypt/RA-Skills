@@ -1,43 +1,60 @@
-## Description: <br>
-Translate technical & legal documents while preserving original formatting, terminology consistency, and domain context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate technical & legal documents while preserving original formatting, terminology consistency, and domain context.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to translate technical, legal, marketing, and general documents while preserving structure, glossary terms, code blocks, links, tables, and bilingual review formats. Review is especially important for legal or high-stakes translations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may report a successful translation even when no real translation was produced or the source document was copied unchanged. <br>
-Mitigation: Before relying on outputs, compare source and generated files, spot-check translated segments, and require human review for technical, legal, or publication use. <br>
-Risk: Legal or high-stakes translations may be inaccurate or uncertified. <br>
-Mitigation: Use the output only as a review aid and require a qualified translator or legal reviewer before relying on it. <br>
+## Use Case:
 
+External users, developers, and documentation teams use this skill to translate technical, legal, marketing, and general documents while preserving structure, code blocks, links, tables, and terminology consistency.
 
-## Reference(s): <br>
-- [Domain Translation Modes](artifact/references/domain-modes.json) <br>
-- [Input Schema](artifact/schemas/input.schema.json) <br>
-- [Output Schema](artifact/schemas/output.schema.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/document-translation-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and CLI text with optional JSON-shaped translation, glossary, and consistency-report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can describe translated document segments, glossary terms, consistency checks, and format-preservation reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: The current CLI can falsely report successful translation or validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated translations and consistency reports manually, and do not rely on PASS output for legal, technical, or publication workflows.
+
+Risk: The current CLI has unsafe filename handling.
+
+Mitigation: Avoid running it on files from untrusted sources until filename handling is fixed and retested.
+
+Risk: Legal translations may be mistaken for certified legal translations.
+
+Mitigation: Use the legal disclaimer from the skill materials and have legally binding translations reviewed by a qualified legal translator.
+
+## Reference(s):
+
+- [Domain Translation Modes](references/domain-modes.json)
+- [Input Schema](schemas/input.schema.json)
+- [Output Schema](schemas/output.schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/document-translation-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, JSON reports, and copied document files depending on the requested workflow step.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bilingual or translated-only document views, terminology glossaries, consistency reports, and format-preservation checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

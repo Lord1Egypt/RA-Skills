@@ -1,44 +1,62 @@
-## Description: <br>
-Create professional, publication-quality technical architecture diagrams as inline SVG in HTML and render them to high-resolution PNG screenshots with Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional, publication-quality technical architecture diagrams using pure SVG in HTML, then render them to high-resolution PNG screenshots with Playwright.
 
-## Publisher: <br>
-[wujiaming88](https://clawhub.ai/user/wujiaming88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujiaming88](https://clawhub.ai/user/wujiaming88)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, author, and export precise system architecture diagrams, component diagrams, flow charts, and data-flow visualizations with readable labels and controlled connections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The screenshot workflow can render remote URLs if a remote URL is provided. <br>
-Mitigation: Prefer local HTML files and avoid passing arbitrary remote URLs to the screenshot script. <br>
-Risk: Diagram HTML imports Google Fonts, which may make rendering depend on network access. <br>
-Mitigation: Block or remove Google Fonts when fully offline rendering is required. <br>
-Risk: Architecture diagrams may contain sensitive system names or implementation details. <br>
-Mitigation: Review diagram content before sharing or using Telegram delivery. <br>
+## Use Case:
 
+Developers and technical teams use this skill to create precise system architecture diagrams, component diagrams, flow charts, data-flow diagrams, and module diagrams with legible labels and controlled SVG connections.
 
-## Reference(s): <br>
-- [Design System](references/design-system.md) <br>
-- [Hermes Architecture Example](references/example-hermes.html) <br>
-- [OpenClaw Architecture Example](references/example-openclaw.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, SVG, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local HTML files and rendered PNG or JPEG diagram assets when the bundled screenshot workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub server evidence) <br>
+Risk: The screenshot helper can load arbitrary HTTP, HTTPS, or file URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with local HTML diagram files created for the current task; avoid passing remote URLs or file:// paths that expose unrelated local content.
+
+Risk: Telegram delivery can disclose architecture details to an external service.
+
+Mitigation: Review generated diagrams for sensitive system details before sending them through Telegram or any external channel.
+
+Risk: Generated diagrams may contain incorrect architecture relationships or misleading labels.
+
+Mitigation: Have a knowledgeable reviewer check component names, boundaries, data flows, and connection labels before publishing or sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wujiaming88/skills/svg-architecture-diagram)
+- [Publisher Profile](https://clawhub.ai/user/wujiaming88)
+- [Design System Reference](references/design-system.md)
+- [Hermes Architecture Example](references/example-hermes.html)
+- [OpenClaw Architecture Example](references/example-openclaw.html)
+- [Screenshot Helper](scripts/screenshot.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, SVG, Python, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local HTML diagram files and high-resolution PNG screenshots when the agent follows the workflow.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

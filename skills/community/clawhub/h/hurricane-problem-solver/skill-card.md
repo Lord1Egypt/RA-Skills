@@ -1,40 +1,49 @@
-## Description: <br>
-Guides an agent through deep root-cause analysis for messy, high-stakes, or deceptively complex problems by mapping symptoms, testing hypotheses, and identifying the highest-leverage fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hurricane Problem Solver guides an agent through root-cause analysis for messy, high-stakes, or deceptively complex problems across technical, product, business, operational, and interpersonal domains.
 
-## Publisher: <br>
-[maryambahri](https://clawhub.ai/user/maryambahri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maryambahri](https://clawhub.ai/user/maryambahri)
 
-## Use Case: <br>
-External users and teams use this skill to investigate tangled technical, product, business, operational, or interpersonal problems and reduce them to a clear root cause or root cluster with next tests and a high-leverage intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger conditions can cause the skill to engage for general problem-solving prompts where the user expected a narrower answer. <br>
-Mitigation: Use manual invocation or disable automatic invocation when tighter control is needed. <br>
-Risk: Root-cause analysis can be incomplete or inappropriate for expert domains such as legal, medical, financial, or security decisions. <br>
-Mitigation: Treat outputs as analysis support and confirm high-stakes conclusions with qualified domain experts and primary evidence. <br>
+## Use Case:
 
+Employees, external users, and problem-solving teams use this skill to investigate tangled problems, separate symptoms from causes, test competing hypotheses, and identify a high-leverage intervention.
 
-## Reference(s): <br>
-- [Questioning Patterns](references/questioning-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured into problem statement, symptom map, causal chain, root cause, proof, intervention, and next tests.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only analysis; no commands, private data access, persistence, or account authority are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may steer broad problem-solving requests into a forceful diagnostic format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when root-cause analysis is desired, and review conclusions before acting on high-impact recommendations.
+
+## Reference(s):
+
+- [Questioning Patterns](references/questioning-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections covering problem statement, symptom map, causal chain, root cause, supporting proof, leverage intervention, and immediate next actions]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

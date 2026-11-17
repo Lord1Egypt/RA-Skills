@@ -1,0 +1,133 @@
+{
+  "work": "候车室",
+  "scope": "提供的三句梗概（非全文）",
+  "audience": "悬疑小说读者",
+  "version": "示例版本 1",
+  "average": null,
+  "status": "needs_review",
+  "dimensions": [
+    {
+      "dimension": "开篇与钩子",
+      "score": 8,
+      "status": "reviewed",
+      "evidence": [
+        {
+          "location": "第1句",
+          "text": "林舟在末班车前捡到写有自己名字的信。"
+        }
+      ],
+      "impact": "姓名信件形成具体悬念，读者知道需要追问信件来历。",
+      "suggestions": [
+        {
+          "priority": "P2",
+          "action": "保留姓名信件作为开篇钩子。",
+          "verify": "检查正文第一场是否尽快回应信件的异常。"
+        }
+      ]
+    },
+    {
+      "dimension": "人物与动机",
+      "score": 7,
+      "status": "reviewed",
+      "evidence": [
+        {
+          "location": "第2句",
+          "text": "他本想交给站务员"
+        },
+        {
+          "location": "第3句",
+          "text": "他第一次决定不上车"
+        }
+      ],
+      "impact": "人物先想交信、后放弃乘车，选择可见，但动机仍较简略。",
+      "suggestions": [
+        {
+          "priority": "P1",
+          "action": "补一句他为什么决定追向站台。",
+          "verify": "确认这句由哥哥失踪或信件内容触发，而非新增无关设定。"
+        }
+      ]
+    },
+    {
+      "dimension": "冲突与节奏",
+      "score": 8,
+      "status": "reviewed",
+      "evidence": [
+        {
+          "location": "第2句",
+          "text": "却发现信封上的日期是哥哥失踪的那晚。"
+        }
+      ],
+      "impact": "日期异常推翻常规交信选择，推动人物转向追查。",
+      "suggestions": [
+        {
+          "priority": "P2",
+          "action": "保留发现日期后的即时转折。",
+          "verify": "回读前后句，确认反应紧跟发现而没有重复解释。"
+        }
+      ]
+    },
+    {
+      "dimension": "情节与因果",
+      "score": 7,
+      "status": "reviewed",
+      "evidence": [
+        {
+          "location": "第3句",
+          "text": "列车广播响起时，他第一次决定不上车，转身追向空荡的站台。"
+        }
+      ],
+      "impact": "不上车与追站台的因果方向可理解，但信件如何指向站台尚未交代。",
+      "suggestions": [
+        {
+          "priority": "P1",
+          "action": "在后文交代追向站台的直接线索。",
+          "verify": "读者能从前文指出线索，不靠事后补充解释。"
+        }
+      ]
+    },
+    {
+      "dimension": "场景与表达",
+      "score": 7,
+      "status": "reviewed",
+      "evidence": [
+        {
+          "location": "第1句",
+          "text": "末班车前"
+        },
+        {
+          "location": "第3句",
+          "text": "空荡的站台"
+        }
+      ],
+      "impact": "末班车与空站台建立时间压力和孤立感，场景细节目前较少。",
+      "suggestions": [
+        {
+          "priority": "P2",
+          "action": "视正文需要补一处与追查行动相关的站台细节。",
+          "verify": "确认新增细节能帮助人物行动或氛围，不只增加装饰。"
+        }
+      ]
+    },
+    {
+      "dimension": "原创与完成度",
+      "score": null,
+      "status": "needs_review",
+      "evidence": [
+        {
+          "location": "梗概范围",
+          "text": "本次仅有三句梗概，无法据此判断全文线索是否收束或表达是否具有独特性。"
+        }
+      ],
+      "impact": "当前信息足以评估钩子和转折，不能据此判断全书完成度或原创性。",
+      "suggestions": []
+    }
+  ],
+  "pending_questions": [
+    "需查看正文及同类题材参考，才能评估全文完成度与原创表达。"
+  ],
+  "top_actions": [
+    "补足不上车后追向站台的直接动机或线索。",
+    "提供正文再核对伏笔回收与整体完成度。"
+  ]
+}

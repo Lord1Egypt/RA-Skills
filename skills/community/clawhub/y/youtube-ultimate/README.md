@@ -26,6 +26,50 @@ Most YouTube tools use the official YouTube Data API for transcripts, which cost
 
 ---
 
+## Permissions, Privacy & Consent
+
+**Two halves, two very different permission profiles.** Read this before `auth`.
+
+|                    | Transcripts + downloads | Search, details, comments, your account data |
+| ------------------ | ----------------------- | -------------------------------------------- |
+| Google account     | **not needed**          | **required**                                 |
+| API quota          | **zero**                | 100 per search, 1–3 per lookup               |
+| Stored credentials | **none**                | one OAuth token on disk                      |
+
+**What the authenticated half can reach.** Your channel, your subscriptions, your playlists and
+your liked videos — that is personal account data, and the commands that read it are listed
+under _Channel & User Data_ below. Nothing fetches them unless you run those commands.
+
+**Scope: `youtube.readonly`, and nothing else.** Since 4.3.0 this skill requests a single
+read-only scope. It cannot post a comment, rate a video, subscribe, or touch a playlist even if
+it wanted to. (Versions ≤4.2.3 requested read-write `youtube` and `youtube.force-ssl` — if you
+authenticated back then, run `logout` and `auth` again to downgrade the grant.)
+
+**Where the token lives.** `~/.config/youtube-skill/token.json`, written mode `0600` inside a
+`0700` directory, as JSON — not pickle, which executes code on load. An existing pre-4.3.0
+`token.pickle` is never read: you sign in again, and `logout` deletes the old file.
+
+**It asks before it stores anything.** The first command that needs your account prints the
+exact path and scope and waits for `y/N`. No browser opens and no file is written until you
+agree. Non-interactive runs **refuse** unless you set `YOUTUBE_SKILL_YES=1`.
+
+**Off-switches.**
+
+```bash
+YOUTUBE_SKILL_NO_ACCOUNT=1    # disable every sign-in / account command (transcripts still work)
+YOUTUBE_SKILL_NO_DOWNLOAD=1   # disable video and audio downloads
+uv run youtube.py logout      # delete the stored token (--all for every account)
+```
+
+`logout` clears the local token; revoke the grant at Google itself via
+[myaccount.google.com/permissions](https://myaccount.google.com/permissions).
+
+**Network.** `youtube.com` and `googleapis.com`. Nothing else — no telemetry, no analytics, no
+third-party service. Transcripts, search results and account listings print to stdout and are
+never written to a file by this skill; only downloads put media on disk.
+
+---
+
 ## What Can Your Agent Do With This?
 
 ### 🔍 Research & Analysis
@@ -43,7 +87,7 @@ Most YouTube tools use the official YouTube Data API for transcripts, which cost
 
 ### 📥 Downloads
 
-- Download videos at any resolution
+- Download videos at 480p / 720p / 1080p, or `best` (4K when the video has it)
 - Extract audio only (podcasts, music, interviews)
 - Grab subtitles as separate files
 
@@ -123,6 +167,10 @@ uv run youtube.py comments VIDEO_ID --replies
 
 ### Channel & User Data
 
+⚠️ **These read your personal Google account** and are the only commands that do. They require
+`auth` (read-only scope) and count against your API quota. Skip them entirely — or set
+`YOUTUBE_SKILL_NO_ACCOUNT=1` to make them refuse — if you only came for transcripts.
+
 | Command                      | Description          |
 | ---------------------------- | -------------------- |
 | `channel`                    | Your channel info    |
@@ -131,6 +179,14 @@ uv run youtube.py comments VIDEO_ID --replies
 | `playlists`                  | Your playlists       |
 | `playlist-items PLAYLIST_ID` | Videos in a playlist |
 | `liked`                      | Your liked videos    |
+
+### Authentication (optional)
+
+| Command    | Description                                         |
+| ---------- | --------------------------------------------------- |
+| `auth`     | Sign in — asks for consent, then stores one token   |
+| `accounts` | List locally stored tokens and their paths          |
+| `logout`   | Delete the stored token (`--all` for every account) |
 
 ### Downloads (requires yt-dlp)
 
@@ -174,17 +230,39 @@ pip install uv && pip install yt-dlp  # other
 
 ### 2. Get YouTube API credentials
 
+**Only needed for search, video details, comments and account data.** Transcripts and downloads
+work with nothing configured — skip to using them if that is all you want.
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
 2. Create a project (or select existing)
 3. Enable "YouTube Data API v3"
 4. Create OAuth 2.0 Client ID (Desktop app)
 5. Download JSON → save as `~/.config/youtube-skill/credentials.json`
 
+**Treat both files as secrets.** `credentials.json` is your OAuth _client_; `token.json` is a
+live grant on your account. Lock them down and keep them out of version control:
+
+```bash
+mkdir -p ~/.config/youtube-skill && chmod 700 ~/.config/youtube-skill
+chmod 600 ~/.config/youtube-skill/credentials.json
+```
+
+The skill writes `token.json` at `0600` itself and never puts it anywhere but this directory.
+If you already configured the sibling `gogcli` Google skill, its
+`~/.config/gogcli/credentials.json` is used as a fallback client — so authenticating here may
+reuse credentials you set up for that skill. Never commit either file, and prefer a dedicated
+Google project so a leaked client is cheap to revoke.
+
 ### 3. Authenticate
 
 ```bash
 uv run youtube.py auth
 ```
+
+This prints the token path and the requested scope (`youtube.readonly`) and waits for your
+confirmation before opening a browser or writing anything. `uv run youtube.py logout` removes
+the token again; revoke the grant itself at
+[myaccount.google.com/permissions](https://myaccount.google.com/permissions).
 
 ---
 
@@ -205,6 +283,8 @@ For faster typing:
 | `playlist-items`  | `pli`  |
 | `download`        | `dl`   |
 | `download-audio`  | `dla`  |
+
+(`auth`, `accounts` and `logout` have no aliases — signing in and out should be typed in full.)
 
 ---
 

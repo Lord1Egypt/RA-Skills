@@ -1,0 +1,73 @@
+{
+  "skill": "shiguang-newspaper",
+  "version": "1.0.0",
+  "verifiedAt": "2026-10-31T02:14:23.222Z",
+  "independentForwardTest": true,
+  "websiteRequired": false,
+  "privateUserAssetsUsed": false,
+  "productionImageToolCalls": 4,
+  "sourceFixtureImageToolCalls": 1,
+  "automaticRegenerations": 0,
+  "actualModel": null,
+  "tokens": null,
+  "providerRequestCount": null,
+  "metricScope": "Observed outer image tool calls only; excludes planning/development/agent reasoning; not a provider bill",
+  "realTasks": [
+    "Faithful standing-character cutout",
+    "Real front page",
+    "Requested seated-character variant",
+    "Coordinated inner page"
+  ],
+  "approvals": "Explicitly delegated test review, not individual user clicks",
+  "offlineRegression": {
+    "passed": 19,
+    "modelCalls": 0,
+    "coverage": [
+      "Partial invalidation",
+      "Explicit generation intent vs retry",
+      "Unknown outcomes",
+      "Corrupt cache",
+      "Late output recovery",
+      "Approval state",
+      "PDF dimensions/native pixels",
+      "ZIP traversal/symlink rejection and byte-preserving recovery"
+    ]
+  },
+  "actualWorkflowChecks": [
+    "Two generated pages visually inspected",
+    "Final PDF pages both rendered and inspected",
+    "Original-project extraction cache hit",
+    "Restored-project inner-page cache hit without another image call"
+  ],
+  "output": {
+    "pages": 2,
+    "paperMm": [
+      297,
+      210
+    ],
+    "orientation": "landscape",
+    "sides": "single",
+    "nativePixelsPerPage": [
+      1491,
+      1055
+    ],
+    "effectiveDpi": 127.6,
+    "pdfBytes": 7574771
+  },
+  "sampleIsFictional": true,
+  "notes": [
+    "Some route arrows are bidirectional; use numbered 01-04 order in this fictional illustrative map",
+    "No physical printer test",
+    "No guarantee of identical output, native resolution or cost in other environments"
+  ],
+  "pages": [
+    {
+      "path": "page-01.png",
+      "sha256": "6276483a3c395206a9189e25c863b4aaee9a918421a1febe82c6464cab95508d"
+    },
+    {
+      "path": "page-02.png",
+      "sha256": "487af2319251d77cfb3dccdaa987dd7fea85b386fb8ca7d4cecbbbf0d6ef70c7"
+    }
+  ]
+}

@@ -1,40 +1,52 @@
-## Description: <br>
-Avoid common MATLAB mistakes - indexing traps, matrix vs element-wise ops, and vectorization pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common MATLAB mistakes — indexing traps, matrix vs element-wise ops, and vectorization pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick MATLAB reference for avoiding common syntax, indexing, vectorization, array-shape, and debugging mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: MATLAB examples or coding advice may be applied incorrectly in important work. <br>
-Mitigation: Review and test MATLAB guidance in the target MATLAB environment before relying on it for important analysis or production code. <br>
-Risk: The skill assumes MATLAB is available. <br>
-Mitigation: Confirm the `matlab` binary is installed and available on the target system before using MATLAB-specific guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/matlab) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill to keep MATLAB syntax, indexing, vector shape, NaN handling, and debugging reminders available while writing or reviewing MATLAB code.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown reference guidance with inline MATLAB examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MATLAB environment for applying or validating MATLAB examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: MATLAB reminders may be incomplete for a user's MATLAB release, toolbox set, or project conventions.
+
+Mitigation: Review generated MATLAB code against project standards and test it in the target MATLAB environment before relying on it.
+
+Risk: The skill advertises a MATLAB binary requirement, so workflows that execute MATLAB commands may fail when MATLAB is unavailable or unlicensed.
+
+Mitigation: Confirm MATLAB is installed, licensed, and on PATH before asking the agent to run or validate MATLAB commands.
+
+## Reference(s):
+
+- [MATLAB skill page on ClawHub](https://clawhub.ai/ivangdavila/skills/matlab)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, markdown]
+
+**Output Format:** [Markdown text with MATLAB code snippets and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MATLAB availability when the agent or user applies MATLAB commands; the skill itself contains no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -31,7 +31,8 @@ This file documents the security and product boundary for ClawHub review.
 
 ## Read-Oriented Boundary
 
-- SchoolFit returns school information, comparisons, checklists, and reminders.
+- SchoolFit returns school information, read-only decision-brief comparisons, checklists, and reminders.
+- Comparison commands aggregate current `/api/skill/schools/{id}/decision-brief` responses and do not call the retired `/api/compare` endpoint.
 - It does not operate external school systems or act on behalf of a family.
 - Vacancy and admissions data are time-limited leads, not guarantees.
 - Application plans are checklists and reminders only; families must complete any official school process themselves.

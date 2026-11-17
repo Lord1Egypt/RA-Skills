@@ -1,38 +1,51 @@
-## Description: <br>
-Provides macOS text-to-speech guidance using the built-in `say` command for spoken notifications, alerts, reading text aloud, and multilingual voice selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides text-to-speech on macOS using the built-in `say` command for voice notifications, audio alerts, reading text aloud, and announcements through Mac speakers, with examples for Chinese, English, and Japanese voices.
 
-## Publisher: <br>
-[kalijason](https://clawhub.ai/user/kalijason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kalijason](https://clawhub.ai/user/kalijason)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to have an agent provide local text-to-speech and volume-control commands for notifications, reminders, alerts, and reading short messages aloud. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make the Mac speak through local speakers and includes commands that adjust or unmute system volume. <br>
-Mitigation: Use it only when audible output is appropriate, and review any volume-related commands before running them. <br>
-Risk: The documented commands depend on macOS-specific tools. <br>
-Mitigation: Treat the skill as macOS-only and check the operating system before using generated commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agents use this skill on macOS to speak notifications, alerts, reminders, warnings, or supplied text aloud through the system speakers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can cause audible output through Mac speakers, which may be inappropriate in quiet, shared, or sensitive environments.
+
+Mitigation: Use it only where spoken output is expected and acceptable.
+
+Risk: The examples include checking, unmuting, and changing system volume before speech.
+
+Mitigation: Review volume-related commands before use and avoid them when changing system audio settings would be disruptive.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only commands that may run synchronously unless invoked in the background.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS local audio output; speech runs synchronously unless the command is run asynchronously.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

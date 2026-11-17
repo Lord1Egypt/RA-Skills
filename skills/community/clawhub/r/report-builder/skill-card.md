@@ -1,41 +1,54 @@
-## Description: <br>
-Use when the main operator needs to turn the nightly shortlist into a Telegram morning report with inline approve/reject/later buttons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the main operator needs to turn the nightly shortlist into a Telegram morning report with inline approve/reject/later buttons.
 
-## Publisher: <br>
-[omermesebuken1](https://clawhub.ai/user/omermesebuken1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omermesebuken1](https://clawhub.ai/user/omermesebuken1)
 
-## Use Case: <br>
-Operators and agents use this skill to build a short morning report from shortlisted Notion ideas and send it to Telegram with approval workflow buttons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review flagged that the skill runs local Notion pipeline code and records Telegram delivery metadata without clear disclosure. <br>
-Mitigation: Review before installing, run the send script with --dry-run first, and use an isolated environment with only the required Notion and Telegram credentials. <br>
-Risk: The build and send scripts depend on local paths, OpenClaw, Notion configuration, and Telegram target settings that may not exist in every environment. <br>
-Mitigation: Confirm the required node and openclaw binaries, environment variables, and local paths before running the scripts. <br>
+## Use Case:
 
+Operators and automation maintainers use this skill to build a short morning report from shortlisted ideas and send it to Telegram with inline approval actions.
 
-## Reference(s): <br>
-- [Report schema](references/report-schema.md) <br>
-- [ClawHub release page](https://clawhub.ai/omermesebuken1/report-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON report payloads and Telegram message delivery commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Builds a payload file before sending and supports a dry-run send path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may run external local scripts with broad environment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local script dependencies before installation and pass only the minimum environment variables needed for report building and delivery.
+
+Risk: The skill may send local idea data and delivery metadata beyond the obvious report payload.
+
+Mitigation: Preview Telegram-bound content and document the Notion, Telegram, and delivery-audit fields that are sent before enabling production use.
+
+## Reference(s):
+
+- [Report schema](references/report-schema.md)
+- [ClawHub skill page](https://clawhub.ai/omermesebuken1/skills/report-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON report payload guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Telegram-ready report text, inline button callback data, JSON payload files, and blocked-status JSON when required environment configuration is missing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

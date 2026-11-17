@@ -1,43 +1,54 @@
-## Description: <br>
-Provides a safe Docker maintenance workflow for updating CLI Proxy API deployments while preserving configuration and authentication data with backup, testing, production deployment, and rollback steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured workflow for updating and maintaining Docker-based CLI Proxy API deployments, including backups, test deployment, production replacement, validation, and rollback.
 
-## Publisher: <br>
-[JOJO587](https://clawhub.ai/user/JOJO587) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jojo587](https://clawhub.ai/user/jojo587)
 
-## Use Case: <br>
-Developers and operators use this skill to plan and execute CLI Proxy API Docker image upgrades, configuration changes, validation, and rollback while preserving auth and config state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running maintenance commands against the wrong container, image, port, or mounted path could disrupt a CPA deployment. <br>
-Mitigation: Verify the target container, image, ports, and mounted paths before executing commands, and test changes on an alternate port before production deployment. <br>
-Risk: Configuration, API keys, OAuth material, or auth backups could be exposed through logs, pasted commands, or retained backup files. <br>
-Mitigation: Avoid pasting or logging real API keys unnecessarily, preserve only required auth/config backups, and secure or prune backups when they are no longer needed. <br>
-Risk: Using a moving Docker image tag can introduce unreviewed changes during future maintenance. <br>
-Mitigation: After validation, prefer a pinned Docker image tag or digest for production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JOJO587/cpa-update) <br>
-- [CLI Proxy API Docker Hub repository](https://hub.docker.com/r/eceasy/cli-proxy-api) <br>
-- [CLI Proxy API GitHub repository](https://github.com/router-for-me/Cli-Proxy-API) <br>
+## Use Case:
 
+Developers and operators use this skill to plan and execute CLI Proxy API configuration changes, Docker image updates, production validation, and rollback steps while preserving configuration and authentication data.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash and Dockerfile code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confirmation gates, backup steps, validation checks, and rollback guidance for Docker-based CPA maintenance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata and README) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow may deploy a mutable Docker image tag against live configuration and authentication mounts.
+
+Mitigation: Replace mutable tags with a reviewed version and immutable digest, verify image provenance where possible, and test with non-production copies before production deployment.
+
+Risk: Stopping, removing, or recreating containers can interrupt a production CLI Proxy API service or affect mounted data.
+
+Mitigation: Confirm each stop, remove, recreate, and cleanup step with the operator, capture backups first, and keep a tested rollback path available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jojo587/skills/cpa-update)
+- [CLI Proxy API Docker Hub Image](https://hub.docker.com/r/eceasy/cli-proxy-api)
+- [CLI Proxy API GitHub Repository](https://github.com/router-for-me/Cli-Proxy-API)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and Docker configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance should be reviewed before execution because it can affect production Docker containers, mounted configuration, and authentication data.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

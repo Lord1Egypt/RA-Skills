@@ -1,42 +1,59 @@
-## Description: <br>
-Trades Polymarket prediction markets on space launches, SpaceX milestones, satellite deployments, Mars missions, and commercial spaceflight outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on space launches, SpaceX milestones, satellite deployments, Mars missions, and commercial spaceflight outcomes.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill as an automated prediction-market trading helper for space and launch-related Polymarket markets. It discovers relevant markets, sizes paper or live trades from configurable risk parameters, and defaults to paper trading until live mode is explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Polymarket trades using USDC. <br>
-Mitigation: Keep the skill in paper mode first, review the strategy and position limits, and provide a live-capable SIMMER_API_KEY only when prepared to risk real USDC. <br>
-Risk: The skill requires a sensitive SIMMER_API_KEY credential. <br>
-Mitigation: Keep the credential private and avoid placing a live-capable key in environments where automated code could call live mode unexpectedly. <br>
+## Use Case:
 
+External users and developers use this skill to discover and trade space-related Polymarket prediction markets with configurable position sizing, paper-trading defaults, and an explicit live-trading mode.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/diagnostikon/polymarket-space-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [Console status text and configured trading actions through the Simmer SDK] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; paper trading is the default, and live Polymarket trading requires an explicit --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live trading can place real Polymarket orders and expose USDC to financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, enable live mode only deliberately, restrict account funds, and avoid live-capable keys in automated environments.
+
+Risk: The advertised minimum-volume filter is not currently enforced.
+
+Mitigation: Review candidate markets manually or update the trading logic before relying on the volume threshold for risk control.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Review the dependency source before providing credentials or enabling live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-space-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with Python execution and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless live mode is explicitly enabled.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

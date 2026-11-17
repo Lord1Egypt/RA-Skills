@@ -1,43 +1,54 @@
-## Description: <br>
-Persists Feishu group chat context by saving and loading structured local memory summaries, while routing private-chat requests to the appropriate archive or other action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persists Feishu group-chat context by saving and reloading structured conversation summaries for OpenClaw sessions.
 
-## Publisher: <br>
-[zzlqxbms](https://clawhub.ai/user/zzlqxbms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzlqxbms](https://clawhub.ai/user/zzlqxbms)
 
-## Use Case: <br>
-External users and teams using OpenClaw in Feishu group chats use this skill to preserve conversation context across sessions by saving, loading, and summarizing group memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Group-chat content can gain lasting influence through local memory and daily diary files. <br>
-Mitigation: Install only when all Feishu group participants are comfortable with storage, and define consent, redaction, retention, review, and deletion rules before use. <br>
-Risk: The skill describes broad [SYSTEM] text-command handling that could trigger unsafe actions. <br>
-Mitigation: Remove or tightly restrict [SYSTEM] command handling before deployment. <br>
-Risk: Heartbeat auto-save can persist discussions without an explicit user save request. <br>
-Mitigation: Disable heartbeat auto-save unless explicitly needed and make any automatic save policy visible to participants. <br>
+## Use Case:
 
+External ClawHub users and OpenClaw operators use this skill to preserve continuity in Feishu group chats across session resets by saving, loading, and maintaining per-group conversation summaries.
 
-## Reference(s): <br>
-- [Known Feishu Group IDs Reference](references/group-ids.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zzlqxbms/feishu-group-memory-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and memory-file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local Feishu group memory and daily diary Markdown files when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Ordinary chat messages prefixed with [SYSTEM] may trigger broad agent actions if the suggested handling rule is installed as written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install the [SYSTEM] handling rule as written; restrict internal commands to trusted sources and require explicit user confirmation for save/load operations.
+
+Risk: Automatic save/load and diary copying can retain and later resurface group-chat summaries without all participants expecting persistent memory.
+
+Mitigation: Use per-group opt-in, tell group participants that summaries may be retained, and keep memory files isolated by group.
+
+## Reference(s):
+
+- [Known Feishu Group IDs](references/group-ids.md)
+- [ClawHub skill page](https://clawhub.ai/zzlqxbms/skills/feishu-group-memory-system)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and memory-file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-group memory summaries keyed by Feishu chat_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

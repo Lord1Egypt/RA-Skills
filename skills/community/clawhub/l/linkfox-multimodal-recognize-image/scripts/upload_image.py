@@ -32,13 +32,14 @@ CONTENT_TYPE_MAP = {
 
 
 def get_api_key():
-    """Retrieve the API key from environment, with a friendly prompt if missing."""
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和算力问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Please complete authorization first:\n"
-            "1. Visit https://skill.linkfox.com/linkfoxskills/guide.htm to obtain your Key\n"
-            "2. Set the environment variable: export LINKFOXAGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -60,12 +61,16 @@ def get_presigned_url(content_type: str, file_extension: str) -> str:
             "Authorization": api_key,
             "Content-Type": "application/json",
             "User-Agent": "LinkFox-Skill/1.0",
+            "SESSION_ID": os.environ.get("SESSION_ID", ""),
+            "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
+            "MODE_ID": os.environ.get("MODE_ID", ""),
+            "APP_NAME": os.environ.get("APP_NAME", ""),
         },
         method="POST",
     )
 
     try:
-        with urlopen(req, timeout=30) as response:
+        with urlopen(req, timeout=150) as response:
             result = json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""

@@ -1,40 +1,58 @@
-## Description: <br>
-Inclusive UI guidance for keyboard and focus behavior, assistive technology semantics, contrast and motion, forms, and errors when fixing WCAG issues, auditing screens, or designing new flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inclusive UI guidance for real users: keyboard and focus, semantics for assistive technology, contrast and motion, forms and errors.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, designers, and product engineers use this skill to identify, prioritize, fix, and verify accessibility issues in user interfaces, including keyboard navigation, focus management, semantic markup, color contrast, motion, forms, and errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accessibility guidance may be mistaken for formal compliance certification. <br>
-Mitigation: Use this as practical implementation guidance; rely on formal audits, VPAT work, or accessibility specialists when signed conformance is required. <br>
-Risk: Automated checks or proposed fixes may miss barriers that appear in real assistive technology workflows. <br>
-Mitigation: Verify critical flows with keyboard operation, focus behavior, screen reader labels, automated checks where useful, and manual review on real user journeys. <br>
+## Use Case:
 
+Developers and designers use A11y to identify, prioritize, and verify accessibility fixes for UI flows, including keyboard operation, focus management, semantic markup, assistive technology labels, color contrast, forms, errors, and motion.
 
-## Reference(s): <br>
-- [ClawHub A11y skill page](https://clawhub.ai/codenova58/a11y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with accessibility findings, recommendations, verification steps, and code snippets when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include manual verification steps for keyboard operation, focus visibility, screen reader labels, automated checks, and known accessibility gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Accessibility guidance may be mistaken for formal compliance certification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as practical engineering support and involve qualified specialists for VPATs, formal audits, or signed conformance decisions.
+
+Risk: Automated checks alone can miss keyboard, focus, and assistive technology barriers.
+
+Mitigation: Verify critical flows manually with keyboard navigation, visible focus, screen reader labels, and documented ownership for remaining gaps.
+
+Risk: Suggested UI or code changes could introduce incorrect accessibility behavior if applied without review.
+
+Mitigation: Review proposed changes before deployment and test them on the affected user flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/a11y)
+- [ClawHub publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with accessibility findings, recommendations, and code examples when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Practical engineering guidance; not a substitute for formal accessibility certification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

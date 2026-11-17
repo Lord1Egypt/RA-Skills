@@ -1,20 +1,20 @@
 ---
 name: architecture-paradigm-hexagonal
-description: Applies hexagonal architecture isolating domain from infrastructure
-version: 1.9.8
+description: Hexagonal ports-and-adapters architecture
+version: 1.10.3
 triggers:
   - architecture
   - hexagonal
   - ports-adapters
   - infrastructure-independence
   - testability
-  - designing systems where testability and port/adapter separation are priorities
+  - the domain must stay testable apart from infrastructure
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Hexagonal (Ports & Adapters) Paradigm
@@ -58,13 +58,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``boundary-validator`` -- checks every adapter conforms to the port contract
-- ``adapter-generator`` -- scaffolds primary and secondary adapters from a port spec
-- ``contract-tester`` -- validates each adapter against its port via shared contract tests
+- ``boundary-validator``: checks every adapter conforms to the port contract
+- ``adapter-generator``: scaffolds primary and secondary adapters from a port spec
+- ``contract-tester``: validates each adapter against its port via shared contract tests
+
+## Exit Criteria
+
+- [ ] Port interfaces are defined as formal contracts (interfaces, abstract classes, or type
+  aliases) and stored inside the core domain module, not in adapter directories.
+- [ ] An ADR names every inbound driver port and outbound driven port with their corresponding
+  adapter implementations and dependency policies.
+- [ ] Automated architecture tests (e.g., ArchUnit, dep-cruise) enforce that no adapter imports
+  directly reference another adapter or the core's internal implementation.
+- [ ] Each adapter has at least one contract test that validates it correctly fulfills its port's
+  expectations before the adapter is merged.

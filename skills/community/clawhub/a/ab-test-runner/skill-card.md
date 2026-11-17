@@ -1,39 +1,57 @@
-## Description: <br>
-Design and execute A/B testing experiments for LLM prompts, agent behaviors, and content production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and execute A/B testing experiments for LLM prompts, agent behaviors, and content production.
 
-## Publisher: <br>
-[demo112](https://clawhub.ai/user/demo112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[demo112](https://clawhub.ai/user/demo112)
 
-## Use Case: <br>
-Developers, prompt engineers, and content teams use this skill to design, run, analyze, and archive controlled A/B experiments for LLM prompts, agent behaviors, and content variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may spawn subagents and persist experiment outputs or notes, which can expose confidential prompts, customer data, or proprietary outputs if used as test inputs. <br>
-Mitigation: Use non-sensitive samples by default; ask the agent to confirm before spawning subagents or writing files, and request a planning-only or no-save run for confidential work. <br>
-Risk: Small sample sizes or self-scoring can produce directional or biased results rather than reliable conclusions. <br>
-Mitigation: Use at least 10 samples per group, prefer blind cross-scoring or external scoring, and label smaller tests as directional signals. <br>
+## Use Case:
 
+Developers, prompt engineers, and content teams use this skill to design controlled A/B experiments for prompts, agent behaviors, engineering changes, and content variants. It helps define hypotheses, metrics, rubrics, samples, execution steps, analysis, archiving, and follow-up recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Text] <br>
-**Output Format:** [Markdown guidance with JSON experiment manifests and result records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write experiment records and analysis under memory/experiments when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Experiment prompts, outputs, and findings may be saved under memory/experiments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, confidential, or proprietary experiment data unless retention is acceptable, or ask the agent to redact details or skip archiving.
+
+Risk: Self-scoring can inflate results or bias winner selection.
+
+Mitigation: Use cross-scoring or an external blind evaluator when scores influence production decisions.
+
+Risk: Small sample sizes can produce directional but not statistically reliable conclusions.
+
+Mitigation: Use at least 10 samples per variant when possible and label smaller tests as directional signals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/demo112/skills/ab-test-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON manifests, result summaries, and optional local experiment files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce experiment manifests, rubrics, scored result summaries, archived findings, and template updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

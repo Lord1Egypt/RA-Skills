@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents prepare and submit PoYo Video Translator jobs, including payloads, curl commands, status polling, callbacks, subtitle outputs, and response parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Translator on PoYo / poyo.ai helps agents prepare and submit asynchronous PoYo video translation jobs, then explain status polling, callbacks, and subtitle output handling.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and integration teams use this skill to prepare server-side PoYo video translation requests, submit confirmed jobs, and handle async status or webhook workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys, private media URLs, callback URLs, task IDs, generated outputs, or authorization headers may be exposed if copied into logs, screenshots, public repositories, or chat. <br>
-Mitigation: Keep POYO_API_KEY server-side, review payloads before submission, and avoid logging private request or output details unless product policy allows it. <br>
-Risk: Live submissions send user-provided media URLs and translation jobs to PoYo. <br>
-Mitigation: Make live API calls only after explicit user confirmation and from a trusted server-side environment. <br>
+## Use Case:
 
+Developers and agents use this skill when a user has chosen PoYo Video Translator and needs help preparing payloads, curl commands, server-side integration notes, async status polling, webhook handling, or response parsing for video speech translation.
 
-## Reference(s): <br>
-- [PoYo Video Translator API Reference](references/api.md) <br>
-- [PoYo Video Translator Model Page](https://poyo.ai/models/video-translator) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-video-translator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include returned task IDs and next-step status or webhook guidance when a request is submitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: PoYo API keys could be exposed if placed in browser code, logs, screenshots, public repositories, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid echoing authorization headers or secrets.
+
+Risk: Video URLs, callback URLs, task IDs, subtitles, or generated output URLs may contain private or policy-sensitive data.
+
+Mitigation: Review payloads before submission and avoid logging or sharing private media data unless the PoYo account and data policy allow it.
+
+Risk: Submitting a payload sends media references to the external PoYo service.
+
+Mitigation: Make live API calls only when the user explicitly requests submission, confirms the payload, and provides a safe server-side environment.
+
+## Reference(s):
+
+- [PoYo Video Translator model page](https://poyo.ai/models/video-translator)
+- [PoYo API key page](https://poyo.ai/dashboard/api-key)
+- [PoYo Video Translator API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payload examples and bash curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model id, media URL summary, language choices, payload details, returned task_id, and next-step guidance for polling or webhook handling.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

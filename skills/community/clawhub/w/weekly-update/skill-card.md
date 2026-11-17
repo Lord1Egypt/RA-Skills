@@ -1,40 +1,50 @@
-## Description: <br>
-Transforms OpenClaw session history and optional manual notes into a concise weekly update grouped by project, status, next steps, and a closing thought. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform raw weekly activity notes into a clean, organized personal weekly update covering active projects, completed work, in-progress items, next actions, and one concise reflection.
 
-## Publisher: <br>
-[luduvigo](https://clawhub.ai/user/luduvigo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luduvigo](https://clawhub.ai/user/luduvigo)
 
-## Use Case: <br>
-Builders and teams use this skill to turn recent work activity into an honest weekly status update. It can combine recent OpenClaw session transcripts with manual notes, then organize outcomes, active work, next actions, and a brief reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent session transcripts may include sensitive project or personal information. <br>
-Mitigation: Use the skill only when comfortable letting the agent read recent OpenClaw session history; provide manual notes instead when tighter control is needed. <br>
-Risk: Session-derived summaries can misclassify whether work is complete or still in progress. <br>
-Mitigation: Review the generated weekly update before sharing, especially the Done, In Progress, and What's Next sections. <br>
+## Use Case:
 
+Individuals, builders, and teams use this skill to turn weekly project activity from manual notes and, when available, OpenClaw session history into a concise weekly update. It is intended for personal status reporting, planning, and lightweight project communication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luduvigo/weekly-update) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown weekly update] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes recent session activity and optional manual notes; it does not write files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill automatically reads recent OpenClaw session transcripts without per-use confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer manual notes or a revised version that asks permission, shows candidate sessions, and states whether session history was used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luduvigo/skills/weekly-update)
+- [Publisher profile](https://clawhub.ai/user/luduvigo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown weekly update with project-grouped sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate current-week OpenClaw session transcripts and manual notes when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

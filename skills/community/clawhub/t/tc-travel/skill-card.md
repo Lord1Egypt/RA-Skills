@@ -1,41 +1,58 @@
-## Description: <br>
-Travel Customizer is an OpenClaw travel assistant that collects confirmed customer trip requirements through conversation and submits the structured inquiry to a configured Feishu Bitable table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Customizer guides travelers through a confirmation-first intake conversation and submits structured travel requirements to a configured Feishu Bitable.
 
-## Publisher: <br>
-[lijingxu007](https://clawhub.ai/user/lijingxu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijingxu007](https://clawhub.ai/user/lijingxu007)
 
-## Use Case: <br>
-Travel providers and customer-facing teams use this skill to gather traveler contact details, destination, group size, timing, budget, preferences, and special requirements, then submit the confirmed inquiry to Feishu for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores customer contact and travel inquiry details in Feishu. <br>
-Mitigation: Use a dedicated least-privilege Feishu app, restrict destination table access, and tell users before submission how their data will be retained and deleted. <br>
-Risk: Incorrect Feishu credentials or table configuration can prevent inquiry submission. <br>
-Mitigation: Configure the required Feishu environment variables for the intended table and verify the table columns before using the skill with customers. <br>
+## Use Case:
 
+Travel businesses and travel consultants use this skill to collect customer destination, party size, budget, timing, contact, and preference details through conversation, confirm the summary with the user, and store the lead in Feishu for follow-up.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lijingxu007/tc-travel) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python tool behavior, and structured status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, a Base Token, and a Table ID; stores submitted travel inquiry fields only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Customer contact details and travel preferences are stored in a configured Feishu table.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Feishu app and table, restrict record access, disclose storage to travelers, and define retention and deletion practices.
+
+Risk: Misconfigured Feishu credentials or table identifiers can prevent submission or expose records to the wrong workspace.
+
+Mitigation: Validate FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_BASE_TOKEN, and FEISHU_TABLE_ID before use, and test with non-sensitive sample records.
+
+Risk: Raw integration errors may expose operational details to users.
+
+Mitigation: Sanitize error messages before displaying them and route detailed diagnostics to administrators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijingxu007/skills/tc-travel)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Conversational text with structured tool parameters submitted to Feishu]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials, base token, and table ID configured as environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

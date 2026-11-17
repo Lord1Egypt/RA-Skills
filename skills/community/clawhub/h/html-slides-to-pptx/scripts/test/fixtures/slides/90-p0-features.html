@@ -1,0 +1,82 @@
+<!doctype html>
+<!--
+================================================================
+  P0 特性夹具页(2026-07-27)
+  覆盖:斜体/下划线/删除线/超链接、run 级字体、text-transform、
+       虚线/点线边框(统一+逐边)、真实 box-shadow、纯旋转。
+  自包含(不引外部 CSS),L1/L2/L3 三层基线锚定 P0 行为。
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>P0 特性夹具页</title>
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;font-family:'Noto Sans SC',Arial,sans-serif;">
+
+  <!-- 页头 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:60px;width:1200px;z-index:10;">
+    <div style="font-size:40px;font-weight:700;line-height:1.2;color:#1A1A1A;">P0 特性覆盖页</div>
+  </div>
+
+  <!-- 1. 富样式 runs:斜体 + 下划线 + 删除线 + 超链接 + 嵌套组合 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:160px;width:1100px;z-index:10;">
+    <div style="font-size:24px;line-height:1.6;color:#1A1A1A;">
+      常规 <span style="font-style:italic;">斜体强调</span> 与 <span style="text-decoration:underline;">下划线</span>
+      以及 <span style="text-decoration:line-through;">删除线</span>,还有 <a href="https://example.com/spec">超链接文字</a>;
+      <u>u 标签</u> <s>s 标签</s> <em>em 斜体</em> <span style="text-decoration:underline;line-through;">组合装饰</span>
+    </div>
+  </div>
+
+  <!-- 2. run 级字体:中文基座混排西文 run -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:280px;width:1100px;z-index:10;">
+    <div style="font-size:24px;line-height:1.6;color:#1A1A1A;font-family:'Noto Sans SC',sans-serif;">
+      中文正文混入 <span style="font-family:Arial;">ABC-123</span> 西文数字 run
+    </div>
+  </div>
+
+  <!-- 3. text-transform:uppercase -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:380px;width:1100px;z-index:10;">
+    <div style="font-size:24px;line-height:1.6;color:#1A1A1A;text-transform:uppercase;">hello pptx transform</div>
+  </div>
+
+  <!-- 4. 统一虚线边框 → 原生 dashType -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:480px;width:400px;height:140px;background:#F5F7FA;border:2px dashed #0A2E5C;border-radius:8px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:560px;width:400px;text-align:center;z-index:10;">
+    <div style="font-size:18px;color:#0A2E5C;line-height:1.4;">统一虚线框</div>
+  </div>
+
+  <!-- 5. 非统一边框:顶边实线 + 左边点线 → 细条 + line 形状 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:560px;top:480px;width:400px;height:140px;background:#FFFFFF;border-top:4px solid #E2232A;border-left:2px dotted #0A2E5C;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:560px;top:560px;width:400px;text-align:center;z-index:10;">
+    <div style="font-size:18px;color:#1A1A1A;line-height:1.4;">实线顶 + 点线左</div>
+  </div>
+
+  <!-- 6. 真实 box-shadow -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1020px;top:480px;width:400px;height:140px;background:#FFFFFF;border-radius:10px;box-shadow:0 8px 24px rgba(10,46,92,0.25);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1020px;top:560px;width:400px;text-align:center;z-index:10;">
+    <div style="font-size:18px;color:#1A1A1A;line-height:1.4;">真实阴影参数</div>
+  </div>
+
+  <!-- 7. 纯旋转:形状 + 文字 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:200px;top:720px;width:220px;height:80px;background:#E2232A;border-radius:8px;transform:rotate(15deg);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:600px;top:720px;width:500px;transform:rotate(-8deg);z-index:10;">
+    <div style="font-size:28px;font-weight:700;color:#0A2E5C;line-height:1.3;">旋转文字 -8°</div>
+  </div>
+
+  <!-- 页脚 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:1020px;width:1720px;z-index:10;">
+    <div style="font-size:14px;color:#999999;">html-slides P0 fixture · 2026-07-27</div>
+  </div>
+
+</div>
+
+<template data-slide-notes>
+P0 特性夹具:富样式 runs / run 级字体 / text-transform / 虚线边框 / 真实阴影 / 纯旋转。
+</template>
+</body>
+</html>

@@ -1,41 +1,57 @@
-## Description: <br>
-Provides conversational Paradex portfolio briefings by combining account summary, positions, balances, transfers, market data, and funding information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portfolio Copilot creates conversational Paradex portfolio briefings that combine account summary, positions, balances, transfers, market data, and funding into natural-language status and P&L answers.
 
-## Publisher: <br>
-[sv](https://clawhub.ai/user/sv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sv](https://clawhub.ai/user/sv)
 
-## Use Case: <br>
-External Paradex users use this skill to ask natural-language questions about portfolio status, positions, balances, P&L, daily activity, and account risk. It turns read-only account and market data into concise briefings and follow-up prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as account or briefing requests could expose private Paradex financial account data when the user intended a different account or context. <br>
-Mitigation: Use explicit Paradex prompts, confirm ambiguous account requests before retrieving data, and grant only read-only Paradex MCP permissions where possible. <br>
-Risk: Portfolio and P&L answers may be point-in-time or approximate because prices, positions, and funding change continuously and realized P&L is not directly available from current tools. <br>
-Mitigation: Label estimates clearly, avoid presenting the briefing as trading advice, and direct users to the Paradex UI for complete closed-trade history. <br>
+## Use Case:
 
+External Paradex users use this skill to ask for concise portfolio status, position, P&L, balance, transfer, funding, daily recap, and morning briefing answers. It helps summarize read-only account and market data without presenting the output as trading advice.
 
-## Reference(s): <br>
-- [Portfolio Copilot on ClawHub](https://clawhub.ai/sv/paradex-portfolio-copilot) <br>
-- [Briefing Format Templates](references/briefing-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise natural-language briefing, with Markdown tables for larger position lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approximations for time-period P&L and should state when realized P&L is not available from current tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad portfolio-status prompts could cause unintended disclosure of Paradex account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit Paradex account context and confirm the user intended a portfolio briefing before summarizing account details.
+
+Risk: Portfolio values, prices, and positions are point-in-time financial data that can change continuously.
+
+Mitigation: Present summaries as snapshots and avoid treating them as trading advice.
+
+Risk: Realized P&L and time-period estimates may be incomplete because closed-trade realized P&L is not directly available from the current data sources.
+
+Mitigation: Label period P&L as approximate and direct users to the Paradex UI for complete trade history when needed.
+
+## Reference(s):
+
+- [Briefing Format Templates](references/briefing-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Markdown briefings with short prose and tables when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only account snapshots; realized P&L and period estimates may be incomplete or approximate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

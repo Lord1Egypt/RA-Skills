@@ -1,39 +1,49 @@
-## Description: <br>
-Extract locational marginal prices (LMPs) from DC-OPF solutions using dual values. Use when computing nodal electricity prices, reserve clearing prices, or performing price impact analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract locational marginal prices (LMPs) from DC-OPF solutions using dual values.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and energy-market analysts use this skill to extract nodal prices, reserve clearing prices, binding-line indicators, and counterfactual price impacts from DC-OPF optimization results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security telemetry reports a clean verdict, but scan confidence is limited because full artifact inspection was unavailable to the scanner. <br>
-Mitigation: Review the artifact SKILL.md and any scripts before installation, confirming permissions, data flows, and commands against the intended deployment. <br>
-Risk: Incorrect optimization formulation, scaling, or dual sign conventions can produce misleading electricity price outputs. <br>
-Mitigation: Validate balance-constraint formulation, baseMVA scaling, solver status, and sign convention against known test cases before relying on reported LMPs or reserve prices. <br>
+## Use Case:
 
+Developers and energy-market analysts use this skill to compute nodal electricity prices, reserve clearing prices, binding-line indicators, and price impacts from DC-OPF optimization outputs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CVXPY-oriented extraction patterns and interpretation guidance for LMPs, reserve prices, binding lines, and counterfactual analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated optimization code or counterfactual examples may mutate model inputs such as branch limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and keep a separate baseline model state before running counterfactual analyses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/energy-market-pricing-locational-marginal-prices)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on interpreting optimization dual values and counterfactual pricing results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

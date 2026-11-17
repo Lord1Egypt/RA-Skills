@@ -1,41 +1,54 @@
-## Description: <br>
-Helps faculty and mentors draft standardized recommendation letters using structured templates and competency-based content suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps faculty and mentors draft structured recommendation letters with competency-based content suggestions and standardized sections.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Faculty, mentors, and academic writers use this skill to draft recommendation letter text for applicants. It structures openings, body paragraphs, closings, and competencies while calling out assumptions and review needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated letters may include inaccurate, unfair, or unverified claims because the template does not validate applicant details. <br>
-Mitigation: Review every generated letter for accuracy, fairness, and consent before sharing or submitting it. <br>
-Risk: Recommendation inputs can include sensitive applicant information. <br>
-Mitigation: Provide only the applicant details needed for the letter and use the skill in a trusted local workspace. <br>
+## Use Case:
 
+Faculty, mentors, course directors, and research supervisors use this skill to draft recommendation letters for residency, fellowship, job, and similar applications. It structures openings, body paragraphs, closings, and competency coverage from supplied relationship, duration, strengths, and context details.
 
-## Reference(s): <br>
-- [Recommendation Letter Assistant Guidelines](references/guidelines.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/recommendation-letter-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object with recommendation letter draft sections and concise review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires applicant name, relationship, duration, and key strengths; context is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Recommendation letters may contain sensitive applicant information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only necessary applicant details, review generated drafts carefully, and avoid saving or sharing unnecessary personal data.
+
+Risk: Generated drafts may include generic or unsupported claims about the applicant.
+
+Mitigation: Confirm the applicant relationship, duration, strengths, examples, and comparison statements before using the letter.
+
+## Reference(s):
+
+- [Recommendation Letter Assistant guidelines](artifact/references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/recommendation-letter-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Structured JSON and prose recommendation-letter draft sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for factual accuracy and sensitive applicant information before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

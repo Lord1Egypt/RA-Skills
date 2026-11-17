@@ -1,43 +1,61 @@
-## Description: <br>
-Generate consulate-grade visa itinerary documents from natural language using flyai travel search data, with PDF travel plans and Fliggy booking-link pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate consulate-grade visa itinerary documents from natural language using flyai travel data, producing a PDF travel plan and Fliggy booking links.
 
-## Publisher: <br>
-[zephryve](https://clawhub.ai/user/zephryve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zephryve](https://clawhub.ai/user/zephryve)
 
-## Use Case: <br>
-Travelers and visa-preparation agents use this skill to turn trip details into a consulate-facing itinerary, including a Markdown travel plan, a rendered PDF, booking-link HTML pages, and supporting booking data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip search details are sent to external travel services through flyai and Fliggy. <br>
-Mitigation: Install and run the skill only when external travel search is acceptable, and avoid entering unnecessary sensitive personal data. <br>
-Risk: Generated itinerary, hotel, flight, and attraction details may be unsuitable for a visa filing or travel purchase if source results are incomplete or stale. <br>
-Mitigation: Review generated booking links and itinerary details before using them for a visa application or booking travel. <br>
-Risk: The skill depends on the flyai CLI plus Playwright/Chromium in the local environment. <br>
-Mitigation: Approve dependency installation only after reviewing the requested tools and run the skill in an environment appropriate for travel-search automation. <br>
+## Use Case:
 
+Travelers and agents use this skill to turn a natural-language visa trip request into a clean consulate itinerary package. It gathers flight, hotel, and attraction data, then produces an editable Markdown itinerary, a PDF, and booking-link HTML files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zephryve/visa-itinerary-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/zephryve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, configuration, shell commands] <br>
-**Output Format:** [Markdown itinerary, PDF file, JSON booking data, and bilingual HTML booking-link files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided travel details and flyai/Fliggy search results; generated travel and booking details should be reviewed before visa submission or travel booking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.4 (source: server evidence and frontmatter) <br>
+Risk: The skill queries flyai/Fliggy online with trip details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing the required travel search details with those services is acceptable.
+
+Risk: The skill installs mutable third-party npm and Python packages.
+
+Mitigation: Install in an isolated environment and review or pin package versions before operational use.
+
+Risk: Generated HTML/PDF outputs and booking links may contain untrusted destinations or unvalidated travel data.
+
+Mitigation: Verify link destinations and avoid rendering Markdown or JSON supplied by another party unless URL validation and field escaping have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zephryve/skills/visa-itinerary-gen)
+- [Publisher profile](https://clawhub.ai/user/zephryve)
+- [Skill homepage](https://github.com/zephryve/visa-itinerary-gen)
+- [flyai CLI package](https://www.npmjs.com/package/@fly-ai/flyai-cli)
+- [Playwright package](https://pypi.org/project/playwright/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown itinerary, PDF document, JSON booking data, and local HTML booking-link pages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, python3, flyai, and Playwright; outputs are generated from travel data returned during execution.]
+
+## Skill Version(s):
+
+1.7.4 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

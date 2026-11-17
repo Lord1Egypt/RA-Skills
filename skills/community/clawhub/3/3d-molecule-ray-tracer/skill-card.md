@@ -1,45 +1,55 @@
-## Description: <br>
-Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX to create publication-quality molecular visualizations with ray tracing, depth of field, ambient occlusion, and cinematic lighting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX to create publication-quality molecular visualizations with ray tracing, depth of field, ambient occlusion, and cinematic lighting.
 
-## Publisher: <br>
-[renhaosu2024](https://clawhub.ai/user/renhaosu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renhaosu2024](https://clawhub.ai/user/renhaosu2024)
 
-## Use Case: <br>
-Developers, researchers, and visualization specialists use this skill to generate PyMOL or ChimeraX scripts for high-impact molecular structure images. It is intended for publication figures, covers, and presentations, not routine structural analysis or measurements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated .pml or .cxc scripts may include user-provided PDB paths, output filenames, colors, or selection strings. <br>
-Mitigation: Inspect generated scripts before running them when inputs came from untrusted text. <br>
-Risk: The skill documentation mentions installing Python requirements, but no requirements.txt is included in the artifact. <br>
-Mitigation: Do not run the documented requirements install unless a visible, trusted requirements.txt is present. <br>
-Risk: Rendering depends on separately installed PyMOL or ChimeraX, and high-quality renders can be slow or resource intensive. <br>
-Mitigation: Confirm the target renderer is installed and choose an appropriate preset or resolution for the available workstation. <br>
+## Use Case:
 
+Developers, computational biologists, and visualization specialists use this skill to generate PyMOL or ChimeraX scripts for publication-quality protein structure images and presentation visuals. It is intended for visual rendering workflows, not routine structural analysis or measurement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renhaosu2024/3d-molecule-ray-tracer) <br>
-- [Publisher profile](https://clawhub.ai/user/renhaosu2024) <br>
-- [PyMOL](https://pymol.org/) <br>
-- [UCSF ChimeraX](https://www.cgl.ucsf.edu/chimerax/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration] <br>
-**Output Format:** [PyMOL .pml or ChimeraX .cxc script files with console guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts can render PNG images in separately installed PyMOL or ChimeraX.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated PyMOL or ChimeraX command files may include unsanitized user input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, simple PDB IDs and file paths, inspect generated .pml or .cxc files before opening them, and add target-specific quoting and validation before broader use.
+
+Risk: The script generator can write output outside the intended workspace when given unsafe paths.
+
+Mitigation: Avoid absolute paths and traversal segments, keep outputs in a controlled workspace, and add workspace-only output containment and overwrite protection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renhaosu2024/skills/3d-molecule-ray-tracer)
+- [PyMOL](https://pymol.org/)
+- [UCSF ChimeraX](https://www.cgl.ucsf.edu/chimerax/)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Generated PyMOL .pml or ChimeraX .cxc command script with console guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static-image rendering scripts; PyMOL or ChimeraX must be installed separately.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

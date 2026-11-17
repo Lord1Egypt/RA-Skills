@@ -1,43 +1,54 @@
-## Description: <br>
-Automated code review for GitHub pull requests using Claude LLM, PR analysis, security scanning, and style checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates GitHub pull request review with Claude LLM analysis, security scanning, code quality scoring, and style checking.
 
-## Publisher: <br>
-[HiroFumiko](https://clawhub.ai/user/HiroFumiko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hirofumiko](https://clawhub.ai/user/hirofumiko)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect GitHub pull requests, review changed files, request Claude-based analysis, and run configurable security and style checks before merging code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private pull request diffs may be sent to Anthropic during Claude-based review. <br>
-Mitigation: Use the skill only when sharing target PR content with Anthropic is allowed; use --skip-llm or disable LLM review for sensitive or private code. <br>
-Risk: GitHub and Anthropic credentials are required for full functionality. <br>
-Mitigation: Keep .env files out of source control and use a fine-grained, read-only GitHub token scoped to only the repositories needed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to inspect GitHub pull requests, summarize file changes, run AI-assisted review, and surface security or style issues before merge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HiroFumiko/code-review-automation) <br>
-- [Anthropic Console](https://console.anthropic.com/) <br>
-- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) <br>
-- [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Rich tables and panels, Markdown review text, and .reviewrc configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GitHub access for repository and pull request data; Claude analysis requires an Anthropic API key unless LLM review is skipped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: An overly broad GitHub token can expose repository data beyond the pull requests being reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained GitHub token limited to the specific repositories and read-only contents, metadata, and pull request permissions needed.
+
+Risk: Untrusted pull request content is sent to the LLM and can influence generated review, quality score, or merge guidance.
+
+Mitigation: Treat LLM output as advisory, keep human review in the loop, and rely on deterministic checks independently of the generated recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hirofumiko/skills/code-review-automation)
+- [Anthropic Console](https://console.anthropic.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text and Markdown review output with optional configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitHub token; Claude analysis requires an Anthropic API key.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

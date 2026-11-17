@@ -1,44 +1,59 @@
-## Description: <br>
-Generate illustrations and visuals using Antekirt artists and prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate illustrations and visuals using Antekirt artists and prompts, including image generation, SVG vectorization, and short video animation.
 
-## Publisher: <br>
-[andrejdorsian](https://clawhub.ai/user/andrejdorsian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andrejdorsian](https://clawhub.ai/user/andrejdorsian)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to select Antekirt artists and generate image, SVG, or video assets from prompts. It is useful when visual output needs explicit artist selection and generation metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and generation requests to Antekirt, so sensitive prompt content could be exposed to the external service. <br>
-Mitigation: Avoid private or confidential information in prompts and use the official Antekirt API host. <br>
-Risk: Image, SVG, and video generation can consume Antekirt credits. <br>
-Mitigation: Require explicit approval before generation, especially for higher-cost video operations. <br>
-Risk: Antekirt API keys are required for use. <br>
-Mitigation: Keep ANTEKIRT_API_KEY secret and provide it only through environment variables or an approved secrets mechanism. <br>
+## Use Case:
 
+External users, team members, and developers use this skill to select an Antekirt artist, submit visual prompts, and receive generated image, SVG, or video URLs for use or download.
 
-## Reference(s): <br>
-- [Antekirt API Endpoints](references/api-endpoints.md) <br>
-- [Antekirt Documentation](https://antekirt.com/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/andrejdorsian/antekirt-generate-artist-backed-illustrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text with generated asset URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return image, SVG, or video URLs after asynchronous generation and polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill sends API keys, prompts, artist selections, and generation metadata to a configurable network endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended Antekirt workflows, set ANTEKIRT_BASE_URL exactly to https://api.antekirt.com, and avoid environments where that variable can be overridden unexpectedly.
+
+Risk: Broad image-generation trigger phrases may activate the skill and consume Antekirt credits.
+
+Mitigation: Confirm the user intends to use Antekirt before starting generation, especially for video or repeated image requests.
+
+Risk: Generated assets depend on asynchronous provider jobs that may fail, time out, or return no usable output.
+
+Mitigation: Surface failed or timed-out jobs clearly and preserve artistId, prompt, and generationId for follow-up or audit.
+
+## Reference(s):
+
+- [Antekirt API Endpoints](artifact/references/api-endpoints.md)
+- [Antekirt Documentation](https://antekirt.com/docs)
+- [ClawHub Skill Page](https://clawhub.ai/andrejdorsian/skills/antekirt-generate-artist-backed-illustrations)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and CLI output containing generated asset URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ANTEKIRT_API_KEY, ANTEKIRT_BASE_URL, node, curl, and Antekirt account credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

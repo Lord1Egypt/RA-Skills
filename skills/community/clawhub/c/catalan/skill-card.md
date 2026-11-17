@@ -1,39 +1,52 @@
-## Description: <br>
-Write Catalan that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Catalan that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing assistants use this skill to produce Catalan text with a casual, natural register, including appropriate pronouns, colloquial particles, fillers, reactions, and regional consistency. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Human-sounding Catalan may be used where transparency about authorship is expected. <br>
-Mitigation: Avoid using the style to misrepresent authorship and disclose AI assistance when professional, academic, legal, or customer-facing contexts require it. <br>
-Risk: A casual default may be inappropriate for formal, elderly, professional, legal, academic, or customer-facing audiences. <br>
-Mitigation: Ask for the desired formality, region, and pronoun choice before generating final Catalan text for sensitive or formal use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/catalan) <br>
+## Use Case:
 
+External users and writing assistants use this skill to produce casual, natural-sounding Catalan with appropriate informality, particles, reactions, and regional consistency.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text writing guidance and Catalan prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, data access, persistence, or hidden system authority.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults toward informal Central-style phrasing, which may be unsuitable for formal, professional, Valencian, or Balearic writing.
+
+Mitigation: Specify the desired register and regional variety, and review outputs before formal or professional use.
+
+Risk: The guidance includes colloquial and profane expression options that may be inappropriate for some audiences.
+
+Mitigation: Ask the agent to avoid profanity or colloquial language when the audience or context requires a restrained tone.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/catalan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to casual Catalan unless the user asks for a formal or regional style.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

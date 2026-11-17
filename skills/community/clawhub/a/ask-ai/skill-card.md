@@ -1,42 +1,57 @@
-## Description: <br>
-Use external AI assistants (ChatGPT, Claude, Gemini, DeepSeek) when an agent encounters difficult problems, needs deeper explanations, or is explicitly asked to consult AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use external AI assistants such as ChatGPT, Claude, Gemini, or DeepSeek when an agent needs help with complex problems, knowledge gaps, or deeper reasoning.
 
-## Publisher: <br>
-[xiaoxu1232](https://clawhub.ai/user/xiaoxu1232) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiaoxu1232](https://clawhub.ai/user/xiaoxu1232)
 
-## Use Case: <br>
-Developers and agent users use this skill to consult external AI assistants when a task is difficult, requires multi-round reasoning, or has knowledge gaps. It supports an Ask Mode that requests user approval first and a Trust Mode that lets the agent consult an external assistant automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts sent to external AI assistants could disclose secrets, credentials, private documents, regulated data, or confidential business information. <br>
-Mitigation: Use Ask Mode for normal or sensitive work, review the exact prompt before sending it, and exclude sensitive information unless sharing it with the selected provider is acceptable. <br>
+## Use Case:
 
+Developers and external agent users use this skill to let an agent consult supported third-party AI assistants when a task is difficult, requires multi-round reasoning, or has an acknowledged knowledge gap.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/xiaoxu1232/ask-ai) <br>
-- [ChatGPT](https://chatgpt.com) <br>
-- [Claude](https://claude.ai) <br>
-- [Gemini](https://gemini.google.com) <br>
-- [DeepSeek](https://chat.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and summarized external AI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompts for external AI assistants and short summaries of their responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Task details may be sent to third-party AI services, especially when Trust Mode is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep Ask Mode as the default and require user review of exactly what will be sent before any external AI request.
+
+Risk: Private code, credentials, personal data, regulated data, or confidential business information could be exposed to outside AI services.
+
+Mitigation: Do not use Trust Mode for sensitive work, and remove secrets or confidential content before consulting an external AI assistant.
+
+## Reference(s):
+
+- [ask-ai on ClawHub](https://clawhub.ai/xiaoxu1232/skills/ask-ai)
+- [ChatGPT](https://chatgpt.com)
+- [Claude](https://claude.ai)
+- [Gemini](https://gemini.google.com)
+- [DeepSeek](https://chat.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text summaries from external AI assistant consultation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external AI responses summarized back to the user; no structured output contract is specified.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

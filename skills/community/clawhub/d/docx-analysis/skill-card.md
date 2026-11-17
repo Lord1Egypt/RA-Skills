@@ -1,43 +1,56 @@
-## Description: <br>
-Analyzes Word .docx files with MinerU and returns structured Markdown that preserves headings, tables, lists, and layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze the structure and content of .docx (Word) files using MinerU, returning structured Markdown that preserves headings, tables, lists, and layout.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, editors, reviewers, and agents use this skill to inspect Word document structure, understand layout, and convert selected .docx content into Markdown for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected Word documents, and possibly URLs, may be processed by the external MinerU service. <br>
-Mitigation: Use the skill only for documents appropriate for external processing, review MinerU data handling terms before confidential or regulated use, and avoid sending sensitive files unless approved. <br>
-Risk: The MINERU_TOKEN credential is required for full extraction mode. <br>
-Mitigation: Store the token in the environment or approved secret storage, avoid committing it to files, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Content reviewers, editors, developers, and agents use this skill to inspect Word document structure and extract Markdown views of headings, tables, lists, and layout. It supports quick MinerU analysis without a token and full token-backed analysis for more complex documents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mzlzyca/docx-analysis) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit Markdown to stdout or save output to a directory through the MinerU CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill relies on an unpinned third-party mineru-open-api CLI installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI in an isolated environment and pin or review the package before use where possible.
+
+Risk: Full analysis requires MINERU_TOKEN and may process document contents through MinerU tooling.
+
+Mitigation: Protect MINERU_TOKEN and avoid sensitive documents until the CLI's data handling and token storage behavior are understood.
+
+## Reference(s):
+
+- [Docx Analysis on ClawHub](https://clawhub.ai/mzlzyca/skills/docx-analysis)
+- [MinerU](https://mineru.net)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce stdout Markdown from MinerU or file and directory outputs when the CLI is invoked with -o.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

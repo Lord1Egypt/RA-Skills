@@ -1,45 +1,60 @@
-## Description: <br>
-Interact with the Noya AI platform for crypto trading, prediction markets, token analysis, DCA strategies, and structured crypto data (prices, TVL, funding rates, on-chain analytics, sentiment, news) via curl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Noya AI platform for crypto trading, prediction markets, token analysis, DCA strategies, and structured crypto data via curl.
 
-## Publisher: <br>
-[noyadev00-gmailcom](https://clawhub.ai/user/noyadev00-gmailcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noyadev00-gmailcom](https://clawhub.ai/user/noyadev00-gmailcom)
 
-## Use Case: <br>
-External users and developers use this skill to query Noya crypto market data, inspect portfolios, manage DCA strategies, and hand off trading or prediction-market tasks to the Noya agent. It is scoped to crypto, wallet-connected, and prediction-market workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access crypto account context and wallet-connected workflows through Noya. <br>
-Mitigation: Install only when the user trusts Noya with financial context, use a short-lived API key, and revoke the key if exposure is suspected. <br>
-Risk: Trading, transfers, DCA changes, and prediction-market actions can have financial consequences. <br>
-Mitigation: Do not auto-confirm actions; require explicit user approval for every transaction or strategy change and review DCA strategies regularly. <br>
-Risk: The security summary flags broad sharing of conversation and financial profile data with other agent contexts without clear minimization. <br>
-Mitigation: Share only the minimum task-specific context and avoid sending unrelated conversation history or full portfolio summaries unless the user explicitly approves that exact sharing. <br>
+## Use Case:
 
+External users and developers use this skill to query Noya's crypto data endpoints and interact with Noya's agent workflows for token analysis, portfolio checks, swaps, bridges, transfers, DCA strategies, and prediction markets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noyadev00-gmailcom/noya-agent-skill) <br>
-- [Noya homepage](https://agent.noya.ai) <br>
-- [Noya docs index](https://mcp.noya.ai/llms.txt) <br>
-- [Noya Agent API reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash/curl examples and parsed text or JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external Noya HTTPS APIs; conversational agent endpoints require NOYA_API_KEY, while public data endpoints do not.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release evidence) <br>
+Risk: Crypto prompts, account-linked data, conversation context, or financial data may be shared with Noya or other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact context and financial data before handoff or delegation workflows, avoid forwarding full summaries, and share only the minimum necessary information.
+
+Risk: Generated user_context.json files may persist sensitive account or financial context on disk.
+
+Mitigation: Delete any generated user_context.json file after use.
+
+Risk: Long-lived API keys increase impact if exposed.
+
+Mitigation: Use a short-lived NOYA_API_KEY where possible and revoke it promptly if compromised.
+
+## Reference(s):
+
+- [Noya homepage](https://agent.noya.ai)
+- [Noya docs index](https://mcp.noya.ai/llms.txt)
+- [Noya API reference](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/noyadev00-gmailcom/skills/noya-agent-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call HTTPS APIs with curl and parse streamed or JSON responses with jq; conversational agent workflows can require NOYA_API_KEY.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

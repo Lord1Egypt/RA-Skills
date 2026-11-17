@@ -1,42 +1,59 @@
-## Description: <br>
-Generate a daily AI news newsletter for a Chinese audience from fresh web sources and return the newsletter body and article summaries in Simplified Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily AI news newsletter for a Chinese audience from fresh web sources, returning the newsletter body and article summaries in Simplified Chinese.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-Content teams, analysts, and AI practitioners use this skill to gather, verify, rank, and summarize recent AI news into a Simplified Chinese newsletter with source metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires API credentials for web search and fetching. <br>
-Mitigation: Provide only the required BRAVE_API_KEY and FIRECRAWL_API_KEY values in the intended runtime environment and avoid exposing them in generated newsletter output. <br>
-Risk: Web-sourced news can be stale, inconsistent, malformed, or off topic. <br>
-Mitigation: Use the skill's verification, duplicate removal, fallback search, and warning records; review source links before redistribution. <br>
+## Use Case:
 
+External users and developers use this skill to curate current AI and machine learning news into a daily Simplified Chinese newsletter with source links, summaries, article metadata, and warnings for skipped or inconsistent results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/ai-newsletter-chn-for-hermes) <br>
-- [Publisher profile](https://clawhub.ai/user/j3ffyang) <br>
-- [Author profile](https://github.com/j3ffyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [Simplified Chinese Markdown newsletter plus JSON newsletter data, article summaries, source metadata, and warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves article title, URL, domain, published date, relevance score, and source query metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Newsletter content depends on live web search and fetched pages, so articles may be unavailable, stale, or mismatched.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's verification flow, review warnings, and confirm important items against their source links before publication.
+
+Risk: The skill requires Brave and Firecrawl API keys for web search and fetching.
+
+Mitigation: Provide only scoped keys through the host environment and rotate or revoke them according to local policy.
+
+Risk: Output is in Simplified Chinese by default, which may not match every audience or locale.
+
+Mitigation: Confirm the target audience and adapt the newsletter before reuse in another locale.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/ai-newsletter-chn-for-hermes)
+- [Publisher profile](https://clawhub.ai/user/j3ffyang)
+- [Author link from metadata](https://github.com/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Simplified Chinese newsletter text plus Markdown and JSON newsletter outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source metadata including title, URL, domain, published date, relevance score, source query, and warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

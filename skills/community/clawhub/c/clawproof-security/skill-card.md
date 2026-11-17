@@ -1,44 +1,59 @@
-## Description: <br>
-Enterprise-grade security for OpenClaw - blocks malicious skills, detects hallucinated packages, and prevents prompt injection attacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade security for OpenClaw - blocks malicious skills, detects hallucinated packages, and prevents prompt injection attacks.
 
-## Publisher: <br>
-[sinewaveai](https://clawhub.ai/user/sinewaveai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sinewaveai](https://clawhub.ai/user/sinewaveai)
 
-## Use Case: <br>
-Developers, OpenClaw users, skill authors, and security teams use this skill to scan skills, prompts, packages, generated code, and agent actions before execution or release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to run an external npm/npx scanner. <br>
-Mitigation: Install only when comfortable running that package, and review the package source or registry entry before use. <br>
-Risk: Auto-fix behavior can change project files. <br>
-Mitigation: Review all generated fixes before committing or deploying them. <br>
-Risk: MCP and git-hook integrations can run scanner behavior automatically. <br>
-Mitigation: Inspect MCP and git-hook configuration after enabling integrations so the user knows what will run. <br>
+## Use Case:
 
+External users, developers, skill authors, and security teams use this skill to scan OpenClaw skills, prompts, packages, commands, and generated code before installation or execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sinewaveai/clawproof-security) <br>
-- [agent-security-scanner-mcp GitHub repository](https://github.com/sinewaveai/agent-security-scanner-mcp) <br>
-- [agent-security-scanner-mcp npm package](https://www.npmjs.com/package/agent-security-scanner-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and scanner result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of an external npm/npx scanner that may return security grades, allow/warn/block decisions, SARIF output, and auto-fix suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.10.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill asks users to run mutable npm code with broad local authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the npm publisher is trusted; prefer pinning the declared version and using a project-local locked install.
+
+Risk: The scanner may read files and prompts supplied for analysis.
+
+Mitigation: Scan only content you are comfortable sharing with the local scanner process and review any generated findings before acting on them.
+
+Risk: Initialization, git hook, and auto-fix commands can modify local project behavior or files.
+
+Mitigation: Review changes from init, init-hooks, and auto-fix workflows before enabling or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sinewaveai/skills/clawproof-security)
+- [agent-security-scanner-mcp GitHub repository](https://github.com/sinewaveai/agent-security-scanner-mcp)
+- [agent-security-scanner-mcp npm package](https://www.npmjs.com/package/agent-security-scanner-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return scan verdicts, A-F grades, warnings, findings, and remediation guidance depending on the invoked scanner command.]
+
+## Skill Version(s):
+
+3.10.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

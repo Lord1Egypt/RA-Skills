@@ -1,44 +1,55 @@
-## Description: <br>
-Amazon listing audit skill for Chinese cross-border sellers that flags translation errors, cultural misfires, keyword gaps, and awkward phrasing that can reduce conversions with Western buyers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Amazon listing copy for Chinese cross-border sellers, flagging translation errors, cultural fit issues, keyword gaps, awkward phrasing, and conversion risks for Western buyers.
 
-## Publisher: <br>
-[kiwi-phantomworks](https://clawhub.ai/user/kiwi-phantomworks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiwi-phantomworks](https://clawhub.ai/user/kiwi-phantomworks)
 
-## Use Case: <br>
-External sellers and ecommerce operators use this skill to audit Amazon listing titles, bullets, and descriptions for translation quality, cultural fit, keyword coverage, conversion signals, and tone. It returns a scored audit with prioritized fixes and targeted rewrite suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause the skill to be invoked for generic listing-review requests. <br>
-Mitigation: Specify the target marketplace, seller background, product category, and intended buyer audience when requesting an audit. <br>
-Risk: External rewrite-service links may be mistaken for required functionality. <br>
-Mitigation: Treat linked rewrite services as optional references; the audit itself does not require external services. <br>
+## Use Case:
 
+External sellers and ecommerce operators use this skill to audit Amazon listing titles, bullets, descriptions, and category context for translation quality, cultural calibration, keyword coverage, and conversion signals. The skill returns scores, prioritized fixes, rewrite suggestions for high-impact issues, and a short summary of strengths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kiwi-phantomworks/cn-amazon-listing-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/kiwi-phantomworks) <br>
-- [OpenClaw homepage](https://github.com/PhantomWorksIO/clawhub-skills) <br>
-- [Multi-Platform Listing Optimizer for Non-Native Sellers](https://www.shopclawmart.com/listings/multi-platform-listing-optimizer-for-non-native-sellers-ea202e82) <br>
-- [PhantomWorks](https://phantomworks.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with scores, a prioritized fix list, rewrite suggestions, and a summary of strengths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credentials, persistence, or hidden data access are identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: Broad trigger phrases may activate the skill for general listing-review requests outside the intended Amazon audit context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user clearly asks for an Amazon listing audit, especially for Chinese cross-border seller listings.
+
+Risk: The audit flow may recommend related PhantomWorks rewrite skills for low-scoring listings.
+
+Mitigation: For neutral audits, ignore or remove the promotional recommendation and keep the output limited to the requested audit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kiwi-phantomworks/skills/cn-amazon-listing-auditor)
+- [PhantomWorks ClawHub skills collection](https://github.com/PhantomWorksIO/clawhub-skills)
+- [PhantomWorks](https://phantomworks.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with score table, prioritized fix list, rewrite suggestions, and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an overall score out of 100 and four dimension scores out of 25.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Mercury bank API for Digital 4 Jesus LLC (US entity). Use when the user asks about Mercury account balances, transactions, invoices, customers, or sending money. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mercury bank API for Digital 4 Jesus LLC account balances, transactions, invoices, customers, recipients, organization details, and money movement.
 
-## Publisher: <br>
-[GodsBoy](https://clawhub.ai/user/GodsBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[godsboy](https://clawhub.ai/user/godsboy)
 
-## Use Case: <br>
-Authorized operators of the Digital 4 Jesus LLC Mercury business account use this skill to inspect balances, transactions, invoices, customers, recipients, and organization details, and to prepare account actions through Mercury API commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a live Mercury banking API token and can change financial records. <br>
-Mitigation: Install only when authorized for this exact Mercury business account, use a least-privilege token, and require manual review before invoice, customer, or payment actions. <br>
-Risk: Untrusted text passed into invoice commands may affect generated API payloads. <br>
-Mitigation: Avoid feeding untrusted text into invoice commands until argument handling is fixed. <br>
-Risk: The local secrets file contains sensitive credentials. <br>
-Mitigation: Keep the secrets file private and restrict access to the Mercury API token. <br>
+## Use Case:
 
+Developers and operators with authorization for the relevant Mercury account use this skill to inspect banking data and manage accounts receivable workflows such as invoices and customers.
 
-## Reference(s): <br>
-- [Mercury API Reference](references/api.md) <br>
-- [Mercury API](https://api.mercury.com/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/GodsBoy/mercury-bank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Mercury API token and a local secrets file before commands can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read banking data and modify accounts receivable or payment records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for authorized Mercury accounts, use a least-privileged token, keep the secrets file private, and require explicit confirmation before every write action.
+
+Risk: Invoice creation contains an argument-injection flaw according to the authoritative security scan summary.
+
+Mitigation: Fix the invoice argument handling before use with untrusted input, and review generated invoice values before executing create or update commands.
+
+Risk: The Mercury API token may be exposed through process arguments or local secret handling.
+
+Mitigation: Avoid passing tokens on command lines, restrict permissions on ~/.secrets/mercury.env, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [Mercury API Reference](references/api.md)
+- [Mercury API Base URL](https://api.mercury.com/api/v1)
+- [ClawHub skill page](https://clawhub.ai/godsboy/skills/mercury-bank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, JSON examples, and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Mercury API helper commands that return formatted JSON or account summaries when credentials are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

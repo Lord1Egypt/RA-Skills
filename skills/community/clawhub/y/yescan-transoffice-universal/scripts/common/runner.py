@@ -42,13 +42,13 @@ def run_ocr(result_handler: Optional[ResultHandler] = None,
   {', '.join(list_scenes())}
 
 示例:
-  python3 scripts/scan.py --scene general-ocr --url "https://example.com/image.jpg"
-  python3 scripts/scan.py --scene idcard-ocr --path "/path/to/idcard.jpg"
+  python3 scripts/scan.py --scene image-to-word --url "https://example.com/image.jpg"
+  python3 scripts/scan.py --scene image-to-excel --path "/path/to/table.jpg"
         """
     )
     
     # 场景参数（必填）
-    parser.add_argument("--scene", "-s", required=True, help="场景名称（如 general-ocr, idcard-ocr 等）")
+    parser.add_argument("--scene", "-s", required=True, help="场景名称（如 image-to-word, image-to-excel 等）")
     
     # 图片输入参数（三选一）
     group = parser.add_mutually_exclusive_group(required=True)

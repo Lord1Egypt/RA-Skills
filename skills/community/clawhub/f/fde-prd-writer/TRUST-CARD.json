@@ -1,0 +1,24 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-prd-writer",
+  "stage": 3,
+  "purpose": "Turn the confirmed direction into a PRD handover package that can be realized by R&D and tested for acceptance.",
+  "risk_level": "low",
+  "scripts": [
+    "fde-prd-writer/scripts/validate-traceability.js"
+  ],
+  "writes": [
+    "Export or verify PRD and tracking documents only"
+  ],
+  "human_confirmation": [
+    "Requirements priority",
+    "scope changes",
+    "Acceptance criteria"
+  ],
+  "high_risk_boundaries": [
+    "Do not falsify customer facts",
+    "Don’t treat KANO, SWOT or Mermaid as conclusions in themselves"
+  ]
+}

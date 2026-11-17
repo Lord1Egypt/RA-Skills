@@ -1,43 +1,53 @@
-## Description: <br>
-Atomic node skill to exclusively update the summary (title) of a Google Calendar event. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to exclusively update the summary (title) of a Google Calendar event.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents use this skill to rename an existing Google Calendar event by changing only its summary or title. It is suited for workflows that already know the target calendar ID, event ID, and replacement title. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rename the wrong calendar event if the agent uses an incorrect calendar ID or event ID. <br>
-Mitigation: Confirm the exact calendar ID, event ID, and replacement title before running the gog command. <br>
-Risk: The gog CLI may be authenticated to an unintended Google account. <br>
-Mitigation: Verify gog authentication and target account context before updating an event. <br>
-Risk: The command may fail or return an unexpected summary after execution. <br>
-Mitigation: Check the returned JSON and retry only when the response does not confirm the requested summary. <br>
+## Use Case:
 
+Agents and users who manage Google Calendar events use this skill to rename an existing event by updating only its summary/title through the gog CLI. The skill is intentionally limited to the event summary field and expects the returned JSON to confirm the change.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-calendar-update-summary) <br>
-- [Publisher profile](https://clawhub.ai/user/zvirb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON response from the Google Calendar CLI, with concise guidance for validating the updated summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog CLI and an authenticated Google Calendar account; limited to updating the event summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The command template can create a command-injection risk if calendar IDs, event IDs, or titles are interpolated into a shell command unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass event titles, event IDs, and calendar IDs as literal CLI arguments through a shell-free execution path, or validate and escape them carefully before execution.
+
+Risk: The skill depends on the local gog CLI setup and the agent executing it.
+
+Mitigation: Install only in environments where the gog CLI configuration and executing agent are trusted, and review the returned JSON before treating the update as successful.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-calendar-update-summary)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, guidance]
+
+**Output Format:** [Shell command invocation plus JSON response validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and limits updates to the Google Calendar event summary field.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "name": "warrior-trading",
+  "version": "1.0.0",
+  "description": "Ross Camero's Warrior Trading methodology — Gap & Go, Momentum, Reversal day trading strategies. Includes pre-market gap scanner, chart analysis, entry/exit rules, position sizing (1% risk rule), and Breakout or Bailout risk management. Small-cap momentum focus for US equities.",
+  "author": "bisonquant",
+  "license": "MIT",
+  "permissions": ["network", "file_write"],
+  "entry": "instructions.md",
+  "tags": ["trding", "day-trading", "momentum", "gap-and-go", "small-cap", "stocks", "finance"],
+  "category": "finance-trading",
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0",
+  "price": 19,
+  "currency": "USD"
+}

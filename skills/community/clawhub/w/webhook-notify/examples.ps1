@@ -18,7 +18,7 @@
 $env:DINGTALK_WEBHOOK = "https://oapi.dingtalk.com/robot/send?access_token=YOUR_TOKEN"
 $env:WECOM_WEBHOOK = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY"
 $env:FEISHU_WEBHOOK = "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK"
-$env:SLACK_WEBHOOK = "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+$env:SLACK_WEBHOOK = "REDACTED-SECRET"
 
 # ============================================================================
 # 示例1: 发送钉钉消息

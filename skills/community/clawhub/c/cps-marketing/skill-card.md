@@ -1,42 +1,56 @@
-## Description: <br>
-系统化开展CPS联盟营销；当你计划做内容带货或导购时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+系统化开展CPS联盟营销；当你计划做内容带货或导购时调用。
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, marketers, and teams use this skill to plan CPS affiliate marketing workflows for content commerce and shopping-guide operations. It supports product selection, content planning, traffic acquisition, tracking setup, review cadence, compliance checks, and 30-day execution planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may steer product-guide or content-shopping discussions toward affiliate marketing tactics.
+
+Mitigation: Use it only for intended CPS or affiliate marketing workflows and review whether affiliate tactics are appropriate for the channel and audience.
+
+Risk: Generated claims, product comparisons, or calls to action may conflict with platform policies, advertising rules, or disclosure requirements.
+
+Mitigation: Review claims, affiliate disclosures, platform policy compliance, and legal advertising requirements before publishing.
+
+Risk: Tracking links, UTM parameters, short links, or recommendation pages can create privacy and attribution risks.
+
+Mitigation: Check tracking links and data collection practices for privacy compliance, accurate attribution, and clear user-facing disclosures.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, affiliate marketers, and small teams use this skill to plan CPS affiliate campaigns, choose products, create conversion content, track attribution, and run compliant review cycles. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Affiliate marketing guidance can lead to undisclosed paid promotion or violations of platform terms. <br>
-Mitigation: Disclose affiliate relationships, verify current platform policies, and keep tracking and settlement practices transparent. <br>
-Risk: Campaign content may exaggerate product benefits or imply fabricated experience. <br>
-Mitigation: Use real evidence and documented experience; state limits, refund risks, and suitability boundaries. <br>
-Risk: Audience data and tracking links can expose personal or customer information. <br>
-Mitigation: Use privacy-preserving analytics, minimize collected data, and handle audience information according to applicable privacy rules. <br>
+**Output Format:** [Markdown or structured text with plans, checklists, SOPs, tracking guidance, and optimization recommendations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/cps-marketing) <br>
+**Other Properties Related to Output:** [No executable output; generated recommendations should be reviewed before publication.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, SOP steps, execution plans, and compliance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code, credential access, or tool execution.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

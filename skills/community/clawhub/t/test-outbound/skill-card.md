@@ -1,39 +1,57 @@
-## Description: <br>
-登录外呼系统并调用 save_session.py 保存浏览器会话到 auth.json。用于首次登录、会话失效或开始任务前重新准备登录态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs in to the outbound workbench and saves a reusable browser session as auth.json for first-time login, expired sessions, or task setup.
 
-## Publisher: <br>
-[RingoRangers](https://clawhub.ai/user/RingoRangers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ringorangers](https://clawhub.ai/user/ringorangers)
 
-## Use Case: <br>
-Developers and operations users use this skill to prepare or refresh a reusable browser login state for an outbound call workbench before running downstream outbound workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles plaintext login credentials and creates auth.json, which may be equivalent to an active logged-in session. <br>
-Mitigation: Inspect the referenced save_session.py and target URL before use, restrict permissions on login_credentials.json and auth.json, keep both out of source control, and delete or rotate them when no longer needed. <br>
+## Use Case:
 
+Operators and developers use this skill to prepare or refresh authenticated browser state before outbound workbench tasks. It guides credential-file setup, Playwright/Chromium prerequisites, manual captcha completion, and session reuse through auth.json.
 
-## Reference(s): <br>
-- [Session Contract](references/session-contract.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RingoRangers/test-outbound) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a Playwright auth.json session file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces auth.json for downstream browser-session reuse; treat login_credentials.json and auth.json as secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: login_credentials.json and auth.json may expose account credentials or reusable authenticated session state if committed, backed up, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a protected workspace, keep both files out of source control and backups, restrict file permissions, and revoke or rotate the account/session if either file may have been exposed.
+
+Risk: A stale or invalid auth.json can make downstream outbound tasks operate without a valid authenticated session.
+
+Mitigation: Recheck the saved session after login by loading auth.json in a fresh browser context and confirming the outbound workbench opens successfully before reuse.
+
+Risk: Unpinned browser automation dependencies can change login behavior or introduce avoidable supply-chain risk.
+
+Mitigation: Run Playwright and Chromium in an isolated environment and prefer pinned Playwright versions.
+
+## Reference(s):
+
+- [Session Contract](references/session-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and an auth.json browser-session file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Playwright, Chromium, local browser access, login_credentials.json, and manual captcha completion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

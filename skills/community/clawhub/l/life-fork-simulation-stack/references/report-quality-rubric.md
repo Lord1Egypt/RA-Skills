@@ -1,5 +1,7 @@
 # 报告质量评分量表
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用于评估人生岔路复盘报告是否面向真实用户：第一眼有命中感，读得懂，可信，可保存，行动建议有用。
 
 ## 使用时机

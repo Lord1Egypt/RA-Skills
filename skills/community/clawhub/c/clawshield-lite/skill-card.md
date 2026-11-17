@@ -1,42 +1,49 @@
-## Description: <br>
-Scans AI skills for potential security risks and unsafe commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans AI skills for potential security risks and unsafe commands.
 
-## Publisher: <br>
-[thenox21](https://clawhub.ai/user/thenox21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thenox21](https://clawhub.ai/user/thenox21)
 
-## Use Case: <br>
-Developers and security reviewers use this skill for first-pass local static checks of AI skill code, scanning piped source text for dangerous or suspicious patterns and returning a structured risk report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A SAFE result can miss obfuscated code, unlisted APIs, and broader agentic risks. <br>
-Mitigation: Treat scanner output as advisory and perform manual review before using sensitive or high-impact skills. <br>
-Risk: Pattern-based matching can produce incomplete or noisy findings. <br>
-Mitigation: Review each reported pattern in source context and update rules.json when new risky patterns are identified. <br>
+## Use Case:
 
+Developers and engineers use this skill to run lightweight static checks over AI skill source code and produce a structured security risk report before installation or review.
 
-## Reference(s): <br>
-- [ClawShield Lite ClawHub listing](https://clawhub.ai/thenox21/clawshield-lite) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, guidance] <br>
-**Output Format:** [JSON security report printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a risk_level and issue list from pattern-based static scanning; results are advisory and require human review for sensitive use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A SAFE result can miss obfuscated or semantically equivalent risky code because the scanner is a lightweight local heuristic checker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supplement results with manual review or stronger static analysis before trusting or deploying a scanned skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thenox21/skills/clawshield-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Guidance]
+
+**Output Format:** [JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports matched patterns, severity, explanations, and an overall SAFE, MEDIUM RISK, or HIGH RISK classification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

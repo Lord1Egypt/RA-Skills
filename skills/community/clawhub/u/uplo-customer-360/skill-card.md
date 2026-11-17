@@ -1,44 +1,60 @@
-## Description: <br>
-AI-powered customer lifecycle intelligence spanning sales, customer success, and retail. Unified search across pipeline data, account health, and customer analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered customer lifecycle intelligence spanning sales, customer success, and retail.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Revenue, customer success, and retail operations teams use this skill to query a unified customer knowledge base for account reviews, churn investigations, QBR preparation, and lifecycle analytics across sales, support, product usage, and retail data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an external MCP server to sensitive customer and account data. <br>
-Mitigation: Use only a trusted UPLO HTTPS endpoint with a least-privilege, rotatable API token. <br>
-Risk: Broad organization-context exports, conversation logging, or shared knowledge-base flags can expose or change customer information. <br>
-Mitigation: Require explicit user approval before exporting organization-wide context, logging customer-specific summaries, or creating flags or proposals in shared knowledge systems. <br>
-Risk: The MCP server package is installed through an unpinned npx command. <br>
-Mitigation: Review and pin the package version in deployment configuration where possible before installing in production. <br>
+## Use Case:
 
+Revenue, customer success, sales, and retail operations teams use this skill to search customer lifecycle knowledge, prepare account reviews, investigate churn signals, and identify opportunities across sales history, support activity, product usage, and retail data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-customer-360) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline MCP tool calls and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted UPLO instance URL and API key; may invoke MCP searches and organization-context exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: A mutable third-party MCP package and API token are required to connect the agent to UPLO.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the MCP server package version, use a least-privilege UPLO token, and rotate credentials according to organizational policy.
+
+Risk: Broad customer and organizational search or export operations may expose confidential account, pricing, support, or revenue data.
+
+Mitigation: Restrict access to assigned accounts and approved datasets, preserve classification tiers, and treat exports and broad searches as confidential.
+
+Risk: Customer lifecycle answers may be incomplete or stale when source systems lack current account notes, QBR records, support history, or directives.
+
+Mitigation: Use the skill's gap and outdated-content reporting workflows, and verify high-impact customer decisions against authoritative systems.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/roojenkins/skills/uplo-customer-360)
+- [Publisher profile](https://clawhub.ai/user/roojenkins)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration, and natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include customer/account summaries, search queries, workflow steps, risk flags, and MCP configuration guidance; customer exports and broad searches should be treated as confidential.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

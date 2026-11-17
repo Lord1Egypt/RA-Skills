@@ -1,54 +1,66 @@
-## Description: <br>
-Manage the full lifecycle of Alibaba Cloud PAI DSW (Data Science Workshop) instances, including create, update, query, list, start, stop, and ECS spec lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the full lifecycle of Alibaba Cloud PAI DSW (Data Science Workshop) instances, including create, update, query, list, start, stop, and ECS spec lookup.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud PAI DSW notebook/workspace instances through Aliyun CLI workflows while confirming account, region, workspace, compute, image, and lifecycle parameters before action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud lifecycle actions can create, update, start, or stop cost-impacting PAI DSW resources. <br>
-Mitigation: Use the skill only for intended Alibaba Cloud PAI DSW management, and explicitly confirm region, workspace, instance ID, compute spec, image, cost impact, and active work before create, update, start, or stop operations. <br>
-Risk: Alibaba Cloud credentials or access keys could be mishandled during setup. <br>
-Mitigation: Use a least-privilege RAM user or temporary credentials, configure credentials outside chat or command lines, and check credential status with `aliyun configure list` without exposing secret values. <br>
-Risk: Insufficient or overly broad RAM permissions can block operations or expand account exposure. <br>
-Mitigation: Review the documented minimum-permission policy before use and pause on permission errors until the required RAM grants are confirmed. <br>
-Risk: Incorrect region, ECS spec, image type, or dataset mount choices can cause failed starts or unintended resource configuration. <br>
-Mitigation: Verify spec availability in the target region, match CPU/GPU image type to compute spec, and require explicit user confirmation for all dataset and user-customizable parameters. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud PAI DSW instances through the Aliyun CLI, including provisioning, configuration changes, status checks, and start or stop operations.
 
-## Reference(s): <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related CLI Commands](references/related-commands.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Common Images](references/common-images.md) <br>
-- [PAI DSW API Overview](https://help.aliyun.com/zh/pai/developer-reference/api-pai-dsw-2022-01-01-overview) <br>
-- [Create and Manage Workspaces](https://help.aliyun.com/zh/pai/user-guide/create-and-manage-workspaces) <br>
-- [Create a DSW Instance Image](https://help.aliyun.com/zh/pai/user-guide/create-a-dsw-instance-image) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-pai-dsw-manage) <br>
-- [Publisher Profile](https://clawhub.ai/user/sdk-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Aliyun CLI commands that require authenticated Alibaba Cloud access and explicit confirmation before cost-impacting lifecycle actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Mutable installers, latest archives, automatic plugin installation, or broad plugin updates can change what code is executed during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted package manager or pinned, verified Aliyun CLI release, and avoid automatic plugin installation or unrelated plugin updates unless the user explicitly accepts that broader change.
+
+Risk: Cloud credentials and RAM permissions can expose or modify Alibaba Cloud resources.
+
+Mitigation: Configure credentials outside the agent session, avoid pasting access keys or tokens into commands or chats, and use narrowly scoped RAM permissions.
+
+Risk: Lifecycle commands can create, update, start, or stop billable PAI DSW resources.
+
+Mitigation: Confirm region, workspace, instance, image, ECS spec, dataset, and network parameters before execution, and use the documented check-then-act workflow before creating or updating resources.
+
+## Reference(s):
+
+- [CLI Installation](references/cli-installation-guide.md)
+- [RAM Policies](references/ram-policies.md)
+- [Related CLI Commands](references/related-commands.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Common Images](references/common-images.md)
+- [PAI DSW API Overview](https://help.aliyun.com/zh/pai/developer-reference/api-pai-dsw-2022-01-01-overview)
+- [Create and Manage Workspaces](https://help.aliyun.com/zh/pai/user-guide/create-and-manage-workspaces)
+- [Create a DSW Instance Image](https://help.aliyun.com/zh/pai/user-guide/create-a-dsw-instance-image)
+- [Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation of cloud resource parameters and existing Alibaba Cloud credentials; commands can manage billable PAI DSW resources.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

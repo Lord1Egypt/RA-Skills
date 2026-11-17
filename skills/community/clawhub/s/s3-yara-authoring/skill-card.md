@@ -1,43 +1,54 @@
-## Description: <br>
-Guides agents in writing, reviewing, optimizing, and testing YARA-X malware detection rules for threat hunting with attention to naming, string selection, performance, and false-positive reduction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write high-quality YARA-X detection rules for malware identification and threat hunting, covering naming conventions, string selection, performance optimization, and false positive reduction.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Security engineers, malware analysts, and threat hunters use this skill to draft and review YARA-X detection rules, convert indicators into signatures, and reduce false positives before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support security work on systems or samples outside the user's authorization. <br>
-Mitigation: Use it only for systems, malware samples, and environments the user is authorized to review. <br>
-Risk: Detection rules may cause false positives or miss targeted malware if deployed without validation. <br>
-Mitigation: Validate syntax and behavior with YARA-X tooling, representative samples, and clean goodware sets before operational use. <br>
-Risk: Prompts or outputs may include sensitive architecture, customer, credential, or sample details. <br>
-Mitigation: Avoid sharing sensitive details unless the workspace and generated outputs are access-controlled. <br>
+## Use Case:
 
+Developers and security engineers use this skill to write, review, optimize, and troubleshoot YARA-X malware detection rules, including turning indicators into signatures and reducing false positives before deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/solomonneas/s3-yara-authoring) <br>
-- [Trail of Bits YARA authoring methodology](https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with YARA-X code blocks and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rule templates, review guidance, testing commands, and false-positive reduction recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may suggest package-manager install commands or file scans for YARA-X workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that installation commands, sample files, and target directories are intentional before running scans or commands.
+
+Risk: Detection guidance can produce overly broad or misleading rules if not validated.
+
+Mitigation: Review generated rules and test them against representative clean file sets before operational use.
+
+## Reference(s):
+
+- [Trail of Bits YARA Authoring Methodology](https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring)
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/s3-yara-authoring)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with YARA rule examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include YARA-X rule templates, review guidance, testing commands, and false-positive reduction recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

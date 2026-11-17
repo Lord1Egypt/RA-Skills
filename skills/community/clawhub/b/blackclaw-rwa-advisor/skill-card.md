@@ -1,42 +1,57 @@
-## Description: <br>
-BlackClaw RWA Advisor helps agents provide multi-jurisdictional RWA tokenization strategy, regulatory structuring, token classification, compliance architecture, and issuance planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BlackClaw RWA Advisor provides multi-jurisdictional RWA tokenization guidance for regulatory structuring, token classification, compliance architecture, issuance strategy, and Sharia-compliant token design.
 
-## Publisher: <br>
-[khurramjamil12](https://clawhub.ai/user/khurramjamil12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khurramjamil12](https://clawhub.ai/user/khurramjamil12)
 
-## Use Case: <br>
-Asset owners, issuers, fund managers, fintech teams, platform builders, and their advisors use this skill to explore compliant RWA tokenization structures across jurisdictions. It supports token classification, regulatory pathway planning, compliance architecture, issuance checklists, and Sharia-aware structuring guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RWA tokenization guidance can become outdated as financial, crypto-asset, securities, tax, and sanctions rules change. <br>
-Mitigation: Verify current requirements against official regulator sources and engage qualified local counsel before acting on an issuance or compliance plan. <br>
-Risk: Users could seek structures that evade KYC, AML, CFT, sanctions, securities registration, or transfer restrictions. <br>
-Mitigation: Use the skill only for compliant structuring, reject evasion requests, and route issuance decisions through licensed compliance, legal, and regulated-market professionals. <br>
-Risk: Sharia-compliant token design requires qualified religious and legal review. <br>
-Mitigation: Treat the skill's Sharia-related output as structuring support only and obtain final rulings from a qualified Sharia board or scholar committee. <br>
+## Use Case:
 
+Asset owners, issuers, fund managers, fintechs, and platform builders use this skill to plan RWA tokenization structures, compare jurisdictions, classify tokens, and draft compliance and issuance checklists. It is advisory support only and requires current primary-source and professional review before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/khurramjamil12/blackclaw-rwa-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text advisory guidance, often with comparison tables and checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no executable behavior, API calls, or file writes are described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Users may treat regulatory structuring output as legal, tax, investment, or Sharia advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as educational planning support and confirm decisions with qualified local counsel, tax advisors, investment professionals, and Sharia scholars.
+
+Risk: RWA tokenization rules can change quickly across jurisdictions.
+
+Mitigation: Verify current requirements against regulator primary sources before issuance, distribution, or secondary trading.
+
+Risk: The skill could be misused to seek structures that avoid securities registration, KYC/AML, sanctions, or FATF Travel Rule duties.
+
+Mitigation: Reject evasion-oriented structures and require compliant KYC/AML, sanctions screening, transfer restrictions, and regulator engagement where applicable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khurramjamil12/skills/blackclaw-rwa-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendations, comparison tables, risk registers, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Not legal, tax, investment, or Sharia advice; current requirements should be verified against regulator primary sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

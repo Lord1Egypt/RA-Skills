@@ -1,45 +1,61 @@
-## Description: <br>
-Bilibili Up Master helps agents monitor Bilibili trending videos, analyze creator and video metrics, compare creators, plan content, and generate operations reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilibili Up Master helps creators monitor Bilibili trends, analyze creator and video metrics, compare peer accounts, and generate content planning reports.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Creators, social media operators, and content strategists use this skill to gather Bilibili trend signals, analyze UP creator performance, review individual videos, and turn those observations into publishing guidance and daily or weekly reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill weakens HTTPS security. <br>
-Mitigation: Review or remove the global HTTPS certificate-verification override before deployment, and use a dedicated browser profile when collecting Bilibili data. <br>
-Risk: The security evidence says generated data is stored in a predictable temporary folder. <br>
-Mitigation: Treat /tmp/bilibili-data as temporary local storage, avoid placing sensitive account information there, and delete generated reports and cached data when analysis is complete. <br>
-Risk: The security guidance notes that the skill may use browser or agent-reach access for Bilibili pages. <br>
-Mitigation: Run with the minimum needed browser access, confirm target pages before collection, and respect Bilibili community rules and rate limits. <br>
+## Use Case:
 
+Bilibili creators, channel operators, and social-media analysts use this skill to track platform trends, analyze account or video performance, compare peers, and turn those signals into daily or weekly content operations guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/bilibili-up-master) <br>
-- [Bilibili ranking](https://www.bilibili.com/ranking) <br>
-- [Bilibili ranking API](https://api.bilibili.com/x/web-interface/ranking/v2) <br>
-- [Bilibili creator card API](https://api.bilibili.com/x/web-interface/card) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON data structures, Python command output, and concise guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated JSON data and Markdown reports under /tmp/bilibili-data and /tmp/bilibili-data/reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml; _meta.json lists 1.0.1) <br>
+Risk: The security evidence says the Python code weakens HTTPS certificate verification for the whole Python process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal HTTPS certificate verification enabled before use and review any network access that collects Bilibili data.
+
+Risk: The security evidence identifies unsafe local file helpers, and the artifact writes cache and report files under /tmp/bilibili-data/.
+
+Mitigation: Constrain local filenames and paths, store only non-sensitive analytics data, and review generated files before sharing them.
+
+Risk: The security guidance warns against unintended use of logged-in Bilibili sessions or creator publishing workflows.
+
+Mitigation: Use least-privilege browsing sessions for analytics and avoid logged-in creator or publishing sessions unless that access is explicitly intended.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/onlyloveher/skills/bilibili-up-master)
+- [Publisher profile](https://clawhub.ai/user/onlyloveher)
+- [Bilibili ranking page](https://www.bilibili.com/ranking)
+- [Bilibili ranking API endpoint](https://api.bilibili.com/x/web-interface/ranking/v2)
+- [Bilibili user card API endpoint](https://api.bilibili.com/x/web-interface/card)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown reports, JSON analysis summaries, and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save reports and cached analysis data under /tmp/bilibili-data/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

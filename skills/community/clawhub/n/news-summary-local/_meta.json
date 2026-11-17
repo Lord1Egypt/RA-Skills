@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn74fh44vf9yxf4b620s9yvsh182m640",
-  "slug": "news-summary-local",
-  "version": "1.0.0",
-  "publishedAt": 1773478866811
-}
+{"name":"news-summary","version":"1.0.0","description":"本地 RSS 新闻摘要","author":"王可以"}

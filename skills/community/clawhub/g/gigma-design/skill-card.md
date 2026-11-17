@@ -1,42 +1,59 @@
-## Description: <br>
-Gigma AI Design Canvas lets agents create, edit, preview, and export cloud canvas designs such as social graphics, thumbnails, banners, cards, and batch variations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gigma AI Design Canvas helps agents create, edit, preview, and export social media graphics, thumbnails, banners, cards, and batch designs on a cloud-hosted editable canvas.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and developers use this skill to direct an agent to build editable Gigma canvas designs, manage project variations, preview results, and export PNG assets. It is suited for social graphics, thumbnails, banners, cards, and batch design workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation can allow an agent to create, modify, or delete cloud canvas content without enough user confirmation. <br>
-Mitigation: Confirm the active project before edits, duplicate or back up important designs before destructive actions, and preview with screenshots before export. <br>
-Risk: Exported assets are shared through signed URLs, which may expose confidential branding, unreleased assets, or sensitive text if used carelessly. <br>
-Mitigation: Avoid exporting confidential material unless signed URL sharing is acceptable, and review each export request before producing a link. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through creating editable visual designs, arranging canvas elements, previewing layouts, and exporting PNG assets. It is suited for social media posts, thumbnails, banners, cards, and repeated design variants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snoopyrain/gigma-design) <br>
-- [Gigma documentation](https://gigma-doc.10xboost.org) <br>
-- [Gigma service](https://gigma.10xboost.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, files] <br>
-**Output Format:** [Markdown guidance with MCP configuration examples, tool call examples, previews, and exported PNG URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, modify, delete, preview, and export canvas projects in the Gigma cloud service; exported PNG links are signed URLs valid for 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Design content is handled through a third-party cloud design service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when third-party cloud processing is acceptable for the intended design content.
+
+Risk: Exported PNG assets are hosted externally behind signed URLs for 7 days.
+
+Mitigation: Do not export confidential, proprietary, or sensitive designs unless that external hosting behavior is acceptable.
+
+Risk: Imported image assets must be reachable through public HTTPS URLs.
+
+Mitigation: Use approved public assets or approved hosting locations for imported images.
+
+## Reference(s):
+
+- [Gigma documentation](https://gigma-doc.10xboost.org)
+- [Gigma web app](https://gigma.10xboost.org)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/gigma-design)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, text, markdown]
+
+**Output Format:** [Markdown guidance with MCP configuration steps and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents toward screenshot previews, exported PNG files, and signed export URLs when used with the Gigma cloud service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

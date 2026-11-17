@@ -1,41 +1,54 @@
-## Description: <br>
-提供 5500+ 只 A 股的量化因子数据和财经指标，支持因子分析、行情查询、资金流向、财务分析及策略回测。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供 5500+ 只 A 股的量化因子数据和财经指标，支持因子分析、行情查询、资金流向、财务分析及策略回测
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-Agents and users use this skill to connect to FactorHub for A-share factor data, market data, financial indicators, and strategy backtesting support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial data and analysis could be mistaken for investment advice or automated trading guidance. <br>
-Mitigation: Treat outputs as informational, review them against trusted financial sources, and do not use the skill as an automated trading tool. <br>
-Risk: The skill depends on the factorhub-mcp binary. <br>
-Mitigation: Install factorhub-mcp only through the official FactorHub or trusted ClawHub install flow before using the skill. <br>
+## Use Case:
 
+External users, developers, and quantitative analysts use this skill to connect an AI agent to FactorHub for China A-share factor data, market quotes, fundamentals, trading calendars, and strategy backtesting.
 
-## Reference(s): <br>
-- [FactorHub homepage](https://factorhub.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/michaelfeng/factorhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text responses, with shell command snippets for installation when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the factorhub-mcp binary and access to FactorHub data services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill depends on the third-party FactorHub MCP provider and the factorhub-mcp binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the provider is trusted and verify the required binary source before use.
+
+Risk: China A-share market data, factor analysis, and backtesting outputs could be mistaken for financial advice.
+
+Mitigation: Treat outputs as informational and independently validate data, assumptions, and strategy results before trading or business decisions.
+
+## Reference(s):
+
+- [FactorHub homepage](https://factorhub.cn)
+- [ClawHub skill page](https://clawhub.ai/michaelfeng/skills/factorhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the factorhub-mcp binary and access to the FactorHub service.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

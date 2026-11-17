@@ -1,43 +1,55 @@
-## Description: <br>
-Navigate freelance platforms as worker or client with proposals, pricing, vetting, and legal compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents advise freelancers and contractors on rates, pipeline health, cash buffers, taxes, contracts, payment disputes, classification, insurance, and growth decisions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External freelancers and clients use this skill to draft platform-aware freelance proposals, evaluate projects, price work, spot client red flags, and follow AI disclosure and platform compliance guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-drafted proposals or deliverables could be inaccurate, misleading, or noncompliant with client expectations. <br>
-Mitigation: Manually review and approve all AI-assisted proposals and deliverables before submission. <br>
-Risk: Freelance platforms may restrict full automation, impersonation, scraping, mass messaging, or off-platform contract movement. <br>
-Mitigation: Use the skill as reference guidance only, keep a human in the loop, and follow each platform's current terms of service. <br>
-Risk: AI assistance may require disclosure depending on platform rules, client contracts, and regional law. <br>
-Mitigation: Default to transparent disclosure, document human contributions, and apply stricter disclosure practices for EU clients or public AI-generated content. <br>
+## Use Case:
 
+External users and agents use this skill to reason about operating an independent freelance or contractor practice, including pricing, pipeline, cash flow, tax set-asides, contracts, late payment, classification, and scaling. It can also draft reviewable business text such as quotes, chase messages, clauses, outreach notes, and reusable practice documents.
 
-## Reference(s): <br>
-- [Freelance ClawHub release](https://clawhub.ai/ivangdavila/freelance) <br>
-- [Freelance Platforms Reference](platforms.md) <br>
-- [Legal Considerations for AI-Assisted Freelancing](legal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with tables, checklists, formulas, and proposal templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human review is required before using AI-assisted proposals or deliverables on freelance platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read, write, move, or delete persistent local business records as part of maintaining freelance-practice memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/Clawic/data before using it on real records, and require explicit approval for migrations, deletions, shared contact or finance updates, and dispute notes.
+
+Risk: Freelance guidance can affect contracts, tax treatment, worker classification, and payment disputes.
+
+Mitigation: Treat outputs as business guidance and review jurisdiction-specific legal, tax, or contractual decisions with an appropriate professional before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/freelance)
+- [Clawic Freelance skill page](https://clawic.com/skills/freelance)
+- [Clawic skill library](https://clawic.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured calculations, draft business text, and local configuration or memory updates when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local business memory under configured Clawic data paths when durable freelance-practice facts are produced.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

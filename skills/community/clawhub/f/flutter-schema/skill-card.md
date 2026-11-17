@@ -1,41 +1,50 @@
-## Description: <br>
-Flutter GetX three-layer architecture guidance for core, shared, and modules structure, module planning, code review, and scaffold-based directory setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Flutter GetX three-layer architecture guidance for core, shared, and modules structure, plus page scaffold generation for new modules and code review.
 
-## Publisher: <br>
-[symboy](https://clawhub.ai/user/symboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symboy](https://clawhub.ai/user/symboy)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and review Flutter GetX project structure, keep modules aligned to core/shared/modules layering, and scaffold new GetX pages or modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File-generation steps may create scaffold code in a Flutter project. <br>
-Mitigation: Ask the agent to show planned files first and keep generated files limited to intended project directories. <br>
-Risk: Architecture or code-review guidance may not match an existing project's conventions. <br>
-Mitigation: Review recommendations against the project's current routing, dependency, and naming standards before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, scaffold, and review Flutter applications that follow a GetX core, shared, and modules architecture.
 
-## Reference(s): <br>
-- [Flutter GetX three-layer architecture schema](schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/symboy/flutter-schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with directory trees, command examples, and Dart scaffold code patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create Flutter/GetX scaffold files when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The scaffold generator can be tricked into writing new files outside the intended Flutter project folder through symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scripts/validate.py only in trusted Flutter repositories, avoid target directories containing symlinks, and review generated files before committing them.
+
+## Reference(s):
+
+- [Flutter GetX three-layer architecture schema](artifact/schema.md)
+- [ClawHub skill page](https://clawhub.ai/symboy/skills/flutter-schema)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional generated Dart scaffold files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The page generator can write binding, logic, state, and view Dart files for a named GetX page.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

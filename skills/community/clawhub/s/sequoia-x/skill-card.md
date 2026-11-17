@@ -1,44 +1,63 @@
-## Description: <br>
-Sequoia-X helps agents install, configure, and run an A-share quantitative stock-screening system with Akshare data, SQLite storage, and Feishu notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sequoia-X helps agents install, configure, and run an A-share quantitative stock-screening workflow with AkShare data, SQLite storage, and Feishu notifications.
 
-## Publisher: <br>
-[djh06](https://clawhub.ai/user/djh06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djh06](https://clawhub.ai/user/djh06)
 
-## Use Case: <br>
-External users and developers use this skill to set up Sequoia-X, run stock-selection strategies, adjust strategy parameters, and configure Feishu delivery for results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation runs mutable external code from the live Sequoia-X GitHub project. <br>
-Mitigation: Install only after trusting or reviewing the project, preferably pinned to a reviewed commit and run in an isolated Python environment. <br>
-Risk: The skill requires a Feishu webhook that could expose notification access if mishandled. <br>
-Mitigation: Keep the Feishu webhook private and store it only in the local .env file. <br>
-Risk: The documented reset flow can delete the local SQLite database. <br>
-Mitigation: Back up ~/sequoia-x/data/sequoia_v2.db before using the reset command. <br>
+## Use Case:
 
+Developers and external users use this skill to set up Sequoia-X, run A-share stock-screening strategies, adjust strategy parameters, and configure Feishu webhook notifications. Outputs should be reviewed as screening signals rather than investment advice.
 
-## Reference(s): <br>
-- [Sequoia-X ClawHub page](https://clawhub.ai/djh06/sequoia-x) <br>
-- [Strategy reference](references/strategies.md) <br>
-- [Sequoia-X GitHub repository](https://github.com/sngyai/Sequoia-X.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, environment-variable, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent guidance may include installation commands, run commands, strategy-parameter advice, and configuration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The installer clones and later runs code from a mutable upstream GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository before use and pin a reviewed commit or release instead of relying on the moving default branch.
+
+Risk: Python dependencies are installed without exact version pins.
+
+Mitigation: Install in a dedicated virtual environment or container and record reviewed dependency versions for repeatable deployments.
+
+Risk: The Feishu webhook is a sensitive notification endpoint.
+
+Mitigation: Store the webhook outside shared logs or public files, rotate it if exposed, and restrict access to the generated .env file.
+
+Risk: The debug reset workflow can delete the local SQLite market database.
+
+Mitigation: Back up the SQLite database before reset or full-resync commands.
+
+## Reference(s):
+
+- [Strategy Details](references/strategies.md)
+- [Sequoia-X upstream repository cloned by installer](https://github.com/sngyai/Sequoia-X.git)
+- [ClawHub skill page](https://clawhub.ai/djh06/skills/sequoia-x)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, run, debugging, Feishu webhook configuration, and strategy-tuning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

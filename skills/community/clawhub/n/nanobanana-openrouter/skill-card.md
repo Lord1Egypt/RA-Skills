@@ -1,41 +1,54 @@
-## Description: <br>
-Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image) via OpenRouter. Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images with Nano Banana Pro (Gemini 3 Pro Image) through OpenRouter, supporting text-to-image, image-to-image, and 1K/2K/4K output.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate new PNG images or edit existing images through OpenRouter, choosing 1K, 2K, or 4K output and optionally supplying an input image for image-to-image edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are transmitted to OpenRouter and the underlying model provider. <br>
-Mitigation: Avoid confidential, regulated, or personal images unless that external transfer is acceptable for the use case. <br>
-Risk: The skill requires an OpenRouter API key for generation or editing. <br>
-Mitigation: Prefer setting OPENROUTER_KEY in the environment instead of passing API keys in chat or command arguments. <br>
+## Use Case:
 
+Developers and agents use this skill to generate new images or edit existing images by calling OpenRouter with prompts, optional input images, and resolution choices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liberalchang/nanobanana-openrouter) <br>
-- [OpenRouter API endpoint used by the script](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell command examples; scripts print generated image paths and save PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports prompt text, optional input image path, filename, output directory, API key source, and 1K/2K/4K resolution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Prompts and optional input images are sent to OpenRouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and images appropriate for OpenRouter processing, and avoid confidential content unless account data-handling expectations allow it.
+
+Risk: OpenRouter API keys can be supplied in ways that may expose secrets.
+
+Mitigation: Prefer OPENROUTER_KEY from a protected environment or secret manager, and avoid pasting API keys into chat or command history.
+
+## Reference(s):
+
+- [OpenRouter Chat Completions API endpoint](https://openrouter.ai/api/v1/chat/completions)
+- [ClawHub skill page](https://clawhub.ai/liberalchang/skills/nanobanana-openrouter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated PNG file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs PNG images to output_images or a custom directory; requires OPENROUTER_KEY or --api-key.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

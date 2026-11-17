@@ -1,46 +1,63 @@
-## Description: <br>
-Extracts consumer insights from pre-analyzed Amazon reviews, including pain points, buying factors, user profiles, usage patterns, competitor sentiment, and listing copy suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts consumer insights from Amazon reviews across 11 dimensions, compares competitor sentiment, and generates listing copy suggestions using ZooData API data.
 
-## Publisher: <br>
-[apiclaw](https://clawhub.ai/user/apiclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apiclaw](https://clawhub.ai/user/apiclaw)
 
-## Use Case: <br>
-External users, sellers, product researchers, and developers use this skill to analyze Amazon review sentiment for individual ASINs, competitor sets, or product categories. It helps identify customer complaints, purchase drivers, differentiation opportunities, and review-backed listing improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an APIClaw API key and sends Amazon ASINs, keywords, category paths, competitor lists, and business research context to APIClaw. <br>
-Mitigation: Use a limited or low-risk API key when available, monitor credit usage, and avoid submitting confidential business context unless APIClaw is approved for that use. <br>
-Risk: Market and review conclusions may be incomplete or time-sensitive because the skill relies on APIClaw sampling, lower-bound estimates, realtime data, and endpoint availability. <br>
-Mitigation: Keep the required disclaimer, data provenance table, API usage table, and confidence labels in user-facing reports, and validate important decisions with additional sources. <br>
-Risk: The bundled reference file contains market-entry wording that does not exactly match the review-intelligence skill name. <br>
-Mitigation: Treat the wording as a documentation inconsistency and keep usage focused on the disclosed Amazon review, product, competitor, pricing, and market-data endpoints. <br>
+## Use Case:
 
+Developers, analysts, and ecommerce operators use this skill to turn Amazon ASIN or category review data into pain-point, buying-factor, user-profile, competitor-comparison, and listing-copy guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/apiclaw/amazon-review-intelligence-extractor) <br>
-- [APIClaw API Documentation](https://api.apiclaw.io/api-docs) <br>
-- [APIClaw](https://apiclaw.io) <br>
-- [APIClaw API Key Setup](https://apiclaw.io/en/api-keys) <br>
-- [API Field Reference](references/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, confidence labels, data provenance, API usage, and optional inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language matches the user's input language; reports omit empty dimensions and should only include insights returned by APIClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill uses a ZooData API bearer key and may make paid API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set the key only in the environment, prefer a scoped or low-credit key, and confirm expected credit use before broad or multi-call scans.
+
+Risk: Fallback analysis can be influenced by untrusted raw review text.
+
+Mitigation: Treat fallback results as directional, preserve data-provenance notes, and review generated conclusions before relying on them for business decisions.
+
+Risk: Unpinned install commands may resolve different package contents over time.
+
+Mitigation: Review and scan the resolved release artifact before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apiclaw/skills/amazon-review-intelligence-extractor)
+- [Publisher profile](https://clawhub.ai/user/apiclaw)
+- [ZooData Skills repository](https://github.com/SerendipityOneInc/ZooData-Skills)
+- [ZooData API key setup](https://zoodata.ai/en/api-keys)
+- [ZooData pricing](https://zoodata.ai/en/pricing)
+- [ZooData API field reference](references/reference.md)
+- [ZooData CLI contract](references/cli-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with structured sections and optional JSON evidence from ZooData CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOODATA_API_KEY; API calls consume ZooData credits; fallback analysis may use raw Amazon review text.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

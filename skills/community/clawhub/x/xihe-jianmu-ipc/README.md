@@ -199,7 +199,7 @@ ipc_sessions()  // see what tools are connected
 
 **4. ClawHub 可用性 / ClawHub availability**
 
-`xihe-jianmu-ipc` skill 已在 ClawHub 上线。在 OpenClaw 内搜索 `xihe-jianmu-ipc` 即可安装。由于包含网络通信代码，安装时可能需要确认安全提示。
+`xihe-jianmu-ipc` skill 已在 ClawHub 上线。在 OpenClaw 内搜索 `jianmu` 即可直接安装。
 
 The `xihe-jianmu-ipc` skill is available in ClawHub. Search for `jianmu` to install it directly from within OpenClaw.
 

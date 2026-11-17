@@ -1,0 +1,23 @@
+{
+  "$comment": "示例：xiaozhi-math-error-dna → xiaozhi-correction-notebook（deep_analysis_writeback）。收发双方都是其他 SKILL；xiaozhi-skill-coordinator 只定义协议、校验格式、按路由表分发，自己不发写回、不存档案。",
+  "sessionId": "sess-demo-002",
+  "protocolVersion": "2.12.7",
+  "handoverType": "deep_analysis_writeback",
+  "sender": "xiaozhi-math-error-dna",
+  "recipient": "xiaozhi-correction-notebook",
+  "consent": {
+    "crossSkillSharing": true
+  },
+  "payload": {
+    "deepAnalysisData": {
+      "errorId": "err-20260511-003",
+      "subject": "math",
+      "subtypeId": "B02",
+      "basicDimension": "概念模糊",
+      "rootCause": "不理解‘两点确定一条直线’与两个方程之间的对应",
+      "status": "顽固弱项",
+      "recommendedAction": "先做纯净版：给两点直接列方程组"
+    }
+  },
+  "timestamp": "2026-05-11T20:05:00+08:00"
+}

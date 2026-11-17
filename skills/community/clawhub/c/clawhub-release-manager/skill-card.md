@@ -1,39 +1,51 @@
-## Description: <br>
-Safely release and publish skill updates to ClawHub with version bump discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely release and publish skill updates to ClawHub with version bump discipline.
 
-## Publisher: <br>
-[okikesolutions](https://clawhub.ai/user/okikesolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[okikesolutions](https://clawhub.ai/user/okikesolutions)
 
-## Use Case: <br>
-Developers and maintainers use this skill to prepare and publish ClawHub skill releases with version bumping, lint/build checks, changelog notes, and release IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish ClawHub skill updates, so an agent could release an unintended version, changelog, or behavior change if the publish step is not reviewed. <br>
-Mitigation: Before allowing publish, confirm `clawhub whoami`, the target skill folder, the version bump, changelog text, lint/build results, and release ID. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to prepare ClawHub skill releases by checking authentication, applying version bumps, running validation commands, publishing, and summarizing release results.
 
-## Reference(s): <br>
-- [ClawHub Release Manager](https://clawhub.ai/okikesolutions/clawhub-release-manager) <br>
-- [Release output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown release summary with command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes release version, check status, publish result, routing or behavior changes, and a follow-up install/update command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Publishing can create a persistent release under the authenticated ClawHub account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target skill directory, version bump, changelog, and `clawhub publish` command before execution.
+
+## Reference(s):
+
+- [Release output template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/okikesolutions/skills/clawhub-release-manager)
+- [Publisher profile](https://clawhub.ai/user/okikesolutions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown release summary with command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes version, validation, publishing, routing-change, and follow-up sections.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

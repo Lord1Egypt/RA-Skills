@@ -1,39 +1,54 @@
-## Description: <br>
-Searches ClawHub for existing skills and helps create a new OpenClaw skill when no suitable match is found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches ClawHub for existing skills and helps create a new OpenClaw skill when no suitable match is available.
 
-## Publisher: <br>
-[condamnation](https://clawhub.ai/user/condamnation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[condamnation](https://clawhub.ai/user/condamnation)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search ClawHub for reusable OpenClaw skills, initialize a new skill when needed, and prepare publishing commands after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest account-affecting ClawHub create or publish actions. <br>
-Mitigation: Confirm before any create or publish action, review generated skill contents and metadata before publishing, and verify the CLI is logged into the intended account. <br>
+## Use Case:
 
+Developers and agent users use this skill to search ClawHub for reusable skills, create an OpenClaw skill structure when no match exists, and prepare a skill for publication through the ClawHub CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/condamnation/skill-search-create) <br>
-- [ClawHub](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ClawHub CLI commands that search, create, or publish skills; publishing should remain user-confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter lists 1.0.1) <br>
+Risk: Installing or relying on the ClawHub CLI package introduces dependency trust and version-control considerations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the package source is trusted before installation and prefer pinned or reviewed dependency versions in managed environments.
+
+Risk: Publishing a skill can upload code and metadata to an external service.
+
+Mitigation: Review generated skill files and metadata before running publish commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/condamnation/skills/skill-search-create)
+- [ClawHub](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and skill-structure guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose ClawHub CLI search, create, login, and publish commands.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

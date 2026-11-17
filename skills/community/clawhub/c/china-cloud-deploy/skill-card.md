@@ -1,40 +1,56 @@
-## Description: <br>
-Helps agents deploy applications to Tencent Cloud, Alibaba Cloud, and Huawei Cloud using official CLIs, with workflows for serverless functions, static hosting, storage, cross-cloud strategy, ICP filing, and China connectivity considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through deploying applications to Tencent Cloud, Alibaba Cloud, and Huawei Cloud using official CLIs, including serverless functions, object storage hosting, multi-cloud strategy, ICP filing considerations, and China-specific connectivity workarounds.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lm203688](https://clawhub.ai/user/lm203688)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and deployment-focused agents use this skill to plan and draft CLI-based deployment steps for applications targeting mainland China cloud platforms, including serverless APIs, static hosting, VPS or container choices, and ICP-related deployment constraints.
+
+### Deployment Geography for Use:
+
+Mainland China
+
+## Known Risks and Mitigations:
+
+Risk: Default public endpoint and public bucket examples can expose cloud services or static assets.
+
+Mitigation: Add authentication or gateway controls for APIs, use dedicated empty buckets for static assets, and confirm public access is intentional before deployment.
+
+Risk: Example commands can deploy to live cloud accounts or persistently change local package registry settings.
+
+Mitigation: Review and adapt commands before use, scope credentials to the intended project, and avoid persistent global registry changes unless they can be reversed.
+
+Risk: Build output or configuration files may contain secrets that could be uploaded during deployment.
+
+Mitigation: Scan build output and deployment packages for secrets before uploading them to cloud functions or object storage.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to produce deployment guidance, CLI commands, and configuration steps for applications targeting major Chinese cloud providers. It is suited for planning and executing China-region serverless, static hosting, object storage, VPS, container registry, and ICP-aware deployment workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-China <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps operate cloud deployment workflows that can use sensitive cloud credentials. <br>
-Mitigation: Use least-privilege or temporary credentials, avoid entering secrets into shared transcripts, and review every generated command before execution. <br>
-Risk: The skill can guide public uploads to Aliyun OSS or similar object storage targets. <br>
-Mitigation: Upload only reviewed build output intended to be public, and avoid private directories, source maps, configuration files, or files that may contain secrets. <br>
+**Output Format:** [Markdown guidance with bash and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/china-cloud-deploy) <br>
+**Other Properties Related to Output:** [Includes cloud CLI commands and deployment checklists; commands require review and adaptation before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and deployment steps require user-provided cloud credentials and review before execution.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

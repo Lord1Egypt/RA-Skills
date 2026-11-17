@@ -1,48 +1,62 @@
-## Description: <br>
-Send transactional and marketing emails via UniOne Email API, manage templates, validate addresses, check delivery statistics, manage suppression lists, configure webhooks, and handle domain settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send transactional and marketing emails via UniOne Email API, manage email templates, validate email addresses, check delivery statistics, manage suppression lists, configure webhooks, and handle domain settings.
 
-## Publisher: <br>
-[unione-repo](https://clawhub.ai/user/unione-repo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[unione-repo](https://clawhub.ai/user/unione-repo)
 
-## Use Case: <br>
-Developers, operators, and marketing teams use this skill to let an agent work with UniOne email workflows, including sending transactional or marketing email, validating addresses, managing templates, configuring webhooks, reviewing delivery data, and maintaining domain and suppression settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send emails and change UniOne account resources such as templates, webhooks, suppressions, projects, domains, analytics exports, and subscription settings. <br>
-Mitigation: Review recipients, message content, attachments, webhook URLs, domain changes, suppressions, project changes, analytics exports, and subscription actions before allowing API calls. <br>
-Risk: A broadly scoped or production UniOne API key could permit unintended account changes or email sends. <br>
-Mitigation: Use a least-privilege or test API key scoped to the actions needed for the task. <br>
-Risk: Retrying an email send without idempotency can create duplicate messages. <br>
-Mitigation: Use a unique idempotency key for each logical send operation and reuse it only when retrying that same operation. <br>
-Risk: Email delivery can fail if the sender domain is not verified or DNS records are misconfigured. <br>
-Mitigation: Verify the sending domain and DKIM/SPF records in UniOne before sending production email. <br>
+## Use Case:
 
+Developers, operators, and marketing teams use this skill to guide agents through UniOne email delivery tasks, including sending transactional or marketing messages, validating addresses, managing templates, configuring webhooks, checking domains, and handling suppressions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unione-repo/unione-api-skill) <br>
-- [UniOne website](https://unione.io/en/) <br>
-- [Declared source metadata](https://github.com/unione-repo/unione-api-skill) <br>
-- [UniOne API documentation](https://docs.unione.io/en/web-api-ref) <br>
-- [UniOne getting started guide](https://docs.unione.io/en/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON request bodies, curl commands, and language-specific code examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires UNIONE_API_KEY and a verified UniOne sending domain for email delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: A production UniOne API key could send email or change real account resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped key stored in an environment variable or secret manager, and require explicit approval before any send, create, update, subscribe, or delete action.
+
+Risk: Deletion or modification of templates, webhooks, suppressions, tags, projects, or event dumps can affect delivery operations and reporting.
+
+Mitigation: Show the exact target and planned change before execution, then wait for user confirmation.
+
+Risk: Unverified sending domains can prevent delivery or cause failed sends.
+
+Mitigation: Check domain status before sending and guide users to add DNS records at their DNS provider themselves.
+
+## Reference(s):
+
+- [UniOne Website](https://unione.io/en/)
+- [UniOne API Documentation](https://docs.unione.io/en/web-api-ref)
+- [UniOne Getting Started](https://docs.unione.io/en/)
+- [Template Engines](https://docs.unione.io/en/web-api#section-template-engines)
+- [ClawHub Skill Page](https://clawhub.ai/unione-repo/skills/unione-api-skill)
+- [Publisher Profile](https://clawhub.ai/user/unione-repo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UniOne API request bodies, curl commands, language-specific snippets, DNS record guidance, and confirmation prompts.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

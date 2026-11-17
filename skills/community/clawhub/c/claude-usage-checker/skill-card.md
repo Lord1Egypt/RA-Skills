@@ -1,40 +1,53 @@
-## Description: <br>
-Check Claude Code / Claude Max usage limits when a user asks about usage, limits, quota, or remaining Claude capacity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Claude Code / Claude Max usage limits when a user asks about usage, limits, quota, or remaining Claude capacity.
 
-## Publisher: <br>
-[aligurelli](https://clawhub.ai/user/aligurelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aligurelli](https://clawhub.ai/user/aligurelli)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to check local Claude CLI usage limits, quota, reset times, and spending-limit information for the account currently logged in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill briefly controls the local Claude CLI and reads Claude usage, quota, reset-time, and spending-limit information. <br>
-Mitigation: Run it only when the user intends to check that information, and confirm the Claude CLI is logged into the intended account before use. <br>
-Risk: The skill requires an interactive PTY and a locally installed, authenticated Claude CLI. <br>
-Mitigation: If the CLI is missing or reports a missing API key, stop and ask the user to install Claude Code or complete the local browser login flow before retrying. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aligurelli/claude-usage-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/aligurelli) <br>
+## Use Case:
 
+Developers and agent users use this skill to check logged-in Claude Code or Claude Max quota from the local Claude CLI and report usage and reset times in a concise table.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown table with concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports usage percentages, reset times, and extra usage spending-limit status from the local Claude CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads Claude usage and spending details from a locally logged-in Claude CLI, which may reveal account, plan, quota, or spending information.
+
+Mitigation: Install and run it only when this visibility is intended, and review the reported output before sharing it.
+
+Risk: The skill depends on an installed, logged-in Claude CLI and an interactive PTY; it may fail or require manual login when those prerequisites are missing.
+
+Mitigation: Confirm the `claude` binary is installed, run the login flow manually if needed, and use an agent environment that supports PTY sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aligurelli/skills/claude-usage-checker)
+- [Publisher profile](https://clawhub.ai/user/aligurelli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown table with concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports usage percentages, reset times, and extra usage spending details when available from the Claude CLI.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

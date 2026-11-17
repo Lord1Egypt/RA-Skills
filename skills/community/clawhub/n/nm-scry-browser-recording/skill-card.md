@@ -1,41 +1,60 @@
-## Description: <br>
-Records browser sessions via Playwright and converts video to GIF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records browser sessions with Playwright and converts them to GIFs for web UI demos and tutorials.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and documentation teams use this skill to run Playwright-based browser recordings for web UI tutorials and demos, locate WebM output, and convert recordings to GIF when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser recordings can capture sensitive application data and save WebM or GIF artifacts locally. <br>
-Mitigation: Use sanitized test accounts and non-production data, review generated media before sharing, and delete output directories when no longer needed. <br>
-Risk: The skill is intended for explicit browser demo recording tasks and may be overly broad if invoked for unrelated browser work. <br>
-Mitigation: Invoke it only for deliberate recording workflows and narrow triggers or task wording where possible. <br>
+## Use Case:
 
+Developers and engineers use it to automate browser-based UI demonstrations and tutorials, capturing Playwright sessions as video and converting them to GIFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-browser-recording) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell command and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent through Playwright validation, recording execution, WebM output discovery, and optional GIF conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Recordings may capture personal, credential, or confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic data where possible and review recordings before sharing.
+
+Risk: The Playwright dependency reference is unpinned, creating a supply-chain consideration.
+
+Mitigation: Review the dependency source and pin a version in project dependencies before installation.
+
+Risk: The security scan had partial coverage and did not include behavioral execution checks.
+
+Mitigation: Review the skill and its dependencies before use; treat the benign scan result as limited evidence.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-scry-browser-recording)
+- [Project homepage (Clawdis metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
+- [Spec execution guidance](artifact/modules/spec-execution.md)
+- [Video capture guidance](artifact/modules/video-capture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Video files, GIF images]
+
+**Output Format:** [Markdown guidance with shell commands, TypeScript examples, and WebM/GIF outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser recordings are WebM; GIF conversion uses the separate gif-generation skill.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter; ClawHub release 1.10.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: proactive-companion
-version: 1.0.52
+version: 1.0.51
 ---
 
 # Proactive Companion — Dispatcher

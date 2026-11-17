@@ -1,41 +1,53 @@
-## Description: <br>
-World-class communication guidance for HeySalad internal messages, external correspondence, presentations, written documentation, cross-functional coordination, meetings, transparency decisions, and active listening coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides HeySalad-specific guidance for drafting, reviewing, and coaching internal, external, presentation, written, meeting, transparency, and active-listening communications.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Employees, founders, and operators use this skill to draft, review, structure, and coach HeySalad communications across internal, external, regulatory, investor, meeting, documentation, and conflict-resolution contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies broad HeySalad-specific communication and tone rules to sensitive messages. <br>
-Mitigation: Treat outputs as drafting guidance, not approval authority, and have qualified humans review sensitive communications before sending. <br>
-Risk: Regulatory, investor, legal, HR, compliance, financial, customer-commitment, or crisis communications may carry business or legal consequences if drafted inaccurately. <br>
-Mitigation: Require review by the appropriate qualified person before relying on or sending these communications. <br>
+## Use Case:
 
+HeySalad team members and compatible agents use this skill to structure and improve messages, documents, presentations, meetings, investor updates, regulatory correspondence, project coordination, and sensitive conversations.
 
-## Reference(s): <br>
-- [Communication Playbook Skill repository](https://github.com/Hey-Salad/communication-playbook-skill) <br>
-- [ClawHub Communication Playbook listing](https://clawhub.ai/chilu18/communication-playbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text communication drafts, reviews, templates, and coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable tools; outputs should be reviewed by qualified humans before sensitive regulator, investor, legal, HR, compliance, financial, customer-commitment, or crisis communications are sent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Mutable install and scan commands in the README may fetch changing dependencies or releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned installer version and a reviewed commit or release, and consider project-local installation rather than global installation.
+
+Risk: The skill can generate guidance for regulatory, investor, personnel, or other sensitive outbound communications.
+
+Mitigation: Keep human, legal, or second-person review in the workflow before sending sensitive communications.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/chilu18/skills/communication-playbook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text communication drafts, reviews, templates, agendas, tables, and coaching notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human review is recommended for regulatory, investor, personnel, legal, or other sensitive outbound communications.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

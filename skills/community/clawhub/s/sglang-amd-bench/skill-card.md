@@ -1,42 +1,53 @@
-## Description: <br>
-Benchmark sglang serving performance on AMD Instinct GPUs (MI355X, MI300X, MI308X) with TP, DP, and EP parallel configurations, throughput and latency sweeps, TTFT/TPOT measurement, and mix-mode configuration comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark SGLang serving performance on AMD Instinct GPUs (MI355X, MI300X, MI308X) across TP, DP, and EP parallel configurations, throughput and latency sweeps, TTFT/TPOT measurement, and mix-mode configuration comparison.
 
-## Publisher: <br>
-[alexsun07](https://clawhub.ai/user/alexsun07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexsun07](https://clawhub.ai/user/alexsun07)
 
-## Use Case: <br>
-Developers and performance engineers use this skill to plan and run SGLang LLM serving benchmarks on AMD Instinct GPU hosts. It helps compare TP, DP, and EP configurations, collect throughput and latency metrics, and produce benchmark artifacts for configuration-level analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill automatically enables model-supplied code execution. <br>
-Mitigation: Install and run it only on a dedicated GPU host or isolated container, use trusted pinned model files, and avoid unreviewed Hugging Face model repositories. <br>
-Risk: Additional launch flags can materially change benchmark server behavior. <br>
-Mitigation: Inspect the DRY_RUN output before launching and review any EXTRA_ARGS before execution. <br>
-Risk: Server lifecycle commands can affect running SGLang processes on shared systems. <br>
-Mitigation: Use stop.sh only in the intended container or host context and verify released GPU processes before starting the next benchmark. <br>
+## Use Case:
 
+Developers and performance engineers use this skill to plan and run SGLang benchmark sweeps on AMD Instinct GPU hosts, compare parallel serving configurations, and produce benchmark logs, CSV data, plots, and a Markdown performance report.
 
-## Reference(s): <br>
-- [SGLang server configuration and parallel strategy](references/server_config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and benchmark artifact files such as JSONL, CSV, and PNG outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces benchmark planning guidance, launch commands, server logs, JSONL metrics, converted CSV data, and optional interactivity plots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can execute model-supplied code because the SGLang launcher always enables remote model code execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted model repositories or local model files, keep model downloads disabled, and review model code before running benchmarks.
+
+Risk: The bundled stop script can force-kill broad SGLang processes, which is risky on shared GPU hosts.
+
+Mitigation: Confirm the target processes before stopping servers on shared hosts, or replace broad cleanup with PID-scoped shutdown for managed environments.
+
+## Reference(s):
+
+- [SGLang Server Configuration & Parallel Strategy](references/server_config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, generated benchmark logs, JSONL results, CSV summaries, plots, and a Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces mix-mode SGLang benchmark artifacts under the selected workspace and relies on explicit user confirmation before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

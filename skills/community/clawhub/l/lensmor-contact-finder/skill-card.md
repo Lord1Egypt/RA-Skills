@@ -1,42 +1,56 @@
-## Description: <br>
-Find decision-makers and key contacts at exhibitor companies using the Lensmor API for pre-show LinkedIn outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds decision-makers and key contacts at exhibitor companies using the Lensmor API for pre-show LinkedIn outreach.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-External B2B sales and marketing teams use this skill to find and prioritize decision-makers or influencers at target exhibitor companies before trade shows. It supports account research, booth meeting scheduling, and LinkedIn outreach planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company names and role criteria are sent to Lensmor, and returned professional profile data may be used for prospecting. <br>
-Mitigation: Install only when this data sharing is acceptable; verify contacts before messaging, respect platform terms and do-not-contact preferences, and confirm a lawful basis for outreach in relevant jurisdictions. <br>
-Risk: The skill requires LENSMOR_API_KEY for API access. <br>
-Mitigation: Keep the API key secure, do not expose token values in responses or logs, and rotate the key if it is suspected to be compromised. <br>
+## Use Case:
 
+B2B sales and marketing teams use this skill to identify decision-makers, influencers, and buyer-function contacts at target exhibitor companies before a trade show, then plan LinkedIn outreach or booth meeting requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weilun88313/lensmor-contact-finder) <br>
-- [Lensmor API documentation](https://api.lensmor.com/) <br>
-- [Lensmor platform base URL](https://platform.lensmor.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown tables with outreach priority notes and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; returns LinkedIn-oriented contact guidance and does not provide email addresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends target company names and role filters to Lensmor and uses returned professional contact data for outreach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lawful business outreach approved by the organization; do not submit confidential prospecting lists or regulated data unless that use has been approved.
+
+Risk: Returned contact records, LinkedIn profile links, and source types may need verification before messaging.
+
+Mitigation: Review contact records before outreach, do not fabricate missing contacts, and state clearly that email addresses are not available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/lensmor-contact-finder)
+- [Lensmor API documentation](https://api.lensmor.com/)
+- [Lensmor platform](https://platform.lensmor.com)
+- [Lensmor website](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with contact tables, outreach priority notes, and short follow-up suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; does not return email addresses and treats LinkedIn profiles as the primary outreach channel.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

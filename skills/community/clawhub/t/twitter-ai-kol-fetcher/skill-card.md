@@ -1,46 +1,62 @@
-## Description: <br>
-Fetches recent Twitter/X activity from AI-domain KOL accounts, identifies high-interest topics, and generates professional internal briefing reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent Twitter/X activity from AI-focused KOLs, identifies hot topics, and generates strategic internal briefing reports.
 
-## Publisher: <br>
-[Ryder-MHumble](https://clawhub.ai/user/Ryder-MHumble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryder-mhumble](https://clawhub.ai/user/ryder-mhumble)
 
-## Use Case: <br>
-Analysts, operators, and developers use this skill to monitor selected AI-company, researcher, investor, and influencer accounts on Twitter/X, cluster noteworthy AI topics, and produce Markdown internal reports with strategic analysis and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports an embedded fallback Twitter API key. <br>
-Mitigation: Remove the fallback key before installation and require users to provide scoped credentials through config.json or environment configuration. <br>
-Risk: Tweet and topic data may be sent to OpenRouter for opportunity detection and report generation. <br>
-Mitigation: Use only data approved for third-party model processing, and configure provider access according to the deployment's data-handling policy. <br>
-Risk: The security review notes that the skill writes cached tweet and filtered-topic data under /tmp despite claiming no local files are saved. <br>
-Mitigation: Redirect or delete the cache files after execution, and document the temporary-file behavior for users before deployment. <br>
+## Use Case:
 
+Analysts and operators use this skill to monitor AI-related Twitter/X KOL activity, cluster emerging topics, and produce Markdown internal briefing reports with strategic analysis and recommendations.
 
-## Reference(s): <br>
-- [KOL account list](references/kol_list.json) <br>
-- [LLM prompts](references/llm_prompts.md) <br>
-- [Internal report template](references/internal_report_template.md) <br>
-- [TwitterAPI.io](https://twitterapi.io) <br>
-- [OpenRouter API](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and console text, with JSON configuration and intermediate JSON data during execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TwitterAPI.io for tweet retrieval and OpenRouter-hosted models for topic selection and report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A fallback Twitter API credential may be used when user configuration is absent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the embedded credential, and require user-supplied secrets through configuration or environment variables before installation.
+
+Risk: Tweet data and generated prompts are sent to OpenRouter for opportunity detection and report generation.
+
+Mitigation: Require explicit user consent for third-party LLM processing and avoid submitting sensitive or private source data.
+
+Risk: The documentation claims temporary files are deleted, while the scripts write intermediate JSON files under temporary paths for reuse.
+
+Mitigation: Use a private temporary directory, add cleanup after execution, and update the documentation so retention behavior is accurate.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ryder-mhumble/skills/twitter-ai-kol-fetcher)
+- [KOL account list](references/kol_list.json)
+- [LLM prompt templates](references/llm_prompts.md)
+- [Internal report template](references/internal_report_template.md)
+- [TwitterAPI.io](https://twitterapi.io)
+- [OpenRouter settings](https://openrouter.ai/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with supporting JSON topic data and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes intermediate tweet and topic JSON to temporary paths and returns up to three selected briefing reports per run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

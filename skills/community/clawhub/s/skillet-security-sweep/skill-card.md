@@ -1,42 +1,57 @@
-## Description: <br>
-Use when asked to security-audit a repository, find vulnerabilities to fix, check for leaked secrets, review dependencies for known CVEs, or harden a project before exposure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when asked to security-audit a repository, find vulnerabilities and prescribe fixes, check for leaked secrets, review dependencies for known CVEs, or harden a project before exposure. Read-only audit. Applying the fixes belongs to expedite.
 
-## Publisher: <br>
-[escoffier-labs](https://clawhub.ai/user/escoffier-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[escoffier-labs](https://clawhub.ai/user/escoffier-labs)
 
-## Use Case: <br>
-Developers and maintainers use this skill to perform defensive repository security reviews, covering secrets, dependency vulnerabilities, input handling, authorization, and accidental exposure before a project is shared or deployed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review output can expose sensitive findings if secret values are copied into the report. <br>
-Mitigation: Report only the secret type and file location, and rotate any exposed credential before treating the issue as resolved. <br>
-Risk: Security findings may be incomplete when runtime configuration or deployment context is unavailable. <br>
-Mitigation: Mark configuration-dependent findings as unverified, lower their severity, and list skipped areas in the report. <br>
-Risk: Operational use in a maintainer context may affect projects that contain sensitive code, packages, or production data. <br>
-Mitigation: Keep reviews defensive and read-only, preserve audit trails, and review remediation commands before applying them. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit authorized repositories for exposed secrets, vulnerable dependencies, unsafe input handling, authorization gaps, and risky exposure, then prioritize verified findings with remediation guidance before exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/escoffier-labs/skillet-security-sweep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Markdown security audit report with findings, scorecard, remediation steps, and backlog items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports secret locations by file, line, and type only; secret values are not copied or echoed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Auditing a repository or its Git history without authorization could expose sensitive information or exceed the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on repositories and histories you are authorized to inspect.
+
+Risk: A discovered credential could be exposed again through a report, tool log, or shared output.
+
+Mitigation: Redact secrets and refer to them only by file, line, and type; never copy or echo their values.
+
+Risk: Findings based on configuration that cannot be inspected may be incomplete or overstated.
+
+Mitigation: Mark such findings unverified, lower severity by one level, and identify skipped areas in the report.
+
+## Reference(s):
+
+- [Security Sweep on ClawHub](https://clawhub.ai/escoffier-labs/skills/skillet-security-sweep)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown security-audit report with a verdict, scorecard, prioritized findings, remediation guidance, backlog, and not-checked areas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit; secret values are never included in reports or logs. Findings dependent on unavailable configuration are marked unverified and assigned one lower severity.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

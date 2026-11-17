@@ -1,8 +1,8 @@
-# Veritier - Python Fact-Checking Examples
+# Veritier - Python Agent Trust Gate Examples
 
-Verify any claim against live web evidence with a single API call. These Python examples show you how to integrate the **Veritier AI Fact-Checking API** into your applications - from basic extraction to advanced hallucination auditing.
+Runnable Python examples for the **Veritier API**. They gate a tool call before an agent runs it, extract claims from text, fact-check them against evidence, and scan documents for tampering.
 
-📦 **API Docs:** [veritier.ai/docs](https://veritier.ai/docs) · 🔑 **Get your free key:** [veritier.ai/register](https://veritier.ai/register)
+📦 **API Docs:** [veritier.ai/docs](https://veritier.ai/docs) · 📐 **OpenAPI:** [api.veritier.ai/openapi.json](https://api.veritier.ai/openapi.json) · 🔑 **Get your free key:** [veritier.ai/register](https://veritier.ai/register)
 
 ---
 
@@ -12,76 +12,72 @@ Verify any claim against live web evidence with a single API call. These Python 
 - A free Veritier API key ([register here](https://veritier.ai/register))
 
 ```bash
-# Install dependencies
 pip install -r requirements.txt
-
-# Set up your API key
 cp ../.env.example .env
-# Edit .env and replace vt_your_api_key_here with your real key
+# Edit .env: VERITIER_API_KEY, optionally VERITIER_TEST_KEY
 ```
 
 ---
 
 ## Examples
 
-### 🚀 Quickstart
+### Quickstart
 
 | Script | Description | Run |
 |--------|-------------|-----|
-| [extract_text.py](quickstart/extract_text.py) | Extract every falsifiable claim from text (no verification) | `python quickstart/extract_text.py` |
+| [extract_text.py](quickstart/extract_text.py) | Extract falsifiable claims (no verification) | `python quickstart/extract_text.py` |
 | [verify_text.py](quickstart/verify_text.py) | Fact-check claims against live web evidence | `python quickstart/verify_text.py` |
+| [validate_document.py](quickstart/validate_document.py) | Authenticity scan (`document_url` / `extracted_text`) | `python quickstart/validate_document.py` |
+| [attest_action.py](quickstart/attest_action.py) | Fail-closed `POST /v1/attest_action` | `python quickstart/attest_action.py` |
+| [reconstruct_credential.py](quickstart/reconstruct_credential.py) | Public GET + JWKS + optional revoke | `python quickstart/reconstruct_credential.py crc_...` |
+| [test_integration.py](quickstart/test_integration.py) | Zero-quota extract/verify/validate/attest/credentials | `python quickstart/test_integration.py` |
 
-### 📋 Use Cases
+### Use cases
 
 | Script | Description | Run |
 |--------|-------------|-----|
-| [verify_article_url.py](use-cases/verify_article_url.py) | Verify all claims from a web page URL | `python use-cases/verify_article_url.py <URL>` |
+| [verify_article_url.py](use-cases/verify_article_url.py) | Verify claims from a web page URL | `python use-cases/verify_article_url.py <URL>` |
 | [hallucination_audit.py](use-cases/hallucination_audit.py) | Catch LLM hallucinations before they reach users | `python use-cases/hallucination_audit.py` |
-| [disinformation_shield.py](use-cases/disinformation_shield.py) | Screen user content for false claims (Truth Firewall) | `python use-cases/disinformation_shield.py` |
-| [private_references.py](use-cases/private_references.py) | Verify against your own documents (no web search) | `python use-cases/private_references.py` |
-| [batch_verify.py](use-cases/batch_verify.py) | Batch-process texts with rate-limit handling | `python use-cases/batch_verify.py` |
+| [disinformation_shield.py](use-cases/disinformation_shield.py) | Screen user content for false claims | `python use-cases/disinformation_shield.py` |
+| [private_references.py](use-cases/private_references.py) | Verify against your own documents | `python use-cases/private_references.py` |
+| [batch_verify.py](use-cases/batch_verify.py) | Batch-process with rate-limit handling | `python use-cases/batch_verify.py` |
+| [gate_tool_call.py](use-cases/gate_tool_call.py) | Attest, then only proceed on `decision=allow` | `python use-cases/gate_tool_call.py` |
+| [informational_credential.py](use-cases/informational_credential.py) | `action_id` on verify (not fail-closed) | `python use-cases/informational_credential.py` |
 
-### 🔔 Webhooks
+### Webhooks
 
 | Script | Description | Run |
 |--------|-------------|-----|
-| [webhook_receiver.py](webhooks/webhook_receiver.py) | Flask server with HMAC-SHA256 signature verification | `python webhooks/webhook_receiver.py` |
+| [webhook_receiver.py](webhooks/webhook_receiver.py) | Verifies HMAC-SHA256 signatures and dedupes on `Idempotency-Key`, including `type: attestation` deliveries | `python webhooks/webhook_receiver.py` |
+
+### MCP
+
+| Script | Description | Run |
+|--------|-------------|-----|
+| [mcp/veritier_mcp_proxy.py](mcp/veritier_mcp_proxy.py) | Local stdio proxy for clients that need a subprocess | started by your MCP client |
+| [mcp/veritier_mcp_test.py](mcp/veritier_mcp_test.py) | Exercises every tool through the proxy | `python mcp/veritier_mcp_test.py` |
+
+See [`mcp/README.md`](mcp/) for the client configuration.
 
 ---
 
-## API Endpoints Used
+## API endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/v1/extract` | POST | Extract claims without verifying (cheaper) |
-| `/v1/verify` | POST | Extract + verify claims against web or private references |
-
-Both endpoints accept either `text` (raw string) or `document` (URL) as input.
-
----
-
-## Response Format
-
-Each verified claim returns:
-
-```
-Claim: '<extracted claim>'
-  Verdict: true | false | null
-  Confidence: 0.0–1.0
-  Explanation: <human-readable rationale>
-  Sources: <comma-separated evidence URLs>
-```
-
-| Verdict | Meaning |
-|---------|---------|
-| `true`  | ✅ Supported by evidence |
-| `false` | ❌ Contradicted by evidence |
-| `null`  | ❓ Insufficient evidence |
+| `/v1/extract` | POST | Extract claims without verifying |
+| `/v1/verify` | POST | Extract + verify. Optional `action_id` mints an informational credential |
+| `/v1/validate` | POST | Authenticity scan (`document_url`, `document_base64`, or `extracted_text`) |
+| `/v1/attest_action` | POST | Looks the action up in a system of record. Returns `allow`, `block`, or `escalate`, all with HTTP 200 |
+| `/v1/credentials/{id}` | GET | Reconstructs a Claim Credential. No API key, retained 400 days |
+| `/v1/credentials/.well-known/jwk` | GET | Ed25519 public keys, current and previous |
+| `/v1/credentials/{id}/revoke` | POST | Lets the issuer revoke a credential. The public GET still returns 200, with `revoked: true` |
 
 ---
 
-## Need Help?
+## Need help?
 
 - **Full docs:** [veritier.ai/docs](https://veritier.ai/docs)
-- **MCP integration:** See the [`mcp/`](mcp/) subfolder
-- **JavaScript examples:** See the [`javascript/`](../javascript/) folder
+- **Live OpenAPI:** [api.veritier.ai/openapi.json](https://api.veritier.ai/openapi.json)
+- **MCP:** [`mcp/`](mcp/)
+- **JavaScript:** [`javascript/`](../javascript/)

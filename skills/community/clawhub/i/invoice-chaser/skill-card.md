@@ -1,41 +1,56 @@
-## Description: <br>
-Invoice Chaser helps agents track unpaid invoices, configure reminder timing and templates, and support accounts receivable follow-up with escalating payment reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated invoice follow-up sequences that escalate from friendly to firm, track unpaid invoices, log payment interactions, and generate accounts receivable aging reports.
 
-## Publisher: <br>
-[audsmith28](https://clawhub.ai/user/audsmith28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[audsmith28](https://clawhub.ai/user/audsmith28)
 
-## Use Case: <br>
-Freelancers, consultants, and small businesses use this skill to add invoices, maintain local invoice state, configure payment reminder templates, and guide follow-up workflows for overdue accounts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real client collection emails and escalation language. <br>
-Mitigation: Use dry-run review, require human approval before firm, final, or disputed-invoice messages are sent, and customize templates for the business relationship. <br>
-Risk: The reviewed bundle describes chase, status, and report scripts that are not included in the artifact. <br>
-Mitigation: Do not enable cron jobs or live email sending until the missing scripts are supplied, reviewed, and tested. <br>
-Risk: Invoice tracking stores client, billing, and payment-status data locally. <br>
-Mitigation: Protect the local invoice data directory, validate invoice inputs, and use a dedicated billing email account for sending reminders. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/audsmith28/invoice-chaser) <br>
+## Use Case:
 
+Freelancers, consultants, and small business operators use this skill to configure invoice records, reminder templates, timing rules, and accounts receivable workflows for unpaid invoice follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local invoice and configuration files under the user's invoice-chaser config directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles payment records and may support outbound collection emails, making incorrect configuration or premature automation sensitive for business relationships.
+
+Mitigation: Review reminder templates, timing rules, account settings, and dry-run behavior before enabling scheduled sends.
+
+Risk: Server security evidence reports incomplete shipped controls and warns not to enable scheduled sending until missing chase, status, and report scripts are available and reviewed.
+
+Mitigation: Limit use to setup and invoice-entry workflows until the missing scripts and safety controls are shipped and assessed.
+
+Risk: Server security evidence identifies a local data-corruption risk from untrusted invoice numbers in jq handling.
+
+Mitigation: Use trusted, simple invoice identifiers and avoid untrusted invoice-number input until the jq handling bug is fixed.
+
+## Reference(s):
+
+- [Invoice Chaser ClawHub Skill Page](https://clawhub.ai/audsmith28/skills/invoice-chaser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog skill and GOG_DEFAULT_ACCOUNT for Gmail-based sending; setup creates local invoice and chase-log JSON files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

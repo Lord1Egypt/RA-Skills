@@ -1,0 +1,33 @@
+{
+  "schema": "2.0",
+  "config": {
+    "streaming_mode": true,
+    "style": {
+      "color": {
+        "cus-0": {
+          "light_mode": "rgba(166,124,0,1)",
+          "dark_mode": "rgba(240,200,90,1)"
+        },
+        "cus-1": {
+          "light_mode": "rgba(139,90,43,1)",
+          "dark_mode": "rgba(200,155,105,1)"
+        }
+      }
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "elements": [
+      {
+        "tag": "markdown",
+        "element_id": "result_title",
+        "content": "<font color='cus-1'>**🏆 战果**</font>"
+      },
+      {
+        "tag": "markdown",
+        "element_id": "streaming_content",
+        "content": "​"
+      }
+    ]
+  }
+}

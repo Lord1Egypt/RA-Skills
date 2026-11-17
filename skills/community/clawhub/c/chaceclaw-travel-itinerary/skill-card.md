@@ -1,42 +1,58 @@
-## Description: <br>
-Generates travel itineraries from destination, duration, budget, traveler type, interests, and travel style, including daily plans, budget estimates, transportation suggestions, practical tips, and optional trip-management artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Itinerary Planner by Chaceclaw helps an agent turn destination, duration, budget, traveler type, and interests into a detailed travel itinerary with budget estimates, restaurant suggestions, transportation guidance, checklists, and practical travel advice.
 
-## Publisher: <br>
-[ling-qian](https://clawhub.ai/user/ling-qian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ling-qian](https://clawhub.ai/user/ling-qian)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn basic trip preferences into structured itinerary guidance for leisure travel, including family, couples, solo, and group travel scenarios. It is most useful for drafting plans that must be checked against current official travel, weather, booking, safety, and budget sources before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate live weather, visa, booking, emergency, budget, or child-safety accuracy. <br>
-Mitigation: Verify all time-sensitive and safety-critical details through official or current sources before relying on the itinerary. <br>
-Risk: Trip plans, family details, expenses, and future travel information may be stored locally under the user's home directory. <br>
-Mitigation: Avoid entering sensitive travel, finance, or family details unless local persistence is acceptable, and review or delete saved files after use. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to collect trip requirements and produce day-by-day itineraries, cost breakdowns, transportation notes, pre-trip checklists, and optional travel journal or expense-tracking outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ling-qian/chaceclaw-travel-itinerary) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown and plain text itinerary guidance, with optional JSON and text files for saved itineraries, expense tracking, diary templates, and PDF-style content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write trip, diary, photo-organization, and expense artifacts under the user's ~/.travel-planner directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Weather, emergency, visa, exchange-rate, booking, sharing, and budget-accuracy outputs may be examples or static estimates rather than verified live data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these outputs as planning drafts and independently verify safety-critical or time-sensitive travel information before booking or travel.
+
+Risk: The skill can store trip details in local files under ~/.travel-planner.
+
+Mitigation: Review stored content for sensitive personal or travel data, restrict access to the local directory, and avoid running it with untrusted inputs.
+
+Risk: Local file-writing behavior has weak filename/path controls.
+
+Mitigation: Harden filename handling and constrain writes to expected directories before use in shared or untrusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ling-qian/skills/chaceclaw-travel-itinerary)
+- [Publisher profile](https://clawhub.ai/user/ling-qian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown itinerary plans, checklist text, budget summaries, Python helper output, and optional local JSON or Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist itinerary, expense, diary, and related travel files under ~/.travel-planner when the Python helper code is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

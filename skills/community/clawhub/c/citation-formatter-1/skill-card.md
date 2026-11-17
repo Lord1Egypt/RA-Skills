@@ -1,42 +1,54 @@
-## Description: <br>
-Formats references for journal submission, converts between common citation styles, generates bibliographies for manuscripts, and checks reference formatting consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats supported citation inputs into AMA-style references for academic and journal-submission workflows.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and academic writers use this skill to format citation text, convert APA, MLA, Vancouver, BibTeX, and unstructured references into AMA-style output, and prepare reproducible bibliography formatting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation describes a broader 1000-style reference-management API than the packaged CLI demonstrably exposes. <br>
-Mitigation: Treat the release as an offline AMA citation converter and validate expected citation-style behavior with representative samples before relying on it for submission workflows. <br>
-Risk: The documented Python API examples reference interfaces that may not match the packaged implementation. <br>
-Mitigation: Use the CLI entry point at scripts/main.py until the publisher aligns the Python API documentation with the implementation. <br>
+## Use Case:
 
+External authors, editors, and developers use this skill to convert supported citation strings or local citation files into AMA-style formatted references. It is useful for preparing academic manuscripts when outputs will still receive human review.
 
-## Reference(s): <br>
-- [AMA Citation Style Guide](references/ama-guidelines.md) <br>
-- [Example Citations for Testing](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/citation-formatter-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with citation text, command examples, and optional CLI-generated output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI accepts a single citation, an input file, an optional output path, an input format selector, and interactive mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The package documentation materially overstates capabilities beyond the local AMA citation formatter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a supported-input AMA formatter and manually verify journal-specific requirements; do not rely on advertised 1000+ styles, validation, bibliography generation, or reference-manager integration unless those features are added and tested.
+
+Risk: Batch mode can overwrite a chosen output file.
+
+Mitigation: Use a new output path or back up existing files before running batch formatting.
+
+## Reference(s):
+
+- [AMA Citation Style Guide](artifact/references/ama-guidelines.md)
+- [Example Citations for Testing](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text citations, Markdown responses, and optional text files for batch output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch mode writes formatted citations to the user-provided output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

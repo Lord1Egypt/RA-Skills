@@ -1,59 +1,79 @@
-## Description: <br>
-Run cold email sequences and manage sales outreach campaigns through the SalesBlink API, including lists, contacts, templates, senders, inbox replies, deliverability tests, reports, billing links, and API-key administration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates SalesBlink cold email outreach by helping agents manage sequences, contacts, templates, senders, inbox replies, deliverability tests, reports, and SalesBlink API requests.
 
-## Publisher: <br>
-[sheksushant](https://clawhub.ai/user/sheksushant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheksushant](https://clawhub.ai/user/sheksushant)
 
-## Use Case: <br>
-External users and sales operators use this skill to configure and operate SalesBlink outreach workflows from an agent, including creating contact lists, writing templates, connecting senders, launching sequences after confirmation, and checking campaign analytics. Developers can also use it to form SalesBlink API requests and payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a powerful SalesBlink API key and can manage account, campaign, billing, and credential-administration actions. <br>
-Mitigation: Configure SALESBLINK_API_KEY through a secure secret or environment setting, avoid pasting it into chat, and use a least-privilege key when SalesBlink supports one. <br>
-Risk: Campaign launches can send email to many recipients and create persistent outreach activity. <br>
-Mitigation: Create sequences paused by default and require explicit confirmation of recipients, sender accounts, templates, schedule, and stop conditions before launch. <br>
-Risk: Billing links and Done-For-You domain or mailbox orders can affect payment methods or recurring costs. <br>
-Mitigation: Require explicit approval for billing links and orders, including exact domains, mailbox counts, provider, price, and cancellation limits. <br>
-Risk: Sender connection and API-key management actions can expose or revoke credentials. <br>
-Mitigation: Confirm the exact sender, key, and downstream impact before connecting senders, refreshing keys, deleting keys, or changing credential settings. <br>
-Risk: Bulk imports and campaign data can include private lead information. <br>
-Mitigation: Upload only user-approved lead data and review CSV or contact payloads to avoid unrelated sensitive personal information. <br>
+## Use Case:
 
+Sales, growth, and developer users use this skill to operate SalesBlink outreach workflows through an agent, including lead list management, campaign setup, sender configuration, inbox handling, analytics, deliverability checks, billing-sensitive operations, and API-key administration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sheksushant/cold-email-salesblink) <br>
-- [SalesBlink Public REST API base URL](https://run.salesblink.io/api/public/v1.0.0) <br>
-- [SalesBlink API key settings](https://run.salesblink.io/account/integration/api) <br>
-- [Lists](references/lists.md) <br>
-- [Contacts and Leads](references/contacts.md) <br>
-- [Email Templates](references/templates.md) <br>
-- [Sequences](references/sequences.md) <br>
-- [Email Senders and OAuth](references/senders.md) <br>
-- [Inbox and Outreach](references/inbox.md) <br>
-- [Workflow Examples](references/workflows.md) <br>
-- [Billing and Payment Methods](references/billing.md) <br>
-- [Done-For-You Domains and Mailboxes](references/dfy.md) <br>
-- [API Key Management](references/api-keys.md) <br>
-- [Inbox Placement Tests](references/inbox-placement.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with HTTP request examples, JSON payloads, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SALESBLINK_API_KEY and network access to run.salesblink.io.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Sensitive SalesBlink API keys, signup credentials, or sender passwords could be exposed if pasted into chat or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure SALESBLINK_API_KEY through the platform secret or environment mechanism, avoid placing passwords in chat, and review OAuth/provider permissions before connecting senders.
+
+Risk: The skill can send cold email campaigns, import lead data, and interact with replies, which may affect recipients and process personal data.
+
+Mitigation: Require explicit user review of approved lead lists, sender accounts, templates, schedule, stop conditions, and estimated recipient count before imports or campaign launches.
+
+Risk: Billing, DFY domain/mailbox orders, and API-key administration can create costs or disrupt integrations.
+
+Mitigation: Require explicit confirmation of exact domains, mailbox counts, provider, price, card action, key name or ID, and integration impact before executing those actions.
+
+Risk: Persistent or evergreen campaigns may continue sending beyond the user's intended scope.
+
+Mitigation: Create sequences paused by default, default to non-evergreen campaigns, document stop conditions, and periodically audit active or recurring items.
+
+## Reference(s):
+
+- [SalesBlink public API base URL](https://run.salesblink.io/api/public/v1.0.0)
+- [SalesBlink API key settings](https://run.salesblink.io/account/integration/api)
+- [Skill source](artifact/SKILL.md)
+- [Lists](artifact/references/lists.md)
+- [Contacts and Leads](artifact/references/contacts.md)
+- [Email Templates](artifact/references/templates.md)
+- [Sequences](artifact/references/sequences.md)
+- [Email Senders and OAuth](artifact/references/senders.md)
+- [Inbox and Outreach](artifact/references/inbox.md)
+- [Activity Tracking](artifact/references/activity.md)
+- [Reports](artifact/references/reports.md)
+- [Inbox Placement Tests](artifact/references/inbox-placement.md)
+- [Done-For-You Domains and Mailboxes](artifact/references/dfy.md)
+- [Billing and Payment Methods](artifact/references/billing.md)
+- [API Key Management](artifact/references/api-keys.md)
+- [Organization Users and Workspaces](artifact/references/organization.md)
+- [Folders](artifact/references/folders.md)
+- [Account Config](artifact/references/account-config.md)
+- [Workflow Examples](artifact/references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads, HTTP examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SALESBLINK_API_KEY and network access to run.salesblink.io for live API operations.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact SKILL.md frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

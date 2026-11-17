@@ -1,0 +1,6 @@
+interface:
+  display_name: "LP Plan"
+  short_description: "Build exact unsigned LP position plans"
+  default_prompt: "Use $lp-plan to turn this chosen pool and budget into an exact unsigned, simulation-backed plan."
+policy:
+  allow_implicit_invocation: true

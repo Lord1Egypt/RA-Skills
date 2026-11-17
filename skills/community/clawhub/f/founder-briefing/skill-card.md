@@ -1,42 +1,53 @@
-## Description: <br>
-Generate real-estate buyer lead follow-up plans from open house notes, inquiry messages, or CRM exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate real-estate buyer lead follow-up plans from open house notes, inquiry messages, or CRM exports.
 
-## Publisher: <br>
-[alech44](https://clawhub.ai/user/alech44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alech44](https://clawhub.ai/user/alech44)
 
-## Use Case: <br>
-Real estate buyer agents use this skill to prioritize buyer leads, draft personalized SMS and email follow-ups, handle common objections, and plan a 7-day cadence for booking appointments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buyer leads and CRM exports may contain sensitive personal data. <br>
-Mitigation: Treat pasted lead details as sensitive and include only the information needed to draft follow-up guidance. <br>
-Risk: Generated SMS or email drafts may be inaccurate, overstate known facts, or be unsuitable to send as written. <br>
-Mitigation: Review every generated message before sending and keep known facts separate from assumptions. <br>
-Risk: The package name and public skill slug differ, which may confuse installation or review. <br>
-Mitigation: Confirm the skill page and publisher before installing or using the release. <br>
+## Use Case:
 
+Real estate buyer agents use this skill to prioritize buyer leads, draft personalized SMS and email follow-ups, handle objections, and plan a short follow-up cadence to book appointments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alech44/founder-briefing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown action board with SMS drafts, email drafts, objection replies, cadence steps, and CRM notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided lead details and labels missing or uncertain information as unverified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: Follow-up drafts could include unverified or inappropriate claims about listings, financing, rates, buyer consent, or fair-housing-sensitive topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated outreach before contacting leads and keep known facts separate from assumptions.
+
+Risk: CRM exports or lead notes may contain sensitive buyer information.
+
+Mitigation: Avoid pasting sensitive CRM data unless the user is comfortable using it with the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alech44/skills/founder-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with lead priority queues, follow-up drafts, cadence actions, and CRM notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review outputs before contacting leads, especially where buyer data, consent, fair-housing rules, or market and financing claims are involved.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

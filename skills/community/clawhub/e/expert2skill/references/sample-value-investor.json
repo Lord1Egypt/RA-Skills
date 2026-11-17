@@ -1,0 +1,266 @@
+{
+  "rule_library": {
+    "id": "value-investor",
+    "version": "0.1.0",
+    "library_type": "expert",
+    "jurisdiction": "A股",
+    "title": "价值投资选股评估",
+    "author": "value-investor-expert",
+    "authority": "格雷厄姆-巴菲特价值投资框架（专家个人方法论）",
+    "scoring": {
+      "weights": { "pass": 1.0, "partial": 0.5, "fail": 0.0 },
+      "na_excluded": true,
+      "formula": "score = round((passed + partial*0.5) / applicable * 100)",
+      "note": "na (not applicable) items are excluded from the applicable denominator"
+    },
+    "question_types_supported": ["binary", "scale", "numeric", "text", "conditional", "self_check"]
+  },
+  "categories": [
+    {
+      "id": "A",
+      "name": "A. 筛选门槛（一票否决）",
+      "weight": 1.0,
+      "description": "不满足即排除，不进入后续评估。",
+      "items": [
+        {
+          "id": "a1",
+          "name": "非 ST/退市风险股",
+          "question": "该标的是否为 ST、*ST 或存在退市风险？",
+          "type": "binary",
+          "pass_condition": "否（不是 ST/退市风险股）",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "critical",
+          "recommendation": "ST/退市风险股直接排除，不参与价值投资评估。",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": { "mode": "direct" }
+        },
+        {
+          "id": "a2",
+          "name": "市值下限",
+          "question": "当前总市值是多少？（单位：亿元）",
+          "type": "numeric",
+          "pass_condition": "市值 >= 100 亿元",
+          "partial_condition": "50 <= 市值 < 100 亿元",
+          "fail_condition": "市值 < 50 亿元",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "high",
+          "recommendation": "小市值公司流动性差、治理风险高，建议纳入观察池而非核心仓位。",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "threshold", "field": "市值", "unit": "亿元", "pass": { "gte": 100 }, "partial": { "gte": 50 }, "fail": { "lt": 50 } }
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "B. 财务健康度",
+      "weight": 1.0,
+      "description": "用可量化财务指标评估企业质地。",
+      "items": [
+        {
+          "id": "b1",
+          "name": "ROE 持续性",
+          "question": "近 3 年 ROE（净资产收益率）平均水平如何？",
+          "type": "scale",
+          "options": { "1": "低于 5%", "2": "5%-10%", "3": "10%-15%", "4": "15%-20%", "5": "高于 20%" },
+          "pass_condition": "评分 >= 4（ROE 15% 以上）",
+          "partial_condition": "评分 = 3",
+          "fail_condition": "评分 <= 2",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 2.0,
+          "severity": "high",
+          "recommendation": "ROE 是巴菲特最看重的单一指标，长期高 ROE 是复利的基础。",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "option_map", "pass": [4, 5], "partial": [3], "fail": [1, 2] }
+        },
+        {
+          "id": "b2",
+          "name": "自由现金流",
+          "question": "近 3 年自由现金流/净利润 的比例大致是？（开放描述 + 数值）",
+          "type": "numeric",
+          "pass_condition": "比例 >= 80%",
+          "partial_condition": "60% <= 比例 < 80%",
+          "fail_condition": "比例 < 60%",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.5,
+          "severity": "high",
+          "recommendation": "利润与现金流背离是常见的财务粉饰信号，需核实应收账款与存货质量。",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "threshold", "field": "自由现金流/净利润", "unit": "%", "pass": { "gte": 80 }, "partial": { "gte": 60 }, "fail": { "lt": 60 } }
+        },
+        {
+          "id": "b3",
+          "name": "负债率",
+          "question": "资产负债率是多少？（单位：%）",
+          "type": "numeric",
+          "pass_condition": "资产负债率 < 50%",
+          "partial_condition": "50% <= 资产负债率 < 65%",
+          "fail_condition": "资产负债率 >= 65%",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "recommendation": "高杠杆企业在利率上行或经营下滑时脆弱，需关注有息负债结构。",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": { "mode": "threshold", "field": "资产负债率", "unit": "%", "pass": { "lt": 50 }, "partial": { "lt": 65 }, "fail": { "gte": 65 } }
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "C. 估值安全边际",
+      "weight": 1.0,
+      "description": "好公司还要买得便宜。",
+      "items": [
+        {
+          "id": "c1",
+          "name": "PE 估值区间",
+          "question": "当前滚动 PE（TTM）是多少？",
+          "type": "numeric",
+          "pass_condition": "PE <= 20",
+          "partial_condition": "20 < PE <= 30",
+          "fail_condition": "PE > 30",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.5,
+          "severity": "medium",
+          "recommendation": "PE 需结合行业与历史分位判断，高 PE 需更高成长性支撑。",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": { "mode": "threshold", "field": "PE", "unit": "", "pass": { "lte": 20 }, "partial": { "lte": 30 }, "fail": { "gt": 30 } }
+        },
+        {
+          "id": "c2",
+          "name": "安全边际",
+          "question": "当前股价相对你评估的内在价值，折价/溢价约多少？（开放描述）",
+          "type": "text",
+          "pass_condition": "专家判定折价 >= 30%",
+          "partial_condition": "折价 0-30%",
+          "fail_condition": "溢价或无法判断",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.5,
+          "severity": "high",
+          "recommendation": "安全边际是价值投资的核心，无折价宁可不买。",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": {
+            "mode": "expert_review",
+            "note": "开放文本由专家（评估者）自评折价区间，AI 辅助展示描述，不自动判分"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "D. 护城河与自问自检",
+      "weight": 1.0,
+      "description": "判断竞争优势与潜在陷阱。",
+      "items": [
+        {
+          "id": "d1",
+          "name": "护城河类型",
+          "question": "该企业具备以下哪种护城河？（可多选：品牌 / 网络效应 / 转换成本 / 成本优势 / 无形资产 / 无）",
+          "type": "multi_select",
+          "pass_condition": "具备至少 2 种护城河",
+          "partial_condition": "具备 1 种",
+          "fail_condition": "无护城河",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 2.0,
+          "severity": "high",
+          "recommendation": "无护城河的企业只能赚行业平均利润，难以长期跑赢。",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "option_map", "pass": { "count_gte": 2 }, "partial": { "count": 1 }, "fail": { "contains_only": ["无"] } }
+        },
+        {
+          "id": "d2",
+          "name": "自问：我是否在自欺？",
+          "question": "自检问题：我买入这只股票，是因为它真的好，还是因为我手头有钱想买、或听消息跟风？我的判断是否有真实数据支撑，还是只凭想象？",
+          "type": "self_check",
+          "pass_condition": "答案是：有真实数据支撑，且与情绪无关",
+          "partial_condition": "部分支撑",
+          "fail_condition": "承认是跟风/情绪驱动",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "recommendation": "诚实回答此问题比任何财务指标都重要——它决定这笔投资是理性还是赌博。",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": { "mode": "direct", "note": "自我报告的诚实性由专家自行把握，AI 不质疑" }
+        },
+        {
+          "id": "d3",
+          "name": "反方证伪检查",
+          "question": "自问问题：找出三个不买入这只股票的理由（写下来）—— 如果找不出，说明你还没真正理解它。",
+          "type": "text",
+          "pass_condition": "能列出 3 个具体反方理由",
+          "partial_condition": "1-2 个",
+          "fail_condition": "一个都列不出",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "low",
+          "recommendation": "芒格：反过来想，总是反过来想。列不出反面论点 = 认知盲区。",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "expert_review" }
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "E. 条件触发与深挖",
+      "weight": 1.0,
+      "description": "根据前序答案触发深层问题。",
+      "items": [
+        {
+          "id": "e1",
+          "name": "高负债深挖",
+          "question": "（若 b3 负债率 >= 50%）负债中短期借款占比如何？是否存在借新还旧迹象？",
+          "type": "conditional",
+          "pass_condition": "短期借款占比低，无借新还旧",
+          "partial_condition": "存在部分短期依赖",
+          "fail_condition": "严重依赖短借，疑似资金链紧张",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "critical",
+          "recommendation": "高负债 + 短借为主是财务风险爆雷前兆，务必核实现金流。",
+          "applies_when": "b3_result == 'fail' or b3_value >= 50",
+          "evidence_required": true,
+          "judge": { "mode": "expert_review", "note": "深挖题只在触发时出现，计入适用分母" }
+        },
+        {
+          "id": "e2",
+          "name": "高估值深挖",
+          "question": "（若 c1 PE > 30）高估值的成长逻辑是什么？未来 3 年净利润复合增速预测多少？",
+          "type": "conditional",
+          "pass_condition": "增速 >= 30% 且逻辑清晰",
+          "partial_condition": "增速 15%-30%",
+          "fail_condition": "增速 < 15% 或逻辑模糊",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "recommendation": "高 PE 必须有高成长支撑，PEG 超过 2 需谨慎。",
+          "applies_when": "c1_result == 'fail' or c1_value > 30",
+          "evidence_required": true,
+          "judge": { "mode": "threshold", "field": "未来3年净利复合增速", "unit": "%", "pass": { "gte": 30 }, "partial": { "gte": 15 }, "fail": { "lt": 15 } }
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,17 @@
+<!-- request-identity:start -->
+**请求身份**：使用已配置的 API Key，并保留本包的 X-Client，携带下列完整身份头；不得沿用其它包的版本或来源。
+```text
+X-Client: zlbx-bidding/2.5.0
+X-Skill-Package: energy-power-bid-analyzer-dianlizhaobiaowang/1.0.11
+X-Skill-Source: clawhub/thuanlynham-stack
+```
+<!-- request-identity:end -->
+
 # 企业分析类工具 API 详情
 
 ## 目录
 - [search_company - 搜索公司](#search_company)
+- [工商十项工具](#工商十项工具)
 - [get_company_profile - 公司画像](#get_company_profile)
 - [get_company_business_keywords - 主营业务关键词](#get_company_business_keywords)
 - [get_company_partners - 合作客户与供应商](#get_company_partners)
@@ -78,6 +88,10 @@ POST /api_v2/search_company
 - 需要覆盖总部与各地分公司的完整市场表现
 
 ---
+
+## 工商十项工具
+
+见 `references/api-registry.md`：请求参数、字段口径、分页、3积分计费、失败不扣费、来源与时间。
 
 ## get_company_profile - 公司画像 {#get_company_profile}
 
@@ -165,7 +179,7 @@ POST /api_v2/search_company
 | `end_date` | str | 否 | 统计结束日期 |
 | `provinces` | list[str] | 否 | 省份列表 |
 | `keywords` | list[str] | 否 | 产品关键词过滤 |
-| `min_amount` | float | 否 | 最低合作金额（元） |
+| `min_amount` | float | 否 | 最低合作金额，**单位万元**（服务端 ×10000 后与元口径的合作额比较） |
 | `limit` | int | 否 | 返回数量，默认20，最大100 |
 
 ### 响应结构
@@ -219,6 +233,8 @@ POST /api_v2/search_company
 | `end_date` | str | 筛选截止日期 |
 | `role` | int | 1=招标联系人，2=中标联系人，0=全部（默认） |
 | `limit` | int | 返回数量，默认5，最大20 |
+
+> 联系电话按账户分层返回：付费账户完整电话；免费/试用账户脱敏（`contact_privacy: "masked"`），提示一次「充值可查看完整联系方式」即可。按返回原样展示，不补全、不成批导出。
 
 ### 响应结构
 
@@ -324,3 +340,15 @@ POST /api_v2/search_company
 - `caller_history_count`：与该采购方的历史合作次数
 - `region_win_count`：在该地区的中标次数
 - `matched_products`：匹配的产品领域
+
+<!-- package-identity:start -->
+**安装包身份与升级检查**：所有发往知了标讯 API 的请求（包括账户查询）必须额外携带以下两个请求头：
+```text
+X-Skill-Package: energy-power-bid-analyzer-dianlizhaobiaowang/1.0.11
+X-Skill-Source: clawhub/thuanlynham-stack
+```
+这些值是当前安装包的固定身份，复用已有API Key时也要携带；不要用X-Client产品版本替代包版本，不要将Key的注册渠道当作安装来源。
+请求鉴权：使用已配置的 API Key，并保留本包的 X-Client。每个会话首次使用本Skill时，在已有凭证可用后先调用免费账户接口 `GET https://mcp-server.zhiliaobiaoxun.com/api_v2/account/balance` 检查升级提醒；该查询不扣积分，不触发购买。
+**版本提醒转达**：响应出现 `skill_update_notice` 时，将其中 `message` 原样转达用户；兼容提示只说明检查版本，不能宣称已确认当前包过期。
+**展示后确认**：只有将提醒发送到用户可见对话之后，才使用同一凭证和请求头，按 `display_ack` 提交 POST 回执（MCP客户端可调用 `confirm_skill_update_display`）（`notice_id` 和 `displayed: true`）。只读取工具响应、在思考中提过、尚未转达时不得确认。不能在展示后调用接口则不确认，服务端继续保留待提醒状态。回执免费，不扣积分；失败不影响查询结果，不向用户展示技术回执。同一会话同一 `notice_id` 只展示一次。
+<!-- package-identity:end -->

@@ -33,6 +33,17 @@ tests:
 
 ---
 
+### `system_prompt`
+- **Type:** string
+- **Required:** no
+- **Description:** An optional system prompt sent to the LLM before the user message. Use this to replicate the exact conditions of your production app. If omitted, only the user message is sent.
+- **Example:**
+  ```yaml
+  system_prompt: "You are a friendly customer support agent for AcmeCo. Always be empathetic."
+  ```
+
+---
+
 ### `prompt`
 - **Type:** string
 - **Required:** yes
@@ -66,6 +77,18 @@ tests:
   - `openai`: `gpt-4o`, `gpt-4o-mini`, `gpt-3.5-turbo`
   - `anthropic`: `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-haiku-4-5`
   - `ollama`: `llama3`, `mistral`, `phi3`
+
+---
+
+### `baseline_samples`
+- **Type:** integer
+- **Required:** no
+- **Default:** `1`
+- **Description:** How many LLM responses to collect when capturing the baseline. If greater than 1, `capture_baseline.py` calls the LLM N times and saves the most representative (median) response. This eliminates outlier baselines caused by LLM non-determinism. Recommended: `3` for important tests.
+- **Example:**
+  ```yaml
+  baseline_samples: 3
+  ```
 
 ---
 

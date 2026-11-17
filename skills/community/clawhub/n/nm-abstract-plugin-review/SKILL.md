@@ -2,7 +2,7 @@
 name: plugin-review
 description: |
   Review plugin quality with tiered checks and dependency scoping. Use for PR and pre-release audits
-version: 1.9.8
+version: 1.10.3
 triggers:
   - review
   - quality
@@ -14,23 +14,21 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Plugin Review
 
+## Overview
+
 Tiered quality review of plugins with dependency-aware scoping.
 
-## Table of Contents
+## When NOT To Use
 
-- [Tiers](#tiers)
-- [Orchestration](#orchestration)
-- [Scope Detection](#scope-detection)
-- [Module Loading](#module-loading)
-- [Verdict](#verdict)
-- [Output Format](#output-format)
-- [Quality Gate Mode](#quality-gate-mode)
-- [Configuration](#configuration)
+- Reviewing one skill rather than a plugin (use `abstract:skills-eval`)
+- Reviewing hooks (use `abstract:hooks-eval`)
+- Tracing `Skill()` references across plugins (use
+  `abstract:skill-graph-audit`)
 
 ## Tiers
 
@@ -38,7 +36,7 @@ Tiered quality review of plugins with dependency-aware scoping.
 |------|---------|-------|-------|----------|
 | branch | Default | Affected and related | Quick gates | ~2 min |
 | pr | Before merge | Affected and related | Standard | ~5 min |
-| release | Before version bump | All 17 plugins | Full | ~15 min |
+| release | Before version bump | Every plugin | Full | ~15 min |
 
 ## Orchestration
 
@@ -135,3 +133,15 @@ plugin_review:
 
 See the `/plugin-review` command reference for full
 usage examples.
+
+## Exit Criteria
+
+- [ ] The output includes a per-plugin table with columns: test, lint, type, reg, verdict, and
+  an aggregate PASS / PASS-WITH-WARNINGS / FAIL verdict.
+- [ ] Scope detection identifies affected plugins via `git diff main --name-only` filtered to
+  `plugins/*/`; if git diff is unavailable, the skill falls back to all-plugin scope and
+  states this explicitly.
+- [ ] Any plugin scoring below the `structure_min` (default 80) or `skills_min` (default 75)
+  threshold is listed as a FAIL, not a warning.
+- [ ] `--quality-gate` mode returns exit code 2 for blocking failures and exit code 1 for
+  non-blocking warnings, distinguishable by the calling CI step.

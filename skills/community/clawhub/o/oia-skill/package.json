@@ -1,0 +1,31 @@
+{
+  "name": "@oia-ai/oia-skill",
+  "version": "0.1.1",
+  "description": "oia 框架的 Claude Code skill：基于 @oia-ai/oia-fresh 初始化 Deno + Fresh Web 项目，npx @oia-ai/oia-skill 一键安装到 .claude/skills",
+  "keywords": [
+    "oia",
+    "claude-code",
+    "skill",
+    "fresh",
+    "deno"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pankitgg/one-is-all.git"
+  },
+  "bin": {
+    "oia-skill": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

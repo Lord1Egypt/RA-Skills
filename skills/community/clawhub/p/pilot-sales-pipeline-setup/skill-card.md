@@ -1,43 +1,62 @@
-## Description: <br>
-Deploy a four-agent sales pipeline that automates lead prospecting, qualification, outreach, and CRM synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a sales pipeline with 4 agents that automate lead prospecting, qualification, outreach, and CRM synchronization.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and sales operations teams use this skill to configure a coordinated Pilot Protocol deployment for lead discovery, qualification, personalized outreach, and CRM synchronization across four agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lead, outreach, CRM, and Slack data flows may contain sensitive business or personal data. <br>
-Mitigation: Restrict CRM, Slack, and email credentials; avoid unnecessary personal data in examples or tests; and align lead collection, tracking, retention, and outreach with company policy and applicable law. <br>
-Risk: The setup depends on multiple Pilot skills and local binaries. <br>
-Mitigation: Review each referenced pilot-* dependency and confirm the Pilot and ClawHub binaries are trusted before installation. <br>
-Risk: Incorrect peer trust setup can expose pipeline events to unintended agents. <br>
-Mitigation: Verify each peer before handshakes and review trust state before publishing lead or engagement events. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a four-agent Pilot sales pipeline for lead prospecting, qualification, outreach, and CRM synchronization. It provides role-specific setup commands, manifests, data flows, and handshake guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-sales-pipeline-setup) <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific setup manifests, peer handshakes, data-flow topics, and dependency notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs multiple unpinned automation skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each dependency and publisher before running clawhub install.
+
+Risk: User-provided deployment prefixes are used in shell commands and hostnames.
+
+Mitigation: Use only a simple allowlisted prefix before executing generated commands.
+
+Risk: The pipeline can handle lead, email, CRM, Slack, and webhook data.
+
+Mitigation: Scope credentials to the minimum required permissions and confirm peer identities before handshakes.
+
+Risk: The setup writes a persistent ~/.pilot setup manifest.
+
+Mitigation: Review the manifest before use and remove it when the deployment is no longer needed.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-sales-pipeline-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific setup commands, manifest templates, peer handshakes, and dependency requirements for pilotctl, clawhub, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

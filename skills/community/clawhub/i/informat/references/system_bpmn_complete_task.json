@@ -1,0 +1,33 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_complete_task",
+		"description": "Complete (approve) a workflow task assigned to the current user, with optional comment and form data.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "The workflow module ID."
+				},
+				"taskId": {
+					"type": "string",
+					"description": "The task ID to complete."
+				},
+				"comment": {
+					"type": "string",
+					"description": "Approval comment or remark."
+				},
+				"vars": {
+					"type": "object",
+					"description": "Process variables to set when completing the task."
+				},
+				"record": {
+					"type": "object",
+					"description": "Form data to save when completing the task."
+				}
+			},
+			"required": ["moduleId", "taskId"]
+		}
+	}
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-When a user provides portfolio details and explicitly asks for a trading decision, this skill analyzes current holdings and watchlist names, scores macro conditions, and returns buy, sell, or hold guidance with rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides stock trading decision support when a user supplies portfolio holdings and explicitly asks for trade decisions, combining live macroeconomic checks with per-ticker analysis and position-sizing guidance.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-External users and agents use this skill to turn supplied U.S. stock portfolio information into an informational trading-decision workflow with macro scoring, ticker-level analysis, and position-allocation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces high-risk financial guidance that may be incorrect or unsuitable for a user's circumstances. <br>
-Mitigation: Treat outputs as informational only and independently verify any buy, sell, or price recommendation before acting. <br>
-Risk: Connecting the guidance directly to broker automation could execute unintended trades or expose account credentials. <br>
-Mitigation: Do not connect this skill to broker automation, do not share account credentials, and keep trading actions under manual user control. <br>
+## Use Case:
 
+External users can use this skill for decision-support analysis of U.S. stock portfolios when they provide holdings and request trade decisions. The skill produces macro scoring, ticker-level buy/sell/hold recommendations, order type and target price guidance, and final portfolio allocation targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-stock-decide-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ticker, action, sentiment, order type, target price, and rationale for each decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill handles sensitive portfolio screenshots or holdings data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide portfolio screenshots or holdings data that are acceptable to share with the agent, and remove account numbers, names, and other identifiers where possible.
+
+Risk: The output may be mistaken for automatic trade execution or regulated personalized financial advice.
+
+Mitigation: Treat the output as decision support that requires user review before any trading action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-stock-decide-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes macro score summaries, per-ticker trade actions, sentiment, order type, target price, rationale, and projected T1/T2/T3 allocation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

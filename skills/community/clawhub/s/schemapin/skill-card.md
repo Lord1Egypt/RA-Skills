@@ -1,42 +1,58 @@
-## Description: <br>
-SchemaPin guides agents and developers through cryptographic signing and verification of tool schemas and skill folders using ECDSA P-256, SHA-256, TOFU key pinning, and well-known key discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI assistants and developers through integrating SchemaPin for cryptographic tool schema signing, verification, key discovery, pinning, revocation, trust bundles, and skill-folder signing.
 
-## Publisher: <br>
-[jaschadub](https://clawhub.ai/user/jaschadub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaschadub](https://clawhub.ai/user/jaschadub)
 
-## Use Case: <br>
-Developers and engineers use this skill to add schema and skill-folder integrity checks to agent tooling across Python, JavaScript, Go, and Rust. It is most useful when integrating signature generation, verification, key discovery, revocation checks, trust bundles, and TOFU pinning into deployment or registry workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: TOFU pinning trusts the first accepted key for a domain, so accepting the wrong initial key can preserve a compromised trust state. <br>
-Mitigation: Confirm the package source, publisher, and expected domain before first pinning, and use verified trust bundles or pre-fetched discovery data where practical. <br>
-Risk: Following the examples may install packages or fetch public keys from external registries and endpoints. <br>
-Mitigation: Pin dependency versions where practical and verify the SchemaPin packages and GitHub project match the publisher the user intends to trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub SchemaPin listing](https://clawhub.ai/jaschadub/schemapin) <br>
-- [SchemaPin README](https://github.com/ThirdKeyAI/SchemaPin/blob/main/README.md) <br>
-- [SchemaPin Technical Specification](https://github.com/ThirdKeyAI/SchemaPin/blob/main/TECHNICAL_SPECIFICATION.md) <br>
-- [SchemaPin releases](https://github.com/thirdkey/schemapin/releases) <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to add SchemaPin libraries and CLIs to applications, sign and verify tool schemas or skill folders, and choose online, offline, or resolver-based verification workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides language-specific examples and implementation guidance; does not execute package installs itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency installation and version drift can affect production or CI verification behavior.
+
+Mitigation: Install in a virtual environment or isolated project and pin SchemaPin versions for production and CI use.
+
+Risk: Generated private keys can authorize trusted schema or skill-folder signatures if exposed.
+
+Mitigation: Protect generated private keys and rotate or revoke keys if compromise is suspected.
+
+Risk: Signature manifests and trust pins become part of the normal verification workflow and can affect future validation outcomes.
+
+Mitigation: Track and review generated signature manifests and trust-pin state as security-sensitive artifacts.
+
+## Reference(s):
+
+- [SchemaPin README](https://github.com/ThirdKeyAI/SchemaPin/blob/main/README.md)
+- [SchemaPin Technical Specification](https://github.com/ThirdKeyAI/SchemaPin/blob/main/TECHNICAL_SPECIFICATION.md)
+- [SchemaPin Releases](https://github.com/thirdkey/schemapin/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, code examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Python, JavaScript, Go, and Rust examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

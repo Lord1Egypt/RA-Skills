@@ -1,44 +1,60 @@
-## Description: <br>
-Auto-play TTS voice files with wake word detection so audio plays only when user messages include configured wake words. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-plays TTS voice files for OpenClaw Windows Webchat when wake-word or tagged-mode conditions request audio.
 
-## Publisher: <br>
-[WangZjhz](https://clawhub.ai/user/WangZjhz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[wangzjhz](https://clawhub.ai/user/wangzjhz)
 
-## Use Case: <br>
-OpenClaw users on Windows use this skill to configure conditional text-to-speech playback for webchat responses. It is intended for users who want mostly text responses with on-demand voice output triggered by wake words or tagged TTS mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package references PowerShell scripts that were not present in the artifact, so install and start behavior cannot be verified from the package evidence. <br>
-Mitigation: Do not run referenced scripts unless they are present, trusted, and inspected; avoid execution-policy bypass for unverified scripts. <br>
-Risk: Voice playback can expose unintended content in shared or sensitive environments if TTS is always enabled or wake phrases are too broad. <br>
-Mitigation: Prefer tagged TTS mode, configure explicit wake phrases, and test both text-only and wake-word messages before daily use. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to configure conditional text-to-speech playback in Windows Webchat, so responses remain text-only by default and play audio when a wake word or tagged TTS response requests it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WangZjhz/tts-autoplay) <br>
-- [README.md](README.md) <br>
-- [WAKE-WORD-DESIGN.md](WAKE-WORD-DESIGN.md) <br>
-- [WAKE-WORD-SUMMARY.md](WAKE-WORD-SUMMARY.md) <br>
-- [examples/config-example.json](examples/config-example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with PowerShell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows OpenClaw TTS setup; referenced executable scripts were not present in the package evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Install and runtime instructions reference PowerShell scripts that are not present in the provided artifact evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the actual package scripts from the trusted package source before running installation or autoplay commands.
+
+Risk: Playback controls are inconsistent between tagged, always-on, and wake-word modes, which can cause unexpected audio output.
+
+Mitigation: Review the OpenClaw TTS mode and wake-word settings, test both text-only and voice-triggered flows, and avoid elevated PowerShell sessions.
+
+Risk: Unexpected TTS playback can expose private assistant replies to people nearby.
+
+Mitigation: Use tagged mode for daily use, choose narrow wake words, and confirm voice and language settings before enabling autoplay.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzjhz/skills/tts-autoplay)
+- [README](artifact/README.md)
+- [Wake Word Design](artifact/WAKE-WORD-DESIGN.md)
+- [Wake Word Summary](artifact/WAKE-WORD-SUMMARY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Windows/OpenClaw TTS workflows and PowerShell-based setup.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

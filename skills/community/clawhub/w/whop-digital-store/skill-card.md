@@ -1,42 +1,58 @@
-## Description: <br>
-Builds and manages a Whop store for digital products, SaaS licenses, community memberships, and subscription content, including product creation, license delivery, and affiliate payout workflows via the Whop API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage a Whop store for digital products, SaaS licenses, memberships, and subscriptions, with guidance for product setup, API connection, license delivery, and affiliate payouts.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Creators, developers, and commerce operators use this skill to plan and manage Whop digital storefront automation for product listings, post-purchase license or access delivery, and recurring affiliate commission workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commerce automation can affect customer entitlements and payouts. <br>
-Mitigation: Confirm each license-delivery or payout action before execution, and verify recipients and amounts. <br>
-Risk: Whop API credentials can authorize live store workflows if exposed or over-privileged. <br>
-Mitigation: Use the least-privileged API key available, store it in a secret manager, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Creators, developers, and store operators use this skill to plan and automate Whop product listings, license or access-link delivery, earnings checks, and affiliate payouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/whop-digital-store) <br>
-- [Whop](https://whop.com) <br>
-- [Whop API documentation](https://whop.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and configuration file descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Whop store setup steps, API integration guidance, product configuration, and license-delivery workflow scaffolding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence) <br>
+Risk: Whop API keys could be exposed through prompts, logs, or generated files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege WHOP_API_KEY where possible, store it only in approved secret settings, and keep it out of prompts, logs, and files.
+
+Risk: Product creation, customer delivery, and affiliate payout actions can affect customers or funds.
+
+Mitigation: Require manual review before creating products, sending access links, delivering license keys, or paying affiliates.
+
+Risk: The artifact includes commercial earning claims and platform comparisons that may be outdated or unverifiable.
+
+Mitigation: Verify current Whop terms, fees, and performance claims before relying on them for business decisions.
+
+## Reference(s):
+
+- [Whop API Documentation](https://whop.com/api)
+- [Whop](https://whop.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API setup steps, product configuration examples, and implementation guidance for Whop store operations.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

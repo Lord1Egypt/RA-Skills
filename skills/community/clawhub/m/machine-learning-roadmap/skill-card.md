@@ -1,39 +1,53 @@
-## Description: <br>
-Follow a structured ML roadmap connecting concepts, tools, and learning resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides shell commands for recording, reviewing, searching, and exporting machine-learning-related content notes in local log files.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use this skill to record and review machine-learning content drafts, outlines, headlines, translations, scheduling notes, calls to action, and related content iterations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may not expect entered drafts, notes, or content ideas to be stored locally and later searchable or exportable. <br>
-Mitigation: Review the skill before installing, avoid entering secrets or proprietary material, and manually delete ~/.local/share/machine-learning-roadmap when stored entries are no longer needed. <br>
+## Use Case:
 
+External users and developers can use this skill to capture drafts, outlines, headlines, translations, and related ML-content planning notes, then inspect recent entries or export the retained data. Users should treat it as a local content logger rather than a complete machine-learning study roadmap planner.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/machine-learning-roadmap) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and exported JSON, CSV, or TXT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores timestamped local log entries under ~/.local/share/machine-learning-roadmap and can search, summarize, and export those logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill is labeled as an ML roadmap planner but primarily stores and exports local content notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a local ML-content note logger is intended, and review the available commands before use.
+
+Risk: Drafts, translations, and other entries are retained under ~/.local/share/machine-learning-roadmap and may include sensitive user-provided text.
+
+Mitigation: Avoid entering secrets or sensitive drafts, and manually review or delete the data directory when retained entries are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/machine-learning-roadmap)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Plain text command output with optional JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped entries and export files under ~/.local/share/machine-learning-roadmap.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

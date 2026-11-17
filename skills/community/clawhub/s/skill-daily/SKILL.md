@@ -1,41 +1,108 @@
-﻿---
+---
 name: clawhub-daily
+slug: clawhub-daily-ai
+displayName: ClawHub Daily
+version: 2.0.8
+summary: Daily ClawHub Skill insights with 6-dimension recommendation
+license: MIT-0
 description: |
-  每日扫描 ClawHub 全球 Skill 平台，结合多维数据（⭐/📥/installsCurrent/comments/capabilityTags）
-  通过 4 维度轮换算法为用户推荐 8-10 个有价值、不重复、值得关注的 AI Agent Skill，
-  并通过飞书推送完整简报。
+  每日扫描 ClawHub 全球 Skill 平台（500 个 Skill），通过 6 维度全维度推荐算法
+  为用户推荐 8 个有价值、不重复、值得关注的 AI Agent Skill，并通过多渠道推送完整简报。
+
+  数据出口说明（用户知情同意）：
+  - 飞书（Lark）：云文档 + 卡片消息（有凭证时自动推送，无凭证时跳过）
+  - 腾讯 IMA 知识库：官方 OpenAPI 推送（方式 A，有凭证时自动推送）；若安装了 ima-skill CLI 则自动调用（方式 B）
+  - Obsidian 本地 vault：inbox/clawhub-daily/ 子目录（默认开启，仅写入本地磁盘）。vault 不可写时 fallback 到脚本目录 saved/ 子目录
+  - 本地文件：data/recommended/*.md 简报文件（默认开启，仅写入本地磁盘）
+  推送行为：executor 会尝试所有渠道，每个渠道独立 try/except，有凭证则推送，无凭证则跳过，一处失败不阻断其他渠道。
+
+  凭证来源（优先级：CLI 参数 > 环境变量 > config.json）：
+  - 飞书：FEISHU_APP_ID / FEISHU_APP_SECRET / FEISHU_USER_OPEN_ID 环境变量，或 references/config.json
+  - IMA：IMA_OPENAPI_CLIENTID / IMA_OPENAPI_APIKEY 环境变量，或 references/config.json
+  - Obsidian：OBSIDIAN_VAULT_PATH 环境变量（默认 E:\Obsidian\md\inbox\clawhub-daily）
+  未配置任何凭证时仅生成本地文件，不执行外部推送。
+  本技能运行时不读取 GH_TOKEN、GITHUB_TOKEN 或其他与推荐功能无关的环境变量（GH_TOKEN 仅用于维护者发布新版本，见 docs/PUBLISHING_GUIDE.md）。
+
+  🔐 权限声明（capabilities）：
+  - network（必需）：访问 ClawHub API（wry-manatee-359.convex.cloud）抓取数据；有凭证时访问飞书 API（open.feishu.cn）和 IMA API（ima.qq.com）推送简报
+  - filesystem（必需）：写入 data/snapshots/（原始数据）、data/recommended/（简报）、Obsidian vault inbox/clawhub-daily/（简报副本）、saved/（vault 不可写时的 fallback）
+  - env_vars（可选）：FEISHU_APP_ID / FEISHU_APP_SECRET / FEISHU_USER_OPEN_ID / IMA_OPENAPI_CLIENTID / IMA_OPENAPI_APIKEY / OBSIDIAN_VAULT_PATH。未配置时仅生成本地文件
+  - subprocess（可选）：auto 模式下若官方 API 失败，可能调用 ima-skill CLI 命令（需用户预装）
+  不申请的权限：shell 执行（除 ima-skill CLI 外）、系统信息收集、GitHub 凭证读取（GH_TOKEN）、任意文件系统访问
 
   触发场景：
   - 用户希望每日/定时收到 ClawHub Skill 推荐简报
   - 用户希望跟踪 AI Agent 生态的最新 Skill 趋势
   - 用户希望按痛点场景（自动化办公/开发工具/内容创作/数据采集/AI 增强/中文支持/金融分析）匹配推荐
-  - 用户希望避免重复推荐，结合 10 天历史去重
+  - 用户希望避免重复推荐，结合 7 天跨维度去重
 
   核心能力：
-  - 真实抓取 ClawHub Top 200 Skill（基于 Convex API，0 token 消耗）
-  - 计算 5 大指标：star_rate、installsCurrent、活跃度、comments 热度、能力标签匹配
-  - 4 维度轮换：趋势 / 质量 / 新星 / 全景（按 `日期 % 4` 自动选）
-  - 10 天历史去重，避免重复推荐
+  - 真实抓取 ClawHub Top 500 Skill（基于 Convex API，0 token 消耗）
+  - 适配新 API 数据结构（stats.installs / categories / badges.verified / changelog）
+  - 6 维度全维度推荐：trending / quality / newcomers / panorama / actively_maintained / verified
+  - 降级策略：候选不足时自动放宽阈值（fallback_fn）
+  - optional 维度：verified 候选为 0 时自动跳过，不占配额
+  - 7 天跨维度去重，避免重复推荐
+  - 痛点匹配去重展示：同一 Skill 只在第一个命中场景展示
+  - changelog 展示：有最近变更摘要的 Skill 展示"最近变更"字段
   - 痛点加权：基于 7 大场景库个性化排序
-  - 多模块简报：热装、口碑、新星、痛点、热议、分类王者
-  - 飞书云文档 + 200-400 字卡片消息推送
+  - 多渠道推送：飞书云文档 + Top 5 卡片消息 + IMA 知识库（可选）+ 本地 Markdown
   - 简报中文化：中文一句话 + 英文原文 `<details>` 折叠
 ---
 
 # ClawHub Daily Skill 洞察技能
 
-> 每日扫描 ClawHub 全球 AI Agent Skill 平台，生成多维度精选简报
+> 每日扫描 ClawHub 全球 AI Agent Skill 平台，生成 6 维度精选简报
 
 ## 核心能力
 
-- **真实数据**：直接调用 ClawHub Convex API（`wry-manatee-359.convex.cloud`），抓取 Top 200 Skill
-- **多维分析**：⭐ stars / 📥 downloads / `installsCurrent` / `installsAllTime` / `comments` / `capabilityTags` 6 大维度
-- **4 维度轮换**：每天换一组推荐角度（趋势 / 质量 / 新星 / 全景）
-- **10 天去重**：基于历史快照，10 天滚动窗口
+- **真实数据**：直接调用 ClawHub Convex API（`wry-manatee-359.convex.cloud`），抓取 Top 500 Skill
+- **新 API 适配**：`stats.installs`（非 `installsCurrent`）、`categories`（非 `capabilityTags`）、`badges.verified`、`latestVersion.changelog` 等嵌套字段
+- **6 维度全维度推荐**：每天遍历全部 6 个维度，用户每天看全貌
+  - 🔥 trending × 3（活跃安装≥100，降级≥30）
+  - ⭐ quality × 1（下载≥1000+口碑≥0.5%，降级≥500+0.3%）
+  - 🚀 newcomers × 1（≤60天+安装≥10+星≥3，降级≤90天+5+2）
+  - 🏆 panorama × 2（评论≥1）
+  - 🔧 actively_maintained × 1（90天内更新+版本≥3，降级180天+版本≥2）
+  - 🛡️ verified × 1（平台安全审计通过，候选为空时跳过）
+- **降级策略**：候选不足时自动放宽阈值（fallback_fn）
+- **optional 维度**：verified 候选为 0 时自动跳过，不占配额
+- **7 天跨维度去重**：同一 Skill 在不同维度和不同天都不会重复
+- **痛点匹配去重**：同一 Skill 只在第一个命中场景展示（按权重排序）
+- **changelog 展示**：有最近变更摘要的 Skill 展示"最近变更"字段
 - **痛点匹配**：基于 7 大场景库（自动化办公/开发工具/内容创作/数据采集/AI 增强/中文支持/金融分析）加权
 - **简报中文化**：中文一句话解读 + 英文原文 `<details>` 折叠（0 token 消耗）
-- **多模块简报**：6 大推荐模块 + 回顾 + 行动建议
-- **飞书推送**：完整云文档 + 200-400 字飞书卡片消息
+- **多渠道推送**：飞书云文档 + Top 5 卡片消息（默认）+ IMA 知识库（可选）+ 本地 Markdown
+
+## ⚠️ 数据推送知情说明
+
+本技能会生成推荐简报并可能推送到以下外部服务，请用户知悉：
+
+| 推送渠道 | 默认状态 | 所需凭证 | 数据内容 |
+|---------|---------|---------|---------|
+| **本地文件** | 开启 | 无 | 完整简报 Markdown（data/recommended/*.md）|
+| **飞书云文档+卡片消息** | 需配置 | feishu_app_id / app_secret / user_open_id | 完整简报 + Top 5 摘要卡片 |
+| **腾讯 IMA 知识库** | 需配置 | ima_client_id / api_key / kb_id | 完整简报 Markdown |
+
+**安全约束**：
+- 未配置凭证的渠道不会执行推送，仅生成本地文件
+- 凭证优先级：CLI 参数 > 环境变量 > `references/config.json`
+- `references/config.json` 和 `references/config.local.json` 均在 `.gitignore` 中，不会上传到 GitHub
+- IMA HTTP API 模式强制要求 HTTPS 端点（拒绝 HTTP，防止凭证明文传输）
+- 本技能不读取 GH_TOKEN、GITHUB_TOKEN 或其他与推荐功能无关的环境变量
+- 不会收集或传输用户系统信息或其他与推荐无关的数据
+
+## 🔐 权限声明（capabilities）
+
+本技能在 `plugin.json` 的 `capabilities` 字段中声明所有运行时所需的权限，供用户和宿主平台在执行前审查：
+
+| 权限类别 | 是否必需 | 说明 |
+|---------|---------|------|
+| **network** | ✅ 必需 | 访问 ClawHub Convex API 抓取数据；可选访问飞书/IMA API 推送简报 |
+| **filesystem** | ✅ 必需 | 写入 `data/snapshots/`（原始数据）和 `data/recommended/`（简报 Markdown）|
+| **env_vars** | ❌ 可选 | 读取 `FEISHU_APP_ID`/`FEISHU_APP_SECRET`/`FEISHU_USER_OPEN_ID`/`IMA_OPENAPI_CLIENTID`/`IMA_OPENAPI_APIKEY` 环境变量（未配置时仅生成本地文件）|
+
+**不申请的权限**：shell 执行、系统信息收集、GitHub 凭证读取（GH_TOKEN）、任意文件系统访问。
 
 ## 使用模式（二选一）
 
@@ -46,9 +113,6 @@ description: |
 **触发词**（在 Agent 对话中输入任一即可）：
 - "每日推荐"
 - "ClawHub 日报"
-- "今天有什么好 Skill"
-- "帮我推荐技能"
-- "扫描 ClawHub"
 
 ### 模式 B：Cron 定时任务模式 ⏰
 
@@ -140,7 +204,7 @@ python clawhub_daily_executor.py
 
 ## 飞书/IMA 消息结构
 
-### 飞书卡片消息
+### 飞书卡片消息（默认推送渠道）
 
 包含：
 - **标题**：🦞 ClawHub 每日洞察 | 日期（维度）
@@ -151,7 +215,15 @@ python clawhub_daily_executor.py
 
 总字数控制在 **200-400 字**（让用户决定是否点开）。
 
-### IMA 知识库推送
+### IMA 知识库推送（可选渠道，需显式配置）
+
+通过 IMA 官方 OpenAPI 两步流程推送：
+1. `import_doc` 创建笔记（Markdown 格式）
+2. `add_knowledge` 添加到 FIM 知识库
+
+凭证来源：`IMA_OPENAPI_CLIENTID` / `IMA_OPENAPI_APIKEY` 环境变量（或 `references/config.json`）
+
+默认推送到 FIM 知识库（ID: `aFEGG-4YH3z_CaCS...`），可通过 `--kb-id` 或 config.json 覆盖。
 
 完整 Markdown 简报，含：
 - 标题 + 元信息

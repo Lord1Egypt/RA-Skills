@@ -1,41 +1,50 @@
-## Description: <br>
-iBus.CL CLI helps agents use a terminal command to query real-time arrivals for Chilean public transport stops, with service filtering and raw JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides command-line guidance for querying real-time Chilean public transport stop arrivals with human-readable or raw JSON output.
 
-## Publisher: <br>
-[iiroak](https://clawhub.ai/user/iiroak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iiroak](https://clawhub.ai/user/iiroak)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run the iBus.CL CLI for checking Chilean public transport stop arrivals, filtering by bus service, and producing human-readable or raw JSON output for pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Chile <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented quick install path runs an unpinned remote shell script from GitHub. <br>
-Mitigation: Prefer cloning the repository, reviewing install.sh, and installing manually or from a pinned release when available. <br>
-Risk: Real-time stop lookups can fail because of invalid stop codes, connectivity problems, or timeouts. <br>
-Mitigation: Handle the documented nonzero exit code and validate raw JSON output before using it in automation. <br>
+## Use Case:
 
+Developers, operators, and transit-data users can use this skill to install and run the iBus CLI for checking real-time bus arrivals at Chilean public transport stops. It supports service filtering, raw JSON output for pipelines, and documented exit-code behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iiroak/ibuscl-cli) <br>
-- [iBus.CL-API repository](https://github.com/iiroak/iBus.CL-API) <br>
+### Deployment Geography for Use:
 
+Chile
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI examples, readable output, JSON response shape, and exit-code behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The recommended installer runs a remote shell script from a mutable GitHub branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer cloning the repository, inspecting the installer, and using the manual pip install path in an isolated environment; avoid running the one-line remote bash command with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iiroak/skills/ibuscl-cli)
+- [iBus.CL API repository referenced by the skill](https://github.com/iiroak/iBus.CL-API)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers stop codes, optional service filtering, raw JSON output, Python module execution, response fields, time values, and exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

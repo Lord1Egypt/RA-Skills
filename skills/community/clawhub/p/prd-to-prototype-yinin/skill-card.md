@@ -1,45 +1,60 @@
-## Description: <br>
-Turns a product idea into a complete PRD, then generates a high-fidelity HTML/Tailwind prototype for mobile or desktop after platform confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PRD to Prototype turns product ideas into PRD documents, then generates high-fidelity HTML and Tailwind prototypes for mobile or desktop after platform confirmation.
 
-## Publisher: <br>
-[yinin2005](https://clawhub.ai/user/yinin2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinin2005](https://clawhub.ai/user/yinin2005)
 
-## Use Case: <br>
-Product managers, founders, designers, and developers use this skill to convert early product ideas into a Chinese PRD with user flows, then into a browser-previewable prototype for mobile or desktop review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation can turn vague product ideas into files without first asking clarifying questions. <br>
-Mitigation: Use it only in workspaces where automatic PRD creation is expected, and review the generated PRD before proceeding to prototype generation. <br>
-Risk: The skill writes to /workspace/docs and /workspace/prototype during normal execution. <br>
-Mitigation: Run it in a clean or disposable workspace, or review existing files before execution to avoid overwriting important work. <br>
-Risk: Prototype deployment may expose generated product concepts if deploy tooling is available. <br>
-Mitigation: Require explicit publish confirmation or disable deployment tools, and avoid entering confidential product details unless preview publication is acceptable. <br>
+## Use Case:
 
+Product teams, founders, designers, and developers use this skill to convert an initial product idea into a complete PRD and an interactive Chinese-language prototype. It is intended for fast product planning and prototype exploration before human review or sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinin2005/prd-to-prototype-yinin) <br>
-- [Tailwind CSS CDN](https://cdn.tailwindcss.com) <br>
-- [Font Awesome 6 stylesheet](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css) <br>
-- [Unsplash image example](https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown plus HTML, Tailwind CSS, and Vanilla JavaScript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a PRD to /workspace/docs/prd.md and prototype files under /workspace/prototype/ when executed by an agent with filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill can activate from broad product-idea requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in contexts where automatic PRD and prototype generation from general product-idea phrasing is acceptable.
+
+Risk: The skill writes generated PRD and prototype files immediately under /workspace.
+
+Mitigation: Review generated PRDs and prototype files before sharing, committing, or using them as product requirements.
+
+Risk: The skill may deploy a generated prototype without a clearly separate consent step.
+
+Mitigation: Avoid sensitive or confidential product concepts unless deployment is disabled or explicitly confirmed before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinin2005/skills/prd-to-prototype-yinin)
+- [Tailwind CSS CDN](https://cdn.tailwindcss.com)
+- [Font Awesome 6 CSS](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)
+- [Unsplash image source example](https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown PRD, confirmation text, and HTML/CSS/JavaScript prototype files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes PRD and prototype files under /workspace and may return a preview link when deployment is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

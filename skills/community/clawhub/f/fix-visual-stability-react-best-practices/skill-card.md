@@ -1,50 +1,60 @@
-## Description: <br>
-Provides React and Next.js guidelines from Vercel Engineering for reducing visual instability, layout shifts, flickering, hydration issues, font loading problems, and related performance regressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React and Next.js guidance covering visual instability, layout shifts, CLS, flickering, hydration issues, font loading, and performance-oriented refactoring patterns.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and agents working on React or Next.js code use this skill to review performance, rendering, hydration, bundle, data-fetching, and caching practices before writing or refactoring UI code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples involving session cookies or user activity logging could be applied in a way that records raw session identifiers. <br>
-Mitigation: Avoid logging raw session cookies or tokens; redact, hash, or omit identifiers before adding logging code. <br>
-Risk: Inline hydration scripts can create security or policy issues if agents interpolate untrusted values or ignore Content Security Policy requirements. <br>
-Mitigation: Keep inline hydration scripts static and minimal, avoid untrusted interpolation, and verify the implementation against the application's CSP. <br>
-Risk: Cross-request caching examples could be adapted to cache user data without proper tenant boundaries, authorization checks, TTLs, or invalidation. <br>
-Mitigation: Cache user data only with explicit authorization, tenant or user scoping, bounded TTLs, and clear invalidation rules. <br>
+## Use Case:
 
+Developers and agents use this skill when writing or refactoring React and Next.js code to reduce waterfalls, bundle size, layout shift, hydration flicker, avoidable re-renders, and common JavaScript performance costs.
 
-## Reference(s): <br>
-- [React cache documentation](https://react.dev/reference/react/cache) <br>
-- [React Compiler documentation](https://react.dev/learn/react-compiler) <br>
-- [SWR documentation](https://swr.vercel.app) <br>
-- [Next.js after documentation](https://nextjs.org/docs/app/api-reference/functions/after) <br>
-- [better-all GitHub repository](https://github.com/shuding/better-all) <br>
-- [node-lru-cache GitHub repository](https://github.com/isaacs/node-lru-cache) <br>
-- [How we optimized package imports in Next.js](https://vercel.com/blog/how-we-optimized-package-imports-in-next-js) <br>
-- [How we made the Vercel Dashboard twice as fast](https://vercel.com/blog/how-we-made-the-vercel-dashboard-twice-as-fast) <br>
-- [Vercel Fluid Compute documentation](https://vercel.com/docs/fluid-compute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with TypeScript and TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it provides review guidance and code patterns rather than executable commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated code may expose session cookies, tokens, authorization headers, or other bearer credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated changes and require authentication and authorization data to remain server-side without logging raw credential material.
+
+Risk: Inline pre-hydration scripts can create client-side security exposure if used for sensitive state.
+
+Mitigation: Use inline pre-hydration scripts only for static, non-sensitive presentation state and pair them with an explicit CSP strategy.
+
+Risk: An unpinned package execution command may run unexpected SVGO code.
+
+Mitigation: Pin or locally install SVGO before using it in generated shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/fix-visual-stability-react-best-practices)
+- [better-all](https://github.com/shuding/better-all)
+- [How we optimized package imports in Next.js](https://vercel.com/blog/how-we-optimized-package-imports-in-next-js)
+- [Rule sections](artifact/rules/_sections.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and TSX examples plus occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; output is advisory and should be reviewed before code changes are applied.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

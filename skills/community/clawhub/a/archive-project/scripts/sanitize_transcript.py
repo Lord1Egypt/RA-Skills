@@ -325,13 +325,13 @@ def main():
     if args.test:
         test_cases = [
             (
-                '{"content": [{"text": "token ghp_abcdefghijklmnopqrstuvwxyz12345678901234567890 email test@example.com ip 192.168.1.1"}]}',
+                '{"content": [{"text": "token REDACTED-SECRET email test@example.com ip 192.168.1.1"}]}',
                 '[REDACTED-GITHUB-TOKEN]',
                 '[REDACTED-EMAIL]',
                 '[REDACTED-IP]',
             ),
             (
-                '{"text": "API key sk-1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz"}',
+                '{"text": "API key REDACTED-SECRET"}',
                 '[REDACTED-OPENAI-KEY]',
             ),
             (

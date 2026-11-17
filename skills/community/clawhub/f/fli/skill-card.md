@@ -1,43 +1,60 @@
-## Description: <br>
-Guidance for installing and using Fli correctly as a CLI and MCP server for flight search workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidance for installing and using Fli correctly as a CLI and MCP server.
 
-## Publisher: <br>
-[punitarani](https://clawhub.ai/user/punitarani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[punitarani](https://clawhub.ai/user/punitarani)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to install Fli, run flight-search commands, configure the STDIO MCP server for assistants, and troubleshoot common setup issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional HTTP MCP mode can expose a local service if configured too broadly. <br>
-Mitigation: Prefer the STDIO MCP server for local assistant integration; use HTTP mode only when needed and keep it bound to localhost. <br>
-Risk: Assistant configuration changes can break tool discovery if command paths or JSON are incorrect. <br>
-Mitigation: Review Claude Desktop configuration changes before applying them and verify `fli-mcp --help` works in a terminal. <br>
+## Use Case:
 
+Developers and external users use this skill to install Fli with pipx, run Google Flights searches from the CLI, configure STDIO or HTTP MCP servers, and troubleshoot common setup issues.
 
-## Reference(s): <br>
-- [Fli Introduction](https://punitarani-fli.mintlify.app/introduction) <br>
-- [Fli Installation](https://punitarani-fli.mintlify.app/installation) <br>
-- [Fli MCP Setup](https://punitarani-fli.mintlify.app/mcp/setup) <br>
-- [Fli Docs Index](https://punitarani-fli.mintlify.app/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on CLI and MCP setup guidance; does not run flight searches by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: server release evidence) <br>
+Risk: Installing the Fli package and dependencies from an untrusted source could introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted package sources, pin reviewed versions in higher-assurance environments, or use an approved internal mirror.
+
+Risk: Running package installation with elevated privileges can increase the impact of a compromised dependency.
+
+Mitigation: Use pipx or another isolated user-level installation path and avoid sudo or administrator privileges.
+
+Risk: Live Google Flights requests can fail temporarily because of rate limiting or upstream availability.
+
+Mitigation: Retry after a short delay and reduce repeated back-to-back searches before treating the local CLI or MCP setup as broken.
+
+## Reference(s):
+
+- [Fli introduction](https://punitarani-fli.mintlify.app/introduction)
+- [Fli installation](https://punitarani-fli.mintlify.app/installation)
+- [Fli MCP setup](https://punitarani-fli.mintlify.app/mcp/setup)
+- [Fli docs index](https://punitarani-fli.mintlify.app/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on CLI and MCP setup guidance; does not produce executable artifacts.]
+
+## Skill Version(s):
+
+0.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

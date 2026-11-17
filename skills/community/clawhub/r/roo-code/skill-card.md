@@ -1,42 +1,54 @@
-## Description: <br>
-Roo Code guides agents in using the Roo Code VS Code AI programming assistant, including agent modes, file and terminal workflows, MCP integration, and model setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roo Code AI programming assistant guidance for VS Code agent workflows, mode switching, and MCP integration.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to configure and operate Roo Code in VS Code for multi-step coding, architecture review, debugging, project setup, and MCP-assisted workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes use of a coding agent with access to the user's workspace and selected external services. <br>
-Mitigation: Install only when that access is intended, and review file changes and commands before allowing them to run. <br>
-Risk: MCP servers can extend the agent's reach into external tools and services. <br>
-Mitigation: Use trusted MCP servers and avoid exposing high-privilege secrets. <br>
-Risk: Credential-bearing integrations such as GitHub access can increase impact if tokens are over-scoped. <br>
-Mitigation: Scope tokens narrowly and avoid exposing high-privilege secrets. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand and configure Roo Code as a VS Code coding agent for multi-step development, debugging, project setup, custom modes, and MCP-enabled workflows.
 
-## Reference(s): <br>
-- [Roo Code on ClawHub](https://clawhub.ai/zhangifonly/roo-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes examples for VS Code commands, .roomodes definitions, and MCP server configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: High-authority coding-agent and MCP integrations can access local files, run commands, or call connected services beyond the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review tool permissions before use, restrict filesystem access to intended project paths, and approve file or command actions before applying them.
+
+Risk: The MCP example uses unpinned npx packages and a GitHub token without detailed scope limits.
+
+Mitigation: Verify package identities, pin exact reviewed versions, and use a dedicated GitHub token with minimal required scopes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/roo-code)
+- [Publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup guidance, mode descriptions, MCP configuration examples, and installation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

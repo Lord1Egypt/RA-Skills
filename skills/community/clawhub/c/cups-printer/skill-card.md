@@ -1,40 +1,57 @@
-## Description: <br>
-Print images and PDFs to CUPS printers while querying printer capabilities and applying PPD-aware paper, margin, resolution, and duplex settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Print images and PDFs to any CUPS printer with PPD-aware settings for paper sizes, margins, resolution, and duplex, and query printer capabilities.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-Agents use this skill to list CUPS printers, inspect printer options, and submit user-selected PDF or image files to a local macOS or Linux printer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit documents to local or shared printers, which may expose confidential content or print to an unintended device. <br>
-Mitigation: Before each print, confirm the file, target printer, and selected options, especially for confidential documents or shared/default printers. <br>
-Risk: Custom CUPS options can change trays, media, quality, duplex, or color behavior and produce incorrect or wasteful output. <br>
-Mitigation: Review any -o options before printing and use the info or options commands to confirm available printer settings when uncertain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Printer on ClawHub](https://clawhub.ai/odrobnik/cups-printer) <br>
-- [Setup guide](SETUP.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to list CUPS printers, inspect printer capabilities, and submit PDF or image print jobs with printer-aware options.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from CUPS printer commands, with shell commands for invoking the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local CUPS tools and can submit print jobs to the selected or default printer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can submit CUPS print jobs on the host machine.
+
+Mitigation: Install and run it only where agent-submitted print jobs are acceptable, and review the selected printer, file, and CUPS options before execution.
+
+Risk: Image printing depends on Pillow to convert images before sending them to CUPS.
+
+Mitigation: Use a virtual environment and a reviewed or pinned Pillow version.
+
+Risk: Custom CUPS options can affect media selection, duplexing, quality, trays, and other printer behavior.
+
+Mitigation: Use the options command to inspect supported values and pass only CUPS options the operator understands.
+
+## Reference(s):
+
+- [Setup](SETUP.md)
+- [ClawHub Skill Page](https://clawhub.ai/odrobnik/skills/cups-printer)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can submit CUPS print jobs and can emit machine-readable JSON for list, info, options, and print commands.]
+
+## Skill Version(s):
+
+1.2.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

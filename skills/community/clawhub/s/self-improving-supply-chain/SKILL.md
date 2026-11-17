@@ -100,7 +100,7 @@ When supply chain learnings prove broadly applicable, promote them:
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Opt-in and project-scoped. Enabling a hook persists across future sessions; skip this unless you need reminders:
 
 ```bash
 cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-supply-chain
@@ -389,7 +389,8 @@ When a learning is broadly applicable (not a one-off event), promote it to perma
 
 1. **Distill** the learning into a concise rule or policy statement
 2. **Add** to appropriate target (scorecard, policy, playbook, model)
-3. **Update** original entry:
+3. **Show a reviewed diff and apply only after explicit user approval**
+4. **Update** original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: safety stock policy` (or `supplier scorecard`, `routing playbook`, `demand model`, `quality criteria`)
 
@@ -481,6 +482,8 @@ Targets: supplier scorecards, safety stock policies, routing playbooks, demand m
 
 Enable automatic reminders through agent hooks. This is **opt-in**.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` in your project:
@@ -489,7 +492,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "inventory|supplier|forecast|shipment|warehouse|procurement|logistics|stockout",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-supply-chain/scripts/activator.sh"
@@ -499,7 +502,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects a supply chain-focused learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects a supply chain-focused learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Disruption Detection)
 
@@ -507,7 +510,7 @@ This injects a supply chain-focused learning evaluation reminder after each prom
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "inventory|supplier|forecast|shipment|warehouse|procurement|logistics|stockout",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-supply-chain/scripts/activator.sh"
@@ -536,6 +539,8 @@ Enable `PostToolUse` only if you want the hook to inspect command output for sto
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When a supply chain learning is valuable enough to become a reusable skill, extract it.
 
@@ -587,7 +592,7 @@ When a supply chain learning is valuable enough to become a reusable skill, extr
 7. **Maintain safety stock** — buffer by sourcing mode (ocean 3wk, air 1wk, domestic 1.5wk)
 8. **Inspect at receiving** — verify quantity and quality before receipting into WMS
 9. **Document routing decisions** — record why a lane or mode was chosen for future reference
-10. **Promote aggressively** — if a pattern recurs across 2+ quarters, it deserves a policy
+10. **Promote after review when recurrence appears** — if a pattern recurs across 2+ quarters, it deserves a policy
 
 ## Gitignore Options
 
@@ -634,3 +639,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/supply-chain/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

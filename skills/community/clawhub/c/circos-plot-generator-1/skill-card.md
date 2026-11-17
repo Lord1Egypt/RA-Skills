@@ -1,43 +1,66 @@
-## Description: <br>
-This release is listed as Circos Plot Generator, but the packaged artifact provides a blind-review manuscript anonymizer for double-blind submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use blind-review-sanitizer for academic writing workflows that need structured anonymization, explicit assumptions, and clear output boundaries for double-blind submission.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers and academic writing users use the packaged skill to anonymize manuscripts before double-blind review. Users looking for Circos plotting should not rely on this release until the listing mismatch is resolved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry name advertises a Circos plot generator, but the package behaves as a blind-review manuscript anonymizer. <br>
-Mitigation: Install only for manuscript anonymization, verify the skill purpose before use, and do not use it for Circos plotting until the listing is corrected. <br>
-Risk: Manuscript anonymization can miss metadata, figures, supplemental files, or identifiers outside simple text patterns. <br>
-Mitigation: Run on copies, review generated files manually, and check document metadata, figures, and supplemental materials before submission. <br>
-Risk: The tool reads and writes local manuscript files and can overwrite a chosen output path. <br>
-Mitigation: Confirm input and output paths before execution and keep original manuscripts unchanged. <br>
+## Use Case:
 
+Developers and academic writers use this skill to prepare manuscripts for double-blind review by removing or highlighting likely author-identifying content and returning bounded review notes.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/circos-plot-generator-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance, command output, and local .docx, .md, or .txt manuscript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [DOCX processing requires python-docx; generated manuscript outputs require manual anonymity review before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Removed identifiers may appear in terminal output or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a private workspace and prefer counts-only summaries before processing sensitive manuscripts.
+
+Risk: Generated output can overwrite existing files when an explicit output path is reused.
+
+Mitigation: Process copies of manuscripts and review output paths before execution.
+
+Risk: DOCX processing depends on an inconsistent unpinned dependency declaration.
+
+Mitigation: Review and pin the DOCX dependency before installation, or limit use to supported text and Markdown files.
+
+Risk: Automated anonymization may miss metadata, figures, headers, footers, supplementary files, or some acknowledgment content.
+
+Mitigation: Require final human review of all manuscript surfaces before double-blind submission.
+
+Risk: Release metadata names Circos Plot Generator while artifact behavior describes blind-review-sanitizer.
+
+Mitigation: Confirm the release title and artifact package match before publishing the public Skill Card.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/circos-plot-generator-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional generated manuscript files and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create blinded manuscript copies and summarize removed identifiers or remaining manual review items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,13 +8,49 @@
   ],
   "properties": {
     "task_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "checks": {
-      "type": "array"
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "command",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "command": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNKNOWN"
+            ]
+          },
+          "raw_log": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
     },
     "raw_logs": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     }
   }
 }

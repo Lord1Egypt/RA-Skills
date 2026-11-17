@@ -1,40 +1,57 @@
-## Description: <br>
-Detect local hardware (RAM, CPU, GPU/VRAM) and recommend the best-fit local LLM models with optimal quantization, speed estimates, and fit scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect local hardware and recommend local LLM models with fit scoring, quantization guidance, and speed estimates.
 
-## Publisher: <br>
-[AlexsJones](https://clawhub.ai/user/AlexsJones) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexsjones](https://clawhub.ai/user/alexsjones)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local hardware capacity, choose local LLMs that fit available RAM or VRAM, and configure OpenClaw providers such as Ollama, vLLM, or LM Studio with an appropriate model. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the external llmfit CLI to inspect local hardware details. <br>
-Mitigation: Install and run the CLI only when the user is comfortable trusting that local hardware inspection. <br>
-Risk: Model provider recommendations may change OpenClaw configuration, including the default local model. <br>
-Mitigation: Review proposed openclaw.json changes and require explicit approval before applying model or provider settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlexsJones/llmfit) <br>
-- [Publisher profile](https://clawhub.ai/user/AlexsJones) <br>
+## Use Case:
 
+Developers and engineers use llmfit to inspect local hardware and choose local LLMs that fit available CPU, RAM, GPU, and VRAM. The skill can guide setup for local inference providers such as Ollama, vLLM, LM Studio, and OpenClaw model defaults.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hardware summaries, ranked model recommendations, quantization guidance, speed estimates, and OpenClaw provider configuration suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on installing a third-party llmfit executable from external distribution channels.
+
+Mitigation: Install only when the publisher and distribution channel are trusted, and verify the installed executable before using the skill for recommendations.
+
+Risk: The skill may guide changes to local OpenClaw model configuration.
+
+Mitigation: Review any proposed openclaw.json diff, confirm the selected model, and keep a backup or revert path for previous defaults.
+
+Risk: Hardware fit and speed estimates can vary by machine and runtime environment.
+
+Mitigation: Validate recommended models on the target hardware before relying on them for production or default local model configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexsjones/skills/llmfit)
+- [Publisher profile](https://clawhub.ai/user/alexsjones)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations may include fit levels, quantization choices, speed estimates, and provider-specific model identifiers.]
+
+## Skill Version(s):
+
+0.2.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -37,7 +37,7 @@
 - **Why go**: Food. Just go for the food.
 - **Time needed**: 2-4 hours (evening best)
 - **Cost**: Meals 50-200 THB
-- **Tips**: Peak is after 6 PM when neon signs light up. Must-eat: Yaowarat seafood (Soi Texas), dim sum, bird's nest soup if brave. Walk from MRT Hua Lamphong.
+- **Tips**: Peak is after 6 PM when neon signs light up. Must-eat: Yaowarat seafood (Soi Texas), dim sum, bird's nest soup if brave. MRT Wat Mangkon exits directly onto Yaowarat.
 
 ## Worth Doing
 
@@ -110,7 +110,7 @@
 ### Ayutthaya (1-2 hours north)
 - **What**: Ancient capital ruins, UNESCO World Heritage
 - **Why go**: Spectacular temples, best day trip from Bangkok
-- **How**: Train from Hua Lamphong (20 THB, 2h) or minivan
+- **How**: Train (20-60 THB, ~1.5-2h) — express services depart Krung Thep Aphiwat (Bang Sue) since 2023, some ordinary trains still from Hua Lamphong, check your train's terminal — or minivan from Mo Chit
 - **Time needed**: Full day
 
 ### Kanchanaburi (2-3 hours west)

@@ -8,6 +8,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { randomUUID } from "node:crypto";
 
 const SEVERITY_RANK = {
   info: 0,
@@ -41,11 +42,11 @@ const DEFAULT_POLICY = {
     "CONTRADICTION_IN_RECORD",
   ],
   disposition_preferences: {
+    uncertainty_action: "monitor",
     reject_on_any_critical: true,
     reject_on_any_high: true,
     missing_required_lane: "monitor_until_new_evidence",
     missing_required_lane_for_serious_action: "monitor_until_new_evidence",
-    multiple_medium_concerns: "eligible_for_small_test_action",
     repeat_action_without_fresh_reason: "monitor_until_new_evidence",
   },
 };
@@ -81,9 +82,57 @@ function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
+// Resolve existing ancestors too, so aliases through directory links are detected
+// even when the selected output or an input does not exist yet.
+function canonicalPath(file) {
+  const absolute = path.resolve(file);
+  try {
+    return fs.realpathSync(absolute);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+    const parent = path.dirname(absolute);
+    if (parent === absolute) throw error;
+    return path.join(canonicalPath(parent), path.basename(absolute));
+  }
+}
+
+function prepareOutput(file, inputFiles) {
+  const output = path.resolve(file);
+  let stat;
+  try { stat = fs.lstatSync(output); }
+  catch (error) { if (error.code !== "ENOENT") throw error; }
+  if (stat && (!stat.isFile() || stat.nlink !== 1)) {
+    throw new Error("Output must be a regular file with one link, not a directory or link.");
+  }
+  const comparable = (value) => process.platform === "win32" ? value.toLowerCase() : value;
+  const destination = canonicalPath(output);
+  for (const input of inputFiles) {
+    if (comparable(destination) === comparable(canonicalPath(input))) {
+      throw new Error("Output must not alias a policy or lane input.");
+    }
+  }
+  // Only the explicitly selected, validated output is invalidated. Do this
+  // before reading/parsing inputs, so their failures cannot retain eligibility.
+  if (stat) fs.unlinkSync(output);
+  return destination;
+}
+
 function writeJson(file, data) {
-  fs.mkdirSync(path.dirname(path.resolve(file)), { recursive: true });
-  fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const temporary = `${file}.${randomUUID()}.tmp`;
+  let owned = false;
+  try {
+    const fd = fs.openSync(temporary, "wx", 0o600);
+    owned = true;
+    try { fs.writeFileSync(fd, `${JSON.stringify(data, null, 2)}\n`); }
+    finally { fs.closeSync(fd); }
+    fs.renameSync(temporary, file);
+  } finally {
+    if (owned) {
+      try { fs.unlinkSync(temporary); }
+      catch (error) { if (error.code !== "ENOENT") throw error; }
+    }
+  }
 }
 
 function asArray(value) {
@@ -111,6 +160,15 @@ function highestSeverity(findings) {
 
 function mergePolicy(input) {
   const policy = input && typeof input === "object" ? input : {};
+  const uncertainty = policy.disposition_preferences?.uncertainty_action;
+  if (uncertainty !== undefined && !["monitor", "small_test"].includes(uncertainty)) {
+    throw new Error("uncertainty_action must be monitor or small_test.");
+  }
+  if (uncertainty === "small_test" &&
+      !(typeof policy.authority?.small_test_action_size === "number" &&
+        Number.isFinite(policy.authority.small_test_action_size) && policy.authority.small_test_action_size > 0)) {
+    throw new Error("small_test uncertainty permission requires an explicit positive finite small_test_action_size.");
+  }
   return {
     ...DEFAULT_POLICY,
     ...policy,
@@ -154,13 +212,57 @@ function normalizeFinding(finding) {
   };
 }
 
+const DECISION_VALUES = {
+  supports_core_claim: ["yes", "partial", "unknown", "no", "contradiction", "unsupported"],
+  supports_requested_action_size: ["yes", "partial", "unknown", "no", "unsupported"],
+  source_independence: ["strong", "some", "weak", "none", "not_applicable"],
+  public_context_plausibility: ["all_found", "some_found", "weak", "not_found", "not_applicable"],
+  claimant_linkage: ["verified", "partial", "unknown", "unverified", "contradicted"],
+  repeat_or_top_up_support: ["fresh_reason_present", "weak", "none", "not_applicable"],
+};
+
+function isRecord(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
 function normalizeLane(laneType, raw) {
+  if (!isRecord(raw)) throw new Error(`Lane "${laneType}" must be a JSON object.`);
   if (raw?.lane_type !== undefined && String(raw.lane_type) !== laneType) {
     throw new Error(`Lane spec "${laneType}" does not match lane_type "${raw.lane_type}" in lane JSON.`);
   }
-  const status = String(raw?.status ?? "completed");
+  const status = raw.status === undefined ? "missing" : raw.status;
   if (!VALID_LANE_STATUSES.has(status)) {
     throw new Error(`Invalid status "${status}" for lane "${laneType}".`);
+  }
+  if (status === "completed") {
+    if (!Array.isArray(raw.findings) || !isRecord(raw.decision)) {
+      throw new Error(`Completed lane "${laneType}" requires findings and decision.`);
+    }
+    const requiredFields = laneType === "evidence"
+      ? ["supports_core_claim", "supports_requested_action_size", "claimant_linkage"]
+      : laneType === "external_context" ? ["public_context_plausibility", "source_independence"] : [];
+    for (const field of requiredFields) {
+      if (!Object.prototype.hasOwnProperty.call(raw.decision, field)) {
+        throw new Error(`Completed lane "${laneType}" requires decision.${field}.`);
+      }
+    }
+  }
+  if (raw.decision !== undefined && !isRecord(raw.decision)) {
+    throw new Error(`Invalid decision object for lane "${laneType}".`);
+  }
+  for (const [field, values] of Object.entries(DECISION_VALUES)) {
+    if (raw.decision && Object.prototype.hasOwnProperty.call(raw.decision, field) &&
+        !values.includes(raw.decision[field])) {
+      throw new Error(`Invalid decision.${field} for lane "${laneType}".`);
+    }
+  }
+  for (const finding of asArray(raw.findings)) {
+    if (!isRecord(finding) || !Object.prototype.hasOwnProperty.call(SEVERITY_RANK, finding.severity)) {
+      throw new Error(`Invalid finding or severity for lane "${laneType}".`);
+    }
+  }
+  if (raw.confidence != null && !["high", "medium", "low", "unknown"].includes(raw.confidence)) {
+    throw new Error(`Invalid confidence for lane "${laneType}".`);
   }
   const lane = {
     ...(raw && typeof raw === "object" ? raw : {}),
@@ -172,14 +274,6 @@ function normalizeLane(laneType, raw) {
     decision: raw?.decision && typeof raw.decision === "object" ? raw.decision : {},
     limitations: asArray(raw?.limitations),
   };
-  if (["missing", "error"].includes(status)) {
-    lane.findings.push({
-      code: status === "missing" ? "LANE_MISSING" : "LANE_ERROR",
-      severity: "medium",
-      summary: `${lane.lane_type} lane status is ${status}.`,
-      evidence_refs: [],
-    });
-  }
   lane.highest_severity = highestSeverity(lane.findings);
   return lane;
 }
@@ -226,17 +320,17 @@ function collectSignals(policy, lanes) {
   const map = laneMap(lanes);
   const evidence = map.get("evidence")?.decision ?? {};
   const external = map.get("external_context")?.decision ?? {};
-  const repeatSupport = String(evidence.repeat_or_top_up_support ?? external.repeat_or_top_up_support ?? "not_applicable");
-  const coreSupport = String(evidence.supports_core_claim ?? "unknown");
+  const repeatSupport = map.get("evidence")?.status === "completed" && evidence.repeat_or_top_up_support !== undefined
+    ? evidence.repeat_or_top_up_support
+    : map.get("external_context")?.status === "completed" ? external.repeat_or_top_up_support : undefined;
   const actionSizeSupport = lanes
-    .filter((lane) => Object.prototype.hasOwnProperty.call(lane.decision, "supports_requested_action_size"))
+    .filter((lane) => lane.status === "completed" && Object.prototype.hasOwnProperty.call(lane.decision, "supports_requested_action_size"))
     .map((lane) => ({
       lane_type: lane.lane_type,
       value: String(lane.decision.supports_requested_action_size ?? "unknown"),
     }));
-  const publicContext = String(external.public_context_plausibility ?? "not_applicable");
-  const sourceIndependence = String(external.source_independence ?? "not_applicable");
-  const linkage = String(evidence.claimant_linkage ?? external.claimant_linkage ?? "unknown");
+  const sourceIndependence = map.get("external_context")?.status === "completed"
+    ? String(external.source_independence ?? "not_applicable") : "not_applicable";
 
   if (hardBlockerFindings.length > 0) {
     signals.push({
@@ -262,6 +356,11 @@ function collectSignals(policy, lanes) {
       refs: highFindings.map((finding) => `${finding.lane_type}:${finding.code}`),
     });
   }
+  if (mediumPlusFindings.length === 1 && mediumPlusFindings[0].severity === "medium") {
+    signals.push({ code: "MATERIAL_REVIEW_CONCERN", severity: "medium",
+      summary: "A lane reports a material review concern.",
+      refs: mediumPlusFindings.map((finding) => `${finding.lane_type}:${finding.code}`) });
+  }
   if (mediumPlusFindings.length >= 2 || concernLanes.size >= 2) {
     signals.push({
       code: "MULTIPLE_MEDIUM_OR_CROSS_LANE_CONCERNS",
@@ -278,14 +377,33 @@ function collectSignals(policy, lanes) {
       refs: missing,
     });
   }
-  if (["no", "contradiction", "unsupported"].includes(coreSupport) &&
-      !["some_found", "all_found"].includes(publicContext)) {
-    signals.push({
-      code: "CORE_CLAIM_UNSUPPORTED_AND_CONTEXT_WEAK",
-      severity: "high",
-      summary: "The core claim is unsupported or contradicted and public context is weak or absent.",
-      refs: ["evidence:supports_core_claim", "external_context:public_context_plausibility"],
+  // Material decision fields remain distinct from general public context.
+  for (const lane of lanes.filter((lane) => lane.status === "completed")) {
+    for (const field of ["supports_core_claim", "claimant_linkage"]) {
+      const value = lane.decision[field];
+      if (value === undefined) continue;
+      const contradiction = ["contradiction", "contradicted"].includes(value);
+      const negative = ["no", "unsupported"].includes(value);
+      const uncertain = ["unknown", "partial", "unverified"].includes(value);
+      if (contradiction || negative || uncertain) signals.push({
+        code: contradiction ? "MATERIAL_CLAIM_CONTRADICTED" : negative ? "CORE_CLAIM_UNSUPPORTED" : "MATERIAL_SUPPORT_UNCERTAIN",
+        severity: contradiction || negative ? "high" : "medium",
+        summary: `${lane.lane_type}.${field} is ${value} on the reviewed record.`,
+        refs: [`${lane.lane_type}:${field}`],
+      });
+    }
+    if (lane.confidence == null || ["unknown", "low"].includes(lane.confidence)) signals.push({
+      code: "REVIEW_CONFIDENCE_UNCERTAIN",
+      severity: "medium",
+      summary: `${lane.lane_type} reviewer confidence is ${lane.confidence ?? "unspecified"}.`,
+      refs: [`${lane.lane_type}:confidence`],
     });
+  }
+  for (const field of ["supports_core_claim", "claimant_linkage", "supports_requested_action_size"]) {
+    if (!lanes.some((lane) => lane.status === "completed" && lane.decision[field] !== undefined)) {
+      signals.push({ code: "MATERIAL_SUPPORT_UNCERTAIN", severity: "medium",
+        summary: `No completed lane reports ${field}.`, refs: [field] });
+    }
   }
   const unsupportedActionSize = actionSizeSupport.filter((entry) => ["no", "unsupported"].includes(entry.value));
   if (unsupportedActionSize.length > 0) {
@@ -314,15 +432,7 @@ function collectSignals(policy, lanes) {
       refs: ["external_context:source_independence"],
     });
   }
-  if (["unverified", "contradicted"].includes(linkage)) {
-    signals.push({
-      code: "IDENTITY_OR_LINKAGE_UNVERIFIED",
-      severity: linkage === "contradicted" ? "high" : "medium",
-      summary: "The record does not sufficiently connect the claimant to the claimed need, asset, or beneficiary.",
-      refs: ["claimant_linkage"],
-    });
-  }
-  if (policy.requested_action?.is_repeat_action && ["none", "weak"].includes(repeatSupport)) {
+  if (policy.requested_action?.is_repeat_action && repeatSupport !== "fresh_reason_present") {
     signals.push({
       code: "REPEAT_ACTION_WITHOUT_FRESH_REASON",
       severity: "medium",
@@ -369,6 +479,10 @@ function chooseDisposition(policy, signals) {
       maximum_recommended_size: 0,
     };
   }
+  if (hasCode("MATERIAL_CLAIM_CONTRADICTED") || hasCode("CORE_CLAIM_UNSUPPORTED") ||
+      hasCode("REQUESTED_ACTION_SIZE_UNSUPPORTED")) {
+    return { disposition: "reject_current_record", action_size_guidance: "do_not_act_on_current_record", maximum_recommended_size: 0 };
+  }
   if (anyCritical && prefs.reject_on_any_critical !== false) {
     return {
       disposition: "reject_current_record",
@@ -399,18 +513,12 @@ function chooseDisposition(policy, signals) {
       maximum_recommended_size: 0,
     };
   }
-  if (hasCode("MULTIPLE_MEDIUM_OR_CROSS_LANE_CONCERNS")) {
-    return {
-      disposition: prefs.multiple_medium_concerns ?? "eligible_for_small_test_action",
-      action_size_guidance: "smallest_configured_test_action",
-      maximum_recommended_size: Math.min(smallSize, maxSize, requestedSize),
-    };
-  }
   if (anyMedium) {
+    const permitBoundedUncertainty = prefs.uncertainty_action === "small_test" && !anyHigh && !anyCritical;
     return {
-      disposition: "eligible_for_small_test_action",
-      action_size_guidance: "smallest_configured_test_action",
-      maximum_recommended_size: Math.min(smallSize, maxSize, requestedSize),
+      disposition: permitBoundedUncertainty ? "eligible_for_small_test_action" : "monitor_until_new_evidence",
+      action_size_guidance: permitBoundedUncertainty ? "operator_permitted_bounded_uncertainty" : "wait_for_material_support",
+      maximum_recommended_size: permitBoundedUncertainty ? Math.max(0, Math.min(smallSize, maxSize, requestedSize)) : 0,
     };
   }
   if (requestedSize <= maxSize) {
@@ -431,7 +539,8 @@ function confidenceFor(signals, lanes, collected) {
   if (signals.some((signal) => severityRank(signal.severity) >= SEVERITY_RANK.high)) return "low";
   if (collected.missing_lanes.length > 0) return "low_due_to_missing_lanes";
   if (signals.some((signal) => severityRank(signal.severity) >= SEVERITY_RANK.medium)) return "low_to_medium";
-  const laneConfidences = lanes.map((lane) => lane.confidence).filter(Boolean);
+  const laneConfidences = lanes.filter((lane) => lane.status === "completed").map((lane) => lane.confidence);
+  if (!laneConfidences.length || laneConfidences.some((value) => value == null || value === "unknown")) return "unknown";
   if (laneConfidences.includes("low")) return "low_to_medium";
   if (laneConfidences.includes("medium")) return "medium";
   return "medium_to_high";
@@ -443,7 +552,7 @@ function coordinate(policyInput, lanes) {
   const selected = chooseDisposition(policy, collected.signals);
   return {
     review_type: "credibility-action-gate",
-    review_version: "0.1.0",
+    review_version: "0.3.0",
     reviewed_at: new Date().toISOString(),
     status: "completed",
     analysis_only: true,
@@ -453,6 +562,7 @@ function coordinate(policyInput, lanes) {
       action_domain: policy.action_domain ?? "general",
       requested_action: policy.requested_action,
       authority: policy.authority,
+      uncertainty_action: policy.disposition_preferences.uncertainty_action,
     },
     disposition: selected.disposition,
     confidence: confidenceFor(collected.signals, lanes, collected),
@@ -484,10 +594,13 @@ function coordinate(policyInput, lanes) {
 function main() {
   try {
     const args = parseArgs(process.argv.slice(2));
+    const inputFiles = args.lanes.map((spec) => parseLaneSpec(spec).file);
+    if (args.policyFile) inputFiles.push(args.policyFile);
+    const output = args.out ? prepareOutput(args.out, inputFiles) : undefined;
     const policy = args.policyFile ? readJson(args.policyFile) : DEFAULT_POLICY;
     const lanes = loadLanes(args.lanes);
     const result = coordinate(policy, lanes);
-    if (args.out) writeJson(args.out, result);
+    if (output) writeJson(output, result);
     else process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
   } catch (error) {
     process.stderr.write(`credibility-coordinator error: ${error.message}\n`);

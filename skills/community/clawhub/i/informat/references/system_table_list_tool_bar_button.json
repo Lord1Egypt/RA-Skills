@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_table_list_tool_bar_button",
+    "description": "Query the toolbar button list at the top of the data table, returns button ID, name, action type, etc.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        }
+      },
+      "required": ["tableId"]
+    }
+  }
+}

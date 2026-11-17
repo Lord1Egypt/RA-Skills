@@ -1,42 +1,57 @@
-## Description: <br>
-Manage a single GitHub repository through chat for non-technical requesters after they share the repo URL and a temporary personal token; the skill pulls status, summarizes activity, and creates or follows up on issues through the GitHub API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a single GitHub repository through chat by using a temporary GitHub token to check status, summarize recent activity, and create or follow up on issues and pull requests.
 
-## Publisher: <br>
-[iamkalio](https://clawhub.ai/user/iamkalio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iamkalio](https://clawhub.ai/user/iamkalio)
 
-## Use Case: <br>
-External users and operators use this skill to ask an assistant for lightweight GitHub repository help in a chat flow, including recent activity summaries, issue creation, issue follow-up, and file-level context checks without cloning the repository. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide GitHub credentials that may grant repository access. <br>
-Mitigation: Use a fine-grained, short-lived token limited to one repository and the minimum permissions needed, avoid retained chat where possible, unset the token after use, and revoke it when the session ends. <br>
-Risk: Issue, comment, or repository update text could be posted with incorrect or unintended content. <br>
-Mitigation: Review all generated issue bodies, comments, labels, assignees, and status updates before sending API requests that modify GitHub state. <br>
-Risk: Daily cron automation can turn temporary repository access into unattended long-lived access. <br>
-Mitigation: Enable cron automation only after securing the secret, reviewing the script, documenting how to disable the job, and confirming token revocation procedures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GitHub API Cheatsheet (Repo chat ops)](references/github-api-cheatsheet.md) <br>
-- [GitHub REST API endpoint](https://api.github.com) <br>
+## Use Case:
 
+External users and non-technical requesters use this skill to get lightweight GitHub repository assistance in a chat workflow. It helps an agent gather repository context, summarize contributor activity, and draft or update issues and pull request follow-ups through the GitHub API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON request examples, and concise chat-ready summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GitHub API request payloads, issue links, status bullets, and temporary environment-variable handling guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GitHub tokens shared in chat may grant broad repository access if they are long-lived or over-scoped.
+
+Mitigation: Use only fine-grained, repository-limited, short-lived tokens and avoid pasting tokens into normal chat where possible.
+
+Risk: Repository data or secrets may be exposed if examples using /tmp caches or plaintext environment files are copied for private repositories.
+
+Mitigation: Use a private per-session temporary directory, clean it up after use, and do not store long-lived tokens in plaintext env files.
+
+Risk: Issue creation, issue updates, or comments can change a live repository workflow.
+
+Mitigation: Require explicit user confirmation before creating or updating issues, changing issue state, assigning owners, or posting comments.
+
+## Reference(s):
+
+- [GitHub API Cheatsheet](references/github-api-cheatsheet.md)
+- [GitHub REST API endpoint](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub API request examples, repository summaries, issue drafts, status notes, and links returned by GitHub.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

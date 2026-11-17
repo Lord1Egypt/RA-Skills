@@ -1,47 +1,56 @@
-## Description: <br>
-Diagnose Bright Data Scraping Browser sessions using the Browser Sessions API, including error diagnosis, bandwidth analysis, captcha reporting, and recent-session pattern detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Bright Data Scraping Browser sessions with the Browser Sessions API, including failure causes, bandwidth outliers, captcha activity, redirects, and whether scraper failures are proxy-side or client-side.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-External users, developers, and scraper operators use this skill to inspect Bright Data Scraping Browser session diagnostics, explain failures, identify bandwidth or captcha patterns, and separate proxy-side issues from client-side scraper problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Bright Data API token. <br>
-Mitigation: Use a least-privileged token, provide it through BRIGHTDATA_API_KEY, and avoid pasting the token into chat or generated reports. <br>
-Risk: Broad trigger wording can cause the agent to list recent browser sessions when the user's intended scope is narrower. <br>
-Mitigation: Provide a specific session ID, target domain, zone, status, or date range before requesting diagnostics. <br>
-Risk: Browser-session diagnostics may expose target URLs, error messages, bandwidth usage, captcha status, and other operational metadata. <br>
-Mitigation: Review diagnostic output before sharing it, and avoid running the skill against sensitive scraping activity unless that metadata is acceptable to disclose. <br>
+## Use Case:
 
+Developers and scraping operators use this skill to investigate Bright Data Scraping Browser failures, unexpected empty results, bandwidth use, captcha activity, redirects, and session-level error patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/meirk-brd/brightdata-brd-browser-debug) <br>
-- [Publisher profile](https://clawhub.ai/user/meirk-brd) <br>
-- [Bright Data API tokens](https://brightdata.com/cp/setting/users) <br>
-- [GET /browser_sessions](https://docs.brightdata.com/api-reference/browser-api/get-sessions) <br>
-- [GET /browser_sessions/{session_id}](https://docs.brightdata.com/api-reference/browser-api/get-session) <br>
-- [Bright Data support](https://help.brightdata.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown troubleshooting report with API request guidance and session diagnostics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRIGHTDATA_API_KEY; may inspect live Bright Data session metadata and should use explicit session IDs or narrow filters when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can use BRIGHTDATA_API_KEY to enumerate recent Bright Data browser sessions from broad troubleshooting cues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly with a session ID, zone, target domain, or date range, and avoid generic scraper-failure prompts that could trigger broad recent-session review.
+
+Risk: Session diagnostics may surface operational details such as target URLs, bandwidth, captcha status, redirects, and error messages.
+
+Mitigation: Review diagnostic output before sharing it and scope API calls with the documented filters when investigating a specific target or incident.
+
+## Reference(s):
+
+- [Bright Data Browser Sessions API - List sessions](https://docs.brightdata.com/api-reference/browser-api/get-sessions)
+- [Bright Data Browser Sessions API - Get session](https://docs.brightdata.com/api-reference/browser-api/get-session)
+- [Bright Data API Tokens](https://brightdata.com/cp/setting/users)
+- [Bright Data Support](https://help.brightdata.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise diagnostic summaries, session fields, verdicts, and occasional HTTP or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Bright Data session IDs, target URLs, status fields, bandwidth conversions, captcha status, and error messages when returned by the Browser Sessions API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

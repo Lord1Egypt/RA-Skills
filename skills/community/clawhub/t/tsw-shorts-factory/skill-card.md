@@ -1,45 +1,59 @@
-## Description: <br>
-Autonomous YouTube Shorts video factory that generates quote-based short-form videos using edge-tts, Pexels stock footage, and MoviePy local assembly, then prepares YouTube uploads for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TSW Shorts Factory helps agents set up a quote-based YouTube Shorts pipeline using local text-to-speech audio, Pexels stock clips, MoviePy assembly, and YouTube draft or unlisted upload flow.
 
-## Publisher: <br>
-[Vanyanski](https://clawhub.ai/user/Vanyanski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanyanski](https://clawhub.ai/user/vanyanski)
 
-## Use Case: <br>
-Developers and content operators use this skill to set up a local automation pipeline for generating quote-based vertical Shorts, caching stock clips, creating voiceover audio, assembling MP4 files, and uploading draft or unlisted videos to YouTube for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged code includes under-disclosed account-upload behavior and can run unattended uploads when scheduled. <br>
-Mitigation: Review the upload path before enabling cron, keep uploads private or unlisted until approved, and require a human review step before publishing. <br>
-Risk: The packaged code uses hard-coded local paths and an embedded Pexels API key. <br>
-Mitigation: Replace hard-coded paths and credentials with user-controlled configuration before installation or execution. <br>
-Risk: The security evidence notes a missing YouTube uploader implementation and a stored OAuth token path. <br>
-Mitigation: Audit any uploader implementation before use and protect or remove the OAuth token file when not actively needed. <br>
+## Use Case:
 
+External creators and developers use this skill to configure an automated pipeline that turns quote libraries into vertical YouTube Shorts drafts for human review before publication.
 
-## Reference(s): <br>
-- [YouTube OAuth Setup](references/youtube-setup.md) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Vanyanski/tsw-shorts-factory) <br>
-- [Publisher Profile](https://clawhub.ai/user/Vanyanski) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance for local video generation and upload automation; the packaged scripts produce MP4 video files and YouTube upload attempts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automates YouTube uploads and uses persistent OAuth access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with a contained YouTube account, keep uploads as drafts or unlisted until manually reviewed, and audit the uploader path before production use.
+
+Risk: The security review warns not to rely on the draft or unlisted upload claim unless the missing uploader script is supplied and audited.
+
+Mitigation: Require the uploader implementation during review and verify the final YouTube privacy status before enabling scheduled runs.
+
+Risk: The security guidance flags an exposed Pexels key, pickle token storage, hard-coded root paths, external sys.path injection, and unpinned dependencies.
+
+Mitigation: Rotate the exposed key, move secrets to environment-managed credentials, replace pickle token storage, remove hard-coded paths and sys.path injection, and pin dependencies before production deployment.
+
+## Reference(s):
+
+- [YouTube OAuth Setup](references/youtube-setup.md)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [TSW Shorts Factory on ClawHub](https://clawhub.ai/vanyanski/skills/tsw-shorts-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON examples, and Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent guidance can lead to local MP4 files, cached media, audio files, OAuth token files, and YouTube upload attempts when the bundled scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

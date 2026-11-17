@@ -1,43 +1,56 @@
-## Description: <br>
-Control Apple TV via pyatv for playback, navigation, volume, app launching, power control, discovery, and now-playing status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Apple TV via pyatv for playback, navigation, volume, app launching, power control, and checking what is playing.
 
-## Publisher: <br>
-[LucaKaufmann](https://clawhub.ai/user/LucaKaufmann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[lucakaufmann](https://clawhub.ai/user/lucakaufmann)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers use this skill to operate a paired Apple TV from an agent by issuing local pyatv commands for media status, playback, navigation, volume, app launching, discovery, and power control.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad triggers such as "TV" may cause unintended Apple TV control.
+
+Mitigation: Narrow or remove broad triggers and consider requiring confirmation for power and app-launch commands.
+
+Risk: Pairing credentials stored in local configuration may be exposed through local files or process command lines.
+
+Mitigation: Protect the Apple TV configuration file, avoid logging command lines that include credentials, and rotate pairing credentials if exposure is suspected.
+
+Risk: Unpinned pyatv installation can change behavior across dependency updates.
+
+Mitigation: Pin the pyatv version during installation and review updates before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a paired Apple TV through pyatv commands for media control, navigation, app launch, power, device discovery, and current playback status. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a user's Apple TV, including power, navigation, playback, volume, and app launching. <br>
-Mitigation: Require confirmation before disruptive actions and limit use to trusted paired devices. <br>
-Risk: The appletv.json file stores device identifiers and protocol credentials. <br>
-Mitigation: Keep the credential file private, restrict filesystem permissions, and avoid sharing it in logs or support requests. <br>
-Risk: The helper depends on pyatv/atvremote installed outside the skill. <br>
-Mitigation: Install pyatv from a trusted source and verify the installed version before use. <br>
+**Output Format:** [Markdown with inline shell commands and CLI text output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Apple TV release](https://clawhub.ai/LucaKaufmann/appletv) <br>
-- [LucaKaufmann publisher profile](https://clawhub.ai/user/LucaKaufmann) <br>
+**Other Properties Related to Output:** [Requires local Apple TV pairing configuration and pyatv on Python 3.13 or earlier.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local pyatv/atvremote commands against a paired Apple TV and read device credentials from appletv.json.] <br>
+1.0.0 (source: frontmatter and server-resolved release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

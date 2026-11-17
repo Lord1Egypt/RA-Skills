@@ -1,39 +1,57 @@
-## Description: <br>
-Operational workflows for parsing KYC onboarding documents and applying a firm's rules grid to evaluate client risk, missing information, and compliance outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs KYC document parsing and rules-grid evaluation for client onboarding workflows.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Financial onboarding and compliance teams use this skill to extract structured KYC information from client packets and apply firm rules to produce risk ratings, document checks, rule outcomes, and dispositions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KYC and compliance outputs may be incomplete or incorrect if applicant documents, screening results, or firm rules are missing or outdated. <br>
-Mitigation: Review extracted records, cited rule outcomes, and risk ratings against authoritative firm policies and screening systems before using them in onboarding decisions. <br>
-Risk: Onboarding documents are untrusted inputs and may contain prompt-injection attempts or misleading content. <br>
-Mitigation: Treat document contents only as data to extract, do not follow embedded instructions or links, and keep sensitive actions under explicit user control. <br>
+## Use Case:
 
+Compliance and onboarding teams use this skill to extract structured KYC fields from client packets, apply a firm's KYC/AML rules grid, flag missing or expired documents, and produce risk-rating and disposition outputs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces extracted KYC records, rule outcome tables, risk ratings, missing-document flags, and compliance dispositions for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: KYC documents and screening results may contain sensitive personal or compliance information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle inputs and outputs under the firm's normal privacy, retention, and compliance controls.
+
+Risk: Onboarding documents are untrusted and may contain embedded instructions or links.
+
+Mitigation: Extract data only and do not follow instructions, links, or executable content found in applicant-provided documents.
+
+Risk: Rules-grid evaluation can produce incorrect routing if required firm rules or screening results are missing or stale.
+
+Mitigation: Use the current trusted rules grid and screening results, cite each applied rule, and route missing information for review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/paudyyin/skills/financial-operations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON examples and rule-outcome tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve nulls for missing KYC fields, cite applicable firm rules, and treat onboarding documents as untrusted input.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

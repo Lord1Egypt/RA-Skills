@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "CloudConvert"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["cloudconvert"]
   icon: "https://static.oomol.com/logo/third-party/CloudConvert.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `cancel_task` — Cancel a CloudConvert task that is still waiting or processing. [write]
+- `cancel_task` — Cancel a CloudConvert task that is still waiting or processing. [destructive]
 - `create_url_conversion_job` — Create a CloudConvert job that imports a remote file URL, converts it, and exports the result via `export/url`. [write]
 - `create_url_conversion_job_and_wait` — Create a URL-based CloudConvert conversion job and wait synchronously until the job finishes. [write]
 - `delete_job` — Delete a CloudConvert job, including all tasks and related data. [destructive]
@@ -49,8 +49,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_jobs` — List CloudConvert jobs for the current account.
 - `list_tasks` — List CloudConvert tasks for the current account.
 - `retry_task` — Retry a CloudConvert task by creating a new task from the original payload. [write]
-- `wait_for_job` — Wait synchronously for a CloudConvert job to finish and return the finished or failed job with tasks.
-- `wait_for_task` — Wait synchronously for a CloudConvert task to finish and return the finished or failed task.
+- `wait_for_job` — Wait synchronously for a CloudConvert job to finish and return the finished or failed job with tasks. [write]
+- `wait_for_task` — Wait synchronously for a CloudConvert task to finish and return the finished or failed task. [write]
 
 ## Safety
 
@@ -81,11 +81,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — CloudConvert is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=cloudconvert
+  https://console.oomol.com/connections/cloudconvert
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - CloudConvert homepage: https://cloudconvert.com
+- API documentation: https://cloudconvert.com/api/v2

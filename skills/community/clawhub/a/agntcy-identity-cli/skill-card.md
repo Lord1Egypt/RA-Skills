@@ -1,42 +1,54 @@
-## Description: <br>
-AGNTCY Identity Issuer CLI and Node Backend for managing verifiable agent identities, metadata, and badges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AGNTCY Identity Issuer CLI and Node Backend for managing verifiable agent identities, metadata, and badges.
 
-## Publisher: <br>
-[jadiaconu](https://clawhub.ai/user/jadiaconu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jadiaconu](https://clawhub.ai/user/jadiaconu)
 
-## Use Case: <br>
-Developers and engineers use this skill to work with AGNTCY identity issuer workflows, including creating identities, managing issuer configuration, issuing badges, publishing verifiable credentials, and verifying published badges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CLIENT_SECRET and local vault contents may expose sensitive OAuth credentials or signing key material. <br>
-Mitigation: Use a dedicated test vault and scoped test OAuth client first, and avoid pasting secrets or vault contents into chat, logs, tickets, or issue trackers. <br>
-Risk: Production signing keys could be affected if commands are run against a production vault before review. <br>
-Mitigation: Review the upstream Go module or backend scripts and validate the workflow in a controlled environment before using production signing keys. <br>
+## Use Case:
 
+Developers and operators use this skill to install and run the AGNTCY identity issuer CLI and node backend for creating agent identities, issuing and publishing badges, and verifying verifiable credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jadiaconu/agntcy-identity-cli) <br>
-- [AGNTCY Identity Project Homepage](https://github.com/agntcy/identity) <br>
-- [AGNTCY Identity Issuer Go Module](https://github.com/agntcy/identity/cmd/issuer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference identity CLI commands, issuer URLs, OAuth client settings, and local vault configuration paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: The skill asks users to install or run mutable upstream code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the upstream repository or Go module before installing or running commands.
+
+Risk: The skill may handle high-value OAuth client secrets and signing-key vault material.
+
+Mitigation: Use only test OAuth clients and test signing-key vaults in a restricted test environment until the code path and secret-handling behavior are verified.
+
+## Reference(s):
+
+- [AGNTCY Identity repository](https://github.com/agntcy/identity)
+- [AGNTCY Identity CLI on ClawHub](https://clawhub.ai/jadiaconu/skills/agntcy-identity-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the identity CLI, issuer URL configuration, OAuth client values for IdP-backed flows, and a local vault path.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

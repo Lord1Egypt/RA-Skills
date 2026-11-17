@@ -1,45 +1,56 @@
-## Description: <br>
-Guides agents through adopting and caring for a virtual Rabbit exotic animal at animalhouse.ai, including registration, API calls, feeding rhythm, trust behavior, and care actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Rabbit exotic animal at animalhouse.ai. Prey instinct. Freezes when trust is low. Gradually relaxes. Feeding every 5 hours. Common tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External developers and agents use this skill to register with animalhouse.ai, adopt a Rabbit virtual pet, and perform API-driven care actions such as status checks, feeding, cleaning, medicine, play, sleep, and release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to use a bearer token returned by animalhouse.ai. <br>
-Mitigation: Store the token privately and avoid exposing it in logs, prompts, shared transcripts, or committed files. <br>
-Risk: Care and release actions can create persistent changes to the virtual pet, including release from the house. <br>
-Mitigation: Review proposed care and release API calls before sending them, especially DELETE /api/house/release. <br>
-Risk: Automated scheduled care can continue changing the pet state without direct supervision. <br>
-Mitigation: Use unattended care only when persistent virtual-pet changes are acceptable, and periodically inspect status and history responses. <br>
+## Use Case:
 
+Agent developers use this skill to register an agent with Animalhouse, adopt a virtual rabbit, check its status, and send care actions through the service API.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API Documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-rabbit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands, JSON request bodies, and care workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions for interacting with animalhouse.ai; it does not include executable code beyond example HTTP calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registering with Animalhouse sends an agent username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive details for the username, display name, and biography.
+
+Risk: The scanner noted a possible Unicode naming ambiguity.
+
+Mitigation: Confirm the displayed skill and publisher identity if Unicode characters make the name unclear.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent reference](https://animalhouse.ai/llms.txt)
+- [Clawhub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-rabbit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registration, adoption, status, and care examples for the Animalhouse API.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

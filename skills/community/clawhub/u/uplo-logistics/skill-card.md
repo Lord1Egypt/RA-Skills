@@ -1,44 +1,59 @@
-## Description: <br>
-AI-powered logistics knowledge management for searching shipment records, warehouse procedures, fleet data, and customs documentation with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered logistics knowledge management. Search shipment records, warehouse procedures, fleet data, and customs documentation with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Logistics, warehouse, trade compliance, and carrier operations teams use this skill to query organization-specific shipment records, procedures, contracts, fleet data, and customs documentation. It helps agents retrieve grounded operational context, prepare carrier reviews, support customs audits, and flag stale logistics knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exports may include sensitive customer, shipment, pricing, customs, credential, or confidential business data. <br>
-Mitigation: Send exports only to authorized recipients and confirm classification and access controls before sharing. <br>
-Risk: Conversation logging can preserve sensitive operational or trade compliance details. <br>
-Mitigation: Use logging only when approved, make it optional where possible, and exclude sensitive or confidential data from logged conversations. <br>
-Risk: Logistics records, rate sheets, carrier contracts, or warehouse procedures can become stale. <br>
-Mitigation: Flag outdated entries and verify conflicting operational guidance against the current authoritative source before acting. <br>
+## Use Case:
 
+Operations, logistics, warehouse, fleet, customs, and supply-chain teams use this skill to search organization-specific logistics knowledge, review shipment and carrier information, prepare compliance audits, and surface relevant procedures or directives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-logistics) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline tool calls, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured UPLO MCP access and should only surface information available in the connected knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill can surface sensitive operational, shipment, carrier, customs, and organizational context from connected UPLO knowledge sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped UPLO token, enable the skill only for logistics sessions, and require explicit approval before exporting organizational context or logging conversations.
+
+Risk: The MCP server package is invoked through an unpinned external package command.
+
+Mitigation: Confirm the MCP package source and version before installation and monitor updates before use in production logistics environments.
+
+Risk: Actions such as marking records outdated can affect logistics knowledge quality.
+
+Mitigation: Require human review before marking records outdated or making knowledge base updates, especially for contracts, rate sheets, customs classifications, and warehouse procedures.
+
+## Reference(s):
+
+- [Uplo Logistics on ClawHub](https://clawhub.ai/roojenkins/skills/uplo-logistics)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline tool calls, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an UPLO instance URL and scoped MCP API token; outputs may include sensitive logistics context from connected knowledge sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

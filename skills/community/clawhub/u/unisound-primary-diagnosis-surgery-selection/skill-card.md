@@ -1,43 +1,58 @@
-## Description: <br>
-Selects the primary diagnosis and primary surgery for a hospital admission from user-provided candidate lists using medical record summaries and an internal medical LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Selects the primary diagnosis and primary surgery for an inpatient encounter from caller-provided candidate lists using a configured medical LLM.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical documentation, medical coding, and integration teams use this skill to process de-identified admission summaries with candidate diagnosis and surgery lists, then return the admission's main diagnosis and main surgery as coding support. The output is auxiliary information for insurance coding or medical record forms and is not medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical record text can be sent to a configurable remote LLM endpoint. <br>
-Mitigation: Use only in an approved medical-data environment, de-identify patient data before input, and confirm endpoint, retention, authorization, and compliance controls before processing PHI. <br>
-Risk: Prepared medical text may be written to disk when debug saving is enabled. <br>
-Mitigation: Avoid prepared-text saving with real PHI unless explicitly approved; when needed, write only to controlled storage and remove debug artifacts under the applicable retention policy. <br>
-Risk: LLM-selected primary diagnosis or surgery may be incorrect even when constrained to candidate lists. <br>
-Mitigation: Require qualified human review before use in coding, billing, medical records, or care workflows, and keep the skill's output limited to decision support. <br>
+## Use Case:
 
+Healthcare coding or medical-record operations teams use this skill to choose the principal diagnosis and procedure for insurance coding or discharge-summary workflows from a supplied record summary and candidate lists. Its output is assistive and should be reviewed by qualified personnel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-primary-diagnosis-surgery-selection) <br>
-- [Default internal medical LLM endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files] <br>
-**Output Format:** [JSON object with main_diagnosis and main_surgery fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validates the selected diagnosis and surgery against the provided candidate lists; optional output arguments can write the same JSON result to disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Medical records and API credentials can be sent to any caller-supplied LLM base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved LLM service endpoint and do not allow untrusted users or wrappers to set the base URL.
+
+Risk: Input may contain medical data or identifiers that are not appropriate for the configured LLM service.
+
+Mitigation: Run only in an environment approved for the configured service and de-identify names, IDs, phone numbers, and detailed addresses before use.
+
+Risk: Prepared medical text can be persisted when the save-prepared option is enabled.
+
+Mitigation: Avoid saving prepared text unless the output directory is protected and the retention period is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-primary-diagnosis-surgery-selection)
+- [Documented medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files]
+
+**Output Format:** [JSON object with main_diagnosis and main_surgery fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The selected diagnosis and surgery are validated against the provided candidate lists; an optional output path can persist the JSON result.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

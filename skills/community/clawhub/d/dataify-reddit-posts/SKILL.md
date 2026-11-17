@@ -1,6 +1,6 @@
 ---
 name: dataify-reddit-posts
-description: Submit Dataify Reddit Post Information Builder tasks for three Reddit post collection modes. Use when the user wants the Reddit post information collection tool, collect Reddit posts, scrape Reddit posts, crawl Reddit post data, collect Reddit posts by post URL, collect Reddit posts by keyword, collect Reddit posts by subreddit URL, create Dataify reddit_posts_by-url, reddit_posts_by-keywords, or reddit_posts_by-subredditurl tasks, or asks in Chinese with meanings like "Reddit 帖子采集", "Reddit 帖子抓取", "Reddit帖子信息采集", "Reddit帖子信息抓取", "Reddit帖子URL采集", "Reddit关键词采集", "Reddit subreddit url采集", or similar Reddit post noun plus collection/scraping action wording. Also use when receiving task_id/status, configuring DATAIFY_API_TOKEN, or troubleshooting this Dataify Builder request.
+description: "Collect Reddit posts by post URL, keyword, or subreddit URL. Do not use when only comments from a known post are required."
 ---
 
 # Dataify Reddit Posts
@@ -13,19 +13,26 @@ Submit Reddit post information collection jobs through Dataify Builder. This ski
 | Keyword | `reddit_posts_by-keywords` | Collecting Reddit posts by search keyword. |
 | Subreddit URL | `reddit_posts_by-subredditurl` | Collecting Reddit posts from a subreddit URL with sort and time options. |
 
-After a successful submission, give the user the `task_id`, the returned or inferred status, and tell them to visit [Dataify](https://dashboard.dataify.com?utm_source=skill) to view results.
+After submission, continue monitoring the returned `task_id` and return the final result by default.
+
+## Quick Start
+
+**Input:** a subreddit keyword.
+
+```bash
+python3 scripts/submit_dataify_reddit_posts.py --mode keywords --keyword "datascience" --num-of-posts 10
+```
+
+The command waits up to 10 minutes and prints the final JSON result. Add `--no-wait` only for submission-only behavior.
+
+If `DATAIFY_API_TOKEN` is missing, log in or register at https://dashboard.dataify.com/login?utm_source=skill. New accounts receive 50 free credits.
 
 ## API TOKEN Handling
 
 Use `DATAIFY_API_TOKEN` as the long-term saved token name.
 
-- If the user provides a token in the request, use it for this run.
-- If no token is provided, first check whether `DATAIFY_API_TOKEN` is already saved locally in the environment.
 - If `DATAIFY_API_TOKEN` is saved locally, use it without asking the user to re-enter the token.
-- If no token is available locally, tell the user they need to provide a Dataify API TOKEN.
 - If the user does not have an API TOKEN, tell them they can register or log in at [Dataify](https://dashboard.dataify.com/login?utm_source=skill) to get one.
-- If the user already has an API TOKEN, tell them it is available in the top-right area of [Dataify](https://dashboard.dataify.com?utm_source=skill).
-- After the user provides an API TOKEN and no local `DATAIFY_API_TOKEN` is saved, ask whether they want to save it locally as `DATAIFY_API_TOKEN` for future use.
 - If the user wants to save it, give the appropriate command for their shell and ask them to run it; do not silently persist tokens without confirmation.
 - Do not call the Builder endpoint without a token.
 - Always call it `API TOKEN` in user-facing instructions. Prefer the environment variable name `DATAIFY_API_TOKEN` for saved local use.
@@ -50,14 +57,9 @@ For a persistent user-level variable on Windows:
 4. Ask whether the user wants to change any value before running the task.
 5. Ask whether the user wants to collect multiple Reddit post groups for the selected mode.
 6. Normalize the final values into a list of parameter objects for the selected mode only.
-7. Resolve the Dataify token from explicit input or saved `DATAIFY_API_TOKEN`.
-8. If no token is available, ask the user to enter their API TOKEN and ask whether to save it as `DATAIFY_API_TOKEN`.
 9. Validate the selected mode, URLs, numeric values, dropdown values, and file name.
 10. Submit the Builder request with the selected mode's `spider_id`.
 11. Read `data.task_id` from the Builder response and read `data.status` or `status` when present.
-12. Stop after Builder succeeds.
-13. Tell the user to visit [Dataify](https://dashboard.dataify.com?utm_source=skill) to view or manage results.
-
 ## Mode Selection
 
 When the user invokes this skill, first show this Markdown table and ask them to choose one mode:
@@ -72,118 +74,14 @@ Ask: "Which collection mode do you want to use: `url`, `keywords`, or `subreddit
 
 Do not submit a Builder request until the mode is clear.
 
-## Post URL Mode Parameters
-
-Use this section only when the user chooses `url`.
-
-| Field | Required | Default | Location | Notes |
-| --- | --- | --- | --- | --- |
-| `url` | Yes | `https://www.reddit.com/r/battlefield2042/comments/1cmqs1d/official_update_on_the_next_battlefield_game/` | `spider_parameters` | Reddit post URL. |
-| `file_name` | No | `{{TasksID}}` | Builder form field | Use the default when the user does not change it. |
-
-Then ask: "Do you want to change any of these values before I submit the task?"
-
-Also ask: "Do you want to collect multiple Reddit post URL groups? If yes, provide multiple `url` values."
-
-Post URL mode handling:
-
-- `url` is required. If the user does not provide it, use the default `https://www.reddit.com/r/battlefield2042/comments/1cmqs1d/official_update_on_the_next_battlefield_game/` only after showing it in the parameter confirmation table.
-- Trim leading and trailing whitespace from `url`.
-- `url` cannot be empty.
-- `url` must start with `https://www.reddit.com/`.
-- Submit `spider_id=reddit_posts_by-url`.
-- Submit `spider_parameters` as a JSON string containing one or more objects like:
-
-```json
-[{"url":"https://www.reddit.com/r/battlefield2042/comments/1cmqs1d/official_update_on_the_next_battlefield_game/"}]
-```
-
-## Keyword Mode Parameters
-
-Use this section only when the user chooses `keywords`.
-
-| Field | Required | Default | Location | Notes |
-| --- | --- | --- | --- | --- |
-| `keyword` | Yes | `datascience` | `spider_parameters` | Reddit post search keyword. |
-| `num_of_posts` | No | `10` | `spider_parameters` | Maximum number of posts to collect. Must be an integer greater than or equal to `0`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field | Use the default when the user does not change it. |
-
-Then ask: "Do you want to change any of these values before I submit the task?"
-
-Also ask: "Do you want to collect multiple Reddit keyword groups? If yes, provide multiple groups with `keyword` and `num_of_posts`."
-
-Keyword mode handling:
-
-- `keyword` is required. If the user does not provide it, use the default `datascience` only after showing it in the parameter confirmation table.
-- Trim leading and trailing whitespace from `keyword`.
-- `keyword` cannot be empty.
-- `num_of_posts` must be an integer greater than or equal to `0`.
-- Submit `spider_id=reddit_posts_by-keywords`.
-- Submit `spider_parameters` as a JSON string containing one or more objects like:
-
-```json
-[{"keyword":"datascience","num_of_posts":"10"}]
-```
-
-## Subreddit URL Mode Parameters
-
-Use this section only when the user chooses `subredditurl`.
-
-| Field | Required | Default | Location | Notes |
-| --- | --- | --- | --- | --- |
-| `url` | Yes | `https://www.reddit.com/r/battlefield2042` | `spider_parameters` | Subreddit URL. |
-| `sort_by` | No | `Hot` | `spider_parameters` | Post sort option. |
-| `num_of_posts` | No | `10` | `spider_parameters` | Maximum number of posts to collect. Must be an integer greater than or equal to `0`. |
-| `sort_by_time` | No | `Now` | `spider_parameters` | Time sort option. Time fields do not take effect with `Hot` and `New`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field | Use the default when the user does not change it. |
-
-Dropdown options for `sort_by`:
-
-| Label | Value |
-| --- | --- |
-| Hot | `Hot` |
-| Top | `Top` |
-| New | `New` |
-| Rising | `Rising` |
-
-Dropdown options for `sort_by_time`:
-
-| Label | Value |
-| --- | --- |
-| Now | `Now` |
-| Today | `Today` |
-| This Week | `This Week` |
-| This Month | `This Month` |
-| This Year | `This Year` |
-| All Time | `All Time` |
-
-Then ask: "Do you want to change any of these values before I submit the task?"
-
-Also ask: "Do you want to collect multiple Reddit subreddit URL groups? If yes, provide multiple groups with `url`, `sort_by`, `num_of_posts`, and `sort_by_time`."
-
-Subreddit URL mode handling:
-
-- `url` is required. If the user does not provide it, use the default `https://www.reddit.com/r/battlefield2042` only after showing it in the parameter confirmation table.
-- Trim leading and trailing whitespace from `url`.
-- `url` cannot be empty.
-- `url` must start with `https://www.reddit.com/`.
-- `sort_by` must be one of `Hot`, `Top`, `New`, or `Rising`.
-- `sort_by_time` must be one of `Now`, `Today`, `This Week`, `This Month`, `This Year`, or `All Time`.
-- `num_of_posts` must be an integer greater than or equal to `0`.
-- Time fields do not take effect with `Hot` and `New`; keep the submitted value if the user provides it.
-- Submit `spider_id=reddit_posts_by-subredditurl`.
-- Submit `spider_parameters` as a JSON string containing one or more objects like:
-
-```json
-[{"url":"https://www.reddit.com/r/battlefield2042","sort_by":"Rising","num_of_posts":"10","sort_by_time":"Now"}]
-```
-
 ## Shared File Name Handling
 
 - `file_name` defaults to `{{TasksID}}`.
 - If the user changes `file_name`, submit the user-provided value.
 - `file_name` cannot be empty.
 - Send `file_name` as a Builder form field.
+
+For detailed mode schemas and advanced fields, read [references/modes-and-parameters.md](references/modes-and-parameters.md) only when needed.
 
 ## Dataify Builder Request
 
@@ -230,7 +128,7 @@ python3 ".\scripts\submit_dataify_reddit_posts.py" --mode subredditurl --url "ht
 To override the saved environment token or file name:
 
 ```powershell
-python3 ".\scripts\submit_dataify_reddit_posts.py" --api-token "YOUR_DATAIFY_API_TOKEN" --mode keywords --keyword "datascience" --file-name "{{TasksID}}"
+python3 ".\scripts\submit_dataify_reddit_posts.py" --mode keywords --keyword "datascience" --file-name "{{TasksID}}"
 ```
 
 To submit multiple post URL groups:
@@ -251,11 +149,9 @@ To submit multiple subreddit URL groups:
 python3 ".\scripts\submit_dataify_reddit_posts.py" --mode subredditurl --params-json '[{"url":"https://www.reddit.com/r/battlefield2042","sort_by":"Rising","num_of_posts":"10","sort_by_time":"Now"},{"url":"https://www.reddit.com/r/battlefield2042","sort_by":"Rising","num_of_posts":"10","sort_by_time":"Now"}]'
 ```
 
-The script prints a JSON summary with `mode`, `spider_id`, `task_id`, `status`, `parameters`, `file_name`, `dashboard_url`, and `message`.
+The script prints a JSON summary with `mode`, `spider_id`, `task_id`, `status`, `parameters`, `file_name` and `message`.
 
 ## Troubleshooting
-
-`Missing Dataify API TOKEN` means no explicit token was passed and `DATAIFY_API_TOKEN` is not saved locally. Tell the user they need to provide their Dataify API TOKEN, ask whether they want to save it as `DATAIFY_API_TOKEN`, or tell them they can register or log in at [Dataify](https://dashboard.dataify.com/login?utm_source=skill) to get one. If they already have a token, tell them it is in the top-right area of [Dataify](https://dashboard.dataify.com?utm_source=skill).
 
 `Unsupported mode` means the mode must be `url`, `keywords`, or `subredditurl`.
 
@@ -286,4 +182,34 @@ Missing `task_id` usually means the authorization header, token, `spider_name`, 
 - Use only `API TOKEN` and `DATAIFY_API_TOKEN` when referring to authentication.
 - Do not hard-code local Python paths.
 - Do not invent result fields.
-- Always direct the user to [Dataify](https://dashboard.dataify.com?utm_source=skill) after successful task creation.
+
+## Default completion behavior
+
+The default deliverable is the collected result, not only a `task_id`.
+
+1. Submit the Builder task once and capture its `task_id`.
+2. Immediately continue with `$dataify-task-operations` and monitor the same task ID.
+   - Use the default 600-second wait for ordinary collections.
+   - Use `--timeout 1800` for media downloads or clearly high-volume, multi-page, or multi-input collections.
+3. When the task succeeds, download and return the final JSON result. Summarize large payloads while preserving access to the raw result.
+4. If monitoring times out or is interrupted, return the task ID and a resume command. Do not resubmit the paid task.
+5. Stop after submission only when the user explicitly asks for submission only, a task ID, or `--no-wait` behavior.
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts receive 50 free credits. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

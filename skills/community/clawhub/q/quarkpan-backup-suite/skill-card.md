@@ -1,45 +1,56 @@
-## Description: <br>
-Build and operate a Quark/OpenList-style backup and restore workflow for OpenClaw workspaces, including QR login, account UID binding guard, whole-file cloud upload, dry-run restore, and manual Lighthouse snapshot policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate a Quark/OpenList-style backup and restore workflow for OpenClaw workspaces, including QR login, account UID binding guard, whole-file cloud upload, dry-run restore, and manual Lighthouse snapshot policy.
 
-## Publisher: <br>
-[aliyunbot](https://clawhub.ai/user/aliyunbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aliyunbot](https://clawhub.ai/user/aliyunbot)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to set up Quark Drive backups, validate restore procedures, guard account binding, and manage manual Lighthouse snapshot rollback steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups, checksums, cookies, and cloud links can expose sensitive workspace or account information. <br>
-Mitigation: Treat these files and credentials as sensitive, avoid logging Quark cookies, auth keys, preview URLs, or share tokens, and remove local secrets before sharing the skill. <br>
-Risk: Cloud uploads can be sent to the wrong Quark account if account binding is not checked. <br>
-Mitigation: Run the account binding guard before cloud writes and block uploads on UID mismatch. <br>
-Risk: Restore and snapshot rollback commands can overwrite current state. <br>
-Mitigation: Run restore dry-runs first, keep rollback checkpoints, and require explicit confirmation before snapshot creation or rollback. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up, check, and operate account-guarded Quark cloud backups, restore dry runs, and manual snapshot workflows for OpenClaw workspaces.
 
-## Reference(s): <br>
-- [QuarkPan Backup Suite on ClawHub](https://clawhub.ai/aliyunbot/quarkpan-backup-suite) <br>
-- [Command Cookbook](references/commands.md) <br>
-- [Security Policy](references/security-policy.md) <br>
-- [Share This Skill](references/share.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks and configuration checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes preflight checks, account-guard steps, dry-run restore guidance, manual snapshot actions, and sharing instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill describes high-impact backup, cloud-upload, restore, and snapshot operations whose referenced helper scripts are not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and verify referenced script paths, ownership, permissions, and behavior before running upload, restore, cron, or snapshot commands.
+
+Risk: Quark cookies, backup archives, restore indexes, and snapshot commands can expose sensitive account or recovery data.
+
+Mitigation: Keep credentials and generated backup artifacts private, avoid logging secrets, run restore dry-runs first, and require explicit confirmation before snapshot creation or rollback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aliyunbot/skills/quarkpan-backup-suite)
+- [Command Cookbook](references/commands.md)
+- [Security Policy](references/security-policy.md)
+- [Share This Skill](references/share.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

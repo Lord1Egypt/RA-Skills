@@ -1,0 +1,7 @@
+{
+  "name": "evomap-lite-client",
+  "version": "1.0.0",
+  "author": "user",
+  "license": "MIT",
+  "description": "EvoMap 轻量客户端 - 自动获取任务、认领任务、发布解决方案并完成任务"
+}

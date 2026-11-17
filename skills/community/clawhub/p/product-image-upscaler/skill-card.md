@@ -1,44 +1,53 @@
-## Description: <br>
-Improve ecommerce product image clarity for listings, PDPs, and ad creatives so existing visuals become more usable across commercial channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve ecommerce product image clarity for listings, PDPs, and ad creatives so existing visuals become more usable across commercial channels.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce, creative, and product teams use this skill to evaluate whether existing product images can be upscaled or enhanced for listings, PDPs, marketplaces, ads, and mobile-first browsing while preserving product realism. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may choose an external upscaling tool or service with separate privacy, licensing, or security implications. <br>
-Mitigation: Review any selected image-processing tool or service independently before using it with product assets. <br>
-Risk: Users may process product images without having the rights to modify or republish them. <br>
-Mitigation: Use the skill only with images the team has rights to process and publish. <br>
-Risk: Overprocessing can make a product look fake or alter details that matter for commerce trust. <br>
-Mitigation: Compare enhanced images against the source and reject outputs that change product appearance, texture, edges, or material details. <br>
+## Use Case:
 
+Commerce, merchandising, and creative teams use this skill to assess whether existing product images can be upscaled for listings, PDPs, marketplaces, ads, and mobile-first browsing without misrepresenting the product.
 
-## Reference(s): <br>
-- [Product Image Upscaler Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/product-image-upscaler) <br>
-- [Publisher profile](https://clawhub.ai/user/leooooooow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with an image diagnosis, upscaling plan, output-size recommendations, commercial-use guidance, and risk notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory recommendations only; it does not include image-processing code or execute an upscaling tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: Upscaled commerce images may misrepresent the product if enhancement changes texture, edges, scale, or visible details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review enhanced images against the original product and publish only when the result preserves trustworthy product appearance.
+
+Risk: Low-quality source images may be too damaged to support compliant or reliable commercial use.
+
+Mitigation: Use the skill's diagnosis and risk notes to decide when an asset should be replaced or reshot instead of upscaled.
+
+## Reference(s):
+
+- [Product Image Upscaler Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes image quality diagnosis, upscale plan, output size guidance, commercial-use guidance, and risk notes for realism or detail integrity.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

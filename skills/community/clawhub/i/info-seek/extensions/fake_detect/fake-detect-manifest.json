@@ -1,0 +1,68 @@
+{
+  "schema": "fake-detect-manifest-v1",
+  "source": "infoseek/extensions/fake_detect（函数化自 fake_detect_test 引擎，评估报告_P0P1P2.md 收口基线）",
+  "infoseek_version": "1.6.0",
+  "engine_version": "1.0.0",
+  "files": {
+    "fake_detect_engine.py": {
+      "hash": "auto",
+      "status": "generated"
+    },
+    "l1_engine.py": {
+      "hash": "auto",
+      "status": "vendored"
+    },
+    "data_adapter.py": {
+      "hash": "auto",
+      "status": "vendored+patched"
+    },
+    "sync_detect.py": {
+      "hash": "auto",
+      "status": "function_extracted"
+    },
+    "l1_thresholds.json": {
+      "hash": "auto",
+      "status": "asset"
+    },
+    "requirements.txt": {
+      "hash": "auto",
+      "status": "manifest"
+    },
+    "README.md": {
+      "hash": "auto",
+      "status": "doc"
+    }
+  },
+  "usage": {
+    "import": "sys.path.insert(0, '<infoseek>/extensions/fake_detect')",
+    "modules": [
+      "fake_detect_engine",
+      "l1_engine",
+      "data_adapter",
+      "sync_detect"
+    ],
+    "integration_points": [
+      "fake_detect_engine.detect（主入口 detect(dataset) -> Report）",
+      "fake_detect_engine.assess_sufficiency（A2 信号充分性门控）",
+      "fake_detect_engine.load_trained_thresholds（B3 重训阈值资产）"
+    ],
+    "dependencies": [
+      "numpy",
+      "pandas",
+      "scipy",
+      "networkx",
+      "scikit-learn"
+    ]
+  },
+  "compliance": {
+    "kind": "account_forensics",
+    "requires_consent": true,
+    "env_gate": "INFOSEEK_ENABLE_FAKE_DETECT",
+    "audit_prefix": "[account_forensics]",
+    "default_off": true
+  },
+  "blindspots": [
+    "G3 伪装Benford: 漏检 ~75%",
+    "G4 全伪装: 漏检 ~67%"
+  ]
+}

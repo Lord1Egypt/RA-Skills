@@ -1,41 +1,51 @@
-## Description: <br>
-Generate personalized AI/ML engineering career roadmaps based on individual experience, skills, and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized AI/ML engineering career roadmaps based on individual experience, skills, and goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Learners, career changers, developers, and their agents use this skill to create personalized AI/ML engineering learning roadmaps from assessment data about experience, current skills, and career goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career assessment details are sent to an external roadmap service. <br>
-Mitigation: Avoid submitting sensitive employer-confidential information or unnecessary identifying details, and use an anonymous or null userId when possible. <br>
+## Use Case:
 
+External users, developers, and career changers use this skill to generate AI/ML engineering learning roadmaps from experience, skills, goals, and session data. It returns phased learning plans, skill gaps, curriculum resources, milestones, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/ai-ml-engineer) <br>
-- [AI/ML Engineer Roadmap API Docs](https://api.mkkpro.com:8055/docs) <br>
-- [AI/ML Engineer Roadmap API Route](https://api.mkkpro.com/career/ai-ml-engineer) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Text] <br>
-**Output Format:** [JSON roadmap data with phases, skill gaps, recommendations, and validation errors when requests are invalid.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap responses can include session identifiers, optional user IDs, generated timestamps, milestone lists, resource recommendations, and prioritized skill gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Career profile details and session identifiers are sent to an external hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the experience, skills, and goals data needed for the roadmap, omit userId unless required, and review the provider's privacy terms before submitting identifiable or sensitive professional information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/ai-ml-engineer)
+- [API Docs](https://api.mkkpro.com:8055/docs)
+- [Kong Route](https://api.mkkpro.com/career/ai-ml-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON responses with roadmap phases, skill gaps, recommendations, and agent-readable guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap requests include career profile details, session identifiers, timestamps, and optional user identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

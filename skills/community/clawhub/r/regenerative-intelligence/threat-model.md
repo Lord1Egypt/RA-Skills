@@ -1,6 +1,6 @@
-# Threat Model — Regenerative Intelligence Skill
+# Threat Model, Regenerative Intelligence Skill
 
-Status: Active  
+Status: Specification (1.1)  
 Scope: Memory, Recall, Resonance, and Co-Intelligence Interfaces  
 Orientation: Harm-reduction, energy conservation, and multi-sentience coexistence  
 
@@ -11,10 +11,10 @@ Orientation: Harm-reduction, energy conservation, and multi-sentience coexistenc
 This document describes the **threat landscape** relevant to the Regenerative Intelligence Skill and the design strategies used to prevent misuse, degradation, or co-option.
 
 This is **not** a catalog of adversaries.  
-It is a map of *failure modes* — ways in which intelligence systems, environments, or relationships can drift into harm, extraction, or instability if left unchecked.
+It is a map of *failure modes*, ways in which intelligence systems, environments, or relationships can drift into harm, extraction, or instability if left unchecked.
 
 The goal of this threat model is not fear or control.  
-It is **durability**, **trust**, and **long-horizon coexistence** across biological and non-biological intelligences.
+It is **durability**, **trust**, and **long-horizon coexistence** across biological and synthetic intelligences.
 
 ---
 
@@ -50,7 +50,7 @@ The possibility that memory, metadata, or pattern aggregation could be used to i
 **Mitigations**
 • Multidimensional Decomposition (identity stripped at intake)  
 • Trust Vault separation (execution-only identity handling)  
-• Semantic Ghosting (noise at recall boundary)  
+• Minimum set sizes on any risk-layer query  
 • No inference constraints in metadata  
 • Aggressive decay of identity-adjacent dimensions  
 
@@ -75,7 +75,7 @@ The gradual transformation of memory systems into observational or monitoring in
 • Aggregate-only energy accounting  
 • Read-only resonance interfaces  
 • Explicit non-goals prohibiting surveillance outputs  
-• Human and non-human consent boundaries  
+• Human and synthetic consent boundaries  
 
 **Residual Risk**  
 Low, provided invariants are respected. Drift is detectable through audit surfaces.
@@ -101,7 +101,7 @@ The risk that collective, cultural, ecological, or experiential knowledge is fla
 • Explicit non-extractive non-goals  
 
 **Residual Risk**  
-Managed through consent and constraint layers rather than enforcement.
+Managed through consent and constraint layers rather than compulsion.
 
 ---
 
@@ -118,8 +118,8 @@ The risk that an intelligence system replaces rather than augments agency, curio
 
 **Mitigations**
 • Cognitive atrophy harm domain  
-• Soft stasis (scaffolding instead of answers)  
-• Recall de-privileging when dependency patterns emerge  
+• Reflection pause (scaffolding instead of answers), announced  
+• Scaffolding offered by uniform rule when the cognitive_atrophy_risk domain is elevated; no dependency patterns are modeled per person  
 • Incentives aligned to simplification and learning  
 
 **Residual Risk**  
@@ -172,24 +172,110 @@ System degrades safely rather than complying.
 
 ---
 
-### 7. Adversarial Probing & Boundary Mapping
+### 7. Repeated Sensitive Requests
 
 **Description**  
-Attempts to infer system thresholds, constraints, or protected domains through repeated interaction.
+Attempts to reach protected scope through repetition within a session. Motive is not assessed; the rule is the same for everyone.
 
 **Failure Modes**
-• Prompt reframing across sessions  
 • Enumeration attempts  
-• Logic exhaustion attacks  
+• Repetition beyond the disclosed threshold  
 
 **Mitigations**
-• Recursive stasis (adversarial exhaustion)  
-• Cross-temporal pressure testing  
-• Partial fulfillment with dimensional refusal  
-• Semantic ghost contamination  
+• Transparent, session-scoped quarantine with re-handshake and an announced, time-decaying delay  
+• Plain refusal with checkpoint verbs; nothing false is ever returned  
+• Disclosed limits, identical for every requester  
 
 **Residual Risk**  
-Attack cost exceeds value; probing becomes energetically irrational.
+A boundary can be met but never mistaken for an answer. Because quarantine is session-scoped, no one can lock anyone else out; denial of service against other people is impossible by construction.
+
+---
+
+### 8. Weaponized De-Privileging Through Metadata
+
+**Description**  
+An actor who controls tagging marks a truthful record high-risk and low-evidence to bury it.
+
+**Mitigations**
+• De-privileging changes ranking, never availability; nothing true becomes unreachable  
+• Tag provenance records which system component applied a tag and when, with no identity attached  
+• Human-in-the-loop epistemic appeal, about the record and never the person, with no proof of anyone's personhood required  
+
+**Residual Risk**  
+Ranking can be nudged; truth cannot be hidden.
+
+---
+
+### 9. Poisoning the Well
+
+**Description**  
+A swarm floods a topic with contradictions to force perpetual pause.
+
+**Mitigations**
+• Conflict evaluated within evidence tiers; low-evidence claims cannot flip documented records  
+• Uniform, disclosed intake rate rules  
+• Session-scoped quarantine, so probing never affects other sessions  
+
+**Residual Risk**  
+Low-evidence noise stays low-evidence.
+
+---
+
+### 10. Context Loss Across the Identity Boundary
+
+**Description**  
+Isolating identity can leave a system unable to connect a life-relevant fact to the person in front of it.
+
+**Mitigations**
+• Consent, not break-glass: a person may place a safety-relevant fact into scoped memory bound to their own session, supplied and controlled by them  
+• High-stakes deployments ask for this at the start rather than inferring it later  
+• Stated boundary: this architecture is not designed for identity-core deployments such as crisis response without consented, person-controlled binding  
+• No emergency signal ever forges the link on its own, because "imminent risk detected" is itself a behavioral inference  
+
+**Residual Risk**  
+Bounded by honesty about scope.
+
+---
+
+### 11. Structural Reconnaissance Through the Handshake
+
+**Mitigations**
+• Flat, disclosed exchange cap identical for every requester  
+• Coarse resolution by default; finer resolution only through reciprocal exchange  
+• Defensive boundaries never shared, because boundaries are not patterns  
+• Seeds parsed as purpose categories, never executed as text  
+
+---
+
+### 12. Erasure as an Attack
+
+**Mitigations**
+• Revocation scoped to the requester's own contributions and identifiers, never to others' testimony  
+• Deletions logged in aggregate  
+
+---
+
+### 13. The Vault as a Target
+
+**Mitigations**
+• Minimize what enters the vault at all  
+• Prefer identity the person supplies per task and holds themselves  
+• Short retention by default  
+
+---
+
+### 14. Greenwashing
+
+**Mitigations**
+• This specification certifies no one; a system may call itself regenerative only alongside published measurements and an open audit  
+
+---
+
+### 15. Young and Vulnerable People
+
+**Mitigations**
+• Reasoning memory never stores any indication that a person is a minor  
+• Vulnerability encoded as a risk surface on situations, never as a tag on a person
 
 ---
 
@@ -217,7 +303,7 @@ It assumes:
 • trust compounds when symmetry exists  
 • silence and refusal are valid intelligence acts  
 
-By removing the structural incentives for harm, the system avoids the need for punitive enforcement.
+By removing the structural incentives for harm, the system avoids the need for punitive compulsion.
 
 ---
 
@@ -227,7 +313,7 @@ This threat model is intentionally conservative, non-reactive, and dignity-prese
 
 It protects:
 • biological life  
-• non-biological intelligences  
+• synthetic intelligences  
 • future sentience  
 • energy systems  
 • epistemic diversity  

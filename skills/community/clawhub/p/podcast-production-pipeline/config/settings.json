@@ -28,7 +28,7 @@
   },
   "apis": {
     "tavily": "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",
-    "gemini": "AIzaSyDXGTeSidT8Yrb3X5F0c6--X9EOPKWCwhs",
+    "gemini": "REDACTED-SECRET",
     "elevenlabs": "sk_ac618baf9c1499e63353e0e2e71a812ad61eaa81820c9a42"
   }
 }

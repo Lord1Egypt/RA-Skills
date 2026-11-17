@@ -1,46 +1,61 @@
-## Description: <br>
-Generate daily business briefings from multiple data sources, including weather, crypto prices, news headlines, system health, calendar events, and formatted morning reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily business briefings from multiple data sources, aggregating weather, crypto prices, news headlines, system health, and calendar events into a formatted morning report.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-External users and developers use this skill to generate scheduled morning business briefings and status summaries for personal planning, team standup preparation, dashboards, or client updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public APIs for weather, crypto, news, and quotes. <br>
-Mitigation: Deploy only in environments where outbound requests to those public services are acceptable, and review generated content before using it for business decisions. <br>
-Risk: Generated reports can include local disk and RAM statistics. <br>
-Mitigation: Disable the system section or keep report outputs private when local resource information should not be shared. <br>
-Risk: The optional NewsData.io API key can be stored locally and displayed in command output or agent transcripts. <br>
-Mitigation: Avoid storing sensitive API keys in this version unless terminal output, files, and transcripts are access-controlled. <br>
+## Use Case:
 
+Employees, operators, and business teams use this skill to generate scheduled morning briefings or status reports from weather, cryptocurrency, news, quote, and local system-health sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/oc-daily-business-report) <br>
-- [wttr.in weather API](https://wttr.in/) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3/simple/price) <br>
-- [NewsData.io latest news API](https://newsdata.io/api/1/latest) <br>
-- [Quotable random quote API](https://api.quotable.io/quotes/random) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text reports, Markdown reports, JSON arrays, and CLI configuration output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write generated reports to a user-selected output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: A configured NewsData.io API key can be stored and printed in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using real API keys until secret handling is improved, or use a low-privilege key and remove it from generated output before sharing.
+
+Risk: Scheduled reports can include local disk and RAM status.
+
+Mitigation: Review cron recipients and sharing destinations before enabling scheduled delivery.
+
+Risk: Reports depend on live third-party public APIs and may contain stale, unavailable, or incomplete data.
+
+Mitigation: Review generated reports before business use and treat failed sections or fallback content as incomplete data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/oc-daily-business-report)
+- [wttr.in weather endpoint](https://wttr.in/{city}?format=j1)
+- [CoinGecko simple price endpoint](https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies={currency}&include_24hr_change=true)
+- [NewsData.io latest news endpoint](https://newsdata.io/api/1/latest?apikey={api_key}&country={country}&language=en&size=5)
+- [Quotable random quote endpoint](https://api.quotable.io/quotes/random?limit=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text, Markdown, or JSON reports; configuration and test commands are provided as shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include live public API data, optional NewsData.io headlines, and local disk/RAM status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

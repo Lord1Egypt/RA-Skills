@@ -1,41 +1,58 @@
-## Description: <br>
-Analyzes a codebase to generate project-specific context files for Claude, OpenClaw/Codex, Cursor, Windsurf, and GitHub Copilot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a codebase to generate precise, project-specific AI coding assistant context files for Claude, OpenClaw, Cursor, Windsurf, and GitHub Copilot tools.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a repository and generate context files that help AI coding assistants follow the project's stack, structure, conventions, and test workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects repository files and may surface sensitive project details in generated assistant context files. <br>
-Mitigation: Install it only in repositories the user is comfortable having an assistant inspect, and review generated files before approving writes. <br>
-Risk: Generated instructions could embed real secrets or grant future agents overly broad permissions. <br>
-Mitigation: Review CLAUDE.md, AGENTS.md, .cursorrules, .windsurfrules, and Copilot instructions before use, with particular attention to secrets and allowed operations. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect a repository and generate assistant instruction files based on detected tech stack, architecture, conventions, and testing setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-ai-context-gen) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and concise implementation guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates CLAUDE.md, AGENTS.md, .cursorrules, .windsurfrules, and .github/copilot-instructions.md after inspecting repository evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated context files may include secret values or private internal details discovered during repository scanning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before committing or reusing them, and remove secrets or private details.
+
+Risk: Generated agent instructions may include overly broad repository access or command permissions.
+
+Mitigation: Narrow permissions to the project's actual workflow before sharing or deploying the files.
+
+Risk: Undetected project facts can lead to incomplete TODO sections or inaccurate assistant guidance.
+
+Mitigation: Resolve generated TODOs and confirm commands, tools, and conventions before relying on the files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-ai-context-gen)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and plain-text rule files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates CLAUDE.md, AGENTS.md, .cursorrules, .windsurfrules, and .github/copilot-instructions.md after repository inspection and user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

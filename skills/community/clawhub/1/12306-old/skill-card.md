@@ -1,44 +1,53 @@
-## Description: <br>
-Automates 12306 train-ticket login, search, and purchase workflows through a Playwright-based Python client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Playwright-based tools for logging in to China Railway 12306, searching train tickets, and supporting ticket booking automation.
 
-## Publisher: <br>
-[feiyang2007](https://clawhub.ai/user/feiyang2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feiyang2007](https://clawhub.ai/user/feiyang2007)
 
-## Use Case: <br>
-Developers and automation agents use this skill to work with Python-based 12306 login, ticket search, and booking automation for accounts they control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates real 12306 account login and ticket-booking flows, including actions that may change an account or initiate a purchase. <br>
-Mitigation: Use it only with an account you control, require explicit confirmation before any account-changing or purchase step, and prefer dry-run review before live execution. <br>
-Risk: The automation can create or reuse local session-cookie files and relies on credential handling. <br>
-Mitigation: Protect credentials and cookie files, do not commit or share them, and clear saved sessions when they are no longer needed. <br>
-Risk: The release under-discloses account, purchase, and session-cookie risks. <br>
-Mitigation: Review the source and security guidance before installing, and use a version that documents credential handling and confirmation safeguards when available. <br>
+## Use Case:
 
+Developers and operators can use this skill to automate 12306 account login and train-ticket lookup workflows. Because it can interact with real accounts and booking flows, users should review actions before allowing account or purchase-related activity.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/feiyang2007/12306-old) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill notes](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve browser automation, environment variables for credentials, and local session-cookie files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may open a browser session for a real 12306 account and perform account or purchase-adjacent actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before login, booking, or purchase-related activity, and run only in a private workspace.
+
+Risk: Session cookies can be saved in plaintext as 12306_cookies.json.
+
+Mitigation: Avoid committing, sharing, or retaining generated cookie files, and delete them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feiyang2007/skills/12306-old)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local browser session state and plaintext 12306_cookies.json when login automation is run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

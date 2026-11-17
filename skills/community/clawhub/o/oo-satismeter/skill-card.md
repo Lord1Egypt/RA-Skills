@@ -1,45 +1,55 @@
-## Description: <br>
-Enables agents to read SatisMeter projects, surveys, survey statistics, and responses through the OOMOL-connected oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SatisMeter (satismeter.com). Use this skill for ANY SatisMeter request — searching and reading data. Whenever a task involves SatisMeter, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, support teams, and external agents use this skill to inspect SatisMeter customer feedback data without handling raw API tokens. It supports read-only project, survey, survey statistics, and response retrieval through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connected SatisMeter credentials and can return customer feedback data. <br>
-Mitigation: Use it only with accounts authorized to access the relevant SatisMeter projects and review returned data before sharing it. <br>
-Risk: Connector payloads can become invalid if the live SatisMeter action schema changes. <br>
-Mitigation: Inspect the live connector schema before constructing each action payload. <br>
-Risk: Setup and recovery commands can initiate authentication, connection, or billing workflows. <br>
-Mitigation: Run setup, reconnection, or billing steps only after a command fails with the matching error. <br>
+## Use Case:
 
+Developers and teams use the skill to retrieve SatisMeter project, survey, response, and survey statistics data through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [SatisMeter homepage](https://satismeter.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub SatisMeter skill page](https://clawhub.ai/oomol/oo-satismeter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; connector responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only SatisMeter connector actions; requires the oo CLI, an OOMOL account, and connected SatisMeter credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Setup directs the agent to run remote installer payloads that have not been independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, require approval before any downloaded installer runs, and use a pinned, independently verified CLI release.
+
+Risk: The OOMOL connector brokers access to SatisMeter responses through the connected account.
+
+Mitigation: Check the connector's bundled-skill installation behavior and confirm that this account access is appropriate before connecting it.
+
+## Reference(s):
+
+- [SatisMeter homepage](https://satismeter.com)
+- [SatisMeter API documentation](https://app.satismeter.com/apidoc)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON connector responses and concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only SatisMeter project, survey, response, and statistics data]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

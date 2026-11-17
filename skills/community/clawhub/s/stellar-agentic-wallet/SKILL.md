@@ -3,15 +3,17 @@ name: stellar-agent-wallet
 description: >
   A Stellar USDC wallet skill for AI agents. Pay for 402-gated APIs via MPP Router
   or x402 facilitators, check balances, manage USDC trustlines, swap XLM→USDC on
-  the Classic DEX, and bridge/send USDC cross-chain to Ethereum, Arbitrum, Base,
-  BSC, Polygon, Solana, or back to Stellar via Rozo. Client-only, sponsored mode,
-  testnet and mainnet. Triggers on "stellar wallet", "pay per call stellar",
-  "x402 stellar", "mpprouter", "check stellar balance", "swap xlm to usdc",
-  "add usdc trustline", "bridge from stellar", "send usdc cross-chain", "pay for
-  api with stellar", or when the user shares a G... address with a payment intent.
+  the Classic DEX, pay a Stellar deposit address directly with a memo, and
+  bridge/send USDC cross-chain to Ethereum, Arbitrum, Base, BSC, Polygon, Solana,
+  or back to Stellar via Rozo. Client-only, sponsored mode, testnet and mainnet.
+  Triggers on "stellar wallet", "pay per call stellar", "x402 stellar",
+  "mpprouter", "check stellar balance", "swap xlm to usdc", "add usdc trustline",
+  "bridge from stellar", "send usdc cross-chain", "pay this deposit address with
+  memo", "fund this invoice on stellar", "pay for api with stellar", or when the
+  user shares a G... address with a payment intent.
 metadata:
   author: Shawn Yu
-  version: 1.7.0
+  version: 1.8.8
   license: MIT
   runtime: node
   homepage: https://www.mpprouter.dev/
@@ -35,7 +37,7 @@ metadata:
   # This skill signs Stellar transactions. It takes the signing key from
   # a file on disk or an existing Stellar CLI identity. Use:
   #
-  #   npx tsx scripts/generate-keypair.ts
+  #   ./node_modules/.bin/tsx scripts/generate-keypair.ts
   #
   # which writes a fresh secret to ./.stellar-secret with mode 600.
   # It refuses to overwrite existing wallet files. Every command accepts
@@ -74,7 +76,7 @@ metadata:
 
   # Commands that move funds.
   #
-  # - send-payment, bridge: ALWAYS prompt on mainnet (unless --yes).
+  # - send-payment, send-raw, bridge: ALWAYS prompt on mainnet (unless --yes).
   # - pay-per-call: prompts before every mainnet payment. No persistent
   #   autopay — every payment requires explicit confirmation unless
   #   --max-auto is passed for session-only automation.
@@ -84,9 +86,13 @@ metadata:
   spending_commands:
     - pay-per-call
     - send-payment
+    - send-raw
     - bridge
 
-  # Outbound endpoints this skill contacts.
+  # Outbound endpoints this skill contacts on its own. NOT exhaustive:
+  # pay-per-call also fetches whatever 402 service URL the user supplies,
+  # plus any poll URL that service returns — that is its purpose. Those
+  # destinations are chosen per call by the user, not pinned here.
   network_endpoints:
     - apiserver.mpprouter.dev       # MPP Router catalog
     - intentapiv4.rozo.ai            # Rozo cross-chain intents
@@ -102,9 +108,9 @@ metadata:
 
 This skill is a **Stellar wallet**. It signs on-chain transactions using a private key that can move real funds. Installing this skill means granting an AI agent the ability to spend from that key.
 
-**Use a dedicated hot wallet with a limited balance — never your main account.** Create a fresh keypair with `npx tsx scripts/generate-keypair.ts`, fund it with only what you need for the session, and treat the balance as expendable. If the key is ever compromised, the blast radius is limited to that wallet.
+**Use a dedicated hot wallet with a limited balance — never your main account.** Create a fresh keypair with `./node_modules/.bin/tsx scripts/generate-keypair.ts`, fund it with only what you need for the session, and treat the balance as expendable. If the key is ever compromised, the blast radius is limited to that wallet.
 
-**Keys live in a file or an existing Stellar CLI identity, not chat.** Run `npx tsx scripts/generate-keypair.ts` and it writes a fresh secret to `.stellar-secret` with mode 600, refusing to overwrite an existing file. Every command takes `--secret-file <path>` (default `.stellar-secret`) or `--identity <name>`.
+**Keys live in a file or an existing Stellar CLI identity, not chat.** Run `./node_modules/.bin/tsx scripts/generate-keypair.ts` and it writes a fresh secret to `.stellar-secret` with mode 600, refusing to overwrite an existing file. Every command takes `--secret-file <path>` (default `.stellar-secret`) or `--identity <name>`.
 
 **Default network is `pubnet` (mainnet).** If you do not pass `--network testnet`, every transaction moves real USDC. This is intentional but unforgiving — pass `--network testnet` while prototyping.
 
@@ -112,7 +118,7 @@ This skill is a **Stellar wallet**. It signs on-chain transactions using a priva
 
 **Every mainnet spend prompts before signing — do not bypass this.** `send-payment` and `bridge` always prompt (unless `--yes`, which should never be used on mainnet without independently verifying the transaction). `pay-per-call` prompts before every mainnet payment with no persistent autopay — confirmation is required for every call.
 
-**Session-only automation with `--max-auto`:** For scripted pipelines, pass `--max-auto <USD>` to skip the prompt for payments at or below that amount within the current process only. This setting is never saved to disk and expires when the process exits. Always combine with `--expect-pay-to`/`--expect-amount` to validate the recipient and amount before signing.
+**Session-only automation with `--max-auto`, capped at $5.00:** For scripted pipelines, pass `--max-auto <USD>` to skip the prompt for payments at or below that amount within the current process only. This setting is never saved to disk and expires when the process exits. Values above `$5.00` are **rejected** — unattended signing is meant for per-call API prices, and a wide ceiling would let a compromised 402 server drain the wallet without a single prompt. Always combine with `--expect-pay-to`/`--expect-amount` to validate the recipient and amount before signing.
 
 **`pay-per-call` will pay any URL you point it at — always pass `--expect-pay-to <G...>` and `--expect-amount <USDC>`.** These flags make the script refuse to sign a 402 whose recipient or price drifts from what you expect. Without them, a compromised or misconfigured 402 server can redirect funds to any address. Omitting both flags is only appropriate in a fully-controlled test environment.
 
@@ -125,12 +131,22 @@ The signing key is resolved in this order — explicit always wins:
 1. `--identity <name>` → Stellar CLI identity (recommended for shared machines)
 2. `--secret-file <path>` → explicit file path
 3. Default file `.stellar-secret` in the working directory
-4. Fallback: `STELLAR_SECRET` (or legacy aliases) in `.env.prod` then `.env` in the same directory as the secret file
+4. `~/.stellar-agent-wallet/.stellar-secret` — this skill's own location, which does not move when the plugin version changes
+5. A `.stellar-secret` left in an **older install of this skill** (`.../stellar-agent-wallet/<older version>/`), newest version first
+6. Only when you named a path with `--secret-file`: `STELLAR_SECRET` (or legacy aliases) in `.env.prod` then `.env` in that directory
+
+Steps 3-5 are searched only when no path was named; steps 1, 2 and 6 need you to name one. Whenever a payment is about to be signed from anything other than the working-directory default, the path it came from is printed first.
+
+**`.env` files are read only from a directory you name.** They are your files and routinely hold credentials for unrelated things, so an unnamed default directory is not treated as an invitation to read whatever secrets happen to sit there. Point at one explicitly with `--secret-file <path>` if that is where your key lives.
+
+**Prefer `~/.stellar-agent-wallet/.stellar-secret` over the working-directory default.** When you follow the documented commands the working directory is the versioned plugin install (`.../stellar-agent-wallet/1.8.3/`), and the next version is a sibling directory. A wallet generated there is still found after an upgrade (step 5), but it stays tied to a version you have moved off. A Stellar CLI identity (`--identity`) is unaffected either way.
+
+**Discovery never moves or deletes anything.** A wallet found in an older install is read where it lies and its path is printed, so you can copy it yourself if you want to. This skill does not relocate, rewrite or remove a key file on your behalf.
 
 **Keep main-wallet secrets out of `.env` files in this directory.** The fallback exists for legacy compatibility; prefer an explicit `--secret-file` or `--identity` so the credential source is always unambiguous. Check which public key is active before funding:
 
 ```bash
-npx tsx scripts/generate-keypair.ts --show-public   # or
+./node_modules/.bin/tsx scripts/generate-keypair.ts --show-public   # or
 stellar keys public-key <identity-name>
 ```
 
@@ -145,9 +161,24 @@ The signing key is loaded from `.stellar-secret` (mode 600) or a Stellar CLI ide
 
 Secret access goes through `scripts/src/secret.ts`, which validates the Stellar strkey format before returning. `STELLAR_IDENTITY` may select an existing Stellar CLI identity when `--secret-file` is not supplied; it does not carry key material.
 
+**What these guarantees do *not* cover: the key is stored in plaintext.** Both non-identity sources — the `.stellar-secret` file (mode 600) and the `STELLAR_SECRET` / `STELLAR_PRIVATE_KEY` dotenv fallback — are unencrypted. Nothing above prevents the wallet from being drained by anyone who can read that file: a backup, a synced folder, a shared machine, a leaked CI artifact, or another process running as the same user. Mode 600 limits *who* can read it, not *what happens* once they do.
+
+Because of that, every command prints a one-line reminder on stderr when it loads a plaintext key:
+
+```
+⚠️  Signing key loaded from /path/.stellar-secret (plaintext — anyone who reads it can spend this wallet).
+   Safer: keep it in Stellar CLI key management and pass --identity <name>.
+```
+
+**Prefer `--identity <name>` for anything beyond throwaway testing.** It delegates key storage to the Stellar CLI, so the secret never has to exist as a plaintext file in your working directory or in a `.env` alongside your other configuration. The identity path prints no warning.
+
+Be clear about what `--identity` does and does not buy you: the loader calls `stellar keys secret <name>`, so the key is still **exported into this process** to sign. It must therefore be an exportable CLI identity — a hardware-backed identity that refuses to reveal its secret will error, not sign. What you gain is storage hygiene (one managed location, not a file per project, nothing to accidentally commit or sync), not device-held signing. Delegating signing to the CLI or a device is a separate change this skill does not implement today.
+
+If you do use a plaintext file, treat the wallet as a hot wallet holding only what you can afford to lose.
+
 ### Network endpoints contacted
 
-This skill contacts only these endpoints (no other outbound connections):
+This skill contacts these endpoints on its own:
 
 | Endpoint | Purpose |
 |---|---|
@@ -155,6 +186,8 @@ This skill contacts only these endpoints (no other outbound connections):
 | `intentapiv4.rozo.ai` | Rozo cross-chain payment intents |
 | `horizon.stellar.org` | Stellar Horizon REST API (mainnet) |
 | `mainnet.sorobanrpc.com` | Soroban RPC (mainnet) |
+
+In addition, `pay-per-call` fetches whatever 402 service URL you point it at, plus any poll URL that service returns — that is its purpose, and those destinations are chosen per call, not fixed here. Pass `--expect-pay-to` / `--expect-amount` so a malicious or misconfigured service cannot redirect the payment.
 
 Wallet addresses, payment amounts, and bridge recipients are transmitted to these providers as part of normal operation. Use testnet endpoints while evaluating; override with `--horizon-url` and `--rpc-url` if needed.
 
@@ -166,7 +199,7 @@ Automated scanners will flag the following. These are intentional design choices
 |---|---|---|
 | Defaults to mainnet | Wallet skills must work on mainnet; testnet is opt-in | Always pass `--network testnet` while prototyping |
 | `--yes` bypass | Required for headless automation pipelines | Never use on mainnet without independently verifying the transaction |
-| `--max-auto` session limit | Allows scripted pipelines to run without per-call prompts | Keep very low; combine with `--expect-pay-to`/`--expect-amount`; expires on process exit, never persisted |
+| `--max-auto` session limit | Allows scripted pipelines to run without per-call prompts | Hard-capped at $5.00; keep it far lower; combine with `--expect-pay-to`/`--expect-amount`; expires on process exit, never persisted |
 | Signs from 402 challenge fields | The payment target is supplied by the server | Always pass `--expect-pay-to`/`--expect-amount`/`--expect-asset` to validate before signing |
 | Private key access | This is a wallet — signing requires the key | Use a dedicated hot wallet with a small balance; never connect a primary account |
 | Dotenv fallback | Legacy compatibility for `STELLAR_SECRET` in `.env` | Use explicit `--secret-file` or `--identity`; keep main wallet secrets out of `.env` |
@@ -186,6 +219,7 @@ Client-only Stellar wallet for AI agents. Organized as a router over five sub-sk
 | `discover` | List paid services on MPP Router catalog | "list mpp services", "find API for X via mpprouter" |
 | `pay-per-call` | Call an x402 **or** MPP service endpoint and pay automatically (both wire formats) | "call this paid API", "summarize the doc with parallel.ai via mpprouter.dev" |
 | `send-payment` | Cross-chain USDC payout via Rozo | "pay 0x... on base", "transfer usdc to <addr>" |
+| `send-raw` | One Stellar Classic payment, exactly as specified (address + asset + amount + memo). Creates nothing. | "pay this deposit address with memo X", "fund this invoice", "submit the Stellar leg" |
 | `bridge` | Move your own USDC Stellar→other chain | "bridge to base", "deposit usdc onto ethereum" |
 
 Each sub-skill has its own `SKILL.md` and `run.ts` in `skills/<name>/`.
@@ -212,34 +246,45 @@ On a fresh machine, work top-down. Each step reads the sub-skill's
 ```bash
 # 0. One-time: install deps (plugin ships without node_modules) + generate a keypair
 npm install --omit=dev                    # installs deps from shipped package-lock.json (one-time, ~30s)
-npx tsx scripts/generate-keypair.ts
+./node_modules/.bin/tsx scripts/generate-keypair.ts
 
 # 1. Onboard — are we ready to pay?
-npx tsx skills/onboard/run.ts
+./node_modules/.bin/tsx skills/onboard/run.ts
 # → prints ✅/⚠️/❌ per check:
 #     ❌ [trustline] USDC Classic trustline not set
-#        Run: npx tsx skills/check-balance/add-trustline.ts --network pubnet
+#        Run: ./node_modules/.bin/tsx skills/check-balance/add-trustline.ts --network pubnet
 #     ❌ [usdc] USDC balance is zero
 
 # 2. Run setup: add trustline + swap 1 XLM for USDC
-npx tsx skills/onboard/run.ts --setup --swap 1
+./node_modules/.bin/tsx skills/onboard/run.ts --setup --swap 1
 # → confirms trustline, delegates to swap-xlm-to-usdc.ts
 
 # 3. Check balance now that we're set up
-npx tsx skills/check-balance/run.ts
+./node_modules/.bin/tsx skills/check-balance/run.ts
 # → USDC 0.07..., XLM 0.5 (spendable)
 
 # 4. Discover a paid API (capture path AND method)
-SERVICE=$(npx tsx skills/discover/run.ts --query "web search" --pick-one --json)
+SERVICE=$(./node_modules/.bin/tsx skills/discover/run.ts --query "web search" --pick-one --json)
 PATH_=$(echo "$SERVICE" | jq -r '.public_path')
 METHOD=$(echo "$SERVICE" | jq -r '.method')
 
 # 5. Call it — pay-per-call handles the 402 → sign → retry loop
-npx tsx skills/pay-per-call/run.ts "https://apiserver.mpprouter.dev$PATH_" \
+./node_modules/.bin/tsx skills/pay-per-call/run.ts "https://apiserver.mpprouter.dev$PATH_" \
   --method "$METHOD" \
   --body '{"query": "Summarize https://stripe.com/docs"}'
 # → 💸 Payment required (mpp) → signs → returns upstream result + Payment-Receipt
+# → 📝 Payment: 0.0250000 USDC → GDK3AVW3... (2026-07-30T14:00:33.000Z)
+# → 🔗 Explorer: https://stellar.expert/explorer/public/tx/<hash>
 ```
+
+After every successful payment `pay-per-call` decodes the `Payment-Receipt`
+header and prints what was paid, to whom, and a Stellar explorer link for the
+settlement transaction. Amount and recipient fall back to the 402 challenge if
+the receipt omits them. The raw receipt token is still printed (or written to
+`--receipt-out <path>`), and `--json` additionally emits a single
+`PAYMENT_RECEIPT_JSON {...}` line on stderr so a calling agent can extract the
+tx hash without parsing prose. All of this goes to stderr — stdout stays exactly
+the merchant response body.
 
 ## When to reach for Discover
 
@@ -325,7 +370,30 @@ When triggered, read the user's intent and dispatch:
 3. **On ambiguity, ask.** Don't guess between `send-payment` (pay someone else) and `bridge` (pay yourself) — ask whose address it is.
 4. **Read the relevant sub-skill's SKILL.md before running its script.** Each sub-skill has its own preconditions and confirmation gates.
 5. **Prefer Stellar as source chain.** When the user has a Stellar wallet configured (`.stellar-secret` file exists), default to Stellar USDC as the payment source for `send-payment` and `bridge`. Stellar has the lowest fees and fastest settlement via Rozo. Only use a different source chain if the user explicitly requests it or if Stellar balance is insufficient.
-6. **Funding rozo-intents payments.** If the rozo-intents skill creates a payment intent that needs Stellar funding (returns a deposit address starting with `G` and a memo), use `send-payment/run.ts` to submit the Stellar payment. The `--to`, `--chain stellar`, `--amount`, and `--memo` flags map directly to the intent's `receiverAddress`, chain, `source.amount`, and `receiverMemo`.
+6. **Funding a deposit address someone else issued.** If another system — the
+   `rozo-intents` skill, `rozo-checkout`, an exchange, an invoice — has already
+   produced a Stellar deposit address (`G...`) plus a memo, use **`send-raw`**:
+
+   ```bash
+   ./node_modules/.bin/tsx skills/send-raw/run.ts --to <receiverAddress> \
+     --amount <source.amount> --asset USDC --memo <receiverMemo>
+   ```
+
+   Run the local binary as written above, not `npx tsx`: on some setups `npx`
+   resolves to `npm run tsx`, which fails with `npm error Missing script:
+   "tsx"` and reinterprets this command's own flags (`--to` becomes
+   `--token-description`). If you ever see that error, it happened **before**
+   anything was signed or submitted — it is not a failed payment, so re-run
+   with the correct launcher rather than treating the send as uncertain.
+
+   **Do not use `send-payment` for this.** `send-payment` *originates* a
+   payment: its `--to` is the final recipient of a **new** Rozo intent, and its
+   `--memo` is that new intent's destination memo. Pointing it at an existing
+   deposit address opens a second intent, pays a different address, burns an
+   extra fee, and leaves the original order unfunded.
+
+   Rule of thumb: **`send-payment` when we create the order, `send-raw` when
+   someone handed us one.**
 
 ## First-time setup
 
@@ -341,10 +409,10 @@ npm install --omit=dev
 # 2. Generate a keypair only if you do not already have a wallet.
 #    This writes ./.stellar-secret with mode 600, never prints the secret,
 #    and refuses to overwrite an existing wallet file.
-npx tsx scripts/generate-keypair.ts
+./node_modules/.bin/tsx scripts/generate-keypair.ts
 
 # 3. Check your balance:
-npx tsx skills/check-balance/run.ts
+./node_modules/.bin/tsx skills/check-balance/run.ts
 ```
 
 Every command accepts the same base flags:
@@ -382,6 +450,7 @@ Every command accepts the same base flags:
 - `references/sponsored-mode.md` — why sponsored is the only cross-compat path
 - `references/sdk-api-cheatsheet.md` — common imports and constants
 - `references/mainnet-checklist.md` — before going to pubnet
+- `references/verifying-refunds.md` — a paid call failed: get the refund id and verify the signed receipt yourself
 
 ## Files in this skill
 
@@ -393,7 +462,8 @@ stellar-agent-wallet/
 │   ├── mpp-charge-spec.md
 │   ├── sponsored-mode.md
 │   ├── sdk-api-cheatsheet.md
-│   └── mainnet-checklist.md
+│   ├── mainnet-checklist.md
+│   └── verifying-refunds.md
 ├── scripts/
 │   ├── generate-keypair.ts           ← writes .stellar-secret with mode 600
 │   └── src/                          ← shared library code
@@ -425,6 +495,9 @@ stellar-agent-wallet/
     │   ├── SKILL.md
     │   ├── run.ts                    ← cross-chain via Rozo
     │   └── status.ts                 ← poll payment status
+    ├── send-raw/
+    │   ├── SKILL.md
+    │   └── run.ts                    ← one Classic payment, address+asset+amount+memo as given
     └── bridge/
         ├── SKILL.md
         └── run.ts                    ← thin wrapper over send-payment

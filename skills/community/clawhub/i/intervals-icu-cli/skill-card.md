@@ -1,50 +1,64 @@
-## Description: <br>
-Use this skill when an installed `intervals` CLI should be used to query Intervals.icu, inspect activities, create scheduled workout events, create workout library items, or write wellness data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an installed `intervals` CLI should be used to query Intervals.icu, inspect activities, create scheduled workout events, create workout library items, or write wellness data.
 
-## Publisher: <br>
-[jonaswide](https://clawhub.ai/user/jonaswide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonaswide](https://clawhub.ai/user/jonaswide)
 
-## Use Case: <br>
-Developers, coaches, and athletes use this skill to have an agent operate the installed `intervals` CLI for Intervals.icu reads and user-directed writes. It helps choose between activity queries, scheduled events, reusable workouts, and wellness data updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access an Intervals.icu account through `INTERVALS_API_KEY` or `INTERVALS_ACCESS_TOKEN`. <br>
-Mitigation: Confirm `intervals auth status` before use and provide credentials only when account access is intended. <br>
-Risk: Create, upsert, and wellness commands can change fitness account data. <br>
-Mitigation: Review generated dates and JSON payloads before mutation commands, and run read or verification commands after writes. <br>
-Risk: The skill depends on installing and executing the third-party `intervals` CLI. <br>
-Mitigation: Install only from trusted release sources and verify the installed binary before using the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to choose safe `intervals` CLI commands for Intervals.icu reads and requested writes, including activity queries, scheduled workout events, reusable workout items, and wellness data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonaswide/intervals-icu-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/jonaswide) <br>
-- [intervals CLI homepage](https://github.com/jonaswide/intervals-cli) <br>
-- [Query Guidance](references/queries.md) <br>
-- [Write Patterns](references/writes.md) <br>
-- [macOS arm64 installer](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_darwin_arm64.tar.gz) <br>
-- [macOS amd64 installer](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_darwin_amd64.tar.gz) <br>
-- [Linux arm64 installer](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_linux_arm64.tar.gz) <br>
-- [Linux amd64 installer](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_linux_amd64.tar.gz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON-first command patterns and recommends read or verification commands around mutations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill may install a mutable `latest` CLI release from an upstream third-party GitHub publisher.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the upstream publisher, and prefer a pinned, checksum-verified CLI release.
+
+Risk: The CLI can access authenticated Intervals.icu fitness data.
+
+Mitigation: Use an appropriate Intervals.icu credential and confirm the user is comfortable granting CLI access before use.
+
+Risk: Requested write actions can create or change events, workout library items, or wellness data.
+
+Mitigation: Review mutations before execution and prefer a read command after each write to verify the resulting data.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/jonaswide/skills/intervals-icu-cli)
+- [Intervals CLI homepage](https://github.com/jonaswide/intervals-cli)
+- [Query guidance](references/queries.md)
+- [Write patterns](references/writes.md)
+- [Install intervals CLI (macOS arm64)](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_darwin_arm64.tar.gz)
+- [Install intervals CLI (macOS amd64)](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_darwin_amd64.tar.gz)
+- [Install intervals CLI (Linux arm64)](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_linux_arm64.tar.gz)
+- [Install intervals CLI (Linux amd64)](https://github.com/jonaswide/intervals-cli/releases/latest/download/intervals_linux_amd64.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON payloads]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers JSON-formatted CLI output, absolute dates, stdin or temporary files for complex writes, and read-after-write verification.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Provides single-stock diagnosis for Shanghai, Shenzhen, and Beijing A-shares by sending a natural-language stock question to Eastmoney and returning a structured Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides single-stock comprehensive diagnosis for Shanghai, Shenzhen, and Beijing A-share equities from natural-language questions, returning structured Markdown reports for broad questions about overall outlook, holding decisions, risks, and opportunities.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External users and agents use this skill to request a broad, single-stock A-share diagnosis for questions about overall outlook, holding decisions, and risks. It is intended for one stock at a time and returns the service-provided Markdown report rather than a rewritten summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends stock questions to Eastmoney's service and requires EM_API_KEY for authentication. <br>
-Mitigation: Keep EM_API_KEY private, use a revocable key where possible, and submit only questions appropriate for Eastmoney's service. <br>
-Risk: Successful reports may be saved locally by default. <br>
-Mitigation: Use --no-save for queries that should not be retained and manage generated .md files according to local data-handling rules. <br>
-Risk: Stock diagnosis output may be mistaken for investment advice. <br>
-Mitigation: Treat the report as reference material, preserve the returned Markdown body, include a risk notice, and do not fabricate conclusions when the service returns an error. <br>
+## Use Case:
 
+External users and developers use this skill to request a concise diagnosis of one mainland China A-share stock from a broad natural-language question. It is intended for single-stock review and decision support, not for multi-stock comparison, non-A-share markets, or precise calculation of a named indicator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/stock-diagnosis) <br>
-- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files] <br>
-**Output Format:** [Markdown report, optionally saved as a local .md file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY; each run analyzes one A-share stock question and can use --no-save to avoid writing a report file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stock questions are sent to Eastmoney's service using EM_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable, scoped key where available and avoid including sensitive personal context in stock questions.
+
+Risk: Markdown diagnosis reports may be saved locally by default.
+
+Mitigation: Run with --no-save when local report retention is not desired.
+
+Risk: The report may be mistaken for investment advice.
+
+Mitigation: Keep the skill's risk notice visible and treat outputs as reference information rather than financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/stock-diagnosis)
+- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw)
+- [Eastmoney stock analysis API base](https://ai-saas.eastmoney.com/proxy/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown report text, with optional saved .md files and command-line or Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY; accepts one natural-language stock question through --query or stdin; --no-save prevents local Markdown report retention.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

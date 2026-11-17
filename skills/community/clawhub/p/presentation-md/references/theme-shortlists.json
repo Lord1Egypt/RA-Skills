@@ -1,0 +1,305 @@
+{
+  "version": 1,
+  "description": "Use-case shortlists for Theme Discovery step 1. Popular flagship sets sort first in Studio/MCP discovery UX. Each entry is a ready 3-theme set — preview all three with preview_themes, then lock meta.theme. After locking, set craft knobs (ratio/emphasis/bento/code filename) — Studio exposes the same controls.",
+  "shortlists": [
+    {
+      "id": "core-defaults",
+      "label": "Core defaults (bundled)",
+      "themes": [
+        "default-tech",
+        "claude",
+        "developer-dark"
+      ],
+      "why": "Bundled neon startup default, warm Claude craft paper, and IDE-dark forge — no extra theme package required.",
+      "popular": true
+    },
+    {
+      "id": "series-a-pitch",
+      "label": "Series A / investor pitch",
+      "themes": [
+        "aurora-glass",
+        "bold-signal",
+        "fintech-clean"
+      ],
+      "why": "Glass craft for AI infra, orange signal for high-impact ask, clean fintech for numbers-heavy decks.",
+      "popular": true
+    },
+    {
+      "id": "developer-demo",
+      "label": "Developer product demo",
+      "themes": [
+        "crt-terminal",
+        "developer-dark",
+        "default-tech"
+      ],
+      "why": "Phosphor terminal (Terminal Green alias), IDE-dark forge, neon startup default.",
+      "popular": true
+    },
+    {
+      "id": "neon-nightlife",
+      "label": "Neon / cyber / nightlife launch",
+      "themes": [
+        "neon-noir",
+        "vaporwave",
+        "kinetic-wrapped"
+      ],
+      "why": "Neon Cyber (neon-noir), mallsoft vaporwave, full-bleed wrapped energy.",
+      "popular": true
+    },
+    {
+      "id": "swiss-agency",
+      "label": "Design agency / brand system",
+      "themes": [
+        "swiss-typographic",
+        "bauhaus",
+        "electric-studio"
+      ],
+      "why": "Swiss Modern grid, Bauhaus primaries, Electric Studio split panels.",
+      "popular": true
+    },
+    {
+      "id": "editorial-report",
+      "label": "Editorial / research / annual report",
+      "themes": [
+        "soft-editorial",
+        "ft-editorial",
+        "broadsheet"
+      ],
+      "why": "Warm magazine paper, FT blue rules, newsprint masthead.",
+      "popular": true
+    },
+    {
+      "id": "consumer-playful",
+      "label": "Consumer app / playful launch",
+      "themes": [
+        "candy-pop",
+        "genz-bento",
+        "daisy-days"
+      ],
+      "why": "Candy blobs, hard bento cards, daisy pastel poster energy.",
+      "popular": true
+    },
+    {
+      "id": "enterprise-board",
+      "label": "Enterprise / boardroom",
+      "themes": [
+        "corporate",
+        "blue-professional",
+        "signal"
+      ],
+      "why": "Restrained boardroom, clean blue professional, signal briefing.",
+      "popular": true
+    },
+    {
+      "id": "luxury-brand",
+      "label": "Luxury / heritage / LP update",
+      "themes": [
+        "luxury-minimalist",
+        "heritage-editorial",
+        "art-deco"
+      ],
+      "why": "Solstice ultra-luxury (nocturnal gold), heritage wash, deco emerald+gold.",
+      "popular": true
+    },
+    {
+      "id": "year-wrap",
+      "label": "Year wrap / Spotify-Wrapped energy",
+      "themes": [
+        "kinetic-wrapped",
+        "brutalist-acid",
+        "neon-noir"
+      ],
+      "why": "Pulse multi-hue wrap, MONOLITH acid flex, neon cyber nightlife — use ranked-list + stat-row variant:hero + tone beats.",
+      "popular": true
+    },
+    {
+      "id": "stunning-flagships",
+      "label": "Stunning twenty-five (canonical showcase)",
+      "themes": [
+        "aurora-glass",
+        "ft-editorial",
+        "genz-bento"
+      ],
+      "why": "Lead proofs from the gallery flagship set — see references/stunning-25.md for all 25. Rotate proofs: kinetic-wrapped, luxury-minimalist, crt-terminal.",
+      "popular": true
+    },
+    {
+      "id": "bold-poster-pack",
+      "label": "Bold poster / zine energy",
+      "themes": [
+        "block-frame",
+        "sakura-chroma",
+        "retro-zine"
+      ],
+      "why": "Brutal frames, sakura chroma cassette, riso zine.",
+      "popular": true
+    },
+    {
+      "id": "nature-impact",
+      "label": "Climate / nature / impact",
+      "themes": [
+        "botanical-luxe",
+        "dark-botanical",
+        "editorial-forest"
+      ],
+      "why": "Luxe botanical, dark bloom, forest editorial."
+    },
+    {
+      "id": "paper-literary",
+      "label": "Literary paper / monograph",
+      "themes": [
+        "paper-ink",
+        "editorial-serif",
+        "vintage-editorial"
+      ],
+      "why": "Crimson literary rails, serif monograph, vintage wash — essays and brand books."
+    },
+    {
+      "id": "soft-pastel",
+      "label": "Soft pastel / playful consumer",
+      "themes": [
+        "pastel-dreamy",
+        "pastel-geometry",
+        "playful"
+      ],
+      "why": "Cloud pastels, geometry pills, candy playful — consumer and lifestyle launches."
+    },
+    {
+      "id": "mid-century-mat",
+      "label": "Mid-century / craft material",
+      "themes": [
+        "mat",
+        "capsule",
+        "long-table"
+      ],
+      "why": "Woodglow mat, plump capsule, rust long-table — tactile hospitality and craft brands."
+    },
+    {
+      "id": "hud-blueprint",
+      "label": "HUD / blueprint / instrument",
+      "themes": [
+        "aerospace-hud",
+        "blueprint",
+        "cobalt-grid"
+      ],
+      "why": "Telemetry HUD, blueprint grid, cobalt paper — deep tech and defense demos."
+    },
+    {
+      "id": "y2k-arcade",
+      "label": "Y2K / arcade / 8-bit",
+      "themes": [
+        "y2k-aero",
+        "retro-arcade",
+        "8-bit-orbit"
+      ],
+      "why": "Glossy aero bubbles, neon arcade, pixel HUD — nightlife and gaming launches."
+    },
+    {
+      "id": "workshop-scatter",
+      "label": "Workshop / sticky / data wall",
+      "themes": [
+        "scatterbrain",
+        "data-editorial",
+        "notebook-tabs"
+      ],
+      "why": "Cork sticky notes, data editorial ink, notebook tabs — facilitation and research walls."
+    },
+    {
+      "id": "glass-voltage",
+      "label": "Glass / studio / voltage",
+      "themes": [
+        "glassmorphism",
+        "studio",
+        "creative-voltage"
+      ],
+      "why": "Frosted glass, acid studio rails, neon voltage — creative agency energy."
+    },
+    {
+      "id": "parchment-quiet",
+      "label": "Quiet parchment / counsel",
+      "themes": [
+        "vellum",
+        "pin-and-paper",
+        "monochrome"
+      ],
+      "why": "Colorfield vellum, legal pad, ledger mono — quiet research and counsel decks."
+    },
+    {
+      "id": "loud-manifesto",
+      "label": "Loud manifesto / campaign poster",
+      "themes": [
+        "bold-poster",
+        "coral",
+        "peoples-platform"
+      ],
+      "why": "Tomato poster type, coral sport-editorial, activist slab — founder vision and civic asks."
+    },
+    {
+      "id": "protest-blocks",
+      "label": "Protest / neo-brutal blocks",
+      "themes": [
+        "broadside",
+        "creative-mode",
+        "raw-grid"
+      ],
+      "why": "Fire-orange broadside, Mode Blocks, hard blush/sage grid — loud brand systems."
+    },
+    {
+      "id": "neo-zine-mono",
+      "label": "Neo-grid / zine / concrete mono",
+      "themes": [
+        "neo-grid-bold",
+        "risograph-zine",
+        "brutalist-mono"
+      ],
+      "why": "Lemon neo-grid, Inkwell riso overprint, hazard mono — design-week and indie print energy."
+    },
+    {
+      "id": "arts-institution",
+      "label": "Arts institution / cultural programme",
+      "themes": [
+        "editorial-tri-tone",
+        "biennale-yellow",
+        "emerald-editorial"
+      ],
+      "why": "Tri-tone arts paper, biennale sun, emerald magazine — museums and fashion houses."
+    },
+    {
+      "id": "soft-couture",
+      "label": "Soft couture / hygge lifestyle",
+      "themes": [
+        "pink-script",
+        "split-pastel",
+        "scandinavian"
+      ],
+      "why": "Nocturnal pink script, peach/lavender split, Hygge linen — lifestyle and fragrance."
+    },
+    {
+      "id": "archival-grove",
+      "label": "Archival craft / forest monograph",
+      "themes": [
+        "stencil-tablet",
+        "cartesian",
+        "grove"
+      ],
+      "why": "Stencil tablets, sandstone cartesian lines, forest grove — heritage and sustainability."
+    },
+    {
+      "id": "desktop-nostalgia",
+      "label": "Desktop nostalgia / Win95 geek",
+      "themes": [
+        "retro-windows",
+        "y2k-aero",
+        "retro-arcade"
+      ],
+      "why": "Win95 chrome, glossy aero bubbles, neon arcade — tech-history and tongue-in-cheek launches."
+    }
+  ],
+  "alias_hints": {
+    "Neon Cyber": "neon-noir",
+    "Terminal Green": "crt-terminal",
+    "Swiss Modern": "swiss-typographic",
+    "Electric Studio": "electric-studio",
+    "Bold Signal": "bold-signal"
+  }
+}

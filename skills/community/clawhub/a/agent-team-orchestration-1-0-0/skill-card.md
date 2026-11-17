@@ -1,44 +1,56 @@
-## Description: <br>
-Orchestrate multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows.
 
-## Publisher: <br>
-[Matttgx](https://clawhub.ai/user/Matttgx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matttgx](https://clawhub.ai/user/matttgx)
 
-## Use Case: <br>
-Developers and technical leads use this skill to coordinate sustained multi-agent workflows with clear roles, shared artifacts, handoffs, reviews, and task lifecycle tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Multi-agent workspaces can expose files or credentials to agents that do not need them. <br>
-Mitigation: Define which agents may read or write each workspace, keep credentials out of shared folders unless explicitly needed, and review shared artifacts before use. <br>
-Risk: Unbounded spawning, scheduling, or handoffs can create coordination failures or unattended work. <br>
-Mitigation: Set concurrency and approval limits for spawned agents, use explicit stop conditions for scheduled operations, and require review points before marking work done. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate sustained multi-agent workflows with assigned roles, shared artifacts, task state transitions, handoffs, and review gates.
 
-## Reference(s): <br>
-- [Agent Team Orchestration Skill Page](https://clawhub.ai/Matttgx/agent-team-orchestration-1-0-0) <br>
-- [Team Setup](references/team-setup.md) <br>
-- [Task Lifecycle](references/task-lifecycle.md) <br>
-- [Communication](references/communication.md) <br>
-- [Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown guidance with structured role definitions, task flows, handoff templates, and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only playbook; no executable install hooks are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unclear permissions, schedules, timezones, or shared directory boundaries can make multi-agent workflows difficult to audit or control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define schedules, timezones, agent permissions, shared workspace boundaries, and approval rules before using the skill for real workflows.
+
+Risk: Skipping handoffs, artifact paths, or independent review can create lost work and quality drift.
+
+Mitigation: Require explicit output paths, handoff summaries, verification steps, known-issue notes, and at least one review before marking work done.
+
+## Reference(s):
+
+- [Team Setup](references/team-setup.md)
+- [Task Lifecycle](references/task-lifecycle.md)
+- [Communication](references/communication.md)
+- [Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with role definitions, task templates, handoff checklists, review protocols, and example verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no code execution or API calls are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

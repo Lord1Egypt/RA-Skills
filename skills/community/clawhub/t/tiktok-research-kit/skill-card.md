@@ -1,45 +1,55 @@
-## Description: <br>
-Extract and analyze TikTok content using yt-dlp, including video metadata, captions, sound and music details, user profile data, and engagement stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and analyze TikTok video, profile, sound, hashtag, comment, caption, and engagement metadata using local yt-dlp commands.
 
-## Publisher: <br>
-[xuya227939](https://clawhub.ai/user/xuya227939) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuya227939](https://clawhub.ai/user/xuya227939)
 
-## Use Case: <br>
-External users, social media analysts, content strategists, and researchers use this skill to extract structured TikTok metadata, captions, comments, profile feeds, hashtag data, and sound usage for content research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser-cookie fallback can expose active browser session data to local tooling. <br>
-Mitigation: Do not enable browser-cookie fallback unless the user understands and accepts the session-data exposure risk. <br>
-Risk: The skill references an external download service for video download requests. <br>
-Mitigation: Use the skill for content extraction and analysis, avoid third-party downloader sites, and only access content the user is allowed to access. <br>
-Risk: Security evidence marks the release as suspicious and notes a mismatch between the apparent YouTube transcript focus and the TikTok artifact. <br>
-Mitigation: Review the skill before installing and verify that the documented behavior matches the intended TikTok research use case. <br>
+## Use Case:
 
+External users, social media analysts, content strategists, and researchers use this skill to extract structured TikTok content signals and present them as concise research summaries or tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuya227939/tiktok-research-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/xuya227939) <br>
-- [SnapVee homepage](https://snapvee.com) <br>
-- [Support issue tracker](https://github.com/xuya227939/tiktok-research-kit/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with yt-dlp shell commands, JSON field mappings, and formatted analysis tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parsed TikTok metadata, profile summaries, comments, hashtag results, sound information, error guidance, and prerequisite installation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md, and clawhub.json) <br>
+Risk: Using yt-dlp with browser cookies can expose TikTok or other browser session credentials to a local command-line tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the cookie option only when necessary, prefer a dedicated browser profile or minimal cookie export, and run yt-dlp in an isolated environment.
+
+Risk: TikTok extraction may be rate limited, region restricted, blocked for private accounts, or unavailable for removed content, leading to incomplete analysis.
+
+Mitigation: Treat extracted results as best-effort, surface access limits to users, and retry later or request accessible URLs when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuya227939/skills/tiktok-research-kit)
+- [SnapVee](https://snapvee.com)
+- [Support Issues](https://github.com/xuya227939/tiktok-research-kit/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and concise text with inline shell commands and parsed JSON field guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include TikTok captions, creator details, upload dates, engagement stats, comments, sound metadata, profile/video tables, and access-error guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/SKILL.md, artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

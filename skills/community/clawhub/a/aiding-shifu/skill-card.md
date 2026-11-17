@@ -1,47 +1,59 @@
-## Description: <br>
-Aiding Shifu helps users find installation technicians, log in to the Aiding Shifu platform, dispatch orders, and manage home decoration installation work orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aiding Shifu helps agents find installation workers, manage login, and dispatch or review home decoration installation work orders on the Aiding Shifu platform.
 
-## Publisher: <br>
-[yinhuihua](https://clawhub.ai/user/yinhuihua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinhuihua](https://clawhub.ai/user/yinhuihua)
 
-## Use Case: <br>
-External users and service operators use this skill to search for home decoration installation technicians, authenticate to Aiding Shifu, dispatch work orders, and check work-order status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release handles Aiding Shifu account tokens and includes evidence of bundled credentials. <br>
-Mitigation: Review credentials before installation, rotate any exposed tokens, and prefer a revised release that removes bundled credentials and avoids printing, copying, or displaying raw tokens. <br>
-Risk: Login pages store tokens in browser localStorage and send login messages with a wildcard postMessage target. <br>
-Mitigation: Use a version that stores secrets outside localStorage and restricts postMessage to trusted origins, or disable the browser login helpers until they are revised. <br>
-Risk: Work-order flows may send customer names, phone numbers, and addresses to the Aiding Shifu service. <br>
-Mitigation: Ask for clear user confirmation before transmitting customer data and minimize personal data included in requests. <br>
-Risk: QR code generation can use a third-party QR service for login URLs. <br>
-Mitigation: Generate QR codes locally or through a first-party service before using QR-based login in production. <br>
+## Use Case:
 
+External service teams, dealers, and operations staff use this skill to search for home decoration installation technicians, authenticate to the Aiding Shifu platform, dispatch work orders, and review order details.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yinhuihua/aiding-shifu) <br>
-- [Publisher profile](https://clawhub.ai/user/yinhuihua) <br>
-- [Aiding Shifu homepage](https://asf.dderp.cn) <br>
-- [Aiding Shifu API documentation](https://mes.dderp.cn/mob/swagger-ui/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with API details and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May handle account tokens and customer work-order data when used for login, technician search, or dispatch workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Packaged credentials or account tokens may expose user accounts and related personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install until the packaged config secret is removed, the exposed token is revoked, and credentials are stored in a protected secret store with clear user consent.
+
+Risk: Login flows may disclose raw tokens through displays, logs, clipboard handling, wildcard postMessage transfer, or third-party QR services.
+
+Mitigation: Review the login flow before deployment, avoid logging or displaying raw tokens, restrict message targets, and stop sending login payloads to third-party QR services.
+
+Risk: Work-order and technician workflows process names, phone numbers, addresses, and other service data.
+
+Mitigation: Keep personal data masked in agent responses, collect only necessary fields, and confirm user consent before sending or storing work-order information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinhuihua/skills/aiding-shifu)
+- [Aiding Shifu homepage](https://asf.dderp.cn)
+- [Aiding Shifu API documentation](https://mes.dderp.cn/mob/swagger-ui/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline commands and structured API or work-order summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local login and token configuration when the user authenticates.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

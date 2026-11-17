@@ -1,40 +1,59 @@
-## Description: <br>
-Dataify Bing Images helps an agent prepare, preview, and, after user confirmation, send Bing Images search requests to the Dataify API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Bing Images for image results. Do not use for Bing web, news, shopping, map, or video results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Use this skill when a user wants Bing image search results through Dataify, including parameter extraction from natural language, a complete request preview, user confirmation, and direct return of the API response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-User-controlled agent runtime; the skill sends confirmed requests to Dataify's hosted API endpoint. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passing a Dataify API token on the command line may expose it through shell history or process listings on some systems. <br>
-Mitigation: Prefer providing the token through the DATAIFY_API_TOKEN environment variable or another secure environment mechanism. <br>
+## Use Case:
 
+External users and developers use this skill to search Bing Images through Dataify and receive a compact list or gallery of relevant image results with titles, image URLs, dimensions, and source links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-bing-images) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown parameter preview tables, Python command invocations, API request configuration, and the raw Dataify API response text.] <br>
-**Output Parameters:** [Search query, output format, market, country or region, offset, count, image size, color, image type, aspect, face filter, date filter, license filter, cache behavior, body format, timeout, and Dataify API token.] <br>
-**Other Properties Related to Output:** [Requires user confirmation before a live API call and returns the script output directly without post-processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 <br>
+Risk: API tokens may be exposed through command-line arguments, chat messages, or persistent shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer DATAIFY_API_TOKEN scoped to the current session or stored through a credential manager; avoid the --token option and never paste real tokens into chat.
+
+Risk: Image licensing may be unverified in ordinary search results.
+
+Mitigation: Use the supported license filter when licensing matters and treat returned licensing details as needing review before commercial use.
+
+Risk: The skill calls an external Dataify API endpoint and may consume account credits.
+
+Mitigation: Confirm high-volume, multi-page, or cost-sensitive searches before execution and handle missing, invalid, or insufficient-credit account states without exposing credentials.
+
+## Reference(s):
+
+- [Dataify Bing Images API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-bing-images)
+- [Dataify Scraper API Endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown result summaries, with raw JSON or HTML only when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include image title, image URL, dimensions, source link, count or truncation notes, and an unverified licensing note unless a license filter is requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

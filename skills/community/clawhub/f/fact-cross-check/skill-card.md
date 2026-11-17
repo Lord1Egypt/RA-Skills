@@ -1,43 +1,56 @@
-## Description: <br>
-Multi-source verification with confidence ratings for factual claims, statistics, research questions, and discovery tasks that require cross-checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source verification with confidence ratings for factual claims, examples, statistics, and research requiring cross-checking.
 
-## Publisher: <br>
-[marianachow0321](https://clawhub.ai/user/marianachow0321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marianachow0321](https://clawhub.ai/user/marianachow0321)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to verify claims across multiple sources, compare source credibility, resolve conflicting evidence, and present confidence-rated answers with citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification or discovery prompts may be sent to the configured OpenClaw web search provider. <br>
-Mitigation: Avoid confidential private claims, internal business details, or sensitive personal information unless that provider is approved for those queries. <br>
-Risk: Broad activation wording may trigger the skill more often than some users expect. <br>
-Mitigation: Use clear user intent for verification workflows and review generated source lists before relying on the answer. <br>
+## Use Case:
 
+External users and developers use this skill to verify factual claims across multiple sources, compare source credibility, resolve contradictions, and present confidence-rated answers with citations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marianachow0321/fact-cross-check) <br>
-- [Query Optimization](references/query-optimization.md) <br>
-- [Research Patterns](references/research-patterns.md) <br>
-- [Source Credibility Tiers](references/source-tiers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with confidence ratings, source links, verification dates, and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires direct clickable source URLs for cited sources] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Verification queries are sent through OpenClaw's configured web search provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated searches before sharing sensitive wording, and install only when the configured provider's data handling is acceptable.
+
+Risk: Broad multilingual trigger terms may activate the skill for some general discovery requests.
+
+Mitigation: Confirm that the task requires fact verification before sending searches or fetching pages.
+
+## Reference(s):
+
+- [Fact Cross Check on ClawHub](https://clawhub.ai/marianachow0321/skills/fact-cross-check)
+- [Query Optimization](references/query-optimization.md)
+- [Research Patterns](references/research-patterns.md)
+- [Source Credibility Tiers](references/source-tiers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown answer with confidence rating, source links, verification date, and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires clickable source URLs for cited results and may include downgraded confidence when sources are weak, unavailable, or contradictory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

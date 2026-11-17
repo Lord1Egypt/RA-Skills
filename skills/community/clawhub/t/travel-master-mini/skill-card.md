@@ -1,42 +1,53 @@
-## Description: <br>
-A minimal travel-planning parser that extracts trip details with local keyword matching and reports a seven-field convergence score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Master Mini is a minimal Chinese-language travel-planning helper that extracts itinerary fields with local keyword matching and computes a convergence score without external dependencies.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-Developers and agents can use this skill to parse short Chinese travel requests into structured trip fields and determine whether enough information has been collected for planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a lightweight heuristic parser, not a full itinerary planner. <br>
-Mitigation: Review extracted fields and request missing details before relying on the output for travel planning. <br>
-Risk: GAODE_API_KEY is declared optional, but current evidence does not show map API usage. <br>
-Mitigation: Do not provide a map API key unless a future version implements and documents that integration. <br>
+## Use Case:
 
+External users and developers use this skill to extract basic travel-planning details from Chinese-language trip requests and identify which itinerary fields still need clarification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timo2026/travel-master-mini) <br>
-- [Declared source repository](https://gitee.com/timo2026/travel-master-mini) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code] <br>
-**Output Format:** [Text responses with Python dictionary-style structured results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local keyword matching; no external dependencies are required by the current artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill is minimal and Chinese-oriented, so multilingual or complex itinerary requests may produce incomplete results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for lightweight Chinese-language field extraction and review the missing fields and status before relying on the result.
+
+Risk: Local keyword matching can miss destinations, budgets, transport modes, or travel intent outside the supported patterns.
+
+Mitigation: Treat extracted fields as a starting point and ask follow-up questions when required fields remain missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/travel-master-mini)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text with structured field extraction results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces extracted itinerary anchors, missing fields, convergence rate, and status for a single user request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

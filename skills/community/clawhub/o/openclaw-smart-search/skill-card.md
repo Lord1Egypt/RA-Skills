@@ -1,44 +1,60 @@
-## Description: <br>
-Openclaw Smart Search is a CLI skill that routes search queries across Bailian MCP, Tavily, Serper, Exa, and Firecrawl, then merges and ranks the results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Smart Search routes CLI search requests across Bailian MCP, Tavily, Serper, Exa, and Firecrawl, then merges the results.
 
-## Publisher: <br>
-[fdenny11gg](https://clawhub.ai/user/fdenny11gg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fdenny11gg](https://clawhub.ai/user/fdenny11gg)
 
-## Use Case: <br>
-Developers and agent users use this skill to run web, academic, technical, news, and crawl-oriented searches from the command line while the skill selects available providers and merges results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary flags unsafe credential setup and display paths. <br>
-Mitigation: Review or remove quick-config.sh before use, provide your own provider API keys, and avoid key display or status commands in shared terminals or logs. <br>
-Risk: Search queries and crawl targets may be sent to third-party providers. <br>
-Mitigation: Do not submit confidential data as search input unless the selected providers and account terms are approved for that data. <br>
-Risk: OPENCLAW_MASTER_KEY protects encrypted provider credentials. <br>
-Mitigation: Treat OPENCLAW_MASTER_KEY like a password and prefer a secret manager or tightly permissioned file over plaintext .env or shell-profile storage. <br>
+## Use Case:
 
+Developers and agent users use this skill to run command-line web searches that choose suitable search providers by language and intent, then merge and rank the returned results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fdenny11gg/openclaw-smart-search) <br>
-- [Node.js child process security guidance](https://nodejs.org/en/docs/guides/security/#child-processes) <br>
-- [OWASP Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text CLI output with search-result summaries, source links, engine status, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search behavior depends on configured provider API keys, OPENCLAW_MASTER_KEY, node, and mcporter availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence and package.json; changelog top entry is 1.0.12) <br>
+Risk: Credential setup can persist the master key or provider credentials in local files or shell configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup steps before installing, avoid quick-config.sh, rotate any bundled or previously exposed provider credentials, and store OPENCLAW_MASTER_KEY in a restricted secret store or a 0600-only file.
+
+Risk: Bailian setup configures an external mcporter/MCP tool that may persist beyond a single search run.
+
+Mitigation: Review or pin the mcporter/MCP server version and configuration before enabling setup:bailian.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fdenny11gg/skills/openclaw-smart-search)
+- [Publisher profile](https://clawhub.ai/user/fdenny11gg)
+- [Node.js child process security guidance](https://nodejs.org/en/docs/guides/security/#child-processes)
+- [OWASP injection prevention guidance](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html)
+- [Tavily](https://tavily.com/)
+- [Serper](https://serper.dev/)
+- [Exa](https://exa.ai/)
+- [Firecrawl](https://www.firecrawl.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style CLI output with search results, setup guidance, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, mcporter for Bailian search, OPENCLAW_MASTER_KEY, and at least one configured provider API key.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

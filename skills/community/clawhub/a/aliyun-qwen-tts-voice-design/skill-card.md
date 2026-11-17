@@ -1,39 +1,59 @@
-## Description: <br>
-Use when designing custom voices with Alibaba Cloud Model Studio Qwen TTS VD models and creating custom synthetic voices from text descriptions for speech synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing custom voices with Alibaba Cloud Model Studio Qwen TTS VD models from text descriptions and using them for speech synthesis.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and voice product teams use this skill to prepare Alibaba Cloud Qwen TTS voice-design requests, define reusable voice prompts, and validate synthesis responses before using generated voices in speech workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses an Alibaba Cloud DashScope API key, which could be exposed through committed credential files, logs, or screenshots. <br>
-Mitigation: Store the key in the environment or Alibaba Cloud credentials file, keep it out of source control and logs, and prefer least-privilege setup for voice prompt testing and synthesis requests. <br>
+## Use Case:
 
+Developers and product teams use this skill to prepare Alibaba Cloud Qwen TTS voice-design requests, create reusable synthetic voice prompts, and validate response shapes before using generated audio.
 
-## Reference(s): <br>
-- [Alibaba Cloud Qwen TTS Voice Design documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-design) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request or validation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write normalized request JSON and local evidence files under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires Alibaba/DashScope credentials for TTS operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Expose only the credentials needed for the voice-design task and use a clean virtual environment.
+
+Risk: Generated voice output may be unsuitable or inconsistent for reuse without review.
+
+Mitigation: Validate generated voices with short utterances and review output before reuse.
+
+Risk: The helper setup installs the dashscope package without a pinned version.
+
+Mitigation: Pin the dashscope dependency in controlled environments to improve supply-chain hygiene.
+
+## Reference(s):
+
+- [Alibaba Cloud Qwen TTS Voice Design Documentation](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-design)
+- [Alibaba Cloud Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/aliyun-qwen-tts-voice-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request files and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce normalized voice-design request JSON and response validation summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

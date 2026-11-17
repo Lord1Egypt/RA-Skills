@@ -1,43 +1,57 @@
-## Description: <br>
-AI agent self-portrait generator for creating avatars, profile pictures, and visual identity with SkillBoss API Hub image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent self-portrait generator that creates avatars, profile pictures, and visual identity assets using SkillBoss API Hub image generation.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate visual identity assets such as avatars, banners, and full-body portraits for agents, profiles, and periodic identity refresh workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts, personality details, and the SkillBoss API key are sent to an external image API. <br>
-Mitigation: Use a trusted SkillBoss API key, avoid confidential details in prompts, and keep the API key in the runtime environment instead of committing it. <br>
-Risk: Automated avatar updates could publish an unsuitable or unintended generated image. <br>
-Mitigation: Require human confirmation before workflows update public Discord, Twitter/X, AgentGram, or other profile images. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate personality-driven visual identity assets for AI agents, including avatars, banners, and full-body profile images. It supports mood, seasonal theme, and batch generation workflows for profile refreshes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-agent-selfie) <br>
-- [Publisher profile](https://clawhub.ai/user/modestyrichards) <br>
-- [SkillBoss API endpoint](https://api.heybossai.com/v1) <br>
-- [OpenClaw](https://openclaw.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill's script can produce PNG image files and an HTML gallery when run with a valid SkillBoss API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes guidance for updating public avatars and storing profile asset history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the generator manually unless each avatar update is explicitly approved, and review generated images before publishing them to connected accounts.
+
+Risk: Personality prompts and generated gallery captions may contain sensitive identity details or untrusted input.
+
+Mitigation: Avoid secrets or sensitive identity data in personality prompts, and treat generated local gallery files as untrusted when personality input can come from others.
+
+Risk: Installation and generation depend on an API key and an external image generation service.
+
+Mitigation: Use pinned or verified install commands and provide SKILLBOSS_API_KEY only through the runtime environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/modesty-agent-selfie)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance and CLI text; runtime output includes PNG image files and an optional HTML gallery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; supports avatar, banner, and full image formats with mood and theme presets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

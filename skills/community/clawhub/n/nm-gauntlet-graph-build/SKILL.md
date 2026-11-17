@@ -1,7 +1,7 @@
 ---
 name: graph-build
 description: Builds or updates the code knowledge graph via tree-sitter AST and SQLite
-version: 1.9.8
+version: 1.10.3
 triggers:
   - setting up the graph before search or blast-radius analysis
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet", "emoji": "\ud83e\udd9e"}}
@@ -9,7 +9,7 @@ source: claude-night-market
 source_plugin: gauntlet
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Build Code Knowledge Graph
@@ -52,6 +52,11 @@ for the current codebase.
 - Before running blast radius analysis or flow tracing
 - When the user asks about codebase structure
 
+## When NOT To Use
+
+- Querying a graph that already exists (use `gauntlet:graph-search`)
+- Building the challenge knowledge base (use `gauntlet:extract`)
+
 ## What Gets Parsed
 
 The graph extracts nodes (File, Class, Function, Type,
@@ -66,3 +71,17 @@ Ruby, and PHP.
 - Auto-creates `.gauntlet/.gitignore` to prevent commits
 - Incremental updates use SHA-256 hashing to skip
   unchanged files
+
+## Exit Criteria
+
+- [ ] `.gauntlet/graph.db` exists and is a valid SQLite file after
+  the skill completes; `.gauntlet/.gitignore` exists to prevent
+  the database from being committed
+- [ ] Build report JSON includes all four keys: `files_parsed`,
+  `nodes_created`, `edges_created`, `duration`; values are
+  non-zero for non-empty codebases
+- [ ] Incremental update path used when `.gauntlet/graph.db` already
+  exists (script invoked with `--incremental`); full build only
+  on first run
+- [ ] Next-step suggestions presented to the user: search the graph
+  or run blast-radius analysis

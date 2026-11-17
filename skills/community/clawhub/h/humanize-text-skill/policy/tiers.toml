@@ -1,0 +1,30 @@
+# tiers.toml — severity tiers (avoid-ai-writing's axis).
+# Tier expresses hit-strength, NOT rewrite level. Rewriting strength comes from
+# scene.level × matrix. These thresholds are the engine's per-tier trip points.
+
+[T1]
+# Always flag. 5–20x more frequent in AI text than human. 默认替换。
+zh_action = "flag"
+en_action = "flag"
+
+[T2]
+# Flag in clusters. Individually fine; 2+ (short para) or 3+ (long para) is a signal.
+# 同段聚集才标记。
+zh_short_para_threshold = 2
+zh_long_para_threshold = 3
+en_short_para_threshold = 2
+en_long_para_threshold = 3
+zh_action = "flag"
+en_action = "flag"
+
+[T3]
+# Flag by density. Common words; only when they saturate the text.
+# 全文密度过高才标记。
+zh_short_text_threshold = 3
+zh_mid_text_threshold = 5
+zh_long_text_pct = 0.5
+en_short_text_threshold = 3
+en_mid_text_threshold = 5
+en_long_text_pct = 0.5
+zh_action = "flag"
+en_action = "flag"

@@ -1,45 +1,57 @@
-## Description: <br>
-Coordinates GitHub repository and PR data collection, AI code review, and GitHub Actions CI/CD workflow generation for PRs, commits, and new projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub 智能代码审查与 CI/CD 自动化完整工作流，用于在 PR 或提交场景中收集仓库上下文、生成 AI 代码审查报告，并推荐或生成 GitHub Actions CI/CD 工作流。
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review GitHub PRs or commits for code quality and security issues, then generate or recommend CI/CD workflows that fit the repository's language, framework, and review findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the current GitHub CLI login to read repository data and PR diffs. <br>
-Mitigation: Run it only against intended repositories and confirm the active GitHub account and repository before execution. <br>
-Risk: The skill may post PR comments or propose workflow files without an explicit approval step. <br>
-Mitigation: Require manual confirmation before posting PR comments, applying workflow files, or committing generated CI/CD configuration. <br>
-Risk: Generated GitHub Actions workflows may not match the repository's deployment, security, or secret-handling requirements. <br>
-Mitigation: Review generated YAML carefully, especially permissions, secret usage, deployment targets, and security scan steps, before enabling it. <br>
+## Use Case:
 
+Developers and maintainers use this skill to review GitHub pull requests or commits for bugs, security issues, logic problems, and code quality concerns. It can also generate or recommend GitHub Actions workflow files based on the project stack and review results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/github-code-review-cicd) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
-- [quack-code-review](https://clawhub.com/skills/quack-code-review) <br>
-- [github-actions-generator](https://clawhub.com/skills/github-actions-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review reports with inline shell commands and GitHub Actions YAML workflow files or recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PR comments, issue findings, remediation guidance, and generated .github/workflows files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can use an authenticated GitHub CLI context to post review output to pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a local preview of the review output and explicit confirmation before any PR comment is posted.
+
+Risk: Generated GitHub Actions workflow files can change CI/CD, security scanning, or deployment behavior.
+
+Mitigation: Review generated .github/workflows files before committing them or enabling them in a repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/github-code-review-cicd)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+- [GitHub CLI documentation](https://cli.github.com/)
+- [quack-code-review skill](https://clawhub.com/skills/quack-code-review)
+- [github-actions-generator skill](https://clawhub.com/skills/github-actions-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with inline shell commands and generated GitHub Actions YAML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May post review output as a pull request comment and may produce .github/workflows files for CI, security scanning, or deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

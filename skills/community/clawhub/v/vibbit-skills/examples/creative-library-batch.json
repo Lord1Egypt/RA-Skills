@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "batch_id": "batch-example",
+  "requested_count": 2,
+  "items": [
+    {
+      "item_id": "item-01",
+      "template_ref": {
+        "id": "template-feature-demo",
+        "revision": 1
+      },
+      "talent_ref": {
+        "id": "talent-example-a",
+        "revision": 1
+      },
+      "product": {
+        "facts_file": "products/current-product.json",
+        "reference_images": []
+      },
+      "status": "needs_input",
+      "missing_inputs": [
+        "Actual product facts and images",
+        "A saved, readable talent entry",
+        "An adopted script and executable request"
+      ]
+    },
+    {
+      "item_id": "item-02",
+      "template_ref": {
+        "id": "template-feature-demo",
+        "revision": 1
+      },
+      "talent_ref": {
+        "id": "talent-example-b",
+        "revision": 1
+      },
+      "product": {
+        "facts_file": "products/current-product.json",
+        "reference_images": []
+      },
+      "status": "needs_input",
+      "missing_inputs": [
+        "Actual product facts and images",
+        "A saved, readable talent entry",
+        "An adopted script and executable request"
+      ]
+    }
+  ]
+}

@@ -1,43 +1,50 @@
-## Description: <br>
-小红书数据洞察大师 supports keyword search and note detail lookup for Xiaohongshu public-content analysis, helping agents find popular posts, compare competitors, and monitor content trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书公开数据只读技能，可按关键词搜索笔记，并查看笔记详情、评论与博主作品和互动数据，输出结构化 JSON。
 
-## Publisher: <br>
-[um-why](https://clawhub.ai/user/um-why) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[um-why](https://clawhub.ai/user/um-why)
 
-## Use Case: <br>
-Content creators, brand marketers, market analysts, MCN teams, and agent operators use this skill to retrieve Xiaohongshu keyword results and note details for topic discovery, competitor analysis, trend monitoring, and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, note URLs, and returned public-content data are sent to a third-party Guaikei API service. <br>
-Mitigation: Use a dedicated revocable API token and avoid queries that should not leave the local environment. <br>
-Risk: Task results are saved to local log files after execution. <br>
-Mitigation: Periodically delete generated logs when local retention is not desired. <br>
-Risk: The third-party API may be rate-limited, unavailable, or changed outside the skill owner's control. <br>
-Mitigation: Keep request volume within documented limits and treat failed or empty results as operational signals rather than complete market evidence. <br>
+## Use Case:
 
+Creators, marketers, and analysts use this skill to research public Xiaohongshu posts, review note details and comments, and inspect creator activity for topic research, competitor monitoring, and sentiment analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/um-why/xiaohongshu-data-insight) <br>
-- [Publisher profile](https://clawhub.ai/user/um-why) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Analysis] <br>
-**Output Format:** [JSON or Markdown emitted by Node.js command-line tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes Xiaohongshu note metadata and interaction counts; detail output includes note information, interaction data, and comment analysis when returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, OpenClaw metadata, and package.json) <br>
+Risk: ClawScan rates the skill suspicious with medium confidence; some components were only partly inspected, and requests may expose keywords or link tokens to the named third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scan coverage before installation and send only keywords and links you are comfortable sharing; remove sensitive terms or link tokens where possible.
+
+## Reference(s):
+
+- [Guaikei service](https://www.guaikei.com)
+- [ClawHub skill listing](https://clawhub.ai/um-why/skills/xiaohongshu-data-insight)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [Structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One JSON envelope per command; the agent should report key fields rather than echo the full response.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

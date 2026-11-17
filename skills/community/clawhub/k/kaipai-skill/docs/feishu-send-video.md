@@ -6,7 +6,7 @@ After a **video** task completes (`videoscreenclear`, `hdvideoallinone`), prefer
 
 ```bash
 python3 {baseDir}/scripts/feishu_send_video.py \
-  --video /tmp/kaipai_result.mp4 \
+  --video /tmp/vmake_result.mp4 \
   --to "oc_xxx_or_ou_xxx" \
   --video-url "<primary_result_url>" \
   [--cover-url "https://…"] \
@@ -16,7 +16,7 @@ python3 {baseDir}/scripts/feishu_send_video.py \
 Download the result first:
 
 ```bash
-curl -sL -o /tmp/kaipai_result.mp4 "<primary_result_url>"
+curl -sL -o /tmp/vmake_result.mp4 "<primary_result_url>"
 ```
 
 Pass the **same** URL to `--video-url` so the script can send a **second** text message with a clickable download link. That runs **after** the native video step (upload + `msg_type: media`), whether or not the video card send succeeds—so users still get a link if the card fails (for example some API errors).
@@ -27,7 +27,7 @@ Pass the **same** URL to `--video-url` so the script can send a **second** text 
 |------|----------|--------|
 | `--video` | Yes | Local file path (typically `.mp4`) |
 | `--to` | Yes | `oc_` group chat id or `ou_` open id; `chat:` / `user:` prefixes are stripped |
-| `--video-url` | No | When set, always sends an extra **text** message with `[链接](url)` style download text |
+| `--video-url` | No | When set, always sends an extra **text** message with `[link](url)` style download text |
 | `--cover` / `--cover-url` | No | Cover image — **strongly recommended** (otherwise preview can look blank) |
 | `--duration` | No | Duration in **milliseconds** for Feishu upload metadata |
 

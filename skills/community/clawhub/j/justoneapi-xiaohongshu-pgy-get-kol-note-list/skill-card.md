@@ -1,42 +1,57 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/get-kol-note-list/v1 for Xiaohongshu Creator Marketplace (Pugongying) Creator Note List through JustOneAPI with adSwitch, kolId, and orderType. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/get-kol-note-list/v1 for Xiaohongshu Creator Marketplace (Pugongying) Creator Note List through JustOneAPI with adSwitch, kolId, and orderType.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and analysts use this skill to retrieve Xiaohongshu Creator Marketplace creator note metadata, publish times, and engagement indicators through JustOneAPI for content analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token is passed through the helper and sent as a query parameter, which can expose it through local process inspection, shell history, or URL logs. <br>
-Mitigation: Use a restricted JustOneAPI token, avoid logging commands or request URLs, and prefer changing the helper to read the token from an environment variable or stdin and use an Authorization header if supported. <br>
-Risk: Raw endpoint responses and backend error payloads may include creator analytics or operational details that should not be shared broadly. <br>
-Mitigation: Review response and error payloads before sharing them, and avoid pasting raw outputs into public tickets, chat, or logs. <br>
+## Use Case:
 
+External developers and agents use this skill to call JustOneAPI's Xiaohongshu Pugongying creator note list endpoint for a specified KOL, ad traffic filter, and sort order, then summarize content metadata, publish time, and engagement indicators for content analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-pgy-get-kol-note-list) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_kol_note_list&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the JustOneAPI endpoint] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; required request parameters are kolId, adSwitch, and orderType.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The required JustOneAPI token is handled in a URL query string, creating a credential-exposure risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token where possible, avoid logging command lines or full request URLs, rotate the token after suspected exposure, and prefer Authorization-header authentication if the provider offers it.
+
+Risk: Broad, paid, or long-lived JustOneAPI tokens increase the impact of accidental exposure.
+
+Mitigation: Review token authority before installing or running the skill and avoid using credentials with unnecessary scope or duration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-pgy-get-kol-note-list)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_kol_note_list&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_kol_note_list&utm_content=project_link)
+- [Generated Operation Documentation](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; expected use includes a short endpoint-specific summary followed by raw JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

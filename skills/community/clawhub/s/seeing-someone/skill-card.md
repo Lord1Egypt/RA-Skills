@@ -1,44 +1,56 @@
-## Description: <br>
-Early-stage rapport: phase updates, question relay, and summaries while things are still forming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Early-stage rapport: phase updates, question relay, and summaries while things are still forming. Same official AILove agent API as loveq.
 
-## Publisher: <br>
-[thesamething](https://clawhub.ai/user/thesamething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesamething](https://clawhub.ai/user/thesamething)
 
-## Use Case: <br>
-External users and their agents use Seeing Someone to check AILove matching status, relay pending deep questions, submit the user's verbatim answers, and summarize early-stage rapport updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AILOVE_API_KEY grants access to the AILove agent API and could let another party impersonate the user's agent if exposed. <br>
-Mitigation: Store the key in OpenClaw secrets or an environment variable when possible, restrict any credentials file to owner-only permissions, and send the key only to https://heerweiyi.cc/api/v1/agent/*. <br>
-Risk: Scheduled relationship updates can appear in channels where the user did not intend to share them. <br>
-Mitigation: Create cron jobs only for appropriate user, group, or channel targets and verify delivery after setup. <br>
-Risk: The skill can submit answers to pending questions, which could misrepresent the user if answers are fabricated or edited. <br>
-Mitigation: Relay questions to the user and submit only the user's verbatim answer. <br>
+## Use Case:
 
+External users can use this skill to help an agent check AILove matching status, relay pending questions, summarize early-stage rapport updates, and configure scheduled morning and evening check-ins. The skill is intended to keep the human in control of answers and direct users to AILove for profile details or contact information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thesamething/seeing-someone) <br>
-- [AILove homepage](https://heerweiyi.cc) <br>
-- [AILove Agent API base](https://heerweiyi.cc/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduled check-in instructions and concise relationship-status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The skill encourages persistent scheduled jobs that read an AILove API key and send private relationship updates to a selected messaging destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an environment variable or secret store for the API key, choose a private destination, review cron jobs before enabling them, and confirm how to remove jobs and rotate the key.
+
+Risk: Private relationship-status data may be exposed if credentials or scheduled delivery targets are misconfigured.
+
+Mitigation: Send the AILove key only to the documented AILove API base URL, restrict credential file permissions, and avoid logging the full key in shared places.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thesamething/skills/seeing-someone)
+- [Publisher profile](https://clawhub.ai/user/thesamething)
+- [AILove homepage](https://heerweiyi.cc)
+- [AILove Agent API base](https://heerweiyi.cc/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cron configuration, credential-handling guidance, and API response summaries for private relationship-status updates.]
+
+## Skill Version(s):
+
+1.4.2 (source: frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

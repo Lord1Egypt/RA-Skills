@@ -1,134 +1,92 @@
-# Agent Evaluation & Debugging
+# Evaluation — Knowing Whether A Change Helped
 
-## Metrics by Category
+An agent without an eval set has one measurement: complaints. This page is how to build the set, size it, score it, and gate releases on it.
 
-### Task Completion
-| Metric | Description | Target |
-|--------|-------------|--------|
-| **Success rate** | Tasks completed correctly | >90% for production |
-| **Completion time** | Average time to task done | Depends on task type |
-| **Turns per task** | Agent turns needed | Lower is better |
-| **Tool calls per task** | Efficiency of tool use | Minimize unnecessary calls |
+**Before any prompt, tool or model change**, read `evals/<agent>.md` and the last rows of `eval-runs/<year>.md` (via `## Boxes` in `~/Clawic/data/agents/memory.md`). A change proposed without the current baseline in hand cannot be evaluated afterwards, because there is nothing to compare to.
 
-### Quality
-| Metric | Description | How to Measure |
-|--------|-------------|----------------|
-| **Response accuracy** | Correctness of outputs | Human eval, ground truth |
-| **Hallucination rate** | False claims made | Spot-check random outputs |
-| **Relevance** | Output matches user intent | User satisfaction survey |
-| **Format compliance** | Follows required structure | Automated schema validation |
+**Contents:** [What to score](#what-to-score) · [Building the set](#building-the-set) · [Sizing](#sizing-how-many-cases-how-many-runs) · [Scoring](#scoring-methods) · [Judges](#llm-judges-where-they-work) · [The gate](#the-regression-gate) · [Online](#online-measurement) · [Metrics](#metrics-worth-tracking)
 
-### Safety
-| Metric | Description | Target |
-|--------|-------------|--------|
-| **Escalation rate** | Tasks handed to human | 5-15% typical |
-| **False escalation** | Unnecessary handoffs | <2% |
-| **Boundary violations** | Attempted forbidden actions | 0% |
-| **Prompt injection resistance** | Attacks detected/blocked | 100% |
+## What To Score
 
-### Cost
-| Metric | Description | Track |
-|--------|-------------|-------|
-| **Cost per task** | Total LLM + API costs | By task type |
-| **Cost per user** | Daily/monthly spend | By user tier |
-| **Token efficiency** | Useful tokens vs overhead | Optimize prompts |
+Three layers, and skipping the middle one is the usual mistake.
 
-## Debugging Workflow
+| Layer | Question | How |
+|---|---|---|
+| **Outcome** | Did the task get done correctly? | Assertions on the final state or answer |
+| **Trajectory** | Did it get there the right way? | Expected tools called, in an acceptable order, without forbidden ones |
+| **Cost of getting there** | What did it spend? | Turns, tokens, wall clock, money per case |
 
-### Step 1: Check Context
-- Is relevant information in the context window?
-- Is old/stale context confusing the agent?
-- Are system prompt instructions clear?
+A right answer reached by a lucky guess and one reached by calling the tool look identical at the outcome layer. Score trajectory or you will ship an agent that passes evals and fails the day a tool's data changes.
 
-### Step 2: Check Tool Results
-- Did tools return expected data?
-- Did tools error silently?
-- Is tool output format correct?
+Forbidden-tool assertions matter as much as expected ones: an injection case passes only if the exfiltration tool was **not** called (`security.md`).
 
-### Step 3: Check Reasoning
-- Add chain-of-thought to see agent thinking
-- Is the agent's interpretation correct?
-- Where did reasoning go wrong?
+## Building The Set
 
-### Step 4: Check Confidence
-- Does agent know when it's uncertain?
-- Is it asking for clarification when needed?
-- Is it overconfident on edge cases?
+- **Start from real traffic, not imagination.** Twenty sampled transcripts produce a better first set than a brainstorm, because they contain the phrasings you would never invent.
+- **Every diagnosed failure becomes a case in the same turn** (`debugging.md`). This is the mechanism that stops regressions, and it is the only one that costs nothing.
+- Cover deliberately: happy path · ambiguous input · missing information · tool failure · empty result · out-of-scope request · escalation-worthy case · injection attempt · multi-step case that needs a plan · a case with two valid answers.
+- Tag every case (`happy-path`, `injection`, `regression`, `tool-failure`) so you can report per-tag pass rates. A flat 0.91 hides a 0.4 on the injection tag.
+- Keep cases small and independent. A case that depends on the previous one cannot be run `n` times or in parallel.
+- Freeze the expected values. If a case's expectation is edited to match new behavior, it stopped being a test — record such edits explicitly as a set version bump.
 
-## Common Failure Modes
+## Sizing: How Many Cases, How Many Runs
 
-### Infinite Loops
-**Symptom:** Agent keeps calling same tool
-**Cause:** Tool doesn't change state, agent retries same strategy
-**Fix:** Add loop detection, force alternative strategy after N attempts
+- Agents are nondeterministic: **`n` runs per case**, scored as a pass rate. `n = 5` is a workable default; `n = 1` cannot distinguish a fixed bug from a lucky run.
+- Resolution: the 95% confidence half-width on a proportion is at most about `1/√N` where `N` is total runs. So `N = 100` resolves ±10 points, `N = 400` resolves ±5, `N = 1,000` resolves ±3. **A 3-point improvement is not visible in a 100-run eval** — that is the arithmetic behind most "the change did nothing" arguments.
+- Zero failures is not zero risk: the rule of three puts the 95% upper bound at `3/N`. Zero injection failures in 50 attempts still permits a true rate near 6%; to claim under 1% you need roughly 300 clean attempts.
+- Comparing two variants needs the same cases, the same `n`, and the same fixtures. Different sets produce numbers that cannot be subtracted.
+- Cost the run before promising a cadence: `cases × n × median_cost_per_case`. A 64-case set at `n = 5` and 0.012 USD is under 4 USD — cheap enough to run weekly, which is the point of keeping cases small.
 
-### Context Drift
-**Symptom:** Agent "forgets" earlier instructions
-**Cause:** Long conversations push system prompt out of context
-**Fix:** Summarize periodically, re-inject key instructions
+## Scoring Methods
 
-### Hallucinated Tool Calls
-**Symptom:** Agent calls tools with made-up parameters
-**Cause:** Ambiguous tool descriptions, missing validation
-**Fix:** Stricter tool schemas, validate params before execution
+| Method | Use for | Cost | Watch out |
+|---|---|---|---|
+| Exact / schema assertion | Ids, structured output, tool sequences, forbidden tools | Free | Brittle on free text |
+| Substring or regex must-contain / must-not-contain | Key facts present, banned phrases absent | Free | Passes on the right words in the wrong sentence |
+| Deterministic checker | Code runs, SQL returns the right rows, file has the right shape | Free after writing it | Only exists where the domain has a verifier |
+| Human review | Taste, tone, subtle correctness | Expensive, slow | The ceiling everything else is calibrated against |
+| LLM judge | Free text at scale, when a rubric exists | Cheap per case, needs validation | Agrees with itself, not necessarily with you (→ next section) |
 
-### Over-Escalation
-**Symptom:** Agent hands off too many tasks
-**Cause:** Overly cautious escalation rules, unclear confidence
-**Fix:** Train on borderline examples, add confidence scoring
+Prefer the cheapest method that can fail for the right reason. Most agent cases can be scored deterministically because the interesting assertion is about tools and state, not prose.
 
-### Under-Escalation
-**Symptom:** Agent handles tasks it shouldn't
-**Cause:** Missing escalation triggers, poor sentiment detection
-**Fix:** Add keyword triggers, improve emotion detection
+## LLM Judges, Where They Work
 
-## Testing Strategy
+- A judge is a measurement instrument: **validate it against human labels before trusting it**, on a sample of cases you have labelled by hand, and report that agreement next to every score it produces.
+- Give it a rubric with anchored levels and a reference answer where one exists. Reference-free scoring on open-ended output is the weakest configuration there is.
+- Force a decision shape: a score plus the specific evidence for it. "Good, 4/5" is unauditable.
+- Known biases to design against: position (order the two candidates both ways), verbosity (longer looks better), and self-preference. Randomize and average.
+- Re-validate the judge whenever the judge model changes — it is part of the release bundle too (SKILL.md Rule 8).
 
-### Unit Tests
-- Each tool works correctly in isolation
-- Prompt templates produce expected format
-- Parser handles edge cases
+## The Regression Gate
 
-### Integration Tests
-- Agent + tools work together
-- Memory retrieval returns relevant context
-- Escalation paths function correctly
+With `eval_gate: true`, a prompt, tool or model change is presented as blocked until it has been measured:
 
-### Adversarial Tests
-- Prompt injection attempts
-- Malformed inputs
-- Edge cases and boundary conditions
-- Attempts to exceed permissions
+1. Record the baseline: pass rate, trajectory pass rate, median cost, p95 latency, per-tag rates, with the set version and `n`.
+2. Apply the change. Re-run the identical set.
+3. Ship if overall pass rate does not drop, no tag drops by more than the resolution of the run, and cost and latency stay inside their budgets.
+4. Write the row to `eval-runs/<year>.md` with what changed — both runs, not only the good one.
+5. A change that improves overall while dropping the injection or escalation tag is a rejection, not a trade-off.
 
-### User Simulation
-- Replay real conversations
-- Vary user patience levels
-- Test unclear/ambiguous requests
+## Online Measurement
 
-## Evaluation Dataset Structure
+Offline sets are stale the moment traffic shifts. Three cheap online signals:
 
-```json
-{
-  "test_case_id": "order_status_001",
-  "user_input": "Where is my order #12345?",
-  "expected_tool_calls": ["lookup_order"],
-  "expected_output_contains": ["shipped", "tracking"],
-  "expected_output_excludes": ["sorry", "cannot"],
-  "max_turns": 2,
-  "tags": ["order_tracking", "happy_path"]
-}
-```
+- **End-reason distribution.** A rising share of `max_turns`, `budget` or `error` is a regression that no offline set caught (`debugging.md`).
+- **Escalation and reopen rates.** Escalations that a human immediately reverses mean the trigger is wrong; resolved tasks that come back mean the outcome check is too weak (`human-in-the-loop.md`).
+- **Sampled transcript review**, a fixed number per week, scored against the same rubric as the offline set. Every failure found becomes a case.
 
-## Continuous Monitoring
+Shadow-run a candidate on real inputs without acting on its output when the stakes justify it: same traffic, no side effects, compare trajectories.
 
-### Real-Time Alerts
-- Task failure rate spike
-- Cost exceeds threshold
-- Escalation rate anomaly
-- Negative sentiment increase
+## Metrics Worth Tracking
 
-### Weekly Review
-- Sample random conversations for quality
-- Review escalated cases
-- Identify patterns in failures
-- Update training data/prompts
+| Metric | Definition | Why it earns its place |
+|---|---|---|
+| Pass rate | Passing runs / total runs, per tag | The headline, meaningless without `n` and the set version |
+| Trajectory pass rate | Runs with the expected tool path | Catches right answers reached wrongly |
+| Median and p95 cost | Per task type | The average hides the tail that pays the bill (`cost.md`) |
+| Median and p95 latency | Per task type | p95 is what users experience as "broken" |
+| Turns per task | Median | Rising turns means the plan degraded before quality did |
+| End-reason mix | Share of each reason | The earliest online regression signal |
+| Escalation rate and reversal rate | Both, together | One alone is uninterpretable |
+
+**After every eval run**, write the row to `~/Clawic/data/agents/eval-runs/<year>.md` — date, agent, set version, `n`, pass rate, trajectory pass rate, median cost, p95 latency, model bundle, what changed — and add any new case to `evals/<agent>.md`, in the same turn (`memory-template.md`). Runs kept in a terminal scrollback cannot answer "when did this get worse", which is the only question anyone asks later.

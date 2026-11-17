@@ -1,43 +1,57 @@
-## Description: <br>
-Book Vietnam travel options, especially flights to Hanoi, Ho Chi Minh City, and Da Nang, by running the flyai CLI and formatting real-time results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to Vietnam, including Hanoi, Ho Chi Minh City, and Da Nang, and support related travel planning tasks through Fliggy/FlyAI CLI results.
 
-## Publisher: <br>
-[palexu](https://clawhub.ai/user/palexu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[palexu](https://clawhub.ai/user/palexu)
 
-## Use Case: <br>
-Travel-planning agents use this skill to collect flight search parameters, run the flyai CLI, and return concise Markdown flight options with booking links. It is intended for users comparing Vietnam routes, prices, durations, and direct-flight options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a global third-party CLI package. <br>
-Mitigation: Review the skill before installing, prefer manually installing or approving the flyai CLI, and use it only in environments where global npm packages are permitted. <br>
-Risk: Flight search details and booking links are handled by flyai or its booking provider. <br>
-Mitigation: Use the skill only when sharing itinerary details with that third-party service is acceptable, and treat booking links as third-party output. <br>
+## Use Case:
 
+Travel users and travel-support agents use this skill to search Vietnam flight options, collect route parameters, run the FlyAI CLI, and return booking-ready Markdown results with live prices and links.
 
-## Reference(s): <br>
-- [Parameter collection and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure recovery](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results; raw JSON is not returned to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install an unpinned global npm CLI and run shell commands built from travel inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, pin the CLI version where possible, run it in an isolated environment, and reject unsafe characters in city and date inputs.
+
+Risk: Flight and booking responses can be misleading if generated without live FlyAI CLI output or booking links.
+
+Mitigation: Require responses to be based on CLI output and reject flight results that do not include a detailUrl booking link.
+
+## Reference(s):
+
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown flight-search summaries with inline booking links and supporting CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should be grounded in FlyAI CLI output and include booking detailUrl links when flight results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

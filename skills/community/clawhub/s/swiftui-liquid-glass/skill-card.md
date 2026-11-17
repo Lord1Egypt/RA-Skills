@@ -1,47 +1,54 @@
-## Description: <br>
-Implement, review, or improve SwiftUI features using the iOS 26+ Liquid Glass API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement, review, or improve SwiftUI features using the iOS 26+ Liquid Glass API.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement, refactor, or review SwiftUI interfaces that use iOS 26+ Liquid Glass APIs with appropriate availability handling, fallbacks, and design consistency. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SwiftUI Liquid Glass APIs are platform-version-specific, so generated code may not compile or behave correctly on unsupported OS versions. <br>
-Mitigation: Review generated SwiftUI changes against current Apple documentation, gate Liquid Glass code with iOS 26+ availability checks, and provide non-glass fallbacks. <br>
-Risk: The skill provides coding-reference guidance rather than executable validation. <br>
-Mitigation: Treat generated snippets as implementation proposals and review, build, and test them in the target app before shipping. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steipete/swiftui-liquid-glass) <br>
-- [Publisher profile](https://clawhub.ai/user/steipete) <br>
-- [Implementing Liquid Glass Design in SwiftUI](references/liquid-glass.md) <br>
-- [Applying Liquid Glass to custom views](https://developer.apple.com/documentation/SwiftUI/Applying-Liquid-Glass-to-custom-views) <br>
-- [Landmarks: Building an app with Liquid Glass](https://developer.apple.com/documentation/SwiftUI/Landmarks-Building-an-app-with-Liquid-Glass) <br>
-- [SwiftUI View.glassEffect(_:in:isEnabled:)](https://developer.apple.com/documentation/SwiftUI/View/glassEffect(_:in:isEnabled:)) <br>
-- [SwiftUI GlassEffectContainer](https://developer.apple.com/documentation/SwiftUI/GlassEffectContainer) <br>
-- [SwiftUI GlassEffectTransition](https://developer.apple.com/documentation/SwiftUI/GlassEffectTransition) <br>
-- [SwiftUI GlassButtonStyle](https://developer.apple.com/documentation/SwiftUI/GlassButtonStyle) <br>
+## Use Case:
 
+Developers and engineers use this skill to adopt, refactor, or review SwiftUI interfaces that use iOS 26+ Liquid Glass APIs, including glass effects, containers, button styles, transitions, and availability fallbacks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with Swift code snippets and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may be invoked for broader Apple design requests when Liquid Glass guidance is not desired.
+
+Mitigation: Keep requests specific, and state when Liquid Glass advice should not be applied.
+
+## Reference(s):
+
+- [Implementing Liquid Glass Design in SwiftUI](references/liquid-glass.md)
+- [Applying Liquid Glass to custom views](https://developer.apple.com/documentation/SwiftUI/Applying-Liquid-Glass-to-custom-views)
+- [Landmarks: Building an app with Liquid Glass](https://developer.apple.com/documentation/SwiftUI/Landmarks-Building-an-app-with-Liquid-Glass)
+- [SwiftUI View.glassEffect(_:in:isEnabled:)](https://developer.apple.com/documentation/SwiftUI/View/glassEffect(_:in:isEnabled:))
+- [SwiftUI GlassEffectContainer](https://developer.apple.com/documentation/SwiftUI/GlassEffectContainer)
+- [SwiftUI GlassEffectTransition](https://developer.apple.com/documentation/SwiftUI/GlassEffectTransition)
+- [SwiftUI GlassButtonStyle](https://developer.apple.com/documentation/SwiftUI/GlassButtonStyle)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Swift code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior or sensitive access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Designs and refactors software codebases to be AI-friendly by aligning files to domain and feature boundaries, creating deep modules with small public interfaces, enforcing import boundaries, and tightening tests and feedback loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs and refactors software codebases to be AI-friendly by aligning filesystem structure with domain or feature boundaries, defining deep module interfaces, enforcing import boundaries, and tightening tests and feedback loops.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and engineers use this skill to map existing codebases into domain or feature modules, define stable public interfaces, plan incremental refactors, enforce import boundaries, and establish fast feedback checks for safer AI-assisted coding. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect and modify repository structure during refactoring. <br>
-Mitigation: Use a branch and review proposed move plans, boundary rules, scaffolded files, and test changes before committing. <br>
-Risk: Running local scripts from an untrusted repository can expose the agent to unsafe project behavior. <br>
-Mitigation: Inspect local scripts before allowing the agent to execute them, and prefer the documented optional scaffolder only after review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Architecture Plan Template](assets/architecture-plan-template.md) <br>
-- [Boundary Enforcement Patterns](references/boundary-enforcement.md) <br>
-- [Module Templates For Deep Modules](references/module-templates.md) <br>
-- [Copy-Paste Prompts For Architecture Work](references/prompts.md) <br>
-- [Testing And Feedback Guidance](references/testing-and-feedback.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan incremental refactors that make existing repositories easier for agents and humans to navigate, change, and test. It is suited to repositories with unclear feature boundaries, cross-domain coupling, weak public interfaces, or slow feedback loops.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans with tables, code snippets, shell commands, and optional scaffolded files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce refactor plans, interface specs, boundary rules, contract test skeletons, and optional TypeScript or Python module scaffolds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional scaffolding script can write files outside the intended repository or generate unsafe source when supplied untrusted module names or paths.
+
+Mitigation: Use the skill primarily as a planning aid; if running the script, pass simple lowercase kebab-case module names, keep paths repository-relative, and review generated files before running tests or builds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/ai-codebase-deep-modules)
+- [Module templates for deep modules](references/module-templates.md)
+- [Boundary enforcement patterns](references/boundary-enforcement.md)
+- [Testing and feedback loops for greybox modules](references/testing-and-feedback.md)
+- [Copy-paste prompts for architecture work](references/prompts.md)
+- [AI-Friendly Refactor Plan template](assets/architecture-plan-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown plans with tables, code snippets, shell commands, and optional generated scaffold files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include incremental refactor plans, module maps, interface specifications, boundary rules, contract test skeletons, and optional TypeScript or Python scaffold files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

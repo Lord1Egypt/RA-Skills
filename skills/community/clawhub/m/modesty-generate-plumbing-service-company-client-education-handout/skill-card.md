@@ -1,42 +1,51 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create polished plumbing service company client education handouts with visuals, FAQs, and clear next steps.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Plumbing business owners, service managers, and client-facing teams use this skill to draft customer education handouts with plain-language explanations, FAQs, visuals, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plumbing guidance, visuals, FAQs, or calls to action may be inaccurate, incomplete, or inconsistent with local code requirements, warranties, or company policy. <br>
-Mitigation: Have a qualified reviewer check the handout for technical accuracy, local requirements, warranty language, and brand fit before publishing. <br>
-Risk: Customer examples or service details could include sensitive customer information if supplied in the prompt. <br>
-Mitigation: Remove or anonymize customer identifiers and private service details before using them in generated handouts. <br>
+## Use Case:
 
+Plumbing business owners and service managers use this skill to create customer-facing education handouts that explain services, answer common questions, and give clear next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-generate-plumbing-service-company-client-education-handout) <br>
-- [Publisher profile](https://clawhub.ai/user/modestyrichards) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-plumbing-service-company-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text handout content with optional image-generation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FAQs, visual concepts, calls to action, and customer-facing next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated handouts could include inaccurate business, pricing, service, or safety information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified business reviewer check each handout for accuracy and compliance before customer distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-generate-plumbing-service-company-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-plumbing-service-company-client-education-handout)
+- [Publisher profile](https://clawhub.ai/user/modestyrichards)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured prose with suggested visual content, FAQs, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference image-generation needs for handout visuals; outputs should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

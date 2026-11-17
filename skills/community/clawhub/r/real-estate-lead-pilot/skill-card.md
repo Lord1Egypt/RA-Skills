@@ -1,47 +1,59 @@
-## Description: <br>
-A high-trust lead qualification and appointment booking agent for realtors that prevents MLS hallucinations via ThumbGate grounding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A high-trust lead qualification and appointment booking agent for realtors that prevents MLS hallucinations via ThumbGate grounding.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-External real estate professionals use this skill to qualify buyer, seller, and renter leads, check requests against verified listing data, book appointments, and log lead details to a CRM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect lead contact details and behavioral scores for CRM storage. <br>
-Mitigation: Disclose lead data collection and scoring where required, define retention rules, and test with non-production CRM records before live use. <br>
-Risk: The skill can propose or perform calendar bookings and CRM writes. <br>
-Mitigation: Require explicit confirmation before writes, use least-privilege integrations, and validate rollback or correction procedures. <br>
-Risk: The skill makes Fair Housing, DNC, and zero-hallucination claims that may affect regulated real-estate workflows. <br>
-Mitigation: Independently validate compliance rules, DNC checks, and listing-grounding behavior before relying on the skill in production. <br>
-Risk: The artifact includes a paid upgrade link and release evidence flags purchase capability. <br>
-Mitigation: Require explicit user approval before opening purchase flows or making any payment-related action. <br>
+## Use Case:
 
+External real estate agents and teams use this skill to qualify buyer, seller, and renter leads, ground listing discussion in verified MLS or sheet data, and route appointments or handoffs into their CRM and calendar workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igorganapolsky/real-estate-lead-pilot) <br>
-- [Setup guide](setup-guide.md) <br>
-- [ThumbGate prevention rules](thumbgate-rules.md) <br>
-- [Lead Pilot Premium purchase page](https://iganapolsky.gumroad.com/l/tzehg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with lead qualification dialogue, setup commands, configuration steps, and structured CRM or calendar action guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose CRM writes, calendar bookings, lead scoring, and purchase links; these actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can log personal lead data and behavioral scores to a CRM without clear consent or data limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a configured privacy notice and consent flow, restrict CRM writes to necessary fields, and define retention and deletion procedures.
+
+Risk: Free-form lead conversations may contain sensitive information that should not be broadly synced or retained.
+
+Mitigation: Avoid syncing free-form sensitive conversation content and use authenticated, least-privilege CRM and calendar integrations.
+
+Risk: Real estate lead workflows can raise Fair Housing, Do Not Call, legal, and negotiation concerns.
+
+Mitigation: Keep the artifact's Fair Housing, DNC, legal-disclaimer, and human-handoff rules enabled and review them before deployment.
+
+## Reference(s):
+
+- [Real Estate Lead Pilot on ClawHub](https://clawhub.ai/igorganapolsky/skills/real-estate-lead-pilot)
+- [Setup Guide](artifact/setup-guide.md)
+- [ThumbGate Prevention Rules](artifact/thumbgate-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Markdown skill instructions with lead-handling rules and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CRM lead fields, behavioral scores, appointment details, handoff prompts, and compliance disclaimers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

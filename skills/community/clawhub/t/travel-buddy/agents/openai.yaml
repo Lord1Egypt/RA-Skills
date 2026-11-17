@@ -1,0 +1,4 @@
+interface:
+  display_name: "Travel Buddy"
+  short_description: "Guided trip intake, profiles, and travel plans"
+  default_prompt: "Use $travel-buddy to collect my trip needs through a local form and plan the best trip."

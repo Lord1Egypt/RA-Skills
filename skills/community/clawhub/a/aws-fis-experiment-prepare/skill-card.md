@@ -1,54 +1,70 @@
-## Description: <br>
-Prepares AWS FIS experiment configurations by discovering targets, validating resource-action compatibility, generating CloudFormation and README files, and deploying the template with retry-based correction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, validates, and deploys AWS FIS experiment CloudFormation templates for Scenario Library and custom fault-injection workflows.
 
-## Publisher: <br>
-[panlm](https://clawhub.ai/user/panlm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panlm](https://clawhub.ai/user/panlm)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to prepare AWS Fault Injection Service experiments for supported scenario-library and custom fault-injection cases. It helps produce deployable experiment infrastructure while checking target compatibility and deployment prerequisites before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, modify, and delete live AWS resources while preparing fault-injection infrastructure. <br>
-Mitigation: Use a non-production or explicitly approved AWS account and region, and review the generated CloudFormation before deployment. <br>
-Risk: CloudFormation stacks may create IAM, CloudWatch, FIS, and shared EKS RBAC resources with operational impact. <br>
-Mitigation: Use a least-privilege CloudFormation service role and confirm cleanup expectations, including shared EKS RBAC resources. <br>
-Risk: Fault-injection experiments can be disruptive if started without appropriate guardrails. <br>
-Mitigation: Add CloudWatch alarm stop conditions for disruptive experiments and start experiments only after explicit operational approval. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to prepare AWS Fault Injection Service experiments, validate resource-action compatibility, generate CloudFormation and README files, and deploy the supporting stack before experiment execution.
 
-## Reference(s): <br>
-- [AWS FIS AZ Power Interruption Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/az-availability-scenario.html) <br>
-- [AWS FIS AZ Application Slowdown Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/az-application-slowdown-scenario.html) <br>
-- [AWS FIS Cross-AZ Traffic Slowdown Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/cross-az-traffic-slowdown-scenario.html) <br>
-- [AWS FIS Cross-Region Connectivity Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/cross-region-scenario.html) <br>
-- [AWS FIS EKS Pod Actions](https://docs.aws.amazon.com/fis/latest/userguide/eks-pod-actions.html) <br>
-- [AWS::FIS::ExperimentTemplate CloudFormation Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html) <br>
-- [AZ Availability: Power Interruption Scenario Guide](references/az-power-interruption-guide.md) <br>
-- [CFN Base Template Reference](references/cfn-base-template.md) <br>
-- [EKS Pod Action Guide](references/eks-pod-action-guide.md) <br>
-- [ElastiCache Redis/Valkey FIS Experiment Guide](references/elasticache-redis-guide.md) <br>
-- [Amazon MSK FIS Experiment Guide](references/msk-guide.md) <br>
-- [Output Format Reference](references/output-format.md) <br>
-- [Scenario Slug and Naming Conventions](references/slug-conventions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML, JSON, and bash code blocks; generated files include README.md and cfn-template.yaml] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a self-contained experiment directory and deployment guidance; it does not start the FIS experiment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can automatically change AWS infrastructure through CloudFormation and AWS FIS preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in approved sandbox or tightly controlled AWS accounts, review generated CloudFormation templates and IAM policies, and require explicit approval for deploy and delete steps.
+
+Risk: Prepared experiments can have excessive blast radius if stop conditions or target scope are not reviewed.
+
+Mitigation: Add CloudWatch stop conditions where appropriate, confirm target resources and scenario sub-actions before deployment, and use a dedicated CloudFormation service role.
+
+Risk: EKS pod-action workflows may leave broad or persistent shared RBAC permissions.
+
+Mitigation: Avoid EKS pod-action workflows until cluster-admin Lambda access and retained shared RBAC are narrowed or lifecycle-managed.
+
+## Reference(s):
+
+- [AZ Availability: Power Interruption Scenario Guide](references/az-power-interruption-guide.md)
+- [CFN Base Template Reference](references/cfn-base-template.md)
+- [EKS Pod Action Guide](references/eks-pod-action-guide.md)
+- [ElastiCache Redis/Valkey FIS Experiment Guide](references/elasticache-redis-guide.md)
+- [Amazon MSK FIS Experiment Guide](references/msk-guide.md)
+- [Output Format Reference](references/output-format.md)
+- [Scenario Slug and Naming Conventions](references/slug-conventions.md)
+- [AWS FIS AZ Availability Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/az-availability-scenario.html)
+- [AWS FIS AZ Application Slowdown Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/az-application-slowdown-scenario.html)
+- [AWS FIS Cross-AZ Traffic Slowdown Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/cross-az-traffic-slowdown-scenario.html)
+- [AWS FIS Cross-Region Connectivity Scenario](https://docs.aws.amazon.com/en_us/fis/latest/userguide/cross-region-scenario.html)
+- [AWS FIS EKS Pod Actions](https://docs.aws.amazon.com/fis/latest/userguide/eks-pod-actions.html)
+- [AWS::FIS::ExperimentTemplate CloudFormation Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html)
+- [CloudFormation Service Role for FIS Experiment Setup Guide](https://panlm.github.io/others/cfn-service-role-for-fis-experiment-setup-guide/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with YAML CloudFormation templates, README files, and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a self-contained experiment directory and may run AWS CLI and CloudFormation deployment commands; it does not start the FIS experiment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

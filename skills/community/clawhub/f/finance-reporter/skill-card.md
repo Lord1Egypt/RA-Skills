@@ -1,43 +1,64 @@
-## Description: <br>
-Fetches real-time market data from Yahoo Finance for major global stocks, indexes, foreign exchange, commodities, and cryptocurrency, with optional scheduled DingTalk or WeChat delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public market quotes from Yahoo Finance for selected global equity indexes, foreign exchange rates, commodities, and cryptocurrency, then produces a Chinese finance report suitable for manual or scheduled delivery.
 
-## Publisher: <br>
-[jfstylejf](https://clawhub.ai/user/jfstylejf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jfstylejf](https://clawhub.ai/user/jfstylejf)
 
-## Use Case: <br>
-External users, operators, and developers use this skill to generate current finance reports for selected market symbols and optionally schedule recurring delivery through configured OpenClaw messaging integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends outbound requests to Yahoo Finance for the configured market symbols. <br>
-Mitigation: Install only where those outbound market-data queries are acceptable, and review the configured symbols before use. <br>
-Risk: Optional cron scheduling and DingTalk or WeChat bindings can repeatedly publish generated reports. <br>
-Mitigation: Enable scheduled jobs and messaging bindings only after confirming the intended cadence and destination channels. <br>
-Risk: The skill requires installing and running the Python requests dependency. <br>
-Mitigation: Install dependencies in an environment you control and review dependency installation before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to generate market snapshot reports for tracked stocks, indexes, currencies, commodities, and Bitcoin. It can be run manually or scheduled through the documented OpenClaw cron flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jfstylejf/finance-reporter) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Plain-text finance report with markdown-style command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+, the requests package, network access to Yahoo Finance, and optional OpenClaw scheduling or messaging integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill requires outbound network access to Yahoo Finance, so reports can fail or become stale when the network or upstream data source is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound finance-data access is expected, and treat generated market values as runtime data that should be checked before use.
+
+Risk: The documented dependency installation uses an unpinned requests package, which can change behavior across installs.
+
+Mitigation: Pin Python dependencies in a reviewed requirements file before production deployment.
+
+Risk: The skill can be scheduled through the documented cron workflow.
+
+Mitigation: Enable scheduling only after reviewing the command, runtime environment, and delivery target.
+
+Risk: The generated report and user-facing documentation are Chinese-oriented.
+
+Mitigation: Confirm that the deployment audience can read the output or localize the report text before relying on it operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jfstylejf/skills/finance-reporter)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Chinese plain-text finance report with markdown documentation and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report values depend on outbound Yahoo Finance responses at runtime.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and package.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-BizyAir 图生图（Image-to-Image）助手 uploads a local reference image to BizyAir and uses a prompt plus optional aspect ratio to create an image-to-image generation task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BizyAir 图生图（Image-to-Image）助手。将本地图片上传后作为参考，使用 AI 生成新的图片。
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to upload a local image as a reference, submit an image-to-image prompt to BizyAir, and retrieve generated image URLs from the task result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads the selected image, filename, prompt, and generated-task data to BizyAir and Alibaba OSS. <br>
-Mitigation: Use it only with images and prompts that are acceptable to share with those services; avoid sensitive, private, or proprietary content. <br>
-Risk: BizyAir credentials are required to run the upload and generation workflow. <br>
-Mitigation: Keep the BizyAir API key in the BIZYAIR_API_KEY environment variable and avoid embedding it in prompts, logs, or shared command history. <br>
-Risk: The workflow depends on Python packages and network services outside the skill artifact. <br>
-Mitigation: Review unpinned Python dependencies before installation and expect failures when BizyAir or Alibaba OSS endpoints are unavailable. <br>
+## Use Case:
 
+External users and developers use this skill to upload a selected local image to BizyAir, create an image-to-image generation task with a prompt and aspect ratio, and retrieve generated image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bozoyan/bizyair-i2i) <br>
-- [BizyAir task creation endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown status messages and result tables with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include BizyAir request IDs, task status, generated image URLs, and upload or API error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A selected local path may upload a sensitive or unintended readable file to external storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive images and verify the exact resolved file path before running the upload workflow.
+
+Risk: Images and prompts are sent to BizyAir/Alibaba OSS for processing.
+
+Mitigation: Run the skill only when that data sharing is acceptable for the user's content and environment.
+
+Risk: Passing credentials on the command line can expose the BizyAir API key through shell history or process listings.
+
+Mitigation: Prefer BIZYAIR_API_KEY or a secret store over the --api-key argument.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/bizyair-i2i)
+- [BizyAir task creation API endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BIZYAIR_API_KEY and uploads selected local images to BizyAir/Alibaba OSS before task creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ license: MIT-0
 compatibility: Requires Node.js 18+ and npx. PDF/image export requires Chrome or Browserless API. Google Docs requires OAuth setup.
 metadata:
   author: RenderMark
-  version: 0.1.8
+  version: 0.1.12
   mcp-server: rendermark
   category: document-creation
   tags: [markdown, pdf, docx, html, export, publishing, mermaid, slides, github-sync, google-docs]
@@ -91,6 +91,8 @@ RenderMark supports GitHub-flavored markdown plus these extensions:
 - **Default to `showToc: true`** for documents longer than a few paragraphs
 - **Choose themes contextually**: `serif` for formal documents, `dark` for technical docs, `default` for general use
 - **For GitHub READMEs**, always pass the `github` context object (`{ owner, repo, branch, path }`) so relative image paths resolve correctly
+- **For hosted images**, use full image URLs or `sync_from_github` for private repository images. Direct uploads and inline image data are disabled; public GitHub images load directly from GitHub.
+- **For exports**, image bytes are embedded. Public URLs/GitHub context work locally; export private RenderMark assets through the authenticated hosted document export routes. Image failures stop export.
 - **Prefer `publish_to_rendermark` over `export_markdown`** when the user says "share" — a link is usually more convenient than a file
 - **Run `validate_markdown` first** on important documents to catch broken links and structural issues before publishing
 

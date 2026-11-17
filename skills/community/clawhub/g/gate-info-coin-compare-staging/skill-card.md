@@ -1,45 +1,60 @@
-## Description: <br>
-Coin comparison. Use this skill whenever the user asks to compare two or more coins. Trigger phrases include: compare, versus, vs, which is better, difference. MCP tools: info_marketsnapshot_get_market_snapshot, info_coin_get_coin_info per coin (or batch/search when available). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two to five cryptocurrency assets using Gate Info market snapshots, fundamentals, rankings, and optional technical signals.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers use this skill to compare two to five crypto assets side by side using Gate Info MCP market snapshots, fundamentals, rankings, and optional technical signals. It produces neutral, data-driven comparison tables and summaries rather than trading recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad comparison wording such as 'vs' or 'which is better' may invoke the skill outside a clearly scoped crypto comparison. <br>
-Mitigation: Use the skill only when two to five crypto assets are clearly identified; otherwise ask the user to clarify the assets or route to the appropriate skill. <br>
-Risk: Crypto comparison output could be mistaken for financial advice or trading authorization. <br>
-Mitigation: Keep the report neutral and data-driven, avoid buy/sell recommendations and price predictions, and include the not-investment-advice disclaimer required by the artifact. <br>
-Risk: Missing or failed MCP data can make side-by-side comparisons misleading. <br>
-Mitigation: Label unavailable dimensions clearly, continue only with available data, and stop with a concise failure summary if all required tools fail. <br>
+## Use Case:
 
+External users and developers use this skill to compare crypto assets side by side across market performance, fundamentals, liquidity, technical indicators, and differentiated risks. Outputs are informational analysis and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-info-coin-compare-staging) <br>
-- [Gate Info Coin Compare Runtime Rules](artifact/references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](artifact/references/info-news-runtime-rules.md) <br>
-- [Gate Info CoinCompare MCP Specification](artifact/references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown comparison report with tables and concise analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Gate Info MCP data; marks unavailable data instead of fabricating values and includes a not-investment-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter version 2026.4.6-1) <br>
+Risk: Users may mistake comparative crypto analysis for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs data-driven, avoid buy or sell recommendations and price predictions, and include an informational-analysis disclaimer.
+
+Risk: Ambiguous symbols, missing MCP tools, or partial tool failures can produce incomplete comparisons.
+
+Mitigation: Clarify ambiguous coin identities, verify Gate Info MCP availability, and label missing or failed dimensions as unavailable instead of fabricating data.
+
+Risk: Market, liquidity, and technical data can change quickly.
+
+Mitigation: Use consistent time windows, report source/update timing when available, and frame conclusions as point-in-time comparisons.
+
+## Reference(s):
+
+- [Gate Info CoinCompare MCP Specification](references/mcp.md)
+- [Gate Info Coin Compare Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/gaixianggeng/skills/gate-info-coin-compare-staging)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables with concise comparative analysis and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Gate Info MCP availability; marks missing data as unavailable and avoids buy, sell, or price-prediction recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 2026.4.6-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

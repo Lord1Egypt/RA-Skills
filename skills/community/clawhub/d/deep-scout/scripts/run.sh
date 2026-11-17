@@ -20,7 +20,7 @@
 #   --dimensions STR   Comparison dimensions (for --style comparison), comma-separated
 #
 # This script is designed to be called by the OpenClaw agent loop.
-# It emits structured JSON state to deep-scout-state.json for resumability.
+# It emits structured JSON state outside the skill directory for resumability.
 # =============================================================================
 
 set -euo pipefail
@@ -42,7 +42,9 @@ MAX_CHARS=8000
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
-STATE_FILE="${SKILL_DIR}/deep-scout-state.json"
+STATE_DIR="${DEEP_SCOUT_STATE_DIR:-${HOME}/.openclaw/state/deep-scout}"
+mkdir -p "$STATE_DIR"
+STATE_FILE="${STATE_DIR}/state.json"
 TODAY=$(date '+%Y-%m-%d')
 
 # ── Arg parsing ───────────────────────────────────────────────────────────────
@@ -74,18 +76,9 @@ sanitize_query() {
   local q="$1"
   # Truncate to 500 chars max
   q="${q:0:500}"
-  # Strip common prompt injection patterns (case-insensitive via python)
-  q=$(echo "$q" | python3 -c "
-import re, sys
-q = sys.stdin.read().strip()
-# Remove role/system injection attempts
-q = re.sub(r'(?i)(ignore\s+(all\s+)?previous|forget\s+(all\s+)?instructions|you\s+are\s+now|system\s*:|<\|im_start\|>|<\|im_end\|>|\[INST\]|\[/INST\]|<<SYS>>|<</SYS>>)', '', q)
-# Remove markdown/HTML attempts to inject blocks
-q = re.sub(r'```[\s\S]*?```', '', q)
-# Collapse whitespace
-q = re.sub(r'\s+', ' ', q).strip()
-print(q)
-" 2>/dev/null || echo "$q")
+  # Keep the Python program in single shell quotes so markdown backticks in the
+  # regex can never be interpreted as shell command substitution.
+  q=$(printf '%s' "$q" | python3 -c 'import re,sys; q=sys.stdin.read().strip(); q=re.sub(r"(ignore\s+(all\s+)?previous|forget\s+(all\s+)?instructions|you\s+are\s+now|system\s*:|<\|im_start\|>|<\|im_end\|>|\[INST\]|\[/INST\]|<<SYS>>|<</SYS>>)", "", q, flags=re.I); q=re.sub(r"`{3}[\s\S]*?`{3}", "", q); print(re.sub(r"\s+", " ", q).strip())' 2>/dev/null || printf '%s' "$q")
   echo "$q"
 }
 
@@ -267,10 +260,11 @@ EOF
 
 # ── MAIN ─────────────────────────────────────────────────────────────────────
 main() {
-  log "Deep Scout v0.1.0 — Starting pipeline"
+  log "Deep Scout v0.1.5 — Starting pipeline"
   log "Query: $QUERY"
 
   init_state
+  update_state "stage" '"search"'
 
   # Emit pipeline config for agent visibility
   cat <<EOF

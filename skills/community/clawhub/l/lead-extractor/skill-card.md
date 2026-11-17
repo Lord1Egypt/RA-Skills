@@ -1,43 +1,55 @@
-## Description: <br>
-Extract structured real-estate lead records from parsed message objects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured real-estate lead records from parsed message objects.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-External users or agents use this skill to extract validated lead records from parsed WhatsApp real-estate messages, including contact details, budgets, listing or requirement type, deal type, location hints, and source text. <br>
-
-### Deployment Geography for Use: <br>
-India <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive real-estate lead data, including names, phone numbers, locations, budgets, and raw message text. <br>
-Mitigation: Use it only with chat exports or parsed messages the user is authorized to process, and treat extracted output as sensitive. <br>
-Risk: Extraction errors can misclassify listing and buyer requirement records or produce invalid lead fields. <br>
-Mitigation: Validate inputs and outputs against the bundled schemas and review field-level validation errors before using the records downstream. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vishalgojha/lead-extractor) <br>
-- [Extraction Rules RE-India v1](references/extraction-rules-re-india-v1.md) <br>
-- [Parsed Message Input Schema](references/parsed-message-input.schema.json) <br>
-- [Output Leads Schema](references/output-leads.schema.json) <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+## Use Case:
 
+External users and developers use this skill to extract structured real-estate leads from parsed WhatsApp-style message data, including contact, budget, property, and listing-versus-requirement fields. It is intended to sit after message parsing and before India location normalization in a lead-processing workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text] <br>
-**Output Format:** [JSON array of validated lead objects, or validation errors when records do not match the schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only validated lead objects, uses strict input and output schemas, and avoids storage, summaries, outbound communication, or other side effects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may surface personal phone numbers and contact details from supplied chat data.
+
+Mitigation: Install and use it only where extracting contact details from the supplied data is appropriate and authorized, and review outputs before using them elsewhere.
+
+Risk: Extracted lead records may be incomplete or incorrectly classified.
+
+Mitigation: Validate outputs against the bundled output schema and review field-level validation errors before downstream use.
+
+## Reference(s):
+
+- [Extraction Rules RE-India v1](references/extraction-rules-re-india-v1.md)
+- [Parsed Message Input Schema](references/parsed-message-input.schema.json)
+- [Output Leads Schema](references/output-leads.schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/vishalgojha/skills/lead-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance]
+
+**Output Format:** [JSON array of validated lead objects or validation errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lead records require lead_id, name, phone, and record_type; optional fields cover dataset mode, property details, budget, location hint, source, and timestamps.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Auto-generates comparison tables for concepts, drugs, or study results in Markdown format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generates comparison tables for concepts, drugs, or study results in Markdown format.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to generate Markdown comparison-table skeletons for concepts, drugs, treatments, or study results from command-line item and attribute lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional --output argument writes directly to the specified path and could overwrite an important workspace file. <br>
-Mitigation: Choose a deliberate workspace filename, keep output inside the intended workspace, and review the generated JSON before using it. <br>
-Risk: Generated tables provide structure only and do not validate medical or research claims. <br>
-Mitigation: Fill and review table values against appropriate source material before using the output in medical, research, or decision-support contexts. <br>
+## Use Case:
 
+Developers, researchers, and analysts can use this tool to scaffold Markdown comparison tables for concepts, drugs, treatments, or study results from comma-separated items and attributes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/comparison-table-gen) <br>
-- [Comparison Table Gen References](references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, text] <br>
-**Output Format:** [JSON object containing a Markdown table string plus item and attribute metadata; printed to stdout or written to an optional JSON file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external Python packages are required; table cells are generated as placeholders for user-supplied comparison attributes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The optional output path can overwrite any writable file path without containment or warning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stdout or a dedicated output directory, avoid absolute or parent-directory paths, and do not let untrusted text choose the output path until overwrite protection and path containment are added.
+
+## Reference(s):
+
+- [Comparison Table Gen References](references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/comparison-table-gen)
+- [Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files]
+
+**Output Format:** [JSON object containing a Markdown table string and comparison metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional output flag writes the JSON result to a caller-provided file path.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

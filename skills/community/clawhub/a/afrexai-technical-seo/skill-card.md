@@ -1,40 +1,54 @@
-## Description: <br>
-Technical SEO Mastery helps agents audit, fix, score, and monitor website technical SEO across crawlability, indexability, Core Web Vitals, structured data, migrations, and international SEO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete technical SEO audit, fix, and monitoring system for AI agents, covering crawlability, indexability, Core Web Vitals, structured data, migrations, monitoring, and international SEO.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, site owners, marketers, and SEO practitioners use this skill to run structured technical SEO audits, prioritize fixes, generate implementation templates, prepare migrations, and monitor recurring site health issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audits or recommendations may involve private staging sites, server logs, analytics exports, Search Console data, or SEO account access. <br>
-Mitigation: Use limited-scope or read-only accounts where possible, redact secrets and sensitive records, and prefer staging review before production changes. <br>
-Risk: Applying generated SEO fixes directly can create misleading guidance, indexing changes, broken redirects, or production regressions. <br>
-Mitigation: Review proposed changes, test on staging, and verify high-impact changes such as robots.txt, canonicals, redirects, schema, and hreflang before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Technical SEO Mastery on ClawHub](https://clawhub.ai/1kalin/afrexai-technical-seo) <br>
-- [AfrexAI Context Packs Store](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers, SEO practitioners, and site operators use this skill to run technical SEO audits, diagnose indexing and performance issues, generate structured-data examples, prepare migrations, and create prioritized remediation plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML checklists, JSON-LD templates, scoring rubrics, and prioritized fix recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; proposed fixes should be reviewed before changes are made to production sites, private logs, or SEO accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Auditing or fetching data from websites without authorization can create legal, contractual, or operational risk.
+
+Mitigation: Use the skill only for sites and SEO accounts the user is authorized to audit.
+
+Risk: Incorrect redirects, robots.txt rules, sitemap changes, CMS/plugin installs, or server/CDN changes can reduce indexing, rankings, traffic, or site availability.
+
+Mitigation: Review proposed SEO and infrastructure changes with the site owner before applying them, and test changes in a staging or controlled rollout when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-technical-seo)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML templates, checklists, scoring rubrics, and JSON-LD code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized issue lists, SEO health scores, redirect or robots.txt recommendations, schema snippets, monitoring checklists, and migration plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

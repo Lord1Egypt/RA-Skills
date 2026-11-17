@@ -534,7 +534,7 @@ tail -500 /tmp/openclaw/openclaw-*.log | grep telegram
   "channels": {
     "slack": {
       "enabled": true,
-      "botToken": "xoxb-your-bot-token",
+      "botToken": "REDACTED-SECRET",
       "signingSecret": "your-signing-secret",
       "dmPolicy": "pairing",
       "teamPolicy": "allowlist",

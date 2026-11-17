@@ -1,44 +1,56 @@
-## Description: <br>
-Morfeo Academy's Remotion video style guide for creating branded Remotion videos, stories, and animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Morfeo Academy's Remotion video style guide for creating Remotion videos, stories, and animations with the Morfeo Academy brand.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Developers and video creators use this skill to apply Morfeo Academy's Remotion visual style, including colors, typography, animation timing, emoji rendering, brand icons, and vertical story specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger may apply broadly to Paul-related Remotion requests. <br>
-Mitigation: Confirm the user wants Morfeo Academy styling before applying this style guide to unrelated Remotion work. <br>
-Risk: Generated Remotion projects may vary if npm template or package versions change. <br>
-Mitigation: Pin npm and template versions when reproducible builds matter. <br>
+## Use Case:
 
+Developers and content creators use this skill to produce Morfeo Academy branded Remotion videos with consistent colors, typography, animation timing, emoji rendering, and brand icon components.
 
-## Reference(s): <br>
-- [styles.ts](references/styles.ts) <br>
-- [AppleEmoji.tsx](references/AppleEmoji.tsx) <br>
-- [BrandIcon.tsx](references/BrandIcon.tsx) <br>
-- [MorfeoStory-example.tsx](references/MorfeoStory-example.tsx) <br>
-- [ClawHub skill page](https://clawhub.ai/PauldeLavallaz/morfeo-remotion-style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript/React snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are style guidance and implementation patterns for Remotion projects; no API calls or credentials are required by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Unpinned npm setup commands can install changing dependency versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin npm package versions before running setup commands.
+
+Risk: Apple emoji images are loaded from a third-party CDN during rendering.
+
+Mitigation: Render only where third-party CDN requests are acceptable, or vendor the required emoji assets locally.
+
+## Reference(s):
+
+- [styles.ts](references/styles.ts)
+- [AppleEmoji.tsx](references/AppleEmoji.tsx)
+- [BrandIcon.tsx](references/BrandIcon.tsx)
+- [MorfeoStory-example.tsx](references/MorfeoStory-example.tsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Remotion styling conventions, reusable component patterns, and setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

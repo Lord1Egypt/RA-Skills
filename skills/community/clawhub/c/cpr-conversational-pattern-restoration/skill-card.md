@@ -1,50 +1,64 @@
-## Description: <br>
-Conversational Pattern Restoration helps agents restore natural conversational texture across models and personalities while reducing robotic or sycophantic drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conversational Pattern Restoration helps agents restore natural conversational texture across models and personality styles while reducing robotic tone, sycophancy, and hype drift.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-External users, developers, and agent builders use this skill to calibrate an assistant's conversational voice, apply restoration patterns, and monitor drift over short or long-running sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes prompt-level guidance for how an agent writes, which can affect conversational style and response posture. <br>
-Mitigation: Review the exact prompt text before adding it to a system prompt and start with Tier 1 or Tier 2 unless persistent long-session monitoring is needed. <br>
-Risk: The Extended tier can create or update a local DRIFT_MONITOR_STATE.json file during drift monitoring. <br>
-Mitigation: Inspect or delete the state file periodically and avoid storing raw user messages, secrets, or sensitive context in it. <br>
+## Use Case:
 
+Developers, agent builders, and advanced agent users use this skill to define a conversational baseline, apply restoration patterns, and monitor drift in single-agent, single-user assistant workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/cpr-conversational-pattern-restoration) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](artifact/README.md) <br>
-- [Tiered quickstart](artifact/QUICKSTART_TIERED.md) <br>
-- [Installation and security transparency guide](artifact/INSTALLATION.md) <br>
-- [Restoration framework](artifact/RESTORATION_FRAMEWORK.md) <br>
-- [Drift prevention system](artifact/DRIFT_PREVENTION.md) <br>
-- [CPR Extended autonomous drift monitoring](artifact/CPR_EXTENDED.md) <br>
-- [Cross-model results](artifact/CROSS_MODEL_RESULTS.md) <br>
-- [Test validation](artifact/TEST_VALIDATION.md) <br>
-- [Rollback and removal guide](artifact/ROLLBACK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt snippets and optional local state-file instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only by default; the Extended tier can use a local DRIFT_MONITOR_STATE.json file for drift scores and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.3 (source: server release metadata) <br>
+Risk: The skill can persistently change an agent's response style and may silently remove or rewrite parts of responses through drift checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a persistent voice/style layer is desired, review the prompt blocks before use, and add a guardrail that user requests, safety guidance, factual completeness, code, JSON, and compliance text must not be silently removed.
+
+Risk: Extended mode may create and update a local DRIFT_MONITOR_STATE.json file for drift scores and action labels.
+
+Mitigation: Start with Tier 1 or Core before enabling Extended mode, avoid Extended in shared or sensitive workspaces unless local state is acceptable, and inspect or delete DRIFT_MONITOR_STATE.json as needed.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Tiered Quickstart](artifact/QUICKSTART_TIERED.md)
+- [Installation and Security Transparency Guide](artifact/INSTALLATION.md)
+- [Baseline Definition Template](artifact/BASELINE_TEMPLATE.md)
+- [Restoration Framework](artifact/RESTORATION_FRAMEWORK.md)
+- [Drift Prevention System](artifact/DRIFT_PREVENTION.md)
+- [Model Calibration](artifact/MODEL_CALIBRATION.md)
+- [Game Theory Integration](artifact/CPR_V4_GAME_THEORY.md)
+- [CPR Extended](artifact/CPR_EXTENDED.md)
+- [Cross-Model Results](artifact/CROSS_MODEL_RESULTS.md)
+- [Practical Validation Testing](artifact/TEST_VALIDATION.md)
+- [Rollback and Removal Guide](artifact/ROLLBACK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with prompt blocks, checklists, examples, and optional local state-file instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, credentials, or telemetry are required; Extended mode may guide an agent to maintain a local drift-monitor state file.]
+
+## Skill Version(s):
+
+4.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

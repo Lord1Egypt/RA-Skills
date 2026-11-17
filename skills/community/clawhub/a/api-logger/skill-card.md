@@ -1,42 +1,61 @@
-## Description: <br>
-API Logger helps developers record, inspect, and analyze LLM API traffic through a local proxy with terminal and browser log viewers for prompts, responses, token usage, latency, and failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API Logger helps agents install and use a local proxy and log viewers to record, analyze, and visualize LLM API prompts, responses, token usage, costs, slow requests, and failed requests.
 
-## Publisher: <br>
-[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu)
 
-## Use Case: <br>
-Developers and operators use this skill to route LLM API calls through a local proxy, then review prompt and response history, token usage, latency, failures, and cost-related statistics during debugging or operational analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool persistently captures full LLM conversations, including prompts, generated content, and token usage. <br>
-Mitigation: Install only when full-fidelity API logging is intended; protect the log directory, limit routed traffic to approved use cases, and periodically delete retained logs. <br>
-Risk: Logged content can be exported externally through the optional Feishu workflow. <br>
-Mitigation: Use external export only after confirming the destination and reviewing the helper used for Feishu writes. <br>
-Risk: The installer can configure a background proxy that continues running after setup. <br>
-Mitigation: Verify the upstream API URL before routing traffic and disable background persistence when the proxy is not actively needed for debugging. <br>
+## Use Case:
 
+Developers and operators use this skill to route LLM API traffic through a local logging proxy, inspect prompt and response history, troubleshoot failed or slow calls, and estimate token usage and costs.
 
-## Reference(s): <br>
-- [ClawHub API Logger release page](https://clawhub.ai/xiaohuaishu/api-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for installing, configuring, running, and inspecting local API logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and changelog) <br>
+Risk: The proxy can retain full prompts, responses, and token usage in local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled environment, avoid secrets or regulated data, and protect the log directory as sensitive data.
+
+Risk: API traffic can be forwarded through an upstream endpoint that may not use HTTPS.
+
+Mitigation: Change the upstream configuration to an HTTPS endpoint before routing traffic through the proxy.
+
+Risk: The installer configures an always-on LaunchAgent proxy.
+
+Mitigation: Prefer on-demand operation unless continuous background logging is explicitly needed.
+
+Risk: Feishu export can send logged conversation content to an external exporter and destination.
+
+Mitigation: Use Feishu export only when the exporter, destination, and access controls are trusted.
+
+## Reference(s):
+
+- [API Logger ClawHub skill page](https://clawhub.ai/xiaohuaishu/skills/api-logger)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation of a local proxy, local JSONL log files, terminal summaries, browser-based log inspection, and optional Feishu document export.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,235 +1,285 @@
-"""
-Build Ovitalmap-compatible Vertex and Boundary CSVs from structured parcel data.
+"""Build ordered, single-parcel Ovitalmap CSV exports."""
 
-CLI usage:
-    echo '{"parcels":[{...}],"first_code":"CN-260610-001","count":2,"country_code":"CN"}' | python3 scripts/csv_builder.py
-    # Outputs paths of generated CSV files.
-"""
-
-import json
+import os
 import sys
+import tempfile
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from utils import read_json_stdin, write_json_stdout, write_csv, build_boundary_string, validate_coordinates, check_duplicate_vertices, get_workspace_root
+
+from utils import (
+    build_boundary_string,
+    check_duplicate_vertices,
+    get_workspace_root,
+    read_json_stdin,
+    validate_coordinates,
+    validate_country_code,
+    write_csv,
+    write_json_stdout,
+)
+
+try:
+    import fcntl
+except ImportError:  # pragma: no cover - Windows fallback
+    fcntl = None
+
 
 WORKSPACE_ROOT = get_workspace_root()
-EXPORTS_DIR = WORKSPACE_ROOT / 'ovitalmap_exports'
-
-
-def _export_ts():
-    return datetime.now().strftime('%y%m%d_%H%M%S')
+EXPORTS_DIR = WORKSPACE_ROOT / "ovitalmap_exports"
 
 VERTICES_HEADERS = [
-    '文件夹', '名称', '经度', '纬度', '海拔', '文本显示风格', '图标样式', 'Comment',
+    "文件夹", "名称", "经度", "纬度", "海拔", "文本显示风格", "图标样式", "Comment",
 ]
-
 BOUNDARY_HEADERS = [
-    '文件夹', '名称', '经纬度[经度+纬度]', '线条宽度', '线条颜色',
-    '线条不透明度', '闭合', '线型', '轨迹风格', 'Comment',
+    "文件夹", "名称", "经纬度[经度+纬度]", "线条宽度", "线条颜色",
+    "线条不透明度", "闭合", "线型", "轨迹风格", "Comment",
 ]
+EXPORT_MODES = {"boundary", "vertices", "both"}
+
+
+def normalize_export_mode(value=None):
+    """Return the supported export mode, defaulting to the normal boundary file."""
+    mode = str(value or "boundary").strip().lower()
+    if mode not in EXPORT_MODES:
+        choices = ", ".join(sorted(EXPORT_MODES))
+        raise ValueError(f"export_mode must be one of: {choices}")
+    return mode
 
 
 def _build_comment(parcel):
-    """Build Comment field: 提供者 + 归档日期 + 地籍号(if available).
-    Applies to ALL parcels uniformly — archive-hit and new alike."""
     parts = []
-    if parcel.get('resolved_provider_name'):
+    if parcel.get("resolved_provider_name"):
         parts.append(f'提供者:{parcel["resolved_provider_name"]}')
-    if parcel.get('archive_date'):
+    if parcel.get("archive_date"):
         parts.append(f'归档日期:{parcel["archive_date"]}')
-    if parcel.get('cadastre_code'):
+    if parcel.get("cadastre_code"):
         parts.append(f'地籍号:{parcel["cadastre_code"]}')
-    return ' '.join(parts)
+    return " ".join(parts)
+
+
+def _validate_parcel_code(value):
+    code = str(value or "").strip()
+    if not code or len(code) > 120 or any(char in code for char in "/\\\r\n,"):
+        raise ValueError("parcel_code contains unsafe characters")
+    return code
+
+
+def prepare_parcels(parcels):
+    """Validate and deduplicate a copy of each parcel before any file write."""
+    if not isinstance(parcels, list) or not parcels:
+        raise ValueError("parcels must be a non-empty list")
+
+    prepared = []
+    warnings = []
+    errors = []
+    seen_codes = set()
+    for index, source in enumerate(parcels):
+        if not isinstance(source, dict):
+            errors.append(f"Parcel {index + 1}: expected an object")
+            continue
+        parcel = dict(source)
+        try:
+            parcel["parcel_code"] = _validate_parcel_code(parcel.get("parcel_code"))
+        except ValueError as exc:
+            errors.append(f"Parcel {index + 1}: {exc}")
+            continue
+
+        code = parcel["parcel_code"]
+        if code in seen_codes:
+            errors.append(f"Parcel {index + 1}: duplicate parcel_code {code}")
+        seen_codes.add(code)
+
+        vertices = parcel.get("vertices", [])
+        coordinate_errors = validate_coordinates(vertices, require_polygon=True)
+        if coordinate_errors:
+            errors.extend(f"[{code}] {message}" for message in coordinate_errors)
+            continue
+
+        deduped, duplicate_warnings = check_duplicate_vertices(vertices)
+        if len(deduped) < 3:
+            errors.append(f"[{code}] fewer than three distinct vertices remain")
+            continue
+        parcel["vertices"] = deduped
+        altitudes = parcel.get("altitude", [])
+        if altitudes is None:
+            altitudes = []
+        if not isinstance(altitudes, list):
+            errors.append(f"[{code}] altitude must be a list")
+            continue
+        if len(altitudes) > len(vertices):
+            errors.append(
+                f"[{code}] altitude has more values than vertices"
+            )
+            continue
+        parcel["altitude"] = altitudes
+        warnings.extend(f"[{code}] {message}" for message in duplicate_warnings)
+        prepared.append(parcel)
+
+    if errors:
+        raise ValueError("; ".join(errors))
+    return prepared, warnings
 
 
 def build_vertices_rows(parcels):
-    """Build all rows for the Vertices CSV.
-
-    Args:
-        parcels: list of dicts, each with:
-            - parcel_code (str)
-            - vertices (list of [lon, lat])
-            - altitude (list of float or empty list, optional)
-            - resolved_provider_name, archive_date, cadastre_code (for Comment)
-
-    Returns:
-        list of dicts ready for CSV writing.
-    """
     rows = []
     for parcel in parcels:
-        code = parcel['parcel_code']
-        vertices = parcel.get('vertices', [])
-        altitudes = parcel.get('altitude', [])
+        code = parcel["parcel_code"]
+        altitudes = parcel.get("altitude", [])
         comment = _build_comment(parcel)
-        for i, (lon, lat) in enumerate(vertices):
-            vertex_name = f'{code}_A{i + 1:02d}'
-            altitude = ''
-            if i < len(altitudes) and altitudes[i] is not None:
-                altitude = str(altitudes[i])
-            rows.append({
-                '文件夹': code,
-                '名称': vertex_name,
-                '经度': str(lon),
-                '纬度': str(lat),
-                '海拔': altitude,
-                '文本显示风格': '',
-                '图标样式': '1',
-                'Comment': comment,
-            })
+        for index, (lon, lat) in enumerate(parcel["vertices"]):
+            altitude = ""
+            if index < len(altitudes) and altitudes[index] is not None:
+                altitude = str(altitudes[index])
+            rows.append(
+                {
+                    "文件夹": code,
+                    "名称": f"{code}_A{index + 1:02d}",
+                    "经度": str(lon),
+                    "纬度": str(lat),
+                    "海拔": altitude,
+                    "文本显示风格": "",
+                    "图标样式": "1",
+                    "Comment": comment,
+                }
+            )
     return rows
 
 
 def build_boundary_rows(parcels):
-    """Build all rows for the Boundary CSV.
-
-    Each parcel produces one row. The boundary name is just the parcel_code
-    (no _A01 suffix).
-
-    Args:
-        parcels: list of parcel dicts, each with:
-            - parcel_code (str)
-            - vertices (list of [lon, lat])
-            - resolved_provider_name, archive_date, cadastre_code (for Comment)
-
-    Returns:
-        list of dicts ready for CSV writing.
-    """
-    rows = []
-    for parcel in parcels:
-        code = parcel['parcel_code']
-        vertices = parcel.get('vertices', [])
-        boundary_str = build_boundary_string(vertices, close_polygon=True)
-        comment = _build_comment(parcel)
-        rows.append({
-            '文件夹': code,
-            '名称': code,
-            '经纬度[经度+纬度]': boundary_str,
-            '线条宽度': '3',
-            '线条颜色': '0X00FF0000',
-            '线条不透明度': '50',
-            '闭合': '1',
-            '线型': '0',
-            '轨迹风格': '1',
-            'Comment': comment,
-        })
-    return rows
+    return [
+        {
+            "文件夹": parcel["parcel_code"],
+            "名称": parcel["parcel_code"],
+            "经纬度[经度+纬度]": build_boundary_string(parcel["vertices"]),
+            "线条宽度": "3",
+            "线条颜色": "0X00FF0000",
+            "线条不透明度": "50",
+            "闭合": "1",
+            "线型": "0",
+            "轨迹风格": "1",
+            "Comment": _build_comment(parcel),
+        }
+        for parcel in parcels
+    ]
 
 
-def build_csvs(parcels, first_code, count, country_code):
-    """Build both CSV files and return their paths.
-
-    Args:
-        parcels: list of parcel dicts.
-        first_code: parcel_code of the first parcel.
-        count: total number of parcels.
-        country_code: alpha-2 country code.
-
-    Returns:
-        dict with vertices_path, boundary_path, vertices_rows, boundary_rows,
-        validation_errors, duplicate_vertex_warnings
-    """
-    # Detect and deduplicate vertices per parcel
-    all_dup_warnings = []
-    for parcel in parcels:
-        verts = parcel.get('vertices', [])
-        deduped, dup_warnings = check_duplicate_vertices(verts)
-        if dup_warnings:
-            for w in dup_warnings:
-                all_dup_warnings.append(f'[{parcel["parcel_code"]}] {w}')
-        parcel['vertices'] = deduped
-
-    vertices_rows = build_vertices_rows(parcels)
-    boundary_rows = build_boundary_rows(parcels)
-
-    # Validate all coordinates
-    all_errors = []
-    for parcel in parcels:
-        code = parcel['parcel_code']
-        errors = validate_coordinates(parcel.get('vertices', []))
-        for e in errors:
-            all_errors.append(f'[{code}] {e}')
-
-    # Naming collision check
-    seen_folders = set()
-    for r in boundary_rows:
-        folder = r['文件夹']
-        name = r['名称']
-        key = (folder, name)
-        if key in seen_folders:
-            all_errors.append(f'Naming collision: {folder} / {name}')
-        seen_folders.add(key)
-
-    # Write CSVs
-    safe_first = first_code.replace('/', '_').replace('\\', '_')
-    ts = _export_ts()
-    base = f'{safe_first}_N{count}_{ts}'
-    export_dir = EXPORTS_DIR / country_code
+@contextmanager
+def _export_lock(export_dir):
     export_dir.mkdir(parents=True, exist_ok=True)
-
-    vertices_path = export_dir / f'{base}.csv'
-    boundary_path = export_dir / f'{base}_boundary.csv'
-
-    write_csv(str(vertices_path), VERTICES_HEADERS, vertices_rows)
-    write_csv(str(boundary_path), BOUNDARY_HEADERS, boundary_rows)
-
-    return {
-        'vertices_path': str(vertices_path),
-        'boundary_path': str(boundary_path),
-        'vertices_count': len(vertices_rows),
-        'boundary_count': len(boundary_rows),
-        'validation_errors': all_errors,
-        'duplicate_vertex_warnings': all_dup_warnings,
-    }
+    lock_path = export_dir / ".export.lock"
+    with lock_path.open("a+") as handle:
+        if fcntl:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            if fcntl:
+                fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
-def build_single_csvs(parcel, country_code):
-    """Build single-parcel CSV files (used for archive-hit regenerated exports).
+def _available_paths(export_dir, identity, export_mode, timestamp):
+    """Allocate readable paths without overwriting an earlier export."""
+    for sequence in range(1, 1000):
+        suffix = "" if sequence == 1 else f"_{sequence:02d}"
+        export_id = f"{identity}_{timestamp}{suffix}"
+        paths = {}
+        if export_mode in {"boundary", "both"}:
+            paths["boundary"] = export_dir / f"{export_id}.csv"
+        if export_mode in {"vertices", "both"}:
+            paths["vertices"] = export_dir / f"{export_id}_vertices.csv"
+        if not any(path.exists() for path in paths.values()):
+            return export_id, paths
+    raise RuntimeError("Could not allocate a unique export filename")
 
-    Args:
-        parcel: single parcel dict with parcel_code, vertices, resolved_provider_name,
-                archive_date, cadastre_code.
-        country_code: alpha-2 country code.
 
-    Returns:
-        dict with vertices_path, boundary_path.
-    """
-    vertices_rows = build_vertices_rows([parcel])
-    boundary_rows = build_boundary_rows([parcel])
+def _atomic_write(path, headers, rows):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    os.close(descriptor)
+    try:
+        write_csv(temporary, headers, rows)
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
+
+def build_parcel_exports(parcels, country_code, export_mode="boundary"):
+    """Export each parcel to its own file, preserving the submitted order."""
+    country_code = validate_country_code(country_code)
+    export_mode = normalize_export_mode(export_mode)
+    prepared, warnings = prepare_parcels(parcels)
     export_dir = EXPORTS_DIR / country_code
-    export_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    exports = []
 
-    safe_code = parcel['parcel_code'].replace('/', '_').replace('\\', '_')
-    ts = _export_ts()
-    vertices_path = export_dir / f'{safe_code}_N1_{ts}.csv'
-    boundary_path = export_dir / f'{safe_code}_N1_{ts}_boundary.csv'
+    with _export_lock(export_dir):
+        for parcel in prepared:
+            export_id, paths = _available_paths(
+                export_dir,
+                parcel["parcel_code"],
+                export_mode,
+                timestamp,
+            )
+            if "boundary" in paths:
+                path = paths["boundary"]
+                _atomic_write(path, BOUNDARY_HEADERS, build_boundary_rows([parcel]))
+                exports.append(
+                    {
+                        "parcel_ref": parcel.get("parcel_ref"),
+                        "parcel_code": parcel["parcel_code"],
+                        "export_type": "boundary",
+                        "export_id": export_id,
+                        "path": str(path),
+                    }
+                )
+            if "vertices" in paths:
+                path = paths["vertices"]
+                _atomic_write(path, VERTICES_HEADERS, build_vertices_rows([parcel]))
+                exports.append(
+                    {
+                        "parcel_ref": parcel.get("parcel_ref"),
+                        "parcel_code": parcel["parcel_code"],
+                        "export_type": "vertices",
+                        "export_id": export_id,
+                        "path": str(path),
+                    }
+                )
 
-    write_csv(str(vertices_path), VERTICES_HEADERS, vertices_rows)
-    write_csv(str(boundary_path), BOUNDARY_HEADERS, boundary_rows)
-
-    return {
-        'vertices_path': str(vertices_path),
-        'boundary_path': str(boundary_path),
-        'vertices_count': len(vertices_rows),
+    result = {
+        "filename_scheme": "per-parcel-v3",
+        "export_mode": export_mode,
+        "exports": exports,
+        "validation_errors": [],
+        "duplicate_vertex_warnings": warnings,
     }
+    # Keep convenient single-parcel keys for existing archive integrations.
+    if len(prepared) == 1:
+        for item in exports:
+            result[f"{item['export_type']}_path"] = item["path"]
+    return result
 
 
-# ---------------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------------
+def build_single_csvs(parcel, country_code, export_mode="boundary"):
+    return build_parcel_exports([parcel], country_code, export_mode)
+
 
 def main():
-    data = read_json_stdin()
-    parcels = data['parcels']
-    first_code = data['first_code']
-    count = data['count']
-    country_code = data.get('country_code', data.get('iso3', ''))
+    try:
+        data = read_json_stdin()
+        parcels = data["parcels"]
+        result = build_parcel_exports(
+            parcels,
+            data["country_code"],
+            data.get("export_mode", "boundary"),
+        )
+        write_json_stdout(result)
+    except (KeyError, TypeError, ValueError, RuntimeError) as exc:
+        write_json_stdout({"error": str(exc)})
+        raise SystemExit(2)
 
-    result = build_csvs(parcels, first_code, count, country_code)
-    write_json_stdout(result)
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

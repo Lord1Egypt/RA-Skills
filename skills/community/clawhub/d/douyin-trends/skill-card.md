@@ -1,45 +1,59 @@
-## Description: <br>
-Helps agents perform lightweight, compliant analysis of publicly visible Douyin videos, author pages, keyword searches, and trending lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides lightweight analysis and summaries of publicly available Douyin videos, author pages, searches, and hot-list trends.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to manually review public Douyin pages and summarize visible engagement, timing, and topic patterns for internal analysis and alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be used on login-only or restricted content. <br>
-Mitigation: Use it only with publicly visible Douyin pages and avoid content that requires authentication or special access. <br>
-Risk: Automated or high-volume collection could conflict with platform controls or terms. <br>
-Mitigation: Keep use manual and lightweight, respect rate limits, and do not attempt to bypass anti-bot or human-verification controls. <br>
-Risk: Users may try to repurpose the workflow for downloads, watermark removal, or interface bypass. <br>
-Mitigation: Limit the skill to summaries and visible metric analysis; do not use it for downloads, watermark removal, reverse engineering, or direct interface calls. <br>
+## Use Case:
 
+External users and developers use this skill to summarize public Douyin content by keyword, compare public author-page video performance, and scan public hot-list trends for internal analysis and alerts.
 
-## Reference(s): <br>
-- [Douyin homepage](https://www.douyin.com/) <br>
-- [Douyin trending lists](https://www.douyin.com/discover) <br>
-- [Douyin search](https://www.douyin.com/search) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/douyin-trends) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public engagement metrics, links, topic labels, and trend summaries when those fields are visible on public pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Use on private, account-only, or protected Douyin content could violate platform rules or privacy expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to publicly accessible pages, avoid private or account-only content, and check Douyin's platform rules before repeated automation.
+
+Risk: Bulk collection, downloads, anti-bot bypass, or watermark removal would exceed the skill's stated boundaries.
+
+Mitigation: Use user-directed page access for lightweight summaries only, and do not request downloads, watermark removal, protection bypass, or bulk scraping.
+
+Risk: Trend and metric summaries may be incomplete when public data is hidden, dynamically rendered, or not fully loaded.
+
+Mitigation: Wait for pages to load, treat results as summaries of visible data, and manually verify important metrics before relying on them.
+
+## Reference(s):
+
+- [Douyin homepage](https://www.douyin.com/)
+- [Douyin discover](https://www.douyin.com/discover)
+- [Douyin search](https://www.douyin.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries with public metrics, links, and compliance guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to publicly visible page data and user-directed browsing context.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Root cause debugging methodology for systematic, hypothesis-driven investigation that enforces no fixes without investigation and reassessment after three failed attempts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through systematic, hypothesis-driven root cause debugging with explicit investigation steps, falsifiable hypotheses, and reassessment after repeated failed fixes.
 
-## Publisher: <br>
-[muthukumaran-k-1](https://clawhub.ai/user/muthukumaran-k-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[muthukumaran-k-1](https://clawhub.ai/user/muthukumaran-k-1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to structure debugging conversations: reproduce the issue, rank falsifiable hypotheses, trace data flow, run minimal tests, and reassess after three failed fix attempts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can advise escalation into Claude Code when code inspection, test execution, or edits are needed, while the short description says no Claude Code session is needed.
+
+Mitigation: Treat escalation as conditional: remain in chat for reasoning-only debugging and move to a code session only when hands-on repository work is required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate bugs by reproducing failures, ranking falsifiable hypotheses, tracing data flow, and testing causes before attempting fixes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Later code-session commands suggested during an investigation could be incorrect or unsafe. <br>
-Mitigation: Review any generated commands or code-session actions before approving or executing them. <br>
-Risk: Debugging logs or reproduction details may contain secrets or private tokens. <br>
-Mitigation: Redact sensitive values before sharing logs, traces, environment details, or reproduction inputs. <br>
+**Output Format:** [Markdown guidance with occasional inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muthukumaran-k-1/ucts-investigate) <br>
+**Other Properties Related to Output:** [No executable code, credential access, persistence, or hidden data movement is identified in the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only workflow guidance; no code, persistence, credential access, or hidden automation per security evidence.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

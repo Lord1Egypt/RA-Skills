@@ -1,44 +1,57 @@
-## Description: <br>
-Summarize and format Markdown files, then apply MkDocs/Material-compatible structural spacing fixes for math, list, and table blocks; outputs to {filename}_formatted.md by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize and format markdown files, then apply mkdocs/material-compatible structural spacing fixes for math, list, and table blocks.
 
-## Publisher: <br>
-[smilingwayne](https://clawhub.ai/user/smilingwayne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smilingwayne](https://clawhub.ai/user/smilingwayne)
 
-## Use Case: <br>
-Developers, writers, and documentation maintainers use this skill to format Markdown documents, generate title and summary/frontmatter suggestions, and apply MkDocs Material spacing fixes while preserving source meaning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and rewrites Markdown files selected by the user. <br>
-Mitigation: Use the default formatted-copy workflow for important documents and review outputs before replacing originals. <br>
-Risk: Structural-fixes-only mode and backup-disabling options can modify files directly. <br>
-Mitigation: Use in-place modes only when direct edits are intended, and keep backups enabled unless another recovery path exists. <br>
-Risk: Generated analysis files and backups may contain sensitive source-document content. <br>
-Mitigation: Review generated analysis and backup files before sharing, committing, or retaining them. <br>
-Risk: The structural formatting script requires local npm dependencies. <br>
-Mitigation: Install dependencies from the provided lockfile with npm ci before running the script. <br>
+## Use Case:
 
+Developers, technical writers, and documentation maintainers use this skill to improve Markdown readability, create analysis and formatted copies, and apply MkDocs Material-compatible spacing fixes before publishing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smilingwayne/format-markdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, analysis reports, and terminal command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a formatted copy by default; structural-fixes-only mode can edit in place and may create timestamped backups unless backup creation is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and SKILL.md metadata) <br>
+Risk: Generated formatting, title, summary, or metadata changes could alter how readers interpret a document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the analysis report and formatted Markdown before relying on or publishing the output.
+
+Risk: Structural-fixes-only mode can modify the original Markdown file in place.
+
+Mitigation: Use the formatted-copy workflow for important documents and reserve in-place fixes for intentional edits.
+
+Risk: The skill uses npm-based formatting support, so local dependency installation may be required before running the script.
+
+Mitigation: Install dependencies from the provided lockfile and run the formatter in a controlled workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smilingwayne/skills/format-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, analysis reports, shell commands, and completion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write formatted copies, modify Markdown spacing in place, and create backups when overwriting existing output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

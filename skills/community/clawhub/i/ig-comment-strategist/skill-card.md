@@ -1,38 +1,54 @@
-## Description: <br>
-AI analyzes Instagram reels/posts and generates 8 categories of high-performing comments designed to maximize visibility, drive replies, and build authentic connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI analyzes Instagram reels/posts and generates 8 categories of high-performing comments designed to maximize visibility, drive replies, and build authentic connections.
 
-## Publisher: <br>
-[wizelements](https://clawhub.ai/user/wizelements) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wizelements](https://clawhub.ai/user/wizelements)
 
-## Use Case: <br>
-Growth marketers, social media managers, agencies, and creators use this skill to generate and prioritize Instagram comment ideas for reels or posts, including batch reports and optional email delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email reports can expose Instagram URLs, campaign context, or generated report contents to SMTP providers or unintended recipients. <br>
-Mitigation: Prefer local reports for sensitive campaigns; when email is used, use TLS, app passwords or a secret manager for SMTP credentials, and send only to trusted recipients. <br>
+## Use Case:
 
+External creators, social media managers, agencies, and growth teams use this skill to analyze Instagram reels or posts and generate categorized comment options for engagement campaigns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wizelements/ig-comment-strategist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with example shell commands and generated comment/report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce top-N comment selections, confidence scores, batch reports, and optional emailed reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: SMTP credentials or campaign context could be exposed through the optional email-report workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store SMTP credentials in environment variables or a secret manager, use TLS-enabled SMTP with app-specific credentials where possible, and confirm report recipients before sending.
+
+Risk: Generated Instagram comments may be inappropriate, inaccurate, or perceived as spam if posted without human review.
+
+Mitigation: Review suggested comments for accuracy, tone, platform policy fit, and audience context before posting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wizelements/skills/ig-comment-strategist)
+- [Publisher Profile](https://clawhub.ai/user/wizelements)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text guidance with optional shell command examples and JSON report references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include categorized comment suggestions, confidence scores, top-N filtering guidance, batch report guidance, and optional email-report handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact frontmatter, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

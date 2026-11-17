@@ -1,52 +1,55 @@
-## Description: <br>
-REST API reference for 147 services. Authentication patterns, endpoints, rate limits, and common gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents integrate and debug third-party REST and GraphQL APIs, covering authentication, rate limits, pagination, webhooks, resilience patterns, and service-specific gotchas for 147 services.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a broad API reference when integrating third-party services, checking authentication patterns, endpoint examples, rate limits, pagination, resilience, and common implementation gotchas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Curl examples may contact external services or trigger side effects such as sending messages, changing data, deleting resources, or performing financial and trading actions. <br>
-Mitigation: Treat examples as templates, use sandbox or test credentials first, and require explicit user confirmation before running side-effecting requests. <br>
-Risk: Secrets or personal data could be exposed if placeholders are replaced carelessly or credentials are pasted into logs, URLs, or shared transcripts. <br>
-Mitigation: Use environment variables, avoid query-string credentials, redact command output, and verify placeholders before execution. <br>
-Risk: API endpoint details, models, versions, and rate limits can drift from provider behavior after publication. <br>
-Mitigation: Check the provider's current documentation before production use and validate responses instead of assuming HTTP 200 always means success. <br>
+## Use Case:
 
+Developers and engineers use this skill when consuming third-party APIs, diagnosing failed requests, selecting authentication and retry patterns, verifying webhooks, handling streaming or file transfers, and shaping safe example calls across common providers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/api) <br>
-- [Skill homepage](https://clawic.com/skills/api) <br>
-- [Setup](setup.md) <br>
-- [Authentication patterns](auth.md) <br>
-- [Credential naming convention](credentials.md) <br>
-- [Pagination patterns](pagination.md) <br>
-- [Resilience patterns](resilience.md) <br>
-- [Webhook patterns](webhooks.md) <br>
-- [AI/ML API references](apis/ai-ml.md) <br>
-- [Payments API references](apis/payments.md) <br>
-- [Developer API references](apis/developer.md) <br>
-- [Productivity API references](apis/productivity.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline curl examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples are templates for user-reviewed API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill may persist inferred API preferences and context under ~/Clawic/data/api/, which can become sensitive or stale if users place account identifiers, credentials, or confidential request details there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review that directory periodically, keep credentials and confidential payloads out of stored preferences, and remove stale assumptions before relying on generated API guidance.
+
+Risk: Copyable API examples can expose credentials through logs or trigger financial, public, deletion, posting, moderation, or crypto side effects if run against live services.
+
+Mitigation: Use sandbox or scoped temporary credentials for examples, keep secrets in environment variables, avoid unredacted verbose logs, and require explicit confirmation before live side-effecting actions.
+
+## Reference(s):
+
+- [API / Application Programming Interface on ClawHub](https://clawhub.ai/ivangdavila/skills/api)
+- [ivangdavila publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Clawic API skill homepage](https://clawic.com/skills/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples reference environment variables for credentials and may adapt to user preferences stored under ~/Clawic/data/api/.]
+
+## Skill Version(s):
+
+1.3.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

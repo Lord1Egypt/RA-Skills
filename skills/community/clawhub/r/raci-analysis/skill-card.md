@@ -1,39 +1,53 @@
-## Description: <br>
-Define roles and responsibilities using RACI matrix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines roles and responsibilities using a RACI matrix for process improvement, organizational design, project management, and change initiatives.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Employees, consultants, and project teams use this skill to clarify accountability, responsibility, consultation, and communication expectations for a process, project, or change initiative. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be triggered by broad business terms and produce responsibility-mapping guidance when the request is ambiguous. <br>
-Mitigation: Confirm that the user is asking for RACI or role-clarity analysis before applying the framework. <br>
-Risk: RACI outputs can include staffing, accountability, or organizational details that may be sensitive. <br>
-Mitigation: Share only organizational details appropriate for the chat context and review generated role assignments before using them. <br>
+## Use Case:
 
+Employees, consultants, and project teams use this skill to clarify ownership, accountability, consultation, and communication responsibilities for processes, projects, and change initiatives.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a RACI matrix, role definitions, validation checks, role load analysis, issues, recommendations, and governance notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be invoked by broad workplace terms such as accountability or ownership, which may trigger it for general role-clarity requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested task is a RACI or responsibility-assignment analysis before applying the framework.
+
+Risk: RACI outputs can assign organizational accountability incorrectly when the prompt lacks stakeholder or authority context.
+
+Mitigation: Review the matrix with the affected stakeholders and validate that each activity has one accountable owner and at least one responsible role.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/raci-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a RACI matrix, role definitions, validation checks, role load analysis, issues, recommendations, and governance notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

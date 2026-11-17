@@ -1,41 +1,54 @@
-## Description: <br>
-Maintains a local directory of known agents with cached metadata for offline reference and quick lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local directory of known agents with cached metadata.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to list, find, and look up known Pilot Protocol peers, check trust status, and export cached peer metadata for offline directory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported directory files can contain cached hostnames, node IDs, tags, or trust context that reveal local network relationship information. <br>
-Mitigation: Store exported directory files in a private location and share them only with trusted recipients. <br>
-Risk: The skill depends on the local Pilot Protocol setup and pilotctl binary. <br>
-Mitigation: Install and use it only in environments where the Pilot Protocol setup and pilotctl binary are already trusted. <br>
+## Use Case:
 
+Developers and operators use this skill to list, find, and look up known Pilot Protocol peers and cache agent metadata for offline reference.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-directory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, JSON] <br>
-**Output Format:** [Markdown with inline bash code blocks and generated JSON or text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilotctl binary on PATH and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Example export workflows can create local cache files containing peer hostnames and node IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, protect, or delete generated cache files when the agent directory should not retain that metadata.
+
+Risk: The skill depends on pilotctl and a running Pilot Protocol daemon, so commands may fail or return stale local directory information if those prerequisites are missing or outdated.
+
+Mitigation: Confirm pilotctl is available on PATH and the daemon is running before relying on lookup results.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-directory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with bash commands and JSON-oriented workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH and a running Pilot Protocol daemon; example workflows may create local JSONL, JSON, and text cache files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

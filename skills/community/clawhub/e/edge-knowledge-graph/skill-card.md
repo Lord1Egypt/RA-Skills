@@ -1,40 +1,52 @@
-## Description: <br>
-Build and query focused knowledge graph subgraphs locally on resource-limited edge devices for low-latency, offline-aware reasoning and incremental updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and query focused knowledge graph subgraphs locally on resource-limited edge devices for low-latency, offline-aware reasoning and incremental updates.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for Chinese-language guidance on designing edge knowledge graph systems, including scenario-specific graph projection, incremental synchronization, and lightweight local query or inference patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is documentation-only and does not provide runnable tooling.
+
+Mitigation: Use it as design guidance for edge knowledge graph work, and implement or validate any resulting system separately before deployment.
+
+Risk: The guidance is written in Chinese and may not be useful to teams that cannot review Chinese-language technical content.
+
+Mitigation: Install or rely on it only when Chinese-language guidance for edge knowledge graph design is appropriate for the target users.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design edge knowledge graph systems that project cloud-scale graphs into task-focused local subgraphs, support offline-aware incremental sync, and optimize local query and inference on constrained devices. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides design guidance for knowledge graph projection, synchronization, and edge inference, so unsuitable assumptions could lead to incorrect or incomplete system designs. <br>
-Mitigation: Review the guidance against device constraints, data freshness requirements, and conflict-resolution policy before using it in a deployment plan. <br>
-Risk: The security evidence is clean but still recommends reviewing visible instructions before use. <br>
-Mitigation: Inspect the skill content before installation and avoid providing secrets or authorizing real-world actions unless they clearly match the intended task. <br>
+**Output Format:** [Markdown guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/edge-knowledge-graph) <br>
+**Other Properties Related to Output:** [Documentation-only; does not provide runnable tooling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language conceptual guidance; no code or executable commands are produced.] <br>
+1.0.0 (source: server release metadata, created 2026-04-01)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

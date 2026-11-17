@@ -1,40 +1,57 @@
-## Description: <br>
-Chu Hui helps agents simulate environment optimization, filter noise from text, and suggest parameter tuning for performance and stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chu Hui optimizes system environments, filters noise from text, and tunes parameters to improve performance and stability.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-Developers and agent operators use this skill for lightweight local cleanup and advisory optimization output, including text filtering and simulated tuning suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optimization and tuning results may be mistaken for verified system changes. <br>
-Mitigation: Treat optimize and tune results as suggestions or simulations and review them before applying related changes. <br>
-Risk: Text filtering may remove useful content. <br>
-Mitigation: Review filtered output before using it in downstream workflows. <br>
+## Use Case:
 
+Developers and operators use Chu Hui to get advisory environment optimization summaries, filter noisy text, and tune model or retrieval parameters. Its outputs should be reviewed before using them to change memory, workspace, or configuration settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/chu-hui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [JSON and text responses from local JavaScript helper commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optimization and tuning outputs are advisory simulations; filtered text should be reviewed because cleanup rules may remove useful content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.35 (source: frontmatter and release evidence) <br>
+Risk: Chinese-language output may not fit every deployment or reviewer workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Chinese-language output is acceptable or where reviewers can validate the results.
+
+Risk: Optimization and tuning results are advisory and may be inappropriate if applied without review.
+
+Mitigation: Confirm recommendations separately before allowing real memory, workspace, or configuration changes.
+
+Risk: The skill documentation describes coordination with other skills that could broaden impact if enabled.
+
+Mitigation: Confirm any invoked skills and their permissions before allowing integrated optimization workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lt8899789/skills/chu-hui)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory optimization, filtering, and tuning results; Chinese-language output may be present.]
+
+## Skill Version(s):
+
+1.0.35 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

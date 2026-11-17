@@ -1,41 +1,54 @@
-## Description: <br>
-Search and manage private, local document collections (PDF, PPTX, DOCX) offline. Use when you need to find information within your private files, not for web research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and manage private, local document collections (PDF, PPTX, DOCX) offline. Use when you need to find information within your private files, not for web research.
 
-## Publisher: <br>
-[docsagent](https://clawhub.ai/user/docsagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[docsagent](https://clawhub.ai/user/docsagent)
 
-## Use Case: <br>
-Developers, employees, and external users use this skill to index and search private local PDF, PPTX, and DOCX collections, then answer questions from retrieved document snippets with source citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search answers may expose snippets from private local documents to the current agent conversation. <br>
-Mitigation: Index only intended local paths and include source paths in answers so users can verify what document content was used. <br>
-Risk: Missing, stale, or incomplete local indexes can produce incomplete answers. <br>
-Mitigation: Check index status and add or refresh the relevant document paths before relying on search results. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to index and search their own local PDF, PPTX, and DOCX collections, then answer questions from matching local snippets with source citations.
 
-## Reference(s): <br>
-- [DocsAgent ClawHub Skill Page](https://clawhub.ai/docsagent/docsagent) <br>
-- [DocsAgent GitHub Repository](https://github.com/docsagent/docsagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and source-citation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should mention source file paths and page numbers when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill depends on an external npm CLI package as part of installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted, pinned, or audited versions of @docsagent/docsagent and avoid running npm with elevated privileges.
+
+Risk: Broad local indexing may expose more private documents to local search than intended.
+
+Mitigation: Index only the specific document folders or files needed for the task and review indexed sources with the list command.
+
+## Reference(s):
+
+- [DocsAgent GitHub repository](https://github.com/docsagent/docsagent)
+- [DocsAgent ClawHub skill page](https://clawhub.ai/docsagent/skills/docsagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and source-path citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be grounded in indexed local documents and cite file paths and page numbers when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,129 +1,49 @@
-# Excel2Insights
+# Excel2Insights 📊
 
-[![ClawHub Security Rating: HIGH CONFIDENCE](https://img.shields.io/badge/ClawHub-HIGH%20CONFIDENCE-brightgreen)](https://clawhub.com)
+Excel / CSV / TSV 数据分析与可视化工具。自动加载结构化数据，执行统计分析，生成高质量图表，输出结构化洞察报告。
 
-纯本地Excel数据分析与可视化工具。
+## 快速使用
 
-## 🎯 功能特点
-
-### 📊 数据分析
-- 读取Excel文件 (.xlsx, .xls, .csv)
-- 显示数据基本信息
-- 统计数值列的基本统计量
-- 检查缺失值
-- 生成可视化图表
-
-### 🔒 安全认证
-- ✅ **ClawHub HIGH CONFIDENCE** 最高安全评级
-- ✅ **纯本地处理** - 所有数据处理在本地进行
-- ✅ **数据安全** - 用户数据不离开本地计算机
-- ✅ **透明可审计** - 所有代码开源可审查
-
-## 🚀 快速开始
-
-### 安装依赖
 ```bash
-pip install pandas matplotlib openpyxl
+# 一键全流程（扫描 + 分析 + 图表 + 报告）
+python3 scripts/auto-pipeline.py --file data.csv
+
+# 只看概览
+python3 scripts/excel-reader.py --file data.xlsx
+
+# 完整分析
+python3 scripts/data-analyzer.py --file data.csv --correlation --outliers
+
+# 指定图表类型
+python3 scripts/chart-generator.py --file data.csv --charts histogram,bar,heatmap
+
+# 生成报告（配合已生成的图表）
+python3 scripts/report-generator.py --file data.csv --charts output/charts
 ```
 
-### 基本使用
-```bash
-# 查看帮助
-python excel2insights.py --help
+## 功能
 
-# 分析Excel文件
-python excel2insights.py --file data.xlsx --analyze
+- **数据加载** — 支持 CSV, XLSX, XLS, TSV 格式
+- **统计概要** — 数值列的均值/中位数/标准差/分位数，类别列的频次分布
+- **数据质量** — 缺失值、重复行、异常值检测
+- **可视化** — 直方图、箱线图、柱状图、折线图、饼图、热力图、散点图
+- **结构化报告** — Markdown/HTML 报告，含摘要、逐列分析、图表、洞察
+- **Auto Pipeline** — 一条命令完成全流程
 
-# 生成可视化图表
-python excel2insights.py --file data.xlsx --visualize
+## 脚本列表
 
-# 生成报告
-python excel2insights.py --file data.xlsx --report
-```
+| 脚本 | 功能 |
+|------|------|
+| `excel-reader.py` | 加载文件，输出元数据和预览 |
+| `data-analyzer.py` | 统计分析，含数据质量检查 |
+| `chart-generator.py` | 生成多种可视化图表 |
+| `report-generator.py` | 生成结构化洞察报告 |
+| `auto-pipeline.py` | 自动完成全流程 |
 
-## 📁 项目结构
+## 依赖
 
-```
-excel2insights-v1.0.8/
-├── excel2insights.py      # 主工具代码
-├── __init__.py           # 模块初始化
-├── SKILL.md              # 技能描述
-├── INSTALL.md            # 安装指南
-├── VERSION.txt           # 版本信息
-└── README.md             # 项目说明 (本文件)
-```
+Python 3.9+, pandas, numpy, matplotlib, seaborn, openpyxl
 
-## 🔧 技术规格
+## 许可
 
-- **Python版本**: 3.8+
-- **核心依赖**: pandas, matplotlib, openpyxl
-- **支持格式**: .xlsx, .xls, .csv
-- **输出格式**: 文本报告、PNG图表
-- **安全评级**: ClawHub HIGH CONFIDENCE
-
-## 📋 使用示例
-
-### 示例1: 基础分析
-```bash
-python excel2insights.py --file sales_data.xlsx --analyze
-```
-
-### 示例2: 完整分析流程
-```bash
-python excel2insights.py --file customer_data.xlsx --analyze --visualize --report
-```
-
-## 🛠️ 故障排除
-
-### 常见问题
-
-#### 1. 依赖安装失败
-```bash
-# 升级pip
-pip install --upgrade pip
-
-# 使用国内镜像
-pip install pandas matplotlib openpyxl -i https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
-#### 2. 图表生成问题
-```bash
-# 检查matplotlib安装
-python -c "import matplotlib; print(f'matplotlib版本: {matplotlib.__version__}')"
-```
-
-#### 3. 文件读取失败
-```bash
-# 检查文件路径和权限
-ls -la data.xlsx
-chmod +r data.xlsx
-```
-
-## 📈 版本历史
-
-### v1.0.8 (2026-03-18) - HIGH CONFIDENCE版本
-- 通过ClawHub严格安全审查
-- 获得HIGH CONFIDENCE最高安全评级
-- 优化代码结构和文档
-- 提升工具稳定性
-
-### 早期版本
-- v1.0.0-v1.0.7: 开发迭代版本
-
-## 🤝 贡献指南
-
-欢迎贡献代码和改进建议！
-
-## 📄 许可证
-
-本项目采用 MIT 许可证。
-
-## 🙏 致谢
-
-感谢 ClawHub 安全团队的专业审核和 HIGH CONFIDENCE 安全评级。
-
----
-**项目名称**: Excel2Insights  
-**版本**: v1.0.8  
-**安全评级**: HIGH CONFIDENCE  
-**发布日期**: 2026-03-18
+MIT-0 — 无需署名

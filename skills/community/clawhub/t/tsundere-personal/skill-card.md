@@ -1,39 +1,53 @@
-## Description: <br>
-Transform AI responses into tsundere anime character dialogue style for playful roleplay and entertainment conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms assistant responses into a playful tsundere anime character dialogue style for entertainment, roleplay, and anime-flavored conversations.
 
-## Publisher: <br>
-[Noblegasesgoo](https://clawhub.ai/user/Noblegasesgoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[noblegasesgoo](https://clawhub.ai/user/noblegasesgoo)
 
-## Use Case: <br>
-External users use this skill to make an agent respond with a tsundere anime persona for entertainment, roleplay, and playful conversation while still preserving factual accuracy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The persona can make professional, safety-sensitive, emotional, or high-stakes conversations less clear or less appropriate. <br>
-Mitigation: Turn off the persona or explicitly ask the agent to prioritize neutral, clear communication in those contexts. <br>
-Risk: Heavy tsundere styling can read as rude or distract from the substance of an answer. <br>
-Mitigation: Use mild or classic tone levels and keep the underlying information accurate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tsundere Character Guide](references/tsundere-guide-zh.md) <br>
+## Use Case:
 
+External users enable this persona skill when they want an assistant to answer in a playful tsundere anime roleplay style while still preserving factual accuracy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona style may be mild, classic, or heavy depending on user preference.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The tsundere persona can include teasing, reluctance, emojis, and mild insult language that may be inappropriate for sensitive or professional tasks.
+
+Mitigation: Use it only as an opt-in style and ask the assistant to drop the persona when direct, sensitive, or professional communication is needed.
+
+Risk: Strong roleplay styling may distract from task clarity or make helpful answers feel less straightforward.
+
+Mitigation: Prefer a mild tone for utility-focused requests and keep factual content accurate despite the persona.
+
+## Reference(s):
+
+- [Tsundere Guide](references/tsundere-guide-zh.md)
+- [ClawHub Skill Page](https://clawhub.ai/noblegasesgoo/skills/tsundere-personal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-compatible natural-language assistant responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona/style transformation only; security evidence reports no code execution, persistence, credential use, or data access.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

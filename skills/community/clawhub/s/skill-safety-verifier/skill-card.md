@@ -1,38 +1,60 @@
-## Description: <br>
-Security-first skill vetting for AI agents before installation, with checks for red flags, permission scope, suspicious patterns, and safety recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents that checks red flags, permission scope, suspicious patterns, and provides risk assessment and safety recommendations.
 
-## Publisher: <br>
-[ttttstc](https://clawhub.ai/user/ttttstc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ttttstc](https://clawhub.ai/user/ttttstc)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review external skills before installation and receive risk scoring, warnings, and install guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The advisory lookup disables HTTPS verification, which can make the skill's security results unreliable. <br>
-Mitigation: Review this skill before installing, use only explicit skill paths or repositories you choose, prefer a pinned reviewed version, and treat its output as one input rather than a final security decision until TLS verification is fixed. <br>
+## Use Case:
 
+Developers and agent operators use this skill before installing external skills to review code patterns, dependency advisory signals, permissions, and installation risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ttttstc/skill-safety-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or terminal text with optional JSON scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes risk scores, warnings, and a recommendation based on scanned skill files and dependency advisory checks when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The server security review says the skill-safety results may be untrustworthy until TLS verification and incomplete scan handling are fixed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scan results as advisory, review the code before approving a skill, and fix TLS verification and incomplete-result reporting before relying on it for install decisions.
+
+Risk: The release guidance warns against direct-download execution from a mutable branch.
+
+Mitigation: Install from pinned releases or checksum-verified artifacts instead of executing raw files from a moving branch.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Run the skill in a constrained environment and avoid exposing credentials or broad filesystem access during evaluation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ttttstc/skills/skill-safety-verifier)
+- [GitHub Advisory API](https://api.github.com/advisories)
+- [OpenClaw Security Docs](https://docs.openclaw.ai/security)
+- [OpenClaw Skill Writing Guide](https://docs.openclaw.ai/skills/write)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown risk summaries, terminal risk radar output, and optional JSON analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include network, vulnerability, permission, and total risk scores with warnings and recommendations.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

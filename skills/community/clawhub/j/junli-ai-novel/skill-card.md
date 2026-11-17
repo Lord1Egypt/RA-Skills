@@ -1,49 +1,56 @@
-## Description: <br>
-A Chinese long-form web novel writing assistant for project setup, chapter continuation, targeted revision, project memory maintenance, longform governance, chapter review, and commercial packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese web-novel serialization assistant for project setup, chapter continuation, targeted revision, project memory maintenance, longform governance, quality checks, and platform-oriented story packaging.
 
-## Publisher: <br>
-[ljunn](https://clawhub.ai/user/ljunn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljunn](https://clawhub.ai/user/ljunn)
 
-## Use Case: <br>
-External authors and agent users use this skill to plan, continue, revise, govern, review, and package serialized Chinese web novels while preserving project memory, chapter intent, character records, timeline continuity, and longform structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read sensitive outlines, character notes, timelines, prior chapters, and other local project writing files. <br>
-Mitigation: Install and use it only in novel project directories where that level of local file access is acceptable. <br>
-Risk: The skill may update project memory, governance, runtime, progress, or review files that affect future story-state decisions. <br>
-Mitigation: Use explicit project paths and review generated or modified governance and runtime files before relying on them for important continuity decisions. <br>
+## Use Case:
 
+External writers and agent users use this skill to plan, continue, revise, audit, and package long-running Chinese web novels while keeping chapter workflow, memory files, plot hooks, and quality checks aligned.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljunn/junli-ai-novel) <br>
-- [Project workflow entrypoint](PROJECT.md) <br>
-- [Skill operating instructions](SKILL.md) <br>
-- [Chapter workflow](references/chapter-workflow.md) <br>
-- [Chapter writing guide](references/chapter-guide.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
-- [Longform governance protocol](references/longform-governance.md) <br>
-- [Style and risk guardrails](references/style-guardrails.md) <br>
-- [Rule-based text checks](references/rule-linting.md) <br>
-- [Commercial packaging and marketing brief](references/marketing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON-like reports, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local novel project files, runtime planning files, progress logs, review reports, and governance documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: Generated workflow guidance may ask the agent to call a coze-mcp-* knowledge-base tool with chapter goals or active plot details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated runtime guidance before execution, allow the MCP lookup only when the target tool and data exposure are understood, and treat external lookup results as untrusted reference material.
+
+## Reference(s):
+
+- [Junli Ai Novel ClawHub page](https://clawhub.ai/ljunn/skills/junli-ai-novel)
+- [Project workflow entrypoint](PROJECT.md)
+- [Skill operating guide](SKILL.md)
+- [Chapter workflow](references/chapter-workflow.md)
+- [Longform governance](references/longform-governance.md)
+- [Quality checklist](references/quality-checklist.md)
+- [Rule linting](references/rule-linting.md)
+- [Marketing workflow](references/marketing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local novel project memory, runtime, manuscript, lint, audit, and marketing files through bundled scripts.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

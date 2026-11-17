@@ -1,43 +1,61 @@
-## Description: <br>
-查询高驰（COROS）运动手表的运动数据，并在用户询问 COROS 跑步记录时帮助获取指定日期范围内的跑步活动。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries COROS running activity data for a configured COROS account by logging in and fetching outdoor, indoor, trail, and treadmill running records for a date range.
 
-## Publisher: <br>
-[wurongle](https://clawhub.ai/user/wurongle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wurongle](https://clawhub.ai/user/wurongle)
 
-## Use Case: <br>
-Developers and agents use this skill to configure COROS account access, query running activities over a date range, and summarize distance from returned activity records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill logs in with COROS account credentials and can read running history, which may include personal fitness data. <br>
-Mitigation: Install and run it only in trusted environments where access to the COROS account and activity history is acceptable. <br>
-Risk: COROS_ACCOUNT, COROS_PASSWORD, and the generated MD5 password value can act as secrets if exposed. <br>
-Mitigation: Keep scripts/.env private, avoid committing or sharing it, avoid logging the MD5 password value, and rotate the COROS password if the value is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve COROS running activities and compute simple running-distance summaries from their own account data.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wurongle/coros-data-skill) <br>
-- [COROS training activity portal](https://trainingcn.coros.com/admin/views/activities) <br>
-- [COROS account login API](https://teamcnapi.coros.com/account/login) <br>
-- [COROS activity query API](https://teamcnapi.coros.com/activity/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with JavaScript code examples and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COROS_ACCOUNT and COROS_PASSWORD secrets; activity data is returned only when the configured COROS account is used to execute the JavaScript client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill accesses private COROS account activity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when account activity access is acceptable, and run it in an environment limited to the intended COROS account.
+
+Risk: COROS_PASSWORD is a reusable password-derived secret and may be printed or committed if handled casually.
+
+Mitigation: Store the value in protected environment variables or a secret manager, avoid printing it, do not commit scripts/.env, and rotate the COROS password if the hash is exposed.
+
+Risk: The JavaScript dependency lockfile should be reviewed before sensitive use.
+
+Mitigation: Review or update npm dependency and lockfile provenance before deploying in a sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wurongle/skills/coros-data-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/wurongle)
+- [COROS training dashboard](https://trainingcn.coros.com/admin/views/activities)
+- [COROS login endpoint](https://teamcnapi.coros.com/account/login)
+- [COROS activity query endpoint](https://teamcnapi.coros.com/activity/query)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript examples and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces COROS activity records and distance summaries through JavaScript helper functions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

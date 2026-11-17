@@ -1,38 +1,47 @@
-## Description: <br>
-Audits HTML/CSS for WCAG 2.1 compliance, including color contrast, ARIA labels, keyboard navigation, and screen reader support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits HTML/CSS for WCAG 2.1 compliance. Color contrast, ARIA labels, keyboard navigation, screen reader support.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and designers use this skill to review HTML and CSS for accessibility issues and receive actionable WCAG-oriented guidance with code examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Accessibility recommendations may be incomplete or inappropriate for a specific production site or compliance context. <br>
-Mitigation: Review suggested HTML and CSS changes before applying them, especially for production sites or compliance-sensitive work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-accessibility-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/ryudi84) <br>
+## Use Case:
+
+Developers and accessibility reviewers use this skill to audit HTML/CSS for WCAG 2.1 concerns, including color contrast, ARIA labeling, keyboard navigation, and screen reader support. It provides detailed, actionable suggestions with code examples where relevant.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Suggested HTML/CSS accessibility changes can depend on project context and target user needs.
+
+Mitigation: Review recommendations before applying them and verify behavior with the project's supported assistive technologies and interaction patterns.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with accessibility findings and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory review output; suggested changes should be checked before production use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with code examples where relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory accessibility findings and trade-off explanations should be reviewed before applying changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

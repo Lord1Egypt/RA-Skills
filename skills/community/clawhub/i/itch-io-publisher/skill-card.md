@@ -1,44 +1,59 @@
-## Description: <br>
-Read itch.io creator stats and publish or update itch.io game builds from Windows using the itch.io server-side API and Butler. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read itch.io creator stats and publish or update itch.io game builds from Windows using the itch.io server-side API and Butler.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-External creators and developers use this skill to validate an itch.io API key, inspect account and game stats, install Butler, and publish local game builds to itch.io channels. It is intended for Windows-based publishing workflows where the user confirms the source path and target project before upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an itch.io API key that can expose account data or authorize publishing actions if mishandled. <br>
-Mitigation: Treat the API key as sensitive, avoid pasting it back into chat, and remove temporary credential files after Butler commands complete. <br>
-Risk: A live Butler push can publish or update the wrong project, channel, or build if the source path or target is incorrect. <br>
-Mitigation: Confirm the exact local source path and itch.io target before live upload, and use the dry-run path for new projects or channels. <br>
-Risk: The workflow downloads the latest Windows Butler build from a remote endpoint. <br>
-Mitigation: Independently verify the Butler download source when stricter supply-chain assurance is required. <br>
+## Use Case:
 
+Developers and game creators use this skill to inspect itch.io account and game stats, validate an itch.io API key, install Butler on Windows, and publish local game builds to confirmed itch.io project channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/itch-io-publisher) <br>
-- [itch.io API endpoint](https://itch.io/api/1/$key) <br>
-- [Butler Windows download endpoint](https://broth.itch.zone/butler/windows-amd64/LATEST/archive/default) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with PowerShell command blocks and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Windows PowerShell commands for itch.io API calls, Butler installation, dry-run pushes, and live pushes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: An itch.io API key is needed for account access and publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited or rotated API key where possible, avoid verbose logging, and do not paste API keys back into chat unless explicitly requested.
+
+Risk: A live Butler push can publish or update a build on the wrong itch.io target.
+
+Mitigation: Confirm the exact source path and target channel, and perform a dry-run before live upload for new projects or channels.
+
+Risk: Butler is downloaded during setup.
+
+Mitigation: Verify Butler from an official source when stronger supply-chain assurance is required.
+
+## Reference(s):
+
+- [itch.io server-side API endpoint](https://itch.io/api/1/$key)
+- [Butler Windows archive endpoint](https://broth.itch.zone/butler/windows-amd64/LATEST/archive/default)
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/itch-io-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command blocks and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API responses summarized as JSON when reading itch.io account or game statistics.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

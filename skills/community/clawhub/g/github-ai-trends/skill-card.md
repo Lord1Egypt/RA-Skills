@@ -1,41 +1,52 @@
-## Description: <br>
-Generate GitHub AI trending project reports as formatted text leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate GitHub AI trending project reports as formatted text leaderboards.
 
-## Publisher: <br>
-[toller892](https://clawhub.ai/user/toller892) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[toller892](https://clawhub.ai/user/toller892)
 
-## Use Case: <br>
-Developers, researchers, and AI practitioners use this skill to fetch and summarize public GitHub AI, ML, and LLM repository trends as a chat-ready leaderboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional GitHub token use could expose a credential if the token is pasted into chat, command examples, logs, or shell history. <br>
-Mitigation: Use an environment variable or secret manager, prefer a least-privilege token, and avoid including tokens in visible prompts or command output. <br>
-Risk: Trend results are fetched live from public GitHub search data and may be incomplete, rate-limited, or change over time. <br>
-Mitigation: Treat the generated leaderboard as a point-in-time discovery aid and verify important repositories directly on GitHub before acting on the results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GitHub AI Trends ClawHub page](https://clawhub.ai/toller892/github-ai-trends) <br>
-- [toller892 ClawHub publisher profile](https://clawhub.ai/user/toller892) <br>
-- [GitHub Search Repositories API](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories) <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to fetch recently active AI, ML, and LLM repositories from GitHub and produce a concise leaderboard for chat display.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, API Calls] <br>
-**Output Format:** [Markdown leaderboard by default, with optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts daily, weekly, or monthly periods; supports configurable result limits and optional GitHub token use for higher rate limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make GitHub API requests and may use an optional GitHub token.
+
+Mitigation: Run without a token when possible, or provide a fine-grained short-lived token through the GITHUB_TOKEN environment variable.
+
+Risk: Repository names, descriptions, and links in the generated leaderboard come from GitHub and should be treated as untrusted content.
+
+Mitigation: Review leaderboard entries before acting on links or repository descriptions.
+
+## Reference(s):
+
+- [GitHub AI Trends ClawHub skill page](https://clawhub.ai/toller892/skills/github-ai-trends)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Markdown leaderboard by default, with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily, weekly, and monthly periods; limit controls the number of repositories returned.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

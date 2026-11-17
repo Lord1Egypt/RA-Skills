@@ -1,43 +1,58 @@
-## Description: <br>
-Generate publication-quality sequence logos for DNA or protein motifs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate motif-logo analysis outputs for DNA or protein sequences, currently as ASCII conservation logos or WebLogo command guidance.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and analysts use this skill to generate and review motif logo representations from DNA or protein sequence inputs, including ASCII summaries or WebLogo command guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security guidance describes this as a lightweight local prototype with capability and documentation gaps. <br>
-Mitigation: Verify the actual command-line help and run a small local test before relying on generated results. <br>
-Risk: The skill can read sequence files and write output files in the local workspace. <br>
-Mitigation: Run it in an isolated Python environment and keep input and output paths inside the workspace. <br>
-Risk: WebLogo mode emits shell commands for a user to copy into a shell. <br>
-Mitigation: Inspect generated commands before execution and invoke external tools only from trusted environments. <br>
+## Use Case:
 
+Developers and data analysts use this skill to inspect conservation patterns in DNA or protein sequence sets and prepare reproducible motif-logo outputs from trusted sequence files.
 
-## Reference(s): <br>
-- [Motif Logo Generator on ClawHub](https://clawhub.ai/aipoch-ai/motif-logo-generator) <br>
-- [WebLogo](https://weblogo.berkeley.edu/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text or Markdown with command snippets; optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write an ASCII logo or WebLogo command plan to a user-specified output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated WebLogo command text may include user-supplied sequence data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted sequence files in an isolated workspace, review generated commands before execution, and prefer invoking WebLogo safely without a shell.
+
+Risk: The artifact documentation overstates generated image-format support relative to the packaged script.
+
+Mitigation: Validate expected output mode before use and treat image generation as dependent on external WebLogo tooling unless the implementation is updated.
+
+Risk: Dependencies are not pinned.
+
+Mitigation: Pin and review runtime dependencies before deployment.
+
+## Reference(s):
+
+- [WebLogo](https://weblogo.berkeley.edu/)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/motif-logo-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write requested text output files; WebLogo mode emits command text rather than executing WebLogo directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

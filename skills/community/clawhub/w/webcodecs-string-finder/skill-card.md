@@ -1,41 +1,54 @@
-## Description: <br>
-Finds valid WebCodecs strings for video and audio by researching codec support tables and detailed specifications on webcodecsfundamentals.org. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds valid WebCodecs strings for video and audio by researching codec support tables and detailed specifications on webcodecsfundamentals.org.
 
-## Publisher: <br>
-[socratescli](https://clawhub.ai/user/socratescli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socratescli](https://clawhub.ai/user/socratescli)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify suitable WebCodecs audio and video codec strings for target platforms, codec families, and media requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Codec support guidance can be incomplete or change across browsers, devices, and versions. <br>
-Mitigation: Verify production-critical recommendations against current browser and device support before relying on them. <br>
-Risk: The skill uses web access to consult public codec reference pages. <br>
-Mitigation: Treat results as compatibility guidance and review cited reference pages for high-impact decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to select WebCodecs video or audio codec strings for target browsers, platforms, codecs, and media requirements.
 
-## Reference(s): <br>
-- [WebCodecs Fundamentals codec support table](https://webcodecsfundamentals.org/datasets/codec-support-table/) <br>
-- [ClawHub release page](https://clawhub.ai/socratescli/webcodecs-string-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendation with concise rationale and browser or platform support notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns two to three recommended codec strings when enough requirement detail is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Recommendations depend on external WebCodecs support data that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against current WebCodecs Fundamentals pages and target browser or platform support before relying on them.
+
+Risk: Unpinned third-party skill updates could differ from the reviewed release.
+
+Mitigation: Before installing or upgrading, prefer a pinned commit or reviewed release and re-check the repository.
+
+## Reference(s):
+
+- [WebCodecs Fundamentals codec support table](https://webcodecsfundamentals.org/datasets/codec-support-table/)
+- [WebCodecs Fundamentals codec detail pages](https://webcodecsfundamentals.org/codecs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendation list with brief explanations and browser or platform support notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Usually returns 2-3 codec string recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

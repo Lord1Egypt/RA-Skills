@@ -1,41 +1,56 @@
-## Description: <br>
-Connect to social media and content platform APIs by navigating developer portals, creating apps, obtaining OAuth tokens, and storing credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to social media and content platform APIs by navigating developer portals, creating apps, obtaining OAuth tokens, and storing credentials.
 
-## Publisher: <br>
-[brandonwadepackard-cell](https://clawhub.ai/user/brandonwadepackard-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandonwadepackard-cell](https://clawhub.ai/user/brandonwadepackard-cell)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and troubleshoot OAuth credentials for Facebook, Instagram, YouTube, Twitter/X, and TikTok integrations. It helps users create platform apps, choose scopes, exchange or refresh tokens, and store credentials in a structured database format. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may expose API keys, OAuth tokens, client secrets, or refresh tokens while following setup and debugging steps. <br>
-Mitigation: Use a secrets vault or encrypted database fields, restrict database access, avoid logging or pasting full tokens, and rotate or revoke credentials when exposure is suspected. <br>
-Risk: Overbroad OAuth scopes or write/posting permissions can allow unnecessary account actions. <br>
-Mitigation: Request the narrowest scopes possible and add write or posting permissions only when the integration explicitly requires them. <br>
-Risk: Platform-specific token lifetimes, app review requirements, and tier limits can cause failed posting or authorization flows. <br>
-Mitigation: Confirm current platform requirements, refresh-token behavior, quota limits, and app review status before relying on automated posting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OAuth Flow Patterns](references/oauth-flows.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up, refresh, and troubleshoot OAuth credentials for Facebook, Instagram, YouTube, Twitter/X, and TikTok platform APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code, shell commands] <br>
-**Output Format:** [Markdown with JSON, SQL, Python, and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Credential-handling guidance should be adapted to the user's target platform, approved scopes, and storage system.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credential storage guidance may lead users to store OAuth tokens and app secrets without sufficient protection.
+
+Mitigation: Store tokens and app secrets in a secret manager or encrypted store, redact secrets from logs and URLs, and define token rotation and revocation procedures.
+
+Risk: OAuth setup guidance may omit safety controls for state validation, PKCE, and least-privilege authorization.
+
+Mitigation: Validate OAuth state, use PKCE where applicable, request least-privilege scopes, and review platform-specific OAuth requirements before deployment.
+
+## Reference(s):
+
+- [OAuth Flow Patterns](references/oauth-flows.md)
+- [Facebook Graph OAuth Token Exchange](https://graph.facebook.com/v21.0/oauth/access_token)
+- [Facebook Graph Accounts Endpoint](https://graph.facebook.com/v21.0/me/accounts)
+- [YouTube Upload OAuth Scope](https://www.googleapis.com/auth/youtube.upload)
+- [YouTube Readonly OAuth Scope](https://www.googleapis.com/auth/youtube.readonly)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown with JSON, SQL, Python, and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces credential setup and OAuth troubleshooting guidance; users should adapt storage and token handling to their security controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

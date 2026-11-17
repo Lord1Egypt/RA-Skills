@@ -1,44 +1,57 @@
-## Description: <br>
-Call GET /api/douban/get-movie-reviews/v1 for Douban Movie Movie Reviews through JustOneAPI with subjectId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douban/get-movie-reviews/v1 for Douban Movie Movie Reviews through JustOneAPI with subjectId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to fetch Douban Movie review data for a specific subjectId through JustOneAPI. It supports review research and audience sentiment analysis by returning review titles, ratings, snippets, and related API output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A JustOneAPI token is required and may be exposed through command-line arguments, request URLs, logs, or shared systems. <br>
-Mitigation: Use a limited or revocable token, avoid running the CLI where commands or URLs are logged, and rotate the token if exposure is suspected. <br>
-Risk: The skill sends the token and requested Douban subject parameters to api.justoneapi.com. <br>
-Mitigation: Use the skill only when the user is comfortable sending those credentials and request parameters to JustOneAPI. <br>
+## Use Case:
 
+Developers and agents use this skill to call JustOneAPI's Douban movie reviews endpoint for review titles, ratings, snippets, and audience-sentiment research keyed by a Douban subject ID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douban-get-movie-reviews) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_movie_reviews&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_movie_reviews&utm_content=project_link) <br>
-- [Douban Movie Movie Reviews Operations](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and a Douban subjectId; optional page and sort query parameters are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a JustOneAPI token, and token exposure in chat, logs, screenshots, shell history, or process listings could allow unauthorized API use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token; pass it through the documented environment variable or token argument; avoid sharing command logs; and rotate the token if exposure is suspected.
+
+Risk: Movie review lookup requests are sent to api.justoneapi.com.
+
+Mitigation: Confirm that the subject IDs and query parameters are appropriate to send to the third-party API before execution.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_movie_reviews&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_movie_reviews&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douban-get-movie-reviews)
+- [Generated operation reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Concise Markdown summary followed by raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; required endpoint input is subjectId, with optional sort and page query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

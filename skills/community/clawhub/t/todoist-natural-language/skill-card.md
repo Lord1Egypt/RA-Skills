@@ -1,45 +1,64 @@
-## Description: <br>
-Integrate with Todoist task management using natural language for listing, creating, updating, completing, and deleting tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate with Todoist task management using natural language for listing, creating, updating, completing, and organizing tasks and projects.
 
-## Publisher: <br>
-[hail2skins](https://clawhub.ai/user/hail2skins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hail2skins](https://clawhub.ai/user/hail2skins)
 
-## Use Case: <br>
-External users and developers use this skill to manage Todoist tasks and projects through conversational requests or direct CLI commands. It supports task listing, natural-language task creation, task updates, completion, deletion, project lookup, filtering, priorities, due dates, and timezone-aware today filtering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Todoist API token to create, update, complete, and delete tasks in the user's Todoist account. <br>
-Mitigation: Install only where that Todoist account access is intended, keep TODOIST_API_KEY private, and require confirmation before completing, updating, or deleting tasks from ambiguous natural-language requests. <br>
-Risk: Date filters such as today can produce unexpected results if the runtime timezone does not match the user's intended timezone. <br>
-Mitigation: Set the TZ environment variable when date-sensitive task filtering matters. <br>
-Risk: Installation examples include sudo-based system paths that may grant broader file-system privileges than needed. <br>
-Mitigation: Prefer the documented no-sudo user install path when possible. <br>
+## Use Case:
 
+OpenClaw users use this skill to manage Todoist tasks and projects through conversational requests or direct CLI commands. It is useful for checking task lists, adding tasks with natural-language due dates, completing tasks, and reviewing projects from an agent workflow.
 
-## Reference(s): <br>
-- [Todoist API v1 Reference](references/api.md) <br>
-- [Todoist REST API documentation](https://developer.todoist.com/api/v1/) <br>
-- [Todoist developer token settings](https://todoist.com/app/settings/integrations/developer) <br>
-- [Todoist Sync API documentation](https://developer.todoist.com/sync/v9/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from the Todoist CLI script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TODOIST_API_KEY for Todoist account access; TZ is optional for timezone-sensitive date filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release evidence) <br>
+Risk: The skill can make live changes to a user's Todoist account, including creating, updating, completing, reopening, and deleting tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm destructive or ambiguous requests before execution and use the skill only when the user accepts account-changing Todoist API access.
+
+Risk: The skill requires a sensitive Todoist API token.
+
+Mitigation: Provide TODOIST_API_KEY only through a protected environment variable and avoid exposing it in prompts, logs, or shared command output.
+
+Risk: Date-based filters can produce incorrect results if timezone configuration is wrong.
+
+Mitigation: Set TZ explicitly when accurate today, tomorrow, or overdue filtering matters.
+
+Risk: The release evidence notes broader-than-needed install guidance in the README.
+
+Mitigation: Install using the user-scoped skill path and avoid sudo global installation commands.
+
+## Reference(s):
+
+- [Todoist API v1 Reference](artifact/references/api.md)
+- [Todoist REST API v1 documentation](https://developer.todoist.com/api/v1/)
+- [Todoist Sync API documentation](https://developer.todoist.com/sync/v9/)
+- [Todoist developer integrations settings](https://todoist.com/app/settings/integrations/developer)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language agent guidance with CLI commands that return JSON task and project data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TODOIST_API_KEY; optional TZ controls timezone-sensitive date filtering.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

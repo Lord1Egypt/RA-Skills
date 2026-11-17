@@ -1,48 +1,63 @@
-## Description: <br>
-Daily FHA, VA, and USDA government-backed mortgage rate monitoring, comparison, and newsletter-style summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors daily FHA, VA, and USDA government-backed mortgage rates, compares program trends, calculates payment impact, and drafts newsletter-style summaries.
 
-## Publisher: <br>
-[li-chi](https://clawhub.ai/user/li-chi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-chi](https://clawhub.ai/user/li-chi)
 
-## Use Case: <br>
-External homebuyers, mortgage shoppers, and agents use this skill to gather public FHA, VA, and USDA rate snapshots, compare government-backed loan options, estimate principal-and-interest payments, and prepare newsletter-style summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public mortgage-rate summaries may lag real-time lender pricing or omit borrower-specific factors. <br>
-Mitigation: Verify current rates with cited public sources or a licensed lender before relying on the output. <br>
-Risk: Rate comparisons and payment estimates could be mistaken for personalized mortgage advice. <br>
-Mitigation: Treat outputs as educational, avoid guaranteeing rates or approval, and consult a licensed mortgage professional for decisions. <br>
-Risk: Scheduled alerts may run recurring checks and store last-known rate data locally. <br>
-Mitigation: Enable scheduling and local state only after reviewing the cadence and storage path. <br>
+## Use Case:
 
+External users, mortgage researchers, and content teams use this skill to track public FHA, VA, and USDA mortgage-rate information, compare program options, estimate payment impact, and prepare educational rate-watch summaries.
 
-## Reference(s): <br>
-- [Loan Program Quick Reference](references/loan-programs.md) <br>
-- [Newsletter Template](references/newsletter-template.md) <br>
-- [Freddie Mac Primary Mortgage Market Survey](https://www.freddiemac.com/pmms) <br>
-- [HUD FHA Program Information](https://www.hud.gov) <br>
-- [VA Home Loans](https://www.va.gov/housing-assistance/home-loans) <br>
-- [USDA Rural Development](https://www.rd.usda.gov) <br>
-- [ClawHub Skill Page](https://clawhub.ai/li-chi/fha-va-usda-mortgage-rate-watch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, comparison tables, newsletter drafts, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite public rate sources; payment estimates are informational and depend on the loan amount, rate, and term used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Mortgage-rate summaries can be mistaken for financial advice or guaranteed lender pricing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational information, include disclaimers, and direct users to verify current rates and eligibility with official sources or a licensed mortgage professional.
+
+Risk: Recurring cron alerts may create local scheduled checks that users forget to remove.
+
+Mitigation: Only configure recurring alerts when explicitly requested, explain the local scheduling behavior, and include how to remove or disable the cron entry.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/li-chi/skills/fha-va-usda-mortgage-rate-watch)
+- [Publisher Profile](https://clawhub.ai/user/li-chi)
+- [Government-Backed Loan Programs](references/loan-programs.md)
+- [Weekly Rate Watch Newsletter Template](references/newsletter-template.md)
+- [Freddie Mac PMMS](https://freddiemac.com/pmms)
+- [Mortgage News Daily](https://mortgagenewsdaily.com)
+- [Bankrate Mortgage Rates](https://bankrate.com/mortgages)
+- [NerdWallet Mortgage Rates](https://nerdwallet.com/mortgages/mortgage-rates)
+- [HUD FHA](https://hud.gov)
+- [VA Home Loans](https://va.gov/housing-assistance/home-loans)
+- [USDA Rural Development](https://rd.usda.gov)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, calculator output, and optional cron setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include source attribution and educational disclaimers; rate data may lag real-time lender pricing.]
+
+## Skill Version(s):
+
+1.4.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

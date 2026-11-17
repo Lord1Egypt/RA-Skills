@@ -1,46 +1,65 @@
-## Description: <br>
-Analyzes authorized workplace traces from tools such as DingTalk/Wukong dws or Google Workspace to identify repetitive work friction and produce automation SOP opportunities, Skill requirement cards, daily report drafts, and tomorrow's tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps employees review authorized work traces from calendars, tasks, documents, sheets, approvals, mail, and messages to identify repeated workflow friction and produce automation SOPs, skill requirement cards, daily report drafts, and next-day tasks.
 
-## Publisher: <br>
-[nopedijah](https://clawhub.ai/user/nopedijah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nopedijah](https://clawhub.ai/user/nopedijah)
 
-## Use Case: <br>
-Employees and workflow automation builders use this skill to review authorized work activity, find repeatable friction, and turn the findings into evidence-backed automation opportunities, SOP or Skill requirement cards, report drafts, and follow-up tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access workplace productivity data through authorized connectors. <br>
-Mitigation: Review connector permissions before use and keep access limited to authorized work sources. <br>
-Risk: Generated write actions, task creation, table updates, or message drafts could affect workplace records or communications. <br>
-Mitigation: Require explicit user confirmation before any write, task-creation, table-update, or message-sending action runs. <br>
-Risk: Work traces may include customer, contract, finance, HR, or other sensitive content. <br>
-Mitigation: Summarize sensitive content instead of exposing raw details, and confirm any sharing or persistence step with the user. <br>
+## Use Case:
 
+Employees and operations teams use this skill to turn authorized work traces into repeat-work analysis, automation opportunity cards, daily report drafts, and confirmed follow-up tasks.
 
-## Reference(s): <br>
-- [dws product command summary](artifact/references/dws-products.md) <br>
-- [Ecosystem adapter notes](artifact/references/ecosystem-adapters.md) <br>
-- [Friction identification workflow](artifact/references/workflow.md) <br>
-- [Output template](artifact/references/output-template.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/nopedijah/efficiency-gold-miner-sop-alchemy-universal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured tables, checklists, evidence summaries, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include evidence sources and closed-loop status; write, task-creation, table-update, and message-sending actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authorized work connectors can expose customer, financial, contract, or HR information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Summarize sensitive content, avoid exposing raw sensitive text, and review drafts carefully before confirming document, table, task, or message actions.
+
+Risk: Confirmed write actions can create or update documents, tables, tasks, or reminder drafts.
+
+Mitigation: Show the target resource, draft content, recipients when relevant, and the reason for action before requiring explicit user confirmation.
+
+Risk: Incorrect or fabricated resource identifiers could direct work to the wrong document, table, task, approval, or conversation.
+
+Mitigation: Use only identifiers returned by upstream tools, selected by the user, or extracted from valid user-provided links; ask for a target when evidence is missing.
+
+Risk: Too little work-trace evidence can make automation recommendations overconfident.
+
+Mitigation: Use light review mode when fewer than three valid evidence items are available and disclose that the sample is insufficient for strong Top 3 conclusions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nopedijah/skills/efficiency-gold-miner-sop-alchemy-universal)
+- [Workflow](references/workflow.md)
+- [DWS Products](references/dws-products.md)
+- [Ecosystem Adapters](references/ecosystem-adapters.md)
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, task lists, priority scores, evidence chains, and optional JSON-oriented shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authorized connectors and keeps write actions pending until explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

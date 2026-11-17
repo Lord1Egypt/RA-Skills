@@ -1,44 +1,58 @@
-## Description: <br>
-Moses Audit provides a SHA-256 chained, append-only local governance ledger for logging agent actions and verifying tamper-evident audit history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moses Audit records agent actions in a local SHA-256 hash-chained audit ledger and provides commands to log entries, verify chain integrity, and view recent activity.
 
-## Publisher: <br>
-[SunrisesIllNeverSee](https://clawhub.ai/user/SunrisesIllNeverSee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee)
 
-## Use Case: <br>
-Developers and operators use Moses Audit to log governed agent actions into a local chained ledger, review recent entries, and verify chain integrity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes persistent local audit and governance files, including recovery-state updates beyond simple logging. <br>
-Mitigation: Install only when a local audit ledger is desired; review the documented state directories and require clear controls for retention and recovery flags. <br>
-Risk: MOSES_OPERATOR_SECRET is required for local HMAC attestation. <br>
-Mitigation: Provide the secret only in controlled environments, do not include it in ledger details or command history, and rotate it if exposure is suspected. <br>
-Risk: The freeform detail field can capture sensitive operational data if users paste secrets, tokens, private keys, or PII. <br>
-Mitigation: Log action descriptions and outcomes only; avoid raw secrets, credentials, private keys, and personal data. <br>
+## Use Case:
 
+Developers and operators use this skill to add tamper-evident local audit logging around agent activity, including recording actions, inspecting recent entries, and verifying the ledger chain.
 
-## Reference(s): <br>
-- [Moses Audit release page](https://clawhub.ai/SunrisesIllNeverSee/moses-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/SunrisesIllNeverSee) <br>
-- [MOSES origin DOI](https://zenodo.org/records/18792459) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline tool-call examples and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes local JSONL audit entries and prints status text for log, verify, and recent commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact metadata.openclaw.version is 0.1.2) <br>
+Risk: The skill can create broad persistent records of agent activity in a local audit ledger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent local audit logging is intended, and keep log details limited to action descriptions and outcomes.
+
+Risk: Freeform log detail fields may capture secrets, personal data, private keys, or tokens if users include them.
+
+Mitigation: Do not place secrets or personal data in audit details; sanitize entries before logging.
+
+Risk: The script can mark recovery as needed based on failure, block, decline, or error outcomes.
+
+Mitigation: Review or modify the script so recovery-state changes are opt-in and handled through a separate explicit command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunrisesillneversee/skills/moses-audit)
+- [MOSES anchor DOI](https://zenodo.org/records/18792459)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Python CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes JSONL audit entries to a local ledger path and can include HMAC attestations when MOSES_OPERATOR_SECRET is set.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact openclaw metadata reports 0.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

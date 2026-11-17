@@ -9,7 +9,7 @@ Template for creating skills extracted from finance learnings. Copy and customiz
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the finance procedure, control, or reconciliation pattern this skill addresses. Include trigger conditions."
+description: "Concise description of the finance procedure, control, or reconciliation pattern this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -107,12 +107,17 @@ For simple finance skills that don't need all sections:
 ```markdown
 ---
 name: skill-name-here
-description: "What finance procedure this addresses and when to apply it."
+description: "What finance procedure this addresses and when to apply it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Problem
 

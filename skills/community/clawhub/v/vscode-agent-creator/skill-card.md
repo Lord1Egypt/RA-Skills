@@ -1,41 +1,51 @@
-## Description: <br>
-Create VS Code Copilot custom Agent (.agent.md) files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create VS Code Copilot custom Agent (.agent.md) files.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to create VS Code Copilot custom agent files, configure roles and tool permissions, and define handoff workflows for workspace or user-level agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or adapted agent files may grant broad tool, MCP, handoff, or hook access. <br>
-Mitigation: Review each generated agent's tools, MCP access, handoffs, and hooks before using it. <br>
-Risk: User-level agents under ~/.copilot/agents can persist across workspaces. <br>
-Mitigation: Use workspace-level agents when scope should be limited, and audit user-level agents before relying on them across projects. <br>
+## Use Case:
 
+Developers and teams use this skill to create VS Code Copilot custom agent files, define specialized agent roles, configure tool permissions, and document handoff workflows.
 
-## Reference(s): <br>
-- [VS Code Custom Agent Complete Format Reference](references/agent-format.md) <br>
-- [ClawHub release page](https://clawhub.ai/openlark/vscode-agent-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML frontmatter examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated agent files may grant broader tool access, handoff behavior, user-level availability, or hook commands than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated agent files before use, especially tools, agents, handoffs.send, user-level install paths, and hooks command entries; prefer the minimum permissions needed for the agent's role.
+
+## Reference(s):
+
+- [VS Code Custom Agent Complete Format Reference](references/agent-format.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/vscode-agent-creator)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML frontmatter examples and agent file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent authoring guidance and example .agent.md content; users should review generated tools, handoffs, and hooks before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

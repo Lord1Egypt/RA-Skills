@@ -1,42 +1,60 @@
-## Description: <br>
-Crypto Watcher monitors public crypto wallets and DeFi positions across supported chains with alerts for balance changes, gas prices, health factors, and large token transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor ETH wallets and DeFi positions across chains with alerts for balance changes, gas prices, health factors, and large token transfers.
 
-## Publisher: <br>
-[0xRaini](https://clawhub.ai/user/0xRaini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xraini](https://clawhub.ai/user/0xraini)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run read-only monitoring for public wallet balances, DeFi position checks, gas prices, and alert thresholds across Ethereum-compatible chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Watched public wallet addresses are shared with configured RPC and crypto data providers. <br>
-Mitigation: Monitor only public addresses that are acceptable to disclose to those providers. <br>
-Risk: Secrets placed in the local config file could expose sensitive wallet or exchange access. <br>
-Mitigation: Do not store seed phrases, private keys, or exchange credentials in the Crypto Watcher config. <br>
+## Use Case:
 
+Developers and crypto operators use this skill to configure wallet monitoring for public Ethereum-compatible addresses, token balances, gas prices, DeFi checks, and alert thresholds across supported chains.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xRaini/crypto-watcher) <br>
-- [DefiLlama API](https://api.llama.fi) <br>
-- [CoinGecko API](https://api.coingecko.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only monitoring guidance and CLI output for configured public wallet addresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Watched public wallet addresses may be shared with public RPC providers and related crypto APIs during monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Monitor only addresses whose activity you are comfortable exposing to those services, and avoid wallets whose monitoring activity must remain private.
+
+Risk: Dependency caveats were identified for this release, including a recommendation to pin dependencies and move ws to a patched version.
+
+Mitigation: Prefer an updated release with pinned dependencies and a patched ws version before using the skill in sensitive or production environments.
+
+Risk: Using private keys or seed phrases with a monitoring workflow can create avoidable credential exposure.
+
+Mitigation: Use public wallet addresses only; do not provide private keys, seed phrases, or signing credentials to this skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xraini/skills/crypto-watcher)
+- [Skill Documentation](artifact/SKILL.md)
+- [DefiLlama API](https://api.llama.fi)
+- [CoinGecko API](https://api.coingecko.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CLI-oriented monitoring guidance and configuration examples for public wallet data; private keys or seed phrases are not required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

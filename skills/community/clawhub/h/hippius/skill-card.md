@@ -1,46 +1,66 @@
-## Description: <br>
-Hippius Storage helps agents use Hippius decentralized storage on Bittensor Subnet 75 to upload files, query storage, and manage buckets through an S3-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hippius decentralized storage on Bittensor Subnet 75 helps agents upload files, query storage, manage buckets, and guide users through S3-compatible storage workflows.
 
-## Publisher: <br>
-[maxquick](https://clawhub.ai/user/maxquick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maxquick](https://clawhub.ai/user/maxquick)
 
-## Use Case: <br>
-External developers and operators use this skill to configure Hippius storage credentials, generate S3 and CLI commands, and inspect buckets, objects, credits, and account storage status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful Hippius S3 and wallet-related credentials. <br>
-Mitigation: Use least-privilege S3 keys, keep credentials in environment variables or local config, and avoid entering a wallet seed phrase unless it is necessary for the requested operation. <br>
-Risk: Upload, sync, delete, pin, and unencrypted IPFS operations can modify storage state or expose data. <br>
-Mitigation: Require explicit confirmation before state-changing or unencrypted operations, and prefer the recommended S3 workflow when it satisfies the task. <br>
-Risk: The RPC endpoint option can query account and blockchain information but does not control where storage data is sent. <br>
-Mitigation: Treat RPC configuration as account or status lookup only, and use the documented HTTPS S3 endpoint for storage operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hippius Storage Guide](references/storage_guide.md) <br>
-- [Hippius CLI Commands Reference](references/cli_commands.md) <br>
-- [Hippius Docs](https://docs.hippius.com) <br>
-- [Hippius Console](https://console.hippius.com) <br>
-- [Hippius Stats](https://hipstats.com) <br>
-- [Hippius CLI GitHub](https://github.com/thenervelab/hippius-cli) <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to configure Hippius S3 credentials, run storage commands, inspect buckets and objects, and understand when to use S3 instead of the deprecated public IPFS endpoint.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that require Hippius S3 credentials, AWS CLI, boto3, MinIO, or a local IPFS node.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Storage and delete commands can move or remove user data if bucket names, object keys, or local paths are wrong.
+
+Mitigation: Review every generated command, verify bucket and path values, and manually confirm destructive actions before execution.
+
+Risk: Hippius credentials and wallet seed phrases may grant access to storage or blockchain accounts if exposed.
+
+Mitigation: Use least-privilege credentials, keep secrets out of chat and shell history, and avoid storing seed phrases in plaintext configuration.
+
+Risk: Private files may be uploaded without appropriate encryption or to an unintended destination.
+
+Mitigation: Confirm encryption expectations and destination before upload, and do not use --no-encrypt for private data.
+
+Risk: Unpinned package installs and the script's plaintext default RPC endpoint can increase supply-chain or transport risk.
+
+Mitigation: Install pinned dependencies in an isolated environment and prefer secure endpoints when querying RPC data.
+
+## Reference(s):
+
+- [Hippius Storage Guide](references/storage_guide.md)
+- [Hippius CLI Commands Reference](references/cli_commands.md)
+- [Hippius Docs](https://docs.hippius.com)
+- [Hippius Console](https://console.hippius.com)
+- [Hippius Stats](https://hipstats.com)
+- [Hippius CLI GitHub](https://github.com/thenervelab/hippius-cli)
+- [ClawHub Skill Page](https://clawhub.ai/maxquick/skills/hippius)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local helper script commands and Hippius S3 or RPC endpoints; users should review commands before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata, released 2026-02-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

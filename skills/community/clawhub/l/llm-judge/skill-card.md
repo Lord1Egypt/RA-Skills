@@ -1,43 +1,57 @@
-## Description: <br>
-Compares two or more code implementations against a specification or requirements document and ranks them using structured evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two or more code implementations against a spec or requirements document using structured fact gathering, scoring, ranking, and a final verdict.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to compare competing repository implementations against the same spec, score them across functionality, security, tests, overengineering, and dead code, and produce a ranked verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run tests or project commands inside repositories being judged, which can execute arbitrary project code and consume local resources. <br>
-Mitigation: Use it only on repositories you trust or can isolate in a sandboxed environment. <br>
-Risk: The final ranking depends on extracted facts and judge outputs, so incomplete facts or invalid intermediate JSON can lead to misleading conclusions. <br>
-Mitigation: Follow the hard gates that require JSON parsing, complete per-repository facts, complete per-dimension scores, and consistency between the JSON report and Markdown summary. <br>
+## Use Case:
 
+Developers and engineers use this skill to compare competing repository implementations against a shared specification, such as alternative PRs, vendor submissions, or multiple generated solutions. It gathers structured facts, scores functionality, security, tests, overengineering, and dead code, then produces a ranked verdict.
 
-## Reference(s): <br>
-- [Fact Schema](references/fact-schema.md) <br>
-- [Judge Agent Instructions](references/judge-agents.md) <br>
-- [Repo Agent Instructions](references/repo-agent.md) <br>
-- [Scoring Rubrics](references/scoring-rubrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Markdown summary plus .beagle/llm-judge-report.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes weighted scores, rankings, verdict, and per-dimension justifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The workflow can run test commands from third-party, vendor, or PR repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run repository tests only in disposable containers or otherwise hardened environments with no secrets, restricted networking, resource limits, and scratch-only write access.
+
+Risk: The skill writes an evaluation report under .beagle in the current workspace.
+
+Mitigation: Run it from the intended workspace and review generated .beagle/llm-judge-report.json before sharing or retaining it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/llm-judge)
+- [Fact Schema](references/fact-schema.md)
+- [Repo Agent Instructions](references/repo-agent.md)
+- [Judge Agent Instructions](references/judge-agents.md)
+- [Scoring Rubrics](references/scoring-rubrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary plus .beagle/llm-judge-report.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report contains repository labels and paths, per-dimension scores, weighted totals, ranking, and verdict.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

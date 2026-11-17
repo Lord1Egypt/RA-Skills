@@ -1,41 +1,62 @@
-## Description: <br>
-Email Backup archives selected local directories as tar.gz files and can send them through QQ Mail SMTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Backup packages selected directories into tar.gz archives and sends them through QQ Mail SMTP.
 
-## Publisher: <br>
-[dragonHuge](https://clawhub.ai/user/dragonHuge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dragonhuge](https://clawhub.ai/user/dragonhuge)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to package selected folders, optionally clean common sensitive patterns, and send the resulting backup archive by QQ Mail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can archive broad local paths and send them by email, which may expose private files or credentials. <br>
-Mitigation: Use --no-send first, inspect archive contents, verify the recipient address, and avoid broad paths such as home directories, credential stores, SSH keys, browser profiles, and workspaces containing secrets. <br>
-Risk: Sensitive-data cleaning is described as unreliable in the security guidance. <br>
-Mitigation: Do not rely on --clean for secret removal unless the cleanup behavior is fixed and tested; rotate the QQ SMTP authorization code if it may have been exposed. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to create compressed backups of selected local directories and optionally email them to a configured recipient through QQ Mail SMTP.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dragonHuge/email-backup) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime output includes tar.gz backup archives and SMTP email sends.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and QQ_EMAIL / QQ_SMTP_PASSWORD configuration for SMTP sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad directory backups can email private files or workspace data to an unintended recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only narrow, known-safe directories, configure explicit exclude patterns, and run with --no-send until the archive contents have been inspected.
+
+Risk: Sensitive-data cleaning may miss secrets and can continue even after cleaning fails.
+
+Mitigation: Do not rely on --clean as the only control; inspect archives before sending and keep secrets outside backup paths where possible.
+
+Risk: QQ Mail SMTP credentials are required to send attachments.
+
+Mitigation: Store credentials in environment variables, do not commit authorization codes, and rotate the mail authorization code if exposure is suspected.
+
+Risk: Installation guidance includes local tarball and placeholder download flows that may be unverified.
+
+Mitigation: Install from the ClawHub release or another verified source, avoid sudo, and review the scripts before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dragonhuge/skills/email-backup)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create tar.gz archives and send them as email attachments when the user runs the provided scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact changelog v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

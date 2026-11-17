@@ -1,46 +1,61 @@
-## Description: <br>
-Calculate data breach costs, financial impact, regulatory fines, and remediation expenses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate data breach costs, financial impact, regulatory fines, and remediation expenses.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security, risk, compliance, insurance, and executive-reporting teams use this skill to estimate the financial impact of data breaches, including regulatory fines, notification costs, remediation, legal exposure, and reputation-related losses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends breach scenario details to the ToolWeb API. <br>
-Mitigation: Do not submit raw PII, PHI, credentials, incident secrets, or unnecessary organization-specific details unless privacy, legal, and vendor review requirements are satisfied. <br>
-Risk: Successful ToolWeb API calls may affect quota or billing. <br>
-Mitigation: Monitor API usage and ensure the configured TOOLWEB_API_KEY is approved for the intended subscription and workload. <br>
-Risk: The skill depends on ToolWeb API availability and a valid API key. <br>
-Mitigation: If the API call fails, report the ToolWeb error to the user and avoid generating an unsupported breach-cost assessment from general knowledge. <br>
+## Use Case:
 
+Security, risk, compliance, and incident-response teams use this skill through an agent to estimate breach financial impact, regulatory exposure, notification costs, remediation costs, and cost-reduction options for breach scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/data-breach-impact-calculator) <br>
-- [ToolWeb API portal](https://portal.toolweb.in) <br>
-- [Data Breach Calculator API endpoint](https://portal.toolweb.in/apis/security/data-breach-calculator) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
-- [ToolWeb OpenClaw skills](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown breach-impact assessment with a curl API call] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; successful API calls may affect ToolWeb quota or billing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; skill frontmatter says 1.0.0) <br>
+Risk: Breach-assessment inputs may include sensitive business, incident, customer, or regulated data sent to ToolWeb.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or minimized scenario data unless the organization has approved sharing the specific information with ToolWeb.
+
+Risk: The provider's privacy, retention, and security handling for submitted breach scenarios is not established by the supplied evidence.
+
+Mitigation: Confirm ToolWeb's privacy, retention, security, and contractual terms before using the skill for real incidents or confidential assessments.
+
+Risk: The skill depends on an external API key and curl-based API calls, and successful calls may be billed.
+
+Mitigation: Configure TOOLWEB_API_KEY only in approved environments, monitor API use, and verify subscription or billing limits before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/data-breach-impact-calculator)
+- [ClawHub publisher profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+- [ToolWeb API portal](https://portal.toolweb.in)
+- [Data breach calculator API endpoint](https://portal.toolweb.in/apis/security/data-breach-calculator)
+- [ToolWeb platform](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with breach-cost summaries, categorized financial estimates, regulatory exposure, recommendations, and curl examples when invoking the API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and TOOLWEB_API_KEY; successful API use may be billed by ToolWeb.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Manage Biznet Gio cloud infrastructure, including servers, VMs, storage, and IPs, through the Biznet Gio CLI and MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Biznet Gio cloud infrastructure, including servers, virtual machines, storage, and IP resources, through the Biznet Gio CLI and MCP server.
 
-## Publisher: <br>
-[biznetgio](https://clawhub.ai/user/biznetgio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biznetgio](https://clawhub.ai/user/biznetgio)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Biznet Gio cloud resources from an agent workflow. It supports authentication guidance, read-only inventory checks, and reviewed create, update, state-change, and delete operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate cloud infrastructure and uses sensitive Biznet Gio credentials. <br>
-Mitigation: Use the browser-based biznetgio login flow, avoid embedding API keys in commands or configuration files, and use the least-privileged account available. <br>
-Risk: Create, update, delete, rebuild, and state-change operations can affect availability or destroy resources. <br>
-Mitigation: Review every infrastructure-changing command before execution, and require explicit confirmation for destructive actions. <br>
-Risk: Saved credentials can remain available after the task is complete. <br>
-Mitigation: Run biznetgio logout when finished to remove the local credential file. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inspect and manage Biznet Gio cloud resources through generated CLI commands, MCP tool guidance, and configuration snippets. It supports both read-only inventory tasks and controlled resource lifecycle operations.
 
-## Reference(s): <br>
-- [Biznet Gio CLI homepage](https://github.com/BiznetGIO/biznetgio-cli) <br>
-- [Biznet Gio CLI npm package](https://www.npmjs.com/package/@biznetgio/cli) <br>
-- [Biznet Gio MCP npm package](https://www.npmjs.com/package/@biznetgio/mcp) <br>
-- [Biznet Gio API OpenAPI specification](https://api.portal.biznetgio.com/v1/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional CLI table or JSON output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that operate cloud infrastructure and credential setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill runs npm packages while using Biznet Gio cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or preinstalled verified CLI or MCP package, use least-privilege credentials, and review the package source or release before deployment.
+
+Risk: The skill can guide create, update, delete, rebuild, and state-change operations on cloud resources.
+
+Mitigation: Review every proposed mutable command before it runs, and require an explicit second confirmation for destructive or downtime-causing actions.
+
+Risk: API keys can be exposed if they are placed in shell commands, environment snippets, or plaintext configuration.
+
+Mitigation: Use the browser-based login workflow and local credential file when available, and avoid asking users to paste raw API keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biznetgio/skills/biznetgio)
+- [Biznet Gio CLI homepage](https://github.com/BiznetGIO/biznetgio-cli)
+- [Biznet Gio CLI releases](https://github.com/BiznetGIO/biznetgio-cli/releases)
+- [npm package @biznetgio/cli](https://www.npmjs.com/package/@biznetgio/cli)
+- [npm package @biznetgio/mcp](https://www.npmjs.com/package/@biznetgio/mcp)
+- [Biznet Gio API OpenAPI document](https://api.portal.biznetgio.com/v1/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guidance for reviewing mutable cloud-resource operations before execution.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

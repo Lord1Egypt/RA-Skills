@@ -1,40 +1,53 @@
-## Description: <br>
-Provides production Django engineering guidance for project structure, ORM optimization, security, testing, deployment, scaling, and operational readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides production Django engineering guidance for project architecture, ORM optimization, security hardening, testing, migrations, Celery, deployment, and operational readiness.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review, improve, and operate Django applications intended for production. It helps agents provide architecture guidance, code patterns, deployment checklists, and remediation suggestions for Django project readiness. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-generated Django changes may affect migrations, authentication, CI/CD, Dockerfiles, deployment commands, or live databases. <br>
-Mitigation: Confirm the target project and manually review proposed migrations, authentication changes, CI/CD files, Dockerfiles, deployment commands, and database-touching commands before allowing execution. <br>
-Risk: Production guidance may be applied to the wrong environment or project. <br>
-Mitigation: Verify the intended environment and project scope before applying generated recommendations or commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-django-production) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review, structure, optimize, secure, test, and deploy Django applications for production. It can produce project health checks, implementation patterns, code examples, configuration guidance, and deployment checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; agent-proposed project changes should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The multi-tenant pattern could break tenant isolation if copied as written.
+
+Mitigation: Require authenticated tenant membership checks, fail closed on missing or invalid tenant context, and review tenant filtering before production use.
+
+Risk: Deployment, authentication, CI/CD, and data-access snippets may be applied without project-specific security review.
+
+Mitigation: Treat generated snippets as templates, pin build tools where used, and require engineering review before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-django-production)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code blocks, checklists, tables, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated deployment, authentication, CI/CD, and data-access changes require engineering review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

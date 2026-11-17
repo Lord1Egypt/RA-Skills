@@ -1,6 +1,8 @@
 # Magic Score 内置回归样本
 
-用途：让 `scripts/validate_magic_score.py` 在 Skill 包独立解压后也能运行。这里验证语法层、张力轴、人生原型和判词重写规则，不依赖仓库外的 `final-review`。
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
+用途：提供语法层、张力轴、人生原型和判词重写示例，仅用于理解报告写法。示例不授予任何文件读取或脚本运行权限。
 
 ## 回归摘要
 

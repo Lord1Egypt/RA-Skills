@@ -1,46 +1,61 @@
-## Description: <br>
-DEX Agent executes Base-chain token swaps through Uniswap V3 and supports price checks, quotes, stop-loss, take-profit, portfolio tracking, and configurable trading limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEX Agent helps agents manage a self-custodial Base-chain trading wallet, quote prices, execute Uniswap V3 swaps, and monitor stop-loss and take-profit orders.
 
-## Publisher: <br>
-[avmw2025](https://clawhub.ai/user/avmw2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avmw2025](https://clawhub.ai/user/avmw2025)
 
-## Use Case: <br>
-Developers and agents use this skill to check Base-chain token prices, generate a trading wallet, quote or execute swaps, and manage stop-loss and take-profit workflows from a Python CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real funds and the server security summary reports under-disclosed financial risk. <br>
-Mitigation: Review before installing, test with tiny amounts, and use only a fresh low-balance wallet. <br>
-Risk: The server security summary reports plaintext private-key storage on disk. <br>
-Mitigation: Assume the private key is recoverable from local storage; do not reuse a valuable wallet and protect or delete generated wallet files after testing. <br>
-Risk: The monitor command can execute automatic live sell transactions against funded positions. <br>
-Mitigation: Do not run the monitor against funded positions unless automatic sales are intended and the configured stop-loss/take-profit orders have been reviewed. <br>
-Risk: Swap approvals and router interactions may leave token allowances active. <br>
-Mitigation: Revoke router approvals when testing or trading is complete. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run direct DeFi trading workflows on Base, including wallet setup, price checks, swap quotes, swap execution, and order monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/avmw2025/dex-agent) <br>
-- [Artifact skill documentation](SKILL.md) <br>
-- [Artifact scripts README](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, Blockchain transactions] <br>
-**Output Format:** [CLI text output, JSON wallet/order/configuration files, and signed Base-chain transaction submissions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can execute live swaps and automated sell orders when invoked with a funded wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill can operate as a high-risk mainnet trading tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test wallet with tiny amounts until the operator has reviewed the code, dependencies, and trading behavior.
+
+Risk: Generated wallet private keys are stored locally in plaintext.
+
+Mitigation: Avoid funding the generated wallet with meaningful assets unless encrypted key storage or another protected custody method is added.
+
+Risk: Token approvals may grant broad spending permission.
+
+Mitigation: Prefer exact approvals and periodically revoke allowances that are no longer needed.
+
+Risk: Automated trades may be sent without pre-broadcast confirmation or complete enforced risk controls.
+
+Mitigation: Add explicit confirmations and enforced slippage, drawdown, and position limits before using the skill with material funds.
+
+## Reference(s):
+
+- [DEX Agent on ClawHub](https://clawhub.ai/avmw2025/skills/dex-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with command invocations and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local wallet, order, and configuration JSON files, and may submit Base-chain transactions when trading commands are run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

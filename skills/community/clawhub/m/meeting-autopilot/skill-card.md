@@ -1,43 +1,59 @@
-## Description: <br>
-Turn meeting transcripts into operational outputs - action items, decisions, follow-up email drafts, and ticket drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn meeting transcripts into operational outputs, including action items, decisions, follow-up email drafts, and ticket drafts from VTT, SRT, or plain text transcripts using multi-pass LLM extraction.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-Employees and operators use this skill to process meeting transcripts into decisions, action items, open questions, follow-up email drafts, and ticket drafts. It is intended for transcript-driven meeting follow-up, not audio transcription or automatic email/ticket submission. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts and extracted meeting details may be sent to the configured Anthropic or OpenAI endpoint. <br>
-Mitigation: Use the skill only for meetings that your organization permits sending to external AI services. <br>
-Risk: Extracted meeting history is saved locally by default. <br>
-Mitigation: Use --no-history for sensitive meetings or delete ~/.meeting-autopilot/history/ after processing. <br>
-Risk: Generated email and ticket drafts may omit context or require judgment before sharing. <br>
-Mitigation: Review generated drafts before sending emails or creating tickets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tkuehnl/meeting-autopilot) <br>
-- [README](README.md) <br>
-- [Security model](SECURITY.md) <br>
+## Use Case:
 
+Employees, operators, and developers use this skill to convert existing meeting transcripts into operational Markdown reports containing decisions, action items, open questions, follow-up email drafts, and ticket drafts. It is intended for workflows where a human reviews meeting-derived outputs before sending emails, filing tickets, or acting on assignments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with structured sections, tables, follow-up email drafts, and ticket drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally save Markdown reports and extracted meeting history as local files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive meeting content and API credentials may be sent to configured LLM endpoints.
+
+Mitigation: Use only approved Anthropic or OpenAI endpoints and avoid custom HTTP endpoints for confidential meetings.
+
+Risk: Meeting-derived history is stored locally by default.
+
+Mitigation: Use the --no-history option when processing confidential meetings or when local persistence is not approved.
+
+Risk: Generated email and ticket drafts can be incorrect, incomplete, or unsuitable to send directly.
+
+Mitigation: Treat generated emails and tickets as drafts that require human review before sending or filing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tkuehnl/skills/meeting-autopilot)
+- [README.md](README.md)
+- [SECURITY.md](SECURITY.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSON intermediate data and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include meeting overview tables, decisions, action item tables, open questions, parking lot items, follow-up email drafts, and ticket drafts; optional report files and local history JSON may be written.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter and scripts show 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

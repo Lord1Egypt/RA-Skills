@@ -1,43 +1,59 @@
-## Description: <br>
-Yufluent Clawhub Publish Yufluentcn Visual Craft helps agents request Yufluent cloud output for ecommerce A+ page structures, video storyboard scripts, main-image differentiation briefs, and image compliance checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yufluent Visual Craft helps ecommerce teams create Markdown plans for A+ page structures, video storyboards, main-image differentiation briefs, and image compliance checklists through the Yufluent cloud service.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-Developers, ecommerce operators, and agent workflows use this skill to send product and listing details to the Yufluent service and receive Markdown planning content for Amazon, Shopify, or TikTok visual assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends TOKENAPI_KEY and user-provided product, listing, and brief content to a configurable Yufluent endpoint. <br>
-Mitigation: Use only trusted HTTPS TOKENAPI_BASE_URL values, avoid non-HTTPS remote endpoints, and protect TOKENAPI_KEY as a billing credential. <br>
-Risk: Generated visual plans, scripts, or compliance checklists may still require marketplace and advertising review. <br>
-Mitigation: Review outputs against the target platform policies and applicable advertising requirements before using them in production. <br>
+## Use Case:
 
+External ecommerce operators, marketplace agencies, and developers use this skill to request cloud-generated visual content planning for Amazon, Shopify, and TikTok listings. It supports A+ page outlines, video scripts, main-image creative briefs, and image compliance review checklists that should be reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-visual-craft) <br>
-- [Publisher profile](https://clawhub.ai/user/metahuan) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [Yufluent OpenClaw setup](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown plans, briefs, scripts, and checklists returned through a CLI or cloud API call] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not generate image or video files; requires TOKENAPI_KEY and may send product, listing, and brief content to a configurable Yufluent API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release and SKILL.md frontmatter) <br>
+Risk: Product copy, listing context, competitor notes, and image descriptions may be sent to the Yufluent cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved ecommerce content, avoid confidential or secret-bearing inputs, and disclose cloud processing to appropriate stakeholders.
+
+Risk: A configurable TOKENAPI_BASE_URL can send user content and the API token to an untrusted endpoint if misconfigured.
+
+Mitigation: Use the official or otherwise trusted HTTPS endpoint, keep TOKENAPI_KEY in environment storage, and avoid untrusted endpoint overrides.
+
+Risk: Generated visual plans and compliance checklists may be incomplete or inconsistent with marketplace policies or advertising rules.
+
+Mitigation: Review outputs manually against the target platform's current policy and applicable advertising requirements before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluentcn-visual-craft)
+- [Yufluent homepage](https://claw.changzhiai.com)
+- [Yufluent OpenClaw documentation](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans and checklists, with CLI command examples and run metadata when invoked locally]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cloud-backed output; requires TOKENAPI_KEY and may use TOKENAPI_BASE_URL when configured.]
+
+## Skill Version(s):
+
+1.1.2 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

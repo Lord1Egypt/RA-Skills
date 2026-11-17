@@ -1,47 +1,65 @@
-## Description: <br>
-Search and browse Chinese collective-memory anchors across 1935-2025 using decade-based reference files that organize events, sensory cues, prompts, and cultural context for reminiscence, cultural-history, and intergenerational storytelling work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and browse Chinese collective-memory anchors across 1935-2025 using decade-based reference files that organize events, sensory cues, prompts, and cultural context for reminiscence, cultural-history, and intergenerational storytelling work.
 
-## Publisher: <br>
-[OiiOAI](https://clawhub.ai/user/OiiOAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oiioai](https://clawhub.ai/user/oiioai)
 
-## Use Case: <br>
-External users and agents use this skill to find Chinese cultural-history memory anchors, sensory cues, prompts, and contextual notes for reminiscence, oral-history, cultural-history, and intergenerational storytelling workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical anchors, prompts, or framing may be inaccurate, incomplete, or culturally sensitive in educational or reminiscence settings. <br>
-Mitigation: Review the dataset for historical accuracy, tone, and cultural sensitivity before relying on it; keep historical framing brief and let the person's own associations lead. <br>
+## Use Case:
 
+External users, developers, and agents use this skill as a Chinese-language reference corpus for reminiscence, cultural-history, oral-history, and intergenerational storytelling workflows. It supports browsing or searching memory anchors by era, keyword, year, tag, event type, sensory cue, and conversation prompt.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/OiiOAI/china-collective-memory) <br>
-- [1935-1949 Reference Anchors](references/1935-1949.md) <br>
-- [1950-1959 Reference Anchors](references/1950-1959.md) <br>
-- [1960-1969 Reference Anchors](references/1960-1969.md) <br>
-- [1970-1979 Reference Anchors](references/1970-1979.md) <br>
-- [1980-1989 Reference Anchors](references/1980-1989.md) <br>
-- [1990-1999 Reference Anchors](references/1990-1999.md) <br>
-- [2000-2009 Reference Anchors](references/2000-2009.md) <br>
-- [2010-2019 Reference Anchors](references/2010-2019.md) <br>
-- [2020-2026 Reference Anchors](references/2020-2026.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text synthesized from Chinese reference anchors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only; no code execution, credential use, network access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reference entries may contain dataset quality issues, placeholders, or fictional or mapped records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat entries as conversation prompts and memory aids, not as authoritative history, personal testimony, or verified factual records.
+
+Risk: Historical framing could displace a person's own recollections during reminiscence or oral-history use.
+
+Mitigation: Keep framing brief, follow the person's own associations, and avoid reciting the corpus as a substitute for lived experience.
+
+Risk: Source material is primarily Chinese and may lose nuance if translated casually.
+
+Mitigation: Use the original Chinese text with Chinese speakers and translate selectively when bilingual output is needed.
+
+## Reference(s):
+
+- [Anticolonial War and Liberation (1935-1949)](references/1935-1949.md)
+- [Early PRC Period (1950-1959)](references/1950-1959.md)
+- [Exploration Period (1960-1969)](references/1960-1969.md)
+- [Eve of Reform (1970-1979)](references/1970-1979.md)
+- [Reform and Opening (1980-1989)](references/1980-1989.md)
+- [Economic Takeoff (1990-1999)](references/1990-1999.md)
+- [New Century (2000-2009)](references/2000-2009.md)
+- [Mobile Internet Era (2010-2019)](references/2010-2019.md)
+- [Contemporary Period (2020-2026)](references/2020-2026.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with Chinese reference excerpts and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-only; no tools, APIs, credential handling, or storage layer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in optimizing large scrolling lists with windowing, row measurement, and stable loading behavior.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide when list virtualization is appropriate and to implement or review virtual scrolling for large frontend lists, grids, infinite scroll, variable-height rows, and dynamic measurement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency recommendations such as react-window or TanStack Virtual may add project-specific maintenance, bundle, or compatibility costs. <br>
-Mitigation: Review dependency fit against the project's framework, existing design system, and dependency policy before adding a virtualization library. <br>
-Risk: Virtualized lists can hide unmounted content from native search, SEO, assistive technology, or print/export workflows. <br>
-Mitigation: Test accessibility, search, SEO, and scrolling behavior after implementation, and avoid virtualizing content that must remain fully discoverable. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess scrolling bottlenecks and implement accessible, performant virtualized lists and grids within their existing frontend stack.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bovinphang/fec-list-virtualization) <br>
-- [Virtualization patterns](references/virtualization-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with implementation notes and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code, credential access, or persistence identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.1 (source: server release evidence; artifact metadata/package.json report 2.6.0) <br>
+Risk: Virtualized items outside the viewport may be absent from browser search, SEO indexing, and print output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep search- or SEO-critical content accessible outside the virtual window and test print or export paths.
+
+Risk: Windowing and dynamic heights can disrupt keyboard navigation, screen reader context, or scrolling stability.
+
+Mitigation: Test focus and screen reader behavior, measure row heights, and tune overscan and scroll anchoring.
+
+## Reference(s):
+
+- [List virtualization patterns](references/virtualization-patterns.md)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-list-virtualization)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown]
+
+**Output Format:** [Markdown with implementation guidance and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Framework-aware recommendations for list and grid virtualization.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, README.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,9 +1,9 @@
 ---
 name: 1688-item-title-optimizer
 description: |
-  1688 商品标题智能优化助手 —— 自动并发执行两种优化算法生成结果。
-  工具能力：添加热词优化（快速、基于规则）和 LLM 深度重写（高质量、自然流畅），支持用户偏好参数。
-  触发词：优化标题、标题优化、改标题、重写标题、商品标题、标题改写。
+  1688商品标题优化
+  工具能力：为商品标题添加热词优化（快速、基于规则）和 LLM 深度重写（高质量、自然流畅），支持用户输入偏好。如果用户没有选择想优化标题的商品，技能中可以出组件让用户选择；
+  触发词：优化标题、标题优化、改标题、重写标题、商品标题、标题改写、分析标题、我要优化标题、标题里哪些词没用、标题里应该加哪些热搜关键词、我的商品标题怎么优化？、我的标题怎么优化？、我要优化商品标题
 metadata:
   openclaw:
     emoji: "✏️"
@@ -16,10 +16,10 @@ metadata:
       selectionType: shop_backend
       description: "当用户未提供商品ID时，直接输出该JSON唤起商品选择页面，流程结束，禁止反问用户"
       required_data:
-        url: "商品选择页面URL"
+        url: "https://air.1688.com/app/CSBC-modules/csbc-ai-component-loader/picture-optimize.html?mode=newton-select-offer&skillCode=1688-item-title-optimizer"
         pageTitle: "选择商品"
         pageDescription: "选择商品优化标题"
-        icon: "图标URL"
+        icon: "https://img.alicdn.com/imgextra/i3/O1CN01gQPY341cm5b1gzS1k_!!6000000003642-2-tps-80-80.png"
     - name: confirm_apply_title
       type: card
       selectionType: requirement
@@ -63,7 +63,43 @@ metadata:
 - 批量优化商品标题
 - 用户有特定优化偏好（如指定关键词、风格）
 
+## 多店铺支持
+
+所有操作命令均支持 `--NEWTON_SHOP_LOGIN_ID` 可选参数，用于指定目标店铺的 loginId 进行操作。
+
+**鉴权与身份说明**：
+- **AK（Access Key）**：统一从环境变量读取，用于网关签名鉴权。**所有店铺共用同一个 AK**，无需为每个店铺单独配置或传递不同的 AK。
+- **loginId**：通过 `get_bindlist` 接口获取，用于标识具体要优化哪个店铺的商品标题。在调用操作命令时，通过 `--NEWTON_SHOP_LOGIN_ID` 参数传入目标店铺的 loginId 即可切换店铺上下文。
+
+**使用方式**：
+```bash
+# 优化指定店铺的商品标题（规则版）
+python3 {baseDir}/cli.py optimize_title --item_id <商品ID> --NEWTON_SHOP_LOGIN_ID "店铺loginId"
+
+# 优化指定店铺的商品标题（LLM版）
+python3 {baseDir}/cli.py optimize_title_llm --item_id <商品ID> --NEWTON_SHOP_LOGIN_ID "店铺loginId"
+```
+
+**多店铺操作流程（⚠️ 强制执行，禁止跳过）**：
+
+> 🔥 **核心原则：用户未明确指定店铺时，默认必须对所有绑定店铺执行标题优化操作，严禁遗漏任何一个店铺。**
+
+1. 调用 `get_bindlist` 获取当前 AK 绑定的所有店铺列表（含各店铺 loginId）
+2. **默认遍历所有店铺**：对每个店铺传 `--NEWTON_SHOP_LOGIN_ID <该店铺loginId>` 分别执行操作（可并行执行）
+3. 仅当用户**明确指定了某个店铺名**时，才匹配对应的 loginId 仅操作该店铺
+4. 最终结果按店铺分组展示
+
+> 🚫 **禁止**：绑定了多个店铺时，如果用户没有明确说"只优化某个店铺的标题"，禁止只操作一个店铺就结束。**必须遍历所有店铺，确保优化完整无遗漏**。
+
 ## CLI 命令
+
+### get_bindlist — 获取店铺绑定列表
+
+```bash
+python3 {baseDir}/cli.py get_bindlist
+```
+
+获取当前 AK 绑定的所有店铺列表（含各店铺 loginId），用于多店铺场景。
 
 ### configure — 配置 AK
 
@@ -279,8 +315,8 @@ python3 {baseDir}/cli.py get_tokenizers
 
 | markdown 关键词 | Agent 额外动作 |
 |----------------|--------------|
-| "AK 未配置" 或 "签名无效" 或 "401" | 提示用户当前发送能力所需鉴权未就绪，请补充有效 AK 或检查鉴权配置后重试 |
-| "限流" 或 "429" | 建议用户等待 1-2 分钟后重试 |
+| "AK 未配置" 或 "AK 无效或已过期" | 提示用户当前发送能力所需鉴权未就绪，请补充有效 AK 或检查鉴权配置后重试 |
+| "请求被限流" | 建议用户等待 1-2 分钟后重试 |
 | 其他 | 仅输出 markdown 即可 |
 
 ## 环境变量（.env）
@@ -291,7 +327,7 @@ python3 {baseDir}/cli.py get_tokenizers
 |------|--------|------|
 | `SKILL_NAME` | `1688-item-title-optimizer` | skill 名称 |
 | `SKILL_VERSION` | `1.0.0` | skill 版本号 |
-| `SKILL_CHANNEL` | `clawhub` | 发布渠道 |
+| `SKILL_CHANNEL` | `clawhubai` | 发布渠道 |
 
 > 已存在的系统环境变量优先级高于 `.env`，CI/CD 注入的变量不会被覆盖。
 
@@ -300,7 +336,7 @@ python3 {baseDir}/cli.py get_tokenizers
 每次 CLI 命令执行时，自动向 skill 网关上报一次调用记录，用于统计 skill 调用次数。
 
 - **实现位置**：`scripts/_tracker.py` → `report_skill_usage()`，在 `cli.py` 的 `main()` 中每次命令执行后自动调用
-- **上报接口**：`POST /api/reportSkillsUsage/1.0.0`
+- **上报接口**：`POST /api/alibaba.1688.report.skills.usage/1.0.0`
 - **上报参数**：
 
   | 参数 | 值来源 | 说明 |

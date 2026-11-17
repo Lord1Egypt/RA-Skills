@@ -1,40 +1,54 @@
-## Description: <br>
-Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis). Run queries, inspect schemas, export data. Use when user wants to query a database, explore schema, check data, export results, or debug database issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis). Run queries, inspect schemas, export data. Use when user wants to query a database, explore schema, check data, export results, or debug database issues.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect database schemas, run diagnostic queries, export data, and troubleshoot PostgreSQL, MySQL, SQLite, MongoDB, or Redis systems from a terminal workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore, import, migration, UPDATE, DELETE, DROP, or full export commands can alter databases or expose sensitive data. <br>
-Mitigation: Require the agent to identify the database, environment, and exact operation, show the command or query, and obtain explicit confirmation before execution. <br>
-Risk: Database credentials, connection strings, query results, and exported files may contain sensitive information. <br>
-Mitigation: Use environment variables for credentials, avoid echoing secrets, limit results by default, and scope exports to the minimum data needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect database schemas, run diagnostic queries, export results, and troubleshoot PostgreSQL, MySQL, SQLite, MongoDB, or Redis data stores from a terminal.
 
-## Reference(s): <br>
-- [Db Explorer on ClawHub](https://clawhub.ai/lrg913427-dot/hermes-db-explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, SQL, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify the target database and operation, limit result sets by default, and request confirmation before destructive or sensitive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can guide an agent through live database connections that may expose credentials or sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only, least-privilege credentials where possible, avoid placing passwords directly on command lines, and keep exports in private temporary directories.
+
+Risk: Restore, import, migration, full export, and data-changing workflows can alter or expose production data if followed without enough verification.
+
+Mitigation: Require explicit confirmation, verify the target database, preview commands before execution, and use transaction or rollback-oriented checks before committing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrg913427-dot/skills/hermes-db-explorer)
+- [ClawHub publisher profile](https://clawhub.ai/user/lrg913427-dot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash, SQL, and database shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CSV, JSON, SQL dump, or database backup files when export, backup, restore, or migration workflows are used.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

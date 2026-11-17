@@ -1,40 +1,57 @@
-## Description: <br>
-Scans Swift projects for force unwraps (`!`) and `try!` usage and reports potential runtime crash risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Swift projects for force unwraps and try! usage, categorizes potential crash risks, and reports findings with remediation guidance.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Swift projects for force unwrap and `try!` patterns, categorize findings by risk, and generate remediation guidance before runtime crashes reach users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced runner may execute local shell behavior when used outside the provided artifact. <br>
-Mitigation: Verify RunSkill.sh comes from the expected source before running it. <br>
-Risk: Interactive fix mode may edit project files. <br>
-Mitigation: Use version control or backups and review generated changes before keeping them. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Swift, iOS, and macOS projects for force unwrap and try! patterns that may cause runtime crashes. It helps triage findings by risk level and supports report generation and remediation planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/force-unwrap-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown scan reports with file paths, line numbers, risk levels, and remediation suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include interactive fix guidance; review changes with version control before applying fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact references a RunSkill.sh command that is not included in the inspected package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the scanner implementation is present before relying on scan, report, or fix commands.
+
+Risk: The skill documentation is primarily in Chinese, which may affect review by users who do not read Chinese.
+
+Mitigation: Provide or review a translated version of the instructions and risk categories before operational use.
+
+Risk: Interactive fixes can modify code and high-risk findings require human judgment.
+
+Mitigation: Review proposed changes manually, especially for high-risk findings and crash-prone Swift APIs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/force-unwrap-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and scan report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe high, medium, and low risk categories with file and line references when scan results are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

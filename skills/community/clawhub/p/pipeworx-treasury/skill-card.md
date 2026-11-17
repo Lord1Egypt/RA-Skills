@@ -1,42 +1,51 @@
-## Description: <br>
-US fiscal data - national debt, Treasury interest rates, and federal spending breakdowns from the Treasury Fiscal Data API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+US fiscal data - national debt, Treasury interest rates, and federal spending breakdowns from the Treasury Fiscal Data API.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to query public US Treasury fiscal data through the Pipeworx Treasury MCP gateway, including national debt, Treasury rates, and federal spending breakdowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes public Treasury data requests through a Pipeworx MCP gateway. <br>
-Mitigation: Install and use it when you trust Pipeworx as an intermediary for public Treasury data. <br>
-Risk: The MCP setup depends on the mcp-remote npm package and may send private context through the remote service. <br>
-Mitigation: Review the mcp-remote package before use and avoid sending private context unless you are comfortable sharing it with the remote service. <br>
+## Use Case:
 
+External users and developers use this skill to query official US fiscal data, including current national debt, Treasury security interest rates, and federal spending by category or fiscal year.
 
-## Reference(s): <br>
-- [Pipeworx Treasury Pack](https://pipeworx.io/packs/treasury) <br>
-- [Pipeworx Treasury MCP Gateway](https://gateway.pipeworx.io/treasury/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucegutman/pipeworx-treasury) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the example request and uses mcp-remote for MCP server configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup may execute a mutable npm package with local execution authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version and run it with minimal filesystem, environment-variable, and credential access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-treasury)
+- [Pipeworx Treasury homepage](https://pipeworx.io/packs/treasury)
+- [Pipeworx Treasury MCP endpoint](https://gateway.pipeworx.io/treasury/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Treasury Fiscal Data API results such as debt totals, rates, spending categories, and record dates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

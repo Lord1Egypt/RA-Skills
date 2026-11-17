@@ -1,40 +1,52 @@
-## Description: <br>
-Expert build engineer specializing in build system optimization, compilation strategies, and developer productivity. Masters modern build tools, caching mechanisms, and creating fast, reliable build pipelines that scale with team growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert build engineer specializing in build system optimization, compilation strategies, and developer productivity. Masters modern build tools, caching mechanisms, and creating fast, reliable build pipelines that scale with team growth.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect and improve build systems, bundling, caching, testing, and CI/CD configuration for faster and more reliable development workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Build-system, bundling, testing, caching, or CI/CD changes can affect deployments and developer workflows.
+
+Mitigation: Review proposed project and CI changes before applying them, and validate behavior through normal test and deployment checks.
+
+Risk: Performance-oriented build changes can alter cache behavior, bundle output, or test execution characteristics.
+
+Mitigation: Compare before-and-after build metrics, inspect generated configuration changes, and run the relevant build and test commands before merging.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze build systems, optimize compilation and bundling workflows, configure caching, and improve developer feedback loops. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the scan had clean signals but did not directly verify artifact content beyond the supplied scan context. <br>
-Mitigation: Confirm the marketplace page and artifact file hash match the expected release before installation. <br>
-Risk: Build-system recommendations can change project behavior, CI results, bundle contents, or deployment artifacts. <br>
-Mitigation: Review proposed build, dependency, and CI changes, then validate them in a controlled branch before production use. <br>
+**Output Format:** [Markdown with inline code, shell commands, and configuration recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-build-engineer) <br>
+**Other Properties Related to Output:** [May propose project, build, test, and CI/CD changes for review before application.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce build analysis, optimization plans, configuration changes, monitoring guidance, and validation steps.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

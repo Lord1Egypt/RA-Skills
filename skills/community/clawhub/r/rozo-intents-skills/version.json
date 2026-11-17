@@ -1,0 +1,24 @@
+{
+  "version": "1.0.9",
+  "name": "rozo-intents",
+  "description": "Cross-chain crypto payments and bridging via Rozo. Send USDC/USDT across Ethereum, Arbitrum, Base, BNB Chain (BSC), Polygon, Solana, and Stellar (Base and Stellar are USDC-only; Solana receives USDC only but can pay in USDT).",
+  "author": "rozo",
+  "homepage": "https://rozo.ai",
+  "repository": "https://github.com/RozoAI/rozo-intents-skills.git",
+  "pluginSubdir": "build/plugin/rozo-intents",
+  "marketplaceName": "rozo",
+  "freeConfirmThresholdUsd": 0,
+  "singleConfirmThresholdUsd": 0,
+  "license": "MIT-0",
+  "keywords": [
+    "payments",
+    "crypto",
+    "usdc",
+    "usdt",
+    "stellar",
+    "solana",
+    "evm",
+    "bridge",
+    "rozo"
+  ]
+}

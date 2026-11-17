@@ -1,46 +1,61 @@
-## Description: <br>
-Provides in-person negotiation and barter guidance for prices, contractors, bills, used goods, rent, freelance rates, and skill or labor trades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+In-person negotiation skills and barter/trade techniques for negotiating prices, hiring contractors, disputing bills, buying or selling used goods, and trading skills or labor instead of money.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to prepare for everyday negotiations, including contractor hiring, used car purchases, bill disputes, rent discussions, casual haggling, freelance rates, and barter arrangements. The agent provides practical scripts, checklists, and decision points while adapting for local cultural and legal context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses medical bills, tax treatment, housing, contractor work, and consumer purchases where rules vary by jurisdiction. <br>
-Mitigation: Treat outputs as practical negotiation guidance, verify current local rules, and seek qualified professional advice for legal, tax, medical, or high-value financial decisions. <br>
-Risk: Negotiation scripts could be applied in ways that pressure vulnerable counterparties or misrepresent facts. <br>
-Mitigation: Keep negotiations truthful, collaborative, and non-exploitative, consistent with the skill's rules against dishonest tactics. <br>
-Risk: Acting on generated payment, settlement, or barter terms without review could create financial loss or disputes. <br>
-Mitigation: Keep the user in control of all payments and agreements, compare alternatives, and get material reductions, payment plans, or trade terms in writing before acting. <br>
+## Use Case:
 
+External users can use this skill to get practical scripts, checklists, and guidance for real-world negotiation situations such as contractor bids, used-car purchases, medical bills, rent discussions, casual haggling, freelance rates, and barter arrangements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/negotiation-trade) <br>
-- [Patient Advocate Foundation](https://www.patientadvocate.org/) <br>
-- [FTC used car buying guide](https://consumer.ftc.gov/articles/buying-used-car) <br>
-- [IRS Publication 525](https://www.irs.gov/publications/p525) <br>
-- [TimeBanking](https://timebanking.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with scripts, checklists, and step-by-step recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No automatic actions or executable outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests filesystem access even though the release evidence describes it as mainly negotiation advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or restrict filesystem access unless a concrete file-based feature is added.
+
+Risk: The install command uses an unpinned external `npx` installer.
+
+Mitigation: Use a pinned, integrity-verified installation path before deployment.
+
+Risk: Negotiation, medical bill, consumer, contractor, landlord, and barter guidance can vary by jurisdiction and culture.
+
+Mitigation: Adapt advice to the user's location and verify legal, tax, healthcare, and consumer-protection requirements before acting.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/howtousehumans/skills/negotiation-trade)
+- [Patient Advocate Foundation](https://www.patientadvocate.org/)
+- [Federal Trade Commission used car buying guide](https://consumer.ftc.gov/articles/buying-used-car)
+- [IRS Publication 525](https://www.irs.gov/publications/p525)
+- [Time banking networks](https://timebanking.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with scripts, checklists, and scenario-specific steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt advice by region, culture, and negotiation scenario.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

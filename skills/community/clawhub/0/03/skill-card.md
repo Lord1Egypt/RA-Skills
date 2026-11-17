@@ -1,42 +1,62 @@
-## Description: <br>
-安全的图片识别工具，支持本地和API两种模式 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images in local or API mode for content descriptions, object identification, text extraction, and batch review.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers and agent users use this skill to analyze images, describe visual content, identify objects, extract text from screenshots, and batch-process image folders using either cloud API providers or a local model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API mode may upload private screenshots, IDs, internal documents, or other sensitive images to the selected provider. <br>
-Mitigation: Use local mode for sensitive images, or confirm that sending the image to the configured provider is acceptable before using API mode. <br>
-Risk: Cloud upload destinations and API configuration are not fully reviewable from the packaged files because llm_config.py is missing. <br>
-Mitigation: Review or obtain llm_config.py before installing, choose the intended provider explicitly, and verify API keys, models, and endpoints. <br>
-Risk: Unpinned dependencies and model downloads can change behavior over time. <br>
-Mitigation: Install in a virtual environment, pin dependency versions for production use, and review downloaded model or provider behavior before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect individual images or selected image directories, returning descriptions, detected content, and text-like visual details while choosing between local processing and API-backed analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nidhov01/03) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionary or JSON-style analysis results, plus Markdown usage guidance and shell setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes supported image files up to 10MB and may use API providers or a local model depending on configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: API mode can upload image contents to a third-party model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local mode for sensitive images, or use API mode only when third-party upload is acceptable.
+
+Risk: The skill relies on an unbundled parent-directory llm_config module that can affect API key handling and upload destinations.
+
+Mitigation: Bundle or replace llm_config with inert, validated configuration before trusting API keys or uploads.
+
+Risk: Batch mode recursively analyzes images under the selected directory.
+
+Mitigation: Run batch mode only on directories that were intentionally selected and reviewed.
+
+Risk: Dependency ranges can resolve to different package versions over time.
+
+Mitigation: Install in a virtual environment and pin dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nidhov01/skills/03)
+- [Publisher profile](https://clawhub.ai/user/nidhov01)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-like analysis results, CLI text, and Markdown/Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-image analysis returns file metadata and a description; batch mode returns one result per validated image.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

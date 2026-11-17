@@ -1,43 +1,59 @@
-## Description: <br>
-This skill supports news updates, daily briefings, and current-events requests by fetching trusted international RSS feeds, summarizing key stories, and optionally creating voice summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill supports news updates, daily briefings, and world-event queries by fetching trusted international RSS feeds and creating optional voice summaries.
 
-## Publisher: <br>
-[joargp](https://clawhub.ai/user/joargp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joargp](https://clawhub.ai/user/joargp)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current public news headlines, summarize 5-8 key stories by topic or region, and optionally produce a short voice briefing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fetching current news contacts public RSS providers, and voice generation sends the generated summary text to OpenAI using the user's API key. <br>
-Mitigation: Use the skill for public news briefings, avoid including private notes in voice summaries, and confirm that OpenAI API usage and costs are acceptable before generating audio. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joargp/news-summary) <br>
-- [BBC World RSS feed](https://feeds.bbci.co.uk/news/world/rss.xml) <br>
-- [BBC News RSS feed](https://feeds.bbci.co.uk/news/rss.xml) <br>
-- [Reuters world news feed](https://www.reutersagency.com/feed/?best-regions=world&post_type=best) <br>
-- [NPR news RSS feed](https://feeds.npr.org/1001/rss.xml) <br>
-- [Al Jazeera RSS feed](https://www.aljazeera.com/xml/rss/all.xml) <br>
-- [OpenAI audio speech API](https://api.openai.com/v1/audio/speech) <br>
+## Use Case:
 
+External users and agents use this skill to fetch current RSS headlines from international news sources and turn them into concise text or optional voice briefings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, audio, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands and generated audio file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text summaries are intended to be concise, typically 5-8 stories; optional voice output uses OpenAI TTS and writes an MP3 file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional voice summaries send the summary text to OpenAI TTS.
+
+Mitigation: Use voice mode only when sending the summary content to OpenAI is acceptable.
+
+Risk: The example writes audio to a fixed /tmp/news.mp3 path.
+
+Mitigation: Use a unique, private temporary filename for operational use.
+
+## Reference(s):
+
+- [BBC World News RSS](https://feeds.bbci.co.uk/news/world/rss.xml)
+- [BBC Top Stories RSS](https://feeds.bbci.co.uk/news/rss.xml)
+- [BBC Business RSS](https://feeds.bbci.co.uk/news/business/rss.xml)
+- [BBC Technology RSS](https://feeds.bbci.co.uk/news/technology/rss.xml)
+- [Reuters World Feed](https://www.reutersagency.com/feed/?best-regions=world&post_type=best)
+- [NPR News RSS](https://feeds.npr.org/1001/rss.xml)
+- [Al Jazeera RSS](https://www.aljazeera.com/xml/rss/all.xml)
+- [OpenAI Audio Speech API](https://api.openai.com/v1/audio/speech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown news briefing with optional shell commands and voice-summary audio output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional voice summaries may produce an MP3 audio file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

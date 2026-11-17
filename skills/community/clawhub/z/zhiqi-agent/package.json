@@ -1,0 +1,40 @@
+{
+  "name": "zhiqi-agent",
+  "version": "1.0.0",
+  "description": "Node companion entry for the ZhiQi platform agent onboarding client (stdio MCP server launcher + CLI). Built from the TypeScript SDK sources.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "深圳市毕洪科技有限公司 (Shenzhen Bihong Technology Co., Ltd.)"
+  },
+  "homepage": "https://zhiqi.bihongit.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REPLACE_WITH_GITHUB_ORG/zhiqi-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/REPLACE_WITH_GITHUB_ORG/zhiqi-agent/issues"
+  },
+  "keywords": [
+    "zhiqi",
+    "mcp",
+    "model-context-protocol",
+    "agent",
+    "identity",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "zhiqi-ts": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "private": true
+}

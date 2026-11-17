@@ -1,46 +1,64 @@
-## Description: <br>
-Chanjing Video Compose helps agents use Chanjing video synthesis APIs to list digital-human figures, upload media, create text- or audio-driven videos, poll tasks, and download results when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chanjing Video Compose helps agents use Chanjing video synthesis APIs to list digital human figures, create text- or audio-driven videos, poll task status, and download completed videos when requested.
 
-## Publisher: <br>
-[iamzn1018](https://clawhub.ai/user/iamzn1018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamzn1018](https://clawhub.ai/user/iamzn1018)
 
-## Use Case: <br>
-Developers and agents use this skill to create Chanjing digital-human videos from text or uploaded audio, select suitable public or customized figures, poll generation status, and optionally save completed media locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Chanjing app credentials and access tokens in ~/.chanjing/credentials.json or a CHANJING_CONFIG_DIR override. <br>
-Mitigation: Keep the credentials file private, do not commit it to version control, and avoid sharing full secrets in prompts or logs. <br>
-Risk: The skill uploads user-selected media and downloads URLs returned by the Chanjing API. <br>
-Mitigation: Confirm upload file paths, download URLs, and output paths before running commands, and use the default API base unless you control the replacement. <br>
-Risk: The optional create_task.py --callback argument can cause Chanjing to post task result payloads to a user-supplied endpoint. <br>
-Mitigation: Use callback URLs only when the endpoint is trusted and intended to receive task result data. <br>
+## Use Case:
 
+External users and developers use this skill to compose Chanjing digital-human videos from scripts or uploaded audio, select public or customized figures, monitor generation tasks, and save completed results on request.
 
-## Reference(s): <br>
-- [Chanjing documentation](https://doc.chanjing.cc) <br>
-- [Chanjing API base](https://open-api.chanjing.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/iamzn1018/chanjing-video-compose) <br>
-- [Reference](artifact/reference.md) <br>
-- [Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return text identifiers, URLs, JSON when requested, and local file paths for explicit downloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce video task IDs, uploaded file IDs, video URLs, and downloaded media paths under outputs/video-compose/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill stores Chanjing app credentials and access tokens in ~/.chanjing/credentials.json or a CHANJING_CONFIG_DIR override.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private configuration directory, avoid shared machines, restrict file permissions, and never commit credentials.json.
+
+Risk: CHANJING_API_BASE can redirect API calls to a non-default endpoint.
+
+Mitigation: Set CHANJING_API_BASE only to endpoints you fully trust.
+
+Risk: Callback URLs and media URLs cross a trust boundary and may receive or provide task-result payloads.
+
+Mitigation: Use only trusted callback endpoints and verify media URLs before requesting or downloading content.
+
+Risk: Custom download output paths can overwrite local files.
+
+Mitigation: Choose output paths deliberately and review existing files before saving generated videos.
+
+## Reference(s):
+
+- [Chanjing API documentation](https://doc.chanjing.cc)
+- [ClawHub skill page](https://clawhub.ai/iamzn1018/skills/chanjing-video-compose)
+- [reference.md](artifact/reference.md)
+- [examples.md](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text task IDs, file IDs, URLs, or local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Chanjing task IDs, uploaded file IDs, video URLs, or a saved video path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

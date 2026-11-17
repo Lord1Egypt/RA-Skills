@@ -1,42 +1,58 @@
-## Description: <br>
-Converts code files into A4-ratio SVG and PNG pages with line numbers and syntax highlighting, then merges pages into per-file PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert code files into A4-ratio PNG/SVG images with line numbers, syntax highlighting and per-editor color families, then merge into a PDF.
 
-## Publisher: <br>
-[yon-gjun](https://clawhub.ai/user/yon-gjun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yon-gjun](https://clawhub.ai/user/yon-gjun)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare source files for documentation, review, sharing, or printing by generating A4 page images and PDFs with readable line numbers and syntax highlighting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local converter processes whatever paths are listed in FILES and writes generated image directories and PDFs in the current working directory. <br>
-Mitigation: Review and edit FILES before running the script, and run it only in the intended workspace. <br>
-Risk: The bundled maintenance scripts can edit Markdown documentation files if run manually. <br>
-Mitigation: Do not run the _fix_* scripts unless intentionally updating those documentation files. <br>
-Risk: The workflow requires local npm and pip dependencies. <br>
-Mitigation: Install dependencies only in an environment where running local Python, Node, @resvg/resvg-js, and img2pdf is acceptable. <br>
+## Use Case:
 
+Developers and engineers can turn source files into readable, syntax-highlighted images for print, presentations, code reviews, or PDF archives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yon-gjun/code-to-images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are SVG, PNG, and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Users configure the FILES list and rendering settings before running the local converter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release evidence) <br>
+Risk: Selected source files may contain sensitive code or data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose only files intended for conversion and keep sensitive image and PDF outputs private.
+
+Risk: Existing output files with matching names may be overwritten.
+
+Mitigation: Use trusted filenames without markup characters and check the output location before running the conversion.
+
+Risk: Rendering relies on Node and downloaded conversion dependencies that were not exercised during review.
+
+Mitigation: Install dependencies from trusted sources in an isolated environment and use a trusted Node executable.
+
+## Reference(s):
+
+- [Project repository](https://github.com/yon-gjun/code-to-images)
+- [ClawHub release page](https://clawhub.ai/yon-gjun/skills/code-to-images)
+
+## Skill Output:
+
+**Output Type(s):** [Files]
+
+**Output Format:** [SVG, PNG, and PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A4-ratio pages with line numbers and syntax highlighting; multi-page files are supported.]
+
+## Skill Version(s):
+
+2.3.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

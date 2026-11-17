@@ -1,43 +1,57 @@
-## Description: <br>
-Syncs an OpenClaw workspace directory to a specified local Git repository and automates git add, commit, and push operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs an OpenClaw workspace directory to a specified local Git repository and can run git add, commit, and push operations for backup and version control.
 
-## Publisher: <br>
-[david668haha](https://clawhub.ai/user/david668haha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[david668haha](https://clawhub.ai/user/david668haha)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to back up, archive, and synchronize workspace files to a local Git repository and remote backup branch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync operation can delete existing files in the chosen target repository before copying workspace contents. <br>
-Mitigation: Use a dedicated private backup repository, verify the target path before execution, and keep normal Git history available for recovery. <br>
-Risk: Workspace contents may be committed and pushed to a remote without a dry-run or confirmation step. <br>
-Mitigation: Review the workspace for secrets and sensitive files before running the skill, and configure exclusions for material that should not leave the local machine. <br>
-Risk: The force_sync helper can rewrite remote branch history with force-with-lease. <br>
-Mitigation: Avoid force_sync unless branch history rewrite is intentional and the remote branch has been checked. <br>
+## Use Case:
 
+Developers and engineers use this skill to back up or archive an OpenClaw workspace into a dedicated Git repository. It is intended for mirror-style workspace backup workflows that require automated pull, copy, commit, and push steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/david668haha/workspace-git-sync) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Git sync instructions and exposes a Python script/API that can copy workspace files, commit them, and push to a configured remote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can delete files from the chosen target Git repository while mirroring workspace contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated backup repository and avoid targeting an existing project repository with unrelated or uncommitted files.
+
+Risk: The skill can push broad workspace contents to a remote repository, which may expose secrets or private data.
+
+Mitigation: Review the workspace for secrets and confirm the repository origin and visibility before syncing.
+
+Risk: The force sync path can affect remote history.
+
+Mitigation: Avoid force_sync unless the user understands the remote-history impact and has verified the target branch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/david668haha/skills/workspace-git-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to run local Git sync commands against a user-specified repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

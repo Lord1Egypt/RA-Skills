@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn771chz4tpbfqvppkf88wk15184bm5m",
+  "ownerId": "local",
   "slug": "web-article-to-obsidian",
-  "version": "1.0.0",
-  "publishedAt": 1777445702750
+  "version": "2.0.0",
+  "publishedAt": 1745836800000,
+  "description": "网页文章一体化抓取存入Obsidian知识库。集成Playwright/Tavily/Firecrawl/Browser四种提取引擎，支持微信公众号/富途牛牛/雪球/通用网页，自动行业分类、导航清理、双层存储。",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": ["requests", "beautifulsoup4", "playwright"],
+    "env_vars": ["TAVILY_API_KEY"],
+    "optional_cli": ["firecrawl"]
+  },
+  "supersedes": ["wechat-article-extractor", "wechat-mp-reader", "article-to-obsidian"]
 }

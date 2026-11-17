@@ -1,43 +1,54 @@
-## Description: <br>
-A simple, fast and user-friendly alternative to 'find' based on sharkdp/fd for local file search and filesystem analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Finder helps agents search and summarize filesystem contents by file name, extension, size, recency, empty entries, duplicate candidates, and directory structure.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and agents use this skill to find files by name or extension, identify large, recent, empty, or duplicate files, and summarize local directory contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan broad local filesystem paths supplied by the caller. <br>
-Mitigation: Run it only against intended project directories and avoid sensitive home, credential, or system locations. <br>
-Risk: Path and argument handling is unsafe enough to warrant review before installation, especially if arguments come from untrusted text. <br>
-Mitigation: Do not pass untrusted paths or arguments; review commands before execution. <br>
-Risk: Duplicate-file results may be false positives because matching-size files are compared using only the first 64KB. <br>
-Mitigation: Treat duplicate output as candidate matches and verify full file contents before deleting or modifying files. <br>
+## Use Case:
 
+Developers and agents use File Finder to locate files and inspect directory contents during workspace cleanup, codebase navigation, and filesystem triage.
 
-## Reference(s): <br>
-- [File Finder ClawHub listing](https://clawhub.ai/ckchzh/file-finder) <br>
-- [sharkdp/fd reference project](https://github.com/sharkdp/fd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command output and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filesystem scan results are command-limited; duplicate results are candidate matches because matching-size files are hashed only on their first 64KB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Unsafe argument handling in embedded Python blocks could allow a crafted path argument to execute code with the invoking user or agent's access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run this version until argument passing is fixed; evaluate only in an isolated workspace with trusted path inputs.
+
+Risk: Filesystem analysis behavior is broader than the manifest describes and may expose file paths, sizes, duplicate candidates, or directory summaries outside the intended scope.
+
+Mitigation: Restrict use to explicit directories and review generated output before sharing it outside the execution environment.
+
+## Reference(s):
+
+- [ClawHub File Finder listing](https://clawhub.ai/ckchzh/skills/file-finder)
+- [Referenced inspiration project: sharkdp/fd](https://github.com/sharkdp/fd)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with file paths, counts, and directory summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May traverse user-selected directories and prints capped result sets to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

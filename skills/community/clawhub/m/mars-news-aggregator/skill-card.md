@@ -1,45 +1,59 @@
-## Description: <br>
-Aggregates domestic and international social, technology, and military news, then searches, filters, and summarizes key points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates domestic and international social, technology, and military news, then searches, filters, and organizes key points into structured summaries.
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-External users and developers use this skill to gather current social, technology, and military news from multiple sources and produce structured summaries with source links and key points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and cited links may be shared with external search or fetch providers. <br>
-Mitigation: Do not include confidential, personal, or sensitive internal information in news requests. <br>
-Risk: Breaking-news and military claims can be incomplete, outdated, or misleading. <br>
-Mitigation: Verify important claims against primary sources or official reporting before acting on the summary. <br>
+## Use Case:
 
+External users can use this skill to gather current social, technology, and military news from domestic and international sources and receive a categorized summary of links, sources, timestamps, and key points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mars82311111/mars-news-aggregator) <br>
-- [36Kr technology news](https://36kr.com/information/tech/) <br>
-- [Jiqizhixin](https://www.jiqizhixin.com/) <br>
-- [IT Home](https://www.ithome.com/) <br>
-- [Guancha](https://www.guancha.cn/) <br>
-- [The Paper](https://www.thepaper.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown news summaries with titles, links, sources, timestamps, and key points.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes official and authoritative sources; flags forum posts, anonymous claims, and secondhand reposts for caution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Current-events summaries can include outdated, incomplete, biased, or misleading reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check publication dates and compare important claims against multiple reputable or official sources before relying on the summary.
+
+Risk: Military reporting and anonymous-source claims may be sensitive or difficult to verify.
+
+Mitigation: Treat military or anonymous-source reporting as provisional until confirmed by authoritative sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mars82311111/skills/mars-news-aggregator)
+- [36Kr Technology](https://36kr.com/information/tech/)
+- [Jiqizhixin](https://www.jiqizhixin.com/)
+- [IT Home](https://www.ithome.com/)
+- [Guancha](https://www.guancha.cn/)
+- [The Paper](https://www.thepaper.cn/)
+- [Tencent Military](https://new.qq.com/om/mil/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown news summary with categorized links, sources, timestamps, and key points.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web or news search tools to gather public current-events information and may produce Chinese-formatted summaries unless the user asks otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

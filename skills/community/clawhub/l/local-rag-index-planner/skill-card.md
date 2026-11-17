@@ -1,47 +1,53 @@
-## Description: <br>
-Plans local knowledge-base directories, chunking granularity, naming, update timing, and access boundaries for RAG-oriented knowledge workflows without directly deploying vector databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans local knowledge-base directories, sharding granularity, naming, update cadence, and access boundaries for reviewable RAG and knowledge workflow design.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, knowledge managers, and teams use this skill to turn local content requirements, retrieval goals, and permission boundaries into a reviewable indexing plan. It helps draft structure, metadata, update strategy, risks, and next steps before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may reflect sensitive or private content from user-provided files or directories. <br>
-Mitigation: Review and minimize inputs before use, remove sensitive material when possible, and prefer stdout or dry-run review before writing reports. <br>
-Risk: Broad directory inputs can expose more local content than intended to the generated planning report. <br>
-Mitigation: Run the helper on specific, reviewed files or narrowly scoped directories rather than broad private workspaces. <br>
-Risk: Plans are advisory and may omit context needed for permission, privacy, or compliance decisions. <br>
-Mitigation: Treat outputs as reviewable drafts and confirm access boundaries, update rules, and risk controls before implementation. <br>
+## Use Case:
 
+Developers, knowledge managers, and agent users use this skill to turn local knowledge-base requirements into structured Markdown plans covering scope, source tiers, chunking, metadata, updates, and access boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/local-rag-index-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON report output from the bundled local script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local report file when an output path is provided; dry-run or stdout mode is available for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Inputs may include private or sensitive local knowledge-base content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit inputs to approved material and redact sensitive data before generating plans or reports.
+
+Risk: A generated indexing plan could blur access boundaries if requirements are incomplete.
+
+Mitigation: Review the Markdown brief for permissions, ownership, update cadence, and rollback assumptions before implementing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/local-rag-index-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown structured brief, or JSON containing the generated report when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write to an output file when run with the local Python helper; otherwise produces reviewable guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

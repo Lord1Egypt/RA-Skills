@@ -18,8 +18,7 @@ from _spapi_orders_common import (
     developer_proxy_call,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     merge_json_body,
 )
 
@@ -57,12 +56,7 @@ def main() -> None:
     if nt:
         qs = f"NextToken={quote(str(nt).strip(), safe='')}"
 
-    tokens = get_store_tokens(str(params["sellerId"]), str(params["region"]))
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_call(str(params["region"]), path, "GET", tokens["accessToken"], query_string=qs)
+    proxy = developer_proxy_call(str(params["region"]), path, "GET", seller_id, query_string=qs)
     out: dict = {"developerProxy": proxy, "resolvedPath": path, "queryString": qs}
     merge_json_body(out, proxy, "orderItemsBuyerInfo")
     inline = lf_inline_flag()

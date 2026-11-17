@@ -1,0 +1,24 @@
+【python分享6】如何使用order_callback等回调函数 
+61236
+发表于 2023-12-21 18:15:41
+|
+只看该作者
+只看大图
+阅读模式
+|
+order_callback等回调函数是策略发起交易动作时的反馈，比如用passorder发起一笔委托，那么对应这笔委托的状态(是否报出去，是否成交等)会推送到order_callback里，如果委托成交了，还会收到deal_callback，此外还有orderError_callback、account_callback等，详见 http://dict.thinktrader.net/inne ... tion.html?id=cumnXP
+
+如果想要使这些函数生效，那么需要订阅下资金账号，代码如下：
+#encoding:gbk
+def init(ContextInfo):
+    account = '123456'
+    ContextInfo.set_account(account)
+    passorder(23,1101, account, '000001.SZ',5,0,200,'',2,'note1',ContextInfo)
+
+
+
+def order_callback(ContextInfo, orderInfo):
+    print(f"股票代码:{orderInfo.m_strInstrumentID} 市场代码:{orderInfo.m_strExchangeID} 委托号:{orderInfo.m_strOrderSysID}, 成交数量:{orderInfo.m_nVolumeTraded}, 投资备注:{orderInfo.m_strRemark}")
+
+
+实盘运行时输出如下:

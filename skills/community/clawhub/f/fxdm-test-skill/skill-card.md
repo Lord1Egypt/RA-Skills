@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Trello boards, lists, and cards via the Trello REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Trello boards, lists, and cards via the Trello REST API.
 
-## Publisher: <br>
-[fxdm41202425](https://clawhub.ai/user/fxdm41202425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fxdm41202425](https://clawhub.ai/user/fxdm41202425)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Trello boards, lists, and cards and to create, move, comment on, or archive cards through Trello REST API commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Trello token can read and change real boards and cards. <br>
-Mitigation: Use the narrowest or most disposable token available and require explicit confirmation before creating, moving, commenting on, or archiving cards. <br>
-Risk: Trello API credentials are provided through environment variables. <br>
-Mitigation: Keep TRELLO_API_KEY and TRELLO_TOKEN secret, avoid pasting them into logs or shared transcripts, and rotate them if exposure is suspected. <br>
-Risk: High-volume use can hit Trello API rate limits. <br>
-Mitigation: Throttle repeated requests and handle Trello rate-limit responses before running bulk board, list, or card operations. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Trello boards, lists, and cards from an agent session with Trello REST API commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fxdm41202425/fxdm-test-skill) <br>
-- [Trello REST API documentation](https://developer.atlassian.com/cloud/trello/rest/) <br>
-- [Trello API key page](https://trello.com/app-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require jq plus TRELLO_API_KEY and TRELLO_TOKEN environment variables and call Trello REST API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: The Trello API token can read and change Trello data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged token and install the skill only when the agent should access and modify Trello.
+
+Risk: Commands that use the wrong board, list, or card ID can change unintended Trello content.
+
+Mitigation: Verify board, list, and card IDs before write commands and test first on a non-production board.
+
+Risk: API keys and tokens can be exposed through logged shell commands or verbose CI traces.
+
+Mitigation: Avoid running examples in logged shells or CI jobs with verbose tracing enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fxdm41202425/skills/fxdm-test-skill)
+- [Trello REST API documentation](https://developer.atlassian.com/cloud/trello/rest/)
+- [Trello API key and token page](https://trello.com/app-key)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq plus TRELLO_API_KEY and TRELLO_TOKEN environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

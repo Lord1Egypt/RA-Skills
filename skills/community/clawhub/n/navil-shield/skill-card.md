@@ -1,46 +1,60 @@
-## Description: <br>
-Navil Shield helps protect OpenClaw MCP servers and CLI tools at runtime from prompt injection, data exfiltration, and privilege escalation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime security for OpenClaw that protects MCP servers and CLI tools from prompt injection, data exfiltration, and privilege escalation at runtime.
 
-## Publisher: <br>
-[ivanpantheon](https://clawhub.ai/user/ivanpantheon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivanpantheon](https://clawhub.ai/user/ivanpantheon)
 
-## Use Case: <br>
-Developers and operators use this skill to install and operate Navil as a runtime security layer for OpenClaw MCP servers, including scanning configurations, wrapping servers with monitoring, reviewing security status, and undoing wrapping when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an external package and persistently wrap MCP server configuration. <br>
-Mitigation: Use a virtual environment or pipx, verify the Navil package source, inspect the wrap dry-run, require explicit confirmation before wrapping, and keep the documented undo command available. <br>
-Risk: Navil shares telemetry by default unless disabled. <br>
-Mitigation: Set NAVIL_DISABLE_CLOUD_SYNC=true before first use when outbound telemetry is not acceptable, and review the cloud status before relying on the threat network. <br>
-Risk: The skill auto-runs on broad security-related triggers and can change runtime routing for MCP tools. <br>
-Mitigation: Activate it only when runtime proxying is intended, review the target OpenClaw configuration path, and re-check security findings after any new skill or MCP server is added. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install Navil, wrap MCP servers with runtime monitoring, scan configurations, review findings, and manage rollback or telemetry settings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivanpantheon/navil-shield) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivanpantheon) <br>
-- [Navil Homepage](https://github.com/navilai/navil) <br>
-- [Navil Documentation](https://navil.ai/docs) <br>
-- [Navil Community Threat Radar](https://navil.ai/radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scan summaries, security findings, configuration wrapping guidance, and undo commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs unpinned external software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment such as pipx or a virtual environment, and verify the package provenance and version before use.
+
+Risk: The skill can rewrite MCP tool routes by wrapping all MCP servers.
+
+Mitigation: Review the dry-run configuration diff before applying changes and confirm rollback with navil wrap <path-to-config> --undo.
+
+Risk: The skill sends anonymous telemetry by default.
+
+Mitigation: Set NAVIL_DISABLE_CLOUD_SYNC=true to opt out when telemetry is not desired.
+
+## Reference(s):
+
+- [Navil GitHub Repository](https://github.com/navilai/navil)
+- [Navil Documentation](https://navil.ai/docs)
+- [Community Threat Radar](https://navil.ai/radar)
+- [Navil Issues](https://github.com/navilai/navil/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include security scores, severity-grouped findings, pass/fail audit tables, configuration diffs, and rollback guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

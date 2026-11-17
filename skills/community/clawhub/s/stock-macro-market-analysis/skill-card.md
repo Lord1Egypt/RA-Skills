@@ -1,41 +1,57 @@
-## Description: <br>
-Analyzes A-share, U.S., and Hong Kong market trends, sentiment, capital flows, macroeconomic conditions, policy effects, and sector rotation to generate a market overview report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language macro and market analysis reports for A-share, U.S., and Hong Kong equities, covering index trends, market sentiment, capital flows, macro data, policy effects, global linkages, and sector rotation.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-External users, investors, analysts, and agent operators use this skill to produce structured market analysis across technical indicators, breadth, fund flows, sentiment, macro data, policy, and global market linkage. The generated reports support research and review workflows and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market recommendations can be incorrect, incomplete, or mistaken for financial advice. <br>
-Mitigation: Require human review before acting on outputs, preserve source and timestamp labels, and keep the skill's disclaimer in generated reports. <br>
-Risk: The skill may run local Python market-analysis tools and use a stock-data API key. <br>
-Mitigation: Use a dedicated, revocable API key where possible and review any helper scripts before execution. <br>
+## Use Case:
 
+External users and agents use this skill to produce broad market commentary, pre-market or post-market summaries, and sector-rotation analysis for Chinese-language stock and macro market workflows. Outputs should be treated as general information, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wuritu/stock-macro-market-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/wuritu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown market analysis reports with JSON snippets and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are expected to include data sources, timestamps, confidence labels, and a disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: Market scores, rankings, and position suggestions may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as general market information, review source data and assumptions, and keep the disclaimer in generated reports.
+
+Risk: Several helper scripts and the daily report template referenced by the skill are not present in the artifact.
+
+Mitigation: Confirm package completeness or provide the missing tools and template before relying on the automated workflow.
+
+Risk: Analysis quality depends on external stock data availability and the configured STOCK_DATA_API_KEY.
+
+Mitigation: Verify data freshness, source coverage, and API availability before acting on conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuritu/skills/stock-macro-market-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown market analysis report with structured JSON examples and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include data sources, timestamps, confidence labels, and a financial disclaimer; the package declares python3 and STOCK_DATA_API_KEY requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

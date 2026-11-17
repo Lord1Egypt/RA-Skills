@@ -1,40 +1,56 @@
-## Description: <br>
-Drafts project commissioning plans aligned to ASHRAE Guideline 0-2019, LEED v4/v4.1 commissioning requirements, and federal or agency commissioning requirements for CxA review before system installation begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts a project commissioning plan aligned to ASHRAE Guideline 0-2019, LEED v4/v4.1 commissioning requirements, or federal and agency commissioning requirements for review by a commissioning authority.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Commissioning authorities, building commissioning professionals, MEP engineers, and owner's representatives use this skill to gather project information and produce a structured draft commissioning plan before building systems are installed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The draft plan may omit project-specific commissioning requirements or misstate the applicable LEED, agency, or owner requirements.
+
+Mitigation: Have a qualified CxA verify the scope driver, credit tier, OPR, commissioned systems matrix, and final plan before project use.
+
+Risk: A project team may treat the draft as final professional judgment rather than a review-ready planning document.
+
+Mitigation: Keep the draft status and CxA and owner acceptance block in the output until the lead CxA reviews and the owner accepts the plan.
+
+Risk: Functional performance testing may be scheduled before TAB completion or unresolved critical pre-functional checklist items are closed.
+
+Mitigation: Use the documented schedule flags and blocking criteria to confirm TAB completion and close critical PFC deficiencies before FPT scheduling.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Commissioning authorities, building commissioning professionals, MEP engineers, and owner's representatives use this skill to turn project data, OPR information, system scope, roles, schedules, and documentation requirements into a structured draft commissioning plan for new construction or major renovation projects. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commissioning plans may omit project-specific requirements, scope exclusions, or compliance constraints. <br>
-Mitigation: Treat the output as a draft and have a qualified CxA or appropriate professional verify the requirements, exclusions, and project-specific compliance before relying on it. <br>
-Risk: Incorrect assumptions about OPR status, TAB completion, commissioning scope driver, or FPT timing could lead to misleading plan language. <br>
-Mitigation: Confirm OPR approval, the applicable LEED or agency scope driver, commissioned systems, TAB prerequisites, and FPT schedule with the project team before finalizing the plan. <br>
+**Output Format:** [Markdown technical document with numbered sections, tables, flag blocks, and an acceptance sign-off block]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Cx Commissioning Plan Drafter on ClawHub](https://clawhub.ai/archlab-space/cx-commissioning-plan-drafter) <br>
+**Other Properties Related to Output:** [Output is labeled DRAFT - PENDING CxA REVIEW AND OWNER ACCEPTANCE and is intended for qualified CxA and owner review before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown technical document with numbered sections, tables, flag blocks, and a CxA and Owner acceptance block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output is labeled DRAFT - PENDING CxA REVIEW AND OWNER ACCEPTANCE; full FPT protocols and detailed test scripts are out of scope.] <br>
+0.1.0 (source: server release metadata and changelog, released 2026-05-31)
 
-## Skill Version(s): <br>
-0.1.0 (source: changelog, released 2026-05-31; server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Build complete email marketing sequences (welcome, nurture, sales, re-engagement) with subject lines, body copy, and platform-ready output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build complete email marketing sequences with subject lines, preview text, body copy, CTAs, send timing, and platform-ready output.
 
-## Publisher: <br>
-[seanwyngaard](https://clawhub.ai/user/seanwyngaard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanwyngaard](https://clawhub.ai/user/seanwyngaard)
 
-## Use Case: <br>
-Marketing teams, founders, agencies, and operators use this skill to draft complete email campaign sequences for welcome, sales, nurture, onboarding, launch, webinar, re-engagement, and abandoned-cart flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated email copy may be deployed without confirming consent, sender identity, unsubscribe handling, or claim accuracy. <br>
-Mitigation: Treat generated emails as drafts and review them against applicable marketing, privacy, brand, and compliance requirements before sending. <br>
-Risk: Generated output files may overwrite prior sequence files if an existing output folder is reused. <br>
-Mitigation: Use a fresh output folder or confirm before overwriting existing files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Marketing teams, founders, agencies, and campaign operators use this skill to draft welcome, sales, nurture, re-engagement, onboarding, launch, webinar, and abandoned-cart email sequences for client or business campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration guidance] <br>
-**Output Format:** [Markdown email drafts with sequence configuration, plus optional CSV or plain-text platform import formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes subject-line variants, preview text, body copy, CTAs, send timing, segmentation notes, KPIs, and platform-specific merge-tag guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad filesystem and shell permissions could expose or modify files beyond the intended email sequence outputs.
+
+Mitigation: Run the skill with scoped write access to a dedicated output directory and avoid shell or broad read/search permissions unless those capabilities are explicitly needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanwyngaard/skills/email-sequence-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration]
+
+**Output Format:** [Markdown files, CSV, and platform-specific plain text email sequence content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes subject-line variants, preview text, body copy, CTA text and URLs, send timing, segmentation guidance, KPIs, and quality checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

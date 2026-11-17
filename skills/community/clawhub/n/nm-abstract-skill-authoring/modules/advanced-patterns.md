@@ -2,8 +2,8 @@
 
 Patterns for skill authors who have shipped a working skill and now
 need to coordinate with other skills, scale across many activation
-contexts, or expose conditional behavior. Read this after the core
-SKILL.md and `tdd-methodology.md` modules. The Iron Law still
+contexts, or expose conditional behavior. Read this after SKILL.md and
+the TDD methodology module it lists. The Iron Law still
 applies: every advanced pattern below assumes a baseline failing
 test exists for the behavior being added.
 
@@ -69,8 +69,8 @@ two PRs. Pick an owner and link.
 
 ## Hub-and-spoke loading
 
-The hub-and-spoke pattern is documented in
-`progressive-disclosure.md`. The advanced variant adds two rules
+The hub-and-spoke pattern is documented in the progressive-disclosure
+module listed in `SKILL.md`. The advanced variant adds two rules
 that only matter once a skill has 5+ modules.
 
 ### Rule 1: the hub never loads more than two spokes
@@ -146,7 +146,7 @@ paths:
   - "**/tests/**/*.py"
 ```
 
-This is enforced by the harness, not by Claude. A skill with a
+This is enforced by the harness rather than by Claude. A skill with a
 `paths:` glob will not appear in `/skills` for unrelated edits.
 
 ### Explicit gates inside the skill
@@ -171,9 +171,10 @@ test that runs the skill on `master` and verifies Claude refuses.
 ## Shared module extraction
 
 When three or more skills reference the same content, extract it
-to `plugins/<plugin>/skills/shared-patterns/modules/` and link
-from each consumer. The `abstract:shared-patterns` skill owns
-this directory in the abstract plugin.
+to `plugins/<plugin>/shared-modules/` and link from each consumer.
+abstract keeps `trigger-patterns.md` and
+`skill-selection-judgment.md` there, each linked from the skills
+that use it.
 
 ### Migration anti-pattern
 
@@ -182,7 +183,7 @@ plugin root. The current evaluator
 (`plugins/abstract/scripts/skills_auditor.py`) flags any
 `skills/shared/` path as a structural warning. Move the file
 into the consuming skill's `modules/` directory or into
-`shared-patterns/modules/` with cross-references.
+`shared-modules/` with cross-references.
 
 ## Anti-patterns
 
@@ -207,8 +208,8 @@ three trigger phrases and test activation against real prompts.
 A gate that says "only use in production environments" is a
 behavioral promise. Without a baseline test that runs the skill
 in development and verifies refusal, the gate is decoration.
-Claude will rationalize past it under pressure. See
-`anti-rationalization.md` for the counter pattern.
+Claude will rationalize past it under pressure. The counter pattern is
+in `../../../shared-modules/skill-selection-judgment.md`.
 
 ### Spoke depth creep
 

@@ -1,39 +1,49 @@
-## Description: <br>
-Is smart money exiting a token I hold? Net flow direction, seller breakdown by label, and recent SM trades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Is smart money exiting a token I hold? Net flow direction, seller breakdown by label, and recent SM trades.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and developers use this skill to query Nansen token-flow data and assess whether smart-money wallets, whales, exchanges, or other labeled cohorts appear to be selling a token they hold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party nansen-cli package and requires a Nansen API key. <br>
-Mitigation: Confirm trust in the nansen-cli package before installing, supply the API key only in trusted environments, and review any broader nansen command before approving it. <br>
+## Use Case:
 
+Crypto token holders and analysts use this skill to review smart-money flows, seller labels, and recent trades for signs that traders may be exiting a token.
 
-## Reference(s): <br>
-- [Nansen Exit Signals on ClawHub](https://clawhub.ai/nansen-devops/nansen-exit-signals) <br>
-- [nansen-devops publisher profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Analysis] <br>
-**Output Format:** [Markdown with inline bash command examples and concise interpretation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nansen CLI and NANSEN_API_KEY; commands are scoped to Nansen research queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: A supported HTTP 402 response can spend funds from the configured wallet, and each research call, including calls in loops, can incur a payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check wallet authorization, payment policy, and spending limits before running; keep research calls bounded because each call may incur a payment.
+
+## Reference(s):
+
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token and chain values are supplied to research commands; calls may incur payments under the configured wallet policy.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

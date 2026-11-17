@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
 每日推荐生成脚本
-- 4 维度轮换（D1 趋势 / D2 质量 / D3 新星 / D4 全景）
-- 10 天去重（10 天全覆盖扫描周期）
-- 痛点匹配加权
-- 中文一句话解读（基于 capability_tags + 痛点场景拼装，0 token 消耗）
+- 6 维度全维度推荐（trending/quality/newcomers/panorama/actively_maintained/verified）
+- 7 天去重（跨维度去重）
+- 痛点匹配加权 + 去重展示（同一 Skill 只在第一个命中场景展示）
+- changelog 展示（最近变更摘要）
+- 降级策略（候选不足时自动放宽阈值）
+- optional 维度（verified 候选为 0 时跳过）
+- 中文一句话解读（基于 categories + 痛点场景拼装，0 token 消耗）
 - 生成飞书云文档 blocks + 简报 Markdown
 """
 import json
@@ -81,22 +84,24 @@ PAIN_POINTS_DB = {
     },
 }
 
-# 维度配置（每日全维度推荐：trending×2 + quality×1 + newcomers×1 + panorama×2 = 6）
+# 维度配置（每日全维度推荐：6 维度 = 7 个/天）
 DIMENSION_CONFIG = {
     "trending": {
         "name": "趋势",
         "module": "🔥 今日热装",
         "primary_field": "installs_current",
         "filter_fn": lambda s: s['installs_current'] >= 100,
+        "fallback_fn": lambda s: s['installs_current'] >= 30,  # 降级：放宽到30
         "sort_field": "installs_current",
         "sort_desc": True,
-        "limit": 2,
+        "limit": 3,
     },
     "quality": {
         "name": "质量",
         "module": "⭐ 口碑精品",
         "primary_field": "star_rate",
         "filter_fn": lambda s: s['downloads'] >= 1000 and s['star_rate'] >= 0.5,
+        "fallback_fn": lambda s: s['downloads'] >= 500 and s['star_rate'] >= 0.3,  # 降级
         "sort_field": "star_rate",
         "sort_desc": True,
         "limit": 1,
@@ -106,6 +111,7 @@ DIMENSION_CONFIG = {
         "module": "🚀 新星崛起",
         "primary_field": "age_days",
         "filter_fn": lambda s: s['age_days'] <= 60 and s['installs_current'] >= 10 and s['stars'] >= 3,
+        "fallback_fn": lambda s: s['age_days'] <= 90 and s['installs_current'] >= 5 and s['stars'] >= 2,  # 降级
         "sort_field": "installs_current",
         "sort_desc": True,
         "limit": 1,
@@ -119,6 +125,26 @@ DIMENSION_CONFIG = {
         "sort_desc": True,
         "limit": 2,
     },
+    "actively_maintained": {
+        "name": "活跃维护",
+        "module": "🔧 活跃维护",
+        "primary_field": "update_frequency",
+        "filter_fn": lambda s: s.get('days_since_update', 999) <= 90 and s['version_count'] >= 3,
+        "fallback_fn": lambda s: s.get('days_since_update', 999) <= 180 and s['version_count'] >= 2,
+        "sort_field": "update_frequency",
+        "sort_desc": True,
+        "limit": 1,
+    },
+    "verified": {
+        "name": "可信推荐",
+        "module": "🛡️ 可信推荐",
+        "primary_field": "downloads",
+        "filter_fn": lambda s: s.get('is_verified', False) and not s['is_suspicious'],
+        "sort_field": "downloads",
+        "sort_desc": True,
+        "limit": 1,
+        "optional": True,  # 候选为 0 时跳过，不占配额
+    },
 }
 
 
@@ -127,7 +153,7 @@ def match_pain_points(skill):
     text_parts = [
         skill.get('display_name', ''),
         skill.get('summary', ''),
-        ' '.join(skill.get('capability_tags', []))
+        ' '.join(skill.get('capability_tags', []) or skill.get('categories', []) or [])
     ]
     text = ' '.join(text_parts).lower()
 
@@ -164,18 +190,42 @@ def get_dimension_by_date(date_str):
 
 
 def recommend_all_dimensions(skills, lookback_urls):
-    """每日全维度推荐：遍历所有维度，每个维度取 limit 个，合并去重"""
+    """每日全维度推荐：遍历所有维度，每个维度取 limit 个，合并去重，候选不足时降级"""
     all_recommended = []
     seen_urls = set()
     dim_stats = {}  # 每个维度的统计
 
     for dim_key, config in DIMENSION_CONFIG.items():
         filter_fn = config['filter_fn']
+        fallback_fn = config.get('fallback_fn')  # 降级过滤函数
         sort_field = config['sort_field']
         limit = config['limit']
+        is_optional = config.get('optional', False)  # optional 维度候选为 0 时跳过
 
-        # 1. 过滤
+        # 1. 过滤（主阈值）
         candidates = [s for s in skills if filter_fn(s) and not s['is_suspicious']]
+        used_fallback = False
+
+        # 1.1 降级：主阈值候选不足时，尝试放宽阈值
+        if len(candidates) < limit and fallback_fn:
+            fallback_candidates = [s for s in skills if fallback_fn(s) and not s['is_suspicious']]
+            if len(fallback_candidates) > len(candidates):
+                candidates = fallback_candidates
+                used_fallback = True
+
+        # 1.2 optional 维度：候选为 0 时跳过该维度
+        if len(candidates) == 0 and is_optional:
+            dim_stats[dim_key] = {
+                "name": config['name'],
+                "module": config['module'],
+                "pool": 0,
+                "recommended": 0,
+                "limit": limit,
+                "used_fallback": False,
+                "skipped": True,
+            }
+            print(f"  [{dim_key}] 候选 0 → 跳过（optional 维度）")
+            continue
 
         # 2. 排序
         candidates.sort(key=lambda x: x[sort_field], reverse=config['sort_desc'])
@@ -209,6 +259,7 @@ def recommend_all_dimensions(skills, lookback_urls):
             "pool": len(candidates),
             "recommended": len(dim_recs),
             "limit": limit,
+            "used_fallback": used_fallback,
         }
         print(f"  [{dim_key}] 候选 {len(candidates)} → 推荐 {len(dim_recs)}/{limit}")
 
@@ -274,13 +325,18 @@ def recommend_skills(skills, dimension, lookback_urls, target_count=10):
 def generate_recommend_reason(skill, dimension, matched):
     """生成中文推荐理由"""
     if dimension == "trending":
-        return f"今日活跃安装 {skill['installs_current']} 次，累计 {skill['installs_all_time']} 次"
+        return f"活跃安装 {skill['installs_current']} 次，累计下载 {skill['downloads']} 次"
     elif dimension == "quality":
         return f"口碑率 {skill['star_rate']}%，高于平均（0.81%）"
     elif dimension == "newcomers":
         return f"仅 {skill['age_days']} 天，已 {skill['installs_current']} 活跃安装"
     elif dimension == "panorama":
         return f"社区热议 {skill['comments']} 条"
+    elif dimension == "actively_maintained":
+        days = skill.get('days_since_update', 0)
+        return f"近期更新（{days:.0f}天前），{skill['version_count']} 个版本，更新频率 {skill.get('update_frequency', 0)}/月"
+    elif dimension == "verified":
+        return f"通过平台安全审计，累计下载 {skill['downloads']} 次"
     return ""
 
 
@@ -301,7 +357,7 @@ def generate_chinese_one_liner(skill, matched):
     """基于 capability_tags + 痛点场景自动拼装中文一句话
     0 token 消耗，不调大模型
     """
-    tags = skill.get('capability_tags', []) or []
+    tags = skill.get('capability_tags', []) or skill.get('categories', []) or []
     # 兜底：没有 tags 就用 display_name 拆词
     if not tags and skill.get('summary'):
         # 从 summary 简单抽取前 4 个英文单词作"功能"提示
@@ -349,7 +405,7 @@ def generate_markdown(date_str, recommended, total_scanned, deduplicated, dim_st
         dim_key = r.get('dimension', 'trending')
         by_dim.setdefault(dim_key, []).append(r)
 
-    for dim_key in ["trending", "quality", "newcomers", "panorama"]:
+    for dim_key in ["trending", "quality", "newcomers", "panorama", "actively_maintained", "verified"]:
         if dim_key not in by_dim:
             continue
         config = DIMENSION_CONFIG[dim_key]
@@ -366,13 +422,16 @@ def generate_markdown(date_str, recommended, total_scanned, deduplicated, dim_st
             if r.get('pain_points_matched'):
                 md += f"- **匹配场景**: {', '.join(r['pain_points_matched'])}\n"
             md += f"- **推荐理由**: {r['recommend_reason']}\n"
+            if r.get('changelog_summary'):
+                changelog_clean = r['changelog_summary'][:150].replace('\n', ' ').replace('\r', '')
+                md += f"- **最近变更**: {changelog_clean}\n"
             md += f"- **下一步**: {r['next_action']}\n"
             if r.get('summary'):
                 summary = r['summary'][:200] + ('...' if len(r['summary']) > 200 else '')
                 md += f"- <details><summary>📄 原文摘要（English）</summary>{summary}</details>\n"
             md += "\n"
 
-    # 痛点分组
+    # 痛点分组（去重：同一 Skill 只在第一个命中场景展示）
     md += "\n## 🎯 痛点匹配（按场景分组）\n\n"
     by_scene = {}
     for r in recommended:
@@ -380,10 +439,15 @@ def generate_markdown(date_str, recommended, total_scanned, deduplicated, dim_st
             by_scene.setdefault(scene, []).append(r)
 
     if by_scene:
+        shown_skills = set()  # 去重：同一 Skill 只展示一次
         for scene in sorted(by_scene.keys(), key=lambda s: PAIN_POINTS_DB[s]['weight'], reverse=True):
+            scene_recs = [r for r in by_scene[scene] if r['url'] not in shown_skills]
+            if not scene_recs:
+                continue
             md += f"### {scene}\n"
-            for r in by_scene[scene][:3]:
+            for r in scene_recs[:3]:
                 md += f"- **{r['display_name']}** - {r.get('chinese_one_liner', r.get('summary', '')[:80])}\n"
+                shown_skills.add(r['url'])
             md += "\n"
     else:
         md += "今日推荐未命中预设痛点场景。\n\n"
@@ -395,13 +459,15 @@ def generate_markdown(date_str, recommended, total_scanned, deduplicated, dim_st
 
 - **数据源**: ClawHub Convex API
 - **扫描数量**: {total} 个 Skill
-- **推荐模式**: 每日全维度（趋势×2 + 质量×1 + 新星×1 + 全景×2 = 6）
+- **推荐模式**: 每日全维度（6 维度同日推荐）
+  - 🔥 趋势×3（活跃安装≥100，降级≥30）
+  - ⭐ 质量×1（下载≥1000+口碑≥0.5%，降级≥500+0.3%）
+  - 🚀 新星×1（≤60天+安装≥10+星≥3，降级≤90天+5+2）
+  - 🏆 全景×2（评论≥1）
+  - 🔧 活跃维护×1（90天内更新+版本≥3，降级180天+版本≥2）
+  - 🛡️ 可信推荐×1（平台安全审计通过，候选为空时跳过）
 - **去重窗口**: 7 天（7 天内已推荐的 Skill 不会重复出现）
-- **筛选规则**:
-  - 趋势维度: installsCurrent > 100
-  - 质量维度: downloads > 1000 且 star_rate > 0.5%
-  - 新星维度: age_days <= 60 且 installsCurrent > 10 且 stars > 3
-  - 全景维度: comments >= 1
+- **降级策略**: 候选不足时自动放宽阈值
 
 ## 🦞 反馈
 
@@ -444,7 +510,7 @@ def generate_feishu_blocks(date_str, recommended, total_scanned, deduplicated, d
         dim_key = r.get('dimension', 'trending')
         by_dim.setdefault(dim_key, []).append(r)
 
-    for dim_key in ["trending", "quality", "newcomers", "panorama"]:
+    for dim_key in ["trending", "quality", "newcomers", "panorama", "actively_maintained", "verified"]:
         if dim_key not in by_dim:
             continue
         config = DIMENSION_CONFIG[dim_key]
@@ -481,6 +547,12 @@ def generate_feishu_blocks(date_str, recommended, total_scanned, deduplicated, d
                 "elements": [{"text_run": {"content": f"推荐理由: {r['recommend_reason']}"}}],
                 "style": {}
             }})
+            if r.get('changelog_summary'):
+                changelog_clean = r['changelog_summary'][:150].replace('\n', ' ').replace('\r', '')
+                blocks.append({"block_type": 2, "text": {
+                    "elements": [{"text_run": {"content": f"最近变更: {changelog_clean}"}}],
+                    "style": {}
+                }})
             blocks.append({"block_type": 2, "text": {
                 "elements": [{"text_run": {"content": f"下一步: {r['next_action']}"}}],
                 "style": {}
@@ -500,16 +572,21 @@ def generate_feishu_blocks(date_str, recommended, total_scanned, deduplicated, d
     for r in recommended:
         for scene in r.get('pain_points_matched', []):
             by_scene.setdefault(scene, []).append(r)
+    shown_skills = set()  # 去重：同一 Skill 只展示一次
     for scene in sorted(by_scene.keys(), key=lambda s: PAIN_POINTS_DB[s]['weight'], reverse=True):
+        scene_recs = [r for r in by_scene[scene] if r['url'] not in shown_skills]
+        if not scene_recs:
+            continue
         blocks.append({"block_type": 4, "heading2": {
             "elements": [{"text_run": {"content": scene}}], "style": {}
         }})
-        for r in by_scene[scene][:3]:
+        for r in scene_recs[:3]:
             desc = r.get('chinese_one_liner') or (r.get('summary', '')[:80] + '...')
             blocks.append({"block_type": 2, "text": {
                 "elements": [{"text_run": {"content": f"• {r['display_name']} - {desc}"}}],
                 "style": {}
             }})
+            shown_skills.add(r['url'])
 
     # 页脚
     blocks.append({"block_type": 22, "divider": {}})
@@ -519,8 +596,9 @@ def generate_feishu_blocks(date_str, recommended, total_scanned, deduplicated, d
     for line in [
         f"• 数据源: ClawHub Convex API",
         f"• 扫描数量: {total_scanned} 个 Skill",
-        f"• 推荐模式: 每日全维度（趋势×2 + 质量×1 + 新星×1 + 全景×2 = 6）",
+        f"• 推荐模式: 每日全维度（6 维度同日推荐）",
         f"• 去重窗口: 7 天",
+        f"• 降级策略: 候选不足时自动放宽阈值",
         f"• 数据日期: {date_str}",
     ]:
         blocks.append({"block_type": 2, "text": {

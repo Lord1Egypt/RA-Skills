@@ -1,44 +1,55 @@
-## Description: <br>
-Build custom dashboards from any data source with local hosting and visual QA loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build custom dashboards from any data source with local hosting and visual QA loops.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, operators, and business users use this skill to create local static dashboards backed by user-selected APIs, files, or services while keeping credential setup and fetch execution under their control. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated dashboards and fetch scripts may touch sensitive APIs or local data when configured that way. <br>
-Mitigation: Review every generated fetch script before running it, keep credentials in environment variables rather than files, and prefer read-only API keys. <br>
-Risk: Dashboard data may expose sensitive or personal information. <br>
-Mitigation: Avoid unnecessary PII in displayed data and protect the ~/dashboard directory. <br>
-Risk: A dashboard exposed beyond localhost can become accessible to unintended users. <br>
-Mitigation: Keep dashboards on localhost by default and add authentication before exposing any dashboard to a network. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Dashboard Skill](https://clawhub.ai/ivangdavila/dashboard) <br>
-- [Data source patterns](sources.md) <br>
-- [Dashboard design rules](design.md) <br>
-- [Dashboard widgets](widgets.md) <br>
+## Use Case:
 
+Developers, operators, and business users use this skill to create local static dashboards, generated fetch scripts, and dashboard data/configuration files for user-selected data sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated static HTML, JSON configuration, and bash fetch scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dashboards are stored under ~/dashboard/ and are intended for local hosting by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated fetch scripts may mishandle API credentials or expose them locally if run without review.
+
+Mitigation: Review generated fetch scripts before running them or adding them to cron, use restricted read-only API keys, and provide secrets through environment variables.
+
+Risk: Dashboard data files may contain sensitive business or personal data on the local filesystem.
+
+Mitigation: Keep dashboard directories and data files private, avoid displaying PII, and do not expose the local dashboard to a network without authentication.
+
+## Reference(s):
+
+- [Dashboard Skill Page](https://clawhub.ai/ivangdavila/skills/dashboard)
+- [Data Sources by Use Case](artifact/sources.md)
+- [Dashboard Design Rules](artifact/design.md)
+- [Dashboard Widgets](artifact/widgets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with generated HTML, JSON configuration, data files, and shell script examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local dashboard directories and user-run fetch workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

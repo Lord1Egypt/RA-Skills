@@ -1,0 +1,39 @@
+{
+  "name": "@bovinphang/fec-refactoring",
+  "version": "2.9.0",
+  "description": "Use when restructuring existing frontend code while preserving observable behavior, including responsibility extraction, module movement, conditional simplification, API cleanup, or data organization. Do not use for new feature behavior, behavior-changing bug fixes, dependency or framework migrations, or proven dead-code cleanup.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-refactoring"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "refactoring",
+    "behavior-preservation",
+    "workflow",
+    "validation"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

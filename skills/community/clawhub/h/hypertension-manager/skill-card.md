@@ -1,46 +1,62 @@
-## Description: <br>
-Hypertension Manager helps users record blood pressure readings, review same-day trends, receive relaxation and lifestyle guidance, and generate daily health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hypertension Manager helps users record daily blood pressure, review same-day trends, receive general lifestyle guidance, manage relaxation audio use, and generate Markdown health reports.
 
-## Publisher: <br>
-[hcrunner](https://clawhub.ai/user/hcrunner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hcrunner](https://clawhub.ai/user/hcrunner)
 
-## Use Case: <br>
-External users can use this skill to log daily blood pressure readings, review same-day analysis, receive informational health and relaxation guidance, and create a Markdown report they manage themselves. It is not a substitute for diagnosis, treatment, prescriptions, or professional medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles blood pressure readings and basic health details, which may be sensitive personal information. <br>
-Mitigation: Use it only if comfortable entering this information into local daily notes, and manage any saved reports according to personal or organizational privacy requirements. <br>
-Risk: The skill provides medical-adjacent feedback that could be mistaken for diagnosis, treatment, or medication advice. <br>
-Mitigation: Treat outputs as informational only, and seek professional care for abnormal readings, symptoms, or medication questions. <br>
-Risk: The recommended audio resource opens a third-party website outside the skill's local-data privacy posture. <br>
-Mitigation: Review the third-party site's privacy and usage terms before opening or using the audio link. <br>
+## Use Case:
 
+External users use this skill to log blood pressure readings, summarize same-day measurements, and create a Markdown report they can save themselves. It is for health tracking and general wellness guidance, not diagnosis, treatment, or prescription advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hcrunner/hypertension-manager) <br>
-- [Blood pressure reference standard](references/bp_reference.md) <br>
-- [Audio therapy protocol guide](references/protocol.md) <br>
-- [Audio resource link list](references/music.md) <br>
-- [MyXT audio resource](https://myxt.com/link/738cba02-d41a-453a-99db-9be5545c1cd7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Plain text responses, daily note entries, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational, same-day focused, and may include user-managed report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Blood-pressure classifications and relaxation audio suggestions could be mistaken for medical care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as a logging and general wellness aid only, keep medical disclaimers visible, and direct users to professional care for abnormal readings or health concerns.
+
+Risk: The hard-coded third-party audio link may disclose browsing metadata and exposes users to unaudited medical content.
+
+Mitigation: Warn users before opening the external audio resource and allow them to skip audio recommendations without affecting blood-pressure logging or reporting.
+
+Risk: Local health-note writes and optional report files can contain sensitive health information.
+
+Mitigation: Minimize stored data, keep records local, and remind users that saved reports are user-managed sensitive files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hcrunner/skills/hypertension-manager)
+- [Blood Pressure Reference Standards](references/bp_reference.md)
+- [Hypertension Audio Therapy Protocol](references/protocol.md)
+- [Audio Link Reference](references/music.md)
+- [Progress Report Template](assets/templates/progress_report.md)
+- [Third-Party Audio Resource](https://myxt.com/link/738cba02-d41a-453a-99db-9be5545c1cd7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write same-day health notes locally and generate optional Markdown report files for user-managed storage.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; skill frontmatter metadata.version is 0.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

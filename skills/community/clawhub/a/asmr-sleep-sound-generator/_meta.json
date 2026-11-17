@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "asmr-sleep-sound-generator",
-  "version": "0.0.3",
-  "publishedAt": 1778123883331
+  "version": "0.0.2",
+  "changelog": [
+    {
+      "version": "0.0.2",
+      "changes": [
+        "集成 Sketchfab Male Bust 1 3D头模 (GLTFLoader)。Integrated Sketchfab Male Bust 1 3D head model.",
+        "新增 AudioLibrary 预生成音频片段系统。Added AudioLibrary pre-generated audio clip system.",
+        "新增 Sequencer 序列播放器 (1,2,3,4,5 格式)。Added Sequencer for sequence playback.",
+        "新增 AudioExporter WAV 导出功能。Added AudioExporter WAV export.",
+        "支持手动/随机/预设/序列四种模式。Support manual/random/preset/sequence modes.",
+        "修复 oscMix 静音 bug。Fixed oscMix silence bug.",
+        "三灯布光 + 立体声空间音频。Three-light setup + stereo spatial audio."
+      ]
+    },
+    {
+      "version": "0.0.1",
+      "changes": [
+        "Initial release. 首次发布。",
+        "3D head model, 8 acoustic regions, 6 material presets, spatial audio. 3D头部模型、8个声学区域、6种材料预设、空间音频。"
+      ]
+    }
+  ]
 }

@@ -1,44 +1,59 @@
-## Description: <br>
-Microsoft Ops Gadget is a CLI for Microsoft 365 covering Mail, Calendar, Drive, Contacts, Tasks, Word, PowerPoint, Excel, and OneNote. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Ops Gadget - CLI for Microsoft 365 (Mail, Calendar, Drive, Contacts, Tasks, Word, PowerPoint, Excel, OneNote).
 
-## Publisher: <br>
-[visionik](https://clawhub.ai/user/visionik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[visionik](https://clawhub.ai/user/visionik)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents in installing, configuring, and running mog commands for Microsoft 365 workflows. It supports account operations across mail, calendar, OneDrive, contacts, tasks, Office documents, spreadsheets, and OneNote. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can change or delete live Microsoft 365 account data. <br>
-Mitigation: Use human review for destructive commands, especially delete and clear operations, and avoid running them through unattended automation. <br>
-Risk: The CLI requests broad delegated Microsoft 365 permissions. <br>
-Mitigation: Use an isolated or least-privileged Azure app registration and grant only the permissions required for the intended workflows. <br>
-Risk: OAuth tokens may be stored in ~/.config/mog/tokens.json when file storage is used. <br>
-Mitigation: Prefer keychain storage where possible and treat the token file as sensitive secret material. <br>
+## Use Case:
 
+Developers and agents use Mog to operate Microsoft 365 resources from a CLI, including mail, calendar, OneDrive, contacts, tasks, Word, PowerPoint, Excel, and OneNote workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/visionik/mogcli) <br>
-- [Go Reference](https://pkg.go.dev/github.com/visionik/mogcli) <br>
-- [dashdash Specification](https://github.com/visionik/dashdash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that read, create, update, send, clear, or delete Microsoft 365 account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and CHANGELOG, released 2026-01-26) <br>
+Risk: The CLI can modify or delete Microsoft 365 account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed delete, send, update, upload, and write commands before allowing an agent to execute them.
+
+Risk: The CLI requests broad delegated Microsoft 365 access, including refresh-token access.
+
+Mitigation: Install only for accounts where that access level is acceptable and prefer a pinned source version.
+
+Risk: Token storage behavior is flagged as misleading, and ~/.config/mog/tokens.json should be treated as sensitive plaintext.
+
+Mitigation: Protect the config directory, avoid exposing token files to agents or logs, and rotate credentials if token files are disclosed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/visionik/skills/mogcli)
+- [Go package documentation](https://pkg.go.dev/github.com/visionik/mogcli)
+- [Azure Portal app registrations](https://portal.azure.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Microsoft 365 read, send, update, delete, upload, download, and authentication commands for review before execution.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata and changelog, released 2026-01-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Provides code examples demonstrating uses of various OpenClaw hooks to intercept, modify, validate, or block operations at different execution stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides code examples demonstrating uses of OpenClaw hooks to intercept, modify, validate, or block operations at different execution stages.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers use this skill as reference material for OpenClaw hook patterns, including audit logging, blocking risky tools, validating parameters, dynamic model selection, and routing subagent results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit logging examples can capture tool parameters, session identifiers, secrets, or personal data if copied unchanged. <br>
-Mitigation: Redact secrets and personal data, avoid stable session identifiers unless needed, and protect any logs that are created. <br>
-Risk: Blocking and validation examples may miss risky commands or disrupt legitimate tools if deployed without review. <br>
-Mitigation: Review hook patterns against local policy, test them on representative tool calls, and maintain allow or block lists over time. <br>
+## Use Case:
 
+Developers and plugin authors use this skill as reference material for adding OpenClaw hook behavior such as tool-call auditing, tool blocking, parameter validation, model selection, and subagent result handling.
 
-## Reference(s): <br>
-- [Hook Examples ClawHub listing](https://clawhub.ai/hanxiao-bot/hook-examples) <br>
-- [Hook Examples skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference examples only; copied hook implementations should be reviewed and adapted before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Audit-log examples can expose secrets, personal data, raw parameters, or session identifiers if copied without controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Log only allowlisted fields, redact sensitive values, avoid raw session identifiers, and restrict log retention and access.
+
+## Reference(s):
+
+- [Hook Examples ClawHub skill page](https://clawhub.ai/hanxiao-bot/skills/hook-examples)
+- [hanxiao-bot ClawHub publisher profile](https://clawhub.ai/user/hanxiao-bot)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only examples; no hidden install or runtime behavior is described in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Automates publishing short text posts and optional images to the Toutiao micro-posting platform through a logged-in browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates posting short text, topics, and optional images to Toutiao Weitoutiao through a browser session.
 
-## Publisher: <br>
-[devilsbibble](https://clawhub.ai/user/devilsbibble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devilsbibble](https://clawhub.ai/user/devilsbibble)
 
-## Use Case: <br>
-External users and content operators can use this skill to prepare and publish Toutiao micro-posts with text, topics, and optional images from an agent workflow. It is intended for accounts where the operator can review the final content and publication settings before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content through a logged-in Toutiao browser session without a built-in final approval gate. <br>
-Mitigation: Require manual review of the exact final text, image, topics, and publication settings before allowing the browser action that posts content. <br>
-Risk: Remote browser debugging can expose an authenticated browser session if left open or reused broadly. <br>
-Mitigation: Use a dedicated Toutiao browser profile for this skill and close the remote debugging port immediately after use. <br>
-Risk: File-based content and image inputs may unintentionally include sensitive or incorrect material. <br>
-Mitigation: Avoid passing sensitive files and verify any file or image path before execution. <br>
+## Use Case:
 
+Content operators and developers use this skill to prepare and run Toutiao Weitoutiao publishing automation for short posts with optional topics and images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devilsbibble/toutiao-auto-publish) <br>
-- [Toutiao creator platform](https://mp.toutiao.com) <br>
-- [Toutiao micro-post publish page](https://mp.toutiao.com/profile_v4/weitoutiao/publish?from=toutiao_pc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Command-line arguments and browser automation actions, with success or error screenshots written to the desktop] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts post content, optional topic tags, optional image paths, file-based content input, and browser mode flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The automation can publish using the active logged-in Toutiao browser session without a final confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit review and confirmation before publishing, and run the automation from an isolated browser profile.
+
+Risk: The script may change the supplied post text by appending default filler or topics before publishing.
+
+Mitigation: Review the exact final text before publishing and modify the script to publish only user-approved content.
+
+Risk: Browser automation injects post content into the page and depends on local Playwright and browser behavior.
+
+Mitigation: Pin dependencies, review the script before installation, and avoid interpolating untrusted content into JavaScript.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devilsbibble/skills/toutiao-auto-publish)
+- [Toutiao creator portal](https://mp.toutiao.com)
+- [Toutiao Weitoutiao publishing URL](https://mp.toutiao.com/profile_v4/weitoutiao/publish?from=toutiao_pc)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create success or error screenshots on the user's Desktop when the automation is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

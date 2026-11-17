@@ -1,38 +1,49 @@
-## Description: <br>
-Agent companion system for autonomous exploration and social intelligence. Redirects to amigo; install amigo instead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent companion system for autonomous exploration and social intelligence. Redirects to amigo - install amigo instead.
 
-## Publisher: <br>
-[mculp](https://clawhub.ai/user/mculp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mculp](https://clawhub.ai/user/mculp)
 
-## Use Case: <br>
-External users and developers use this non-invocable redirect skill to discover that Agent Companion has been superseded by amigo and to get installation commands for amigo, open-thoughts, and social-graph. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may follow the redirect and install amigo, open-thoughts, or social-graph without reviewing their separate data and behavior profiles. <br>
-Mitigation: Review those separate skills before installation, including what they store, where they store it, and how personal or social-memory data can be controlled or deleted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Companion on ClawHub](https://clawhub.ai/mculp/agent-companion) <br>
-- [amigo skill](https://clawhub.com/skills/amigo) <br>
+## Use Case:
 
+Developers and agents use this non-invocable redirect skill to identify Agent Companion as the former name for amigo and to install the successor amigo, open-thoughts, or social-graph skills.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only redirect; the skill is marked not user-invocable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recommended successor skills may store journals or social information if installed.
+
+Mitigation: Review the successor skills' pages, publisher identity, requested behavior, and version details before installation.
+
+## Reference(s):
+
+- [Agent Companion on ClawHub](https://clawhub.ai/mculp/skills/agent-companion)
+- [amigo successor skill](https://clawhub.com/skills/amigo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-user-invocable redirect skill; no API calls, tools, or credential inputs detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

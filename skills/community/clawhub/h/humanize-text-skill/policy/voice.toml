@@ -1,0 +1,69 @@
+# voice.toml — target human-voice fingerprints (humanize-text-skill's addition layer).
+#
+# Each profile is a set of measurable targets the rewrite pulls toward, drawn
+# from the detected text fingerprint vs. the profile. `none` = no addition
+# layer (pure subtraction, behaves like avoid-ai-writing / shuorenhua).
+#
+# Fields:
+#   sentence_len_target  = target mean sentence length (zh: chars, en: words)
+#   sentence_len_cv      = target coefficient of variation (rhythm spread)
+#   contraction_rate     = en-only; share of contracted forms
+#   first_person_ok      = allow/nudge "I" / "我"
+#   connector_set        = preferred connectives (suggestions lean on these)
+
+[none]
+# Pure subtraction. No voice pull. 纯减法。
+sentence_len_target = 0
+sentence_len_cv = 0
+first_person_ok = true
+
+[casual]
+# Contractions, short sentences, one concrete touch. Blog/social/community.
+sentence_len_target = 12
+sentence_len_cv = 0.55
+contraction_rate = 0.6
+first_person_ok = true
+connector_set_en = ["and", "but", "so"]
+connector_set_zh = ["其实", "不过", "反正"]
+
+[professional]
+# Active voice, one concrete claim per paragraph, explicit ask. LinkedIn/email.
+sentence_len_target = 16
+sentence_len_cv = 0.40
+contraction_rate = 0.2
+first_person_ok = true
+connector_set_en = ["and", "however", "therefore"]
+connector_set_zh = ["同时", "因此", "不过"]
+
+[technical]
+# Plain copulatives, one idea per sentence, jargon OK if defined. Docs/tech blog.
+sentence_len_target = 18
+sentence_len_cv = 0.35
+contraction_rate = 0.1
+first_person_ok = false
+connector_set_en = ["and", "or", "since", "thus"]
+connector_set_zh = ["因此", "所以", "由于"]
+
+[warm]
+# Direct "you", acknowledge reader, unhurried cadence. Mentorship/onboarding.
+sentence_len_target = 17
+sentence_len_cv = 0.45
+contraction_rate = 0.4
+first_person_ok = true
+connector_set_en = ["and", "you know"]
+connector_set_zh = ["其实", "你看", "不过"]
+
+[blunt]
+# Lead with the claim, near-zero hedging, short declaratives. Memos/hard feedback.
+sentence_len_target = 10
+sentence_len_cv = 0.60
+contraction_rate = 0.3
+first_person_ok = true
+connector_set_en = ["but", "so"]
+connector_set_zh = ["但是", "所以", "反正"]
+
+[custom]
+# Calibrated from a user-supplied sample at runtime; no static targets here.
+sentence_len_target = 0
+sentence_len_cv = 0
+first_person_ok = true

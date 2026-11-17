@@ -1,0 +1,55 @@
+{
+  "publisher": "启明律师事务所",
+  "title": "区域观察",
+  "industry": "律所/专业服务",
+  "purpose": {
+    "primary": "A",
+    "secondary": [
+      "C"
+    ],
+    "not_for": "不做同行比较、不做服务效果承诺",
+    "success_looks_like": "读者想起区域合规就想起这本刊"
+  },
+  "audience": {
+    "role": "外资制造业的区域法务总监",
+    "situation": "一个人对接多个省份的合规，没有专职团队",
+    "expertise_level": 4,
+    "time_budget_min": 10,
+    "decision_power": "能决定要不要启动自查，但决定不了预算"
+  },
+  "value_promise": {
+    "promise": "告诉你哪些新规真的会影响你手上的业务",
+    "reader_action": "核对自家合规清单里的对应条目",
+    "not_value": "不是法规全文汇编"
+  },
+  "tone": {
+    "authority": 4,
+    "density": 3,
+    "stance": 4,
+    "derived": {
+      "unit_chars_min": 200,
+      "unit_chars_max": 320,
+      "sentence_len_median_max": 40,
+      "second_person": "optional",
+      "must_state_non_action": true
+    }
+  },
+  "industry_rules": {
+    "jargon_ceiling_per_1k": 20,
+    "taboo_words": [
+      "领先",
+      "权威认可",
+      "第一梯队",
+      "最专业"
+    ],
+    "must_cite": "排名与数据必须标机构+年份"
+  },
+  "voice_examples": {
+    "good": [
+      "贵司现有出境链路里，有三类数据要在 90 天内重做评估。"
+    ],
+    "bad": [
+      "本次修订意义重大，值得业界高度关注。"
+    ]
+  }
+}

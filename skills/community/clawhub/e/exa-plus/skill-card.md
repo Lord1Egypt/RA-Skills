@@ -1,39 +1,58 @@
-## Description: <br>
-Neural web search via Exa AI for people, companies, news, research, code, domain-filtered search, and date-filtered search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neural web search via Exa AI. Search people, companies, news, research, code. Supports deep search, domain filters, date ranges.
 
-## Publisher: <br>
-[jordyvandomselaar](https://clawhub.ai/user/jordyvandomselaar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jordyvandomselaar](https://clawhub.ai/user/jordyvandomselaar)
 
-## Use Case: <br>
-Agents and developers use this skill to run Exa-powered web searches and extract full text from URLs. It supports research, news, company, people, code, and document discovery workflows with optional filters for domains, categories, dates, and location. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, and content-extraction requests are sent to Exa as a third-party service. <br>
-Mitigation: Use a dedicated Exa API key and avoid submitting secrets, private internal URLs, confidential research targets, or personal data. <br>
-Risk: The skill depends on a local Exa API key configured by the user. <br>
-Mitigation: Protect the credential file and rotate or revoke the key if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jordyvandomselaar/exa-plus) <br>
+## Use Case:
 
+Developers and agents use this skill to search the web with Exa AI, retrieve targeted results across people, companies, news, research, code, and other categories, and extract text from URLs for downstream analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance, API calls] <br>
-**Output Format:** [JSON API responses with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a user-provided Exa API key; search responses may include text snippets, highlights, and summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and submitted URLs are sent to Exa's external API.
+
+Mitigation: Use the skill only when authorized to send the search terms, URLs, and resulting context to Exa.
+
+Risk: Secrets, private repository details, internal-only URLs, regulated data, or confidential research targets could be exposed if submitted as inputs.
+
+Mitigation: Do not submit those inputs unless an approved workflow permits sending them to Exa.
+
+Risk: The skill requires an Exa API key for API access.
+
+Mitigation: Store the key in the configured credentials file or environment variable and avoid committing it with skill artifacts.
+
+## Reference(s):
+
+- [Exa Search API endpoint](https://api.exa.ai/search)
+- [Exa Contents API endpoint](https://api.exa.ai/contents)
+- [ClawHub skill page](https://clawhub.ai/jordyvandomselaar/skills/exa-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON responses and extracted text from Exa API, with shell command usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output may include result text, highlights, summaries, and URL content depending on the invoked script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

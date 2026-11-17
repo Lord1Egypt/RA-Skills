@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google 季度经营报告</title>
+  <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
+  <style>
+    :root {
+      --brand: #3370FF;
+      --brand-hover: #4E83FD;
+      --brand-soft: #E8F0FF;
+      --success: #2EA121;
+      --success-soft: #E6F7E6;
+      --warning: #FF8800;
+      --warning-soft: #FFF5E8;
+      --danger: #F54A45;
+      --danger-soft: #FEECEC;
+      --info: #14C0C0;
+      --purple: #7B61FF;
+      --text: #1F2329;
+      --text-2: #646A73;
+      --text-3: #8F959E;
+      --bg: #F5F6F7;
+      --card: #FFFFFF;
+      --line: #DEE0E3;
+      --line-light: #EFF0F1;
+      --shadow: 0 1px 2px rgba(31, 35, 41, 0.06);
+      --shadow-md: 0 6px 20px rgba(31, 35, 41, 0.06);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --max: 1160px;
+      --nav-h: 56px;
+      --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { color: var(--brand-hover); }
+    .topnav {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--nav-h); background: #fff;
+      border-bottom: 1px solid var(--line-light);
+    }
+    .topnav-inner {
+      max-width: var(--max); margin: 0 auto; height: 100%;
+      padding: 0 24px; display: flex; align-items: center; gap: 6px;
+      overflow-x: auto;
+    }
+    .brand-mark {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 14px; color: var(--text);
+      margin-right: 8px; padding-right: 14px; border-right: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .brand-mark i {
+      width: 22px; height: 22px; border-radius: 6px; display: block;
+      background: linear-gradient(135deg, #3370FF, #14C0C0);
+    }
+    .brand-mark span { color: var(--brand); }
+    .topnav a {
+      font-size: 13px; color: var(--text-2); padding: 6px 10px; border-radius: 6px; white-space: nowrap;
+    }
+    .topnav a:hover { background: var(--brand-soft); color: var(--brand); }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 20px 24px 72px; }
+    .cover {
+      background: #fff; border: 1px solid var(--line-light); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md); padding: 56px 48px; margin-bottom: 20px;
+      position: relative; overflow: hidden;
+    }
+    .cover::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 80% at 100% 0%, rgba(51,112,255,.10), transparent 55%),
+        radial-gradient(ellipse 40% 50% at 0% 100%, rgba(20,192,192,.07), transparent 50%);
+      pointer-events: none;
+    }
+    .cover > * { position: relative; }
+    .cover-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--brand-soft); color: var(--brand);
+      font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 4px; margin-bottom: 18px;
+    }
+    .cover h1 { margin: 0 0 10px; font-size: 40px; font-weight: 600; letter-spacing: -.02em; }
+    .cover .subtitle { margin: 0 0 20px; font-size: 20px; color: var(--text-2); font-weight: 400; }
+    .cover-meta { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--text-3); font-size: 13px; }
+    .cover-meta strong { color: var(--text); font-weight: 600; }
+    .story { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    @media (max-width: 900px) { .story { grid-template-columns: 1fr 1fr; } }
+    .story-item {
+      background: #fff; border: 1px solid var(--line-light); border-radius: var(--radius);
+      padding: 14px 16px; box-shadow: var(--shadow);
+    }
+    .story-item .n { font-size: 12px; font-weight: 600; color: var(--brand); margin-bottom: 4px; }
+    .story-item .t { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .story-item .d { font-size: 12px; color: var(--text-3); margin: 0; }
+    .page {
+      background: #fff; border: 1px solid var(--line-light); border-radius: var(--radius-lg);
+      padding: 28px 28px 24px; margin-bottom: 16px; box-shadow: var(--shadow);
+    }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+    .page-head h2 {
+      margin: 0; font-size: 18px; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .page-head h2::before { content: ""; width: 3px; height: 16px; border-radius: 2px; background: var(--brand); }
+    .lead {
+      margin: 0 0 20px; color: var(--text-2); font-size: 13px;
+      padding: 10px 12px; background: var(--bg); border-radius: 6px;
+      border-left: 3px solid var(--brand);
+    }
+    .chip {
+      font-size: 12px; color: var(--brand); background: var(--brand-soft);
+      padding: 2px 8px; border-radius: 4px; font-weight: 500; white-space: nowrap;
+    }
+    .explore-switch-wrap {
+      margin: 16px 0 0; padding: 14px;
+      background: #F0F4FF; border: 1px solid #C2D1FF; border-radius: var(--radius);
+    }
+    .explore-switch-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .explore-switch-head .sw-title { font-size: 13px; font-weight: 600; color: var(--brand); }
+    .explore-switch-head .sw-rule { font-size: 12px; color: var(--text-3); }
+    .explore-switch { display: flex; flex-wrap: wrap; gap: 8px; }
+    .explore-tab {
+      appearance: none; border: 1px solid var(--line); background: #fff;
+      color: var(--text-2); font-size: 13px; font-weight: 500; font-family: inherit;
+      padding: 8px 12px; border-radius: 8px; cursor: pointer;
+      display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;
+      min-width: 128px;
+      transition: border-color .15s, background .15s, color .15s, box-shadow .15s;
+    }
+    .explore-tab:hover { border-color: var(--brand-hover); color: var(--brand); }
+    .explore-tab.active {
+      background: var(--brand-soft); border-color: var(--brand); color: var(--brand);
+      box-shadow: 0 0 0 1px rgba(51,112,255,.12);
+      font-weight: 600;
+    }
+    .explore-tab .tb-top { display: inline-flex; align-items: center; gap: 8px; }
+    .explore-tab .tb-spend {
+      font-size: 11px; font-weight: 600; color: var(--text-3);
+      background: #fff; border: 1px solid var(--line-light);
+      padding: 1px 6px; border-radius: 999px;
+      font-variant-numeric: tabular-nums;
+    }
+    .explore-tab.active .tb-spend { color: var(--brand); border-color: rgba(51,112,255,.25); }
+    .explore-tab .tb-role { display: block; font-size: 11px; font-weight: 400; color: var(--text-3); margin-top: 2px; }
+    .explore-tab.active .tb-role { color: var(--brand); }
+    .explore-fallback {
+      margin: 0 0 16px; padding: 8px 12px;
+      font-size: 12px; color: var(--text-2);
+      background: var(--warning-soft); border-radius: 6px;
+      border-left: 3px solid var(--warning);
+      display: none;
+    }
+    .explore-fallback.show { display: block; }
+    .explore-meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+    .explore-meta-row .tag-pill {
+      font-size: 12px; padding: 2px 8px; border-radius: 4px;
+      background: var(--brand-soft); color: var(--brand); font-weight: 500;
+    }
+    .explore-meta-row .tag-pill.muted { background: var(--line-light); color: var(--text-3); }
+    .kpi-row.c5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .kpi-row.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .kpi-row.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 1000px) {
+      .kpi-row.c7, .kpi-row.c5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 860px) {
+      .kpi-row.c4, .kpi-row.c3 { grid-template-columns: 1fr 1fr; }
+    }
+    .chart-box.sm { height: 240px; }
+    .chart-box.xs { height: 180px; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 12px; }
+    @media (max-width: 900px) { .compare { grid-template-columns: 1fr; } }
+    .panel {
+      border: 1px solid var(--line-light); border-radius: var(--radius-lg); overflow: hidden; background: #fff;
+    }
+    .panel .ph {
+      padding: 10px 14px; font-size: 13px; font-weight: 600;
+      background: var(--bg); border-bottom: 1px solid var(--line-light); color: var(--text);
+    }
+    .panel .ph.goal { color: var(--warning); background: var(--warning-soft); }
+    .panel .ph.result { color: var(--success); background: var(--success-soft); }
+    .panel .ph.mix { color: var(--brand); background: var(--brand-soft); }
+    .panel .pb { padding: 14px 16px; }
+    .panel .big { font-size: 28px; font-weight: 600; letter-spacing: -.02em; margin: 4px 0 8px; }
+    .panel .row { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-bottom: 1px dashed var(--line-light); font-size: 13px; }
+    .panel .row:last-child { border-bottom: 0; }
+    .panel .row .k { color: var(--text-3); }
+    .panel .row .v { color: var(--text); font-weight: 500; text-align: right; }
+    .chart-grid.vs { grid-template-columns: 1fr auto 1fr; align-items: center; }
+    @media (max-width: 860px) { .chart-grid.vs { grid-template-columns: 1fr; } }
+    .vs-mid { display: flex; align-items: center; justify-content: center; }
+    .vs-mid span {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--brand-soft); color: var(--brand); font-weight: 600; font-size: 13px;
+      border: 1px solid #BACEFD;
+    }
+    .adtype-layout { display: grid; grid-template-columns: 260px 1fr; gap: 14px; align-items: stretch; }
+    @media (max-width: 860px) { .adtype-layout { grid-template-columns: 1fr; } }
+    .invest-card {
+      border: 1px solid var(--line-light); border-radius: var(--radius-lg); background: #fff;
+      padding: 18px 16px; display: flex; flex-direction: column; min-height: 100%; box-shadow: var(--shadow);
+    }
+    .invest-card .ic-title {
+      font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 16px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--line-light);
+    }
+    .invest-card .ic-label { font-size: 12px; color: var(--text-3); margin-bottom: 4px; }
+    .invest-card .ic-q3 { font-size: 28px; font-weight: 600; letter-spacing: -.02em; color: var(--text); margin: 0 0 16px; }
+    .invest-card .ic-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-top: 1px dashed var(--line-light); font-size: 13px;
+    }
+    .invest-card .ic-row .k { color: var(--text-3); }
+    .invest-card .ic-row .v { color: var(--text); font-weight: 600; }
+    .invest-card .ic-vs { margin-top: auto; padding-top: 14px; }
+    .invest-card .ic-vs-badge {
+      display: flex; flex-direction: column; gap: 4px; border-radius: var(--radius); padding: 12px 14px;
+    }
+    .invest-card .ic-vs-badge.down { background: var(--danger-soft); border: 1px solid #F7C1BF; }
+    .invest-card .ic-vs-badge.up { background: var(--success-soft); border: 1px solid #B7E4B5; }
+    .invest-card .ic-vs-badge.flat { background: var(--bg); border: 1px solid var(--line-light); }
+    .invest-card .ic-vs-badge .vb-l { font-size: 12px; color: var(--text-3); }
+    .invest-card .ic-vs-badge .vb-v { font-size: 20px; font-weight: 600; }
+    .invest-card .ic-vs-badge.down .vb-v { color: var(--danger); }
+    .invest-card .ic-vs-badge.up .vb-v { color: var(--success); }
+    .invest-card .ic-note {
+      margin-top: 12px; font-size: 12px; color: var(--text-2); line-height: 1.5;
+      background: var(--bg); border-radius: 6px; padding: 10px 12px;
+    }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 860px) { .two, .three { grid-template-columns: 1fr; } }
+    .strat {
+      border: 1px solid var(--line-light); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 10px; background: #fff;
+    }
+    .strat h4 { margin: 0 0 4px; font-size: 13px; color: var(--brand); font-weight: 600; }
+    .strat p { margin: 0; font-size: 12px; color: var(--text-2); }
+    .pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 4px; font-weight: 500; }
+    .pill.good { background: var(--success-soft); color: var(--success); }
+    .pill.ok { background: var(--brand-soft); color: var(--brand); }
+    .pill.bad { background: var(--danger-soft); color: var(--danger); }
+    .pill.warn { background: var(--warning-soft); color: #D97706; }
+    table.data th.left, table.data td.left { text-align: left; }
+    table.data tr.total td { background: #F5F6F7 !important; font-weight: 600; border-top: 1px solid var(--line); }
+    table.data tr.warn td { background: var(--warning-soft); }
+    table.data tr.danger td { background: var(--danger-soft); }
+    table.data tr.good td { background: var(--success-soft); }
+    .blk-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
+    @media (max-width: 800px) { .blk-grid { grid-template-columns: 1fr; } }
+    .blk { border: 1px solid var(--line-light); border-radius: var(--radius); padding: 14px 16px; background: #fff; }
+    .blk.blue { background: var(--brand-soft); border-color: #BACEFD; }
+    .blk.orange { background: var(--warning-soft); border-color: #FFD9A8; }
+    .blk h4 { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
+    .blk ul { margin: 0; padding-left: 18px; color: var(--text-2); font-size: 13px; }
+    .steps { display: grid; gap: 10px; counter-reset: s; }
+    .step {
+      display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px;
+      border: 1px solid var(--line-light); border-radius: var(--radius); padding: 12px 14px; background: #fff;
+      align-items: start;
+    }
+    .step::before {
+      counter-increment: s; content: counter(s, decimal-leading-zero);
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--brand-soft); color: var(--brand); font-weight: 600; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      grid-column: 1;
+      grid-row: 1 / -1;
+    }
+    .step > * { grid-column: 2; min-width: 0; }
+    .step h4 { margin: 0 0 4px; font-size: 13px; font-weight: 600; }
+    .step p { margin: 0; font-size: 12.5px; color: var(--text-2); line-height: 1.6; }
+    .step p:empty { display: none; }
+    .muted { color: var(--text-3); font-size: 12px; margin: 0 0 12px; }
+    .list-card .hl { color: var(--brand); font-weight: 600; }
+    .five { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    @media (max-width: 900px) { .five { grid-template-columns: 1fr 1fr; } }
+    .fcard {
+      border: 1px solid var(--line-light); border-radius: var(--radius); background: #fff;
+      padding: 16px 10px; text-align: center; box-shadow: var(--shadow);
+    }
+    .fcard .ft { font-size: 13px; font-weight: 600; margin-top: 4px; }
+    .fcard .fs { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+    .fcard.c1 { border-top: 3px solid var(--brand); }
+    .fcard.c2 { border-top: 3px solid var(--success); }
+    .fcard.c3 { border-top: 3px solid var(--warning); }
+    .fcard.c4 { border-top: 3px solid var(--info); }
+    .fcard.c5 { border-top: 3px solid var(--purple); }
+    .budget { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; align-items: start; }
+    @media (max-width: 800px) { .budget { grid-template-columns: 1fr; } }
+    .ol-clean { margin: 0; padding-left: 18px; color: var(--text-2); }
+    .ol-clean li { margin: 8px 0; }
+    .cta {
+      margin-top: 14px; text-align: center; padding: 12px;
+      background: var(--brand-soft); color: var(--brand); border: 1px solid #BACEFD;
+      border-radius: var(--radius); font-weight: 500;
+    }
+    .chapter {
+      background: #fff; border: 1px solid var(--line-light); border-radius: var(--radius-lg);
+      padding: 28px 28px 28px 32px; margin: 24px 0 16px; box-shadow: var(--shadow);
+      border-left: 4px solid var(--brand);
+    }
+    .chapter .num { margin: 0 0 6px; font-size: 12px; font-weight: 600; color: var(--brand); letter-spacing: .04em; }
+    .chapter h2 { margin: 0 0 6px; font-size: 24px; font-weight: 600; }
+    .chapter p { margin: 0; color: var(--text-3); font-size: 13px; }
+    h3.st { margin: 22px 0 12px; font-size: 14px; font-weight: 600; color: var(--text); }
+    h3.st:first-child { margin-top: 0; }
+    .kpi-row { display: grid; gap: 10px; margin-bottom: 16px; }
+    .kpi-row.c7 { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+    @media (max-width: 1000px) { .kpi-row.c7 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 640px) { .kpi-row.c7 { grid-template-columns: 1fr 1fr; } }
+    .kpi {
+      background: #fff; border: 1px solid var(--line-light); border-radius: var(--radius);
+      padding: 12px 14px; min-width: 0;
+    }
+    .kpi .label { font-size: 12px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kpi .val { font-size: 20px; font-weight: 600; color: var(--text); margin: 6px 0 4px; letter-spacing: -.02em; word-break: break-all; }
+    .kpi .delta { font-size: 12px; font-weight: 500; }
+    .up { color: var(--success); }
+    .down { color: var(--danger); }
+    .flat { color: var(--text-3); }
+    .table-wrap {
+      width: 100%; overflow-x: auto; border: 1px solid var(--line-light);
+      border-radius: var(--radius); background: #fff; margin: 0 0 12px;
+    }
+    table.data { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 13px; }
+    table.data th, table.data td { padding: 10px 12px; border-bottom: 1px solid var(--line-light); vertical-align: middle; }
+    table.data thead th { background: #F8F9FA; color: var(--text-2); font-weight: 600; font-size: 12px; white-space: nowrap; }
+    table.data tbody td { color: var(--text); background: #fff; }
+    table.data tbody tr:hover td { background: #F8F9FA; }
+    table.data th.num, table.data td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    table.data tr.total td { background: #F5F6F7 !important; font-weight: 600; }
+    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 860px) { .chart-grid { grid-template-columns: 1fr; } }
+    .chart-card { border: 1px solid var(--line-light); border-radius: var(--radius); background: #fff; padding: 12px 12px 8px; }
+    .chart-card .ct { font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 8px; padding: 0 4px; }
+    .chart-box { position: relative; height: 280px; }
+    .insight {
+      display: flex; gap: 0; align-items: flex-start;
+      margin-top: 14px; padding: 12px 14px;
+      background: var(--brand-soft); border: 1px solid #BACEFD; border-radius: var(--radius);
+      font-size: 13px; color: var(--text);
+    }
+    .insight .tag { flex: 0 0 auto; color: var(--brand); font-weight: 600; margin-right: 8px; }
+    .list-card { border: 1px solid var(--line-light); border-radius: var(--radius); padding: 4px 16px 4px 32px; background: var(--bg); }
+    .list-card li { margin: 10px 0; color: var(--text); }
+    .plan-lead { margin: 0 0 16px; color: var(--text-2); font-size: 13px; line-height: 1.6; }
+    .plan-stack { display: flex; flex-direction: column; gap: 12px; }
+    .plan-card {
+      border: 1px solid var(--line-light); border-radius: var(--radius);
+      padding: 14px 16px; background: #fff;
+    }
+    .plan-card .tag {
+      display: block; color: var(--brand); font-weight: 600; font-size: 13px; margin: 0 0 8px;
+    }
+    .plan-card ul { margin: 0; padding-left: 18px; }
+    .plan-card li { margin: 8px 0; color: var(--text); font-size: 13px; line-height: 1.65; word-break: break-word; }
+    .budget-strip { margin: 0 0 18px; }
+    .budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .budget-grid.c3 { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 800px) { .budget-grid.c3 { grid-template-columns: 1fr; } }
+    table.data.compact { min-width: 0; }
+    .bcell {
+      background: var(--brand-soft); border: 1px solid #BACEFD; border-radius: var(--radius);
+      padding: 16px; text-align: center;
+    }
+    .bcell .p { font-size: 22px; font-weight: 600; color: var(--brand); }
+    .bcell .n { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+    .closing {
+      text-align: center; background: #fff; border: 1px solid var(--line-light);
+      border-radius: var(--radius-lg); padding: 56px 24px; margin: 20px 0 24px; box-shadow: var(--shadow);
+    }
+    .closing h2 { margin: 0 0 10px; font-size: 36px; font-weight: 600; }
+    .closing p { margin: 0; color: var(--text-3); font-size: 13px; }
+    .hidden { display: none !important; }
+    @media print { .topnav { display: none; } .page, .chapter, .cover { break-inside: avoid; box-shadow: none; } }
+  </style>
+</head>
+<body>
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <div class="brand-mark"><i></i><span id="nav-brand">Google Ads</span></div>
+      <a href="#cover">封面</a>
+      <a href="#agenda">浏览逻辑</a>
+      <a href="#exec">核心结论</a>
+      <a href="#s1">本期表现</a>
+      <a href="#explore" id="nav-explore">新探索</a>
+      <a href="#s2">总结</a>
+      <a href="#s3">下期规划</a>
+    </div>
+  </nav>
+  <div class="wrap" id="report-root"></div>
+  <script>
+    window.__GOOGLE_QUARTERLY_REPORT__ = window.__GOOGLE_QUARTERLY_REPORT__ || null;
+  </script>
+  <script>
+    (function () {
+      "use strict";
+      const PALETTE = ["#3370FF", "#14C0C0", "#7B61FF", "#FF8800", "#2EA121", "#F54A45", "#8F959E"];
+      const charts = [];
+
+      function esc(s) {
+        return String(s ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function num(v) {
+        const n = Number(v);
+        return Number.isFinite(n) ? n : 0;
+      }
+
+      function money(v, currency) {
+        const n = Number(v);
+        if (!Number.isFinite(n)) return "—";
+        const prefix = currency && currency !== "CNY" ? currency + " " : "¥";
+        return prefix + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function int(v) {
+        const n = Number(v);
+        return Number.isFinite(n) ? Math.round(n).toLocaleString("en-US") : "—";
+      }
+
+      function pct(v) {
+        const n = Number(v);
+        if (!Number.isFinite(n)) return "—";
+        return (n * 100).toFixed(2) + "%";
+      }
+
+      function deltaHtml(v, invert) {
+        if (v == null || !Number.isFinite(Number(v))) return '<span class="flat">—</span>';
+        const n = Number(v) * 100;
+        const better = invert ? n < 0 : n > 0;
+        const worse = invert ? n > 0 : n < 0;
+        const cls = better ? "up" : worse ? "down" : "flat";
+        const arrow = n > 0 ? "▲" : n < 0 ? "▼" : "•";
+        return `<span class="${cls}">${arrow} ${Math.abs(n).toFixed(1)}%</span>`;
+      }
+
+      function quarterTag(range) {
+        if (!range || !range.start) return "";
+        const month = Number(String(range.start).slice(5, 7));
+        if (!Number.isFinite(month) || month < 1) return "";
+        return "Q" + Math.ceil(month / 3);
+      }
+
+      function nextQuarterTag(range) {
+        const tag = quarterTag(range);
+        if (!tag) return "下期";
+        const n = Number(tag.slice(1));
+        return n === 4 ? "Q1" : "Q" + (n + 1);
+      }
+
+      function compactCount(v) {
+        const n = Number(v);
+        if (!Number.isFinite(n)) return "—";
+        if (Math.abs(n) >= 10000) {
+          const wan = n / 10000;
+          const text = wan >= 10 ? wan.toFixed(1).replace(/\.0$/, "") : wan.toFixed(1);
+          return text + "万";
+        }
+        return Math.round(n).toLocaleString("en-US");
+      }
+
+      function firstLine(arr) {
+        const items = lines(arr);
+        return items[0] || "";
+      }
+
+      function restLines(arr) {
+        return lines(arr).slice(1);
+      }
+
+      function regionShare(map) {
+        const keys = ["欧美", "东南亚", "印度", "印尼", "中东", "非洲", "其他"];
+        const total = keys.reduce((s, k) => s + num(map && map[k]), 0);
+        if (!total) return "—";
+        const top = keys
+          .map((k) => ({ k, v: num(map && map[k]) }))
+          .filter((x) => x.v > 0)
+          .sort((a, b) => b.v - a.v)
+          .slice(0, 3)
+          .map((x) => x.k + " " + ((x.v / total) * 100).toFixed(0) + "%");
+        return top.join(" · ") || "—";
+      }
+
+      function topRegionName(map) {
+        const keys = ["欧美", "东南亚", "印度", "印尼", "中东", "非洲", "其他"];
+        let best = "";
+        let max = 0;
+        keys.forEach((k) => {
+          const v = num(map && map[k]);
+          if (v > max) {
+            max = v;
+            best = k;
+          }
+        });
+        return best;
+      }
+
+      function lines(arr) {
+        return (Array.isArray(arr) ? arr : []).map((x) => clientCopy(x)).filter(Boolean);
+      }
+
+      function clientCopy(s) {
+        return String(s ?? "")
+          .replace(/^(已确认|基于历史数据|建议验证|待业务确认)[：:]\s*/, "")
+          .trim();
+      }
+
+      function periodLabel(range) {
+        if (!range || !range.start) return "—";
+        return `${String(range.start).slice(0, 10)} ~ ${String(range.end).slice(0, 10)}`;
+      }
+
+      /** 下期三个月：写「第一个月」而不是「第1月」，避免被读成 1 月 / 2 月 / 3 月。 */
+      function nextPeriodMonthLabels(current) {
+        const base = ["第一个月", "第二个月", "第三个月"];
+        const end = current && current.end;
+        const match = typeof end === "string" ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(end.trim()) : null;
+        if (!match) return base;
+        let month = Number(match[2]);
+        return base.map((label) => {
+          month += 1;
+          if (month > 12) month = 1;
+          return `${label}（${month}月）`;
+        });
+      }
+
+      function ellipsis(text, max) {
+        const s = String(text ?? "").trim();
+        return s.length > max ? s.slice(0, max) + "…" : s;
+      }
+
+      function legendTop(names) {
+        return { data: names, top: 0, left: "center", itemGap: 20 };
+      }
+
+      function categoryAxis(labels) {
+        return {
+          type: "category",
+          data: labels,
+          axisLabel: {
+            interval: 0,
+            hideOverlap: true,
+            formatter: (v) => ellipsis(v, 8),
+          },
+        };
+      }
+
+      function initChart(el, option) {
+        if (!el || typeof echarts === "undefined") return;
+        const chart = echarts.init(el);
+        chart.setOption(option);
+        charts.push(chart);
+      }
+
+      function render(data) {
+        const meta = data.meta || {};
+        const kpis = data.kpis || {};
+        const cur = kpis.current || {};
+        const vs = kpis.vsPrevious || {};
+        const narrative = data.narrative || {};
+        const sections = narrative.sections || {};
+        const plan = narrative.plan || {};
+        const special = data.specialAds || { source: "none", items: [] };
+        const exploreAds = data.exploreAds || { types: [], accountSpend: num((data.kpis || {}).current && data.kpis.current.spend), hasAny: false };
+        const planDefaults = data.planDefaults || {};
+        const currency = meta.currency || "";
+        const name = meta.accountName || ("账户 " + (meta.accountId || ""));
+        const exploreTypes = Array.isArray(exploreAds.types) ? exploreAds.types : [];
+        const hideSpecial = exploreAds.hasAny === true
+          ? false
+          : (!special.source || special.source === "none" || !special.items || !special.items.length) && !exploreTypes.some((t) => (t.items || []).length);
+        const drillCountry = meta.drillCountry || "";
+        const adminLabel = meta.drillAdminLabel || "一级行政区";
+        const drillTitle = drillCountry ? drillCountry + "下钻" : "消耗最高国家下钻";
+        const showDrill = meta.usGeoSource === "subdivisions" && (data.usStates || []).length > 0;
+        const chrome = data.periodChrome || {
+          current: quarterTag(meta.current) || "本期",
+          previous: quarterTag(meta.previous) || "上期",
+          next: nextQuarterTag(meta.current),
+          unit: "季度",
+          reportTitle: "Google 季度经营报告",
+          coverEn: "QUARTERLY REPORT",
+        };
+        const curQ = chrome.current || "本期";
+        const prevQ = chrome.previous || "上期";
+        const nextQ = chrome.next || "下期";
+        const unit = chrome.unitLabel || chrome.unit || "";
+        const periodHead = unit ? curQ + " " + unit : curQ;
+        document.title = name + " · " + (chrome.reportTitle || "Google 经营报告");
+        document.getElementById("nav-brand").innerHTML = esc(name) + ' · <span>Google Ads</span>';
+        document.getElementById("nav-explore").classList.toggle("hidden", hideSpecial);
+
+        const exec = lines(narrative.executiveSummary);
+        const prev = kpis.previous || {};
+        const vsYoy = kpis.vsYoy || {};
+        const months = data.monthly || [];
+        const channelSum = {};
+        months.forEach((m) => {
+          Object.entries(m.spendByChannel || {}).forEach(([k, v]) => {
+            channelSum[k] = (channelSum[k] || 0) + num(v);
+          });
+        });
+        const channelTotal = Object.values(channelSum).reduce((s, v) => s + num(v), 0);
+        const searchShare = channelTotal > 0 ? channelSum["搜索"] / channelTotal : 0;
+        const regions = data.regions || {};
+        const regionCurrent = regions.current || {};
+        const regionPrevious = regions.previous || {};
+        const inquiryDelta = (kpis.inquiries != null && kpis.previousInquiries != null && kpis.previousInquiries > 0)
+          ? (kpis.inquiries - kpis.previousInquiries) / kpis.previousInquiries
+          : null;
+        const spendDelta = vs.spend;
+        const spendDeltaCls = spendDelta == null ? "flat" : spendDelta > 0 ? "up" : spendDelta < 0 ? "down" : "flat";
+        const topRegion = topRegionName(regionCurrent);
+        const regionMixText = regionShare(regionCurrent);
+        const watch = data.accountWatch || {};
+        const channelsLabel = Object.entries(channelSum)
+          .filter(([, v]) => num(v) > 0)
+          .map(([k]) => k)
+          .slice(0, 4)
+          .join(" / ") || "搜索";
+        const root = document.getElementById("report-root");
+        root.innerHTML = `
+          <header class="cover" id="cover">
+            <div class="cover-tag">GOOGLE ADS · ${esc(chrome.coverEn || "QUARTERLY REPORT")}</div>
+            <h1>${esc(name)}</h1>
+            <p class="subtitle">${esc(periodHead)}数据汇总 &amp; ${esc(nextQ)} 规划</p>
+            <div class="cover-meta">
+              <span>账户：<strong>${esc(meta.accountId || "—")}</strong></span>
+              <span>渠道：<strong>${esc(channelsLabel)}</strong></span>
+              <span>周期：<strong>${esc(periodLabel(meta.current))}</strong></span>
+              <span>货币：<strong>${esc(currency || "—")}</strong></span>
+            </div>
+          </header>
+          ${agendaPage(narrative.agenda, hideSpecial)}
+          <section class="page" id="exec">
+            <div class="page-head"><h2>核心结论</h2><span class="chip">总览</span></div>
+            ${exec[0] ? `<p class="lead">${esc(exec[0])}</p>` : ""}
+            <div class="kpi-row c4">
+              ${kpiCard(curQ + " 花费", compactMoney(cur.spend, currency), vs.spend)}
+              ${kpiCard(curQ + " 询盘", kpis.inquiries == null ? "—" : int(kpis.inquiries) + " 个", inquiryDelta)}
+              ${kpiCard("询盘成本", kpis.inquiryCost == null ? "—" : money(kpis.inquiryCost, currency), null)}
+              ${kpiCard("转化次数 YoY", vsYoy.conversions == null ? compactCount(cur.conversions) : deltaText(vsYoy.conversions), vsYoy.conversions)}
+            </div>
+            <div class="compare">
+              <div class="panel">
+                <div class="ph goal">目标</div>
+                <div class="pb">${goalRows(plan)}</div>
+              </div>
+              <div class="panel">
+                <div class="ph result">${esc(curQ)} 达成</div>
+                <div class="pb">
+                  <div class="big">${kpis.inquiries == null ? "—" : int(kpis.inquiries) + " 个"}</div>
+                  <div class="row"><span class="k">询盘成本</span><span class="v">${kpis.inquiryCost == null ? "—" : money(kpis.inquiryCost, currency)}</span></div>
+                  <div class="row"><span class="k">主力区域</span><span class="v">${esc(topRegion || "—")}</span></div>
+                  <div class="row"><span class="k">花费环比</span><span class="v">${deltaHtml(vs.spend)}</span></div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="ph mix">结构变化</div>
+                <div class="pb">
+                  <div class="chart-box xs" id="chart-region-mini"></div>
+                  <div class="muted" style="margin-top:8px">${esc(regionMixText)}</div>
+                </div>
+              </div>
+            </div>
+            ${exec.slice(1).length ? `<div class="insight"><div class="tag">一句话</div><div class="txt">${exec.slice(1).map((x) => esc(x)).join("<br/>")}</div></div>` : ""}
+          </section>
+          <section class="chapter" id="s1">
+            <p class="num">PART 01</p>
+            <h2>${esc(periodHead)}数据表现</h2>
+            <p>先看效率是否变好，再看预算花在哪，最后看询盘从哪些国家来。</p>
+          </section>
+          <section class="page" id="efficiency">
+            <div class="page-head"><h2>① 投放效率总览</h2><span class="chip">效率</span></div>
+            ${leadOrEmpty(sections.efficiency)}
+            <h3 class="st">${esc(curQ)} 核心 7 维（对标投放报表）</h3>
+            <div class="kpi-row c7">
+              ${kpiCard("消费", compactMoney(cur.spend, currency), vs.spend)}
+              ${kpiCard("展示次数", compactCount(cur.impressions), vs.impressions)}
+              ${kpiCard("点击次数", compactCount(cur.clicks), vs.clicks)}
+              ${kpiCard("点击率 CTR", pct(cur.ctr), vs.ctr)}
+              ${kpiCard("转化次数", compactCount(cur.conversions), vs.conversions)}
+              ${kpiCard("CPC", money(cur.cpc, currency), vs.cpc, true)}
+              ${kpiCard("CPA", money(cur.cpa, currency), vs.cpa, true)}
+            </div>
+            <h3 class="st">询盘侧补充</h3>
+            <div class="kpi-row c5">
+              ${kpiCard("转化率 CVR", pct(cur.cvr), null)}
+              ${kpiCard("询盘数", kpis.inquiries == null ? "—" : int(kpis.inquiries), inquiryDelta)}
+              ${kpiCard("询盘成本", kpis.inquiryCost == null ? "—" : money(kpis.inquiryCost, currency), null)}
+              ${kpiCard(prevQ + " 消费", compactMoney(prev.spend, currency), null)}
+              ${kpiCard(prevQ + " 询盘", kpis.previousInquiries == null ? "—" : int(kpis.previousInquiries), null)}
+            </div>
+            <h3 class="st">月度全维度明细</h3>
+            ${tableWrap(monthTable(months, currency, curQ))}
+            <div class="chart-grid">
+              <div class="chart-card"><p class="ct">量级：消费 / 展示 / 点击 / 转化 / 询盘</p><div class="chart-box" id="chart-month-volume"></div></div>
+              <div class="chart-card"><p class="ct">效率：CTR / CVR / CPC / CPA / 询盘成本</p><div class="chart-box" id="chart-month-efficiency"></div></div>
+            </div>
+            ${analysisBlock(sections.efficiency, "重点")}
+          </section>
+          <section class="page" id="adtype">
+            <div class="page-head"><h2>② 预算花在哪（广告类型）</h2><span class="chip">预算结构</span></div>
+            ${leadOrEmpty(sections.adType)}
+            <div class="adtype-layout">
+              <div class="invest-card">
+                <div class="ic-title">总投资对比</div>
+                <div class="ic-label">${esc(curQ)} 总花费</div>
+                <div class="ic-q3">${compactMoney(cur.spend, currency)}</div>
+                <div class="ic-row"><span class="k">${esc(prevQ)} 总花费</span><span class="v">${compactMoney(prev.spend, currency)}</span></div>
+                <div class="ic-row"><span class="k">搜索端占比</span><span class="v">${searchShare ? (searchShare * 100).toFixed(0) + "%" : "—"}</span></div>
+                <div class="ic-vs">
+                  <div class="ic-vs-badge ${spendDeltaCls}">
+                    <span class="vb-l">环比变化 ${esc(curQ)} vs ${esc(prevQ)}</span>
+                    <span class="vb-v">${spendDelta == null ? "—" : ((spendDelta > 0 ? "+" : "") + (spendDelta * 100).toFixed(2) + "%")}</span>
+                  </div>
+                </div>
+                <div class="ic-note">${esc(firstLine(sections.adType && sections.adType.analysis) || "搜索守基本盘；非搜索看新探索。")}</div>
+              </div>
+              <div class="chart-card" style="margin:0;height:100%">
+                <p class="ct">分类型月度消费（堆积）</p>
+                <div class="chart-box sm" id="chart-adtype"></div>
+              </div>
+            </div>
+            ${analysisBlock(sections.adType, "重点")}
+          </section>
+          <section class="page" id="region">
+            <div class="page-head"><h2>③ 询盘从哪来（区域结构）</h2><span class="chip">区域结构</span></div>
+            ${leadOrEmpty(sections.region)}
+            <div class="kpi-row c3">
+              ${kpiCard(curQ + " 询盘", kpis.inquiries == null ? "—" : int(kpis.inquiries), null)}
+              ${kpiCard(prevQ + " 询盘", kpis.previousInquiries == null ? "—" : int(kpis.previousInquiries), null)}
+              <div class="kpi"><div class="label">变化</div><div class="val">${inquiryDelta == null ? "—" : ((inquiryDelta > 0 ? "+" : "") + (inquiryDelta * 100).toFixed(0) + "%")}</div></div>
+            </div>
+            <div class="chart-grid vs">
+              <div class="chart-card"><p class="ct">${esc(prevQ)} 区域询盘</p><div class="chart-box sm" id="chart-pie-prev"></div></div>
+              <div class="vs-mid"><span>VS</span></div>
+              <div class="chart-card"><p class="ct">${esc(curQ)} 区域询盘</p><div class="chart-box sm" id="chart-pie-cur"></div></div>
+            </div>
+            ${analysisBlock(sections.region, "重点")}
+          </section>
+          <section class="page" id="country">
+            <div class="page-head"><h2>④ 国家明细：消费 · 询盘 · 成本</h2><span class="chip">国家明细</span></div>
+            <p class="lead">按花费看预算落点，按询盘看产出，零询盘高消费国家单独标出。</p>
+            <div class="chart-card" style="margin-bottom:12px">
+              <p class="ct">Top 国家：消费 / 询盘 / 成本</p>
+              <div class="chart-box" style="height:320px" id="chart-country"></div>
+            </div>
+            ${tableWrap(countryTable(data.countries || [], currency, kpis.inquiryCost))}
+            ${analysisBlock(sections.region, "重点")}
+          </section>
+          ${showDrill ? `
+          <section class="page" id="us">
+            <div class="page-head"><h2>⑤ ${esc(drillTitle)}</h2><span class="chip">${esc(adminLabel)}</span></div>
+            <p class="lead">消耗最高国家下钻到${esc(adminLabel)}，找出流量集中区，避免广撒网。</p>
+            <div class="two">
+              <div>
+                <div class="strat"><h4>集中投放</h4><p>找到流量趋势地区，为成本控制与询盘提升找准方向。</p></div>
+                <div class="strat"><h4>降成本</h4><p>针对曝光+点击较高地区投放，避免广撒网。</p></div>
+              </div>
+              <div class="chart-card" style="margin:0">
+                <p class="ct">${esc(adminLabel)}展示 / 点击 / CTR</p>
+                <div class="chart-box" id="chart-us"></div>
+              </div>
+            </div>
+            ${tableWrap(stateTable(data.usStates || [], adminLabel))}
+          </section>` : ""}
+          ${accountWatchPage(watch, drillCountry)}
+          ${keywordBlock(data.keywordSeeds) ? `<section class="page" id="keywords-seed">${keywordBlock(data.keywordSeeds)}</section>` : ""}
+          <section class="chapter explore-chapter ${hideSpecial ? "hidden" : ""}" id="explore">
+            <p class="num">PART 01 · 新探索</p>
+            <h2>广告探索</h2>
+            <p>基石（搜索）之外的试验线：非搜索广告按类型查看结果。</p>
+            <div class="explore-switch-wrap">
+              <div class="explore-switch-head">
+                <div class="sw-title">在此切换新探索内容</div>
+                <div class="sw-rule">视频 · PMax · 发现 · 展示</div>
+              </div>
+              <div class="explore-switch" id="exploreSwitch" role="tablist" aria-label="新探索切换">
+                ${exploreTabButtons(exploreTypes, currency)}
+              </div>
+            </div>
+          </section>
+          <section class="page ${hideSpecial ? "hidden" : ""}" id="explore-ads">
+            <div class="page-head">
+              <h2 id="exploreAdsTitle">广告探索（非搜索）</h2>
+              <span class="chip" id="exploreAdsChip"></span>
+            </div>
+            <div class="explore-fallback" id="exploreFallback"></div>
+            <p class="lead" id="exploreLead"></p>
+            <div class="explore-meta-row" id="exploreMeta"></div>
+            <div class="kpi-row c4" id="exploreKpis"></div>
+            <div class="chart-grid">
+              <div class="chart-card">
+                <p class="ct" id="exploreChart1Title">结构图</p>
+                <div class="chart-box sm" id="chart-explore-1"></div>
+              </div>
+              <div class="chart-card">
+                <p class="ct" id="exploreChart2Title">表现图</p>
+                <div class="chart-box sm" id="chart-explore-2"></div>
+              </div>
+            </div>
+            <h3 class="st" id="exploreTableTitle">明细</h3>
+            <div class="table-wrap">
+              <table class="data">
+                <thead id="exploreThead"></thead>
+                <tbody id="exploreTbody"></tbody>
+              </table>
+            </div>
+            <div class="insight">
+              <div class="tag">重点</div>
+              <div id="exploreInsight"></div>
+            </div>
+          </section>
+          <section class="chapter" id="s2">
+            <p class="num">PART 02</p>
+            <h2>${esc(curQ)} 总结</h2>
+            <p>把亮点和风险讲清楚，再过渡到${esc(nextQ)}。</p>
+          </section>
+          <section class="page" id="summary">
+            <div class="page-head"><h2>内容汇总：亮点与注意</h2><span class="chip">汇总</span></div>
+            ${summaryBlocks(exec, sections.summary)}
+          </section>
+          ${planPages({
+            plan,
+            planDefaults,
+            currency,
+            meta,
+            curQ,
+            nextQ,
+            prevQ,
+            cur,
+            kpis,
+            channelSum,
+            searchShare,
+            countries: data.countries || [],
+            exploreTypes,
+            watch,
+          })}
+          <section class="closing">
+            <h2>谢谢</h2>
+            <p>${esc(name)} · ${esc(periodLabel(meta.current))}</p>
+          </section>
+        `;
+
+        initVolumeChart(months);
+        initEfficiencyChart(months, currency);
+        initStackedAdType(months);
+        initRegionPies(regionPrevious, regionCurrent, prevQ, curQ);
+        initCountryCombo(data.countries || []);
+        if (showDrill) initUsChart(data.usStates || []);
+
+        if (!hideSpecial) {
+          initExploreSwitch(normalizeExploreTypes(exploreTypes, data, special), {
+            currency,
+            accountSpend: num(exploreAds.accountSpend || cur.spend),
+            videosSummary: data.videosSummary || {},
+            period: periodLabel(meta.current),
+          });
+        }
+      }
+
+      const EXPLORE_META = {
+        video: { id: "video", label: "视频 / YouTube", role: "品牌声量", title: "视频 / YouTube 品牌声量", chip: "品牌声量" },
+        pmax: { id: "pmax", label: "效果最大化", role: "转化效率", title: "效果最大化", chip: "跨渠道效果" },
+        demand: { id: "demand", label: "需求开发 / 发现", role: "内容种草", title: "需求开发 / 发现广告", chip: "内容种草" },
+        display: { id: "display", label: "展示", role: "再营销", title: "展示广告", chip: "覆盖·再营销" },
+      };
+
+      function compactMoney(v, currency) {
+        const n = Number(v);
+        if (!Number.isFinite(n)) return "—";
+        const prefix = currency && currency !== "CNY" ? currency + " " : "¥";
+        if (Math.abs(n) >= 10000) {
+          const wan = n / 10000;
+          const text = wan >= 10 ? wan.toFixed(0) : wan.toFixed(1).replace(/\.0$/, "");
+          return prefix + text + "万";
+        }
+        return prefix + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+      }
+
+      function emptyExploreType(id) {
+        return { ...EXPLORE_META[id], spend: 0, metrics: { spend: 0, impressions: 0, clicks: 0, conversions: 0, ctr: 0, cpc: 0, cpa: 0, cvr: 0 }, items: [] };
+      }
+
+      function normalizeExploreTypes(raw, data, special) {
+        const byId = {};
+        (Array.isArray(raw) ? raw : []).forEach((t) => { if (t && t.id) byId[t.id] = t; });
+        if (special && special.source === "youtube" && !byId.video) {
+          byId.video = { ...emptyExploreType("video"), spend: num((data.videosSummary || {}).spend), items: special.items || [] };
+        } else if (special && special.source === "pmax" && !byId.pmax) {
+          byId.pmax = { ...emptyExploreType("pmax"), spend: (special.items || []).reduce((s, r) => s + num(r.spend), 0), items: special.items || [] };
+        }
+        return ["video", "pmax", "demand", "display"].map((id) => {
+          const hit = byId[id];
+          return hit ? { ...emptyExploreType(id), ...hit, ...EXPLORE_META[id] } : emptyExploreType(id);
+        });
+      }
+
+      function exploreTabButtons(types, currency) {
+        const normalized = ["video", "pmax", "demand", "display"].map((id) => {
+          const hit = (types || []).find((t) => t.id === id);
+          return hit ? { ...EXPLORE_META[id], ...hit } : emptyExploreType(id);
+        });
+        const firstActive = normalized.findIndex((t) => (t.items || []).length > 0);
+        return normalized.map((t, i) => {
+          const on = i === (firstActive >= 0 ? firstActive : 0);
+          return `<button type="button" class="explore-tab${on ? " active" : ""}" role="tab" data-type="${esc(t.id)}" aria-selected="${on ? "true" : "false"}">
+            <span class="tb-top">${esc(t.label)}<span class="tb-spend">${compactMoney(t.spend, currency)}</span></span>
+            <span class="tb-role">${esc(t.role)}</span>
+          </button>`;
+        }).join("");
+      }
+
+      let exploreChart1 = null;
+      let exploreChart2 = null;
+
+      function disposeExploreCharts() {
+        if (exploreChart1) { exploreChart1.dispose(); exploreChart1 = null; }
+        if (exploreChart2) { exploreChart2.dispose(); exploreChart2 = null; }
+      }
+
+      function shareText(spend, accountSpend) {
+        if (!accountSpend) return "—";
+        return ((num(spend) / accountSpend) * 100).toFixed(1) + "%";
+      }
+
+      function renderExplore(typeId, types, ctx) {
+        const t = types.find((x) => x.id === typeId) || emptyExploreType(typeId);
+        const items = t.items || [];
+        const m = t.metrics || {};
+        const vs = ctx.videosSummary || {};
+        const empty = items.length === 0;
+        const titleEl = document.getElementById("exploreAdsTitle");
+        const chipEl = document.getElementById("exploreAdsChip");
+        const leadEl = document.getElementById("exploreLead");
+        const fb = document.getElementById("exploreFallback");
+        if (!titleEl) return;
+        titleEl.textContent = t.title;
+        chipEl.textContent = t.role || t.chip || "";
+        chipEl.style.display = (t.role || t.chip) ? "" : "none";
+
+        const leads = {
+          video: "",
+          pmax: "",
+          demand: "",
+          display: "",
+        };
+        leadEl.textContent = leads[t.id] || "";
+        leadEl.style.display = leadEl.textContent ? "" : "none";
+
+        if (empty) {
+          fb.textContent = "本期该类型暂无花费。";
+          fb.classList.add("show");
+        } else {
+          fb.textContent = "";
+          fb.classList.remove("show");
+        }
+
+        document.getElementById("exploreMeta").innerHTML = [
+          `<span class="tag-pill">${esc(ctx.period || "本期")}</span>`,
+          `<span class="tag-pill muted">花费占比 ${shareText(t.spend, ctx.accountSpend)}</span>`,
+        ].join("");
+
+        const kpiRow = document.getElementById("exploreKpis");
+        let kpis = [];
+        if (t.id === "video") {
+          kpis = [
+            { label: "视频花费", val: money(vs.spend || t.spend, ctx.currency), delta: "占账户 " + shareText(vs.spend || t.spend, ctx.accountSpend), cls: "flat" },
+            { label: "TrueView / 率", val: int(vs.videoViews) + " / " + pct(vs.viewRate), delta: "", cls: "flat" },
+            { label: "完整观看率", val: pct(vs.completeRate), delta: vs.count ? (int(vs.count) + " 条视频") : "", cls: "flat" },
+            { label: vs.adSubscriptions != null ? "广告带来订阅" : "CPV", val: vs.adSubscriptions != null ? int(vs.adSubscriptions) : (vs.averageCpv == null ? "—" : money(vs.averageCpv, ctx.currency)), delta: "", cls: vs.adSubscriptions != null ? "up" : "flat" },
+          ];
+        } else {
+          kpis = [
+            { label: t.label + "花费", val: money(t.spend, ctx.currency), delta: "占账户 " + shareText(t.spend, ctx.accountSpend), cls: "flat" },
+            { label: "曝光", val: int(m.impressions), delta: int(m.clicks) + " 次点击", cls: "flat" },
+            { label: "点击 / CTR", val: int(m.clicks) + " / " + pct(m.ctr), delta: m.cpc ? ("CPC " + money(m.cpc, ctx.currency)) : "—", cls: "flat" },
+            { label: "转化 / CPA", val: int(m.conversions) + " / " + (m.conversions > 0 ? money(m.cpa, ctx.currency) : "—"), delta: empty ? "本期无投放" : "", cls: m.conversions > 0 ? "up" : "flat" },
+          ];
+        }
+        kpiRow.className = "kpi-row c4";
+        kpiRow.innerHTML = kpis.map((k) => `
+          <div class="kpi">
+            <div class="label">${esc(k.label)}</div>
+            <div class="val">${k.val}</div>
+            <div class="delta ${k.cls || "flat"}">${esc(k.delta)}</div>
+          </div>`).join("");
+
+        const chart1Title = t.id === "video" ? "视频花费结构" : "系列花费结构";
+        const chart2Title = t.id === "video" ? "TrueView 率 vs 完播率" : "花费 vs 转化";
+        document.getElementById("exploreChart1Title").textContent = chart1Title;
+        document.getElementById("exploreChart2Title").textContent = chart2Title;
+        document.getElementById("exploreTableTitle").textContent = t.id === "video" ? "视频明细" : "系列明细";
+
+        const top = items.slice(0, 8);
+        const otherSpend = items.slice(8).reduce((s, r) => s + num(r.spend), 0);
+        const pieData = top.map((r) => ({ name: r.title, value: num(r.spend) }))
+          .concat(otherSpend > 0 ? [{ name: "其他", value: otherSpend }] : [])
+          .filter((d) => d.value > 0);
+
+        disposeExploreCharts();
+        const c1 = document.getElementById("chart-explore-1");
+        const c2 = document.getElementById("chart-explore-2");
+        if (c1 && typeof echarts !== "undefined") {
+          exploreChart1 = echarts.init(c1);
+          exploreChart1.setOption({
+            color: PALETTE,
+            tooltip: { trigger: "item" },
+            series: [{
+              type: "pie",
+              radius: ["36%", "68%"],
+              label: { formatter: (p) => ellipsis(p.name, 8) },
+              data: pieData.length ? pieData : [{ name: "无数据", value: 1, itemStyle: { color: "#DEE0E3" } }],
+            }],
+          });
+        }
+        if (c2 && typeof echarts !== "undefined") {
+          exploreChart2 = echarts.init(c2);
+          const titles = top.map((r) => r.title);
+          if (t.id === "video") {
+            exploreChart2.setOption({
+              color: PALETTE,
+              tooltip: { trigger: "axis" },
+              legend: legendTop(["TrueView 率", "完播率"]),
+              grid: { left: 40, right: 16, top: 44, bottom: 28 },
+              xAxis: categoryAxis(titles),
+              yAxis: { type: "value", axisLabel: { formatter: (v) => (v * 100).toFixed(0) + "%" } },
+              series: [
+                { type: "bar", name: "TrueView 率", data: top.map((r) => num(r.viewRate)) },
+                { type: "bar", name: "完播率", data: top.map((r) => num(r.completeRate)) },
+              ],
+            });
+          } else {
+            exploreChart2.setOption({
+              color: PALETTE,
+              tooltip: { trigger: "axis" },
+              legend: legendTop(["花费", "转化"]),
+              grid: { left: 48, right: 40, top: 44, bottom: 28 },
+              xAxis: categoryAxis(titles),
+              yAxis: [
+                { type: "value", name: "花费" },
+                { type: "value", name: "转化", splitLine: { show: false } },
+              ],
+              series: [
+                { type: "bar", name: "花费", data: top.map((r) => num(r.spend)) },
+                { type: "bar", name: "转化", yAxisIndex: 1, data: top.map((r) => num(r.conversions)) },
+              ],
+            });
+          }
+        }
+
+        const insight = empty
+          ? "本期该类型暂无花费。"
+          : t.id === "video"
+            ? `视频花费 ${money(vs.spend || t.spend, ctx.currency)}，观看率 ${pct(vs.viewRate)}，完播率 ${pct(vs.completeRate)}${vs.adSubscriptions != null ? "，广告带来订阅 " + int(vs.adSubscriptions) : ""}。`
+            : t.id === "pmax"
+              ? `效果最大化花费 ${money(t.spend, ctx.currency)}，占账户 ${shareText(t.spend, ctx.accountSpend)}，转化 ${int(m.conversions)}，获客成本 ${m.conversions > 0 ? money(m.cpa, ctx.currency) : "—"}。`
+              : t.id === "demand"
+                ? `发现广告花费 ${money(t.spend, ctx.currency)}，占账户 ${shareText(t.spend, ctx.accountSpend)}，点击率 ${pct(m.ctr)}，转化 ${int(m.conversions)}。`
+                : `展示广告花费 ${money(t.spend, ctx.currency)}，转化 ${int(m.conversions)}。`;
+        document.getElementById("exploreInsight").textContent = insight;
+
+        if (t.id === "video") {
+          document.getElementById("exploreThead").innerHTML = `<tr>
+            <th>视频</th><th>频道</th><th class="num">时长</th><th class="num">花费</th>
+            <th class="num">展示</th><th class="num">TrueView</th><th class="num">TrueView 率</th>
+            <th class="num">完播率</th><th class="num">点击</th><th class="num">转化</th>
+            <th class="num">CPV</th><th class="num">观后转化</th>
+          </tr>`;
+          document.getElementById("exploreTbody").innerHTML = items.length
+            ? items.map((r) => `<tr>
+              <td>${esc(r.title)}</td>
+              <td>${esc(r.channelId || "—")}</td>
+              <td class="num">${durationLabel(r.durationMillis)}</td>
+              <td class="num">${money(r.spend, ctx.currency)}</td>
+              <td class="num">${int(r.impressions)}</td>
+              <td class="num">${int(r.videoViews)}</td>
+              <td class="num">${pct(r.viewRate)}</td>
+              <td class="num">${pct(r.completeRate)}</td>
+              <td class="num">${int(r.clicks)}</td>
+              <td class="num">${int(r.conversions)}</td>
+              <td class="num">${r.averageCpv ? money(r.averageCpv, ctx.currency) : "—"}</td>
+              <td class="num">${int(r.viewThroughConversions)}</td>
+            </tr>`).join("")
+            : `<tr><td colspan="12">本期无视频行</td></tr>`;
+        } else {
+          document.getElementById("exploreThead").innerHTML = `<tr>
+            <th>系列</th><th class="num">花费</th><th class="num">展示</th><th class="num">点击</th>
+            <th class="num">CTR</th><th class="num">转化</th><th class="num">CPA</th>
+          </tr>`;
+          document.getElementById("exploreTbody").innerHTML = items.length
+            ? items.map((r) => {
+                const ctr = num(r.impressions) > 0 ? num(r.clicks) / num(r.impressions) : 0;
+                const cpa = num(r.conversions) > 0 ? num(r.spend) / num(r.conversions) : null;
+                return `<tr>
+                  <td>${esc(r.title)}</td>
+                  <td class="num">${money(r.spend, ctx.currency)}</td>
+                  <td class="num">${int(r.impressions)}</td>
+                  <td class="num">${int(r.clicks)}</td>
+                  <td class="num">${pct(ctr)}</td>
+                  <td class="num">${int(r.conversions)}</td>
+                  <td class="num">${cpa == null ? "—" : money(cpa, ctx.currency)}</td>
+                </tr>`;
+              }).join("")
+            : `<tr><td colspan="7">本期该类型无系列</td></tr>`;
+        }
+      }
+
+      function initExploreSwitch(types, ctx) {
+        const wrap = document.getElementById("exploreSwitch");
+        if (!wrap) return;
+        const first = types.find((t) => (t.items || []).length > 0) || types[0];
+        renderExplore(first.id, types, ctx);
+        wrap.addEventListener("click", (e) => {
+          const btn = e.target.closest(".explore-tab");
+          if (!btn) return;
+          wrap.querySelectorAll(".explore-tab").forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle("active", on);
+            b.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          renderExplore(btn.getAttribute("data-type"), types, ctx);
+        });
+      }
+
+      function kpiCard(label, value, delta, invert) {
+        return `<div class="kpi"><div class="label">${esc(label)}</div><div class="val">${value}</div><div class="delta">${deltaHtml(delta, invert)}</div></div>`;
+      }
+
+      function deltaText(v) {
+        if (v == null || !Number.isFinite(Number(v))) return "—";
+        const n = Number(v) * 100;
+        const sign = n > 0 ? "+" : n < 0 ? "−" : "";
+        return sign + Math.abs(n).toFixed(1) + "%";
+      }
+
+      function leadOrEmpty(block) {
+        const text = firstLine(block && block.analysis);
+        return text ? `<p class="lead">${esc(text)}</p>` : "";
+      }
+
+      function agendaPage(agenda, hideSpecial) {
+        const defaults = [
+          { n: "STEP 01", t: "先看核心结论", d: "花费、询盘、成本达成情况总览。" },
+          { n: "STEP 02", t: "拆解本期表现", d: "效率趋势 → 广告类型 → 区域/国家结构。" },
+          { n: "STEP 03", t: hideSpecial ? "账户与国家" : "新探索专项", d: hideSpecial ? "国家明细、下钻与账户侧观察。" : "非搜索广告探索（可切换类型）。" },
+          { n: "STEP 04", t: "总结与下期", d: "亮点风险 → 预算与动作清单。" },
+        ];
+        const extra = Array.isArray(agenda) ? agenda.map((x) => String(x).trim()).filter(Boolean) : [];
+        const items = defaults.map((item, i) => extra[i] ? { ...item, d: extra[i] } : item);
+        return `<section class="page" id="agenda">
+          <div class="page-head"><h2>报告浏览逻辑</h2><span class="chip">阅读路径</span></div>
+          <p class="lead">建议按「结论 → 证据 → 动作」顺序阅读：先看结果是否达标，再拆结构和专项，最后落到怎么干。</p>
+          <div class="story">${items.map((x) => `<div class="story-item"><div class="n">${esc(x.n)}</div><div class="t">${esc(x.t)}</div><p class="d">${esc(x.d)}</p></div>`).join("")}</div>
+        </section>`;
+      }
+
+      function goalRows(plan) {
+        const items = lines((plan && plan.goals && (plan.goals.analysis || plan.goals.goals)) || []);
+        if (!items.length) {
+          return `<div class="row"><span class="k">主目标</span><span class="v">待业务确认</span></div>
+            <div class="row"><span class="k">询盘 / CPA</span><span class="v">不编造数字</span></div>
+            <div class="row"><span class="k">市场</span><span class="v">按历史结构建议</span></div>`;
+        }
+        return items.slice(0, 4).map((x) => {
+          const parts = x.split(/[：:]/);
+          const k = parts.length > 1 ? parts[0] : "目标";
+          const v = parts.length > 1 ? parts.slice(1).join("：") : x;
+          return `<div class="row"><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`;
+        }).join("");
+      }
+
+      function accountWatchPage(watch, drillCountry) {
+        const items = [];
+        if (watch.searchImpressionShare != null && Number.isFinite(Number(watch.searchImpressionShare))) {
+          items.push(`搜索展示份额 <span class="hl">${esc(pct(watch.searchImpressionShare))}</span>`);
+        }
+        if (Array.isArray(watch.topClickCountries) && watch.topClickCountries.length) {
+          items.push(`点击最多国家：${watch.topClickCountries.map((x) => esc(x)).join("、")}`);
+        }
+        if (drillCountry) items.push(`消耗最高国家：<strong>${esc(drillCountry)}</strong>，已在下钻页展开`);
+        if (!items.length) return "";
+        return `<section class="page" id="account">
+          <div class="page-head"><h2>⑥ 账户侧观察</h2><span class="chip">账户观察</span></div>
+          <ul class="list-card">${items.map((x) => `<li>${x}</li>`).join("")}</ul>
+        </section>`;
+      }
+
+      function summaryBlocks(exec, summary) {
+        const highlights = exec.slice(0, 4);
+        const notes = lines((summary && (summary.analysis || summary.goals)) || []);
+        const left = highlights.length ? highlights : notes.slice(0, 4);
+        const right = notes.length ? notes : highlights.slice(0, 3);
+        return `<div class="blk-grid">
+          <div class="blk blue"><h4>核心结论</h4><ul>${(left.length ? left : ["暂无结论"]).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+          <div class="blk orange"><h4>亮点</h4><ul>${(right.length ? right : ["见上期数据"]).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        </div>
+        ${notes.length ? analysisBlock(summary, "注意") : ""}`;
+      }
+
+      function planItems(block) {
+        return lines((block && (block.analysis || block.goals)) || (typeof (block && block.text) === "string" ? [block.text] : []));
+      }
+
+      /** 缺章占位，不走 clientCopy，避免把「待业务确认」前缀剥掉。 */
+      function pending(reason) {
+        return "待业务确认：" + String(reason || "本章未写入 narrative.plan").trim();
+      }
+
+      function asList(items, emptyReason) {
+        return items && items.length ? items : [pending(emptyReason)];
+      }
+
+      function shareOf(part, total) {
+        if (!total) return 0;
+        return num(part) / num(total);
+      }
+
+      function planPages(ctx) {
+        const plan = ctx.plan || {};
+        const defaults = ctx.planDefaults || {};
+        const currency = ctx.currency;
+        const channelTotal = Object.values(ctx.channelSum || {}).reduce((s, v) => s + num(v), 0);
+        const mix = {
+          search: shareOf((ctx.channelSum || {})["搜索"], channelTotal),
+          pmax: shareOf((ctx.channelSum || {})["效果最大化"], channelTotal),
+          video: shareOf((ctx.channelSum || {})["视频"], channelTotal),
+          other: shareOf(num((ctx.channelSum || {})["发现"]) + num((ctx.channelSum || {})["展示"]), channelTotal),
+        };
+        const analysis = planItems(plan);
+        const goals = planItems(plan.goals);
+        const budgetNotes = planItems(plan.budget);
+        const structure = planItems(plan.structure);
+        const keywords = planItems(plan.keywords);
+        const audience = planItems(plan.audience);
+        const creative = planItems(plan.creative);
+        const roadmap = planItems(plan.roadmap);
+        const risks = planItems(plan.risks);
+        const monthLabels = nextPeriodMonthLabels(ctx.meta && ctx.meta.current);
+        const suggested = Array.isArray(defaults.monthSuggested) ? defaults.monthSuggested : [];
+        const shares = (defaults.monthShares || [0.3, 0.35, 0.35]).map((n) => Math.round(Number(n) * 100) + "%");
+
+        const goalCards = [
+          { cls: "c1", t: ctx.kpis.inquiries == null ? "询盘" : (int(ctx.kpis.inquiries) + " 询盘"), s: "本期对照，目标待业务确认" },
+          { cls: "c2", t: ctx.kpis.inquiryCost == null ? "询盘成本" : money(ctx.kpis.inquiryCost, currency), s: "本期对照，不外推目标" },
+          { cls: "c3", t: mix.search ? ((mix.search * 100).toFixed(0) + "% 搜索") : "搜索基本盘", s: "本期类型结构" },
+          { cls: "c4", t: compactMoney(defaults.spendLow, currency), s: "建议档 · 本期 +30%" },
+          { cls: "c5", t: goals[0] ? ellipsis(goals[0], 18) : "待业务确认", s: goals[1] ? ellipsis(goals[1], 22) : "主目标未写入 plan.goals" },
+        ];
+
+        const ladderRows = monthLabels.map((label, i) => {
+          const focus = roadmap[i] || pending("本月任务未写进 plan.roadmap");
+          return `<tr>
+            <td class="left">${esc(label)}</td>
+            <td class="num">${suggested[i] == null ? "—" : money(suggested[i], currency)}</td>
+            <td class="num">${shares[i] || "—"}</td>
+            <td class="left">${esc(focus)}</td>
+          </tr>`;
+        }).join("");
+
+        const actionTable = countryActionTable(ctx.countries, ctx.kpis.inquiryCost, currency);
+        const exploreCards = explorePlanCards(ctx.exploreTypes, channelTotal, currency, structure.concat(creative));
+        const clickCountries = (ctx.watch && ctx.watch.topClickCountries) || [];
+        const inquiryCountries = (ctx.countries || []).filter((r) => num(r.inquiries) > 0).slice(0, 5).map((r) => r.country);
+        const dangerCountries = (ctx.countries || [])
+          .filter((r) => countryDiagnosis(r, ctx.kpis.inquiryCost).cls === "danger")
+          .slice(0, 3)
+          .map((r) => r.country);
+        const flowNote = clickCountries.length
+          ? `区分「流量国」与「询盘国」：点击集中在 ${clickCountries.join("、")}；询盘较多在 ${inquiryCountries.join("、") || "—"}。先看有效询盘再决定加搜索还是只做再营销。`
+          : "加码只给近一期询盘成本低于账户均值的国家；零询盘高消费优先缩减。";
+        const landingNotes = [
+          dangerCountries.length ? `连续空耗：${dangerCountries.join("、")}，见「加 / 守 / 砍」` : "",
+          clickCountries.length ? `点击集中在 ${clickCountries.join("、")}，先对有效询盘再决定加搜索` : "",
+          ctx.meta && ctx.meta.drillCountry ? `消耗最高国家（${ctx.meta.drillCountry}）已在下钻页展开` : "",
+        ].filter(Boolean);
+        const videoShareNote = mix.video
+          ? `本期视频占比 ${(mix.video * 100).toFixed(1)}%，是否加码待业务确认。`
+          : pending("本期视频无量，加码计划未写");
+
+        return `
+          <section class="chapter" id="s3">
+            <p class="num">PART 03</p>
+            <h2>${esc(ctx.nextQ)} 数据规划</h2>
+            <p>目标与月度节奏 → 预算与国家矩阵 → 搜索/非搜索动作 → 周巡检清单。</p>
+          </section>
+          <section class="page" id="q4">
+            <div class="page-head"><h2>规划核心</h2><span class="chip">目标</span></div>
+            ${analysis[0] ? `<p class="lead">${esc(analysis[0])}</p>` : `<p class="lead">${esc(pending("未写 plan.analysis。数字仍按本期结构与建议档展示，不编造询盘/CPA 目标。"))}</p>`}
+            <div class="five">${goalCards.map((c) => `<div class="fcard ${c.cls}"><div class="ft">${esc(c.t)}</div><div class="fs">${esc(c.s)}</div></div>`).join("")}</div>
+            ${goals.length ? `<h3 class="st">目标分层</h3><div class="steps">${goals.map((x) => `<div class="step"><div><h4>${esc(x)}</h4></div></div>`).join("")}</div>` : `<p class="muted">${esc(pending("未写 plan.goals"))}</p>`}
+            <h3 class="st">月度目标阶梯（建议档花费，不是已批预算）</h3>
+            <div class="table-wrap"><table class="data" style="min-width:640px">
+              <thead><tr><th class="left">月份</th><th class="num">建议花费</th><th class="num">占比</th><th class="left">规划重点</th></tr></thead>
+              <tbody>${ladderRows}</tbody>
+            </table></div>
+            ${analysis.slice(1).length ? `<div class="insight"><div class="tag">原则</div><div class="txt">${analysis.slice(1).map((x) => esc(x)).join("<br/>")}</div></div>` : `<div class="insight"><div class="tag">口径</div><div class="txt">加 / 守 / 砍只按本期花费与询盘成本算：零询盘高消费优先缩减；加量只给询盘成本低于账户均值的单元。询盘数/成本目标须写入 plan.goals。</div></div>`}
+          </section>
+          <section class="page" id="budget">
+            <div class="page-head"><h2>预算怎么分</h2><span class="chip">预算配比</span></div>
+            <div class="budget-strip" style="margin-bottom:16px">
+              <div class="budget-grid c3">
+                <div class="bcell"><div class="p">${money(defaults.spendFloor ?? defaults.currentSpend, currency)}</div><div class="n">最低可执行 · 维持本期</div></div>
+                <div class="bcell"><div class="p">${money(defaults.spendLow, currency)}</div><div class="n">建议档 +30%</div></div>
+                <div class="bcell"><div class="p">${money(defaults.spendHigh, currency)}</div><div class="n">扩量档 +50%</div></div>
+              </div>
+            </div>
+            <div class="budget">
+              <div>
+                <h3 class="st" style="margin-top:0">询盘数量 + 质量</h3>
+                <p class="muted">${esc(budgetNotes[0] || pending("未写核心市场分配"))}</p>
+                <h3 class="st">品牌声量</h3>
+                <p class="muted">${esc(budgetNotes[1] || videoShareNote)}</p>
+                <h3 class="st">配比纪律</h3>
+                <ul class="ol-clean">
+                  ${asList(budgetNotes.slice(2), "未写配比纪律").map((x) => `<li>${esc(x)}</li>`).join("")}
+                </ul>
+              </div>
+              <div class="budget-grid">
+                <div class="bcell"><div class="p">${mix.search ? ((mix.search * 100).toFixed(0) + "%") : "—"}</div><div class="n">搜索 · 本期占比</div></div>
+                <div class="bcell"><div class="p">${mix.pmax ? ((mix.pmax * 100).toFixed(0) + "%") : "—"}</div><div class="n">效果最大化 · 本期占比</div></div>
+                <div class="bcell"><div class="p">${mix.video ? ((mix.video * 100).toFixed(0) + "%") : "—"}</div><div class="n">视频 / YouTube · 本期占比</div></div>
+                <div class="bcell"><div class="p">${mix.other ? ((mix.other * 100).toFixed(0) + "%") : "—"}</div><div class="n">发现 + 展示 · 本期占比</div></div>
+              </div>
+            </div>
+            <div class="strat" style="margin-top:14px">
+              <h4>类型职责（避免预算打架）</h4>
+              <p>${esc(structure[0] || pending("未写各类型职责"))}</p>
+            </div>
+          </section>
+          <section class="page" id="q4-region">
+            <div class="page-head"><h2>区域与国家：加 / 守 / 砍</h2><span class="chip">结构优化</span></div>
+            <p class="lead">用国家清单管预算，而不是只调账户总预算。动作由本期花费与询盘成本算出，不编造目标市场。</p>
+            ${actionTable}
+            <div class="insight"><div class="tag">提醒</div><div class="txt">${esc(flowNote)}</div></div>
+          </section>
+          <section class="page" id="q4-search">
+            <div class="page-head"><h2>搜索优化打法（基本盘）</h2><span class="chip">${mix.search ? ((mix.search * 100).toFixed(0) + "% 本期") : "搜索"}</span></div>
+            <div class="blk-grid">
+              <div class="blk blue"><h4>词与结构</h4><ul>${asList(keywords, "未写 plan.keywords").map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+              <div class="blk orange"><h4>账户结构</h4><ul>${asList(structure, "未写 plan.structure").map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+            </div>
+            <h3 class="st">落地页与线索质量</h3>
+            <div class="two">
+              <div class="steps">${asList(creative.slice(0, 3), "未写 plan.creative").map((x) => `<div class="step"><div><h4>${esc(x)}</h4></div></div>`).join("")}</div>
+              <ul class="list-card">
+                ${asList(landingNotes, "落地页与线索质量缺少国家/点击依据").map((x) => `<li>${esc(x)}</li>`).join("")}
+              </ul>
+            </div>
+          </section>
+          <section class="page" id="q4-nonssearch">
+            <div class="page-head"><h2>非搜索：按类型执行清单</h2><span class="chip">探索落地</span></div>
+            <p class="lead">承接新探索结论：有量的类型写动作，无量的类型只写验证计划，不直接扩。</p>
+            <div class="story">${exploreCards}</div>
+            ${creative.slice(3).length ? `<div class="insight" style="margin-top:12px"><div class="tag">素材</div><div class="txt">${creative.slice(3).map((x) => esc(x)).join("<br/>")}</div></div>` : ""}
+          </section>
+          <section class="page" id="audience">
+            <div class="page-head"><h2>受众与运营动作</h2><span class="chip">受众</span></div>
+            <div class="two">
+              <div class="steps">${asList(audience, "未写 plan.audience").map((x) => `<div class="step"><div><h4>${esc(x)}</h4></div></div>`).join("")}</div>
+              <div>
+                <h3 class="st" style="margin-top:0">视频口径（不是本户规划）</h3>
+                <ul class="ol-clean">
+                  <li>只报 Ads 能拿到的曝光 / TrueView / 完播 / CPV</li>
+                  <li>不编造频道粉数、订阅来源饼、ABCD 素材组</li>
+                  <li>广告带来订阅有转化动作才展示</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section class="page" id="q4-ops">
+            <div class="page-head"><h2>周节奏与执行清单</h2><span class="chip">通用巡检</span></div>
+            <p class="muted">下表是通用巡检节奏，不是本户专属规划。本户任务见三月路线图与 plan.roadmap。</p>
+            <div class="table-wrap"><table class="data" style="min-width:640px">
+              <thead><tr><th class="left">频率</th><th class="left">事项</th><th class="left">产出</th></tr></thead>
+              <tbody>
+                <tr><td class="left">每日</td><td class="left">消耗、掉量、拒审、异常 CPC</td><td class="left">异常当日记录</td></tr>
+                <tr><td class="left">每周</td><td class="left">搜索词否词 + 国家/类型消耗结构</td><td class="left">周优化纪要</td></tr>
+                <tr><td class="left">每周</td><td class="left">对照加 / 守 / 砍清单看零询盘国</td><td class="left">停投或重测名单</td></tr>
+                <tr><td class="left">每月</td><td class="left">对照月度阶梯复盘建议档花费</td><td class="left">月度复盘</td></tr>
+              </tbody>
+            </table></div>
+            <h3 class="st">三月路线图</h3>
+            <div class="steps">${asList(roadmap, "未写 plan.roadmap").map((x, i) => `<div class="step"><div><h4>${esc(monthLabels[i] || ("阶段 " + (i + 1)))}</h4><p>${esc(x)}</p></div></div>`).join("")}</div>
+            ${risks.length ? `<div class="insight" style="margin-top:12px"><div class="tag">风险</div><div class="txt">${risks.map((x) => esc(x)).join("<br/>")}</div></div>` : `<div class="insight" style="margin-top:12px"><div class="tag">风险</div><div class="txt">${esc(pending("未写 plan.risks"))}</div></div>`}
+            <div class="cta">${esc(ctx.nextQ)} 先确认建议档与国家清单，再进入搭建或写命令。</div>
+          </section>
+        `;
+      }
+
+      function countryActionTable(rows, avgCost, currency) {
+        const mapped = (rows || []).slice(0, 20).map((r) => {
+          const diag = countryDiagnosis(r, avgCost);
+          let action = "守量";
+          let exec = "保持观察，不盲目加预算";
+          if (diag.cls === "danger") {
+            action = "暂停/排查";
+            exec = "停投或换落地页后小预算重测";
+          } else if (diag.cls === "good") {
+            action = "加码";
+            exec = "优先给建议档增量，盯询盘质量";
+          } else if (diag.cls === "warn") {
+            action = "控量提质";
+            exec = "收词、否词、控频次，先降成本再谈加量";
+          }
+          const basis = r.inquiries == null
+            ? `花费 ${money(r.spend, currency)} · 无询盘口径`
+            : `花费 ${money(r.spend, currency)} · 询盘 ${int(r.inquiries)} · 成本 ${r.inquiryCost == null ? "—" : money(r.inquiryCost, currency)}`;
+          return `<tr class="${diag.cls}">
+            <td class="left">${diag.pill}</td>
+            <td class="left">${esc(r.country)}</td>
+            <td class="left">${esc(basis)}</td>
+            <td class="left">${esc(exec)}</td>
+          </tr>`;
+        }).join("");
+        if (!mapped) return `<p class="muted">本期没有国家行，无法做加 / 守 / 砍。</p>`;
+        return `<div class="table-wrap"><table class="data" style="min-width:680px">
+          <thead><tr><th class="left">动作</th><th class="left">国家</th><th class="left">依据（本期）</th><th class="left">下期执行要点</th></tr></thead>
+          <tbody>${mapped}</tbody>
+        </table></div>`;
+      }
+
+      function explorePlanCards(types, accountSpend, currency, hints) {
+        const meta = [
+          { id: "pmax", n: "01", t: "效果最大化" },
+          { id: "video", n: "02", t: "视频 / YouTube" },
+          { id: "demand", n: "03", t: "需求开发 / 发现" },
+          { id: "display", n: "04", t: "展示" },
+        ];
+        const byId = {};
+        (types || []).forEach((t) => { if (t && t.id) byId[t.id] = t; });
+        return meta.map((m) => {
+          const t = byId[m.id] || {};
+          const spend = num(t.spend);
+          const hint = hints.find((x) => x.includes(m.t) || x.toLowerCase().includes(m.id)) || "";
+          const d = hint || (spend > 0 ? pending("未写本类型动作") : pending("本期无花费，验证计划未写"));
+          return `<div class="story-item">
+            <div class="n">${esc(m.n)}</div>
+            <div class="t">${esc(m.t)}</div>
+            <p class="d">${esc(compactMoney(spend, currency) + " · 占账户 " + shareText(spend, accountSpend))}<br/>${esc(d)}</p>
+          </div>`;
+        }).join("");
+      }
+
+      function pieOption(map) {
+        const keys = ["欧美", "东南亚", "印度", "印尼", "中东", "非洲", "其他"];
+        const data = keys.map((name) => ({ name, value: num(map[name]) })).filter((d) => d.value > 0);
+        return {
+          color: PALETTE,
+          tooltip: { trigger: "item" },
+          series: [{
+            type: "pie",
+            radius: ["42%", "70%"],
+            label: { formatter: (p) => ellipsis(p.name, 6) },
+            data: data.length ? data : [{ name: "无数据", value: 1, itemStyle: { color: "#DEE0E3" } }],
+          }],
+        };
+      }
+
+      function initVolumeChart(months) {
+        initChart(document.getElementById("chart-month-volume"), {
+          color: PALETTE,
+          tooltip: { trigger: "axis" },
+          legend: legendTop(["消费(千)", "展示(十万)", "点击(千)", "转化", "询盘"]),
+          grid: { left: 48, right: 48, top: 44, bottom: 28 },
+          xAxis: { type: "category", data: months.map((m) => m.label || m.yearMonth) },
+          yAxis: [
+            { type: "value", name: "消费/展示" },
+            { type: "value", name: "点击/转化/询盘", splitLine: { show: false } },
+          ],
+          series: [
+            { type: "bar", name: "消费(千)", data: months.map((m) => num((m.metrics || {}).spend) / 1000), barMaxWidth: 28 },
+            { type: "line", name: "展示(十万)", data: months.map((m) => num((m.metrics || {}).impressions) / 100000), smooth: true },
+            { type: "line", name: "点击(千)", yAxisIndex: 1, data: months.map((m) => num((m.metrics || {}).clicks) / 1000), smooth: true },
+            { type: "line", name: "转化", yAxisIndex: 1, data: months.map((m) => num((m.metrics || {}).conversions)), smooth: true },
+            { type: "line", name: "询盘", yAxisIndex: 1, data: months.map((m) => num(m.inquiries)), smooth: true },
+          ],
+        });
+      }
+
+      function initEfficiencyChart(months, currency) {
+        initChart(document.getElementById("chart-month-efficiency"), {
+          color: PALETTE,
+          tooltip: { trigger: "axis" },
+          legend: legendTop(["CTR %", "CVR %", "CPC", "CPA", "询盘成本"]),
+          grid: { left: 48, right: 48, top: 44, bottom: 28 },
+          xAxis: { type: "category", data: months.map((m) => m.label || m.yearMonth) },
+          yAxis: [
+            { type: "value", name: "CTR/CVR %", axisLabel: { formatter: (v) => v.toFixed(1) } },
+            { type: "value", name: "金额", splitLine: { show: false } },
+          ],
+          series: [
+            { type: "line", name: "CTR %", data: months.map((m) => num((m.metrics || {}).ctr) * 100), smooth: true },
+            { type: "line", name: "CVR %", data: months.map((m) => num((m.metrics || {}).cvr) * 100), smooth: true },
+            { type: "line", name: "CPC", yAxisIndex: 1, data: months.map((m) => num((m.metrics || {}).cpc)), smooth: true },
+            { type: "line", name: "CPA", yAxisIndex: 1, data: months.map((m) => num((m.metrics || {}).cpa)), smooth: true },
+            { type: "line", name: "询盘成本", yAxisIndex: 1, data: months.map((m) => num(m.inquiryCost)), smooth: true, lineStyle: { type: "dashed" } },
+          ],
+        });
+      }
+
+      function initStackedAdType(months) {
+        const keys = ["搜索", "效果最大化", "视频", "发现", "展示", "其他"];
+        initChart(document.getElementById("chart-adtype"), {
+          color: PALETTE,
+          tooltip: { trigger: "axis" },
+          legend: legendTop(keys),
+          grid: { left: 48, right: 16, top: 44, bottom: 28 },
+          xAxis: { type: "category", data: months.map((m) => m.label || m.yearMonth) },
+          yAxis: { type: "value" },
+          series: keys.map((name) => ({
+            type: "bar",
+            name,
+            stack: "ad",
+            barMaxWidth: 36,
+            data: months.map((m) => num((m.spendByChannel || {})[name])),
+          })),
+        });
+      }
+
+      function initRegionPies(prevMap, curMap, prevQ, curQ) {
+        initChart(document.getElementById("chart-pie-prev"), pieOption(prevMap || {}));
+        initChart(document.getElementById("chart-pie-cur"), pieOption(curMap || {}));
+        initChart(document.getElementById("chart-region-mini"), pieOption(curMap || {}));
+      }
+
+      function initCountryCombo(rows) {
+        const top = (rows || []).slice(0, 12);
+        initChart(document.getElementById("chart-country"), {
+          color: PALETTE,
+          tooltip: { trigger: "axis" },
+          legend: legendTop(["消费", "询盘数", "询盘成本"]),
+          grid: { left: 48, right: 48, top: 44, bottom: 56 },
+          xAxis: {
+            type: "category",
+            data: top.map((c) => c.country),
+            axisLabel: { interval: 0, rotate: 30, formatter: (v) => ellipsis(v, 6) },
+          },
+          yAxis: [
+            { type: "value", name: "消费/成本" },
+            { type: "value", name: "询盘", splitLine: { show: false } },
+          ],
+          series: [
+            { type: "bar", name: "消费", data: top.map((c) => num(c.spend)), barMaxWidth: 16 },
+            { type: "bar", name: "询盘数", yAxisIndex: 1, data: top.map((c) => num(c.inquiries)), barMaxWidth: 16 },
+            { type: "line", name: "询盘成本", data: top.map((c) => num(c.inquiryCost)), smooth: true },
+          ],
+        });
+      }
+
+      function initUsChart(rows) {
+        const top = (rows || []).slice(0, 10);
+        initChart(document.getElementById("chart-us"), {
+          color: PALETTE,
+          tooltip: { trigger: "axis" },
+          legend: legendTop(["展示", "点击", "CTR%"]),
+          grid: { left: 48, right: 48, top: 44, bottom: 40 },
+          xAxis: categoryAxis(top.map((r) => r.name)),
+          yAxis: [
+            { type: "value", name: "展示" },
+            { type: "value", name: "点击 / CTR", splitLine: { show: false } },
+          ],
+          series: [
+            { type: "bar", name: "展示", data: top.map((r) => num(r.impressions)), barMaxWidth: 16 },
+            { type: "bar", name: "点击", yAxisIndex: 1, data: top.map((r) => num(r.clicks)), barMaxWidth: 16 },
+            { type: "line", name: "CTR%", yAxisIndex: 1, data: top.map((r) => num(r.ctr) * 100), smooth: true },
+          ],
+        });
+      }
+
+      function countryDiagnosis(row, avgCost) {
+        if (row.inquiries === 0 && num(row.spend) > 0) {
+          return { cls: "danger", pill: '<span class="pill bad">暂停/排查</span>' };
+        }
+        if (row.inquiryCost == null) return { cls: "", pill: "—" };
+        const cost = num(row.inquiryCost);
+        const baseline = avgCost && avgCost > 0 ? avgCost : 1000;
+        if (cost < baseline * 0.6) return { cls: "good", pill: '<span class="pill good">高性价比</span>' };
+        if (cost < baseline * 1.2) return { cls: "", pill: '<span class="pill ok">成本可控</span>' };
+        return { cls: "warn", pill: '<span class="pill warn">成本偏高</span>' };
+      }
+
+      function planChapters(plan) {
+        if (!plan || typeof plan !== "object") return analysisBlock(plan, "规划");
+        const chapters = [
+          ["analysis", "投放结论"],
+          ["goals", "目标与 KPI"],
+          ["budget", "预算与市场规划"],
+          ["structure", "广告账户结构"],
+          ["keywords", "关键词与搜索主题"],
+          ["audience", "受众规划"],
+          ["creative", "素材与落地页"],
+          ["roadmap", "执行路线图"],
+          ["risks", "风险与待确认"],
+        ];
+        const parts = chapters.map(([key, title]) => {
+          if (key === "analysis") return planCard(plan, title);
+          return planCard(plan[key], title);
+        }).filter(Boolean);
+        return parts.length ? parts.join("") : planCard(plan, "规划");
+      }
+
+      function planCard(block, title) {
+        const items = lines((block && (block.analysis || block.goals)) || (typeof (block && block.text) === "string" ? [block.text] : []));
+        if (!items.length) return "";
+        return `<div class="plan-card"><div class="tag">${esc(title)}</div><ul>${items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+      }
+
+      function monthSplitTable(defaults, currency, current) {
+        const months = defaults && defaults.monthSuggested;
+        if (!Array.isArray(months) || months.length < 3) return "";
+        const shares = (defaults.monthShares || [0.3, 0.35, 0.35]).map((n) => Math.round(Number(n) * 100) + "%");
+        const labels = nextPeriodMonthLabels(current);
+        return `<h3 class="st">建议档月度拆分</h3>
+          <div class="table-wrap"><table class="data compact">
+            <thead><tr><th>下期月份</th><th class="num">占比</th><th class="num">建议花费</th></tr></thead>
+            <tbody>
+              <tr><td>${esc(labels[0])}</td><td class="num">${shares[0] || "30%"}</td><td class="num">${money(months[0], currency)}</td></tr>
+              <tr><td>${esc(labels[1])}</td><td class="num">${shares[1] || "35%"}</td><td class="num">${money(months[1], currency)}</td></tr>
+              <tr><td>${esc(labels[2])}</td><td class="num">${shares[2] || "35%"}</td><td class="num">${money(months[2], currency)}</td></tr>
+            </tbody>
+          </table></div>`;
+      }
+
+      function analysisBlock(block, fallbackTitle) {
+        const items = lines((block && (block.analysis || block.goals)) || (typeof (block && block.text) === "string" ? [block.text] : []));
+        if (!items.length) return "";
+        return `<div class="insight"><div class="tag">${esc(fallbackTitle)}</div><div>${items.map((x) => esc(x)).join("<br/>")}</div></div>`;
+      }
+
+      function tableWrap(inner) {
+        return `<div class="table-wrap">${inner}</div>`;
+      }
+
+      function monthTable(rows, currency, periodTag) {
+        const totals = { spend: 0, impressions: 0, clicks: 0, conversions: 0, inquiries: 0 };
+        const body = rows.map((r) => {
+          const m = r.metrics || {};
+          totals.spend += num(m.spend);
+          totals.impressions += num(m.impressions);
+          totals.clicks += num(m.clicks);
+          totals.conversions += num(m.conversions);
+          if (r.inquiries != null) totals.inquiries += num(r.inquiries);
+          const cvr = num(m.cvr) || (num(m.clicks) > 0 ? num(m.conversions) / num(m.clicks) : 0);
+          return `<tr>
+            <td class="left">${esc(r.label || r.yearMonth)}</td>
+            <td class="num">${money(m.spend, currency)}</td>
+            <td class="num">${int(m.impressions)}</td>
+            <td class="num">${int(m.clicks)}</td>
+            <td class="num">${pct(m.ctr)}</td>
+            <td class="num">${int(m.conversions)}</td>
+            <td class="num">${pct(cvr)}</td>
+            <td class="num">${money(m.cpc, currency)}</td>
+            <td class="num">${money(m.cpa, currency)}</td>
+            <td class="num">${r.inquiries == null ? "—" : int(r.inquiries)}</td>
+            <td class="num">${r.inquiryCost == null ? "—" : money(r.inquiryCost, currency)}</td>
+          </tr>`;
+        }).join("");
+        const tCtr = totals.impressions > 0 ? totals.clicks / totals.impressions : 0;
+        const tCvr = totals.clicks > 0 ? totals.conversions / totals.clicks : 0;
+        const tCpc = totals.clicks > 0 ? totals.spend / totals.clicks : 0;
+        const tCpa = totals.conversions > 0 ? totals.spend / totals.conversions : 0;
+        const tInqCost = totals.inquiries > 0 ? totals.spend / totals.inquiries : null;
+        const hasInq = rows.some((r) => r.inquiries != null);
+        const totalRow = `<tr class="total">
+          <td class="left">${esc(periodTag || "合计")}</td>
+          <td class="num">${money(totals.spend, currency)}</td>
+          <td class="num">${int(totals.impressions)}</td>
+          <td class="num">${int(totals.clicks)}</td>
+          <td class="num">${pct(tCtr)}</td>
+          <td class="num">${int(totals.conversions)}</td>
+          <td class="num">${pct(tCvr)}</td>
+          <td class="num">${money(tCpc, currency)}</td>
+          <td class="num">${money(tCpa, currency)}</td>
+          <td class="num">${hasInq ? int(totals.inquiries) : "—"}</td>
+          <td class="num">${tInqCost == null ? "—" : money(tInqCost, currency)}</td>
+        </tr>`;
+        return `<table class="data"><thead><tr>
+          <th class="left">月份</th><th class="num">消费</th><th class="num">展示次数</th><th class="num">点击次数</th>
+          <th class="num">点击率</th><th class="num">转化次数</th><th class="num">转化率</th>
+          <th class="num">CPC</th><th class="num">CPA</th><th class="num">询盘数</th><th class="num">询盘成本</th>
+        </tr></thead><tbody>${body}${totalRow}</tbody></table>`;
+      }
+
+      function countryTable(rows, currency, avgCost) {
+        const body = rows.slice(0, 20).map((r) => {
+          const diag = countryDiagnosis(r, avgCost);
+          return `<tr class="${diag.cls}">
+            <td class="left">${esc(r.country)}</td>
+            <td class="num">${money(r.spend, currency)}</td>
+            <td class="num">${r.inquiries == null ? "—" : int(r.inquiries)}</td>
+            <td class="num">${r.inquiryCost == null ? "—" : money(r.inquiryCost, currency)}</td>
+            <td class="left">${diag.pill}</td>
+          </tr>`;
+        }).join("");
+        return `<table class="data"><thead><tr>
+          <th class="left">国家</th><th class="num">消费</th><th class="num">询盘数</th>
+          <th class="num">询盘成本</th><th class="left">诊断</th>
+        </tr></thead><tbody>${body}</tbody></table>`;
+      }
+
+      function stateTable(rows, adminLabel) {
+        const col = adminLabel || "一级行政区";
+        if (!rows.length) return `<p class="lead">本期没有该国${esc(col)}数据。</p>`;
+        const body = rows.map((r) =>
+          `<tr><td>${esc(r.name)}</td><td class="num">${int(r.impressions)}</td><td class="num">${int(r.clicks)}</td><td class="num">${pct(r.ctr)}</td><td class="num">${money(r.spend)}</td></tr>`
+        ).join("");
+        return `<table class="data"><thead><tr><th>${esc(col)}</th><th class="num">展示</th><th class="num">点击</th><th class="num">CTR</th><th class="num">花费</th></tr></thead><tbody>${body}</tbody></table>`;
+      }
+
+      function durationLabel(ms) {
+        const n = Number(ms);
+        if (!Number.isFinite(n) || n <= 0) return "—";
+        const sec = Math.round(n / 1000);
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return m > 0 ? `${m}:${String(s).padStart(2, "0")}` : `${s}s`;
+      }
+
+      function youtubeAdsKpis(summary, currency) {
+        if (!summary || !summary.count) return "";
+        const cards = [
+          kpiCard("花费", money(summary.spend, currency), null),
+          kpiCard("展示", int(summary.impressions), null),
+          kpiCard("TrueView", int(summary.videoViews), null),
+          kpiCard("TrueView 率", pct(summary.viewRate), null),
+          kpiCard("完整观看率", pct(summary.completeRate), null),
+          kpiCard("CPV", summary.averageCpv == null ? "—" : money(summary.averageCpv, currency), null),
+          kpiCard("视频数", int(summary.count), null),
+        ];
+        if (summary.adSubscriptions != null) {
+          cards.push(kpiCard("广告带来订阅", int(summary.adSubscriptions), null));
+        }
+        return `<div class="kpi-row c7">${cards.join("")}</div>`;
+      }
+
+      function keywordBlock(seeds) {
+        const items = (seeds && seeds.items) || [];
+        if (!items.length) return "";
+        const body = items.slice(0, 20).map((r) =>
+          `<tr><td>${esc(r.keyword)}</td><td class="num">${int(r.monthlySearches)}</td></tr>`
+        ).join("");
+        return `<h3 class="st">相关搜索词</h3>
+          ${tableWrap(`<table class="data"><thead><tr><th>关键词</th><th class="num">月搜索量</th></tr></thead><tbody>${body}</tbody></table>`)}`;
+      }
+
+      function specialTable(rows, currency, source) {
+        if (source === "youtube") {
+          const body = rows.map((r) =>
+            `<tr>
+              <td>${esc(r.title)}</td>
+              <td>${esc(r.channelId || "—")}</td>
+              <td class="num">${durationLabel(r.durationMillis)}</td>
+              <td class="num">${money(r.spend, currency)}</td>
+              <td class="num">${int(r.impressions)}</td>
+              <td class="num">${int(r.videoViews)}</td>
+              <td class="num">${pct(r.viewRate)}</td>
+              <td class="num">${pct(r.completeRate)}</td>
+              <td class="num">${int(r.clicks)}</td>
+              <td class="num">${int(r.conversions)}</td>
+              <td class="num">${r.averageCpv ? money(r.averageCpv, currency) : "—"}</td>
+              <td class="num">${int(r.viewThroughConversions)}</td>
+            </tr>`
+          ).join("");
+          return `<table class="data"><thead><tr>
+            <th>视频</th><th>频道</th><th class="num">时长</th><th class="num">花费</th>
+            <th class="num">展示</th><th class="num">TrueView</th><th class="num">TrueView 率</th>
+            <th class="num">完播率</th><th class="num">点击</th><th class="num">转化</th>
+            <th class="num">CPV</th><th class="num">观后转化</th>
+          </tr></thead><tbody>${body}</tbody></table>`;
+        }
+        const body = rows.map((r) =>
+          `<tr><td>${esc(r.title)}</td><td class="num">${money(r.spend, currency)}</td><td class="num">${int(r.impressions)}</td><td class="num">${int(r.clicks)}</td><td class="num">${int(r.conversions)}</td></tr>`
+        ).join("");
+        return `<table class="data"><thead><tr><th>名称</th><th class="num">花费</th><th class="num">展示</th><th class="num">点击</th><th class="num">转化</th></tr></thead><tbody>${body}</tbody></table>`;
+      }
+
+      window.addEventListener("resize", function () {
+        charts.forEach((c) => c.resize());
+        if (exploreChart1) exploreChart1.resize();
+        if (exploreChart2) exploreChart2.resize();
+      });
+
+      const payload = window.__GOOGLE_QUARTERLY_REPORT__;
+      if (!payload) {
+        document.getElementById("report-root").innerHTML =
+          '<div class="page">未找到报告数据（window.__GOOGLE_QUARTERLY_REPORT__ 为空），请通过 `google-quarterly render` 生成本文件。</div>';
+        return;
+      }
+      render(payload);
+    })();
+  </script>
+</body>
+</html>

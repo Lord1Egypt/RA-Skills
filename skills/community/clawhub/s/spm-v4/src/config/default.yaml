@@ -1,0 +1,48 @@
+# SPM v4 Engine Configuration
+engine:
+  lifecycle:
+    phases:
+      - id: 0
+        name: context-init
+        description: Deep context initialization
+      - id: 1
+        name: requirement
+        description: Requirement gathering and design
+      - id: 2
+        name: planning
+        description: WBS planning and task breakdown
+      - id: 3
+        name: execution
+        description: Task execution via subagents
+      - id: 4
+        name: quality
+        description: Quality gates and verification
+      - id: 5
+        name: delivery
+        description: Deployment and delivery summary
+    default_phase: 3
+  transitions:
+    - from: "*"
+      to: "*"
+      condition: "always"
+
+event_store:
+  domains:
+    audit:
+      retention: "90d"
+      schema_version: 1
+    integrity:
+      retention: "180d"
+      schema_version: 1
+    quality:
+      retention: "30d"
+      schema_version: 1
+
+security:
+  policy_file: "config/security-policy.yaml"
+  default_action: block
+
+wbs:
+  ledger_path: "docs/spm/ledger.md"
+  hash_separate_path: ".spm/wbs-attestation"
+  merkle_enabled: true

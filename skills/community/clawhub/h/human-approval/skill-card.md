@@ -1,41 +1,54 @@
-## Description: <br>
-Soft human-in-the-loop approval gate. Asks the user for confirmation before the agent executes high-risk actions like deleting files, sending emails, or running destructive commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soft human-in-the-loop approval gate. Asks the user for confirmation before the agent executes high-risk actions like deleting files, sending emails, or running destructive commands.
 
-## Publisher: <br>
-[openauthority](https://clawhub.ai/user/openauthority) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openauthority](https://clawhub.ai/user/openauthority)
 
-## Use Case: <br>
-Developers and operators use this skill during interactive agent sessions to require a conversational approval prompt before high-risk actions such as file deletion, external communication, destructive shell commands, database changes, or financial operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a soft approval reminder rather than a security boundary, so prompt injection, tight loops, context loss, or `/human-approval off` can bypass it. <br>
-Mitigation: Use it for interactive visibility only; require a hard enforcement plugin or platform policy for unattended or production approval controls. <br>
-Risk: A user may still approve a destructive, external, or financial action without fully understanding the impact. <br>
-Mitigation: Review the prompt's action, target, risk, and reversibility fields before approval, and choose modify or reject when the impact is unclear. <br>
+## Use Case:
 
+Developers and agent users use this skill to add an interactive approval checkpoint before destructive, irreversible, external, or financial actions. It is intended as a soft, conversational gate for sessions where the user is present.
 
-## Reference(s): <br>
-- [Human Approval on ClawHub](https://clawhub.ai/openauthority/human-approval) <br>
-- [OpenAuthority plugin](https://github.com/Firma-AI/openauthority) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown conversation prompts and command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Approval prompts include the action, target, risk, reversibility, and approve/reject/modify options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: The skill is a soft approval helper that relies on the model to pause before high-risk actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as an interactive visibility layer; for stronger enforcement, use a policy or plugin mechanism that blocks high-risk tools outside the model.
+
+Risk: The security evidence says the release requests unrestricted Bash access even though the approval workflow should only need confirmation behavior.
+
+Mitigation: Review tool permissions before installing and avoid granting unrestricted shell authority unless the OpenClaw environment requires it and the extra authority is acceptable.
+
+## Reference(s):
+
+- [Human Approval on ClawHub](https://clawhub.ai/openauthority/skills/human-approval)
+- [OpenAuthority Plugin HITL Policies](https://github.com/Firma-AI/openauthority)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-style conversational prompts and concise status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces approval prompts with action, target, risk, reversibility, and approve/reject/modify response options.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

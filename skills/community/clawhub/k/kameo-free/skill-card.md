@@ -1,46 +1,63 @@
-## Description: <br>
-Generate expressive talking-head videos from static images using Kameo AI, with optional prompt enhancement for facial expression, lip-sync, and motion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate expressive talking-head videos from static images using Kameo AI.
 
-## Publisher: <br>
-[veya2ztn](https://clawhub.ai/user/veya2ztn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[veya2ztn](https://clawhub.ai/user/veya2ztn)
 
-## Use Case: <br>
-External creators, developers, and content teams use this skill to turn a portrait or avatar image into a short talking-head video for demos, social media, education, or multilingual presentation content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected images and dialogue to Kameo, and enhanced generation can send images and text to Google Gemini. <br>
-Mitigation: Use only images and dialogue approved for those services, and avoid sensitive personal, confidential, or regulated content. <br>
-Risk: The artifact includes example API keys and stores credentials in ~/.config/kameo/credentials.json. <br>
-Mitigation: Use user-owned API keys, do not rely on bundled examples, keep the credentials file permission-restricted, and delete or rotate stored credentials when no longer needed. <br>
-Risk: Security guidance flags unsafe input interpolation in enhanced prompt scripts. <br>
-Mitigation: Avoid generate_enhanced.sh and enhance_prompt.sh until the interpolation issue is fixed, or review and harden them before use. <br>
-Risk: register.sh accepts account passwords and writes local credentials. <br>
-Mitigation: Prefer manual registration or token creation, avoid passing real passwords through shell history, and rotate credentials after testing. <br>
+## Use Case:
 
+Developers and creators use this skill to generate short talking-head videos from portraits or avatars, optionally enhancing prompts with vision analysis for more expressive facial motion and lip-sync.
 
-## Reference(s): <br>
-- [Kameo](https://kameo.chat) <br>
-- [Kameo Public API](https://api.kameo.chat/api/public) <br>
-- [Gemini API endpoint used for prompt enhancement](https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Kameo CDN video URLs; generated media depends on external API credits, availability, and user-provided images and prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Embedded API credentials and plaintext local credential storage can expose secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate embedded keys before release, require users to provide their own credentials, and prefer environment variables or a secret manager over checked-in examples or plaintext config files.
+
+Risk: Passing passwords as command-line arguments can expose them through shell history or process listings.
+
+Mitigation: Collect passwords through a protected prompt or external secret store instead of positional command-line arguments.
+
+Risk: The enhanced prompt script can turn untrusted image paths or dialogue into local code execution through heredoc interpolation.
+
+Mitigation: Do not run the enhanced prompt workflow on untrusted inputs until the script safely passes values as arguments or environment variables and quotes all data boundaries.
+
+Risk: Portrait images and prompts are uploaded to Kameo, and enhanced generation also uploads image data to Google Gemini.
+
+Mitigation: Use only content that users are authorized to upload and disclose the third-party processing path before generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veya2ztn/skills/kameo-free)
+- [Kameo homepage](https://kameo.chat)
+- [Kameo public API](https://api.kameo.chat/api/public)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated video file or media URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Kameo API credentials; enhanced generation also uses a Google API key and uploads images to third-party services.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

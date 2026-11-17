@@ -1,40 +1,53 @@
-## Description: <br>
-Guide for setting up a private medical clinic or specialist centre in the UAE, covering legal structure, free zone vs mainland options, facility requirements, initial capital, fit-out standards, and a pre-opening checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for setting up a private medical clinic or specialist centre in the UAE, covering legal structure, free zone vs mainland, facility requirements, initial capital, fit-out standards, and pre-opening checklist.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
 
-## Use Case: <br>
-External clinic founders, healthcare investors, and UAE-licensed physicians use this skill to plan private clinic or specialist centre setup in the UAE. It helps produce feasibility summaries, regulatory roadmaps, capital requirement tables, risk flags, and pre-opening checklists tailored to emirate, specialty, ownership preference, and capital. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinic setup guidance may become outdated as UAE regulator requirements, fees, facility standards, and advertising rules change. <br>
-Mitigation: Confirm current requirements with the relevant UAE regulator before relying on the roadmap or checklist. <br>
-Risk: The skill provides general setup guidance and may not capture licensing details for every specialty, emirate, free zone, or facility type. <br>
-Mitigation: Use the output as planning support and obtain professional regulatory, legal, insurance, and facility advice for the specific clinic. <br>
+## Use Case:
 
+External healthcare operators, physicians, and clinic founders use this skill to plan private clinic or specialist centre setup in the UAE, including emirate-specific licensing, ownership structure, capital requirements, risk flags, and pre-opening checklist items.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dralmazrouei/uae-clinic-setup-v2) <br>
+### Deployment Geography for Use:
 
+United Arab Emirates
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, ordered steps, risk flags, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asks for emirate, specialty, ownership structure preference, and available capital before producing a roadmap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Clinic ownership, licensing, advertising, facility, insurance, and staffing requirements may change or vary by UAE regulator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current requirements with the relevant UAE regulator or a qualified professional advisor before relying on the roadmap.
+
+Risk: Capital ranges and setup timelines may be outdated or incomplete for a specific emirate, specialty, facility size, or free zone.
+
+Mitigation: Validate estimates against current vendor quotes, lease terms, regulator fees, and project-specific fit-out requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/dralmazrouei/skills/uae-clinic-setup-v2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown with tables, numbered steps, risk flags, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires emirate, specialty, ownership preference, and available capital before producing a tailored roadmap.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

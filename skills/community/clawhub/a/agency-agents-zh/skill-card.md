@@ -1,40 +1,49 @@
-## Description: <br>
-Agency Agents Zh provides 193 ready-to-use Chinese AI expert roles across 18 departments and supports multi-agent collaboration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+193 个即插即用的 AI 专家角色库 - 覆盖工程、设计、营销、产品、游戏、安全、金融等 18 个部门。支持多智能体协作工作流。
 
-## Publisher: <br>
-[mouxangithub](https://clawhub.ai/user/mouxangithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mouxangithub](https://clawhub.ai/user/mouxangithub)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to have an agent adopt Chinese expert personas for engineering, design, marketing, product, game development, security, finance, and related collaborative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on local persona definition files that may not be visible in the artifact. <br>
-Mitigation: Use explicit role requests and review the referenced local role files before relying on domain-specific guidance. <br>
-Risk: Broad persona activation can produce guidance that appears specialized even when the underlying role file is incomplete or unsuitable for the task. <br>
-Mitigation: Review outputs for correctness and fit before using them in professional, security, financial, or operational decisions. <br>
+## Use Case:
 
+Developers and Chinese-language agent users use this skill to load specialized AI expert-role behavior across engineering, design, marketing, product, game development, security, finance, and other departments. It supports direct expert-role invocation and multi-agent collaborative workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mouxangithub/agency-agents-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or task-specific text with optional code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the requested expert persona and the referenced local role definitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on external role definition files that shape agent responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those local role files are trusted, and review or control the role directory when strict instruction provenance is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mouxangithub/skills/agency-agents-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with role-specific guidance, code, shell commands, and configuration snippets as appropriate to the requested expert task]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are shaped by the selected external role definition files and the requested workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-An SEO content workflow that guides an OpenClaw agent through topic research, EEAT-oriented markdown drafting, and conversion into a styled HTML webpage via the companion claw-kanban plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A complete end-to-end SEO content pipeline that instructs an OpenClaw agent to research topics, write EEAT-compliant markdown, and render a styled HTML webpage.
 
-## Publisher: <br>
-[Joeyzzyy](https://clawhub.ai/user/Joeyzzyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyzzyy](https://clawhub.ai/user/joeyzzyy)
 
-## Use Case: <br>
-Marketers, developers, and other external users use this skill to turn a raw SEO topic into structured content, metadata, markdown, and a ready-to-publish HTML page. It is intended for OpenClaw workflows that also use the claw-kanban plugin for Markdown-to-HTML conversion and task tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a separate companion plugin and a cloud dashboard for full functionality. <br>
-Mitigation: Review the claw-kanban plugin and teammate.work dashboard before use, and only install them if their behavior and data handling are acceptable. <br>
-Risk: SEO drafts may contain confidential, regulated, or unpublished business content that could be exposed through dashboard tracking. <br>
-Mitigation: Use a limited or disposable dashboard key where possible and avoid sending sensitive content until retention and handling practices are checked. <br>
+## Use Case:
 
+External marketers and developers use this skill to guide an OpenClaw agent through SEO intent analysis, EEAT-oriented content planning, markdown drafting, and HTML page generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Joeyzzyy/claw-seo-to-html-generator) <br>
-- [Companion claw-kanban plugin source](https://github.com/Joeyzzyy/claw-kanban) <br>
-- [Companion dashboard](https://teammate.work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and generated HTML5/CSS deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the separate claw-kanban plugin for Markdown-to-HTML conversion and dashboard tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill depends on a separate cloud-enabled Kanban plugin and dashboard flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the companion plugin source and permissions, prefer a pinned or verified version when available, and use the dashboard/API-key flow only when sharing workflow content with that service is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joeyzzyy/skills/claw-seo-to-html-generator)
+- [Companion Kanban Plugin Source](https://github.com/Joeyzzyy/claw-kanban)
+- [Dashboard Service](https://teammate.work)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and generated HTML guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides creation of SEO metadata, structured article content, semantic HTML, responsive CSS, dark mode support, and a final HTML deliverable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

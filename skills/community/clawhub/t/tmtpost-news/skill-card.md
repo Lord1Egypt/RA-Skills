@@ -1,44 +1,61 @@
-## Description: <br>
-Fetches TMTPost 7x24 finance, technology, business, and venture-capital news, including hot articles, latest articles, and brief updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取7x24 财经科技新闻资讯和深度报道，聚焦财经、科技、商业、创投等领域的资讯报道和深度分析。支持热门文章、最新文章、最新快讯查询。当用户需要搜索财经、科技、商业、创投等领域热点资讯和深度报道时使用。
 
-## Publisher: <br>
-[taimeiti](https://clawhub.ai/user/taimeiti) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taimeiti](https://clawhub.ai/user/taimeiti)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and format TMTPost finance, technology, business, and startup news through the tmtpost-news-cli. It also guides setup, update, and API-key checks before making news requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download, install, update, and execute an external TMTPost CLI on the user's machine. <br>
-Mitigation: Install only when the publisher's CLI distribution is trusted, review installer and update behavior before execution, and stop on download, checksum, version, or execution errors. <br>
-Risk: The skill manages an API key through CLI commands, so accidental disclosure in logs or screenshots is possible. <br>
-Mitigation: Treat the API key as a secret, avoid exposing apikey-get output, and clear or rotate the key if it may have been revealed. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve TMTPost financial, technology, business, startup, and venture-capital news through the bundled CLI workflow. It supports hot articles, latest articles, and brief news when the user asks for current TMTPost coverage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taimeiti/tmtpost-news) <br>
-- [API Key setup guide](references/env-setup-guide.md) <br>
-- [CLI update guide](references/update-guide.md) <br>
-- [TMTPost API key page](https://www.tmtpost.com/exchange) <br>
-- [TMTPost CLI distribution](https://pack.tmtpost.net/tmtpost-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown news summaries with inline shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current CLI help output to choose subcommands and stops on CLI failure rather than falling back to other news sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The install and update flow can download, install, update, and run local native executables, and the security summary reports weak source verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use it only when the TMTPost CLI distribution is trusted, and confirm downloaded binaries and checksum sources before execution.
+
+Risk: The security guidance flags the Windows installer path because of a placeholder download URL and remote execution flow.
+
+Mitigation: Avoid the Windows installer path until the placeholder URL and remote execution flow are fixed.
+
+Risk: The skill requires an API key that should be treated as a secret.
+
+Mitigation: Enter API keys only through the documented CLI command, do not expose them in prompts or logs, and clear or rotate the key if it may have been disclosed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/taimeiti/skills/tmtpost-news)
+- [API Key Setup Guide](references/env-setup-guide.md)
+- [Manual Update Guide](references/update-guide.md)
+- [TMTPost API Key Page](https://www.tmtpost.com/exchange/appkey/skills)
+- [TMTPost CLI Download Base](https://pack.tmtpost.net/tmtpost-news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown news summaries with links and inline shell commands for setup or troubleshooting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [News output is grouped by requested article type when multiple categories are requested; setup output may include JSON status from helper scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

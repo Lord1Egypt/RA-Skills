@@ -1,43 +1,57 @@
-## Description: <br>
-Knowledge Connector helps agents import local notes and documents, build relationship maps, answer cross-document questions, and suggest concrete next actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Connector helps agents import local notes and documents, run cross-document search, build relationship maps, and produce concrete next actions while preserving a clear privacy boundary.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, developers, and knowledge workers use this skill to turn a local note or document collection into source-aware import results, relationship maps, cross-document answers, and follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML graph output loads third-party code while displaying note-derived data. <br>
-Mitigation: Use JSON or DOT output when offline or when third-party loading is not acceptable; open generated HTML only after accepting the unpkg.com dependency. <br>
-Risk: Imported paths and excerpts are retained locally, which can expose sensitive note or document metadata on shared systems. <br>
-Mitigation: Use a dedicated KC_DATA_DIR for each project and avoid importing private, client, medical, legal, or enterprise notes unless the user explicitly accepts the storage behavior. <br>
+## Use Case:
 
+Developers, knowledge workers, and agents use this skill to verify a local knowledge store, import notes or document folders, search across sources, inspect concept maps, and decide what to connect or review next.
 
-## Reference(s): <br>
-- [Knowledge Connector on ClawHub](https://clawhub.ai/harrylabsj/knowledge-connector) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Release notes](artifact/RELEASE.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands may produce terminal text, JSON, DOT, or HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON stores under KC_DATA_DIR or the default user data directory; generated HTML graph files may load third-party JavaScript from unpkg.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: package.json and server release metadata) <br>
+Risk: Imported notes can contain sensitive content, and the local store keeps document-derived excerpts and paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review notes before import, avoid uploading sensitive material to external tools unless explicitly chosen, and place KC_DATA_DIR in a protected local directory.
+
+Risk: HTML visualization exports load live third-party code while embedding data derived from local notes.
+
+Mitigation: Treat exported HTML graphs as not fully offline unless the remote visualization dependency is bundled or pinned before sharing or opening in sensitive environments.
+
+Risk: Export, import, and clear commands mutate the local knowledge store.
+
+Mitigation: Use those commands deliberately, keep backups for important stores, and review command targets before running destructive or bulk operations.
+
+## Reference(s):
+
+- [Knowledge Connector ClawHub skill page](https://clawhub.ai/harrylabsj/skills/knowledge-connector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON, HTML, or DOT file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local knowledge-store files and exported graph or backup files when the user runs the corresponding commands.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-LYGO branch persona helper for continuity, cross-model alignment phrasing, seal-based bootlines, and resonance-first translation between human and AI as a pure advisor, not a controller. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEPRECATED slug - use lygo-champion-council. Legacy champion persona helper for 401LYRAKIN.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and developers use this skill to invoke the 401LYRAKIN advisor persona for identity anchors, vows, bootlines, verification hashes, and clear translation of alignment or seal concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The linked LYGO-MINT Verifier is a separate tool that may write ledger artifacts and handle posted anchor URLs. <br>
-Mitigation: Review the verifier separately before installing or using it. <br>
-Risk: Persona outputs may frame continuity, identity, or verification claims in ways that readers could over-trust. <br>
-Mitigation: Keep the skill's observed, inferred, and unknown distinction, and require receipts-first handling for high-stakes claims. <br>
+## Use Case:
 
+External users and agent operators use this legacy persona helper to translate alignment and continuity ideas into portable bootlines, identity anchors, vows, and verification hashes. New installs should use the successor skill lygo-champion-council.
 
-## Reference(s): <br>
-- [Persona Pack](references/persona_pack.md) <br>
-- [Canon Metadata](references/canon.json) <br>
-- [Verifier Usage](references/verifier_usage.md) <br>
-- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
-- [ClawHub Release Page](https://clawhub.ai/DeepSeekOracle/lygo-champion-401lyrakin-voice-between) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown or plain text guidance with optional SHA-256 hash output from local helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure-advisor posture; factual claims should distinguish observed, inferred, and unknown information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The deprecated skill recommends an unpinned npx clawhub@latest migration command that can change installed agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the migration command unattended; use a pinned, verified installer version and review the successor skill before installation.
+
+Risk: The referenced verifier can be used in workflows that write ledgers or publish public anchors.
+
+Mitigation: Review the LYGO-MINT verifier behavior and require human approval before ledger writes or public anchor publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-401lyrakin-voice-between)
+- [LYGO-MINT verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+- [persona_pack.md](references/persona_pack.md)
+- [canon.json](references/canon.json)
+- [verifier_usage.md](references/verifier_usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline commands and hash or anchor snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; users should separate observed, inferred, and unknown claims when factual stakes are high.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

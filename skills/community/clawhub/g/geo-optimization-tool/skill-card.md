@@ -1,42 +1,54 @@
-## Description: <br>
-GEO tool with API-powered engine database for generative engine optimization; it helps track AI search visibility and AI citation behavior across DeepSeek, Kimi, Doubao, Tongyi, ChatGPT, Perplexity, Gemini, and Claude. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO tool with API-powered engine database for generative engine optimization that helps track AI search visibility and AI citation presence across DeepSeek, Kimi, Doubao, Tongyi, ChatGPT, Perplexity, Gemini, and Claude.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Marketing, SEO, and growth teams use this skill to structure generative engine optimization audits, compare brand visibility across global and Chinese AI engines, and produce recommendations for improving AI citations. Developers and operators can use the included shell script to query the disclosed GEO engine database API from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included script contacts a third-party Tencent Cloud API for GEO engine data. <br>
-Mitigation: Review the script before running it and avoid submitting confidential drafts, customer data, regulated content, credentials, or unreleased strategy to the disclosed API endpoints. <br>
-Risk: GEO visibility and citation findings can be incomplete because AI engine responses change over time and no tool can perfectly track AI citations. <br>
-Mitigation: Treat generated audit results as decision support, validate findings manually across target engines, and repeat checks on a regular schedule. <br>
+## Use Case:
 
+External users and developers use this skill to structure GEO audits, compare brand visibility across global and Chinese AI search engines, and generate citation-focused optimization recommendations. It also provides shell-command access to an API-backed engine database for GEO monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lm203688/geo-optimization-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/lm203688) <br>
-- [GEO engine database API](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit templates, human-readable guidance, and CLI/API query output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact a third-party Tencent Cloud API when using the included geo-engines.sh script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: GEO recommendations or AI-search visibility assessments may be incomplete or misleading because the skill notes that no tool can perfectly track AI citations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs manually against live AI engine results before using them for marketing, product, or customer-facing decisions.
+
+Risk: The included script can send category queries to an external API endpoint.
+
+Mitigation: Use public, non-confidential brand or market data unless the publisher provides clearer privacy and data-flow terms.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lm203688/skills/geo-optimization-tool)
+- [GEO Engine API Base URL](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with audit tables, recommendations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use optional read-only calls to the documented external API; no credential environment variables were detected in release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Set up IoT sensors and publish data to SKALE blockchain via SmartClaws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up IoT sensors and publish data to SKALE blockchain via SmartClaws.
 
-## Publisher: <br>
-[dmytrotkk](https://clawhub.ai/user/dmytrotkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dmytrotkk](https://clawhub.ai/user/dmytrotkk)
 
-## Use Case: <br>
-Developers and IoT operators use this skill to install SmartClaws, initialize a wallet, register devices, and create sensor publisher scripts that publish readings to SKALE. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet setup and on-chain publishing can expose local wallet material or spend funded testnet assets. <br>
-Mitigation: Use a minimally funded local wallet, keep ~/.smartclaws private, and avoid sharing command output that may expose sensitive wallet details. <br>
-Risk: The skill installs a SmartClaws binary from a latest-release URL. <br>
-Mitigation: Prefer a user-local install and pin and verify the downloaded binary when possible before running it. <br>
-Risk: Generated publisher scripts and persistent services can publish incorrect readings or run with broad BLE privileges. <br>
-Mitigation: Review generated scripts and service files before enabling them, confirm the exact sensor model and connection method, and avoid applying raw network capabilities to the system Python binary. <br>
+## Use Case:
 
+Developers and engineers use this skill to install SmartClaws, initialize wallets, register IoT devices, write hardware-specific Python publisher scripts, and publish sensor measurements on-chain.
 
-## Reference(s): <br>
-- [SmartClaws homepage](https://github.com/skalenetwork/smartclaws) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, JSON, and systemd configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce hardware-specific publisher scripts and persistent service configuration after sensor details are confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may install a remote SmartClaws binary from the latest GitHub release without checksum or signature verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned SmartClaws release and verify its checksum or signature before placing the binary on PATH.
+
+Risk: BLE setup guidance may grant CAP_NET_RAW to the Python interpreter, which can broaden host privileges.
+
+Mitigation: Use a dedicated user-owned virtual environment or interpreter and grant only the minimum required capability after review.
+
+Risk: The systemd user service keeps publishing sensor data in the background across sessions.
+
+Mitigation: Review the service file, confirm the intended device and topic, and monitor or disable the service when continuous publishing is not required.
+
+## Reference(s):
+
+- [SmartClaws project](https://github.com/skalenetwork/smartclaws)
+- [Smartclaws Producer on ClawHub](https://clawhub.ai/dmytrotkk/skills/smartclaws-producer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands, Python code, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate sensor-specific publisher scripts and systemd user service configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

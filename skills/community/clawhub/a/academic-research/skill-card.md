@@ -1,42 +1,59 @@
-## Description: <br>
-Search academic papers and conduct literature reviews using OpenAlex API (free, no key needed). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search academic papers and conduct literature reviews using OpenAlex API (free, no key needed).
 
-## Publisher: <br>
-[rogerSuperBuilderAlpha](https://clawhub.ai/user/rogerSuperBuilderAlpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rogersuperbuilderalpha](https://clawhub.ai/user/rogersuperbuilderalpha)
 
-## Use Case: <br>
-External users, researchers, students, and developers use this skill to search scholarly literature, inspect paper metadata and citation chains, and generate structured literature reviews from OpenAlex results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Academic queries, author names, and DOIs are sent to external OpenAlex or Unpaywall services. <br>
-Mitigation: Avoid submitting sensitive research topics or private identifiers unless external API disclosure is acceptable. <br>
-Risk: Generated reviews and cached OpenAlex responses may persist in local files, including /tmp/litreview_cache. <br>
-Mitigation: Use ordinary project-local output filenames, avoid configuration or system paths, and clear the cache on shared machines or for sensitive topics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rogerSuperBuilderAlpha/academic-research) <br>
-- [Publisher Profile](https://clawhub.ai/user/rogerSuperBuilderAlpha) <br>
-- [OpenAlex API](https://api.openalex.org) <br>
-- [Topanga](https://topanga.ludwitt.com) <br>
+## Use Case:
 
+Researchers, students, analysts, and developers use this skill to find scholarly papers by topic, author, or DOI, explore citations, retrieve paper metadata, and generate structured literature reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, files, guidance] <br>
-**Output Format:** [Plain text, Markdown literature reviews, JSON records, and optional output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches may include paper titles, authors, abstracts, citations, DOIs, open access URLs, source venues, thematic clusters, and bibliography entries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research topics, author names, and DOIs may be sent to OpenAlex, and deep-read DOI lookups may be sent to Unpaywall.
+
+Mitigation: Avoid using sensitive or proprietary research queries unless the user accepts those external API disclosures.
+
+Risk: Generated Markdown literature reviews include a Topanga link by default.
+
+Mitigation: Review generated Markdown before sharing or publishing and remove promotional links when inappropriate.
+
+Risk: The literature review script caches API results in a shared temporary directory.
+
+Mitigation: Use a private per-user cache directory or clear the cache on shared systems.
+
+## Reference(s):
+
+- [Academic Research Skill Page](https://clawhub.ai/rogersuperbuilderalpha/skills/academic-research)
+- [Publisher Profile](https://clawhub.ai/user/rogersuperbuilderalpha)
+- [OpenAlex API](https://api.openalex.org)
+- [Topanga](https://topanga.ludwitt.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON with scholarly paper metadata, citation lists, abstracts, URLs, and literature review synthesis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches and DOI lookups send user-provided topics, author names, and DOIs to external scholarly APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

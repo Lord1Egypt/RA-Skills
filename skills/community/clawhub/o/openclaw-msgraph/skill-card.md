@@ -1,46 +1,68 @@
-## Description: <br>
-Read and manage Microsoft Outlook email and calendar data through Microsoft Graph, including inbox search, message moves, event listing, and event creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCloutlook lets an agent read and manage Microsoft Outlook mail and calendar events through Microsoft Graph using PKCE authentication.
 
-## Publisher: <br>
-[jrskerrett](https://clawhub.ai/user/jrskerrett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jrskerrett](https://clawhub.ai/user/jrskerrett)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to a Microsoft account so it can check Outlook mail, organize messages, inspect calendar events, and create calendar entries with user authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests read/write access to Outlook mail and calendars. <br>
-Mitigation: Install only when those permissions are acceptable, and confirm move, create, or delete-style actions before execution. <br>
-Risk: The auth command set can print a raw access token and stores OAuth tokens locally. <br>
-Mitigation: Protect the local token file, avoid logging token output, and remove stored tokens when revoking access. <br>
-Risk: LLM integration examples can expose mailbox or calendar contents to an external model provider. <br>
-Mitigation: Send mailbox or calendar content to an external LLM only after explicit user approval for that data sharing. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Microsoft Outlook and Calendar so it can summarize mail, search messages, organize folders, list events, and create calendar entries after authentication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jrskerrett/openclaw-msgraph) <br>
-- [Publisher profile](https://clawhub.ai/user/jrskerrett) <br>
-- [Setup guide](references/SETUP.md) <br>
-- [Microsoft Graph API reference](references/api.md) <br>
-- [Skill guide](skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise human-facing summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger authenticated Microsoft Graph API calls that read or modify Outlook mail and calendar data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: pyproject.toml, CHANGELOG, ClawHub release evidence) <br>
+Risk: The skill stores persistent Microsoft OAuth tokens on the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted machine and protect ~/.openclaw/msgraph-tokens.json with restrictive file permissions.
+
+Risk: The auth helper can print the current access token.
+
+Mitigation: Avoid running the token-printing command unless needed for debugging, and never share token output.
+
+Risk: Mail and calendar commands can mutate user data, including moving messages and creating or deleting events.
+
+Mitigation: Require explicit user review and approval before each mutating action.
+
+Risk: The configured Microsoft Graph scopes include read-write mail and calendar permissions plus User.Read.
+
+Mitigation: Use narrower read-only scopes when mutation is unnecessary and remove unused User.Read if it is not needed.
+
+Risk: The LLM integration example can perform mail or calendar changes from model output.
+
+Mitigation: Add a confirmation gate before executing every model-suggested move, event creation, or deletion.
+
+## Reference(s):
+
+- [Skill Guide](skill.md)
+- [Setup Guide](references/SETUP.md)
+- [API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/jrskerrett/skills/openclaw-msgraph)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Microsoft Graph authentication and configured delegated scopes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, CHANGELOG, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

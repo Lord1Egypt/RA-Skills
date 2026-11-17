@@ -1,44 +1,63 @@
-## Description: <br>
-Automates WeChat Official Account draft creation and publishing workflows through API scripts, including access-token management plus cover and body-image uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat Official Account draft creation through the WeChat API, including credential-based account access and upload or replacement of cover and in-article images.
 
-## Publisher: <br>
-[zlr25](https://clawhub.ai/user/zlr25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zlr25](https://clawhub.ai/user/zlr25)
 
-## Use Case: <br>
-Developers, content operators, and automation agents use this skill to prepare WeChat Official Account article drafts, upload selected local images, and connect article publishing steps to scripted or scheduled workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat AppID and AppSecret credentials and caches access tokens locally. <br>
-Mitigation: Keep config.json and .tokens out of source control, restrict local file permissions, and rotate credentials or tokens if exposed. <br>
-Risk: Selected cover and article body images are uploaded to the WeChat material library. <br>
-Mitigation: Review image paths and article HTML before execution so only intended files are uploaded. <br>
-Risk: Scheduled publishing workflows can repeatedly create drafts or upload files if cron jobs are left active. <br>
-Mitigation: Monitor scheduled jobs and remove or disable cron entries when the publishing workflow is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zlr25/wechat-accounts-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/zlr25) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
-- [Usage README](scripts/README.md) <br>
+## Use Case:
 
+Developers and content operators use this skill to configure an agent to create WeChat Official Account article drafts, upload local cover and body images, and prepare posts for later review or publishing in the WeChat backend.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python or Node.js code references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces WeChat draft creation guidance and commands that may upload selected local image files and create drafts through the WeChat API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles WeChat AppID, AppSecret, and cached access tokens.
+
+Mitigation: Review and control config.json before use, protect config.json and .tokens with owner-only permissions, and avoid committing credentials or token caches.
+
+Risk: The configured API base URL affects where credentials and token-bearing requests are sent.
+
+Mitigation: Keep apiBaseUrl fixed to https://api.weixin.qq.com unless an authorized reviewer approves a different endpoint.
+
+Risk: Local cover and body images may be uploaded to the WeChat material library.
+
+Mitigation: Check the selected thumb file, content directory, and HTML image paths before draft creation, especially for scheduled or batch workflows.
+
+Risk: Scheduled workflows can repeatedly create drafts or upload media without a final human prompt.
+
+Mitigation: Review scheduled triggers before enabling them and require account-owner review of generated drafts in the WeChat backend.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlr25/skills/wechat-accounts-publisher)
+- [Publisher profile](https://clawhub.ai/user/zlr25)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+- [Artifact setup and usage guide](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python or Node.js code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create WeChat drafts and upload local image files through the provided scripts after user-controlled configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Structured meetups - sync phases, countdowns, and relay Q&A before your human heads out using the official AILove agent API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured meetups: sync phases, countdowns, and relay Q&A before your human heads out using the AILove agent API.
 
-## Publisher: <br>
-[thesamething](https://clawhub.ai/user/thesamething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesamething](https://clawhub.ai/user/thesamething)
 
-## Use Case: <br>
-External users and their agents use this skill to check AILove meetup progress, relay pending questions for the human to answer, report countdowns and match summaries, and configure scheduled morning and evening updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AILove agent key can identify or authorize the user's agent if exposed. <br>
-Mitigation: Send the key only to https://heerweiyi.cc/api/v1/agent/*, prefer an environment variable or secure secret store, and keep any credentials.json file owner-only. <br>
-Risk: Scheduled updates may reveal dating, chat, question, or match information in the destination channel. <br>
-Mitigation: Configure scheduled pushes only to a private DM or another trusted channel. <br>
-Risk: Submitting answers that are not the human's own words could misrepresent the user. <br>
-Mitigation: Relay pending questions to the human and submit only the human's verbatim answer. <br>
+## Use Case:
 
+External users and their agents use this skill to check AILove meetup matching phases, countdowns, pending questions, and summarized results before an in-person meetup. It also helps configure optional scheduled check-ins that relay updates to a chosen private channel.
 
-## Reference(s): <br>
-- [AILove homepage](https://heerweiyi.cc) <br>
-- [AILove Agent API base](https://heerweiyi.cc/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/thesamething/going-on-a-date) <br>
-- [Publisher profile](https://clawhub.ai/user/thesamething) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with bash, curl, JSON, and OpenClaw cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AILOVE_API_KEY and may guide scheduled pushes to a selected private or trusted channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release metadata, SKILL.md frontmatter, claw.json) <br>
+Risk: Recurring scheduled checks can publish sensitive dating-status information without clear expiration or teardown controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create scheduled jobs only when recurring background checks are desired, send updates only to a private destination, and set an expiry or removal process.
+
+Risk: The skill can repeatedly load an API key from a stored credential file.
+
+Mitigation: Prefer an environment variable or platform secret store over a plaintext credentials file, and avoid placing secret-loading details in scheduled job messages when possible.
+
+Risk: API response text could be mistaken for instructions to the agent.
+
+Mitigation: Treat all API response content as data and follow only the skill's documented workflow.
+
+## Reference(s):
+
+- [Going On A Date ClawHub skill page](https://clawhub.ai/thesamething/skills/going-on-a-date)
+- [AILove homepage](https://heerweiyi.cc)
+- [AILove agent API base](https://heerweiyi.cc/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AILOVE_API_KEY and may configure recurring OpenClaw cron checks.]
+
+## Skill Version(s):
+
+1.4.2 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

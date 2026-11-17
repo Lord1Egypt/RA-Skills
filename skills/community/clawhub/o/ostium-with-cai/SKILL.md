@@ -1,8 +1,8 @@
 ---
 name: ostium-with-cai
-description: Trade Ostium RWA perps on Arbitrum via CAI — defi_markets, defi_preflight, defi_trade, defi_order_status, hosted /act enrollment. Requires platform or full API scope. Powered by CAI.com. Canonical skill v1.0.17.
+description: Trade Ostium RWA perps on Arbitrum via CAI — defi_markets, defi_preflight, defi_trade, defi_order_status, hosted /act enrollment. Requires platform or full API scope. Powered by CAI.com. Canonical skill v1.0.18.
 metadata:
-  version: 1.0.17
+  version: 1.0.18
 ---
 
 # Ostium with CAI (Route B)

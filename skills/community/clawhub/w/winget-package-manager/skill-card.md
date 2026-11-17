@@ -1,42 +1,58 @@
-## Description: <br>
-Controlled Windows package management workflow based on winget that guides an agent to safely search, inspect, download, install, upgrade, uninstall, and list upgradeable applications on Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controlled Windows package management workflow based on winget that guides an agent to safely search, inspect, download, install, upgrade, uninstall, and list upgradeable applications on Windows.
 
-## Publisher: <br>
-[hongjiapeng](https://clawhub.ai/user/hongjiapeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiapeng](https://clawhub.ai/user/hongjiapeng)
 
-## Use Case: <br>
-Developers, support engineers, and Windows users use this skill to guide an agent through controlled package search, inspection, download, install, upgrade, uninstall, and upgrade-listing workflows with winget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide installs, upgrades, and removals of Windows applications through winget. <br>
-Mitigation: Review exact package IDs before approving package operations, and approve elevation or installer dialogs only when they match the requested action. <br>
-Risk: Ambiguous package names can cause the agent to target the wrong package. <br>
-Mitigation: Require disambiguation and prefer exact package IDs before install, upgrade, download, or uninstall actions. <br>
-Risk: Uninstall operations are higher risk and may report success even when the application remains installed. <br>
-Mitigation: Treat uninstall as high risk, avoid automatic retries, and perform a post-check when the host environment allows it. <br>
+## Use Case:
 
+Developers, operators, and Windows users use this skill to have an agent manage applications through WinGet while applying package identity checks, approved source limits, and disambiguation before medium- or high-risk actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiapeng/winget-package-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell command examples and JSON-like result schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only workflow; requires a Windows host with winget 1.6+ for full operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install, upgrade, download, and uninstall requests can modify the local Windows system or retrieve installer packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review these requests before execution, prefer exact package IDs, and limit actions to approved WinGet sources.
+
+Risk: Ambiguous package names can cause the agent to act on the wrong application.
+
+Mitigation: Require package search or inspection and ask the user to choose when multiple candidates match.
+
+Risk: Uninstall operations are high-risk and may report success even when the application remains installed.
+
+Mitigation: Use exact package IDs, avoid automatic retries, and perform a post-check when the host allows it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiapeng/skills/winget-package-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/hongjiapeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command examples and JSON-like structured results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only workflow; command execution depends on a Windows host with winget available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

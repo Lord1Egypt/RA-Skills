@@ -1,53 +1,71 @@
-## Description: <br>
-Operate Breakcold CRM through the hosted Breakcold MCP server from OpenClaw or ClawHub for CRM work, deals, pipeline updates, follow-up tasks, reports, prospect research, inbox contact detection, CRM setup, notes, custom fields, and multichannel inbox workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Breakcold CRM through the hosted Breakcold MCP server from OpenClaw or ClawHub for CRM work, deals, pipeline updates, follow-up tasks, reports, prospect research, inbox contact detection, CRM setup, notes, custom fields, and multichannel inbox workflows.
 
-## Publisher: <br>
-[matteoolefloch](https://clawhub.ai/user/matteoolefloch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matteoolefloch](https://clawhub.ai/user/matteoolefloch)
 
-## Use Case: <br>
-External Breakcold users and developers use this skill to let an agent operate a Breakcold CRM workspace through the hosted MCP server. It supports follow-up task creation, pipeline movement, CRM reports, prospect research, inbox contact detection, CRM setup or reorganization, scheduled routines, and related CRM record updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive inbox and CRM data. <br>
-Mitigation: Install only for agents that should operate Breakcold on the user's behalf, and confirm the intended workspace before use. <br>
-Risk: The skill can make broad automatic CRM changes, including record creation, task creation, contact detection, scheduled routines, and pipeline movement. <br>
-Mitigation: Confirm the workflow, batch size, and whether writes are allowed before running; prefer first-page test runs for one-shot automations. <br>
-Risk: CRM setup, reorganization, and pipeline movement can modify existing records or create new ones automatically. <br>
-Mitigation: Review proposed changes, verify target records from prior reads, avoid duplicate records and tasks, and leave audit breadcrumbs for non-trivial automated decisions. <br>
+## Use Case:
 
+Sales and CRM users use this skill to operate Breakcold CRM from an agent, including follow-up task creation, pipeline movement, reporting, prospect research, inbox contact detection, and CRM setup or reorganization. It is intended for agent-assisted CRM workflows that may read inbox and CRM data and make controlled updates through the hosted Breakcold MCP server.
 
-## Reference(s): <br>
-- [Breakcold CRM OpenClaw homepage](https://github.com/breakcold/mcp/tree/main/skills/breakcold-crm-openclaw) <br>
-- [ClawHub Breakcold listing](https://clawhub.ai/matteoolefloch/breakcold-crm) <br>
-- [Action 1 - Multichannel auto-task creation](references/action-tasks.md) <br>
-- [Action 2 - Auto-movement of contacts in the pipeline](references/action-pipeline.md) <br>
-- [Action 3 - Auto-report](references/action-reports.md) <br>
-- [Action 4 - Prospect research](references/action-prospect-research.md) <br>
-- [Action 5 - Contact detection and creation from the inbox](references/action-contact-detection.md) <br>
-- [Action 6 - CRM setup and reorganization](references/action-crm-setup.md) <br>
-- [Fundamentals](references/fundamentals.md) <br>
-- [Routines and recap emails](references/routines.md) <br>
-- [Breakcold branding](references/branding.md) <br>
-- [Report design guide](references/report-design-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with CRM workflow steps, MCP tool-call examples, HTML report templates, and user-facing text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cause an agent to read sensitive CRM and inbox data, create or update CRM records, create tasks and notes, move pipeline stages, and generate Breakcold-branded reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can read inbox and CRM data and make persistent CRM changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for trusted Breakcold workspaces and confirm workspace, channels, date range, and permitted write operations before broad use.
+
+Risk: Recurring routines may continue making CRM updates beyond the immediate session.
+
+Mitigation: Set explicit cadence, recap recipients, and stop conditions before enabling routines, and review routine output regularly.
+
+Risk: CRM reorganization, contact creation, pipeline movement, and prospect research can affect many records.
+
+Mitigation: Use previews or small batches first, then expand only after confirming the results match the user's expectations.
+
+Risk: Generated rich HTML notes may carry formatting or sanitization risk.
+
+Mitigation: Confirm that Breakcold sanitizes rich HTML notes before relying on automatic note generation.
+
+## Reference(s):
+
+- [Breakcold CRM OpenClaw homepage](https://github.com/breakcold/mcp/tree/main/skills/breakcold-crm-openclaw)
+- [Fundamentals](references/fundamentals.md)
+- [Action 1 - Multichannel auto-task creation](references/action-tasks.md)
+- [Action 2 - Auto-movement of contacts in the pipeline](references/action-pipeline.md)
+- [Action 3 - Auto-report](references/action-reports.md)
+- [Action 4 - Prospect research](references/action-prospect-research.md)
+- [Action 5 - Contact detection and creation from the inbox](references/action-contact-detection.md)
+- [Action 6 - CRM setup and reorganization](references/action-crm-setup.md)
+- [Routines and recap emails](references/routines.md)
+- [Breakcold branding](references/branding.md)
+- [Report design guide](references/report-design-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown, Code, Configuration]
+
+**Output Format:** [Agent instructions, tool-call plans, CRM updates, rich HTML notes, Markdown summaries, and generated report HTML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Breakcold MCP authentication and optional BREAKCOLD_MCP_TOKEN configuration for clients that cannot use OAuth.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,51 @@
-## Description: <br>
-HTML-first PDF production skill for reports, papers, and structured documents. Must be applied before generating PDF deliverables from HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML-first PDF production skill for reports, papers, and structured documents. Must be applied before generating PDF deliverables from HTML.
 
-## Publisher: <br>
-[KrisLiu16](https://clawhub.ai/user/KrisLiu16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krisliu16](https://clawhub.ai/user/krisliu16)
 
-## Use Case: <br>
-Developers and document authors use this skill to produce print-quality PDFs from HTML while preserving pagination, selectable text, links, images, citations, and document structure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer agents toward a specific HTML-to-PDF workflow and formatting style that may not match every document requirement. <br>
-Mitigation: Provide explicit language, layout, citation, and conversion requirements for important documents, then review the generated HTML and final PDF before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and document-producing agents use this skill to author and convert HTML into print-quality PDFs with stable pagination, searchable text, preserved links, citation integrity, and predictable layout.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill strongly steers agents toward a specific HTML-to-PDF workflow, so misuse on unrelated PDF tasks could produce the wrong handling path.
+
+Mitigation: Classify the request intent first and use the existing-PDF, LaTeX, build, or transform path that matches the user task.
+
+Risk: Minor ambiguity in CSS counter guidance or print CSS choices could lead to layout, numbering, or pagination defects.
+
+Mitigation: Review generated HTML and CSS, use explicit labels for figures, tables, and equations, and run the hyperlink, image, anchor, and structure fidelity gates before delivery.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with HTML and CSS code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it provides PDF production conventions and does not include executable code.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with HTML, CSS, and command-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Steers agents toward the html_to_pdf conversion pipeline and print-oriented fidelity checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

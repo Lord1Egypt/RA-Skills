@@ -1,46 +1,61 @@
-## Description: <br>
-Global Financial Inclusion & Banking Data lets an agent query bank account ownership, credit access, financial inclusion gender gaps, stock market data, remittances, and related World Bank financial indicators through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries global financial inclusion and banking indicators, including account ownership, credit access, gender gaps, stock market data, remittances, and mobile money adoption through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External developers and agents use this skill to call AgentPMT's financial-sector banking data tool for country and regional analysis of financial inclusion, banking infrastructure, credit, markets, remittances, gender gaps, and SDG-aligned targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on AgentPMT account setup, enabled tools, pricing, and credits before remote calls can succeed. <br>
-Mitigation: Confirm the AgentPMT account setup, enabled product access, and current pricing or credit cost before using the skill. <br>
-Risk: Prompts or logs could accidentally expose account secrets, wallet private keys, signatures, or payment headers during setup or tool use. <br>
-Mitigation: Do not place secrets or payment headers in prompts or logs, and use the referenced setup skills for credential handling. <br>
-Risk: Endpoint schemas, examples, and setup details may change after the artifact's 2026-06-24 freshness date. <br>
-Mitigation: Reinstall the skill or fetch live schema and instructions before production integration or when details are unclear. <br>
+## Use Case:
 
+Developers, analysts, and policy researchers use this skill to query country, regional, and global banking and financial inclusion data. It supports comparisons across regions, gender gap analysis, credit and lending research, remittance analysis, stock market indicators, and SDG-aligned financial access tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-financial-inclusion-banking-data) <br>
-- [AgentPMT financial-sector banking marketplace page](https://www.agentpmt.com/marketplace/financial-sector-banking) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [Action schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON, shell commands] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples plus shell install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines one AgentPMT action, query_financial_data, with optional country_or_region, financial_aspect, calculate_gender_gaps, time_period, and include_targets parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Queries are sent to a paid remote AgentPMT service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum query data needed, keep credentials out of prompts and logs, and review account or payment setup before use.
+
+Risk: Setup skills or install sources can affect credential handling and runtime behavior.
+
+Mitigation: Use pinned or reviewed install sources for related setup skills and follow the AgentPMT account MCP/REST setup guidance.
+
+Risk: Endpoint schemas, examples, or product availability may change after publication.
+
+Mitigation: Refresh the skill or fetch live schema and instructions before new production integrations or when parameters and outputs are unclear.
+
+## Reference(s):
+
+- [AgentPMT Financial Sector Banking Marketplace Page](https://www.agentpmt.com/marketplace/financial-sector-banking)
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-financial-inclusion-banking-data)
+- [Generated Action Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON, Configuration instructions]
+
+**Output Format:** [Markdown guidance with JSON request and response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote AgentPMT calls return financial indicator data, availability summaries, comparisons, and optional target or SDG alignment details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

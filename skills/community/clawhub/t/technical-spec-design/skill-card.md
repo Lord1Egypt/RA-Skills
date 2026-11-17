@@ -1,47 +1,63 @@
-## Description: <br>
-Transforms product requirements into structured technical specifications when requirements are unclear, multiple implementation approaches exist, or component-level and architecture design is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms product requirements into structured technical specifications when requirements are unclear, multiple implementation approaches exist, or component-level and architecture design is needed.
 
-## Publisher: <br>
-[wjszxli](https://clawhub.ai/user/wjszxli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjszxli](https://clawhub.ai/user/wjszxli)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn product requirements, PRDs, and existing technical specifications into structured implementation plans with requirements analysis, component design, technology comparisons, risk analysis, and pending questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual GitHub installation can bypass the reviewed ClawdHub package. <br>
-Mitigation: Prefer the reviewed ClawdHub package; if cloning manually, verify the repository before use. <br>
-Risk: Optional helper scripts can read PRD inputs and write generated Markdown to user-selected paths. <br>
-Mitigation: Run helper scripts only when file generation is intended, choose input and output paths carefully, and review generated files before relying on them. <br>
-Risk: Generated specifications may be incomplete or misleading if the source requirements are ambiguous. <br>
-Mitigation: Review generated Markdown and resolve clarification questions before using the specification as an implementation plan. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn product requirements, brief feature descriptions, or existing specifications into structured technical specification documents with requirements analysis, component design, technology comparisons, risks, and pending questions.
 
-## Reference(s): <br>
-- [Requirements Analysis Trifecta Template](resources/requirements_analysis_template.md) <br>
-- [Technical Specification Template](resources/spec_template.md) <br>
-- [Component Design Template](resources/component_template.md) <br>
-- [Sample Technical Specification Output](examples/sample_output.md) <br>
-- [Claude Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) <br>
-- [Skills Structure Guide](https://yeasy.gitbook.io/claude_guide/di-san-bu-fen-jin-jie-pian/06_skills/6.2_structure) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown technical specifications with optional shell commands for local helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output clarification questions instead of a full specification when the requirements are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill may auto-activate on broad architecture or implementation-design requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for specification or design work before applying the skill, especially for simple bug fixes or direct coding tasks.
+
+Risk: Optional helper scripts can read a PRD path supplied by the user and write a Markdown output file chosen by the user.
+
+Mitigation: Run helper scripts only against intended local files and review the output path before execution.
+
+Risk: The PRD helper script provides a starting point and does not fully generate a finished specification by itself.
+
+Mitigation: Review and complete generated Markdown before using it as implementation guidance.
+
+## Reference(s):
+
+- [Requirements Analysis Trifecta Template](resources/requirements_analysis_template.md)
+- [Technical Specification Template](resources/spec_template.md)
+- [Component Design Template](resources/component_template.md)
+- [Sample PRD Input](examples/sample_input.md)
+- [Complete Spec Example](examples/sample_output.md)
+- [Claude Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+- [Skills Structure Guide](https://yeasy.gitbook.io/claude_guide/di-san-bu-fen-jin-jie-pian/06_skills/6.2_structure)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown technical specifications with tables, clarification questions, risk analysis, and pseudocode where appropriate.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional helper scripts can read a user-provided PRD path and write a Markdown output file selected by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically store explicit durable user facts and recall them later; do not infer or upgrade weak signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically store explicit durable user facts and recall them later; do not infer or upgrade weak signals.
 
-## Publisher: <br>
-[clawgraphai](https://clawhub.ai/user/clawgraphai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawgraphai](https://clawhub.ai/user/clawgraphai)
 
-## Use Case: <br>
-Developers and agent users use ClawGraph to store durable user, project, team, and preference facts in a persistent knowledge graph and query those facts in later conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain personal, client, or confidential facts beyond the current session. <br>
-Mitigation: Store only explicit durable facts, avoid sensitive details unless the user is comfortable with local storage and provider processing, and periodically inspect exported memory. <br>
-Risk: Fact extraction uses the configured OpenAI-compatible provider and requires an API key. <br>
-Mitigation: Use an approved provider configuration, prefer a dedicated API key, and avoid sending regulated or confidential information unless that use is permitted. <br>
+## Use Case:
 
+Developers and agents use ClawGraph to persist explicitly stated durable facts about users, projects, teams, and preferences, then recall those facts in later conversations or workflows.
 
-## Reference(s): <br>
-- [ClawGraph ClawHub page](https://clawhub.ai/clawgraphai/clawgraph) <br>
-- [ClawGraph homepage](https://github.com/clawgraph/clawgraph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with shell and Python code blocks; CLI examples request JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the clawgraph CLI and OPENAI_API_KEY; memory is stored locally at ~/.clawgraph/data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill directs the agent to save stable personal, project, team, and preference facts persistently without requiring explicit per-fact opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the behavior before installation, disclose automatic memory use to affected users, and restrict storage to durable facts explicitly stated or confirmed in the current session.
+
+Risk: Selected facts may be processed through the configured OpenAI-compatible provider and stored under ~/.clawgraph/data.
+
+Mitigation: Use a dedicated revocable API key, confirm provider handling requirements, and establish a process to inspect, correct, and delete stored graph data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawgraphai/skills/clawgraph)
+- [ClawGraph Homepage](https://github.com/clawgraph/clawgraph)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples, plus JSON output from referenced CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clawgraph CLI and OPENAI_API_KEY; stored graph data persists at ~/.clawgraph/data.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

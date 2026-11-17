@@ -1,45 +1,54 @@
-## Description: <br>
-Provides access to 14 supported Tushare Pro futures-data interfaces for contracts, calendars, market data, warehouse receipts, settlement, holdings, indexes, and risk indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tushare 期货数据 helps agents query supported Tushare Pro futures-market data, including contract metadata, trading calendars, market bars, warehouse receipts, settlement data, holding rankings, indexes, and limit data.
 
-## Publisher: <br>
-[gaingush](https://clawhub.ai/user/gaingush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaingush](https://clawhub.ai/user/gaingush)
 
-## Use Case: <br>
-Developers, analysts, and quantitative researchers use this skill to query Chinese futures-market data from Tushare Pro through a bounded set of documented APIs. Users must provide their own Tushare token through an environment variable or request parameter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Tushare API token is required and could be exposed if pasted into prompts or request JSON. <br>
-Mitigation: Use a dedicated Tushare token and provide it through TUSHARE_TOKEN or a secret manager where possible. <br>
-Risk: Dependency behavior can change when installing unpinned transitive packages. <br>
-Mitigation: Pin dependency versions or use a lockfile in controlled environments before installing. <br>
-Risk: Returned data can be empty, delayed, or unavailable if the token lacks the required Tushare permissions or the requested date is not a trading day. <br>
-Mitigation: Validate contracts and dates with the supported reference interfaces, and confirm Tushare account permissions for restricted or real-time data. <br>
+## Use Case:
 
+Developers and quantitative research users can use this skill to have an agent retrieve Tushare Pro futures data through a bounded set of documented interfaces. It is suited for workflows that need contract lookup, historical or real-time futures bars, warehouse receipt data, settlement data, position rankings, index data, and related futures-market reference data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaingush/tushare-future-data) <br>
-- [Tushare Pro official documentation](https://tushare.pro/document/2) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text] <br>
-**Output Format:** [JSON objects containing success status, returned data arrays, counts, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid user-provided Tushare token and network access to Tushare Pro.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill needs a Tushare API token to send queries to Tushare.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set TUSHARE_TOKEN through an environment variable or secret manager instead of pasting the token into chat-visible JSON.
+
+Risk: Python dependencies are specified with minimum versions rather than pinned lockfile versions.
+
+Mitigation: Pin or lock dependency versions before installation when stronger supply-chain assurance is required.
+
+## Reference(s):
+
+- [Tushare Pro official documentation](https://tushare.pro/document/2)
+- [ClawHub skill page](https://clawhub.ai/gaingush/skills/tushare-future-data)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON data, Guidance]
+
+**Output Format:** [JSON responses with success, data, count, and error fields, plus concise setup and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Tushare token through TUSHARE_TOKEN or a call parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

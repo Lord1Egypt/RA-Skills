@@ -1,41 +1,61 @@
-## Description: <br>
-Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis), run queries, inspect schemas, export data, and debug database issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis). Run queries, inspect schemas, export data. Use when user wants to query a database, explore schema, check data, export results, or debug database issues.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
 
-## Use Case: <br>
-Developers and operators use this skill to connect to PostgreSQL, MySQL, SQLite, MongoDB, and Redis databases, inspect schemas, run diagnostic queries, and export results. It is useful for database exploration, troubleshooting, performance checks, backups, restores, and migration planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database connection details and credentials may expose sensitive systems or data if copied into commands, logs, or shell history. <br>
-Mitigation: Use limited database accounts, prefer read-only access by default, keep credentials in environment variables or secure configuration, and avoid echoing secrets. <br>
-Risk: Export, backup, restore, import, migration, and write examples can expose, overwrite, or modify important data. <br>
-Mitigation: Review every command before execution, require explicit confirmation for writes or restore/import/migration work, limit query results unless full export is requested, and handle generated files under applicable data retention rules. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect database schemas, run diagnostic queries, export data, and troubleshoot PostgreSQL, MySQL, SQLite, MongoDB, and Redis systems from terminal-based tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrg913427-dot/db-explorer-gavin) <br>
-- [MongoDB Shell documentation](https://mongodb.com/docs/shell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, SQL, and database CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only query plans, schema summaries, export commands, backup and restore commands, and safety checks for database operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles database connection details and can expose sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged, read-only credentials by default and avoid putting real passwords in command-line arguments.
+
+Risk: Suggested restore, import, migration, or write commands could change production data.
+
+Mitigation: Approve the exact command and target before execution, and use transaction or dry-run checks where the database supports them.
+
+Risk: Exports and backups can create sensitive local files.
+
+Mitigation: Write outputs only to private, access-controlled paths and clean them up when no longer needed.
+
+Risk: Broad Redis key scans such as `KEYS *` can be unsafe on production-sized datasets.
+
+Mitigation: Prefer scoped patterns or incremental scan commands before querying large keyspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrg913427-dot/skills/db-explorer-gavin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database CLI commands, query examples, export commands, and safety prompts for user review.]
+
+## Skill Version(s):
+
+2.5.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

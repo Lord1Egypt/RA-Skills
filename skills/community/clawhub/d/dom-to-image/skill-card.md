@@ -1,43 +1,53 @@
-## Description: <br>
-Convert HTML DOM nodes to images (PNG/JPEG/SVG/Blob). Supports rendering options such as filter, backgroundColor, quality, and pixelRatio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert HTML DOM nodes to images (PNG/JPEG/SVG/Blob) with rendering options such as filter, backgroundColor, quality, and pixelRatio.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers use this skill to add browser-side export workflows that convert selected DOM elements into PNG, JPEG, SVG, or Blob outputs, including React components and downloadable images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported images can include private or sensitive content visible inside the selected DOM node. <br>
-Mitigation: Review the target element before export and use filters or redaction to exclude sensitive sub-elements. <br>
-Risk: Installing the wrong npm package could add an unintended dependency. <br>
-Mitigation: Verify that html-to-image is the intended npm package before installing it. <br>
-Risk: Browser rendering can fail for CORS-tainted canvas content, very large DOM nodes, or unsupported browsers. <br>
-Mitigation: Test exports with representative page content and document fallback behavior for unsupported cases. <br>
+## Use Case:
 
+Developers use this skill to export selected browser DOM nodes as PNG, JPEG, SVG, or Blob images, including screenshots of page elements, generated cover images, and downloadable React component output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/dom-to-image) <br>
-- [Publisher profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with inline bash, JavaScript, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides installation and browser export options; does not generate image files directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Exported images can include any private or sensitive content inside the selected DOM node.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose target elements carefully and use filters or redaction to exclude private content before export.
+
+Risk: Production use depends on the external html-to-image npm package.
+
+Mitigation: Pin and review the npm dependency before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/dom-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with JavaScript, TypeScript, and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides browser-side DOM export using html-to-image options and download handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

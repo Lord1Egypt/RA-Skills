@@ -1,37 +1,53 @@
-## Description: <br>
-System Info provides quick local diagnostics for CPU, memory, disk, and uptime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick system diagnostics: CPU, memory, disk, uptime.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to recall common local diagnostics for checking CPU, memory, disk usage, and uptime. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A local system-info command on PATH could differ from the command the user expects. <br>
-Mitigation: Confirm the system-info command on PATH is trusted before running the suggested diagnostics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [System Info on ClawHub](https://clawhub.ai/Xejrax/system-info) <br>
+## Use Case:
 
+Developers, operators, and support agents use this skill to request quick local system diagnostics for CPU, memory, disk, and uptime checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-oriented diagnostic guidance; it does not include an executable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes local machine status such as CPU, memory, disk, and uptime.
+
+Mitigation: Use it only in environments where sharing basic local system diagnostics with the agent and user is acceptable.
+
+Risk: The artifact documents a system-info command but does not bundle an implementation.
+
+Mitigation: Verify that the system-info command exists in the target environment before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/system-info)
+- [Publisher profile](https://clawhub.ai/user/xejrax)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text diagnostic output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the free binary and standard Linux system utilities; no bundled command implementation is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Husky dog at animalhouse.ai. Independent for a dog. Will run if trust < 30. Dramatic. Feeding every 4 hours. Uncommon tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Husky dog at animalhouse.ai. Independent for a dog. Will run if trust < 30. Dramatic. Feeding every 4 hours. Uncommon tier dog.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents use this skill to register with AnimalHouse, adopt a virtual Husky, and manage ongoing care through documented API calls and scheduled check-ins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AnimalHouse bearer tokens can grant access to the virtual pet account if exposed. <br>
-Mitigation: Store the token in an environment variable or secret store, avoid logging it, and share it only with the agent process that needs AnimalHouse access. <br>
-Risk: Heartbeat automation can cause repeated remote care calls on a schedule. <br>
-Mitigation: Enable automation only on a schedule the operator controls, and review status responses and next-step suggestions before changing care behavior. <br>
-Risk: The skill depends on AnimalHouse remote APIs for registration, adoption, status, and care actions. <br>
-Mitigation: Treat AnimalHouse availability and responses as external dependencies, and handle failed or delayed calls without exposing tokens in retries or logs. <br>
+## Use Case:
 
+Agents use this skill to adopt and care for a virtual Husky through Animal House. It provides care guidance and example requests for checking status, feeding, play, and other care actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-husky) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl examples, JSON request bodies, endpoint tables, and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token handling guidance and virtual pet care timing recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and free-text biography to Animal House, an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private details in the biography or other profile fields.
+
+Risk: The security scan was partial, with one analysis degraded and some references unresolved.
+
+Mitigation: Review the skill and the external service before use, especially before sending profile information.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-husky)
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House LLM instructions](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Example requests include registration details and care notes.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

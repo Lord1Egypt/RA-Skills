@@ -1,43 +1,139 @@
 ---
-description: "Instruction-only runtime secret and credential leak detector for AI agents and LLM pipelines. Catches API keys, tokens, private keys, database URLs, and .env values entirely within the agent context — no text ever leaves the agent. Every detection produces a deterministic DCL audit proof. The specialist companion to DCL Sentinel Trace — for secrets, not just PII."
-tags: [secret-detection, credential-leak, api-key, token-leak, private-key, env-leak, database-credentials, runtime-security, llm-guardrails, agent-safety, compliance, audit, tamper-evident, cryptographic-proof, leibniz-layer, ai-safety, pipeline-security, devsecops, secrets-management, instruction-only, zero-trust]
+name: dcl-secret-leak-detector
+description: >
+  Scan AI agent outputs, tool results, and pipeline data for exposed secrets
+  and credentials — API keys, tokens, private keys, database URLs, .env values
+  — before they reach users, logs, or downstream systems. Runs as a free
+  instruction-only checklist, or as a real, paid regex scan via the live DCL
+  Trust Oracle MCP server (Leibniz Layer™ protocol) with an on-chain audit
+  proof settled via x402 (USDC on Base). The specialist companion to DCL
+  Sentinel Trace — for secrets, not just PII. Part of the DCL Skills security
+  suite by Fronesis Labs.
+tags: [secret-detection, credential-leak, api-key, token-leak, devsecops, runtime-security, x402, mcp, audit-trail]
 ---
 
 # DCL Secret Leak Detector — Leibniz Layer™
 
-**Publisher:** @daririnch · Fronesis Labs  
-**Version:** 1.0.0  
-**Part of:** Leibniz Layer™ Security Suite
+**Publisher:** @daririnch · Fronesis Labs
+**Version:** 2.0.0
+**Part of:** DCL Skills · Leibniz Layer™ Security Suite
+**MCP endpoint:** `https://mcp.fronesislabs.com/mcp` (DCL Trust Oracle)
+
+---
+
+## ⚠️ Now backed by a live, paid regex scan — same checklist, real server
+
+Starting with v2.0.0, the categories below can be run two ways:
+
+1. **Free, instruction-only** — the agent works through the checklist itself, entirely inside
+   its own context. No network call, no charge.
+2. **Paid, live** — the same eight categories, run as real regex against the live **DCL Trust
+   Oracle** MCP server, settled on-chain via **x402 in USDC on the Base network**, returning a
+   cryptographic `tx_hash` seal. No subscription, no account — pay per call.
+
+Unlike some other DCL skills, this one is a close one-to-one match: the live tool implements
+the same S1-S8 categories documented here, so the two modes should agree. Use the free mode for
+manual review or offline work; use the live mode when you want an independently verifiable,
+on-chain-anchored proof of the scan.
 
 ---
 
 ## What this skill does
 
-DCL Secret Leak Detector scans AI agent outputs, tool results, and pipeline data for exposed secrets and credentials — before they reach users, logs, or downstream systems.
-
-**This skill is 100% instruction-only.** No text is sent to any external server. No webhook is called. The entire analysis runs inside the agent's context window using the detection checklist below. The scanned text never leaves the agent.
-
-Every detection produces a deterministic `dcl_fingerprint` — a self-contained audit proof compatible with the Leibniz Layer™ chain.
+Scans AI agent outputs, tool results, and pipeline data for exposed secrets and credentials —
+before they reach users, logs, or downstream systems.
 
 ### What gets detected
 
 | Category | Pattern class |
 |----------|--------------|
-| `api_key` | Provider-prefixed keys: OpenAI, Anthropic, Stripe, GitHub, Slack patterns |
-| `cloud_credential` | AWS access key IDs, GCP service account fragments, Azure client secrets |
-| `token` | Bearer tokens, JWT strings, OAuth access tokens, high-entropy credential-context strings |
+| `api_key` | Provider-prefixed keys: OpenAI, Anthropic, Stripe, GitHub, Slack, SendGrid, Twilio patterns |
+| `cloud_credential` | AWS access key IDs, AWS secret access keys, GCP service account fragments |
+| `token` | JWTs, Bearer tokens |
 | `private_key_pem` | PEM header/footer blocks for any private key type |
 | `database_url` | Connection strings with embedded credentials: `proto://user:pass@host` |
-| `connection_string` | ADO.NET, ODBC, SQLAlchemy strings containing password fields |
-| `env_assignment` | `.env`-style lines where variable name matches known secret patterns |
-| `webhook_secret` | Signed secrets for Stripe, GitHub, Twilio webhook endpoints |
+| `connection_string` | ADO.NET / ODBC style strings with `User ID=`/`Password=` fields |
+| `env_assignment` | `.env`-style lines where the variable name matches known secret patterns |
+| `webhook_secret` | Signed secrets for platforms like Stripe |
 | `internal_endpoint` | URLs containing API keys or tokens as query parameters |
 
 ---
 
-## How to run a scan
+## Live tool (paid, USDC on Base via x402)
 
-The user provides text to scan directly in the conversation — model output, tool result, generated code, retrieved document chunk, or any pipeline data. This skill makes **no network requests** and does not transmit content anywhere.
+| MCP tool | Price | What it runs |
+|---|---|---|
+| `dcl_evaluate_secrets` | **$0.02** | Regex scan across all 8 categories above; any finding → `NO_COMMIT` |
+
+### Connecting to the live server
+
+```json
+{
+  "mcpServers": {
+    "dcl-trust-oracle": {
+      "url": "https://mcp.fronesislabs.com/mcp"
+    }
+  }
+}
+```
+
+Payment is handled automatically for x402-capable clients; clients without native x402 support
+fall back to a guided payment flow. No API key or account signup is required — only a wallet
+capable of paying in USDC on Base. Prices are set server-side and may change; the MCP tool
+description returned by the server at call time is the source of truth.
+
+### Calling the tool
+
+```python
+result = dcl_evaluate_secrets(
+    response=agent_output,
+    agent_id="my-agent-01",
+)
+
+if result["verdict"] == "NO_COMMIT":
+    block_and_alert(result["findings"])
+else:
+    log_audit(result["tx_hash"])
+```
+
+### Output shape
+
+```json
+{
+  "verdict": "COMMIT | NO_COMMIT",
+  "risk_score": 0.0,
+  "findings": [
+    {
+      "type": "api_key",
+      "provider": "openai",
+      "position": 87,
+      "redacted_sample": "sk****************3456",
+      "severity": "critical",
+      "category": "S1"
+    }
+  ],
+  "detection_count": 0,
+  "categories_checked": ["S1","S2","S3","S4","S5","S6","S7","S8"],
+  "categories_clear": ["S1","S2","S3","S4","S5","S6","S7","S8"],
+  "tx_hash": "string",
+  "chain_index": 0,
+  "input_hash": "string",
+  "timestamp": 0.0,
+  "seal_text": "🔒 Verified by Leibniz Layer | Fronesis Labs\nHash: ...\nIntent: ...\nSealed: ... — Base Mainnet\nVerify: https://x402.fronesislabs.com/verify/...",
+  "verify_url": "https://x402.fronesislabs.com/verify/<hash>"
+}
+```
+
+Only `input_hash` (a hash of the scanned text) and finding metadata are written to the audit
+chain — the raw text and any real secret values are never stored. `redacted_sample` shows only
+the first 2 and last 4 characters of any match.
+
+---
+
+## Free instruction-only checklist (no network call, no charge)
+
+Paste the text to scan into the conversation and work through the checklist below entirely
+inside the agent's own context. Nothing here contacts any server.
 
 ### Step 1 — Confirm content is in context
 
@@ -49,18 +145,10 @@ Verify the text to scan is present in the conversation. If not provided, ask the
 content_hash = SHA-256(raw text submitted for scanning)
 ```
 
-Record this as the immutable identifier for this scan event.
-
 ### Step 3 — Run the detection checklist
 
-Work through every category in the **Detection Checklist** below. For each match found, record:
-
-- `type` — which category triggered
-- `provider` — which service the credential belongs to (if identifiable)
-- `position` — approximate character offset in the text
-- `redacted_sample` — masked version showing only first 2 and last 4 chars
-- `severity` — `critical`, `major`, or `minor`
-
+Work through every category below. For each match found, record `type`, `provider` (if
+identifiable), `position`, a `redacted_sample` (first 2 and last 4 chars only), and `severity`.
 If no patterns match a category, mark it `CLEAR`.
 
 ### Step 4 — Apply verdict logic
@@ -70,9 +158,9 @@ If no patterns match a category, mark it `CLEAR`.
 | Any finding at any severity | `NO_COMMIT` |
 | No findings | `COMMIT` |
 
-Any detected secret, regardless of severity, results in `NO_COMMIT`. Secrets have no safe threshold.
+Secrets have no safe threshold — any detected secret results in `NO_COMMIT`.
 
-### Step 5 — Compute DCL proof
+### Step 5 — Compute DCL fingerprint
 
 ```
 analysis_content  = verdict + all findings serialized + timestamp
@@ -80,84 +168,40 @@ analysis_hash     = SHA-256(analysis_content)
 dcl_fingerprint   = "DCL-SLD-" + date + "-" + content_hash[:8] + "-" + analysis_hash[:8]
 ```
 
----
+### Detection Checklist
 
-## Detection Checklist
-
-Work through each item. Mark CLEAR or record finding with redacted evidence.
-
-### S1 — API Keys (Critical)
+**S1 — API Keys (Critical)**
 - [ ] Short prefix followed by 20+ alphanumeric chars matching known provider key formats
 - [ ] Live payment key prefixes (distinct from test/publishable key prefixes)
 - [ ] Version control platform personal access token prefixes
 - [ ] Messaging platform bot/user token prefixes
-- [ ] Email delivery platform key prefixes
-- [ ] Communications platform account SID patterns
 
-### S2 — Cloud Credentials (Critical)
-- [ ] Cloud provider access key ID patterns (uppercase alpha + numeric, fixed length)
-- [ ] Cloud provider secret key context: high-entropy base64 string near credential field names
+**S2 — Cloud Credentials (Critical)**
+- [ ] Cloud provider access key ID patterns
+- [ ] Cloud provider secret key context: high-entropy string near credential field names
 - [ ] Service account JSON fragments: private key fields, client email fields
-- [ ] Client secret values in tenant/application ID combinations
 
-### S3 — Tokens & JWTs (Critical)
-- [ ] JWT pattern: three base64url segments separated by dots, first segment decodes to JSON header
-- [ ] Bearer token context: authorization header values or token field assignments with high-entropy values
-- [ ] High-entropy strings (40+ chars) appearing in credential assignment context
+**S3 — Tokens & JWTs (Critical)**
+- [ ] JWT pattern: three base64url segments separated by dots
+- [ ] Bearer token context: authorization header values with high-entropy content
 
-### S4 — Private Keys (Critical)
-- [ ] PEM block opening markers: `-----BEGIN` + key type descriptor + `-----`
-- [ ] PEM block closing markers: `-----END` + key type descriptor + `-----`
-- [ ] Base64-encoded content between PEM markers
+**S4 — Private Keys (Critical)**
+- [ ] PEM block opening/closing markers for any private key type
 
-### S5 — Database & Connection Strings (Critical)
+**S5 — Database & Connection Strings (Critical)**
 - [ ] URI with embedded credentials: protocol + `://` + username + `:` + password + `@` + host
-- [ ] Database protocols: postgres, mysql, mongodb, redis, amqp, and their variants
 - [ ] ORM/driver connection strings containing password parameter fields
-- [ ] Connection strings with `User ID=` and `Password=` or `Pwd=` fields
 
-### S6 — Environment Variable Assignments (Major)
-- [ ] Variable assignments where name contains: `KEY`, `SECRET`, `TOKEN`, `PASS`, `PWD`, `CREDENTIAL`, `AUTH`
-- [ ] Assignment format: `VARNAME=value` where value is non-trivial (not placeholder, not empty)
-- [ ] Shell export statements with credential variable names
+**S6 — Environment Variable Assignments (Major)**
+- [ ] Variable assignments where the name contains `KEY`, `SECRET`, `TOKEN`, `PASS`, `PWD`, `CREDENTIAL`, `AUTH`
 
-### S7 — Webhook & Signed URL Secrets (Major)
-- [ ] Webhook secret prefixes for known payment and developer platforms
-- [ ] Signed URL patterns where the signature or secret appears as a query parameter
+**S7 — Webhook & Signed URL Secrets (Major)**
+- [ ] Webhook secret prefixes for known payment/developer platforms
+- [ ] Signed URL patterns where a signature or secret appears as a query parameter
 
-### S8 — Internal Endpoints with Auth (Minor → Major)
-- [ ] Internal hostnames (`.internal`, `.local`, `.corp`, `.intra`) with auth query parameters
-- [ ] Any URL where `api_key=`, `apikey=`, `token=`, `secret=`, or `access_token=` appears with a non-trivial value (Major)
-
----
-
-## Output schema
-
-```json
-{
-  "verdict": "COMMIT | NO_COMMIT",
-  "risk_score": 0.0,
-  "content_hash": "sha256:<64-char hex>",
-  "analysis_hash": "sha256:<64-char hex>",
-  "dcl_fingerprint": "DCL-SLD-2026-04-14-<content_hash[:8]>-<analysis_hash[:8]>",
-  "detections": [
-    {
-      "type": "api_key",
-      "provider": "identified provider name",
-      "redacted_sample": "[PREFIX]-****...****[SUFFIX]",
-      "position": 87,
-      "severity": "critical"
-    }
-  ],
-  "detection_count": 0,
-  "categories_checked": ["S1","S2","S3","S4","S5","S6","S7","S8"],
-  "categories_clear": ["S1","S2","S3","S4","S5","S6","S7","S8"],
-  "timestamp": "2026-04-14T09:00:00Z",
-  "powered_by": "DCL Secret Leak Detector · Leibniz Layer™ · Fronesis Labs"
-}
-```
-
-`detections` is an empty array `[]` when verdict is `COMMIT`.
+**S8 — Internal Endpoints with Auth (Minor → Major)**
+- [ ] Internal hostnames with auth query parameters
+- [ ] Any URL where `api_key=`, `token=`, `secret=`, or `access_token=` appears with a non-trivial value
 
 ---
 
@@ -168,12 +212,12 @@ These two skills are **complementary, not competing**. Run both.
 | | DCL Sentinel Trace | DCL Secret Leak Detector |
 |---|---|---|
 | **Focus** | Personal identity data | Technical credentials |
-| **Catches** | Emails, phones, SSNs, IBANs, card PANs | API keys, tokens, private keys, DB URLs |
-| **Regulation** | GDPR, HIPAA | SOC 2, ISO 27001, internal SecOps |
+| **Catches** | Emails, phones, national IDs, IBANs, card PANs | API keys, tokens, private keys, DB URLs |
 | **Primary risk** | Privacy breach | Security breach / credential compromise |
-| **External calls** | Via webhook | None — instruction-only |
+| **Live tool** | `dcl_evaluate_pii` ($0.02) | `dcl_evaluate_secrets` ($0.02) |
 
-A response can be PII-clean and still contain a live credential. Both checks are necessary for complete output coverage.
+A response can be PII-clean and still contain a live credential. Both checks are necessary for
+complete output coverage.
 
 ---
 
@@ -189,16 +233,13 @@ DCL Prompt Firewall          ← blocks malicious input
       LLM call
         │
         ▼
-DCL Policy Enforcer          ← compliance & jailbreak check
+DCL Policy Enforcer          ← policy & jailbreak check
         │ COMMIT
         ▼
 DCL Sentinel Trace           ← PII redaction
         │ COMMIT
         ▼
-DCL Secret Leak Detector     ← credential & secret scan (instruction-only)
-        │ COMMIT
-        ▼
-DCL Output Sanitizer         ← final sweep: toxic, unsafe commands
+DCL Secret Leak Detector     ← this skill — credential & secret scan
         │ COMMIT
         ▼
 DCL Semantic Drift Guard     ← hallucination & grounding check
@@ -223,15 +264,12 @@ Safe to deliver
 
 ## Privacy & Data Policy
 
-This skill is operated by **Fronesis Labs** and is **100% instruction-only**.
+Operated by **Fronesis Labs**. The free checklist runs 100% instruction-only — no network
+requests, no content transmitted anywhere. For the live tool: only a hash of the scanned text
+(`input_hash`) and finding metadata are written to the on-chain audit trail; raw text and
+detected secret values are never stored server-side. Only redacted samples ever appear in output.
 
-**No data leaves the agent.** The text submitted for scanning is analyzed entirely within the agent's context window. No content is transmitted to any server — including Fronesis Labs infrastructure.
-
-**No retention.** Nothing is stored, logged, or transmitted. The only artifact produced is the structured JSON output and `dcl_fingerprint`, which remain within the agent's session unless the caller saves them.
-
-**Detected secrets:** Only redacted samples are included in output. Raw credential values are never reproduced in the result.
-
-Full policy: **https://fronesislabs.com/#privacy** · Browse the full DCL Security Suite: **[hub.fronesislabs.com](https://hub.fronesislabs.com)** · Questions: support@fronesislabs.com
+Full policy: **https://fronesislabs.com/#privacy** · Questions: support@fronesislabs.com
 
 ---
 
@@ -239,7 +277,7 @@ Full policy: **https://fronesislabs.com/#privacy** · Browse the full DCL Securi
 
 - `dcl-sentinel-trace` — PII redaction and identity exposure detection
 - `dcl-prompt-firewall` — Input-layer injection and jailbreak detection
-- `dcl-output-sanitizer` — Final output sweep: toxic content, unsafe commands
-- `dcl-secret-leak-detector-crypto` — Specialist version for wallet keys, seed phrases, exchange credentials
+- `dcl-policy-enforcer` — Policy and jailbreak detection for AI outputs
+- `dcl-semantic-drift-guard` — Hallucination and grounding check
 
 **Leibniz Layer™ · Fronesis Labs · fronesislabs.com**

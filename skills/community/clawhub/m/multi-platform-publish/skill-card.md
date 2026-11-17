@@ -1,40 +1,54 @@
-## Description: <br>
-Generates platform-specific social media cover-image guidance, long-form image requirements, copy styles, and publishing checklists for WeChat Official Accounts, Xiaohongshu, Douyin/Video Accounts, and Bilibili. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-adapted cover image specifications, long-image guidance, captions, titles, and publishing copy for WeChat Official Accounts, Xiaohongshu, Douyin/Video Accounts, and Bilibili.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Content creators and marketing teams use this skill to adapt images and written copy for Chinese social platforms with different aspect ratios, tone, titles, tags, and pre-publish checks. It supports manual publishing workflows rather than automatic posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated copy or image specifications may not match a platform's current policy, layout, or audience expectations. <br>
-Mitigation: Preview and review every generated image and text draft before manually publishing it. <br>
-Risk: The workflow references a local MakeContents/render-text service and local HTML templates. <br>
-Mitigation: Install and run the local rendering components only in an environment you trust, and review templates before use. <br>
+## Use Case:
 
+Developers, creators, and publishing teams use this skill to adapt a content topic into platform-specific image dimensions, cover formats, titles, captions, tags, and pre-publication checks for Chinese social platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/multi-platform-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with platform tables, checklist items, and example local render requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewed content guidance and image-generation specifications; it does not automatically publish to social platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version) <br>
+Risk: Generated Xiaohongshu copy may include the fixed branded hashtag #虾闯天下 in user-facing output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove or replace generated tags before publishing.
+
+Risk: The artifact references localhost rendering endpoints for image generation.
+
+Mitigation: Confirm any localhost rendering service is intentionally running and trusted before using those commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/multi-platform-publish)
+- [Publisher profile](https://clawhub.ai/user/zhuchenggong19851114-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, checklists, JSON examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated image files grouped by target platform.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

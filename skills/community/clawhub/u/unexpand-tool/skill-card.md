@@ -1,41 +1,53 @@
-## Description: <br>
-Convert spaces to tabs in text files. Use for consistent indentation and reducing file size by replacing spaces with tabs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert spaces to tabs in text files. Use for consistent indentation and reducing file size by replacing spaces with tabs.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert space-indented text or code into tab-indented output for formatting consistency and smaller files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Piped input may be interpreted as a filesystem path, causing the tool to read local files unexpectedly. <br>
-Mitigation: Audit or fix stdin handling before installation, and use only explicit file-path arguments until the behavior is documented and corrected. <br>
-Risk: The release has a suspicious security verdict from the authoritative scanner evidence. <br>
-Mitigation: Review the helper script and scanner guidance before deployment, then prefer a version that clearly separates stdin text from file path inputs. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert space-indented text files to tab-indented text for formatting consistency or smaller files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/unexpand-tool) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transformation output with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transforms spaces to tabs using a local Python helper; review stdin behavior before installation because scanner evidence reports that piped input may be treated as a filesystem path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled script can accidentally treat piped stdin text as a local file path and print that file's contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit, trusted local file paths until stdin handling is fixed; do not expose the script to services, automation, or untrusted input.
+
+Risk: Security evidence marks the release verdict as suspicious.
+
+Mitigation: Review the script before installation or execution and apply the server guidance before using it in shared or automated environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/unexpand-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May transform local file content by replacing spaces with tab characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

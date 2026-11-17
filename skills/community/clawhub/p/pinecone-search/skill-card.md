@@ -1,41 +1,54 @@
-## Description: <br>
-Pinecone vector search and document upload tool for knowledge base management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinecone vector search and document upload tool for knowledge base management.
 
-## Publisher: <br>
-[deki18](https://clawhub.ai/user/deki18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deki18](https://clawhub.ai/user/deki18)
 
-## Use Case: <br>
-Developers and agents use this skill to upload TXT and Markdown knowledge-base content to Pinecone, then query it with vector and hybrid keyword search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents and search queries are sent to configured external embedding and Pinecone services. <br>
-Mitigation: Install only for workflows where that data transfer is intended, and use scoped API keys for the embedding provider and Pinecone. <br>
-Risk: Recursive uploads can include private or unintended TXT and Markdown files. <br>
-Mitigation: Run uploads with --dry-run first, avoid recursive uploads of private folders, and manage retention or deletion directly in Pinecone. <br>
+## Use Case:
 
+Developers and agents use this skill to upload local TXT and Markdown documents into a Pinecone vector index, then search that knowledge base with semantic and keyword-assisted retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deki18/pinecone-search) <br>
-- [Project homepage](https://github.com/deki18/pinecone-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; runtime commands return text search results or JSON upload statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Pinecone and embedding-provider API keys; supports TXT and Markdown inputs, namespaces, filters, dry-run upload previews, and optional JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Uploaded document text and local file paths can be sent to external Pinecone and embedding services and may persist in Pinecone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved Pinecone and embedding accounts, avoid broad or private directories unless authorized, and review uploaded content before indexing.
+
+Risk: Dry-run mode may still initialize remote services or create a Pinecone index.
+
+Mitigation: Do not rely on dry-run as non-mutating; use an isolated account or test index until the behavior is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deki18/skills/pinecone-search)
+- [Repository homepage](https://github.com/deki18/pinecone-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Command-line text output and optional JSON upload statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output includes matched document metadata and snippets; upload output can include file, chunk, success, failure, token, namespace, and duration statistics.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

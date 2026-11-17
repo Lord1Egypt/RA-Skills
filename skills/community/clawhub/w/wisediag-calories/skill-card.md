@@ -1,44 +1,63 @@
-## Description: <br>
-Food Calorie Estimator — Identify food items and estimate calories from an image via local file binary upload or image URL with AI-powered recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WiseDiag-Calories estimates food calories and nutritional content from user-provided food images using local file upload or image URL analysis.
 
-## Publisher: <br>
-[wisediag](https://clawhub.ai/user/wisediag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wisediag](https://clawhub.ai/user/wisediag)
 
-## Use Case: <br>
-External users and agents use this skill to estimate food calories and nutrition details from user-selected food photos or image URLs. It is intended for reference analysis only and is not a substitute for professional nutrition or dietary advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected food photos, image URLs, and related question text are sent to WiseDiag cloud servers for processing. <br>
-Mitigation: Use the skill only with images and questions suitable for remote processing, and avoid content with private people, documents, locations, or other sensitive background details. <br>
-Risk: The skill requires a WiseDiag API key. <br>
-Mitigation: Prefer a temporary environment variable or a dedicated secret manager, and avoid permanently adding the key to shell startup files. <br>
-Risk: Calorie and nutrition output may be imprecise and is not professional advice. <br>
-Mitigation: Treat results as reference information and consult a qualified nutrition professional for dietary decisions. <br>
+## Use Case:
 
+External users and developers use this skill to analyze food photos or image URLs, ask calorie-related questions, and receive a saved Markdown report with estimated calories and nutrition details. It is for reference only and is not a substitute for professional nutritional advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wisediag/wisediag-calories) <br>
-- [WiseDiag Calories homepage](https://github.com/wisediag/WiseDiag-Calories) <br>
-- [WiseDiag API key management](https://console.wisediag.com/apiKeyManage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal streaming text and saved Markdown files with optional JSON detection details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are saved locally as Markdown under the configured output directory, defaulting to ~/.openclaw/workspace/WiseDiag-Calories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends selected food photos, image URLs, questions, and related metadata to WiseDiag cloud services for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with images appropriate for remote processing and avoid uploading private or sensitive content.
+
+Risk: The skill requires a WiseDiag API key for requests.
+
+Mitigation: Store the API key in a temporary environment variable or credential manager and avoid committing it to files.
+
+Risk: Calorie and nutrition estimates may be inaccurate or incomplete.
+
+Mitigation: Treat outputs as reference information and consult a qualified nutrition professional for dietary decisions.
+
+Risk: Custom output filename handling has a hardening caveat in the security guidance.
+
+Mitigation: Prefer simple filename stems until output-name validation is tightened.
+
+## Reference(s):
+
+- [WiseDiag-Calories ClawHub listing](https://clawhub.ai/wisediag/skills/wisediag-calories)
+- [WiseDiag publisher profile](https://clawhub.ai/user/wisediag)
+- [WiseDiag API key management](https://console.wisediag.com/apiKeyManage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with streaming terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WISEDIAG_API_KEY; accepts up to 5 local image files or image URLs and saves results as a Markdown file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

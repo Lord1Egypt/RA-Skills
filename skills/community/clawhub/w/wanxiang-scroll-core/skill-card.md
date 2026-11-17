@@ -1,45 +1,61 @@
-## Description: <br>
-Wanxiang Scroll Core provides the core protocol, writing-style switching system, and plot-management material for the Wanxiang Scroll interactive storytelling skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wanxiang Scroll Core provides core protocol, 56 narrative style modes, command handling, and plot management references for the Wanxiang Scroll interactive story system.
 
-## Publisher: <br>
-[dandanllab](https://clawhub.ai/user/dandanllab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dandanllab](https://clawhub.ai/user/dandanllab)
 
-## Use Case: <br>
-External authors and roleplay users use this companion skill with wanxiang-scroll to run interactive narrative sessions, switch among 56 writing styles, and manage story commands, world rules, plot summaries, and long-form continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports hidden persistent story-planning notes without clear user controls. <br>
-Mitigation: Use the skill only where users can review, export, reset, and delete continuity notes, especially before working with private or sensitive writing. <br>
-Risk: Open-ended narrative commands may reset scenes, change roles, or introduce dynamic commands in ways the user did not intend. <br>
-Mitigation: Prefer explicit user confirmation before resets, role changes, or newly introduced commands take effect. <br>
+## Use Case:
 
+External users and developers use this skill with the main wanxiang-scroll package to run Chinese interactive storytelling workflows with style switching, command-driven world interaction, and long-form plot management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dandanllab/wanxiang-scroll-core) <br>
-- [Core system protocol](references/01-system-protocol.md) <br>
-- [World rules and physics](references/02-world-rules.md) <br>
-- [Command system](references/03-command-system.md) <br>
-- [Writing-style library](references/chapter-02-style-system/01-style-library.md) <br>
-- [Plot management](references/chapter-04-plot-management/01-plot-control.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative text and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces interactive story responses, style-switching guidance, command responses, plot summaries, and continuity notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill includes hidden note and hidden floor behavior that may retain user-provided story content across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this behavior before installation, avoid entering sensitive personal information into hidden note commands, and use explicit reset or plot-management commands when retained story context is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dandanllab/skills/wanxiang-scroll-core)
+- [Core System Protocol](references/01-system-protocol.md)
+- [Worldview and Physical Rules](references/02-world-rules.md)
+- [Command System](references/03-command-system.md)
+- [Chapter 1: Core System](references/index.md)
+- [Chapter 2: Style System](references/chapter-02-style-system/index.md)
+- [Style Library](references/chapter-02-style-system/01-style-library.md)
+- [Literary Style Details](references/chapter-02-style-system/02-style-details-a.md)
+- [Popular Fiction Style Details](references/chapter-02-style-system/03-style-details-b.md)
+- [Anime Style Details](references/chapter-02-style-system/04-style-details-c.md)
+- [Additional Style Details](references/chapter-02-style-system/05-style-details-other.md)
+- [Chapter 4: Plot Management](references/chapter-04-plot-management/index.md)
+- [Plot Control System](references/chapter-04-plot-management/01-plot-control.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and structured prose for interactive story responses, command results, style guidance, and plot summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to be used with the main wanxiang-scroll package; no API, MCP, shell, or credential integrations were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

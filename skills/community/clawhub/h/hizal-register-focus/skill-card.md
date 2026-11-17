@@ -1,37 +1,53 @@
-## Description: <br>
-Declares the agent's current task and focus tags so matching context chunks can be injected into the active session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Declares the agent's current task and focus tags so related context can be injected into the session.
 
-## Publisher: <br>
-[parkerscobey](https://clawhub.ai/user/parkerscobey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkerscobey](https://clawhub.ai/user/parkerscobey)
 
-## Use Case: <br>
-Developers and agent users use this skill to register the current task and focused tags at session start, after a reset, or when work changes. It helps route matching context into the active session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad self-trigger wording may cause the agent to update focus during ordinary planning language and pull irrelevant context. <br>
-Mitigation: Use specific, domain-relevant tags and re-register focus only when the task is clear or has changed significantly. <br>
+## Use Case:
 
+Developers and agents use this skill to register the current work item, session identifier, and focus tags so matching context can be loaded when the task starts, changes, or resumes after a reset.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with a structured focus-registration call] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires session_id, task, and tags; re-registering replaces the previous focus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can register task metadata and a session identifier automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where the Hizal context source is trusted and avoid registering sensitive task details unless that sharing is acceptable.
+
+Risk: Broad self-triggering can bring external context into the agent session with limited user control.
+
+Mitigation: Review the trigger behavior before installation and re-register focus tags deliberately when the task changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkerscobey/skills/hizal-register-focus)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with a tool-call example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Registers a session ID, task description, and focus-tag list; re-registering replaces the previous focus.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

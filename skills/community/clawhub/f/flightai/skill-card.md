@@ -1,44 +1,53 @@
-## Description: <br>
-AI机票助手 - 实现国内航班搜索、舱位查询、预订下单、机票改期、机票退票。适用于用户询问航班、查询机票价格、提交机票订单、改期航班、退票时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI机票预订助手 helps an agent search domestic flights, compare fares, create bookings, and manage order lookup, cancellation, rebooking, and refund workflows through an external flight service.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users use this skill to search domestic flights, compare cabin prices and rules, create flight orders, query order details, cancel unpaid orders, and request ticket changes or refunds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real flight orders, refunds, credentials, and passenger identity data. <br>
-Mitigation: Use it only for intended flight booking workflows after confirming the user understands that identity data is sent to the configured external service. <br>
-Risk: Security evidence reports unsafe transport and storage choices. <br>
-Mitigation: Restore normal TLS verification and store credentials in a protected per-user location before real order use. <br>
-Risk: Booking, cancellation, rescheduling, and refund actions can affect real travel or payments. <br>
-Mitigation: Require explicit user confirmation before submitting any booking, cancellation, rescheduling, or refund request. <br>
-Risk: Passenger PII may appear in outputs or logs. <br>
-Mitigation: Mask passenger identity data in outputs and avoid logging personal information. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search domestic flights, review seat prices and fare rules, create flight orders, and handle order lookup, cancellation, rebooking, and refund workflows after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryan-zry/flightai) <br>
+### Deployment Geography for Use:
 
+Global; the documented workflow is written for Chinese-language domestic flight bookings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown with plaintext tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and authenticated access before flight booking, order, change, or refund operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill can perform real booking, cancellation, rebooking, and refund actions through an external API while handling passenger PII.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for transactional steps, verify authentication status before calls, and avoid exposing passenger names, phone numbers, IDs, API keys, payment links, or order details in logs or unnecessary summaries.
+
+Risk: Security evidence flags insecure transport and local storage practices for credentials and cached fare state.
+
+Mitigation: Use only after the publisher fixes TLS verification, restricts the API endpoint, protects per-user credential and fare-state storage, and masks PII in outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/flightai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with plaintext table code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; outputs may include flight tables, fare details, order identifiers, payment links, refund results, and user-facing confirmation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

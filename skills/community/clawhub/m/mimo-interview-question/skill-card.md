@@ -1,43 +1,57 @@
-## Description: <br>
-面试题生成器 helps interviewers create role- and level-specific interview question sets with reference answers, scoring criteria, follow-up prompts, and evaluation templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language interview question sets, reference answers, scoring rubrics, follow-up prompts, and interview workflow templates tailored to a role, level, industry, and interview type.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Recruiters, hiring managers, and interviewers use this skill to assemble structured interview kits for technical, behavioral, system-design, case, and culture-fit interviews. It is intended to support question generation and evaluation consistency, with human review before candidate use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated interview questions or scoring criteria may conflict with local employment law or hiring policy. <br>
-Mitigation: Review each interview kit for jurisdiction-specific compliance before using it with candidates. <br>
-Risk: Generated questions may introduce unfair, discriminatory, or role-irrelevant evaluation criteria. <br>
-Mitigation: Screen outputs for protected-class bias, role relevance, consistent difficulty, and documented job requirements. <br>
-Risk: Questions may be outdated for fast-moving technical roles or may overfit to public question-bank patterns. <br>
-Mitigation: Update technical assumptions, versions, and examples for the target hiring cycle, and rewrite any copied or overly familiar prompts. <br>
+## Use Case:
 
+Recruiters, hiring managers, interviewers, and HR teams use this skill to produce structured Chinese-language interview kits for technical, behavioral, system design, case, and culture-fit interviews. It helps align questions, expected answers, scoring criteria, and interview flow to the target role and seniority.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qqyougitcom/mimo-interview-question) <br>
-- [details.md](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown interview kits with question banks, answer frameworks, scoring rubrics, interview-flow suggestions, and feedback templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output by default; English job roles can be handled in English.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated interview questions or scoring criteria may be unfair, insufficiently job-related, or inconsistent with local hiring-law constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified interviewer or HR reviewer check the generated kit for fairness, role relevance, and local compliance before using it with candidates.
+
+Risk: Interview content may ask for sensitive personal information or drift into protected characteristics.
+
+Mitigation: Remove questions about protected characteristics, salary history, family status, and other sensitive personal topics before conducting interviews.
+
+Risk: Generated technical questions may be outdated or mismatched to the role level.
+
+Mitigation: Confirm framework, tool, and system-design assumptions against the current hiring need, and calibrate difficulty to the candidate level.
+
+## Reference(s):
+
+- [面试题生成器 - 详细参考](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown interview kit with questions, answer frameworks, scoring tables, follow-up prompts, and feedback templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for fairness, job relevance, privacy, copyright, and applicable hiring-law constraints before use with candidates.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

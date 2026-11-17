@@ -1,0 +1,317 @@
+{
+  "package": "@jackwener/opencli",
+  "version": "1.8.7",
+  "files": [
+    {
+      "path": "51job/search.js",
+      "base_sha256": "ec5266215682ca868b2c6545e45c24655f18d9e591ef684314b2ccfbc4c4f651",
+      "patched_sha256": "be528f484b7260d95495e1ef6856e885a3a968d4726330346b4bb90c8dcea622",
+      "replacements": [
+        {
+          "old": "await navigateTo(page, `${WE_ORIGIN}/pc/search?keyword=${encodeURIComponent(keyword)}&searchType=2`, 2);",
+          "new": "await navigateTo(page, `${WE_ORIGIN}/pc/search`, 2);"
+        },
+        {
+          "old": "\"5-7年\"",
+          "new": "\"5-10年\""
+        },
+        {
+          "old": "\"外资\" / \"国企\" / \"民营\"",
+          "new": "\"外资（欧美）\" / \"国企\" / \"民营\""
+        },
+        {
+          "old": "        const items = data?.resultbody?.job?.items ?? [];",
+          "new": "        const items = data?.resultbody?.job?.items ?? [];\n        if (companyType === '04' && items.some(it => String(it.companyTypeString || '').trim() !== '国企')) {\n            throw new CliError('FILTER_MISMATCH', '51job returned a non-state-owned or unlabeled employer for the 国企 filter; results were not accepted');\n        }"
+        }
+      ],
+      "previous_patched_sha256": [
+        "8a9b8ced500ff630c19e0f2060e9f31672de416ec4cbd2159564403e9c6d97bc"
+      ]
+    },
+    {
+      "path": "indeed/search.js",
+      "base_sha256": "e4fcb1420441c9d4c94e0f91b1068a5f19029772c7e9ecccc26cb8872917a936",
+      "patched_sha256": "71b7a54912fc42a5f4337b2509b2aeaead1fdfbe2111b443784ffa572fd262f7",
+      "replacements": [
+        {
+          "old": "title: b.querySelector('h2.jobTitle span')?.textContent?.trim() ?? '',",
+          "new": "title: (titleA?.querySelector('span[title]')?.getAttribute('title') || titleA?.textContent || '').trim(),"
+        }
+      ]
+    },
+    {
+      "path": "indeed/job.js",
+      "base_sha256": "8182e944812107c5eaf5216cf7ed9eba64156e4c0cabb4bbdefe72094b893878",
+      "patched_sha256": "c1e116b4e3ac192c4a62af7c68a311000a82f0d34945659da1710efd23bdaa85",
+      "replacements": [
+        {
+          "old": "const location = document.querySelector('[data-testid=\"jobsearch-JobInfoHeader-companyLocation\"] div, [data-testid=\"inlineHeader-companyLocation\"]')?.textContent?.trim() ?? '';",
+          "new": "const location = (document.querySelector('[data-testid=\"jobsearch-JobInfoHeader-companyLocation\"], [data-testid=\"inlineHeader-companyLocation\"]')?.textContent\n                    || document.querySelector('[data-testid=\"jobsearch-CompanyInfoContainer\"] [data-testid=\"inlineHeader-companyName\"]')?.parentElement?.nextElementSibling?.textContent\n                    || document.querySelector('[data-testid=\"company-info-metadata\"] > div > div:nth-child(2)')?.textContent || '').trim();"
+        },
+        {
+          "old": "const salary = document.querySelector('[id*=\"salaryInfoAndJobType\"] span, [data-testid=\"job-salary\"]')?.textContent?.trim() ?? '';\n                const jobType = Array.from(document.querySelectorAll('[id*=\"salaryInfoAndJobType\"] span, [data-testid=\"job-type\"]'))\n                    .map(s => (s.textContent || '').trim())\n                    .filter(t => t && t !== salary)\n                    .join(', ');",
+          "new": "const texts = selector => [...new Set(Array.from(document.querySelectorAll(selector))\n                    .map(s => (s.textContent || '').trim()).filter(Boolean))];\n                const isJobType = text => /^(?:full[ -]time|part[ -]time|contract|temporary|permanent|internship|apprenticeship|seasonal|freelance|volunteer|per diem|fixed[ -]term)$/i.test(text);\n                const currentPay = document.querySelector('[data-testid=\"company-info-metadata\"]')?.nextElementSibling;\n                const headerValues = [...texts('[id*=\"salaryInfoAndJobType\"] span'),\n                    ...Array.from(currentPay?.querySelectorAll('*') || []).filter(el => !el.children.length)\n                        .map(el => (el.textContent || '').trim()).filter(Boolean)];\n                const payValues = texts('[data-testid=\"job-salary\"], #jobDetailsSection [role=\"group\"][aria-label=\"Pay\"] li');\n                const salary = payValues.find(t => !isJobType(t))\n                    || headerValues.find(t => !isJobType(t) && /[0-9]/.test(t) && /[$€£¥]|USD|EUR|GBP|an? (?:hour|year|month|week|day)/i.test(t)) || '';\n                const jobType = [...new Set([\n                    ...texts('[data-testid=\"job-type\"], #jobDetailsSection [role=\"group\"][aria-label=\"Job type\"] li'),\n                    ...headerValues.filter(isJobType),\n                ])].filter(t => t !== salary).join(', ');"
+        },
+        {
+          "old": "return { ready, challenge, notFound, title, company, location, salary, jobType, description };",
+          "new": "const loginRequired = !description && (window.location.hostname === 'secure.indeed.com'\n                    || /Sign In.*Indeed Accounts/i.test(document.title || '')\n                    || title === 'Ready to take the next step?');\n                return { ready, challenge, loginRequired, notFound, title, company, location, salary, jobType, description };"
+        },
+        {
+          "old": "        if (!detail?.ready) {",
+          "new": "        if (detail?.loginRequired) {\n            throw new CommandExecutionError('Indeed login required: the page is an account sign-in or verification screen, not a job posting', 'Complete login in the connected browser before requesting another read.');\n        }\n        if (!detail?.ready) {"
+        },
+        {
+          "old": "                let ready = !!document.querySelector('#jobDescriptionText, h1, [data-testid=\"error-page\"]');\n                for (let i = 0; i < 30; i++) {\n                    if (ready) break;\n                    await new Promise(r => setTimeout(r, 500));\n                    ready = !!document.querySelector('#jobDescriptionText, h1, [data-testid=\"error-page\"]');\n                }",
+          "new": "                const readDescription = () => {\n                    const body = document.querySelector('#jobDescriptionText')\n                        || document.querySelector('[data-testid=\"vj-job-description-heading\"]')?.nextElementSibling;\n                    return (body?.innerText || '').trim();\n                };\n                const isReady = () => !!readDescription()\n                    || !!document.querySelector('[data-testid=\"error-page\"], [id^=\"cf-\"]')\n                    || window.location.hostname === 'secure.indeed.com'\n                    || /Just a moment|Sign In.*Indeed Accounts/i.test(document.title || '')\n                    || /Page Not Found|not found/i.test(document.querySelector('h1')?.textContent || '');\n                let ready = isReady();\n                for (let i = 0; i < 30; i++) {\n                    if (ready) break;\n                    await new Promise(r => setTimeout(r, 500));\n                    ready = isReady();\n                }"
+        },
+        {
+          "old": "const title = document.querySelector('h1')?.textContent?.trim() ?? '';",
+          "new": "const title = (document.querySelector('[data-testid=\"vj-job-title\"]') || document.querySelector('h1'))?.textContent?.trim() ?? '';"
+        },
+        {
+          "old": "[data-company-name=\"true\"]",
+          "new": "[data-company-name=\"true\"], [data-testid=\"company-info-metadata\"] a[href*=\"/cmp/\"]"
+        },
+        {
+          "old": "const description = document.querySelector('#jobDescriptionText')?.innerText?.trim() ?? '';",
+          "new": "const description = readDescription();"
+        }
+      ],
+      "previous_patched_sha256": [
+        "31d8e4d433d85cdcbff09ea9ea3bbd5b28268648431cc7829f4dc33ecfe34a04",
+        "3b7f830d28d2b80d60cb2970ad7f9cafee204a70426e67351ec3e0e855115a55"
+      ]
+    },
+    {
+      "path": "51job/detail.js",
+      "base_sha256": "d37c0ae62c7dc76f34b777c0b1b8d340a08f359aec60f6168ba3c62dc5f38118",
+      "patched_sha256": "377926713207cd871f5f4601212636d8922941d0b5cb96af6b645919191bd87b",
+      "replacements": [
+        {
+          "old": "        { name: 'jobId',",
+          "new": "        { name: 'url', type: 'string', required: false, help: 'search 返回的原始职位链接' },\n        { name: 'jobId',"
+        },
+        {
+          "old": "        const url = `${JOBS_ORIGIN}/x/${jobId}.html`;",
+          "new": "        const url = kwargs.url || `${JOBS_ORIGIN}/x/${jobId}.html`;\n        let parsed;\n        try { parsed = new URL(url); } catch { throw new CliError('INVALID_ARGUMENT', 'Invalid job URL'); }\n        if (parsed.protocol !== 'https:' || parsed.hostname !== 'jobs.51job.com'\n            || parsed.username || parsed.password || parsed.port\n            || !parsed.pathname.endsWith(`/${jobId}.html`)) {\n            throw new CliError('INVALID_ARGUMENT', 'Use the matching jobs.51job.com URL captured by search');\n        }"
+        },
+        {
+          "old": "const bodyText = (document.body.innerText || '').slice(0, 400);",
+          "new": "if (!document.body) return { ready: false };\n            const bodyText = (document.body.innerText || '').slice(0, 1200);\n            if (/安全验证|滑块验证|拖动滑块|人机验证|请按住滑块，拖动到最右边|为了更好的访问体验，请进行验证/.test(bodyText)) return { error: 'BLOCKED' };"
+        },
+        {
+          "old": "return (clone.innerText || '').trim();",
+          "new": "clone.querySelectorAll('br').forEach(n => n.replaceWith('\\\\n'));\n                    clone.querySelectorAll('p, div, li, h1, h2, h3, h4, h5, h6').forEach(n => n.append('\\\\n'));\n                    return (clone.textContent || '').trim();"
+        },
+        {
+          "old": "        const data = await page.evaluate(script);",
+          "new": "        let data;\n        for (let attempt = 0; attempt < 8; attempt++) {\n            data = await page.evaluate(script) || {};\n            if (data.error || (data.title && data.description)) break;\n            if (attempt < 7) await page.wait(1);\n        }\n        if (data.error === 'BLOCKED') {\n            throw new CliError('ANTI_BOT', '51job requires browser verification; stop and ask the user to complete it');\n        }"
+        },
+        {
+          "old": "        if (!data.title) {",
+          "new": "        if (!data.title || !data.description) {"
+        },
+        {
+          "old": "title: sel('h1') || sel('.cn .name'),",
+          "new": "title: sel('.cn h1') || sel('.cn .name'),"
+        },
+        {
+          "old": "const companyA = document.querySelector('.cname a, .tCompany_sidebar .com_msg a');",
+          "new": "const companyA = document.querySelector('.cname a, .tCompany_sidebar .com_msg a, a.com_name');"
+        },
+        {
+          "old": "meta: sel('.cn .msg.ltype') || sel('.msg.ltype'),",
+          "new": "meta: [sel('.cn .type_2'), sel('.cn .type_3'), sel('.cn .type_4')].some(Boolean) ? [sel('.cn .type_2'), sel('.cn .type_3'), sel('.cn .type_4')].join('|') : sel('.cn .msg.ltype') || sel('.msg.ltype'),"
+        },
+        {
+          "old": "welfare: all('.t1 span, .jtag .t1 span'),",
+          "new": "welfare: all('.t1 span, .jtag .t1 span, .job-detail .tags .tag'),"
+        },
+        {
+          "old": "            const funcs = all('.bmsg .fp');",
+          "new": "            const companyField = icon => document.querySelector('.com_tag .' + icon)?.parentElement?.innerText?.trim() || '';\n            const structuredCompany = !!document.querySelector('.com_tag .i_flag, .com_tag .i_people, .com_tag .i_trade, .com_tag .p-l-0');\n            const funcs = all('.bmsg .fp');"
+        },
+        {
+          "old": "address: pick('上班地址'),",
+          "new": "address: pick('上班地址') || (() => {\n                    const address = document.querySelector('.bmsg address[data-address-country]')?.cloneNode(true);\n                    if (!address) return '';\n                    address.querySelectorAll('span').forEach(n => n.remove());\n                    return (address.textContent || '').trim().replace(/^完整地址[:：]\\\\s*/, '');\n                })(),"
+        },
+        {
+          "old": "companyTag: sel('.com_tag'),",
+          "new": "companyTag: sel('.com_tag'),\n                companyMetadata: structuredCompany ? {\n                    type: companyField('i_flag'),\n                    size: companyField('i_people'),\n                    industry: companyField('i_trade'),\n                } : null,"
+        },
+        {
+          "old": "companyType: tagParts[0] || '',",
+          "new": "companyType: data.companyMetadata ? data.companyMetadata.type : tagParts[0] || '',"
+        },
+        {
+          "old": "companySize: tagParts[1] || '',",
+          "new": "companySize: data.companyMetadata ? data.companyMetadata.size : tagParts[1] || '',"
+        },
+        {
+          "old": "companyIndustry: tagParts.slice(2).join(' / '),",
+          "new": "companyIndustry: data.companyMetadata ? data.companyMetadata.industry : tagParts.slice(2).join(' / '),"
+        }
+      ],
+      "previous_patched_sha256": [
+        "5231e4000783ba717b0e1b98317792532acddd0ec5710b3b000fb8894f2873c5",
+        "70d7a1e82d0fe82bc24f977168eddf55ff1988eda2a0f7684bfc9df64cbe98f9"
+      ]
+    },
+    {
+      "path": "linkedin/search.js",
+      "base_sha256": "d06229e85d586203a42cd1552d41bf8f1c70302ab37e9bc7882545de2eb5cd1f",
+      "patched_sha256": "d1375c4826bc5aac2adfb13d170c01324bbb8c613f3ae6e58d56d7af84b95bc3",
+      "replacements": [
+        {
+          "old": "function buildVoyagerSearchQuery(input) {\n    const hasFilters = input.companyIds.length ||\n        input.experienceLevels.length ||\n        input.jobTypes.length ||\n        input.datePostedValues.length ||\n        input.remoteTypes.length;\n    const parts = [\n        'origin:' + (hasFilters ? 'JOB_SEARCH_PAGE_JOB_FILTER' : 'JOB_SEARCH_PAGE_OTHER_ENTRY'),\n        'keywords:' + input.keywords,\n    ];\n    if (input.location) {\n        parts.push('locationUnion:(seoLocation:(location:' + input.location + '))');\n    }\n    const filters = [];\n    if (input.companyIds.length)\n        filters.push('company:List(' + input.companyIds.join(',') + ')');\n    if (input.experienceLevels.length)\n        filters.push('experience:List(' + input.experienceLevels.join(',') + ')');\n    if (input.jobTypes.length)\n        filters.push('jobType:List(' + input.jobTypes.join(',') + ')');\n    if (input.datePostedValues.length)\n        filters.push('timePostedRange:List(' + input.datePostedValues.join(',') + ')');\n    if (input.remoteTypes.length)\n        filters.push('workplaceType:List(' + input.remoteTypes.join(',') + ')');\n    if (filters.length)\n        parts.push('selectedFilters:(' + filters.join(',') + ')');\n    parts.push('spellCorrectionEnabled:true');\n    return '(' + parts.join(',') + ')';\n}\nfunction buildVoyagerUrl(input, offset, count) {\n    const params = new URLSearchParams({\n        decorationId: 'com.linkedin.voyager.dash.deco.jobs.search.JobSearchCardsCollection-220',\n        count: String(count),\n        q: 'jobSearch',\n    });\n    const query = encodeURIComponent(buildVoyagerSearchQuery(input))\n        .replace(/%3A/gi, ':')\n        .replace(/%2C/gi, ',')\n        .replace(/%28/gi, '(')\n        .replace(/%29/gi, ')');\n    return '/voyager/api/voyagerJobsDashJobCards?' + params.toString() + '&query=' + query + '&start=' + offset;\n}\n",
+          "new": "// Encode leaf values before adding Rest.li's structural punctuation. Encoding\n// the completed query and then restoring every comma corrupts e.g. Shanghai, China.\nfunction encodeRestliValue(value) {\n    return encodeURIComponent(String(value)).replace(/[!'()*]/g,\n        char => '%' + char.charCodeAt(0).toString(16).toUpperCase());\n}\nfunction buildVoyagerSearchQuery(input) {\n    const hasFilters = input.companyIds.length ||\n        input.experienceLevels.length ||\n        input.jobTypes.length ||\n        input.datePostedValues.length ||\n        input.remoteTypes.length;\n    const parts = [\n        'origin:' + (hasFilters ? 'JOB_SEARCH_PAGE_JOB_FILTER' : 'JOB_SEARCH_PAGE_OTHER_ENTRY'),\n        'keywords:' + encodeRestliValue(input.keywords),\n    ];\n    if (input.location) {\n        parts.push('locationUnion:(seoLocation:(location:' + encodeRestliValue(input.location) + '))');\n    }\n    const filters = [];\n    if (input.companyIds.length)\n        filters.push('company:List(' + input.companyIds.join(',') + ')');\n    if (input.experienceLevels.length)\n        filters.push('experience:List(' + input.experienceLevels.join(',') + ')');\n    if (input.jobTypes.length)\n        filters.push('jobType:List(' + input.jobTypes.join(',') + ')');\n    if (input.datePostedValues.length)\n        filters.push('timePostedRange:List(' + input.datePostedValues.join(',') + ')');\n    if (input.remoteTypes.length)\n        filters.push('workplaceType:List(' + input.remoteTypes.join(',') + ')');\n    if (filters.length)\n        parts.push('selectedFilters:(' + filters.join(',') + ')');\n    parts.push('spellCorrectionEnabled:true');\n    return '(' + parts.join(',') + ')';\n}\nfunction buildVoyagerUrl(input, offset, count) {\n    const params = new URLSearchParams({\n        decorationId: 'com.linkedin.voyager.dash.deco.jobs.search.JobSearchCardsCollection-221',\n        count: String(count),\n        q: 'jobSearch',\n    });\n    const query = buildVoyagerSearchQuery(input);\n    return '/voyager/api/voyagerJobsDashJobCards?' + params.toString() + '&query=' + query + '&start=' + offset;\n}\n"
+        }
+      ]
+    },
+    {
+      "path": "nowcoder/detail.js",
+      "base_sha256": "7837e8e1363bc3d1326d18e2b4810e19b6feef11881ed0cf0e625a9e86d51b21",
+      "patched_sha256": "e69ded4f90e445d883fd2004de0661174193595afb607a836cada2149980cd97",
+      "replacements": [
+        {
+          "old": "import { cli } from '@jackwener/opencli/registry';\n\ncli({\n    site: 'nowcoder',\n    name: 'detail',\n    access: 'read',\n    description: 'Post detail view (supports ID / UUID / URL)',\n    domain: 'www.nowcoder.com',\n    args: [\n        { name: 'id', positional: true, required: true, help: 'Post ID, UUID, or URL' },\n    ],\n    columns: ['title', 'author', 'school', 'content', 'likes', 'comments', 'views', 'time', 'location'],\n    pipeline: [\n        { navigate: 'https://www.nowcoder.com' },\n        { evaluate: `(async () => {\n  const raw = \\${{ args.id | json }};\n  const base = 'https://gw-c.nowcoder.com';\n  const strip = (html) => (html || '').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').trim();\n\n  let id = raw;\n  const urlMatch = raw.match(/discuss\\\\/(\\\\d+)/);\n  if (urlMatch) id = urlMatch[1];\n\n  let data = null;\n\n  if (/[a-f]/.test(id) && id.length > 20) {\n    const r = await fetch(base + '/api/sparta/detail/moment-data/detail/' + id, {credentials: 'include'});\n    const d = await r.json();\n    if (d.success && d.data) data = d.data;\n  }\n\n  if (!data && /^\\\\d+$/.test(id)) {\n    const r = await fetch(base + '/api/sparta/detail/content-data/detail/' + id, {credentials: 'include'});\n    const d = await r.json();\n    if (d.success && d.data) data = d.data;\n  }\n\n  if (!data && /^\\\\d+$/.test(id)) {\n    const r = await fetch(base + '/api/sparta/detail/moment-data/detail/' + id, {credentials: 'include'});\n    const d = await r.json();\n    if (d.success && d.data) data = d.data;\n  }\n\n  if (!data) throw new Error('Post not found: ' + id);\n\n  const user = data.userBrief || {};\n  const freq = data.frequencyData || {};\n  return [{\n    title: data.title || '(untitled)',\n    author: user.nickname || '',\n    school: user.educationInfo || '',\n    content: strip(data.content || '').substring(0, 500),\n    likes: freq.likeCnt || 0,\n    comments: freq.commentCnt || freq.totalCommentCnt || 0,\n    views: freq.viewCnt || 0,\n    time: data.createdAt ? new Date(data.createdAt).toISOString().slice(0, 19) : '',\n    location: data.ip4Location || '',\n  }];\n})()\n` },\n    ],\n});\n",
+          "new": "import { cli } from '@jackwener/opencli/registry';\n\ncli({\n    site: 'nowcoder',\n    name: 'detail',\n    access: 'read',\n    description: 'Post detail view (supports ID / UUID / URL)',\n    domain: 'www.nowcoder.com',\n    args: [\n        { name: 'id', positional: true, required: true, help: 'Post ID, UUID, or URL' },\n    ],\n    columns: ['title', 'author', 'school', 'content', 'likes', 'comments', 'views', 'time', 'location', 'url', 'content_complete', 'content_access'],\n    pipeline: [\n        { navigate: 'https://www.nowcoder.com' },\n        { evaluate: `(async () => {\n  const raw = \\${{ args.id | json }};\n  const input = String(raw).trim();\n  const base = 'https://gw-c.nowcoder.com';\n  const strip = (html) => String(html || '')\n    .replace(/<br\\\\s*\\\\/?\\\\s*>|<\\\\/(?:p|div|li|h[1-6])\\\\s*>/gi, '\\\\n')\n    .replace(/<[^>]+>/g, '')\n    .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')\n    .replace(/&amp;/g, '&').replace(/\\\\n[ \\\\t]*\\\\n+/g, '\\\\n\\\\n').trim();\n\n  let id = input;\n  if (/^https?:\\\\/\\\\//i.test(input)) {\n    const url = new URL(input);\n    if (!/^(?:www\\\\.)?nowcoder\\\\.com$/i.test(url.hostname) || url.username || url.password)\n      throw new Error('Expected a nowcoder.com post URL');\n    const match = url.pathname.match(/^\\\\/(?:discuss\\\\/(\\\\d+)|feed\\\\/main\\\\/detail\\\\/([a-f0-9]{32}))\\\\/?$/i);\n    if (!match) throw new Error('Unsupported Nowcoder post URL');\n    id = match[1] || match[2];\n  }\n  if (!/^\\\\d+$/.test(id) && !/^[a-f0-9]{32}$/i.test(id))\n    throw new Error('Expected a numeric Nowcoder post ID, a 32-character UUID, or a post URL');\n\n  async function readDetail(kind) {\n    const response = await fetch(base + '/api/sparta/detail/' + kind + '/detail/' + id,\n      {credentials: 'include'});\n    let result;\n    try { result = await response.json(); }\n    catch { throw new Error('Nowcoder detail HTTP ' + response.status + ': response is not valid JSON'); }\n    if (!response.ok)\n      throw new Error('Nowcoder detail HTTP ' + response.status + ': ' + (result.msg || response.statusText));\n    if (result.success && result.data) return result.data;\n    // A missing post is the only response that permits the other numeric post type.\n    // Preserve login, verification and other API errors instead of hiding them.\n    if (/内容不存在|帖子不存在|post not found/i.test(String(result.msg || ''))) return null;\n    throw new Error(result.msg || 'Nowcoder detail returned an incomplete response');\n  }\n\n  let data;\n  if (/^[a-f0-9]{32}$/i.test(id)) {\n    data = await readDetail('moment-data');\n  } else {\n    data = await readDetail('content-data');\n    if (!data) data = await readDetail('moment-data');\n  }\n  if (!data) throw new Error('Post not found: ' + id);\n\n  const user = data.userBrief || {};\n  const freq = data.frequencyData || {};\n  const timestamp = data.createdAt ?? data.createTime;\n  const restricted = data.hasLook === false || data.showMessage?.showContent === false;\n  return [{\n    title: data.title || '(untitled)',\n    author: user.nickname || '',\n    school: user.educationInfo || '',\n    content: strip(data.content || ''),\n    content_complete: !restricted,\n    content_access: restricted ? (data.blogZhuanlan ? 'paid_preview' : 'restricted') : 'full',\n    likes: freq.likeCnt || 0,\n    comments: freq.commentCnt || freq.totalCommentCnt || 0,\n    views: freq.viewCnt || 0,\n    time: timestamp != null ? new Date(timestamp).toISOString().slice(0, 19) : '',\n    location: data.ip4Location || '',\n    url: /^https?:\\\\/\\\\//i.test(input) ? input :\n      'https://www.nowcoder.com/' + (/^\\\\d+$/.test(id) ? 'discuss/' : 'feed/main/detail/') + id,\n  }];\n})()\n` },\n    ],\n});\n"
+        }
+      ]
+    },
+    {
+      "path": "nowcoder/recommend.js",
+      "base_sha256": "a059de7e7ba1555d9450bf82552e0deb5cd08f147983d448ed84da784d6c8dc9",
+      "patched_sha256": "dcf635abbf39513df5d3a404ee2cb43d0246d7152e2bb1758e9345f531dce9c0",
+      "replacements": [
+        {
+          "old": "item.momentData?.uuid || item.longContentData?.uuid || item.contentData?.uuid || item.contentId || ''",
+          "new": "item.momentData?.uuid || item.longContentData?.id || item.contentData?.id || item.contentId || ''"
+        }
+      ]
+    },
+    {
+      "path": "nowcoder/experience.js",
+      "base_sha256": "48e9750a6f809d938c68a57f53999f7235c5d54ab2ffbc608f5015a04a8690ae",
+      "patched_sha256": "eb6f5dac4fb4a9227664211e6a4e6322b54b7a27dcf7ed7dd1494414ceebd973",
+      "replacements": [
+        {
+          "old": "item.contentData?.uuid || item.contentData?.id || item.contentId || ''",
+          "new": "item.contentData?.id || item.contentId || ''"
+        }
+      ]
+    },
+    {
+      "path": "nowcoder/search.js",
+      "base_sha256": "a28538255b0c8693e746a25f2ab24b04d79d58f898ff0bd8f2eeb644b36969c1",
+      "patched_sha256": "dee09defd05110bdd2b2877e916aea6820d7890c112654427be7a1454b226c15",
+      "replacements": [
+        {
+          "old": "const uuid = moment.uuid || contentData.uuid || '';\n    const id = data.contentId || '';",
+          "new": "const uuid = moment.uuid || '';\n    const id = contentData.id || data.contentId || '';"
+        }
+      ]
+    },
+    {
+      "path": "linkedin/job-detail.js",
+      "base_sha256": "8f0cdc3619aeb8b4d74806cf226fb2a5f77c5fd4e1594f3d894f0dd1171dc2b9",
+      "patched_sha256": "15a2f8db8209b212ff578c1c19b63a271b4349a798f7ace86896f37296c516a7",
+      "replacements": [
+        {
+          "old": "function buildExtractionScript() {\n  return String.raw`(() => {",
+          "new": "function buildExtractionScript(requestedId) {\n  return String.raw`(() => {\n    const requestedId = ${JSON.stringify(String(requestedId || ''))};"
+        },
+        {
+          "old": "      const codes = Array.from(document.querySelectorAll('code[id^=\"bpr-guid-\"]'));\n      for (const code of codes) {\n        let payload;\n        try { payload = JSON.parse(code.textContent || '{}'); } catch { continue; }\n        const included = Array.isArray(payload.included) ? payload.included : [];\n        const topCard = included.find((item) => item && (item.jobPostingTitle || item.primaryDescription || item.tertiaryDescription));\n        if (!topCard) continue;\n        const apply = included.find((item) => item && item.companyApplyUrl);\n        const workplace = included.find((item) => item && (item.workplaceTypeEnum || item.localizedName));\n        const company = included.find((item) => item && item.name && /company/i.test(String(item.entityUrn || item.$type || '')));",
+          "new": "      const pageId = new URL(location.href).searchParams.get('currentJobId')\n        || location.pathname.match(/^\\/jobs\\/view\\/(\\d+)/)?.[1];\n      const jobId = requestedId || pageId;\n      const jobUrn = 'urn:li:fsd_jobPosting:' + jobId;\n      const included = Array.from(document.querySelectorAll('code[id^=\"bpr-guid-\"]')).flatMap((code) => {\n        try {\n          const payload = JSON.parse(code.textContent || '{}');\n          return Array.isArray(payload.included) ? payload.included : [];\n        } catch { return []; }\n      });\n      const postings = included.filter((item) => item?.entityUrn === jobUrn);\n      const posting = postings.find((item) => item.description?.text);\n      const topCard = included.find((item) => item?.jobPostingTitle && item['*jobPosting'] === jobUrn);\n      if (topCard) {\n        const apply = included.find((item) => item?.companyApplyUrl\n          && (item.entityUrn === jobUrn || item.entityUrn === 'urn:li:fsd_jobSeekerApplicationDetail:' + jobId));\n        const workplaceUrns = postings.flatMap((item) => item['*jobWorkplaceTypes'] || item['*workplaceTypesResolutionResults'] || []);\n        const workplace = included.find((item) => workplaceUrns.includes(item?.entityUrn));\n        const companyUrn = postings.map((item) => item.companyDetails?.jobCompany?.['*company']).find(Boolean);\n        const company = included.find((item) => item?.entityUrn === companyUrn);"
+        },
+        {
+          "old": "          description: '',",
+          "new": "          description: String(posting?.description?.text || ''),\n          has_posting_record: postings.length > 0,"
+        },
+        {
+          "old": "if (inline && inline.title) return { ...inline, description: clean(inline.description || renderedDescription) };",
+          "new": "const pageId = new URL(location.href).searchParams.get('currentJobId')\n      || location.pathname.match(/^\\/jobs\\/view\\/(\\d+)/)?.[1];\n    if (requestedId && String(pageId || '') !== String(requestedId)) {\n      return { landed_on: String(pageId || ''), requested: String(requestedId) };\n    }\n    if (inline && inline.title) return { ...inline,\n      description: inline.description || (inline.has_posting_record ? '' : renderedDescription) };"
+        },
+        {
+          "old": "  if (!title) throw new CommandExecutionError('LinkedIn job detail could not find a job title');",
+          "new": "  if (row.requested) {\n    throw new CommandExecutionError('LinkedIn navigation landed on '\n      + (row.landed_on ? 'another job (' + row.landed_on + ')' : 'a page with no job id')\n      + ' instead of ' + row.requested + '; no detail was read');\n  }\n  if (!title) throw new CommandExecutionError('LinkedIn job detail could not find a job title');\n  const description = String(row.description || '').replace(/[\\u00a0\\u202f]+/g, ' ').trim();\n  if (!description) throw new CommandExecutionError('LinkedIn job description is empty or still loading; no complete detail extracted');"
+        },
+        {
+          "old": "    description: normalizeWhitespace(row.description),",
+          "new": "    description,"
+        },
+        {
+          "old": "    await assertLinkedInAuthenticated(page, 'LinkedIn job-detail');\n    const row = unwrapEvaluateResult(await page.evaluate(buildExtractionScript()));\n    return [normalizeDetail(row)];",
+          "new": "    const requestedId = String(jobUrl.match(/\\/jobs\\/view\\/(\\d+)/)?.[1]\n      || new URL(jobUrl).searchParams.get('currentJobId') || '');\n    let row;\n    for (let attempt = 0; attempt < 6; attempt++) {\n      await assertLinkedInAuthenticated(page, 'LinkedIn job-detail');\n      row = unwrapEvaluateResult(await page.evaluate(buildExtractionScript(requestedId)));\n      if (normalizeWhitespace(row?.title) && normalizeWhitespace(row?.description)) break;\n      if (attempt < 5) await page.wait(2);\n    }\n    return [normalizeDetail(row)];"
+        },
+        {
+          "old": "export const __test__ = {\n",
+          "new": "export const __test__ = {\n  buildExtractionScript,\n"
+        }
+      ]
+    },
+    {
+      "path": "51job/utils.js",
+      "base_sha256": "0f13f102a9d218a96aa3616af87975b715c59f468ed0b2c458001f85822229d9",
+      "patched_sha256": "76afb4a63a94aa6024baa27311e8862d1ac705a20273e3551acf280439fd3dd0",
+      "replacements": [
+        {
+          "old": "export const SALARY_CODES = {\n    '不限': '',\n    '2千以下': '01', '2-3千': '02', '3-4.5千': '03',\n    '4.5-6千': '04', '6-8千': '05', '8k-1万': '06', '8-10k': '06',\n    '1-1.5万': '07', '10-15k': '07',\n    '1.5-2万': '08', '15-20k': '08',\n    '2-3万': '09', '20-30k': '09',\n    '3-5万': '10', '30-50k': '10',\n    '5万以上': '11', '50k以上': '11',\n};",
+          "new": "export const SALARY_CODES = {\n    '不限': '',\n    '8千以下': '201', '8k以下': '201',\n    '0.8-1万': '06', '8k-1万': '06', '8-10k': '06',\n    '1-1.5万': '07', '10-15k': '07',\n    '1.5-2万': '08', '15-20k': '08',\n    '2-3万': '09', '20-30k': '09',\n    '3-4万': '10', '30-40k': '10',\n    '4-5万': '11', '40-50k': '11',\n    '5万以上': '12', '50k以上': '12',\n};"
+        },
+        {
+          "old": "export const WORKYEAR_CODES = {\n    '不限': '',\n    '在校生': '01', '应届': '02', '1年以下': '03',\n    '1-3年': '04', '3-5年': '05', '5-7年': '06',\n    '7-10年': '07', '10年以上': '08',\n};",
+          "new": "export const WORKYEAR_CODES = {\n    '不限': '',\n    '在校生/应届生': '01', '在校生': '01', '应届生': '01', '应届': '01',\n    '1-3年': '02', '3-5年': '03', '5-10年': '04',\n    '10年以上': '05', '无需经验': '06',\n};"
+        },
+        {
+          "old": "export const COMPANY_TYPE_CODES = {\n    '不限': '',\n    '外资': '01', '欧美': '0101', '日韩': '0102',\n    '合资': '02', '国企': '03', '民营': '04',\n    '上市公司': '05', '创业公司': '06', '事业单位': '07',\n    '非营利': '08', '政府': '09',\n};",
+          "new": "export const COMPANY_TYPE_CODES = {\n    '不限': '',\n    '外资（欧美）': '01', '外资(欧美)': '01', '欧美': '01',\n    '外资（非欧美）': '02', '外资(非欧美)': '02', '非欧美': '02',\n    '合资': '03', '国企': '04', '民营': '05', '外企代表处': '06',\n    '政府机关': '07', '政府': '07', '事业单位': '08',\n    '非营利组织': '09', '非营利': '09', '已上市': '10', '上市公司': '10',\n    '创业公司': '11',\n};"
+        },
+        {
+          "old": "export const COMPANY_SIZE_CODES = {\n    '不限': '',\n    '少于50': '01', '50以下': '01',\n    '50-150': '02', '150-500': '03',\n    '500-1000': '04', '1000-5000': '05',\n    '5000-10000': '06', '10000以上': '07',\n};",
+          "new": "export const COMPANY_SIZE_CODES = {\n    '不限': '',\n    '少于50人': '01', '少于50': '01', '50以下': '01',\n    '50-150人': '02', '50-150': '02', '150-500人': '03', '150-500': '03',\n    '500-1000人': '04', '500-1000': '04', '1000-5000人': '05', '1000-5000': '05',\n    '5000-10000人': '06', '5000-10000': '06', '10000人以上': '07', '10000以上': '07',\n};"
+        },
+        {
+          "old": "'大专': '03', '本科': '04', '硕士': '05', '博士': '06',",
+          "new": "'大专': '03', '本科': '04', '硕士': '05', '博士': '06', '无学历要求': '07',"
+        },
+        {
+          "old": "    for (const [k, v] of Object.entries(table)) {\n        if (typeof k === 'string' && k.includes(s)) return v;\n    }\n    return fallback;",
+          "new": "    throw new CliError('INVALID_ARGUMENT', `Unknown or ambiguous filter \"${s}\"`,\n        'Use an exact supported label or code: ' + Object.keys(table).join(' / '));"
+        }
+      ]
+    },
+    {
+      "path": "boss/detail.js",
+      "base_sha256": "240ab62655cc14edd0293a352bcce9bb8d5b1d95c88b6d3e2ad2037207ec4153",
+      "patched_sha256": "1162359688f9c4213f2102a3384eaa23493bd42fd09d24bb5f67d052b795788e",
+      "replacements": [
+        {
+          "old": "const element = root.querySelector(selector);",
+          "new": "const element = root?.querySelector(selector);"
+        },
+        {
+          "old": "Array.from(root.querySelectorAll(selector))",
+          "new": "Array.from(root?.querySelectorAll(selector) || [])"
+        },
+        {
+          "old": "const title = first(['.job-primary .name h1', '.job-primary h1', 'h1[title]']);",
+          "new": "const title = first(['.job-primary .name h1', '.job-primary h1', '.job-banner h1', 'h1[title]'])\n        || (/^\\/job_detail\\//.test(window.location.pathname) ? text('h1') : '');"
+        },
+        {
+          "old": "async function captureJobDetail(page, jobId) {\n    const url = `https://www.zhipin.com/job_detail/${encodeURIComponent(jobId)}.html`;\n    await navigateTo(page, 'https://www.zhipin.com/web/geek/jobs', 2);\n    for (let navigationAttempt = 0; navigationAttempt < 2; navigationAttempt++) {\n        await navigateTo(page, url, 5);\n        for (let attempt = 0; attempt < 5; attempt++) {\n            try {\n                const domRow = await readRenderedPage(page, jobId);\n                if (domRow?.name && domRow?.description && domRow?.company) return domRow;\n            } catch { /* wait for a complete render */ }\n            if (attempt < 4) await page.wait(1);\n        }\n    }\n    // The retry loop above swallows every read error, so without this check a\n    // session that got bounced to the login wall reports \"incomplete posting\".\n    // The API path this command replaced classified that as AuthRequiredError\n    // via assertOk; keep that signal rather than losing it to the UI rewrite.\n    if (await isLoginWall(page)) {\n        throw new AuthRequiredError(BOSS_DOMAIN, 'BOSS redirected the job detail page to the login flow');\n    }\n    throw new CommandExecutionError('BOSS detail page did not expose a complete job posting');\n}\n",
+          "new": "async function captureJobDetail(page, jobId) {\n    const url = `https://www.zhipin.com/job_detail/${encodeURIComponent(jobId)}.html`;\n    await navigateTo(page, url, 2);\n    for (let attempt = 0; attempt < 5; attempt++) {\n        if (await isLoginWall(page)) {\n            throw new AuthRequiredError(BOSS_DOMAIN, 'BOSS detail page requires login');\n        }\n        const domRow = await readRenderedPage(page, jobId);\n        if (domRow?.name && domRow?.description && domRow?.company) return domRow;\n        if (attempt < 4) await page.wait(1);\n    }\n    throw new CommandExecutionError('BOSS detail page did not expose a complete job posting');\n}\n"
+        },
+        {
+          "old": "                return !!document.querySelector('.sign-form, .login-card, [class*=\"login-register\"]');",
+          "new": "                return [...document.querySelectorAll('.sign-form, .login-card, [class*=\"login-register\"]')]\n                    .some(element => element.getClientRects().length\n                        && getComputedStyle(element).visibility !== 'hidden'\n                        && getComputedStyle(element).visibility !== 'collapse');"
+        },
+        {
+          "old": "const sideFacts = texts('.job-sider p, .job-sider a[href^=\"/i\"]')",
+          "new": "const companyBlock = document.querySelector('.job-sider .sider-company');\n    const sideFacts = texts('p, a[href^=\"/i\"]', companyBlock)"
+        }
+      ]
+    }
+  ]
+}

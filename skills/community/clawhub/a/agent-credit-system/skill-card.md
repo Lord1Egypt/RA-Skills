@@ -1,46 +1,69 @@
-## Description: <br>
-AI agents borrow USDC based on their Moltbook karma score, with credit tiers from Bronze to Diamond and zero interest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agents borrow USDC based on their Moltbook karma score. Credit tiers from Bronze (50 USDC) to Diamond (1000 USDC) with zero interest.
 
-## Publisher: <br>
-[abdhilabs](https://clawhub.ai/user/abdhilabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[abdhilabs](https://clawhub.ai/user/abdhilabs)
 
-## Use Case: <br>
-External agents and developers use KarmaBank to register Moltbook identities, check reputation-based credit limits, borrow or repay USDC, and inspect loan history through a CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged as suspicious because it involves financial wallet operations and exposed real-looking credentials. <br>
-Mitigation: Review before installing, use only sandbox or test Circle credentials, and rotate or ignore exposed Moltbook credentials. <br>
-Risk: Helper scripts may print or register secrets. <br>
-Mitigation: Do not run secret-generation or registration helpers unless their behavior and destination services have been reviewed. <br>
-Risk: The product claims zero-interest lending behavior that may affect real-funds use. <br>
-Mitigation: Verify the actual loan terms and funds flow before using the skill with real assets. <br>
+## Use Case:
 
+External developers and agent operators use KarmaBank to register Moltbook-named agents, check reputation-based credit limits, and run CLI workflows for testnet USDC borrowing, repayment, history, and wallet setup.
 
-## Reference(s): <br>
-- [KarmaBank ClawHub page](https://clawhub.ai/abdhilabs/agent-credit-system) <br>
-- [Project homepage](https://github.com/openclaw/agent-credit-system) <br>
-- [Moltbook](https://moltbook.com) <br>
-- [Moltbook API base](https://www.moltbook.com/api/v1) <br>
-- [Circle Console](https://console.circle.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing CLI guidance for registration, credit checks, borrowing, repayment, wallet setup, and loan history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill may be installed or run in an environment with real Circle credentials or funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and use only isolated testnet or sandbox credentials.
+
+Risk: The npm install path includes a local file dependency that should be reviewed before execution.
+
+Mitigation: Review local dependencies before running npm install, or disable install scripts until dependencies are trusted.
+
+Risk: Pasting API keys or entity secrets into shell commands can expose credentials through shell history or logs.
+
+Mitigation: Use environment files or a secret manager and avoid pasting secrets directly into commands.
+
+Risk: The file-backed loan ledger is not suitable for real accounting.
+
+Mitigation: Use the ledger only for test or demo workflows until persistence, audit trails, and fail-closed transfer handling are implemented.
+
+Risk: Borrowing depends on Moltbook identity and reputation signals that require verification.
+
+Mitigation: Verify Moltbook identity ownership and production API behavior before approving loans.
+
+## Reference(s):
+
+- [KarmaBank ClawHub Page](https://clawhub.ai/abdhilabs/skills/agent-credit-system)
+- [KarmaBank Homepage](https://github.com/openclaw/agent-credit-system)
+- [Moltbook](https://moltbook.com)
+- [Moltbook API Base](https://www.moltbook.com/api/v1)
+- [Circle Console](https://console.circle.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include npm, KarmaBank CLI, Circle, and Moltbook setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

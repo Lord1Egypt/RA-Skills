@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents audit and optimize non-signup forms such as lead capture, contact, demo request, application, survey, and checkout forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to optimize any form that is not signup/registration, including lead capture forms, contact forms, demo request forms, application forms, survey forms, or checkout forms.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, growth, product, and UX teams use this skill to improve completion rates for non-signup forms while preserving the business data they need. It guides form audits, field reduction, layout choices, error handling, mobile optimization, and test hypotheses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics and form optimization work can involve personal or lead data. <br>
-Mitigation: Apply consent, retention, and data-minimization practices before using tracking suggestions or captured form data. <br>
-Risk: Local product marketing context may contain sensitive business or customer information. <br>
-Mitigation: Keep local context files free of secrets and any information the agent should not use. <br>
+## Use Case:
 
+External users, marketing teams, growth teams, and conversion-focused practitioners use this skill to audit non-signup forms, reduce form friction, improve completion rates, and define A/B test ideas. It provides guidance for field selection, layout, validation, mobile behavior, submit states, trust cues, and measurement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-form-cro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown with structured audit findings, recommendations, and test hypotheses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized fixes, recommended form design, copy guidance, error-message guidance, and A/B test ideas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Recommended form changes could affect collection of personal, payment, or regulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations with product, privacy, legal, or compliance owners before applying them to production forms.
+
+Risk: The skill may read local product marketing context files when present.
+
+Mitigation: Use only approved business context and avoid providing confidential or sensitive data that is not needed for the form optimization task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-form-cro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recommendations with structured audit findings, recommended form design, and test hypotheses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations should be reviewed before production form changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

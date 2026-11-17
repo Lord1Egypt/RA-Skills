@@ -1,0 +1,371 @@
+{
+  "format": "preipo-skill-report-index/v1",
+  "reports": {
+    "JAGIL": {
+      "title": "Agility Robotics 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/agility-robotics-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JAGIL-PRE": {
+      "title": "Agility Robotics 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/agility-robotics-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JANDL": {
+      "title": "Anduril 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/anduril-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.2"
+    },
+    "JANDL-PRE": {
+      "title": "Anduril 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/anduril-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.2"
+    },
+    "JANTH": {
+      "title": "Anthropic 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/anthropic-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JANTH-PRE": {
+      "title": "Anthropic 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/anthropic-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JANY": {
+      "title": "Cursor / Anysphere 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/cursor-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JANY-PRE": {
+      "title": "Cursor / Anysphere 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/cursor-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JAPTK": {
+      "title": "Apptronik 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/apptronik-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JAPTK-PRE": {
+      "title": "Apptronik 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/apptronik-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JAXIO-PRE": {
+      "title": "Axiom Space 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/axiom-space-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JCBRS": {
+      "title": "Cerebras 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/cerebras-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JCBRS-PRE": {
+      "title": "Cerebras 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/cerebras-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JCHAOS": {
+      "title": "CHAOS Industries 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/chaos-industries-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JCRSO": {
+      "title": "Crusoe 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/crusoe-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JCRSO-PRE": {
+      "title": "Crusoe 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/crusoe-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JDATA": {
+      "title": "Databricks 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/databricks-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JDATA-PRE": {
+      "title": "Databricks 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/databricks-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JDISC": {
+      "title": "Discord 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/discord-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JDISC-PRE": {
+      "title": "Discord 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/discord-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JELVN-PRE": {
+      "title": "ElevenLabs 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/elevenlabs-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JFIGR": {
+      "title": "Figure AI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/figure-ai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JFIGR-PRE": {
+      "title": "Figure AI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/figure-ai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JHELN-PRE": {
+      "title": "Helion 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/helion-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JHUGF-PRE": {
+      "title": "Hugging Face 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/hugging-face-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JHVAI": {
+      "title": "Harvey 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/harvey-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JKALS": {
+      "title": "Kalshi 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/kalshi-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JKALS-PRE": {
+      "title": "Kalshi 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/kalshi-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JKRAK": {
+      "title": "Kraken 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/kraken-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JKRAK-PRE": {
+      "title": "Kraken 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/kraken-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JLAMB-PRE": {
+      "title": "Lambda 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/lambda-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JMERC": {
+      "title": "Mercury 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/mercury-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JNOTE": {
+      "title": "Notion 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/notion-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JNOTE-PRE": {
+      "title": "Notion 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/notion-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JNRLK-PRE": {
+      "title": "Neuralink 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/neuralink-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JOPAI-PRE": {
+      "title": "OpenAI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/openai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JPEPX": {
+      "title": "Perplexity 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/perplexity-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JPEPX-PRE": {
+      "title": "Perplexity 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/perplexity-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JPOLY": {
+      "title": "Polymarket 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/polymarket-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JPSIQ": {
+      "title": "PsiQuantum 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/psiquantum-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JPSIQ-PRE": {
+      "title": "PsiQuantum 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/psiquantum-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JREDW": {
+      "title": "Redwood Materials 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/redwood-materials-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JREDW-PRE": {
+      "title": "Redwood Materials 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/redwood-materials-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JREPL": {
+      "title": "Replit 私募股权投研报告（公开初筛版） | Pre-IPO 观察站",
+      "href": "/reports/replit-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v3.1"
+    },
+    "JRFLX": {
+      "title": "Reflection AI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/reflection-ai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JRIPL": {
+      "title": "Ripple 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/ripple-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JRIPL-PRE": {
+      "title": "Ripple 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/ripple-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSAMB-PRE": {
+      "title": "SambaNova Systems 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/sambanova-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSESA-PRE": {
+      "title": "Sesame AI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/sesame-ai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSHLD": {
+      "title": "Shield AI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/shield-ai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSHLD-PRE": {
+      "title": "Shield AI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/shield-ai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSPAX": {
+      "title": "SpaceX 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/spacex-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSPAX_2": {
+      "title": "SpaceX 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/spacex-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSRNC-PRE": {
+      "title": "Saronic 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/saronic-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSTRP": {
+      "title": "Stripe 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/stripe-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JSTRP-PRE": {
+      "title": "Stripe 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/stripe-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JVRCL": {
+      "title": "Vercel 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/vercel-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JVRCL-PRE": {
+      "title": "Vercel 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/vercel-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JWRLD-PRE": {
+      "title": "World Labs 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/world-labs-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JWYMO-PRE": {
+      "title": "Waymo 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/waymo-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    },
+    "JXAI": {
+      "title": "xAI 私募股权投研报告（公开初筛版）｜Pre-IPO 观察站",
+      "href": "/reports/xai-investment-research.html",
+      "asOf": "2026-09-01",
+      "version": "v1.1"
+    }
+  }
+}

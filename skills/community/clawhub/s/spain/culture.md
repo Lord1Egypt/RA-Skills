@@ -2,173 +2,173 @@
 
 ## Eating Times (Critical)
 
-Esto sí importa. No es opcional.
+This genuinely matters. It's not optional.
 
-| Comida | Hora | Qué pasa si llegas antes |
+| Meal | Time | What happens if you arrive early |
 |--------|------|--------------------------|
-| Desayuno | 7-10 | OK |
-| Comida | 14:00-16:00 | Cocina cerrada, no hay comida |
-| Cena | 21:00-23:00 | Cocina cerrada hasta las 20:30 mínimo |
+| Breakfast | 7-10 | OK |
+| Lunch | 14:00-16:00 | Kitchen closed, no food |
+| Dinner | 21:00-23:00 | Kitchen closed until 20:30 at the earliest |
 
-**En agosto:** Muchos restaurantes cierran TODO EL MES. Madrid se vacía. Reserva con antelación o pasarás hambre.
+**In August:** Many restaurants close for THE WHOLE MONTH. Madrid empties out. Book ahead or you'll go hungry.
 
-**Lunes:** Muchos restaurantes cierran. Planifica.
+**Mondays:** Many restaurants close. Plan around it.
 
-## Bebidas (Cómo no parecer turista)
+## Drinks (How Not to Look Like a Tourist)
 
-| Pides esto | Pareces | Pide esto |
+| Order this | You look | Order this instead |
 |------------|---------|-----------|
-| Sangría | Turista | Tinto de verano (vino + Casera) |
-| Cerveza | Normal | Caña (200ml de barril) |
-| Café con leche después de comer | Raro | Cortado o solo |
+| Sangría | Tourist | Tinto de verano (wine + lemon soda) |
+| Cerveza (beer) | Normal | Caña (200ml draft) |
+| Café con leche after a meal | Odd | Cortado or espresso |
 
-**Propina:** NO obligatoria. Redondear o dejar monedas sueltas si el servicio fue bueno. No calcules 15-20% como en EEUU.
+**Tipping:** NOT mandatory. Round up or leave loose change if the service was good. Don't calculate 15-20% like in the US.
 
-## Menú del Día (El hack definitivo)
+## Menú del Día (The Ultimate Hack)
 
-**Precio:** €10-17 por tres platos + bebida + postre + café
+**Price:** €10-17 for three courses + drink + dessert + coffee
 
-**Cuándo:** Solo comidas, lunes a viernes
+**When:** Lunch only, Monday to Friday
 
-**Dónde encontrarlo:** Casi cualquier bar/restaurante de barrio. Pregunta "¿Tienen menú del día?"
+**Where to find it:** Almost any neighborhood bar/restaurant. Ask "¿Tienen menú del día?"
 
-**Por qué es increíble:** Comes como un local, por la mitad de precio, comida casera recién hecha.
+**Why it's amazing:** You eat like a local, for half the price, freshly made home-style food.
 
-## Horarios Comerciales
+## Business Hours
 
-| Tipo | Horario típico | Trampa |
+| Type | Typical hours | Trap |
 |------|----------------|--------|
-| Supermercado grande | 9-21 continuo | Domingos cerrados (muchos) |
-| Tienda pequeña | 10-14, 17-20:30 | Cierra a mediodía |
-| Bancos | 8:30-14:00 | Solo mañanas, viernes hasta 14:00 |
-| Farmacia | 9:30-14, 17-20:30 | Busca "farmacia de guardia" 24h |
+| Large supermarket | 9-21 continuous | Closed Sundays (many) |
+| Small shop | 10-14, 17-20:30 | Closes at midday |
+| Banks | 8:30-14:00 | Mornings only, Friday until 14:00 |
+| Pharmacy | 9:30-14, 17-20:30 | Look for a 24h "farmacia de guardia" |
 
-**Agosto:** Asume que TODO cierra. Tiendas pequeñas, restaurantes de barrio, algunos supermercados. No es exageración.
+**August:** Assume EVERYTHING closes. Small shops, neighborhood restaurants, some supermarkets. Not an exaggeration.
 
-## Festivales y Fiestas (Las reales)
+## Festivals and Fiestas (The Real Ones)
 
-### Las que valen la pena
+### Worth It
 
-| Fiesta | Cuándo | Dónde | Por qué |
+| Fiesta | When | Where | Why |
 |--------|--------|-------|---------|
-| San Fermín | 6-14 julio | Pamplona | Encierros. Reserva hotel con 6+ meses |
-| Fallas | 15-19 marzo | Valencia | Fuego, arte, petardos 24/7 |
-| Semana Santa | Marzo/abril | Sevilla, Málaga | Procesiones impresionantes |
-| Tomatina | Último miércoles agosto | Buñol | Guerra de tomates. Entradas limitadas. |
-| San Juan | 23-24 junio | Barcelona, toda la costa | Hogueras en la playa |
+| San Fermín | 6-14 July | Pamplona | Bull runs. Book a hotel 6+ months ahead |
+| Fallas | 15-19 March | Valencia | Fire, art, firecrackers 24/7 |
+| Semana Santa (Holy Week) | March/April | Seville, Málaga | Impressive processions |
+| Tomatina | Last Wednesday of August | Buñol | Tomato fight. Limited tickets. |
+| San Juan | 23-24 June | Barcelona, the whole coast | Beach bonfires |
 
-### Las que evitar
+### To Avoid
 
-| "Fiesta" | Por qué evitar |
+| "Fiesta" | Why avoid |
 |----------|----------------|
-| Feria de Abril (sin contactos) | Casetas privadas, no puedes entrar |
-| Noche de Reyes en centro | Aglomeraciones, niños, no es para ti |
+| Feria de Abril (without connections) | Private booths, you can't get in |
+| Epiphany Eve downtown | Crowds, kids, not for you |
 
 ## Sobremesa
 
-**Qué es:** Quedarse charlando después de comer. Puede durar horas.
+**What it is:** Lingering to chat after a meal. Can last for hours.
 
-**Por qué importa:** Levantarse rápido de la mesa es maleducado. No pidas la cuenta hasta que el grupo esté listo.
+**Why it matters:** Getting up from the table quickly is rude. Don't ask for the bill until the group is ready.
 
-**Cómo pedir la cuenta:** "¿Me cobras?" o hacer gesto de escribir en el aire. Nunca vendrán a molestarte.
+**How to ask for the bill:** "¿Me cobras?" or make a writing gesture in the air. They'll never come to bother you.
 
-## Cómo Saludar
+## How to Greet
 
-| Situación | Qué hacer |
+| Situation | What to do |
 |-----------|-----------|
-| Conocidos/amigos | Dos besos (empezando por tu derecha) |
-| Profesional (primera vez) | Apretón de manos |
-| Profesional (ya conoces) | A veces besos, depende de confianza |
-| Tienda/ascensor | "Hola" / "Buenos días" / "Buenas tardes" |
+| Acquaintances/friends | Two kisses (starting on your right) |
+| Professional (first time) | Handshake |
+| Professional (already know them) | Sometimes kisses, depends on familiarity |
+| Shop/elevator | "Hola" / "Buenos días" / "Buenas tardes" |
 
-**Despedirse:** Puede tomar 20-30 minutos. Es normal. No te escapes sin avisar.
+**Saying goodbye:** Can take 20-30 minutes. It's normal. Don't slip away without saying so.
 
-## Dinero
+## Money
 
-| Método | Uso |
+| Method | Use |
 |--------|-----|
-| Tarjeta | Prácticamente todo |
-| Bizum | Entre personas (TODOS usan Bizum) |
-| Efectivo | Mercadillos, propinas, muy pocos sitios |
+| Card | Practically everything |
+| Bizum | Person to person (EVERYONE uses Bizum) |
+| Cash | Street markets, tips, very few places |
 
-**Billetes grandes:** Evita pagar con €50 o €100 en sitios pequeños. No tienen cambio y se molestan.
+**Large bills:** Avoid paying with €50 or €100 at small places. They don't have change and get annoyed.
 
-## Vestimenta
+## Dress
 
-| Dónde | Qué NO llevar |
+| Where | What NOT to wear |
 |-------|---------------|
-| Ciudad | Chanclas de playa, bañador |
-| Iglesias | Hombros descubiertos, pantalón corto |
-| Restaurante "nice" | Zapatillas deportivas, camiseta tirantes |
-| Playa | Ir en bañador por la calle (multan en algunas ciudades) |
+| City | Beach flip-flops, swimsuit |
+| Churches | Bare shoulders, shorts |
+| A "nice" restaurant | Sneakers, tank top |
+| Beach | Walking the streets in a swimsuit (fined in some cities) |
 
-**España no es casual-casual:** La gente se arregla más que en EEUU/UK. No vas a un bar de barrio en chándal.
+**Spain isn't casual-casual:** People dress up more than in the US/UK. You don't go to a neighborhood bar in a tracksuit.
 
-## Sitios Específicos que Valen la Pena
+## Specific Places Worth It
 
-### Comer
+### Eating
 
-| Lugar | Qué | Por qué |
+| Place | What | Why |
 |-------|-----|---------|
-| El Fornet de la Soca (Palma) | Ensaïmada | Recetas del siglo XVIII, ingredientes premium |
-| Casa Dani, Mercado de la Paz (Madrid) | Tortilla | La mejor tortilla de Madrid, sin discusión |
-| Horchatería Santa Catalina (Valencia) | Horchata | 200 años haciéndola igual |
-| Horchatería Daniel (Alboraia, Valencia) | Horchata | La capital de la horchata |
-| El Celler de Can Roca (Girona) | Tasting menu | 3 estrellas Michelin. Lista de espera: 1+ año |
+| El Fornet de la Soca (Palma) | Ensaïmada | 18th-century recipes, premium ingredients |
+| Casa Dani, Mercado de la Paz (Madrid) | Tortilla | The best tortilla in Madrid, no debate |
+| Horchatería Santa Catalina (Valencia) | Horchata | 200 years making it the same way |
+| Horchatería Daniel (Alboraia, Valencia) | Horchata | The capital of horchata |
+| El Celler de Can Roca (Girona) | Tasting menu | 3 Michelin stars. Waitlist: 1+ year |
 
-### Evitar (trampas turísticas)
+### Avoid (Tourist Traps)
 
-| Sitio | Por qué evitar |
+| Place | Why avoid |
 |-------|----------------|
-| Mercado de San Miguel (Madrid) | Carísimo, turistas, no es auténtico |
-| La Rambla (Barcelona) | Carteristas, precios inflados |
-| Cualquier restaurante en plaza principal | 2x precio, mitad calidad |
-| "Free" tours con propina obligatoria | Presión social, guías mediocres |
+| Mercado de San Miguel (Madrid) | Overpriced, tourists, not authentic |
+| La Rambla (Barcelona) | Pickpockets, inflated prices |
+| Any restaurant on the main square | 2x price, half the quality |
+| "Free" tours with mandatory tip | Social pressure, mediocre guides |
 
-### Alternativas reales
+### Real Alternatives
 
-| En vez de | Ve a |
+| Instead of | Go to |
 |-----------|------|
 | San Miguel (Madrid) | Mercado de San Fernando, Antón Martín |
-| La Rambla (Barcelona) | Barri Gòtic callejuelas, Gràcia |
-| Alhambra (Granada) abarrotado | Mirador de Los Carvajales (menos gente) |
+| La Rambla (Barcelona) | Barri Gòtic backstreets, Gràcia |
+| Alhambra (Granada) crowds | Mirador de Los Carvajales (fewer people) |
 
-## Frases Que Necesitas
+## Phrases You Need
 
-| Español | Cuándo |
+| Spanish | When |
 |---------|--------|
-| "No pasa nada" | Todo OK / No te preocupes |
-| "Muy amable" | Gracias por ayudarme (más educado que "gracias") |
-| "¿Me cobras?" | Quiero pagar |
-| "Una caña" | Una cerveza pequeña |
-| "Ponme un tinto de verano" | Vino con gaseosa de limón |
-| "¿Tienen menú del día?" | Comida barata |
-| "Lo siento, no hablo español" | Si te pierdes |
+| "No pasa nada" | Everything's fine / Don't worry |
+| "Muy amable" | Thanks for helping (more polite than "gracias") |
+| "¿Me cobras?" | I'd like to pay |
+| "Una caña" | A small beer |
+| "Ponme un tinto de verano" | Wine with lemon soda |
+| "¿Tienen menú del día?" | Cheap set lunch |
+| "Lo siento, no hablo español" | If you get lost |
 
-**NUNCA digas:** "No problemo" (no existe). Di "no hay problema" o "no pasa nada".
+**NEVER say:** "No problemo" (it doesn't exist). Say "no hay problema" or "no pasa nada".
 
-## Carteristas
+## Pickpockets
 
-**Dónde:** La Rambla, Sagrada Família, Metro de Barcelona/Madrid, cualquier zona turística
+**Where:** La Rambla, Sagrada Família, the Barcelona/Madrid metro, any tourist area
 
-**Cómo operan:**
-- Distracción (vendedor de flores, "encuesta", firma "petición")
-- Moto-robo (te arrancan móvil de la mano)
-- Bolso en silla de terraza (alguien lo coge mientras miras menú)
+**How they operate:**
+- Distraction (flower seller, "survey", sign a "petition")
+- Snatch-and-ride (grab your phone from your hand)
+- Bag on a terrace chair (someone takes it while you look at the menu)
 
-**Protégete:**
-- Móvil en bolsillo delantero, mano encima
-- Mochila delante en metro
-- Nada valioso visible en mesa de terraza
+**Protect yourself:**
+- Phone in your front pocket, hand on top
+- Backpack worn on your front in the metro
+- Nothing valuable visible on the terrace table
 
-## Regionales (Lo que cambia por zona)
+## Regional (What Changes by Area)
 
-| Región | Idioma local | Dato clave |
+| Region | Local language | Key point |
 |--------|--------------|------------|
-| Cataluña | Catalán | Señalización bilingüe, responde en castellano si lo hablas |
-| País Vasco | Euskera | Pintxos, no tapas. Cuentas por palillos |
-| Galicia | Gallego | Pulpo, marisco, albariño. Verde y lluvioso |
-| Valencia | Valenciano | Paella SOLO a mediodía, nunca cena |
-| Andalucía | Castellano con acento | Tapas gratis con bebida en muchos sitios |
+| Catalonia | Catalan | Bilingual signage, answer in Castilian if you speak it |
+| Basque Country | Basque (Euskera) | Pintxos, not tapas. They tally by toothpicks |
+| Galicia | Galician | Octopus, seafood, albariño. Green and rainy |
+| Valencia | Valencian | Paella ONLY at midday, never for dinner |
+| Andalusia | Castilian with an accent | Free tapas with a drink in many places |
 
-**Cataluña y País Vasco:** Temas políticos sensibles. No opines si no te preguntan.
+**Catalonia and the Basque Country:** Political topics are sensitive. Don't offer opinions unless asked.

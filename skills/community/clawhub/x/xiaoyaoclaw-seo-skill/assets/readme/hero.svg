@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">SEO Skill — XiaoyaoClaw SEO Analysis &amp; Optimization</title>
+  <desc id="hero-desc">SEO analysis and optimization skill for any website: audit technical SEO, on-page, content quality, schema and AI-search visibility. Shows an audit terminal running seo-audit.js with a graded issue list.</desc>
+
+  <rect width="1200" height="360" rx="20" fill="#0d1117"/>
+  <g id="title-block" transform="translate(56 40)">
+    <text x="0" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="4" fill="#8b949e">AGENT SKILL · SEO</text>
+
+    <text x="0" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">SEO Skill</text>
+
+    <text x="0" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" fill="#c9d1d9">网站搜索可见性分析 · Search visibility audit</text>
+    <text x="0" y="202" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" fill="#8b949e">audit · page · content · schema · geo</text>
+    <rect x="0" y="226" width="96" height="30" rx="15" fill="#1f6feb" opacity="0.9"/>
+    <text x="48" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">audit</text>
+    <rect x="104" y="226" width="96" height="30" rx="15" fill="#238636"/>
+    <text x="152" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">on-page</text>
+    <rect x="208" y="226" width="102" height="30" rx="15" fill="#9e6a03"/>
+    <text x="259" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">schema</text>
+    <rect x="318" y="226" width="80" height="30" rx="15" fill="#bc4c00"/>
+    <text x="358" y="246" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">AEO</text>
+
+    <text x="0" y="310" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1" fill="#8b949e">MIT LICENSE · AGENT SKILLS STANDARD</text>
+  </g>
+  <g id="terminal-panel" transform="translate(700 44)">
+    <rect width="450" height="276" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+    <circle cx="18" cy="20" r="5" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="5" fill="#ffbd2e"/>
+    <circle cx="54" cy="20" r="5" fill="#27c93f"/>
+
+    <text x="78" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#8b949e">seo-audit.js</text>
+    <text x="24" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#3fb950">$ node seo-audit.js example.com</text>
+    <text x="24" y="92" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ff7b72">🔴 http &amp; https both 200 → add 301</text>
+    <text x="24" y="114" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ff7b72">🔴 sitemap.xml = HTML fallback</text>
+    <text x="24" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#d29922">🟠 missing canonical tag</text>
+    <text x="24" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#d29922">🟠 11 H1s on homepage</text>
+    <text x="24" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#58a6ff">🟡 no llms.txt → AI upside</text>
+    <text x="24" y="210" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#58a6ff">🟡 JSON-LD: 0 (verify in browser)</text>
+
+    <text x="24" y="244" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#3fb950">fix → verify → done</text>
+    <text x="24" y="266" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#8b949e">ok · graded report · zero-dep</text>
+  </g>
+</svg>

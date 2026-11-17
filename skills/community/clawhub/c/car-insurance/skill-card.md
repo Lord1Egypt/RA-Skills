@@ -1,48 +1,60 @@
-## Description: <br>
-한국 자동차세, 자동차보험, 중고차 시세, 사고 처리, 유지비, 교통위반 질문을 인텐트별로 라우팅하고 Flash 또는 Deep-Dive 형식의 안내를 생성합니다. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Korean users through car tax, used-car pricing, auto-insurance estimates, claims, mandatory insurance, maintenance costs, and traffic fine questions with source-tiered Markdown responses.
 
-## Publisher: <br>
-[sw326](https://clawhub.ai/user/sw326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sw326](https://clawhub.ai/user/sw326)
 
-## Use Case: <br>
-External users and agents use this skill to answer Korean car tax, auto insurance, used-car pricing, accident handling, maintenance-cost, and traffic-fine questions with concise, source-aware guidance. It is intended for informational guidance, not legal, insurance underwriting, or claims-settlement advice. <br>
-
-### Deployment Geography for Use: <br>
-South Korea <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides Korean car tax, insurance, accident, and traffic-fine information that may be outdated or differ from a user's official bill, policy, or case facts. <br>
-Mitigation: Verify important amounts and obligations against official legal, tax, insurer, or government sources before acting. <br>
-Risk: Using search or law connectors may expose unnecessary personal information if users include plate numbers, policy numbers, claim IDs, phone numbers, or names. <br>
-Mitigation: Avoid entering unnecessary personal identifiers and grant only the search or law connectors required for the current task. <br>
-Risk: The skill references a separate law-search helper for deeper legal lookup. <br>
-Mitigation: Verify that helper before allowing it to run and treat legal outputs as informational rather than legal advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sw326/car-insurance) <br>
-- [Intent router](references/intent_router.md) <br>
-- [Output templates](references/output_templates.md) <br>
-- [Source tiers](references/source_tiers.md) <br>
-- [Korean Local Tax Act reference](https://www.law.go.kr/법령/지방세법) <br>
-- [Insurance Damoa comparison platform](https://www.e-insmarket.or.kr) <br>
-- [Encar used-car market reference](https://www.encar.com) <br>
-- [KB ChaChaCha used-car market reference](https://www.kbchachacha.com) <br>
+## Use Case:
 
+External users and agents use this skill to answer Korea-focused automotive and auto-insurance questions, including car tax estimates, used-car checks, insurance quote context, claim steps, required coverage, maintenance costs, and traffic fines.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, checklists, brief summaries, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flash responses are capped at roughly 20-40 lines; deeper guidance is used when requested or for claim, maintenance, used-car, and insurance-comparison workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+South Korea
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Insurance estimates, vehicle-history checks, and accident guidance may involve sensitive personal, vehicle, or incident details.
+
+Mitigation: Ask only for the minimum details needed, avoid unnecessary age, plate, VIN-like, accident, or vehicle-history identifiers, and confirm before searches use those details.
+
+Risk: Car tax, insurance premium, traffic fine, and claim guidance can become inaccurate when legal rates, public disclosures, or insurer criteria change.
+
+Mitigation: Use the skill's official source tiers and disclaimers, refresh current rules or market data before giving estimates, and frame outputs as informational rather than legal or binding insurance advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sw326/skills/car-insurance)
+- [Intent router](references/intent_router.md)
+- [Output templates](references/output_templates.md)
+- [Source tiers](references/source_tiers.md)
+- [Playbook](playbook.md)
+- [Korean National Law Information Center - Local Tax Act](https://www.law.go.kr/법령/지방세법)
+- [Encar](https://www.encar.com)
+- [KB Chachacha](https://www.kbchachacha.com)
+- [Insurance Damoa](https://www.e-insmarket.or.kr)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis, Shell commands]
+
+**Output Format:** [Markdown with tables, checklists, source notes, and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flash responses are always produced; deep-dive responses are used on request or for claim, maintenance, used-car, and insurance comparison intents.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

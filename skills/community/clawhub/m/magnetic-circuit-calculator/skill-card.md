@@ -1,40 +1,54 @@
-## Description: <br>
-Calculates early motor magnetic-circuit estimates using the magnetic equivalent circuit method, including air-gap flux density, permanent-magnet working point, leakage factor, back-EMF, torque constant, magnet-thickness sweeps, and slot/pole comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magnetic Circuit Calculator helps agents estimate air-gap flux, flux-density distribution, permanent-magnet working points, and leakage coefficients for motor design using magnetic equivalent circuit methods.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Motor designers and engineers use this skill for early-stage permanent-magnet motor estimates, parameter checks before Maxwell simulations, and rough comparisons of slot/pole layouts or magnet thickness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calculator outputs are preliminary estimates and may not capture high-precision electromagnetic behavior. <br>
-Mitigation: Validate final designs with Maxwell, FEA, or equivalent engineering review before production use. <br>
-Risk: Sweep mode writes a local plot image. <br>
-Mitigation: Run sweep analysis in a working directory where creating hm_sweep_analysis.png is acceptable. <br>
+## Use Case:
 
+Developers and motor engineers use this skill for early-stage permanent-magnet motor magnetic-circuit estimates, parameter checks before Maxwell simulation, pole-slot comparison, leakage coefficient review, and design reasonableness checks.
 
-## Reference(s): <br>
-- [Silicon Steel and Permanent Magnet Material Library](references/steel_pm_materials.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and calculator output text; sweep mode may generate a PNG plot file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are preliminary engineering estimates and should be validated with higher-fidelity simulation before final design decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Magnetic-circuit estimates can be inaccurate for real motor design because the skill uses simplifying assumptions and the security evidence notes calculation reliability issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary screening results and verify numerical conclusions with Maxwell static-field simulation or independent engineering review before making design decisions.
+
+Risk: The skill is a Chinese-language engineering tool, so users who are not comfortable with the language may misunderstand inputs, assumptions, or recommendations.
+
+Mitigation: Have a qualified reader confirm parameter meanings, assumptions, and output interpretation before applying results.
+
+## Reference(s):
+
+- [Steel and permanent magnet materials reference](references/steel_pm_materials.md)
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/magnetic-circuit-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with calculation summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are preliminary engineering estimates and may include recommendations for magnet thickness, material selection, and follow-up simulation.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

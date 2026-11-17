@@ -1,43 +1,55 @@
-## Description: <br>
-Weather Fetch retrieves current weather data for supported Chinese cities from weathercn.com using Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches current weather data for supported Chinese cities from weathercn.com using Playwright and returns temperature, humidity, pressure, visibility, wind, sunrise and sunset times, and AQI fields.
 
-## Publisher: <br>
-[wndagg](https://clawhub.ai/user/wndagg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wndagg](https://clawhub.ai/user/wndagg)
 
-## Use Case: <br>
-Agents can use this skill to look up current weather conditions for supported cities in China and return temperature, wind, humidity, pressure, visibility, sunrise and sunset times, and air quality details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches Chromium with reduced sandboxing to scrape weathercn.com. <br>
-Mitigation: Run it in a contained environment and install Playwright/Chromium only from trusted package sources. <br>
-Risk: The skill contacts an external weather website and depends on that site's availability and page structure. <br>
-Mitigation: Allow outbound access only to the expected weather source and review outputs when the source page changes or fails. <br>
-Risk: City coverage is limited to the cities defined in the script unless the mapping is updated. <br>
-Mitigation: Confirm the requested city is supported before relying on the result, and update the city mapping through normal review if broader coverage is needed. <br>
+## Use Case:
 
+Developers and end users use this skill to run a command-line lookup for supported Chinese city names and receive current weather details scraped from weathercn.com.
 
-## Reference(s): <br>
-- [ClawHub Weather Fetch release](https://clawhub.ai/wndagg/weather-fetch) <br>
-- [weathercn.com mobile weather source](https://m.weathercn.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [JSON object plus formatted plain text weather report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [City name input; requires network access and Playwright/Chromium at runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill launches Chromium with the browser sandbox disabled while visiting a remote weather site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a contained, low-privilege environment and review browser execution settings before deployment.
+
+Risk: The release describes broad city coverage, but the submitted artifact contains a limited hardcoded city mapping.
+
+Mitigation: Confirm supported cities before relying on the output, and expand or validate the city list for production use.
+
+## Reference(s):
+
+- [ClawHub Weather Fetch listing](https://clawhub.ai/wndagg/skills/weather-fetch)
+- [Project homepage](https://github.com/wNDAGG/mimi-scripts)
+- [weathercn.com mobile weather source](https://m.weathercn.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON plus a plain-text weather summary emitted to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weather values are scraped at runtime from remote web content and depend on the supported city mapping in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

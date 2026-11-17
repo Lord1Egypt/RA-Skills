@@ -1,41 +1,57 @@
-## Description: <br>
-AI Agent Evaluator helps AI engineers, product managers, and ML teams design agent evaluation suites, run structured benchmarks, compare frameworks, analyze failures, and generate assessment reports for production agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI teams in designing agent evaluation suites, interpreting benchmarks, comparing frameworks, analyzing failures, and drafting evaluation reports.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, AI engineers, ML platform teams, QA engineers, researchers, and product managers use this skill to choose evaluation methods, design test suites, benchmark agent behavior, diagnose failures, and prepare production readiness reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner guidance notes that related maintainer workflows can affect production accounts, packages, emails, and data when used with valid admin credentials. <br>
-Mitigation: Install only in trusted staff environments and follow the built-in confirmation and dry-run gates. <br>
-Risk: The artifact notes that benchmark scores are time-sensitive and evaluation results can influence production readiness decisions. <br>
-Mitigation: Check current published leaderboards and have qualified ML engineers review evaluation results before deployment decisions. <br>
-Risk: Production safety evaluations may miss adversarial or domain-specific failures if reviewed only as a methodology exercise. <br>
-Mitigation: Involve the security team for production safety evaluations and include adversarial test cases before release decisions. <br>
+## Use Case:
 
+AI engineers, ML platform teams, product managers, and QA teams use this skill to design evaluation suites, interpret benchmarks, diagnose failures, compare agent frameworks, and draft reviewable reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with scorecards, comparison tables, test plans, rubrics, and benchmark report outlines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides methodology and guidance rather than direct code execution; benchmark scores are time-sensitive and should be checked against current leaderboards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The security scan was partial because two local path-like references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check those references and confirm flagged phrases are evaluation material before installing.
+
+Risk: Raw agent transcripts may contain personal or regulated data.
+
+Mitigation: Anonymize transcripts and remove identifying or regulated details before sharing them for analysis.
+
+Risk: Evaluation results or draft recommendations could be mistaken for release approval.
+
+Mitigation: Have qualified ML engineers review the results; treat the skill's output as advisory and not as certification or security sign-off.
+
+## Reference(s):
+
+- [AI Agent Evaluator on ClawHub](https://clawhub.ai/gechengling/skills/ai-agent-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with tables, checklists, scorecards, and report drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory drafts for human review; does not execute agents, run code, call APIs, or connect to systems.]
+
+## Skill Version(s):
+
+3.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Imap Mail lets an agent send, read, search, organize, schedule, and receive push notifications for email through a user-configured IMAP/SMTP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal email via a configured IMAP/SMTP server for sending, receiving, searching, organizing, scheduling, and receiving push notifications without a third-party email platform.
 
-## Publisher: <br>
-[polumish](https://clawhub.ai/user/polumish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[polumish](https://clawhub.ai/user/polumish)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to a personal or service mailbox over standard IMAP/SMTP for inbox triage, search, sending replies, folder management, scheduled sends, and local push notifications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad mailbox actions, including sending, deleting, moving, marking, scheduling, and rule-driven changes. <br>
-Mitigation: Review before installing, keep the API bound to 127.0.0.1, and confirm that persistent rules, scheduled sends, contact notes, and automated mailbox changes are acceptable before enabling the service. <br>
-Risk: Configured IMAP IDLE webhooks can forward full message contents to the webhook URL. <br>
-Mitigation: Avoid setting MAIL_IDLE_WEBHOOK unless the endpoint is trusted and preferably local. <br>
-Risk: Saving attachments may overwrite files when filenames are not sanitized. <br>
-Mitigation: Use --save-attachments only with a controlled destination and remain cautious until filenames are sanitized. <br>
-Risk: Mailbox credentials are stored in a local environment file. <br>
-Mitigation: Use an app-specific mail password and lock down the env file permissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/polumish/imap-mail) <br>
-- [Full API reference](references/api.md) <br>
-- [Systemd service setup](references/systemd.md) <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent interact with a configured mailbox: inspect and search messages, manage folders, rules, and contacts, send or schedule email, and receive IMAP IDLE webhook notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local API JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 with fastapi and uvicorn, plus user-provided IMAP/SMTP credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.4 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local API can perform broad mailbox actions, including reading, moving, deleting, and sending email.
+
+Mitigation: Run the service under a dedicated unprivileged account and protect access with authentication, a protected socket, or equivalent local controls before enabling it.
+
+Risk: Webhook notifications can forward full message contents when IMAP IDLE is configured.
+
+Mitigation: Set the webhook only to a trusted endpoint and treat webhook traffic as sensitive mailbox data.
+
+Risk: Saving attachments from untrusted messages can write attacker-controlled files to disk.
+
+Mitigation: Avoid saving attachments from untrusted mail until filenames are sanitized and the destination directory is constrained.
+
+Risk: Unpinned runtime dependencies can change install behavior across environments.
+
+Mitigation: Pin dependencies for reproducible installation and review dependency updates before deployment.
+
+## Reference(s):
+
+- [Full API reference](references/api.md)
+- [Systemd service setup](references/systemd.md)
+- [ClawHub skill listing](https://clawhub.ai/polumish/skills/imap-mail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include mailbox summaries, message metadata, command invocations, and API request or response examples.]
+
+## Skill Version(s):
+
+1.5.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

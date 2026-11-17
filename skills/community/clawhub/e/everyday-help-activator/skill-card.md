@@ -1,40 +1,58 @@
-## Description: <br>
-Helps users prepare low-pressure requests for small real-world favors and track which respectful scripts work in everyday situations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn strangers, neighbors, service staff, and acquaintances into willing helpers for small daily needs using low-pressure scripts for brief real-life assistance.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users can use this skill to draft brief, respectful in-person favor requests for situations such as carrying items, asking directions, borrowing a simple tool, or getting urgent local help. It also helps an agent keep lightweight notes about request phrasing and outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local notes about real-world interactions may capture identifiable details about people, locations, schedules, or private conversations. <br>
-Mitigation: Keep logs anonymous and aggregate: avoid names, unique descriptors, exact locations, schedules, contact details, and private conversation history, and delete logs regularly. <br>
-Risk: Scripts for asking real people for favors could become uncomfortable or coercive if refusals are not respected. <br>
-Mitigation: Keep requests small, optional, and zero-cost; stop immediately if the person hesitates or declines. <br>
+## Use Case:
 
+External users can use this skill to prepare respectful, low-pressure scripts for asking people nearby for very small favors, then track which approaches worked. It is intended for brief, zero-cost real-world assistance such as carrying items, getting directions, borrowing a basic tool, or asking for a small service exception.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/everyday-help-activator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown guidance with suggested local note files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce request scripts and local logs such as help-log.md or relationship notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can lead the agent to keep local notes about real people and real-world interactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized summaries, avoid names or identifying details, keep notes out of shared or synced folders, and delete records regularly.
+
+Risk: The install command is an unpinned npx ClawHub command.
+
+Mitigation: Verify the ClawHub source and release details before installation.
+
+Risk: Suggested scripts involve asking real people for favors and could become intrusive if used beyond the stated limits.
+
+Mitigation: Keep requests brief, zero-cost, and optional; stop immediately when someone hesitates or declines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/everyday-help-activator)
+- [ClawHub publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Files]
+
+**Output Format:** [Markdown guidance with suggested local note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the agent to create local logs such as help-log.md and relationship notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Publish Zenn articles by managing Markdown in a GitHub-connected repository (push/PR -> merge) and previewing with Zenn CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Zenn articles by managing Markdown in a GitHub-connected repository (push/PR -> merge) and previewing with Zenn CLI.
 
-## Publisher: <br>
-[tachi-koma-x](https://clawhub.ai/user/tachi-koma-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tachi-koma-x](https://clawhub.ai/user/tachi-koma-x)
 
-## Use Case: <br>
-Developers and technical writers use this skill to draft, preview, review, and publish Zenn articles through a GitHub-connected repository. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Publishing with published: true or merging without review can expose draft content or confidential information. <br>
-Mitigation: Review diffs and PRs before merging, keep drafts unpublished until ready, and verify content before changing published to true. <br>
-Risk: Running npm or npx commands in the wrong repository, or with an untrusted Zenn CLI version, can make unintended local changes. <br>
-Mitigation: Run Zenn CLI commands only in the intended repository and use a trusted or pinned zenn-cli version where appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tachi-koma-x/zenn) <br>
+## Use Case:
+
+Developers and content authors use this skill to create, preview, review, and publish Zenn articles or books through a GitHub-connected repository while keeping drafts behind PR review until ready.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Accidental disclosure of secrets, customer details, internal URLs, or unreleased metrics through published Zenn content.
+
+Mitigation: Keep drafts unpublished during review, inspect article text and assets before setting published: true, and use the workflow's PR review gate before merging to the publishing branch.
+
+Risk: Installing or updating zenn-cli without version pinning can introduce unreviewed dependency changes.
+
+Mitigation: Pin zenn-cli to a reviewed exact version for normal use and review changelogs before upgrading.
+
+Risk: Direct publishing or incorrect file placement can bypass review or fail to publish expected content.
+
+Mitigation: Use feature branches and PRs, place articles under articles/ and books under books/, and verify local preview output before merge.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell command blocks and article front matter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance expects users to review PR diffs and publishing flags before merging.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and article front matter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for repository layout, Zenn CLI commands, draft review, and publication checks.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

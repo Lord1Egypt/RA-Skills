@@ -1,50 +1,64 @@
-## Description: <br>
-飞书任务智能体统一路由飞书任务编排、未开始任务轮询执行、智能体注册初始化和 daily.json 画像刷新。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Feishu task requests so an agent can create and update tasks, execute polled or recurring tasks, register the Feishu task agent, and refresh a daily.json profile from daily notes.
 
-## Publisher: <br>
-[luckyterry](https://clawhub.ai/user/luckyterry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckyterry](https://clawhub.ai/user/luckyterry)
 
-## Use Case: <br>
-Employees and developers using Feishu task workflows use this skill to turn actionable requests into Feishu tasks, manage recurring or polled work, initialize the Feishu task agent, and publish daily.json profile summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update ongoing automations and scheduler behavior. <br>
-Mitigation: Review cron jobs before enabling the skill, use a test workspace first, and require explicit approval for recurring jobs or scheduler changes. <br>
-Risk: The skill can change future agent routing and Feishu profile update behavior. <br>
-Mitigation: Review AGENTS.md routing changes and Feishu profile updates before deployment. <br>
+## Use Case:
 
+Employees and operators use this skill to turn action items, deliverables, follow-ups, task breakdowns, and recurring requests into Feishu tasks. It also supports Feishu task-agent registration and daily.json profile refreshes from the latest daily report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckyterry/feishu-task-agent-alpha) <br>
-- [Feishu Auto Task Decision Rules](references/task-decision-rules.md) <br>
-- [Creator / Members Output Contract](references/task-output-contract.md) <br>
-- [Feishu Task Agent Examples](references/task-examples.md) <br>
-- [daily.json Data Structure](references/profile-data-shape.md) <br>
-- [Profile Discovery Rules](references/profile-discovery-rules.md) <br>
-- [Profile Schedule Rules](references/profile-schedule-rules.md) <br>
-- [Auto Task Workflow](workflows/auto-task.md) <br>
-- [Polled Task Execution Workflow](workflows/polled-task-execution.md) <br>
-- [Agent Profile Workflow](workflows/agent-profile.md) <br>
-- [Registration Workflow](workflows/reg.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell command snippets and JSON payloads; profile output is daily.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu tasks, comments, attachments, cron jobs, routing files, and profile JSON when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent task automation can create or update Feishu tasks and run recurring workflows without enough visible user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where Feishu task automation is intended, and require explicit permission declarations plus separate confirmation for each persistent change.
+
+Risk: AGENTS.md routing changes can steer future agent behavior beyond the immediate request.
+
+Mitigation: Review proposed AGENTS.md changes before installation and provide a clear rollback path for removing the routing rule.
+
+Risk: Scheduler metadata can make recurring behavior hard to audit if it is hidden from users.
+
+Mitigation: Expose cron job names, schedules, messages, and uninstall or rollback instructions to operators before enabling scheduled workflows.
+
+## Reference(s):
+
+- [Feishu Task Agent](SKILL.md)
+- [Feishu Task Orchestration Workflow](workflows/auto-task.md)
+- [Polled Task Execution Workflow](workflows/polled-task-execution.md)
+- [Feishu Task Agent Registration Workflow](workflows/reg.md)
+- [Agent Profile and daily.json Workflow](workflows/agent-profile.md)
+- [Feishu Auto Task Decision Rules](references/task-decision-rules.md)
+- [Creator / Members Output Contract](references/task-output-contract.md)
+- [daily.json Data Structure](references/profile-data-shape.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON payloads, and Feishu task updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Feishu tasks, comments, attachments, cron jobs, AGENTS.md routing text, and daily.json profile data when the required tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

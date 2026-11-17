@@ -35,6 +35,8 @@ def _find_accept_option(challenge: dict, requested_network: str) -> dict:
             return option
         if requested_network == "solana" and (network == "solana" or network.startswith("solana:")):
             return option
+        if requested_network == "robinhood" and (network == "robinhood" or "4663" in network):
+            return option
     raise ValueError(f"No {requested_network} payment option found in 402 challenge")
 
 
@@ -91,8 +93,9 @@ def extend_instance(instance_id: str, hours: int = 720, network: str = "base", s
     print(f"\n--- Payment Confirmation ---")
     print(f"  Instance:    {instance_id}")
     print(f"  Extend by:   {hours} hours")
+    stablecoin = {"base": "USDC", "solana": "USDC", "robinhood": "USDG"}.get(network, "USDC")
     print(f"  Network:     {network}")
-    print(f"  Cost:        ${cost_usd:.2f} USDC")
+    print(f"  Cost:        ${cost_usd:.2f} {stablecoin}")
     print(f"  Pay to:      {pay_to}")
 
     if not skip_confirm:
@@ -100,12 +103,13 @@ def extend_instance(instance_id: str, hours: int = 720, network: str = "base", s
         if confirm not in ("y", "yes"):
             return {"error": "Payment cancelled by user"}
 
-    if network == "base":
+    if network in ("base", "robinhood"):
+        # Both EVM EIP-3009 transferWithAuthorization; only the EIP-712 domain differs.
         try:
             signer = load_payment_signer()
         except Exception as exc:
             return {"error": str(exc)}
-        x_payment = signer.create_x402_payment_header(pay_to=pay_to, amount=amount)
+        x_payment = signer.create_x402_payment_header(pay_to=pay_to, amount=amount, network=network)
     else:
         ensure_solana_destination_ready(option)
         x_payment = create_solana_xpayment_from_accept(option)
@@ -135,6 +139,16 @@ def extend_instance(instance_id: str, hours: int = 720, network: str = "base", s
             print(f"   TX: {data['tx_hash']}")
         return data
 
+    if response.status_code == 202 or (response.status_code == 409 and "settlement_pending" in response.text):
+        # Paid (or the payment outcome is not known yet). Do NOT pay again: the server checks
+        # the chain and either applies the extension or credits the amount back automatically.
+        print("⏳ Payment is being confirmed. Do NOT pay again. Check the instance expiry shortly.")
+        try:
+            body = response.json()
+        except Exception:
+            body = response.text[:2000]
+        return {"pending": True, "response": body}
+
     return {"error": f"Extension failed: {response.status_code}", "response": response.text[:500]}
 
 
@@ -142,7 +156,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extend a compute instance")
     parser.add_argument("instance_id", help="Instance ID to extend")
     parser.add_argument("--hours", type=int, default=720, help="Hours to extend (default: 720 = ~1 month)")
-    parser.add_argument("--network", default="base", choices=["base", "solana"], help="Payment network")
+    parser.add_argument("--network", default="base", choices=["base", "solana", "robinhood", "arc"], help="Payment network (base/solana/arc = USDC, robinhood = USDG; direct arc payments min $5)")
     parser.add_argument("--yes", "-y", action="store_true", help="Skip payment confirmation prompt")
     parser.add_argument("--max-spend", type=float, help="Max USD spend limit (default: $500 or COMPUTE_MAX_SPEND_USD)")
     args = parser.parse_args()

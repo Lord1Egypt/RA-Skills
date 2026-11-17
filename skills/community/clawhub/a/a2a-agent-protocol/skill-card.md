@@ -1,48 +1,65 @@
-## Description: <br>
-Use when building an AI agent that needs to communicate with other agents over the Agent2Agent (A2A) protocol, publishing an AgentCard for discovery, acting as an A2A client or server, or integrating A2A capabilities into an existing agent framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Agent2Agent protocol concepts, AgentCard publishing, task delegation, streaming updates, push notifications, and local mock-server testing for interoperable agent workflows.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand A2A protocol concepts, publish AgentCards, and implement task delegation, streaming updates, push notifications, and local protocol experiments for agent-to-agent collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task text, files, metadata, callback URLs, and artifacts may be sent to remote agents during A2A interactions. <br>
-Mitigation: Use the skill only for intended A2A connections, validate target AgentCards and authentication requirements, and avoid sending sensitive task content to untrusted agents. <br>
-Risk: The optional mock server exposes a local network service and can forward task data to webhook URLs. <br>
-Mitigation: Run the mock server only in a trusted local environment, prefer loopback-only binding, and do not accept webhook or push-provider URLs from untrusted callers. <br>
+## Use Case:
 
+Developers and engineers use this skill to build A2A-aware agents, publish AgentCards, send and track tasks across remote agents, handle streaming or push delivery, and test interactions with a local mock A2A server.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/a2a-agent-protocol) <br>
-- [A2A Protocol Specification](https://a2a-protocol.org/latest/specification/) <br>
-- [A2A GitHub Project](https://github.com/a2aproject/A2A) <br>
-- [A2A Python SDK](https://github.com/a2aproject/a2a-python) <br>
-- [A2A Protocol Overview](references/a2a-overview.md) <br>
-- [A2A Data Model Reference](references/data-model.md) <br>
-- [A2A Operations Reference](references/operations.md) <br>
-- [AgentCard Template Reference](references/agent-card-template.md) <br>
-- [A2A Quickstart](references/quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and generated AgentCard JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local mock A2A HTTP server when the host supports Python execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The mock A2A server can expose task data if run in an untrusted network environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment, or modify it to bind to 127.0.0.1 and require authentication before shared use.
+
+Risk: Remote A2A agents and webhook callback URLs are external systems that may receive task content or callback payloads.
+
+Mitigation: Avoid sending secrets or confidential data unless intended, validate destination agents and callback URLs, and use the target agent's declared authentication scheme.
+
+Risk: Published AgentCards can disclose endpoint, capability, and authentication details.
+
+Mitigation: Review generated AgentCards before publishing and omit internal memory, private tool details, proprietary state, or unnecessary operational metadata.
+
+## Reference(s):
+
+- [A2A Protocol Specification](https://a2a-protocol.org/latest/specification/)
+- [A2A GitHub Repository](https://github.com/a2aproject/A2A)
+- [A2A Python SDK](https://github.com/a2aproject/a2a-python)
+- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/skills/a2a-agent-protocol)
+- [A2A Protocol Overview](artifact/references/a2a-overview.md)
+- [A2A Data Model Reference](artifact/references/data-model.md)
+- [A2A Operations Reference](artifact/references/operations.md)
+- [AgentCard Template](artifact/references/agent-card-template.md)
+- [A2A Quickstart](artifact/references/quickstart.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON AgentCard examples, Python or shell commands, configuration snippets, and structured task artifact parts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write agent-card.json or start a local mock HTTP server when the corresponding mode is used; task modes should return artifacts[].parts instead of raw task objects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README badge)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

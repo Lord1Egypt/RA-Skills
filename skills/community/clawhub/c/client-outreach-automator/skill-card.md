@@ -1,43 +1,53 @@
-## Description: <br>
-Generates personalized multi-touch cold outreach sequences including emails, LinkedIn messages, and call scripts targeting specific industries and pain points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized multi-touch cold outreach sequences including emails, LinkedIn messages, and call scripts targeting specific industries and pain points.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Sales and business development users use this skill to draft personalized outreach for target industries, business sizes, and pain points. It helps produce multi-touch email sequences, LinkedIn messages, and cold call scripts with personalization tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may include inaccurate personalization, testimonials, or performance claims. <br>
-Mitigation: Verify recipient details, testimonials, and performance numbers before sending messages. <br>
-Risk: Cold outreach can violate contact-source, opt-out, or platform requirements if used carelessly. <br>
-Mitigation: Use legally sourced contacts, honor opt-out requests, and follow email, LinkedIn, and calling platform rules. <br>
-Risk: At-scale outreach may become deceptive or unwanted. <br>
-Mitigation: Avoid mass or deceptive outreach and review generated templates for truthful, recipient-specific content. <br>
+## Use Case:
 
+Sales, business development, and marketing users use this skill to draft personalized multi-touch cold outreach emails, LinkedIn messages, and call scripts for targeted industries and pain points.
 
-## Reference(s): <br>
-- [Client Outreach Automator on ClawHub](https://clawhub.ai/di5cip1e/client-outreach-automator) <br>
-- [Publisher profile: di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with outreach templates and personalization placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multi-touch email sequences, LinkedIn messages, cold call scripts, subject lines, and personalization tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated outreach may be inaccurate, off-brand, or unsuitable for a recipient list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each sequence for factual accuracy, audience fit, and brand tone before use.
+
+Risk: Cold outreach can raise consent and anti-spam compliance concerns.
+
+Mitigation: Confirm recipient consent, suppression lists, unsubscribe handling, and applicable anti-spam requirements before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/client-outreach-automator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted outreach sequences with personalization tokens]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include email, LinkedIn, and cold call variants with placeholder tokens such as {{first_name}} and {{company_name}}.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

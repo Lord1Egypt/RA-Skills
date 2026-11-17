@@ -1,40 +1,54 @@
-## Description: <br>
-Count provides plain-text reference documentation for count-related devtools workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count provides plain-text reference documentation for count-related devtools workflows.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference helper for count-related devtools topics such as quickstarts, common patterns, debugging, performance, security, migration, and quick-reference notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns generic operational guidance that may not match a user's specific production environment. <br>
-Mitigation: Treat the output as reference documentation and review recommendations against local system requirements before applying them. <br>
+## Use Case:
 
+Developers and engineers use Count to retrieve canned reference guidance for count-related devtools topics such as quickstart steps, common patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Reference(s): <br>
-- [Count on ClawHub](https://clawhub.ai/xueyetianya/count) <br>
-- [xueyetianya publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no API keys, credentials, external API calls, or network access indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill name may imply actual counting behavior, but the security evidence says it is a canned reference/help skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for reference guidance only and verify any counting or measurement task with an appropriate tool.
+
+Risk: Static reference text can be generic, incomplete, or stale for a specific devtools environment.
+
+Mitigation: Review the guidance against current project documentation, operational requirements, and security policy before applying it.
+
+## Reference(s):
+
+- [Count on ClawHub](https://clawhub.ai/xueyetianya/skills/count)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are described in the artifact or security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

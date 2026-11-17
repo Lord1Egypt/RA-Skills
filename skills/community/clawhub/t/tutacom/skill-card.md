@@ -1,44 +1,59 @@
-## Description: <br>
-Send, read, and manage emails via Tuta (formerly Tutanota) encrypted email service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send, read, and manage email through a user's Tuta account using a Python CLI client.
 
-## Publisher: <br>
-[AIDidMyHomework](https://clawhub.ai/user/AIDidMyHomework) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aididmyhomework](https://clawhub.ai/user/aididmyhomework)
 
-## Use Case: <br>
-External users and agents use this skill to check a Tuta inbox, read email, and send non-confidential email to external recipients through a Tuta account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access mailbox contents and send mail from the user's Tuta account. <br>
-Mitigation: Install only when the publisher is trusted with full mailbox and send access, and manually confirm recipients, subject, and body before any send action. <br>
-Risk: Reusable decrypted mail keys are stored in a local session file. <br>
-Mitigation: Use a private session-file path instead of /tmp when possible and delete the session file after use. <br>
-Risk: Account credentials are configured through openclaw.json. <br>
-Mitigation: Protect openclaw.json and avoid exposing it in shared workspaces, logs, or version control. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent log in to a Tuta account, list inbox messages, read decrypted mail, and send non-confidential email to external recipients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIDidMyHomework/tutacom) <br>
-- [Tuta REST endpoint](https://app.tuta.com/rest/) <br>
-- [Tutanota client reference implementation](https://github.com/nenaddi/tutanota_client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output with concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate through a local Tuta session file and can read mailbox contents or send external email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can access mailbox contents and send email through the configured Tuta account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk account where possible and install only when that mailbox access and sending authority are acceptable.
+
+Risk: Credentials and decrypted mailbox keys may be exposed through command-line password use, plaintext configuration, or reusable session files.
+
+Mitigation: Avoid command-line passwords and plaintext config, store session files in a private user directory instead of /tmp, keep file permissions restricted, and delete session files when work is complete.
+
+Risk: The documented dependency install uses system-level pip behavior that can affect the host Python environment.
+
+Mitigation: Install dependencies in a pinned virtual environment before running the client.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aididmyhomework/skills/tutacom)
+- [Tuta REST endpoint referenced by artifact](https://app.tuta.com/rest/)
+- [Rust client reference cited by artifact](https://github.com/nenaddi/tutanota_client)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; CLI commands return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tuta credentials and a local session file for reused mailbox access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

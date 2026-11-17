@@ -1,42 +1,53 @@
-## Description: <br>
-零配置即装即用，提供淘宝天猫商品搜索、商品详情查询和短链接生成3项工具，支持价格筛选、优惠券筛选和排序，基于淘宝官方数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+淘宝天猫好货搜索比价领券，标品按到手价排序找最低价，非标品按销量排序找口碑好货，自动筛选包邮+消保+高评分商品，返回优惠券和购买链接。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External shoppers and shopping assistants use this skill to search Taobao or Tmall products, inspect item details, filter by price or coupon availability, and create Taobao short links for sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Taobao searches, item IDs, and submitted shopping links through the publisher's proxy service. <br>
-Mitigation: Review the publisher and proxy documentation before installing, and avoid submitting private, account-specific, or tracking-heavy URLs unless data handling is documented. <br>
-Risk: The skill uses a built-in proxy token, so requests depend on a credential controlled outside the user's environment. <br>
-Mitigation: Treat the proxy as a third-party service dependency and reinstall or disable the skill if token handling, retention policy, or service ownership is unclear. <br>
-Risk: Prices, coupons, and short-link availability can change after the skill returns results. <br>
-Mitigation: Verify product details, coupon terms, and generated links on Taobao or Tmall before purchasing or sharing. <br>
+## Use Case:
 
+External shoppers use this skill to search Taobao and Tmall product listings, compare standard items by final price, and find lifestyle items by sales and reputation signals. It returns product summaries, coupon information, price filters, pagination, and purchase links, but it does not place orders or check logistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/taobao-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json] <br>
-**Output Format:** [JSON envelopes containing human-readable Chinese product search results, item details, or short-link responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Taobao or Tmall product prices, coupon information, sales counts, shop names, purchase links, and generated short links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The packaged release exposes a reusable proxy token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded token, rotate it before release, and require secure runtime configuration for proxy credentials.
+
+Risk: Shopping queries are sent through a proxy service and the proxy destination can be externally configured.
+
+Mitigation: Review the proxy destination before installation, restrict allowed destinations, and avoid sending sensitive personal information in search terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/taobao-selection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text product listings with prices, coupons, sales counts, shop names, categories, and purchase links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns search results for one requested page at a time; no ordering, logistics, or price-alert actions are performed.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

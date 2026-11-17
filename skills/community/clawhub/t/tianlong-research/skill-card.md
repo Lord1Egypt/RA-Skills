@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users break down requirements, assess complexity, apply critical questioning, and produce structured analysis reports for product and decision work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language requirements and intelligence analysis skill that helps agents deconstruct user needs, assess complexity, apply critical questioning, and produce structured recommendations.
 
-## Publisher: <br>
-[guilinleolee](https://clawhub.ai/user/guilinleolee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guilinleolee](https://clawhub.ai/user/guilinleolee)
 
-## Use Case: <br>
-Product builders, developers, and decision-makers use this skill to analyze product ideas, technical choices, project feasibility, and personal decisions with structured recommendations and risk warnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce product, career, technical, or investment-style recommendations that could be mistaken for professional advice. <br>
-Mitigation: Treat outputs as advisory analysis and have qualified humans review high-impact decisions before acting. <br>
-Risk: Users may include sensitive private details while asking for decision analysis. <br>
-Mitigation: Share only the details needed for the analysis and remove unnecessary personal, confidential, or proprietary information. <br>
+## Use Case:
 
+External users and product or technical decision makers use this skill to analyze product requirements, technology choices, project feasibility, or personal decisions and receive a structured Chinese-language analysis report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guilinleolee/tianlong-research) <br>
-- [Publisher profile](https://clawhub.ai/user/guilinleolee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include requirement decomposition, complexity rating, critical-thinking prompts, action items, decision items, and risk warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill is a Chinese-language prompt template, so users who need another language may misunderstand or lose nuance in translated output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the agent can translate or adapt the analysis before relying on it in another language.
+
+Risk: The skill provides decision-support analysis that may be incomplete or misleading if the initial requirement description is vague.
+
+Mitigation: Review the generated report, validate assumptions with stakeholders, and treat recommendations as inputs to human decision making.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guilinleolee/skills/tianlong-research)
+- [Publisher profile](https://clawhub.ai/user/guilinleolee)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown structured analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output organized into requirements decomposition, complexity assessment, critical questioning, and action recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

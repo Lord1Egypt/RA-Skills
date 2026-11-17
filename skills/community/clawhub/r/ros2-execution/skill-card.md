@@ -1,41 +1,53 @@
-## Description: <br>
-Execute ROS 2 commands (run, launch, call) in a sandboxed, allowlisted environment with support for parameter profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute ROS 2 commands in a sandboxed, allowlisted environment with support for parameter profiles.
 
-## Publisher: <br>
-[bigrobinson](https://clawhub.ai/user/bigrobinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigrobinson](https://clawhub.ai/user/bigrobinson)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to let an agent run selected ROS 2 nodes, launches, service calls, and action goals through an allowlisted wrapper in a trusted ROS workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority to run ROS 2 commands that may affect robot behavior or actuators. <br>
-Mitigation: Use it only in trusted ROS workspaces, keep package allowlists narrow, and require human approval before commands that could move hardware or affect actuators. <br>
-Risk: The skill depends on local configuration and parameter files whose contents influence ROS command execution. <br>
-Mitigation: Keep config.json and packages.json writable only by trusted users, prefer named parameter profiles, and review any arbitrary parameter file before use. <br>
-Risk: The security evidence says the skill is purpose-aligned but overstates or inconsistently describes its safety limits. <br>
-Mitigation: Review the wrapper behavior and security limits before installing or enabling the skill on a real ROS system. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to configure a ROS 2 environment and execute allowlisted run, launch, service-call, and action-goal commands through the provided wrapper.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local ROS 2 setup, generated config files, package allowlists, and optional YAML parameter profiles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The wrapper has validation and command-execution weaknesses and should not be treated as a strong sandbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an isolated ROS environment until setup-path quoting, workspace containment checks, service/action disclosure, and argument passthrough are reviewed and fixed.
+
+Risk: Unreviewed package allowlists or parameter profiles could permit unintended ROS command execution.
+
+Mitigation: Keep package allowlists explicit and review parameter profiles or params files before execution; avoid secrets in profiles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigrobinson/skills/ros2-execution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured local ROS 2 environment, explicit package allowlists, and reviewed parameter profiles or params files.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

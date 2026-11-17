@@ -1,39 +1,58 @@
-## Description: <br>
-Discord platform skill for SurfAgent, covering route-aware state checks, extraction-first workflows, blockers, and when to use the Discord adapter over raw browser control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discord platform skill for SurfAgent, covering route-aware state checks, extraction-first workflows, blockers, and when to use the Discord adapter over raw browser control.
 
-## Publisher: <br>
-[surfagentapp](https://clawhub.ai/user/surfagentapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surfagentapp](https://clawhub.ai/user/surfagentapp)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide Discord automation workflows with route-aware state checks, visible extraction, blocker detection, and adapter-first decisions. It helps agents avoid brittle selector guessing and report login, verification, route, and account blockers clearly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The separate Discord adapter or browser runtime paired with this guidance may handle a Discord session and visible account data. <br>
-Mitigation: Review the adapter or runtime separately, confirm the account context and permissions before use, and treat login, verification, route, and account blockers as explicit stop conditions. <br>
+## Use Case:
 
+Developers and automation agents use this skill to navigate Discord through SurfAgent workflows, prioritizing route-aware checks, blocker detection, visible extraction, and verified actions.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
-- [ClawHub skill page](https://clawhub.ai/surfagentapp/surfagent-discord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance for Discord browser automation workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, install hooks, credential requests, or hidden persistence were reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide visible Discord state and message extraction in accounts, servers, or channels where access may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts, servers, and channels where the operator has permission to view or act.
+
+Risk: Discord login, verification, hCaptcha, or route mismatch states can block progress or make results misleading.
+
+Mitigation: Require explicit blocker detection and report gated or wrong-surface states as real outcomes before continuing.
+
+Risk: Discord's dynamic single-page interface can expose stale or shifted surfaces that make generic browser actions unreliable.
+
+Mitigation: Prefer route-aware state checks and visible extraction, then verify the visible result after each action.
+
+## Reference(s):
+
+- [SurfAgent homepage](https://surfagent.app)
+- [ClawHub skill page](https://clawhub.ai/surfagentapp/skills/surfagent-discord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text or Markdown guidance for browser and Discord-adapter workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; output depends on the active Discord task and visible browser state.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

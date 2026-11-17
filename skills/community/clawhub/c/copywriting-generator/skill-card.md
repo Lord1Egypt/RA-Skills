@@ -1,39 +1,54 @@
-## Description: <br>
-Generates Chinese marketing copy, title ideas, CTA options, A/B test variants, and optimization suggestions for ecommerce sellers, content creators, and advertising practitioners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language marketing copy, headline options, calls to action, A/B testing suggestions, and platform-specific rewrites for ecommerce, content, brand, advertising, and media workflows.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External users such as ecommerce sellers, content creators, brand teams, advertising agencies, and social media operators use this skill to draft platform-specific marketing titles, body copy, calls to action, A/B variants, and copy improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing claims, discounts, testimonials, or product-effect statements may be inaccurate or non-compliant if published without review. <br>
-Mitigation: Review generated copy for factual accuracy, substantiation, advertising compliance, and audience fit before publishing. <br>
+## Use Case:
 
+External users such as ecommerce sellers, content creators, brand teams, advertising agencies, and media operators use this skill to draft Chinese marketing headlines, body copy, calls to action, optimization suggestions, and platform-adapted copy.
 
-## Reference(s): <br>
-- [Copywriting Generator ClawHub page](https://clawhub.ai/275254cl-hash/copywriting-generator) <br>
-- [Publisher profile: 275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style copywriting drafts and Node CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include generated titles, body-copy frameworks, CTA lists, platform adaptation guidance, and optimization suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated marketing claims, A/B testing suggestions, and paid-tier or data-tracking descriptions may not reflect implemented functionality or validated campaign performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review copy for accuracy, substantiate claims before publication, and run real campaign tests before relying on performance guidance.
+
+Risk: Very large generation counts may reduce reliability or create unwieldy output.
+
+Mitigation: Use modest generation counts and review output before using it in customer-facing material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/copywriting-generator)
+- [Publisher profile](https://clawhub.ai/user/275254cl-hash)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese text with numbered copy options and short recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI helper can emit titles, content outlines, CTA options, full copy bundles, and optimization suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

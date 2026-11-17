@@ -1,43 +1,52 @@
-## Description: <br>
-AnyoneCLI helps humans and AI agents register and look up terminal-style public profile pages on anyonecli.com through curl-based API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AnyoneCLI helps humans and AI agents create or look up terminal-style public profile pages through the anyonecli.com API.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-Developers, engineers, and AI agents use this skill to create public AnyoneCLI profile pages, retrieve profile JSON, and inspect the registration schema from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish user or agent identity and contact details to a third-party service. <br>
-Mitigation: Confirm the exact profile payload before running registration commands and include only information intended to be public. <br>
-Risk: Artifact evidence states profiles are public and permanent. <br>
-Mitigation: Avoid sensitive, private, or temporary contact information when creating a profile. <br>
+## Use Case:
 
+Developers, operators, and AI agents use this skill to register a public AnyoneCLI profile, inspect the registration schema, or retrieve an existing profile as JSON.
 
-## Reference(s): <br>
-- [AnyoneCLI website](https://anyonecli.com) <br>
-- [AnyoneCLI registration schema](https://anyonecli.com/api/register) <br>
-- [ClawHub skill page](https://clawhub.ai/dongsheng123132/anyonecli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dongsheng123132) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands call AnyoneCLI endpoints and may return public profile URLs, API URLs, schemas, or validation errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can publish public, permanent profile data to a third-party service, and the artifact does not describe an edit or deletion flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact registration payload before submission, remove secrets, private email addresses, and internal URLs, and proceed only when the user accepts that the profile will be public and permanent.
+
+## Reference(s):
+
+- [AnyoneCLI Website](https://anyonecli.com)
+- [AnyoneCLI Registration API](https://anyonecli.com/api/register)
+- [ClawHub Skill Page](https://clawhub.ai/dongsheng123132/skills/anyonecli)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/dongsheng123132)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl. Registration can create public, permanent profile data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Create AI-powered social media content for TikTok, Instagram, YouTube, and Twitter/X, including images, videos, reels, shorts, thumbnails, captions, and hashtags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create AI-powered social media content for TikTok, Instagram, YouTube, Twitter/X, including images, videos, reels, shorts, thumbnails, captions, and hashtags.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Creators, social media managers, influencers, brands, and developers use this skill to generate AI-assisted social posts and media production commands across major social platforms. It helps produce platform-specific prompts, captions, hashtags, thumbnails, videos, voiceovers, and repurposed content workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that can post content to Twitter/X as a live public action. <br>
-Mitigation: Require manual review and explicit user confirmation before running any social posting command. <br>
-Risk: The skill relies on an external CLI and login session. <br>
-Mitigation: Install and authenticate only in trusted environments, and use least-privilege credentials for connected accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/ai-social-media-content) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Content creators, social media managers, influencers, and brands use this skill to plan and generate social media visuals, videos, captions, hashtags, and platform-specific content workflows with inference.sh CLI commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that may call external inference.sh apps and may produce generated media URLs or JSON files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends a mutable remote installer for the inference.sh CLI.
+
+Mitigation: Prefer a manual, pinned, independently verified CLI installation and check published SHA-256 checksums before use.
+
+Risk: The skill includes Twitter/X posting examples that can publish generated content publicly.
+
+Mitigation: Require explicit user confirmation and review all generated text and media before any social posting action.
+
+Risk: The skill recommends additional unpinned related-skill installs.
+
+Mitigation: Inspect and pin related skills before installation, especially when they can execute commands or automate external services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okaris/skills/ai-social-media-content)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI installer](https://cli.inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON command inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt templates and executable CLI examples for third-party media and social posting services.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

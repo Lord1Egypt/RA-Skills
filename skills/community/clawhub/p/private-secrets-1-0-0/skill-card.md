@@ -1,40 +1,57 @@
-## Description: <br>
-Stores, lists, and retrieves named secrets such as API keys, passwords, and tokens in a local plaintext JSON file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private Secrets helps agents store, list, and retrieve named local secrets such as API keys, passwords, and tokens in a JSON file.
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-Users can use this skill as a simple local helper for adding, listing, and retrieving named secrets during agent workflows. It is best suited to low-risk local notes because server security evidence reports plaintext storage and possible stdout disclosure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive credentials are stored in plaintext and may be disclosed through command output. <br>
-Mitigation: Do not store production passwords, long-lived API keys, wallet seeds, or other high-value secrets unless plaintext workspace storage and stdout disclosure are acceptable. <br>
-Risk: The helper implementation may run unintended local code from crafted inputs. <br>
-Mitigation: Prefer an OS keychain or encrypted secret manager, or update the helper to pass inputs safely to Node and restrict the secrets file permissions before use. <br>
+## Use Case:
 
+Developers and agent users can manage small sets of local secret values during workflows by adding names, listing stored names, and retrieving values on demand. Do not use it for real API keys, passwords, tokens, or production credentials unless the security issues identified in the release evidence are fixed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anmu14641/private-secrets-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores data in a local plaintext JSON file at /workspace/skills/private-secrets-1.0.0/secrets.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stored secrets are kept in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret store or encrypted file with strict permissions before storing real credentials.
+
+Risk: Crafted secret names or values can execute code through the helper script.
+
+Mitigation: Treat inputs strictly as data, avoid interpolating them into executable code, and review the script before installation.
+
+Risk: Retrieving a secret prints the value by default.
+
+Mitigation: Avoid printing secrets by default and limit retrieval output to workflows that explicitly require disclosure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmu14641/skills/private-secrets-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores values in a local plaintext secrets.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

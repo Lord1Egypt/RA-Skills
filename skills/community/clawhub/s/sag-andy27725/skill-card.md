@@ -1,41 +1,59 @@
-## Description: <br>
-ElevenLabs text-to-speech with mac-style say UX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ElevenLabs text-to-speech with mac-style say UX.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and external users can use this skill to prepare sag CLI commands and guidance for ElevenLabs text-to-speech playback, voice selection, model options, pronunciation handling, and chat voice responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the sag Homebrew package and local sag CLI behavior. <br>
-Mitigation: Install only from a trusted package source and review the CLI before using it in sensitive workflows. <br>
-Risk: Text sent for speech generation may be processed by the ElevenLabs provider, and the workflow requires an API key. <br>
-Mitigation: Store the API key securely and avoid converting secrets or sensitive private text unless that provider processing is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to turn text responses into local ElevenLabs speech audio with configurable voices, model choices, pronunciation guidance, and playback-oriented CLI commands.
 
-## Reference(s): <br>
-- [Sag homepage](https://sag.sh) <br>
-- [ClawHub release page](https://clawhub.ai/andy27725/sag-andy27725) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local audio output paths when generating voice replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on a third-party Homebrew tap and the sag CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and Homebrew tap are trusted for the deployment environment.
+
+Risk: Text provided for speech generation may be sent to ElevenLabs through the configured API key.
+
+Mitigation: Avoid sensitive text unless that use is allowed by the applicable ElevenLabs and organizational usage policies.
+
+Risk: The documented chat voice example writes to /tmp/voice-reply.mp3 and can overwrite an existing file at that path.
+
+Mitigation: Use a deliberate output path when existing audio should be preserved.
+
+## Reference(s):
+
+- [sag homepage](https://sag.sh)
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/sag-andy27725)
+- [Publisher profile](https://clawhub.ai/user/andy27725)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown with inline bash code blocks and generated audio file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a sag CLI installation and an ElevenLabs API key; examples may write MP3 output to a local /tmp path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

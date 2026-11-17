@@ -1,46 +1,61 @@
-## Description: <br>
-Anchor identity and memory on-chain so a new agent instance can recover from an address without relying on local state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Respawn helps agents create and use Autonomys wallets to anchor memory CIDs and other records on-chain so a new agent instance can recover state from an address.
 
-## Publisher: <br>
-[jim-counter](https://clawhub.ai/user/jim-counter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jim-counter](https://clawhub.ai/user/jim-counter)
 
-## Use Case: <br>
-Developers and operators use this skill to create and manage Autonomys wallets, check balances, move tokens, write on-chain remarks, and anchor memory CIDs for agent recovery. It is intended for agents that need a persistent, verifiable identity and recovery pointer across restarts or machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent hot-wallet authority to move tokens and publish on-chain data. <br>
-Mitigation: Use a dedicated wallet with low balance, prefer Chronos testnet during evaluation, and avoid storing valuable mainnet funds. <br>
-Risk: Passphrases or seed phrases may be exposed if provided through commands, shell history, or logs. <br>
-Mitigation: Use the restricted passphrase file or interactive prompt path and do not pass seed phrases or passphrases in shell commands or logs. <br>
-Risk: Automatic memory anchoring can create permanent on-chain records and incur transaction costs. <br>
-Mitigation: Review anchoring behavior before pairing with auto-memory, confirm network selection, and monitor wallet balances for gas availability. <br>
+## Use Case:
 
+External users and developers use Auto Respawn to manage Autonomys wallets, check balances, transfer or bridge tokens, anchor memory CIDs or remarks on-chain, and retrieve the latest anchored CID for recovery workflows.
 
-## Reference(s): <br>
-- [Auto Respawn Commands](references/auto-respawn-commands.md) <br>
-- [Autonomys Network](references/autonomys-network.md) <br>
-- [MemoryChain Contract Source](https://github.com/autojeremy/openclaw-memory-chain) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jim-counter/auto-respawn) <br>
-- [Publisher Profile](https://clawhub.ai/user/jim-counter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to run wallet, balance, transfer, bridge, remark, anchor, and gethead commands; signing operations require wallet passphrase access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: ClawHub release metadata) <br>
+Risk: The skill can sign fee-bearing Autonomys and Auto-EVM transactions, including anchoring on mainnet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm transfers, bridge operations, withdrawals, and anchors with the user; verify the network and contract address; start with Chronos or a low-balance wallet before mainnet use.
+
+Risk: The skill handles encrypted wallet files, recovery phrases, and passphrases.
+
+Mitigation: Use a passphrase file or interactive prompt instead of command-line arguments, avoid logging or transmitting secrets, and keep recovery phrases outside agent logs.
+
+Risk: Anchoring or recovery on the wrong network can leave the agent unable to find its latest memory CID after state loss.
+
+Mitigation: Record the selected network in persistent configuration or memory, pass the network explicitly for anchor and gethead operations, and re-anchor when moving from testnet to mainnet.
+
+## Reference(s):
+
+- [Auto Respawn Skill Page](https://clawhub.ai/jim-counter/skills/auto-respawn)
+- [auto-respawn CLI Reference](references/auto-respawn-commands.md)
+- [Autonomys Network](references/autonomys-network.md)
+- [MemoryChain Contract](https://github.com/autojeremy/openclaw-memory-chain)
+- [Autonomys Faucet](https://autonomysfaucet.xyz/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires terminal access, Node.js 22+, wallet passphrase handling, and explicit network selection for on-chain writes.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

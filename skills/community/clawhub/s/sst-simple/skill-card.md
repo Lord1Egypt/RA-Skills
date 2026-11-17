@@ -1,42 +1,61 @@
-## Description: <br>
-Local speech-to-text using OpenAI Whisper for transcribing audio files, voice messages, and recordings across many languages with local processing and session-isolated outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text using OpenAI Whisper for transcribing audio files, voice messages, and multilingual recordings.
 
-## Publisher: <br>
-[lkisme](https://clawhub.ai/user/lkisme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkisme](https://clawhub.ai/user/lkisme)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and run a local Whisper-based speech-to-text workflow for audio files, voice messages, meeting recordings, batch transcription, and multi-agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation may change system packages and download Whisper dependencies and model files. <br>
-Mitigation: Review the setup script before running it, install in a controlled environment, and confirm system package changes are acceptable. <br>
-Risk: Transcript files may not be safely constrained to the documented output folder. <br>
-Mitigation: Use simple session IDs containing only letters, numbers, dashes, or underscores, and inspect output paths until path validation is fixed. <br>
-Risk: Generated transcripts can contain sensitive local audio content. <br>
-Mitigation: Treat transcript outputs as sensitive files and apply local retention, access-control, and cleanup practices appropriate for the source audio. <br>
+## Use Case:
 
+Developers and agents use this skill to run local speech-to-text transcription for audio files, voice messages, and multilingual recordings. It is suited for workflows that need transcript text or JSON command output while keeping processing local.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lkisme/sst-simple) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transcripts, JSON command responses, transcript files, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local transcript files under the documented stt_output directory; Whisper CLI can also produce subtitle formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: User-controlled session identifiers can write transcript files outside the intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid arbitrary session_id values; restrict them to trusted, validated identifiers before running the skill.
+
+Risk: The installer makes broad host changes while setting up runtime dependencies.
+
+Mitigation: Install only in a constrained environment under an unprivileged runtime account, and review host changes before production use.
+
+Risk: Generated transcripts may contain sensitive local data.
+
+Mitigation: Treat transcript outputs as sensitive files and apply local access controls and retention limits.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin dependencies before production use and review updates before deploying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lkisme/skills/sst-simple)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text transcripts, JSON command output, and Markdown usage guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes transcript files to a local output directory; optional session identifiers separate outputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

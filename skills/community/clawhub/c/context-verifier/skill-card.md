@@ -1,43 +1,54 @@
-## Description: <br>
-Know the file you're editing is the file you think it is — verify integrity before you act. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Know the file you are editing is the file you think it is: verify integrity before you act.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to compute SHA-256 hashes, verify that files have not changed unexpectedly, classify file-change severity, and create context packets for review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read any user-specified path for hashing or packet creation. <br>
-Mitigation: Use precise file paths and narrow globs instead of broad workspace-wide patterns. <br>
-Risk: Using --include-content can store sensitive file contents in context packets. <br>
-Mitigation: Do not use --include-content with .env files, credentials, secrets, or other private data. <br>
-Risk: Context packets are written under output/context-packets/ and may remain on disk. <br>
-Mitigation: Keep output/context-packets/ out of git and delete old packets when no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to compute and verify SHA-256 file hashes, tag file-change severity, and create context packets before editing or review workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leegitw/context-verifier) <br>
-- [Publisher profile](https://clawhub.ai/user/leegitw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style command responses and JSON context packet files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes context packets to output/context-packets/ when packet creation is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can hash any file path explicitly provided by the user, including sensitive files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use deliberate file paths and avoid broad globs when secrets or credentials may be present.
+
+Risk: Using --include-content stores file contents in unencrypted context packets on disk.
+
+Mitigation: Do not use --include-content with secrets, add output/context-packets/ to .gitignore, restrict permissions, and delete packets when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/context-verifier)
+- [Project homepage](https://github.com/live-neon/skills/tree/main/agentic/context-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain text status output and JSON context packet files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write unencrypted context packet JSON under output/context-packets/ when packet creation is requested.]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

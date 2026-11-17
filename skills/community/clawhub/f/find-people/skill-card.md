@@ -1,41 +1,57 @@
-## Description: <br>
-Find People (x402) helps agents run paid OSINT research on individuals, including professional backgrounds, career timelines, credential checks, due diligence, competitive intelligence, and investor research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Source Intelligence (OSINT) tool for researching individuals - professional backgrounds, career timelines, due diligence, competitive intelligence, and investor research.
 
-## Publisher: <br>
-[TzannetosGiannis](https://clawhub.ai/user/TzannetosGiannis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tzannetosgiannis](https://clawhub.ai/user/tzannetosgiannis)
 
-## Use Case: <br>
-External users and agents use this skill to research public information about individuals for background research, due diligence, hiring, partnerships, investment, competitive analysis, or journalism. Each lookup requires a paid x402 request. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Paid people-search requests can return sensitive or unverified personal data. <br>
-Mitigation: Confirm each lookup has a legitimate purpose, review results before relying on them, and do not use the tool for stalking, doxxing, discrimination, or decisions based solely on unverified data. <br>
-Risk: The workflow uses a raw wallet private key with external code fetched at runtime. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid project-local plaintext key files, and inspect the external package before running paid lookups. <br>
-Risk: Each query can trigger a paid x402 request. <br>
-Mitigation: Confirm user consent and payment intent before running the script, and avoid unattended or repeated lookups. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TzannetosGiannis/find-people) <br>
+## Use Case:
 
+External users and agents use this skill to research public information about people for professional background checks, due diligence, competitive intelligence, investor research, journalism, and credential verification.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a person query and an x402 wallet private key; paid lookups cost $0.15 USDC per request on Base.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a wallet private key for x402 payment handling.
+
+Mitigation: Use a dedicated low-balance wallet, avoid plaintext key storage when possible, restrict config file permissions, and rotate or move funds if a key may have been exposed.
+
+Risk: The skill executes an unpinned third-party npm package with access to the wallet key.
+
+Mitigation: Review the package before use, run it in a constrained environment, and monitor payment activity from the dedicated wallet.
+
+Risk: People-research outputs can be incomplete, outdated, or misleading.
+
+Mitigation: Treat results as leads for human review and verify important claims against authoritative public sources before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tzannetosgiannis/skills/find-people)
+- [Publisher profile](https://clawhub.ai/user/tzannetosgiannis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text OSINT report returned through shell output, with configuration guidance for payment credentials.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each request costs $0.15 USDC via x402 on Base and may take up to five minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

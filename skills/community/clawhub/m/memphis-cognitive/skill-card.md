@@ -1,43 +1,55 @@
-## Description: <br>
-Memphis Cognitive is a documentation-only OpenClaw skill that guides agents and users through installing and using the separate Memphis CLI for decision capture, memory search, reflection, knowledge graphs, and multi-agent synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memphis Cognitive is a documentation-only meta-package that guides agents through installing and using the separate Memphis CLI for decision capture, memory recall, reflection, prediction, knowledge graph, and multi-agent sync workflows.
 
-## Publisher: <br>
-[elathoxu-crypto](https://clawhub.ai/user/elathoxu-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elathoxu-crypto](https://clawhub.ai/user/elathoxu-crypto)
 
-## Use Case: <br>
-Developers and teams use this skill to add decision-first memory workflows to OpenClaw agents. It provides guidance and command examples for journaling, decision tracking, semantic recall, prediction, reflection, knowledge graphs, and multi-agent synchronization through the separately installed Memphis CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installation guidance includes remote shell installers, including commands that may run privileged setup steps. <br>
-Mitigation: Review installer scripts before execution, prefer a pinned release or manually inspected install, and avoid sudo-piped setup commands unless the source is trusted. <br>
-Risk: Memphis memory, trade, and share-sync workflows may contain or export private project, business, decision, journal, or reflection data. <br>
-Mitigation: Treat Memphis memory as sensitive data and use trade or share-sync only with trusted peers after checking exactly which blocks will be exported. <br>
+## Use Case:
 
+Developers, technical operators, and OpenClaw users use this skill as guidance for adding decision-oriented memory workflows to an agent through the separately installed Memphis CLI. The skill helps users record decisions, query memory, infer decisions from git history, generate reflections, build knowledge graphs, and coordinate memory sharing across agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elathoxu-crypto/memphis-cognitive) <br>
-- [Memphis Repository](https://github.com/elathoxu-crypto/memphis) <br>
-- [Memphis Documentation](https://github.com/elathoxu-crypto/memphis/tree/master/docs) <br>
-- [Memphis Installer Script](https://raw.githubusercontent.com/elathoxu-crypto/memphis/main/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only meta-package; the included wrapper forwards arguments to a locally installed Memphis CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.7.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The setup documentation recommends remote installer patterns such as curl piped to a shell, including a NodeSource command piped through sudo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release or package version, verify checksums or signatures, and inspect installer scripts before execution.
+
+Risk: Trade and share-sync workflows may move memory records that contain private or proprietary data.
+
+Mitigation: Review memory contents and recipient configuration before using trade or sync commands, and avoid sharing sensitive records unless the receiving environment is trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elathoxu-crypto/skills/memphis-cognitive)
+- [Memphis Repository](https://github.com/elathoxu-crypto/memphis)
+- [Memphis Documentation](https://github.com/elathoxu-crypto/memphis/tree/master/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only meta-package; Memphis CLI must be installed separately.]
+
+## Skill Version(s):
+
+3.7.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-The agntdata X API helps agents and automations use one API key to retrieve structured X posts, profiles, followers, search, hashtag, trend, and text-analysis data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X posts, profiles, followers, and search for agents — audience research and social listening as structured JSON.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-Developers, automation builders, marketing teams, research teams, and data teams use this skill to query X posts, profiles, followers, search results, hashtags, trends, and related text-analysis endpoints through agntdata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AGNTDATA_API_KEY and sends X queries, account identifiers, tweet IDs, use-case text, and analysis or translation text to agntdata. <br>
-Mitigation: Use a dedicated API key where possible, monitor usage, avoid sending secrets or sensitive personal data, and review requests before execution. <br>
-Risk: The artifact recommends an optional plugin that is separate from this instruction-only skill. <br>
-Mitigation: Review and approve any plugin separately before installation. <br>
+## Use Case:
 
+Developers, researchers, and marketing teams can use the skill to retrieve X posts, profiles, followers, search results, and related signals for audience research and social listening.
 
-## Reference(s): <br>
-- [agntdata X API Reference](https://agnt.mintlify.app/apis/social/x) <br>
-- [agntdata Documentation](https://agnt.mintlify.app) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaencarrodine/agntdata-x) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with curl examples and JSON API schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTDATA_API_KEY for authenticated requests and curl for command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and server release evidence) <br>
+Risk: Requests send SUPERAGNT_API_KEY to the Superagnt API, and calls may use account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm you expect the Superagnt integration, provide the key through approved secret storage, and monitor account credit usage.
+
+## Reference(s):
+
+- [Documentation](https://superagnt.com/r/ch-x-twitter-data-docs)
+- [API key and account credits](https://superagnt.com/r/ch-x-twitter-data-key)
+- [Scoped X MCP server](https://mcp.superagnt.com/mcp/x)
+- [X data API](https://api.superagnt.com/v1/data/x)
+- [ClawHub listing](https://clawhub.ai/superagnt/skills/x-twitter-data)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON data]
+
+**Output Format:** [Structured JSON responses with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live X data; requires SUPERAGNT_API_KEY and may use account credits.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

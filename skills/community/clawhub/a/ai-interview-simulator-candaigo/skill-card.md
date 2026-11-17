@@ -1,42 +1,58 @@
-## Description: <br>
-AI Interview Simulator is a Candaigo API guide for browsing jobs, creating and joining AI group interview rooms, sending interview messages, advancing interviews, uploading resumes, and viewing history and evaluations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Interview Simulator helps agents use Candaigo's API to browse jobs, create and run group interview rooms, exchange messages, upload resumes, and retrieve interview history and evaluations.
 
-## Publisher: <br>
-[hangeaiagent](https://clawhub.ai/user/hangeaiagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hangeaiagent](https://clawhub.ai/user/hangeaiagent)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect an agent to Candaigo's AI group interview simulator API. It supports job discovery, room creation and start flows, candidate speech, interview advancement, message polling, result review, history lookup, and optional resume upload. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Interview content and resumes are sent to Candaigo when the documented API flows are used. <br>
-Mitigation: Install only if Candaigo is trusted for this data, review Candaigo privacy and retention terms, redact unnecessary personal information, and explicitly approve resume uploads. <br>
-Risk: Candaigo API keys can grant access to interview resources if exposed in shared chats, logs, or public code. <br>
-Mitigation: Use a dedicated API key, avoid hardcoding it, keep it out of public artifacts, and rotate it if exposure is suspected. <br>
-Risk: The skill documents state-changing actions such as starting rooms, sending speech, advancing interviews, and uploading files. <br>
-Mitigation: Require explicit user approval before executing state-changing requests and review request payloads before sending them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Candaigo API base URL](https://me.candaigo.com) <br>
-- [ClawHub skill page](https://clawhub.ai/hangeaiagent/ai-interview-simulator-candaigo) <br>
+## Use Case:
 
+External users and agents use this skill to interact with Candaigo's remote AI group interview simulation service: register API access, create or join interview rooms, submit messages, advance AI participation, upload resumes, and review results.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Candaigo API key for authenticated API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may send resumes, interview chat logs, participant information, and evaluation data to Candaigo's remote service.
+
+Mitigation: Use it only when Candaigo is trusted for this data, avoid uploading unnecessary personal details, and review the skill before installing or running resume and result workflows.
+
+Risk: API keys grant access to protected interview resources and can be exposed if copied into shared code or logs.
+
+Mitigation: Protect API keys, avoid hardcoding them in public code, and rotate or revoke credentials if exposure is suspected.
+
+Risk: Polling loops for messages and interview advancement can continue making remote requests after a session ends.
+
+Mitigation: Stop polling loops when the interview session is done and respect the documented rate guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hangeaiagent/skills/ai-interview-simulator-candaigo)
+- [Publisher profile](https://clawhub.ai/user/hangeaiagent)
+- [Candaigo API base URL](https://me.candaigo.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with API endpoint descriptions and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API-key authentication guidance, polling recommendations, request limits, and example JSON responses.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

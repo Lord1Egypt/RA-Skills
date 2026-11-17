@@ -1,42 +1,58 @@
-## Description: <br>
-Builds and manages an Etsy digital product store by generating digital products, listing them through Etsy API and browser automation, renewing listings, collecting reviews, and reporting earnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage an automated Etsy digital product store using Python, Etsy API OAuth, and Selenium browser automation.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Developers and ecommerce operators use this skill to plan and automate Etsy workflows for digital products such as templates, spreadsheets, checklists, prompt packs, and Canva assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle Etsy API keys and OAuth tokens. <br>
-Mitigation: Use secure secret storage, avoid exposing credentials in prompts or files, and prefer test or limited-scope credentials before using a real shop. <br>
-Risk: Browser automation and automated Etsy actions can create listings, renew listings, or send customer follow-up messages incorrectly. <br>
-Mitigation: Require manual approval for buyer messages, listing changes, renewals, pricing, and shop updates before running automation live. <br>
-Risk: AI-generated product assets and templates can introduce copyright, trademark, or marketplace policy issues. <br>
-Mitigation: Verify Etsy policy compliance and review rights, brand terms, product claims, and generated assets before publishing any digital product. <br>
+## Use Case:
 
+Developers and Etsy shop operators can use this skill to generate, list, renew, and monitor digital products such as templates, spreadsheets, checklists, and prompt packs. It should be reviewed before use on a real Etsy shop because it can involve live account automation.
 
-## Reference(s): <br>
-- [Etsy Developer Platform](https://developer.etsy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with Python code examples, setup steps, configuration file descriptions, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Etsy API credentials, OAuth tokens, Selenium browser automation, and generated product catalog files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: frontmatter and server release metadata) <br>
+Risk: The skill may prompt agents to use Etsy credentials and OAuth tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials only in secure secret storage and never commit them to files.
+
+Risk: Listing creation, renewal, messaging, and account or earnings access can affect fees, account standing, and customer communications.
+
+Mitigation: Require dry-run behavior or explicit manual confirmation before live Etsy actions.
+
+Risk: Automated Etsy store workflows may violate platform policy if configured incorrectly.
+
+Mitigation: Confirm the workflow complies with Etsy policies before connecting it to a real shop.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/etsy-digital-sales)
+- [Etsy Developers](https://developer.etsy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve live Etsy API and browser automation actions when implemented by an agent.]
+
+## Skill Version(s):
+
+1.0.17 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

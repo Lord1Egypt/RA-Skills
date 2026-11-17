@@ -1,40 +1,53 @@
-## Description: <br>
-The operating system layer for AI agents that routes goals to the right skills and executes with checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AGENT-OS is an operating-system layer for AI agents that routes goals to appropriate skills, executes with checkpoints, and verifies results.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-Developers and agent operators use AGENT-OS as an instruction-only orchestration layer to route goals to appropriate skills, checkpoint multi-step work, and verify results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad workflow orchestration can influence multi-step agent behavior beyond the immediate prompt. <br>
-Mitigation: Invoke it only when central routing, checkpoints, or multi-step coordination are needed, and keep final approval over high-impact actions. <br>
-Risk: The artifact marks medical diagnosis, legal advice, and financial advice as not recommended domains. <br>
-Mitigation: Avoid using the skill as the controlling workflow for those domains unless a qualified reviewer supplies the domain-specific process and approval gates. <br>
+## Use Case:
 
+External users and developers use AGENT-OS as a general planning and orchestration prompt for routing goals to skills, running with checkpoints, and verifying results.
 
-## Reference(s): <br>
-- [AGENT-OS on ClawHub](https://clawhub.ai/contrario/agnt-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text agent instructions and checkpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavior; no file access, code execution, or external APIs are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is broad and sparse, so an agent could over-apply it to sensitive legal, medical, financial, account, or system-changing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal agent permissions and approvals in place, and avoid the unrecommended domains unless qualified review and task-specific controls are available.
+
+Risk: The artifact provides planning and orchestration guidance but no artifact-backed execution controls.
+
+Mitigation: Treat outputs as guidance, review plans before action, and verify checkpoint results before proceeding.
+
+## Reference(s):
+
+- [AGENT-OS on ClawHub](https://clawhub.ai/contrario/skills/agnt-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; no artifact-backed file access, code execution, external APIs, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

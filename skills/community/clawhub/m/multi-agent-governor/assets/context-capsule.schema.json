@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multi-Agent Context Capsule",
+  "type": "object",
+  "required": [
+    "run_id",
+    "lane_id",
+    "role",
+    "objective",
+    "inputs",
+    "deliverable",
+    "acceptance",
+    "exclusions",
+    "build_id",
+    "deadline_at"
+  ],
+  "properties": {
+    "run_id": { "type": "string" },
+    "lane_id": { "type": "string" },
+    "role": { "enum": ["explorer", "worker", "qa"] },
+    "model_tier": { "enum": ["fast", "balanced", "frontier"] },
+    "objective": { "type": "string" },
+    "inputs": { "type": "array", "items": { "type": "string" } },
+    "ownership": { "type": "array", "items": { "type": "string" } },
+    "deliverable": { "type": "string" },
+    "acceptance": { "type": "array", "items": { "type": "string" } },
+    "exclusions": { "type": "array", "items": { "type": "string" } },
+    "build_id": { "type": ["string", "null"] },
+    "artifact_hashes": { "type": "array" },
+    "deadline_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

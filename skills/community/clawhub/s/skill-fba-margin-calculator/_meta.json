@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-fba-margin-calculator",
+  "name": "skill-fba-margin-calculator",
   "version": "1.0.0",
-  "publishedAt": 1773098160875
+  "description": "Amazon UAE FBA fee estimator + margin ranker for CJ Dropshipping product candidates. Ranks SKUs by net margin and flags DG risk.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

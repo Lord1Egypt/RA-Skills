@@ -1,42 +1,59 @@
-## Description: <br>
-Deploy a document processing pipeline with 3 agents that automate ingestion, data extraction, and search indexing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a document processing pipeline with three agents that automate ingestion, data extraction, and search indexing.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure a three-agent Pilot document pipeline for ingestion, structured extraction, search indexing, and downstream notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup installs additional pilot-* skills and depends on Pilot binaries before the document pipeline can operate. <br>
-Mitigation: Review the additional skills and confirm the Pilot binaries are trusted before installation. <br>
-Risk: Document contents, extracted fields, summaries, and index notifications may be shared with peers or downstream systems. <br>
-Mitigation: Use the setup only for documents whose extracted fields or summaries may be shared with configured downstream systems. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a three-agent document processing pipeline for ingestion, structured extraction, and search indexing across Pilot Protocol agents.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-document-processing-setup) <br>
-- [Publisher profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific setup steps, Pilot hostnames, manifests, peer handshakes, and publish/subscribe examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact frontmatter version: 1.0) <br>
+Risk: Documents and extracted records may contain confidential or regulated data that flows between agents and downstream systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only with approved agents, storage, retention practices, and webhook destinations before processing sensitive documents.
+
+Risk: Incorrect package or publisher selection could install unintended peer skills in the pipeline.
+
+Mitigation: Confirm the exact ClawHub packages and publisher handles before running installation commands.
+
+Risk: Unsafe hostname prefixes or unreviewed handshakes can route data to the wrong peer.
+
+Mitigation: Use a simple hostname-safe prefix and review each peer hostname before initiating handshakes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-document-processing-setup)
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific hostnames, skill installation commands, handshake steps, and setup manifests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

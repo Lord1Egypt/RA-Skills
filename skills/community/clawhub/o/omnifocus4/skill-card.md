@@ -1,40 +1,53 @@
-## Description: <br>
-Live OmniFocus access via native Omni Automation for tasks, projects, inbox, tags, due dates, flagged items, search, review, and task changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides live OmniFocus access through native Omni Automation for reading and updating tasks, projects, inbox items, tags, due dates, flagged items, searches, and GTD reviews.
 
-## Publisher: <br>
-[cyberscribe](https://clawhub.ai/user/cyberscribe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cyberscribe](https://clawhub.ai/user/cyberscribe)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent query and manage a live OmniFocus 3 or 4 database on macOS through command-line access. It supports task review, search, inbox and project inspection, and authorized task creation or modification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad live access to personal OmniFocus data, including write and delete operations. <br>
-Mitigation: Install it only when that access is intended, keep write authorization in once or every mode, and require explicit confirmation before delete or bulk edits. <br>
-Risk: Invocation may fail or target the wrong entrypoint if the installed command path is not present. <br>
-Mitigation: Verify the installed command path before granting write access, or call the reviewed Python script directly. <br>
+## Use Case:
 
+Employees, external users, and developers with macOS OmniFocus use this skill to let an agent inspect live task data, summarize work, and perform approved task, project, folder, tag, date, note, and completion changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberscribe/omnifocus4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return JSON to stdout; write commands require authorization unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can give an agent live access to the user's OmniFocus database and may require running local automation outside the normal sandbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, grant macOS Automation permissions deliberately, and review results before acting on them.
+
+Risk: Persistent write preferences can disable confirmations for destructive task changes.
+
+Mitigation: Avoid `prefs set yolo`; prefer per-action confirmation before delete, move, rename, note replacement, or date changes.
+
+## Reference(s):
+
+- [Omnifocus4 ClawHub skill page](https://clawhub.ai/cyberscribe/skills/omnifocus4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; invoked commands return JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, OmniFocus 3 or 4, Python 3, and local automation access.]
+
+## Skill Version(s):
+
+1.0.3 (source: release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

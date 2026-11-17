@@ -1,5 +1,5 @@
 ## Description: <br>
-PAI-EAS service diagnosis and troubleshooting for startup failures, error logs, slow responses, instance restarts, OOMKilled, ImagePullBackOff, CrashLoopBackOff, GPU errors, health check failures, liveness probe issues, and inaccessible services. <br>
+Diagnoses Alibaba Cloud PAI-EAS service health issues such as startup failures, error logs, restarts, OOMKilled, GPU errors, liveness probe failures, and inaccessible services. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -7,49 +7,46 @@ This skill is ready for commercial/non-commercial use. <br>
 [sdk-team](https://clawhub.ai/user/sdk-team) <br>
 
 ### License/Terms of Use: <br>
-Apache-2.0 <br>
+MIT-0 <br>
 
 
 ## Use Case: <br>
-Alibaba Cloud PAI-EAS operators, SREs, and support engineers use this skill to diagnose running EAS service issues with read-only Aliyun CLI queries. It helps collect service status, events, logs, instance/container state, gateway/resource information, and diagnostic reports before producing troubleshooting guidance. <br>
+Developers and cloud operations engineers use this skill to run read-only PAI-EAS diagnostics, inspect service status, events, logs, instances, containers, and diagnosis reports, and produce health analysis with recommendations. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously use an existing Alibaba Cloud profile to read PAI-EAS service inventory, logs, events, endpoints, and diagnostic data. <br>
-Mitigation: Run it with a least-privilege read-only RAM role and avoid root accounts or long-lived access keys. <br>
-Risk: Diagnostic output may include service tokens, AK/SK values, endpoints, or sensitive log content if shared without review. <br>
-Mitigation: Redact credentials, service tokens, endpoints, and sensitive logs before sharing diagnosis output. <br>
-Risk: Health-check disabling guidance can affect production availability if applied casually. <br>
-Mitigation: Treat health-check disabling as non-production-only unless an operator explicitly approves the change and tracks rollback. <br>
-Risk: The CLI and plugin setup is broad and may alter local Aliyun CLI behavior. <br>
-Mitigation: Review CLI and plugin setup before execution and disable AI-Mode when diagnosis is complete. <br>
+Risk: The skill can give an agent broad read access to PAI-EAS service metadata, events, logs, endpoints, and service tokens. <br>
+Mitigation: Use a least-privilege read-only RAM role and install only when this diagnostic access is appropriate for the environment. <br>
+Risk: Account-wide discovery or vague service selection can expose more cloud service information than needed. <br>
+Mitigation: Specify the exact region and service before running diagnostics and avoid account-wide discovery unless it is necessary. <br>
+Risk: Diagnostic output may include sensitive tokens, authorization headers, access keys, logs, or endpoint details. <br>
+Mitigation: Redact credentials, tokens, headers, logs, and endpoint details before sharing diagnostic output. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-pai-eas-service-diagnose) <br>
+- [Skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-pai-eas-service-diagnose) <br>
 - [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Diagnosis Flow Guide](references/diagnosis-flow.md) <br>
 - [Diagnostic API Quick Reference](references/api-reference.md) <br>
-- [Related API List](references/related-apis.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
+- [Diagnosis Flow Guide](references/diagnosis-flow.md) <br>
 - [Error Code Reference](references/error-codes.md) <br>
 - [Health Check Configuration Reference](references/health-check.md) <br>
+- [RAM Policies](references/ram-policies.md) <br>
+- [Related API List](references/related-apis.md) <br>
 - [Verification Method](references/verification-method.md) <br>
 - [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI installer](https://aliyuncli.alicdn.com/install.sh) <br>
-- [Alibaba Cloud RAM console](https://ram.console.aliyun.com/) <br>
+- [Aliyun CLI downloads](https://aliyuncli.alicdn.com/) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown diagnosis report with inline Aliyun CLI commands and troubleshooting guidance] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown diagnosis report with inline shell commands and summarized CLI output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an existing Alibaba Cloud CLI profile and should avoid printing access keys, service tokens, endpoints, or sensitive logs.] <br>
+**Other Properties Related to Output:** [Requires Aliyun CLI and jq; uses read-only PAI-EAS APIs and a per-session user-agent.] <br>
 
 ## Skill Version(s): <br>
-0.0.1-beta.1 (source: ClawHub release metadata) <br>
+0.0.1 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

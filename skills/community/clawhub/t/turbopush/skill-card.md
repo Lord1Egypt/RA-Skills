@@ -1,45 +1,60 @@
-## Description: <br>
-Multi-platform content publishing assistant for posting articles, image-text posts, and videos to 20+ platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform content publishing assistant that helps agents publish articles, image posts, and videos to 20+ platforms.
 
-## Publisher: <br>
-[xueyc1f](https://clawhub.ai/user/xueyc1f) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyc1f](https://clawhub.ai/user/xueyc1f)
 
-## Use Case: <br>
-Developers and content operators use TurboPush to prepare, configure, publish, and review multi-platform social content through the turbo-push MCP server. It helps agents select logged-in accounts, create or reuse content, gather platform-specific publishing settings, publish or save drafts, and inspect publishing records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content publicly through logged-in social accounts without requiring an explicit final confirmation in its instructions. <br>
-Mitigation: Require the agent to show the final content, destination accounts, target platforms, and draft-versus-public-publish choice before any publish_article, publish_graph_text, or publish_video call. <br>
-Risk: Publishing depends on a local TurboPush application, browser automation, and the turbo-push-mcp binary. <br>
-Mitigation: Install only from trusted TurboPush sources and verify the local binary and application before connecting accounts or authorizing publication. <br>
-Risk: Platform-specific required settings or desc syntax errors can block publication or cause incorrect publishing metadata. <br>
-Mitigation: Call get_platform_setting_schema for the target platform and content type before publishing, validate required fields, and enforce the documented topic and mention syntax for image-text and video descriptions. <br>
+## Use Case:
 
+External users and content operators use this skill to guide an agent through preparing and publishing content across logged-in social and media accounts. It is suited for coordinated article, image-post, and video publishing workflows that require account checks, platform settings, result confirmation, and browser cleanup.
 
-## Reference(s): <br>
-- [TurboPush ClawHub page](https://clawhub.ai/xueyc1f/turbopush) <br>
-- [TurboPush MCP source URL listed by the artifact](https://github.com/xueyc/turbopush-mcp) <br>
-- [TurboPush application URL listed by the artifact](https://github.com/xueyc/turbopush) <br>
-- [TurboPush MCP releases URL listed by the artifact](https://github.com/xueyc/turbopush-mcp/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and MCP tool call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local TurboPush environment variables TURBO_PUSH_PORT and TURBO_PUSH_AUTH and the turbo-push-mcp binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The connected tool can publish through logged-in social and media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target accounts and post content before publishing, and use draft or sync options where available for preview.
+
+Risk: The skill depends on a local TurboPush MCP binary and authenticated local service.
+
+Mitigation: Install only from a trusted TurboPush MCP source and keep TURBO_PUSH_AUTH scoped to the local service.
+
+Risk: Browser instances can remain open after publishing workflows.
+
+Mitigation: Use closeBrowser=true for publishing calls or run close_browser after completing publishing tasks.
+
+## Reference(s):
+
+- [TurboPush ClawHub listing](https://clawhub.ai/xueyc1f/skills/turbopush)
+- [TurboPush MCP repository](https://github.com/xueyc/turbopush-mcp)
+- [TurboPush MCP releases](https://github.com/xueyc/turbopush-mcp/releases)
+- [TurboPush application repository](https://github.com/xueyc/turbopush)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, command examples, and structured publishing parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides calls to a local TurboPush MCP server and may produce platform-specific settings for publishing workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

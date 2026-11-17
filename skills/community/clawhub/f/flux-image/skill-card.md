@@ -1,44 +1,57 @@
-## Description: <br>
-Generate images with FLUX models from Black Forest Labs through the inference.sh CLI, including text-to-image, image-to-image, and LoRA-based style adaptation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with FLUX models via the inference.sh CLI, including text-to-image, image-to-image, and LoRA-based custom style workflows.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Developers and image-generation users use this skill to install and run inference.sh commands for FLUX image generation, image-to-image transformation, and LoRA-based style workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install and run the inference.sh CLI from an external installer. <br>
-Mitigation: Install only if inference.sh is trusted; review the installer or use the published checksum verification path before running it. <br>
-Risk: Prompts, image URLs, LoRA inputs, or source images may be sent to external image-generation services. <br>
-Mitigation: Avoid confidential prompts, private image URLs, secrets, or sensitive images unless that use is approved for the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [inference.sh](https://inference.sh) <br>
-- [Running Apps](https://inference.sh/docs/apps/running) <br>
-- [Image Generation Example](https://inference.sh/docs/examples/image-generation) <br>
-- [Streaming Results](https://inference.sh/docs/api/sdk/streaming) <br>
-- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/okaris/flux-image) <br>
+## Use Case:
 
+Developers and external users use this skill to generate and adapt FLUX images through inference.sh commands for product imagery, art, style transfer, and image-to-image workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may invoke external inference.sh services that generate image outputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends mutable remote installer and unpinned package commands that can execute code outside the reviewed artifact.
+
+Mitigation: Review commands before running them, pin package sources where possible, and verify installer checksums before installing the CLI.
+
+Risk: Remote image-generation workflows can expose sensitive prompts, private image URLs, or sensitive media to the inference service.
+
+Mitigation: Use non-sensitive prompts and media, avoid secrets or private URLs, and follow the service's data handling requirements before submitting inputs.
+
+## Reference(s):
+
+- [Flux Image on ClawHub](https://clawhub.ai/okaris/skills/flux-image)
+- [inference.sh](https://inference.sh)
+- [Running Apps](https://inference.sh/docs/apps/running)
+- [Image Generation Example](https://inference.sh/docs/examples/image-generation)
+- [Streaming Results](https://inference.sh/docs/api/sdk/streaming)
+- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote inference commands and image URL inputs.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

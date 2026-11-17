@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor website prices, inventory, and content changes using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Price Monitor helps agents track website prices, inventory, and content changes with browser automation, CSV product lists, local history logging, and alert-oriented checks.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-External users, developers, and business analysts use this skill to monitor product prices, stock status, and page content changes across specified websites, then log history and surface alerts for meaningful changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill browses user-provided URLs and may store product lists or monitoring history that reveal personal purchases or business research. <br>
-Mitigation: Use trusted browser automation tooling, review product lists before running, and keep generated history files private. <br>
-Risk: Optional email or Discord alerting could share monitoring data with third-party services. <br>
-Mitigation: Enable external alerts only after confirming the destination and avoiding sensitive products, URLs, or pricing research in alert payloads. <br>
-Risk: Frequent automated checks can trigger site blocking or collect stale data when selectors change. <br>
-Mitigation: Use conservative check intervals, maintain stable selectors, and re-check pages manually when extraction errors or unexpected prices appear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinanping-CPU/price-monitor) <br>
+## Use Case:
 
+Developers, operators, and analysts use this skill to monitor product prices, inventory status, and website content changes, then capture price history and alert-relevant changes for review.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash snippets, Python script usage, CSV configuration, and CSV or JSON monitoring outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script writes local price-history data and console alerts based on user-provided product URLs, selectors, and threshold settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Monitoring product or competitor URLs may expose browsing activity and create local price-history records.
+
+Mitigation: Monitor only approved URLs and store generated history files in locations appropriate for the sensitivity of the products or competitors being tracked.
+
+Risk: Email, Discord, cron scheduling, proxies, or user-agent rotation are described as optional additions and can change operational and data-sharing risk.
+
+Mitigation: Review and approve those additions separately before enabling them, especially for business-sensitive monitoring.
+
+Risk: Browser automation can return stale, missing, or incorrect values when selectors change, pages fail to load, or sites block automated access.
+
+Mitigation: Use stable selectors, rerun browser snapshots when extraction fails, and review error rows before acting on alerts.
+
+## Reference(s):
+
+- [Price Monitor on ClawHub](https://clawhub.ai/yinanping-cpu/skills/price-monitor)
+- [Publisher profile](https://clawhub.ai/user/yinanping-cpu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples, CSV product configuration, console status output, and local CSV price-history logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the included monitor script is run, it appends timestamped price check results to a local price-history.csv file and prints significant change alerts to the console.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

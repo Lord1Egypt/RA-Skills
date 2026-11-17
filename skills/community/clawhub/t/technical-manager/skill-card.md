@@ -1,37 +1,54 @@
-## Description: <br>
-Provides technical management guidance for translating product PRDs into architecture, risk, and implementation plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical Manager helps agents translate product PRD requirements into technical plans, architecture recommendations, implementation roadmaps, and risk controls.
 
-## Publisher: <br>
-[weslon1987](https://clawhub.ai/user/weslon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weslon1987](https://clawhub.ai/user/weslon1987)
 
-## Use Case: <br>
-Developers, engineering leads, and product teams use this skill to turn PRD details into technical architecture guidance, risk controls, and staged implementation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PRDs and architecture discussions may include confidential product, customer, credential, or infrastructure details. <br>
-Mitigation: Redact sensitive details before use unless the agent environment is approved for that information. <br>
+## Use Case:
 
+Product and engineering teams use this skill to analyze PRDs, identify technical requirements and risks, propose architecture, and produce implementation plans for development execution.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory technical plans and risk-control guidance; it does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package may need UTF-8 re-encoding and corrected frontmatter for reliable marketplace or runtime parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate encoding and frontmatter before publication or installation.
+
+Risk: Generated architecture and implementation plans may be incomplete or unsuitable for a specific product context.
+
+Mitigation: Have qualified product and engineering reviewers check the plan against the PRD, system constraints, and delivery risks before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weslon1987/skills/technical-manager)
+- [Publisher profile](https://clawhub.ai/user/weslon1987)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Structured Markdown or JSON-like planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include architecture choices, key technical implementation details, risk controls, and phased implementation plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

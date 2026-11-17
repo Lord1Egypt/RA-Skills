@@ -1,45 +1,56 @@
-## Description: <br>
-Browser automation via HTTP API for headless browser control, web automation, form filling, data extraction, interactive element interaction, browser launches, page navigation, screenshots, page structure extraction, and element clicks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via HTTP API. Use for headless browser control, web automation, form filling, data extraction, and interactive element interaction. Supports launching instances, navigating pages, taking screenshots, extracting page structure, and clicking elements.
 
-## Publisher: <br>
-[dexifried](https://clawhub.ai/user/dexifried) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexifried](https://clawhub.ai/user/dexifried)
 
-## Use Case: <br>
-Developers and engineers use PinchTab to control a trusted local browser automation server for browser workflow automation, page navigation, form interaction, page snapshots, screenshots, and data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a published fixed bearer token for the local PinchTab server. <br>
-Mitigation: Replace the published token with a user-controlled secret before use. <br>
-Risk: Browser screenshots can be stored locally or sent through Telegram and may contain private account, personal, or business data. <br>
-Mitigation: Avoid saving or sending sensitive screenshots, and review destinations before enabling Telegram delivery. <br>
-Risk: Navigation and click actions can affect logged-in sites through the controlled browser. <br>
-Mitigation: Run the server only for trusted local users and supervise actions on authenticated pages. <br>
+## Use Case:
 
+Developers and automation engineers use PinchTab to control a local browser through HTTP endpoints for navigation, page snapshots, element clicks, form workflows, data extraction, and screenshot capture.
 
-## Reference(s): <br>
-- [PinchTab ClawHub Release](https://clawhub.ai/dexifried/dexifried-pinchtab) <br>
-- [API Endpoints](references/api-endpoints.md) <br>
-- [Common Workflows](references/common-workflows.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API payload examples, and script-based browser automation workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local screenshot files and optional Telegram photo sends when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A bundled browser-control token could allow unintended access to the local PinchTab service if reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace and rotate the embedded token before use, and load per-user secrets from environment variables or a secret store.
+
+Risk: Screenshot capture, local persistence, and Telegram export can expose credentials, account data, private messages, or internal information from browser pages.
+
+Mitigation: Use screenshot and Telegram workflows only on pages whose contents are approved for export, and avoid sensitive browsing sessions unless export is explicitly intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dexifried/skills/dexifried-pinchtab)
+- [API Endpoints](references/api-endpoints.md)
+- [Common Workflows](references/common-workflows.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser snapshots, screenshot files, and optional Telegram photo messages when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

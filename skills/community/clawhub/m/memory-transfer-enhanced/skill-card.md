@@ -1,42 +1,57 @@
-## Description: <br>
-Transfer memory files between OpenClaw agents with support for topic-specific transfers and two modes: memory sharing with role transformation and memory cloning as a verbatim copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfers memory files between OpenClaw agents with optional topic filtering, share-mode filtering and adaptation, or clone-mode verbatim copying.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to inspect, search, preview, and transfer persistent memory files between OpenClaw agent workspaces for migration, backup, or topic-scoped knowledge sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move persistent agent memory between local OpenClaw workspaces, including private context in clone mode. <br>
-Mitigation: Use dry-run first, prefer topic or file scoped transfers, and avoid clone mode for private data unless a full backup or migration is intentional. <br>
-Risk: The documented confirmation safeguards are not reliably enforced by the artifact behavior. <br>
-Mitigation: Manually verify the source agent ID, target agent ID, transfer mode, and selected files before executing a transfer. <br>
-Risk: Share mode privacy filtering may be incomplete. <br>
-Mitigation: Review transferred memory content before reuse and remove sensitive user information that pattern filtering did not catch. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/memory-transfer-enhanced) <br>
-- [Publisher profile](https://clawhub.ai/user/codeblackhole1024) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to move, share, search, preview, or back up agent memory files across known OpenClaw workspaces.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Node.js file operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preview transfers, list or search memories, and write or back up OpenClaw memory files when executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary says the skill's filesystem scope and promised safety checks are not reliable enough for automatic installation.
+
+Mitigation: Review commands manually, limit source and target agent IDs to known safe workspaces, and use dry-run explicitly before transferring memories.
+
+Risk: Clone mode can copy memory contents verbatim, including user data or secrets.
+
+Mitigation: Avoid clone mode for memories that may contain user data or secrets; prefer reviewed share-mode transfers or manual migration for sensitive content.
+
+Risk: Security guidance says share-mode filtering should be treated as incomplete until path validation and enforced confirmation are added.
+
+Mitigation: Treat filtering as best effort, inspect candidate memory content before transfer, and require explicit human confirmation for any write operation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codeblackhole1024/skills/memory-transfer-enhanced)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/codeblackhole1024)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on OpenClaw memory files and support topic filtering, share mode, clone mode, and dry-run previews.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

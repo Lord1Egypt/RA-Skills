@@ -1,44 +1,55 @@
-## Description: <br>
-The Agent Economy Architect. Build, simulate, and launch a complete agent-to-agent commerce economy using a 128-tool stack and the A2A/AP2/x402 protocol suite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Agent Economy Architect helps developers build, simulate, and launch a complete agent-to-agent commerce economy using the GreenHelix 128-tool stack and the A2A, AP2, and x402 protocol suite.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and operators use this guide to design, simulate, and launch a multi-agent commerce marketplace with identity, discovery, payment, governance, analytics, and monetization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide references sensitive payment and signing credentials, including Stripe API keys and agent signing material. <br>
-Mitigation: Use sandbox or test credentials by default, avoid production keys unless intentionally executing the examples, and scope any provided credentials to the minimum required permissions. <br>
-Risk: The guide covers high-impact commerce actions such as deposits, escrow releases, subscriptions, API-key issuance, webhook registration, and production launch steps. <br>
-Mitigation: Require explicit human approval before any real payment, credential issuance, webhook, or production deployment action. <br>
-Risk: Security evidence reports inconsistent sandbox versus production guidance. <br>
-Mitigation: Review each endpoint and credential before use, prefer the GreenHelix sandbox for validation, and separate test and production environments. <br>
+## Use Case:
 
+Developers and platform teams use this guide to design an agent-to-agent commerce marketplace with identity, discovery, payment, governance, SLA, analytics, and monetization workflows. The skill provides architecture guidance, launch planning, and illustrative implementation examples for GreenHelix-based agent economies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-economy-architect) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix sandbox API endpoint](https://sandbox.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with code examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable educational guide; references payment, wallet, signing, and API credentials for user-managed environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks the host to expose high-value signing and payment credentials more broadly than the non-executable guide itself justifies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide AGENT_SIGNING_KEY or STRIPE_API_KEY to the skill context unless a specific, scoped workflow truly needs them.
+
+Risk: Production examples can trigger real financial or identity changes when executed against live services.
+
+Mitigation: Keep production and sandbox keys separate, validate workflows in sandbox or staging first, and review live-service commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-agent-economy-architect)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix Sandbox API Endpoint](https://sandbox.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python examples, shell-style configuration snippets, architecture checklists, and launch guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable educational content; examples may reference sandbox, staging, and production workflows.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

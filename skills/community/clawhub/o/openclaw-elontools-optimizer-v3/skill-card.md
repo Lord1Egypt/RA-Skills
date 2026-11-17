@@ -1,41 +1,58 @@
-## Description: <br>
-Provides a safe OpenClaw configuration preset that reduces token and resource use by changing heartbeat, plugin, sub-agent archive, and inactive-session cleanup settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw configuration guidance and a bundled preset for token-cost optimizations that adjust heartbeat model selection, plugin enablement, sub-agent archiving, and session cleanup.
 
-## Publisher: <br>
-[elontools](https://clawhub.ai/user/elontools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elontools](https://clawhub.ai/user/elontools)
 
-## Use Case: <br>
-Developers and operators use this skill when setting up or tuning OpenClaw instances to lower heartbeat cost, disable unused communication plugins, archive sub-agent sessions, and prune inactive sessions while avoiding context-pruning and compaction changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The preset persistently changes session maintenance and prunes inactive sessions after 7 days. <br>
-Mitigation: Review references/preset-safe.json and back up the current OpenClaw configuration before applying it. <br>
-Risk: The preset disables WhatsApp, Discord, Slack, Nostr, Google Chat, iMessage, and Signal plugins. <br>
-Mitigation: Keep or re-enable any communication plugins that the OpenClaw instance actively uses. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill when setting up or tuning an OpenClaw instance to reduce routine token and storage costs while preserving factory defaults for context management.
 
-## Reference(s): <br>
-- [OpenClaw ElonTools Optimizer v3 - Safe Edition release](https://clawhub.ai/elontools/openclaw-elontools-optimizer-v3) <br>
-- [preset-safe.json](references/preset-safe.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON configuration preset and gateway command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent OpenClaw configuration changes; review the preset before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Applying the bundled preset can broadly change OpenClaw configuration, including disabling messaging integrations and enforcing session cleanup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up configuration and session state before applying the preset, and remove plugin-disabling or session-pruning sections that do not match the target instance.
+
+Risk: Messaging integrations such as WhatsApp, Discord, Slack, Nostr, Google Chat, iMessage, and Signal can be disabled by the preset.
+
+Mitigation: Review references/preset-safe.json before use and keep required messaging plugins enabled.
+
+Risk: Earlier versions of the skill are described as having caused production tool-call loops after changing context-management settings.
+
+Mitigation: Keep OpenClaw factory defaults for contextPruning, compaction, bootstrapMaxChars, hardClear, softTrim, reserveTokensFloor, and maxHistoryShare unless separately reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elontools/skills/openclaw-elontools-optimizer-v3)
+- [Safe Preset Configuration](references/preset-safe.json)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration references and gateway command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes post-application verification checks for OpenClaw configuration and active plugins.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

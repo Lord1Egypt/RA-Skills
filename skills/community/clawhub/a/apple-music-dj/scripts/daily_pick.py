@@ -17,9 +17,9 @@ Requires: APPLE_MUSIC_DEV_TOKEN and APPLE_MUSIC_USER_TOKEN env vars.
 import sys
 
 # Python version guard
-if sys.version_info < (3, 9):
+if sys.version_info < (3, 10):
     sys.exit(
-        f"ERROR: Python 3.9+ is required (you have "
+        f"ERROR: Python 3.10+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -31,7 +31,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from _common import call_api, filter_generic_genres, load_profile
-from typing import Optional, Union
 
 SCRIPT_DIR = Path(__file__).parent
 
@@ -74,7 +73,7 @@ def get_time_context() -> dict:
 
 # ── Candidate Sourcing ───────────────────────────────────────────
 
-def get_candidates(profile: dict, sf: str, context: Optional[dict] = None) -> list[dict]:
+def get_candidates(profile: dict, sf: str, context: dict | None = None) -> list[dict]:
     """Gather candidate tracks from multiple sources."""
     candidates = []
     top_artists = profile.get("top_artists", [])[:15]
@@ -135,7 +134,7 @@ def get_candidates(profile: dict, sf: str, context: Optional[dict] = None) -> li
     return candidates
 
 
-def score_candidate(candidate: dict, profile: dict, context: Optional[dict] = None, rng: Optional[random.Random] = None) -> float:
+def score_candidate(candidate: dict, profile: dict, context: dict | None = None, rng: random.Random | None = None) -> float:
     """Score a candidate track. Higher = better pick."""
     _rng = rng or random.Random()
     score = 0.5  # base score
@@ -244,6 +243,9 @@ def main():
         result = cmd_daily(profile, args.storefront)
     elif args.command == "now":
         result = cmd_now(profile, args.storefront)
+    else:  # argparse already restricts this; the branch keeps the variable provably assigned
+        print(f"ERROR: unknown command '{args.command}'.", file=sys.stderr)
+        sys.exit(1)
 
     print(json.dumps(result, indent=2))
 

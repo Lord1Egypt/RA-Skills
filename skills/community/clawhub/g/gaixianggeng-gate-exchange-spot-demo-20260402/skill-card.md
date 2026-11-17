@@ -1,42 +1,57 @@
-## Description: <br>
-Gate spot trading and account operations skill for spot buy and sell actions, account value checks, order management, and conditional or trigger orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate Exchange Spot Demo helps agents handle Gate spot trading account queries, order drafting, order amendments and cancellations, trigger orders, and post-trade verification through the Gate MCP server.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent assist with Gate spot trading workflows, including balance checks, market and limit order drafting, trigger orders, amendments, cancellations, and fill verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate with write-capable Gate spot exchange credentials and may place, amend, or cancel real orders. <br>
-Mitigation: Use a limited API key with no withdrawal permission and require clear confirmation for every order, trigger order, amendment, and cancellation. <br>
-Risk: The skill delegates runtime rules to an unpinned remote file. <br>
-Mitigation: Inspect or pin the remote runtime-rules file before deployment and verify the publisher and MCP server independently. <br>
+## Use Case:
 
+External users and developers can use this skill to guide Gate spot trading workflows, including balance checks, buy/sell order drafts, open-order management, trigger orders, and fill verification through Gate MCP tools.
 
-## Reference(s): <br>
-- [MCP execution specification](references/mcp.md) <br>
-- [Trading scenarios](references/scenarios.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gaixianggeng-gate-exchange-spot-demo-20260402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown responses with order drafts, status summaries, and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before write-capable trading actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can place, amend, and cancel live Gate spot orders when granted Spot:Write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted Gate MCP environments, grant permissions deliberately, and require fresh explicit user confirmation before each trade, amendment, cancellation, cancel-all, batch operation, or trigger-order placement.
+
+Risk: The skill depends on remote runtime rules that are not bundled with this release and may change independently.
+
+Mitigation: Prefer a release that bundles or pins the runtime rules locally before use, and review the effective rules before enabling live trading.
+
+## Reference(s):
+
+- [Gate Spot MCP Specification](references/mcp.md)
+- [Gate Spot Scenario Reference](references/scenarios.md)
+- [Gate Spot Exchange Skill README](README.md)
+- [Gate Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md)
+- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown responses with order drafts, status tables, and structured MCP tool call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Gate MCP access and explicit user confirmation before live trade, amendment, cancellation, or trigger-order placement.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

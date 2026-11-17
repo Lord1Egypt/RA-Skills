@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "_note": "标签归一表。resolver 在新增标签前会读这张表：同一个 group 里的标签视为同一概念的不同写法，canonical 为首选名。可以随时增删——这是你的个人命名空间，规则由你定。",
+
+  "_how": {
+    "equivalent": "真正等价的标签：同一个概念的不同写法（springboot / spring boot）。命中后 resolver 会直接复用 canonical，不再造第三种写法。",
+    "related": "同一族但**不等价**（java / java nio / java并发）。resolver 只会把它们作为候选列出来提醒你，绝不自动替换——因为 java并发 ≠ java。",
+    "prefer": "组内选择策略：canonical（默认，统一到 canonical 写法）或 most-used（统一到用得最多的那个）。",
+    "avoid": "来源站点名通常不作为**主题**标签使用——items.source 记录的是采集通道（skill / mcp / manual / bookmark / github），不是发布平台。resolver 会给出提示，但如果你确实想用它标注「这篇来自掘金」，那是有意的用法，不必强行改掉。"
+  },
+
+  "equivalent": [
+    { "canonical": "spring boot", "members": ["spring boot", "springboot", "spring-boot"] },
+    { "canonical": "spring cloud", "members": ["spring cloud", "springcloud"] },
+    { "canonical": "idea", "members": ["idea", "intellij idea", "intellijidea", "intellij-idea"] },
+    { "canonical": "jdk", "members": ["jdk", "jdk8", "jdk 8"] },
+    { "canonical": "gis", "members": ["gis", "gis数据", "gis data"] },
+    { "canonical": "并发", "members": ["并发", "java并发", "高并发"] },
+    { "canonical": "源码", "members": ["源码", "源码分析"] },
+    { "canonical": "架构设计", "members": ["架构设计", "架构"] },
+    { "canonical": "性能调优", "members": ["性能调优", "性能优化", "参数调优"] },
+    { "canonical": "限流", "members": ["限流", "流量控制", "流控", "rate limit"] },
+    { "canonical": "数据库", "members": ["数据库", "database", "db"] },
+    { "canonical": "消息队列", "members": ["消息队列", "mq", "message queue"] },
+    { "canonical": "单元测试", "members": ["单元测试", "单测", "unit test"] },
+    { "canonical": "中间件", "members": ["中间件", "middleware"] },
+    { "canonical": "容器编排", "members": ["容器编排", "orchestration"] },
+    { "canonical": "安全", "members": ["安全", "web安全", "安全防护"] },
+    { "canonical": "需求管理", "members": ["需求管理", "需求文档", "tapd"] },
+    { "canonical": "三维可视化", "members": ["三维可视化", "3d可视化", "数字孪生"] }
+  ],
+
+  "related": [
+    { "canonical": "java", "members": ["java", "java nio", "javnio", "jvm", "jvm gc"] },
+    { "canonical": "docker", "members": ["docker", "docker compose", "dockerfile"] },
+    { "canonical": "容器", "members": ["容器", "kubernetes", "k8s", "docker", "openstack"] },
+    { "canonical": "版本管理", "members": ["版本管理", "源码管理", "scm", "git"] },
+    { "canonical": "监控", "members": ["监控", "链路追踪", "apm", "observability", "prometheus", "skywalking"] },
+    { "canonical": "elasticsearch", "members": ["elasticsearch", "聚合分析", "solr"] },
+    { "canonical": "代码规范", "members": ["编码规范", "提交规范", "代码质量", "语义化版本"] },
+    { "canonical": "gis数据", "members": ["gis数据", "geojson", "坐标系"] }
+  ],
+
+  "avoid": [
+    "掘金",
+    "稀土掘金",
+    "知乎",
+    "csdn",
+    "简书",
+    "博客园",
+    "segmentfault",
+    "思否",
+    "少数派",
+    "语雀",
+    "twitter",
+    "github",
+    "gitee",
+    "微信公众号",
+    "infoq",
+    "哔哩哔哩",
+    "bilibili",
+    "掘金小册"
+  ]
+}

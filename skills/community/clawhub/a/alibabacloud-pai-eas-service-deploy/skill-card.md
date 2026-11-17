@@ -1,5 +1,5 @@
 ## Description: <br>
-Deploy AI models as Alibaba Cloud PAI-EAS inference services, including LLM, image generation, speech synthesis, and related model-serving deployments. <br>
+Deploy AI models as PAI-EAS inference services for LLM, image generation, speech synthesis, and related model-serving workloads. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,45 +11,44 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and ML platform engineers use this skill to configure, validate, and deploy AI models as Alibaba Cloud PAI-EAS inference services using Aliyun CLI workflows. It covers image and GPU spec validation, service JSON construction, service creation, endpoint discovery, and invocation reporting. <br>
+Developers and cloud engineers use this skill to select Alibaba Cloud PAI-EAS images and resources, build service configuration JSON, deploy a new inference service with Aliyun CLI, and report service status and invocation endpoints. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can make high-impact Alibaba Cloud changes, including service creation, plugin installation, and CLI configuration changes. <br>
-Mitigation: Review before installing, use an isolated environment where possible, and personally confirm service creation, plugin installation, CLI configuration, or delete/recreate actions before execution. <br>
-Risk: Live service tokens may appear in normal output. <br>
-Mitigation: Do not print or store real service tokens in chat logs; redact tokens in shared output and prefer HTTPS or private endpoints. <br>
-Risk: The skill requires sensitive cloud credentials and broad deployment permissions. <br>
-Mitigation: Use a least-privilege RAM user, avoid root or broad account credentials, and grant only the permissions needed for the target deployment. <br>
-Risk: The server security verdict is suspicious even though risk findings are empty. <br>
-Mitigation: Review the skill and its referenced behavior before installation and execution. <br>
+Risk: The skill can provision paid Alibaba Cloud inference services. <br>
+Mitigation: Use a tightly scoped account, budget controls, least-privilege RAM credentials, and explicit approval before create-service. <br>
+Risk: Deployment output can expose live service access tokens in chat or logs. <br>
+Mitigation: Redact AccessToken values before sharing output, keep deployment logs private, and rotate tokens if they are exposed. <br>
+Risk: CLI setup can modify the local Aliyun CLI/plugin installation and may use a curl-to-bash installer. <br>
+Mitigation: Install or update the CLI through a trusted channel, verify the installer independently, and run the workflow in a controlled environment. <br>
+Risk: Shared gateway endpoints may be publicly reachable without authentication by default. <br>
+Mitigation: Prefer private or authenticated endpoints and configure token authentication or VPC-only access for deployed services. <br>
+Risk: The workflow requires broad cloud discovery permissions plus service creation permissions. <br>
+Mitigation: Use a dedicated deployment role limited to the documented EAS, AIWorkspace, OSS, VPC, ECS, and NLB actions required for the target environment. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/sdk-team/alibabacloud-pai-eas-service-deploy) <br>
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-pai-eas-service-deploy) <br>
 - [Deployment Workflow](references/deployment-workflow.md) <br>
 - [Service Config Field Reference](references/config-schema.md) <br>
 - [Complete Config Pattern Examples](references/config-patterns.md) <br>
-- [Network Configuration Rules](references/network-config.md) <br>
-- [Storage Mount Configuration Guide](references/storage-mount.md) <br>
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
 - [RAM Policies](references/ram-policies.md) <br>
-- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md) <br>
-- [Model-Image Matching Guide](references/model-image-matching.md) <br>
-- [Verification Methods](references/verification-method.md) <br>
 - [Service Invocation Examples](references/service-invoke-examples.md) <br>
-- [Related API List](references/related-apis.md) <br>
+- [API Reference](references/api-reference.md) <br>
+- [Model-Image Matching Guide](references/model-image-matching.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
+**Output Format:** [Markdown guidance with JSON configuration examples, bash commands, and deployment result summaries] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment summaries, endpoint details, service invocation examples, and validation guidance.] <br>
+**Other Properties Related to Output:** [May include generated service JSON, Aliyun CLI commands, validation findings, service status, endpoints, and invocation examples.] <br>
 
 ## Skill Version(s): <br>
-0.0.1-beta.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+0.0.1 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

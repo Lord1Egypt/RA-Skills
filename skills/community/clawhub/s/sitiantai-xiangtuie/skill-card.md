@@ -1,40 +1,60 @@
-## Description: <br>
-解卦——四象合参·象推演系统。基于梅花易数+六爻为主体、六壬/奇门为辅助触发、类象知识库展开的符号推演 Skill。不做吉凶判断，展开丰富可能性，启发用户自主决策。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+解卦——四象合参·象推演系统。基于梅花易数+六爻为主体、六壬/奇门为辅助触发、类象知识库展开的符号推演 Skill。不做吉凶判断，展开丰富可能性，启发用户自主决策。
 
-## Publisher: <br>
-[henrryjoke](https://clawhub.ai/user/henrryjoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henrryjoke](https://clawhub.ai/user/henrryjoke)
 
-## Use Case: <br>
-External users and OpenClaw-compatible agent operators use this skill to generate structured, non-deterministic I Ching hexagram interpretations for personal reflection, contextual analysis, and symbolic decision support. The skill calculates calendrical and hexagram signals, expands symbolic mappings, and presents multiple possible readings rather than definitive predictions or instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask agents to persist sensitive feedback and preferences from personal, relationship, health, financial, or work discussions. <br>
-Mitigation: Review before installation, avoid sharing identifying details in feedback, and disable or remove the local feedback and global MEMORY.md steps unless persistent personalization is intentional. <br>
+## Use Case:
 
+External users and developers use this skill with OpenClaw-compatible agents to generate symbolic hexagram interpretation reports for reflection and decision support. It emphasizes multiple possibilities and user judgment rather than deterministic fortune-telling verdicts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/henrryjoke/sitiantai-xiangtuie) <br>
-- [README.md](artifact/README.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with structured sections and optional script-derived calculation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include hexagram overviews, symbolic expansions, possibility narratives, supplementary perspectives, and follow-up reflection questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release evidence) <br>
+Risk: The skill asks the agent to store feedback and preferences on disk and potentially in global agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local and global memory storage are acceptable, and avoid including private relationship, health, financial, legal, or third-party details in feedback.
+
+Risk: The skill can steer users toward detailed external feedback submissions through GitHub issue links.
+
+Mitigation: Treat external feedback links as public or semi-public submissions and avoid sharing sensitive personal details.
+
+Risk: Hexagram interpretations may be mistaken for deterministic advice.
+
+Mitigation: Keep outputs framed as possible symbolic interpretations, preserve the non-deterministic disclaimer, and encourage users to apply their own judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/henrryjoke/skills/sitiantai-xiangtuie)
+- [Project homepage](https://github.com/henrryjoke/sitiantai-xiangtuie)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with structured sections, optional code snippets, and user-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask clarifying questions, execute bundled Python calculation scripts, and adapt report language to the user's input language.]
+
+## Skill Version(s):
+
+0.9.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

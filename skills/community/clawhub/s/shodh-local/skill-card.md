@@ -1,41 +1,58 @@
-## Description: <br>
-Shodh Local provides local offline cognitive memory for AI agents with semantic recall, GTD todo and project tracking, a knowledge graph, and proactive context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shodh Local helps agents use a local offline Shodh-Memory server for persistent memory, semantic recall, GTD todos and projects, a knowledge graph, proactive context, and context summaries.
 
-## Publisher: <br>
-[doobidoo](https://clawhub.ai/user/doobidoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[doobidoo](https://clawhub.ai/user/doobidoo)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to a local Shodh-Memory server for persistent recall, todo and project tracking, proactive context, and knowledge graph access across sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain and later surface user or project information across agent sessions. <br>
-Mitigation: Avoid storing secrets, credentials, health, financial, or other sensitive details unless memory inspection, deletion, and retention controls are clear. <br>
-Risk: The skill asks the agent to use an agent-managed local memory server. <br>
-Mitigation: Review before installing, keep access limited to localhost, protect the API key, and periodically review or delete stored memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Shodh API Endpoints](reference/api.md) <br>
-- [OpenClaw Examples](reference/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/doobidoo/shodh-local) <br>
+## Use Case:
 
+Developers and agent operators use this skill to give OpenClaw-style agents local offline memory, todo and project tracking, semantic recall, and proactive context during ongoing work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets a local localhost:3030 Shodh-Memory server with X-API-Key authentication when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist and reuse personal context under broad memory and recall triggers.
+
+Mitigation: Require explicit approval before storing or using recalled memories for important actions, and avoid storing secrets or sensitive personal data.
+
+Risk: A hard-coded user namespace or shared identifiers can mix context between users or agents.
+
+Mitigation: Configure unique per-user and per-agent IDs and scoped API keys before use.
+
+Risk: Persistent local memory can influence future agent behavior with stale or incorrect context.
+
+Mitigation: Review recalled memories before relying on them and regularly delete or update outdated memories, todos, and projects.
+
+## Reference(s):
+
+- [Shodh API Endpoints](artifact/reference/api.md)
+- [OpenClaw Examples](artifact/reference/examples.md)
+- [ClawHub skill page](https://clawhub.ai/doobidoo/skills/shodh-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local API endpoint guidance and persistent-memory operating practices.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact describes Shodh-Memory v0.1.74)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

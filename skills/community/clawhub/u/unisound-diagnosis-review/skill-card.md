@@ -1,44 +1,57 @@
-## Description: <br>
-Reviews diagnosis codes against ICD/DRG guideline rules and clinical-record evidence, returning pass, fail, or manual-review outcomes for provided diagnoses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews structured medical records and candidate diagnoses to report diagnosis-coding rule matches, supporting record evidence, and an audit conclusion.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical coding, claims, and hospital operations teams can use this skill to check whether candidate diagnosis codes are supported by structured case records and guideline rules. It is an audit aid and does not provide medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive clinical record content may be sent to external LLM and guideline-service endpoints. <br>
-Mitigation: Use only approved or allowlisted endpoints, require consent and redaction controls before off-system processing, and confirm organizational policy permits the data flow. <br>
-Risk: The skill requires sensitive credentials such as the model appkey and optional guideline API key. <br>
-Mitigation: Manage credentials through approved secret-handling workflows, avoid exposing secrets in shell history or logs, and restrict access to the minimum required users and environments. <br>
-Risk: Prepared-text debug exports can create plaintext copies of clinical records. <br>
-Mitigation: Do not use plaintext prepared exports with real patient data unless the content is redacted and stored under approved retention and access controls. <br>
+## Use Case:
 
+Healthcare coding reviewers and developers use this skill to audit supplied diagnosis codes against medical-record evidence and diagnosis audit rules. Its output is coding-audit assistance and not medical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-diagnosis-review) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [External medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object with final_decision and reasoning fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [final_decision is one of "通过", "不通过", or "待人工复核"; reasoning is concise and user-facing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Sensitive medical-record content and bearer credentials can be sent to an LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved healthcare endpoints and keep LLM use disabled unless that endpoint and data flow are authorized.
+
+Risk: Untrusted callers can select the LLM base URL.
+
+Mitigation: Do not allow untrusted callers to set --base or payload.base; restrict execution to approved endpoint configuration.
+
+Risk: Prepared record text can be persisted when requested.
+
+Mitigation: Avoid --save-prepared for PHI and pass only authorized, de-identified patient data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-diagnosis-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object with final_decision and reasoning fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [final_decision is one of: 通过, 不通过, 待人工复核.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

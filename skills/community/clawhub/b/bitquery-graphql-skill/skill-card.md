@@ -1,44 +1,60 @@
-## Description: <br>
-Use Bitquery GraphQL through UXC for onchain trades, transfers, token holder analysis, balances, and market structure queries across supported networks, with OAuth client_credentials authentication and query-first execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Bitquery GraphQL through UXC for onchain trades, transfers, token holder analysis, balances, and market structure queries across supported networks, with OAuth client_credentials authentication and query-first execution.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate to Bitquery, inspect GraphQL operations, and run focused onchain queries or live subscriptions for trades, transfers, holder analysis, balances, and market structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bitquery OAuth client secrets could be exposed in shared terminals, logs, or copied command history. <br>
-Mitigation: Use least-privileged Bitquery application credentials and avoid pasting real client secrets into shared terminals or logs. <br>
-Risk: Live subscriptions may consume API quota or grow local output files unexpectedly. <br>
-Mitigation: Monitor running subscriptions, use narrow `_select` shapes, and stop streams when they are no longer needed. <br>
-Risk: The skill depends on the local `uxc` tool for authentication, endpoint binding, and GraphQL execution. <br>
-Mitigation: Install only when the local `uxc` tool is trusted and verify auth bindings before running authenticated Bitquery operations. <br>
+## Use Case:
 
+Developers and agents use this skill to query Bitquery GraphQL through UXC for onchain trades, transfers, token holder analysis, balances, and market structure. It guides OAuth client_credentials setup, schema inspection, query execution, and cautious subscription use.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Bitquery GraphQL Endpoint](https://streaming.bitquery.io/graphql) <br>
-- [Bitquery OAuth Token Endpoint](https://oauth2.bitquery.io/oauth2/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON GraphQL arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize help-first schema inspection, OAuth setup, explicit GraphQL selection sets, and JSON response parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: OAuth client secrets may be exposed if pasted into shared terminals or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret input method when available and rotate any secret that may have been logged.
+
+Risk: Subscription file sinks can create persistent local records of streamed Bitquery data.
+
+Mitigation: Store or delete subscription output according to local retention and access-control requirements.
+
+Risk: Large or realtime GraphQL selections can return excessive data or unstable subscription behavior.
+
+Mitigation: Start with narrow _select payloads, one network or asset at a time, and expand only after validating the response shape.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Bitquery GraphQL endpoint](https://streaming.bitquery.io/graphql)
+- [Bitquery OAuth token endpoint](https://oauth2.bitquery.io/oauth2/token)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/bitquery-graphql-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON GraphQL payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on OAuth setup, help-first schema inspection, query-first execution, narrow selection sets, and subscription file sinks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

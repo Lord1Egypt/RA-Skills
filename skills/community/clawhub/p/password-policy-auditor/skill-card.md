@@ -1,43 +1,53 @@
-## Description: <br>
-Audit password policies and authentication configurations for security compliance, including password complexity, storage, rotation policies, MFA coverage, account lockout, and alignment with NIST 800-63, OWASP, and PCI-DSS guidelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit password policies and authentication configurations for security compliance. Check password complexity, storage (hashing algorithms), rotation policies, MFA coverage, account lockout, and compliance with NIST 800-63, OWASP, and PCI-DSS guidelines.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, security engineers, and compliance reviewers use this skill to inspect authentication implementations, compare password-policy controls against common standards, and produce remediation guidance before security assessments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit commands and reports may expose sensitive authentication implementation details or secrets. <br>
-Mitigation: Run the skill only on systems you are authorized to review, keep raw output private, and redact secrets before sharing reports. <br>
-Risk: The optional breached-password example calls a third-party service with a password-derived hash prefix. <br>
-Mitigation: Skip the lookup or replace it with an approved offline breach dataset when policy forbids sending password-derived data to third parties. <br>
-Risk: Security findings can be misleading if automated searches miss framework-specific configuration or generated code. <br>
-Mitigation: Treat generated findings as review inputs and confirm conclusions against the actual authentication code and operational configuration. <br>
+## Use Case:
 
+Developers, application security reviewers, and compliance teams use this skill to audit authentication systems, identify password policy gaps, and produce remediation plans aligned to common security standards.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/password-policy-auditor) <br>
-- [HaveIBeenPwned Pwned Passwords Range API](https://api.pwnedpasswords.com/range/{prefix}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code snippets, guidance] <br>
-**Output Format:** [Markdown with audit checklists, command examples, compliance mappings, and remediation plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize sensitive authentication findings; reports should be reviewed and redacted before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The breach-check example contacts an external service with a password hash prefix.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in user-approved test or policy-review workflows, and avoid entering live user passwords into ad hoc scripts.
+
+Risk: Generated audit findings and remediation plans can be incomplete without system-specific review.
+
+Mitigation: Have qualified reviewers verify the results against the target application, deployed controls, and applicable compliance requirements before production changes.
+
+## Reference(s):
+
+- [Have I Been Pwned Pwned Passwords range API](https://api.pwnedpasswords.com/range/{prefix})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audit checklists, command examples, compliance mappings, and remediation planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

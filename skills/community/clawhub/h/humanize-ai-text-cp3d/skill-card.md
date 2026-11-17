@@ -1,40 +1,54 @@
-## Description: <br>
-Detects AI vocabulary, puffery, chatbot artifacts, and other AI-writing patterns, then helps rewrite text in a more natural style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and remove AI-generated writing patterns to rewrite text for a more natural, human-written style with diagnostic reports and version comparison.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Writers, editors, and content reviewers use this skill to identify common AI-writing signals, produce diagnostic reports, and rewrite drafts so they read more naturally. Users should review rewritten text to confirm that meaning, attribution, and disclosure requirements are preserved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite text in ways that change meaning, tone, attribution, or compliance with school, workplace, or platform rules for AI-assisted writing. <br>
-Mitigation: Use it on copies or explicit output files, manually review the rewritten text, and follow applicable AI-writing disclosure policies. <br>
-Risk: The packaged artifact describes script-based detection and transformation commands, but the release evidence includes only instruction and documentation files. <br>
-Mitigation: Treat this release as an instruction-only text-editing skill unless missing scripts are separately supplied and reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to review drafts for AI-writing markers and revise text toward a more natural style before publication or handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/humanize-ai-text-cp3d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with diagnostic summaries, rewritten text, comparison notes, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local file outputs for rewritten documents or reports when the user requests saving results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The published artifact documents local Python detector and transformer scripts that are not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the installed package contains the expected scripts before relying on automated detection or transformation workflows.
+
+Risk: Rewritten text may change meaning, tone, or authorship transparency.
+
+Mitigation: Manually review all revised text, especially in contexts where attribution, disclosure, or factual precision matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/humanize-ai-text-cp3d)
+- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe detection scores, rewritten text, comparison output, and local command usage; documented Python scripts are not included in the published artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

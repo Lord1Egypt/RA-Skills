@@ -1,41 +1,55 @@
-## Description: <br>
-Default web search for OpenClaw that searches multiple web engines through Prismfy, with quota checks and engine, time, domain, page, language, and raw JSON options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Default web search for OpenClaw that uses Prismfy to search engines such as Google, Reddit, GitHub, arXiv, Hacker News, and others, with a bundled shell helper for search, quota checks, engine filters, time filters, and domain filters.
 
-## Publisher: <br>
-[uroboros1205](https://clawhub.ai/user/uroboros1205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uroboros1205](https://clawhub.ai/user/uroboros1205)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill to run live web searches, check Prismfy quota, and retrieve source-backed results for current information, code examples, community discussions, news, and academic papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search requests and quota checks are sent to Prismfy using a bearer API key. <br>
-Mitigation: Use a dedicated, rotatable PRISMFY_API_KEY and avoid placing secrets, personal data, or confidential project details in search queries. <br>
-Risk: The install hook makes Prismfy the default web search path for OpenClaw. <br>
-Mitigation: Install only when that default search behavior is desired, and disable or remove the hook if manual-only searches are preferred. <br>
+## Use Case:
 
+External users and developers use this skill to add live web search to OpenClaw, retrieve current search results, check Prismfy quota, and filter searches by engine, time range, domain, page, or language.
 
-## Reference(s): <br>
-- [Prismfy homepage](https://prismfy.io) <br>
-- [ClawHub skill page](https://clawhub.ai/uroboros1205/prismfy-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown search results with source titles, URLs, snippets, quota summaries, and optional raw JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRISMFY_API_KEY plus curl and jq; cached results may be returned without quota usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.8 (source: server release metadata; artifact frontmatter reports 1.2.1) <br>
+Risk: Broad default-search behavior can send ordinary user requests to an external Prismfy service more often than users may expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if Prismfy is acceptable as the default search provider, and narrow use to explicit search commands in stricter privacy environments.
+
+Risk: Sensitive terms, secrets, private code, customer data, or confidential internal details may be exposed if included in requests that trigger search.
+
+Mitigation: Avoid entering sensitive content in requests that may trigger search, and review intended queries before execution.
+
+## Reference(s):
+
+- [Prismfy homepage](https://prismfy.io)
+- [ClawHub skill page](https://clawhub.ai/uroboros1205/skills/prismfy-search)
+- [ClawHub publisher profile](https://clawhub.ai/user/uroboros1205)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with source links and inline shell commands; raw JSON is available from the helper script when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, URL, snippet, source engine, cache status, result count, and quota information when requested.]
+
+## Skill Version(s):
+
+1.3.8 (source: server release evidence; artifact frontmatter reports 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

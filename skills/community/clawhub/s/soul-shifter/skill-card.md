@@ -1,39 +1,53 @@
-## Description: <br>
-Create, save, and switch OpenClaw's persona (Soul). Research characters to generate new souls or load existing ones from the library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, save, and switch OpenClaw's persona (Soul). Research characters to generate new souls or load existing ones from the library.
 
-## Publisher: <br>
-[xhrisfu](https://clawhub.ai/user/xhrisfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xhrisfu](https://clawhub.ai/user/xhrisfu)
 
-## Use Case: <br>
-OpenClaw users use this skill to create, save, list, and switch assistant personas stored as Soul files. It supports researching character details, generating structured persona profiles, and activating a selected persona for future interactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change OpenClaw's active persona. <br>
-Mitigation: Review generated SOUL.md content before activation and keep backups of personas that should be preserved. <br>
-Risk: Generated persona rules may weaken boundaries or conflict with the user's intended assistant behavior. <br>
-Mitigation: Remove or revise persona rules that conflict with safety, privacy, or task requirements before using the persona. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Soul Shifter ClawHub page](https://clawhub.ai/xhrisfu/soul-shifter) <br>
+## Use Case:
 
+External OpenClaw users use this skill to create, store, list, and activate reusable persona files for character-style agent behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown persona profile and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persona Markdown files under the user's OpenClaw soul library and update the active SOUL.md file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Activating a persona persistently overwrites the active agent persona file with generated or saved behavioral instructions.
+
+Mitigation: Review each generated or loaded soul before activation and keep restorable backups of ~/clawd/SOUL.md and ~/clawd/souls/.
+
+Risk: Persona creation from untrusted or obscure web sources may introduce behavior-changing instructions into future agent sessions.
+
+Mitigation: Use trusted source material where possible and avoid activating generated personas from sources you have not reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xhrisfu/skills/soul-shifter)
+- [ClawHub publisher profile](https://clawhub.ai/user/xhrisfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown persona profiles and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persona files under ~/clawd/souls/ and overwrites ~/clawd/SOUL.md when activating a persona.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

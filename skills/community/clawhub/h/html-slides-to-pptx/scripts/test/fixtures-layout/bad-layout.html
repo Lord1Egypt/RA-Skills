@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>data-layout 违规阳性测试</title>
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+  .slide-container{position:relative;width:1920px;height:1080px;overflow:hidden;background:#FAFAF7;font-family:"Noto Sans SC","Inter",sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide-container">
+  <!-- 违规 1:未知策略 -->
+  <div data-layout="masonry" style="position:absolute;left:100px;top:60px;width:600px;">
+    <div data-object="true" data-layout-h="100" style="background:#EEEEEE;">x</div>
+  </div>
+  <!-- 违规 2:子级混写几何(height) -->
+  <div data-layout="stack" data-layout-gap="10" style="position:absolute;left:100px;top:300px;width:600px;">
+    <div data-object="true" data-layout-h="100" style="height:100px;background:#EEEEEE;">混写 height</div>
+  </div>
+  <!-- 违规 3:嵌套 data-layout -->
+  <div data-layout="stack" style="position:absolute;left:100px;top:600px;width:600px;">
+    <div data-layout="columns" data-object="true" style="background:#EEEEEE;">
+      <div data-object="true" data-layout-h="60" style="background:#DDDDDD;">内层</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

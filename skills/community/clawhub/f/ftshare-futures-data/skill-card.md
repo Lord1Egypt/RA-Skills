@@ -1,41 +1,59 @@
-## Description: <br>
-Provides agent-accessible futures contract lists, contract reference data, and OHLCV k-line history from market.ft.tech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FTShare Futures Data routes agent requests to market.ft.tech futures endpoints for contract lists, contract reference data, and k-line price history.
 
-## Publisher: <br>
-[shawn92](https://clawhub.ai/user/shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-External users and developers use this skill to answer questions about futures contracts, map Chinese contract names or products to WIND symbols, retrieve contract base data, and fetch k-line or historical market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs bundled Python scripts and makes outbound HTTPS requests to market.ft.tech. <br>
-Mitigation: Install and use it only in environments where agent-executed Python and outbound market-data requests to market.ft.tech are acceptable. <br>
-Risk: Market-data answers depend on upstream service availability, coverage, and returned field semantics. <br>
-Mitigation: Check returned JSON fields, empty result sets, and timestamps before relying on the data in analysis or decisions. <br>
+## Use Case:
 
+External users, developers, and market-data agents use this skill to look up A-share futures contract symbols, static contract attributes, and historical or aggregated k-line data. It is suited for data retrieval and presentation workflows, not automated trading decisions without independent review.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/shawn92/ftshare-futures-data) <br>
-- [market.ft.tech futures data service](https://market.ft.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON responses from the bundled Python entrypoint] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes requests through futures-lists, futures-base-data, and futures-kline sub-skills; responses depend on market.ft.tech availability and upstream data coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Network requests may follow redirects outside the disclosed market.ft.tech destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before deployment and disable redirects or validate the final response URL after redirects.
+
+Risk: HTTP reads do not have explicit timeouts or response-size limits.
+
+Mitigation: Run the skill with network controls and add timeouts and response-size limits before relying on it in production workflows.
+
+Risk: The skill returns live third-party futures data that may be unavailable, incomplete, or unsuitable for high-stakes decisions.
+
+Mitigation: Treat outputs as data-retrieval results and verify them against an authoritative source before trading, compliance, or financial decision-making.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawn92/skills/ftshare-futures-data)
+- [Publisher profile](https://clawhub.ai/user/shawn92)
+- [market.ft.tech futures data host](https://market.ft.tech)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, guidance]
+
+**Output Format:** [JSON from command-line handlers, with agent-facing summaries usually rendered as text or Markdown tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on live market.ft.tech responses and may be limited by request parameters such as trade date, symbol, interval, start, end, and limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

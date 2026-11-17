@@ -1,42 +1,63 @@
-## Description: <br>
-Track configured Beijing Housing Commission new-home projects from bjjs.zjw.beijing.gov.cn project-detail URLs, read project signed-unit counts, signed area, and average price, crawl building tables including “查看更多” and paginated lists, treat both “已签约” and “网上联机备案” as signed units, estimate the implied average price per m² of newly signed rooms from changes between the previous and current project summaries, cache unsold room metadata locally, persist rows into a Feishu spreadsheet as the single source of truth, and send Feishu DM notifications after each run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks configured Beijing Housing Commission new-home projects, crawls signed-room and project summary data, estimates newly signed average prices, writes rows to a Feishu spreadsheet, and sends Feishu direct-message notifications after each run.
 
-## Publisher: <br>
-[aaronstuart](https://clawhub.ai/user/aaronstuart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronstuart](https://clawhub.ai/user/aaronstuart)
 
-## Use Case: <br>
-External users and operators use this skill to monitor configured Beijing pre-sale housing projects, sync newly signed rooms into a Feishu spreadsheet, estimate newly signed average prices, and notify a Feishu recipient after each run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a real-looking Feishu app secret and default Feishu sheet and message destination. <br>
-Mitigation: Before installing or running, replace or remove the bundled Feishu configuration, use your own app ID, app secret, spreadsheet, and recipient, and rotate the exposed secret if it belongs to you. <br>
-Risk: Sync operations can append rows, rewrite sorted spreadsheet ranges, and send Feishu messages. <br>
-Mitigation: Test first on a non-critical or copied Feishu sheet and confirm the intended recipient before enabling routine runs. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor Beijing pre-sale housing projects, maintain project mappings, sync newly signed rooms into a Feishu ledger, estimate average prices for new signings, and notify stakeholders of updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronstuart/beijing-signed-price-tracker) <br>
-- [Beijing Housing Commission project portal](http://bjjs.zjw.beijing.gov.cn) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON files, Feishu spreadsheet rows, Feishu notifications] <br>
-**Output Format:** [Command-line text output, JSON state files, and Feishu sheet/message updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local room cache and last-sync JSON state while treating the Feishu spreadsheet as the historical ledger.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence) <br>
+Risk: The release evidence reports that the artifact ships a real Feishu credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the bundled secret, remove it from configuration, and supply Feishu credentials only through protected environment variables or secret storage before installation.
+
+Risk: The release evidence reports an under-documented cron-run monitor that can send local OpenClaw run-log details to Feishu.
+
+Mitigation: Remove the monitor or make it explicit opt-in with a user-controlled run-log path, recipient, and redacted notification payloads.
+
+Risk: The release evidence advises restricting project URL fetching to the intended Beijing Housing Commission host.
+
+Mitigation: Validate configured project URLs against bjjs.zjw.beijing.gov.cn before running sync jobs.
+
+Risk: The release evidence notes that housing data, cache-derived room details, and run notifications are sent to Feishu.
+
+Mitigation: Confirm that Feishu is an approved destination for this data and limit spreadsheet and message access to intended recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronstuart/skills/beijing-signed-price-tracker)
+- [Beijing Housing Commission project portal](http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8138177&systemID=2&srcId=1)
+- [Feishu Open Platform API base](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON cache and sync report files when the provided scripts run.]
+
+## Skill Version(s):
+
+1.6.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

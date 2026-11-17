@@ -2,20 +2,22 @@
 jurisdiction: "Georgia"
 slug: georgia
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/georgia
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/georgia
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/georgia · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/georgia · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Georgia[^about]
 
@@ -35,7 +37,7 @@ A question-by-question summary of Georgia non-compete law under the Georgia Rest
 | **Restriction extended during a breach?** | No — courts will not extend beyond expiration |
 | **Maximum length set by law** | 2 years for employees (rebuttable presumption) |
 
-## Are employee non-compete agreements enforceable in Georgia? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Georgia? {#employee-non-compete-enforceability}
 
 **Short answer.** Yes, when they are reasonable and the worker performs a covered job function. Under the Georgia Restrictive Covenants Act, a post-employment non-compete is permitted so long as it is reasonable in time, geographic area, and scope of prohibited activities [^q1-grca-13-8-53a-reasonable]. As the next question explains, the Act separately limits which employees can be bound by a post-employment non-compete.
 
@@ -68,7 +70,12 @@ The *key employee* and *professional* categories are defined narrowly, and court
 >
 > Confirm that the employee actually performs a covered function before relying on a non-compete. A reasonable covenant is still void as a post-employment non-compete against a worker who does not solicit, sell, manage, or qualify as a key employee or professional, as *Blair v. Pantera Enterprises* shows [^q2-grca-13-8-53a-categories][^q2-blair-key-employee].
 
-## How long can a Georgia non-compete last? {#duration}
+> [!CAUTION]
+> **Drafting note.**
+>
+> A covenant barring an employee from accepting or doing business with a former customer — not merely soliciting one — reaches beyond the customer non-solicit that sits outside the employee-category gate, so a Georgia court may treat it as a restraint on competition in its own right and test it against the O.C.G.A. § 13-8-53(a) covered-employee categories rather than as a routine non-solicit [^q2-grca-13-8-53a-categories]. Against a worker who neither solicits, sells, manages, nor qualifies as a key employee or professional, a no-business restraint read as a competition restraint is as vulnerable as a non-compete, and the categories are policed — an hourly equipment operator did not qualify as a key employee [^q2-blair-key-employee].
+
+## How long can a Georgia non-compete last? {#duration-limits}
 
 **Short answer.** It depends on the relationship, with rebuttable presumptions of two, three, or five years. O.C.G.A. § 13-8-57 presumes a restraint of two years or less reasonable against a former employee, three years or less against a distributor, dealer, franchisee, lessee, or licensee, and the longer of five years or the payout period reasonable against the seller or owner of a business [^q3-grca-13-8-57b-employee][^q3-grca-13-8-57c-other][^q3-grca-13-8-57d-sale].
 
@@ -96,12 +103,12 @@ For several years the Court of Appeals had read § 13-8-53(a) to require non-com
 
 The statute supports an implied-geography approach. O.C.G.A. § 13-8-56 supplies a presumption that the areas where the employer does business can be a reasonable territory, provided the total distance is reasonable, so the geographic inquiry turns on overall reasonableness rather than the presence of a magic-words territory clause.
 
-"In determining the reasonableness of a restrictive covenant that limits or restricts competition during or after the term of an employment or business or commercial relationship, the court shall make the following presumptions:...(2) A geographic territory which includes the areas in which the employer does business at any time during the parties' relationship, even if not known at the time of entry into the restrictive covenant, is reasonable provided that: (A) The total distance encompassed by the provisions of the covenant also is reasonable; (B) The agreement contains a list of particular competitors as prohibited employers for a limited period of time after the term of employment or a business or commercial relationship; or (C) Both subparagraphs (A) and (B) of this paragraph"[^q4-grca-13-8-56-geography]
+"In determining the reasonableness of a restrictive covenant that limits or restricts competition during or after the term of an employment or business or commercial relationship, the court shall make the following presumptions: (1) During the term of the relationship, a time period equal to or measured by duration of the parties' relationship is reasonable; provided, however, that the reasonableness of a time period after the term of an employment or business or commercial relationship shall be as provided for in Code Section 13-8-57; (2) A geographic territory which includes the areas in which the employer does business at any time during the parties' relationship, even if not known at the time of entry into the restrictive covenant, is reasonable provided that: (A) The total distance encompassed by the provisions of the covenant also is reasonable; (B) The agreement contains a list of particular competitors as prohibited employers for a limited period of time after the term of employment or a business or commercial relationship; or (C) Both subparagraphs (A) and (B) of this paragraph"[^q4-grca-13-8-56-geography]
 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not assume a Georgia covenant fails for lack of an express territory, and do not assume one with a territory is automatically safe. After *Wimmer*, geographic scope is judged for overall reasonableness under O.C.G.A. § 13-8-56, so an unreasonably broad express territory is still vulnerable [^q4-wimmer-no-express-term][^q4-grca-13-8-56-geography].
+> A Georgia covenant does not fail merely for lack of an express territory, and one that states a territory is not automatically safe. After *Wimmer*, geographic scope is judged for overall reasonableness under O.C.G.A. § 13-8-56, so an unreasonably broad express territory remains vulnerable, and a covenant with no stated territory stands or falls on whether its actual reach is reasonable [^q4-wimmer-no-express-term][^q4-grca-13-8-56-geography].
 
 ## Are customer non-solicitation covenants treated differently in Georgia? {#customer-nonsolicit}
 
@@ -118,7 +125,7 @@ The leverage in a customer non-solicit is the definition of *material contact*. 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Anchor a customer non-solicitation clause to material-contact customers rather than the employer's entire customer base. O.C.G.A. § 13-8-53(b) narrowly construes these covenants to customers the employee actually dealt with and to competitive products or services [^q5-grca-13-8-53b-customer][^q5-grca-13-8-51-material-contact].
+> A Georgia customer non-solicitation covenant reaches only material-contact customers, not the employer's entire customer base. O.C.G.A. § 13-8-53(b) confines these covenants to customers the employee actually dealt with and to competitive products or services, so a clause sweeping in the whole customer list is measured against the Act's reasonableness standard and exposed as overbroad [^q5-grca-13-8-53b-customer][^q5-grca-13-8-51-material-contact].
 
 ## Are employee non-recruitment and no-hire covenants governed by the GRCA? {#employee-nonsolicit}
 
@@ -137,7 +144,12 @@ The statute carves out customer non-solicitation and confidentiality, but it doe
 >
 > Treat an employee non-recruitment or no-hire clause as a GRCA covenant, not a common-law one. *Belt Power v. Reed* placed these covenants within the Act, which means the reasonableness standard and modification limits apply [^q6-beltpower-grca][^q6-wimmer-nonrecruit].
 
-## Can a Georgia court blue-pencil an overbroad covenant? {#blue-pencil}
+> [!CAUTION]
+> **Drafting note.**
+>
+> A Georgia employee non-recruitment or no-hire covenant is analyzed under the Restrictive Covenants Act, not the common law: *Belt Power v. Reed* placed these covenants within the Act's ambit, and in *Wimmer* the Supreme Court reviewed a two-year non-recruitment provision under O.C.G.A. § 13-8-53(a) [^q6-beltpower-grca][^q6-wimmer-nonrecruit]. That places the clause under the same reasonableness standard, the same two-year employee presumption, and the same discretionary, narrowing-only modification as every other covenant — and, after *Wimmer*, without any express-geographic-term requirement — so a no-poach clause reaching beyond the colleagues the departing worker actually worked with or supervised is measured for overbreadth like any other restraint.
+
+## Can a Georgia court blue-pencil an overbroad covenant? {#court-narrowing}
 
 **Short answer.** Yes, within a limit. O.C.G.A. § 13-8-53(d) makes a non-compliant covenant void but allows a court to modify it, so long as the modification does not make the covenant more restrictive for the employee than as originally drafted; O.C.G.A. § 13-8-54(b) directs courts to grant only the relief reasonably necessary [^q7-grca-13-8-53d-modify][^q7-grca-13-8-54b-relief].
 
@@ -149,14 +161,14 @@ O.C.G.A. § 13-8-54 frames the interpretive posture. Courts construe covenants i
 
 "A court shall construe a restrictive covenant to comport with the reasonable intent and expectations of the parties to the covenant and in favor of providing reasonable protection to all legitimate business interests established by the person seeking enforcement."[^q7-grca-13-8-54-construe]
 
-The modification power is discretionary, not automatic. In *Belt Power, LLC v. Reed*, the Court of Appeals held the trial court did not abuse its discretion in declining to blue-pencil the covenants at all, leaving them unenforceable as written [^q7-beltpower-modify].
+The modification power is discretionary, not automatic. In *Belt Power, LLC v. Reed*, the Court of Appeals held the trial court did not abuse its discretion in declining to blue-pencil the covenants at all, leaving them unenforceable as written [^q7-beltpower-modify]. For a clause-by-clause pass over a specific agreement against these drafting rules, the [Georgia non-compete reviewer checklist](/checklists/non-compete/us/georgia) walks the full covenant suite item by item with each requirement's force level.
 
 "We nevertheless conclude that the trial court did not abuse its discretion in declining to apply the ‘blue pencil’ provision in the Act to modify the terms of the covenants."[^q7-beltpower-modify]
 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not draft an overbroad covenant on the assumption a Georgia court will rewrite it into shape. Modification under O.C.G.A. § 13-8-53(d) is discretionary and can only narrow, not expand — and in *Belt Power v. Reed* the court declined to modify at all [^q7-grca-13-8-53d-modify][^q7-beltpower-modify].
+> An overbroad Georgia covenant does not survive on the assumption a court will rewrite it into shape. Modification under O.C.G.A. § 13-8-53(d) is discretionary and can only narrow, never expand — and in *Belt Power v. Reed* the court declined to modify at all, leaving the covenants unenforceable as written, so a covenant sized to the legitimate interest at the outset is the one that holds [^q7-grca-13-8-53d-modify][^q7-beltpower-modify].
 
 ## Is continued employment sufficient consideration for a Georgia non-compete? {#consideration}
 
@@ -190,7 +202,12 @@ The court set out a sequence: test the covenant against the GRCA first, and only
 >
 > Do not rely on a Delaware, Florida, or other out-of-state choice-of-law clause to enforce a covenant that would fail in Georgia. *Motorsports of Conyers v. Burbach* requires a Georgia court to test GRCA compliance first and bars foreign law when the covenant is unreasonable under the Act [^q9-motorsports-touchstone][^q9-motorsports-mechanism].
 
-## Does a Georgia non-compete toll or extend during breach or litigation? {#tolling-during-breach}
+> [!CAUTION]
+> **Drafting note.**
+>
+> A choice-of-law clause selecting a more permissive state does not move a Georgia-based covenant out from under the GRCA. Under *Motorsports of Conyers v. Burbach*, Georgia law remains the touchstone for enforceability in Georgia courts even where the contract selects another state's law, and a covenant unreasonable under the Act cannot be rescued by applying foreign law instead [^q9-motorsports-touchstone][^q9-motorsports-mechanism]. The sequence is fixed — the Act first, the chosen law only if the covenant survives — so a covenant drawn to satisfy the GRCA on its own terms is the one that holds, while a form leaning on a sister-state selection was never localized for Georgia.
+
+## Does a Georgia non-compete toll or extend during breach or litigation? {#extended-for-breach}
 
 **Short answer.** A court will not extend it, and a private tolling clause is on uncertain ground. In *Daneshgari v. Patriot Towing Services, LLC*, the Court of Appeals held that a trial court cannot extend a non-compete beyond its contractual expiration, even against a party violating an injunction, because Georgia courts have rejected the idea that equity lets a court extend the period of a non-compete. Whether a contractual clause that pauses and extends the restraint would fare better has not been squarely decided [^q10-daneshgari-no-extend][^q10-daneshgari-equity].
 
@@ -211,6 +228,11 @@ That said, the GRCA's broad remedies provision lets courts enforce a covenant by
 >
 > Do not rely on a tolling clause to extend a Georgia non-compete past its stated end date. *Daneshgari v. Patriot Towing Services* holds that a court cannot extend a covenant beyond its contractual expiration even against a party violating an injunction [^q10-daneshgari-no-extend][^q10-daneshgari-equity].
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> A Georgia covenant that banks on time added after its stated end date is on uncertain ground. In *Daneshgari v. Patriot Towing Services*, the Court of Appeals reversed a trial court for extending an injunction past the contractual expiration of a non-compete — even against a party violating the injunction — because Georgia precedent rejects equitable extension of a covenant's period [^q10-daneshgari-no-extend][^q10-daneshgari-equity]. Whether a self-executing contractual tolling clause fares any better is undecided, so the stated end date functions as the real one, and the protection that holds comes from prompt enforcement inside the term rather than from a clause purporting to stretch the restraint past its expiration.
+
 ## How do confidentiality and trade-secret protections compare to a Georgia non-compete? {#confidentiality-trade-secrets}
 
 **Short answer.** They are available and not subject to the non-compete limits. O.C.G.A. § 13-8-53(e) provides that confidentiality and trade-secret obligations are not limited in time or geography for as long as the information stays confidential or qualifies as a trade secret, and § 13-8-53(a) treats a nondisclosure-of-confidential-information provision as distinct from a post-employment competition restraint, so it sits outside the employee-category gate [^q11-grca-13-8-53e-confidentiality][^q11-grca-13-8-53a-carveout].
@@ -224,7 +246,7 @@ The Act also recognizes trade secrets and valuable confidential information as l
 > [!CAUTION]
 > **Drafting note.**
 >
-> Use confidentiality and trade-secret covenants for information-protection interests, especially against employees outside the non-compete categories. O.C.G.A. § 13-8-53(e) allows these obligations to run for as long as the information stays confidential, without the durational or category limits that apply to non-competes [^q11-grca-13-8-53e-confidentiality].
+> Confidentiality and trade-secret covenants protect information interests even against employees outside the non-compete categories. O.C.G.A. § 13-8-53(e) lets these obligations run for as long as the information stays confidential, without the durational or category limits that apply to non-competes, so an information interest a non-compete cannot reach is still protectable through a confidentiality covenant [^q11-grca-13-8-53e-confidentiality].
 
 ## Are physician and other healthcare non-competes enforceable in Georgia? {#healthcare-physicians}
 
@@ -260,7 +282,7 @@ The Act was signed and took effect on May 11, 2011. A covenant signed before tha
 >
 > Check the signing date before applying the GRCA. A covenant entered before May 11, 2011 is judged under Georgia's stricter pre-Act common law, where modification was unavailable for employment non-competes, so the modern reasonableness and blue-pencil rules do not apply to it [^q13-grca-effective-date][^q13-grca-13-8-52-application].
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Georgia. This article synthesizes Georgia primary law and is not legal advice from a Georgia-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Georgia. This article synthesizes Georgia primary law and is not legal advice from a Georgia-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Georgia*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/georgia.
 
 [^q1-grca-13-8-53a-reasonable]: **O.C.G.A. § 13-8-53** — "Notwithstanding any other provision of this chapter, enforcement of contracts that restrict competition during the term of a restrictive covenant, so long as such restrictions are reasonable in time, geographic area, and scope of prohibited activities, shall be permitted." *O.C.G.A. § 13-8-53(a).* <https://www.legis.ga.gov/api/legislation/document/20112012/114248>
 
@@ -280,7 +302,7 @@ The Act was signed and took effect on May 11, 2011. A covenant signed before tha
 
 [^q4-wimmer-no-express-term]: **North American Senior Benefits, LLC v. Wimmer** — "The petitioner — a Georgia corporation seeking to enforce a restrictive covenant against two former employees — asks us to review the conclusion reached by the Court of Appeals that, to be deemed geographically reasonable under OCGA § 13-8-53 (a), a restrictive covenant must contain an express geographic term. In light of the statutory text and context of the GRCA, we conclude that the Court of Appeals erred, so we reverse and remand this case for further proceedings." *North American Senior Benefits, LLC v. Wimmer, 319 Ga. 641 (2024).* <https://www.courtlistener.com/opinion/10680273/north-american-senior-benefits-llc-v-wimmer/#:~:text=The%20petitioner%20%E2%80%94%20a%20Georgia,this%20case%20for%20further%20proceedings.>
 
-[^q4-grca-13-8-56-geography]: **O.C.G.A. § 13-8-56** — "In determining the reasonableness of a restrictive covenant that limits or restricts competition during or after the term of an employment or business or commercial relationship, the court shall make the following presumptions:...(2) A geographic territory which includes the areas in which the employer does business at any time during the parties' relationship, even if not known at the time of entry into the restrictive covenant, is reasonable provided that: (A) The total distance encompassed by the provisions of the covenant also is reasonable; (B) The agreement contains a list of particular competitors as prohibited employers for a limited period of time after the term of employment or a business or commercial relationship; or (C) Both subparagraphs (A) and (B) of this paragraph" *O.C.G.A. § 13-8-56(2).* <https://www.legis.ga.gov/api/legislation/document/20112012/114248>
+[^q4-grca-13-8-56-geography]: **O.C.G.A. § 13-8-56** — "In determining the reasonableness of a restrictive covenant that limits or restricts competition during or after the term of an employment or business or commercial relationship, the court shall make the following presumptions: (1) During the term of the relationship, a time period equal to or measured by duration of the parties' relationship is reasonable; provided, however, that the reasonableness of a time period after the term of an employment or business or commercial relationship shall be as provided for in Code Section 13-8-57; (2) A geographic territory which includes the areas in which the employer does business at any time during the parties' relationship, even if not known at the time of entry into the restrictive covenant, is reasonable provided that: (A) The total distance encompassed by the provisions of the covenant also is reasonable; (B) The agreement contains a list of particular competitors as prohibited employers for a limited period of time after the term of employment or a business or commercial relationship; or (C) Both subparagraphs (A) and (B) of this paragraph" *O.C.G.A. § 13-8-56(2).* <https://www.legis.ga.gov/api/legislation/document/20112012/114248>
 
 [^q5-grca-13-8-53b-customer]: **O.C.G.A. § 13-8-53** — "an employee may agree in writing for the benefit of an employer to refrain, for a stated period of time following termination, from soliciting, or attempting to solicit, directly or by assisting others, any business from any of such employer's customers, including actively seeking prospective customers, with whom the employee had material contact during his or her employment for purposes of providing products or services that are competitive with those provided by the employer's business. No express reference to geographic area or the types of products or services considered to be competitive shall be required in order for the restraint to be enforceable." *O.C.G.A. § 13-8-53(b).* <https://www.legis.ga.gov/api/legislation/document/20112012/114248>
 

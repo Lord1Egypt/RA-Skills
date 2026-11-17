@@ -1,43 +1,59 @@
-## Description: <br>
-Per-agent Playwright browser pool: shared/per-agent/ephemeral + subagent inherit. Reads openclaw.json. Requires node, playwright. Local-only; no data forwarded. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Per-agent Playwright browser pool: shared/per-agent/ephemeral + subagent inherit. Reads openclaw.json. Requires node, playwright. Local-only; no data forwarded.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to launch and reuse local Playwright browser sessions with shared, per-agent, or ephemeral profiles. It helps separate browser cookies, storage, CDP ports, and processes across agents when workflows need browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser sessions may intentionally persist or share cookies and local storage depending on the selected mode. <br>
-Mitigation: Use per-agent or ephemeral mode for separate accounts or sensitive sites; use shared mode only when agents may act as the same browser identity. <br>
-Risk: A shared registry path on a multi-user machine can expose browser-session coordination metadata to other local users. <br>
-Mitigation: Set AGENT_BROWSER_REGISTRY to a private per-user path on shared machines. <br>
+## Use Case:
 
+Developers and engineers use this skill to give OpenClaw agents separate or shared Playwright browser sessions, manage persistent or ephemeral profiles, and attach to active browser contexts across processes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/axelhu/playwright-per-agent) <br>
-- [Profile Strategies](references/profile-strategies.md) <br>
-- [Why .mjs](references/why-mjs.md) <br>
-- [Example Configuration](assets/example-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript, TypeScript, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide agents toward local Playwright browser-session setup and use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and _meta.json) <br>
+Risk: Shared browser mode can expose logged-in session state across agents on the same machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use per-agent or ephemeral mode for sensitive accounts, and avoid shared mode when account isolation matters.
+
+Risk: The default cross-process browser registry path may expose active browser metadata on shared systems.
+
+Mitigation: Set the registry path to a private user-owned location and run the browser pool as a non-root local user.
+
+Risk: Unsafe Chromium defaults can weaken browser isolation for valuable logged-in sessions.
+
+Mitigation: Use a pinned Playwright version with Chromium sandboxing enabled before relying on this skill for sensitive browsing.
+
+## Reference(s):
+
+- [Profile Strategies](artifact/references/profile-strategies.md)
+- [Example Configuration](artifact/assets/example-config.json)
+- [ClawHub Skill Page](https://clawhub.ai/axelhu/skills/playwright-per-agent)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local browser-session setup and usage guidance; no data forwarding is claimed by the release evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

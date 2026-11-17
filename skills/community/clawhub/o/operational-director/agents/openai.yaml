@@ -1,0 +1,4 @@
+interface:
+  display_name: "Операционный директор"
+  short_description: "Помощник руководителя по состоянию бизнеса"
+  default_prompt: "Используй $operational-director, чтобы ответить на вопрос руководителя о бизнесе."

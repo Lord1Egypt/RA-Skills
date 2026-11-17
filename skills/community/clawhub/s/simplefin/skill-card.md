@@ -1,44 +1,55 @@
-## Description: <br>
-Connects to bank accounts and fetches balances and transaction history via the SimpleFIN API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to bank accounts and fetches financial transactions via the SimpleFIN API.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-External users use this skill to connect a SimpleFIN Bridge account, retrieve bank account balances, review recent transactions, and track expenses through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles SimpleFIN-connected bank balances and transactions. <br>
-Mitigation: Install only if the publisher is trusted and the user is comfortable granting the agent access to that financial data. <br>
-Risk: The skill stores a reusable SimpleFIN Access URL in plaintext workspace memory. <br>
-Mitigation: Prefer a version that uses a secret store and clearly explains how to delete or revoke the saved Access URL. <br>
-Risk: The skill runs shell-built curl commands with sensitive URLs. <br>
-Mitigation: Prefer a version that validates SimpleFIN HTTPS URLs, avoids shell-built curl commands, and redacts credentials from errors. <br>
+## Use Case:
 
+External users use this skill to connect SimpleFIN-backed bank accounts, retrieve balances, review transactions, and track expenses through an agent workflow.
 
-## Reference(s): <br>
-- [SimpleFIN Developer Guide](references/developer_guide.md) <br>
-- [SimpleFIN Bridge](https://bridge.simplefin.org/) <br>
-- [SimpleFIN Protocol](https://www.simplefin.org/protocol.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SimpleFIN Access URL or one-time Setup Token; transaction retrieval can be scoped by account and date filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can access sensitive financial balances, transactions, and SimpleFIN access credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid exposing full Access URLs in logs or command-line history, and store credentials only in an approved secret store.
+
+Risk: The helper script can turn user-provided SimpleFIN URLs or tokens into shell commands.
+
+Mitigation: Replace shell-based curl calls with a native HTTP client and validate SimpleFIN URLs before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eladrave/skills/simplefin)
+- [SimpleFIN Developer Guide](references/developer_guide.md)
+- [SimpleFIN Protocol](https://www.simplefin.org/protocol.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial account and transaction data should be summarized clearly for the user.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

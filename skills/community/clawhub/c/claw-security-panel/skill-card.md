@@ -1,43 +1,57 @@
-## Description: <br>
-OpenClaw security panel for Python 3.7+ that runs access, permission, execution, and resilience checks, then generates a temporary token-protected local HTML panel with risk details and remediation actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw security panel for Python 3.7+ that runs access, permission, execution, and resilience checks and generates token-protected temporary report pages with risk details and remediation guidance.
 
-## Publisher: <br>
-[haxsscker](https://clawhub.ai/user/haxsscker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haxsscker](https://clawhub.ai/user/haxsscker)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill to run a host-level security self-check, review findings in a temporary local web panel, and apply supported remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs a host-level security audit and may inspect login sources, command history, file permissions, and credential-related findings. <br>
-Mitigation: Install and run it only when that audit scope is intended; avoid elevated privileges unless OS login history is required. <br>
-Risk: The startup flow launches a temporary local panel through an unpackaged background server from /tmp. <br>
-Mitigation: Review /tmp/security_panel_server.py before running start.sh, keep the panel local, and stop the background process after use. <br>
-Risk: Generated /tmp reports can contain sensitive security findings. <br>
-Mitigation: Delete generated /tmp reports and panel artifacts after reviewing the results. <br>
+## Use Case:
 
+External OpenClaw users and operators use this skill to launch local security checks, review categorized risks, and receive remediation guidance for their OpenClaw setup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/haxsscker/claw-security-panel) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, shell commands, configuration, guidance] <br>
-**Output Format:** [Text containing local panel URLs, JSON reports, and temporary HTML pages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a short-lived token for local panel access and may write temporary report and HTML files under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may inspect sensitive local data such as host logs, shell history, credential-like files, and OpenClaw configuration or workspace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated, non-privileged environment after reviewing the collected paths and confirming the scan scope is acceptable.
+
+Risk: The skill writes report files and token-bearing HTML pages under /tmp.
+
+Mitigation: Treat generated reports and URLs as sensitive, remove them after review, and avoid running on shared machines.
+
+Risk: The launcher executes a server file from /tmp that is not included in the reviewed package.
+
+Mitigation: Do not run the launcher until the server file source is reviewed and packaged or replaced with reviewed code.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/haxsscker/skills/claw-security-panel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text plus local HTML pages and a JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces temporary token-bearing local URLs and report files under /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

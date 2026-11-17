@@ -1,40 +1,48 @@
-## Description: <br>
-Book salon services through Lokuli MCP. Use when user needs to find and book salon. Triggers on requests like "book a salon", "find salon near me", or any salon service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book salon services through Lokuli MCP for users who need to find salons, check availability, and create bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for salon services, check appointment availability, and create a salon booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bookings may send a user's name, email, phone number, selected service, and appointment time to Lokuli. <br>
-Mitigation: Confirm the salon, service, appointment time, and exact contact details with the user before creating a booking. <br>
-Risk: The skill can create real salon appointments through the external booking flow. <br>
-Mitigation: Require explicit user confirmation before calling the booking action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Salon on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-salon) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search for salon providers, check appointment availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Markdown and JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include salon search criteria, availability details, and booking contact details supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking requires sending customer contact details to Lokuli's external MCP service.
+
+Mitigation: Before creating a booking, confirm the salon, service, time slot, customer name, email, and phone number.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown and JSON-RPC call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP over SSE/JSON-RPC; booking actions can include customer name, email, and phone.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

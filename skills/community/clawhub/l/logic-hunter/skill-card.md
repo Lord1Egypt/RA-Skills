@@ -1,41 +1,54 @@
-## Description: <br>
-Hard-core logic verification and evidence tracing tool based on the "Golden Triangle" knowledge mining framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hard-core logic verification and evidence tracing tool based on the "Golden Triangle" knowledge mining framework.
 
-## Publisher: <br>
-[ken0122](https://clawhub.ai/user/ken0122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ken0122](https://clawhub.ai/user/ken0122)
 
-## Use Case: <br>
-External users and developers use Logic Hunter to verify claims, evaluate argument credibility, and produce evidence-weighted fact-checking reports with confidence scores and red-team challenge points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User claims may be sent to external search or research tools during verification. <br>
-Mitigation: Avoid using the skill on confidential personal, legal, financial, or business-sensitive claims unless external search disclosure is acceptable. <br>
-Risk: Evidence classification and confidence scores can be wrong if sources are incomplete, stale, biased, or misclassified. <br>
-Mitigation: Review cited sources and treat low-confidence or weakly sourced conclusions as hypotheses rather than final determinations. <br>
+## Use Case:
 
+Developers, researchers, and analysts use Logic Hunter to verify claims, weigh source credibility, and surface logical weaknesses in evidence chains before making decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ken0122/logic-hunter) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown one-page analysis report with confidence scoring, evidence weighting, red-team attack points, and risk notice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local Python helper to calculate confidence from source-grade counts and entropy factors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: Research prompts and claims may be sent to external search providers during evidence gathering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, personal, or proprietary topics unless the environment's search tooling is approved for that data.
+
+Risk: Evidence scoring can overstate confidence when source classification or logical entropy factors are incomplete.
+
+Mitigation: Review the cited sources, source grades, and red-team critique before relying on the conclusion.
+
+## Reference(s):
+
+- [Logic Hunter ClawHub Release](https://clawhub.ai/ken0122/skills/logic-hunter)
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown evidence report with confidence scoring, source weights, red-team critique, and risk notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a Python confidence calculation helper and external search tools when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

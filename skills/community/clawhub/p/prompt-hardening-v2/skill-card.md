@@ -1,44 +1,59 @@
-## Description: <br>
-Helps agents audit and harden prompts, system prompts, SOUL.md, AGENTS.md, and cron prompts so LLMs follow rules and tool constraints more reliably. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides systematic prompt-hardening patterns and an audit checklist to help agents follow rules, respect tool constraints, and reduce instruction drift.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to diagnose recurring instruction-following failures and apply prompt-hardening patterns before deploying or updating agent prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt-hardening recommendations can introduce incorrect, overbroad, or misleading constraints if applied without review. <br>
-Mitigation: Review rewritten prompts before deployment and test them against representative instruction-following failures. <br>
-Risk: The audit helper reads a prompt file selected by the operator. <br>
-Mitigation: Run the audit helper only on prompt files you intentionally choose and avoid passing files that contain unnecessary sensitive content. <br>
-Risk: Publisher identity may matter because the artifact author claim differs from the server-resolved publisher handle. <br>
-Mitigation: Use the server-resolved publisher profile and verify the OpenClaw Team author claim if it affects trust or deployment approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit and harden system prompts, agent prompts, SOUL.md, AGENTS.md, and scheduled prompts when agents ignore rules, bypass tool constraints, or drift in long conversations. It provides human-applied patterns, checklists, and guidance rather than automatically modifying target prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/prompt-hardening-v2) <br>
-- [Prompt Hardening Patterns](references/patterns.md) <br>
-- [Prompt Hardening Research Sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with checklist items and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory prompt-hardening recommendations; prompt changes should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled local audit script is identified by the security evidence as flawed and may be unsafe for prompt files from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running scripts/audit.sh on untrusted prompt files until shell quoting and command-string issues are fixed; use the markdown guidance directly for low-risk review.
+
+Risk: Prompt-only hardening may not fully enforce critical constraints.
+
+Mitigation: Pair critical prompt rules with code-level validation, hooks, or other enforcement mechanisms when reliability matters.
+
+Risk: Hardening recommendations can introduce overbroad or misleading instructions if copied without review.
+
+Mitigation: Review proposed prompt changes against the target agent's actual tools, authority boundaries, and failure history before deployment.
+
+## Reference(s):
+
+- [Detailed Pattern Descriptions](artifact/references/patterns.md)
+- [Prompt Hardening Research Sources](artifact/references/sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/prompt-hardening-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with checklist tables and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory/planning output; target prompt changes are applied manually by the operator or a separate executor.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

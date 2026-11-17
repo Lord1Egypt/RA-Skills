@@ -1,41 +1,53 @@
-## Description: <br>
-Transforms vague prompts into precise, structured AI instructions for prompt refinement, prompt engineering, system prompts, and more effective AI instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms vague prompts into precise, structured AI instructions for prompt refinement, prompt engineering, system prompts, and effective AI instructions.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers, prompt engineers, and agent builders use this skill to turn vague requests into precise markdown prompts, including system prompts and task instructions, while asking for clarification when intent is unclear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content may include secrets, private data, or other sensitive information. <br>
-Mitigation: Avoid putting secrets or private data into prompts submitted for refinement, and review the refined prompt before reuse. <br>
-Risk: The optional save step can store refined prompt content in the workspace. <br>
-Mitigation: Approve saving only when workspace persistence is intended; otherwise use the refined prompt without writing it to .ai/PROMPT.md. <br>
-Risk: Refining harmful or illegal requests could make unsafe instructions more actionable. <br>
-Mitigation: Do not refine prompts for harmful or illegal tasks, and ask for clarification when the original intent is unclear. <br>
+## Use Case:
 
+Developers, prompt authors, and agent builders use this skill to turn vague or underspecified prompts into precise Markdown instructions for AI systems. It is especially useful for prompt engineering, system prompts, and machine-parsed skill or agent instructions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the refined prompt unless the user explicitly asks for explanation; may offer to append the result to .ai/PROMPT.md after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: server release evidence) <br>
+Risk: A refined prompt may include secrets or sensitive material if the original prompt contains them and the user chooses to save the result.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the refined prompt before saving and approve writing to .ai/PROMPT.md only when a persistent local record is appropriate.
+
+Risk: Prompt refinements can introduce misleading requirements if the original intent is unclear.
+
+Mitigation: Clarify unclear intent first and validate that the rewrite uses only information from the original prompt or conversation context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-refine-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown refined prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask before appending the refined prompt to .ai/PROMPT.md; persistent writes require explicit confirmation.]
+
+## Skill Version(s):
+
+4.5.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

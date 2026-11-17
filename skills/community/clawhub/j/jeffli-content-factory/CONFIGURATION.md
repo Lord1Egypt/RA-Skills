@@ -97,7 +97,7 @@ APPSECRET = os.environ.get('WECHAT_APP_SECRET', 'default-value')
 ### .env（实际配置）
 ```env
 # GLM-Image API Configuration (Required)
-GLM_API_KEY=sk-abc123def456ghi789jkl012mno345pqr678stu901vwx234yz
+GLM_API_KEY=REDACTED-SECRET
 
 # WeChat Official Account Credentials (Optional)
 WECHAT_APP_ID=wxf9400829e3405317

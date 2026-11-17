@@ -1,42 +1,58 @@
-## Description: <br>
-Xby Todolist provides external working memory and structured task management for large language models and AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides external work memory and task management for large language models and AI agents to support reliable complex multi-step work.
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent read and update a session todo list through the XiaoBenYang task-memory API during complex, multi-step work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Todo content is sent to the XiaoBenYang API as a third-party task-memory provider. <br>
-Mitigation: Use the skill only for task data appropriate for that provider and avoid passwords, tokens, private customer data, or other sensitive material in todos. <br>
-Risk: The API key is saved locally in a .env file as XBY_APIKEY rather than in an operating-system secrets manager. <br>
-Mitigation: Protect the local workspace, avoid committing .env files, and rotate the API key if it may have been exposed. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to maintain a session-level task list through a remote task-memory service, including reading current todos and writing structured todo updates during multi-step work.
 
-## Reference(s): <br>
-- [Xby Todolist on ClawHub](https://clawhub.ai/alinklab/xby-todolist) <br>
-- [XiaoBenYang](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown summaries of JSON responses from todo read and write operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided XBY API key and sends todo content to the XiaoBenYang API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Task descriptions are sent to a third-party remote task-memory provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets, private code, incident details, or personal data into todos unless the provider's privacy and retention terms are acceptable.
+
+Risk: The API key can be saved in a plaintext .env file.
+
+Mitigation: Store the API key outside shared repositories when possible and ensure .env is ignored by version control.
+
+Risk: Security review flagged stale gaokao references and unpinned dependencies as production-readiness concerns.
+
+Mitigation: Review those references and dependency constraints before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/xby-todolist)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown summary of JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY credential and returns remote todo data for the agent to summarize.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

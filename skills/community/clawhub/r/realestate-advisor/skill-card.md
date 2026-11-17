@@ -1,41 +1,61 @@
-## Description: <br>
-A Chinese-language real-estate decision-support assistant that helps owners, buyers, and replacement-home users analyze property value ranges, market signals, mortgage burden, viewing checks, offer strategy, and sell-or-hold scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Realestate Advisor helps property owners, buyers, and home-switching users interpret real-estate market data through valuation ranges, comparable transactions, listing competition, market state, and decision signals.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-External users with real-estate questions use this skill to structure property valuation, buying-capacity, listing, negotiation, and replacement-home planning conversations. It is intended for informational decision support rather than professional financial, legal, tax, investment, or bank-lending advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-estate valuations, mortgage calculations, and sell/hold/rent signals may be incomplete or unsuitable for a user's legal, tax, lending, or investment situation. <br>
-Mitigation: Treat outputs as informational decision support and confirm material decisions with qualified real-estate, financial, legal, tax, or lending professionals. <br>
-Risk: Users may share sensitive personal, financial, or property-identifying information while asking for valuation or mortgage guidance. <br>
-Mitigation: Redact names, exact addresses, phone numbers, account numbers, QR codes, loan identifiers, and other unnecessary personal data before use. <br>
+## Use Case:
 
+External property owners, prospective buyers, and users planning a sale-and-purchase transition use this skill to request structured real-estate asset analysis, buyer affordability and property assessment, offer strategy, or transition risk guidance. The skill is intended to translate market signals into decision support, not to provide an official appraisal or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/realestate-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/perrykono-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational reports, checklists, estimates, and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include valuation ranges, confidence notes, comparable-sale summaries, market-state labels, mortgage and cost estimates, negotiation guidance, and follow-up prompts for more precise inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Automatic maintenance behavior can delete old logs or cleanup workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scope heartbeat maintenance before enabling the skill, and keep backups or approval controls for any file deletion workflow.
+
+Risk: Persistent memory updates can retain user corrections or transaction context.
+
+Mitigation: Avoid uploading account details, personal identifiers, unnecessary private addresses, or transaction metadata, and review retained memory before reuse.
+
+Risk: Real-estate outputs may be incomplete or misleading when public market data is stale, sparse, or low confidence.
+
+Mitigation: Require visible data sources and confidence notes, treat outputs as market reference only, and confirm material decisions with qualified local professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/realestate-advisor)
+- [Publisher profile](https://clawhub.ai/user/perrykono-debug)
+- [Skill definition](artifact/SKILL.md)
+- [Runtime methodology](artifact/SOUL.md)
+- [Data acquisition guidance](artifact/TOOLS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with structured sections, tables, valuation ranges, confidence notes, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be grounded in cited market data or user-provided evidence, use ranges rather than single-point valuations, and show confidence limits.]
+
+## Skill Version(s):
+
+2.0.3 (source: ClawHub release evidence; artifact documentation references v2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

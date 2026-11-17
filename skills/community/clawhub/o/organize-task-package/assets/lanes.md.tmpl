@@ -1,0 +1,30 @@
+# {{TASK_TITLE}}: Parallel Lanes
+
+## 1. Global baseline
+
+- Target repository and branch: To fill.
+- Exact baseline: To fill.
+- Shared hotspots: To fill.
+- Global no-touch scope: To fill.
+- Maximum concurrency and resource limits: To fill.
+- Orchestrator task ID and pre-execution planning boundary: To fill.
+- `launch_config_status` / user confirmation receipt: `not_proposed / proposed / confirmed`; To fill.
+- Per-lane review and model enforcement: record `inherited_subagent` or `self_review`, Worker settings, inherited or explicit Reviewer configuration, `planned / confirmed / enforced / mismatch`, and receipt. Only `enforced` lanes may start.
+- Document language: `{{DOCUMENT_LANGUAGE}}`.
+
+## 2. Lane table
+
+{{LANE_SECTIONS}}
+
+## 3. Dependencies and pause gates
+
+| Provider lane | Consumer lane | Release evidence | Current state |
+| --- | --- | --- | --- |
+| To fill | To fill | approved commit/API receipt | pending |
+
+## 4. Notification protocol
+
+- Workers notify the Orchestrator when blocked, when a design decision is required, when review is ready, when integration is ready, and when complete.
+- Reviewers notify the paired Worker and Orchestrator with the review path and verdict.
+- The Orchestrator owns pause/resume decisions, shared-ownership windows, and root GOAL updates.
+- A task-model handshake does not configure nested subagents; each explicit subagent configuration and context mode needs its own receipt.

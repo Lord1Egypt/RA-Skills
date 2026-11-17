@@ -1,44 +1,70 @@
-## Description: <br>
-Daily Bazi Analysis helps OpenClaw users answer daily fortune, suitability, and auspicious-avoidance questions by combining the user's four-pillar profile with the current day's Bazi flow data and local classic references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Bazi Analysis helps OpenClaw answer Chinese BaZi daily fortune and suitability questions by combining the user's Four Pillars with the current date's annual, monthly, and daily flow pillars.
 
-## Publisher: <br>
-[lilir-is-here](https://clawhub.ai/user/lilir-is-here) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilir-is-here](https://clawhub.ai/user/lilir-is-here)
 
-## Use Case: <br>
-External OpenClaw users use this skill for personalized daily Bazi readings, including whether today is suitable for a planned activity and what actions to prefer or avoid. The skill first obtains or requests a complete four-pillar profile, checks the local date and daily flow data, then returns a structured trend-based reading with source labels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save a user's Bazi four-pillar profile and create user-linked diagnostic logs without clear opt-in, retention, or deletion controls. <br>
-Mitigation: Require explicit consent before saving profile data, support a one-time unsaved reading mode, and provide clear controls to view, update, or delete stored profile data. <br>
+## Use Case:
 
+External OpenClaw users use this skill when asking for Chinese BaZi daily fortune, daily suitability, or actionable auspicious and inauspicious guidance. The skill is intended to guide an agent through date lookup, Four Pillars profile handling, source-tagged BaZi interpretation, and concise daily recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lilir-is-here/bazi-daily) <br>
-- [Bazi Calendar Schema](references/bazi-calendar-schema.md) <br>
-- [Classic Sources Routing](references/classic-sources-routing.md) <br>
-- [Heartbeat Contract](references/heartbeat-contract.md) <br>
-- [Classic Text Coverage Notes](references/classics/README.md) <br>
-- [Import Command Template](references/import-command-template.md) <br>
-- [Wannianrili Four Pillars Lookup](https://wannianrili.bmcx.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown daily analysis with structured date, flow-data, evidence, recommendation, and risk-note sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source labels for structure, seasonal adjustment, and principle explanations; daily readings are trend-based and non-deterministic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill stores or logs user-linked Four Pillars birth-chart data, which can create privacy and retention concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before saving profile data, provide review and deletion controls, and minimize retained logs.
+
+Risk: Broad activation on generic daily scheduling questions may route users into BaZi guidance when they did not intend that use case.
+
+Mitigation: Narrow activation to explicit BaZi or daily-fortune intent and keep advice framed as non-deterministic guidance.
+
+Risk: Calendar data imports can affect shared data if run with excessive database privileges or an unexpected table target.
+
+Mitigation: Run imports with a fixed table name, low database privileges, and validation of expected date and flow-pillar fields.
+
+Risk: Bundled classic source texts have documented coverage gaps, which can make some structure or climate-adjustment conclusions incomplete.
+
+Mitigation: Disclose incomplete source coverage in affected answers and avoid substituting unsourced model knowledge for missing classic text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lilir-is-here/skills/bazi-daily)
+- [Classic Sources Routing](references/classic-sources-routing.md)
+- [Classics Text Cache](references/classics/README.md)
+- [Bazi Calendar Schema](references/bazi-calendar-schema.md)
+- [Heartbeat Contract For Bazi Profile](references/heartbeat-contract.md)
+- [Import Command Template](references/import-command-template.md)
+- [A. Di Tian Sui Source Text](references/classics/A_滴天髓.txt)
+- [B. Yuan Hai Zi Ping Source Text](references/classics/B_渊海子平.txt)
+- [C. Qiong Tong Bao Jian Source Text](references/classics/C_穷通宝鉴.txt)
+- [Wannianrili Four Pillars Lookup](https://wannianrili.bmcx.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with source-tagged analysis, recommendations, and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a complete Four Pillars profile and date-indexed BaZi calendar data; outputs interpretive guidance rather than deterministic professional advice.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,150 +1,150 @@
 # Madrid
 
-## Barrios
+## Neighborhoods
 
-| Barrio | Para qué | Ambiente |
+| Neighborhood | For what | Vibe |
 |--------|----------|----------|
-| **Sol/Centro** | Turismo clásico | Abarrotado, caro |
-| **La Latina** | Tapas, domingos | Castizo, animado |
-| **Malasaña** | Hipster, vintage | Joven, alternativo |
-| **Chueca** | LGBTQ+, compras | Vibrante, moderno |
-| **Lavapiés** | Multicultural, arte | Auténtico, económico |
-| **Salamanca** | Lujo, galerías | Pijo, caro |
-| **Chamberí** | Local, residencial | Tranquilo, real |
+| **Sol/Centro** | Classic tourism | Crowded, expensive |
+| **La Latina** | Tapas, Sundays | Traditional, lively |
+| **Malasaña** | Hipster, vintage | Young, alternative |
+| **Chueca** | LGBTQ+, shopping | Vibrant, modern |
+| **Lavapiés** | Multicultural, art | Authentic, cheap |
+| **Salamanca** | Luxury, galleries | Posh, expensive |
+| **Chamberí** | Local, residential | Quiet, real |
 
-## Dónde Comer (Específico)
+## Where to Eat (Specific)
 
 ### Tortilla de Patatas
-| Sitio | Dónde | Por qué |
-|-------|-------|---------|
-| Casa Dani | Mercado de la Paz | La mejor de Madrid, sin discusión |
-| Sylkar | Malasaña | Cremosa, estilo vasco |
-| Bodega de la Ardosa | Malasaña | Clásica, barra antigua |
+| Place | Where | Why |
+|-------|-------|-----|
+| Casa Dani | Mercado de la Paz | The best in Madrid, no debate |
+| Sylkar | Malasaña | Creamy, Basque style |
+| Bodega de la Ardosa | Malasaña | Classic, old bar |
 
 ### Bocadillo de Calamares
-| Sitio | Dónde | Nota |
+| Place | Where | Note |
 |-------|-------|------|
-| La Campana | Plaza Mayor | El clásico, colas |
-| Bar Postas | Sol | Menos turístico |
-| El Brillante | Atocha | Local, contundente |
+| La Campana | Plaza Mayor | The classic, queues |
+| Bar Postas | Sol | Less touristy |
+| El Brillante | Atocha | Local, hearty |
 
 ### Cocido Madrileño
-| Sitio | Precio | Nota |
+| Place | Price | Note |
 |-------|--------|------|
-| La Barraca | €20-25 | Solo jueves |
-| Malacatín | €25-30 | Tradicional, reservar |
-| Lhardy | €40+ | Histórico, lujo |
+| La Barraca | €20-25 | Thursdays only |
+| Malacatín | €25-30 | Traditional, book ahead |
+| Lhardy | €40+ | Historic, upscale |
 
-### Tapas (Evitando trampas)
-| Sitio | Barrio | Especialidad |
+### Tapas (Avoiding the Traps)
+| Place | Neighborhood | Specialty |
 |-------|--------|--------------|
-| Casa Labra | Sol | Croquetas de bacalao desde 1860 |
-| El Doble | La Latina | Jamón, quesos |
-| Juana la Loca | La Latina | Pintxos creativos |
+| Casa Labra | Sol | Cod croquettes since 1860 |
+| El Doble | La Latina | Ham, cheeses |
+| Juana la Loca | La Latina | Creative pintxos |
 | Casa Toni | Lavapiés | Patatas bravas |
-| La Venencia | Huertas | Sherry, sin fotos permitido |
+| La Venencia | Huertas | Sherry, no photos allowed |
 
-### Mercados Gastro (No San Miguel)
-| Mercado | Barrio | Qué tiene |
+### Gastro Markets (Not San Miguel)
+| Market | Neighborhood | What it has |
 |---------|--------|-----------|
-| San Fernando | Lavapiés | Multicultural, barato |
-| Antón Martín | Lavapiés | Pescado, tapas |
-| Vallehermoso | Chamberí | Local, poco turista |
-| San Ildefonso | Malasaña | Street food, terraza |
+| San Fernando | Lavapiés | Multicultural, cheap |
+| Antón Martín | Lavapiés | Fish, tapas |
+| Vallehermoso | Chamberí | Local, few tourists |
+| San Ildefonso | Malasaña | Street food, terrace |
 
-## Museos (Tips Reales)
+## Museums (Real Tips)
 
 ### Prado
-- **Gratis:** Lunes-sábado 18-20h, domingo 17-19h
-- **Imprescindible:** Las Meninas (sala 12), Goya negras (sala 67)
-- **Skip:** Audioguía (€6) — mejor app gratuita
-- **Tiempo:** 2-3 horas mínimo
+- **Free:** Monday-Saturday 6-8pm, Sunday 5-7pm
+- **Must-see:** Las Meninas (room 12), Goya's black paintings (room 67)
+- **Skip:** The audio guide (€6) — better to use the free app
+- **Time:** 2-3 hours minimum
 
 ### Reina Sofía
-- **Gratis:** Lunes, miércoles-sábado 19-21h, domingo 12:30-14:30h
-- **Guernica:** Planta 2, sala 206. Siempre hay gente
-- **Skip:** Sábado tarde (más lleno)
-- **Tiempo:** 1.5-2 horas
+- **Free:** Monday, Wednesday-Saturday 7-9pm, Sunday 12:30-2:30pm
+- **Guernica:** Floor 2, room 206. Always busy
+- **Skip:** Saturday afternoon (most crowded)
+- **Time:** 1.5-2 hours
 
 ### Thyssen
-- **Gratis:** Lunes 12-16h
-- **Menos masificado** que los otros dos
-- **Tiempo:** 2 horas
+- **Free:** Monday 12-4pm
+- **Less crowded** than the other two
+- **Time:** 2 hours
 
 ### Combo
-**Paseo del Arte:** €32, válido 1 año, los tres museos
+**Paseo del Arte:** €32, valid 1 year, all three museums
 
-## Terrazas de Azotea
+## Rooftop Terraces
 
-| Terraza | Dónde | Vista | Precio |
+| Terrace | Where | View | Price |
 |---------|-------|-------|--------|
-| Círculo de Bellas Artes | Gran Vía | 360° ciudad | €5 subir |
-| Palacio de Cibeles | Cibeles | Ayuntamiento | Gratis restaurante |
-| Hotel Emperador | Gran Vía | Piscina | Consumición |
-| Picalagartos | Gran Vía | Atardecer | Copa €10-15 |
-| Ginkgo | Plaza de España | Templo Debod | Copa €12-15 |
+| Círculo de Bellas Artes | Gran Vía | 360° city | €5 to go up |
+| Palacio de Cibeles | Cibeles | City Hall | Free restaurant |
+| Hotel Emperador | Gran Vía | Pool | Consumption |
+| Picalagartos | Gran Vía | Sunset | Drink €10-15 |
+| Ginkgo | Plaza de España | Templo de Debod | Drink €12-15 |
 
-## Parque del Retiro
+## Retiro Park
 
-### Lo que vale la pena
-- **Palacio de Cristal:** Gratis, exposiciones
-- **Estanque:** Barcas €6/45min
-- **Rosaleda:** Mayo-junio en flor
-- **Ángel Caído:** Única estatua del diablo en parque público
+### Worth It
+- **Palacio de Cristal:** Free, exhibitions
+- **Pond:** Rowboats €6/45min
+- **Rose garden:** In bloom May-June
+- **Ángel Caído:** The only public-park statue of the devil
 
 ### Skip
-- Casita del Pescador (siempre cerrada)
-- Bares del parque (caros, malos)
+- Casita del Pescador (always closed)
+- Park bars (expensive, bad)
 
 ## Flamenco
 
-| Tablao | Precio | Nivel |
+| Tablao | Price | Level |
 |--------|--------|-------|
 | Corral de la Morería | €50-100 | Top, Michelin |
-| Casa Patas | €35-45 | Auténtico |
-| Las Tablas | €30-40 | Íntimo, buenos artistas |
-| Cardamomo | €45-55 | Turístico pero decente |
+| Casa Patas | €35-45 | Authentic |
+| Las Tablas | €30-40 | Intimate, good performers |
+| Cardamomo | €45-55 | Touristy but decent |
 
-**Evitar:** Tablaos de Gran Vía con captadores
+**Avoid:** Gran Vía tablaos with touts
 
-## El Rastro (Domingos)
+## El Rastro (Sundays)
 
-- **Horario:** 9:00-15:00
-- **Mejor hora:** 10-11h (menos gente)
-- **Zona buena:** Calles laterales (antigüedades)
-- **Después:** Tapas en La Latina (Cava Baja, Cava Alta)
-- **Cuidado:** Carteristas activos
+- **Hours:** 9:00-15:00
+- **Best time:** 10-11am (fewer people)
+- **Good area:** Side streets (antiques)
+- **After:** Tapas in La Latina (Cava Baja, Cava Alta)
+- **Watch out:** Active pickpockets
 
-## Fútbol
+## Football
 
 ### Bernabéu
-- **Tour:** €15-25, mejor sin partido
-- **Partido:** €40-300 según rival
-- **Comprar:** realmadrid.com (oficial), reventa = estafa
+- **Tour:** €15-25, better without a match
+- **Match:** €40-300 depending on the opponent
+- **Buy:** realmadrid.com (official), resale = scam
 
 ### Wanda Metropolitano (Atleti)
 - **Tour:** €20
-- **Más barato** que Bernabéu
-- **Ambiente:** Más pasional
+- **Cheaper** than the Bernabéu
+- **Atmosphere:** More passionate
 
-## Día Normal de Madrileño
+## A Normal Madrileño Day
 
-| Hora | Actividad |
+| Time | Activity |
 |------|-----------|
-| 8:00 | Café con tostada |
-| 11:00 | Almuerzo (segundo desayuno) |
-| 14:00-16:00 | Comida (menú del día) |
-| 18:00 | Merienda o vermú |
-| 21:00-23:00 | Cena (tapas o restaurante) |
-| 00:00+ | Copas |
+| 8:00 | Coffee with toast |
+| 11:00 | Almuerzo (second breakfast) |
+| 14:00-16:00 | Lunch (menú del día) |
+| 18:00 | Afternoon snack or vermouth |
+| 21:00-23:00 | Dinner (tapas or restaurant) |
+| 00:00+ | Drinks |
 
-## Excursiones de Un Día
+## Day Trips
 
-| Destino | Cómo | Tiempo | Qué ver |
+| Destination | How | Time | What to see |
 |---------|------|--------|---------|
-| Toledo | Tren 30min | 6-8h | Judería, catedral, El Greco |
-| Segovia | Tren/bus 30min | 6-8h | Acueducto, cochinillo |
-| Ávila | Tren 1.5h | 4-6h | Murallas |
-| El Escorial | Tren 1h | 4-5h | Monasterio |
-| Aranjuez | Tren 45min | 4-5h | Palacio, jardines |
-| Chinchón | Bus 50min | 3-4h | Plaza, anís, mesones |
+| Toledo | Train 30min | 6-8h | Jewish quarter, cathedral, El Greco |
+| Segovia | Train/bus 30min | 6-8h | Aqueduct, suckling pig |
+| Ávila | Train 1.5h | 4-6h | City walls |
+| El Escorial | Train 1h | 4-5h | Monastery |
+| Aranjuez | Train 45min | 4-5h | Palace, gardens |
+| Chinchón | Bus 50min | 3-4h | Plaza, anís, taverns |

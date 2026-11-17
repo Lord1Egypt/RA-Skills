@@ -1,43 +1,59 @@
-## Description: <br>
-Use UniFuncs Deep Research API to run in-depth research and generate long-form reports of 10,000 words or more when users request deep research, research reports, or comprehensive analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use UniFuncs Deep Research API to run in-depth research and generate long-form reports (10,000 words or more).
 
-## Publisher: <br>
-[vinlic](https://clawhub.ai/user/vinlic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vinlic](https://clawhub.ai/user/vinlic)
 
-## Use Case: <br>
-External users and developers use this skill to submit confirmed research topics to UniFuncs Deep Research, then receive long-form reports or query asynchronous research task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default synchronous report flow can start a detached background process that continues using the UniFuncs API key and writing output after the visible command returns. <br>
-Mitigation: Require explicit user confirmation before running, prefer the async create/query scripts when the user needs clearer control, and monitor or read the stream file before considering the run complete. <br>
-Risk: Research prompts and generated report content are sent to UniFuncs and stream files may contain sensitive output. <br>
-Mitigation: Avoid confidential data unless UniFuncs is approved for the use case, confirm the exact topic and options before execution, and delete stream files that may contain sensitive report output. <br>
-Risk: Deep research can be long-running and higher cost than ordinary search. <br>
-Mitigation: Confirm the expected runtime, cost posture, model, output type, and topic with the user before invoking any script. <br>
+## Use Case:
 
+Developers and agent users use this skill to send confirmed deep-research requests to UniFuncs and receive long-form reports, summaries, article drafts, or task status results. It is intended for research questions that need multiple rounds of searching and reading.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/vinlic/unifuncs-deep-research) <br>
-- [UniFuncs Account and API Key Setup](https://unifuncs.com/account) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text reports, JSON task/status payloads, and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Long-running report generation can stream partial content to a local stream file; the default output length hint is 10000 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.7 (source: server-resolved release metadata) <br>
+Risk: Research topics and prompts are sent to UniFuncs for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for topics approved for UniFuncs processing; avoid confidential or regulated material unless explicitly approved.
+
+Risk: Default report mode can continue streaming in a detached background process and leave output in temporary stream files.
+
+Mitigation: Prefer non-streaming mode for sensitive work and manually check/delete any unifuncs-deep-research stream files after use.
+
+Risk: The security verdict is suspicious and recommends review before installation.
+
+Mitigation: Review the skill and its security guidance before installing or enabling it in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vinlic/skills/unifuncs-deep-research)
+- [UniFuncs account and API key setup](https://unifuncs.com/account)
+- [Related UniFuncs Deep Search skill](https://github.com/UniFuncs/skills/blob/main/skills/unifuncs-deep-search/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Long-form text or Markdown reports, JSON task data, task IDs, and stream-file readback commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default report output targets 10,000 words and streaming mode may return partial content before completion.]
+
+## Skill Version(s):
+
+0.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

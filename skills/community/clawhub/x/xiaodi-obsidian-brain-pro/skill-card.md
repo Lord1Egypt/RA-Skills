@@ -1,42 +1,61 @@
-## Description: <br>
-Xiaodi Obsidian Brain Pro helps an agent turn WhatsApp or Telegram notes into Obsidian daily notes, apply terminology correction and redaction, search notes with local Ollama embeddings, and optionally sync the vault with Git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns WhatsApp or Telegram notes into Obsidian daily notes with local Ollama semantic search, speech-recognition term correction, and sensitive-data redaction.
 
-## Publisher: <br>
-[mx6315909](https://clawhub.ai/user/mx6315909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mx6315909](https://clawhub.ai/user/mx6315909)
 
-## Use Case: <br>
-Obsidian users and developers use this skill to capture fragmented voice or chat notes, preserve them as Markdown daily notes, and retrieve related memories with local semantic search. It is aimed at private note workflows that need lightweight formatting, terminology cleanup, sensitive-data redaction, and optional Git backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and index sensitive personal notes. <br>
-Mitigation: Use it only with a verified private Obsidian repository and review notes before enabling automated storage or indexing. <br>
-Risk: Automatic Git sync can push private notes or insufficiently redacted content. <br>
-Mitigation: Confirm the Git remote and repository visibility, disable or manually review auto-sync, and treat redaction rules as incomplete protection. <br>
-Risk: The configured Ollama endpoint may not be the user's trusted local service. <br>
-Mitigation: Change the Ollama endpoint to a trusted local address before running semantic search. <br>
+## Use Case:
 
+External users and developers use this skill to capture fragmented voice or chat notes into Obsidian while preserving the user's original wording, correcting a small whitelist of misrecognized technical terms, and enabling local semantic retrieval through Ollama.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mx6315909/xiaodi-obsidian-brain-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, shell commands, JSON configuration guidance, and plain-text search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local Obsidian Markdown files, query a configured Ollama endpoint, and run Git sync commands when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: The security summary reports that the skill overreaches by reading agent memory and broad local note paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and constrain configured search paths before installation, and remove OpenClaw memory paths unless they are explicitly intended.
+
+Risk: The security guidance warns that automatic Git push can send broad local repository changes to a network destination.
+
+Mitigation: Disable or gate automatic Git push, confirm the remote repository is private and intended, and review pending changes before synchronization.
+
+Risk: The security guidance flags the default Ollama endpoint as needing trust review.
+
+Mitigation: Set Ollama to a trusted local loopback endpoint or another explicitly approved host before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mx6315909/skills/xiaodi-obsidian-brain-pro)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Organizer Prompt](artifact/prompts/organizer.txt)
+- [Metadata](artifact/_meta.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes, file paths, shell command output, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Obsidian note files, query a configured Ollama endpoint, and optionally trigger Git backup commands.]
+
+## Skill Version(s):
+
+1.1.4 (source: ClawHub server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

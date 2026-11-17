@@ -1,42 +1,55 @@
-## Description: <br>
-Official shopping assistant for Uquid Platform - the world's top Web3 Crypto E-commerce (170M+ physical products, 500k+ digital items & NFTs). Supports Shop-to-Earn, Pay-in-3, 100+ cryptocurrencies, virtual cards, instant delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official shopping assistant for Uquid Platform, supporting physical products, digital items, NFTs, Shop-to-Earn, Pay-in-3, cryptocurrency payments, virtual cards, and instant delivery.
 
-## Publisher: <br>
-[grtony045](https://clawhub.ai/user/grtony045) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[grtony045](https://clawhub.ai/user/grtony045)
 
-## Use Case: <br>
-External shoppers use this skill to find and compare Uquid physical products, digital goods, gift cards, top-ups, games, subscriptions, virtual cards, and NFTs while considering budget, cashback, delivery time, and crypto payment options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may encounter payment, wallet, merchant, fee, delivery, or refund risks while shopping with crypto. <br>
-Mitigation: Verify official Uquid domains, trust the publisher before installing, never share seed phrases or private keys, and approve payments only inside the user's own wallet or payment app after checking amount, recipient, product terms, fees, and refund rules. <br>
-Risk: Real-time product prices, promotions, cashback, and availability can change. <br>
-Mitigation: Use current Uquid pages or web tools to confirm product details before recommending a purchase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Uquid physical products](https://uquid.com/) <br>
-- [Uquid digital goods and services](https://shop.uquid.com/) <br>
-- [Uquid NFTs](https://nft.uquid.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/grtony045/uquidshop) <br>
+## Use Case:
 
+External shoppers use this skill to find Uquid physical, digital, gift card, top-up, game, subscription, virtual-card, and NFT products; compare prices, promotions, cashback, and delivery options; and receive wallet-safety guidance for crypto payments.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product comparison tables, official links, cashback or installment notes, and wallet safety reminders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill steers users toward Uquid shopping and crypto-payment flows, which can expose users to incorrect prices, merchant-quality issues, payment-term misunderstandings, or overstated cashback claims.
+
+Mitigation: Use official Uquid links only, verify current prices, merchant reviews, Pay-in-3 terms, cashback claims, delivery timing, and payment details before purchase.
+
+Risk: Crypto shopping support can create wallet-security risk if users disclose secrets or follow untrusted payment links.
+
+Mitigation: Never request or share seed phrases or private keys, and use only official Uquid, WalletConnect, or supported payment-provider flows.
+
+## Reference(s):
+
+- [Uquid Physical Products](https://uquid.com/)
+- [Uquid Digital Shop](https://shop.uquid.com/)
+- [Uquid NFT Marketplace](https://nft.uquid.com/)
+- [ClawHub Skill Page](https://clawhub.ai/grtony045/skills/uquidshop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown responses with shopping comparisons, official links, cashback or payment notes, and wallet-safety reminders.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest web searches or browsing official Uquid domains for current prices, promotions, merchant reviews, and delivery details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

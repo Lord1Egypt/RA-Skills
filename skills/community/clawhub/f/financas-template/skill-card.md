@@ -1,42 +1,57 @@
-## Description: <br>
-Guides an agent to manage personal finances by recording income and expenses, processing statements and card bills, preventing duplicates, and generating monthly and annual summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages personal finances with categorized expense and income tracking, bank and card statement processing, and monthly or annual summaries.
 
-## Publisher: <br>
-[evandrotho](https://clawhub.ai/user/evandrotho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evandrotho](https://clawhub.ai/user/evandrotho)
 
-## Use Case: <br>
-Developers and individual users use this skill to let an agent maintain local personal finance Markdown files, interpret natural-language finance requests, process bank statements or card bills, and produce financial summaries after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal finance records may be stored under workspace/financas. <br>
-Mitigation: Install only in workspaces where keeping personal finance records is acceptable. <br>
-Risk: Broad finance-related activation triggers may load the skill during unrelated tasks. <br>
-Mitigation: Narrow activation triggers if common words such as conta, total, banco, or month names often appear outside finance tasks. <br>
-Risk: Parsed statement or card-bill transactions may be misclassified or duplicated. <br>
-Mitigation: Review interpreted transactions before confirming and use the skill's duplicate checks based on value, date, and month. <br>
+## Use Case:
 
+Personal finance users and their agents use this skill to maintain workspace-based finance records, add confirmed transactions, process uploaded bank or card statements, and answer spending or balance questions.
 
-## Reference(s): <br>
-- [Finanças Template on ClawHub](https://clawhub.ai/evandrotho/financas-template) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance, finance tables, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intended to update local workspace finance records only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads and analyzes sensitive personal finance files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where the agent may access finance files and uploaded bank or card statements.
+
+Risk: Broad finance-related triggers may activate the skill during unrelated requests.
+
+Mitigation: Review activation carefully and decline or redirect the agent when the request is not a finance task.
+
+Risk: Incorrect transaction interpretation could produce inaccurate ledger updates.
+
+Mitigation: Check the transaction summary, duplicate warnings, date, category, value, and payment method before confirming writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evandrotho/skills/financas-template)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown finance records and text confirmations or summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before writing transaction records and checks for likely duplicates before adding entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

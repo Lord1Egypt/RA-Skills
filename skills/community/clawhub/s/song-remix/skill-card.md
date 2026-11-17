@@ -1,40 +1,49 @@
-## Description: <br>
-Transform existing songs with the Twin Remix method - produce Respectful and Viral versions with Suno v4.5 sliders and visual guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms user-provided songs into a respectful remix and a viral version with Suno v4.5 slider recommendations and visual guides.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Creators, musicians, and agents use this skill to turn user-provided lyrics or song descriptions into two remix treatments: one that preserves the original meaning and one optimized for catchy, social-friendly presentation. The output also gives Suno v4.5 slider guidance and visual concepts for downstream creative production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide lyrics or song descriptions they are not comfortable processing or do not have rights to remix. <br>
-Mitigation: Provide only content they are comfortable using in the agent workflow and have rights to transform. <br>
-Risk: Generated remixes and production guidance may still need human review before publication or use in music and video tools. <br>
-Mitigation: Review outputs for copyright, platform, and suitability requirements before publishing or passing them to another tool. <br>
+## Use Case:
 
+External creators and agents use this skill to transform user-supplied lyrics or song descriptions into two remix directions: a respectful version that preserves the original's depth and a viral version optimized for clear hooks and shareability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/song-remix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with lyric sections, slider recommendations, and visual guide text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces two remix versions unless --viral-only is specified; requires user-supplied song content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill transforms user-supplied song material, which may include copyrighted lyrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user has rights to remix the material before generating, sharing, or using outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/song-remix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with two remix drafts, slider recommendations, visual guides, style notes, and section-tagged lyrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied lyrics or a song description; returns both Respectful and Viral remixes unless --viral-only is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

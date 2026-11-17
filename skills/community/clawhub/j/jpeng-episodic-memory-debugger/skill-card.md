@@ -1,41 +1,52 @@
-## Description: <br>
-Provides tools for debugging episodic memory systems including recall precision analysis, multi-modal encoding validation, indexing efficiency checks, and irrelevant recall detection for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides tools for debugging episodic memory systems including recall precision analysis, multi-modal encoding validation, indexing efficiency checks, and irrelevant recall detection for AI agents.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to diagnose episodic-memory retrieval quality, encoding consistency, index coverage, irrelevant recall patterns, and memory drift in AI agent memory systems.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Memory records passed into the diagnostic functions may contain private or sensitive content.
+
+Mitigation: Review and minimize memory data before analysis, and avoid passing unnecessary private content into the tool.
+
+Risk: Recall, ranking, and health metrics can be misleading when ground truth labels, embeddings, or index statistics are incomplete or stale.
+
+Mitigation: Validate labels and input statistics before using the generated recommendations to tune retrieval or indexing behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose episodic memory retrieval, encoding, indexing, irrelevant recall, and memory drift issues, then generate local diagnostic reports with metrics and recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic reports can expose memory record identifiers, timestamps, metadata, and issue details derived from the records being analyzed. <br>
-Mitigation: Analyze only memory records appropriate for local inspection, and redact sensitive inputs before sharing report output. <br>
-Risk: Publisher provenance is limited because no server-resolved GitHub import provenance is stored for this version. <br>
-Mitigation: Review the ClawHub release page, publisher profile, artifact hashes, and local source before deployment. <br>
+**Output Format:** [JavaScript diagnostic objects with metrics, issue lists, health scores, and recommendation text that can be summarized in Markdown.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-episodic-memory-debugger) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+**Other Properties Related to Output:** [All calculations are local and depend on caller-provided memories, queries, ground truth labels, embeddings, and index statistics.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [JavaScript API results and diagnostic report objects, with human-facing metrics and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally without external dependencies; reports may include memory IDs, timestamps, metadata, issue details, scores, and prioritized recommendations.] <br>
+1.0.0 (source: evidence.json release and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

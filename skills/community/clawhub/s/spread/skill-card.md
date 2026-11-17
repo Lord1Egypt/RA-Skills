@@ -1,39 +1,49 @@
-## Description: <br>
-Spread helps teams distill complete operations plans into reusable rollout playbooks for regional project delivery, reporting, risk control, and KPI tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spread helps teams distill complete operations plans into reusable regional project rollout playbooks with task management, reporting, risk controls, and KPI tracking.
 
-## Publisher: <br>
-[wanyview1](https://clawhub.ai/user/wanyview1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyview1](https://clawhub.ai/user/wanyview1)
 
-## Use Case: <br>
-Developers, operators, and project leads use this skill to turn a full operations plan into reusable templates for project rollout, team reporting, risk tracking, KPI follow-up, and case-study reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational templates can prompt teams to place customer, business, or project data into shared repositories or cloud storage. <br>
-Mitigation: Use only organization-approved storage, desensitization, and access controls before adding sensitive data to GitHub, cloud drives, or shared documentation. <br>
-Risk: Publisher provenance is unavailable for this version. <br>
-Mitigation: Verify the publisher handle and release source before installing when provenance matters to the deployment. <br>
+## Use Case:
 
+Project operations teams, consultants, and managers use this skill to turn a completed regional delivery plan into reusable rollout methods, reporting templates, risk controls, and KPI tracking practices for new projects or expanding teams.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates, structured checklists, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only operations playbook; no code execution or hidden system access is identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Templates may be filled with confidential customer names, contract amounts, code archive details, recordings, or business metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review internal confidentiality rules before use, desensitize sensitive fields, and keep project data in approved encrypted storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanyview1/skills/spread)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with reusable report templates, tables, and process checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operations methodology for demo archiving, skill distillation, project reporting, risk matrices, and KPI tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,36 @@
+{
+  "schema_version": "2.0",
+  "scanner": "lz-skill-vetter-plus",
+  "scanner_version": "2.1.0",
+  "scan_time": "<ISO-8601>",
+  "skill_path": "<absolute-path>",
+  "skill_name": "<skill-name>",
+  "summary": {
+    "files_scanned": 0,
+    "total_lines_scanned": 0,
+    "total_findings": 0,
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 0
+    },
+    "by_category": {}
+  },
+  "findings": [
+    {
+      "id": "SEC-EXEC-001",
+      "severity": "critical",
+      "category": "code_execution",
+      "name": "eval() 调用",
+      "file": "scripts/example.py",
+      "line": 42,
+      "match": "eval(input_data)",
+      "context": "result = eval(input_data)",
+      "description": "eval() 接受字符串并作为代码执行，可被注入利用"
+    }
+  ],
+  "verdict": "❌ DO NOT INSTALL",
+  "verdict_code": "fail"
+}

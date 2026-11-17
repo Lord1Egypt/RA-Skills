@@ -42,10 +42,16 @@ Lets the skill short-circuit before drafting if a reply already went out.
 These mirror the read verbs and let the skill avoid tier-selection logic when
 the adapter already owns it.
 
-### Future MUTATE functions (v2, each gated)
-- `airbnb.setCalendar(range, state, dedupe_key)` — block/open dates.
-- `airbnb.setPrice(range, amount, dedupe_key)` — pricing.
+### Future MUTATE adapter functions (each gated)
+These harden today's manual procedures into atomic adapter calls; the gate and
+verification requirements do not change when they arrive.
+- `airbnb.setCalendar(range, state, dedupe_key)` — block/open dates. **Available
+  today as the manual MUTATE-CAL procedure** (`calendar-mutation-procedure.md`)
+  under the per-operation approval gate; this is its future adapter form.
+- `airbnb.setPrice(range, amount, dedupe_key)` — pricing. Same MUTATE-CAL gate.
 - `airbnb.respondToBooking(reservation_id, decision, dedupe_key)` — accept/decline.
+  Still **MUTATE-RESTRICTED (not implemented)**; would require its own gated
+  workflow before enabling.
 
 Each MUTATE adapter function should follow the same shape as `sendVerified`:
 do-once + ledger + verify, returning a final state. The skill wraps each in a

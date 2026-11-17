@@ -1,42 +1,54 @@
-## Description: <br>
-Scans embodied AI agent configuration JSON to verify S2-DID identity format, CD-U6A domain mapping, and locked control settings against CPAA safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans embodied AI agent configurations at the edge and returns a compliance report for CPAA-related identity, address-domain, temperature-lock, and hardware-lock checks.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and operators working with embodied AI agents use this skill to check a JSON configuration before deployment or startup. It reports whether identity, domain address, temperature, and hardware lock settings pass the stated CPAA criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using this skill as an automatic hardware control could trigger unsafe actuator power changes. <br>
-Mitigation: Treat the skill as a configuration checker unless a hardware-specific safe-stop procedure, operator controls, and validated interlocks are added. <br>
-Risk: A pass result may be mistaken for full physical safety certification. <br>
-Mitigation: Use the returned report as one input to a broader safety review, and validate all robot, motor, or actuator behavior outside the skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to check an embodied AI agent configuration before deployment and receive a structured pass/fail compliance report. The result should be treated as advisory unless paired with independent hardware-state and safety validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/taohuayuan-cpaa-core) <br>
-- [artifact/skill.md](artifact/skill.md) <br>
-- [artifact/changelog.md](artifact/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON compliance report with pass/fail fields, a numeric score, and a final status string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes one JSON agent configuration payload and returns local validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version, artifact/skill.json, changelog released 2026-06-19) <br>
+Risk: The skill can be mistaken for an authoritative physical actuator safety gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as an advisory helper unless independent schema validation, trusted hardware-state checks, complete identity and address verification, and supervised shutdown procedures are also in place.
+
+Risk: Under-scoped validation can create false confidence about real-world actuator safety.
+
+Mitigation: Require a separate safety review before wiring its pass/fail result to actuator startup or shutdown decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/taohuayuan-cpaa-core)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance]
+
+**Output Format:** [Structured JSON compliance report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes individual check results, a compliance score, and a final certification or rejection status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-06-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

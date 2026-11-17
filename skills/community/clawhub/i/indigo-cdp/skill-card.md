@@ -1,43 +1,55 @@
-## Description: <br>
-Manage Collateralized Debt Positions (CDPs) on the Indigo Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Collateralized Debt Positions (CDPs) on the Indigo Protocol.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and developers use this skill to inspect and manage Indigo Protocol CDPs, including opening positions, depositing or withdrawing collateral, minting or burning iAssets, checking health, and preparing unsigned Cardano transactions for wallet signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prepared DeFi transactions can move collateral, mint or burn assets, liquidate positions, or alter leverage. <br>
-Mitigation: Review the CDP reference, asset, amount, fees, collateral ratio, liquidation risk, and wallet transaction details before signing. <br>
-Risk: The skill depends on an external Indigo MCP server for CDP data and unsigned transaction preparation. <br>
-Mitigation: Use only a trusted Indigo MCP server and independently verify transaction contents in the Cardano wallet before submission. <br>
+## Use Case:
 
+External users and developers use this skill to inspect and manage Indigo Protocol CDPs, including opening positions, adjusting collateral, minting or burning iAssets, analyzing liquidation risk, and preparing unsigned transactions for wallet review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/adacapo21/indigo-cdp) <br>
-- [Publisher profile](https://clawhub.ai/user/adacapo21) <br>
-- [MCP Tools Reference](references/mcp-tools.md) <br>
-- [CDP Concepts](references/concepts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown with tool call parameters and unsigned transaction details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations return unsigned Cardano transaction CBOR for user wallet signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: CDP operations such as withdrawal, minting, leverage, liquidation, redemption, freezing, merging, and closing can affect funds and position safety once signed on-chain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated transaction in the wallet before signing and confirm collateral ratio, debt, asset, address, and liquidation impact.
+
+Risk: The skill depends on the configured Indigo MCP server for CDP data and unsigned transaction construction.
+
+Mitigation: Install and use it only with an Indigo MCP server that the user trusts for Indigo Protocol workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adacapo21/skills/indigo-cdp)
+- [CDP MCP Tools Reference](references/mcp-tools.md)
+- [CDP Concepts](references/concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool call parameters, CDP analysis, and unsigned transaction summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations return unsigned CBOR transactions for wallet signing; the skill does not automatically sign transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

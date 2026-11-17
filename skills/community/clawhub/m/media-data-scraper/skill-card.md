@@ -1,37 +1,58 @@
-## Description: <br>
-抓取抖音、小红书、B站、快手、视频号五大平台作品数据（播放/点赞/评论/分享/收藏），完全免费，无需登录/API Key/付费。支持飞书多维表格同步。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents scrape and analyze public work metrics from Douyin, Xiaohongshu, Bilibili, Kuaishou, and WeChat Channels, with optional Feishu Bitable sync.
 
-## Publisher: <br>
-[wu1982966308](https://clawhub.ai/user/wu1982966308) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu1982966308](https://clawhub.ai/user/wu1982966308)
 
-## Use Case: <br>
-External creators, analysts, and developers use this skill to collect engagement metrics from Douyin, Xiaohongshu, Bilibili, Kuaishou, and WeChat Channels links, then format results or sync them to Feishu for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu1982966308/media-data-scraper) <br>
+External users and developers use this skill to collect engagement metrics from supported Chinese social-media posts, format the results, save JSON or CSV files, and optionally sync successful records to Feishu Bitable.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus structured scrape results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review browser automation, anti-detection scraping behavior, Feishu auto-sync, plaintext Feishu secrets, and appreciation prompts before deployment; disable optional sync or appreciation behavior when not needed.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Social-media scraping may violate platform terms, local rules, or workspace policy.
+
+Mitigation: Use only where scraping is allowed, limit collection to authorized public content, and review applicable platform and organizational rules before execution.
+
+Risk: Feishu sync can store App ID, App Secret, base token, and table settings locally in plaintext.
+
+Mitigation: Avoid enabling Feishu sync unless needed; use narrowly scoped Feishu credentials and run the skill in a controlled Python environment.
+
+Risk: The security scan reports under-disclosed donation prompts, persistent local state, and browser or local server side effects.
+
+Mitigation: Review the skill before installation, expect local state and browser prompts during repeated use, and run it in a sandboxed environment when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu1982966308/skills/media-data-scraper)
+- [Publisher profile](https://clawhub.ai/user/wu1982966308)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime scraping functions return structured dictionaries and optional JSON or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally push successful scrape records to Feishu Bitable when the user configures sync.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

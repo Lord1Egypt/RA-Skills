@@ -1,44 +1,59 @@
-## Description: <br>
-Multi-model AI image generation on a visual canvas with support for Midjourney, Grok Imagine, nano-banana-2, Seedream 5.0, reference images, style transfer, batch generation, and aspect ratio control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-model AI image generation on a visual canvas with support for text-to-image, image-to-image, style transfer, multi-reference composition, batch generation, and aspect ratio control.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and creative developers use this skill to generate, organize, and reuse AI images on a VPick visual canvas across supported cloud image models. It is suited for artwork, illustration, character design, style transfer, reference-driven composition, and batch image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP URL contains an embedded account token that can trigger VPick generation actions and spend account credits. <br>
-Mitigation: Treat the MCP URL as a credential, keep it out of public logs or shared prompts, and regenerate it from VPick settings if exposed. <br>
-Risk: Prompts and reference images are processed by VPick and routed to third-party image model providers. <br>
-Mitigation: Avoid submitting sensitive prompts or images unless VPick and the downstream model providers are approved for that data. <br>
-Risk: Generated images and uploaded references are stored under the user's VPick account and generations consume VPick credits. <br>
-Mitigation: Review generated file history and generation statistics, monitor credit usage, and delete or avoid uploading content that should not be retained in the VPick project. <br>
+## Use Case:
 
+External users and developers use this skill to generate and manage AI images through a VPick visual canvas, including artwork, illustrations, character references, style transfer, and batch variants.
 
-## Reference(s): <br>
-- [VPick MCP connection guide](https://vpick-doc.10xboost.org/guide/mcp-connection.html) <br>
-- [VPick app](https://vpick.10xboost.org) <br>
-- [ClawHub skill page](https://clawhub.ai/snoopyrain/vpick-ai-image-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown] <br>
-**Output Format:** [Markdown with tool-call examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces VPick canvas workflow guidance and MCP tool-call examples for image generation, reference uploads, canvas organization, result browsing, and usage checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The MCP URL contains an embedded authentication token that grants generation access to the user's VPick account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the MCP URL as a password, do not share it publicly, and regenerate it from VPick settings if exposure is suspected.
+
+Risk: Prompts and uploaded reference images are sent through VPick and routed to third-party model providers for processing.
+
+Mitigation: Avoid sending sensitive prompts or private reference images unless that data flow is intended and acceptable.
+
+Risk: Image generations can consume the user's VPick credit balance.
+
+Mitigation: Review model pricing and monitor usage before running batch or high-resolution generations.
+
+## Reference(s):
+
+- [VPick MCP connection guide](https://vpick-doc.10xboost.org/guide/mcp-connection.html)
+- [VPick application](https://vpick.10xboost.org)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/vpick-ai-image-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Markdown]
+
+**Output Format:** [Markdown with tool-call examples and concise procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger VPick image generations that create stored image files and spend account credits.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

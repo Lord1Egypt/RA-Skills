@@ -1,42 +1,61 @@
-## Description: <br>
-销售助手（Sales Assistant）协助销售团队整理商机、分析客户画像、生成拜访纪要、提炼需求、建议跟进动作、提示商务风险并维护客户档案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+销售助手（Sales Assistant）协助销售团队整理客户商机、生成客户画像和拜访纪要、提炼需求、建议跟进动作、提示商务风险并维护客户档案。
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-Sales representatives, commercial staff, presales teams, and sales managers use this skill to turn customer communications, meeting notes, and demand materials into structured opportunity cards, customer profiles, meeting summaries, follow-up plans, risk notes, and CRM archive drafts. Human confirmation is required for pricing, commercial commitments, delivery timelines, sensitive customer information, and outbound materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive customer, sales, meeting, contract, and CRM information. <br>
-Mitigation: Deploy only where the team is authorized to process this data; configure permissions, audit logs, archive retention, and prefer redacted or minimized inputs. <br>
-Risk: Generated sales guidance could be mistaken for approved pricing, delivery, contract, or outbound commitments. <br>
-Mitigation: Require named human approval for pricing language, commercial commitments, delivery timelines, customer-sensitive information, and externally sent materials. <br>
-Risk: Incomplete or weak input materials could lead to unsupported opportunity or customer conclusions. <br>
-Mitigation: Mark unsupported items as needing human confirmation and request missing materials instead of presenting assumptions as facts. <br>
+## Use Case:
 
+Sales representatives, sales operations staff, presales staff, and sales managers use this skill to turn Feishu messages, customer records, meeting notes, and demand materials into structured sales drafts, risk notes, follow-up actions, human-review items, and archive records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/afeicn/sales-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured Markdown and template-based sales records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafts, recommendations, checklists, summaries, risk notes, and archive records that require human confirmation for high-impact sales actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and employee.yaml) <br>
+Risk: The skill handles sensitive sales, customer, contract, employee, financial, and technical information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only after Feishu access control, authorization checks, masking, audit logging, retention, and deletion procedures are configured.
+
+Risk: Draft sales recommendations could be mistaken for final pricing, delivery, contract, or external communication decisions.
+
+Mitigation: Route pricing positions, business commitments, delivery timelines, sensitive customer information, and externally sent materials to human approval before use.
+
+Risk: CRM or archive records can preserve unsupported assumptions if source material is incomplete.
+
+Mitigation: Require source-grounded outputs, mark missing information as needing confirmation, and keep input, output, reviewer, and archive-location audit records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afeicn/skills/sales-assistant)
+- [README](artifact/README.md)
+- [Workflows](artifact/workflows.md)
+- [Runbook](artifact/runbook.md)
+- [Sales skills catalog](artifact/skills/sales_skills.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sales summaries, opportunity cards, customer profiles, meeting notes, need summaries, follow-up plans, risk lists, human-review notes, and archive records.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and employee.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

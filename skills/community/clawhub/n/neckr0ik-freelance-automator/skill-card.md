@@ -1,49 +1,57 @@
-## Description: <br>
-Automates freelance workflows including job search, proposal drafting, delivery tracking, client messaging, and invoice generation for platforms such as Upwork, Fiverr, Freelancer, and PeoplePerHour. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft and manage freelance workflow artifacts such as job examples, proposals, status summaries, and invoices for platforms named by the skill.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-External freelancers and operators can use this skill to search for candidate work, draft proposals, manage local job records, and generate invoice text. Outputs should be reviewed before use with clients or freelance platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims real freelance-platform automation while the code generates mock-looking job listings. <br>
-Mitigation: Treat job results as demo or unverified data and confirm opportunities directly on the relevant platform before acting. <br>
-Risk: Generated proposals, messages, and invoices may contain incorrect, misleading, or inappropriate client-facing content. <br>
-Mitigation: Manually review and edit every proposal, message, and invoice before sending it to a client or platform. <br>
-Risk: Business records are stored locally under ~/.freelance-automator. <br>
-Mitigation: Avoid storing sensitive client data unless the local environment is secured and records are managed according to the user's retention needs. <br>
-Risk: Platform integrations, permission boundaries, approval gates, and storage documentation are not clearly established. <br>
-Mitigation: Do not provide platform credentials or rely on claimed platform coverage unless the publisher adds real integrations and clear operational controls. <br>
+## Use Case:
 
+Freelancers or agents supporting freelancers use this skill to draft proposals, inspect locally stored job and proposal status, and produce invoice text or JSON. Users should manually verify opportunities and review any client-facing output before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-freelance-automator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Neckr0ik) <br>
-- [Upwork](https://www.upwork.com) <br>
-- [Fiverr](https://www.fiverr.com) <br>
-- [Freelancer](https://www.freelancer.com) <br>
-- [PeoplePerHour](https://www.peopleperhour.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text, with optional JSON invoice output and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local job, proposal, client, and invoice records under ~/.freelance-automator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, claw.json) <br>
+Risk: Users may treat job search results as live freelance-platform data even though the security evidence says the inspected code mostly creates synthetic local job records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label generated jobs as examples and verify opportunities directly on the relevant platform before sending proposals or committing to work.
+
+Risk: Generated proposals, invoices, and client messages may be inaccurate, misleading, or unsuitable for client-facing use.
+
+Mitigation: Manually review and edit all client-facing output before sending, and keep any platform or client action under direct user control.
+
+Risk: The skill stores business records locally and proposal generation may include client or project details in prompts sent to a local Ollama model.
+
+Mitigation: Avoid sensitive client data unless the local model and filesystem handling are acceptable, and protect or delete records under ~/.freelance-automator as needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-freelance-automator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with CLI command examples; invoices may be text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local job, proposal, client, and invoice records under ~/.freelance-automator.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

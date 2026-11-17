@@ -1,40 +1,53 @@
-## Description: <br>
-Book real-world services through Lokuli MCP by finding local providers, checking availability, and creating bookings for services such as plumbers, electricians, cleaners, mechanics, barbers, and personal trainers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book real-world services through Lokuli MCP for finding, checking availability, and booking local services across 75+ service categories.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to search for local-service providers, compare pricing and availability, and create a booking through Lokuli after explicit user confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking creation may share contact details and service request information with Lokuli and payment providers. <br>
-Mitigation: Review the provider, service, time, price, and contact details with the user before creating a booking or opening a checkout link. <br>
-Risk: A booking or payment link could be created before the user has confirmed the provider, availability, or price. <br>
-Mitigation: Require explicit user approval, show pricing upfront, and collect required contact information before calling the booking workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/local-booking) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search local service providers, compare pricing and availability, and create user-confirmed bookings through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown with JSON-RPC examples and booking workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MCP tool requests for search, provider detail lookup, availability checks, booking creation, booking status, catalog lookup, pricing estimates, location validation, and cart creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking flows can share customer contact and location details with Lokuli.
+
+Mitigation: Confirm provider, time, price, and the information being sent before approving any booking or payment link.
+
+Risk: A booking or payment link could be created before the user has fully reviewed the selected service.
+
+Mitigation: Require explicit user approval before creating a booking and show pricing upfront.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub Local Booking skill page](https://clawhub.ai/edwardrodriguez703-design/skills/local-booking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Markdown with structured MCP tool call arguments and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return provider search results, availability, pricing estimates, booking status, and Stripe checkout URLs after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,50 @@
-## Description: <br>
-Grill helps agents harden technical drafts for skeptical technical audiences by checking voice, sourcing, factual claims, titles, and likely objections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a technical writeup, blog post, war story, or "Show HN" is about to go to Hacker News, Lobsters, or any skeptical technical audience, or when the user says "grill this", "make it HN-ready", "harden this post", "is this ready to post", "will this survive the comments". Hardens facts, sourcing, voice, and comment-readiness. Not for identity/infra leak scrubbing (use plate) or repo publication (use publish-readiness).
 
-## Publisher: <br>
-[escoffier-labs](https://clawhub.ai/user/escoffier-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[escoffier-labs](https://clawhub.ai/user/escoffier-labs)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use Grill before publishing technical posts to Hacker News, Lobsters, or similar skeptical communities. It helps de-hype prose, flag unsupported claims, prepare citations, and surface likely objections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may flag or suggest edits to technical claims before publication, and those suggestions can still be incomplete or wrong. <br>
-Mitigation: Review suggested edits, confirm sources yourself, and resolve any [CONFIRM] markers before posting. <br>
+## Use Case:
 
+Developers and technical writers use Grill to prepare technical posts for skeptical audiences by checking factual claims and sourcing, tightening the voice, and anticipating likely objections.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown prose with inline findings, suggested edits, [CONFIRM] markers, and optional shell command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include critique notes, fact-checking prompts, citation reminders, title feedback, and comment pre-mortem objections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Grill does not perform identity or infrastructure leak scrubbing, so its review alone may leave sensitive details in a draft.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the separate plate skill for an identity and infrastructure review before publishing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/escoffier-labs/skills/grill)
+- [Publisher profile](https://clawhub.ai/user/escoffier-labs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis]
+
+**Output Format:** [Markdown with revised prose and editorial feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-specific critique, sourcing notes, and revised text when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,6 +10,8 @@ from pathlib import Path
 
 WPS_CLIENT = None
 MS_CLIENT = None
+MS_EXCEL_CLIENT = None
+MS_PPT_CLIENT = None
 ENGINE = None  # "WPS" / "MSOFFICE" / "PURE"
 
 
@@ -118,6 +120,67 @@ def create_ms_word():
         raise RuntimeError(f"不支持的操作系统：{sys.platform}")
 
 
+def create_ms_excel():
+    """创建 MS Excel COM 对象"""
+    if sys.platform == "win32":
+        try:
+            import win32com.client
+            app = win32com.client.Dispatch("Excel.Application")
+            app.Visible = False
+            app.DisplayAlerts = False
+            return app
+        except Exception as e:
+            raise RuntimeError(
+                f"MS Excel COM 创建失败：{e}\n"
+                f"请确保已安装 Microsoft Excel。"
+            )
+    elif sys.platform == "darwin":
+        try:
+            import appscript
+            return appscript.app("Microsoft Excel")
+        except Exception as e:
+            raise RuntimeError(f"macOS 下无法启动 MS Excel：{e}")
+    else:
+        raise RuntimeError(f"不支持的操作系统：{sys.platform}")
+
+
+def get_ms_excel():
+    """获取 MS Excel 实例（带缓存）"""
+    global MS_EXCEL_CLIENT
+    if MS_EXCEL_CLIENT is None:
+        MS_EXCEL_CLIENT = create_ms_excel()
+    return MS_EXCEL_CLIENT
+
+
+def create_ms_ppt():
+    """创建 MS PowerPoint COM 对象（注意：PPT 不支持 Visible=False）"""
+    if sys.platform == "win32":
+        try:
+            import win32com.client
+            return win32com.client.Dispatch("PowerPoint.Application")
+        except Exception as e:
+            raise RuntimeError(
+                f"MS PowerPoint COM 创建失败：{e}\n"
+                f"请确保已安装 Microsoft PowerPoint。"
+            )
+    elif sys.platform == "darwin":
+        try:
+            import appscript
+            return appscript.app("Microsoft PowerPoint")
+        except Exception as e:
+            raise RuntimeError(f"macOS 下无法启动 MS PowerPoint：{e}")
+    else:
+        raise RuntimeError(f"不支持的操作系统：{sys.platform}")
+
+
+def get_ms_ppt():
+    """获取 MS PowerPoint 实例（带缓存）"""
+    global MS_PPT_CLIENT
+    if MS_PPT_CLIENT is None:
+        MS_PPT_CLIENT = create_ms_ppt()
+    return MS_PPT_CLIENT
+
+
 def release_wps(app=None):
     """释放 WPS COM"""
     global WPS_CLIENT
@@ -131,15 +194,24 @@ def release_wps(app=None):
 
 
 def release_ms(app=None):
-    """释放 MS COM"""
-    global MS_CLIENT
-    target = app or MS_CLIENT
-    if target is not None:
+    """释放 MS COM（Word/Excel/PPT 三个槽位统一管理）"""
+    global MS_CLIENT, MS_EXCEL_CLIENT, MS_PPT_CLIENT
+    # 1. 显式传入的对象优先释放
+    if app is not None:
         try:
-            target.Quit()
+            app.Quit()
         except Exception:
             pass
-        MS_CLIENT = None
+    # 2. 释放全部三个缓存槽位（Word/Excel/PPT 各自独立 COM 实例）
+    for slot in (MS_CLIENT, MS_EXCEL_CLIENT, MS_PPT_CLIENT):
+        if slot is not None:
+            try:
+                slot.Quit()
+            except Exception:
+                pass
+    MS_CLIENT = None
+    MS_EXCEL_CLIENT = None
+    MS_PPT_CLIENT = None
 
 
 def ensure_desktop_path(filename):

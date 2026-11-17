@@ -1,41 +1,54 @@
-## Description: <br>
-Routes domain and website requests to Nameslink tools for AI domain appraisal, domain availability search, domain discovery, brand naming, and logo generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes domain and website requests to Nameslink tools for domain appraisal, availability search, domain discovery, brand naming, and logo generation.
 
-## Publisher: <br>
-[nameslink](https://clawhub.ai/user/nameslink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nameslink](https://clawhub.ai/user/nameslink)
 
-## Use Case: <br>
-External users and developers use this skill to turn domain, brand, naming, and logo requests into the appropriate Nameslink tool URL with brief context. It supports single-step requests and chained workflows such as naming, domain search, appraisal, and logo generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as logo or contains may cause the skill to activate for loosely related requests. <br>
-Mitigation: Confirm that the user's request is actually about a Nameslink domain, naming, or logo workflow before generating a link. <br>
-Risk: Generated URLs may include a domain, keyword, or project description that the user did not intend to share with Nameslink. <br>
-Mitigation: Check that the generated URL contains only the intended domain, keyword, or project description before presenting it to the user. <br>
+## Use Case:
 
+External users and agents use this skill to turn domain, brand, and logo requests into the appropriate Nameslink tool URL with brief context in the user's language.
 
-## Reference(s): <br>
-- [Nameslink homepage](https://www.nameslink.com) <br>
-- [ClawHub skill page](https://clawhub.ai/nameslink/all-in-one-domain-website-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text with a generated URL and brief context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include chained tool links for multi-step domain, naming, search, appraisal, and logo workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version: 1.0) <br>
+Risk: Generated links may include business ideas, project descriptions, domains, or other sensitive text in URL parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated links before opening them and avoid placing confidential information in URL parameters.
+
+Risk: The skill routes users to Nameslink-hosted third-party tools.
+
+Mitigation: Use the skill only when third-party hosted domain, naming, and logo workflows are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nameslink/skills/all-in-one-domain-website-tools)
+- [Nameslink homepage](https://www.nameslink.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text containing a full URL plus 1-2 lines of context]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not fetch or scrape generated URLs; users open links manually.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

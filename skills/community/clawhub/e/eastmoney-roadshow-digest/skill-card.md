@@ -1,43 +1,60 @@
-## Description: <br>
-EastMoney Roadshow Digest (Transcript + Summary)｜东方财富路演纪要生成 turns public EastMoney roadshow replay pages into structured transcript, clean transcript, summary, brief, metadata, and run report files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EastMoney Roadshow Digest (Transcript + Summary)｜东方财富路演纪要生成 is a reliability-first skill for public EastMoney roadshow replays that validates replay URLs, extracts public metadata, generates transcripts, and produces summary outputs.
 
-## Publisher: <br>
-[sunxq1017-hash](https://clawhub.ai/user/sunxq1017-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunxq1017-hash](https://clawhub.ai/user/sunxq1017-hash)
 
-## Use Case: <br>
-Developers, analysts, and research support teams use this skill to process public EastMoney roadshow replay URLs into local transcript and summary artifacts. It is scoped to public replay pages and records downgrade paths when subtitles, ASR, or optional LLM enhancement are unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When supported provider keys are present, public transcript text or intermediate cleaned text may be sent to an external LLM service for enhancement. <br>
-Mitigation: For local-only processing, run in an environment without those provider keys and review outputs/run_report.md to confirm whether LLM enhancement was disabled. <br>
-Risk: Transcript quality can degrade when subtitles are unavailable or ASR dependencies such as ffmpeg, faster-whisper, or av are missing or fail. <br>
-Mitigation: Keep dependencies patched and available, and review transcript quality notes and downgrade details in outputs/run_report.md before relying on summaries. <br>
+## Use Case:
 
+External users and developers use this skill to turn public EastMoney roadshow replay pages into structured metadata, transcripts, cleaned transcript text, summaries, executive briefs, and run reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunxq1017-hash/eastmoney-roadshow-digest) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sunxq1017-hash) <br>
-- [EastMoney public roadshow example](https://roadshow.eastmoney.com/luyan/5149204) <br>
-- [EastMoney roadshow detail API](https://roadshow.lvb.eastmoney.com/LVB/api/Roadshow/Detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Local files: meta.json, transcript.md, clean_transcript.md, summary.md, brief.md, and run_report.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional external LLM enhancement is used only when a supported provider key is present; otherwise the skill falls back to rule-based outputs and records the path in run_report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v0.1.2-rc1 (source: server release evidence) <br>
+Risk: Transcript text may be sent to an external LLM provider when matching API keys are present in the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Unset provider API keys when local or rule-based processing is required, and review whether public replay transcript text is acceptable for external model processing before use.
+
+Risk: The skill runs FFmpeg against upstream media URLs and the security summary notes missing tight bounds.
+
+Mitigation: Run the skill in a constrained environment with network and process limits, and review media URL validation and extraction timeout controls before broader deployment.
+
+Risk: The authoritative security verdict is suspicious.
+
+Mitigation: Require human review before installation or production use, following the scanner guidance in the release evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunxq1017-hash/skills/eastmoney-roadshow-digest)
+- [Publisher profile](https://clawhub.ai/user/sunxq1017-hash)
+- [EastMoney roadshow public replay site](https://roadshow.eastmoney.com/)
+- [EastMoney roadshow detail API](https://roadshow.lvb.eastmoney.com/LVB/api/Roadshow/Detail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown and JSON files under outputs/]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes meta.json, transcript.md, clean_transcript.md, summary.md, brief.md, and run_report.md when data is available; records downgrade paths when dependencies or optional LLM capability are unavailable.]
+
+## Skill Version(s):
+
+v0.1.2-rc1 (source: server release metadata, created 2026-04-09T13:13:39Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,55 @@
-## Description: <br>
-Operates Nylas through an OOMOL-connected account to read grants, calendars, and calendar events with the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Nylas grants, calendars, and events through an OOMOL-connected account using the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers with connected OOMOL and Nylas accounts use this skill to inspect Nylas grants, list calendars, and retrieve calendar events without handling raw tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nylas grant, calendar, and event data can contain sensitive account information. <br>
-Mitigation: Confirm the specific account, calendar, and date range before retrieving data, and handle returned results as sensitive. <br>
-Risk: The skill has a broad activation phrase for Nylas requests, which could lead to unintended connector use. <br>
-Mitigation: Use it only for explicit Nylas tasks and verify the requested scope before running oo connector commands. <br>
-Risk: Setup commands can install the oo CLI, start login, or open Nylas connection flows. <br>
-Mitigation: Run setup only after a matching command failure or user request, and avoid proactive authentication or connection changes. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve grant, calendar, and event information from an already connected Nylas account. It guides an agent to inspect an action's schema and submit a matching read request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-nylas) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Nylas homepage](https://www.nylas.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live oo connector schemas before constructing action payloads; Nylas grants, calendars, and events may contain sensitive account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, SKILL.md frontmatter) <br>
+Risk: Automatic CLI setup runs remote installer code whose behavior and broader installation effects are not verified in the supplied artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the installer and its side effects before allowing automatic setup.
+
+Risk: The Nylas connection's permissions and server-side credential handling are not verified by the supplied artifact.
+
+Mitigation: Connect only the intended Nylas account and grant only necessary permissions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-nylas)
+- [Nylas API v3 documentation](https://developer.nylas.com/docs/api/v3/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands and structured JSON connector results with concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action-specific JSON inputs; connector responses include structured data.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

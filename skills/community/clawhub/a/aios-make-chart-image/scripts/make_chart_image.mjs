@@ -120,13 +120,15 @@ function fail(message, code = 1) {
 function usage() {
   return [
     "Usage:",
-    "  node scripts/make_chart_image.mjs --input data.json --output chart.png [options]",
-    "  cat table.md | node scripts/make_chart_image.mjs --input - --output chart.svg",
+    "  node scripts/make_chart_image.mjs --workspace /path/to/workspace --sender-id <senderId> --input <senderId>/upload/data.json --output chart.png [options]",
+    "  cat table.md | node scripts/make_chart_image.mjs --workspace /path/to/workspace --sender-id <senderId> --input - --output chart.svg",
     "",
     "Options:",
-    "  --input <file|- >             JSON or Markdown input. Use - for stdin.",
+    "  --input <file|->              JSON or Markdown input. Use - for stdin.",
     "  --data <text>                 Inline JSON or Markdown input.",
     "  --output <file>               Output image path.",
+    "  --workspace <dir>             Current agent workspace root. Default current directory.",
+    "  --sender-id <senderId>        Current channel senderId; required for file isolation.",
     "  --format <png|svg|jpg|webp>   Defaults to output extension.",
     "  --chart-type <auto|bar|line|pie|scatter>",
     "  --title <text>",
@@ -191,6 +193,56 @@ function readNumberArg(args, name, fallback) {
   return Math.round(value);
 }
 
+function validatePathSegment(value, label) {
+  const segment = String(value ?? "").trim();
+  if (!segment) {
+    throw new Error(`Missing ${label}`);
+  }
+  if (
+    segment === "."
+    || segment === ".."
+    || segment.includes("\0")
+    || segment.includes("/")
+    || segment.includes("\\")
+    || /^[A-Za-z]:/.test(segment)
+  ) {
+    throw new Error(`${label} must be a safe single path segment`);
+  }
+  return segment;
+}
+
+function assertPathInside(root, target, label) {
+  const resolvedRoot = path.resolve(root);
+  const resolvedTarget = path.resolve(target);
+  const relative = path.relative(resolvedRoot, resolvedTarget);
+  if (relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative))) {
+    return resolvedTarget;
+  }
+  throw new Error(`${label} must stay inside ${resolvedRoot}`);
+}
+
+function resolveSenderContext(args) {
+  const workspace = path.resolve(args.workspace ?? ".");
+  const senderId = validatePathSegment(args["sender-id"], "--sender-id");
+  const senderRoot = assertPathInside(workspace, path.join(workspace, senderId), "senderId directory");
+  const generatedRoot = assertPathInside(senderRoot, path.join(senderRoot, "generated"), "generated directory");
+  return { workspace, senderId, senderRoot, generatedRoot };
+}
+
+function resolveInputFilePath(rawInput, context) {
+  const candidate = path.isAbsolute(rawInput)
+    ? path.resolve(rawInput)
+    : path.resolve(context.workspace, rawInput);
+  return assertPathInside(context.senderRoot, candidate, "--input");
+}
+
+function resolveGeneratedFilePath(rawPath, context, label) {
+  const candidate = path.isAbsolute(rawPath)
+    ? path.resolve(rawPath)
+    : path.resolve(context.generatedRoot, rawPath);
+  return assertPathInside(context.generatedRoot, candidate, label);
+}
+
 function deriveFormat(args) {
   const explicit = args.format?.trim().toLowerCase();
   if (explicit) {
@@ -220,7 +272,7 @@ async function readStdin() {
   return Buffer.concat(chunks).toString("utf8");
 }
 
-async function loadInput(args) {
+async function loadInput(args, context) {
   if (args.data !== undefined) {
     return {
       text: String(args.data),
@@ -239,7 +291,7 @@ async function loadInput(args) {
     };
   }
 
-  const sourcePath = path.resolve(args.input);
+  const sourcePath = resolveInputFilePath(args.input, context);
   return {
     text: await readFile(sourcePath, "utf8"),
     sourcePath
@@ -883,19 +935,26 @@ async function main() {
     fail("Missing --output");
   }
 
+  let context;
+  try {
+    context = resolveSenderContext(args);
+  } catch (error) {
+    fail(error instanceof Error ? error.message : String(error));
+  }
+
   const width = readNumberArg(args, "width", DEFAULT_WIDTH);
   const height = readNumberArg(args, "height", DEFAULT_HEIGHT);
   const format = deriveFormat(args);
   const theme = (args.theme ?? "light").toLowerCase();
-  const outputPath = path.resolve(args.output);
-  const { text, sourcePath } = await loadInput(args);
+  const outputPath = resolveGeneratedFilePath(args.output, context, "--output");
+  const { text, sourcePath } = await loadInput(args, context);
   const input = parseInput(text, sourcePath);
   const built = input.kind === "option"
     ? finalizeProvidedOption(input.option, args)
     : buildOptionFromTable(input, args);
 
   if (args["save-option"]) {
-    const optionPath = path.resolve(args["save-option"]);
+    const optionPath = resolveGeneratedFilePath(args["save-option"], context, "--save-option");
     await mkdir(path.dirname(optionPath), { recursive: true });
     await writeFile(optionPath, `${JSON.stringify(built.option, null, 2)}\n`, "utf8");
   }
@@ -904,12 +963,13 @@ async function main() {
   await writeImage(svg, outputPath, format);
 
   console.log(JSON.stringify({
+    senderId: context.senderId,
     output: outputPath,
     format,
     width,
     height,
     chartType: built.chartType,
-    option: args["save-option"] ? path.resolve(args["save-option"]) : undefined
+    option: args["save-option"] ? resolveGeneratedFilePath(args["save-option"], context, "--save-option") : undefined
   }, null, 2));
 }
 

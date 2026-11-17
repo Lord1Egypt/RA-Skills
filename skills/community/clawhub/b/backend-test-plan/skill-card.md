@@ -1,40 +1,59 @@
-## Description: <br>
-Turn a backend change into verifiable success criteria and a minimum useful test set across unit, integration, contract, and migration tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a backend change into verifiable success criteria and a minimum useful test set across unit, integration, contract, and migration tests.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to turn backend changes into concrete success criteria, a minimum useful test set, fixture or mock notes, commands to run, and remaining coverage gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Ritual Cloud setup can run npm and ritual commands when the user chooses to connect external context. <br>
-Mitigation: Review the optional Ritual Cloud section first and run those commands only when cloud-backed discovery or recommendations are needed. <br>
-Risk: Optional knowledge-note capture can add reusable project knowledge to the repository. <br>
-Mitigation: Approve knowledge-note creation only when the knowledge should be saved, and review the note content and cited evidence before writing. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert backend changes into concrete success criteria, focused test coverage, fixtures or mocks, commands to run, and explicit coverage gaps.
 
-## Reference(s): <br>
-- [Ritual](https://ritual.work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown test-planning guidance with success criteria, test names, fixtures or mocks, commands to run, and coverage gaps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May offer optional knowledge-note creation; file writes require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The optional Ritual Cloud setup can involve a global, unpinned install of @ritualai/cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and prefer a pinned or otherwise approved install path before enabling the optional cloud workflow.
+
+Risk: Optional knowledge-note capture can persist repository documentation.
+
+Mitigation: Approve knowledge-note writes only when the information is durable and intended to be retained in the repository.
+
+Risk: A backend test plan can be incomplete when affected callers, external boundaries, migrations, or prior incidents are outside the provided context.
+
+Mitigation: Provide the relevant service context and review the remaining coverage gaps before relying on the plan.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ritual/skills/backend-test-plan)
+- [Ritual Homepage](https://ritual.work)
+- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with concise prose and inline shell commands when commands are available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes success criteria, minimum useful tests, fixtures or mocks, commands to run, and remaining coverage gaps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

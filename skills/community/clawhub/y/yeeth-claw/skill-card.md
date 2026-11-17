@@ -1,40 +1,57 @@
-## Description: <br>
-Supply chain security hooks for Claude Code that intercept npm, pip, yarn, pnpm, and cargo install commands before execution and check packages for package age, typosquat similarity, install scripts, and optional Argus analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yeeth Claw adds Claude Code PreToolUse hooks that inspect npm, pip, yarn, pnpm, and cargo install commands for supply-chain risk signals before execution.
 
-## Publisher: <br>
-[bkojusner](https://clawhub.ai/user/bkojusner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bkojusner](https://clawhub.ai/user/bkojusner)
 
-## Use Case: <br>
-Developers using Claude Code use this skill to screen package-install commands before execution and warn or block packages with supply-chain risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hook can block package installation commands based on supply-chain risk signals. <br>
-Mitigation: Review the hook message and package details before retrying or bypassing a blocked install. <br>
-Risk: When Argus is configured, package names, ecosystem, age, similarity target, and install-script status can be sent to the configured external endpoint. <br>
-Mitigation: Leave Argus environment variables unset unless the endpoint is trusted to receive that package metadata. <br>
+## Use Case:
 
+Developers and engineers use this skill to add package-install guardrails to Claude Code sessions, warning on suspicious dependency installs and blocking higher-risk installs before Bash execution proceeds.
 
-## Reference(s): <br>
-- [Yeeth Claw on ClawHub](https://clawhub.ai/bkojusner/yeeth-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text hook messages and Markdown installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May warn or block package-install shell commands; optional Argus escalation requires user-configured environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The installer can persistently change Claude Code hook configuration and affect future Bash package install commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook and settings snippet before installation, back up ~/.claude/settings.json, and confirm the configured PreToolUse hook is expected.
+
+Risk: The hook performs outbound package registry lookups and can optionally submit blocked package metadata to Argus.
+
+Mitigation: Install only where outbound registry checks are acceptable, and configure Argus only with a fixed HTTPS endpoint and a narrowly scoped API key.
+
+Risk: BLOCK-tier decisions can stop package installation during Claude Code Bash tool use.
+
+Mitigation: Treat blocked installs as review prompts and verify package identity, age, and typosquat signals before proceeding manually or changing hook policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bkojusner/skills/yeeth-claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal hook messages with shell and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hook output uses allow, warn, and block exit codes for Claude Code Bash tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

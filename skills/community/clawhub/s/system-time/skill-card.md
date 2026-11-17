@@ -1,40 +1,55 @@
-## Description: <br>
-Provides MCP tools for getting the current system time, returning detailed time information, converting across time zones, and calculating time differences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides current system time, detailed time information, time differences, multiple time formats, and timezone-aware time conversion through MCP tools.
 
-## Publisher: <br>
-[Qzy05231](https://clawhub.ai/user/Qzy05231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qzy05231](https://clawhub.ai/user/qzy05231)
 
-## Use Case: <br>
-Developers and agent users can use this skill to answer time-related requests, inspect local and UTC time details, convert common time formats, and calculate elapsed time between two inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: As with any Node package, installing from an untrusted source or using stale dependencies can introduce supply-chain risk. <br>
-Mitigation: Install from a trusted ClawHub release and pin or update dependencies for long-term use. <br>
-Risk: Time answers depend on the host system clock and the requested timezone. <br>
-Mitigation: Verify the host clock and timezone settings before using results in scheduling, audit, or operational workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve current time, inspect detailed date/time fields, convert across timezones, and calculate elapsed time between two timestamps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Qzy05231/system-time) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [Plain text MCP tool responses with JSON configuration examples and shell commands in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may vary by local system clock, requested format, and optional timezone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tool responses and descriptions include Chinese-language text that may not fit every workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Chinese-language tool text is acceptable, or review and localize the user-facing strings before deployment.
+
+Risk: Dependency versions are not pinned and no lockfile is included in the artifact.
+
+Mitigation: For stronger supply-chain control, pin dependency versions and use a lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qzy05231/skills/system-time)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text returned by MCP tool calls, including ISO dates, date-only strings, time-only strings, Unix timestamps, and Chinese-language detailed time labels.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional IANA timezone input for current-time output and ISO 8601 or Unix timestamp input for time-difference calculations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

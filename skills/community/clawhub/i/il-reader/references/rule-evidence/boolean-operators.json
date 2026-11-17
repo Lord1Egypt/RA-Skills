@@ -1,0 +1,10 @@
+{
+  "url": "https://nlp.stanford.edu/IR-book/html/htmledition/an-example-information-retrieval-problem-1.html",
+  "title": "An example information retrieval problem",
+  "observed_at": "2026-10-09T12:12:17.809Z",
+  "method": "Playwright JavaScript library / visible Google Chrome",
+  "excerpts": [
+    "complement the last, and then do a bitwise AND",
+    "terms are combined with the operators and, or, and not"
+  ]
+}

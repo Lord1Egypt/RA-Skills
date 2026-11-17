@@ -1,0 +1,15 @@
+slug: email-mgr
+name: email-mgr
+description: Email reading, search, compose, and management. ⚠️ Emails stored as plaintext JSON. SMTP credentials in plaintext settings file.
+version: 1.0.4
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - email
+  - messaging
+  - notification
+  - agent
+entry: SKILL.md
+owner: jlacroix82
+dependencies: []

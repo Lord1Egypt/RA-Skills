@@ -1,43 +1,54 @@
-## Description: <br>
-Transforms goals into nightly searches that find, rank, and summarize candidate professional connections with evidence and outreach drafts for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms relationship-building goals into nightly searches that find, rank, and summarize candidate connections with evidence and outreach drafts for human review.
 
-## Publisher: <br>
-[moltlife](https://clawhub.ai/user/moltlife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moltlife](https://clawhub.ai/user/moltlife)
 
-## Use Case: <br>
-External users and teams use this skill to run recurring public web and community scouting for professional contacts, then review evidence-backed candidate briefs and outreach drafts before taking action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring web and community scouting can collect or summarize personal or sensitive information beyond the intended contact-discovery purpose. <br>
-Mitigation: Use strict search, fetch, and time budgets; avoid collecting sensitive personal data; and keep searches limited to approved public venues. <br>
-Risk: Generated candidate matches or outreach drafts may be inaccurate, weakly evidenced, or inappropriate for the target relationship. <br>
-Mitigation: Review every match, evidence URL, ranking rationale, and draft manually before contacting anyone. <br>
-Risk: The skill may surface people or organizations that should not be contacted. <br>
-Mitigation: Maintain current avoid lists and enforce human-in-the-loop review; do not auto-send outreach. <br>
+## Use Case:
 
+Operators and business development teams use this skill to scout public and professional venues for relevant candidates, then review concise connection briefs before deciding whether to reach out.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/moltlife/clawbridge-skill) <br>
-- [Skill source documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Connection Briefs as structured JSON and human-readable Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes candidate evidence, ranking signals, risk flags, and outreach drafts for manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill collects and summarizes public personal or professional information, which can create privacy and unwanted-contact risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure narrow venues, budgets, and avoid lists; use private delivery targets; and review each brief before taking action.
+
+Risk: Generated outreach drafts may be inaccurate, poorly targeted, or inappropriate when evidence is weak.
+
+Mitigation: Keep the documented human-in-the-loop posture, check supporting evidence, and do not auto-send outreach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moltlife/skills/clawbridge-skill)
+- [Publisher profile](https://clawhub.ai/user/moltlife)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Structured JSON and human-readable Markdown connection briefs with evidence-backed matches and outreach drafts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human review before any outreach is sent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

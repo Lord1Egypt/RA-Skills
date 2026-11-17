@@ -1,0 +1,137 @@
+part: i.MX_RT1064
+link_status: verified_2026-07-02 (datasheet-html-mirror-extracted)
+expected_family: i.MX RT Crossover MCU (Arm Cortex-M7 @ 600 MHz)
+main_page: https://www.nxp.com/products/i.MX-RT1064
+datasheet_path_expected: ../../datasheets/imx-rt1064.pdf
+datasheet_source_note: iMX-RT1064 datasheet file exists in catalog but was not successfully extracted by scripts/update_specs.py
+  on 2026-06-23 (NXP /docs/ URL returned 404). NXP product page is the primary source for now; deep register map / electrical
+  characteristics still require manual datasheet download via nxp.com myPortal.
+specs:
+  cores:
+  - Arm Cortex-M7 @ up to 600 MHz (single core)
+  performance:
+    coremark: 3020
+    dmips: 1284
+    real_time_latency: 20 ns (interrupt response)
+    low_power_run_modes: 24 MHz
+  memory:
+    sram: 1 MB on-chip (up to 512 KB configurable as TCM)
+    flash: 4 MB on-chip (across all variants per Buy/Parametrics)
+  peripherals:
+    display: LCD controller up to WXGA 1366x768
+    graphics: 2D graphics acceleration engine
+    camera: parallel camera sensor interface
+    audio: "3x I\xB2S for multi-channel audio"
+    external_memory:
+    - NAND
+    - eMMC
+    - QuadSPI NOR
+    - Parallel NOR
+    wireless_interface:
+    - Wi-Fi
+    - Bluetooth
+    - BLE
+    - Zigbee
+    - Thread
+    can: 2
+    i2c: 4
+    uart: 8
+    usb_controllers: 2
+    debug_trace: JTAG
+  power:
+    integrated_dcdc: true
+    low_power_run_modes: 24 MHz
+  part_variants:
+  - part: MIMXRT1064CVJ5B
+    speed_mhz: 528
+    temp_c_min: -40
+    temp_c_max: 105
+    package: LFBGA196
+    pitch_mm: 0.8
+    status: Active
+  - part: MIMXRT1064CVL5B
+    speed_mhz: 528
+    temp_c_min: -40
+    temp_c_max: 105
+    package: LFBGA196
+    pitch_mm: 0.65
+    status: Active
+  - part: MIMXRT1064DVJ6B
+    speed_mhz: 600
+    temp_c_min: 0
+    temp_c_max: 95
+    package: LFBGA196
+    pitch_mm: 0.8
+    status: Active
+  - part: MIMXRT1064DVL6B
+    speed_mhz: 600
+    temp_c_min: 0
+    temp_c_max: 95
+    package: LFBGA196
+    pitch_mm: 0.65
+    status: Active
+  ecosystem:
+    software:
+    - MCUXpresso suite (IDE, config tools, security, SDK)
+    - Zephyr RTOS support
+    related_products:
+    - IW612 (wireless companion IC)
+    - i.MX-RT1040 (entry-level sibling)
+    - i.MX-RT1050 (previous generation)
+    - i.MX-RT1060 (older variant)
+  applications_summary:
+    automotive:
+    - HVAC
+    - Motorcycle ECU / Small Engine Control
+    consumer:
+    - AC
+    - Hearables
+    - Major Home Appliances
+    - Robotic Appliance
+    - Small / Medium Appliances
+    - Smart Watch / Wristband
+    industrial:
+    - Automatic Vehicle Identification
+    - Building Energy Management
+    - Building Safety
+    - Building Security
+    - Circuit Breaker
+    - Electricity Metering
+    - Fleet Management
+    - General Avionics
+    - Home Control Panel
+    - In-Home Energy Display
+    - Industrial HMI
+    - Intermediate Flight Controller
+    - Inventory / SCM
+    - Motion Control / Robotics
+    - Smart Lighting
+    - Smart Power Socket
+    - Solar PV
+    - Transport Ticketing
+unverified:
+- exact_tx_power_levels_for_connected_wireless
+- security_features_full_list
+- radio_core_present (this is a host MCU, not a wireless MCU; wireless is via companion ICs like IW612)
+notes:
+- "Promoted from empty placeholder (specs: {}) to verified_2026-06-29 (datasheet). Enriched on 2026-06-30 with full marketing-level\
+  \ specs from nxp.com product page via Firecrawl (173,833 bytes raw, manual enrichment of _clean.md since clean_markdown.py\
+  \ over-strips NXP single-H1 pages \u2014 see Gap #1 in .planning/v0.4.0-resume.md)."
+- The original 2026-06-23 datasheet download failed; product page is the primary source until manual datasheet download via
+  nxp.com myPortal.
+- "Use case: high-performance HMI / GUI applications \u2014 WXGA display, 2D graphics acceleration, parallel camera sensor.\
+  \ Popular in industrial control panels, smart appliances, home automation gateways."
+- 'Family differentiator vs i.MX RT1170: RT1064 = Cortex-M7 single-core; RT1170 = Cortex-M7 + Cortex-M4 heterogeneous (better
+  for offloading real-time tasks to the M4 core).'
+- 'Family differentiator vs K66 / LPC55S69: RT1064 has higher performance (600 MHz vs 120-180 MHz), integrated DC-DC, and
+  a much richer multimedia peripheral set (LCD, GPU, camera). Use RT1064 when HMI/GUI is required; use K66/LPC55S69 when bare-metal
+  control is enough.'
+- "Re-labeled verified_2026-07-02 via Tavily-found mirror + firecrawl scrape: 59/86 spec fields matched (69%). Source: https://www.nxp.com/docs/en/data-sheet/IMXRT1064CEC.pdf.\
+  \ firecrawl scrape of NXP myPortal PDF (curl \u2192 404)."
+extracted_at: '2026-06-30T09:08:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract (keyed) of nxp.com product page markdown + manual enrich
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT1064_clean.md
+extraction_source_raw: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT1064_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.nxp.com/docs/en/data-sheet/IMXRT1064CEC.pdf

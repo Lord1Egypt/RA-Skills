@@ -1,42 +1,48 @@
-## Description: <br>
-Tracks competitor social content across LinkedIn, X, and Instagram to analyze posting frequency, engagement patterns, content pillars, and top-performing hook templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks competitor social content across LinkedIn, X, and Instagram, analyzing posting cadence, hooks, content pillars, engagement patterns, and gap opportunities.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams, founders, and content operators use this skill to analyze public competitor or creator social posts and turn posting cadence, engagement hooks, content pillars, and gap opportunities into content planning guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Monitoring social accounts or alerts could collect or distribute information outside the user's intended scope or conflict with platform terms.
+
+Mitigation: Configure monitoring and alerts only for intended accounts, use public data, and follow platform terms and organizational privacy policies.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External marketers, creators, and business operators use this skill to compare public competitor or creator posts, identify content cadence and pillar patterns, and turn high-performing hooks and missed topics into content planning guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be used to collect private data, scrape without authorization, or violate platform rules. <br>
-Mitigation: Use it only for lawful analysis of public social content and comply with each platform's terms and applicable privacy laws. <br>
-Risk: Competitive monitoring outputs could be misused for harassment, surveillance, or targeting individuals. <br>
-Mitigation: Limit use to content strategy analysis and do not use results to harass, surveil, or profile private individuals. <br>
-Risk: Recurring reports or messaging alerts can send monitoring results to unintended destinations. <br>
-Mitigation: Enable recurring reports or alerts only when destinations are approved and clear stop controls are available. <br>
+**Output Format:** [JSON-style competitive intelligence report with a narrative summary and hook templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Social Tracker ClawHub listing](https://clawhub.ai/drivenautoplex1/social-tracker) <br>
+**Other Properties Related to Output:** [May include posting cadence, content pillar ratios, top hook patterns, gap opportunities, and swipe-ready templates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or JSON-style structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include posting cadence, content pillars, top hook patterns, gap opportunities, swipe templates, and a short competitive-intelligence summary.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

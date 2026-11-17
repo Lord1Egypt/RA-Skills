@@ -1,0 +1,8 @@
+interface:
+  display_name: "Process Keeper"
+  short_description: "Backfill development history and keep compact process logs"
+  default_prompt: "Use $process-keeper to backfill the project timeline and capture key decisions in docs/process."
+
+policy:
+  allow_implicit_invocation: true
+

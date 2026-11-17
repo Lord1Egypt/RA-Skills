@@ -1,0 +1,11 @@
+{
+  "receipt_id": "example-csdn-unknown-1",
+  "platform": "csdn",
+  "account_id": "example-csdn-editor",
+  "draft_sha256": "4dd80c72715ce50a5bb416afaadf30fedc3e1c17683705de01227f75385a3fab",
+  "mode": "user_report",
+  "status": "unknown",
+  "observed_at": "2026-10-19T12:05:00+08:00",
+  "source": "合成失败样例（非真实平台记录）",
+  "evidence": "用户称点击后连接中断，尚未确认平台是否已受理。"
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Set price, IV, or activity-based alerts with contextual notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set price, IV, or activity-based alerts with contextual notifications for IV rank thresholds, price breaks, unusual activity, earnings, and VRP signal changes.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-External AlphaGBM users and developers use this skill to configure, list, edit, and delete alerts for price levels, IV rank changes, unusual options activity, earnings timing, and VRP signal changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alert-management trigger phrases may overlap with other finance or notification skills. <br>
-Mitigation: Review trigger phrases before installation in environments that already use finance or notification skills. <br>
-Risk: Users can request modification or deletion of alerts. <br>
-Mitigation: Require explicit confirmation before deleting or modifying alerts and limit AlphaGBM API access to alert-management operations. <br>
+## Use Case:
 
+External users and agents use this skill to configure, review, edit, and delete market alerts for tickers based on price levels, IV rank, unusual options activity, earnings timing, and VRP signal changes.
 
-## Reference(s): <br>
-- [AlphaGBM](https://alphagbm.com) <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-alert) <br>
-- [Publisher profile](https://clawhub.ai/user/clementgu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with alert configuration summaries, contextual notifications, and API endpoint descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces alert-management guidance for one-time and recurring alerts; no executable files are bundled in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can help create, modify, and delete persistent market alerts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit ticker and alert identifiers, and confirm edit or delete actions before allowing them to proceed.
+
+Risk: Triggered alerts may influence time-sensitive financial decisions.
+
+Mitigation: Treat notifications as contextual information and verify current market data before acting.
+
+## Reference(s):
+
+- [AlphaGBM](https://alphagbm.com)
+- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-alert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text with alert configuration summaries, contextual notifications, and alert management guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ticker, condition, threshold, recurrence, and alert identifier inputs when supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

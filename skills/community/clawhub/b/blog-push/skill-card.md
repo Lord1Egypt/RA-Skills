@@ -1,40 +1,58 @@
-## Description: <br>
-Publishes Markdown content into a Hugo blog as posts, daily reports, or weekly reports, with template-based front matter, optional cover image handling, and content-aware category, tag, and library suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+blog-push helps agents publish Markdown posts, daily digests, and weekly logs into a configured Hugo blog, including front matter generation, cover image handling, draft mode, shortcode guidance, and content-based category and tag suggestions.
 
-## Publisher: <br>
-[redisread](https://clawhub.ai/user/redisread) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redisread](https://clawhub.ai/user/redisread)
 
-## Use Case: <br>
-Developers and content authors use this skill to move finished Markdown drafts into configured Hugo content directories, generate or replace front matter, copy cover images, and prepare posts, daily reports, or weekly reports for publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing to the wrong Hugo directory or template path can modify an unintended repository. <br>
-Mitigation: Confirm HUGO_BLOG_DIR, content directory, and template settings with the configuration check before publishing. <br>
-Risk: A same-named destination article may be overwritten and existing Markdown front matter may be replaced. <br>
-Mitigation: Use git status, backups, or a draft copy before running the publishing workflow. <br>
+## Use Case:
 
+Developers and content authors use this skill to move completed Markdown documents and optional cover images into a Hugo blog structure for posts, daily entries, or weekly logs. It supports configuration checks, directory selection, generated Hugo front matter, draft handling, and content-based publishing suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redisread/blog-push) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with Hugo front matter, plus concise terminal guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May copy cover image files and update destination Markdown files in the configured Hugo project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Publishing can overwrite an existing post at the resolved destination path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on a version-controlled Hugo blog and review the destination path before running the publish command.
+
+Risk: Generated output replaces the source document's existing front matter in the published Markdown file.
+
+Mitigation: Review the generated front matter after publishing, especially title, date, draft status, image, libraries, categories, and tags.
+
+Risk: Incorrect blog or content-directory configuration can write files outside the intended Hugo section.
+
+Mitigation: Run the configuration check first and verify HUGO_BLOG_DIR plus posts, daily, weekly, and template paths before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redisread/skills/blog-push)
+- [Publisher profile](https://clawhub.ai/user/redisread)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite local Markdown and cover image files in the configured Hugo blog directory when the generated commands are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

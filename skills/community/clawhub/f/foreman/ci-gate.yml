@@ -1,0 +1,28 @@
+# foreman hard gate template — copy into <repo>/.github/workflows/ and fill in the placeholders.
+# Accepted degradation: when CI can't run a browser, comment out the dynamic block and
+# let the task-level verification commands be the gate.
+name: foreman-gate
+on: [pull_request]
+permissions:
+  contents: read     # the gate only reads the repo; grant nothing else
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # v4.4.0 — pinned to a commit, not a movable tag
+      # ── Task-level verification (every repo; list your persistent commands here) ──
+      - name: task-level verification
+        run: |
+          # <your persistent verification commands, e.g. pnpm install && pnpm test>
+          exit 1  # ← placeholder: fails on purpose until you configure real commands,
+                  #   so an empty gate can never pass as green
+      # ── Dynamic acceptance (only for CI that can run a browser) ──
+      # A fresh run directory is what stops a crashed run from being judged
+      # against the previous run's artifacts.
+      # - name: dynamic acceptance
+      #   run: |
+      #     RUN_DIR=$(mktemp -d)
+      #     <your-checker> run . --run-dir "$RUN_DIR" --browser --start-command "<start command>"
+      #     test -f "$RUN_DIR/manifest.json" || { echo "no manifest generated"; exit 1; }
+      #     P0=$(jq '[.[]|select(.severity=="P0")]|length' "$RUN_DIR/findings.json")
+      #     [ "$P0" = "0" ] || { echo "P0=$P0"; exit 1; }

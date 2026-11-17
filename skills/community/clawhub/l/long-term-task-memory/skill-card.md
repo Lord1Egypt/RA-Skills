@@ -1,40 +1,62 @@
-## Description: <br>
-按需调用火山引擎 Milvus 向量数据库进行长期记忆存储与检索，支持灵活的数据格式区分角色、事件、项目等维度；当用户明确要求保存、查询、更新或删除长期记忆时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides on-demand long-term memory storage, retrieval, update, and deletion through a Milvus vector database, with flexible fields for roles, events, projects, tasks, and related memory categories.
 
-## Publisher: <br>
-[zuoanCo](https://clawhub.ai/user/zuoanCo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoanco](https://clawhub.ai/user/zuoanco)
 
-## Use Case: <br>
-Developers and agents use this skill when a user explicitly asks to save, search, update, or delete long-term task, event, project, decision, or note memory in a Milvus-backed store. It is suited for workflows that need persistent memory organized by category, role, project, event, status, priority, tags, context, and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote long-term memory storage can retain sensitive personal, business, or secret data beyond the current agent session. <br>
-Mitigation: Avoid storing secrets or sensitive data, protect the .env file, and use a dedicated least-privilege Milvus account. <br>
-Risk: Delete and --recreate operations can remove stored memory records or collections. <br>
-Mitigation: Require clear user confirmation before destructive operations and back up important collections before recreation or deletion. <br>
+## Use Case:
 
+Developers and agents use this skill when a user explicitly asks to save, query, update, or delete long-term task, project, event, decision, note, or knowledge memories. It is intended for workflows that need structured recall through a configured Milvus service.
 
-## Reference(s): <br>
-- [Memory data format reference](references/memory-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Milvus connection configuration through MILVUS_URI and MILVUS_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Stored memories may contain sensitive or confidential information in the configured Milvus service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving secrets or confidential data, use a dedicated low-privilege Milvus account, and review memory records before storage.
+
+Risk: Weak transport configuration can expose memory data or credentials.
+
+Mitigation: Prefer TLS/HTTPS Milvus endpoints and keep MILVUS_TOKEN out of shared files and logs.
+
+Risk: Delete, update, and recreate operations can remove or corrupt stored memories.
+
+Mitigation: Review the target collection and memory identifiers before destructive operations, and back up important data before using delete, update, or --recreate.
+
+Risk: Unsafe query construction may expose or modify unintended memory records.
+
+Mitigation: Treat filters and memory identifiers as untrusted input until escaping and confirmation safeguards are fixed.
+
+## Reference(s):
+
+- [Memory Format](references/memory-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/zuoanco/skills/long-term-task-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MILVUS_URI and MILVUS_TOKEN configuration before database operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

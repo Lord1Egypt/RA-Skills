@@ -1,0 +1,5 @@
+interface:
+  display_name: Playwright Stealth Verify
+  short_description: Check whether a Playwright, Puppeteer, Selenium or CDP-driven browser presents a coherent fingerprint, using liarjs as a library against a Page you already have - navigator.webdriver, HeadlessChrome tokens, worker versus main-thread identity, patched-API integrity, WebGL versus WebGPU GPU identity.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.png

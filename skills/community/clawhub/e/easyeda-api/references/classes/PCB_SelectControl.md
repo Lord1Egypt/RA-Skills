@@ -1,16 +1,16 @@
 # PCB\_SelectControl class
 
-PCB &amp; 封装 / 选择控制类
+PCB &amp; footprint / selection control class
 
 ## Signature
 
 ```typescript
-declare class PCB_SelectControl 
+class PCB_SelectControl
 ```
 
 ## Remarks
 
-获取或操作选择的元素
+Get or operate the selected elements
 
 ## Methods
 
@@ -18,114 +18,90 @@ declare class PCB_SelectControl
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [clearSelected()](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 清除选中
-
+**_(BETA)_** Clear the selection
 
 </td></tr>
 <tr><td>
 
 [doCrossProbeSelect(components, pins, nets, highlight, select)](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 进行交叉选择
-
+**_(BETA)_** Perform cross-probe selection
 
 </td></tr>
 <tr><td>
 
 [doSelectPrimitives(primitiveIds)](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 使用图元 ID 选中图元
-
+**_(BETA)_** Select primitives using primitive IDs
 
 </td></tr>
 <tr><td>
 
 [getAllSelectedPrimitives\_PrimitiveId()](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 查询所有已选中图元的图元 ID
-
+**_(BETA)_** Query the primitive IDs of all selected primitives
 
 </td></tr>
 <tr><td>
 
 [getAllSelectedPrimitives()](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 查询所有已选中图元的图元对象
-
+**_(BETA)_** Query the primitive objects of all selected primitives
 
 </td></tr>
 <tr><td>
 
 [getCurrentMousePosition()](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取当前鼠标在画布上的位置
-
+**_(BETA)_** Get Current the mouse position on the canvas
 
 </td></tr>
 <tr><td>
 
 [getSelectedPrimitives()](./PCB_SelectControl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 查询选中图元的所有参数
-
+**_(BETA)_** Query all parameters of the selected primitives
 
 </td></tr>
 </tbody></table>
@@ -140,20 +116,43 @@ Description
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-清除选中
+Clear the selection
 
 ## Signature
 
 ```typescript
-clearSelected(): Promise<boolean>;
+function clearSelected(): Promise<boolean>;
 ```
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
+
+## Example
+
+```javascript
+// 1. 创建测试焊盘并选中它
+const pad = await eda.pcb_PrimitivePad.create(1, '1', 2000, 2000, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const padId = pad.getState_PrimitiveId();
+await eda.pcb_SelectControl.doSelectPrimitives([padId]);
+
+// 2. 确认清除前有选中图元
+const beforeIds = await eda.pcb_SelectControl.getAllSelectedPrimitives_PrimitiveId();
+console.log('清除前选中数量：', beforeIds.length);
+
+// 3. 清除选中
+const cleared = await eda.pcb_SelectControl.clearSelected();
+console.log('cleared:', cleared);
+
+// 4. 确认选中集已清空
+const afterIds = await eda.pcb_SelectControl.getAllSelectedPrimitives_PrimitiveId();
+console.log('清除后选中数量：', afterIds.length);
+
+// 5. 清理测试图元
+await eda.pcb_PrimitivePad.delete([padId]);
+```
 
 ### docrossprobeselect
 
@@ -161,12 +160,18 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-进行交叉选择
+Perform cross-probe selection
 
 ## Signature
 
 ```typescript
-doCrossProbeSelect(components?: Array<string>, pins?: Array<string>, nets?: Array<string>, highlight?: boolean, select?: boolean): Promise<boolean>;
+function doCrossProbeSelect(
+	components?: Array<string>,
+	pins?: Array<string>,
+	nets?: Array<string>,
+	highlight?: boolean,
+	select?: boolean,
+): Promise<boolean>;
 ```
 
 ## Parameters
@@ -175,105 +180,107 @@ doCrossProbeSelect(components?: Array<string>, pins?: Array<string>, nets?: Arra
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 components
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 器件位号
-
+_(Optional)_ Device designator
 
 </td></tr>
 <tr><td>
 
 pins
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 器件位号\_引脚编号，格式为 \['U1\_1', 'U1\_2'\]
-
+_(Optional)_ Device designator \_ pin number, format is \['U1\_1', 'U1\_2'\]
 
 </td></tr>
 <tr><td>
 
 nets
 
-
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 网络名称
-
+_(Optional)_ Net name
 
 </td></tr>
 <tr><td>
 
 highlight
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否高亮
-
+_(Optional)_ Whether to highlight
 
 </td></tr>
 <tr><td>
 
 select
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 操作是否成功
-
+_(Optional)_ Whether the operation is successful
 
 </td></tr>
 </tbody></table>
 
-
-
 ## Returns
 
 Promise&lt;boolean&gt;
+
+## Example
+
+```javascript
+// 1. 创建 2 个挂同一网络的测试焊盘，作为交叉选择的目标
+const netName = '嘉立创示例_NET';
+const pad1 = await eda.pcb_PrimitivePad.create(1, '1', 2000, 2000, 0, ['ELLIPSE', 60, 60], netName, null, 0, 0, 0, false, 0);
+const pad2 = await eda.pcb_PrimitivePad.create(1, '2', 3000, 2000, 0, ['ELLIPSE', 60, 60], netName, null, 0, 0, 0, false, 0);
+const padIds = [pad1.getState_PrimitiveId(), pad2.getState_PrimitiveId()];
+
+// 2. 按网络名交叉选择（highlight=true 高亮，select=true 选中）
+const crossProbed = await eda.pcb_SelectControl.doCrossProbeSelect(undefined, undefined, [netName], true, true);
+console.log('crossProbed:', crossProbed);
+
+// 3. 确认该网络上的焊盘已进入选中集
+const selectedIds = await eda.pcb_SelectControl.getAllSelectedPrimitives_PrimitiveId();
+console.log('选中图元数量：', selectedIds.length);
+
+// 4. 清理选中状态和测试图元
+await eda.pcb_SelectControl.clearSelected();
+await eda.pcb_PrimitivePad.delete(padIds);
+```
 
 ### doselectprimitives
 
@@ -281,12 +288,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-使用图元 ID 选中图元
+Select primitives using primitive IDs
 
 ## Signature
 
 ```typescript
-doSelectPrimitives(primitiveIds: string | Array<string>): Promise<boolean>;
+function doSelectPrimitives(primitiveIds: string | Array<string>): Promise<boolean>;
 ```
 
 ## Parameters
@@ -295,43 +302,56 @@ doSelectPrimitives(primitiveIds: string | Array<string>): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 primitiveIds
 
-
 </td><td>
 
 string \| Array&lt;string&gt;
 
-
 </td><td>
 
-图元 ID
-
+Primitive ID
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
+
+## Example
+
+```javascript
+// 1. 创建测试焊盘
+const pad = await eda.pcb_PrimitivePad.create(1, '1', 2000, 2000, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const padId = pad.getState_PrimitiveId();
+
+// 2. 用图元 ID 选中焊盘
+const selected = await eda.pcb_SelectControl.doSelectPrimitives([padId]);
+console.log('selected:', selected);
+
+// 3. 确认焊盘已在选中集里
+const selectedIds = await eda.pcb_SelectControl.getAllSelectedPrimitives_PrimitiveId();
+console.log('选中数量：', selectedIds.length);
+console.log('包含测试焊盘：', selectedIds.includes(padId));
+
+// 4. 清理：清除选中并删除测试图元
+await eda.pcb_SelectControl.clearSelected();
+await eda.pcb_PrimitivePad.delete([padId]);
+```
 
 ### getallselectedprimitives
 
@@ -339,20 +359,41 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-查询所有已选中图元的图元对象
+Query the primitive objects of all selected primitives
 
 ## Signature
 
 ```typescript
-getAllSelectedPrimitives(): Promise<Array<IPCB_Primitive>>;
+function getAllSelectedPrimitives(): Promise<Array<IPCB_Primitive>>;
 ```
-
 
 ## Returns
 
 Promise&lt;Array&lt;[IPCB\_Primitive](../interfaces/IPCB_Primitive.md)<!-- -->&gt;&gt;
 
-所有已选中图元的图元对象
+Primitive objects of all selected primitives
+
+## Example
+
+```javascript
+// 1. 创建测试焊盘并选中
+const pad = await eda.pcb_PrimitivePad.create(1, '1', 2000, 2000, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const padId = pad.getState_PrimitiveId();
+await eda.pcb_SelectControl.doSelectPrimitives([padId]);
+
+// 2. 获取所有已选中图元的图元对象
+const primitives = await eda.pcb_SelectControl.getAllSelectedPrimitives();
+console.log('选中图元数量：', primitives.length);
+
+// 3. 图元对象可直接调用图元方法读取属性
+const first = primitives[0];
+console.log('primitiveId:', first.getState_PrimitiveId());
+console.log('layer:', first.getState_Layer());
+
+// 4. 清理：清除选中并删除测试图元
+await eda.pcb_SelectControl.clearSelected();
+await eda.pcb_PrimitivePad.delete([padId]);
+```
 
 ### getallselectedprimitives_primitiveid
 
@@ -360,20 +401,38 @@ Promise&lt;Array&lt;[IPCB\_Primitive](../interfaces/IPCB_Primitive.md)<!-- -->&g
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-查询所有已选中图元的图元 ID
+Query the primitive IDs of all selected primitives
 
 ## Signature
 
 ```typescript
-getAllSelectedPrimitives_PrimitiveId(): Promise<Array<string>>;
+function getAllSelectedPrimitives_PrimitiveId(): Promise<Array<string>>;
 ```
-
 
 ## Returns
 
 Promise&lt;Array&lt;string&gt;&gt;
 
-所有已选中图元的图元 ID
+Primitive IDs of all selected primitives
+
+## Example
+
+```javascript
+// 1. 创建 2 个测试焊盘并选中
+const pad1 = await eda.pcb_PrimitivePad.create(1, '1', 2000, 2000, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const pad2 = await eda.pcb_PrimitivePad.create(1, '2', 3000, 2000, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const padIds = [pad1.getState_PrimitiveId(), pad2.getState_PrimitiveId()];
+await eda.pcb_SelectControl.doSelectPrimitives(padIds);
+
+// 2. 查询所有已选中图元的图元 ID
+const selectedIds = await eda.pcb_SelectControl.getAllSelectedPrimitives_PrimitiveId();
+console.log('选中图元数量：', selectedIds.length);
+console.log('包含全部测试焊盘：', padIds.every(id => selectedIds.includes(id)));
+
+// 3. 清理：清除选中并删除测试图元
+await eda.pcb_SelectControl.clearSelected();
+await eda.pcb_PrimitivePad.delete(padIds);
+```
 
 ### getcurrentmouseposition
 
@@ -381,23 +440,35 @@ Promise&lt;Array&lt;string&gt;&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取当前鼠标在画布上的位置
+Get Current the mouse position on the canvas
 
 ## Signature
 
 ```typescript
-getCurrentMousePosition(): Promise<{
-        x: number;
-        y: number;
-    } | undefined>;
+function getCurrentMousePosition(): Promise<{ x: number; y: number } | undefined>;
 ```
-
 
 ## Returns
 
-Promise&lt;{ x: number; y: number; } \| undefined&gt;
+Promise&lt;{ x: number; y: number } \| undefined&gt;
 
-鼠标在画布上的位置，`undefined` 代表当前鼠标不在画布上
+The mouse position on the canvas. `undefined` means the current mouse is not on the canvas
+
+## Example
+
+```javascript
+// 1. 查询鼠标当前位置
+const position = await eda.pcb_SelectControl.getCurrentMousePosition();
+
+// 2. 鼠标在画布上时输出坐标，不在画布上时返回 undefined
+if (position) {
+	console.log('x:', position.x);
+	console.log('y:', position.y);
+}
+else {
+	console.log('鼠标当前不在画布上');
+}
+```
 
 ### getselectedprimitives
 
@@ -407,19 +478,18 @@ Promise&lt;{ x: number; y: number; } \| undefined&gt;
 
 > Warning: This API is now obsolete.
 >
-> 请使用 [getAllSelectedPrimitives](./PCB_SelectControl.md) 替代
+> Please use [getAllSelectedPrimitives](./PCB_SelectControl.md) instead
 
-查询选中图元的所有参数
+Query all parameters of the selected primitives
 
 ## Signature
 
 ```typescript
-getSelectedPrimitives(): Promise<Array<Object>>;
+function getSelectedPrimitives(): Promise<Array<object>>;
 ```
-
 
 ## Returns
 
-Promise&lt;Array&lt;Object&gt;&gt;
+Promise&lt;Array&lt;object&gt;&gt;
 
-选中图元的所有参数
+All parameters of the selected primitives

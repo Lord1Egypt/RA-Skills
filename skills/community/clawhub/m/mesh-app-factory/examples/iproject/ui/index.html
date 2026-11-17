@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>iProject</title>
+<style>
+/*设置标准字体*/body {font-family:'微软雅黑', sans-serif !important;}
+/*设置衬线字体*/.serif {font-family:'宋体', serif !important;}
+/*设置无衬线字体*/.sans-serif {font-family:'微软雅黑', sans-serif !important;}
+</style>
+</head>
+<body>
+<div id="app" v-cloak><router-view></router-view></div>
+
+<template id="tpl_home">
+<q-layout view="hHh lpr fFf">
+  <q-header>
+   <q-toolbar>
+     <q-avatar square><img src="./favicon.png"></q-avatar>
+     <q-toolbar-title>{{tags.app_name}}</q-toolbar-title>
+   </q-toolbar>
+   <div class="text-right bg-white q-pt-sm">
+    <q-btn :label="tags.prj.title" @click="goto('/projects')"
+     icon="location_city" color="primary" padding="xs" flat></q-btn>
+    <q-btn :label="tags.report.title" @click="goto('/report')" 
+     icon="bar_chart" color="accent" flat></q-btn>
+   </div>
+  </q-header>
+  <q-page-container>
+    <q-page class="q-pa-sm">
+<q-separator spaced="sm" color="teal"></q-separator>
+<ibf-home></ibf-home>
+    </q-page>
+  </q-page-container>
+</q-layout>
+</template>
+
+</body>
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script type="module">
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+import DateInput from "/assets/v3/components/date_input.js"
+import UserSelector from "/assets/v3/components/user_selector.js"
+import IBFHome from '/ibfbase/ibf.js'
+import Projects from "./projects.js"
+import Project from "./project.js"
+import Report from "./report.js"
+
+import Language from "./language.js"
+import { registerIbf } from '/ibfbase/ibf.js';
+
+const homeTpl=document.getElementById('tpl_home');
+const Home = {
+inject:['tags'],
+methods:{
+  goto(url) {
+    this.$router.push(url);
+  }
+},
+template:homeTpl.innerHTML
+}
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+//router定义
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+  {path:'/home', component:Home},
+  {path:'/projects', component:Projects}, //项目管理
+  {path:'/project', component:Project}, //项目管理
+  {path:'/report', component:Report} //项目汇总报表
+]});
+
+//service定义
+const service = {name:"iproject",N_PAGE:10,N_SMPG:5,
+back() { //返回，在页面中通过service.back调用
+    router.back();
+},
+goto(url) {
+    router.push(url)
+}
+};
+//app主体定义
+const app = Vue.createApp({
+provide:{tags:tags, service:service},
+created(){
+    registerIbf(app,router,service.name).then((r)=> {
+        this.$router.push('/home').catch(err => {err});
+    });
+},
+mounted() {
+    window.sys_go_back = this.sysGoBack;//给webview调用
+},
+methods:{
+sysGoBack() {
+    //声明全局函数，在webview中调用，
+    //实现按回退按钮回退历史页面，如果无历史，则退出activity或应用
+    if(this.$router.currentRoute.value.path==="/home") {
+        return false;
+    }
+    this.$router.back();
+    return true;
+}
+}
+});
+
+app.use(Quasar);
+app.use(router);
+app.component('alert-dialog', AlertDialog);
+app.component('date-input', DateInput);
+app.component('user-selector', UserSelector);
+app.component('ibf-home', IBFHome);
+//启动APP
+app.mount('#app');
+</script>
+<script src="/assets/v3/echarts.js"></script>
+</html>

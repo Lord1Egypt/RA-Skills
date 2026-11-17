@@ -1,43 +1,58 @@
-## Description: <br>
-Generates professional .pptx presentations from topics, uploaded documents, reference materials, or custom PowerPoint templates using local Python and Node tooling with the configured LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional .pptx presentations from topics, uploaded documents, or reference materials, with support for custom PPT templates, local generation, real charts, content chunking, and guided conversation flow.
 
-## Publisher: <br>
-[yuchentsai-design](https://clawhub.ai/user/yuchentsai-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuchentsai-design](https://clawhub.ai/user/yuchentsai-design)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to gather requirements, analyze source documents, choose or preserve a visual style, generate a slide plan, and export a finished .pptx deck without relying on an external PPT service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and Node tools, including setup and generation scripts. <br>
-Mitigation: Use a virtual environment or container, review commands before execution, and avoid running check_env.py --fix against a system Python installation. <br>
-Risk: Uploaded documents or decks may contain confidential content that could be sent through the configured LLM path. <br>
-Mitigation: Process confidential materials only when the configured LLM path is trusted and approved for that data. <br>
-Risk: Generated slide plans and decks may contain incorrect or misleading content. <br>
-Mitigation: Keep validation enabled and review the slide plan and generated .pptx before sharing or using it commercially. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn written topics, uploaded source materials, or an uploaded .pptx template into a generated presentation file. It guides requirements gathering, analyzes content and templates, validates a slide plan, and produces a finished .pptx locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuchentsai-design/ppt-generator-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/yuchentsai-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Guided prompts, markdown tables, JSON slide plans, shell commands, and generated .pptx presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local scripts for environment checks, content analysis, template analysis, chart rendering, validation, and PowerPoint generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.3.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Generated presentation plans and rendering steps may expose users to code-execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated workspace after validating slide plans and removing the identified JavaScript injection path.
+
+Risk: Skipping validation or accepting loose color values can allow unsafe or malformed presentation inputs.
+
+Mitigation: Keep validation enabled for normal use and enforce strict color and slide-plan validation before generating .pptx files.
+
+Risk: The setup workflow can encourage system-level or global dependency installation.
+
+Mitigation: Use pinned dependencies in a local virtual environment and local npm project; do not run curl-to-sudo commands or global installs on sensitive machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuchentsai-design/skills/ppt-generator-skill)
+- [PPT Generator Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON slide plans, validation reports, and generated .pptx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+, Node.js, pptxgenjs, markitdown[pptx], pypdf, and python-pptx; optional QA uses LibreOffice and pdftoppm.]
+
+## Skill Version(s):
+
+4.3.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

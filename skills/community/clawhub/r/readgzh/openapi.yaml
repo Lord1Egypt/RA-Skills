@@ -10,10 +10,11 @@ info:
     Register and get a free API Key at https://readgzh.site/dashboard.
     
     ## Credits
-    - Simple article (text only, < 5 images): 1 credit
-    - Complex article (≥ 5 images or image template): 2 credits
+    - Any uncached article: 3 credits
     - Cached article read: Free
-    - Free tier: 50 credits/day
+    - Free tier (registered API Key): 30 credits/day, claimed daily
+    - Anonymous (no API Key): 10 credits per IP per day
+    - Lite: 300 credits/month; Pro: 2,000 credits/month
   version: 1.3.0
   contact:
     url: https://readgzh.site
@@ -170,7 +171,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /articles-api/by-account:
+    get:
+      operationId: readgzh.listByAccount
+      summary: List cached articles from one WeChat Official Account
+      description: |
+        Returns cached articles whose author matches the given Official Account name
+        (partial match, newest first). Scope is limited to articles already cached by
+        ReadGZH — WeChat exposes no public API for a full account archive, so the list
+        is not exhaustive. Does not consume credits.
+      parameters:
+        - name: account
+          in: query
+          required: true
+          description: WeChat Official Account name (author), partial match supported
+          schema:
+            type: string
+            example: 机器之心
+        - name: limit
+          in: query
+          required: false
+          description: Max results to return (default 10, max 50)
+          schema:
+            type: integer
+            default: 10
+            maximum: 50
+      responses:
+        '200':
+          description: Cached articles from this account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleListResponse'
+        '429':
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /articles-api/recent:
+
     get:
       operationId: readgzh.list
       summary: List recently cached WeChat articles
@@ -208,7 +248,7 @@ components:
         API Key authentication. Get a free key at https://readgzh.site/dashboard.
         Format: `Authorization: Bearer sk_live_your_key`
         
-        **Primary**: Use `Authorization: Bearer sk_live_your_key` header for API key authentication.
+        API keys are accepted in the Authorization header only. Do not put API keys in URLs.
   schemas:
     Error:
       type: object

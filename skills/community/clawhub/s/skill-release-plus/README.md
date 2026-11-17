@@ -37,6 +37,9 @@ with adapter independence (each hub adapter is a separate Python module).
 
 - ✅ **Multi-hub fan-out**: `--target clawhub,skillhub-cn,github-release` (or `all`)
 - ✅ **Single packaging pass**: one signing, one `exclude.json`, one tar.gz, N targets
+- ✅ **Sign mode auto-detect** (v1.1.0): unsigned out-of-the-box; `--init-sign-key` enables automatic signing, `--sign` / `--no-sign` force either way
+- ✅ **Signature-package consistency** (v1.1.0): signing runs on the exact staged copy that gets shipped — no `content_hash` drift, no false "Tampering detected"
+- ✅ **`--package-only`** (v1.1.0): deterministic credential-free ZIP (fixed timestamps/permissions, sha256 manifest, symlink rejection, strict version check) for governance flows
 - ✅ **Pluggable user hooks**: bring your own hub via `--target user-hook:./my-script.sh`
 - ✅ **Rate-limit aware**: skillhub-cn 429 auto-retry with backoff
 - ✅ **Per-target token validation**: `--check` flag previews readiness without publishing
@@ -64,10 +67,14 @@ export SRP_CLAWHUB_TOKEN=clh_xxx       # for clawhub
 export SRP_SKILLHUB_CN_TOKEN=skh_xxx   # for skillhub.cn
 export SRP_GITHUB_TOKEN=ghp_xxx        # for GitHub Releases
 
-# 3. Verify readiness
+# 3. (Optional) Enable signing — one command, private key at ~/.openclaw/workspace/.sign-key
+python3 scripts/release.py --init-sign-key
+#    Without a key everything publishes unsigned; no setup needed.
+
+# 4. Verify readiness
 python3 scripts/release.py --check --target all
 
-# 4. Dry-run first (no API calls)
+# 5. Dry-run first (no API calls)
 python3 scripts/release.py \
     --slug my-skill \
     --version 1.0.0 \
@@ -75,12 +82,16 @@ python3 scripts/release.py \
     --target all \
     --dry-run
 
-# 5. Publish for real
+# 6. Publish for real
 python3 scripts/release.py \
     --slug my-skill \
     --version 1.0.0 \
     -m "first release" \
     --target all
+
+# 7. Governance package only (deterministic ZIP, no tokens, no network)
+python3 scripts/release.py --package-only \
+    --slug my-skill --expected-version 1.0.0 --skill-dir ./my-skill
 ```
 
 ---

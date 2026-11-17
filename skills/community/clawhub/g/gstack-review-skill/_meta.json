@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn75fpj1nex2hw22az6ms791z1805507",
-  "slug": "gstack-review-skill",
+  "ownerId": "openclaw",
+  "slug": "gstack-review",
   "version": "1.0.0",
-  "publishedAt": 1774629732644
+  "description": "Garry Tan's gstack-inspired multi-perspective code review for OpenClaw. Three review lenses: CEO/Product, Engineering, QA.",
+  "inspiredBy": "https://github.com/garrytan/gstack",
+  "tags": ["code-review", "quality", "engineering", "gstack"],
+  "publishedAt": 1743088343000
 }

@@ -232,8 +232,8 @@ mkdir -p ~/.openclaw/workspace/tools/usage-switch
 # Write tokens.json with your actual tokens
 cat > ~/.openclaw/workspace/tools/usage-switch/tokens.json << 'EOF'
 {
-  "c1": "sk-ant-your-c1-token-here",
-  "c2": "sk-ant-your-c2-token-here"
+  "c1": "REDACTED-SECRET",
+  "c2": "REDACTED-SECRET"
 }
 EOF
 

@@ -1,0 +1,6 @@
+{
+  "name": "constitutional-setup",
+  "version": "1.0.1",
+  "description": "Initializes a secure, Constitution-based framework for AI Agents with immutable rules and password hierarchy.",
+  "author": "Sinan Rasheed"
+}

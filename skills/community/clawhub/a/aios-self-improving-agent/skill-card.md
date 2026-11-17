@@ -1,40 +1,54 @@
-## Description: <br>
-Records an AIOS/OpenClaw agent's errors, corrections, knowledge gaps, reusable improvements, and feature requests in the current agent workspace while keeping learnings isolated to local `.learnings/` files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an AIOS/OpenClaw agent record sanitized errors, corrections, reusable learnings, knowledge gaps, and improvement notes inside the current agent workspace.
 
-## Publisher: <br>
-[kadbbz](https://clawhub.ai/user/kadbbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadbbz](https://clawhub.ai/user/kadbbz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve task learnings, command failures, user corrections, and reusable practices inside the current AIOS agent workspace. It helps agents review prior local experience before important work without reading or writing other agent workspaces by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently records local agent learnings, which could preserve sensitive or misleading information if entries are not reviewed. <br>
-Mitigation: Review `.learnings/` content regularly and keep entries limited to redacted summaries, relevant paths, short error excerpts, and concrete follow-up actions. <br>
-Risk: Promoting local learnings into workspace guidance files could make temporary or untrusted observations durable instructions. <br>
-Mitigation: Review any proposed changes to `AGENTS.md`, `TOOLS.md`, `SOUL.md`, or similar files before accepting them, and avoid storing secrets, private user data, or untrusted prompt text as guidance. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve useful task learnings, command failures, user corrections, and repeatable practices for the current agent workspace. It is intended for workspace-local memory that avoids secrets, cross-agent content, and other senderId session files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kadbbz/skills/aios-self-improving-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local markdown log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates `.learnings/LEARNINGS.md`, `.learnings/ERRORS.md`, and `.learnings/FEATURE_REQUESTS.md` in the current agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can be invoked automatically and persist session-derived learnings without explicit consent for each write.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this behavior before installation in privacy-sensitive workspaces; consider disabling implicit invocation or requiring explicit save requests.
+
+Risk: Workspace memory can expose sensitive operational details if learnings include raw logs, secrets, configuration, or cross-senderId file evidence.
+
+Mitigation: Record only sanitized summaries, minimal error fragments, and relative paths from the current senderId and current agent workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kadbbz/skills/aios-self-improving-agent)
+- [Publisher profile](https://clawhub.ai/user/kadbbz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and workspace-local Markdown log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes sanitized summaries under the current workspace's .learnings/ directory when invoked for memory capture.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

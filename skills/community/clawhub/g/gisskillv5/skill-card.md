@@ -1,58 +1,63 @@
-## Description: <br>
-GIS_SKILL_V5.0 is a comprehensive GIS knowledge and workflow skill covering coordinate systems, surveying and mapping standards, GIS software workflows, automation scripts, quality inspection, GIS/CAD conversion, remote sensing, point clouds, and self-evolution routines. <br>
+## Description:
 
-This skill is for research and development only. <br>
+GIS_SKILL_V5.0 provides a comprehensive GIS knowledge and workflow system for coordinate systems, surveying and mapping standards, spatial data processing, GIS software operations, automation, quality inspection, and GeoEvolve feedback-driven maintenance.
 
-## Publisher: <br>
-[leo-gissss](https://clawhub.ai/user/leo-gissss) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leo-gissss](https://clawhub.ai/user/leo-gissss)
 
-## Use Case: <br>
-Developers, GIS analysts, and surveying or mapping teams use this skill to plan and execute GIS data processing workflows, select coordinate systems and software workflows, generate scripts or checklists, and validate outputs against GIS and mapping standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; many workflows and reference materials are tailored to China surveying and mapping standards. <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review identifies active GIS automation and a self-evolving knowledge system with external update checks. <br>
-Mitigation: Install only when active automation is desired; disable self-evolution, auto-search, and update checks unless they are explicitly needed. <br>
-Risk: The security review notes feedback retention and package rewriting behavior. <br>
-Mitigation: Review feedback retention settings, keep backups, and approve any knowledge-base or package updates before promoting them. <br>
-Risk: The security review notes possible source-data mutation and GIS conversion behavior. <br>
-Mitigation: Run scripts only on copies of GIS data and keep original datasets read-only. <br>
-Risk: Topology repair, 3D conversion, coordinate transformation, and quality inspection outputs can be wrong if assumptions or local standards are mismatched. <br>
-Mitigation: Manually validate spatial outputs, CRS choices, tolerances, and acceptance reports before operational use. <br>
+## Use Case:
 
+GIS practitioners, surveying teams, and geospatial developers use this skill to plan, validate, automate, and document GIS production workflows across coordinate transformation, GIS/CAD conversion, topology and quality checks, metadata generation, remote sensing, WebGIS, spatial databases, and standards compliance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leo-gissss/skills/gisskillv5) <br>
-- [GIS_SKILL_V5.0 skill definition](artifact/SKILL.md) <br>
-- [V5 constitution](artifact/V5_CONSTITUTION.md) <br>
-- [Version matrix](artifact/VERSION_MATRIX.md) <br>
-- [Package manifest](artifact/PACKAGE_MANIFEST.json) <br>
-- [GeoEvolve self-evolution engine](artifact/geo_evolve/README.md) <br>
-- [GIS automation scripts](artifact/scripts/README.md) <br>
-- [Coordinate systems and projections](artifact/references/02_坐标系统与投影.md) <br>
-- [National surveying and mapping standards](artifact/references/05_国家测绘标准体系.md) <br>
-- [Quality inspection and acceptance standards](artifact/references/07_质量检查与验收标准.md) <br>
-- [Python GIS ecosystem](artifact/references/21_Python_GIS生态.md) <br>
-- [GIS and CAD data conversion](artifact/references/30_GIS↔CAD数据转换.md) <br>
-- [Self-evolving feedback mechanism](artifact/references/37_自进化反馈机制.md) <br>
-- [OGC standards quick reference](artifact/references/40_OGC国际标准速查手册.md) <br>
-- [GIS agent skill design patterns](artifact/references/45_GIS_Agent技能设计范式.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown prose with code blocks, command snippets, structured checklists, and file-oriented workflow outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce GIS processing plans, scripts, quality reports, logs, and acceptance checklists; spatial outputs and conversion results require domain review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.2 (source: SKILL.md frontmatter and PACKAGE_MANIFEST.json); ClawHub release version 1.0.0 <br>
+Risk: The skill requests broad agent control and includes persistent self-updating behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow before installation and keep self-evolution, crawler, fixer, and index-rebuild scripts disabled unless they are explicitly needed and supervised.
+
+Risk: Automated GIS processing can damage source data or produce incorrect outputs when run directly on operational datasets.
+
+Mitigation: Use copies of GIS datasets, keep source data read-only, and review generated diffs, logs, and quality reports before applying changes.
+
+Risk: Credential examples in the artifact may be insecure for production use.
+
+Mitigation: Replace credential examples with HTTPS, least-privilege accounts, and header-only tokens before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leo-gissss/skills/gisskillv5)
+- [V5 Constitution](V5_CONSTITUTION.md)
+- [Version Matrix](VERSION_MATRIX.md)
+- [Knowledge Base Overview](knowledge_base/README.md)
+- [GeoEvolve Overview](geo_evolve/README.md)
+- [GIS Knowledge Graph Overview](geo_kg/README.md)
+- [Automation Scripts Overview](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code, shell commands, configuration snippets, checklists, reports, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated GIS processing code, validation reports, logs, acceptance checklists, and human follow-up items for unresolved project parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package version 5.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

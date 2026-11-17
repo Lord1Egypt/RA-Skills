@@ -1,0 +1,123 @@
+{
+ "root": "https://example.com",
+ "version": "1.2.0",
+ "checks": [
+  {
+   "id": "robots",
+   "name": "Crawler access (robots.txt)",
+   "score": 20.0,
+   "max": 20,
+   "status": "open",
+   "evidence": "robots.txt HTTP 404 = no restrictions (RFC 9309) \u00b7 8/8 search/retrieval agents may fetch the root \u00b7 training crawlers blocked (not scored): none"
+  },
+  {
+   "id": "machine",
+   "name": "Machine readability",
+   "score": 0.0,
+   "max": 15,
+   "status": "thin",
+   "evidence": "no usable sitemap (https://example.com/sitemap.xml: HTTP 404; https://example.com/wp-sitemap.xml: HTTP 404)"
+  },
+  {
+   "id": "snippet",
+   "name": "Snippet permissions",
+   "score": 10.0,
+   "max": 10,
+   "status": "ok",
+   "evidence": "1/1 pages may be indexed and quoted (meta robots, X-Robots-Tag)"
+  },
+  {
+   "id": "structure",
+   "name": "Page structure",
+   "score": 0.0,
+   "max": 25,
+   "status": "thin",
+   "evidence": "0/1 pages carry article-level schema.org markup \u00b7 0/1 have exactly one <h1> \u00b7 median word count 25"
+  },
+  {
+   "id": "quotable",
+   "name": "Quotability",
+   "score": 0.0,
+   "max": 20,
+   "status": "thin",
+   "evidence": "0 definitional phrases, 0 hard figures, tables on 0/1 pages \u00b7 English phrase lists only"
+  },
+  {
+   "id": "fresh",
+   "name": "Freshness",
+   "score": 0.0,
+   "max": 10,
+   "status": "thin",
+   "evidence": "no machine-readable dates found"
+  }
+ ],
+ "notes": [],
+ "signals": {
+  "llms_txt": false,
+  "llms_full": false,
+  "sitemap": false,
+  "sitemap_lastmod_coverage": 0,
+  "robots_server_error": false,
+  "blocked_search_agents": [],
+  "partial_search_agents": [],
+  "blocked_training_agents": [],
+  "gate": false
+ },
+ "score": 30.0,
+ "grade": "F",
+ "requests": 5,
+ "actions": [
+  [
+   "high",
+   "Publish sitemap.xml with an accurate <lastmod> on every URL and list it in robots.txt with a Sitemap: line."
+  ],
+  [
+   "medium",
+   "Add JSON-LD that matches the visible content (Article/BlogPosting with author and dateModified, BreadcrumbList); keep exactly one <h1> per page. Use FAQPage only on pages that really are FAQs."
+  ],
+  [
+   "medium",
+   "Add a 40-60 word definitional answer plus one hard figure or comparison table near the top of each page \u2014 that is the block engines quote."
+  ],
+  [
+   "medium",
+   "Refresh or retire stale pages and expose an honest dateModified."
+  ],
+  [
+   "low",
+   "Optional: llms.txt is a proposal with no confirmed consumer among the major engines (Google says it does not use it). Publish one only if it is cheap to maintain."
+  ]
+ ],
+ "pages": [
+  {
+   "url": "https://example.com",
+   "lang": "en",
+   "words": 25,
+   "h1": 0,
+   "h2": 0,
+   "list_items": 0,
+   "tables": 0,
+   "canonical": false,
+   "schema_types": [],
+   "schema_score": 0,
+   "description": false,
+   "author": false,
+   "og": false,
+   "dates": [],
+   "img_no_alt": 0,
+   "img_total": 0,
+   "robots_meta": [],
+   "data_nosnippet": 0,
+   "scripts": 1,
+   "js_shell": false,
+   "quotable_hits": 0,
+   "stat_hits": 0,
+   "question_title": false,
+   "http": 200,
+   "secs": 0.08,
+   "final_url": "https://example.com",
+   "truncated": false,
+   "directives": []
+  }
+ ]
+}

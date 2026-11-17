@@ -1,54 +1,69 @@
-## Description: <br>
-Huawei Cloud ModelArts platform integration for administering notebooks, pools, node pools, training jobs, inference services, management resources, SWR, VPC, KMS, and Lite Server resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud ModelArts platform integration with modular resource management, OBS notebook storage support, environment-variable authentication, pool plugin management, and node configuration template queries.
 
-## Publisher: <br>
-[modelarts-agent](https://clawhub.ai/user/modelarts-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modelarts-agent](https://clawhub.ai/user/modelarts-agent)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to let an agent inspect and administer Huawei Cloud ModelArts resources, including notebooks, training jobs, inference services, resource pools, workspace settings, container images, networks, keys, and Lite Server instances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete Huawei Cloud resources. <br>
-Mitigation: Use least-privilege, non-production credentials first and require explicit human confirmation before delete, batch delete, reinstall OS, change OS, workspace, quota, and authorization actions. <br>
-Risk: Resource mutations may target the wrong project or region. <br>
-Mitigation: Verify the project and region before mutating calls and inspect planned changes before execution. <br>
-Risk: Exec login results and cluster tokens may contain sensitive access material. <br>
-Mitigation: Treat exec login results and cluster tokens as secrets and avoid exposing them in logs, prompts, or shared outputs. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to manage Huawei Cloud ModelArts resources, including notebooks, resource pools, node pools, training jobs, inference services, workspaces, VPC resources, KMS keypairs, SWR image repositories, and LiteServer instances.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/modelarts-agent/huawei-cloud-modelarts-skill) <br>
-- [Common Module Reference](references/common.md) <br>
-- [Notebook Module Reference](references/notebook.md) <br>
-- [Pool Module Reference](references/pool.md) <br>
-- [Node Pool Module Reference](references/node_pool.md) <br>
-- [Train Module Reference](references/train.md) <br>
-- [Infer V1 Module Reference](references/infer_v1.md) <br>
-- [Infer V2 Module Reference](references/infer_v2.md) <br>
-- [Management Module Reference](references/management.md) <br>
-- [SWR Module Reference](references/swr.md) <br>
-- [VPC Module Reference](references/vpc.md) <br>
-- [KMS Module Reference](references/kms.md) <br>
-- [Lite Server Module Reference](references/liteserver.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown, JSON-like API results, Python function calls, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform cloud resource reads, mutations, lifecycle operations, and authenticated Huawei Cloud API calls when invoked by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill has broad Huawei ModelArts administration authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in a Huawei Cloud project where agent-driven ModelArts administration is acceptable, and use narrowly scoped cloud permissions.
+
+Risk: Authentication tokens or exec login data may be exposed by token-returning helpers despite credential-hiding claims.
+
+Mitigation: Avoid production credentials until token-returning exec and authentication helpers are removed, disabled, or redacted.
+
+Risk: The skill can perform destructive cloud operations such as deleting services, jobs, pools, notebooks, buckets, and LiteServer resources.
+
+Mitigation: Require narrow resource IDs and explicit confirmation before destructive actions.
+
+## Reference(s):
+
+- [Huawei Cloud ModelArts Skill on ClawHub](https://clawhub.ai/modelarts-agent/skills/huawei-cloud-modelarts-skill)
+- [Common Module Reference](artifact/references/common.md)
+- [Notebook Module Reference](artifact/references/notebook.md)
+- [Resource Pool Module Reference](artifact/references/pool.md)
+- [Node Pool Module Reference](artifact/references/node_pool.md)
+- [Training Module Reference](artifact/references/train.md)
+- [Inference V1 Module Reference](artifact/references/infer_v1.md)
+- [Inference V2 Module Reference](artifact/references/infer_v2.md)
+- [Management Module Reference](artifact/references/management.md)
+- [SWR Module Reference](artifact/references/swr.md)
+- [VPC Module Reference](artifact/references/vpc.md)
+- [KMS Module Reference](artifact/references/kms.md)
+- [LiteServer Module Reference](artifact/references/liteserver.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured cloud API result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include resource IDs, status details, and masked cloud API responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

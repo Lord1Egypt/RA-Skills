@@ -1,6 +1,81 @@
 {
-  "ownerId": "kn735qmnbgtrx146bs5d5necsh81p2zt",
   "slug": "pulse-board",
+  "name": "Pulse Board",
   "version": "1.1.3",
-  "publishedAt": 1773058060082
+  "description": "Operational heartbeat for your agent stack. Every cron job, one digest.",
+  "tagline": "Every cron job. One digest.",
+  "emoji": "\ud83d\udccb",
+  "license": "MIT",
+  "tags": [
+    "logging",
+    "digest",
+    "cron",
+    "monitoring",
+    "operations",
+    "automation"
+  ],
+  "compatibility": {
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "shell": "bash 4+",
+    "requires_sudo": false,
+    "requires_root": false
+  },
+  "requires": {
+    "binaries": [
+      "bash",
+      "curl",
+      "python3",
+      "crontab"
+    ],
+    "env_vars": {
+      "optional": [
+        "PULSE_TELEGRAM_BOT_TOKEN",
+        "PULSE_DISCORD_WEBHOOK_URL",
+        "LLM_API_KEY",
+        "OPENCLAW_WORKSPACE"
+      ]
+    }
+  },
+  "filesystem": {
+    "creates": [
+      "~/.pulse-board/config/pulse.yaml",
+      "~/.pulse-board/logs/",
+      "~/.pulse-board/registry/",
+      "~/.pulse-board/locks/",
+      "~/.pulse-board/logs/last-delivered.md (composed/LLM message sent to channel)",
+      "~/.pulse-board/logs/last-digest.md (raw pending.log snapshot, preserved separately)"
+    ],
+    "reads": [
+      "~/.openclaw/shared/secrets/openclaw-secrets.env (if present and provided by user)",
+      "~/.openclaw/cron/jobs.json (if present)"
+    ],
+    "modifies": [
+      "user crontab (adds digest schedule and wrapped skill entries)",
+      "~/.openclaw/shared/secrets/openclaw-secrets.env (appends missing keys only, with explicit user consent)"
+    ]
+  },
+  "network": {
+    "external_endpoints": [
+      "api.telegram.org (only if Telegram delivery is configured)",
+      "discord.com (only if Discord delivery is configured)"
+    ],
+    "sends": "digest text composed from ~/.pulse-board/logs/pending.log"
+  },
+  "credentials": {
+    "reads_from_env": [
+      "PULSE_TELEGRAM_BOT_TOKEN or bot_token in pulse.yaml",
+      "PULSE_DISCORD_WEBHOOK_URL or webhook_url in pulse.yaml"
+    ],
+    "never_logs_credentials": true,
+    "secrets_env_note": "install.sh may append LLM_API_KEY=ollama and OPENCLAW_WORKSPACE to your secrets env file \u2014 only with your explicit confirmation at install time."
+  },
+  "created_at": "2026-03-08",
+  "updated_at": "2026-03-09",
+  "privacy": {
+    "llm_composition": "When LLM digest is enabled, the raw pending.log is included in the prompt sent to the configured OpenClaw agent. If that agent uses a remote/cloud LLM provider, log content will be transmitted off-host. Review your agent configuration (openclaw agents list) before enabling. Use a local-only agent (e.g. Ollama) if log privacy is required.",
+    "secrets_in_logs": "Pulse Board cannot prevent plugged cron jobs from writing secrets into their stdout/stderr. Ensure plugged jobs do not echo credentials into their outputs."
+  }
 }

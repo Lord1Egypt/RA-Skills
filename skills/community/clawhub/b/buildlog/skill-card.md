@@ -1,39 +1,58 @@
-## Description: <br>
-Record, export, and share your AI coding sessions as replayable buildlogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, export, and share your AI coding sessions as replayable buildlogs.
 
-## Publisher: <br>
-[espetey](https://clawhub.ai/user/espetey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[espetey](https://clawhub.ai/user/espetey)
 
-## Use Case: <br>
-Developers and AI coding users use this skill to record coding sessions, export them as replayable buildlogs, annotate important moments, and optionally upload them for sharing or later review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Buildlogs may include sensitive source code, prompts, logs, secrets, session text, or file-content snapshots when recorded or uploaded. <br>
-Mitigation: Keep autoUpload off, consider private buildlogs, disable file-content snapshots for private projects, and review recordings before upload. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/espetey/buildlog) <br>
-- [Buildlog homepage](https://buildlog.ai) <br>
-- [Source repository listed in artifact](https://github.com/buildlog/openclaw-skill) <br>
+## Use Case:
 
+Developers and engineers use this skill to record AI-assisted coding sessions, export them as replayable buildlogs, add notes or chapters, and optionally upload them for sharing or review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with commands, configuration snippets, status messages, annotations, and shareable buildlog links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May record session text and optional file-content snapshots depending on user configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Buildlogs may be public by default, which can expose private code, internal URLs, customer data, or credentials.
+
+Mitigation: Set buildlogs private by default, review each recording before upload, and avoid sharing sessions that contain sensitive material.
+
+Risk: File-content snapshots can include proprietary source code or secrets from the workspace.
+
+Mitigation: Disable file-content snapshots unless they are required, limit captured file sizes, and scan or redact exported content before sharing.
+
+Risk: Recorded AI coding sessions can preserve prompts, responses, notes, and implementation details that were not intended for external audiences.
+
+Mitigation: Use private exports for internal review, add only necessary annotations, and delete buildlogs that should no longer be available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/espetey/skills/buildlog)
+- [Buildlog homepage](https://buildlog.ai)
+- [Artifact-declared repository](https://github.com/buildlog/openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Text status messages, exported buildlog content, configuration snippets, and shareable links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recorded session exchanges, notes, chapter markers, and optional file-content snapshots depending on configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

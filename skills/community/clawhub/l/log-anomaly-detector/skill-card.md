@@ -1,38 +1,52 @@
-## Description: <br>
-Analyzes provided log text to identify errors, warnings, performance bottlenecks, security-related patterns, and recommended follow-up actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log Anomaly Detector analyzes log text to identify error patterns, warning signals, possible performance bottlenecks, security-related indicators, and recommended follow-up actions.
 
-## Publisher: <br>
-[HonestQiao](https://clawhub.ai/user/HonestQiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honestqiao](https://clawhub.ai/user/honestqiao)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to triage application or system logs by surfacing common error, warning, performance, and security indicators with concise recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Logs can contain secrets, credentials, or personal data. <br>
-Mitigation: Review or redact sensitive log lines before submitting them to an agent workflow. <br>
-Risk: Keyword-based log triage can miss subtle incidents or overflag benign entries. <br>
-Mitigation: Treat findings as triage guidance and verify important results against source logs and monitoring data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, operators, and incident responders can use this skill to triage supplied log text for common error, warning, performance, and security indicators and receive concise recommendations for follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON-like findings with errors, warnings, anomalies, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes user-provided log text and an optional sensitivity setting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may over-rely on the skill as a complete security monitor or incident-response control.
+
+Mitigation: Treat results as triage guidance and verify important findings with established logging, alerting, and incident-response tools.
+
+Risk: The evidence notes reliability gaps in timestamp handling and warning, performance, and security checks.
+
+Mitigation: Review or improve those checks before using the skill output for alerting, reporting, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honestqiao/skills/log-anomaly-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON object containing detected errors, warnings, anomalies, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyzes a single supplied log string with an optional sensitivity setting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

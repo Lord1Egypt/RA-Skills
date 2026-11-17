@@ -1,0 +1,4 @@
+interface:
+  display_name: "LINK42 Agent"
+  short_description: "Discover authorized LINK42 models and run media tasks"
+  default_prompt: "Use $link42-api to choose an authorized model and complete my request."

@@ -1,0 +1,177 @@
+{
+  "word": "run",
+  "pronunciation": "/rʌn/",
+  "audience": "小学高年级+初中",
+  "core_meanings": [
+    {
+      "meaning": "跑",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "（液体）流动",
+      "level": "P2",
+      "priority": 3
+    },
+    {
+      "meaning": "经营；管理（run a shop）",
+      "level": "P2",
+      "priority": 4
+    },
+    {
+      "meaning": "（机器）运转",
+      "level": "P2",
+      "priority": 3
+    }
+  ],
+  "parts_of_speech": [
+    {
+      "type": "verb",
+      "meanings": [
+        "跑；经营；运转"
+      ]
+    },
+    {
+      "type": "noun",
+      "meanings": [
+        "跑步；奔跑"
+      ]
+    }
+  ],
+  "collocations": [
+    {
+      "phrase": "run after",
+      "meaning": "追赶",
+      "priority": 4,
+      "example": "The dog ran after the ball.",
+      "translation": "狗追着球跑。"
+    },
+    {
+      "phrase": "run out of",
+      "meaning": "用完；耗尽",
+      "priority": 5,
+      "example": "We ran out of milk.",
+      "translation": "我们牛奶喝完了。"
+    },
+    {
+      "phrase": "run away",
+      "meaning": "逃跑",
+      "priority": 4,
+      "example": "Don't run away.",
+      "translation": "别跑开。"
+    },
+    {
+      "phrase": "go for a run",
+      "meaning": "去跑步",
+      "priority": 4,
+      "example": "I go for a run every morning.",
+      "translation": "我每天早上去跑步。"
+    }
+  ],
+  "word_forms": {
+    "third_person_singular": "runs",
+    "past": "ran",
+    "past_participle": "run",
+    "present_participle": "running"
+  },
+  "word_family": [
+    {
+      "word": "runner",
+      "part_of_speech": "noun",
+      "meaning": "跑步的人",
+      "formation": "run + ner",
+      "priority": 4
+    },
+    {
+      "word": "running",
+      "part_of_speech": "noun/adj",
+      "meaning": "跑步；正在跑的",
+      "formation": "run + ning",
+      "priority": 4
+    }
+  ],
+  "grammar_patterns": [
+    {
+      "pattern": "run + 地点",
+      "meaning": "往某处跑",
+      "example": "Run to the gate.",
+      "translation": "跑到大门那儿。"
+    }
+  ],
+  "examples": [
+    {
+      "english": "He can run fast.",
+      "chinese": "他能跑得很快。",
+      "target": "run"
+    },
+    {
+      "english": "We ran out of milk.",
+      "chinese": "我们牛奶喝完了。",
+      "target": "ran out of"
+    },
+    {
+      "english": "She is a good runner.",
+      "chinese": "她是个优秀的跑步者。",
+      "target": "runner"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "topic": "run 的过去式",
+      "explanation": "过去式是 ran，过去分词才是 run，不要说 runned。"
+    },
+    {
+      "topic": "run out of",
+      "explanation": "表示「没有了」，后面接用完的东西。"
+    }
+  ],
+  "memory_tip": "身体在 run；东西用完是 run out of；人是 runner。",
+  "layout_plan": {
+    "mode": "phrasal-hub",
+    "reason": "核心是跑+短语；派生仅 runner/running，不足以 full-family 形副名链",
+    "cards": [
+      {
+        "slot": "T1",
+        "title": "基本义：跑",
+        "items": [
+          "He can run fast.",
+          "go for a run",
+          "runner / running"
+        ]
+      },
+      {
+        "slot": "T2",
+        "title": "高频短语",
+        "items": [
+          "run out of",
+          "run after",
+          "run away"
+        ]
+      },
+      {
+        "slot": "T3",
+        "title": "延伸义",
+        "items": [
+          "run a shop（经营）"
+        ]
+      },
+      {
+        "slot": "T4",
+        "title": "词形注意",
+        "items": [
+          "ran / run，不要 runned"
+        ]
+      }
+    ],
+    "knowledge_chain": [
+      "跑",
+      "高频短语",
+      "延伸义",
+      "词形"
+    ],
+    "omit": [
+      "P3 液体流动",
+      "不上假副词 runly"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "freelancer-20-40",
+  "label": "Freelancer 20-40",
+  "emoji": "💻",
+  "demographics": {
+    "gender": "any",
+    "age_range": [20, 40],
+    "tier": "millennial-gen-z"
+  },
+  "active_hours": {
+    "description": "Irregular — depends on deadlines, timezone arbitrage",
+    "peak": [8, 11, 14, 19, 22, 2],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "description": "Client-communication speed: careful when writing, fast when coding",
+    "wpm": { "min": 75, "max": 120 },
+    "profile": "natural",
+    "think_prob": 0.012,
+    "think_ms": [300, 1500],
+    "backspace_freq": 0.035
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Task-switching — reads context, then acts",
+    "speed_px_per_ms": { "min": 25, "max": 60 },
+    "pause_between_passes_ms": { "min": 300, "max": 1500 },
+    "depth_per_pass": { "min": 0.2, "max": 0.5 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 800, "max": 3000 },
+    "pre_click_pause_ms": { "min": 200, "max": 600 },
+    "inter_action_pause_ms": { "min": 300, "max": 1500 }
+  },
+  "mouse": {
+    "speed": 0.95,
+    "curvature": 0.18,
+    "jitter": 0.35,
+    "description": "Moderate, practical"
+  }
+}

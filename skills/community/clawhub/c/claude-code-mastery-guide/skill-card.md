@@ -1,41 +1,53 @@
-## Description: <br>
-Complete guide to mastering Claude Code CLI - installation to production workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete guide to mastering Claude Code CLI, from installation to production workflows.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and engineering teams use this skill for Claude Code setup guidance, workflow prompts, testing assistance, code explanation, and security-audit prompt templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises a larger guide, MCP setup scripts, command templates, and sample configurations that are not all present in the included files. <br>
-Mitigation: Inspect the installed package contents before purchase or use, and rely only on files included in the release unless additional materials are independently verified. <br>
-Risk: MCP setup guidance may lead users to run substitute scripts from outside the package. <br>
-Mitigation: Do not run external MCP scripts unless they are reviewed and trusted; use least-privilege credentials and limit MCP access to approved projects. <br>
+## Use Case:
 
+Developers and engineering teams use this skill as a Claude Code CLI guide and prompt-template bundle for setup, configuration, code review, test generation, code explanation, security audit, and troubleshooting workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abhinas90/claude-code-mastery-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/abhinas90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance and JSON command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes prompt templates for review, test generation, code explanation, and security audit tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The package appears incomplete compared with its advertised course deliverables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a small guide and prompt-template bundle, and verify required templates, MCP scripts, samples, and course materials are present before relying on advertised coverage.
+
+Risk: Future MCP setup scripts could execute commands or request sensitive access if added.
+
+Mitigation: Review and security-scan any added MCP setup scripts before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhinas90/skills/claude-code-mastery-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and JSON command templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No packaged code execution; templates produce agent instructions for review, testing, explanation, and security-audit tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

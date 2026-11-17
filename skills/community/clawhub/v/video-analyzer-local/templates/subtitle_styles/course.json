@@ -1,0 +1,27 @@
+{
+  "id": "course",
+  "name": "课程",
+  "description": "白字+深色半透明底框+大字号，长时间阅读不累，适合课程/教程/知识讲解",
+  "ass": {
+    "font": "Microsoft YaHei",
+    "size": 48,
+    "primary": "&H00FFFFFF",
+    "secondary": "&H000000FF",
+    "outline": "&H00000000",
+    "back": "&H9A000000",
+    "bold": 0,
+    "italic": 0,
+    "border_style": 3,
+    "outline_width": 2,
+    "shadow": 0,
+    "alignment": 2,
+    "margin_l": 120,
+    "margin_r": 120,
+    "margin_v": 70,
+    "encoding": 1
+  },
+  "bilingual": {
+    "orig": {"primary": "&H00D0D0D0", "size": 38, "margin_v": 160, "alignment": 2, "outline_width": 2},
+    "trans": {"primary": "&H00FFFFFF", "size": 48, "margin_v": 65, "alignment": 2, "outline_width": 2}
+  }
+}

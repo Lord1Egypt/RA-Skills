@@ -1,39 +1,54 @@
-## Description: <br>
-Rating is a command-line utility for recording, searching, reporting, and exporting local rating activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rating is a command-line utility for recording rating-related entries, viewing recent activity, searching logs, and exporting locally stored data.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and command-line users use Rating to save rating-related entries, view recent activity and statistics, search local logs, and export records as JSON, CSV, or text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered activity is stored locally under ~/.local/share/rating/ and may later be searchable or exportable. <br>
-Mitigation: Avoid entering secrets, tokens, private paths, or sensitive personal content; periodically review or delete the local data directory if local privacy matters. <br>
+## Use Case:
 
+External users and developers can use this skill to access a simple CLI-style rating utility that records entries, reports status and statistics, searches prior activity, and exports local data. It should be reviewed carefully before use with sensitive content because the security evidence identifies local persistent logging risk.
 
-## Reference(s): <br>
-- [Rating on ClawHub](https://clawhub.ai/ckchzh/rating) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Plain text stdout with optional JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores activity locally under ~/.local/share/rating/ unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security evidence reports that the skill can persist sensitive prompts, customer data, proprietary text, or other input in local log files indefinitely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid using it with sensitive content, and verify documented retention, deletion, and configurable data-directory behavior before routine use.
+
+Risk: The security verdict is suspicious because the package presents as a rating tool while behaving as a broad local logging utility.
+
+Mitigation: Limit use to real rating tasks, inspect command behavior before execution, and confirm the package narrows data capture to expected rating workflows.
+
+## Reference(s):
+
+- [Rating on ClawHub](https://clawhub.ai/ckchzh/skills/rating)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with inline shell commands and CLI output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance and text output for a local shell utility; the underlying artifact stores command inputs and activity logs under the user's local data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

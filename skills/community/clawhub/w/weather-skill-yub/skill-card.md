@@ -1,41 +1,56 @@
-## Description: <br>
-Queries weather for cities worldwide, including Chinese city names, using wttr.in with an offline sample mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries weather for cities worldwide, including Chinese city names, using wttr.in with an offline demo mode.
 
-## Publisher: <br>
-[yuboon](https://clawhub.ai/user/yuboon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuboon](https://clawhub.ai/user/yuboon)
 
-## Use Case: <br>
-Developers and agent users can use this skill to look up current weather for a specified city and return structured weather details. The offline mode supports local validation without making a network request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Online city lookups are sent to wttr.in over plain HTTP. <br>
-Mitigation: Avoid sensitive location queries in online mode, or use offline mode when external requests are not acceptable. <br>
-Risk: The documented install command appears to use a placeholder package name. <br>
-Mitigation: Verify the ClawHub package name and publisher handle before installing. <br>
+## Use Case:
 
+Developers and agents use this skill to look up weather for a named city and return temperature, humidity, conditions, wind, and observation time. The offline mode supports demonstrations and tests without network access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuboon/weather-skill-yub) <br>
-- [Project homepage](https://example.com/weather-query-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [JSON weather data from the helper script, plus Markdown usage guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [City name input; optional offline mode for sample output] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Online weather requests send city queries to wttr.in over plaintext HTTP, which can expose or alter queries and results on untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use offline mode for demonstrations and tests, or prefer a release that uses HTTPS before relying on online results.
+
+Risk: Weather output depends on an external service and may return errors or unexpected data.
+
+Mitigation: Check the returned JSON for an error field and review results before using them in downstream decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuboon/skills/weather-skill-yub)
+- [Publisher profile](https://clawhub.ai/user/yuboon)
+- [Project homepage](https://example.com/weather-query-skill)
+- [wttr.in weather service](http://wttr.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [JSON weather data and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Online mode queries wttr.in; offline mode returns a bundled sample response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

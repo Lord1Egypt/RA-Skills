@@ -1,6 +1,7 @@
 {
   "ownerId": "kn71a0306yxzjvtxfpe300byxs84es4z",
   "slug": "prod-shield",
-  "version": "1.2.1",
-  "publishedAt": 1779035936326
+  "version": "1.2.0",
+  "publishedAt": 1747440600000,
+  "changelog": "1.2.0 — Added Section 17: Git & GitHub Credential Safety — comprehensive rules covering every credential type that must never be committed (API keys, client secrets, DB credentials, tokens, private keys, .env files, cloud credentials, service account files, SSH keys, and more). Covers .gitignore standards, pre-commit hooks, git history scrubbing, GitHub secret scanning, Actions secrets best practices, and remediation steps when credentials are accidentally pushed. Added references/git-credential-safety.md as a dedicated reference. 1.1.0 — Added malicious code & supply chain detection (Section 13), secrets scanning guidance, container image scanning, artifact signing, dependency pinning, SBOM, SAST/DAST, multi-person approval (4-eyes), health checks post-deploy, CI/CD pipeline security hardening."
 }

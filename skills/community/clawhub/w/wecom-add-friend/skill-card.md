@@ -1,42 +1,58 @@
-## Description: <br>
-Automates adding WeCom contacts in the Windows WeCom PC client from batches of phone numbers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates bulk friend additions in the WeCom PC client from phone-number lists.
 
-## Publisher: <br>
-[whailon](https://clawhub.ai/user/whailon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whailon](https://clawhub.ai/user/whailon)
 
-## Use Case: <br>
-Employees or operators with authorized WeCom outreach workflows use this skill to parse phone-number lists and run Windows GUI automation that sends friend requests through the WeCom PC client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bulk-send WeCom friend requests through the user's logged-in corporate account. <br>
-Mitigation: Use only authorized phone lists and an account where bulk outreach is permitted; require explicit user confirmation before sending requests. <br>
-Risk: Unsafe GUI fallbacks may click or type in the wrong window or screen location. <br>
-Mitigation: Run only when the WeCom window is visible and positively identified; prefer a version that fails closed when the target window cannot be verified. <br>
-Risk: Rapid additions may trigger platform restrictions or anti-abuse controls. <br>
-Mitigation: Use conservative add intervals, follow WeCom policy, and stop immediately if verification, captcha, or restriction signals appear. <br>
+## Use Case:
 
+Employees or operators using WeCom on Windows use this skill to parse phone-number lists and run bundled desktop automation for adding contacts in bulk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whailon/wecom-add-friend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and concise execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, Python, the bundled bin/wecom_auto_add.py file, and a visible logged-in WeCom PC client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The setup flow can send a friend request to a hard-coded test phone number.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make setup side-effect-free and require explicit confirmation before any outbound friend request.
+
+Risk: Window targeting and saved coordinates can cause typing or clicking in the wrong application.
+
+Mitigation: Fail closed unless the WeCom window is positively identified, revalidate saved coordinates before use, and keep the target window visible.
+
+Risk: The skill operates a logged-in WeCom desktop account and can send real friend requests.
+
+Mitigation: Review behavior before installation and avoid primary accounts unless confirmations and window-targeting safeguards are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whailon/skills/wecom-add-friend)
+- [ClawHub publisher profile](https://clawhub.ai/user/whailon)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only WeCom desktop automation; requires Python and the bundled bin/wecom_auto_add.py file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

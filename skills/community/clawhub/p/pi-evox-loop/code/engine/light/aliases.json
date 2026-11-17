@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "note": "概念表：concept -> { en: [ASCII canonical tokens], zh: [中文别名短语] }。用途——①沉淀时把 --trigger 触发短语展开成 signals（英文 canonical + 中文 bigram 别名双写）②召回时把中文 query 映射到英文 canonical，使中英两种措辞都能命中。zh 短语在匹配前会被切成 2 字 bigram（与召回分词规则一致）。",
+  "concepts": {
+    "file-batch-rewrite": {
+      "en": ["batch-edit", "file-rewrite", "edit-file", "template-string", "heredoc", "javascript"],
+      "zh": ["批量改写", "批量替换", "批量修改", "改文件", "改代码", "改写代码", "替换代码", "模板字符串", "反引号", "缩进", "写脚本", "脚本改写"]
+    },
+    "shell-chain-exit": {
+      "en": ["chain-command", "exit-code", "pipeline", "compound-command"],
+      "zh": ["复合命令", "命令链", "退出码", "管道", "串联"]
+    },
+    "path-copy-verification": {
+      "en": ["path-check", "wrong-copy", "cwd", "relative-path", "absolute-path"],
+      "zh": ["路径", "副本", "工作目录", "相对路径", "绝对路径", "跑错"]
+    },
+    "grep-count-encoding": {
+      "en": ["grep-count", "encoding", "unicode", "locale"],
+      "zh": ["计数", "编码", "乱码", "字符集", "统计"]
+    },
+    "concurrency-lock": {
+      "en": ["file-lock", "concurrency", "race", "concurrent", "idempotent"],
+      "zh": ["并发", "锁", "竞态", "冲突", "幂等", "多宿主"]
+    },
+    "secret-redaction": {
+      "en": ["redline", "secret", "sanitize", "credential", "private"],
+      "zh": ["红线", "脱敏", "密钥", "凭据", "私有", "泄露"]
+    },
+    "review-approval-gate": {
+      "en": ["approval", "review-gate", "audit", "quarantine"],
+      "zh": ["审核", "审批", "审门", "隔离", "放行"]
+    },
+    "self-check-verify": {
+      "en": ["self-check", "verify", "regression", "acceptance"],
+      "zh": ["自检", "核验", "回归", "验收", "检查"]
+    },
+    "release-authorization": {
+      "en": ["release-approval", "publish-gate", "authorization"],
+      "zh": ["发版", "发布", "授权", "越权"]
+    },
+    "ledger-telemetry": {
+      "en": ["ledger", "telemetry", "timeline", "deposit"],
+      "zh": ["账本", "埋点", "时间线", "落点", "记录"]
+    },
+    "reconcile-audit": {
+      "en": ["reconcile", "audit", "completeness", "consistency"],
+      "zh": ["对账", "审计", "完整", "核对", "一致性", "覆盖"]
+    },
+    "threshold-scoring": {
+      "en": ["threshold", "scoring", "min-score", "ranking"],
+      "zh": ["阈值", "打分", "命中", "排名", "排序"]
+    },
+    "text-search-accuracy": {
+      "en": ["citation", "source-text", "snippet", "fetch"],
+      "zh": ["引用", "源文", "摘要", "抓取", "调研"]
+    }
+  }
+}

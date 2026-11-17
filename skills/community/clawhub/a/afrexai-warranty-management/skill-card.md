@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents design warranty policies, streamline returns workflows, analyze defects, estimate warranty costs, and prepare compliance-oriented warranty guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and optimize warranty policies, streamline returns processing, analyze defects, calculate costs, support compliance review, and reduce warranty-related expenses.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, product teams, support leaders, and operations analysts use this skill to plan warranty programs, improve returns processing, estimate reserves, track warranty KPIs, and review warranty language for US, EU, and UK compliance considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Warranty, reserve, and compliance guidance may be incorrect, incomplete, or unsuitable for a specific jurisdiction or business. <br>
-Mitigation: Have qualified legal, finance, or compliance reviewers validate important decisions before using the outputs operationally. <br>
-Risk: The skill links to optional external commercial resources. <br>
-Mitigation: Review external resources independently before purchase or operational reliance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-warranty-management) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+External business, operations, customer support, ecommerce, and manufacturing teams use this skill to draft warranty policy frameworks, returns workflows, KPI dashboards, reserve calculations, and compliance review checklists. Outputs should be reviewed by qualified legal counsel before use in customer-facing warranty terms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured policies, workflows, calculators, matrices, dashboards, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only business guidance; important warranty, reserve, and compliance outputs should be reviewed by qualified legal or financial professionals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated warranty, returns, or compliance language may be incomplete or unsuitable for binding customer-facing terms.
+
+Mitigation: Review generated warranty and compliance language with qualified counsel before relying on it.
+
+Risk: Business recommendations may be based on incomplete product, volume, defect, or returns data supplied by the user.
+
+Mitigation: Validate calculations, KPIs, reserve assumptions, and workflow targets against current internal operating data before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-warranty-management)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with policy frameworks, workflow outlines, calculations, matrices, checklists, and dashboard specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain-text skill with no executable code, persistence, credential access, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

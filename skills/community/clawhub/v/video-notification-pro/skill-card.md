@@ -1,40 +1,58 @@
-## Description: <br>
-Sends an IVVR video notification to a specified mobile phone number using a local video file path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends an IVVR video notification to a specified mobile phone number using a local video file path and phone number.
 
-## Publisher: <br>
-[zhu-xiao-di](https://clawhub.ai/user/zhu-xiao-di) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhu-xiao-di](https://clawhub.ai/user/zhu-xiao-di)
 
-## Use Case: <br>
-Operators use this skill to upload a local video file to an IVVR service and initiate a video notification call to an 11-digit mobile phone number. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each invocation can upload the selected local video and recipient phone number to an external IVVR endpoint. <br>
-Mitigation: Use only a trusted IVVR endpoint and credentials, and confirm the selected video path and recipient before execution. <br>
-Risk: HTTPS certificate verification is disabled in the artifact behavior. <br>
-Mitigation: Require the publisher to remove verify=False or configure a trusted certificate authority before production use. <br>
+## Use Case:
 
+Developers and operations teams use this skill to upload a local video file up to 5 MB to a configured IVVR service and send a video notification call to a specified 11-digit mobile number.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhu-xiao-di/video-notification-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API calls] <br>
-**Output Format:** [JSON status object with success, message, and file_id/task_id fields when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads local video files up to 5 MB and sends one recipient phone number per invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: TLS certificate verification is disabled while sending videos, phone numbers, and authentication headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require HTTPS, remove verify=False, and verify certificates before production use.
+
+Risk: A misconfigured or untrusted BASE_URL could receive media, phone numbers, and service credentials.
+
+Mitigation: Restrict BASE_URL to approved IVVR hosts and use credentials dedicated to this service.
+
+Risk: The workflow handles phone numbers and video content that may be sensitive.
+
+Mitigation: Use only non-sensitive videos and phone numbers unless appropriate consent, policy review, and operational controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhu-xiao-di/skills/video-notification-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhu-xiao-di)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls]
+
+**Output Format:** [JSON object with success status, message, file_id, and task_id fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an external IVVR notification as a side effect when the configured service accepts the upload and send requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

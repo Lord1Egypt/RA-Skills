@@ -1,0 +1,10 @@
+{
+ "layer": "surprisal",
+ "split": "all",
+ "n": 16,
+ "auroc": 0.3214,
+ "det_at6": 0,
+ "n_ai": 2,
+ "fpr_at6": 1,
+ "n_hu": 14
+}

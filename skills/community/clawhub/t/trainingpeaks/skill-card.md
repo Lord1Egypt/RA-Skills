@@ -1,40 +1,54 @@
-## Description: <br>
-Pull real-time training plans, workouts, fitness metrics (CTL/ATL/TSB), and personal records from TrainingPeaks using cookie-based authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pulls real-time training plans, workouts, fitness metrics (CTL/ATL/TSB), and personal records from TrainingPeaks using cookie-based authentication.
 
-## Publisher: <br>
-[rubengarciam](https://clawhub.ai/user/rubengarciam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rubengarciam](https://clawhub.ai/user/rubengarciam)
 
-## Use Case: <br>
-Athletes, coaches, and agents use this skill to retrieve TrainingPeaks training plans, workouts, athlete profiles, fitness metrics, and personal records for planning or analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles TrainingPeaks session cookies and cached bearer tokens that may grant access equivalent to the user's web session. <br>
-Mitigation: Install only if that access level is acceptable, keep cookies and token files private, and refresh or revoke the TrainingPeaks session if exposure is suspected. <br>
-Risk: Credentials may appear in command history, logs, environment variables, or local files if handled carelessly. <br>
-Mitigation: Avoid sharing cookies, token files, command history, or logs containing credentials; prefer protected local storage with restrictive file permissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TrainingPeaks web app](https://app.trainingpeaks.com) <br>
-- [TrainingPeaks API host](https://tpapi.trainingpeaks.com) <br>
+## Use Case:
 
+External athletes, coaches, and developers use this skill to let an agent retrieve TrainingPeaks profile, workout, fitness, and personal-record data for training analysis and planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output is human-readable text or JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may read and write TrainingPeaks credential files under ~/.trainingpeaks/ and use TP_AUTH_COOKIE when provided.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to handle and persist a live TrainingPeaks browser session cookie.
+
+Mitigation: Treat the Production_tpAuth cookie like a password; keep it out of shared chats, logs, screenshots, shell history, and CI output.
+
+Risk: The skill can access TrainingPeaks account data after authentication.
+
+Mitigation: Install only if you are comfortable granting access to that account data, and remove ~/.trainingpeaks credentials when the skill is no longer needed.
+
+## Reference(s):
+
+- [TrainingPeaks ClawHub skill page](https://clawhub.ai/rubengarciam/skills/trainingpeaks)
+- [TrainingPeaks application](https://app.trainingpeaks.com)
+- [TrainingPeaks API endpoint](https://tpapi.trainingpeaks.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Human-readable CLI text with optional raw JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a TrainingPeaks session cookie and local credential cache under ~/.trainingpeaks.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

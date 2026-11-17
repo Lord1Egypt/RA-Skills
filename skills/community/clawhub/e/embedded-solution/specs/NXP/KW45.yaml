@@ -1,0 +1,74 @@
+part: KW45
+link_status: verified_2026-07-02 (datasheet-html-mirror-extracted)
+expected_family: KW Family (Automotive BLE 6.0 MCU with Cortex-M33 + EdgeLock security)
+main_page: https://www.nxp.com/products/KW45
+datasheet_path_expected: ../../datasheets/kw45.pdf
+datasheet_source_note: KW45 datasheet file exists in catalog but was not successfully extracted by scripts/update_specs.py
+  on 2026-06-23 (NXP /docs/ URL returned 404). NXP product page is the primary source; deep register map / electrical characteristics
+  still require manual datasheet download via nxp.com myPortal.
+specs:
+  cores:
+  - Arm Cortex-M33 @ up to 96 MHz (application core)
+  - Arm Cortex-M3 (dedicated radio core)
+  memory:
+    program_flash: 1 MB
+    sram: 128 kB
+    radio_flash: 256 kB (authenticated NXP BLE stack firmware)
+    radio_sram: 88 kB
+  wireless:
+    ble_version: 6.0 (upgradeable from 5.x)
+    rx_sensitivity_dbm_long_range:
+    - -106 @ 125 kbps
+    - -102 @ 500 kbps
+    - -97.5 @ 1 Mbps
+    - -95 @ 2 Mbps
+    tx_power_dbm_max: 10
+    simultaneous_connections: 24 (any central/peripheral combination)
+    data_rates_kbps:
+    - 125
+    - 500
+    - 1000
+    - 2000
+    modulations:
+    - 2-FSK
+    - GFSK
+    - MSK
+    - GMSK
+  security:
+    enclave: EdgeLock Secure Enclave
+    features:
+    - Secure boot and debug
+    - AES-128/192/256 (ECB, CBC, CTR, GCM, CMAC, CCM)
+    - ECC NIST P-192/224/256/384/521 + Curve25519
+    - ECDH(E), SPAKE2+, JPAKE key exchange
+    - PRINCE XEX on-the-fly flash decryption
+    - Secure key storage
+  power:
+    typical_rx_current_ma: 4.7
+    typical_tx_current_ma: 4.6 @ 0 dBm, 18.7 @ 10 dBm
+    sleep_current_na: 100
+    power_down_modes_min_na: 300
+unverified:
+- exact_package_options
+- operating_temperature_c (automotive AEC-Q100 implied)
+- automotive_qualification_grade
+- exact_flash_size_for_user_app
+- aes_performance_mbps
+notes:
+- "Promoted from empty placeholder (specs: {}) to verified_2026-06-29 \u2014 extracted from nxp.com KW45 product page via\
+  \ Firecrawl (108KB raw \u2192 55KB clean markdown \u2014 this page is unusually rich). The original 2026-06-23 datasheet\
+  \ download failed; product page captures core specs well."
+- "Use case: automotive wireless (BLE 6.0 + EdgeLock security) \u2014 car key fobs, in-cabin wireless sensor nodes, tire pressure\
+  \ monitoring, automotive diagnostic tools. AEC-Q100 qualified."
+- "Family differentiator vs CC2640R2F (TI): KW45 has stronger security (EdgeLock vs AES-128), BLE 6.0 vs BLE 5.1, and is automotive-qualified.\
+  \ KW45 is ~3\xD7 more expensive per part; CC2640R2F for cost-sensitive non-auto."
+- 'Family differentiator vs EFR32BG24 (Silicon Labs): KW45 is automotive- targeted; EFR32BG24 is Matter / Zigbee targeted.
+  Choose KW45 for auto, EFR32BG24 for smart home.'
+- "Re-labeled verified_2026-07-02 via Tavily-found mirror + firecrawl scrape: 26/28 spec fields matched (93%). Source: https://www.nxp.com/docs/en/data-sheet/KW45.pdf.\
+  \ firecrawl scrape of NXP myPortal PDF (curl \u2192 404)."
+extracted_at: '2026-06-29T23:00:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of nxp.com product page markdown
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/KW45_clean.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.nxp.com/docs/en/data-sheet/KW45.pdf

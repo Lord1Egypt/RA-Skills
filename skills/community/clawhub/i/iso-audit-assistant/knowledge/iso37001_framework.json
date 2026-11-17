@@ -1,0 +1,40 @@
+{
+  "standard": "ISO 37001:2025 反贿赂管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "贿赂风险", "相关方"],
+    "5": ["领导作用", "反贿赂方针", "尽职调查", "职责"],
+    "6": ["策划", "反贿赂目标", "风险评估"],
+    "7": ["支持", "能力", "培训", "意识", "沟通"],
+    "8": ["运行", "尽职调查", "财务控制", "礼品招待", "第三方", "举报"],
+    "9": ["绩效评价", "监视测量", "内部审核", "管理评审"],
+    "10": ["改进", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-ab-policy", "name_zh": "反贿赂方针与承诺", "name_en": "Anti-bribery policy",
+     "keywords_zh": ["反贿赂方针", "零容忍", "廉洁"], "keywords_en": ["anti-bribery policy", "zero tolerance"],
+     "description_zh": "最高管理者须发布反贿赂方针，体现零容忍承诺。",
+     "compliance_statement": ["已发布经批准的反贿赂方针", "方针传达到全员与业务伙伴"]},
+    {"id": "hv-ab-dd", "name_zh": "尽职调查(高风险方)", "name_en": "Due diligence",
+     "keywords_zh": ["尽职调查", "商业伙伴", "高风险", "供应商尽调"], "keywords_en": ["due diligence", "business partner"],
+     "description_zh": "须对高风险商业伙伴、项目开展反贿赂尽职调查。",
+     "compliance_statement": ["已建立尽调程序", "高风险方已尽调并分级管控"]},
+    {"id": "hv-ab-gift", "name_zh": "礼品招待与便利费管控", "name_en": "Gifts & hospitality",
+     "keywords_zh": ["礼品", "招待", "宴请", "便利费", "馈赠"], "keywords_en": ["gift", "hospitality"],
+     "description_zh": "须建立礼品招待的申报、审批与限额管控机制。",
+     "compliance_statement": ["已建立礼品招待管理制度", "超限额须审批并记录"]},
+    {"id": "hv-ab-finance", "name_zh": "财务与商业控制", "name_en": "Financial controls",
+     "keywords_zh": ["财务控制", "账目", "审计线索"], "keywords_en": ["financial control", "books and records"],
+     "description_zh": "须通过财务控制防止账外账、确保交易可审计。",
+     "compliance_statement": ["财务记录真实完整", "存在反贿赂的财务核查"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-AB-001", "name": "贿赂风险评估程序", "clause": "6.1", "match_keywords": ["贿赂风险", "风险评估"], "priority": "high"},
+    {"id": "SP-AB-002", "name": "尽职调查与商业伙伴管理程序", "clause": "8.2/8.3", "match_keywords": ["尽职调查", "商业伙伴"], "priority": "high"},
+    {"id": "SP-AB-003", "name": "礼品招待与财务控制程序", "clause": "8.3/8.4", "match_keywords": ["礼品", "招待", "财务控制"], "priority": "high"}
+  ]
+}

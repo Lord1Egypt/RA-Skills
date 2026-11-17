@@ -1,45 +1,68 @@
-## Description: <br>
-Find mountains, lakes, waterfalls, national parks, and natural wonders. Includes trail difficulty, best seasons, and photography tips. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more — powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find mountains, lakes, waterfalls, national parks, and natural wonders, including trail difficulty, best seasons, photography tips, and travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to find natural attractions, compare CLI-sourced options, and present booking links for mountains, lakes, waterfalls, national parks, and similar points of interest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and rely on the global `@fly-ai/flyai-cli` package for provider-backed travel and booking results. <br>
-Mitigation: Install only after reviewing and trusting the package source, and run the CLI in an environment appropriate for travel-booking queries. <br>
-Risk: The skill can retain raw travel query details in `.flyai-execution-log.json` when filesystem writes are available. <br>
-Mitigation: Avoid entering sensitive personal, financial, or exact itinerary details, and check, disable, or delete the local execution log when retention is not desired. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find nature-focused attractions for a city and return CLI-sourced options with booking links, seasonal context, and practical notes.
 
-## Reference(s): <br>
-- [Nature Spots on ClawHub](https://clawhub.ai/xiejinsong/nature-spots) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejinsong) <br>
-- [Templates reference](references/templates.md) <br>
-- [Playbooks reference](references/playbooks.md) <br>
-- [Fallbacks reference](references/fallbacks.md) <br>
-- [Runbook reference](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, tips, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output for travel results and instructs the agent not to answer from model memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on a third-party travel CLI and may send user travel queries to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and approving the FlyAI CLI source and provenance; avoid submitting sensitive travel details unless approved.
+
+Risk: The skill attempts a global CLI install when the dependency is missing.
+
+Mitigation: Use a pinned, locally approved FlyAI CLI installation instead of ad hoc global installation.
+
+Risk: The workflow steers responses toward booking links returned by the CLI.
+
+Mitigation: Validate generated booking links and make sure users understand links come from the external travel provider.
+
+Risk: The artifact describes raw-query execution logging when filesystem writes are available.
+
+Mitigation: Disable or remove raw-query logging, or redact sensitive input before any execution log is written.
+
+Risk: Shell-style command templates can be unsafe if user values are interpolated directly.
+
+Mitigation: Invoke the CLI with argument-safe APIs or strict escaping and parameter validation.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, inline booking links, concise tips, and occasional shell command snippets for CLI setup or retries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are expected to be based on flyai CLI results, include booking links when results are shown, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

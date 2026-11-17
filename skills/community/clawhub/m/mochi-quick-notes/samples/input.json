@@ -1,0 +1,10 @@
+{
+  "action": "add",
+  "requestId": "sample-note",
+  "kind": "task",
+  "text": "周末购买 ABC-200 滤芯",
+  "due": "2026-10-25",
+  "tags": [
+    "家务"
+  ]
+}

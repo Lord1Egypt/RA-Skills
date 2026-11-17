@@ -1,41 +1,55 @@
-## Description: <br>
-Spoken-script polishing for Chinese videos, tutorials, and talking-head content that turns readable drafts into scripts that are smoother to say aloud while preserving meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish Chinese spoken scripts for videos, tutorials, and talking-head content by improving fluency, shortening breath groups, marking pauses or emphasis where useful, and preserving the original meaning.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Creators, educators, and developers use this skill to polish Chinese video, tutorial, talking-head, or livestream scripts for spoken delivery. It checks clarity, rewrites stiff written phrasing into natural oral rhythm, shortens breath units, and adds optional pause, emphasis, or action marks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A polished script may still contain factual errors, unintended tone, or meaning drift from the original draft. <br>
-Mitigation: Review rewritten scripts for factual accuracy, intended tone, and preservation of meaning before recording or publishing. <br>
-Risk: Drafts submitted for polishing may contain confidential or sensitive content. <br>
-Mitigation: Avoid submitting confidential drafts unless the user is comfortable with the agent processing that content. <br>
+## Use Case:
 
+External creators, educators, and developers use this skill to turn readable Chinese drafts into scripts that are easier to speak, record, and listen to. It supports content checks, oral rewriting, and optional delivery marks for pauses, emphasis, screen cuts, or demonstration actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-spoken-script-polish) <br>
-- [Oral Rhythm](references/oral-rhythm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with rewritten script passages and optional delivery marks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the source meaning while improving spoken rhythm, breath units, and delivery cues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may be less useful for languages other than Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it primarily for Chinese spoken scripts and review non-Chinese outputs carefully before publication.
+
+Risk: Polishing could unintentionally change factual meaning or emphasis.
+
+Mitigation: Review the rewritten script against the source draft for factual accuracy, intended meaning, and delivery tone before recording.
+
+## Reference(s):
+
+- [Oral Rhythm](references/oral-rhythm.md)
+- [ClawHub Skill Page](https://clawhub.ai/cellinlab/skills/cell-spoken-script-polish)
+- [OpenClaw Homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/spoken-script-polish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with rewritten script text and optional delivery annotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language spoken-script polishing; preserves meaning while improving oral rhythm and readability aloud.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

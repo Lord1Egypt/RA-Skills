@@ -1,40 +1,53 @@
-## Description: <br>
-Free basic version of ecommerce ad copy generator. Generates 3 ad copies from product info, and reserves premium upgrade hooks for 10-copy batch generation and A/B variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free basic ecommerce ad-copy generator that creates three platform-specific ad copy variants from product information and reserves premium upgrade guidance for batch, multilingual, and A/B variants.
 
-## Publisher: <br>
-[wingogx](https://clawhub.ai/user/wingogx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wingogx](https://clawhub.ai/user/wingogx)
 
-## Use Case: <br>
-External ecommerce sellers and marketing operators use this skill to generate three short ad copy variants for Facebook, Google, and TikTok from product names, selling points, and target audiences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may follow a premium payment link without confirming that the domain and publisher are expected. <br>
-Mitigation: Verify the payment domain and publisher before following premium links. <br>
-Risk: Future billing integration could expose or misuse SkillPay credentials if configured casually. <br>
-Mitigation: Keep SkillPay API keys in environment variables and do not enable charge endpoints unless the billing flow is clearly documented and explicitly approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillPay API Contract](references/skillpay-api-contract.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wingogx/ecommerce-ad-copy-generator-free) <br>
+## Use Case:
 
+Ecommerce operators and marketing teams use this skill to generate initial Facebook, Google, and TikTok ad-copy drafts from a product name, selling points, and target audience.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON containing generated ad copy objects and upgrade guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces three free ad copy variants; premium tier requests return upgrade guidance rather than automatic charging.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The upgrade response includes a payment link whose destination depends on payment URL configuration and the supplied user_id.
+
+Mitigation: Use trusted payment URL configuration and validate or encode user_id values before using generated links.
+
+Risk: The free generator outputs Chinese ad copy that may need market, brand, or compliance review before publication.
+
+Mitigation: Review generated copy before campaign launch and adapt language, claims, and calls to action to the target market.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wingogx/skills/ecommerce-ad-copy-generator-free)
+- [SkillPay API Contract](artifact/references/skillpay-api-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON response with generated ad-copy text, validated input echo, tier status, and upgrade guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free tier returns three copies for Facebook, Google, and TikTok; premium requests return upgrade-required guidance with a payment link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

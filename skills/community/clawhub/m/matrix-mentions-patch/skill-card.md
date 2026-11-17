@@ -1,39 +1,53 @@
-## Description: <br>
-Fixes an OpenClaw Matrix plugin mention detection bug where a missing agent ID prevents configured group-room @mentions from being recognized. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix OpenClaw Matrix plugin mention detection by guiding users to pass the agent ID to buildMentionRegexes when Matrix group-room @mentions are not detected.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw Matrix gateways use this skill to identify and manually apply a targeted source edit that restores @mention detection in configured group rooms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying the edit to the wrong Matrix extension file or with the wrong agent ID can leave mention detection broken. <br>
-Mitigation: Verify the target file and actual agent ID before editing, and keep the original line available for rollback. <br>
-Risk: Restarting the OpenClaw gateway can briefly interrupt service. <br>
-Mitigation: Restart the gateway only when a short interruption is acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose and apply a manual OpenClaw Matrix extension patch when a bot fails to respond to required @mentions in Matrix group rooms.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript code snippets and a shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The guidance changes local OpenClaw Matrix extension code and restarts the gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the extension path, review the exact edit, and keep a backup before restarting the gateway.
+
+Risk: Using the wrong agent ID can leave mention detection misconfigured.
+
+Mitigation: Replace the example agent ID with the actual configured agent ID before applying the patch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biociao/skills/matrix-mentions-patch)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline TypeScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a local source edit and gateway restart; no executable code is bundled.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,64 @@
+{
+  "name": "vibe-coding-rules",
+  "version": "2.5.0",
+  "description": "Vibe Coding Rules V2.5 - 🍞面包屑自动播种、信任分级规则自动进化、一键项目初始化",
+
+  "license": "Apache 2.0",
+  "tags": ["ai-coding", "pipeline", "code-quality", "self-check", "testing", "changelog", "self-growth", "auto-init", "breadcrumbs"],
+  "skills": [
+    {
+      "id": "pipeline-init",
+      "name": "项目初始化向导",
+      "description": "对话式收集项目信息，自动创建项目结构并fork流水线模板",
+      "version": "2.5.0",
+      "format": "codebuddy-skill"
+    },
+    {
+      "id": "coding-principles",
+      "name": "AI编程五大原则",
+      "description": "改前强制原则自检 + 🍞面包屑预扫描",
+      "version": "2.5.0",
+      "format": "codebuddy-skill"
+    },
+    {
+      "id": "safe-terminal-executor",
+      "name": "安全终端执行器",
+      "description": "API/终端命令安全封装执行",
+      "version": "2.5.0",
+      "format": "codebuddy-skill"
+    },
+    {
+      "id": "self-check",
+      "name": "代码修改后自检",
+      "description": "按项目规则逐项自检，含🍞面包屑自动播种+信任分级规则自动生长",
+      "version": "2.5.0",
+      "format": "codebuddy-skill"
+    },
+    {
+      "id": "web-testing",
+      "name": "Web自动化测试",
+      "description": "Playwright浏览器测试 + OCR验证",
+      "version": "2.5.0",
+      "format": "codebuddy-skill"
+    },
+    {
+      "id": "changelog",
+      "name": "变更日志",
+      "description": "代码变更日志自动写入，含生长检测与分享导出",
+      "version": "2.5.0",
+      "format": "codebuddy-skill"
+    }
+  ],
+  "pipeline": {
+    "entry": ".ai-pipeline/README.md",
+    "config": "pipeline.json",
+    "installScript": "install.bat",
+    "installScriptUnix": "install.sh"
+  },
+  "compatibility": {
+    "codebuddy": true,
+    "cursor": ".cursor/rules/",
+    "windsurf": ".windsurfrules",
+    "generic": ".ai-pipeline/"
+  }
+}

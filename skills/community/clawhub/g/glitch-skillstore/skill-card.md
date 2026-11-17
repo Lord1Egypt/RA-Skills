@@ -1,40 +1,60 @@
-## Description: <br>
-Search, install, and create OpenClaw skills with intelligent matching across known, local, and GitHub repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, install, and create OpenClaw skills with intelligent matching across known, local, and GitHub repositories.
 
-## Publisher: <br>
-[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to find relevant skills across known, local, and GitHub sources, install selected GitHub skills, or scaffold a new skill from templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install third-party GitHub skills into a local OpenClaw skill directory with limited source review controls. <br>
-Mitigation: Before installing a GitHub result, verify the repository owner and review its SKILL.md and code. <br>
-Risk: Search terms may be sent to GitHub when GitHub search is used. <br>
-Mitigation: Avoid sensitive internal search terms unless the user is comfortable sharing those queries with GitHub. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to find matching skills, inspect known or installed skills, install selected GitHub-hosted skills, and scaffold new skill directories.
 
-## Reference(s): <br>
-- [Skillstore on ClawHub](https://clawhub.ai/chris6970barbarian-hue/glitch-skillstore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal text, Markdown skill files, JavaScript code, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local skill directories and configuration files when the user chooses scaffold or install actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.2.17 (source: ClawHub release metadata) <br>
+Risk: The skill can install unverified GitHub-hosted skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected repository before installation and prefer pinned, trusted sources.
+
+Risk: The skill can write files outside the intended skill area when creating new skills from untrusted or path-like names.
+
+Mitigation: Avoid untrusted names, reject path-like input, and stage generated files for review before use.
+
+Risk: The bundled guidance may introduce broad behavioral preferences into generated skills.
+
+Mitigation: Review generated skill documentation and remove behavioral rules that are unrelated to the skill's purpose.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris6970barbarian-hue/skills/glitch-skillstore)
+- [Publisher Profile](https://clawhub.ai/user/chris6970barbarian-hue)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Terminal text, Markdown skill files, JavaScript code, JSON configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write new skill directories and clone selected GitHub repositories when the user chooses those actions.]
+
+## Skill Version(s):
+
+2026.2.17 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

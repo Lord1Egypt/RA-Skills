@@ -1,44 +1,55 @@
-## Description: <br>
-Generate videos through the NanoPhoto.AI Veo 3.1 API for text-to-video, reference-image, first-and-last-frame, multi-shot, and status-check workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Veo 3.1 videos through the NanoPhoto.AI API from text prompts, reference images, or first/last frames, with multi-shot workflows and status checks.
 
-## Publisher: <br>
-[nanophotohq](https://clawhub.ai/user/nanophotohq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanophotohq](https://clawhub.ai/user/nanophotohq)
 
-## Use Case: <br>
-Developers and external users use this skill to submit and monitor NanoPhoto.AI Veo 3.1 video generation jobs, including text-only, reference-image, first-and-last-frame, and multi-shot video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, referenced public image URLs, task IDs, and the NanoPhoto API key are sent to NanoPhoto.AI for processing. <br>
-Mitigation: Use the skill only when that third-party data sharing is approved, and avoid confidential, regulated, private, or unauthorized media unless the organization permits it. <br>
-Risk: The required NanoPhoto API key could be exposed if pasted into chat or committed to files. <br>
-Mitigation: Store NANOPHOTO_API_KEY in the platform's secure skill environment setting or another approved secret store. <br>
-Risk: Image-based generation requires public image URLs, which may disclose private or sensitive media. <br>
-Mitigation: Provide only public image URLs that the user is authorized and comfortable sending to NanoPhoto.AI. <br>
+## Use Case:
 
+Developers and creators use this skill to submit and monitor NanoPhoto.AI Veo 3.1 video-generation jobs from text prompts, reference images, or first/last frames. It supports single-shot and multi-shot workflows with documented resolution, image, and polling rules.
 
-## Reference(s): <br>
-- [Veo 3.1 API Reference](references/api.md) <br>
-- [NanoPhoto.AI homepage](https://nanophoto.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/nanophotohq/nanophoto-veo-3-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return task IDs, status responses, shot-level video URLs, and timing information when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, task IDs, and public image URLs are sent to a third-party NanoPhoto service during generation and status checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only content the user is authorized to use, avoid private or sensitive media, and use public image URLs only when required by the selected generation mode.
+
+Risk: The bundled script supports passing NANOPHOTO_API_KEY on the command line, which can expose secrets through shell history or process listings.
+
+Mitigation: Configure NANOPHOTO_API_KEY through the platform's secure environment setting or environment variable instead of using the command-line API key option.
+
+## Reference(s):
+
+- [Veo 3.1 API Reference](references/api.md)
+- [NanoPhoto.AI Homepage](https://nanophoto.ai)
+- [ClawHub Skill Page](https://clawhub.ai/nanophotohq/skills/nanophoto-veo-3-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API payloads; raw JSON can be emitted by the bundled script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return task IDs, status responses, video URLs, timing details, and polling progress for submitted generation jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

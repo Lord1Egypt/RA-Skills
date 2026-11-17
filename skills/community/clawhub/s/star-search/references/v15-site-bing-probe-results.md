@@ -36,7 +36,7 @@ juejin / ithome / 36kr / sspai / infoq / oschina / huxiu / smzdm / zol / xueqiu 
 ```python
 import urllib.request, urllib.parse, ssl, re
 ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
-UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0.0.0'
+UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/<server-ip>'
 
 def hits_count(q, site):
     url = f"https://cn.bing.com/search?q=site%3A{site}+{urllib.parse.quote(q)}&count=15&setlang=zh-cn"

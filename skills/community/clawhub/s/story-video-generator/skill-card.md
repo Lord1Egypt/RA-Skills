@@ -1,48 +1,60 @@
-## Description: <br>
-Generates complete story videos from images, text descriptions, or both, with optional duration and style controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete story videos from images, text descriptions, or mixed inputs, with optional duration and style settings.
 
-## Publisher: <br>
-[zeng-austin](https://clawhub.ai/user/zeng-austin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeng-austin](https://clawhub.ai/user/zeng-austin)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to turn image or text prompts into a complete short video story, including storyboard JSON, subject reference art, frames, clips, instrumental background music, and a merged final video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated videos and temporary media files may consume significant disk space or be written outside the user's intended location. <br>
-Mitigation: Confirm the output directory and available disk space before running the workflow, and keep generated files scoped to the project output folder. <br>
-Risk: Installing or invoking FFmpeg and related media tools can change the local environment or execute media-processing commands. <br>
-Mitigation: Ask for user confirmation before installing dependencies and review FFmpeg commands before execution. <br>
+## Use Case:
 
+Creators and developers use this skill to turn one or more images, a written story idea, or a combination of both into a finished short video with generated script, subject reference image, key frames, video segments, instrumental background music, and final assembly.
 
-## Reference(s): <br>
-- [Background Music Generation](references/bgm-generation.md) <br>
-- [Frame Generation](references/frame-generation.md) <br>
-- [Image Script Generation](references/image-script-generation.md) <br>
-- [Subject Reference Generation](references/subject-reference.md) <br>
-- [Text Script Generation](references/text-script-generation.md) <br>
-- [Video Generation](references/video-generation.md) <br>
-- [Video Merge](references/video-merge.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zeng-austin/story-video-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/zeng-austin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON artifacts, generated media files, and FFmpeg shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local output files under output/, including final_video.mp4; video segments are fixed at 6 seconds and 768P before final merge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill creates and can overwrite generated media under output/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a workspace where output/ can be replaced, or back up and rename existing output media before execution.
+
+Risk: The skill uses FFmpeg for local video assembly and may attempt installation if FFmpeg is unavailable.
+
+Mitigation: Confirm FFmpeg installation steps before proceeding and review generated FFmpeg commands before execution.
+
+## Reference(s):
+
+- [Story Video Generator ClawHub page](https://clawhub.ai/zeng-austin/skills/story-video-generator)
+- [Background Music Generation](references/bgm-generation.md)
+- [Frame Generation](references/frame-generation.md)
+- [Image Script Generation](references/image-script-generation.md)
+- [Subject Reference Generation](references/subject-reference.md)
+- [Text Script Generation](references/text-script-generation.md)
+- [Video Generation](references/video-generation.md)
+- [Video Merge](references/video-merge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets, XML-style asset delivery tags, shell commands, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces story_script.json, subject_reference.png, frame images, video segments, bgm.mp3, and final_video.mp4 under output/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Instagram Research"
+  short_description: "Collect and analyze public Instagram data"
+  default_prompt: "Use $socq-instagram-research to collect and analyze this public Instagram research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Instagram data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=instagram"

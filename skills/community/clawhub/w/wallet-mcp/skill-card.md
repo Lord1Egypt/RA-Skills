@@ -1,47 +1,70 @@
-## Description: <br>
-Generate, manage, and operate Solana and EVM wallets through an MCP-compatible agent interface with JSON outputs for wallet creation, balances, transfers, sweeps, imports, exports, and token scans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+wallet-mcp lets MCP-compatible agents generate, store, inspect, import, export, fund, sweep, and manage Solana and EVM wallets with JSON tool responses.
 
-## Publisher: <br>
-[genoshide](https://clawhub.ai/user/genoshide) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[genoshide](https://clawhub.ai/user/genoshide)
 
-## Use Case: <br>
-Developers and external agent users use this skill to automate Solana and EVM wallet administration, including wallet generation, group management, balance checks, batch sends, sweeps, token account scans, imports, and exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store private keys and move or sweep crypto funds without built-in confirmation safeguards. <br>
-Mitigation: Use dedicated low-balance wallets and manually verify every send, sweep, account closure, key export, import, and group deletion before allowing execution. <br>
-Risk: Wallet data may contain plaintext private keys in ~/.wallet-mcp/wallets.csv. <br>
-Mitigation: Protect the wallet data directory with restrictive file permissions, disk encryption, and a storage location that is not exposed through shares, APIs, or source control. <br>
-Risk: Private keys may be exposed through chat, shell arguments, or exported backup files. <br>
-Mitigation: Prefer stored wallet labels over raw key arguments, avoid pasting private keys into chat or shell commands, and encrypt any backup that includes keys. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent manage labeled groups of Solana and EVM wallets, including wallet generation, balance checks, token scans, batch transfers, sweeps, imports, and exports. The artifact states the tool is for educational and research purposes and does not provide financial advice.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/genoshide/wallet-mcp) <br>
-- [README](artifact/README.md) <br>
-- [Installation Guide](artifact/INSTALLATION.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
-- [Security Policy](artifact/SECURITY.md) <br>
-- [OpenClaw Skill](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command outputs and shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Wallet operations return JSON; private-key display is masked by default in listing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence, pyproject.toml, README badge, changelog) <br>
+Risk: This skill gives agents broad authority over private keys and fund-moving wallet operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when agent-managed wallets are intended, use dedicated low-value wallets, and review transfer or sweep actions before execution.
+
+Risk: Wallet private keys may be stored persistently on disk.
+
+Mitigation: Keep WALLET_DATA_DIR on encrypted storage with strict file permissions and avoid committing or sharing wallet data files.
+
+Risk: Exposed network transport can make wallet-management capability reachable beyond the intended client.
+
+Mitigation: Do not expose HTTP transport publicly; place any remote access behind strong authentication such as mTLS or a protected reverse proxy.
+
+Risk: Automatic persistent setup can add wallet-management instructions to an agent's retained tool context.
+
+Mitigation: Review generated TOOLS.md entries manually before relying on persistent setup, especially on shared hosts or production agents.
+
+Risk: Installing or updating from wrapper source without review can introduce unintended wallet behavior.
+
+Mitigation: Pin and verify the source used for installation and inspect changes before upgrading active wallet-management environments.
+
+## Reference(s):
+
+- [ClawHub wallet-mcp listing](https://clawhub.ai/genoshide/skills/wallet-mcp)
+- [README](artifact/README.md)
+- [Security Policy](artifact/SECURITY.md)
+- [Installation Guide](artifact/INSTALLATION.md)
+- [Examples](artifact/EXAMPLES.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All wallet.py commands are documented as synchronous and return JSON immediately.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata, changelog, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

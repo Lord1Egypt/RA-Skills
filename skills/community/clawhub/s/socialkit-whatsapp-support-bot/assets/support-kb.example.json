@@ -1,0 +1,21 @@
+{
+  "business": {
+    "name": "Example Electronics",
+    "handoffMessage": "Thanks for your message. Our team replies Monday to Friday, 9:00 to 17:00 (PKT)."
+  },
+  "faqs": [
+    { "id": "hours", "keywords": ["hours", "open", "timing", "closed"], "answer": "We are open Monday to Friday, 9:00 to 17:00 (PKT)." },
+    { "id": "delivery", "keywords": ["delivery", "shipping", "deliver", "courier"], "answer": "Orders ship within 2 working days. Delivery inside Pakistan takes 2 to 4 days." },
+    { "id": "returns", "keywords": ["return", "refund", "exchange"], "answer": "You can return unused items within 14 days. Reply with your order number to start a return." },
+    { "id": "booking", "keywords": ["book", "appointment", "booking", "visit"], "answer": "Book a visit here: https://example.com/book" }
+  ],
+  "orders": {
+    "file": "orders.csv",
+    "idPattern": "EX-\\d{4,}",
+    "idColumn": "order_id",
+    "statusColumn": "status",
+    "reply": "Order {id}: {status}. Reply HELP to talk to our team."
+  },
+  "optOutKeywords": ["stop", "unsubscribe"],
+  "optOutReply": "You will not receive further messages from Example Electronics. Reply START to subscribe again."
+}

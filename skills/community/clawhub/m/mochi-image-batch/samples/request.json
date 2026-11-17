@@ -1,0 +1,17 @@
+{
+  "requestId": "image-example-001",
+  "files": [
+    "samples/red.png",
+    "samples/blue.png"
+  ],
+  "width": 800,
+  "height": 800,
+  "mode": "pad",
+  "format": "jpeg",
+  "maxBytes": 200000,
+  "watermark": {
+    "text": "MOCHILAB",
+    "opacity": 0.3,
+    "position": "bottom-right"
+  }
+}

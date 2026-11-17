@@ -1,0 +1,4 @@
+interface:
+  display_name: "腾讯会议录制纪要待办"
+  short_description: "搜索腾讯会议录制与转写并生成带来源的总结和待办账本"
+  default_prompt: "Use $tmeet-record-ledger to locate Tencent Meeting recordings, retrieve smart minutes and transcript evidence, and produce a source-labeled summary and Todo ledger."

@@ -1,42 +1,57 @@
-## Description: <br>
-Generates images with Tencent HunyuanImage 3.0 from text prompts, with optional reference image URLs for image-to-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill uses Tencent HunyuanImage 3.0 through a Python script to generate images from text prompts and optional reference image URLs.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-Developers and creators use this skill to ask an agent to generate or vary images through Tencent Cloud HunyuanImage 3.0, including prompt, resolution, seed, watermark, and reference image options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference image URLs are sent to Tencent Cloud for processing. <br>
-Mitigation: Use only prompts and images acceptable for Tencent Cloud processing, and avoid confidential prompts or private and signed reference image URLs. <br>
-Risk: Tencent Cloud credentials are required for use. <br>
-Mitigation: Use a dedicated least-privilege Tencent Cloud key and keep the local .env file private. <br>
-Risk: Generated image URLs are valid for a limited time. <br>
-Mitigation: Show the full URL in the agent response and remind users to save outputs within the one-hour validity window. <br>
+## Use Case:
 
+Developers and agents use this skill to call Tencent Cloud HunyuanImage 3.0 for text-to-image generation and image-to-image generation from prompt text and optional reference image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mebusw/hunyuan-text-to-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image URLs are temporary; prompts and reference image URLs are sent to Tencent Cloud.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Prompts and reference image URLs are sent to Tencent Cloud for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and image URLs approved for Tencent Cloud processing, and avoid sensitive or confidential content unless the deployment policy permits it.
+
+Risk: The skill requires Tencent Cloud credentials on the local machine.
+
+Mitigation: Use narrowly scoped Tencent Cloud credentials, store them in a local environment file outside shared artifacts, and rotate them when access changes.
+
+Risk: The setup guidance includes a fallback that can install Python packages into the system environment.
+
+Mitigation: Prefer the documented virtual environment path and pin dependencies rather than using the system-package fallback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mebusw/skills/hunyuan-text-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with Python command examples and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image URLs are reported as temporary and valid for 1 hour.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

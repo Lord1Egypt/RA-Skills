@@ -1,43 +1,54 @@
-## Description: <br>
-Lightning-fast note-taking tool. Capture thoughts instantly, pin important notes, search across all entries, and export to markdown. Zero config, local storage, instant access. Perfect for quick ideas, reminders, and knowledge snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quicknote is a terminal note-taking and productivity helper for capturing local notes, searching entries, and exporting saved content.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Employees, external users, and developers can use Quicknote to capture, search, review, and export local notes from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notes are stored locally in plaintext under ~/.local/share/quicknote. <br>
-Mitigation: Avoid storing passwords, tokens, or confidential material, and apply appropriate local file permissions. <br>
-Risk: Exported note files may be easier to sync, share, or leave behind. <br>
-Mitigation: Review generated exports before sharing and remove stale exports when they are no longer needed. <br>
-Risk: The documented command set and implemented script commands do not fully match. <br>
-Mitigation: Verify available commands with the installed help output before relying on a workflow. <br>
+## Use Case:
 
+External users and agents use Quicknote as a local terminal productivity helper for quickly recording notes, plans, reminders, and searchable activity snippets.
 
-## Reference(s): <br>
-- [Quicknote on ClawHub](https://clawhub.ai/ckchzh/quicknote) <br>
-- [BytesAgain Feedback](https://bytesagain.com/feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Terminal text plus local export files in markdown, JSON, CSV, or TXT formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores notes locally in plaintext under ~/.local/share/quicknote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter and script declare 2.0.0) <br>
+Risk: The skill stores private productivity entries persistently in local plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive content unless storage permissions, deletion behavior, and retention controls are reviewed and accepted.
+
+Risk: The artifact does not reliably match advertised pin, delete, list, and markdown export behavior.
+
+Mitigation: Validate the installed commands against the artifact before relying on those workflows.
+
+## Reference(s):
+
+- [Quicknote ClawHub listing](https://clawhub.ai/ckchzh/skills/quicknote)
+- [BytesAgain feedback](https://bytesagain.com/feedback)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration]
+
+**Output Format:** [Terminal text with local JSON, CSV, or TXT export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores persistent local plaintext logs under ~/.local/share/quicknote.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

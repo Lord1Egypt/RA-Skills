@@ -1,44 +1,62 @@
-## Description: <br>
-A Chinese divination assistant for BaZi, daily fortune, Liu Yao, Da Liu Ren, Lu Ming, and luck-cycle readings using xungufa.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+循古·算命 helps agents handle explicit user requests for BaZi, daily fortune, Liu Yao, Da Liu Ren, Lu Ming, luck-cycle, and annual-fortune readings through the xungufa.com divination service.
 
-## Publisher: <br>
-[cnyouker](https://clawhub.ai/user/cnyouker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnyouker](https://clawhub.ai/user/cnyouker)
 
-## Use Case: <br>
-External users ask an agent for Chinese divination outputs, including BaZi charts, daily fortunes, Liu Yao casts, Da Liu Ren charts, Lu Ming readings, and annual luck-cycle analysis. The skill helps collect the needed birth or casting details, call the provider service, and present formatted results for user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth details, casting times, and optionally an API token may be shared with xungufa.com. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid entering information that should not be sent to the provider. <br>
-Risk: Local birth profiles can persist across future sessions if saved. <br>
-Mitigation: Save a profile only after explicit consent and delete it when reuse is no longer wanted. <br>
-Risk: API responses or divination outputs may include content that should not be treated as authoritative advice. <br>
-Mitigation: Treat results as interpretive guidance and review outputs before relying on them for decisions. <br>
+## Use Case:
 
+External users invoke this skill when they explicitly want Chinese astrology or divination readings. The agent collects the requested birth or casting details, calls the relevant xungufa.com service, and returns formatted readings with practical interpretation prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnyouker/xungu-query) <br>
-- [Publisher profile](https://clawhub.ai/user/cnyouker) <br>
-- [xungufa.com](https://xungufa.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with formatted divination tables, API examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an XUNGU_API_TOKEN for Liu Yao, Da Liu Ren, and full-feature access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Risk: Birth details and divination query data may be sent to xungufa.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user explicitly requests these readings and is comfortable sharing the relevant details with the third-party service.
+
+Risk: The skill may look for XUNGU_API_TOKEN in environment variables or local .env files.
+
+Mitigation: Configure the token through a scoped secret or environment variable and avoid placing unrelated credentials in files the agent can read.
+
+Risk: Birth profile details may be stored locally in plaintext if the user agrees to save them.
+
+Mitigation: Decline profile saving unless persistence is needed, and use the documented delete flow to remove saved profile data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnyouker/skills/xungu-query)
+- [cnyouker publisher profile](https://clawhub.ai/user/cnyouker)
+- [循古排盘 service](https://xungufa.com)
+- [BaZi API endpoint](https://xungufa.com/api/agent/bazi)
+- [Liu Yao API endpoint](https://xungufa.com/api/agent/liuyao)
+- [Da Liu Ren API endpoint](https://xungufa.com/api/agent/daliuren)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown text with formatted divination charts, API status notices, and narrative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authentication or quota notices and prompts asking whether to save or delete a local birth profile.]
+
+## Skill Version(s):
+
+1.0.13 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

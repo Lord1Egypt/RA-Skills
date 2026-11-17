@@ -1,0 +1,9 @@
+{
+  "name": "local-agent-open",
+  "normalizedName": "local-agent-open",
+  "description": "一键打开本地 AI 助手页面（agent-skeleton，http://localhost:3000），用于回答「怎么把本地助手拉出来」「3000 页面打不开」这类问题。按真实参照法先探测端口实际状态再动作——服务未运行则后台启动 node server.js，随后把页面打开到预览面板，不假设服务在跑。触发词：打开本地助手、本地 AI 助手、本地小助手、agent-skeleton、打开 3000 页面、把本地助手拉出来、本地页面预览、localhost 3000。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

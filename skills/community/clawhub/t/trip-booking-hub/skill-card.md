@@ -1,41 +1,54 @@
-## Description: <br>
-Booking.com国际酒店预订助手，支持全球酒店搜索、房型查询、价格对比、预订管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+行程预订中心 helps agents search international hotels, compare room options and prices, and manage Booking.com-style reservations.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users and travel planners use this skill to search international hotels, compare room options and prices, and manage Booking.com-style reservations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel availability, pricing, room, review, and reservation details may be misleading because the security evidence reports hardcoded travel data rather than live Booking.com API results. <br>
-Mitigation: Review before installing and rely on it for real travel only after it calls live Booking.com APIs and clearly labels any demo data. <br>
-Risk: Booking or cancellation actions can affect travel plans if treated as confirmed without safeguards. <br>
-Mitigation: Require explicit user confirmation and verified live reservation details before creating or canceling bookings. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search overseas hotels, compare rooms and prices, and handle reservation-related requests in multiple languages and currencies.
 
-## Reference(s): <br>
-- [ClawHub release: trip-booking-hub](https://clawhub.ai/ryan-zry/trip-booking-hub) <br>
-- [Booking.com Distribution API](https://distribution-xml.booking.com/json/bookings.getHotels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, guidance] <br>
-**Output Format:** [JSON function-call responses and Markdown-style hotel tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; real booking use requires valid Booking.com API access and live data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The current artifact can present mock hotel availability, prices, reviews, and cancellation terms as live Booking.com results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after connecting a verified Booking.com partner API and clearly labeling any fixture or test data as non-authoritative.
+
+Risk: Reservation-management prompts may imply that real bookings can be created, queried, or cancelled.
+
+Mitigation: Require explicit confirmation that booking actions are backed by verified live API calls before treating any reservation response as actionable.
+
+## Reference(s):
+
+- [Booking.com distribution API endpoint](https://distribution-xml.booking.com/json/bookings.getHotels)
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/trip-booking-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown tables and JSON-like function responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel, room, review, and reservation-oriented responses may include prices, cancellation terms, currencies, and booking identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

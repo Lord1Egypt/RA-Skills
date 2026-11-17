@@ -1,0 +1,52 @@
+{
+  "skill_name": "audit-trace",
+  "skill_version": "1.2.0",
+  "eval_version": "2.0.0",
+  "eval_date": "2026-08-13",
+  "purpose": "audit-trace 最小自测集（skill-standard-evaluator D6-04 自测用例；格式 v2：每条用例含 priority 标注，p0_count/p1_count 为逐条统计值，可脚本核验）。完整评测集见 eval/trails/p0-04-audit/、p1-04-05/ 与 TRAIL-EVAL-SPEC。",
+  "test_cases": {
+    "trigger_positive": [
+      {"id": "TP-01", "input": "审计完成情况", "expect_trigger": true, "assertion": "应触发 audit-trace", "priority": "P0"},
+      {"id": "TP-02", "input": "检查需求做完了吗", "expect_trigger": true, "assertion": "应触发 audit-trace", "priority": "P0"},
+      {"id": "TP-03", "input": "完工审计", "expect_trigger": true, "assertion": "应触发 audit-trace", "priority": "P0"},
+      {"id": "TP-04", "input": "交付检查", "expect_trigger": true, "assertion": "应触发 audit-trace（交付状态判定）", "priority": "P1"},
+      {"id": "TP-05", "input": "对抗性审查", "expect_trigger": true, "assertion": "应触发 audit-trace（对抗性审查模式）", "priority": "P1"},
+      {"id": "TP-06", "input": "过审计门", "expect_trigger": true, "assertion": "应触发 audit-trace（三层审计门控）", "priority": "P1"},
+      {"id": "TP-07", "input": "验收检查", "expect_trigger": true, "assertion": "应触发 audit-trace（验收标准达标维度）", "priority": "P1"},
+      {"id": "TP-08", "input": "检查实现是否达到 Spec 验收标准", "expect_trigger": true, "assertion": "应触发 audit-trace（验收标准达标维度）", "priority": "P1"},
+      {"id": "TP-09", "input": "代码与 Spec 的差异审计", "expect_trigger": true, "assertion": "应触发 audit-trace（无主代码/差异对照维度）", "priority": "P1"},
+      {"id": "TP-10", "input": "审查测试结果", "expect_trigger": true, "assertion": "应触发 audit-trace（测试结果核对维度）", "priority": "P1"}
+    ],
+    "trigger_negative": [
+      {"id": "TN-01", "input": "根据任务清单生成实现指导", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 impl-guide 边界）", "priority": "P0"},
+      {"id": "TN-02", "input": "根据 PRD 解析需求", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 spec-writer 边界）", "priority": "P0"},
+      {"id": "TN-03", "input": "把架构拆成任务", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 task-planner 边界）", "priority": "P0"},
+      {"id": "TN-04", "input": "帮我写业务代码", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 impl-guide 边界）", "priority": "P0"},
+      {"id": "TN-05", "input": "设计系统架构", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 arch-designer 边界）", "priority": "P0"},
+      {"id": "TN-06", "input": "生成 Spec", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 spec-writer 边界）", "priority": "P0"},
+      {"id": "TN-07", "input": "制定开发计划", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 task-planner 边界）", "priority": "P1"},
+      {"id": "TN-08", "input": "写测试用例", "expect_trigger": false, "assertion": "不应触发 audit-trace（测试骨架属 impl-guide）", "priority": "P1"},
+      {"id": "TN-09", "input": "数据库设计", "expect_trigger": false, "assertion": "不应触发 audit-trace（属 arch-designer 边界）", "priority": "P1"},
+      {"id": "TN-10", "input": "部署上线", "expect_trigger": false, "assertion": "不应触发 audit-trace（部署类）", "priority": "P1"}
+    ],
+    "process_checks": [
+      {"id": "PC-01", "check": "输入缺失处理：查对话上下文 → 询问用户 → 部分审计（标注跳过维度及原因），不自动回溯调用上游 SKILL", "priority": "P0"},
+      {"id": "PC-02", "check": "上下文完整性检查：上游 CONTEXT-CHECK 缺失或异常时提示", "priority": "P0"},
+      {"id": "PC-03", "check": "八维审计：功能覆盖/架构落地/无主代码/任务闭环/验收达标/实现指导对照/测试结果核对/证据核对", "priority": "P0"},
+      {"id": "PC-04", "check": "每个判定标注置信度（确认/疑似/未实现）", "priority": "P1"},
+      {"id": "PC-05", "check": "三层审计门控：Quality → Review → Acceptance 顺序执行，未通过 Gate 输出缺口清单并阻止进入下一 Gate", "priority": "P0"},
+      {"id": "PC-06", "check": "V-04 降级：任一 P0 功能点未验证 → 最高有条件交付，不得判可交付", "priority": "P0"},
+      {"id": "PC-07", "check": "对抗性审查：不采信实现方自评（仅作对照项），差异对照表含双方依据", "priority": "P1"},
+      {"id": "PC-08", "check": "代码可运行性静态核查为默认动作（引用未定义/函数缺失/结果未校验）", "priority": "P1"},
+      {"id": "PC-09", "check": "输出末尾附加 CONTEXT-CHECK 标记（S 审计范围快照）", "priority": "P0"}
+    ],
+    "safety_checks": [
+      {"id": "SC-01", "check": "至少需要 Spec + 代码才能审计，缺失时明确提示", "priority": "P0"},
+      {"id": "SC-02", "check": "P0 未验证不标记例外（V-04），不代替用户裁决差异项", "priority": "P0"},
+      {"id": "SC-03", "check": "占位文件按'Spec 内=缺口 / Spec 外=无主代码'区分，不误报", "priority": "P0"},
+      {"id": "SC-04", "check": "不修复代码、不重新规划任务、不生成实现指导（边界互斥）", "priority": "P0"}
+    ]
+  },
+  "p0_count": 19,
+  "p1_count": 14
+}

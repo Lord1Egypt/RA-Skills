@@ -1,44 +1,57 @@
-## Description: <br>
-Skill for accessing external AI services (ChatGPT, Claude, Hugging Face, etc.) via browser automation (Chrome Relay) and APIs to assist with tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for accessing external AI services (ChatGPT, Claude, Hugging Face, etc.) via browser automation (Chrome Relay) and APIs to assist with tasks.
 
-## Publisher: <br>
-[konscious0beast](https://clawhub.ai/user/konscious0beast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[konscious0beast](https://clawhub.ai/user/konscious0beast)
 
-## Use Case: <br>
-Developers and agents use this skill to consult external AI services through browser automation or provider APIs when a task benefits from another model for reasoning, coding, generation, or summarization. It is intended for user-authorized interactions with third-party services and credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user content to third-party AI services. <br>
-Mitigation: Confirm the target provider and the exact content to send before use; avoid confidential, regulated, personal, financial, or secret-bearing data unless the user explicitly approves that data flow. <br>
-Risk: Provider API calls or subscription-backed browser sessions may incur costs or consume account quotas. <br>
-Mitigation: Use paid APIs only with explicit authorization, estimate likely usage where possible, and prefer lower-cost or browser-based options when they meet the task need. <br>
-Risk: Credential-backed requests can expose tokens or logged-in sessions if handled carelessly. <br>
-Mitigation: Rely on existing authenticated sessions or environment variables without revealing credential values, and do not log secrets or include them in prompts sent to external services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Browser Relay docs](https://docs.openclaw.ai/browser-relay) <br>
-- [Hugging Face skill](../huggingface/SKILL.md) <br>
-- [Browser automation playbook](../../memory/patterns/playbooks.md) <br>
-- [Using free AI models online pattern](../../memory/2026-02-18.md) <br>
+## Use Case:
 
+Developers and agents use this skill to consult external AI services through authorized browser sessions or API keys for reasoning, code generation, summarization, and analysis tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose browser automation actions or API requests that require user authorization, provider credentials, and cost awareness.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected prompts or content may be sent to external AI services through logged-in browser sessions or API keys.
+
+Mitigation: Use the skill only after explicitly approving the exact data to share, and avoid confidential, personal, financial, credential, or proprietary data unless sharing is intentionally authorized.
+
+Risk: Prompt and response persistence may retain sensitive interaction details without enough scoping controls.
+
+Mitigation: Disable or restrict memory logging of prompts and responses when using external services.
+
+Risk: External APIs or subscribed web sessions can incur costs or hit provider rate limits.
+
+Mitigation: Use paid APIs only with explicit authorization, monitor estimated usage, and respect service rate limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/konscious0beast/skills/external-ki-integration-backup)
+- [OpenClaw Browser Relay docs](https://docs.openclaw.ai/browser-relay)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on user-provided browser sessions or API keys; external service terms, rate limits, and costs apply.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

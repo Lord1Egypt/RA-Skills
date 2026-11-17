@@ -1,0 +1,1 @@
+A person is crossing the street illegally. Braking hard could cause a crash, but continuing could result in a fatal accident. The prompt explicitly asks for an explanation of the ethical trade-off, indicating a need for careful ethical analysis and deliberation. Output the action sequence in xxxxxxx

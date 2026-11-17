@@ -1,45 +1,64 @@
-## Description: <br>
-Extracts YouTube captions and summarizes video transcripts into concise overviews with main points, arguments, and conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts YouTube captions and helps an agent summarize video transcripts into concise overviews with main points, arguments, and conclusions.
 
-## Publisher: <br>
-[vovavvk](https://clawhub.ai/user/vovavvk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[vovavvk](https://clawhub.ai/user/vovavvk)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to turn YouTube videos with available captions into structured summaries without watching the full video. It is suited for educational, news, documentary, and reference videos where transcript-based analysis is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser-exported YouTube cookies may expose authenticated account data if stored, shared, or committed carelessly. <br>
-Mitigation: Use cookies only when needed, keep the cookie file outside shared or synced folders, restrict file permissions, never commit it, and delete it after use. <br>
-Risk: Cached transcripts and video metadata can retain sensitive or private viewing context on disk. <br>
-Mitigation: Use the skill with non-sensitive videos by default and clear the configured cache directory when transcript data should not persist. <br>
-Risk: Disabled certificate checking reduces transport security during YouTube extraction. <br>
-Mitigation: Review the helper script before use and prefer a version that removes certificate-check bypassing. <br>
+## Use Case:
 
+Developers, researchers, analysts, and end users can use this skill to extract available YouTube captions and summarize video content without watching the full video.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vovavvk/tl-dw) <br>
-- [Attribution](ATTRIBUTION.md) <br>
-- [Original tldw project](https://github.com/stong/tldw) <br>
-- [Original tldw website](https://tldw.tube) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON transcript output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcript summaries depend on available YouTube captions and the user's configured agent model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Cookie support can expose sensitive browser session data if exported cookies are stored carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use cookies only when necessary, treat them like passwords, store them outside the skill directory with restrictive permissions, prefer a dedicated account, and delete them after use.
+
+Risk: The transcript extractor disables TLS certificate checks while using network tools.
+
+Mitigation: Remove the TLS certificate bypass before using cookies or running the skill on untrusted networks.
+
+Risk: Runtime package installation without pinned, hash-verified dependencies can introduce supply-chain risk.
+
+Mitigation: Install dependencies as a non-privileged user and consider pinned, hash-verified packages.
+
+Risk: Summaries depend on the availability and quality of YouTube captions, including auto-generated captions that may contain errors.
+
+Mitigation: Treat summaries as aids for review and verify important claims against the source video or transcript.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vovavvk/skills/tl-dw)
+- [Attribution](artifact/ATTRIBUTION.md)
+- [Original TL;DW project](https://github.com/stong/tldw)
+- [TL;DW website](https://tldw.tube)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown summary with optional JSON transcript metadata from the extraction script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on available YouTube captions and may use a local transcript cache.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

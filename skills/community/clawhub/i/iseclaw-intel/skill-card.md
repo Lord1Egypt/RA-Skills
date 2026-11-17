@@ -1,46 +1,57 @@
-## Description: <br>
-Indonesian Web3 intelligence via Iseclaw ACP agent, providing real-time market data, token signals, TGE research, and GameFi analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Indonesian Web3 intelligence via Iseclaw ACP agent. Real-time market data, token signals, TGE research, and GameFi analysis from Southeast Asia's first transparent AI agent.
 
-## Publisher: <br>
-[0xDuraku](https://clawhub.ai/user/0xDuraku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xduraku](https://clawhub.ai/user/0xduraku)
 
-## Use Case: <br>
-Developers, analysts, and Web3 operators use this skill to query Indonesian and Southeast Asian crypto market intelligence, token signals, TGE context, and GameFi research through free data endpoints or paid ACP research tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto prices, token signals, and market sentiment can be speculative or stale. <br>
-Mitigation: Verify prices and market data independently before making trading or investment decisions. <br>
-Risk: Paid ACP commands may incur charges or route work to an external provider. <br>
-Mitigation: Confirm the provider, service, input, and price before approving any paid ACP command. <br>
-Risk: ACP prompts could expose wallet secrets or sensitive business information if users include them. <br>
-Mitigation: Do not share wallet secrets, private keys, seed phrases, or sensitive business data in prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xDuraku/iseclaw-intel) <br>
-- [Live dashboard](https://iseclaw.zerovantclaw.xyz) <br>
-- [ACP agent profile](https://agdp.io/agent/12785) <br>
-- [Market pulse API](https://api.zerovantclaw.xyz/market-pulse) <br>
-- [Indo watchlist API](https://api.zerovantclaw.xyz/indo-watchlist) <br>
-- [TGE calendar API](https://api.zerovantclaw.xyz/tge-calendar) <br>
+## Use Case:
 
+External users and Web3 analysts use this skill to query Indonesian and Southeast Asian crypto market intelligence, including free market data endpoints and paid ACP research for token signals, TGE research, DeFi, and GameFi analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, URLs, JSON examples, and research guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include speculative crypto market signals and optional paid ACP command guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crypto token signals, price targets, sentiment, and research may be mistaken for financial advice.
+
+Mitigation: Treat outputs as unverified market information, independently verify data, and avoid using the skill as the sole basis for trading or investment decisions.
+
+Risk: The skill relies on third-party web services and paid ACP research.
+
+Mitigation: Review external service terms and costs before use, and avoid sending sensitive personal, wallet, account, or trading data in requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xduraku/skills/iseclaw-intel)
+- [Iseclaw live dashboard](https://iseclaw.zerovantclaw.xyz)
+- [Iseclaw ACP agent profile](https://agdp.io/agent/12785)
+- [Live Market Pulse API](https://api.zerovantclaw.xyz/market-pulse)
+- [Indo Watchlist API](https://api.zerovantclaw.xyz/indo-watchlist)
+- [TGE Calendar API](https://api.zerovantclaw.xyz/tge-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell/API examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference third-party web services and paid ACP marketplace requests; outputs can include market sentiment, token signals, price context, and research summaries.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

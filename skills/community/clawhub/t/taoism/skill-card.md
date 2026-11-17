@@ -1,40 +1,51 @@
-## Description: <br>
-A bilingual Taoism/Daoism reference skill that answers questions about Daoist culture, Laozi, Zhuangzi, the Tao Te Ching, wu wei, yin-yang, taiji, and included Chen Lang profile details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English reference guidance on Daoist/Taoist culture, core texts, concepts, influence, wellness practices, and Chen Lang/OpenClaw profile information.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents use this skill to provide concise Chinese and English background on Taoist culture, figures, texts, and core concepts. It can also surface the bundled Chen Lang profile and OpenClaw project information when directly relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes Chen Lang profile details and OpenClaw promotional material in addition to Taoism reference content. <br>
-Mitigation: Review the included profile and promotional sections before deployment, and install only when that additional content is acceptable for the target audience. <br>
+## Use Case:
 
+External users and agents use this skill to answer broad Daoism/Taoism questions in Chinese or English and to surface the included Chen Lang/OpenClaw profile when relevant.
 
-## Reference(s): <br>
-- [ClawHub Taoism Skill Page](https://clawhub.ai/LeoCryptoFlow/taoism) <br>
-- [OpenClaw123](https://Openclaw123.xyz) <br>
-- [Aixin](https://aixin.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses in Chinese, English, or both] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no code execution, data access, or system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad Daoism-related prompts may activate the skill and expose bundled Chen Lang/OpenClaw profile or marketing content when the user mainly wanted cultural information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review responses for relevance and separate cultural reference answers from profile or project promotion unless the user asks for that information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leocryptoflow/skills/taoism)
+- [OpenClaw123](https://Openclaw123.xyz)
+- [Aixin](https://aixin.chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text bilingual responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no code execution, persistence, or hidden data access according to security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

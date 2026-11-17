@@ -1,40 +1,58 @@
-## Description: <br>
-context-mode is an MCP server that saves 98% of your context window by sandboxing tool outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YiHui CONTEXT MODE helps coding agents conserve context by routing large command, file, and web outputs through context-mode tools for searchable summaries and session continuity.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-Developers and agent users use this skill to route large file reads, shell outputs, web fetches, and indexed retrieval through a context-management MCP server so agent sessions can conserve context window space and recover information after compaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes broad local shell, file-reading, indexing, and web-fetching activity through an MCP server. <br>
-Mitigation: Use it only in trusted workspaces, pin and verify the npm package, and configure deny rules for secrets and destructive commands before enabling the server. <br>
-Risk: Persistent SQLite/FTS indexing may retain sensitive local content if private logs, credentials, or restricted documents are indexed. <br>
-Mitigation: Exclude sensitive paths from indexing, avoid indexing credential-bearing files, and confirm the process for purging stored index data. <br>
+## Use Case:
 
+Developers and engineers using AI coding agents use this skill to inspect projects, run commands, fetch or index research material, and preserve session continuity while reducing raw tool output in context.
 
-## Reference(s): <br>
-- [YiHui CONTEXT MODE on ClawHub](https://clawhub.ai/1yihui/yihui-context-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terse agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to use MCP tools for local command execution, file indexing, web fetching, BM25 search, and SQLite/FTS-backed session continuity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The MCP server is installed through an unpinned npm invocation and may change between installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the npm package version before installing or enabling the server.
+
+Risk: The MCP server can execute commands and read or index local content.
+
+Mitigation: Run it with limited filesystem access and avoid indexing private repositories or sensitive files until storage and cleanup behavior are clear.
+
+Risk: The MCP server can fetch web data and place fetched material into searchable context.
+
+Mitigation: Fetch trusted URLs only and review indexed results before acting on generated guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1yihui/skills/yihui-context-mode)
+- [Publisher profile](https://clawhub.ai/user/1yihui)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and terse text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use MCP tools to execute commands, fetch web content, and index local or fetched content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

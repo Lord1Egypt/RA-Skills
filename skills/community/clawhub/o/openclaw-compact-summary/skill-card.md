@@ -1,38 +1,49 @@
-## Description: <br>
-Generates a structured Markdown summary format for OpenClaw memory flushes and conversation compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured Markdown summary format for OpenClaw memory flush and compaction workflows.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-OpenClaw agents and developers use this skill during memory flush or compaction to preserve conversation state, tool usage, user requests, pending tasks, key files, current work, timeline details, and resume instructions in MEMORY.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory summaries can persist secrets, credentials, private personal data, or sensitive business details in local MEMORY.md files. <br>
-Mitigation: Review summaries before long-term retention, avoid including sensitive content, and periodically inspect MEMORY.md in shared or long-lived workspaces. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to standardize memory compaction into a reusable MEMORY.md summary with conversation scope, tools, requests, tasks, files, current work, timeline, and resume state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/openclaw-compact-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Structured Markdown memory summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes conversation scope, tools used, user requests, todo items, key files, current work, timeline, and resume instruction sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The template includes a resume instruction that may cause future agents to continue from persistent memory without recap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated MEMORY.md content before relying on it, and remove or adjust the Resume Instruction section if persistent memory should contain only factual state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/skills/openclaw-compact-summary)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, configuration]
+
+**Output Format:** [Markdown structured summary template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a MEMORY.md-oriented summary structure with a resume instruction for subsequent agent continuation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

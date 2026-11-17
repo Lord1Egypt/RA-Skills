@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-qr-generator",
-  "version": "1.0.0",
-  "publishedAt": 1776432537023
-}
+{"name":"qr-generator","version":"1.0.0","author":"小鸣 🦞","tags":["qr","code","generator","batch"],"requires":{"bins":["curl"]}}

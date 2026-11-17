@@ -1,43 +1,58 @@
-## Description: <br>
-Generates short ASMR soap or wax cutting videos from a text prompt or a public HTTPS image, emphasizing clean slices, exposed cross-sections, falling powder, and cutting sound. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short vertical ASMR soap or wax cutting videos from text prompts or public HTTPS image URLs, emphasizing clean slices, exposed cross-sections, falling powder, and cutting audio.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Creators, marketers, and agent users use this skill to prepare and run WeryAI video-generation requests for vertical soap or wax cutting ASMR clips. It supports text-to-video prompts and image-to-video generation from public HTTPS image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to WERYAI_API_KEY and sends generation requests to WeryAI. <br>
-Mitigation: Install only when the user is comfortable granting the API key, and keep the key in the runtime environment rather than embedding it in prompts or files. <br>
-Risk: Prompts and public HTTPS image URLs are transmitted to WeryAI and may include user-provided content. <br>
-Mitigation: Review prompts and image URLs before confirming generation, and use only public image URLs that are appropriate to share with the provider. <br>
-Risk: Generation requests may consume WeryAI provider credits. <br>
-Mitigation: Confirm the model, duration, audio setting, and image URL before executing the CLI generation command. <br>
+## Use Case:
 
+External creators and agents use this skill to generate 5-second, 9:16 ASMR-style videos of soap or wax cutting from either a written scene description or a public product image URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/soap-cut-video) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with Node.js CLI commands; script stdout is JSON containing task status, error details, and generated video URLs when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and WERYAI_API_KEY. Requests send prompts and, for image workflows, public HTTPS image URLs to WeryAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, public image URLs, generation metadata, and WERYAI_API_KEY may be sent to WeryAI or configured compatible endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, keep custom WeryAI endpoint variables unset unless they point to trusted HTTPS endpoints, and use a limited or revocable API key.
+
+Risk: Video generation may consume credits or expose task metadata if the API key is misused.
+
+Mitigation: Use a scoped or revocable WERYAI_API_KEY, monitor generated tasks, and rotate the key if endpoint configuration or usage looks unexpected.
+
+Risk: Image-to-video mode requires a public HTTPS image URL, which can expose the referenced source image to the video service.
+
+Mitigation: Use only images that are intended for external processing and avoid private, local, or access-controlled URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/soap-cut-video)
+- [Publisher profile](https://clawhub.ai/user/zoucdr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command parameters and generated video links returned by the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js 18+, WERYAI_API_KEY, optional WeryAI endpoint environment variables, and public HTTPS image URLs for image-to-video generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

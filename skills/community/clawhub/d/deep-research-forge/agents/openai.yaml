@@ -1,0 +1,13 @@
+interface:
+  display_name: "Deep Research Forge"
+  short_description: "Turn messy topics into evidence-led deep research"
+  default_prompt: "Use $deep-research-forge to deeply research a product, company, person, concept, technology, market, policy, or cultural phenomenon. Select a research method stack before choosing a template; build an evidence ledger with claim-level citation maps; compose dynamic output blocks for timeline, competitive snapshot, mechanism analysis, dissent, scenarios, and decision. For complex or time-sensitive topics, run a parallel-research-sprint with independent agents, evidence IDs, conflict resolution, and a single synthesized judgment. For post-run evaluation, use the report-quality rubric to score and recommend ship/revise/rerun. Do not activate parallel mode for simple explainers; do not fabricate surveys or interviews."
+
+  triggers:
+    - "研究一下这个来头"
+    - "帮我摸清楚"
+    - "这次实测效果如何"
+    - "这份调研哪里还不够"
+    - "分头查证"
+    - "research swarm"
+    - "多 agent 并行研究"

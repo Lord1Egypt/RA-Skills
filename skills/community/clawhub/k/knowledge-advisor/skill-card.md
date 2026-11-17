@@ -1,48 +1,69 @@
-## Description: <br>
-Knowledge Advisor extracts, organizes, searches, and applies knowledge from user-ingested books and learning materials while requiring citations to the source material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Knowledge Advisor that extracts, organizes, and applies knowledge from books and learning materials to real-world situations with source-grounded citations.
 
-## Publisher: <br>
-[joeyiptk](https://clawhub.ai/user/joeyiptk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyiptk](https://clawhub.ai/user/joeyiptk)
 
-## Use Case: <br>
-External users and developers use this skill to build and manage a local book-based knowledge base, then ask grounded questions that are answered from ingested materials with source citations. It supports ingestion, search, advisory responses, domain listing, health checks, sync, and removal workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finalized ingestions and sync operations write or rewrite local knowledge-base files. <br>
-Mitigation: Review ingestion summaries before finalizing and keep backups or version control for important knowledge-base directories. <br>
-Risk: Remove workflows can delete a selected book directory after confirmation. <br>
-Mitigation: Confirm the selected book carefully before removal and recover from backup if deleted content must be restored. <br>
-Risk: Private documents or sensitive URLs may be stored locally as extracted content or source metadata. <br>
-Mitigation: Avoid ingesting confidential documents or URLs containing tokens unless local storage of that information is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to ingest books or learning materials into a local knowledge base, then search, compare, and apply extracted frameworks, principles, mental models, anti-patterns, and case studies to real situations.
 
-## Reference(s): <br>
-- [Extraction Guide](references/extraction-guide.md) <br>
-- [Advisor Patterns](references/advisor-patterns.md) <br>
-- [Knowledge Base Schema](references/schema.md) <br>
-- [Cross-Reference Guide](references/cross-reference-guide.md) <br>
-- [Health Check](references/health-check.md) <br>
-- [Domain Detection](references/domain-detection.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/joeyiptk/knowledge-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with cited guidance, generated knowledge-base files, JSON metadata, and shell command output for maintenance workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice is expected to be grounded in the user's local knowledge base and to cite book, chapter or section, and framework when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, version.txt, release evidence) <br>
+Risk: The skill can persist untrusted ingested material and later use it as the basis for advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ingest trusted sources where possible, review extraction summaries before finalizing, and require source citations for advisory output.
+
+Risk: The skill can fetch user-provided URLs and does not have documented URL restrictions or prompt-injection handling.
+
+Mitigation: Avoid ingesting untrusted URLs until URL restrictions and prompt-injection handling are added; review fetched content before adding it to the knowledge base.
+
+Risk: The skill can create, edit, and delete files under the local knowledge base and run bundled maintenance scripts.
+
+Mitigation: Keep backups or version control for the knowledge base, review file changes before accepting them, and confirm removals before deleting book directories.
+
+Risk: Imported book folders or metadata may be malformed because metadata validation and safe JSON/Markdown serialization are not fully documented.
+
+Mitigation: Inspect imported folders before syncing and run the validation script after initialization, import, or rebuild operations.
+
+## Reference(s):
+
+- [Advisor Interaction Patterns](references/advisor-patterns.md)
+- [Extraction Guide](references/extraction-guide.md)
+- [Traditional Chinese Extraction Guide](references/extraction-guide-zh-hant.md)
+- [Simplified Chinese Extraction Guide](references/extraction-guide-zh-hans.md)
+- [Knowledge Base Schema](references/schema.md)
+- [Cross-Reference Guide](references/cross-reference-guide.md)
+- [Domain Detection Guide](references/domain-detection.md)
+- [Health Check Reference](references/health-check.md)
+- [Telegram UX Reference](references/telegram-ux.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with citations, plus Markdown and JSON knowledge-base files and shell command suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English, Traditional Chinese, and Simplified Chinese; advice is intended to cite ingested source material rather than general model knowledge.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, version.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

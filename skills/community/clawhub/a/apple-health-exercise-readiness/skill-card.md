@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes Apple Health export data for a selected day to assess exercise readiness and recommend heavy, moderate, light, or rest activity with supporting detail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a user-provided Apple Health export to estimate today's exercise readiness, recommend one of four activity levels, and explain the key health signals behind the recommendation.
 
-## Publisher: <br>
-[lynnshaw](https://clawhub.ai/user/lynnshaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lynnshaw](https://clawhub.ai/user/lynnshaw)
 
-## Use Case: <br>
-External users and wellness-focused developers use this skill to run a local Python analysis of Apple Health exports and convert sleep, HRV, heart-rate, blood-oxygen, respiration, and activity signals into an exercise intensity recommendation. It helps agents explain the readiness score, highlight risk signals, and avoid presenting the result as a medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exercise readiness guidance may be mistaken for a medical diagnosis or treatment recommendation. <br>
-Mitigation: Present the output as wellness guidance only, preserve the skill's no-diagnosis constraint, and advise medical consultation for persistent abnormal readings or symptoms. <br>
-Risk: Apple Health exports contain sensitive personal health data. <br>
-Mitigation: Run the analyzer locally, avoid unnecessary sharing of export files or generated reports, and review outputs before disclosing them. <br>
-Risk: Missing, unsynced, or insufficient baseline data can make the readiness score less reliable. <br>
-Mitigation: Confirm the export source and target date, call out missing metrics or absent 30-day baselines, and avoid overconfident recommendations when data is incomplete. <br>
+## Use Case:
 
+External users use this skill to turn Apple Health export data into a clear daily exercise recommendation with supporting context from sleep, HRV, resting heart rate, blood oxygen, respiratory rate, and recent activity. The skill is intended for health-management guidance and does not provide medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lynnshaw/apple-health-exercise-readiness) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON analyzer output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes a local Apple Health export ZIP path and optional date/output flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Apple Health exports contain sensitive health data that may be visible to the agent session during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only exports you created yourself and run the skill only when you are comfortable sharing export-derived metrics with the active agent session.
+
+Risk: Saved JSON reports can persist health-derived metrics in the selected output directory.
+
+Mitigation: Use --out only with a directory intended for storing a health-data report and manage that output according to your privacy requirements.
+
+Risk: Exercise readiness recommendations are health-management guidance, not medical diagnosis.
+
+Mitigation: Treat abnormal blood oxygen, resting heart rate, or other warning signals as reasons to rest and consult a clinician when symptoms or abnormal readings persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lynnshaw/skills/apple-health-exercise-readiness)
+- [Publisher profile](https://clawhub.ai/user/lynnshaw)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style exercise readiness report, with optional JSON output from the bundled Python analyzer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a score, four-level activity recommendation, supporting signals, warning signals, and optional exercise_readiness.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

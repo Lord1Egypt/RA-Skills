@@ -1,40 +1,58 @@
-## Description: <br>
-Automates session wrap-up by preserving session context, updating memory and PARA notes, and optionally committing and pushing repository changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Premium session wrap-up: flush daily log, update MEMORY, update PARA, git commit + push, generate summary. Ensures zero context loss between sessions. Includes customizable templates and optional CI integration.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neroagent](https://clawhub.ai/user/neroagent)
 
-## Use Case: <br>
-Developers and agent operators use this skill to close a work session by recording summaries, carrying forward long-term memory, updating open loops, and coordinating repository wrap-up steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically stage, commit, and push repository changes, which may include unrelated work or sensitive files. <br>
-Mitigation: Review carefully before installing; use only in repositories prepared for automatic wrap-up, or change git operations to stage explicit wrap-up files and require confirmation before pushing. <br>
-Risk: Release security evidence reports a command-injection issue in the commit flow. <br>
-Mitigation: Do not pass untrusted commit messages, and fix the command execution path to avoid shell interpretation before using the git commit automation. <br>
+## Use Case:
 
+Developers and agents use this skill to close a work session by preserving notes, updating long-term memory and PARA files, and preparing a Git commit and push. It is intended for users who want repeatable session handoff summaries across agent sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/neroagent/session-wrap-up-premium) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, JSON summaries, and workspace file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update memory and notes files and run git add, commit, and push operations when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill can stage, commit, and push the entire current Git repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review staged files before publishing and disable or remove automatic push unless the repository is ready to publish.
+
+Risk: Unsafe shell command handling could run unintended shell commands.
+
+Mitigation: Replace shell=True Git calls with argument arrays and validate commit messages before execution.
+
+Risk: The skill writes persistent memory and PARA notes.
+
+Mitigation: Review generated notes for sensitive or incorrect content before retaining or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neroagent/skills/session-wrap-up-premium)
+- [Publisher profile](https://clawhub.ai/user/neroagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown reports, JSON summaries, persistent note files, and Git commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write memory and PARA files and may stage, commit, and push repository changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

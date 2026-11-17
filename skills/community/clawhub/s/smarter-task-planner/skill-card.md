@@ -1,46 +1,61 @@
-## Description: <br>
-Smarter Task Planner helps agents create timestamped task folders, plan work in ordered steps, save checkpoints, and resume interrupted analysis, research, extraction, and document-generation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smarter Task Planner helps an agent create timestamped task folders, plan steps, save checkpoints, recover interrupted work, and track progress for structured analysis, research, information extraction, and document generation.
 
-## Publisher: <br>
-[hou0515](https://clawhub.ai/user/hou0515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hou0515](https://clawhub.ai/user/hou0515)
 
-## Use Case: <br>
-Developers and agent users use this skill to structure multi-step work into workspace folders, preserve task memory, and recover unfinished work after interruptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts persist task summaries and metadata in the OpenClaw workspace, which can retain sensitive user or project details. <br>
-Mitigation: Avoid putting secrets, credentials, private customer data, or confidential source material in task notes or checkpoint summaries. <br>
-Risk: The security evidence flags path-scoping and heartbeat script-location issues that can affect where files are read or written. <br>
-Mitigation: Review or patch the heartbeat template before enabling automatic checks, and use only simple task IDs without slashes, absolute paths, or traversal segments. <br>
-Risk: The skill can automatically create task folders and update memory files when its scripts are run. <br>
-Mitigation: Install it only in workspaces where persistent task memory is desired, and review generated files before relying on them for recovery. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to organize multi-step work into traceable task directories with persistent progress records and recovery checkpoints.
 
-## Reference(s): <br>
-- [Smarter Task Planner ClawHub Page](https://clawhub.ai/hou0515/smarter-task-planner) <br>
-- [Workflow Analysis Guide](references/workflow-analysis.md) <br>
-- [Task Memory Guide](references/task-memory-guide.md) <br>
-- [Workspace Structure Examples](references/examples.md) <br>
-- [Heartbeat Guide](templates/HEARTBEAT-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and workspace file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates OpenClaw workspace task folders, memory files, and task metadata when its helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill writes persistent workspace memory and task files, which may retain sensitive task details after use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MEMORY.md, memory, and output files after use, and avoid recording secrets or sensitive content in task summaries.
+
+Risk: Automatic task recovery checks can write or read workspace state from configured script paths.
+
+Mitigation: Enable the heartbeat template only after verifying the script path and confirming the behavior is appropriate for the workspace.
+
+Risk: Untrusted task IDs or step names may lead to unintended file organization or confusing recovery records.
+
+Mitigation: Use trusted, simple task IDs and step names, and inspect generated task directories before continuing long-running work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hou0515/skills/smarter-task-planner)
+- [Task Memory Guide](artifact/references/task-memory-guide.md)
+- [Workflow Analysis Guide](artifact/references/workflow-analysis.md)
+- [Workspace Structure Examples](artifact/references/examples.md)
+- [Heartbeat Guide](artifact/templates/HEARTBEAT-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and workspace file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent task memory, task metadata, and output files in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

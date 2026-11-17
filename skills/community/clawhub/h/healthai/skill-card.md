@@ -1,48 +1,66 @@
-## Description: <br>
-Provides health checkup report analysis, health risk summaries, personalized exercise plans, video recommendations, and daily check-in reminders from text, document, and OCR inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides health-report analysis, health-risk summaries, personalized exercise plans, and daily check-in reminders from text, document, and OCR inputs.
 
-## Publisher: <br>
-[amitabhama](https://clawhub.ai/user/amitabhama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amitabhama](https://clawhub.ai/user/amitabhama)
 
-## Use Case: <br>
-External users and agents use this skill to parse health checkup data, summarize possible health risks, generate exercise and diet guidance, recommend exercise videos, and keep recurring check-in records. Its health guidance should be reviewed as informational support and not treated as professional medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health data and stores local records. <br>
-Mitigation: Install only where local health-data storage is acceptable, restrict file access, and review generated health guidance before acting on it. <br>
-Risk: Scheduled reminders and broad auto-activation can send health-related messages without enough user intent. <br>
-Mitigation: Require explicit user confirmation before enabling cron, heartbeat reminders, or outbound health-related messages, and narrow trigger phrases to intentional requests. <br>
-Risk: Bundled Feishu credentials and embedded user or document identifiers may expose or misroute data. <br>
-Mitigation: Remove and rotate bundled secrets, then replace embedded identifiers with per-user configuration before installation. <br>
-Risk: Feishu or Tencent document flows may move health-related content through third-party services. <br>
-Mitigation: Use those integrations only after confirming the destination workspace, document permissions, and user consent. <br>
+## Use Case:
 
+Individuals and agents use this skill to extract health indicators from reports, identify abnormal values, generate exercise and diet guidance, record check-ins, and prepare health-tracking documents. It is intended for personal health management support, not clinical diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amitabhama/healthai) <br>
-- [Health indicator reference ranges](references/指标参考范围.md) <br>
-- [Calorie calculation reference](references/卡路里计算参考.md) <br>
-- [Tencent Docs authorization reference](https://docs.qq.com/open/auth/mcp.html) <br>
-- [Feishu developer platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON-backed local records, and generated health tracking documents.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local health records, exercise plans, check-in files, online document content, and recurring reminder configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive health, check-in, messaging, and document data may be stored locally or sent through Feishu or Tencent Docs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated account, remove packaged identifiers and credentials, and decide explicitly where health data may be stored or transmitted before enabling the skill.
+
+Risk: Broad health-related triggers and persistent reminders may activate the skill or send messages more often than intended.
+
+Mitigation: Narrow the activation triggers and disable heartbeat or cron setup unless recurring reminders are explicitly required.
+
+Risk: Shell command construction and cron setup can change the local environment or execute unsafe commands.
+
+Mitigation: Review commands before installation, replace shell=True command construction with argument-list subprocess calls, and avoid automatic cron changes in shared or production environments.
+
+Risk: Health-risk summaries and exercise or diet plans can be mistaken for medical advice.
+
+Mitigation: Present generated guidance as informational support only and require professional medical review for diagnosis, treatment, severe symptoms, or abnormal results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amitabhama/skills/healthai)
+- [Publisher profile](https://clawhub.ai/user/amitabhama)
+- [Health indicator reference ranges](artifact/references/指标参考范围.md)
+- [Calorie calculation reference](artifact/references/卡路里计算参考.md)
+- [Tencent Docs token setup](https://docs.qq.com/open/auth/mcp.html)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON health records and plans, shell commands, configuration snippets, and document links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local health and check-in JSON data and may send reminders or document updates through Feishu or Tencent Docs when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact SKILL.md reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

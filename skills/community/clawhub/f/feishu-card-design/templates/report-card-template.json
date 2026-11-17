@@ -1,0 +1,120 @@
+{
+  "_template_meta": {
+    "name": "report-card-template",
+    "type": "report",
+    "description": "报告类卡片标准 4 段式模板（主推+亮点+统计+行动）",
+    "header_template": "blue",
+    "color_scheme": "blue 系邻近色环（blue-50 + yellow-50 + grey-50）",
+    "usage": "复制本文件，替换 {{...}} 占位符，调用飞书 OpenAPI 发送"
+  },
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "{{YYYYMMDD}}-{{报告类型}}-{{关键信息1}}-{{关键信息2}}"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "{{YYYY-MM-DD}} · {{主题描述}}"
+    },
+    "template": "blue"
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "blue-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 🌟 {{主推块标题}}\n\n{{主推块内容：核心信息、主要发现、关键论断}}\n\n> {{可选引用：金句/原话}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### ⚡ {{亮点块标题}}\n\n**「{{金句/反常识内容}}」**\n\n> {{金句解释/背景}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 📊 {{统计块标题}}\n\n- {{指标1}}：{{数值1}}\n- {{指标2}}：{{数值2}}\n- {{指标3}}：{{数值3}}\n- {{指标4}}：{{数值4}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整云文档"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "{{文档URL}}"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 {{来源标识}} · {{触发时间}} 自动生成"
+      }
+    ]
+  }
+}

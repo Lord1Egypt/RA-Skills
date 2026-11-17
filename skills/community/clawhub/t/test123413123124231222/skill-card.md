@@ -1,40 +1,52 @@
-## Description: <br>
-在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。
 
-## Publisher: <br>
-[lky115](https://clawhub.ai/user/lky115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lky115](https://clawhub.ai/user/lky115)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and product teams use this skill to turn early creative ideas into validated designs before implementation. It guides the agent to inspect project context, ask one clarifying question at a time, compare alternatives, and produce a concise design document when approved.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill broadly activates for creative or design work and may steer workflows even when lightweight discussion would be enough.
+
+Mitigation: Install it only when a structured brainstorming workflow is desired, and confirm activation scope before relying on it for routine edits.
+
+Risk: The skill tells the agent to write and git-commit design documents without a clear final approval step.
+
+Mitigation: Require explicit approval before writing files or creating git commits.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and product builders use this skill to clarify creative work before implementation, explore alternatives, and turn early ideas into a validated design. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate broadly during creative or planning work and may shape requirements before the user has confirmed the direction. <br>
-Mitigation: Use it as a collaborative planning aid, answer one question at a time, and confirm each design section before relying on the output. <br>
-Risk: Accepted designs may lead to project document changes or other consequential outputs. <br>
-Mitigation: Review the generated design in a language you fully understand before allowing document changes, commits, or implementation work. <br>
+**Output Format:** [Conversational guidance and Markdown design documents]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lky115/test123413123124231222) <br>
+**Other Properties Related to Output:** [May propose follow-on planning skills for implementation, embedded projects, or simulation projects.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational guidance and Markdown design sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a validated design document path when the user approves the design.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Captures web screenshots, retrieves page titles, and scrapes text or HTML content from web pages using a URL and optional CSS selector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture web screenshots, retrieve page titles, and scrape text or HTML content from web pages using a Playwright-backed service.
 
-## Publisher: <br>
-[dang-ngoc-duy](https://clawhub.ai/user/dang-ngoc-duy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dang-ngoc-duy](https://clawhub.ai/user/dang-ngoc-duy)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect web pages by capturing screenshots, reading page titles, and extracting page text or selected HTML content. It is suitable for controlled browser automation workflows where the configured backend and screenshot destination are trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may be sent to a hard-coded Telegram group without clear user control or destination scoping. <br>
-Mitigation: Use only with pages and data approved for that Telegram destination, or change the skill to require explicit approval and a user-selected destination before sending screenshots externally. <br>
-Risk: The browser backend is a private network endpoint whose trust boundary is not established by the release evidence. <br>
-Mitigation: Install only if you control or trust the configured backend, and avoid authenticated pages, private dashboards, customer data, and internal systems unless the backend and destination are governed. <br>
+## Use Case:
 
+Developers and agents use this skill to capture screenshots, inspect page titles, and extract page text or HTML from provided URLs. It is best suited for public or explicitly approved pages where screenshot handling and service operator trust are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dang-ngoc-duy/playwright-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, files] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshots are saved as image files before being sent to the configured Telegram destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Screenshots can be sent to a fixed Telegram group without clear confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved pages, confirm the recipient before forwarding screenshots, and keep screenshots local when handling internal, personal, or confidential content.
+
+Risk: The browser service is unrestricted and depends on trust in the service operator.
+
+Mitigation: Install only when the operator is trusted, restrict allowed URLs where possible, and avoid authenticated or confidential pages unless the workflow is changed to enforce scoping.
+
+Risk: Scraped content can be incomplete for login-gated or dynamically loaded pages.
+
+Mitigation: Treat empty or partial scrape results as operational limitations and verify important outputs before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dang-ngoc-duy/skills/playwright-service)
+- [ClawHub publisher profile](https://clawhub.ai/user/dang-ngoc-duy)
+
+## Skill Output:
+
+**Output Type(s):** [text, HTML, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; service responses may be JSON and screenshots may be image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Screenshots may be saved locally before optional forwarding to Telegram; scraped output depends on page access, authentication, and dynamic loading behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

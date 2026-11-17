@@ -1,0 +1,43 @@
+{
+  "name": "blogizi",
+  "version": "0.4.2",
+  "description": "CLI to draft, update, and publish markdown posts to Blogizi",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "blogizi": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "chmod +x dist/index.js",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["blogizi", "blog", "markdown", "cli", "seo", "claude-code", "agent"],
+  "author": "ByteMind",
+  "license": "AGPL-3.0-only",
+  "homepage": "https://blogizi.com/docs/cli-publishing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bytemindlab/blogizi-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bytemindlab/blogizi-agent/issues"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^15.0.0",
+    "gray-matter": "^4.0.3",
+    "ora": "^9.4.1",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  }
+}

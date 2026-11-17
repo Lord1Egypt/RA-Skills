@@ -1,43 +1,58 @@
-## Description: <br>
-Nova Orbit helps an agent run a recurring workflow for GitHub research, persistent memory, pattern reuse, self-assessment, and human-visible status updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nova 自驱动轨道 — GitHub调研 + 自进化记忆 + 模式复用 + 人机协作。Nova 的核心智能引擎。
 
-## Publisher: <br>
-[jokerli530](https://clawhub.ai/user/jokerli530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jokerli530](https://clawhub.ai/user/jokerli530)
 
-## Use Case: <br>
-Developers and agent operators use Nova Orbit to structure autonomous research, memory recall, pattern extraction, self-improvement notes, and local status synchronization across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks the agent to maintain persistent cross-session memory, which can capture sensitive task context if used without boundaries. <br>
-Mitigation: Decide what may be written to nova-mind and ByteRover before use, and avoid storing secrets or private task content. <br>
-Risk: The workflow includes network calls and local status updates that may expose activity or depend on local services. <br>
-Mitigation: Review configured endpoints and proxy settings before execution, and run the skill only in environments where those services are expected. <br>
-Risk: The workflow references self-evolution and skill or behavior updates, which can change future agent behavior. <br>
-Mitigation: Require human review before applying skill updates, behavior updates, or self-assessment recommendations. <br>
-Risk: The workflow references running a local self-assessment script. <br>
-Mitigation: Inspect or disable the referenced script before use, especially in shared or production environments. <br>
+## Use Case:
 
+Developers and external agent users use this skill to guide a Nova agent through recurring GitHub research, pattern reuse, persistent memory updates, self-assessment, and local status reporting workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve network calls, local status updates, persistent memory files, ByteRover curation, and self-assessment script execution when followed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can write persistent local memory and update pattern or skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review before memory, pattern, or skill updates and use it only in workspaces where persistent agent notes are acceptable.
+
+Risk: The workflow may run a local self-assessment script and post status to localhost services.
+
+Mitigation: Review or disable the external script path and local service integration before installation.
+
+Risk: The workflow can send task context through ByteRover and GitHub requests via a local proxy.
+
+Mitigation: Avoid using the skill with secrets, credentials, or proprietary task text unless those integrations are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jokerli530/skills/nova-orbit)
+- [Publisher profile](https://clawhub.ai/user/jokerli530)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to write persistent local memory, update pattern files, call local services, use ByteRover, query GitHub through a local proxy, and run a local self-assessment script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

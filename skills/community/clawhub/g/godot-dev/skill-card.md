@@ -1,38 +1,53 @@
-## Description: <br>
-Godot 4.x game development with C#/.NET, covering best practices, architecture patterns, performance optimization, and common pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Godot 4.x game development with C#/.NET, covering best practices, architecture patterns, performance optimization, and common pitfalls.
 
-## Publisher: <br>
-[thb32133451](https://clawhub.ai/user/thb32133451) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thb32133451](https://clawhub.ai/user/thb32133451)
 
-## Use Case: <br>
-Developers and engineers use this skill when building, debugging, optimizing, or migrating Godot 4.x projects that use C#/.NET. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated code or architecture guidance may change project behavior or save resources in unintended ways. <br>
-Mitigation: Review generated snippets and migration steps before applying them to a Godot project, especially changes involving resources, scene structure, or game architecture. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Godot 4.6 API Changes Quick Reference](references/godot-46-api.md) <br>
-- [Godot C# Common Errors and Solutions](references/common-errors.md) <br>
+## Use Case:
 
+Developers and engineers use this skill for Godot 4.x C#/.NET project guidance, including architecture patterns, debugging, performance optimization, and migration notes for Godot 4.6 API changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with C# and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include architecture recommendations, debugging steps, migration notes, and performance guidance for Godot 4.x C# projects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Two reference documents named by the skill are not included in the package.
+
+Mitigation: Use only the included Godot 4.6 API and common-errors references, and verify any missing C# patterns or performance guidance against project documentation before relying on it.
+
+Risk: The skill provides development guidance and code examples that may be incorrect for a specific Godot project or engine patch level.
+
+Mitigation: Review suggested code against the target project's Godot and .NET versions, then test changes in the editor or CI before deployment.
+
+## Reference(s):
+
+- [Godot 4.6 API Changes Quick Reference](references/godot-46-api.md)
+- [Godot C# Common Errors and Solutions](references/common-errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with C# and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance with code snippets and troubleshooting checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

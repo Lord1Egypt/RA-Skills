@@ -1,39 +1,50 @@
-## Description: <br>
-Reddit CLI using cookies for authentication. Read posts, search, and get subreddit info. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reddit CLI using cookies for authentication. Read posts, search, and get subreddit info.
 
-## Publisher: <br>
-[kelsia14](https://clawhub.ai/user/kelsia14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kelsia14](https://clawhub.ai/user/kelsia14)
 
-## Use Case: <br>
-Developers and agent operators use this skill to retrieve Reddit posts, search Reddit, inspect subreddit information, and check Reddit cookie authentication from a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to handle REDDIT_SESSION and TOKEN_V2 values that grant access to a Reddit browser session. <br>
-Mitigation: Treat these values like passwords, avoid committing or sharing shell profiles that contain them, prefer temporary environment variables or a secret store, and rotate or log out of Reddit sessions if values may have been exposed. <br>
+## Use Case:
 
+Developers and agent users can use this skill to read Reddit posts, search Reddit, retrieve subreddit metadata, and check cookie-based Reddit access from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelsia14/reddit-cli) <br>
-- [Reddit](https://reddit.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only Reddit post, search, subreddit, and connection-check results using Reddit session cookie environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release and SKILL.md frontmatter) <br>
+Risk: Persistent shell configuration can expose Reddit session cookies more broadly than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not place REDDIT_SESSION or TOKEN_V2 in shell startup files; provide them only for the command that needs them, prefer a secret manager or OAuth-based tool, and revoke the Reddit session if cookies may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelsia14/skills/reddit-cli)
+- [Reddit](https://reddit.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with inline shell commands and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output includes Reddit post summaries, search results, subreddit information, and cookie connection status.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

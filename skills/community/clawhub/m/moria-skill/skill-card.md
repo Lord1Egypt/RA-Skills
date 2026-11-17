@@ -1,46 +1,63 @@
-## Description: <br>
-A Web3 wallet management skill for Moria.fun that lets an agent create, mint, trade, refund, and claim tokens and manage wallet balances and deposits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moria Skill helps an OpenClaw agent manage Moria.fun wallet and token workflows, including token creation, minting, trading, refunds, fee claims, deposits, and balance checks.
 
-## Publisher: <br>
-[miyeon9057](https://clawhub.ai/user/miyeon9057) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miyeon9057](https://clawhub.ai/user/miyeon9057)
 
-## Use Case: <br>
-External users and agents use this skill to operate Moria.fun token workflows, including token creation, minting, buying, selling, refunding, fee claiming, balance checks, and deposit support. Developers and reviewers should treat its wallet and transaction behavior as sensitive because it can control a configured Moria/Solana wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign mainnet wallet transactions for token creation, minting, buying, selling, refunding, and claiming. <br>
-Mitigation: Use only a dedicated, low-balance wallet and require a plain-language transaction summary and user confirmation before every wallet-affecting action. <br>
-Risk: Recoverable wallet key material and account data are stored locally in config/config.json. <br>
-Mitigation: Treat config/config.json as sensitive credentials, never echo its raw contents, and rotate or replace credentials if exposure is suspected. <br>
-Risk: Credential and upload behavior is under-disclosed for production use. <br>
-Mitigation: Review upload paths and replace or rotate embedded Pinata and RPC credentials before production deployment. <br>
-Risk: Ambiguous token addresses, amounts, or requested actions can lead to unintended transactions. <br>
-Mitigation: Refuse ambiguous requests and confirm the mint address, amount, action type, and expected wallet impact before execution. <br>
+## Use Case:
 
+External users and agents use this skill to configure a Moria.fun wallet and run token-management workflows such as creating tokens, buying and selling tokens, claiming fees, and checking balances.
 
-## Reference(s): <br>
-- [Moria.fun](https://moria.fun) <br>
-- [Security Policy](references/security.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/miyeon9057/moria-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can guide or execute wallet-affecting Moria.fun actions through package scripts after configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can sign real Web3 transactions while handling wallet secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use a funded wallet until wallet signing, key storage, and transaction preview controls have been reviewed and hardened.
+
+Risk: Wallet codes and provider credentials may be exposed through command arguments, local files, logs, or errors.
+
+Mitigation: Rotate hard-coded provider credentials, protect wallet-code input, mask secrets in all outputs, and avoid echoing raw config or error payloads.
+
+Risk: Asset-moving actions such as create, mint, buy, sell, refund, and claim can move funds or tokens without sufficient preview.
+
+Mitigation: Require explicit transaction previews and user confirmation before each asset-moving command.
+
+Risk: The artifact behavior can delete user-provided upload files after token creation.
+
+Mitigation: Delete user-provided files only after clear user approval or after copying them to a safe temporary location.
+
+## Reference(s):
+
+- [Moria Skill security policy](references/security.md)
+- [Moria.fun](https://moria.fun)
+- [ClawHub skill page](https://clawhub.ai/miyeon9057/skills/moria-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and command output such as tables, public wallet addresses, URLs, and transaction signatures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on wallet configuration, network state, and user-provided token or image inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; package.json reports 0.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

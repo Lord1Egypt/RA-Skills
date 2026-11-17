@@ -1,41 +1,54 @@
-## Description: <br>
-Accesses the sora-2 model on the vwu.ai platform through an OpenAI-compatible chat completions API using a user-supplied API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and use the sora-2 model on the vwu.ai platform through an OpenAI-compatible chat completions API.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure a vwu.ai API key and send prompts to the supported sora-2 chat model from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and chat content are sent to vwu.ai for processing. <br>
-Mitigation: Use only data approved for that provider and avoid submitting secrets or regulated data unless the provider has been approved for that use. <br>
-Risk: The wrapper uses a user-supplied API key and supports an alternate VWU_BASE_URL. <br>
-Mitigation: Use a dedicated API key where possible, protect the environment variable, and leave VWU_BASE_URL unset unless the alternate endpoint is intentionally trusted. <br>
+## Use Case:
 
+Developers and agent users can configure a vwu.ai API key and call the sora-2 model from an agent workflow or shell command. The skill is useful when an OpenAI-compatible chat completions interface is needed for vwu.ai-hosted Sora model access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3273283/vwu-sora) <br>
-- [vwu.ai](https://vwu.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the selected chat completion content from the vwu.ai API; requires VWU_API_KEY and optionally accepts VWU_BASE_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send the user's API key and prompts to vwu.ai or to a custom VWU_BASE_URL endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable using vwu.ai for these prompts, avoid putting secrets in prompts, and set VWU_BASE_URL only to an endpoint you trust.
+
+Risk: The shell wrapper builds JSON request payloads directly from user input.
+
+Mitigation: Review inputs before use and prefer a safer version that constructs JSON with a proper encoder such as jq.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/a3273283/skills/vwu-sora)
+- [vwu.ai](https://vwu.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; supports VWU_BASE_URL override for trusted endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

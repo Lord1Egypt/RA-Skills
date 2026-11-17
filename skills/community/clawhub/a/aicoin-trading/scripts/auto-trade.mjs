@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Automated Trading — config management + trade execution helper
 // Strategy decisions are made by the AI agent, not this script.
-import { cli } from '../lib/cli.mjs';
+import { cli } from '../lib/aicoin-api.mjs';
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

@@ -1,39 +1,53 @@
-## Description: <br>
-General-purpose orchestration for Codex that uses update_plan and background PTY terminals to run parallel codex exec workers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General-purpose orchestration for Codex. Uses update_plan plus background PTY terminals to run parallel codex exec workers.
 
-## Publisher: <br>
-[shanelindsay](https://clawhub.ai/user/shanelindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shanelindsay](https://clawhub.ai/user/shanelindsay)
 
-## Use Case: <br>
-Developers and Codex users use this skill to coordinate multi-step work, delegate scoped worker tasks, and synthesize results while retaining control of the final answer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill coordinates background workers and shell commands, which can expand the impact of a mistaken prompt or command. <br>
-Mitigation: Use it only in trusted workspaces, keep worker scopes narrow, and review worker outputs before acting on them. <br>
-Risk: The documented no-approval posture can lead to unintended command execution or edits. <br>
-Mitigation: Prefer read-only worker prompts unless edits are explicitly intended, and avoid exposing sensitive credentials or private data unless necessary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shanelindsay/codex-orchestration) <br>
+## Use Case:
 
+Developers and technical agents use this skill to split Codex work into planned worker tasks, run parallel reviews or checks, and synthesize verified results.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, text] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates worker prompts, plan updates, and command execution patterns for Codex sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages no-approval background workers that can run commands, use web search, and make scoped file edits.
+
+Mitigation: Use explicit approval gates for web searches, destructive commands, writes outside intended workspace paths, and long-running or persistent worker processes.
+
+Risk: Parallel workers can create conflicting recommendations or overlapping edits if their scopes are not controlled.
+
+Mitigation: Keep worker tasks read-only by default, use one writer per artifact, and have the orchestrator review synthesized output before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shanelindsay/skills/codex-orchestration)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands and worker prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce background worker commands, plans, synthesized findings, and verification notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

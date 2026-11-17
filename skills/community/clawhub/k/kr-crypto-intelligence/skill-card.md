@@ -1,45 +1,56 @@
-## Description: <br>
-Korean crypto, Korean news, and AI analysis data service for trading and content agents, with paid MCP and REST endpoints covering Kimchi Premium, exchange intelligence, market sentiment, K-pop news, semiconductor news, and signed payment receipts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Korean crypto market, exchange, sentiment, and news data through paid MCP and REST endpoints with AI analysis, x402 payments, and signed receipts.
 
-## Publisher: <br>
-[bakyang2](https://clawhub.ai/user/bakyang2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bakyang2](https://clawhub.ai/user/bakyang2)
 
-## Use Case: <br>
-External developers and agents use this skill to request Korean crypto market data, Korean market sentiment, and translated Korean news analysis through a remote paid MCP or REST service. It is suited to agents that need exchange intelligence, paid API responses, and receipt records for accountability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid remote tool calls can incur per-call USDC charges through x402-enabled clients. <br>
-Mitigation: Keep payment confirmation enabled, configure a spending limit, and start with user-invoked operation until billing behavior is understood. <br>
-Risk: Tool calls are sent to an external remote service and may include tool parameters plus normal HTTP metadata. <br>
-Mitigation: Avoid sending unnecessary private context and review the MCP client's privacy and transport settings before use. <br>
-Risk: Paid response records may need auditability for reconciliation or accountability. <br>
-Mitigation: Verify signed receipts against the published receipt signer metadata when audit logs or payment reconciliation are required. <br>
+## Use Case:
 
+External agents and developers use this skill to query South Korean crypto premiums, exchange signals, Korean market sentiment, and translated Korean news for trading or content workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bakyang2/kr-crypto-intelligence) <br>
-- [MCP endpoint](https://mcp.printmoneylab.com/mcp) <br>
-- [API documentation](https://api.printmoneylab.com/docs) <br>
-- [x402 receipt metadata](https://api.printmoneylab.com/.well-known/x402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with MCP configuration snippets and remote MCP or REST JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid responses may include ECDSA secp256k1 receipts; calls may require x402 payment authorization through the client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Paid remote calls may incur per-call charges when the MCP client approves x402 payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review payment approval settings, use user-invoked mode, and configure spending limits before installation.
+
+Risk: Tool calls may send requested topic parameters and standard HTTP metadata to the remote service.
+
+Mitigation: Review the MCP client's privacy and transport settings before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bakyang2/skills/kr-crypto-intelligence)
+- [API documentation](https://api.printmoneylab.com/docs)
+- [MCP server endpoint](https://mcp.printmoneylab.com/mcp)
+- [Artifact-provided public repository link](https://github.com/bakyang2/kr-crypto-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Analysis]
+
+**Output Format:** [Markdown guidance and JSON-like MCP or REST responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid responses may include signed receipt metadata for agent accountability.]
+
+## Skill Version(s):
+
+1.5.0 (source: evidence release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

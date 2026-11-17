@@ -1,41 +1,54 @@
-## Description: <br>
-Video Craft Pro helps creators generate short-form video scripts, voiceover copy, subtitles, titles, hashtags, and calls to action for platforms such as Douyin, Kuaishou, YouTube Shorts, Bilibili, and Reels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Craft Pro helps short-video creators, self-media operators, and marketing teams generate platform-specific video scripts, voiceover drafts, subtitles, titles, hashtags, and calls to action.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-External creators, media operators, and marketing teams use this skill to turn a topic or existing script into platform-adapted short-video scripts, voiceover drafts, subtitles, titles, hashtags, and engagement prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts, captions, hashtags, or platform suggestions may be inaccurate, misleading, off-brand, or unsuitable for publication. <br>
-Mitigation: Review and edit generated content before publishing. <br>
-Risk: Prompts or source material may include confidential campaign, creator, or business information. <br>
-Mitigation: Use only approved agent environments for confidential material and avoid sharing sensitive information when approval is not clear. <br>
+## Use Case:
 
+External short-video creators, self-media operators, and marketing teams use this skill to turn a topic or existing script into a production-ready package for short-form platforms. It supports script structure, hook optimization, voiceover notes, subtitles, titles, hashtags, and CTA copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/video-craft-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/freeman88-tch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text for video scripts, voiceover copy, subtitles, titles, hashtags, and calls to action.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed before publishing; bilingual subtitles may be produced when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may expect reliable multilingual behavior even though the evidence describes the skill as primarily written for Chinese-language short-video workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired output language and platform before use, and review generated subtitles or bilingual copy before publishing.
+
+Risk: Generated hooks, captions, hashtags, and CTA copy may be inaccurate, misleading, or poorly matched to a platform audience.
+
+Mitigation: Review generated creative assets against brand, factual, legal, and platform requirements before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeman88-tch/skills/video-craft-pro)
+- [Publisher Profile](https://clawhub.ai/user/freeman88-tch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured text with sections for scripts, voiceover notes, subtitles, titles, hashtags, and CTA copy.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific variants for Douyin, Kuaishou, YouTube, Bilibili, Reels, and bilingual subtitles when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -6,34 +6,47 @@
  * - 浏览器初始化与持久化会话
  * - 通用错误重试 (withRetry)
  * - 登录状态检测
- * - 日志输出
+ * - 日志输出（统一通过 zhihu-logger）
+ *
+ * @module zhihu-core
  */
 
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-import { readFileSync, writeFileSync, existsSync, mkdirSync, chmodSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, chmodSync, renameSync } from 'fs';
 import { homedir } from 'os';
 import { resolve } from 'path';
 import { chromium } from 'playwright';
-import { addExtra } from 'playwright-extra';
-import stealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { coreLog, writeLog } from './zhihu-logger.js';
 
 // ──────────────────────────────────────────
 // 路径常量
 // ──────────────────────────────────────────
 
+/** @type {string} Cookie 加密存储目录 */
 const COOKIE_DIR = resolve(homedir(), '.hermes', 'credentials');
+/** @type {string} Cookie 加密文件路径 */
 const COOKIE_PATH = resolve(COOKIE_DIR, 'zhihu-cookies.enc');
+/** @type {string} 日志目录 */
 const LOG_DIR = resolve(homedir(), '.hermes', 'logs', 'zhihu');
+/** @type {string} 浏览器持久化数据目录 */
 const BROWSER_DATA_DIR = resolve(homedir(), '.hermes', 'browser-data', 'zhihu');
 
 // ──────────────────────────────────────────
 // Cookie 管理
 // ──────────────────────────────────────────
 
+/** @type {string} 加密算法 */
 const ALGORITHM = 'aes-256-gcm';
+/** @type {number} IV 长度 */
 const IV_LENGTH = 12;
+/** @type {number} 认证标签长度 */
 const AUTH_TAG_LENGTH = 16;
 
+/**
+ * 获取加密密钥（从环境变量）
+ * @returns {Buffer} 32 字节密钥
+ * @throws {Error} 当 ZHIHU_COOKIE_KEY 未设置或格式不正确时
+ */
 function getEncryptionKey() {
   const key = process.env.ZHIHU_COOKIE_KEY;
   if (!key || key.length !== 64) {
@@ -46,6 +59,11 @@ function getEncryptionKey() {
   return Buffer.from(key, 'hex');
 }
 
+/**
+ * 确保目录存在
+ * @param {string} dirPath - 目录路径
+ * @returns {void}
+ */
 function ensureDir(dirPath) {
   if (!existsSync(dirPath)) {
     mkdirSync(dirPath, { recursive: true });
@@ -53,8 +71,17 @@ function ensureDir(dirPath) {
 }
 
 /**
+ * @typedef {object} CookieCheckResult
+ * @property {boolean} valid - 是否有效
+ * @property {number|null} expiresInDays - 剩余天数
+ * @property {string} [reason] - 无效原因
+ */
+
+/**
  * 解密保存的 Cookie 文件
  * 文件格式: [12 bytes IV][16 bytes authTag][加密负载]
+ *
+ * @returns {Array<object>|null} Cookie 数组，解密失败返回 null
  */
 function decryptCookies() {
   if (!existsSync(COOKIE_PATH)) return null;
@@ -62,7 +89,7 @@ function decryptCookies() {
   try {
     const data = readFileSync(COOKIE_PATH);
     if (data.length < IV_LENGTH + AUTH_TAG_LENGTH + 1) {
-      console.warn('[zhihu-core] Cookie 文件损坏或为空，跳过解密');
+      coreLog.warn('Cookie 文件损坏或为空，跳过解密');
       return null;
     }
 
@@ -76,8 +103,8 @@ function decryptCookies() {
     const decrypted = Buffer.concat([decipher.update(ciphertext), decipher.final()]);
     return JSON.parse(decrypted.toString('utf-8'));
   } catch (err) {
-    console.error('[zhihu-core] Cookie 解密失败:', err.message);
-    console.error('[zhihu-core] 请确认 ZHIHU_COOKIE_KEY 正确，或清除 Cookie 文件后重新登录');
+    coreLog.error('Cookie 解密失败', err);
+    coreLog.warn('请确认 ZHIHU_COOKIE_KEY 正确，或清除 Cookie 文件后重新登录');
     return null;
   }
 }
@@ -85,6 +112,9 @@ function decryptCookies() {
 /**
  * 加密并保存 Cookie 到文件
  * 权限设为 0600，仅当前用户可读
+ *
+ * @param {Array<object>} cookies - Playwright 格式的 Cookie 数组
+ * @returns {void}
  */
 function encryptAndSaveCookies(cookies) {
   ensureDir(COOKIE_DIR);
@@ -97,20 +127,26 @@ function encryptAndSaveCookies(cookies) {
   const authTag = cipher.getAuthTag();
 
   const output = Buffer.concat([iv, authTag, encrypted]);
-  writeFileSync(COOKIE_PATH, output);
 
-  // 权限 0600
+  // 原子写入：先写 tmp 文件，再 rename，防止写入崩溃导致文件损坏
+  const tmpPath = COOKIE_PATH + '.tmp';
+  writeFileSync(tmpPath, output);
   try {
-    chmodSync(COOKIE_PATH, 0o600);
+    chmodSync(tmpPath, 0o600);
   } catch {
     // Windows 不支持 chmod，静默忽略
   }
+  renameSync(tmpPath, COOKIE_PATH);
 
-  console.log(`[zhihu-core] Cookie 已加密保存 (${(output.length / 1024).toFixed(1)} KB)`);
+  coreLog.info('Cookie 已加密保存', { sizeKB: (output.length / 1024).toFixed(1) });
 }
 
 /**
- * Cookie 密钥轮换
+ * Cookie 密钥轮换（底层）
+ * @param {string} oldKeyHex - 旧密钥（hex）
+ * @param {string} newKeyHex - 新密钥（hex）
+ * @throws {Error} 当旧密钥解密失败时
+ * @returns {void}
  */
 function rotateCookieKey(oldKeyHex, newKeyHex) {
   const envKey = process.env.ZHIHU_COOKIE_KEY;
@@ -123,7 +159,7 @@ function rotateCookieKey(oldKeyHex, newKeyHex) {
   process.env.ZHIHU_COOKIE_KEY = newKeyHex;
   encryptAndSaveCookies(cookies);
   process.env.ZHIHU_COOKIE_KEY = envKey;
-  console.log('[zhihu-core] Cookie 密钥轮换成功');
+  coreLog.info('Cookie 密钥轮换成功');
 }
 
 // ──────────────────────────────────────────
@@ -132,7 +168,8 @@ function rotateCookieKey(oldKeyHex, newKeyHex) {
 
 /**
  * 检查 Cookie 中 z_c0 的过期时间
- * 返回: { valid, expiresInDays }
+ *
+ * @returns {CookieCheckResult} 检测结果
  */
 function checkCookieExpiry() {
   const cookies = decryptCookies();
@@ -168,24 +205,26 @@ function checkCookieExpiry() {
 /**
  * Cookie 全生命周期检测
  * 在每次启动时调用
+ *
+ * @returns {boolean} 是否通过预检
  */
 function preflightCookieCheck() {
   const { valid, expiresInDays, reason } = checkCookieExpiry();
 
   if (!valid) {
     if (reason === 'no_cookie_file') {
-      console.warn('[zhihu-core] ⚠️ 未找到保存的 Cookie 文件。请先手动登录知乎并导出 Cookie：');
-      console.warn('   node scripts/zhihu-export-cookie.js');
+      coreLog.warn('⚠️ 未找到保存的 Cookie 文件。请先手动登录知乎并导出 Cookie：');
+      coreLog.warn('   node scripts/zhihu-export-cookie.js');
       return false;
     }
     if (reason === 'expired' || reason === 'z_c0_missing') {
-      console.warn('[zhihu-core] ⚠️ Cookie 已过期，请重新登录并导出 Cookie');
+      coreLog.warn('⚠️ Cookie 已过期，请重新登录并导出 Cookie');
       return false;
     }
   }
 
   if (reason === 'expiring_soon') {
-    console.warn(`[zhihu-core] ⚠️ Cookie 将在 ${expiresInDays} 天后过期，请提前重新登录`);
+    coreLog.warn(`⚠️ Cookie 将在 ${expiresInDays} 天后过期，请提前重新登录`);
   }
 
   return true;
@@ -195,16 +234,35 @@ function preflightCookieCheck() {
 // 浏览器管理
 // ──────────────────────────────────────────
 
+/** @type {import('playwright').Browser|null} */
 let browserInstance = null;
+/** @type {import('playwright').BrowserContext|null} */
 let browserContext = null;
 
 /**
+ * @typedef {object} BrowserSession
+ * @property {import('playwright').Browser} browser - 浏览器实例
+ * @property {import('playwright').BrowserContext} context - 浏览器上下文
+ */
+
+/**
+ * @typedef {object} InitBrowserOptions
+ * @property {boolean} [headless=false] - 是否无头模式
+ * @property {string} [proxy] - 代理服务器地址
+ * @property {string} [userDataDir] - 自定义用户数据目录
+ */
+
+/**
  * 初始化持久化浏览器会话
- * 使用 playwright-extra + stealth 插件绕过反爬
+ * 使用原生 Playwright + addInitScript 绕过反爬
+ *
+ * @param {InitBrowserOptions} [options] - 初始化选项
+ * @returns {Promise<BrowserSession>} 浏览器会话对象
+ * @throws {Error} 浏览器启动失败时抛出
  */
 async function initBrowser({ headless = false, proxy, userDataDir } = {}) {
   if (browserInstance && browserInstance.isConnected()) {
-    console.log('[zhihu-core] 复用已有浏览器会话');
+    coreLog.info('复用已有浏览器会话');
     return { browser: browserInstance, context: browserContext };
   }
 
@@ -216,7 +274,6 @@ async function initBrowser({ headless = false, proxy, userDataDir } = {}) {
     args: [
       '--disable-blink-features=AutomationControlled',
       '--disable-features=IsolateOrigins,site-per-process',
-      '--disable-web-security',
       '--no-sandbox',
       '--disable-setuid-sandbox',
     ],
@@ -227,16 +284,7 @@ async function initBrowser({ headless = false, proxy, userDataDir } = {}) {
   }
 
   try {
-    // 如果有 stealth 插件则使用，否则回退到原生 Playwright
-    let browser;
-    try {
-      const playwright = addExtra(chromium);
-      playwright.use(stealthPlugin());
-      browser = await playwright.launch(launchOptions);
-    } catch {
-      console.log('[zhihu-core] playwright-extra 不可用，回退到原生 Playwright');
-      browser = await chromium.launch(launchOptions);
-    }
+    const browser = await chromium.launch(launchOptions);
 
     const context = await browser.newContext({
       userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
@@ -246,42 +294,73 @@ async function initBrowser({ headless = false, proxy, userDataDir } = {}) {
       permissions: [],
     });
 
+    // 设置浏览器环境：隐藏自动化特征（替代 stealth 插件）
+    await context.addInitScript(() => {
+      // 1. 隐藏 navigator.webdriver
+      delete navigator.webdriver;
+      Object.defineProperty(navigator, 'webdriver', { get: () => false });
+
+      // 2. 设置 Chrome 属性
+      window.chrome = { runtime: {} };
+
+      // 3. 绕过 permissions 检测
+      const originalQuery = window.navigator.permissions.query;
+      window.navigator.permissions.query = (parameters) =>
+        parameters.name === 'notifications'
+          ? Promise.resolve({ state: Notification.permission })
+          : originalQuery(parameters);
+
+      // 4. 设置插件列表（模拟正常浏览器）
+      Object.defineProperty(navigator, 'plugins', {
+        get: () => [1, 2, 3, 4, 5],
+      });
+
+      // 5. 语言一致性
+      Object.defineProperty(navigator, 'languages', {
+        get: () => ['zh-CN', 'zh', 'en'],
+      });
+    });
+
     // 加载已保存的 Cookie
     const cookies = decryptCookies();
     if (cookies) {
       await context.addCookies(cookies);
-      console.log(`[zhihu-core] Cookie 已加载 (${cookies.length} 条)`);
+      coreLog.info('Cookie 已加载', { count: cookies.length });
     }
 
     browserInstance = browser;
     browserContext = context;
 
-    console.log('[zhihu-core] 浏览器会话已初始化');
+    coreLog.info('浏览器会话已初始化');
     return { browser, context };
   } catch (err) {
-    console.error('[zhihu-core] 浏览器初始化失败:', err.message);
+    coreLog.error('浏览器初始化失败', err);
     throw err;
   }
 }
 
 /**
  * 持久化当前浏览器 Cookie 到加密文件
+ *
+ * @returns {Promise<void>}
  */
 async function persistCookies() {
   if (!browserContext) {
-    console.warn('[zhihu-core] 无活跃浏览器会话，无法保存 Cookie');
+    coreLog.warn('无活跃浏览器会话，无法保存 Cookie');
     return;
   }
   try {
     const cookies = await browserContext.cookies();
     encryptAndSaveCookies(cookies);
   } catch (err) {
-    console.error('[zhihu-core] Cookie 持久化失败:', err.message);
+    coreLog.error('Cookie 持久化失败', err);
   }
 }
 
 /**
  * 关闭浏览器并保存状态
+ *
+ * @returns {Promise<void>}
  */
 async function closeBrowser() {
   if (browserContext) {
@@ -291,13 +370,16 @@ async function closeBrowser() {
   if (browserInstance) {
     await browserInstance.close();
     browserInstance = null;
-    console.log('[zhihu-core] 浏览器会话已关闭');
+    coreLog.info('浏览器会话已关闭');
   }
 }
 
 /**
  * 检查页面登录状态
  * 通过检测用户头像 DOM 元素判断
+ *
+ * @param {import('playwright').Page} page - Playwright 页面对象
+ * @returns {Promise<boolean>} 是否已登录
  */
 async function checkPageLogin(page) {
   try {
@@ -317,7 +399,7 @@ async function checkPageLogin(page) {
 
     return false;
   } catch (err) {
-    console.error('[zhihu-core] 登录检测失败:', err.message);
+    coreLog.error('登录检测失败', err);
     return false;
   }
 }
@@ -325,24 +407,28 @@ async function checkPageLogin(page) {
 /**
  * 等待用户手动登录
  * 轮询检测登录状态，超时后返回 false
+ *
+ * @param {import('playwright').Page} page - Playwright 页面对象
+ * @param {number} [timeout=300000] - 超时毫秒（默认 5 分钟）
+ * @returns {Promise<boolean>} 是否登录成功
  */
 async function waitForLogin(page, timeout = 5 * 60 * 1000) {
   const startTime = Date.now();
   let isLoggedIn = await checkPageLogin(page);
 
   while (!isLoggedIn && (Date.now() - startTime) < timeout) {
-    console.log('[zhihu-core] 等待用户登录...');
+    coreLog.info('等待用户登录...');
     await sleep(3000);
     isLoggedIn = await checkPageLogin(page);
   }
 
   if (isLoggedIn) {
-    console.log('[zhihu-core] ✅ 登录成功，正在保存 Cookie...');
+    coreLog.info('✅ 登录成功，正在保存 Cookie...');
     await persistCookies();
     return true;
   }
 
-  console.error('[zhihu-core] ❌ 登录超时');
+  coreLog.error('❌ 登录超时');
   return false;
 }
 
@@ -350,12 +436,21 @@ async function waitForLogin(page, timeout = 5 * 60 * 1000) {
 // 通用工具
 // ──────────────────────────────────────────
 
+/**
+ * 异步延迟
+ * @param {number} ms - 毫秒数
+ * @returns {Promise<void>}
+ */
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
  * 人机延迟 - 模拟人类操作间隔
+ *
+ * @param {number} [min=500] - 最小延迟（毫秒）
+ * @param {number} [max=2000] - 最大延迟（毫秒）
+ * @returns {Promise<void>}
  */
 function humanDelay(min = 500, max = 2000) {
   const ms = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -363,8 +458,23 @@ function humanDelay(min = 500, max = 2000) {
 }
 
 /**
+ * @typedef {object} RetryOptions
+ * @property {number} [maxRetries=3] - 最大重试次数
+ * @property {number} [baseDelay=1000] - 基础延迟（毫秒）
+ * @property {number} [maxDelay=30000] - 最大延迟（毫秒）
+ * @property {(err: Error) => boolean} [retryOn] - 自定义重试判定
+ * @property {(attempt: number, err: Error, delay: number) => void} [onRetry] - 重试回调
+ * @property {string} [context=''] - 上下文标签
+ */
+
+/**
  * 统一重试包装器
  * 支持指数退避 + 自定义重试判定
+ *
+ * @template T
+ * @param {() => Promise<T>} fn - 异步函数
+ * @param {RetryOptions} [options] - 重试选项
+ * @returns {Promise<T>} 函数执行结果
  */
 async function withRetry(fn, options = {}) {
   const {
@@ -395,8 +505,8 @@ async function withRetry(fn, options = {}) {
       if (onRetry) {
         onRetry(attempt, err, totalDelay);
       } else {
-        console.warn(
-          `[zhihu-core]${context ? ` ${context}` : ''} ` +
+        coreLog.warn(
+          `${context ? context + ' ' : ''}` +
           `第 ${attempt}/${maxRetries} 次重试，等待 ${Math.round(totalDelay / 1000)}s: ${err.message}`
         );
       }
@@ -409,42 +519,16 @@ async function withRetry(fn, options = {}) {
 }
 
 // ──────────────────────────────────────────
-// 操作日志
-// ──────────────────────────────────────────
-
-/**
- * 写操作日志（JSONL 格式）
- * Schema: { timestamp, level, module, operation, status, duration_ms, cookie_status, error, details }
- */
-function writeLog(entry) {
-  ensureDir(LOG_DIR);
-
-  const date = new Date().toISOString().slice(0, 10);
-  const logFile = resolve(LOG_DIR, `${date}.jsonl`);
-
-  const logEntry = {
-    timestamp: entry.timestamp || new Date().toISOString(),
-    level: entry.level || 'INFO',
-    module: entry.module || 'zhihu-core',
-    operation: entry.operation || 'unknown',
-    status: entry.status || 'success',
-    duration_ms: entry.duration_ms || 0,
-    cookie_status: entry.cookie_status || 'unknown',
-    error: entry.error || null,
-    details: entry.details || {},
-  };
-
-  try {
-    writeFileSync(logFile, JSON.stringify(logEntry) + '\n', { flag: 'a' });
-  } catch (err) {
-    console.error('[zhihu-core] 日志写入失败:', err.message);
-  }
-}
-
-// ──────────────────────────────────────────
 // Cookie 密钥轮换（高层接口）
 // ──────────────────────────────────────────
 
+/**
+ * Cookie 密钥轮换（高层接口）
+ * 使用环境变量 ZHIHU_COOKIE_KEY_OLD 和 ZHIHU_COOKIE_KEY_NEW
+ *
+ * @returns {Promise<void>}
+ * @throws {Error} 当环境变量未设置时
+ */
 async function rotateEncryptionKey() {
   const oldKey = process.env.ZHIHU_COOKIE_KEY_OLD;
   const newKey = process.env.ZHIHU_COOKIE_KEY_NEW;
@@ -465,7 +549,7 @@ async function rotateEncryptionKey() {
     status: 'success',
     details: { note: 'Cookie 加密密钥已轮换' },
   });
-  console.log('[zhihu-core] ✅ Cookie 密钥轮换完成');
+  coreLog.info('✅ Cookie 密钥轮换完成');
 }
 
 // ──────────────────────────────────────────

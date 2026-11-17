@@ -1,46 +1,62 @@
-## Description: <br>
-OpenViking 上下文数据库 helps OpenClaw agents manage layered L0/L1/L2 context, semantic search, session memory, and token usage for OpenViking-backed workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenViking context database skill for AI agents that supports layered L0/L1/L2 context loading, semantic search, file-system-style memory management, and token-use comparison.
 
-## Publisher: <br>
-[onlyonepice](https://clawhub.ai/user/onlyonepice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyonepice](https://clawhub.ai/user/onlyonepice)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and configure OpenViking for OpenClaw, index project resources, search context semantically, inspect layered summaries, and track token savings across agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can run unpinned external code. <br>
-Mitigation: Inspect the install scripts before use and replace the optional curl-to-bash CLI install path with a pinned or manual install when deploying on trusted machines. <br>
-Risk: Provider API keys may be stored locally. <br>
-Mitigation: Use scoped provider API keys and protect local OpenViking configuration files under ~/.openviking. <br>
-Risk: The skill can persist or index user-selected content. <br>
-Mitigation: Avoid importing directories that contain secrets, private repositories, or regulated data unless the deployment has been reviewed for that data. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to install and configure OpenViking, import project context, perform semantic search, browse layered context, and compare token consumption.
 
-## Reference(s): <br>
-- [OpenViking GitHub](https://github.com/volcengine/OpenViking) <br>
-- [OpenViking Website](https://www.openviking.ai) <br>
-- [LiteLLM Provider Documentation](https://docs.litellm.ai/docs/providers) <br>
-- [NVIDIA NIM API](https://build.nvidia.com/) <br>
-- [OpenClaw Skill Documentation](https://docs.openclaw.ai/tools/creating-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local scripts and OpenViking/OpenClaw commands; token statistics are shown as text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact clawhub.json) <br>
+Risk: Installer and setup scripts perform local package installation, shell profile changes, and optional Rust CLI installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, run setup in a disposable environment or virtual environment, avoid running as root, and inspect any downloaded installer before use.
+
+Risk: Provider API keys are written into local OpenViking configuration.
+
+Mitigation: Use provider keys with limited quota or scope and check permissions on ~/.openviking/ov.conf after configuration.
+
+Risk: Imported resources, indexed context, memory, and token statistics can persist across sessions.
+
+Mitigation: Restrict imports to reviewed folders and URLs that exclude secrets, and periodically review or clear the OpenViking workspace and ~/.openviking/session_stats.json.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyonepice/skills/openviking-context)
+- [OpenViking GitHub](https://github.com/volcengine/OpenViking)
+- [OpenViking Website](https://www.openviking.ai)
+- [OpenClaw Skill Documentation](https://docs.openclaw.ai/tools/creating-skills)
+- [LiteLLM Provider Documentation](https://docs.litellm.ai/docs/providers)
+- [NVIDIA NIM API](https://build.nvidia.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command output for search results, layered reads, status checks, and token statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

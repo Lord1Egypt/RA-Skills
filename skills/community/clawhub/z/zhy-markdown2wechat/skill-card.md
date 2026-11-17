@@ -1,44 +1,57 @@
-## Description: <br>
-Use when converting Markdown into WeChat-compatible inline HTML with theme styles for preview, copy-paste, or downstream draft publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown into WeChat-compatible inline HTML with theme styles for preview, copy-paste, or downstream draft publishing.
 
-## Publisher: <br>
-[zhylq](https://clawhub.ai/user/zhylq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhylq](https://clawhub.ai/user/zhylq)
 
-## Use Case: <br>
-Developers, publishers, and agent operators use this skill to convert Markdown files into WeChat-compatible HTML with inline CSS themes for preview, copy-paste editing, or downstream draft publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter may contact npm to install runtime dependencies during conversion. <br>
-Mitigation: Run it only in environments where outbound npm access and temporary .wechat-temp creation and deletion are acceptable. <br>
-Risk: Untrusted Markdown or CSS inputs can affect the generated HTML that is copied into WeChat. <br>
-Mitigation: Use trusted Markdown and theme CSS inputs, and inspect the generated HTML before publishing. <br>
-Risk: Choosing an existing output path may overwrite an important file. <br>
-Mitigation: Select an explicit output path that is safe to replace. <br>
+## Use Case:
 
+Developers and content authors use this skill to convert Markdown files into styled HTML that can be previewed, copied into the WeChat official account editor, or passed to downstream draft publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhylq/zhy-markdown2wechat) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Code, Guidance] <br>
-**Output Format:** [HTML file plus concise text or Markdown status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a WeChat-oriented HTML file with an MdWechat section wrapper and inline theme CSS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill installs npm packages at conversion time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review; prefer a version that pins dependencies with a lockfile and installs dependencies during setup or with install scripts disabled.
+
+Risk: The conversion script writes output files and creates then deletes a working-directory temporary folder.
+
+Mitigation: Run it in a controlled workspace and review input, theme, and output paths before execution.
+
+Risk: Generated publishing HTML may need review before use in WeChat workflows.
+
+Mitigation: Review or sanitize generated HTML before publishing, especially when converting Markdown from untrusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhylq/skills/zhy-markdown2wechat)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [HTML file plus concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a WeChat-compatible HTML file with inline CSS; default output name is output.html when not specified.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-基于证据的汇付/斗拱支付联调诊断 Skill，用于依据日志、请求响应、Webhook 轨迹、SDK 错误、商户配置和生产检查证据来排查下单、查单、关单、退款、对账、签名验签、异步通知、checkout-js 拉起、最终支付状态确认和上线验收问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language, evidence-based diagnostic skill for Huifu/DouGong payment integration failures across order creation, query, close, refund, reconciliation, signing, webhooks, checkout-js launch, final payment state confirmation, and release readiness.
 
-## Publisher: <br>
-[edhahrehh-ship-it](https://clawhub.ai/user/edhahrehh-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edhahrehh-ship-it](https://clawhub.ai/user/edhahrehh-ship-it)
 
-## Use Case: <br>
-Developers and payment integration engineers use this skill to diagnose Huifu/DouGong payment integration failures from sanitized logs, request and response payloads, webhook evidence, SDK behavior, configuration, and order-state records. It helps classify issues, identify likely causes, propose verification steps, and outline code, data, or operations fixes without inventing merchant values or treating front-end callbacks as final payment success. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment logs, webhook payloads, merchant identifiers, credentials, or customer data may be exposed during troubleshooting. <br>
-Mitigation: Share only sanitized evidence, redact private keys, certificates, tokens, passwords, card and identity numbers, personal data, and unnecessary merchant identifiers, and rotate any secret that was pasted. <br>
-Risk: A browser callback or page redirect may be mistaken for final payment success. <br>
-Mitigation: Confirm final payment state through server-side query, verified webhook, or reconciliation before updating durable business state. <br>
-Risk: Production-impacting changes may be made from incomplete evidence or placeholder merchant values. <br>
-Mitigation: Use the skill as a diagnostic checklist, require real redacted configuration evidence before production code changes, and verify fixes against official Huifu/DouGong documentation or support. <br>
+## Use Case:
 
+Developers and payment integration engineers use this skill to diagnose Huifu/DouGong payment integration failures from redacted logs, request and response payloads, webhook traces, SDK errors, merchant configuration, and production-readiness evidence. It helps classify the failure into a diagnostic bucket and produce verification steps, repair actions, and prevention guidance without relying on guesses.
 
-## Reference(s): <br>
-- [Huifu Payment Diagnostic Playbook](references/diagnostic-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown diagnostic report with checklists, evidence summaries, verification steps, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires users to redact payment logs, credentials, private keys, tokens, certificates, card data, identity numbers, and unnecessary merchant identifiers before sharing evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Payment troubleshooting can expose secrets or sensitive personal and transaction data through logs, webhook payloads, certificates, keys, tokens, passwords, card numbers, or identity numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact keys, tokens, passwords, certificates, card or identity numbers, and other secrets before sharing diagnostic logs or payloads.
+
+Risk: Incorrect diagnosis could cause unsafe payment state changes, such as trusting a browser callback as final payment success or using guessed transaction identifiers.
+
+Mitigation: Base conclusions on scoped evidence such as server-side query results, verified webhooks, persisted order identifiers, and reconciliation records before recommending state changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edhahrehh-ship-it/skills/huifu-payment-diagnostics-doctor)
+- [Huifu Payment Diagnostic Playbook](artifact/references/diagnostic-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown diagnostic guidance with checklists, tables, structured evidence requests, and occasional code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts users to redact secrets and avoids treating browser callbacks as final payment success.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

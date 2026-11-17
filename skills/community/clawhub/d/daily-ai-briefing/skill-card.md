@@ -1,42 +1,59 @@
-## Description: <br>
-每日AI硬核进展简报的质量规范与执行流程。定义红线规则、搜索策略、信息源、提纯标准、自检清单和输出模板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines a Chinese-language workflow for producing a daily AI briefing with source checks, freshness limits, filtering rules, self-review, and a Markdown output template.
 
-## Publisher: <br>
-[tino-chen](https://clawhub.ai/user/tino-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tino-chen](https://clawhub.ai/user/tino-chen)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to compile a Chinese daily AI briefing from recent, source-checked research, industry news, and open-source project updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow browses public AI news sources, so dated claims, source eligibility, and GitHub star counts can become stale or be misread. <br>
-Mitigation: Review the generated briefing's dates, source links, and repository metadata before relying on or publishing it. <br>
-Risk: The workflow creates, reads, and writes briefing files under ~/Desktop/daily_ai_briefing. <br>
-Mitigation: Keep that folder limited to intended briefing files and check for an existing same-date file before overwriting a prior draft. <br>
+## Use Case:
 
+External users and AI analysts use this skill to collect recent AI research, product, industry, and open-source updates, remove weak or stale items, and produce a concise Chinese Markdown briefing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tino-chen/daily-ai-briefing) <br>
-- [Daily AI Briefing guide](https://tino-chen.github.io/notes/workflows/daily-ai-briefing.html) <br>
-- [Focused source list](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a dated Chinese AI briefing and, when executed as written, saves it under ~/Desktop/daily_ai_briefing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The skill searches public web sources, so briefings may include incorrect or stale information if source pages are unavailable or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require specific source links, date checks, and final self-review before including each item.
+
+Risk: The skill stores briefing history in ~/Desktop/daily_ai_briefing, which may retain notes the user considers sensitive.
+
+Mitigation: Review or change the storage folder, or instruct the agent not to save files when local retention is not desired.
+
+Risk: The workflow is written for Chinese-language output and may not fit users expecting an English briefing.
+
+Mitigation: Confirm the desired output language before execution and adapt the final template when needed.
+
+## Reference(s):
+
+- [重点关注信息源](references/sources.md)
+- [Daily AI Briefing guide](https://tino-chen.github.io/notes/workflows/daily-ai-briefing.html)
+- [ClawHub skill page](https://clawhub.ai/tino-chen/skills/daily-ai-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown briefing saved as a local .md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current web retrieval for public AI sources and keeps recent briefing history for deduplication.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,70 @@
-## Description: <br>
-Improve important deliverables by looping them through multiple isolated AI reviewers, each evaluating from a different angle, until all reviewers give full approval (Score 120). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve important deliverables by looping them through multiple isolated AI reviewers, each evaluating from a different angle, until all reviewers give full approval (Score 120).
 
-## Publisher: <br>
-[ariesshin](https://clawhub.ai/user/ariesshin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ariesshin](https://clawhub.ai/user/ariesshin)
 
-## Use Case: <br>
-Developers, writers, planners, and other agent users use this skill to improve important deliverables through isolated multi-perspective review, revision, and final approval checks. It is intended for work where a single-pass answer is not enough and the user wants a stricter quality gate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Multi-pass review can be slower and more expensive than a normal single-pass agent response. <br>
-Mitigation: Use explicit invocation for important deliverables where the additional review cost is justified. <br>
-Risk: Local review artifacts such as manifests, ledgers, and reviewer outputs may contain sensitive deliverable content. <br>
-Mitigation: Avoid sensitive documents unless you trust the platform's subagent isolation and are comfortable with those local files being created. <br>
-Risk: Subagent isolation may be unavailable or unverified in some runtimes, reducing the independence of the review perspectives. <br>
-Mitigation: Run the runtime mapping and isolation probe, disclose degraded fallback when isolation is unavailable, and avoid claiming full approval unless the final reviewers pass with Score 120. <br>
+## Use Case:
 
+External users and developers use this skill to improve high-value deliverables such as prompts, plans, code, designs, documents, workflows, and decisions through multi-perspective review and revision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariesshin/skills/loop-anything-skill) <br>
-- [README](artifact/README.md) <br>
-- [Runtime Compatibility](artifact/references/runtime-compatibility.md) <br>
-- [Facet Patterns](artifact/references/facet-patterns.md) <br>
-- [Evidence Guide](artifact/references/evidence-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown workflow guidance with reviewer packet templates, reviewer output templates, manifest requirements, and shell validation commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local review artifacts such as a run manifest, reviewer outputs, an issue ledger, and a final summary when file I/O is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The workflow can increase token use and cost because it runs multiple reviewer passes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it deliberately for high-value artifacts where additional review effort is justified.
+
+Risk: Artifacts sent to subagents may contain sensitive content.
+
+Mitigation: Run the skill only on material the user is comfortable sending to subagents, and keep reviewer packets bounded to the minimum required context.
+
+Risk: A PASS with Score 120 is a structured review result, not a guarantee that the artifact is correct or risk-free.
+
+Mitigation: Treat final approval as a review aid and keep human judgment or domain validation for high-impact uses.
+
+Risk: The workflow depends on the current runtime's ability to create isolated subagents; some runtimes only support degraded self-review.
+
+Mitigation: Run the documented isolation probe, disclose degraded fallback when isolation is unavailable, and avoid claiming full approval without isolated reviewers.
+
+Risk: Installing from mutable or untrusted sources can expose users to changed skill behavior.
+
+Mitigation: Install through ClawHub or another trusted skill installer and review the release evidence before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ariesshin/skills/loop-anything-skill)
+- [Runtime Compatibility](references/runtime-compatibility.md)
+- [Facet Patterns](references/facet-patterns.md)
+- [Evidence Guide](references/evidence-guide.md)
+- [Reviewer Packet Template](templates/reviewer-packet.md)
+- [Reviewer Output Template](templates/reviewer-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, plain text reviewer outputs, JSON manifest data, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a final summary, reviewer outputs, an issue ledger, and a loop-run manifest; the workflow intentionally uses multiple review passes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md metadata.version and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

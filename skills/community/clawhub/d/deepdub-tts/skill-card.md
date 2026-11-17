@@ -1,43 +1,58 @@
-## Description: <br>
-Generate speech audio using Deepdub and attach it as a MEDIA file (Telegram-compatible). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate speech audio using Deepdub and attach it as a MEDIA file for agent workflows.
 
-## Publisher: <br>
-[yuval-deepdub](https://clawhub.ai/user/yuval-deepdub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yuval-deepdub](https://clawhub.ai/user/yuval-deepdub)
 
-## Use Case: <br>
-Developers and agent operators use this skill to convert text into Deepdub-generated speech audio for delivery as a media attachment, including Telegram-compatible OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Synthesized text is sent to Deepdub. <br>
-Mitigation: Use the skill only with text appropriate for processing by Deepdub under the user's applicable data handling requirements. <br>
-Risk: Shared trial credentials are rate-limited and intended only for evaluation. <br>
-Mitigation: Use private Deepdub API keys and voice prompt IDs for private or production workloads. <br>
-Risk: The Deepdub SDK dependency is not pinned in the artifact. <br>
-Mitigation: Pin and review the Deepdub SDK version in managed environments. <br>
+## Use Case:
 
+Developers and operators use this skill to convert text into spoken audio through Deepdub and return the generated MP3 as a MEDIA attachment for channels such as Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuval-deepdub/deepdub-tts) <br>
-- [Deepdub](https://deepdub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [MP3 audio file with a MEDIA path line] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes audio files to OPENCLAW_MEDIA_DIR and prints MEDIA:<path> for agent consumption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: ClawHub release metadata; artifact frontmatter/package.json: 0.1.0) <br>
+Risk: Shared trial credentials may be rate-limited and are not appropriate for real work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use your own Deepdub API key and voice prompt ID before production use.
+
+Risk: The unpinned deepdub dependency may change behavior across installations.
+
+Mitigation: Pin or lock the deepdub package before production deployment.
+
+Risk: Generated audio files are written to the configured media directory.
+
+Mitigation: Set OPENCLAW_MEDIA_DIR to a directory intended for generated audio and run the skill in an isolated, unprivileged environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuval-deepdub/skills/deepdub-tts)
+- [Deepdub](https://deepdub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [files, text]
+
+**Output Format:** [MEDIA path string plus generated MP3 audio file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audio files to OPENCLAW_MEDIA_DIR and requires DEEPDUB_API_KEY and DEEPDUB_VOICE_PROMPT_ID.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "skill-sub",
-  "version": "1.38.0",
-  "publishedAt": 1783048619053
+  "version": "1.38.1",
+  "author": "wUwproject",
+  "name": "skill-sub",
+  "description": "调用链编排技能 — 既是调用链编辑器，也是粗粒度规划器。理解用户意图 → 规划 Skill 参与顺序 → 更新/保存/推荐调用链 → 拼接为调用链（支持循环/分支编排、子步骤拓扑排序、准确步骤计数）。",
+  "tags": [
+    "chain",
+    "orchestration",
+    "usable",
+    "skill-builder",
+    "progressive-loading",
+    "planner",
+    "editor",
+    "step-index",
+    "blueprint"
+  ],
+  "data_dir": "skills/.standardization/skill-sub/data/",
+  "triggers": [
+    "规划类: 帮我规划一下/步骤是什么",
+    "顺序类: 依次执行/先...再...",
+    "链管理: 创建/查看/更新/删除调用链"
+  ]
 }

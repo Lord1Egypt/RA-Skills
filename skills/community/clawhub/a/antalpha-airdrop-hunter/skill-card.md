@@ -1,49 +1,65 @@
-## Description: <br>
-Elite Web3 airdrop strategist with S/A/B grading, scam shields, and guided hunting workflow for checking projects, verifying links, and finding zero-cost opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Antalpha Airdrop Hunter is a Web3 airdrop assistant that grades opportunities, checks scam risk, verifies project links, and guides users toward zero-cost or current opportunities.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-External Web3 users and agents use this skill to evaluate airdrop opportunities, screen suspicious airdrop links, summarize daily opportunities, and find lower-cost participation paths. Its recommendations are advisory and should be reviewed before any wallet connection, signing action, or purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically analyze broad inputs such as URLs and project names, which may make advisory output feel like an instruction to act. <br>
-Mitigation: Treat all findings as advisory, require user confirmation before visiting links or connecting a wallet, and review trigger behavior before deployment. <br>
-Risk: The release is tagged for crypto, wallet-related workflows, and purchase-capable contexts. <br>
-Mitigation: Do not connect a wallet, sign transactions, share private keys, or spend funds based only on the skill output; verify official channels independently. <br>
-Risk: Security evidence notes under-disclosed local file handling. <br>
-Mitigation: Inspect the artifact before installation, run it in a restricted workspace, and prefer a release that clearly documents local file reads and writes. <br>
-Risk: Airdrop recommendations can become stale or rely on malformed or future-dated data. <br>
-Mitigation: Check timestamps and official sources before acting, and reject malformed or future-dated data when current-only recommendations are required. <br>
+## Use Case:
 
+External Web3 users use this skill to scan airdrop opportunities, check project quality, verify suspicious URLs before wallet interaction, and get zero-cost participation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bevanding/antalpha-airdrop-hunter) <br>
-- [Repository](https://github.com/AntalphaAI/airdrop-hunter) <br>
-- [MCP Repository](https://github.com/antalpha-com/antalpha-skills) <br>
-- [Grading System](references/grading-system.md) <br>
-- [Scam Detection](references/scam-detection.md) <br>
-- [Trusted Sources](references/trusted-sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis, JSON] <br>
-**Output Format:** [Markdown guidance rendered from structured tool JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses project grades, scam warnings, next-step options, and date-aware airdrop summaries; does not provide financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can auto-check pasted URLs through an external MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste signed links, password-reset links, private documents, invite URLs, internal hostnames, or URLs containing tokens or query secrets.
+
+Risk: The skill includes multi-account or sybil-evasion guidance.
+
+Mitigation: Treat airdrop strategy as informational and avoid tactics that violate project rules or terms.
+
+Risk: Airdrop links and wallet interactions can expose users to phishing or asset loss.
+
+Mitigation: Independently verify official project links before visiting sites or connecting a wallet.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bevanding/skills/antalpha-airdrop-hunter)
+- [Repository](https://github.com/AntalphaAI/airdrop-hunter)
+- [MCP repository](https://github.com/antalpha-com/antalpha-skills)
+- [Grading system](references/grading-system.md)
+- [Scam detection guide](references/scam-detection.md)
+- [Output template](references/output-template.md)
+- [Evaluation criteria](references/evaluation-criteria.md)
+- [Trusted sources](references/trusted-sources.md)
+- [Daily report template](assets/daily-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown reports with tables, warnings, and next-step options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project grades, scam warnings, source links, and security disclaimers.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

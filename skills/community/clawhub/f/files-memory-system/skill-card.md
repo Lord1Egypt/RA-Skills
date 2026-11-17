@@ -1,45 +1,64 @@
-## Description: <br>
-Files Memory System helps OpenClaw agents maintain group-isolated, private, and global memory directories, organize workspace projects and repositories, and route group-context file operations to the appropriate location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-context memory management system for OpenClaw agents with group-isolated storage, global shared memory, workspace organization, and group-specific skills isolation.
 
-## Publisher: <br>
-[wxwzl](https://clawhub.ai/user/wxwzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxwzl](https://clawhub.ai/user/wxwzl)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to initialize and manage persistent memory across private chats, group chats, shared global context, and group-specific repositories or skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently changes workspace-wide agent instructions through AGENTS.md registration. <br>
-Mitigation: Review the exact AGENTS.md block before enabling the skill and remove or edit rules that do not match the workspace policy. <br>
-Risk: Memory files may store private, group, or global context in plaintext and may be reloaded in later sessions. <br>
-Mitigation: Do not store credentials or sensitive personal data in memory files; use environment variables or a secrets manager for secrets. <br>
-Risk: Group, private, and global memory scopes can expose information more broadly than intended if users choose the wrong target. <br>
-Mitigation: Define clear rules for what may be written to private, group, and global memory, and periodically review stored memory files. <br>
+## Use Case:
 
+Developers and OpenClaw workspace administrators use this skill to set up persistent memory, group-isolated storage, group-specific skills, and scoped project or repository directories across private and group chat contexts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/wxwzl/files-memory-system) <br>
-- [User guide](references/USER_GUIDE.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [Security practices](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace memory files, repository directories, and AGENTS.md registration when its bundled scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.16.1 (source: server release evidence) <br>
+Risk: Persistent memory files can store sensitive chat-derived information in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store API keys, passwords, tokens, or sensitive personal data in memory files; use environment variables or an approved secrets manager.
+
+Risk: Installation changes agent startup behavior by registering memory-loading instructions in AGENTS.md.
+
+Mitigation: Require explicit administrator approval before installation in shared workspaces and review AGENTS.md changes after install or upgrade.
+
+Risk: Group, global, private, and repository paths can be written or cloned into workspace locations.
+
+Mitigation: Validate group identifiers, clone URLs, and destination paths; use trusted skill versions and keep group-scoped content isolated.
+
+Risk: Shared global memory can expose information across groups.
+
+Mitigation: Reserve global memory for non-sensitive cross-group knowledge and keep private or group-only information in the appropriate scoped memory directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wxwzl/skills/files-memory-system)
+- [User Guide](references/USER_GUIDE.md)
+- [Architecture](references/architecture.md)
+- [Security guidance](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and generated memory/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates workspace memory files, group directories, repository locations, and AGENTS.md registration when its scripts are run.]
+
+## Skill Version(s):
+
+1.16.1 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

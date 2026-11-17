@@ -1,0 +1,224 @@
+# db-alert-rules.yml —— 数据库告警规则模板（Prometheus / VictoriaMetrics 通用）
+#
+# 配套 references/capacity-and-pooling.md 第五节的三级阈值表。
+# 依赖 exporter：mysqld_exporter / postgres_exporter / node_exporter。
+#
+# 使用方式：
+#   1. 按环境改 `for` 持续时间（生产建议不小于 5m，压测环境可缩短）
+#   2. 把 P3 规则先挂到"仅记录不通知"的路由上，跑两周观察噪音再决定是否升级
+#   3. 每条规则的 annotations.runbook 指向你们自己的处置文档
+#
+# 分级语义：
+#   P1 = 立即处理（呼叫值班）   P2 = 当天处理（工单）   P3 = 周内跟进（周报）
+#
+# 反模式提醒：不要给所有指标都设 P1。告警疲劳的代价是真故障被淹没。
+
+groups:
+  # ==========================================================
+  # 一、容量类：磁盘 / 连接数
+  # ==========================================================
+  - name: db-capacity
+    rules:
+      - alert: DBDiskAlmostFull
+        expr: |
+          (1 - node_filesystem_avail_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}
+             / node_filesystem_size_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}) > 0.90
+        for: 5m
+        labels: { severity: P1, component: database }
+        annotations:
+          summary: "{{ $labels.instance }} 数据盘使用率 > 90%"
+          description: "当前 {{ $value | humanizePercentage }}。磁盘写满会导致实例只读甚至崩溃。"
+          runbook: "先清 binlog/WAL 归档，再评估扩容；不要直接删数据文件。"
+
+      - alert: DBDiskFillingUp
+        expr: |
+          (1 - node_filesystem_avail_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}
+             / node_filesystem_size_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}) > 0.80
+        for: 30m
+        labels: { severity: P2, component: database }
+        annotations:
+          summary: "{{ $labels.instance }} 数据盘使用率 > 80%"
+          runbook: "查大表增长趋势，评估归档或分区裁剪。"
+
+      # 预测型告警：比阈值告警早，留出处置窗口
+      - alert: DBDiskWillFillIn24h
+        expr: |
+          predict_linear(
+            node_filesystem_avail_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}[6h],
+            24 * 3600
+          ) < 0
+        for: 1h
+        labels: { severity: P2, component: database }
+        annotations:
+          summary: "{{ $labels.instance }} 按当前增速 24 小时内写满磁盘"
+          runbook: "这是最有价值的一条告警，别关。查是否有异常写入或日志未轮转。"
+
+      - alert: MySQLConnectionsHigh
+        expr: mysql_global_status_threads_connected / mysql_global_variables_max_connections > 0.90
+        for: 5m
+        labels: { severity: P1, component: mysql }
+        annotations:
+          summary: "MySQL 连接数占比 > 90%"
+          description: "再涨就会 Too many connections。"
+          runbook: "先看是否连接泄漏（长时间 Sleep），不要第一反应调大 max_connections。"
+
+      - alert: PostgresConnectionsHigh
+        expr: |
+          sum by (instance) (pg_stat_activity_count)
+            / on (instance) pg_settings_max_connections > 0.75
+        for: 10m
+        labels: { severity: P2, component: postgres }
+        annotations:
+          summary: "PostgreSQL 连接数占比 > 75%"
+          runbook: "PG 连接开销远大于 MySQL，优先上 PgBouncer 而非调大上限。"
+
+  # ==========================================================
+  # 二、复制类：延迟 / 中断
+  # ==========================================================
+  - name: db-replication
+    rules:
+      - alert: ReplicationBroken
+        expr: mysql_slave_status_slave_sql_running == 0 or mysql_slave_status_slave_io_running == 0
+        for: 1m
+        labels: { severity: P1, component: replication }
+        annotations:
+          summary: "{{ $labels.instance }} 复制线程已停止"
+          runbook: "先看 Last_Error，不要盲目 SET GLOBAL sql_slave_skip_counter 跳过错误。"
+
+      - alert: ReplicationLagCritical
+        expr: mysql_slave_status_seconds_behind_master > 60
+        for: 5m
+        labels: { severity: P1, component: replication }
+        annotations:
+          summary: "复制延迟 > 60s（当前 {{ $value }}s）"
+          description: "读写分离场景下，此时从库读到的是一分钟前的数据。"
+          runbook: "查主库是否有大事务；单线程回放瓶颈考虑并行复制。"
+
+      - alert: ReplicationLagWarning
+        expr: mysql_slave_status_seconds_behind_master > 10
+        for: 15m
+        labels: { severity: P2, component: replication }
+        annotations:
+          summary: "复制延迟 > 10s"
+
+      - alert: PostgresReplicationLagCritical
+        expr: pg_replication_lag_seconds > 60
+        for: 5m
+        labels: { severity: P1, component: postgres }
+        annotations:
+          summary: "PG 流复制延迟 > 60s"
+          runbook: "查 wal_sender / wal_receiver 状态与网络带宽。"
+
+  # ==========================================================
+  # 三、性能类：缓存命中 / 慢查询 / 锁
+  # ==========================================================
+  - name: db-performance
+    rules:
+      - alert: BufferPoolHitRateLow
+        expr: |
+          (1 - rate(mysql_global_status_innodb_buffer_pool_reads[10m])
+             / clamp_min(rate(mysql_global_status_innodb_buffer_pool_read_requests[10m]), 1)) < 0.90
+        for: 15m
+        labels: { severity: P1, component: mysql }
+        annotations:
+          summary: "InnoDB Buffer Pool 命中率 < 90%"
+          description: "说明热数据放不进内存，磁盘 IO 会成为瓶颈。"
+          runbook: "先确认不是备份/全表扫把缓存冲掉；确实容量不足再加内存。"
+
+      - alert: SlowQueryRateHigh
+        expr: rate(mysql_global_status_slow_queries[5m]) * 60 > 100
+        for: 5m
+        labels: { severity: P1, component: mysql }
+        annotations:
+          summary: "慢查询 > 100 条/分钟"
+          runbook: "取慢日志跑 scripts/slowlog_digest.py，按总耗时排序定位 Top 指纹。"
+
+      - alert: SlowQueryRateWarning
+        expr: rate(mysql_global_status_slow_queries[5m]) * 60 > 20
+        for: 30m
+        labels: { severity: P2, component: mysql }
+        annotations:
+          summary: "慢查询 > 20 条/分钟"
+
+      - alert: DeadlockRateHigh
+        expr: rate(mysql_global_status_innodb_deadlocks[10m]) > 0
+        for: 10m
+        labels: { severity: P2, component: mysql }
+        annotations:
+          summary: "出现 InnoDB 死锁"
+          runbook: "SHOW ENGINE INNODB STATUS 看 LATEST DETECTED DEADLOCK，统一加锁顺序，详见 references/transactions-locking.md。"
+
+      - alert: LongRunningTransaction
+        expr: mysql_info_schema_innodb_trx_duration_seconds > 300
+        for: 1m
+        labels: { severity: P1, component: mysql }
+        annotations:
+          summary: "存在运行超过 5 分钟的事务"
+          description: "长事务会撑大 undo 日志、阻塞 DDL、拖垮 purge。"
+          runbook: "定位后与业务方确认再 KILL；同时检查应用是否忘记提交。"
+
+      - alert: PostgresXidWraparoundRisk
+        expr: pg_database_wraparound_age_datfrozenxid > 1500000000
+        for: 30m
+        labels: { severity: P1, component: postgres }
+        annotations:
+          summary: "PG 事务 ID 回卷风险（age > 15 亿）"
+          description: "达到 20 亿时数据库会强制进入只读保护状态。"
+          runbook: "立即对高 age 的表执行 VACUUM FREEZE，并排查 autovacuum 为何没跑。"
+
+  # ==========================================================
+  # 四、可用性
+  # ==========================================================
+  - name: db-availability
+    rules:
+      - alert: DatabaseDown
+        expr: mysql_up == 0 or pg_up == 0
+        for: 1m
+        labels: { severity: P1, component: database }
+        annotations:
+          summary: "{{ $labels.instance }} 数据库不可达"
+          runbook: "先确认是实例挂了还是 exporter 挂了，两者处置完全不同。"
+
+      - alert: BackupNotFresh
+        expr: time() - db_last_successful_backup_timestamp_seconds > 86400 * 1.5
+        for: 1h
+        labels: { severity: P1, component: backup }
+        annotations:
+          summary: "距上次成功备份已超过 36 小时"
+          description: "备份失败往往静默发生，等到需要恢复时才发现已经太晚。"
+          runbook: "见 assets/backup-runbook.md；同时确认恢复演练是否也停了。"
+
+  # ==========================================================
+  # 五、趋势类（P3）：不呼叫值班，进周报
+  # ==========================================================
+  # 建议先挂到"仅记录不通知"的路由上，观察两周再决定是否升级为 P2。
+  - name: db-trends
+    rules:
+      - alert: DBDiskUsageTrending
+        expr: |
+          (1 - node_filesystem_avail_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}
+             / node_filesystem_size_bytes{mountpoint=~"/var/lib/(mysql|postgresql)"}) > 0.70
+        for: 6h
+        labels: { severity: P3, component: database }
+        annotations:
+          summary: "{{ $labels.instance }} 数据盘使用率 > 70%"
+          runbook: "纳入季度容量规划，评估归档策略；此时处理成本最低。"
+
+      - alert: BufferPoolHitRateDegrading
+        expr: |
+          (1 - rate(mysql_global_status_innodb_buffer_pool_reads[1h])
+             / clamp_min(rate(mysql_global_status_innodb_buffer_pool_read_requests[1h]), 1)) < 0.98
+        for: 6h
+        labels: { severity: P3, component: mysql }
+        annotations:
+          summary: "Buffer Pool 命中率 < 98%（趋势观察）"
+          description: "尚未影响体感，但说明热数据集正在超出内存容量。"
+          runbook: "对比上月基线，若持续下滑则进入扩容排期。"
+
+      - alert: ReplicationLagTrending
+        expr: mysql_slave_status_seconds_behind_master > 3
+        for: 1h
+        labels: { severity: P3, component: replication }
+        annotations:
+          summary: "复制延迟持续 > 3s"
+          runbook: "读写分离场景下已可能读到脏数据，排查主库大事务与从库回放并行度。"

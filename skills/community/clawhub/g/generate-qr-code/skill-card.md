@@ -1,39 +1,49 @@
-## Description: <br>
-Generates QR-code image files from text, URLs, or WiFi details with configurable size, color, and save path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成文本、URL 或 WiFi 信息的二维码，支持自定义尺寸、颜色和保存路径。
 
-## Publisher: <br>
-[YangZhenFu](https://clawhub.ai/user/YangZhenFu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yangzhenfu](https://clawhub.ai/user/yangzhenfu)
 
-## Use Case: <br>
-Agents use this skill when a user needs a QR code for plain text, a URL, or WiFi connection details and wants the generated image saved to a chosen local path. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Loading the skill can automatically run unpinned pip installs and alter the Python environment without clear user approval. <br>
-Mitigation: Review before installing and prefer declaring qrcode and Pillow as install-time dependencies rather than installing them automatically. <br>
-Risk: QR codes may contain passwords, private URLs, or personal data, and generated files can be written to shared or synced folders. <br>
-Mitigation: Avoid sensitive QR payloads in shared locations and specify a safe output path to reduce accidental disclosure or overwrites. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YangZhenFu/generate-qr-code) <br>
+## Use Case:
 
+Developers and end users can use this skill to turn text, URLs, phone numbers, or WiFi configuration strings into QR-code images saved to a chosen file path.
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [PNG image file plus a text status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves qr_code.png to a user-specified path or to the Desktop by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Loading the Python module may automatically install unpinned qrcode and Pillow packages, changing the user's Python environment without explicit setup control.
+
+Mitigation: Review before installation, prefer pinned dependencies in a manifest or an explicit setup step, and run with limited filesystem, credential, and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangzhenfu/skills/generate-qr-code)
+- [Publisher profile](https://clawhub.ai/user/yangzhenfu)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, guidance]
+
+**Output Format:** [PNG image file with a text status message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The QR image is saved to the requested path, or to a desktop path by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

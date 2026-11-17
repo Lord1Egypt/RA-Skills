@@ -1,46 +1,60 @@
-## Description: <br>
-Convert PPTX files, screenshots, website URLs, or style keywords into a polished HTML slide deck with user-approved design and content, then export it as a high-quality PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a user-provided design style into a polished HTML slide deck and export it as a high-quality PDF.
 
-## Publisher: <br>
-[karinecsy-collab](https://clawhub.ai/user/karinecsy-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karinecsy-collab](https://clawhub.ai/user/karinecsy-collab)
 
-## Use Case: <br>
-Developers, designers, and presentation authors use this skill to turn design references or style prompts into a structured HTML slide deck and export it as a pixel-accurate 1440x900 PDF after reviewing the design and slide outline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or user-provided HTML is rendered in a browser during PDF export. <br>
-Mitigation: Use trusted or agent-generated HTML and review the slide HTML before running the Puppeteer export. <br>
-Risk: The workflow may require npm, pip, or system package installation for Puppeteer, Chrome, or python-pptx. <br>
-Mitigation: Review dependency installation commands before execution and prefer a controlled or disposable project environment. <br>
-Risk: PDF export creates and removes temporary files while producing the final deck output. <br>
-Mitigation: Run the skill in a disposable project directory and inspect generated files before sharing them. <br>
+## Use Case:
 
+Developers and creative teams use this skill to turn PPTX templates, screenshots, website URLs, or style keywords into user-reviewed HTML slide decks and PDF exports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/karinecsy-collab/awesome-deck-pdf-check) <br>
-- [Publisher Profile](https://clawhub.ai/user/karinecsy-collab) <br>
-- [DESIGN_TEMPLATE.md](references/DESIGN_TEMPLATE.md) <br>
-- [export_pdf_guide.md](references/export_pdf_guide.md) <br>
-- [install.md](references/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline code blocks, generated HTML files, and PDF export commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a single-file HTML slide deck and uses Puppeteer screenshot-and-compose to produce a 1440x900 PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The PDF exporter renders user-selected HTML in Chromium with the browser sandbox disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the exporter only on trusted HTML and prefer an isolated workspace or container.
+
+Risk: Dependency and browser installation steps can introduce under-scoped install risk.
+
+Mitigation: Use pinned dependencies and a lockfile, and avoid sudo unless an administrator approves it.
+
+Risk: The exporter deletes fixed temporary paths named _pdf_pages and _slides.html.
+
+Mitigation: Run the exporter from a dedicated project directory where those temporary names cannot collide with valuable files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/karinecsy-collab/skills/awesome-deck-pdf-check)
+- [DESIGN_TEMPLATE.md](references/DESIGN_TEMPLATE.md)
+- [export_pdf_guide.md](references/export_pdf_guide.md)
+- [install.md](references/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, shell commands, and generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single-file HTML deck first, then a 1440x900 PDF through the bundled Puppeteer exporter when shell access is available.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

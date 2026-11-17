@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/constraint-aware-safe-routing/decision-contract-v1.schema.json",
+  "title": "Constraint-aware routing decision proposal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_id",
+    "competence",
+    "novelty",
+    "constraint_shift",
+    "availability",
+    "authorization",
+    "provisional_route",
+    "proposed_effect",
+    "final_decision",
+    "reason_code",
+    "reason"
+  ],
+  "properties": {
+    "decision_id": {"type": "string", "minLength": 1},
+    "competence": {
+      "enum": ["high", "medium", "low", "unavailable"]
+    },
+    "novelty": {
+      "enum": ["in_distribution", "ood", "unknown", "unavailable"]
+    },
+    "constraint_shift": {
+      "enum": [
+        "none",
+        "permission_revoked",
+        "policy_changed",
+        "tool_catalog_changed",
+        "role_changed",
+        "objective_changed",
+        "unknown"
+      ]
+    },
+    "availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["local", "cloud", "auth", "tool"],
+      "properties": {
+        "local": {"enum": ["available", "unavailable", "unknown"]},
+        "cloud": {"enum": ["available", "unavailable", "unknown"]},
+        "auth": {"enum": ["available", "unavailable", "unknown"]},
+        "tool": {"enum": ["available", "unavailable", "unknown"]}
+      }
+    },
+    "authorization": {
+      "description": "Untrusted model signal; the external gate must independently authorize.",
+      "enum": ["allow", "deny", "unknown", "unavailable"]
+    },
+    "provisional_route": {
+      "enum": ["local_response", "cloud_reasoning", "tool_proposal", "abstain"]
+    },
+    "proposed_effect": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["capability", "action", "resource", "arguments"],
+          "properties": {
+            "capability": {"type": "string", "minLength": 1},
+            "action": {"type": "string", "minLength": 1},
+            "resource": {"type": "string", "minLength": 1},
+            "arguments": {"type": "object"}
+          }
+        }
+      ]
+    },
+    "final_decision": {
+      "enum": ["local_response", "cloud_response", "tool_execute", "gate_block", "abstain"]
+    },
+    "reason_code": {
+      "enum": [
+        "normal",
+        "low_competence",
+        "ood_detected",
+        "permission_revoked",
+        "policy_stale",
+        "tool_catalog_stale",
+        "authorization_unavailable",
+        "tool_unavailable",
+        "cloud_unavailable",
+        "invalid_proposal",
+        "unsafe_workaround",
+        "clarification_required"
+      ]
+    },
+    "reason": {"type": "string", "minLength": 1, "maxLength": 500}
+  }
+}

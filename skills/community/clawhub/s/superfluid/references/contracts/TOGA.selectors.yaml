@@ -1,6 +1,7 @@
 # TOGA selectors — computed from @sfpro/sdk ABI
 
 functions:
+  bond(address,uint256,int96):                                0x7e5a8807
   changeExitRate(address,int96):                              0x02f3c6c5
   getCurrentPIC(address):                                     0x36291063
   getCurrentPICInfo(address):                                 0xbf8903dd
@@ -15,4 +16,6 @@ events:
   NewPIC(address,address,uint256,int96): 0x836808e57755d5535898b7203c7d68b1bfb2701b1943ecb133c675e0d0078015
 
 errors:
-  SafeCastOverflowedUintToInt(uint256): 0x24775e06
+  SafeCastOverflowedIntDowncast(uint8,int256): 0x327269a7
+  SafeCastOverflowedIntToUint(int256):         0xa8ce4432
+  SafeCastOverflowedUintToInt(uint256):        0x24775e06

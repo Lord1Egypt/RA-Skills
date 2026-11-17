@@ -1,0 +1,63 @@
+{
+  "schema": "moso.run-state/0.4",
+  "task_id": "example-observer-series",
+  "mode": "production",
+  "phase": "preflight",
+  "spec_ref": "visual-spec.example.json",
+  "shot_plan_ref": "shot-plan.example.json",
+  "series_plan_ref": "series-plan.example.json",
+  "approved_checkpoint": {
+    "source_ref": "codex://artifact/example-pilot",
+    "role": "approved-pilot",
+    "width_px": 1420,
+    "height_px": 1892,
+    "user_confirmed_at": "2026-07-28T01:00:00Z"
+  },
+  "allowed_changes": ["expand approved pilot logic into frames 2 through 7"],
+  "protected_elements": ["viewer contract", "one-anomaly rule", "palette invariants", "3:4 carrier"],
+  "attempt_budget": {
+    "generative": 7,
+    "repair": 2,
+    "generative_used": 1,
+    "repair_used": 0
+  },
+  "output_requirements": {
+    "carrier": "Xiaohongshu portrait image series",
+    "formats": ["PNG"],
+    "width": 1420,
+    "height": 1892,
+    "unit": "px",
+    "frame_count": 7
+  },
+  "verification": [
+    {"check": "each frame works at feed scale", "method": "180 px thumbnail contact sheet", "status": "pending"},
+    {"check": "series adds information without repetitive framing", "method": "blind ordered contact-sheet review", "status": "pending"}
+  ],
+  "direction_approval_status": "approved",
+  "quality_status": {
+    "use_scale": "pending",
+    "detail_scale": "pending",
+    "protected_drift": "pending",
+    "trajectory": "pending",
+    "independent_review": "pending",
+    "user_acceptance": "pending"
+  },
+  "generation_attempts": [
+    {
+      "attempt_id": "frame-02-a1",
+      "status": "planned",
+      "pre_generation_brief": {
+        "objective": "Show the exchange as a calm system larger than one person.",
+        "viewer_position": "above the scene as if reading an administrative diagram",
+        "first_read": "small human figure inside an ordered pale field",
+        "composition_geometry": "overhead compressed view; displaced figure; empty response position as counter-mass",
+        "narrative_beat": "the system records the exchange before it happens",
+        "color_light_logic": "high-key paper gray with a one-percent red-violet accent",
+        "required_content": ["ordinary human-scale action", "empty response position"],
+        "protected_content": ["credible scale", "one-anomaly rule", "series accent"],
+        "main_risk": "The overhead geometry may become decorative and lose human consequence.",
+        "communicated_to_user": true
+      }
+    }
+  ]
+}

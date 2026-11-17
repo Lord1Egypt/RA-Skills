@@ -1,0 +1,68 @@
+{
+  "id": "fec-refactoring-catalog",
+  "name": "Refactoring Catalog",
+  "category": "review-quality",
+  "tags": [
+    "refactoring",
+    "catalog",
+    "selection",
+    "composition"
+  ],
+  "summary": "Selection and composition guidance across the 61 canonical refactoring techniques.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactoring",
+    "catalog",
+    "selection",
+    "composition"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when selecting or composing behavior-preserving refactoring techniques after structural evidence is known, especially when multiple candidate transformations, preconditions, or ordering choices must be compared.",
+  "source": "skills/fec-refactoring-catalog",
+  "references": [
+    "references/catalog-index.md",
+    "references/composition-guide.md",
+    "references/selection-guide.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-refactoring",
+      "fec-code-smells",
+      "fec-refactoring-functions",
+      "fec-refactoring-encapsulation",
+      "fec-refactoring-move-features",
+      "fec-refactoring-data",
+      "fec-refactoring-control",
+      "fec-refactoring-api",
+      "fec-refactoring-inheritance",
+      "fec-refactoring-validation"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "refactoring",
+      "catalog",
+      "selection",
+      "composition"
+    ]
+  }
+}

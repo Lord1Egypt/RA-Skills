@@ -191,6 +191,17 @@ python3 throughput.py --auto \
 - English prompts recommended for more accurate token estimation
 - Anti-cache: random seed suffix appended to each iteration
 
+## Limitations
+
+**Auto mode cannot cap output length.** `openclaw infer model run` does not expose a `--max-tokens` flag (verified via `--help`), so the CLI argument `--max-tokens` is silently ignored when running with `--auto`. This means:
+
+- A slow model (e.g. <30 tokens/s) may exceed `--timeout` on long outputs and be marked `timeout` even though it is healthy.
+- The `--max-tokens` CLI arg only applies to **API mode** (direct OpenAI-compatible call).
+- To test slow models reliably with `--auto`, use the medium-length default prompt (`Write three short paragraphs about summer meadows.` — ~200-300 tokens output), raise `--timeout` (e.g. 120-180s) for slow models, or override `--test-prompt` to suit the model.
+- For precise max_tokens control and accurate `usage.completion_tokens`, use **API mode** (`--url`, `--key`, `--models`).
+
+**Warmup is enabled by default.** The first request to a model often pays a cold-start cost (KV cache init, weight load) that is not representative of steady-state throughput. A warmup request is fired and discarded before the timed iterations begin. Pass `--no-warmup` to disable (e.g. when measuring cold-start latency deliberately).
+
 ## Testing
 
 ```bash

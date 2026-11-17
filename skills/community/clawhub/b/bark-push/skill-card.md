@@ -1,43 +1,58 @@
-## Description: <br>
-Send push notifications to iOS devices via Bark when a user asks to send a notification, push to phone, or use Bark notify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends push notifications to iOS devices through the Bark API when an agent is asked to notify a user's phone.
 
-## Publisher: <br>
-[DeAntiWang](https://clawhub.ai/user/DeAntiWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deantiwang](https://clawhub.ai/user/deantiwang)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send Bark notifications to an iOS device from an agent workflow or command line. It supports notification title, body, sound, badge, URL, group, level, image, and subtitle options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bark device keys are credentials that can send notifications to a user's device. <br>
-Mitigation: Store the key in BARK_KEY or BARK_DEVICE_KEY, avoid exposing it in shared logs or prompts, and rotate it if it is disclosed. <br>
-Risk: Notification text may include sensitive personal data or unintended inferred content. <br>
-Mitigation: Avoid sending passwords or sensitive personal data, and confirm the message content before sending when it is inferred. <br>
-Risk: URL-path curl examples can expose notification content and device keys in command history or logs. <br>
-Mitigation: Prefer the POST-based shell or Node.js script flow for normal use. <br>
+## Use Case:
 
+External users and developers use Bark Push to send command-line or scripted iOS push notifications for task completion alerts, reminders, and workflow status updates through Bark.
 
-## Reference(s): <br>
-- [Bark Push ClawHub page](https://clawhub.ai/DeAntiWang/bark-push) <br>
-- [Bark API endpoint](https://api.day.app/{device_key}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command-line parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BARK_KEY or BARK_DEVICE_KEY as the Bark device key credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Notification content is sent to the Bark third-party service and may include sensitive task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before each send and avoid secrets, private records, or sensitive content in notification titles or bodies.
+
+Risk: Bark device keys can be exposed when passed on command lines or included in shared shell histories.
+
+Mitigation: Prefer environment-based secret handling, avoid printing keys, and avoid passing keys with the command-line key option in shared environments.
+
+Risk: The shell implementation builds JSON from shell variables and is less suitable for untrusted notification content.
+
+Mitigation: Prefer the Node implementation or a JSON-safe shell rewrite when notification text may contain untrusted characters.
+
+## Reference(s):
+
+- [ClawHub Bark Push listing](https://clawhub.ai/deantiwang/skills/bark-push)
+- [Bark API endpoint](https://api.day.app/{device_key})
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends notification title, body, and optional Bark parameters including sound, badge, URL, group, level, image, and subtitle.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

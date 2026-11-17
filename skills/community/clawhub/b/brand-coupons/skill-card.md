@@ -1,42 +1,57 @@
-## Description: <br>
-美团优惠券 helps users search nationwide Meituan coupons for chain brands by brand name or category keyword, returning coupon listings sorted by sales volume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+美团优惠券，搜索连锁品牌全国通用优惠券。输入品牌名或品类关键词，返回覆盖50+城市的全国通用券，按销量排序。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External users use this skill to find brand, restaurant, beverage, snack, retail, and local-service coupons that are advertised as usable nationwide across supported Chinese cities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coupon search terms are sent to the skill publisher's Tencent Cloud proxy. <br>
-Mitigation: Use only non-sensitive brand or category search terms, and avoid entering personal details, account information, precise private locations, or unrelated text. <br>
-Risk: Coupon results can include referral purchase links. <br>
-Mitigation: Review the destination, merchant details, coupon terms, and final checkout price before purchasing. <br>
-Risk: Live coupon availability, price, and city coverage can change after results are returned. <br>
-Mitigation: Confirm that the coupon is still available and valid for the intended location before relying on it. <br>
+## Use Case:
 
+External users use this skill to search for nationwide brand coupons by brand name or category keyword, including food, beverage, retail, automotive service, and other consumer discounts. The agent returns sorted coupon options, purchase links, and image-backed Markdown results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/brand-coupons) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with coupon entries, prices, images, pagination hints, and referral purchase links.] <br>
-**Output Parameters:** [1D; keyword is required and page is optional.] <br>
-**Other Properties Related to Output:** [Filters for coupons available in at least 50 cities and sorts displayed results by sales volume.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill sends coupon search terms to a remote Tencent Cloud Function.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Document the network behavior before installation and restrict use to intended coupon searches.
+
+Risk: The artifact includes a reusable proxy token.
+
+Mitigation: Rotate or remove the exposed token and replace it with a deployment-specific secret before release.
+
+Risk: Remote coupon data is rendered into images and purchase links.
+
+Mitigation: Validate or escape remote coupon fields before rendering and review links before user-facing deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/brand-coupons)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown text with coupon entries, remote images, purchase links, and pagination hints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are filtered for nationally available coupons and sorted by reported sales volume.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

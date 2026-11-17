@@ -1,38 +1,50 @@
-## Description: <br>
-Provides detailed guidance on using the nvidia-smi command for real-time NVIDIA GPU monitoring, management, troubleshooting, and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides detailed guidance on using the nvidia-smi command for real-time NVIDIA GPU monitoring, management, troubleshooting, and automation.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers, system administrators, and machine learning engineers use this skill to interpret nvidia-smi output, monitor NVIDIA GPU health and utilization, diagnose CUDA memory issues, and build simple monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Process termination guidance can disrupt shared GPU workloads if the wrong PID is stopped. <br>
-Mitigation: Verify the PID with nvidia-smi and ps, prefer graceful shutdown, and ask an administrator before stopping another user's job. <br>
+## Use Case:
 
+Developers, machine learning engineers, and system administrators use this skill to interpret nvidia-smi output, monitor NVIDIA GPU health and utilization, diagnose CUDA out-of-memory issues, and create monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/DuanC-Chao/nvidia-smi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown with inline shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for nvidia-smi monitoring, targeted queries, process inspection, daemon mode, and pynvml-based automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Terminating GPU processes can interrupt active workloads or shared jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the PID, owner, and workload impact first; prefer scheduler-native cancellation or graceful shutdown on shared systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/nvidia-smi)
+- [Publisher profile](https://clawhub.ai/user/duanc-chao)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with inline shell commands and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes GPU monitoring, troubleshooting, and automation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

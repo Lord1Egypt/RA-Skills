@@ -1,0 +1,49 @@
+#encoding:gbk
+'''
+18确定因子权重
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+def init(ContextInfo):
+	ContextInfo.number = 0
+	ContextInfo.accID = 'test'
+def handlebar(ContextInfo):
+	if ContextInfo.number == 0:
+		emotion = pd.read_csv('C:/Users/QZM/Desktop/finally/emotion.csv',index_col=[0])
+		returns=pd.read_csv('C:/Users/QZM/Desktop/duoyinzi/returns.csv',index_col=[0])
+		emotion = emotion.loc['20171211':'20181108']
+		returns = returns.loc['20171212':'20181109']
+		E_IC = pd.Series([0.]*len(emotion.index),index=emotion.index)
+		for i in range(len(emotion.index)):
+			E_IC[emotion.index[i]]= (emotion.iloc[i]).corr(returns.iloc[i])
+		#print(E_IC,E_IC.mean(),E_IC.std(),len(E_IC[E_IC>0]))
+		E_IC_IR= abs(E_IC.mean()/E_IC.std())
+		E_IC.to_csv('C:/Users/QZM/Desktop/finally/E_IC.csv')
+
+
+		risk = pd.read_csv('C:/Users/QZM/Desktop/finally/risk.csv',index_col=[0])
+		risk = risk.loc['20171211':'20181108']
+		R_IC = pd.Series([0.]*len(risk.index),index=risk.index)
+		for i in range(len(risk.index)):
+			R_IC[risk.index[i]]= (risk.iloc[i]).corr(returns.iloc[i])
+		#print(R_IC,R_IC.mean(),R_IC.std(),len(R_IC[R_IC>0]))
+		R_IC.to_csv('C:/Users/QZM/Desktop/finally/R_IC.csv')
+		R_IC_IR= abs(R_IC.mean()/R_IC.std())
+		risk_rate = R_IC_IR/(R_IC_IR+E_IC_IR)
+		emotion_rate = E_IC_IR/(R_IC_IR+E_IC_IR)
+		print(risk_rate,emotion_rate)
+		
+		
+		'''
+		x = np.array(E_IC.index)
+		y = np.array(E_IC)
+		plt.plot(y,linewidth=5)
+		#plt.title("E_IC",fontsize = 24)
+		#plt.xlabel("time",fontsize = 14)
+		#plt.ylabel("IC",fontsize = 14)
+		plt.show()
+		'''
+		
+	ContextInfo.number += 1

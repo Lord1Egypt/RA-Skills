@@ -1,39 +1,53 @@
-## Description: <br>
-A skill that provides yoga pose guidance, breathing techniques, and meditation practices for daily wellness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill that provides yoga pose guidance, breathing techniques, and meditation practices for daily wellness.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users and wellness-oriented agent builders use this skill to provide general yoga pose instructions, breathing exercises, meditation prompts, and daily routine guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat yoga, breathing, or meditation prompts as medical advice or share sensitive health details with an agent. <br>
-Mitigation: Present the skill as general wellness guidance, encourage users to consult qualified professionals for medical concerns, and avoid collecting unnecessary health information. <br>
+## Use Case:
 
+External users can ask an agent for yoga pose guidance, breathing exercises, meditation sessions, daily routines, and practice progress summaries for general wellness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/y) <br>
-- [Publisher profile](https://clawhub.ai/user/wscats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General wellness content; no executable code or hidden system access was found in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat general wellness guidance as medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as wellness guidance and direct users with injuries, medical conditions, pregnancy, pain, or other health concerns to qualified professionals.
+
+Risk: Future progress tracking could introduce practice-data storage or privacy concerns.
+
+Mitigation: Before enabling real tracking, confirm where data is stored, how long it is retained, and whether any sensitive health information is collected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/y)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown text with slash-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; responses may include wellness routines and progress summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

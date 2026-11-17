@@ -1,0 +1,7 @@
+{
+  "name": "LYGO Ollama Army (ClawHub-safe)",
+  "signature": "Delta9Phi963-ARMY-CC-v0.9.0",
+  "model": "llama3.2:1b",
+  "roles": ["hb-light", "draft-simple", "memory-triage"],
+  "notes": "No planting, social, or public probes in v0.9.0 public package."
+}

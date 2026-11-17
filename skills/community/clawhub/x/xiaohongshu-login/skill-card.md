@@ -1,39 +1,52 @@
-## Description: <br>
-小红书 MCP 登录流程，当用户需要登录小红书、登录过期或需要获取小红书登录二维码时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书 MCP 登录流程。当用户需要登录小红书、小红书登录过期、或需要获取小红书登录二维码时使用此 skill。
 
-## Publisher: <br>
-[fe-room](https://clawhub.ai/user/fe-room) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fe-room](https://clawhub.ai/user/fe-room)
 
-## Use Case: <br>
-Developers and operators use this skill to check Xiaohongshu login status, retrieve and display a login QR code, and reset cookies when re-login is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Xiaohongshu login QR codes, which can grant account access if exposed or sent to an unintended recipient. <br>
-Mitigation: Prefer local display of the QR code and allow external messaging delivery only when the user explicitly requests the destination. <br>
-Risk: Cookie deletion resets the Xiaohongshu session and requires a fresh login. <br>
-Mitigation: Treat cookie deletion as an explicit logout or reset action and confirm intent before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fe-room/xiaohongshu-login) <br>
+## Use Case:
 
+Developers and operators use this skill to check Xiaohongshu MCP login status, fetch a login QR code, display it to the user, and reset stored cookies when re-login is needed.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent through MCP calls, QR-code extraction, local image display, optional message delivery, and cookie deletion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The login QR code can grant access to the user's Xiaohongshu account.
+
+Mitigation: Use the skill only with a trusted MCP service and trusted messaging destination, and require explicit confirmation before sending the QR code outside the local session.
+
+Risk: The QR code is saved to a predictable local file path.
+
+Mitigation: Prefer a temporary private file location and automatically delete the QR image after login is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fe-room/skills/xiaohongshu-login)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local PNG login QR code and optionally send it through Feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

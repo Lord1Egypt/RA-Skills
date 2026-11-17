@@ -1,0 +1,13 @@
+{
+  "call_id": "c2",
+  "userid": "u2",
+  "direction": "outbound",
+  "state": "speaking",
+  "confidence": 0.0,
+  "asr_text": "",
+  "pending_confirmation": "",
+  "history": [],
+  "start_time": 1784103261.9375334,
+  "last_activity": 1784103261.9375362,
+  "turn_count": 0
+}

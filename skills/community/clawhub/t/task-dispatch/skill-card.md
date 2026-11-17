@@ -1,45 +1,59 @@
-## Description: <br>
-Task scheduling and dispatching for task boards. Use when setting up periodic task dispatch, checking for dispatchable tasks, creating subagents to execute tasks, or verifying task completion. Supports task board APIs like ClawBoard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task scheduling and dispatching for task boards. Use when setting up periodic task dispatch, checking for dispatchable tasks, creating subagents to execute tasks, or verifying task completion. Supports task board APIs like ClawBoard.
 
-## Publisher: <br>
-[cccaptain0129](https://clawhub.ai/user/cccaptain0129) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cccaptain0129](https://clawhub.ai/user/cccaptain0129)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure task-board dispatch, select auto-executable tasks, delegate them to subagents, verify deliverables, and update task status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to install and run an external ClawBoard service before dispatching tasks. <br>
-Mitigation: Review the ClawBoard repository and installer before execution, as directed by the server security guidance. <br>
-Risk: Task-board API tokens are copied into workspace environment files. <br>
-Mitigation: Use a least-privilege token and keep workspace .env files private and out of source control. <br>
-Risk: Recurring dispatch can cause automatic subagent execution and task-state updates. <br>
-Mitigation: Enable scheduled dispatch only for task boards where automatic execution and status updates are expected. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to monitor task-board APIs, dispatch eligible automated tasks to subagents, verify completion signals and deliverables, and update task status.
 
-## Reference(s): <br>
-- [Task Dispatch Configuration](references/config.md) <br>
-- [Subagent Dispatch Template](references/dispatch-template.md) <br>
-- [ClawBoard repository](https://github.com/CCCaptain0129/ClawBoard.git) <br>
-- [ClawHub skill page](https://clawhub.ai/cccaptain0129/task-dispatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON cron configuration, API examples, and completion-signal templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate cron configuration JSON and task-dispatch prompts for subagents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Recurring dispatch authority can let an agent repeatedly spawn subagents and modify task-board state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reviewed task sources, manual approval for sensitive tasks, bounded schedules, and task-board permissions limited to the intended workspace.
+
+Risk: The setup flow may execute an unpinned remote installer.
+
+Mitigation: Install from a reviewed pinned release or commit before enabling scheduled dispatch.
+
+Risk: Access tokens may be copied into workspace environment files.
+
+Mitigation: Use least-privilege tokens, protected secret storage, and avoid committing workspace environment files.
+
+## Reference(s):
+
+- [Task Dispatch skill page](https://clawhub.ai/cccaptain0129/skills/task-dispatch)
+- [Configuration reference](references/config.md)
+- [Subagent dispatch template](references/dispatch-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, bash, Python, and completion-signal code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce cron configuration JSON, task dispatch prompts, API request examples, status-update guidance, and verification checklists.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

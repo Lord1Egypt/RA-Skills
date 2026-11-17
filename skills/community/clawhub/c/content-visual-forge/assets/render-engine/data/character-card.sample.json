@@ -1,0 +1,17 @@
+{
+  "character": "我",
+  "pinyin": "wǒ",
+  "meaning_en": "I; me",
+  "common_words": [
+    {"zh": "我们", "pinyin": "wǒmen", "en": "we"},
+    {"zh": "我的", "pinyin": "wǒ de", "en": "my; mine"},
+    {"zh": "我自己", "pinyin": "wǒ zìjǐ", "en": "myself"}
+  ],
+  "example_sentence_zh": "我喜欢中文。",
+  "example_sentence_pinyin": "Wǒ xǐhuan Zhōngwén.",
+  "example_sentence_en": "I like Chinese.",
+  "useful_phrase_zh": "我知道了。",
+  "useful_phrase_pinyin": "Wǒ zhīdào le.",
+  "useful_phrase_en": "I got it.",
+  "memory_tip_en": "我 is the word you use to talk about yourself."
+}

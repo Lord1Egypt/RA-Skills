@@ -1,0 +1,97 @@
+<!doctype html>
+<!--
+================================================================
+  P1 表现形式夹具页(2026-07-27):<img> / <table> / 列表 / pre·code
+  自包含(图引用 ../assets/sample.png);L1/L2/L3 三层锚定 P1 行为。
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>P1 表现形式</title>
+<style>html,body{margin:0;padding:0;overflow:hidden;}</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;font-family:'Noto Sans SC',Arial,sans-serif;">
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:50px;width:1200px;z-index:10;">
+    <div style="font-size:36px;font-weight:700;line-height:1.2;color:#1A1A1A;">P1 · img / table / list / pre·code</div>
+  </div>
+
+  <!-- 1. <img> object-fit:cover(原生 image 基元 + sizing cover) -->
+  <img data-object="true" src="../assets/sample.png" alt="渐变样图" style="position:absolute;left:100px;top:140px;width:360px;height:240px;object-fit:cover;border-radius:8px;z-index:1;">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:388px;width:360px;text-align:center;z-index:10;">
+    <div style="font-size:16px;color:#666;">img · object-fit:cover</div>
+  </div>
+
+  <!-- 2. <img> object-fit:contain -->
+  <img data-object="true" src="../assets/sample.png" alt="渐变样图" style="position:absolute;left:500px;top:140px;width:360px;height:240px;object-fit:contain;background:#F5F7FA;border:1px solid #E5E7EB;z-index:1;">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:500px;top:388px;width:360px;text-align:center;z-index:10;">
+    <div style="font-size:16px;color:#666;">img · object-fit:contain</div>
+  </div>
+
+  <!-- 3. <table> 原生表格(表头 + 数据行 + colspan 合并) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:900px;top:140px;width:920px;height:300px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:8px;z-index:1;"></div>
+  <table data-object="true" style="position:absolute;left:920px;top:160px;width:880px;border-collapse:collapse;font-size:18px;z-index:2;">
+    <thead>
+      <tr>
+        <th style="background:#0A2E5C;color:#FFFFFF;padding:12px;text-align:left;border:1px solid #0A2E5C;">指标</th>
+        <th style="background:#0A2E5C;color:#FFFFFF;padding:12px;text-align:right;border:1px solid #0A2E5C;">2024</th>
+        <th style="background:#0A2E5C;color:#FFFFFF;padding:12px;text-align:right;border:1px solid #0A2E5C;">2025</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #E5E7EB;">营收(亿)</td>
+        <td style="padding:12px;text-align:right;border:1px solid #E5E7EB;">120</td>
+        <td style="padding:12px;text-align:right;border:1px solid #E5E7EB;color:#E2232A;font-weight:700;">186</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #E5E7EB;">同比</td>
+        <td colspan="2" style="padding:12px;text-align:center;border:1px solid #E5E7EB;color:#00A651;font-weight:700;">+55%(合并展示)</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #E5E7EB;">利润率</td>
+        <td style="padding:12px;text-align:right;border:1px solid #E5E7EB;">18%</td>
+        <td style="padding:12px;text-align:right;border:1px solid #E5E7EB;">22%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 4. 列表:UL + OL(原生 bullet / number) -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:460px;width:800px;z-index:10;">
+    <ul style="margin:0;padding-left:32px;font-size:20px;line-height:1.8;color:#1A1A1A;">
+      <li>无序项一</li>
+      <li>无序项二</li>
+      <li>无序项三</li>
+    </ul>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:500px;top:460px;width:800px;z-index:10;">
+    <ol style="margin:0;padding-left:32px;font-size:20px;line-height:1.8;color:#1A1A1A;">
+      <li>有序第一步</li>
+      <li>有序第二步</li>
+    </ol>
+  </div>
+
+  <!-- 5. pre/code:保留空白与缩进 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:660px;width:880px;height:300px;background:#0F1419;border-radius:8px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:120px;top:680px;width:840px;z-index:10;">
+    <pre style="margin:0;font-family:'SF Mono',Consolas,monospace;font-size:16px;line-height:1.6;color:#E8E8E8;white-space:pre;"><code>function hello(name) {
+  return \`Hello, \${name}!\`;
+}
+hello('PPTX');</code></pre>
+  </div>
+
+  <!-- 6. 边框宽度 px→pt 验证:1px / 2px / 4px 边框(应为 0.5/1/2 pt) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1020px;top:660px;width:280px;height:140px;background:#FFF;border:1px solid #999;border-radius:6px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1020px;top:808px;width:280px;text-align:center;z-index:10;"><div style="font-size:14px;color:#666;">1px 边框 → 0.5pt</div></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1320px;top:660px;width:280px;height:140px;background:#FFF;border:2px solid #999;border-radius:6px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1320px;top:808px;width:280px;text-align:center;z-index:10;"><div style="font-size:14px;color:#666;">2px → 1pt</div></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1620px;top:660px;width:200px;height:140px;background:#FFF;border:4px solid #E2232A;border-radius:6px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1620px;top:808px;width:200px;text-align:center;z-index:10;"><div style="font-size:14px;color:#666;">4px → 2pt</div></div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:1020px;width:1720px;z-index:10;"><div style="font-size:14px;color:#999;">html-slides P1 fixture · img/table/list/pre·code/border-pt</div></div>
+</div>
+<template data-slide-notes>P1 表现形式:img 原生图片、table 原生表格、列表原生 bullet/number、pre/code 保留空白、边框 px→pt。</template>
+</body>
+</html>

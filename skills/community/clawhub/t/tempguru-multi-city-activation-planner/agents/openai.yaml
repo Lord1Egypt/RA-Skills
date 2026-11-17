@@ -1,0 +1,11 @@
+interface:
+  display_name: "Multi-City Activation Planner"
+  short_description: "Plan a multi-city staffing program as one quote"
+  default_prompt: "Use $multi-city-activation-planner to plan and price a tour or roadshow across several cities and prepare one buyer-operated form handoff after I confirm; do not submit it for me."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "Live TempGuru planning, pricing, policy, compliance, and quote tools"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

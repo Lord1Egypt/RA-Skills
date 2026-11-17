@@ -1,40 +1,58 @@
-## Description: <br>
-Exec Guard classifies shell commands by intended effect before execution and guides agents to allow low-risk commands while requiring confirmation for system, network, and destructive actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exec Guard classifies proposed shell commands by semantic risk and helps an agent allow low-risk operations while requiring confirmation for system, network, and destructive actions.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and agent operators use Exec Guard as a command-execution safety layer for agents with shell access. It helps classify proposed commands and request user confirmation before higher-risk execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A command can be misclassified or chained with a higher-impact action than the first token suggests. <br>
-Mitigation: Classify compound commands by their highest-risk operation and require confirmation for WRITE_SYSTEM, NETWORK, and DESTRUCTIVE actions. <br>
-Risk: Destructive commands can delete data, reset work, or change services in ways that are hard to recover. <br>
-Mitigation: Always explain the impact, suggest a safer alternative when available, and wait for explicit user approval before execution. <br>
+## Use Case:
 
+Developers and agent operators use Exec Guard to add semantic command review to agents that can run shell commands. It is intended to let routine read and workspace-write commands proceed while pausing higher-risk actions for explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/wavmson/cmd-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with command classifications, risk explanations, and safer alternatives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies a five-level command classification: READ, WRITE, WRITE_SYSTEM, NETWORK, and DESTRUCTIVE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad auto-approval rules can allow dependency installs, network access, git pushes, or persisted sudo preferences with too little scrutiny.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow auto-approval rules before installation, and require confirmation for sudo, package managers, network downloads, and git push unless they are explicitly needed.
+
+Risk: Incorrect command classification can create a false sense of safety around shell execution.
+
+Mitigation: Keep destructive operations confirmation-gated, inspect proposed commands before execution, and test the policy in a limited workspace first.
+
+Risk: Persisted security preferences can carry broad approvals across sessions.
+
+Mitigation: Audit stored preferences regularly and remove broad approvals after the task that required them is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wavmson/skills/cmd-guard)
+- [Publisher profile](https://clawhub.ai/user/wavmson)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command risk levels, confirmation prompts, and safer alternatives before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,18 +1,16 @@
 ---
 name: ai-model-web
-description: "Use this skill when a browser/Web app (React, Vue, Angular, Next, Nuxt, static sites, SPAs, dashboards, AI chat UI) needs AI models via @cloudbase/js-sdk. Default routing for page/页面/Web/前端/frontend/网页/H5 AI — call directly from browser, do NOT propose a Node.js proxy. Covers generateText and streamText. Models via ai.createModel with groups cloudbase, hunyuan-exp, or custom-*. Model IDs (deepseek-v4-flash, deepseek-v3.2, hunyuan-2.0-instruct-20251111, glm-5, kimi-k2.6) go in the model field. MUST run two-step preflight before code — see body. Keywords: 页面, Web, 前端, React, Vue, Next, Nuxt, SPA, AI chat UI, generateText, streamText, createModel, hunyuan-exp, Token Credits, TokenHub, Hunyuan, DeepSeek, GLM, Kimi, MiniMax. NOT for Node.js backend (use ai-model-nodejs), Mini Program (use ai-model-wechat), or image generation (Node SDK only)."
-version: 2.23.6
+description: "Use this skill when a browser/Web app (React, Vue, Next, Nuxt, static sites, SPAs, dashboards, AI chat UI, 页面, 前端, 网页) needs AI models via @cloudbase/js-sdk. Default routing for Web/frontend AI — call directly from the browser, do NOT propose a Node.js proxy. Covers generateText and streamText; models via ai.createModel with groups cloudbase, hunyuan-exp, or custom-*, model id in the `model` field. MUST run two-step preflight before code — see body. NOT for Node.js backend (use ai-model-nodejs), Mini Program (use ai-model-wechat), or image generation (Node SDK only)."
+version: 2.36.0
+license: MIT
 alwaysApply: false
 ---
 
-## Standalone Install Note
+## Sibling skills (local only)
 
-If this environment only installed the current skill, start from the CloudBase main entry and use the published `cloudbase/references/...` paths for sibling skills.
+Sibling CloudBase skills ship beside this skill. Use local relative paths such as `../auth-tool-cloudbase/SKILL.md`.
 
-- CloudBase main entry: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md`
-- Current skill raw source: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/ai-model-web/SKILL.md`
-
-Keep local `references/...` paths for files that ship with the current skill directory. When this file points to a sibling skill such as `auth-tool` or `web-development`, use the standalone fallback URL shown next to that reference.
+If a referenced sibling skill file is missing from this environment, ask the user to install the full CloudBase plugin (or the missing skill). Do **not** HTTP-fetch remote skill or protocol markdown into the agent context.
 
 ## When to use this skill
 
@@ -31,7 +29,7 @@ Use this skill for **calling AI models in browser/Web applications** via `@cloud
 - Node.js backend or cloud functions → use the `ai-model-nodejs` skill
 - WeChat Mini Program → use the `ai-model-wechat` skill
 - Image generation → use the `ai-model-nodejs` skill (Node SDK only)
-- Runtimes without a CloudBase SDK (native apps, Python, Go, etc.) → use the `http-api` skill (it now includes the `ai_model` OpenAPI spec for direct HTTP calls; do NOT build a custom HTTP proxy)
+- Runtimes without a CloudBase SDK (native apps, Python, Go, etc.) → use the `http-api-cloudbase` skill (it now includes the `ai_model` OpenAPI spec for direct HTTP calls; do NOT build a custom HTTP proxy)
 
 ---
 
@@ -85,7 +83,7 @@ Before generating any AI-related SDK code, **run the two-step preflight**: ① e
 
 ### Step 0: obtain the environment ID
 
-Call the MCP tool `envQuery` with `action=info` and read `EnvId` from the response. Every subsequent check and purchase link uses this `EnvId`.
+Call the MCP tool `queryEnv` with `action=info` and read `EnvId` from the response. Every subsequent check and purchase link uses this `EnvId`.
 
 ---
 
@@ -226,8 +224,8 @@ npm install @cloudbase/js-sdk
 
 > ⚠️ **Do not use anonymous sign-in as the default.** Anonymous login is **disabled by default** for new environments, and inactive existing environments have also been automatically disabled. Even when anonymous login is manually enabled, **anonymous users are denied AI model invocation permissions by default**. The AI-model skill does **not** prescribe a specific login UI — delegate that concern:
 >
-> - **Enabling / configuring login providers** (phone SMS, email, WeChat Open Platform, username+password, OAuth, …) → follow the **`auth-tool`** skill (backend config via `callCloudApi`).
-> - **Building the actual sign-in flow in the browser** (login form, callbacks, session guarding) → follow the **`auth-web`** skill (`@cloudbase/js-sdk` auth API, e.g. `signInWithPassword`, `signInWithPhone`, `getSession`).
+> - **Enabling / configuring login providers** (phone SMS, email, WeChat Open Platform, username+password, OAuth, …) → follow the **`auth-tool-cloudbase`** skill (backend config via `callCloudApi`).
+> - **Building the actual sign-in flow in the browser** (login form, callbacks, session guarding) → follow the **`auth-web-cloudbase`** skill (`@cloudbase/js-sdk` auth API, e.g. `signInWithPassword`, `signInWithPhone`, `getSession`).
 >
 > Do **not** fall back to `signInAnonymously()` for AI features — anonymous users cannot call AI models. Only use anonymous login for non-AI read-only demos where the user explicitly requests it and accepts the trade-off.
 
@@ -236,10 +234,10 @@ import cloudbase from "@cloudbase/js-sdk";
 
 const app = cloudbase.init({
   env: "<YOUR_ENV_ID>",
-  accessKey: "<YOUR_PUBLISHABLE_KEY>"  // Get it from the CloudBase console
+  accessKey: import.meta.env.VITE_PUBLISHABLE_KEY  // auto-provision via queryAppAuth / manageAppAuth, write to .env.local (see auth-web-cloudbase prerequisites)
 });
 
-const auth = app.auth();
+const auth = app.auth;
 
 // CRITICAL: Use auth.getSession() to check login — NOT the deprecated getLoginState().
 // getLoginState() returns uid even without real login (just accessKey), causing false positives.
@@ -259,7 +257,7 @@ const ai = app.ai();
 
 - Use synchronous initialization with a top-level import
 - **`accessKey` causes `getLoginState()` to return misleading auth data** — the deprecated `getLoginState()` returns an object with `uid` even without real login, which breaks naive `!!loginState` checks. Use `auth.getSession()` instead: it returns `data.session === undefined` when no real login exists, so `!!data.session` is a reliable auth gate.
-- The user MUST be authenticated with a verified login (phone, email, WeChat, username+password, custom) before using AI features. Anonymous users are denied AI model permissions. The exact flow is the responsibility of the `auth-web` skill.
+- The user MUST be authenticated with a verified login (phone, email, WeChat, username+password, custom) before using AI features. Anonymous users are denied AI model permissions. The exact flow is the responsibility of the `auth-web-cloudbase` skill.
 - Get `accessKey` from the CloudBase console
 
 ---
@@ -383,7 +381,7 @@ interface Usage {
 7. **Handle errors gracefully** — wrap AI calls in try/catch.
 8. **Keep `accessKey` safe** — use a publishable key, never a secret key.
 9. **Initialize early** — set up the SDK at app entry so auth and AI are both ready before routing.
-10. **Do NOT use anonymous auth for AI features** — anonymous login is disabled by default for new environments, and anonymous users are denied AI model permissions. Require a verified sign-in (phone, email, username+password, WeChat, custom) before calling any AI API. Delegate provider configuration to the `auth-tool` skill and the browser sign-in flow to the `auth-web` skill; the AI-model skill checks `auth.getSession()` and verifies `loginType` before gating the call.
+10. **Do NOT use anonymous auth for AI features** — anonymous login is disabled by default for new environments, and anonymous users are denied AI model permissions. Require a verified sign-in (phone, email, username+password, WeChat, custom) before calling any AI API. Delegate provider configuration to the `auth-tool-cloudbase` skill and the browser sign-in flow to the `auth-web-cloudbase` skill; the AI-model skill checks `auth.getSession()` and verifies `loginType` before gating the call.
 11. **Distinguish "preflight failure" from "model call failure"** — the former means the user needs to buy a resource pack or call `UpdateAIModel`; the latter is a prompt / parameter / network issue. Give the user different guidance for each.
 12. **TypeScript: do NOT use `any` to silence type errors from the SDK.** The SDK ships its own types; if an error shows up, narrow with `unknown` + a type guard, write a precise `interface` for the shape you actually consume, or augment types in a local `.d.ts`. Never `: any`, `as any`, `@ts-ignore`, or `@ts-nocheck`. See the Engineering constitution in the `web-development` skill.
 13. **Self-verify before claiming done.** Run `tsc --noEmit` + the project build + open the page with `agent-browser` and actually trigger the AI call. Confirm: (a) the text stream reaches the UI, (b) no new console errors, (c) `result.usage` is non-zero. Saying "it should work" without evidence is not acceptable — follow `web-development/browser-testing.md`.

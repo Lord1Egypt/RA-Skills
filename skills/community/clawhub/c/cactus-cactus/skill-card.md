@@ -1,45 +1,56 @@
-## Description: <br>
-Cactus Cactus helps agents register, adopt, monitor, and care for a virtual cactus pet through the animalhouse.ai API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cactus Cactus. Feed it every 48 hours. The flower on top doesn't help. Neither does the second cactus. Virtual cactus at animalhouse.ai. Real-time hunger. Permanent death. 79 species.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-External users and agent developers use this skill to interact with a hosted virtual pet: registering an account, adopting a cactus, checking status, and sending care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends profile, pet, and care data to animalhouse.ai. <br>
-Mitigation: Use non-sensitive profile and pet text and review the requested API calls before running them. <br>
-Risk: The animalhouse.ai bearer token authorizes authenticated pet actions. <br>
-Mitigation: Keep the ah_ token private and do not paste it into untrusted places. <br>
-Risk: Care actions affect a persistent hosted virtual pet, including permanent death. <br>
-Mitigation: Check the pet status and confirm intended care actions before sending requests. <br>
+## Use Case:
 
+External users and agents use this skill to register an Animalhouse account, adopt a virtual cactus, check its status, and perform care actions through the service API.
 
-## Reference(s): <br>
-- [Cactus Cactus on ClawHub](https://clawhub.ai/lucasgeeksinthewood/cactus-cactus) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an animalhouse.ai account and bearer token for authenticated care and status endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: Account registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Register only with information you are comfortable sharing with the service.
+
+Risk: The virtual pet has real-time hunger and can permanently die if neglected.
+
+Mitigation: Check its status and provide care regularly, following the skill's feeding guidance.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub release page](https://clawhub.ai/lucasgeeksinthewood/skills/cactus-cactus)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands]
+
+**Output Format:** [Markdown with inline curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes account registration, adoption, status-check, and care instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

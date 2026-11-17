@@ -1,40 +1,53 @@
-## Description: <br>
-Backup Claw helps agents back up and restore OpenClaw configuration files, excluding the workspace directory, with date-stamped backups, change detection, changelog logging, and restore-by-date support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup Claw helps agents back up and restore OpenClaw configuration files, excluding workspace data, using date-stamped backups with change detection and changelog logging.
 
-## Publisher: <br>
-[flyingtimes](https://clawhub.ai/user/flyingtimes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyingtimes](https://clawhub.ai/user/flyingtimes)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve local OpenClaw configuration, detect changes before creating a new backup, and restore a known backup date after configuration loss or unwanted changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill copies OpenClaw configuration files that may contain sensitive local settings or credentials. <br>
-Mitigation: Use a private backup directory with appropriate filesystem permissions and avoid shared or synced destinations unless they are trusted. <br>
-Risk: Restoring a backup can overwrite current OpenClaw configuration. <br>
-Mitigation: Confirm restores only from backup dates the user recognizes, and preserve the workspace exclusion behavior during restore. <br>
+## Use Case:
 
+External users and developers use this skill to maintain local OpenClaw configuration backups, change the configured backup directory, detect configuration changes, and restore a dated backup after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flyingtimes/backupclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, file paths, and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create date-stamped local backup directories, update ~/.openclaw/backup.json, and append changelog.md when the backup or restore workflow is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The restore source may be pointed outside the selected backup folder and copy arbitrary local files into OpenClaw configuration after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only private, trusted backup directories; provide only real YYYY-MM-DD backup dates; and fix restore validation to require the canonical restore source to be an immediate child of the backup root before use.
+
+Risk: Backup and restore operations copy or overwrite local OpenClaw configuration data.
+
+Mitigation: Review the backup path and restore date before execution, keep backups private, and confirm restore only when replacing the current OpenClaw configuration is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyingtimes/skills/backupclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Backups target ~/.openclaw/, exclude workspace/, and use dated backup directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

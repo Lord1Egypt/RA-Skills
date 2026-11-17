@@ -1,42 +1,54 @@
-## Description: <br>
-Performs web searches using DuckDuckGo to retrieve real-time information from the internet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs web searches using DuckDuckGo to retrieve real-time information from the internet.
 
-## Publisher: <br>
-[macdesire](https://clawhub.ai/user/macdesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macdesire](https://clawhub.ai/user/macdesire)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current web, news, image, video, instant-answer, suggestion, and map search results through DuckDuckGo-backed Python examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and use the duckduckgo-search Python dependency. <br>
-Mitigation: Review or pin the dependency before use, and install it only in environments where package-manager access is acceptable. <br>
-Risk: Search queries may disclose sensitive private information to an external search service. <br>
-Mitigation: Avoid putting secrets, private data, customer data, or confidential project details into search queries. <br>
-Risk: Frequent or large batches of searches can trigger request limits or unreliable results. <br>
-Mitigation: Limit result counts, add delays for batch searches, and handle DuckDuckGo search exceptions as shown by the artifact. <br>
+## Use Case:
 
+Developers and agents use this skill to perform current web, news, image, video, instant-answer, suggestion, and map searches through DuckDuckGo without an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/macdesire/duckduckgo-search-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples may print search result titles, links, snippets, metadata, or save JSON search results to a local file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill allows Python execution and package installation commands for a simple search workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained virtual environment, review commands before execution, and pin the duckduckgo-search package version.
+
+Risk: Search workflows may retrieve current external content that is incomplete, stale, or misleading.
+
+Mitigation: Review returned sources and corroborate important claims before using results in decisions or generated outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/macdesire/skills/duckduckgo-search-backup)
+- [Publisher profile](https://clawhub.ai/user/macdesire)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search examples may return result titles, URLs, snippets, source metadata, dates, images, videos, map details, or JSON files depending on the requested DuckDuckGo search mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

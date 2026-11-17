@@ -1,42 +1,53 @@
-## Description: <br>
-Guides structured help for Game Idea Generator using clear templates, checks, and safe defaults (category: Game Development). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Game Idea Generator using clear templates, checks, and safe defaults (category: Game Development).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Game designers, developers, and creators use this skill to turn a game idea or draft into a concise plan, reusable checklist, next actions, and optional draft copy while avoiding secrets and unsafe shell-command suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets or sensitive personal information into brainstorming inputs. <br>
-Mitigation: Avoid passwords, OTPs, private keys, wallet seeds, session secrets, and sensitive personal data in prompts or notes. <br>
-Risk: An external PayPal donation link is present in the artifact. <br>
-Mitigation: Use the donation link only if the publisher is trusted. <br>
-Risk: Brainstorming output may contain unclear or misleading guidance. <br>
-Mitigation: Review generated plans, checklists, and draft copy before using them. <br>
+## Use Case:
 
+Developers, designers, and external creators use this skill to structure game-idea planning into concise plans, reusable checklists, next actions, and editable draft copy without requesting private data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/game-idea-generator-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise plans, numbered checklists, short next-action lists, and optional editable draft copy blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json) <br>
+Risk: Generated planning guidance or draft copy may be inaccurate, incomplete, or unsuitable for a specific game project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt plans, checklists, and copy before relying on them for design, production, or publishing decisions.
+
+Risk: The skill includes an optional external PayPal donation link.
+
+Mitigation: Treat donation as a manual user choice and verify the destination before opening or using any payment page.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/game-idea-generator-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No automatic network access or executable behavior was found in the release security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

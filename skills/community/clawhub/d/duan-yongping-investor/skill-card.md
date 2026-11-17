@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes companies through Duan Yongping-inspired principles of business model quality, corporate culture, circle of competence, and long-term investing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill helps agents analyze company culture, business models, circle of competence, and long-term investment value using Duan Yongping-style value investing principles.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and investment researchers use this skill as an educational framework for evaluating companies, especially corporate culture, business model quality, circle of competence, and long-term holding suitability. It should support research discussions, not replace independent diligence or licensed financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment checklist output could be mistaken for personalized financial advice. <br>
-Mitigation: Use the skill as an educational framework only, verify company facts and valuation assumptions independently, and consult a licensed financial advisor before making real investment decisions. <br>
-Risk: Culture and long-term business assessments are subjective and can become stale as company conditions change. <br>
-Mitigation: Review current filings, management actions, negative news, valuation data, and risk tolerance before relying on any recommendation. <br>
+## Use Case:
 
+External users and agents use this skill to structure Chinese-language investment research around company culture, business quality, competitive advantage, valuation posture, and long-term holding suitability. It is intended as a research framework, not as personalized financial advice.
 
-## Reference(s): <br>
-- [Duan Yongping Investment Principles](references/duan-principles.md) <br>
-- [ClawHub Skill Release](https://clawhub.ai/lj22503/duan-yongping-investor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with checklist-style scoring and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational investment-analysis output; users should verify company facts and valuation assumptions independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Investment ratings or buy, hold, avoid, and long-term-hold language may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as an educational research framework and independently verify facts, valuation data, and suitability before making investment decisions.
+
+Risk: Culture, management quality, and long-term durability assessments are subjective and may miss later evidence or market changes.
+
+Mitigation: Pair the analysis with financial due diligence, source checks, and periodic review of company fundamentals and new disclosures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/duan-yongping-investor)
+- [段永平投资原则参考](references/duan-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis, checklists, and optional structured JSON-style summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language investment framework; outputs should be verified against independent facts and valuation data.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

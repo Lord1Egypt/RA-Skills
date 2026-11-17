@@ -1,43 +1,55 @@
-## Description: <br>
-面向完全不懂 AI、不懂编程、不懂 Skill 概念的用户，使用生活化提问引导他们创建、优化、打包 Codex Skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向完全不懂 AI、不懂编程、不懂 Skill 概念的用户，使用生活化提问引导他们创建、优化、打包 Codex Skill。当用户说想做 Skill、创建小助手、把流程变成 Skill、让普通人也能写 Skill 时使用。
 
-## Publisher: <br>
-[lifenglei](https://clawhub.ai/user/lifenglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifenglei](https://clawhub.ai/user/lifenglei)
 
-## Use Case: <br>
-External users and developers use this skill to turn beginner, plain-language ideas into structured Codex Skill files. It guides Chinese-speaking beginners through simple questions, safety checks, examples, and packaging-ready outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could route ordinary questions or unrelated writing tasks to this skill. <br>
-Mitigation: Keep explicit non-trigger examples and require clear intent to create a Skill, small assistant, or reusable workflow. <br>
-Risk: Generated skills may include actions involving deletion, overwriting, publishing, payments, authorization, private files, or credentials. <br>
-Mitigation: Preserve confirmation rules for high-risk actions and warn users not to share passwords, verification codes, private keys, tokens, cookies, or API keys. <br>
+## Use Case:
 
+External users and developers use this skill as a Mandarin onboarding coach for turning plain-language ideas into Codex skills. It guides zero-experience users through inputs, desired outputs, safety boundaries, trigger phrases, and the files needed for a distributable skill package.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lifenglei/duange-zero-skill) <br>
-- [simple-conversation.md](references/simple-conversation.md) <br>
-- [templates.md](references/templates.md) <br>
-- [safety-quality.md](references/safety-quality.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SKILL.md, README.md, examples.md, optional references, scripts, assets, and manifest guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated skills could include unsafe actions such as deletion, overwriting files, payments, authorization, publishing, or sending messages without enough user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skills before distribution and require explicit confirmation for high-risk actions.
+
+Risk: A generated or packaged skill could accidentally include credentials, private files, logs, caches, or other sensitive material.
+
+Mitigation: Scan packages before release and exclude .env files, tokens, cookies, API keys, node_modules, caches, logs, temporary files, and personal private files.
+
+## Reference(s):
+
+- [Simple Conversation Flow](artifact/references/simple-conversation.md)
+- [Skill Templates](artifact/references/templates.md)
+- [Safety, Quality, and Packaging Checklist](artifact/references/safety-quality.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional skill files and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SKILL.md, README.md, examples.md, reference materials, scripts, assets, and manifest.json when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

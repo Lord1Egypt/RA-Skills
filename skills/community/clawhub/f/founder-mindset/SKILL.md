@@ -1,7 +1,7 @@
 ---
 name: founder-mindset
 description: "Activate when: user says 'founder mindset' or 'founder mode'; asks 'default alive or default dead'; says 'do things that don't scale'; says 'am I avoiding the hard thing'; is deciding whether to hire/fire/pivot/raise/cut burn at an early-stage company; feels comfort-seeking creeping in; cannot tell if they are on the path to success or slow death.
-  Do NOT activate when: user is running a mature well-understood business (manager frameworks apply); user is an employee within a startup with fixed scope; the decision is purely tactical (which CRM, which button color)."
+  Do NOT activate when: user is running a mature well-understood business (manager frameworks apply); user is an employee within a startup with fixed scope; the decision is purely tactical (which CRM, which button color). More: deciqai.com/c/founder-mindset"
 ---
 
 # Founder Mindset
@@ -10,11 +10,11 @@ description: "Activate when: user says 'founder mindset' or 'founder mode'; asks
 
 A specific cognitive mode for running an early-stage company — different from manager mindset (optimizing known systems) and employee mindset (executing within fixed scope). Founders search for the system itself under conditions of extreme uncertainty, asymmetric risk, and personal execution bottlenecks. The two load-bearing disciplines: **Default Alive or Default Dead** (Graham 2015) and **doing things that don't scale** (Graham 2013).
 
-**Compose:** [first-principles](../first-principles/SKILL.md) on inherited assumptions about how companies operate · [regret-minimization](../regret-minimization/SKILL.md) for the decision to start or quit · [inversion](../inversion/SKILL.md) to surface failure paths founders underweight · [lean-startup](../lean-startup/SKILL.md) + [mvp](../mvp/SKILL.md) operationally · [metacognition](../metacognition/SKILL.md) to catch monitoring lapses under founder stress.
+**Compose:** first-principles on inherited assumptions about how companies operate · regret-minimization for the decision to start or quit · inversion to surface failure paths founders underweight · lean-startup + mvp operationally · metacognition to catch monitoring lapses under founder stress.
 
 ## When to Use
 
-Apply when: running an early-stage company (hire/fire/pivot/raise/cut burn decisions) · comfort-seeking is creeping in · cannot tell if on path to success or slow death · team is scaling prematurely · a specific hard problem has been on the list > 2 weeks · someone says *"founder mindset," "founder mode," "default alive or default dead," "do things that don't scale," "am I avoiding the hard thing?"*
+Apply when: running an early-stage company (hire/fire/pivot/raise/cut burn decisions) · comfort-seeking is creeping in · cannot tell if on path to success or slow death · team is scaling prematurely · a specific hard problem has been on the list > 2 weeks · deciding how much to raise/burn/hire amid the AI-startup gold rush (abundant capital, AI bubble talk, tiny high-agency teams) · someone says *"founder mindset," "founder mode," "default alive or default dead," "do things that don't scale," "am I avoiding the hard thing?"*
 
 **When NOT to use:** mature well-understood business · employee within a startup · purely tactical decision · "founder mindset" as performative identity.
 
@@ -60,6 +60,8 @@ Re-audit: every Monday
 ```
 
 *→ Method in Action: [Paul Graham's Essays and the YC Portfolio (2005–2024)](examples/paul-graham-essays-yc-portfolio-2005-2024.md)*
+
+*→ 2026 lens: [AI-native "founder mode" and the tiny high-agency team (2023–2026)](examples/ai-native-founder-mode-tiny-teams-2023-2026.md)*
 
 ## Founder Packs
 
@@ -115,4 +117,6 @@ Founder mindset operates the same across industries; the specific hard things di
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 227 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/founder-mindset** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/founder-mindset.json*

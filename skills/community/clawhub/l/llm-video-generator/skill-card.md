@@ -1,42 +1,61 @@
-## Description: <br>
-Generate videos from text descriptions using ZhipuAI CogVideoX-3, with support for text-to-video, image-to-video, first/last-frame video generation, and multi-segment continuation for videos longer than about five seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short or multi-segment videos from text and optional image frames using ZhipuAI CogVideoX-3, with helper scripts for continuation, frame extraction, and concatenation.
 
-## Publisher: <br>
-[baokui](https://clawhub.ai/user/baokui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baokui](https://clawhub.ai/user/baokui)
 
-## Use Case: <br>
-External users and developers use this skill to plan, generate, chain, concatenate, and deliver short or multi-segment videos from text prompts or source images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected images, and continuation frames are sent to ZhipuAI for video generation. <br>
-Mitigation: Use the skill only when external processing is acceptable and avoid sensitive prompts or media. <br>
-Risk: Video generation can consume provider quota or incur costs through repeated segment generation. <br>
-Mitigation: Use a scoped ZhipuAI API key where possible, estimate duration before generation, and monitor provider quota and cost. <br>
-Risk: Generated files can exceed messaging or upload limits. <br>
-Mitigation: Compress oversized final videos before delivery, as described by the artifact workflow. <br>
+## Use Case:
 
+Developers and creative operators use this skill to plan and run text-to-video, image-to-video, and frame-guided video generation workflows. It is suited for generating approximately five-second clips or longer videos assembled from multiple generated segments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baokui/llm-video-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces video generation plans, progress messages, ZhipuAI task/result JSON files, PNG continuation frames, and MP4 video outputs through bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts and provided images may be sent to ZhipuAI during generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or images unless the user has approved sharing them with that service.
+
+Risk: The workflow stores task metadata and result information locally.
+
+Mitigation: Review output directories before sharing or retaining generated task files.
+
+Risk: Concatenating media with untrusted or unusual filenames may be unsafe until the escaping issue is fixed.
+
+Mitigation: Use trusted media files with simple filenames when running the concatenation script.
+
+Risk: The skill depends on zai-sdk, ffmpeg, and a ZHIPU_API_KEY environment variable.
+
+Mitigation: Use a virtual environment, pin or review dependencies, and configure credentials only in the intended runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baokui/skills/llm-video-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce MP4 videos, PNG continuation frames, and JSON task/result metadata through the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Reference guide for the Atlassian CLI (acli) that helps agents prepare Jira Cloud, Atlassian organization administration, and related automation commands for an already installed and authenticated acli binary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference guide for using Atlassian's aCLI to operate Jira Cloud, Atlassian organization administration, and related terminal workflows with an authenticated aCLI binary.
 
-## Publisher: <br>
-[peetzweg](https://clawhub.ai/user/peetzweg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peetzweg](https://clawhub.ai/user/peetzweg)
 
-## Use Case: <br>
-Developers, administrators, and support engineers use this skill to look up Atlassian acli syntax, authentication patterns, and safety checks before operating Jira projects, work items, boards, sprints, filters, dashboards, fields, or organization users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk edits, deletes, archives, ownership changes, and organization user-management commands can affect many Jira or Atlassian organization resources. <br>
-Mitigation: Confirm exact targets before execution, preview bulk selections with matching searches, and require fresh confirmation for organization admin actions. <br>
-Risk: API tokens, admin API keys, and attached files may expose sensitive credentials or data if echoed, logged, or stored insecurely. <br>
-Mitigation: Use environment variables or secure file input, prefer interactive OAuth when practical, and avoid displaying or persisting secrets. <br>
+## Use Case:
 
+Developers, operators, and Atlassian administrators use this skill to draft, review, and safely execute aCLI commands for Jira work items, projects, boards, sprints, filters, dashboards, fields, user administration, authentication, and workflow automation.
 
-## Reference(s): <br>
-- [Atlassian acli install guide](https://developer.atlassian.com/cloud/acli/guides/install-acli/) <br>
-- [Jira work item commands reference](references/jira-workitem-commands.md) <br>
-- [acli non-workitem commands reference](references/other-commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/peetzweg/atlassian-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/peetzweg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for an external acli installation; it does not bundle or execute the Atlassian CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Authenticated aCLI commands can change or delete Jira and Atlassian organization resources, including work items, projects, custom fields, and managed users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit current-turn approval for destructive or organization-wide commands, enumerate affected targets before execution, and preview bulk selectors with search or JSON output before applying changes.
+
+Risk: API tokens and admin API keys can be exposed through commands, logs, shell history, or persisted intermediate files.
+
+Mitigation: Use environment variables or stdin/file-based token input, avoid printing secrets, prefer OAuth for interactive use, and avoid embedding literal tokens in shell commands.
+
+Risk: Bulk operations using JQL, filters, files, or ignore-errors behavior can affect unintended resources or leave partially applied administrative changes.
+
+Mitigation: Display resolved targets and counts before execution, avoid unattended destructive bulk operations unless explicitly requested, and do not use --ignore-errors with admin user delete or deactivate commands.
+
+## Reference(s):
+
+- [Jira Work Item Commands Reference](references/jira-workitem-commands.md)
+- [aCLI Commands Reference](references/other-commands.md)
+- [Atlassian aCLI installation guide](https://developer.atlassian.com/cloud/acli/guides/install-acli/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an installed, authenticated aCLI binary; may reference API_TOKEN or API_KEY environment variables for non-interactive authentication.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-Manage YouTube playlist images by guiding agents through yutu CLI commands to list, insert, update, and delete playlist images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube playlist images by listing, inserting, updating, or deleting playlist images through the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-Developers, creators, and channel operators use this skill to manage YouTube playlist artwork through the yutu CLI, including setup guidance for OAuth credentials and token files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The yutu CLI uses OAuth credentials and cached tokens that can grant access to a YouTube account. <br>
-Mitigation: Install yutu only from a trusted source and keep client_secret.json and youtube.token.json private. <br>
-Risk: Update and delete commands can change or remove playlist images. <br>
-Mitigation: Verify the active account, playlist IDs, and playlist image IDs before running content-changing commands. <br>
-Risk: Insert commands can upload local images as public-facing playlist artwork. <br>
-Mitigation: Review local image contents before upload and avoid using sensitive files as playlist images. <br>
+## Use Case:
 
+Developers and channel operators use this skill to manage YouTube playlist imagery from an agent workflow. It provides guidance and shell commands for yutu setup and playlist image list, insert, update, and delete operations.
 
-## Reference(s): <br>
-- [Yutu homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [YouTube Playlist Image on ClawHub](https://clawhub.ai/OpenWaygate/youtube-playlist-image) <br>
-- [Setup guide](references/setup.md) <br>
-- [Playlist Image List](references/playlistImage-list.md) <br>
-- [Playlist Image Insert](references/playlistImage-insert.md) <br>
-- [Playlist Image Update](references/playlistImage-update.md) <br>
-- [Playlist Image Delete](references/playlistImage-delete.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and CLI flag tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require yutu, Google OAuth credentials, and cached YouTube token files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release evidence) <br>
+Risk: The skill handles YouTube OAuth credentials and cached tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect client_secret.json and youtube.token.json with restrictive permissions, keep them out of git and shared folders, and install yutu only from trusted sources.
+
+Risk: The skill can modify or delete YouTube playlist imagery.
+
+Mitigation: Manually verify playlist IDs and playlist image IDs before running update or delete commands, especially when using content owner flags.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openwaygate/skills/youtube-playlist-image)
+- [yutu Project Homepage](https://github.com/eat-pray-ai/yutu)
+- [Yutu Setup Guide](references/setup.md)
+- [Playlist Image List](references/playlistImage-list.md)
+- [Playlist Image Insert](references/playlistImage-insert.md)
+- [Playlist Image Update](references/playlistImage-update.md)
+- [Playlist Image Delete](references/playlistImage-delete.md)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include yutu commands that call the YouTube API and may return table, JSON, YAML, or silent CLI output depending on selected flags.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

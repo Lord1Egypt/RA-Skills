@@ -1,40 +1,58 @@
-## Description: <br>
-Logs LINE group messages that match job-related keywords to CSV and summarizes saved work records on request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Group Logger logs LINE group messages that match work-related keywords to CSV and summarizes logged jobs or customer activity when mentioned.
 
-## Publisher: <br>
-[comphone](https://clawhub.ai/user/comphone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[comphone](https://clawhub.ai/user/comphone)
 
-## Use Case: <br>
-Service teams using LINE groups can capture job updates, customer names, and statuses into CSV logs, then request Thai-language summaries for a customer, job ID, or day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently and persistently record group chat content that matches broad job-related keywords. <br>
-Mitigation: Install only in groups where admins and participants have agreed to logging; prefer dedicated work channels and explicit job commands or structured job IDs. <br>
-Risk: CSV logs and daily backups may expose message content, senders, group IDs, customers, and job statuses to anyone with filesystem access. <br>
-Mitigation: Restrict access to group_log.csv and backups, define retention and deletion rules, and review who can read exported files. <br>
+## Use Case:
 
+Developers and operations teams managing LINE work groups use this skill to capture keyword-matched job or customer messages in a CSV log and request Thai summaries for jobs, customers, pending work, or daily activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/comphone/group-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown summaries and CSV log rows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Silent logging mode writes matching LINE group messages to CSV; summary mode responds to @mention requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill silently stores raw LINE group-chat messages that match work-related keywords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where group members have been informed that keyword-matching messages are logged.
+
+Risk: CSV logs and backups may contain group-chat history, job details, customer names, and sender information.
+
+Mitigation: Protect the CSV and backup files, define retention and deletion rules, and limit access to authorized users.
+
+Risk: Summaries could expose information outside the intended group, customer, or job scope.
+
+Mitigation: Restrict summary requests to authorized users and verify that responses stay within the appropriate group or customer scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/comphone/skills/group-logger)
+- [Publisher profile](https://clawhub.ai/user/comphone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration]
+
+**Output Format:** [CSV log entries and Thai Markdown/text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a keyword-filtered group_log.csv file, maintains a backup CSV file, and separates records by group_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

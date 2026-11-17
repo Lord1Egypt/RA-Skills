@@ -1,43 +1,60 @@
-## Description: <br>
-Searches Zhihu questions and hot-list data, then summarizes topic heat, answer competition, and content opportunities for Chinese-language creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知乎内容搜索分析 helps agents search Zhihu topics and hot lists, rank content opportunities, and produce Chinese-first topic recommendations for creators.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Content creators, social media operators, and agent users use this skill to search Zhihu topics, review hot questions, rank content opportunities, and generate topic suggestions from public Zhihu data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Zhihu when the local Python script runs. <br>
-Mitigation: Avoid sensitive queries and use the skill only where sending those terms to Zhihu is acceptable. <br>
-Risk: Zhihu endpoints may fail or be unavailable in some regions, and results may be incomplete. <br>
-Mitigation: Treat empty or partial results as operational limits and validate important content decisions against Zhihu directly. <br>
-Risk: Static review found no malicious behavior, but VirusTotal was still pending in the security evidence. <br>
-Mitigation: Review and scan the artifact before deployment in managed or production environments. <br>
+## Use Case:
 
+Content creators and media operators use this skill to find Zhihu questions, compare topic heat and answer competition, and identify questions worth answering or developing into content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/zhida-content) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text summaries or JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include Zhihu question links, follower and answer counts, estimated heat, opportunity labels, and content suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: User-provided Zhihu search keywords are sent to Zhihu endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or confidential keywords and use the skill only when external Zhihu queries are acceptable.
+
+Risk: The documented --analyze example appears unsupported by the included script.
+
+Mitigation: Use the implemented --search, --hot, --topic, --limit, and --json options, or verify behavior before relying on --analyze.
+
+Risk: Output is Chinese-focused and depends on Zhihu endpoint availability.
+
+Mitigation: Review generated recommendations for audience fit and retry or fall back when Zhihu endpoints are unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/zhida-content)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+- [Zhihu search endpoint](https://www.zhihu.com/api/v4/search_v3)
+- [Zhihu hot list endpoint](https://api.zhihu.com/topstory/hot-lists/total)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Chinese-first text summaries with links, scores, command examples, and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided keywords to query Zhihu endpoints and rank questions by estimated heat and opportunity.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,54 +1,71 @@
-## Description: <br>
-Coinw Spot REST API skill for market data, order placement and cancellation, order queries, account balances, and asset transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coinw Spot Skill gives agents access to CoinW Spot REST API workflows for market data, order placement and cancellation, order queries, account balances, and asset transfers.
 
-## Publisher: <br>
-[connectcoinw](https://clawhub.ai/user/connectcoinw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[connectcoinw](https://clawhub.ai/user/connectcoinw)
 
-## Use Case: <br>
-Developers and agent users can use this skill to connect an agent to CoinW spot trading APIs for market lookups, order management, balance checks, and spot-to-funding asset transfers. Private actions require CoinW API credentials and should be confirmed before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place orders, cancel orders, cancel all open orders, view balances, and transfer assets, giving an agent high-impact account authority. <br>
-Mitigation: Use a dedicated least-privilege CoinW API key and require explicit user confirmation before every order, cancellation, cancel-all, or transfer action. <br>
-Risk: CoinW API keys and signed request data can expose sensitive account access if pasted into chat, logs, or support requests. <br>
-Mitigation: Store credentials only in the configured secret mechanism, avoid pasting secrets into chat, and redact signed commands, request URLs, and logs before sharing. <br>
-Risk: Overly broad API permissions can expand account exposure beyond the intended spot-trading workflow. <br>
-Mitigation: Disable withdrawal or transfer permissions unless required, enable IP whitelisting where possible, and review the key permissions before installing the skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to connect an agent to CoinW spot trading workflows, including retrieving market data, checking account balances, placing or cancelling orders, and transferring assets between spot and funding accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/connectcoinw/coinw-spot-skill) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/connectcoinw) <br>
-- [Authentication](references/Authentication.md) <br>
-- [API Key Creation Steps](references/api-key-creation-steps.md) <br>
-- [Error Code Explanation](references/error-codes.md) <br>
-- [CoinW API Notes](references/notes.md) <br>
-- [CoinW Get Trading Pair Information](https://www.coinw.com/api-doc/spot-trading/market/get-trading-pair-information) <br>
-- [CoinW Place Order](https://www.coinw.com/api-doc/spot-trading/trade/place-order) <br>
-- [CoinW Cancel All Orders](https://www.coinw.com/api-doc/spot-trading/trade/cancel-all-orders) <br>
-- [CoinW Get Spot Account Balance](https://www.coinw.com/api-doc/spot-trading/account/get-spot-account-balance) <br>
-- [CoinW Transfer Assets](https://www.coinw.com/api-doc/spot-trading/account/transfer-assets) <br>
-- [CoinW Risk Disclosure Statement](https://www.coinw.com/help-center/announcement-center/product-updates/productupdates/2022-11-13/risk-disclosure-statement/2560) <br>
-- [CoinW User Agreement](https://www.coinw.com/help-center/faq/official-updates/2020-04-15/user-agreement/6912) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, REST endpoint details, and credential setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COINW_API_KEY and COINW_SECRET_KEY for private endpoints; public market-data endpoints can be used without credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata) <br>
+Risk: The skill can guide private CoinW Spot actions including order placement, order cancellation, and asset transfer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before submitting orders, cancellations, or transfers, and show the operation, pair, amount, price, account direction, and expected endpoint before execution.
+
+Risk: The skill requires CoinW API and secret keys for private endpoints.
+
+Mitigation: Use least-privilege API keys, avoid withdrawal permission unless required, enable IP allowlisting, store secrets only in approved credential storage, and redact credentials, signatures, commands, and logs before sharing.
+
+Risk: Incorrect signing, missing permissions, or API rate limits can cause failed or repeated requests.
+
+Mitigation: Follow the Spot MD5 uppercase signing process, verify API permissions before account-changing operations, and apply request throttling with retry behavior that stops before repeated order attempts.
+
+Risk: A returned order identifier does not prove trade execution.
+
+Mitigation: Query order status or order details after submitting an order and present execution state separately from request acceptance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/connectcoinw/skills/coinw-spot-skill)
+- [connectcoinw publisher profile](https://clawhub.ai/user/connectcoinw)
+- [Authentication](artifact/references/Authentication.md)
+- [API Key Creation Steps](artifact/references/api-key-creation-steps.md)
+- [Error Code Explanation](artifact/references/error-codes.md)
+- [Notes](artifact/references/notes.md)
+- [CoinW Spot trading pair information API](https://www.coinw.com/api-doc/spot-trading/market/get-trading-pair-information)
+- [CoinW Spot place order API](https://www.coinw.com/api-doc/spot-trading/trade/place-order)
+- [CoinW Spot cancel order API](https://www.coinw.com/api-doc/spot-trading/trade/cancel-order)
+- [CoinW Spot account balance API](https://www.coinw.com/api-doc/spot-trading/account/get-spot-account-balance)
+- [CoinW Spot asset transfer API](https://www.coinw.com/api-doc/spot-trading/account/transfer-assets)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, markdown]
+
+**Output Format:** [Markdown with REST endpoint tables, credential guidance, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include signed CoinW REST request examples and operational guidance for public and private Spot endpoints.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

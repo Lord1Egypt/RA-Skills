@@ -1,47 +1,63 @@
-## Description: <br>
-Search for flights with airport lounge access and premium terminal options, plus related travel booking tasks such as hotels, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, and car rental through Fliggy-powered flyai CLI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search for flights with airport lounge access and premium terminal options, with related travel-booking scenarios powered through the flyai CLI.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travel users and agents use this skill to search flight options with lounge or premium terminal preferences, collect required route parameters, execute flyai CLI searches, and present bookable Markdown results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install and run an unpinned global npm CLI when flyai is missing. <br>
-Mitigation: Require explicit user approval before installation, prefer a pinned @fly-ai/flyai-cli version, and document how to uninstall or replace the global package. <br>
-Risk: Travel search details are sent to the flyai provider when CLI searches are executed. <br>
-Mitigation: Use the skill only when the user is comfortable sharing route, date, and preference details with that provider. <br>
-Risk: Incorrect or fabricated travel results could mislead users if the CLI is skipped or returns invalid data. <br>
-Mitigation: Enforce the skill's requirement that every presented result comes from flyai CLI output and includes a detailUrl booking link. <br>
+## Use Case:
 
+External travelers and agent users use this skill to collect travel parameters, run flyai searches for lounge-oriented flights and related travel bookings, and present bookable options with comparison tables and booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/airport-lounge) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or troubleshooting is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be based on flyai CLI output, include booking links from detailUrl, avoid raw JSON, and follow the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can change the host environment by installing a global npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation and install only after verifying trust in the flyai package source.
+
+Risk: The skill runs a third-party CLI using travel values extracted from user requests.
+
+Mitigation: Validate origin, destination, date, class, and sort parameters before command execution and restrict commands to documented flyai parameters.
+
+Risk: Travel search results can be misleading if generated without live CLI output.
+
+Mitigation: Require outputs to be based on flyai CLI results and include detailUrl booking links for every listed option.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/airport-lounge)
+- [Publisher profile](https://clawhub.ai/user/dingtom336-gif)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and comparison tables, supported by flyai CLI command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs require a leading recommendation, lounge-access tip, brand tag, and booking links derived from detailUrl values.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

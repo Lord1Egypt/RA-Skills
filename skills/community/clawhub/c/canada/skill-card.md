@@ -1,44 +1,53 @@
-## Description: <br>
-Discover Canada like a local with concrete city recommendations, regional insights, nature routes, and practical planning tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Canada like a local with concrete city recommendations, regional insights, nature routes, and practical planning tips.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users planning travel to Canada use this skill to choose regions, cities, food experiences, nature routes, lodging, transport, and seasonal logistics. The skill supports personalized trip planning by maintaining local trip context in ~/canada/ when configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create ~/canada/memory.md and store trip preferences for later conversations. <br>
-Mitigation: Avoid saving full booking confirmation numbers, medical details, identity documents, or other sensitive information in the local trip memory file. <br>
-Risk: Travel guidance can become stale or may not reflect current weather, park, transport, booking, or emergency conditions. <br>
-Mitigation: Verify time-sensitive logistics and safety information with official providers before booking, travel, or outdoor activities. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Canada ClawHub Skill Page](https://clawhub.ai/ivangdavila/canada) <br>
-- [Canada Skill Homepage](https://clawic.com/skills/canada) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Canada Trip Memory Template](artifact/memory-template.md) <br>
-- [Canada Itineraries](artifact/itineraries.md) <br>
-- [Emergencies and Safety](artifact/emergencies.md) <br>
+## Use Case:
 
+External users use this skill to plan Canada travel with city guides, regional tradeoffs, food and lodging guidance, itinerary ideas, outdoor safety notes, and practical logistics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with concise travel guidance, local setup commands, and optional local memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update ~/canada/memory.md to retain trip preferences locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local travel profile may contain personal itinerary, family, accessibility, booking, or payment-adjacent details.
+
+Mitigation: Before use, decide whether to keep a local travel profile; avoid storing sensitive details and periodically inspect or delete ~/canada/memory.md.
+
+Risk: The skill stores trip context locally without explicit retention, deletion, or file-permission controls.
+
+Mitigation: Keep the ~/canada/ directory limited to non-sensitive planning notes and remove stale memory when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/canada)
+- [Skill Homepage](https://clawic.com/skills/canada)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with occasional shell command snippets and local configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain a local travel profile under ~/canada/; no network access is described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

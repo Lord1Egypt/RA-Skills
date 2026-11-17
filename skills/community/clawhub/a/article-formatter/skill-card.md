@@ -1,41 +1,53 @@
-## Description: <br>
-Formats raw Chinese research report, official document, or general article text into standard Word .docx documents using embedded layout rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据调研报告或公文规范模板，将原始文本自动排版成标准 .docx 格式，支持格式自动识别和参考文件规范应用。
 
-## Publisher: <br>
-[sunshineorangejuice](https://clawhub.ai/user/sunshineorangejuice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshineorangejuice](https://clawhub.ai/user/sunshineorangejuice)
 
-## Use Case: <br>
-Writers, administrators, and agents use this skill to turn raw Chinese drafts into formatted Word documents for research reports, official documents, and general articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local Word documents that may contain sensitive draft content. <br>
-Mitigation: Review or choose the output path before running the skill with sensitive drafts. <br>
-Risk: The formatter relies on python-docx to generate .docx files. <br>
-Mitigation: Install python-docx only from a trusted package source. <br>
+## Use Case:
 
+Writers, staff, and agents preparing Chinese research reports, official documents, or general articles use this skill to convert draft text into a standardized Word document with official-document-style layout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunshineorangejuice/article-formatter) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance and local Word .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates .docx documents; the default output path is ~/Desktop/openclaw专属文件夹/ unless a custom path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence.release.version) <br>
+Risk: The default output path can create a .docx file under ~/Desktop/openclaw专属文件夹, which may be inappropriate for sensitive drafts or shared machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the -o option to write sensitive documents to an intended private or managed location.
+
+Risk: The produced document uses Chinese official-document font choices that may fall back on systems without those fonts.
+
+Mitigation: Review the generated .docx in the target office suite and install the expected fonts when exact visual fidelity is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshineorangejuice/skills/article-formatter)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [.docx Word document with console status text and optional command-line arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local Word document; by default the artifact behavior writes under ~/Desktop/openclaw专属文件夹 unless an output path is provided.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

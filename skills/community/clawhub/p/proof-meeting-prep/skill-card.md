@@ -1,40 +1,57 @@
-## Description: <br>
-Proof Meeting Prep researches B2B meeting stakeholders from public sources, identifies their role priorities and likely objections, and recommends the proof angle and room sequence most likely to move the deal forward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proof Meeting Prep prepares B2B sales reps for multi-stakeholder calls by researching each attendee, identifying likely priorities and objections, and recommending one proof angle plus call sequencing.
 
-## Publisher: <br>
-[growthnation](https://clawhub.ai/user/growthnation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[growthnation](https://clawhub.ai/user/growthnation)
 
-## Use Case: <br>
-Sales reps and go-to-market teams use this skill to prepare for live B2B calls with multiple stakeholders. It turns a company, attendee list, and deal context into stakeholder briefs, likely objections, proof angles, opener lines, and a room-level call sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill researches named meeting participants and companies using public sources and may use connected GrowthNation customer proof. <br>
-Mitigation: Avoid providing confidential deal details unless they are appropriate for sales-prep research, and only use GrowthNation data when the MCP is connected and the user is signed in. <br>
-Risk: Stakeholder priorities, objections, and proof angles can include role- or industry-based inferences. <br>
-Mitigation: Keep cited claims tied to named public sources, label unsupported reasoning as inferred, and review the brief before using it with customers. <br>
+## Use Case:
 
+Sales reps and revenue teams use this skill before live B2B calls to turn company, attendee, and deal context into stakeholder-specific priorities, objections, proof angles, openers, and room sequencing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/growthnation/proof-meeting-prep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown brief in chat] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Labels claims as cited or inferred and can use public web research with optional GrowthNation MCP grounding when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live sales target, stakeholder, and deal-context information may be sent to the GrowthNation MCP service when it is connected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use web-only mode for confidential opportunities unless the GrowthNation data-sharing terms are acceptable.
+
+Risk: The generated brief may include a soft promotional next step.
+
+Mitigation: Review the closing line before sharing the brief externally and remove promotional wording when it is inappropriate.
+
+Risk: Web research and role-based reasoning can produce incorrect or overconfident stakeholder claims.
+
+Mitigation: Keep the skill's [cited] and [inferred] labels intact, verify cited sources, and treat inferred claims as sales hypotheses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/growthnation/skills/proof-meeting-prep)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown meeting-prep brief in chat]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Labels claims as [cited] or [inferred]; asks one concise clarifying question if company, attendees, or offering is missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

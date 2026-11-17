@@ -1,48 +1,59 @@
-## Description: <br>
-Autonomous journal content pipeline for UniqueStaysUSA that researches keywords, writes editorial content, publishes to Payload CMS, and tracks results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous journal content pipeline for UniqueStaysUSA that researches keywords, writes editorial content, publishes to Payload CMS, and tracks results.
 
-## Publisher: <br>
-[jhigh1594](https://clawhub.ai/user/jhigh1594) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhigh1594](https://clawhub.ai/user/jhigh1594)
 
-## Use Case: <br>
-Developers and editorial operators use this skill to run an end-to-end travel journal workflow: select the next content-calendar topic, research keywords and stays, draft and optimize an article, publish it to Payload CMS, and sync progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically publish to Payload CMS. <br>
-Mitigation: Use staging or draft-only CMS credentials where possible and require manual review before publishing. <br>
-Risk: The skill can edit project files and create git commits. <br>
-Mitigation: Require manual review before git commits and inspect the planned file changes before allowing autonomous sync. <br>
-Risk: The skill can continue looping from broad prompts without a clear approval gate. <br>
-Mitigation: Inspect the content calendar, scripts/ralph state files, and .claude loop files before running autonomous mode. <br>
-Risk: The workflow depends on the /elite-copywriter skill for draft generation. <br>
-Mitigation: Verify the /elite-copywriter dependency before enabling the pipeline. <br>
+## Use Case:
 
+External site operators and content teams use this skill to run a seven-phase travel editorial workflow for selecting topics, researching stays, drafting, optimizing, publishing to Payload CMS, and syncing progress.
 
-## Reference(s): <br>
-- [Journal Pipeline README](artifact/README.md) <br>
-- [Article Templates](artifact/references/article-templates.md) <br>
-- [Quality Checklist](artifact/references/quality-checklist.md) <br>
-- [SEO Requirements](artifact/references/seo-requirements.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/jhigh1594/journal-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, API request examples, CMS publishing instructions, and generated content files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish CMS records, update local tracking files, and create git commits when run in full autonomous mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can publish live CMS content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a staging CMS by default, verify the CMS URL before each run, and require manual confirmation before publishing.
+
+Risk: The skill can use API credentials against a Payload CMS.
+
+Mitigation: Use a narrowly scoped API key with only the permissions needed for the intended environment.
+
+Risk: The skill can commit repository changes and continue a publishing loop across sessions.
+
+Mitigation: Require manual confirmation before committing changes or allowing loop continuation.
+
+## Reference(s):
+
+- [Article Templates](references/article-templates.md)
+- [Quality Checklist](references/quality-checklist.md)
+- [SEO Requirements](references/seo-requirements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls, files]
+
+**Output Format:** [Markdown drafts, JSON-compatible CMS payloads, API call plans, shell commands, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish live CMS content and update repository tracking files when configured with production access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

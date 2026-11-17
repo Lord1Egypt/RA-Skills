@@ -1,44 +1,58 @@
-## Description: <br>
-AI营养师 is a Chinese-language nutrition assistant that creates personalized meal plans, nutrition analyses, food recommendations, and interactive HTML reports for diet goals, chronic-condition nutrition, constitution-based food therapy, sports nutrition, special populations, and nutrient lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI全维度营养顾问，基于用户画像和目标生成个性化饮食方案、慢病营养建议、中医体质食疗、运动营养策略、营养素解读、特殊人群指导、食物搭配建议和交互式 HTML 报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Individuals and agents use this skill to collect nutrition profile details and generate Chinese-language meal plans, food recommendations, shopping lists, nutrient explanations, and optional HTML reports for educational nutrition planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores health-related nutrition profile details locally. <br>
-Mitigation: Use it on a trusted device, review or delete user_data/profile.json when no longer needed, and prefer deployments with explicit save consent and a delete or reset flow. <br>
-Risk: The skill requests broad agent tools for reading, writing, shell execution, and web access. <br>
-Mitigation: Run it in a controlled agent environment, review file and shell actions before relying on them, and narrow tool permissions where the host supports it. <br>
-Risk: Nutrition outputs may be mistaken for medical advice, especially for chronic conditions or special populations. <br>
-Mitigation: Treat outputs as educational guidance, verify important recommendations with a clinician or registered dietitian, and follow clinical treatment plans. <br>
+## Use Case:
 
+External users and agents use this skill to provide Chinese-focused nutrition education, meal planning, dietary guidance for common chronic conditions, sports nutrition advice, nutrient lookup, and optional local HTML reports. It is intended as educational support and not as a substitute for professional medical or registered dietitian advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/ai-nutritionist) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown responses with optional shell commands, JSON profile data, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write user_data/profile.json and ai-nutritionist-report.html when profile storage or report generation is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can store personal health profile details on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering unnecessary sensitive information and review or delete user_data/profile.json after use.
+
+Risk: Generated HTML reports may include unescaped dynamic input.
+
+Mitigation: Open generated reports only from trusted local inputs and avoid sharing or loading profile JSON from untrusted sources.
+
+Risk: Nutrition guidance for chronic conditions and special populations can be misapplied as medical advice.
+
+Mitigation: Treat outputs as educational guidance and consult a clinician or registered dietitian for diagnosis, treatment, pregnancy, pediatric, elder-care, or chronic-condition decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/ai-nutritionist)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with optional shell commands and local HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local profile JSON and HTML report files when the user asks for stored profile data or a report.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

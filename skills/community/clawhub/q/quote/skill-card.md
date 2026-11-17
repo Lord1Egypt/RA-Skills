@@ -1,42 +1,55 @@
-## Description: <br>
-Record, search, and display quotes and sayings. Use when saving favorites, checking attribution, converting collections, analyzing themes, generating picks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, search, and display quotes and sayings for local command-line workflows.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use Quote to keep a local command-line collection of quotes and sayings, search saved entries, review recent activity, and export collections for backup or reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quote text and command activity are saved locally under ~/.local/share/quote and may remain searchable on the machine. <br>
-Mitigation: Do not enter passwords, API keys, private notes, proprietary material, or other sensitive text unless local retention is acceptable. <br>
-Risk: The bundled command documentation includes generic command names and may not fully describe every behavior. <br>
-Mitigation: Review the help output and generated files before relying on the tool in a workflow. <br>
+## Use Case:
 
+External users and developers can use this skill to operate a local quote-oriented CLI for recording entries, searching logs, checking status, and exporting saved data.
 
-## Reference(s): <br>
-- [Quote on ClawHub](https://clawhub.ai/ckchzh/quote) <br>
-- [BytesAgain](https://bytesagain.com) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with optional JSON, CSV, or plain-text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores quote activity in local log and export files under ~/.local/share/quote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The documented quote features and the command behavior do not fully align.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the actual CLI behavior in a test environment before relying on it for quote analysis, attribution checks, conversion, or generated picks.
+
+Risk: User input is stored persistently in local plaintext logs.
+
+Mitigation: Avoid entering secrets, credentials, private notes, or sensitive business text; restrict file permissions on the storage directory and delete old logs when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/quote)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI writes local log and export files under the user's home directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Join lines of text from multiple files based on a common field for relational data operations similar to SQL JOIN on text files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and a small Python helper for joining text files, with release evidence noting that the bundled helper currently concatenates corresponding lines rather than performing field-based joins.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers can use this skill as a lightweight helper for text-file join workflows. Security evidence warns that the packaged script behaves as a line-by-line concatenation helper rather than a keyed SQL-style join. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged script does not perform the SQL-style keyed join described by the skill documentation. <br>
-Mitigation: Treat it only as a simple line-by-line concatenation helper and do not rely on it for CSV, security, accounting, or other decisions that require matching records by key unless the implementation or documentation is corrected. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to request guidance or commands for combining records from two text files. Users should verify behavior before relying on it for field-based joins because release security evidence says the bundled helper only concatenates matching line numbers.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documentation describes SQL-like field joins, while the bundled script only concatenates corresponding lines from two files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the installed implementation supports the requested join options, or correct the skill to describe simple line concatenation before using it for relational data operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/join-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include join commands or helper-code guidance; verify against the installed implementation before use on relational data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

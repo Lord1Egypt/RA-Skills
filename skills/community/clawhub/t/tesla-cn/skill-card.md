@@ -1,43 +1,58 @@
-## Description: <br>
-Remote-control skill for Tesla owners in China that uses Tesla Fleet API access to list vehicles, query vehicle status, and run supported vehicle commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tesla China helps agents configure and run Node.js commands for China-region Tesla vehicle queries and remote controls through the Tesla Fleet API via tesla.dhuar.com.
 
-## Publisher: <br>
-[mywind2020](https://clawhub.ai/user/mywind2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mywind2020](https://clawhub.ai/user/mywind2020)
 
-## Use Case: <br>
-External Tesla owners and their agents use this skill to configure API access, inspect vehicle information, and issue remote vehicle commands such as wake, lock, climate, trunk, horn, charging-port, and light controls. It is intended for users who can verify vehicle identity and safety conditions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue commands that affect a physical Tesla vehicle. <br>
-Mitigation: Require explicit user approval before state-changing commands, start with read-only list or status checks, and confirm the vehicle and surrounding conditions before execution. <br>
-Risk: The Tesla API key grants vehicle-control access and is stored locally for command execution. <br>
-Mitigation: Treat ~/.tesla_cn.json as a secret file, restrict local access, avoid shared or backed-up systems, and rotate the key if it may have been exposed. <br>
-Risk: The security evidence reports a suspicious verdict because commands use tesla.dhuar.com for vehicle-control access. <br>
-Mitigation: Install only if the user trusts both the local machine and tesla.dhuar.com with Tesla vehicle-control access. <br>
+## Use Case:
 
+External Tesla owners in China and their agents use this skill to list vehicles, read vehicle data, and issue supported remote commands such as wake, lock, trunk, lighting, horn, HVAC, charge-port, and remote sound actions.
 
-## Reference(s): <br>
-- [Tesla China ClawHub listing](https://clawhub.ai/mywind2020/tesla-cn) <br>
-- [Tesla API key service](https://tesla.dhuar.com) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands; command execution returns JSON or plain text responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or newer and an apiKey stored in ~/.tesla_cn.json or provided during configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill routes Tesla API keys, VINs, telemetry, and vehicle command traffic through tesla.dhuar.com, a third-party service with under-disclosed high-impact access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user intentionally trusts tesla.dhuar.com with vehicle access, or prefer a version that uses official Tesla authorization directly and clearly documents the proxy operator and safety controls.
+
+Risk: The skill can issue physical vehicle commands, including lock, trunk, horn, HVAC, charge-port, lighting, and remote sound actions.
+
+Mitigation: Confirm vehicle identity and surroundings before issuing commands, start with non-actuating checks such as list or vehicle data, and use disruptive commands only in safe and lawful conditions.
+
+Risk: The apiKey is stored in ~/.tesla_cn.json and may also be exposed through shell history if passed on the command line.
+
+Mitigation: Treat the apiKey as a sensitive vehicle-control secret, restrict local file permissions manually, and avoid placing the key in command-line history or shared logs.
+
+## Reference(s):
+
+- [Tesla China ClawHub skill page](https://clawhub.ai/mywind2020/skills/tesla-cn)
+- [Tesla China API key service](https://tesla.dhuar.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples; bundled scripts print JSON or service response text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or newer and a Tesla China apiKey stored in ~/.tesla_cn.json or supplied during initialization.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

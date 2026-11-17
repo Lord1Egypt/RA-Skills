@@ -1,43 +1,53 @@
-## Description: <br>
-Define and document a consistent brand voice with tone guidelines, vocabulary lists, do/don't examples, and channel-specific adaptations so every touchpoint sounds unmistakably like the brand - whether written by founders, freelancers, or AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define and document a consistent brand voice with tone guidelines, vocabulary lists, do/don't examples, and channel-specific adaptations so every touchpoint sounds unmistakably like the brand, whether written by founders, freelancers, or AI.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, brand, content, support, product, and AI-writing teams use this skill to turn existing brand copy and preferences into a practical brand voice guide. It produces voice attributes, vocabulary rules, tone and channel guidance, examples, prompt instructions, and a scoring checklist for consistent writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand voice examples may include unreleased positioning, customer support conversations, customer personal data, or confidential launch copy. <br>
-Mitigation: Use approved or redacted examples, remove personal data and confidential details before sharing samples, and review the generated guide before distribution. <br>
+## Use Case:
 
+External brand, marketing, content, support, and AI-writing teams use this skill to create a practical brand voice guide. It helps them audit existing copy, define voice attributes, standardize vocabulary, adapt tone across channels, and build a scoring rubric.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/leooooooow/brand-voice-guide) <br>
-- [Publisher Profile](https://clawhub.ai/user/leooooooow) <br>
-- [Output Template](references/output-template.md) <br>
-- [Voice Attribute Framework](references/voice-attribute-framework.md) <br>
-- [Channel Adaptation Guide](references/channel-adaptation-guide.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown brand voice guide with tables, examples, prompt blocks, and checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; quality depends on the brand samples and context supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: Brand samples supplied to the skill may contain confidential launch plans, customer data, or internal messaging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive examples before use, and avoid including customer data or internal-only details unless they are approved for the writing workflow.
+
+## Reference(s):
+
+- [Brand Voice Guide on ClawHub](https://clawhub.ai/leooooooow/skills/brand-voice-guide)
+- [Output Template](references/output-template.md)
+- [Voice Attribute Framework](references/voice-attribute-framework.md)
+- [Channel Adaptation Guide](references/channel-adaptation-guide.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown brand voice guide with tables, examples, templates, prompt instructions, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use user-provided brand samples, audience context, channel requirements, and vocabulary preferences.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

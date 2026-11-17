@@ -112,7 +112,7 @@ python3 api_search.py examples
 ### Szenario 1: Ich möchte Tasks erstellen
 
 ```bash
-# 1. Task-Creation-Dokumentation finden
+# 1. TaREDACTED-SECRET finden
 python3 api_search.py search "Create Task"
 
 # 2. POST /tasks Endpoint anschauen

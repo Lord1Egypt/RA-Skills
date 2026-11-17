@@ -1,44 +1,58 @@
-## Description: <br>
-Fetch and aggregate OpenClaw-related content from across the internet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and aggregate OpenClaw-related trends, news, tutorials, videos, and community discussions from YouTube, GitHub, X/Twitter, Reddit, Hacker News, and general web search.
 
-## Publisher: <br>
-[AndreMashukov](https://clawhub.ai/user/AndreMashukov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andremashukov](https://clawhub.ai/user/andremashukov)
 
-## Use Case: <br>
-Developers, agents, and OpenClaw users use this skill to find recent OpenClaw news, tutorials, videos, repositories, and community discussions across public web sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external search and content services, which can expose public search terms and depend on third-party availability. <br>
-Mitigation: Run it only for public OpenClaw queries and expect results to vary with external service behavior. <br>
-Risk: The artifact includes a hardcoded default YouTube API key. <br>
-Mitigation: Set your own YOUTUBE_API_KEY for regular use and rotate or disable any shared key before operational deployment. <br>
-Risk: The optional cron example performs unattended daily background checks. <br>
-Mitigation: Add the cron entry only when scheduled background searches are intended and review local notification or logging behavior. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to collect recent OpenClaw-related content, deduplicate results, and produce a concise trend summary with source links and dates.
 
-## Reference(s): <br>
-- [OpenClaw Trends on ClawHub](https://clawhub.ai/AndreMashukov/openclaw-trends) <br>
-- [Publisher profile](https://clawhub.ai/user/AndreMashukov) <br>
-- [YouTube Data API search endpoint](https://www.googleapis.com/youtube/v3/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON summaries with source, title, description, URL, date, and optional source-specific metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI options include days, output format, notifications, and web-search skipping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes outbound web requests to third-party services while searching for OpenClaw content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when external web requests to YouTube, GitHub, DuckDuckGo-backed web search, X/Twitter, Reddit, and Hacker News are acceptable.
+
+Risk: The artifact includes an embedded YouTube API key that should be treated as exposed.
+
+Mitigation: Remove the embedded key before deployment and require a user-provided YouTube API key through an environment variable or protected secret store.
+
+Risk: The documented cron example can create scheduled background checks.
+
+Mitigation: Add the cron entry only when scheduled daily trend checks are intentional and approved.
+
+## Reference(s):
+
+- [OpenClaw Trends on ClawHub](https://clawhub.ai/andremashukov/skills/openclaw-trends)
+- [YouTube Data API v3 Search Endpoint](https://www.googleapis.com/youtube/v3/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON trend summaries with source, title, description, URL, and date fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cron setup guidance for scheduled daily checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

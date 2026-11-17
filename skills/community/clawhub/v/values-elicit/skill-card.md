@@ -1,46 +1,56 @@
-## Description: <br>
-Runs a Moral Graph Elicitation interview when the user expresses a strong feeling, goal, norm, or difficult choice, then stores the resulting values card in the configured local values store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a Moral Graph Elicitation interview to help a user articulate a source of meaning and store it as a local values card for later agent consultation.
 
-## Publisher: <br>
-[klingefjord](https://clawhub.ai/user/klingefjord) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klingefjord](https://clawhub.ai/user/klingefjord)
 
-## Use Case: <br>
-External users and agents use this skill to conduct a structured values interview, capture a source of meaning, and write it as a reusable local values card. The skill is intended for value-laden situations such as difficult choices, strong feelings, goals, norms, or requests to clarify what the user cares about. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive personal values cards and full interview transcripts in a persistent local values store. <br>
-Mitigation: Set AGENT_VALUES_DIR to a location you control, review or delete transcripts and cards after sessions, and avoid syncing the store to places where sensitive personal material should not live. <br>
-Risk: Approving the optional USER.md snippet can cause future agents to consult personal values during value-laden tasks. <br>
-Mitigation: Approve the snippet only if you want this behavior, and remove the snippet or VALUES.md reference later if future-agent access is no longer appropriate. <br>
-Risk: Generated values cards can be incomplete, stale, or too narrow for later decisions. <br>
-Mitigation: Review generated cards before relying on them, update or delete outdated cards, and ask the user when no card clearly applies. <br>
+## Use Case:
 
+External users and agents use this skill to run a focused values interview, write a structured values card and transcript to a local values store, and rebuild VALUES.md for later agent consultation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/klingefjord/values-elicit) <br>
-- [Publisher Profile](https://clawhub.ai/user/klingefjord) <br>
-- [Sources of Meaning, Attention Policies, and Card Format](artifact/references/cards.md) <br>
-- [Conversation Flow](artifact/references/conversation.md) <br>
-- [Values User Profile Snippet](artifact/references/USER_MD_SNIPPET.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Brief chat guidance plus Markdown values cards, Markdown transcripts, a rebuilt VALUES.md summary, and local setup/configuration updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes cards and transcripts under AGENT_VALUES_DIR or ~/.openclaw/values, may append an optional USER.md snippet with user approval, and rebuilds VALUES.md with a Node helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Sensitive personal values and full interview transcripts are saved locally and may later be consulted by other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a dedicated AGENT_VALUES_DIR, review generated cards, transcripts, and VALUES.md, and delete or edit content that is too private.
+
+Risk: Broad activation triggers and limited upfront consent may start a values interview in situations where the user did not intend one.
+
+Mitigation: Run the skill only on explicit invocation or when the user clearly signals openness; when uncertain, ask once before continuing.
+
+## Reference(s):
+
+- [Values skill page](https://clawhub.ai/klingefjord/skills/values-elicit)
+- [Card format reference](references/cards.md)
+- [Conversation flow reference](references/conversation.md)
+- [User profile snippet](references/USER_MD_SNIPPET.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise chat text plus Markdown values cards, transcripts, and a generated VALUES.md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local values store, defaults to ~/.openclaw/values unless AGENT_VALUES_DIR is set, and rebuilds VALUES.md with a Node helper.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

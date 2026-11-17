@@ -1,43 +1,49 @@
-## Description: <br>
-Generates complete UK employee handbooks and workplace policies tailored to business type, size, and working arrangements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete, legally compliant UK employee handbooks and workplace policies tailored to business type and size.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-Small business owners, HR managers, startups, advisers, and operators use this skill to draft UK employee handbooks or specific HR policies for solicitor review before adoption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handbook content may be treated as legal advice or adopted without checking current UK law and statutory rates. <br>
-Mitigation: Use the output as drafting assistance only, verify current legal requirements, and have a qualified UK employment solicitor or HR/legal professional review it before implementation. <br>
-Risk: The release advertises unrelated crypto and purchase capability tags even though the artifact is markdown-only drafting content. <br>
-Mitigation: Run the skill without crypto, wallet, payment, purchase, credential, or broad file-access permissions unless a separate reviewed workflow requires them. <br>
+## Use Case:
 
+Small business owners, HR managers, startups, and advisers use this skill to draft UK employee handbooks and workplace policies tailored by industry, headcount, and working arrangements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/employee-handbook-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown employee handbook or policy draft with legislative references and review disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask up to four clarifying questions when business details are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Employment law guidance is high-impact and date-sensitive, and generated handbook text may become inaccurate or incomplete as law and tribunal interpretation change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified UK employment solicitor or HR professional review generated policies before using them with employees.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/employee-handbook-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown handbook or policy draft with legislative references, placeholders, version control, table of contents, and solicitor review disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask up to four clarifying questions before generating; adapts content by company size, industry, and requested policy scope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

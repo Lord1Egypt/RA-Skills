@@ -1,40 +1,53 @@
-## Description: <br>
-Automated Vietnamese stock price and index checking on FireAnt.vn for current stock prices, market indices, trading volumes, and financial information for Vietnamese stocks and market indices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated Vietnamese stock price and index checking on FireAnt.vn for stock symbols and market indices, returning formatted price, trading, and financial metrics.
 
-## Publisher: <br>
-[aholake](https://clawhub.ai/user/aholake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aholake](https://clawhub.ai/user/aholake)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve FireAnt.vn stock and index data for Vietnamese equities and market indices from ticker or index symbols. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill opens Google and FireAnt.vn through browser automation to retrieve stock data. <br>
-Mitigation: Use normal stock symbols or index names as input and avoid arbitrary URLs or unusual strings. <br>
-Risk: Market data fetched from live web pages may be unavailable, stale, or parsed incorrectly. <br>
-Mitigation: Review the returned data against FireAnt.vn or another trusted market data source before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FireAnt stock and index pages](https://fireant.vn/ma-chung-khoan/{SYMBOL}) <br>
-- [ClawHub skill page](https://clawhub.ai/aholake/vietstock) <br>
+## Use Case:
 
+External users and agents use this skill to look up current Vietnamese stock and market index information from FireAnt.vn for symbols such as DPM, VCB, FPT, VNINDEX, HNX30, and VN30.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Formatted text with Markdown emphasis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns one text stream containing price or index value, trading volume, market metrics, and error messages when data is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scraped market information may be incomplete, stale, or affected by external page changes.
+
+Mitigation: Treat outputs as informational and verify important financial data against an authoritative market source before using it for decisions.
+
+Risk: The skill runs a local Python script that opens an OpenClaw-controlled browser and visits Google and FireAnt.
+
+Mitigation: Install and invoke it only in environments where this browser automation is acceptable, and use explicit Vietnamese stock symbols or supported index names.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aholake/skills/vietstock)
+- [FireAnt stock and index page pattern](https://fireant.vn/ma-chung-khoan/{SYMBOL})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown-formatted text with stock or index metrics and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated from browser-scraped Google and FireAnt pages and may be incomplete or stale.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

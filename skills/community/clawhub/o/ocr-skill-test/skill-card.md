@@ -1,44 +1,54 @@
-## Description: <br>
-Extract text from images using Tesseract.js OCR with support for Simplified Chinese, Traditional Chinese, and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from images using Tesseract.js OCR, with support for Simplified Chinese, Traditional Chinese, and English.
 
-## Publisher: <br>
-[shaw555](https://clawhub.ai/user/shaw555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaw555](https://clawhub.ai/user/shaw555)
 
-## Use Case: <br>
-Developers and agent users use this skill to run local OCR on screenshots, documents, and other image files, returning recognized text or structured JSON with confidence details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an npm dependency and may download OCR language data on first use. <br>
-Mitigation: Review the dependency before deployment and allow first-run language-data downloads only in environments where that network and cache behavior is acceptable. <br>
-Risk: The skill processes user-selected local image files, which may contain sensitive information. <br>
-Mitigation: Run OCR only on images whose contents are appropriate to process locally and store according to the user's data-handling requirements. <br>
-Risk: OCR quality can vary, especially for handwritten, low-contrast, or poorly lit images. <br>
-Mitigation: Review extracted text before relying on it, and prefer clear, high-contrast input images for higher accuracy. <br>
+## Use Case:
 
+Developers and agent users use this skill to extract machine-readable text from local image files, including screenshots and document photos. It is intended for Chinese and English OCR workflows that need plain text or structured JSON output.
 
-## Reference(s): <br>
-- [Tesseract.js](https://github.com/naptha/tesseract.js) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaw555/ocr-skill-test) <br>
-- [Publisher Profile](https://clawhub.ai/user/shaw555) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text or JSON emitted by a local Node.js OCR command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes recognized text, confidence, word-level confidence, and bounding boxes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Installing the skill fetches the npm dependency tesseract.js, and first OCR runs may download language data of about 20MB per language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin dependencies, add a lockfile, review the installed tesseract.js version, and allow runtime downloads only in approved environments.
+
+Risk: OCR accuracy can vary for handwritten text, low-contrast images, poorly lit photos, or incorrect language selection.
+
+Mitigation: Review extracted text before relying on it, use clear high-contrast images, and choose the most specific supported language code.
+
+## Reference(s):
+
+- [OCR Test ClawHub release page](https://clawhub.ai/shaw555/skills/ocr-skill-test)
+- [Tesseract.js project](https://github.com/naptha/tesseract.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Plain text, or JSON containing recognized text, confidence scores, words, and bounding boxes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Progress messages are written to stderr; OCR quality depends on image clarity and selected language data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-AI Revenue Tracker helps an agent record income entries, summarize daily and cumulative revenue, and generate local Markdown revenue reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks and summarizes daily AI-service revenue by logging transactions, generating Markdown reports, and analyzing income by source.
 
-## Publisher: <br>
-[arthasking123](https://clawhub.ai/user/arthasking123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arthasking123](https://clawhub.ai/user/arthasking123)
 
-## Use Case: <br>
-Developers, operators, or small teams can use this skill to track revenue by source or skill, inspect same-day totals, and generate a daily Markdown summary from locally stored records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Revenue amounts, sources, and descriptions are stored in local log and report files. <br>
-Mitigation: Avoid entering customer identifiers, payment details, secrets, or other sensitive data, and remove logs and reports when they are no longer needed. <br>
-Risk: Untrusted text entered as revenue descriptions may later be copied into another agent or shell context. <br>
-Mitigation: Review descriptions before reuse and keep untrusted input out of prompts, commands, and automation workflows. <br>
+## Use Case:
 
+External users and developers can use this local CLI tracker to record AI-service income, check daily and cumulative totals, and generate daily Markdown summaries for business review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arthasking123/ai-revenue-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/arthasking123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Console text and Markdown reports written to local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores revenue logs and generated summaries on disk under local logs and reports paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Revenue entries and generated reports are stored in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the tracker only in a trusted workspace and manage access to the logs/ and reports/ directories.
+
+Risk: Untrusted source or description text can appear unsanitized in generated Markdown reports.
+
+Mitigation: Avoid logging untrusted text, validate entry fields before recording them, and review generated reports before sharing or using them for decisions.
+
+Risk: Malformed or incorrect amounts can affect daily and cumulative revenue totals.
+
+Mitigation: Validate amounts before entry and reconcile generated summaries against source records before relying on them for business reporting.
+
+## Reference(s):
+
+- [AI Revenue Tracker ClawHub page](https://clawhub.ai/arthasking123/skills/ai-revenue-tracker)
+- [Skill documentation](artifact/SKILL.md)
+- [Sample daily summary report](artifact/reports/daily_summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [CLI text output and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local revenue logs and daily summary reports under logs/ and reports/.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

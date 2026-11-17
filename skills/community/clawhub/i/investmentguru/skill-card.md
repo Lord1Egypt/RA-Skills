@@ -1,47 +1,65 @@
-## Description: <br>
-Analyzes A-share, Hong Kong, and U.S. stocks using methods attributed to 20 Chinese and international investment figures, combining market data with valuation, fundamentals, technical, and sentiment signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于20位中外投资大师方法，提供A股、美股、港股实时数据抓取和多维度智能股票分析报告。
 
-## Publisher: <br>
-[amitabhama](https://clawhub.ai/user/amitabhama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amitabhama](https://clawhub.ai/user/amitabhama)
 
-## Use Case: <br>
-Agents and users use this skill to fetch stock market data and generate multi-perspective stock analysis reports. It is intended for informational financial analysis workflows, not as a substitute for professional investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the release ships an embedded market-data API token. <br>
-Mitigation: Remove and rotate the hardcoded token, and require users to provide their own credentials when that data source is needed. <br>
-Risk: The security review says the skill can auto-trigger broadly on stock-related language. <br>
-Mitigation: Require explicit user confirmation before running analysis or acting on outputs from broad keyword matches. <br>
-Risk: The security review says the skill gives direct buy or sell guidance without adequate safeguards. <br>
-Mitigation: Clearly label outputs as informational analysis and require human financial review before any investment decision. <br>
-Risk: The security review flags finance and privacy risks around market-data use. <br>
-Mitigation: Disclose all market-data providers and review what query data may be sent to external services before deployment. <br>
+## Use Case:
 
+External users and agent developers use this skill to answer stock-analysis questions, fetch market data, and generate value-investing style reports across A-share, Hong Kong, and U.S. equities. It is intended to support analysis workflows, not to replace licensed financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amitabhama/investmentguru) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [manifest.json](artifact/manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown-like stock analysis reports, Python API responses, and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include market-data-based buy, hold, sell, or watch recommendations and should be reviewed as informational analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and setup.py; artifact manifest lists 2.0.0) <br>
+Risk: The skill can produce buy/sell-style investment conclusions without clear warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational analysis only and require users to consult qualified financial professionals before acting.
+
+Risk: The skill makes outbound requests to financial-data services during normal use.
+
+Mitigation: Review network access, data-source terms, and privacy requirements before installation or deployment.
+
+Risk: Evidence reports a bundled reusable market-data API token.
+
+Mitigation: Rotate the bundled credential and require each user or deployment to configure its own token.
+
+Risk: Evidence reports that one helper script writes ETF history to a fixed local path.
+
+Mitigation: Review file-write locations and run the skill with least-privilege filesystem access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amitabhama/skills/investmentguru)
+- [Publisher profile](https://clawhub.ai/user/amitabhama)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Artifact license](artifact/LICENSE.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text stock analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market quotes, trend summaries, valuation signals, guru-method comparisons, and buy/sell-style conclusions that require human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact setup.py agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

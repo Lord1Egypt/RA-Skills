@@ -1,43 +1,60 @@
-## Description: <br>
-Chain-agnostic security infrastructure for ClawHub/OpenClaw skills that checks skill trust, supports USDC-backed bonding, paid skill access, malicious-skill reporting, governance voting, and auditor earnings withdrawal on Arc and supported testnet chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Arc Security helps agents check skill trust, pay usage fees, stake USDC bonds, report malicious skills, vote on claims, and withdraw auditor earnings across Arc and supported testnets.
 
-## Publisher: <br>
-[Shaivpidadi](https://clawhub.ai/user/Shaivpidadi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaivpidadi](https://clawhub.ai/user/shaivpidadi)
 
-## Use Case: <br>
-Developers, auditors, and ClawHub users use this skill to inspect a skill's on-chain trust status, pay for verified skill access, stake USDC to vouch for skill safety, submit malicious-skill claims, vote in governance, and withdraw auditor earnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for raw wallet signing authority and can automatically spend funds through approval, payment, bonding, reporting, voting, claim, and withdrawal flows. <br>
-Mitigation: Use only a dedicated low-value wallet or testnet key, and run transaction-producing commands only after confirming the chain, contract, recipient, amount, and action. <br>
-Risk: The x402 use flow can download and extract remote ZIP packages after payment. <br>
-Mitigation: Treat downloaded packages as untrusted until independently verified, and do not run extracted code before review and scanning. <br>
+## Use Case:
 
+Developers, auditors, and skill users use this skill to evaluate on-chain trust data for ClawHub skills, pay to use bonded skills, and participate in USDC-backed reporting, voting, bonding, and earnings workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Shaivpidadi/arc-security) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [CLI text output, transaction status strings, JSON-like result dictionaries, and downloaded skill package files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate wallet-signed blockchain transactions and may write or extract downloaded skill package files during paid skill use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact/skill.json lists 1.0.0) <br>
+Risk: The skill handles wallet private keys and signs blockchain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-value wallet and verify every RPC URL, contract address, transaction prompt, and destination chain before execution.
+
+Risk: The skill can download and install remote skill packages after payment.
+
+Mitigation: Install only packages whose publisher and exact bytes are independently verified before use.
+
+Risk: The security guidance warns against non-Arc CCTP flows until they are fully implemented.
+
+Mitigation: Avoid non-Arc CCTP payment, bonding, and withdrawal flows unless the implementation and deployed addresses have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaivpidadi/skills/arc-security)
+- [Publisher profile](https://clawhub.ai/user/shaivpidadi)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RPC endpoints, a contract address, an x402 server URL, and wallet credentials for transaction-signing operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

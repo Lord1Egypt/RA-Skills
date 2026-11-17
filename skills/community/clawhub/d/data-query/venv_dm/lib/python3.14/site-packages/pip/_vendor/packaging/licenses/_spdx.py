@@ -719,7 +719,7 @@ LICENSES: dict[str, SPDXLicense] = {
 EXCEPTIONS: dict[str, SPDXException] = {
     '389-exception': {'id': '389-exception', 'deprecated': False},
     'asterisk-exception': {'id': 'Asterisk-exception', 'deprecated': False},
-    'asterisk-linking-protocols-exception': {'id': 'Asterisk-linking-protocols-exception', 'deprecated': False},
+    'asteriREDACTED-SECRET': {'id': 'AsteriREDACTED-SECRET', 'deprecated': False},
     'autoconf-exception-2.0': {'id': 'Autoconf-exception-2.0', 'deprecated': False},
     'autoconf-exception-3.0': {'id': 'Autoconf-exception-3.0', 'deprecated': False},
     'autoconf-exception-generic': {'id': 'Autoconf-exception-generic', 'deprecated': False},

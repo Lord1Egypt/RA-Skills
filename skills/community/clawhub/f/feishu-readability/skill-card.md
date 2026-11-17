@@ -1,41 +1,51 @@
-## Description: <br>
-Guides agents through safe readability and formatting edits for Feishu/Lark documents, emphasizing minimal changes, spacing fixes, bold/list conventions, and protection of rich-text blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Feishu document formatting and safe editing guidance for agents before modifying mi.feishu.cn documents, covering minimal edits, rich-text protection, spacing, and bold text conventions.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Agents and operators use this skill before editing mi.feishu.cn documents to improve document readability while preserving existing content, comments, history, images, and special rich-text blocks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incorrect document, range, or edit intent could change content or formatting the user did not intend to modify. <br>
-Mitigation: Confirm the exact document, selected range, and edit intent before applying changes. <br>
-Risk: Broad replacements or edits around images, callouts, formulas, or other rich-text blocks could damage preserved document tokens. <br>
-Mitigation: Use minimal targeted edits; fetch and preserve complete tokens before changing any paragraph that contains special blocks. <br>
-Risk: The formatting guidance reflects Chinese Feishu document conventions that may not fit every document. <br>
-Mitigation: Confirm that the target document should follow these conventions before applying readability changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqunabc/feishu-readability) <br>
+## Use Case:
+
+Agents and document editors use this skill to safely improve Feishu/Lark document readability while preserving existing content, comments, image tokens, and rich text. It is intended for workflows that modify mi.feishu.cn documents or use Feishu MCP update-doc operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may steer document style choices in legal, compliance, multilingual, or externally governed documents.
+
+Mitigation: Tell the agent to preserve the document's existing style guide when applying the skill to governed or sensitive documents.
+
+Risk: Incorrect Feishu edit ranges can damage comments, history, images, or rich-text tokens.
+
+Mitigation: Use the skill's minimal-edit guidance, avoid broad overwrite operations, and fetch complete tokens before editing paragraphs that contain special blocks.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls] <br>
-**Output Format:** [Markdown guidance with Feishu MCP update examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no hidden code, installation behavior, credential handling, or persistence was identified in the provided security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline examples and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is bundled; outputs guide safe document-editing behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

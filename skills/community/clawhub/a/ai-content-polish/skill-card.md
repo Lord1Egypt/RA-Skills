@@ -1,44 +1,56 @@
-## Description: <br>
-Detects AI-writing traces in Chinese text, provides evidence-backed polish suggestions, and can return a human-readability score or revised wording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Chinese text for AI-written traits, scores how human-like it reads, and provides polishing or rewrite guidance to make the text more natural.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-External content creators, editors, marketers, students, researchers, and product teams use this skill to review Chinese text for AI-like style patterns and receive concrete readability feedback. Use should remain transparent and compliant with disclosure, academic integrity, publication, moderation, provenance, and platform rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to make AI-generated Chinese text look less AI-generated. <br>
-Mitigation: Use it only for transparent readability and style review, and require users to follow disclosure, academic integrity, publication, moderation, provenance, and platform rules. <br>
-Risk: The server security review reports no built-in guardrails against deceptive use. <br>
-Mitigation: Review outputs before deployment or publication and reject requests intended to hide AI authorship or bypass policy requirements. <br>
+## Use Case:
 
+External users and content teams can use this skill to review Chinese writing for AI-like patterns, receive a human-like score, and get concrete rewrite suggestions for readability and tone. Use should be limited to legitimate editing where disclosure, academic integrity, platform policy, and provenance rules are respected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caingao/ai-content-polish) <br>
-- [Publisher profile](https://clawhub.ai/user/caingao) <br>
-- [README](artifact/README.md) <br>
-- [Detection rules](artifact/detection-rules.md) <br>
-- [Test cases](artifact/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, revised Chinese text, tabular change lists, or brief scoring summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Modes include report, rewrite, and score; style controls include strictness, target style, and edit aggressiveness.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can be used to hide AI authorship or evade AI-detection, watermark, provenance, academic integrity, or platform disclosure requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to legitimate readability, tone, and clarity editing, and require users to follow applicable disclosure and provenance policies.
+
+Risk: Rewrite suggestions may remove cues that reviewers rely on to identify AI-assisted content.
+
+Mitigation: Review outputs before publication and keep appropriate records of AI assistance where policy or context requires disclosure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caingao/skills/ai-content-polish)
+- [Publisher profile](https://clawhub.ai/user/caingao)
+- [Detection rules](artifact/detection-rules.md)
+- [Test cases](artifact/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, rewrite suggestions, polished text, and concise scoring summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include evidence tables, human-like scores, detected text snippets, and before-after rewrite comparisons.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

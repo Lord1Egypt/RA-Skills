@@ -1,48 +1,67 @@
-## Description: <br>
-Browser automation via Playwright MCP for navigating websites, clicking elements, filling forms, taking screenshots, extracting data, and debugging real browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via Playwright MCP for navigating websites, clicking elements, filling forms, taking screenshots, extracting data, debugging browser workflows, and authoring Playwright tests or scripts when static fetch is insufficient.
 
-## Publisher: <br>
-[howerlin0329](https://clawhub.ai/user/howerlin0329) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howerlin0329](https://clawhub.ai/user/howerlin0329)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose and execute Playwright MCP actions, direct Playwright scripts, browser tests, rendered-page extraction, screenshots, downloads, and debugging workflows when static fetch is insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can send requests, form input, cookies, uploads, and page interactions to user-directed websites. <br>
-Mitigation: Use scoped test accounts, prefer staging or local environments for sensitive flows, and confirm high-stakes production actions before running them. <br>
-Risk: Screenshots, traces, videos, PDFs, downloads, and saved authentication state can contain sensitive data. <br>
-Mitigation: Keep browser state temporary by default and review generated artifacts before sharing, committing, or storing them. <br>
-Risk: Optional Playwright tooling installation depends on npm packages. <br>
-Mitigation: Install only in environments where npm-based Playwright tooling is trusted and acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute browser automation with Playwright MCP, direct Playwright scripts, and Playwright tests for rendered UI workflows, screenshots, PDFs, downloads, debugging, CI, selector strategy, and bounded rendered-page extraction.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/howerlin0329/playwright-1-0-3) <br>
-- [Skill homepage](https://clawic.com/skills/playwright) <br>
-- [Selector Strategies](selectors.md) <br>
-- [Debugging Guide](debugging.md) <br>
-- [Testing Patterns](testing.md) <br>
-- [CI Success Defaults](ci-cd.md) <br>
-- [Rendered-Page Extraction Patterns](scraping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell, JavaScript, TypeScript, YAML, and Dockerfile examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser actions that create local screenshots, traces, videos, PDFs, downloads, temporary browser state, or Playwright reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence); artifact frontmatter version 1.0.3 <br>
+Risk: Installing Playwright or Playwright MCP can fetch npm package metadata and tarballs, and unpinned installs can drift over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a project-local Playwright dependency with a committed lockfile and run npm ci in sensitive repositories or CI.
+
+Risk: Browser automation can send form input, cookies, uploads, and page interactions to user-requested web origins.
+
+Mitigation: Run against intended local, staging, or authorized targets and avoid exposing unnecessary secrets or privileged browser sessions.
+
+Risk: Screenshots, traces, videos, PDFs, downloads, and temporary browser state can contain sensitive application or user data.
+
+Mitigation: Keep artifacts local or under controlled CI retention, review them before sharing, and avoid persistent browser state unless the repository already standardizes it.
+
+Risk: Automating destructive, production, financial, medical, or otherwise high-stakes flows can cause unintended real-world effects.
+
+Mitigation: Use staging or local environments for high-stakes flows and require explicit user confirmation before continuing against production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/howerlin0329/skills/playwright-1-0-3)
+- [Skill Homepage](https://clawic.com/skills/playwright)
+- [Selector Strategies](artifact/selectors.md)
+- [Debugging Guide](artifact/debugging.md)
+- [Testing Patterns](artifact/testing.md)
+- [CI Success Defaults](artifact/ci-cd.md)
+- [Rendered-Page Extraction Patterns](artifact/scraping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JavaScript, TypeScript, YAML, and Dockerfile code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Playwright MCP actions, npm-based installation commands, test configuration, automation scripts, debugging steps, and extraction patterns.]
+
+## Skill Version(s):
+
+1.0.3 (source: artifact/SKILL.md frontmatter and artifact/_meta.json; ClawHub release version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

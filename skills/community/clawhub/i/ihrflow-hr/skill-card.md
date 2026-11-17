@@ -1,45 +1,60 @@
-## Description: <br>
-iHRFlow HR assistant for recruiting. Use when searching candidates, managing positions, scheduling interviews, advancing pipeline, or viewing recruitment stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iHRFlow HR assistant for recruiting. Use when searching candidates, managing positions, scheduling interviews, advancing pipeline, or viewing recruitment stats.
 
-## Publisher: <br>
-[MikeLing](https://clawhub.ai/user/MikeLing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeling](https://clawhub.ai/user/mikeling)
 
-## Use Case: <br>
-HR employees and recruiting teams use this skill to search candidates, manage positions, schedule or reschedule interviews, move candidates through hiring stages, and summarize recruitment activity from iHRFlow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated tool calls can publish or close jobs, schedule or cancel interviews, submit feedback, add notes, recommend candidates, and change candidate status. <br>
-Mitigation: Require explicit user confirmation before record-changing actions and run the skill with a least-privilege iHRFlow account. <br>
-Risk: The skill depends on credentials, an optional API key, and a cached MCP session on the host. <br>
-Mitigation: Protect environment variables, avoid shared hosts unless session caching is hardened, and rotate credentials when access changes. <br>
-Risk: The integration trusts the configured iHRFlow MCP endpoint for HR data and actions. <br>
-Mitigation: Install only when the configured MCP endpoint is trusted and verify IHRFLOW_MCP_URL before use. <br>
+## Use Case:
 
+HR teams and recruiters use this skill to search candidates, review resumes, manage positions, schedule interviews, advance screening decisions, add notes, and summarize recruiting status from iHRFlow.
 
-## Reference(s): <br>
-- [iHRFlow MCP Tool & Resource Reference](artifact/references/api-reference.md) <br>
-- [iHRFlow AI Recruiting Assistant User Manual](artifact/docs/用户手册.md) <br>
-- [iHRFlow](https://ihrflow.com) <br>
-- [ClawHub Release Page](https://clawhub.ai/MikeLing/ihrflow-hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with JSON MCP tool results and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, IHRFLOW_MCP_URL, IHRFLOW_USERNAME, and IHRFLOW_PASSWORD; authenticated calls can change live HR records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, ClawHub release metadata) <br>
+Risk: The skill uses credentials and sessions to access live candidate and recruiting records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted OpenClaw environment for authorized HR users, use a fixed HTTPS MCP endpoint, avoid shared hosts, and protect credential environment variables.
+
+Risk: The skill can change recruiting records, including candidate status, interview schedules, position state, and resume notes.
+
+Mitigation: Require human confirmation before actions that modify candidate status, schedule or cancel interviews, publish or close positions, or write notes; verify record IDs before executing.
+
+Risk: The security review notes session-file handling concerns for production use.
+
+Mitigation: Review and fix session-file handling before production deployment, especially on shared systems.
+
+## Reference(s):
+
+- [iHRFlow MCP Tool & Resource Reference](references/api-reference.md)
+- [iHRFlow HR Assistant README](README.md)
+- [iHRFlow AI Recruiting Assistant User Guide](docs/用户手册.md)
+- [iHRFlow Platform](https://ihrflow.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with tables and inline shell commands; MCP tool and resource calls return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, iHRFlow MCP endpoint configuration, and user credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, CHANGELOG, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

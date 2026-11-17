@@ -1,41 +1,57 @@
-## Description: <br>
-Generates marketing ad images with Nano Banana Pro from campaign briefs and brand visual guidance, using platform aspect ratios, draft-first review, and final image output paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate marketing ad images using Nano Banana Pro (Gemini 3 Pro Image), with campaign brief intake, brand-aware prompt construction, aspect-ratio handling, draft-first generation, and self-review for logo, text, and quality issues.
 
-## Publisher: <br>
-[baitoxkevin](https://clawhub.ai/user/baitoxkevin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baitoxkevin](https://clawhub.ai/user/baitoxkevin)
 
-## Use Case: <br>
-Marketing teams and agents use this skill to turn campaign-planner creative briefs and brand visual guidance into platform-ready ad image drafts and approved final images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Campaign and brand details are sent through the Gemini/Nano Banana Pro image workflow. <br>
-Mitigation: Install and use the skill only when that exposure is acceptable for the campaign data being processed. <br>
-Risk: The prerequisite guidance includes a curl-to-shell uv installer command. <br>
-Mitigation: Prefer an operating-system package manager or verify Astral's installer before allowing an agent to run it. <br>
-Risk: Generated images may contain hallucinated logos, brand names, or incorrect text. <br>
-Mitigation: Use the skill's draft-first self-review loop and require user approval before producing final 4K outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ad Designer Prompt Templates and Reference](references/prompt-templates.md) <br>
+## Use Case:
 
+Marketing operators, designers, and agent users use this skill to turn campaign-planner creative briefs and optional brand bible guidance into platform-ready ad image drafts and approved finals. It supports common paid-social and web aspect ratios while keeping brand names, logos, and unspecified text out of generation prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with file paths and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates draft and final image files under /tmp/marketing/assets/images/ through the nano-banana-pro dependency.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review flags unsafe shell-based installation and command execution patterns.
+
+Mitigation: Review installation commands before use, verify the uv installation path, and avoid pasting untrusted shell commands.
+
+Risk: Generated prompts and filenames may be unsafe if passed through shell interpolation.
+
+Mitigation: Pass prompts and filenames to image-generation scripts through argument arrays or robust escaping.
+
+Risk: Image generation may produce hallucinated logos, incorrect rendered text, watermarks, or off-brief imagery.
+
+Mitigation: Use the documented self-review loop before presenting results, regenerate failed drafts, and require user approval before 4K final output.
+
+## Reference(s):
+
+- [Ad Designer Prompt Templates & Reference](artifact/references/prompt-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/baitoxkevin/skills/ad-designer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, files]
+
+**Output Format:** [Markdown guidance with shell command patterns and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft images are generated at 1K for review, approved finals at 4K, and outputs are saved under /tmp/marketing/assets/images/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

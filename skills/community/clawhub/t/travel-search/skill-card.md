@@ -1,59 +1,63 @@
-## Description: <br>
-Travel Search helps agents compare flights, hotels, Airbnb stays, car rentals, ferries, and destination essentials across multiple travel providers, then present concise recommendations with prices and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and compares live travel options across flights, hotels, Airbnb-style stays, car rentals, ferries, and destination information so agents can recommend best-value itineraries with prices and booking links.
 
-## Publisher: <br>
-[adrianetti](https://clawhub.ai/user/adrianetti) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adrianetti](https://clawhub.ai/user/adrianetti)
 
-## Use Case: <br>
-External users and agent developers use this skill to search and compare travel options, optimize trip routes and itineraries, and produce actionable travel recommendations with live provider data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel searches send trip details to named travel providers. <br>
-Mitigation: Install only if comfortable sharing travel search details with those providers, and avoid including unnecessary personal information. <br>
-Risk: Booking links and prices can change before purchase. <br>
-Mitigation: Verify booking links and prices directly with the provider before paying. <br>
-Risk: Hidden-city fares can create airline-policy and baggage issues. <br>
-Mitigation: Review hidden-city fare restrictions carefully before booking. <br>
-Risk: Optional Airbnb and Google Flights components are separate packages. <br>
-Mitigation: Install optional components only after confirming that those packages are trusted for the deployment environment. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find, compare, and present travel options across providers, including flights, lodging, cars, ferries, multi-city routes, and destination intel.
 
-## Reference(s): <br>
-- [Travel Search on ClawHub](https://clawhub.ai/adrianetti/travel-search) <br>
-- [README](README.md) <br>
-- [Roadmap](ROADMAP.md) <br>
-- [Kiwi.com Flight Search](references/flights.md) <br>
-- [Skiplagged Flights, Hotels, and Car Rentals](references/skiplagged.md) <br>
-- [Trivago Hotel and Accommodation Search](references/hotels.md) <br>
-- [Ferryhopper Ferry Search](references/ferries.md) <br>
-- [Airbnb Short-Stay and Apartment Search](references/airbnb.md) <br>
-- [Google Flights via fli](references/google-flights.md) <br>
-- [Smart Price Deal Selection](references/price-tools.md) <br>
-- [Trip Planner](references/trip-planner.md) <br>
-- [Multi-City Optimizer](references/multi-city.md) <br>
-- [Travel Intel Destination Intelligence](references/travel-intel.md) <br>
-- [MCP Protocol](https://modelcontextprotocol.io/) <br>
-- [Airbnb MCP Server](https://github.com/borski/mcp-server-airbnb) <br>
-- [fli Google Flights Tool](https://github.com/punitarani/fli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown recommendations with inline commands, provider links, and structured travel options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live prices, route details, dates, provider trade-offs, direct booking links, and travel-intelligence notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server evidence release.version; roadmap marks v1.5.0 Travel Intel complete) <br>
+Risk: Travel searches are sent to named third-party travel providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only trip details needed for the search and avoid unnecessary sensitive personal information.
+
+Risk: Optional local integrations may require npm or pip packages.
+
+Mitigation: Pin package versions and run optional integrations in a sandboxed environment before using them with real travel queries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adrianetti/skills/travel-search)
+- [Kiwi.com Flight Search](references/flights.md)
+- [Skiplagged Flights, Hotels, and Car Rentals](references/skiplagged.md)
+- [Trivago Hotel and Accommodation Search](references/hotels.md)
+- [Ferryhopper Ferry Search](references/ferries.md)
+- [Google Flights via fli](references/google-flights.md)
+- [Airbnb Short-Stay and Apartment Search](references/airbnb.md)
+- [Smart Price Deal Comparison](references/price-tools.md)
+- [Trip Planner Itinerary Generator](references/trip-planner.md)
+- [Multi-City Route Optimizer](references/multi-city.md)
+- [Travel Intel Destination Intelligence](references/travel-intel.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with travel recommendations, inline shell commands, JSON examples, prices, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live results depend on third-party travel-provider availability and user-provided trip details.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

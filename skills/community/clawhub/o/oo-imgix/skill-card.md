@@ -1,43 +1,52 @@
-## Description: <br>
-Operate Imgix through an OOMOL-connected account for source lookup, source updates, and cache purges using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Imgix sources and purge cached assets through the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Imgix through OOMOL without handling raw Imgix credentials. It supports reading Imgix Sources, updating Source attributes, and purging cached assets after explicit approval for state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update Imgix Sources and purge cached assets. <br>
-Mitigation: Confirm the exact payload, target, and expected effect with the user before running write or destructive actions. <br>
-Risk: The skill depends on installing or authenticating the OOMOL oo CLI for account-connected Imgix access. <br>
-Mitigation: Only run setup or account-connection steps when the user needs this integration, trusts OOMOL, and an action fails because the CLI or connection is missing. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Imgix sources, update source settings, and purge cached assets through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Imgix Skill Page](https://clawhub.ai/oomol/skills/oo-imgix) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [Imgix Homepage](https://www.imgix.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live action schema inspection before connector runs; write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: CLI setup or startup synchronization can introduce changeable code or additional skills without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Vet and install a separate CLI release before use, set OO_SKILLS_SYNC_DISABLED before first use, and follow the skill's confirmation requirements for source updates and cache purges.
+
+## Reference(s):
+
+- [Imgix Management API documentation](https://docs.imgix.com/apis/management)
+- [Imgix](https://www.imgix.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON request payloads and returned Imgix data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions return data; source updates require confirmation and cache purges require explicit approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Expert Phase Theory interpreter and researcher grounded in the full cloned phase-theory repository, treating every file in the skill directory as part of the working corpus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Phase Theory interpreter and researcher grounded in the full cloned phase-theory repository, treating every file in the skill directory as part of the working corpus.
 
-## Publisher: <br>
-[litecreator](https://clawhub.ai/user/litecreator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litecreator](https://clawhub.ai/user/litecreator)
 
-## Use Case: <br>
-External users and researchers use this skill to interpret, explain, compare, and organize Phase Theory materials from a local cloned repository while separating canonical claims from interpretation, conjecture, and unsupported extensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Answers may be incomplete or unsupported if the Phase Theory repository files are not present or are not consulted. <br>
-Mitigation: Verify that the local corpus is available before relying on answers, and ask the agent to cite specific local files for important claims. <br>
+## Use Case:
 
+External users and researchers use this skill to ask repository-grounded questions about Phase Theory, with answers that distinguish canonical content, interpretation, comparison, conjecture, and user-proposed extensions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litecreator/phase-theorist) <br>
-- [Phase Theory repository referenced by the skill](https://github.com/phase-theory/phase-theory.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with local file references when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounding depends on the Phase Theory repository files being present in the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill frames answers primarily through the Phase Theory repository, which may narrow responses when broader external context would be useful.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when repository-grounded Phase Theory interpretation is desired, and explicitly request external comparison when needed.
+
+Risk: The skill treats every file in its directory as authoritative context, so unintended files could affect answers.
+
+Mitigation: Keep the skill directory limited to intended public corpus files before installation or release.
+
+## Reference(s):
+
+- [Phase Theorist on ClawHub](https://clawhub.ai/litecreator/skills/phase-theorist)
+- [Phase Theory repository](https://github.com/phase-theory/phase-theory.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Repository-grounded prose with distinctions between canon, interpretation, comparison, conjecture, and unsupported claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

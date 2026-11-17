@@ -1,46 +1,65 @@
-## Description: <br>
-Searches gequhai.com for songs and returns third-party download links when a user asks to search for or download music. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Real mousic searches gequhai.com for songs and returns selectable download links, including Quark cloud links and lower-quality direct links when found.
 
-## Publisher: <br>
-[xiaoyiyebuaijianghua](https://clawhub.ai/user/xiaoyiyebuaijianghua) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyiyebuaijianghua](https://clawhub.ai/user/xiaoyiyebuaijianghua)
 
-## Use Case: <br>
-Users and agents use this skill to search a third-party music-link site for requested songs, present candidate matches, and return download-link options after the user selects a result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an automated Chrome profile with stealth and fingerprint-masking behavior. <br>
-Mitigation: Use an isolated Chrome profile and debug port, and avoid logging into unrelated accounts in that browser profile. <br>
-Risk: The skill may close or kill a process on the configured Chrome debug port. <br>
-Mitigation: Run it on a dedicated port and review active processes before execution. <br>
-Risk: Returned music links come from third-party sites and may create safety or copyright concerns. <br>
-Mitigation: Verify link safety and copyright authorization before opening or downloading any linked content. <br>
+## Use Case:
 
+External users and agent operators use this skill to search for songs through gequhai.com, choose a result, and retrieve available download-link options. The artifact describes the project as technical learning and research use only and warns users to respect music rights.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoyiyebuaijianghua/real-mousic-skills) <br>
-- [gequhai.com](https://www.gequhai.com/) <br>
-- [Quark Drive](https://pan.quark.cn/) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
-- [OpenClaw](https://github.com/anthropics/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with search results, download-link options, warnings, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI returns JSON that the agent formats for the user; direct links should include safety and copyright cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter and pyproject.toml show 1.0.0) <br>
+Risk: The skill launches and controls Chrome with browser automation and process cleanup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated browser profile or disposable environment, and review proposed commands before execution.
+
+Risk: The skill contacts third-party music and link services and may return unsafe or unauthorized download links.
+
+Mitigation: Verify link safety and music authorization before opening or downloading, and prefer official music sources when appropriate.
+
+Risk: The skill can navigate detail URLs and exposes configurable browser debugging host and port values.
+
+Mitigation: Avoid arbitrary detail URLs or custom ports unless they have been reviewed and are required for the task.
+
+Risk: The artifact contains broad routing instructions that try to override normal search-tool choice for music requests.
+
+Mitigation: Keep deployment scoped to explicit song-search or link-retrieval requests and allow operators to choose safer tools or sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoyiyebuaijianghua/skills/real-mousic-skills)
+- [Publisher Profile](https://clawhub.ai/user/xiaoyiyebuaijianghua)
+- [gequhai.com](https://www.gequhai.com/)
+- [Quark Cloud](https://pan.quark.cn/)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns song search results and download-link metadata; direct links may trigger browser downloads.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

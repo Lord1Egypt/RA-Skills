@@ -1,0 +1,5 @@
+# 可选依赖（不属于技能核心零依赖默认）
+# 仅在使用 `scripts/executor.py --format docx/xlsx` 导出 Word / Excel 时需要。
+# 未安装时 executor 自动降级：docx → Markdown，xlsx → CSV，功能不中断。
+python-docx>=1.0
+openpyxl>=3.1

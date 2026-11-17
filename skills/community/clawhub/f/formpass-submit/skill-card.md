@@ -1,44 +1,59 @@
-## Description: <br>
-Discover and submit to FormPass-enabled web forms. FormPass is the trust layer that lets verified AI agents submit to real web forms with authenticated identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and submit to FormPass-enabled web forms through a trust layer that lets verified AI agents submit to real web forms with authenticated identity.
 
-## Publisher: <br>
-[jezjsa](https://clawhub.ai/user/jezjsa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jezjsa](https://clawhub.ai/user/jezjsa)
 
-## Use Case: <br>
-External agents and developers use this skill to detect FormPass-enabled web forms, fetch their structured schemas, and submit JSON form data with an optional FormPass Agent ID. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Form submissions may send user-provided data and an optional Agent ID to FormPass. <br>
-Mitigation: Confirm the destination form, review the payload before submission, and avoid secrets or regulated data unless the user has approved that use. <br>
-Risk: A form owner may disable agent submissions. <br>
-Mitigation: Fetch the schema first and do not submit when the schema reports agentAccessible as false. <br>
-Risk: Branding-required forms can reject submissions that omit the required FormPass branding field. <br>
-Mitigation: Include _fp_branding: true when the fetched schema indicates branding.required is true. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FormPass homepage](https://form-pass.com) <br>
-- [FormPass discovery JSON](https://form-pass.com/formpass.json) <br>
-- [FormPass LLM guide](https://form-pass.com/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/jezjsa/formpass-submit) <br>
+## Use Case:
 
+External agents and developers use this skill to discover FormPass-enabled forms, fetch their schemas, and submit validated form data through FormPass APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, JSON, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for the documented command examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may submit personal, financial, regulated, or otherwise sensitive data to external forms without enough review.
+
+Mitigation: Review the destination, requested fields, and submission body before posting, and require explicit user approval for sensitive data.
+
+Risk: A submission may include a FormPass Agent ID bearer token that identifies the agent.
+
+Mitigation: Review any Agent ID token before use and send it only to the intended FormPass host.
+
+Risk: A form owner may have disabled agent submissions.
+
+Mitigation: Fetch the form schema first and do not submit when the schema reports agentAccessible as false.
+
+## Reference(s):
+
+- [FormPass Homepage](https://form-pass.com)
+- [FormPass Discovery JSON](https://form-pass.com/formpass.json)
+- [FormPass LLM Guide](https://form-pass.com/llms.txt)
+- [FormPass Agent Registration](https://form-pass.com/dashboard/agents/new)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; submissions may include an optional FormPass Agent ID bearer token.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

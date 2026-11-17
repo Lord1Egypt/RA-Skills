@@ -1,41 +1,54 @@
-## Description: <br>
-Transcribe audio files using SkillBoss API Hub STT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio files using SkillBoss API Hub STT.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe local audio files into text through SkillBoss API Hub. It is suited for voice-message and audio-file workflows using OGG, Opus, MP3, WAV, or M4A inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio recordings are uploaded to a third-party transcription API. <br>
-Mitigation: Use only with recordings approved for third-party transcription, and avoid confidential, regulated, or highly personal audio unless policy permits it. <br>
-Risk: The skill requires SKILLBOSS_API_KEY for authentication. <br>
-Mitigation: Store SKILLBOSS_API_KEY securely, avoid committing it to source control, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill to transcribe local audio files such as OGG, MP3, WAV, and M4A recordings through SkillBoss API Hub STT.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-stt) <br>
-- [SkillBoss API endpoint](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcript with Markdown usage guidance and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends selected audio files to the SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can upload any readable local file path to a third-party API instead of limiting itself to verified audio files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Control which paths agents pass to the script, avoid confidential recordings, and add validation for supported audio formats, regular files, and file size before upload.
+
+Risk: Audio content is sent to SkillBoss API Hub for transcription.
+
+Mitigation: Use the skill only when sending the selected audio to SkillBoss API Hub is acceptable under the user's data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-stt)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text transcript emitted to stdout with stderr error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and uploads selected audio file contents to SkillBoss API Hub.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

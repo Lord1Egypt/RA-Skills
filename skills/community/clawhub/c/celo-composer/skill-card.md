@@ -1,41 +1,58 @@
-## Description: <br>
-Scaffold Celo dApps with Celo Composer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold Celo dApps with Celo Composer. Use when starting new Celo projects, creating MiniPay apps, or setting up development environments.
 
-## Publisher: <br>
-[san-npm](https://clawhub.ai/user/san-npm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[san-npm](https://clawhub.ai/user/san-npm)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold Celo dApps, MiniPay apps, Farcaster miniapps, and related Next.js plus Web3 development environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scaffolded Web3 projects can involve private keys, wallet configuration, and deployment settings that expose funds if production credentials are reused locally. <br>
-Mitigation: Use clean project directories, prefer testnets first, never reuse funded production private keys in local .env files, and review generated wallet and deployment code before shipping. <br>
-Risk: The documented npx workflow installs and executes a package from npm. <br>
-Mitigation: Verify the @celo/celo-composer npm package and review generated project files before using them in production. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold Celo dApps, MiniPay Mini Apps, Farcaster Miniapps, and related Next.js/Web3 development environments with Celo Composer.
 
-## Reference(s): <br>
-- [Celo Composer Templates](references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/san-npm/celo-composer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Code snippets] <br>
-**Output Format:** [Markdown with bash, TypeScript, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include scaffold commands, template selections, environment variable names, and project workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2010 (source: server release metadata) <br>
+Risk: The skill recommends running an unpinned npm package with npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, vetted package version and run scaffolding in a clean workspace before adopting the generated project.
+
+Risk: Deployment examples can broadcast blockchain transactions and may spend funds.
+
+Mitigation: Test deployments on the intended network with low-privilege development keys before using any production keys or funded accounts.
+
+Risk: Generated projects may require credentials such as WalletConnect, Alchemy, CeloScan, or deployment private keys.
+
+Mitigation: Add credentials only after reviewing the generated files, and avoid exposing private keys in shells, logs, or committed environment files.
+
+## Reference(s):
+
+- [Celo Composer Templates](references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/san-npm/skills/celo-composer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include npm, pnpm, Hardhat, Foundry, and environment-variable setup steps.]
+
+## Skill Version(s):
+
+1.0.2010 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

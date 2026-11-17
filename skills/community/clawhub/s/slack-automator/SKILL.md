@@ -34,7 +34,7 @@ Send messages to Slack channels via Incoming Webhooks. Supports direct messaging
 Configure the webhook URL before sending messages:
 
 ```bash
-scripts/script.sh connect https://hooks.slack.com/services/T00000/B00000/xxxxxxxx
+scripts/script.sh connect REDACTED-SECRET
 ```
 
 Verify connectivity:
@@ -51,7 +51,7 @@ Save a Slack Incoming Webhook URL to local configuration. The URL is stored in `
 
 ```bash
 # Save your webhook URL
-scripts/script.sh connect https://hooks.slack.com/services/T00000/B00000/xxxxxxxx
+scripts/script.sh connect REDACTED-SECRET
 # ✅ Webhook URL saved.
 ```
 
@@ -181,7 +181,7 @@ Show the current webhook configuration. The URL is partially masked for security
 ```bash
 scripts/script.sh webhook info
 # === Webhook Configuration ===
-#   URL: https://hooks.slack.com/services/T0...xxxxxxxx
+#   URL: REDACTED-SECRET...xxxxxxxx
 #   Full URL stored in: ~/.slack-automator/config.json
 ```
 
@@ -322,7 +322,7 @@ All data is stored in `~/.slack-automator/`:
 
 ```bash
 # 1. Connect your webhook
-scripts/script.sh connect https://hooks.slack.com/services/T00/B00/xxx
+scripts/script.sh connect REDACTED-SECRET
 
 # 2. Test it works
 scripts/script.sh webhook test

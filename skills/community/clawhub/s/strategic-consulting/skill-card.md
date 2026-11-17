@@ -1,42 +1,54 @@
-## Description: <br>
-Provides strategic consulting, business analysis, competitive landscape analysis, and market insight using classic strategy frameworks to support data-driven business decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides strategic consulting and business analysis using classic frameworks such as McKinsey 7S, Porter's Five Forces, SWOT, PEST, value chain analysis, and business model canvas.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Developers, founders, analysts, and business teams use this skill to structure strategy work, industry research, competitor comparisons, market-entry planning, SWOT analysis, and business model diagnosis. It produces consulting-style reports, matrices, prioritized recommendations, and implementation paths for decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategic, market, legal, regulatory, or investment conclusions may be incomplete, outdated, or incorrect. <br>
-Mitigation: Independently verify conclusions with current authoritative sources and qualified domain reviewers before acting on them. <br>
-Risk: Users may provide confidential financials, trade secrets, personal data, or credentials while asking for business analysis. <br>
-Mitigation: Redact sensitive information unless its use is intentional, permitted, and necessary for the analysis. <br>
-Risk: Consulting-style output can sound authoritative even when assumptions or sources are weak. <br>
-Mitigation: Ask the agent to state assumptions, cite sources where available, separate facts from recommendations, and flag confidence levels. <br>
+## Use Case:
 
+Business strategists, founders, analysts, and decision makers use this skill to structure industry research, competitive analysis, market-entry assessments, business-model diagnostics, SWOT analysis, and prioritized strategic recommendations.
 
-## Reference(s): <br>
-- [Strategic Analysis Frameworks Reference](references/frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, structured analysis templates, comparison matrices, prioritized recommendations, and implementation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, requested data sources, risk notes, and decision criteria; market, legal, regulatory, and investment conclusions should be independently verified before action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill can activate on broad Chinese business-analysis phrases and may produce market or investment-oriented recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify market data, cited sources, assumptions, and any investment-oriented guidance before relying on the output.
+
+Risk: Strategic recommendations may be incomplete or misleading when the prompt lacks current market data, internal business context, or source material.
+
+Mitigation: Provide current evidence, require explicit assumptions, and review recommendations with qualified business or domain experts before acting.
+
+## Reference(s):
+
+- [Strategic Analysis Frameworks](references/frameworks.md)
+- [ClawHub Skill Page](https://clawhub.ai/zrxparley/skills/strategic-consulting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, structured tables, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include strategic frameworks, assumptions, requested data sources, risk notes, and implementation plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

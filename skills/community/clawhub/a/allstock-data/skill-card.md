@@ -1,43 +1,62 @@
-## Description: <br>
-allstock-data helps agents query stock data for China A-shares, Hong Kong, and US markets through Tencent Finance HTTP APIs by default, with optional adata SDK workflows for broader A-share data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock market data query skill for China A-shares, Hong Kong, and US markets. Uses Tencent Finance HTTP API by default (lightweight, no install needed), with optional adata SDK for more comprehensive data. Supports real-time quotes, K-line history, order book analysis, and more.
 
-## Publisher: <br>
-[HackSing](https://clawhub.ai/user/HackSing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hacksing](https://clawhub.ai/user/hacksing)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to look up real-time quotes, historical K-line data, batch market data, and order book signals for China A-share, Hong Kong, and US equities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried stock symbols may be sent to external finance data providers. <br>
-Mitigation: Use validated public stock-code inputs and avoid submitting confidential portfolio, strategy, or client information. <br>
-Risk: Default quote lookups use plain HTTP and unauthenticated responses. <br>
-Mitigation: Treat returned data as public and untrusted, prefer HTTPS endpoints where available, and verify important market data with trusted sources before acting. <br>
-Risk: Optional adata SDK and proxy setup can introduce package and network trust exposure. <br>
-Mitigation: Install adata only from trusted package sources, verify the package before use, and use only trusted proxies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HackSing/allstock-data) <br>
-- [Tencent Finance quote endpoint](http://qt.gtimg.cn/q=sh600519) <br>
-- [Tencent Finance K-line endpoint](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve stock quotes, historical K-line data, order book signals, and optional A-share market datasets for China A-shares, Hong Kong, and US markets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, Python snippets, endpoint patterns, and response-field mappings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock symbols, HTTP endpoint examples, response decoding notes, rate guidance, and optional adata SDK setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stock symbols and query activity may be sent to third-party data providers.
+
+Mitigation: Use the skill only when sharing queried symbols with those providers is acceptable.
+
+Risk: Some quote examples use unencrypted HTTP market-data requests.
+
+Mitigation: Do not rely on those responses for trading or other high-stakes decisions without checking against a trusted HTTPS source.
+
+Risk: The optional adata install is shown without a pinned package version.
+
+Mitigation: Install adata in an isolated environment and pin the package version before use.
+
+Risk: Market data may be delayed and invalid symbols can return placeholder error values.
+
+Mitigation: Check data freshness, handle invalid-code responses, and avoid high-frequency requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hacksing/skills/allstock-data)
+- [Tencent Finance quote endpoint](http://qt.gtimg.cn/q=sh600519)
+- [Tencent Finance K-line endpoint](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide an agent to call third-party market-data endpoints and optionally install and use the adata Python SDK.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

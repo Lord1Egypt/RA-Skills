@@ -1,43 +1,55 @@
-## Description: <br>
-Provides guidance and helper tools for starting and using a Sefaria API MCP server to retrieve, search, and explore Jewish texts through MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access guidance and helper tools for using the Sefaria API MCP server to retrieve, search, and explore Jewish texts through an MCP interface.
 
-## Publisher: <br>
-[davad00](https://clawhub.ai/user/davad00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davad00](https://clawhub.ai/user/davad00)
 
-## Use Case: <br>
-Developers and researchers use this skill to configure a local Sefaria MCP server and get example calls for text retrieval, search, reference parsing, metadata lookup, related content, and calendar tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing dependencies or starting the referenced MCP server runs local project code. <br>
-Mitigation: Review the referenced repository and dependencies before running npm install, building, or connecting. <br>
-Risk: The MCP server opens a local service on the configured port. <br>
-Mitigation: Choose an appropriate local port, limit exposure to the intended environment, and stop the server when finished. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to a Sefaria API MCP server, inspect usage examples, and work with Jewish text retrieval, search, reference parsing, related content, metadata, and calendar tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davad00/sefaria-api-skill) <br>
-- [Sefaria API Documentation](https://developers.sefaria.org/) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [Referenced Sefaria API MCP Repository](https://github.com/davad00/sefaria-api-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell, JSON, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a helper command to start a local MCP server with an optional port parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill asks users to install and run unpinned external Node code and npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted pinned commit or release, verify the source, and install in a low-privilege or containerized environment before use.
+
+Risk: The connect helper runs a relative built server path that is not included in the reviewed package.
+
+Mitigation: Confirm the build output exists and that the command resolves the intended server file from a trusted directory before connecting.
+
+## Reference(s):
+
+- [Sefaria API Documentation](https://developers.sefaria.org/)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [ClawHub skill page](https://clawhub.ai/davad00/skills/sefaria-api-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a connect helper that runs a Node MCP server command and a use helper that returns example MCP tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

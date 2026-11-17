@@ -1,44 +1,61 @@
-## Description: <br>
-Image-to-video generation on RunComfy that turns still images into short video clips via the RunComfy Model API and routes general, lip-sync, or multi-modal requests to the appropriate endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image-to-video generation on RunComfy that helps an agent turn still images into short video clips through the RunComfy Model API, including general animation, lip-sync, and multi-modal image-to-video routes.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-External users and developers use this skill to turn a still image plus a motion prompt into a short RunComfy-hosted video, including general animation, lip-sync, and multi-modal reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image, video, audio, or prompt content may be sent to RunComfy for hosted generation. <br>
-Mitigation: Confirm the user wants RunComfy image-to-video generation and avoid private media, voice clips, videos, or confidential prompts unless RunComfy's data handling is acceptable. <br>
-Risk: Ambiguous media requests could route user-provided content to a third-party service. <br>
-Mitigation: Clarify user intent before running the skill and only submit media that is appropriate for third-party processing. <br>
+## Use Case:
 
+Developers, creators, and agent users use this skill to classify image-to-video requests, choose the appropriate RunComfy model route, and produce CLI commands and JSON inputs for generating short video clips from still images.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kalvinrv/image-to-video-runcomfy) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI introduction](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=image-to-video-runcomfy) <br>
-- [RunComfy image-to-video models](https://www.runcomfy.com/models?utm_source=clawhub&utm_medium=skill&utm_campaign=image-to-video-runcomfy) <br>
-- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=image-to-video-runcomfy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request bodies; RunComfy downloads generated video files to the requested output directory.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the runcomfy CLI and RunComfy authentication via RUNCOMFY_TOKEN or local RunComfy config.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Image, video, audio URLs and prompts are sent to a third-party RunComfy service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content that may be processed by RunComfy, review privacy requirements, and avoid submitting sensitive media unless approved.
+
+Risk: The skill requires a local RunComfy CLI installation and account token.
+
+Mitigation: Use a pinned or reviewed CLI version, avoid elevated-privilege installs, and use a revocable RunComfy token such as RUNCOMFY_TOKEN for CI.
+
+Risk: Ambiguous user requests may choose the wrong video generation route.
+
+Mitigation: Confirm unclear requests before invoking the skill, especially when lip-sync, reference audio, or multi-modal inputs may be involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/image-to-video-runcomfy)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=image-to-video-runcomfy)
+- [RunComfy image-to-video models](https://www.runcomfy.com/models?utm_source=clawhub&utm_medium=skill&utm_campaign=image-to-video-runcomfy)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=image-to-video-runcomfy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash commands and JSON inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces RunComfy CLI invocations and request bodies; generated media is downloaded by the RunComfy CLI to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

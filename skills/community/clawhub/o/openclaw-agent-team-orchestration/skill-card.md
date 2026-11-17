@@ -1,49 +1,59 @@
-## Description: <br>
-Build and run multi-agent content production teams on OpenClaw using a single-repo architecture, symlink-based file sharing, role-specific AGENTS.md files, and review-fix-score loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run multi-agent content production teams on OpenClaw with single-repo architecture, symlink-based file sharing, role-specialized AGENTS.md, and automated review-fix-score loops.
 
-## Publisher: <br>
-[simonlin1212](https://clawhub.ai/user/simonlin1212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonlin1212](https://clawhub.ai/user/simonlin1212)
 
-## Use Case: <br>
-Developers and content operations teams use this skill to set up OpenClaw agent teams with writer, reviewer, scorer, and fixer roles. It helps bootstrap workspaces, configure spawn permissions, and run repeated review-fix-score cycles until content reaches a quality threshold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script creates or updates OpenClaw workspaces under ~/.openclaw and prints configuration changes for openclaw.json. <br>
-Mitigation: Review scripts/setup-team.sh before running it and back up ~/.openclaw/openclaw.json before applying any generated configuration. <br>
-Risk: Granting broad subagent permissions can let the main agent spawn roles beyond the intended team. <br>
-Mitigation: Grant allowAgents only to the specific writer, reviewer, scorer, and fixer agent IDs required for the workflow. <br>
-Risk: Shared OUTPUT, KNOWLEDGE, and AGENTS.md files may be visible to multiple spawned roles through the workspace layout. <br>
-Mitigation: Do not place secrets or private material in shared files unless every spawned role is intended to see it. <br>
-Risk: Ambiguous or untrusted agent IDs can make workspace creation and permission review harder to audit. <br>
-Mitigation: Use simple trusted agent IDs and inspect generated workspace paths before starting production runs. <br>
+## Use Case:
 
+Developers and content operations teams use this skill to set up and operate OpenClaw teams with writer, reviewer, scorer, and fixer roles for quality-controlled content production.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/simonlin1212/openclaw-agent-team-orchestration) <br>
-- [Architecture](references/architecture.md) <br>
-- [Build Guide](references/build-guide.md) <br>
-- [Workflow](references/workflow.md) <br>
-- [Role Templates](references/role-templates.md) <br>
-- [Lessons Learned](references/lessons-learned.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw workspace setup guidance, role templates, workflow patterns, and a local setup script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The setup script can overwrite TOOLS.md files and repoint OUTPUT or KNOWLEDGE symlinks in OpenClaw workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch scripts/setup-team.sh before running it, use backups for important workspaces, and add explicit overwrite confirmation for TOOLS.md, OUTPUT, and KNOWLEDGE paths.
+
+Risk: Untrusted or malformed agent IDs can affect generated workspace paths and configuration snippets.
+
+Mitigation: Use only simple trusted agent IDs and validate IDs before running the setup script.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Build Guide](references/build-guide.md)
+- [Workflow](references/workflow.md)
+- [Role Templates](references/role-templates.md)
+- [Lessons Learned](references/lessons-learned.md)
+- [ClawHub Skill Page](https://clawhub.ai/simonlin1212/skills/openclaw-agent-team-orchestration)
+- [Publisher Profile](https://clawhub.ai/user/simonlin1212)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role templates, orchestration workflow guidance, setup commands, and OpenClaw configuration snippets.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

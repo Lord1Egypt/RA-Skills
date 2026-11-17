@@ -1,43 +1,57 @@
-## Description: <br>
-Generate personalized career roadmaps for social media management professionals with specialization paths and structured learning plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized career roadmaps for social media management professionals with specialization paths and structured learning plans.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Career coaching platforms, educational institutions, HR teams, and professional development services use this skill to request social media management roadmaps, specialization options, learning paths, and next-step guidance from a third-party API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career assessment details and identifiers may be sent to the third-party api.mkkpro.com service. <br>
-Mitigation: Use pseudonymous session or user IDs where possible and avoid submitting sensitive personal details unless the vendor terms are acceptable. <br>
-Risk: The release advertises paid plans and quotas, which can affect production cost or availability. <br>
-Mitigation: Confirm plan limits, paid-plan implications, and quota handling before production deployment. <br>
+## Use Case:
 
+External developers, career coaching platforms, educational institutions, HR teams, and professional development services use this skill to request personalized social media management roadmaps, specialization options, learning paths, and next steps from a third-party API.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-social-media-mgmt) <br>
-- [API docs](https://api.mkkpro.com:8188/docs) <br>
-- [Kong route](https://api.mkkpro.com/career/social-media-mgmt) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, guidance] <br>
-**Output Format:** [JSON API requests and responses with concise agent-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap responses may include phases, specializations, learning modules, estimated duration, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Assessment details, session identifiers, optional user identifiers, and timestamps may be sent to a third-party API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only information appropriate for the provider to process, prefer pseudonymous session identifiers, and review the provider's privacy and retention practices before using real user data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-social-media-mgmt)
+- [Kong Route](https://api.mkkpro.com/career/social-media-mgmt)
+- [API Docs](https://api.mkkpro.com:8188/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb Hub](https://hub.toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477)
+- [ToolWeb YouTube Channel](https://youtube.com/@toolweb-009)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses with roadmap, specialization, learning path, and next-step fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API request may include assessment details, session identifiers, optional user identifiers, and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

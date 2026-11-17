@@ -1,42 +1,56 @@
-## Description: <br>
-Analyzes audio quality, detects noise types, and provides improvement recommendations for recordings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze audio quality, detect noise types, and provide improvement recommendations.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers, audio engineers, and content teams use this skill to check selected recordings for noise, score audio quality, and generate actionable recommendations before publication or production use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are uploaded to SenseAudio for processing. <br>
-Mitigation: Submit only audio you are authorized to share, and avoid confidential or regulated recordings unless SenseAudio's terms and retention policy meet your requirements. <br>
-Risk: The skill requires a SenseAudio API key. <br>
-Mitigation: Use a dedicated or limited API key when possible, store it in SENSEAUDIO_API_KEY, and keep the credential private. <br>
+## Use Case:
 
+Developers and audio workflow operators use this skill to check recordings for noise and quality issues, produce quality reports, and generate improvement recommendations or pass/fail quality gates.
 
-## Reference(s): <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio API key page](https://senseaudio.cn/platform/api-key) <br>
-- [SenseAudio speech recognition API docs](https://senseaudio.cn/docs/speech_recognition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and JSON report structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY and sends user-selected audio files to SenseAudio for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Risk: Selected audio files may contain private conversations, customer data, regulated information, or voice biometrics and are uploaded to SenseAudio for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on files intentionally selected for upload, obtain appropriate consent, and confirm SenseAudio retention and privacy terms before processing sensitive recordings.
+
+Risk: Microphone-recording workflows can capture audio without a clear per-upload consent step if extended from the provided examples.
+
+Mitigation: Add explicit permission prompts, recording duration limits, and user review before sending captured audio to the analysis API.
+
+## Reference(s):
+
+- [SenseAudio homepage](https://senseaudio.cn)
+- [SenseAudio speech recognition API docs](https://senseaudio.cn/docs/speech_recognition)
+- [ClawHub skill page](https://clawhub.ai/scikkk/skills/audio-quality-checker)
+- [Publisher profile](https://clawhub.ai/user/scikkk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples, plus JSON-shaped analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SENSEAUDIO_API_KEY and sends selected audio files to the SenseAudio API for analysis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

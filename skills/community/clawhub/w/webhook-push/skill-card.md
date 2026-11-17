@@ -1,40 +1,60 @@
-## Description: <br>
-Sends group bot messages to WeChat Work, DingTalk, and Feishu webhooks when an agent needs to push a notification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webhook Push sends user-directed messages to WeChat Work, DingTalk, and Feishu group bots through configured webhooks.
 
-## Publisher: <br>
-[ysjyga](https://clawhub.ai/user/ysjyga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysjyga](https://clawhub.ai/user/ysjyga)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent send prepared notifications to configured enterprise chat groups. It is suited to webhook-based messages, mentions, images, and markdown where the user has already supplied the platform key locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook keys in webhook-config.json can authorize message delivery to enterprise chat groups if exposed or misused. <br>
-Mitigation: Keep webhook-config.json private, avoid committing it, and use limited-purpose bot keys where the chat platform supports them. <br>
-Risk: Messages, @mentions, or image paths may reach a broad or sensitive audience. <br>
-Mitigation: Review the target platform, group, message content, mentions, and image path before allowing a send. <br>
+## Use Case:
 
+Employees, external collaborators, and developers use this skill to send announcements, reminders, test messages, images, and simple Markdown content to configured enterprise chat groups from an agent session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ysjyga/webhook-push) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and optional shell command invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime behavior sends outbound webhook API requests using locally stored webhook keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Webhook keys can authorize posts to configured enterprise chat groups if webhook-config.json is exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep webhook-config.json private, store only required webhook keys, and avoid committing or uploading it.
+
+Risk: A message may disclose secrets, personal data, or notify a broad audience through @all, phone, or user-ID mentions.
+
+Mitigation: Confirm the recipient group, message content, and all mention targets before sending.
+
+Risk: Platform rate limits, content limits, or sensitive-word filters may reject or throttle messages.
+
+Mitigation: Throttle sends and shorten or split content according to each platform's documented limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysjyga/skills/webhook-push)
+- [WeChat Work group robot webhook endpoint](https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={key})
+- [DingTalk custom robot webhook endpoint](https://oapi.dingtalk.com/robot/send?access_token={key})
+- [Feishu bot webhook endpoint](https://open.feishu.cn/open-apis/bot/v2/hook/{key})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown or text with Python examples, shell commands, and webhook request results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided webhook-config.json and sends outbound webhook requests to the selected chat platform.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,7 +2,7 @@
 name: palace-diagram
 description: |
   Generates Mermaid and ASCII diagrams of palace structure, knowledge topology, and synapse connectivity
-version: 1.9.8
+version: 1.10.3
 triggers:
   - memory
   - visualization
@@ -15,21 +15,20 @@ source: claude-night-market
 source_plugin: memory-palace
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Palace Diagram
 
 Generate Mermaid and ASCII diagrams from the knowledge
 graph, showing palace structure, entity relationships,
-synapse connectivity, and tier assignments.
+synapse connectivity, and PageRank importance.
 
-> **Status: unwired**. As of v1.9.4, no command or agent
-> invokes `Skill(memory-palace:palace-diagram)`. The skill
-> defines the contract but the integration into `/palace`
-> (e.g. as `/palace diagram <palace-id>`) is pending. Use
-> the `palace_manager.py` script directly until the wiring
-> lands. Tracked for follow-up in the April 2026 skill audit.
+> **Status: wired**. Invoke via `/palace diagram <palace-id>
+> [--type map|ascii|entity|heatmap]`, which calls
+> `Skill(memory-palace:palace-diagram)`. The renderer is
+> `memory_palace.palace_renderer.PalaceRenderer`. See the Usage
+> section below for direct programmatic access.
 
 ## When To Use
 
@@ -107,4 +106,20 @@ Works with:
 
 - `memory-palace-architect`: visualize after palace creation
 - `knowledge-locator`: display search results as graph
-- `graph-analyzer`: tier-informed node sizing
+- `graph-analyzer`: PageRank node shapes, communities and
+  keystones
+
+## Exit Criteria
+
+- [ ] At least one of the four diagram types (palace map, entity graph,
+      synapse heatmap, ASCII overview) is generated without a Python
+      exception from `PalaceRenderer`
+- [ ] Mermaid diagrams are passed to
+      `mcp__claude_ai_Mermaid_Chart__validate_and_render_mermaid_diagram`
+      and render successfully
+- [ ] ASCII overview displays rooms with box-drawing characters and
+      entity counts per room
+- [ ] Synapse edge styling matches strength thresholds: `==>` for
+      strength ≥ 0.7, `-->` for ≥ 0.4, `-.->` for < 0.4
+- [ ] If the requested palace ID does not exist in the knowledge graph,
+      an error is reported with the palace ID that was searched

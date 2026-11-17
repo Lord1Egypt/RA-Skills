@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE POC Run and Validation"
+  short_description: "Validate POC evidence and make a continue, adjust, or stop decision"
+  default_prompt: "Use $fde-poc-runner to create a POC run and validation plan for this runnable solution."

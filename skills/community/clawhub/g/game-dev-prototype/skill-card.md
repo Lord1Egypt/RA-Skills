@@ -1,40 +1,58 @@
-## Description: <br>
-Provides a throwaway prototype workflow for rapid validation with 1-3 day hypothesis-driven sprints, clear exit criteria, playtest goals, and a proceed / pivot / kill decision framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Throwaway prototype workflow for rapid validation. Conduct 1-3 day hypothesis-driven sprints with clear exit criteria, playtest goals, and a decision framework (proceed / pivot / kill).
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
 
-## Use Case: <br>
-Game developers, designers, and prototyping teams use this skill to validate one risky mechanic or concept in a short sprint, define measurable success criteria, run lightweight playtests, and decide whether to proceed, pivot, or stop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may suggest archiving or deleting prototype work after a decision. <br>
-Mitigation: Review generated archive or delete actions before executing them, especially when they affect local project files. <br>
-Risk: Prototype code may be mistaken for production-ready implementation. <br>
-Mitigation: Treat generated prototype code as disposable unless the release is explicitly a game jam deliverable, and start production code from the validated lessons. <br>
+## Use Case:
 
+Game developers and designers use this skill to run short, hypothesis-driven prototype sprints for risky mechanics, game loops, performance questions, or game jam concepts. It helps define one validation question, constrain scope, playtest quickly, and decide whether to proceed, pivot, or stop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-prototype) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional code snippets and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce prototype plans, success criteria, playtest notes, and prototype-result.md content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate on broad prototype or game-jam phrasing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants this specific rapid game prototyping workflow before applying it to local project files.
+
+Risk: Archive or delete steps can change or remove local prototype files.
+
+Mitigation: Ask for explicit confirmation before archiving, deleting, or moving prototype files.
+
+Risk: Prototype code may be treated as production-ready even though the workflow frames it as disposable.
+
+Mitigation: Document lessons learned and start production code fresh unless the user is intentionally working in a game jam context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-prototype)
+- [Publisher profile](https://clawhub.ai/user/toilanguyen2910)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with optional code snippets, prototype plans, and prototype-result.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce throwaway prototype files when used by a coding-capable agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

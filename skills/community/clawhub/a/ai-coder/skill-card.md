@@ -1,37 +1,48 @@
-## Description: <br>
-Advanced AI-powered coding assistant with multi-language support, debugging, and automated testing capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced AI-powered coding assistant with multi-language support, debugging, and automated testing capabilities.
 
-## Publisher: <br>
-[ChinaKingKong](https://clawhub.ai/user/ChinaKingKong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chinakingkong](https://clawhub.ai/user/chinakingkong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to generate, debug, review, test, and design software across common application and service patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated code, tests, configuration, or shell commands may be incorrect or unsafe if applied without review.
+
+Mitigation: Review proposed changes and commands before applying or running them, especially in sensitive repositories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to generate, review, debug, test, and design software across common programming languages and application patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code or commands may install packages, change files, use external services, or handle secrets. <br>
-Mitigation: Review generated code and commands before running them, and apply normal project security review for changes that affect dependencies, files, external services, or secrets. <br>
+**Output Format:** [Markdown with code blocks and command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces implementation suggestions that should be reviewed before applying or running.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and inline guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include generated code, test examples, debugging explanations, architecture suggestions, and commands for the user to review before execution.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-OpenClaw Agent 自进化记忆系统 gives OpenClaw agents persistent memory by syncing Obsidian vault content, indexing vectors, compressing session observations, and monitoring memory health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Agent 自进化记忆系统 provides persistent OpenClaw agent memory by syncing Obsidian vault content, compressing session observations, indexing to Qdrant, and monitoring memory health.
 
-## Publisher: <br>
-[yxyujian98-png](https://clawhub.ai/user/yxyujian98-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yxyujian98-png](https://clawhub.ai/user/yxyujian98-png)
 
-## Use Case: <br>
-Developers using OpenClaw use this skill to connect Obsidian notes, session history, Qdrant, and embedding services into a persistent searchable memory system with automated sync and maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can receive recurring background access to private notes, OpenClaw session history, local memory stores, Qdrant, and model endpoints. <br>
-Mitigation: Install first against a test vault, keep backups, limit synchronized directories, and review scheduled jobs before enabling broad background operation. <br>
-Risk: Configured API keys and model endpoints may expose sensitive credentials or private content. <br>
-Mitigation: Prefer local-only embedding and LLM endpoints where practical, store credentials outside shared files, and review configuration before use. <br>
-Risk: Auto-repair behavior can mutate memory or vault content through generated repair rules. <br>
-Mitigation: Do not enable auto-fix rules until the generated antibodies.json commands and maintenance scripts have been audited. <br>
+## Use Case:
 
+Developers and advanced OpenClaw users use this skill to give agents searchable long-term memory from Obsidian vault content, session observations, and vector-indexed records. It is suited for local knowledge workflows that need automated memory sync, compression, retrieval, and health monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yxyujian98-png/agent-openclaw-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown instructions with Python scripts, JSON configuration, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Obsidian vault path, Qdrant, an embedding endpoint, and optional LLM API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can have ongoing access to OpenClaw sessions and Obsidian vault content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test copy of the vault first, limit configured sync directories, and review generated memories before relying on routine indexing.
+
+Risk: Embedding or LLM endpoints may receive note or session content during memory processing.
+
+Mitigation: Keep embedding and LLM endpoints local unless remote processing is explicitly acceptable, and protect any configured API keys.
+
+Risk: Automatic self-healing and antibody auto_fix commands may make unintended changes.
+
+Mitigation: Disable automatic repair commands until reviewed, and run maintenance tasks manually before enabling scheduled operation.
+
+Risk: Unpinned Python dependencies or container images can change behavior over time.
+
+Mitigation: Pin Python package versions and container image tags before routine use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yxyujian98-png/skills/agent-openclaw-memory)
+- [Publisher Profile](https://clawhub.ai/user/yxyujian98-png)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bundled scripts can write or update local memory files, vault files, health reports, and Qdrant vector records when installed and executed.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

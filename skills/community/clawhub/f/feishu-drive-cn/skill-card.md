@@ -1,38 +1,50 @@
-## Description: <br>
-Manage Feishu cloud storage by listing, creating, moving, and deleting files and folders with a Feishu account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Feishu cloud storage by listing, creating, moving, and deleting files and folders with a Feishu account.
 
-## Publisher: <br>
-[erick0309](https://clawhub.ai/user/erick0309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erick0309](https://clawhub.ai/user/erick0309)
 
-## Use Case: <br>
-People who use Feishu Drive can ask an agent to inspect cloud storage, create folders, and organize files or folders. The skill is useful when the user wants conversational help operating Feishu Drive while keeping account permissions under their control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move or delete Feishu Drive files and folders. <br>
-Mitigation: Use least-privilege Feishu access and require explicit confirmation of the exact file or folder name or path before moving or deleting important content. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage Feishu Drive files and folders, including listing content, retrieving file or folder information, creating folders, moving items, and deleting items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erick0309/feishu-drive-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls] <br>
-**Output Format:** [Markdown or text responses with Feishu Drive tool actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Feishu account with appropriate Drive permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can move or delete Feishu Drive files and folders, which may affect shared or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Feishu permissions where possible and confirm move or delete requests carefully before execution.
+
+## Reference(s):
+
+- [Feishu Drive ClawHub skill page](https://clawhub.ai/erick0309/skills/feishu-drive-cn)
+- [erick0309 ClawHub publisher profile](https://clawhub.ai/user/erick0309)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text responses with Feishu Drive tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu account with appropriate Drive permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

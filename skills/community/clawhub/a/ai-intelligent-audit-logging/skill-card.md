@@ -1,44 +1,54 @@
-## Description: <br>
-Provides audit logging for operation records and compliance audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+审计日志，操作记录 + 合规审计。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, compliance teams, and security teams use this skill to set up audit logging, query operational activity, check compliance, analyze behavior data, and generate audit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The actual application code lives in an external repository and may differ from the skill description. <br>
-Mitigation: Verify that the repository and publisher are the intended trust target, then inspect requirements.txt and app.py before running the service. <br>
-Risk: Setup commands install dependencies and run application code supplied outside the skill artifact. <br>
-Mitigation: Run the service in a virtual environment or container and review dependencies before deployment. <br>
-Risk: Audit logs can contain sensitive business or user activity data. <br>
-Mitigation: Handle generated logs as sensitive data and apply the organization policy for retention, access control, and disclosure. <br>
+## Use Case:
 
+Compliance, security, data, and operations teams use this skill to describe audit logging workflows for operation records, audit queries, compliance checks, behavior analysis, and audit report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-audit-logging) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
-- [Repository referenced by installation instructions](https://github.com/openclaw-skills/ai-intelligent-audit-logging) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup steps for Python and FastAPI audit logging services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, server release evidence) <br>
+Risk: Install steps run unreviewed remote code from a referenced repository and dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the repository and dependency set, pin a trusted commit, and test in an isolated environment before use.
+
+Risk: Audit data collection and retention scope is not specified.
+
+Mitigation: Define what audit data is collected, where it is stored, retention limits, access controls, and redaction requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-audit-logging)
+- [Repository URL referenced in artifact](https://github.com/openclaw-skills/ai-intelligent-audit-logging)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with descriptive text and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may describe audit workflows, installation steps, compliance checks, behavioral analysis, and report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

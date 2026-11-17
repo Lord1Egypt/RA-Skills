@@ -1,44 +1,56 @@
-## Description: <br>
-微信公众号文章保存工作流：当用户发送微信公众号文章链接时，抓取正文并保存为 Markdown 到知识库，可选推送链接到飞书多维表格，也可选生成独立发芽笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves WeChat public-account articles as Markdown in an Obsidian knowledge base, with optional Feishu table tracking and optional Simplified Chinese sprout-note generation.
 
-## Publisher: <br>
-[violin86318](https://clawhub.ai/user/violin86318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[violin86318](https://clawhub.ai/user/violin86318)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and knowledge workers use this skill to archive WeChat public-account articles into a local Obsidian Markdown collection and optionally track article links in Feishu. It can also generate a separate Simplified Chinese reflection note from the saved article content when configured.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unpinned shell command examples may run changing third-party code when fetching articles or managing records.
+
+Mitigation: Review commands before use and replace `npx -y bun` and `lark-cli` examples with pinned, verified executables and safe argument handling.
+
+Risk: Configured Feishu credentials can create or delete table records.
+
+Mitigation: Use least-privilege Feishu credentials, avoid enabling delete access unless needed, and require explicit user confirmation before deletion.
+
+Risk: Article URLs or content may be sent to Jina Reader, Feishu, browser tooling, and a model provider.
+
+Mitigation: Use only trusted article URLs and avoid processing sensitive content unless those services are approved for the data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users who archive WeChat public account articles use this skill to fetch an article from an mp.weixin.qq.com link, save it as Markdown in an Obsidian vault, optionally write metadata to Feishu, and optionally generate a separate note. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can access the configured Obsidian folder and Feishu table. <br>
-Mitigation: Install only when those locations are intended for this workflow, and use least-privilege Feishu credentials. <br>
-Risk: The workflow relies on external command-line tooling and a configured baoyu script path. <br>
-Mitigation: Verify the configured script path and source before use, and review command behavior in the target environment. <br>
-Risk: The workflow includes optional authority to delete Feishu table records. <br>
-Mitigation: Review the matched record title and identifier carefully, and proceed only after explicit user confirmation. <br>
+**Output Format:** [Markdown files, Feishu record fields, and a concise Markdown completion message]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/violin86318/wechat-article-save) <br>
-- [WeChat public article URL pattern](https://mp.weixin.qq.com/) <br>
-- [Jina Reader fallback endpoint](https://r.jina.ai/) <br>
+**Other Properties Related to Output:** [Outputs are Simplified Chinese by default; optional Feishu and sprout-note outputs depend on local configuration.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, Feishu record fields, and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Feishu records when configured and may delete Feishu records only through the documented confirmation flow.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

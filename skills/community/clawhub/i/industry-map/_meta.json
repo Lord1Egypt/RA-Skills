@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7ddyzmk43w6y7nf3n0sze23h820ef7",
-  "slug": "industry-map",
+  "name": "industry-map",
   "version": "1.0.0",
-  "publishedAt": 1773459711521
+  "status": "reference",
+  "description": "产业链图谱生成技能（参考文档）",
+  "note": "此技能包当前作为参考文档使用，包含完整的 SKILL.md 规范和产业图谱 CSV 模板"
 }

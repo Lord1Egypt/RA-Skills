@@ -1,43 +1,54 @@
-## Description: <br>
-Fabric Bridge helps agents use Fabric AI CLI patterns for text transformation, analysis, content creation, writing improvement, code review, threat modeling, and structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fabric Bridge helps agents run Fabric AI patterns through the fabric-ai CLI for text transformation, analysis, writing improvement, content creation, code review, threat modeling, and structured extraction.
 
-## Publisher: <br>
-[koriyoshi2041](https://clawhub.ai/user/koriyoshi2041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[koriyoshi2041](https://clawhub.ai/user/koriyoshi2041)
 
-## Use Case: <br>
-Developers, engineers, and other agent users use this skill to select and run Fabric AI patterns through the fabric-ai CLI for summarization, extraction, writing improvement, code review, threat modeling, and related text workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fabric AI usage can involve external AI providers, API keys, and user-supplied content. <br>
-Mitigation: Use a dedicated or revocable API key where possible and avoid sending secrets or regulated data. <br>
-Risk: Community patterns, saved sessions, contexts, and custom pattern files may affect prompts and outputs. <br>
-Mitigation: Review community patterns, saved sessions, contexts, and custom pattern files before relying on them. <br>
-Risk: Sensitive workflows may send data to an external model provider if run normally. <br>
-Mitigation: Use fabric-ai --dry-run to inspect what will be sent before making API calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fabric AI GitHub Repository](https://github.com/danielmiessler/fabric) <br>
-- [Popular Fabric Patterns](references/popular-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/koriyoshi2041/fabric-bridge) <br>
+## Use Case:
 
+Developers, analysts, writers, and other external users use this skill to route text, files, images, URLs, and video-derived content through Fabric AI patterns for summarization, extraction, critique, writing, code review, and security analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional Fabric AI text or markdown output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can stream Fabric AI output, save output to a file, copy output to the clipboard, or dry-run prompts before API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fabric requests may send provided text, files, images, URLs, or video-derived content to external AI providers.
+
+Mitigation: Redact sensitive data before use and prefer dry-run or approved local/private backends for confidential material.
+
+Risk: Broad triggers could invoke Fabric patterns without an explicit privacy reminder.
+
+Mitigation: Use the skill deliberately for Fabric requests and confirm the intended inputs before running commands that call external providers.
+
+## Reference(s):
+
+- [Fabric project homepage](https://github.com/danielmiessler/fabric)
+- [Popular Fabric Patterns](references/popular-patterns.md)
+- [Fabric Bridge on ClawHub](https://clawhub.ai/koriyoshi2041/skills/fabric-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and Fabric CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stream responses, write output files, copy results to the clipboard, or preview requests with dry-run mode depending on the Fabric CLI flags used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

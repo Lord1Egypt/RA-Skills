@@ -1,0 +1,16 @@
+{
+  "task_id": "rt001",
+  "verifier_role": "evidence-verifier",
+  "verdict": "pass",
+  "verified_dimensions": {
+    "source_reliability": {"status": "pass", "note": "3 independent primary sources found"},
+    "recency": {"status": "pass", "note": "All sources within evidence window"},
+    "completeness": {"status": "pass", "note": "Research question fully answered"},
+    "independence": {"status": "pass", "note": "No shared upstream sources detected"},
+    "corroboration": {"status": "pass", "note": "Key claims corroborated by 2+ sources"}
+  },
+  "confirmed_evidence_ids": ["E-001", "E-002", "E-003"],
+  "rejected_evidence_ids": [],
+  "flagged_evidence_ids": [],
+  "cycle_number": 1
+}

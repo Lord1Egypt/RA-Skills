@@ -1,41 +1,57 @@
-## Description: <br>
-AI版MBTI测试 is an entertainment agent that asks 8 mirror questions to compare a user's self-described real-world and AI-world MBTI profiles, mirror index, role names, and drift over retests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI版MBTI测试 is an entertainment quiz that asks 8 AI-world versus real-world mirror questions to produce a user's reality MBTI, AI-world MBTI, mirror index, and personality drift summary.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users use this agent as a light entertainment quiz to reflect on how they describe their behavior with AI systems versus people in real life. The agent returns paired MBTI-style results, role names, a mirror index, and optional retest history for comparison over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quiz-derived MBTI results and retest dates are remembered for later retests and status views. <br>
-Mitigation: Install only if this retained quiz history is acceptable, avoid entering highly private details, and treat outputs as entertainment rather than psychological advice. <br>
-Risk: Users may overinterpret MBTI-style labels or drift summaries as clinical or psychological assessment. <br>
-Mitigation: Present results as a self-described entertainment quiz and avoid using the output for mental-health, employment, educational, or other consequential decisions. <br>
+## Use Case:
 
+External users use this skill for a casual MBTI-style entertainment test that compares how they respond in AI interactions versus real-world interactions. The skill guides the user through 8 mirrored questions, summarizes the two resulting profiles, and can show retest history and personality drift.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huangjihua007-rgb/mbti-mirror) <br>
-- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text with quiz prompts, MBTI-style summaries, mirror index, drift status, and share copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores quiz-derived MBTI results, mirror index, retest dates, and drift summary for later status views.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Personality answers and inferred profile history may persist over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users before or during use that quiz results and history may be retained for retest and status features, and provide a clear reset or opt-out path where the host platform supports it.
+
+Risk: Users may mistake MBTI-style entertainment output for psychological assessment.
+
+Mitigation: Keep the experience framed as entertainment, avoid clinical or diagnostic claims, and do not present results as professional advice.
+
+Risk: Final results may include unrelated promotional recommendations.
+
+Mitigation: Review or remove cross-promotional recommendations before release, especially when they are unrelated to the quiz the user requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/mbti-mirror)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown-style text with quiz prompts, progress displays, result summaries, and share copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists quiz result fields and history for retest and status views when platform state is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, manifest.json, skill metadata, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

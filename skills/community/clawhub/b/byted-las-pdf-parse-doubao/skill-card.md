@@ -1,47 +1,61 @@
-## Description: <br>
-Parses and reads PDF documents into structured Markdown text using Volcengine LAS Doubao AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses and reads PDF documents into structured Markdown text using Volcengine LAS Doubao AI models.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operations teams use this skill to submit PDFs to Volcengine LAS, estimate per-page cost, poll asynchronous parsing jobs, and return extracted Markdown, page details, tables, charts, and OCR text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install remote executable SDK code from a hosted source. <br>
-Mitigation: Install only after reviewing and trusting the hosted SDK source; prefer a revised release that pins or bundles the SDK and asks before downloading executable code. <br>
-Risk: PDF files and extracted content are sent to the Volcengine LAS service. <br>
-Mitigation: Use only for data approved for that provider and document privacy handling before processing sensitive PDFs. <br>
-Risk: Background polling can run without a built-in stop control. <br>
-Mitigation: Use bounded polling windows where possible and prefer a revised release with an explicit timeout or stop control. <br>
-Risk: The skill requires sensitive credentials. <br>
-Mitigation: Provide credentials through environment variables or approved secret handling and avoid writing API keys into prompts, logs, or committed files. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to convert PDFs, including scanned or complex-layout documents, into Markdown/text and structured page details through a Volcengine LAS submit-and-poll workflow.
 
-## Reference(s): <br>
-- [LAS PDF Parse API Reference](references/api.md) <br>
-- [LAS PDF Parse Pricing Reference](references/prices.md) <br>
-- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808) <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-las-pdf-parse-doubao) <br>
+### Deployment Geography for Use:
 
+Volcengine LAS regions cn-beijing and cn-shanghai
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task IDs, local output paths, Markdown previews, page-detail JSON guidance, and billing notices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Documents and parsed outputs may be sent to Volcengine/TOS cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for that service, and avoid sensitive workspaces unless the data handling path has been reviewed.
+
+Risk: The environment initialization script can auto-upgrade SDK code from a remote wheel during normal use.
+
+Mitigation: Prefer a pinned and verified SDK package, or review the remote package source and hash before enabling automatic installation.
+
+Risk: The workflow relies on local credentials such as LAS_API_KEY and optional Volcengine access keys.
+
+Mitigation: Keep credentials in controlled environment variables or reviewed secret files, and avoid executable shell content in .env or env.sh files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-las-pdf-parse-doubao)
+- [Publisher Profile](https://clawhub.ai/user/volcengine-skills)
+- [API Reference](references/api.md)
+- [Pricing Reference](references/prices.md)
+- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON results with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include parsed Markdown, per-page structured details, task status, local output paths, and optional presigned download links.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

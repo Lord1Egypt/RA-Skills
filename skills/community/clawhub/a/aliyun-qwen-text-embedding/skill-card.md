@@ -1,44 +1,55 @@
-## Description: <br>
-Use when text embeddings are needed from Alibaba Cloud Model Studio models for semantic search, retrieval-augmented generation, clustering, or offline vectorization pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when text embeddings are needed from Alibaba Cloud Model Studio models for semantic search, retrieval-augmented generation, clustering, or offline vectorization pipelines.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare Alibaba Cloud Model Studio text-embedding requests for semantic search, retrieval-augmented generation, clustering, and offline vectorization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A selected embedding model may not match the Alibaba Cloud API version used by the downstream client. <br>
-Mitigation: Confirm the model name against the intended Model Studio API version before sending prepared requests. <br>
-Risk: The generated request JSON can contain user-provided text that may be sensitive. <br>
-Mitigation: Review the local request file before sharing it or sending it through a separate client. <br>
-Risk: Credential handling, endpoint selection, and data-retention behavior are outside this request-preparation skill. <br>
-Mitigation: Review the separate client that transmits the request before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare Alibaba Cloud Model Studio text embedding request payloads for semantic search, retrieval-augmented generation, clustering, and offline vectorization workflows.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud Model Studio Embedding Documentation](https://help.aliyun.com/zh/model-studio/embedding) <br>
-- [Alibaba Cloud Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON file] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a generated JSON request payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prepares a local request file and does not send the request to Alibaba Cloud.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill writes local request payload files, so incorrect paths or unintended text input could create or overwrite local output artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested output path and payload text before running the helper script, and keep generated request files in a dedicated output directory.
+
+Risk: The helper prepares request JSON but does not submit embeddings or validate Alibaba Cloud service responses.
+
+Mitigation: Use Alibaba Cloud documentation and a separate reviewed client workflow when sending requests or handling credentials.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio embedding documentation](https://help.aliyun.com/zh/model-studio/embedding)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-qwen-text-embedding)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local embedding request JSON payload and does not call network services or handle credentials in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

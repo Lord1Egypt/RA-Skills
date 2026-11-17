@@ -1,43 +1,58 @@
-## Description: <br>
-Autonomous multi-agent paper research system that orchestrates literature search, arXiv PDF download, parallel full-paper analysis, and integrated survey generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Research Agent orchestrates academic literature search, arXiv PDF download, parallel full-paper analysis, and integrated survey generation.
 
-## Publisher: <br>
-[changer-changer](https://clawhub.ai/user/changer-changer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changer-changer](https://clawhub.ai/user/changer-changer)
 
-## Use Case: <br>
-Researchers, students, and technical teams use this skill to search for academic papers, analyze full PDFs, compare methods, and generate literature survey materials with cited tables and research-gap findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may change the Python environment by installing dependencies during execution. <br>
-Mitigation: Run it in an isolated environment and preinstall or pin required dependencies before use. <br>
-Risk: The workflow can download papers and write local research folders. <br>
-Mitigation: Choose an explicit output directory and review downloaded files and generated reports before relying on them. <br>
-Risk: The workflow may launch many parallel analysis agents without strong user-controlled limits. <br>
-Mitigation: Set a small paper count or concurrency limit and review generated agent tasks before execution. <br>
+## Use Case:
 
+External researchers, developers, and agents use this skill to find academic papers, download arXiv PDFs, create structured per-paper analyses, compare methods, and generate integrated literature surveys.
 
-## Reference(s): <br>
-- [Paper Research Agent ClawHub release](https://clawhub.ai/changer-changer/paper-research-agent) <br>
-- [Paper Analysis Report Standards](references/analysis_standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, JSON summaries, local research files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates per-paper analysis reports, downloaded PDFs, agent task files, a research summary JSON file, and an integrated survey package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The workflow can modify the Python environment by installing dependencies automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed workspace with pinned dependencies preinstalled and review dependency changes before execution.
+
+Risk: The workflow contacts external servers and can download and store many PDFs.
+
+Mitigation: Use restricted network access, file-size and output limits, and explicit approval before downloads.
+
+Risk: The workflow creates sub-agent tasks for parallel full-paper analysis.
+
+Mitigation: Require explicit approval and limits for sub-agent spawning, then manually review critical citations and extracted data.
+
+## Reference(s):
+
+- [Paper Analysis Report Standards](references/analysis_standards.md)
+- [ClawHub Skill Page](https://clawhub.ai/changer-changer/skills/paper-research-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON summaries, shell command snippets, and downloaded PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a research output directory with paper PDFs, per-paper analysis reports, agent task JSON, and an integrated survey.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

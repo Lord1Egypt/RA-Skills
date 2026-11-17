@@ -1,44 +1,54 @@
-## Description: <br>
-Use when a user wants to run a Bing News search through the Dataify Bing News API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Bing News for current news results and is not intended for general Bing web search.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to convert natural-language Bing News requests into Dataify API parameters, preview the request, and call the API after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Dataify during live Bing News API calls. <br>
-Mitigation: Avoid private, regulated, or confidential search queries unless the deployment has approved that data flow. <br>
-Risk: The skill handles a Dataify API token for authentication. <br>
-Mitigation: Use DATAIFY_API_TOKEN or another secure secret mechanism instead of pasting tokens into chat prompts or command lines. <br>
-Risk: The skill returns API responses directly, which may include raw JSON or HTML from the service. <br>
-Mitigation: Review returned content before using it in downstream workflows, publications, or automated decisions. <br>
+## Use Case:
 
+External users and developers use this skill to turn a news-search request into a Dataify Bing News API call and return concise, source-linked Bing News results.
 
-## Reference(s): <br>
-- [Dataify Bing News API Reference](references/api.md) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-bing-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown parameter previews, shell commands, and raw Dataify API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live calls require a Dataify API token and user confirmation after previewing request parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill handles Dataify API tokens through channels that may expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use session-scoped DATAIFY_API_TOKEN setup, avoid placing tokens in chat or command-line arguments, and rotate any token previously pasted into prompts or stored in shell profiles.
+
+Risk: Security evidence flags insecure setup guidance in the release.
+
+Mitigation: Review credential setup guidance before installation and prefer temporary secret configuration for this workflow.
+
+## Reference(s):
+
+- [Dataify Bing News API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-bing-news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with source links, optional raw JSON or HTML, and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include counts or truncation notes; raw JSON or HTML is returned only when explicitly requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

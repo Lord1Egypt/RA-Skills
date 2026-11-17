@@ -1,43 +1,57 @@
-## Description: <br>
-Tracks a user-provided topic by researching recent sources, identifying timely hot topics, drafting a long-form article, and fact-checking the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks recent hot topics from a user-provided theme, searches timely sources, identifies 3-5 newsworthy angles, writes a Chinese long-form article, and produces a fact-check report.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Content creators, editors, analysts, and agents use this skill to turn a current topic into a researched source report, a short list of timely angles, a long-form article, and a fact-check report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs web research on user-provided topics, which can expose sensitive private topics through search queries. <br>
-Mitigation: Avoid using sensitive private topics unless the user is comfortable with those terms being searched. <br>
-Risk: The skill creates dated Markdown and optional DOCX article files, and may update article content during fact-checking. <br>
-Mitigation: Check the workspace for existing article files with the same date before running the skill. <br>
-Risk: Scheduled runs may reuse the previous tracking topic, which can continue work on stale or unintended subjects. <br>
-Mitigation: Confirm the intended tracking topic before enabling or executing scheduled runs. <br>
+## Use Case:
 
+Content creators, editors, and media operators use this skill to investigate a current topic, collect timely source material, extract high-interest angles, draft an 800-1500 word Chinese article, and review key facts before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-hot-topic-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/tianheihei002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown reports and article content, with an optional DOCX article file when a conversion tool is available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a tracking summary, hot-topic list, saved dated article file, and fact-check report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scheduled tracking may reuse the previous topic without clear user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the tracked topic before scheduled runs and review any retained topic state before publishing results.
+
+Risk: The skill creates and may edit local article files during its writing and fact-checking workflow.
+
+Mitigation: Run it in a dedicated workspace and choose an output location where generated markdown or DOCX files cannot overwrite important content.
+
+Risk: Web-sourced hot-topic writing can include outdated, weakly sourced, or misleading claims.
+
+Mitigation: Review the source report and fact-check report, especially dates, numbers, names, and direct quotations, before distributing the article.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tianheihei002/skills/yq-hot-topic-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown article, topic summary, source report, and fact-check report; may also request a DOCX conversion when a conversion tool is available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for Chinese-language hot-topic tracking and long-form new-media writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

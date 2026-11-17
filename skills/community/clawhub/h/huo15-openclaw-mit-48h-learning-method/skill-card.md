@@ -1,49 +1,63 @@
-## Description: <br>
-A NotebookLM-based learning workflow that helps users study a topic with a 48-hour sequence of source collection, mental-model prompts, expert-disagreement prompts, probing questions, feedback loops, synthesis, quizzes, mind maps, and local markdown exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NotebookLM learning helper that guides agents through the Huo15 MIT 48-hour learning method, including Ihtesham Ali's three-question framework, follow-up diagnosis, synthesis, contradiction analysis, gap finding, Feynman teach-back, practice exams, and NotebookLM artifact commands.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-External learners, educators, and developers use this skill to drive NotebookLM study sessions from selected files, URLs, YouTube videos, or Google Drive sources. It produces prompts, follow-up diagnosis, study artifacts, and exports that support rapid topic understanding and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Study materials and user answers may be sent to Google NotebookLM as part of the workflow. <br>
-Mitigation: Use only materials and answers that are appropriate to process in NotebookLM; do not upload confidential documents unless that transfer is intended. <br>
-Risk: Generated study outputs are saved as local markdown files and may be exposed on shared, synced, or backed-up machines. <br>
-Mitigation: Set MIT_LEARN_KB_DIR to a private location and periodically delete old exports when local retention is not needed. <br>
-Risk: The workflow depends on an authenticated NotebookLM CLI session. <br>
-Mitigation: Use a trusted Google account profile and review NotebookLM access before running commands that add sources, query notebooks, or download artifacts. <br>
+## Use Case:
 
+Developers and external users use this skill to build a NotebookLM-backed study workflow for quickly organizing source material, extracting mental models and disagreements, testing understanding, and exporting study outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-mit-48h-learning-method) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhaobod1) <br>
-- [Ihtesham Ali original learning-method post](https://x.com/ihtesham2005/status/2030214970353602806) <br>
-- [Ihtesham Ali context-stacking post](https://x.com/ihtesham2005/status/2041576806810370553) <br>
-- [Ihtesham Ali NotebookLM prompts post](https://x.com/ihtesham2005/status/2031706700139675875) <br>
-- [How an MIT Student Compressed a Semester of Learning into 48 Hours with NotebookLM](https://cerebrodigital.net/en/how-an-mit-student-compressed-a-semester-of-learning-into-48-hours-with-notebooklm/) <br>
-- [NotebookLM Advanced Guide 2026](https://www.shareuhack.com/en/posts/notebooklm-advanced-guide-2026) <br>
-- [10 NotebookLM Prompts For Studying](https://www.learnwithmeai.com/p/notebooklm-prompts-for-studying) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal output from NotebookLM workflow commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves prompts and responses as local markdown files under the configured knowledge directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter, config.json, _meta.json, release evidence) <br>
+Risk: The script can be tricked into running local commands through unsafe local input handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid untrusted file:// arguments.
+
+Risk: Saved study data may be written with unsafe path handling.
+
+Mitigation: Avoid notebook titles containing path characters such as ../, set MIT_LEARN_KB_DIR to a controlled directory, and clean saved files after testing.
+
+Risk: Sources and answers may be sent to NotebookLM and saved locally.
+
+Mitigation: Use only source material and responses you are comfortable sending to NotebookLM and storing under local Huo15 learning directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-mit-48h-learning-method)
+- [Ihtesham Ali original viral thread](https://x.com/ihtesham2005/status/2030214970353602806)
+- [Ihtesham Ali context stacking thread](https://x.com/ihtesham2005/status/2041576806810370553)
+- [Ihtesham Ali NotebookLM prompts thread](https://x.com/ihtesham2005/status/2031706700139675875)
+- [How an MIT Student Compressed a Semester of Learning into 48 Hours with NotebookLM](https://cerebrodigital.net/en/how-an-mit-student-compressed-a-semester-of-learning-into-48-hours-with-notebooklm/)
+- [NotebookLM Advanced Guide 2026](https://www.shareuhack.com/en/posts/notebooklm-advanced-guide-2026)
+- [10 NotebookLM Prompts For Studying](https://www.learnwithmeai.com/p/notebooklm-prompts-for-studying)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and locally saved Markdown study files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be sent to NotebookLM and saved under the configured local knowledge directory.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, config.json, _meta.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

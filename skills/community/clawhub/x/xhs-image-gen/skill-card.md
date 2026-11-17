@@ -1,41 +1,62 @@
-## Description: <br>
-Creates Xiaohongshu note materials by drafting post copy, generating cover and content card images from Markdown, and optionally publishing the note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Xiaohongshu note content, render-ready Markdown, themed image cards, and optional Xiaohongshu publishing commands.
 
-## Publisher: <br>
-[limoxt](https://clawhub.ai/user/limoxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[limoxt](https://clawhub.ai/user/limoxt)
 
-## Use Case: <br>
-External creators and agent users use this skill to prepare Xiaohongshu posts, render 1080x1440 card images in multiple themes, and optionally publish reviewed content to Xiaohongshu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The publishing path uses a live Xiaohongshu browser session cookie and can send it to a configurable API service. <br>
-Mitigation: Prefer rendering without publishing when possible, keep .env out of sync, sharing, and version control, and avoid --api-mode with non-local API URLs. <br>
-Risk: Generated posts can be made public after rendering. <br>
-Mitigation: Review posts before making them public and use the default private publishing behavior for preview. <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to draft Xiaohongshu-style notes, turn note material into 1080x1440 image cards across multiple themes and pagination modes, and optionally publish the result.
 
-## Reference(s): <br>
-- [XHS Image Gen on ClawHub](https://clawhub.ai/limoxt/xhs-image-gen) <br>
-- [Parameter Reference](artifact/references/params.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, render-ready Markdown content, CLI commands, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rendering supports multiple themes and pagination modes; publishing requires an XHS_COOKIE when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Optional publishing requires access to a Xiaohongshu session cookie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the cookie in a local .env file, do not commit or share it, and prefer a dedicated account.
+
+Risk: Publishing can affect a live social account.
+
+Mitigation: Use dry-run and private posting first; only publish publicly after reviewing generated content and images.
+
+Risk: API publishing mode can send content and credentials to a service endpoint.
+
+Mitigation: Avoid API mode unless the API service is your own trusted local service.
+
+Risk: Rendering Markdown from untrusted sources may expose the local rendering environment to unsafe content.
+
+Mitigation: Render only trusted Markdown or use sandboxing and sanitization for untrusted input.
+
+## Reference(s):
+
+- [XHS Image Gen ClawHub Skill Page](https://clawhub.ai/limoxt/skills/xhs-image-gen)
+- [Parameter Reference](artifact/references/params.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown, shell commands, configuration snippets, and PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional publishing requires a Xiaohongshu session cookie; generated cards default to 1080x1440 PNG output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

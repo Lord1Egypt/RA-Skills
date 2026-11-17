@@ -1,40 +1,57 @@
-## Description: <br>
-Validate URLs and JSON schemas against format rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate URLs and JSON schemas against format rules.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Developers and agents use this skill to validate URL, JSON Schema, email, and phone-number formats through an external validation service after user consent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Validation requests send submitted values to an external service. <br>
-Mitigation: Confirm user consent before validation and avoid submitting secrets, confidential payloads, or sensitive personal data unless sharing is acceptable. <br>
-Risk: The skill documents a paid x402 query option. <br>
-Mitigation: Use the free tier when appropriate and confirm any paid validation flow before initiating it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Data Validate ClawHub page](https://clawhub.ai/CutTheMustard/data-validate) <br>
-- [Validation service homepage](https://validate.agentutil.net) <br>
+## Use Case:
 
+Developers and agents use Data Validate to check URL, JSON Schema, email, and phone-number formats through an external validation service after obtaining user consent.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON validation responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user consent before sending user-provided data to the external validation service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Validation inputs are sent to an external validation service.
+
+Mitigation: Obtain explicit user consent before sending user-provided data to validate.agentutil.net.
+
+Risk: Secrets, regulated records, private JSON payloads, or sensitive personal contact data could be submitted for validation.
+
+Mitigation: Avoid submitting sensitive data unless consent and compliance requirements have been confirmed.
+
+Risk: The service performs syntax and format checks only, not semantic verification.
+
+Mitigation: Treat successful responses as format validation only, not proof that an email inbox, phone number, payment network, or external account exists.
+
+## Reference(s):
+
+- [Data Validate on ClawHub](https://clawhub.ai/cutthemustard/skills/data-validate)
+- [Validation service homepage](https://validate.agentutil.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user consent before sending validation input to validate.agentutil.net; no authentication is required for the free tier.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

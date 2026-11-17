@@ -1,41 +1,58 @@
-## Description: <br>
-Search and retrieve detailed information about board games, including popular titles, player counts, playtime, ratings, prices, and descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve detailed information on board games, including popular titles, player count, playtime, rating, price, and descriptions.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to search board games, inspect details for a selected game, and find currently popular games through the Pipeworx boardgames MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Board-game search queries are routed through the Pipeworx gateway rather than directly to the underlying board-game data source. <br>
-Mitigation: Avoid sending sensitive private information in game-search prompts. <br>
-Risk: Returned board-game details such as ratings, prices, and popularity may be incomplete or stale. <br>
-Mitigation: Review important purchase or publication decisions against an authoritative current source. <br>
+## Use Case:
 
+Agents assisting board-game shoppers, players, or reviewers can use this skill to search for games, retrieve full details by game ID, and surface currently popular titles for comparison.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-boardgames) <br>
-- [Pipeworx boardgames MCP gateway](https://gateway.pipeworx.io/boardgames/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown or text responses with board-game fields returned from MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include game titles, IDs, year, player count, playtime, rating, price, descriptions, and popularity rankings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Board-game search terms and game IDs are sent to the configured Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that remote-service data sharing is acceptable, and avoid submitting sensitive internal context as search terms.
+
+Risk: Returned game descriptions and metadata are remote content.
+
+Mitigation: Review important results before relying on them for purchasing, publishing, or user-facing recommendations.
+
+Risk: An MCP client with broad permissions may expose more remote functionality than the documented board-game lookup tools.
+
+Mitigation: Use a client configuration that limits the server to the documented search_games, get_game, and hot_games tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-boardgames)
+- [Pipeworx Boardgames MCP endpoint](https://gateway.pipeworx.io/boardgames/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Structured data, Configuration]
+
+**Output Format:** [MCP tool responses with board-game search results and game details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include titles, years, player counts, playtime, ratings, prices, descriptions, and game IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

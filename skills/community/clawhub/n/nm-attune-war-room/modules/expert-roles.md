@@ -11,81 +11,26 @@ estimated_tokens: 600
 
 ## Expert Registry
 
-```python
-EXPERT_CONFIGS = {
-    "supreme_commander": {
-        "role": "Supreme Commander",
-        "service": "native",
-        "model": "claude-opus-4",
-        "description": "Final decision authority and synthesis",
-        "phases": ["synthesis"],
-        "dangerous": False,
-    },
-    "chief_strategist": {
-        "role": "Chief Strategist",
-        "service": "native",
-        "model": "claude-sonnet-4",
-        "description": "Approach generation and trade-off analysis",
-        "phases": ["assessment", "coa_development"],
-        "dangerous": False,
-    },
-    "intelligence_officer": {
-        "role": "Intelligence Officer",
-        "service": "gemini",
-        "model": "gemini-2.5-pro-exp",
-        "command": ["gemini", "--model", "gemini-2.5-pro-exp", "-p"],
-        "description": "Deep context analysis with 1M+ token window",
-        "phases": ["intel"],
-        "dangerous": True,
-    },
-    "field_tactician": {
-        "role": "Field Tactician",
-        "service": "glm",
-        "model": "glm-4.7",
-        "command_resolver": "get_glm_command",
-        "preferred_alias": "ccgd",
-        "fallback_command": ["claude-glm", "--dangerously-skip-permissions", "-p"],
-        "description": "Implementation feasibility assessment",
-        "phases": ["coa_development"],
-        "dangerous": True,
-    },
-    "scout": {
-        "role": "Scout",
-        "service": "qwen",
-        "model": "qwen-turbo",
-        "command": ["qwen", "--model", "qwen-turbo", "-p"],
-        "description": "Rapid reconnaissance and data gathering",
-        "phases": ["intel"],
-        "dangerous": True,
-    },
-    "prosecution_counsel": {
-        "role": "Prosecution Counsel",
-        "service": "native",
-        "model": "claude-sonnet-4",
-        "description": "Challenges every addition using additive-bias-defense scrutiny questions",
-        "phases": ["red_team", "coa_development"],
-        "dangerous": False,
-    },
-    "red_team": {
-        "role": "Red Team Commander",
-        "service": "gemini",
-        "model": "gemini-2.0-flash-exp",
-        "command": ["gemini", "--model", "gemini-2.0-flash-exp", "-p"],
-        "description": "Adversarial challenge and failure mode identification",
-        "phases": ["red_team", "premortem"],
-        "dangerous": True,
-    },
-    "logistics_officer": {
-        "role": "Logistics Officer",
-        "service": "qwen",
-        "model": "qwen-max",
-        "command": ["qwen", "--model", "qwen-max", "-p"],
-        "description": "Resource estimation and dependency analysis",
-        "phases": ["coa_development"],
-        "dangerous": True,
-    },
-}
-```
+The source of truth is `EXPERT_CONFIGS` in
+`plugins/conjure/scripts/war_room/experts.py`; each entry is an
+`ExpertConfig` (role, service, model, description, phases, and an
+optional `command` and `optional` flag). An expert with no `command`
+runs natively, except `field_tactician`, whose command comes from
+`get_glm_command()`. Optional experts join a panel only when their CLI
+is installed.
+
+| Key | Role | Service | Phases | Optional |
+|-----|------|---------|--------|----------|
+| `supreme_commander` | Supreme Commander | native | synthesis | no |
+| `chief_strategist` | Chief Strategist | native | assessment, coa | no |
+| `intelligence_officer` | Intelligence Officer | gemini | intel | no |
+| `field_tactician` | Field Tactician | glm | coa | no |
+| `scout` | Scout | qwen | intel | no |
+| `red_team` | Red Team Commander | gemini | red_team, premortem | no |
+| `logistics_officer` | Logistics Officer | qwen | coa | no |
+| `operational_advisor` | Operational Advisor | minimax | intel, coa | yes |
+| `skeptical_analyst` | Skeptical Analyst | minimax | red_team | yes |
+| `systems_engineer` | Systems Engineer | muse | intel, coa | yes |
 
 ## Prosecution Counsel Role
 
@@ -119,69 +64,22 @@ as input).
 
 ## Panel Configurations
 
-### Lightweight Panel
+`LIGHTWEIGHT_PANEL` is `supreme_commander`, `chief_strategist` and
+`red_team`, for quick decisions with lower complexity. `FULL_COUNCIL`
+is every key in `EXPERT_CONFIGS`, for complex, high-stakes decisions.
+`active_panel()` drops optional experts whose CLI is missing, because
+an unreachable expert would still vote through the Haiku fallback.
 
-For quick decisions with lower complexity:
+The Prosecution Counsel above is a prompt role, not a registry entry,
+so neither panel constant lists it.
 
-```python
-LIGHTWEIGHT_PANEL = [
-    "supreme_commander",
-    "chief_strategist",
-    "prosecution_counsel",
-    "red_team",
-]
-```
+## GLM Command Resolution
 
-### Full Council
-
-For complex, high-stakes decisions:
-
-```python
-FULL_COUNCIL = [
-    "supreme_commander",
-    "chief_strategist",
-    "intelligence_officer",
-    "prosecution_counsel",
-    "field_tactician",
-    "scout",
-    "red_team",
-    "logistics_officer",
-]
-```
-
-## GLM-4.7 Command Resolution
-
-```python
-def get_glm_command() -> list[str]:
-    """
-    Resolve GLM-4.7 invocation command with fallback.
-
-    Priority:
-    1. ccgd (alias) - if available in PATH
-    2. claude-glm --dangerously-skip-permissions - explicit fallback
-    3. ~/.local/bin/claude-glm - direct path fallback
-    """
-    import shutil
-    from pathlib import Path
-
-    # Check for alias
-    if shutil.which("ccgd"):
-        return ["ccgd", "-p"]
-
-    # Check for script in PATH
-    if shutil.which("claude-glm"):
-        return ["claude-glm", "--dangerously-skip-permissions", "-p"]
-
-    # Direct path fallback
-    local_bin = Path.home() / ".local" / "bin" / "claude-glm"
-    if local_bin.exists():
-        return [str(local_bin), "--dangerously-skip-permissions", "-p"]
-
-    raise RuntimeError(
-        "GLM-4.7 not available. Install claude-glm or configure ccgd alias.\n"
-        "Add to ~/.bashrc: alias ccgd='claude-glm --dangerously-skip-permissions'"
-    )
-```
+`get_glm_command()` tries the `ccgd` alias, then `claude-glm` on PATH,
+then `~/.local/bin/claude-glm`, and raises when none exists. The
+war-room expert calls it without `skip_permissions`: it answers through
+`-p` and uses no tools, so it never receives
+`--dangerously-skip-permissions`.
 
 ## Expert Capabilities
 
@@ -189,11 +87,10 @@ def get_glm_command() -> list[str]:
 |--------|---------|-------|-----------|----------|
 | Opus | Standard | Slow | Highest | Final synthesis, complex reasoning |
 | Sonnet | Standard | Medium | High | Strategy, analysis |
-| Gemini Pro | 1M+ | Medium | High | Large codebase analysis |
-| GLM-4.7 | Standard | Medium | High | Implementation details |
-| Qwen Turbo | Standard | Fast | Medium | Quick data gathering |
-| Gemini Flash | Standard | Fast | Medium | Rapid challenges |
-| Qwen Max | Standard | Medium | Medium-High | Thorough estimation |
+| Gemini 3.1 Pro | 1M | Medium | High | Large codebase analysis |
+| GLM-5.3 | Standard | Medium | High | Implementation details |
+| Gemini 3.8 Flash | 1M | Fast | Medium | Rapid challenges |
+| Qwen `coder-model` | Standard | Medium | Medium-High | Data gathering and estimation |
 
 ## Phase-to-Expert Mapping
 
@@ -253,9 +150,9 @@ AGENT_TEAMS_MEMBERS = {
 
 ### Model Selection Rationale
 
-- **Opus** for Supreme Commander — highest reasoning for final synthesis
-- **Sonnet** for Strategist, Intel, Tactician, Red Team — strong reasoning at moderate cost
-- **Haiku** for Scout, Logistics — speed-critical roles with simpler reasoning needs
+- **Opus** for Supreme Commander: highest reasoning for final synthesis
+- **Sonnet** for Strategist, Intel, Tactician, Red Team: strong reasoning at moderate cost
+- **Haiku** for Scout, Logistics: speed-critical roles with simpler reasoning needs
 
 ### Spawning Example
 
@@ -278,4 +175,4 @@ All external experts are invoked using `asyncio.create_subprocess_exec` which:
 - Captures stdout/stderr separately
 - Handles timeouts gracefully
 
-Agent teams teammates are invoked via `tmux split-window` with CLI identity flags — the same safety model applies (no shell interpretation of user input).
+Agent teams teammates are invoked via `tmux split-window` with CLI identity flags: the same safety model applies (no shell interpretation of user input).

@@ -1,40 +1,54 @@
-## Description: <br>
-Google全家桶入口 is a ClawHub skill that lists 20+ Google and YouTube services by category and opens the selected official HTTPS page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google全家桶入口 is a Chinese-language launcher that helps agents list, search, categorize, and open official Google and YouTube service links from a bundled product catalog.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-External ClawHub users use this skill as a compact launcher for Google search, communication, productivity, maps, media, and utility services. It helps users find a listed product, read a short description, and open the corresponding official page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger name "g" may be invoked when the user intended a different action. <br>
-Mitigation: Use explicit invocation and confirm the selected Google product before opening a page. <br>
-Risk: Opening links in the default browser may use the user's existing authenticated browser session. <br>
-Mitigation: Review the destination URL before interacting with the opened Google or YouTube service. <br>
+## Use Case:
 
+Developers and ClawHub users can use this skill as a Chinese-language shortcut menu for quickly finding and opening common Google services across search, communication, office, maps, entertainment, and tools categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/g) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, browser navigation] <br>
-**Output Format:** [Console text listing product categories, names, descriptions, and official HTTPS URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open the selected URL in the user's default browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The short invocation name "g" may be triggered unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm intent before using the launcher or opening a selected service.
+
+Risk: Opening a product navigates the user's browser to Google or YouTube services where normal account, session, and external-site behavior applies.
+
+Mitigation: Review the destination URL before opening and use the relevant Google account and privacy settings for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/g)
+- [Bundled product catalog](artifact/products.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Console text with product names, descriptions, categories, and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open selected official Google or YouTube URLs in the user's browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

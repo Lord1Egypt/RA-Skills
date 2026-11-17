@@ -1,44 +1,58 @@
-## Description: <br>
-Helps an agent read, search, create, update, delete, merge, back up, and restore entries in the local macOS Contacts address book. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides workflows and scripts for reading, searching, creating, updating, deleting, backing up, restoring, deduplicating, and merging macOS Contacts records.
 
-## Publisher: <br>
-[leocdchina](https://clawhub.ai/user/leocdchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocdchina](https://clawhub.ai/user/leocdchina)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to inspect or manage a user's native macOS Contacts records, including search, duplicate checks, precise identifier-based edits, and backup-backed maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify, delete, merge, back up, and restore macOS Contacts. <br>
-Mitigation: Use it only when the user intentionally wants Contacts maintenance, and require explicit confirmation of contact identifiers and fields before mutating operations. <br>
-Risk: Restore operations can overwrite the current address book, and backups contain private contact data. <br>
-Mitigation: Treat restore as high risk, confirm the backup path and expected result before use, and store or dispose of backups according to the user's privacy requirements. <br>
-Risk: Broad dedupe or merge requests can remove or combine the wrong contact records. <br>
-Mitigation: Plan duplicate changes first, inspect keep and drop identifiers, and wrap applied merge or delete operations with the transaction helper. <br>
+## Use Case:
 
+Developers and agent operators on macOS use this skill to inspect, search, and manage local Contacts records. It is most appropriate where the user can review proposed changes and confirm destructive operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leocdchina/openclaw-macos-contacts) <br>
-- [Production notes](artifact/references/production-notes.md) <br>
-- [Schema notes](artifact/references/schema-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return structured contact records, operation status, backup paths, and rollback results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can read and change local macOS Contacts, including update, delete, merge, and restore workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Review posture and require explicit human confirmation before any operation that changes contacts.
+
+Risk: Destructive or bulk workflows can remove or merge contact records incorrectly.
+
+Mitigation: Keep an independent Contacts backup and prefer read/search or single-contact create operations unless the user has reviewed the exact target identifiers.
+
+Risk: The security guidance flags transaction, dedupe, and merge helpers as unsuitable until scoping and input-safety issues are fixed.
+
+Mitigation: Avoid those helpers in normal use and limit execution to lower-risk read/search workflows or carefully reviewed single-contact changes.
+
+## Reference(s):
+
+- [Production notes](references/production-notes.md)
+- [Schema notes](references/schema-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-producing helper usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that read or mutate local macOS Contacts data and should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

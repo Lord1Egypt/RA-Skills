@@ -1,40 +1,53 @@
-## Description: <br>
-This skill helps agents apply core concepts from Daniel Kahneman's Thinking, Fast and Slow to identify cognitive biases and improve decision-making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides decision-support guidance based on core concepts from Daniel Kahneman's Thinking, Fast and Slow, helping users identify cognitive biases and apply book-derived frameworks to decisions.
 
-## Publisher: <br>
-[xyzach](https://clawhub.ai/user/xyzach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyzach](https://clawhub.ai/user/xyzach)
 
-## Use Case: <br>
-Employees and external users can use this skill as a decision-support reference when they want an agent to identify likely cognitive biases, cite relevant Kahneman concepts, and suggest practical reframing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on the skill for legal, medical, financial, or safety-critical decisions. <br>
-Mitigation: Treat the output as a thinking framework and seek qualified professional advice for high-stakes decisions. <br>
-Risk: The skill summarizes behavioral concepts and may provide incomplete or context-insensitive advice. <br>
-Mitigation: Review the recommendation, ask for missing context, and compare alternative framings before acting. <br>
+## Use Case:
 
+External users and agents use this skill to recognize likely cognitive biases in decision prompts and provide concise advice grounded in relevant Kahneman-style concepts. It is best suited for general decision support, not specialist legal, medical, financial, or other high-stakes advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xyzach/thinking-fast-and-slow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically identifies one to three relevant cognitive-bias concepts and explains how they apply to the user's decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Decision-support guidance may be over-applied to legal, medical, financial, or other high-stakes domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for general decision framing and seek qualified specialist advice for high-stakes decisions.
+
+Risk: The skill is written in Chinese and may be less effective for users or agents expecting another language.
+
+Mitigation: Confirm language fit before deployment or pair it with translation and review for the target audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xyzach/skills/thinking-fast-and-slow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown or plain text with cited concepts and actionable decision advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference guidance; selects 1-3 relevant concepts for a user's decision scenario.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

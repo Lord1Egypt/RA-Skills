@@ -1,44 +1,59 @@
-## Description: <br>
-Complete Oblien workspace environment covering the Firecracker microVM runtime, authentication with gateway JWTs or raw tokens, and the Internal API for files, search, command execution, terminal sessions, and file watching on port 9990. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Oblien workspace environment reference covering the Firecracker microVM runtime, gateway JWT and raw-token authentication, and the Internal API for files, search, command execution, terminal sessions, and file watchers on port 9990.
 
-## Publisher: <br>
-[Hydralerne](https://clawhub.ai/user/Hydralerne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hydralerne](https://clawhub.ai/user/hydralerne)
 
-## Use Case: <br>
-Developers and operators use this skill as a reference for connecting to and operating an Oblien workspace runtime, including authentication, file access, code search, command execution, terminal sessions, and file watching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents high-privilege runtime operations including filesystem changes, command execution, terminal access, file watching, and token-based access. <br>
-Mitigation: Install it only when the agent should understand and operate an Oblien workspace runtime, and review file deletion, command execution, and long-running task operations before allowing impactful changes. <br>
-Risk: Authentication examples involve gateway JWTs, raw connection tokens, client IDs, client secrets, and bearer tokens that could expose workspace access if copied into prompts, logs, terminal history, or shared output. <br>
-Mitigation: Keep real secrets and bearer tokens out of prompts, logs, terminal history, and shared outputs; rotate short-lived gateway JWTs and handle raw tokens only for intended direct workspace-to-workspace access. <br>
-Risk: Gateway access requires public gateway exposure and direct access requires private workspace links, so network configuration can affect both reachability and exposure. <br>
-Mitigation: Enable public gateway access only when needed, prefer private links and scoped paths where practical, and verify network settings before using runtime operations. <br>
+## Use Case:
 
+Developers and agents use this skill as a reference for operating Oblien workspaces, connecting to the workspace Internal API, and managing files, command execution, terminal sessions, search, and file watchers.
 
-## Reference(s): <br>
-- [Oblien documentation](https://oblien.com/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/Hydralerne/oblien-runtime) <br>
-- [ripgrep project](https://github.com/BurntSushi/ripgrep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown reference material with TypeScript, HTTP, JSON, cURL, SSE, and WebSocket examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable automation is bundled; the skill provides runtime API guidance and examples for agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill enables broad workspace control, including file writes and deletes, command execution, terminals, and file watchers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when agents are intended to operate Oblien workspaces at a high privilege level, and require clear user intent before destructive or execution-capable operations.
+
+Risk: Gateway JWTs, raw tokens, client IDs, and client secrets can expose workspace access if printed, logged, or retained in transcripts.
+
+Mitigation: Handle all authentication material as secrets, avoid placing tokens in logs or transcripts, and rotate tokens after use.
+
+Risk: Direct raw-token HTTP access can bypass the gateway path and is intended only for authorized private workspace links.
+
+Mitigation: Prefer scoped SDK or gateway flows where possible, and use direct raw-token HTTP only when the private link is explicitly authorized.
+
+## Reference(s):
+
+- [Oblien Documentation](https://oblien.com/docs)
+- [Oblien Runtime Skill Page](https://clawhub.ai/hydralerne/skills/oblien-runtime)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown reference with SDK, REST, cURL, SSE, and WebSocket examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authentication guidance, endpoint parameters, response schemas, and operational limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

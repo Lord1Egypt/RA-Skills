@@ -1,0 +1,587 @@
+{
+  "schema": "260919-can-candidate/v1",
+  "status": "candidate-rejected",
+  "units": "mil",
+  "sourceSnapshot": {
+    "documentUuid": "2e719e9419653c72",
+    "boardSha256": "aaf6b96f2e277e256c5f08f5b1fbdda08554d14bb236451f7c46a557c0805ebc",
+    "tracksSha256": "1f435687997bd04849f7322e3e5de40e474b0c6d44b7d5134184106fcb9c822f",
+    "viasSha256": "3ebdd5ba8869fde231f904ec153c60513572e2fa13fe0b2f9349ca0b8ae8aece",
+    "poursSha256": "450c1cb71382370ba8aaffcab65e3f244b157175ee7fdae5ee286b048694be4d",
+    "fillsSha256": "2fbf6c65415cb62d6fd0f7b3f47d7edabf4f43a15a4f949407803c82b831a8bd",
+    "regionsSha256": "f858a9032a00adb1e2dfffb8d72dc83cfa3c090279c9dbf7324ce67aa2452a78"
+  },
+  "placement": {
+    "R12": {
+      "fromCenter": [
+        2630,
+        1510
+      ],
+      "center": [
+        2630,
+        1510
+      ],
+      "rotationDeg": 0
+    }
+  },
+  "contract": {
+    "layer": 1,
+    "widthMil": 8,
+    "minClearanceMil": 6,
+    "maxVias": 0,
+    "nets": {
+      "CANH": {
+        "orderedMainPads": [
+          "U5.7",
+          "R12.1",
+          "CN1.2"
+        ],
+        "branchPads": [
+          "D1.1"
+        ]
+      },
+      "CANL": {
+        "orderedMainPads": [
+          "U5.6",
+          "R12.2",
+          "CN1.1"
+        ],
+        "branchPads": [
+          "D1.2"
+        ]
+      }
+    }
+  },
+  "actions": [
+    {
+      "id": "H-main-1",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2325,
+        "startY": 1455.6,
+        "endX": 2325,
+        "endY": 1520
+      }
+    },
+    {
+      "id": "H-main-2",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2325,
+        "startY": 1520,
+        "endX": 2375,
+        "endY": 1570
+      }
+    },
+    {
+      "id": "H-main-3",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2375,
+        "startY": 1570,
+        "endX": 2500,
+        "endY": 1570
+      }
+    },
+    {
+      "id": "H-main-4",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2500,
+        "startY": 1570,
+        "endX": 2560,
+        "endY": 1510
+      }
+    },
+    {
+      "id": "H-main-5",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2560,
+        "startY": 1510,
+        "endX": 2600.3,
+        "endY": 1510
+      }
+    },
+    {
+      "id": "H-main-6",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2600.3,
+        "startY": 1510,
+        "endX": 2605.3,
+        "endY": 1515
+      }
+    },
+    {
+      "id": "H-main-7",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2605.3,
+        "startY": 1515,
+        "endX": 2605.3,
+        "endY": 1530
+      }
+    },
+    {
+      "id": "H-main-8",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2605.3,
+        "startY": 1530,
+        "endX": 2650.3,
+        "endY": 1575
+      }
+    },
+    {
+      "id": "H-main-9",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2650.3,
+        "startY": 1575,
+        "endX": 2700,
+        "endY": 1575
+      }
+    },
+    {
+      "id": "H-main-10",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2700,
+        "startY": 1575,
+        "endX": 2716.5,
+        "endY": 1591.5
+      }
+    },
+    {
+      "id": "H-main-11",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2716.5,
+        "startY": 1591.5,
+        "endX": 2716.5,
+        "endY": 1653.5
+      }
+    },
+    {
+      "id": "H-branch-1",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2700,
+        "startY": 1575,
+        "endX": 2700,
+        "endY": 1542.9
+      }
+    },
+    {
+      "id": "H-branch-2",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANH",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2700,
+        "startY": 1542.9,
+        "endX": 2754.1,
+        "endY": 1488.8
+      }
+    },
+    {
+      "id": "L-main-1",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2375,
+        "startY": 1455.6,
+        "endX": 2375,
+        "endY": 1505.6
+      }
+    },
+    {
+      "id": "L-main-2",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2375,
+        "startY": 1505.6,
+        "endX": 2415,
+        "endY": 1545.6
+      }
+    },
+    {
+      "id": "L-main-3",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2415,
+        "startY": 1545.6,
+        "endX": 2470,
+        "endY": 1545.6
+      }
+    },
+    {
+      "id": "L-main-4",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2470,
+        "startY": 1545.6,
+        "endX": 2510,
+        "endY": 1505.6
+      }
+    },
+    {
+      "id": "L-main-5",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2510,
+        "startY": 1505.6,
+        "endX": 2510,
+        "endY": 1450
+      }
+    },
+    {
+      "id": "L-main-6",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2510,
+        "startY": 1450,
+        "endX": 2550,
+        "endY": 1410
+      }
+    },
+    {
+      "id": "L-main-7",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2550,
+        "startY": 1410,
+        "endX": 2579.7,
+        "endY": 1410
+      }
+    },
+    {
+      "id": "L-main-8",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2579.7,
+        "startY": 1410,
+        "endX": 2639.7,
+        "endY": 1470
+      }
+    },
+    {
+      "id": "L-main-9",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2639.7,
+        "startY": 1470,
+        "endX": 2639.7,
+        "endY": 1490
+      }
+    },
+    {
+      "id": "L-main-10",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2639.7,
+        "startY": 1490,
+        "endX": 2659.7,
+        "endY": 1510
+      }
+    },
+    {
+      "id": "L-main-11",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2659.7,
+        "startY": 1510,
+        "endX": 2670,
+        "endY": 1510
+      }
+    },
+    {
+      "id": "L-main-12",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2670,
+        "startY": 1510,
+        "endX": 2700,
+        "endY": 1480
+      }
+    },
+    {
+      "id": "L-main-13",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2700,
+        "startY": 1480,
+        "endX": 2700,
+        "endY": 1450
+      }
+    },
+    {
+      "id": "L-main-14",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2700,
+        "startY": 1450,
+        "endX": 2730,
+        "endY": 1420
+      }
+    },
+    {
+      "id": "L-main-15",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2730,
+        "startY": 1420,
+        "endX": 2880,
+        "endY": 1420
+      }
+    },
+    {
+      "id": "L-main-16",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2880,
+        "startY": 1420,
+        "endX": 2920,
+        "endY": 1460
+      }
+    },
+    {
+      "id": "L-main-17",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2920,
+        "startY": 1460,
+        "endX": 2920,
+        "endY": 1540
+      }
+    },
+    {
+      "id": "L-main-18",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2920,
+        "startY": 1540,
+        "endX": 2880,
+        "endY": 1580
+      }
+    },
+    {
+      "id": "L-main-19",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2880,
+        "startY": 1580,
+        "endX": 2880,
+        "endY": 1620
+      }
+    },
+    {
+      "id": "L-main-20",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2880,
+        "startY": 1620,
+        "endX": 2866.5,
+        "endY": 1633.5
+      }
+    },
+    {
+      "id": "L-main-21",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2866.5,
+        "startY": 1633.5,
+        "endX": 2866.5,
+        "endY": 1653.5
+      }
+    },
+    {
+      "id": "L-branch-1",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2880,
+        "startY": 1420,
+        "endX": 2880,
+        "endY": 1437.7
+      }
+    },
+    {
+      "id": "L-branch-2",
+      "action": "pcb.line.create",
+      "payload": {
+        "net": "CANL",
+        "layer": 1,
+        "lineWidth": 8,
+        "startX": 2880,
+        "startY": 1437.7,
+        "endX": 2828.9,
+        "endY": 1488.8
+      }
+    }
+  ],
+  "actionRoles": {
+    "CANH": {
+      "main": [
+        "H-main-1",
+        "H-main-2",
+        "H-main-3",
+        "H-main-4",
+        "H-main-5",
+        "H-main-6",
+        "H-main-7",
+        "H-main-8",
+        "H-main-9",
+        "H-main-10",
+        "H-main-11"
+      ],
+      "branches": {
+        "D1.1": [
+          "H-branch-1",
+          "H-branch-2"
+        ]
+      }
+    },
+    "CANL": {
+      "main": [
+        "L-main-1",
+        "L-main-2",
+        "L-main-3",
+        "L-main-4",
+        "L-main-5",
+        "L-main-6",
+        "L-main-7",
+        "L-main-8",
+        "L-main-9",
+        "L-main-10",
+        "L-main-11",
+        "L-main-12",
+        "L-main-13",
+        "L-main-14",
+        "L-main-15",
+        "L-main-16",
+        "L-main-17",
+        "L-main-18",
+        "L-main-19",
+        "L-main-20",
+        "L-main-21"
+      ],
+      "branches": {
+        "D1.2": [
+          "L-branch-1",
+          "L-branch-2"
+        ]
+      }
+    }
+  },
+  "review": {
+    "method": "independent blind read of source requirements, live board/track/via snapshots, and candidate actions",
+    "result": "rejected-before-write",
+    "reasons": [
+      "H-branch-2 approaches bottom-row D1.1 from the component-body side"
+    ],
+    "notExecuted": true
+  }
+}

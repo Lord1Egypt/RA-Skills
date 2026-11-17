@@ -1,10 +1,16 @@
 ---
 name: poyo-kling-3-0-turbo
 description: Kling 3.0 Turbo video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-3.0-turbo/standard`, `kling-3.0-turbo/pro`, text-to-video, single first-frame image-to-video, multi_prompt storyboards, duration control, aspect ratios, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-3-0-turbo","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-3-0-turbo","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling 3.0 Turbo Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-3-0-turbo>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-3-0-turbo>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Kling 3.0 Turbo video jobs on PoYo. It helps agents prepare text-to-video, first-frame image-to-video, and multi-shot storyboard payloads, submit async tasks, and explain polling or webhook follow-up.
 

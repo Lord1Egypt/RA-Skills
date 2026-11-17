@@ -1,41 +1,59 @@
-## Description: <br>
-Daily mindfulness in 3-5 minutes: morning breathing exercise, guided meditation, and evening reflection prompt for practical calm and stress relief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Mindful helps generate short mindfulness sessions with breathing guidance, meditation prompts, daily affirmations, and evening reflection.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users use this skill to generate short bilingual mindfulness sessions with breathing guidance, meditation text, affirmations, reflection prompts, and an interactive HTML breathing experience. Users may also configure optional morning and evening reminder jobs for supported messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save a local HTML file. <br>
-Mitigation: Review the generated HTML before opening, sharing, or publishing it. <br>
-Risk: The push-toggle script can create recurring morning and evening reminder jobs to selected channels. <br>
-Mitigation: Enable reminders only for your own userId and intended channel, and use the provided off command when reminders are no longer wanted. <br>
+## Use Case:
 
+External users can use this skill to create 3-5 minute bilingual mindfulness practices, including morning breathing exercises, guided reflection, affirmations, and an interactive HTML breathing page. When enabled, it can also create recurring morning and evening reminder prompts for a selected chat channel.
 
-## Reference(s): <br>
-- [Daily Mindful on ClawHub](https://clawhub.ai/jiajiaoy/daily-mindful) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, reminder configuration output, and a generated single-file HTML artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The primary generated artifact is saved as /mnt/user-data/outputs/daily-mindful.html when the skill workflow is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can create indefinite recurring morning and evening reminder messages to external chat channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected user ID, channel, and reminder times before enabling push reminders; use the off command to remove scheduled jobs when reminders are no longer wanted.
+
+Risk: The skill stores local per-user reminder settings.
+
+Mitigation: Limit use to intended user IDs and review local settings when changing channels, schedules, or reminder status.
+
+Risk: Generated pages may include an ad-ready placeholder and fixed ClawCode footer.
+
+Mitigation: Review generated HTML before publishing or sharing it externally.
+
+## Reference(s):
+
+- [Daily Mindful ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/daily-mindful)
+- [Daily Mindful README](artifact/README.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, generated HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a single-file HTML artifact and may emit scheduler control commands when push reminders are enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

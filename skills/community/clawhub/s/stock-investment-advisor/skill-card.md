@@ -1,46 +1,54 @@
-## Description: <br>
-Provides a stock-investment advisor workflow for real-time market data collection, multi-source research, chart interpretation, collaborative analysis, and professional report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供沪深北港美股实时行情、多源信息搜索、图表解读和多角色投资分析，并生成专业投资报告。
 
-## Publisher: <br>
-[gouyujun](https://clawhub.ai/user/gouyujun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gouyujun](https://clawhub.ai/user/gouyujun)
 
-## Use Case: <br>
-External users and investment research agents use this skill to analyze A-share, Beijing Stock Exchange, Hong Kong, and U.S. equities, compare stocks or sectors, interpret chart screenshots, and produce concise summaries or Feishu investment reports. Outputs are for reference and should include risk disclosures and disclaimers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web searches and financial-data services, so outputs can depend on external data quality, freshness, and availability. <br>
-Mitigation: Confirm important market data against authoritative sources and preserve the skill's requirement to state when data is unavailable rather than fabricating values. <br>
-Risk: Feishu cloud reports may contain stock-analysis context, portfolio details, or chart screenshots. <br>
-Mitigation: Avoid submitting sensitive portfolio information or private screenshots unless external cloud reporting is acceptable for the user or organization. <br>
-Risk: Optional helper scripts and data-source integrations may require credentials such as API tokens. <br>
-Mitigation: Keep tokens out of shared files and logs, and review optional helper scripts before installing or extending them. <br>
-Risk: Generated investment analysis could be mistaken for personalized financial advice. <br>
-Mitigation: Keep the report disclaimer and risk-warning sections, and treat outputs as reference material for independent decision-making. <br>
+## Use Case:
 
+External investors, analysts, and agent users use this skill to gather current market data, compare securities, interpret stock charts, and draft structured stock analysis reports with risks and disclaimers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gouyujun/stock-investment-advisor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, Feishu document reports, JSON from helper scripts, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web searches, financial-data services, chart screenshots, and Feishu cloud document creation; includes risk disclosures and disclaimers when producing reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact notes v1.0) <br>
+Risk: Sensitive stock names, screenshots, holdings details, or generated analysis may be sent to external data providers or Feishu cloud documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to confirm before creating any Feishu document, avoid entering account credentials or private portfolio details unless needed, and prefer pinned or already-installed ClawHub tooling over the unpinned npx command.
+
+Risk: Market data, news, and generated investment analysis may be incomplete, stale, or mistaken.
+
+Mitigation: Verify key claims against current primary market sources, keep the report disclaimer, and treat generated analysis as informational rather than personalized financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gouyujun/skills/stock-investment-advisor)
+- [Publisher profile](https://clawhub.ai/user/gouyujun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and investment-report content, with optional Feishu cloud document output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sourced market data, chart analysis, risk notes, and disclaimers; Feishu document creation should be confirmed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

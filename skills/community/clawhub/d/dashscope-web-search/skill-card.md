@@ -1,45 +1,55 @@
-## Description: <br>
-Searches the web in real time with DashScope Qwen, returning cited text results and optional image markdown for current or source-specific queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web for real-time information with DashScope Qwen, including fresh results, site-restricted searches, citations, and optional images.
 
-## Publisher: <br>
-[Oreo992](https://clawhub.ai/user/Oreo992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oreo992](https://clawhub.ai/user/oreo992)
 
-## Use Case: <br>
-External users and developers use this skill to ask agents for current web information, fact checks, source-specific research, recent results, and optional visual references through DashScope Qwen. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to DashScope/Qwen under the user's API key. <br>
-Mitigation: Do not submit secrets, credentials, private customer data, regulated data, or internal documents unless the query is redacted and explicitly approved. <br>
-Risk: Broad automatic-use guidance can trigger external search for more user requests than intended. <br>
-Mitigation: Review activation rules before installation and narrow them to the organization's approved web-search use cases. <br>
-Risk: Third-party data handling is not fully disclosed in the artifact. <br>
-Mitigation: Confirm DashScope/Qwen data handling and credential-scope requirements before using the skill with sensitive or business-critical queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/Oreo992/dashscope-web-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/Oreo992) <br>
-- [DashScope](https://dashscope.aliyuncs.com/) <br>
-- [DashScope Console](https://dashscope.console.aliyun.com/) <br>
-- [OpenClaw](https://github.com/nicepkg/openclaw) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to answer current-events, research, factual lookup, and visual reference requests by calling DashScope Qwen web search from an agent or CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with numbered citations; image mode can include Markdown image links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source lists, numbered citations, optional image links, and optional thinking-tag content returned by DashScope.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad automatic activation can send user queries to DashScope without a clear privacy or consent boundary.
+
+Mitigation: Review before installing where conversations may include secrets, personal data, customer data, or regulated information, and narrow activation rules so external search runs only when appropriate.
+
+Risk: The skill requires a DashScope API key and the openai Python package at runtime.
+
+Mitigation: Configure the API key only in a least-privileged runtime and prefer a pinned dependency or isolated environment.
+
+## Reference(s):
+
+- [DashScope](https://dashscope.aliyuncs.com/)
+- [DashScope Console](https://dashscope.console.aliyun.com/)
+- [OpenClaw](https://github.com/nicepkg/openclaw)
+- [DashScope Web Search on ClawHub](https://clawhub.ai/oreo992/skills/dashscope-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown/text with numbered citations and optional Markdown image links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source lists, citation markers, and optional image references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

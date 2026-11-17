@@ -1,41 +1,58 @@
-## Description: <br>
-Maintain persistent focus on active work with hierarchical task tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains persistent focus on active work with hierarchical task tracking that captures decisions, TODOs, constraints, blockers, and sub-agent status.
 
-## Publisher: <br>
-[noquant](https://clawhub.ai/user/noquant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noquant](https://clawhub.ai/user/noquant)
 
-## Use Case: <br>
-Developers and agent users use Focus Tree to maintain a compact current-work record, track TODOs, decisions, constraints, blockers, and resume project context after interruptions or compaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FOCUS.md and FOCUS-LOG.md may contain task context, blockers, or session notes that should not be shared. <br>
-Mitigation: Review these files before committing, publishing, or sharing the workspace. <br>
-Risk: The CLI creates and updates focus-tracking files in the current working directory. <br>
-Mitigation: Run the commands only from the intended workspace and inspect file diffs before preserving the changes. <br>
+## Use Case:
 
+Developers and agents use Focus Tree to keep active project state in local focus files, resume after context compaction, and track current TODOs, blockers, decisions, and handoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noquant/focus-tree) <br>
-- [Publisher profile](https://clawhub.ai/user/noquant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local FOCUS.md and FOCUS-LOG.md files in the active workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package.json lists 1.0.0) <br>
+Risk: The skill writes and updates local focus files that can influence how an agent resumes work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review FOCUS.md and FOCUS-LOG.md periodically and keep their contents limited to current project state.
+
+Risk: Untrusted pasted task text may be carried into focus context.
+
+Mitigation: Review task text before adding it to focus files and avoid storing sensitive or untrusted instructions as authoritative context.
+
+Risk: Archiving or clearing focus state may remove context that is still needed.
+
+Mitigation: Confirm the current work is complete or intentionally paused before archiving or clearing focus state.
+
+## Reference(s):
+
+- [Focus Tree ClawHub release page](https://clawhub.ai/noquant/skills/focus-tree)
+- [Focus Tree project homepage](https://github.com/openclaw/focus-tree)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown focus-state files with optional CLI command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and updates local FOCUS.md and FOCUS-LOG.md files in the active workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

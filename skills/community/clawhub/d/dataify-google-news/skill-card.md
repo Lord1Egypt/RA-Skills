@@ -1,43 +1,59 @@
-## Description: <br>
-Turns a user's Google News request into a confirmed Dataify Scraper API form submission and returns the raw response body. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google News for current news results. Do not use for general Google web search.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to convert Google News search requests into Dataify Scraper API parameters, preview and confirm the request, and execute the API call when a Dataify token is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens may be exposed if users pass them directly on the command line or echo them in conversation. <br>
-Mitigation: Prefer DATAIFY_API_TOKEN through agent or operating-system secret handling, and avoid repeating token values in user-facing output. <br>
-Risk: Incorrect or unintended search parameters could trigger an unwanted external API call. <br>
-Mitigation: Review the generated confirmation table and require explicit user confirmation before each real API call. <br>
+## Use Case:
 
+External users and developers use this skill to run Google News searches through the Dataify Scraper API and receive current news results or raw JSON/HTML when requested.
 
-## Reference(s): <br>
-- [Dataify Google News API Reference](references/google_news_api.md) <br>
-- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-google-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown confirmation table followed by the raw Dataify API response body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before real API calls and uses DATAIFY_API_TOKEN or an explicit token for authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill requires a Dataify API token and sends requests to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a session-scoped DATAIFY_API_TOKEN, do not pass tokens on the command line, and verify only whether the variable is configured.
+
+Risk: Persistent shell-profile setup can store the API token in plaintext.
+
+Mitigation: Prefer session-only environment setup and avoid persistent profile edits unless the user understands the plaintext secret exposure.
+
+Risk: The package includes broader non-news Dataify workflow scripts beyond the advertised Google News purpose.
+
+Mitigation: Use only the Google News workflow for this release unless the extra scripts are separately reviewed and intentionally enabled.
+
+## Reference(s):
+
+- [Dataify Google News API Reference](references/google_news_api.md)
+- [Dataify Google News ClawHub release](https://clawhub.ai/dataify-server/skills/dataify-google-news)
+- [Dataify Scraper API request endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with source links by default; raw JSON or HTML only when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DATAIFY_API_TOKEN for live API calls; dry-run mode prints normalized form parameters without calling the API.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

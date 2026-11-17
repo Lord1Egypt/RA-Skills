@@ -1,53 +1,64 @@
-## Description: <br>
-This skill supports development and operation of an AI-powered automated testing platform based on LangChain and DeepSeek, with test case generation, API and UI test automation, reporting, and authorization management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides development and use of an AI-powered automated testing platform based on LangChain and DeepSeek for generating test cases, executing API and UI automation scripts, creating reports, and managing authorization.
 
-## Publisher: <br>
-[yontlly](https://clawhub.ai/user/yontlly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yontlly](https://clawhub.ai/user/yontlly)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to build, configure, and operate an internal AI-assisted test automation platform. It helps generate test cases and API/UI automation scripts, run tests in isolated environments, track execution, and produce reports with AI-assisted failure analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The platform has broad authority over authorization, system configuration, backups, generated scripts, reports, and execution artifacts. <br>
-Mitigation: Use a tightly isolated internal deployment, require separate admin authorization for auth, system, and backup functions, and add owner checks for task, script, report, and artifact access. <br>
-Risk: The release requires sensitive credentials, including a DeepSeek API key and application secrets. <br>
-Mitigation: Replace all default credentials and secrets before deployment, disable query-string tokens, and keep secrets in environment-managed storage. <br>
-Risk: Uploaded requirements and execution logs may be sent to an external model provider during generation or failure analysis. <br>
-Mitigation: Redact data before DeepSeek calls or use a local model when test assets include sensitive business, customer, or production data. <br>
-Risk: Generated Python and Playwright tests can execute active network, filesystem, and browser automation behavior. <br>
-Mitigation: Run generated tests only in disposable sandboxes with minimal network and filesystem access. <br>
+## Use Case:
 
+Developers and internal QA engineers use this skill to build, configure, and operate an AI-assisted test automation platform for generating test cases and API/UI scripts, executing tests, and producing reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yontlly/ai-test-platform) <br>
-- [Architecture reference](references/architecture.md) <br>
-- [Project README](project/README.md) <br>
-- [Deployment guide](deploy/部署文档.md) <br>
-- [AI generator guide](project/backend/docs/AI_GENERATOR_GUIDE.md) <br>
-- [API test guide](project/backend/docs/API_TEST_GUIDE.md) <br>
-- [UI test guide](project/backend/docs/UI_TEST_GUIDE.md) <br>
-- [Execution guide](project/backend/docs/EXECUTION_GUIDE.md) <br>
-- [Report guide](project/backend/docs/REPORT_GUIDE.md) <br>
-- [System management guide](project/backend/docs/SYSTEM_MANAGEMENT_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and code-oriented guidance with configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce platform code, generated test scripts, deployment configuration, test reports, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated or user-provided test scripts can introduce broad code execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scripts only in a real sandboxed runner with restricted filesystem and network access, and review scripts before execution.
+
+Risk: Admin authorization and role separation are weak for shared or production deployment.
+
+Mitigation: Use deny-by-default admin authorization, separate administrative roles from normal execution roles, and audit privileged actions.
+
+Risk: Secret and database handling are not production hardened.
+
+Mitigation: Store secrets in a dedicated secret manager or protected environment, use non-root database credentials, close public database ports, and rotate exposed defaults.
+
+Risk: Dependency and installation guidance may leave known vulnerabilities or unsafe defaults in place.
+
+Mitigation: Upgrade dependencies, pin reviewed versions, and validate deployment instructions before production or shared use.
+
+## Reference(s):
+
+- [System architecture](references/architecture.md)
+- [Project README](project/README.md)
+- [Deployment guide](deploy/部署文档.md)
+- [ClawHub skill page](https://clawhub.ai/yontlly/skills/ai-test-platform)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code, configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe generated test cases, API/UI automation scripts, reports, authorization setup, and deployment configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontend package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -52,7 +52,7 @@ Create `config.json`:
   "notification": {
     "enabled": true,
     "method": "webhook",
-    "webhook": "https://hooks.slack.com/services/YOUR/WEBHOOK"
+    "webhook": "REDACTED-SECRET"
   }
 }
 ```

@@ -1,42 +1,56 @@
-## Description: <br>
-Automates safe cleanup of OpenClaw workspaces by previewing and moving temp files, logs, duplicates, and cruft to the system trash with customizable filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates safe cleanup of OpenClaw workspaces by previewing and moving temporary files, logs, duplicate repositories, and other workspace cruft to the system trash with configurable filters.
 
-## Publisher: <br>
-[brandonwise](https://clawhub.ai/user/brandonwise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandonwise](https://clawhub.ai/user/brandonwise)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preview workspace cleanup candidates, review size and age filters, and execute recoverable cleanup for known temporary files and workspace cruft. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Executing cleanup can move matching local workspace files to trash. <br>
-Mitigation: Start in preview mode, review the listed paths carefully, and use --execute only after confirming the cleanup set. <br>
-Risk: The documented --exclude option is not implemented in the script. <br>
-Mitigation: Do not rely on --exclude; adjust the patterns configuration and filters or avoid execution until the cleanup patterns match the workspace. <br>
-Risk: Scheduled or quiet execution can hide cleanup decisions from review. <br>
-Mitigation: Avoid scheduled or quiet execution until the configured patterns and filters are known to match the workspace safely. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Safe Defaults Reference](artifact/references/safe-defaults.md) <br>
-- [Workspace Cleaner ClawHub Page](https://clawhub.ai/brandonwise/workspace-cleaner) <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to preview cleanup candidates and remove temporary files, logs, generated root-level assets, stray dependencies, virtual environments, and duplicate repositories while preserving configured protected files and directories.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with bash and JSON examples; the cleanup script can emit JSON when run with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to preview mode; --execute moves matching local workspace files to trash.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cleanup execution can move valuable workspace files or whole repositories to trash when automatic or custom cleanup rules are too broad.
+
+Mitigation: Run preview mode first, inspect every target, keep custom configs trusted and narrow, and avoid unattended --execute runs.
+
+Risk: Duplicate repository cleanup can be high risk if local repository state is not fully verified.
+
+Mitigation: Before executing duplicate cleanup, confirm clean working trees, matching commits, and no local-only data.
+
+Risk: Root-level generated assets, virtual environments, or logs may be intentionally retained even when they match cleanup patterns.
+
+Mitigation: Use age and size filters, maintain protected patterns, and review suspicious matches before moving them to trash.
+
+## Reference(s):
+
+- [Safe Defaults Reference](references/safe-defaults.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text cleanup previews and status messages, with optional JSON summaries for automation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run preview is the default; execution mode moves matched items to system trash when a supported trash command is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

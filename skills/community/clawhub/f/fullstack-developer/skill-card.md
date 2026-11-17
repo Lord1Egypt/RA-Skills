@@ -1,39 +1,53 @@
-## Description: <br>
-World-class fullstack development skill covering frontend, backend, databases, APIs, DevOps, and architecture design for building, fixing, reviewing, architecting, and debugging web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides full-stack web development guidance for building, fixing, reviewing, architecting, and debugging frontend, backend, database, API, DevOps, and application architecture work.
 
-## Publisher: <br>
-[Bagnalbag4](https://clawhub.ai/user/Bagnalbag4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bagnalbag4](https://clawhub.ai/user/bagnalbag4)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to design, build, debug, review, test, and deploy full-stack web applications across common frontend, backend, database, API, and DevOps stacks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation advice can affect authentication, database migrations, production configuration, and secret handling. <br>
-Mitigation: Review generated code and configuration before running or deploying it, with extra scrutiny for auth flows, migrations, production settings, and secrets. <br>
-Risk: Broad full-stack guidance may produce code or shell commands that need project-specific adaptation. <br>
-Mitigation: Validate proposed changes against the target repository, run relevant tests and scanners, and avoid executing commands until their impact is understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bagnalbag4/fullstack-developer) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide full-stack web application implementation, review, debugging, architecture, security, testing, and deployment decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation guidance, review findings, tests, deployment steps, and configuration examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intentionally broad and may influence most web-application development tasks.
+
+Mitigation: Use narrower framework- or domain-specific skills when task routing needs tighter scope.
+
+Risk: Guidance for code, shell commands, and configuration may be applied to production systems.
+
+Mitigation: Review generated changes, commands, and configuration before applying them, especially for security, deployment, and data-access paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bagnalbag4/skills/fullstack-developer)
+- [Publisher profile](https://clawhub.ai/user/bagnalbag4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

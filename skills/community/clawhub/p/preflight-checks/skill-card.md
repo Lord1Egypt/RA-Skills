@@ -1,45 +1,61 @@
-## Description: <br>
-Test-driven behavioral verification for AI agents. Catches silent degradation when agent loads memory but doesn't apply learned behaviors. Use when building agent with persistent memory, testing after updates, or ensuring behavioral consistency across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Preflight Checks helps agent builders verify that an AI agent applies documented memory and behavioral rules consistently across sessions.
 
-## Publisher: <br>
-[IvanMMM](https://clawhub.ai/user/IvanMMM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ivanmmm](https://clawhub.ai/user/ivanmmm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create behavioral checks and expected answers that verify an AI agent applies its memory and operating rules consistently across sessions, updates, and restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Setup scripts create or update workspace files for behavioral checklists. <br>
-Mitigation: Run setup only from the intended workspace and review the generated PRE-FLIGHT files and AGENTS.md changes before relying on them. <br>
-Risk: Behavioral check answers can encode sensitive retained content or permissive agent behaviors. <br>
-Mitigation: Exclude credentials and sensitive data unless explicitly approved, and require confirmation for public posts, third-party messages, and ambiguous retained content. <br>
-Risk: Persistent behavioral checks may encourage agents to follow stale or incorrect rules. <br>
-Mitigation: Review and update checks after memory changes, agent updates, or failed preflight results. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create scenario-based behavioral checks, expected-answer files, and workspace setup steps that test whether agents follow persistent-memory rules after restarts, updates, or manual diagnostics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/IvanMMM/preflight-checks) <br>
-- [README](README.md) <br>
-- [Skill Documentation](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and generated checklist files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace checklist and answer files for agent self-checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: CHANGELOG, package.json, release evidence) <br>
+Risk: Example content and guidance may encourage persistent memory writes without explicit user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and customize the checks before installation, remove any unwanted 'no confirmation' rules, and require approval for persistent memory writes.
+
+Risk: Example files include Prometheus/Ivan-specific behavioral expectations that may not match another workspace.
+
+Mitigation: Replace or remove the Prometheus/Ivan example files and hard-coded identifiers before using the skill in a different environment.
+
+Risk: Communication examples may encourage sending files or messages outside the local workspace.
+
+Mitigation: Require user approval before sending files or messages outside the local workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivanmmm/skills/preflight-checks)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [CHECKS template](templates/CHECKS-template.md)
+- [ANSWERS template](templates/ANSWERS-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates and guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces checklists, expected-answer rubrics, setup guidance, and workspace files for behavioral verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: CHANGELOG.md, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

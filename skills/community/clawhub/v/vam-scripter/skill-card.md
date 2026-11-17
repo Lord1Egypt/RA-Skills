@@ -1,40 +1,55 @@
-## Description: <br>
-Provides documentation and examples for using VAM Scripter, a JavaScript-inspired scripting language for automating poses, animations, audio, interactions, and scene control in Virt-A-Mate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VAM Scripter provides documentation and example scripts for using the JavaScript-inspired Virt-A-Mate Scripter environment to automate poses, animations, audio, interactions, scene access, and state handling.
 
-## Publisher: <br>
-[nffdasilva](https://clawhub.ai/user/nffdasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nffdasilva](https://clawhub.ai/user/nffdasilva)
 
-## Use Case: <br>
-Developers and creators use this skill to draft, understand, and adapt VAM Scripter scripts for Virt-A-Mate scenes. It supports scene automation patterns such as parameter-driven animation, interaction detection, keybindings, audio triggers, player proximity checks, and scene-local state persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example scripts can change scene object transforms, register keybindings, play audio, inspect player proximity, and save scene-local JSON state when a user chooses to run them in VAM. <br>
-Mitigation: Review each script before copying it into VAM and test it in a backup scene. <br>
+## Use Case:
 
+Developers and Virt-A-Mate creators use this skill as a scripting reference and example library for building scene automation, interaction detection, animation, audio triggers, keybindings, player proximity responses, and scene-local state persistence.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nffdasilva/vam-scripter) <br>
-- [Module API Reference](references/module-api.md) <br>
-- [Common Patterns & Examples](references/common-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown documentation with JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example scripts that can be copied into a scene-specific VAM Scripter directory after review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Example scripts that use scene-local file operations can save, overwrite, or delete scene files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any use of fs.writeSceneFileSync or fs.unlinkSceneFileSync before copying examples into VAM, and test persistence behavior with disposable scene data first.
+
+Risk: Example scripts depend on scene-specific atom names, audio clips, and keybinding names.
+
+Mitigation: Verify atom names, audio clip references, and keybindings match the target scene before running copied scripts.
+
+## Reference(s):
+
+- [VAM Scripter Skill Page](https://clawhub.ai/nffdasilva/skills/vam-scripter)
+- [Module API Reference](references/module-api.md)
+- [Common Patterns and Examples](references/common-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JavaScript-like code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable example scripts for VAM Scripter scenes.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

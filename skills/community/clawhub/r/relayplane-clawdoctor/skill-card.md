@@ -1,43 +1,62 @@
-## Description: <br>
-ClawDoctor is a self-healing doctor for OpenClaw that monitors gateway, crons, sessions, auth, and costs, sends Telegram alerts, and can auto-restart the gateway when it goes down. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawDoctor monitors OpenClaw gateway, cron, session, auth, and cost health, sends Telegram alerts, and can restart the gateway when it goes down.
 
-## Publisher: <br>
-[RelayPlane](https://clawhub.ai/user/RelayPlane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relayplane](https://clawhub.ai/user/relayplane)
 
-## Use Case: <br>
-Developers and operators running OpenClaw in production use ClawDoctor to monitor gateway, cron, session, auth, and cost health, receive Telegram alerts, and optionally recover by restarting the gateway when it appears down. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The monitoring daemon reads OpenClaw operational files and stores local event history. <br>
-Mitigation: Install only in environments where this local monitoring is acceptable, and review file access expectations before enabling the daemon. <br>
-Risk: Telegram alerts can send operational details outside the local machine. <br>
-Mitigation: Use a dedicated Telegram bot token and chat, and confirm alert contents are appropriate for the deployment. <br>
-Risk: Auto-fix mode can restart the OpenClaw gateway automatically. <br>
-Mitigation: Start with dry-run mode and enable auto-fix only where automatic gateway restarts are acceptable. <br>
+## Use Case:
 
+Developers and operators running OpenClaw use this skill to install and operate ClawDoctor for proactive health monitoring, Telegram alerts, and optional gateway recovery.
 
-## Reference(s): <br>
-- [ClawDoctor ClawHub listing](https://clawhub.ai/RelayPlane/relayplane-clawdoctor) <br>
-- [ClawDoctor website](https://clawdoctor.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install commands, daemon commands, dry-run guidance, alert behavior, and local configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.11 (source: release metadata) <br>
+Risk: Global npm installation and daemon execution can run package code with local user privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a reviewed exact package version from a trusted publisher before installing or starting the daemon.
+
+Risk: The daemon reads OpenClaw operational files and may create or change user service and configuration files.
+
+Mitigation: Run it only on intended OpenClaw hosts, inspect generated config and service files, and begin with dry-run mode.
+
+Risk: Supplying Telegram tokens on the command line can expose secrets through shell history or process listings.
+
+Mitigation: Avoid command-line tokens; prefer an reviewed configuration or secret-handling flow.
+
+Risk: Automatic gateway restart can disrupt service if enabled before behavior is validated.
+
+Mitigation: Validate monitor output in dry-run mode before enabling auto-fix behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/relayplane/skills/relayplane-clawdoctor)
+- [ClawDoctor site](https://clawdoctor.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes npm installation commands, daemon commands, setup options, monitoring behavior, and operational risk guidance.]
+
+## Skill Version(s):
+
+0.4.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

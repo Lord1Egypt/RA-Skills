@@ -1,38 +1,50 @@
-## Description: <br>
-Comprehensive vehicle accessories industry sourcing guide for international buyers, covering China's aftermarket products, manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive vehicle accessories industry sourcing guide for international buyers that provides structured information about China's aftermarket products, manufacturing clusters, supply chain, regional specializations, and industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers, sourcing teams, and developers use this skill to query cluster-level intelligence about China's vehicle accessories manufacturing landscape and to receive sourcing guidance for product categories, regions, supplier evaluation, lead times, and certifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market claims, supplier examples, certifications, and sourcing advice may be incomplete, outdated, or unsuitable for a specific transaction or jurisdiction. <br>
-Mitigation: Independently verify supplier details, certifications, compliance obligations, contract terms, and current market data before purchases, contracts, or compliance decisions. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to understand China's vehicle accessories manufacturing landscape, compare regional clusters and subsectors, and prepare supplier evaluation questions. It is intended as reference guidance before independent supplier, certification, and regulatory checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/china-vehicle-accessories-sourcing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or structured Python dictionary output, depending on how the agent invokes the bundled functions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are based on bundled cluster-level sourcing data and do not include individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Industry, supplier, certification, and regulatory information may not reflect live market conditions at purchase time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify suppliers, certifications, product compliance, and applicable regulations before making sourcing or purchasing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-vehicle-accessories-sourcing)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Natural-language guidance and structured Python dictionary data from local JSON lookup functions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local artifact data; no external service calls or individual factory contacts are described in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-Agent Creator guides an agent through generating independent OpenClaw agent workspaces with core and optional files, review gates, Git initialization, and TEAM.md registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates independent, domain-specific OpenClaw agents with dynamic core files, sandbox validation, risk review, and deployment guidance.
 
-## Publisher: <br>
-[lovesunshine0](https://clawhub.ai/user/lovesunshine0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovesunshine0](https://clawhub.ai/user/lovesunshine0)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create new domain-specific agents with standardized Markdown files, optional configuration templates, validation steps, and registration metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and register new agents by writing to the OpenClaw workspace and TEAM.md. <br>
-Mitigation: Review generated files and require explicit user confirmation before deployment. <br>
-Risk: The OPENCLAWS_AUTO_CONFIRM setting can bypass review gates. <br>
-Mitigation: Keep OPENCLAWS_AUTO_CONFIRM unset outside controlled testing. <br>
-Risk: The skill may persist learned failure patterns or memory-like summaries. <br>
-Mitigation: Require persistence behavior to be visible, opt-in, and easy to clear. <br>
+## Use Case:
 
+Developers and OpenClaw workspace maintainers use this skill to create specialized agents from short role descriptions, including generated workspace files, review checkpoints, and deployment records. It is intended for agent-building workflows that need sandbox staging, domain-specific file generation, and explicit confirmation before persistent workspace changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovesunshine0/agentcreator) <br>
-- [Publisher profile](https://clawhub.ai/user/lovesunshine0) <br>
-- [Artifact: SKILL.md](artifact/SKILL.md) <br>
-- [Artifact: SKILL_METADATA.md](artifact/ext/SKILL_METADATA.md) <br>
-- [Artifact: SKILL_DYNAMIC_FILES.md](artifact/ext/SKILL_DYNAMIC_FILES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, inline shell command plans, and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace files, Git metadata, TEAM.md entries, pending-confirmation files, and summarized failure-pattern records when executed by an agent with the required permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can auto-activate, persist learned state, and bypass confirmations when OPENCLAWS_AUTO_CONFIRM=true.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing it in shared or production OpenClaw workspaces, keep OPENCLAWS_AUTO_CONFIRM unset outside isolated tests, and require explicit approval before deployment or persistent memory writes.
+
+Risk: The workflow can write to persistent OpenClaw files such as TEAM.md, MEMORY.md, and failure_patterns.json.
+
+Mitigation: Use review and rollback controls for persistent workspace changes, and inspect proposed file updates before allowing final deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lovesunshine0/skills/agentcreator)
+- [Skill Definition](artifact/SKILL.md)
+- [Skill Metadata](artifact/ext/SKILL_METADATA.md)
+- [Dynamic File Strategy](artifact/ext/SKILL_DYNAMIC_FILES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, shell commands, configuration templates, and deployment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a staged set of agent workspace files and may propose persistent workspace updates after review and confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

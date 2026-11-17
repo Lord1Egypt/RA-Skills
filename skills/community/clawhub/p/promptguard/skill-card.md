@@ -1,40 +1,53 @@
-## Description: <br>
-Detect prompt injection attacks in text. Returns risk score and detected patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect prompt injection attacks in text and return a risk score with detected patterns.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent builders use Promptguard to scan untrusted text for common prompt-injection patterns before passing it to AI agents or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local FastAPI service is unauthenticated if exposed beyond local use. <br>
-Mitigation: Run it locally or add access controls before exposing it to public networks. <br>
-Risk: Pattern matching can miss novel prompt-injection attempts or flag benign text. <br>
-Mitigation: Use the score and detected patterns as one signal in a broader review policy. <br>
+## Use Case:
 
+Developers and agent builders use PromptGuard to scan untrusted text for common prompt-injection patterns before the text is processed by an AI agent.
 
-## Reference(s): <br>
-- [Promptguard on ClawHub](https://clawhub.ai/mirni/promptguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API response] <br>
-**Output Format:** [JSON object with risk_score, patterns_detected, and input_length fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scans one text string per request, with input constrained to 1-100,000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: Running the skill starts a local HTTP service that may receive sensitive text for scanning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted local environments, avoid sending secrets or private data through the scanner, and restrict service exposure as appropriate.
+
+Risk: Unpinned runtime dependencies can change behavior across installations.
+
+Mitigation: Pin and review dependency versions before production use.
+
+## Reference(s):
+
+- [PromptGuard ClawHub Skill Page](https://clawhub.ai/mirni/skills/promptguard)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [JSON API response containing a risk score, detected pattern names, and input length]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text input is constrained to 1-100,000 characters.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

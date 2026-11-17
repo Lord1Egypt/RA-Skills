@@ -1,42 +1,57 @@
-## Description: <br>
-Wire a Fieldy webhook transform into Moltbot hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wire a Fieldy webhook transform into Moltbot hooks.
 
-## Publisher: <br>
-[mrzilvis](https://clawhub.ai/user/mrzilvis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrzilvis](https://clawhub.ai/user/mrzilvis)
 
-## Use Case: <br>
-Developers and operators use this skill to connect Fieldy transcript webhooks to Moltbot Gateway so wake-word-triggered transcript text can start a Fieldy agent run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fieldy transcript text is persisted locally under the workspace, including transcripts that do not contain the wake word. <br>
-Mitigation: Review or edit src/fieldy-webhook.js before deployment to disable logging, restrict logging to wake-word matches, redact transcript text, or add retention limits. <br>
-Risk: Webhook tokens may be exposed more easily when passed as query parameters. <br>
-Mitigation: Use a strong webhook token and prefer the Authorization header when the webhook provider supports it. <br>
-Risk: A valid webhook request can trigger a Fieldy agent run. <br>
-Mitigation: Limit the target agent's authority and review the Moltbot webhook mapping before enabling the endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to connect Fieldy voice webhook requests to Moltbot Gateway, triggering an agent only when a wake word is detected and logging other transcripts locally.
 
-## Reference(s): <br>
-- [Moltbot Webhooks documentation](https://docs.molt.bot/automation/webhook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration and inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a JavaScript webhook transform that logs transcript text locally and returns agent trigger payloads when wake words are detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Raw voice transcripts may be stored locally in JSONL files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local transcript storage is acceptable, or modify the transform to disable logging, use a protected fixed log directory, set restrictive permissions, redact sensitive content, and add retention controls.
+
+Risk: The webhook can trigger an agent and has under-scoped controls.
+
+Mitigation: Use a dedicated low-privilege token, restrict and rate-limit the webhook, and keep the receiving agent least-privileged.
+
+Risk: Query-string webhook tokens can be exposed through URLs, logs, or browser history.
+
+Mitigation: Prefer Authorization headers over query-string tokens when the webhook provider supports them.
+
+## Reference(s):
+
+- [Moltbot Webhooks documentation](https://docs.molt.bot/automation/webhook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a JavaScript webhook transform that can write local JSONL transcript logs.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

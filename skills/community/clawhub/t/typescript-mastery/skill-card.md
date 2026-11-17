@@ -1,43 +1,57 @@
-## Description: <br>
-TypeScript Mastery gives agents concise guidance for advanced TypeScript patterns, compiler configuration, runtime validation, and JavaScript-to-TypeScript migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides advanced TypeScript guidance for branded types, discriminated unions, template literal types, generics, type guards, tsconfig optimization, and JavaScript-to-TypeScript migration.
 
-## Publisher: <br>
-[msruruguay](https://clawhub.ai/user/msruruguay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msruruguay](https://clawhub.ai/user/msruruguay)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when working on TypeScript projects that need stronger type safety, faster compiler settings, runtime validation guidance, or an incremental migration path from JavaScript. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested tsconfig changes can alter compiler behavior or build performance for an existing project. <br>
-Mitigation: Review configuration changes against the target project's TypeScript version, build pipeline, and test suite before applying them. <br>
-Risk: Suggested npm commands can change a project's dependency set or local development workflow. <br>
-Mitigation: Inspect commands before running them and apply dependency changes through the project's normal review process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/msruruguay/typescript-mastery) <br>
-- [TypeScript Official Docs](https://www.typescriptlang.org/docs/) <br>
-- [Total TypeScript](https://www.totaltypescript.com/) <br>
-- [TypeScript Performance Wiki](https://github.com/microsoft/TypeScript/wiki/Performance) <br>
-- [Zod Runtime Schema Validation](https://zod.dev/) <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise TypeScript patterns, configuration guidance, and migration advice for type-safe application development.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files; suggested commands and tsconfig changes should be reviewed before applying them to a project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup commands may install packages from an untrusted or mutable npm registry.
+
+Mitigation: Use a trusted npm registry and pin package versions or review a lockfile before following setup commands.
+
+Risk: TypeScript guidance can be applied incorrectly and introduce type-safety gaps or misleading assumptions.
+
+Mitigation: Review generated code and configuration changes before applying them to production projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/msruruguay/skills/typescript-mastery)
+- [TypeScript Official Docs](https://www.typescriptlang.org/docs/)
+- [Total TypeScript](https://www.totaltypescript.com/)
+- [TypeScript Performance Wiki](https://github.com/microsoft/TypeScript/wiki/Performance)
+- [Zod](https://zod.dev/)
+- [MidOS](https://midos.dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational guidance for TypeScript patterns and project configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

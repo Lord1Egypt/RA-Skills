@@ -1,43 +1,53 @@
-## Description: <br>
-Transform sequential Python code into parallel or concurrent implementations for CPU-bound, I/O-bound, and data-parallel workloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform sequential Python code into parallel or concurrent implementations for CPU-bound, I/O-bound, and data-parallel workloads.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify parallelization opportunities in Python code and transform sequential loops or I/O workflows into multiprocessing, asyncio, threading, or vectorized implementations while preserving correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parallelizing code can change observable behavior when loop iterations share mutable state, depend on previous iterations, or require stable result ordering. <br>
-Mitigation: Confirm independence before transforming code, preserve ordering where required, and compare outputs against the sequential version with representative tests. <br>
-Risk: Unbounded concurrency can exhaust CPU, memory, network, database, or file resources. <br>
-Mitigation: Use bounded worker counts, chunked processing, connection pooling, and async semaphores for rate-limited or resource-constrained workloads. <br>
-Risk: Multiprocessing and async rewrites can hide exceptions or leak resources if pools, sessions, and shared memory are not cleaned up. <br>
-Mitigation: Use context managers, explicit exception handling, return_exceptions or future inspection where appropriate, and cleanup paths for pools, clients, and shared memory. <br>
+## Use Case:
 
+Developers and engineers use this skill to identify parallelization candidates in Python code and convert appropriate loops or I/O workflows into multiprocessing, asyncio, threading, or vectorized implementations while preserving correctness.
 
-## Reference(s): <br>
-- [Advanced Parallelization Techniques](references/advanced_techniques.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/parallel-tfidf-search-python-parallelization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transformed Python snippets, dependency suggestions, verification checklists, and performance considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Parallel HTTP or file-processing patterns can overload resources when concurrency is unbounded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target URLs and data flows, set explicit worker or semaphore limits, and use chunking for large workloads.
+
+Risk: Parallelizing code with shared mutable state or iteration dependencies can change correctness.
+
+Mitigation: Check for shared state and cross-iteration dependencies, preserve ordering where required, and compare outputs against the sequential version on representative tests.
+
+## Reference(s):
+
+- [Advanced Parallelization Techniques](references/advanced_techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concurrency strategy recommendations, transformed Python snippets, verification checklists, and worker-count guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

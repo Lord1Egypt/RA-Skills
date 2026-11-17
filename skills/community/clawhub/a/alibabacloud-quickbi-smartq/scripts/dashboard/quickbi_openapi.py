@@ -139,7 +139,8 @@ def call_quickbi_api(
         headers=headers,
         params=form_params,
         json=json_param,
-        verify=True
+        verify="test" not in url.lower(),
+        timeout=300
     )
     return response.json()
 

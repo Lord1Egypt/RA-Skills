@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-fry-growth-measurement-analysis"
 description: "Through fixed cameras of fry tanks (a known-size reference object such as a scale ruler, standard coin or calibration board must be placed in the view), the system periodically (e.g. daily or weekly) captures fry images and uses AI vision analysis to measure body length (from snout to tail-fin tip, in mm), record individual growth rate (mm/day) and draw the growth curve. | 通过鱼苗缸固定摄像头（需放置已知尺寸的参照物，如刻度尺、标准硬币或标定板），定期（如每天或每周）拍摄鱼苗图像，利用 AI 视觉分析技术测量鱼苗体长（从吻端到尾鳍末端，单位 mm），记录个体的生长速率（mm/天），并绘制生长曲线。系统自动采集图像，生成生长报告，异常时提示（如生长停滞）。"
-version: "1.0.3"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

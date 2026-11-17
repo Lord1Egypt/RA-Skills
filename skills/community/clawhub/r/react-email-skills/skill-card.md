@@ -1,50 +1,64 @@
-## Description: <br>
-Use when building HTML email templates with React components, adding a visual email editor to an application using the React Email visual editor, rendering emails to HTML, or sending emails with Resend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building HTML email templates with React components, adding a visual email editor to an application using the React Email visual editor, rendering emails to HTML, or sending emails with Resend.
 
-## Publisher: <br>
-[christina-de-martinez](https://clawhub.ai/user/christina-de-martinez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christina-de-martinez](https://clawhub.ai/user/christina-de-martinez)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, preview, render, and send React-based HTML email templates, and to embed the React Email visual editor in applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Email-sending examples can send unintended messages or expose recipient data if copied into production without review. <br>
-Mitigation: Confirm recipients and content before sending, and review the email provider's data handling and compliance requirements. <br>
-Risk: Sending workflows require provider credentials such as API keys. <br>
-Mitigation: Use scoped provider API keys and keep secrets in environment variables or a secret manager. <br>
-Risk: Production behavior depends on package versions and email-client rendering differences. <br>
-Mitigation: Pin package versions for production environments and test rendered output across target email clients before deployment. <br>
+## Use Case:
 
+Developers use this skill to create, preview, render, localize, edit, and send React-based HTML email templates for transactional and marketing workflows.
 
-## Reference(s): <br>
-- [React Email Documentation](https://react.email) <br>
-- [React Email Skill Documentation](https://resend.com/docs/react-email-skill) <br>
-- [React Email Repository](https://github.com/resend/react-email) <br>
-- [React Email Components Reference](references/COMPONENTS.md) <br>
-- [React Email Editor Reference](references/EDITOR.md) <br>
-- [Internationalization Guide](references/I18N.md) <br>
-- [Common Email Patterns](references/PATTERNS.md) <br>
-- [Sending Guide](references/SENDING.md) <br>
-- [Styling Guide](references/STYLING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include email template code, rendering examples, sending examples, visual editor integration guidance, and configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup commands can fetch mutable npm packages through `npx` or package-manager installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin reviewed package versions and run setup in a clean project environment before using generated email code in a production application.
+
+Risk: Sending examples may involve a Resend API key.
+
+Mitigation: Use a narrowly scoped, revocable API key and rotate it if setup or sending behavior looks unexpected.
+
+## Reference(s):
+
+- [React Email Documentation](https://react.email/docs/llms.txt)
+- [React Email Homepage](https://react.email)
+- [React Email Repository](https://github.com/resend/react-email)
+- [Resend React Email Skill Documentation](https://resend.com/docs/react-email-skill)
+- [Resend Documentation](https://resend.com/docs/llms.txt)
+- [Email Client CSS Support](https://www.caniemail.com)
+- [Component Reference](references/COMPONENTS.md)
+- [Styling Guide](references/STYLING.md)
+- [Email Editor Reference](references/EDITOR.md)
+- [Sending Guide](references/SENDING.md)
+- [Internationalization Guide](references/I18N.md)
+- [Common Email Patterns](references/PATTERNS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with TypeScript, JSON, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include React Email component code, package commands, editor integration guidance, rendering examples, and sending examples.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

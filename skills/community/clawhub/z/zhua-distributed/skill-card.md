@@ -1,38 +1,52 @@
-## Description: <br>
-爪爪分布式部署系统 —— 实现多实例协同、负载均衡、故障转移。Use when 爪爪需要分布式部署、多设备协同、或构建爪爪网络。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhua Distributed describes a distributed Zhua deployment pattern and includes helper scripts for initializing a master instance.
 
-## Publisher: <br>
-[beipian261](https://clawhub.ai/user/beipian261) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[beipian261](https://clawhub.ai/user/beipian261)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to plan distributed Zhua deployments across master, compute, and storage node roles and to initialize a local master configuration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is incomplete for its promised distributed memory, synchronization, load balancing, and failover behavior.
+
+Mitigation: Review implementation status before deployment and do not rely on it for real cross-device state or task synchronization until those mechanisms are documented and implemented.
+
+Risk: The master initialization script writes a configuration file under the user's home directory using the supplied instance name.
+
+Mitigation: Use a simple safe instance name such as zhua-master, avoid slashes or dot-dot path segments, and evaluate the script in an isolated environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators can use this skill as a scaffold for planning distributed Zhua deployments across multiple devices, including master, compute, and storage instance roles. Treat the generated commands and configuration guidance as starting points that require review and completion before production use. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises distributed deployment, synchronization, load balancing, and failover capabilities that are mostly not implemented or safely scoped in the artifacts. <br>
-Mitigation: Review before installing and use only in a test environment unless node management, synchronization, authentication, rollback, and data-scope controls are added and verified. <br>
+**Output Format:** [Markdown guidance with inline shell commands and Python helper scripts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [API Reference](references/api_reference.md) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run helper scripts that create local Zhua distributed instance configuration.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

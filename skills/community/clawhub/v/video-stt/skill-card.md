@@ -1,41 +1,57 @@
-## Description: <br>
-Extract audio from video URLs and transcribe using STT (Speech-to-Text). Supports local Whisper or cloud APIs. Use when: user provides a video URL and wants to know what is being said, transcribing YouTube videos, podcasts, or any video with audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract audio from video URLs and transcribe using STT (Speech-to-Text). Supports local Whisper or cloud APIs. Use when: user provides a video URL and wants to know what is being said, transcribing YouTube videos, podcasts, or any video with audio.
 
-## Publisher: <br>
-[damienCronw](https://clawhub.ai/user/damienCronw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[damiencronw](https://clawhub.ai/user/damiencronw)
 
-## Use Case: <br>
-Developers and agents use this skill to extract audio from video URLs and generate speech-to-text transcripts for videos, podcasts, and other media with audio. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Normal use can download media, create transcript and audio files, create a Python virtual environment, and install Homebrew or Python packages. <br>
-Mitigation: Review scripts before use, install dependencies from trusted sources, and run the skill in a controlled workspace. <br>
-Risk: Crafted option values passed to the shell wrapper could run unintended local code. <br>
-Mitigation: Avoid untrusted option values and prefer the Python entry point or reviewed command invocations for untrusted inputs. <br>
-Risk: The artifact advertises cloud transcription, but server security guidance says cloud transcription is not actually implemented in this version. <br>
-Mitigation: Use local Whisper mode for this release and do not provide cloud API keys for the unimplemented cloud path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/damienCronw/video-stt) <br>
+## Use Case:
 
+Developers and external users use this skill to download audio from a video URL and produce a speech transcript for videos, podcasts, and other media with audio.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated transcripts as TXT, SRT, VTT, or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local audio, transcript, and Python virtual environment files during execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The shell wrapper can turn user-controlled options into local Python code execution.
+
+Mitigation: Avoid untrusted values for --model, --format, and --output; use a reviewed version that removes Python command interpolation before deployment.
+
+Risk: The skill may install unpinned dependencies during normal use.
+
+Mitigation: Install and pin dependencies in a controlled environment before running the skill.
+
+Risk: The skill downloads media and writes audio and transcript files locally.
+
+Mitigation: Run it in an isolated workspace, validate video URLs, and restrict output paths to expected directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/damiencronw/skills/video-stt)
+- [ClawHub publisher profile](https://clawhub.ai/user/damiencronw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown command guidance and transcript output as plain text, SRT, VTT, or JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses video URLs as input and can write audio and transcript files to local output directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

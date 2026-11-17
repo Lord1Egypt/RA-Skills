@@ -1,41 +1,58 @@
-## Description: <br>
-Publishes, drafts, replies to, and checks metrics for Xiaohongshu (RED) content through browser automation with explicit confirmation before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish and manage Xiaohongshu (RED/Xiaohongshu) content via browser automation with confirm-before-publish safety, including image posts and no-image longform notes on creator.xiaohongshu.com.
 
-## Publisher: <br>
-[YIKAILucas](https://clawhub.ai/user/YIKAILucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yikailucas](https://clawhub.ai/user/yikailucas)
 
-## Use Case: <br>
-Creators, operators, and agents use this skill to work in the official Xiaohongshu creator site for drafting posts, publishing after explicit confirmation, replying to comments or messages, and checking visible dashboard metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Xiaohongshu account to publish content or reply to users. <br>
-Mitigation: Review the account, post text, images, and replies carefully, and give explicit publish or reply instructions only when that account action is intended. <br>
-Risk: Login, SMS, CAPTCHA, platform risk controls, or creator-site UI changes can interrupt automation. <br>
-Mitigation: Do not bypass platform controls; pause for user login or confirmation, keep unfinished work as a draft where possible, and report any required manual step clearly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Redbook Browser Ops on ClawHub](https://clawhub.ai/YIKAILucas/redbook-browser-ops) <br>
-- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com) <br>
-- [Post Templates](references/post-templates.md) <br>
+## Use Case:
 
+External creators and operators use this skill to draft, publish, reply, and review visible metrics in a logged-in Xiaohongshu creator account. It is intended for browser-based creator workflows where publishing requires explicit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown status summaries and browser operation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Xiaohongshu creator account; publish actions require explicit confirmation in the current chat turn.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill operates in a user's logged-in Xiaohongshu creator account and can affect public content.
+
+Mitigation: Install only for intended creator-account operations, review post and reply content before use, and preserve the explicit publish-confirmation requirement.
+
+Risk: Login, CAPTCHA, SMS, or platform risk controls may block automation.
+
+Mitigation: Pause for the user to complete required platform checks and do not use the skill to bypass platform controls.
+
+Risk: Creator-site UI changes may prevent the agent from finding expected controls or completing a publish flow.
+
+Mitigation: Refresh the browser snapshot, use the nearest equivalent visible control, keep content as a draft when publishing is unavailable, and report any manual step clearly.
+
+## Reference(s):
+
+- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com)
+- [Post Templates](references/post-templates.md)
+- [Redbook Browser Ops on ClawHub](https://clawhub.ai/yikailucas/skills/redbook-browser-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown status summary with account, title, mode, result, details, and next step]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft, publish, reply, or metrics action status.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

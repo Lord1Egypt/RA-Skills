@@ -116,7 +116,15 @@ def card(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """Full card report — fees, welcome offer, earning rates, credits, benefits, strategy."""
+    """Full card report — annual fee, welcome offer, earning rates, credits, benefits, and strategy tips.
+
+    Pulls live data via Brave Search. Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece card "Amex Gold"
+      fleece card "Chase Sapphire Preferred" --json
+      echo "Citi Double Cash" | fleece card -
+    """
     name = _read_stdin_or_arg(name)
     key  = _resolve_key(api_key, no_dotenv)
     query = f'"{name}" credit card annual fee welcome offer earning rates benefits credits 2025'
@@ -131,7 +139,15 @@ def rates(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """Earning rates by spend category — points, miles, or cash back per dollar."""
+    """Earning rates by spend category — points, miles, or cash back per dollar.
+
+    Use --category to narrow results to a specific spend type (dining, travel,
+    groceries, gas, etc.). Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece rates "Amex Gold"
+      fleece rates "Chase Sapphire Preferred" --category dining
+    """
     name = _read_stdin_or_arg(name)
     key  = _resolve_key(api_key, no_dotenv)
     cat  = f"{category} " if category else ""
@@ -146,7 +162,14 @@ def partners(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """Transfer partners — airlines and hotels, ratios, and transfer timing."""
+    """Transfer partners — airline and hotel programs, transfer ratios, and how long transfers take.
+
+    Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece partners "Chase Sapphire Preferred"
+      fleece partners "Amex Platinum" --json
+    """
     name = _read_stdin_or_arg(name)
     key  = _resolve_key(api_key, no_dotenv)
     query = f'"{name}" transfer partners airlines hotels ratio transfer time 2025'
@@ -160,7 +183,14 @@ def credits(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """Statement credits and perks — amounts, cadence, and enrollment requirements."""
+    """Statement credits and perks — amounts, cadence (monthly/annual), and how to activate them.
+
+    Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece credits "Amex Platinum"
+      fleece credits "Chase Sapphire Reserve" --json
+    """
     name = _read_stdin_or_arg(name)
     key  = _resolve_key(api_key, no_dotenv)
     query = f'"{name}" statement credits perks benefits complete list how to use 2025'
@@ -174,7 +204,14 @@ def news(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """Recent changes in the past month — fee increases, benefit cuts, new perks."""
+    """Recent changes in the past month — fee increases, benefit cuts, new perks, limited-time offers.
+
+    Results are freshness-filtered to the past 30 days. Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece news "Chase Sapphire Reserve"
+      fleece news "Amex Gold" --json
+    """
     name = _read_stdin_or_arg(name)
     key  = _resolve_key(api_key, no_dotenv)
     query = f'"{name}" credit card changes update news 2025'
@@ -190,7 +227,14 @@ def compare(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """Side-by-side card comparison across fees, rewards, credits, and transfer partners."""
+    """Side-by-side comparison of two cards across fees, rewards, credits, and transfer partners.
+
+    Use --aspects to restrict comparison to specific areas. Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece compare "Amex Gold" "Chase Sapphire Preferred"
+      fleece compare "Citi Double Cash" "Wells Fargo Active Cash" --aspects fees,rewards
+    """
     from tools.brave_client import search_and_format
     key     = _resolve_key(api_key, no_dotenv)
     wrapper = _get_wrapper(key)
@@ -209,60 +253,73 @@ def compare(
 
 @app.command()
 def wallet(
-    cards:        Annotated[Optional[list[str]], typer.Argument(help="Card names (space-separated). Omit to use saved profile. Use '-' as sole arg to read from stdin.")] = None,
-    from_profile: FromProfileOpt = False,
-    api_key:      ApiKeyOpt  = None,
-    as_json:      JsonOpt    = False,
-    no_dotenv:    NoDotenv   = False,
+    api_key:   ApiKeyOpt  = None,
+    as_json:   JsonOpt    = False,
+    no_dotenv: NoDotenv   = False,
 ):
     """Portfolio analysis — category coverage map, overlaps, gaps, and next-card suggestions.
 
-    Card names can come from three sources (in priority order):
-    1. Arguments passed directly
-    2. --from-profile / -p  (reads user_cards.json)
-    3. No args + saved profile exists (auto-loads profile)
+    Fetches live earning-rate data for every card saved in your wallet, then
+    returns structured research so an agent (or you) can compute the full
+    coverage map. Requires BRAVE_API_KEY.
+
+    Add cards first with: fleece cards add "<name>"
+
+    Examples:
+      fleece wallet
+      fleece wallet --json
     """
     from tools.brave_client import search_and_format
+    import db as _db
 
-    # Resolve card list
-    if cards and cards != ["-"]:
-        card_list = cards
-    elif cards == ["-"]:
-        card_list = [line.strip() for line in sys.stdin if line.strip()]
-    else:
-        # No args passed — fall back to saved profile
-        card_list = _profile_card_names()
-        if not card_list:
-            _error_exit(
-                "No cards provided and user_cards.json is empty. "
-                "Pass card names as arguments or add cards with: python cli.py cards add \"<name>\"",
-                code=1,
-            )
+    card_list = _db.get_card_names()
+    if not card_list:
+        msg = "Wallet is empty. Add cards with: fleece cards add \"<name>\""
+        if as_json:
+            typer.echo(json.dumps({"ok": False, "error": msg}))
+        else:
+            typer.echo(msg)
+        raise typer.Exit(code=1)
 
     key     = _resolve_key(api_key, no_dotenv)
     wrapper = _get_wrapper(key)
-    parts   = []
+    profile_ctx = _db.profile_as_context()
 
+    cards_research: dict[str, str] = {}
     try:
         for name in card_list:
-            result = search_and_format(wrapper, f'"{name}" earning rates categories benefits 2025', max_results=2)
-            parts.append(f"### {name}\n{result}")
+            cards_research[name] = search_and_format(
+                wrapper,
+                f'"{name}" credit card earning rates categories spend multiplier 2025',
+                max_results=2,
+            )
     except Exception as e:
         _error_exit(str(e), code=1)
 
-    import db as _db
-    profile_ctx = _db.profile_as_context()
-
-    combined = "\n\n".join(parts)
-    combined += "\n\nBased on the above, identify:\n"
-    combined += "1. Category coverage map\n"
-    combined += "2. Overlapping benefits or redundant categories\n"
-    combined += "3. Gaps — categories with no bonus multiplier\n"
-    combined += "4. Top 1-2 cards that would complement this portfolio"
+    analysis_prompt = (
+        "Using the research above, compute a wallet analysis:\n"
+        "1. Category coverage map — list each spend category and which card earns the most there (show multiplier)\n"
+        "2. Overlaps — categories where two or more cards earn a bonus (redundant coverage)\n"
+        "3. Gaps — everyday categories with no bonus multiplier across any card (1x on everything)\n"
+        "4. Top 1-2 cards that would best complement this wallet"
+    )
     if profile_ctx:
-        combined += f"\n\nUser profile context: {profile_ctx}"
-        combined += "\nTailor the gap analysis and recommendations to this profile."
-    _emit(combined, as_json, "wallet", ", ".join(card_list))
+        analysis_prompt += f"\n\nUser profile: {profile_ctx}\nTailor gap analysis and card suggestions to this profile."
+
+    if as_json:
+        typer.echo(json.dumps({
+            "command": "wallet",
+            "cards": card_list,
+            "research": cards_research,
+            "profile": profile_ctx or None,
+            "analysis_prompt": analysis_prompt,
+            "ok": True,
+            "error": None,
+        }))
+    else:
+        parts = [f"### {name}\n{research}" for name, research in cards_research.items()]
+        typer.echo("\n\n".join(parts))
+        typer.echo(f"\n\n{analysis_prompt}")
 
 
 @app.command()
@@ -275,7 +332,18 @@ def roi(
     as_json:   JsonOpt    = False,
     no_dotenv: NoDotenv   = False,
 ):
-    """First-year ROI estimate — welcome bonus + earn + credits minus annual fee."""
+    """First-year ROI estimate — welcome bonus value + projected annual earn + credits minus annual fee.
+
+    Spend values (--travel, --dining, --other) fall back to your saved profile when
+    not provided. Set them with: fleece profile set dining_monthly 500
+
+    Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece roi "Amex Gold"
+      fleece roi "Chase Sapphire Preferred" --travel 300 --dining 400
+      fleece roi "Citi Double Cash" --other 2000 --json
+    """
     from tools.brave_client import search_and_format
     from tools.credit_card_tools import _guess_cpp
     import db as _db
@@ -323,7 +391,16 @@ def recommend(
     as_json:     JsonOpt    = False,
     no_dotenv:   NoDotenv   = False,
 ):
-    """Card recommendations matched to a spending profile and preferences."""
+    """Card recommendations matched to a free-text spending profile and optional preferences.
+
+    Automatically enriched with your saved profile fields and current wallet cards.
+    Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece recommend "heavy diner, occasional traveler"
+      fleece recommend "groceries and gas" --preferences "no annual fee"
+      echo "maximize cash back" | fleece recommend -
+    """
     import db as _db
     profile = _read_stdin_or_arg(profile)
     key     = _resolve_key(api_key, no_dotenv)
@@ -333,7 +410,7 @@ def recommend(
     saved_ctx = _db.profile_as_context(cards=_db.get_card_names())
     ctx = f"{saved_ctx} | " if saved_ctx else ""
 
-    query = f"best credit cards {ctx}{profile} {pref}US 2025 site:nerdwallet.com OR site:thepointsguy.com OR site:doctorofcredit.com"
+    query = f"best credit cards {ctx}{profile} {pref}US 2025 site:nerdwallet.com OR site:thepointsguy.com OR site:doctorofcredit.com OR site:uscreditcardguide.com"
     _run_search(_get_wrapper(key), query, "recommend", as_json)
 
 
@@ -367,7 +444,17 @@ def mcc(
     as_json:  JsonOpt    = False,
     no_dotenv: NoDotenv  = False,
 ):
-    """Look up a Merchant Category Code and find the best card in your wallet to use."""
+    """Look up a Merchant Category Code (offline, 981 codes bundled).
+
+    Without --wallet: prints the category name for the MCC. No API key needed.
+    With --wallet: cross-references earning rates across your saved cards to find
+    the highest-earning card at that merchant type. Requires BRAVE_API_KEY.
+
+    Examples:
+      fleece mcc 5812
+      fleece mcc 5812 --wallet
+      fleece mcc 7832 --json
+    """
     code = code.strip().zfill(4)
     db = _load_mcc_db()
 
@@ -436,7 +523,16 @@ def flights(
     open_url:    Annotated[bool, typer.Option("--open", help="Open URL in browser.")] = False,
     as_json:     JsonOpt = False,
 ):
-    """Generate a PointsYeah flight search URL and optionally open it."""
+    """Generate a PointsYeah award flight search URL. No API key required.
+
+    Cabin classes: economy, premium-economy, business, first.
+    Use --open to launch the URL directly in your default browser.
+
+    Examples:
+      fleece flights JFK NRT --date 2026-06-01 --cabin business
+      fleece flights LAX LHR --date 2026-09-10 --return 2026-09-20 --cabin first --open
+      fleece flights JFK CDG --date 2026-07-01 --adults 2 --json
+    """
     import webbrowser
     from pointsyeah import FlightsQuery, build_flights_url
 
@@ -467,7 +563,15 @@ def hotels(
     open_url: Annotated[bool, typer.Option("--open", help="Open URL in browser.")] = False,
     as_json:  JsonOpt = False,
 ):
-    """Generate a PointsYeah hotel search URL and optionally open it."""
+    """Generate a PointsYeah award hotel search URL. No API key required.
+
+    Use --open to launch the URL directly in your default browser.
+
+    Examples:
+      fleece hotels "Tokyo" --checkin 2026-06-01 --checkout 2026-06-07
+      fleece hotels "Paris" --checkin 2026-08-10 --checkout 2026-08-15 --guests 2 --open
+      fleece hotels "Maldives" --checkin 2026-12-20 --checkout 2026-12-27 --json
+    """
     import webbrowser
     from pointsyeah import HotelsQuery, build_hotels_url
 
@@ -495,7 +599,15 @@ app.add_typer(profile_app)
 
 @profile_app.command("show")
 def profile_show(as_json: JsonOpt = False):
-    """Show your current spending profile."""
+    """Show your current spending profile (stored in fleece.db).
+
+    Profile values are automatically used by: roi, recommend, and wallet.
+    Set values with: fleece profile set <field> <value>
+
+    Examples:
+      fleece profile show
+      fleece profile show --json
+    """
     import db as _db
     p = _db.get_profile()
     if not p:
@@ -517,7 +629,15 @@ def profile_set(
     value: Annotated[str, typer.Argument(help="Value to set.")],
     as_json: JsonOpt = False,
 ):
-    """Set a profile field."""
+    """Set a single spending profile field.
+
+    Run 'fleece profile fields' to see all available field names.
+
+    Examples:
+      fleece profile set dining_monthly 500
+      fleece profile set home_airport JFK
+      fleece profile set goal "maximize travel rewards"
+    """
     import db as _db
     try:
         _db.set_profile_field(field, value)
@@ -534,7 +654,12 @@ def profile_unset(
     field: Annotated[str, typer.Argument(help="Field name to clear.")],
     as_json: JsonOpt = False,
 ):
-    """Clear a single profile field."""
+    """Clear a single spending profile field.
+
+    Examples:
+      fleece profile unset annual_fee_tolerance
+      fleece profile unset goal
+    """
     import db as _db
     _db.clear_profile_field(field)
     if as_json:
@@ -545,7 +670,12 @@ def profile_unset(
 
 @profile_app.command("fields")
 def profile_fields():
-    """List all available profile fields and their descriptions."""
+    """List all 10 available profile fields and their descriptions.
+
+    Fields: dining_monthly, groceries_monthly, travel_monthly, gas_monthly,
+    other_monthly, annual_fee_tolerance, points_programs, home_airport,
+    goal, preferences.
+    """
     import db as _db
     for key, label in _db.PROFILE_FIELDS.items():
         typer.echo(f"  {key:<30} {label}")
@@ -563,7 +693,12 @@ app.add_typer(cards_app)
 def cards_list(
     as_json: JsonOpt = False,
 ):
-    """List all cards saved in your profile."""
+    """List all cards saved in your wallet with their annual fees.
+
+    Examples:
+      fleece cards list
+      fleece cards list --json
+    """
     profile = _load_profile()
     if not profile:
         typer.echo("No cards in profile. Add one with: python cli.py cards add \"<card name>\"")
@@ -580,15 +715,26 @@ def cards_list(
 def cards_add(
     name:       Annotated[str, typer.Argument(help="Card name to add.")],
     annual_fee: Annotated[str, typer.Option("--fee", help="Annual fee (e.g. $95).")] = "$0",
+    fee_date:   Annotated[Optional[str], typer.Option("--fee-date", help="Annual fee renewal date as MM-DD (e.g. 01-15).")] = None,
     as_json:    JsonOpt = False,
 ):
-    """Add a card to your profile."""
+    """Add a card to your wallet.
+
+    The card name is used by: fleece wallet, fleece mcc --wallet,
+    fleece recommend, and fleece roi.
+
+    Examples:
+      fleece cards add "Chase Sapphire Preferred" --fee "$95" --fee-date 03-20
+      fleece cards add "Amex Gold" --fee "$250"
+      fleece cards add "Citi Double Cash"
+    """
     import datetime
     import db
     new_card = {
         "name": name,
         "annual_fee": annual_fee,
         "date_added": datetime.date.today().isoformat(),
+        "fee_date": fee_date or "",
     }
     try:
         db.add_card(new_card)
@@ -606,7 +752,14 @@ def cards_remove(
     name:    Annotated[str, typer.Argument(help="Card name to remove (partial match OK).")],
     as_json: JsonOpt = False,
 ):
-    """Remove a card from your profile."""
+    """Remove a card from your wallet. Partial name matching is supported.
+
+    Errors if the name matches more than one card — use a more specific name.
+
+    Examples:
+      fleece cards remove "Amex Gold"
+      fleece cards remove "sapphire"
+    """
     import db
     # Partial match against all names
     all_cards = db.get_cards()
@@ -623,6 +776,108 @@ def cards_remove(
         typer.echo(json.dumps({"command": "cards remove", "removed": removed["name"], "ok": True, "error": None}))
     else:
         typer.echo(f'Removed "{removed["name"]}" from your profile. ({remaining} card(s) remaining)')
+
+
+@cards_app.command("renewal")
+def cards_renewal(
+    days:    Annotated[int,  typer.Option("--days", "-d", help="Only show renewals within N days (0 = all).")] = 0,
+    as_json: JsonOpt = False,
+):
+    """Show upcoming annual fee renewal schedule, sorted by days remaining.
+
+    Cards without a fee date set are listed separately at the bottom.
+    Use --days N to narrow the view (e.g. --days 60 for next two months).
+    Set a fee date with: fleece cards fee-date "<card>" MM-DD
+
+    Examples:
+      fleece cards renewal
+      fleece cards renewal --days 90
+      fleece cards renewal --json
+    """
+    import db
+    all_cards = db.get_cards()
+    if not all_cards:
+        if as_json:
+            typer.echo(json.dumps({"command": "renewal", "schedule": [], "no_date_set": [], "ok": True, "error": None}))
+        else:
+            typer.echo("No cards in wallet. Add one with: fleece cards add \"<card name>\"")
+        return
+
+    full_schedule = db.get_renewal_schedule()
+    schedule = [c for c in full_schedule if c["days_until"] <= days] if days > 0 else full_schedule
+    no_date  = [c for c in all_cards if not c.get("fee_date")]
+
+    if as_json:
+        typer.echo(json.dumps({
+            "command":     "renewal",
+            "schedule":    schedule,
+            "no_date_set": [c["name"] for c in no_date],
+            "ok":          True,
+            "error":       None,
+        }))
+        return
+
+    if schedule:
+        typer.echo("\nUpcoming annual fee renewals:\n")
+        typer.echo(f"  {'Date':<12}  {'Days':>6}  {'Card':<40}  Fee")
+        typer.echo("  " + "-" * 72)
+        for card in schedule:
+            days_str = "TODAY" if card["days_until"] == 0 else f"{card['days_until']}d"
+            fee_str  = card.get("annual_fee", "N/A")
+            typer.echo(f"  {card['next_renewal']:<12}  {days_str:>6}  {card['name']:<40}  {fee_str}")
+    else:
+        typer.echo("No upcoming renewals found.")
+
+    if no_date:
+        typer.echo(f"\n{len(no_date)} card(s) without a fee date:")
+        for c in no_date:
+            typer.echo(f"  - {c['name']}")
+        typer.echo("\n  Set one with: fleece cards fee-date \"<card>\" MM-DD")
+
+
+@cards_app.command("fee-date")
+def cards_fee_date(
+    name:    Annotated[str, typer.Argument(help="Card name (partial match OK).")],
+    date:    Annotated[str, typer.Argument(help="Annual fee renewal date as MM-DD (e.g. 01-15 for Jan 15).")],
+    as_json: JsonOpt = False,
+):
+    """Set the annual fee renewal date for a card (MM-DD format).
+
+    The date repeats each year. Use 'fleece cards renewal' to see the full schedule.
+
+    Examples:
+      fleece cards fee-date "Amex Gold" 01-15
+      fleece cards fee-date "Chase Sapphire" 03-20
+      fleece cards fee-date "sapphire" 06-01 --json
+    """
+    import datetime
+    import re
+    import db
+
+    if not re.match(r"^\d{2}-\d{2}$", date):
+        _error_exit("Date must be MM-DD format (e.g. 01-15 for Jan 15).", code=1)
+    try:
+        month, day = map(int, date.split("-"))
+        datetime.date(2024, month, day)
+    except ValueError:
+        _error_exit(f'Invalid date "{date}". Use MM-DD format (e.g. 01-15).', code=1)
+
+    all_cards = db.get_cards()
+    matches   = [c for c in all_cards if name.lower() in c["name"].lower()]
+    if not matches:
+        _error_exit(f'No card matching "{name}". Add it with: fleece cards add "<name>"', code=1)
+    if len(matches) > 1:
+        names = ", ".join(f'"{c["name"]}"' for c in matches)
+        _error_exit(f"Ambiguous match — found {names}. Be more specific.", code=1)
+
+    card = matches[0]
+    db.update_card(card["name"], {"fee_date": date})
+
+    if as_json:
+        typer.echo(json.dumps({"command": "fee-date", "card": card["name"], "fee_date": date, "ok": True, "error": None}))
+    else:
+        typer.echo(f'Set fee renewal date for "{card["name"]}" to {date}.')
+        typer.echo("Run 'fleece cards renewal' to see your full schedule.")
 
 
 # ---------------------------------------------------------------------------

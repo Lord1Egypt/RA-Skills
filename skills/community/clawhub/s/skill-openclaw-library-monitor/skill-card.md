@@ -1,46 +1,60 @@
-## Description: <br>
-Monitor library book availability and get notified when books become available for borrowing. Supports Shenzhen Library and extensible for other libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor library book availability and get notified when books become available for borrowing. Supports Shenzhen Library and extensible for other libraries.
 
-## Publisher: <br>
-[yszheda](https://clawhub.ai/user/yszheda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yszheda](https://clawhub.ai/user/yszheda)
 
-## Use Case: <br>
-External users use this skill to track books they want to borrow, check Shenzhen Library availability, and receive console or email notifications when monitored books become available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores monitored book titles, authors, ISBNs, and availability status locally. <br>
-Mitigation: Store the skill data in a protected workspace and avoid sharing book_list.json or config.yaml. <br>
-Risk: Email notifications require SMTP settings and credentials. <br>
-Mitigation: Use an app-specific SMTP credential, review recipient addresses, and protect config.yaml. <br>
-Risk: Scheduled monitoring continues background availability checks until stopped. <br>
-Mitigation: Use reasonable check intervals and stop the scheduler when monitoring is no longer needed. <br>
+## Use Case:
 
+External users use this skill to track book availability at Shenzhen Library, manage a monitored book list, and receive notifications when matching books become available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yszheda/skill-openclaw-library-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/yszheda) <br>
-- [Shenzhen Library](https://www.szlib.org.cn/) <br>
-- [Shenzhen Library OPAC](https://www.szlib.org.cn/opac/) <br>
-- [Shenzhen Library OPAC Service API](https://www.szlib.org.cn/api/opacservice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON/configuration file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local book list data and may send console or email notifications when availability changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Risk: The skill can run shell commands, read and write local files, and contact Shenzhen Library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested command and configuration before execution, run it in an appropriate workspace, and use reasonable monitoring intervals.
+
+Risk: Email notifications can expose book-interest data and may require SMTP credentials.
+
+Mitigation: Use a dedicated app password, limit recipients, or remove email from notification methods when email alerts are not needed.
+
+Risk: Notification configuration may still initialize email behavior when email remains configured.
+
+Mitigation: Remove email configuration or inspect notification settings before relying on notification.enabled as the only control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yszheda/skills/skill-openclaw-library-monitor)
+- [Shenzhen Library](https://www.szlib.org.cn/)
+- [Shenzhen Library OPAC](https://www.szlib.org.cn/opac/)
+- [Shenzhen Library OPAC API](https://www.szlib.org.cn/api/opacservice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local book-list state and may send configured console or email notifications.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

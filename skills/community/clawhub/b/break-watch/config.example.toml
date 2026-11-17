@@ -1,0 +1,49 @@
+[tdx]
+servers = [
+  { host = "119.6.200.40", port = 7709 },
+  { host = "182.140.139.191", port = 7709 },
+  { host = "218.200.222.134", port = 7709 },
+  { host = "182.150.28.166", port = 7709 },
+]
+timeout_seconds = 5
+reconnect_retries = 2
+quote_batch_size = 80
+
+[scan]
+# all = scan the whole supported A-share universe
+# watchlist = scan only the symbols listed below
+mode = "all"
+
+# Used only when mode = "watchlist".
+# Accepted formats: "600000", "sh600000", "sz000001".
+watchlist = [
+  "600000",
+  "000001",
+]
+
+exclude_star_market = true
+exclude_bse = true
+
+scan_interval_seconds = 30
+history_days = 20
+volume_ratio_threshold = 2.0
+interval_spike_threshold = 2.0
+interval_spike_window = 5
+interval_spike_min_samples = 3
+min_rise_pct = 1.0
+market_hours_only = true
+
+# When false, each stock is reported only once per day.
+repeat_alert = false
+
+[output]
+log_dir = "logs"
+data_dir = "data"
+result_dir = "output"
+csv_enabled = true
+html_enabled = true
+ths_txt_enabled = true
+# plain = 600000; prefix = SH600000 / SZ000001
+ths_txt_code_format = "plain"
+console_enabled = true
+

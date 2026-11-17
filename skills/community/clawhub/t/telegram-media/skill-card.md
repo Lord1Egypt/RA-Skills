@@ -1,39 +1,57 @@
-## Description: <br>
-Send generated charts, photos, documents, and ElevenLabs TTS voice clips through Telegram using executed shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send generated charts, photos, documents, and ElevenLabs TTS voice clips through Telegram using executed shell commands.
 
-## Publisher: <br>
-[ryandeangraves](https://clawhub.ai/user/ryandeangraves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryandeangraves](https://clawhub.ai/user/ryandeangraves)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare and send rich media through Telegram, including generated market charts, files, and voice notes. It is intended for environments where Telegram and ElevenLabs credentials are configured and recipients are explicitly confirmed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send local files or generated voice content through configured Telegram credentials to a hardcoded fallback chat. <br>
-Mitigation: Set TELEGRAM_CHAT_ID to the intended destination, remove the hardcoded fallback, and require explicit confirmation of every recipient, file path, and text payload before execution. <br>
-Risk: Media delivery commands may expose secrets, credentials, internal documents, or sensitive user content if used on the wrong files or prompts. <br>
-Mitigation: Review payloads before sending and avoid using the skill for secrets, credentials, internal documents, or sensitive user content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryandeangraves/telegram-media) <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate and send charts, images, documents, and voice notes to a configured Telegram chat.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may send files, images, and generated voice clips to Telegram when executed with configured credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send local files or generated media to an external Telegram chat.
+
+Mitigation: Use only in an intentionally configured environment and restrict uploads to approved generated output directories.
+
+Risk: The skill relies on bot and text-to-speech credentials for external API calls.
+
+Mitigation: Keep Telegram and ElevenLabs credentials in environment configuration, rotate them if exposed, and review recipients before sending.
+
+Risk: Inline shell and Python snippets may execute network sends without sufficient safeguards.
+
+Mitigation: Review commands before execution, require confirmation before external sends, and prefer validated scripts or structured arguments in safer versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryandeangraves/skills/telegram-media)
+- [ClawHub publisher profile](https://clawhub.ai/user/ryandeangraves)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate external Telegram and ElevenLabs API calls when commands are executed in a configured environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,53 @@
-## Description: <br>
-Provides product-context UI design direction, design-system generation, anti-generic interface guidance, interaction-state coverage, responsive polish, and visual QA for frontend work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides product-specific frontend UI design direction, design-system guidance, and visual quality checks.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend teams use this skill to shape, implement, and review product-specific UI for pages, components, dashboards, and tool surfaces. It helps produce design direction, reusable design-system notes, visual hierarchy guidance, state coverage, responsive checks, and pre-delivery UI/UX QA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly on frontend polish or design requests and influence UI direction beyond the user's intended scope. <br>
-Mitigation: Confirm whether an external design file, existing project tokens, or shipped component APIs are authoritative before applying new design direction. <br>
-Risk: The local design-system generator can write persistent design-system notes when --persist is used. <br>
-Mitigation: Use --persist only when the project should retain generated design-system guidance, and review generated files before committing or deploying them. <br>
+## Use Case:
 
+Frontend developers and designers use this skill to set product-appropriate visual direction, generate design-system recommendations, refine interaction states, and review UI quality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-ui-design) <br>
-- [Design intelligence reference](references/design-intelligence.md) <br>
-- [Master and page override reference](references/master-page-overrides.md) <br>
-- [Pre-delivery UI/UX checklist](references/pre-delivery-checklist.md) <br>
-- [Design system generator](scripts/design-system.mjs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands, code changes, generated design-system Markdown, and JSON generator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist design-system notes when the generator is run with --persist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata and package.json) <br>
+Risk: Using --persist can create or overwrite generated Markdown under design-system/<project>.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target output directory before enabling --persist and check generated files before adopting them.
+
+## Reference(s):
+
+- [Design intelligence](references/design-intelligence.md)
+- [Master and page overrides](references/master-page-overrides.md)
+- [Pre-delivery UI checklist](references/pre-delivery-checklist.md)
+- [Project homepage (package metadata)](https://github.com/bovinphang/frontend-craft)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-ui-design)
+
+## Skill Output:
+
+**Output Type(s):** [Design guidance, Markdown, Code, Configuration guidance]
+
+**Output Format:** [Text and Markdown; optional generated design-system Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional --persist mode writes project and page design-system files.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

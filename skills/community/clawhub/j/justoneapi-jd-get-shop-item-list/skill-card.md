@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/jd/get-shop-item-list/v1 for JD.com Shop Product List through JustOneAPI with shopId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/jd/get-shop-item-list/v1 for JD.com Shop Product List through JustOneAPI with shopId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to fetch JD.com shop product-list data through JustOneAPI for catalog tracking and seller research. It requires a JustOneAPI token and a JD.com shopId, with optional pagination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sensitive and is sent as a query parameter in the request URL. <br>
-Mitigation: Use a revocable, least-privilege token; avoid sharing command output or URLs that may contain the token; rotate the token if it may have appeared in logs or terminal history. <br>
-Risk: The skill depends on external JustOneAPI and JD.com endpoint behavior, so backend failures or schema changes can affect results. <br>
-Mitigation: Check backend error payloads, operation IDs, and response JSON before using results in downstream workflows. <br>
+## Use Case:
 
+Developers and external agents use this skill to call JustOneAPI's JD.com shop product-list endpoint for a supplied shopId and summarize returned item titles, prices, images, and related catalog data.
 
-## Reference(s): <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_shop_item_list&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_shop_item_list&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-jd-get-shop-item-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes endpoint use and should return raw JSON after a short endpoint-specific summary; backend errors include the operation ID and backend payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token is passed to the helper command and sent to api.justoneapi.com as a request URL query parameter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token if available, avoid logging commands or full request URLs, and rotate the token if it may appear in process lists, shell history, monitoring, or URL logs.
+
+Risk: The skill sends shop lookup requests to a third-party API service.
+
+Mitigation: Install and run it only when sending the requested JD.com shopId and JustOneAPI token to api.justoneapi.com is acceptable.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_shop_item_list&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_shop_item_list&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-jd-get-shop-item-list)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when results are returned]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and a JD.com shopId; optional page parameter supports pagination.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

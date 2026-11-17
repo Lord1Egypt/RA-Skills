@@ -1,44 +1,59 @@
-## Description: <br>
-Generate reference-based videos with Alibaba Cloud Model Studio Wan R2V models (wan2.6-r2v-flash, wan2.6-r2v). Use when creating multi-shot videos from reference video/image material, preserving character style, or documenting reference-to-video request/response flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reference-based videos with Alibaba Cloud Model Studio Wan R2V models, including wan2.6-r2v-flash and wan2.6-r2v.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and content engineers use this skill to prepare Alibaba Cloud Wan reference-to-video requests, validate response shape, and document request and polling evidence for generated videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference media are sent to Alibaba Cloud for video generation. <br>
-Mitigation: Confirm the data is appropriate for Alibaba Cloud processing before use, and avoid submitting sensitive media unless the deployment has approved terms and controls. <br>
-Risk: DashScope API keys or Alibaba Cloud credentials are required. <br>
-Mitigation: Use a limited-purpose credential, keep it out of committed files, and rotate it if local output or logs may have exposed it. <br>
-Risk: The helper installs an unpinned SDK dependency and writes request/output evidence locally. <br>
-Mitigation: Install dependencies in a virtual environment, review dependency versions before production use, and inspect or clean the output directory after each run. <br>
+## Use Case:
 
+Developers and AI video practitioners use this skill to prepare and run Alibaba Cloud Wan reference-to-video generation workflows from reference video or image material while preserving style across multi-shot outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-ai-video-wan-r2v) <br>
-- [Alibaba Cloud Wan video-to-video API reference](https://help.aliyun.com/zh/model-studio/wan-video-to-video-api-reference) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes request payloads and response-validation evidence under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter version is 1.0.0) <br>
+Risk: The workflow can persist prompts, media references, task identifiers, polling snapshots, and generated outputs in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive prompts or private media URLs, review saved artifacts before sharing, and clean output directories when the evidence is no longer needed.
+
+Risk: The skill installs the dashscope SDK without a pinned version.
+
+Mitigation: Pin and review the dependency version before use in controlled or production environments.
+
+Risk: Using the skill requires Alibaba Cloud credentials for video generation.
+
+Mitigation: Use scoped credentials, keep DASHSCOPE_API_KEY out of checked-in files, and confirm users are authorized to submit the referenced media.
+
+## Reference(s):
+
+- [Wan Video-to-Video API Reference](https://help.aliyun.com/zh/model-studio/wan-video-to-video-api-reference)
+- [Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/alicloud-ai-video-wan-r2v)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request or response artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes request payloads, task outputs, polling snapshots, and generated video artifacts under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

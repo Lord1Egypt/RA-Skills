@@ -1,0 +1,16 @@
+{
+  "items": [
+    {"sku": "NOTEBOOK-A5", "current_stock": 18, "recent_sales": 42, "sales_days": 14, "lead_time_days": 7, "target_stock": 45, "safety_stock": 5},
+    {"sku": "COFFEE-DRIP", "current_stock": 60, "recent_sales": 30, "sales_days": 15, "lead_time_days": 5, "target_stock": 50},
+    {"sku": "BOOKMARK-SET", "current_stock": 4, "recent_sales": 16, "sales_days": 8, "lead_time_days": 10, "target_stock": 30, "safety_stock": 4}
+  ],
+  "expected": {
+    "reorder_quantities": {
+      "NOTEBOOK-A5": 32,
+      "BOOKMARK-SET": 30,
+      "COFFEE-DRIP": 0
+    },
+    "lead_time_stockout_risks": ["NOTEBOOK-A5", "BOOKMARK-SET"],
+    "unprocessed": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "standard": "ISO/IEC 27701:2019 隐私信息管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-PR-001", "name": "PII处理与合法性基础管理程序", "name_en": "PII Processing & Lawful Basis", "clause": "6.3/8",
+     "meta": {"owner": "数据保护官(DPO)", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "规范PII处理活动，确保具备合法基础并向数据主体告知。"},
+       {"title": "2 适用范围", "content": "适用于{org}收集、使用、存储个人信息的全部活动。"},
+       {"title": "3 职责", "content": "3.1 DPO统筹隐私合规；3.2 各部门负责本部门处理活动；3.3 法务审核依据。"},
+       {"title": "4 工作程序", "content": "4.1 建立处理活动清单；4.2 确定每类处理的合法性基础；4.3 编制并公示隐私通知；4.4 记录同意；4.5 最小化处理与留存期限管理。"}
+     ],
+     "high_voltage_check": ["hv-priv-lawful"]},
+    {"id": "SP-PR-002", "name": "数据主体权利响应程序", "name_en": "Data Subject Rights Procedure", "clause": "8",
+     "meta": {"owner": "DPO/客服", "frequency": "发生时不定期"},
+     "sections": [
+       {"title": "1 目的", "content": "及时响应数据主体的访问、更正、删除、携带等请求。"},
+       {"title": "2 适用范围", "content": "适用于{org}接收到的所有数据主体权利请求。"},
+       {"title": "3 职责", "content": "3.1 DPO受理与核验身份；3.2 业务部提供数据；3.3 法务判断例外。"},
+       {"title": "4 工作程序", "content": "4.1 接收并验证身份；4.2 分类请求类型；4.3 在法定时限内处理；4.4 拒绝须说明理由；4.5 记录与统计。"}
+     ],
+     "high_voltage_check": ["hv-priv-rights"]},
+    {"id": "SP-PR-003", "name": "PII共享与跨境转移控制程序", "name_en": "PII Sharing & Transfer", "clause": "8",
+     "meta": {"owner": "DPO/法务", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "管控PII对外提供与跨境转移，防范合规风险。"},
+       {"title": "2 适用范围", "content": "适用于{org}向第三方提供及跨境传输个人信息。"},
+       {"title": "3 职责", "content": "3.1 DPO评估转移风险；3.2 采购/业务签署协议；3.3 法务把关。"},
+       {"title": "4 工作程序", "content": "4.1 第三方尽调与数据处理协议(DPA)；4.2 跨境转移前影响评估；4.3 采取 safeguards（标准合同条款等）；4.4 监督与再评估。"}
+     ],
+     "high_voltage_check": ["hv-priv-transfer"]}
+  ]
+}

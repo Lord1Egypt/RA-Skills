@@ -1,0 +1,3 @@
+interface:
+  display_name: "Jev Skill"
+  short_description: "Build Jev agent harnesses with OpenJev-HF, LangChain, and LocalJev"

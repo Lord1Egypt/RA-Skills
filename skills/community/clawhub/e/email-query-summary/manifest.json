@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "name": "email-query-summary",
+  "version": "1.1.0",
+  "description": "通用邮箱查询总结技能。通过 IMAP 实时拉取已配置邮箱的邮件并生成结构化总结。触发场景：查邮件、邮件周报、某时间段邮件、收件/发件统计。配置见 SETUP.md 与同目录 accounts.json。相对时间建议用 CLI --period；具体日期用 YYYY-MM-DD 位置参数。",
+  "entrypoint": "scripts/main.py",
+  "setup_doc": "SETUP.md",
+  "runtime": {
+    "language": "python",
+    "min_version": "3.9"
+  },
+  "permissions": ["network"],
+  "config": {
+    "accounts_file": {
+      "type": "file",
+      "path": "accounts.json",
+      "description": "邮箱账户配置（IMAP host/port/username/password/folders），详见 SETUP.md"
+    }
+  },
+  "cli": {
+    "usage": [
+      "python scripts/main.py --period <关键词>",
+      "python scripts/main.py DATE_START [DATE_END]"
+    ],
+    "period_keywords": [
+      "今天", "昨天", "前天",
+      "本周", "上周", "上上周",
+      "本月", "上月", "上上月",
+      "最近3天", "最近7天", "最近14天", "最近30天"
+    ]
+  },
+  "functions": [
+    {
+      "name": "fetch_emails",
+      "description": "通过 IMAP 拉取指定时间范围内的邮件。相对时间优先用 --period；具体日期用 DATE_START [DATE_END]（YYYY-MM-DD 或 MM-DD）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string",
+            "description": "相对时间关键词，如：本周、上月、最近7天"
+          },
+          "date_start": {
+            "type": "string",
+            "description": "起始日期 YYYY-MM-DD 或 MM-DD"
+          },
+          "date_end": {
+            "type": "string",
+            "description": "结束日期 YYYY-MM-DD 或 MM-DD，省略则与 date_start 相同"
+          }
+        }
+      }
+    }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "object",
+        "properties": {
+          "start": { "type": "string" },
+          "end": { "type": "string" }
+        }
+      },
+      "emails": { "type": "array" },
+      "errors": { "type": "array" },
+      "setup_hint": { "type": "string" }
+    }
+  }
+}

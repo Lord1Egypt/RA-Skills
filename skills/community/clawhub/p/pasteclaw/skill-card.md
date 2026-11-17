@@ -1,43 +1,58 @@
-## Description: <br>
-Use Pasteclaw.com API to create, update, group with session keys, and delete snippets with agent-friendly request patterns and headers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PasteClaw helps agents create, update, group, and delete text or code snippets through the Pasteclaw.com API and return preview URLs.
 
-## Publisher: <br>
-[tairov](https://clawhub.ai/user/tairov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tairov](https://clawhub.ai/user/tairov)
 
-## Use Case: <br>
-Developers and agent users use this skill to publish HTML, CSS, JavaScript, Markdown, JSON, YAML, or text snippets to Pasteclaw.com and return stable preview URLs. It also supports updating, grouping, downloading, and deleting snippets when the required IDs and tokens are available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded snippets, edit tokens, and session keys are sent to an external paste service. <br>
-Mitigation: Use the skill only for material intended for external sharing, avoid secrets and private configuration, and keep session keys out of URLs. <br>
-Risk: Default curl examples include `-k`, which disables HTTPS certificate verification. <br>
-Mitigation: Remove `-k` from curl commands so HTTPS certificates are verified before uploading content or tokens. <br>
-Risk: Update and delete operations can affect the wrong snippet if the snippet ID or edit token is incorrect. <br>
-Mitigation: Confirm the snippet ID and edit token before performing update or delete requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PasteClaw release page](https://clawhub.ai/tairov/pasteclaw) <br>
-- [Pasteclaw service](https://pasteclaw.com) <br>
-- [Pasteclaw snippets API](https://pasteclaw.com/api/snippets) <br>
+## Use Case:
 
+Developers, engineers, and external agent users use PasteClaw to publish shareable snippets, demos, documents, notes, and data samples from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns or explains snippet URLs, IDs, edit tokens, session keys, and concise error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may upload secrets, private source code, proprietary documents, personal data, or production configuration to a public Pasteclaw service.
+
+Mitigation: Require explicit review and approval before upload, and do not use the skill for sensitive content.
+
+Risk: The documented curl examples use -sk, which disables TLS certificate verification.
+
+Mitigation: Use certificate-verifying requests instead of the documented -sk examples.
+
+Risk: Optional metadata, session keys, edit tokens, or delete requests can expose trace data or alter published snippets.
+
+Mitigation: Omit optional metadata unless needed, keep tokens and session keys out of URLs, and require confirmation before updates or deletes.
+
+## Reference(s):
+
+- [ClawHub PasteClaw Skill Page](https://clawhub.ai/tairov/skills/pasteclaw)
+- [Pasteclaw Service](https://pasteclaw.com)
+- [Pasteclaw Snippets API](https://pasteclaw.com/api/snippets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API examples, shell commands, and preview URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Pasteclaw snippet IDs, preview URLs, edit tokens, session keys, HTTP status guidance, and optional metadata headers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Antlr4 concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Antlr4 concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local Antlr4 reference helper for overview, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference content appears generic and may not reflect authoritative Antlr4 behavior. <br>
-Mitigation: Treat the output as quick-reference guidance and validate implementation details against authoritative Antlr4 documentation before production changes. <br>
-Risk: Displayed versions differ across server release metadata, SKILL.md, and the script. <br>
-Mitigation: Use the server release version for this card and confirm package and script version strings before publishing or relying on version output. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick ANTLR4 reference for concepts, setup, patterns, debugging, performance, security, migration, and cheat-sheet style guidance.
 
-## Reference(s): <br>
-- [Antlr4 on ClawHub](https://clawhub.ai/ckchzh/antlr4) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local command output only; no credentials, network access, persistence, or system changes are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata; SKILL.md says 3.0.1 and script says 3.0.0) <br>
+Risk: Static reference guidance may be generic or incomplete for a specific ANTLR4 project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate recommendations against current ANTLR4 documentation and project constraints before changing code or workflows.
+
+Risk: Broad credential, security, and migration advice could be misapplied in production environments.
+
+Mitigation: Have a qualified developer review any credential, backup, migration, or production-change guidance before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/antlr4)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text and Markdown reference guidance emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc content; no external API calls, credentials, or network access indicated.]
+
+## Skill Version(s):
+
+3.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

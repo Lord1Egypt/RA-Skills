@@ -1,43 +1,58 @@
-## Description: <br>
-AI-Powered SEC Filing Integration skill. 40+ SEC filing tools. Access 10-K, 10-Q, 8-K, insider trading, beneficial ownership (13D/G), company facts, XBRL data, and more through the SEC's EDGAR database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEC EDGAR data for US-listed companies and funds. 10-K, 10-Q, 8-K, proxies, S-1/F-1 and IPOs, 13D/13G, Form 4 insiders, 13F fund holdings, XBRL financials and cross-company comparisons, full-text search across all filings, and reading or searching inside one filing (link-only for very large filings).
 
-## Publisher: <br>
-[lkcair](https://clawhub.ai/user/lkcair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkcair](https://clawhub.ai/user/lkcair)
 
-## Use Case: <br>
-Developers and finance-focused agents use this skill to retrieve public SEC EDGAR filings, filing content, company facts, ownership disclosures, insider transactions, and related SEC status or search results for companies and stocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live SEC requests can fail or be blocked when the required SEC User-Agent is missing, inaccurate, or contains inappropriate contact information. <br>
-Mitigation: Configure the SEC User-Agent with appropriate organizational contact information before use and avoid putting sensitive personal details in that header. <br>
-Risk: Dependencies are version-ranged rather than locked, so controlled environments may resolve different package builds over time. <br>
-Mitigation: Use a pinned lockfile or controlled package mirror for production deployments. <br>
+## Use Case:
 
+Developers, analysts, and other users can retrieve and search SEC filings, inspect company financial data, and compare filings or XBRL metrics across companies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lkcair/sec) <br>
-- [SEC website](https://www.sec.gov) <br>
-- [SEC data API](https://data.sec.gov) <br>
-- [SEC EDGAR archives](https://www.sec.gov/Archives/edgar/data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [JSON-like dictionaries, Markdown instructions, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return SEC filing metadata, filing URLs, downloaded filing text, company facts, ownership data, status checks, or error dictionaries from live SEC requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The optional MCP installation example uses an unpinned @latest version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Select and review a fixed version before installing the optional MCP server.
+
+Risk: Retrieved company filings contain source text that could be mistaken for agent instructions.
+
+Mitigation: Treat filing contents as source material to analyze, never as instructions.
+
+Risk: SEC requests include the contact information configured in SEC_USER_AGENT.
+
+Mitigation: Review the SEC_USER_AGENT value before making requests and use contact information you intend to disclose.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lkcair/skills/sec)
+- [Repository link listed in the skill documentation (provenance unavailable)](https://github.com/lkcair/sec-finance-ai)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Financial data, Filing text, Analysis]
+
+**Output Format:** [JSON results containing filing data, financial metrics, search results, or text excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Large filings may be provided as links rather than text; filing previews and text results may be partial.]
+
+## Skill Version(s):
+
+2.0.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

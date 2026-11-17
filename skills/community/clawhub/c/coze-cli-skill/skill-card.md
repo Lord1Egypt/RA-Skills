@@ -1,44 +1,58 @@
-## Description: <br>
-Interact with Coze CLI (@coze/cli) to create and deploy Coze projects, manage spaces and organizations, send messages to projects, generate images, audio, and video, and automate Coze workflows via terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Coze CLI (@coze/cli) to create and deploy Coze projects, manage spaces and organizations, send messages, generate media, upload files, and automate Coze workflows from the terminal.
 
-## Publisher: <br>
-[cengsin](https://clawhub.ai/user/cengsin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cengsin](https://clawhub.ai/user/cengsin)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Coze CLI workflows from an agent, including project creation, deployment, workspace setup, messaging, media generation, and configuration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deploy, delete, environment, and configuration commands can change live Coze projects or workspaces. <br>
-Mitigation: Confirm the target organization, space, project, environment, and command intent before running deploy, delete, env, or config operations. <br>
-Risk: Piped logs, uploaded files, prompts, and local file references may contain secrets, personal data, or proprietary content. <br>
-Mitigation: Review and redact sensitive content before sending logs, uploading files, or passing local context to Coze CLI commands. <br>
-Risk: The skill depends on installing and operating the external Coze CLI package with an OAuth-authenticated session. <br>
-Mitigation: Install only from a trusted package source and use accounts with permissions appropriate to the requested Coze operation. <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate Coze CLI workflows, including project creation, deployment, messaging, media generation, file upload, and workspace configuration.
 
-## Reference(s): <br>
-- [Coze CLI command reference](references/commands.md) <br>
-- [Coze CLI official docs](https://docs.coze.cn/developer_guides/coze_cli) <br>
-- [Coze CLI quickstart](https://docs.coze.cn/developer_guides/coze_cli_quickstart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown with inline bash command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference OAuth-authenticated Coze organizations, spaces, projects, environment variables, uploaded files, and generated media outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill can guide an agent through remote messaging, file upload, production deployment, environment variable changes, project deletion, and commands that may expose logs, source code, credentials, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before uploads, file- or pipe-based message sends, production deploys, environment variable changes, project deletion, and commands that disclose sensitive outputs.
+
+Risk: Security evidence marks the release suspicious because the skill grants broad Coze CLI operational capability without enough built-in safety scoping.
+
+Mitigation: Review before installing and restrict use to sessions where the user intends the agent to operate Coze CLI.
+
+## Reference(s):
+
+- [Coze CLI command reference](references/commands.md)
+- [Coze CLI Official Docs](https://docs.coze.cn/developer_guides/coze_cli)
+- [Coze CLI Quickstart](https://docs.coze.cn/developer_guides/coze_cli_quickstart)
+- [Coze CLI repository](https://github.com/copilot66/coze-cli)
+- [ClawHub skill page](https://clawhub.ai/cengsin/skills/coze-cli-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/cengsin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Coze CLI text or JSON output format guidance when scripting is requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

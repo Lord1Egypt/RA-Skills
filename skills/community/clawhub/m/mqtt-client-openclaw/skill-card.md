@@ -1,44 +1,59 @@
-## Description: <br>
-Universal MQTT Client for OpenClaw with Node.js/mqtt.js that enables connection management, subscription management, message handling, and OpenClaw integration for arbitrary MQTT-based automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal MQTT Client for OpenClaw with Node.js/mqtt.js. Enables Connection Management, Subscription Management, Message Handling and OpenClaw Integration for arbitrary MQTT-based automation.
 
-## Publisher: <br>
-[sanwebgit](https://clawhub.ai/user/sanwebgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanwebgit](https://clawhub.ai/user/sanwebgit)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to connect OpenClaw workflows to MQTT brokers, subscribe to topics, publish messages, monitor connection health, and trigger actions from MQTT state changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes persistent OpenClaw configuration when imported. <br>
-Mitigation: Review ~/.openclaw/openclaw.json after installation and confirm the generated MQTT settings before use. <br>
-Risk: Default broad MQTT subscriptions can expose more broker traffic than intended. <br>
-Mitigation: Restrict subscriptions and publish permissions to specific topics instead of using # unless broad access is required. <br>
-Risk: Credentialed TLS broker connections may not verify certificates safely. <br>
-Mitigation: Avoid credentialed TLS connections until certificate verification is configured safely. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to connect OpenClaw agents to MQTT brokers, subscribe to topics, publish messages, monitor health, and trigger actions from MQTT state changes.
 
-## Reference(s): <br>
-- [MQTT Topics Best Practices](references/mqtt-topics.md) <br>
-- [mqtt.js Documentation](https://github.com/mqttjs/MQTT.js) <br>
-- [MQTT 5.0 Specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MQTT integration guidance and reusable Node.js client code for OpenClaw workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: The skill can handle MQTT credentials and persistent OpenClaw configuration in ways that may weaken or redirect secure connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use least-privilege MQTT accounts, secure ~/.openclaw/openclaw.json permissions, pin dependencies, and fix TLS certificate verification before using real credentials.
+
+Risk: Broad MQTT subscriptions such as the # wildcard can expose more broker traffic than intended.
+
+Mitigation: Avoid # except on trusted scoped brokers and prefer narrowly scoped topic filters for production automation.
+
+Risk: Running the skill from untrusted project directories can expose local configuration behavior to untrusted files or workflows.
+
+Mitigation: Run it only from trusted workspaces and review configuration changes before deployment.
+
+## Reference(s):
+
+- [MQTT Topics Best Practices](references/mqtt-topics.md)
+- [mqtt.js Documentation](https://github.com/mqttjs/MQTT.js)
+- [MQTT 5.0 Specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript, JSON, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MQTT topic patterns, environment variables, OpenClaw configuration, and usage examples.]
+
+## Skill Version(s):
+
+1.2.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

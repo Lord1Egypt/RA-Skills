@@ -1,40 +1,55 @@
-## Description: <br>
-Generates Xiaohongshu (RED) cover images with Chinese text overlays using split, gradient, or card layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Xiaohongshu (小红书) cover images with Chinese text overlays, supporting split-screen comparisons, gradient backgrounds, and card layouts with Pollinations.ai base images and PIL typography.
 
-## Publisher: <br>
-[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid)
 
-## Use Case: <br>
-Content creators and agents use this skill to generate 3:4 Xiaohongshu cover images with Chinese titles, subtitles, labels, and optional AI-generated backgrounds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send base-image prompt text to Pollinations.ai. <br>
-Mitigation: Do not include private, proprietary, or personal information in base prompts unless that external disclosure is acceptable. <br>
-Risk: The skill may make runtime network calls, download a font, cache files in /tmp, and write a JPEG to the requested output path. <br>
-Mitigation: Run it only in environments where that network access, temporary caching, and output-file write behavior are acceptable. <br>
+## Use Case:
 
+Developers and content-focused agents use this skill to generate publication-ready Xiaohongshu or RED post cover images with Chinese titles, subtitles, labels, and optional AI-generated base art.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huuuwnnn-droid/xhs-cover-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [JPEG image file with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a 1080x1440 JPEG at 95% quality; dimensions, style, colors, labels, text, and output path are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Base-image prompts are sent to Pollinations.ai, which may expose private or proprietary text included in --base-prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or proprietary content in --base-prompt and review prompts before execution.
+
+Risk: The skill downloads a CJK font from GitHub and contacts external services during normal image generation.
+
+Mitigation: Install and run only in environments where these network calls are acceptable, and prefer a normal user context rather than elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huuuwnnn-droid/skills/xhs-cover-gen)
+- [Noto Sans CJK Simplified Chinese Bold font](https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Bold.otf)
+- [Pollinations.ai image prompt endpoint](https://image.pollinations.ai/prompt/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated JPEG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default image size is 1080x1440 at 95% JPEG quality; supports split, gradient, and card styles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

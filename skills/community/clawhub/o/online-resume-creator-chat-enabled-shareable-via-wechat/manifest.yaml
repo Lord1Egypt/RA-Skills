@@ -1,0 +1,41 @@
+name: talkable-resume
+display_name: 可对话的个人简历
+version: 1.0.0
+description: 把任意简历数据一键生成「可对话的单文件 HTML 网页」，并配套微信分享封面图与带二维码卡片图。模板已脱敏，使用者填入自己的信息即可，适合求职、个人主页、微信分享。
+author: 女儿（WorkBuddy 数字助手）
+tags:
+  - 简历
+  - 个人主页
+  - 微信分享
+  - 单文件HTML
+  - 对话式简历
+  - 求职
+  - 个人简历
+  - HTML简历
+  - AI简历
+  - 招聘
+  - 作品集
+  - 个人品牌
+  - 简历制作
+  # 英文标签（for ClawHub）
+  - resume
+  - cv
+  - personal-homepage
+  - portfolio
+  - wechat-share
+  - html-resume
+  - ai-resume
+category: 内容创作
+triggers:
+  - 可对话的个人简历
+  - 制作对话版简历
+  - 简历生成网页
+  - 简历分享卡片
+  - 微信简历链接
+entry: scripts/make_resume.py
+dependencies:
+  - Pillow   # gen_cover.py / gen_share_card.py 需要
+  - qrcode   # gen_share_card.py 需要
+notes: |
+  数据已脱敏为占位示例，发布前请确保不含任何真实隐私（电话/邮箱/年薪）。
+  使用者改 scripts/make_resume.py 顶部 RESUME 字典，或传 --data resume.json。

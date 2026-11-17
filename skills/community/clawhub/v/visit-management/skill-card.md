@@ -1,42 +1,57 @@
-## Description: <br>
-Visit Management generates visit plans and reminders from a local Excel customer ledger using service history, tenant level, renewal warnings, fee risk, repair records, and manual or scheduled triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visit Management generates Excel-based customer visit plans, daily reminders, and follow-up summaries for property service teams.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Property and customer-service operations employees use this skill to plan tenant visits, generate daily reminders, track visit closure, and prioritize follow-up based on customer records, payment status, repair history, and renewal timing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to local data-access and workplace messaging compliance. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local customer Excel ledger and writes generated plan, reminder, report, history, and backup files that may contain sensitive customer and tenant context. <br>
-Mitigation: Install and run it only on machines authorized to access the workbook, and restrict filesystem permissions for the source workbook and generated JSON or Excel outputs. <br>
-Risk: Reminder content may be delivered to WeCom or similar workplace chat channels, exposing customer context to unintended recipients if webhook or chat permissions are misconfigured. <br>
-Mitigation: Confirm recipient groups before enabling delivery, protect and rotate webhook keys, and review generated reminder content before automated sends. <br>
-Risk: Evidence guidance identifies a unit-number versus tenant-name matching bug that could send or use the wrong customer context. <br>
-Mitigation: Fix and test customer matching before relying on automated planning, reminders, or outbound messages. <br>
+## Use Case:
 
+Property service employees and operations teams use this skill to generate weekly visit plans, daily reminders, visit quality summaries, and follow-up status from a trusted Excel workbook.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/perrykono-debug/visit-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese text, Markdown reminders, JSON plan/reminder/report files, and Python command-line output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and may update a local Excel workbook; writes local JSON outputs under the visit-management skill directory; formats reminders for manual review or configured workplace-chat delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill handles and persists sensitive customer and business data through a fixed local workbook path and local output directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled trusted deployment; require explicit approval for workbook access, restrict file permissions, and set retention limits for generated outputs and backups.
+
+Risk: The skill can update visit records and generate operational notifications, which could affect customer follow-up workflows if run with untrusted inputs or destinations.
+
+Mitigation: Require operator approval before sending notifications or updating visit records, and verify the workbook path, output directories, WeCom destination, and operators before production use.
+
+Risk: Excel writes may preserve or introduce unsafe formulas when customer or visit data is exported.
+
+Mitigation: Apply formula neutralization for Excel writes before production deployment.
+
+## Reference(s):
+
+- [Visit Management API Reference](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with structured JSON plans, reminders, reports, and optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local Excel workbook as input and may create local JSON plan, reminder, report, and backup files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+<!--
+  compare-card.html — 对比卡(非统一边框 + 标题 + 列表)
+  用法:左右并排两张,一张绿顶边(优势)、一张红顶边(劣势)。
+  参数:
+    X / Y / W / H     — 卡片位置与尺寸
+    ACCENT            — 顶边强调色(变量名,绿 var(--signal-green) / 红 var(--signal-red))
+    BADGE             — 标签文字(如 推荐 / 不推荐)
+    TITLE             — 卡片标题(如 方案 A)
+    ITEMS             — 列表项,每行一个 <li>(在 {{ITEMS}} 处插入)
+  z 序:卡片底 z-index:1 → 内容文字 z-index:10
+  提示:圆角卡片用 border-top 单边强调(逐边细条不贴合圆角,validate WARN 可接受)
+-->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};
+            background:var(--white);border-top:8px solid {{ACCENT}};border-radius:8px;
+            box-shadow:0 4px 16px rgba(0,0,0,0.08);z-index:1;"></div>
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 30px);top:calc({{Y}} + 30px);width:calc({{W}} - 60px);height:calc({{H}} - 60px);
+            font-size:24px;color:var(--text-primary);line-height:1.7;z-index:10;">
+  <div style="font-size:28px;font-weight:700;color:{{ACCENT}};margin-bottom:12px;">{{TITLE}}</div>
+  <div style="font-size:16px;font-weight:600;color:{{ACCENT}};margin-bottom:16px;letter-spacing:2px;">{{BADGE}}</div>
+  <ul style="padding-left:20px;margin:0;">
+    {{ITEMS}}
+  </ul>
+</div>

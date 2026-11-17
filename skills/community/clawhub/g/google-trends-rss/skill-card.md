@@ -1,43 +1,58 @@
-## Description: <br>
-Fetch and structure Google Trends daily trending-search data by country or region via the public RSS feed for snapshots, country comparisons, top daily searches, related news context, and export-ready trend tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and structure Google Trends daily trending-search data by country/region via the public RSS feed.
 
-## Publisher: <br>
-[wsjwong](https://clawhub.ai/user/wsjwong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wsjwong](https://clawhub.ai/user/wsjwong)
 
-## Use Case: <br>
-Analysts, developers, and reporting workflows use this skill to fetch daily Google Trends RSS results for a selected country or region and format them for terminal review, automation, spreadsheets, or reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running the daily command contacts Google Trends and depends on Google's feed availability, latency, and schema stability. <br>
-Mitigation: Use appropriate timeouts, handle empty or changed feed fields, and review returned data before using it in reports or automation. <br>
-Risk: The optional --out argument can create or overwrite the file path supplied by the user. <br>
-Mitigation: Choose output paths deliberately and inspect generated JSON or CSV files before relying on them downstream. <br>
-Risk: Server-resolved provenance is unavailable for this release. <br>
-Mitigation: Review the included Python script and publisher profile before deploying the skill in sensitive environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Trends Connector Notes](references/google-trends-connector-notes.md) <br>
-- [Google Trends RSS endpoint](https://trends.google.com/trending/rss) <br>
-- [Legacy Google Trends daily RSS endpoint](https://trends.google.com/trends/trendingsearches/daily/rss) <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to fetch daily Google Trends by geo and export trend rows with related news context for reports, Sheets, or downstream automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, csv files, shell commands] <br>
-**Output Format:** [Terminal table, JSON, Markdown, or CSV file output from a Python command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports geo code, row limit, sort mode, output format, timeout, and optional output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Google Trends over the network.
+
+Mitigation: Run it only where outbound access to Google Trends is expected, and account for Google-controlled availability and latency.
+
+Risk: The skill can write user-requested JSON or CSV exports when --out is used.
+
+Mitigation: Use trusted workspace or temporary output paths and review generated files before importing them into Sheets or reports.
+
+Risk: Google Trends RSS feed fields and coverage can change.
+
+Mitigation: Keep parsing defensive and verify trend rows against the current feed before relying on them in reports.
+
+## Reference(s):
+
+- [Google Trends Connector Notes](references/google-trends-connector-notes.md)
+- [Google Trends RSS endpoint](https://trends.google.com/trending/rss)
+- [Legacy Google Trends daily RSS endpoint](https://trends.google.com/trends/trendingsearches/daily/rss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal table, JSON, CSV, or Markdown trend rows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports geo, limit, sort order, output format, timeout, and optional JSON/CSV file export.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

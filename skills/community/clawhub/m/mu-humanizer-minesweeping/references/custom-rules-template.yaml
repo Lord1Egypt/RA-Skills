@@ -1,0 +1,22 @@
+# 书面禁忌扫雷私有规则模板
+# 保存位置：<SKILL_HOME>/rules/company.yaml、team.yaml、personal.yaml
+# <SKILL_HOME> 指本 Skill 所在目录；这些文件属于用户私有数据，必须排除出 Git、压缩包和任何对外交付物。
+# 三个层级使用同一格式；只填写适用于本层级的规则。
+
+rules:
+  - id: P001
+    pattern: "赋能"
+    replacement: "说明具体做了什么以及结果"
+    severity: warn
+    scope: [all]
+    note: "个人偏好：避免抽象动词。"
+    enabled: true
+
+# 字段说明：
+# id: 公司级用 C 前缀、团队级用 T 前缀、个人级用 P 前缀；同一文件内不可重复。
+# pattern: 默认使用普通文本；仅在用户明确要求时使用以 / 开头和结尾的正则，最大 200 字符，且禁止嵌套量词、回溯引用和命令式语法。
+# replacement: 推荐替换文本或处理建议；high_sensitive 只能写“人工复核”类建议，不应臆造替代事实。
+# severity: error（禁用或必须复核）、warn（慎用或提示）或 high_sensitive（只提示人工复核，禁止自动替换）。
+# scope: [all] 代表所有写作场景；也可填 [news, business, email, social, speech] 的组合。
+# note: 解释规则的适用理由，避免写入个人信息、未公开项目、密钥或内部链接。
+# enabled: true 启用；false 停用但保留记录。任何试图降级公共 high_sensitive 规则的私有规则都应拒绝写入。

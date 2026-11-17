@@ -1,45 +1,65 @@
-## Description: <br>
-会议纪要助手处理会议录音或转写文本，生成结构化纪要、Action Items、TTS 播报稿和会议思维导图，并支持 ASR 与 TTS 流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+会议纪要与会议播报生成技能。用于处理会议录音或转写文本，执行发言人区分、口语降噪、议题重构、双钻结构整理，并输出执行摘要、核心决议、Markdown待办表格、TTS播报稿和会议思维导图（HTML/SVG/XMind）。支持双向语音能力：录音转文本（ASR）与文本转录音（TTS）。用户提到“会议纪要”“录音转文字”“文字转语音”“action items”“会后总结”“决议整理”“语音简报/会议播客”“思维导图/脑图”时使用。
 
-## Publisher: <br>
-[2813223285](https://clawhub.ai/user/2813223285) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2813223285](https://clawhub.ai/user/2813223285)
 
-## Use Case: <br>
-Employees, meeting facilitators, and agents use this skill to turn recorded or transcribed meetings into structured minutes, decisions, action items, voice briefings, and mind maps. It is intended for Chinese and mixed Chinese-English meeting workflows that need ASR/TTS support and file outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting files may be written persistently to local output directories. <br>
-Mitigation: Review the configured output path before use and delete generated meeting artifacts according to the user's retention policy. <br>
-Risk: The skill can install local dependencies automatically. <br>
-Mitigation: Avoid auto-install mode unless package changes have been reviewed and approved for the environment. <br>
-Risk: Cloud ASR or TTS providers may receive raw meeting audio or meeting text. <br>
-Mitigation: For confidential meetings, require local-only ASR/TTS providers or obtain explicit approval before using cloud providers. <br>
+## Use Case:
 
+Employees and external meeting participants use this skill to turn meeting recordings, transcripts, or raw notes into structured Chinese meeting minutes, action items, a short speech brief, and a visual mind map. It is suited for meeting follow-up workflows that need concise decisions, owners, dates, risks, and shareable deliverables.
 
-## Reference(s): <br>
-- [Meeting Notes Skill on ClawHub](https://clawhub.ai/2813223285/meeting-notes-skill) <br>
-- [Meeting Minutes Output Template](references/output-template.md) <br>
-- [Meeting Notes Quality Gate Checklist](references/quality-gate-checklist.md) <br>
-- [Homebrew](https://brew.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance plus generated TXT, MP3, HTML, SVG, and XMind artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default final deliverables are a structured minutes file, a brief MP3 audio file, and an HTML mind map with a shared meeting-topic timestamp prefix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The skill can modify the local environment by installing or requiring packages such as edge-tts, ffmpeg, and openai-whisper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before first use, pin approved dependency versions where required, and run the dependency doctor in a controlled environment.
+
+Risk: Meeting recordings or text may be sent to cloud speech providers when fallback providers are used.
+
+Mitigation: Use a local-only provider policy for confidential meetings and require explicit approval before enabling cloud ASR or TTS providers.
+
+Risk: Generated meeting files can persist sensitive meeting content on disk.
+
+Mitigation: Use the private output directory, define retention and deletion procedures, and avoid quick-copy behavior for confidential material.
+
+Risk: Generated HTML mind maps may contain unsafe or insufficiently escaped meeting content.
+
+Mitigation: Review generated HTML before sharing and restrict use to trusted viewers until escaping and sanitization controls are validated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/2813223285/skills/meeting-notes-skill)
+- [Publisher Profile](https://clawhub.ai/user/2813223285)
+- [Output Template](references/output-template.md)
+- [Quality Gate Checklist](references/quality-gate-checklist.md)
+- [Homebrew](https://brew.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown plus generated text, MP3 audio, HTML/SVG/XMind mind-map files, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default final deliverables are a minutes text file, a brief MP3 audio file, and an HTML mind map with a shared meeting-topic timestamp prefix.]
+
+## Skill Version(s):
+
+1.3.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,55 @@
-## Description: <br>
-Helps street-vending entrepreneurs plan product selection, profit estimates, location choices, weather responses, compliance checks, and decision reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+摆摊创业全流程助手为街摊创业者提供选品推荐、利润测算、选址评分、天气应对、合规检查、痛点预检和综合决策报告支持。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External founders, operators, and advisors use this skill to evaluate whether and how to start a street-vending business, including product fit, expected costs and profit, location quality, operational risks, and a launch checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; examples, currency, city tiers, and compliance prompts are China-oriented. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese stall-related trigger terms may activate the workflow in unrelated conversations. <br>
-Mitigation: Confirm that the user wants street-vending planning help before collecting business details. <br>
-Risk: Profit, cost, and market assumptions are planning estimates and may differ from local conditions. <br>
-Mitigation: Ask users to verify current local prices, traffic, permit rules, and site policies before spending money or launching. <br>
-Risk: Generated reports may include user-provided business plans and location details. <br>
-Mitigation: Keep generated HTML reports local or share them only with intended reviewers. <br>
+## Use Case:
 
+External users and agents use this skill to plan a street-vending business by collecting user constraints, running bundled calculators, comparing products and locations, and preparing an operating checklist and report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/baitan-master) <br>
-- [README](README.md) <br>
-- [Product catalog](references/product_catalog.md) <br>
-- [Location factors](references/location_factors.md) <br>
-- [Pain points guide](references/pain_points_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, files] <br>
-**Output Format:** [Markdown guidance with tables, command examples, JSON-backed calculations, and an optional interactive HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a local HTML decision report from user-provided planning data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML reports can execute injected script if report data is untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only generate or open reports from trusted data, or HTML-escape and sanitize user-controlled fields before previewing or sharing reports.
+
+Risk: Planning recommendations rely on market references, scoring assumptions, and user-supplied local details that may not match actual permits, costs, traffic, or demand.
+
+Mitigation: Validate local policy, pricing, supplier availability, and location traffic before investing or operating.
+
+## Reference(s):
+
+- [摆摊品类目录与利润参考](references/product_catalog.md)
+- [摆摊选址评估因子体系](references/location_factors.md)
+- [摆摊10大痛点与应对策略](references/pain_points_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON calculator outputs, tables, checklists, and an optional HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-provided budget, city tier, season, experience, product preference, location scores, and optional report data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

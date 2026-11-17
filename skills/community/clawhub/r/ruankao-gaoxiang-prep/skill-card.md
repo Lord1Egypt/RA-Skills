@@ -1,50 +1,59 @@
-## Description: <br>
-Provides Ruankao advanced information systems project manager exam preparation with daily chapter highlights, English vocabulary, past exam questions, and on-demand study lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ruankao Gaoxiang Prep helps users prepare for the advanced Information System Project Manager exam by generating daily chapter review points, English vocabulary, exam questions, and on-demand study lookups.
 
-## Publisher: <br>
-[artwebs](https://clawhub.ai/user/artwebs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artwebs](https://clawhub.ai/user/artwebs)
 
-## Use Case: <br>
-External learners and OpenClaw users use this skill to receive recurring Ruankao Gaoxiang study reminders through QQ and to query chapter summaries, vocabulary, terminology, and practice questions on demand. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent QQ scheduled agent messages from broad study-related triggers. <br>
-Mitigation: Enable scheduled reminders only after explicit confirmation of the schedule and destination, and review existing OpenClaw cron jobs so the reminder can be removed. <br>
-Risk: The skill handles QQ recipient openids and may expose them through temporary config files, logs, or screenshots. <br>
-Mitigation: Verify the recipient openid before use and avoid storing configs in shared temporary locations or sharing logs and screenshots that contain the openid. <br>
-Risk: One-time chapter or vocabulary lookup requests could unintentionally create a recurring reminder. <br>
-Mitigation: For lookup-only use, do not create a scheduled job unless the user explicitly confirms a recurring reminder schedule and destination. <br>
+## Use Case:
 
+External learners and exam candidates use this skill to schedule recurring Ruankao Gaoxiang study reminders and request chapter highlights, English terms, terminology, and practice questions on demand.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/artwebs/ruankao-gaoxiang-prep) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [Study Plan](artifact/study-plan.md) <br>
-- [Terminology Reference](artifact/references/terminology.md) <br>
-- [English Vocabulary Reference](artifact/references/english-words.md) <br>
-- [Exam Questions Reference](artifact/references/exam-questions.md) <br>
-- [Ruankao Official Website](https://www.ruankao.org.cn/) <br>
-- [Ruankao Gaoxiang Textbook Fourth Edition](https://item.jd.com/1000123456789.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown study responses, JSON daily-push payloads, and cron setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create a recurring OpenClaw cron job that delivers QQ bot messages to a configured recipient openid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can create persistent QQ delivery jobs for daily study reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create the job only after explicit user intent, verify the QQ recipient and schedule first, and check the cron list afterward so unwanted jobs can be deleted.
+
+Risk: A README cron command contains a fixed QQ recipient value.
+
+Mitigation: Prefer the setup script because it prompts for the user's openid, or replace the README recipient with the intended openid before creating the job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/artwebs/skills/ruankao-gaoxiang-prep)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Study plan](artifact/study-plan.md)
+- [Terminology reference](artifact/references/terminology.md)
+- [English words reference](artifact/references/english-words.md)
+- [Exam questions reference](artifact/references/exam-questions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown study responses, JSON daily-push payloads, and inline shell or cron configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or describe recurring QQ bot delivery jobs when the user requests daily push reminders.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

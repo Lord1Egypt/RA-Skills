@@ -1,42 +1,53 @@
-## Description: <br>
-Spin up a local Anvil testnet with Uniswap deployed, pre-seeded liquidity, funded accounts, real pool state, and zero gas costs for development and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spin up a local Anvil testnet with Uniswap deployed and pre-seeded liquidity.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill to start a local Uniswap/Anvil fork with funded accounts and seeded liquidity for agent workflow development, integration testing, and demos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Starting the skill can create or replace a local Anvil/Uniswap testnet and discard local chain state. <br>
-Mitigation: Run it only when a fresh local testnet is intended, and preserve any local state you still need before starting a new one. <br>
-Risk: The workflow may present remote npx or curl-to-bash installation commands. <br>
-Mitigation: Review remote installation commands before running them and install dependencies only from trusted sources. <br>
-Risk: The skill displays Anvil private keys that are well-known test credentials. <br>
-Mitigation: Use those keys only with local testnet assets and never with real funds or public-network assets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wpank/setup-local-testnet) <br>
-- [Foundry and Anvil installation](https://foundry.paradigm.xyz) <br>
+## Use Case:
 
+Developers and engineers use this skill to start a repeatable local Uniswap development testnet with funded accounts, seeded liquidity, and contract addresses for agent, bot, and integration testing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown response with structured testnet details, addresses, test-only private keys, inline shell commands, and next-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local RPC URL, chain ID, deployed contract addresses, funded account balances, and test-only private keys.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup guidance relies on mutable remote installers and unpinned install commands.
+
+Mitigation: Review installer sources, prefer pinned package versions and immutable references, and install Foundry through a method that can be reviewed or verified.
+
+Risk: The skill provides Anvil private keys for local funded test accounts.
+
+Mitigation: Treat those keys as local test keys only and never use them with real funds or on production networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/setup-local-testnet)
+- [Foundry Anvil prerequisite](https://foundry.paradigm.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured text summaries and inline shell/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local RPC details, funded test account information, Uniswap contract and pool addresses, private keys for local-only Anvil accounts, and next-step guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

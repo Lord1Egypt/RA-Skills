@@ -2,6 +2,8 @@
 
 用在：创建或修改 cold note、`index.md`、`tags.json`、`retrieval-log.md`。
 
+实际创建优先用 `scripts/create.py`，语义填写参考 `templates/note-template.md`。以下 enum/日期/省略号是字段说明，不是可直接保存的完整 note。跟随用户语言；只记录可支持的事实和真实核验日期，不存凭据或原始会话身份。
+
 目标只有两个：
 1. note 对人类可读
 2. metadata 对检索和回忆调度有用
@@ -105,6 +107,8 @@ Triggers 书写规范（避免误触发）：
   - `retrieval_count`：这条 note 被实际提起 / 复习的次数
   - `reinforcement_count`：被证明“有用”的提起次数；多次有用后视为强记忆
 - `Confidence`：可靠程度
+- `Last verified`：实际核验事实/来源的日期；检索一次不等于重新核验。decay 的陈旧度调整影响 Confidence，不因时间流逝自动 demote Memory state
+- `Session signals`：当前/近期/跨会话/连续会话计数和 last_activated；来自真实、已授权的激活，不手工补造
 
 ---
 
@@ -217,6 +221,7 @@ dormant  长周期归档；只在强触发下拿出来，不是失败惩罚态
 ```
 
 只记录 cold memory retrieval，不记录 warm / MEMORY.md 查询。
+`review.py feedback` 提供的 query/action 会保存在此本地日志中；只填写适合持久化的简短检索主题，不复制敏感原文。
 
 ---
 
@@ -226,6 +231,8 @@ dormant  长周期归档；只在强触发下拿出来，不是失败惩罚态
 - `index.md` 和 `tags.json` 要同步
 - 漂移了就 rebuild
 - 不要手工编造过度精确的 review 数据
+- tags.json 中的 note path 必须指向所选冷记忆根目录内的普通 Markdown 文件；不得使用绝对路径、父级跳转、符号链接、junction/reparse point、硬链接或特殊文件
+- session 标识仅以截断 SHA-256 指纹保存在 metadata；它用于去重，不提供保密加密或租户隔离
 - 小而准，比大而乱更重要
 
 一句话：

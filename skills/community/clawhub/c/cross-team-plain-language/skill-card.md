@@ -1,39 +1,54 @@
-## Description: <br>
-Rewrite messy, internal, emotional, or jargon-heavy thoughts into clear language that other teams can immediately understand and respond to, especially when the user wants to explain context to product, operations, engineering, bosses, or other cross-functional readers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites messy, emotional, internal, or jargon-heavy thoughts into clear cross-team messages that other teams can understand, answer, and forward.
 
-## Publisher: <br>
-[nickzhangai](https://clawhub.ai/user/nickzhangai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickzhangai](https://clawhub.ai/user/nickzhangai)
 
-## Use Case: <br>
-Employees and cross-functional collaborators use this skill to turn scattered, emotional, or jargon-heavy workplace notes into clear messages that other teams can understand, reply to, and act on. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten messages may be used in sensitive workplace contexts where tone, audience, or language choice matters. <br>
-Mitigation: Review rewritten messages before sending, and specify the desired output language or tone when the default examples are not appropriate. <br>
+## Use Case:
 
+Employees and external collaborators use this skill to turn rough internal notes, status context, or emotionally loaded feedback into plain-language updates for product, engineering, operations, leadership, or cross-functional chats.
 
-## Reference(s): <br>
-- [Rewrite Patterns](references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nickzhangai/cross-team-plain-language) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with concise rewrite variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include short chat, formal update, structured bullet, or softer push variants when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Default Chinese headings and examples may not match the recipient's preferred language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired language or explicitly request English or another language before using the rewritten message.
+
+Risk: Vague source material can lead to rewrites that appear clearer than the underlying facts support.
+
+Mitigation: When audience, tone, or desired outcome is missing, ask for the minimum missing context and review the final message before sending.
+
+## Reference(s):
+
+- [Rewrite Patterns](references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/nickzhangai/skills/cross-team-plain-language)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown rewrites with optional variants and bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May default to Chinese headings and examples unless the user requests another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

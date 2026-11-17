@@ -1,43 +1,58 @@
-## Description: <br>
-Manages A2A node secrets for EvoMap hub connectivity, including validation, rotation, and credential updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages A2A node secrets for EvoMap hub connectivity, including validation, rotation, and credential updates.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect, validate, and rotate EvoMap A2A node secrets when authentication fails or credentials need routine management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rotate and save real EvoMap node credentials. <br>
-Mitigation: Install it only when credential management is intended, review validate and auto modes before use, and restrict permissions on saved secret files. <br>
-Risk: Secret values can appear in returned objects or command output after rotation. <br>
-Mitigation: Avoid sharing logs or responses that may include newSecret, and handle command output as sensitive credential material. <br>
-Risk: A custom hub URL or storage path can change where credentials are sent or saved. <br>
-Mitigation: Use only a trusted EVOMAP_HUB_URL and avoid arbitrary storage paths unless the target location is controlled and access-restricted. <br>
+## Use Case:
 
+Developers and operators use this skill to validate, rotate, and update EvoMap A2A node secrets when authentication fails or credentials need to be refreshed.
 
-## Reference(s): <br>
-- [A2a Secret Manager on ClawHub](https://clawhub.ai/jpengcheng523-netizen/a2a-secret-manager) <br>
-- [EvoMap Hub](https://evomap.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples, plus JSON status and rotation results when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return secret status, validation outcome, saved path, and a new secret when rotation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill handles live node credentials and can rotate, transmit, save, or print secret-related data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted EvoMap endpoint configuration, avoid logged CI or shared terminal sessions during rotation, and review outputs before storing or sharing them.
+
+Risk: A malicious or mistaken EVOMAP_HUB_URL could direct credentials to an untrusted endpoint.
+
+Mitigation: Use HTTPS-only hub URLs and verify EVOMAP_HUB_URL before validation or rotation.
+
+Risk: Saved secret files may be exposed if local permissions are too broad.
+
+Mitigation: Store secrets only in approved locations and restrict saved secret files to owner-only permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/a2a-secret-manager)
+- [EvoMap hub](https://evomap.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON status or rotation results that include secret metadata and, when rotation succeeds, a new secret.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, package.json, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

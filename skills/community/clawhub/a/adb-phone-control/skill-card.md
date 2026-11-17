@@ -1,40 +1,61 @@
-## Description: <br>
-Use when the user asks to control, operate, or automate an Android phone via ADB, including tapping, swiping, typing, launching apps, or other UI interaction on a connected device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to control, operate, or automate an Android phone via ADB — tapping, swiping, typing, launching apps, or any UI interaction on a connected device.
 
-## Publisher: <br>
-[txmonkey](https://clawhub.ai/user/txmonkey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[txmonkey](https://clawhub.ai/user/txmonkey)
 
-## Use Case: <br>
-Developers and automation agents use this skill to operate a connected Android device through ADB with an observe-locate-act-verify loop. It supports UI hierarchy inspection, screenshots, taps, swipes, text entry, app launch, and bounded app exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform real actions on a connected Android device through ADB, including taps, swipes, text input, app launches, and recursive exploration. <br>
-Mitigation: Use it only with explicit user intent, verify each step before continuing, and avoid recursive exploration in apps where automated taps could cause account, financial, messaging, or data-changing side effects. <br>
-Risk: Screenshots, UI dumps, and clipboard/text input can expose sensitive on-device content. <br>
-Mitigation: Use a private ADB_OUTPUT_DIR, avoid sensitive screens, and delete screenshots and UI dumps when the task is complete. <br>
+## Use Case:
 
+Developers and operators use this skill to control and automate a connected Android device through ADB using a structured observe-locate-act-verify loop.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/txmonkey/adb-phone-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with bash commands; helper scripts can produce screenshots, UI dumps, JSON trees, and Markdown exploration reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires adb and python3; may write screenshots and UI dumps to ADB_OUTPUT_DIR or /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can operate a real Android device through ADB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with devices and apps where the operator has authorization, and verify each action before continuing.
+
+Risk: Screenshots and UI dumps may capture sensitive on-screen information and leave files on disk.
+
+Mitigation: Set ADB_OUTPUT_DIR to a private directory and avoid using the skill on personal, financial, messaging, or production apps.
+
+Risk: The recursive explorer can broadly crawl an app and trigger unintended navigation or actions.
+
+Mitigation: Limit exploration depth, review target apps before crawling, and avoid recursive exploration on sensitive or production applications.
+
+Risk: Evidence reports unsafe input and path handling.
+
+Mitigation: Do not pass untrusted text or untrusted environment values to the helpers until those issues are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/txmonkey/skills/adb-phone-control)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper scripts can generate screenshots, UI XML dumps, JSON crawl trees, and Markdown crawl summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires adb and python3; screenshots and UI dumps are written to ADB_OUTPUT_DIR or the default temporary output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

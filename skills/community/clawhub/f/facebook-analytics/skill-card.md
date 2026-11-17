@@ -1,43 +1,55 @@
-## Description: <br>
-Track Facebook Page performance and analytics, including reach, engagement, video views, and post-level metrics for a connected Facebook Page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Facebook Page reach, engagement, video views, and post-level analytics through a Boring MCP connector.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and social media operators use this skill to review Facebook Page performance, compare post engagement, and summarize page or post metrics from a connected Boring MCP connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP Connector URL contains an embedded authentication token. <br>
-Mitigation: Treat the connector URL like a password, avoid sharing it publicly, and revoke or regenerate it if it is exposed. <br>
-Risk: The connector can access Facebook Page analytics and account metadata through Boring. <br>
-Mitigation: Install only after confirming that Boring is trusted for this data and that the requested Facebook permissions match the intended read-only analytics use. <br>
-Risk: Analytics requests and returned metrics flow through a third-party service. <br>
-Mitigation: Confirm the service's data handling is acceptable for the organization before connecting production Facebook Pages. <br>
+## Use Case:
 
+External users and social media operators use this skill to inspect connected Facebook Page performance, compare posts, and summarize trends from Boring-provided analytics.
 
-## Reference(s): <br>
-- [Facebook Analytics on ClawHub](https://clawhub.ai/snoopyrain/facebook-analytics) <br>
-- [Boring MCP Connector Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and tables with metric explanations and connector guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference read-only Facebook Page analytics, account metadata, post metrics, and publishing history returned through the configured MCP connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The MCP Connector URL contains an embedded authentication token that can grant access to Facebook analytics if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the URL private, add it only in trusted connector settings, and revoke or regenerate it if shared or exposed.
+
+Risk: The skill depends on a third-party remote service whose token enforcement and data handling are outside the artifact.
+
+Mitigation: Install only if comfortable routing Facebook Page analytics through Boring and review the service's account connection and revocation controls before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/facebook-analytics)
+- [Boring MCP connector documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring API documentation](https://boring-doc.aiagent-me.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown summaries, tables, and connector tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Boring MCP Connector URL with an embedded authentication token; analytics access is documented as read-only.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

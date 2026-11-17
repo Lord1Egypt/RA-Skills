@@ -1,40 +1,50 @@
-## Description: <br>
-Generate a full Phoenix JSON API from an OpenAPI spec or natural language description. Creates contexts, Ecto schemas, migrations, controllers, JSON views/renderers, router entries, ExUnit tests with factories, auth plugs, and tenant scoping. Use when building a new Phoenix REST API, adding CRUD endpoints, scaffolding resources, or converting an OpenAPI YAML into a Phoenix project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Phoenix JSON API code from an OpenAPI specification or natural language description.
 
-## Publisher: <br>
-[gchapim](https://clawhub.ai/user/gchapim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gchapim](https://clawhub.ai/user/gchapim)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate or extend Phoenix JSON APIs from OpenAPI specifications or natural language descriptions, including schemas, migrations, contexts, controllers, router entries, authentication plugs, tenant scoping, and tests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated tenant-security examples can teach applications to expose one tenant's data to another. <br>
-Mitigation: Review and harden generated authorization code; derive tenant identity from authenticated claims or verified membership, scope every read, update, and delete by tenant, and add cross-tenant denial tests before using generated APIs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Phoenix conventions reference](artifact/references/phoenix-conventions.md) <br>
-- [Ecto patterns reference](artifact/references/ecto-patterns.md) <br>
-- [Test patterns reference](artifact/references/test-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gchapim/phoenix-api-gen) <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold Phoenix REST APIs, including contexts, Ecto schemas, migrations, controllers, JSON renderers, router entries, authentication plugs, tenant scoping, and tests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Phoenix and Elixir code, file plans, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or generate Phoenix project files such as migrations, Ecto schemas, contexts, controllers, JSON renderers, router entries, plugs, tests, and factories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated multi-tenant authorization patterns may be unsafe if tenant identifiers are accepted from requests without validating authenticated tenant membership.
+
+Mitigation: Review generated security code, validate tenant selection against authenticated membership, scope every read/update/delete by the validated tenant, ignore client-supplied tenant_id on create, and add negative cross-tenant authorization tests.
+
+## Reference(s):
+
+- [Phoenix Conventions Reference](references/phoenix-conventions.md)
+- [Ecto Patterns Reference](references/ecto-patterns.md)
+- [Test Patterns Reference](references/test-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with generated Elixir, Phoenix, Ecto, router, plug, migration, and ExUnit code blocks or file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Phoenix project files for contexts, schemas, migrations, controllers, JSON renderers, router entries, auth plugs, tests, and factories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Automatically sort and rename files by type into structured folders with undo support, configurable filters, and dry-run preview for safe batch organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically sorts and renames files by type into structured folders with undo support, configurable filters, and dry-run preview for batch organization.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-External users and developers use this skill to organize busy local directories, especially Downloads-style folders, by previewing, sorting, renaming, and optionally undoing file moves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move and rename local files immediately, including important or synced directories if directed there. <br>
-Mitigation: Run dry-run first on a small test folder, avoid important or synced directories until behavior is verified, and keep backups. <br>
-Risk: Undo depends on the local organization log and may not cover every recovery scenario after files are changed or logs are missing. <br>
-Mitigation: Keep the organization log with the affected files and validate restore behavior on noncritical test data before relying on undo for important files. <br>
+## Use Case:
 
+External users and developers use this skill to organize cluttered local directories by moving files into type-based folders, applying consistent names, previewing changes, and restoring prior organization runs when needed.
 
-## Reference(s): <br>
-- [File Type Patterns Reference](references/file-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/indigas/claw-file-organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preview planned moves with dry-run and describe file organization results when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad file-moving and renaming authority can reorganize many local files unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode on a small test directory first, keep backups, and review source, target, exclude patterns, and size limits before a real run.
+
+Risk: Undo behavior depends on the supplied log file and can move files according to paths in that log.
+
+Mitigation: Run undo only with ORGANIZE_LOG.json files you created and control, and review the log contents before restoring files.
+
+Risk: Unpinned installation can change the reviewed code version.
+
+Mitigation: Prefer pinned installation commands for deployment and retain the reviewed release hash or version in change-management records.
+
+## Reference(s):
+
+- [File Type Patterns Reference](artifact/references/file-patterns.md)
+- [File Organizer README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/indigas/skills/claw-file-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May move and rename local files when executed; dry-run mode previews planned changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

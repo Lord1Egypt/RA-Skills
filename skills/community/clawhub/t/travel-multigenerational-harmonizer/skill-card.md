@@ -1,40 +1,53 @@
-## Description: <br>
-Creates travel experiences for multiple generations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates travel experiences for multiple generations.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this skill to plan family or multigenerational trips with need assessment, layered activities, pacing strategies, and conflict prevention guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may invoke the skill outside family or multigenerational travel-planning contexts. <br>
-Mitigation: Confirm the request involves travel planning for multiple ages or family groups before applying the skill's frameworks. <br>
-Risk: Travel recommendations may be incomplete or outdated because the skill does not use real-time prices, availability, advisories, or weather. <br>
-Mitigation: Verify itinerary details, availability, safety information, and accessibility needs with official or current sources before booking or travel. <br>
+## Use Case:
 
+External users use this skill to structure multigenerational family travel plans with need assessment, activity layering, pace management, and conflict-prevention guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-multigenerational-harmonizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, JSON] <br>
-**Output Format:** [JSON containing input analysis, recommendations, frameworks, checklists, considerations, next steps, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational travel-planning output only; no bookings, real-time data, external APIs, or professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Travel recommendations may be outdated or incomplete because the skill does not access live prices, availability, weather, booking systems, or travel advisories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices, availability, weather, accessibility, health needs, and travel advisories with official sources before acting.
+
+Risk: Generic family travel requests may activate the skill even when multigenerational constraints are incomplete.
+
+Mitigation: Provide destination, dates, ages, mobility needs, budget, preferences, and constraints so the agent can frame suggestions appropriately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/travel-multigenerational-harmonizer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, configuration]
+
+**Output Format:** [Structured JSON with travel planning recommendations, frameworks, checklists, considerations, next steps, and disclaimers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational travel planning only; does not book travel or access live prices, availability, weather, or external services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

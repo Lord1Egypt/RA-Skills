@@ -1,0 +1,25 @@
+# Local VCS and runtime state
+.git/
+.omx/
+
+# Authoring / contributor-only files
+AGENTS.md
+CLAUDE.md
+CHANGELOG.md
+CONTRIBUTING.md
+
+# Non-runtime packaging variants
+cursor-rules/
+install/
+plugins/
+scripts/
+
+# Repo-only assets not required by the published skill bundle
+docs/
+evals/
+detector/__tests__/
+
+# Optional metadata not needed by ClawHub runtime installs
+package.json
+detector/package.json
+.gitattributes

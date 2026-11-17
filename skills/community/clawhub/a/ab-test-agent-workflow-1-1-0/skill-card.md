@@ -1,42 +1,56 @@
-## Description: <br>
-A multi-agent, double-blind A/B testing workflow for comparing two AI models or agents across repeated rounds with coordinator, contestant, and judge roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-agent double-blind A/B testing workflow for comparing AI models or agents across repeated rounds with coordinator, contestant, and judge roles.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and evaluators use this skill to compare two AI models or agents with repeated blind judging, configurable rounds, and a structured final report.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Judge results can be misleading if the number of rounds, models, rubric, or output language are unclear.
+
+Mitigation: Specify the round count, compared models or agents, scoring rubric, and preferred output language before running the workflow.
+
+Risk: Contestant outputs may reveal model identity or other source clues, weakening the blind comparison.
+
+Mitigation: Anonymize outputs before judging and remove identity markers such as model names or contestant labels.
+
+Risk: Subagent timeouts or malformed judge responses can leave incomplete code, scores, or comments.
+
+Mitigation: For code tasks, require complete code before runtime output; retry or re-run judging when required score tags are missing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, evaluators, and agent builders use this skill to run structured blind comparisons between two models or agents, collect rubric-based judge scores, and produce a final comparison report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential prompts may be shared with contestant and judge subagents during evaluation. <br>
-Mitigation: Use the workflow only with prompts and outputs that are appropriate to share with all participating subagents. <br>
-Risk: Blind-test integrity can be weakened if judge-facing material reveals contestant identity or anonymizer mapping details. <br>
-Mitigation: Keep anonymizer mapping and CLI output away from the judge, filter identity markers before judging, and invalidate or rerun rounds where a contestant reveals its identity. <br>
+**Output Format:** [Markdown prompts and structured JSON-style evaluation reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Workflow Guide](references/workflow_guide.md) <br>
-- [Rubric Templates](references/rubric_templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/johnsmithfan/ab-test-agent-workflow-1-1-0) <br>
+**Other Properties Related to Output:** [The workflow may include contestant outputs, judge scores, comments, winners, aggregate totals, and confidence notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, prompt templates, optional shell commands, and JSON-style evaluation report structures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multi-round A/B comparison, rubric customization, anonymized judging, score aggregation, and optional script-driven test execution.] <br>
+1.1.0-en2 (source: release metadata; skill frontmatter is 1.1.0)
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and artifact/_meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

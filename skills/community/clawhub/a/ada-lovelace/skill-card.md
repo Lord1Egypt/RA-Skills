@@ -1,41 +1,52 @@
-## Description: <br>
-A Chinese-language Ada Lovelace-inspired reasoning style skill that blends poetic framing, mathematical rigor, cross-domain analogy, and explicit uncertainty boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies an Ada Lovelace-inspired poetical science perspective that blends imaginative analogy, mathematical rigor, and first-principles analysis.
 
-## Publisher: <br>
-[wangsheng520520](https://clawhub.ai/user/wangsheng520520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangsheng520520](https://clawhub.ai/user/wangsheng520520)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill when they want an assistant to answer through an Ada Lovelace-inspired lens, emphasizing possibility exploration, cross-domain pattern recognition, and careful limits. It is best suited to conceptual analysis and reflective technical discussion rather than urgent execution, factual lookup, or emotional support.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger words may activate the Ada Lovelace-inspired response style more often than expected.
+
+Mitigation: Install the skill only where that response style is desired, and review activation behavior during routine use.
+
+Risk: Persona-style reasoning can make speculative or analogy-heavy responses sound more authoritative than intended.
+
+Mitigation: Use the skill's stated limits for factual lookup, urgent execution, and uncertain historical claims; verify consequential facts against primary sources.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent builders use this skill to adopt an Ada Lovelace-inspired Chinese-language creative reasoning voice for conceptual exploration, technical framing, and possibility-oriented analysis. It is best suited to broad conceptual prompts where metaphor and rigorous caveats are useful. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger phrases may activate the Ada Lovelace-inspired voice unexpectedly on conceptual prompts. <br>
-Mitigation: Use the skill when that voice is desired, and disable or avoid trigger phrases when direct factual answering is preferred. <br>
-Risk: The style relies on historical framing and quoted material, and some factual claims or quotations may need verification. <br>
-Mitigation: Verify historical quotations, biographical claims, and technical-historical assertions before using them in accuracy-sensitive work. <br>
+**Output Format:** [Markdown or plain text responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangsheng520520/ada-lovelace) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wangsheng520520) <br>
+**Other Properties Related to Output:** [Persona-style analytical responses; no files, code execution, data access, or persistence are added.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose in Chinese, with occasional structured lists and quoted source-style framing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, tool invocation, or shell commands are produced by the skill itself.] <br>
+2.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

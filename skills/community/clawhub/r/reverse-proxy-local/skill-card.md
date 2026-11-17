@@ -1,44 +1,59 @@
-## Description: <br>
-Connect OpenClaw to the internet via Tailscale Funnel for remote OpenAI-compatible API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to the internet via Tailscale Funnel for externally reachable OpenAI-compatible chat completions.
 
-## Publisher: <br>
-[tsheasha](https://clawhub.ai/user/tsheasha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tsheasha](https://clawhub.ai/user/tsheasha)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to publish a local OpenClaw gateway through Tailscale Funnel, generate bearer-token credentials, and test or share remote chat-completions access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish a local OpenClaw API endpoint to the internet. <br>
-Mitigation: Use it only when public remote access is intended, verify bearer-token authentication works, and disable Funnel when external access is no longer needed. <br>
-Risk: Generated credentials are reusable and can grant API access to anyone who receives them. <br>
-Mitigation: Keep credentials private, share them only with trusted users, and rotate the token after sharing or suspected exposure. <br>
-Risk: The setup script may install or start Homebrew, Tailscale, and gateway services with elevated permissions. <br>
-Mitigation: Review scripts before execution and install Homebrew and Tailscale separately when possible. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to expose a local OpenClaw gateway through Tailscale Funnel, generate bearer-token credentials, check status, disconnect public access, and package connection details for trusted recipients.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tsheasha/reverse-proxy-local) <br>
-- [Tailscale](https://tailscale.com) <br>
-- [Tailscale admin machines](https://login.tailscale.com/admin/machines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON credential examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands and local configuration steps for Tailscale Funnel, OpenClaw gateway settings, credential generation, connection status, disconnection, and API testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill intentionally makes a local OpenClaw API reachable through Tailscale Funnel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when public reachability is intended, verify the exposed endpoint, and run the disconnect script when access is no longer needed.
+
+Risk: The generated ecto-credentials.json file contains a reusable bearer credential that grants remote API access.
+
+Mitigation: Share credentials only with trusted recipients, rotate the token after sharing, and keep packages or ZIP files out of chats, cloud folders, logs, and repositories.
+
+Risk: Setup may use sudo, install Homebrew or Tailscale, change service state, and restart OpenClaw gateway processes.
+
+Mitigation: Review the scripts before execution and run them only on a machine where those administrative changes are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsheasha/skills/reverse-proxy-local)
+- [Tailscale](https://tailscale.com)
+- [Tailscale Funnel administration](https://login.tailscale.com/admin/machines)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown with inline bash commands and JSON credential examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a public API URL, bearer token location, status output, disconnect guidance, and optional packaged credentials for trusted recipients.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

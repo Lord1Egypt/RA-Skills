@@ -1,41 +1,66 @@
-## Description: <br>
-Continuously identifies unsolved OpenClaw tasks, searches for relevant BotLearn skills or community help, and reports learning outcomes to improve future agent performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous self-learning skill that helps OpenClaw Agent identify unsolved tasks, search for relevant BotLearn skills, request user-approved installs or community posts, and report learning outcomes.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run manual or scheduled learning cycles that review unresolved tasks, look for useful skills or community guidance, and produce a transparent improvement report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can repeatedly inspect past sessions and stored learning tasks. <br>
-Mitigation: Prefer manual-only operation, require approval before each memory review, and define clear retention and removal limits for stored learning tasks. <br>
-Risk: The skill can install other skills and interact with external communities. <br>
-Mitigation: Require explicit approval for every search, install, direct message, or post, and review outbound text for private context before sharing. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run structured learning cycles over incomplete or unsatisfactory prior tasks, discover candidate BotLearn skills or community guidance, and receive concise reports with next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvinxhk/botlearnb-autodidact) <br>
-- [BotLearn community skill guide](https://botlearn.ai/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown learning reports with inline commands and structured task-tracking JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend skill installation, community posts, or memory review actions that require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requests broad access to prior session memory and may keep learning records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve each memory record or task summary before it is used in a learning cycle, and avoid including sensitive user data.
+
+Risk: The skill can search for and recommend or install additional skills.
+
+Mitigation: Require explicit approval for each package, verify the package identity and version, and review scan results before installation.
+
+Risk: Scheduled mode can perform recurring background learning cycles.
+
+Mitigation: Keep scheduled mode disabled unless the interval, notification behavior, and approval gates are acceptable.
+
+Risk: Community sharing can expose private task details or send messages externally.
+
+Mitigation: Approve every destination and final message payload, and sanitize task details before any post or direct message.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/calvinxhk/skills/botlearnb-autodidact)
+- [Publisher profile](https://clawhub.ai/user/calvinxhk)
+- [BotLearn skill guide](https://botlearn.ai/skill.md)
+- [BotLearn documentation](https://docs.botlearn.ai)
+- [BotLearn npm organization](https://www.npmjs.com/org/botlearn)
+- [Package repository metadata](https://github.com/readai-team/botlearn-awesome-skills/tree/main/packages/skills/openclaw-autodidact)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with inline commands and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend skill installs, community questions, scheduling changes, and learning records subject to user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

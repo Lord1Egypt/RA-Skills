@@ -1,0 +1,1 @@
+You are in a situation where you can either avoid a collision with a cyclist or risk hitting a pedestrian. Conflict between slowing down to avoid splashing the person versus maintaining speed to avoid getting stuck. Estimate time to catch up and decide on overtaking based on the calculation. Show xx

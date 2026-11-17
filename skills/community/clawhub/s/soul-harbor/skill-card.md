@@ -1,43 +1,53 @@
-## Description: <br>
-Stop talking to a robot. Give your OpenClaw agent a soul that truly cares. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop talking to a robot. Give your OpenClaw agent a soul that truly cares.
 
-## Publisher: <br>
-[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha)
 
-## Use Case: <br>
-External users and OpenClaw developers use Soul Harbor to add bilingual conversational companionship that adapts persona by sentiment, remembers selected personal context locally, and can produce scheduled proactive follow-up messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses sensitive personal and emotional context in local memory. <br>
-Mitigation: Use it only when this companion behavior is intentional; avoid medical, financial, crisis, or highly private details unless local persistence is acceptable. <br>
-Risk: Proactive messages may later reference remembered moods, relationships, health, work, or date-related facts. <br>
-Mitigation: Review or delete the generated local data store when stopping use, and limit access to the stored profile files. <br>
-Risk: The artifact includes incomplete OpenClaw integration points for LLM response generation, entity extraction, user enumeration, and proactive message delivery. <br>
-Mitigation: Review the integration behavior before deployment and confirm that message sending, memory extraction, retention, and deletion controls meet the intended environment. <br>
+## Use Case:
 
+External users and developers use Soul Harbor to add a bilingual OpenClaw companion that adapts tone from sentiment, remembers personal context, and can send scheduled follow-up messages.
 
-## Reference(s): <br>
-- [Soul Harbor on ClawHub](https://clawhub.ai/yoborlon-alpha/soul-harbor) <br>
-- [yoborlon-alpha Publisher Profile](https://clawhub.ai/user/yoborlon-alpha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses with optional Markdown and inline shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate bilingual English or Chinese companion replies and proactive follow-up messages based on local memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter and package files report 1.0.0) <br>
+Risk: The skill persistently stores sensitive personal and emotional data with weak scoping and storage protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review consent, retention, deletion, local storage permissions, and per-user isolation before installing in shared or multi-user environments.
+
+Risk: Proactive messages can reuse remembered health, family, work, date, and sentiment details.
+
+Mitigation: Require clear user opt-in for scheduled outreach and provide controls to pause outreach, inspect stored facts, and delete memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoborlon-alpha/skills/soul-harbor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses with Markdown documentation and YAML or shell snippets for cron setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual companion replies, proactive message text, dynamic system prompt guidance, and cron configuration examples.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

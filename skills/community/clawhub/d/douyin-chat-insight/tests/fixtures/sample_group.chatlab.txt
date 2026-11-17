@@ -1,0 +1,19 @@
+{"_type": "header", "chatlab": {"version": "0.0.2", "exportedAt": 1700000000, "generator": "fixture"}, "meta": {"name": "示例AI学习群", "platform": "douyin", "type": "group", "conversationId": "g-demo-1"}}
+{"_type": "member", "platformId": "u1", "accountName": "主理人小A"}
+{"_type": "member", "platformId": "u2", "accountName": "学员小B"}
+{"_type": "member", "platformId": "u3", "accountName": "学员小C"}
+{"_type": "member", "platformId": "u4", "accountName": "路过小D"}
+{"_type": "message", "sender": "u1", "accountName": "主理人小A", "timestamp": 1700000100, "type": 0, "content": "资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取", "platformMessageId": "m1700000100"}
+{"_type": "message", "sender": "u1", "accountName": "主理人小A", "timestamp": 1700000101, "type": 0, "content": "[系统] 本群已开启 群聊 AI 功能", "platformMessageId": "m1700000101"}
+{"_type": "message", "sender": "u2", "accountName": "学员小B", "timestamp": 1700000200, "type": 0, "content": "自动生成视频的是哪个？有详细的工作流教程吗？", "platformMessageId": "m1700000200"}
+{"_type": "message", "sender": "u3", "accountName": "学员小C", "timestamp": 1700000300, "type": 0, "content": "点链接显示无法访问页面，是不是必须科学上网？", "platformMessageId": "m1700000300"}
+{"_type": "message", "sender": "u1", "accountName": "主理人小A", "timestamp": 1700000400, "type": 0, "content": "打不开 GitHub 的，可以去我公众号回复关键字", "platformMessageId": "m1700000400"}
+{"_type": "message", "sender": "u2", "accountName": "学员小B", "timestamp": 1700000500, "type": 0, "content": "本地 Whisper 能用吗？还是必须上云端百炼 Key？", "platformMessageId": "m1700000500"}
+{"_type": "message", "sender": "u1", "accountName": "主理人小A", "timestamp": 1700000600, "type": 0, "content": "可以本地，也可以云端，看你机器", "platformMessageId": "m1700000600"}
+{"_type": "message", "sender": "u3", "accountName": "学员小C", "timestamp": 1700000700, "type": 0, "content": "我这边本地一直失败，还是不能跑", "platformMessageId": "m1700000700"}
+{"_type": "message", "sender": "u4", "accountName": "路过小D", "timestamp": 1700000800, "type": 0, "content": "这个 skill 收费吗？看起来要付费订阅？", "platformMessageId": "m1700000800"}
+{"_type": "message", "sender": "u1", "accountName": "主理人小A", "timestamp": 1700000900, "type": 0, "content": "基础能力免费，进阶模板才收费", "platformMessageId": "m1700000900"}
+{"_type": "message", "sender": "u2", "accountName": "学员小B", "timestamp": 1700001000, "type": 0, "content": "求一份从安装到出片的一键步骤", "platformMessageId": "m1700001000"}
+{"_type": "message", "sender": "u4", "accountName": "路过小D", "timestamp": 1700001100, "type": 0, "content": "https://v.douyin.com/demo/", "platformMessageId": "m1700001100"}
+{"_type": "message", "sender": "u3", "accountName": "学员小C", "timestamp": 1700001200, "type": 0, "content": "有没有 Windows 安装说明？我不会配环境", "platformMessageId": "m1700001200"}
+{"_type": "message", "sender": "u2", "accountName": "学员小B", "timestamp": 1700001300, "type": 0, "content": "自动生成视频的是哪个？有详细的工作流教程吗？", "platformMessageId": "m1700001300"}

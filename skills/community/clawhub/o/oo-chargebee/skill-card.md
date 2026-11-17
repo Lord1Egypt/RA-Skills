@@ -1,45 +1,52 @@
-## Description: <br>
-Chargebee operates an OOMOL-connected Chargebee account through the oo CLI for reading billing data and creating customer records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chargebee (chargebee.com). Use this skill for ANY Chargebee request — reading, creating, and updating data. Whenever a task involves Chargebee, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External developers and operators use this skill to work with Chargebee customer, invoice, item price, and subscription data through an OOMOL-connected account. It supports read actions and customer creation while requiring review before write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive billing and customer data from a connected Chargebee account. <br>
-Mitigation: Install it only for intended OOMOL-connected Chargebee accounts and treat returned customer, invoice, pricing, and subscription data as sensitive. <br>
-Risk: The create_customer action changes Chargebee account state. <br>
-Mitigation: Review and confirm the exact customer payload and expected effect with the user before running the write action. <br>
-Risk: First-time setup can involve running a remote oo CLI install command. <br>
-Mitigation: Use an existing trusted oo CLI installation when available, or review the remote install source before running the install command. <br>
+## Use Case:
 
+Developers and operations teams use this skill to read Chargebee customer, invoice, item price, and subscription data, and to create customer records through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-chargebee) <br>
-- [Chargebee Homepage](https://www.chargebee.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector runs may return JSON responses containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: First-time setup directs users to run a remote installer whose contents and release side effects could not be verified; connected Chargebee actions can also create customer records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a preinstalled, independently verified CLI. Review and explicitly approve any installation, disable automatic skill synchronization if desired, connect only the intended Chargebee account, and confirm customer creation before running it.
+
+## Reference(s):
+
+- [Chargebee API documentation](https://apidocs.chargebee.com/docs/api)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Chargebee](https://www.chargebee.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, API calls]
+
+**Output Format:** [Markdown instructions with shell command examples and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers Chargebee reads and customer creation; write actions require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

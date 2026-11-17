@@ -1,0 +1,11 @@
+YouTube Public Reads (youtube-public-api)
+
+Read-only YouTube data API for video, channel, playlist, comments, related-video, search, and transcript research through ReplyNodes prepaid credits with one long-lived Bearer fetcher key.
+
+Setup: create a free account at https://app.replynodes.com/auth (500 one-time credits, no payment setup required), then create your fetcher API key at https://app.replynodes.com/developers. Store it as REPLYNODES_API_KEY and send it as Authorization: Bearer YOUR_FETCHER_KEY.
+
+Auth: Authorization: Bearer YOUR_FETCHER_KEY
+Gateway: https://api.replynodes.com
+Payment mode: prepaid_credit only. Free: 500 one-time credits; Developer: 10,000 credits/month at $19/month; Pro: 100,000 credits/month at $99/month.
+Standard operation cost: 2 credits.
+All operations are public, read-only HTTP GET requests.

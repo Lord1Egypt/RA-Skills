@@ -1,48 +1,64 @@
-## Description: <br>
-Etherlink blockchain interaction - EVM-compatible L2 on Tezos. Supports mainnet and shadownet testnet via MCP server. Use for balance checks, transactions, smart contracts, and token operations on Etherlink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Etherlink blockchain interaction - EVM-compatible L2 on Tezos. Supports mainnet and shadownet testnet via MCP server. Use for balance checks, transactions, smart contracts, and token operations on Etherlink.
 
-## Publisher: <br>
-[efekucuk](https://clawhub.ai/user/efekucuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[efekucuk](https://clawhub.ai/user/efekucuk)
 
-## Use Case: <br>
-Developers and web3 operators use this skill to configure an Etherlink MCP workflow and ask an agent to inspect balances, blocks, transactions, smart contracts, and token data on Etherlink mainnet or shadownet. When write access is configured, it can support transaction, token transfer, contract deployment, and state-changing contract call workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect private-key signing authority to an external MCP server that may perform real on-chain writes. <br>
-Mitigation: Use read-only mode unless writes are required, verify and pin the MCP server package before installing, avoid valuable mainnet private keys, and prefer a dedicated low-balance or testnet wallet. <br>
-Risk: Incorrect network, recipient, amount, gas, or calldata choices can create irreversible blockchain transactions. <br>
-Mitigation: Manually confirm every transaction's network, recipient, amount, gas, and contract calldata before approving execution. <br>
-Risk: Public Etherlink RPC endpoints are rate-limited and may not suit production throughput. <br>
-Mitigation: Use a dedicated RPC provider or run an Etherlink node for higher-throughput production usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/efekucuk/etherlink-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/efekucuk) <br>
-- [Etherlink](https://etherlink.com) <br>
-- [Etherlink Docs](https://docs.etherlink.com/) <br>
-- [Etherlink bridge docs](https://docs.etherlink.com/building-on-etherlink/bridging) <br>
-- [Etherlink Network Reference](references/networks.md) <br>
-- [Etherlink vs Standard Ethereum](references/differences.md) <br>
-- [Etherlink MCP Server Setup](references/mcp-setup.md) <br>
+## Use Case:
 
+Developers and web3 operators use this skill to configure Etherlink MCP access, inspect balances and blocks, send transactions, call contracts, and work with token operations on Etherlink mainnet or shadownet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and blockchain operation prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RPC endpoint checks and MCP server configuration for read-only or private-key-enabled workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running an unpinned MCP package can expose the agent to unexpected package changes.
+
+Mitigation: Pin and verify the MCP server package or source commit before installation or execution.
+
+Risk: Wallet private keys enable irreversible asset-moving actions on Etherlink.
+
+Mitigation: Prefer read-only mode, avoid production private keys, use a low-value testnet wallet or external signer, and require explicit confirmation for every destination, amount, contract, network, and fee before signing.
+
+Risk: Public RPC endpoints are rate-limited and may affect reliability under higher traffic.
+
+Mitigation: Use batching, respect the documented request limit, or configure a dedicated RPC endpoint for production workloads.
+
+## Reference(s):
+
+- [Etherlink Skill Page](https://clawhub.ai/efekucuk/skills/etherlink-skill)
+- [Etherlink Docs](https://docs.etherlink.com/)
+- [Etherlink Bridging Docs](https://docs.etherlink.com/building-on-etherlink/bridging)
+- [Etherlink Explorer](https://explorer.etherlink.com)
+- [Etherlink Shadownet Explorer](https://shadownet.explorer.etherlink.com)
+- [Etherlink Shadownet Faucet](https://shadownet.faucet.etherlink.com)
+- [Etherlink Network Reference](references/networks.md)
+- [Etherlink vs Standard Ethereum](references/differences.md)
+- [Etherlink MCP Server Setup](references/mcp-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, code, markdown]
+
+**Output Format:** [Markdown with JSON configuration snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide read-only RPC queries or write operations that require explicit wallet private-key configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

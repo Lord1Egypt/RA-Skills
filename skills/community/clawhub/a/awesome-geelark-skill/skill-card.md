@@ -1,51 +1,66 @@
-## Description: <br>
-Interact with GeeLark Cloud Phone API for managing cloud phones, automation tasks, and social media operations. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Interact with GeeLark Cloud Phone API for managing cloud phones, automation tasks, and social media operations.
 
-## Publisher: <br>
-[geelarkbot](https://clawhub.ai/user/geelarkbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geelarkbot](https://clawhub.ai/user/geelarkbot)
 
-## Use Case: <br>
-Developers and operators use this skill to configure GeeLark API access, manage cloud phones, run diagnostics, install apps, and guide social-media RPA workflows with human review for sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access GeeLark account credentials, cloud phones, ADB sessions, and social-media automation workflows. <br>
-Mitigation: Keep assets/config.json and logs private, restrict file permissions, and install only when this level of access is acceptable. <br>
-Risk: Automation may post or delete external social-media content or perform destructive cloud-phone actions. <br>
-Mitigation: Require explicit human confirmation before posting, deleting, enabling ADB, or running credential-dependent RPA tasks. <br>
-Risk: Android permission prompts can expose device data if granted automatically. <br>
-Mitigation: Prefer denying permissions or manually reviewing permission prompts unless the user has confirmed the requested access. <br>
+## Use Case:
 
+External developers and operators use this skill to manage GeeLark cloud phones, install apps, run diagnostics, and guide supervised social media RPA workflows through an AI agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/geelarkbot/awesome-geelark-skill) <br>
-- [GeeLark website](https://www.geelark.com/) <br>
-- [GeeLark OpenAPI](https://openapi.geelark.com) <br>
-- [GeeLark API Reference](references/api_reference.md) <br>
-- [GeeLark API Best Practices](references/best_practices.md) <br>
-- [ADB Operations Guide](references/cloudphone_operations.md) <br>
-- [Auto-Close Mechanism](references/auto_close.md) <br>
-- [GeeLark API Error Codes](references/error_codes.md) <br>
-- [RPA Tasks Guide](references/rpa_tasks.md) <br>
-- [Android SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local configuration steps, diagnostic commands, and automation guidance that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles GeeLark API credentials and may touch third-party social media account sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the credential flow before installation, keep credentials out of agent prompts, prefer environment variables or a secret store, restrict config permissions to 600, and rotate exposed tokens.
+
+Risk: Automation can perform destructive, posting, credentialed RPA, or bulk operations.
+
+Mitigation: Require explicit human confirmation before deletion, posting, credentialed RPA, or bulk actions, and use the provided delete helper instead of direct unattended deletion.
+
+Risk: Cloud phone sessions can create cost or account exposure if left running.
+
+Mitigation: Check account balance before operations, use auto-close session management, save logs, and review logs for sensitive data before sharing.
+
+Risk: Local subprocess tools and device automation dependencies expand the execution surface.
+
+Mitigation: Run diagnostics first, install adb and uiautomator2 from trusted sources, keep the API base URL fixed to the official GeeLark endpoint, and test in a sandbox before operational use.
+
+## Reference(s):
+
+- [GeeLark API Reference](references/api_reference.md)
+- [GeeLark API Best Practices](references/best_practices.md)
+- [ADB Operations Guide](references/cloudphone_operations.md)
+- [RPA Tasks Guide](references/rpa_tasks.md)
+- [Auto-Close Mechanism](references/auto_close.md)
+- [GeeLark Official API Docs](https://github.com/GeeLark/geelark-openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose API calls and local automation steps that require user credentials, installed dependencies, and human confirmation for sensitive actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

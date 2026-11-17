@@ -1,40 +1,49 @@
-## Description: <br>
-Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovefromio](https://clawhub.ai/user/lovefromio)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide GitHub work through the `gh` CLI, including issues, pull requests, CI runs, and advanced API queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through the user's existing GitHub CLI authentication and permissions. <br>
-Mitigation: Use a least-privilege GitHub token for private repositories or organization accounts. <br>
-Risk: GitHub CLI write or API actions may affect issues, pull requests, CI runs, or repository state. <br>
-Mitigation: Review proposed `gh` commands before allowing write operations or advanced API actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for GitHub CLI commands and guidance for issues, pull requests, CI runs, and advanced `gh api` queries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lovefromio/lovefromio-github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GitHub CLI commands and structured `gh --json` or `gh api --jq` query examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: Authenticated `gh api` or mutation commands can change repository or organization resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed GitHub CLI commands before execution, especially when authenticated to organization repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovefromio/skills/lovefromio-github)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include `gh` commands that require review before execution when authenticated to GitHub repositories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

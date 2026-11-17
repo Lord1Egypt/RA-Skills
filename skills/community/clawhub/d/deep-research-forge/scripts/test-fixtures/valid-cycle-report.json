@@ -1,0 +1,124 @@
+{
+  "research_sprint_id": "rs001",
+  "cycle_number": 1,
+  "tasks_summary": {
+    "total": 5,
+    "completed": 3,
+    "in_progress": 1,
+    "blocked": 1
+  },
+  "tasks": [
+    {
+      "task_id": "rt001",
+      "state": "accepted",
+      "max_cycles": 3,
+      "cycle_count": 1,
+      "dependency_ids": [],
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "passed"},
+        {"from": "passed", "to": "accepted"}
+      ]
+    },
+    {
+      "task_id": "rt002",
+      "state": "passed",
+      "max_cycles": 3,
+      "cycle_count": 1,
+      "dependency_ids": ["rt001"],
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "passed"}
+      ]
+    },
+    {
+      "task_id": "rt003",
+      "state": "researching",
+      "max_cycles": 3,
+      "cycle_count": 1,
+      "dependency_ids": [],
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"}
+      ]
+    },
+    {
+      "task_id": "rt004",
+      "state": "retrying",
+      "max_cycles": 3,
+      "cycle_count": 2,
+      "dependency_ids": [],
+      "retry_patch": {
+        "priority_tasks": ["Find primary sources for funding claim"],
+        "search_hints": ["Check SEC filings", "Search official blog"]
+      },
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "retrying"}
+      ]
+    },
+    {
+      "task_id": "rt005",
+      "state": "escalated",
+      "max_cycles": 3,
+      "cycle_count": 4,
+      "dependency_ids": [],
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "retrying"},
+        {"from": "retrying", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "retrying"},
+        {"from": "retrying", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "retrying"},
+        {"from": "retrying", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "failed"},
+        {"from": "failed", "to": "escalated"}
+      ]
+    }
+  ],
+  "completed_tasks": [
+    {"task_id": "rt001", "verdict": "pass", "confidence": "high"},
+    {"task_id": "rt002", "verdict": "pass", "confidence": "medium"}
+  ],
+  "blocked_tasks": [
+    {"task_id": "rt005", "blocker": "max_cycles_reached"}
+  ],
+  "conflicts_resolved": 1,
+  "conflicts_escalated": 0,
+  "evidence_ledger_stats": {
+    "total_entries": 47,
+    "confirmed": 42,
+    "rejected": 3,
+    "flagged": 2
+  },
+  "merge_judgment": {
+    "accepted_lanes": ["source-scout", "timeline-analyst"],
+    "downgraded_lanes": ["competitive-analyst"],
+    "rejected_lanes": []
+  },
+  "coverage_gaps": {
+    "critical": ["Funding valuation unverified"],
+    "medium": ["User churn data missing"],
+    "low": ["No GitHub star trend data"]
+  },
+  "next_action": "Retry rt004 with official sources; escalate rt005 to human",
+  "estimated_completion": "80%"
+}

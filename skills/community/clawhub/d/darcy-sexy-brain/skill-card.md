@@ -1,40 +1,54 @@
-## Description: <br>
-Darcy Sexy Brain helps users structure strategic decisions through dialectical role analysis, quantitative reasoning, market research, and human-impact review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Darcy Sexy Brain is a Traditional Chinese strategic analysis assistant for dialectical strategy review, data-driven reasoning, market research synthesis, and complex decision support.
 
-## Publisher: <br>
-[darcyzhanchun](https://clawhub.ai/user/darcyzhanchun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darcyzhanchun](https://clawhub.ai/user/darcyzhanchun)
 
-## Use Case: <br>
-External users and business strategy teams use this skill to stress-test decisions, compare strategic options, analyze provided data, and gather market context when current external information is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web search for market, trend, or competitor information, which can expose unnecessary context if used with private business details. <br>
-Mitigation: Use explicit activation, review searches before they run, and avoid providing private business details unless they are required for the task. <br>
-Risk: Accidental activation can produce sales or research workflows when the user did not intend to use them. <br>
-Mitigation: Activate the skill deliberately for strategic analysis, market research, or decision-support tasks and review its output before acting on it. <br>
+## Use Case:
 
+External users and business operators use this skill to structure strategic choices, challenge plans from multiple perspectives, quantify assumptions, and synthesize current market context when external research is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darcyzhanchun/darcy-sexy-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with tables, confidence notes, citations when web search is used, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-research citations and human-impact assessment sections when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market-analysis workflows may trigger web research and place user-provided business context into the active chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only business data suitable for the active chat context, and review cited sources and timestamps before relying on market conclusions.
+
+Risk: Strategic recommendations may be persuasive even when they depend on estimates, incomplete data, or uncertain assumptions.
+
+Mitigation: Treat confidence ratings, assumptions, and effect-size claims as decision support, and validate important conclusions against source data before acting.
+
+## Reference(s):
+
+- [Darcy Sexy Brain ClawHub Skill Page](https://clawhub.ai/darcyzhanchun/skills/darcy-sexy-brain)
+- [darcyzhanchun ClawHub Publisher Profile](https://clawhub.ai/user/darcyzhanchun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured analysis, tables, confidence ratings, and citations when web research is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multi-perspective debate matrices, statistical framing, market intelligence summaries, and human impact assessments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

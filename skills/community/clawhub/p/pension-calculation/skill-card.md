@@ -1,43 +1,60 @@
-## Description: <br>
-A China pension calculator that helps an agent launch a local web UI, collect pension inputs, calculate basic pension, enterprise annuity, personal pension, and retirement savings, and generate a retirement planning report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates estimated China pension income through a web form and LLM-accessible MCP tools, including basic pension, enterprise annuity, personal pension, retirement savings, and retirement planning reports.
 
-## Publisher: <br>
-[hikeryangsz-creator](https://clawhub.ai/user/hikeryangsz-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hikeryangsz-creator](https://clawhub.ai/user/hikeryangsz-creator)
 
-## Use Case: <br>
-External users and agents use this skill to estimate retirement income under the China pension system, either by guiding a user through a browser form or by calculating from directly supplied inputs. It is intended for planning support and should not be treated as financial, investment, or official social security advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles retirement, income, and savings inputs that can be sensitive personal financial data. <br>
-Mitigation: Use it only on trusted devices, avoid sharing full financial details in chat unless intended, and delete generated JSON files and local saved data after use. <br>
-Risk: The local web server stores and serves pension inputs while it is running and is described by security evidence as under-protected. <br>
-Mitigation: Run the server only on trusted networks, stop it after use, and do not use the skill on shared devices or exposed hosts. <br>
-Risk: Pension projections depend on user inputs, formulas, and assumptions and may not match official benefits or future policy changes. <br>
-Mitigation: Treat generated reports as planning estimates and confirm important decisions with official social security channels or a qualified financial adviser. <br>
+## Use Case:
 
+External users and developers use this skill to estimate retirement income under China pension assumptions, collect pension inputs through a browser UI, and generate concise retirement planning reports through an agent conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hikeryangsz-creator/pension-calculation) <br>
-- [Publisher profile](https://clawhub.ai/user/hikeryangsz-creator) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, JSON calculation data, local web UI links, and short command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided pension, savings, income, age, retirement age, and return-rate assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server evidence, CHANGELOG, package.json) <br>
+Risk: Sensitive pension and financial inputs may be stored in local files and exposed through unauthenticated HTTP endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the server only in a trusted local environment, restrict it to loopback, do not expose the port to a network, and avoid entering real financial data until access controls are added.
+
+Risk: Readable local files and path handling can expand exposure if the web server is reachable by untrusted users.
+
+Mitigation: Add authentication, explicit file allowlists, path traversal protections, and clear retention/delete controls before using the skill with real user data.
+
+Risk: Pension estimates can be incomplete or outdated because policies, wages, returns, and user-provided assumptions may change.
+
+Mitigation: Treat reports as planning estimates only and verify important retirement or financial decisions with current official sources or qualified advisors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hikeryangsz-creator/skills/pension-calculation)
+- [Publisher profile](https://clawhub.ai/user/hikeryangsz-creator)
+- [Skill documentation](artifact/SKILL.md)
+- [Release changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, local web UI URL guidance, JSON data/status payloads, and short text confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces estimates from user-provided pension inputs and can update selected numeric parameters before regenerating a report.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release, package.json, CHANGELOG; artifact/SKILL.md frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

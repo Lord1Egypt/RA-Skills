@@ -1,0 +1,49 @@
+part: ESP32-S3
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: ESP32-S3 (Xtensa LX7, Wi-Fi+BLE 5 SoC)
+main_page: https://www.espressif.com/en/products/socs/esp32-s3
+datasheet_path_expected: ../../embedded_dev/espressif/datasheet/ESP32-S3_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  family: ESP32-S3 (Xtensa LX7, Wi-Fi+BLE 5 SoC)
+  cpu: Xtensa 32-bit LX7 dual-core microprocessor
+  clock_mhz_max: 240
+  wireless:
+  - Wi-Fi (IEEE 802.11 b/g/n)
+  - Bluetooth 5 (LE)
+  package: QFN56 (7x7 mm)
+  gpios: 45
+  flash_psram: Optional 1.8V or 3.3V flash and PSRAM in-package
+  sub_series:
+  - ESP32-S3
+  - ESP32-S3FN8
+  - ESP32-S3RH2
+  - ESP32-S3R8
+  - ESP32-S3R16V
+  - ESP32-S3FH4R2
+  - ESP32-S3R8V (EOL)
+  - ESP32-S3R2 (EOL, upgraded to ESP32-S3RH2)
+  datasheet_version: '2.2'
+  datasheet_pages: 87
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 3 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet (ESP32-S3 Series Datasheet v2.2,
+  87 pages). Match was initially 33% (3 fields tested, only clock_mhz_max=240 matched as 240MHz no-space); yaml was enriched
+  with full sub-series + package + GPIOs from datasheet page 1 features list.
+extracted_at: '2026-06-28T09:23:15+08:00'
+extraction_method: pdfplumber Key Features / General Description
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12

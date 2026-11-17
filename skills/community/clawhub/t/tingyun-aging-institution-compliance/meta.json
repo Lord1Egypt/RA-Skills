@@ -1,0 +1,8 @@
+{
+  "name_zh": "养老机构运营合规自查助手",
+  "desc_zh": "按两项强制性国标把养老机构的建筑燃气消防食安防汛服务资金六类检查项逐条落成三态判定表，算清护理员配比与证书到期，产出整改闭环台账与证据留痕方案",
+  "desc_en": "Use when the user asks about elderly care institution compliance self-inspection, the two new mandatory national standards for nursing homes, remediation tracking for care facilities, or nursing staff ratio calculations. Turns 64 regulatory check items across building, gas, fire safety, food safety, flood prevention, service quality and fund safety into a three-state determination table (compliant / non-compliant / needs manual confirmation), calculates tiered nursing staff ratio gaps, generates certificate expiry alerts with 90/30-day windows, and produces a six-field remediation ledger plus evidence retention checklist. Does not issue compliance or legal conclusions and does not replace determination by civil affairs, fire or housing authorities.",
+  "tags": ["养老机构", "合规自查", "强制性国标", "GB48013", "重大事故隐患", "整改台账", "护理员配比", "消防检查"],
+  "category": "机构合规运营",
+  "version": "1.0.0"
+}

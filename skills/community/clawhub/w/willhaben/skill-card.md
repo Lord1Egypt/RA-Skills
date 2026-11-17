@@ -1,43 +1,54 @@
-## Description: <br>
-Create and manage Willhaben.at listings for the Austrian marketplace by helping draft titles, descriptions, prices, photo uploads, and supervised browser posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage listings on Willhaben.at (Austrian marketplace). Use when the user wants to sell something, create a listing, or mentions Willhaben. Handles photo uploads, generates titles/descriptions/prices, and posts via browser automation.
 
-## Publisher: <br>
-[benjaminorthner](https://clawhub.ai/user/benjaminorthner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benjaminorthner](https://clawhub.ai/user/benjaminorthner)
 
-## Use Case: <br>
-External users and marketplace sellers use this skill to draft German Willhaben listings, research comparable prices, prepare listing details, upload photos, and publish through a supervised signed-in browser session. <br>
-
-### Deployment Geography for Use: <br>
-Austria <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a signed-in Willhaben browser session and publish marketplace listings. <br>
-Mitigation: Review the listing text, price, photos, location, contact details, package size, and shipping choices before allowing publication. <br>
-Risk: Paid promotion options may appear during the Willhaben posting flow. <br>
-Mitigation: Confirm paid promotion options remain unselected and the total remains zero before publishing. <br>
-Risk: Local preference files may store location, shipping, pricing, and selling preferences for reuse. <br>
-Mitigation: Review or delete config/user-preferences.json when those local preferences should not be retained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Willhaben Setup](references/SETUP.md) <br>
-- [Willhaben Categories](references/categories.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/benjaminorthner/willhaben) <br>
+## Use Case:
 
+External users use this skill to prepare and publish Willhaben marketplace listings from item details and photos. It helps research comparable prices, draft German listing text, estimate package size, and guide browser-based publication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown listing drafts, browser-action guidance, and JSON preference configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces German listing copy, price recommendations, shipping/package-size suggestions, and supervised publishing steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate a logged-in Willhaben browser session and publish public ads after user confirmation.
+
+Mitigation: Review listing drafts, uploaded photos, price, shipping options, and final publish action before approving publication.
+
+Risk: Preferences may store location and shipping details locally in the skill folder.
+
+Mitigation: Store only the location precision needed for pickup and avoid saving exact address details unless acceptable.
+
+## Reference(s):
+
+- [Willhaben Bot Setup](references/SETUP.md)
+- [Willhaben Categories](references/categories.md)
+- [Willhaben Listing Creation](https://www.willhaben.at/iad/anzeigenaufgabe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with listing drafts, browser automation guidance, and configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce German listing titles and descriptions, price recommendations, package-size estimates, and browser action guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, released 2026-01-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

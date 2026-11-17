@@ -1,0 +1,578 @@
+{
+  "context": {
+    "schemaVersion": "quant_strategy_context.v2",
+    "contextId": "qsc_042cbd1010c782e5de65",
+    "asOfDate": "2026-07-23",
+    "mode": "live",
+    "readyForAnalysis": true,
+    "readyForAction": true,
+    "portfolio": {
+      "holdings": [
+        {
+          "code": "023299",
+          "name": "汇添富中证A500指数增强C",
+          "marketValue": 7365.6,
+          "weightPct": 40.0689,
+          "metrics": {
+            "r20Pct": -9.0582,
+            "r60Pct": -3.8867,
+            "bias20Pct": -4.4146,
+            "ma20": 1.508285,
+            "ma60": 1.527302,
+            "currentDrawdownPct": 10.6366
+          },
+          "tradeConstraints": {
+            "purchaseStatus": "开放申购",
+            "redemptionStatus": "开放赎回",
+            "recurringPurchaseStatus": "支持",
+            "dailyPurchaseLimited": false,
+            "dailyPurchaseLimit": null,
+            "minimumPurchaseAmount": 10.0,
+            "confirmDays": 1,
+            "source": "redis_first_fund_rules",
+            "available": true
+          }
+        },
+        {
+          "code": "519195",
+          "name": "万家品质生活混合A",
+          "marketValue": 4177.14,
+          "weightPct": 22.7237,
+          "metrics": {
+            "r20Pct": 1.0691,
+            "r60Pct": 12.721,
+            "bias20Pct": 0.3518,
+            "ma20": 5.91609,
+            "ma60": 5.739352,
+            "currentDrawdownPct": 2.0087
+          },
+          "tradeConstraints": {
+            "purchaseStatus": "限大额",
+            "redemptionStatus": "开放赎回",
+            "recurringPurchaseStatus": "支持",
+            "dailyPurchaseLimited": true,
+            "dailyPurchaseLimit": 2000.0,
+            "minimumPurchaseAmount": 10.0,
+            "confirmDays": 1,
+            "source": "redis_first_fund_rules",
+            "available": true
+          },
+          "inTransitBuyAmount": 1350.0
+        },
+        {
+          "code": "017731",
+          "name": "嘉实全球产业升级股票发起式(QDII)C",
+          "marketValue": 3829.92,
+          "weightPct": 20.8347,
+          "metrics": {
+            "r20Pct": -7.1191,
+            "r60Pct": 27.3213,
+            "bias20Pct": -6.4092,
+            "ma20": 4.50824,
+            "ma60": 4.176043,
+            "currentDrawdownPct": 16.2804
+          },
+          "tradeConstraints": {
+            "purchaseStatus": "限大额",
+            "redemptionStatus": "开放赎回",
+            "recurringPurchaseStatus": "支持",
+            "dailyPurchaseLimited": true,
+            "dailyPurchaseLimit": 1000.0,
+            "minimumPurchaseAmount": 10.0,
+            "confirmDays": 2,
+            "source": "redis_first_fund_rules",
+            "available": true
+          }
+        },
+        {
+          "code": "270042",
+          "name": "广发纳斯达克100ETF联接人民币(QDII)A",
+          "marketValue": 1994.99,
+          "weightPct": 10.8528,
+          "metrics": {
+            "r20Pct": -1.2836,
+            "r60Pct": 6.5446,
+            "bias20Pct": -1.1033,
+            "ma20": 8.19613,
+            "ma60": 8.204875,
+            "currentDrawdownPct": 5.6676
+          },
+          "tradeConstraints": {
+            "purchaseStatus": "限大额",
+            "redemptionStatus": "开放赎回",
+            "recurringPurchaseStatus": "支持",
+            "dailyPurchaseLimited": true,
+            "dailyPurchaseLimit": 5.0,
+            "minimumPurchaseAmount": 5.0,
+            "confirmDays": 2,
+            "source": "redis_first_fund_rules",
+            "available": true
+          },
+          "inTransitBuyAmount": 10.0
+        },
+        {
+          "code": "016600",
+          "name": "万家品质生活混合C",
+          "marketValue": 1014.7,
+          "weightPct": 5.52,
+          "metrics": {
+            "r20Pct": 1.0283,
+            "r60Pct": 12.5821,
+            "bias20Pct": 0.3331,
+            "ma20": 5.80656,
+            "ma60": 5.635302,
+            "currentDrawdownPct": 2.038
+          },
+          "tradeConstraints": {
+            "purchaseStatus": "限大额",
+            "redemptionStatus": "开放赎回",
+            "recurringPurchaseStatus": "支持",
+            "dailyPurchaseLimited": true,
+            "dailyPurchaseLimit": 2000.0,
+            "minimumPurchaseAmount": 10.0,
+            "confirmDays": 1,
+            "source": "redis_first_fund_rules",
+            "available": true
+          }
+        }
+      ],
+      "totalMarketValue": 18382.35,
+      "risk": {
+        "currentDrawdownPct": 16.0085,
+        "maxDrawdownPct": 19.7324,
+        "annualizedVolatilityPct": 22.2573,
+        "tradingDays": 131,
+        "coverageRatio": 1.0,
+        "coveragePct": 100.0,
+        "dataAsOf": "2026-07-21",
+        "complete": true,
+        "benchmarkCode": "000300",
+        "benchmarkReturnPct": 2.3605,
+        "relativeReturnPct": -14.793,
+        "configuredMaxDrawdownLimitPct": 15.0,
+        "methodologyVersion": "linked_daily_return_v1",
+        "feePolicy": "zero_fee",
+        "blockingFundCount": 0,
+        "pendingFirstReturnCount": 2,
+        "source": "authoritative_G_day_portfolio_playback"
+      }
+    },
+    "execution": {
+      "actionable": true,
+      "isTradingDay": true,
+      "insideTradingWindow": true,
+      "cutoffTime": "15:00:00+08:00",
+      "pastCutoff": false
+    },
+    "pendingTransactions": {
+      "pendingBuyAmount": 1360.0,
+      "pendingBuyByFund": [
+        {
+          "code": "270042",
+          "amount": 10.0
+        },
+        {
+          "code": "519195",
+          "amount": 1350.0
+        }
+      ]
+    },
+    "market": {
+      "indices": [
+        {
+          "code": "000300",
+          "name": "沪深300",
+          "r20Pct": -4.5677,
+          "trendState": "downtrend"
+        },
+        {
+          "code": "000510",
+          "name": "中证A500",
+          "r20Pct": -7.0952,
+          "trendState": "downtrend"
+        },
+        {
+          "code": "NDX",
+          "name": "纳指100",
+          "r20Pct": -1.1898,
+          "trendState": "uptrend_pullback"
+        }
+      ]
+    },
+    "actionReadiness": {
+      "level": "full",
+      "funds": [
+        {
+          "code": "023299",
+          "buyReady": true,
+          "sellReady": true,
+          "buyReasons": [],
+          "sellReasons": [],
+          "reasons": []
+        },
+        {
+          "code": "519195",
+          "buyReady": true,
+          "sellReady": true,
+          "buyReasons": [],
+          "sellReasons": [],
+          "reasons": []
+        },
+        {
+          "code": "017731",
+          "buyReady": true,
+          "sellReady": true,
+          "buyReasons": [],
+          "sellReasons": [],
+          "reasons": []
+        },
+        {
+          "code": "270042",
+          "buyReady": true,
+          "sellReady": true,
+          "buyReasons": [],
+          "sellReasons": [],
+          "reasons": []
+        },
+        {
+          "code": "016600",
+          "buyReady": true,
+          "sellReady": true,
+          "buyReasons": [],
+          "sellReasons": [],
+          "reasons": []
+        }
+      ]
+    }
+  },
+  "policy": {
+    "allowedAssets": [
+      "A股宽基",
+      "A股行业主题",
+      "港股/海外",
+      "主动基金"
+    ],
+    "assetSleeves": [
+      {
+        "approvedFundCodes": [
+          "023299"
+        ],
+        "assetClass": "EQUITY",
+        "id": "equity_cn",
+        "maxWeightPct": 80,
+        "minWeightPct": 0,
+        "name": "A股权益",
+        "riskLevel": 3,
+        "tacticalBudgetPct": 10,
+        "targetWeightPct": 45
+      },
+      {
+        "approvedFundCodes": [
+          "017731",
+          "270042"
+        ],
+        "assetClass": "EQUITY",
+        "id": "equity_overseas",
+        "maxWeightPct": 60,
+        "minWeightPct": 0,
+        "name": "海外权益",
+        "riskLevel": 3,
+        "tacticalBudgetPct": 10,
+        "targetWeightPct": 25
+      },
+      {
+        "approvedFundCodes": [
+          "519195",
+          "016600"
+        ],
+        "assetClass": "EQUITY_THEME",
+        "id": "theme",
+        "maxWeightPct": 20,
+        "minWeightPct": 0,
+        "name": "行业主题",
+        "riskLevel": 4,
+        "tacticalBudgetPct": 10,
+        "targetWeightPct": 20
+      },
+      {
+        "approvedFundCodes": [],
+        "assetClass": "CASH",
+        "id": "cash",
+        "maxWeightPct": 100,
+        "minWeightPct": 0,
+        "name": "现金",
+        "riskLevel": 0,
+        "tacticalBudgetPct": 0,
+        "targetWeightPct": 10
+      }
+    ],
+    "confirmedByUser": true,
+    "drawdownBasis": {
+      "method": "MCP_REPORTED",
+      "scope": "MCP_FUND_PORTFOLIO"
+    },
+    "effectiveAt": "2026-07-22T17:25:46Z",
+    "excludedAssets": [
+      "债券",
+      "黄金"
+    ],
+    "fundSleeveMap": {
+      "016600": "theme",
+      "017731": "equity_overseas",
+      "023299": "equity_cn",
+      "270042": "equity_overseas",
+      "519195": "theme"
+    },
+    "goals": [
+      {
+        "id": "long_term_invest",
+        "plannedContributionCnyPerMonth": 5000,
+        "priority": 1,
+        "purpose": "长期投资，不作他用",
+        "targetAmountCny": null,
+        "targetAmountMode": "NONE",
+        "targetDate": "长期"
+      }
+    ],
+    "interactionPreferences": {
+      "adviceMode": "DECISIVE",
+      "onDemandRun": true,
+      "requiresUserTradeDecision": true,
+      "scheduledRun": "daily_14:00",
+      "snapshotArchival": true
+    },
+    "lastReviewedAt": "2026-07-22T17:25:33Z",
+    "policyVersion": 15,
+    "portfolioLimits": {
+      "amountStepCny": 100,
+      "maxEquityWeightPct": 80,
+      "maxMonthlyTurnoverPct": 50,
+      "maxOneTradeWeightPct": 5,
+      "maxSingleFundWeightPct": 20,
+      "maxThemeWeightPct": 20,
+      "minTradeCny": 100
+    },
+    "riskCapacity": {
+      "emergencyFundReady": true,
+      "maxDrawdownPct": 15,
+      "withdrawalIn12MonthsCny": 0
+    },
+    "riskControls": {
+      "dynamicTurnover": {
+        "enabled": true,
+        "factorMethod": "fund_trend_consensus_v1",
+        "minimumConfirmingFactorCount": 2,
+        "riskReductionExempt": true,
+        "tierStepPct": 5
+      },
+      "factorMethod": "fund_trend_consensus_v1",
+      "minimumAdverseFactorCount": 2,
+      "reductionStepPctByAdverseFactorCount": {
+        "2": 3,
+        "3": 4,
+        "4": 5
+      },
+      "softDrawdownTriggerPct": 10,
+      "softTriggerMode": "DOWNTREND_FACTORS"
+    },
+    "riskTolerance": {
+      "maxDrawdownAmountCny": 18000,
+      "maxDrawdownPct": 15,
+      "stressReaction": "DYNAMIC_REDUCE"
+    },
+    "schemaVersion": "investor_policy.v1",
+    "status": "ACTIVE",
+    "totalInvestableAssetsCny": 120000
+  },
+  "cash": {
+    "availableCny": 100257.65,
+    "asOfDate": "2026-07-23",
+    "source": "user_confirmed",
+    "excludesPendingBuys": true,
+    "note": "Estimated from policy totalInvestableAssets minus current holdings and pending buys"
+  },
+  "activity": {
+    "schemaVersion": "portfolio_activity.v2",
+    "grossMonthlyTurnoverUsedPct": 0,
+    "ordinaryMonthlyTurnoverUsedPct": 0,
+    "protectiveSellTurnoverPct": 0,
+    "riskOffReentryUsedPct": 0,
+    "classificationEvents": [],
+    "asOfDate": "2026-07-23",
+    "source": "classified_transaction_ledger"
+  },
+  "aiView": {
+    "schemaVersion": "ai_investment_view.v1",
+    "status": "VALID",
+    "asOfDate": "2026-07-23",
+    "modelVersion": "mimo-v2.5/custom",
+    "promptVersion": "hua-investment-research-v1",
+    "scenarioProbabilities": {
+      "base": 0.45,
+      "bull": 0.15,
+      "bear": 0.3,
+      "stress": 0.1
+    },
+    "sleeveViews": [
+      {
+        "sleeveId": "equity_cn",
+        "direction": "UNDERWEIGHT",
+        "confidence": 0.65,
+        "horizonDays": 30,
+        "proposedDeltaPct": 0,
+        "preferredFundCodes": [
+          "023299"
+        ],
+        "reduceFundCodes": [],
+        "evidenceIds": [
+          "E-001"
+        ],
+        "counterEvidenceIds": [
+          "E-002"
+        ],
+        "invalidationTriggers": [
+          "LONG_TREND_BREAK",
+          "DRAWDOWN_HARD_BREACH"
+        ]
+      },
+      {
+        "sleeveId": "equity_overseas",
+        "direction": "NEUTRAL",
+        "confidence": 0.55,
+        "horizonDays": 30,
+        "proposedDeltaPct": 0,
+        "preferredFundCodes": [
+          "017731",
+          "270042"
+        ],
+        "reduceFundCodes": [],
+        "evidenceIds": [
+          "E-003"
+        ],
+        "counterEvidenceIds": [
+          "E-004"
+        ],
+        "invalidationTriggers": [
+          "US_RATE_SHOCK",
+          "GEO_POLITICAL"
+        ]
+      },
+      {
+        "sleeveId": "theme",
+        "direction": "NEUTRAL",
+        "confidence": 0.6,
+        "horizonDays": 30,
+        "proposedDeltaPct": 0,
+        "preferredFundCodes": [
+          "519195",
+          "016600"
+        ],
+        "reduceFundCodes": [],
+        "evidenceIds": [
+          "E-005"
+        ],
+        "counterEvidenceIds": [
+          "E-006"
+        ],
+        "invalidationTriggers": [
+          "AI_CAPITAL_EXPENDITURE_CUT"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E-001",
+        "source": "HuahuaDaily|get_quant_strategy_context",
+        "asOfDate": "2026-07-23",
+        "title": "A股市场全面下行，中证A500近20日跌7.1%",
+        "fact": "A股主要指数均处于下行趋势，中证A500近20日跌7.1%，上证指数近20日跌5.9%",
+        "inference": "A股权益短期承压，但估值已回落至相对合理区间",
+        "supports": [
+          "EQUITY_CN_UNDERWEIGHT"
+        ],
+        "contradicts": []
+      },
+      {
+        "id": "E-002",
+        "source": "mx-finance-search|蓝鲸财经",
+        "asOfDate": "2026-07-23",
+        "title": "谷歌上调2026年资本开支至1950-2050亿美元",
+        "fact": "谷歌二季度财报宣布上调全年资本开支指引，验证AI算力需求强劲",
+        "inference": "AI算力需求持续，国产算力供不应求至少一年",
+        "supports": [
+          "AI_THEME_SUPPORT"
+        ],
+        "contradicts": [
+          "EQUITY_CN_UNDERWEIGHT"
+        ]
+      },
+      {
+        "id": "E-003",
+        "source": "HuahuaDaily|get_quant_strategy_context",
+        "asOfDate": "2026-07-23",
+        "title": "纳指100和标普500维持上行趋势",
+        "fact": "纳指100近20日跌1.2%但MA20>MA60，标普500近20日涨1.8%",
+        "inference": "美股科技股虽有回调但长期趋势未破坏",
+        "supports": [
+          "OVERSEAS_NEUTRAL"
+        ],
+        "contradicts": []
+      },
+      {
+        "id": "E-004",
+        "source": "HuahuaDaily|get_quant_strategy_context",
+        "asOfDate": "2026-07-23",
+        "title": "QDII基金限购且近期回撤较大",
+        "fact": "017731近20日跌7.1%，当前回撤16.3%，限购1000元/日",
+        "inference": "海外权益短期承压，但长期配置价值仍在",
+        "supports": [
+          "OVERSEAS_NEUTRAL"
+        ],
+        "contradicts": []
+      },
+      {
+        "id": "E-005",
+        "source": "HuahuaDaily|get_quant_strategy_context",
+        "asOfDate": "2026-07-23",
+        "title": "万家品质生活近期表现强劲",
+        "fact": "519195近20日涨1.07%，近60日涨12.72%，MA20>MA60",
+        "inference": "AI/科技主题基金短期仍有动量",
+        "supports": [
+          "THEME_NEUTRAL"
+        ],
+        "contradicts": []
+      },
+      {
+        "id": "E-006",
+        "source": "mx-finance-search|第一财经",
+        "asOfDate": "2026-07-23",
+        "title": "半导体产业链今日领跌，科创50跌4.09%",
+        "fact": "半导体产业链今日领跌，芯片设计、设备、先进封装方向跌幅居前",
+        "inference": "科技板块分化，AI算力vs半导体设备走势不同",
+        "supports": [
+          "THEME_NEUTRAL"
+        ],
+        "contradicts": []
+      }
+    ],
+    "unknowns": [
+      "A股市场何时止跌企稳",
+      "半导体板块回调是否接近尾声",
+      "QDII限购是否会进一步收紧"
+    ],
+    "noTradeCase": "组合回撤已超过15%硬限制，主题袖套超配，且A股处于下行趋势，此时加仓风险大于收益。等待市场企稳或回撤修复后再考虑加仓。",
+    "criticVerdict": "PASS_WITH_LIMITS",
+    "criticNotes": [
+      "回撤已超过硬限制，必须先降低风险",
+      "主题袖套超配需要调整",
+      "pending buys会进一步增加风险敞口"
+    ],
+    "evidenceSetHash": "9fe3c75a72eefd0f10c6ac96440f85b83697b2ad54a5a8fb4840cca98b6c6511",
+    "capabilityAttestation": {
+      "reasoningTier": "high",
+      "evidenceGrounded": true,
+      "criticIndependent": true,
+      "numericAuthority": "NONE"
+    }
+  }
+}

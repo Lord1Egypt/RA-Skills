@@ -1,43 +1,54 @@
-## Description: <br>
-AIRILAB lets an agent use AiriLab image workflows for MJ-style generation, creative 4K upscaling, atmosphere conversion, login and project setup, asynchronous task polling, and result retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIRILAB helps agents use AiriLab image generation and task management workflows for MJ creative rendering, creative upscaling, and atmosphere conversion while handling login, project selection, task submission, status polling, and result delivery.
 
-## Publisher: <br>
-[tatekii](https://clawhub.ai/user/tatekii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tatekii](https://clawhub.ai/user/tatekii)
 
-## Use Case: <br>
-External users and agents use AIRILAB to submit AiriLab image generation, upscaling, and atmosphere conversion jobs while the skill manages login, project selection, job polling, and result delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a persistent background AiriLab worker by default. <br>
-Mitigation: Review before installing; run setup with autostart disabled when continuous polling is not desired. <br>
-Risk: Authentication tokens, selected project data, job state, and logs are stored locally. <br>
-Mitigation: Confirm AIRILAB_HOME before use, protect that directory, and periodically remove saved tokens or job data when no longer needed. <br>
-Risk: Uploaded images and generated result URLs are sent to AiriLab and written locally. <br>
-Mitigation: Avoid sensitive images unless the AiriLab data handling terms fit the user's requirements. <br>
+## Use Case:
 
+Developers and external agent users use this skill to submit AiriLab image generation, upscaling, and atmosphere conversion jobs, maintain the required account and project context, and receive asynchronous job results.
 
-## Reference(s): <br>
-- [ClawHub AIRILAB skill page](https://clawhub.ai/tatekii/airilab) <br>
-- [AiriLab service](https://cn.airilab.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown or plain text status summaries with shell commands, generated result URLs, and local JSON/SQLite state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists token, project, job database, logs, and worker PID under AIRILAB_HOME or ~/.openclaw/skills/airilab.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can run a background worker across sessions and store local account tokens and job data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review worker autostart before installation, use a protected AIRILAB_HOME location, and clear token and project data when finished.
+
+Risk: Images and local files may be uploaded to AiriLab services as part of generation, upscaling, or atmosphere conversion workflows.
+
+Mitigation: Avoid using sensitive files as inputs and confirm that the AiriLab service is acceptable for the intended data before running jobs.
+
+## Reference(s):
+
+- [AiriLab service](https://cn.airilab.com)
+- [ClawHub skill page](https://clawhub.ai/tatekii/skills/airilab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Files]
+
+**Output Format:** [Markdown guidance with command output summaries and generated image result URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local token, project, job, worker log, and worker pid files under the configured AIRILAB_HOME runtime directory.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

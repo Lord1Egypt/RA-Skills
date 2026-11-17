@@ -1,44 +1,62 @@
-## Description: <br>
-Provides operational guidance, scripts, and configuration examples for keeping an OpenClaw gateway running continuously with process supervision, health checks, restart handling, resume patterns, resource cleanup, and logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Stable Running provides operations guidance and scripts for keeping an OpenClaw gateway running continuously with process supervision, health checks, reconnection, resumable tasks, cleanup, and monitoring.
 
-## Publisher: <br>
-[foxyy1126](https://clawhub.ai/user/foxyy1126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxyy1126](https://clawhub.ai/user/foxyy1126)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw for unattended service operation, including systemd or PM2 supervision, health checks, restart behavior, task-resume patterns, cleanup, and log monitoring. It is intended for teams that want a practical operational runbook and helper scripts for long-running OpenClaw deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended persistence can keep OpenClaw running after logout or reboot and may restart failed processes automatically. <br>
-Mitigation: Install only when unattended operation is intended, review each systemd, PM2, and cron command before use, and monitor restart logs for repeated failures. <br>
-Risk: The network monitor can make host-level default-route changes when connectivity checks fail. <br>
-Mitigation: Avoid scripts/network_monitor.sh unless failover is explicitly required, and test with interface validation, dry-run procedures, rollback steps, and administrator approval. <br>
-Risk: Operational scripts and examples reference sensitive OpenClaw environment and data paths. <br>
-Mitigation: Protect /home/openclaw/.openclaw/.env and /home/openclaw/data with least-privilege file permissions and review backup, logging, and cleanup behavior before deployment. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to configure OpenClaw for unattended operation with service supervision, automatic restart, reconnect behavior, resumable task state, resource cleanup, and log monitoring.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Task resume reference](references/task-resume.md) <br>
-- [ClawHub release page](https://clawhub.ai/foxyy1126/openclaw-stable-running) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, YAML, and service configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes helper scripts for health checks, cleanup, PM2 process configuration, and network monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent service, PM2, and cron setup can change host behavior if applied without deployment review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each command and path against the target deployment, run under a dedicated low-privilege openclaw user where possible, and prepare rollback steps before unattended use.
+
+Risk: The network monitor can change the default route without enough safeguards.
+
+Mitigation: Fix and test the routing logic with known interface names before enabling it, and keep it disabled until route changes are reviewed.
+
+Risk: Environment files used by service managers may contain secrets.
+
+Mitigation: Protect the .env file with strict permissions and avoid exposing secret values in logs or shared configuration.
+
+Risk: Cleanup automation can remove logs or temporary files needed for diagnosis.
+
+Mitigation: Scope cleanup paths narrowly, validate retention settings, and test deletion behavior before scheduling the script.
+
+## Reference(s):
+
+- [Task Resume Reference](references/task-resume.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell, JavaScript, YAML, INI, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational runbooks and script/configuration examples for OpenClaw service supervision and recovery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

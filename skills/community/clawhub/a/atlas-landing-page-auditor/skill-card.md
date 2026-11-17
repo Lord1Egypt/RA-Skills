@@ -1,42 +1,55 @@
-## Description: <br>
-Landing page auditor for SaaS, agency, and product sites that audits conversion killers, generates prioritized fix lists, drafts high-converting copy variants, and produces actionable CRO improvement reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Landing page auditor for SaaS, agency, and product sites that audits conversion killers, generates prioritized fix lists, drafts high-converting copy variants, and produces actionable CRO improvement reports.
 
-## Publisher: <br>
-[n8gendegen](https://clawhub.ai/user/n8gendegen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n8gendegen](https://clawhub.ai/user/n8gendegen)
 
-## Use Case: <br>
-Founders, marketers, agencies, and product teams use this skill to review SaaS, agency, product, pricing, signup, and campaign landing pages for conversion issues and copy improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External Atlas links and paid ZIP pack references may be promotional. <br>
-Mitigation: Treat the paid offers as optional and review external links before purchase or installation. <br>
-Risk: The crypto tag and DeFi wording are mismatched with the landing page audit use case. <br>
-Mitigation: Maintainers should clean up the tag and wording so users do not mistake the skill for crypto or DeFi audit guidance. <br>
+## Use Case:
 
+External users, founders, marketers, agencies, and product teams use this skill to audit SaaS, agency, product, pricing, signup, and campaign landing pages for conversion issues and copy improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n8gendegen/atlas-landing-page-auditor) <br>
-- [Atlas Agent Suite homepage](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-landing-page-auditor) <br>
-- [Atlas concierge install](https://atlasagentsuite.com/concierge.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-landing-page-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown CRO audit report with scores, prioritized fixes, copy variants, conversion callouts, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; no code execution or sensitive access indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated reports can include Atlas advertising, paid package calls to action, and tracked sales links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove promotional footers, pricing text, and tracked links before sharing reports.
+
+Risk: The audit output is a lightweight CRO template and may overstate expected conversion lift without site analytics or controlled testing.
+
+Mitigation: Use the report to prioritize experiments, then validate recommendations with analytics, user research, and A/B testing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/n8gendegen/skills/atlas-landing-page-auditor)
+- [Atlas Agent Suite Skills](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-landing-page-auditor)
+- [Atlas Concierge Install](https://atlasagentsuite.com/concierge.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-landing-page-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown CRO audit report with scoring tables, prioritized fixes, copy variants, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Atlas promotional footer text and tracked links in generated reports.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

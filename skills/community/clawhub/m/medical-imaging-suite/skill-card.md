@@ -1,41 +1,49 @@
-## Description: <br>
-Complete medical imaging solution with OHIF viewer, DICOMweb integration, segmentation, and MONAI workflow support, deployable through Docker-oriented guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a medical imaging suite scaffold for OHIF viewer deployment, DICOMweb integration, DICOM segmentation, and MONAI workflow support.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and healthcare imaging teams use this skill as a lightweight entry point for planning OHIF viewer, DICOMweb, segmentation, and MONAI-oriented workflows. The release evidence indicates it is a placeholder wrapper, so real deployment components should be reviewed separately before use with medical data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this skill deploys the advertised OHIF, DICOMweb, TotalSegmentator, or MONAI components directly. <br>
-Mitigation: Treat it as a lightweight wrapper and review any referenced deployment skills or Docker components before relying on them. <br>
-Risk: Medical imaging workflows can involve sensitive medical data and clinical expectations. <br>
-Mitigation: Validate real deployment components, data handling, and clinical suitability separately before using the workflow with medical data. <br>
+## Use Case:
 
+Developers and medical imaging platform operators use this skill to assemble a Docker-based imaging workflow that combines an OHIF viewer, DICOMweb services, segmentation support, and MONAI-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/medical-imaging-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and deployment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May point users to separate OHIF and DICOM segmentation deployment skills rather than performing deployment directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill is a placeholder for a broader medical imaging deployment and may not fully account for DICOM, patient-data, Docker, port, volume, credential, or data-handling requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using it with real DICOM or patient data, review this skill and any referenced deployment skills for Docker side effects, exposed services, credentials, storage, and data handling.
+
+## Reference(s):
+
+- [Medical Imaging Suite on ClawHub](https://clawhub.ai/sunshine-del-ux/skills/medical-imaging-suite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to separate OHIF deployment and DICOM segmentation skills for full deployment behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

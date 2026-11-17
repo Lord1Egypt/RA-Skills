@@ -1,41 +1,54 @@
-## Description: <br>
-Enable or disable an optional strict engineering workflow for coding tasks that emphasizes goal clarification, specs, planning, small implementation steps, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable or disable a strict engineering workflow for coding tasks enforcing goal clarification, specs, planning, test-driven small steps, and verification.
 
-## Publisher: <br>
-[Spiceman161](https://clawhub.ai/user/Spiceman161) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spiceman161](https://clawhub.ai/user/spiceman161)
 
-## Use Case: <br>
-Developers and engineers use this skill to opt into a stricter coding workflow for build, debug, and implementation tasks, including short specs, plans, risk checks, stepwise execution, and final verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The mode persists until disabled, which can make later coding interactions more process-heavy than expected. <br>
-Mitigation: Check the mode status before starting time-sensitive work and disable it when the stricter workflow is no longer needed. <br>
-Risk: Optional notes in the mode state file could contain sensitive information. <br>
-Mitigation: Avoid storing secrets, credentials, or private project details in the optional notes field. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Superpowers Mode on ClawHub](https://clawhub.ai/Spiceman161/superpowers-mode) <br>
-- [Plan template](references/plan-template.md) <br>
-- [Spec template](references/spec-template.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to opt into a structured coding workflow that clarifies goals, writes specs and plans, executes changes in small verified steps, and summarizes outcomes. It is intended for coding, build, and debugging tasks rather than general chat.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with short status confirmations and state-file instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a small persistent mode flag when enabled or disabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Enabling the mode changes coding-task behavior until it is turned off.
+
+Mitigation: Use the status or disable command when the structured workflow is no longer wanted.
+
+Risk: The trigger examples are bilingual and may be read as exhaustive.
+
+Mitigation: Confirm acceptable equivalent enable, disable, and status phrasing before relying on the mode in a workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spiceman161/skills/superpowers-mode)
+- [Plan template](references/plan-template.md)
+- [Spec template](references/spec-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code and shell-command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local mode-state file when the user enables, disables, or checks the mode.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

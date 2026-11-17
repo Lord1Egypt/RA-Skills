@@ -1,41 +1,53 @@
-## Description: <br>
-A persona guidance skill that simulates a Ma Huateng-style perspective for product, strategy, investment, and organizational analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ma Huateng Perspective V2 helps an agent synthesize product, strategy, investment, and organizational analysis from a Pony Ma-inspired perspective based on public-information research.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and developers can use this skill as an AI-generated thinking aid for exploring product, strategy, investment, and organizational questions through a simulated Ma Huateng-inspired lens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly encourages first-person simulation of a public figure and may activate without a clear request for that persona. <br>
-Mitigation: Use explicit activation language and a visible disclaimer that outputs are AI-generated analysis, not statements from Ma Huateng or Tencent. <br>
-Risk: Users may over-rely on simulated business, strategy, or investment guidance. <br>
-Mitigation: Treat outputs as perspective-taking assistance only and review important business or investment decisions with qualified human judgment. <br>
+## Use Case:
 
+External users and developers use this skill as a strategy-perspective prompt for product experience, gray releases, ecosystem strategy, investment, and organization questions. Outputs should be treated as synthesized public-information analysis, not statements by Ma Huateng.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/ma-huateng-perspective-v2) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text conversational analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona output; no code, shell commands, tools, or external API calls are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can cause an assistant to answer in first person as a real public figure and make generated analysis appear personally stated by that figure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for the perspective and label every response as synthesized public-information analysis rather than a personal statement.
+
+Risk: Broad trigger phrases can activate the roleplay framing during ordinary product or strategy questions.
+
+Mitigation: Review activation rules before installation and narrow triggers where users need neutral analysis by default.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/ma-huateng-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text strategy analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only roleplay and strategy-perspective output; no code execution or data access is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

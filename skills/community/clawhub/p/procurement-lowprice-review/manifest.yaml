@@ -1,0 +1,16 @@
+name: procurement-lowprice-review
+slug: procurement-lowprice-review
+display_name: 政府采购异常低价审查与应对助手
+emoji: "⚖️"
+version: 2.0.0
+version_stage: stable
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '财政部财库〔2026〕2号 异常低价审查落地实务助手，覆盖采购人/评标专家/投标人三视角，挂载IMA知识库与联网检索。'
+changelog:
+  - "2.0.0: 集成财库〔2026〕2号四红线判定、版本识别、组织称谓归一化、三视角应对框架；references/ 含11个增强文件（说明函/审查记录表/评审程序条款/启动审查决定书/应答自查表/澄清问题题库/红线速查/驳回风险库/计算样例库/版本识别/称谓映射）"
+feedback:
+  channel: 微信公众号
+  account: 一线评标专家
+  note: 使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流

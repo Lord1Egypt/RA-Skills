@@ -1,37 +1,53 @@
-## Description: <br>
-Validate whether a skill can be executed successfully by a minimally informed subagent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate whether a skill can be executed successfully by a minimally informed subagent.
 
-## Publisher: <br>
-[amourlion](https://clawhub.ai/user/amourlion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amourlion](https://clawhub.ai/user/amourlion)
 
-## Use Case: <br>
-Developers and skill authors use this skill to test whether another skill can be executed correctly when a subagent receives only a sparse invocation and a minimal artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A subagent may exercise a target skill or artifact under intentionally sparse instructions. <br>
-Mitigation: Use the skill only with target skills and artifacts that are appropriate for subagent testing, and disable implicit invocation when manual control is required. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to test whether another skill can complete its intended behavior when a subagent receives only a minimal invocation and artifact, then report pass/fail findings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown verdict with findings and improvement guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill reports pass or fail, explains any acceptance gaps, and suggests targeted skill improvements when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill spawns a subagent to test another skill, and the target skill may act on supplied files, links, or prompts in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a controlled workspace and review any proposed edits or commands before accepting them.
+
+Risk: Sparse test prompts can produce incomplete or misleading validation if the expected behavior is not represented by the minimal artifact.
+
+Mitigation: Treat pass/fail output as acceptance-test evidence and review residual ambiguity before changing or releasing the target skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amourlion/skills/limited-info-subagent-skill-verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown findings with a pass/fail verdict and improvement guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise, language-matched report; may include severity-labeled findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

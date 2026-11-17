@@ -6,19 +6,23 @@
 import os
 import json
 import glob
+import sys
 import time
 import pymupdf
 import docx
 import openpyxl
 import pptx
 import re as re_module
+from knowledge_policy import scan_files
+from utils import rel_key
 from utils import (
     load_cache, save_cache,
     load_progress, save_progress,
     is_gibberish,
     extract_pdf_text, extract_pdf_via_ocr,
     convert_old_office,
-    extract_docx_text, extract_xlsx_text, extract_pptx_text
+    extract_docx_text, extract_xlsx_text, extract_pptx_text,
+    extract_doc_text, extract_xls_text
 )
 
 # ============== 配置 ==============
@@ -79,8 +83,9 @@ def extract_full_text(filepath):
                 finally:
                     try:
                         os.remove(converted)
-                    except:
-                        pass
+                    except OSError as e:
+                        # 临时文件清理失败：记录以便排查残留（不再静默吞掉）
+                        print(f"[临时文件清理失败] {converted}: {e}", file=sys.stderr)
             return ""
 
         elif ext == ".docx":
@@ -95,8 +100,9 @@ def extract_full_text(filepath):
                 finally:
                     try:
                         os.remove(converted)
-                    except:
-                        pass
+                    except OSError as e:
+                        # 临时文件清理失败：记录以便排查残留（不再静默吞掉）
+                        print(f"[临时文件清理失败] {converted}: {e}", file=sys.stderr)
             return ""
 
         elif ext == ".xlsx":
@@ -111,8 +117,9 @@ def extract_full_text(filepath):
                 finally:
                     try:
                         os.remove(converted)
-                    except:
-                        pass
+                    except OSError as e:
+                        # 临时文件清理失败：记录以便排查残留（不再静默吞掉）
+                        print(f"[临时文件清理失败] {converted}: {e}", file=sys.stderr)
             return ""
 
         elif ext == ".pptx":
@@ -134,147 +141,75 @@ def extract_full_text(filepath):
 
 
 # ============== 关键词匹配打标签（try...finally 健壮版）==============
-def extract_tags(filepath):
+def extract_text_for_tags(filepath):
+    """提取正文（用于关键词匹配）。
+
+    2026-11-06 修正：catalog 原本自带一套 pymupdf 优先的提取实现，与
+    run_analysis.py 的 antiword/soffice 链**不一致** → 同一份 .doc，
+    catalog 提不出（待提取）、流水线能提 5,502 字 → 27 份文件被误标
+    「待提取」并每晚重试（含一份 153MB 的 pptx）。
+    现在统一复用 utils 的提取函数，与分析流水线同源。
+
+    返回 (text, ok)：ok=False 表示这条链路取不到正文。
+    """
     ext = os.path.splitext(filepath)[1].lower()
-
-    # PDF: pymupdf直接提取文字层，预检乱码再跳转OCR
-    if ext == ".pdf":
-        try:
-            doc = pymupdf.open(filepath)
-            text = ""
-            for page_num in range(min(len(doc), 10)):
-                t = doc[page_num].get_text()
-                if t.strip():
-                    text = text + t + "\n"
-            doc.close()
-            if text.strip():
-                if is_gibberish(text):
-                    return extract_pdf_via_ocr(filepath)
-                found = list(set(kw for kw in KEYWORDS if kw in text))
-                return "、".join(found[:3]) if found else "待提取"
-        except:
-            pass
-        return extract_pdf_via_ocr(filepath)
-
-    # .doc: 三级降级处理
-    if ext == ".doc":
-        # 第一级：直接用 pymupdf 尝试读取（绕过 LibreOffice，速度快）
-        try:
-            doc = pymupdf.open(filepath)
-            text = ""
-            for page_num in range(min(len(doc), 10)):
-                t = doc[page_num].get_text()
-                if t.strip():
-                    text += t + "\n"
-            doc.close()
-            if text.strip() and not is_gibberish(text):
-                found = list(set(kw for kw in KEYWORDS if kw in text))
-                if found:
-                    return "、".join(found[:3])
-        except:
-            pass
-        
-        # 第二级：LibreOffice 渐进式转换（对付复杂格式）
-        success, converted = convert_old_office(filepath, ext)
-        if success:
-            try:
-                text = extract_docx_text(converted)
-                if text.strip():
-                    found = list(set(kw for kw in KEYWORDS if kw in text))
-                    return "、".join(found[:3]) if found else "待提取"
-            finally:
+    try:
+        if ext == ".pdf":
+            return extract_pdf_text(filepath), True
+        if ext == ".doc":
+            return extract_doc_text(filepath), True
+        if ext == ".docx":
+            return extract_docx_text(filepath), True
+        if ext == ".xls":
+            return extract_xls_text(filepath), True
+        if ext == ".xlsx":
+            return extract_xlsx_text(filepath), True
+        if ext == ".ppt":
+            success, converted = convert_old_office(filepath, ext)
+            if success:
                 try:
-                    os.remove(converted)
-                except:
-                    pass
-        return "待提取"
-
-    if ext == ".docx":
-        text = extract_docx_text(filepath)
-        if text.strip():
-            found = list(set(kw for kw in KEYWORDS if kw in text))
-            return "、".join(found[:3]) if found else "待提取"
-        return "待提取"
-
-    if ext == ".xls":
-        success, converted = convert_old_office(filepath, ext)
-        if success:
-            try:
-                text = extract_xlsx_text(converted)
-                if text.strip():
-                    found = list(set(kw for kw in KEYWORDS if kw in text))
-                    return "、".join(found[:3]) if found else "待提取"
-                return "待提取"
-            finally:
-                try:
-                    os.remove(converted)
-                except:
-                    pass
-        return "待提取"
-
-    if ext == ".xlsx":
-        text = extract_xlsx_text(filepath)
-        if text.strip():
-            found = list(set(kw for kw in KEYWORDS if kw in text))
-            return "、".join(found[:3]) if found else "待提取"
-        return "待提取"
-
-    if ext == ".ppt":
-        success, converted = convert_old_office(filepath, ext)
-        if success:
-            try:
-                text = extract_pptx_text(converted)
-                if text.strip():
-                    found = list(set(kw for kw in KEYWORDS if kw in text))
-                    return "、".join(found[:3]) if found else "待提取"
-                return "待提取"
-            finally:
-                try:
-                    os.remove(converted)
-                except:
-                    pass
-        return "待提取"
-
-    if ext == ".pptx":
-        text = extract_pptx_text(filepath)
-        if text.strip():
-            found = list(set(kw for kw in KEYWORDS if kw in text))
-            return "、".join(found[:3]) if found else "待提取"
-        return "待提取"
-
-    if ext == ".md":
-        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-            text = f.read()
-        if text.strip():
-            found = list(set(kw for kw in KEYWORDS if kw in text))
-            return "、".join(found[:3]) if found else "待提取"
-        return "待提取"
-
-    if ext in (".txt", ".csv"):
-        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-            text = f.read()
-        if text.strip():
-            found = list(set(kw for kw in KEYWORDS if kw in text))
-            return "、".join(found[:3]) if found else "待提取"
-        return "待提取"
-
-    return "待提取"
+                    return extract_pptx_text(converted), True
+                finally:
+                    try:
+                        os.remove(converted)
+                    except OSError as e:
+                        print(f"[临时文件清理失败] {converted}: {e}", file=sys.stderr)
+            return "", False
+        if ext == ".pptx":
+            return extract_pptx_text(filepath), True
+        if ext in (".md", ".txt", ".csv"):
+            with open(filepath, encoding="utf-8", errors="replace") as fh:
+                return fh.read(), True
+    except Exception as e:
+        print(f"[提取失败] {filepath}: {type(e).__name__}: {e}", file=sys.stderr)
+    return "", False
 
 
-# ============== 文件扫描（独立保留）==============
+def extract_tags(filepath):
+    """从正文匹配关键词 → 标签。
+
+    终态语义（2026-11-06 修正）：
+      - 提取不出正文         → "无法提取"（终态，不再每晚重试）
+      - 正文有但无关键词命中 → "无关键词"（终态，重试也不会变）
+      - 命中关键词           → "标签1、标签2、标签3"
+    旧实现两种情况都返回 "待提取" → 27 份文件被无限重试。
+    """
+    text, ok = extract_text_for_tags(filepath)
+    if not ok or not (text or "").strip():
+        return "无法提取"
+    found = list(set(kw for kw in KEYWORDS if kw in text))
+    if not found:
+        return "无关键词"
+    return "、".join(found[:3])
+
+
 def get_all_files():
-    """扫描知识库所有支持的文件"""
-    patterns = [
-        "**/*.pdf", "**/*.doc", "**/*.docx",
-        "**/*.xls", "**/*.xlsx", "**/*.ppt", "**/*.pptx",
-        "**/*.md", "**/*.csv", "**/*.txt"
-    ]
-    files = []
-    for pattern in patterns:
-        for f in glob.glob(os.path.join(KNOWLEDGE_DIR, pattern), recursive=True):
-            if ".analysis" not in f and ".interpret" not in f and ".storage" not in f:
-                files.append(f)
-    return files
+    """扫描知识库中允许进入目录索引的文件。
+
+    扫描范围与 run_analysis.py 共用同一份白名单（knowledge_policy.py），
+    在 glob 层按目录限定 —— 新增文件夹不会进入索引。
+    """
+    return scan_files(KNOWLEDGE_DIR)
 
 
 # ============== 主流程（保持不变）==============
@@ -285,7 +220,10 @@ def main():
     total_start = time.time()
 
     for filepath in all_files:
-        filename = os.path.basename(filepath)
+        # 缓存键用相对路径：basename 会让不同目录下的同名文件互相顶替，
+        # 导致目录索引指向错误的文档（与 analysis_state 同一根因）。
+        filename = rel_key(filepath)
+        display = os.path.basename(filepath)
 
         # 超时检测
         if time.time() - total_start > BATCH_TIMEOUT:
@@ -295,14 +233,12 @@ def main():
 
         # 读取缓存
         tags = cache.get(filename, {}).get("tags", "")
-        if tags and tags not in ("待提取", "无法提取"):
-            continue
-        # 无法提取的文件不再重试
-        if tags == "无法提取":
-            print(f"  跳过（无法提取）: {filename}")
+        # 终态（已提取完成 / 无法提取 / 无关键词）都不再重试；
+        # 只有 "待提取"（尚未尝试）才继续处理。
+        if tags and tags != "待提取":
             continue
 
-        print(f"  提取标签: {filename}")
+        print(f"  提取标签: {display}")
         tag = extract_tags(filepath)
         cache[filename] = {
             "tags": tag,

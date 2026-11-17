@@ -9,16 +9,25 @@ import torch
 from CNNmodel import CNN_MTD
 from fileload import FileLoader,attacktypes
 from QNNmodel import QNN_MTD
+from pcap_analysis import analyze_pcap as pcap_analyze
 
 #设置日志
 logging.basicConfig(level=logging.INFO,format='[%(asctime)s]%(levelname)s:%(message)s')
 logger=logging.getLogger(__name__)
 
+def reduce_false_positive(probs,boost=1.25):#调高善意流量置信度后重新归一化以降误报
+	p=np.asarray(probs,dtype=float).copy()
+	p[attacktypes.index("善意流量")]*=boost
+	s=p.sum()
+	if s>0:p=p/s
+	return p
+
 class IDSDetector:
-	def __init__(self,model_dir=None,cache_dir=None,quantum_shots=512):#初始化检测器
+	def __init__(self,model_dir=None,cache_dir=None,quantum_shots=512,enable_ip_query=True):#初始化检测器
 		self.cache_dir=cache_dir or(os.path.join(model_dir,"feature_cache")if model_dir else"./feature_cache")
 		self.quantum_shots=quantum_shots
-		logger.info(f"初始化IDS检测器,量子测量次数:{quantum_shots}")
+		self.enable_ip_query=enable_ip_query
+		logger.info(f"初始化IDS检测器,量子测量次数:{quantum_shots},属地查询:{'开启'if enable_ip_query else'关闭'}")
 		self.model_dir=model_dir or os.path.dirname(os.path.abspath(__file__))
 		self.cnn_model=None
 		self.qnn_model=None
@@ -100,26 +109,16 @@ class IDSDetector:
 		except:
 			return False
 	
-	def ip_query(self,ip):#查询IP属地
+	def ip_query(self,ip):#查询IP属地(委托IPv6_calculate双接口JSON;内网直接返回内网IP;可由--no-ip-query整体关闭)
+		if not self.enable_ip_query:return{"ip":ip,"属地查询":"未启用"}
 		if ip in self.ip_cache:return self.ip_cache[ip]
+		from IPv6_calculate import query_ip_location
 		try:
-			url=f"http://ip-api.com/json/{ip}?lang=zh-CN"
-			response=requests.get(url,timeout=3)
-			if response.status_code==200:
-				json_data=response.json()
-				if json_data.get("status")=="success":
-					country=json_data.get("country","未知")
-					region=json_data.get("regionName","未知")
-					city=json_data.get("city","未知")
-					location=f"{country}-{region}-{city}"
-				else:
-					location="查询失败"
-			else:
-				location=f"HTTP错误:{response.status_code}"
+			result=query_ip_location(ip)
 		except Exception as e:
-			location=f"查询失败:{str(e)[:50]}"
-		self.ip_cache[ip]=location
-		return location
+			result={"ip":ip,"查询失败":str(e)[:50]}
+		self.ip_cache[ip]=result
+		return result
 	
 	def analyze_pcap(self,pcap_path,target_ip):#分析PCAP文件
 		start_time=time.time()
@@ -132,6 +131,7 @@ class IDSDetector:
 				"target_ips":[{"ip":ip,"location":self.ip_query(ip)}for ip in target_ips],
 				"attacker_ips":[{"ip":ip,"location":self.ip_query(ip)}for ip in attacker_ips]
 			}
+			pcap_details=self.analyze_pcap_details(pcap_path)
 			#特征提取
 			logger.info("阶段2:特征提取...")
 			feature_vector=None
@@ -173,13 +173,12 @@ class IDSDetector:
 				qnn_weight=quantum_probs[i]
 				fused_probs[i]=cnn_weight*cnn_confidence+qnn_weight*(1-cnn_confidence)
 			if np.sum(fused_probs)>0:fused_probs=fused_probs/np.sum(fused_probs)
-			final_class=np.argmax(fused_probs)
-			final_confidence=fused_probs[final_class]
+			#调高善意流量置信度后重新归一化,降低误报率
+			reduced=reduce_false_positive(fused_probs)
+			final_class=np.argmax(reduced)
+			final_confidence=reduced[final_class]
 			final_prediction=attacktypes[final_class]if final_class<len(attacktypes)else"未知"
-			confidence_dict={attacktypes[i]:float(fused_probs[i])for i in range(len(attacktypes))}
-			
-			#故意上调善意置信度以减少误报的情况
-			if confidence_dict["善意流量"]>0.5:confidence_dict["善意流量"]*=1.1
+			confidence_dict={attacktypes[i]:float(reduced[i])for i in range(len(attacktypes))}
 			
 			suggestions=self.generate_suggestions(final_prediction,attacker_ips,recon_error)
 			processing_time=time.time()-start_time
@@ -192,6 +191,7 @@ class IDSDetector:
 				"reconstruction_error":float(recon_error),
 				"confidence_distribution":confidence_dict,
 				"ip_analysis":ip_results,
+				"pcap_details":pcap_details,
 				"suggestions":suggestions,
 				"processing_time":processing_time,
 				"timestamp":time.time()
@@ -201,6 +201,38 @@ class IDSDetector:
 		except Exception as e:
 			logger.error(f"分析失败:{e}")
 			return{"success":False,"error":str(e),"timestamp":time.time()}
+	
+	def analyze_pcap_details(self,pcap_path):#新接口:委托pcap_analysis.py获取IP对交互细节,转JSON可序列化结构
+		"""调用 pcap_analysis.py 提取 PCAP 的 IP 对流量交互特征(端口/TCP会话/握手挥手/突发传输),
+		将内部 set 转为列表并附统计摘要,供 LLM 理解流量细节。"""
+		try:
+			if not os.path.exists(pcap_path):
+				return{"success":False,"error":f"文件不存在:{pcap_path}"}
+			logger.info(f"调用 pcap_analysis 提取流量细节:{pcap_path}")
+			raw=pcap_analyze(pcap_path)
+			pairs=[];total_tcp=0
+			for key,ses in raw.items():
+				ports=ses.get('双方端口',{})
+				burst=[{'发送方':b.get('发送方'),'报文数':int(b.get('报文数')),
+					'平均载荷字节':float(b.get('平均载荷字节')),'平均间隔秒':float(b.get('平均间隔秒'))}
+					for b in ses.get('突发传输段',[])]
+				total_tcp+=ses.get('TCP会话数',0)
+				pairs.append({
+					'ip_pair':key,
+					'源端口集':sorted(int(p)for p in ports.get('源端口集',set())),
+					'目的端口集':sorted(int(p)for p in ports.get('目的端口集',set())),
+					'tcp会话数':ses.get('TCP会话数',0),
+					'三次握手完成':ses.get('三次握手完成',False),
+					'四次挥手完成':ses.get('四次挥手完成',False),
+					'突发传输段':burst})
+			pairs.sort(key=lambda x:x['tcp会话数'],reverse=True)
+			summary={'ip对数量':len(pairs),'tcp会话总数':total_tcp,
+				'含完整握手的对':sum(1 for p in pairs if p['三次握手完成']),
+				'含完整挥手的对':sum(1 for p in pairs if p['四次挥手完成'])}
+			return{"success":True,"pcap_path":pcap_path,"summary":summary,"ip_pairs":pairs}
+		except Exception as e:
+			logger.error(f"流量细节分析失败:{e}")
+			return{"success":False,"error":str(e)}
 	
 	def generate_suggestions(self,attack_type,attacker_ips,recon_error):#生成建议
 		suggestions=[]
@@ -257,6 +289,7 @@ class MCPRequestHandler(BaseHTTPRequestHandler):
 				<ul>
 					<li><code>GET /health</code> - 健康检查</li>
 					<li><code>POST /analyze</code> - PCAP文件分析</li>
+					<li><code>POST /analyze_details</code> - PCAP流量细节(委托pcap_analysis.py)</li>
 				</ul>
 				<h2>POST /analyze 请求示例:</h2>
 				<pre style="background:#f4f4f4;padding:10px;border-radius:5px">
@@ -288,22 +321,28 @@ class MCPRequestHandler(BaseHTTPRequestHandler):
 				self.send_error(400,'Missing required parameter: pcap_path')
 				return
 			pcap_path=request_data.get('pcap_path')
-			target_ip=request_data.get('target_ip')
-			cache_npy_path=request_data.get('cache_npy_path')
-			quantum_shots=request_data.get('quantum_shots',512)
 			if not os.path.exists(pcap_path):
 				self.send_error(400,f'PCAP file not found: {pcap_path}')
 				return
-			if cache_npy_path and not os.path.exists(os.path.dirname(cache_npy_path)):
-				os.makedirs(os.path.dirname(cache_npy_path),exist_ok=True)
-			analysis_result=self.detector.analyze_pcap(pcap_path,target_ip)
+			parsed_path=urlparse(self.path)
+			if parsed_path.path=='/analyze_details':
+				result=self.detector.analyze_pcap_details(pcap_path)
+			elif parsed_path.path=='/analyze':
+				target_ip=request_data.get('target_ip')
+				cache_npy_path=request_data.get('cache_npy_path')
+				if cache_npy_path and not os.path.exists(os.path.dirname(cache_npy_path)):
+					os.makedirs(os.path.dirname(cache_npy_path),exist_ok=True)
+				result=self.detector.analyze_pcap(pcap_path,target_ip)
+			else:
+				self.send_error(404,'Endpoint not found')
+				return
 			self.send_response(200)
 			self.send_header('Content-Type','application/json;charset=utf-8')
 			
 			for allowclient in self.allowclients:self.send_header('Access-Control-Allow-Origin',allowclient)
 			
 			self.end_headers()
-			response_json=json.dumps(analysis_result,indent=2,ensure_ascii=False)
+			response_json=json.dumps(result,indent=2,ensure_ascii=False)
 			self.wfile.write(response_json.encode('utf-8'))
 			self.wfile.write(b'\n')
 		except json.JSONDecodeError:
@@ -336,6 +375,8 @@ def main():#主函数
 	parser.add_argument('--model-dir',default='.',help='模型文件路径')
 	parser.add_argument('--cache-dir',default='./feature_cache',help='NPY特征缓存目录')
 	parser.add_argument('--quantum-shots',type=int,default=512,help='量子测量次数(64-4096)')
+	parser.add_argument('--ip-query',dest='ip_query',action='store_true',default=True,help='启用IP属地查询(默认开启,双接口:ip-api.com+ip.taobao.com)')
+	parser.add_argument('--no-ip-query',dest='ip_query',action='store_false',help='关闭IP属地查询(结果中属地标记为未启用)')
 	parser.add_argument('--log-level',default='INFO',choices=['DEBUG','INFO','WARNING','ERROR'],help='日志级别')
 	args=parser.parse_args()
 	
@@ -346,8 +387,9 @@ def main():#主函数
 		logger.info(f"模型目录:{args.model_dir}")
 		logger.info(f"缓存目录:{args.cache_dir}")
 		logger.info(f"量子测量次数:{args.quantum_shots}")
-		
-		detector=IDSDetector(model_dir=args.model_dir,cache_dir=args.cache_dir,quantum_shots=args.quantum_shots)
+		logger.info(f"IP属地查询:{'开启'if args.ip_query else'关闭'}")
+
+		detector=IDSDetector(model_dir=args.model_dir,cache_dir=args.cache_dir,quantum_shots=args.quantum_shots,enable_ip_query=args.ip_query)
 		server_address=(args.host,args.port)
 		server=MCPServer(server_address,detector)
 		

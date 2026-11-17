@@ -1,42 +1,56 @@
-## Description: <br>
-将中文门诊复诊病历文本结构化为细粒度字段，输出 JSON（如现病史/既往史/诊断/处理意见等）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将中文门诊复诊病历文本结构化为细粒度字段，输出 JSON（如现病史/既往史/诊断/处理意见等）。
 
-## Publisher: <br>
-[aaiccee](https://clawhub.ai/user/aaiccee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aaiccee](https://clawhub.ai/user/aaiccee)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Clinicians, healthcare operations teams, and developers use this skill to transform already-written Chinese outpatient follow-up medical-record text into standardized JSON fields for downstream review, workflow integration, or record processing. Its output is extraction and structuring only, not medical diagnosis or treatment advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security evidence says full medical-record text may be sent to a hard-coded external service while the skill promises de-identification.
+
+Mitigation: Use only already de-identified records unless enforceable redaction, consent, endpoint, and retention controls are confirmed before use.
+
+Risk: The security evidence says the structured result is written to disk unless the output path is controlled.
+
+Mitigation: Set an approved output path, restrict access to generated files, and delete outputs according to the organization’s health-data handling policy.
+
+Risk: The skill handles medical records and its own documentation states the output is not clinical advice.
+
+Mitigation: Require qualified clinical review before using structured fields for care decisions, diagnosis, or treatment planning.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to convert Chinese outpatient follow-up medical record text into sectioned JSON fields for record normalization, review, or downstream processing. It is intended for text extraction and structuring, not clinical diagnosis or treatment advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Medical record text is sent to an external service for structuring. <br>
-Mitigation: Use only already de-identified text unless the publisher provides auditable redaction, consent, endpoint, retention, and data-use controls. <br>
-Risk: The artifact claims de-identification and no local persistence, but the security evidence still requires review before use with real records. <br>
-Mitigation: Review the workflow before installation, test with synthetic records first, and avoid real patient data until privacy and retention controls are verified. <br>
-Risk: Structured output may be incomplete or unsuitable for clinical decisions. <br>
-Mitigation: Treat output as text extraction only and require qualified clinical review for any diagnosis, treatment, or patient-care decision. <br>
+**Output Format:** [UTF-8 JSON file with structured medical-record fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaiccee/med-record-struct) <br>
+**Other Properties Related to Output:** [May include fields such as history of present illness, past history, diagnosis, and treatment recommendations; missing fields may be marked as not mentioned when supported by the service.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [UTF-8 JSON written to a file, with shell command usage and guidance in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes a UTF-8 input text file and can include optional diag_id, department, output path, and timeout parameters.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

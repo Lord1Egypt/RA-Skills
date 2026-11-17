@@ -1,43 +1,59 @@
-## Description: <br>
-Operate and improve the La Local location-management chat product. Use when reviewing or changing the frontend chat app, backend webhook, search behavior, media upload flow, Notion/Dropbox integration, deployment topology, or project-specific product logic for La Local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate and improve the La Local location-management chat product across the frontend chat app, backend webhook, search behavior, media upload flow, Notion/Dropbox integration, deployment topology, and project-specific product logic.
 
-## Publisher: <br>
-[GatoNegroIaLAB](https://clawhub.ai/user/GatoNegroIaLAB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gatonegroialab](https://clawhub.ai/user/gatonegroialab)
 
-## Use Case: <br>
-Developers and product maintainers use this skill to operate and improve the La Local chat product for searching, creating, and updating audiovisual location records. It emphasizes search quality while keeping create and update flows explicit, deterministic, and tied to source records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill may touch Notion, Dropbox, repositories, and deployments that affect live La Local records. <br>
-Mitigation: Use least-privilege access and review create or update actions before they affect production records. <br>
-Risk: Search changes could return invented, weak, or misleading location matches. <br>
-Mitigation: Retrieve real candidates from source data, rank against explicit query criteria, and return only strong matches. <br>
-Risk: Changes to search behavior could regress create, update, upload, or thread continuity flows. <br>
-Mitigation: Preserve thread_id handling, keep Notion as the source of truth, and test create/update flows when search behavior changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain the La Local chat product, especially search, create/update flows, media uploads, and Notion/Dropbox integration. It guides agents to improve search without regressing deterministic record operations.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
-- [Search Notes](references/search-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code or shell commands when implementation work is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise implementation plans, repository changes, test guidance, and review notes for La Local chat workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Agent work may involve Notion and Dropbox records for the La Local product.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope connected credentials appropriately and review create/update actions before applying them to production data.
+
+Risk: Search changes could return invented, weak, or misleading location matches.
+
+Mitigation: Retrieve candidates from source data, return only real matches, cap results at five, and verify ranking changes against real team queries.
+
+Risk: Create/update regressions could break deterministic record handling or folder linkage.
+
+Mitigation: Preserve thread_id, treat Notion as the source of truth, and keep Dropbox folder linkage tied to the Notion-generated ID.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Search Notes](references/search-notes.md)
+- [La Local Chat Skill Page](https://clawhub.ai/gatonegroialab/skills/la-local-chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell command, and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-specific guidance; does not execute code directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

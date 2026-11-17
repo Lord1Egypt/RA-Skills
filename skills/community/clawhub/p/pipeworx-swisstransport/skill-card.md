@@ -1,39 +1,50 @@
-## Description: <br>
-Provides Swiss public transport station search, route planning, live departure boards, schedules, platforms, and delay information through the Pipeworx Swiss Transport MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time Swiss public transport station search, route planning, schedules, and live departure boards for trains, buses, and trams.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Agents and developers use this skill to look up Swiss transit stations, plan point-to-point journeys, and retrieve live departure information for trains, buses, and trams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use with Switzerland-focused public transport data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transit lookup queries are sent to the third-party Pipeworx gateway. <br>
-Mitigation: Avoid unusually sensitive travel details unless the user trusts the Pipeworx service. <br>
+## Use Case:
 
+Developers and transit-focused agents use this skill to look up Swiss stations, plan routes, and retrieve live departures for trains, buses, and trams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-swisstransport) <br>
-- [Pipeworx Swiss Transport MCP endpoint](https://gateway.pipeworx.io/swisstransport/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include station identifiers, coordinates, departure and arrival times, route sections, platforms, delays, destinations, and transfer counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided station and route queries are sent to a disclosed third-party MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive private locations or travel plans unless sharing them with that service is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-swisstransport)
+- [Swiss transport MCP endpoint](https://gateway.pipeworx.io/swisstransport/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include station identifiers, coordinates, route timings, transfers, platforms, delays, and live departure details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

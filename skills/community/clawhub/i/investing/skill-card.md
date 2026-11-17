@@ -1,45 +1,56 @@
-## Description: <br>
-Personal investing assistant for Lithuanian investors. Monitors markets, ETFs, crypto, pension funds (III pakopa), and provides monthly investment suggestions based on research and market conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal investing assistant for Lithuanian investors. Monitors markets, ETFs, crypto, pension funds (III pakopa), and provides monthly investment suggestions based on research and market conditions.
 
-## Publisher: <br>
-[satnamra](https://clawhub.ai/user/satnamra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[satnamra](https://clawhub.ai/user/satnamra)
 
-## Use Case: <br>
-External users can use this skill as an advisory investing assistant for Lithuanian-focused portfolio research, monthly dollar-cost averaging prompts, ETF and crypto price checks, and pension-fund review. It should support planning and recordkeeping, not autonomous trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Lithuania <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring prompts and workflow language could lead to trades, rebalancing, or account actions without clear per-trade approval. <br>
-Mitigation: Require explicit manual approval before every trade, rebalance, recurring prompt, broker action, crypto-exchange action, spreadsheet update with financial impact, or scheduled-task change. <br>
-Risk: Market prices, tax notes, and allocation suggestions may be stale, incomplete, or unsuitable for a user's circumstances. <br>
-Mitigation: Treat all output as advisory planning support, verify current prices and Lithuanian tax rules from authoritative sources, and consult a qualified financial professional before acting. <br>
-Risk: The included scripts call external market-data services and depend on local shell tools. <br>
-Mitigation: Review scripts before execution, confirm network destinations, and run them in an environment where curl, jq, and bc usage is acceptable. <br>
+## Use Case:
 
+External Lithuanian retail investors and agents supporting them use this skill to monitor ETF and crypto prices, plan monthly DCA allocations, and review pension, emergency fund, tax, and portfolio guidance as general research input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satnamra/investing) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/satnamra) <br>
-- [Yahoo Finance chart endpoint for VWCE](https://query1.finance.yahoo.com/v8/finance/chart/VWCE.DE) <br>
-- [CoinGecko simple price API for Bitcoin and Ethereum](https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=eur) <br>
+### Deployment Geography for Use:
 
+Lithuania
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and scheduling examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes advisory portfolio allocation, market-check, DCA, pension, tax, and recurring-reminder guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The monthly DCA script can execute unintended shell commands if a crafted budget value is passed as input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with trusted, bounded numeric budget values or update the script to validate numeric input before execution.
+
+Risk: Investing and tax content may be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as general research guidance and verify recommendations against current market, tax, and personal financial context before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/satnamra/skills/investing)
+- [Yahoo Finance chart endpoint for VWCE](https://query1.finance.yahoo.com/v8/finance/chart/VWCE.DE)
+- [CoinGecko Bitcoin EUR price endpoint](https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur)
+- [CoinGecko Ethereum EUR price endpoint](https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes general investing guidance, market-check workflow steps, DCA allocation output, and scheduled reminder examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

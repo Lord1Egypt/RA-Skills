@@ -1,37 +1,49 @@
-## Description: <br>
-Generates structured changelogs from git history in Keep a Changelog format with PR and issue links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured changelogs from git history in Keep a Changelog format with PR and issue links.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to turn git history into concise changelog entries organized by change type, including PR and issue links, migration notes for breaking changes, and semantic versioning cues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated changelogs can include private repository details, unreleased work, or sensitive issue and PR information if published without review. <br>
-Mitigation: Review generated changelogs before publishing and remove sensitive or inappropriate details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Keep a Changelog](https://keepachangelog.com) <br>
+## Use Case:
 
+Developers and release managers use this skill to draft concise, user-facing changelogs from repository history, grouped into standard Keep a Changelog categories with migration notes when changes are breaking.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown changelog text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Organizes entries by Added, Changed, Deprecated, Removed, Fixed, and Security.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may prompt an agent to inspect repository history and link pull requests or issues, which can expose repository context during changelog-writing workflows.
+
+Mitigation: Use it only in repositories where commit history, PR metadata, and issue references are appropriate for the agent to process.
+
+## Reference(s):
+
+- [Keep a Changelog](https://keepachangelog.com)
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-changelog-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured changelog sections, PR and issue links, migration notes, and semantic versioning cues.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

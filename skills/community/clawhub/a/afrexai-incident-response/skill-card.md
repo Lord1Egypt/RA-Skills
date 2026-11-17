@@ -1,43 +1,52 @@
-## Description: <br>
-Guides business and IT teams through incident detection, severity classification, containment, resolution, communication, timeline tracking, and post-mortem documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Incident Response Playbook helps business and IT teams classify incidents, generate response checklists, plan communications, maintain timelines, and prepare post-mortems.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business, IT, engineering, and security teams use this skill to structure incident response from initial report through triage, containment, stakeholder communication, resolution, and post-mortem follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incident guidance may affect high-impact operational, security, legal, or communications decisions. <br>
-Mitigation: Use the skill as an advisory playbook and have responsible engineering, security, legal, or communications owners review high-impact actions and disclosures. <br>
-Risk: Incident descriptions and logs may contain secrets, credentials, personal data, customer records, regulated data, or confidential forensic artifacts. <br>
-Mitigation: Do not paste sensitive incident data unless the organization has approved that handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-incident-response) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Business and IT operators use this skill during outages, security incidents, data incidents, vendor failures, and performance degradation to draft severity assessments, response steps, stakeholder communications, incident timelines, and post-mortem materials.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown checklists, communication plans, incident timelines, and post-mortem templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory playbook output; no code execution or hidden data access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incident response guidance may be incomplete, incorrect, or unsuitable for a specific security, privacy, legal, or operational context.
+
+Mitigation: Treat generated plans as draft support and have qualified security, legal, privacy, or operations staff validate recommendations before taking action.
+
+Risk: Incident descriptions may contain secrets, credentials, regulated personal data, or privileged incident details.
+
+Mitigation: Do not paste sensitive incident data unless the agent environment is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-incident-response)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with checklists, timelines, communication plans, and post-mortem templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft operational guidance that should be reviewed by qualified security, legal, privacy, or operations staff before real-world action.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

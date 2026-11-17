@@ -1,40 +1,52 @@
-## Description: <br>
-Provides WeChat Mini Program architecture design, project structure optimization, coding standards, and reusable component library guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A WeChat Mini Program architecture skill that helps agents design project structure, optimize architecture, define coding standards, and establish reusable component libraries.
 
-## Publisher: <br>
-[DreamerSetSail](https://clawhub.ai/user/DreamerSetSail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dreamersetsail](https://clawhub.ai/user/dreamersetsail)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to plan or refactor WeChat Mini Program projects, including directory layout, coding conventions, API wrapping, component reuse, performance guidance, and packaging strategy.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated architecture guidance may conflict with a team's existing naming conventions or style standards.
+
+Mitigation: Review the proposed conventions before adoption, especially the instruction against Chinese identifiers.
+
+Risk: Generated code or configuration examples may need adaptation for a specific WeChat Mini Program project.
+
+Mitigation: Review and test generated code, package structure, API handling, and privacy/security assumptions before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, scaffold, refactor, and document WeChat Mini Program projects, including project layout, API wrapper patterns, component reuse, performance practices, and privacy-aware implementation guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Mini Program configuration, API wrapper, token-handling, or privacy-compliance code may not match a production project's security and compliance requirements. <br>
-Mitigation: Review the generated code and configuration before production use, with particular attention to HTTPS use, token handling, request signing, and privacy authorization flows. <br>
-Risk: The Chinese-naming prohibition is a project style preference and may not fit every team's naming conventions. <br>
-Mitigation: Treat the naming rule as configurable team guidance rather than a universal requirement. <br>
+**Output Format:** [Markdown guidance with project trees and JSON/JavaScript examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DreamerSetSail/miniprogram-architect) <br>
+**Other Properties Related to Output:** [Documentation-only guidance; users should review generated project conventions and code before applying them.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JavaScript and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; review generated Mini Program configuration, API wrapper, token-handling, and privacy-compliance code before production use.] <br>
+1.0.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

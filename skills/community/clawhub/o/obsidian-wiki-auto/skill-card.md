@@ -1,42 +1,62 @@
-## Description: <br>
-Build and maintain a personal knowledge Wiki using the LLM Wiki pattern with OpenClaw-optimized step-by-step execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and maintains a personal Obsidian knowledge wiki using OpenClaw-oriented sub-agents for file organization, content extraction, page creation, indexing, and maintenance.
 
-## Publisher: <br>
-[jayxjw](https://clawhub.ai/user/jayxjw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayxjw](https://clawhub.ai/user/jayxjw)
 
-## Use Case: <br>
-External users and developers use this skill to create and maintain a local Obsidian-style personal knowledge base from raw documents, notes, PDFs, and Word files. It organizes sources, extracts entities and concepts, creates wiki pages, updates indexes, and supports queries over the maintained wiki. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically process local files and write persistent notes. <br>
-Mitigation: Use a dedicated ~/Obsidian Wiki folder, place only intended files in raw, review generated notes, and keep backups. <br>
-Risk: The skill may run on a schedule and continue maintaining the wiki without per-file prompts. <br>
-Mitigation: Review cron scheduling before enabling it and disable scheduled runs when autonomous maintenance is not desired. <br>
-Risk: The skill can install Python packages for PDF and Word document support. <br>
-Mitigation: Approve Python or pip installation only in an isolated environment when possible. <br>
+## Use Case:
 
+External users and developers use this skill to turn source files in an Obsidian vault into organized Markdown wiki pages, entity and concept pages, indexes, logs, and synthesis notes. It supports manual and scheduled maintenance workflows for a personal knowledge base.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jayxjw/obsidian-wiki-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown wiki pages, JSON-like sub-agent task results, and setup or scheduling instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local wiki folders, source summaries, entity pages, concept pages, index files, and logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unattended operation can read, move, rewrite, and generate wiki content without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill manually before scheduling it, restrict it to a dedicated vault, and review generated pages and logs.
+
+Risk: Raw source files may contain secrets or sensitive documents that the skill can ingest into generated pages.
+
+Mitigation: Keep secrets and sensitive documents out of the raw folder and maintain backups of the vault.
+
+Risk: Automatic dependency installation can change the local Python environment.
+
+Mitigation: Pin or pre-provision required packages before unattended use and avoid scheduled runs until dependency behavior is verified.
+
+Risk: Weak path scoping can affect unintended files if vault paths are not controlled.
+
+Mitigation: Confirm path containment and use a dedicated Obsidian Wiki vault for this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayxjw/skills/obsidian-wiki-auto)
+- [ClawHub publisher profile](https://clawhub.ai/user/jayxjw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown wiki pages, JSON status objects, shell commands, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates files under an Obsidian Wiki vault, including source summaries, entity pages, concept pages, synthesis pages, index.md, and log.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

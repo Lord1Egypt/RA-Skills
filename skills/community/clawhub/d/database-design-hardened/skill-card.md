@@ -1,41 +1,59 @@
-## Description: <br>
-Database design helper for table design, normalization, indexing strategy, migration scripts, test data, and ER diagram descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database design helper for table design, normalization, indexing strategy, migration scripts, test data, and ER diagrams.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft database schemas, normalization guidance, indexes, migration SQL, seed data, and ER diagram descriptions for database design workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL, migrations, or index-drop recommendations may be unsuitable for a production database if applied without review. <br>
-Mitigation: Review generated SQL carefully and test migrations, index changes, and schemas in a non-production environment before applying them to real data. <br>
-Risk: A local command history may record command names and first arguments, which can expose secrets or sensitive schema details if passed on the command line. <br>
-Mitigation: Avoid passing secrets or sensitive schema details as command arguments, and remove ~/.local/share/database-design/history.log when needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft database schemas, indexes, migrations, seed data, and ER diagram descriptions for review before applying changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/database-design-hardened) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate SQL schema, migration, index, seed-data, and ER diagram text for review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated SQL or migration guidance may be unsafe if applied directly to a live database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated SQL manually, test in a non-production environment, and do not pipe output directly into a database or migration pipeline.
+
+Risk: The generic script can log command arguments locally, which may expose secrets, connection strings, or sensitive query text.
+
+Mitigation: Avoid passing secrets, connection strings, or sensitive query text as script arguments.
+
+Risk: Generated SQL may include unsafe dynamic identifiers or draft statements that need database-specific validation.
+
+Mitigation: Use parameterized queries for values, allowlist dynamic identifiers, and validate generated SQL against the target database engine before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/database-design-hardened)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Faberlens database-design safety report](https://faberlens.ai/explore/database-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft database design guidance and SQL artifacts for manual review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

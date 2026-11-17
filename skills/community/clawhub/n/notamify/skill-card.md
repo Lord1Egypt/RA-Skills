@@ -1,45 +1,61 @@
-## Description: <br>
-Retrieve and analyze NOTAMs (Notices to Airmen) for airports worldwide using the Notamify Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve and analyze NOTAMs (Notices to Airmen) for airports worldwide using the Notamify Python SDK.
 
-## Publisher: <br>
-[damians21](https://clawhub.ai/user/damians21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[damians21](https://clawhub.ai/user/damians21)
 
-## Use Case: <br>
-External aviation users, pilots, dispatchers, and developers use this skill to query active, nearby, historical, and briefing NOTAM data for flight planning and situational awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a NOTAMIFY_TOKEN and queries an external aviation-data API. <br>
-Mitigation: Run it only in an environment you control, provide the token through environment or config mechanisms, and do not hardcode credentials in generated scripts. <br>
-Risk: NOTAM summaries or recommendations may be incomplete, stale, or unsuitable as the sole basis for operational flight decisions. <br>
-Mitigation: Use the output for informational flight planning support and verify operational decisions against official NOTAM sources. <br>
-Risk: The skill may install and execute a third-party Python SDK. <br>
-Mitigation: Review the package and run generated Python scripts in a controlled Python environment before use. <br>
+## Use Case:
 
+Pilots, dispatchers, and aviation professionals use this skill to retrieve, summarize, and interpret active, nearby, historical, and route-specific NOTAMs for flight planning and situational awareness. The skill also guides agents in writing short Python scripts that query the Notamify SDK and present aviation impacts clearly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/damians21/notamify) <br>
-- [Notamify API documentation](https://skymerse.gitbook.io/notamify-api) <br>
-- [Notamify Python SDK documentation](https://skymerse.gitbook.io/notamify-api/sdk/python) <br>
-- [Notamify API manager](https://notamify.com/api-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks plus concise NOTAM summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install and use the third-party notamify-sdk package, requires NOTAMIFY_TOKEN, and should remind users to verify operational decisions against official NOTAM sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill depends on `notamify-sdk` and executes generated Python scripts to query aviation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the SDK in a virtual environment, pin and review the package version where possible, and review generated scripts before execution.
+
+Risk: The workflow requires a Notamify API token.
+
+Mitigation: Expose only the `NOTAMIFY_TOKEN` needed for this workflow and never hardcode tokens in scripts.
+
+Risk: NOTAM summaries and interpretations may be incomplete or unsuitable as the sole basis for operational decisions.
+
+Mitigation: Treat returned NOTAM analysis as informational and verify flight decisions against official aviation sources.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/damians21/skills/notamify)
+- [Notamify API docs](https://skymerse.gitbook.io/notamify-api)
+- [Notamify Python SDK docs](https://skymerse.gitbook.io/notamify-api/sdk/python)
+- [Notamify API manager](https://notamify.com/api-manager)
+- [Notamify MCP source](https://github.com/skymerse/notamify-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SDK query parameters, summarized NOTAM impacts, and operational verification reminders.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

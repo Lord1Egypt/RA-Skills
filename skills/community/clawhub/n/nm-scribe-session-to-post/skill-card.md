@@ -1,44 +1,54 @@
-## Description: <br>
-Converts a Claude Code session into a blog post, case study, or Reddit post. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a Claude Code session into a blog post, case study, or Reddit post
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, technical writers, and developer-relations teams use this skill to turn real Claude Code sessions into publishable engineering blog posts, case studies, social threads, or Reddit posts grounded in session evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may expose credentials, private prompts, internal architecture, customer data, proprietary plans, or other sensitive repository context. <br>
-Mitigation: Review every generated draft before publication and remove private or proprietary details. <br>
-Risk: Generated posts may contain incorrect or misleading claims about the coding session. <br>
-Mitigation: Verify claims against git history, file changes, test output, metrics, and proof-of-work evidence before sharing. <br>
+## Use Case:
 
+Developers use this skill to turn a Claude Code work session into a blog post, case study, social thread, or Reddit post that explains the work and its results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-session-to-post) <br>
-- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
-- [Narrative Structure module](artifact/modules/narrative-structure.md) <br>
-- [Reddit Post Format module](artifact/modules/reddit-format.md) <br>
-- [Session Extraction Checklist module](artifact/modules/session-extraction.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown prose with optional shell command blocks and concise status fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include word count, verification status, target format, and publication-readiness notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The skill instructs agents to run project tests and builds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source-discovery behavior and project commands first, and proceed only when you trust the project being tested.
+
+Risk: Session-derived recordings or posts may expose sensitive information when published.
+
+Mitigation: Review recordings and drafts for sensitive information before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-scribe-session-to-post)
+- [Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown posts or plain-text social content, shaped to the selected format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Narrative content based on the session context and evidence supplied; review before publication.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

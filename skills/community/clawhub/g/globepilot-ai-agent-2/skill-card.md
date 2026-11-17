@@ -1,40 +1,53 @@
-## Description: <br>
-GlobePilot AI Agent 2 is a travel assistant that provides visa guidance, currency conversion, airport status, local events, cultural tips, emergency information, seasonal advice, lodging suggestions, local highlights, and food recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GlobePilot AI Agent 2 is an AI-powered global travel assistant for visa information, currency conversion, airport status, local events, cultural tips, emergency contacts, seasonal advice, stay recommendations, hidden local spots, and food guidance.
 
-## Publisher: <br>
-[sarqovik](https://clawhub.ai/user/sarqovik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sarqovik](https://clawhub.ai/user/sarqovik)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to request destination-specific travel guidance before or during trips, including visa, airport, emergency, cultural, lodging, event, and food information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Critical travel, visa, safety, or emergency information may be incomplete, outdated, or dependent on external providers. <br>
-Mitigation: Verify important travel decisions against official government, airport, airline, embassy, or emergency-service sources. <br>
-Risk: Travel requests can include sensitive personal, identity, itinerary, or payment details. <br>
-Mitigation: Avoid sharing highly sensitive information unless the provider and external runtime are trusted for that data. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to request practical trip-planning guidance before and during travel. It supports common travel questions such as visa requirements, airport and weather context, destination timing, local customs, emergency contacts, lodging ideas, and local recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sarqovik/globepilot-ai-agent-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Text or Markdown responses to travel-assistance commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-oriented responses may depend on external travel, weather, currency, event, or provider data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Travel guidance such as visa, emergency, and airport information may be incomplete, outdated, or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify critical travel information with official government, airport, airline, or emergency-service sources before acting on it.
+
+Risk: Travel requests can expose sensitive itinerary, identity, or location details to a third-party service.
+
+Mitigation: Avoid sharing sensitive personal or itinerary details unless the provider is trusted and the disclosure is necessary for the task.
+
+## Reference(s):
+
+- [GlobePilot AI Agent 2 on ClawHub](https://clawhub.ai/sarqovik/skills/globepilot-ai-agent-2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown travel answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may depend on current travel conditions and should be verified against official sources for critical decisions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Nine Skill provides 9-minute focus timers, 9-level task prioritization, number-nine math tricks, category-based organization, and quick answers for common planning and calculation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A versatile skill package centered around the number 9, offering focus timers, priority management, mathematical tricks, and categorized solutions for common problems.
 
-## Publisher: <br>
-[skills](https://clawhub.ai/user/skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills](https://clawhub.ai/user/skills)
 
-## Use Case: <br>
-Developers, agents, and productivity-focused users use this skill to manage short focus sessions, organize tasks by priority, apply simple number-nine math shortcuts, and structure common planning requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timer reminders may use normal time and notification permissions. <br>
-Mitigation: Review notification behavior in the host agent before enabling the skill in environments where reminders could be disruptive. <br>
-Risk: Aggressive auto-matching could invoke the productivity workflow when it was not intended. <br>
-Mitigation: Invoke the skill explicitly or tune agent routing so timer, priority, and calculation requests are matched intentionally. <br>
-Risk: Task details entered into productivity workflows may include sensitive information. <br>
-Mitigation: Avoid entering confidential task details unless the surrounding agent environment is trusted. <br>
+## Use Case:
 
+People using ClawHub agents can use this skill to run short focus sessions, organize tasks with a 9-level priority model, apply number-9 math shortcuts, and structure information into nine categories.
 
-## Reference(s): <br>
-- [Nine Skill on ClawHub](https://clawhub.ai/skills/9) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text responses, with timer and notification actions when invoked by the host agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use system time and notification permissions for focus timer reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad focus or organization requests may activate this skill when the user expected general productivity guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent before applying the 9-level priority model or 9-category organization system to ambiguous requests.
+
+Risk: Timer workflows may use notifications.
+
+Mitigation: Confirm that the user wants to start a focus timer and receive related notifications before using notification features.
+
+## Reference(s):
+
+- [Nine Skill on ClawHub](https://clawhub.ai/skills/skills/9)
+- [skills publisher profile](https://clawhub.ai/user/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with timer, prioritization, math, organization, and planning guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use time and notification capabilities for focus-timer workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

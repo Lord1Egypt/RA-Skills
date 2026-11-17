@@ -1,43 +1,56 @@
-## Description: <br>
-Connect OpenClaw to the AntSeed P2P AI network as a buyer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw to the AntSeed P2P AI network as a buyer by installing a local buyer proxy and configuring OpenClaw to route LLM requests through available providers.
 
-## Publisher: <br>
-[kotevcode](https://clawhub.ai/user/kotevcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kotevcode](https://clawhub.ai/user/kotevcode)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw to route model requests through a local AntSeed buyer proxy connected to a P2P provider network. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw model traffic may be routed through third-party AntSeed providers. <br>
-Mitigation: Install only when this routing is intended, and avoid sending secrets, private code, or sensitive prompts unless the selected providers and their data handling are trusted. <br>
-Risk: The setup flow can modify the user's OpenClaw configuration. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before running setup or applying the documented configuration changes. <br>
-Risk: The optional service mode creates a boot-persistent buyer proxy. <br>
-Mitigation: Use the service option only when a persistent local proxy is desired and review the systemd unit before enabling it. <br>
-Risk: Untrusted setup arguments could affect generated shell, JSON, or service configuration. <br>
-Mitigation: Use trusted values for model, port, bootstrap node, context window, and max token arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw AntSeed ClawHub release](https://clawhub.ai/kotevcode/openclaw-antseed) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up AntSeed as an OpenClaw model provider, start or install the buyer proxy, and configure a selected network model as the OpenClaw default.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm and openclaw; the setup script accepts model, port, bootstrap node, context window, max tokens, and service options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup path can install a reboot-persistent systemd service.
+
+Mitigation: Use a temporary foreground proxy first and avoid the --service option unless a persistent background process is explicitly intended.
+
+Risk: Future model traffic can be routed through the AntSeed P2P provider network.
+
+Mitigation: Do not route secrets or regulated data through the network unless the providers are trusted, and review OpenClaw configuration changes before use.
+
+Risk: Unsafe setup-script argument handling can enable code or service-file injection.
+
+Mitigation: Treat the setup script as unsafe with untrusted arguments; review inputs and prefer pinned package versions before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kotevcode/skills/openclaw-antseed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OpenClaw configuration changes and optional systemd service setup steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

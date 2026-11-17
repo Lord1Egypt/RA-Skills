@@ -1,42 +1,57 @@
-## Description: <br>
-Client for a local or private Claw Skill Nest service that lets agents list, upload, install, and update skills, including Xiahua alias triggers; it is not for clawhub.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local/private Claw Skill Nest client for listing, uploading, installing, and updating skills in a configured local repository; it is not intended for clawhub.com.
 
-## Publisher: <br>
-[kklldog](https://clawhub.ai/user/kklldog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklldog](https://clawhub.ai/user/kklldog)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage skills in a local or private Claw Skill Nest by listing available skills, uploading skill archives, and installing or updating skills into an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update active agent skills with limited safeguards. <br>
-Mitigation: Use it only with a Skill Nest service you operate or strongly trust, and inspect downloaded skill packages before installing or updating them. <br>
-Risk: The security evidence reports an unsafe Windows extraction path. <br>
-Mitigation: Avoid installing untrusted ZIP packages on Windows; inspect archives and filenames before extraction or use a hardened extraction workflow. <br>
-Risk: Skill Nest credentials or endpoints could be exposed through prompts, logs, or defaults. <br>
-Mitigation: Set an explicit local or private SKILLHUB_URL, use a unique scoped API key, and avoid exposing the key in prompts or logs. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage skills in a local/private Claw Skill Nest, including list, upload, install, and update workflows through the bundled TypeScript client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kklldog/claw-skill-nest-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command examples and script-backed terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SKILLHUB_URL and SKILLHUB_API_KEY to target a trusted local or private Skill Nest service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: A malicious or compromised configured Claw Skill Nest server could cause install or update workflows to make persistent filesystem changes outside the intended trust boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or update only from a Claw Skill Nest server that the user controls and trusts, and review skills before deployment.
+
+Risk: Remote plaintext HTTP endpoints and the default API key can expose or weaken access to the private skill repository.
+
+Mitigation: Avoid remote plaintext HTTP endpoints, configure a trusted endpoint, and replace the default API key before use.
+
+Risk: Skill names, filenames, archive entries, or extracted paths can create unsafe archive-handling or path-write behavior.
+
+Mitigation: Validate skill names, filenames, archive entries, and extracted paths before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kklldog/skills/claw-skill-nest-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke a TypeScript client that calls the configured Claw Skill Nest API and persists installed skills under the local OpenClaw skills directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

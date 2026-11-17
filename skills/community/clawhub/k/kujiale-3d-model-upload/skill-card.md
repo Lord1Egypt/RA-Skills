@@ -1,46 +1,67 @@
-## Description: <br>
-Validates and runs the complete five-step Kujiale OpenAPI 3D model upload flow: STS credentials, OSS upload, model parsing, parse-status polling, and model submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates and runs the complete 5-step Kujiale OpenAPI 3D model upload flow: STS credentials, OSS upload, model parse trigger, parse status polling, and model submission.
 
-## Publisher: <br>
-[violalulu](https://clawhub.ai/user/violalulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violalulu](https://clawhub.ai/user/violalulu)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to test or automate Kujiale 3D model ZIP uploads with their own OpenAPI credentials. It helps validate connectivity, upload to OSS, trigger parsing, poll for completion, and submit the resulting model asset. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A real run can upload and submit a model to the user's Kujiale tenant. <br>
-Mitigation: Run --dry-run first, then execute the real flow only in a trusted shell with intentional credentials and target ZIP input. <br>
-Risk: The sample submit defaults for location and brand category may not match every tenant or catalog tree. <br>
-Mitigation: Review and adjust the default location and brand category values before using the real submit step. <br>
-Risk: Terminal or CI logs may expose operational details because the app key is printed. <br>
-Mitigation: Avoid sharing logs from real runs and rotate Kujiale credentials if exposure is suspected. <br>
-Risk: The real upload path requires outbound access to Kujiale OpenAPI and the returned OSS endpoint. <br>
-Mitigation: Run the real flow only where network policy permits those endpoints, or keep validation to dry-run mode. <br>
+## Use Case:
 
+Developers and engineers use this skill to test, troubleshoot, or automate 3D model ZIP uploads into a Kujiale tenant through the Kujiale OpenAPI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/violalulu/kujiale-3d-model-upload) <br>
-- [Manycore OpenAPI console](https://www.manycoreapis.com/openapi/console/keys) <br>
-- [Manycore OpenAPI homepage](https://www.manycoreapis.com/openapi/index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Code, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-like upload summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Real runs may upload and submit a model to the user's Kujiale tenant; dry-run mode returns mock summary data without network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact config.json) <br>
+Risk: A real run can create and submit assets in the configured Kujiale tenant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first and install or run the skill only when remote model asset creation is intended.
+
+Risk: Kujiale app credentials are required for real uploads.
+
+Mitigation: Provide credentials through environment variables, avoid passing app secrets on the command line, and rotate credentials if exposure is suspected.
+
+Risk: Default category and location values may not match every tenant or catalog tree.
+
+Mitigation: Verify or override category and location settings before submitting production assets.
+
+Risk: Omitting a ZIP path can cause the script to create and use a placeholder test ZIP.
+
+Mitigation: Provide an explicit ZIP path for real uploads and confirm it matches Kujiale's model package requirements.
+
+Risk: Real execution depends on outbound access to Kujiale OpenAPI and the returned OSS endpoint.
+
+Mitigation: Run in an environment with intentional network access and pin the requests and oss2 dependencies in the execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/violalulu/skills/kujiale-3d-model-upload)
+- [Manycore OpenAPI documentation](https://www.manycoreapis.com/openapi/index)
+- [Manycore OpenAPI key console](https://www.manycoreapis.com/openapi/console/keys)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON run results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Real runs use Kujiale OpenAPI credentials and return uploadTaskId, filePath, previewImg, and brandGoodId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

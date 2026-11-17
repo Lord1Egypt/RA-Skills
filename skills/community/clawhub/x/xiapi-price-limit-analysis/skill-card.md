@@ -1,46 +1,56 @@
-## Description: <br>
-分析A股涨跌停股票，识别热点板块和龙头股。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分析A股涨停、跌停和炸板股票数据，帮助识别短线热点板块、市场情绪和连板龙头股。
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and market-analysis agents use this skill to retrieve DaxiAPI A-share limit-up, limit-down, and broken-limit data, then summarize sector heat, market sentiment, leading stocks, and short-term risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a DaxiAPI token and may expose credentials if token values are pasted into shared logs or chat output. <br>
-Mitigation: Configure the API token carefully, avoid displaying token values, prefer environment variables for temporary use, and rotate the token if exposure is suspected. <br>
-Risk: The workflow invokes daxiapi-cli with @latest, so behavior can change when the package updates. <br>
-Mitigation: Review or pin the daxiapi-cli package version for controlled deployments. <br>
-Risk: Stock limit-up and limit-down analysis can become misleading when data is stale, missing, or interpreted as investment advice. <br>
-Mitigation: Check the data date, state when data is unavailable or stale, use non-absolute language, include risk notes, and keep the disclaimer that the report is not investment advice. <br>
+## Use Case:
 
+External users and market-analysis agents use this skill to fetch DAXIAPI A-share limit-up, limit-down, and broken-limit data, summarize sector heat, identify leading consecutive-limit stocks, and produce a short structured trading-reference report.
 
-## Reference(s): <br>
-- [CLI 命令参考](references/cli-commands.md) <br>
-- [字段说明](references/field-descriptions.md) <br>
-- [Token 配置指南](references/token-setup.md) <br>
-- [DaxiAPI](https://daxiapi.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-price-limit-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should include market data date, key metrics, sector heat, leading stocks, market sentiment, risk notes, and a disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill directs the agent to run a mutable third-party CLI package and provide it with an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin a trusted DAXIAPI CLI version before use, keep the token out of shell history and logs, and rotate any token used with an unreviewed latest package.
+
+Risk: The generated analysis may influence short-term trading decisions and can be wrong, stale, or incomplete.
+
+Mitigation: Require the report to state the data date, include risk notes and a disclaimer, and treat findings as reference material rather than investment advice.
+
+## Reference(s):
+
+- [DAXIAPI](https://daxiapi.com)
+- [CLI 命令参考](references/cli-commands.md)
+- [Token 配置指南](references/token-setup.md)
+- [字段说明](references/field-descriptions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, concise findings, risk notes, disclaimer, and optional shell commands for DAXIAPI CLI setup or data retrieval]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current DAXIAPI data and a configured API token; analysis is for reference only and should not be treated as investment advice.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

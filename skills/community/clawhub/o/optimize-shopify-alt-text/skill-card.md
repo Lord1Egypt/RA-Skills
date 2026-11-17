@@ -1,46 +1,64 @@
-## Description: <br>
-Audit, plan, and safely optimize Shopify image alt text for product media, collection featured images, article featured images, and article inline images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and safely improve Shopify image alt text for product media, collection images, article featured images, and article inline images.
 
-## Publisher: <br>
-[lvsao](https://clawhub.ai/user/lvsao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvsao](https://clawhub.ai/user/lvsao)
 
-## Use Case: <br>
-External Shopify merchants and operators use this skill to inventory image alt text, generate concise improvement candidates, review proposed changes in batches, and apply approved Shopify Admin updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a global self-update before each run, which can change installed agent instructions before the user reviews the active version. <br>
-Mitigation: Verify the installed version and helper files before granting Shopify credentials or approving write actions. <br>
-Risk: The workflow requires sensitive Shopify credentials and can write alt text through Shopify Admin APIs. <br>
-Mitigation: Use least-privilege Shopify access, never expose tokens in public files, preview proposed changes, and execute writes only after explicit approval. <br>
+## Use Case:
 
+Shopify merchants, ecommerce operators, and supporting agents use this skill to audit image alt text, prepare visually grounded optimization plans, and apply approved alt text updates across product, collection, and article images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lvsao/optimize-shopify-alt-text) <br>
-- [Shopify Admin GraphQL products query](https://shopify.dev/docs/api/admin-graphql/latest/queries/products) <br>
-- [Shopify Admin GraphQL files query](https://shopify.dev/docs/api/admin-graphql/latest/queries/files) <br>
-- [Shopify Admin GraphQL fileUpdate mutation](https://shopify.dev/docs/api/admin-graphql/latest/mutations/fileUpdate) <br>
-- [Shopify Admin GraphQL collectionUpdate mutation](https://shopify.dev/docs/api/admin-graphql/latest/mutations/collectionUpdate) <br>
-- [Shopify Admin GraphQL articles query](https://shopify.dev/docs/api/admin-graphql/latest/queries/articles) <br>
-- [Shopify Admin GraphQL articleUpdate mutation](https://shopify.dev/docs/api/admin-graphql/latest/mutations/articleUpdate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with command snippets and JSON apply plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable alt text candidates and applies changes only after explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security verdict flags review-before-install concerns because the skill can update itself.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed release and review any available update before installing or running it.
+
+Risk: The skill needs Shopify read and write permissions for products, content, and files to complete approved updates.
+
+Mitigation: Prefer the quick Shopify CLI connection, grant only the scopes needed for the active task, and require preview plus explicit approval before execution.
+
+Risk: Private Shopify store configuration and Dev Dashboard credentials may be present in runtime environment files.
+
+Mitigation: Keep skill-hub.env and Dev Dashboard credentials private, ignored by source control, and outside the installed skill directory.
+
+Risk: Generated alt text can be inaccurate if based on metadata alone instead of image content.
+
+Mitigation: Require a working vision model and at least three pixel-derived facts before proposing any alt text candidate.
+
+## Reference(s):
+
+- [Shopify Alt Text Rules](artifact/references/alt-text-rules.md)
+- [Connect Your Store](artifact/references/onboarding-guide.md)
+- [Project homepage](https://github.com/lvsao/shopify-skill-hub)
+- [ClawHub skill page](https://clawhub.ai/lvsao/skills/optimize-shopify-alt-text)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational Markdown with command examples, helper stdout, and JSON preview or execution results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires verified image evidence for alt text candidates and explicit approval before Shopify writes.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

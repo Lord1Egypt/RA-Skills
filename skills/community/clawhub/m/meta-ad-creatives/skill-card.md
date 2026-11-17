@@ -1,40 +1,57 @@
-## Description: <br>
-Track Meta (Facebook/Instagram) ad creative performance and hit rates across multiple accounts with benchmark metrics and currency conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Meta (Facebook/Instagram) ad creative performance and hit rates across multiple accounts. Use when asked about creative win rates, which ads are hitting benchmarks, CPT/CPI/ROAS analysis, or comparing creative performance across accounts and time periods. Supports multiple benchmark metrics (CPT, CPI, IPM, ROAS) and currency conversion.
 
-## Publisher: <br>
-[fortytwode](https://clawhub.ai/user/fortytwode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fortytwode](https://clawhub.ai/user/fortytwode)
 
-## Use Case: <br>
-Performance marketing teams and agents use this skill to fetch Meta Ads data, calculate creative hit rates, compare accounts and months, and identify ads meeting configured CPT, CPI, IPM, or ROAS benchmarks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meta Ads credentials and reporting data could be exposed if tokens are over-scoped or placed in chat or config files. <br>
-Mitigation: Use a Meta token scoped to only the required ad accounts and permissions, and store secrets in environment variables or a secret manager. <br>
-Risk: Cached performance analytics can retain ad account and creative performance data locally. <br>
-Mitigation: Restrict access to the workspace and local SQLite data directory, and clear cached data according to internal retention policies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fortytwode/meta-ad-creatives) <br>
-- [Meta Graph API endpoint](https://graph.facebook.com) <br>
+## Use Case:
 
+External marketing teams, agencies, and developers use this skill to review Meta Ads creative performance across accounts, compare periods, and identify creatives that meet benchmark metrics such as CPT, CPI, IPM, or ROAS.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON-like performance data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Meta Graph API with user-provided credentials and cache performance snapshots in Firestore or local SQLite.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Meta Ads access token and reads ad account performance data.
+
+Mitigation: Use a least-privilege, revocable token and install only where access to Meta Ads data is appropriate.
+
+Risk: Ad performance data may be cached locally in SQLite or stored in Firestore.
+
+Mitigation: Restrict access to logs and stored data, and define retention, cleanup, and storage protection practices before deployment.
+
+Risk: API errors or pagination behavior could expose sensitive operational details or fetch from unexpected pagination URLs.
+
+Mitigation: Review error handling, redact sensitive details, and validate pagination hosts before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fortytwode/skills/meta-ad-creatives)
+- [Meta Graph API Endpoint](https://graph.facebook.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, JSON configuration, and analysis results from Meta Ads data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache account-level and ad-level performance data locally in SQLite or Firestore depending on configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

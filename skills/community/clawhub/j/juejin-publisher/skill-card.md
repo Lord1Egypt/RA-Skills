@@ -1,44 +1,56 @@
-## Description: <br>
-Juejin Publisher publishes Markdown articles to the Juejin platform through Cookie-authenticated Juejin APIs, with support for categories, tags, summaries, and cover images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Markdown articles to Juejin through Juejin's official Cookie-authenticated API, with support for categories, tags, summaries, and cover images.
 
-## Publisher: <br>
-[devilWwj](https://clawhub.ai/user/devilWwj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devilwwj](https://clawhub.ai/user/devilwwj)
 
-## Use Case: <br>
-Developers and technical writers use this skill to publish Markdown articles to Juejin from an agent-assisted workflow or command line. It helps prepare article metadata, create drafts, and optionally publish after the user reviews the target category, tags, summary, and publication mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Juejin browser Cookie that can authorize actions on the user's Juejin account. <br>
-Mitigation: Keep juejin.env private, avoid committing or sharing the Cookie, and rotate the Cookie if it is exposed. <br>
-Risk: A normal run can publish content publicly to the configured Juejin account. <br>
-Mitigation: Use --draft-only when review is needed before public publication, and verify the title, summary, category, tags, and cover image before publishing. <br>
+## Use Case:
 
+Developers and content authors use this skill to publish Markdown articles to Juejin from an agent or command line. It can create drafts or publish posts with frontmatter-driven title, summary, cover image, category, and tag settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devilWwj/juejin-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/devilWwj) <br>
-- [Juejin](https://juejin.cn) <br>
-- [Juejin category IDs reference](artifact/references/category_ids.md) <br>
-- [Juejin tag IDs reference](artifact/references/tag_ids.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Juejin publication links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a Juejin draft link or published article link depending on --draft-only and user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact frontmatter and _meta.json report 1.0.2) <br>
+Risk: The skill uses a full Juejin browser Cookie that can act on the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected environment variable or local credential file, avoid passing the Cookie on the command line, and rotate it if it may have appeared in shell history or logs.
+
+Risk: The default publishing flow can publish content immediately rather than only creating a draft.
+
+Mitigation: Run in draft-only mode first to verify the article, category, tags, summary, and cover image before publishing.
+
+## Reference(s):
+
+- [Juejin Publisher ClawHub Listing](https://clawhub.ai/devilwwj/skills/juejin-publisher)
+- [Juejin](https://juejin.cn)
+- [Juejin Common Category IDs](artifact/references/category_ids.md)
+- [Juejin Common Tag IDs](artifact/references/tag_ids.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance and terminal text with Juejin draft or post links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a draft or publish immediately depending on draft-only usage.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

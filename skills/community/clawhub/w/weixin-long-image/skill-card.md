@@ -1,40 +1,53 @@
-## Description: <br>
-Turn Weixin/Wechat replies into readable image cards by rendering HTML into long PNG screenshots for long direct-chat replies, visual cards, posters, charts, tables, timelines, diagrams, dashboards, or mixed text-image presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn Weixin/Wechat replies into readable image cards by rendering HTML into long PNG screenshots.
 
-## Publisher: <br>
-[ssochi](https://clawhub.ai/user/ssochi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssochi](https://clawhub.ai/user/ssochi)
 
-## Use Case: <br>
-External users and agents use this skill to convert long Weixin or WeChat replies into readable PNG image cards. It is useful when chat-native text would be too long or when the response needs a polished HTML layout with tables, charts, diagrams, or mixed media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering HTML that loads untrusted remote resources can expose the render environment to unwanted network content or tracking. <br>
-Mitigation: Keep generated HTML self-contained when possible and avoid untrusted remote resources. <br>
-Risk: Cleanup commands could remove the wrong files if paths are reused carelessly. <br>
-Mitigation: Write generated files under /tmp or the workspace and delete only files created by the current render. <br>
+## Use Case:
 
+External users and agent operators use this skill to convert long Weixin or WeChat replies into readable long-image article cards, posters, dashboards, or other HTML-based visual layouts for delivery in direct chats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssochi/weixin-long-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Renders complete HTML into long PNG screenshots and may create temporary HTML files that should be cleaned up after successful sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The HTML-to-image renderer can run active HTML with unrestricted browser networking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review HTML before rendering and avoid untrusted HTML, remote images, scripts, iframes, or sensitive content unless the renderer is isolated or updated to block network requests and JavaScript.
+
+Risk: Temporary image or HTML outputs may contain sensitive user content.
+
+Mitigation: Write outputs inside the workspace or /tmp and delete only artifacts created for the current render after the message is sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssochi/skills/weixin-long-image)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance, image files]
+
+**Output Format:** [Complete HTML rendered to a long PNG screenshot with a short send message.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses daytime or dark WeChat-style article templates, writes outputs to an absolute path, and deletes temporary render artifacts after a successful send unless the user asks to keep them.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

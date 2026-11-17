@@ -1,41 +1,52 @@
-## Description: <br>
-Manages the School Run Schedule Google Sheet. Use when reading or updating the school run drop-off schedule for Damian and Zachary (date, responsible person, marks). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages the School Run Schedule Google Sheet for reading or updating the drop-off schedule for Damian and Zachary, including date, responsible person, and marks.
 
-## Publisher: <br>
-[cbasah](https://clawhub.ai/user/cbasah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cbasah](https://clawhub.ai/user/cbasah)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees or household operators use this skill to inspect and update a specific school-run Google Sheet schedule. It helps an agent prepare Google Workspace CLI reads and dry-run-first updates for dates, drop-off responsibility, and marks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can modify a live school-run schedule.
+
+Mitigation: Require the agent to show the sheet tab, range, old value, and new value before any update, and perform a dry run before writes.
+
+Risk: The skill references a hardcoded service-account credential path.
+
+Mitigation: Use it only when authorized to manage the spreadsheet, and scope the service account only to the referenced spreadsheet.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Household or caregiver users use this skill to read and update a specific school drop-off schedule in Google Sheets, including dates, the responsible person, and remarks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update a live school-run schedule in Google Sheets. <br>
-Mitigation: Keep the Google service account least-privileged, check current data before changes, dry-run write operations where possible, and require clear confirmation before updating the live sheet. <br>
-Risk: The commands depend on the configured gws CLI, spreadsheet ID, sheet tab name, and credential path. <br>
-Mitigation: Verify the spreadsheet, sheet tab, gws CLI installation, and service-account credential path before use. <br>
+**Output Format:** [Markdown guidance with inline shell command templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [School Run ClawHub Release](https://clawhub.ai/cbasah/school-run) <br>
-- [cbasah Publisher Profile](https://clawhub.ai/user/cbasah) <br>
+**Other Properties Related to Output:** [Uses Google Workspace CLI commands against a specific Google Sheet and asks for dry-run review before writes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Google Workspace CLI command templates for reading and updating a Google Sheet.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

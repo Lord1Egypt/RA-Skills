@@ -1,42 +1,52 @@
-## Description: <br>
-This skill uses the Flyelep AI Tool API to identify and translate text in an image and return a URL for the translated image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes and translates text in images through the Flyelep AI Tool API, then returns the translated image URL.
 
-## Publisher: <br>
-[flyelepai](https://clawhub.ai/user/flyelepai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyelepai](https://clawhub.ai/user/flyelepai)
 
-## Use Case: <br>
-External users and developers use this skill to translate text embedded in posters, product images, and other single-image assets by providing an image URL, target language, and Flyelep API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the submitted image URL and runtime API key to Flyelep. <br>
-Mitigation: Use it only when Flyelep is trusted for the image content and key handling, avoid confidential images unless Flyelep's privacy and retention terms are acceptable, and provide the secretKey only at runtime. <br>
-Risk: Storing the Flyelep secretKey in shared files or prompts could expose the API credential. <br>
-Mitigation: Do not hard-code or persist the secretKey; pass it through the request header only for the active call. <br>
+## Use Case:
 
+External users can translate poster or product-image text into a supported target language and receive a URL for the translated image.
 
-## Reference(s): <br>
-- [Flyelep Image Translation API endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/translate) <br>
-- [Flyelep controlboard](https://www.flyelep.cn/controlboard) <br>
-- [ClawHub skill page](https://clawhub.ai/flyelepai/flyelep-image-translate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a translated image URL from the Flyelep API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Images sent for translation may be stored on third-party public storage, and unsigned links may be accessible to anyone who has them; the stated 24-hour expiry is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get the user's consent before uploading local images, avoid sending sensitive images unless the user accepts this exposure, and treat returned links as public rather than relying on their stated expiry.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/flyelepai/skills/flyelep-image-translate)
+- [Flyelep image translation API](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/translate)
+- [Flyelep image upload API](https://www.flyelep.cn/prod-api/poster-design/api/v1/file/upload)
+- [Flyelep API key application portal](https://www.flyelep.cn/controlboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, URLs]
+
+**Output Format:** [Text containing translated image URL(s)]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch requests support up to 20 image-language combinations; the skill returns URLs rather than image contents.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

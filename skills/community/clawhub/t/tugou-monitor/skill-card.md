@@ -1,42 +1,59 @@
-## Description: <br>
-Read public Web2 trending news and hot-search feeds from 土狗气象台, then extend promising topics with Binance Web3 public data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+土狗气象台 helps OpenClaw agents read public Web2 trending feeds from Tugou and extend relevant topics with public Binance Web3 crypto-market lookups.
 
-## Publisher: <br>
-[Crime1000x](https://clawhub.ai/user/Crime1000x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crime1000x](https://clawhub.ai/user/crime1000x)
 
-## Use Case: <br>
-External users and agents use this skill to inspect public Chinese Web2 trend feeds, extract meme or topic signals, and decide whether a topic has enough evidence for token, contract, wallet, smart-money, or risk follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public third-party endpoints at tugoumeme.fun and web3.binance.com. <br>
-Mitigation: Avoid submitting wallet addresses, contract addresses, or topics that should remain private. <br>
-Risk: Token mapping, market, audit, and smart-money results can be incomplete or misleading if a topic has weak evidence or duplicate token names. <br>
-Mitigation: Treat findings as research only and independently verify any token mapping or market conclusion before acting on it. <br>
+## Use Case:
 
+Developers, researchers, and OpenClaw agents use this skill to monitor public Chinese Web2 trends, identify meme or token-mapping candidates, and run read-only public Binance Web3 checks when a topic, token, contract, or wallet signal justifies follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Crime1000x/tugou-monitor) <br>
-- [土狗气象台 public endpoint](https://tugoumeme.fun) <br>
-- [Binance Web3 public endpoint](https://web3.binance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research summaries with inline curl commands and structured token or topic findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public data workflows; requires curl and supports darwin, linux, and win32.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: Public web requests may disclose queried wallet addresses, contract addresses, keywords, or research targets to Tugou and Binance Web3.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only public addresses, contracts, and topics unless external querying is acceptable for the investigation.
+
+Risk: Trend, market, audit, and smart-money results can be mistaken for financial advice.
+
+Mitigation: Treat outputs as research signals, label uncertainty clearly, and avoid presenting results as investment recommendations.
+
+Risk: Chinese trend-to-token mappings can be ambiguous when there is no confirmed contract address, liquidity signal, or sustained market activity.
+
+Mitigation: Report mapping confidence and avoid strong conclusions unless the evidence supports an explicit token, contract, or address match.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crime1000x/skills/tugou-monitor)
+- [Tugou public endpoint](https://tugoumeme.fun)
+- [Binance Web3 public endpoint](https://web3.binance.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl command examples and structured research sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public web requests; no trading, posting, private-key, or destructive actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

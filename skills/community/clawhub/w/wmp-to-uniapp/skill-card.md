@@ -1,41 +1,54 @@
-## Description: <br>
-Convert native WeChat Mini Program projects into uni-app + Vue3 + TypeScript cross-platform projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert native WeChat Mini Program projects into uni-app + Vue3 + TypeScript cross-platform projects.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert native WeChat Mini Program source trees into runnable uni-app projects using Vue 3 and TypeScript. It supports project analysis, configuration migration, page and component conversion, utility migration, and final verification guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write a converted project to disk, so choosing an existing target directory may overwrite or mix generated files with existing work. <br>
-Mitigation: Use a fresh output directory unless the user explicitly intends to modify an existing project. <br>
-Risk: Generated code and migrated dependencies may require review before they are installed, built, or shipped. <br>
-Mitigation: Review generated code and dependencies before running npm install, build commands, or deploying the converted project. <br>
+## Use Case:
 
+Developers and engineers use this skill to migrate native WeChat Mini Program projects into runnable uni-app projects using Vue 3 and TypeScript. It supports project analysis, configuration migration, page and component conversion, utility migration, API namespace changes, and final verification guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/wmp-to-uniapp) <br>
-- [WeChat Mini Program to uni-app mapping reference](references/mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, generated project files, configuration files, and verification checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a new uni-app project directory from an inspected Mini Program source tree.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may write a converted project tree to an output directory selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the output path is new or backed up before running conversion work.
+
+Risk: Post-conversion npm install and npx commands may use unpinned package versions.
+
+Mitigation: Run package commands as separate manual steps, pin versions where possible, and use a project or container without unrelated credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/wmp-to-uniapp)
+- [WeChat Mini Program to uni-app Mapping Reference Table](references/mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, configuration snippets, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read a user-provided source project and write converted files to a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

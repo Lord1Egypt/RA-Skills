@@ -1,45 +1,51 @@
-## Description: <br>
-Query TVL, protocol statistics, APR rewards, and DEX yield data for the Indigo Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TVL, protocol statistics, APR rewards, and DEX yield data for the Indigo Protocol.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and agents use this skill to query Indigo Protocol TVL, protocol statistics, APR rewards, and DEX yield information for Cardano DeFi analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APR, APY, TVL, and yield comparisons may be inaccurate if the connected MCP provider or upstream analytics sources are stale, unavailable, or impersonated. <br>
-Mitigation: Verify the connected MCP provider and data sources are legitimate, current, and associated with the expected Indigo Protocol analytics feeds before using outputs for financial decisions. <br>
-Risk: Yield comparisons may be mistaken for financial advice when presented as ranked opportunities. <br>
-Mitigation: Present analytics as informational context and require independent review before making investment, liquidity, or staking decisions. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to retrieve and summarize Indigo Protocol TVL, protocol statistics, APR rewards, and DEX yield opportunities on Cardano.
 
-## Reference(s): <br>
-- [MCP Tools Reference](references/mcp-tools.md) <br>
-- [Analytics Concepts](references/concepts.md) <br>
-- [TVL & Protocol Stats](sub-skills/tvl-stats.md) <br>
-- [APR Rewards](sub-skills/apr-rewards.md) <br>
-- [DEX Yields](sub-skills/dex-yields.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/adacapo21/indigo-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and comparisons derived from analytics tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analytics guidance; APR, APY, TVL, and yield comparisons should be verified against current provider data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: APR, APY, TVL, and yield comparisons can change quickly and may be unsuitable as sole inputs for financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational, verify current rates and protocol risks from authoritative sources, and perform independent due diligence before acting.
+
+## Reference(s):
+
+- [Indigo Analytics ClawHub Page](https://clawhub.ai/adacapo21/skills/indigo-analytics)
+- [Analytics Concepts](artifact/references/concepts.md)
+- [Analytics MCP Tools Reference](artifact/references/mcp-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown summaries and tables with protocol analytics values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current TVL, APR, APY, yield comparisons, pool statistics, and data-source notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Routes business requests through a Hormozi-style diagnostic flow to choose the right specialist for offers, leads, pricing, sales, content, scaling, and related business topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill orchestrates a Portuguese-language Hormozi Squad workflow that diagnoses business challenges and routes users to specialist business agents for offers, leads, pricing, sales, content, scaling, and related topics.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Business operators, founders, consultants, and other external users use this skill to diagnose a business challenge, route the conversation to a relevant specialist workflow, and review the resulting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad business strategy prompting may be mistaken for legal, financial, tax, HR, or other regulated professional advice. <br>
-Mitigation: Treat outputs as general business guidance and consult qualified professionals for regulated decisions. <br>
-Risk: The skill references separate specialist files that are not included in this artifact. <br>
-Mitigation: Review any referenced specialist files before relying on their behavior or recommendations. <br>
+## Use Case:
 
+External users and business operators use this skill to triage business growth questions, collect diagnosis details, route to a relevant specialist persona, and review the resulting guidance.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/synkra/xquads) <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/xquads-hormozi-chief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic questions, routing decisions, specialist-style responses, and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill may activate for broad business terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for business growth, pricing, sales, leads, retention, scaling, or launch help before applying the workflow.
+
+Risk: The skill may provide direct advisory content instead of only routing to another specialist.
+
+Mitigation: Keep the response centered on diagnosis, routing, specialist handoff, and quality review; clearly distinguish guidance from professional business advice.
+
+Risk: Role wording is inconsistent across the routing and specialist execution flow.
+
+Mitigation: Use a consistent handoff format that states when Hormozi Chief is diagnosing, when a specialist persona is responding, and when the Chief is reviewing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/xquads-hormozi-chief)
+- [Project homepage](https://github.com/synkra/xquads)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language routing and business guidance; no executable output is produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Coordinates GEO optimization workflows by helping users configure and verify a Longxia key, view task lists, and route single rewrite requests while directing daily automation and mass-publish checks to companion skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO intelligent optimization coordinator for key setup, key verification, task listing, and routing single deep-imitation requests to companion skills.
 
-## Publisher: <br>
-[chameleon-nexus](https://clawhub.ai/user/chameleon-nexus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chameleon-nexus](https://clawhub.ai/user/chameleon-nexus)
 
-## Use Case: <br>
-External users and operators of the GEO optimization SaaS use this coordinator to set up local credentials, confirm access, inspect optimization tasks, and trigger a compatible one-time rewrite workflow when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a GEO API key for ai.gaobobo.cn. <br>
-Mitigation: Treat the GEO key like a password, keep the local key file private, and rotate or revoke it if exposed. <br>
-Risk: Users may unintentionally enable scheduled automation or publishing-related workflows through companion skills. <br>
-Mitigation: Review geo-cycle-autopilot and geo-mass-publish-check before enabling scheduled automation or mass-publish checks. <br>
+## Use Case:
 
+External users and operators use this skill as a GEO workflow coordinator to configure the local GEO API key, verify access, inspect optimization task status, and delegate daily automation or deep-imitation actions to companion skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chameleon-nexus/geo-opt-coordinator) <br>
-- [Publisher profile](https://clawhub.ai/user/chameleon-nexus) <br>
-- [GEO optimization service](https://ai.gaobobo.cn) <br>
-- [GEO optimization task API](https://ai.gaobobo.cn/api/geo/optimization/tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and task status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or request a local GEO API key and may call the GEO optimization service when the user is configuring or viewing tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The workflow depends on a local GEO API key file that could expose service access if logged, shared, or stored with broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key with restrictive file permissions, avoid printing it in logs or shell history, and rotate or revoke it if exposure is suspected.
+
+Risk: The skill routes work to companion GEO skills, so stale companion-skill behavior could produce incorrect task handling.
+
+Mitigation: Confirm that geo-cycle-autopilot, geo-mass-publish-check, and geo-deep-imitate are installed and aligned with the current GEO workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chameleon-nexus/skills/geo-opt-coordinator)
+- [GEO API Production Service](https://ai.gaobobo.cn)
+- [GEO Optimization Tasks Endpoint](https://ai.gaobobo.cn/api/geo/optimization/tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local GEO key files at ~/.qclaw/geo-api-key or ~/.openclaw/geo-api-key and companion GEO workflow skills.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, released 2026-06-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

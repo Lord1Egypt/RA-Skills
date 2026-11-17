@@ -1,40 +1,54 @@
-## Description: <br>
-Python development agent — automation scripts, API wrappers, CLI tools, data pipelines, web scrapers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forge is a Python development agent that produces automation scripts, API wrappers, CLI tools, data pipelines, and web scrapers with error handling and usage documentation.
 
-## Publisher: <br>
-[renoblabs](https://clawhub.ai/user/renoblabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renoblabs](https://clawhub.ai/user/renoblabs)
 
-## Use Case: <br>
-Developers and engineers use this skill to request working Python code for automation, API integrations, CLI utilities, data processing, and web scraping through a paid external agent flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Python coding tasks to a paid external agent flow. <br>
-Mitigation: Require manual approval before any hire, payment, or crypto-related command is run. <br>
-Risk: Tasks sent to the external agent may include private code, secrets, API keys, or sensitive data. <br>
-Mitigation: Review prompts before sending them and avoid sharing sensitive data unless the external agent and broker data-handling terms are acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to request working Python code for automation, API integrations, command-line utilities, data transformation, and authorized web scraping tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renoblabs/forge-python-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, command examples, usage notes, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include configurable Python scripts, API wrappers, CLI tools, data pipelines, or scraper code with usage documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated API wrappers or web scrapers may target systems without appropriate authorization or violate site terms, rate limits, privacy rules, or data handling expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only authorized targets and data, and require generated code to respect terms of service, rate limits, privacy requirements, and secret-handling best practices.
+
+Risk: Broad Python code generation can produce incorrect behavior or miss edge cases even when the skill requests tested, documented output.
+
+Mitigation: Review generated code, run tests in a controlled environment, and verify configuration, error handling, and expected inputs before use.
+
+## Reference(s):
+
+- [Forge — Python Developer on ClawHub](https://clawhub.ai/renoblabs/skills/forge-python-dev)
+- [renoblabs Publisher Profile](https://clawhub.ai/user/renoblabs)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python code, command examples, and usage documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code should include configurable parameters and error handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

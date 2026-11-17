@@ -1,43 +1,60 @@
-## Description: <br>
-Generate automated ETL pipelines for transforming and loading data into graph databases or knowledge graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate automated ETL pipelines for transforming and loading data into graph databases or knowledge graphs.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data engineers use this skill to design repeatable ETL workflows that extract data from files, APIs, databases, or streams, transform it into graph-ready structures, and load it into knowledge graph storage systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ETL pipelines may read sensitive source data or write, overwrite, or delete target graph data. <br>
-Mitigation: Review generated ETL code and configuration before use, test with staging data first, require explicit confirmation for production writes or deletes, and keep backups or rollback plans. <br>
-Risk: Pipeline configurations may require credentials for APIs, databases, streams, or graph stores. <br>
-Mitigation: Do not embed secrets in generated configs; use secret stores or environment-based credentials with least-privilege access. <br>
+## Use Case:
 
+Developers and data engineers use this skill to design ETL pipelines that extract data from files, APIs, databases, or streams; transform it into graph-ready records; and load it into knowledge graph or graph database targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/etl-pipeline-generator) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [ETL Pipeline Design Patterns](artifact/references/pipeline-patterns.md) <br>
-- [ETL Pipeline Examples](artifact/examples/example-pipelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, YAML configuration, DAG descriptions, generated code snippets, and monitoring or alerting settings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated ETL artifacts should be reviewed before execution against production data sources or graph databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Generated Python may be unsafe when it is derived from untrusted pipeline metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize generated code before execution, and restrict execution to trusted development or CI environments.
+
+Risk: Pipeline configurations can expose credentials, sensitive records, or operational details in logs and dead-letter queues.
+
+Mitigation: Use environment variables or a secret manager for credentials, redact sensitive fields, and minimize retained records in logs or failure queues.
+
+Risk: Loads into production graph databases can corrupt or overwrite data if mappings, validation rules, or retry behavior are wrong.
+
+Mitigation: Run generated pipelines against staging targets first, validate sample loads, and require operator review before production writes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/etl-pipeline-generator)
+- [ClawHub Homepage](https://clawhub.com)
+- [ETL Pipeline Design Patterns](references/pipeline-patterns.md)
+- [ETL Pipeline Examples](examples/example-pipelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with YAML configurations, DAG text, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include pipeline documentation, monitoring settings, and execution summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

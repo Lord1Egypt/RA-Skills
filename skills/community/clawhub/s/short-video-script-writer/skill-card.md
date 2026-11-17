@@ -1,44 +1,57 @@
-## Description: <br>
-Generates Chinese short-video scripts, hooks, topic ideas, optimizations, and long-form-to-short-form cuts for Douyin, Xiaohongshu, Bilibili, and Kuaishou. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language short-video script writing assistant for Douyin, Xiaohongshu, Bilibili, and Kuaishou that helps generate scripts, hooks, topic ideas, optimizations, and long-form-to-short-form cuts.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-Content creators and marketing teams use this skill to draft, optimize, and adapt Chinese short-video scripts with timed sections, dialogue, captions, CTAs, BGM suggestions, and filming guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad content-writing prompts and provide short-video scripting guidance when the user intended a different writing task. <br>
-Mitigation: Use it for explicit short-video script, hook, platform, duration, content-splitting, or script-optimization requests. <br>
-Risk: Generated scripts and platform suggestions may be unsuitable for a specific brand, audience, or publication context without review. <br>
-Mitigation: Review and adapt scripts, CTAs, platform assumptions, and filming guidance before publishing. <br>
+## Use Case:
 
+External creators and content teams use this skill to draft Chinese short-video scripts, optimize hooks, adapt scripts for major Chinese video platforms, and convert longer material into short-form video plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/caingao/short-video-script-writer) <br>
-- [README](artifact/README.md) <br>
-- [Script Templates](artifact/script-templates.md) <br>
-- [Platform Rules](artifact/platform-rules.md) <br>
-- [Test Cases](artifact/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese short-video scripts with timed sections, dialogue, captions, CTA, BGM suggestions, and filming notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are tailored by platform, duration, video type, and audience intent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The skill is intentionally focused on Chinese-language short-video script generation and may not fit general writing tasks or other languages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Chinese short-video script support is desired; disable it or ask explicitly for another language or writing mode when broader writing help is needed.
+
+Risk: Generated platform tactics, timing, or completion-rate estimates can be overly confident or unsuitable for a creator's actual audience.
+
+Mitigation: Review scripts before production and adjust hooks, claims, timing, and CTAs to match the creator's brand, platform rules, and audience data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caingao/skills/short-video-script-writer)
+- [README](artifact/README.md)
+- [Platform adaptation rules](artifact/platform-rules.md)
+- [Script structure templates](artifact/script-templates.md)
+- [Test cases](artifact/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese video scripts, hook options, optimization notes, and production suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include timed segments, dialogue, subtitles, BGM suggestions, filming tips, platform-specific CTA recommendations, and estimated completion-rate feedback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, OpenClaw metadata, and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

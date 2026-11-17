@@ -1,44 +1,62 @@
-## Description: <br>
-Report to Article restructures completed Chinese research reports into reader-facing articles without adding, deleting, or changing source facts, data, judgments, or links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms completed research reports into reader-oriented articles by restructuring sections, prose, titles, and optional visuals while preserving the original facts, evidence, sources, relationships, and judgment strength.
 
-## Publisher: <br>
-[wujiaming88](https://clawhub.ai/user/wujiaming88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujiaming88](https://clawhub.ai/user/wujiaming88)
 
-## Use Case: <br>
-Writers, analysts, and agents use this skill to reorganize completed research reports into clearer articles with objective titles, concise subheadings, and a stronger reading path. It is intended for transformations where every original object, fact, data point, judgment, and link must be preserved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long report transformations can omit source objects, facts, data points, judgments, or links if the input or output is truncated. <br>
-Mitigation: Build a complete information checklist before restructuring, process long reports in blocks, append each block to the output, and verify final coverage against the checklist. <br>
-Risk: The workflow may create or append to an output file and run simple local text-count checks. <br>
-Mitigation: Review the target output path and final article, and confirm that the original report's facts and links were preserved before publication. <br>
+## Use Case:
 
+Writers, analysts, editors, and agents use this skill to turn completed Chinese-language research reports, weekly reports, or research notes into readable articles without adding new research or unsupported conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wujiaming88/report2article) <br>
-- [Information checklist template](artifact/references/info-checklist-template.md) <br>
-- [Logic skeleton template](artifact/references/logic-skeleton.md) <br>
-- [Long report protocol](artifact/references/long-report-protocol.md) <br>
-- [Title rules](artifact/references/title-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance, Shell commands] <br>
-**Output Format:** [Markdown article text with checklist-style validation notes and optional local verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [For long reports, the skill directs agents to write or append output in blocks and verify coverage against an information checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The edited article could omit independent information, alter numbers or dates, or change source attribution or judgment strength.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build an atomic information checklist before editing and perform both forward coverage and reverse traceability checks before delivery.
+
+Risk: Long reports may be written to local Markdown files, and explicitly requested visuals may create asset files in the agent workspace.
+
+Mitigation: Use the skill only on reports that are acceptable to process in the workspace, and review generated Markdown and asset files before sharing or publishing.
+
+Risk: Visuals can imply unsupported data, relationships, or conclusions if they go beyond the source report.
+
+Mitigation: Use only report-backed data and relationships, label conceptual visuals as illustrative, and include captions, sources, and alt text for generated visuals.
+
+## Reference(s):
+
+- [Atomic Information and Bidirectional Review Template](references/info-checklist-template.md)
+- [Article Structure and Section Design](references/logic-skeleton.md)
+- [Long Report Processing Protocol](references/long-report-protocol.md)
+- [Reader-Oriented Prose and Style](references/prose-style.md)
+- [Objective Title Rules and Rewrite Examples](references/title-rules.md)
+- [Article Visual Guidelines](references/visual-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown article text, optional local Markdown files and article asset files, and a concise traceability check statement]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short reports are returned inline; long reports may be written to a local Markdown file with optional article assets when explicitly requested and supported.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

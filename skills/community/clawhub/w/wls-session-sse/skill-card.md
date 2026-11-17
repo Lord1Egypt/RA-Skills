@@ -1,48 +1,58 @@
-## Description: <br>
-WLS runtime engineer skill for session isolation, Session Server behavior, and cooperative SSE runtime implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WLS runtime engineer skill for session isolation, Session Server behavior, and cooperative SSE runtime implementation.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement and review WLS session isolation, Session Server flows, and cooperative SSE streaming behavior, including validation on dedicated non-production WLS instances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Testing against production WLS instances or real login/session data could expose sensitive state or disrupt live users. <br>
-Mitigation: Use a dedicated non-production WLS instance on a non-default port and avoid real production login or session data during validation. <br>
-Risk: Generated session or SSE changes could introduce blocking loops, raw session access, or incomplete stream shutdown behavior. <br>
-Mitigation: Review generated code for framework session abstractions, cooperative delay patterns, SseWriter usage, heartbeat behavior, and explicit stream completion or close handling. <br>
-Risk: A validation WLS instance left running after testing could continue consuming resources or expose test endpoints. <br>
-Mitigation: Confirm the dedicated validation instance is stopped after verification and include that confirmation in the final report. <br>
+## Use Case:
 
+Developers and engineers use this skill to repair or implement WLS session isolation, Session Server behavior, and SSE streaming flows while preserving cooperative runtime behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/wls-session-sse) <br>
-- [AI-ENTRY.md](AI-ENTRY.md) <br>
-- [CLAUDE.md](CLAUDE.md) <br>
-- [Session development skill](dev/ai/skills/session-development/SKILL.md) <br>
-- [SSE streaming skill](dev/ai/skills/sse-streaming/SKILL.md) <br>
-- [Weline framework runtime skill](dev/ai/skills/weline-framework-runtime/SKILL.md) <br>
-- [Runtime and process skill](dev/ai/skills/runtime-and-process/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WLS validation evidence and confirmation that the dedicated validation instance was stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill is intended for WLS development contexts and may reference internal project guidance files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where agents are expected to inspect WLS project guidance, and review referenced internal files before use if they may contain sensitive rules.
+
+Risk: Session and SSE changes can affect login isolation, streaming behavior, or worker availability.
+
+Mitigation: Validate on a dedicated non-production WLS instance, use cooperative delay patterns, and stop the validation instance after testing.
+
+## Reference(s):
+
+- [AI-ENTRY.md](AI-ENTRY.md)
+- [CLAUDE.md](CLAUDE.md)
+- [Session Development Skill](dev/ai/skills/session-development/SKILL.md)
+- [SSE Streaming Skill](dev/ai/skills/sse-streaming/SKILL.md)
+- [Weline Framework Runtime Skill](dev/ai/skills/weline-framework-runtime/SKILL.md)
+- [Runtime and Process Skill](dev/ai/skills/runtime-and-process/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with code, shell commands, validation notes, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected to include dedicated WLS validation evidence and confirmation that the test instance was stopped.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

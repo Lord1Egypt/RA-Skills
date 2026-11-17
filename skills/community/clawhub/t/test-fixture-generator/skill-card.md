@@ -1,44 +1,54 @@
-## Description: <br>
-Automatically generate pytest fixtures for database tests, API mocks, file handling, and random test data with setup and teardown support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates pytest fixtures for database, API mock, file-handling, and random-data testing scenarios with setup and teardown support.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and test engineers use this skill to generate reusable pytest fixture code for database connections, API mocks, temporary files, random data, and conftest.py setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated fixtures can write to paths chosen by the user and may overwrite local test files. <br>
-Mitigation: Confirm output paths before writing and keep generated files under version control for review. <br>
-Risk: Generated database fixtures include connection settings intended for tests. <br>
-Mitigation: Use only disposable test databases and do not point generated fixtures at production systems. <br>
-Risk: The package is third-party code. <br>
-Mitigation: Install only after trusting the publisher or reviewing the included source. <br>
+## Use Case:
 
+Developers use this skill to generate pytest fixture code and conftest.py scaffolding for common test setup patterns. It is suited for creating starting points for tests that use databases, API mocks, temporary files, or randomized sample data.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/shenghoo123-png/test-fixture-generator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance and Python pytest fixture code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code may be printed to stdout or written to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated fixture files can replace existing project files when using init or --output, especially conftest.py.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the target path before saving generated output and review diffs before committing generated fixture files.
+
+Risk: Generated database and AWS-related fixtures may be unsafe to run unchanged against environments that contain real resources.
+
+Mitigation: Review database settings and AWS mock fixtures before running tests, and use isolated test credentials, local services, or mocks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/test-fixture-generator)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown and generated Python code with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated fixture code may be printed to stdout or written to a selected project file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

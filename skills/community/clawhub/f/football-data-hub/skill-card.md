@@ -1,46 +1,60 @@
-## Description: <br>
-Football Data Hub helps agents query football standings, fixtures, results, team and player data, and H2H match previews without sports-betting predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Football Data Hub helps agents retrieve football standings, fixtures, results, team information, and optional player or H2H football data for information-only analysis without betting guidance.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve football league tables, schedules, match results, team lookup data, player data, and pre-match H2H summaries from public or configured football data APIs. It is intended for informational football data lookup, not betting prediction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries external football APIs and may store optional API keys in a local config.yaml. <br>
-Mitigation: Install only if external API access is acceptable, keep API keys out of shared logs and repositories, and use reviewed local configuration practices. <br>
-Risk: Dependency hygiene issues could affect reliability or supply-chain review. <br>
-Mitigation: Pin reviewed versions of requests and pyyaml before deployment. <br>
-Risk: The H2H preview has known import and win-counting accuracy issues in the provided security guidance. <br>
-Mitigation: Do not rely on H2H preview output for decisions until those bugs are fixed and reviewed. <br>
+## Use Case:
 
+Developers and agent users use this skill to query football league tables, fixtures, match results, team lookup data, and match preview context from documented football data APIs.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bettermen/football-data-hub) <br>
-- [OpenLigaDB API](https://api.openligadb.de/) <br>
-- [API-Football on RapidAPI](https://rapidapi.com/api-sports/api/api-football) <br>
-- [football-data.org API](https://api.football-data.org/v4) <br>
-- [League mapping reference](references/leagues.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, configuration notes, and text or tabular football data summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query external football APIs; optional API keys are read from local configuration when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad file-editing, search, network, and shell permissions beyond a read-only football lookup workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before deployment, remove unnecessary Write/Edit/Grep/WebSearch authority, constrain Bash to the bundled scripts, and restrict network access to documented football APIs.
+
+Risk: Optional API-key-backed player and H2H features may be less reliable than the zero-config OpenLigaDB features.
+
+Mitigation: Validate optional provider commands in the target environment and present unavailable features as optional rather than guaranteed.
+
+Risk: Dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Pin and scan dependencies for the deployment environment before installing the skill.
+
+## Reference(s):
+
+- [Supported league mapping](references/leagues.md)
+- [OpenLigaDB API](https://api.openligadb.de/)
+- [API-Football](https://rapidapi.com/api-sports/api/api-football)
+- [football-data.org API](https://api.football-data.org/v4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with tabular football data and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Zero-config OpenLigaDB lookups are available without credentials; optional provider features may require API keys and validation in the target environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

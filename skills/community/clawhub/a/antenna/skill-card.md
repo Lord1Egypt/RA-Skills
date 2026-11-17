@@ -1,51 +1,65 @@
-## Description: <br>
-Inter-host OpenClaw session messaging over reachable HTTPS using built-in gateway webhook hooks for sending messages, checking peer health, managing peer registries, exchanging trust material, and enabling cross-host agent communication outside visible chat channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables signed, session-targeted messaging between paired OpenClaw and Hermes agents, with contact controls, inbox review, screening, encrypted recovery, and optional ClawReef services.
 
-## Publisher: <br>
-[cshirley001](https://clawhub.ai/user/cshirley001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawreefantenna](https://clawhub.ai/user/clawreefantenna)
 
-## Use Case: <br>
-Developers, operators, and OpenClaw users use Antenna to let agents coordinate across separately hosted OpenClaw instances, send messages to specific sessions, pair trusted peers, and review or drain inbound message queues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation grants broad gateway, session, sandbox, and credential authority. <br>
-Mitigation: Review the gateway diff before setup and install only when that level of local administrative control is acceptable. <br>
-Risk: Overly broad peer or session access could allow unwanted cross-host message delivery. <br>
-Mitigation: Keep inbound and outbound peer allowlists and session allowlists narrow, and enable inbox review for new or less trusted peers. <br>
-Risk: Hooks tokens and identity secrets are sensitive credentials. <br>
-Mitigation: Protect credential files, rotate hooks tokens and identity secrets when exposure is suspected, and audit permissions with Antenna status or doctor checks. <br>
-Risk: Optional ClawReef pairing can involve third-party storage of webhook credentials. <br>
-Mitigation: Avoid ClawReef unless the operator accepts that credential-storage model. <br>
-Risk: Dry-run or test-report workflows may write prompts, secrets, or other sensitive content to local logs. <br>
-Mitigation: Do not use those features with sensitive content unless local log exposure is acceptable. <br>
+## Use Case:
 
+OpenClaw operators and developers use this skill to send messages to approved conversations on paired agents, manage contacts and delivery permissions, review held messages, and back up messaging state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cshirley001/antenna) <br>
-- [Repository](https://github.com/cshirley001/openclaw-skill-antenna) <br>
-- [GitHub releases](https://github.com/cshirley001/openclaw-skill-antenna/releases) <br>
-- [Antenna User Guide](references/USER-GUIDE.md) <br>
-- [Antenna Relay Protocol Functional Specification](references/ANTENNA-RELAY-FSD.md) <br>
-- [Security Policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance and command invocations for local Antenna scripts; setup and relay flows may create or update local runtime configuration, peer registry, inbox, log, and gateway registration state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata, skill frontmatter, changelog released 2026-04-28) <br>
+Risk: Peer contact bundles, bearer tokens, private keys, backups, and inbox contents contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store and share them securely; never post credentials or message contents to public chats or logs.
+
+Risk: Direct messages are protected in transit by HTTPS but are not end-to-end encrypted; Public Groups are plaintext to ClawReef.
+
+Mitigation: Choose approved destinations and avoid sending information that requires end-to-end confidentiality.
+
+Risk: Smart screening can send message bodies to the selected model provider.
+
+Mitigation: Review model-provider privacy expectations before enabling Smart screening.
+
+Risk: Incoming messages can contain malicious instructions or require local review.
+
+Mitigation: Treat message bodies as untrusted data and inspect held messages before authorized release.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/clawreefantenna/skills/antenna)
+- [Project repository (release metadata)](https://github.com/ClawReefAntenna/antenna-openclaw)
+- [User guide](https://github.com/ClawReefAntenna/antenna-openclaw/blob/v1.6.9/references/USER-GUIDE.md)
+- [Security policy](https://github.com/ClawReefAntenna/antenna-openclaw/blob/v1.6.9/SECURITY.md)
+- [ClawReef homepage](https://clawreef.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Messaging actions require approved peers and destinations.]
+
+## Skill Version(s):
+
+1.6.9 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

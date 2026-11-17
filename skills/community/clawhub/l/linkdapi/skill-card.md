@@ -1,43 +1,53 @@
-## Description: <br>
-Work with the LinkdAPI Python SDK to fetch LinkedIn profile, company, job, and search data through temporary uv-managed Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with the LinkdAPI Python SDK to fetch LinkedIn professional profile, company, job, and search data using uv-managed ephemeral Python scripts.
 
-## Publisher: <br>
-[foontinz](https://clawhub.ai/user/foontinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foontinz](https://clawhub.ai/user/foontinz)
 
-## Use Case: <br>
-Developers and agents use this skill to create and run uv-managed Python scripts that query LinkdAPI for LinkedIn profiles, companies, jobs, and people or company search results. It is intended for authorized lookups where a LinkdAPI API key is available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may run in sensitive workspaces. <br>
-Mitigation: Review generated Python and shell commands before execution, especially when querying external APIs or handling returned data. <br>
-Risk: LinkdAPI credentials could be exposed if hard-coded or logged. <br>
-Mitigation: Store the API key in the LINKDAPI_API_KEY environment variable and avoid embedding secrets directly in scripts. <br>
-Risk: Contact-information lookups may involve sensitive personal data. <br>
-Mitigation: Use contact-info endpoints only for legitimate, authorized purposes and follow applicable data handling requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LinkdAPI API Documentation](https://linkdapi.com/docs) <br>
-- [ClawHub Skill Release](https://clawhub.ai/foontinz/linkdapi) <br>
-- [foontinz Publisher Profile](https://clawhub.ai/user/foontinz) <br>
+## Use Case:
 
+Developers and automation agents use this skill to write short Python scripts that call LinkdAPI for authorized LinkedIn profile, company, job, and search workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks, plus summarized API results when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate temporary uv-managed scripts and requires a LinkdAPI API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can enable LinkedIn personal-data lookups, including contact information or bulk enrichment.
+
+Mitigation: Use it only for authorized professional-data lookups with a lawful purpose, avoid unnecessary contact-info or bulk enrichment, and keep returned personal data minimal.
+
+Risk: Generated uv scripts may install and run an unpinned third-party LinkdAPI SDK.
+
+Mitigation: Run scripts in a constrained environment, pin and review the LinkdAPI package version before use, and expose only the required API key.
+
+## Reference(s):
+
+- [LinkdAPI documentation](https://linkdapi.com/docs)
+- [ClawHub skill page](https://clawhub.ai/foontinz/skills/linkdapi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce temporary uv Python scripts and concise summaries of API results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

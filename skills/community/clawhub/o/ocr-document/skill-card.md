@@ -1,42 +1,56 @@
-## Description: <br>
-OCR document extraction - extract text from scanned documents, photos, and images using OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OCR document extraction - extract text from scanned documents, photos, and images using OCR.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-External users and developers use this skill to extract text from scanned PDFs, photographed pages, handwritten notes, and document images using the MinerU Open API CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are sent to MinerU's cloud service for OCR processing. <br>
-Mitigation: Use the skill only for documents appropriate for that service, and avoid highly sensitive documents unless MinerU's privacy terms meet the user's needs. <br>
-Risk: Optional higher-precision OCR mode requires authenticated MinerU CLI usage. <br>
-Mitigation: Use authenticated mode only intentionally, after confirming the account and credential posture are appropriate. <br>
+## Use Case:
 
+Developers and external users use this skill to extract text from scanned PDFs, photographed pages, images, and handwritten notes through the MinerU Open API CLI.
 
-## Reference(s): <br>
-- [Ocr Document on ClawHub](https://clawhub.ai/tanis90/ocr-document) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI Downloads](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with OCR text results and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local files and URLs; input documents are limited to 10MB or 20 pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs and uses a third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where the MinerU CLI is approved, and prefer a reviewed or pinned CLI version in controlled deployments.
+
+Risk: Documents are uploaded to MinerU's cloud OCR service for processing.
+
+Mitigation: Avoid sending confidential documents unless MinerU's privacy terms meet the user's requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tanis90/skills/ocr-document)
+- [MinerU](https://mineru.net)
+- [MinerU CLI Download](https://mineru.net/ecosystem?tab=cli)
+- [mineru-open-api npm package](https://www.npmjs.com/package/mineru-open-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and OCR text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports local files and URLs; documented limits are 10MB or 20 pages per document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

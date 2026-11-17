@@ -1,39 +1,49 @@
-## Description: <br>
-Provides concise form-design guidance for reducing abandonment in sign-up, checkout, and lead-generation flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to recommend conversion-focused form design practices that reduce abandonment in sign-up, checkout, and lead generation flows.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Designers, product teams, and developers use this skill to improve forms on sign-up pages, checkout flows, and lead-generation pages. It focuses on inline validation, persistent labels, mobile-friendly input types, logical grouping, and actionable error messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an optional third-party waitlist link. <br>
-Mitigation: Evaluate the linked service separately before sharing landing pages, product details, or business data. <br>
+## Use Case:
 
+External product, growth, design, and engineering teams use this skill to have an agent review or draft form UX guidance for sign-up, checkout, and lead-generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wellyxy/cro-form-design) <br>
-- [Racoonn waitlist](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with rules, a quick-reference table, and common mistakes to avoid] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance; includes one optional third-party waitlist link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may cause an agent to mention a specific external testing service as part of form-design guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the testing-service mention as promotional content and verify whether it is appropriate before including it in user-facing recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wellyxy/skills/cro-form-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with occasional inline HTML attribute examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

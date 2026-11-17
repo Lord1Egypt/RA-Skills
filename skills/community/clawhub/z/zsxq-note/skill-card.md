@@ -1,47 +1,62 @@
-## Description: <br>
-知识星球公开笔记管理：创建笔记、编辑笔记、查看笔记详情、查看笔记列表、删除笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages public ZSXQ notes through zsxq-cli, including creating, listing, viewing, editing, and deleting notes that are accessible to anyone with the link.
 
-## Publisher: <br>
-[zsxq](https://clawhub.ai/user/zsxq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsxq](https://clawhub.ai/user/zsxq)
 
-## Use Case: <br>
-Agents use this skill to manage public Knowledge Planet notes for a logged-in user, including creating, listing, viewing, editing, and deleting notes. It is intended for public shareable notes only, not private or sensitive information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notes created or edited with this skill are public to anyone with the link. <br>
-Mitigation: Review note text and image attachments before approving creation or edits, and do not include private or sensitive information. <br>
-Risk: Delete operations permanently remove notes and cannot be recovered. <br>
-Mitigation: Confirm the target note ID and current note contents with the user before approving deletion. <br>
-Risk: The skill acts through the user's logged-in zsxq-cli account. <br>
-Mitigation: Install and use it only when the agent should manage Knowledge Planet notes for that account. <br>
+## Use Case:
 
+External users and agents use this skill to manage public ZSXQ notes from a logged-in zsxq-cli account, including creating shareable notes, reviewing note history, inspecting details, updating content, and deleting notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zsxq/zsxq-note) <br>
-- [note +create](artifact/references/zsxq-note-create.md) <br>
-- [note +list](artifact/references/zsxq-note-list.md) <br>
-- [note +detail](artifact/references/zsxq-note-detail.md) <br>
-- [note +edit](artifact/references/zsxq-note-edit.md) <br>
-- [note +delete](artifact/references/zsxq-note-delete.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with zsxq-cli shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires zsxq-cli and an authenticated Knowledge Planet account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Risk: Created or edited notes are public and can be accessed by anyone with the link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review note text and attachments before create or edit, and avoid adding private or sensitive information.
+
+Risk: Deleting a note is described as irreversible.
+
+Mitigation: Confirm the target note_id and current note content before running a delete operation.
+
+Risk: The skill operates through the user's logged-in zsxq-cli account.
+
+Mitigation: Install and use it only when the agent is intended to manage public ZSXQ notes for that account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsxq/skills/zsxq-note)
+- [note +create](references/zsxq-note-create.md)
+- [note +list](references/zsxq-note-list.md)
+- [note +detail](references/zsxq-note-detail.md)
+- [note +edit](references/zsxq-note-edit.md)
+- [note +delete](references/zsxq-note-delete.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires zsxq-cli and a logged-in account; note operations can create public content or delete content irreversibly.]
+
+## Skill Version(s):
+
+1.3.1 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

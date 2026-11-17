@@ -1,40 +1,54 @@
-## Description: <br>
-Reads WeChat public-account articles by opening mp.weixin.qq.com links, extracting article text and content images, and producing a combined reading analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads WeChat Official Account articles, extracts full text and content images, and helps an agent combine them into a reading analysis.
 
-## Publisher: <br>
-[HanMingZhao](https://clawhub.ai/user/HanMingZhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanmingzhao](https://clawhub.ai/user/hanmingzhao)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to read WeChat articles that need both text extraction and image-aware analysis. It is intended for supplied WeChat article links and writes the extracted article data and images to a chosen local folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens a supplied article page in agent-browser and downloads discovered article images to disk. <br>
-Mitigation: Use intended WeChat article links only, avoid arbitrary or untrusted pages, and choose an output folder you are comfortable writing to. <br>
-Risk: Extracted article text and downloaded images may include third-party or personal content. <br>
-Mitigation: Review generated summaries and downloaded files before sharing, storing, or reusing them outside the original article context. <br>
+## Use Case:
 
+External users and developers use this skill when they provide an mp.weixin.qq.com article link and need an agent to read the article text, collect content images, and summarize or analyze the combined content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HanMingZhao/wechat-article-full-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, image files, shell commands] <br>
-**Output Format:** [Markdown analysis, JSON article metadata, local image files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes article.json, image_urls.txt, and an images directory to the selected output folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper script can open supplied article URLs and download images from unrestricted HTTP(S) URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with genuine WeChat article links, and add or review host allowlists before using it on untrusted links.
+
+Risk: The helper script writes predictable files under a caller-selected output path.
+
+Mitigation: Run it in a dedicated empty output folder and inspect the path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanmingzhao/skills/wechat-article-full-reader)
+- [Publisher profile](https://clawhub.ai/user/hanmingzhao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with bash and JavaScript snippets; helper script outputs article.json, image files, and a Markdown summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads content images to a caller-selected local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

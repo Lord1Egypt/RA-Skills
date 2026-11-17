@@ -1,42 +1,55 @@
-## Description: <br>
-Finds Binance market narratives, explains stage shifts, builds watchlists, and drafts Chinese Binance Square posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发现今天最值得写的 Binance 市场热点，判断叙事阶段变化，并生成面向 Binance Square 的中文发帖草稿和分享卡片内容。
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-Content creators and market editors use this skill to identify daily Binance ecosystem narratives, compare yesterday-to-today stage shifts, prepare watchlists, avoid weak stories, and draft Chinese posts for Binance Square. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market commentary may be incomplete, stale, or unsuitable for trading decisions. <br>
-Mitigation: Verify facts and market context before publishing or acting on generated content. <br>
-Risk: Requests are sent to disclosed hosted APIs. <br>
-Mitigation: Do not include private account, wallet, trading, or portfolio information in prompts or API requests. <br>
+## Use Case:
 
+Content creators, community operators, and market commentators use this skill to identify Binance-related narrative opportunities, compare yesterday-to-today stage shifts, manage watchlists and avoid lists, and prepare Chinese Binance Square posts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richard7463/binance-narrative-newsroom) <br>
-- [Newsroom API](https://binance-narrative-newsroom.vercel.app/api/newsroom) <br>
-- [Share image API](https://binance-narrative-newsroom.vercel.app/api/newsroom/share-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell command examples and structured editorial fields from the hosted API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include headline recommendations, stage-shift explanations, board stories, watchlists, avoid lists, publish checklists, Square drafts, share text, and share-image parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User-supplied topic angles or share-card fields may be sent to the disclosed Vercel-hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include non-public portfolio details, private trading notes, credentials, or other sensitive information in requests.
+
+Risk: Generated market commentary may be incomplete, stale, or unsuitable for direct publication.
+
+Mitigation: Review the generated Binance Square draft, watchlist, avoid list, and risk notes before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richard7463/skills/binance-narrative-newsroom)
+- [Newsroom API](https://binance-narrative-newsroom.vercel.app/api/newsroom)
+- [Share image API](https://binance-narrative-newsroom.vercel.app/api/newsroom/share-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with Chinese headline recommendations, narrative analysis, watchlists, risk notes, and Binance Square draft variants.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use disclosed external APIs to prepare draft content and share-card fields; generated drafts require user review before posting.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Fixes the Windows scheduled task bug that kills OpenClaw processes during idle. One script, permanent fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fixes the Windows scheduled task bug that kills OpenClaw processes during idle. One script, permanent fix.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to repair a Windows Scheduled Task configuration that can stop the OpenClaw Gateway after idle periods. It provides either a batch command sequence or manual Task Scheduler steps to recreate the task with logon startup, highest privileges, restart-on-failure behavior, and no idle stop condition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The batch script deletes and recreates the existing OpenClaw Gateway scheduled task with highest privileges and persistent logon startup behavior. <br>
-Mitigation: Review the commands before running them, export or record any customized task settings first, and run the script only when replacing that scheduled task is intended. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to keep the OpenClaw Gateway scheduled task running through Windows idle periods by applying manual Task Scheduler settings or creating the documented batch command.
 
-## Reference(s): <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/openclaw-windows-fix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with an inline Windows batch script and manual Task Scheduler steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review and administrator execution on Windows before changing the existing OpenClaw Gateway scheduled task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The documented administrator batch command force-replaces a persistent scheduled task and may run it elevated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the manual Task Scheduler edits or use a narrowly scoped script that backs up the existing task, verifies the OpenClaw task name, and changes only the idle and restart settings.
+
+Risk: The task command path can become unsafe if the gateway command or working directory is untrusted or writable by the wrong users.
+
+Mitigation: Confirm the gateway command path is trusted and protected before applying the task change, and avoid /rl HIGHEST unless it is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/openclaw-windows-fix)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with batch command snippets and manual Windows Task Scheduler steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows administrator review before changing a persistent scheduled task.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

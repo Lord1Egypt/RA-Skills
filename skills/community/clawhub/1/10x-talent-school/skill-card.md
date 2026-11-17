@@ -1,42 +1,53 @@
-## Description: <br>
-This skill provides an early-stage school talent-management framework for selecting, developing, assigning, and retaining teachers during rapid growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为追求倍速增长的初建学校设计的教师选、育、用、留四环节体系。基于科德高中融合部真实管理经验，结合十部AI Agent架构，将人才管理从校长个人经验升级为可继承、可协同、可沉淀的组织能力。
 
-## Publisher: <br>
-[maxliu1979](https://clawhub.ai/user/maxliu1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxliu1979](https://clawhub.ai/user/maxliu1979)
 
-## Use Case: <br>
-School founders, administrators, and agent-assisted school operations teams use this skill to structure teacher hiring, onboarding, role assignment, growth conversations, and retention practices for new or fast-growing schools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HR guidance may not fit every school's employment policies, privacy expectations, or local compliance obligations. <br>
-Mitigation: Review proposed hiring, feedback, monitoring, and retention practices against school policy before adopting them. <br>
-Risk: The skill is guidance-only and does not automate validation or enforcement of talent-management decisions. <br>
-Mitigation: Use it as a management framework and keep human review accountable for final hiring, role assignment, and retention decisions. <br>
+## Use Case:
 
+School founders, principals, and HR or talent leads use this skill to design teacher hiring, onboarding, role allocation, and retention practices for early-stage schools pursuing rapid growth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxliu1979/10x-talent-school) <br>
-- [Publisher profile](https://clawhub.ai/user/maxliu1979) <br>
-- [Related Schooling project](https://github.com/MaxLiu1979/schooling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only school talent-management guidance; no code execution, installer, credentials, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server evidence) <br>
+Risk: Teacher feedback, GitHub activity, and social-media job-seeking signals can involve privacy, consent, and employment-rule obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the guidance only under the organization's privacy, consent, and employment rules, and review any monitoring or evaluation practice before use.
+
+Risk: Interview observations and teacher-management signals may over-weight informal indicators or introduce bias if used mechanically.
+
+Mitigation: Use the framework as advisory management guidance, combine it with structured review, and keep human HR or school leadership accountable for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxliu1979/skills/10x-talent-school)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with tables, interview prompts, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory school talent-management content; no executable output.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

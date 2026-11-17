@@ -1,39 +1,49 @@
-## Description: <br>
-Provides a Zhang Xiaolong-inspired product thinking persona for product design, ecosystem strategy, user experience, and long-term planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona skill that helps agents respond from a Zhang Xiaolong-inspired product thinking perspective for product design, ecosystem strategy, user experience, and long-term planning.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and product teams use this skill to frame product decisions through a restrained, user-value-first product philosophy. It is intended for product design, ecosystem planning, user experience tradeoffs, and long-term strategy discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could activate the persona during ordinary product strategy or UX conversations. <br>
-Mitigation: Narrow or remove broad triggers before installation when the persona should only activate on explicit requests. <br>
+## Use Case:
 
+External users and product teams use this skill to ask for restrained, user-value-centered product and ecosystem guidance in the style described by the skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/zhang-xiaolong-perspective-v2) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses may include product decision heuristics, validation questions, and strategic framing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Common product terms such as "克制" or "用户价值" may activate the persona unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented exit phrases "退出" or "切回正常" to leave persona mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/zhang-xiaolong-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text persona-style responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no code execution, data access, persistence, or hidden install behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

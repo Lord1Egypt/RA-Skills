@@ -1,43 +1,61 @@
-## Description: <br>
-Analyzes Binance spot markets, monitors pump signals, reports balances and positions, and can place Binance spot trades through Telegram-driven agent commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance Trade Hunter helps agents analyze Binance spot markets, monitor price pumps, check balances and positions, and execute user-confirmed buy or sell actions through Telegram-facing workflows.
 
-## Publisher: <br>
-[june-kris](https://clawhub.ai/user/june-kris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[june-kris](https://clawhub.ai/user/june-kris)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Binance spot markets, receive Telegram pump alerts, inspect balances and positions, and optionally execute Binance spot buy/sell orders after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use stored Binance credentials to place live spot market orders. <br>
-Mitigation: Use a restricted Binance subaccount with limited funds, no withdrawal permission, and IP/API restrictions; review every order before execution. <br>
-Risk: Telegram-linked background services can run continuously and may rely on auto-discovered chat IDs. <br>
-Mitigation: Configure an explicit Telegram chat_id and stop pump alert or coin push services when finished. <br>
-Risk: Broad triggers or pump-alert suggestions can lead to unintended trading actions. <br>
-Mitigation: Keep triggers narrow, confirm coin and amount, and avoid executing trades from alerts without user review. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Binance spot-market opportunities, receive pump alerts, inspect account balances and positions, and execute user-confirmed market buy or sell orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/june-kris/binance-trade-hunter) <br>
-- [Publisher profile](https://clawhub.ai/user/june-kris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and formatted text returned by Python helpers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration, call Binance and Telegram APIs, and start or stop long-running background services when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence; artifact frontmatter says 1.2.0) <br>
+Risk: The skill can place real Binance spot trades when supplied with trading credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for every trade, use a restricted Binance sub-account, and keep trade limits small.
+
+Risk: The skill can reuse local Telegram credentials or discover chat details for notifications.
+
+Mitigation: Prefer explicitly configured Telegram credentials and avoid automatic credential discovery unless the user accepts that access.
+
+Risk: Background alert and push services can continue running after startup.
+
+Mitigation: Start background services only on explicit request and use the service status and stop commands to monitor and terminate them.
+
+Risk: Runtime dependencies and live market APIs affect behavior and availability.
+
+Mitigation: Review and lock dependencies before deployment, and treat market analysis as decision support rather than financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/june-kris/skills/binance-trade-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted text and Markdown-style command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live trading results, market analysis summaries, Telegram notification guidance, and background service status text.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata; artifact frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

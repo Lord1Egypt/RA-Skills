@@ -1,43 +1,58 @@
-## Description: <br>
-Polish and improve literature reviews for students and researchers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish and improve literature review for students and researchers.
 
-## Publisher: <br>
-[jeoyee](https://clawhub.ai/user/jeoyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeoyee](https://clawhub.ai/user/jeoyee)
 
-## Use Case: <br>
-Students and researchers use this skill to analyze literature-review structure, citation density, and critical framing, then produce a polished draft suited to the selected academic level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted literature-review drafts are sent to Moonshot/Kimi for polishing. <br>
-Mitigation: Do not use confidential, unpublished, regulated, or student-identifying material unless that external processing is acceptable. <br>
-Risk: The artifact embeds a live-looking Kimi API key. <br>
-Mitigation: Treat the key as exposed and replace it with a user-controlled secret such as an environment variable before use. <br>
-Risk: Polished output is saved in the current working folder. <br>
-Mitigation: Run the skill in an appropriate workspace and review saved files before sharing or relying on them. <br>
+## Use Case:
 
+Students and researchers use this skill to analyze literature review structure, citation density, and critical thinking, then polish draft text with Kimi AI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeoyee/literature-review-polisher) <br>
-- [Moonshot/Kimi API endpoint](https://api.moonshot.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, files] <br>
-**Output Format:** [Console text and saved plain-text polished output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Moonshot/Kimi and write polished output to the current working folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill sends user drafts to Moonshot/Kimi for polishing, which may expose confidential, unpublished, regulated, or student-identifying text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with drafts appropriate for Moonshot/Kimi processing, and avoid confidential or regulated content unless external processing is approved.
+
+Risk: The release embeds a real-looking API key in both scripts.
+
+Mitigation: Revoke the exposed key, remove it from the scripts, and require users to provide their own key through environment configuration before use.
+
+Risk: The script can save polished output files locally.
+
+Mitigation: Warn users before writing files and review saved outputs for sensitive content handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeoyee/skills/literature-review-polisher)
+- [Moonshot API endpoint](https://api.moonshot.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Interactive console text and saved polished text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save polished output to a timestamped local text file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

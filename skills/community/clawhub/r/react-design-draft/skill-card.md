@@ -1,50 +1,71 @@
-## Description: <br>
-Generate React design drafts (4-piece set) from content. Invoke for 'design draft'/'设计稿'/'生成页面'/'信息图'/'知识卡片'/'多图配图'. Do NOT use for editing existing code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate React design drafts (4-piece set) from content. Invoke for 'design draft'/'设计稿'/'生成页面'/'信息图'/'知识卡片'/'多图配图'. Do NOT use for editing existing code.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Developers, content creators, and design-focused agent users use this skill to turn articles or structured content into editable React visual drafts, including single information graphics and multi-illustration sets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a local brand profile or inspect referenced project style files, which may expose sensitive values if those files contain secrets. <br>
-Mitigation: Use trusted project references only, inspect CSS and token files before pointing the skill at them, and remove secrets from style-related files. <br>
-Risk: Generated React design drafts may be mistaken for production application code. <br>
-Mitigation: Review generated files before reuse and treat them as editable visual drafts rather than production-ready application changes. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn structured article or knowledge-card content into editable React design drafts and illustration sets. It supports content parsing, style selection, chart guidance, generated React files, and post-generation editing guidance.
 
-## Reference(s): <br>
-- [React Design Draft ClawHub Page](https://clawhub.ai/edwardwason/react-design-draft) <br>
-- [README](README.md) <br>
-- [Content Layout Mapping](references/content-layout-mapping.md) <br>
-- [Aesthetics Guide](references/aesthetics-guide.md) <br>
-- [Density Standards](references/density-standards.md) <br>
-- [React Output Spec](references/react-output-spec.md) <br>
-- [Style Presets](references/style-presets.md) <br>
-- [Brand Profile System](references/brand-profile.md) <br>
-- [Chart System](references/chart-system.md) <br>
-- [Image Sources](references/image-sources.md) <br>
-- [Multi-Illustration Mode](references/multi-illustration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with React, CSS, JavaScript, and file-tree outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates editable React design draft assets such as design-tokens.css, data.js, components/*.jsx, App.jsx, and preview/edit guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.3.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: Shortcut modes can generate files automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated file tree and proposed changes before adding the output to an existing project.
+
+Risk: The skill may read an optional local brand profile or inspect style files in a project the user references.
+
+Mitigation: Reference only projects and brand-profile files that are intended to inform the design draft.
+
+Risk: The skill may use external stock image sources when fallback imagery is selected.
+
+Mitigation: Confirm that selected image sources and licenses are appropriate for the target publication or release.
+
+Risk: The workflow is oriented toward Chinese/CJK content and design conventions.
+
+Mitigation: Check output language, typography, and layout choices when using it for non-CJK audiences.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardwason/skills/react-design-draft)
+- [React Design Draft Generator README](README.md)
+- [React 4-Piece Output Specification](references/react-output-spec.md)
+- [Content to Layout Mapping and Three-Dimension Combination System](references/content-layout-mapping.md)
+- [Aesthetics Guide v3](references/aesthetics-guide.md)
+- [Information Density Quantification Standards](references/density-standards.md)
+- [Chart System](references/chart-system.md)
+- [Multi-Illustration Mode](references/multi-illustration.md)
+- [Brand Profile System](references/brand-profile.md)
+- [Style Presets](references/style-presets.md)
+- [Image Sources](references/image-sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with React project files, including CSS design tokens, data modules, JSX components, and preview structure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be editable React design drafts rather than production application code.]
+
+## Skill Version(s):
+
+5.3.0 (source: frontmatter, changelog, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

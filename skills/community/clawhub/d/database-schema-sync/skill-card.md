@@ -1,41 +1,59 @@
-## Description: <br>
-Guides agents to manage database schema changes with an idempotent sync script, dry-run review, and verification instead of direct Alembic production migrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through database schema management with an idempotent sync script, emphasizing dry-run review before applying schema changes.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide database schema updates across development, staging, and production with dry-run review, explicit apply steps, and post-change verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides high-impact production database changes. <br>
-Mitigation: Require human approval of dry-run output, backups, rollback plan, maintenance timing, and database credentials before any production apply step. <br>
-Risk: The workflow relies on an unreviewed local sync-production-schema.py script. <br>
-Mitigation: Inspect and test the actual sync script in the intended project, verify required helpers exist, and use least-privileged database credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to update, review, and verify database schema changes across development, staging, and production with a preview-first sync workflow.
 
-## Reference(s): <br>
-- [Schema Sync Script vs Alembic Migrations](references/sync-vs-alembic.md) <br>
-- [Schema Sync Workflow Examples](references/workflow-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes dry-run review before apply, environment sequencing, and verification after schema changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to run a production schema sync script that is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after reviewing and controlling the referenced sync-production-schema.py script, and require dry-run review plus explicit human approval before any production --apply step.
+
+Risk: The verifier script uses a hard-coded local path and attempts to change file permissions.
+
+Mitigation: Replace the hard-coded path with the local repository path and make verification read-only before installing or running the skill.
+
+Risk: Production schema changes can cause data loss, downtime, or schema drift if applied with excessive privileges or without rollback planning.
+
+Mitigation: Require backups, least-privileged database credentials, dev and staging validation, and post-apply schema verification before production rollout.
+
+## Reference(s):
+
+- [Schema Sync Script vs Alembic Migrations](artifact/references/sync-vs-alembic.md)
+- [Schema Sync Workflow Examples](artifact/references/workflow-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/urbantech/skills/database-schema-sync)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run, apply, verification, and CI/CD workflow guidance for a repository-provided schema sync script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

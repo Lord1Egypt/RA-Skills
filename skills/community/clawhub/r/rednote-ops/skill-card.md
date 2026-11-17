@@ -1,52 +1,66 @@
-## Description: <br>
-End-to-end Xiaohongshu / RedNote operations skill for setting content style, saving an operating profile, generating posts in that house style, choosing or generating suitable images, and publishing through a dedicated independent browser flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Xiaohongshu (RedNote) operations skill for configuring a content style, saving an operating profile, generating posts and visual assets, and publishing through a dedicated independent browser flow.
 
-## Publisher: <br>
-[spencer17x](https://clawhub.ai/user/spencer17x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spencer17x](https://clawhub.ai/user/spencer17x)
 
-## Use Case: <br>
-External users and content operations teams use this skill to configure a reusable RedNote operating profile, generate post copy and image assets, and run publishing workflows through a dedicated browser profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live RedNote posts through a saved browser login. <br>
-Mitigation: Keep review-before-publish enabled unless immediate posting is intentional, and require a human review checkpoint before using direct publish flows. <br>
-Risk: A persistent browser profile may retain account login state. <br>
-Mitigation: Use the dedicated RedNote browser profile documented by the skill, avoid sharing a daily browser profile, and periodically clear the saved profile when retained login state is not desired. <br>
-Risk: Source images may include watermarks or reuse restrictions. <br>
-Mitigation: Use watermark-free sources, reject watermarked images, and do not remove or script removal of watermarks. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to configure a reusable Xiaohongshu operating profile, generate platform-style post copy and image assets, and prepare or execute publishing through a dedicated browser profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spencer17x/rednote-ops) <br>
-- [Skill instructions](SKILL.md) <br>
-- [English README](README.en.md) <br>
-- [Workflow](references/workflow.md) <br>
-- [Content rules](references/content-rules.md) <br>
-- [Content output format](references/content-output-format.md) <br>
-- [Image sources](references/image-sources.md) <br>
-- [Independent browser publish path](references/publish-independent-browser.md) <br>
-- [Publish usage](references/publish-usage.md) <br>
-- [Auto learning](references/auto-learning.md) <br>
-- [Profile schema](references/profile-schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON configuration, shell commands, and generated asset files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce temporary post assets such as post.json, pages.json, SVG files, and PNG files under the configured runtime output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can publish to a real Xiaohongshu account through a persistent logged-in browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the review-before-publish flow unless direct publishing is explicitly intended, and keep the dedicated browser profile separate from daily browsing sessions.
+
+Risk: The one-shot workflow can bypass the profile's review-before-publish setting.
+
+Mitigation: Avoid running scripts/run_ops_once.js until review enforcement is fixed; use scripts/xhs_publish.js or manual review flows for drafts.
+
+Risk: The independent publish helper terminates existing processes that match the dedicated browser profile path.
+
+Mitigation: Inspect or remove the pkill behavior before use on workstations that may have other active browser or automation sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spencer17x/skills/rednote-ops)
+- [Workflow](references/workflow.md)
+- [Content Rules](references/content-rules.md)
+- [Content Output Format](references/content-output-format.md)
+- [Image Sources](references/image-sources.md)
+- [Cards Usage](references/cards-usage.md)
+- [Publish Usage](references/publish-usage.md)
+- [Independent Browser Publish Path](references/publish-independent-browser.md)
+- [Auto Learning](references/auto-learning.md)
+- [Profile Schema](references/profile-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, generated post assets, and shell commands for helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary post, page, image, and publishing assets under local runtime directories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Processes PDF documents locally for text extraction, summaries, table extraction, keyword-based questions, page splitting, and OCR for scanned Chinese or English PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF文档处理工具（含OCR）。本地处理PDF文件，支持文本提取、智能摘要、表格导出、关键词问答、PDF拆分、OCR扫描版识别。纯本地处理，保护文档隐私。
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users and developers use this skill to inspect local PDF files, extract text and tables, summarize content, split pages, answer keyword-based questions, and OCR scanned documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local PDF contents and can write split PDFs or OCR text to a user-specified or default local path. <br>
-Mitigation: Use it only with documents intended for local processing and review output paths before handling sensitive files. <br>
-Risk: Summaries, keyword answers, and OCR output may be incomplete or inaccurate for complex layouts, scanned pages, or low-quality source files. <br>
-Mitigation: Review extracted text and generated files against the original PDF before relying on the results. <br>
+## Use Case:
 
+External users, developers, and document reviewers use this skill to run local PDF extraction, summarization, table discovery, keyword question answering, page splitting, and OCR workflows for Chinese and English documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-pdf-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, JSON] <br>
-**Output Format:** [Markdown or terminal text with optional JSON status and generated PDF or TXT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write split PDF files or OCR text results to a local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill reads local PDF files and can generate output files, including split PDFs and plaintext OCR text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on documents you are comfortable processing locally, choose explicit output locations for sensitive files, and delete generated plaintext OCR results when they are no longer needed.
+
+Risk: OCR and keyword-based summaries or answers may be incomplete or inaccurate for low-quality scans or complex documents.
+
+Mitigation: Review extracted text, OCR confidence, and generated summaries before relying on them for legal, financial, or other high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-pdf-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and JSON status, with optional generated PDF and TXT files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local PDF files and may write split PDFs or plaintext OCR output to disk.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

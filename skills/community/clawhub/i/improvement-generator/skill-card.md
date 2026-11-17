@@ -1,40 +1,57 @@
-## Description: <br>
-Generates ranked improvement candidates for a target skill using target analysis, feedback signals, memory inputs, and optional failure traces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ranked improvement candidates for skills from target analysis, feedback sources, and failure traces.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to propose structured, ranked changes for skills, especially when retrying after evaluator failures or using memory and feedback to avoid repeated weak proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Target skill content and evaluator failure details may be sent to the external Claude CLI when it is available. <br>
-Mitigation: Use the skill only where external Claude CLI analysis is acceptable, or run in an environment without the Claude CLI so it falls back to local templates. <br>
-Risk: Generated improvement candidates may be incorrect, unsuitable for the target skill, or unsafe to pass directly to an executor. <br>
-Mitigation: Inspect generated candidates and execution plans before applying them, especially in environments with private skills, proprietary prompts, or sensitive evaluation traces. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate structured improvement candidates for skills before those candidates are scored, approved, or executed. It can incorporate memory, feedback, and previous failure traces to adjust candidate priorities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanyasheng/improvement-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSON file with ranked candidate objects and a printed output path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Candidates include category, risk level, rationale, proposed change summary, executor support, and an execution plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Target skill content may be sent to an external Claude CLI during candidate generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive targets unless external processing is explicitly approved, and review target content before running the skill.
+
+Risk: Generated file-change plans may not be contained to the target skill.
+
+Mitigation: Require downstream path containment checks, action allowlisting, and human approval before applying generated candidates.
+
+Risk: Generated proposals may be incorrect or misleading.
+
+Mitigation: Review and scan candidates before deployment, and route them through scoring or evaluation before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/improvement-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [JSON containing ranked improvement candidates and execution plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Candidates include category, risk_level, execution_plan, priority signals, and trace adjustment metadata when available.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

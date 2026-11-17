@@ -1,40 +1,60 @@
-## Description: <br>
-Generate Feishu voice messages with waveform display from text, converting generated speech to OPUS format for in-chat playback on mobile and desktop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Feishu-compatible OPUS voice-message audio with waveform support from text for playback in Feishu chat.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and agents use this skill to turn text into Feishu-compatible voice-message files with waveform playback. It is useful for generating Chinese TTS audio, selecting adult or child voice presets, and preparing OPUS files for Feishu chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Feishu Voice Message on ClawHub](https://clawhub.ai/systiger/feishu-voice-message) <br>
-- [Feishu File Upload API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create) <br>
-- [Edge TTS](https://github.com/rany2/edge-tts) <br>
-- [FFmpeg OPUS Encoding](https://trac.ffmpeg.org/wiki/Encode/Opus) <br>
+Developers and agents use this skill to turn provided text into Feishu-ready OPUS voice-message files with selected Chinese voice presets. It is useful for preparing chat audio that should appear as a playable voice message rather than a generic uploaded audio file.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated MP3/OPUS audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OPUS audio for Feishu voice-message playback; requires local command execution, FFmpeg, and a separate Edge TTS helper path. Avoid confidential text unless the relevant TTS and Feishu services are approved, and confirm the target chat before sending generated audio.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill-info.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may be mistaken for a verified Feishu sender even though server evidence says to treat it as a local audio-file generator.
+
+Mitigation: Confirm the generated OPUS file manually before sending it through Feishu or another chat client.
+
+Risk: The script executes mutable, unpinned external converter code from another local skill path.
+
+Mitigation: Pin or inspect the Edge TTS converter before use and run the skill only in a trusted workspace.
+
+Risk: Generated audio can contain sensitive submitted text and may overwrite predictable output paths.
+
+Mitigation: Use non-sensitive input unless the TTS data flow has been reviewed, and write outputs to a dedicated directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/systiger/skills/feishu-voice-message)
+- [Feishu File Upload API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create)
+- [Edge TTS](https://github.com/rany2/edge-tts)
+- [FFmpeg OPUS Encoding](https://trac.ffmpeg.org/wiki/Encode/Opus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated OPUS audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Edge TTS and FFmpeg; generated voice-message files use OPUS audio.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

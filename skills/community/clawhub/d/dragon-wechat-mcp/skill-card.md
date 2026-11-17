@@ -1,40 +1,60 @@
-## Description: <br>
-Windows 电脑端微信消息监控与发送 MCP，实现在微信上给指定联系人发送消息 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows desktop WeChat MCP for monitoring WeChat state and sending messages to a specified contact.
 
-## Publisher: <br>
-[dragon015](https://clawhub.ai/user/dragon015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dragon015](https://clawhub.ai/user/dragon015)
 
-## Use Case: <br>
-Developers and users operating Windows desktop WeChat use this MCP server to let an agent check WeChat window status and send messages to the current or specified contact. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages from the user's live WeChat session without reliable recipient confirmation. <br>
-Mitigation: Keep WeChat on the intended chat, review the exact message before invoking the tool, and avoid using it around sensitive conversations. <br>
-Risk: The skill may leave local screenshots of chat UI after testing or sending. <br>
-Mitigation: Delete generated screenshot files after use and avoid running the skill when sensitive conversations are visible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dragon015/dragon-wechat-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/dragon015) <br>
+## Use Case:
 
+Developers and agent users can use this skill to let an MCP-capable agent inspect the local WeChat desktop window state and send messages to a selected or current contact.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls] <br>
-**Output Format:** [MCP JSON-RPC tool responses containing text or serialized JSON status data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can send messages through the user's active desktop WeChat session as an external side effect.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send real WeChat messages through desktop automation.
+
+Mitigation: Require explicit user confirmation before each send and require an exact recipient before message delivery.
+
+Risk: Verification and diagnostics can leave private chat screenshots on disk.
+
+Mitigation: Avoid saving screenshots during normal use, and delete or restrict access to diagnostic images when troubleshooting is necessary.
+
+Risk: Message entry uses the system clipboard and can overwrite or expose clipboard contents.
+
+Mitigation: Restore the prior clipboard contents after sending and disclose clipboard use to the operator.
+
+Risk: Window automation can target the wrong chat or non-WeChat windows if contact detection is ambiguous.
+
+Mitigation: Limit diagnostics to WeChat-only windows and verify the resolved contact before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dragon015/skills/dragon-wechat-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [MCP tool responses as text or JSON, with setup guidance and Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Controls a local Windows WeChat desktop session and may create local screenshot files during verification or diagnostics.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

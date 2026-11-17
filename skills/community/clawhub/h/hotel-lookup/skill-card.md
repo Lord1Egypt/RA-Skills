@@ -1,44 +1,59 @@
-## Description: <br>
-Intelligent Hotel Lookup helps agents find, compare, and hand off hotel booking options using FlyAI `search-hotel` with Fliggy MCP filters for destination, dates, POI proximity, lodging type, stars, beds, sorting, and CNY nightly caps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotel discovery, shortlist comparison, and booking handoff using FlyAI search-hotel on Fliggy MCP with structured filters for destination, dates, POI proximity, lodging type, star tier, bed layout, sort order, and nightly CNY cap.
 
-## Publisher: <br>
-[zuckonit](https://clawhub.ai/user/zuckonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuckonit](https://clawhub.ai/user/zuckonit)
 
-## Use Case: <br>
-Travel-planning agents and assistants use this skill to search hotels, compare shortlists by budget, location, rating, lodging type, and bed preference, then provide booking handoff links for final user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel prices, availability, cancellation terms, room details, and payment terms may differ from search results by the time a user books. <br>
-Mitigation: Use returned results as discovery guidance only and re-check the supplier detail page before reserving or paying. <br>
-Risk: The workflow depends on a third-party FlyAI CLI and may use an optional API key. <br>
-Mitigation: Verify the npm CLI before installation, keep any API key scoped and out of logs, and avoid exposing local configuration in responses. <br>
-Risk: Ambiguous destinations, dates, or filters can lead to irrelevant or misleading hotel recommendations. <br>
-Mitigation: Confirm required destination and stay-window details, validate dates, and ask clarifying questions before running a search. <br>
+## Use Case:
 
+External travel-planning users and agents use this skill to find hotels, compare shortlists by price, location, stars, bed type, or POI proximity, and hand off booking through returned supplier detail links. It is suited to city stays, family lodging, business travel, and budget-constrained hotel search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuckonit/hotel-lookup) <br>
-- [FlyAI](https://open.fly.ai/) <br>
-- [search-hotel reference](references/search-hotel.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown hotel shortlists with observed JSON fields, images when available, and booking handoff links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live `flyai search-hotel` JSON results; missing hotel details should be treated as unavailable and confirmed on supplier pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill depends on a third-party global FlyAI CLI installation and optional persistent API-key configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned reviewed CLI version, avoid sudo or administrator installation, and keep FLYAI_API_KEY out of logs and chat transcripts.
+
+Risk: Hotel destinations, dates, budgets, and preferences are sent to the FlyAI/Fliggy service when searches run.
+
+Mitigation: Tell users before running searches that their travel criteria will be sent to the service and avoid collecting unnecessary personal details.
+
+Risk: Hotel search results can omit fields or require final confirmation on supplier pages.
+
+Mitigation: Present only fields returned in JSON and direct users to the returned detailUrl to verify price, cancellation terms, room details, and availability before payment.
+
+## Reference(s):
+
+- [search-hotel reference](references/search-hotel.md)
+- [FlyAI homepage](https://open.fly.ai/)
+- [ClawHub skill page](https://clawhub.ai/zuckonit/skills/hotel-lookup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with concise hotel shortlist bullets or comparison tables, inline shell commands, hotel images, and booking links when present in JSON results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses only fields returned by search-hotel JSON, typically shortlists 3-5 hotels, and asks for clarification when required destination or date inputs are ambiguous.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

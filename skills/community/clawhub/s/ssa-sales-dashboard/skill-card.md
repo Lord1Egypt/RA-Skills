@@ -1,43 +1,61 @@
-## Description: <br>
-Aggregates sales data from OKKI CRM and Campaign Tracker to generate weekly and monthly reports with alerts and Discord delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregate sales data from OKKI CRM and Campaign Tracker to generate weekly and monthly reports with alerts and Discord delivery.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales and operations teams use this skill to collect CRM and campaign metrics, calculate funnel performance and anomalies, and prepare scheduled weekly or monthly sales reports for internal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive CRM, sales, and campaign data. <br>
-Mitigation: Review generated reports before distribution and avoid sending confidential customer or sales information to unapproved recipients. <br>
-Risk: Reports and alerts can be prepared for Discord delivery on a schedule. <br>
-Mitigation: Restrict Discord delivery to approved private channels and disable or review scheduled jobs when unattended reporting is not intended. <br>
-Risk: The data collector depends on OKKI credentials and environment files. <br>
-Mitigation: Confirm the intended OKKI workspace, credentials, token cache, and .env path before installation or execution. <br>
+## Use Case:
 
+Sales and operations teams use this skill to collect OKKI CRM and optional campaign metrics, calculate funnel and trend indicators, generate weekly or monthly sales reports, and prepare alerts for Discord delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cjboy007/ssa-sales-dashboard) <br>
-- [Publisher profile](https://clawhub.ai/user/cjboy007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, JSON metric and push-instruction files, and Node.js command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include sensitive customer, sales, and campaign metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can use broad local credential and configuration files for OKKI CRM access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated workspace or service account with access limited to the intended OKKI CRM config and token files.
+
+Risk: The Discord push flow can prepare arbitrary local report file contents for delivery.
+
+Mitigation: Confirm Discord delivery is intended and restrict report inputs to approved report paths before running push commands.
+
+Risk: Scheduled weekly and monthly runs can repeatedly collect data and prepare outbound alerts.
+
+Mitigation: Confirm cron schedules and destination channels are wanted before enabling automation.
+
+Risk: CRM authentication may be configured with non-approved endpoints.
+
+Mitigation: Require HTTPS and approved hosts for CRM authentication and API access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/ssa-sales-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON metrics and snapshots, console summaries, and Discord push instruction JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local report, snapshot, latest metrics, calculated metrics, and log files when run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

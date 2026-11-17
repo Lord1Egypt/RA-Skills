@@ -1,44 +1,58 @@
-## Description: <br>
-Automatically review code for bugs, security, style, and performance issues, provide fix suggestions, and optionally apply repairs with explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews source files for common bug, security, style, and performance issues, reports findings, and can apply simple automated repairs when requested.
 
-## Publisher: <br>
-[landyun](https://clawhub.ai/user/landyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[landyun](https://clawhub.ai/user/landyun)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect source files for common bugs, security issues, style problems, and performance concerns. It can produce an explanatory review report and, when requested, apply simple code fixes to the target file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports under-disclosed billing and tracking behavior. <br>
-Mitigation: Review billing behavior before installation, rotate or remove embedded billing credentials, and confirm charges and user tracking are acceptable. <br>
-Risk: The release evidence reports external code transmission behavior. <br>
-Mitigation: Do not submit proprietary code or secrets unless the third-party LLM data flow and retention terms are acceptable. <br>
-Risk: The skill can automatically modify files when fix mode is enabled. <br>
-Mitigation: Require reviewable diffs or explicit approval before accepting file changes. <br>
+## Use Case:
 
+Developers use this skill to scan code for common quality and security issues, receive concise fix suggestions, and optionally apply straightforward local edits. It is intended for routine code review assistance, not as a substitute for human review of complex changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/landyun/code-review-fix) <br>
-- [Publisher profile](https://clawhub.ai/user/landyun) <br>
-- [SkillPay billing site](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Console-oriented Markdown text with optional source-file modifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write fixes to the reviewed file when fix mode is enabled; billing commands can return balances and payment links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, config/rules.json) <br>
+Risk: The skill may contact skillpay.me for balance checks, payment links, and paid per-call charging after the free trial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review billing behavior before installation and set an explicit SKILLPAY_USER_ID so usage is tied to an intended account identifier.
+
+Risk: The package includes a live-looking billing API key.
+
+Mitigation: Treat the packaged key as sensitive third-party billing material and avoid running the skill in sensitive environments until the publisher confirms the intended key handling.
+
+Risk: Using --fix can modify source files in place.
+
+Mitigation: Run on a clean working tree, inspect diffs after execution, and keep automatic fixes disabled unless local file changes are expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/landyun/skills/code-review-fix)
+- [Publisher profile](https://clawhub.ai/user/landyun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown-style review output, with optional in-place source code edits when --fix is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local usage state file and may modify the reviewed file when automatic fixes are enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

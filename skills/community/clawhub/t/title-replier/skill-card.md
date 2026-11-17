@@ -1,42 +1,54 @@
-## Description: <br>
-Adds a random, non-repeating title prefix to assistant replies for a more personalized conversational style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds random, non-repeating Chinese title labels to assistant replies to make responses feel more personalized.
 
-## Publisher: <br>
-[guowaa223](https://clawhub.ai/user/guowaa223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowaa223](https://clawhub.ai/user/guowaa223)
 
-## Use Case: <br>
-OpenClaw users can use this skill when they want assistant responses to begin with a varied title label. It is most appropriate for casual or personalized conversations, not strict machine-readable outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Title prefixes can break exact output formats such as JSON, code-only responses, or safety-critical instructions. <br>
-Mitigation: Use the skill only where decorative reply prefixes are acceptable, and disable it for strict structured outputs. <br>
-Risk: The skill keeps a local history of previously used titles. <br>
-Mitigation: Review or reset the local history when using the skill in shared or sensitive workspaces. <br>
-Risk: Some documented configuration and import behavior may not be implemented in the artifact. <br>
-Mitigation: Verify configuration and import workflows before relying on them in regular use. <br>
+## Use Case:
 
+External users and developers use this skill to decorate assistant responses with a selected Chinese title label and optional emoji. It is suited to casual or branded interactions where a consistent reply prefix is acceptable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guowaa223/title-replier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text with an optional emoji and bracketed title prefix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores a small local history of used titles to reduce repetition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Reply decoration can change exact response formatting in workflows that require strict output shape.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid enabling the skill for exact-format tasks, or disable the title prefix in those workflows.
+
+Risk: The skill keeps local title-use history in history.json so titles do not repeat.
+
+Mitigation: Review or reset the local history file when persistent title state is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guowaa223/skills/title-replier)
+- [Publisher profile](https://clawhub.ai/user/guowaa223)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Text or markdown-style assistant reply prefix, with optional CLI text output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prepends a randomly selected Chinese title label, optionally with an emoji, and records used labels in local history.json to reduce repeats.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

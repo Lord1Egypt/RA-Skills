@@ -1,37 +1,53 @@
-## Description: <br>
-Assists researchers with Institutional Review Board (IRB) application tasks, including drafting informed consent documents, reviewing research protocols for compliance, generating application forms, and preparing submission checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists researchers with Institutional Review Board (IRB) application tasks, including drafting informed consent documents, reviewing research protocols for compliance, generating application forms, and preparing submission checklists.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers and research teams use this skill to draft IRB application materials, informed consent text, compliance-review notes, and submission checklists before qualified institutional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IRB drafts, consent language, risk assessments, or compliance conclusions may be incomplete or inappropriate for a specific institution or study. <br>
-Mitigation: Use this skill as a drafting aid only; have qualified research staff, the PI, and the institution's IRB review materials before submission or use. <br>
+## Use Case:
 
+Researchers, research coordinators, and compliance reviewers use this skill to draft IRB application materials, informed consent text, protocol review notes, and submission checklists for human-subjects research workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with command examples and plain-text IRB application or consent drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated draft text to a user-specified output path when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated IRB text may be incomplete, institution-specific, or unsuitable for final submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafts and review them against the applicable IRB policies, consent requirements, and study-specific protocol before submission.
+
+Risk: Generated IRB documents are saved locally to the output path and may contain sensitive study information.
+
+Mitigation: Choose an appropriate local storage path, limit access to authorized personnel, and handle generated files under the institution's data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/irb-application-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and locally written text document outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated IRB drafts and reports are aids for human review and are not IRB approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

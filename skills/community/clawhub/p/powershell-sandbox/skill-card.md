@@ -1,44 +1,55 @@
-## Description: <br>
-Runs PowerShell scripts in a restricted environment with command allowlists, timeout controls, output limits, file isolation guidance, and pre-execution safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and PowerShell command patterns for running scripts in a constrained sandbox with command filtering, timeout controls, output limits, file isolation, and pre-execution safety checks.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and automation operators use this skill to evaluate or run PowerShell scripts with pre-execution checks, timeout protection, command restrictions, and output controls. It is most relevant for controlled script execution, batch tasks, log analysis, and PowerShell code testing where the sandbox configuration is reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release claims sandbox protections for untrusted scripts, but the authoritative security summary says the safety claims are stronger than the documented test coverage supports. <br>
-Mitigation: Treat the skill as experimental or review-only until file isolation, output and resource limits, and host/.NET capability restrictions are tested, documented, and independently reviewed. <br>
-Risk: The artifact documents an AllowNetwork option and broader configurations that can weaken execution restrictions. <br>
-Mitigation: Keep network access disabled for untrusted scripts, use stricter timeout and output limits, and review custom allowlists before deployment. <br>
-Risk: Documented test coverage does not include file path isolation, output limit enforcement, or .NET type restriction tests. <br>
-Mitigation: Add and pass tests for those controls before relying on the skill to execute untrusted scripts in production. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to structure constrained PowerShell script execution with configurable timeouts, command allowlists, output limits, and working-directory controls. Server security evidence says the current artifact should be treated as documentation for a proposed tool until the implementation and controls are independently reviewed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/powershell-sandbox) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [TEST_RESULTS.md](artifact/TEST_RESULTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include timeout values, output limits, working-directory settings, allowlist settings, exit-code interpretation, and security review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence, package.json, SKILL.md, TEST_RESULTS.md) <br>
+Risk: The artifact makes sandbox safety claims, but server security evidence says the package appears incomplete and should not be relied on for untrusted PowerShell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as documentation for a proposed tool until src/sandbox.ps1, tests, and security controls are present and independently reviewed.
+
+Risk: The documented workflow includes options such as network access and configurable command allowlists that can increase exposure if enabled without review.
+
+Mitigation: Keep network access disabled by default, use strict command allowlists, set short timeouts and output limits, and review scripts before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/powershell-sandbox)
+- [Skill documentation](artifact/SKILL.md)
+- [Test results](artifact/TEST_RESULTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Windows PowerShell 5.1+ and PowerShell 7+ workflows with configurable timeout, output, network, working-directory, and command allowlist settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

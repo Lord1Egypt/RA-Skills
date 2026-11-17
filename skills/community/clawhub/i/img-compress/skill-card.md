@@ -1,40 +1,56 @@
-## Description: <br>
-Batch compress image file sizes (JPG/PNG), keep dimensions, reduce volume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch compresses JPG and PNG image files to reduce file size while keeping image dimensions unchanged.
 
-## Publisher: <br>
-[ginntech](https://clawhub.ai/user/ginntech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ginntech](https://clawhub.ai/user/ginntech)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and site operators use this skill to compress batches of JPG and PNG assets when images are too large or need optimization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad in-place overwrites can alter or damage original image assets.
+
+Mitigation: Run only on backed-up copies or a staging directory before applying changes to important assets.
+
+Risk: The documented examples use sudo and include web server asset paths.
+
+Mitigation: Run as an unprivileged user and avoid production or system-owned paths unless the target directory has been separately constrained.
+
+Risk: The skill depends on Pillow being installed in the Python environment.
+
+Mitigation: Pin and install Pillow in an isolated environment before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and site operators use this skill to reduce JPG and PNG file sizes in batch while preserving image dimensions, especially for website static assets or other folders of oversized images. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The compression script overwrites original image files in place. <br>
-Mitigation: Run it on a copied folder or backed-up assets first, and target only the intended directory. <br>
-Risk: Use with elevated privileges can modify production or system-owned assets. <br>
-Mitigation: Run as a normal user when possible and avoid sudo unless file permissions require it. <br>
+**Output Format:** [Markdown with inline bash commands and concise guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ginntech/img-compress) <br>
+**Other Properties Related to Output:** [May invoke a Python/Pillow script that overwrites matching image files in place.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The compression script overwrites image files in place and reports per-file and total size reductions.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

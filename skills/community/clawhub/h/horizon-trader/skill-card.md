@@ -1,40 +1,58 @@
-## Description: <br>
-Horizon SDK helps agents inspect and trade prediction markets, manage orders and risk controls, discover markets, and run portfolio, arbitrage, and quantitative analytics through a CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Horizon SDK helps agents work with prediction-market trading workflows, including market discovery, positions, orders, risk controls, wallet analytics, quantitative analytics, simulations, arbitrage, and portfolio tools.
 
-## Publisher: <br>
-[Jesusmanuelrg](https://clawhub.ai/user/Jesusmanuelrg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jesusmanuelrg](https://clawhub.ai/user/jesusmanuelrg)
 
-## Use Case: <br>
-Developers and trading-focused agents use this skill to query prediction-market positions, orders, fills, market data, and wallet analytics, and to prepare or execute trading, arbitrage, risk-management, and quantitative-analysis workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit or cancel real prediction-market orders and change trading controls. <br>
-Mitigation: Use paper mode or read-only credentials where possible, and require explicit human confirmation before order, cancellation, arbitrage, kill-switch, stop-loss, take-profit, or runtime-parameter changes. <br>
-Risk: The skill depends on an external horizon-sdk package and uses HORIZON_API_KEY for authenticated actions. <br>
-Mitigation: Review or pin horizon-sdk before granting trading authority, and keep HORIZON_API_KEY least-privileged. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Horizon SDK ClawHub documentation](https://docs.openclaw.ai/tools/clawhub) <br>
-- [Horizon SDK ClawHub release page](https://clawhub.ai/Jesusmanuelrg/horizon-trader) <br>
+## Use Case:
 
+Developers, analysts, and trading operators use this skill to let an agent inspect prediction-market portfolios, discover markets, run quantitative analysis, and prepare or execute trading and risk-management commands through the Horizon SDK.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON command output with Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HORIZON_API_KEY for authenticated account actions; market and analytics commands accept CLI arguments and JSON configuration values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.5.5 (source: server release metadata; artifact frontmatter reports 0.4.16) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can submit or cancel real prediction-market orders.
+
+Mitigation: Use paper trading by default and require human confirmation for every order, cancellation, arbitrage, and risk-control action.
+
+Risk: The skill uses HORIZON_API_KEY for authenticated trading authority.
+
+Mitigation: Restrict API-key permissions and provide the key only in environments intended for Horizon SDK trading.
+
+Risk: The skill can start HTTPS data feeds from user-provided URLs.
+
+Mitigation: Avoid untrusted feed URLs and prefer reviewed, pinned SDK versions before live trading.
+
+## Reference(s):
+
+- [ClawHub documentation](https://docs.openclaw.ai/tools/clawhub)
+- [ClawHub skill page](https://clawhub.ai/jesusmanuelrg/skills/horizon-trader)
+- [Publisher profile](https://clawhub.ai/user/jesusmanuelrg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands that return JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require HORIZON_API_KEY for authenticated Horizon SDK actions; all CLI command output is JSON.]
+
+## Skill Version(s):
+
+0.5.5 (source: server release evidence; artifact frontmatter reports 0.4.16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

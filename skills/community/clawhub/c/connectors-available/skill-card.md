@@ -1,40 +1,60 @@
-## Description: <br>
-Check which exchanges work from your location and search for tokens with trading rules such as minimum order size, price increment, and order types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check which exchanges work from your location and search for tokens with trading rules (min order size, price increment, order types).
 
-## Publisher: <br>
-[fengtality](https://clawhub.ai/user/fengtality) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengtality](https://clawhub.ai/user/fengtality)
 
-## Use Case: <br>
-External developers and Hummingbot users use this skill to test which exchange connectors are accessible from their location and to look up trading-rule details for token pairs. It helps summarize connector availability and token-specific order constraints from a local Hummingbot API and bundled or generated trading rules data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts handle user input and local credential files unsafely enough to require review before installation. <br>
-Mitigation: Review the scripts before use, pass only trusted token and data-file values, and run them from a directory that does not contain sensitive .env files. <br>
-Risk: Default admin/admin credentials and local API access can expose Hummingbot API operations if used carelessly. <br>
-Mitigation: Use non-default credentials and keep the Hummingbot API bound to a trusted local interface. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengtality/connectors-available) <br>
-- [Publisher profile](https://clawhub.ai/user/fengtality) <br>
+## Use Case:
 
+Developers and trading operators use this skill to check which Hummingbot exchange connectors are accessible from their location and to look up trading rules for token pairs.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown tables, shell command suggestions, and JSON trading-rules files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell scripts that call a Hummingbot API and read or write trading_rules.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scripts handle trading API credentials and default to basic credentials if the environment does not override them.
+
+Mitigation: Use only a local Hummingbot API you control and replace default credentials with unique credentials before running the scripts.
+
+Risk: Remote API endpoints or untrusted environment files could expose credentials or alter script behavior.
+
+Mitigation: Avoid remote HTTP endpoints and do not run the skill in directories containing untrusted .env files.
+
+Risk: Untrusted token or data-file values passed to search_token.sh may be handled unsafely.
+
+Mitigation: Pass only trusted token and data-file arguments, and review command inputs before execution.
+
+Risk: Connector tests may overwrite or create trading-rules output data.
+
+Mitigation: Expect test_all.sh to write data/trading_rules.json or a chosen output path and choose the output path deliberately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengtality/skills/connectors-available)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON files]
+
+**Output Format:** [Markdown tables, shell command guidance, and JSON trading-rules data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write data/trading_rules.json or a caller-selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-飞书日历管理（中文版）用于查询飞书日程、创建日历事件和查询忙闲状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent manage a user's Feishu calendar by listing events, creating events, checking free/busy status, and refreshing OAuth tokens.
 
-## Publisher: <br>
-[thinkingmanyangyang](https://clawhub.ai/user/thinkingmanyangyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thinkingmanyangyang](https://clawhub.ai/user/thinkingmanyangyang)
 
-## Use Case: <br>
-Employees and external users with Feishu calendar access use this skill to review schedules, create meetings, and check availability from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth credentials may be handled unsafely, including use of an embedded app secret or saved token file. <br>
-Mitigation: Use your own Feishu app credentials, rotate or remove embedded secrets, and protect or delete saved token files after use. <br>
-Risk: The skill under-discloses write access while supporting calendar event creation. <br>
-Mitigation: Grant only intended Feishu calendar scopes and require explicit user confirmation before creating calendar events. <br>
-Risk: Refreshing stored credentials can extend access beyond the immediate task. <br>
-Mitigation: Refresh credentials only with user approval and periodically revoke or rotate tokens that are no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to work with personal Feishu calendars through OAuth-authorized calendar queries, event creation, and availability checks.
 
-## Reference(s): <br>
-- [飞书日历 OAuth 配置指南](references/oauth-setup.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [ClawHub skill page](https://clawhub.ai/thinkingmanyangyang/feishu-calendar-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu OAuth credentials and can read, create, or refresh calendar-related data depending on the invoked workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can access Feishu calendar data and create calendar events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when calendar read and write permissions are intentional, and require clear user confirmation before calendar writes.
+
+Risk: The evidence security summary reports exposed OAuth app secret material and plaintext storage of user OAuth tokens under the skill directory.
+
+Mitigation: Rotate or replace the app secret before use and protect local token files with appropriate filesystem permissions.
+
+## Reference(s):
+
+- [OAuth setup guide](references/oauth-setup.md)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu OAuth credentials and may read or write calendar data depending on the requested action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

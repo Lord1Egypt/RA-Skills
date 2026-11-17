@@ -1,44 +1,56 @@
-## Description: <br>
-Learning Cards is a spaced-repetition flashcard skill backed by Feishu Bitable that creates cards from books or knowledge bases, quizzes the user, tracks progress, and schedules reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and quizzes spaced-repetition learning cards in Feishu/Lark Bitable, tracks learning progress, and schedules reviews using an 85% accuracy rule.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Learners, knowledge workers, and educators use this skill to turn books, courses, or documents into Feishu-backed flashcards and run interactive review sessions that update progress and scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and updates Feishu Bitable records, so using the wrong table could alter unrelated learning data. <br>
-Mitigation: Confirm the target Feishu Bitable app and table before starting a study session or creating cards. <br>
-Risk: Flashcards may contain confidential or sensitive study material stored in a Feishu workspace. <br>
-Mitigation: Use only Feishu tables with permissions appropriate for the material being studied. <br>
+## Use Case:
 
+External learners and agents use this skill to create flashcards from books, courses, or knowledge bases, then run interactive review sessions that update progress in Feishu/Lark Bitable.
 
-## Reference(s): <br>
-- [Learning Cards ClawHub Page](https://clawhub.ai/guoqunabc/learning-cards) <br>
-- [System Design](references/system-design.md) <br>
-- [OpenClaw Feishu Setup](https://docs.openclaw.ai/channels/feishu) <br>
-- [Feishu Bitable API Documentation](https://open.feishu.cn/document/server-docs/docs/bitable-v1) <br>
-- [The Eighty Five Percent Rule for Optimal Learning](https://doi.org/10.1038/s41467-019-12552-4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown and plain text with Feishu Bitable setup fields, quiz prompts, progress summaries, and card-generation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update Feishu Bitable records through the configured OpenClaw Feishu plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Bitable read/write authorization can update learning-card records and may affect unrelated data if used against the wrong table or app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated learning-card Bitable table or app and grant only the Bitable access needed for that workspace.
+
+Risk: The workflow updates quiz progress after each answer, so incorrect card selection or scoring can change review schedules.
+
+Mitigation: Review the selected table and scoring before study sessions, and keep recoverable backups or versioned exports for important card sets.
+
+## Reference(s):
+
+- [System Design](references/system-design.md)
+- [OpenClaw Feishu setup docs](https://docs.openclaw.ai/channels/feishu)
+- [The Eighty Five Percent Rule for optimal learning](https://doi.org/10.1038/s41467-019-12552-4)
+- [Feishu Bitable API documentation](https://open.feishu.cn/document/server-docs/docs/bitable-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown conversation output with Feishu/Lark Bitable record reads and updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu/Lark Bitable access through the OpenClaw Feishu plugin and user OAuth authorization.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

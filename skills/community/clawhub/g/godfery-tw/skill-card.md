@@ -1,45 +1,59 @@
-## Description: <br>
-Search X (Twitter) in real time, extract relevant posts, and publish tweets/replies instantly - useful for social listening, engagement, and rapid content operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) in real time, extract relevant posts, and publish tweets/replies instantly-perfect for social listening, engagement, and rapid content ops.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users, developers, and social operations teams use this skill to search X posts, monitor users and trends, and perform account actions such as posting, liking, and retweeting through the SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish posts, like posts, retweet, and update profile data from a connected X account. <br>
-Mitigation: Require human approval before login, posting, liking, retweeting, or profile changes, and prefer a dedicated low-risk account. <br>
-Risk: Login operations send account credentials and proxy details to the third-party SkillBoss/api.aisa.one provider. <br>
-Mitigation: Install only when the provider is trusted, avoid using a primary account password where possible, and limit credentials to the minimum account needed. <br>
-Risk: API calls may consume paid credits and account automation may trigger platform rate limits or suspension. <br>
-Mitigation: Review planned calls before execution, monitor returned usage costs, and keep automated engagement volume conservative. <br>
+## Use Case:
 
+External users and developers use this skill to search X/Twitter, monitor users and trends, and automate social engagement through command-line or API-driven workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/godfery-tw) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [SkillBoss signup](https://skillbossai.com) <br>
-- [API Reference](https://aisa.mintlify.app/api-reference/introduction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python command examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; write operations require X account login and may consume paid credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can send X/Twitter account credentials, proxy credentials, search activity, and public action requests to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only operations when possible and install only after confirming trust, credential handling, revocation, and approval controls with the provider.
+
+Risk: Write operations can post, like, retweet, or update profile data from the connected account.
+
+Mitigation: Avoid high-value or organization accounts unless account-level approvals and recovery controls are in place; review proposed public actions before execution.
+
+Risk: CLI login examples accept passwords and optional TOTP codes as command arguments.
+
+Mitigation: Avoid entering real passwords or TOTP codes through command-line arguments; prefer safer provider-supported authentication flows where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/godfery-tw)
+- [OpenClaw homepage](https://openclaw.ai)
+- [SkillBoss API reference](https://aisa.mintlify.app/api-reference/introduction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python command examples, and JSON API responses from the client]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; write actions require X/Twitter account login.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

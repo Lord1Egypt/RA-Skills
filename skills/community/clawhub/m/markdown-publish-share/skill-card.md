@@ -1,41 +1,50 @@
-## Description: <br>
-Publish markdown and return share links using curl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated guidance directing agents away from a retired anonymous markdown publishing endpoint and toward the auteng-docs skill for shareable documents.
 
-## Publisher: <br>
-[operator-auteng-ai](https://clawhub.ai/user/operator-auteng-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[operator-auteng-ai](https://clawhub.ai/user/operator-auteng-ai)
 
-## Use Case: <br>
-Developers, engineers, and technical documentation authors use this skill to publish rendered Markdown documents with Mermaid diagrams, KaTeX, and code blocks, then retrieve a shareable link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published Markdown may expose secrets, customer data, private architecture notes, or internal documents through a shareable link. <br>
-Mitigation: Review content before publishing, avoid sensitive material unless approved for external sharing, and use expires_hours when temporary access is intended. <br>
-Risk: A missing share_url indicates the publish request did not complete as expected. <br>
-Mitigation: Treat responses without share_url as errors and inspect the full JSON response before sharing or retrying. <br>
+## Use Case:
 
+Developers and other agents use this notice to avoid a retired markdown publishing endpoint and find the replacement auteng-docs skill for publishing shareable documents.
 
-## Reference(s): <br>
-- [AutEng Markdown publishing documentation](https://auteng.ai/llms.txt) <br>
-- [AutEng publish-markdown API endpoint](https://auteng.ai/api/tools/docs/publish-markdown/) <br>
-- [ClawHub skill page](https://clawhub.ai/operator-auteng-ai/markdown-publish-share) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples and JSON response handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes supplied Markdown to AutEng and expects a response containing share_url; optional title and expires_hours fields are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence and VERSION.txt) <br>
+Risk: The retired anonymous publishing endpoint no longer works, and this skill cannot publish markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not call the retired endpoint; review and use the auteng-docs skill separately when publishing is needed.
+
+## Reference(s):
+
+- [AutEng documentation](https://auteng.ai/llms.txt)
+- [Markdown Publish Share release](https://clawhub.ai/operator-auteng-ai/skills/markdown-publish-share)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecation guidance only; does not publish documents.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release and VERSION.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-灵枢·Agent设计师 helps users design industry-specific AI Agent plans, create runnable baseline agents from configuration and skill packages, and plan enterprise multi-agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+灵枢·Agent设计师 helps users design industry-specific AI Agent plans, create runnable baseline Agents from configuration and dedicated skill packages, and plan enterprise Agent systems.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Developers, consultants, and teams use this skill to turn industry or company requirements into AI Agent scenario outlines, MVP plans, OpenClaw configuration guidance, and optional skill publication steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes broad triggers for designing, creating, and publishing agents, which can lead to unintended changes if the target or version is unclear. <br>
-Mitigation: Require an explicit target repository, version, destination, diff review, and final confirmation before any publish step. <br>
-Risk: The documented publication flow includes a force-push command that can rewrite remote history. <br>
-Mitigation: Avoid the force-push path unless the user deliberately intends to rewrite remote history and confirms after reviewing the diff. <br>
+## Use Case:
 
+Developers, consultants, and teams use this skill to convert customer requirements, enterprise descriptions, websites, documents, or industry reports into a 7-part Agent scenario outline, MVP rollout guidance, baseline OpenClaw configuration, and dedicated skill-package plan.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/perrykono-debug/lingshu-agent-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/perrykono-debug) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured outlines, file templates, JSON configuration examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workspace file plans and publication command guidance; user review is required before publishing or force-pushing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence, root SKILL.md frontmatter, README, and _meta.json) <br>
+Risk: The publish workflow can rewrite a GitHub main branch and publish externally with too little scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for planning and design unless the release commands have been manually audited; remove forced push behavior, verify the repository and branch, and allowlist staged files before publishing.
+
+Risk: Enterprise descriptions, websites, documents, or industry reports may contain sensitive business information.
+
+Mitigation: Process sensitive enterprise inputs only with explicit approval, avoid external publication of private material, and keep human review on governance and data-sharing boundaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/lingshu-agent-architect)
+- [Artifact README](artifact/README.md)
+- [Root skill definition](artifact/SKILL.md)
+- [Ling Shu Agent Designer skill definition](artifact/ling-shu-agent-designer/SKILL.md)
+- [Enterprise Agent Planner skill definition](artifact/enterprise-agent-planner/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown plans, configuration snippets, file manifests, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local Agent workspace files and publish commands when explicitly confirmed by the user.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata, root SKILL.md frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

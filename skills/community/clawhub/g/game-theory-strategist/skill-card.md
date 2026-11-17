@@ -1,45 +1,58 @@
-## Description: <br>
-Analyzes strategic interactions such as negotiations, conflicts, pricing wars, and career choices using game theory frameworks to produce payoff matrices, equilibrium analysis, optimal strategies, and phased action plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes strategic interactions such as negotiations, conflicts, pricing wars, and coordination problems with game classification, payoff matrices, equilibrium analysis, and action plans.
 
-## Publisher: <br>
-[midnightstudioai](https://clawhub.ai/user/midnightstudioai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[midnightstudioai](https://clawhub.ai/user/midnightstudioai)
 
-## Use Case: <br>
-External users and developers use this skill to model strategic decisions where outcomes depend on multiple agents, then turn that model into negotiation, conflict-resolution, incentive-design, or regret-minimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payoff numbers, equilibrium labels, and action plans may be heuristic or misleading in legal, financial, therapeutic, employment, family, or other high-stakes contexts. <br>
-Mitigation: Treat the analysis as illustrative decision support and seek qualified professional advice before acting on high-stakes recommendations. <br>
-Risk: Strategic negotiation guidance could be misused to pressure, isolate, deceive, or coerce another person. <br>
-Mitigation: Use the skill only for ethical strategy framing and avoid tactics that manipulate vulnerable people or remove another party's agency. <br>
-Risk: Simplified helper scripts rely on assumptions such as sampled utilities or linear, comparable payoffs. <br>
-Mitigation: Review script outputs as rough checks, validate assumptions manually, and prefer qualitative reasoning when numeric inputs are uncertain. <br>
+## Use Case:
 
+External users can use this skill to frame negotiations, workplace or personal conflicts, competitive scenarios, and major decisions as game-theory models and receive structured strategic analysis.
 
-## Reference(s): <br>
-- [Technical Reference: Game Theory Methodologies](references/methodology.md) <br>
-- [README](README.md) <br>
-- [Evaluation Scenarios](evals/evals.json) <br>
-- [ClawHub Release Page](https://clawhub.ai/midnightstudioai/game-theory-strategist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown containing a dark-themed HTML artifact with structured strategic analysis and action-plan prose.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional Python 3 + numpy helper scripts support simplified regret and incentive checks; claude.ai action buttons are omitted outside that platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Strategic negotiation guidance may encourage manipulative or escalatory tactics in sensitive personal, workplace, legal, financial, or relationship disputes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to transparent, voluntary, non-coercive strategic analysis and remind users not to treat outputs as professional advice.
+
+Risk: Qualitative payoff matrices and simplified helper scripts can make approximate analysis appear more precise than it is.
+
+Mitigation: Label utilities and equilibria as approximations, verify assumptions before acting, and avoid relying on the output as the sole basis for high-stakes decisions.
+
+Risk: Hardcoded Spanish section headings and claude.ai-specific action buttons may not fit every deployment.
+
+Mitigation: Verify user comprehension and omit or adapt platform-specific buttons when rendering outside claude.ai.
+
+## Reference(s):
+
+- [Game Theory Strategist on ClawHub](https://clawhub.ai/midnightstudioai/skills/game-theory-strategist)
+- [Technical Reference: Game Theory Methodologies](artifact/references/methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Dark-themed HTML artifact with structured strategic analysis and concise follow-up prompts when supported by the host agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses qualitative payoff estimates; optional Python helpers require numpy; claude.ai-specific action buttons should be omitted outside that platform.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

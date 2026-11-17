@@ -26,18 +26,19 @@ Machine-readable troubleshooting: `guide:troubleshooting`.
 
 | Step | Action |
 | --- | --- |
-| Login | Obtain `jwt_token` via curl login, login script, or local plugin |
+| Login | OpenClaw: `identyclaw_ensure_session` / protected `identyclaw_*` (never curl login in chat). Others: obtain `jwt_token` via curl login, login script, or `@rodit/rodit-auth-be` `login_server()` (± `apiEndpoint` for federation) |
 | Store | Keep the token in a file, environment variable, or SDK session on the agent host |
 | Protected calls | Read the token from that store: `Authorization: Bearer $(cat ~/.identyclaw/jwt.txt)` |
 | Verify | `GET /api/me/identity` using the same storage path as login |
 
 ## Recommended integrations (typical agent → API)
 
-1. **curl + file-stored JWT** — login via `GET /api/login/timestamp` → sign locally → `POST /api/login`; store `jwt_token` on disk; protected calls with `Authorization: Bearer $(cat ~/.identyclaw/jwt.txt)`. **No client-side NEAR RPC.**
-2. **Login script on the agent machine** — same wire format; stdout prints status metadata only (`ok`, `jwt_length`, `token_id`)
-3. **Local agent plugin** — OpenClaw `@identyclaw/openclaw-identyclaw-plugin` (v1.4.0+). Separates **API session** (auto-login JWT) from **HOLA lines** (create/verify tools). `nearPrivateKey` used for API login signature and HOLA line signing only on the Gateway — never sent to login endpoints.
-4. **`@rodit/hola-client`** — Node library (`createHola`, `buildAndSign`) for HOLA line construction; requires API bearer token for nonce fetch.
-5. **Optional: `@rodit/rodit-auth-be`** — `RoditClient.login_server()` for MITM protection via NEAR RPC.
+1. **OpenClaw plugin (preferred on Gateways)** — `@identyclaw/openclaw-identyclaw-plugin` **v1.6.0+**. Use `identyclaw_ensure_session` / protected `identyclaw_*` tools; **do not** curl login in chat. JWT cache is **per API URL** (`apiEndpoints` / optional `apiEndpoint`). Separates **API session** from **HOLA lines**. Soft federated claim check aligned with `@rodit/rodit-auth-be` ≥9.13. `nearPrivateKey` stays on the Gateway.
+2. **curl + file-stored JWT** — Hermes / IronClaw / NanoClaw / shell: `GET /api/login/timestamp` → sign locally → `POST /api/login`; store `jwt_token` on disk. **No client-side NEAR RPC.**
+3. **Login script on the agent machine** — same wire format; stdout prints status metadata only (`ok`, `jwt_length`, `token_id`)
+4. **Hermes / IronClaw / NanoClaw / Cursor** — MCP `doc:reference:agent-frameworks` plus host-side curl, login scripts, or Node sidecar per runtime guide.
+5. **`@rodit/hola-client`** — Node library (`createHola`, `buildAndSign`) for HOLA line construction; requires API bearer token for nonce fetch.
+6. **Optional: `@rodit/rodit-auth-be` ≥9.13** — `RoditClient.login_server()` (± `apiEndpoint` for federation) for MITM / federated claim checks via NEAR RPC.
 
 ## File-based shell pattern
 

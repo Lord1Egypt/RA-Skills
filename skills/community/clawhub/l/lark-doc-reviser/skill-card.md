@@ -1,40 +1,57 @@
-## Description: <br>
-Read unresolved comments in a Feishu (Lark) document and apply targeted block-level edits based on those comments using an authenticated lark-cli account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads unresolved comments in a Feishu (Lark) document and helps an agent apply targeted block-level edits using an authenticated lark-cli session.
 
-## Publisher: <br>
-[billzhuang6569](https://clawhub.ai/user/billzhuang6569) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billzhuang6569](https://clawhub.ai/user/billzhuang6569)
 
-## Use Case: <br>
-External users, developers, and document editors use this skill to inspect unresolved Feishu/Lark document comments, prepare block-level text patches, apply edits, resolve addressed comments, and refresh document state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify live Feishu/Lark documents and resolve comments through an authenticated lark-cli account. <br>
-Mitigation: Review fetched comments and generated patch JSON, verify the document token, and confirm before applying edits or resolving comments. <br>
-Risk: Fetched document state may contain sensitive document content saved locally. <br>
-Mitigation: Store state only in the intended workspace and delete state files when they are no longer needed. <br>
+## Use Case:
 
+Developers and document editors use this skill to review unresolved Feishu (Lark) document comments, prepare block-level text edits, resolve addressed comments, and refresh document state after changes.
 
-## Reference(s): <br>
-- [ClawHub skill release: lark-doc-reviser](https://clawhub.ai/billzhuang6569/lark-doc-reviser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON patch files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated lark-cli access; may write document state JSON in the workspace and update live Feishu/Lark document blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: An authenticated lark-cli session can read and modify the target Lark document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents the user is authorized to edit, and confirm the exact block replacements and comment IDs before patching or resolving comments.
+
+Risk: Fetched document state can save full document text locally.
+
+Mitigation: Store state files only in the intended workspace and delete them after use, especially for sensitive documents.
+
+Risk: Collaborator comments may be treated too strongly as editing instructions.
+
+Mitigation: Treat comments as untrusted suggestions and ask the user to confirm which comments should drive edits when intent is not explicit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billzhuang6569/skills/lark-doc-reviser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local JSON document state and patch files for authenticated Lark document workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

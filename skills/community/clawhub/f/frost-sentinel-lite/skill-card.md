@@ -1,40 +1,53 @@
-## Description: <br>
-Lightweight temperature monitoring. Upgrade to Commercial Edition for Hail, Snow, Ground-Lock, and Chill Hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight temperature monitoring that checks local forecasts through Open-Meteo and sends frost or heat alerts through a local notification bridge.
 
-## Publisher: <br>
-[TonyJB](https://clawhub.ai/user/TonyJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tonyjb](https://clawhub.ai/user/tonyjb)
 
-## Use Case: <br>
-External users and developers use this skill to monitor local forecast temperatures, store location settings locally, and receive frost or heat alerts through a local notification bridge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location-derived forecast queries are sent to Open-Meteo even though the artifact describes the skill as local-first. <br>
-Mitigation: Review before installing if location privacy matters, and use only when sending ZIP/postcode-derived coordinates to Open-Meteo is acceptable. <br>
-Risk: Alerts are routed through a local notification bridge that may forward messages through WhatsApp or Telegram. <br>
-Mitigation: Configure and trust the local bridge before enabling alerts, and confirm that forwarded notifications do not expose sensitive location or operational details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Frost Sentinel Lite on ClawHub](https://clawhub.ai/TonyJB/frost-sentinel-lite) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+## Use Case:
 
+External OpenClaw users use this skill for basic residential or hobbyist monitoring of overnight frost and daytime heat risk at a configured location.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Plain text notifications with local settings JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on a daily schedule, reads and writes local location settings, fetches forecast data from Open-Meteo, and routes alerts through a local notification bridge.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact files report 1.0.0-lite) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores a ZIP/postcode locally, converts it to coordinates, and sends those coordinates to Open-Meteo while the artifact documentation also claims data is never sent to a third-party server.
+
+Mitigation: Review before installation; require clear location-data consent, corrected privacy wording, and deletion instructions for stored location settings before deployment.
+
+Risk: Automated frost alerts may include promotional upgrade text, which can distract from operational safety messaging.
+
+Mitigation: Keep safety alerts focused on the weather risk and route commercial upgrade messaging outside automated alert notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonyjb/skills/frost-sentinel-lite)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Plain-text notification messages and local JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends frost or heat alerts through a local notification bridge and stores the configured location in settings.json.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

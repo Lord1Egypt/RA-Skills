@@ -1,47 +1,64 @@
-## Description: <br>
-Use APIDot for GPT Image 2 API workflows, including text-to-image API, image editing API, image-to-image API, reference image generation, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for GPT Image 2 API workflows, including text-to-image API, image editing API, image-to-image API, reference image generation, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and agents use this skill to route APIDot GPT Image 2 integration questions to the right documentation, examples, and async workflow guidance for generation, editing, polling, and webhook delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY, prompts, source image URLs, callback URLs, and generated image URLs may be sensitive. <br>
-Mitigation: Keep API keys server-side only, avoid exposing private prompts or URLs in logs or client bundles, and follow the current APIDot docs before making real API calls. <br>
-Risk: Outdated or guessed model fields can produce incorrect APIDot GPT Image 2 integration guidance. <br>
-Mitigation: Use the live APIDot GPT Image 2 docs and model page for current request fields, limits, availability, and commercial terms. <br>
+## Use Case:
 
+Developers and agents use this documentation-only skill to route GPT Image 2 integration questions to APIDot documentation, examples, and async workflow guidance. It supports planning for image generation, image editing, task polling, and webhook-based delivery.
 
-## Reference(s): <br>
-- [APIDot GPT Image 2 Reference](references/api.md) <br>
-- [APIDot API Docs](https://apidot.ai/docs) <br>
-- [APIDot GPT Image 2 Model Page](https://apidot.ai/models/gpt-image-2) <br>
-- [APIDot GPT Image 2 Docs](https://apidot.ai/docs/gpt-image-2) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot GPT Image 2 Examples](https://github.com/APIDotAI/gpt-image-2-api) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown text with APIDot integration guidance, documentation links, and optional code or configuration suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it includes no executable files, bundled clients, automatic network calls, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: API keys, prompts, private image URLs, callback URLs, or generated URLs could be exposed if copied into frontend code, logs, screenshots, public repositories, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side environment variables or a backend secret manager, and avoid logging sensitive prompts, media URLs, callback URLs, generated URLs, or credentials.
+
+Risk: Agents may treat the skill as a runnable client and attempt unintended live APIDot calls.
+
+Mitigation: Treat the artifact as reference guidance only; make live APIDot calls only when explicitly requested and when a safe server-side environment is available.
+
+Risk: Model availability, request fields, limits, or commercial terms may change after publication.
+
+Mitigation: Check the live APIDot docs and model page before preparing copyable payloads or making claims about current product behavior.
+
+## Reference(s):
+
+- [APIDot GPT Image 2 Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [APIDot GPT Image 2 Docs](https://apidot.ai/docs/gpt-image-2)
+- [APIDot GPT Image 2 Model Page](https://apidot.ai/models/gpt-image-2)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot GPT Image 2 Examples](https://github.com/APIDotAI/gpt-image-2-api)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with API integration notes and links to current APIDot documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable files, bundled API client, stored credentials, or automatic network calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

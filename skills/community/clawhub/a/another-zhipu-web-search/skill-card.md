@@ -1,42 +1,59 @@
-## Description: <br>
-Zhipu AI Search lets an agent run web searches through Zhipu AI's Web Search API with selectable engines, recency filters, result counts, content-size options, and domain filters. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Uses the Zhipu Web Search API to retrieve current, structured web search results with configurable engine, recency, result count, content size, and domain filters.
 
-## Publisher: <br>
-[xianglifei](https://clawhub.ai/user/xianglifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xianglifei](https://clawhub.ai/user/xianglifei)
 
-## Use Case: <br>
-Developers and agent users use this skill when an agent needs current web information, news, topic research, or real-time search results from Zhipu-supported search engines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Zhipu's external web-search service and could expose sensitive information if entered in queries. <br>
-Mitigation: Avoid submitting secrets, private customer data, or proprietary material in search queries. <br>
-Risk: The skill requires a Zhipu API key and runs a local Python helper through Bash permissions. <br>
-Mitigation: Provide the API key through the ZHIPUAI_API_KEY environment variable, do not hardcode credentials, and scope Bash permissions to the search helper where the agent environment supports it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xianglifei/another-zhipu-web-search) <br>
-- [Zhipu Web Search API documentation](https://bigmodel.cn/dev/api/search-tool/web-search) <br>
-- [Zhipu BigModel API keys](https://bigmodel.cn/usercenter/apikeys) <br>
-- [Zhipu BigModel pricing](https://www.bigmodel.cn/pricing) <br>
+## Use Case:
 
+Developers and agent users use this skill to perform live web searches through Zhipu's Web Search API and return structured search results or readable summaries for current-information tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain-text search summaries, with optional JSON output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include result titles, sources, dates, links, summaries, and optional raw JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms are sent to Zhipu's Web Search API and may include sensitive information if users provide it.
+
+Mitigation: Avoid sensitive or secret search queries, and install only when external API processing of search terms is acceptable.
+
+Risk: The artifact grants broad Python execution and file-write authority beyond the documented search workflow.
+
+Mitigation: Narrow Claude Bash permission to the exact search_util.py command and remove Write unless saved output is required.
+
+Risk: The dependency requirement is not pinned to an exact version.
+
+Mitigation: Pin dependencies for reproducible installs before deployment in controlled environments.
+
+## Reference(s):
+
+- [Zhipu Web Search API documentation](https://bigmodel.cn/dev/api/search-tool/web-search)
+- [Zhipu BigModel API keys](https://bigmodel.cn/usercenter/apikeys)
+- [Zhipu product pricing](https://www.bigmodel.cn/pricing)
+- [ClawHub skill page](https://clawhub.ai/xianglifei/skills/another-zhipu-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Plain text or JSON search results, often summarized in Markdown by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPUAI_API_KEY and sends search queries to Zhipu's Web Search API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

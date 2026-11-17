@@ -1,41 +1,59 @@
-## Description: <br>
-Uses the MiniMax MCP web_search tool to perform online searches when an agent needs current news, information, or web lookup results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the MiniMax MCP web_search tool to perform web searches when users ask for online lookup, current information, news, or MiniMax web_search results.
 
-## Publisher: <br>
-[Thincher](https://clawhub.ai/user/Thincher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thincher](https://clawhub.ai/user/thincher)
 
-## Use Case: <br>
-Agent users and developers use this skill to route web search requests through MiniMax MCP and return search results for a single query. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup can expose or persist a MiniMax API key in plaintext. <br>
-Mitigation: Use a dedicated MiniMax API key with limited billing exposure, prefer a secure secret mechanism or environment variable, and avoid commands that print the key. <br>
-Risk: Search queries are sent to an external MiniMax service. <br>
-Mitigation: Do not place private, regulated, or sensitive data in search queries unless the deployment has approved that use. <br>
-Risk: The skill installs and runs external tooling before performing searches. <br>
-Mitigation: Verify the uv installer and minimax-coding-plan-mcp package source before installing or running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Thincher/minimax-web-search) <br>
+## Use Case:
 
+Agents and developers use this skill to route user search requests through MiniMax MCP, configure the required API key, and return formatted web-search results.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown instructions and formatted JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key and sends one query string to the MiniMax MCP web_search tool.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installation flow can execute mutable third-party code through uvx and curl-pipe-to-shell.
+
+Mitigation: Review package sources before installation, pin trusted versions of uv and minimax-coding-plan-mcp, and avoid direct curl-pipe-to-shell installation.
+
+Risk: The skill handles a MiniMax API key through an environment variable or local config file.
+
+Mitigation: Store the API key in a secret manager or a tightly permissioned config file, and rotate it if exposed.
+
+Risk: The MCP process inherits the surrounding environment when launched.
+
+Mitigation: Run the skill in a constrained environment without unrelated sensitive environment variables.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thincher/skills/minimax-web-search)
+- [Publisher profile](https://clawhub.ai/user/thincher)
+- [MiniMax coding plan subscription](https://platform.minimaxi.com/subscribe/coding-plan?code=GjuAjhGKqQ&source=link)
+- [MiniMax API host](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and shell commands, with search results printed as formatted JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a search query and a MiniMax API key supplied through MINIMAX_API_KEY or a local config file.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Parse "Roty input" messages from authorized Telegram users to create Roty tiffin orders via HTTPS POST without UI automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses "Roty input" Telegram messages from authorized users, calculates Roty tiffin order details, and creates orders through an HTTPS POST workflow.
 
-## Publisher: <br>
-[horngtan](https://clawhub.ai/user/horngtan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[horngtan](https://clawhub.ai/user/horngtan)
 
-## Use Case: <br>
-Authorized vendors or operators use this skill in OpenClaw or Telegram to parse Roty tiffin order messages, calculate pricing, build order payloads, and submit orders or request missing address, date, or product details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create live orders by default, so malformed or unintended messages may submit real orders. <br>
-Mitigation: Review before installing, use DRY_RUN=1 during validation, and add explicit confirmation before live order submission. <br>
-Risk: The security summary reports under-disclosed browser automation and exposed credentials in the package. <br>
-Mitigation: Remove or isolate the Playwright automation scripts and rotate any exposed account password before deployment. <br>
-Risk: Order payloads and logs may contain personal customer data. <br>
-Mitigation: Redact personal data from logs and restrict order, product, and allowlist operations to authorized users. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horngtan/add-tiffin-order-roty-input) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Package manifest](artifact/package.json) <br>
-- [OpenClaw routing manifest](artifact/skill.json) <br>
+## Use Case:
 
+Authorized operators and developers using OpenClaw can route Telegram order messages into a Roty tiffin workflow that parses customer details, matches products and modifiers, calculates pricing, and posts order payloads when required fields are present.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Plain text responses with JSON payloads for dry runs and HTTPS POST results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Triggered by Telegram messages containing "Roty input"; requires a sender ID and full inbound message.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary flags this as a live order-creation skill that should be reviewed carefully before installation.
+
+Mitigation: Run it in dry-run mode until reviewed, require explicit final confirmation with order totals and delivery dates, and cap order size before enabling live posting.
+
+Risk: The security guidance identifies undeclared browser automation and hardcoded credentials in the package.
+
+Mitigation: Remove Playwright automation scripts and hardcoded credentials, then rotate the exposed account password before deployment.
+
+Risk: Authorization could be bypassed if caller-controlled source or environment values are trusted.
+
+Mitigation: Enforce authorization in a trusted gateway or server-side layer and verify sender identity before invoking order creation.
+
+Risk: Documentation and runtime settings do not consistently describe live versus dry-run behavior.
+
+Mitigation: Align documentation, defaults, and manifests so operators can clearly distinguish dry-run testing from live order submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/horngtan/skills/add-tiffin-order-roty-input)
+- [Skill Definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [OpenClaw Manifest](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Shell Commands, Configuration]
+
+**Output Format:** [Plain text status messages, JSON order payloads in dry-run mode, and HTTPS POST requests for live order creation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sender authorization; may create live orders when DRY_RUN is disabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

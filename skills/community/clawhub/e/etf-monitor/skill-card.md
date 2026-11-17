@@ -1,43 +1,54 @@
-## Description: <br>
-ETF volatility monitor that tracks ETF price changes and prints alerts when configured thresholds are exceeded. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured ETFs for price movement and prints alerts when a percentage threshold is exceeded.
 
-## Publisher: <br>
-[zitjubiz](https://clawhub.ai/user/zitjubiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zitjubiz](https://clawhub.ai/user/zitjubiz)
 
-## Use Case: <br>
-External users and developers use this skill to monitor a configurable list of ETFs, fetch public quote data, and emit alerts when price movement exceeds a chosen percentage threshold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Tencent Finance for ETF quote data. <br>
-Mitigation: Install and run it only in environments where this network access is acceptable. <br>
-Risk: ETF alerts can be mistaken for financial advice or fully current market data. <br>
-Mitigation: Treat alerts as monitoring signals only, verify against authoritative market sources, and do not use them as financial advice. <br>
-Risk: Cron or notification integrations can create unwanted execution frequency or message destinations. <br>
-Mitigation: Configure scheduling and notification delivery explicitly so frequency and destinations remain under operator control. <br>
+## Use Case:
 
+Investors, analysts, and automation agents use this skill to monitor a configured list of ETFs and receive JSON alerts when price movement crosses a configured threshold.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zitjubiz/etf-monitor) <br>
-- [Tencent Finance quote endpoint example](http://qt.gtimg.cn/q=sz159985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON object printed to stdout with an alerts array; operational guidance is documented as Markdown and shell examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, the requests package, and outbound access to Tencent Finance; ETF symbols and alert threshold are configured in the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and release changelog) <br>
+Risk: ETF alerts rely on public quote data requested over HTTP, so values may be delayed or unreliable for financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat alerts as advisory, verify market data before acting, and consider a trusted data source for production financial workflows.
+
+Risk: The skill makes outbound network requests and depends on the requests Python package.
+
+Mitigation: Install dependencies in a limited virtual environment and allow outbound network access only to expected quote endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zitjubiz/skills/etf-monitor)
+- [Tencent Finance quote endpoint](http://qt.gtimg.cn/q=sz159985)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON alerts printed to stdout, with stderr text for quote-fetch errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Alert entries include ETF code, name, current price, percent change, and direction; empty results are returned as {"alerts": []}.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

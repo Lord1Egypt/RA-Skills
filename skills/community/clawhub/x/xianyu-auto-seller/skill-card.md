@@ -1,40 +1,57 @@
-## Description: <br>
-Xianyu (闲鱼) virtual goods auto-seller toolkit that generates product listings for digital goods, creates auto-reply scripts, and optimizes listings for visibility on China's second-hand marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xianyu virtual goods auto-seller toolkit that generates product listings for digital goods, creates auto-reply scripts, and offers listing optimization guidance for China's second-hand marketplace.
 
-## Publisher: <br>
-[guozifen](https://clawhub.ai/user/guozifen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guozifen](https://clawhub.ai/user/guozifen)
 
-## Use Case: <br>
-External sellers and agents use this skill to draft Xianyu listings, title and description variants, auto-reply messages, and listing optimization guidance for virtual or digital goods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage selling unauthorized digital goods such as cracked software, copyrighted eBooks, exam materials, or third-party courses. <br>
-Mitigation: Use the skill only for digital products the seller created or has explicit rights to distribute, and review every listing for platform-policy and intellectual-property compliance before publication. <br>
-Risk: Auto-delivery and auto-reply templates can make noncompliant listings easier to operate at scale. <br>
-Mitigation: Keep human review in the workflow for product eligibility, buyer-facing claims, refund language, and delivery links before enabling automated fulfillment. <br>
+## Use Case:
 
+External sellers and agents use this skill to draft Xianyu listings, auto-reply scripts, category ideas, and optimization guidance for virtual or digital goods.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guozifen/xianyu-auto-seller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with listing templates, auto-reply scripts, workflow steps, and tabular projections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Chinese marketplace copy and risk-sensitive guidance for digital goods sales.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated listings may conflict with copyright, platform rules, or consumer-protection obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each listing before publication, especially for course resale, software, virtual-goods labeling, delivery terms, and refund wording.
+
+Risk: Revenue projections or sales claims may be misleading if reused without qualification.
+
+Mitigation: Treat projected views, sales, and revenue as estimates and revise public-facing claims to match actual shop performance and applicable advertising rules.
+
+Risk: Auto-reply scripts can create inaccurate delivery or support expectations.
+
+Mitigation: Confirm automated delivery links, validity periods, refund language, and support commitments before enabling replies.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/guozifen/skills/xianyu-auto-seller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with listing templates, auto-reply scripts, workflow steps, and marketplace guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable sales copy and operational guidance; it does not execute marketplace automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

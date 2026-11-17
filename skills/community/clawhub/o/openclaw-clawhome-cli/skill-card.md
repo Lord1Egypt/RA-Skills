@@ -1,41 +1,54 @@
-## Description: <br>
-Connects OpenClaw to the Clawhome chat platform so an agent can send and receive messages for automatic replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 OpenClaw 连接到 Clawhome 聊天平台，实现 AI 自动回复。
 
-## Publisher: <br>
-[shengguo](https://clawhub.ai/user/shengguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shengguo](https://clawhub.ai/user/shengguo)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install the Clawhome channel plugin, restart the OpenClaw gateway, and configure Clawhome channel credentials for messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer invokes OpenClaw plugin installation or update commands and restarts the OpenClaw gateway. <br>
-Mitigation: Run it only in an environment where you trust the npm package, the OpenClaw plugin, and the Clawhome service, and review the printed fallback commands before manual execution. <br>
-Risk: Clawhome channel secrets are configured through shell commands and could be exposed in shared terminals, shell history, or screenshots. <br>
-Mitigation: Treat the channel secret like a password, avoid exposing it in shared contexts, and rotate it if disclosure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an OpenClaw Gateway to the Clawhome messaging platform for bidirectional channel messaging and AI auto-replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shengguo/openclaw-clawhome-cli) <br>
-- [OpenClaw installation documentation](https://docs.openclaw.ai/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MQTT topic examples, heartbeat and message payload examples, and configuration key names for Clawhome.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; package.json reports 1.0.0) <br>
+Risk: The installer runs mutable remote packages and loads an unpinned OpenClaw plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only if the Clawhome package publisher and OpenClaw plugin source are trusted, prefer a pinned reviewed version, and verify package and plugin provenance.
+
+Risk: The configured `channelSecret` is sensitive and the installed plugin persists while processing messaging traffic.
+
+Mitigation: Treat `channelSecret` like a password and run the OpenClaw Gateway with least privilege.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shengguo/skills/openclaw-clawhome-cli)
+- [OpenClaw install documentation](https://docs.openclaw.ai/install)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw plugin installation, Gateway restart, MQTT topic, heartbeat, message, and channel credential configuration guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

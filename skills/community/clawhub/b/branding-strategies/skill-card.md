@@ -1,40 +1,48 @@
-## Description: <br>
-Guides brand strategy work including purpose, values, positioning, storytelling, voice, narrative, and high-level visual identity guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in defining, auditing, and applying brand strategy across purpose, positioning, storytelling, voice, guidelines, and high-level visual identity.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to create or audit brand strategy, including purpose, values, positioning, audience, storytelling, brand voice, guidelines, and implementation-ready design token summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Brand recommendations may rely on stale, incomplete, or inconsistent project-context files when those files are available.
+
+Mitigation: Review generated strategy and token guidance against current brand assets, stakeholder-approved messaging, and active product positioning before adoption.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Brand, marketing, product, and content teams use this skill to define new brand foundations, audit brand consistency, and align messaging across websites, product surfaces, social channels, slide decks, and documents. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Brand recommendations can introduce inconsistent, outdated, or misleading public messaging if applied without review. <br>
-Mitigation: Review generated strategy, voice, visual identity, and token guidance against current brand standards before publishing or deploying it. <br>
-Risk: The skill may use local project context files when available, which can influence brand guidance with incomplete or sensitive internal context. <br>
-Mitigation: Share only project context that is appropriate for the task and avoid including confidential details in outputs intended for public use. <br>
+**Output Format:** [Markdown with structured sections and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/branding-strategies) <br>
+**Other Properties Related to Output:** [May include brand strategy sections, story frameworks, voice guidance, design token tables, slide or document notes, and project-context templates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include brand strategy sections, story frameworks, voice and tone guidance, visual identity notes, design token tables, slide or document notes, and project-context templates.] <br>
+1.2.0 (source: release metadata, parsed metadata, frontmatter)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

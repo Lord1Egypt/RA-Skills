@@ -1,41 +1,52 @@
-## Description: <br>
-Guides authorized security testers through SQL injection detection, exploitation checks, bypass techniques, and defense validation for web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform authorized security tests to detect, exploit, and validate defenses against SQL injection vulnerabilities in web applications.
 
-## Publisher: <br>
-[brandonwise](https://clawhub.ai/user/brandonwise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandonwise](https://clawhub.ai/user/brandonwise)
 
-## Use Case: <br>
-Security engineers, penetration testers, and developers use this skill during authorized web application assessments to identify SQL injection flaws and validate mitigations. It requires written testing authorization and scoped targets before use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SQL injection payloads and bypass examples can be misused against systems outside an approved assessment. <br>
-Mitigation: Use only with written authorization, defined target systems, a test window, and approved payload types. <br>
-Risk: Credential extraction, authentication bypass, or out-of-band callbacks may exceed the intended assessment scope. <br>
-Mitigation: Confirm whether credential extraction, authentication bypass, and approved callback domains are explicitly permitted before testing. <br>
-Risk: Testing production systems with real user data can disrupt service or expose sensitive information. <br>
-Mitigation: Avoid production systems unless they are explicitly in scope and covered by the authorization terms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brandonwise/sql-injection-testing) <br>
+## Use Case:
 
+Security testers, penetration testers, and application security engineers use this skill during authorized assessments to identify SQL injection behavior, validate exploitability, and check whether defenses are effective.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with SQL payload examples and testing checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only security testing guidance; no executable tool calls or scripts are included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes SQL injection payloads that can extract credentials or database metadata if used outside an authorized assessment.
+
+Mitigation: Use only with written authorization, defined scope, and non-production or approved test data; stop testing if real user data appears.
+
+Risk: Out-of-band callback payloads can exfiltrate database details to external infrastructure.
+
+Mitigation: Use only organization-controlled callback infrastructure and only when OOB testing is explicitly permitted by the engagement scope.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brandonwise/skills/sql-injection-testing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with SQL payload examples, testing checklists, and defensive validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include exploit payloads and should be used only within written authorization and defined engagement scope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

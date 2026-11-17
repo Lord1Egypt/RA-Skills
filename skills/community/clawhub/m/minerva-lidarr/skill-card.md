@@ -1,38 +1,53 @@
-## Description: <br>
-Interact with Lidarr via its REST API to search and add artists or albums, check missing or wanted releases, trigger downloads, and monitor queue status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Lidarr (music/album manager) via its REST API. Use when searching for artists or albums, checking missing/wanted releases, triggering downloads, or monitoring queue status. Part of the *arr media management suite.
 
-## Publisher: <br>
-[minerva-care](https://clawhub.ai/user/minerva-care) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minerva-care](https://clawhub.ai/user/minerva-care)
 
-## Use Case: <br>
-External users and developers use this skill to manage a Lidarr music library through REST API workflows, including finding artists and albums, monitoring missing releases, checking the download queue, and triggering searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A valid Lidarr API key allows the agent to change the configured music library, queue, monitored content, and local track files. <br>
-Mitigation: Keep the API key private, restrict the key file's permissions, and require confirmation before bulk searches, additions, queue removals, blacklisting, or deleting track files. <br>
+## Use Case:
 
+Developers and operators use this skill to manage a Lidarr music library through REST API workflows, including artist and album lookup, missing release checks, download searches, and queue monitoring.
 
-## Reference(s): <br>
-- [Lidarr API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Lidarr URL and API key supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can operate a live Lidarr instance and may trigger downloads or change media library state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm targets and command intent before execution, especially add, search, delete, blacklist, and queue operations.
+
+Risk: The Lidarr API key grants control over the configured instance.
+
+Mitigation: Store the API key in a protected secret file and avoid exposing it in logs, prompts, or shared shell history.
+
+## Reference(s):
+
+- [Lidarr API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Configuration guidance, Text]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be reviewed before execution because commands can change a Lidarr library, trigger downloads, delete track files, remove queue items, or blacklist releases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

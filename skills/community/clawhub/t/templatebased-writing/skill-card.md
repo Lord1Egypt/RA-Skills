@@ -1,40 +1,54 @@
-## Description: <br>
-Automatically analyzes Word template structure, style, content patterns, images, tables, and metrics, then generates formal documents from knowledge-base, document, CSV, relational, or SQL-result inputs that match the template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically analyzes Word templates and source data to generate formal documents that match the template's structure, writing style, and use of tables or figures.
 
-## Publisher: <br>
-[zmmqqqq](https://clawhub.ai/user/zmmqqqq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmmqqqq](https://clawhub.ai/user/zmmqqqq)
 
-## Use Case: <br>
-External users and document authors use this skill to convert an existing Word report template plus supporting data into a new formal report. It is suited for monthly, quarterly, annual, regulatory, monitoring, and other template-driven reports that combine prose with structured metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Templates, reports, CSVs, SQL results, or knowledge-base content may contain confidential or regulated information that is processed with a cloud model. <br>
-Mitigation: Use only data approved for the selected OpenClaw environment and glm-5 provider; avoid confidential, regulated, or internal-only inputs without organizational approval. <br>
-Risk: Generated formal reports may contain incorrect summaries, formatting mismatches, or unsupported metrics. <br>
-Mitigation: Manually review the generated document against the source template and input data before distribution or operational use. <br>
+## Use Case:
 
+Employees, analysts, and report writers use this skill to turn a Word template plus knowledge-base, document, CSV, relational, or SQL-result inputs into a formal report draft that follows the template's structure and style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmmqqqq/templatebased-writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections containing template analysis, data summaries, chart/table suggestions, and Word-ready document text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include intermediate analysis and suggested chart or table placeholders when source data is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.md) <br>
+Risk: Templates, reports, CSV files, SQL results, or knowledge-base excerpts may be processed by the configured cloud model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only files approved for cloud processing and avoid highly sensitive inputs unless approved.
+
+Risk: Generated reports can contain unsupported conclusions when source data is incomplete or inconsistent.
+
+Mitigation: Review the generated document and verify facts, metrics, and table or figure recommendations before relying on it.
+
+## Reference(s):
+
+- [Templatebased Writing on ClawHub](https://clawhub.ai/zmmqqqq/skills/templatebased-writing)
+- [zmmqqqq Publisher Profile](https://clawhub.ai/user/zmmqqqq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report sections with template analysis, data summary, generated document text, and table or figure insertion suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed before use, especially when source data is incomplete or sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

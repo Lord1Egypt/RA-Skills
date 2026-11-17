@@ -1,45 +1,54 @@
-## Description: <br>
-Remix v2 form submissions and mutations. Use when implementing forms, optimistic UI, file uploads, or multi-action routes. Triggers on <Form>, useFetcher, useSubmit, useNavigation for pending state, unstable_parseMultipartFormData, fetcher.formData, intent-based actions, encType multipart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in implementing Remix v2 form submissions, fetcher-based mutations, pending state, optimistic UI, intent actions, and file uploads.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers use this skill to implement Remix v2 mutations with route actions, progressive-enhanced forms, pending state, optimistic UI, file uploads, and multi-action intent routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Adapted upload examples can expose applications to oversized files, unsafe file names, or untrusted content. <br>
-Mitigation: Apply explicit upload size and type limits, sanitize filenames, validate content, and use a storage strategy appropriate for expected file sizes. <br>
-Risk: Mutation examples for delete or state-changing actions can be unsafe if copied without application checks. <br>
-Mitigation: Add authorization, schema validation, and explicit confirmation for destructive actions before integrating examples. <br>
+## Use Case:
 
+Developers use this skill when building Remix v2 apps that need route actions, form submissions, fetcher mutations, pending-state handling, optimistic UI, multipart uploads, or multi-action routes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/remix-v2-forms) <br>
-- [Form component reference](references/form.md) <br>
-- [useFetcher reference](references/fetcher.md) <br>
-- [Intent-based actions reference](references/intent-actions.md) <br>
-- [Optimistic UI reference](references/optimistic-ui.md) <br>
-- [File uploads reference](references/uploads.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with TypeScript and TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no hidden execution behavior according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated file-upload handlers could preserve user-controlled filenames or accept unsafe uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use server-side random filenames, validate file contents after upload, enforce size and authorization limits, and clean up temporary files.
+
+## Reference(s):
+
+- [Remix V2 Forms on ClawHub](https://clawhub.ai/anderskev/skills/remix-v2-forms)
+- [Form Reference](references/form.md)
+- [useFetcher Reference](references/fetcher.md)
+- [Optimistic UI Reference](references/optimistic-ui.md)
+- [File Uploads Reference](references/uploads.md)
+- [Intent Actions Reference](references/intent-actions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown]
+
+**Output Format:** [Markdown guidance with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on Remix v2 mutation patterns; no shell execution or external service calls are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

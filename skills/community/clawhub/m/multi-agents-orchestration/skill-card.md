@@ -1,44 +1,58 @@
-## Description: <br>
-Defines how OpenClaw teams use backend sub-agent spawning and optional Discord mentions to coordinate multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines OpenClaw multi-agent orchestration patterns for backend spawning, Discord mentions, bot-to-bot mentions, configuration, and troubleshooting.
 
-## Publisher: <br>
-[cchaojiejes](https://clawhub.ai/user/cchaojiejes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cchaojiejes](https://clawhub.ai/user/cchaojiejes)
 
-## Use Case: <br>
-Developers and operators configuring OpenClaw use this skill to choose between backend orchestration, Discord-visible agents, and hybrid deployments, then apply the documented configuration and troubleshooting patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wildcard sub-agent permissions can grant broader agent-to-agent access than intended. <br>
-Mitigation: Replace wildcard permissions in examples with named allowlists for the agents that should collaborate. <br>
-Risk: Discord bot tokens and bindings can expose agents in unintended guilds or channels. <br>
-Mitigation: Scope bot tokens, guild allowlists, channel permissions, and bindings to the required Discord surfaces only. <br>
-Risk: Background sub-agent work may be difficult to review if approval and logging expectations are not defined. <br>
-Mitigation: Document when background work requires approval and keep logs for delegated sub-agent activity. <br>
-Risk: Bot-to-bot mentions can create visible cross-agent interactions that are not part of the core orchestration flow. <br>
-Mitigation: Leave bot-to-bot mentions disabled unless the workflow explicitly requires public multi-agent collaboration. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to design and adjust multi-agent team collaboration, including when to use backend spawn, Discord-visible agents, or skill-only workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cchaojiejes/multi-agents-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON, JavaScript, shell, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for configuring OpenClaw agents and Discord bindings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The examples use broad agent-delegation authority that could allow agents to call more roles than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace wildcard delegation with explicit allowlists for each role before applying the configuration.
+
+Risk: Discord setup requires bot tokens and channel permissions that can expose persistent access if handled loosely.
+
+Mitigation: Keep bot tokens private and scoped, restrict guild and channel access, and enable only the Discord features required for the deployment.
+
+Risk: The guide changes persistent OpenClaw agent and gateway configuration.
+
+Mitigation: Review each configuration change before restarting the gateway and test with a minimal spawn task before using the workflow for real work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cchaojiejes/skills/multi-agents-orchestration)
+- [Source skill artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and JavaScript configuration examples plus shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw and Discord configuration examples that should be adapted with explicit agent IDs, scoped tokens, and allowlists before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

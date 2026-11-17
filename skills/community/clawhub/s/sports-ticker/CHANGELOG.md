@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.3.0] - 2026-08-31
+
+### Changed
+- Docs now describe OpenClaw 2.0 automation setup: primary command `openclaw automations` (the old `openclaw cron` remains as an alias), wake flag `--wake` (no `--wake-mode` flag).
+- Added note: exec in automations requires an approval grant in 2.0; without a grant the automation fails silently. Approvals run through the Control UI.
+- `auto_setup_crons.py`: `--commands` help text now says what the flag does (JSON plus agent instructions), and the JSON output tells the agent to create automations instead of referring to the removed "cron tool".
+- Removed `package.json`. It declared an npm package that was never published and had no `main`, dependencies, or scripts. ClawHub CLI 0.22+ refuses to publish any folder containing a `package.json` as a skill.
+
+### Fixed
+- Corrected the 3.0.5 entry below: `--commands` was never removed from `auto_setup_crons.py`. It still exists and outputs JSON.
+
 ## [3.2.0] - 2026-03-27
 
 ### Changed
@@ -28,7 +39,7 @@
 - **Agent-Native Pattern:** Scripts now output structured JSON that the agent processes via the OpenClaw cron tool. This is safer and more aligned with OpenClaw's architecture.
 
 ### Removed
-- `--commands` flag from auto_setup_crons.py (was outputting raw CLI commands)
+- Raw CLI command output from `auto_setup_crons.py`. The `--commands` flag itself stayed and now emits JSON. (An earlier version of this entry claimed the flag was removed; it was not.)
 
 ### Migration
 If you were parsing CLI command output from these scripts, update to parse JSON instead. The JSON format includes full cron specifications ready for the OpenClaw cron API.

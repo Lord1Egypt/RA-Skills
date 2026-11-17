@@ -1,11 +1,11 @@
 ---
 name: oo-x-ai
-description: "xAI (x.ai). Use this skill for ANY xAI request — reading, creating, and updating data. Whenever a task involves xAI, use this skill instead of calling the API directly."
+description: "xAI (x.ai). Use this skill for ANY xAI request — searching and reading data. Whenever a task involves xAI, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "xAI"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["x_ai"]
   icon: "https://static.oomol.com/logo/third-party/x_ai.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `create_chat_completion` — Create a non-streaming xAI OpenAI-compatible chat completion. [write]
+- `create_chat_completion` — Create a non-streaming xAI OpenAI-compatible chat completion.
 - `get_model` — Fetch metadata for one xAI model.
 - `list_models` — List the xAI models available to the current API key.
 
@@ -70,11 +70,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — xAI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=x_ai
+  https://console.oomol.com/connections/x_ai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - xAI homepage: https://x.ai
+- API documentation: https://docs.x.ai/

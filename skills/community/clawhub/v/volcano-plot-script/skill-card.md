@@ -1,45 +1,56 @@
-## Description: <br>
-Generates customizable R or Python volcano plot scripts and local plot outputs from DEG analysis results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates R/Python code and runnable plotting workflows for volcano plots from differential gene expression analysis results.
 
-## Publisher: <br>
-[EC-cyber258](https://clawhub.ai/user/EC-cyber258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ec-cyber258](https://clawhub.ai/user/ec-cyber258)
 
-## Use Case: <br>
-Bioinformatics researchers and developers use this skill to create publication-ready volcano plots, classify significant genes, label genes of interest, and export supporting plot or gene-list files from differential expression data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpinned Python dependencies may resolve to different versions over time. <br>
-Mitigation: Install dependencies in a virtual environment and pin or review package versions for reproducible work. <br>
-Risk: The local plotting script reads DEG input files and writes plots, scripts, or gene lists. <br>
-Mitigation: Run it only on intended project files and keep generated outputs in a project directory. <br>
-Risk: Exported R scripts are generated files that may be executed separately. <br>
-Mitigation: Review any exported R script before running it. <br>
+## Use Case:
 
+Bioinformatics developers and analysts use this skill to create publication-ready volcano plots, classify differentially expressed genes, label genes of interest, and export supporting plot or gene-list files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EC-cyber258/volcano-plot-script) <br>
-- [Volcano Plot Best Practices](references/best_practices.md) <br>
-- [Example DEG Data](references/example_deg_data.csv) <br>
-- [Example Gene Markers](references/markers.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python or R code snippets and local plot, script, or CSV outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include PNG, PDF, SVG, R script, and significant-gene CSV files depending on selected options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Optional R export can place user-controlled values into executable R code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted inputs, avoid --export-r for untrusted arguments or paths, and review generated .R files before execution.
+
+Risk: The script reads local DEG input files and writes plot, script, or gene-list outputs in the workspace.
+
+Mitigation: Run it in a controlled workspace with isolated or pinned dependencies and review output paths before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ec-cyber258/skills/volcano-plot-script)
+- [Volcano Plot Best Practices](references/best_practices.md)
+- [Example DEG Data](references/example_deg_data.csv)
+- [Example Genes to Label](references/markers.txt)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline commands, plus generated Python/R code paths and plot or CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate PNG, PDF, or SVG volcano plots, optional R scripts, and optional significant-gene CSV exports.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Write, test, and iterate prompts for AI models with voice preservation, model-specific adaptation, and systematic failure analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write, test, and iterate prompts for AI models with voice preservation, model-specific adaptation, and systematic failure analysis.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, content teams, and AI practitioners use this skill to draft, adapt, test, and refine prompts across models while preserving voice and diagnosing prompt failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local prompt memory can retain sensitive writing samples, preferences, corrections, or project details in ~/prompting/. <br>
-Mitigation: Keep secrets, regulated data, proprietary writing samples, and sensitive personal details out of memory.md and history.md; inspect or delete those files periodically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Failure Modes](artifact/failures.md) <br>
-- [Prompt Iteration Workflow](artifact/iteration.md) <br>
-- [Prompting Memory Setup](artifact/memory-template.md) <br>
-- [Model-Specific Quirks](artifact/models.md) <br>
-- [Advanced Prompting Techniques](artifact/techniques.md) <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill to create, test, and refine prompts across AI models while preserving user voice and diagnosing failures such as hallucination, format drift, refusal, verbosity, and weak variation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with occasional shell commands and prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local prompt memory files under ~/prompting/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages persistent local prompting memory that may store style notes, corrections, and prompt history.
+
+Mitigation: Review the contents of ~/prompting regularly, avoid storing secrets or sensitive samples, and delete the folder or individual files when persistence is no longer wanted.
+
+Risk: The skill includes unsafe prompt-priority advice about user messages overriding system prompts.
+
+Mitigation: Follow the host agent's instruction hierarchy and treat this skill's advice as lower-priority task guidance only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/prompting)
+- [Prompt failure modes](artifact/failures.md)
+- [Prompt iteration workflow](artifact/iteration.md)
+- [Prompting memory setup](artifact/memory-template.md)
+- [Model-specific quirks](artifact/models.md)
+- [Advanced prompting techniques](artifact/techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with concise prompt guidance, examples, and occasional shell commands for local setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local prompting memory files under ~/prompting for user preferences, prompt patterns, and prompt history.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

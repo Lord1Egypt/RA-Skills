@@ -1,37 +1,53 @@
-## Description: <br>
-Automatically solves Moltbook math captchas by parsing English text, extracting operations, calculating results, and formatting answers with two decimals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically solves Moltbook math captchas by parsing English text, extracting operations, calculating results, and formatting answers with two decimals.
 
-## Publisher: <br>
-[0xRaini](https://clawhub.ai/user/0xRaini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xraini](https://clawhub.ai/user/0xraini)
 
-## Use Case: <br>
-Developers and Moltbook automation agents use this skill to parse English math verification challenges, compute the answer, and submit verification to Moltbook when account credentials are configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a saved Moltbook API key and submits an authenticated verification request. <br>
-Mitigation: Review before installing and use it only if the publisher is trusted with the Moltbook account credential; prefer a limited or revocable API key if Moltbook supports one. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Molt-Solver ClawHub release](https://clawhub.ai/0xRaini/molt-solver) <br>
+## Use Case:
 
+Developers and agents working with Moltbook use this skill to solve English-language verification math challenges and submit formatted answers during verification flows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, API calls] <br>
-**Output Format:** [Two-decimal answer string and JSON verification response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads Moltbook credentials when submitting verification requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads a local Moltbook API key.
+
+Mitigation: Review the skill before installation and use it only when local Moltbook credential access is expected.
+
+Risk: The skill submits authenticated verification answers to Moltbook without clear documentation of consent or accessed account state.
+
+Mitigation: Prefer a version that asks before using credentials and documents the Moltbook account state and API endpoints it accesses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xraini/skills/molt-solver)
+- [Publisher profile](https://clawhub.ai/user/0xraini)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, API Calls]
+
+**Output Format:** [Formatted decimal answer string or JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Verification answers are formatted with two decimal places.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

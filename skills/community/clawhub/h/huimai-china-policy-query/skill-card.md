@@ -1,40 +1,54 @@
-## Description: <br>
-提供基于惠迈智能体架构的中国市场政策、法规、投资环境的智能查询和分析，支持中文、英文等多种语言。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供基于惠迈智能体架构的中国市场政策、法规、投资环境的智能查询和分析。支持中文、英文等多种语言。无需API Key，安装即用。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-External users such as trade businesses, cross-border ecommerce teams, and policy researchers use this skill to ask about China market policies, customs rules, tariffs, investment environment details, and related compliance considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Policy, legal, trade, or investment guidance may be incomplete or out of date. <br>
-Mitigation: Treat answers as informational and verify important decisions against current official sources before acting. <br>
-Risk: The described calibration framework is vague and is not backed by executable behavior in the package. <br>
-Mitigation: Review outputs for relevance and accuracy instead of assuming the named calibration mode adds independent validation. <br>
+## Use Case:
 
+External trade teams, cross-border commerce operators, and policy researchers use this skill to ask about China market policy, regulations, tariffs, customs requirements, and investment environment topics. It provides research-oriented policy summaries, supporting policy basis, exemptions, compliance suggestions, and risk prompts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yezhaowang888-stack/huimai-china-policy-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with policy summaries, source-oriented rationale, risk notes, and compliance suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational guidance only; important legal, trade, or investment decisions should be verified against official sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Policy, tariff, customs, and legal information may be outdated, incomplete, or unsuitable for a specific transaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat answers as research assistance and verify important trade, customs, or legal decisions against current official sources before acting.
+
+Risk: The skill provides compliance-oriented suggestions that could be mistaken for legal or trade advice.
+
+Mitigation: Keep the skill's disclaimer visible in downstream use and consult qualified professionals for legal, customs, or trade decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-china-policy-query)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style policy summaries with structured fields such as tariff rate, policy basis, exemptions, compliance suggestions, license requirements, and special provisions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key required; supports Chinese, English, and other languages according to the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

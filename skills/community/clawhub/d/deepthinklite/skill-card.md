@@ -1,42 +1,58 @@
-## Description: <br>
-Local-first deep research like OpenAI Deep Research: generates questions.md + response.md artifacts and enforces a time budget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first deep research like OpenAI Deep Research: generates questions.md + response.md artifacts and enforces a time budget.
 
-## Publisher: <br>
-[VirajSanghvi1](https://clawhub.ai/user/VirajSanghvi1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[virajsanghvi1](https://clawhub.ai/user/virajsanghvi1)
 
-## Use Case: <br>
-Developers, researchers, and analysts use DeepthinkLite to scaffold repeatable local research runs with durable questions, response, and metadata files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to browse the web or read local files during research. <br>
-Mitigation: Require user approval before browsing or reading non-obvious local paths, and keep tool use agent-controlled. <br>
-Risk: Research sources may contain prompt-injection attempts or misleading content. <br>
-Mitigation: Treat retrieved content as untrusted data, prefer summaries with citations, and clearly delimit any raw excerpts. <br>
-Risk: Generated research artifacts may contain incomplete or incorrect guidance. <br>
-Mitigation: Review questions.md, response.md, and meta.json before relying on them for decisions or downstream instructions. <br>
+## Use Case:
 
+Developers, researchers, and agents use DeepthinkLite to structure deep research tasks into local questions.md, response.md, and meta.json artifacts with a time budget and untrusted-source handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/VirajSanghvi1/deepthinklite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and JSON metadata generated in a local run directory] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates questions.md, response.md, and meta.json without overwriting existing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata and manifest.json) <br>
+Risk: Research runs may handle sensitive or untrusted source material, especially when raw snippets are allowed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use summary-only mode for sensitive material and include raw snippets only after explicit user approval.
+
+Risk: The workflow may involve web browsing or reading non-obvious local paths during research.
+
+Mitigation: Ask the user for permission and state the planned sources or paths before browsing or reading those locations.
+
+Risk: Local Markdown and JSON artifacts may retain research material after the run.
+
+Mitigation: Choose an appropriate output directory and review generated artifacts before sharing or committing them.
+
+## Reference(s):
+
+- [DeepthinkLite ClawHub skill page](https://clawhub.ai/virajsanghvi1/skills/deepthinklite)
+- [Project repository listed in artifact](https://github.com/VirajSanghvi1/deepthinklite-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Run directory containing Markdown and JSON files, with a shell command returning the created path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates questions.md, response.md, and meta.json; default time budget is 10 to 60 minutes; summary-only mode is available for sensitive source material.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata, artifact manifest, plugin manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

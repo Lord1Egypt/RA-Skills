@@ -1,5 +1,7 @@
 # Magic Score Rubric / 命中感评分
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：在结构评分之后，单独检查首屏判词和事件冲击卡的内容命中。结构通过后仍要进行 Magic Score；低分报告先重写判词和冲击卡。
 
 ## 评分维度

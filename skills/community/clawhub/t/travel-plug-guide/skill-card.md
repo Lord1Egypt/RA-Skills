@@ -1,41 +1,54 @@
-## Description: <br>
-零配置即装即用，提供3项目的地插头电压查询工具，支持全球200+国家和地区的插头类型、电压标准和转换器推荐，基于国际电工委员会标准数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球200+国家和地区插头电压查询，支持插头类型、电压标准、频率查询和转换插头推荐，含电器安全检查，基于IEC标准数据，零配置即装即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travelers and travel planners use this skill to look up destination plug types, voltage, frequency, adapter needs, and device compatibility before international travel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plug and voltage data may vary by region, hotel, or local installation, so guidance may be incomplete for a specific trip. <br>
-Mitigation: Confirm critical plug and voltage requirements with the destination accommodation, device label, or current local electrical guidance before travel. <br>
-Risk: Using single-voltage high-power devices with incompatible destination voltage can damage equipment. <br>
-Mitigation: Check the device input label and use an appropriate transformer or locally rated device when the skill indicates that a transformer may be required. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to look up destination plug types, voltage and frequency standards, adapter recommendations, and basic appliance voltage compatibility before international trips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/travel-plug-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON strings with Chinese-language plug, voltage, adapter, and device-safety guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local bundled lookup data; no external requests or user data collection are described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Embedded electrical reference data may be incomplete, outdated, or different from a specific hotel, venue, or region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify critical compatibility against device labels, hotel guidance, or local electrical guidance before using high-power appliances.
+
+Risk: High-power single-voltage appliances can be damaged or unsafe when used with incompatible destination voltage.
+
+Mitigation: Use the skill's voltage check as planning guidance only and confirm whether a transformer is required before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/travel-plug-guide)
+- [ClawHub publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON strings with Chinese-language travel plug, voltage, adapter, and appliance safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses embedded reference data and does not require network access.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

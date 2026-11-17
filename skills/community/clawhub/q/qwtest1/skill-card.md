@@ -1,38 +1,52 @@
-## Description: <br>
-简易聊天模式输入数字回复对应内容 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+简易聊天模式输入数字回复对应内容
 
-## Publisher: <br>
-[quweilin](https://clawhub.ai/user/quweilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[quweilin](https://clawhub.ai/user/quweilin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can run this small Chinese-language command-line dialogue skill to choose numbered prompts and receive preset friendly replies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users who need English or multilingual presentation may not be served by the Chinese-only prompts and replies.
+
+Mitigation: Review and localize the displayed text before using the skill with those users.
+
+Risk: The dialogue only handles choices 1, 2, 3, q, and Q.
+
+Mitigation: Keep usage instructions aligned with the supported inputs or extend the input handling before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can run this skill as a simple local interactive dialogue tool that maps numeric choices to preset Chinese responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Future releases could add dependencies, network access, file access, or broader commands beyond the current simple local prompt. <br>
-Mitigation: Review release evidence and scan results before updating or deploying a newer version. <br>
+**Output Format:** [Plain text CLI output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quweilin/qwtest1) <br>
+**Other Properties Related to Output:** [Accepts numeric choices 1, 2, and 3, and q or Q to exit.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Interactive console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts numeric choices 1, 2, or 3 and q to exit.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

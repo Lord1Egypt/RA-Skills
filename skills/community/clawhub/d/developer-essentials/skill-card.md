@@ -1,40 +1,52 @@
-## Description: <br>
-Comprehensive developer cheatsheets and quick references for Git, Docker, Kubernetes, jq, curl, and common Linux commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive developer cheatsheets and quick references for Git, Docker, Kubernetes, jq, curl, and common Linux commands.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill as a compact command reference for common Git, Docker, Kubernetes, jq, curl, and Linux workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Some examples can delete data, reset Git history, remove Docker resources, force-kill processes, change permissions, or alter Kubernetes resources.
+
+Mitigation: Review the current directory, Git branch, Docker resources, process target, file paths, and Kubernetes context before copying commands that remove, prune, reset, force-kill, or change permissions.
+
+Risk: Cheatsheet commands may need adaptation to the user's environment and privileges.
+
+Mitigation: Treat examples as references and verify command flags, target names, and access scope before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly recall command syntax, common workflows, and frequently used flags for everyday development and operations tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Copy-pasted command examples can affect local files, containers, Kubernetes clusters, or connected services when run without review. <br>
-Mitigation: Review each command, confirm the active target or context, and replace placeholders with safe values before execution. <br>
-Risk: Examples involving destructive commands, SSH/SCP, Kubernetes changes, or bearer tokens may expose credentials or change remote systems if adapted carelessly. <br>
-Mitigation: Use least-privileged credentials, avoid real tokens in shared prompts, and test high-impact commands in non-production contexts first. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/developer-essentials) <br>
+**Other Properties Related to Output:** [Copy-paste-ready command examples and concise usage notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Copy-paste command examples should be reviewed and adapted before execution.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

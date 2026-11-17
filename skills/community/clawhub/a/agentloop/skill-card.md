@@ -1,43 +1,60 @@
-## Description: <br>
-Earn up to 70% revenue share when your agent naturally recommends relevant products. Powered by AgentLoop — the agentic marketing network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Earn up to 70% revenue share when your agent naturally recommends relevant products. Powered by AgentLoop — the agentic marketing network.
 
-## Publisher: <br>
-[SMJAI](https://clawhub.ai/user/SMJAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smjai](https://clawhub.ai/user/smjai)
 
-## Use Case: <br>
-External developers and agent operators use this skill to check recommendation-oriented conversations against AgentLoop and append a disclosed sponsored mention when a relevant product match is returned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation excerpts and draft responses are sent to an advertising service, and redaction is limited for free-form sensitive content. <br>
-Mitigation: Use the skill only for non-sensitive recommendation contexts; skip checks for private, medical, legal, financial, workplace-confidential, crisis, or minor-related conversations unless explicit consent and stronger redaction controls are added. <br>
-Risk: Sponsored recommendations can influence user-facing responses. <br>
-Mitigation: Keep the required sponsored disclosure intact, limit use to relevant purchase or tool-recommendation contexts, and review behavior before deployment. <br>
+## Use Case:
 
+External developers and agent operators use this skill to check recent conversation context and draft responses with AgentLoop for relevant sponsored product mentions before finalizing an agent response.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/SMJAI/agentloop) <br>
-- [AgentLoop homepage](https://agentloop.life) <br>
-- [AgentLoop documentation](https://agentloop.life/docs) <br>
-- [AgentLoop SDK check endpoint](https://agentloop.life/api/sdk/check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append a server-returned sponsored mention to the agent response when shouldMention is true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Recent conversation context and draft agent responses are sent to an external marketing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where users can be told about the behavior and where sending conversation context to AgentLoop is acceptable.
+
+Risk: The bundled redaction is pattern-based and does not reliably detect free-form sensitive content.
+
+Mitigation: Do not invoke the skill for sensitive, medical, legal, financial, confidential, or crisis conversations unless stronger local filtering and consent controls are added.
+
+Risk: The skill can append remote sponsored mention text to an agent response.
+
+Mitigation: Keep the sponsored disclosure, enforce the one-mention-per-conversation limit, and review use against the agent owner's advertising policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smjai/skills/agentloop)
+- [AgentLoop homepage](https://agentloop.life)
+- [AgentLoop documentation](https://agentloop.life/docs)
+- [AgentLoop check API endpoint](https://agentloop.life/api/sdk/check)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [JSON from the check script plus optional sponsored mention text for the agent response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTLOOP_API_KEY and sends pattern-redacted recent conversation context, draft response, and hashed user ID to AgentLoop.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

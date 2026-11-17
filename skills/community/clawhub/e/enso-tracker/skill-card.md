@@ -1,45 +1,56 @@
-## Description: <br>
-Track global city temperatures and analyze El Nino/La Nina (ENSO) phenomena with Imperial Modernity visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track global city temperatures and analyze El Niño/La Niña (ENSO) phenomena with Imperial Modernity visualization
 
-## Publisher: <br>
-[ravenquasar](https://clawhub.ai/user/ravenquasar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ravenquasar](https://clawhub.ai/user/ravenquasar)
 
-## Use Case: <br>
-Developers and climate-data users use this skill to query current ENSO status, track hot-city weather data, and generate ENSO and temperature charts from public data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores an OpenWeatherMap API key in a local config file. <br>
-Mitigation: Keep config.json local, exclude it from version control, and rotate the API key if it is exposed. <br>
-Risk: The skill contacts NOAA, OpenWeatherMap, and Berkeley Earth to retrieve weather and climate data. <br>
-Mitigation: Install and run the skill only when this network access is acceptable for the environment. <br>
-Risk: Custom --output values can write generated charts to user-selected file paths. <br>
-Mitigation: Review output paths before running commands, especially when using custom --output values. <br>
+## Use Case:
 
+Developers and climate-data users can use this skill to fetch ENSO status and weather data, compare ONI periods, and generate publication-style charts for city heat rankings, temperature anomalies, ENSO timelines, and ENSO-to-heat correlation analysis.
 
-## Reference(s): <br>
-- [Enso Tracker on ClawHub](https://clawhub.ai/ravenquasar/enso-tracker) <br>
-- [NOAA Climate Prediction Center ONI Data](https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt) <br>
-- [OpenWeatherMap API](https://openweathermap.org/api) <br>
-- [Berkeley Earth Data](http://berkeleyearth.org/data/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell commands, CLI text output, and PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write PNG charts to user-selected output paths and requires a local OpenWeatherMap API key for city weather queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill stores an OpenWeatherMap API key in config.json with weak file-protection assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key outside the skill directory when possible, use a virtual environment, and restrict config.json to user-only permissions.
+
+Risk: Correlation and anomaly charts can be misleading when real data is unavailable and simulated data is used.
+
+Mitigation: Treat charts as unreliable whenever the tool reports simulated data, and verify conclusions against source datasets before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ravenquasar/skills/enso-tracker)
+- [NOAA Climate Prediction Center ONI index](https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt)
+- [OpenWeatherMap API](https://openweathermap.org/api)
+- [Berkeley Earth data](http://berkeleyearth.org/data/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG chart files from the skill CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on live NOAA, OpenWeatherMap, and Berkeley Earth data availability; some charting paths may fall back to simulated data when source data is unavailable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

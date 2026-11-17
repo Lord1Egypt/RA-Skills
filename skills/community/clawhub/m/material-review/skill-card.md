@@ -1,42 +1,52 @@
-## Description: <br>
-Reviews data sharing catalog materials for field completeness, special rule compliance, platform consistency, and actionable issue-list output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews data sharing catalog materials for field completeness, platform consistency, and traceable issue-list output.
 
-## Publisher: <br>
-[Github7265](https://clawhub.ai/user/Github7265) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[github7265](https://clawhub.ai/user/github7265)
 
-## Use Case: <br>
-Catalog reviewers and data governance teams use this skill to audit submitted data sharing forms, compare material content with platform catalog state, and produce traceable remediation lists for each reviewed system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audit reports or structured extracts may contain sensitive submitted material, and an unsafe output directory could overwrite important files. <br>
-Mitigation: Confirm the output directory before running the script and keep generated reports in a private location when submissions contain sensitive data. <br>
+## Use Case:
 
+Employees or reviewers responsible for data-sharing catalog submissions use this skill to check material forms, identify missing or inconsistent fields, compare platform catalog status, and produce actionable issue lists for submitters.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/Github7265/material-review) <br>
-- [Field completeness checklist](references/field-completeness.md) <br>
-- [Special field rules](references/special-field-rules.md) <br>
-- [Platform consistency checks](references/platform-consistency.md) <br>
-- [Issue list template](references/issue-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON and Markdown report files from the audit script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script can extract structured data from submitted DOCX materials and write structured_data.json, issues.json, and audit_report.md to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The audit workflow can persist submitted contact, database, and password-related material in local plaintext output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an access-controlled output directory, manage retention, and redact or replace live secrets with password-presence checks before processing operational submissions.
+
+## Reference(s):
+
+- [Field Completeness Checklist](references/field-completeness.md)
+- [Special Field Rules](references/special-field-rules.md)
+- [Platform Consistency Review](references/platform-consistency.md)
+- [Issue List Template](references/issue-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON audit artifacts and Markdown audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the bundled audit script is used, it writes structured_data.json, issues.json, and audit_report.md to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

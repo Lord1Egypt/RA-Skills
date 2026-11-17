@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through safe Grafana inspection, dashboard diagnosis, dashboard JSON authoring, alert-rule proposals, and gated change application when verified tools are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opera Grafana en OpenClaw con enfoque seguro: inspeccion real, diagnostico, propuesta de cambios y aplicacion solo cuando exista tooling habilitado y contexto suficiente.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Grafana operators and developers use this skill to inspect live Grafana state, diagnose dashboards and alerting, and prepare dashboard JSON or alert-rule proposals for human review before any gated write operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dashboard or alerting changes could be based on stale, partial, or unavailable Grafana state. <br>
-Mitigation: Start with read-only inspection, report uncertainty explicitly, and require human review before any apply operation. <br>
-Risk: Write-capable Grafana tools may use credentials or gates that are not appropriate for the requested change. <br>
-Mitigation: Confirm the runtime-exposed Grafana tools, credential scope, and explicit write gates before enabling apply modes. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect Grafana health, dashboards, datasources, folders, and alert rules before proposing dashboard JSON or alerting changes. It supports safe review workflows by degrading uncertain changes to drafts and requiring enabled write tooling plus gates before applying changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kansodata/kansodata-grafana-authoring-operations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON snippets, logical diffs, and status labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be labeled draft, review_ready, apply_ready, or human_review_required based on verified Grafana context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can prepare dashboard or alerting changes that may be incorrect if Grafana state is stale, partial, or inferred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require current read-only inspection before proposals and mark uncertain outputs as draft or human_review_required.
+
+Risk: Write-capable Grafana tools could modify dashboards or alerting resources if exposed without controls.
+
+Mitigation: Expose write tools only for trusted Grafana instances and require enabled tooling, sufficient context, and a human review or gate before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kansodata/skills/kansodata-grafana-authoring-operations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Grafana dashboard JSON, logical diffs, status labels, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be marked draft, review_ready, apply_ready, or human_review_required depending on verified Grafana context and available tooling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

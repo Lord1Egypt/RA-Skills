@@ -81,7 +81,7 @@ bash scripts/panel_start.sh
 ```bash
 AI_PROVIDER=minimax
 AI_BASE_URL=https://api.minimax.chat/v1
-AI_API_KEY=sk-cp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+AI_API_KEY=REDACTED-SECRET
 AI_MODEL=MiniMax-M2.7
 ```
 
@@ -92,7 +92,7 @@ AI_MODEL=MiniMax-M2.7
 ```bash
 AI_PROVIDER=openai
 AI_BASE_URL=https://api.openai.com/v1
-AI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+AI_API_KEY=REDACTED-SECRET
 AI_MODEL=gpt-4o-mini
 ```
 
@@ -101,7 +101,7 @@ AI_MODEL=gpt-4o-mini
 ```bash
 AI_PROVIDER=siliconflow
 AI_BASE_URL=https://api.siliconflow.cn/v1
-AI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+AI_API_KEY=REDACTED-SECRET
 AI_MODEL=deepseek-ai/DeepSeek-V3
 ```
 

@@ -1,43 +1,62 @@
-## Description: <br>
-Upload and download files to/from Stratos Decentralized Storage (SDS) network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload and download files to and from the Stratos Decentralized Storage (SDS) network.
 
-## Publisher: <br>
-[notboxqsn](https://clawhub.ai/user/notboxqsn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[notboxqsn](https://clawhub.ai/user/notboxqsn)
 
-## Use Case: <br>
-Developers and operators use this skill to upload files to Stratos SDS, retrieve files by hash or CID, and receive setup guidance for a Stratos resource node. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploading the wrong file can send unintended content to the configured Stratos storage gateway. <br>
-Mitigation: Confirm exact file paths before upload and avoid uploading sensitive files accidentally. <br>
-Risk: A misconfigured or untrusted STRATOS_SPFS_GATEWAY can send upload and download traffic to the wrong node. <br>
-Mitigation: Verify STRATOS_SPFS_GATEWAY points to a trusted Stratos SDS node before running upload or download commands. <br>
-Risk: Resource node setup involves wallet mnemonics, passwords, staking, and node startup steps that the skill does not manage. <br>
-Mitigation: Handle wallet credentials and node activation steps directly, and back up mnemonics outside the skill workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stratos SDS Resource Node Setup Guide](docs/setup-guide-en.md) <br>
-- [Stratos SDS Resource Node Setup Guide (Chinese)](docs/setup-guide-zh.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/notboxqsn/stratos-storage) <br>
+## Use Case:
 
+External users, developers, and engineers use this skill to upload local files to Stratos SDS, retrieve files by hash or CID, and configure a local Stratos resource node when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Stratos file hashes or CIDs after successful uploads and local file paths after successful downloads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload local files to a decentralized storage network.
+
+Mitigation: Use it only for explicit upload requests, confirm the file path with the user, and avoid uploading sensitive files.
+
+Risk: Downloads retrieve network content and write it to a local destination.
+
+Mitigation: Choose a private trusted destination directory, avoid overwriting existing files, and review downloaded content before use.
+
+Risk: Node setup can involve wallet mnemonics, passwords, staking amounts, and fees.
+
+Mitigation: Keep wallet secrets outside chats and source-controlled files, and verify the network, wallet, amount, and fees before staking STOS.
+
+Risk: Running a Stratos node may expose service ports.
+
+Mitigation: Restrict node service ports with a firewall and expose only the interfaces required for the intended deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/notboxqsn/skills/stratos-storage)
+- [Stratos SDS Resource Node Setup Guide](artifact/docs/setup-guide-en.md)
+- [Stratos SDS Resource Node Setup Guide (Chinese)](artifact/docs/setup-guide-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown status text with inline shell commands, file paths, and file identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return CIDs, output paths, upload/download status, and Stratos node setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

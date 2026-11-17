@@ -1,40 +1,54 @@
-## Description: <br>
-Searches CoDropshipping for product information, inventory, prices, specifications, and related product details, then returns the results as a Markdown table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助在CoDropshipping平台查询商品信息、库存、价格、规格等，自动抓取搜索结果并以表格形式展示
 
-## Publisher: <br>
-[Dwooaa](https://clawhub.ai/user/Dwooaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dwooaa](https://clawhub.ai/user/dwooaa)
 
-## Use Case: <br>
-E-commerce sellers and sourcing teams use this skill to search CoDropshipping and compare product names, prices, monthly sales, ratings, inventory, and specifications before reviewing items further. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to CoDropshipping and may be automatically translated. <br>
-Mitigation: Invoke the skill only for intended product lookups and avoid private or sensitive text in search terms. <br>
-Risk: Browser and network access may fail because of page load issues, no search results, or anti-bot controls. <br>
-Mitigation: Verify returned product information on CoDropshipping and retry later or adjust the search terms when results are missing. <br>
+## Use Case:
 
+External users and sourcing operators use this skill to search CoDropshipping for product information and receive the results as a concise Markdown table. It is intended for routine product lookup workflows where sending the search terms to CoDropshipping is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dwooaa/codropshipping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown table with product names, prices, monthly sales, ratings, and related details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search terms are translated to English before querying CoDropshipping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Product search terms are sent to CoDropshipping through browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when disclosure of those sourcing terms to CoDropshipping is acceptable, and avoid confidential search terms.
+
+Risk: Browser automation may fail or return incomplete results when pages fail to load, searches have no matches, or anti-automation controls appear.
+
+Mitigation: Treat returned product data as lookup assistance and retry later or change keywords when the skill reports loading, no-result, or anti-automation issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dwooaa/skills/codropshipping)
+- [Publisher profile](https://clawhub.ai/user/dwooaa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns product names, prices, monthly sales, and ratings when available.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

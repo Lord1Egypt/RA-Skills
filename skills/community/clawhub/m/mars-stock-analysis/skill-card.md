@@ -1,44 +1,58 @@
-## Description: <br>
-Fundamental equity analysis and peer ranking using a structured scoring playbook for quality, balance-sheet safety, cash flow, valuation, sector adjustments, and confidence modifiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fundamental equity analysis and peer ranking using a structured scoring playbook for business quality, balance-sheet safety, cash flow, valuation, sector adjustments, and confidence modifiers.
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-External users and analysts use this skill to evaluate one or more public equity tickers, compare peers, rank candidates, and produce an educational fundamentals-based verdict with confidence and invalidation triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ratings or peer rankings may be mistaken, stale, or based on conflicting public financial data. <br>
-Mitigation: Treat outputs as educational analysis, review the cited filings and data sources, and verify any investment-relevant conclusion independently. <br>
-Risk: User-provided portfolio or account details could expose private financial context to the agent workflow. <br>
-Mitigation: Avoid sharing private portfolio, brokerage, or account information unless that context is intentionally needed for the analysis. <br>
-Risk: Release metadata is inconsistent between the server release version and artifact metadata. <br>
-Mitigation: Verify the publisher and intended version before installation or redistribution. <br>
+## Use Case:
 
+External users and analysts use this skill to analyze one or more public stock tickers, compare peers, rank candidates, and produce an educational fundamentals-based verdict with confidence and risk context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mars82311111/mars-stock-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/mars82311111) <br>
-- [Fundamental Stock Analysis Playbook](artifact/references/playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces educational stock analysis with resolved ticker identity, score, confidence, data-quality notes, risks, valuation checks, peer ranking when applicable, and relevant news links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Financial analysis outputs may be mistaken for investment advice or used without independent verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational analysis, verify cited financial data before acting, and consult qualified professionals for investment decisions.
+
+Risk: Public financial data can be stale, conflicting, incomplete, or paywalled.
+
+Mitigation: Use the required data quality scorecard, cite sources, mark unavailable metrics as NA, and lower confidence when freshness, coverage, or source quality is weak.
+
+Risk: Open-ended browsing could drift beyond relevant public finance sources.
+
+Mitigation: Restrict retrieval to ticker-relevant filings, issuer materials, reputable financial aggregators, and relevant financial news as described by the skill security scope.
+
+## Reference(s):
+
+- [Mars Stock Analysis on ClawHub](https://clawhub.ai/mars82311111/skills/mars-stock-analysis)
+- [Fundamental Stock Analysis Playbook](references/playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ticker resolution, scored verdicts, confidence level, data quality notes, risk discussion, recent news links, and source attribution; user-facing output excludes machine-readable JSON blocks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-Provides Chinese-language guidance for teacher-student startup teams moving from validation into productization, market expansion, organizational growth, and sustained innovation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+师生共创成长与成熟阶段指导。当用户完成启动验证，需要产品化、市场拓展、组织建设、技术持续创新时使用。触发词：师生共创成长、产品化、规模化、市场拓展、组织建设、团队扩张、品牌建设、渠道建设
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[earthwalking](https://clawhub.ai/user/earthwalking)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and startup advisors use this skill to guide university teacher-student ventures through growth and maturity planning after initial validation. It helps structure productization, market expansion, organization building, technical innovation, intellectual property planning, ecosystem strategy, and sustainable development outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may activate the skill for general productization, market expansion, or organization-building requests outside university teacher-student startup development.
+
+Mitigation: Confirm that the user is asking about lab-to-startup growth or maturity planning before applying the skill's guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External founders, educators, and startup advisors use this skill to plan growth and maturity work after initial validation, including productization, market expansion, team building, intellectual property planning, and sustainable development. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Business, legal, intellectual-property, contract, compliance, university-affiliation, or regulated-industry decisions may need expert review before use. <br>
-Mitigation: Treat outputs as general business guidance and verify consequential decisions with qualified professionals. <br>
+**Output Format:** [Markdown guidance with tables, checklists, process flows, and planning document outlines]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language business-planning guidance; no code execution or data access behavior is described.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown business planning guidance and document outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans, strategy outlines, checklists, and dashboard guidance; no code, credentials, install hooks, or system access.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

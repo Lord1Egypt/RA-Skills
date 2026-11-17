@@ -1,6 +1,6 @@
 ---
 name: ideonomy
-version: "0.3.1"
+version: "0.3.4"
 description: Structured creative reasoning through ideonomic lenses. Use when stuck on a problem, need fresh perspectives, want to think more creatively or systematically, or need to explore a problem from multiple angles. Based on Patrick Gunkel's "science of ideas" — systematic combinatorial thinking across 28 reasoning divisions.
 ---
 

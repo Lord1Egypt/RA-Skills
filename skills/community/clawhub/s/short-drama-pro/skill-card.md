@@ -1,38 +1,53 @@
-## Description: <br>
-Professional short-drama script creation skill for topic selection, story planning, character design, episode outlines, single-episode scripts, self-review, and export across common Chinese short-drama genres. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional short-drama scriptwriting skill for topic selection, story concepts, character design, episode outlines, single-episode scripts, self-review, and export workflows across Chinese short-drama genres such as urban romance, CEO romance, sweet romance, rebirth, and suspense.
 
-## Publisher: <br>
-[xinmeili0612](https://clawhub.ai/user/xinmeili0612) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinmeili0612](https://clawhub.ai/user/xinmeili0612)
 
-## Use Case: <br>
-External creators and content teams use this skill to draft and refine Chinese short-drama concepts, character profiles, episode outlines, scripts, self-review notes, and export-ready structured material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts or story concepts may raise originality, platform compliance, legal, or sensitive-content concerns before publication. <br>
-Mitigation: Review and revise all creative output for originality, platform rules, legal requirements, and sensitive-content handling before publishing or monetizing it. <br>
+## Use Case:
 
+External creators and content teams use this skill to develop commercially oriented Chinese short-drama concepts, character profiles, episode catalogs, scripts, self-check reports, and revision guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xinmeili0612/short-drama-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include story plans, character briefs, episode catalogs, script scenes, dialogue, self-review reports, compliance-risk notes, and revision guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, artifact/_meta.json, evidence.release.version) <br>
+Risk: The skill defaults to commercial Chinese short-drama conventions, which may not match a different target market, language, audience, or format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target language, market, genre, format, audience, episode count, tone, and ending direction before asking for generation or revision.
+
+Risk: Generated scripts may include content that needs legal, platform, or brand review before release.
+
+Mitigation: Review outputs for infringement, platform compliance, sensitive topics, violence, vulgarity, and other commercial release requirements before production or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinmeili0612/skills/short-drama-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include story concepts, character profiles, episode catalogs, scripts, self-check reports, and revision suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

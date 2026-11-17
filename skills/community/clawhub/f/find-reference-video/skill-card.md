@@ -1,40 +1,53 @@
-## Description: <br>
-从 frameset.app 搜索视频参考片段，找到合集页面和原视频链接。用于： (1) 根据关键词搜索广告/电影片段参考，(2) 获取原视频 YouTube/Vimeo 链接，(3) 下载视频到本地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds reference video clips on frameset.app from keywords, returns collection pages and original YouTube or Vimeo links, and can guide downloads to the local Downloads folder.
 
-## Publisher: <br>
-[FredHNian](https://clawhub.ai/user/FredHNian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fredhnian](https://clawhub.ai/user/fredhnian)
 
-## Use Case: <br>
-External users and creative teams use this skill to search Frameset for film or advertising reference clips, review search results, collect source video links, and optionally download selected videos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can download third-party videos to the user's computer, which may affect storage usage and rights or terms compliance. <br>
-Mitigation: Confirm selected videos, filenames, destination, storage impact, and rights or terms considerations before downloading. <br>
-Risk: The download workflow depends on yt-dlp and external video links. <br>
-Mitigation: Use yt-dlp from a trusted source and review each generated command before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FredHNian/find-reference-video) <br>
-- [Frameset search](https://frameset.app/search?search=%E5%85%B3%E9%94%AE%E8%AF%8D) <br>
+## Use Case:
 
+Creative researchers, video editors, and agents assisting Chinese-language users use this skill to search Frameset for advertising or film reference clips, confirm selections from screenshots, collect source links, and optionally download selected videos.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown table with video links and optional yt-dlp shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose downloads to ~/Downloads/ after user selection.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill browses third-party video-reference sites and may download selected YouTube or Vimeo videos to ~/Downloads, creating rights and storage risks.
+
+Mitigation: Only download content the user has rights to store, confirm selected items before downloading, and monitor file sizes.
+
+Risk: Bulk selections can lead to many video lookups or downloads.
+
+Mitigation: Ask for confirmation when more than 10 items are selected and cap processing at 15 selections.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fredhnian/skills/find-reference-video)
+- [Frameset search](https://frameset.app/search?search=%E5%85%B3%E9%94%AE%E8%AF%8D)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown table with collection links, original video links, and optional inline bash download commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include screenshots for user selection and optional downloaded video files in ~/Downloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

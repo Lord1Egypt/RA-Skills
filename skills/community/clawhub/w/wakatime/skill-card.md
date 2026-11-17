@@ -1,44 +1,56 @@
-## Description: <br>
-WakaTime API integration with managed OAuth for retrieving coding statistics, productivity metrics, language and editor usage, and daily summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WakaTime API integration with managed OAuth for retrieving coding statistics, productivity metrics, language and editor usage, project time, and daily summaries.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect WakaTime coding activity, project time, language and editor breakdowns, goals, insights, and daily summaries from chat through a managed OAuth connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read privacy-sensitive WakaTime analytics, including project names, machine names, coding activity, and workplace patterns. <br>
-Mitigation: Scope agent requests to the specific project, date range, or metric needed, and avoid sharing returned data that exposes private clients, machines, or activity patterns. <br>
-Risk: OAuth scopes may be insufficient for summaries or goals, causing partial or failed responses. <br>
-Mitigation: Reconnect the WakaTime account through ClawLink when scope-related errors occur, and request only the scopes needed for the intended read-only analysis. <br>
-Risk: Coding time values returned by the API may differ from WakaTime dashboard totals. <br>
-Mitigation: Treat API results as operational analytics and verify important totals against the WakaTime dashboard before using them for reporting. <br>
+## Use Case:
 
+Developers and engineering teams use this skill in OpenClaw to connect WakaTime through ClawLink and retrieve read-only coding activity, productivity, project, language, editor, goal, insight, and summary data.
 
-## Reference(s): <br>
-- [ClawHub WakaTime Skill](https://clawhub.ai/hith3sh/wakatime) <br>
-- [WakaTime API Docs](https://wakatime.com/developers) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command snippets, tool-call examples, and summarized API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only WakaTime API access through managed OAuth; results can include privacy-sensitive project, machine, editor, language, and activity-pattern data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill installs and trusts an external ClawLink plugin that brokers OAuth access to WakaTime data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted ClawLink plugin source, prefer a pinned and reviewed plugin version when available, and review the plugin before deployment.
+
+Risk: The artifact describes private WakaTime activity-data reads as safe and requiring no confirmation.
+
+Mitigation: Require explicit user confirmation before retrieving profile, project, machine, goal, insight, or summary data.
+
+## Reference(s):
+
+- [WakaTime API Docs](https://wakatime.com/developers)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=wakatime)
+- [ClawHub WakaTime Skill](https://clawhub.ai/hith3sh/skills/wakatime)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tool-call examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only WakaTime API data returned through ClawLink; OAuth scopes may limit summaries, goals, and insights.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

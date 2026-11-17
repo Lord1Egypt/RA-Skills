@@ -1,41 +1,54 @@
-## Description: <br>
-Qmsg Push sends QQ push notifications through Qmsg using a locally configured Qmsg key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qmsg Push sends QQ notification messages through qmsg.zendee.cn using a configured Qmsg key.
 
-## Publisher: <br>
-[timethreesecond](https://clawhub.ai/user/timethreesecond) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timethreesecond](https://clawhub.ai/user/timethreesecond)
 
-## Use Case: <br>
-Developers and automation users can use this skill to send task completion alerts, reminders, and system status notifications to QQ through Qmsg. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Qmsg key stored locally. <br>
-Mitigation: Treat the Qmsg key as a secret, keep it out of logs and version control, and restrict permissions on the secrets file. <br>
-Risk: Notification contents are sent to qmsg.zendee.cn. <br>
-Mitigation: Do not send tokens, passwords, personal data, or sensitive command output through this skill. <br>
+## Use Case:
 
+Developers and automation users use this skill to send QQ status notifications, completion alerts, and timed reminders from agent or automation workflows.
 
-## Reference(s): <br>
-- [Qmsg service](https://qmsg.zendee.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/timethreesecond/qmsg-push-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON-like script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a locally stored Qmsg key and sends notification text to qmsg.zendee.cn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill reads a local Qmsg key and sends message text to qmsg.zendee.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Qmsg-only secret, keep unrelated credentials out of the same secrets.json file, and avoid sending sensitive message content.
+
+Risk: Failures may expose request details in logs or command output.
+
+Mitigation: Treat logs as potentially sensitive and review them before sharing or retaining them.
+
+## Reference(s):
+
+- [Qmsg](https://qmsg.zendee.cn)
+- [ClawHub skill page](https://clawhub.ai/timethreesecond/skills/qmsg-push-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Text message sent to QQ with a JSON command result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Qmsg key in secrets.json; message text is sent to qmsg.zendee.cn.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

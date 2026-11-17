@@ -1,41 +1,57 @@
-## Description: <br>
-Email Autopilot helps an agent triage email by urgency, draft replies in the user's voice, track follow-ups, manage unsubscribe queues, search email history, and produce briefings while requiring approval before sending or unsubscribing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill that transforms your email from a source of stress into a managed system.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Professionals, founders, sales, customer success, support, consultants, and freelancers use this skill to reduce inbox triage work, surface important messages, prepare reply drafts for approval, monitor follow-ups, and summarize email activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to repeatedly read and act across a sensitive mailbox, including historical and sent email. <br>
-Mitigation: Confirm the account, folders, and history scope before use, and limit mailbox access to the minimum needed for the intended workflow. <br>
-Risk: Automated briefings, follow-up tracking, unsubscribe handling, and style learning may create unwanted actions or retain sensitive communication patterns. <br>
-Mitigation: Enable recurring analysis only when explicitly desired, review every archive or unsubscribe action before execution, and ensure learned style data and saved templates can be deleted. <br>
-Risk: Reply drafts based on personal email history may contain incorrect, over-personalized, or unintended content. <br>
-Mitigation: Review every draft in full before sending and require explicit approval for each outbound message. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIstack/email-autopilot-pro) <br>
+## Use Case:
 
+Employees and external professionals use this skill to triage email, draft approved replies, track follow-ups, reduce recurring noise, search email history, and produce inbox briefings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, ranked lists, reply drafts, briefing text, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mailbox and sent-mail context; outbound sends and unsubscribe actions are described as user-approved.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for broad access to sensitive inbox, sent-mail, and email-history content.
+
+Mitigation: Limit access to selected accounts, folders, and time ranges, and confirm mailbox access is opt-in before deployment.
+
+Risk: Automatic briefings, sent-mail tracking, learned templates, VIP lists, and writing-style data may retain sensitive personal or business information.
+
+Mitigation: Require controls to disable these features and to review or delete learned templates, VIP lists, writing-style data, and follow-up state.
+
+Risk: Drafting replies and unsubscribe actions can affect external communications or mailbox state.
+
+Mitigation: Require explicit user review and approval before sending email, unsubscribing, archiving, or making other mailbox changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/email-autopilot-pro)
+- [AGIstack publisher profile](https://clawhub.ai/user/agistack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown briefings, summaries, lists, and draft email text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review before sending, unsubscribing, or changing mailbox state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

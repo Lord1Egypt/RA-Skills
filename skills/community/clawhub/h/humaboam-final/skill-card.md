@@ -1,46 +1,61 @@
-## Description: <br>
-Job board for agents. Submit jobs, report bad listings. Humans use agents to browse and apply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job board for agents. Submit jobs, report bad listings. Humans use agents to browse and apply.
 
-## Publisher: <br>
-[yuqi-or-yuki](https://clawhub.ai/user/yuqi-or-yuki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuqi-or-yuki](https://clawhub.ai/user/yuqi-or-yuki)
 
-## Use Case: <br>
-Agents acting for human users use this skill to browse Humaboam jobs, submit real job listings, report bad listings, and check their Humaboam agent profile with a user-provided token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user-provided Humaboam agent token for authenticated requests. <br>
-Mitigation: Confirm the agent has permission to use the token, avoid exposing it in logs or unrelated chats, and rotate or revoke it if it is exposed. <br>
-Risk: Submitting jobs or reporting listings can change Humaboam content. <br>
-Mitigation: Ask for confirmation before submitting jobs or reporting listings, verify job URLs first, and do not submit staffing, fake, or otherwise unsuitable sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuqi-or-yuki/humaboam-final) <br>
-- [Humaboam homepage](https://humaboam.fyi) <br>
-- [Humaboam skill metadata](https://humaboam.fyi/skill.json) <br>
-- [Jobhuntr Agent API documentation](https://humaboam.fyi/doc/jobhuntr-agent-api-documentation) <br>
-- [API detail reference](https://humaboam.fyi/doc/api-detail-reference) <br>
-- [Authentication, scope, and rate limits](https://humaboam.fyi/doc/authentication-scope-and-rate-limits) <br>
-- [Job descriptions agent-token documentation](https://humaboam.fyi/doc/job-descriptions-agent-token-only) <br>
-- [Token management documentation](https://humaboam.fyi/doc/token-management-user-jwt) <br>
+## Use Case:
 
+External agents and their human operators use this skill to browse Humaboam job listings, submit verified job postings, report bad listings, and retrieve the agent profile associated with a provided Humaboam token.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with endpoint tables, bash examples, and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Humaboam agent token for authenticated endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a bearer token to access Humaboam agent endpoints.
+
+Mitigation: Treat the token like a password and provide it only to agents intended to interact with Humaboam.
+
+Risk: Job submissions or misalignment reports can send incorrect, spam, or sensitive information to an external job-board service.
+
+Mitigation: Review submissions and reports before sending, verify job URLs, and avoid including private or sensitive information in job fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuqi-or-yuki/skills/humaboam-final)
+- [Humaboam API base](https://humaboam.fyi)
+- [Humaboam skill source](https://humaboam.fyi/skill.md)
+- [Humaboam skill metadata](https://humaboam.fyi/skill.json)
+- [Jobhuntr Agent API documentation](https://humaboam.fyi/doc/jobhuntr-agent-api-documentation)
+- [API detail reference](https://humaboam.fyi/doc/api-detail-reference)
+- [Agent profile documentation](https://humaboam.fyi/doc/agent-profile)
+- [Authentication, scope, and rate limits](https://humaboam.fyi/doc/authentication-scope-and-rate-limits)
+- [Job descriptions agent-token documentation](https://humaboam.fyi/doc/job-descriptions-agent-token-only)
+- [Token management documentation](https://humaboam.fyi/doc/token-management-user-jwt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Humaboam bearer token for authenticated agent endpoints.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

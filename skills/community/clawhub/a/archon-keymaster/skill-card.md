@@ -1,45 +1,60 @@
-## Description: <br>
-Core Archon DID toolkit - identity management, verifiable credentials, encrypted messaging (dmail), Nostr integration, file encryption/signing, aliasing, authorization (challenge/response), groups, and cryptographic polls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archon Keymaster is a DID toolkit for managing identities, verifiable credentials, encrypted messaging, Nostr keys, file encryption/signing, aliases, challenge/response authorization, groups, assets, and cryptographic polls.
 
-## Publisher: <br>
-[macterra](https://clawhub.ai/user/macterra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[macterra](https://clawhub.ai/user/macterra)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to create and manage Archon DIDs, issue and accept verifiable credentials, send encrypted DID messages, sign or encrypt files, derive Nostr keys, manage aliases and groups, and run cryptographic polls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill manages long-lived DID wallet secrets, including wallet files, passphrases, mnemonics, and Nostr secret keys. <br>
-Mitigation: Use it only in trusted workspaces, keep ~/.archon.env and wallet files permission-restricted, avoid exposing terminal logs, and store recovery mnemonics offline. <br>
-Risk: The documentation includes an unpinned curl-to-shell installer path for the Nostr nak tool. <br>
-Mitigation: Independently review and verify the installer or install nak through a trusted pinned package source before running Nostr workflows. <br>
-Risk: Misconfigured environment variables or gatekeeper endpoints can affect wallet access and network operations. <br>
-Mitigation: Review ARCHON_WALLET_PATH, ARCHON_PASSPHRASE, and ARCHON_GATEKEEPER_URL before execution and use separate test identities for evaluation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/macterra/archon-keymaster) <br>
-- [Archon project](https://github.com/archetech/archon) <br>
-- [Keymaster CLI reference](https://github.com/archetech/archon/tree/main/keymaster) <br>
-- [W3C DID Core](https://www.w3.org/TR/did-core/) <br>
-- [W3C Verifiable Credentials context](https://www.w3.org/ns/credentials/v2) <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to create and manage decentralized identities, issue or accept credentials, exchange encrypted messages, sign or encrypt files, derive Nostr keys, manage DID groups and assets, and run cryptographic polls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local shell scripts that invoke Node.js/npx, read wallet environment variables, and produce DIDs, credentials, encrypted messages, signatures, or local output files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles wallet passphrases, mnemonics, and derived Nostr private keys that could be exposed through files, logs, or agent transcripts.
+
+Mitigation: Use a test wallet first, keep ARCHON_PASSPHRASE out of shared transcripts, restrict secret files to owner-only permissions, and treat mnemonic or nsec output as highly sensitive.
+
+Risk: The artifact includes remote or dependency execution patterns such as npx package execution, npm dependency installation, and a documented curl-to-shell installer.
+
+Mitigation: Avoid curl | sh, install and pin dependencies separately, review scripts before execution, and load sensitive environment variables only after dependencies are installed.
+
+Risk: The default gatekeeper configuration can send encrypted DID data over public network services.
+
+Mitigation: Verify the configured ARCHON_GATEKEEPER_URL, use a local gatekeeper for sensitive testing when appropriate, and confirm recipient DIDs before encryption or messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/macterra/skills/archon-keymaster)
+- [Archon documentation](https://github.com/archetech/archon)
+- [Keymaster reference](https://github.com/archetech/archon/tree/main/keymaster)
+- [W3C DID specification](https://www.w3.org/TR/did-core/)
+- [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON examples, and generated local files or command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local shell scripts and environment variables for wallet, passphrase, and gatekeeper configuration.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

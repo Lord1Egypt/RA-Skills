@@ -1,38 +1,53 @@
-## Description: <br>
-Detect if AI responses contain hallucinations by analyzing tool usage and response quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects whether AI responses may contain hallucinations by analyzing tool usage, response quality, and handling of invalid premises.
 
-## Publisher: <br>
-[JDChi](https://clawhub.ai/user/JDChi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdchi](https://clawhub.ai/user/jdchi)
 
-## Use Case: <br>
-Developers and agent users use this skill to review AI responses for likely hallucinations, missing verification, and invalid-premise handling. It can run on demand or, when explicitly enabled, append fact-check output after each response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When invoked or enabled, the skill may review and summarize prior chat context, which can expose sensitive details from earlier turns. <br>
-Mitigation: Keep automatic mode off unless ongoing fact-check blocks are desired, and avoid invoking it in chats where summarizing earlier sensitive context would be inappropriate. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent review responses for possible hallucinations, missing verification, and correct handling of invalid premises. It can run on explicit fact-check requests or, when enabled, after every response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JDChi/is-bullshit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fact-check summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the user's language when reporting per-round verdicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata) <br>
+Risk: The skill may review and summarize prior conversation turns, which can expose private or confidential content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it disabled unless explicitly needed, and avoid using it in conversations containing private, confidential, or regulated information.
+
+Risk: Automatic fact-check output can disrupt workflows that require strict machine-readable responses.
+
+Mitigation: Disable the skill for strict JSON, API-style, or other machine-readable output workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jdchi/skills/is-bullshit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown fact-check summaries in the user's language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows all rounds for conversations of five or fewer rounds; for longer conversations, shows only suspicious rounds.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

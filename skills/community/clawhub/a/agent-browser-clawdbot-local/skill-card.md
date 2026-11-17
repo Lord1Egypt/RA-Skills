@@ -1,42 +1,54 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[reknottycat](https://clawhub.ai/user/reknottycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reknottycat](https://clawhub.ai/user/reknottycat)
 
-## Use Case: <br>
-Developers and agents use this skill to drive headless browser workflows through deterministic accessibility-tree snapshots, ref-based element selection, session isolation, and browser state inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser login state, cookies, localStorage values, and saved state files can contain sensitive credentials or session material. <br>
-Mitigation: Use test accounts or intentionally created automation sessions, treat saved state files as credentials, avoid sharing or committing them, and delete them after use. <br>
-Risk: Attaching automation to a personal logged-in browser can allow the agent to operate in that session. <br>
-Mitigation: Attach only to sessions where agent operation is intended, and prefer isolated browser sessions for workflows that involve authentication. <br>
+## Use Case:
 
+Developers and engineers use this skill to drive headless browser workflows from agent sessions, including navigation, interaction, extraction, state checks, multi-session testing, state persistence, and network control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reknottycat/agent-browser-clawdbot-local) <br>
-- [agent-browser project](https://github.com/vercel-labs/agent-browser) <br>
-- [Publisher profile](https://clawhub.ai/user/reknottycat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the agent-browser command-line tool and may produce browser snapshots, extracted page content, screenshots, PDFs, cookies, storage values, and saved browser state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Saved auth state, cookies, and local storage can expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or least-privilege accounts, keep state files out of source control, restrict access to saved state files, and delete them when no longer needed.
+
+Risk: The global npm install and browser dependency installation can introduce operational risk, especially when elevated privileges or system dependencies are used.
+
+Mitigation: Install only from the expected npm package and publisher, prefer pinning a reviewed version, and use caution with --with-deps or elevated privileges.
+
+## Reference(s):
+
+- [Agent Browser project homepage](https://github.com/vercel-labs/agent-browser)
+- [ClawHub skill page](https://clawhub.ai/reknottycat/skills/agent-browser-clawdbot-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ref-based browser command patterns, session guidance, state persistence guidance, and JSON snapshot conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-BetterContact (bettercontact.rocks) lets an agent check account credit balance, submit leads for waterfall enrichment, and poll enrichment results through an OOMOL-connected BetterContact account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BetterContact (bettercontact.rocks). Use this skill for ANY BetterContact request — reading, creating, and updating data. Whenever a task involves BetterContact, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate BetterContact enrichment from an agent without handling raw API tokens. It is suited for checking BetterContact credits, submitting lead enrichment requests, and retrieving enrichment status or results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires use of an OOMOL-connected BetterContact account. <br>
-Mitigation: Install only when the agent should be allowed to use that connected account. <br>
-Risk: Submitting enrichment requests can spend BetterContact credits and send lead data to BetterContact. <br>
-Mitigation: Review and approve the exact enrichment payload before write actions are run. <br>
-Risk: Connector contracts can change over time. <br>
-Mitigation: Inspect the live action schema before building each payload. <br>
+## Use Case:
 
+External users can retrieve account credits and enrichment results, or submit leads for BetterContact waterfall enrichment through their OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub BetterContact Skill Page](https://clawhub.ai/oomol/oo-bettercontact) <br>
-- [BetterContact Homepage](https://bettercontact.rocks) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The first-time setup fallback can run a downloaded CLI installer whose full effects were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require separate approval before running the installer and prefer a pinned, verified release.
+
+Risk: OOMOL intermediates the connection and submitted lead data.
+
+Mitigation: Review and understand OOMOL's handling of connection credentials and lead data before submitting leads.
+
+## Reference(s):
+
+- [BetterContact](https://bettercontact.rocks)
+- [BetterContact API documentation](https://doc.bettercontact.rocks/api-reference/authentication)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON connector results with concise natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result fields depend on the selected action; enrichment submissions return a request handle.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

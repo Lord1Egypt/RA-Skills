@@ -1,50 +1,66 @@
-## Description: <br>
-Aggregated search aggregator using Google CSE, GNews RSS, Wikipedia, Reddit, and Scrapling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates search results from Google Custom Search, Google News RSS, Wikipedia, Reddit, and Scrapling.
 
-## Publisher: <br>
-[1999AZZAR](https://clawhub.ai/user/1999AZZAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1999azzar](https://clawhub.ai/user/1999azzar)
 
-## Use Case: <br>
-Developers and agents use this skill to run aggregated web, news, encyclopedia, community, and optional scraping searches from a single interface and receive normalized results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to external search providers. <br>
-Mitigation: Use the skill only for queries that are appropriate to send to the configured providers. <br>
-Risk: Google Custom Search credentials may be exposed or over-scoped if configured loosely. <br>
-Mitigation: Use restricted Google credentials and store them in an environment or vault appropriate for the deployment. <br>
-Risk: Optional Redis caching can retain search results for 24 hours. <br>
-Mitigation: Leave Redis disabled unless caching is required, and use a controlled Redis instance when enabled. <br>
-Risk: The Scrapling provider runs through the Python binary set by SCRAPLING_PYTHON_PATH. <br>
-Mitigation: Point SCRAPLING_PYTHON_PATH only to a trusted dedicated virtual environment with pinned dependencies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Search APIs Reference](references/search-apis.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/1999AZZAR/search-cluster) <br>
-- [Publisher Profile](https://clawhub.ai/user/1999AZZAR) <br>
-- [Google Custom Search API Endpoint](https://www.googleapis.com/customsearch/v1) <br>
-- [Wikipedia OpenSearch API Endpoint](https://en.wikipedia.org/w/api.php) <br>
-- [Reddit Search API Endpoint](https://www.reddit.com/search.json) <br>
-- [Google News RSS Search Endpoint](https://news.google.com/rss/search) <br>
-- [DuckDuckGo HTML Search Endpoint](https://duckduckgo.com/html/) <br>
+## Use Case:
 
+Developers and agents use Search Cluster to issue a query across multiple external search providers and receive normalized search results with source, title, link, and snippet fields.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON search results and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include source, title, link, and sanitized snippet fields; Redis result caching is optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.5.1 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms are sent to external providers, including DuckDuckGo through Scrapling.
+
+Mitigation: Install only when external search-provider disclosure is acceptable for the intended queries.
+
+Risk: The Scrapling provider runs through a configured Python subprocess and dependency environment.
+
+Mitigation: Use a trusted SCRAPLING_PYTHON_PATH virtual environment and pin or review Scrapling dependencies before use.
+
+Risk: Redis caching can retain search results for 24 hours when REDIS_HOST is configured.
+
+Mitigation: Enable Redis only when temporary caching of query-derived results is acceptable.
+
+Risk: Secrets or sensitive data could be exposed if placed in custom user-agent values or search queries.
+
+Mitigation: Keep secrets out of SEARCH_USER_AGENT and query text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1999azzar/skills/search-cluster)
+- [Search APIs Reference](artifact/references/search-apis.md)
+- [Google Custom Search API](https://www.googleapis.com/customsearch/v1)
+- [Wikipedia OpenSearch API](https://en.wikipedia.org/w/api.php)
+- [Reddit Search API](https://www.reddit.com/search.json)
+- [Google News RSS Search](https://news.google.com/rss/search)
+- [DuckDuckGo HTML Search](https://duckduckgo.com/html/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text]
+
+**Output Format:** [JSON array of search result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each result may include source, title, link, and sanitized snippet fields.]
+
+## Skill Version(s):
+
+3.5.1 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

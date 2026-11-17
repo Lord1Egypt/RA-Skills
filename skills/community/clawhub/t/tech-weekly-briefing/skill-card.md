@@ -1,48 +1,64 @@
-## Description: <br>
-Generates weekly technology news briefings from major English-language tech media RSS feeds, highlighting multi-source stories, autonomous-driving coverage, and company-specific navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates weekly technology news briefings by fetching major English-language technology RSS feeds, filtering and deduplicating articles, grouping multi-source stories, and organizing results by company and autonomous-driving coverage.
 
-## Publisher: <br>
-[yangzhe1991](https://clawhub.ai/user/yangzhe1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangzhe1991](https://clawhub.ai/user/yangzhe1991)
 
-## Use Case: <br>
-External users and agents use this skill to collect public technology RSS items, deduplicate recent articles, identify stories covered by multiple outlets, and produce a concise weekly briefing. It is suited for monitoring English tech media coverage with source attribution and company-focused follow-up views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public news feeds and writes local article, company, and briefing files. <br>
-Mitigation: Review setup, output paths, and scheduled jobs before running the scripts. <br>
-Risk: Generated briefings may contain attribution or topic-filtering errors. <br>
-Mitigation: Treat briefings as convenience summaries and verify important claims against the linked source articles. <br>
-Risk: Setup steps can add blogwatcher feed entries or cron jobs. <br>
-Mitigation: Inspect the setup and cron commands before enabling automation. <br>
+## Use Case:
 
+External users and agent operators use this skill to collect technology news from configured RSS feeds and produce a weekly briefing with hot stories, source links, autonomous-driving coverage, and company-focused navigation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yangzhe1991/tech-weekly-briefing) <br>
-- [TechCrunch RSS Feed](https://techcrunch.com/feed/) <br>
-- [The Verge RSS Feed](https://www.theverge.com/rss/index.xml) <br>
-- [Wired RSS Feed](https://www.wired.com/feed/rss) <br>
-- [Ars Technica RSS Feed](https://arstechnica.com/feed/) <br>
-- [MIT Technology Review RSS Feed](https://www.technologyreview.com/feed/) <br>
-- [The Information RSS Feed](https://www.theinformation.com/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown-style briefing text with source links, JSON article data files, and shell commands for setup or scheduled runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily article JSON, company categorization JSON, and weekly briefing text files; generated briefings should be treated as convenience summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and SKILL.md version history, released 2026-03-09) <br>
+Risk: Recurring cron jobs can keep fetching feeds and generating reports after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add cron entries only after review, keep a record of the installed entries, and remove or disable them when scheduled briefings are no longer needed.
+
+Risk: The skill performs outbound RSS requests and stores local article snapshots, reports, and logs.
+
+Mitigation: Review the configured feed list and local storage paths before use, and apply normal retention controls for generated data under the skill data directory and /tmp.
+
+Risk: The generated briefing may be Chinese-oriented even when a different preferred language is expected.
+
+Mitigation: Confirm the output language requirements before relying on the briefing, and adjust the report generation prompt or script behavior if a different language is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangzhe1991/skills/tech-weekly-briefing)
+- [Publisher profile](https://clawhub.ai/user/yangzhe1991)
+- [TechCrunch RSS feed](https://techcrunch.com/feed/)
+- [The Verge RSS feed](https://www.theverge.com/rss/index.xml)
+- [Wired RSS feed](https://www.wired.com/feed/rss)
+- [Ars Technica RSS feed](https://arstechnica.com/feed/)
+- [MIT Technology Review RSS feed](https://www.technologyreview.com/feed/)
+- [The Information RSS feed](https://www.theinformation.com/feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown-style briefing with source links, command guidance, and JSON article snapshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weekly reports are written to /tmp, article and company snapshots are stored as JSON under the skill data directory, and cron setup can create recurring fetch/report runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact version history agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

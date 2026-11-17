@@ -1,41 +1,54 @@
-## Description: <br>
-Bonded warehouse reference for customs procedures, duty deferral, FTZ operations, and compliance requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bonded warehouse reference - customs procedures, duty deferral, FTZ operations, compliance requirements.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, logistics operators, and trade compliance teams use this skill as a quick reference for bonded warehouse setup, customs procedures, duty suspension logistics, and FTZ comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customs, bonded warehouse, and compliance details can become outdated or vary by jurisdiction. <br>
-Mitigation: Verify operational decisions against current official customs rules or qualified professional advice before use. <br>
-Risk: The skill runs a bundled local Bash script to print reference guidance. <br>
-Mitigation: Review the script contents and execute only in an environment where local shell scripts are permitted. <br>
+## Use Case:
 
+External operators, logistics teams, and developers use this skill as a quick reference for bonded warehouse setup, customs procedures, duty deferral mechanisms, FTZ comparisons, and compliance checklists.
 
-## Reference(s): <br>
-- [Bonded Skill on ClawHub](https://clawhub.ai/bytesagain1/bonded) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text reference guidance printed by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-driven reference sections for overview, facility types, procedures, duties, compliance, benefits, global comparisons, and checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Customs and compliance guidance may be jurisdiction-specific or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as general logistics guidance and verify current requirements with the relevant customs authority before making business decisions.
+
+Risk: Users may over-rely on static reference text for regulated trade operations.
+
+Mitigation: Use the checklists as planning aids and confirm operational, legal, and duty decisions through qualified customs or legal review.
+
+## Reference(s):
+
+- [Bonded ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/bonded)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text reference output with Markdown command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API calls, credential requests, or system changes are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

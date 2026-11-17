@@ -1,40 +1,54 @@
-## Description: <br>
-Delegate coding tasks to Codex, Claude Code, or Pi agents via background process, with guidance for PTY use, Claude Code print mode, PR review, refactoring, and iterative code work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates coding tasks to Codex, Claude Code, OpenCode, or Pi agents with guidance for working directories, background sessions, PTY usage, and Claude print-mode execution.
 
-## Publisher: <br>
-[danielsinewe](https://clawhub.ai/user/danielsinewe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielsinewe](https://clawhub.ai/user/danielsinewe)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate coding, refactoring, PR review, and multi-worktree tasks to Codex, Claude Code, OpenCode, or Pi agents while choosing the correct execution mode for each tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages delegated coding agents with broad autonomy, including permission bypass and no-sandbox modes. <br>
-Mitigation: Use sandboxed or approval-based execution when possible, and avoid permission bypass modes in repositories containing secrets or deployment credentials. <br>
-Risk: Background agent sessions can make file changes or prepare remote publishing steps that are easy to miss. <br>
-Mitigation: Monitor session logs, review all diffs before committing or pushing, and run PR reviews in temporary clones or isolated worktrees. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate coding, refactoring, PR review, and longer implementation tasks to supported agent CLIs while selecting the expected execution mode for each agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielsinewe/coding-agent-claude-print) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires at least one of the claude, codex, opencode, or pi CLIs when the guidance is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Delegated agents may run with reduced or disabled safety controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in isolated repositories or disposable worktrees, and avoid --yolo or permission-bypass modes unless the operator explicitly accepts the risk.
+
+Risk: Spawned agents may install dependencies, modify code, commit, push, or trigger host events.
+
+Mitigation: Review the exact command before execution and inspect resulting file, dependency, git, and host-event changes before accepting or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielsinewe/skills/coding-agent-claude-print)
+- [Publisher profile](https://clawhub.ai/user/danielsinewe)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires at least one supported agent CLI: claude, codex, opencode, or pi.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

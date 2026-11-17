@@ -61,7 +61,12 @@
 
 **错误处理：** `P11002`（实名校验失败）→ **立即终止**；`22015`（证件号不能为空）→ 检查字段是否传入；其他非 `0` → 原文返回，最多重试 3 次。
 
-**CURL：** `POST <gateway域名>/api/quickInsure/quickConfirmAndPay`，header `car-api-key` + `Content-Type: application/json`，body `{"vehicleNo":"<车牌号>","insureFlowCode":"<流程主键>"}`。
+**Bash 调用：**
+
+```bash
+# 核保 + 获取支付链接
+bash scripts/api.sh quickConfirmAndPay '{"vehicleNo":"<车牌号>","insureFlowCode":"<流程主键>"}' "$CAR_API_KEY"
+```
 
 ---
 
@@ -118,6 +123,13 @@ GET <gateway域名>/api/quickInsure/payQrcode?url=<zaPayUrl(URLencode)>&orderNo=
 ## 四、Step 3：出单结果查询 `POST <gateway域名>/api/quickInsure/getCreatePolicy`
 
 **入参**：body `{"vehicleNo":"<车牌号>","zaOrderNo":"<众安订单号>","outTradeNo":"<外部交易订单号>"}`，header `car-api-key` + `Content-Type: application/json`。
+
+**Bash 调用（使用脚本）：**
+
+```bash
+# 查询出单结果（车牌含中文省份，脚本自动转义）
+bash scripts/api.sh getCreatePolicy '{"vehicleNo":"沪A12345","zaOrderNo":"<zaOrderNo>","outTradeNo":"<outTradeNo>"}' "$CAR_API_KEY"
+```
 
 **出单成功展示：**
 

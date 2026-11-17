@@ -1,44 +1,59 @@
-## Description: <br>
-OpenProse VM skill pack that activates on `prose` commands, `.prose` files, or OpenProse mentions to orchestrate multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenProse VM skill pack. Activate on any `prose` command, .prose files, or OpenProse mentions; orchestrates multi-agent workflows.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and agent users use this skill to run, validate, author, and migrate OpenProse workflows that coordinate subagents, state, and reusable `.prose` programs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote `.prose` programs and imports can cause the agent to execute untrusted workflow instructions. <br>
-Mitigation: Review remote program sources and imports before running them; avoid untrusted URLs or registry references. <br>
-Risk: The skill can spawn subagents and persist project or user-level state, which may expose sensitive prompts, outputs, or regulated data. <br>
-Mitigation: Keep secrets and regulated data out of prompts and persisted memory, prefer project-local state, and clear stored state when it is no longer needed. <br>
-Risk: PostgreSQL state can expose database credentials to subagent sessions and logs. <br>
-Mitigation: Use dedicated short-lived or limited-privilege PostgreSQL credentials when enabling the experimental database backend. <br>
+## Use Case:
 
+Developers and external users use this skill to run, compile, update, and get help for `.prose` programs that orchestrate multi-agent workflows. It supports local files, bundled examples, registry references, and direct URL program references.
 
-## Reference(s): <br>
-- [OpenProse Homepage](https://www.prose.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/andy27725/prose-andy27725) <br>
-- [Publisher Profile](https://clawhub.ai/user/andy27725) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline commands, generated `.prose` code, and workflow execution results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify workspace files and persistent `.prose` state when executing or migrating workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote `.prose` workflows can be fetched and executed from arbitrary URLs or registry references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted `.prose` programs; inspect and pin remote content before execution.
+
+Risk: The skill can spawn agent sessions and create persistent memory that may outlive a single run.
+
+Mitigation: Keep persistent agents scoped to a project or run unless cross-project memory is intentionally required.
+
+Risk: PostgreSQL state can expose database credentials to spawned sessions or logs.
+
+Mitigation: Use a dedicated least-privilege database, avoid production credentials and `DATABASE_URL`, and do not expose unauthenticated Docker PostgreSQL on shared or reachable hosts.
+
+## Reference(s):
+
+- [OpenProse Homepage](https://www.prose.md)
+- [ClawHub Skill Page](https://clawhub.ai/andy27725/skills/prose-andy27725)
+- [Publisher Profile](https://clawhub.ai/user/andy27725)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and generated or updated workflow files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute `.prose` workflows, spawn agent sessions, and create runtime state or memory files according to the selected state mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

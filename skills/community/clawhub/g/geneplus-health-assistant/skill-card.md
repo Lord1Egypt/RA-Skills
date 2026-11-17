@@ -1,43 +1,63 @@
-## Description: <br>
-Collects structured health information, sends the conversation context to an external medical model API, and returns a structured personalized health risk assessment report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于用户提供的多维度健康数据，如基本信息、生理指标、生活方式、既往病史和体检结果，进行综合分析与风险评估，并生成结构化、个性化的健康评估报告。
 
-## Publisher: <br>
-[lantian888](https://clawhub.ai/user/lantian888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lantian888](https://clawhub.ai/user/lantian888)
 
-## Use Case: <br>
-External users use this skill to provide demographic, medical history, medication, allergy, lifestyle, and lab-result information for a health risk assessment. The agent guides information collection, forwards the full conversation context to the configured model service, and can generate an HTML report from returned assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive health and identity information, including prior conversation context, to external services. <br>
-Mitigation: Use only with explicit user consent, minimize shared history and personal data, and disclose the external services involved before transmission. <br>
-Risk: Credential handling includes a documented API key and runtime token retrieval through a subprocess call. <br>
-Mitigation: Remove exposed credentials, rotate any affected keys, and use a managed secret store or environment-based credential flow. <br>
-Risk: Generated HTML reports may contain sensitive health information and the storage and deletion behavior is not fully explained. <br>
-Mitigation: Tell users where reports are stored, how to delete them, and sanitize report content before writing or opening HTML files. <br>
+## Use Case:
 
+External users provide health history, medication context, lifestyle factors, and lab or examination results so the agent can collect required information, call a remote medical model, and return the resulting health risk assessment. The skill can also create an HTML health report from structured patient and assessment data.
 
-## Reference(s): <br>
-- [API documentation](references/api_docs.md) <br>
-- [ClawHub release page](https://clawhub.ai/lantian888/geneplus-health-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, HTML files, guidance, configuration] <br>
-**Output Format:** [Conversational text and Markdown, with optional generated HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams API responses and preserves returned report content; optional reports are written as local HTML files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Sensitive health details and full conversation history may be sent to third-party remote services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent and privacy disclosure before use, minimize identifiers and history sent to the API, and document the remote service dependency.
+
+Risk: API credentials or token-fetching behavior may expose or reuse secrets without adequate control.
+
+Mitigation: Rotate and remove exposed credentials, store secrets outside the artifact, and use scoped credentials with clear permission declarations.
+
+Risk: Generated HTML reports and verbatim remote medical output may include untrusted or unsafe content.
+
+Mitigation: Sanitize HTML before rendering or saving reports, constrain report file paths, and require human review before relying on medical content.
+
+Risk: Health risk assessments can be mistaken for diagnosis or treatment advice.
+
+Mitigation: Keep medical disclaimers visible, route urgent symptoms to emergency care, and direct users to qualified clinicians for diagnosis and treatment decisions.
+
+## Reference(s):
+
+- [API docs](references/api_docs.md)
+- [ClawHub skill page](https://clawhub.ai/lantian888/skills/geneplus-health-assistant)
+- [Publisher profile](https://clawhub.ai/user/lantian888)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown responses and optional HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses streamed remote API output and may preserve returned Markdown verbatim.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

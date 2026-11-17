@@ -1,48 +1,63 @@
-## Description: <br>
-API Gateway lets agents call third-party APIs through Maton-managed OAuth connections for services such as Slack, HubSpot, Salesforce, Google Workspace, and Stripe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API Gateway helps agents call third-party APIs through Maton's managed OAuth connections for services such as Slack, HubSpot, Salesforce, Google Workspace, and Stripe.
 
-## Publisher: <br>
-[IceMasterT](https://clawhub.ai/user/IceMasterT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[icemastert](https://clawhub.ai/user/icemastert)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make authenticated API calls and manage OAuth-backed connections to supported third-party services through Maton. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can invoke broad write, delete, admin, email, payment, public posting, and webhook actions across connected services. <br>
-Mitigation: Require human confirmation before POST, PUT, PATCH, DELETE, email/send, admin, payment, public posting, or webhook actions. <br>
-Risk: Connected third-party services may expose more data or privileges than a task requires. <br>
-Mitigation: Use least-privilege OAuth scopes and prefer read-only service connections when possible. <br>
-Risk: Stale or unused Maton connections can retain access to external services. <br>
-Mitigation: Review active connections regularly and revoke unused Maton connections promptly. <br>
+## Use Case:
 
+Developers and technical operators use this skill to make HTTP requests to supported third-party services through Maton's OAuth-managed gateway and to manage authorized service connections.
 
-## Reference(s): <br>
-- [Maton homepage](https://maton.ai) <br>
-- [Maton API Reference](https://www.maton.ai/docs/api-reference) <br>
-- [Slack Routing Reference](references/slack.md) <br>
-- [HubSpot Routing Reference](references/hubspot.md) <br>
-- [Salesforce Routing Reference](references/salesforce.md) <br>
-- [Gmail Routing Reference](references/google-mail.md) <br>
-- [Stripe Routing Reference](references/stripe.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and authorized OAuth connections for target services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make direct API calls that read or modify data in every OAuth connection the user authorizes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authorize only the services and scopes needed for the task, and review proposed requests before execution.
+
+Risk: MATON_API_KEY and OAuth connection URLs are sensitive and may be exposed by examples or logs.
+
+Mitigation: Keep credentials out of prompts, logs, and shared outputs; redact connection URLs and rotate keys if exposure is suspected.
+
+Risk: Delete, admin, webhook, payment, file-sharing, and public-message operations can have destructive or externally visible effects.
+
+Mitigation: Require explicit manual confirmation before high-impact operations and prefer read-only checks before write actions.
+
+Risk: When multiple connections exist for a service, using the default connection can target the wrong account.
+
+Mitigation: Specify the intended Maton-Connection ID for sensitive or account-specific actions.
+
+## Reference(s):
+
+- [Maton homepage](https://maton.ai)
+- [Maton API reference](https://www.maton.ai/docs/api-reference)
+- [Provider routing references](references/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTTP examples, Python snippets, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and explicitly authorized OAuth connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

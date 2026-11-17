@@ -1,45 +1,59 @@
-## Description: <br>
-Create, search, and manage Fabric resources via the Fabric HTTP API (notepads/notes, folders, bookmarks, files, tags). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, search, and manage Fabric resources via the Fabric HTTP API (notepads/notes, folders, bookmarks, files, tags).
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and agent users use this skill to read, create, search, upload, delete, and recover content in a Fabric workspace through the Fabric HTTP API. It is useful when an agent needs Fabric-aware request guidance, API payload examples, or cross-platform helper commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change content in a user's Fabric workspace when given a Fabric API key. <br>
-Mitigation: Use a scoped or revocable Fabric API key where available, keep the key out of prompts and logs, and install only for agents that should manage Fabric workspace content. <br>
-Risk: Delete, recover, bulk-write, and file-upload operations can modify workspace state. <br>
-Mitigation: Review these operations and their payloads before execution, and avoid blind retries on create or write operations that could duplicate content. <br>
-Risk: Changing FABRIC_BASE or using --with-key on arbitrary absolute URLs could send credentials to an unintended endpoint. <br>
-Mitigation: Keep FABRIC_BASE pointed at the real Fabric API unless intentionally using another trusted endpoint, and avoid --with-key for untrusted absolute URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fabric homepage](https://fabric.so) <br>
-- [ClawHub skill page](https://clawhub.ai/tristanmanchester/fabric-api) <br>
-- [OpenAPI spec](artifact/fabric-api.yaml) <br>
-- [Fabric API skill reference](artifact/references/REFERENCE.md) <br>
-- [Troubleshooting Fabric API requests](artifact/references/TROUBLESHOOTING.md) <br>
+## Use Case:
 
+Developers and external users use this skill to read or write content in a user's Fabric workspace through the Fabric HTTP API, including creating, searching, and managing notes, folders, bookmarks, files, and tags.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Fabric HTTP API through Node or Python helper scripts and print JSON or text response bodies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make lasting changes to a Fabric workspace, including delete and recover actions exposed by the API.
+
+Mitigation: Require explicit review before delete, recover, space, or bulk operations, and avoid blind retries on create operations.
+
+Risk: Fabric API keys could be sent to an untrusted endpoint if custom FABRIC_BASE, --base, or --with-key are used carelessly.
+
+Mitigation: Use the default Fabric API endpoint unless the endpoint is trusted, and avoid --with-key for absolute URLs.
+
+Risk: Invalid payloads can produce failed requests or misleading troubleshooting loops.
+
+Mitigation: Follow the bundled OpenAPI spec and schema notes, starting with minimal required fields before adding optional fields such as tags or comments.
+
+## Reference(s):
+
+- [Fabric homepage](https://fabric.so)
+- [Fabric API OpenAPI spec](fabric-api.yaml)
+- [Fabric API skill reference](references/REFERENCE.md)
+- [Troubleshooting Fabric API requests](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FABRIC_API_KEY and a supported runtime such as Node.js or Python; helper commands print response bodies and error bodies.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

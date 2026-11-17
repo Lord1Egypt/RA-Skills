@@ -1,46 +1,65 @@
-## Description: <br>
-Checks whether a brand's claimed international presence is supported by evidence across websites, sales channels, marketplace records, media coverage, WHOIS data, trademark chronology, and seller location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks public brand signals across websites, sales channels, marketplaces, media exposure, WHOIS, trademark timing, and seller location to classify whether a brand appears internationally established, suspicious, or falsely international.
 
-## Publisher: <br>
-[tompchen](https://clawhub.ai/user/tompchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tompchen](https://clawhub.ai/user/tompchen)
 
-## Use Case: <br>
-Developers, analysts, and brand-review teams use this skill to produce an investigative assessment of whether a brand appears to be a genuine international brand, suspicious brand, or fake international brand. Its conclusions should guide follow-up research rather than serve as final proof. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand names and research topics may be sent to third-party search and marketplace services during verification. <br>
-Mitigation: Use non-sensitive inputs where possible, review configured services before execution, and avoid submitting confidential brand investigations unless the data sharing is approved. <br>
-Risk: The skill may produce confident authenticity or brand-fraud conclusions from hardcoded examples, placeholder checks, or incomplete external evidence. <br>
-Mitigation: Treat verdicts as investigative leads and manually verify negative or high-confidence conclusions with authoritative sources before acting on them. <br>
-Risk: The skill can depend on API keys or other sensitive credentials for external search services. <br>
-Mitigation: Provide credentials through environment variables or a managed secret store, rotate them regularly, and do not embed secrets in skill files or prompts. <br>
+## Use Case:
 
+Developers and agents use this skill to investigate brand authenticity claims and generate leads for follow-up review before purchasing, legal, or reputational decisions. It is most useful for checking supplement or consumer brands that claim overseas origin or mature international presence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tompchen/fake-international-brand-detector) <br>
-- [API and data source list](artifact/reference/apis.md) <br>
-- [Quality standards](artifact/reference/quality-standards.md) <br>
-- [Brand examples](artifact/reference/brand-examples.json) <br>
-- [Known international brands](artifact/reference/known_international_brands.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, JSON, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include brand verdicts, confidence scores, evidence summaries, and recommendations for manual follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Brand names may be sent to public websites and Tavily during checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use sensitive unreleased brand names, and run the skill only when external lookups are acceptable.
+
+Risk: The skill can produce overconfident authenticity verdicts from hard-coded or weak evidence.
+
+Mitigation: Treat verdicts as investigative leads and require human review before purchasing, legal, or reputational decisions.
+
+Risk: Unsafe input handling can make arbitrary URL-like brand strings risky.
+
+Mitigation: Pass plain brand names only and avoid arbitrary URL-like strings as inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tompchen/skills/fake-international-brand-detector)
+- [Publisher profile](https://clawhub.ai/user/tompchen)
+- [API and data source list](artifact/reference/apis.md)
+- [Content quality standards](artifact/reference/quality-standards.md)
+- [Known international brands database](artifact/reference/known_international_brands.json)
+- [Brand examples](artifact/reference/brand-examples.json)
+- [Wayback Machine](https://web.archive.org/)
+- [Tavily Search](https://tavily.com/search)
+- [NewsAPI](https://newsapi.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Terminal text with optional JSON or Markdown brand verification reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include brand name, timestamp, verification findings, scores, verdict, confidence, and recommendation when supported by the selected script.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

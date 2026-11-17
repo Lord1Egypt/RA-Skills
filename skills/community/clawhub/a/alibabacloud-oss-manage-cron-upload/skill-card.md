@@ -1,49 +1,62 @@
-## Description: <br>
-Alibaba Cloud OSS scheduled local-folder sync skill using aliyun CLI, including integrated ossutil commands for incremental upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, validate, and execute recurring local-folder uploads to Alibaba Cloud OSS using aliyun CLI integrated ossutil commands, cron or Task Scheduler configuration, and least-privilege RAM guidance.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and operators use this skill to validate prerequisites, run Alibaba Cloud OSS incremental upload commands, and configure local cron or Task Scheduler jobs for recurring local-folder backups to OSS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can configure recurring uploads from a local path to Alibaba Cloud OSS. <br>
-Mitigation: Review the exact local source path, OSS bucket, prefix, schedule, log path, and generated script before installation or execution. <br>
-Risk: The workflow requires Alibaba Cloud credentials and cloud storage permissions. <br>
-Mitigation: Use a dedicated least-privilege RAM identity, keep credential setup outside the agent session, and avoid printing or entering secrets in chat or commands. <br>
-Risk: Bucket creation and test-object cleanup can require broader OSS permissions such as PutBucket or DeleteObject. <br>
-Mitigation: Grant PutBucket only when bucket creation is confirmed, and grant or use DeleteObject only when explicit cleanup is requested. <br>
-Risk: The security scan flagged under-scoped test-file and credential-setup guidance. <br>
-Mitigation: Do not allow substitute test folders, test uploads, or credential setup steps unless the user explicitly requests and reviews them. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to configure recurring incremental uploads from a local folder to an Alibaba Cloud OSS bucket and verify CLI credentials, bucket prerequisites, upload commands, scheduler setup, and cleanup boundaries.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/sdk-team/alibabacloud-oss-manage-cron-upload) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies for OSS Scheduled Local Sync](references/ram-policies.md) <br>
-- [Related APIs and CLI Commands](references/related-apis.md) <br>
-- [Verification Method for OSS Scheduled Local Sync](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with inline bash, cron, and Windows scheduler command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires confirmed OSS region, bucket, prefix, local source path, schedule, maximum age window, operating system, and bucket existence status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can guide cloud and local mutations, including bucket creation, object upload, optional object deletion, and scheduler persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with a least-privilege Alibaba Cloud profile, review generated OSS and scheduler commands before applying them, and require explicit user confirmation for bucket creation or cleanup.
+
+Risk: CLI installation and plugin setup may fetch or enable tooling outside the skill package.
+
+Mitigation: Verify downloaded CLI binaries through trusted Alibaba Cloud distribution channels and avoid broad global auto-plugin installation unless operationally required.
+
+Risk: Placeholder local data could be created or uploaded if the real source path is missing.
+
+Mitigation: Confirm the real absolute local source path exists before upload testing and do not create or upload substitute data unless the user explicitly approves that test scope.
+
+## Reference(s):
+
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md)
+- [RAM Policies for OSS Scheduled Local Sync](references/ram-policies.md)
+- [Related APIs and CLI Commands](references/related-apis.md)
+- [Verification Method for OSS Scheduled Local Sync](references/verification-method.md)
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-oss-manage-cron-upload)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Alibaba Cloud OSS and local scheduler changes; live commands require validated user parameters and an existing least-privilege Alibaba Cloud CLI profile.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

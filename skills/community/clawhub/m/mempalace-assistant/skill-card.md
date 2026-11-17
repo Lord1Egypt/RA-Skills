@@ -1,38 +1,54 @@
-## Description: <br>
-MemPalace记忆系统助手 - 基于老四的AI记忆系统。提供结构化记忆存储、快速检索、记忆组织等功能。适用于需要持久化知识、跨会话记忆、语义搜索等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemPalace记忆系统助手 - 基于老四的AI记忆系统。提供结构化记忆存储、快速检索、记忆组织等功能。适用于需要持久化知识、跨会话记忆、语义搜索等场景。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agent users use this skill to store, search, list, and export persistent memories for cross-session knowledge reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain sensitive or private information if users save it. <br>
-Mitigation: Avoid saving passwords, secrets, regulated data, or private personal details unless the storage location and review, export, and deletion process have been checked. <br>
+## Use Case:
 
+External users and agent developers use this skill to help an AI agent store, retrieve, list, and export structured memories across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/mempalace-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local mempalace command-line workflow; no external service requirements are declared in the artifact metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent memory may expose secrets, credentials, or sensitive personal data if users store them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive data unless the storage location and later list/export access are understood.
+
+Risk: Retrieved memories may be outdated, irrelevant, or unintended for the current task.
+
+Mitigation: Review search, list, and export results before relying on them in an agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/mempalace-assistant)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May interact with local persistent memory storage through explicit mempalace commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

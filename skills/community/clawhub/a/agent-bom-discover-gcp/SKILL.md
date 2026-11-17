@@ -6,7 +6,7 @@ description: >-
   giving agent-bom long-lived GCP credentials. Use when a user asks to
   inventory Vertex AI, Cloud Run, Cloud Functions, GKE, or agentic GCP
   infrastructure as canonical inventory.
-version: 0.91.0
+version: 0.115.3
 license: Apache-2.0
 compatibility: >-
   Requires Python 3.11+, agent-bom installed from this repository or PyPI, and
@@ -14,8 +14,8 @@ compatibility: >-
   a scoped service account.
 metadata:
   author: msaad00
-  homepage: https://github.com/msaad00/agent-bom
-  source: https://github.com/msaad00/agent-bom
+  homepage: https://github.com/koda-ai-studio/agent-bom
+  source: https://github.com/koda-ai-studio/agent-bom
   pypi: https://pypi.org/project/agent-bom/
   openclaw:
     requires:
@@ -31,8 +31,8 @@ metadata:
     optional_bins:
       - gcloud
     emoji: "search"
-    homepage: https://github.com/msaad00/agent-bom
-    source: https://github.com/msaad00/agent-bom
+    homepage: https://github.com/koda-ai-studio/agent-bom
+    source: https://github.com/koda-ai-studio/agent-bom
     license: Apache-2.0
     os:
       - darwin
@@ -100,7 +100,7 @@ python examples/operator_pull/gcp_inventory_adapter.py \
 Scan only when the operator asks for findings:
 
 ```bash
-agent-bom agents --inventory gcp-inventory.json --format json --output agent-bom-gcp-findings.json
+agent-bom scan --inventory gcp-inventory.json --format json --output agent-bom-gcp-findings.json
 ```
 
 ## Evidence Contract

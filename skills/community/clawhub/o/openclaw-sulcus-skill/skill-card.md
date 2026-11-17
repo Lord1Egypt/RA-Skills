@@ -1,39 +1,55 @@
-## Description: <br>
-Equip your agent with Sulcus: thermodynamic memory with a knowledge graph, SIU quality/classification/entity extraction and adaptive recall, guardrails, session-scoped memory, and temporal supersession. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Sulcus Skill equips an agent with Sulcus memory, knowledge-graph recall, session memory, temporal supersession, and optional guardrails.
 
-## Publisher: <br>
-[mcdoolz](https://clawhub.ai/user/mcdoolz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcdoolz](https://clawhub.ai/user/mcdoolz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent or session-scoped memory, automatic recall, knowledge-graph context, and optional memory-based guardrails to OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and recall sensitive memory locally or through a configured Sulcus server. <br>
-Mitigation: Use local-only mode for sensitive work, enable cloud mode only with a trusted server and API key, and review memory inspection, export, deletion, and scoping controls before enabling auto-recall, auto-capture, history import, cross-agent tools, or guardrails. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent local or cloud-backed memory, automatic recall, session scratch-pad memory, and optional guardrails to an OpenClaw agent.
 
-## Reference(s): <br>
-- [Openclaw Sulcus Skill on ClawHub](https://clawhub.ai/mcdoolz/openclaw-sulcus-skill) <br>
-- [Sulcus](https://sulcus.ca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with configuration examples and tool usage descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inject structured XML memory context into agent prompts when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Conversation-derived memories, metadata, search queries, session events, and embedding requests can be persisted remotely when cloud mode is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local-only mode for sensitive work, and use cloud mode only with a trusted Sulcus server, scoped API key, and appropriate namespace.
+
+Risk: Automatic capture can store conversation content beyond the immediate session when enabled.
+
+Mitigation: Keep autoCapture and captureFromAssistant disabled unless persistent capture is explicitly intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcdoolz/skills/openclaw-sulcus-skill)
+- [Sulcus](https://sulcus.ca)
+- [Sulcus API endpoint](https://api.sulcus.ca)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of an OpenClaw plugin that can store and recall memory locally or through a configured Sulcus server.]
+
+## Skill Version(s):
+
+4.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

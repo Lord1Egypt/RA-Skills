@@ -1,51 +1,68 @@
-## Description: <br>
-辉火套件ERP lets an agent help users operate the 火一五/辉火云 Odoo ERP system for to-dos, projects, timesheets, CRM, activities, calendar events, knowledge articles, documents, sales, purchasing, inventory, and daily or weekly briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages work in the huo15/huihuo Odoo system through command scripts for tasks, projects, timesheets, CRM, activities, calendars, knowledge, documents, sales, purchasing, inventory, accounting, HR, briefings, and reminders.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Employees and business operators use this skill to ask an agent to read, create, update, and summarize work records in a company Odoo ERP account. It is intended for operational workflows such as task tracking, project work, sales and purchase order handling, inventory checks, meetings, documents, and CRM follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores live Odoo credentials and can operate a company ERP account. <br>
-Mitigation: Use a revocable Odoo API key with the least privileges needed, keep ~/.huo15/tools.md out of backups and git, and install only when the publisher is trusted. <br>
-Risk: The skill exposes broad business-changing actions such as order confirmation, bills, invoices, cancellations, stock validations, and task updates. <br>
-Mitigation: Manually verify record IDs and business details before allowing the agent to run commands that create, confirm, cancel, validate, or otherwise modify ERP records. <br>
-Risk: Server security review marked the release suspicious because confirmation and scope checks are not consistent across sensitive operations. <br>
-Mitigation: Require explicit user confirmation for destructive, financial, inventory, or bulk state-changing actions before execution. <br>
+## Use Case:
 
+Employees and operations teams use this skill to work with the company Odoo system from an agent conversation, including personal work management, CRM follow-up, sales, purchasing, inventory, accounting, HR, knowledge, documents, reminders, and daily or weekly briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-huihuo-suite) <br>
-- [Command reference](references/commands.md) <br>
-- [Odoo activity and calendar API reference](references/odoo-activity-calendar-api.md) <br>
-- [Odoo advanced calendar API reference](references/odoo-calendar-advanced-api.md) <br>
-- [Odoo CRM API reference](references/odoo-crm-api.md) <br>
-- [Odoo knowledge and documents API reference](references/odoo-knowledge-documents-api.md) <br>
-- [Odoo project API reference](references/odoo-project-api.md) <br>
-- [Odoo sales, purchase, and stock API reference](references/odoo-sales-purchase-stock-api.md) <br>
-- [Odoo timesheet API reference](references/odoo-timesheet-api.md) <br>
-- [Odoo to-do API reference](references/odoo-todo-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Text] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python scripts and saved or environment-provided Odoo credentials; several commands can change live ERP records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can perform major Odoo business changes without enforceable confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Odoo account and require human confirmation outside the skill before posting payments, posting or canceling invoices, confirming sales or purchase orders, validating stock, approving HR items, deleting records, changing another person's RSVP, or sharing tokenized document links.
+
+Risk: Odoo credentials or API keys can grant access to sensitive company data and actions.
+
+Mitigation: Prefer a revocable Odoo API key, avoid configuring an http:// server, and review the configuration before installing or running the skill.
+
+Risk: Heartbeat or cron polling can repeatedly inspect operational data.
+
+Mitigation: Enable polling only when users understand what data will be checked and how often.
+
+## Reference(s):
+
+- [Command reference](artifact/references/commands.md)
+- [Odoo accounting API reference](artifact/references/odoo-accounting-api.md)
+- [Odoo activity and calendar API reference](artifact/references/odoo-activity-calendar-api.md)
+- [Odoo advanced calendar API reference](artifact/references/odoo-calendar-advanced-api.md)
+- [Odoo CRM API reference](artifact/references/odoo-crm-api.md)
+- [Odoo HR API reference](artifact/references/odoo-hr-api.md)
+- [Odoo knowledge and documents API reference](artifact/references/odoo-knowledge-documents-api.md)
+- [Odoo project API reference](artifact/references/odoo-project-api.md)
+- [Odoo sales, purchase, and stock API reference](artifact/references/odoo-sales-purchase-stock-api.md)
+- [Odoo testing API reference](artifact/references/odoo-testing-api.md)
+- [Odoo timesheet API reference](artifact/references/odoo-timesheet-api.md)
+- [Odoo todo API reference](artifact/references/odoo-todo-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown or terminal text with inline shell commands; many scripts also support JSON output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reflect or modify live Odoo business records depending on the invoked command.]
+
+## Skill Version(s):
+
+1.8.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

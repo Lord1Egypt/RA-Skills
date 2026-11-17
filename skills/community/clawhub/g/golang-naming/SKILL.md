@@ -1,20 +1,22 @@
 ---
 name: golang-naming
 description: "Go (Golang) naming conventions — covers packages, constructors, structs, interfaces, constants, enums, errors, booleans, receivers, getters/setters, functional options, acronyms, test functions, and subtest names. Use this skill when writing new Go code, reviewing or refactoring, choosing between naming alternatives (New vs NewTypeName, isConnected vs connected, ErrNotFound vs NotFoundError, StatusReady vs StatusUnknown at iota 0), debating Go package names (utils/helpers anti-patterns), or asking about Go naming best practices. Also trigger when the user mentions MixedCaps vs snake_case, ALL_CAPS constants, Get-prefix on getters, or error string casing. Do NOT use for general Go implementation questions that don't involve naming decisions."
-user-invocable: false
+user-invocable: true
 license: MIT
-compatibility: Designed for Claude Code or similar AI coding agents, and for projects using Golang.
+compatibility: Designed for Claude Code, Codex or similar harness, and for projects using Golang.
 metadata:
   author: samber
-  version: "1.1.1"
+  version: "1.2.0"
   openclaw:
-    emoji: "🏷️"
+    emoji: "🏷"
     homepage: https://github.com/samber/cc-skills-golang
     requires:
       bins:
         - go
     install: []
 allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
+paths:
+  - "**/*.go"
 ---
 
 > **Community default.** A company skill that explicitly supersedes `samber/cc-skills-golang@golang-naming` skill takes precedence.
@@ -33,7 +35,7 @@ To ignore a rule, just add a comment to the code.
 
 | Element | Convention | Example |
 | --- | --- | --- |
-| Package | lowercase, single word | `json`, `http`, `tabwriter` |
+| Package | lowercase, single word, \_test suffix OK for test files | `json`, `http`, `tabwriter`, `http_test` |
 | File | lowercase, underscores OK | `user_handler.go` |
 | Exported name | UpperCamelCase | `ReadAll`, `HTTPClient` |
 | Unexported | lowerCamelCase | `parseToken`, `userCount` |
@@ -152,12 +154,16 @@ For complete rules, examples, and rationale, see:
 | Unnecessary import aliases | Aliases add cognitive load. Only alias on collision — `mrand "math/rand"` |
 | Inconsistent concept names | Using `user`/`account`/`person` for the same concept forces readers to track synonyms — pick one name |
 
+Applying these fixes means renaming existing identifiers — → See `samber/cc-skills-golang@golang-gopls` skill to do it safely: its rename updates every call site across the workspace and refuses a rename that would break interface satisfaction, which a grep/sed or manual Edit-based rename silently misses.
+
 ## Enforce with Linters
 
-Many naming convention issues are caught automatically by linters: `revive`, `predeclared`, `misspell`, `errname`. See `samber/cc-skills-golang@golang-linter` skill for configuration and usage.
+Many naming convention issues are caught automatically by linters: `revive`, `predeclared`, `misspell`, `errname`. See `samber/cc-skills-golang@golang-lint` skill for configuration and usage.
 
 ## Cross-References
 
 - → See `samber/cc-skills-golang@golang-code-style` skill for broader formatting and style decisions
 - → See `samber/cc-skills-golang@golang-structs-interfaces` skill for interface naming depth and receiver design
-- → See `samber/cc-skills-golang@golang-linter` skill for automated enforcement (revive, predeclared, misspell, errname)
+- → See `samber/cc-skills-golang@golang-lint` skill for automated enforcement (revive, predeclared, misspell, errname)
+- → See `samber/cc-skills-golang@golang-gopls` skill for safe rename when applying a naming fix
+- → See `samber/cc-skills-golang@golang-refactoring` skill for how to apply a rename safely at scale (gopls Rename/Inline, blast-radius mapping, staged PR workflow) once you've decided what to rename identifiers to

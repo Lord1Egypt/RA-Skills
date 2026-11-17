@@ -1,39 +1,53 @@
-## Description: <br>
-Helps users solve problems, troubleshoot issues, compare options, brainstorm, prioritize tasks, and use structured decision-making frameworks with local-only storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A structured problem-solving assistant that helps users break down technical, personal, business, and creative problems with frameworks such as 5 Whys, decision matrix, SWOT, Eisenhower prioritization, brainstorming, and step-by-step action plans.
 
-## Publisher: <br>
-[mkpareek0315](https://clawhub.ai/user/mkpareek0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkpareek0315](https://clawhub.ai/user/mkpareek0315)
 
-## Use Case: <br>
-External users use this skill to break down personal, business, creative, and technical problems into clear next steps using frameworks such as 5 Whys, decision matrices, SWOT, Eisenhower prioritization, brainstorming, and action planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Problem descriptions, solutions, and progress notes may be retained locally under ~/.openclaw/problem-solver/. <br>
-Mitigation: Avoid entering passwords, secrets, or highly confidential personal, business, medical, or legal details, and delete the local folder if retained history is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mkpareek0315/problem-solver-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/mkpareek0315) <br>
-- [Publisher social profile](https://x.com/Mkpareek19_) <br>
+## Use Case:
 
+External users and developers use this skill to structure open-ended problems, compare options, identify root causes, prioritize tasks, and turn decisions into action plans. It also supports local problem history and saved solutions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured lists, tables, prompts, and occasional inline shell or JSON setup snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local problem history, saved solutions, and usage statistics under ~/.openclaw/problem-solver/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation phrases can cause the skill to engage during many everyday problem-solving conversations.
+
+Mitigation: Review when the skill activates and disable it for conversations where structured problem-solving is not desired.
+
+Risk: Problem history and saved solutions may contain sensitive personal, business, or customer information stored locally in plaintext.
+
+Mitigation: Avoid entering secrets or highly sensitive data, and regularly review, clear, or disable the local history files under ~/.openclaw/problem-solver.
+
+## Reference(s):
+
+- [Problem Solver Skill Page](https://clawhub.ai/mkpareek0315/skills/problem-solver-ai)
+- [Publisher Profile](https://clawhub.ai/user/mkpareek0315)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown with structured prompts, tables, checklists, JSON examples, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local JSON files under ~/.openclaw/problem-solver for settings, history, and saved solutions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

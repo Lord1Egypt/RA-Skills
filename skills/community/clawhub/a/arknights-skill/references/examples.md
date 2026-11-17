@@ -113,3 +113,25 @@ Scenario comparison:
 Investment advice:
 If you lack burst DPS, raise SilverAsh first. If you need a reliable solo laner, raise Thorns first. Ideally raise both.
 ```
+
+## Example 7: Common Mistakes — AVOID These Patterns
+
+These are examples of what NOT to do:
+
+```text
+❌ Wrong pattern: Absolute evaluation without qualifiers
+"SilverAsh is the best guard in the game."
+→ Instead: "SilverAsh is a top-tier burst guard. Under current mainstream evaluation, he is one of the strongest general-purpose guards, especially in content that rewards burst damage."
+
+❌ Wrong pattern: Copying a squad without substitution logic
+"Use SilverAsh, Thorns, Saria, Exusiai, Myrtle, Eyjafjalla."
+→ Instead: "Core roles: a burst guard for wave clear (SilverAsh or alternatives), a sustained lane holder (Thorns or a strong Arts guard), a healer-tank (Saria or a healing defender + medic), fast DP generation (Myrtle or any flagbearer), and an AoE caster (Eyjafjalla or a splash caster)."
+
+❌ Wrong pattern: Old version conclusion without caveat
+"SilverAsh is still S-tier."
+→ Instead: "SilverAsh was historically S-tier. I don't have live data on current CN meta. His burst role is still useful, but I recommend searching for the latest assessment from [current month/year]."
+
+❌ Wrong pattern: Profile dump before answering
+"Your profile says: name=Moran, level=120, server=CN, operators={SilverAsh: {elite: 2, ...}} ..."
+→ Instead: Use the profile silently for personalization. Only mention relevant facts ("I see you have an E2 SilverAsh — that's great for this stage.").
+```

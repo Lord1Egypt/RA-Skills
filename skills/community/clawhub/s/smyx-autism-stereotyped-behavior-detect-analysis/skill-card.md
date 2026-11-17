@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes fixed-camera child behavior videos to identify repetitive stereotyped behaviors such as spinning, hand flapping, and body rocking, then produces objective behavior statistics and reports for therapists and guardians. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes children's behavior videos to identify and summarize repetitive behaviors such as spinning, hand flapping, and body rocking.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External therapists, special-education staff, and guardians use this skill to analyze child behavior videos for event-level stereotyped behavior counts, duration summaries, trends, and report links. Results are descriptive behavior observations for professional review, not autism diagnosis or treatment prescriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive child behavior videos or video URLs may be sent to an external service. <br>
-Mitigation: Use only with guardian consent, avoid unnecessary sensitive footage, and review the publisher's retention, deletion, and privacy controls before deployment. <br>
-Risk: Analysis results may be linked to an automatically managed account and local identity or token data. <br>
-Mitigation: Run the skill only in an approved environment, restrict local file access, and review token storage and cleanup controls before use. <br>
-Risk: Automated behavior detection may be incorrect or misleading in complex scenes. <br>
-Mitigation: Require qualified professional review of outputs and do not use the skill as a substitute for clinical diagnosis, standardized assessment, or treatment planning. <br>
+## Use Case:
 
+Rehabilitation professionals and parents can use the skill to record observed repetitive behaviors, review their frequency and duration over time, and support care planning. It can also retrieve historical reports; its results are not a diagnosis or treatment plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-autism-stereotyped-behavior-detect-analysis) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown or JSON analysis report with report links; optional saved output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs visual behavior statistics and descriptive guidance; does not provide diagnosis or treatment prescriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Children's footage is processed in the cloud during ordinary use, and the no-analysis option is ineffective; account credential and shared identity handling also create privacy risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Wait for fixes to the no-analysis option and credential handling before using children's footage. Confirm the provider's retention policy, obtain guardian consent, and use a separate workspace for each user.
+
+Risk: Observed behavior counts could be mistaken for an autism diagnosis or a prescribed intervention.
+
+Mitigation: Treat results as observational support only; have a qualified clinician or rehabilitation professional review them and determine any diagnosis or intervention.
+
+## Reference(s):
+
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured behavior reports and Markdown summaries with event counts, durations, and report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Visual observations for professional and caregiver review; not a diagnosis or treatment plan.]
+
+## Skill Version(s):
+
+1.0.14 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

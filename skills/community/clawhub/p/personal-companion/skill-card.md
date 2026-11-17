@@ -1,41 +1,58 @@
-## Description: <br>
-Creates a personalized virtual companion through multi-turn setup and provides companion-style emotional conversation while avoiding sensitive personal information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a personalized Chinese-language virtual companion through guided role setup, then provides role-consistent emotional companionship and supportive conversation.
 
-## Publisher: <br>
-[gentleyo](https://clawhub.ai/user/gentleyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gentleyo](https://clawhub.ai/user/gentleyo)
 
-## Use Case: <br>
-External users use this skill when they want a personalized virtual friend or companion for supportive conversation, loneliness, low mood, or casual emotional check-ins. It is supportive chat, not medical care or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat companion-style emotional support as medical care or crisis support. <br>
-Mitigation: The skill should frame responses as supportive chat, avoid diagnosis or medication advice, and direct crisis situations to professional or local emergency resources. <br>
-Risk: Users may disclose passwords, payment details, identity documents, private photos, or other sensitive information during intimate conversation. <br>
-Mitigation: The skill should decline to process sensitive information, avoid repeating it, and gently redirect the conversation. <br>
-Risk: The included crisis hotline may not fit every user's region. <br>
-Mitigation: Users outside the hotline's region should be directed to local emergency or crisis resources. <br>
+## Use Case:
 
+External users can use this agent skill for Chinese-language emotional companionship, guided virtual companion role creation, supportive conversation, and light session management. It is not a substitute for professional medical, mental health, legal, financial, or crisis support.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may rely on the companion role during serious distress or self-harm risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local emergency services or an appropriate local crisis line for serious distress; the embedded hotline is China-specific.
+
+Risk: The skill has a broad emotional-support trigger and may enter a companion role when users express loneliness or low mood.
+
+Mitigation: Install only when this virtual-companion behavior is desired, and review deployment policy for emotional-support interactions.
+
+Risk: Users may share sensitive personal information during companion-style conversation.
+
+Mitigation: The artifact instructs the agent to refuse passwords, payment information, identity numbers, exact home addresses, credentials, and private files without repeating the sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gentleyo/skills/personal-companion)
+- [Publisher profile](https://clawhub.ai/user/gentleyo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language companion persona setup, role-consistent dialogue, sensitive-information refusal, and external-service guidance for avatar, voice, or video requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

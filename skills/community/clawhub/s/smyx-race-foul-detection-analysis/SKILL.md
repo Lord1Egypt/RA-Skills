@@ -1,7 +1,7 @@
 ---
 name: "smyx-race-foul-detection-analysis"
 description: "Triggers when a user provides a pet racing track start/finish video URL or file for analysis; uses HD cameras at the starting line and finish line to analyze race video in real time, detecting each pet's (greyhounds, racehorses, etc.) start time, finish order, and lane assignment, automatically determining false starts (start before the signal) or lane crossing (deviating from own lane into an adjacent lane) fouls and outputting judgment results. Assists referee decisions and improves race fairness. Application: pet racing (greyhound, horse, obstacle course), pet sports events, professional track training. Does NOT provide race advice — only returns objective video-based judgment results. | 当用户提供宠物赛道起点/终点视频URL或文件时，触发本技能进行竞赛犯规检测分析；通过架设在赛道起点和终点线的高清摄像头，实时分析比赛视频，检测每只宠物（赛犬、赛马等）的起跑时间、通过终点线的顺序以及所在道次，自动判定是否存在抢跑（起跑时间早于发令信号）或窜道（偏离自身赛道进入邻道）等犯规行为，并输出判定结果。辅助裁判决策，提高赛事公平性。应用场景：宠物竞速比赛（灵缇赛跑、赛马、宠物障碍赛）、宠物运动会、专业赛道训练。仅输出基于视频的客观判定结果，不提供赛事建议。"
-version: "1.0.3"
+version: "1.0.22"
 license: "MIT-0"
 ---
 
@@ -154,7 +154,7 @@ python -m scripts.smyx_race_foul_detection_analysis --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅作为裁判辅助参考，最终判罚以现场主裁判决为准 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
-| 📁 格式支持 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown 表格格式输出，包含"报告名称"、"宠物类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`宠物竞赛犯规检测报告-{记录id}`形式拼接, "点击查看"列使用 `[🔗 查看报告](reportImageUrl)` 格式的超链接，用户点击即可直接跳转到对应的完整报告页面 |
+| 📁 格式支持 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown 表格格式输出，包含"报告名称"、"宠物类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`宠物竞赛犯规检测报告-{记录id}`形式拼接, "点击查看"列使用 `[🔗 查看报告]()` 格式的超链接，用户点击即可直接跳转到对应的完整报告页面 |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

@@ -1,45 +1,65 @@
-## Description: <br>
-Memoria gives OpenClaw a durable external memory slot for storing, retrieving, correcting, forgetting, snapshotting, rolling back, branching, and merging cross-session memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Memoria as OpenClaw's durable memory slot for explicit cross-session recall, storage, correction, deletion, snapshots, rollback, branching, and merge workflows.
 
-## Publisher: <br>
-[randomradio](https://clawhub.ai/user/randomradio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[randomradio](https://clawhub.ai/user/randomradio)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill when they want an agent to retain durable user or project memory across sessions, retrieve relevant prior context, and safely repair or remove stored memories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-term memory can retain sensitive, obsolete, or unwanted user and project information. <br>
-Mitigation: Store only durable information, avoid secrets unless explicitly required, and periodically review, correct, forget, purge, or roll back saved memories. <br>
-Risk: Setup can involve API keys and optional commands that fetch installer or source material. <br>
-Mitigation: Keep API keys out of shared logs and screenshots, and inspect or trust the installer or source before running optional local setup commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure OpenClaw to use Memoria as a durable external memory system for project and user context. It guides explicit memory retrieval, storage, correction, deletion, recovery, branching, and maintenance workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/randomradio/thememoria) <br>
-- [Memoria homepage](https://github.com/matrixorigin/Memoria) <br>
-- [OpenClaw Setup](references/setup.md) <br>
-- [Tool Surface](references/tool-surface.md) <br>
-- [Memory Slot Operations](references/operations.md) <br>
-- [Usage Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are agent-facing operational guidance for choosing and using Memoria memory tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The local embedded setup documents a curl-to-bash installer, which can execute remote code without independent verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the cloud plugin install path or use a pinned, signed, and checksum-verified release before running any installer.
+
+Risk: Plugin and source install examples are not pinned to immutable versions or commits.
+
+Mitigation: Install a pinned package version or clone and inspect a specific trusted commit before linking the plugin.
+
+Risk: The skill uses API and embedding keys during setup.
+
+Mitigation: Treat Memoria API keys and embedding keys as secrets, avoid storing them in durable memory, and rotate them if exposed.
+
+Risk: Durable memory can preserve sensitive user or project context across sessions.
+
+Mitigation: Store only intentional durable facts, avoid secrets unless explicitly required, and use correction, deletion, snapshots, rollback, and governance tools for maintenance.
+
+## Reference(s):
+
+- [Memoria homepage](https://github.com/matrixorigin/Memoria)
+- [OpenClaw Setup](references/setup.md)
+- [Tool Surface](references/tool-surface.md)
+- [Memory Slot Operations](references/operations.md)
+- [Usage Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline command examples and tool-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for choosing and using Memoria memory tools; it may also propose OpenClaw installation and setup commands.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

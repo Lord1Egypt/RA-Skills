@@ -1,0 +1,12 @@
+from helpers import *
+
+def handle(s,r):
+ require(r.get('action')=='create','Action: create');title=text(r['title'],500);slides=objects(r,'slides',50);require(slides,'At least one slide required');fragments=[];outline=['# '+title]
+ for i,x in enumerate(slides,1):
+  heading=text(x['title'],300);bullets=strings(x.get('bullets',[]),8);require(all(len(b)<=700 for b in bullets),'Slide bullet too long');notes=text(x.get('notes',''),6000,True)
+  fragments.append('<section id="slide-'+str(i)+'" class="slide"><small>'+str(i)+' / '+str(len(slides))+'</small><h2>'+html.escape(heading)+'</h2><ul>'+''.join('<li>'+html.escape(b)+'</li>' for b in bullets)+'</ul>'+(('<details><summary>Speaker notes / 演讲备注</summary><p>'+html.escape(notes)+'</p></details>') if notes else '')+'<nav>'+(' <a href="#slide-'+str(i-1)+'">Previous / 上一页</a>' if i>1 else '')+(' <a href="#slide-'+str(i+1)+'">Next / 下一页</a>' if i<len(slides) else '')+'</nav></section>')
+  outline+=['\n## '+str(i)+'. '+heading]+['- '+b for b in bullets]+(['\nNotes: '+notes] if notes else [])
+ language=r.get('language','zh-CN');require(language in ('zh-CN','en'),'Language must be zh-CN or en')
+ style='body{margin:0;background:#edf5ff;color:#15263f;font:clamp(16px,2.1vw,30px)/1.5 system-ui}.slide{box-sizing:border-box;max-width:1200px;min-height:95vh;margin:2vh auto;background:white;padding:6vw;border:1px solid #dbe7f5;border-radius:20px;scroll-margin-top:12px}h2{font-size:1.7em;color:#0068ce;margin:.6em 0}li{margin:.5em 0}small,summary,nav{font-size:.65em}a{color:#0068ce}nav{margin-top:2em}p{white-space:pre-wrap}li,p{overflow-wrap:anywhere}@media print{@page{size:landscape;margin:12mm}body{background:white;font-size:20pt}.slide{border:0;border-radius:0;min-height:0;height:170mm;padding:10mm;margin:0;break-after:page;overflow:hidden}.slide:last-child{break-after:auto}details,nav{display:none}}'
+ content='<!doctype html><html lang="'+language+'"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+'</title><style>'+style+'</style><main>'+''.join(fragments)+'</main></html>'
+ result=file_report(s,{'title':title,'slides':len(slides),'format':'self-contained HTML','externalResources':False,'note':'Print preview must be checked for page overflow. This output is not a PPTX file.'},'slides.html',content.encode());directory=local(s.root,result['directory'],'dir');write_new(directory/'outline.md','\n'.join(outline).encode());result['files'].append(s.rel(directory/'outline.md'));return result

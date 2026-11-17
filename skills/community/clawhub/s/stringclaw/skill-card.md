@@ -1,42 +1,57 @@
-## Description: <br>
-Make real phone calls via Stringclaw by initiating an outbound voice call that connects the user to a live session with the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make real phone calls via Stringclaw when the user asks to be called or wants to talk by voice.
 
-## Publisher: <br>
-[OscarWoHA](https://clawhub.ai/user/OscarWoHA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oscarwoha](https://clawhub.ai/user/oscarwoha)
 
-## Use Case: <br>
-External users and developers use this skill when a user asks to talk by voice and the agent needs to place an outbound phone call through a configured Stringclaw account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real phone calls through the user's Stringclaw account. <br>
-Mitigation: Install only when phone-call capability is intended, and require confirmation of the action, destination or account, and possible charges before every call. <br>
-Risk: Calls can be triggered too broadly if the agent treats casual voice-related language as final authorization. <br>
-Mitigation: Add an explicit final confirmation step before running the bridge call command. <br>
-Risk: Incorrect gateway or bridge setup can expose call failures or unexpected behavior during use. <br>
-Mitigation: Review the gateway and bridge setup, verify the bridge reports ready, and resolve setup errors before placing a call. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/OscarWoHA/stringclaw) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/OscarWoHA) <br>
+## Use Case:
 
+External users and agents use this skill to initiate an outbound Stringclaw voice call when the user explicitly asks to be called or wants a live voice session.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON success or error examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STRINGCLAW_API_KEY and the stringclaw-bridge binary; successful calls return a JSON call identifier.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.9 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real outbound phone calls and may consume Stringclaw minutes.
+
+Mitigation: Require explicit user confirmation before each call and confirm the account has expected calling permissions and minutes.
+
+Risk: The skill starts a background bridge that uses API and local gateway credentials.
+
+Mitigation: Use scoped, rotatable credentials, avoid elevated privileges, and stop the bridge when finished.
+
+Risk: The bridge executable dependency is not pinned in the skill instructions.
+
+Mitigation: Pin or verify the bridge package before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oscarwoha/skills/stringclaw)
+- [Publisher profile](https://clawhub.ai/user/oscarwoha)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON status examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start a local bridge process and initiate an outbound phone call through Stringclaw.]
+
+## Skill Version(s):
+
+0.0.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

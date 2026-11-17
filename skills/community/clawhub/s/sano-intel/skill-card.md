@@ -1,40 +1,51 @@
-## Description: <br>
-探针资本出品。中国医疗产业情报引擎，覆盖10万+医疗公司、50万+融资事件、109万条专利、全市场临床试验、A/港/美三地行情。查公司/融资/临床试验/专利/赛道热度/二级市场行情。By Probe Capital. Use when user asks about Chinese healthcare/biotech companies, financing events, clinical trials, patents, sector trends, or market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sano Intel is a Probe Capital healthcare intelligence skill for querying Chinese healthcare and biotech companies, financing events, patents, clinical trials, sector trends, and A/HK/US market data.
 
-## Publisher: <br>
-[yanjj-cmd](https://clawhub.ai/user/yanjj-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanjj-cmd](https://clawhub.ai/user/yanjj-cmd)
 
-## Use Case: <br>
-External users and investment, business development, or research analysts use this skill to query Chinese healthcare and biotech company, financing, clinical trial, patent, sector, market, and daily intelligence data through the Sano Intel API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says the skill asks users to send an API token over plain HTTP to a raw IP address. <br>
-Mitigation: Use a scoped and revocable token, avoid storing valuable tokens in shell startup files, prefer an HTTPS endpoint when available, and rotate any token already used over the HTTP endpoint. <br>
+## Use Case:
 
+External analysts, investors, and developers use this skill to ask Chinese-language questions about China's healthcare industry and receive concise summaries from company, financing, patent, clinical trial, sector, market, and daily digest queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanjj-cmd/sano-intel) <br>
-- [API token request form](https://ffmp60ytnq.feishu.cn/share/base/shrcniDTJZknKba0LUeaF5BBuJg) <br>
-- [Sano Intel API base endpoint](http://47.102.196.1:8081) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline curl commands and concise Chinese summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided SANO_TOKEN API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API tokens and user query contents are sent to the Sano Intel service over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive queries and short-lived tokens until an HTTPS endpoint with valid certificate verification is available; avoid storing long-lived tokens in shell startup files.
+
+## Reference(s):
+
+- [Sano Intel skill release](https://clawhub.ai/yanjj-cmd/skills/sano-intel)
+- [Sano API token request](https://ffmp60ytnq.feishu.cn/share/base/shrcniDTJZknKba0LUeaF5BBuJg)
+- [Sano Intel API base](http://47.102.196.1:8081)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise Chinese summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SANO_TOKEN for authenticated API requests and summarizes returned healthcare intelligence for the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

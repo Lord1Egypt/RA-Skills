@@ -1,51 +1,66 @@
-## Description: <br>
-A data-driven health management agent for diet tracking, nutrition analysis, health scoring, supplement tracking, reports, multilingual output, multi-user isolation, timezone-aware records, and optional GitHub backup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Management helps an agent track diet, supplements, sleep, and health trends using a three-dimensional scoring model, multilingual records, and optional GitHub backup.
 
-## Publisher: <br>
-[longerian](https://clawhub.ai/user/longerian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longerian](https://clawhub.ai/user/longerian)
 
-## Use Case: <br>
-External users use this skill to record meals, supplements, sleep, exercise, and body metrics, then receive health scoring, food defense-system analysis, and daily, weekly, monthly, or yearly reports. Users who opt in can back up health records to a GitHub repository they control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private health records in local OpenClaw memory. <br>
-Mitigation: Use it only in environments where storing personal health data locally is acceptable, and periodically review or delete stored records as needed. <br>
-Risk: Optional GitHub backup can push health data using broad local Git access. <br>
-Mitigation: Keep backup disabled unless scripts and destination are reviewed, use a private dedicated repository, and prefer dedicated credentials. <br>
-Risk: Supplement dosing and nutrition guidance may be mistaken for medical advice. <br>
-Mitigation: Treat outputs as tracking and informational support, and consult qualified medical professionals for clinical decisions. <br>
+## Use Case:
 
+External users and agents use this skill to record meals, supplements, sleep, and health goals, then generate scoring feedback, daily logs, weekly or monthly analyses, and personalized improvement guidance. It can optionally back up locally stored health records to a user-provided GitHub repository after explicit configuration.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/longerian/health-score-pro) <br>
-- [Permissions declaration](PERMISSIONS.md) <br>
-- [Usage examples](references/usage-examples.md) <br>
-- [Analysis guide](references/analysis-guide.md) <br>
-- [Health principles](references/principles.md) <br>
-- [Food database](references/food-database.md) <br>
-- [Chinese food database](references/chinese-food-database.md) <br>
-- [Supplement database](references/supplement-database.md) <br>
-- [OpenClaw Security Model](https://docs.openclaw.dev/security) <br>
-- [ClawHub Permission Manifest RFC](https://github.com/openclaw/openclaw/issues/10890) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses, Markdown record files, configuration prompts, and optional shell-script backup actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should use the user's configured language and timezone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release metadata; artifact frontmatter 1.6.0 and manifest 1.5.0 differ) <br>
+Risk: Optional GitHub backup may upload sensitive health records beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backup disabled unless the user has reviewed the backup scripts, selected a private repository, and confirmed the backup scope is limited to the intended user data.
+
+Risk: Unsafe shell configuration handling and an unvalidated Git remote can make automatic backup risky.
+
+Mitigation: Correct shell configuration sourcing and validate the Git remote before enabling automatic or scheduled backup.
+
+Risk: Multi-user workspaces may expose or mix sensitive health data if backup scope is not fixed to one verified user.
+
+Mitigation: Use per-user data directories and enable backup only after confirming the active user and destination repository.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/longerian/skills/health-score-pro)
+- [Health Management Skill README](README.md)
+- [Permissions Declaration](PERMISSIONS.md)
+- [Health Management Principles](references/principles.md)
+- [Diet Record Analysis Guide](references/analysis-guide.md)
+- [5x5x5 Food Recognition Database](references/food-database.md)
+- [Chinese Food Defense System Database](references/chinese-food-database.md)
+- [Supplement Database and Analysis System](references/supplement-database.md)
+- [Usage Examples](references/usage-examples.md)
+- [New User Onboarding Guide](references/new-user-onboarding.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown records, health analysis summaries, configuration guidance, and optional shell command execution for backup workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should follow the user's configured language and timezone; backup-related outputs apply only when the user explicitly enables and configures backup.]
+
+## Skill Version(s):
+
+1.6.1 (source: release evidence; artifact frontmatter is 1.6.0 and manifest is 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

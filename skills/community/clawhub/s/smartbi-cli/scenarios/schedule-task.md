@@ -10,7 +10,7 @@
 | **任务动作** | 查询/取数/统计/导出/ETL/同步/执行 |
 | **需要推送**（可选） | 发送/推送/通知/邮件/企微/钉钉 |
 
-仅满足「任务动作」无「定时特征」→ 走 Part 1 通用流程（即时查询）。
+仅满足「任务动作」无「定时特征」→ 返回场景索引：即时模型/报表取数走数据查询与洞察场景，其他操作走 Part 1。定时任务中的取数口径和完整性也遵循该场景，不能把固定首批数据当成全部结果推送。
 
 **示例**：
 - "每天9:00发送保额大于20万的保单数据"
@@ -39,7 +39,8 @@ Step 1:  获取任务可用的父目录 ID（见下方「parentFolderId 选取�
          调用 catalogtree.listDescendantCatalogs（limit=1）取第一个可编辑目录
     ↓
 Step 2:  [MQL 取数场景必做] 获取数据模型字段树，提取可用的维度/度量 label
-         smartbi call datamodel.getDataModelTrees -d '{"modelIds":["<MODEL_ID>"]}' --agent
+         将 {"modelIds":["<MODEL_ID>"]} 写入 field-tree.json 后执行：
+         smartbi call datamodel.getDataModelTrees --profile <PROFILE> -d @field-tree.json --agent
          从返回结果收集：
          - **维度 label**：`type=FIELD`/`LEVEL_TIME_*` 等维度节点的 label（如 "订单日期"、"产品类别"）
          - **度量 label**：`type=MEASURE`/`CALC_MEASURE` 度量节点的 label（如 "销售额"、"订单量"）
@@ -48,7 +49,7 @@ Step 2:  [MQL 取数场景必做] 获取数据模型字段树，提取可用的�
     ↓
 Step 3:  生成 Rhino JS 脚本 → 写入 .js 文件
          模板见 references/rhino-template.md
-         BASE_URL 优先从环境变量 SMARTBI_SDK_BASE_URL 获取，TOKEN 优先从 SMARTBI_TOKEN_DEV 获取
+         BASE_URL 优先从环境变量 SMARTBI_SDK_BASE_URL 获取，TOKEN 优先从 <TOKEN_ENV_NAME> 获取
          MQL 中的 dims/metrics 必须使用 Step 2 获取到的 label 值
          **需要推送时**：脚本末尾追加 push.sendMessage 调用（见下方「推送」章节）
          **邮件推送优先使用 `sendToMail` 内置 Routine**（见下方「推送」章节），比自行拼装 HTTP 更简洁
@@ -56,13 +57,13 @@ Step 3:  生成 Rhino JS 脚本 → 写入 .js 文件
 Step 4:  使用 inject-script 工具将脚本注入元数据模板（见下方「script 字段处理」章节）
          node scripts/inject-script.mjs task.js task_meta.json task.json
     ↓（必须等 Step 4 完成，拿到完整 task.json 后再执行 Step 5）
-Step 5:  smartbi call scheduletask.createSelfDefineTask -d @task.json --agent
+Step 5:  smartbi call scheduletask.createSelfDefineTask --profile <PROFILE> -d @task.json --agent
     ↓    返回 {"ok":true, "data": {"id": "<taskId>"}}
 Step 6:  验证——调用 scheduletask.getTaskById 确认 script 非空且 parentFolderId 正确
     ↓    若 script 为空，或 parentFolderId 既不是 TASKS 本身也不是 TASKS 根下的子节点，停止并报错
-Step 7:  smartbi call scheduletask.createTimeSchedule -d @schedule.json --agent
+Step 7:  smartbi call scheduletask.createTimeSchedule --profile <PROFILE> -d @schedule.json --agent
     ↓    绑定 taskId + cron，返回 scheduleId
-Step 8:  smartbi call scheduletask.changeScheduleActiveStatus -d @activate.json --agent
+Step 8:  smartbi call scheduletask.changeScheduleActiveStatus --profile <PROFILE> -d @activate.json --agent
     ↓    actived: true（请求体见下方 ### 启用）
 Step 9:  验证计划——调用 scheduletask.getScheduleDtoById 确认：
          - actived=true
@@ -74,7 +75,7 @@ Step 9:  验证计划——调用 scheduletask.getScheduleDtoById 确认：
 
 以下组合可在同一轮中并行调用：
 - Step 1（查 parentFolderId）与 Step 7 所需的 `getCurrentUser` 可并行
-- Step 6（验证任务）与 Step 7（创建计划）可合并调用（Step 5 成功后已知 taskId）
+- Step 6（验证任务）必须成功后才能执行 Step 7（创建计划），二者不得并行；taskId 已返回不能替代任务内容验证。
 
 ## 修改已有任务（多轮对话）
 
@@ -82,7 +83,8 @@ Step 9:  验证计划——调用 scheduletask.getScheduleDtoById 确认：
 
 ```
 Step A: 获取已有任务——用户提供 taskId，或调用 listTasks 搜索
-        smartbi call scheduletask.getTaskById -d '{"id": "<taskId>"}' --agent
+        将 {"id": "<taskId>"} 写入 task_verify.json 后执行：
+        smartbi call scheduletask.getTaskById --profile <PROFILE> -d @task_verify.json --agent
         取出 script 字段内容
    ↓
 Step B: 将 script 内容写入 .js 文件（还原为可读多行代码）
@@ -92,7 +94,7 @@ Step C: 修改元数据模板并重新注入
         node scripts/inject-script.mjs updated_task.js task_meta.json task.json
    ↓
 Step D: 更新任务
-        smartbi call scheduletask.updateSelfDefineTask -d @task.json --agent
+        smartbi call scheduletask.updateSelfDefineTask --profile <PROFILE> -d @task.json --agent
 ```
 
 > `updateSelfDefineTask` 的请求体与 `createSelfDefineTask` 相同，额外需要 `id` 字段。
@@ -119,11 +121,11 @@ POST /api/v1/scheduletask/task/create-self-define-task
 }
 ```
 
-必填：`name`, `alias`, `script`, **`parentFolderId`**。Smartbi 资源为树状结构，新建任务必须指定存放目录。
+必填：`name`, `alias`, `script`, **`parentFolderId`**。SmartBI 资源为树状结构，新建任务必须指定存放目录。
 
 ### parentFolderId 选取（任务专属）
 
-**任务（TASK）的父节点必须位于 `TASKS` 根节点下**，且父节点类型仅限 `TASKS` 或 `SELF_TREENODE`——服务端会校验类型匹配，传错会导致创建失败。
+**任务（TASK）的父节点必须位于 `TASKS` 根节点下**。目录类型和可写权限以目标环境当前契约为准；下方示例筛选 `DEFAULT_TREENODE`，不能把 `SELF_TREENODE` 或其他类型硬编码为跨版本规则。
 
 获取有效 parentFolderId 的方式（与计划选父目录同理，将根节点换为 `SCHEDULES` 即可，详见下方「创建计划」）：
 
@@ -141,10 +143,10 @@ POST /api/v1/scheduletask/task/create-self-define-task
 ```
 
 ```bash
-smartbi call catalogtree.listDescendantCatalogs -d @task_folder.json --agent
+smartbi call catalogtree.listDescendantCatalogs --profile <PROFILE> -d @task_folder.json --agent
 ```
 
-- 返回列表有数据 → 取第一项的 `id` 作为 parentFolderId
+- 返回列表有数据 → 用户指定目录时匹配该目录；未指定时，唯一候选可直接使用，多个候选则使用已核实的标准根目录或询问目录，不能静默选择任意第一项
 - 返回空列表 → 直接使用 `"TASKS"` 作为 parentFolderId（根目录本身接受任务）
 
 > `parentFolderId` 已在 YAML `required` 数组中。调用时缺 `parentFolderId` 服务端会报错。
@@ -181,7 +183,7 @@ node scripts/inject-script.mjs task.js task_meta.json task.json
 4. 使用合并后的 `task.json` 调用 API：
 
 ```bash
-smartbi call scheduletask.createSelfDefineTask -d @task.json --agent
+smartbi call scheduletask.createSelfDefineTask --profile <PROFILE> -d @task.json --agent
 ```
 
 > **禁止占位符**：`script` 字段必须包含实际的 Rhino JS 代码字符串，禁止使用 `"..."` 等占位符。
@@ -240,7 +242,7 @@ POST /api/v1/scheduletask/schedule/create-time-schedule
 |------|------|
 | `startHour`/`startMinute` **始终必传** | 即使 `timeType` 为 `BYHAND` 也要传这两个字段，服务端会对空值抛 `NumberFormatException`。值为字符串 `"0"`–`"23"` / `"0"`–`"59"` |
 | `cron` **MUST 主动传入** | 不要传 `null`。底层不会自动生成，空 cron 会导致激活静默失败。`DAY` = `0 {m} {h} * * ?`；`WEEK` = `0 {m} {h} ? * MON`；`MONTH` = `0 {m} {h} 1 * ?`；`BYHAND` 传入任意 Quartz 6 字段 |
-| `parentFolderId` **必填** | Smartbi 资源为树状结构，必须指定计划存放的目录。计划根节点 ID 为 `SCHEDULES`，可直接使用 `"SCHEDULES"` 作为值；如需子目录，调用 `catalogtree.listDescendantCatalogs`（pids=["SCHEDULES"], types=["DEFAULT_TREENODE"], purviewType="WRITE", limit=1）取第一个可编辑子目录；空列表则直接用 `"SCHEDULES"` |
+| `parentFolderId` **必填** | SmartBI 资源为树状结构，必须指定计划存放的目录。计划根节点 ID 为 `SCHEDULES`，可直接使用 `"SCHEDULES"`；用户明确要求子目录时再调用 `catalogtree.listDescendantCatalogs`，按名称/路径匹配并核实写权限，不能静默取任意第一项；目录类型以目标环境契约为准 |
 | `creatUsername` **必须用当前用户真实名称** | 不能硬编码 `"admin"`。从 `smartbi describe` 或 `context.get("userName")` 获取 |
 
 **`timeType` 与 `cron` 推荐格式**：
@@ -274,7 +276,7 @@ POST /api/v1/scheduletask/schedule/change-schedule-active-status
 任务创建（Step 5）成功后，**必须**立即调用 `scheduletask.getTaskById` 验证：
 
 ```bash
-smartbi call scheduletask.getTaskById -d @task_verify.json --agent
+smartbi call scheduletask.getTaskById --profile <PROFILE> -d @task_verify.json --agent
 ```
 
 其中 `task_verify.json` 内容为 `{"id": "<taskId>"}`。
@@ -291,7 +293,7 @@ smartbi call scheduletask.getTaskById -d @task_verify.json --agent
 计划激活验证使用 `scheduletask.getScheduleDtoById`（而非 `getScheduleById`），返回更完整的字段映射：
 
 ```bash
-smartbi call scheduletask.getScheduleDtoById -d @schedule_verify.json --agent
+smartbi call scheduletask.getScheduleDtoById --profile <PROFILE> -d @schedule_verify.json --agent
 ```
 
 检查 `actived` 字段是否为 `true`。若为 `false`，按 Step 9 重试策略处理。
@@ -310,7 +312,7 @@ smartbi call scheduletask.getScheduleDtoById -d @schedule_verify.json --agent
 | 企微/钉钉/飞书（群机器人） | `pushMessage()` → push API | Markdown | webhookUrl |
 | 企微企业应用 | `pushMessage("WECHAT_WORK", ...)` → push API | Markdown | **WeiXinExt** + agentId/toUsers |
 | 钉钉工作通知 | `pushMessage("DINGTALK", ...)` → push API | Markdown | **DingdingExt** + toUsers |
-| 系统消息 | `pushMessage()` → push API | Markdown | Smartbi 用户 ID |
+| 系统消息 | `pushMessage()` → push API | Markdown | SmartBI 用户 ID |
 
 群机器人模式无需扩展插件。企业应用/工作通知模式依赖对应扩展提供的系统配置（`WEIXIN_CORE`/`DINGDING_CORPID` 等）做鉴权。
 
@@ -326,7 +328,7 @@ RoutineExecutor 通过 Java 动态代理将 JS 对象属性映射到 `SendToMail
 execute("sendToMail", {
     taskName: "近7天销售额趋势",
     sendSetting: {
-        mailList: "qtp@smartbi.com.cn",  // 收件邮箱，多个用";"分隔
+        mailList: "<用户指定的收件邮箱>",  // 多个用";"分隔，不从示例推断收件人
         title: "近7天销售额趋势",
         text: html,                        // 上一步拼接的 HTML
         HTMLText: true,                    // isHTMLText() → HTMLText（Java Bean 规范）
@@ -355,7 +357,7 @@ execute("sendToMail", {
 | 飞书/Feishu | 群机器人 webhookUrl | `pushMessage("FEISHU", ..., {webhookUrl})` | — |
 | 企微/企业微信 + 应用/通知/agentId | 企微应用 agentId + 目标用户 userid（`\|` 分隔） | `pushMessage("WECHAT_WORK", ..., {agentId, toUsers})` | WeiXinExt |
 | 钉钉/DingTalk + 工作通知/toUsers | 目标钉钉用户 ID（逗号分隔） | `pushMessage("DINGTALK", ..., {toUsers})` | DingdingExt |
-| 系统消息/站内消息 | Smartbi 用户 ID | `pushMessage("MESSAGE", ..., recipients)` | — |
+| 系统消息/站内消息 | SmartBI 用户 ID | `pushMessage("MESSAGE", ..., recipients)` | — |
 
 > 用户说"发到邮箱和企业微信"→ 需分别问邮箱地址和 webhookUrl。只说"通知我"但未指定渠道 → 反问希望用哪种渠道。
 
@@ -382,12 +384,12 @@ execute("sendToMail", {
 | channelType | 必填参数 | 说明 |
 |-------------|---------|------|
 | `MAIL` | `recipients: ["a@x.com"]` | 邮箱地址列表 |
-| `MESSAGE` | `recipients: ["userId"]` | Smartbi 用户 ID 列表 |
+| `MESSAGE` | `recipients: ["userId"]` | SmartBI 用户 ID 列表 |
 | `WECHAT_WORK` | `config.webhookUrl`（群机器人）或 `config.agentId`（应用） | 企微=企业微信=微信 |
 | `DINGTALK` | `config.webhookUrl`（群机器人）或 `config.toUsers`（工作通知） | 代理需确认 secret |
 | `FEISHU` | `config.webhookUrl` | 代理需确认 secret |
 
-> 详细接口文档见 `smartbi describe push.sendMessage --agent`。
+> 详细接口文档见 `smartbi describe push.sendMessage --profile <PROFILE> --agent`。
 
 ## 非 MQL 任务脚本骨架
 

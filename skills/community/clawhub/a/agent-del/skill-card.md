@@ -1,42 +1,58 @@
-## Description: <br>
-Guides agents through a confirmed OpenClaw agent deletion workflow that lists agents, asks for confirmation, moves selected agent data to local trash, and records deletion history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按照 OpenClaw 官方规范删除一个或多个 agent（代理），自动完成列表展示、确认、执行删除、移到回收站及历史记录。
 
-## Publisher: <br>
-[yangyangupday](https://clawhub.ai/user/yangyangupday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangyangupday](https://clawhub.ai/user/yangyangupday)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to delete one or more configured agents through a confirmation-gated flow with local trash backups and deletion history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user could confirm deletion for the wrong OpenClaw agent or workspace. <br>
-Mitigation: Before confirming deletion, verify the selected agent IDs and workspace paths shown by the skill. <br>
-Risk: The skill intentionally moves agent data and removes residual agent directories. <br>
-Mitigation: Use the local trash paths and history records for recovery checks, and review complete script output before retrying or using manual fallback. <br>
-Risk: Deleted agents may still have related channel bindings or gateway state that needs attention. <br>
-Mitigation: After deletion, inspect OpenClaw bindings and restart the gateway when operationally required. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to list configured agents, confirm deletion targets, and remove selected agent workspaces and agent directories through a guarded five-step workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangyangupday/agent-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, numbered confirmation steps, and deletion status checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the OpenClaw CLI; deletion is gated by explicit user confirmation and local trash backup handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.1 (source: server release metadata) <br>
+Risk: Crafted agent IDs may be mishandled by the deletion script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate agent IDs before execution and reject values outside the expected OpenClaw agent identifier format.
+
+Risk: The deletion workflow can move or remove unintended local workspace or session data.
+
+Mitigation: Constrain resolved paths to expected OpenClaw state directories, review the displayed deletion summary, and keep the trash folder until recovery is no longer needed.
+
+Risk: Agent IDs are interpolated into Python code inside the shell script.
+
+Mitigation: Pass IDs as data rather than embedded code and fail safely when lookup or validation fails.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yangyangupday/skills/agent-del)
+- [Publisher Profile](https://clawhub.ai/user/yangyangupday)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openclaw CLI and user confirmation before deletion.]
+
+## Skill Version(s):
+
+1.10.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

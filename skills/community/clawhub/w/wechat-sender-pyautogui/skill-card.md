@@ -1,42 +1,58 @@
-## Description: <br>
-Automates WeChat desktop messaging with PyAutoGUI, including contact search, configurable hotkeys, optional no-send preview, and a file-path mode that types the local path into chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses PyAutoGUI to help an agent send WeChat messages or enter local file paths by driving the desktop client with keyboard shortcuts.
 
-## Publisher: <br>
-[anananangela](https://clawhub.ai/user/anananangela) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anananangela](https://clawhub.ai/user/anananangela)
 
-## Use Case: <br>
-Agents and users can automate WeChat desktop message entry and sending by selecting a contact, composing text, and optionally requiring manual confirmation before the message is sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send WeChat messages immediately through desktop automation. <br>
-Mitigation: Use --no-send for sensitive content and verify the selected contact before manually sending. <br>
-Risk: The file mode types the local file path as chat text instead of attaching the file. <br>
-Mitigation: Avoid --file unless sending the path as text is intended. <br>
-Risk: Contacts, message text, and file paths may appear in terminal output. <br>
-Mitigation: Avoid sensitive content in environments where terminal output is logged. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs to prepare or send a WeChat message to a named contact through the local desktop client. It supports message entry, local file-path entry, recipient selection by index, a no-send confirmation mode, and configurable WeChat launch hotkeys.
 
-## Reference(s): <br>
-- [Wechat Sender ClawHub Page](https://clawhub.ai/anananangela/wechat-sender-pyautogui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run desktop automation commands that interact with an active WeChat session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Keyboard-driven automation can send a message to the wrong WeChat chat if contact selection or focus is incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-send by default and manually verify the selected chat before pressing Enter.
+
+Risk: Sensitive message text or local file paths may be entered into WeChat during automation.
+
+Mitigation: Avoid sensitive messages and paths unless the recipient and content have been confirmed.
+
+Risk: The --file option types the path into the chat rather than attaching the file.
+
+Mitigation: Do not rely on --file for attachment behavior; verify the result manually before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anananangela/skills/wechat-sender-pyautogui)
+- [Publisher profile](https://clawhub.ai/user/anananangela)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that automate local keyboard input in WeChat; no-send mode should be preferred for confirmation-sensitive use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

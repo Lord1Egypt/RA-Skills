@@ -1,43 +1,63 @@
-## Description: <br>
-Monitor product URLs to track and alert on significant price changes using a local watchlist without requiring API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor product URLs to track and alert on significant price changes using a local watchlist without requiring API keys.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and external users use this skill to maintain a local watchlist of product URLs, check current prices, compare changes against a threshold, and produce markdown alerts for drops, increases, or fetch errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-supplied product URLs and stores product names, URLs, prices, and price history in a local watchlist. <br>
-Mitigation: Use only public product URLs, avoid internal or sensitive URLs, and review local watchlist contents before sharing logs or reports. <br>
-Risk: Scheduled checks or webhook notifications can repeatedly fetch sites or send price data to an external service. <br>
-Mitigation: Review cron entries and webhook destinations before enabling automation, and keep webhook URLs out of shared files and command history. <br>
-Risk: Retailer anti-bot controls or layout changes may cause fetch errors or missing prices. <br>
-Mitigation: Treat fetch_error and no_price results as signals to review manually, and provide explicit price entries when automatic extraction is unreliable. <br>
+## Use Case:
 
+External users and developers use Price Watcher to add product URLs to a local watchlist, check current prices, compare changes against a threshold, and produce Markdown alerts.
 
-## Reference(s): <br>
-- [Price Watcher Setup Guide](references/setup-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/price-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples; scripts produce JSON results and markdown alert reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Price history is stored locally in watchlist.json; compare.py supports a configurable percentage threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can persistently fetch any URL stored in the local watchlist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only add trusted public product pages; avoid internal, localhost, metadata-service, credential-bearing, or otherwise sensitive URLs.
+
+Risk: Scheduled checks can repeatedly request retailer pages and may trigger rate limits, blocks, CAPTCHA pages, or inaccurate no-price results.
+
+Mitigation: Use conservative schedules, review fetch_error and no_price results, and use manual price entry for heavily protected sites.
+
+Risk: Optional webhook delivery can send product names, URLs, and price history-derived alerts outside the local environment.
+
+Mitigation: Review alert content before enabling webhook delivery and restrict webhook destinations to trusted channels.
+
+Risk: The local watchlist stores product URLs, last prices, timestamps, and price history.
+
+Mitigation: Treat watchlist.json as local user data and avoid adding private or sensitive purchase-intent information.
+
+## Reference(s):
+
+- [Price Watcher Setup Guide](references/setup-guide.md)
+- [ClawHub Price Watcher Listing](https://clawhub.ai/newageinvestments25-byte/skills/price-watcher)
+- [Publisher Profile](https://clawhub.ai/user/newageinvestments25-byte)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [JSON price-check results, Markdown alert reports, and command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and updates a local watchlist.json file with product URLs, prices, timestamps, and capped price history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Post tasks and hire human workers for USDC on the Clawhand marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post tasks and hire human workers for USDC on the Clawhand marketplace.
 
-## Publisher: <br>
-[dr-elerian](https://clawhub.ai/user/dr-elerian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dr-elerian](https://clawhub.ai/user/dr-elerian)
 
-## Use Case: <br>
-Agents and developers use this skill to register with Clawhand, fund an account, post marketplace jobs, review applicants, exchange task messages, release USDC payments, rate workers, and manage disputes through the Clawhand API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports suspicious secret-management authority and insufficient guardrails around sensitive operations. <br>
-Mitigation: Install only when that authority is intentional; use a dedicated minimally scoped account, require approval before create, edit, or delete actions, avoid caching secret values, and rotate or revoke credentials after use. <br>
-Risk: The skill can initiate paid marketplace actions, exchange messages, upload attachments, and release USDC payments using the configured API key. <br>
-Mitigation: Use a dedicated Clawhand account, set budget limits, keep the API key secret, require approval for job posting, applicant acceptance, file sharing, and payment release, and rotate the key after high-risk work. <br>
+## Use Case:
 
+Developers and agents use this skill to register with Clawhand, fund an agent account, post paid tasks, review applicants, communicate with workers, release USDC payments, and handle disputes through the Clawhand API.
 
-## Reference(s): <br>
-- [Clawhand homepage](https://www.clawhand.net) <br>
-- [ClawHub skill page](https://clawhub.ai/dr-elerian/clawhand) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWHAND_API_KEY for authenticated API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill enables an agent to interact with a paid marketplace and release USDC payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when payment actions are intended, keep review checkpoints before release, and inspect submitted work, attachments, and chat history before authorizing payment.
+
+Risk: API keys and job details can expose account access or sensitive task information if handled carelessly.
+
+Mitigation: Store CLAWHAND_API_KEY securely and keep sensitive details out of public job descriptions; share private information only through appropriate post-acceptance channels.
+
+Risk: Webhook integrations can be sensitive if callbacks are accepted without validation.
+
+Mitigation: Prefer polling unless the agent can validate webhook signatures and timestamps securely.
+
+## Reference(s):
+
+- [Clawhand homepage](https://www.clawhand.net)
+- [ClawHub skill page](https://clawhub.ai/dr-elerian/skills/clawhand)
+- [Publisher profile](https://clawhub.ai/user/dr-elerian)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWHAND_API_KEY for authenticated API calls.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

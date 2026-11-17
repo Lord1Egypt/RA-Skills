@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Gog Google Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Gog-style workf..."
+  default_prompt: "Use $work-productivity-gog-google-workflow-helper to help me Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup."
+
+policy:
+  allow_implicit_invocation: true

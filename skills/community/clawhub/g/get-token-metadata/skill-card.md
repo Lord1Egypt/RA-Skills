@@ -1,38 +1,50 @@
-## Description: <br>
-Retrieve rich metadata for a specific Art Blocks token using artblocks-mcp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve rich metadata for a specific Art Blocks token using artblocks-mcp.
 
-## Publisher: <br>
-[ryley-o](https://clawhub.ai/user/ryley-o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryley-o](https://clawhub.ai/user/ryley-o)
 
-## Use Case: <br>
-Developers, collectors, and agents use this skill to retrieve full metadata for a known Art Blocks token ID, including traits, media URLs, ownership, listing information, and project context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may surface public blockchain-linked information such as owner wallet addresses, listing URLs, and marketplace prices for token IDs the user requests. <br>
-Mitigation: Present this information only in response to the user's requested token lookup and avoid treating listing or ownership data as private, verified identity, or financial advice. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve complete metadata for a known Art Blocks token, including traits, media URLs, owner address, listing information, and project context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryley-o/get-token-metadata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API Calls, guidance] <br>
-**Output Format:** [Markdown or structured text summarizing token, media, and project metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public blockchain-linked information such as owner wallet addresses, marketplace listing URLs, and prices for requested token IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Token lookups can expose public blockchain and marketplace metadata, including owner addresses, listings, prices, and Art Blocks media links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned ownership and listing data as public metadata, and avoid presenting it as private, verified identity, or financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryley-o/skills/get-token-metadata)
+- [Publisher profile](https://clawhub.ai/user/ryley-o)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, text]
+
+**Output Format:** [Markdown guidance describing a get_token_metadata tool call and expected structured token, media, and project fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a full token ID and optionally a chain ID for Ethereum, Arbitrum, or Base.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

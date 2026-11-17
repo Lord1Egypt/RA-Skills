@@ -3,8 +3,9 @@
  * Safety-Aligned Guardian Ethics
  */
 
-const fs = require('fs');
+const fs = require('../../utils/safe-fs');
 const path = require('path');
+const { safeWriteFileSync, safeAppendFileSync } = require('../../utils/safe-fs.js');
 
 const CONSTITUTION = `
 # HeartFlow AI 宪法
@@ -50,7 +51,7 @@ class SAGEGuardian {
         this.coreValues = fs.readFileSync(this.constitutionFile, 'utf8');
       } else {
         this.coreValues = CONSTITUTION;
-        fs.writeFileSync(this.constitutionFile, CONSTITUTION);
+        safeWriteFileSync(this.constitutionFile, CONSTITUTION);
       }
     } catch (e) {
       this.coreValues = CONSTITUTION;
@@ -60,8 +61,7 @@ class SAGEGuardian {
   log(message, level = 'INFO') {
     const timestamp = new Date().toISOString();
     const entry = `[${timestamp}] [${level}] ${message}\n`;
-    fs.appendFileSync(this.logFile, entry);
-    console.error(`[SAGE] ${message}`);
+    safeAppendFileSync(this.logFile, entry);
   }
 
   /**
@@ -341,11 +341,9 @@ class SAGEGuardian {
     const logLine = JSON.stringify(logEntry) + '\n';
     
     try {
-      fs.appendFileSync(this.logFile, logLine);
-      console.error(`[SAGE] Security decision logged: ${decision.level}`);
+      safeAppendFileSync(this.logFile, logLine);
       return { success: true };
     } catch (e) {
-      console.error('[SAGE] Failed to log security decision:', e.message);
       return { success: false, error: e.message };
     }
   }
@@ -365,7 +363,6 @@ class SAGEGuardian {
             try {
               return JSON.parse(line);
             } catch (e) {
-              console.warn('[SAGE] Skipping invalid JSON line in security log');
               return null;
             }
           })
@@ -373,9 +370,7 @@ class SAGEGuardian {
         
         return logs.slice(-limit);
       }
-    } catch (e) {
-      console.error('[SAGE] Error reading security log:', e.message);
-    }
+    } catch (_) { /* [v5.9.18] intentional: graceful degradation */ }
     return [];
   }
 

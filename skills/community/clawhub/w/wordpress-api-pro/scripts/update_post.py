@@ -19,7 +19,7 @@ import urllib.request
 import urllib.error
 from base64 import b64encode
 
-from security import SafetyError, TEXT_MAX_BYTES, die_safety, validate_local_file, warn_insecure_wp_url, should_confirm_publish
+from security import SafetyError, TEXT_MAX_BYTES, die_safety, validate_local_file, require_secure_wp_url, should_confirm_publish, urlopen_authenticated
 
 def update_post(url, username, app_credential, post_id, **updates):
     """Update WordPress post via REST API"""
@@ -58,7 +58,7 @@ def update_post(url, username, app_credential, post_id, **updates):
     request.add_header('Content-Type', 'application/json')
     
     try:
-        with urllib.request.urlopen(request) as response:
+        with urlopen_authenticated(request) as response:
             result = json.loads(response.read().decode('utf-8'))
             print(json.dumps(result, indent=2))
             return result
@@ -93,10 +93,11 @@ def main():
     if not args.url:
         print(json.dumps({"error": "WordPress URL required (--url or WP_URL)"}), file=sys.stderr)
         sys.exit(1)
-    warn_insecure_wp_url(args.url)
+    require_secure_wp_url(args.url)
     if should_confirm_publish(args.status, args.yes, sys.stdin.isatty()):
         print("About to PUBLISH live content to %s. Type 'PUBLISH' to confirm:" % args.url, file=sys.stderr)
-        if input("> ").strip() != "PUBLISH":
+        print("> ", end="", file=sys.stderr)
+        if input().strip() != "PUBLISH":
             print("Aborted: publish not confirmed.", file=sys.stderr)
             sys.exit(1)
     if not args.username:

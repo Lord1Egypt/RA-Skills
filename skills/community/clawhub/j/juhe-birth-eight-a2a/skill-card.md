@@ -1,44 +1,58 @@
-## Description: <br>
-基于聚合数据稳定生辰八字 API 能力，根据阳历日期和出生时辰查询生辰八字、五行属性、干支纪年、农历日期、星座等信息，并通过支付宝 A2M 402 付费流程获取结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a paid Juhe birth-chart lookup that returns Chinese calendrical, zodiac, Four Pillars, and five-elements information from a confirmed Gregorian birth date and birth hour.
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users use this skill to submit a confirmed Gregorian birth date and birth hour for a paid entertainment-oriented birth-chart lookup, including lunar calendar, heavenly-stem/earthly-branch, zodiac, constellation, eight-character, and five-elements information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends birth date and hour to Juhe's API for a paid lookup. <br>
-Mitigation: Proceed only after explicit user confirmation and share only the four required date and hour fields. <br>
-Risk: The skill relies on an Alipay payment flow before returning paid results. <br>
-Mitigation: Review the payment prompt, order details, and user consent before completing payment. <br>
-Risk: Birth-chart and five-elements results may be mistaken for decision-grade advice. <br>
-Mitigation: Treat results as entertainment content and avoid using them for medical, financial, legal, career, or relationship decisions. <br>
+## Use Case:
 
+External users use this skill to query paid birth-chart, lunar-calendar, zodiac, and five-elements information for a specific Gregorian birth date and birth hour. Agents should use it only after user consent to the paid Alipay workflow and the required data transfer to Juhe.
 
-## Reference(s): <br>
-- [Skill listing](https://clawhub.ai/juhemcp/skills/juhe-birth-eight-a2a) <br>
-- [Juhe A2A query endpoint](https://apis.juhe.cn/a2a/query.php) <br>
-- [生辰宝典输出格式](OUT_FORMAT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, API Calls, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and explanatory text after a paid API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses only returned Juhe API fields for the final birth-chart report and includes an entertainment-only disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Risk: The documented setup path may run payment tooling with an unpinned `@latest` npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the package source and prefer a pinned, reviewed version instead of `@latest`.
+
+Risk: The skill involves paid Alipay flow and sends birth date and birth hour details to Juhe.
+
+Mitigation: Proceed only after clear user consent, collect only the required date and hour fields, and cancel without calling the API when consent or required parameters are missing.
+
+Risk: Birth-chart and five-elements results can be mistaken for reliable decision advice.
+
+Mitigation: Present results as entertainment-only content and avoid medical, financial, legal, career, or relationship recommendations based on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-birth-eight-a2a)
+- [Juhe A2A query endpoint](https://apis.juhe.cn/a2a/query)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown birth-chart report with payment and setup guidance that may include shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses only returned API fields for the final report and includes an entertainment-only disclaimer.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

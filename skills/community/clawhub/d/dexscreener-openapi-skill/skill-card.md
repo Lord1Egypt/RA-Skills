@@ -1,44 +1,61 @@
-## Description: <br>
-Operate DexScreener public market data APIs through UXC with a curated OpenAPI schema, no-auth setup, and read-first guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate DexScreener public market data APIs through UXC with a curated OpenAPI schema, no-auth setup, and read-first guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect DexScreener public market data, including token profiles, boosts, pair search, pair lookup, and token market rows, through read-only OpenAPI-backed CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the local uxc tool and an OpenAPI schema source to issue DexScreener requests. <br>
-Mitigation: Use a trusted uxc installation and prefer the bundled schema or a reviewed, pinned schema URL for stricter reproducibility. <br>
-Risk: DexScreener market data can be noisy for long-tail tokens and should not be treated as trading execution or investment advice. <br>
-Mitigation: Use results as market-observation data, verify important findings against other sources, and keep workflows read-only. <br>
-Risk: Endpoint-specific rate limits can affect polling and broad discovery workflows. <br>
-Mitigation: Start with narrow lookups, cache repeated reads, and poll discovery feeds conservatively. <br>
+## Use Case:
 
+Developers and agent builders use this skill to query DexScreener public market data for token profiles, boosts, pair searches, pair lookups, and token market rows without adding trading or wallet authority.
 
-## Reference(s): <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI schema](references/dexscreener-public.openapi.json) <br>
-- [DexScreener API reference](https://docs.dexscreener.com/api/reference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public market-data operations; no credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Returned DexScreener market data may be noisy or incomplete, especially for long-tail tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the data for read-only lookup and analysis, verify important market observations against additional sources, and do not treat results as investment advice.
+
+Risk: Polling discovery feeds can hit endpoint-specific DexScreener rate limits.
+
+Mitigation: Prefer narrow reads, start with single-token or short address-list lookups, and cache results when polling profiles or boosts.
+
+Risk: The skill relies on network access to DexScreener and the disclosed OpenAPI schema URL.
+
+Mitigation: Confirm the agent is allowed to query https://api.dexscreener.com and fetch the schema URL before installation or execution.
+
+## Reference(s):
+
+- [Usage patterns](references/usage-patterns.md)
+- [Curated OpenAPI schema](references/dexscreener-public.openapi.json)
+- [DexScreener API reference](https://docs.dexscreener.com/api/reference)
+- [Skill page](https://clawhub.ai/jolestar/skills/dexscreener-openapi-skill)
+- [Publisher profile](https://clawhub.ai/user/jolestar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve the UXC JSON envelope and keep DexScreener activity read-only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Upload files to lmfiles.com and return public download links via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files to lmfiles.com and return public download links via API.
 
-## Publisher: <br>
-[setdemos](https://clawhub.ai/user/setdemos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[setdemos](https://clawhub.ai/user/setdemos)
 
-## Use Case: <br>
-Developers and agents use LMFiles to register an lmfiles.com account, upload files, retrieve public download links, inspect file metadata, list account files, and delete owned uploads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files become publicly shareable through returned download links. <br>
-Mitigation: Upload only files intended for public sharing and confirm with the user before uploading uncertain content. <br>
-Risk: LMFILES_API_KEY and LMFILES_BOOTSTRAP_TOKEN are credentials that could grant account access if exposed. <br>
-Mitigation: Keep credentials out of chat logs and shared transcripts, avoid logging them, and rotate the bootstrap token if it is exposed. <br>
-Risk: Deleting a file by ID is an owner-only destructive operation. <br>
-Mitigation: Verify the target file ID before issuing delete requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LMFiles service documentation](https://lmfiles.com/docs) <br>
-- [LMFiles OpenAPI schema](https://lmfiles.com/openapi.json) <br>
-- [LMFiles API host](https://lmfiles.com) <br>
-- [LMFiles on ClawHub](https://clawhub.ai/setdemos/lmfiles) <br>
+## Use Case:
 
+Developers and agents use this skill to register lmfiles.com accounts, upload files, retrieve public download links, inspect file metadata, list account files, and delete uploaded files through CLI-style API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads are limited to 100 MB, executable file types are rejected, and returned download URLs are public.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Uploaded files are publicly downloadable by anyone with the URL.
+
+Mitigation: Confirm each file is safe to publish and avoid uploading secrets, credentials, or private data.
+
+Risk: The skill uses LMFILES_API_KEY and LMFILES_BOOTSTRAP_TOKEN credentials.
+
+Mitigation: Keep credentials out of command lines and logs, and rotate the bootstrap token if exposed.
+
+Risk: The delete helper removes files by ID without an interactive confirmation.
+
+Mitigation: Double-check file IDs before deletion.
+
+## Reference(s):
+
+- [LMFiles service docs](https://lmfiles.com/docs)
+- [LMFiles OpenAPI schema](https://lmfiles.com/openapi.json)
+- [LMFiles API host](https://lmfiles.com)
+- [ClawHub skill page](https://clawhub.ai/setdemos/skills/lmfiles)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and API response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce public file URLs, file IDs, account metadata, and deletion/listing command results from lmfiles.com API calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

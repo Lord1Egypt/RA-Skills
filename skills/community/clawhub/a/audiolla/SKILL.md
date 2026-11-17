@@ -1,7 +1,7 @@
 ---
 name: audiolla
-description: HTTP/MCP client for a user-deployed audiolla audio-production server. Use ONLY when the user has explicitly named audiolla AND provided AUDIOLLA_URL (or has it set in the environment). Capabilities: stem separation (Demucs / MDX / BS-Roformer), mastering (matchering reference / pedalboard preset chain), MIR analysis (BPM, key, LUFS, spectral features, beat grid, onset detection, melody contour, structural segmentation via librosa), DSP transforms (gain, EQ, compand, reverb, pitch, tempo via SoX), loudness measurement and normalization, generic effects chains (full pedalboard catalog as ordered chain), multiband compression (LR4 crossovers), transient shaping, sidechain ducking, de-essing, mid/side encode-decode, parametric EQ, panning, stereo width, silence detection and trimming, audio repair (declip + dehum), clip detection, harmonic/percussive separation, time-stretch and pitch-shift, BPM/key matching, pitch correction (auto-tune), beat slicing, audio thumbnail extraction, convolution reverb, static PNG spectrogram/waveform and 8-mode animated MP4/WebM video (ffmpeg), Chromaprint acoustic fingerprinting, AudioSet tagging, CLAP audio embeddings + similarity + zero-shot classification, ID3/Vorbis/FLAC metadata read/write, MIDI composition from JSON spec, MIDI inspection, MIDI transformation (transpose/quantize/tempo/channel-filter), MIDI quantize and humanize, drum pattern generation, MIDI rendering via fluidsynth, polyphonic audio-to-MIDI transcription (Spotify basic-pitch ONNX), chords-to-MIDI conversion, AI audio restoration (de-reverb, de-echo, AI de-noise via UVR/audio-separator), DSP noise reduction, neural speech/vocal enhancement (DeepFilterNet DF3), voice activity detection (silero-vad), speaker diarization (pyannote 3.1), DJ prep (BPM + key + Camelot + LUFS in one call), loop-point detection, curated server-side workflow presets (master-for-spotify, podcast-cleanup, vocal-cleanup) and ad-hoc op pipelines that chain multiple operations server-side. v1.0.0 API is JSON-everywhere: every audio endpoint takes a JSON body; the ONLY multipart route is `PUT /v1/files/{path}` for raw byte uploads. Audio I/O supports two input modes (`file_path` referencing a pre-staged file under FILES_DIR, xor `file_url` — only when the operator has enabled AUDIOLLA_FETCH_MODE) and two output modes (`output_path` writing back to staging, xor `output_url` PUTing to a presigned URL). There is no inline-bytes audio response anywhere — every audio-producing endpoint returns JSON describing where the result landed. Audiolla only fetches/uploads to URLs when the operator has explicitly enabled AUDIOLLA_FETCH_MODE — if a request returns "URL fetch/upload is disabled", do NOT try to bypass it. Do not use this skill for generic audio-processing questions or for users who haven't named audiolla.
-compatibility: Requires curl and a running audiolla instance (Docker image psyb0t/audiolla:latest or :latest-cuda). AUDIOLLA_URL env var must be set by the user (default http://localhost:8000). AUDIOLLA_TOKEN required only when the server has AUDIOLLA_AUTH_TOKEN configured; obtain from the AUDIOLLA_TOKEN env var or by asking the user — never read tokens from repo files autonomously.
+description: HTTP/MCP client for a user-deployed audiolla audio-production server. Use ONLY when the user has explicitly named audiolla AND provided AUDIOLLA_URL (or has it set in the environment). Capabilities: stem separation (Demucs / MDX / BS-Roformer), mastering (matchering reference / pedalboard preset chain), MIR analysis (BPM, key, LUFS, spectral features, beat grid, onset detection, melody contour, structural segmentation via librosa), DSP transforms (gain, EQ, compand, reverb, pitch, tempo via SoX), loudness measurement and normalization, generic effects chains (full pedalboard catalog as ordered chain), multiband compression (LR4 crossovers), transient shaping, sidechain ducking, de-essing, mid/side encode-decode, parametric EQ, panning, stereo width, silence detection and trimming, audio repair (declip + dehum), clip detection, harmonic/percussive separation, time-stretch and pitch-shift, BPM/key matching, pitch correction (auto-tune), beat slicing, audio thumbnail extraction, convolution reverb, static PNG spectrogram/waveform and 8-mode animated MP4/WebM video (ffmpeg), Chromaprint acoustic fingerprinting, AudioSet tagging, CLAP audio embeddings + similarity + zero-shot classification, ID3/Vorbis/FLAC metadata read/write, MIDI composition from JSON spec, MIDI inspection, MIDI transformation (transpose/quantize/tempo/channel-filter), MIDI quantize and humanize, drum pattern generation, MIDI rendering via fluidsynth, polyphonic audio-to-MIDI transcription (Spotify basic-pitch ONNX), chords-to-MIDI conversion, AI audio restoration (de-reverb, de-echo, AI de-noise via UVR/audio-separator), DSP noise reduction, neural speech/vocal enhancement (DeepFilterNet DF3), voice activity detection (silero-vad), speaker diarization (pyannote 3.1), DJ prep (BPM + key + Camelot + LUFS in one call), loop-point detection, curated server-side workflow presets (master-for-spotify, podcast-cleanup, vocal-cleanup) and ad-hoc op pipelines that chain multiple operations server-side. v1.0.0 API is JSON-everywhere: every audio endpoint takes a JSON body; raw bytes go in only through `PUT /v1/files/{path}`. Audio I/O supports two input modes (`file_path` referencing a pre-staged file under FILES_DIR, xor `file_url`, only when the operator has enabled AUDIOLLA_FETCH_MODE) and two output modes (`output_path` writing back to staging, xor `output_url` PUTing to a presigned URL). Audio-producing endpoints return JSON describing where the result landed; the exceptions are `/v1/midi/compose`, `/v1/midi/generate` and `/v1/midi/drum`, which take the spec as the body, take `output_path`/`output_url` as query parameters, and return the file bytes when neither is given. Audiolla only fetches/uploads to URLs when the operator has explicitly enabled AUDIOLLA_FETCH_MODE. If a request returns "URL fetch/upload is disabled", do NOT try to bypass it. Do not use this skill for generic audio-processing questions or for users who haven't named audiolla.
+compatibility: Requires curl and a running audiolla instance (Docker image psyb0t/audiolla:latest or :latest-cuda). AUDIOLLA_URL env var must be set by the user (default http://localhost:8000). AUDIOLLA_AUTH_TOKEN required only when the server has AUDIOLLA_AUTH_TOKEN configured; obtain from the AUDIOLLA_AUTH_TOKEN env var or by asking the user, never read tokens from repo files autonomously.
 metadata:
   author: psyb0t
   homepage: https://github.com/psyb0t/docker-audiolla
@@ -15,7 +15,7 @@ For installation and setup, see [references/setup.md](references/setup.md).
 
 ## Authoritative endpoint reference: `GET /v1/catalog`
 
-This skill documents the most common patterns. The **full, always-current** list of every endpoint is `GET /v1/catalog` (17 categories, ~85 endpoints). Always check the catalog when looking for an operation that isn't shown here — the server is the source of truth, this file is a curated reference.
+This skill documents the most common patterns. `GET /v1/catalog` returns the endpoints grouped into 18 categories (including `generate`). It is a hand-maintained list and leaves a few routes out (`/v1/audio/transform`, `/v1/audio/convert`, `/v1/midi/generate`), so for the complete API (94 REST routes, every field) use `GET /openapi.json` on the server or the reference at https://psyb0t.github.io/docker-audiolla/api/. The server is the source of truth; this file is a curated reference.
 
 ```bash
 # List every endpoint grouped by category
@@ -25,7 +25,7 @@ curl $AUDIOLLA_URL/v1/catalog | jq '.categories[] | {name, count: (.endpoints | 
 curl $AUDIOLLA_URL/v1/catalog | jq '.categories[] | select(.name == "dynamics") | .endpoints'
 ```
 
-Companion discovery endpoints: `GET /v1/engines` (engines + loaded/idle status), `GET /v1/presets` (curated workflows), `GET /v1/ops` (the ~24 pipeline op slugs).
+Companion discovery endpoints: `GET /v1/engines` (engines + loaded/idle status), `GET /v1/presets` (curated workflows), `GET /v1/ops` (the 24 pipeline op slugs, names only).
 
 ## When to use this skill
 
@@ -70,8 +70,8 @@ The user has audiolla running and asks you to:
   - `stable-audio-open` (Stability Community Licence — commercial OK below revenue threshold; 47 s cap; 44.1 kHz stereo; loops / SFX / textures; instrumental)
   - `musicgen-small` and `musicgen-medium` (Meta MusicGen 300M / 1.5B; **CC-BY-NC 4.0** — server must opt in via `AUDIOLLA_ENABLE_NONCOMMERCIAL=1`; 30 s cap; instrumental)
   - `riffusion` (CreativeML OpenRAIL-M; ~5 s per pass; spectrogram-via-Griffin-Lim; lo-fi character)
-  - `audioldm2` (**CC-BY 4.0 — commercial-safe, no opt-in gate**; 30 s cap; 16 kHz mono; general SFX — ambience / foley / impact / animal sounds; slow at default 200-step DDIM, pass `num_inference_steps=50` for ~4x speed)
-  All five are CUDA-only. Full-song / lyric-conditioned generation isn't shipped (ACE-Step + DiffRhythm + TangoFlux + Stable Audio Open Small deferred — see the README's "deferred" list). For commercial use, prefer `audioldm2` (CC-BY 4.0) or `stable-audio-open` (Stability Community Licence below the revenue threshold).
+  - `audioldm2` (**CC-BY 4.0, commercial-safe, no opt-in gate**; 30 s cap; 16 kHz mono; general SFX (ambience / foley / impact / animal sounds); slow at the default 200 steps; a lower `num_inference_steps` such as 50 is faster at some quality cost)
+  All five exist only in the CUDA image (`:latest-cuda`); the CPU image answers 404 for them. Full-song / lyric-conditioned generation isn't shipped (see the "Not included" section of https://psyb0t.github.io/docker-audiolla/generation/). For commercial use, prefer `audioldm2` (CC-BY 4.0) or `stable-audio-open` (Stability Community Licence below the revenue threshold).
 - Drive any of the above from an LLM agent over MCP
 - **Async-job-and-forget** any audio-producing call via `async_job=true` + optional `webhook_url`
 - Send results to a **presigned S3-style PUT URL** via `output_url`
@@ -87,18 +87,18 @@ The user has audiolla running and asks you to:
 
 ```bash
 export AUDIOLLA_URL=http://localhost:8000
-export AUDIOLLA_TOKEN=<the-token-the-user-gives-you>   # only if auth is enabled
+export AUDIOLLA_AUTH_TOKEN=<the-token-the-user-gives-you>   # only if auth is enabled
 ```
 
-If `AUDIOLLA_URL` is not set, ask the user — do not search the workspace for it. Same for `AUDIOLLA_TOKEN`: only accept it from the env var the user set or from the user directly. Never read it from `docker-compose.yml`, `.env`, or any other repo file on your own initiative.
+If `AUDIOLLA_URL` is not set, ask the user; do not search the workspace for it. Same for `AUDIOLLA_AUTH_TOKEN`: only accept it from the env var the user set or from the user directly. Never read it from `docker-compose.yml`, `.env`, or any other repo file on your own initiative.
 
 **Verify:** `curl $AUDIOLLA_URL/healthz` → `{"ok": true, "device": "...", "engines": [...]}`. `/healthz` is always unauthenticated regardless of `AUDIOLLA_AUTH_TOKEN`.
 
-Auth is optional. If the server has `AUDIOLLA_AUTH_TOKEN` set, every endpoint except `/healthz` requires `Authorization: Bearer $AUDIOLLA_TOKEN`. Without it you get `401`. Always pass the token if the user gave you one; don't assume the server has auth off.
+Auth is optional. If the server has `AUDIOLLA_AUTH_TOKEN` set, every endpoint except `/healthz` requires `Authorization: Bearer $AUDIOLLA_AUTH_TOKEN`. Without it you get `401`. Always pass the token if the user gave you one; don't assume the server has auth off.
 
 ## How it works
 
-v1.0.0 is **JSON-everywhere**. Every audio endpoint takes `Content-Type: application/json` with a JSON body. The ONE exception is `PUT /v1/files/{path}` for raw byte uploads (`application/octet-stream`). Input is `file_path` (pre-staged under FILES_DIR via `PUT /v1/files/{path}`) xor `file_url` (server fetches when `AUDIOLLA_FETCH_MODE` allows). Output for audio-producing endpoints is `output_path` (server writes to FILES_DIR) xor `output_url` (server PUTs to a presigned URL). Both modes return JSON describing where the result landed (`{path,size,...}` or `{url,size,...}`); there is **no inline-bytes audio response** anywhere. Analysis-only endpoints (no audio produced — e.g. `/v1/audio/analyze`, `/v1/audio/beats`, `/v1/audio/fingerprint`) return their JSON data directly and ignore output_path/output_url. The standard flow is: `PUT /v1/files/uploads/track.wav` once, then JSON-body POST to every processing endpoint with `file_path` + `output_path`, chaining the output of one call into the input of the next.
+v1.0.0 is **JSON-everywhere**. Every audio endpoint takes `Content-Type: application/json` with a JSON body. The ONE exception is `PUT /v1/files/{path}` for raw byte uploads (`application/octet-stream`). Input is `file_path` (pre-staged under FILES_DIR via `PUT /v1/files/{path}`) xor `file_url` (server fetches when `AUDIOLLA_FETCH_MODE` allows). Output for audio-producing endpoints is `output_path` (server writes to FILES_DIR) xor `output_url` (server PUTs to a presigned URL). Both modes return JSON describing where the result landed (`{path,size,...}` or `{url,size,...}`). The exceptions are `/v1/midi/compose`, `/v1/midi/generate` and `/v1/midi/drum`: the body is the spec itself, `output_path`/`output_url` go in the query string, and without them the response is the MIDI or audio file. Analysis-only endpoints (no audio produced, e.g. `/v1/audio/analyze`, `/v1/audio/beats` without `click_track`, `/v1/audio/fingerprint`) return their JSON data directly and ignore output_path/output_url. The standard flow is: `PUT /v1/files/uploads/track.wav` once, then JSON-body POST to every processing endpoint with `file_path` + `output_path`, chaining the output of one call into the input of the next.
 
 Every error response:
 
@@ -110,7 +110,8 @@ Status codes follow REST conventions:
 - `200` — success
 - `400` — bad input (unknown engine, invalid features, bad operations JSON, etc.)
 - `401` — missing/invalid bearer token (only when auth is enabled)
-- `404` — unknown engine slug, unknown file path
+- `404`: unknown engine slug, an engine the endpoint needs that this server does not have (`<slug> engine not configured`), unknown file path
+- `422`: the body does not match the schema (wrong type, unknown enum value)
 - `413` — upload exceeded `AUDIOLLA_MAX_UPLOAD_BYTES` (default 200 MB)
 - `415` — unsupported `output_format`
 - `500` — server error (engine failed internally, etc.)
@@ -120,9 +121,9 @@ Status codes follow REST conventions:
 | Slug | What it does | Notes |
 |------|--------------|-------|
 | `htdemucs` | 4-stem separation | drums, bass, other, vocals |
-| `htdemucs_ft` | 4-stem fine-tuned | **CUDA-only at usable speed** — flagged `cuda_only`, the server rejects it with 400 on CPU |
-| `htdemucs_6s` | 6-stem separation | adds `guitar` + `piano` (experimental, CPU OK but slow) |
-| `mdx_extra` | 4-stem MDX-Net | drums, bass, other, vocals — strong vocal isolation |
+| `htdemucs_ft` | 4-stem fine-tuned | **CUDA image only.** Absent from the CPU image (404); flagged `cuda_only`, so a CUDA image running without a GPU rejects it with 400 |
+| `htdemucs_6s` | 6-stem separation | adds `guitar` + `piano`; CUDA image only |
+| `mdx_extra` | 4-stem MDX variant | drums, bass, other, vocals; CUDA image only |
 | `matchering` | Reference-based mastering | GPL v3 |
 | `pedalboard-chain` | Preset DSP mastering chain | presets: `transparent`, `loud` — GPL v3 |
 | `librosa-analyze` | MIR analysis + loudness | BPM, key, LUFS, spectral, beat grid, onsets, melody (pyin), segments; backs `/v1/audio/{analyze,beats,onsets,melody,segments,loudness}` |
@@ -133,7 +134,7 @@ Status codes follow REST conventions:
 | `silence-detect` | Silence detection + trimming | ffmpeg `silencedetect`; backs `/v1/audio/silence` |
 | `ffmpeg-render` | Spectrogram / waveform / video | static PNG + 8-mode animated MP4/WebM; backs `/v1/audio/visualize/image/{spectrogram,waveform}` + `/v1/audio/visualize/video/{mode}` |
 | `audio-fingerprint` | Chromaprint fingerprint | `fpcalc` subprocess; backs `/v1/audio/fingerprint` |
-| `uvr-dereverb` | AI de-reverb | BS-Roformer (SDR 19+); backs `/v1/audio/restore/uvr-dereverb` |
+| `uvr-dereverb` | AI de-reverb | BS-Roformer; backs `/v1/audio/restore/uvr-dereverb` |
 | `uvr-deecho` | AI de-echo (normal + aggressive) | VR Architecture; `aggressive=true` enables hard mode (`uvr-deecho-aggressive` slug is gone — consolidated into this engine); backs `/v1/audio/restore/uvr-deecho` |
 | `uvr-denoise` | AI de-noise | MelBand Roformer (SDR 28); backs `/v1/audio/restore/uvr-denoise` + `/v1/audio/noise-reduce/uvr-denoise` |
 | `uvr-karaoke` | Karaoke (remove lead vocals) | MelBand Roformer; returns Instrumental stem |
@@ -149,8 +150,13 @@ Status codes follow REST conventions:
 | `clap-embed` | CLAP embeddings + similarity + classification | LAION CLAP 512-dim; backs `/v1/audio/embed`, `/v1/audio/similar`, `/v1/audio/classify` |
 | `hpss` | Harmonic/percussive split | librosa median-filter HPSS; backs `/v1/audio/separate/hpss` |
 | `metadata` | ID3 / Vorbis / FLAC tag read+write | mutagen; backs `/v1/audio/metadata` |
+| `stable-audio-open`, `musicgen-small`, `musicgen-medium`, `riffusion`, `audioldm2` | Text to music / SFX | CUDA image only; back `/v1/audio/generate/{slug}` |
+
+The CUDA image (`psyb0t/audiolla:latest-cuda`) has all 35 engines. The CPU image (`psyb0t/audiolla:latest`) has 27: it lacks `htdemucs_ft`, `htdemucs_6s`, `mdx_extra` and the five generators, and asking it for one returns 404 `unknown engine`.
 
 Engines lazy-load on first use and auto-unload after `AUDIOLLA_ENGINE_TTL` seconds of idle (default 600s). Demucs weights prefetch into `/data/torch_cache/` at container start so the first separation request doesn't pay the cold-download cost.
+
+Download staged results before they expire. Audiolla v2 deletes inactive staged files after 24 hours by default, measured from their last write. Operators can change `AUDIOLLA_FILES_TTL` or set it to `0` to disable deletion. Reading a result does not extend its lifetime. Model-cache retention is separate. See `references/setup.md` before upgrading a server that must preserve existing files.
 
 Use `GET /v1/engines` to confirm what's actually configured on the running server (operators can restrict via `AUDIOLLA_ENABLED_ENGINES`).
 
@@ -168,16 +174,16 @@ curl $AUDIOLLA_URL/healthz
 # {"ok": true, "device": "cpu", "engines": ["htdemucs", "matchering", ...]}
 
 # Configured engines + capabilities
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/engines
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/engines
 
 # Engines currently loaded in memory (and how idle)
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/ps
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/ps
 
 # Evict one engine
-curl -X DELETE -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/ps/htdemucs
+curl -X DELETE -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/ps/htdemucs
 
 # Evict everything
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/unload
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/unload
 ```
 
 ### Stem separation
@@ -185,32 +191,32 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/unload
 `POST /v1/audio/separate` — JSON body. Result is one staged file (single-stem) or a ZIP of stems written to `output_path`.
 
 ```bash
-# Stage the input once (only multipart route in the whole API)
-curl -X PUT -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+# Stage the input once (raw bytes, the only upload route in the API)
+curl -X PUT -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/octet-stream' \
   --data-binary @track.wav \
   $AUDIOLLA_URL/v1/files/uploads/track.wav
 
 # Single stem → JSON {path,size,...} pointing at the staged stem
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/separate \
   -d '{"file_path":"uploads/track.wav","engine":"htdemucs","stems":["vocals"],"output_path":"stems/vocals.wav"}'
 
 # Multiple stems → ZIP at output_path
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/separate \
   -d '{"file_path":"uploads/track.wav","engine":"htdemucs","stems":["vocals","drums"],"output_path":"stems/vocals_drums.zip"}'
 
 # Omit stems → all stems for that engine (ZIP)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/separate \
   -d '{"file_path":"uploads/track.wav","engine":"htdemucs","output_path":"stems/all.zip"}'
 
 # MP3 output
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/separate \
   -d '{"file_path":"uploads/track.wav","engine":"htdemucs","stems":["vocals"],"output_format":"mp3","output_path":"stems/vocals.mp3"}'
@@ -226,19 +232,19 @@ Loading a separation engine evicts other loaded engines first — Demucs is memo
 
 ```bash
 # Reference-based mastering — both inputs pre-staged
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/master \
   -d '{"file_path":"uploads/track.wav","mode":"reference","reference_path":"uploads/ref.wav","output_path":"out/mastered.wav"}'
 
 # Pedalboard chain — preset is REQUIRED (transparent or loud)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/master \
   -d '{"file_path":"uploads/track.wav","mode":"chain","preset":"loud","output_path":"out/mastered.wav"}'
 
 # Pedalboard chain with explicit loudness target
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/master \
   -d '{"file_path":"uploads/track.wav","mode":"chain","preset":"transparent","target_lufs":-14,"output_path":"out/mastered.wav"}'
@@ -254,13 +260,13 @@ Streaming-target LUFS reference values: Spotify `-14`, Apple Music `-16`, YouTub
 
 ```bash
 # Specific features
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/analyze \
   -d '{"file_path":"uploads/track.wav","features":["bpm","key","loudness"]}'
 
 # Omit features → returns all of them
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/analyze \
   -d '{"file_path":"uploads/track.wav"}'
@@ -276,70 +282,71 @@ Returns the estimated BPM and beat timestamps. Optionally writes a click-track W
 
 ```bash
 # Beat grid only — analysis JSON
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/beats \
   -d '{"file_path":"uploads/track.wav"}'
-# {"bpm": 128.0, "beats": [0.0, 0.469, 0.938, ...], "engine": "librosa-analyze"}
+# {"tempo_bpm": 128.0, "beats": [0.0, 0.469, 0.938, ...], "beat_count": 412, "duration": 215.3, ...}
 
 # With a click track — output_path is REQUIRED when click_track=true
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/beats \
   -d '{"file_path":"uploads/track.wav","click_track":true,"output_path":"beats/click.wav"}'
 # → JSON with beat grid PLUS the staged click track path
 ```
 
-Optional params: `click_track` (bool, default false) — when true, writes the click WAV to `output_path` / `output_url`. `hop_length` (int, default 512) — analysis hop size in samples.
+Optional params: `click_track` (bool, default false): when true, writes the click WAV to `output_path` / `output_url`. `start_bpm` (float): initial tempo guess for the beat tracker.
 
 ### Onset detection (`/v1/audio/onsets`)
 
 Returns note/transient onset timestamps in seconds. Analysis-only, returns JSON.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/onsets \
   -d '{"file_path":"uploads/track.wav"}'
-# {"onsets": [0.023, 0.512, 1.034, ...], "count": 42, "engine": "librosa-analyze"}
+# {"onsets": [{"time": 0.023, "strength": 0.81}, ...], "count": 42, "duration": 215.3}
 ```
 
-Optional: `backtrack` (bool, default false) — snap onsets to preceding energy valley. `hop_length`, `delta` for tuning sensitivity.
+No tuning params: the body is just `file_path` or `file_url`.
 
 ### Melody extraction (`/v1/audio/melody`)
 
 Estimates the dominant melody using pyin pitch tracking. Returns Hz per frame.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/melody \
   -d '{"file_path":"uploads/track.wav"}'
-# {"melody": [{"time": 0.0, "hz": 440.1}, {"time": 0.023, "hz": null}, ...], ...}
+# {"fmin": 65.0, "fmax": 2093.0, "frame_seconds": 0.023, "duration": 215.3,
+#  "contour": [{"time": 0.0, "hz": 440.1, "voiced": true}, {"time": 0.023, "hz": null, "voiced": false}, ...]}
 
 # Export the melody as a single-track MIDI file (output_path REQUIRED when as_midi=true)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/melody \
   -d '{"file_path":"uploads/track.wav","as_midi":true,"output_path":"melody/lead.mid"}'
 ```
 
-`hz` is `null` for unvoiced frames. Optional: `as_midi` (bool) — generates MIDI from the contour and writes to `output_path` / `output_url`; `fmin`/`fmax` to constrain pitch range.
+`hz` is `null` for unvoiced frames. Optional: `as_midi` (bool): generates MIDI from the contour (at 120 BPM) and writes to `output_path` / `output_url`; `fmin` (default 65.0) / `fmax` (default 2093.0) to constrain pitch range.
 
 ### Structural segmentation (`/v1/audio/segments`)
 
 Finds recurring sections (verse, chorus, bridge…) using a recurrence matrix. Returns labels A, B, C…
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/segments \
-  -d '{"file_path":"uploads/track.wav","num_segments":4}'
+  -d '{"file_path":"uploads/track.wav","num_segments":6}'
 # {"segments": [{"label":"A","start_sec":0.0,"end_sec":32.5},
 #               {"label":"B","start_sec":32.5,"end_sec":65.0}, ...]}
 ```
 
-Optional: `num_segments` (int, default 4). Short inputs (fewer beats than `num_segments`) return a single `A` span with a `note` field explaining the fallback.
+Optional: `num_segments` (int, default 6, valid range [2, 32]). Short inputs (fewer beats than `num_segments`) return a single `A` span with a `note` field explaining the fallback.
 
 ### Silence detection and trimming (`/v1/audio/silence`)
 
@@ -347,20 +354,20 @@ Finds silent gaps via ffmpeg `silencedetect`. Optionally trims them.
 
 ```bash
 # Detect only — analysis JSON, no audio produced
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/silence \
   -d '{"file_path":"uploads/track.wav","threshold_db":-30,"min_duration_sec":1.0}'
 # {"silent_ranges": [...], "non_silent_ranges": [...], "duration": 215.3}
 
 # Trim all silence → trimmed audio staged
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/silence \
   -d '{"file_path":"uploads/track.wav","threshold_db":-30,"min_duration_sec":0.5,"trim_mode":"all","output_path":"proc/trimmed.wav"}'
 
 # Trim only edges
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/silence \
   -d '{"file_path":"uploads/track.wav","threshold_db":-40,"min_duration_sec":0.3,"trim_mode":"edges","output_path":"proc/trimmed.wav"}'
@@ -373,26 +380,26 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 Static PNG spectrogram via ffmpeg `showspectrumpic`. PNG is written to `output_path` / `output_url`.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/visualize/image/spectrogram \
   -d '{"file_path":"uploads/track.wav","width":1280,"height":720,"output_path":"viz/spec.png"}'
 ```
 
-Optional: `width`, `height` (64–8192, defaults 1920×1080), `color` (default `intensity`), `scale` (default `log`).
+Optional: `width`, `height` (64 to 8192, defaults 1280 x 720), `color` (default `intensity`), `scale` (default `log`, passed to ffmpeg `showspectrumpic`).
 
 ### Waveform (`/v1/audio/visualize/image/waveform`)
 
 Static PNG waveform via ffmpeg `showwavespic`. PNG is written to `output_path` / `output_url`.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/visualize/image/waveform \
   -d '{"file_path":"uploads/track.wav","width":1920,"height":240,"output_path":"viz/wave.png"}'
 ```
 
-Optional: `width`, `height` (64–8192, defaults 1920×320), `color` (default `lime`).
+Optional: `width`, `height` (64 to 8192, defaults 1280 x 720), `color` (default `lime`).
 
 ### Animated visualisation (`/v1/audio/visualize/video/{mode}`)
 
@@ -400,7 +407,7 @@ Animated MP4 or WebM video from one of 8 ffmpeg filter modes. Video is written t
 
 ```bash
 # `mode` is in the URL path
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/visualize/video/spectrum \
   -d '{"file_path":"uploads/track.wav","width":1280,"height":720,"fps":30,"container":"mp4","output_path":"viz/spectrum.mp4"}'
@@ -413,14 +420,14 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 Chromaprint fingerprint via `fpcalc`. The base64 string is AcoustID-compatible. Analysis-only — no output_path.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/fingerprint \
   -d '{"file_path":"uploads/track.wav"}'
 # {"duration": 215.34, "fingerprint": "AQADtEqRRIuQ..."}
 
 # Include the raw integer array
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/fingerprint \
   -d '{"file_path":"uploads/track.wav","return_raw":true}'
@@ -435,7 +442,7 @@ Optional: `analyze_seconds` (default 120 — AcoustID standard; pass 0 to finger
 
 ```bash
 # Pitch shift up 2 semitones, then add reverb
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/transform \
   -d '{
@@ -449,7 +456,7 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
   }'
 
 # Trim first 30s, pad 2s silence at end, gain -3dB
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/transform \
   -d '{
@@ -488,14 +495,14 @@ Unknown ops return 400 with the valid list.
 
 ```bash
 # Measure
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/loudness \
   -d '{"file_path":"uploads/track.wav"}'
-# {"loudness_lufs": -16.3}
+# {"loudness_lufs": -16.3, "target_lufs": null, "normalized": false}
 
 # Normalize to -14 LUFS (streaming target). Result is staged audio.
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/normalize \
   -d '{"file_path":"uploads/track.wav","target_lufs":-14,"output_path":"out/normalized.wav"}'
@@ -509,7 +516,7 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 Arbitrary pedalboard effect chain — full catalog. Different from `/v1/audio/master` (which runs presets).
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/fx \
   -d '{
@@ -530,38 +537,36 @@ Allowed `type` values: `Compressor`, `Limiter`, `NoiseGate`, `Gain`, `Clipping`,
 
 ### MIDI composition (`/v1/midi/compose`)
 
-Transcode a JSON song spec to a Standard MIDI File. **No AI runs server-side** — your agent writes the spec, audiolla turns it into MIDI bytes staged at `output_path`.
+Transcode a JSON song spec to a Standard MIDI File. **No AI runs server-side**: your agent writes the spec, audiolla turns it into MIDI bytes. The request body IS the spec (no wrapper object); `output_path` / `output_url` go in the query string.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
-  $AUDIOLLA_URL/v1/midi/compose \
+  "$AUDIOLLA_URL/v1/midi/compose?output_path=midi/song.mid" \
   -d '{
-    "output_path":"midi/song.mid",
-    "spec":{
-      "tempo_bpm": 120,
-      "time_signature": [4, 4],
-      "key_signature": "C",
-      "tracks": [
-        {"name":"Lead","program":0,"channel":0,"notes":[
-          {"pitch":60,"start_beats":0.0,"duration_beats":0.5,"velocity":100},
-          {"pitch":64,"start_beats":0.5,"duration_beats":0.5,"velocity":100},
-          {"pitch":67,"start_beats":1.0,"duration_beats":0.5,"velocity":100}
-        ]},
-        {"name":"Drums","program":0,"channel":9,"notes":[
-          {"pitch":36,"start_beats":0.0,"duration_beats":0.1,"velocity":110}
-        ]}
-      ]
-    }
+    "tempo_bpm": 120,
+    "time_signature": [4, 4],
+    "key_signature": "C",
+    "tracks": [
+      {"name":"Lead","program":0,"channel":0,"notes":[
+        {"pitch":60,"start_beats":0.0,"duration_beats":0.5,"velocity":100},
+        {"pitch":64,"start_beats":0.5,"duration_beats":0.5,"velocity":100},
+        {"pitch":67,"start_beats":1.0,"duration_beats":0.5,"velocity":100}
+      ]},
+      {"name":"Drums","program":0,"channel":9,"notes":[
+        {"pitch":36,"start_beats":0.0,"duration_beats":0.1,"velocity":110}
+      ]}
+    ]
   }'
+# -> {"path":"midi/song.mid","size":...,"engine":"midi-compose"}
 ```
 
-Spec fields (inside the `spec` object):
+Spec fields (top level of the body):
 
 | Field | Type | Default | Notes |
 |-------|------|---------|-------|
 | `tempo_bpm` | float | 120 | 1.0 ≤ bpm ≤ 999.0 |
-| `time_signature` | `[num, den]` | `[4, 4]` | denominator must be 1/2/4/8/16/32 |
+| `time_signature` | `[num, den]` | `[4, 4]` | numerator 1-32, denominator 1/2/4/8/16/32 |
 | `key_signature` | string | none | `"C"`, `"Am"`, `"F#"`, `"Bbm"` — letter [+ #/b] [+ m for minor] |
 | `ticks_per_beat` | int | 480 | 24 ≤ tpb ≤ 1920 |
 | `tracks[].name` | string | none | optional, writes a `track_name` meta event |
@@ -571,21 +576,21 @@ Spec fields (inside the `spec` object):
 | `tracks[].pan` | int 0-127 | 64 | MIDI CC#10 — initial pan (64 = centre) |
 | `tracks[].notes[].pitch` | int 0-127 | required | 60 = middle C |
 | `tracks[].notes[].start_beats` | float ≥ 0 | 0 | beat-based absolute position |
-| `tracks[].notes[].duration_beats` | float > 0 | required | must be > 1/64 beat (≈ a 256th note) |
+| `tracks[].notes[].duration_beats` | float | required | at least 1/64 of a beat |
 | `tracks[].notes[].velocity` | int 1-127 | 100 | |
 
 GM drum kit reference for channel 9: 35 acoustic bass drum, 36 kick, 38 snare, 39 hand clap, 40 electric snare, 42 closed hi-hat, 46 open hi-hat, 49 crash, 51 ride, 57 crash 2.
 
 Spec validation is fail-loud — bad pitch / negative duration / unknown program returns a 400 with the offending path in the message (e.g. `tracks[1].notes[3].pitch must be in [0, 127], got 200`).
 
-One of `output_path` / `output_url` is required — the staged MIDI is then referenced via `file_path` on any subsequent MIDI call.
+Pass `?output_path=` (or `?output_url=`) to stage the MIDI and get JSON back; reference it via `file_path` on later MIDI calls. With neither, the response is the raw MIDI file (`audio/midi`). Multipart with the spec in a `spec` field also works.
 
 ### MIDI inspection (`/v1/midi/inspect`)
 
 Read the structure of any Standard MIDI File. Analysis-only, returns JSON.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/inspect \
   -d '{"file_path":"midi/song.mid"}'
@@ -610,34 +615,34 @@ Modify an existing MIDI file. Result is staged at `output_path` / `output_url`.
 
 ```bash
 # Transpose all non-drum tracks up an octave
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/transform \
   -d '{"file_path":"midi/song.mid","transpose_semitones":12,"output_path":"midi/transposed.mid"}'
 
 # Override tempo to 140 BPM
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/transform \
   -d '{"file_path":"midi/song.mid","tempo_bpm":140,"output_path":"midi/fast.mid"}'
 
 # Drop the drum channel
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/transform \
-  -d '{"file_path":"midi/song.mid","drop_channels":[9],"output_path":"midi/no-drums.mid"}'
+  -d '{"file_path":"midi/song.mid","drop_channels":"9","output_path":"midi/no-drums.mid"}'
 
 # Keep only channels 0 and 1
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/transform \
-  -d '{"file_path":"midi/song.mid","keep_channels":[0,1],"output_path":"midi/two-ch.mid"}'
+  -d '{"file_path":"midi/song.mid","keep_channels":"0,1","output_path":"midi/two-ch.mid"}'
 
 # Quantize to 1/16th notes (0.25 beats)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/transform \
-  -d '{"file_path":"midi/song.mid","quantize":0.25,"output_path":"midi/quantized.mid"}'
+  -d '{"file_path":"midi/song.mid","quantize_grid_beats":0.25,"output_path":"midi/quantized.mid"}'
 ```
 
 Transform params (all optional — omit for a no-op):
@@ -646,9 +651,9 @@ Transform params (all optional — omit for a no-op):
 |-------|------|-------|
 | `transpose_semitones` | int ±48 | Shifts all non-drum (non-ch9) pitches. Out-of-range notes after shift are dropped (not clipped). |
 | `tempo_bpm` | float 1–999 | Replaces all `set_tempo` events. |
-| `quantize` | float > 0 | Beat grid in beats (0.25 = 1/16th at 4/4). Snaps note starts; note-off shifts by the same delta to preserve duration. |
-| `keep_channels` | int array (0–15) | Whitelist — drop all other channels. Mutually exclusive with `drop_channels`. |
-| `drop_channels` | int array (0–15) | Blacklist — drop only these channels. Mutually exclusive with `keep_channels`. |
+| `quantize_grid_beats` | float > 0 | Beat grid in beats (0.25 = 1/16th at 4/4). Snaps note starts; note-off shifts by the same delta to preserve duration. |
+| `keep_channels` | string, comma-separated (`"0,1"`) | Whitelist: drop all other channels. Mutually exclusive with `drop_channels`. |
+| `drop_channels` | string, comma-separated (`"9"`) | Blacklist: drop only these channels. Mutually exclusive with `keep_channels`. |
 
 Supplying both `keep_channels` and `drop_channels` returns 400.
 
@@ -658,17 +663,17 @@ Synthesise MIDI to audio via fluidsynth. Default SoundFont is FluidR3_GM (bundle
 
 ```bash
 # Render a staged MIDI to staged audio
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/render \
   -d '{"file_path":"midi/song.mid","output_format":"wav","output_path":"audio/song.wav"}'
 
 # Render with a custom SoundFont (stage it first)
-curl -X PUT -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X PUT -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/octet-stream' \
   --data-binary @my.sf2 \
   $AUDIOLLA_URL/v1/files/sf/orchestral.sf2
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/midi/render \
   -d '{"file_path":"midi/song.mid","soundfont_path":"sf/orchestral.sf2","output_format":"flac","gain":0.3,"samplerate":48000,"output_path":"audio/orch.flac"}'
@@ -678,48 +683,45 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 
 ### MIDI generate (`/v1/midi/generate`)
 
-One-shot compose + render. Body has the same `spec` field as `/v1/midi/compose` plus audio knobs (`output_format`, `soundfont_path`, `gain`, `samplerate`). Result audio is staged at `output_path` / `output_url`.
+One-shot compose + render. The body is the same song spec as `/v1/midi/compose` (no wrapper). `output_path`, `output_url`, `output_format` (default `wav`), `soundfont_path`, `gain` and `samplerate` go in the query string. Without `output_path`/`output_url` the response is the audio file itself.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
-  $AUDIOLLA_URL/v1/midi/generate \
-  -d '{
-    "output_format":"wav",
-    "output_path":"songs/v1.wav",
-    "spec":{"tempo_bpm":120,"tracks":[{"channel":0,"notes":[
-      {"pitch":60,"start_beats":0,"duration_beats":1,"velocity":100}
-    ]}]}
-  }'
+  "$AUDIOLLA_URL/v1/midi/generate?output_format=wav&output_path=songs/v1.wav" \
+  -d '{"tempo_bpm":120,"tracks":[{"channel":0,"notes":[
+    {"pitch":60,"start_beats":0,"duration_beats":1,"velocity":100}
+  ]}]}'
+# -> {"path":"songs/v1.wav","size":...,"engine":"midi-generate","output_format":"wav","midi_size":...}
 ```
 
 ### File staging
 
-A simple server-side file store under `/v1/files`. **This is the only multipart-ish route in the API** — the body is raw bytes (`application/octet-stream`). Plain CRUD: upload, list, download, delete. Once a file is staged, every audio endpoint references it by relative path via the `file_path` field in its JSON body.
+A simple server-side file store under `/v1/files`. **This is the only upload route in the API**: the body is raw bytes (`application/octet-stream`). Plain CRUD: upload, list, download, delete. Once a file is staged, every audio endpoint references it by relative path via the `file_path` field in its JSON body.
 
 ```bash
 # Upload (path can have subdirectories: uploads/bands/myband/track.wav)
-curl -X PUT -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X PUT -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/octet-stream' \
   --data-binary @track.wav \
   $AUDIOLLA_URL/v1/files/uploads/mytrack.wav
 
 # Use the staged path on any audio call
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/separate \
   -d '{"file_path":"uploads/mytrack.wav","engine":"htdemucs","stems":["vocals"],"output_path":"stems/mytrack-vocals.wav"}'
 # → {"path":"stems/mytrack-vocals.wav","size":...,"engine":"htdemucs","stem":"vocals","output_format":"wav"}
 
 # List
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/files
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/files
 
 # Download (raw bytes — Content-Type matches the stored file)
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   $AUDIOLLA_URL/v1/files/uploads/mytrack.wav -o copy.wav
 
 # Delete
-curl -X DELETE -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X DELETE -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   $AUDIOLLA_URL/v1/files/uploads/mytrack.wav
 ```
 
@@ -732,12 +734,12 @@ Every audio endpoint accepts exactly one of two input forms — supplying zero o
 - `file_path` — relative path under FILES_DIR (pre-staged via `PUT /v1/files/{path}`)
 - `file_url` — remote URL the server fetches (subject to the `AUDIOLLA_FETCH_MODE` policy — see below)
 
-Audio-producing endpoints (separate, master, transform, normalize, fx, restore, enhance, visualize, midi compose/transform/render/generate, melody-as-midi, beats-with-click-track, etc.) require exactly one of:
+Audio-producing endpoints (separate, master, transform, normalize, fx, restore, enhance, visualize, midi transform/render, melody-as-midi, beats-with-click-track, etc.) require exactly one of:
 
 - `output_path` — server writes the result to `FILES_DIR / <path>`; response is JSON `{path, size, ...}`
 - `output_url` — server PUTs the result to a presigned URL; response is JSON `{url, size, ...}`
 
-`output_path` and `output_url` are mutually exclusive — supplying both is 400. Supplying neither is 400 too (no inline-bytes audio response exists in v1.0.0) — except when `async_job=true`, which auto-stages to `jobs/{job_id}.{ext}` if neither is set.
+`output_path` and `output_url` are mutually exclusive: supplying both is 400. Supplying neither is 400 too, except when `async_job=true`, which auto-stages to `jobs/{job_id}.{ext}` if neither is set. `/v1/midi/compose`, `/v1/midi/generate` and `/v1/midi/drum` differ: their output options are query parameters, and with neither set they return the file bytes.
 
 Analysis-only endpoints (`/v1/audio/analyze`, `/v1/audio/onsets`, `/v1/audio/fingerprint`, `/v1/audio/loudness`, beats without `click_track`, silence without `trim_mode`, etc.) ignore `output_path` / `output_url` — they return their JSON data directly.
 
@@ -769,7 +771,7 @@ If you're scripting and the server returns `URL fetch/upload is disabled` (400),
 Example — fetch from S3, master, PUT to a presigned URL:
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/master \
   -d '{
@@ -783,72 +785,74 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 
 ## MCP
 
-audiolla exposes a Model Context Protocol server at `/v1/mcp` using the streamable HTTP transport. Same auth as REST — pass `Authorization: Bearer $AUDIOLLA_TOKEN`.
+audiolla exposes a Model Context Protocol server at `/v1/mcp` using the streamable HTTP transport. Same auth as REST: pass `Authorization: Bearer $AUDIOLLA_AUTH_TOKEN`.
 
-The MCP contract mirrors REST: every audio tool requires exactly one of `file_path` or `file_url` for input (same `AUDIOLLA_FETCH_MODE` policy as REST), and every audio-producing tool requires exactly one of `output_path` or `output_url` for output. There is **no inline-base64 audio mode** — v1.0.0 dropped every base64 audio/MIDI/image/video response field that existed in v0.23.x because LLMs can't consume raw bytes anyway, and large base64 payloads choke the context window. Every audio-producing tool returns either `{path, size, output_format}` (when `output_path` is set) or `{url, size, output_format}` (when `output_url` is set). The `separate` tool takes `output_urls` as a per-stem dict when uploading each stem to its own presigned URL.
+The MCP contract mostly mirrors REST: every audio tool requires exactly one of `file_path` or `file_url` for input (same `AUDIOLLA_FETCH_MODE` policy as REST), and most audio-producing tools require exactly one of `output_path` or `output_url` for output, returning either `{path, size, output_format}` or `{url, size, output_format}`. There are narrow exceptions where the MCP transport still returns inline base64 instead of staging — see the `beats`/`melody`/`silence` rows below.
+
+The table below is a curated subset; the server exposes 82 MCP tools total (one per REST endpoint, roughly), including ops like `trim`, `mix`, `concat`, `fade`, `reverse`, `loop`, `speed`, `convert`, `pan`, `eq`, `key_match`, `bpm_match`, `stereo_width`, `mid_side`, `sidechain_duck`, `multiband_compress`, `transient_shaper`, `convolution_reverb`, `deess`, `dj_prep`, `pitch_correct`, `repair_audio`, `find_loop_point`, `chords`, `chords_to_midi`, `vad`, `diarize`, `stretch`, `tag`, `embed`, `classify`, `similar`, `hpss`, `noise_reduce`, `detect_clipping`, `slice_at_beats`, `audio_thumbnail`, `stereo_field`, `midi_quantize`, `midi_humanize`, `drum_pattern`, `generate_music`, `list_presets`, `describe_preset`, `run_preset`, `list_ops`, `run_pipeline_tool`, `audio_metadata`, `info`, and job control (`list_jobs`, `get_job`, `cancel_job`). Each mirrors its REST counterpart's params 1:1 (see the REST reference above for the full param list of each): connect an MCP client and call `list_engines`/introspect the tool list, or check `GET /v1/catalog`, for the authoritative current set.
 
 | Tool | Inputs | Output |
 |------|--------|--------|
 | `list_engines` | — | engine catalog with `loaded` flag |
-| `separate` | `engine`, `stems`, `file_path` or `file_url`, `output_path` or `output_url` or `output_urls: {stem: url}` | `{path, size}` / `{url, size}` / `{uploaded_stems: {stem: {url, size}}}` |
+| `separate` | `engine`, `stems`, `file_path` or `file_url`, `output_paths: {stem: path}` or `output_urls: {stem: url}` (one of the two maps is required — no single `output_path`/`output_url`) | `{staged_stems: {stem: {path, size}}, output_format}` or `{uploaded_stems: {stem: {url, size}}, output_format}` |
 | `master` | `mode`, `file_path` or `file_url`, `reference_path` or `reference_url` (mode=reference), `preset` (mode=chain), `target_lufs`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
 | `analyze` | `file_path` or `file_url`, `features` | librosa feature dict |
-| `beats` | `file_path` or `file_url`, `click_track`, `hop_length`, `output_path` or `output_url` (only when `click_track=true`) | `{bpm, beats, ...}` (+ click track `{path}` / `{url}` if `click_track=true`) |
-| `onsets` | `file_path` or `file_url`, `backtrack`, `hop_length`, `delta` | `{onsets, count, ...}` |
-| `melody` | `file_path` or `file_url`, `as_midi`, `fmin`, `fmax`, `output_path` or `output_url` (only when `as_midi=true`) | `{melody: [{time, hz}, ...], ...}` (+ MIDI `{path}` / `{url}` if `as_midi=true`) |
-| `segments` | `file_path` or `file_url`, `num_segments` | `{segments: [{label, start_sec, end_sec}, ...]}` |
-| `silence` | `file_path` or `file_url`, `threshold_db`, `min_duration_sec`, `trim_mode`, `output_path` or `output_url` (only when `trim_mode` set) | `{silent_ranges, non_silent_ranges, duration, ...}` (+ trimmed audio `{path}` / `{url}` if `trim_mode` set) |
-| `spectrogram` | `file_path` or `file_url`, `width`, `height`, `color`, `scale`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
-| `waveform` | `file_path` or `file_url`, `width`, `height`, `color`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
-| `visualize` | `file_path` or `file_url`, `mode`, `width`, `height`, `fps`, `container`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
+| `beats` | `file_path` or `file_url`, `click_track`, `output_format` | `{tempo_bpm, beats, beat_count, duration}` — with `click_track=true`, adds `click_track_base64` (inline base64, NOT staged — no `output_path`/`output_url` param on this tool) |
+| `onsets` | `file_path` or `file_url` | `{onsets, ...}` |
+| `melody` | `file_path` or `file_url`, `fmin`, `fmax`, `as_midi` | pitch contour — with `as_midi=true`, adds `midi_base64` (inline base64, NOT staged — no `output_path`/`output_url` param on this tool) |
+| `segments` | `file_path` or `file_url`, `num_segments` (default 6) | `{segments: [{label, start_sec, end_sec}, ...]}` |
+| `silence` | `file_path` or `file_url`, `threshold_db`, `min_duration_sec`, `trim_mode`, `output_format` | `{silent_ranges, non_silent_ranges, duration, ...}` — with `trim_mode` set, adds `trimmed_audio_base64` (inline base64, NOT staged — no `output_path`/`output_url` param on this tool) |
+| `visualize` | `file_path` or `file_url`, `engine`, `mode` (`spectrogram`/`waveform` for static PNG, or `spectrum`/`waves`/`cqt`/`freqs`/`volume`/`vectorscope`/`phasemeter`/`histogram` for animated video), `width`, `height`, `color`, `scale`, `fps`, `container`, `output_path` or `output_url` | `{path, size}` or `{url, size}` — replaces the separate `spectrogram`/`waveform` REST endpoints as one tool with a `mode` switch |
 | `fingerprint` | `file_path` or `file_url`, `analyze_seconds`, `return_raw` | `{duration, fingerprint, fingerprint_raw?}` |
 | `transform` | `operations`, `file_path` or `file_url`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
-| `loudness` | `file_path` or `file_url`, `target_lufs`, `output_path` or `output_url` | measurement JSON (no target) or `{path or url, size, measured_lufs, target_lufs, normalized}` |
+| `loudness` | `file_path` or `file_url` | `{loudness_lufs}` — measurement only |
+| `normalize` | `file_path` or `file_url`, `target_lufs`, `output_format`, `output_path` or `output_url` | `{path or url, size, measured_lufs, target_lufs}` |
 | `fx` | `effects`, `file_path` or `file_url`, `output_format`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
 | `midi_compose` | `spec` (song JSON), `output_path` or `output_url` | `{path, size}` or `{url, size}` |
 | `midi_inspect` | `file_path` or `file_url` (MIDI) | `{type, ticks_per_beat, tempo_changes, tracks, ...}` |
-| `midi_transform` | `file_path` or `file_url` (MIDI), `transpose_semitones`, `tempo_bpm`, `quantize`, `keep_channels`, `drop_channels`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
+| `midi_transform` | `file_path` or `file_url` (MIDI), `transpose_semitones`, `tempo_bpm`, `quantize`, `keep_channels`, `drop_channels`, `output_url` only (no `output_path` on this tool) | `{url, size, ...}` |
 | `midi_render` | `file_path` or `file_url` (MIDI), `soundfont_path`, `gain`, `samplerate`, `output_format`, `output_path` or `output_url` | `{path, size}` or `{url, size}` |
 | `midi_generate` | `spec`, `soundfont_path`, `gain`, `samplerate`, `output_format`, `output_path` or `output_url` | `{path, size, midi_size}` or `{url, size, midi_size}` |
-| `dereverb` | `file_path` or `file_url`, `engine`, `output_format`, `output_path` or `output_url` | `{path, size, engine, output_format}` or `{url, size, engine, output_format}` |
-| `deecho` | `file_path` or `file_url`, `engine`, `output_format`, `output_path` or `output_url` | `{path, size, engine, output_format}` or `{url, size, engine, output_format}` |
-| `denoise` | `file_path` or `file_url`, `engine`, `output_format`, `output_path` or `output_url` | `{path, size, engine, output_format}` or `{url, size, engine, output_format}` |
+| `restore` | `file_path` or `file_url`, `engine` (default `uvr-dereverb`; also `uvr-deecho`, `uvr-denoise`), `aggressive` (uvr-deecho only), `output_format`, `output_url` only (no `output_path` on this tool — inline base64 is not returned either; `output_url` is required) | `{url, size, engine, aggressive, output_format}` |
+| `denoise` | `file_path` or `file_url`, `engine`, `output_format`, `output_path` or `output_url` | `{path, size, engine, output_format}` or `{url, size, engine, output_format}` — thin shim over `restore`/`noise_reduce` |
 | `audio_to_midi` | `file_path` or `file_url`, `engine`, `onset_threshold`, `frame_threshold`, `minimum_note_length_ms`, `minimum_frequency`, `maximum_frequency`, `multiple_pitch_bends`, `melodia_trick`, `output_path` or `output_url` | `{path, size, engine}` or `{url, size, engine}` |
-| `enhance` | `file_path` or `file_url`, `engine`, `output_format`, `output_path` or `output_url` | `{path, size, engine, output_format}` or `{url, size, engine, output_format}` |
+| `enhance` | `file_path` or `file_url`, `engine`, `output_format`, `output_url` only (no `output_path` on this tool) | `{url, size, engine, output_format}` |
 | `list_files` | — | `{files: [...]}` |
 | `put_file` | `path`, the file body as base64 (small uploads only; for big files use REST `PUT /v1/files/{path}`) | `{path, size}` |
 | `get_file` | `path` | `{path, size}` (the bytes themselves are fetched via REST `GET /v1/files/{path}`) |
 | `delete_file` | `path` | `{deleted}` |
 
-Audio over MCP is **strictly path/URL-based** — JSON-RPC can't carry raw bytes efficiently and the v1.0.0 contract enforces this everywhere. For inputs: pre-stage via REST `PUT /v1/files/{path}` (or the `put_file` MCP tool for small files) and pass `file_path`, or pass `file_url` when fetch is enabled. For outputs: pick `output_path` to keep the result in staging (chain it as the next call's `file_path`), or `output_url` to PUT it to S3-style storage.
+Other output quirks in the current MCP tools: `deess`, `audio_thumbnail`, `midi_quantize`, `midi_humanize`, `drum_pattern` and `chords_to_midi` take `output_url` only; `stretch` takes `output_path` only; `hpss` and `slice_at_beats` have no output argument and always fail after doing the work, and `split` is deprecated and always fails. Use the REST endpoints for those (`/v1/audio/separate/hpss`, `/v1/audio/beat-slice`, `/v1/audio/split`).
+
+Audio over MCP is **path/URL-based for inputs and for most audio-producing outputs** — JSON-RPC can't carry raw bytes efficiently, so the v1.0.0 contract enforces this on nearly every tool. For inputs: pre-stage via REST `PUT /v1/files/{path}` (or the `put_file` MCP tool for small files) and pass `file_path`, or pass `file_url` when fetch is enabled. For outputs: pick `output_path` to keep the result in staging (chain it as the next call's `file_path`), or `output_url` to PUT it to S3-style storage. Exceptions: `beats` (click track), `melody` (as_midi), and `silence` (trim) still return their secondary audio/MIDI artifact as inline base64 rather than staging it — see the table above.
 
 The MCP endpoint is at `$AUDIOLLA_URL/v1/mcp`. It is JSON-RPC over streamable HTTP; do not try to describe it in OpenAPI or hit it with raw curl — use an MCP client.
 
 ### AI restoration — de-reverb / de-echo / de-noise (`/v1/audio/restore/{engine}`)
 
-All three restoration variants live under one endpoint; the engine is in the URL path. `aggressive=true` enables hard-mode echo removal on `uvr-deecho` (no-op on the others).
+All three restoration variants live under one endpoint; the engine is in the URL path. `aggressive=true` enables hard-mode echo removal on `uvr-deecho`; on the other engines it returns 400 (they have no aggressive model).
 
 ```bash
-# De-reverb (BS-Roformer, SDR 19+)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+# De-reverb (BS-Roformer)
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/restore/uvr-dereverb \
   -d '{"file_path":"uploads/reverby.wav","output_path":"out/clean.wav"}'
 
 # De-echo (VR Architecture)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/restore/uvr-deecho \
   -d '{"file_path":"uploads/echoy.wav","output_path":"out/clean.wav"}'
 
 # De-echo, aggressive — stronger suppression, may affect dry signal more
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/restore/uvr-deecho \
   -d '{"file_path":"uploads/echoy.wav","aggressive":true,"output_path":"out/clean.wav"}'
 
 # De-noise (MelBand Roformer, SDR 28)
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/restore/uvr-denoise \
   -d '{"file_path":"uploads/noisy.wav","output_path":"out/clean.wav"}'
@@ -862,13 +866,13 @@ Convert any audio to a polyphonic MIDI file using Spotify's basic-pitch (ONNX ba
 
 ```bash
 # Any audio → MIDI staged at output_path
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/to_midi/basic-pitch \
   -d '{"file_path":"uploads/guitar.wav","output_path":"midi/guitar.mid"}'
 
 # Tune detection thresholds
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/to_midi/basic-pitch \
   -d '{"file_path":"uploads/piano.wav","onset_threshold":0.6,"frame_threshold":0.3,"minimum_note_length_ms":80,"output_path":"midi/piano.mid"}'
@@ -884,13 +888,13 @@ The staged MIDI works directly with `/v1/midi/inspect`, `/v1/midi/transform`, an
 DeepFilterNet DF3 noise suppression — deep learning model trained on speech. More surgical than UVR's de-noise for voice/vocal recordings.
 
 ```bash
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/enhance/deepfilter \
   -d '{"file_path":"uploads/vocal_recording.wav","output_path":"out/enhanced.wav"}'
 
 # MP3 output, staged
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/enhance/deepfilter \
   -d '{"file_path":"vocals/raw.wav","output_format":"mp3","output_path":"vocals/enhanced.mp3"}'
@@ -898,7 +902,7 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 
 Engine in path: `deepfilter`. JSON params: `output_format`, `output_path`, `output_url`.
 
-> **Note on UVR model weights:** `uvr-dereverb`, `uvr-deecho`, `uvr-denoise`, `uvr-karaoke`, and `uvr-vocal-bsr` all need their `.ckpt` / `.pth` model files present in the server's `AUDIOLLA_UVR_MODELS_DIR` (default `/data/uvr_models`). The image does **not** bundle these files — the operator must download them and mount the directory. If a model file is missing, the endpoint returns 500 on first load. See the README for the exact download list.
+> **Note on UVR model weights:** `uvr-dereverb`, `uvr-deecho`, `uvr-denoise`, `uvr-karaoke`, and `uvr-vocal-bsr` use `.ckpt` / `.pth` model files that are not in the image. audio-separator downloads each one into `AUDIOLLA_UVR_MODELS_DIR` (default `/data/uvr_models`) the first time the engine loads, so the first call to each UVR engine is slow and needs network access from the server.
 
 ### Workflows — presets + ad-hoc pipelines
 
@@ -908,15 +912,15 @@ Two ways to chain operations server-side. Both keep intermediate audio in memory
 
 ```bash
 # List the curated presets
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/presets \
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/presets \
   | jq '.data[] | {name, description}'
 
 # Inspect a preset's steps before running
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   $AUDIOLLA_URL/v1/presets/master-for-spotify | jq '.steps'
 
 # Run a preset against a staged file
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/presets/podcast-cleanup \
   -d '{"file_path":"uploads/interview.wav","output_path":"out/cleaned.wav"}'
@@ -924,14 +928,16 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
 
 Shipped presets: `master-for-spotify` (3-band master + -14 LUFS), `podcast-cleanup` (DeepFilterNet + de-ess + -16 LUFS), `vocal-cleanup` (UVR dereverb + denoise + de-ess + light comp). Operators can add their own YAML in `AUDIOLLA_PRESETS_DIR`.
 
+The top-level `output_format` on `/v1/presets/{name}` and `/v1/pipeline` names the output file but does not re-encode it; each op writes WAV unless its own `params` set `output_format`. To get an MP3 out of a pipeline, put `"output_format":"mp3"` in the last step's `params`.
+
 **Ad-hoc pipeline** — chain any op slug in a single call.
 
 ```bash
 # List available op slugs
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" $AUDIOLLA_URL/v1/ops
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" $AUDIOLLA_URL/v1/ops
 
 # Restore + multiband + normalise in one request
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/pipeline \
   -d '{
@@ -956,11 +962,11 @@ The response includes a `steps` log — `[{step, op, params, size_after}, …]` 
 
 ### Async jobs
 
-Every audio-producing endpoint accepts `"async_job": true` in the JSON body. The call returns immediately with a 202 JSON `{job_id, status_url}` and the work runs in the background. Optionally pass `webhook_url` and audiolla POSTs the completion event to it.
+Audio-producing endpoints accept `"async_job": true` in the JSON body. The call returns immediately with a 202 JSON `{job_id, status, status_url}` and the work runs in the background. Optionally pass `webhook_url` and audiolla POSTs the job record to it when the job completes (failed and cancelled jobs send nothing; poll for those). `/v1/midi/render`, `/v1/midi/transform`, `/v1/midi/quantize`, `/v1/midi/humanize` and `/v1/audio/chords-to-midi` accept the flag but run inline. Jobs live in memory and are lost on restart.
 
 ```bash
 # Submit
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/separate \
   -d '{
@@ -970,19 +976,19 @@ curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
     "webhook_url":"https://your-server.example/hooks/audiolla",
     "output_path":"stems/track.zip"
   }'
-# → 202 {"job_id": "abc123", "status_url": "/v1/jobs/abc123"}
+# -> 202 {"job_id": "abc123", "status": "pending", "status_url": "/v1/jobs/abc123"}
 
 # Poll
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   $AUDIOLLA_URL/v1/jobs/abc123 \
   | jq '{status, duration_sec, result}'
 
 # List with optional filter
-curl -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   "$AUDIOLLA_URL/v1/jobs?status=completed"
 
 # Cancel
-curl -X DELETE -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X DELETE -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   $AUDIOLLA_URL/v1/jobs/abc123
 ```
 
@@ -994,7 +1000,7 @@ Every audio-producing endpoint accepts `"output_url": "<presigned PUT URL>"` as 
 
 ```bash
 # Master + upload result directly to S3 — no intermediate disk hit
-curl -X POST -H "Authorization: Bearer $AUDIOLLA_TOKEN" \
+curl -X POST -H "Authorization: Bearer $AUDIOLLA_AUTH_TOKEN" \
   -H 'Content-Type: application/json' \
   $AUDIOLLA_URL/v1/audio/master \
   -d '{
@@ -1013,28 +1019,28 @@ Async jobs also support `output_url` — the completed job PUTs the result on co
 
 - **`features=["lufs"]` is wrong**, use `features=["loudness"]`. (LUFS *is* an integrated loudness measurement, but the feature name on the wire is `loudness`.)
 - **`mode=chain` without `preset` returns 400.** Always pass `"preset":"transparent"` or `"preset":"loud"`.
-- **`htdemucs_ft` rejected on CPU** — the server flag `cuda_only` makes this return 400 unless the running image is `psyb0t/audiolla:latest-cuda` with `--gpus all`.
+- **`htdemucs_ft`, `htdemucs_6s`, `mdx_extra` and the generators are CUDA-image only.** The CPU image returns 404 `unknown engine` for them. `htdemucs_ft` is also flagged `cuda_only`, so the CUDA image without `--gpus all` returns 400 for it.
 - **Separation loads one engine at a time** — calling `separate` evicts whatever else is loaded. Pre-warming multiple Demucs variants doesn't survive across separation calls.
 - **Engines unload after idle** — the first request after `AUDIOLLA_ENGINE_TTL` seconds of inactivity will be slow (model reload). For benchmarks or back-to-back jobs, keep traffic flowing or set `AUDIOLLA_PRELOAD` server-side.
 - **Don't poll `/v1/ps`** as a load-progress indicator — it tells you what's loaded right now, not what's being loaded.
 - **Output format on the response** comes from the `output_format` JSON field, NOT the `output_path` extension. The server transcodes via ffmpeg; the extension on `output_path` is just a filename hint.
 - **Input format is auto-detected by ffmpeg** — WAV, MP3, FLAC, OGG, M4A, AAC, OPUS, etc. all work as input.
 - **The `transform` `pitch` op takes semitones**, not cents — `n_semitones: 0.5` = half a semitone up, not a tiny shift.
-- **`/v1/audio/loudness` measures only (JSON), `/v1/audio/normalize` writes normalized audio.** They split in v0.x — old guides that show `loudness?target_lufs=` returning audio are stale. Normalize requires `output_path` or `output_url` and returns JSON `{path or url, size, measured_lufs, target_lufs, normalized}`.
+- **`/v1/audio/loudness` measures only (JSON), `/v1/audio/normalize` writes normalized audio.** They split in v0.x; old guides that show `loudness?target_lufs=` returning audio are stale. Normalize requires `output_path` or `output_url` and returns JSON `{path or url, size, measured_lufs, target_lufs, output_format}`.
 - **`file_url` / `output_url` are disabled by default.** If the server returns `URL fetch/upload is disabled` (400), the operator hasn't enabled `AUDIOLLA_FETCH_MODE` — don't try to bypass it.
-- **`output_path` and `output_url` are mutually exclusive.** Supplying both is 400. Supplying neither on an audio-producing endpoint is also 400 (no inline-bytes mode exists in v1.0.0); the only exception is `async_job=true`, which auto-stages to `jobs/{job_id}.{ext}`.
+- **`output_path` and `output_url` are mutually exclusive.** Supplying both is 400. Supplying neither on an audio-producing endpoint is also 400, unless `async_job=true` (auto-stages to `jobs/{job_id}.{ext}`). `/v1/midi/compose`, `/v1/midi/generate` and `/v1/midi/drum` take them as query parameters and return the file bytes when neither is set.
 - **`file_path` and `file_url` are mutually exclusive too.** Same exactly-one-of rule; zero or both is 400.
 - **`threshold_db` on silence must be ≤ 0.** Positive values return 400 — dBFS can't be positive.
 - **`/v1/audio/silence` without `trim_mode` returns JSON only** — `silent_ranges`, `non_silent_ranges`, `duration`. Audio is only produced when `trim_mode=edges` or `trim_mode=all` is set, and in that case `output_path` (or `output_url`) is required.
 - **`/v1/audio/visualize/video/{mode}` produces video (MP4/WebM)** — staged at `output_path` or PUT to `output_url`. There is no inline-bytes response.
 - **`keep_channels` and `drop_channels` in `/v1/midi/transform` are mutually exclusive.** Supplying both is 400.
 - **Segments fallback on short audio.** If the input doesn't have enough beats for the requested `num_segments`, a single `A` span covering the whole file is returned with a `note` field explaining why — it does not error.
-- **`/v1/audio/melody` unvoiced frames have `hz: null`.** Don't try to use them as a pitch value — filter them out first.
+- **`/v1/audio/melody` unvoiced frames have `hz: null`** (and `voiced: false`) in `contour`. Don't try to use them as a pitch value; filter them out first.
 - **`/v1/audio/to_midi/{engine}` writes MIDI to `output_path` / `output_url`** — response JSON points at the staged `.mid` file. Pass it directly to `/v1/midi/inspect`, `/v1/midi/transform`, or `/v1/midi/render` as `file_path` on the next call.
 - **basic-pitch uses the ONNX backend (no TensorFlow).** The model is auto-selected at import time. No config needed; `tensorflow` is not installed in the image.
 - **basic-pitch output quality scales with the input.** Polyphonic recordings with many overlapping instruments confuse the model — best results on melodic solos or lightly-polyphonic material. Full mixes work but produce noisy MIDI.
 - **`/v1/audio/enhance/{engine}` is optimised for speech and vocals.** DeepFilterNet DF3 is trained on speech signals. It works on full mixes but may reduce musical detail. For full-mix noise removal prefer `uvr-denoise`.
-- **UVR model files are NOT bundled in the image.** `uvr-dereverb`, `uvr-deecho`, `uvr-denoise`, `uvr-karaoke`, `uvr-vocal-bsr` all require `.ckpt` / `.pth` files in `AUDIOLLA_UVR_MODELS_DIR` (`/data/uvr_models` by default). Missing file = 500 on first load. Check the README for the download list. The old `uvr-deecho-aggressive` slug is gone — use `uvr-deecho` with `aggressive=true` instead.
+- **UVR model files download on first use.** `uvr-dereverb`, `uvr-deecho`, `uvr-denoise`, `uvr-karaoke`, `uvr-vocal-bsr` fetch their `.ckpt` / `.pth` files into `AUDIOLLA_UVR_MODELS_DIR` (`/data/uvr_models` by default) the first time each engine loads, so that first call is slow. The old `uvr-deecho-aggressive` slug is gone, use `uvr-deecho` with `aggressive=true` instead.
 - **`uvr-karaoke` and `uvr-vocal-bsr` are NOT exposed via `/v1/audio/restore/uvr-dereverb`, `/v1/audio/restore/uvr-deecho`, or `/v1/audio/restore/uvr-denoise`.** Those endpoints only do restoration (single output stem). To use the karaoke or vocal-separation models, use `/v1/audio/separate` with the appropriate engine slug and `stems` field.
 - **UVR models are CPU-only in the default image.** For GPU-accelerated inference, use `psyb0t/audiolla:latest-cuda` with `--gpus all`. The `:latest` (CPU) image works but can be slow for full-track restoration.
 
@@ -1043,5 +1049,5 @@ Async jobs also support `output_url` — the completed job PUTs the result on co
 - Use `GET /v1/engines` once at the start of a session to see what's actually configured — `AUDIOLLA_ENABLED_ENGINES` can hide things.
 - For a multi-step pipeline (e.g. separate → master each stem → analyze), `PUT /v1/files/uploads/<name>.wav` once and reference via `file_path` on every subsequent REST call (or the equivalent MCP tools) — no need to re-upload. Chain each call's `output_path` into the next call's `file_path` to keep everything server-side. Only `GET /v1/files/<path>` when you actually need the bytes locally.
 - Large input files: respect `AUDIOLLA_MAX_UPLOAD_BYTES` (default 200 MB). If unsure, `GET /healthz` first to confirm the server is up and ask the user to confirm the cap.
-- Long-running separations (`htdemucs_ft` on CPU especially) can take minutes — set a generous curl `--max-time` and warn the user, or submit with `"async_job": true` and poll `/v1/jobs/{id}`.
+- Long-running separations (`htdemucs` on the CPU image especially) can take minutes; set a generous curl `--max-time` and warn the user, or submit with `"async_job": true` and poll `/v1/jobs/{id}`.
 - If you need exact reproducibility between runs, pin the engine version by passing the explicit slug (`htdemucs` vs `htdemucs_ft`) — there is no "auto" mode for separation.

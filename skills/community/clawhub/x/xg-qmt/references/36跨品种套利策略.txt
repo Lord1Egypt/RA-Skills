@@ -1,0 +1,142 @@
+#coding:gbk
+'''
+36跨品种套利策略
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+本策略根据计算滚动的.过去的30个bar的均值正负0.5个标准差得到布林线
+并在最新价差上穿上轨来做空价差,下穿下轨来做多价差
+并在回归至上下轨水平内的时候平仓
+'''
+
+import numpy as np
+
+##########################################策略初始化部分#############################################
+def init(ContextInfo):
+	# 品种套利配对品种
+	ContextInfo.trade_pair=['rb00.SF','hc00.SF']
+	# 初始化持仓状态
+	ContextInfo.position_tag = {'long':False,'short':False}
+	# 做多价差仓位
+	ContextInfo.position_long = 0
+	# 做空价差仓位
+	ContextInfo.position_short = 0
+	# 每次买卖的价差组合单位
+	ContextInfo.number=5
+	# 设置标的期货合约对应股票池
+	ContextInfo.set_universe(ContextInfo.trade_pair)
+	# 设置交易账户
+	ContextInfo.accid = 'test'
+
+########################################策略周期循环部分#############################################
+def handlebar(ContextInfo):
+	###########################################数据准备#############################################
+	# 每次买卖的价差组合单位
+	n=ContextInfo.number
+	# 获取当前bar线索引
+	index = ContextInfo.barpos
+	# 获取当前bar线时间戳
+	bartimetag = ContextInfo.get_bar_timetag(index)
+	# 打印当前时间
+	print(timetag_to_datetime(bartimetag,'%Y-%m-%d %H:%M:%S'))
+	# 获取两个品种的收盘价时间序列
+	closes=ContextInfo.get_market_data(['close'], stock_code=ContextInfo.trade_pair, period = ContextInfo.period, count=31)
+	# 如果收盘价时间序列Panel是空的，退出该次周期循环
+	if closes.empty:
+		return
+    ###########################################价差计算#############################################
+	# 螺纹钢期货收盘价
+	up_closes = closes[ContextInfo.trade_pair[0]]['close']
+	print(up_closes)
+	# 热轧卷板期货收盘价
+	down_closes = closes[ContextInfo.trade_pair[1]]['close']
+	# 计算价差
+	spread = up_closes[:-1] - down_closes[:-1]
+	# 计算布林带上下轨
+	up = np.mean(spread) + 0.5 * np.std(spread)
+	down = np.mean(spread) - 0.5 * np.std(spread)
+	# 计算上一个根bar的价差
+	if (up_closes[-1] is None) or (down_closes[-1] is None):
+		spread_now=0
+	else:
+		spread_now = up_closes[-1] - down_closes[-1]
+
+	# 价差信号：价差上穿上轨做空价差，价差下穿下轨做多价差
+	position_up_long = ContextInfo.position_tag['long']
+	position_up_short = ContextInfo.position_tag['short']
+#################################################空仓时##############################################
+	if not position_up_long and not position_up_short:
+		# 价差上穿布林带上轨,做空价差
+		if spread_now > up:
+			# 开空code1(rb)，开多code2(hc)
+			sell_open(ContextInfo.trade_pair[0],n,ContextInfo,ContextInfo.accid)
+			buy_open(ContextInfo.trade_pair[1],n,ContextInfo,ContextInfo.accid)
+			ContextInfo.position_short+=n
+			ContextInfo.position_tag['short'] = True
+		# 价差下穿布林带上轨,做多价差
+		if spread_now < down:
+			# 开多code1(rb)，开空code2(hc)
+			buy_open(ContextInfo.trade_pair[0],n,ContextInfo,ContextInfo.accid)
+			sell_open(ContextInfo.trade_pair[1],n,ContextInfo,ContextInfo.accid)
+			ContextInfo.position_long+=n
+			ContextInfo.position_tag['long'] = True
+
+##############################################价差回归时##############################################
+	####################################### 做空价差时 #######################################
+	elif position_up_short:
+		# 做空价差时价差回归上轨以下，平仓
+		if spread_now <= up and spread_now >= down:
+			# 平空code1(rb)，平多code2(hc)
+			buy_close_tdayfirst(ContextInfo.trade_pair[0],ContextInfo.position_short,ContextInfo,ContextInfo.accid)
+			sell_close_tdayfirst(ContextInfo.trade_pair[1],ContextInfo.position_short,ContextInfo,ContextInfo.accid)
+			ContextInfo.position_short=0
+			ContextInfo.position_tag['short'] = False
+		# 做空价差时价差跌破下轨，反向开仓做多价差
+		if spread_now < down:
+			# 开多code1(rb)，开空code2(hc)
+			buy_open(ContextInfo.trade_pair[0],n,ContextInfo,ContextInfo.accid)
+			sell_open(ContextInfo.trade_pair[1],n,ContextInfo,ContextInfo.accid)
+			ContextInfo.position_long+=n
+			ContextInfo.position_tag['long'] = True
+	####################################### 做多价差时 #######################################
+	elif position_up_long:
+		# 做多价差时价差回归下轨以上，平仓
+		if spread_now >= down and spread_now <= up:
+			# 平多code1(rb)，平空code2(hc)
+			sell_close_tdayfirst(ContextInfo.trade_pair[0],ContextInfo.position_long,ContextInfo,ContextInfo.accid)
+			buy_close_tdayfirst(ContextInfo.trade_pair[1],ContextInfo.position_long,ContextInfo,ContextInfo.accid)
+			ContextInfo.position_long=0
+			ContextInfo.position_tag['long'] = False
+		# 做多价差时价差突破下轨，反向开仓做空价差
+		if spread_now > up:
+			# 开空code1(rb)，开多code2(hc)
+			sell_open(ContextInfo.trade_pair[0],n,ContextInfo,ContextInfo.accid)
+			buy_open(ContextInfo.trade_pair[1],n,ContextInfo,ContextInfo.accid)
+			ContextInfo.position_short+=n
+			ContextInfo.position_tag['short'] = True
+
+	ContextInfo.paint('short_spread',int(spread_now > up),-1,0,'noaxis')
+	ContextInfo.paint('long_spread',int(spread_now < down),-1,0,'noaxis')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

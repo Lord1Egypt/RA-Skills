@@ -39,7 +39,7 @@ Layer 3: 本地 Router ↔ freemodel 控制服务器
 
 - **OpenClaw 配置只改一次** — 仅在 setup 时写入 `free-model-router` provider 指向本地 Router (127.0.0.1:5678)
 - **所有模型切换在 Router 层透明完成** — 运行期间不再触碰 openclaw.json,避免 Gateway 宕机
-- **Round-Robin 轮询** — 默认策略在各 provider 主模型间轮询
+- **Sticky 粘性路由** — 默认策略，同能力池内优先命中上次成功的 Provider，失败时自动切换并支持跨池救援
 - **自动故障切换** — 主模型故障自动切换到备模型,所有 provider 不可用时自动降级
 - **事件通知系统** — 模型切换、故障等事件写入 events.json,由 cron 任务推送
 

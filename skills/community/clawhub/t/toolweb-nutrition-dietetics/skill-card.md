@@ -1,43 +1,57 @@
-## Description: <br>
-Professional career roadmap platform for Nutrition & Dietetics with personalized learning paths and specialization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform for Nutrition & Dietetics with personalized learning paths and specialization guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, nutrition students, registered dietitian nutritionists, healthcare professionals, and career counselors use this skill to generate personalized nutrition and dietetics career roadmaps, specialization paths, learning resources, skill gaps, and next steps from assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user assessment details to a third-party API service. <br>
-Mitigation: Only send assessment details needed for the roadmap, avoid sensitive personal or medical information, and prefer pseudonymous session and user identifiers. <br>
-Risk: Roadmap output may be used to guide career planning in a regulated healthcare-adjacent field. <br>
-Mitigation: Review recommendations against current credentialing, employer, and jurisdiction requirements before acting on them. <br>
+## Use Case:
 
+External users such as nutrition students, registered dietitian nutritionists, healthcare professionals, and career counselors use this skill to request personalized nutrition and dietetics career roadmaps, specialization options, and learning paths.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-nutrition-dietetics) <br>
-- [API Documentation](https://api.mkkpro.com:8181/docs) <br>
-- [Nutrition & Dietetics API Route](https://api.mkkpro.com/career/nutrition-dietetics) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses containing roadmaps, specializations, learning paths, skill gaps, resources, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses assessment data such as experience, skills, goals, session identifiers, optional user identifiers, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Users may submit professional profile data, session IDs, timestamps, or optional user IDs to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize personal identifiers, use fictitious or low-detail session and user IDs where possible, and review the provider's privacy and retention practices before use.
+
+Risk: Generated career roadmaps may not reflect an individual's licensing, credentialing, employer, or local professional requirements.
+
+Mitigation: Review roadmap recommendations against authoritative credentialing bodies, local regulations, and professional policies before acting on them.
+
+## Reference(s):
+
+- [Nutrition & Dietetics Roadmap API](https://api.mkkpro.com/career/nutrition-dietetics)
+- [API Docs](https://api.mkkpro.com:8181/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON API responses and human-facing roadmap guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include roadmap phases, specialization recommendations, learning resources, skill gaps, next steps, timestamps, session IDs, and optional user IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically uses MuninnDB as a proactive memory layer via MCP so an agent can recall prior session context without manual triggering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically uses MuninnDB as an always-on memory layer through MCP so agents can recall and persist session context without manual triggering.
 
-## Publisher: <br>
-[bitsonwheels](https://clawhub.ai/user/bitsonwheels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bitsonwheels](https://clawhub.ai/user/bitsonwheels)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect a MuninnDB vault as persistent cross-session memory, recall prior context, save important decisions or preferences, and optionally maintain periodic local context snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist cross-session memory, which may retain sensitive, regulated, or outdated context if used carelessly. <br>
-Mitigation: Avoid saving secrets or regulated data, and review or prune the MuninnDB vault periodically. <br>
-Risk: The MuninnDB API key is a sensitive local credential. <br>
-Mitigation: Protect ~/.muninn/openclaw.key with restrictive permissions and only install the skill when persistent memory is intended. <br>
-Risk: The optional 30-minute cron snapshot can store local workspace and recent-session metadata in the vault. <br>
-Mitigation: Enable the snapshot only when that storage behavior is acceptable, and pause or remove the cron job when it is no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure proactive MuninnDB-backed memory for Hermes/OpenClaw sessions, including recall at session start, selective persistence during work, and optional recurring local context snapshots.
 
-## Reference(s): <br>
-- [Setup Companion](references/setup-companion.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bitsonwheels/muninndb-auto-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell, YAML, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MCP tool usage guidance, REST API fallback commands, and optional cron snapshot setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Automatic memory persistence may retain sensitive user, project, or session context across conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when an always-on MuninnDB memory layer is intended; review stored vault contents regularly and avoid saving incidental or sensitive data.
+
+Risk: The optional cron snapshot stores hostname, working directory, and recent Hermes session metadata on a recurring schedule.
+
+Mitigation: Enable the cron job only after confirming retention expectations; use a narrowly scoped token and pause or remove the job when recurring snapshots are not needed.
+
+## Reference(s):
+
+- [Setup Companion](references/setup-companion.md)
+- [ClawHub Skill Page](https://clawhub.ai/bitsonwheels/skills/muninndb-auto-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline YAML and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP tool usage guidance and an optional cron snapshot script.]
+
+## Skill Version(s):
+
+1.1.1 (source: evidence release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

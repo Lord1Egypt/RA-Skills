@@ -1,43 +1,63 @@
-## Description: <br>
-Call 32 real-world APIs, including flights, hotels, weather, crypto prices, DeFi yields, stock quotes, web search, geocoding, IP reputation, blockchain data, code execution, and email, while paying per call in USDC on Base via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agenthub lets agents call 32 paid real-world APIs for travel, weather, markets, web search, geocoding, IP reputation, blockchain data, code execution, and email using USDC payments on Base via x402.
 
-## Publisher: <br>
-[marcelo-rowship](https://clawhub.ai/user/marcelo-rowship) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcelo-rowship](https://clawhub.ai/user/marcelo-rowship)
 
-## Use Case: <br>
-Developers and agents use Agenthub to make paid, real-world data and utility API calls from an agent workflow, including travel lookup, market data, web search, weather, blockchain queries, remote code execution, and email sending. It is intended for users who can configure Node.js, npm, a dedicated Base wallet, and the AGENTHUB_WALLET_KEY credential. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize paid API calls from a configured Base wallet. <br>
-Mitigation: Use a dedicated low-balance wallet for Agenthub and require explicit confirmation before each paid request. <br>
-Risk: The email_send and code_exec APIs can trigger externally visible actions or run code in a remote service. <br>
-Mitigation: Require separate user confirmation before using email_send or code_exec, and review the exact recipient, code, inputs, and expected cost before calling them. <br>
-Risk: Requests may send prompts, URLs, code, or other data to an external SDK and gateway. <br>
-Mitigation: Do not send secrets, private code, wallet credentials, or sensitive personal data through Agenthub unless the user has reviewed and accepted the data-sharing risk. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcelo-rowship/rwagenthub) <br>
-- [AgentHub gateway](https://agents-production-73c1.up.railway.app) <br>
-- [rwagenthub-sdk npm package](https://www.npmjs.com/package/rwagenthub-sdk) <br>
+## Use Case:
 
+External developers and agent users use Agenthub to call paid data and utility APIs from an agent, including search, travel, market data, blockchain, code execution, and email workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and JavaScript code blocks; API calls return JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 20+, npm, AGENTHUB_WALLET_KEY, and a Base wallet funded with USDC for paid calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a wallet key and paid API calls, so unintended calls can spend funds.
+
+Mitigation: Use a dedicated low-balance wallet and assume every API call may incur a USDC charge.
+
+Risk: The skill installs third-party Node code before making gateway calls.
+
+Mitigation: Review the SDK package and install path before use, and do not run the documented shell snippet as-is until the install pattern is hardened.
+
+Risk: The code_exec API can process submitted code and may expose sensitive inputs.
+
+Mitigation: Do not send secrets, wallet credentials, proprietary code, or confidential data through code_exec.
+
+Risk: The email_send API can send messages with real-world side effects.
+
+Mitigation: Confirm recipients and message content manually before sending email.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marcelo-rowship/skills/rwagenthub)
+- [AgentHub Gateway](https://agents-production-73c1.up.railway.app)
+- [AgentHub SDK on npm](https://www.npmjs.com/package/rwagenthub-sdk)
+- [AgentHub API Endpoint](https://agents-production-73c1.up.railway.app/v1/call)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JavaScript snippets; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls may incur USDC charges and require Node.js, npm, AGENTHUB_WALLET_KEY, and a Base wallet with USDC.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

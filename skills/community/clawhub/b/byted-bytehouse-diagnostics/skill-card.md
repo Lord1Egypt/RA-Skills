@@ -1,42 +1,62 @@
-## Description: <br>
-ByteHouse cluster diagnostics and health-check tooling for checking cluster health, diagnosing issues, reviewing node status, and analyzing cluster performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs ByteHouse cluster health diagnostics, including node status, replica and partition checks, system table access checks, and recent query statistics.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and database operators use this skill to run ByteHouse cluster health checks, inspect node, replica, partition, mutation, and system-table status, and review recent query history. It produces diagnostic summaries and JSON reports that help triage ByteHouse cluster issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches unpinned external ByteHouse MCP code at runtime and passes database credentials plus the shell environment to it. <br>
-Mitigation: Pin the MCP server to a reviewed commit or release, run it from a clean environment containing only required ByteHouse variables, and use a least-privileged read-only ByteHouse account. <br>
-Risk: Generated diagnostic reports may contain sensitive cluster, database, node, or query metadata. <br>
-Mitigation: Protect report files and redact sensitive details before sharing them outside the intended operational audience. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect ByteHouse cluster health, diagnose node and replica issues, review partition and system table status, and summarize recent query behavior.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-bytehouse-diagnostics) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated JSON diagnostic reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are written to an output directory with timestamped filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill runs mutable remote code for the ByteHouse MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a version pinned to an audited MCP server commit and exact dependencies before production use.
+
+Risk: The skill passes the full local environment to the MCP server process, which can expose unrelated secrets.
+
+Mitigation: Run in an isolated environment with only required ByteHouse variables and remove unrelated secrets before execution.
+
+Risk: Generated reports can contain sensitive operational database information.
+
+Mitigation: Treat diagnostic reports as sensitive operational data and restrict storage, sharing, and retention.
+
+Risk: Database diagnostics require live ByteHouse access.
+
+Mitigation: Use a dedicated least-privilege ByteHouse account for health checks and query-log inspection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-bytehouse-diagnostics)
+- [Volcengine ByteHouse MCP server reference](https://github.com/volcengine/mcp-server@main#subdirectory=server/mcp_server_bytehouse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON diagnostic reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped ByteHouse diagnostic JSON reports under a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

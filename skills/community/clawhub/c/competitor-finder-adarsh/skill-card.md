@@ -1,43 +1,59 @@
-## Description: <br>
-Finds 3-5 competitors for a brand using SerpAPI, DataForSEO, and a minimal OpenAI fallback, returning competitor names, websites, and reasons when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds three to five competitors for a brand by querying SerpAPI, then DataForSEO, and using an OpenAI fallback only when needed.
 
-## Publisher: <br>
-[AdarshVMore](https://clawhub.ai/user/AdarshVMore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adarshvmore](https://clawhub.ai/user/adarshvmore)
 
-## Use Case: <br>
-Developers, agents, and marketing analysts use this skill to collect competitor candidates for a brand and feed a marketing audit or competitor landscape workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends brand names and optional domains to external search, SEO, and AI providers. <br>
-Mitigation: Use approved API accounts, avoid sensitive unreleased brand data, and follow the organization's data-sharing requirements before execution. <br>
-Risk: Competitor results can be subjective, incomplete, or affected by API quota and fallback behavior. <br>
-Mitigation: Treat results as candidate inputs, review them before relying on a marketing report, and monitor fallback warnings and API failures. <br>
-Risk: The skill depends on API keys and paid third-party services. <br>
-Mitigation: Store credentials in environment variables, monitor usage and quotas, and handle exhausted or invalid credentials through the documented graceful error path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdarshVMore/competitor-finder-adarsh) <br>
-- [SerpAPI Google Search endpoint](https://serpapi.com/search.json) <br>
-- [DataForSEO Competitor Domain endpoint](https://api.dataforseo.com/v3/dataforseo_labs/google/competitors_domain/live) <br>
+## Use Case:
 
+Developers and marketing-audit agents use this skill to collect competitor names, websites, and short rationale for a brand or domain. The results support competitor landscape analysis while allowing graceful degradation when external data providers fail.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and JSON-shaped competitor data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs 3-5 competitor entries with name, website, and optional reason; failures return a valid object with an error field.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Brand names and domains may be shared with SerpAPI, DataForSEO, and OpenAI during fallback execution.
+
+Mitigation: Confirm the data-sharing posture before installation and avoid sending sensitive brand or domain inputs unless those providers are approved.
+
+Risk: API credentials for SerpAPI, DataForSEO, and OpenAI are required for the external lookup and fallback paths.
+
+Mitigation: Store credentials in environment variables and do not hardcode them in skill files, prompts, or logs.
+
+Risk: DataForSEO lookup behavior is configured around English and United States locale settings in the artifact.
+
+Mitigation: Adjust locale settings for non-US or non-English audits when the implementation supports it.
+
+## Reference(s):
+
+- [Competitor Finder Adarsh on ClawHub](https://clawhub.ai/adarshvmore/skills/competitor-finder-adarsh)
+- [Publisher profile: adarshvmore](https://clawhub.ai/user/adarshvmore)
+- [SerpAPI Google Search endpoint](https://serpapi.com/search.json)
+- [DataForSEO Competitor Domain API endpoint](https://api.dataforseo.com/v3/dataforseo_labs/google/competitors_domain/live)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Structured data, API calls, Guidance]
+
+**Output Format:** [JSON-compatible competitor entries with names, websites, optional reasons, and optional error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns three to five competitors when available and uses an error field instead of blocking the wider pipeline.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Reliable SAP Business Accelerator Hub API spec downloader for OpenClaw that uses SAP_HUB_USERNAME and SAP_HUB_PASSWORD to log in through Playwright Chromium, downloads OpenAPI JSON/YAML and OData EDMX to /usr/download, validates payload signatures, and supports importing specs into APIConnectionToSAP categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliable SAP Business Accelerator Hub API spec downloader for OpenClaw that uses SAP_HUB_USERNAME and SAP_HUB_PASSWORD with Playwright Chromium to download OpenAPI JSON/YAML and OData EDMX files, validate payload signatures, and support importing specs into APIConnectionToSAP categories.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers and engineers use this skill to download SAP Business Accelerator Hub API specifications and prepare them for OpenClaw or APIConnectionToSAP workflows. It can also scaffold backend modules from downloaded OpenAPI specifications after manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SAP credentials are required for browser login automation. <br>
-Mitigation: Keep SAP_HUB_USERNAME and SAP_HUB_PASSWORD only in a protected runtime environment and do not package real credentials with the skill. <br>
-Risk: The default output location /usr/download can require elevated filesystem permissions or create shared-location exposure. <br>
-Mitigation: Prefer a user-owned output directory when possible and review file permissions before running downloads. <br>
-Risk: Generated backend code from OpenAPI input may be incomplete or unsafe for direct project inclusion. <br>
-Mitigation: Inspect generated backend code before adding it to a project and avoid running the scaffolder on untrusted OpenAPI specs without manual review. <br>
+## Use Case:
 
+Developers and engineers use this skill to authenticate to SAP Business Accelerator Hub, download API specification files, import those files into APIConnectionToSAP categories, and optionally scaffold backend code from trusted OpenAPI specs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SHENRUIYANG/sap-bah-openapi-backend-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/SHENRUIYANG) <br>
-- [Quickstart](references/quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, generated files, and optional JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads OpenAPI JSON/YAML and OData EDMX files, can import downloaded specs, and can scaffold backend code from OpenAPI input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: SAP credentials are required at runtime and could be exposed to the local execution environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a trusted local runtime, provide credentials through SAP_HUB_USERNAME and SAP_HUB_PASSWORD, and do not upload real credentials to ClawHub.
+
+Risk: The default output directory is /usr/download, which may require elevated setup or write permissions.
+
+Mitigation: Prefer a user-owned output directory with --output-dir, or explicitly create and assign permissions for /usr/download before running downloads.
+
+Risk: The backend scaffolder is under-disclosed in the release summary and has security guidance around unsafe file-writing, code-string escaping, and path containment.
+
+Mitigation: Use the scaffolder only with trusted OpenAPI files, review generated code before use, and avoid shared, CI, or production environments until the identified issues are fixed.
+
+Risk: Runtime dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before using this skill in shared, CI, or production environments.
+
+## Reference(s):
+
+- [Quickstart](artifact/references/quickstart.md)
+- [ClawHub Skill Page](https://clawhub.ai/shenruiyang/skills/sap-bah-openapi-backend-openclaw)
+- [Publisher Profile](https://clawhub.ai/user/shenruiyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus downloaded OpenAPI JSON/YAML, OData EDMX files, optional JSON reports, imported spec files, and generated Python backend modules.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output directory is /usr/download; the skill requires SAP_HUB_USERNAME and SAP_HUB_PASSWORD and supports linux and darwin runtimes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

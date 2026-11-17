@@ -1,40 +1,58 @@
-## Description: <br>
-ClawSkillGuard scans OpenClaw skill files and scripts for prompt injection, data exfiltration, malicious patterns, and unauthorized network calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills. Scans SKILL.md files and scripts for prompt injection, data exfiltration, malicious patterns, and unauthorized network calls.
 
-## Publisher: <br>
-[xeonai44](https://clawhub.ai/user/xeonai44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xeonai44](https://clawhub.ai/user/xeonai44)
 
-## Use Case: <br>
-Developers and agents use this skill to run local security checks before installing, auditing, or trusting OpenClaw skills from ClawHub or other external sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pattern matching can miss evasive or novel malicious behavior, so a clean result is advisory rather than a safety guarantee. <br>
-Mitigation: Review important skills manually or with another scanner when stakes are high, especially before installation or deployment. <br>
-Risk: The scanner skips scanning itself when the target directory is named clawskillguard, which can leave that specific target unaudited. <br>
-Mitigation: Inspect ClawSkillGuard source directly or scan a renamed copy if self-audit coverage is needed. <br>
+## Use Case:
 
+Developers and security reviewers use ClawSkillGuard to locally audit OpenClaw skills before installation or execution and to produce findings, severity levels, and a verdict for manual review.
 
-## Reference(s): <br>
-- [ClawSkillGuard ClawHub listing](https://clawhub.ai/xeonai44/clawskillguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Text or JSON scan reports with severity-labeled findings and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can filter reported findings by minimum severity and can scan one skill or all skills under a parent directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A target named clawskillguard can bypass scanning and still produce a clean-style result.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on clean verdicts for targets with that name; use a fixed release that fails closed when scans are skipped or incomplete.
+
+Risk: A clean scan is advisory and does not prove a skill is safe.
+
+Mitigation: Review flagged source files manually and treat high or critical findings as blockers until resolved.
+
+Risk: Scanning broad local directories can include unintended skill paths or miss the intended target.
+
+Mitigation: Confirm the exact skill path before scanning installed or workspace skill directories.
+
+## Reference(s):
+
+- [ClawSkillGuard ClawHub release page](https://clawhub.ai/xeonai44/skills/clawskillguard)
+- [xeonai44 publisher profile](https://clawhub.ai/user/xeonai44)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON security scan report with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes severity-filtered findings, scanned file counts, errors, maximum severity, and an advisory verdict.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

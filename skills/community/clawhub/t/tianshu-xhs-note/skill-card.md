@@ -1,40 +1,52 @@
-## Description: <br>
-Formats existing draft material into a Xiaohongshu note structure with title ideas, paragraphing, hashtag suggestions, word-count guidance, and a pre-publication checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats existing draft text into a Xiaohongshu-style note with title ideas, paragraphing, hashtag suggestions, word count, and a pre-publish checklist.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators and social media operators use this skill to structure existing Xiaohongshu draft text or bullet points into Markdown with candidate titles, body sections, topic tags, and a pre-publish checklist. It supports formatting and structure, not full deep creative copywriting on its own.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A user-provided draft file path is read locally for formatting.
+
+Mitigation: Use this skill with non-sensitive social post drafts and review the selected file path before execution.
+
+Risk: The generated hashtag suggestions and compliance checklist are rule-based drafting aids and may be incomplete for regulated content.
+
+Mitigation: Review tags, claims, and checklist items before publishing, especially for medical, financial, or advertising-sensitive topics.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, marketers, and publishing assistants use this skill to turn existing Xiaohongshu draft text or notes into a structured Markdown draft with title options, readable paragraphs, hashtag candidates, and a posting checklist. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A selected input file may contain private or sensitive draft text that appears in the generated Markdown output. <br>
-Mitigation: Use --text for short drafts when practical, or pass --file only for the draft that should be formatted. <br>
-Risk: Rule-based hashtag and compliance checklist suggestions may be incomplete or unsuitable for regulated topics. <br>
-Mitigation: Review generated tags and checklist items before publishing, especially for medical, financial, or advertising claims. <br>
+**Output Format:** [Markdown generated from local text input]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-xhs-note) <br>
+**Other Properties Related to Output:** [Reads UTF-8 draft text from --file or --text and applies a configurable max-body limit, defaulting to 900 characters.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated locally from provided text or a selected UTF-8 draft file; hashtag suggestions are rule-based candidates that should be reviewed.] <br>
+1.0.0 (source: server release metadata and artifact/clawhub.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

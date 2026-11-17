@@ -1,6 +1,6 @@
 ---
 name: "Stock Inquiry - 股票查询"
-description: 按股票代码查当日行情与详情（分钟级趋势），或按分类拉取沪深、港股、北证等股票列表。当用户说：今天的宁德时代股票走势怎样？宁德时代股票行情怎样？贵州茅台现在多少钱？或类似个股行情、股票列表问题时，使用本技能。
+description: 按股票代码查当日行情与详情（分钟级趋势），按分类拉取股票列表，查询交易日历及财务报表。当用户说：今天的宁德时代股票走势怎样？贵州茅台现在多少钱？今天 A 股开市吗？宁德时代的财报怎样？或类似个股行情、财务问题时，使用本技能。
 metadata: { "openclaw": { "emoji": "📈", "requires": { "bins": ["python3"], "env": ["JISU_API_KEY"] }, "primaryEnv": "JISU_API_KEY" } }
 ---
 
@@ -11,6 +11,11 @@ metadata: { "openclaw": { "emoji": "📈", "requires": { "bins": ["python3"], "e
 - **股票查询**（`/stock/query`）：根据股票代码查询当日行情，数据粒度为分钟，含趋势数据
 - **股票列表查询**（`/stock/list`）：按分类（沪深股市/港股/北证A股）分页获取股票列表
 - **股票详情查询**（`/stock/detail`）：根据股票代码获取单只股票详情（最新价、涨跌幅、成交量、市盈率等）
+- **交易日历**（`/stock/calendar`）：查询指定日期大陆/香港股市是否开市
+- **主要财务指标**（`/stock/financialmain`）：每股收益、ROE、营收、净利润等
+- **资产负债表**（`/stock/financialbalancesheet`）
+- **利润表**（`/stock/financialprofit`）
+- **现金流量表**（`/stock/financialcashflow`）
 
 如需做更深入的走势分析、K 线研究或回测，推荐配合 **股票历史行情查询 Skill（stockhistory）** 一起使用：  
 - ClawHub 链接：[`https://clawhub.ai/jisuapi/stockhistory`](https://clawhub.ai/jisuapi/stockhistory)
@@ -101,6 +106,78 @@ python3 skills/stock/stock.py detail '{"code":"300917"}'
 |--------|--------|------|----------|
 | code   | string | 是   | 股票代码 |
 
+### 4. 交易日历（/stock/calendar）
+
+查询指定日期大陆/香港股市是否开市。
+
+```bash
+python3 skills/stock/stock.py calendar '{"date":"2026-04-29"}'
+```
+
+请求 JSON（`date` 可选，不填则默认当天）：
+
+```json
+{
+  "date": "2026-04-29"
+}
+```
+
+| 字段名 | 类型   | 必填 | 说明     |
+|--------|--------|------|----------|
+| date   | string | 否   | 日期     |
+
+### 5. 主要财务指标（/stock/financialmain）
+
+```bash
+python3 skills/stock/stock.py financialmain '{"code":"688808","indicator":"按报告期"}'
+```
+
+请求 JSON：
+
+```json
+{
+  "code": "688808",
+  "indicator": "按报告期",
+  "startdate": "",
+  "enddate": ""
+}
+```
+
+| 字段名    | 类型   | 必填 | 说明                          |
+|-----------|--------|------|-------------------------------|
+| code      | string | 是   | 股票代码                      |
+| indicator | string | 否   | `按报告期` 或 `按单季度`      |
+| startdate | string | 否   | 统计开始日期                  |
+| enddate   | string | 否   | 统计结束日期                  |
+
+### 6. 资产负债表（/stock/financialbalancesheet）
+
+```bash
+python3 skills/stock/stock.py financialbalancesheet '{"code":"688808"}'
+```
+
+| 字段名    | 类型   | 必填 | 说明         |
+|-----------|--------|------|--------------|
+| code      | string | 是   | 股票代码     |
+| startdate | string | 否   | 统计开始日期 |
+| enddate   | string | 否   | 统计结束日期 |
+
+### 7. 利润表（/stock/financialprofit）
+
+```bash
+python3 skills/stock/stock.py financialprofit '{"code":"688808"}'
+```
+
+参数同资产负债表。
+
+### 8. 现金流量表（/stock/financialcashflow）
+
+```bash
+python3 skills/stock/stock.py financialcashflow '{"code":"688808"}'
+```
+
+参数同资产负债表。
+
 ## 返回结果示例（节选）
 
 ### 股票查询（query）
@@ -158,7 +235,39 @@ python3 skills/stock/stock.py detail '{"code":"300917"}'
   "quantityratio": "1.03",
   "per": "41.91",
   "pbr": "5.36",
+  "totalmarket": null,
+  "circulationmarket": null,
   "updatetime": "2020-12-22 11:56:20"
+}
+```
+
+### 交易日历（calendar）
+
+```json
+{
+  "cntrading": 1,
+  "hktrading": 1,
+  "date": "2026-04-29"
+}
+```
+
+### 主要财务指标（financialmain，节选）
+
+```json
+{
+  "code": "688808",
+  "name": "联讯仪器",
+  "indicator": "按报告期",
+  "list": [
+    {
+      "report_date": "2025-12-31",
+      "report_type": "年报",
+      "epsjb": "1.23",
+      "bps": "10.56",
+      "parentnetprofit": "123456789.00",
+      "roejq": "15.6"
+    }
+  ]
 }
 ```
 
@@ -200,6 +309,8 @@ python3 skills/stock/stock.py detail '{"code":"300917"}'
 1. 用户提问：「300917 这只股票今天行情怎么样？」  
 2. 代理可先调用：`python3 skills/stock/stock.py detail '{"code":"300917"}'` 获取最新价、涨跌幅、成交量等摘要；若需要当日分钟级走势，再调用 `python3 skills/stock/stock.py query '{"code":"300917"}'`。  
 3. 用户问「沪深股市有哪些股票」或「给我看一页港股列表」时，可调用：`python3 skills/stock/stock.py list '{"classid":1,"pagenum":1,"pagesize":20}'` 或 `classid: 3` 获取列表，再结合用户问题选取并展示名称、代码等信息。
+4. 用户问「今天 A 股/港股开市吗？」时，调用 `calendar`。
+5. 用户问某只股票 **财报、营收、净利润、资产负债** 等时，优先调用 `financialmain` 获取摘要；需要完整报表时再调用 `financialbalancesheet`、`financialprofit` 或 `financialcashflow`。
 
 ## 关于极速数据
 

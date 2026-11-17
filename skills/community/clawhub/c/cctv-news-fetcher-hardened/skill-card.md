@@ -1,46 +1,59 @@
-## Description: <br>
-Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve CCTV News Broadcast summaries for a specific date and have an agent present the resulting highlights in a readable summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler can follow links discovered in remote CCTV/CNTV pages. <br>
-Mitigation: Review before installation and restrict follow-up requests to explicit CCTV hosts over HTTPS, with rejected links logged or skipped. <br>
-Risk: The crawler sends a bundled cookie header during normal web requests. <br>
-Mitigation: Remove the static cookie unless it is explicitly required and approved for the deployment. <br>
-Risk: Unbounded or slow web requests can make the skill unreliable or increase operational exposure. <br>
-Mitigation: Add request limits and timeouts before using the skill in a production workflow. <br>
-Risk: Running commands outside the authorized crawler script increases command-execution scope. <br>
-Mitigation: Limit execution to bun or node running scripts/news_crawler.js with a single YYYYMMDD argument; do not run package managers, shell pipelines, or output redirection as part of normal use. <br>
+## Use Case:
 
+External users and developers use this skill to fetch CCTV News Broadcast highlights for a requested date and have an agent summarize the parsed results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/cctv-news-fetcher-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/cctv-news-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown summary based on JSON returned by a local news crawler script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The crawler is invoked for one YYYYMMDD date value and returns a list of news items with date, title, and content fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and release evidence) <br>
+Risk: The crawler can follow unvalidated links from fetched pages, creating network safety risk in environments with access to internal services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation in internal-network environments; validate dates, allow only required CCTV HTTPS hosts on every fetch and redirect, and add timeouts and response-size limits.
+
+Risk: Expanding command execution beyond the authorized crawler script increases the attack surface.
+
+Mitigation: Run only the local news_crawler.js script with a YYYYMMDD argument through bun or node; do not run package managers, piped chains, output redirection, or alternative fetch commands as part of this skill.
+
+Risk: Crawled news content and embedded links are untrusted external data.
+
+Mitigation: Summarize parsed crawler results without following links found in the content or passing raw content to unrelated tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/cctv-news-fetcher-hardened)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/cctv-news-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary derived from JSON crawler output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a date-parameterized local crawler script and summarizes returned news items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

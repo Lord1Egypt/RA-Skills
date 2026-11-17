@@ -1,47 +1,59 @@
-## Description: <br>
-Use this skill to manage Short.io branded short links via their REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to manage Short.io branded short links via their REST API.
 
-## Publisher: <br>
-[godsboy](https://clawhub.ai/user/godsboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[godsboy](https://clawhub.ai/user/godsboy)
 
-## Use Case: <br>
-Developers, marketers, and site operators use this skill to create, list, inspect, archive, delete, and analyze Short.io branded short links from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Short.io secret API key. <br>
-Mitigation: Use a revocable Short.io API key, store it in a private secrets file, and keep the secrets file permissions restricted. <br>
-Risk: Delete and archive operations can modify or remove Short.io links. <br>
-Mitigation: Verify link IDs before destructive operations and require explicit human confirmation before delete or archive commands. <br>
-Risk: The server security summary reports a URL-handling bug in the find command that can run local code with untrusted URLs. <br>
-Mitigation: Avoid the find command with untrusted URLs until the URL encoding bug is fixed. <br>
+## Use Case:
 
+Developers and operators use this skill to create, list, inspect, delete, archive, and report on Short.io branded short links from an agent workflow.
 
-## Reference(s): <br>
-- [Short.io Skill Page](https://clawhub.ai/godsboy/short-io) <br>
-- [Publisher Profile](https://clawhub.ai/user/godsboy) <br>
-- [Short.io](https://short.io) <br>
-- [Short.io API Reference](references/api.md) <br>
-- [Short.io Main API](https://api.short.io) <br>
-- [Short.io Statistics API](https://statistics.short.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHORT_IO_API_KEY and local tools: curl, jq, python3, and column.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The helper script handles URL input and a secrets file in ways that could run local commands under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid untrusted URL inputs, and only use a SHORTIO_SECRETS_FILE path that you fully control.
+
+Risk: The Short.io API key grants link-management authority for the connected account.
+
+Mitigation: Use a Short.io API key whose permissions and account scope are acceptable for the agent workflow, and rotate it if exposure is suspected.
+
+Risk: The current helper sources shell code from the configured secrets file.
+
+Mitigation: Prefer parsing the API key as data instead of sourcing the file before broad deployment.
+
+## Reference(s):
+
+- [Short.io](https://short.io)
+- [Short.io API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/godsboy/skills/short-io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHORT_IO_API_KEY and the curl, jq, python3, and column command-line tools.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

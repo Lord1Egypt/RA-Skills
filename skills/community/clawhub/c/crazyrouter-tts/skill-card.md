@@ -1,40 +1,54 @@
-## Description: <br>
-Generates natural speech audio files from text through Crazyrouter's OpenAI-compatible TTS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crazyrouter Tts generates natural speech audio files from text or input files via the Crazyrouter text-to-speech API.
 
-## Publisher: <br>
-[xujfcn](https://clawhub.ai/user/xujfcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujfcn](https://clawhub.ai/user/xujfcn)
 
-## Use Case: <br>
-Developers and external users can use this skill when they need an agent to convert supplied text or file contents into speech audio with selectable voice, model, speed, and output format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech generation is sent to Crazyrouter and may contain sensitive, private, regulated, or credential material. <br>
-Mitigation: Review input text before synthesis and avoid sending secrets, private documents, regulated data, or account credentials. <br>
-Risk: Changing CRAZYROUTER_BASE_URL sends requests and the API key to a different endpoint. <br>
-Mitigation: Leave CRAZYROUTER_BASE_URL unset unless the endpoint is intentionally trusted and approved for the data being synthesized. <br>
+## Use Case:
 
+Developers and external users can use this skill to convert supplied text or file contents into speech audio with selectable voices, models, speed, and output format.
 
-## Reference(s): <br>
-- [Crazyrouter](https://crazyrouter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Audio files (mp3, opus, aac, or flac) with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CRAZYROUTER_API_KEY and can use CRAZYROUTER_BASE_URL to override the API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Text submitted for speech generation, including input-file contents, is sent to Crazyrouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, confidential documents, regulated data, or private messages unless Crazyrouter's data handling has been reviewed.
+
+Risk: An unexpected CRAZYROUTER_BASE_URL value can redirect the API key and submitted text to another server.
+
+Mitigation: Check the environment before use and unset or correct CRAZYROUTER_BASE_URL unless a trusted alternate endpoint is intended.
+
+## Reference(s):
+
+- [Crazyrouter](https://crazyrouter.com)
+- [ClawHub skill page](https://clawhub.ai/xujfcn/skills/crazyrouter-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell commands and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CRAZYROUTER_API_KEY; supports mp3, opus, aac, and flac audio output formats.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

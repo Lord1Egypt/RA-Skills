@@ -1,44 +1,59 @@
-## Description: <br>
-MongoDB Connector connects an agent to a user's cloud-hosted MongoDB instance to run 24 permission-gated database operations, including queries, CSV or JSON export, aggregation pipelines, and Atlas vector search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MongoDB Connector lets agents connect to cloud-hosted MongoDB instances to query, export, aggregate, search, and manage database resources through permission-gated AgentPMT remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and external agents use this skill to query, export, aggregate, mutate, index, and administer cloud-hosted MongoDB databases through AgentPMT-hosted remote tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connector can give agents broad database mutation, deletion, export, and command authority. <br>
-Mitigation: Install only for tightly permissioned AgentPMT groups and MongoDB users; prefer read-only credentials unless mutation is required. <br>
-Risk: Delete, drop, bulk write, and run_command workflows can cause destructive or high-impact database changes. <br>
-Mitigation: Require human confirmation before delete, drop, bulk_write, and run_command actions. <br>
-Risk: Exports may expose sensitive fields from connected databases. <br>
-Mitigation: Review every export for sensitive fields and keep tool inputs scoped to the minimum content needed for the task. <br>
+## Use Case:
 
+Developers and operators use this skill to let agents work with cloud-hosted MongoDB databases for reads, writes, exports, aggregation pipelines, search indexes, and administrative database tasks.
 
-## Reference(s): <br>
-- [MongoDB Connector schema](artifact/schema.md) <br>
-- [MongoDB Connector marketplace page](https://www.agentpmt.com/marketplace/mongodb-connector) <br>
-- [MongoDB Connector ClawHub page](https://clawhub.ai/agentpmt/mongodb-connector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples and optional CSV or JSON exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Find and aggregate actions cap inline results at 1000 documents; CSV or JSON export can be requested for supported read workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill can give agents broad database-changing and administrative authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the connected MongoDB account and platform permissions to the minimum needed, and avoid delete or admin permissions for production data unless required.
+
+Risk: Live remote instructions or schemas may change after installation.
+
+Mitigation: Review live instructions and schemas before production use, and reinstall the skill when freshness guidance says the local copy is stale.
+
+Risk: Exported database results may contain sensitive data.
+
+Mitigation: Treat CSV and JSON exports as sensitive files and scope queries to the minimum data needed.
+
+## Reference(s):
+
+- [MongoDB Connector marketplace page](https://www.agentpmt.com/marketplace/mongodb-connector)
+- [MongoDB Connector ClawHub listing](https://clawhub.ai/agentpmt/skills/mongodb-connector)
+- [MongoDB Connector generated action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration, JSON, Files]
+
+**Output Format:** [Markdown instructions with JSON tool-call examples and optional CSV or JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports 24 permission-gated remote actions; find and aggregate calls cap inline results at 1000 documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

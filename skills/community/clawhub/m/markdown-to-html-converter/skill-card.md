@@ -1,52 +1,67 @@
-## Description: <br>
-Converts Markdown files and static-site Markdown content to HTML using workflows and examples for marked.js, Pandoc, gomarkdown, Jekyll, Hugo, and standard Markdown flavors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to HTML similar to `marked.js`, `pandoc`, `gomarkdown/markdown`, or similar tools; or writing custom script to convert markdown to html and/or working on web template systems like `jekyll/jekyll`, `gohugoio/hugo`, or similar web templating systems that utilize markdown documents, converting them to html.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert Markdown into HTML for documentation, previews, generated files, and static-site workflows. It is suited for single-file conversions, batch conversion guidance, and Markdown features such as code blocks, tables, collapsed sections, and math expressions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted Markdown can produce unsafe HTML when rendered or published. <br>
-Mitigation: Sanitize untrusted Markdown output before displaying it in a browser or publishing generated HTML. <br>
-Risk: Optional package installs, converter commands, or theme setup commands may introduce dependency or execution risk. <br>
-Mitigation: Review commands before running them and pin or trust third-party packages and themes before installation. <br>
-Risk: Preview servers can expose local content if bound to a public or LAN-facing interface. <br>
-Mitigation: Avoid binding preview servers to 0.0.0.0 unless LAN access is intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert Markdown documents into HTML, generate documentation pages, preview rendered Markdown, and work with Markdown-driven static site or templating systems.
 
-## Reference(s): <br>
-- [Basic Markdown to HTML](references/basic-markdown-to-html.md) <br>
-- [Code Blocks to HTML](references/code-blocks-to-html.md) <br>
-- [Collapsed Sections to HTML](references/collapsed-sections-to-html.md) <br>
-- [Mathematical Expressions to HTML](references/writing-mathematical-expressions-to-html.md) <br>
-- [Tables to HTML](references/tables-to-html.md) <br>
-- [marked.js](references/marked.md) <br>
-- [Pandoc](references/pandoc.md) <br>
-- [gomarkdown](references/gomarkdown.md) <br>
-- [Jekyll](references/jekyll.md) <br>
-- [Hugo](references/hugo.md) <br>
-- [ClawHub release page](https://clawhub.ai/jhauga/markdown-to-html-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and HTML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces conversion guidance and example commands; does not execute conversion tools by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML from untrusted Markdown can carry unsafe content into a browser or published site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize rendered HTML before display or publication, especially when source Markdown is user supplied.
+
+Risk: Broad setup and persistent configuration examples can affect local or project environments.
+
+Mitigation: Prefer project-local, pinned dependencies and review global installs or persistent config before applying commands.
+
+Risk: Static-site server examples can expose local content if bound to a public interface.
+
+Mitigation: Keep development servers on localhost unless remote access is intentional and appropriately controlled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhauga/skills/markdown-to-html-converter)
+- [marked](https://github.com/markedjs/marked)
+- [Pandoc](https://github.com/jgm/pandoc)
+- [gomarkdown/markdown](https://github.com/gomarkdown/markdown)
+- [Jekyll](https://github.com/jekyll/jekyll)
+- [Hugo](https://github.com/gohugoio/hugo)
+- [Basic Markdown to HTML](references/basic-markdown-to-html.md)
+- [Code Blocks to HTML](references/code-blocks-to-html.md)
+- [Collapsed Sections to HTML](references/collapsed-sections-to-html.md)
+- [Tables to HTML](references/tables-to-html.md)
+- [Mathematical Expressions to HTML](references/writing-mathematical-expressions-to-html.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce HTML snippets, CLI commands, Node.js, Go, Ruby, YAML, and static-site configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

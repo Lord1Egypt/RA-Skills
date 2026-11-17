@@ -1,43 +1,57 @@
-## Description: <br>
-Performs comprehensive SEO audits on websites covering technical SEO, on-page optimization, off-page signals, and performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs comprehensive SEO audits on websites covering technical SEO, on-page optimization, off-page signals, and performance metrics. Generates actionable reports with prioritized recommendations.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-External site owners, SEO consultants, and agents use this skill to audit authorized websites and produce client-ready SEO reports with prioritized fixes, score breakdowns, and supporting audit data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches target websites and may create audit reports and raw audit JSON locally. <br>
-Mitigation: Use it only on sites you are authorized to audit and review generated files before sharing them. <br>
-Risk: Installation depends on an unpinned npm package named cashclaw. <br>
-Mitigation: Confirm the npm package source and version before installation in sensitive environments. <br>
-Risk: SEO recommendations may be incomplete or misleading if site data is unavailable or interpreted incorrectly. <br>
-Mitigation: Review the generated report against the raw audit data and mark unavailable checks clearly before delivering results. <br>
+## Use Case:
 
+External users and developers use this skill to audit websites for technical SEO, on-page SEO, off-page signals, and performance issues, then produce client-ready Markdown reports with prioritized recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreataide86/cashclaw-seo-auditor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/andreataide86) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report plus raw JSON audit data; may include shell commands and code snippets for fixes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save deliverables as seo-audit-{domain}-{date}.md and seo-audit-{domain}-{date}.json when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can fetch unrestricted URLs during website audits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for domains the user is authorized to audit and run it in an isolated environment without access to internal networks or cloud metadata services.
+
+Risk: The skill can write audit outputs to user-provided paths.
+
+Mitigation: Direct outputs to a dedicated deliverables directory and check paths before execution to avoid overwriting unrelated files.
+
+Risk: The install metadata references an unpinned npm package.
+
+Mitigation: Prefer a pinned and reviewed CashClaw package version before trusting the installed cashclaw binary.
+
+## Reference(s):
+
+- [CashClaw SEO Auditor ClawHub skill page](https://clawhub.ai/andreataide86/skills/cashclaw-seo-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with supporting JSON audit data and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Markdown and JSON deliverables for audited domains when directed by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

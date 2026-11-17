@@ -1,41 +1,56 @@
-## Description: <br>
-Automatically generate a professional Word analysis report from user-provided data files, including data overview, key metric statistics and trend analysis, key findings and conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate a professional Word analysis report from user-provided data files, including data overview, key metric statistics and trend analysis, key findings and conclusions.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and analysts use this skill to convert CSV, JSON, Excel, or TXT data into a professionally formatted Word analysis report with data overview, metrics, trend analysis, and findings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads user-provided datasets and places derived content into a Word report.
+
+Mitigation: Use appropriate data-handling controls for sensitive input files and review generated report content before sharing.
+
+Risk: The report generator writes to a caller-provided output path, which could overwrite an existing file.
+
+Mitigation: Choose an output path where replacement is acceptable or confirm that no important file already exists there.
+
+Risk: The report generator depends on python-docx.
+
+Mitigation: Install python-docx from a trusted package source inside an isolated Python environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to turn uploaded CSV, JSON, Excel, or TXT data into a structured Word analysis report with overview metrics, trend notes, and findings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording could activate the skill for generic report requests. <br>
-Mitigation: Confirm that the user actually wants structured data analysis and Word .docx output before invoking the report workflow. <br>
-Risk: The skill processes user-provided datasets, which may contain sensitive information. <br>
-Mitigation: Avoid sending sensitive datasets unless the user is comfortable with local agent processing. <br>
+**Output Format:** [Markdown guidance with shell commands and a generated .docx report file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/data-to-word-report) <br>
-- [Publisher profile](https://clawhub.ai/user/openlark) <br>
+**Other Properties Related to Output:** [The generated report is saved to the requested output path and the agent summarizes the report structure for review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance plus a generated .docx report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a JSON report structure with title, sections, paragraphs, and optional tables.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

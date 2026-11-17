@@ -1,41 +1,61 @@
-## Description: <br>
-Authorized SansFiction library manager for adding books, updating reading status, logging progress, viewing reading activity, and scheduling a daily reading check-in with a SansFiction token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorized SansFiction library manager. Adds books to your library, updates reading status, logs progress, and can schedule a daily "how much did you read today?" check-in. Requires a SansFiction personal token (read/write).
 
-## Publisher: <br>
-[fgbytes](https://clawhub.ai/user/fgbytes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fgbytes](https://clawhub.ai/user/fgbytes)
 
-## Use Case: <br>
-Readers who use SansFiction can have an agent manage their library, record reading progress, retrieve current reads and stats, and set up a daily reading check-in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a SansFiction read/write token, which grants sensitive account access if exposed. <br>
-Mitigation: Enter the token through secure OpenClaw configuration or environment settings, avoid pasting it into normal chat, and rotate or revoke it if exposed. <br>
-Risk: The optional daily check-in can log reading progress at the wrong time or timezone if configured incorrectly. <br>
-Mitigation: Confirm the preferred reminder time and timezone before enabling the scheduled check-in. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SansFiction](https://sansfiction.com) <br>
-- [SansFiction agent token documentation](https://sansfiction.com/docs/agents) <br>
-- [ClawHub skill page](https://clawhub.ai/fgbytes/sansfiction-library) <br>
+## Use Case:
 
+External users use this agent skill to manage a personal SansFiction library through authorized API calls, including adding books, updating reading status, logging reading progress, viewing current books, and checking reading stats.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-RPC request examples for the SansFiction MCP endpoint and OpenClaw cron commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a read/write SansFiction personal token that could affect the user's library if exposed or misused.
+
+Mitigation: Configure the token through a protected secret or environment variable, use a scoped and revocable token when available, and rotate it if exposure is suspected.
+
+Risk: The setup flow asks the user to paste and persist the token in unsafe ways.
+
+Mitigation: Do not paste the token into chat logs; store it only in protected configuration or secret storage.
+
+Risk: The daily reading check-in can schedule recurring actions with a specific timezone.
+
+Mitigation: Confirm the reminder time and timezone before enabling the check-in.
+
+## Reference(s):
+
+- [SansFiction](https://sansfiction.com)
+- [SansFiction Agent Documentation](https://sansfiction.com/docs/agents)
+- [SansFiction MCP Endpoint](https://sansfiction.com/api/mcp)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw Cron Jobs Documentation](https://docs.openclaw.ai/automation/cron-jobs)
+- [ClawHub Skill Page](https://clawhub.ai/fgbytes/skills/sansfiction-library)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a SansFiction personal token exposed as SANSFICTION_TOKEN.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

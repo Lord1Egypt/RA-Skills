@@ -43,8 +43,8 @@ cp -r self-improving-sales ~/.openclaw/skills/
 ### 2. Install the Hook (Optional)
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-sales
-openclaw hooks enable self-improving-sales
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-sales
 ```
 
 ### 3. Create Learning Files
@@ -92,23 +92,9 @@ Is the learning deal-specific?
 | Deal velocity dropping | Log learning | LEARNINGS.md (deal_velocity_drop) |
 | Discount >20% requested | Log deal issue | DEAL_ISSUES.md (pricing_error) |
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
-
-### sessions_send
-
-Share a deal pattern with another session:
-```
-sessions_send(sessionKey="session-id", message="Competitor Y launched free tier — update all SMB deal battle cards")
-```
-
-### sessions_spawn
-
-Spawn a background agent to analyze deal patterns:
-```
-sessions_spawn(task="Analyze .learnings/DEAL_ISSUES.md for promotion candidates", label="deal-review")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Available Hook Events
 

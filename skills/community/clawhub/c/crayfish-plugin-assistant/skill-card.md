@@ -1,40 +1,50 @@
-## Description: <br>
-OpenClaw plugin development assistant that outputs runnable plugin skeletons, install commands, and debugging steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw plugin development assistant that produces runnable plugin scaffolds, installation commands, and debugging steps.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Developers use this skill to decide whether an OpenClaw extension should be a Skill or Plugin, generate a minimal runnable plugin scaffold, and get install, debug, publish, and rollback commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated shell, install, publish, or rollback commands can change local projects or release state if run without review. <br>
-Mitigation: Review commands before execution, run them only in the intended project directory, and use version control or backups before applying changes. <br>
-Risk: Generated plugin scaffolds and configuration may not match every OpenClaw project or release workflow. <br>
-Mitigation: Review generated files, test locally, and verify publish settings before releasing a plugin. <br>
+## Use Case:
 
+Developers and engineers use this skill to decide whether an OpenClaw capability should be packaged as a Skill or Plugin, then generate the minimal files, commands, and troubleshooting notes needed to run, debug, publish, or roll back the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boleyn/crayfish-plugin-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include a recommended solution type, directory structure, key files, install commands, debug commands, publish commands, rollback commands, and risk troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated install, publish, or rollback commands can modify a local OpenClaw setup or publish packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plugin files and commands before execution, especially install, publish, and rollback steps.
+
+## Reference(s):
+
+- [Crayfish Plugin Assistant on ClawHub](https://clawhub.ai/boleyn/skills/crayfish-plugin-assistant)
+- [Publisher profile: boleyn](https://clawhub.ai/user/boleyn)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with file snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes plugin or skill choice, directory structure, key files, install, debug, publish, rollback, and risk-troubleshooting sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,50 @@
-## Description: <br>
-Coordinates Claude agent teams via filesystem protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates Claude Code agent teams through filesystem-based task and messaging workflows.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multiple Claude Code agents for parallel implementation, code review, refactoring, and task dependency management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup or shutdown actions can remove team/task state or kill panes for the wrong team. <br>
-Mitigation: Confirm the team name, pane ID, and target path before deleting teams, removing lock files, or killing panes; back up important ~/.claude team/task state first. <br>
-Risk: Local coordination state can be damaged if agents write inboxes or task files without the documented locking and atomic write patterns. <br>
-Mitigation: Use the documented fcntl locks and atomic file replacement patterns for task, inbox, and team config updates. <br>
+## Use Case:
 
+Developers using Claude Code use this skill to coordinate parallel agent work, assign tasks and dependencies, exchange messages, and monitor team health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conjure-agent-teams) <br>
-- [Conjure plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conjure) <br>
-- [Team management module](artifact/modules/team-management.md) <br>
-- [Task coordination module](artifact/modules/task-coordination.md) <br>
-- [Messaging protocol module](artifact/modules/messaging-protocol.md) <br>
-- [Spawning patterns module](artifact/modules/spawning-patterns.md) <br>
-- [Health monitoring module](artifact/modules/health-monitoring.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local team coordination through Claude CLI, tmux or iTerm panes, JSON task files, inbox messages, and health monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Deleting a lock file while related processes are active can allow conflicting access to shared state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm all related processes have stopped before deleting a lock file, and review the referenced components because the security assessment is incomplete.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-agent-teams)
+- [Project page listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task, team, messaging, and health-monitoring procedures.]
+
+## Skill Version(s):
+
+1.10.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

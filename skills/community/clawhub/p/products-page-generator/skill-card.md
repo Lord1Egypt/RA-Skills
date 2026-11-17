@@ -1,38 +1,52 @@
-## Description: <br>
-Guides agents in creating, optimizing, or auditing e-commerce product listing, category, product grid, and product overview pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to create, optimize, or audit a product listing or category page.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External site owners, marketers, and developers use this skill to create, optimize, or audit e-commerce category, collection, and product-grid pages, including listing structure, product-card content, filters, sorting, and SEO metadata.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad product and shop-related trigger terms may activate the skill for requests that need a narrower page or SEO workflow.
+
+Mitigation: Confirm the requested page type and use the related category SEO or product-detail guidance when the task falls outside listing, category, collection, or product-grid pages.
+
+Risk: The skill may read disclosed project context files when available.
+
+Mitigation: Use only project context relevant to product catalog and positioning.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to guide product listing and category page structure, product card content, filtering and sorting choices, and SEO metadata for e-commerce catalogs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project context files to tailor product catalog and positioning guidance. <br>
-Mitigation: Review any .claude/project-context.md or .cursor/project-context.md files before use so sensitive or outdated positioning does not shape the generated guidance. <br>
+**Output Format:** [Markdown guidance with structured recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/products-page-generator) <br>
+**Other Properties Related to Output:** [No code execution; may use disclosed project context for product catalog and positioning when useful.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with structured page, product card, filter, sort, SEO, and schema recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local project context files when present to tailor recommendations.] <br>
+1.0.1 (source: SKILL.md frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and SKILL.md metadata.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

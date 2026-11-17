@@ -1,43 +1,54 @@
-## Description: <br>
-Runs daily or on-demand OpenClaw system health checks covering gateway status, disk usage, memory availability, and recent log errors, then records and sends a report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Check performs daily or on-demand OpenClaw environment checks for Gateway status, disk usage, memory availability, and recent log errors, then writes and sends a Markdown report.
 
-## Publisher: <br>
-[AxelHu](https://clawhub.ai/user/AxelHu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and operators use this skill to run scheduled or manual OpenClaw environment health checks, capture a Markdown report, and send it to a configured Feishu group or user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health reports may expose operational details if delivered to the wrong Feishu recipient. <br>
-Mitigation: Replace the Feishu placeholder with the intended group or user before installation and review report recipients when changing deployment context. <br>
-Risk: Checked logs may contain secrets, private incident details, or sensitive infrastructure information. <br>
-Mitigation: Review log sources and redact sensitive content before sending reports outside the operating team. <br>
-Risk: Daily cron execution may send automatic reports when only manual checks are desired. <br>
-Mitigation: Enable cron only when daily automatic reports are intended; otherwise run the skill manually. <br>
+## Use Case:
 
+Developers and operators use this skill to run scheduled or manual health checks for OpenClaw deployments and receive a concise operational report through Feishu.
 
-## Reference(s): <br>
-- [Health Check detailed specification](references/spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/AxelHu/health-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown health report plus Feishu message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes data/exec-logs/health-check/YYYY-MM-DD.md and sends the report to the configured Feishu recipient; messages over 3800 characters are split into complete parts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Feishu reports can expose operational health details if sent to the wrong target or populated with sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the Feishu group or user deliberately and limit report content to operational health signals, excluding secrets, full logs, host identifiers, and unrelated application data.
+
+Risk: Local execution reports under data/exec-logs may retain operational details in sensitive environments.
+
+Mitigation: Apply an appropriate retention policy for health-check execution logs before using the skill in sensitive environments.
+
+## Reference(s):
+
+- [Health Check detailed specification](artifact/references/spec.md)
+- [ClawHub Health Check skill page](https://clawhub.ai/axelhu/skills/health-check)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration]
+
+**Output Format:** [Markdown report with operational check results and Feishu message content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under data/exec-logs/health-check/YYYY-MM-DD.md and splits Feishu messages above 3800 characters.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

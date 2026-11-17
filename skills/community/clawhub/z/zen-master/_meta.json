@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn75zmc7ntsqdpb79xg3vr8dsx829nky",
-  "slug": "zen-master",
-  "version": "1.0.1",
-  "publishedAt": 1775027219541
+  "name": "zen-master",
+  "version": "1.0.0",
+  "description": "禅宗禅师技能 - 将任意 Agent 转型为精通禅宗经论、公案、语录的禅宗大法师",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["zen", "chan", "buddhism", "meditation", "禅宗", "禅师"],
+  "repository": "https://github.com/openclaw/skills",
+  "files": [
+    "knowledge/",
+    "scripts/",
+    "SKILL.md"
+  ],
+  "scripts": {
+    "install": "scripts/install.sh"
+  },
+  "requirements": {
+    "openclaw": ">=1.0.0"
+  },
+  "changelog": {
+    "1.0.0": "初始版本 - 包含完整禅宗知识库"
+  }
 }

@@ -1,42 +1,57 @@
-## Description: <br>
-Converts meeting transcripts into phone-friendly SVG meeting-summary cards and automatically exports PNG images for sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将会议逐字稿或录音转写文本转化为手机端可直接转发的 SVG 会议纪要卡片，并自动转为 PNG 方便分享。
 
-## Publisher: <br>
-[maojiebc](https://clawhub.ai/user/maojiebc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maojiebc](https://clawhub.ai/user/maojiebc)
 
-## Use Case: <br>
-Employees, operators, and project teams use this skill to turn meeting transcripts or speech-to-text notes into structured visual minutes that summarize decisions, unresolved items, action owners, and milestones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts may contain sensitive or confidential information. <br>
-Mitigation: Use only with transcript content approved for local processing and sharing, and review generated SVG/PNG files before forwarding them. <br>
-Risk: The converter can create files and may modify the host Python environment through a runtime pip install fallback. <br>
-Mitigation: Run conversion in an isolated environment or remove the runtime install fallback; confirm output paths before execution. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to turn meeting transcripts or speech-to-text notes into concise visual minutes that align decisions, owners, open questions, milestones, and action items.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maojiebc/majia-meeting-svg) <br>
-- [Project homepage](https://github.com/maojiebc/majia-meeting-svg) <br>
-- [Examples directory](https://github.com/maojiebc/majia-meeting-svg/tree/main/references/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [SVG XML, PNG image output, and a short Markdown or text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces phone-first meeting-summary cards from transcript input and may invoke a local SVG-to-PNG converter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.11 (source: ClawHub release metadata and skill metadata) <br>
+Risk: The skill processes meeting transcripts that may contain sensitive business or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on transcripts the user is authorized to process, and redact sensitive details before creating shareable images.
+
+Risk: The PNG converter uses local automatic execution paths for SVG rendering.
+
+Mitigation: Review the skill before installing, avoid converting SVG files from untrusted sources, and run the converter in a pinned dependency environment without privileged accounts or broad secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maojiebc/skills/majia-meeting-svg)
+- [Project Homepage](https://github.com/maojiebc/majia-meeting-svg)
+- [Example Cards](https://github.com/maojiebc/majia-meeting-svg/tree/main/references/examples)
+- [GitHub Releases](https://github.com/maojiebc/majia-meeting-svg/releases)
+- [skills.sh Listing](https://skills.sh/maojiebc/majia-meeting-svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with SVG code, shell commands, and generated SVG/PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PNG conversion defaults to 2x scale for phone-friendly sharing.]
+
+## Skill Version(s):
+
+1.1.13 (source: evidence.release.version, evidence.parsed.metadata.version, SKILL.md metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+﻿# wechat-viral-topic
+
+> 微信爆款选题与内容策划助手。基于「爆款四基因 + 12 条策划心法 + 8 维打分卡 + 6 大内容形态 + 12 条标题公式 + 风险自检」的纯规则策划流水线，面向公众号编辑、短视频/小红书博主、漫画作者、H5 策划，回答「这周写什么」「这个素材能不能爆」「热点怎么改成我的选题」。
+
+- 版本：2.0.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：LICENSE.md, SKILL.md, _icon.svg, _skillhub_meta.json, manifest.json
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/SynomosAI）
+

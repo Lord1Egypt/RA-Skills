@@ -1,6 +1,6 @@
 name: mobile_pay_bill_ocr
-version: 1.0.0
-description: 支持移动支付账单识别,智能解析支付宝和微信支付账单，结构化提取交易时间、商户、金额及收支类型。
+version: 1.0.1
+description: 仅在用户明确提及“支付宝账单”、“微信支付记录”、“交易截图”、“支付明细”、“移动支付账单”等特定词汇时触发，用于识别并结构化提取移动支付交易截图中的时间、商户、金额、收支类型等信息。不适用于通用OCR或非支付类票据识别。
 author: SCNet
 license: MIT
 tags:
@@ -14,8 +14,12 @@ optional_env_vars:
 
 primary_credential: SCNET_API_KEY
 
-# 增加项目主页，解决 missing homepage 警告
-homepage: https://github.com/SCNet-sugon/mobile_pay_bill_ocr.git  # 请替换为实际仓库地址
+permissions:
+  - filesystem:read
+  - shell:exec
+  - network:api.scnet.cn
+
+homepage: https://github.com/SCNet-sugon/mobile_pay_bill_ocr.git
 dependencies:
   - python3
   - requests

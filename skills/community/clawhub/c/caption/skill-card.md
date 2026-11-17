@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup material for Caption concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Caption concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Caption reference documentation for onboarding, implementation patterns, debugging, performance, security, migration, and cheat-sheet workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference documentation is generic and may not match a specific Caption implementation. <br>
-Mitigation: Confirm implementation-specific behavior against the user's actual Caption documentation before applying operational guidance. <br>
-Risk: Version strings differ between server release metadata, skill frontmatter, and the packaged script. <br>
-Mitigation: Use the server release version for the card and verify packaged command output before release or deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference helper for Caption-related devtools concepts, quickstart material, implementation patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Caption ClawHub page](https://clawhub.ai/ckchzh/caption) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local heredoc output; no API keys, credentials, network access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: ClawHub release metadata; artifact frontmatter says 2.0.4 and script says 2.0.3) <br>
+Risk: The release includes an executable shell script, so future updates could change local behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan updates before upgrading or deploying the skill.
+
+Risk: The bundled reference text may be incomplete or too generic for production decisions.
+
+Mitigation: Validate operational or security guidance against authoritative project documentation before applying it.
+
+## Reference(s):
+
+- [Caption on ClawHub](https://clawhub.ai/ckchzh/skills/caption)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation printed by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are indicated by the evidence.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

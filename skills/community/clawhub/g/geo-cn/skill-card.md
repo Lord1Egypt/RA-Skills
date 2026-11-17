@@ -1,39 +1,60 @@
-## Description: <br>
-GEO-CN guides agents through diagnosis, optimization, and monitoring workflows for generative engine optimization across major China-market AI and content platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO-CN v2.0.4 (AI Native) is a Chinese-market generative engine optimization skill that uses direct AI-answer testing and layered evidence review to guide diagnosis, optimization, and monitoring across major Chinese AI, encyclopedia, social, video, and map ecosystems.
 
-## Publisher: <br>
-[xp1001](https://clawhub.ai/user/xp1001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xp1001](https://clawhub.ai/user/xp1001)
 
-## Use Case: <br>
-Business owners, consultants, agencies, and startup teams use this skill to assess brand visibility in China-market AI answers and generate prioritized content, encyclopedia, FAQ, Zhihu, press-release, and monitoring plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China market <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can save brand, client, competitor, website, channel, and monitoring details in local audit records. <br>
-Mitigation: Install and use it only when local recordkeeping is acceptable; for client work, confirm consent and configure GEO_CLIENTS_DIR to an approved storage location. <br>
+## Use Case:
 
+External users, consultants, and business owners use this skill to evaluate and improve how Chinese-market brands appear in AI-generated recommendations. It guides brand/entity intake, AI visibility testing, evidence-backed scoring, optimization planning, monitoring, and report generation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/xp1001/geo-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/xp1001) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured JSON record templates and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save or instruct saving client diagnosis and monitoring records under ./geo-clients/ or GEO_CLIENTS_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated archives and reports may contain brand, address, phone, platform, competitor, and monitoring data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the geo-clients directory out of shared repositories and shared storage unless the contents have been reviewed and sanitized.
+
+Risk: Customer-facing reports can expose sensitive client details if published or shared broadly.
+
+Mitigation: Review reports before sharing and publish only after removing sensitive fields and receiving customer consent.
+
+Risk: Evidence collected from search, AI platforms, maps, and social platforms can be incomplete or probabilistic.
+
+Mitigation: Use the skill's layered evidence model, mark uncertain findings as pending verification, and avoid treating missing search results as proof that an asset does not exist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xp1001/skills/geo-cn)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local client archives and reports under the configured geo-clients directory.]
+
+## Skill Version(s):
+
+2.0.4 (source: evidence.json release, artifact frontmatter, _meta.json, and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

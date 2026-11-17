@@ -1,46 +1,63 @@
-## Description: <br>
-面向 talking-head / presenter 场景的 Sparki skill 变体，沿用最新版官方 Sparki 安装、API key、上传和命令说明，同时保留口播场景定位。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language Sparki skill for tightening and polishing talking-head, interview, tutorial, and presenter videos through upload, prompt-driven editing, status polling, and result download.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External creators and agents use this skill to route talking-head, interview, tutorial, presenter, and explainer videos through Sparki cloud editing workflows for tighter edits, cleaner presentation, captions, resizing, and downloadable video results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos are uploaded to Sparki cloud services for editing. <br>
-Mitigation: Use only videos that are appropriate for cloud processing, and do not use the skill for sensitive videos that must remain local. <br>
-Risk: The setup flow can save a Sparki API key under the user's OpenClaw configuration directory. <br>
-Mitigation: Prefer providing SPARKI_API_KEY through the environment when the key should not be saved to disk. <br>
-Risk: A custom API base URL changes where videos and credentials are sent. <br>
-Mitigation: Use the default Sparki endpoint unless the alternate base URL is fully trusted. <br>
+## Use Case:
 
+External creators and developers use this skill to guide an agent through Sparki-based editing of local talking-head or presenter videos, including upload, edit project creation, status checks, and result download.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/talking-head-editor-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/fischerlam) <br>
-- [Sparki homepage](https://sparki.io) <br>
-- [Sparki API domain](https://agent-api.sparki.io) <br>
-- [Telegram upload link](https://t.me/Sparki_AI_bot/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses from Sparki commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Sparki setup, upload, edit, status, download, and run command guidance; completed edits download video files through the Sparki service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Selected video files are uploaded to Sparki for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with videos the user is comfortable sending to Sparki, and confirm local file paths before upload.
+
+Risk: API credentials can be saved in local OpenClaw configuration.
+
+Mitigation: Prefer the SPARKI_API_KEY environment variable and avoid persisting credentials unless the user explicitly wants saved setup.
+
+Risk: The skill may steer agents toward remote Sparki processing for simple or unrelated video tasks.
+
+Mitigation: Use it for talking-head or presenter editing requests and reassess whether a local or simpler tool is more appropriate for unrelated tasks.
+
+Risk: Downloaded results write to local output paths.
+
+Mitigation: Review the output path before download and keep writes within the intended workspace or user-approved destination.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/talking-head-editor-zh)
+- [Sparki homepage](https://sparki.io)
+- [Sparki Telegram upload link](https://t.me/Sparki_AI_bot/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; Sparki CLI commands return JSON status data and downloaded video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SPARKI_API_KEY; uploads mp4 or mov files to Sparki; default downloads are written under ~/.openclaw/workspace/sparki/videos unless an output path is provided.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

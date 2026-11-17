@@ -1,40 +1,57 @@
-## Description: <br>
-Translate .txt files into Chinese or another target language using configurable OpenAI-compatible APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate TXT translates text files through configurable OpenAI-compatible APIs, with chunking, retry behavior, and context-aware translation for larger documents.
 
-## Publisher: <br>
-[litousteven](https://clawhub.ai/user/litousteven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litousteven](https://clawhub.ai/user/litousteven)
 
-## Use Case: <br>
-Developers, agents, and document-processing users use this skill to configure a translation provider and translate text files while preserving formatting, chunking large files, and reporting the translated output path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text files are sent to the configured external translation provider. <br>
-Mitigation: Use only providers approved for the data being translated, and avoid confidential, regulated, or proprietary documents unless that provider is approved for them. <br>
-Risk: The translation API key may be stored in a skill-local .env file. <br>
-Mitigation: Protect or remove the .env file after setup, use revocable credentials, and rotate the key if it may have been exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to configure translation credentials and translate .txt files into Chinese or another target language while preserving document structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litousteven/smart-translate-txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text files with terminal status lines and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a translated .txt file, prints OUTPUT:<path> on success, and uses configurable target language, source language, chunk size, concurrency, and context-window settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Source documents and derived context are sent to the configured external translation provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved HTTPS providers and avoid confidential or regulated files unless the provider is authorized for that data.
+
+Risk: The setup flow can store the API key in a local .env file.
+
+Mitigation: Prefer secure environment-based secret injection when possible, restrict access to local credential files, and rotate exposed keys.
+
+Risk: A configurable base URL can direct requests to an untrusted endpoint.
+
+Mitigation: Verify the endpoint before use and keep provider, model, and key settings under user review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litousteven/skills/smart-translate-txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated translated text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an output text file path after translation; translation quality, latency, and data handling depend on the configured API provider and model.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

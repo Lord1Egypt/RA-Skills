@@ -1,43 +1,59 @@
-## Description: <br>
-Fetches public hot-list entries from tophub.today into JSON files and can crawl linked article pages into Markdown content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TopHotCN helps an agent fetch TopHub hot-list items for supported Chinese and international sites into JSON files, then optionally fetch article body content as Markdown.
 
-## Publisher: <br>
-[hanqiudeng](https://clawhub.ai/user/hanqiudeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanqiudeng](https://clawhub.ai/user/hanqiudeng)
 
-## Use Case: <br>
-Agents use this skill to collect public Chinese trend lists, save structured JSON records, and optionally enrich those records with crawled article body content. It is suited for monitoring public news, technology, entertainment, community, and other hot-list sources that tophub.today exposes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content fetching can modify JSON files in place when no output path is provided. <br>
-Mitigation: Use the --output option or keep backups when you need to preserve original JSON files. <br>
-Risk: Directory mode can update every matching JSON file in the selected folder. <br>
-Mitigation: Run directory mode only on folders intended for update, and use --top to limit the batch when appropriate. <br>
-Risk: The scripts depend on Python crawling and browser automation packages that execute network requests to public pages. <br>
-Mitigation: Review and install the Python and Playwright dependencies only in an environment where public web crawling is allowed. <br>
+## Use Case:
 
+Developers and content-focused agents use this skill to collect public trending-topic metadata from TopHub-supported sites and enrich selected items with fetched page content for downstream reading, summarization, or analysis.
 
-## Reference(s): <br>
-- [TopHub Today](https://tophub.today) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hanqiudeng/tophot-chinese) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON file outputs containing optional Markdown article content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated JSON records include title, description, url, timestamps, content, and error fields when content fetching is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The article-content fetcher can browse any URL present in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment or restricted network context, and use trusted TopHub-generated JSON inputs.
+
+Risk: Running the content fetcher without an output path modifies the original JSON files.
+
+Mitigation: Use the --output option when preserving originals matters, or keep a backup before batch fetching.
+
+Risk: Runtime dependencies are installed from package managers and are not pinned by the artifact.
+
+Mitigation: Pin and review dependencies before installation in managed or production environments.
+
+## Reference(s):
+
+- [TopHub Today](https://tophub.today)
+- [Crawl4AI](https://github.com/unclecode/crawl4ai)
+- [ClawHub skill page](https://clawhub.ai/hanqiudeng/skills/tophot-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Markdown, Guidance]
+
+**Output Format:** [JSON files containing hot-list metadata and optional Markdown article content, plus command-line guidance for running the included scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The content fetcher can update source JSON files in place unless an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

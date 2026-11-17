@@ -3,7 +3,7 @@
 ## Endpoint
 
 - Submit task: `https://api.poyo.ai/api/generate/submit`
-- Status query: <https://docs.poyo.ai/api-manual/task-management/status>
+- Status query: `GET https://api.poyo.ai/api/generate/status/{task_id}`
 - Source docs: <https://docs.poyo.ai/api-manual/image-series/gpt-image-2>
 - Model page: <https://poyo.ai/models/gpt-image-2>
 - OpenAPI JSON: <https://docs.poyo.ai/api-manual/image-series/gpt-image-2.json>
@@ -50,7 +50,7 @@ Custom size:
 - Use `WIDTHxHEIGHT`, for example `2304x1536`.
 - Custom size requires `resolution` to be `2K` or `4K`.
 - `auto` size or omitted `size` always uses `1K` resolution.
-- True `4K` billing applies only to `16:9`, `9:16`, `21:9`, or custom sizes with a 3840-pixel edge; other `4K` selections are billed as `2K`.
+- Use documented `4K` settings only for supported aspect ratios or custom sizes; verify current output behavior in the PoYo docs before relying on it.
 
 ## Important constraints
 
@@ -149,7 +149,7 @@ curl -sS https://api.poyo.ai/api/generate/submit \
 
 - PoYo returns a `task_id` after submission.
 - If `callback_url` is present, PoYo sends a POST callback when the task reaches `finished` or `failed`.
-- Whether or not callbacks are used, the same unified task status docs apply: <https://docs.poyo.ai/api-manual/task-management/status>.
+- Whether or not callbacks are used, save the returned `task_id` and query the standard status endpoint when polling is needed.
 
 ## Practical guidance
 

@@ -1,47 +1,65 @@
-## Description: <br>
-Generates differentiated, localized product descriptions for foreign-trade listings, B2B platforms, catalogs, and SEO-focused product pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates differentiated, SEO-aware product descriptions, listings, translations, and comparison content for foreign-trade products across B2B and e-commerce platforms.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External users and business teams use this skill to create multilingual product content, differentiated selling points, SEO titles, platform-specific descriptions, specifications, FAQs, and competitor comparisons for export and B2B sales channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a YunlvAI TradeGPT API key and sends product-content generation requests to an external API. <br>
-Mitigation: Use a dedicated API key, scope or rotate it where possible, and avoid submitting confidential unreleased product or competitor information unless the provider is trusted. <br>
-Risk: Generated certifications, customs descriptions, SEO claims, and competitor comparisons may be inaccurate or unsuitable for publication. <br>
-Mitigation: Fact-check certification details, customs language, SEO claims, and comparison data before using generated content in public listings or marketing materials. <br>
-Risk: Generated outputs may be saved locally in the product description data folder. <br>
-Mitigation: Review ./data/yunlv-skills/productDesc/ for saved outputs and remove sensitive drafts when they are no longer needed. <br>
+## Use Case:
 
+External sellers, export teams, and content marketers use this skill to turn product parameters and optional competitor inputs into localized product-description packages for listings, catalogs, independent stores, and B2B platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skill-product) <br>
-- [YunlvAI Homepage](https://yunlvai.com) <br>
-- [YunlvAI TradeGPT API](https://api.yunlvai.com) <br>
-- [Industry Vocabulary](references/industry_vocabulary.md) <br>
-- [Differentiation Templates](references/differentiation_templates.md) <br>
-- [Platform Guide](references/platform_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or structured JSON-style product-content packages with titles, keywords, descriptions, selling points, tables, FAQs, scores, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRADEGPT_API_KEY and may save generated product content under ./data/yunlv-skills/productDesc/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Product, SEO, and competitor-comparison inputs may be sent to Yunlv's TradeGPT API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved input data and configure TRADEGPT_API_KEY deliberately for this third-party service.
+
+Risk: Generated files may contain commercially sensitive product descriptions or comparison content.
+
+Mitigation: Review or delete files under ./data/yunlv-skills/productDesc/ before sharing, committing, or reusing them.
+
+Risk: Broad prompts such as SEO may trigger the skill when it is not relevant.
+
+Mitigation: Confirm that the user needs product-description or listing-content generation before using the skill.
+
+Risk: Generated differentiation claims, certifications, and competitor comparisons can be inaccurate if source inputs are incomplete or unsupported.
+
+Mitigation: Verify product specifications, certificates, platform policy compliance, and competitor claims before publication.
+
+## Reference(s):
+
+- [Yunlv AI Homepage](https://yunlvai.com)
+- [Yunlv AI TradeGPT API](https://api.yunlvai.com)
+- [Industry Vocabulary](references/industry_vocabulary.md)
+- [Differentiation Templates](references/differentiation_templates.md)
+- [Platform Guide](references/platform_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-like structured content packages with product titles, descriptions, SEO keywords, specifications, FAQs, competitor comparisons, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRADEGPT_API_KEY for the Yunlv TradeGPT API and may write generated product-description files under ./data/yunlv-skills/productDesc/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

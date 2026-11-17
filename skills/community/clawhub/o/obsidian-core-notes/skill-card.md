@@ -1,45 +1,59 @@
-## Description: <br>
-Maintain Obsidian vault core-file notes, topic synthesis notes, folder indexes, and graph links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain Obsidian vault core-file notes, topic synthesis notes, folder indexes, and graph links.
 
-## Publisher: <br>
-[debtvc2022](https://clawhub.ai/user/debtvc2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[debtvc2022](https://clawhub.ai/user/debtvc2022)
 
-## Use Case: <br>
-Developers, knowledge workers, and vault maintainers use this skill to scan Obsidian-style workspaces, create or refresh generated core-file sidecars and folder indexes, identify topic-synthesis candidates, and validate generated note markers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate or update local Markdown sidecars and index files across a vault. <br>
-Mitigation: Run scans or refreshes on a specific vault root, review generated Markdown before relying on it, and validate marker counts after bulk operations. <br>
-Risk: Cleanup can delete marker-bearing generated notes. <br>
-Mitigation: Use clean-generated only when explicitly requested, prefer dry-run review first, and back up generated notes before aggressive cleanup. <br>
-Risk: Vault scans and generated previews may expose private business material or secrets present under the selected root. <br>
-Mitigation: Avoid scanning roots that contain sensitive material unless generated Markdown previews are acceptable for that workspace. <br>
+## Use Case:
 
+Developers, knowledge workers, and Obsidian vault maintainers use this skill to scan document or code workspaces, create generated Markdown support notes, maintain folder and workspace indexes, and identify folders that merit deeper topic synthesis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/debtvc2022/obsidian-core-notes) <br>
-- [Core File Rules](artifact/references/core-file-rules.md) <br>
-- [Obsidian Linking Conventions](artifact/references/obsidian-linking.md) <br>
-- [Topic Synthesis Core Notes](artifact/references/topic-synthesis-core-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes and indexes, JSON scan or candidate reports, and shell commands for local vault maintenance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files use explicit marker comments so refresh and cleanup operations can distinguish generated notes from hand-written Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Generated Markdown notes can persist raw previews from files in the selected vault or workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scan and refresh --dry-run first, avoid roots that contain secrets or credentials, and review generated previews before syncing or committing notes.
+
+Risk: Marker-based cleanup can permanently delete generated Markdown files across the selected root.
+
+Mitigation: Use clean-generated --dry-run before deletion and keep backups of generated notes before aggressive cleanup.
+
+Risk: Bulk refreshes may update many Obsidian support notes and indexes at once.
+
+Mitigation: Confirm the vault root and scope before running refresh, then run validate after bulk operations.
+
+## Reference(s):
+
+- [Core File Rules](references/core-file-rules.md)
+- [Obsidian Linking Conventions](references/obsidian-linking.md)
+- [Topic Synthesis Core Notes](references/topic-synthesis-core-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown notes, JSON scan reports, validation summaries, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update generated Obsidian Markdown files such as .core.md sidecars, folder indexes, workspace indexes, and topic synthesis notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

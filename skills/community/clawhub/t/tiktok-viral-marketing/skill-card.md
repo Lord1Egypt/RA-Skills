@@ -1,46 +1,62 @@
-## Description: <br>
-Hire TikTok creators who specialize in viral content creation, trending challenges, and explosive reach campaigns to maximize brand visibility on the For You Page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire TikTok creators who specialize in viral content creation, trending challenges, and explosive reach campaigns to maximize brand visibility on the For You Page.
 
-## Publisher: <br>
-[realRoc](https://clawhub.ai/user/realRoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[realroc](https://clawhub.ai/user/realroc)
 
-## Use Case: <br>
-External marketers and agent operators use this skill to plan TikTok creator campaigns, search for viral-content creators, and draft PingHuman API requests for campaign tasks. It is suited for paid influencer workflows that need human review before campaign creation, creator acceptance, payment, tips, or coordinated posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help create paid creator campaigns, accept creators, approve payments, issue tips, and coordinate posting plans. <br>
-Mitigation: Require manual approval for every campaign creation, creator acceptance, payment approval, tip, deadline, and coordinated posting plan. <br>
-Risk: Coordinated paid posts may misrepresent sponsored activity as organic popularity. <br>
-Mitigation: Do not use the workflow to hide sponsorship or make paid coordination appear organic; require campaign review for disclosure and platform compliance. <br>
-Risk: PingHuman API credentials could be exposed through logs, prompts, or broad agent access. <br>
-Mitigation: Use scoped, revocable API keys and keep credentials out of prompts, logs, and shared artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realRoc/tiktok-viral-marketing) <br>
-- [PingHuman homepage](https://www.pinghuman.ai) <br>
-- [PingHuman API base](https://www.pinghuman.ai/api/v1) <br>
-- [Published skill file](https://www.pinghuman.ai/skills/tiktok-viral-marketing/skill.md) <br>
-- [TikTok Creator Portal](https://www.tiktok.com/creators) <br>
-- [TikTok Business Center](https://www.tiktok.com/business) <br>
+## Use Case:
 
+External marketers and agents use this skill to find TikTok creators, create PingHuman campaign tasks, and evaluate viral marketing performance for brand awareness campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example creator-search and task-management API requests for TikTok viral marketing campaigns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Coordinated sponsored TikTok campaigns may be framed as organically emerging trends.
+
+Mitigation: Require clear sponsorship disclosure and policy review before launch; avoid workflows that present coordinated paid content as organic activity.
+
+Risk: The skill includes API flows for creating tasks, hiring creators, approving work, and tipping.
+
+Mitigation: Require explicit human approval for task creation, hiring, approval, payment, or tipping actions, and store PingHuman tokens in environment variables or a secrets manager.
+
+Risk: The security review flags high-impact API and install patterns with limited safeguards.
+
+Mitigation: Verify the source before installation and prefer a pinned or locally reviewed copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realroc/skills/tiktok-viral-marketing)
+- [PingHuman skill file](https://www.pinghuman.ai/skills/tiktok-viral-marketing/skill.md)
+- [PingHuman API base](https://www.pinghuman.ai/api/v1)
+- [PingHuman agent registration guide](https://www.pinghuman.ai/skill.md#getting-started-agent-registration)
+- [PingHuman TikTok viral guide](https://www.pinghuman.ai/docs/tiktok-viral-guide)
+- [TikTok Creator Portal](https://www.tiktok.com/creators)
+- [TikTok Business Center](https://www.tiktok.com/business)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes PingHuman API request examples, campaign setup guidance, and creator evaluation criteria; requires caller-supplied authorization credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

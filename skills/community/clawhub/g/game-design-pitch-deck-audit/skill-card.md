@@ -1,42 +1,50 @@
-## Description: <br>
-Audit a video game pitch deck, publisher deck, funding deck, or investor-facing game presentation for clarity, structure, persuasiveness, visual readability, business-case completeness, and publisher-fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a video game pitch deck, publisher deck, funding deck, or investor-facing game presentation for clarity, structure, persuasiveness, visual readability, business-case completeness, and publisher-fit.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game developers, studios, and publishing teams use this skill to review whether a game pitch deck clearly explains the team, game, opportunity, evidence, business case, ask, and path to completion before publisher, funding, platform, grant, or investor conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Game decks can contain unreleased concepts, budgets, timelines, business plans, or partner details. <br>
-Mitigation: Provide only deck material the user is willing to have the agent process, and remove confidential details that are not needed for the audit. <br>
-Risk: Pitch recommendations can influence funding, publishing, or commercial decisions. <br>
-Mitigation: Treat the audit as guidance and have the project owner or business stakeholder review recommendations before changing the deck or sending it externally. <br>
+## Use Case:
 
+External game developers, studio teams, and pitch reviewers use this skill to audit publisher, funding, or investor-facing game pitch decks for persuasive structure, business-case completeness, readability, publisher fit, and actionable improvement priorities.
 
-## Reference(s): <br>
-- [Pitch Deck Notes](references/pitch-deck-notes.md) <br>
-- [Raw Fury Pitch Notes](references/raw-fury-notes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-pitch-deck-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit with deck overview, structure audit, content audit, visual/readability audit, publisher-fit audit, failure patterns, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fast-mode checklist answers when a concise review is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pitch decks may contain confidential business, budget, production, publishing, or investor strategy information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on materials the user intentionally provides, and avoid sharing deck contents outside the intended review workflow.
+
+## Reference(s):
+
+- [Pitch Deck Notes](references/pitch-deck-notes.md)
+- [Raw Fury Pitch Notes](references/raw-fury-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured audit sections with prioritized recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

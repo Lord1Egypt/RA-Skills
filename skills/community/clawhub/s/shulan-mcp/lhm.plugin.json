@@ -1,0 +1,133 @@
+{
+  "author": "shulan-io",
+  "authorUrl": "https://github.com/shulan-io",
+  "description": "ShuLan MCP Server — AI data research & report generation (market data, KOL lists, bidding summaries, company insights) via the ShuLan data platform.",
+  "homepage": "https://shulan.io",
+  "identifier": "shulan-io-shulan-mcp",
+  "name": "ShuLan MCP",
+  "prompts": [],
+  "resources": [],
+  "tools": [
+    {
+      "name": "shulan_health",
+      "description": "检查数懒数据中台服务状态",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "shulan_create_task",
+      "description": "创建一次数据调研任务（自动扣费，多退少不补），返回任务ID",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "调研问题，如：广州新开茶餐厅探店博主精选与开业引流方案"
+          },
+          "taskType": {
+            "type": "string",
+            "enum": [
+              "one_off",
+              "subscription"
+            ],
+            "description": "任务类型"
+          },
+          "dataSources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "数据源名称列表"
+          },
+          "cost": {
+            "type": "number",
+            "description": "预估点数（可选）"
+          },
+          "frequency": {
+            "type": "string",
+            "enum": [
+              "每天",
+              "每周",
+              "每月"
+            ]
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "shulan_get_task",
+      "description": "查询任务状态与报告（status: queued/running/done/failed）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "shulan_market",
+      "description": "获取交付物市场列表",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "shulan_get_report",
+      "description": "获取报告详情（含 HTML/MD 链接与结构化数据）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "report_id"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "0.1.0",
+  "tags": [
+    "mcp",
+    "data",
+    "research",
+    "report",
+    "shulan"
+  ],
+  "icon": "📊"
+}

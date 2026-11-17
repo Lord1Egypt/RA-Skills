@@ -12,28 +12,25 @@ Hui-Yi 不是常驻守护进程，也不是安装后自动执行的后台服务�
 
 ### A. Semantic Trigger（语义触发）
 
-当当前请求明显涉及以下意图时，优先考虑 Hui-Yi：
+先检查当前对话、近期 daily notes / 系统主记忆、相关工具记录 / learnings。仅当这些来源不足、用户明确需要低频归档知识，或已授权 cold-memory 操作时，再选择 Hui-Yi：
 
-- 回忆旧上下文
-- 询问“之前怎么处理的”
+- 查找主记忆不能满足的低频归档知识
 - 要求 archive / cool / 冷却 / 归档
 - 需要低频但高价值的历史背景来补强当前回答
 
-典型触发语句：
-- do you remember
-- how did we handle that
-- archive this
-- cool this down
-- 回忆一下 / 之前 / 以前 / 你记得吗 / 有记录吗
+“do you remember / 回忆一下 / 之前 / 以前”只是历史上下文线索，不是独立触发词，也不授权写回或归档。明确授权例子是“把这次已验证的排障结论归档为冷记忆”或“检索冷记忆中的某次迁移决策”。
 
 **责任边界：**
 - 上层 agent 决定是否命中 skill
 - Hui-Yi 负责说明应该查哪里、怎么查、怎么写回
 - 真正执行时，由 agent 显式运行脚本或读写文件
+- 可选 TS hook 接受可信宿主 Hui-Yi selection，或映射后的 `context.body` 开头的严格 `/hui-yi <查询>` / `/hui_yi <查询>` 文本命令。命令不区分大小写，ASCII 空格/tab 后必须有查询；前导空白、引用/嵌入/其他前缀、空命令及 `bodyForAgent` 中独有的命令均不触发，普通历史措辞继续忽略
+- 宿主负责身份、workspace 路由和 selection 元数据可信性；同一 workspace 的 archive 不按 session/user 隔离
+- OpenClaw 2026.9.5 原生 mapper 不提供 selection metadata；显式命令要求未被渠道包装的映射正文到达 hook。原生 slash-command 被提前消费或正文被包装时使用 CLI/adapter；隔离 mapper 事件测试不是渠道端到端验证
 
 ### B. Maintenance Trigger（维护触发）
 
-当目标是定期维护 cold memory，而不是回答一个具体问题时，触发 Hui-Yi 的维护流程。
+当用户已授权本次或周期性 cold-memory 维护时，才执行相应维护流程。加载 skill 不代表授权 cooling，也不会注册后台任务。
 
 适合：
 - cooling recent daily notes
@@ -95,11 +92,10 @@ Hui-Yi 的启动链条通常是：
 ### Pattern 1: In-chat recall（对话内回忆）
 
 适用：
-- 用户问“之前有记录吗”
-- 当前回答明显需要历史上下文补强
+- 当前对话和主记忆不足、用户明确需要低频归档历史
 
 建议流程：
-1. 先看当前对话和 warm memory
+1. 先看当前对话、近期 daily notes / 系统主记忆，再看相关工具记录 / learnings
 2. 再决定是否进入 cold memory
 3. 如需查询，优先用 `search.py` / `review.py resurface`
 4. 总结结果，不直接 dump 原始 note
@@ -112,7 +108,7 @@ Hui-Yi 的启动链条通常是：
 ### Pattern 2: Heartbeat maintenance（心跳维护）
 
 适用：
-- 周期性扫描最近 daily notes
+- 已授权周期性扫描最近 daily notes
 - 低打扰地做 cooling 维护
 
 建议流程：
@@ -126,12 +122,13 @@ Hui-Yi 的启动链条通常是：
 - heartbeat 负责“什么时候检查”
 - Hui-Yi 负责“检查时怎么处理”
 - 不建议 heartbeat 每次都大扫除
+- `cool.py scan` 会写 heartbeat 扫描状态；只想查看状态时用 `cool.py status`
 
 ### Pattern 3: Cron-driven scheduled recall（外部定时回忆）
 
 适用：
 - 你已经有外部 cron / scheduler
-- 想定时挑选一个值得提醒的旧 note
+- 用户已授权定时挑选一个值得提醒的旧 note
 
 建议流程：
 1. 外部 cron 定时运行 `scheduler.py`
@@ -141,6 +138,8 @@ Hui-Yi 的启动链条通常是：
 重要：
 - `scheduler.py` 是 **selector**，不是发消息守护进程
 - 它负责选候选，不负责投递
+- 示例 schedule 默认关闭；审阅后显式启用。时间匹配使用进程本地时间，仅支持固定小时/分钟，不处理完整 cron 或 timezone 字段；准确调度交给外部系统
+- 中文 prompt_templates 是可改写的示例，实际响应语言跟随用户
 
 常见命令：
 - 正常模式：
@@ -158,8 +157,8 @@ Hui-Yi 的启动链条通常是：
 1. `smoke_test.py`
 2. `validate.py --strict`
 3. scheduler 正常 / preview 各跑一次
-4. 对照 `references/publish-checklist.md`
-5. 确认 manifest / docs / version 同步
+4. 运行 `python -X utf8 -B -m unittest discover -s tests` 与 `node --experimental-strip-types --test tests/hook_security.test.mjs`
+5. 确认 manifest / docs / version 同步，并区分本地升级、实际发布和外部审计状态；保留安装来源记录，不把旧 origin 改成未经证实的新发布版本
 
 ---
 
@@ -221,6 +220,6 @@ Hui-Yi 的启动链条通常是：
 - 对话回忆 → `review.py resurface` / `search.py`
 - 周期维护 → heartbeat + `cool.py` / `rebuild.py`
 - 定时候选 → 外部 cron + `scheduler.py`
-- 发布前检查 → `smoke_test.py` + `publish-checklist.md`
+- 发布前检查 → `smoke_test.py` + Python/Node 安全回归 + 文档版本核对
 
 这样职责最清楚，也最不容易互相打架。

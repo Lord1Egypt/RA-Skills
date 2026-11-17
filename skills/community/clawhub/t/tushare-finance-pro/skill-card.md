@@ -1,49 +1,65 @@
-## Description: <br>
-Tushare Pro 金融数据接口 - A股/港股/美股/基金/期货/债券/宏观经济，220+数据接口，支持财务报表、估值分析、行业研究 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tushare Pro 金融数据接口助手，支持 A 股、港股、美股、基金、期货、债券和宏观经济数据查询，并提供财务报表、估值分析和行业研究支持。
 
-## Publisher: <br>
-[wangzhaofeng-max](https://clawhub.ai/user/wangzhaofeng-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhaofeng-max](https://clawhub.ai/user/wangzhaofeng-max)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Tushare Pro financial market data and produce financial data queries, reports, valuation examples, and OpenClaw automation snippets for market research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tushare API token exposure <br>
-Mitigation: Use environment variables or a secret manager, scope the token to the current session when possible, and do not commit token-bearing config files. <br>
-Risk: Outbound financial-data requests may disclose query intent or depend on third-party availability. <br>
-Mitigation: Run only in environments approved for Tushare access and handle API failures, delays, and rate limits in downstream workflows. <br>
-Risk: Financial data and generated valuation examples may be stale or unsuitable for investment decisions. <br>
-Mitigation: Treat outputs as research support, verify data against authoritative sources, and avoid presenting results as investment advice. <br>
-Risk: Helper tests or logs can expose token values if examples are modified carelessly. <br>
-Mitigation: Remove token-printing lines and avoid shared logs when validating connectivity. <br>
+## Use Case:
 
+Developers, analysts, and finance workflow builders use this skill to retrieve Tushare Pro market, financial statement, fund, futures, bond, and macroeconomic data. It helps agents draft code, shell commands, configuration, data exports, financial reports, valuation examples, and industry comparison guidance.
 
-## Reference(s): <br>
-- [ClawHub release: Tushare 金融数据助手](https://clawhub.ai/wangzhaofeng-max/tushare-finance-pro) <br>
-- [Tushare Pro](https://tushare.pro) <br>
-- [Tushare Pro documentation](https://tushare.pro/document/2) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Quick reference](artifact/QUICK_REFERENCE.md) <br>
-- [Bundled API reference index](artifact/reference/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, JSON, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce pandas DataFrame-oriented examples and OpenClaw cron configuration snippets; requires a user-provided Tushare token for live API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill requires a Tushare API token, which could be exposed if stored in shell profiles, shared logs, or copied into prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or session-only environment variable for TUSHARE_TOKEN and avoid running the helper where logs are shared.
+
+Risk: Unpinned Python dependencies can introduce supply-chain or reproducibility issues in production environments.
+
+Mitigation: Pin and review dependencies before production use.
+
+Risk: Scheduled Feishu jobs can distribute financial data or generated reports automatically.
+
+Mitigation: Review each scheduled job, destination, and prompt before enabling automated delivery.
+
+Risk: Market and financial data may be delayed, incomplete, or unsuitable as standalone investment advice.
+
+Mitigation: Review source data, assumptions, and generated analysis before using outputs in investment or reporting decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhaofeng-max/skills/tushare-finance-pro)
+- [Tushare Pro](https://tushare.pro)
+- [Tushare Pro API documentation](https://tushare.pro/document/2)
+- [Bundled API reference index](artifact/reference/README.md)
+- [Quick reference](artifact/QUICK_REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; helper code may return pandas DataFrames, dictionaries, CSV, or Excel outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tushare Pro token and Python dependencies; financial data outputs should be reviewed before use in investment or reporting decisions.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

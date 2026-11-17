@@ -1,4 +1,4 @@
-# UI 设计
+# UI design
 
 Product-context UI direction with anti-generic design dials, distinctive visual identity, media strategy, interaction states, and visual QA.
 
@@ -6,12 +6,12 @@ Product-context UI direction with anti-generic design dials, distinctive visual 
 
 - ID: `fec-ui-design`
 - Category: `design-ui`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-ui-design/SKILL.md`
 
 ## Description
 
-Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. When an external design file is authoritative, implement from that source instead of inventing direction; Chinese triggers include UI 设计, 设计系统, 视觉风格, 不要模板化, 高级感, 界面打磨, 交互状态.
+Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. Interface polishing, interactive state.
 
 ## Usage
 

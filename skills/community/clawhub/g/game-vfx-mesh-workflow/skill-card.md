@@ -1,38 +1,55 @@
-## Description: <br>
-Builds game VFX with mesh shell, scrolling texture, and engine animation for Godot 2.5D effects, including billboard rules, 631 color balance, point-line-surface layering, ink-wash grading, and ShaderMaterial/Tween patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through building stylized Godot game VFX using mesh shells, scrolling textures, billboard layering, color rules, and engine animation.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and technical artists use this skill to plan and implement stylized Godot combat, magic, heal, and skill VFX using mesh shells, tileable textures, shaders, and engine-side animation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger wording may route the skill into general Godot combat or magic-effect prompts where this specific mesh-and-texture workflow is not needed. <br>
-Mitigation: Use the skill when the task is specifically about Godot 2.5D VFX, mesh shells, scrolling textures, billboard layers, 631 color, ink-wash effects, or related implementation choices. <br>
+## Use Case:
 
+Developers and technical artists use this skill to plan and implement 2.5D Godot skill, magic, healing, and combat effects with mesh shells, tileable textures, shaders, and tweened engine animation.
 
-## Reference(s): <br>
-- [game02 VFX Reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Godot shader and GDScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools, commands, APIs, or credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow is opinionated for a specific Godot 4, 2.5D ink-wash VFX style and may not fit every project pipeline or visual language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against the target game's camera, rendering style, language needs, and asset pipeline before applying it.
+
+Risk: Generated textures, CC0 placeholders, or imported mesh packs may vary in visual quality, technical suitability, or asset licensing provenance.
+
+Mitigation: Validate texture tiling, alpha behavior, in-game readability, and asset license status before shipping a VFX implementation.
+
+## Reference(s):
+
+- [game02 VFX Reference](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/hgvgfgvh/skills/game-vfx-mesh-workflow)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/hgvgfgvh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with tables, checklists, and inline GDScript and shader code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Godot-specific implementation patterns, shader material guidance, texture prompt hints, and VFX review checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

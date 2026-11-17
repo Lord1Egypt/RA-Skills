@@ -1,41 +1,54 @@
-## Description: <br>
-Track competitors automatically. Monitor pricing changes, new products, content updates, hiring, and marketing campaigns across competitor websites and social channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track competitors automatically. Monitor pricing changes, new products, content updates, hiring, and marketing campaigns across competitor websites and social channels.
 
-## Publisher: <br>
-[kennywayn3](https://clawhub.ai/user/kennywayn3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennywayn3](https://clawhub.ai/user/kennywayn3)
 
-## Use Case: <br>
-Business teams and market analysts use this skill to monitor named competitors or competitor URLs and receive reports about pricing, product, content, hiring, marketing, and SEO changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor names, URLs, and lookup requests may be sent to an external ngrok API whose operator and retention practices are not documented. <br>
-Mitigation: Review who operates the API, what data is retained, and whether the endpoint is approved before using the skill with sensitive business targets. <br>
-Risk: API-key, paid-credit, and recurring monitoring expectations are under-disclosed. <br>
-Mitigation: Confirm authentication, payment requirements, and how recurring monitoring can be limited or stopped before production use. <br>
+## Use Case:
 
+External business, sales, and market research users use this skill to monitor competitor URLs or company names for pricing, product, content, hiring, marketing, and SEO changes. It helps agents produce periodic reports with detected changes, business relevance, and recommended actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kennywayn3/competitor-watch-pro) <br>
-- [Company lookup API](https://extant-torrie-nonrepealable.ngrok-free.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown reports with change summaries and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be periodic and depend on competitor names, URLs, and monitoring cadence supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence and SKILL.md frontmatter; package.json lists 1.0.0) <br>
+Risk: Competitor names, URLs, lookup activity, and any provided service key are sent to an unverified ngrok endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive research targets, avoid unrelated API keys or internal context, and confirm the service operator before sending data.
+
+Risk: Credential and payment handling are unclear, including credit purchase prompts after 402 responses.
+
+Mitigation: Do not follow payment prompts unless the service operator and billing flow are independently verified.
+
+## Reference(s):
+
+- [Competitor Watch Pro on ClawHub](https://clawhub.ai/kennywayn3/skills/competitor-watch-pro)
+- [Company lookup API endpoint](https://extant-torrie-nonrepealable.ngrok-free.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Periodic reports in Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include change summaries, business impact, and recommended actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

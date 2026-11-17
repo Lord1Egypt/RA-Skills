@@ -1,37 +1,53 @@
-## Description: <br>
-Helps agents turn ambiguous natural-language requests into confirmed, structured task descriptions before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent turn vague natural-language requests into clearer requirements through restatement, disambiguation, and structured task confirmation.
 
-## Publisher: <br>
-[EvianEvans](https://clawhub.ai/user/EvianEvans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evianevans](https://clawhub.ai/user/evianevans)
 
-## Use Case: <br>
-Agents and developers use this skill to clarify ambiguous requests, ask targeted follow-up questions, and hand off structured task descriptions before work begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The clarification protocol can still produce an incorrect handoff if an agent skips the confirmation step or treats an unresolved ambiguity as settled. <br>
-Mitigation: Require the agent to restate its understanding, ask targeted follow-up questions when ambiguity remains, and only proceed after the task description is confirmed. <br>
+## Use Case:
 
+Agents and developers use this skill to clarify ambiguous user requests before execution, including restating the core issue, asking focused disambiguation questions, and producing a structured task description.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured task fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow is written in Chinese and may be unclear for users or agents expecting another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to perform clarification in the user's preferred language before applying the workflow.
+
+Risk: A clarification workflow can still preserve misunderstood intent if the initial restatement is not checked.
+
+Mitigation: Require confirmation of the restated task and review the structured task description before downstream execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evianevans/skills/requirement-clarity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with structured task descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow by default; no code, persistence, or privileged access is added.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

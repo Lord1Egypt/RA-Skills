@@ -1,0 +1,173 @@
+# 原子注册中心(R08)—— 由 scripts 下生成脚本从 atoms/ 目录实证生成
+# 用途:跨 Skill 复用 atoms;门禁 RG001-RG003 校验本表与目录双向一致。
+# version: 原子内容变更时由维护者递增(语义化:结构变更+0.1,文案微调+0.0.1)。
+version: 1
+atoms:
+  - id: constraints
+    type: core
+    source: references/atoms/core/constraints.md
+    version: 1.0.0
+    deps: R2,R4,R5
+    description: 约束清单原子
+  - id: context-inject
+    type: core
+    source: references/atoms/core/context-inject.md
+    version: 1.0.0
+    deps: R3
+    description: 上下文注入原子
+  - id: example-shot
+    type: core
+    source: references/atoms/core/example-shot.md
+    version: 1.0.0
+    deps: none
+    description: 示例注入原子
+  - id: format-spec
+    type: core
+    source: references/atoms/core/format-spec.md
+    version: 1.0.0
+    deps: none
+    description: 格式规范原子
+  - id: iterate
+    type: core
+    source: references/atoms/core/iterate.md
+    version: 1.0.0
+    deps: none
+    description: 迭代机制原子
+  - id: role-anchor
+    type: core
+    source: references/atoms/core/role-anchor.md
+    version: 1.0.0
+    deps: R2,R5
+    description: 角色锚定原子
+  - id: self-check
+    type: core
+    source: references/atoms/core/self-check.md
+    version: 1.0.0
+    deps: R1
+    description: 自检机制原子
+  - id: task-define
+    type: core
+    source: references/atoms/core/task-define.md
+    version: 1.0.0
+    deps: R4
+    description: 任务定义原子
+  - id: think-chain
+    type: core
+    source: references/atoms/core/think-chain.md
+    version: 1.0.0
+    deps: R1,R3
+    description: 思考指令原子
+  - id: consulting
+    type: domain
+    source: references/atoms/domains/consulting.md
+    version: 1.0.0
+    deps: none
+    description: 战略咨询域原子
+  - id: education
+    type: domain
+    source: references/atoms/domains/education.md
+    version: 1.0.0
+    deps: none
+    description: 教育培训域原子
+  - id: finance
+    type: domain
+    source: references/atoms/domains/finance.md
+    version: 1.0.0
+    deps: none
+    description: 财务分析域原子
+  - id: hr
+    type: domain
+    source: references/atoms/domains/hr.md
+    version: 1.0.0
+    deps: none
+    description: 人力资源域原子
+  - id: internet-product
+    type: domain
+    source: references/atoms/domains/internet-product.md
+    version: 1.0.0
+    deps: none
+    description: 互联网产品域原子
+  - id: legal
+    type: domain
+    source: references/atoms/domains/legal.md
+    version: 1.0.0
+    deps: none
+    description: 法律合规域原子
+  - id: marketing
+    type: domain
+    source: references/atoms/domains/marketing.md
+    version: 1.0.0
+    deps: none
+    description: 市场营销域原子
+  - id: medical
+    type: domain
+    source: references/atoms/domains/medical.md
+    version: 1.0.0
+    deps: none
+    description: 医疗健康域原子
+  - id: tech
+    type: domain
+    source: references/atoms/domains/tech.md
+    version: 1.0.0
+    deps: none
+    description: 技术开发域原子
+  - id: audio-script
+    type: output
+    source: references/atoms/outputs/audio-script.md
+    version: 1.0.0
+    deps: none
+    description: 音频输出原子
+  - id: chart-desc
+    type: output
+    source: references/atoms/outputs/chart-desc.md
+    version: 1.0.0
+    deps: none
+    description: 图表输出原子
+  - id: code-block
+    type: output
+    source: references/atoms/outputs/code-block.md
+    version: 1.0.0
+    deps: none
+    description: 代码块输出原子
+  - id: dialogue
+    type: output
+    source: references/atoms/outputs/dialogue.md
+    version: 1.0.0
+    deps: none
+    description: 对话话术输出原子
+  - id: image-desc
+    type: output
+    source: references/atoms/outputs/image-desc.md
+    version: 1.0.0
+    deps: none
+    description: 图片输出原子
+  - id: slides
+    type: output
+    source: references/atoms/outputs/slides.md
+    version: 1.0.0
+    deps: none
+    description: 幻灯片输出原子
+  - id: structured-data
+    type: output
+    source: references/atoms/outputs/structured-data.md
+    version: 1.0.0
+    deps: none
+    description: 结构化数据输出原子
+  - id: table
+    type: output
+    source: references/atoms/outputs/table.md
+    version: 1.0.0
+    deps: none
+    description: 表格输出原子
+  - id: text-doc
+    type: output
+    source: references/atoms/outputs/text-doc.md
+    version: 1.0.0
+    deps: none
+    description: 文本输出原子
+  - id: video-script
+    type: output
+    source: references/atoms/outputs/video-script.md
+    version: 1.0.0
+    deps: none
+    description: 视频输出原子

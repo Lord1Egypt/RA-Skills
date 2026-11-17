@@ -1,43 +1,54 @@
-## Description: <br>
-Intercept and inspect AI agent HTTP/HTTPS traffic with a MITM proxy to detect and log exfiltration and injection threats in real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intercept and inspect AI agent HTTP/HTTPS traffic with a MITM proxy to detect and log exfiltration and injection threats in real time.
 
-## Publisher: <br>
-[shi8103312](https://clawhub.ai/user/shi8103312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shi8103312](https://clawhub.ai/user/shi8103312)
 
-## Use Case: <br>
-Developers and security engineers use this skill to operate ClawSec Monitor, route AI agent traffic through its proxy, interpret threat logs, troubleshoot HTTPS MITM setup, and configure Docker or local deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad HTTPS interception can expose sensitive traffic and requires trust-store changes. <br>
-Mitigation: Use the monitor only where interception is authorized, prefer per-process CA settings over system-wide trust installation, and remove the CA when finished. <br>
-Risk: Persistent threat and proxy logs may contain sensitive snippets or destinations. <br>
-Mitigation: Protect log files, delete or rotate captured logs regularly, and remove persistent Docker volumes when no longer needed. <br>
-Risk: The skill documents operation of a separate ClawSec Monitor codebase that is not included in the artifact. <br>
-Mitigation: Separately review and trust the actual monitor code before installation or execution. <br>
+## Use Case:
 
+Developers and security engineers use this skill to operate or interpret ClawSec Monitor, configure proxy-based traffic inspection, inspect threat logs, and troubleshoot findings for AI agent traffic.
 
-## Reference(s): <br>
-- [Clawsec 1.0.0 on ClawHub](https://clawhub.ai/shi8103312/clawsec-1-0-0) <br>
-- [Publisher profile: shi8103312](https://clawhub.ai/user/shi8103312) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide users through proxy operation, HTTPS trust setup, Docker deployment, threat-log interpretation, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad HTTPS interception can expose sensitive plaintext traffic and CA trust material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an isolated test environment, prefer per-process CA settings over system-wide trust, and avoid routing unrelated traffic through the proxy.
+
+Risk: The audited package is missing the implementation it instructs users to run, so CA key handling, logs, permissions, redaction, and cleanup cannot be audited from the artifact.
+
+Mitigation: Treat installation as a security review item and do not rely on the package until the missing implementation and operational handling are audited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shi8103312/skills/clawsec-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/shi8103312)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational troubleshooting steps and threat-log interpretation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

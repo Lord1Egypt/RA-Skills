@@ -1,46 +1,56 @@
-## Description: <br>
-Integrates Groq and OpenRouter models with smart free-ride optimization and bilingual Saudi Arabic/English text-to-speech for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Groq and OpenRouter models with smart free-ride optimization and bilingual Saudi Arabic/English text-to-speech for high-speed OpenClaw agent workflows.
 
-## Publisher: <br>
-[Rvigoo](https://clawhub.ai/user/Rvigoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rvigoo](https://clawhub.ai/user/rvigoo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure Groq and OpenRouter model access and generate bilingual Arabic or English speech through Groq-backed TTS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TTS input text is sent to Groq for speech generation. <br>
-Mitigation: Avoid sending sensitive text unless Groq processing is acceptable for the deployment. <br>
-Risk: The setup script installs Python packages from pip. <br>
-Mitigation: Review requirements and install in a virtual environment before use. <br>
-Risk: Speech generation may overwrite an existing canvas/speech.wav file. <br>
-Mitigation: Run in a controlled workspace or preserve any existing audio file before generating new speech. <br>
+## Use Case:
 
+External OpenClaw users and developers use this bundle to configure Groq/OpenRouter text models and generate bilingual Saudi Arabic/English speech output from agent responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Rvigoo/openclaw-turbo-bundle5) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Model configuration example](artifact/config/MODELS_JSON_EXAMPLE.txt) <br>
-- [Groq OpenAI-compatible API endpoint](https://api.groq.com/openai/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, audio] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and WAV audio output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROQ_API_KEY and optionally OPENROUTER_API_KEY; speech generation writes canvas/speech.wav.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup installs third-party Python packages, including an unpinned package invoked by configure.py.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment, pin or audit dependencies before use, and run configure.py only from a trusted directory.
+
+Risk: Groq/OpenRouter API use means keys and submitted text may be sent to external providers.
+
+Mitigation: Provide only API keys intended for this skill and avoid sending sensitive text for TTS unless provider processing is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rvigoo/skills/openclaw-turbo-bundle5)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Groq OpenAI-Compatible API Base](https://api.groq.com/openai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated speech output is a WAV file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Groq/OpenRouter API credentials and may transmit user-provided text to external providers for model or speech generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

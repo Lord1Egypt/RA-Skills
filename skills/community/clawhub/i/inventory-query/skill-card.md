@@ -1,43 +1,53 @@
-## Description: <br>
-查询指定型号的库存和补货计划，按用户要求调用本地脚本并原样返回结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询指定型号的库存和补货计划，按用户要求返回查询结果且不重新格式化。
 
-## Publisher: <br>
-[logandx314](https://clawhub.ai/user/logandx314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[logandx314](https://clawhub.ai/user/logandx314)
 
-## Use Case: <br>
-Employees or support agents use this skill to answer inventory and restock questions for a supplied product model. It runs the packaged query script against a local inventory workbook and returns the script output without reformatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local inventory workbook may expose matching inventory or restock details to whoever asks the agent. <br>
-Mitigation: Install and use the skill only in an environment where access to inventory.xlsx and returned stock details is appropriate. <br>
-Risk: The query script depends on local files and the openpyxl package. <br>
-Mitigation: Confirm inventory.xlsx, inventory_date.txt when used, and openpyxl are present before relying on responses. <br>
-Risk: Unsafe command construction could alter how user-supplied model text is passed to the script. <br>
-Mitigation: Pass the model text safely as one argument to the fixed script command. <br>
+## Use Case:
 
+Sales, operations, or support users can ask an agent to look up current inventory and restock plans for a product model and receive the returned inventory or replenishment details without reformatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/logandx314/inventory-query) <br>
-- [Publisher profile](https://clawhub.ai/user/logandx314) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text returned from the local Python query script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill requires an inventory.xlsx workbook and openpyxl; the model query is passed as a script argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill guidance passes free-form user text into a shell command, which can create command-injection or argument-parsing risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the query program with structured arguments, strict quoting, and model validation before deployment.
+
+Risk: Inventory and restock data may be sensitive business information.
+
+Mitigation: Install and run the skill only in environments where the requested inventory data may be shown to the requesting user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/logandx314/skills/inventory-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text returned from a command-line inventory query]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The returned query output is intended to be passed through without agent-side modification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

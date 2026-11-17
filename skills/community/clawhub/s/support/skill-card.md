@@ -1,42 +1,52 @@
-## Description: <br>
-A customer support skill that helps agents draft accurate, empathetic responses, triage ticket priority, identify recurring support patterns, and prepare escalation summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for delivering exceptional customer support by drafting responses, managing support queue priority, identifying recurring issue patterns, escalating complex cases, and maintaining response consistency.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agenticio](https://clawhub.ai/user/agenticio)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Support teams, customer success staff, and solo founders use this skill to draft accurate, empathetic customer replies, prioritize tickets, identify recurring product issues, and prepare escalation summaries for complex cases.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Customer support tickets may contain personal, billing, security, or account details.
+
+Mitigation: Install only where customer-support data may be processed by the agent and redact unnecessary sensitive details when possible.
+
+Risk: Drafted replies, queue priority changes, external escalations, or retained ticket-history knowledge may affect customers or expose sensitive context.
+
+Mitigation: Require human review before sending customer replies, changing queue priorities, escalating externally, or retaining ticket history in a knowledge base.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Support teams, solo founders, and customer-facing operators use this skill to turn ticket context into customer replies, queue priorities, pattern summaries, and escalation notes while maintaining a consistent support voice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Support workflows may expose sensitive ticket, account, payment, or secret data to the agent. <br>
-Mitigation: Share only relevant ticket context, redact secrets and payment data, and avoid unnecessary full account records. <br>
-Risk: Generated customer responses may be inaccurate, incomplete, or unsuitable for the customer's situation. <br>
-Mitigation: Review responses before sending and confirm technical details against approved support knowledge. <br>
-Risk: Billing, legal, security, or regulated-data issues may require handling outside a normal support response. <br>
-Mitigation: Route those cases through the organization's approved support, legal, security, billing, or compliance process. <br>
+**Output Format:** [Markdown and plain-language support guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/support) <br>
+**Other Properties Related to Output:** [May include drafted customer responses, ticket priority guidance, recurring issue summaries, knowledge-base guidance, and escalation summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose for customer replies, triage notes, pattern summaries, and escalation briefs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human review is expected before customer-facing use, especially when tickets include sensitive customer, billing, legal, security, or regulated-data context.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

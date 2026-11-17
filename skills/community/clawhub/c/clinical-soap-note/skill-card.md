@@ -1,41 +1,59 @@
-## Description: <br>
-Use this skill when a clinician or medical scribe needs to convert raw encounter notes, dictation, or bullet points into a structured SOAP note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts clinician or scribe raw encounter notes, dictation, or bullet points into a structured SOAP draft with gap flags and ICD-10/CPT coding prompts for mandatory clinician review before entry into the medical record.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Clinicians and medical scribes use this skill to turn raw encounter material into a concise SOAP note draft with missing-information flags, non-binding coding prompts, and a clinician-review notice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient information may be sensitive. <br>
-Mitigation: Treat encounter content as PHI, avoid entering unnecessary identifiers, and do not store, transmit, or reuse encounter data beyond the current session. <br>
-Risk: Generated notes may contain omissions or errors if used without review. <br>
-Mitigation: Require a licensed clinician to verify, correct, and sign every draft before clinical, billing, or medical-record use. <br>
-Risk: Coding prompts could be mistaken for final billing codes. <br>
-Mitigation: Keep coding output as non-binding questions for coder review and never present final ICD-10 or CPT codes. <br>
+## Use Case:
 
+Clinicians and medical scribes use this skill after patient encounters to structure raw notes, dictation, bullet fragments, or partial notes into a concise SOAP draft for clinician review and sign-off.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown SOAP note draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes gap flags, non-binding coding prompts, unresolved clinician-review items, and a mandatory review notice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and changelog, released 2026-05-28) <br>
+Risk: Patient information could be exposed if real identifiers are entered into systems that are not approved for PHI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an approved patient-information environment and avoid sending real patient identifiers through unauthorized systems.
+
+Risk: The SOAP draft could contain omissions or inaccurate restructuring if treated as final documentation.
+
+Mitigation: Require a licensed clinician to verify, correct, and sign the draft before charting, billing, or clinical use.
+
+Risk: Coding prompts could be mistaken for final ICD-10/CPT coding authority.
+
+Mitigation: Treat coding content as non-binding prompts for coder or clinician review, not final codes.
+
+## Reference(s):
+
+- [Clinical Soap Note on ClawHub](https://clawhub.ai/archlab-space/skills/clinical-soap-note)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown SOAP note draft with flags, coding prompts, unresolved items, and clinician-review notice.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output only; a licensed clinician must verify it before charting, billing, or clinical use.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

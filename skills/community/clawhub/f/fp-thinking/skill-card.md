@@ -1,37 +1,49 @@
-## Description: <br>
-First Principles Thinking keeps an agent focused on clarifying goals, challenging suboptimal paths, finding root causes, and giving concise, actionable responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An always-on reasoning framework that pushes agents to clarify goals, challenge suboptimal paths, pursue root causes, and keep responses concise.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Agent users and developers use this always-on reasoning framework to make the agent clarify ambiguous requests, suggest simpler alternatives, trace root causes, and keep answers decision-focused. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wavmson/fp-thinking) <br>
+External users and developers install this skill to make an agent reason from first principles: clarify unclear requests, recommend shorter paths when appropriate, fix root causes instead of symptoms, and keep responses focused on decisions and actions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Natural-language guidance and concise decision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only framework; no tools, credentials, data access, or hidden execution requested by the security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may challenge unclear requests or suggest simpler alternatives more often than expected.
+
+Mitigation: Use it when this interaction style is desired, and review agent responses for cases where direct execution is more appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wavmson/skills/fp-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Natural language guidance in the agent's normal response format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always-on reasoning guidance; no separate files, shell commands, or configuration artifacts are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

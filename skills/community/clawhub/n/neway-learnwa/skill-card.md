@@ -1,45 +1,58 @@
-## Description: <br>
-学习娃 LearnWa generates parent-controlled single-file H5 math teaching aids for early-grade arithmetic, supporting break-ten, make-ten, and level-ten lesson flows with themed visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+学习娃 LearnWa turns a parent or educator's request into a parent-controlled, single-file Chinese HTML math teaching aid for make-ten, break-ten, and level-ten methods.
 
-## Publisher: <br>
-[lwter](https://clawhub.ai/user/lwter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lwter](https://clawhub.ai/user/lwter)
 
-## Use Case: <br>
-Parents, educators, and agents use this skill to turn a natural-language request into a small lesson-block configuration or a generated single-file HTML math lesson. The lessons are designed for a parent to operate while a child observes, answers aloud, and follows step-by-step arithmetic reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python generator that can write an HTML lesson to a selected output path. <br>
-Mitigation: Use an explicit --output path and review the destination before running the command. <br>
-Risk: Custom theme values can affect the generated lesson's text and visual styling. <br>
-Mitigation: Keep custom theme values to normal colors and child-appropriate text before generating lessons. <br>
-Risk: Generated math lessons may contain incorrect or unclear arithmetic steps if inputs or customizations are unsuitable. <br>
-Mitigation: Review the generated lesson and verify the arithmetic flow before using it with a child. <br>
+## Use Case:
 
+Parents, educators, and external users use this skill to generate localized Chinese interactive math lessons for early primary learners. The skill focuses on parent-operated lessons where children observe, reason aloud, and answer.
 
-## Reference(s): <br>
-- [Lesson block format](references/lesson-block-format.md) <br>
-- [Math rules and step templates](references/math-rules.md) <br>
-- [Theme configuration reference](references/themes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lwter/neway-learnwa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON lesson-block examples, shell commands, and generated single-file HTML output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated lesson is a local single-file HTML document with inline CSS and JavaScript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated files can overwrite existing documents if the user chooses an important output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output path before running generation and write lessons to a normal workspace or dedicated output folder.
+
+Risk: Custom SVG themes could introduce unsafe or non-static markup if an agent ignores the skill constraints.
+
+Mitigation: Keep custom SVGs static and inline, avoid scripts, event handlers, JavaScript URLs, and external links, and review generated HTML before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lwter/skills/neway-learnwa)
+- [Examples](references/examples.md)
+- [FAQ](references/faq.md)
+- [Lesson block format](references/lesson-block-format.md)
+- [Math rules](references/math-rules.md)
+- [Themes](references/themes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Lesson block JSON and shell commands that generate a single-file HTML teaching page]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local generation and review before delivery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

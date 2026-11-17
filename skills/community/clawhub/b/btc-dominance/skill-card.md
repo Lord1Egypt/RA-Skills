@@ -1,38 +1,56 @@
-## Description: <br>
-BTC dominance percentage with trend direction signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns BTC dominance percentage with trend direction signal.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-Developers and trading agents use this skill to retrieve BTC dominance, trend direction, and altcoin-season context for BTC versus altcoin allocation and capital rotation decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an EVM private key to authorize x402 USDC payments for API calls. <br>
-Mitigation: Use a dedicated low-balance wallet on Base containing only the USDC intended for this signal, and avoid reusing wallets that hold significant or unrelated assets. <br>
+## Use Case:
 
+Agents and developers can retrieve BTC dominance and its trend as context when assessing BTC versus altcoin allocation, altcoin season, or capital rotation.
 
-## Reference(s): <br>
-- [APEX Runner BTC Dominance Signal](https://apexrunner.ai/signals/btc-dominance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response from an x402-authenticated GET request, with concise usage guidance and example code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an EVM wallet with USDC on Base mainnet for pay-per-call access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Each request incurs a USDC charge; the discounted price is time limited and the standard price is $0.01 per call.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the current price before calling and set a per-request spending cap at or below the amount you intend to pay.
+
+Risk: The x402 client uses an EVM private key to authorize payments, so exposure of that key could put the wallet's funds at risk.
+
+Mitigation: Use a dedicated wallet with only the funds needed for these requests, keep the key in a protected environment variable, and never place it in prompts or logs.
+
+## Reference(s):
+
+- [BTC dominance endpoint](https://apexrunner.ai/signals/btc-dominance)
+- [Altcoin season signal](https://apexrunner.ai/signals/altcoin-season)
+- [Capital rotation signal](https://apexrunner.ai/signals/capital-rotation-signal)
+- [Regime signal](https://apexrunner.ai/signals/regime)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON response with dominance_pct, trend, and altcoin_season fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid per-call x402 request using USDC on Base]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

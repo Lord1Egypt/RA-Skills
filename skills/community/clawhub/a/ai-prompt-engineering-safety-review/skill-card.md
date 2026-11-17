@@ -1,39 +1,53 @@
-## Description: <br>
-Comprehensive AI prompt engineering safety review and improvement prompt. Analyzes prompts for safety, bias, security vulnerabilities, and effectiveness while providing detailed improvement recommendations with extensive frameworks, testing methodologies, and educational content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive AI prompt engineering safety review and improvement prompt. Analyzes prompts for safety, bias, security vulnerabilities, and effectiveness while providing detailed improvement recommendations with extensive frameworks, testing methodologies, and educational content.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Developers, prompt engineers, and AI safety reviewers use this skill to evaluate prompts for safety, bias, privacy, security, clarity, robustness, and effectiveness, then receive an improved prompt and testing recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt reviews may include sensitive prompts or business context supplied by the user. <br>
-Mitigation: Avoid sharing secrets, credentials, private customer data, or sensitive business text unless that content is appropriate for the review conversation. <br>
+## Use Case:
 
+Developers, prompt engineers, and AI safety reviewers use this skill to evaluate prompts for safety, bias, privacy, security, quality, and effectiveness, then produce structured improvement recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boleyn/ai-prompt-engineering-safety-review) <br>
-- [Publisher profile](https://clawhub.ai/user/boleyn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown review with an improved prompt and testing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or hidden behavior was identified in the server security summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompt rewrites could be misused to optimize harmful or policy-evading requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only to make prompts safer and clearer, and reject requests that seek harmful, evasive, or abusive prompt improvements.
+
+Risk: The skill's recommendations may be incomplete, incorrect, or unsuitable for a specific deployment context.
+
+Mitigation: Have a qualified reviewer assess suggested prompt changes and test them before using them in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boleyn/skills/ai-prompt-engineering-safety-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown prompt analysis report with recommendations, improved prompt text, testing guidance, and educational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, credentials, persistence, or system access requested by the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

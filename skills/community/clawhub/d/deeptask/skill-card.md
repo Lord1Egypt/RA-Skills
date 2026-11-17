@@ -1,42 +1,59 @@
-## Description: <br>
-DeepTask helps an agent decompose software work into reviewed sessions, subtasks, minimum functional units, unit tests, and traceable Git commits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepTask manages an AI-assisted workflow that decomposes requirements into reviewed tasks, executes minimal functional units, runs unit tests, and records successful work with Git commits.
 
-## Publisher: <br>
-[spaceack](https://clawhub.ai/user/spaceack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spaceack](https://clawhub.ai/user/spaceack)
 
-## Use Case: <br>
-Developers and engineering agents use DeepTask to manage coding work as a structured loop: task decomposition, human review, implementation, unit-test validation, and Git commit tracing. It is intended for local project automation where SQLite-backed task records and commit metadata help audit progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local code or toolchain commands using test code stored in the project database. <br>
-Mitigation: Install and run it only in a dedicated disposable workspace or repository, keep secrets out of the project tree, and inspect database test_code before running cycles. <br>
-Risk: The skill can initialize Git, stage all changes, and create commits automatically after unit tests pass. <br>
-Mitigation: Review git status and generated changes before and after execution, and use it only in repositories where broad staging and automated commits are acceptable. <br>
+## Use Case:
 
+Developers and engineering teams use DeepTask to structure implementation work into projects, sessions, subtasks, minimal functional units, unit tests, human reviews, and traceable Git commits.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spaceack/deeptask) <br>
-- [DeepTask database schema](references/schema.md) <br>
-- [MoonBit syntax reference](references/moonbit-syntax.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local project artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create SQLite task records, code files, unit-test results, and Git commits in the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The workflow can execute local tests and toolchain commands during a full cycle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated test workspace or disposable repository, and confirm the intended toolchain before execution.
+
+Risk: The workflow can mutate repositories and auto-commit all changed files after unit tests pass.
+
+Mitigation: Use a clean repository without unrelated changes or secrets, then review the Git diff and generated SQLite records before allowing a full cycle to commit.
+
+Risk: Unit test content is stored and later executed by the worker.
+
+Mitigation: Review SQLite unit_tests content before execution and avoid storing untrusted test code.
+
+## Reference(s):
+
+- [DeepTask database schema](artifact/references/schema.md)
+- [MoonBit syntax reference](artifact/references/moonbit-syntax.md)
+- [DeepTask ClawHub skill page](https://clawhub.ai/spaceack/skills/deeptask)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated code and test files, SQLite records, and Git commit messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run local toolchain checks and commit repository changes after unit tests pass.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, target metadata, SKILL.md version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

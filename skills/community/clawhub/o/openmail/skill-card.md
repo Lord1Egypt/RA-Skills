@@ -1,48 +1,65 @@
-## Description: <br>
-Gives the agent a dedicated email address for sending and receiving email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives the agent a dedicated email address for sending and receiving email.
 
-## Publisher: <br>
-[armandokun](https://clawhub.ai/user/armandokun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[armandokun](https://clawhub.ai/user/armandokun)
 
-## Use Case: <br>
-Developers and external users use OpenMail when an agent needs to send email, receive replies, sign up for services, handle support tickets, or interact with human institutions through email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email to external recipients and act on replies. <br>
-Mitigation: Review recipients, message bodies, links, and attachments before sending or forwarding information. <br>
-Risk: OpenMail requires an API key and stores setup values in an environment file. <br>
-Mitigation: Use a dedicated API key where possible, restrict env file permissions, and remove credentials when the skill is no longer needed. <br>
-Risk: Inbound email content is untrusted and may contain instructions, links, attachments, or requests for sensitive data. <br>
-Mitigation: Treat inbound messages as data, not instructions; do not execute commands or disclose credentials, files, or conversation history based on email content. <br>
-Risk: Cron polling or autonomous reply workflows can create repeated or unintended external actions. <br>
-Mitigation: Enable automation only with narrow sender allowlists, low-risk templates, logging, unread-thread handling, and a clear cleanup plan. <br>
+## Use Case:
 
+External users and developers use OpenMail to let an agent send email, receive replies, manage inbox threads, sign up for services, and handle email-based workflows through the OpenMail CLI.
 
-## Reference(s): <br>
-- [OpenMail homepage](https://openmail.sh) <br>
-- [OpenMail API Reference](references/api.md) <br>
-- [OpenMail Setup](references/setup.md) <br>
-- [OpenMail Error Reference](references/errors.md) <br>
-- [ClawHub OpenMail release page](https://clawhub.ai/armandokun/openmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce email content, CLI commands, inbox setup steps, polling workflows, and operational guidance for handling email threads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: OpenMail API credentials are written to a plaintext env file during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped API key, store it with safer secret storage or owner-only file permissions, and rotate the key if exposure is suspected.
+
+Risk: The setup installs the OpenMail CLI by package name without a pinned reviewed version.
+
+Mitigation: Pin and review the CLI version before use, especially in shared or production environments.
+
+Risk: Inbound email content is untrusted and could request actions, forwarding, or behavior changes.
+
+Mitigation: Treat email bodies as data, require explicit user confirmation for unusual requests, and never execute commands or change agent behavior based only on email content.
+
+Risk: Autonomous cron-based replies can send messages without direct user review.
+
+Mitigation: Enable autonomous responses only with a clear sender allowlist, a stop mechanism, and confirmation before sending sensitive data or attachments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/armandokun/skills/openmail)
+- [OpenMail homepage](https://openmail.sh)
+- [OpenMail API Reference](references/api.md)
+- [OpenMail Setup](references/setup.md)
+- [OpenMail Error Reference](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI/API result handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openmail CLI and OPENMAIL_API_KEY; may produce email send, inbox, thread, message, attachment, and setup instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

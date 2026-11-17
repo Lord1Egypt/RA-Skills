@@ -32,7 +32,7 @@ schedule: []
   #   delivery:
   #     - type: email
   #     - type: webhook
-  #       url: "https://hooks.slack.com/services/xxx"
+  #       url: "REDACTED-SECRET"
   #       webhook_type: slack
   # - preset: ai_cv_weekly
   #   cron: "0 9 * * 1"

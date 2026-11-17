@@ -1,43 +1,55 @@
-## Description: <br>
-Reviews AgentSkill quality and generates professional Markdown reports covering content quality, structure, clarity, token efficiency, and redundancy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-Skill-Reviewer reviews AgentSkill quality, structure, documentation clarity, redundancy, and token efficiency, then generates a professional Markdown report.
 
-## Publisher: <br>
-[ming-shy](https://clawhub.ai/user/ming-shy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ming-shy](https://clawhub.ai/user/ming-shy)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit AgentSkill documentation, workflow completeness, token efficiency, and structural quality. It can generate Chinese Markdown review reports and optionally use bundled scripts for token counting, report generation, and logic-alignment checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads files from the user-selected target skill directory, so an incorrect target can expose unintended local content to the review process. <br>
-Mitigation: Choose the target skill directory deliberately before invoking the review workflow. <br>
-Risk: The generated review report may be written to the default skill-reviews/ folder when no output path is specified. <br>
-Mitigation: Specify an explicit output path when report location matters. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit AgentSkill files for clarity, token efficiency, structure, completeness, and logic preservation. It supports structured Markdown review reports and optional helper-script checks for token counts and workflow alignment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ming-shy/agentskill-reviewer) <br>
-- [Publisher Profile](https://clawhub.ai/user/ming-shy) <br>
-- [Logic Alignment Validation Guide](references/validation.md) <br>
-- [Skill Review Report Template](references/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default report output is a Markdown file under skill-reviews/ unless the user specifies another path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill reads the user-selected skill directory and can write Markdown reports into the working directory by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target path and output path before use, especially in repositories where generated files should be controlled.
+
+Risk: Review suggestions could remove or weaken important skill behavior if accepted without checking logic preservation.
+
+Mitigation: Use the bundled logic validation workflow and manually review proposed changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ming-shy/skills/agentskill-reviewer)
+- [Logic validation guide](references/validation.md)
+- [Review report template](references/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default report output is Chinese Markdown in a skill-reviews directory unless the user specifies another path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

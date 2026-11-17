@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#FAFAF7"/>
+  <g font-family="Inter, Helvetica Neue, Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Zen Hei', sans-serif">
+    <text x="80" y="104" font-size="18" letter-spacing="6" fill="#8A8A86">ANTI-AI UI COPY · 去 AI 味界面文案</text>
+    <text x="80" y="180" font-size="52" font-weight="700" fill="#1A1A1A">界面文案不是说明书</text>
+    <text x="80" y="226" font-size="20" fill="#555">先删再写 · 按类型写 · 说用户行业的话</text>
+
+    <!-- before -->
+    <rect x="80" y="286" width="490" height="300" rx="10" fill="#FFFFFF" stroke="#E4E1DA"/>
+    <text x="108" y="326" font-size="14" letter-spacing="3" fill="#B0ABA2">BEFORE</text>
+    <g font-size="19" fill="#A39E94">
+      <text x="108" y="372">点击这里立即开始上传您的第一份知识文档</text>
+      <text x="108" y="422">哎呀，出错了！系统异常，请稍后重试</text>
+      <text x="108" y="472">一站式赋能，打造无缝闭环 ✨</text>
+      <text x="108" y="522">您确定要执行删除操作吗？</text>
+      <text x="108" y="562">确定 · 取消</text>
+    </g>
+    <g stroke="#C9543F" stroke-width="2">
+      <line x1="104" y1="365" x2="470" y2="365"/>
+      <line x1="104" y1="415" x2="432" y2="415"/>
+      <line x1="104" y1="465" x2="366" y2="465"/>
+      <line x1="104" y1="515" x2="336" y2="515"/>
+      <line x1="104" y1="555" x2="206" y2="555"/>
+    </g>
+
+    <!-- arrow -->
+    <g stroke="#1F3A5F" stroke-width="2" fill="none">
+      <line x1="590" y1="436" x2="620" y2="436"/>
+      <polyline points="612,428 620,436 612,444"/>
+    </g>
+
+    <!-- after -->
+    <rect x="640" y="286" width="480" height="300" rx="10" fill="#FFFFFF" stroke="#1F3A5F" stroke-width="1.5"/>
+    <text x="668" y="326" font-size="14" letter-spacing="3" fill="#1F3A5F">AFTER</text>
+    <g font-size="21" fill="#1A1A1A">
+      <text x="668" y="372">上传文档</text>
+      <text x="668" y="422">录音没有转写成功，换一个文件再试</text>
+      <text x="668" y="472" fill="#B0ABA2">（删掉）</text>
+      <text x="668" y="522">删除知识库？删除后无法恢复。</text>
+    </g>
+    <rect x="668" y="538" width="64" height="32" rx="6" fill="#1F3A5F"/>
+    <text x="700" y="560" font-size="15" fill="#FAFAF7" text-anchor="middle">删除</text>
+    <rect x="742" y="538" width="64" height="32" rx="6" fill="none" stroke="#C9C2B4"/>
+    <text x="774" y="560" font-size="15" fill="#555" text-anchor="middle">取消</text>
+  </g>
+</svg>

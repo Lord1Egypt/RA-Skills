@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "skill": "gitlab-agent-profile",
+      "job": {
+        "name": "GitLab Agent Profile",
+        "description": "Maintain the GitLab agent profile and contribution chart.",
+        "enabled": false,
+        "deleteAfterRun": false,
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 9 2,3 * *",
+          "tz": "Europe/Berlin"
+        },
+        "sessionTarget": "isolated",
+        "wakeMode": "now",
+        "payload": {
+          "kind": "agentTurn",
+          "message": "Read skill `gitlab-agent-profile` and run.",
+          "thinking": "xhigh",
+          "timeoutSeconds": 3600,
+          "model": "openai/gpt-6.1-sol"
+        },
+        "delivery": {
+          "mode": "none",
+          "bestEffort": false
+        }
+      }
+    }
+  ]
+}

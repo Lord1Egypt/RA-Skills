@@ -1,6 +1,6 @@
 name: openclaw-guardian-suite
 description: "OpenClaw 全能守护包 — 7个系统守护技能一键安装：配置安全、模型容灾、健康监控、上下文优化全链路。商业套件，需付款授权后激活。"
-version: 1.0.7
+version: 1.0.5
 author: halfmoon82
 tags:
   - guardian

@@ -1,6 +1,29 @@
 {
-  "ownerId": "kn7bnxr9w0gv556js41qgc6vn983af77",
-  "slug": "wong-super-lobster",
+  "name": "super-lobster",
   "version": "1.0.0",
-  "publishedAt": 1775485761122
+  "author": "龙虾仔",
+  "description": "🦞 Super Lobster | 超级龙虾 - 桥哥的私人 AI 助理",
+  "tags": ["feishu", "productivity", "todo", "meeting-notes", "automation"],
+  "homepage": "https://clawhub.ai/skills/super-lobster",
+  "repository": "https://github.com/huangqiao/super-lobster",
+  "license": "MIT",
+  "created": "2026-04-06",
+  "updated": "2026-04-06",
+  "skills": [
+    "feishu-doc-create",
+    "meeting-notes-parser",
+    "todo-classifier",
+    "feishu-permission-manager",
+    "work-module-organizer",
+    "scheduled-task-runner"
+  ],
+  "requirements": {
+    "openclaw": ">=2026.4.0",
+    "node": ">=25.0.0"
+  },
+  "permissions": [
+    "feishu:docx:write",
+    "feishu:permission:manage",
+    "feishu:message:send"
+  ]
 }

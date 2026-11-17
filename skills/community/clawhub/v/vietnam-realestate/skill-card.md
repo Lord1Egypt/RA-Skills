@@ -1,48 +1,60 @@
-## Description: <br>
-Vietnam Realestate helps agents research and analyze Vietnamese real estate, including area price ranges, official land-price tables, market trends, planning context, legal checks, and tax, fee, cost, and ROI calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vietnam Realestate helps agents research Vietnamese property prices, official land-price tables, market trends, planning information, and real-estate legal considerations using current web sources.
 
-## Publisher: <br>
-[trustydev212](https://clawhub.ai/user/trustydev212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trustydev212](https://clawhub.ai/user/trustydev212)
 
-## Use Case: <br>
-External users, agents, real-estate researchers, investors, brokers, and first-time buyers use this skill to gather current Vietnamese real-estate market information, compare official and market price signals, and prepare concise real-estate analysis. It can also run a local calculator for indicative Vietnamese transaction taxes, fees, total purchase cost, rental yield, and ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Vietnam <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-estate prices, planning status, taxes, and legal requirements may change quickly or vary by locality. <br>
-Mitigation: Verify current prices and legal or tax claims against official and recent sources before relying on the output. <br>
-Risk: Search-driven real-estate requests can expose private financial details or personally identifying information. <br>
-Mitigation: Avoid including unnecessary personal identifiers, exact private financial details, or sensitive property-owner information in prompts. <br>
-Risk: Generated reports may be mistaken for professional legal, tax, or investment advice. <br>
-Mitigation: Review reports before sharing and treat them as research support that should be checked by qualified professionals for decisions. <br>
-Risk: Calculator outputs use indicative formulas and assumptions that may not reflect current law, local fees, or actual market outcomes. <br>
-Mitigation: Confirm calculator assumptions and current fee rates, and present ROI or cost calculations as estimates rather than guarantees. <br>
+## Use Case:
 
+External users such as property investors, brokers, and first-time home buyers use this skill to gather current Vietnam real-estate market evidence, compare indicative prices, review official land-price tables, and prepare transaction or investment research. The skill is an informational aid and does not replace legal, financial, or licensed real-estate advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trustydev212/vietnam-realestate) <br>
-- [OpenClaw Viet Nam community](https://zalo.me/g/lajsqc334jqc5fezevvo) <br>
-- [Nguon du lieu BDS Viet Nam](references/data-sources.md) <br>
-- [Khung phap ly BDS Viet Nam](references/legal-framework.md) <br>
-- [Vietnam real-estate calculator script](scripts/price-calculator.py) <br>
+### Deployment Geography for Use:
 
+Vietnam
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis, tables, cited research summaries, optional artifact reports, Python command examples, and JSON or human-readable calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should identify source dates, distinguish listing prices from transaction prices, and mark legal, tax, and investment information as requiring current verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Real-estate prices, planning status, and legal requirements can become outdated or vary by locality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current sources, cite source dates, and compare multiple official or market sources before relying on the analysis.
+
+Risk: Users may treat informational market or legal analysis as transaction advice.
+
+Mitigation: State that outputs are informational and require review by qualified legal, financial, or licensed real-estate professionals before real transactions.
+
+Risk: The included calculator uses simplified tax, fee, ROI, VAT, and appreciation assumptions.
+
+Mitigation: Treat calculator results as estimates and verify current rates, local fees, and transaction-specific assumptions.
+
+## Reference(s):
+
+- [Vietnam Realestate ClawHub page](https://clawhub.ai/trustydev212/skills/vietnam-realestate)
+- [OpenClaw Viet Nam community](https://zalo.me/g/lajsqc334jqc5fezevvo)
+- [Nguon du lieu BDS Viet Nam](references/data-sources.md)
+- [Khung phap ly BDS Viet Nam](references/legal-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown analysis and guidance with optional local calculator output in text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current web verification for prices, laws, planning status, and market reports; calculator outputs are estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

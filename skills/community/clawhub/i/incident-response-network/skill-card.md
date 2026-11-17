@@ -1,42 +1,59 @@
-## Description: <br>
-Network forensics evidence collection and analysis during security incidents, including volatile evidence preservation, lateral movement detection from flow and ARP/MAC/CAM data, and containment verification across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network forensics evidence collection and analysis during security incidents, scoped to packet captures, flow data, forwarding tables, routing state, and device logs.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Security analysts, incident responders, and network engineers use this skill to collect and analyze network artifacts during active or post-incident investigations, including flow records, packet captures, forwarding state, routing state, device logs, and containment verification evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is labeled read-only, but packet capture, export, support-bundle, and running-configuration commands can affect live network devices or write sensitive evidence files. <br>
-Mitigation: Use only for authorized incident-response work, obtain approval before capture or export steps, limit packet count and duration, monitor device CPU and storage, and define evidence transfer, retention, and cleanup steps. <br>
-Risk: Collected packet captures, running configurations, support bundles, logs, and flow data may contain sensitive network, credential, or payload information. <br>
-Mitigation: Protect evidence as sensitive data, compute and record hashes, preserve chain of custody, restrict access to authorized responders, and follow approved retention policies. <br>
+## Use Case:
 
+Security responders and network engineers use this skill during authorized incidents to collect network artifacts, analyze lateral movement, verify containment, and reconstruct network timelines across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/incident-response-network) <br>
-- [Network Forensics CLI Reference](references/cli-reference.md) <br>
-- [Network Forensics Workflow](references/forensics-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline network CLI commands and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are scoped to network forensics evidence collection, analysis, containment verification, timeline reconstruction, and documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Packet captures, support bundles, and saved configurations can contain sensitive incident evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect evidence only with authorization, use narrow filters and time or packet limits, transfer files to approved encrypted evidence storage, and remove temporary on-device copies according to policy.
+
+Risk: On-device packet capture and evidence export can affect network device performance.
+
+Mitigation: Monitor device health during collection and prefer bounded captures with explicit packet or duration limits.
+
+Risk: The skill is labeled read-only while some evidence preservation steps write files to device storage.
+
+Mitigation: Treat file export and save operations as evidence collection actions that require incident-response approval and documented chain of custody.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/vahagn-madatyan/skills/incident-response-network)
+- [Network Forensics CLI Reference](references/cli-reference.md)
+- [Network Forensics Workflow](references/forensics-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with vendor-labeled CLI commands and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only containment verification guidance; evidence collection may create packet capture, support bundle, and configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

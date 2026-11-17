@@ -1,42 +1,60 @@
-## Description: <br>
-Queries current weather for global cities, supporting Chinese, English, and pinyin city input with automatic best-match location handling and a Beijing default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up current weather for global city queries in Chinese, English, or pinyin, auto-matches a location, and defaults to Beijing when no city is provided.
 
-## Publisher: <br>
-[xiaodiyaochaoshen2](https://clawhub.ai/user/xiaodiyaochaoshen2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaodiyaochaoshen2](https://clawhub.ai/user/xiaodiyaochaoshen2)
 
-## Use Case: <br>
-External users and agents use this skill to look up current weather conditions for a named city and summarize temperature, weather condition, wind speed, wind direction, daytime status, and update time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries may disclose the requested city name to Open-Meteo services. <br>
-Mitigation: Invoke the skill only for explicit weather lookups where sharing the city name with the weather API is acceptable. <br>
-Risk: Current weather data may be delayed or city matching may choose an unintended location when names are ambiguous. <br>
-Mitigation: Use specific city names, country suffixes, or pinyin/English variants and treat results as current-weather guidance rather than a forecast or safety-critical source. <br>
+## Use Case:
 
+External users and developers use this skill to answer current-weather requests by city, including temperature, conditions, wind speed, wind direction, day/night status, and update time.
 
-## Reference(s): <br>
-- [Weather Details](references/weather_details.md) <br>
-- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaodiyaochaoshen2/maomao-weather-hnlq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Formatted plain text weather report with a concise summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current weather only; city names may be sent to Open-Meteo APIs during lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Requested city names and approximate coordinates are sent to Open-Meteo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing location query data with Open-Meteo is acceptable.
+
+Risk: Installing the requests dependency with a global unpinned pip command can affect the local Python environment.
+
+Mitigation: Install dependencies in a virtual environment from a reviewed requirements file when requests is not already available.
+
+Risk: Ambiguous city names can resolve to an unintended location.
+
+Mitigation: Use more specific city names, country suffixes, pinyin, or local suffixes such as city or county when accuracy matters.
+
+## Reference(s):
+
+- [Weather Query Details](references/weather_details.md)
+- [Open-Meteo Geocoding API endpoint](https://geocoding-api.open-meteo.com/v1/search)
+- [Open-Meteo Forecast API endpoint](https://api.open-meteo.com/v1/forecast)
+- [ClawHub skill page](https://clawhub.ai/xiaodiyaochaoshen2/skills/maomao-weather-hnlq)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text weather report with a concise summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a Python weather lookup script using a city argument or standard input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

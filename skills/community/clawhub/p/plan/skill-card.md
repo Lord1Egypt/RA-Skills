@@ -1,41 +1,63 @@
-## Description: <br>
-Auto-learns when to plan vs execute directly. Adapts planning depth to task type. Improves strategy through outcome tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans tasks before execution by deciding when to plan versus act directly, sizing plan depth to risk, and structuring steps, estimates, validation, and rollback.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Agents use this skill to decide when a task needs planning, choose an appropriate planning depth, and improve future plans through outcome tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's broad planning guidance may activate more often than users expect. <br>
-Mitigation: Use narrower activation wording or disable the skill in workflows where minimal planning overhead is preferred. <br>
-Risk: Plans and learned adjustments can introduce incorrect or misleading task guidance. <br>
-Mitigation: Review plans and outcome-derived adjustments before relying on them for high-stakes, novel, or hard-to-reverse work. <br>
+## Use Case:
 
+Developers and agents use this skill to decide when planning is warranted, choose an appropriate plan depth, and produce concise execution plans with risks, estimates, validation points, and rollback handling for multi-step or irreversible work.
 
-## Reference(s): <br>
-- [Plan on ClawHub](https://clawhub.ai/ivangdavila/plan) <br>
-- [Planning Strategies](artifact/strategies.md) <br>
-- [Outcome Tracking](artifact/outcomes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown planning guidance and outcome notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend different planning depth levels and human validation for higher-risk tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local planning records may contain sensitive project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local records under ~/Clawic/data/plan/ are acceptable; review or delete that directory when plans may contain sensitive information.
+
+Risk: Auto-execution defaults can reduce human review for high-impact work if configured too broadly.
+
+Mitigation: Keep destructive, production, financial, external-send, and other irreversible work in always_validate.
+
+## Reference(s):
+
+- [ClawHub Plan Skill Page](https://clawhub.ai/ivangdavila/skills/plan)
+- [Plan Homepage](https://clawic.com/skills/plan)
+- [Setup Guide](setup.md)
+- [Risk Guidance](risk.md)
+- [Approval Guidance](approval.md)
+- [Decomposition Guidance](decomposition.md)
+- [Estimation Guidance](estimation.md)
+- [Replanning Guidance](replanning.md)
+- [Long-Horizon Planning Guidance](long-horizon.md)
+- [Outcome Tracking Guidance](outcomes.md)
+- [Planning Strategies](strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, files]
+
+**Output Format:** [Markdown or plain text planning guidance with optional local planning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist planning preferences, active plans, and outcome logs under ~/Clawic/data/plan/ when the workflow calls for it.]
+
+## Skill Version(s):
+
+1.0.3 (source: artifact/SKILL.md frontmatter and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Tetra Scar Safety helps agents check commands, file writes, network requests, and project directories using built-in threat rules and incident memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent safety that learns from incidents, with a reflex arc that blocks repeat threats without LLM calls.
 
-## Publisher: <br>
-[aibenyclaude-coder](https://clawhub.ai/user/aibenyclaude-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aibenyclaude-coder](https://clawhub.ai/user/aibenyclaude-coder)
 
-## Use Case: <br>
-Developers and agent builders use this skill to screen proposed shell commands, file operations, network requests, and project directories before execution. It can also record prior incidents as local scar memory so similar future actions are blocked or warned on without an LLM call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Directory audits may inspect files that contain secrets or other sensitive local data. <br>
-Mitigation: Run audits only on directories intended for inspection and review any findings before sharing them. <br>
-Risk: Incident records may contain real secrets or sensitive operational details and influence future allow/block decisions. <br>
-Mitigation: Avoid recording real secrets in incident text and periodically review or protect safety_scars.jsonl. <br>
+## Use Case:
 
+Developers and agent builders use this skill to check shell commands, file writes, network requests, and commits against built-in threat patterns and incident-derived scars before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aibenyclaude-coder/tetra-scar-safety) <br>
-- [Publisher profile](https://clawhub.ai/user/aibenyclaude-coder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Python dictionaries, JSON Lines scar records, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Zero external Python dependencies; stores scar memory in safety_scars.jsonl by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A usage example can read a user's real SSH private key if copied exactly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the example with a single-quoted inert placeholder before publishing or running it.
+
+Risk: Directory audit results may be incomplete for dangerous commands compared with the advertised built-in rule groups.
+
+Mitigation: Treat audit findings as a partial signal and review high-risk commands with the direct safety check path before execution.
+
+Risk: The audit command reads local files while looking for secrets.
+
+Mitigation: Run audits only on narrow, intended project paths and avoid broad scans of unrelated sensitive directories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aibenyclaude-coder/skills/tetra-scar-safety)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python examples, JSON-like safety results, and JSONL scar records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local files for scar memory and directory audits; no external service calls are described.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

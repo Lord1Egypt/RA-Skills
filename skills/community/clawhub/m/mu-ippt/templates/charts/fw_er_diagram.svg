@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#ffffff"/>
+  <text x="640" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#1e293b" font-family="Microsoft YaHei, Arial, sans-serif">{{TITLE}}</text>
+  <!-- ENTITIES: rect with header row (entity name) + attribute rows -->
+  <!-- RELATIONSHIPS: lines between entities with cardinality labels -->
+  <!-- CARDINALITY: text labels near connection points (1, *, 0..1, etc.) -->
+</svg>

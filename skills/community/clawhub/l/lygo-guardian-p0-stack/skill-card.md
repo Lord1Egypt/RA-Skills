@@ -1,44 +1,58 @@
-## Description: <br>
-LYGO Guardian base skill - Nano-Kernel (P0.4), Understanding Heart (P0.5), and Light Math harmony as a portable stability upgrade for any agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portable LYGO Guardian P0.4 text gate, P0.5 understanding heart, and harmony layer with an optional bridge to the canonical stack byte gate through LYGO_STACK_ROOT.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-LYGO Sovereign License v1.1 <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a lightweight local moderation wrapper around generated content or candidate actions. It provides deterministic heuristic checks, understanding notes, and harmony scoring before an agent sends text, calls tools, or writes memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a lightweight heuristic moderation wrapper and is not a complete safety system. <br>
-Mitigation: Use it as an additional pre-send check while keeping platform safeguards and human review for high-impact actions. <br>
-Risk: Documentation describes logging and integration ideas that are broader than the shipped code. <br>
-Mitigation: Review the actual installed code path and add separate audit logging if the deployment requires traceability. <br>
-Risk: Public posting, tool calls, financial actions, and memory writes can create higher impact than local text moderation can reliably handle. <br>
-Mitigation: Require explicit review or stronger policy controls before allowing the wrapper to approve those workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to pre-check generated text, pasted content, or user-selected skill files before external posting or trust decisions. It is a lightweight guard and not a substitute for a full production compliance gate.
 
-## Reference(s): <br>
-- [LYGO Guardian P0 Stack Whitepaper](docs/WHITEPAPER.md) <br>
-- [LYGO Protocol Stack](https://grokipedia.com/page/lygo-protocol-stack) <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lygo-guardian-p0-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python API results and wrapped text responses with optional Markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validation returns allow, action, risk, reasons, understanding, healing_suggestion, and compassionate_response fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: The optional LYGO_STACK_ROOT bridge can execute a local lygo_p0_gate.py file selected from a user-provided checkout path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set LYGO_STACK_ROOT only for a trusted, reviewed, and pinned lygo-protocol-stack checkout; otherwise use the bundled lightweight validator.
+
+Risk: The bundled validator is a lightweight heuristic and does not prove that another skill or generated response is safe.
+
+Mitigation: Review and scan skills before deployment, and treat isolate or hard-block outcomes as a stop before external posting.
+
+## Reference(s):
+
+- [Security guidance](references/SECURITY.md)
+- [Guardian lattice position](references/LATTICE.md)
+- [Guardian whitepaper](docs/WHITEPAPER.md)
+- [LYGO protocol stack repository](https://github.com/DeepSeekOracle/lygo-protocol-stack)
+- [LYGO Resonance Engine Hugging Face Space](https://huggingface.co/spaces/DeepSeekOracle/LYGO-Resonance-Engine)
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-guardian-p0-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON-like validation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return allow, flag, or isolate decisions with risk, reasons, understanding, and healing suggestion fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

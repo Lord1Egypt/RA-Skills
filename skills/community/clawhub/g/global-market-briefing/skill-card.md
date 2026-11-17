@@ -1,43 +1,64 @@
-## Description: <br>
-Generates a daily Markdown financial briefing from China A-share market data and aggregated RSS news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日财经早报：A股行情 + RSS全球新闻聚合，自动生成Markdown简报
 
-## Publisher: <br>
-[answeryl](https://clawhub.ai/user/answeryl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[answeryl](https://clawhub.ai/user/answeryl)
 
-## Use Case: <br>
-Users who follow China A-share markets and global news can run or schedule this skill to create a concise daily briefing with market index data, categorized headlines, summaries, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public market and news data, so source outages or stale feeds can affect briefing accuracy. <br>
-Mitigation: Review the generated briefing and follow source links before using it for decisions. <br>
-Risk: The skill can be scheduled to perform recurring network fetches and creates Markdown files in the configured Desktop output directory. <br>
-Mitigation: Enable scheduling only when recurring runs are desired, and review or change the output directory if local retention matters. <br>
+## Use Case:
 
+External users and finance-news readers use this skill to generate a Chinese-language daily market briefing that combines A-share index data with China News RSS headlines, categorized news summaries, source links, and a dated Markdown archive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/answeryl/global-market-briefing) <br>
-- [Declared homepage](https://clawhub.com/skills/global-market-briefing) <br>
-- [China News RSS](https://www.chinanews.com.cn/rss/) <br>
-- [Tencent market quote endpoint](http://qt.gtimg.cn/q=sh000001,sz399001,sz399006,sh000688,sh000016) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files] <br>
-**Output Format:** [Markdown briefing saved to a local file with a shorter text briefing printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes categorized headlines, source links, China A-share index data, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill contacts China News RSS and Tencent market-data endpoints during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where those outbound requests are acceptable.
+
+Risk: Market data is fetched from an HTTP endpoint and may be unavailable, stale, or modified in transit.
+
+Mitigation: Verify market data against trusted financial sources before using it for financial decisions.
+
+Risk: The script automatically creates and writes dated Markdown reports under the user's Desktop by default.
+
+Mitigation: Review or change the configured output directory before scheduled or repeated execution.
+
+Risk: The artifact requires the third-party requests dependency.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/answeryl/skills/global-market-briefing)
+- [ClawHub homepage metadata](https://clawhub.com/skills/global-market-briefing)
+- [China News RSS](https://www.chinanews.com.cn/rss/)
+- [Tencent market data endpoint](http://qt.gtimg.cn/q=sh000001,sz399001,sz399006,sh000688,sh000016)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Markdown briefing saved as a dated local file, with a shorter plain-text/Markdown summary printed to stdout unless full stdout mode is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script writes dated reports under ~/Desktop/早间新闻 by default and can print the full Markdown report with --stdout.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

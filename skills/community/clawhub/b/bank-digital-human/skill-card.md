@@ -1,41 +1,53 @@
-## Description: <br>
-AI-powered digital human operations assistant for financial institutions that supports script design, content planning, live streaming management, interaction optimization, and performance analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps bank and insurance marketing teams plan digital-human content, draft virtual avatar scripts, manage livestream interactions, and review performance analytics.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank and insurance marketing teams use this skill to draft virtual-avatar scripts, plan content calendars, structure live stream interactions, and analyze digital-human content performance. Outputs should be reviewed for advertising, financial marketing, and regulatory compliance before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad marketing trigger keywords may activate the skill on some general marketing requests. <br>
-Mitigation: Confirm that the user request is about digital-human or virtual-avatar marketing before applying the skill's templates. <br>
-Risk: Generated banking, insurance, investment, or promotional language may create regulatory or advertising-compliance risk. <br>
-Mitigation: Have qualified reviewers check financial claims, offers, and calls to action before publishing or using them with customers. <br>
+## Use Case:
 
+Bank and insurance marketing teams use this skill to create virtual-avatar scripts, content calendars, persona settings, livestream interaction plans, and performance review outputs for financial marketing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bank-digital-human) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, structured text, and illustrative Python or Markdown templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual English and Chinese content templates, persona settings, content calendars, performance metrics, and optimization suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: Broad trigger keywords may activate the skill for unrelated live-streaming or content-creation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger keywords and invocation guidance to digital-human banking or insurance marketing use cases before deployment.
+
+Risk: Generated financial marketing content may be incomplete, misleading, or non-compliant if published without review.
+
+Mitigation: Require human review against applicable advertising, financial marketing, product, and jurisdictional requirements before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gechengling/skills/bank-digital-human)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown responses with structured templates and illustrative code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for financial advertising and marketing compliance before publication.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

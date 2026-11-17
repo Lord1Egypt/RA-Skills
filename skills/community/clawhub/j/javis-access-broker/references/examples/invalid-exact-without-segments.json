@@ -1,0 +1,7 @@
+{
+  "decision": "answer",
+  "kind": "exact",
+  "points": [ { "text": "What Jordan said about the deadline.", "sources": ["s3"] } ],
+  "task_kind": "drafting_replies",
+  "topic": "Jordan's budget request"
+}

@@ -1,43 +1,63 @@
-## Description: <br>
-Human-machine interface design tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-machine interface design tool.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators use this skill to work with a simple local HMI note tracker that stores, lists, searches, removes, exports, and reports statistics for entries on the user's machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Entries are stored in plaintext local files under the HMI data directory. <br>
-Mitigation: Do not store secrets, credentials, or sensitive operational notes unless plaintext local storage is acceptable. <br>
-Risk: Export commands create files in the current working directory. <br>
-Mitigation: Run exports from an appropriate directory and review generated files before sharing or committing them. <br>
-Risk: Remove commands permanently change the saved local data. <br>
-Mitigation: Review the target entry number before removal and keep backups when the data matters. <br>
+## Use Case:
 
+Developers and operators can use this skill to run a local shell-based entry manager that records, lists, searches, removes, exports, and configures data under a user-controlled HMI directory.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bytesagain1/hmi) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands; CLI output is plain text with optional JSONL or CSV export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The HMI_DIR environment variable can change the local data directory; exports are written to the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The artifacts behave like a local entry/log manager rather than the advertised HMI design tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script behavior before installing and confirm it matches the intended operational use.
+
+Risk: Entries and configuration are persisted, deleted, exported, and configured under ~/.hmi or a custom HMI_DIR.
+
+Mitigation: Run the skill only as a normal user in directories you control, and avoid storing sensitive data unless storage, deletion, and export handling are improved.
+
+Risk: JSONL and CSV handling may not safely escape arbitrary user-provided values.
+
+Mitigation: Add robust JSON and CSV escaping or validation before using the skill with untrusted or sensitive input.
+
+Risk: Removal, export, and configuration writes may overwrite or alter local files without stronger protections.
+
+Mitigation: Add removal confirmation, configuration input validation, and overwrite or symlink protections before broader deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/hmi)
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub publisher profile](https://clawhub.ai/user/bytesagain1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with JSONL data files and optional JSON or CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code 0 on success and 1 on error.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

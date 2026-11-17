@@ -1,0 +1,71 @@
+# 论衡「计数单一真源」（v2.13.x 审计修订 R-19）
+#
+# 背景：整族计数散落全仓（「G14 9 类」多处、「13 类常见错误」、「24 中文 + 12 英文」、
+#   「dispatch 11 文件」等）。此前靠**人记住 N 个地方**同步 —— 2026-09-25 审计实测已出现
+#   整族漂移：同为错误类数出现 12 与 13 两种写法；期刊总数出现 37 与 36 两种写法。
+#
+# 口径：本文件是**唯一计数真源**。文档可复述数字，但必须与本文件一致 ——
+#   由 tests/test_count_drift.py 机械扫描全仓（白名单 = CHANGELOG* / archive/ / reports/）。
+#   改数只改这里；同步位置由维护者侧一致性测试机械列出（维护者入口 = 本仓维护者脚本索引，不入包）。
+#
+# 维护：本文件**不带版本戳**（非版本化声明文档，避免 check-version 清单无谓扩张）；
+#   新增/删除本文件须同步随包清单（维护者侧清单文件，见构建脚本目录）。
+
+# G14 中文 AI 痕迹闸（真源：references/gates/14-中文AI痕迹-gate.md）
+g14_classes: 9
+# 「防御性写作」是第 9 类（v2.13.x 起为 9 类；此前为 8 类）
+g14_defensive_writing: true
+
+# 错误友好化对照表（真源：references/errors.md）
+errors: 13
+
+# 内置期刊数据库（真源：references/_shared/真源/期刊数据库.md）
+journals:
+  zh: 24
+  en: 12
+  total: 36
+
+# 派发话术文件数（目录 references/dispatch/）
+dispatch_files: 11
+
+# 版本文件数（维护者侧版本一致性清单真源；历史沿革中的旧数字不参与扫描）
+version_files: 100   # v2.18.0：+运行模式对照表.md
+
+# 高频分档口径（references/_shared/真源/字数判定表.md §五）
+word_tiers:
+  light: "2000-3000"
+  medium: "3000-5000"
+  heavy_min: 5000
+
+# 流水线全景节点数（真源 = references/_shared/真源/phase-order/ 目录切片数；v2.15.11 接入 test_count_drift 三模式扫描）
+pipeline_nodes: 27
+
+# 布尔口径声明（文档一致性靠 grep/评审护，不接数值扫描——布尔句式无稳定数字模式）
+t9_default: triggered        # T9 默认触发，主人显式 opt-out 才关闭（真源 = phase-order/t9_review.yaml + dispatch/T9 契约块）
+heartbeat_telemetry: opt_in  # 心跳遥测默认不写，Phase 0 勾选 Operational Telemetry 才启用（真源 = external-services.md）
+
+# G 质量审计清单项数（G0-G18；G18 内部 12 项不拆成独立 G 门）
+g_checklist_items: 21
+
+# 角色
+role_cards: 11        # 概念口径：T0 主控 + T1-T7 + T8 终检 + T9 同行评审 + T9b 压力测试
+role_card_files: 12   # 物理文件数：主控拆 coordinator + 扩展职责两张卡，另含 T9b（T1b 复用 T1 角色卡，不新增物理卡 —— 发版核查 2026-09-30 撤销误增）
+
+# T8 终检可发表性判据（真源：references/_shared/真源/可发表性判定表.md §二）
+t8_items: 48
+t8_formal_compliance: 17   # 组 A-E（A 交付物纯净性 4 + B 引用闭环 5 + C 统计真实性+原创性 4 + D M 门+同步 2 + E Token+差异化 2）
+t8_publishability: 31      # 组 F 可发表性 6 维度拆分项（维度 1(5)+2(5)+3(5)+4(7)+5(5)+6(4)）
+t8_publishable_dimensions: 6
+
+# T9 同行评审维度（真源：references/dispatch/T9-同行评审.md）
+t9_dimensions: 6
+# T9 D2 方法论评分 = G18 12 项清单的**聚合**（消费关系，非独立维度；真源 = 方法论-审计清单.md §五）
+t9_methodology_dimensions: 4   # 研究设计 / 数据质量 / 分析严密性 / 可复现性
+t9_consumes_g18: true
+
+# M 门项数（真源：references/_shared/真源/M-Gate-核心.md）
+m_gate_items:
+  form: 8
+  exist: 3
+  integrity: 2
+  total: 13

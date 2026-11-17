@@ -1,7 +1,7 @@
 ---
 name: agent-expenditure
 description: Tracks per-agent token usage and flags waste in parallel dispatch
-version: 1.9.8
+version: 1.10.3
 triggers:
   - token-waste
   - agent-coordination
@@ -13,7 +13,7 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Agent Token Waste Monitoring
@@ -66,7 +66,20 @@ detection criteria.
 
 ## Cross-References
 
-- `.claude/rules/plan-before-large-dispatch.md` for the 4+ agent
-  planning requirement
+- Dispatching 4 or more agents needs an agreed plan first: the
+  roster, each agent's scope, and the output contract it returns.
+  1-3 agents may dispatch directly.
 - `conserve:token-conservation` for session-level token budgeting
 - `conjure:agent-teams` for dispatch coordination
+
+## Exit Criteria
+
+- [ ] All 4 post-dispatch review questions answered with explicit
+  yes/no per agent (unique findings, proportional expenditure, no
+  duplication, fewer agents sufficient)
+- [ ] Waste signals from `modules/waste-signals.md` checked against
+  the completed run; any triggered signal named with the category
+- [ ] A recommendation is produced: either "reduce agent count to N"
+  or "dispatch was efficient" with coordination overhead percentage
+- [ ] If 2+ review questions answer no, a concrete agent-count
+  reduction is stated for future dispatches of the same type

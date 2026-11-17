@@ -19,6 +19,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from path_safety import safe_write_text
+
 
 CONDA_ENV = """name: nutrigenomics
 channels:
@@ -26,14 +28,22 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - numpy>=1.26
-  - pandas>=2.2
-  - matplotlib>=3.8
-  - seaborn>=0.13
-  - pip
-  - pip:
-    - reportlab>=4.0
+  - pandas>=2.2,<3.0
+  - numpy>=1.26,<3.0
+  - matplotlib>=3.8,<4.0
+  - seaborn>=0.13,<1.0
 """
+
+
+def _skill_version() -> str:
+    """Read the skill version from openclaw.json so artefacts cannot drift from
+    the release. Returns "unknown" rather than raising if the file is absent."""
+    try:
+        meta = json.loads((Path(__file__).parent / "openclaw.json").read_text(encoding="utf-8"))
+        version = meta.get("version")
+        return version if isinstance(version, str) and version else "unknown"
+    except Exception:
+        return "unknown"
 
 
 def sha256_file(filepath: str) -> str:
@@ -69,15 +79,23 @@ def create_reproducibility_bundle(
     output_dir = Path(output_dir).resolve()
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    # ── Allowlist of non-identifying arguments ────────────────────────────────
+    # NEVER echo the raw argument namespace into an artefact. It carries --input,
+    # --output and --panel, whose paths can identify a person or a machine. Both
+    # artefacts below previously did exactly that while claiming the opposite.
+    SAFE_ARG_KEYS = ("format", "no_figures")
+    safe_args = {k: args[k] for k in SAFE_ARG_KEYS if k in args}
+    safe_args["custom_panel"] = bool(args.get("panel"))
+
     # ── README_reproducibility.txt ────────────────────────────────────────────
     cmd_args = " ".join(
-        f"--{k.replace('_', '-')} {v}"
-        for k, v in args.items()
-        if v and k != "synthetic"
+        f"--{k.replace('_', '-')}" if isinstance(v, bool) else f"--{k.replace('_', '-')} {v}"
+        for k, v in safe_args.items()
+        if v and k != "custom_panel"
     )
     instructions = f"""Nutrigenomics reproducibility notes
 Generated: {timestamp}
-Version: 0.2.8
+Version: {_skill_version()}
 
 This skill does not generate executable scripts. To reproduce the analysis manually:
 1. Install the conda environment:
@@ -95,10 +113,10 @@ Privacy note:
 - Only the SNP panel definition and the generated report are checksummed.
 - Output files in this directory persist until manually deleted.
 """
-    (output_dir / "README_reproducibility.txt").write_text(instructions, encoding="utf-8")
+    safe_write_text(output_dir / "README_reproducibility.txt", instructions)
 
     # ── environment.yml ───────────────────────────────────────────────────────
-    (output_dir / "environment.yml").write_text(CONDA_ENV, encoding="utf-8")
+    safe_write_text(output_dir / "environment.yml", CONDA_ENV)
 
     # ── checksums.txt — output files only, no input fingerprint ──────────────
     # Intentionally excludes the input file to avoid storing a hash that could
@@ -115,23 +133,22 @@ Privacy note:
         chk = sha256_file(fp)
         checksum_lines.append(f"{chk}  {label}")
 
-    (output_dir / "checksums.txt").write_text(
-        "\n".join(checksum_lines) + "\n", encoding="utf-8"
-    )
+    safe_write_text(output_dir / "checksums.txt", "\n".join(checksum_lines) + "\n")
 
     # ── provenance.json — no input filename or path ───────────────────────────
-    # The input_file field is deliberately omitted. Storing the filename risks
-    # persisting a personally identifiable label (e.g. "john_smith_genome.csv").
+    # Only an explicit allowlist of non-identifying arguments is recorded. This
+    # used to pass vars(args) straight through, which wrote the absolute path of
+    # the user's genetic data file into the artefact while the privacy_note below
+    # claimed the opposite. Never widen this to the full argument namespace: the
+    # paths in it (--input, --output, --panel) can identify a person or a machine.
     provenance = {
         "tool": "Nutrigenomics",
-        "version": "0.2.8",
+        "version": _skill_version(),
         "timestamp": timestamp,
-        "format_args": args,
+        "format_args": safe_args,
         "privacy_note": (
             "Input file name and path are not recorded. "
             "Only output files are checksummed."
         ),
     }
-    (output_dir / "provenance.json").write_text(
-        json.dumps(provenance, indent=2), encoding="utf-8"
-    )
+    safe_write_text(output_dir / "provenance.json", json.dumps(provenance, indent=2))

@@ -1,45 +1,60 @@
-## Description: <br>
-Integrates PCEC with EvoMap to query reusable error-solving workflows, report reuse feedback, maintain a local capability library, and handle bounty tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PCEC EvoMap Integrator connects PCEC workflows with EvoMap for signal lookup, workflow reuse, usage reporting, a local capability cache, and bounty task handling.
 
-## Publisher: <br>
-[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde)
 
-## Use Case: <br>
-Developers and agent operators use this skill to extract error signals, search local and EvoMap-hosted reuse candidates, report usage outcomes, and manage EvoMap bounty task workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send error signals, asset identifiers, result status, notes, timestamps, and a sender ID to evomap.ai. <br>
-Mitigation: Require explicit user approval before EvoMap fetch or report calls, and avoid sending sensitive error content or private identifiers. <br>
-Risk: The skill can claim or complete remote bounty tasks through EvoMap task endpoints. <br>
-Mitigation: Require manual approval before every bounty claim or completion, and verify the task ID and asset ID before sending the request. <br>
-Risk: Local reuse-log entries and cached capability mappings may contain untrusted or stale workflow data. <br>
-Mitigation: Treat reuse-log and cache entries as untrusted input, review suggested solutions before use, and refresh mappings from trusted sources when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/pcec-evomap-integrator) <br>
-- [EvoMap fetch endpoint](https://evomap.ai/a2a/fetch) <br>
-- [EvoMap usage report endpoint](https://evomap.ai/a2a/report) <br>
-- [EvoMap task claim endpoint](https://evomap.ai/a2a/task/claim) <br>
-- [EvoMap task completion endpoint](https://evomap.ai/a2a/task/complete) <br>
+## Use Case:
 
+Developers and agent operators use this skill to query EvoMap for reusable solutions, maintain a local cache of capability records, report reuse outcomes, and coordinate EvoMap bounty task workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls, Configuration] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide local reuse-log entries and EvoMap request payloads when implemented by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote workflow reuse can send error or workflow signals to evomap.ai and consume returned solutions.
+
+Mitigation: Ask for explicit user approval before sending signals or applying returned solutions; show the signals and proposed changes first.
+
+Risk: Automatic usage reporting can transmit validation outcomes and notes to evomap.ai.
+
+Mitigation: Require consent before reporting and redact sensitive notes, identifiers, and workflow details.
+
+Risk: Bounty task claiming and completion can change external task state.
+
+Mitigation: Do not claim or complete tasks unless the user approves the exact task ID, asset ID, and payload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/skills/pcec-evomap-integrator)
+- [EvoMap A2A fetch endpoint](https://evomap.ai/a2a/fetch)
+- [EvoMap A2A report endpoint](https://evomap.ai/a2a/report)
+- [EvoMap task claim endpoint](https://evomap.ai/a2a/task/claim)
+- [EvoMap task completion endpoint](https://evomap.ai/a2a/task/complete)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown skill instructions with JavaScript examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include EvoMap query payloads, local cache entries, reuse log guidance, and bounty task workflow instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

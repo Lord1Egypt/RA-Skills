@@ -1,44 +1,62 @@
-## Description: <br>
-Automated roadshow/investor presentation capture to PDF. Playwright-powered, supports NetRoadShow and DealRoadShow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated roadshow/investor presentation capture to PDF. Playwright-powered, supports NetRoadShow and DealRoadShow.
 
-## Publisher: <br>
-[nikker1974](https://clawhub.ai/user/nikker1974) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikker1974](https://clawhub.ai/user/nikker1974)
 
-## Use Case: <br>
-Developers and agents use this skill to run Playwright-based capture workflows for authorized NetRoadShow or DealRoadShow investor presentations and compile captured slide screenshots into PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates gated investor-roadshow access, legal-disclaimer acceptance, email submission, and full PDF capture. <br>
-Mitigation: Run it only when authorized to access, accept terms for, and retain copies of the specific roadshow materials; manually verify the URL hostname before execution. <br>
-Risk: Captured screenshots and PDFs may contain confidential investor materials. <br>
-Mitigation: Use a private output directory and delete captured screenshots and PDFs when they are no longer needed. <br>
-Risk: The workflow can persist the roadshow email in scripts/.env. <br>
-Mitigation: Prefer a session-only NRS_EMAIL value or pass the email at runtime instead of saving it. <br>
+## Use Case:
 
+Developers and operations users use this skill to run Playwright-based capture workflows for authorized NetRoadShow and DealRoadShow presentations and compile captured slides into PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nikker1974/roadshow-capture-skill) <br>
-- [NetRoadShow practice notes](references/netroadshow-practice.md) <br>
-- [OpenClaw setup guide](references/openclaw-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python scripts and shell commands; runtime scripts produce PNG screenshots and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, Playwright, Pillow, Chromium, and an authorized NRS_EMAIL value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Risk: The skill can capture and retain sensitive roadshow content locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for roadshows the user is authorized to access and copy, write outputs to a restricted directory, and remove retained files when no longer needed.
+
+Risk: Weak URL controls could send browser automation to an unintended or untrusted destination.
+
+Mitigation: Avoid shortened or untrusted URLs and verify the full NetRoadShow or DealRoadShow destination before execution.
+
+Risk: Browser automation runs with reduced isolation and unpinned runtime dependencies.
+
+Mitigation: Review the skill before installing and run capture jobs in an isolated container or VM until sandboxing and dependency pinning are improved.
+
+Risk: The authorized email may persist through environment or .env handling.
+
+Mitigation: Prefer process-scoped email configuration and protect or remove any local .env file after use.
+
+## Reference(s):
+
+- [NetRoadShow Practice Notes](references/netroadshow-practice.md)
+- [OpenClaw Setup](references/openclaw-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; capture scripts produce screenshot images and PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a roadshow URL and an authorized email via argument or NRS_EMAIL.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter declares 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

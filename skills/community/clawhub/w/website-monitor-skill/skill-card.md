@@ -1,44 +1,62 @@
-## Description: <br>
-Builds a website HTTP monitoring system that checks status codes and response latency on a schedule and generates daily HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebsiteMonitor helps agents create a website HTTP monitoring system that checks target URLs every five minutes, stores HTTP status and latency data, and generates daily HTML availability reports.
 
-## Publisher: <br>
-[yb0554](https://clawhub.ai/user/yb0554) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yb0554](https://clawhub.ai/user/yb0554)
 
-## Use Case: <br>
-Developers and site operators use this skill to generate a small monitoring service for authorized websites, persist status and latency data, and produce daily availability reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring targets without authorization can create privacy, compliance, or acceptable-use issues. <br>
-Mitigation: Use the generated monitor only for websites and services you are authorized to monitor. <br>
-Risk: Internal, localhost, metadata-service, or sensitive private endpoints may expose data or network behavior if monitored accidentally. <br>
-Mitigation: Review configured URLs before running checks and include sensitive private endpoints only when monitoring them is deliberate. <br>
-Risk: Stored reports and retained monitoring history may reveal service availability patterns or endpoint details. <br>
-Mitigation: Store generated reports and data files in private locations and review the 90-day retention setting for the deployment. <br>
-Risk: Docker or systemd persistence can keep recurring checks running unattended. <br>
-Mitigation: Enable unattended persistence only when continuous background monitoring is intended and operationally approved. <br>
+## Use Case:
 
+Developers and site operators use this skill to scaffold a custom uptime monitor for one or more websites, with persistent history and daily reports covering availability, latency, status code distribution, and time-series trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yb0554/website-monitor-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python, JSON, shell, systemd, and Docker code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a configurable monitoring project with SQLite persistence, daily HTML reports, and optional unattended execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional Linux service setup can run a persistent monitor with excessive privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the monitor as a dedicated non-root user and restrict writable directories before enabling the service.
+
+Risk: Monitoring internal or sensitive endpoints may probe systems that were not intended for this monitor.
+
+Mitigation: Validate and approve allowed target URLs before deployment, and avoid internal or sensitive endpoints unless explicitly authorized.
+
+Risk: Generated reports may include target names, URLs, status data, and error strings.
+
+Mitigation: Escape report values and review report storage and sharing paths for sensitive endpoint information.
+
+Risk: Unpinned runtime dependencies can change monitor or report behavior over time.
+
+Mitigation: Pin Python dependencies and review the external Chart.js dependency used by generated reports.
+
+## Reference(s):
+
+- [WebsiteMonitor ClawHub release](https://clawhub.ai/yb0554/skills/website-monitor-skill)
+- [Chart.js CDN dependency](https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python scripts, JSON configuration, systemd service examples, Docker configuration, and HTML report generation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

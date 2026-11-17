@@ -1,0 +1,22 @@
+name: novel-opening-hook-cn
+display_name: 小说开篇钩子改稿
+slug: novel-opening-hook-cn
+version: 1.0.1
+category: writing
+author: xxjrq
+repository: https://github.com/xxjrq/novel-opening-hook-cn
+description: 中文小说开篇改稿：根据原文和必须保留的设定，输出快节奏、悬念、沉浸三种完整开篇，逐条说明修改位置与理由，并推荐一版；适合网文首段、第一章开头和开篇吸引力优化。
+icon: icon-512.png
+trigger_words:
+  - 小说开篇改稿
+  - 开篇钩子优化
+  - 网文第一章开头
+  - 开头不抓人怎么办
+tags:
+  - chinese-writing
+  - novel-opening
+  - story-hook
+  - manuscript-editing
+  - web-novel
+license: MIT-0
+self_test: node scripts/self-test.mjs

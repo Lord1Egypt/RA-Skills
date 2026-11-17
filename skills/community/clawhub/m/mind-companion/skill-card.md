@@ -1,37 +1,53 @@
-## Description: <br>
-Mind Companion provides a warm, judgment-free listener that helps users share feelings, untangle emotions, and explore next steps at their own pace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mind Companion helps users talk through difficult feelings with a warm, judgment-free listener that listens, empathizes, accompanies, and gently guides.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users use this skill for emotional companionship, reflective conversation, and gentle support when they want a nonjudgmental place to talk. It is not a substitute for therapy, crisis support, or emergency help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unclear boundaries for crisis, self-harm, abuse, or imminent danger could lead users to treat the skill as therapy or emergency support. <br>
-Mitigation: Use the skill only for casual companionship unless the publisher adds explicit crisis boundaries and escalation guidance; direct urgent safety needs to qualified professionals or emergency services. <br>
+## Use Case:
 
+External users use this skill when they want a private conversational space for companionship, emotional expression, and gentle reflection during difficult moments.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may treat the skill as emotional support during serious distress without clear crisis boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add clear crisis guidance, emergency escalation language, and tighter activation boundaries before using it as a trusted companion.
+
+Risk: The skill invites vulnerable personal disclosures.
+
+Mitigation: Review before installing and ensure the host agent's privacy controls are appropriate for sensitive emotional disclosures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/mind-companion)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7chrymedtgqrs7r2p81hk8sx83fnrw",
-  "slug": "yandex-image-search",
-  "version": "1.0.0",
-  "publishedAt": 1774429346966
+  "owner": "gushu333",
+  "slug": "reverse-image-search",
+  "displayName": "Reverse Image Search",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772978030743,
+    "commit": "https://github.com/openclaw/skills/commit/1a937f7d67c236e2d85c4353616b70af1b48e927"
+  },
+  "history": []
 }

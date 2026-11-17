@@ -1,49 +1,56 @@
-## Description: <br>
-Configures OpenClaw model provider settings for Chinese AI APIs including DeepSeek, Qwen, Zhipu GLM, Moonshot, Baichuan, and Yi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内 AI 模型 API 配置向导，帮助 OpenClaw 用户配置 DeepSeek、通义千问、智谱GLM、Moonshot、百川、零一万物等国内大模型 API，并生成可合并的 OpenClaw provider 配置。
 
-## Publisher: <br>
-[ironmanc2014](https://clawhub.ai/user/ironmanc2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironmanc2014](https://clawhub.ai/user/ironmanc2014)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate provider configuration JSON for supported Chinese model APIs, compare model options, and apply those settings through OpenClaw's configuration workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys may be exposed if entered in shared terminals, command history, logs, or CI sessions. <br>
-Mitigation: Use dedicated provider API keys with spending limits, avoid shared or logged execution environments, and review handling of keys before applying generated configuration. <br>
-Risk: Future prompts may be routed to third-party model providers after the generated configuration is applied. <br>
-Mitigation: Install and configure the skill only when the user is comfortable sending prompts to the selected provider and has reviewed the generated config.patch. <br>
-Risk: Incorrect provider or model choices can cause failed requests, unexpected costs, or lower-quality outputs. <br>
-Mitigation: Review the generated provider JSON, compare provider pricing and model behavior, and apply the configuration through OpenClaw's config.patch workflow. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate and apply provider configuration for Chinese AI model APIs, add backup models, switch defaults, and compare provider cost options.
 
-## Reference(s): <br>
-- [CN API Router ClawHub page](https://clawhub.ai/ironmanc2014/cn-api-router) <br>
-- [Provider configuration reference](references/providers.md) <br>
-- [DeepSeek platform](https://platform.deepseek.com) <br>
-- [Alibaba Cloud DashScope](https://dashscope.aliyun.com) <br>
-- [Zhipu GLM platform](https://open.bigmodel.cn) <br>
-- [Moonshot platform](https://platform.moonshot.cn) <br>
-- [Baichuan AI platform](https://platform.baichuan-ai.com) <br>
-- [01.AI platform](https://platform.lingyiwanwu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates OpenClaw config.patch JSON that includes provider base URLs, API key placeholders or supplied keys, API type, and model metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The workflow can expose real provider API keys through command arguments, visible input, printed JSON, or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, avoid passing keys through --api-key where possible, treat generated output as sensitive, and rotate any key pasted into or captured by the workflow.
+
+## Reference(s):
+
+- [Provider configuration details](references/providers.md)
+- [ClawHub skill page](https://clawhub.ai/ironmanc2014/skills/cn-api-router)
+- [DeepSeek platform](https://platform.deepseek.com)
+- [Alibaba Cloud DashScope](https://dashscope.aliyun.com)
+- [Zhipu GLM platform](https://open.bigmodel.cn)
+- [Moonshot platform](https://platform.moonshot.cn)
+- [Baichuan platform](https://platform.baichuan-ai.com)
+- [01.AI platform](https://platform.lingyiwanwu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated provider configuration can contain real API keys and should be handled as sensitive output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

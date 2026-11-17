@@ -1,41 +1,49 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup guidance for Load Balancer concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup documentation for Load Balancer concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve concise reference material for load-balancer setup, patterns, debugging, performance, security, migration, and quick-reference workflows in devtools contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be too generic for a specific production load-balancer platform or environment. <br>
-Mitigation: Validate recommendations against the target platform documentation and test changes in staging before production use. <br>
-Risk: The shell script reports version 2.0.2 while the server release metadata and SKILL.md frontmatter report 2.0.3. <br>
-Mitigation: Treat 2.0.3 as the release version and verify command output during release validation. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise load balancer reference material, including introductory concepts, quickstart guidance, implementation patterns, debugging, performance, security, migration, and cheat sheet content.
 
-## Reference(s): <br>
-- [Load Balancer on ClawHub](https://clawhub.ai/bytesagain3/load-balancer) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text with Markdown headings, lists, checklists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference topics; no external API calls, credentials, or network access are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The reference content includes generic credential and operational guidance that may not match a user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against local security, deployment, and change-management requirements before applying it.
+
+## Reference(s):
+
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-selected reference output; no external API calls, credentials, network access, or local data access indicated by server security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

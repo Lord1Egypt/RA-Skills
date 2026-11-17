@@ -1,45 +1,55 @@
-## Description: <br>
-Ably Control helps agents manage Ably apps, API keys, queues, account details, and statistics through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Ably Control apps, API keys, queues, and account or app statistics through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Ably Control resources in an OOMOL-connected account, including app, key, queue, account, and statistics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact Ably account changes can create, update, revoke, or delete apps, queues, and API keys. <br>
-Mitigation: Require explicit user confirmation for app deletion, queue deletion, key creation, key updates, and key revocation before execution. <br>
-Risk: The get_current_account action may expose Ably Control token output. <br>
-Mitigation: Avoid running get_current_account unless token fields are redacted before display or storage. <br>
-Risk: Using this skill gives an agent operational access through the connected Ably account. <br>
-Mitigation: Install and use it only when the user trusts OOMOL and the connected Ably account has appropriate permissions for the task. <br>
+## Use Case:
 
+Developers and Ably account administrators use this skill to inspect account and app data, manage apps, API keys, and queues, and retrieve usage statistics through their connected OOMOL account.
 
-## Reference(s): <br>
-- [Ably Control homepage](https://ably.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-ably-control) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run OOMOL oo CLI actions that return JSON response data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: First-time setup runs a remote CLI installer whose behavior has not been inspected, and additional agent-skill installation behavior is unexplained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and choose and verify the CLI release before setup; consider setting OO_SKILLS_SYNC_DISABLED=1 before invocation.
+
+Risk: The skill can create, update, delete, or revoke Ably resources and can retrieve account tokens or API key data.
+
+Mitigation: Use narrowly scoped Ably credentials, protect returned key data, and confirm the exact payload and effect before write or destructive actions.
+
+## Reference(s):
+
+- [Ably Control API documentation](https://ably.com/docs/api/control-api)
+- [Ably Control](https://ably.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read or change Ably resources; write and destructive actions require confirmation of the payload and effect.]
+
+## Skill Version(s):
+
+1.0.4 (source: evidence release version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,7 +2,7 @@
 name: sentinel-proxy
 title: Sentinel-Proxy AI Firewall
 description: AI Firewall for Open Claw agents. Scrubs inbound messages and tool results for prompt injection, jailbreaks, and data exfiltration attempts using Sentinel's multi-layer detection pipeline.
-version: 1.0.0
+version: 1.0.1
 author: skyblue-soft
 license: MIT
 homepage: https://github.com/c0ri/sentinel-skills 
@@ -26,12 +26,13 @@ Sentinel intercepts three critical points in the agent lifecycle:
 
 ### 1. Get a Sentinel API key
 
-Sign up at [sentinel-proxy.skyblue-soft.com](https://sentinel-proxy.skyblue-soft.com) — free Starter tier available, no credit card required.
+1. Sign up at [sentinelaifirewall.com](https://sentinelaifirewall.com) with **email and password** — free Starter tier available, no credit card required.
+2. Once signed in, go to **Dashboard → Keys** and generate a key. It starts with `sk_live_`.
 
 ### 2. Set environment variables
 
 ```bash
-export SENTINEL_API_URL=https://sentinel.ircnet.us
+export SENTINEL_API_URL=https://api.sentinelaifirewall.com
 export SENTINEL_KEY=sk_live_...
 ```
 
@@ -52,7 +53,7 @@ That's it. The bootstrap hook will verify your credentials on next agent start.
 For complete protection — including scanning what your agent sends *to* external tools — route your LLM traffic through Sentinel's transparent proxy. Sentinel sits between Open Claw and the Anthropic API, scanning all content in both directions with zero changes to your agent code.
 
 ```bash
-export ANTHROPIC_BASE_URL=https://sentinel.ircnet.us/v1
+export ANTHROPIC_BASE_URL=https://api.sentinelaifirewall.com/v1
 export ANTHROPIC_API_KEY=sk_live_...   # your Sentinel key replaces your Anthropic key here
 ```
 

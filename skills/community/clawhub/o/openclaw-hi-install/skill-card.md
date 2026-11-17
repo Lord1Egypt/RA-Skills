@@ -1,43 +1,63 @@
-## Description: <br>
-Install or repair Hirey Hi on a local OpenClaw host, including MCP wiring, local receiver setup, registration, health checks, and welcome onboarding for people-search listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs or repairs Hirey Hi on a local OpenClaw host, including MCP setup, local receiver wiring, registration, health checks, and welcome onboarding for people-finding workflows.
 
-## Publisher: <br>
-[yzlee](https://clawhub.ai/user/yzlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzlee](https://clawhub.ai/user/yzlee)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to install or repair Hirey Hi so the host can publish people-search listings, find matches, contact people, and coordinate follow-up across hiring, housing, friendship, dating, founder, investor, legal, or other human lead workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes persistent local OpenClaw hook and MCP configuration changes. <br>
-Mitigation: Install only when the user trusts Hirey Hi to modify the local OpenClaw host, and review OpenClaw approval prompts before continuing. <br>
-Risk: The integration stores a local receiver token and binds the current chat for future replies. <br>
-Mitigation: Use the documented cleanup flow if the user no longer wants the Hi integration or reply routing on this host. <br>
-Risk: The installed integration can exchange people-search and listing data with Hirey's default service. <br>
-Mitigation: Share only data appropriate for Hirey Hi workflows and confirm listings before publishing or updating them. <br>
+## Use Case:
 
+OpenClaw users use this skill to install or repair Hirey Hi so their agent can publish people-finding needs, search for matches, contact leads, and coordinate follow-up across jobs, recruiting, housing, friendship, dating, founders, investors, lawyers, and related workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yzlee/openclaw-hi-install) <br>
-- [Hirey Hi default service](http://hi.hireyapp.us) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON status output, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation steps and local host configuration guidance; it may invoke OpenClaw and bundled installer commands when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.56 (source: server release metadata) <br>
+Risk: The install adds persistent OpenClaw hooks and an MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the host configuration changes before use and remove the managed hooks or MCP server if the install is no longer needed.
+
+Risk: The default service endpoint uses plaintext HTTP.
+
+Mitigation: Avoid sensitive accounts or private matching workflows until an HTTPS endpoint is available.
+
+Risk: The install stores a local bearer token and binds the current chat for future replies.
+
+Mitigation: Use only on hosts where local token storage and chat continuation routing are acceptable.
+
+Risk: The workflow depends on remote onboarding instructions.
+
+Mitigation: Review onboarding output before publishing listings or contacting matches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yzlee/skills/openclaw-hi-install)
+- [Publisher profile](https://clawhub.ai/user/yzlee)
+- [Hirey Hi default service](http://hi.hireyapp.us)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a host install flow that may write persistent OpenClaw hooks, MCP configuration, local package state, and onboarding text.]
+
+## Skill Version(s):
+
+0.1.56 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

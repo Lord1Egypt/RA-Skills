@@ -1,48 +1,66 @@
-## Description: <br>
-Helps an agent work with Cloud189 storage by guiding authentication, semantic image search, folder lookup, file listing, file search, and file download-link retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Cloud189 storage tasks, including authentication token retrieval, semantic image search, folder lookup, file listing, file search, and download-link retrieval.
 
-## Publisher: <br>
-[youngcrazy](https://clawhub.ai/user/youngcrazy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youngcrazy](https://clawhub.ai/user/youngcrazy)
 
-## Use Case: <br>
-External users and agents use this skill to authorize access to a Cloud189 account and locate, list, search, and retrieve files in permitted Cloud189 folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Cloud189 authorization codes, access tokens, thumbnail URLs, and download links that can expose private account data. <br>
-Mitigation: Use it only for intentional Cloud189 requests, keep credentials and generated links private, and avoid storing tokens unless the user approves a trusted secure location. <br>
-Risk: The skill asks agents to collect and persist cloud access tokens with weak scoping and safeguards. <br>
-Mitigation: Prefer session-scoped or explicitly approved environment/config storage, remove expired tokens, and re-authenticate when needed. <br>
-Risk: File lookup and download workflows can return private file metadata or download links. <br>
-Mitigation: Confirm the intended provider, folder, file ID or path, and user intent before API calls or returning download links. <br>
+## Use Case:
 
+Developers and agents use this skill to help users authenticate to Cloud189 and perform cloud-drive operations such as finding folders, listing files, searching by filename or image content, and retrieving download links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youngcrazy/cloud189-storage) <br>
-- [Authentication workflow](reference/auth.md) <br>
-- [Image search guide](reference/searchImages.md) <br>
-- [Folder lookup guide](reference/getFolderInfo.md) <br>
-- [File listing guide](reference/listFiles.md) <br>
-- [File search guide](reference/searchFiles.md) <br>
-- [File download guide](reference/downloadFile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include access tokens, file identifiers, thumbnail URLs, and download links that should be treated as private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Cloud189 auth codes, access tokens, and download URLs that can expose account data if stored or shared carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these values as secrets, prefer temporary in-memory use, and avoid writing them to project files or chat logs unless the user explicitly chooses secure storage.
+
+Risk: Generic cloud-drive requests could trigger Cloud189 authentication when the user intended a different provider.
+
+Mitigation: Confirm Cloud189 is the intended cloud-drive provider before starting authentication or requesting an authorization code.
+
+Risk: Cloud189 operations are constrained to the documented application folder and may fail with permission errors outside that scope.
+
+Mitigation: Keep file lookup, listing, search, and download operations within the documented Cloud189 application folder and explain permission failures clearly.
+
+## Reference(s):
+
+- [Cloud189 Storage Skill on ClawHub](https://clawhub.ai/youngcrazy/skills/cloud189-storage)
+- [Cloud189 OAuth Authorization Page](https://cloud.189.cn/web/ecloud-auth/index.html)
+- [Cloud189 OAuth Token Endpoint](https://api.cloud.189.cn/open/oauth2/getAccessTokenByCloudCode?authCode={authCode})
+- [Cloud189 Unified Skill API Endpoint](https://api.cloud.189.cn/smart/server/api/open/cloud/skills)
+- [Authentication workflow](reference/auth.md)
+- [Folder lookup workflow](reference/getFolderInfo.md)
+- [File listing workflow](reference/listFiles.md)
+- [File search workflow](reference/searchFiles.md)
+- [Image search workflow](reference/searchImages.md)
+- [File download workflow](reference/downloadFile.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step operational guidance for Cloud189 API interactions; returned tokens, file metadata, and download URLs should be treated as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

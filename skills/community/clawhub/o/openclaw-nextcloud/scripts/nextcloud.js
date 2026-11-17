@@ -6,7 +6,11 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -3610,15 +3614,15 @@ var require_protectedTokens = __commonJS({
     function isProtectedWeekYearToken(token) {
       return protectedWeekYearTokens.indexOf(token) !== -1;
     }
-    function throwProtectedError(token, format2, input) {
+    function throwProtectedError(token, format, input) {
       if (token === "YYYY") {
-        throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format2, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
+        throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
       } else if (token === "YY") {
-        throw new RangeError("Use `yy` instead of `YY` (in `".concat(format2, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
+        throw new RangeError("Use `yy` instead of `YY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
       } else if (token === "D") {
-        throw new RangeError("Use `d` instead of `D` (in `".concat(format2, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
+        throw new RangeError("Use `d` instead of `D` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
       } else if (token === "DD") {
-        throw new RangeError("Use `dd` instead of `DD` (in `".concat(format2, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
+        throw new RangeError("Use `dd` instead of `DD` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
       }
     }
   }
@@ -3732,8 +3736,8 @@ var require_buildFormatLongFn = __commonJS({
       return function() {
         var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
         var width = options.width ? String(options.width) : args.defaultWidth;
-        var format2 = args.formats[width] || args.formats[args.defaultWidth];
-        return format2;
+        var format = args.formats[width] || args.formats[args.defaultWidth];
+        return format;
       };
     }
     module.exports = exports2.default;
@@ -4237,7 +4241,7 @@ var require_format = __commonJS({
     Object.defineProperty(exports2, "__esModule", {
       value: true
     });
-    exports2.default = format2;
+    exports2.default = format;
     var _index = _interopRequireDefault(require_isValid());
     var _index2 = _interopRequireDefault(require_subMilliseconds());
     var _index3 = _interopRequireDefault(require_toDate());
@@ -4254,7 +4258,7 @@ var require_format = __commonJS({
     var escapedStringRegExp = /^'([^]*?)'?$/;
     var doubleQuoteRegExp = /''/g;
     var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
-    function format2(dirtyDate, dirtyFormatStr, options) {
+    function format(dirtyDate, dirtyFormatStr, options) {
       var _ref, _options$locale, _ref2, _ref3, _ref4, _options$firstWeekCon, _options$locale2, _options$locale2$opti, _defaultOptions$local, _defaultOptions$local2, _ref5, _ref6, _ref7, _options$weekStartsOn, _options$locale3, _options$locale3$opti, _defaultOptions$local3, _defaultOptions$local4;
       (0, _index9.default)(2, arguments);
       var formatStr = String(dirtyFormatStr);
@@ -4642,13 +4646,13 @@ var require_formatDuration = __commonJS({
       }
       var defaultOptions3 = (0, _index.getDefaultOptions)();
       var locale = (_ref = (_options$locale = options === null || options === void 0 ? void 0 : options.locale) !== null && _options$locale !== void 0 ? _options$locale : defaultOptions3.locale) !== null && _ref !== void 0 ? _ref : _index2.default;
-      var format2 = (_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : defaultFormat;
+      var format = (_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : defaultFormat;
       var zero = (_options$zero = options === null || options === void 0 ? void 0 : options.zero) !== null && _options$zero !== void 0 ? _options$zero : false;
       var delimiter = (_options$delimiter = options === null || options === void 0 ? void 0 : options.delimiter) !== null && _options$delimiter !== void 0 ? _options$delimiter : " ";
       if (!locale.formatDistance) {
         return "";
       }
-      var result = format2.reduce(function(acc, unit) {
+      var result = format.reduce(function(acc, unit) {
         var token = "x".concat(unit.replace(/(^.)/, function(m) {
           return m.toUpperCase();
         }));
@@ -4683,9 +4687,9 @@ var require_formatISO = __commonJS({
       if (isNaN(originalDate.getTime())) {
         throw new RangeError("Invalid time value");
       }
-      var format2 = String((_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : "extended");
+      var format = String((_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : "extended");
       var representation = String((_options$representati = options === null || options === void 0 ? void 0 : options.representation) !== null && _options$representati !== void 0 ? _options$representati : "complete");
-      if (format2 !== "extended" && format2 !== "basic") {
+      if (format !== "extended" && format !== "basic") {
         throw new RangeError("format must be 'extended' or 'basic'");
       }
       if (representation !== "date" && representation !== "time" && representation !== "complete") {
@@ -4693,8 +4697,8 @@ var require_formatISO = __commonJS({
       }
       var result = "";
       var tzOffset = "";
-      var dateDelimiter = format2 === "extended" ? "-" : "";
-      var timeDelimiter = format2 === "extended" ? ":" : "";
+      var dateDelimiter = format === "extended" ? "-" : "";
+      var timeDelimiter = format === "extended" ? ":" : "";
       if (representation !== "time") {
         var day = (0, _index2.default)(originalDate.getDate(), 2);
         var month = (0, _index2.default)(originalDate.getMonth() + 1, 2);
@@ -4746,17 +4750,17 @@ var require_formatISO9075 = __commonJS({
       if (!(0, _index2.default)(originalDate)) {
         throw new RangeError("Invalid time value");
       }
-      var format2 = String((_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : "extended");
+      var format = String((_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : "extended");
       var representation = String((_options$representati = options === null || options === void 0 ? void 0 : options.representation) !== null && _options$representati !== void 0 ? _options$representati : "complete");
-      if (format2 !== "extended" && format2 !== "basic") {
+      if (format !== "extended" && format !== "basic") {
         throw new RangeError("format must be 'extended' or 'basic'");
       }
       if (representation !== "date" && representation !== "time" && representation !== "complete") {
         throw new RangeError("representation must be 'date', 'time', or 'complete'");
       }
       var result = "";
-      var dateDelimiter = format2 === "extended" ? "-" : "";
-      var timeDelimiter = format2 === "extended" ? ":" : "";
+      var dateDelimiter = format === "extended" ? "-" : "";
+      var timeDelimiter = format === "extended" ? ":" : "";
       if (representation !== "time") {
         var day = (0, _index3.default)(originalDate.getDate(), 2);
         var month = (0, _index3.default)(originalDate.getMonth() + 1, 2);
@@ -13677,6 +13681,8 @@ var require_date_fns = __commonJS({
 });
 
 // index.js
+import fs from "node:fs";
+import path from "node:path";
 import process from "node:process";
 import { Buffer as Buffer2 } from "node:buffer";
 
@@ -14028,956 +14034,6 @@ function getPositionFromMatch(match) {
 }
 
 // node_modules/@nodable/entities/src/entities.js
-var BASIC_LATIN = {
-  amp: "&",
-  AMP: "&",
-  lt: "<",
-  LT: "<",
-  gt: ">",
-  GT: ">",
-  quot: '"',
-  QUOT: '"',
-  apos: "'",
-  lsquo: "\u2018",
-  rsquo: "\u2019",
-  ldquo: "\u201C",
-  rdquo: "\u201D",
-  lsquor: "\u201A",
-  rsquor: "\u2019",
-  ldquor: "\u201E",
-  bdquo: "\u201E",
-  comma: ",",
-  period: ".",
-  colon: ":",
-  semi: ";",
-  excl: "!",
-  quest: "?",
-  num: "#",
-  dollar: "$",
-  percent: "%",
-  amp: "&",
-  ast: "*",
-  commat: "@",
-  lowbar: "_",
-  verbar: "|",
-  vert: "|",
-  sol: "/",
-  bsol: "\\",
-  lbrace: "{",
-  rbrace: "}",
-  lbrack: "[",
-  rbrack: "]",
-  lpar: "(",
-  rpar: ")",
-  nbsp: "\xA0",
-  iexcl: "\xA1",
-  cent: "\xA2",
-  pound: "\xA3",
-  curren: "\xA4",
-  yen: "\xA5",
-  brvbar: "\xA6",
-  sect: "\xA7",
-  uml: "\xA8",
-  copy: "\xA9",
-  COPY: "\xA9",
-  ordf: "\xAA",
-  laquo: "\xAB",
-  not: "\xAC",
-  shy: "\xAD",
-  reg: "\xAE",
-  REG: "\xAE",
-  macr: "\xAF",
-  deg: "\xB0",
-  plusmn: "\xB1",
-  sup2: "\xB2",
-  sup3: "\xB3",
-  acute: "\xB4",
-  micro: "\xB5",
-  para: "\xB6",
-  middot: "\xB7",
-  cedil: "\xB8",
-  sup1: "\xB9",
-  ordm: "\xBA",
-  raquo: "\xBB",
-  frac14: "\xBC",
-  frac12: "\xBD",
-  half: "\xBD",
-  frac34: "\xBE",
-  iquest: "\xBF",
-  times: "\xD7",
-  div: "\xF7",
-  divide: "\xF7"
-};
-var LATIN_ACCENTS = {
-  Agrave: "\xC0",
-  agrave: "\xE0",
-  Aacute: "\xC1",
-  aacute: "\xE1",
-  Acirc: "\xC2",
-  acirc: "\xE2",
-  Atilde: "\xC3",
-  atilde: "\xE3",
-  Auml: "\xC4",
-  auml: "\xE4",
-  Aring: "\xC5",
-  aring: "\xE5",
-  AElig: "\xC6",
-  aelig: "\xE6",
-  Ccedil: "\xC7",
-  ccedil: "\xE7",
-  Egrave: "\xC8",
-  egrave: "\xE8",
-  Eacute: "\xC9",
-  eacute: "\xE9",
-  Ecirc: "\xCA",
-  ecirc: "\xEA",
-  Euml: "\xCB",
-  euml: "\xEB",
-  Igrave: "\xCC",
-  igrave: "\xEC",
-  Iacute: "\xCD",
-  iacute: "\xED",
-  Icirc: "\xCE",
-  icirc: "\xEE",
-  Iuml: "\xCF",
-  iuml: "\xEF",
-  ETH: "\xD0",
-  eth: "\xF0",
-  Ntilde: "\xD1",
-  ntilde: "\xF1",
-  Ograve: "\xD2",
-  ograve: "\xF2",
-  Oacute: "\xD3",
-  oacute: "\xF3",
-  Ocirc: "\xD4",
-  ocirc: "\xF4",
-  Otilde: "\xD5",
-  otilde: "\xF5",
-  Ouml: "\xD6",
-  ouml: "\xF6",
-  Oslash: "\xD8",
-  oslash: "\xF8",
-  Ugrave: "\xD9",
-  ugrave: "\xF9",
-  Uacute: "\xDA",
-  uacute: "\xFA",
-  Ucirc: "\xDB",
-  ucirc: "\xFB",
-  Uuml: "\xDC",
-  uuml: "\xFC",
-  Yacute: "\xDD",
-  yacute: "\xFD",
-  THORN: "\xDE",
-  thorn: "\xFE",
-  szlig: "\xDF",
-  yuml: "\xFF",
-  Yuml: "\u0178"
-};
-var LATIN_EXTENDED = {
-  Amacr: "\u0100",
-  amacr: "\u0101",
-  Abreve: "\u0102",
-  abreve: "\u0103",
-  Aogon: "\u0104",
-  aogon: "\u0105",
-  Cacute: "\u0106",
-  cacute: "\u0107",
-  Ccirc: "\u0108",
-  ccirc: "\u0109",
-  Cdot: "\u010A",
-  cdot: "\u010B",
-  Ccaron: "\u010C",
-  ccaron: "\u010D",
-  Dcaron: "\u010E",
-  dcaron: "\u010F",
-  Dstrok: "\u0110",
-  dstrok: "\u0111",
-  Emacr: "\u0112",
-  emacr: "\u0113",
-  Ecaron: "\u011A",
-  ecaron: "\u011B",
-  Edot: "\u0116",
-  edot: "\u0117",
-  Eogon: "\u0118",
-  eogon: "\u0119",
-  Gcirc: "\u011C",
-  gcirc: "\u011D",
-  Gbreve: "\u011E",
-  gbreve: "\u011F",
-  Gdot: "\u0120",
-  gdot: "\u0121",
-  Gcedil: "\u0122",
-  Hcirc: "\u0124",
-  hcirc: "\u0125",
-  Hstrok: "\u0126",
-  hstrok: "\u0127",
-  Itilde: "\u0128",
-  itilde: "\u0129",
-  Imacr: "\u012A",
-  imacr: "\u012B",
-  Iogon: "\u012E",
-  iogon: "\u012F",
-  Idot: "\u0130",
-  IJlig: "\u0132",
-  ijlig: "\u0133",
-  Jcirc: "\u0134",
-  jcirc: "\u0135",
-  Kcedil: "\u0136",
-  kcedil: "\u0137",
-  kgreen: "\u0138",
-  Lacute: "\u0139",
-  lacute: "\u013A",
-  Lcedil: "\u013B",
-  lcedil: "\u013C",
-  Lcaron: "\u013D",
-  lcaron: "\u013E",
-  Lmidot: "\u013F",
-  lmidot: "\u0140",
-  Lstrok: "\u0141",
-  lstrok: "\u0142",
-  Nacute: "\u0143",
-  nacute: "\u0144",
-  Ncaron: "\u0147",
-  ncaron: "\u0148",
-  Ncedil: "\u0145",
-  ncedil: "\u0146",
-  ENG: "\u014A",
-  eng: "\u014B",
-  Omacr: "\u014C",
-  omacr: "\u014D",
-  Odblac: "\u0150",
-  odblac: "\u0151",
-  OElig: "\u0152",
-  oelig: "\u0153",
-  Racute: "\u0154",
-  racute: "\u0155",
-  Rcaron: "\u0158",
-  rcaron: "\u0159",
-  Rcedil: "\u0156",
-  rcedil: "\u0157",
-  Sacute: "\u015A",
-  sacute: "\u015B",
-  Scirc: "\u015C",
-  scirc: "\u015D",
-  Scedil: "\u015E",
-  scedil: "\u015F",
-  Scaron: "\u0160",
-  scaron: "\u0161",
-  Tcedil: "\u0162",
-  tcedil: "\u0163",
-  Tcaron: "\u0164",
-  tcaron: "\u0165",
-  Tstrok: "\u0166",
-  tstrok: "\u0167",
-  Utilde: "\u0168",
-  utilde: "\u0169",
-  Umacr: "\u016A",
-  umacr: "\u016B",
-  Ubreve: "\u016C",
-  ubreve: "\u016D",
-  Uring: "\u016E",
-  uring: "\u016F",
-  Udblac: "\u0170",
-  udblac: "\u0171",
-  Uogon: "\u0172",
-  uogon: "\u0173",
-  Wcirc: "\u0174",
-  wcirc: "\u0175",
-  Ycirc: "\u0176",
-  ycirc: "\u0177",
-  Zacute: "\u0179",
-  zacute: "\u017A",
-  Zdot: "\u017B",
-  zdot: "\u017C",
-  Zcaron: "\u017D",
-  zcaron: "\u017E"
-};
-var GREEK = {
-  Alpha: "\u0391",
-  alpha: "\u03B1",
-  Beta: "\u0392",
-  beta: "\u03B2",
-  Gamma: "\u0393",
-  gamma: "\u03B3",
-  Delta: "\u0394",
-  delta: "\u03B4",
-  Epsilon: "\u0395",
-  epsilon: "\u03B5",
-  epsiv: "\u03F5",
-  varepsilon: "\u03F5",
-  Zeta: "\u0396",
-  zeta: "\u03B6",
-  Eta: "\u0397",
-  eta: "\u03B7",
-  Theta: "\u0398",
-  theta: "\u03B8",
-  thetasym: "\u03D1",
-  vartheta: "\u03D1",
-  Iota: "\u0399",
-  iota: "\u03B9",
-  Kappa: "\u039A",
-  kappa: "\u03BA",
-  kappav: "\u03F0",
-  varkappa: "\u03F0",
-  Lambda: "\u039B",
-  lambda: "\u03BB",
-  Mu: "\u039C",
-  mu: "\u03BC",
-  Nu: "\u039D",
-  nu: "\u03BD",
-  Xi: "\u039E",
-  xi: "\u03BE",
-  Omicron: "\u039F",
-  omicron: "\u03BF",
-  Pi: "\u03A0",
-  pi: "\u03C0",
-  piv: "\u03D6",
-  varpi: "\u03D6",
-  Rho: "\u03A1",
-  rho: "\u03C1",
-  rhov: "\u03F1",
-  varrho: "\u03F1",
-  Sigma: "\u03A3",
-  sigma: "\u03C3",
-  sigmaf: "\u03C2",
-  sigmav: "\u03C2",
-  varsigma: "\u03C2",
-  Tau: "\u03A4",
-  tau: "\u03C4",
-  Upsilon: "\u03A5",
-  upsilon: "\u03C5",
-  upsi: "\u03C5",
-  Upsi: "\u03D2",
-  upsih: "\u03D2",
-  Phi: "\u03A6",
-  phi: "\u03C6",
-  phiv: "\u03D5",
-  varphi: "\u03D5",
-  Chi: "\u03A7",
-  chi: "\u03C7",
-  Psi: "\u03A8",
-  psi: "\u03C8",
-  Omega: "\u03A9",
-  omega: "\u03C9",
-  ohm: "\u03A9",
-  Gammad: "\u03DC",
-  gammad: "\u03DD",
-  digamma: "\u03DD"
-};
-var CYRILLIC = {
-  Afr: "\u{1D504}",
-  afr: "\u{1D51E}",
-  Acy: "\u0410",
-  acy: "\u0430",
-  Bcy: "\u0411",
-  bcy: "\u0431",
-  Vcy: "\u0412",
-  vcy: "\u0432",
-  Gcy: "\u0413",
-  gcy: "\u0433",
-  Dcy: "\u0414",
-  dcy: "\u0434",
-  IEcy: "\u0415",
-  iecy: "\u0435",
-  IOcy: "\u0401",
-  iocy: "\u0451",
-  ZHcy: "\u0416",
-  zhcy: "\u0436",
-  Zcy: "\u0417",
-  zcy: "\u0437",
-  Icy: "\u0418",
-  icy: "\u0438",
-  Jcy: "\u0419",
-  jcy: "\u0439",
-  Kcy: "\u041A",
-  kcy: "\u043A",
-  Lcy: "\u041B",
-  lcy: "\u043B",
-  Mcy: "\u041C",
-  mcy: "\u043C",
-  Ncy: "\u041D",
-  ncy: "\u043D",
-  Ocy: "\u041E",
-  ocy: "\u043E",
-  Pcy: "\u041F",
-  pcy: "\u043F",
-  Rcy: "\u0420",
-  rcy: "\u0440",
-  Scy: "\u0421",
-  scy: "\u0441",
-  Tcy: "\u0422",
-  tcy: "\u0442",
-  Ucy: "\u0423",
-  ucy: "\u0443",
-  Fcy: "\u0424",
-  fcy: "\u0444",
-  KHcy: "\u0425",
-  khcy: "\u0445",
-  TScy: "\u0426",
-  tscy: "\u0446",
-  CHcy: "\u0427",
-  chcy: "\u0447",
-  SHcy: "\u0428",
-  shcy: "\u0448",
-  SHCHcy: "\u0429",
-  shchcy: "\u0449",
-  HARDcy: "\u042A",
-  hardcy: "\u044A",
-  Ycy: "\u042B",
-  ycy: "\u044B",
-  SOFTcy: "\u042C",
-  softcy: "\u044C",
-  Ecy: "\u042D",
-  ecy: "\u044D",
-  YUcy: "\u042E",
-  yucy: "\u044E",
-  YAcy: "\u042F",
-  yacy: "\u044F",
-  DJcy: "\u0402",
-  djcy: "\u0452",
-  GJcy: "\u0403",
-  gjcy: "\u0453",
-  Jukcy: "\u0404",
-  jukcy: "\u0454",
-  DScy: "\u0405",
-  dscy: "\u0455",
-  Iukcy: "\u0406",
-  iukcy: "\u0456",
-  YIcy: "\u0407",
-  yicy: "\u0457",
-  Jsercy: "\u0408",
-  jsercy: "\u0458",
-  LJcy: "\u0409",
-  ljcy: "\u0459",
-  NJcy: "\u040A",
-  njcy: "\u045A",
-  TSHcy: "\u040B",
-  tshcy: "\u045B",
-  KJcy: "\u040C",
-  kjcy: "\u045C",
-  Ubrcy: "\u040E",
-  ubrcy: "\u045E",
-  DZcy: "\u040F",
-  dzcy: "\u045F"
-};
-var MATH = {
-  plus: "+",
-  minus: "\u2212",
-  mnplus: "\u2213",
-  mp: "\u2213",
-  pm: "\xB1",
-  times: "\xD7",
-  div: "\xF7",
-  divide: "\xF7",
-  sdot: "\u22C5",
-  star: "\u2606",
-  starf: "\u2605",
-  bigstar: "\u2605",
-  lowast: "\u2217",
-  ast: "*",
-  midast: "*",
-  compfn: "\u2218",
-  smallcircle: "\u2218",
-  bullet: "\u2022",
-  bull: "\u2022",
-  nbsp: "\xA0",
-  hellip: "\u2026",
-  mldr: "\u2026",
-  prime: "\u2032",
-  Prime: "\u2033",
-  tprime: "\u2034",
-  bprime: "\u2035",
-  backprime: "\u2035",
-  minus: "\u2212",
-  minusd: "\u2238",
-  dotminus: "\u2238",
-  plusdo: "\u2214",
-  dotplus: "\u2214",
-  plusmn: "\xB1",
-  minusplus: "\u2213",
-  mnplus: "\u2213",
-  mp: "\u2213",
-  setminus: "\u2216",
-  smallsetminus: "\u2216",
-  Backslash: "\u2216",
-  setmn: "\u2216",
-  ssetmn: "\u2216",
-  lowbar: "_",
-  verbar: "|",
-  vert: "|",
-  VerticalLine: "|",
-  colon: ":",
-  Colon: "\u2237",
-  Proportion: "\u2237",
-  ratio: "\u2236",
-  equals: "=",
-  ne: "\u2260",
-  nequiv: "\u2262",
-  equiv: "\u2261",
-  Congruent: "\u2261",
-  sim: "\u223C",
-  thicksim: "\u223C",
-  thksim: "\u223C",
-  sime: "\u2243",
-  simeq: "\u2243",
-  TildeEqual: "\u2243",
-  asymp: "\u2248",
-  approx: "\u2248",
-  thickapprox: "\u2248",
-  thkap: "\u2248",
-  TildeTilde: "\u2248",
-  ncong: "\u2247",
-  cong: "\u2245",
-  TildeFullEqual: "\u2245",
-  asympeq: "\u224D",
-  CupCap: "\u224D",
-  bump: "\u224E",
-  Bumpeq: "\u224E",
-  HumpDownHump: "\u224E",
-  bumpe: "\u224F",
-  bumpeq: "\u224F",
-  HumpEqual: "\u224F",
-  dotminus: "\u2238",
-  minusd: "\u2238",
-  plusdo: "\u2214",
-  dotplus: "\u2214",
-  le: "\u2264",
-  LessEqual: "\u2264",
-  ge: "\u2265",
-  GreaterEqual: "\u2265",
-  lesseqgtr: "\u22DA",
-  lesseqqgtr: "\u2A8B",
-  greater: ">",
-  less: "<"
-};
-var MATH_ADVANCED = {
-  alefsym: "\u2135",
-  aleph: "\u2135",
-  beth: "\u2136",
-  gimel: "\u2137",
-  daleth: "\u2138",
-  forall: "\u2200",
-  ForAll: "\u2200",
-  part: "\u2202",
-  PartialD: "\u2202",
-  exist: "\u2203",
-  Exists: "\u2203",
-  nexist: "\u2204",
-  nexists: "\u2204",
-  empty: "\u2205",
-  emptyset: "\u2205",
-  emptyv: "\u2205",
-  varnothing: "\u2205",
-  nabla: "\u2207",
-  Del: "\u2207",
-  isin: "\u2208",
-  isinv: "\u2208",
-  in: "\u2208",
-  Element: "\u2208",
-  notin: "\u2209",
-  notinva: "\u2209",
-  ni: "\u220B",
-  niv: "\u220B",
-  SuchThat: "\u220B",
-  ReverseElement: "\u220B",
-  notni: "\u220C",
-  notniva: "\u220C",
-  prod: "\u220F",
-  Product: "\u220F",
-  coprod: "\u2210",
-  Coproduct: "\u2210",
-  sum: "\u2211",
-  Sum: "\u2211",
-  minus: "\u2212",
-  mp: "\u2213",
-  plusdo: "\u2214",
-  dotplus: "\u2214",
-  setminus: "\u2216",
-  lowast: "\u2217",
-  radic: "\u221A",
-  Sqrt: "\u221A",
-  prop: "\u221D",
-  propto: "\u221D",
-  Proportional: "\u221D",
-  varpropto: "\u221D",
-  infin: "\u221E",
-  infintie: "\u29DD",
-  ang: "\u2220",
-  angle: "\u2220",
-  angmsd: "\u2221",
-  measuredangle: "\u2221",
-  angsph: "\u2222",
-  mid: "\u2223",
-  VerticalBar: "\u2223",
-  nmid: "\u2224",
-  nsmid: "\u2224",
-  npar: "\u2226",
-  parallel: "\u2225",
-  spar: "\u2225",
-  nparallel: "\u2226",
-  nspar: "\u2226",
-  and: "\u2227",
-  wedge: "\u2227",
-  or: "\u2228",
-  vee: "\u2228",
-  cap: "\u2229",
-  cup: "\u222A",
-  int: "\u222B",
-  Integral: "\u222B",
-  conint: "\u222E",
-  ContourIntegral: "\u222E",
-  Conint: "\u222F",
-  DoubleContourIntegral: "\u222F",
-  Cconint: "\u2230",
-  there4: "\u2234",
-  therefore: "\u2234",
-  Therefore: "\u2234",
-  becaus: "\u2235",
-  because: "\u2235",
-  Because: "\u2235",
-  ratio: "\u2236",
-  Proportion: "\u2237",
-  minusd: "\u2238",
-  dotminus: "\u2238",
-  mDDot: "\u223A",
-  homtht: "\u223B",
-  sim: "\u223C",
-  bsimg: "\u223D",
-  backsim: "\u223D",
-  ac: "\u223E",
-  mstpos: "\u223E",
-  acd: "\u223F",
-  VerticalTilde: "\u2240",
-  wr: "\u2240",
-  wreath: "\u2240",
-  nsime: "\u2244",
-  nsimeq: "\u2244",
-  nsimeq: "\u2244",
-  ncong: "\u2247",
-  simne: "\u2246",
-  ncongdot: "\u2A6D\u0338",
-  ngsim: "\u2275",
-  nsim: "\u2241",
-  napprox: "\u2249",
-  nap: "\u2249",
-  ngeq: "\u2271",
-  nge: "\u2271",
-  nleq: "\u2270",
-  nle: "\u2270",
-  ngtr: "\u226F",
-  ngt: "\u226F",
-  nless: "\u226E",
-  nlt: "\u226E",
-  nprec: "\u2280",
-  npr: "\u2280",
-  nsucc: "\u2281",
-  nsc: "\u2281"
-};
-var ARROWS = {
-  larr: "\u2190",
-  leftarrow: "\u2190",
-  LeftArrow: "\u2190",
-  uarr: "\u2191",
-  uparrow: "\u2191",
-  UpArrow: "\u2191",
-  rarr: "\u2192",
-  rightarrow: "\u2192",
-  RightArrow: "\u2192",
-  darr: "\u2193",
-  downarrow: "\u2193",
-  DownArrow: "\u2193",
-  harr: "\u2194",
-  leftrightarrow: "\u2194",
-  LeftRightArrow: "\u2194",
-  varr: "\u2195",
-  updownarrow: "\u2195",
-  UpDownArrow: "\u2195",
-  nwarr: "\u2196",
-  nwarrow: "\u2196",
-  UpperLeftArrow: "\u2196",
-  nearr: "\u2197",
-  nearrow: "\u2197",
-  UpperRightArrow: "\u2197",
-  searr: "\u2198",
-  searrow: "\u2198",
-  LowerRightArrow: "\u2198",
-  swarr: "\u2199",
-  swarrow: "\u2199",
-  LowerLeftArrow: "\u2199",
-  lArr: "\u21D0",
-  Leftarrow: "\u21D0",
-  uArr: "\u21D1",
-  Uparrow: "\u21D1",
-  rArr: "\u21D2",
-  Rightarrow: "\u21D2",
-  dArr: "\u21D3",
-  Downarrow: "\u21D3",
-  hArr: "\u21D4",
-  Leftrightarrow: "\u21D4",
-  iff: "\u21D4",
-  vArr: "\u21D5",
-  Updownarrow: "\u21D5",
-  lAarr: "\u21DA",
-  Lleftarrow: "\u21DA",
-  rAarr: "\u21DB",
-  Rrightarrow: "\u21DB",
-  lrarr: "\u21C6",
-  leftrightarrows: "\u21C6",
-  rlarr: "\u21C4",
-  rightleftarrows: "\u21C4",
-  lrhar: "\u21CB",
-  leftrightharpoons: "\u21CB",
-  ReverseEquilibrium: "\u21CB",
-  rlhar: "\u21CC",
-  rightleftharpoons: "\u21CC",
-  Equilibrium: "\u21CC",
-  udarr: "\u21C5",
-  UpArrowDownArrow: "\u21C5",
-  duarr: "\u21F5",
-  DownArrowUpArrow: "\u21F5",
-  llarr: "\u21C7",
-  leftleftarrows: "\u21C7",
-  rrarr: "\u21C9",
-  rightrightarrows: "\u21C9",
-  ddarr: "\u21CA",
-  downdownarrows: "\u21CA",
-  har: "\u21BD",
-  lhard: "\u21BD",
-  leftharpoondown: "\u21BD",
-  lharu: "\u21BC",
-  leftharpoonup: "\u21BC",
-  rhard: "\u21C1",
-  rightharpoondown: "\u21C1",
-  rharu: "\u21C0",
-  rightharpoonup: "\u21C0",
-  lsh: "\u21B0",
-  Lsh: "\u21B0",
-  rsh: "\u21B1",
-  Rsh: "\u21B1",
-  ldsh: "\u21B2",
-  rdsh: "\u21B3",
-  hookleftarrow: "\u21A9",
-  hookrightarrow: "\u21AA",
-  mapstoleft: "\u21A4",
-  mapstoup: "\u21A5",
-  map: "\u21A6",
-  mapsto: "\u21A6",
-  mapstodown: "\u21A7",
-  crarr: "\u21B5",
-  nwarrow: "\u2196",
-  nearrow: "\u2197",
-  searrow: "\u2198",
-  swarrow: "\u2199",
-  nleftarrow: "\u219A",
-  nleftrightarrow: "\u21AE",
-  nrightarrow: "\u219B",
-  nrarr: "\u219B",
-  larrtl: "\u21A2",
-  rarrtl: "\u21A3",
-  leftarrowtail: "\u21A2",
-  rightarrowtail: "\u21A3",
-  twoheadleftarrow: "\u219E",
-  twoheadrightarrow: "\u21A0",
-  Larr: "\u219E",
-  Rarr: "\u21A0",
-  larrhk: "\u21A9",
-  rarrhk: "\u21AA",
-  larrlp: "\u21AB",
-  looparrowleft: "\u21AB",
-  rarrlp: "\u21AC",
-  looparrowright: "\u21AC",
-  harrw: "\u21AD",
-  leftrightsquigarrow: "\u21AD",
-  nrarrw: "\u219D\u0338",
-  rarrw: "\u219D",
-  rightsquigarrow: "\u219D",
-  larrbfs: "\u291F",
-  rarrbfs: "\u2920",
-  nvHarr: "\u2904",
-  nvlArr: "\u2902",
-  nvrArr: "\u2903",
-  larrfs: "\u291D",
-  rarrfs: "\u291E",
-  Map: "\u2905",
-  larrsim: "\u2973",
-  rarrsim: "\u2974",
-  harrcir: "\u2948",
-  Uarrocir: "\u2949",
-  lurdshar: "\u294A",
-  ldrdhar: "\u2967",
-  ldrushar: "\u294B",
-  rdldhar: "\u2969",
-  lrhard: "\u296D",
-  rlhar: "\u21CC",
-  uharr: "\u21BE",
-  uharl: "\u21BF",
-  dharr: "\u21C2",
-  dharl: "\u21C3",
-  Uarr: "\u219F",
-  Darr: "\u21A1",
-  zigrarr: "\u21DD",
-  nwArr: "\u21D6",
-  neArr: "\u21D7",
-  seArr: "\u21D8",
-  swArr: "\u21D9",
-  nharr: "\u21AE",
-  nhArr: "\u21CE",
-  nlarr: "\u219A",
-  nlArr: "\u21CD",
-  nrarr: "\u219B",
-  nrArr: "\u21CF",
-  larrb: "\u21E4",
-  LeftArrowBar: "\u21E4",
-  rarrb: "\u21E5",
-  RightArrowBar: "\u21E5"
-};
-var SHAPES = {
-  square: "\u25A1",
-  Square: "\u25A1",
-  squ: "\u25A1",
-  squf: "\u25AA",
-  squarf: "\u25AA",
-  blacksquar: "\u25AA",
-  blacksquare: "\u25AA",
-  FilledVerySmallSquare: "\u25AA",
-  blk34: "\u2593",
-  blk12: "\u2592",
-  blk14: "\u2591",
-  block: "\u2588",
-  srect: "\u25AD",
-  rect: "\u25AD",
-  sdot: "\u22C5",
-  sdotb: "\u22A1",
-  dotsquare: "\u22A1",
-  triangle: "\u25B5",
-  tri: "\u25B5",
-  trine: "\u25B5",
-  utri: "\u25B5",
-  triangledown: "\u25BF",
-  dtri: "\u25BF",
-  tridown: "\u25BF",
-  triangleleft: "\u25C3",
-  ltri: "\u25C3",
-  triangleright: "\u25B9",
-  rtri: "\u25B9",
-  blacktriangle: "\u25B4",
-  utrif: "\u25B4",
-  blacktriangledown: "\u25BE",
-  dtrif: "\u25BE",
-  blacktriangleleft: "\u25C2",
-  ltrif: "\u25C2",
-  blacktriangleright: "\u25B8",
-  rtrif: "\u25B8",
-  loz: "\u25CA",
-  lozenge: "\u25CA",
-  blacklozenge: "\u29EB",
-  lozf: "\u29EB",
-  bigcirc: "\u25EF",
-  xcirc: "\u25EF",
-  circ: "\u02C6",
-  Circle: "\u25CB",
-  cir: "\u25CB",
-  o: "\u25CB",
-  bullet: "\u2022",
-  bull: "\u2022",
-  hellip: "\u2026",
-  mldr: "\u2026",
-  nldr: "\u2025",
-  boxh: "\u2500",
-  HorizontalLine: "\u2500",
-  boxv: "\u2502",
-  boxdr: "\u250C",
-  boxdl: "\u2510",
-  boxur: "\u2514",
-  boxul: "\u2518",
-  boxvr: "\u251C",
-  boxvl: "\u2524",
-  boxhd: "\u252C",
-  boxhu: "\u2534",
-  boxvh: "\u253C",
-  boxH: "\u2550",
-  boxV: "\u2551",
-  boxdR: "\u2552",
-  boxDr: "\u2553",
-  boxDR: "\u2554",
-  boxDl: "\u2555",
-  boxdL: "\u2556",
-  boxDL: "\u2557",
-  boxuR: "\u2558",
-  boxUr: "\u2559",
-  boxUR: "\u255A",
-  boxUl: "\u255C",
-  boxuL: "\u255B",
-  boxUL: "\u255D",
-  boxvR: "\u255E",
-  boxVr: "\u255F",
-  boxVR: "\u2560",
-  boxVl: "\u2562",
-  boxvL: "\u2561",
-  boxVL: "\u2563",
-  boxHd: "\u2564",
-  boxhD: "\u2565",
-  boxHD: "\u2566",
-  boxHu: "\u2567",
-  boxhU: "\u2568",
-  boxHU: "\u2569",
-  boxvH: "\u256A",
-  boxVh: "\u256B",
-  boxVH: "\u256C"
-};
-var PUNCTUATION = {
-  excl: "!",
-  iexcl: "\xA1",
-  brvbar: "\xA6",
-  sect: "\xA7",
-  uml: "\xA8",
-  copy: "\xA9",
-  ordf: "\xAA",
-  laquo: "\xAB",
-  not: "\xAC",
-  shy: "\xAD",
-  reg: "\xAE",
-  macr: "\xAF",
-  deg: "\xB0",
-  plusmn: "\xB1",
-  sup2: "\xB2",
-  sup3: "\xB3",
-  acute: "\xB4",
-  micro: "\xB5",
-  para: "\xB6",
-  middot: "\xB7",
-  cedil: "\xB8",
-  sup1: "\xB9",
-  ordm: "\xBA",
-  raquo: "\xBB",
-  frac14: "\xBC",
-  frac12: "\xBD",
-  frac34: "\xBE",
-  iquest: "\xBF",
-  nbsp: "\xA0",
-  comma: ",",
-  period: ".",
-  colon: ":",
-  semi: ";",
-  vert: "|",
-  Verbar: "\u2016",
-  verbar: "|",
-  dblac: "\u02DD",
-  circ: "\u02C6",
-  caron: "\u02C7",
-  breve: "\u02D8",
-  dot: "\u02D9",
-  ring: "\u02DA",
-  ogon: "\u02DB",
-  tilde: "\u02DC",
-  DiacriticalGrave: "`",
-  DiacriticalAcute: "\xB4",
-  DiacriticalTilde: "\u02DC",
-  DiacriticalDot: "\u02D9",
-  DiacriticalDoubleAcute: "\u02DD",
-  grave: "`",
-  acute: "\xB4"
-};
 var CURRENCY = {
   cent: "\xA2",
   pound: "\xA3",
@@ -14985,7 +14041,6 @@ var CURRENCY = {
   yen: "\xA5",
   euro: "\u20AC",
   dollar: "$",
-  euro: "\u20AC",
   fnof: "\u0192",
   inr: "\u20B9",
   af: "\u060B",
@@ -14995,107 +14050,6 @@ var CURRENCY = {
   won: "\u20A9",
   yuan: "\xA5",
   cedil: "\xB8"
-};
-var FRACTIONS = {
-  frac12: "\xBD",
-  half: "\xBD",
-  frac13: "\u2153",
-  frac14: "\xBC",
-  frac15: "\u2155",
-  frac16: "\u2159",
-  frac18: "\u215B",
-  frac23: "\u2154",
-  frac25: "\u2156",
-  frac34: "\xBE",
-  frac35: "\u2157",
-  frac38: "\u215C",
-  frac45: "\u2158",
-  frac56: "\u215A",
-  frac58: "\u215D",
-  frac78: "\u215E",
-  frasl: "\u2044"
-};
-var MISC_SYMBOLS = {
-  trade: "\u2122",
-  TRADE: "\u2122",
-  telrec: "\u2315",
-  target: "\u2316",
-  ulcorn: "\u231C",
-  ulcorner: "\u231C",
-  urcorn: "\u231D",
-  urcorner: "\u231D",
-  dlcorn: "\u231E",
-  llcorner: "\u231E",
-  drcorn: "\u231F",
-  lrcorner: "\u231F",
-  intercal: "\u22BA",
-  intcal: "\u22BA",
-  oplus: "\u2295",
-  CirclePlus: "\u2295",
-  ominus: "\u2296",
-  CircleMinus: "\u2296",
-  otimes: "\u2297",
-  CircleTimes: "\u2297",
-  osol: "\u2298",
-  odot: "\u2299",
-  CircleDot: "\u2299",
-  oast: "\u229B",
-  circledast: "\u229B",
-  odash: "\u229D",
-  circleddash: "\u229D",
-  ocirc: "\u229A",
-  circledcirc: "\u229A",
-  boxplus: "\u229E",
-  plusb: "\u229E",
-  boxminus: "\u229F",
-  minusb: "\u229F",
-  boxtimes: "\u22A0",
-  timesb: "\u22A0",
-  boxdot: "\u22A1",
-  sdotb: "\u22A1",
-  veebar: "\u22BB",
-  vee: "\u2228",
-  barvee: "\u22BD",
-  and: "\u2227",
-  wedge: "\u2227",
-  Cap: "\u22D2",
-  Cup: "\u22D3",
-  Fork: "\u22D4",
-  pitchfork: "\u22D4",
-  epar: "\u22D5",
-  ltlarr: "\u2976",
-  nvap: "\u224D\u20D2",
-  nvsim: "\u223C\u20D2",
-  nvge: "\u2265\u20D2",
-  nvle: "\u2264\u20D2",
-  nvlt: "<\u20D2",
-  nvgt: ">\u20D2",
-  nvltrie: "\u22B4\u20D2",
-  nvrtrie: "\u22B5\u20D2",
-  Vdash: "\u22A9",
-  dashv: "\u22A3",
-  vDash: "\u22A8",
-  Vdash: "\u22A9",
-  Vvdash: "\u22AA",
-  nvdash: "\u22AC",
-  nvDash: "\u22AD",
-  nVdash: "\u22AE",
-  nVDash: "\u22AF"
-};
-var ALL_ENTITIES = {
-  ...BASIC_LATIN,
-  ...LATIN_ACCENTS,
-  ...LATIN_EXTENDED,
-  ...GREEK,
-  ...CYRILLIC,
-  ...MATH,
-  ...MATH_ADVANCED,
-  ...ARROWS,
-  ...SHAPES,
-  ...PUNCTUATION,
-  ...CURRENCY,
-  ...FRACTIONS,
-  ...MISC_SYMBOLS
 };
 var XML = {
   amp: "&",
@@ -15128,6 +14082,14 @@ var COMMON_HTML = {
 };
 
 // node_modules/@nodable/entities/src/EntityDecoder.js
+var ENTITY_ACTION = Object.freeze({
+  /** Resolve and expand the entity normally. */
+  ALLOW: "allow",
+  /** Silently skip this entity — it will not be registered. */
+  BLOCK: "block",
+  /** Throw an error, aborting entity registration entirely. */
+  THROW: "throw"
+});
 var SPECIAL_CHARS = new Set("!?\\\\/[]$%{}^&*()<>|+");
 function validateEntityName(name) {
   if (name[0] === "#") {
@@ -15207,6 +14169,14 @@ var EntityDecoder = class {
    *   the effective action is max(onNCR, rangeMinimum).
    * @param {'remove'|'throw'} [options.ncr.nullNCR='remove']
    *   Action for U+0000 (null). 'allow' and 'leave' are clamped to 'remove' since null is never safe.
+   * @param {((name: string, value: string) => 'allow'|'block'|'throw')|null} [options.onExternalEntity=null]
+   *   Hook called when an external entity is registered via `setExternalEntities()` or
+   *   `addExternalEntity()`. Return `ENTITY_ACTION.ALLOW` to accept the entity,
+   *   `ENTITY_ACTION.BLOCK` to silently skip it, or `ENTITY_ACTION.THROW` to abort with an error.
+   * @param {((name: string, value: string) => 'allow'|'block'|'throw')|null} [options.onInputEntity=null]
+   *   Hook called when an input entity is registered via `addInputEntities()`. Return
+   *   `ENTITY_ACTION.ALLOW` to accept, `ENTITY_ACTION.BLOCK` to silently skip, or
+   *   `ENTITY_ACTION.THROW` to abort with an error.
    */
   constructor(options = {}) {
     this._limit = options.limit || {};
@@ -15226,6 +14196,33 @@ var EntityDecoder = class {
     this._ncrXmlVersion = ncrCfg.xmlVersion;
     this._ncrOnLevel = ncrCfg.onLevel;
     this._ncrNullLevel = ncrCfg.nullLevel;
+    this._onExternalEntity = typeof options.onExternalEntity === "function" ? options.onExternalEntity : null;
+    this._onInputEntity = typeof options.onInputEntity === "function" ? options.onInputEntity : null;
+  }
+  // -------------------------------------------------------------------------
+  // Private: registration hook dispatch
+  // -------------------------------------------------------------------------
+  /**
+   * Invoke a registration hook for a single entity name/value pair.
+   * Returns true when the entity should be accepted, false when it should be
+   * silently skipped (BLOCK), and throws when the hook returns THROW.
+   *
+   * @param {((name: string, value: string) => 'allow'|'block'|'throw')|null} hook
+   * @param {string} name
+   * @param {string} value
+   * @param {string} context  — used in error messages ('external' | 'input')
+   * @returns {boolean}  true = accept, false = skip
+   */
+  _applyRegistrationHook(hook, name, value, context) {
+    if (!hook) return true;
+    const action = hook(name, value);
+    if (action === ENTITY_ACTION.BLOCK) return false;
+    if (action === ENTITY_ACTION.THROW) {
+      throw new Error(
+        `[EntityDecoder] Registration of ${context} entity "&${name};" was rejected by hook`
+      );
+    }
+    return true;
   }
   // -------------------------------------------------------------------------
   // Persistent external entity registration
@@ -15233,6 +14230,9 @@ var EntityDecoder = class {
   /**
    * Replace the full set of persistent external entities.
    * All keys are validated — throws on invalid characters.
+   * If `onExternalEntity` is set, it is called once per entry; entries that
+   * return `ENTITY_ACTION.BLOCK` are silently omitted, `ENTITY_ACTION.THROW`
+   * aborts the whole call.
    * @param {Record<string, string | { regex?: RegExp, val: string }>} map
    */
   setExternalEntities(map) {
@@ -15241,17 +14241,32 @@ var EntityDecoder = class {
         validateEntityName(key);
       }
     }
-    this._externalMap = mergeEntityMaps(map);
+    if (!this._onExternalEntity) {
+      this._externalMap = mergeEntityMaps(map);
+      return;
+    }
+    const flat = mergeEntityMaps(map);
+    const filtered = /* @__PURE__ */ Object.create(null);
+    for (const [name, value] of Object.entries(flat)) {
+      if (this._applyRegistrationHook(this._onExternalEntity, name, value, "external")) {
+        filtered[name] = value;
+      }
+    }
+    this._externalMap = filtered;
   }
   /**
    * Add a single persistent external entity.
+   * If `onExternalEntity` is set it is called before the entity is stored;
+   * `ENTITY_ACTION.BLOCK` silently skips storage, `ENTITY_ACTION.THROW` raises.
    * @param {string} key
    * @param {string} value
    */
   addExternalEntity(key, value) {
     validateEntityName(key);
     if (typeof value === "string" && value.indexOf("&") === -1) {
-      this._externalMap[key] = value;
+      if (this._applyRegistrationHook(this._onExternalEntity, key, value, "external")) {
+        this._externalMap[key] = value;
+      }
     }
   }
   // -------------------------------------------------------------------------
@@ -15260,12 +14275,25 @@ var EntityDecoder = class {
   /**
    * Inject DOCTYPE entities for the current document.
    * Also resets per-document expansion counters.
+   * If `onInputEntity` is set it is called once per entry; entries returning
+   * `ENTITY_ACTION.BLOCK` are silently omitted, `ENTITY_ACTION.THROW` aborts.
    * @param {Record<string, string | { regx?: RegExp, regex?: RegExp, val: string }>} map
    */
   addInputEntities(map) {
     this._totalExpansions = 0;
     this._expandedLength = 0;
-    this._inputMap = mergeEntityMaps(map);
+    if (!this._onInputEntity) {
+      this._inputMap = mergeEntityMaps(map);
+      return;
+    }
+    const flat = mergeEntityMaps(map);
+    const filtered = /* @__PURE__ */ Object.create(null);
+    for (const [name, value] of Object.entries(flat)) {
+      if (this._applyRegistrationHook(this._onInputEntity, name, value, "input")) {
+        filtered[name] = value;
+      }
+    }
+    this._inputMap = filtered;
   }
   // -------------------------------------------------------------------------
   // Per-document reset
@@ -15303,6 +14331,7 @@ var EntityDecoder = class {
    */
   decode(str) {
     if (typeof str !== "string" || str.length === 0) return str;
+    if (str.indexOf("&") === -1) return str;
     const original = str;
     const chunks = [];
     const len = str.length;
@@ -15522,7 +14551,8 @@ var defaultOptions2 = {
   numberParseOptions: {
     hex: true,
     leadingZeros: true,
-    eNotation: true
+    eNotation: true,
+    unicode: false
   },
   tagValueProcessor: function(tagName, val) {
     return val;
@@ -15664,11 +14694,43 @@ var XmlNode = class {
   }
 };
 
+// node_modules/xml-naming/src/index.js
+var nameStartChar10 = ":A-Za-z_\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
+var nameChar10 = nameStartChar10 + "\\-\\.\\d\xB7\u0300-\u036F\u203F-\u2040";
+var nameStartChar11 = ":A-Za-z_\xC0-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u{10000}-\u{EFFFF}";
+var nameChar11 = nameStartChar11 + "\\-\\.\\d\xB7\u0300-\u036F\u0487\u203F-\u2040";
+var buildRegexes = (startChar, char, flags = "") => {
+  const ncStart = startChar.replace(":", "");
+  const ncChar = char.replace(":", "");
+  const ncNamePat = `[${ncStart}][${ncChar}]*`;
+  return {
+    name: new RegExp(`^[${startChar}][${char}]*$`, flags),
+    ncName: new RegExp(`^${ncNamePat}$`, flags),
+    qName: new RegExp(`^${ncNamePat}(?::${ncNamePat})?$`, flags),
+    nmToken: new RegExp(`^[${char}]+$`, flags),
+    nmTokens: new RegExp(`^[${char}]+(?:\\s+[${char}]+)*$`, flags)
+  };
+};
+var regexes10 = buildRegexes(nameStartChar10, nameChar10);
+var regexes11 = buildRegexes(nameStartChar11, nameChar11, "u");
+var nameStartCharAscii = ":A-Za-z_";
+var nameCharAscii = nameStartCharAscii + "\\-\\.\\d";
+var regexesAscii = buildRegexes(nameStartCharAscii, nameCharAscii);
+var getRegexes = (xmlVersion = "1.0", asciiOnly = false) => {
+  if (asciiOnly) return regexesAscii;
+  return xmlVersion === "1.1" ? regexes11 : regexes10;
+};
+var qName = (str, { xmlVersion = "1.0", asciiOnly = false } = {}) => getRegexes(xmlVersion, asciiOnly).qName.test(str);
+
 // node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
-  constructor(options) {
+  constructor(options, xmlVersion) {
     this.suppressValidationErr = !options;
     this.options = options;
+    this.xmlVersion = xmlVersion || 1;
+  }
+  setXmlVersion(xmlVersion = 1) {
+    this.xmlVersion = xmlVersion;
   }
   readDocType(xmlData, i) {
     const entities = /* @__PURE__ */ Object.create(null);
@@ -15740,7 +14802,7 @@ var DocTypeReader = class {
       i++;
     }
     let entityName = xmlData.substring(startIndex, i);
-    validateEntityName2(entityName);
+    validateEntityName2(entityName, { xmlVersion: this.xmlVersion });
     i = skipWhitespace(xmlData, i);
     if (!this.suppressValidationErr) {
       if (xmlData.substring(i, i + 6).toUpperCase() === "SYSTEM") {
@@ -15766,7 +14828,7 @@ var DocTypeReader = class {
       i++;
     }
     let notationName = xmlData.substring(startIndex, i);
-    !this.suppressValidationErr && validateEntityName2(notationName);
+    !this.suppressValidationErr && validateEntityName2(notationName, { xmlVersion: this.xmlVersion });
     i = skipWhitespace(xmlData, i);
     const identifierType = xmlData.substring(i, i + 6).toUpperCase();
     if (!this.suppressValidationErr && identifierType !== "SYSTEM" && identifierType !== "PUBLIC") {
@@ -15815,7 +14877,7 @@ var DocTypeReader = class {
       i++;
     }
     let elementName = xmlData.substring(startIndex, i);
-    if (!this.suppressValidationErr && !isName(elementName)) {
+    if (!this.suppressValidationErr && !qName(elementName, { xmlVersion: this.xmlVersion })) {
       throw new Error(`Invalid element name: "${elementName}"`);
     }
     i = skipWhitespace(xmlData, i);
@@ -15848,14 +14910,14 @@ var DocTypeReader = class {
       i++;
     }
     let elementName = xmlData.substring(startIndex, i);
-    validateEntityName2(elementName);
+    validateEntityName2(elementName, { xmlVersion: this.xmlVersion });
     i = skipWhitespace(xmlData, i);
     startIndex = i;
     while (i < xmlData.length && !/\s/.test(xmlData[i])) {
       i++;
     }
     let attributeName = xmlData.substring(startIndex, i);
-    if (!validateEntityName2(attributeName)) {
+    if (!validateEntityName2(attributeName, { xmlVersion: this.xmlVersion })) {
       throw new Error(`Invalid attribute name: "${attributeName}"`);
     }
     i = skipWhitespace(xmlData, i);
@@ -15876,7 +14938,7 @@ var DocTypeReader = class {
         }
         let notation = xmlData.substring(startIndex2, i);
         notation = notation.trim();
-        if (!validateEntityName2(notation)) {
+        if (!validateEntityName2(notation, { xmlVersion: this.xmlVersion })) {
           throw new Error(`Invalid notation name: "${notation}"`);
         }
         allowedNotations.push(notation);
@@ -15933,25 +14995,257 @@ function hasSeq(data, seq, i) {
   }
   return true;
 }
-function validateEntityName2(name) {
-  if (isName(name))
+function validateEntityName2(name, xmlVersion) {
+  if (qName(name, { xmlVersion }))
     return name;
   else
     throw new Error(`Invalid entity name ${name}`);
 }
 
+// node_modules/anynum/digitTable.js
+var SCRIPT_ZEROS = [
+  // Basic Latin (ASCII) — included for completeness / pass-through
+  48,
+  // 0-9
+  // Arabic scripts
+  1632,
+  // Arabic-Indic ٠١٢٣٤٥٦٧٨٩
+  1776,
+  // Extended Arabic-Indic (Urdu/Persian/Sindhi) ۰۱۲۳
+  // Indic scripts
+  2406,
+  // Devanagari ०१२३४५६७८९
+  2534,
+  // Bengali ০১২৩৪৫৬৭৮৯
+  2662,
+  // Gurmukhi ੦੧੨੩੪੫੬੭੮੯
+  2790,
+  // Gujarati ૦૧૨૩૪૫૬૭૮૯
+  2918,
+  // Odia ୦୧୨୩୪୫୬୭୮୯
+  3046,
+  // Tamil ௦௧௨௩௪௫௬௭௮௯
+  3174,
+  // Telugu ౦౧౨౩౪౫౬౭౮౯
+  3302,
+  // Kannada ೦೧೨೩೪೫೬೭೮೯
+  3430,
+  // Malayalam ൦൧൨൩൪൫൬൭൮൯
+  3558,
+  // Sinhala Archaic ෦෧෨෩෪෫෬෭෮෯
+  // Southeast Asian scripts
+  3664,
+  // Thai ๐๑๒๓๔๕๖๗๘๙
+  3792,
+  // Lao ໐໑໒໓໔໕໖໗໘໙
+  3872,
+  // Tibetan ༠༡༢༣༤༥༦༧༨༩
+  4160,
+  // Myanmar ၀၁၂၃၄၅၆၇၈၉
+  4240,
+  // Myanmar Shan ႐႑႒႓႔႕႖႗႘႙
+  6112,
+  // Khmer ០១២៣៤៥៦៧៨៩
+  6160,
+  // Mongolian ᠐᠑᠒᠓᠔᠕᠖᠗᠘᠙
+  6470,
+  // Limbu ᥆᥇᥈᥉᥊᥋᥌᥍᥎᥏
+  6608,
+  // New Tai Lue ᧐᧑᧒᧓᧔᧕᧖᧗᧘᧙
+  6784,
+  // Tai Tham Hora ᪀᪁᪂᪃᪄᪅᪆᪇᪈᪉
+  6800,
+  // Tai Tham Tham ᪐᪑᪒᪓᪔᪕᪖᪗᪘᪙
+  6992,
+  // Balinese ᭐᭑᭒᭓᭔᭕᭖᭗᭘᭙
+  7088,
+  // Sundanese ᮰᮱᮲᮳᮴᮵᮶᮷᮸᮹
+  7232,
+  // Lepcha ᱀᱁᱂᱃᱄᱅᱆᱇᱈᱉
+  7248,
+  // Ol Chiki ᱐᱑᱒᱓᱔᱕᱖᱗᱘᱙
+  // Fullwidth (CJK context)
+  65296,
+  // Fullwidth ０１２３４５６７８９
+  // Mathematical digit variants (Unicode math block)
+  120782,
+  // Mathematical Bold
+  120792,
+  // Mathematical Double-Struck
+  120802,
+  // Mathematical Sans-Serif
+  120812,
+  // Mathematical Sans-Serif Bold
+  120822,
+  // Mathematical Monospace
+  // Other scripts
+  66720,
+  // Osmanya 𐒠𐒡𐒢𐒣𐒤𐒥𐒦𐒧𐒨𐒩
+  68912,
+  // Hanifi Rohingya 𐴰𐴱𐴲𐴳𐴴𐴵𐴶𐴷𐴸𐴹
+  69734,
+  // Brahmi 𑁦𑁧𑁨𑁩𑁪𑁫𑁬𑁭𑁮𑁯
+  69872,
+  // Sora Sompeng 𑃰𑃱𑃲𑃳𑃴𑃵𑃶𑃷𑃸𑃹
+  69942,
+  // Chakma 𑄶𑄷𑄸𑄹𑄺𑄻𑄼𑄽𑄾𑄿
+  70096,
+  // Sharada 𑇐𑇑𑇒𑇓𑇔𑇕𑇖𑇗𑇘𑇙
+  70384,
+  // Khudawadi 𑋰𑋱𑋲𑋳𑋴𑋵𑋶𑋷𑋸𑋹
+  70736,
+  // Newa 𑑐𑑑𑑒𑑓𑑔𑑕𑑖𑑗𑑘𑑙
+  70864,
+  // Tirhuta 𑓐𑓑𑓒𑓓𑓔𑓕𑓖𑓗𑓘𑓙
+  71248,
+  // Modi 𑙐𑙑𑙒𑙓𑙔𑙕𑙖𑙗𑙘𑙙
+  71360,
+  // Takri 𑛀𑛁𑛂𑛃𑛄𑛅𑛆𑛇𑛈𑛉
+  71472,
+  // Ahom 𑜰𑜱𑜲𑜳𑜴𑜵𑜶𑜷𑜸𑜹
+  71904,
+  // Warang Citi 𑣠𑣡𑣢𑣣𑣤𑣥𑣦𑣧𑣨𑣩
+  72016,
+  // Dives Akuru 𑥐𑥑𑥒𑥓𑥔𑥕𑥖𑥗𑥘𑥙
+  72688,
+  // Khitan Small Script 𑯰𑯱𑯲𑯳𑯴𑯵𑯶𑯷𑯸𑯹
+  72784,
+  // Bhaiksuki 𑱐𑱑𑱒𑱓𑱔𑱕𑱖𑱗𑱘𑱙
+  73040,
+  // Masaram Gondi 𑵐𑵑𑵒𑵓𑵔𑵕𑵖𑵗𑵘𑵙
+  73120,
+  // Gunjala Gondi 𑶠𑶡𑶢𑶣𑶤𑶥𑶦𑶧𑶨𑶩
+  73552,
+  // Kawi 𑽐𑽑𑽒𑽓𑽔𑽕𑽖𑽗𑽘𑽙
+  92768,
+  // Mro 𖩠𖩡𖩢𖩣𖩤𖩥𖩦𖩧𖩨𖩩
+  92864,
+  // Tangsa 𖫀𖫁𖫂𖫃𖫄𖫅𖫆𖫇𖫈𖫉
+  93008,
+  // Pahawh Hmong 𖭐𖭑𖭒𖭓𖭔𖭕𖭖𖭗𖭘𖭙
+  123200,
+  // Nyiakeng Puachue Hmong 𞅀𞅁𞅂𞅃𞅄𞅅𞅆𞅇𞅈𞅉
+  123632,
+  // Wancho 𞋰𞋱𞋲𞋳𞋴𞋵𞋶𞋷𞋸𞋹
+  124144,
+  // Nag Mundari 𞓰𞓱𞓲𞓳𞓴𞓵𞓶𞓷𞓸𞓹
+  125264,
+  // Adlam 𞥐𞥑𞥒𞥓𞥔𞥕𞥖𞥗𞥘𞥙
+  130032
+  // Segmented digit symbols 🯰🯱🯲🯳🯴🯵🯶🯷🯸🯹
+];
+var NOT_DIGIT = 255;
+var HIGH_MAP = /* @__PURE__ */ new Map();
+var LOW_MAX = 65535;
+var LOW_MIN = 1632;
+var TABLE_OFFSET = LOW_MIN;
+var TABLE_SIZE = LOW_MAX - LOW_MIN + 1;
+var TABLE = new Uint8Array(TABLE_SIZE).fill(NOT_DIGIT);
+for (const zero of SCRIPT_ZEROS) {
+  for (let d = 0; d < 10; d++) {
+    const cp = zero + d;
+    if (cp <= LOW_MAX) {
+      TABLE[cp - TABLE_OFFSET] = d;
+    } else {
+      HIGH_MAP.set(cp, d);
+    }
+  }
+}
+
+// node_modules/anynum/anynum.js
+var CHAR_0 = 48;
+var CHAR_9 = 57;
+var CHAR_MINUS = 45;
+var MINUS_SET = /* @__PURE__ */ new Set([8722, 65293, 65123]);
+function anynum(str) {
+  if (typeof str !== "string") return str;
+  const len = str.length;
+  if (len === 0) return str;
+  let firstHit = -1;
+  for (let i = 0; i < len; i++) {
+    const cc = str.charCodeAt(i);
+    if (cc >= CHAR_0 && cc <= CHAR_9 || cc === CHAR_MINUS) continue;
+    if (cc < TABLE_OFFSET) {
+      if (MINUS_SET.has(cc)) {
+        firstHit = i;
+        break;
+      }
+      continue;
+    }
+    if (cc >= 55296 && cc <= 56319) {
+      if (i + 1 < len) {
+        const low = str.charCodeAt(i + 1);
+        if (low >= 56320 && low <= 57343) {
+          const cp = 65536 + (cc - 55296 << 10) + (low - 56320);
+          if (HIGH_MAP.has(cp)) {
+            firstHit = i;
+            break;
+          }
+        }
+      }
+      continue;
+    }
+    if (TABLE[cc - TABLE_OFFSET] !== NOT_DIGIT || MINUS_SET.has(cc)) {
+      firstHit = i;
+      break;
+    }
+  }
+  if (firstHit === -1) return str;
+  const chars = [];
+  if (firstHit > 0) chars.push(str.slice(0, firstHit));
+  for (let i = firstHit; i < len; i++) {
+    const cc = str.charCodeAt(i);
+    if (cc >= CHAR_0 && cc <= CHAR_9 || cc === CHAR_MINUS) {
+      chars.push(str[i]);
+      continue;
+    }
+    if (cc < TABLE_OFFSET) {
+      chars.push(MINUS_SET.has(cc) ? "-" : str[i]);
+      continue;
+    }
+    if (cc >= 55296 && cc <= 56319) {
+      if (i + 1 < len) {
+        const low = str.charCodeAt(i + 1);
+        if (low >= 56320 && low <= 57343) {
+          const cp = 65536 + (cc - 55296 << 10) + (low - 56320);
+          const d2 = HIGH_MAP.get(cp);
+          if (d2 !== void 0) {
+            chars.push(String.fromCharCode(d2 + 48));
+            i++;
+            continue;
+          }
+        }
+      }
+      chars.push(str[i]);
+      continue;
+    }
+    if (MINUS_SET.has(cc)) {
+      chars.push("-");
+      continue;
+    }
+    const d = TABLE[cc - TABLE_OFFSET];
+    chars.push(d !== NOT_DIGIT ? String.fromCharCode(d + 48) : str[i]);
+  }
+  return chars.join("");
+}
+var anynum_default = anynum;
+
 // node_modules/strnum/strnum.js
 var hexRegex = /^[-+]?0x[a-fA-F0-9]+$/;
+var binRegex = /^0b[01]+$/;
+var octRegex = /^0o[0-7]+$/;
 var numRegex = /^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/;
 var consider = {
   hex: true,
-  // oct: false,
+  binary: false,
+  octal: false,
   leadingZeros: true,
   decimalPoint: ".",
   eNotation: true,
   //skipLike: /regex/,
-  infinity: "original"
+  infinity: "original",
   // "null", "infinity" (Infinity type), "string" ("Infinity" (the string literal))
+  unicode: false
 };
 function toNumber(str, options = {}) {
   options = Object.assign({}, consider, options);
@@ -15960,8 +15254,16 @@ function toNumber(str, options = {}) {
   if (trimmedStr.length === 0) return str;
   else if (options.skipLike !== void 0 && options.skipLike.test(trimmedStr)) return str;
   else if (trimmedStr === "0") return 0;
-  else if (options.hex && hexRegex.test(trimmedStr)) {
+  if (options.unicode) {
+    trimmedStr = anynum_default(trimmedStr);
+    if (trimmedStr === "0") return 0;
+  }
+  if (options.hex && hexRegex.test(trimmedStr)) {
     return parse_int(trimmedStr, 16);
+  } else if (options.binary && binRegex.test(trimmedStr)) {
+    return parse_int(trimmedStr, 2);
+  } else if (options.octal && octRegex.test(trimmedStr)) {
+    return parse_int(trimmedStr, 8);
   } else if (!isFinite(trimmedStr)) {
     return handleInfinity(str, Number(trimmedStr), options);
   } else if (trimmedStr.includes("e") || trimmedStr.includes("E")) {
@@ -16041,6 +15343,8 @@ function trimZeros(numStr) {
   return numStr;
 }
 function parse_int(numStr, base) {
+  const str = numStr.trim();
+  if (base === 2 || base === 8) numStr = str.substring(2);
   if (parseInt) return parseInt(numStr, base);
   else if (Number.parseInt) return Number.parseInt(numStr, base);
   else if (window && window.parseInt) return window.parseInt(numStr, base);
@@ -16251,6 +15555,7 @@ var ExpressionSet = class {
     this._byDepthAndTag = /* @__PURE__ */ new Map();
     this._wildcardByDepth = /* @__PURE__ */ new Map();
     this._deepWildcards = [];
+    this._deepByTerminalTag = /* @__PURE__ */ new Map();
     this._patterns = /* @__PURE__ */ new Set();
     this._sealed = false;
   }
@@ -16275,7 +15580,14 @@ var ExpressionSet = class {
     if (this._patterns.has(expression.pattern)) return this;
     this._patterns.add(expression.pattern);
     if (expression.hasDeepWildcard()) {
-      this._deepWildcards.push(expression);
+      const lastSeg2 = expression.segments[expression.segments.length - 1];
+      if (lastSeg2 && lastSeg2.type !== "deep-wildcard" && lastSeg2.tag !== "*") {
+        const tag2 = lastSeg2.tag;
+        if (!this._deepByTerminalTag.has(tag2)) this._deepByTerminalTag.set(tag2, []);
+        this._deepByTerminalTag.get(tag2).push(expression);
+      } else {
+        this._deepWildcards.push(expression);
+      }
       return this;
     }
     const depth = expression.length;
@@ -16393,6 +15705,12 @@ var ExpressionSet = class {
         if (matcher.matches(wildcardBucket[i])) return wildcardBucket[i];
       }
     }
+    const deepBucket = this._deepByTerminalTag.get(tag);
+    if (deepBucket) {
+      for (let i = 0; i < deepBucket.length; i++) {
+        if (matcher.matches(deepBucket[i])) return deepBucket[i];
+      }
+    }
     for (let i = 0; i < this._deepWildcards.length; i++) {
       if (matcher.matches(this._deepWildcards[i])) return this._deepWildcards[i];
     }
@@ -16420,16 +15738,16 @@ var MatcherView = class {
    * @returns {string|undefined}
    */
   getCurrentTag() {
-    const path = this._matcher.path;
-    return path.length > 0 ? path[path.length - 1].tag : void 0;
+    const path2 = this._matcher.path;
+    return path2.length > 0 ? path2[path2.length - 1].tag : void 0;
   }
   /**
    * Get current namespace.
    * @returns {string|undefined}
    */
   getCurrentNamespace() {
-    const path = this._matcher.path;
-    return path.length > 0 ? path[path.length - 1].namespace : void 0;
+    const path2 = this._matcher.path;
+    return path2.length > 0 ? path2[path2.length - 1].namespace : void 0;
   }
   /**
    * Get current node's attribute value.
@@ -16437,9 +15755,9 @@ var MatcherView = class {
    * @returns {*}
    */
   getAttrValue(attrName) {
-    const path = this._matcher.path;
-    if (path.length === 0) return void 0;
-    return path[path.length - 1].values?.[attrName];
+    const path2 = this._matcher.path;
+    if (path2.length === 0) return void 0;
+    return path2[path2.length - 1].values?.[attrName];
   }
   /**
    * Check if current node has an attribute.
@@ -16447,28 +15765,46 @@ var MatcherView = class {
    * @returns {boolean}
    */
   hasAttr(attrName) {
-    const path = this._matcher.path;
-    if (path.length === 0) return false;
-    const current = path[path.length - 1];
+    const path2 = this._matcher.path;
+    if (path2.length === 0) return false;
+    const current = path2[path2.length - 1];
     return current.values !== void 0 && attrName in current.values;
+  }
+  /**
+   * Get the value of a "kept" attribute from the nearest ancestor (or
+   * current node) that declared it via `push(tag, attrs, ns, { keep: [...] })`.
+   * @param {string} attrName
+   * @returns {*}
+   */
+  getAnyParentAttr(attrName) {
+    return this._matcher.getAnyParentAttr(attrName);
+  }
+  /**
+   * Check whether any ancestor (or the current node) kept the given
+   * attribute via `push(tag, attrs, ns, { keep: [...] })`.
+   * @param {string} attrName
+   * @returns {boolean}
+   */
+  hasAnyParentAttr(attrName) {
+    return this._matcher.hasAnyParentAttr(attrName);
   }
   /**
    * Get current node's sibling position (child index in parent).
    * @returns {number}
    */
   getPosition() {
-    const path = this._matcher.path;
-    if (path.length === 0) return -1;
-    return path[path.length - 1].position ?? 0;
+    const path2 = this._matcher.path;
+    if (path2.length === 0) return -1;
+    return path2[path2.length - 1].position ?? 0;
   }
   /**
    * Get current node's repeat counter (occurrence count of this tag name).
    * @returns {number}
    */
   getCounter() {
-    const path = this._matcher.path;
-    if (path.length === 0) return -1;
-    return path[path.length - 1].counter ?? 0;
+    const path2 = this._matcher.path;
+    if (path2.length === 0) return -1;
+    return path2[path2.length - 1].counter ?? 0;
   }
   /**
    * Get current node's sibling index (alias for getPosition).
@@ -16530,30 +15866,32 @@ var Matcher = class {
     this.siblingStacks = [];
     this._pathStringCache = null;
     this._view = new MatcherView(this);
+    this._keptAttrs = [];
   }
   /**
    * Push a new tag onto the path.
    * @param {string} tagName
    * @param {Object|null} [attrValues=null]
    * @param {string|null} [namespace=null]
+   * @param {Object|null} [options=null]
+   * @param {string[]} [options.keep] - Names of attributes (from attrValues)
    */
-  push(tagName, attrValues = null, namespace = null) {
+  push(tagName, attrValues = null, namespace = null, options = null) {
     this._pathStringCache = null;
     if (this.path.length > 0) {
       this.path[this.path.length - 1].values = void 0;
     }
     const currentLevel = this.path.length;
-    if (!this.siblingStacks[currentLevel]) {
-      this.siblingStacks[currentLevel] = /* @__PURE__ */ new Map();
+    let level = this.siblingStacks[currentLevel];
+    if (!level) {
+      level = { counts: /* @__PURE__ */ new Map(), total: 0 };
+      this.siblingStacks[currentLevel] = level;
     }
-    const siblings = this.siblingStacks[currentLevel];
     const siblingKey = namespace ? `${namespace}:${tagName}` : tagName;
-    const counter = siblings.get(siblingKey) || 0;
-    let position = 0;
-    for (const count of siblings.values()) {
-      position += count;
-    }
-    siblings.set(siblingKey, counter + 1);
+    const counter = level.counts.get(siblingKey) || 0;
+    const position = level.total;
+    level.counts.set(siblingKey, counter + 1);
+    level.total++;
     const node = {
       tag: tagName,
       position,
@@ -16566,6 +15904,16 @@ var Matcher = class {
       node.values = attrValues;
     }
     this.path.push(node);
+    const depth = this.path.length;
+    const keep = options !== null ? options.keep : null;
+    if (keep !== null && keep !== void 0 && keep.length > 0 && attrValues) {
+      for (let i = 0; i < keep.length; i++) {
+        const name = keep[i];
+        if (attrValues[name] !== void 0) {
+          this._keptAttrs.push({ depth, name, value: attrValues[name] });
+        }
+      }
+    }
   }
   /**
    * Pop the last tag from the path.
@@ -16577,6 +15925,10 @@ var Matcher = class {
     const node = this.path.pop();
     if (this.siblingStacks.length > this.path.length + 1) {
       this.siblingStacks.length = this.path.length + 1;
+    }
+    const poppedDepth = this.path.length + 1;
+    while (this._keptAttrs.length > 0 && this._keptAttrs[this._keptAttrs.length - 1].depth >= poppedDepth) {
+      this._keptAttrs.pop();
     }
     return node;
   }
@@ -16627,6 +15979,36 @@ var Matcher = class {
     return current.values !== void 0 && attrName in current.values;
   }
   /**
+   * Get the value of a "kept" attribute from the nearest ancestor (or
+   * current node) that declared it via `push(tag, attrs, ns, { keep: [...] })`.
+   * Unlike getAttrValue(), this works regardless of how deep the path has
+   * gone since the attribute was pushed — but only for attribute names that
+   * were explicitly marked with `keep` at push time. Cost is proportional to
+   * the number of currently-kept attributes (typically 0-3), not path depth.
+   * @param {string} attrName
+   * @returns {*} the value, or undefined if no ancestor kept this attribute
+   */
+  getAnyParentAttr(attrName) {
+    const kept = this._keptAttrs;
+    for (let i = kept.length - 1; i >= 0; i--) {
+      if (kept[i].name === attrName) return kept[i].value;
+    }
+    return void 0;
+  }
+  /**
+   * Check whether any ancestor (or the current node) kept the given
+   * attribute via `push(tag, attrs, ns, { keep: [...] })`.
+   * @param {string} attrName
+   * @returns {boolean}
+   */
+  hasAnyParentAttr(attrName) {
+    const kept = this._keptAttrs;
+    for (let i = kept.length - 1; i >= 0; i--) {
+      if (kept[i].name === attrName) return true;
+    }
+    return false;
+  }
+  /**
    * Get current node's sibling position (child index in parent).
    * @returns {number}
    */
@@ -16664,21 +16046,21 @@ var Matcher = class {
    * @returns {string}
    */
   toString(separator, includeNamespace = true) {
-    const sep = separator || this.separator;
-    const isDefault = sep === this.separator && includeNamespace === true;
+    const sep2 = separator || this.separator;
+    const isDefault = sep2 === this.separator && includeNamespace === true;
     if (isDefault) {
       if (this._pathStringCache !== null) {
         return this._pathStringCache;
       }
       const result = this.path.map(
         (n) => n.namespace ? `${n.namespace}:${n.tag}` : n.tag
-      ).join(sep);
+      ).join(sep2);
       this._pathStringCache = result;
       return result;
     }
     return this.path.map(
       (n) => includeNamespace && n.namespace ? `${n.namespace}:${n.tag}` : n.tag
-    ).join(sep);
+    ).join(sep2);
   }
   /**
    * Get path as array of tag names.
@@ -16694,6 +16076,7 @@ var Matcher = class {
     this._pathStringCache = null;
     this.path = [];
     this.siblingStacks = [];
+    this._keptAttrs = [];
   }
   /**
    * Match current path against an Expression.
@@ -16817,7 +16200,8 @@ var Matcher = class {
   snapshot() {
     return {
       path: this.path.map((node) => ({ ...node })),
-      siblingStacks: this.siblingStacks.map((map) => new Map(map))
+      siblingStacks: this.siblingStacks.map((level) => level ? { counts: new Map(level.counts), total: level.total } : level),
+      keptAttrs: this._keptAttrs.map((entry) => ({ ...entry }))
     };
   }
   /**
@@ -16827,7 +16211,8 @@ var Matcher = class {
   restore(snapshot) {
     this._pathStringCache = null;
     this.path = snapshot.path.map((node) => ({ ...node }));
-    this.siblingStacks = snapshot.siblingStacks.map((map) => new Map(map));
+    this.siblingStacks = snapshot.siblingStacks.map((level) => level ? { counts: new Map(level.counts), total: level.total } : level);
+    this._keptAttrs = (snapshot.keptAttrs || []).map((entry) => ({ ...entry }));
   }
   /**
    * Return the read-only {@link MatcherView} for this matcher.
@@ -16849,6 +16234,726 @@ var Matcher = class {
     return this._view;
   }
 };
+
+// node_modules/is-unsafe/src/contexts/html.js
+var HTML_PATTERNS = [
+  {
+    id: "html-script-open",
+    description: "<script opening tag",
+    pattern: /<script[\s>/]/i
+  },
+  {
+    id: "html-script-close",
+    description: "</script closing tag",
+    pattern: /<\/script[\s>]/i
+  },
+  {
+    id: "html-javascript-protocol",
+    description: "javascript: URI scheme (with optional whitespace/encoding)",
+    // Handles j&#x61;vascript:, j\u0061vascript:, and whitespace variants
+    pattern: /j[\t\n\r ]*a[\t\n\r ]*v[\t\n\r ]*a[\t\n\r ]*s[\t\n\r ]*c[\t\n\r ]*r[\t\n\r ]*i[\t\n\r ]*p[\t\n\r ]*t[\t\n\r ]*:/i
+  },
+  {
+    id: "html-vbscript-protocol",
+    description: "vbscript: URI scheme",
+    pattern: /vbscript[\t\n\r ]*:/i
+  },
+  {
+    id: "html-data-html",
+    description: "data:text/html URI \u2014 can execute scripts in browsers",
+    pattern: /data[\t\n\r ]*:[\t\n\r ]*text\/html/i
+  },
+  {
+    id: "html-data-xhtml",
+    description: "data:application/xhtml+xml URI",
+    pattern: /data[\t\n\r ]*:[\t\n\r ]*application\/xhtml/i
+  },
+  {
+    id: "html-data-svg",
+    description: "data:image/svg+xml URI \u2014 can execute scripts",
+    pattern: /data[\t\n\r ]*:[\t\n\r ]*image\/svg\+xml/i
+  },
+  {
+    id: "html-inline-event-handler",
+    description: "Inline event handler attributes: onclick=, onerror=, onload=, etc.",
+    // \bon ensures we match a word boundary so "phonetic=" is not caught
+    pattern: /\bon\w{1,30}\s*=/i
+  },
+  {
+    id: "html-entity-obfuscated-script",
+    description: "HTML-entity-encoded <script (e.g. &#x3C;script or &lt;script)",
+    // Entities include optional trailing semicolon: &#x3C; or &#x3C (both valid in HTML5)
+    pattern: /(?:&#x0*3[Cc];?|&#0*60;?|&lt;)\s*script/i
+  },
+  {
+    id: "html-entity-obfuscated-javascript",
+    description: 'HTML-entity-encoded javascript: (partial \u2014 catches common &#106; or &#x6a; for "j")',
+    pattern: /(?:&#x0*6[Aa];?|&#0*106;?)\s*(?:&#x0*61;?|a)[\s\S]{0,80}script\s*:/i
+  },
+  {
+    id: "html-style-expression",
+    description: "CSS expression() \u2014 IE-era code execution in style attributes",
+    pattern: /style[\s\S]{0,20}expression\s*\(/i
+  },
+  {
+    id: "html-object-embed",
+    description: "<object or <embed tags that can load active content",
+    pattern: /<(?:object|embed)[\s>/]/i
+  },
+  {
+    id: "html-base-tag",
+    description: "<base href= \u2014 can hijack all relative URLs on a page",
+    pattern: /<base[\s>]/i
+  },
+  {
+    id: "html-meta-refresh",
+    description: '<meta http-equiv="refresh" \u2014 can redirect users',
+    pattern: /<meta[\s\S]{0,40}http-equiv[\s\S]{0,20}refresh/i
+  },
+  {
+    id: "html-srcdoc",
+    description: "srcdoc= attribute on iframes \u2014 embeds HTML that can run scripts",
+    pattern: /srcdoc\s*=/i
+  },
+  {
+    id: "html-iframe",
+    description: "<iframe tag",
+    pattern: /<iframe[\s>/]/i
+  },
+  {
+    id: "html-form",
+    description: "<form tag \u2014 can be used for phishing / credential harvesting injection",
+    pattern: /<form[\s>/]/i
+  }
+];
+var html_default = HTML_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/xml.js
+var XML_PATTERNS = [
+  {
+    id: "xml-cdata-injection",
+    description: "CDATA section injection: <![CDATA[ breaks out of text node context",
+    pattern: /<!\[CDATA\[/i
+  },
+  {
+    id: "xml-cdata-close",
+    description: "CDATA close sequence: ]]> can terminate an enclosing CDATA section",
+    pattern: /\]\]>/
+  },
+  {
+    id: "xml-processing-instruction",
+    description: "XML processing instruction: <?xml-stylesheet or <?php etc.",
+    pattern: /<\?(?:xml[\- ]|php|asp)/i
+  },
+  {
+    id: "xml-doctype-injection",
+    description: "DOCTYPE declaration embedded in content \u2014 can define entities",
+    // Match <!DOCTYPE followed by end-of-string, whitespace, or [ (internal subset)
+    pattern: /<!DOCTYPE(?:[\s[]|$)/i
+  },
+  {
+    id: "xml-entity-system",
+    description: "SYSTEM keyword \u2014 used in external entity declarations (XXE)",
+    pattern: /\bSYSTEM\s+["']/i
+  },
+  {
+    id: "xml-entity-public",
+    description: "PUBLIC keyword \u2014 used in external entity declarations (XXE)",
+    pattern: /\bPUBLIC\s+["']/i
+  },
+  {
+    id: "xml-entity-declaration",
+    description: "<!ENTITY declaration \u2014 defines entities, potential XXE or entity expansion",
+    pattern: /<!ENTITY[\s%]/i
+  },
+  {
+    id: "xml-billion-laughs",
+    description: "Entity reference chaining / billion laughs: repeated &eX; style references",
+    // Heuristic: 3+ consecutive entity refs suggests expansion attack
+    pattern: /(?:&\w{1,20};){3,}/
+  },
+  {
+    id: "xml-namespace-confusion",
+    description: "xmlns: attribute injection \u2014 can redefine namespaces to confuse parsers",
+    pattern: /\bxmlns\s*(?::\w{1,40})?\s*=/i
+  },
+  {
+    id: "xml-comment-injection",
+    description: "<!-- comment injection \u2014 can hide content from some parsers",
+    pattern: /<!--/
+  },
+  {
+    id: "xml-comment-close",
+    description: "--> closes an enclosing XML comment",
+    pattern: /-->/
+  },
+  {
+    id: "xml-pi-close",
+    description: "?> closes an enclosing processing instruction",
+    pattern: /\?>/
+  }
+];
+var xml_default = XML_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/svg.js
+var SVG_PATTERNS = [
+  {
+    id: "svg-script-element",
+    description: "<script element inside SVG executes JavaScript",
+    pattern: /<script[\s>/]/i
+  },
+  {
+    id: "svg-xlink-href-javascript",
+    description: "xlink:href with javascript: \u2014 classic SVG XSS via <a> or <use>",
+    pattern: /xlink\s*:\s*href\s*=\s*["']?\s*javascript\s*:/i
+  },
+  {
+    id: "svg-href-javascript",
+    description: "href= with javascript: in SVG context (<a>, <animate>, etc.)",
+    pattern: /href\s*=\s*["']?\s*javascript\s*:/i
+  },
+  {
+    id: "svg-foreignobject",
+    description: "<foreignObject embeds HTML inside SVG \u2014 can execute scripts",
+    pattern: /<foreignObject[\s>/]/i
+  },
+  {
+    id: "svg-use-external",
+    description: "<use xlink:href or href pointing to external resource (non-fragment URL)",
+    // Match <use with href= where the value starts with a non-# character (external URL)
+    // [\"'][^#] catches quoted values not starting with #; [^\"'#\s>] catches unquoted
+    pattern: /<use[\s\S]{0,60}(?:xlink\s*:\s*)?href\s*=\s*(?:["'][^#]|[^"'#\s>])/i
+  },
+  {
+    id: "svg-animate-href",
+    description: '<animate attributeName="href" \u2014 can dynamically change href to javascript:',
+    pattern: /<animate[\s\S]{0,80}attributeName\s*=\s*["'][\s]*href["']/i
+  },
+  {
+    id: "svg-animate-xlinkhref",
+    description: '<animate attributeName="xlink:href"',
+    pattern: /<animate[\s\S]{0,80}attributeName\s*=\s*["'][\s]*xlink\s*:\s*href["']/i
+  },
+  {
+    id: "svg-set-javascript",
+    description: '<set to="javascript:..." \u2014 sets an attribute to a javascript: URI',
+    pattern: /<set[\s\S]{0,80}to\s*=\s*["']?\s*javascript\s*:/i
+  },
+  {
+    id: "svg-event-handler",
+    description: "SVG-specific event handler attributes: onload=, onerror=, onactivate=, etc.",
+    pattern: /\bon(?:load|error|activate|begin|end|repeat|focus|blur|click|mouse\w{1,20}|key\w{1,20})\s*=/i
+  },
+  {
+    id: "svg-handler-generic",
+    description: "Generic on* handler catch-all for SVG attributes",
+    pattern: /\bon\w{1,30}\s*=/i
+  },
+  {
+    id: "svg-filter-feimage",
+    description: "<feImage href= \u2014 filter primitive that can load external resources",
+    pattern: /<feImage[\s\S]{0,80}(?:xlink\s*:\s*)?href\s*=/i
+  },
+  {
+    id: "svg-image-external",
+    description: "<image xlink:href with http/https or javascript protocol",
+    pattern: /<image[\s\S]{0,80}(?:xlink\s*:\s*)?href\s*=\s*["']?\s*(?:https?|javascript)\s*:/i
+  },
+  {
+    id: "svg-style-javascript",
+    description: "style= attribute containing javascript: (e.g. background:url(javascript:...))",
+    pattern: /style\s*=[\s\S]{0,60}javascript\s*:/i
+  }
+];
+var svg_default = SVG_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/sql.js
+var SQL_PATTERNS = [
+  {
+    id: "sql-block-comment-open",
+    description: "SQL block comment open: /* ... */ \u2014 unusual in legitimate user text",
+    pattern: /\/\*/
+  },
+  {
+    id: "sql-union-select",
+    description: "UNION SELECT \u2014 most common SQL injection aggregation attack",
+    pattern: /\bUNION\s{1,20}(?:ALL\s{1,20})?SELECT\b/i
+  },
+  {
+    id: "sql-drop-table",
+    description: "DROP TABLE \u2014 destructive DDL injection",
+    pattern: /\bDROP\s{1,20}TABLE\b/i
+  },
+  {
+    id: "sql-drop-database",
+    description: "DROP DATABASE \u2014 destructive DDL injection",
+    pattern: /\bDROP\s{1,20}DATABASE\b/i
+  },
+  {
+    id: "sql-insert-into",
+    description: "INSERT INTO \u2014 data injection",
+    pattern: /\bINSERT\s{1,20}INTO\b/i
+  },
+  {
+    id: "sql-delete-from",
+    description: "DELETE FROM \u2014 data deletion injection",
+    pattern: /\bDELETE\s{1,20}FROM\b/i
+  },
+  {
+    id: "sql-update-set",
+    description: "UPDATE ... SET \u2014 data modification injection",
+    // Allows arbitrary content between UPDATE and SET (table name, alias, etc.)
+    pattern: /\bUPDATE\b[\s\S]{1,60}\bSET\b/i
+  },
+  {
+    id: "sql-exec-xp",
+    description: "EXEC xp_ \u2014 MSSQL extended stored procedure execution",
+    pattern: /\bEXEC(?:UTE)?\s{1,20}xp_/i
+  },
+  {
+    id: "sql-tautology-string",
+    description: `Classic string tautology: ' OR '1'='1 or " OR "1"="1"`,
+    // Last quote is optional — injection may truncate it: ' OR '1'='1--
+    pattern: /'\s{0,10}OR\s{0,10}'[^']{0,20}'\s*=\s*'[^']{0,20}/i
+  },
+  {
+    id: "sql-tautology-numeric",
+    description: "Numeric tautology: OR 1=1",
+    pattern: /\bOR\s{1,10}1\s*=\s*1\b/i
+  },
+  {
+    id: "sql-always-true-zero",
+    description: "Numeric tautology: OR 0=0",
+    pattern: /\bOR\s{1,10}0\s*=\s*0\b/i
+  },
+  {
+    id: "sql-sleep-benchmark",
+    description: "Time-based blind injection: SLEEP() or BENCHMARK()",
+    pattern: /\b(?:SLEEP|BENCHMARK)\s*\(/i
+  },
+  {
+    id: "sql-waitfor-delay",
+    description: "MSSQL time-based blind injection: WAITFOR DELAY",
+    pattern: /\bWAITFOR\s{1,20}DELAY\b/i
+  },
+  {
+    id: "sql-char-function",
+    description: "CHAR() function \u2014 used to obfuscate injected strings",
+    pattern: /\bCHAR\s*\(\s*\d{1,3}/i
+  },
+  {
+    id: "sql-information-schema",
+    description: "INFORMATION_SCHEMA \u2014 reconnaissance query for table/column enumeration",
+    pattern: /\bINFORMATION_SCHEMA\b/i
+  }
+];
+var sql_default = SQL_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/shell.js
+var SHELL_PATTERNS = [
+  {
+    id: "shell-path-traversal-unix",
+    description: "Unix path traversal: ../  \u2014 climbing the directory tree",
+    pattern: /\.\.\//
+  },
+  {
+    id: "shell-path-traversal-windows",
+    description: "Windows path traversal: ..\\ \u2014 climbing the directory tree",
+    pattern: /\.\.\\/
+  },
+  {
+    id: "shell-path-traversal-encoded",
+    description: "URL-encoded path traversal: %2e%2e or %2f variants",
+    pattern: /%2e%2e|%2f\.\.|\.\.%2f/i
+  },
+  {
+    id: "shell-null-byte",
+    description: "Null byte injection: \\x00 or %00 \u2014 truncates strings in C-backed functions",
+    pattern: /\x00|%00/
+  },
+  {
+    id: "shell-semicolon",
+    description: "Semicolon command separator: cmd1; cmd2",
+    pattern: /;/
+  },
+  {
+    id: "shell-pipe",
+    description: "Pipe operator: cmd1 | cmd2",
+    pattern: /\|/
+  },
+  {
+    id: "shell-and-operator",
+    description: "AND operator: cmd1 && cmd2",
+    pattern: /&&/
+  },
+  {
+    id: "shell-or-operator",
+    description: "OR operator: cmd1 || cmd2",
+    pattern: /\|\|/
+  },
+  {
+    id: "shell-backtick",
+    description: "Backtick command substitution: `cmd`",
+    pattern: /`/
+  },
+  {
+    id: "shell-dollar-paren",
+    description: "Dollar-paren command substitution: $(cmd)",
+    pattern: /\$\(/
+  },
+  {
+    id: "shell-dollar-brace",
+    description: "Dollar-brace variable expansion: ${var} \u2014 can be abused for injection",
+    pattern: /\$\{/
+  },
+  {
+    id: "shell-redirect-out",
+    description: "Output redirection: cmd > file or cmd >> file",
+    pattern: />{1,2}/
+  },
+  {
+    id: "shell-redirect-in",
+    description: "Input redirection: cmd < file",
+    pattern: /</
+  },
+  {
+    id: "shell-newline-injection",
+    description: "Newline injection: \\n or \\r \u2014 can inject new shell commands",
+    pattern: /[\n\r]/
+  },
+  {
+    id: "shell-glob-star",
+    description: "Glob expansion: * or ? \u2014 can expand to unintended files",
+    // Only flag when combined with path separators to reduce false positives
+    pattern: /[/\\][*?]/
+  },
+  {
+    id: "shell-absolute-root",
+    description: "Absolute root path injection: string starting with / or \\ (Windows UNC)",
+    pattern: /^(?:\/|\\\\)/
+  },
+  {
+    id: "shell-windows-drive",
+    description: "Windows drive letter path injection: C:\\ or D:/",
+    pattern: /^[a-zA-Z]:[/\\]/
+  },
+  {
+    id: "shell-curl-wget",
+    description: "curl/wget with URL or flags \u2014 can exfiltrate data or download payloads",
+    // Require a URL scheme (http/https/ftp) or a flag (-) to reduce false positives
+    // "curl is a tool" won't match; "curl http://..." or "curl -s ..." will
+    pattern: /\b(?:curl|wget)\s+(?:https?:\/\/|ftp:\/\/|-)/i
+  }
+];
+var shell_default = SHELL_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/redos.js
+var REDOS_PATTERNS = [
+  {
+    id: "redos-nested-quantifier-plus",
+    description: "Nested + quantifier inside a group with outer quantifier: (a+)+, (.+b)*, etc.",
+    // Matches any group containing a + quantifier, with an outer * or + — catches (a+)+, (.+b)*, etc.
+    pattern: /\([^)]*\+[^)]*\)[+*]/
+  },
+  {
+    id: "redos-nested-quantifier-star",
+    description: "Nested * quantifier: (a*)* or (a*)+ \u2014 catastrophic backtracking",
+    pattern: /\([^)]*\*[^)]*\)[*+]/
+  },
+  {
+    id: "redos-nested-groups",
+    description: "Doubly nested quantified groups: ((a+)+) \u2014 guaranteed catastrophic",
+    pattern: /\(\([^)]{0,40}\)[+*]\)[+*]/
+  },
+  {
+    id: "redos-alternation-overlap",
+    description: "Overlapping alternation under quantifier: (a|a)+ \u2014 ambiguous NFA paths",
+    // Detect repeated identical alternatives under a quantifier
+    pattern: /\(([^|()]{1,20})\|(?:\1)(?:\|[^|()]{1,20}){0,5}\)[+*?]{1,2}/
+  },
+  {
+    id: "redos-star-plus-concat",
+    description: "(x*x)+ pattern \u2014 triggers super-linear backtracking",
+    pattern: /\([^)]{0,10}\*[^)]{0,10}\)[+*]/
+  },
+  {
+    id: "redos-dot-star-greedy",
+    description: "(.*){n,} or (.+){n,} \u2014 repeated greedy dot quantifiers",
+    pattern: /\(\.[*+]\)\{?\d/
+  },
+  {
+    id: "redos-large-repetition",
+    description: "Very large fixed or range repetition count {1000,} or {1000,n} \u2014 denial of service via backtracking",
+    // Matches { followed by 4+ digits (≥1000), then optional ,digits }
+    pattern: /\{\d{4,}(?:,\d*)?\}/
+  },
+  {
+    id: "redos-catastrophic-alternation",
+    description: "Long alternation with many similar branches \u2014 polynomial backtracking risk",
+    // Heuristic: 10+ pipe-separated alternatives in a single group
+    pattern: /\([^)]{0,200}(?:\|[^|)]{0,50}){9,}\)/
+  }
+];
+var redos_default = REDOS_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/nosql.js
+var sep = `["'\\s]*:`;
+var NOSQL_PATTERNS = [
+  // ─── MongoDB $ operator injection ────────────────────────────────────────
+  {
+    id: "nosql-where-operator",
+    description: "$where \u2014 executes arbitrary JavaScript server-side in MongoDB",
+    pattern: new RegExp(`\\$where${sep}`, "i")
+  },
+  {
+    id: "nosql-ne-operator",
+    description: '$ne \u2014 "not equal" operator used to bypass equality checks',
+    pattern: new RegExp(`\\$ne${sep}`, "i")
+  },
+  {
+    id: "nosql-gt-operator",
+    description: '$gt \u2014 "greater than" used to bypass password/value checks',
+    pattern: new RegExp(`\\$gte?${sep}`, "i")
+  },
+  {
+    id: "nosql-lt-operator",
+    description: '$lt / $lte \u2014 "less than" bypass variants',
+    pattern: new RegExp(`\\$lte?${sep}`, "i")
+  },
+  {
+    id: "nosql-regex-operator",
+    description: "$regex \u2014 can be used to extract data character by character (blind injection)",
+    pattern: new RegExp(`\\$regex${sep}`, "i")
+  },
+  {
+    id: "nosql-or-operator",
+    description: "$or \u2014 logical OR; used to create always-true conditions",
+    pattern: new RegExp(`\\$or${sep}\\s*\\[`, "i")
+  },
+  {
+    id: "nosql-and-operator",
+    description: "$and \u2014 logical AND operator injection",
+    pattern: new RegExp(`\\$and${sep}\\s*\\[`, "i")
+  },
+  {
+    id: "nosql-nor-operator",
+    description: "$nor \u2014 logical NOR operator injection",
+    pattern: new RegExp(`\\$nor${sep}\\s*\\[`, "i")
+  },
+  {
+    id: "nosql-exists-operator",
+    description: "$exists \u2014 can enumerate fields to determine schema",
+    pattern: new RegExp(`\\$exists${sep}`, "i")
+  },
+  {
+    id: "nosql-in-operator",
+    description: "$in \u2014 matches any value in a list; can enumerate values",
+    pattern: new RegExp(`\\$in${sep}\\s*\\[`, "i")
+  },
+  {
+    id: "nosql-expr-operator",
+    description: "$expr \u2014 allows aggregation expressions in queries (MongoDB 3.6+)",
+    pattern: new RegExp(`\\$expr${sep}`, "i")
+  },
+  {
+    id: "nosql-function-operator",
+    description: "$function \u2014 executes arbitrary JavaScript in MongoDB 4.4+",
+    pattern: new RegExp(`\\$function${sep}`, "i")
+  },
+  {
+    id: "nosql-accumulator-operator",
+    description: "$accumulator \u2014 custom aggregation with arbitrary JS execution",
+    pattern: new RegExp(`\\$accumulator${sep}`, "i")
+  },
+  // ─── Prototype pollution ─────────────────────────────────────────────────
+  {
+    id: "nosql-proto-pollution",
+    description: "__proto__ \u2014 prototype pollution via object key injection",
+    pattern: /__proto__/
+  },
+  {
+    id: "nosql-constructor-prototype",
+    description: "constructor.prototype \u2014 alternative prototype pollution vector (dot notation or JSON key)",
+    // Matches dot-notation (obj.constructor.prototype) and JSON key adjacency
+    // ("constructor": {"prototype": ...})
+    pattern: /constructor[\s"':.,{\[]*prototype/i
+  },
+  {
+    id: "nosql-proto-bracket",
+    description: '["__proto__"] \u2014 bracket-notation prototype pollution',
+    pattern: /\[["']__proto__["']\]/
+  }
+];
+var nosql_default = NOSQL_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/log.js
+var LOG_PATTERNS = [
+  // ─── CRLF / newline injection ─────────────────────────────────────────────
+  {
+    id: "log-crlf-injection",
+    description: "CRLF injection: literal \\r or \\n embeds fake log lines",
+    pattern: /[\r\n]/
+  },
+  {
+    id: "log-url-encoded-crlf",
+    description: "URL-encoded CRLF: %0d, %0a, %0D, %0A \u2014 decoded by some log parsers",
+    pattern: /%0[dDaA]/
+  },
+  {
+    id: "log-unicode-newline",
+    description: "Unicode newline variants: U+2028 (line separator), U+2029 (paragraph separator)",
+    pattern: /[\u2028\u2029]/
+  },
+  // ─── Log4Shell / JNDI injection (CVE-2021-44228) ─────────────────────────
+  {
+    id: "log-log4shell-jndi",
+    description: "Log4Shell: ${jndi:...} triggers remote code execution in Apache Log4j",
+    pattern: /\$\{jndi\s*:/i
+  },
+  {
+    id: "log-log4shell-obfuscated",
+    description: "Obfuscated Log4Shell: ${::-j}... lookup-bypass prefix used to evade WAF detection",
+    // ${::- is the Log4j lookup-bypass escape sequence; presence alone is suspicious
+    pattern: /\$\{::-/
+  },
+  {
+    id: "log-log4j-lookup",
+    description: "Log4j lookup syntax: ${env:...}, ${sys:...}, ${ctx:...} \u2014 data exfiltration",
+    pattern: /\$\{(?:env|sys|ctx|main|map|sd|web|docker|k8s|spring)\s*:/i
+  },
+  // ─── Server-Side Template Injection (SSTI) in log messages ───────────────
+  {
+    id: "log-ssti-double-brace",
+    description: "SSTI double-brace: {{expression}} \u2014 Jinja2, Twig, Handlebars, etc.",
+    pattern: /\{\{[\s\S]{0,80}\}\}/
+  },
+  {
+    id: "log-ssti-hash-brace",
+    description: "SSTI hash-brace: #{expression} \u2014 Thymeleaf, Velocity, Ruby ERB",
+    pattern: /#\{[\s\S]{0,80}\}/
+  },
+  {
+    id: "log-ssti-dollar-brace",
+    description: "SSTI/EL injection: ${expression with operators or method calls} \u2014 JSP EL, Freemarker, SpEL",
+    // Require that the ${...} content looks like an expression, not a plain variable name.
+    // Flags if the content contains: . ( * + operators, or known SSTI keywords.
+    // This avoids flagging ${PATH}, ${HOME} etc. (plain shell variables).
+    pattern: /\$\{[^}]*(?:\.|\(|\*|\+|\bclass\b|\bruntime\b|\bprocess\b|\bexec\b)[^}]{0,80}\}/i
+  },
+  {
+    id: "log-ssti-percent-tag",
+    description: "SSTI ERB/ASP tag: <%= expression %> \u2014 Ruby ERB, ASP",
+    pattern: /<%=[\s\S]{0,80}%>/
+  },
+  // ─── Null byte ────────────────────────────────────────────────────────────
+  {
+    id: "log-null-byte",
+    description: "Null byte: \\x00 or %00 \u2014 can truncate log entries in C-backed loggers",
+    pattern: /\x00|%00/
+  },
+  // ─── ANSI escape injection ────────────────────────────────────────────────
+  {
+    id: "log-ansi-escape",
+    description: "ANSI escape sequence: ESC[ \u2014 can manipulate terminal output when logs are tailed",
+    pattern: /\x1b\[/
+  }
+];
+var log_default = LOG_PATTERNS;
+
+// node_modules/is-unsafe/src/contexts/sql-strict.js
+var SQL_STRICT_EXTRA = [
+  {
+    id: "sql-line-comment",
+    description: "SQL line comment: -- followed by whitespace or end of string",
+    pattern: /--(?:\s|$)/
+  },
+  {
+    id: "sql-stacked-query",
+    description: "Stacked queries: semicolon immediately followed by a SQL keyword",
+    pattern: /;\s{0,10}(?:SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC)\b/i
+  },
+  {
+    id: "sql-hex-encoding",
+    description: "Hex-encoded string injection: 0x41414141 style (MySQL)",
+    pattern: /\b0x[0-9a-f]{4,}/i
+  }
+];
+var SQL_STRICT_PATTERNS = [...sql_default, ...SQL_STRICT_EXTRA];
+var sql_strict_default = SQL_STRICT_PATTERNS;
+
+// node_modules/is-unsafe/src/index.js
+html_default.label = "HTML";
+xml_default.label = "XML";
+svg_default.label = "SVG";
+sql_default.label = "SQL";
+sql_strict_default.label = "SQL-STRICT";
+shell_default.label = "SHELL";
+redos_default.label = "REDOS";
+nosql_default.label = "NOSQL";
+log_default.label = "LOG";
+var VALID_CONTEXTS = Object.freeze({
+  HTML: html_default,
+  XML: xml_default,
+  SVG: svg_default,
+  SQL: sql_default,
+  "SQL-STRICT": sql_strict_default,
+  SHELL: shell_default,
+  REDOS: redos_default,
+  NOSQL: nosql_default,
+  LOG: log_default
+});
+function assertString(value) {
+  if (typeof value !== "string") {
+    throw new TypeError(
+      `is-unsafe: first argument must be a string, got ${typeof value}`
+    );
+  }
+}
+function assertContext(context) {
+  if (context instanceof RegExp) return;
+  if (Array.isArray(context)) {
+    if (context.length === 0) {
+      throw new TypeError("is-unsafe: context must not be an empty array");
+    }
+    if (Array.isArray(context[0])) {
+      for (const list of context) {
+        if (!Array.isArray(list) || list.length === 0) {
+          throw new TypeError(
+            "is-unsafe: each context in the array must be a non-empty pattern array (PatternList)"
+          );
+        }
+      }
+    }
+    return;
+  }
+  throw new TypeError(
+    `is-unsafe: second argument must be a PatternList (e.g. HTML), an array of PatternLists (e.g. [HTML, XML]), or a RegExp. Got: ${typeof context}`
+  );
+}
+function normalise(context) {
+  if (context instanceof RegExp) return { lists: null, regex: context };
+  if (Array.isArray(context[0])) return { lists: context, regex: null };
+  return { lists: [context], regex: null };
+}
+function matchList(value, list) {
+  const label = list.label ?? "CUSTOM";
+  for (const rule of list) {
+    if (rule.pattern.test(value)) {
+      return { context: label, id: rule.id, description: rule.description, pattern: rule.pattern };
+    }
+  }
+  return null;
+}
+function isUnsafe(value, context) {
+  assertString(value);
+  assertContext(context);
+  const { lists, regex } = normalise(context);
+  if (regex) return regex.test(value);
+  for (const list of lists) {
+    if (matchList(value, list) !== null) return true;
+  }
+  return false;
+}
 
 // node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
@@ -16894,6 +16999,7 @@ var OrderedObjParser = class {
     this.ignoreAttributesFn = getIgnoreAttributesFn(this.options.ignoreAttributes);
     this.entityExpansionCount = 0;
     this.currentExpandedLength = 0;
+    this.doctypefound = false;
     let namedEntities = { ...XML };
     if (this.options.entityDecoder) {
       this.entityDecoder = this.options.entityDecoder;
@@ -16907,7 +17013,12 @@ var OrderedObjParser = class {
           maxTotalExpansions: this.options.processEntities.maxTotalExpansions,
           maxExpandedLength: this.options.processEntities.maxExpandedLength,
           applyLimitsTo: this.options.processEntities.appliesTo
-        }
+        },
+        // onExternalEntity: (name, value) => isUnsafe(value) ? 'block' : 'allow',
+        onInputEntity: (name, value) => (
+          //TODO: VALID_CONTEXTS.HTML should be set only if this.options.htmlEntities
+          isUnsafe(value, [html_default, xml_default]) ? ENTITY_ACTION.BLOCK : ENTITY_ACTION.ALLOW
+        )
         //postCheck: resolved => resolved
       });
     }
@@ -17040,6 +17151,7 @@ var parseXml = function(xmlData) {
   this.entityDecoder.reset();
   this.entityExpansionCount = 0;
   this.currentExpandedLength = 0;
+  this.doctypefound = false;
   const options = this.options;
   const docTypeReader = new DocTypeReader(options.processEntities);
   const xmlLen = xmlData.length;
@@ -17081,6 +17193,7 @@ var parseXml = function(xmlData) {
         if (attsMap) {
           const ver = attsMap[this.options.attributeNamePrefix + "version"];
           this.entityDecoder.setXmlVersion(Number(ver) || 1);
+          docTypeReader.setXmlVersion(Number(ver) || 1);
         }
         if (options.ignoreDeclaration && tagData.tagName === "?xml" || options.ignorePiTags) {
         } else {
@@ -17101,6 +17214,8 @@ var parseXml = function(xmlData) {
         }
         i = endIndex;
       } else if (c1 === 33 && xmlData.charCodeAt(i + 2) === 68) {
+        if (this.doctypefound) throw new Error("Multiple DOCTYPE declarations found.");
+        this.doctypefound = true;
         const result = docTypeReader.readDocType(xmlData, i);
         this.entityDecoder.addInputEntities(result.entities);
         i = result.i;
@@ -17384,7 +17499,7 @@ function readStopNodeData(xmlData, tagName, i) {
         const closeIndex = findClosingIndex(xmlData, "]]>", i, "StopNode is not closed.") - 2;
         i = closeIndex;
       } else {
-        const tagData = readTagExp(xmlData, i, ">");
+        const tagData = readTagExp(xmlData, i, false);
         if (tagData) {
           const openTagName = tagData && tagData.tagName;
           if (openTagName === tagName && tagData.tagExp[tagData.tagExp.length - 1] !== "/") {
@@ -17470,6 +17585,9 @@ function compress(arr, options, matcher, readonlyMatcher) {
     } else if (tagObj[property]) {
       let val = compress(tagObj[property], options, matcher, readonlyMatcher);
       const isLeaf = isLeafTag(val, options);
+      if (Object.keys(val).length === 0 && options.alwaysCreateTextNode) {
+        val[options.textNodeName] = "";
+      }
       if (tagObj[":@"]) {
         assignAttributes(val, tagObj[":@"], readonlyMatcher, options);
       } else if (Object.keys(val).length === 1 && val[options.textNodeName] !== void 0 && !options.alwaysCreateTextNode) {
@@ -17605,7 +17723,10 @@ import crypto from "node:crypto";
 var CONFIG = {
   url: process.env.NEXTCLOUD_URL,
   user: process.env.NEXTCLOUD_USER,
-  token: process.env.NEXTCLOUD_TOKEN
+  token: process.env.NEXTCLOUD_TOKEN,
+  // Optional. When set, created events name the account as a confirmed
+  // organiser and attendee; when unset, events are written exactly as before.
+  email: process.env.NEXTCLOUD_EMAIL || null
 };
 if (!CONFIG.url || !CONFIG.user || !CONFIG.token) {
   console.error(JSON.stringify({
@@ -17613,6 +17734,38 @@ if (!CONFIG.url || !CONFIG.user || !CONFIG.token) {
     message: "Missing configuration. Set NEXTCLOUD_URL, NEXTCLOUD_USER, and NEXTCLOUD_TOKEN."
   }));
   process.exit(1);
+}
+{
+  const UNRESOLVED_REF_PATTERNS = [
+    /^secretref:/i,
+    // not OpenClaw syntax, but a common guess
+    /^secretref-env:/i,
+    // retired OpenClaw marker
+    /^__env__:/i,
+    // older retired OpenClaw marker
+    /^\$[A-Z][A-Z0-9_]{0,127}$/,
+    // $NAME env shorthand
+    /^\$\{[A-Z][A-Z0-9_]{0,127}\}$/,
+    // ${NAME} env shorthand
+    /^\{\s*"?source"?\s*:/
+    // a stringified SecretRef object
+  ];
+  const named = {
+    NEXTCLOUD_URL: CONFIG.url,
+    NEXTCLOUD_USER: CONFIG.user,
+    NEXTCLOUD_TOKEN: CONFIG.token,
+    NEXTCLOUD_EMAIL: CONFIG.email
+  };
+  for (const [name, value] of Object.entries(named)) {
+    if (!value) continue;
+    const isRef = UNRESOLVED_REF_PATTERNS.some((p) => p.test(value.trim()));
+    if (!isRef) continue;
+    console.error(JSON.stringify({
+      status: "error",
+      message: `${name} holds an unresolved secret reference instead of a value. OpenClaw resolves SecretRefs only for skills.entries.openclaw-nextcloud.apiKey, which it injects as NEXTCLOUD_TOKEN; values under skills.entries.openclaw-nextcloud.env are injected verbatim. Set the app password as apiKey: {"source":"store","provider":"default","id":"NEXTCLOUD_TOKEN"} and give the other variables plain values. See the Configuration section of README.md.`
+    }));
+    process.exit(1);
+  }
 }
 {
   const parsed = (() => {
@@ -17638,7 +17791,12 @@ if (!CONFIG.url || !CONFIG.user || !CONFIG.token) {
 var AUTH_HEADER = "Basic " + Buffer2.from(`${CONFIG.user}:${CONFIG.token}`).toString("base64");
 var parser = new XMLParser({
   ignoreAttributes: false,
-  attributeNamePrefix: "@_"
+  attributeNamePrefix: "@_",
+  // Decode numeric character references. Nextcloud writes the CR of a CRLF
+  // line ending as &#13;, which the parser otherwise leaves in the text: an
+  // expanded calendar-data block then has no line that reads BEGIN:VEVENT.
+  // &amp; is still decoded last, so escaped text is not decoded twice.
+  htmlEntities: true
 });
 async function request(endpoint, options = {}) {
   const url = `${CONFIG.url}${endpoint}`;
@@ -17682,6 +17840,356 @@ function errorOutput(message) {
   }, null, 2));
   process.exit(1);
 }
+function sanitizePath(filePath) {
+  if (typeof filePath !== "string" || filePath === "") {
+    throw new Error("File path must be a non-empty string.");
+  }
+  const normalizedPercentEncoding = filePath.replace(/%(?![0-9A-Fa-f]{2})/g, "%25");
+  let decoded;
+  try {
+    decoded = decodeURIComponent(normalizedPercentEncoding);
+  } catch {
+    decoded = filePath;
+  }
+  const decodedSegments = decoded.split("/");
+  if (decodedSegments.some((segment) => segment === "." || segment === "..")) {
+    throw new Error("File path contains disallowed dot-segments (. or ..).");
+  }
+  if (/[\x00-\x1f\x7f]/.test(decoded)) {
+    throw new Error("File path contains control characters.");
+  }
+  if (/\\/.test(decoded)) {
+    throw new Error("File path contains backslashes.");
+  }
+  return decoded;
+}
+function encodePathSegments(decodedPath) {
+  return decodedPath.split("/").map((seg) => encodeURIComponent(seg)).join("/");
+}
+function escapePropertyValue(value) {
+  if (typeof value !== "string") return String(value);
+  let escaped = value.replace(/\\/g, "\\\\");
+  escaped = escaped.replace(/\r\n/g, "\\n").replace(/\n/g, "\\n").replace(/\r/g, "\\n");
+  escaped = escaped.replace(/;/g, "\\;").replace(/,/g, "\\,");
+  return escaped;
+}
+function escapeParameterValue(value) {
+  const cleaned = String(value).replace(/[\u0000-\u001F\u007F]+/g, " ").replace(/"/g, "'");
+  return /[,;:]/.test(cleaned) ? `"${cleaned}"` : cleaned;
+}
+function parseOrganizerEmail(value) {
+  const email = String(value).trim();
+  if (!/^[^\s@,;:"<>\\]+@[^\s@,;:"<>\\]+\.[^\s@,;:"<>\\]+$/.test(email)) {
+    throw new Error("NEXTCLOUD_EMAIL must be a plain email address, e.g. user@example.com.");
+  }
+  return email;
+}
+function unescapePropertyValue(value) {
+  if (value === null || value === void 0) return value;
+  return String(value).replace(
+    /\\([\\;,nN])/g,
+    (_, char) => char === "n" || char === "N" ? "\n" : char
+  );
+}
+function splitStructuredValue(value) {
+  const parts = [];
+  let current = "";
+  for (let i = 0; i < value.length; i++) {
+    const char = value[i];
+    if (char === "\\" && i + 1 < value.length) {
+      current += char + value[++i];
+    } else if (char === ";") {
+      parts.push(current);
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  parts.push(current);
+  return parts;
+}
+function parsePriorityInput(value) {
+  if (!/^[0-9]$/.test(String(value))) {
+    throw new Error("Priority must be an integer from 0 to 9.");
+  }
+  return String(value);
+}
+function parseStatusInput(value) {
+  const normalized = String(value).toUpperCase();
+  const validStatuses = ["NEEDS-ACTION", "IN-PROCESS", "COMPLETED", "CANCELLED"];
+  if (!validStatuses.includes(normalized)) {
+    throw new Error(`Invalid status '${value}'. Valid values: ${validStatuses.join(", ")}.`);
+  }
+  return normalized;
+}
+var MAX_DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+function parseBirthdayInput(value) {
+  if (typeof value !== "string") {
+    throw new Error(`Invalid birthday '${value}'. Expected a string.`);
+  }
+  const raw = value.trim();
+  const full = /^(\d{4})-?(\d{2})-?(\d{2})$/.exec(raw);
+  if (full) {
+    const [, y, mo, d] = full;
+    const normalized = `${y}-${mo}-${d}`;
+    const date = /* @__PURE__ */ new Date(`${normalized}T00:00:00Z`);
+    if (isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== normalized) {
+      throw new Error(`Invalid birthday '${value}'. That date does not exist.`);
+    }
+    return normalized;
+  }
+  const noYear = /^--(\d{2})-?(\d{2})$/.exec(raw);
+  if (noYear) {
+    const [, mo, d] = noYear;
+    const month = Number(mo);
+    const day = Number(d);
+    if (month < 1 || month > 12 || day < 1 || day > MAX_DAYS_IN_MONTH[month - 1]) {
+      throw new Error(
+        `Invalid birthday '${value}'. That date does not exist.`
+      );
+    }
+    return `--${mo}-${d}`;
+  }
+  throw new Error(
+    `Invalid birthday '${value}'. Use YYYY-MM-DD (1943-10-19), the compact form (19431019), or --MM-DD (--10-19) when the year is unknown.`
+  );
+}
+var ADR_COMPONENTS = ["poBox", "extended", "street", "city", "region", "postalCode", "country"];
+var ADDRESS_TYPES = ["home", "work", "other"];
+var ADR_PROPERTY = /^(?:[A-Za-z0-9-]+\.)?ADR$/i;
+function parseAddressInput(components, type) {
+  const given = Object.fromEntries(
+    Object.entries(components).filter(([, value]) => value !== void 0)
+  );
+  if (Object.keys(given).length === 0) {
+    if (type !== void 0) {
+      throw new Error(
+        "--address-type needs at least one of --po-box, --extended, --street, --city, --region, --postal-code or --country."
+      );
+    }
+    return void 0;
+  }
+  if (type === void 0) return { type: null, components: given };
+  const normalized = type.trim().toLowerCase();
+  if (!ADDRESS_TYPES.includes(normalized)) {
+    throw new Error(`Invalid address type '${type}'. Valid values: ${ADDRESS_TYPES.join(", ")}.`);
+  }
+  return { type: normalized, components: given };
+}
+function parsePercentCompleteInput(value) {
+  const str = String(value);
+  if (!/^\d{1,3}$/.test(str)) {
+    throw new Error("Percent-complete must be an integer from 0 to 100.");
+  }
+  const num = parseInt(str, 10);
+  if (num < 0 || num > 100) {
+    throw new Error("Percent-complete must be between 0 and 100.");
+  }
+  return String(num);
+}
+function parseClassInput(value) {
+  const normalized = String(value).toUpperCase();
+  const validClasses = ["PUBLIC", "PRIVATE", "CONFIDENTIAL"];
+  if (!validClasses.includes(normalized)) {
+    throw new Error(`Invalid class '${value}'. Valid values: ${validClasses.join(", ")}.`);
+  }
+  return normalized;
+}
+function parseUriInput(value) {
+  const uri = String(value).trim();
+  if (/[\u0000-\u001F\u007F]/.test(uri) || /\s/.test(uri)) {
+    throw new Error("URL must be a single URI with no spaces or line breaks.");
+  }
+  return uri;
+}
+function parseTagsInput(value) {
+  if (typeof value !== "string" || value.trim() === "") {
+    return [];
+  }
+  return value.split(",").map((tag) => tag.trim()).filter(Boolean);
+}
+var MAX_TEXT_INPUT_BYTES = 64 * 1024 * 1024;
+var CONFIRMATION_REQUIRED = /* @__PURE__ */ new Set([
+  "notes:delete",
+  "files:delete",
+  "calendar:delete",
+  "tasks:delete",
+  "shares:create-link",
+  "shares:delete",
+  "contacts:delete",
+  "boards:delete",
+  "stacks:delete",
+  "cards:delete",
+  "labels:delete"
+]);
+var FLAG_TABLE = {
+  addressbooks: {
+    list: ""
+  },
+  boards: {
+    create: "--color --title",
+    delete: "--board",
+    edit: "--archived --board --color --title",
+    get: "--board",
+    list: ""
+  },
+  calendar: {
+    create: "--calendar --description --description-file --end --location --start --summary",
+    delete: "--calendar --uid",
+    edit: "--calendar --description --description-file --end --location --start --summary --uid",
+    list: "--calendar --from --to"
+  },
+  calendars: {
+    list: "--type"
+  },
+  cards: {
+    "assign-label": "--board --card --label --stack",
+    "comment-add": "--card --message --message-file",
+    "comment-delete": "--card --comment",
+    "comment-list": "--card",
+    create: "--board --description --description-file --duedate --order --stack --title",
+    delete: "--board --card --stack",
+    edit: "--archived --board --card --description --description-file --done --duedate --order --stack --title",
+    get: "--board --card --stack",
+    list: "--board --stack",
+    move: "--board --card --order --stack --to-stack",
+    "remove-label": "--board --card --label --stack"
+  },
+  contacts: {
+    create: "--address-type --addressbook --bday --city --country --email --extended --name --note --note-file --organization --phone --po-box --postal-code --region --street --title",
+    delete: "--addressbook --uid",
+    edit: "--address-type --addressbook --bday --city --country --email --extended --name --note --note-file --organization --phone --po-box --postal-code --region --street --title --uid",
+    get: "--addressbook --uid",
+    list: "--addressbook",
+    search: "--addressbook --query"
+  },
+  files: {
+    delete: "--path",
+    get: "--out --path",
+    list: "--path",
+    search: "--query",
+    upload: "--content --content-file --path"
+  },
+  labels: {
+    create: "--board --color --title",
+    delete: "--board --label",
+    edit: "--board --color --label --title",
+    list: "--board"
+  },
+  notes: {
+    create: "--category --content --content-file --title",
+    delete: "--id",
+    edit: "--category --content --content-file --id --title",
+    get: "--id",
+    list: ""
+  },
+  shares: {
+    "create-link": "--expire --password --password-file --path --permissions",
+    delete: "--id",
+    list: "--path"
+  },
+  stacks: {
+    create: "--board --order --title",
+    delete: "--board --stack",
+    edit: "--board --order --stack --title",
+    list: "--board"
+  },
+  tasks: {
+    complete: "--calendar --uid",
+    create: "--calendar --class --description --description-file --due --location --priority --start --tags --title --url",
+    delete: "--calendar --uid",
+    edit: "--calendar --class --description --description-file --due --location --percent-complete --priority --start --status --tags --title --uid --url",
+    list: "--calendar"
+  }
+};
+var GLOBAL_FLAGS = ["--confirm"];
+function rejectUnknownFlags(args, command, subCommand) {
+  const table = FLAG_TABLE[command];
+  if (!table) return;
+  if (!(subCommand in table)) return;
+  const allowed = new Set(
+    `${table[subCommand]} ${GLOBAL_FLAGS.join(" ")}`.split(" ").filter(Boolean)
+  );
+  for (let i = 2; i < args.length; i++) {
+    const arg = args[i];
+    if (!arg.startsWith("--")) continue;
+    if (allowed.has(arg)) {
+      i++;
+      continue;
+    }
+    throw new Error(
+      `Unknown option '${arg}' for '${command} ${subCommand}'. Accepted: ${[...allowed].sort().join(", ")}`
+    );
+  }
+}
+function getOptionValue(args, flag) {
+  const index = args.indexOf(flag);
+  if (index === -1) return void 0;
+  const value = args[index + 1];
+  if (value === void 0) {
+    throw new Error(`Missing value for ${flag}`);
+  }
+  return value;
+}
+function readTextOption(args, inlineFlag, fileFlag, {
+  required = false,
+  stripFinalNewline = false,
+  maxBytes = MAX_TEXT_INPUT_BYTES,
+  binary = false
+} = {}) {
+  const inlineValue = getOptionValue(args, inlineFlag);
+  const filePath = getOptionValue(args, fileFlag);
+  if (inlineValue !== void 0 && filePath !== void 0) {
+    throw new Error(`Use either ${inlineFlag} or ${fileFlag}, not both.`);
+  }
+  if (inlineValue !== void 0) {
+    if (required && inlineValue.length === 0) {
+      throw new Error(`${inlineFlag} must not be empty.`);
+    }
+    return binary ? Buffer2.from(inlineValue, "utf8") : inlineValue;
+  }
+  if (filePath === void 0) {
+    if (required) throw new Error(`Missing ${inlineFlag} or ${fileFlag}`);
+    return void 0;
+  }
+  const resolvedPath = path.resolve(filePath);
+  let stat;
+  try {
+    stat = fs.statSync(resolvedPath);
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      throw new Error(`${fileFlag} file not found: ${filePath}`);
+    }
+    throw new Error(`Cannot read ${fileFlag}: ${error.message}`);
+  }
+  if (!stat.isFile()) {
+    throw new Error(`${fileFlag} must reference a regular file.`);
+  }
+  if (stat.size > maxBytes) {
+    throw new Error(`${fileFlag} exceeds the ${maxBytes}-byte safety limit.`);
+  }
+  let value;
+  if (binary) {
+    value = fs.readFileSync(resolvedPath);
+  } else {
+    value = fs.readFileSync(resolvedPath, "utf8");
+    if (stripFinalNewline) value = value.replace(/\r?\n$/, "");
+  }
+  if (required && value.length === 0) {
+    throw new Error(`${fileFlag} must not be empty.`);
+  }
+  return value;
+}
+function requireExplicitConfirmation(args, command, subCommand) {
+  const action = `${command}:${subCommand}`;
+  if (!CONFIRMATION_REQUIRED.has(action)) return;
+  const confirmation = getOptionValue(args, "--confirm");
+  if (confirmation !== action) {
+    throw new Error(
+      `Refusing ${command} ${subCommand} without explicit confirmation. See SKILL.md for confirmation requirements.`
+    );
+  }
+}
 function ensureArray(item) {
   if (Array.isArray(item)) return item;
   if (item === void 0 || item === null) return [];
@@ -17716,6 +18224,46 @@ function parseDateInput(str) {
     throw new Error(`Invalid date '${str}'. Use ISO 8601 (2026-04-15T17:00:00Z) or CalDAV compact format (20260415T170000Z).`);
   }
   return date;
+}
+function toCalDavDate(date) {
+  return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+}
+function parseCalendarValue(str) {
+  const raw = String(str).trim();
+  const dateOnly = /^(\d{4})-?(\d{2})-?(\d{2})$/.exec(raw);
+  if (dateOnly) {
+    const [, y, mo, d] = dateOnly;
+    const date2 = /* @__PURE__ */ new Date(`${y}-${mo}-${d}T00:00:00Z`);
+    if (isNaN(date2.getTime())) {
+      throw new Error(`Invalid date '${str}'. Use ISO 8601 (2026-04-15) or CalDAV compact format (20260415).`);
+    }
+    return { date: date2, isDate: true, ical: `${y}${mo}${d}` };
+  }
+  const date = parseDateInput(raw);
+  return { date, isDate: false, ical: toCalDavDate(date) };
+}
+function readCalendarValue(text, prop) {
+  const match = text.match(new RegExp(`^${prop}(;[^:\r
+]*)?:(.*)$`, "m"));
+  if (!match) return null;
+  try {
+    const value = parseCalendarValue(match[2].trim());
+    const declaredDate = /(?:^|;)VALUE=DATE(?:;|$)/i.test(match[1] || "");
+    return declaredDate ? { ...value, isDate: true } : value;
+  } catch {
+    return null;
+  }
+}
+function validateTaskDates(start, due) {
+  if (!start || !due) return;
+  if (start.isDate !== due.isDate) {
+    throw new Error(
+      "A task's start and due dates must both be all-day dates (2026-04-15) or both carry a time (2026-04-15T17:00:00Z). Set --start and --due together to change which form the task uses."
+    );
+  }
+  if (start.date.getTime() > due.date.getTime()) {
+    throw new Error("Start date must be earlier than or equal to due date.");
+  }
 }
 var Notes = {
   async list() {
@@ -17769,7 +18317,7 @@ var Notes = {
     if (content !== void 0) payload.content = content;
     if (category !== void 0) payload.category = category;
     if (Object.keys(payload).length === 0) {
-      throw new Error("Nothing to update. Provide title, content, or category.");
+      throw new Error("Nothing to update. Provide title, content/content-file, or category.");
     }
     const data = await request(`/index.php/apps/notes/api/v1/notes/${id}`, {
       method: "PUT",
@@ -17794,8 +18342,10 @@ var Notes = {
 };
 var Files = {
   async list(dirPath = "/") {
-    const cleanPath = dirPath.startsWith("/") ? dirPath.slice(1) : dirPath;
-    const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+    const decodedPath = sanitizePath(dirPath);
+    const relPath = decodedPath.replace(/^\/+/, "");
+    const safePath = relPath ? encodePathSegments(relPath) : "";
+    const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
     const propfindBody = `<?xml version="1.0" encoding="utf-8"?>
 <d:propfind xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns">
   <d:prop>
@@ -17825,8 +18375,8 @@ var Files = {
       const props = propstats[0]["d:prop"];
       const isDir = props["d:resourcetype"] && props["d:resourcetype"]["d:collection"] !== void 0;
       const name = decodeURIComponent(href.split("/").filter((p) => p).pop());
-      if (href.endsWith(encodeURIComponent(CONFIG.user) + "/" + cleanPath) || href.endsWith(encodeURIComponent(CONFIG.user) + "/" + cleanPath + "/")) {
-        if (cleanPath !== "" && name === cleanPath.split("/").pop()) return null;
+      if (href.endsWith(encodeURIComponent(CONFIG.user) + "/" + safePath) || href.endsWith(encodeURIComponent(CONFIG.user) + "/" + safePath + "/")) {
+        if (relPath !== "" && name === relPath.split("/").pop()) return null;
       }
       const fileId = props["oc:fileid"] != null ? String(props["oc:fileid"]) : null;
       return {
@@ -17841,20 +18391,23 @@ var Files = {
     }).filter((f) => f);
   },
   async upload(filePath, content) {
-    const cleanPath = filePath.startsWith("/") ? filePath.slice(1) : filePath;
-    const segments = cleanPath.split("/").filter(Boolean);
+    const decodedPath = sanitizePath(filePath);
+    const relPath = decodedPath.replace(/^\/+/, "");
+    if (!relPath) throw new Error("File path must be non-empty.");
+    const safePath = encodePathSegments(relPath);
+    const segments = relPath.split("/").filter(Boolean);
     if (segments.length > 1) {
       let currentPath = "";
       for (const seg of segments.slice(0, -1)) {
-        currentPath = currentPath ? `${currentPath}/${seg}` : seg;
+        currentPath = currentPath ? `${currentPath}/${encodeURIComponent(seg)}` : encodeURIComponent(seg);
         try {
-          await request(`/remote.php/dav/files/${CONFIG.user}/${currentPath}`, { method: "MKCOL" });
+          await request(`/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${currentPath}`, { method: "MKCOL" });
         } catch (e) {
           if (e.status !== 405) throw e;
         }
       }
     }
-    const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+    const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
     await request(endpoint, {
       method: "PUT",
       headers: {
@@ -17863,11 +18416,15 @@ var Files = {
       body: content,
       rawBody: true
     });
-    return { path: filePath, status: "uploaded", size: content.length };
+    const size = Buffer2.isBuffer(content) ? content.length : Buffer2.byteLength(content, "utf8");
+    return { path: filePath, status: "uploaded", size };
   },
-  async get(filePath) {
-    const cleanPath = filePath.startsWith("/") ? filePath.slice(1) : filePath;
-    const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+  async get(filePath, out) {
+    const decodedPath = sanitizePath(filePath);
+    const relPath = decodedPath.replace(/^\/+/, "");
+    if (!relPath) throw new Error("File path must be non-empty.");
+    const safePath = encodePathSegments(relPath);
+    const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
     const response = await fetch(`${CONFIG.url}${endpoint}`, {
       method: "GET",
       headers: {
@@ -17877,12 +18434,37 @@ var Files = {
     if (!response.ok) {
       throw new Error(`Request failed: HTTP ${response.status}: ${response.statusText}`);
     }
-    const content = await response.text();
-    return { path: filePath, content, size: content.length };
+    const buffer = Buffer2.from(await response.arrayBuffer());
+    if (out !== void 0) {
+      const resolved = path.resolve(out);
+      try {
+        fs.writeFileSync(resolved, buffer, { flag: "wx" });
+      } catch (error) {
+        if (error.code === "EEXIST") {
+          throw new Error(
+            `--out file already exists: ${out}. files get never overwrites a local file; choose a new path.`
+          );
+        }
+        throw new Error(`Cannot write --out: ${error.message}`);
+      }
+      return { path: filePath, out: resolved, size: buffer.length };
+    }
+    let content;
+    try {
+      content = new TextDecoder("utf-8", { fatal: true }).decode(buffer);
+    } catch {
+      throw new Error(
+        `${filePath} is not UTF-8 text and cannot be returned inline without corrupting it. Use --out <file> to save the raw bytes.`
+      );
+    }
+    return { path: filePath, content, size: buffer.length };
   },
   async delete(filePath) {
-    const cleanPath = filePath.startsWith("/") ? filePath.slice(1) : filePath;
-    const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+    const decodedPath = sanitizePath(filePath);
+    const relPath = decodedPath.replace(/^\/+/, "");
+    if (!relPath) throw new Error("File path must be non-empty.");
+    const safePath = encodePathSegments(relPath);
+    const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
     await request(endpoint, {
       method: "DELETE"
     });
@@ -17974,20 +18556,26 @@ var CalDAV = {
       };
     }).filter((c) => c && (!componentType || c.componentType === componentType));
   },
-  async getEvents(start, end) {
-    const calendars = await this.findCalendars("VEVENT");
+  async getEvents(start, end, calendarName = null) {
+    let calendars = await this.findCalendars("VEVENT");
+    if (calendarName) {
+      const matched = matchByName(calendars, calendarName);
+      if (!matched) {
+        const available = calendars.map((c) => c.displayname).join(", ") || "(none)";
+        throw new Error(`Event-enabled calendar '${calendarName}' not found. Available: ${available}`);
+      }
+      calendars = [matched];
+    }
     const allEvents = [];
-    const toCalDavDate = (dateStr) => {
-      const d = parseDateInput(dateStr);
-      return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-    };
-    const startStr = toCalDavDate(start);
-    const endStr = toCalDavDate(end);
+    const startStr = toCalDavDate(parseDateInput(start));
+    const endStr = toCalDavDate(parseDateInput(end));
     const body = `
             <c:calendar-query xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
                 <d:prop>
                     <d:getetag />
-                    <c:calendar-data />
+                    <c:calendar-data>
+                        <c:expand start="${startStr}" end="${endStr}" />
+                    </c:calendar-data>
                 </d:prop>
                 <c:filter>
                     <c:comp-filter name="VCALENDAR">
@@ -18011,27 +18599,31 @@ var CalDAV = {
           const propstats = ensureArray(r["d:propstat"]);
           if (!propstats[0] || !propstats[0]["d:prop"]) continue;
           const calData = propstats[0]["d:prop"]["cal:calendar-data"];
-          const unfolded = calData.replace(/\r?\n[ \t]/g, "");
-          const uidMatch = calData.match(/UID:(.*)/);
-          const summaryMatch = calData.match(/SUMMARY:(.*)/);
-          const descriptionMatch = unfolded.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
-          const dtstartMatch = calData.match(/DTSTART(?:;.*)?:(.*)/);
-          const dtendMatch = calData.match(/DTEND(?:;.*)?:(.*)/);
-          const locationMatch = calData.match(/LOCATION:(.*)/);
-          allEvents.push({
-            uid: uidMatch ? uidMatch[1].trim() : "No UID",
-            calendar: cal.displayname,
-            summary: summaryMatch ? summaryMatch[1].trim() : "No Title",
-            description: descriptionMatch ? descriptionMatch[1].trim() : null,
-            start: dtstartMatch ? dtstartMatch[1].trim() : "Unknown",
-            end: dtendMatch ? dtendMatch[1].trim() : null,
-            location: locationMatch ? locationMatch[1].trim() : null
-          });
+          for (const vevent of this._componentTexts(calData)) {
+            const uidMatch = vevent.match(/^UID(?:;[^:]*)?:(.*)$/m);
+            const summaryMatch = vevent.match(/^SUMMARY(?:;[^:]*)?:(.*)$/m);
+            const descriptionMatch = vevent.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
+            const dtstartMatch = vevent.match(/^DTSTART(?:;[^:]*)?:(.*)$/m);
+            const dtendMatch = vevent.match(/^DTEND(?:;[^:]*)?:(.*)$/m);
+            const locationMatch = vevent.match(/^LOCATION(?:;[^:]*)?:(.*)$/m);
+            const recurrenceIdMatch = vevent.match(/^RECURRENCE-ID(?:;[^:]*)?:(.*)$/m);
+            allEvents.push({
+              uid: uidMatch ? uidMatch[1].trim() : "No UID",
+              calendar: cal.displayname,
+              summary: summaryMatch ? unescapePropertyValue(summaryMatch[1].trim()) : "No Title",
+              description: descriptionMatch ? unescapePropertyValue(descriptionMatch[1].trim()) : null,
+              start: dtstartMatch ? dtstartMatch[1].trim() : "Unknown",
+              end: dtendMatch ? dtendMatch[1].trim() : null,
+              location: locationMatch ? unescapePropertyValue(locationMatch[1].trim()) : null,
+              // Set on every occurrence of a recurring event, and only there.
+              recurrenceId: recurrenceIdMatch ? recurrenceIdMatch[1].trim() : null
+            });
+          }
         }
       } catch (e) {
       }
     }
-    return allEvents;
+    return allEvents.sort((a, b) => a.start < b.start ? -1 : a.start > b.start ? 1 : 0);
   },
   async getTodos(calendarName = null) {
     let calendars = await this.findCalendars("VTODO");
@@ -18053,11 +18645,7 @@ var CalDAV = {
                 </d:prop>
                 <c:filter>
                     <c:comp-filter name="VCALENDAR">
-                        <c:comp-filter name="VTODO">
-                            <c:prop-filter name="STATUS">
-                                <c:text-match negate-condition="yes">COMPLETED</c:text-match>
-                            </c:prop-filter>
-                        </c:comp-filter>
+                        <c:comp-filter name="VTODO" />
                     </c:comp-filter>
                 </c:filter>
             </c:calendar-query>
@@ -18077,21 +18665,53 @@ var CalDAV = {
             continue;
           }
           const calData = propstats[0]["d:prop"]["cal:calendar-data"];
-          const unfolded = calData.replace(/\r?\n[ \t]/g, "");
-          const summaryMatch = calData.match(/SUMMARY:(.*)/);
-          const descriptionMatch = unfolded.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
-          const statusMatch = calData.match(/STATUS:(.*)/);
-          const uidMatch = calData.match(/UID:(.*)/);
-          const dueMatch = calData.match(/DUE(?:;.*)?:(.*)/);
-          const priorityMatch = calData.match(/PRIORITY:(.*)/);
+          const vtodo = this._componentText(calData);
+          if (!vtodo) continue;
+          const summaryMatch = vtodo.match(/^SUMMARY(?:;[^:]*)?:(.*)$/m);
+          const descriptionMatch = vtodo.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
+          const statusMatch = vtodo.match(/^STATUS(?:;[^:]*)?:(.*)$/m);
+          const uidMatch = vtodo.match(/^UID(?:;[^:]*)?:(.*)$/m);
+          const startMatch = vtodo.match(/^DTSTART(?:;[^:]*)?:(.*)$/m);
+          const dueMatch = vtodo.match(/^DUE(?:;[^:]*)?:(.*)$/m);
+          const priorityMatch = vtodo.match(/^PRIORITY(?:;[^:]*)?:(.*)$/m);
+          const locationMatch = vtodo.match(/^LOCATION(?:;[^:]*)?:(.*)$/m);
+          const urlMatch = vtodo.match(/^URL(?:;[^:]*)?:(.*)$/m);
+          const classMatch = vtodo.match(/^CLASS(?:;[^:]*)?:(.*)$/m);
+          const categoriesMatch = vtodo.match(/^CATEGORIES(?:;[^:]*)?:(.*)$/m);
+          const status = statusMatch ? statusMatch[1].trim() : "NEEDS-ACTION";
+          if (status === "COMPLETED") continue;
+          let tags = null;
+          if (categoriesMatch) {
+            const rawTags = categoriesMatch[1].trim();
+            const split = [];
+            let current = "";
+            for (let i = 0; i < rawTags.length; i++) {
+              const char = rawTags[i];
+              if (char === "\\" && i + 1 < rawTags.length) {
+                current += char + rawTags[++i];
+              } else if (char === ",") {
+                split.push(current);
+                current = "";
+              } else {
+                current += char;
+              }
+            }
+            split.push(current);
+            tags = split.map((t) => unescapePropertyValue(t.trim())).filter(Boolean);
+          }
           allTodos.push({
             uid: uidMatch ? uidMatch[1].trim() : "No UID",
             calendar: cal.displayname,
-            summary: summaryMatch ? summaryMatch[1].trim() : "No Title",
-            description: descriptionMatch ? descriptionMatch[1].trim() : null,
-            status: statusMatch ? statusMatch[1].trim() : "NEEDS-ACTION",
+            summary: summaryMatch ? unescapePropertyValue(summaryMatch[1].trim()) : "No Title",
+            description: descriptionMatch ? unescapePropertyValue(descriptionMatch[1].trim()) : null,
+            status,
+            start: startMatch ? startMatch[1].trim() : null,
             due: dueMatch ? dueMatch[1].trim() : null,
-            priority: priorityMatch ? parseInt(priorityMatch[1].trim(), 10) : null
+            priority: priorityMatch ? parseInt(priorityMatch[1].trim(), 10) : null,
+            location: locationMatch ? unescapePropertyValue(locationMatch[1].trim()) : null,
+            url: urlMatch ? unescapePropertyValue(urlMatch[1].trim()) : null,
+            class: classMatch ? classMatch[1].trim().toUpperCase() : null,
+            tags
           });
         }
       } catch (e) {
@@ -18168,45 +18788,104 @@ var CalDAV = {
     }
     return null;
   },
-  _updateProperty(vcal, prop, value) {
-    if (value === null || value === void 0) {
-      return vcal;
+  // Index the lines belonging to the VTODO or VEVENT itself. Properties must
+  // never be read from or written to anything else in the VCALENDAR: a
+  // VTIMEZONE carries DTSTART lines of its own (the DST rules, dated 1970),
+  // and a VALARM carries its own SUMMARY and DESCRIPTION. An unscoped match
+  // finds whichever comes first in the file.
+  _componentLines(lines, from = 0) {
+    let name = null;
+    let nested = 0;
+    const own = [];
+    for (let i = from; i < lines.length; i++) {
+      const line = lines[i];
+      if (!name) {
+        const begin = /^BEGIN:(VTODO|VEVENT)\s*$/.exec(line);
+        if (begin) name = begin[1];
+        continue;
+      }
+      if (nested === 0 && new RegExp(`^END:${name}\\s*$`).test(line)) {
+        return { name, own, end: i };
+      }
+      if (/^BEGIN:/.test(line)) nested++;
+      else if (/^END:/.test(line)) nested--;
+      else if (nested === 0) own.push(i);
     }
-    const regex = new RegExp(`^${prop}(?:;[^:\\r\\n]*)?:.*$`, "m");
-    const newLine = `${prop}:${value}`;
-    if (regex.test(vcal)) {
-      return vcal.replace(regex, newLine);
+    return null;
+  },
+  // The component's own property lines, unfolded, for reading values out of.
+  _componentText(vcal) {
+    const lines = vcal.replace(/\r?\n[ \t]/g, "").split(/\r?\n/);
+    const component = this._componentLines(lines);
+    return component ? component.own.map((i) => lines[i]).join("\n") : "";
+  },
+  // The same for every component in the file. An expanded recurring event
+  // comes back as one VEVENT per occurrence.
+  _componentTexts(vcal) {
+    const lines = vcal.replace(/\r?\n[ \t]/g, "").split(/\r?\n/);
+    const texts = [];
+    for (let c = this._componentLines(lines); c; c = this._componentLines(lines, c.end + 1)) {
+      texts.push(c.own.map((i) => lines[i]).join("\n"));
     }
-    const endMatch = vcal.match(/END:(VTODO|VEVENT)/);
-    if (!endMatch) {
+    return texts;
+  },
+  // Replace, insert, or (value === null) remove a property on the component.
+  _updateProperty(vcal, prop, value, params = null) {
+    if (value === void 0) return vcal;
+    const lines = vcal.split(/\r?\n/);
+    const component = this._componentLines(lines);
+    if (!component) {
       throw new Error("Cannot insert property: no END:VTODO or END:VEVENT found in calendar data.");
     }
-    return vcal.replace(endMatch[0], `${newLine}
-${endMatch[0]}`);
+    const eol = vcal.includes("\r\n") ? "\r\n" : "\n";
+    const newLine = value === null ? null : `${prop}${params ? `;${params}` : ""}:${value}`;
+    const regex = new RegExp(`^${prop}(?:;[^:]*)?:`);
+    const first = component.own.find((i) => regex.test(lines[i]));
+    if (first === void 0) {
+      if (newLine === null) return vcal;
+      lines.splice(component.end, 0, newLine);
+      return lines.join(eol);
+    }
+    let last = first;
+    while (last + 1 < lines.length && /^[ \t]/.test(lines[last + 1])) last++;
+    lines.splice(first, last - first + 1, ...newLine === null ? [] : [newLine]);
+    return lines.join(eol);
   },
-  async createTask(title, calendarName, dueDate, priority, description) {
+  async createTask(title, calendarName, options = {}) {
+    const start = options.startDate ? parseCalendarValue(options.startDate) : null;
+    const due = options.dueDate ? parseCalendarValue(options.dueDate) : null;
+    validateTaskDates(start, due);
     const cal = await this.getCalendar(calendarName, "VTODO");
     const uid = crypto.randomUUID();
     const now = /* @__PURE__ */ new Date();
-    const dtstamp = (0, import_date_fns.format)(now, "yyyyMMdd'T'HHmmss'Z'");
+    const dtstamp = toCalDavDate(now);
     let vtodo = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//OpenClaw//Nextcloud Skill//EN
 BEGIN:VTODO
 UID:${uid}
 DTSTAMP:${dtstamp}
-SUMMARY:${title}
+SUMMARY:${escapePropertyValue(title)}
 STATUS:NEEDS-ACTION
 `;
-    if (dueDate) {
-      const due = parseDateInput(dueDate);
-      vtodo += `DUE:${(0, import_date_fns.format)(due, "yyyyMMdd'T'HHmmss'Z'")}
+    if (start) vtodo += `DTSTART${start.isDate ? ";VALUE=DATE" : ""}:${start.ical}
+`;
+    if (due) vtodo += `DUE${due.isDate ? ";VALUE=DATE" : ""}:${due.ical}
+`;
+    if (options.priority) vtodo += `PRIORITY:${options.priority}
+`;
+    if (options.description) vtodo += `DESCRIPTION:${escapePropertyValue(options.description)}
+`;
+    if (options.location) vtodo += `LOCATION:${escapePropertyValue(options.location)}
+`;
+    if (options.url) vtodo += `URL:${options.url}
+`;
+    if (options.className) vtodo += `CLASS:${options.className}
+`;
+    if (options.tags && options.tags.length > 0) {
+      vtodo += `CATEGORIES:${options.tags.map(escapePropertyValue).join(",")}
 `;
     }
-    if (priority) vtodo += `PRIORITY:${priority}
-`;
-    if (description) vtodo += `DESCRIPTION:${description}
-`;
     vtodo += `END:VTODO
 END:VCALENDAR`;
     const filename = `${uid}.ics`;
@@ -18226,13 +18905,38 @@ END:VCALENDAR`;
     const task = await this.findTaskPath(uid, calendarName);
     if (!task) throw new Error(`Task ${uid} not found.`);
     let vtodo = task.data;
-    if (updates.title) vtodo = this._updateProperty(vtodo, "SUMMARY", updates.title);
+    if (updates.title) vtodo = this._updateProperty(vtodo, "SUMMARY", escapePropertyValue(updates.title));
     if (updates.priority) vtodo = this._updateProperty(vtodo, "PRIORITY", updates.priority);
-    if (updates.description) vtodo = this._updateProperty(vtodo, "DESCRIPTION", updates.description);
-    if (updates.dueDate) {
-      const due = parseDateInput(updates.dueDate);
-      vtodo = this._updateProperty(vtodo, "DUE", (0, import_date_fns.format)(due, "yyyyMMdd'T'HHmmss'Z'"));
+    if (updates.description) vtodo = this._updateProperty(vtodo, "DESCRIPTION", escapePropertyValue(updates.description));
+    if (updates.startDate || updates.dueDate) {
+      const start = updates.startDate ? parseCalendarValue(updates.startDate) : null;
+      const due = updates.dueDate ? parseCalendarValue(updates.dueDate) : null;
+      const stored = this._componentText(vtodo);
+      validateTaskDates(
+        start || readCalendarValue(stored, "DTSTART"),
+        due || readCalendarValue(stored, "DUE")
+      );
+      if (start) vtodo = this._updateProperty(vtodo, "DTSTART", start.ical, start.isDate ? "VALUE=DATE" : null);
+      if (due) vtodo = this._updateProperty(vtodo, "DUE", due.ical, due.isDate ? "VALUE=DATE" : null);
     }
+    if (updates.location !== void 0) {
+      vtodo = this._updateProperty(vtodo, "LOCATION", updates.location === null ? null : escapePropertyValue(updates.location));
+    }
+    if (updates.url !== void 0) {
+      vtodo = this._updateProperty(vtodo, "URL", updates.url);
+    }
+    if (updates.className !== void 0) {
+      vtodo = this._updateProperty(vtodo, "CLASS", updates.className);
+    }
+    if (updates.tags !== void 0) {
+      vtodo = this._updateProperty(
+        vtodo,
+        "CATEGORIES",
+        updates.tags === null || updates.tags.length === 0 ? null : updates.tags.map(escapePropertyValue).join(",")
+      );
+    }
+    if (updates.status) vtodo = this._updateProperty(vtodo, "STATUS", updates.status);
+    if (updates.percentComplete !== void 0) vtodo = this._updateProperty(vtodo, "PERCENT-COMPLETE", updates.percentComplete);
     await request(task.href, {
       method: "PUT",
       headers: {
@@ -18256,7 +18960,7 @@ END:VCALENDAR`;
     if (!task) throw new Error(`Task ${uid} not found.`);
     let vtodo = task.data;
     const now = /* @__PURE__ */ new Date();
-    const completedDate = (0, import_date_fns.format)(now, "yyyyMMdd'T'HHmmss'Z'");
+    const completedDate = toCalDavDate(now);
     vtodo = this._updateProperty(vtodo, "STATUS", "COMPLETED");
     vtodo = this._updateProperty(vtodo, "COMPLETED", completedDate);
     vtodo = this._updateProperty(vtodo, "PERCENT-COMPLETE", "100");
@@ -18272,28 +18976,34 @@ END:VCALENDAR`;
   },
   // --- Calendar Events ---
   async createEvent(summary, start, end, calendarName, description, location) {
+    const organizerEmail = CONFIG.email ? parseOrganizerEmail(CONFIG.email) : null;
     const cal = await this.getCalendar(calendarName, "VEVENT");
     const uid = crypto.randomUUID();
     const now = /* @__PURE__ */ new Date();
-    const dtstamp = (0, import_date_fns.format)(now, "yyyyMMdd'T'HHmmss'Z'");
-    const toCalDavDate = (dateStr) => {
-      const d = parseDateInput(dateStr);
-      return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-    };
+    const dtstamp = toCalDavDate(now);
     let vevent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//OpenClaw//Nextcloud Skill//EN
 BEGIN:VEVENT
 UID:${uid}
 DTSTAMP:${dtstamp}
-SUMMARY:${summary}
-DTSTART:${toCalDavDate(start)}
-DTEND:${toCalDavDate(end)}
+SUMMARY:${escapePropertyValue(summary)}
+DTSTART:${toCalDavDate(parseDateInput(start))}
+DTEND:${toCalDavDate(parseDateInput(end))}
 `;
-    if (description) vevent += `DESCRIPTION:${description}
+    if (description) vevent += `DESCRIPTION:${escapePropertyValue(description)}
 `;
-    if (location) vevent += `LOCATION:${location}
+    if (location) vevent += `LOCATION:${escapePropertyValue(location)}
 `;
+    if (organizerEmail) {
+      const cn = escapeParameterValue(CONFIG.user || organizerEmail.split("@")[0]);
+      vevent += `STATUS:CONFIRMED
+`;
+      vevent += `ORGANIZER;CN=${cn}:mailto:${organizerEmail}
+`;
+      vevent += `ATTENDEE;CN=${cn};ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED:mailto:${organizerEmail}
+`;
+    }
     vevent += `END:VEVENT
 END:VCALENDAR`;
     const filename = `${uid}.ics`;
@@ -18364,20 +19074,20 @@ END:VCALENDAR`;
     const event = await this.findEventPath(uid, calendarName);
     if (!event) throw new Error(`Event ${uid} not found.`);
     let vevent = event.data;
-    if (updates.summary) vevent = this._updateProperty(vevent, "SUMMARY", updates.summary);
+    if (updates.summary) vevent = this._updateProperty(vevent, "SUMMARY", escapePropertyValue(updates.summary));
     if (updates.start) {
       const d = parseDateInput(updates.start);
-      vevent = this._updateProperty(vevent, "DTSTART", d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z");
+      vevent = this._updateProperty(vevent, "DTSTART", toCalDavDate(d));
     }
     if (updates.end) {
       const d = parseDateInput(updates.end);
-      vevent = this._updateProperty(vevent, "DTEND", d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z");
+      vevent = this._updateProperty(vevent, "DTEND", toCalDavDate(d));
     }
     if (updates.description !== void 0) {
-      vevent = this._updateProperty(vevent, "DESCRIPTION", updates.description);
+      vevent = this._updateProperty(vevent, "DESCRIPTION", escapePropertyValue(updates.description));
     }
     if (updates.location !== void 0) {
-      vevent = this._updateProperty(vevent, "LOCATION", updates.location);
+      vevent = this._updateProperty(vevent, "LOCATION", escapePropertyValue(updates.location));
     }
     await request(event.href, {
       method: "PUT",
@@ -18420,19 +19130,19 @@ var Shares = {
       expireDate: s.expiration || null
     };
   },
-  async list({ path = null } = {}) {
+  async list({ path: path2 = null } = {}) {
     let endpoint = "/ocs/v2.php/apps/files_sharing/api/v1/shares";
-    if (path) {
-      const cleanPath = path.startsWith("/") ? path : `/${path}`;
+    if (path2) {
+      const cleanPath = path2.startsWith("/") ? path2 : `/${path2}`;
       endpoint += `?path=${encodeURIComponent(cleanPath)}`;
     }
     const envelope = await request(endpoint, { method: "GET", headers: this._ocsHeaders });
     const data = this._unwrap(envelope) || [];
     return (Array.isArray(data) ? data : [data]).map((s) => this._normalize(s));
   },
-  async createLink({ path, permissions = "read", password = null, expireDate = null }) {
-    if (!path) throw new Error("Missing path for share");
-    const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  async createLink({ path: path2, permissions = "read", password = null, expireDate = null }) {
+    if (!path2) throw new Error("Missing path for share");
+    const cleanPath = path2.startsWith("/") ? path2 : `/${path2}`;
     const permMap = {
       read: 1,
       // read
@@ -18555,23 +19265,30 @@ var Contacts = {
     return allContacts;
   },
   _parseVCard(vcard) {
-    const cleanValue = (val) => val ? val.replace(/&#13;/g, "").replace(/\r/g, "").trim() : null;
-    const getField = (field) => {
-      const regex = new RegExp(`^${field}(?:;[^:]*)?:(.*)$`, "mi");
+    vcard = vcard.replace(/\r?\n[ \t]/g, "");
+    const cleanValue = (val) => val ? unescapePropertyValue(val.replace(/&#13;/g, "").replace(/\r/g, "").trim()) : null;
+    const matchField = (field) => {
+      const regex = new RegExp(`^(?:[A-Za-z0-9-]+\\.)?${field}(?:;[^:\\r\\n]*)?:(.*)$`, "mi");
       const match = vcard.match(regex);
-      return match ? cleanValue(match[1]) : null;
+      return match ? match[1].replace(/&#13;/g, "").replace(/\r/g, "").trim() : null;
+    };
+    const getField = (field) => {
+      const raw = matchField(field);
+      return raw === null ? null : unescapePropertyValue(raw);
     };
     const uid = getField("UID");
     const fn = getField("FN");
-    const n = getField("N");
+    const rawName = matchField("N");
+    const nameParts = rawName === null ? null : splitStructuredValue(rawName).map((part) => unescapePropertyValue(part));
+    const n = nameParts === null ? null : nameParts.join(";");
     const phones = [];
-    const phoneRegex = /^TEL(?:;[^:]*)?:(.*)$/gmi;
+    const phoneRegex = /^(?:[A-Za-z0-9-]+\.)?TEL(?:;[^:\r\n]*)?:(.*)$/gmi;
     let phoneMatch;
     while ((phoneMatch = phoneRegex.exec(vcard)) !== null) {
       phones.push(cleanValue(phoneMatch[1]));
     }
     const emails = [];
-    const emailRegex = /^EMAIL(?:;[^:]*)?:(.*)$/gmi;
+    const emailRegex = /^(?:[A-Za-z0-9-]+\.)?EMAIL(?:;[^:\r\n]*)?:(.*)$/gmi;
     let emailMatch;
     while ((emailMatch = emailRegex.exec(vcard)) !== null) {
       emails.push(cleanValue(emailMatch[1]));
@@ -18579,16 +19296,117 @@ var Contacts = {
     const org = getField("ORG");
     const title = getField("TITLE");
     const note = getField("NOTE");
+    const addresses = vcard.split(/\r?\n/).map((line) => this._parseContentLine(line)).filter((prop) => prop && ADR_PROPERTY.test(prop.name)).map((prop) => this._parseAddress(prop));
+    let birthday = getField("BDAY");
+    if (birthday !== null) {
+      try {
+        birthday = parseBirthdayInput(birthday);
+      } catch {
+      }
+    }
     return {
       uid,
       fullName: fn,
       name: n,
+      // Individually unescaped components, so callers that need a single
+      // part (e.g. a first name) don't have to re-split `name` and guess
+      // whether a ";" was a separator or part of the text.
+      nameComponents: nameParts === null ? null : {
+        last: nameParts[0] ?? null,
+        first: nameParts[1] ?? null,
+        middle: nameParts[2] ?? null,
+        prefix: nameParts[3] ?? null,
+        suffix: nameParts[4] ?? null
+      },
       phones: phones.length > 0 ? phones : null,
       emails: emails.length > 0 ? emails : null,
       organization: org,
       title,
-      note
+      note,
+      birthday,
+      addresses: addresses.length > 0 ? addresses : null
     };
+  },
+  // Split an unfolded property line into its name (with any group prefix), its
+  // parameters and its value. A ";" or ":" inside a quoted parameter value does
+  // not count: vCard 4.0 puts the formatted address on ADR as LABEL="...", which
+  // can hold either.
+  _parseContentLine(line) {
+    const head = [];
+    let start = 0;
+    let quoted = false;
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        quoted = !quoted;
+      } else if (!quoted && (char === ";" || char === ":")) {
+        head.push(line.slice(start, i));
+        start = i + 1;
+        if (char === ":") {
+          const [name, ...params] = head;
+          return { name, params, value: line.slice(start) };
+        }
+      }
+    }
+    return null;
+  },
+  // TYPE values on a property, lowercased: TYPE=home,pref and TYPE=HOME;TYPE=PREF
+  // both give ['home', 'pref']. A bare parameter (ADR;HOME:) is the vCard 2.1
+  // spelling of a type and counts as one.
+  _paramTypes(params) {
+    return params.flatMap((param) => {
+      const eq = param.indexOf("=");
+      if (eq === -1) return [param];
+      return param.slice(0, eq).toUpperCase() === "TYPE" ? param.slice(eq + 1).replace(/"/g, "").split(",") : [];
+    }).map((type) => type.trim().toLowerCase()).filter(Boolean);
+  },
+  // Like N, the components are split before they are unescaped, so an escaped
+  // ";" in a street name stays in the street.
+  _parseAddress(prop) {
+    const parts = splitStructuredValue(prop.value).map((part) => unescapePropertyValue(part));
+    const address = { types: this._paramTypes(prop.params) };
+    ADR_COMPONENTS.forEach((key, i) => {
+      address[key] = parts[i] ?? null;
+    });
+    return address;
+  },
+  // Set the given components of one ADR and keep the rest of it as stored.
+  // `type` picks the first address of that type, or the first address of any
+  // type when it is null. When there is no such address a new one is added.
+  // An address left with every component empty is removed rather than written
+  // as ADR:;;;;;;.
+  _setAddress(vcard, { type, components }) {
+    const eol = vcard.includes("\r\n") ? "\r\n" : "\n";
+    const lines = vcard.split(/\r?\n/);
+    let first = 0;
+    let last = -1;
+    let target = null;
+    while (!target && last + 1 < lines.length) {
+      first = last + 1;
+      last = first;
+      while (last + 1 < lines.length && /^[ \t]/.test(lines[last + 1])) last++;
+      const unfolded = lines.slice(first, last + 1).map((line2, i) => i === 0 ? line2 : line2.slice(1)).join("");
+      const prop = this._parseContentLine(unfolded);
+      if (prop && ADR_PROPERTY.test(prop.name) && (type === null || this._paramTypes(prop.params).includes(type))) {
+        target = prop;
+      }
+    }
+    const stored = target ? splitStructuredValue(target.value) : [];
+    const parts = ADR_COMPONENTS.map(
+      (key, i) => components[key] !== void 0 ? escapePropertyValue(components[key]) : stored[i] ?? ""
+    );
+    let line = null;
+    if (parts.some((part) => part !== "")) {
+      const head = target ? [target.name, ...target.params.filter((param) => !/^LABEL=/i.test(param))] : ["ADR", ...type ? [`TYPE=${type.toUpperCase()}`] : []];
+      line = `${head.join(";")}:${parts.join(";")}`;
+    }
+    if (target) {
+      lines.splice(first, last - first + 1, ...line === null ? [] : [line]);
+    } else if (line !== null) {
+      const end = lines.findIndex((l) => /^END:VCARD\s*$/i.test(l));
+      lines.splice(end === -1 ? lines.length : end, 0, line);
+    }
+    return lines.join(eol);
   },
   async get(uid, addressBookName = null) {
     const contacts = await this.list(addressBookName);
@@ -18647,32 +19465,36 @@ var Contacts = {
   async create(fullName, addressBookName, options = {}) {
     const ab = await this.getAddressBook(addressBookName);
     const uid = crypto.randomUUID();
+    const escapedFn = escapePropertyValue(fullName);
     let vcard = `BEGIN:VCARD
 VERSION:3.0
 UID:${uid}
-FN:${fullName}
+FN:${escapedFn}
 `;
     const nameParts = fullName.split(" ");
     if (nameParts.length >= 2) {
-      const lastName = nameParts[nameParts.length - 1];
-      const firstName = nameParts.slice(0, -1).join(" ");
+      const lastName = escapePropertyValue(nameParts[nameParts.length - 1]);
+      const firstName = escapePropertyValue(nameParts.slice(0, -1).join(" "));
       vcard += `N:${lastName};${firstName};;;
 `;
     } else {
-      vcard += `N:${fullName};;;;
+      vcard += `N:${escapedFn};;;;
 `;
     }
-    if (options.email) vcard += `EMAIL:${options.email}
+    if (options.email) vcard += `EMAIL:${escapePropertyValue(options.email)}
 `;
-    if (options.phone) vcard += `TEL:${options.phone}
+    if (options.phone) vcard += `TEL:${escapePropertyValue(options.phone)}
 `;
-    if (options.organization) vcard += `ORG:${options.organization}
+    if (options.organization) vcard += `ORG:${escapePropertyValue(options.organization)}
 `;
-    if (options.title) vcard += `TITLE:${options.title}
+    if (options.title) vcard += `TITLE:${escapePropertyValue(options.title)}
 `;
-    if (options.note) vcard += `NOTE:${options.note}
+    if (options.note) vcard += `NOTE:${escapePropertyValue(options.note)}
+`;
+    if (options.bday) vcard += `BDAY:${options.bday}
 `;
     vcard += `END:VCARD`;
+    if (options.address) vcard = this._setAddress(vcard, options.address);
     const filename = `${uid}.vcf`;
     const urlWithSlash = ab.url.endsWith("/") ? ab.url : ab.url + "/";
     const endpoint = `${urlWithSlash}${filename}`;
@@ -18687,33 +19509,45 @@ FN:${fullName}
     return { uid, status: "created", addressBook: ab.displayname };
   },
   _updateVCardField(vcard, field, value) {
-    const regex = new RegExp(`^${field}(?:;[^:]*)?:.*$`, "mi");
+    const regex = new RegExp(`^((?:[A-Za-z0-9-]+\\.)?${field}(?:;[^:\\r\\n]*)?:).*$`, "mi");
     const newLine = `${field}:${value}`;
     if (regex.test(vcard)) {
-      return vcard.replace(regex, newLine);
+      return vcard.replace(regex, (match, prefix) => `${prefix}${value}`);
     } else {
-      return vcard.replace("END:VCARD", `${newLine}
+      return vcard.replace("END:VCARD", () => `${newLine}
 END:VCARD`);
     }
+  },
+  // Drop a property line entirely, including any `itemN.` group prefix and the
+  // newline after it. Used to clear a field the caller explicitly emptied.
+  // The group's sibling properties (item1.X-ABLabel) are left in place: removing
+  // them would change how the client displays the fields that remain.
+  _removeVCardField(vcard, field) {
+    const regex = new RegExp(`^(?:[A-Za-z0-9-]+\\.)?${field}(?:;[^:\\r\\n]*)?:.*(?:\\r?\\n)?`, "mi");
+    return vcard.replace(regex, "");
   },
   async update(uid, addressBookName, updates) {
     const contact = await this.findContactPath(uid, addressBookName);
     if (!contact) throw new Error(`Contact ${uid} not found.`);
     let vcard = contact.data;
     if (updates.fullName) {
-      vcard = this._updateVCardField(vcard, "FN", updates.fullName);
+      vcard = this._updateVCardField(vcard, "FN", escapePropertyValue(updates.fullName));
       const nameParts = updates.fullName.split(" ");
       if (nameParts.length >= 2) {
-        const lastName = nameParts[nameParts.length - 1];
-        const firstName = nameParts.slice(0, -1).join(" ");
+        const lastName = escapePropertyValue(nameParts[nameParts.length - 1]);
+        const firstName = escapePropertyValue(nameParts.slice(0, -1).join(" "));
         vcard = this._updateVCardField(vcard, "N", `${lastName};${firstName};;;`);
       }
     }
-    if (updates.email) vcard = this._updateVCardField(vcard, "EMAIL", updates.email);
-    if (updates.phone) vcard = this._updateVCardField(vcard, "TEL", updates.phone);
-    if (updates.organization) vcard = this._updateVCardField(vcard, "ORG", updates.organization);
-    if (updates.title) vcard = this._updateVCardField(vcard, "TITLE", updates.title);
-    if (updates.note) vcard = this._updateVCardField(vcard, "NOTE", updates.note);
+    if (updates.email) vcard = this._updateVCardField(vcard, "EMAIL", escapePropertyValue(updates.email));
+    if (updates.phone) vcard = this._updateVCardField(vcard, "TEL", escapePropertyValue(updates.phone));
+    if (updates.organization) vcard = this._updateVCardField(vcard, "ORG", escapePropertyValue(updates.organization));
+    if (updates.title) vcard = this._updateVCardField(vcard, "TITLE", escapePropertyValue(updates.title));
+    if (updates.note) vcard = this._updateVCardField(vcard, "NOTE", escapePropertyValue(updates.note));
+    if (updates.bday !== void 0) {
+      vcard = updates.bday === "" ? this._removeVCardField(vcard, "BDAY") : this._updateVCardField(vcard, "BDAY", updates.bday);
+    }
+    if (updates.address) vcard = this._setAddress(vcard, updates.address);
     await request(contact.href, {
       method: "PUT",
       headers: {
@@ -18762,6 +19596,9 @@ END:VCARD`);
                     <card:prop-filter name="ORG">
                         <card:text-match collation="i;unicode-casemap" match-type="contains">${query}</card:text-match>
                     </card:prop-filter>
+                    <card:prop-filter name="ADR">
+                        <card:text-match collation="i;unicode-casemap" match-type="contains">${query}</card:text-match>
+                    </card:prop-filter>
                 </card:filter>
             </card:addressbook-query>
         `;
@@ -18790,11 +19627,300 @@ END:VCARD`);
     return allContacts;
   }
 };
+var Deck = {
+  // Deck REST lives under /index.php/apps/deck/api/v1.1; comments use the OCS v1.0 endpoint.
+  _base: "/index.php/apps/deck/api/v1.1",
+  _headers: { "OCS-APIRequest": "true", "Accept": "application/json" },
+  _jsonHeaders: { "OCS-APIRequest": "true", "Accept": "application/json", "Content-Type": "application/json" },
+  _boardUrl(id) {
+    const baseUrl = CONFIG.url.replace(/\/+$/, "");
+    return `${baseUrl}/index.php/apps/deck/#/board/${id}`;
+  },
+  _normalizeBoard(b) {
+    return {
+      id: b.id,
+      title: b.title,
+      color: b.color,
+      archived: b.archived,
+      owner: b.owner && b.owner.uid,
+      permissions: b.permissions,
+      labelCount: Array.isArray(b.labels) ? b.labels.length : void 0,
+      stackCount: Array.isArray(b.stacks) ? b.stacks.length : void 0,
+      lastModified: b.lastModified,
+      url: this._boardUrl(b.id)
+    };
+  },
+  _normalizeCard(c) {
+    return {
+      id: c.id,
+      title: c.title,
+      description: c.description,
+      stackId: c.stackId,
+      type: c.type,
+      order: c.order,
+      labels: (c.labels || []).map((l) => ({ id: l.id, title: l.title, color: l.color })),
+      assignedUsers: (c.assignedUsers || []).map((u) => u.participant && u.participant.uid || u.uid),
+      duedate: c.duedate || null,
+      done: c.done || null,
+      archived: c.archived,
+      commentsCount: c.commentsCount,
+      createdAt: c.createdAt,
+      lastModified: c.lastModified
+    };
+  },
+  // --- Boards ---
+  async listBoards() {
+    const data = await request(`${this._base}/boards`, { headers: this._headers });
+    return (data || []).filter((b) => !b.deletedAt).map((b) => this._normalizeBoard(b));
+  },
+  async getBoard(boardId) {
+    if (!boardId) throw new Error("Board ID is required.");
+    return await request(`${this._base}/boards/${boardId}`, { headers: this._headers });
+  },
+  async createBoard(title, color = "0082c9") {
+    if (!title || title.trim() === "") throw new Error("Title is required for creating a board.");
+    const data = await request(`${this._base}/boards`, {
+      method: "POST",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ title, color })
+    });
+    return this._normalizeBoard(data);
+  },
+  async editBoard(boardId, updates = {}) {
+    if (!boardId) throw new Error("Board ID is required for update.");
+    const current = await this.getBoard(boardId);
+    const payload = {
+      title: updates.title !== void 0 ? updates.title : current.title,
+      color: updates.color !== void 0 ? updates.color : current.color,
+      archived: updates.archived !== void 0 ? updates.archived : current.archived
+    };
+    const data = await request(`${this._base}/boards/${boardId}`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify(payload)
+    });
+    return this._normalizeBoard(data);
+  },
+  async deleteBoard(boardId) {
+    if (!boardId) throw new Error("Board ID is required for deletion.");
+    await request(`${this._base}/boards/${boardId}`, { method: "DELETE", headers: this._jsonHeaders });
+    return { success: true, id: boardId };
+  },
+  // --- Stacks (columns) ---
+  async listStacks(boardId) {
+    if (!boardId) throw new Error("Board ID is required.");
+    const data = await request(`${this._base}/boards/${boardId}/stacks`, { headers: this._headers });
+    return (data || []).map((s) => ({
+      id: s.id,
+      title: s.title,
+      boardId: s.boardId,
+      order: s.order,
+      cards: (s.cards || []).map((c) => this._normalizeCard(c)),
+      cardCount: (s.cards || []).length,
+      lastModified: s.lastModified
+    }));
+  },
+  async createStack(boardId, title, order = 999) {
+    if (!boardId) throw new Error("Board ID is required.");
+    if (!title || title.trim() === "") throw new Error("Title is required for creating a stack.");
+    const data = await request(`${this._base}/boards/${boardId}/stacks`, {
+      method: "POST",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ title, order })
+    });
+    return { id: data.id, title: data.title, boardId: data.boardId, order: data.order };
+  },
+  async editStack(boardId, stackId, updates = {}) {
+    if (!boardId || !stackId) throw new Error("Board ID and Stack ID are required for update.");
+    const stacks = await this.listStacks(boardId);
+    const current = stacks.find((s) => String(s.id) === String(stackId));
+    if (!current) throw new Error(`Stack ${stackId} not found on board ${boardId}.`);
+    const payload = {
+      title: updates.title !== void 0 ? updates.title : current.title,
+      order: updates.order !== void 0 ? updates.order : current.order
+    };
+    const data = await request(`${this._base}/boards/${boardId}/stacks/${stackId}`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify(payload)
+    });
+    return { id: data.id, title: data.title, boardId: data.boardId, order: data.order };
+  },
+  async deleteStack(boardId, stackId) {
+    if (!boardId || !stackId) throw new Error("Board ID and Stack ID are required for deletion.");
+    await request(`${this._base}/boards/${boardId}/stacks/${stackId}`, { method: "DELETE", headers: this._jsonHeaders });
+    return { success: true, id: stackId };
+  },
+  // --- Cards ---
+  async listCards(boardId, stackId = null) {
+    if (!boardId) throw new Error("Board ID is required.");
+    const stacks = await this.listStacks(boardId);
+    const filtered = stackId !== null ? stacks.filter((s) => String(s.id) === String(stackId)) : stacks;
+    return filtered.flatMap((s) => s.cards.map((c) => ({ ...c, stackTitle: s.title })));
+  },
+  async getCard(boardId, stackId, cardId) {
+    if (!boardId || !stackId || !cardId) throw new Error("Board ID, Stack ID and Card ID are required.");
+    return await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}`, { headers: this._headers });
+  },
+  async createCard(boardId, stackId, title, options = {}) {
+    if (!boardId || !stackId) throw new Error("Board ID and Stack ID are required.");
+    if (!title || title.trim() === "") throw new Error("Title is required for creating a card.");
+    const payload = { title, type: "plain", order: options.order !== void 0 ? options.order : 999 };
+    if (options.description !== void 0) payload.description = options.description;
+    if (options.duedate !== void 0) payload.duedate = options.duedate;
+    const data = await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards`, {
+      method: "POST",
+      headers: this._jsonHeaders,
+      body: JSON.stringify(payload)
+    });
+    return this._normalizeCard(data);
+  },
+  async editCard(boardId, stackId, cardId, updates = {}) {
+    if (!boardId || !stackId || !cardId) throw new Error("Board ID, Stack ID and Card ID are required for update.");
+    const current = await this.getCard(boardId, stackId, cardId);
+    const payload = {
+      title: updates.title !== void 0 ? updates.title : current.title,
+      description: updates.description !== void 0 ? updates.description : current.description,
+      type: current.type || "plain",
+      owner: current.owner && current.owner.uid || current.owner,
+      order: updates.order !== void 0 ? updates.order : current.order,
+      duedate: updates.duedate !== void 0 ? updates.duedate : current.duedate
+    };
+    if (updates.done !== void 0) payload.done = updates.done;
+    else if (current.done) payload.done = current.done;
+    if (updates.archived !== void 0) payload.archived = updates.archived;
+    else payload.archived = current.archived;
+    const data = await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify(payload)
+    });
+    return this._normalizeCard(data);
+  },
+  async deleteCard(boardId, stackId, cardId) {
+    if (!boardId || !stackId || !cardId) throw new Error("Board ID, Stack ID and Card ID are required for deletion.");
+    await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}`, { method: "DELETE", headers: this._jsonHeaders });
+    return { success: true, id: cardId };
+  },
+  async moveCard(boardId, stackId, cardId, toStackId, order = 999) {
+    if (!boardId || !stackId || !cardId || !toStackId) {
+      throw new Error("Board ID, Stack ID, Card ID and target --to-stack are required for move.");
+    }
+    const data = await request(`${this._base}/boards/${boardId}/stacks/${toStackId}/cards/${cardId}/reorder`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ order, stackId: Number(toStackId) })
+    });
+    const moved = Array.isArray(data) ? data.find((c) => String(c.id) === String(cardId)) : data && data.cards ? data.cards.find((c) => String(c.id) === String(cardId)) : data;
+    return moved ? this._normalizeCard(moved) : { success: true, id: cardId, stackId: Number(toStackId) };
+  },
+  async assignLabel(boardId, stackId, cardId, labelId) {
+    if (!boardId || !stackId || !cardId || !labelId) throw new Error("Board, Stack, Card and Label IDs are required.");
+    await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}/assignLabel`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ labelId: Number(labelId) })
+    });
+    return { success: true, cardId, labelId, assigned: true };
+  },
+  async removeLabel(boardId, stackId, cardId, labelId) {
+    if (!boardId || !stackId || !cardId || !labelId) throw new Error("Board, Stack, Card and Label IDs are required.");
+    await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}/removeLabel`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ labelId: Number(labelId) })
+    });
+    return { success: true, cardId, labelId, assigned: false };
+  },
+  // --- Labels ---
+  async listLabels(boardId) {
+    if (!boardId) throw new Error("Board ID is required.");
+    const board = await this.getBoard(boardId);
+    return (board.labels || []).map((l) => ({ id: l.id, title: l.title, color: l.color, boardId: l.boardId }));
+  },
+  async createLabel(boardId, title, color) {
+    if (!boardId) throw new Error("Board ID is required.");
+    if (!title || title.trim() === "") throw new Error("Title is required for creating a label.");
+    if (!color) throw new Error("Color (hex, e.g. FF0000) is required for creating a label.");
+    const data = await request(`${this._base}/boards/${boardId}/labels`, {
+      method: "POST",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ title, color })
+    });
+    return { id: data.id, title: data.title, color: data.color, boardId: data.boardId };
+  },
+  async editLabel(boardId, labelId, updates = {}) {
+    if (!boardId || !labelId) throw new Error("Board ID and Label ID are required for update.");
+    const labels = await this.listLabels(boardId);
+    const current = labels.find((l) => String(l.id) === String(labelId));
+    if (!current) throw new Error(`Label ${labelId} not found on board ${boardId}.`);
+    const payload = {
+      title: updates.title !== void 0 ? updates.title : current.title,
+      color: updates.color !== void 0 ? updates.color : current.color
+    };
+    const data = await request(`${this._base}/boards/${boardId}/labels/${labelId}`, {
+      method: "PUT",
+      headers: this._jsonHeaders,
+      body: JSON.stringify(payload)
+    });
+    return { id: data.id, title: data.title, color: data.color, boardId: data.boardId };
+  },
+  async deleteLabel(boardId, labelId) {
+    if (!boardId || !labelId) throw new Error("Board ID and Label ID are required for deletion.");
+    await request(`${this._base}/boards/${boardId}/labels/${labelId}`, { method: "DELETE", headers: this._jsonHeaders });
+    return { success: true, id: labelId };
+  },
+  // --- Comments (OCS Deck API) ---
+  _commentsBase(cardId) {
+    return `/ocs/v2.php/apps/deck/api/v1.0/cards/${cardId}/comments`;
+  },
+  _unwrapOcs(envelope) {
+    const meta = envelope && envelope.ocs && envelope.ocs.meta;
+    if (!meta || meta.status !== "ok" && meta.statuscode >= 300) {
+      throw new Error(`OCS error ${meta && meta.statuscode}: ${meta && meta.message}`);
+    }
+    return envelope.ocs.data;
+  },
+  async listComments(cardId) {
+    if (!cardId) throw new Error("Card ID is required.");
+    const envelope = await request(this._commentsBase(cardId), { headers: this._headers });
+    const data = this._unwrapOcs(envelope) || [];
+    return (Array.isArray(data) ? data : [data]).map((c) => ({
+      id: c.id,
+      message: c.message,
+      actorId: c.actorId,
+      actorDisplayName: c.actorDisplayName,
+      creationDateTime: c.creationDateTime
+    }));
+  },
+  async addComment(cardId, message) {
+    if (!cardId) throw new Error("Card ID is required.");
+    if (!message || message.trim() === "") throw new Error("Message is required for a comment.");
+    const envelope = await request(this._commentsBase(cardId), {
+      method: "POST",
+      headers: this._jsonHeaders,
+      body: JSON.stringify({ message })
+    });
+    const c = this._unwrapOcs(envelope);
+    return { id: c.id, message: c.message, actorId: c.actorId, creationDateTime: c.creationDateTime };
+  },
+  async deleteComment(cardId, commentId) {
+    if (!cardId || !commentId) throw new Error("Card ID and Comment ID are required for deletion.");
+    const envelope = await request(`${this._commentsBase(cardId)}/${commentId}`, {
+      method: "DELETE",
+      headers: this._jsonHeaders
+    });
+    this._unwrapOcs(envelope);
+    return { success: true, id: commentId };
+  }
+};
 async function main() {
   const args = process.argv.slice(2);
   const command = args[0];
   const subCommand = args[1];
   try {
+    rejectUnknownFlags(args, command, subCommand);
+    requireExplicitConfirmation(args, command, subCommand);
     if (command === "notes") {
       if (subCommand === "list") {
         const result = await Notes.list();
@@ -18806,28 +19932,30 @@ async function main() {
         output(result);
       } else if (subCommand === "create") {
         const titleIndex = args.indexOf("--title");
-        const contentIndex = args.indexOf("--content");
         const categoryIndex = args.indexOf("--category");
-        if (titleIndex === -1 || contentIndex === -1) {
-          throw new Error("Missing --title or --content arguments");
+        if (titleIndex === -1) {
+          throw new Error("Missing --title");
         }
         const title = args[titleIndex + 1];
-        const content = args[contentIndex + 1];
+        const content = readTextOption(
+          args,
+          "--content",
+          "--content-file",
+          { required: true }
+        );
         const category = categoryIndex !== -1 ? args[categoryIndex + 1] : "";
         if (!title || title.startsWith("--")) throw new Error("Invalid title provided");
-        if (!content || content.startsWith("--")) throw new Error("Invalid content provided");
         if (category && category.startsWith("--")) throw new Error("Invalid category provided");
         const result = await Notes.create(title, content, category);
         output(result);
       } else if (subCommand === "edit") {
         const idIndex = args.indexOf("--id");
         const titleIndex = args.indexOf("--title");
-        const contentIndex = args.indexOf("--content");
         const categoryIndex = args.indexOf("--category");
         if (idIndex === -1) throw new Error("Missing --id");
         const id = args[idIndex + 1];
         const title = titleIndex !== -1 ? args[titleIndex + 1] : void 0;
-        const content = contentIndex !== -1 ? args[contentIndex + 1] : void 0;
+        const content = readTextOption(args, "--content", "--content-file");
         const category = categoryIndex !== -1 ? args[categoryIndex + 1] : void 0;
         const result = await Notes.update(id, title, content, category);
         output(result);
@@ -18842,8 +19970,8 @@ async function main() {
     } else if (command === "files") {
       if (subCommand === "list") {
         const pathIndex = args.indexOf("--path");
-        const path = pathIndex !== -1 ? args[pathIndex + 1] : "/";
-        const result = await Files.list(path);
+        const path2 = pathIndex !== -1 ? args[pathIndex + 1] : "/";
+        const result = await Files.list(path2);
         output(result);
       } else if (subCommand === "search") {
         const queryIndex = args.indexOf("--query");
@@ -18854,14 +19982,17 @@ async function main() {
         const pathIndex = args.indexOf("--path");
         if (pathIndex === -1) throw new Error("Missing --path");
         const filePath = args[pathIndex + 1];
-        const contentIndex = args.indexOf("--content");
-        if (contentIndex === -1) throw new Error("Missing --content");
-        const content = args[contentIndex + 1];
+        const content = readTextOption(
+          args,
+          "--content",
+          "--content-file",
+          { required: true, binary: true }
+        );
         output(await Files.upload(filePath, content));
       } else if (subCommand === "get") {
         const pathIndex = args.indexOf("--path");
         if (pathIndex === -1) throw new Error("Missing --path");
-        output(await Files.get(args[pathIndex + 1]));
+        output(await Files.get(args[pathIndex + 1], getOptionValue(args, "--out")));
       } else if (subCommand === "delete") {
         const pathIndex = args.indexOf("--path");
         if (pathIndex === -1) throw new Error("Missing --path");
@@ -18873,9 +20004,10 @@ async function main() {
       if (subCommand === "list") {
         const fromIndex = args.indexOf("--from");
         const toIndex = args.indexOf("--to");
+        const calendar = getOptionValue(args, "--calendar");
         const start = fromIndex !== -1 ? args[fromIndex + 1] : (0, import_date_fns.formatISO)(/* @__PURE__ */ new Date());
         const end = toIndex !== -1 ? args[toIndex + 1] : (0, import_date_fns.formatISO)((0, import_date_fns.addDays)(/* @__PURE__ */ new Date(), 7));
-        const result = await CalDAV.getEvents(start, end);
+        const result = await CalDAV.getEvents(start, end, calendar);
         output(result);
       } else if (subCommand === "create") {
         const summaryIndex = args.indexOf("--summary");
@@ -18889,8 +20021,11 @@ async function main() {
         const end = args[endIndex + 1];
         const calIndex = args.indexOf("--calendar");
         const calendar = calIndex !== -1 ? args[calIndex + 1] : null;
-        const descIndex = args.indexOf("--description");
-        const description = descIndex !== -1 ? args[descIndex + 1] : null;
+        const description = readTextOption(
+          args,
+          "--description",
+          "--description-file"
+        ) ?? null;
         const locIndex = args.indexOf("--location");
         const location = locIndex !== -1 ? args[locIndex + 1] : null;
         output(await CalDAV.createEvent(summary, start, end, calendar, description, location));
@@ -18907,8 +20042,12 @@ async function main() {
         if (startIndex !== -1) updates.start = args[startIndex + 1];
         const endIndex = args.indexOf("--end");
         if (endIndex !== -1) updates.end = args[endIndex + 1];
-        const descIndex = args.indexOf("--description");
-        if (descIndex !== -1) updates.description = args[descIndex + 1];
+        const description = readTextOption(
+          args,
+          "--description",
+          "--description-file"
+        );
+        if (description !== void 0) updates.description = description;
         const locIndex = args.indexOf("--location");
         if (locIndex !== -1) updates.location = args[locIndex + 1];
         output(await CalDAV.updateEvent(uid, calendar, updates));
@@ -18937,10 +20076,30 @@ async function main() {
         const dueIndex = args.indexOf("--due");
         const dueDate = dueIndex !== -1 ? args[dueIndex + 1] : null;
         const prioIndex = args.indexOf("--priority");
-        const priority = prioIndex !== -1 ? args[prioIndex + 1] : null;
-        const descIndex = args.indexOf("--description");
-        const description = descIndex !== -1 ? args[descIndex + 1] : null;
-        output(await CalDAV.createTask(title, calendar, dueDate, priority, description));
+        const priority = prioIndex !== -1 ? parsePriorityInput(args[prioIndex + 1]) : null;
+        const description = readTextOption(
+          args,
+          "--description",
+          "--description-file"
+        ) ?? null;
+        const options = {
+          title,
+          calendar,
+          dueDate,
+          priority,
+          description
+        };
+        const start = getOptionValue(args, "--start");
+        if (start) options.startDate = start;
+        const location = getOptionValue(args, "--location");
+        if (location) options.location = location;
+        const url = getOptionValue(args, "--url");
+        if (url) options.url = parseUriInput(url);
+        const className = getOptionValue(args, "--class");
+        if (className) options.className = parseClassInput(className);
+        const tags = getOptionValue(args, "--tags");
+        if (tags) options.tags = parseTagsInput(tags);
+        output(await CalDAV.createTask(title, calendar, options));
       } else if (subCommand === "edit") {
         const uidIndex = args.indexOf("--uid");
         if (uidIndex === -1) throw new Error("Missing --uid");
@@ -18953,9 +20112,33 @@ async function main() {
         const dueIndex = args.indexOf("--due");
         if (dueIndex !== -1) updates.dueDate = args[dueIndex + 1];
         const prioIndex = args.indexOf("--priority");
-        if (prioIndex !== -1) updates.priority = args[prioIndex + 1];
-        const descIndex = args.indexOf("--description");
-        if (descIndex !== -1) updates.description = args[descIndex + 1];
+        if (prioIndex !== -1) {
+          updates.priority = parsePriorityInput(args[prioIndex + 1]);
+        }
+        const description = readTextOption(
+          args,
+          "--description",
+          "--description-file"
+        );
+        if (description !== void 0) updates.description = description;
+        const start = getOptionValue(args, "--start");
+        if (start) updates.startDate = start;
+        const location = getOptionValue(args, "--location");
+        if (location !== void 0) updates.location = location === "" ? null : location;
+        const url = getOptionValue(args, "--url");
+        if (url !== void 0) updates.url = url === "" ? null : parseUriInput(url);
+        const className = getOptionValue(args, "--class");
+        if (className !== void 0) updates.className = className === "" ? null : parseClassInput(className);
+        const tags = getOptionValue(args, "--tags");
+        if (tags !== void 0) updates.tags = parseTagsInput(tags);
+        const statusIndex = args.indexOf("--status");
+        if (statusIndex !== -1) {
+          updates.status = parseStatusInput(args[statusIndex + 1]);
+        }
+        const percentIndex = args.indexOf("--percent-complete");
+        if (percentIndex !== -1) {
+          updates.percentComplete = parsePercentCompleteInput(args[percentIndex + 1]);
+        }
         output(await CalDAV.updateTask(uid, calendar, updates));
       } else if (subCommand === "delete") {
         const uidIndex = args.indexOf("--uid");
@@ -19000,8 +20183,12 @@ async function main() {
         const sharePath = args[pathIndex + 1];
         const permIndex = args.indexOf("--permissions");
         const permissions = permIndex !== -1 ? args[permIndex + 1] : "read";
-        const pwIndex = args.indexOf("--password");
-        const password = pwIndex !== -1 ? args[pwIndex + 1] : null;
+        const password = readTextOption(
+          args,
+          "--password",
+          "--password-file",
+          { stripFinalNewline: true, maxBytes: 16 * 1024 }
+        ) ?? null;
         const expIndex = args.indexOf("--expire");
         const expireDate = expIndex !== -1 ? args[expIndex + 1] : null;
         output(await Shares.createLink({ path: sharePath, permissions, password, expireDate }));
@@ -19051,8 +20238,20 @@ async function main() {
         if (orgIndex !== -1) options.organization = args[orgIndex + 1];
         const titleIndex = args.indexOf("--title");
         if (titleIndex !== -1) options.title = args[titleIndex + 1];
-        const noteIndex = args.indexOf("--note");
-        if (noteIndex !== -1) options.note = args[noteIndex + 1];
+        const note = readTextOption(args, "--note", "--note-file");
+        if (note !== void 0) options.note = note;
+        const bday = getOptionValue(args, "--bday");
+        if (bday !== void 0) options.bday = parseBirthdayInput(bday);
+        const address = parseAddressInput({
+          poBox: getOptionValue(args, "--po-box"),
+          extended: getOptionValue(args, "--extended"),
+          street: getOptionValue(args, "--street"),
+          city: getOptionValue(args, "--city"),
+          region: getOptionValue(args, "--region"),
+          postalCode: getOptionValue(args, "--postal-code"),
+          country: getOptionValue(args, "--country")
+        }, getOptionValue(args, "--address-type"));
+        if (address !== void 0) options.address = address;
         output(await Contacts.create(fullName, addressBook, options));
       } else if (subCommand === "edit") {
         const uidIndex = args.indexOf("--uid");
@@ -19071,8 +20270,22 @@ async function main() {
         if (orgIndex !== -1) updates.organization = args[orgIndex + 1];
         const titleIndex = args.indexOf("--title");
         if (titleIndex !== -1) updates.title = args[titleIndex + 1];
-        const noteIndex = args.indexOf("--note");
-        if (noteIndex !== -1) updates.note = args[noteIndex + 1];
+        const note = readTextOption(args, "--note", "--note-file");
+        if (note !== void 0) updates.note = note;
+        const bday = getOptionValue(args, "--bday");
+        if (bday !== void 0) {
+          updates.bday = bday === "" ? "" : parseBirthdayInput(bday);
+        }
+        const address = parseAddressInput({
+          poBox: getOptionValue(args, "--po-box"),
+          extended: getOptionValue(args, "--extended"),
+          street: getOptionValue(args, "--street"),
+          city: getOptionValue(args, "--city"),
+          region: getOptionValue(args, "--region"),
+          postalCode: getOptionValue(args, "--postal-code"),
+          country: getOptionValue(args, "--country")
+        }, getOptionValue(args, "--address-type"));
+        if (address !== void 0) updates.address = address;
         output(await Contacts.update(uid, addressBook, updates));
       } else if (subCommand === "delete") {
         const uidIndex = args.indexOf("--uid");
@@ -19084,8 +20297,194 @@ async function main() {
       } else {
         throw new Error("Unknown contacts command");
       }
+    } else if (command === "boards") {
+      if (subCommand === "list") {
+        output(await Deck.listBoards());
+      } else if (subCommand === "get") {
+        const boardIndex = args.indexOf("--board");
+        if (boardIndex === -1) throw new Error("Missing --board");
+        output(await Deck.getBoard(args[boardIndex + 1]));
+      } else if (subCommand === "create") {
+        const titleIndex = args.indexOf("--title");
+        if (titleIndex === -1) throw new Error("Missing --title");
+        const colorIndex = args.indexOf("--color");
+        const color = colorIndex !== -1 ? args[colorIndex + 1] : void 0;
+        output(await Deck.createBoard(args[titleIndex + 1], color));
+      } else if (subCommand === "edit") {
+        const boardIndex = args.indexOf("--board");
+        if (boardIndex === -1) throw new Error("Missing --board");
+        const updates = {};
+        const titleIndex = args.indexOf("--title");
+        if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+        const colorIndex = args.indexOf("--color");
+        if (colorIndex !== -1) updates.color = args[colorIndex + 1];
+        const archivedIndex = args.indexOf("--archived");
+        if (archivedIndex !== -1) updates.archived = args[archivedIndex + 1] === "true";
+        output(await Deck.editBoard(args[boardIndex + 1], updates));
+      } else if (subCommand === "delete") {
+        const boardIndex = args.indexOf("--board");
+        if (boardIndex === -1) throw new Error("Missing --board");
+        output(await Deck.deleteBoard(args[boardIndex + 1]));
+      } else {
+        throw new Error("Unknown boards command");
+      }
+    } else if (command === "stacks") {
+      const boardIndex = args.indexOf("--board");
+      if (boardIndex === -1) throw new Error("Missing --board");
+      const boardId = args[boardIndex + 1];
+      if (subCommand === "list") {
+        output(await Deck.listStacks(boardId));
+      } else if (subCommand === "create") {
+        const titleIndex = args.indexOf("--title");
+        if (titleIndex === -1) throw new Error("Missing --title");
+        const orderIndex = args.indexOf("--order");
+        const order = orderIndex !== -1 ? Number(args[orderIndex + 1]) : void 0;
+        output(await Deck.createStack(boardId, args[titleIndex + 1], order));
+      } else if (subCommand === "edit") {
+        const stackIndex = args.indexOf("--stack");
+        if (stackIndex === -1) throw new Error("Missing --stack");
+        const updates = {};
+        const titleIndex = args.indexOf("--title");
+        if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+        const orderIndex = args.indexOf("--order");
+        if (orderIndex !== -1) updates.order = Number(args[orderIndex + 1]);
+        output(await Deck.editStack(boardId, args[stackIndex + 1], updates));
+      } else if (subCommand === "delete") {
+        const stackIndex = args.indexOf("--stack");
+        if (stackIndex === -1) throw new Error("Missing --stack");
+        output(await Deck.deleteStack(boardId, args[stackIndex + 1]));
+      } else {
+        throw new Error("Unknown stacks command");
+      }
+    } else if (command === "cards") {
+      if (subCommand === "comment-list") {
+        const cardIndex = args.indexOf("--card");
+        if (cardIndex === -1) throw new Error("Missing --card");
+        output(await Deck.listComments(args[cardIndex + 1]));
+      } else if (subCommand === "comment-add") {
+        const cardIndex = args.indexOf("--card");
+        if (cardIndex === -1) throw new Error("Missing --card");
+        const message = readTextOption(
+          args,
+          "--message",
+          "--message-file",
+          { required: true }
+        );
+        output(await Deck.addComment(args[cardIndex + 1], message));
+      } else if (subCommand === "comment-delete") {
+        const cardIndex = args.indexOf("--card");
+        if (cardIndex === -1) throw new Error("Missing --card");
+        const commentIndex = args.indexOf("--comment");
+        if (commentIndex === -1) throw new Error("Missing --comment");
+        output(await Deck.deleteComment(args[cardIndex + 1], args[commentIndex + 1]));
+      } else {
+        const boardIndex = args.indexOf("--board");
+        if (boardIndex === -1) throw new Error("Missing --board");
+        const boardId = args[boardIndex + 1];
+        const stackIndex = args.indexOf("--stack");
+        const cardIndex = args.indexOf("--card");
+        if (subCommand === "list") {
+          const stackId = stackIndex !== -1 ? args[stackIndex + 1] : null;
+          output(await Deck.listCards(boardId, stackId));
+        } else if (subCommand === "get") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          if (cardIndex === -1) throw new Error("Missing --card");
+          output(await Deck.getCard(boardId, args[stackIndex + 1], args[cardIndex + 1]));
+        } else if (subCommand === "create") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          const titleIndex = args.indexOf("--title");
+          if (titleIndex === -1) throw new Error("Missing --title");
+          const options = {};
+          const description = readTextOption(
+            args,
+            "--description",
+            "--description-file"
+          );
+          if (description !== void 0) options.description = description;
+          const dueIndex = args.indexOf("--duedate");
+          if (dueIndex !== -1) options.duedate = args[dueIndex + 1];
+          const orderIndex = args.indexOf("--order");
+          if (orderIndex !== -1) options.order = Number(args[orderIndex + 1]);
+          output(await Deck.createCard(boardId, args[stackIndex + 1], args[titleIndex + 1], options));
+        } else if (subCommand === "edit") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          if (cardIndex === -1) throw new Error("Missing --card");
+          const updates = {};
+          const titleIndex = args.indexOf("--title");
+          if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+          const description = readTextOption(
+            args,
+            "--description",
+            "--description-file"
+          );
+          if (description !== void 0) updates.description = description;
+          const dueIndex = args.indexOf("--duedate");
+          if (dueIndex !== -1) updates.duedate = args[dueIndex + 1];
+          const orderIndex = args.indexOf("--order");
+          if (orderIndex !== -1) updates.order = Number(args[orderIndex + 1]);
+          const doneIndex = args.indexOf("--done");
+          if (doneIndex !== -1) updates.done = args[doneIndex + 1] === "true" ? (/* @__PURE__ */ new Date()).toISOString() : null;
+          const archivedIndex = args.indexOf("--archived");
+          if (archivedIndex !== -1) updates.archived = args[archivedIndex + 1] === "true";
+          output(await Deck.editCard(boardId, args[stackIndex + 1], args[cardIndex + 1], updates));
+        } else if (subCommand === "delete") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          if (cardIndex === -1) throw new Error("Missing --card");
+          output(await Deck.deleteCard(boardId, args[stackIndex + 1], args[cardIndex + 1]));
+        } else if (subCommand === "move") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          if (cardIndex === -1) throw new Error("Missing --card");
+          const toIndex = args.indexOf("--to-stack");
+          if (toIndex === -1) throw new Error("Missing --to-stack");
+          const orderIndex = args.indexOf("--order");
+          const order = orderIndex !== -1 ? Number(args[orderIndex + 1]) : void 0;
+          output(await Deck.moveCard(boardId, args[stackIndex + 1], args[cardIndex + 1], args[toIndex + 1], order));
+        } else if (subCommand === "assign-label") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          if (cardIndex === -1) throw new Error("Missing --card");
+          const labelIndex = args.indexOf("--label");
+          if (labelIndex === -1) throw new Error("Missing --label");
+          output(await Deck.assignLabel(boardId, args[stackIndex + 1], args[cardIndex + 1], args[labelIndex + 1]));
+        } else if (subCommand === "remove-label") {
+          if (stackIndex === -1) throw new Error("Missing --stack");
+          if (cardIndex === -1) throw new Error("Missing --card");
+          const labelIndex = args.indexOf("--label");
+          if (labelIndex === -1) throw new Error("Missing --label");
+          output(await Deck.removeLabel(boardId, args[stackIndex + 1], args[cardIndex + 1], args[labelIndex + 1]));
+        } else {
+          throw new Error("Unknown cards command");
+        }
+      }
+    } else if (command === "labels") {
+      const boardIndex = args.indexOf("--board");
+      if (boardIndex === -1) throw new Error("Missing --board");
+      const boardId = args[boardIndex + 1];
+      if (subCommand === "list") {
+        output(await Deck.listLabels(boardId));
+      } else if (subCommand === "create") {
+        const titleIndex = args.indexOf("--title");
+        if (titleIndex === -1) throw new Error("Missing --title");
+        const colorIndex = args.indexOf("--color");
+        if (colorIndex === -1) throw new Error("Missing --color");
+        output(await Deck.createLabel(boardId, args[titleIndex + 1], args[colorIndex + 1]));
+      } else if (subCommand === "edit") {
+        const labelIndex = args.indexOf("--label");
+        if (labelIndex === -1) throw new Error("Missing --label");
+        const updates = {};
+        const titleIndex = args.indexOf("--title");
+        if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+        const colorIndex = args.indexOf("--color");
+        if (colorIndex !== -1) updates.color = args[colorIndex + 1];
+        output(await Deck.editLabel(boardId, args[labelIndex + 1], updates));
+      } else if (subCommand === "delete") {
+        const labelIndex = args.indexOf("--label");
+        if (labelIndex === -1) throw new Error("Missing --label");
+        output(await Deck.deleteLabel(boardId, args[labelIndex + 1]));
+      } else {
+        throw new Error("Unknown labels command");
+      }
     } else {
-      console.log("Usage: node index.js <notes|files|calendar|calendars|tasks|contacts|addressbooks|shares> <list|get|create|search|edit|delete|create-link> [options]");
+      errorOutput("Usage: node scripts/nextcloud.js <notes|files|calendar|calendars|tasks|contacts|addressbooks|shares|boards|stacks|cards|labels> <list|get|create|search|edit|delete|move|create-link> [options]");
     }
   } catch (err) {
     errorOutput(err);

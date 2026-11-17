@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn750ephf1749nsjn4djytcjr182z1k3",
-  "slug": "steve-krug-ux-audit",
-  "version": "1.0.1",
-  "publishedAt": 1773830643139
+  "name": "steve-krug-ux-audit",
+  "version": "1.0.0",
+  "author": "Chris Couriard",
+  "description": "Perform a UX audit on any website or web app using Steve Krug's proven methodology. Provide a URL or local path and get a structured usability review grounded in Krug's core principles, laws, and heuristics. Identifies issues from most critical to quick wins.",
+  "tags": ["ux", "usability", "audit", "design", "web", "accessibility", "steve-krug"],
+  "license": "MIT"
 }

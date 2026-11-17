@@ -1,39 +1,53 @@
-## Description: <br>
-Technical Lead skill for task decomposition, routing, sequencing, and specialist assignment in WelineFramework work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical Lead skill for task decomposition, routing, sequencing, and specialist assignment in WelineFramework work.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn broad WelineFramework requests into bounded specialist tasks with owners, sequencing, dependencies, and validation expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad planning triggers may activate this skill for routine prompts where a narrower specialist is more appropriate. <br>
-Mitigation: Review trigger wording and route routine or highly specialized work to the narrowest applicable specialist skill. <br>
-Risk: Task decomposition or routing guidance could assign unclear ownership, miss dependencies, or set insufficient validation expectations. <br>
-Mitigation: Review each proposed task for a single owner, bounded scope, explicit dependencies, and role-appropriate validation before execution. <br>
+## Use Case:
 
+Developers and engineering leads use this skill to turn broad WelineFramework requests into scoped work packages with owners, sequencing, dependencies, and validation expectations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown task plan with ownership, sequencing, dependencies, validation expectations, and acceptance checkpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning and routing guidance only; it does not execute code or make production changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad planning and scheduling activation terms could trigger the skill on ordinary planning requests where WelineFramework routing is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation terms or use the skill only when WelineFramework task decomposition and specialist routing are desired.
+
+Risk: Task plans may route work or set validation gates incorrectly if repository guidance or specialist documentation is stale or incomplete.
+
+Mitigation: Review the generated work packages, dependencies, owners, and validation expectations before handoff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/tech-lead-task-scheduling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown task breakdown with sequencing, owner routing, validation expectations, and acceptance checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is produced by the skill; plans should be reviewed before specialist handoff.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
   "slug": "ima-tts-ai",
-  "version": "1.0.8",
-  "publishedAt": 1774852365866
+  "name": "IMA TTS",
+  "description": "Convert text, scripts, and captions into natural voiceovers for videos, explainers, product demos, and social posts.",
+  "version": "1.0.0"
 }

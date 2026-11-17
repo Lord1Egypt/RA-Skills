@@ -1,0 +1,118 @@
+# packs/biomed.yaml — 医疗 / 生物医药行业包 (Healthcare & Biomedicine)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 零侵入说明：本文件为新增 pack，不改动 24 部门模板、159 动作库、decision/roles/semantic/logic、init.py。
+# ⚠️ 医疗强监管 + 健康数据高敏感；本包红线为参考框架，须由执业合规/法务核验并以最新法规为准。
+
+meta:
+  pack_id: biomed
+  display_name: 医疗 / 生物医药 (Healthcare & Biomedicine)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [医院, 医疗机构, 公立医疗, 私立医疗, 诊所, 生物医药, 制药, 医疗器械, 药品, 疫苗, 基因, 临床]
+  description: >
+    适用于医疗机构（医院/诊所/第三方医学检验）与生物医药企业（制药/医疗器械/IVD/基因）。
+    主包覆盖医疗共性（诊疗/质控/医保/随访）与生物制药共性（GMP/注册/临床/不良反应），红线为参考框架。
+
+# ── 一、医疗/生物医药共性实体 ──
+entities_extra:
+  - type: MedicalInstitution
+    extends: Organization
+    properties:
+      - { name: license_no, type: string, desc: "医疗机构执业许可证号" }
+      - { name: grade, type: enum, enum: [三级, 二级, 一级, 未定级], desc: "医院等级" }
+      - { name: category, type: enum, enum: [综合医院, 专科, 诊所, 检验机构], desc: "机构类别" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many-to-one }
+  - type: DrugOrDevice
+    extends: Product
+    properties:
+      - { name: registration_no, type: string, desc: "药品/器械注册证号" }
+      - { name: gmp_cert, type: boolean, desc: "是否 GMP 持证生产" }
+      - { name: lot_no, type: string, desc: "生产批号（批记录追溯）" }
+    relations:
+      - { to: Organization, type: produced_by, cardinality: many_to_one }
+  - type: Patient
+    extends: Customer
+    properties:
+      - { name: medical_record_no, type: string, pii: true, desc: "病案号，PII 强护栏" }
+      - { name: visit_type, type: enum, enum: [门诊, 住院, 互联网诊疗], desc: "就诊类型" }
+  - type: ClinicalTrial
+    extends: Project
+    properties:
+      - { name: approval_no, type: string, desc: "伦理批件/药监局临床批件号" }
+      - { name: phase, type: enum, enum: [I, II, III, IV], desc: "试验分期" }
+  - type: GeneticResource
+    extends: Asset
+    properties:
+      - { name: approval_no, type: string, desc: "人类遗传资源审批/备案号" }
+      - { name: cross_border, type: boolean, desc: "是否涉及对外提供/出境" }
+
+# ── 二、推荐部门 ──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+  # 医疗/生物相关可选
+  - { code: quality,     name: 质量管理 }    # QA/质控/GMP/不良反应
+  - { code: it_security, name: IT安全 }      # 健康数据分级/去标识
+  - { code: customer_service, name: 客户服务 } # 患者随访/客服
+
+suggested_custom_departments:
+  - { code: medical_affairs, name: 医务部, gender_default: male, expertise: "诊疗合规/医疗质量/不良事件", when: "医疗机构即建议加" }
+  - { code: regulatory, name: 注册法规, gender_default: female, expertise: "药品/器械注册/临床合规", when: "有产品注册即建议加" }
+  - { code: pharmacovig, name: 药物警戒, gender_default: female, expertise: "不良反应监测与上报", when: "有上市产品即建议加" }
+
+# ── 三、默认工作流 ──
+default_workflow: biomed_ops
+workflow_bindings:
+  biomed_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [接诊/立项, 诊疗/研发, 收费医保/注册, 随访/上市, 质控, 复盘]
+
+# ── 四、本地化政策钩子 ──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.biomed             # 人类遗传资源/GMP/数据合规/诊疗合规（本 pack 触发，参考框架）
+    - compliance_redlines.tax
+    - compliance_redlines.general            # 个保法最小必要
+  local_services: []
+  note: 红线为参考框架，落地前须执业合规/法务核验并以最新法规为准。
+
+# ── 五、B 层风味 ──
+flavor:
+  default: >-
+    你服务的是医疗/生物医药机构；健康数据与病案属最高敏感，PII 强护栏——病案号/病历/基因信息一律不写明文、去标识化存储。
+    人类遗传资源采集/保藏/利用/对外提供须审批；药品生产须 GMP、批记录可追溯；涉及人的研究须伦理审查。
+  legal: 医疗机构执业许可与诊疗科目合规；处方/互联网诊疗合规；医疗器械注册证与分类管理；人类遗传资源审批。
+  quality: GMP/体系认证保持有效；批记录可追溯；不良反应/不良事件监测与上报刚性；不合格不放行。
+  rnd: 临床试验须伦理批件与药监局临床批件；数据真实可溯源；禁止篡改/选择性上报。
+  it_security: 健康医疗数据分类分级；个人信息去标识化；不得擅自共享病历；系统可审计。
+  finance: 医保结算合规；医疗服务价格按政府定价/标准；票据合规。
+
+# ── 六、实例化提示 ──
+instance_prompts:
+  - "请描述机构类型（医院/诊所/制药/器械/基因）与资质（执业许可/注册证/GMP）"
+  - "请介绍机构情况（名称、地区、等级、是否雇人）"
+  - "想搭建哪些部门（默认 12 核心 + 质量/IT安全/客服；建议加医务部/注册法规/药物警戒）"
+  - "核心业务循环（如 接诊 → 诊疗 → 收费医保 → 随访；或 立项 → 临床 → 注册 → 上市）"
+  - "是否涉及人类遗传资源/跨境数据/互联网诊疗（影响强红线）"
+
+# ── 七、医疗特有监测信号（配合 monitoring.yaml 的 biomed 域）──
+biomed_signals:
+  signals:
+    - { id: adv_event, name: 不良反应/不良事件, owner: [pharmacovig, quality], desc: "药品/器械不良反应须上报" }
+    - { id: genetic_resource_risk, name: 遗传资源违规, owner: [legal, regulatory], desc: "人类遗传资源未批出境/违规利用" }
+    - { id: quality_recall, name: 质量召回风险, owner: [quality, legal], desc: "涉及召回的质量缺陷" }
+    - { id: data_leak, name: 健康数据泄露, owner: [it_security, legal], desc: "病案/基因信息未脱敏外发" }

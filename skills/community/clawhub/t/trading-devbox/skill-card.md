@@ -1,39 +1,48 @@
-## Description: <br>
-Trading strategy development sandbox. User describes trading intent in natural language, agent writes a Python backtest strategy and returns results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading strategy development sandbox. User describes trading intent in natural language, agent writes a Python backtest strategy and returns results.
 
-## Publisher: <br>
-[uu-z](https://clawhub.ai/user/uu-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[uu-z](https://clawhub.ai/user/uu-z)
 
-## Use Case: <br>
-Developers and traders use this skill to turn natural-language trading ideas into structured strategy parameters, generated Python backtest code, and execution results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated local Python backtest code may be incorrect or unsafe to run without review. <br>
-Mitigation: Review generated strategy code when practical and use trusted python3 and backtrader installations. <br>
-Risk: Backtest output can be mistaken for financial advice or a reliable prediction. <br>
-Mitigation: Treat results as development information and validate strategies independently before making trading decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uu-z/trading-devbox) <br>
+## Use Case:
 
+Developers and trading strategy builders use this skill to turn natural-language trading ideas into structured parameters, generate backtrader Python strategy code, and review backtest execution results or next steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with structured summaries and Python or bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language with parsed intent, strategy parameters, and execution results or next steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Python backtests are executed through an insecure shared temporary path and the skill describes this as a sandbox without clear containment.
+
+Mitigation: Review before installing or running; use a private mktemp directory and explicit sandboxing before relying on the skill for repeated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uu-z/skills/trading-devbox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and includes parsed intent, strategy parameters, execution results, or next steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

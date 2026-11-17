@@ -1,38 +1,49 @@
-## Description: <br>
-A personal productivity skill tailored for reky, providing smart coding assistance, project scaffolding, and workflow automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personal productivity skill tailored for reky, providing smart coding assistance, project scaffolding, and workflow automation.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Developers use reky for personalized coding guidance, project initialization, code review checklists, workflow automation, and task reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scaffolds, scripts, formatting changes, or deployment steps can alter project behavior or external environments. <br>
-Mitigation: Review proposed file changes, commands, scripts, and deployment steps before allowing an agent to run them. <br>
+## Use Case:
 
+Developers use this skill to receive personalized coding assistance for project scaffolding, code review checklists, workflow automation, formatting, testing, deployment, and documentation reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/reky) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file changes, scripts, checklists, reminders, and task automation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill is sparse and describes project scaffolding, deployment automation, reminders, and other workspace-affecting behavior that could become risky if future versions add executable behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan any future version that adds scripts, install actions, deployment automation, persistence, or project mutation behavior before allowing broad workspace access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/reky)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code, shell command, and configuration suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill with no bundled code, install actions, persistence, or hidden data handling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

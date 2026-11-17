@@ -1,45 +1,60 @@
-## Description: <br>
-Mural API integration with managed OAuth for collaborative whiteboard automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mural API integration with managed OAuth for collaborative whiteboard automation.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and external users use this skill to browse Mural workspaces, rooms, murals, widgets, templates, and tags through ClawLink-managed OAuth. It can also create sticky notes on selected murals after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires ClawLink OAuth access to a user's Mural account. <br>
-Mitigation: Install only if ClawLink is trusted to broker Mural access, and review the requested Mural permissions during OAuth connection. <br>
-Risk: Sticky-note creation modifies mural content. <br>
-Mitigation: Confirm the target mural and sticky-note content carefully before approving write operations. <br>
-Risk: Tool calls operate within the authenticated user's Mural permissions. <br>
-Mitigation: Use a Mural account with appropriate access for the intended workspace, room, or mural. <br>
+## Use Case:
 
+External users and developers use this skill to connect Mural through ClawLink OAuth, browse workspaces, rooms, murals, widgets, templates, and tags, and create sticky notes when requested.
 
-## Reference(s): <br>
-- [Mural API Docs](https://developers.mural.co/public/docs) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Dashboard](https://claw-link.dev/dashboard?add=mural) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/mural) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke ClawLink tools that read Mural account content or create sticky notes according to the authenticated user's permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill installs and enables an external ClawLink plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the ClawLink plugin source is trusted, and pin or verify the plugin release where OpenClaw deployment supports it.
+
+Risk: Mural OAuth grants access according to the authenticated user's account permissions.
+
+Mitigation: Review the Mural permissions during OAuth connection and reconnect only from the documented ClawLink dashboard.
+
+Risk: The sticky-note creation tool can modify mural content.
+
+Mitigation: Confirm sticky-note creation requests before execution and check target mural IDs and note contents.
+
+## Reference(s):
+
+- [Mural API Docs](https://developers.mural.co/public/docs)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=mural)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/mural)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OAuth setup, Mural discovery workflows, read operations, and confirmed sticky-note write operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

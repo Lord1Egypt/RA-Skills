@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>智汇简报 · IndustryRadar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" v-cloak>
+
+  <!-- ============ 登录 ============ -->
+  <div class="login-wrap" v-if="!authed">
+    <div class="login-card">
+      <div class="login-logo">智汇<span>简报</span></div>
+      <div class="login-sub">IndustryRadar · 行业技术周报自动生成</div>
+
+      <div class="field">
+        <label>账号</label>
+        <input class="input" v-model="loginForm.username" placeholder="demo"
+               @keyup.enter="doLogin" autocomplete="username">
+      </div>
+      <div class="field">
+        <label>密码</label>
+        <input class="input" type="password" v-model="loginForm.password" placeholder="demo"
+               @keyup.enter="doLogin" autocomplete="current-password">
+      </div>
+
+      <div v-if="loginErr" class="pill red" style="margin-bottom:12px">{{ loginErr }}</div>
+
+      <button class="btn primary" style="width:100%;justify-content:center"
+              :disabled="busy" @click="doLogin">
+        {{ busy ? '登录中…' : '登 录' }}
+      </button>
+
+      <div class="muted" style="margin-top:16px">
+        演示账号：<b>demo / demo</b>（首次登录自动初始化）
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 主体 ============ -->
+  <div class="layout" v-else>
+    <aside class="sidebar">
+      <div class="brand">智汇<span>简报</span>
+        <small>IndustryRadar v{{ config.version || '1.1.0' }}</small>
+      </div>
+      <nav class="nav">
+        <div class="nav-item" :class="{active: view==='dashboard'}" @click="view='dashboard'">
+          <span class="ico">◧</span> 总览面板
+        </div>
+        <div class="nav-item" :class="{active: view==='subscriptions'}" @click="view='subscriptions'">
+          <span class="ico">◎</span> 订阅管理
+        </div>
+        <div class="nav-item" :class="{active: view==='reader'}" @click="view='reader'">
+          <span class="ico">▤</span> 简报阅读
+        </div>
+        <div class="nav-item" :class="{active: view==='sources'}" @click="view='sources'">
+          <span class="ico">☰</span> 数据源
+        </div>
+        <div class="nav-item" :class="{active: view==='customs'}" @click="openCustoms">
+          <span class="ico">＋</span> 自定义源
+          <span v-if="customs.length" class="pill gray" style="font-size:10px;margin-left:6px">{{ customs.length }}</span>
+        </div>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="who">👤 {{ username }}</div>
+        <div style="margin-bottom:8px">
+          <span class="pill" :class="config.llm_enabled ? 'green' : 'amber'" style="font-size:11px">
+            {{ config.llm_enabled ? 'LLM 已启用' : '离线规则引擎' }}
+          </span>
+        </div>
+        <a href="javascript:;" @click="doLogout">退出登录</a>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <h2>
+          <span v-if="view==='dashboard'">总览面板</span>
+          <span v-else-if="view==='subscriptions'">订阅管理</span>
+          <span v-else-if="view==='reader'">简报阅读</span>
+          <span v-else-if="view==='customs'">自定义源</span>
+          <span v-else>数据源目录</span>
+        </h2>
+        <div class="flex">
+          <span class="meta">运行模式：{{ config.mode || '—' }}</span>
+          <button class="btn sm" @click="openPreview">⚡ 关键词预览</button>
+          <button class="btn sm primary" @click="openNewSub">＋ 新建订阅</button>
+        </div>
+      </header>
+
+      <section class="content">
+
+        <!-- ===== 总览 ===== -->
+        <div v-show="view==='dashboard'">
+          <div class="grid grid-4">
+            <div class="card stat">
+              <div class="label">订阅数</div>
+              <div class="value">{{ dash.subscription_count }}</div>
+              <div class="sub">持续追踪的行业 × 技术组合</div>
+            </div>
+            <div class="card stat">
+              <div class="label">累计简报</div>
+              <div class="value">{{ dash.briefing_count }}</div>
+              <div class="sub">已生成并归档的周报</div>
+            </div>
+            <div class="card stat">
+              <div class="label">素材文章</div>
+              <div class="value">{{ dash.article_count }}</div>
+              <div class="sub">入库去重后的资讯</div>
+            </div>
+            <div class="card stat">
+              <div class="label">智能引擎</div>
+              <div class="value" style="font-size:20px">
+                {{ dash.llm_enabled ? 'LLM 摘要' : '规则引擎' }}
+              </div>
+              <div class="sub">{{ dash.llm_enabled ? '大模型语义摘要与洞察' : '离线抽取式摘要，零依赖可跑' }}</div>
+            </div>
+          </div>
+
+          <div class="grid grid-2 mt16">
+            <div class="card card-pad">
+              <div class="card-title">快速开始 <span class="muted">三步生成一份周报</span></div>
+              <ol style="padding-left:20px;margin:0">
+                <li>在「订阅管理」中新建 <b>行业词 × 技术词</b> 组合；</li>
+                <li>点击该订阅的 <b>生成简报</b>，系统自动采集 → 去重 → 摘要 → 成篇；</li>
+                <li>进入「简报阅读」查看与导出 Markdown。</li>
+              </ol>
+              <div class="flex wrap mt16">
+                <button class="btn primary" @click="openNewSub">＋ 新建订阅</button>
+                <button class="btn" @click="openPreview">⚡ 先预览一份</button>
+              </div>
+            </div>
+
+            <div class="card card-pad">
+              <div class="card-title">订阅概览</div>
+              <div v-if="!subs.length" class="empty" style="padding:24px">
+                <div class="big">◎</div>暂无订阅，先去创建一个吧
+              </div>
+              <table class="tbl" v-else>
+                <thead>
+                  <tr><th>名称</th><th>关键词</th><th>简报</th><th></th></tr>
+                </thead>
+                <tbody>
+                  <tr v-for="s in subs" :key="s.id">
+                    <td>
+                      <b>{{ s.name }}</b><br>
+                      <span class="pill" :class="s.enabled ? 'green' : 'gray'" style="font-size:11px">
+                        {{ s.enabled ? '启用' : '暂停' }}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="kw-tags">
+                        <span class="kw-tag hot">{{ s.industry_kw }}</span>
+                        <span class="kw-tag">{{ s.tech_kw }}</span>
+                      </div>
+                    </td>
+                    <td>{{ s.briefing_count || 0 }}</td>
+                    <td>
+                      <button class="btn sm" @click="openReader(s)">阅读</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 订阅管理 ===== -->
+        <div v-show="view==='subscriptions'">
+          <div class="card">
+            <div class="card-pad" v-if="!subs.length">
+              <div class="empty">
+                <div class="big">◎</div>
+                <div>还没有任何订阅</div>
+                <button class="btn primary mt16" @click="openNewSub">＋ 新建第一个订阅</button>
+              </div>
+            </div>
+
+            <table class="tbl" v-else>
+              <thead>
+                <tr>
+                  <th style="width:190px">名称</th>
+                  <th>行业词 / 技术词</th>
+                  <th style="width:190px">数据源</th>
+                  <th style="width:110px">最近生成</th>
+                  <th style="width:80px">简报</th>
+                  <th style="width:260px">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="s in subs" :key="s.id">
+                  <td>
+                    <b>{{ s.name }}</b><br>
+                    <span class="pill" :class="s.enabled ? 'green' : 'gray'" style="font-size:11px">
+                      {{ s.enabled ? '启用中' : '已暂停' }}
+                    </span>
+                  </td>
+                  <td>
+                    <div class="kw-tags">
+                      <span class="kw-tag hot">{{ s.industry_kw }}</span>
+                      <span class="kw-tag">{{ s.tech_kw }}</span>
+                      <span class="kw-tag" v-if="s.extra_kw">{{ s.extra_kw }}</span>
+                    </div>
+                  </td>
+                  <td class="muted">{{ srcList(s).join('、') || '—' }}</td>
+                  <td class="muted">{{ fmtTime(s.last_run_at) }}</td>
+                  <td>{{ s.briefing_count || 0 }}</td>
+                  <td>
+                    <div class="row-actions">
+                      <button class="btn sm primary" :disabled="busy" @click="runSub(s)">生成简报</button>
+                      <button class="btn sm" @click="openReader(s)">阅读</button>
+                      <button class="btn sm" @click="openEditSub(s)">编辑</button>
+                      <button class="btn sm" @click="toggleSub(s)">{{ s.enabled ? '暂停' : '启用' }}</button>
+                      <button class="btn sm danger" @click="deleteSub(s)">删除</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===== 简报阅读 ===== -->
+        <div v-show="view==='reader'">
+          <div v-if="!readerSub" class="card card-pad">
+            <div class="empty">
+              <div class="big">▤</div>
+              <div style="margin-bottom:14px">请选择一个订阅开始阅读</div>
+              <div class="flex wrap" style="justify-content:center">
+                <button class="btn" v-for="s in subs" :key="s.id" @click="openReader(s)">{{ s.name }}</button>
+              </div>
+            </div>
+          </div>
+
+          <div v-else class="reader-cols">
+            <!-- 左：订阅切换 + 简报列表 -->
+            <div class="card card-pad reader-side">
+              <div class="field mb0">
+                <label>当前订阅</label>
+                <select class="select" :value="readerSub.id"
+                        @change="openReader(subs.find(function(x){return x.id==$event.target.value}))">
+                  <option v-for="s in subs" :key="s.id" :value="s.id">{{ s.name }}</option>
+                </select>
+              </div>
+
+              <div class="card-title mt16" style="margin-bottom:10px">
+                历史简报 <span class="muted">{{ briefings.length }} 期</span>
+              </div>
+
+              <div v-if="readerLoading && !briefings.length" class="loading">
+                <div class="spinner"></div>加载中…
+              </div>
+              <div v-else-if="!briefings.length" class="empty" style="padding:28px 10px">
+                <div class="big">🗒</div>
+                <div>还没有简报</div>
+                <button class="btn primary sm mt16" :disabled="busy"
+                        @click="runSub(readerSub)">立即生成</button>
+              </div>
+              <div class="briefing-list" v-else>
+                <div class="briefing-item" v-for="b in briefings" :key="b.id"
+                     :class="{active: currentBriefing && currentBriefing.id===b.id}"
+                     @click="selectBriefing(b)">
+                  <div class="t">{{ b.title }}</div>
+                  <div class="m">
+                    <span>🕒 {{ fmtTime(b.created_at) }}</span>
+                    <span>📄 {{ statValue(b,'total_articles') }} 篇</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右：正文 -->
+            <div>
+              <div v-if="!currentBriefing" class="card card-pad">
+                <div class="empty" style="padding:60px 16px">
+                  <div class="big">📄</div>
+                  <div v-if="briefings.length">← 从左侧选择一期简报</div>
+                  <div v-else>该订阅暂无简报，点击左侧「立即生成」</div>
+                </div>
+              </div>
+
+              <div v-else>
+                <div class="card card-pad" style="margin-bottom:16px">
+                  <div class="card-title">
+                    <span>{{ currentBriefing.title }}</span>
+                    <span class="flex">
+                      <a class="btn sm" href="javascript:;" @click="downloadBriefing(currentBriefing)">⬇ 导出 MD</a>
+                    </span>
+                  </div>
+                  <div class="flex wrap muted">
+                    <span class="pill gray">🕒 {{ fmtTime(currentBriefing.created_at) }}</span>
+                    <span class="pill">采集 {{ statValue(currentBriefing,'collected') }}</span>
+                    <span class="pill">去重后 {{ statValue(currentBriefing,'after_dedup') }}</span>
+                    <span class="pill">相关 {{ statValue(currentBriefing,'relevant') }}</span>
+                    <span class="pill green">入选 {{ statValue(currentBriefing,'total_articles') }}</span>
+                    <span class="pill amber">板块 {{ statValue(currentBriefing,'sections') }}</span>
+                  </div>
+                </div>
+
+                <!-- 趋势图 -->
+                <div class="card card-pad" style="margin-bottom:16px" v-if="trend.series && trend.series.length">
+                  <div class="card-title">历期素材量趋势</div>
+                  <div class="trend-bars">
+                    <div class="trend-bar" v-for="pt in trend.series" :key="pt.briefing_id">
+                      <div class="n">{{ pt.article_count }}</div>
+                      <div class="bar" :style="{height: Math.max(4, Math.round(pt.article_count / maxSeries * 120)) + 'px'}"></div>
+                      <div class="d">{{ fmtTime(pt.created_at).slice(5,10) }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Markdown 正文 -->
+                <div class="card card-pad">
+                  <div v-if="readerLoading" class="loading"><div class="spinner"></div>渲染中…</div>
+                  <div v-else class="md" v-html="renderedMd"></div>
+                </div>
+
+                <!-- 素材库 -->
+                <div class="card card-pad mt16" v-if="articles.length">
+                  <div class="card-title">
+                    素材库 <span class="muted">最近 {{ articles.length }} 篇入库文章</span>
+                  </div>
+                  <table class="tbl">
+                    <thead>
+                      <tr><th>标题</th><th style="width:130px">来源</th><th style="width:110px">时间</th><th style="width:70px">相关度</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="a in articles" :key="a.id">
+                        <td><a :href="a.url" target="_blank" rel="noopener">{{ a.title }}</a></td>
+                        <td class="muted">{{ a.source_name }}</td>
+                        <td class="muted">{{ fmtTime(a.published_at) }}</td>
+                        <td><span class="pill" :class="a.score >= 20 ? 'green' : 'gray'">{{ Math.round(a.score||0) }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 数据源 ===== -->
+        <div v-show="view==='sources'">
+          <div class="card card-pad" style="margin-bottom:16px">
+            <div class="card-title">
+              数据源目录
+              <span class="muted">启用 {{ enabledSourceCount() }} / {{ sources.length }} 个</span>
+            </div>
+            <p class="muted mb0" style="margin:0">
+              系统免费采集公开信息源（RSS）。停用或失效的来源默认不参与采集，可按关键词组合自由组合。
+            </p>
+          </div>
+
+          <div class="grid grid-3">
+            <div class="card card-pad" v-for="sc in sources" :key="sc.id">
+              <div class="flex between">
+                <b>{{ sc.name }}</b>
+                <span class="pill" :class="sc.enabled ? 'green' : 'gray'" style="font-size:11px">
+                  {{ sc.enabled ? '启用' : '停用' }}
+                </span>
+              </div>
+              <div class="muted" style="margin:6px 0 10px; word-break:break-all">{{ sc.url }}</div>
+              <div class="flex wrap">
+                <span class="pill gray">{{ catName(sc.category) }}</span>
+                <span class="pill gray" v-if="sc.lang">{{ sc.lang.toUpperCase() }}</span>
+              </div>
+              <div class="mt16">
+                <a class="btn sm" :href="sc.home" target="_blank" rel="noopener">访问主页 ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 自定义源 ===== -->
+        <div v-show="view==='customs'">
+          <div class="card card-pad" style="margin-bottom:16px">
+            <div class="flex between wrap">
+              <div class="card-title" style="margin:0">
+                我的自定义源
+                <span class="muted">
+                  {{ customs.length }} / {{ limits.max_per_user }} 个
+                </span>
+              </div>
+              <button class="btn sm primary" :disabled="customDisabled || customs.length >= limits.max_per_user"
+                      @click="openNewCustom">＋ 添加订阅源</button>
+            </div>
+            <p class="muted mb0" style="margin:10px 0 0">
+              仅支持 <b>公开可访问的 RSS / Atom</b> 地址。录入时会先实际抓取一次，解析不出条目则不入库；
+              内网地址、非 80/443 端口、HTTP 以外的协议一律拒绝。连续失败 3 次的源会自动停用。
+            </p>
+            <div v-if="customDisabled" class="pill amber mt16">
+              管理员已关闭自定义源功能（IR_ALLOW_CUSTOM_SOURCES=0）
+            </div>
+          </div>
+
+          <div class="card" v-if="!customs.length">
+            <div class="empty" style="padding:36px">
+              <div class="big">＋</div>
+              还没有自定义源，添加一个你常读的 RSS 试试
+            </div>
+          </div>
+
+          <div class="card" v-else>
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>名称</th><th>地址</th><th>状态</th><th>引用</th><th>最近抓取</th><th style="width:250px"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="c in customs" :key="c.id">
+                  <td><b>{{ c.name }}</b></td>
+                  <td class="muted" style="max-width:280px;word-break:break-all">{{ c.url }}</td>
+                  <td>
+                    <span class="pill" :class="customPill(c)" style="font-size:11px">{{ customStatusText(c) }}</span>
+                    <div class="muted" style="font-size:12px;margin-top:4px" v-if="c.last_error">
+                      {{ c.last_error }}
+                    </div>
+                  </td>
+                  <td>{{ c.used_by }} 个订阅</td>
+                  <td class="muted">{{ fmtTime(c.last_fetch_at) }}</td>
+                  <td>
+                    <div class="flex wrap" style="gap:6px">
+                      <button class="btn sm" :disabled="busy" @click="testCustom(c)">检测</button>
+                      <button class="btn sm" @click="openEditCustom(c)">编辑</button>
+                      <button class="btn sm" @click="toggleCustom(c)">{{ c.enabled ? '停用' : '启用' }}</button>
+                      <button class="btn sm danger" @click="deleteCustom(c)">删除</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ 订阅弹窗 ============ -->
+  <div class="mask" v-if="subModal" @click.self="subModal=false">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>{{ subEditing ? '编辑订阅' : '新建订阅' }}</h3>
+        <button class="x" @click="subModal=false">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>订阅名称 *</label>
+          <input class="input" v-model="subForm.name" placeholder="如：新能源汽车 · 固态电池">
+        </div>
+        <div class="field">
+          <label>行业词 *</label>
+          <input class="input" v-model="subForm.industry_kw" placeholder="逗号分隔，如：新能源汽车,汽车,乘用车">
+          <div class="hint">限定所在行业领域</div>
+        </div>
+        <div class="field">
+          <label>技术词 *</label>
+          <input class="input" v-model="subForm.tech_kw" placeholder="逗号分隔，如：固态电池,电池,续航">
+          <div class="hint">关注的技术方向，与行业词共同决定相关度</div>
+        </div>
+        <div class="field">
+          <label>补充关键词</label>
+          <input class="input" v-model="subForm.extra_kw" placeholder="选填，如：蔚来,宁德时代">
+        </div>
+        <div class="field">
+          <label>启用数据源</label>
+          <div class="flex wrap" style="gap:8px">
+            <label class="pill gray" v-for="sc in sources" :key="sc.id" style="cursor:pointer">
+              <input type="checkbox" :value="sc.id" v-model="subForm.sources" style="margin-right:5px">
+              {{ sc.name }}
+            </label>
+          </div>
+          <div class="hint">不勾选则使用全部启用中的来源（单订阅最多 {{ limits.max_per_sub }} 个自定义源）</div>
+        </div>
+        <div class="field" v-if="customs.length">
+          <label>自定义源</label>
+          <div class="flex wrap" style="gap:8px">
+            <label class="pill" :class="c.enabled ? 'green' : 'gray'" style="cursor:pointer"
+                   v-for="c in customs" :key="c.id">
+              <input type="checkbox" :value="'cs:' + c.id" v-model="subForm.sources"
+                     :disabled="!c.enabled" style="margin-right:5px">
+              {{ c.name }}<span v-if="!c.enabled">（已停用）</span>
+            </label>
+          </div>
+          <div class="hint">在「自定义源」中管理，仅能选择状态正常的源</div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" @click="subModal=false">取消</button>
+        <button class="btn primary" :disabled="busy" @click="saveSub">
+          {{ busy ? '保存中…' : '保存' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 自定义源弹窗 ============ -->
+  <div class="mask" v-if="customModal" @click.self="customModal=false">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>{{ customEditing ? '编辑自定义源' : '添加自定义源' }}</h3>
+        <button class="x" @click="customModal=false">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>源名称 *</label>
+          <input class="input" v-model="customForm.name" placeholder="如：阮一峰的网络日志" maxlength="60">
+        </div>
+        <div class="field">
+          <label>RSS / Atom 地址 *</label>
+          <input class="input" v-model="customForm.url" placeholder="https://example.com/feed.xml"
+                 @keyup.enter="saveCustom">
+          <div class="hint">
+            必须是以 http/https 开头、走 80/443 端口的公开订阅地址；保存前会先抓取验证是否有可解析条目。
+          </div>
+        </div>
+        <div class="pill amber" v-if="customErr">{{ customErr }}</div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" @click="customModal=false">取消</button>
+        <button class="btn primary" :disabled="busy" @click="saveCustom">
+          {{ busy ? '校验中…' : '保存' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 自定义源弹窗 ============ -->
+  <div class="mask" v-if="customModal" @click.self="customModal=false">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>{{ customEditing ? '编辑自定义源' : '添加自定义源' }}</h3>
+        <button class="x" @click="customModal=false">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>源名称 *</label>
+          <input class="input" v-model="customForm.name" placeholder="如：阮一峰的网络日志" maxlength="60">
+        </div>
+        <div class="field">
+          <label>RSS / Atom 地址 *</label>
+          <input class="input" v-model="customForm.url" placeholder="https://example.com/feed.xml"
+                 @keyup.enter="saveCustom">
+          <div class="hint">
+            必须是以 http/https 开头、走 80/443 端口的公开订阅地址；保存前会先抓取验证是否有可解析条目。
+          </div>
+        </div>
+        <div class="pill amber" v-if="customErr">{{ customErr }}</div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" @click="customModal=false">取消</button>
+        <button class="btn primary" :disabled="busy" @click="saveCustom">
+          {{ busy ? '校验中…' : '保存' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 预览弹窗 ============ -->
+  <div class="mask" v-if="previewModal" @click.self="previewModal=false">
+    <div class="modal wide">
+      <div class="modal-head">
+        <h3>⚡ 关键词预览（不落库）</h3>
+        <button class="x" @click="previewModal=false">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="grid grid-3">
+          <div class="field mb0">
+            <label>行业词 *</label>
+            <input class="input" v-model="previewForm.industry_kw" placeholder="新能源汽车,汽车">
+          </div>
+          <div class="field mb0">
+            <label>技术词 *</label>
+            <input class="input" v-model="previewForm.tech_kw" placeholder="固态电池,电池">
+          </div>
+          <div class="field mb0">
+            <label>补充关键词</label>
+            <input class="input" v-model="previewForm.extra_kw" placeholder="选填">
+          </div>
+        </div>
+
+        <div class="flex mt16">
+          <button class="btn primary" :disabled="busy" @click="doPreview">
+            {{ busy ? '生成中…' : '生成预览' }}
+          </button>
+          <span class="muted" v-if="previewStats">
+            采集 {{ previewStats.collected }} · 去重后 {{ previewStats.after_dedup }} ·
+            相关 {{ previewStats.relevant }} · 入选 {{ previewStats.total_articles }} ·
+            板块 {{ previewStats.sections }}
+          </span>
+        </div>
+
+        <div v-if="previewDone" class="mt16" style="border-top:1px solid var(--border);padding-top:16px">
+          <div v-if="!previewMd" class="empty">
+            <div class="big">🔍</div>未采集到相关文章，换个关键词试试
+          </div>
+          <div v-else class="md" v-html="previewRendered"></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" @click="previewModal=false">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Toast ============ -->
+  <div class="toast-wrap">
+    <div class="toast" :class="t.type" v-for="t in toasts" :key="t.id">{{ t.msg }}</div>
+  </div>
+
+</div>
+
+<script src="vue.global.prod.js"></script>
+<script src="md.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

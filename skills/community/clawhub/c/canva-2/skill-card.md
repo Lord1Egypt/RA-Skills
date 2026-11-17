@@ -1,42 +1,58 @@
-## Description: <br>
-MCP skill for Canva that lets an agent search, read, generate, import, export, organize, and comment on Canva designs through 22 OAuth-backed tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP skill for Canva that provides tools to upload assets, resolve shortlinks, search and retrieve designs, manage design pages and folders, export content, comment on designs, generate designs, and list brand kits.
 
-## Publisher: <br>
-[manojbajaj95](https://clawhub.ai/user/manojbajaj95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manojbajaj95](https://clawhub.ai/user/manojbajaj95)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to Canva so it can find existing designs, inspect design content, create or import new designs, export files, manage folders, and participate in comment threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses OAuth-backed access to a user's Canva account and can read or change Canva content. <br>
-Mitigation: Review requested Canva scopes during authorization, use the connector only with accounts where that access is appropriate, and revoke the connector or remove persisted local tokens when no longer needed. <br>
-Risk: Some tools can reorder, merge, move, comment on, or delete Canva content. <br>
-Mitigation: Require explicit user confirmation before destructive or structural changes, and review the affected design, folder, or comment thread before relying on the result. <br>
-Risk: Persisted OAuth tokens may expose Canva access on shared or poorly protected machines. <br>
-Mitigation: Avoid shared machines unless token files are protected, and remove the persisted token directory when the connector should no longer retain access. <br>
+## Use Case:
 
+Developers and agent users use this skill to connect an agent to Canva through MCP for searching, retrieving, creating, importing, exporting, commenting on, and organizing Canva content.
 
-## Reference(s): <br>
-- [Canva skill on ClawHub](https://clawhub.ai/manojbajaj95/canva-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Files, Configuration guidance] <br>
-**Output Format:** [JSON-like MCP tool results with Canva design metadata, content, URLs, comments, folders, generated design candidates, and export download links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OAuth-backed Canva access and may create or modify Canva resources according to the selected tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can change Canva content through OAuth-backed actions such as uploads, imports, folder changes, comments, design generation, and page operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested action before execution and explicitly confirm destructive page operations, public comments, and content changes.
+
+Risk: OAuth-backed requests may expose more chat context or Canva account content than intended.
+
+Mitigation: Use only the default Canva MCP endpoint, avoid running the skill from chats containing secrets or unrelated private information, and revoke the stored OAuth token if access is no longer needed.
+
+Risk: The security scan verdict is suspicious because the skill can modify Canva content and relies on a third-party dependency.
+
+Mitigation: Review the skill before installing, consider pinning or reviewing the mcp-skill dependency, and limit use to Canva accounts and workspaces appropriate for agent access.
+
+## Reference(s):
+
+- [ClawHub Canva skill page](https://clawhub.ai/manojbajaj95/skills/canva-2)
+- [Canva MCP endpoint](https://mcp.canva.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, URLs, Configuration, Guidance]
+
+**Output Format:** [Structured tool results returned as JSON-like dictionaries, with text fields and URLs for Canva resources or exported files when provided by Canva.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OAuth-backed MCP calls may read or modify Canva content depending on the selected tool and user authorization.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

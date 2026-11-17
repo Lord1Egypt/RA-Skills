@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn73j7egnn3qp4mhyybcxcn00s82yncf",
-  "slug": "content-creation-multi-agent",
-  "version": "0.1.0",
-  "publishedAt": 1773688541431
+  "name": "content-creation-multi-agent",
+  "version": "4.0.1",
+  "description": "内容生成多 Agent 系统 - 商用级内容生成全流程（含第二大脑笔记虾）",
+  "author": "OpenClaw 来合火",
+  "license": "MIT"
 }

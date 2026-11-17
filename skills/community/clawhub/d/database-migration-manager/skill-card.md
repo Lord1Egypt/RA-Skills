@@ -1,43 +1,56 @@
-## Description: <br>
-Database migration manager that detects ORM and migration tools, generates migrations, handles rollbacks, creates seed scripts, diffs schemas between environments, backs up databases, and supports zero-downtime patterns for Prisma, Drizzle, Knex, TypeORM, Alembic, Django, raw SQL, Postgres, MySQL, and SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database Migration Manager helps developers detect database migration tooling, generate and run migrations, plan rollbacks, create seed scripts, compare schemas, back up databases, and use zero-downtime patterns across common ORMs and SQL databases.
 
-## Publisher: <br>
-[llcsamih](https://clawhub.ai/user/llcsamih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[llcsamih](https://clawhub.ai/user/llcsamih)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to manage database schema changes, migration generation and execution, rollbacks, seed data, schema diffs, backups, and production-oriented zero-downtime migration planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can inspect database environment files and use sensitive database credentials while preparing or running migrations.
+
+Mitigation: Use only existing project configuration, avoid displaying connection strings, and require operator review before any database action.
+
+Risk: The skill may run unpinned local migration tools such as Prisma, Drizzle, Knex, TypeORM, Alembic, Django, psql, mysql, sqlite3, or migra.
+
+Mitigation: Prefer projects where migration tools are already installed as pinned, lockfile-controlled dependencies before executing generated commands.
+
+Risk: Migration, rollback, DROP, DELETE, and schema push commands can cause data loss or production outages.
+
+Mitigation: Require explicit confirmation for destructive or production actions, review generated SQL, test on staging data, and create backups before production migrations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, generate, review, run, roll back, seed, diff, and back up database migrations across common ORM and SQL workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Migration, rollback, DROP, DELETE, push, reset, restore, and backup commands can change or destroy real database state. <br>
-Mitigation: Verify the target environment and database URL, review generated SQL or migration files, and require explicit confirmation before allowing high-impact commands. <br>
-Risk: Production migrations can fail or lock tables if applied without preparation. <br>
-Mitigation: Confirm a fresh backup exists, test changes against staging or a production-like copy, and use zero-downtime patterns for breaking schema changes. <br>
-Risk: Environment files may contain database credentials. <br>
-Mitigation: Use the project's existing configuration only and avoid logging or displaying connection strings. <br>
+**Output Format:** [Markdown with inline shell commands, SQL snippets, and code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/llcsamih/database-migration-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/llcsamih) <br>
+**Other Properties Related to Output:** [May include high-impact migration, rollback, backup, and schema-diff steps; production and destructive actions require explicit confirmation and backups.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline SQL, code, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose migration files, rollback steps, backup commands, seed scripts, schema diffs, and production safety checklists.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

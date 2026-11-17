@@ -1,0 +1,8 @@
+amount_default_abs: 0.01
+percent_default_abs: 0.01
+rounding:
+  元: 0.005
+  千元: 0.005
+  万元: 0.005
+  亿元: 0.005
+conflict_min_abs: 0.02

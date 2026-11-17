@@ -1,40 +1,52 @@
-## Description: <br>
-Auto Pub helps generate WeChat Official Account article drafts and place them in the draft box for human review before publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Pub helps WeChat public-account operators prepare AI-generated article drafts, send them to the account draft box, and keep final publication under manual review.
 
-## Publisher: <br>
-[martin-sh-ni](https://clawhub.ai/user/martin-sh-ni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[martin-sh-ni](https://clawhub.ai/user/martin-sh-ni)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External WeChat public-account operators, editors, and brand teams use this skill to create article drafts while preserving manual review and final publishing control.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Incorrect or unsuitable article content could be placed into a WeChat public-account draft box.
+
+Mitigation: Review, edit, or reject every draft in the WeChat public-account backend before publication.
+
+Risk: Users may misunderstand draft creation as automatic publication.
+
+Mitigation: Use the skill only where draft creation is acceptable and keep final publication as a manual account-owner action.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External WeChat Official Account operators, editors, and brand teams use this skill to create AI-assisted article drafts while keeping manual review and publication approval in the account backend. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to place content into a WeChat Official Account draft box without documented account access, credential handling, or approval boundaries. <br>
-Mitigation: Use only with a test or low-risk account until the publisher documents required access, session or credential storage, and draft approval, cancellation, audit, and revocation controls. <br>
-Risk: AI-generated article drafts may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Keep the workflow draft-only and require a human editor to review, edit, and manually approve every article before publication. <br>
+**Output Format:** [Markdown or structured draft text for WeChat public-account review]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/martin-sh-ni/auto-pub) <br>
+**Other Properties Related to Output:** [Drafts are intended for human review before publication.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text article draft guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-oriented workflow with human approval before publication] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

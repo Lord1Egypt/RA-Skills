@@ -1,40 +1,55 @@
-## Description: <br>
-Generates short videos from text prompts using Alibaba Cloud DashScope wan2.2-t2v-plus, with configurable resolution, duration, and prompt extension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qwen Video Generator turns text prompts into short videos using Alibaba Cloud DashScope's wan2.2-t2v-plus model, with configurable resolution, duration, and prompt extension.
 
-## Publisher: <br>
-[imnull](https://clawhub.ai/user/imnull) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imnull](https://clawhub.ai/user/imnull)
 
-## Use Case: <br>
-Developers and content creators use this skill to turn text scene descriptions into short MP4 videos through DashScope. It supports configuring output resolution, clip duration, model selection, timeout, and prompt extension through environment variables or CLI arguments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to Alibaba Cloud DashScope for video generation. <br>
-Mitigation: Avoid confidential, personal, regulated, or secret content in prompts unless external processing through DashScope is approved. <br>
-Risk: Generated MP4 files are written to a configured local output directory. <br>
-Mitigation: Use a controlled VIDEO_OUTPUT_DIR or workspace videos directory with appropriate access controls. <br>
+## Use Case:
 
+External users and developers use this skill to create short video files from text prompts, choosing resolution, duration, model, and prompt-extension settings for Qwen/DashScope video generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imnull/qwen-video-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown usage guidance with shell commands; the script emits terminal status text and a VIDEO_PATH line for the generated MP4.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated videos are saved as MP4 files in VIDEO_OUTPUT_DIR or the default workspace videos directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and frontmatter) <br>
+Risk: Prompts are sent to Alibaba Cloud DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated DashScope key with limited scope where possible, and avoid secrets or sensitive personal data in prompts.
+
+Risk: The skill downloads provider-supplied video URLs and stores generated videos locally without strong network or size controls.
+
+Mitigation: Set a controlled output directory and review or patch the download code before using the skill in sensitive or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imnull/skills/qwen-video-generator)
+- [DashScope video synthesis endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis)
+- [DashScope task status endpoint](https://dashscope.aliyuncs.com/api/v1/tasks/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands and a local MP4 video path when generation succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DashScope API key; generated video files are saved under VIDEO_OUTPUT_DIR or workspace/videos and reported as VIDEO_PATH:<path>.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

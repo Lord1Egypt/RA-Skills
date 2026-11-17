@@ -1,37 +1,53 @@
-## Description: <br>
-Detect flaky GitHub Actions job steps by finding mixed success/failure conclusions across runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect flaky GitHub Actions job steps by finding mixed success/failure conclusions across runs.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to analyze exported GitHub Actions run JSON and identify job steps that alternate between passing and failing across workflow runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: GitHub Actions JSON exports may include repository names, branches, run IDs, job and step names, and GitHub URLs. <br>
-Mitigation: Keep RUN_GLOB narrow and run the skill only against intended local exports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-step-flake-audit) <br>
+## Use Case:
 
+Developers and release engineers use this skill to analyze exported GitHub Actions run JSON and identify CI steps that alternate between successful and failed conclusions. It supports local reporting and optional CI enforcement for critical flaky step groups.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON summary with ranked flaky step groups and optional CI fail gate behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and python3; reads local GitHub Actions JSON exports matched by RUN_GLOB.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads files matched by RUN_GLOB, which could unintentionally include private or unrelated GitHub Actions exports if scoped too broadly.
+
+Mitigation: Keep RUN_GLOB pointed at the intended exported CI run JSON directory and avoid broad private directories.
+
+Risk: The optional CI fail gate can fail a pipeline when critical flaky step groups are detected.
+
+Mitigation: Review WARN_FAILURE_RATE, CRITICAL_FAILURE_RATE, MIN_OCCURRENCES, and FAIL_ON_CRITICAL before enabling enforcement in CI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-step-flake-audit)
+- [Publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Text report or JSON summary with ranked flaky step groups and critical groups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May exit with status 1 when FAIL_ON_CRITICAL=1 and critical flaky step groups are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

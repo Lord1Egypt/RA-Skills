@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup documentation for Container Analyzer concepts, workflows, troubleshooting, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Container Analyzer is a devtools reference skill that provides plain-text guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Container Analyzer reference material for common devtools tasks, including quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic container guidance may not match a user's specific environment or policy requirements. <br>
-Mitigation: Treat the output as reference material and review any real container changes against local configuration, security policy, and staging tests before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise Container Analyzer reference documentation and operational guidance without network access or credentials.
 
-## Reference(s): <br>
-- [Container Analyzer on ClawHub](https://clawhub.ai/bytesagain-lab/container-analyzer) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, network access, persistence, or system changes are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: ClawHub release evidence) <br>
+Risk: The reference content is generic and should not be treated as a full container-analysis engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as orientation material and verify operational decisions against authoritative project or platform documentation.
+
+Risk: One cheatsheet command name appears inaccurate.
+
+Mitigation: Prefer the commands listed in the skill command table and script help output when invoking the skill.
+
+## Reference(s):
+
+- [Container Analyzer on ClawHub](https://clawhub.ai/bytesagain-lab/skills/container-analyzer)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline reference output; no external API calls, credentials, network access, or persisted changes.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-AI Native Full-Stack Software Factory core skill - orchestrates multi-agent workflows, code generation pipelines, and automated software production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Native Full-Stack Software Factory core skill - orchestrates multi-agent workflows, code generation pipelines, and automated software production.
 
-## Publisher: <br>
-[alshowse-tech](https://clawhub.ai/user/alshowse-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alshowse-tech](https://clawhub.ai/user/alshowse-tech)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, coordinate, review, and integrate multi-agent software work across architecture, implementation, testing, and release workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad multi-agent orchestration and deploy-oriented examples could lead to repository writes, merges, CI/CD changes, deployments, releases, or production-impacting steps without sufficient oversight. <br>
-Mitigation: Keep activation intentional, review spawned sessions, and require explicit approval before repository writes, merges, CI/CD changes, deployments, releases, or production-impacting steps. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multi-agent software design, implementation, review, integration, and release workflows.
 
-## Reference(s): <br>
-- [Agentic Factory on ClawHub](https://clawhub.ai/alshowse-tech/agentic-factory) <br>
-- [Publisher profile](https://clawhub.ai/user/alshowse-tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown with code blocks and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent role prompts, work package templates, quality gates, review reports, and orchestration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill defines broad triggers and a full-scope multi-agent software-production workflow that can spawn sessions, change code, run CI/CD, or deploy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this orchestration behavior is intentional, require explicit confirmation for high-impact actions, and narrow triggers when ordinary build or automation requests should remain local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alshowse-tech/skills/agentic-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown templates with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces architecture specs, implementation summaries, review reports, work packages, quality gates, metrics, and coordination guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

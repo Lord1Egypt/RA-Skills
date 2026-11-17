@@ -1,47 +1,66 @@
-## Description: <br>
-Skill Compiler converts reusable prompts into structured AI skill packages with an IR-driven analyze, design, generate, optimize, and validate workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compiles prompts or multi-source content into reusable AI skill packages with evidence grading, honest boundaries, modular architecture, and validation guidance.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-Developers and engineers use this meta-skill to turn repeatable prompts into reusable AI skill packages with modular files, validation checks, platform profiles, and a compilation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills can include broad triggers or propose unsafe behavior when the source prompt is under-specified. <br>
-Mitigation: Review generated skills before installation, especially for external tools, account actions, code execution, sensitive data, and trigger wording. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert reusable prompts, documents, URLs, media-derived content, or existing source material into structured skill packages. It is intended for skill compilation workflows, not one-shot question answering, translation, prompt wording optimization, or authoring unrelated skills from scratch.
 
-## Reference(s): <br>
-- [Skill Compiler README](README.md) <br>
-- [Pass 1 Analyze](references/pass-1-analyze.md) <br>
-- [Pass 2 Extract](references/pass-2-extract.md) <br>
-- [Pass 3 Design](references/pass-3-design.md) <br>
-- [Pass 4 Generate](references/pass-4-generate.md) <br>
-- [Pass 5 Optimize](references/pass-5-optimize.md) <br>
-- [Pass 6 Validate](references/pass-6-validate.md) <br>
-- [Generic Platform Profile](profiles/generic.md) <br>
-- [IR Schema](schemas/ir-schema.json) <br>
-- [Trace Schema](schemas/trace-schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown report plus generated skill package files and JSON schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include a compilation report, folder tree, pass summary, evaluation results, cost summary, and generated skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may fetch URLs, clone repositories, or read user-selected local project files as part of compiling source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or reviewed inputs, avoid private or sensitive sources unless required, and confirm any network or local-file access before use.
+
+Risk: Untrusted source text can be transformed into new skill instructions and may carry misleading, unsafe, or overbroad behavior into the generated package.
+
+Mitigation: Review generated skills before installing or running them, and keep evidence grading and honest-boundary sections intact.
+
+Risk: Security evidence marks the release as suspicious because URL, file, and untrusted content handling need careful review.
+
+Mitigation: Treat generated outputs as drafts, scan them before deployment, and restrict use to inputs and repositories the operator is comfortable processing.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/qomob/SkillCompiler)
+- [ClawHub skill listing](https://clawhub.ai/qomob/skills/skillcompiler)
+- [Evidence grading reference](references/evidence-grading.md)
+- [Honest boundaries reference](references/honest-boundaries.md)
+- [Parallel extractors reference](references/parallel-extractors.md)
+- [Meta-reflection reference](references/meta-reflection.md)
+- [Ingestion pass reference](references/pass-ingestion.md)
+- [Validation pass reference](references/pass-6-validate.md)
+- [Skill output template](templates/skill-md-template.md)
+- [Intermediate representation schema](schemas/ir-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown skill package files with structured JSON schema guidance and validation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated skill files, folder structure guidance, evidence grading, validation results, and review notes.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Search the Andara Ionic RAG knowledge base (3,800+ records) for business intel, research, products, team, meetings, and any indexed content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the Andara Ionic RAG knowledge base (3,800+ records) for business intel, research, products, team, meetings, and any indexed content.
 
-## Publisher: <br>
-[atiati82](https://clawhub.ai/user/atiati82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atiati82](https://clawhub.ai/user/atiati82)
 
-## Use Case: <br>
-Developers, operators, and authorized Andara staff use this skill to search business, product, research, meeting, CMS, order, customer, and team data through read-only PostgreSQL queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive customer, revenue, team equity, meeting, subscriber, or business data through broad SQL search access. <br>
-Mitigation: Install only for authorized users and agents, use a dedicated read-only DATABASE_URL limited to approved tables or redacted views, and review queries before returning sensitive results. <br>
-Risk: A write-capable or production database credential could let an agent exceed the skill's intended read-only posture. <br>
-Mitigation: Provide a database role that cannot INSERT, UPDATE, DELETE, alter schema, or access unapproved tables, and avoid production credentials when a safer reporting replica or view is available. <br>
-Risk: Large or raw content fields may disclose more information than needed for the user's question. <br>
-Mitigation: Keep default LIMIT values low, truncate long content fields, and return only the columns needed to answer the request. <br>
+## Use Case:
 
+Employees and authorized operators use this skill to search Andara Ionic business, meeting, product, customer, CMS, and research records through read-only PostgreSQL queries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/atiati82/andara-rag-search) <br>
-- [Publisher profile](https://clawhub.ai/user/atiati82) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline PostgreSQL shell commands and SQL query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides concise, read-only PostgreSQL searches over the configured Andara database and recommends result limits and content truncation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can expose sensitive business, customer, personnel, email, equity, order, and meeting data from the referenced Andara database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where users are authorized for that database and avoid returning sensitive fields unless the request is clearly authorized.
+
+Risk: The documented shell SQL pattern can be unsafe if untrusted search text is pasted directly into a query.
+
+Mitigation: Use a read-only, least-privilege DATABASE_URL and parameterize or otherwise safely quote search terms before execution.
+
+Risk: Queries against broad base tables can return more information than the user needs.
+
+Mitigation: Prefer approved views where available, keep default LIMIT values small, and truncate long content fields.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atiati82/skills/andara-rag-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline SQL and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses concise result limits and truncated content previews for database query results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

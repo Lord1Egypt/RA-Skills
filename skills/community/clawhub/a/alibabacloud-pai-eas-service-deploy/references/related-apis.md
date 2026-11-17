@@ -60,31 +60,31 @@ All APIs and CLI commands involved in PAI-EAS service deployment.
 
 ```bash
 # ⚠️ Do NOT use file:// prefix, use $(cat) to read file content
-aliyun eas create-service --region cn-hangzhou --body "$(cat service.json)" --user-agent AlibabaCloud-Agent-Skills
+aliyun eas create-service --region cn-hangzhou --body "$(cat service.json)" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service --cluster-id cn-hangzhou --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun eas list-services --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-services --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun eas describe-machine-spec --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-machine-spec --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun eas list-resources --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-resources --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun eas list-gateway --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-gateway --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### AIWorkSpace Operations
 
 ```bash
-aliyun aiworkspace list-workspaces --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace list-workspaces --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun aiworkspace list-images --verbose true --labels 'system.official=true,system.supported.eas=true' --page-size 50 --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace list-images --verbose true --labels 'system.official=true,system.supported.eas=true' --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun aiworkspace get-image --image-id image-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace get-image --image-id image-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun aiworkspace list-datasets --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace list-datasets --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### OSS Operations
@@ -98,21 +98,21 @@ ossutil ls oss://bucket-name/path/
 ### VPC Operations
 
 ```bash
-aliyun vpc describe-vpcs --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun vpc describe-vpcs --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
-aliyun vpc describe-vswitches --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun vpc describe-vswitches --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### ECS Operations
 
 ```bash
-aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### NLB Operations
 
 ```bash
-aliyun nlb list-load-balancers --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun nlb list-load-balancers --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ---

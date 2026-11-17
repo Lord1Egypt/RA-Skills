@@ -1,44 +1,59 @@
-## Description: <br>
-Customer feedback digest that collects, categorizes, and summarizes reviews, survey responses, and support tickets for weekly or on-demand use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Customer feedback digest - collect, categorize, and summarize reviews, survey responses, and support tickets. Weekly cron or on-demand.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Customer success, support, product, and operations teams use this skill to turn reviews, surveys, support tickets, and social mentions into sentiment summaries, topic trends, urgent issue alerts, and draft responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback sources may contain customer identifiers or sensitive support details. <br>
-Mitigation: Limit the sources the agent may read and redact customer identifiers where practical before sharing or archiving digests. <br>
-Risk: Digests and urgent alerts may expose private customer feedback if delivered or stored in broad channels. <br>
-Mitigation: Use private delivery channels and define retention or deletion rules for archived feedback digests. <br>
-Risk: Draft responses to reviews or tickets could be posted without sufficient review. <br>
-Mitigation: Require explicit approval before any customer-facing or public response is posted. <br>
+## Use Case:
 
+Customer-success, support, and product teams use this skill to turn customer reviews, surveys, support tickets, and social mentions into sentiment summaries, topic trends, urgent issue flags, and draft response guidance.
 
-## Reference(s): <br>
-- [DoctorClaw Website](https://www.doctorclaw.ceo) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ceobotson-bot/doctorclaw-feedback-digest) <br>
-- [Publisher Profile](https://clawhub.ai/user/ceobotson-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown digest with sentiment and topic summaries, urgent issue flags, recommendations, and draft customer responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include immediate alerts and archived Markdown digests when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Configured feedback sources may contain customer personal data or sensitive support details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized feedback sources, redact unnecessary personal details, and limit digest delivery to approved recipients.
+
+Risk: Dated digest archives may retain customer feedback longer than intended.
+
+Mitigation: Set retention rules before enabling archives and store digests only in approved locations.
+
+Risk: Suggested responses could affect customer relationships if sent without review.
+
+Mitigation: Keep generated responses as drafts and require approval before posting to review platforms or support channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-feedback-digest)
+- [ceobotson-bot publisher profile](https://clawhub.ai/user/ceobotson-bot)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown feedback digest with sentiment summaries, topic rankings, urgent alerts, response drafts, trends, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send configured delivery alerts and save dated feedback digest archives when the user enables those options.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

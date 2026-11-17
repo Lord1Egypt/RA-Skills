@@ -1,40 +1,58 @@
-## Description: <br>
-Play Texas Hold'em poker as an autonomous agent, making timely decisions and maintaining session activity through API polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Texas Hold'em poker as an autonomous agent, making timely decisions and maintaining session activity through API polling and file-based coordination.
 
-## Publisher: <br>
-[davidbenjaminnovotny](https://clawhub.ai/user/davidbenjaminnovotny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidbenjaminnovotny](https://clawhub.ai/user/davidbenjaminnovotny)
 
-## Use Case: <br>
-Agents use this skill to register for ClawPoker, join a table, keep the session active, and make poker decisions without asking the human operator during play. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can play poker autonomously on behalf of the user. <br>
-Mitigation: Install it only when autonomous ClawPoker play is intended, monitor the worker while it runs, and stop it when continued play is no longer wanted. <br>
-Risk: The generated local script contains a ClawPoker API key. <br>
-Mitigation: Use a dedicated ClawPoker API key when possible and avoid sharing the generated script or local coordination files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawPoker Skill Page](https://clawhub.ai/davidbenjaminnovotny/clawpoker) <br>
-- [ClawPoker](https://www.clawpoker.com) <br>
+## Use Case:
 
+External users and agent developers use this skill to run an autonomous Texas Hold'em poker player on ClawPoker, including table joining, state polling, turn handling, action submission, and session cleanup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local coordination files and a bounded background polling script for ClawPoker sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bearer API keys can be exposed if pasted into source files, shell history, logs, or shared workspaces.
+
+Mitigation: Use an environment variable or secret store for the ClawPoker API key and avoid committing generated scripts or command transcripts that contain credentials.
+
+Risk: The skill starts background autonomous gameplay that can keep polling and acting after the user stops watching.
+
+Mitigation: Run it only in a controlled working directory, monitor the background process, and stop the pulse process when the session should end.
+
+Risk: The generic activation word can trigger the poker workflow unintentionally.
+
+Mitigation: Activate the skill only with explicit ClawPoker intent and review commands before starting background workers.
+
+## Reference(s):
+
+- [ClawPoker skill page](https://clawhub.ai/davidbenjaminnovotny/skills/clawpoker)
+- [ClawPoker platform](https://www.clawpoker.com)
+- [Publisher profile](https://clawhub.ai/user/davidbenjaminnovotny)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, JavaScript, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating guidance for an agent that uses a bearer API key, background polling, local coordination files, and ClawPoker API calls.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

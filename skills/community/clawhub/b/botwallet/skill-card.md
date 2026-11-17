@@ -1,49 +1,62 @@
-## Description: <br>
-Botwallet guides an agent through using the Botwallet CLI to create and manage a real USDC wallet on Solana, make payments, create paylinks, request funds, withdraw funds, and access paid APIs within owner-defined guard rails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the Botwallet CLI so an agent can create a USDC wallet, make payments, create invoices, request funds, withdraw, and access paid APIs on Solana within human-managed guard rails.
 
-## Publisher: <br>
-[kasrazunnaiyyer](https://clawhub.ai/user/kasrazunnaiyyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasrazunnaiyyer](https://clawhub.ai/user/kasrazunnaiyyer)
 
-## Use Case: <br>
-Agent operators and developers use this skill to let an AI agent operate Botwallet's CLI for USDC payments, invoicing, fund requests, withdrawals, and x402 paid API access under human-controlled limits and approvals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to operate a real USDC wallet and initiate payments, withdrawals, invoices, and x402 purchases. <br>
-Mitigation: Use a dedicated low-balance wallet with strict per-transaction limits, daily limits, merchant allowlists, and owner approval requirements for withdrawals and unfamiliar services. <br>
-Risk: The local wallet seed share and API key can authorize sensitive wallet operations if exposed. <br>
-Mitigation: Treat ~/.botwallet/seeds/* and BOTWALLET_API_KEY as secrets; do not print, log, commit, or share them. <br>
-Risk: Automatic invoice and payment flows can move money or request money in ways the owner did not intend. <br>
-Mitigation: Require explicit owner confirmation before any payment, withdrawal, paylink, invoice, or x402 purchase, and preview or probe prices before confirming. <br>
-Risk: Unread wallet events can include approval outcomes or funded requests that trigger follow-up financial actions. <br>
-Mitigation: Review and act on actionable events before marking the event queue as read. <br>
+## Use Case:
 
+Developers and external agent users use this skill to give shell-capable agents a Botwallet-managed USDC wallet for payments, paylinks, x402 API purchases, fund requests, and withdrawals under owner-controlled spending limits and approvals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kasrazunnaiyyer/botwallet) <br>
-- [Botwallet website](https://botwallet.co) <br>
-- [Botwallet dashboard](https://app.botwallet.co) <br>
-- [Botwallet CLI source](https://github.com/botwallet-co/agent-cli) <br>
-- [Botwallet docs](https://docs.botwallet.co) <br>
-- [Botwallet CLI npm package](https://www.npmjs.com/package/@botwallet/agent-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI response expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill assumes shell and network access and treats Botwallet CLI responses as JSON by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and claw.json) <br>
+Risk: The skill operates a real-money wallet and can initiate invoices, payments, withdrawals, x402 purchases, and fund requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use strict spending limits, merchant allowlists, and explicit human approval for invoices, payments, withdrawals, x402 purchases, and fund requests.
+
+Risk: The install flow uses an unpinned global CLI package.
+
+Mitigation: Prefer a pinned, verified CLI version and review the package source before installation.
+
+Risk: Registration metadata can disclose host, environment, secret, or broad project details if used carelessly.
+
+Mitigation: Avoid sending hostname, environment, secrets, or broad project metadata during registration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kasrazunnaiyyer/skills/botwallet)
+- [Botwallet website](https://botwallet.co)
+- [Botwallet dashboard](https://app.botwallet.co)
+- [Botwallet documentation](https://docs.botwallet.co)
+- [Botwallet agent CLI source](https://github.com/botwallet-co/agent-cli)
+- [Botwallet agent CLI on npm](https://www.npmjs.com/package/@botwallet/agent-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local wallet configuration and key-share files and may initiate real-money USDC workflows that require owner guard rails and approvals.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

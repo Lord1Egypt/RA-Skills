@@ -1,44 +1,61 @@
-## Description: <br>
-Integrates a local Markdown knowledge base with OpenClaw for semantic search and context injection, retrieving only when the user explicitly asks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates a local Markdown knowledge base with OpenClaw so agents can search Markdown files and inject relevant snippets only when the user explicitly requests it.
 
-## Publisher: <br>
-[aaronjager92](https://clawhub.ai/user/aaronjager92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaronjager92](https://clawhub.ai/user/aaronjager92)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index a local folder of Markdown notes, search it on demand, and inject relevant snippets into an AI conversation. It is intended for personal or team knowledge retrieval where the user controls the local knowledge directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled configuration and index files may expose private notes, local paths, or API credentials. <br>
-Mitigation: Remove bundled config.json and index.json before release or installation, rotate any exposed credentials, and rebuild the index from an intentionally selected knowledge directory. <br>
-Risk: Markdown notes indexed by the skill may contain secrets or sensitive personal information that can be surfaced in search results. <br>
-Mitigation: Keep secrets out of the configured knowledge directory, review indexed content before use, and restrict knowledge_path to documents intended for AI retrieval. <br>
-Risk: The init workflow can download and install ripgrep automatically when it is missing. <br>
-Mitigation: Install ripgrep separately from a trusted source or review the download behavior before running initialization. <br>
+## Use Case:
 
+External users and developers use this skill to make a local Markdown notes directory searchable from OpenClaw conversations, rebuild the local index, and retrieve relevant snippets for context-aware answers.
 
-## Reference(s): <br>
-- [Markdown Knowledge Base README](references/README.md) <br>
-- [Markdown Knowledge Base Project Guide](references/PROJECT.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aaronjager92/markdown-knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown search summaries, JSON action results, CLI command output, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result count is controlled by search_top_k; results may include local file paths and document excerpts from the configured knowledge directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and ClawHub metadata) <br>
+Risk: The published package includes private indexed data and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled index before installation, rotate any exposed credentials, and keep secrets out of Markdown notes that may be indexed.
+
+Risk: Setup may download and install ripgrep without explicit consent or integrity verification.
+
+Mitigation: Require explicit user approval for dependency installation and verify downloaded binaries, or install ripgrep through a trusted package manager.
+
+Risk: Retrieved note content can be injected into conversations and exposed in generated answers.
+
+Mitigation: Configure a narrow knowledge_path, use exclude_patterns for sensitive folders, and review retrieved snippets before sharing responses outside the intended context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronjager92/skills/markdown-knowledge)
+- [Publisher Profile](https://clawhub.ai/user/aaronjager92)
+- [Project Reference](references/PROJECT.md)
+- [README](references/README.md)
+- [ripgrep 14.1.4 Release Downloads](https://github.com/BurntSushi/ripgrep/releases/download/14.1.4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with optional JSON-like search, build, and stats results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search behavior is controlled by local configuration such as knowledge_path, index_path, search_top_k, auto_refresh, and exclude_patterns.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

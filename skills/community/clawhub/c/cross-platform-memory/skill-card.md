@@ -1,41 +1,54 @@
-## Description: <br>
-Injects recent Telegram, Discord, and local memory context into OpenClaw gateway requests so agents can maintain continuity across channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Injects recent conversations from Telegram and Discord into the OpenClaw gateway session context so an agent can maintain continuity across OpenClaw channels.
 
-## Publisher: <br>
-[dq-stack](https://clawhub.ai/user/dq-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dq-stack](https://clawhub.ai/user/dq-stack)
 
-## Use Case: <br>
-Developers and operators of OpenClaw deployments use this skill to bring recent Telegram, Discord, MEMORY.md, and daily-note context into gateway requests. It is intended for agents that need continuity across chat channels while preserving source labels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse private Telegram, Discord, MEMORY.md, and daily-note content across OpenClaw channels. <br>
-Mitigation: Enable it only for intended deployments, restrict configured paths, add per-source opt-in controls, and review or redact sensitive memory content before use. <br>
-Risk: Recalled chat content may contain untrusted or misleading instructions that influence agent responses. <br>
-Mitigation: Treat recalled conversations as quoted user context rather than system-level instructions, preserve platform labels, and review outputs before relying on them. <br>
+## Use Case:
 
+Developers and operators use this skill to provide an OpenClaw agent with recent cross-platform conversation context from Telegram, Discord, and local memory files.
 
-## Reference(s): <br>
-- [memory-bridge.ts](references/memory-bridge.ts) <br>
-- [ClawHub release page](https://clawhub.ai/dq-stack/cross-platform-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript code and shell command snippets; the runtime helper returns a plain text memory context string.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads the most recent session JSONL file, includes MEMORY.md and daily notes when present, defaults to 8 messages per platform, and filters messages older than 20 hours when timestamps are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automatically adds chat logs and local memory files to future prompts, which can expose sensitive context or content from the wrong user, session, or channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a tightly controlled single-user environment unless the skill is revised to select memory by verified user, session, and channel with explicit opt-in for each source.
+
+Risk: Recalled conversation content may include prompt-injection-like text or untrusted instructions.
+
+Mitigation: Redact or filter sensitive and prompt-injection-like content before use, preserve sender provenance, and avoid placing recalled content in the system role.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dq-stack/skills/cross-platform-memory)
+- [memory-bridge.ts](references/memory-bridge.ts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a memory context string assembled from local memory files and recent Telegram and Discord user messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,556 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-wps-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:07:06.599Z",
+  "entry": {
+    "url": "https://www.wps.cn",
+    "final_url": "https://www.wps.cn/",
+    "title": "WPS-支持多人在线协作编辑Word、Excel和PPT文档_WPS官方网站",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:07:06.599Z",
+    "identity": {
+      "declared_name": "WPS",
+      "hostname": "www.wps.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "立即下载",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "立即下载",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "在线使用",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "在线使用",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "更多下载",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "更多下载",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "了解更多",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "了解更多",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "免费试用",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "免费试用",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "网上有害信息举报专区",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "网上有害信息举报专区",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "关于金山办公",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "关于金山办公",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "投资者关系",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "投资者关系",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "可持续发展",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "可持续发展",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "简体中文（中国大陆）",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "简体中文（中国大陆）",
+        "exact": true
+      },
+      "observed_url": "https://www.wps.cn/",
+      "observed_at": "2026-10-09T09:07:05.947Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-wps-cn:product-capability",
+      "source_id": "quiz-wps-cn",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.wps.cn/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "立即下载",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "立即下载",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "在线使用",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "在线使用",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "更多下载",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "更多下载",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "了解更多",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "了解更多",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "免费试用",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "免费试用",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "网上有害信息举报专区",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "网上有害信息举报专区",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "关于金山办公",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "关于金山办公",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "投资者关系",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "投资者关系",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "可持续发展",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "可持续发展",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "简体中文（中国大陆）",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "简体中文（中国大陆）",
+            "exact": true
+          },
+          "observed_url": "https://www.wps.cn/",
+          "observed_at": "2026-10-09T09:07:05.947Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-132"
+    ],
+    "example_ids": [
+      "2026-M38-Q1",
+      "KH-Q018"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:07:06.599Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-wps-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-wps-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

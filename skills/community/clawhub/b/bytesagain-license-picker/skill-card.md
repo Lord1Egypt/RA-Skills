@@ -1,41 +1,49 @@
-## Description: <br>
-Open source license reference covering SPDX identifiers, permissive and copyleft comparisons, compatibility, patent clauses, and compliance scanning tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides open source license reference guidance covering SPDX identifiers, permissive and copyleft comparisons, compatibility, patent clauses, and compliance scanning tools.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and open source maintainers use this skill as an informational reference for choosing licenses, checking compatibility, and understanding compliance scanning options. The licensing content should not be treated as legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat licensing reference content as legal advice. <br>
-Mitigation: Treat the output as informational guidance and verify licensing decisions with qualified legal review. <br>
-Risk: Suggested third-party scanning commands can inspect a local project when run. <br>
-Mitigation: Run scanning tools only when intentionally allowing those tools to analyze the selected project. <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise reference guidance when comparing open source licenses, checking compatibility concerns, and identifying compliance scanning approaches.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-license-picker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no external API calls, credentials, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact declares internal version 6.0.0) <br>
+Risk: A user may copy and run an example command that downloads third-party code, such as an npx-based license checker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run copied commands only in trusted environments, and pin or review package versions before execution.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text and Markdown-style reference documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no API keys, credentials, or network access required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

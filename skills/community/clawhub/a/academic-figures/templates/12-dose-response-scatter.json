@@ -1,0 +1,44 @@
+{
+ "_scene": "剂量-反应分组散点（野生株 vs 耐药株）",
+ "_description": "剂量-反应分组散点（野生株 vs 耐药株）（scatter）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "scatter",
+ "_command": "python3 scripts/gen_figure.py -t scatter -d templates/12-dose-response-scatter.json -o scatter.pdf --theme glm --verify",
+ "_caption_template": "图X | 两株细胞系的药物浓度-抑制率散点：野生株敏感性显著高于耐药株。",
+ "_note": "示例数字仅示意，请替换为你的真实数据（groups 长度须与 x/y 一致）",
+ "x": [
+  0.1,
+  0.3,
+  1.0,
+  3.0,
+  10.0,
+  0.2,
+  0.8,
+  2.5,
+  8.0,
+  25.0
+ ],
+ "y": [
+  5,
+  18,
+  42,
+  71,
+  90,
+  3,
+  9,
+  17,
+  34,
+  52
+ ],
+ "groups": [
+  "WT",
+  "WT",
+  "WT",
+  "WT",
+  "WT",
+  "Resistant",
+  "Resistant",
+  "Resistant",
+  "Resistant",
+  "Resistant"
+ ]
+}

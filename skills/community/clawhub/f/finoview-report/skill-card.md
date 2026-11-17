@@ -1,41 +1,54 @@
-## Description: <br>
-Calls the Finoview futures research report API to retrieve weekly futures reports by date or category, including titles, authors, summaries, and PDF links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Finoview futures weekly research reports by date and optional futures category, including report titles, authors, summaries, and PDF links.
 
-## Publisher: <br>
-[finoview](https://clawhub.ai/user/finoview) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finoview](https://clawhub.ai/user/finoview)
 
-## Use Case: <br>
-External users and developers use this skill to fetch Finoview futures weekly research reports for market analysis, report aggregation, and market intelligence collection. It requires Finoview API credentials before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guide includes a verification snippet that can print FINOVIEW_API_SECRET and expose credentials. <br>
-Mitigation: Do not print secrets; verify credential presence with masked output or a presence-only check. <br>
-Risk: The skill requires sensitive Finoview API credentials to fetch reports. <br>
-Mitigation: Use the skill only if you trust it with those credentials, prefer temporary environment variables or a secret manager, and rotate credentials when appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Finoview futures research reports for market analysis, report summaries, and intelligence gathering by report date or futures category.
 
-## Reference(s): <br>
-- [Finoview API host](https://www.finoview.com.cn) <br>
-- [ClawHub skill listing](https://clawhub.ai/finoview/finoview-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON data and Markdown report summaries or tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINOVIEW_API_KEY and FINOVIEW_API_SECRET; API results include report metadata, summaries, and PDF links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The documentation includes examples that print full API credentials, which could expose secrets in logs, screenshots, or chat history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use presence-only credential checks, avoid printing secret values, and rotate any credentials that may have been exposed.
+
+Risk: The skill sends configured API credentials to the Finoview report API endpoint.
+
+Mitigation: Install only when Finoview report access is needed and store credentials in environment variables or a managed secret store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finoview/skills/finoview-report)
+- [Finoview website](https://www.finoview.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON report data and Markdown report summaries or tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINOVIEW_API_KEY and FINOVIEW_API_SECRET environment variables to call the Finoview API.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

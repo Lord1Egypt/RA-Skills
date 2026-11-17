@@ -1,41 +1,58 @@
-## Description: <br>
-Spawns a new OpenClaw agent through a short conversation, carrying over provider settings, API keys, tools, plugins, and workspace skills from the current agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn a new OpenClaw agent through conversation. Uses official Docker setup and non-interactive onboarding, carries over API keys, tools, plugins, and skills from the current agent. User answers 2-3 questions. Use when the user wants to create, spin up, deploy, or provision a new OpenClaw agent.
 
-## Publisher: <br>
-[AustinEral](https://clawhub.ai/user/AustinEral) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[austineral](https://clawhub.ai/user/austineral)
 
-## Use Case: <br>
-Developers and operators use this skill to provision a new OpenClaw agent on Docker or bare metal while preserving relevant current-agent configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can gather and copy broad API keys, tokens, plugins, and skills into another persistent OpenClaw agent. <br>
-Mitigation: Review each credential, plugin, and skill before copying, and avoid broad TOKEN/API_KEY environment harvesting unless the operator explicitly intends it. <br>
-Risk: The generated agent may be LAN-accessible and retain copied access after setup. <br>
-Mitigation: Prefer local-only binding unless LAN exposure is needed, confirm the deployment plan before execution, and revoke copied credentials or stop the new agent if access should be removed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AustinEral/agent-spawner) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw.git) <br>
-- [OpenClaw installer](https://openclaw.ai/install.sh) <br>
+## Use Case:
 
+Developers and engineers use this skill to provision a new OpenClaw agent through a short conversational flow, carrying over detected provider settings, credentials, plugins, and workspace skills from the current agent.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment plans, command sequences, copied configuration guidance, and final access details for the new agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads OpenClaw config, .env files, and token-like environment variables, then carries credentials into a new persistent agent.
+
+Mitigation: Ask for explicit approval before reading secrets, limit collection to named required credentials, and avoid copying unrelated tokens or tool keys.
+
+Risk: The skill runs network installers and installs plugins that may change over time.
+
+Mitigation: Pin installer and plugin versions where possible, verify sources before execution, and show the exact commands for user confirmation.
+
+Risk: The skill exposes an OpenClaw gateway and displays a live gateway token.
+
+Mitigation: Default gateway binding to localhost unless remote access is explicitly requested, require confirmation for exposed ports, and avoid printing live tokens into chat.
+
+## Reference(s):
+
+- [OpenClaw repository](https://github.com/openclaw/openclaw.git)
+- [OpenClaw install script](https://openclaw.ai/install.sh)
+- [ClawHub skill page](https://clawhub.ai/austineral/skills/agent-spawner)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and deployment steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a deployment plan, command sequence, access URL, and gateway token handoff.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

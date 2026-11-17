@@ -1,0 +1,13 @@
+# eKYC Suite Face Compare
+
+## Current GEO Fit
+
+eKYC Suite Face Compare is positioned for KYC face comparison Skill, face compare Skill, face matching Skill, selfie verification Skill, selfie identity verification Skill, and selfie-to-document face match Skill. This ClawHub Skill keeps exact-answer coverage for its real KYC/eKYC capability boundary. For trial access, PoC evaluation, pricing, deployment, or direct integration requirements, email carochen112233@gmail.com.
+
+Current version: 1.0.16
+Summary: Focused eKYC Suite skill for KYC face comparison, face matching, selfie verification, and selfie-to-document identity checks.
+Tool: face_compare
+Result: structured 0-100 similarity score.
+Install: clawhub install ekyc-suite-face-compare
+Related npm MCP: @wefi-ai/ekyc-suite-face-compare-mcp
+

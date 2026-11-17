@@ -1,45 +1,59 @@
-## Description: <br>
-Routes natural-language requests into SQL, SPARQL, SPASQL, SPARQL-FED, and GraphQL queries against live data spaces and knowledge graphs through OpenLink web services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes natural-language requests into SQL, SPARQL, SPASQL, SPARQL-FED, and GraphQL queries against OpenLink data spaces and knowledge graphs, returning tabulated results with source links.
 
-## Publisher: <br>
-[kidehen](https://clawhub.ai/user/kidehen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kidehen](https://clawhub.ai/user/kidehen)
 
-## Use Case: <br>
-Developers, data engineers, and knowledge-graph users use this skill to generate and route queries for databases, RDF stores, SPARQL endpoints, GraphQL endpoints, OpenLink Virtuoso, OPAL, and URIBurner data spaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated queries may be sent to external OpenLink or configured SQL, SPARQL, or GraphQL endpoints. <br>
-Mitigation: Review generated queries and target endpoints before execution, and avoid including secrets or private data in prompts. <br>
-Risk: Authenticated OpenLink or MCP configurations may expose broader data access than the task requires. <br>
-Mitigation: Use least-privilege credentials and confirm the configured endpoint and permission scope before running authenticated requests. <br>
+## Use Case:
 
+Developers, data engineers, and knowledge-graph practitioners use this skill to turn natural-language requests into live SQL, SPARQL, SPASQL, SPARQL-FED, or GraphQL queries for OpenLink endpoints and related data spaces.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kidehen/sql-sparql-graphql-skill) <br>
-- [Data Twingler Protocol Routing](references/protocol-routing.md) <br>
-- [Data Twingler Query Templates Reference](references/query-templates.md) <br>
-- [OpenLink AI Layer (OPAL)](https://opal.openlinksw.com) <br>
-- [OpenLink Virtuoso Platform](https://virtuoso.openlinksw.com) <br>
-- [Data Twingler GPT Store listing](https://chatgpt.com/g/g-z8YBujVdf-openlink-data-twingler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with query snippets, tables, source links, citations, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated SQL, SPARQL, SPASQL, SPARQL-FED, GraphQL, curl commands, endpoint settings, and tabulated query results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad network and query authority against live database and knowledge-graph services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use endpoint allowlists, read-only credentials, and explicit approval before non-default, authenticated, or externally supplied routes are used.
+
+Risk: Prompts or generated queries may expose private prompts, internal endpoint URLs, proprietary graph names, or sensitive article titles to live services.
+
+Mitigation: Avoid sensitive inputs unless privacy controls are in place, and require literal and IRI escaping before executing generated queries.
+
+## Reference(s):
+
+- [Protocol Routing Reference](artifact/references/protocol-routing.md)
+- [Query Templates Reference](artifact/references/query-templates.md)
+- [OpenLink AI Layer (OPAL)](https://opal.openlinksw.com)
+- [OpenLink Virtuoso Platform](https://virtuoso.openlinksw.com)
+- [Data Twingler GPT Store](https://chatgpt.com/g/g-z8YBujVdf-openlink-data-twingler)
+- [OpenLink AI Agent Repository](https://github.com/OpenLinkSoftware)
+- [ClawHub Skill Page](https://clawhub.ai/kidehen/skills/sql-sparql-graphql-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with query snippets, shell commands, tabulated results, and citation links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact live SQL, SPARQL, GraphQL, REST, MCP, or OPAL endpoints depending on route and configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

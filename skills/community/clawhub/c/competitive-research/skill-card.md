@@ -1,46 +1,56 @@
-## Description: <br>
-Guides an agent through competitive and market research, producing structured briefs with sourced claims, evidence tiers, explicit limitations, and optional saved reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a competitor, market, or category and produce a structured competitive brief with sourced claims, evidence tiers, and explicit limitations.
 
-## Publisher: <br>
-[atefiqbal](https://clawhub.ai/user/atefiqbal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atefiqbal](https://clawhub.ai/user/atefiqbal)
 
-## Use Case: <br>
-External teams and agents use this skill to research competitors, map market structure, mine public customer language, and prepare concise or deep competitive intelligence briefs for positioning, proposals, content strategy, or client calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts or pasted context could expose confidential client strategy or non-public plans. <br>
-Mitigation: Use public, non-confidential inputs and avoid including sensitive client strategy in research queries. <br>
-Risk: Deep Dive mode may overwrite an existing same-date report when the same slug is reused. <br>
-Mitigation: Review the report slug and target path before saving, and choose a unique slug for separate reports. <br>
-Risk: Public web sources, review sites, or blocked pages can lead to stale, partial, or directional findings. <br>
-Mitigation: Keep access dates, evidence tiers, and limitations in the brief, and downgrade unsupported or blocked-source claims. <br>
+## Use Case:
 
+Employees, external users, and analysts use this skill to research competitors, map markets, mine customer language, compare public pricing signals, and produce concise competitive intelligence briefs with explicit source confidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atefiqbal/competitive-research) <br>
-- [Report template](references/report-template.md) <br>
-- [Evidence tiers](references/evidence-tiers.md) <br>
-- [Worked DTC example](references/example-report-dtc.md) <br>
-- [Save report script](scripts/save-report.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown brief with evidence log and optional workspace-saved Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quick Scan uses 5-8 sources inline; Deep Dive uses 15+ sources and can save a point-in-time report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill performs web-based competitor research, so results can depend on public source availability and blocked domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's evidence tiers and limitations section to distinguish directly sourced facts from lower-confidence or unavailable data.
+
+Risk: Deep Dive mode can overwrite an earlier same-day report when the same slug is reused.
+
+Mitigation: Use distinct slugs or version control when preserving prior reports matters.
+
+## Reference(s):
+
+- [Evidence Tiers](artifact/references/evidence-tiers.md)
+- [Competitive Intel Report Template](artifact/references/report-template.md)
+- [Example Competitive Intelligence Report](artifact/references/example-report-dtc.md)
+- [ClawHub Skill Page](https://clawhub.ai/atefiqbal/skills/competitive-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown brief or saved Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quick Scan returns an inline brief; Deep Dive can save a dated Markdown report to the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

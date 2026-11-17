@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents guide business portfolio reviews using the BCG growth-share matrix to classify strategic business units by market growth and relative market share and recommend invest, harvest, or exit actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps business units by market growth and relative market share to guide portfolio investment, harvesting, or exit decisions.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external consultants, and strategy teams use this skill to prioritize business units, brands, or portfolio holdings that compete for shared capital. It supports annual strategy reviews, budget allocation, board discussions, PE/VC portfolio reviews, and M&A retain-versus-divest decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose confidential revenue, market-share, competitor, or business-unit data while using the skill. <br>
-Mitigation: Use the skill only in an agent environment trusted for the sensitivity of the business information being analyzed. <br>
-Risk: Portfolio recommendations can be misleading if market boundaries, competitor share, growth data, or retained-unit synergies are not verified. <br>
-Mitigation: Validate SBU definitions, external growth data, relative share calculations, trend arrows, and quantified synergies before acting on recommendations. <br>
+## Use Case:
 
+Executives, strategy teams, investors, and M&A teams use this skill to map multiple business units competing for shared capital and prioritize investment, harvesting, or exit decisions.
 
-## Reference(s): <br>
-- [Sources - bcg-matrix](references/sources.md) <br>
-- [The Product Portfolio](https://www.bcg.com/publications/1970/strategy-the-product-portfolio) <br>
-- [The Experience Curve Reviewed](https://www.bcg.com/publications/1973/experience-curve-reviewed-history) <br>
-- [Reversing the Images of BCG's Growth/Share Matrix](https://doi.org/10.1002/smj.4250050108) <br>
-- [Strategic Attributes and Performance in the BCG Matrix](https://doi.org/10.2307/256079) <br>
-- [Procter & Gamble Annual Reports](https://pginvestor.com/financial-information/annual-reports/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, portfolio map fields, trend notes, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quadrant assignments, trend arrows, cash generator and absorber summaries, and dated strategy decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Portfolio analysis may involve business information the user is not authorized to share or should not retain in reusable notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only authorized business information and omit confidential details from reusable notes.
+
+Risk: Examples or recommendations may not fit current market conditions or provide enough basis for an allocation decision on their own.
+
+Mitigation: Validate examples and recommendations before making allocation decisions.
+
+## Reference(s):
+
+- [BCG Growth-Share Matrix on ClawHub](https://clawhub.ai/deciqai/skills/bcg-matrix)
+- [Sources cited by the skill](references/sources.md)
+- [The Product Portfolio (BCG Perspectives, 1970)](https://www.bcg.com/publications/1970/strategy-the-product-portfolio)
+- [The Experience Curve Reviewed (BCG Perspectives, 1973)](https://www.bcg.com/publications/1973/experience-curve-reviewed-history)
+- [Reversing the Images of BCG's Growth/Share Matrix](https://doi.org/10.1002/smj.4250050108)
+- [Strategic Attributes and Performance in the BCG Matrix](https://doi.org/10.2307/256079)
+- [P&G Annual Reports](https://pginvestor.com/financial-information/annual-reports/)
+- [Microsoft Investor Relations](https://www.microsoft.com/en-us/investor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown portfolio map with quadrant assignments, trends, and resource-allocation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided or cited market and business-unit data; may include assumptions, trend arrows, and decision criteria.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

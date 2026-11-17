@@ -1,44 +1,60 @@
-## Description: <br>
-BigDataCloud (bigdatacloud.com). Use this skill for ANY BigDataCloud request - searching and reading data through the OOMOL BigDataCloud connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigDataCloud (bigdatacloud.com). Use this skill for ANY BigDataCloud request — searching and reading data. Whenever a task involves BigDataCloud, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to perform BigDataCloud read-only lookup actions through an OOMOL-connected account, including IP geolocation, network and ASN details, timezone lookup, and reverse geocoding with timezone data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected BigDataCloud account and sends lookup inputs such as IP addresses or coordinates to BigDataCloud. <br>
-Mitigation: Confirm the account connection and data-sharing expectations before use, especially for sensitive IP addresses or coordinates. <br>
-Risk: First-time setup may require installing the oo CLI from an external installer. <br>
-Mitigation: Review the installer source before running the one-time setup command when the CLI is not already installed. <br>
+## Use Case:
 
+Agents and users use this skill to retrieve IP geolocation, network, and timezone data, or to reverse geocode coordinates with timezone data through BigDataCloud.
 
-## Reference(s): <br>
-- [BigDataCloud homepage](https://www.bigdatacloud.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-big-data-cloud) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server metadata and skill frontmatter) <br>
+Risk: Automatic setup uses remote installer payloads that remain unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup and install a verified oo CLI release yourself before relying on the skill.
+
+Risk: CLI startup synchronization can change other agents’ installed skills.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 if cross-agent skill changes are unwanted.
+
+Risk: IP addresses or coordinates sent for lookups are shared through OOMOL with BigDataCloud.
+
+Mitigation: Submit only IP addresses or coordinates you intend to send to those services.
+
+## Reference(s):
+
+- [BigDataCloud API documentation](https://www.bigdatacloud.com/docs/getting-started)
+- [BigDataCloud](https://www.bigdatacloud.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands]
+
+**Output Format:** [JSON response data with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

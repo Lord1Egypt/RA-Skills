@@ -1,82 +1,82 @@
-# TOOLS.md — 浏览器工具使用指南
+# TOOLS.md — Browser Tools Guide
 
-## 三个浏览器工具对比
+## Comparison of the three browser tools
 
-| | OpenClaw 内置浏览器 | Playwright MCP | browser-use CLI |
+| | OpenClaw built-in browser | Playwright MCP | browser-use CLI |
 |---|---|---|---|
-| **调用方式** | `browser` 工具（snapshot/act/screenshot） | `playwright__browser_*` 系列工具 | `exec` 调用 `browser-use` 命令 |
-| **浏览器引擎** | 本地 Chromium | 本地 Chromium | 本地 Chromium / 云端浏览器 |
-| **状态获取** | accessibility snapshot（文本树） | snapshot（文本树） | `state`（元素索引列表） |
-| **元素定位** | ref（如 e36） | ref + selector | 数字索引（如 click 5） |
-| **截图返回** | AI 分析文本（❌ 不可分享） | PNG 文件（✅ 可分享） | 保存路径（✅ 可分享） |
-| **JS 执行** | ✅ evaluate | ✅ evaluate | ✅ eval |
-| **键盘事件** | ⚠️ React 受控组件不生效 | ✅ 支持良好 | ✅ `keys "Enter"` |
-| **云浏览器** | ❌ | ❌ | ✅ `cloud connect` |
-| **复用登录态** | ❌ | ❌ | ✅ `--profile "Default"` |
-| **反爬/CAPTCHA** | ❌ | ❌ | ✅ 云浏览器内置 |
-| **住宅代理** | ❌ | ❌ | ✅ 195+ 国家 |
-| **内网隧道** | ❌ | ❌ | ✅ `tunnel <port>` |
-| **多会话并行** | 有限（tabs） | 有限（tabs） | ✅ `--session NAME` |
-| **命令链** | 不支持 | 不支持 | ✅ `&&` 链式执行 |
-| **登录态保持** | ✅ 同一 tab 内保持 | ✅ 同一 page 内保持 | ✅ daemon 保活，跨命令保持 |
+| **Invocation** | `browser` tool (snapshot/act/screenshot) | `playwright__browser_*` tool family | `exec` calling the `browser-use` command |
+| **Browser engine** | Local Chromium | Local Chromium | Local Chromium / cloud browser |
+| **State retrieval** | accessibility snapshot (text tree) | snapshot (text tree) | `state` (indexed element list) |
+| **Element targeting** | ref (e.g. e36) | ref + selector | numeric index (e.g. click 5) |
+| **Screenshot output** | AI analysis text (❌ not shareable) | PNG file (✅ shareable) | saved path (✅ shareable) |
+| **JS execution** | ✅ evaluate | ✅ evaluate | ✅ eval |
+| **Keyboard events** | ⚠️ doesn't work on React controlled components | ✅ works well | ✅ `keys "Enter"` |
+| **Cloud browser** | ❌ | ❌ | ✅ `cloud connect` |
+| **Reuse login session** | ❌ | ❌ | ✅ `--profile "Default"` |
+| **Anti-bot/CAPTCHA** | ❌ | ❌ | ✅ built into the cloud browser |
+| **Residential proxy** | ❌ | ❌ | ✅ 195+ countries |
+| **Internal network tunnel** | ❌ | ❌ | ✅ `tunnel <port>` |
+| **Parallel multi-session** | limited (tabs) | limited (tabs) | ✅ `--session NAME` |
+| **Command chaining** | not supported | not supported | ✅ chainable with `&&` |
+| **Persisted login state** | ✅ persists within the same tab | ✅ persists within the same page | ✅ kept alive by a daemon, persists across commands |
 
-## 使用场景选择
+## Choosing a tool for the task
 
-### → 用 OpenClaw 内置浏览器（默认首选）
-- 常规功能测试和页面交互
-- 已登录的会话内操作
-- 不需要截图分享给用户时
-- **优势**：工具集成度高，一步到位
+### → Use the OpenClaw built-in browser (default choice)
+- Routine functional testing and page interaction
+- Actions within an already-logged-in session
+- When screenshots don't need to be shared with the user
+- **Advantage**: tightly integrated tooling, gets things done in one step
 
-### → 用 Playwright MCP
-- 需要截图分享给用户（bug 截图、状态确认）
-- React/Vue 受控组件的精确交互（键盘事件支持好）
-- 需要精确 selector 定位元素
-- **优势**：元素定位最精确，截图可用
+### → Use Playwright MCP
+- Need to share a screenshot with the user (bug screenshots, state confirmation)
+- Precise interaction with React/Vue controlled components (good keyboard event support)
+- Need precise selector-based element targeting
+- **Advantage**: most precise element targeting, screenshots are usable
 
-### → 用 browser-use CLI
-- 需要云浏览器（反爬、CAPTCHA、住宅代理）
-- 需要复用用户本地 Chrome 登录态
-- 内网服务需通过隧道访问（`tunnel <port>`）
-- 新产品快速探索（命令链 `&&` 高效）
-- 多产品并行测试（`--session` 多会话）
-- **优势**：浏览器能力最强，云+本地+隧道全覆盖
+### → Use browser-use CLI
+- Need a cloud browser (anti-bot, CAPTCHA, residential proxy)
+- Need to reuse the user's local Chrome login session
+- Internal services need to be reached via a tunnel (`tunnel <port>`)
+- Fast exploration of a new product (efficient with `&&` command chains)
+- Parallel testing across multiple products (`--session` multi-session)
+- **Advantage**: strongest browser capabilities, full coverage across cloud + local + tunnel
 
-## 典型测试流程
+## Typical testing workflow
 
-1. **新产品首次探索** → browser-use CLI（云浏览器 + 命令链快速摸底）
-2. **已熟悉产品回归测试** → OpenClaw 内置（快）或 Playwright MCP（精）
-3. **需要截图记录 Bug** → Playwright MCP 或 browser-use CLI
-4. **登录态受限的网站** → browser-use CLI（`--profile` 复用登录）
-5. **反爬严格的网站** → browser-use CLI（`cloud connect`）
+1. **First-time exploration of a new product** → browser-use CLI (cloud browser + command chains for a quick survey)
+2. **Regression testing on a familiar product** → OpenClaw built-in (fast) or Playwright MCP (precise)
+3. **Need a screenshot to document a bug** → Playwright MCP or browser-use CLI
+4. **Sites with restricted login sessions** → browser-use CLI (`--profile` to reuse login)
+5. **Sites with strict anti-bot measures** → browser-use CLI (`cloud connect`)
 
-## 截图正确流程
+## Correct screenshot workflow
 
 ```
 1. playwright__browser_take_screenshot → filename="/tmp/screenshot.png"
-2. cp /tmp/screenshot.png /root/.openclaw/workspace/<描述>.png
-3. 回复中附加: MEDIA:/root/.openclaw/workspace/<描述>.png
+2. cp /tmp/screenshot.png /root/.openclaw/workspace/<description>.png
+3. Attach in the reply: MEDIA:/root/.openclaw/workspace/<description>.png
 ```
 
-- 内置浏览器的 `browser screenshot` 只返回 AI 分析文本，**无法**用 `MEDIA:` 分享
-- `MEDIA:` 只在聊天回复中渲染，写进 `.md` 文件里不会显示图片
+- The built-in browser's `browser screenshot` only returns AI analysis text — it **cannot** be shared via `MEDIA:`
+- `MEDIA:` only renders inside chat replies; writing it into a `.md` file will not display the image
 
-## CDP 直连（内置浏览器 SSRF 被拦时的主路径）
+## Direct CDP connection (the primary path when the built-in browser's SSRF check blocks you)
 
-内置浏览器的 SSRF 白名单配置经常不生效（gateway 运行时缓存，文件写入不起作用）。**一旦 `browser navigate` 报 `blocked by policy`，立即切换到 CDP 直连，不要继续重启验证。**
+The built-in browser's SSRF allowlist configuration often doesn't take effect (the gateway has a runtime cache, and writing to the file alone doesn't help). **As soon as `browser navigate` reports `blocked by policy`, switch immediately to direct CDP rather than continuing to restart-and-retry.**
 
-### 启动
+### Start
 
 ```bash
-chrome-cdp &          # ~/.local/bin/chrome-cdp，headless + CDP port 9223
+chrome-cdp &          # ~/.local/bin/chrome-cdp, headless + CDP port 9223
 sleep 2
-curl -s http://localhost:9223/json   # 验证可访问
+curl -s http://localhost:9223/json   # verify it's reachable
 ```
 
-### Node.js CDP 登录模板
+### Node.js CDP login template
 
 ```javascript
-// login.js — 需要 ws 包（setup.sh 已预装）
+// login.js — requires the ws package (already installed by setup.sh)
 const WebSocket = require('ws');
 
 async function cdp(ws, method, params = {}) {
@@ -104,14 +104,14 @@ async function waitForElement(ws, selector, timeout = 10000) {
 }
 
 async function fillInput(ws, selector, value) {
-  // 用 nativeInputValueSetter 触发 React state 更新
+  // Use nativeInputValueSetter to trigger React's state update
   await cdp(ws, 'Runtime.evaluate', {
     expression: `
       const el = document.querySelector('${selector}');
       const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
-      setter.call(el, '');                                     // 先清空
+      setter.call(el, '');                                     // clear first
       el.dispatchEvent(new Event('input', { bubbles: true }));
-      setter.call(el, ${JSON.stringify(value)});               // 再填值
+      setter.call(el, ${JSON.stringify(value)});               // then fill the value
       el.dispatchEvent(new Event('input', { bubbles: true }));
       el.dispatchEvent(new Event('change', { bubbles: true }));
     `,
@@ -124,65 +124,65 @@ async function fillInput(ws, selector, value) {
   await new Promise(r => ws.on('open', r));
 
   await cdp(ws, 'Page.navigate', { url: 'https://your-app.example.com/login' });
-  await cdp(ws, 'Page.loadEventFired');  // 等页面加载完
+  await cdp(ws, 'Page.loadEventFired');  // wait for the page to finish loading
 
-  // 填邮箱（Auth0 identifier-first 流程）
+  // Fill in the email (Auth0 identifier-first flow)
   await waitForElement(ws, 'input[type="email"], input[name="email"]');
   await fillInput(ws, 'input[type="email"], input[name="email"]', 'user@example.com');
   await cdp(ws, 'Runtime.evaluate', { expression: `document.querySelector('[type="submit"], button[name="action"]').click()` });
 
-  // 等密码框出现（Auth0：URL 不变，DOM 更新）— 不要用 URL 判断
+  // Wait for the password field to appear (Auth0: the URL stays the same, only the DOM updates) — don't rely on the URL
   await waitForElement(ws, 'input[type="password"]');
   await fillInput(ws, 'input[type="password"]', 'your-password');
   await cdp(ws, 'Runtime.evaluate', { expression: `document.querySelector('[type="submit"], button[name="action"]').click()` });
 
-  // 等登录跳转
+  // Wait for the post-login redirect
   await cdp(ws, 'Page.loadEventFired');
   console.log('Login done');
   ws.close();
 })();
 ```
 
-运行：`node login.js`
+Run: `node login.js`
 
 ---
 
-## 常见踩坑
+## Common pitfalls
 
-### React 表单填充：input.value = 'xxx' 不生效
+### React form filling: `input.value = 'xxx'` doesn't work
 
-React 受控组件劫持了 `input.value`，直接赋值不触发 state 更新，表单提交时值为空。
+React controlled components intercept `input.value`; a direct assignment doesn't trigger a state update, so the form submits an empty value.
 
-**必须用 nativeInputValueSetter**（见上方 `fillInput` 函数）。不要用简单赋值，不要用 Playwright 的 `fill()`（它在 CDP 直连场景不可用）。
+**You must use nativeInputValueSetter** (see the `fillInput` function above). Don't use a plain assignment, and don't use Playwright's `fill()` (it doesn't work in the direct-CDP scenario).
 
-### Auth0 分步登录：不要用 URL 变化判断步骤
+### Auth0 multi-step login: don't rely on URL changes to detect steps
 
-Auth0 identifier-first 流程：输入邮箱 → 点 Continue → URL **不变**（仍是 `/u/login/identifier`），但 DOM 内部更新为密码页。密码框一开始是 `hidden`，邮箱提交后才显示。
+Auth0's identifier-first flow: enter the email → click Continue → the URL **stays the same** (still `/u/login/identifier`), but the DOM updates internally to the password page. The password field starts out `hidden` and only becomes visible after the email is submitted.
 
-**判断依据：`input[type="password"]` 是否 visible**（offsetParent !== null），用轮询等待，最多 10 秒。不要等 URL 变化。
+**Judge by whether `input[type="password"]` is visible** (offsetParent !== null), polling for up to 10 seconds. Don't wait for a URL change.
 
-### 填充前先清空旧值
+### Clear old values before filling
 
-每次 `fillInput` 前必须先 `setter.call(el, '')` + 触发 input 事件，否则若输入框有残留值，新值会被追加而非覆盖。
+Every `fillInput` call must first do `setter.call(el, '')` plus fire an input event — otherwise, if the field already has a value, the new value gets appended instead of replacing it.
 
-### Python 缺 pip，CDP 脚本用 Node.js
+### No pip in the Python container — use Node.js for CDP scripts
 
-容器 Python 无 `pip`，无法装 `websockets`。用 Node.js + `ws` 包（`setup.sh` 已预装）。
+The container's Python has no `pip`, so `websockets` can't be installed. Use Node.js with the `ws` package instead (already installed by `setup.sh`).
 
-### React/Vue 受控组件键盘事件不生效
-`keyboard.press('Control+Enter')` 等快捷键在受控组件中可能无法触发。
+### Keyboard events don't work on React/Vue controlled components
+Shortcuts like `keyboard.press('Control+Enter')` may not trigger on controlled components.
 
-解决：找页面上的实际提交按钮，用 JS 点击：
+Fix: find the page's actual submit button and click it via JS:
 ```javascript
-document.querySelector('[aria-label="发送"]').click()
+document.querySelector('[aria-label="Send"]').click()
 ```
 
-### 截图中文乱码（□□□）
-运行 `testagent-browser-setup` skill 中的 `setup.sh`，会自动安装中文字体并配置 fontconfig。
+### Mojibake (□□□) in screenshots for Chinese text
+Run `setup.sh` from the `testagent-browser-setup` skill, which automatically installs Chinese fonts and configures fontconfig.
 
-### 配置修改后不生效
-改 `~/.openclaw/openclaw.json` 后必须完整执行：
+### Config changes not taking effect
+After editing `~/.openclaw/openclaw.json`, you must run the full sequence:
 ```
-browser stop → openclaw gateway restart → 等 15 秒 → browser start
+browser stop → openclaw gateway restart → wait 15s → browser start
 ```
-仅 restart gateway 或仅重启浏览器均不够。**SSRF 白名单即使文件写入成功，也可能因运行时缓存不生效。**
+Restarting only the gateway, or only the browser, is not enough. **Even if the SSRF allowlist file write succeeds, it may still not take effect due to the runtime cache.**

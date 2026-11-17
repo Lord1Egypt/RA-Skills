@@ -1,39 +1,54 @@
-## Description: <br>
-Access and manage Asana workspaces, projects, and tasks through a Pipeworx-hosted Asana MCP gateway for listing, searching, retrieving details, and creating tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pipeworx Asana lets an agent access Asana workspaces, projects, and tasks through an OAuth-backed MCP server for listing, searching, retrieving task details, and creating tasks.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers, project managers, and workspace administrators use this skill to let an agent inspect Asana workspaces, projects, and tasks, search task data, retrieve task details, and create tasks after OAuth authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses OAuth through a hosted Pipeworx gateway to access Asana data. <br>
-Mitigation: Install only when Pipeworx is trusted to broker the Asana connection, review the OAuth consent screen, and use the least-privileged Asana account or workspace that supports the task. <br>
-Risk: The skill can create tasks in shared Asana workspaces. <br>
-Mitigation: Confirm workspace, project IDs, and task names before allowing task creation. <br>
+## Use Case:
 
+Agents and developers use this skill to connect to Asana through Pipeworx, inspect accessible workspaces and projects, search or read task information, and create project tasks from an agent workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [Text responses with JSON MCP server configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create Asana tasks and relies on OAuth through a hosted Pipeworx gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OAuth-backed Asana access is routed through an unverified third-party MCP gateway with write capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review who operates gateway.pipeworx.io and what OAuth scopes it requests before authorizing it.
+
+Risk: The skill can create tasks and expose task metadata from connected Asana workspaces.
+
+Mitigation: Use the least-privileged Asana workspace and project access available, and avoid connecting sensitive workspaces unless the third-party gateway is acceptable for the data involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-asana)
+- [Configured Pipeworx Asana MCP endpoint](https://gateway.pipeworx.io/asana/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON MCP server configuration and concise tool-use descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return Asana workspace, project, task, assignee, due date, completion status, permalink, and search result details through the configured MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

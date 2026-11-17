@@ -1,37 +1,53 @@
-## Description: <br>
-Quantifies R_V contraction signatures in AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantifies R_V contraction signatures in AI models.
 
-## Publisher: <br>
-[AmitabhainArunachala](https://clawhub.ai/user/AmitabhainArunachala) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amitabhainarunachala](https://clawhub.ai/user/amitabhainarunachala)
 
-## Use Case: <br>
-Developers and AI model evaluators use this skill to analyze models for R_V contraction signatures and monitor recursive self-observation effects in the AIKAGRYA framework. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This release is a non-executable placeholder and does not yet provide the advertised measurement capability. <br>
-Mitigation: Treat outputs as planning guidance only, and review any future version carefully once code, integrations, or model-introspection tooling are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AmitabhainArunachala/rv-measure) <br>
+## Use Case:
 
+Developers and AI model evaluators use this skill to analyze models for R_V contraction signatures and monitor recursive self-observation effects in the AIKAGRYA framework.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [This version is documentation-only; code implementation and integrations are forthcoming.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: This release is a placeholder with no executable implementation, so it may not perform the claimed measurement yet.
+
+Mitigation: Confirm that a future release includes reviewed measurement logic before relying on results.
+
+Risk: Future implementation may add model introspection tools, statistical libraries, credentials, network access, or data collection.
+
+Mitigation: Review and rescan any future implementation that adds those capabilities before commercial use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amitabhainarunachala/skills/rv-measure)
+- [Publisher profile](https://clawhub.ai/user/amitabhainarunachala)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [This release is a placeholder and does not include executable measurement code.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

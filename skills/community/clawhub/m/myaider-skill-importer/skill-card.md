@@ -1,40 +1,54 @@
-## Description: <br>
-Import, create, and upgrade agent skills from a configured MyAider MCP server using the skill-creator workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports, creates, and upgrades local agent skills from MyAider MCP skill definitions using the skill-creator workflow.
 
-## Publisher: <br>
-[hurungang](https://clawhub.ai/user/hurungang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hurungang](https://clawhub.ai/user/hurungang)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover a configured MyAider MCP server, select remote skills to import or upgrade, and create local agent skill files through skill-creator. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote MCP content can be used to create or overwrite local agent skills. <br>
-Mitigation: Select individual skills when possible, review generated SKILL.md files before accepting imports or upgrades, and keep backups of existing skills. <br>
-Risk: The importer depends on the trustworthiness of the configured MyAider MCP server and the skills it returns. <br>
-Mitigation: Install and run it only with a trusted MyAider MCP server and review returned skill content before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MyAider MCP setup](https://www.myaider.ai/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/hurungang/myaider-skill-importer) <br>
+## Use Case:
 
+Developers and agent users use this skill to import selected MyAider MCP skills into local agent skills and to upgrade existing MyAider-derived skills when newer remote definitions are available.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and generated SKILL.md skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke MCP tools and skill-creator to create or overwrite local skill files after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote MyAider skill definitions can become persistent local agent instructions.
+
+Mitigation: Use only with a trusted MyAider server and account, and review generated skills before creation.
+
+Risk: Upgrade behavior can replace existing MyAider-derived skills.
+
+Mitigation: Review generated diffs before accepting upgrades.
+
+## Reference(s):
+
+- [MyAider MCP setup](https://www.myaider.ai/mcp)
+- [ClawHub skill page](https://clawhub.ai/hurungang/skills/myaider-skill-importer)
+- [ClawHub publisher profile](https://clawhub.ai/user/hurungang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown instructions and generated skill content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include created or upgraded skill files through the skill-creator workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

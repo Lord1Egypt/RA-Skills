@@ -1,44 +1,64 @@
-## Description: <br>
-Searches Web of Science through institutional access, filters academic literature by quality criteria, and imports selected papers into Zotero. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Web of Science through institutional access, filter scholarly literature by journal, impact factor, citation count, or date, and import selected results into a Zotero collection.
 
-## Publisher: <br>
-[fanfanliu964-web](https://clawhub.ai/user/fanfanliu964-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanfanliu964-web](https://clawhub.ai/user/fanfanliu964-web)
 
-## Use Case: <br>
-Researchers, librarians, and academic users use this skill to collect Web of Science results matching topic, journal, citation, impact-factor, and date criteria, then create a Zotero collection with enriched metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Zotero API key that can write to the user's library. <br>
-Mitigation: Use a dedicated Zotero key with the minimum permissions needed, avoid notes access unless required, and prefer safer secret-passing if modifying the script. <br>
-Risk: The workflow relies on an authenticated institutional Web of Science browser session. <br>
-Mitigation: Proceed only in the user's local browser session and review browser actions before importing results. <br>
-Risk: Incorrect extraction or collection selection could write unwanted records to Zotero. <br>
-Mitigation: Run with --dry-run first, then review the target collection name and extracted paper list before import. <br>
+## Use Case:
 
+Researchers, students, and literature-reviewing agents use this skill to search Web of Science with quality filters, review extracted paper metadata, and import selected records into a new Zotero collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanfanliu964-web/wos-zotero-hunter) <br>
-- [Zotero API key settings](https://www.zotero.org/settings/keys) <br>
-- [Crossref Works API](https://api.crossref.org/works) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON paper lists and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run summaries and Zotero import status for selected papers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow handles a read/write Zotero API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Zotero API key, avoid pasting the key directly into command lines, and rotate the key if it may have been exposed.
+
+Risk: Browser automation may use the user's authenticated Web of Science session.
+
+Mitigation: Run the browser steps only in the intended profile and confirm institutional access before allowing the agent to continue.
+
+Risk: Crossref lookups disclose paper titles or DOIs to an external metadata service.
+
+Mitigation: Review the candidate paper list first and proceed only when sharing titles or DOIs with Crossref is acceptable.
+
+Risk: The import writes records into the user's Zotero library.
+
+Mitigation: Run with --dry-run first and review extracted papers before authorizing the final import.
+
+## Reference(s):
+
+- [WoS Zotero Literature Hunter on ClawHub](https://clawhub.ai/fanfanliu964-web/skills/wos-zotero-hunter)
+- [Zotero API Keys](https://www.zotero.org/settings/keys)
+- [Crossref Works API title lookup](https://api.crossref.org/works?query.title={query}&rows=1)
+- [DOI resolver](https://doi.org/{doi})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON paper metadata and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce a dry-run preview and an import summary before writing selected records to Zotero.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

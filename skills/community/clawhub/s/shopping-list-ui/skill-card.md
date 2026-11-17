@@ -1,40 +1,48 @@
-## Description: <br>
-Web UI for the shopping-list skill that adds a /shopping page to Second Brain with full CRUD operations for viewing, adding, editing, checking off, and deleting items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web UI for the shopping-list skill that adds a /shopping page to Second Brain with categorized viewing, inline editing, and CRUD actions over the shared shopping-list data files.
 
-## Publisher: <br>
-[ajeenkya](https://clawhub.ai/user/ajeenkya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajeenkya](https://clawhub.ai/user/ajeenkya)
 
-## Use Case: <br>
-Developers and Second Brain users use this skill to add a web shopping-list interface that shares data with the existing conversational shopping-list skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated app changes include API routes that can modify and delete items in the shared shopping-list data file. <br>
-Mitigation: Review generated local diffs during installation and confirm the API behavior matches the intended CRUD workflow before deployment. <br>
-Risk: The UI shares data with the conversational shopping-list skill, so changes from either interface affect the same active list. <br>
-Mitigation: Confirm the shared data path and user identity configuration before using the web UI with important list data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ajeenkya/shopping-list-ui) <br>
-- [Publisher profile](https://clawhub.ai/user/ajeenkya) <br>
+## Use Case:
 
+Developers and Second Brain users use this skill to add a shopping-list web interface that can view, add, edit, check off, and delete items while sharing data with the conversational shopping-list skill.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions describing Next.js files, API routes, navigation updates, and shared data behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Second Brain portal and the shopping-list skill; reads and writes the shared shopping-list JSON data file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill modifies Second Brain app source and shares the existing shopping-list data file between chat and the web UI, where items can be edited or deleted.
+
+Mitigation: Confirm the app and data-file changes before installation, and back up skills/shopping-list/data/active.json if the shopping-list data matters.
+
+## Reference(s):
+
+- [Shopping List UI ClawHub Skill Page](https://clawhub.ai/ajeenkya/skills/shopping-list-ui)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions describing app file additions, source modifications, and shared data-file behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running Second Brain Next.js portal and the shopping-list skill data files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

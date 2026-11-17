@@ -1,43 +1,55 @@
-## Description: <br>
-Predict the likely gender associated with a first name -- with optional country-specific calibration via genderize.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict the likely gender associated with a first name with optional country-specific calibration via genderize.io.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to estimate name-associated gender distributions, optionally calibrated by ISO 3166-1 alpha-2 country code, for personalization, demographic analysis, research, or form pre-filling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted names and optional country codes are sent to the Pipeworx/Genderize remote service. <br>
-Mitigation: Use the skill only with data that users are permitted to send to that service, and review consent, privacy, and retention requirements before sensitive or bulk use. <br>
-Risk: Gender predictions are statistical guesses and may be incorrect or inappropriate for consequential decisions. <br>
-Mitigation: Do not treat outputs as authoritative identity information or use them for eligibility, employment, credit, insurance, or other high-impact decisions. <br>
-Risk: The setup uses an unpinned mcp-remote@latest dependency. <br>
-Mitigation: Review and pin the dependency version before managed or production deployment. <br>
+## Use Case:
 
+External users and developers can use this skill to estimate likely gender distributions for first names, including country-specific calibration where an ISO 3166-1 alpha-2 country code is supplied. Typical uses include marketing personalization, demographic analysis, research on name-gender associations, and form pre-filling.
 
-## Reference(s): <br>
-- [Pipeworx Genderize homepage](https://pipeworx.io/packs/genderize) <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-genderize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON responses and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns statistical gender predictions with probability, count, and optional country-specific calibration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: First names and optional country codes are sent to a third-party Pipeworx genderize endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid regulated, customer, or employee data unless the organization has approved that processing.
+
+Risk: The setup uses an unpinned npm bridge that may execute mutable code.
+
+Mitigation: Pin mcp-remote to a reviewed exact version or run it in a restricted environment.
+
+## Reference(s):
+
+- [Pipeworx Genderize Pack](https://pipeworx.io/packs/genderize)
+- [Pipeworx Genderize MCP Endpoint](https://gateway.pipeworx.io/genderize/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-genderize)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON examples; tool responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the example call and uses an MCP remote setup for agent integration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

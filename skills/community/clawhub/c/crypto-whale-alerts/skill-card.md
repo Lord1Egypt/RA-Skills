@@ -1,41 +1,49 @@
-## Description: <br>
-Tracks large on-chain cryptocurrency transactions and whale wallet movements to generate configurable alert text, summaries, and watchlist output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks large cryptocurrency transactions and known whale wallet movements, using configurable thresholds to generate wallet activity summaries and alert-style output.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External users and agent workflows use this skill to run local crypto whale transaction scans, view summaries, inspect watched wallet labels, and configure alert thresholds. Outputs should be reviewed as market-monitoring signals rather than trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local mock transaction data and should not be treated as live market intelligence or trading advice. <br>
-Mitigation: Use it as a local starting point until live data integrations are added and independently tested. <br>
-Risk: Security evidence reports misleading inflow/outflow trading-label behavior. <br>
-Mitigation: Correct and test the classification logic before relying on the alerts in production or decision-support workflows. <br>
+## Use Case:
 
+External users, developers, and agents can use this skill to scan mock-formatted crypto whale transactions, review tracked wallet labels, summarize large transfers, and tune alert thresholds before integrating real blockchain data sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ssidharhubble/crypto-whale-alerts) <br>
-- [Etherscan Transaction Link Template](https://etherscan.io/tx/{tx_hash}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and Markdown documentation with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WHALE_MIN_USD and WHALE_COOLDOWN environment variables for threshold and cooldown configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can appear to provide live or reliable trading signals even though server security evidence identifies it as a mock/demo-style local script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat alerts as informational examples only and verify any trading decision against real blockchain data and independent market sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/crypto-whale-alerts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-oriented text with inline shell commands and terminal-style alert output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on local mock transaction data unless the user connects real blockchain data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

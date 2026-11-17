@@ -1,51 +1,67 @@
-## Description: <br>
-Search flights, hotels, attractions, trains, Marriott options, and travel deals with natural-language or structured FlyAI CLI commands backed by Fliggy MCP results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search flights, hotels, attractions, concerts, and travel deals with natural language.
 
-## Publisher: <br>
-[yealexchen](https://clawhub.ai/user/yealexchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yealexchen](https://clawhub.ai/user/yealexchen)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search and compare travel options, prices, dates, booking links, and itinerary-relevant details across flights, hotels, trains, attractions, event tickets, and travel packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel searches and bookings can expose sensitive itinerary, account, passport, payment, or other personal details to a third-party travel provider. <br>
-Mitigation: Use the minimum necessary travel details, avoid passport or payment data in search prompts, and configure FLYAI_API_KEY only when the provider and local credential handling are trusted. <br>
-Risk: Booking links, prices, availability, refund terms, visa details, and platform hints come from external travel services and may change before purchase. <br>
-Mitigation: Treat results as decision support and verify final price, availability, policies, and travel requirements on the linked provider page before booking. <br>
-Risk: The skill depends on a globally installed npm CLI and optional API credential configuration. <br>
-Mitigation: Install the CLI only from a trusted package source, keep it updated or version-pinned for repeatable workflows, and limit API key exposure to the intended environment. <br>
+## Use Case:
 
+External users and agents use this skill to search and compare travel options, including flights, trains, hotels, attractions, event tickets, and booking links.
 
-## Reference(s): <br>
-- [FlyAI homepage](https://open.fly.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/yealexchen/flyai) <br>
-- [keyword-search reference](references/keyword-search.md) <br>
-- [ai-search reference](references/ai-search.md) <br>
-- [search-flight reference](references/search-flight.md) <br>
-- [search-hotel reference](references/search-hotel.md) <br>
-- [search-train reference](references/search-train.md) <br>
-- [search-poi reference](references/search-poi.md) <br>
-- [search-marriott-hotel reference](references/search-marriott-hotel.md) <br>
-- [search-marriott-package reference](references/search-marriott-package.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with optional images, booking links, tables, platform hints, and JSON-backed result details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return single-line JSON; final agent responses should surface relevant images, booking links, prices, dates, constraints, and platform hints when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill asks users to install a mutable global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with least privilege, prefer pinned or isolated installs, and verify the npm package source before use.
+
+Risk: Travel result links, images, and platform messages are third-party content.
+
+Mitigation: Treat booking links, images, and platform hints as untrusted content and review them before acting on reservations or purchases.
+
+Risk: Returned travel prices, availability, and policies may change quickly.
+
+Mitigation: Confirm current prices, availability, refund terms, visa requirements, and travel constraints on the booking provider before purchase.
+
+## Reference(s):
+
+- [FlyAI ClawHub skill page](https://clawhub.ai/yealexchen/skills/flyai)
+- [yealexchen publisher profile](https://clawhub.ai/user/yealexchen)
+- [FlyAI homepage](https://open.fly.ai/)
+- [AI Search](references/ai-search.md)
+- [Keyword Search](references/keyword-search.md)
+- [Flight Search](references/search-flight.md)
+- [Hotel Search](references/search-hotel.md)
+- [Marriott Hotel Search](references/search-marriott-hotel.md)
+- [Marriott Package Search](references/search-marriott-package.md)
+- [POI / Attraction Search](references/search-poi.md)
+- [Train Search](references/search-train.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with images, booking links, tables, and optional shell command examples; underlying command output is single-line JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and the flyai CLI; may use FLYAI_API_KEY for enhanced results.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

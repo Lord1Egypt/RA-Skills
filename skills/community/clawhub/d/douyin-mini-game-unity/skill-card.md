@@ -1,53 +1,73 @@
-## Description: <br>
-Douyin Mini Game Unity provides a Unity C# reference for Douyin mini-game TT.* APIs covering initialization, login, payments, ads, device, storage, media, UI, and related platform capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin mini-game Unity C# API ref - TT.* SDK (init/login/payment/ads/device/storage/UI), all C# equivalents of JS tt.* APIs. Payment requires server-side verify before production use.
 
-## Publisher: <br>
-[wufengsheng](https://clawhub.ai/user/wufengsheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufengsheng](https://clawhub.ai/user/wufengsheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to look up Douyin mini-game Unity C# TT.* API usage and adapt Unity projects for Douyin mini-game platform features such as authentication, payments, ads, device capabilities, storage, media, and UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: C# snippets touching payments may be copied into production without server-side payment verification. <br>
-Mitigation: Verify payments server-side and grant currency or items only after signed payment callbacks are confirmed. <br>
-Risk: Examples involving identifiers, launch metadata, user information, clipboard, screen recording, or storage operations can expose sensitive data if adapted carelessly. <br>
-Mitigation: Keep debug-command and logging guards, require user consent for clipboard and screen recording, and add explicit runtime checks around recording and destructive storage operations. <br>
+## Use Case:
 
+Developers building Unity games for Douyin Mini Game use this skill as a C# reference for TTSDK initialization, account APIs, payments, ads, device capabilities, storage, media, UI, and platform open capabilities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wufengsheng/skills/douyin-mini-game-unity) <br>
-- [Official Douyin Unity C# API overview](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/c-api/api-overview) <br>
-- [Official Douyin account API documentation](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/c-api/account) <br>
-- [Official Douyin payment callback documentation](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/server/game-payment/payment-callback) <br>
-- [API overview and initialization](artifact/references/unity-core.md) <br>
-- [Account and authorization](artifact/references/unity-account.md) <br>
-- [Payment](artifact/references/unity-payment.md) <br>
-- [Advertising](artifact/references/unity-ads.md) <br>
-- [System and lifecycle](artifact/references/unity-system.md) <br>
-- [Device capabilities](artifact/references/unity-device.md) <br>
-- [Storage and files](artifact/references/unity-storage.md) <br>
-- [Media](artifact/references/unity-media.md) <br>
-- [Open capabilities](artifact/references/unity-open.md) <br>
-- [UI and rendering](artifact/references/unity-ui.md) <br>
+### Deployment Geography for Use:
 
+Global, subject to Douyin Mini Game platform availability and applicable local requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with C# code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; examples require developer adaptation and security review before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Copy-pasteable storage and file examples may lead to unsafe file handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add path validation and restrict reads and writes to approved application data locations before adapting examples.
+
+Risk: Payment or ad reward examples may be mistaken for final reward authorization.
+
+Mitigation: Use server-side verification for purchases and rewards, and treat client callbacks only as UI or status signals.
+
+Risk: Logging examples may expose credentials, identifiers, or user data in production logs.
+
+Mitigation: Redact sensitive values and keep diagnostic logs behind development-only build guards.
+
+Risk: Recording examples may be used without checking user permission at the point of use.
+
+Mitigation: Check the relevant recording permission before starting capture and avoid uploading recordings without explicit user consent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wufengsheng/skills/douyin-mini-game-unity)
+- [Douyin Mini Game Unity C# API Overview](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/c-api/api-overview)
+- [Douyin Mini Game Payment Callback](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/server/game-payment/payment-callback)
+- [API Overview and Initialization](references/unity-core.md)
+- [Account and Authorization](references/unity-account.md)
+- [Payment](references/unity-payment.md)
+- [Advertising](references/unity-ads.md)
+- [System and Lifecycle](references/unity-system.md)
+- [Device Capabilities](references/unity-device.md)
+- [Storage and Files](references/unity-storage.md)
+- [Media](references/unity-media.md)
+- [UI and Rendering](references/unity-ui.md)
+- [Open Capabilities](references/unity-open.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reference guidance with C# code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language API reference content for Unity TTSDK usage.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

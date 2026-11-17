@@ -1,0 +1,44 @@
+{
+  "api_key": "YOUR_TJEK_API_KEY",
+  "api_base": "https://squid-api.tjek.com",
+  "ntfy": {
+    "url": "https://ntfy.sh",
+    "topic": "tilbudsavis-YOUR_RANDOM_SUFFIX",
+    "token": ""
+  },
+  "stores": [
+    { "id": "71c90", "name": "Lidl", "avis_url": "https://etilbudsavis.dk/Lidl" },
+    { "id": "11deC", "name": "Rema 1000", "avis_url": "https://etilbudsavis.dk/REMA-1000" },
+    { "id": "9ba51", "name": "Netto", "avis_url": "https://etilbudsavis.dk/Netto" },
+    { "id": "267e1m", "name": "Meny", "avis_url": "https://etilbudsavis.dk/MENY" },
+    { "id": "DWZE1w", "name": "365 discount", "avis_url": "https://etilbudsavis.dk/365discount" }
+  ],
+  "interests": [
+    {
+      "category": "Oksekod",
+      "emoji": "🥩",
+      "keywords": ["oksekod", "okse", "hakkekod", "bøf", "bøffer", "mørbrad", "culotte", "ribeye", "entrecôte", "entrecote", "steak", "oksesteg", "roastbeef", "tyksteg", "kvæg"],
+      "exclude": ["steak fries", "fries", "pommes", "steakhouse"],
+      "wow": { "max_price_per_kg": 60, "min_discount_pct": 40 }
+    },
+    {
+      "category": "Kylling",
+      "emoji": "🍗",
+      "keywords": ["kylling"],
+      "wow": { "max_price_per_kg": 35, "min_discount_pct": 40 }
+    },
+    {
+      "category": "Monster Energy",
+      "emoji": "⚡",
+      "keywords": ["monster energy", "monster"],
+      "exclude": ["monstera", "monster truck"],
+      "wow": { "max_price_per_piece": 8, "min_discount_pct": 40 }
+    },
+    {
+      "category": "Nodder",
+      "emoji": "🥜",
+      "keywords": ["nødder", "nødde", "mandler", "mandel", "cashew", "valnød", "pistacie", "jordnødder", "peanuts", "hasselnødder", "paranødder", "macadamia"],
+      "wow": { "max_price_per_kg": 90, "min_discount_pct": 40 }
+    }
+  ]
+}

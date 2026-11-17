@@ -72,7 +72,7 @@ curl -H "Content-Type: application/json" \
 ### Send Notification
 
 ```bash
-SLACK_WEBHOOK="https://hooks.slack.com/services/xxx/yyy/zzz"
+SLACK_WEBHOOK="REDACTED-SECRET"
 
 curl -X POST "$SLACK_WEBHOOK" \
   -H "Content-Type: application/json" \

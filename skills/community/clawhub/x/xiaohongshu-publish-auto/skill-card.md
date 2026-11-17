@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically reads the current day's video and title file from a configured local folder and publishes the content to a logged-in Xiaohongshu account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically reads the current day's Xiaohongshu video and caption files from a local folder, connects to Chrome, and publishes the content to a logged-in Xiaohongshu account.
 
-## Publisher: <br>
-[weishuai34-bit](https://clawhub.ai/user/weishuai34-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weishuai34-bit](https://clawhub.ai/user/weishuai34-bit)
 
-## Use Case: <br>
-Creators or operators use this skill to automate posting prepared daily video and caption content to Xiaohongshu. It is intended for users who already maintain a logged-in Chrome session and want repeatable publishing from a fixed local content folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish to a live Xiaohongshu account without a final confirmation step. <br>
-Mitigation: Review the dated video and title file before invoking the skill and use it only with accounts where direct publishing is intended. <br>
-Risk: The skill depends on a Chrome debugging session connected to an authenticated browser profile. <br>
-Mitigation: Use a dedicated Chrome profile where possible and close Chrome debugging after the publishing task is complete. <br>
-Risk: Broad trigger phrases can initiate account-changing behavior. <br>
-Mitigation: Avoid configuring broad or ambiguous invocations for this skill in shared or multi-user agent environments. <br>
+## Use Case:
 
+Creators and operators who publish Xiaohongshu video posts use this skill to automate upload, title and body entry, topic insertion, and publishing from an existing logged-in Chrome session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weishuai34-bit/xiaohongshu-publish-auto) <br>
-- [Publisher profile](https://clawhub.ai/user/weishuai34-bit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, browser automation] <br>
-**Output Format:** [Console status text with screenshot files generated during the publishing flow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes directly to a live Xiaohongshu account through a logged-in Chrome session when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can publish real Xiaohongshu posts from a logged-in account without a final confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger and add a final confirmation or draft mode before allowing publication.
+
+Risk: The skill uses the user's Chrome session through a fixed remote debugging port.
+
+Mitigation: Use an isolated browser profile instead of the primary Chrome profile and protect access to port 9222.
+
+Risk: The skill reads local media and text files and saves diagnostic screenshots.
+
+Mitigation: Verify the exact media and title files before running and remove or protect diagnostic screenshots after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weishuai34-bit/skills/xiaohongshu-publish-auto)
+- [Xiaohongshu creator publishing page](https://creator.xiaohongshu.com/publish/publish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Browser automation]
+
+**Output Format:** [Console status text, browser-side publishing actions, and PNG diagnostic screenshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local media and title files under ~/Movies/小红书英语 and a logged-in Chrome session exposed on remote debugging port 9222.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

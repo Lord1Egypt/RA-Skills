@@ -1,40 +1,50 @@
-## Description: <br>
-BMad Method guides agents through installing and using the BMad agile development framework for project setup, workflow guidance, and BMad-specific help requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven agile development framework with 34+ workflows and 12+ domain expert agents (PM, Architect, Developer, UX, Scrum Master, etc.).
 
-## Publisher: <br>
-[hansenmemo](https://clawhub.ai/user/hansenmemo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hansenmemo](https://clawhub.ai/user/hansenmemo)
 
-## Use Case: <br>
-Developers and software teams use this skill to start new projects with BMad Method, set up AI-assisted development workflows, and get agile workflow guidance from BMad commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing the referenced npm package may add BMad files or AI-tool integrations to a project. <br>
-Mitigation: Review the bmad-method npm package before installation, run it only in appropriate project directories, and pin a version when reproducible installs are required. <br>
-Risk: The skill is intended for BMad-specific setup and workflow requests, so broad invocation could produce irrelevant project guidance. <br>
-Mitigation: Invoke the skill only for BMad Method installation, setup, or workflow guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BMad Method documentation](https://docs.bmad-method.org) <br>
-- [BMad Method ClawHub release page](https://clawhub.ai/hansenmemo/bmad-method) <br>
+## Use Case:
 
+Developers and engineers use this skill to start software projects with AI assistance, follow agile development workflows, and set up AI development environments for BMad Method modules and commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend npm installation commands and BMad command usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends unpinned npm execution, including a non-interactive CI command, which may modify a project directory or run unexpected package versions.
+
+Mitigation: Prefer the pinned installer example or a reviewed lockfile-managed setup, avoid running unpinned commands with sensitive credentials available, and run the installer only in an intended project directory.
+
+## Reference(s):
+
+- [BMad Method Documentation](https://docs.bmad-method.org)
+- [BMad Method Discord](https://discord.gg/gk8jAdXWmj)
+- [ClawHub Skill Page](https://clawhub.ai/hansenmemo/skills/bmad-method)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose npm installer commands and project setup steps that should be reviewed before execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

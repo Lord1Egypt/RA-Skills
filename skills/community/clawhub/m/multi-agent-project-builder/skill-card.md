@@ -1,41 +1,54 @@
-## Description: <br>
-Multi Agent Project Collaboration Factory helps developers scaffold and run a configurable multi-agent workflow for project planning, research, architecture, implementation, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多 Agent 项目协作工厂 - 一键实现智能分工完成互联网项目
 
-## Publisher: <br>
-[ninetyhe-90](https://clawhub.ai/user/ninetyhe-90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninetyhe-90](https://clawhub.ai/user/ninetyhe-90)
 
-## Use Case: <br>
-Developers and builders use this skill to decompose an internet project into specialist agent workstreams, generate a project scaffold, and guide requirements, research, architecture, implementation, and testing outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generator creates and may replace a local project scaffold in the current working directory. <br>
-Mitigation: Run it from the intended parent directory, choose a fresh project name, and do not approve overwrite prompts unless the existing directory is backed up or disposable. <br>
-Risk: Broad or incorrect project configuration can steer downstream agents toward unsuitable implementation work. <br>
-Mitigation: Review PROJECT_CONFIG.yaml and the generated execution guide before asking agents to produce or modify code. <br>
+## Use Case:
 
+Developers and builders use this skill to scaffold and run a multi-agent project workflow for software projects. It helps divide work into requirements, research, architecture, implementation, and testing outputs coordinated across specialized agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ninetyhe-90/multi-agent-project-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/ninetyhe-90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, YAML configuration, generated project files, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local project scaffold with configurable agent roles, workflow phases, and output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The generator can recursively delete an existing directory if an unsafe project path is supplied and overwrite is confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from an isolated workspace, pass only a simple new directory name, and resolve and verify any existing path before confirming overwrite.
+
+Risk: Agent-generated project plans, code, and test reports can contain incorrect or incomplete guidance.
+
+Mitigation: Review generated requirements, architecture, code, and tests before relying on them for deployment or customer-facing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ninetyhe-90/skills/multi-agent-project-builder)
+- [Related skill: multi-agent-coordination](../multi-agent-coordination/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown project documents, YAML configuration, generated directories, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a project workspace with PROJECT_CONFIG.yaml, EXECUTION_GUIDE.md, README.md, .gitignore, and staged output folders for requirements, research, architecture, implementation, and testing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

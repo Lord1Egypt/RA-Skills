@@ -1,44 +1,58 @@
-## Description: <br>
-Automatically syncs Notion articles into a local Obsidian directory with scheduled checks, full content export, and smart title extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically syncs Notion articles to a local Obsidian directory, with scheduled checks, full content export, and smart title extraction.
 
-## Publisher: <br>
-[hawkvan](https://clawhub.ai/user/hawkvan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[hawkvan](https://clawhub.ai/user/hawkvan)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to configure and run a Notion-to-Obsidian sync workflow that exports recently edited Notion content into local Markdown notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Notion integration token can grant access to connected Notion pages or databases if it is exposed. <br>
-Mitigation: Use a narrowly scoped Notion integration, connect only the pages or databases needed for sync, and keep config.json private and out of version control. <br>
-Risk: The timer can run ongoing background syncs that write local Markdown notes and logs. <br>
-Mitigation: Test with a dedicated Obsidian subfolder first and start the timer only when ongoing background sync is intended. <br>
-Risk: Logs or terminal output may disclose operational details from the connected workspace. <br>
-Mitigation: Avoid sharing sync logs, terminal output, or configuration files without reviewing them for sensitive content. <br>
+## Use Case:
 
+Developers, knowledge workers, and Obsidian users use this skill to configure an agent-managed workflow that checks Notion for recently edited pages and exports them as Markdown files into an Obsidian vault.
 
-## Reference(s): <br>
-- [Notion API Guide](references/NOTION_API_GUIDE.md) <br>
-- [Notion API Documentation](https://developers.notion.com) <br>
-- [Notion Integrations](https://notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell command guidance, with JSON configuration and exported Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run recurring background syncs and write Markdown notes plus logs under the configured local Obsidian path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release security summary says installation and credential-handling guidance expose users to avoidable high-impact risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid curl-to-bash installation unless independently trusted and verified, and test first with a disposable Obsidian vault.
+
+Risk: The skill requires a Notion integration token and local vault path, and scripts may display a token prefix in command output.
+
+Mitigation: Store the Notion token outside shared or backed-up directories, avoid logged or recorded execution environments until token-prefix printing is removed, and grant the Notion integration access only to the pages or databases intended for sync.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hawkvan/skills/notion-sync-obsidian)
+- [Publisher profile](https://clawhub.ai/user/hawkvan)
+- [Notion API Guide](references/NOTION_API_GUIDE.md)
+- [Notion API Documentation](https://developers.notion.com)
+- [Notion Integrations](https://notion.so/my-integrations)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exports Notion page content into local Markdown files organized for an Obsidian vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

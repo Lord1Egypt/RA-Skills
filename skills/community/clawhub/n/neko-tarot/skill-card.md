@@ -1,45 +1,56 @@
-## Description: <br>
-引导用户进行数字或实体塔罗占卜，推荐牌阵、抽牌或整理实体牌输入，并生成结合用户意图的解读提示。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+引导 Agent 使用猫咪塔罗 CLI 推荐牌阵、执行数字抽牌或实体牌录入，并生成结合用户意图的中文塔罗解读提示。
 
-## Publisher: <br>
-[senzi](https://clawhub.ai/user/senzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[senzi](https://clawhub.ai/user/senzi)
 
-## Use Case: <br>
-External users and agents use this skill to run reflective tarot readings with either simulated card draws or companion-mode input from physical cards. It helps select an appropriate spread, assemble card data, and produce warm Chinese-language interpretation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat tarot output as professional financial, medical, legal, or mental-health advice. <br>
-Mitigation: Present readings as entertainment or reflection and direct high-stakes decisions to qualified professionals. <br>
-Risk: The skill may require running the bundled Python helper and installing typer or pydantic. <br>
-Mitigation: Review and scan the helper before use, and install dependencies only from trusted package sources. <br>
-Risk: Manual companion-mode readings can be inaccurate if card IDs, reversal flags, or spread positions are misordered. <br>
-Mitigation: Use tarot_index.json for name-to-ID lookup and verify card and reversal order against the selected spread positions. <br>
+## Use Case:
 
+External users and agent developers use this skill to conduct Chinese-language tarot readings with structured spread selection, card drawing, card-to-position mapping, and prompt assembly. It supports both fully digital draws and companion mode for users with physical cards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/senzi/neko-tarot) <br>
-- [Publisher profile](https://clawhub.ai/user/senzi) <br>
-- [README.md](artifact/README.md) <br>
-- [TAROT_DATA.md](artifact/TAROT_DATA.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Chinese conversational guidance with CLI commands and optional JSON from the helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled tarot and spread data; readings should be treated as entertainment or reflection, not professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tarot output could be mistaken for professional financial, medical, legal, or mental-health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as reflective or entertainment-oriented guidance and direct users to qualified professionals for high-stakes decisions.
+
+Risk: Unpinned Python dependencies can reduce installation reproducibility.
+
+Mitigation: Install in a virtual environment and pin dependency versions when deploying or sharing the skill.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/senzi/skills/neko-tarot)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [TAROT_DATA.md](artifact/TAROT_DATA.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese prose guidance, Markdown instructions, shell command examples, and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can list spreads, randomly draw cards, compose prompts from physical-card inputs, and return structured JSON for agent parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

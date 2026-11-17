@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../schemas/plan-bundle.schema.json",
+  "schemaVersion": "1.0.0",
+  "bundleId": "bundle_demo",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "mode": "assist",
+  "documents": {
+    "project": "project.json",
+    "transcript": "transcript.json",
+    "editPlan": "edit-plan.json",
+    "statePlan": "state-plan.json",
+    "ownerLedger": "owner-ledger.json",
+    "captionPlan": "caption-plan.json",
+    "evidenceManifest": "evidence-manifest.json"
+  },
+  "status": "validated"
+}

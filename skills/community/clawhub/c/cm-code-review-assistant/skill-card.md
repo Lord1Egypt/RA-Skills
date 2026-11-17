@@ -1,37 +1,54 @@
-## Description: <br>
-AI-powered code review assistant that analyzes pull requests for bugs, security issues, performance problems, and style violations with actionable feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered code review assistant that analyzes pull requests for bugs, security issues, performance problems, and style violations with actionable feedback.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review pull requests, merge requests, local git changes, or patch files for correctness, security, performance, maintainability, style, and testing issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reported a low-confidence clean result because final artifact-backed inspection was unavailable in the security evidence. <br>
-Mitigation: Review the skill files and trust boundary before installation, and treat its review output as advisory until a maintainer verifies findings. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests, branches, staged changes, or patch files for correctness, security, performance, maintainability, style, and test coverage issues. It produces prioritized, line-specific findings with concrete fix suggestions and a summary of merge risk.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with findings, severity labels, file and line references, code examples, and summary sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts review depth to change size and focuses on actionable, file-specific feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The agent may inspect pull request contents, local diffs, file history, tests, issues, or prior reviews that are available through local GitHub, GitLab, or git credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only for repositories where that review context is appropriate for the agent to access.
+
+Risk: Generated review findings and suggested fixes can be incorrect, incomplete, or misleading.
+
+Mitigation: Treat output as reviewer assistance and have a qualified developer verify findings and proposed changes before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-code-review-assistant)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown code review summary with severity-ranked findings, file and line references, and suggested fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review depth adapts to change size; large changes receive higher-level architectural review and spot checks of critical paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

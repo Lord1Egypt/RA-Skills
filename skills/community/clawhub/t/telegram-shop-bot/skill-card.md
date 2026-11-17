@@ -1,41 +1,53 @@
-## Description: <br>
-Develop and deploy custom Telegram shop bots in Python with product and order management, payment integration, admin dashboard, and ongoing support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop and deploy custom Python Telegram shop bots with product, order, customer, payment, admin dashboard, hosting, and support capabilities.
 
-## Publisher: <br>
-[alaa100a](https://clawhub.ai/user/alaa100a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alaa100a](https://clawhub.ai/user/alaa100a)
 
-## Use Case: <br>
-External merchants and developers can use this listing to source Python-based Telegram shop bot development, including product catalogs, carts, order management, payments, administration, hosting, and support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engaging the service may require sharing Telegram bot tokens, payment API keys, admin credentials, or customer and order data. <br>
-Mitigation: Verify the publisher and project scope before payment or credential sharing; use least-privilege test credentials first and rotate production secrets after delivery. <br>
-Risk: Custom shop bots can process payments and customer data, creating operational and privacy obligations. <br>
-Mitigation: Review delivered code, hosting, payment configuration, backup practices, and data handling before production launch. <br>
+## Use Case:
 
+External users and developers can use this skill listing to request or scope Telegram shop bot development services, including Python bot source code, database-backed product and order management, payment integration, hosting, and support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alaa100a/telegram-shop-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/alaa100a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown service listing and contact details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable artifact; no local code, shell commands, or configuration files are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat this promotional service listing as a vetted functional skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the provider independently before paying, sharing business data, granting bot tokens, or providing payment-system credentials.
+
+Risk: Telegram shop bot delivery may require sensitive bot tokens, payment-system credentials, or customer data.
+
+Mitigation: Use least-privilege credentials, test payment accounts, and revoke or rotate access after delivery and review.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/alaa100a/skills/telegram-shop-bot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration, shell commands]
+
+**Output Format:** [Markdown with implementation guidance and code or command snippets when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe custom service options and implementation scope rather than provide executable package code.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

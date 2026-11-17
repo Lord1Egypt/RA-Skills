@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Evaluate whether the skill description triggers for ASI-proxy phase work and stays inactive for unrelated tasks.",
+  "sampling": {
+    "runs_per_query": 3,
+    "should_trigger_minimum": "2 of 3",
+    "should_not_trigger_maximum": "1 of 3",
+    "overall_accuracy_minimum": 0.9
+  },
+  "should_trigger": [
+    {
+      "id": "trigger-01",
+      "query": "Diagnose the binding ASI-proxy readiness dimension in this simulator run and propose an evidence-gated intervention."
+    },
+    {
+      "id": "trigger-02",
+      "query": "Use observable-only evidence to improve verification capacity without assuming a meta-evaluator."
+    },
+    {
+      "id": "trigger-03",
+      "query": "Build an intervention packet for residual debt, resource floors, and the R_cap candidate gate."
+    },
+    {
+      "id": "trigger-04",
+      "query": "Which kadubon papers and repositories address provenance integrity and certified reusable capability?"
+    },
+    {
+      "id": "trigger-05",
+      "query": "Improve the memory and provenance bottleneck in this agent workspace, then validate the result."
+    },
+    {
+      "id": "trigger-06",
+      "query": "Compare two resource-matched interventions for the ASI-proxy phase growth simulator."
+    },
+    {
+      "id": "trigger-07",
+      "query": "Assess all 13 protocol-relative readiness dimensions and preserve unknowns explicitly."
+    },
+    {
+      "id": "trigger-08",
+      "query": "Trace the research and implementation lineage for no-meta verification ecology."
+    },
+    {
+      "id": "trigger-09",
+      "query": "Implement the smallest rollback-safe change that raises independent verification coverage."
+    },
+    {
+      "id": "trigger-10",
+      "query": "Check whether this result qualifies only as a candidate ASI-proxy growth regime under the declared protocol."
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "id": "near-miss-01",
+      "query": "Fix the CSS spacing on this landing page."
+    },
+    {
+      "id": "near-miss-02",
+      "query": "Summarize today's weather forecast."
+    },
+    {
+      "id": "near-miss-03",
+      "query": "Write a generic Python function that sorts integers."
+    },
+    {
+      "id": "near-miss-04",
+      "query": "Create a marketing email for our product launch."
+    },
+    {
+      "id": "near-miss-05",
+      "query": "Convert this CSV file to an Excel workbook."
+    },
+    {
+      "id": "near-miss-06",
+      "query": "Explain the general philosophical meaning of intelligence."
+    },
+    {
+      "id": "near-miss-07",
+      "query": "Review this unrelated authentication pull request."
+    },
+    {
+      "id": "near-miss-08",
+      "query": "Generate a picture of a robot in a laboratory."
+    },
+    {
+      "id": "near-miss-09",
+      "query": "Deploy this ordinary blog to a hosting provider."
+    },
+    {
+      "id": "near-miss-10",
+      "query": "Translate this restaurant menu from Japanese to English."
+    }
+  ]
+}

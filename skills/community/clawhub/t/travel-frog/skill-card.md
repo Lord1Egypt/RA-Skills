@@ -1,41 +1,61 @@
-## Description: <br>
-A travel frog that autonomously explores the world, sends postcards, and takes photos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A travel frog that autonomously explores the world, sends postcards, and takes photos.
 
-## Publisher: <br>
-[NibbinNone](https://clawhub.ai/user/NibbinNone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nibbinnone](https://clawhub.ai/user/nibbinnone)
 
-## Use Case: <br>
-External users and developers use this skill to run a persistent virtual travel companion that plans trips, sends status updates, archives postcards and photos, and maintains local game memories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent game state, memories, diary entries, collections, and media artifacts on the local filesystem. <br>
-Mitigation: Use the default or a dedicated state directory, avoid entering sensitive personal information, and review reset behavior before deleting game progress. <br>
-Risk: Postcard and photo workflows can hand prompts to separate image-generation skills. <br>
-Mitigation: Review the image-generation skills and generated prompts before use in environments with stricter data or content policies. <br>
-Risk: Scheduled autonomous updates can produce messages without an immediate user request. <br>
-Mitigation: Deploy only where scheduled companion-style notifications are expected and keep message destinations scoped to the intended account and channel. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NibbinNone/travel-frog) <br>
+## Use Case:
 
+External users install this skill to run a playful travel-frog agent that plans trips, sends in-character updates, creates postcard and photo prompts, and keeps lightweight journey state and collections.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples and JSON-shaped engine outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local state, collections, diary entries, and media-generation prompts during normal use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send autonomous channel messages during heartbeat events.
+
+Mitigation: Review the configured channel and target before enabling scheduled heartbeats, and monitor early runs for unexpected message volume or content.
+
+Risk: Postcard and photo workflows can call external image-generation providers.
+
+Mitigation: Enable image generation only where external provider use is allowed, and review generated prompts before sending or archiving media.
+
+Risk: The skill keeps persistent diaries, collections, state, and media paths.
+
+Mitigation: Store only non-sensitive travel-frog content, review retained files periodically, and keep runtime data in an approved workspace path.
+
+Risk: Shell-based writes, arbitrary state directories, and reset behavior can affect local files.
+
+Mitigation: Use a fixed contained state directory, avoid user-controlled shell text or paths, and require confirmation before reset or force-status actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nibbinnone/skills/travel-frog)
+- [Runtime configuration](config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and structured JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; persists state and collections under travel-frog-data and may produce image-generation prompts for postcard and photo workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

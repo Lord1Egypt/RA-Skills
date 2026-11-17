@@ -1,44 +1,61 @@
-## Description: <br>
-Helps agent builders add proactive behavior, persistent local memory, compaction recovery, unified search habits, security hardening, and self-improvement guardrails to AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI agents from task-followers into proactive partners with memory, write-ahead logging, working buffers, compaction recovery, unified search, security hardening, and proactive behavior patterns.
 
-## Publisher: <br>
-[wyblhl](https://clawhub.ai/user/wyblhl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyblhl](https://clawhub.ai/user/wyblhl)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add proactive workflows, local memory protocols, recovery routines, and safety checklists to an AI agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically store and resurface broad conversation details in plaintext workspace files. <br>
-Mitigation: Install only when local persistent memory is intended; avoid secrets, credentials, regulated personal data, and shared workspaces unless opt-in, redaction, retention, and deletion controls are added. <br>
-Risk: Persistent memory files may retain sensitive user profile, session state, and working-buffer content. <br>
-Mitigation: Regularly review USER.md, SOUL.md, SESSION-STATE.md, MEMORY.md, memory/working-buffer.md, and recovery output. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add durable local memory, proactive check-ins, write-ahead logging, working buffers, compaction recovery, unified search, and security guardrails to an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wyblhl/proactive-agent-wyblhl) <br>
-- [Proactive Agent Implementation Reference](artifact/references/implementation-reference.md) <br>
-- [Proactive Tracker](artifact/references/proactive-tracker.md) <br>
-- [Security Hardening Guide](artifact/references/security-hardening.md) <br>
-- [Onboarding Guide](artifact/assets/ONBOARDING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python scripts, shell command examples, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local workspace memory files when its scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: ClawHub release evidence; artifact frontmatter says 3.1.0) <br>
+Risk: The skill is designed to keep durable local memory about a user and their work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when durable memory is intended, keep memory files out of shared repositories or sync folders unless deliberate, and review or delete memory files regularly.
+
+Risk: Broad conversation capture can store secrets, personal data, or sensitive project details.
+
+Mitigation: Narrow what gets logged, disable full-exchange capture by default, and add redaction for secrets and personal data before using the skill on sensitive projects.
+
+Risk: Helper scripts write local state and memory files when run.
+
+Mitigation: Review the configured memory paths and generated files before deployment, and run the scripts only in workspaces where local state persistence is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyblhl/skills/proactive-agent-wyblhl)
+- [Publisher profile](https://clawhub.ai/user/wyblhl)
+- [Proactive Agent Implementation Reference](references/implementation-reference.md)
+- [Proactive Tracker](references/proactive-tracker.md)
+- [Security Hardening Guide](references/security-hardening.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python helper scripts, JSON status output, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may write local memory and state files when run.]
+
+## Skill Version(s):
+
+3.1.1 (source: server release metadata; artifact frontmatter reports 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

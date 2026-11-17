@@ -1,42 +1,51 @@
-## Description: <br>
-Pokemon MCP wraps PokeAPI for Pokemon, type, ability, and evolution chain lookups without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pokemon MCP - wraps PokeAPI (free, no auth required).
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent users can connect an MCP client to the hosted Pipeworx Pokemon gateway to answer Pokemon lookup questions through PokeAPI-backed tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pokemon lookup requests are routed through Pipeworx's hosted MCP gateway. <br>
-Mitigation: Avoid sending unrelated private information through the tool and review gateway use against the deployment environment's data handling requirements. <br>
-Risk: The connection snippet uses the unpinned mcp-remote npm bridge. <br>
-Mitigation: Review the bridge package before use and pin a trusted version where the client environment allows it. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a Pokemon-focused MCP server that exposes Pokemon, type, ability, and evolution-chain lookup tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-pokemon) <br>
-- [Pipeworx Pokemon pack](https://pipeworx.io/packs/pokemon) <br>
-- [Pipeworx](https://pipeworx.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [MCP tool responses and JSON connection configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a hosted remote MCP gateway; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: The connection recipe uses an npm helper fetched dynamically with mcp-remote@latest, which can introduce supply-chain drift.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version and run the MCP process with least-privilege environment access before deployment.
+
+## Reference(s):
+
+- [Pipeworx Pokemon Pack](https://pipeworx.io/packs/pokemon)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-pokemon)
+- [Publisher profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP connection guidance for a remote Pokemon tool server.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

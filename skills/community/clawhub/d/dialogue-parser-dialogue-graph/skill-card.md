@@ -1,40 +1,50 @@
-## Description: <br>
-A library for building, validating, visualizing, and serializing dialogue graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A library for building, validating, visualizing, and serializing dialogue graphs. Use this when parsing scripts or creating branching narrative structures.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and narrative-tool builders use this skill to create, validate, serialize, load, and visualize branching dialogue structures for parsers, editors, games, and conversation-flow tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visualization requires the Python graphviz package and the Graphviz system binary. <br>
-Mitigation: Install Graphviz only from trusted sources before using visualization features. <br>
-Risk: The loader reads local JSON dialogue graph files. <br>
-Mitigation: Only load JSON files that are trusted or intentionally being inspected. <br>
+## Use Case:
 
+Developers and narrative-tool builders use this skill to create, validate, serialize, load, and visualize dialogue graphs for script parsers, dialogue editors, game logic, and branching narrative structures.
 
-## Reference(s): <br>
-- [Graphviz Downloads](https://graphviz.org/download/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples and JSON-compatible graph data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce JSON strings and PNG, SVG, or PDF graph visualizations when Graphviz dependencies are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Optional visualization depends on externally installed Graphviz components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Graphviz dependencies only in a trusted, isolated environment and pin the Python graphviz package before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wu-uk/skills/dialogue-parser-dialogue-graph)
+- [Graphviz Download](https://graphviz.org/download/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, JSON, Files, Guidance]
+
+**Output Format:** [Python code examples, JSON graph structures, and optional PNG/SVG/PDF visualization files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional visualization requires the Python graphviz package and the Graphviz system binary.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

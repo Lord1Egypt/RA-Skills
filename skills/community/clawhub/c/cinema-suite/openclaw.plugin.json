@@ -1,0 +1,10 @@
+{
+  "id": "rascalagnt001-cinema-suite",
+  "name": "Cinema Suite",
+  "description": "院线 Skill 与 Cinema Agent mode 插件汇总。",
+  "runtimeTargets": [
+    "openclaw",
+    "cinema-agent"
+  ],
+  "suiteManifest": "cinema-suite.json"
+}

@@ -1,50 +1,64 @@
-## Description: <br>
-Visual Muse helps an agent turn natural-language image requests into ComfyUI image-generation workflows with prompt creation, model selection, batch generation, quality review, and preference memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual Muse helps OpenClaw agents turn natural-language image requests into ComfyUI prompts, workflows, generated image files, quality reviews, and preference-aware guidance.
 
-## Publisher: <br>
-[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater)
 
-## Use Case: <br>
-External users and developers use this skill to generate images through a local ComfyUI setup from natural-language prompts, with support for style templates, workflow preparation, model fallback, quality review, and local preference tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill bundles setup and administration scripts for a local ComfyUI stack. <br>
-Mitigation: Review the shell scripts before running them and install only in an environment where local ComfyUI administration is acceptable. <br>
-Risk: ComfyUI may be exposed on all network interfaces if launched with broad listen settings. <br>
-Mitigation: Bind ComfyUI only to intended interfaces unless remote access is required and protected. <br>
-Risk: Troubleshooting cleanup commands can remove local session or workspace data. <br>
-Mitigation: Create and verify backups before running cleanup commands or deleting session directories. <br>
-Risk: Prompts, preferences, run history, and Ofox-routed LLM requests may leave local-only control boundaries. <br>
-Mitigation: Avoid sensitive prompts, review provider data handling, and disable model switching paths that are not needed. <br>
+## Use Case:
 
+External users, developers, and creative operators use this skill to generate images from natural-language requests through a local ComfyUI setup. The skill also supports prompt preparation, workflow selection, batch generation, result review, troubleshooting, and preference tracking.
 
-## Reference(s): <br>
-- [Visual Muse on ClawHub](https://clawhub.ai/baobaodawang-creater/visual-muse) <br>
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI.git) <br>
-- [ComfyUI Desktop](https://www.comfy.org/download) <br>
-- [Stable Diffusion XL Base 1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) <br>
-- [DreamShaper XL](https://huggingface.co/Lykon/DreamShaper) <br>
-- [Juggernaut XL v9](https://huggingface.co/RunDiffusion/Juggernaut-XL-v9) <br>
-- [Animagine XL 3.1](https://huggingface.co/cagliostrolab/animagine-xl-3.1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown or text responses with JSON payloads, shell commands, configuration edits, and generated image file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are produced through a local ComfyUI service and written to local output directories when the required ComfyUI environment is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can expose or connect to a local ComfyUI service and depends on OpenClaw workspace paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind ComfyUI to 127.0.0.1 unless remote access is intentionally required, and review workspace path access before installation.
+
+Risk: Setup and troubleshooting flows can download large third-party model artifacts and dependencies.
+
+Mitigation: Use trusted model sources, verify downloaded artifacts where practical, and install only in an environment prepared for the storage and compute requirements.
+
+Risk: Troubleshooting cleanup commands can remove local session or workspace files if copied without review.
+
+Mitigation: Inspect command targets first and make a verified backup before running cleanup commands.
+
+## Reference(s):
+
+- [Visual Muse Skill Page](https://clawhub.ai/baobaodawang-creater/skills/visual-muse)
+- [Visual Muse README](artifact/README.md)
+- [Visual Muse Troubleshooting](artifact/TROUBLESHOOTING.md)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI.git)
+- [SDXL Base 1.0 Model Card](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
+- [DreamShaper XL Model Card](https://huggingface.co/Lykon/DreamShaper)
+- [Juggernaut XL Model Card](https://huggingface.co/RunDiffusion/Juggernaut-XL-v9)
+- [Animagine XL 3.1 Model Card](https://huggingface.co/cagliostrolab/animagine-xl-3.1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown status messages, JSON prompt and workflow payloads, shell command invocations, and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local ComfyUI service, COMFYUI_API_URL configuration, Python tooling, and local model files.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

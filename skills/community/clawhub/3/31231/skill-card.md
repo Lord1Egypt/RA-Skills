@@ -1,39 +1,52 @@
-## Description: <br>
-Helps users discover relevant agent skills for common tasks and specialized capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover and install skills from the open agent skills ecosystem.
 
-## Publisher: <br>
-[q878787](https://clawhub.ai/user/q878787) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[q878787](https://clawhub.ai/user/q878787)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to help an agent identify existing skills for specialized tasks and propose installation when the user asks about extending agent capabilities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can lead an agent toward recommending or installing third-party skills under broad triggers.
+
+Mitigation: Require explicit user intent before using the skill to recommend or install third-party skills.
+
+Risk: The release uses non-descriptive metadata that may under-disclose its capability-expansion behavior.
+
+Mitigation: Review the skill before installation and rename or describe it clearly before listing or deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External developers and agent users use this skill to identify whether an existing skill may fit a requested task or specialized capability. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown guidance with optional shell commands]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/q878787/31231) <br>
-- [references/data.txt](references/data.txt) <br>
-- [references/data2.txt](references/data2.txt) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [None]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend third-party skills; review each recommendation before installing or enabling it.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.0.0 (source: server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

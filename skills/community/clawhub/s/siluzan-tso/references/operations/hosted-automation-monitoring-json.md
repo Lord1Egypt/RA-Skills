@@ -1,8 +1,9 @@
 # 异常监控巡检：`siluzan-tso` CLI `--json-out` 落盘 JSON 键名与命令
 
-> **主题索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md)  
-> **编排责任**：定时、HTTP 探活、通知等在宿主。本页只列 **读数命令与常见 JSON 键名**。  
+> **主题索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md)
+> **编排责任**：定时、HTTP 探活、通知等在宿主。本页只列 **Google 读数命令与常见 JSON 键名**。
 > **统计日 / 时区**：与自控场景相同，见 [`references/operations/hosted-automation-self-control.md`](references/operations/hosted-automation-self-control.md)「统计日与今日」。
+> Bing / Yandex / TikTok / Facebook 巡检步骤见 `hosted-automation-bing.md` / `hosted-automation-yandex.md` / `hosted-automation-tiktok.md` / `hosted-automation-facebook.md`，不要套用本页 Google 键名。
 
 宿主做定时巡检时，**只以当次 CLI 落盘 JSON 键名为准**（读命令统一 **`--json-out <dir>`**，以**落盘 `*.json` 文件正文**为准；`google-analysis` 等同理）。Google Ads API 文档里的资源名（如 `billing_setup`、`account_budget`、`amount_served_micros`）**与本 CLI 输出不是同一套命名**，不要当作本仓库 JSON 的键去解析。若某键缺失，**禁止猜测**：以实际输出为准，或换用 `references/analytics/account-analytics.md` 中的其它子命令。
 
@@ -18,16 +19,16 @@ siluzan-tso balance-scan -m Google [--threshold-days <n>] [--min-balance <n>] [-
 
 `--json-out` 落盘后根结构常为 **`{ ok, data: { items }, meta }`**（以实际输出为准）。宿主常用字段：
 
-| 用途                                                       | JSON 路径 / 字段名                                                                                                                                           |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 账户                                                       | `data.items[].mediaCustomerId`、`data.items[].name`、`data.items[].advertiserName`                                                                           |
-| 余额（主币种金额，与平台余额接口一致）                     | **`data.items[].balance`**（由 `remainingAccountBudget` 计算而来）                                                                                           |
-| 近 7 日估算日均消耗                                        | **`data.items[].dailySpend`** = 近 7 日总消耗 / 7（窗口为 **[T-7, T-1]**，即截至昨天的 7 个自然日，**不含当天**，避免拉到当天未结算数据）                    |
-| 按余额÷日均估算的续航天数                                  | **`data.items[].remainingDays`** = `balance / dailySpend`（消耗过低 < `minDailySpend` 时为 `null`）                                                          |
-| 建议充值额（按 `meta.thresholds.targetDaysForTopup` 目标） | **`data.items[].recommendedTopup`**                                                                                                                          |
-| 命中原因（阈值逻辑）                                       | **`data.items[].hitReason`**：`low-days` \| `low-balance` \| `both`                                                                                          |
-| 币种 / 状态 / OAuth                                        | `data.items[].currencyCode`、`data.items[].status`、`data.items[].invalidOAuthToken`                                                                         |
-| 本轮扫描元数据                                             | **`meta`**：`scannedAccounts`、`validAccounts`、`hitCount`、`thresholds`（含 `days`、`minBalance`、`minDailySpend`、`targetDaysForTopup`）、`generatedAt` 等 |
+| 用途                                                       | JSON 路径 / 字段名                                                                                                                                                                            |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 账户                                                       | `data.items[].mediaCustomerId`、`data.items[].name`、`data.items[].advertiserName`                                                                                                            |
+| 余额（主币种金额，与平台余额接口一致）                     | **`data.items[].balance`**（由 `remainingAccountBudget` 计算而来）                                                                                                                            |
+| 近 7 日估算日均消耗                                        | **`data.items[].dailySpend`** = 近 7 日总消耗 / 7（窗口为 **[T-7, T-1]**，北京时间截至昨天的 7 个自然日，**不含当天**；Google 请求带 `+08:00`）                                               |
+| 按余额÷日均估算的续航天数                                  | **`data.items[].remainingDays`** = `balance / dailySpend`（消耗过低 < `minDailySpend` 时为 `null`）                                                                                           |
+| 建议充值额（按 `meta.thresholds.targetDaysForTopup` 目标） | **`data.items[].recommendedTopup`**                                                                                                                                                           |
+| 命中原因（阈值逻辑）                                       | **`data.items[].hitReason`**：`low-days` \| `low-balance` \| `both` \| `none`（已检查但未触阈值）。`data.items` 含全部已检查账户；预警筛 `hitReason !== "none"`。`meta.hitCount` 为触阈值条数 |
+| 币种 / 状态 / OAuth                                        | `data.items[].currencyCode`、`data.items[].status`、`data.items[].invalidOAuthToken`                                                                                                          |
+| 本轮扫描元数据                                             | **`meta`**：`scannedAccounts`、`validAccounts`、`hitCount`、`thresholds`（含 `days`、`minBalance`、`minDailySpend`、`targetDaysForTopup`）、`generatedAt` 等                                  |
 
 **单账户** — 命令：
 
@@ -35,7 +36,7 @@ siluzan-tso balance-scan -m Google [--threshold-days <n>] [--min-balance <n>] [-
 siluzan-tso balance -m Google --accounts <mediaCustomerId> --json-out ./snap
 ```
 
-`items[]` 每行：**`mediaCustomerId`**、**`remainingAccountBudget`**、**`status`**、**`currencyCode`**、**`name`**（与 `references/accounts/accounts.md` 中 `balance` 说明一致）。
+`items[]` 每行：**`mediaCustomerId`**、**`remainingAccountBudget`**、**`status`**、**`currencyCode`**、**`name`**（与 `references/accounts/accounts-balance-stats.md` 中 `balance` 说明一致）。
 
 **账户总览（区间内的费用与日均，可与续航逻辑组合）** — 命令：
 

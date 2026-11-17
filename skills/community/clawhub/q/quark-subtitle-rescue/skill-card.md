@@ -1,44 +1,55 @@
-## Description: <br>
-Bulk add subtitles to Quark movie folders with high success and low wrong-match risk, using staged retries, multi-provider fallback, rollback safety, and completion reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bulk add subtitles to Quark movie folders with high success and low wrong-match risk. Best for "all subfolders" jobs, interrupted runs, and retrying failed titles with multi-source fallback (OpenSubtitles/SubHD/YIFY), strict matching, rollback safety, and completion reporting.
 
-## Publisher: <br>
-[tangqi00987](https://clawhub.ai/user/tangqi00987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangqi00987](https://clawhub.ai/user/tangqi00987)
 
-## Use Case: <br>
-Developers and operators use this skill to recover or complete bulk subtitle uploads across Quark movie folders, especially after interrupted runs, failed folders, or provider-specific misses. It guides staged batch execution, strict retries, fallback providers, spot checks, rollback decisions, and final progress reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a Quark session cookie, which can expose account access if copied, logged, or stored with broad permissions. <br>
-Mitigation: Protect the cookie file with restrictive permissions and avoid pasting or logging the cookie during setup, execution, and troubleshooting. <br>
-Risk: External batch scripts can modify many cloud folders, including upload, rollback, or delete actions. <br>
-Mitigation: Inspect and trust the separate quark_subtitle_tool installation first, use a narrow target folder, test on a small batch, and require explicit confirmation before upload, rollback, or delete actions. <br>
-Risk: Batch subtitle matching can create false success if many files receive the same or wrong subtitle content. <br>
-Mitigation: Pause on mismatch signals, run hash-based and content spot checks, and roll back bad batches before continuing. <br>
+## Use Case:
 
+External users and agents use this skill to recover or complete subtitle uploads across many Quark movie folders, especially after interrupted runs or failed matches. It guides staged retries, provider fallback, rollback checks, and completion reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tangqi00987/quark-subtitle-rescue) <br>
-- [Workflow Reference](artifact/references/workflow.md) <br>
-- [Troubleshooting](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Text] <br>
-**Output Format:** [Markdown with inline bash commands and checklist-style operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize JSON progress reports produced by the external Quark subtitle tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill guides an agent to run subtitle tooling against a user's Quark account, so mishandled credentials or account context could expose sensitive access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the existing quark_subtitle_tool before installation, store the Quark cookie securely, and do not paste or print it.
+
+Risk: Batch subtitle workflows can upload wrong matches or require rollback deletes in cloud storage.
+
+Mitigation: Review batch results before accepting uploads or rollback deletes, and use the skill's spot-check and rollback guidance before declaring completion.
+
+## Reference(s):
+
+- [Workflow Reference](references/workflow.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/tangqi00987/skills/quark-subtitle-rescue)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes staged workflow decisions, safety checks, troubleshooting guidance, and completion report commands.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

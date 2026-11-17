@@ -1,48 +1,57 @@
-## Description: <br>
-Minecraft Java Edition creative building workflows and builder automation for FAWE/WorldEdit editing, Mineflayer construction, schematic pipelines, material production, redstone automation, villager trading, and large-build execution on an already-running server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minecraft Java Edition creative building workflows and builder automation, including FAWE/WorldEdit large-scale editing, Mineflayer Bot construction, Litematica and schematic pipelines, material production lines, redstone automation for builders, villager trading systems, and pixel-art or large-build execution workflows on an already-running server.
 
-## Publisher: <br>
-[en1r0py1865](https://clawhub.ai/user/en1r0py1865) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[en1r0py1865](https://clawhub.ai/user/en1r0py1865)
 
-## Use Case: <br>
-Developers, builders, and server administrators use this skill to plan and explain Minecraft Java creative-building workflows on a running server. It helps distinguish self-hosted and public-server constraints for FAWE/WorldEdit, schematics, Mineflayer bots, Litematica, material pipelines, and build-focused automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The available scan signals did not include a full coherence review of the target skill files. <br>
-Mitigation: Review the bundled skill instructions and metadata before deployment, especially for credential handling, local file access, background execution, or account-changing actions. <br>
-Risk: Bot or client-assisted building guidance can be misused on public Minecraft servers. <br>
-Mitigation: Require explicit confirmation that the user controls the server or has administrator permission before giving execution-level automation guidance. <br>
-Risk: OP, RCON, WorldEdit, FAWE, or large schematic operations can materially change a server world. <br>
-Mitigation: Frame these actions as self-hosted or OP-granted only, and recommend staging or backups before large edits. <br>
+## Use Case:
 
+External developers, server administrators, and Minecraft builders use this skill to plan and execute creative building workflows on running Java Edition servers. It helps choose between FAWE, WorldEdit, Mineflayer, Litematica, schematic, materials, redstone, and villager-trading approaches while keeping permission-sensitive automation scoped to authorized servers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/en1r0py1865/minecraft-building-server) <br>
-- [Publisher profile](https://clawhub.ai/user/en1r0py1865) <br>
-- [Project homepage](https://github.com/en1r0py1865/minecraft-skill) <br>
-- [Server Fundamentals](references/server-fundamentals.md) <br>
-- [FAWE / WorldEdit Workflows](references/fawe-workflows.md) <br>
-- [Materials, Farms, and Production Pipelines](references/materials-and-pipelines.md) <br>
-- [Bot, Schematic, and Assisted Building Workflows](references/bot-and-schematic-workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, lists, and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should distinguish self-hosted and public-server constraints when permissions, automation, RCON, or OP commands are relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can advise on powerful Minecraft server capabilities such as OP commands, RCON, FAWE edits, and bot automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use these capabilities only on servers the user controls or where the user has explicit administrator permission.
+
+Risk: Ambiguous server ownership can make automation or permission guidance unsafe for public servers.
+
+Mitigation: Confirm whether the server is self-hosted or public before giving execution-level bot, OP command, RCON, or automation advice.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/en1r0py1865/minecraft-skill)
+- [Server Fundamentals](references/server-fundamentals.md)
+- [FAWE / WorldEdit Workflows](references/fawe-workflows.md)
+- [Materials, Farms, and Production Pipelines](references/materials-and-pipelines.md)
+- [Bot, Schematic, and Assisted Building Workflows](references/bot-and-schematic-workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured recommendations, tables, command examples, and concise workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should distinguish self-hosted and public-server contexts before giving permission-sensitive automation, OP command, RCON, or bot guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Classify text into custom intents with confidence scoring and entity extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify text into custom intents with confidence scoring and entity extraction.
 
-## Publisher: <br>
-[Daisuke134](https://clawhub.ai/user/Daisuke134) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daisuke134](https://clawhub.ai/user/daisuke134)
 
-## Use Case: <br>
-Developers and agent builders use this skill to route user messages, classify NLU intents, and extract entities for multi-agent orchestration or text-classification workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided text to a hosted classifier endpoint. <br>
-Mitigation: Avoid sending secrets, credentials, regulated data, or confidential conversations unless the service's privacy practices are acceptable. <br>
-Risk: Each request is a paid x402 call. <br>
-Mitigation: Use spending limits, manual review, or operational controls before routing high-volume traffic through the skill. <br>
-Risk: Intent classification can be incorrect or low confidence. <br>
-Mitigation: Review confidence scores and add fallback handling for uncertain or business-critical routing decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [intent-router skill page](https://clawhub.ai/Daisuke134/intent-router) <br>
-- [intent-router hosted endpoint](https://anicca-proxy-production.up.railway.app/api/x402/intent-router) <br>
+## Use Case:
 
+Developers and agent builders use this skill to classify messages against a custom intent list for routing, NLU workflows, and multi-agent orchestration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces intent matches, confidence scores, optional secondary intent data, extracted entities, and detected language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends message text to an external service with limited privacy and safety guidance.
+
+Mitigation: Use only text that is appropriate to share with the listed service, and avoid secrets, sensitive personal data, and regulated data.
+
+Risk: The skill asks users to install and authenticate a global third-party payment CLI.
+
+Mitigation: Confirm the npm package publisher, version, payment destination, amount, and token storage or revocation behavior before authenticating or paying; consider using an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daisuke134/skills/intent-router)
+- [intent-router x402 endpoint](https://anicca-proxy-production.up.railway.app/api/x402/intent-router)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON object with intent, confidence, reasoning, secondary intent, entities, and detected language fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input text is limited to 2000 characters, context is limited to 500 characters, and candidate intents are limited to 2-20 items.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

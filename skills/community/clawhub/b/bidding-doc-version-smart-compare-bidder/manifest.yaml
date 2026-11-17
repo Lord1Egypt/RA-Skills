@@ -1,0 +1,19 @@
+name: bidding-doc-version-smart-compare-bidder
+slug: bidding-doc-version-smart-compare-bidder
+display_name: 招标文件版本智能对比（投标人版）
+emoji: "📑"
+version: 1.0.0
+version_stage: "GA"
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+homepage: https://github.com/chesaram/my-skill-hub
+feedback:
+  channel: "GitHub Issues"
+  account: "chesaram/my-skill-hub"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"
+description: '当用户上传两份招标文件（docx/pdf，含文本层）需要比对版本差异、标注变更对投标的影响时触发。从投标人视角分析差异条款的投标影响（报价/技术方案/资格/时限权利），输出结构化差异报告。仅支持中文可编辑文档，不支持扫描件。'
+changelog:
+  - version: 1.0.0
+    date: 2026-07-26
+    change: 首版发布——投标人视角招标文件版本智能对比。基于 tender-version-compare v2.1 优化成果改造为 bidder-only 技能：剥离实验性招标人视角、新增「30秒上手」+FAQ(5条)+格式校验标准化回复表+PDF文本层检测降级指引+脚本失败处理；bidder 分析头新增边界情况处理表（5种场景）与缺日期/异常恢复策略；保留 Golden 回归（龙陵4vs5 9/9）。合规：GitHub Issues 反馈、无公众号导流、SKILL.md 不强制署名注入。

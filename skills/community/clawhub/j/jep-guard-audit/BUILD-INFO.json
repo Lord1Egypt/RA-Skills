@@ -1,0 +1,32 @@
+{
+  "package": "jep-guard-audit",
+  "version": "2.0.1",
+  "status": "repair-candidate-awaiting-clawhub-review",
+  "local_source_commit": "05048ddf1d46749a81b4f157c6bb3bc5ca917988",
+  "remote_source_commit_verified": false,
+  "validation": {
+    "package_tests_passed": 27,
+    "shared_security_tests_passed": 19,
+    "skill_frontmatter": "pass"
+  },
+  "sha256": {
+    "CHANGELOG.md": "01283dd810d6278e27234340f191ef17b83196c359fc7b7ae60d211174b25ff2",
+    "README.md": "7f702e33bf02d4e9248e22df3532be9cb6d9a8c3035c7719ddff022b40feb892",
+    "SECURITY.md": "26fb8066a1d12e1e3370bb8f20fcaac0a43a8897c8c093d3a758066ae47f1f0a",
+    "SKILL.md": "bee4f03e810f6b62671cc4b19547f6ccc167ccf96e027dd683b0ccd11b03f74d",
+    "UPLOAD-README-zh.md": "de0bc3eff6351ad5ccd2fd6f141b88be17de0e3d3daaad5b4bd87c84d9d77ff7",
+    "examples/strict_protocol_demo.py": "b16d662ec98c7537b04ec8a055feb579a3c5ce274941c5122aabccfeefc619ea",
+    "manifest.json": "38a3b77723e8dd32b1ca6a3c8de64bd85d2c5edcb1e1817be9f4611edb1f149c",
+    "requirements.txt": "3902430dc0b612303c100a1fef3350d417be706c6a926bb3333f314802c65828",
+    "skill/__init__.py": "b2bff58222e58d3096e9ab46a063f847b8fb0f57bbf5c17c0d6e79c756a85a8a",
+    "skill/adapter.py": "bba187c758ca8bd557844cd0184c14835a5d35226f5813745adb6e2505d0f530",
+    "skill/api.py": "18dff75511874028dd1c94f0f793f6a00930e51fe8c13abe0c98fb3c5a247bee",
+    "skill/capacity.py": "b967438c714c748f8b821c5ab603262b7451dbded5150cdb9de0adf276f3ecc4",
+    "skill/codec.py": "ff89bd1541e4d22391b9541f6ce7f8e1029c74ef752c8b5d155edbd9ade77e01",
+    "skill/core.py": "df9d835a97e716585b4c034809704dbb6810abc61bf67275ce4b5907d93b93fb",
+    "skill/security.py": "3587f0e1848dc7385ba98e437f209c468db64238a547e5ab8f1a94764dc65cbd",
+    "skill/types.py": "ae5d17b48d66d359a498411bbba03169ee4e6cbeea7bd50faef067543b3b5af4",
+    "tests/test_capacity.py": "e1fcb3068885c4068c3187cf117636a6b48dd147a323690f4b3d8fbb8b3e67af",
+    "tests/test_three_layer.py": "f7324a8654887c8277e8be5cc2a21c5a2c30dc1051559ddd2fbeb89d755c2df8"
+  }
+}

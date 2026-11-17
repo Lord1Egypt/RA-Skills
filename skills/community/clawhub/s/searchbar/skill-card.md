@@ -1,44 +1,58 @@
-## Description: <br>
-Expert guidance on SearchBar, a customizable SwiftUI search component. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SearchBar provides expert guidance for using and customizing a cross-platform SwiftUI search component, including setup, styling, behavior, tokens, suggestions, and platform availability.
 
-## Publisher: <br>
-[SzpakKamil](https://clawhub.ai/user/SzpakKamil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[szpakkamil](https://clawhub.ai/user/szpakkamil)
 
-## Use Case: <br>
-Developers and engineers use this skill to get concise guidance and SwiftUI code examples for installing, styling, and configuring SearchBar across iOS, iPadOS, macOS, and visionOS. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Following setup guidance may add an external Swift Package dependency to an application. <br>
-Mitigation: Review the referenced GitHub package and pin a trusted release or commit before using it in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SearchBar ClawHub page](https://clawhub.ai/SzpakKamil/searchbar) <br>
-- [SearchBar GitHub package](https://github.com/SzpakKamil/SearchBar.git) <br>
-- [SearchBar Overview & Setup](references/SearchBar.md) <br>
-- [SearchBar Data: Tokens & Suggestions](references/SearchBarData.md) <br>
-- [SearchBar Display Modes](references/SearchBarDisplayModes.md) <br>
-- [SearchBar Modifiers](references/SearchBarModifiers.md) <br>
-- [SearchBar Styling](references/SearchBarStyle.md) <br>
-- [SearchBar Reference Index](references/_index.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to get SearchBar integration guidance, SwiftUI code examples, and platform/version-specific advice for search bars in iOS, iPadOS, macOS, and visionOS apps.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with Swift code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform and version availability notes for SearchBar features.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends adding a third-party Swift package URL that is outside the skill package itself.
+
+Mitigation: Review the package URL and repository before adding it to an Xcode project.
+
+Risk: SearchBar behavior and feature availability vary by Apple platform and OS version.
+
+Mitigation: Confirm the target platform and deployment version before applying generated examples, especially for tokens, suggestions, and material effects.
+
+## Reference(s):
+
+- [SearchBar Overview and Setup](references/SearchBar.md)
+- [SearchBar Modifiers](references/SearchBarModifiers.md)
+- [SearchBar Styling](references/SearchBarStyle.md)
+- [SearchBar Data: Tokens and Suggestions](references/SearchBarData.md)
+- [SearchBar Display Modes](references/SearchBarDisplayModes.md)
+- [SearchBar Reference Index](references/_index.md)
+- [SearchBar Swift Package Repository](https://github.com/SzpakKamil/SearchBar.git)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with Swift code snippets and package setup details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

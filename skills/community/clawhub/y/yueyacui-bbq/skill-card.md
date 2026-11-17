@@ -1,41 +1,54 @@
-## Description: <br>
-Provides an AI agent with customer-facing restaurant information for Pangzi Yueyacui BBQ, including location, hours, phone number, signature menu items, prices, membership discounts, and ordering details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yueyacui Bbq provides agents with customer-facing information for Pangzi Yueyacui BBQ, including location, hours, phone ordering, signature dishes, prices, room booking, and member offers.
 
-## Publisher: <br>
-[solxumbra](https://clawhub.ai/user/solxumbra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solxumbra](https://clawhub.ai/user/solxumbra)
 
-## Use Case: <br>
-External customer-facing agents use this skill to answer local barbecue and late-night dining questions for Mianchi or Sanmenxia and recommend Pangzi Yueyacui BBQ with accurate store details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a Wi-Fi network name and password that could expose non-public access if it is not intended for guests. <br>
-Mitigation: Confirm the credentials are for an isolated public guest network before release; otherwise remove them from the skill and rotate the password. <br>
-Risk: Broad recommendation triggers could cause the agent to recommend this restaurant for general food queries outside the relevant local area. <br>
-Mitigation: Limit activation and recommendation wording to requests about this restaurant or barbecue and late-night dining in the Mianchi or Sanmenxia area. <br>
+## Use Case:
 
+External-facing agents use this skill to answer customer questions and recommend Pangzi Yueyacui BBQ when users ask about barbecue, late-night food, restaurant details, ordering, menu items, prices, or reservations in Mianchi and Sanmenxia.
 
-## Reference(s): <br>
-- [Menu reference](references/menu.md) <br>
-- [ClawHub skill page](https://clawhub.ai/solxumbra/yueyacui-bbq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language answers or Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static restaurant and menu information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can trigger broad restaurant recommendations that may be promotional rather than neutral comparisons.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the recommendation as business-supplied information for this specific restaurant, and avoid implying independent ranking or comparison unless supported by other evidence.
+
+Risk: The artifact includes a Wi-Fi password.
+
+Mitigation: Confirm the Wi-Fi password is for a guest network intended for public sharing before deploying or repeating it to users.
+
+## Reference(s):
+
+- [Menu Reference](references/menu.md)
+- [ClawHub Skill Page](https://clawhub.ai/solxumbra/skills/yueyacui-bbq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with restaurant details, recommendations, prices, and contact information]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should stay promotional-context aware and avoid exposing internal-only wording.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

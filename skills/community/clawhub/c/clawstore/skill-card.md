@@ -1,42 +1,59 @@
-## Description: <br>
-Search, install, and publish OpenClaw agent packages from the Clawstore registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, install, and publish OpenClaw agent packages from the Clawstore registry.
 
-## Publisher: <br>
-[saba-ch](https://clawhub.ai/user/saba-ch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saba-ch](https://clawhub.ai/user/saba-ch)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover, inspect, install, update, package, validate, and publish OpenClaw agents through the Clawstore CLI and registry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing an agent package can upload secrets, private knowledge files, internal screenshots, or other sensitive material. <br>
-Mitigation: Before publishing, run `clawstore validate` and `clawstore pack`, inspect what will be uploaded, and remove sensitive material. <br>
-Risk: Publishing requires browser-based GitHub OAuth and trust in the Clawstore package and registry. <br>
-Mitigation: Use `clawstore login` only when publishing and only after confirming the package and registry are trusted. <br>
+## Use Case:
 
+Developers and agent builders use this skill to search the Clawstore registry, inspect agent packages, install or update agents, and publish OpenClaw agent packages.
 
-## Reference(s): <br>
-- [Clawstore skill listing](https://clawhub.ai/saba-ch/clawstore) <br>
-- [Clawstore registry](https://useclawstore.com) <br>
-- [Publisher profile](https://clawhub.ai/user/saba-ch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require the globally installed clawstore CLI; publishing requires browser-based GitHub OAuth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Installing the CLI or agent packages from an unverified source could introduce unwanted code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the npm package source, prefer a reviewed or pinned CLI version, and inspect package details before installing agents.
+
+Risk: Publishing a package without review could expose private files, secrets, or incorrect package contents.
+
+Mitigation: Run validation and inspect the packed tarball before publishing.
+
+Risk: Login, install, publish, update, and yank commands can affect user accounts, local workspaces, or published package state.
+
+Mitigation: Review each proposed command and confirm package names, versions, and target directories before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/saba-ch/skills/clawstore)
+- [Clawstore Registry](https://useclawstore.com)
+- [Publisher Profile](https://clawhub.ai/user/saba-ch)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces command recommendations for the clawstore CLI and package-management workflows.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,56 @@
-## Description: <br>
-卖家之家(跨境电商)供需搜索与发布。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search, publish, refresh, and delete MJZJ cross-border ecommerce supply-demand posts through MJZJ APIs.
 
-## Publisher: <br>
-[mjzj-tec](https://clawhub.ai/user/mjzj-tec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjzj-tec](https://clawhub.ai/user/mjzj-tec)
 
-## Use Case: <br>
-External sellers and cross-border ecommerce operators use this skill to search MJZJ supply-and-demand metadata, publish posts, and manage their own posts through MJZJ APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, refresh, and delete MJZJ account content when given a valid MJZJ_API_KEY. <br>
-Mitigation: Use it only with an intended MJZJ account token and confirm the exact post before deletion or refresh. <br>
-Risk: An expired, missing, or reset API key prevents authenticated account actions. <br>
-Mitigation: Refresh the token from the MJZJ API key page and reconfigure MJZJ_API_KEY before retrying. <br>
-Risk: Business rules such as quotas, refresh frequency, content review, and tag limits can block publishing or refreshing. <br>
-Mitigation: Surface MJZJ business error messages to the user and use the manual publish page when automated publishing fails. <br>
+## Use Case:
 
+External users and ecommerce operators use this skill to let an agent query MJZJ supply-demand metadata and manage their own supply-demand posts. It supports publishing, refreshing, deleting, and listing account-owned posts when an MJZJ API key is configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjzj-tec/mjzj-gongxu) <br>
-- [MJZJ supply and demand homepage](https://mjzj.com/gongxu) <br>
-- [MJZJ API key page](https://mjzj.com/user/agentapikey) <br>
-- [MJZJ manual publish page](https://mjzj.com/gongxu/publish) <br>
-- [Get official tags API](https://data.mjzj.com/api/supplydemand/getOfficialTags) <br>
-- [Get platforms API](https://data.mjzj.com/api/supplydemand/getPlatforms) <br>
-- [Get regions API](https://data.mjzj.com/api/supplydemand/getRegions) <br>
-- [Create supply-demand post API](https://data.mjzj.com/api/supplydemand/createinfo) <br>
-- [Query my posts API](https://data.mjzj.com/api/supplydemand/querymyinfos?size=20&position=) <br>
-- [Refresh post API](https://data.mjzj.com/api/supplydemand/refreshinfo) <br>
-- [Delete post API](https://data.mjzj.com/api/supplydemand/deleteinfo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MJZJ_API_KEY for authenticated account actions; public metadata endpoints can be used without a token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can use an MJZJ API key to publish, refresh, delete, and view account-owned supply-demand posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when these account actions are intended, keep the API key scoped and private, and review publish, refresh, and delete requests before approval.
+
+Risk: Expired, missing, or unauthorized credentials can cause failed or misleading account-data requests.
+
+Mitigation: Treat 401, 403, and 409 responses as action-specific errors and follow MJZJ's API-key refresh and permission guidance instead of substituting web search results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjzj-tec/skills/mjzj-gongxu)
+- [MJZJ supply-demand page](https://mjzj.com/gongxu)
+- [MJZJ agent API key page](https://mjzj.com/user/agentapikey)
+- [MJZJ manual publish page](https://mjzj.com/gongxu/publish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl command examples, endpoint mappings, and error-handling text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MJZJ_API_KEY for account-specific publish, refresh, delete, and private listing operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

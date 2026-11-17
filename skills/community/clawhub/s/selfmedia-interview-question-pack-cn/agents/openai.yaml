@@ -1,0 +1,8 @@
+interface:
+  display_name: 采访问题与追问清单
+  short_description: 将公开资料整理成有主线的中文采访问题、追问与录制前核对点
+  default_prompt: 请根据我提供的受访者公开资料、采访主题和时长，生成采访问题、条件式追问和素材核对点；如缺资料请先列出缺项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

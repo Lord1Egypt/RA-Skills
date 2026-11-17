@@ -1,43 +1,50 @@
-## Description: <br>
-Provides strict verbatim retrieval from Tianchuang Finance policy documents, returning matching Chinese excerpts or "无" without summaries or reinterpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides strict Chinese-language retrieval for Tianchuang finance policy questions, returning exact source excerpts or "无" without interpretation.
 
-## Publisher: <br>
-[Jizhidemu52](https://clawhub.ai/user/Jizhidemu52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jizhidemu52](https://clawhub.ai/user/jizhidemu52)
 
-## Use Case: <br>
-Employees, agents, and finance-policy users use this skill to answer Tianchuang Finance policy questions by retrieving exact Chinese excerpts from the configured document corpus. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic finance terms may trigger the skill more often than users expect. <br>
-Mitigation: Review retrieved output in context and disable or narrow triggers if broad activation interferes with other finance workflows. <br>
-Risk: Returned excerpts may be outdated or unauthorized if the referenced Tianchuang PDF corpus is not current and approved. <br>
-Mitigation: Verify the corpus authorization and currency before treating excerpts as official policy. <br>
+## Use Case:
 
+Employees and agents use this skill to answer Tianchuang finance policy questions by retrieving exact Chinese excerpts from the documented policy corpus. It is suited for reimbursement, budget, funds, foreign exchange, payment, approval, risk-control, travel, sample expense, and customer credit-term queries where verbatim policy text is required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jizhidemu52/tianchuang-finance-kb) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [config.json](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text Chinese excerpts or "无"] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Multiple matches are separated by newlines; output should not include summaries, explanations, headers, or rewritten text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may activate on broad finance or policy questions that are not specific to Tianchuang.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Tianchuang-specific trigger phrases and make the Chinese-only, verbatim-response behavior clear to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jizhidemu52/skills/tianchuang-finance-kb)
+- [Publisher profile](https://clawhub.ai/user/jizhidemu52)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain Chinese text containing exact source excerpts or "无"]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Multiple matching excerpts are returned on separate lines; no summaries, explanations, or framing text are expected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

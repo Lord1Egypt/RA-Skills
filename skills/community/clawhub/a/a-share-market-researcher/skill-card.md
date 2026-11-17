@@ -1,40 +1,53 @@
-## Description: <br>
-A股市场研究助手追踪A股行业和发行人动态，综合新闻、政策文件和研究报告，并基于政策、资金、景气、情绪四层信号框架输出行业研究、投资标的筛选和风险审查提示。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股市场研究助手追踪行业和发行人动态，综合新闻、政策文件和研究报告，基于政策、资金、景气、情绪四层信号框架输出A股行业研究、投资标的筛选和风险审查提示。
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-External market researchers, analysts, and investment teams use this skill to structure A-share sector research, screen potential investment targets, and document policy, capital-flow, prosperity, sentiment, and risk evidence for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated stock screens, target prices, or investment conclusions could be mistaken for licensed financial advice. <br>
-Mitigation: Treat outputs as research only, verify dated sources, assumptions, prices, and risk sections, and add an informational-only disclaimer before sharing. <br>
-Risk: A-share market, policy, capital-flow, and valuation data can become stale quickly. <br>
-Mitigation: Re-check current data from authoritative sources and keep source dates visible before relying on any recommendation or screen. <br>
+## Use Case:
 
+External market researchers, investment analysts, and agent users can use this skill to structure A-share industry research, compare policy, capital, prosperity, and sentiment signals, and draft reports with risk flags and source-date requirements. It is not a substitute for independent verification or personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/a-share-market-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report structure with tables, scoring sections, source notes, target screening, and risk prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires dated source attribution and explicit risk review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated market data, target prices, upside estimates, and stock screens may be stale, incomplete, or unsuitable for a specific investor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify source dates and current market data independently, require documented valuation methods, and treat outputs as research support rather than personalized investment advice.
+
+Risk: The workflow asks users to identify stocks with substantial upside, which can encourage overconfident recommendations if evidence is weak.
+
+Mitigation: Apply the skill's own requirements to disclose missing data, reject candidates that fail screening criteria, and include human review before publication or trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/skills/a-share-market-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report outline and tabular screening templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source-date expectations, risk flags, target price screening structure, and optional Excel comparison table guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

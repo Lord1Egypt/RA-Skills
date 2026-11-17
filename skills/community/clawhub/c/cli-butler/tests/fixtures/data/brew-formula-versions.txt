@@ -1,0 +1,3 @@
+cowsay 3.7.0
+fd 9.0.0
+ripgrep 14.1.0

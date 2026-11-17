@@ -1,0 +1,28 @@
+name: youtube-video-metadata-localize-free
+slug: youtube-video-metadata-localize-free
+display_name: YouTube 公开视频元数据中文化
+description: 使用用户指定的 Easy WebBridge 浏览器环境读取一个已授权的公开视频页面，为中文受众整理原题和简介要点，产出中文标题、简介草稿、逐条来源链接与缺项说明。适用于上线前本地化审阅；简介不可见或原主张含糊时保留原词，不改写后台内容。
+version: 1.0.2
+icon: icon-512.png
+repository: https://github.com/xxjrq/youtube-video-metadata-localize-free
+license: MIT-0
+tags:
+  - youtube
+  - metadata-localization
+  - chinese-copywriting
+  - browser-research
+triggers:
+  - 把这个 YouTube 视频的标题和简介中文化
+  - 从授权 YouTube 公开视频生成中文元数据草稿
+  - 整理 YouTube 视频来源链接和本地化标题
+trigger_words:
+  - YouTube中文标题
+  - 视频简介中文化
+  - 公开视频元数据
+interface:
+  display_name: YouTube 公开视频元数据中文化
+  short_description: "从授权公开视频提炼中文标题、简介草稿与可追溯来源，并标出待确认品牌"
+  default_prompt: "使用 $youtube-video-metadata-localize-free 根据用户授权的公开视频可见标题和简介生成中文元数据草稿与逐项来源；品牌、模糊主张和不可见简介保留并标注待确认。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: node scripts/self-test.mjs

@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn70achgzvarm4h65h3vzc0s4x83736q",
-  "slug": "conversation-saver",
-  "version": "0.1.1",
-  "publishedAt": 1774495246234
+  "name": "conversation-saver",
+  "version": "0.1.0",
+  "description": "自动从对话历史中提取关键事实，持久化到本地记忆文件",
+  "author": "老布",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/laobu/conversation-saver",
+  "repository": "https://github.com/laobu/conversation-saver",
+  "tags": ["memory", "conversation", "extraction", "persistence"],
+  "requirements": {
+    "python": ">=3.10"
+  }
 }

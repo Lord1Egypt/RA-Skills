@@ -1,0 +1,127 @@
+{
+  "_meta": {
+    "version": "2.8.0",
+    "note": "领域知识库（期刊 tier / 报告规范 / 常见局限）。IF 为入库近似（approx:true），非官方 JCR；联网时由 OpenAlex 真实引用指标覆盖（见 P2b）。",
+    "coverage": "oncology/cardiology/general 为较实种子；其余领域为 stub（标注 coverage:stub），推荐时回退 general 并明示。"
+  },
+  "oncology": {
+    "journal_tiers": [
+      {"name": "Lancet Oncology", "if": 50, "tier": "top", "approx": true},
+      {"name": "Journal of Clinical Oncology", "if": 40, "tier": "top", "approx": true},
+      {"name": "Annals of Oncology", "if": 30, "tier": "high", "approx": true},
+      {"name": "Cancer Research", "if": 10, "tier": "mid", "approx": true},
+      {"name": "Clinical Cancer Research", "if": 10, "tier": "mid", "approx": true},
+      {"name": "European Journal of Cancer", "if": 8, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + CONSORT (RCT) / STROBE (观察性)",
+    "common_limitations": ["仅英文文献", "未注册 protocol", "回顾性设计", "未区分 OS 与 PFS"],
+    "reviewer_questions": ["是否按瘤种/分子分型做亚组？", "是否报告了 OS 与 PFS 双重终点？"],
+    "coverage": "real"
+  },
+  "cardiology": {
+    "journal_tiers": [
+      {"name": "Circulation", "if": 35, "tier": "top", "approx": true},
+      {"name": "European Heart Journal", "if": 35, "tier": "top", "approx": true},
+      {"name": "Journal of the American College of Cardiology", "if": 20, "tier": "high", "approx": true},
+      {"name": "Circulation Research", "if": 15, "tier": "high", "approx": true},
+      {"name": "Heart", "if": 4, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE (观察性) / CONSORT (RCT)",
+    "common_limitations": ["仅纳入 RCT", "未报告心血管硬终点", "随访时长不一"],
+    "reviewer_questions": ["是否区分硬终点（死亡/心梗）与替代终点？", "是否评估了出血风险？"],
+    "coverage": "real"
+  },
+  "neurology": {
+    "journal_tiers": [
+      {"name": "Lancet Neurology", "if": 45, "tier": "top", "approx": true},
+      {"name": "Brain", "if": 12, "tier": "high", "approx": true},
+      {"name": "Neurology", "if": 8, "tier": "mid", "approx": true},
+      {"name": "Stroke", "if": 7, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE",
+    "common_limitations": ["队列异质性大", "未做剂量-反应分析"],
+    "reviewer_questions": ["是否区分缺血性/出血性卒中？"],
+    "coverage": "stub"
+  },
+  "psychiatry": {
+    "journal_tiers": [
+      {"name": "Lancet Psychiatry", "if": 30, "tier": "top", "approx": true},
+      {"name": "JAMA Psychiatry", "if": 20, "tier": "high", "approx": true},
+      {"name": "American Journal of Psychiatry", "if": 10, "tier": "high", "approx": true},
+      {"name": "Molecular Psychiatry", "if": 10, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + CONSORT",
+    "common_limitations": ["安慰剂效应未充分控制", "脱落率较高"],
+    "reviewer_questions": ["是否报告了盲法与脱落处理？"],
+    "coverage": "stub"
+  },
+  "infectious_disease": {
+    "journal_tiers": [
+      {"name": "Lancet Infectious Diseases", "if": 25, "tier": "top", "approx": true},
+      {"name": "Clinical Infectious Diseases", "if": 8, "tier": "mid", "approx": true},
+      {"name": "Journal of Infectious Diseases", "if": 5, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE / CONSORT",
+    "common_limitations": ["耐药数据缺失", "地域代表性有限"],
+    "reviewer_questions": ["是否报告了耐药率亚组？"],
+    "coverage": "stub"
+  },
+  "endocrinology": {
+    "journal_tiers": [
+      {"name": "Cell Metabolism", "if": 25, "tier": "top", "approx": true},
+      {"name": "Diabetes Care", "if": 15, "tier": "high", "approx": true},
+      {"name": "Diabetologia", "if": 8, "tier": "mid", "approx": true},
+      {"name": "Journal of Clinical Endocrinology and Metabolism", "if": 6, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE",
+    "common_limitations": ["未区分 1/2 型", "随访不足"],
+    "reviewer_questions": ["是否按糖尿病分型分层？"],
+    "coverage": "stub"
+  },
+  "respiratory": {
+    "journal_tiers": [
+      {"name": "Lancet Respiratory Medicine", "if": 30, "tier": "top", "approx": true},
+      {"name": "American Journal of Respiratory and Critical Care Medicine", "if": 15, "tier": "high", "approx": true},
+      {"name": "Thorax", "if": 8, "tier": "mid", "approx": true},
+      {"name": "Chest", "if": 5, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE",
+    "common_limitations": ["急性加重定义不一", "未报告肺功能终点"],
+    "reviewer_questions": ["是否统一急性加重定义？"],
+    "coverage": "stub"
+  },
+  "gastroenterology": {
+    "journal_tiers": [
+      {"name": "Gastroenterology", "if": 25, "tier": "top", "approx": true},
+      {"name": "Gut", "if": 20, "tier": "high", "approx": true},
+      {"name": "Hepatology", "if": 13, "tier": "high", "approx": true},
+      {"name": "American Journal of Gastroenterology", "if": 8, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE",
+    "common_limitations": ["内镜分级主观", "未做敏感性分析"],
+    "reviewer_questions": ["是否统一内镜分级标准？"],
+    "coverage": "stub"
+  },
+  "rheumatology": {
+    "journal_tiers": [
+      {"name": "Annals of the Rheumatic Diseases", "if": 25, "tier": "high", "approx": true},
+      {"name": "Arthritis & Rheumatology", "if": 12, "tier": "mid", "approx": true},
+      {"name": "Rheumatology", "if": 6, "tier": "mid", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020 + STROBE",
+    "common_limitations": ["缓解标准不一", "未报告影像学进展"],
+    "reviewer_questions": ["是否采用统一缓解定义（如 DAS28）？"],
+    "coverage": "stub"
+  },
+  "general": {
+    "journal_tiers": [
+      {"name": "BMC Medicine", "if": 8, "tier": "mid", "approx": true},
+      {"name": "PLOS ONE", "if": 3, "tier": "broad", "approx": true},
+      {"name": "Scientific Reports", "if": 4, "tier": "broad", "approx": true}
+    ],
+    "reporting_guideline": "PRISMA 2020",
+    "common_limitations": ["研究数偏少", "异质性未完全解释", "领域匹配度待确认"],
+    "reviewer_questions": ["领域匹配度是否足够？建议补充专科期刊检索。"],
+    "coverage": "real"
+  }
+}

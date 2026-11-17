@@ -1,41 +1,53 @@
-## Description: <br>
-Adds browser-based inline editing to HTML presentations, including text edits, color adjustment, draggable text boxes, contenteditable editing, and localStorage persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds in-browser inline editing controls to HTML slide decks, including editable text, save/export controls, and an optional draggable text-box extension.
 
-## Publisher: <br>
-[nicshliu](https://clawhub.ai/user/nicshliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicshliu](https://clawhub.ai/user/nicshliu)
 
-## Use Case: <br>
-Developers, presentation authors, and agents use this skill to add inline editing controls to existing HTML slide decks and save edited HTML locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The editing snippet runs inside the presentation page and can modify or download the page HTML. <br>
-Mitigation: Install it only into HTML presentations you intend to edit, preferably a copy, and review the snippet before using it on sensitive documents. <br>
-Risk: Edited content is stored locally in the browser and may be constrained by localStorage behavior and limits. <br>
-Mitigation: Save downloaded HTML copies after important edits and avoid relying on browser storage as the only record of changes. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to add browser-side editing controls to generated or existing HTML slide decks so text can be adjusted in-browser and exported as HTML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicshliu/html-ppt-editable) <br>
-- [Draggable text extension](references/draggable.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown with HTML, CSS, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides zero-dependency browser snippets for local HTML presentation editing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Exported HTML can carry unsafe or misleading rich content if untrusted material is pasted into editable regions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting untrusted rich content, review exported HTML before sharing, and treat the output as executable HTML.
+
+Risk: The documentation overstates localStorage autosave and built-in dragging behavior for this release.
+
+Mitigation: Do not rely on autosave or dragging unless those features are implemented and tested separately in the target presentation.
+
+## Reference(s):
+
+- [draggable.js](references/draggable.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with HTML, CSS, and JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

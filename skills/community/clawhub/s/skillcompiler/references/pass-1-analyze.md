@@ -1,6 +1,7 @@
 # Pass 1: Analyze — 理解 Prompt
 
 **加载时机：** 📍 执行到 Pass 1 时加载。
+**输入来源：** 若 Pass I Ingestion 执行过，本 Pass 的输入是其产出的 `structured_content`（标准化文本），需额外关注来源溯源与证据等级。若未执行 Ingestion，输入为用户原始 Prompt。
 
 ---
 
@@ -20,10 +21,12 @@
 
 | 字段 | 如何确定 |
 |------|---------|
-| input | Prompt 接收什么？用户输入？文件？API 响应？ |
+| input | Prompt 接收什么？用户输入？文件？API 响应？结构化内容？ |
 | output | Prompt 产出什么？文本？JSON？文件？结构化报告？ |
 
 如果 Prompt 没有明确说明，从上下文推断并标注为 `inferred`。
+
+**多源输入识别（v2.0）：** 若 Pass I 执行过（IR 含 `pass_ingestion` 字段），`input_spec.type` 设为 `structured_content`，并在 description 中注明原始来源类型（如"来自 PDF 规范文档的结构化内容"）。同时检查 `pass_ingestion.extraction_warnings`，若存在 critical 警告，在 `hidden_assumptions` 中记录"输入内容可能不完整"。
 
 ### Step 1.4 — Capability Hints
 
@@ -70,6 +73,21 @@ Prompt 中隐含但未明说的前提：
 - 不确定的使用频率（影响 archetype）？
 - 不确定的输出消费者（影响输出格式）？
 
+### Step 1.8 — Meta-Reflection Checkpoint（v2.1）
+
+在进入 Pass 2 之前，用以下 4 个维度二次审视刚才的分析结论。Quick 模式跳过此步。
+
+📍 完整框架见 [meta-reflection.md](meta-reflection.md)
+
+| 维度 | 自检问题 | 触发条件 |
+|------|---------|---------|
+| D1 问题定义 | `prompt_goal.actual` 是否比 `stated` 更深一层？有没有更好的问题表述？ | 总是 |
+| D2 假设 | `hidden_assumptions` 中是否有"假设用户会正确使用"？最脆弱的假设如果错了，哪些结论崩塌？ | hidden_assumptions 非空 |
+| D7 目标 | 是否为了降低 token 消耗而在牺牲 skill 的准确度？最终产出对用户真的可用吗？ | 总是 |
+| D8 不确定性 | `unknowns` 之外是否还有未记录的不确定点？如果只能向用户确认一件事，是什么？ | 总是 |
+
+**输出：** 将自省结果追加到 `unknowns`（如有新发现的不确定点）或写入 trace。不阻塞 Decision Gate。
+
 ---
 
 ## Output Schema
@@ -82,7 +100,7 @@ Prompt 中隐含但未明说的前提：
     "actual": "真正需要的能力"
   },
   "input_spec": {
-    "type": "string | file | api | mixed",
+    "type": "string | structured_content | file | api | mixed",
     "description": "输入描述",
     "inferred": false
   },

@@ -1,39 +1,54 @@
-## Description: <br>
-Run a sequential multi-agent roundtable meeting for a user-provided topic and return a final transcript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a sequential multi-agent roundtable meeting. Use when the user invokes /party, asks for Party Mode, or wants several available agents to discuss a topic one at a time and produce a final transcript.
 
-## Publisher: <br>
-[adarshrajds](https://clawhub.ai/user/adarshrajds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adarshrajds](https://clawhub.ai/user/adarshrajds)
 
-## Use Case: <br>
-OpenClaw users use this skill to convene 3-4 available agents for a topic-driven roundtable, collect one-at-a-time responses and reactions, and receive a concise meeting transcript and wrap-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The meeting topic and short discussion context may be shared with the selected agents. <br>
-Mitigation: Avoid sensitive topics unless sharing them with the selected agents is acceptable. <br>
+## Use Case:
 
+External users and developers use Party Mode Meeting to run a structured /party roundtable where available agents discuss a user-provided topic, react in sequence, and produce a concise transcript with a wrap-up.
 
-## Reference(s): <br>
-- [OpenClaw Agent Party homepage](https://github.com/mixmash11/openclaw_agent_party) <br>
-- [ClawHub skill listing](https://clawhub.ai/adarshrajds/party) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting transcript with participant list, agent turns, optional reactions, and wrap-up summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tools, file writes, credentials, installs, or external dependencies requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Sensitive meeting topics may be shared across multiple available agents during the roundtable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy expectations before using the skill with confidential or regulated topics.
+
+Risk: Inviting several agents to discuss a topic can increase model usage costs.
+
+Mitigation: Use the small 3-4 agent group described by the artifact and avoid unnecessary reactions when cost control matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adarshrajds/skills/party)
+- [Project homepage](https://github.com/mixmash11/openclaw_agent_party)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown transcript with participant list, agent responses, optional reactions, and wrap-up summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; no tools, files, credentials, persistence, or external execution are requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

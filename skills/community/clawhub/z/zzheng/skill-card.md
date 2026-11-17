@@ -1,41 +1,56 @@
-## Description: <br>
-Generates Chinese legal-themed WeChat article drafts for personal and enterprise audiences, using current public hot topics when available and fallback legal topic templates when not. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zzheng generates Chinese WeChat public-account legal articles for personal and enterprise audiences by combining current legal hot topics with preset legal knowledge templates.
 
-## Publisher: <br>
-[mylillo926](https://clawhub.ai/user/mylillo926) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mylillo926](https://clawhub.ai/user/mylillo926)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Legal professionals and content creators use this skill to draft daily Chinese WeChat public-account articles for individual readers and enterprise compliance audiences. Generated legal content should be reviewed for accuracy, jurisdictional fit, and publication readiness before use.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may contact public Chinese news and social services when optional dependencies are installed.
+
+Mitigation: Run it in an environment where that outbound network access is acceptable, and install dependencies in a virtual environment with pinned versions.
+
+Risk: The skill creates or overwrites dated article files and progress JSON in its configured output directory.
+
+Mitigation: Set the output directory deliberately and review generated files before publication.
+
+Risk: Generated legal articles can be incomplete, outdated, or unsuitable for a specific jurisdiction or client matter.
+
+Mitigation: Have a qualified reviewer check legal accuracy, jurisdictional assumptions, and source relevance before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Legal content creators and practitioners use this skill to draft two publish-ready article files for a WeChat public account: one aimed at individuals and one aimed at enterprise readers. It is intended to speed up routine topic selection and first-draft preparation, not to replace legal review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to public Chinese hot-search and news services when optional dependencies are installed. <br>
-Mitigation: Review the public sources and network behavior before running in restricted environments. <br>
-Risk: Generated legal-themed article drafts may be inaccurate, incomplete, or unsuitable for publication without review. <br>
-Mitigation: Manually verify legal claims, examples, and practical guidance before publishing. <br>
-Risk: The default output directory is a local Windows path that may not match the user's environment. <br>
-Mitigation: Review or change the configured output directory before execution. <br>
+**Output Format:** [Markdown-style Chinese article text saved as dated plain text files, with progress state stored as JSON]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces separate personal and enterprise articles; may contact public Chinese news and social services and write or overwrite files in the configured output directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text article files with Markdown-style headings and lists, plus brief command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates separate personal and enterprise article drafts and progress JSON files in a configurable local output directory.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

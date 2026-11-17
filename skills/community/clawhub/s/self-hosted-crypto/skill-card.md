@@ -1,45 +1,66 @@
-## Description: <br>
-Adds a self-custodied crypto payment checkout to a Next.js and Supabase app for ETH, BTC, SOL, USDC, USDT, and other supported coins across multiple chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds self-custodied crypto payment checkout to a Next.js and Supabase app, including HD wallet address derivation, on-chain polling, and support for ETH, BTC, SOL, USDC, USDT, and other coins across nine chains.
 
-## Publisher: <br>
-[flacko2048](https://clawhub.ai/user/flacko2048) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[flacko2048](https://clawhub.ai/user/flacko2048)
 
-## Use Case: <br>
-Developers and engineers use this skill to add self-hosted crypto checkout, HD wallet address generation, blockchain polling, and fulfillment hooks to a Next.js App Router application backed by Supabase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner marks the release suspicious because the payment checker and fulfillment path need review before production use. <br>
-Mitigation: Review and fix the payment confirmation path in staging before deployment, and make fulfillment idempotent. <br>
-Risk: The master mnemonic controls all derived deposit wallets across chains. <br>
-Mitigation: Use a dedicated mnemonic generated and stored offline or in a secrets manager, and never commit it to source control. <br>
-Risk: Payment confirmation depends on external chain data and cron execution. <br>
-Mitigation: Require transaction-specific confirmation evidence where appropriate, monitor the cron endpoint, and tightly control the cron secret and service-client permissions. <br>
+## Use Case:
 
+Developers use this skill to add a self-hosted crypto checkout flow to a Next.js 14+ App Router application backed by Supabase. It helps generate or wire in payment routes, database migrations, wallet derivation utilities, a checkout modal, and cron-based blockchain payment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flacko2048/self-hosted-crypto) <br>
-- [CoinGecko price API](https://api.coingecko.com/api/v3/simple/price) <br>
-- [mempool.space address API](https://mempool.space/api/address) <br>
-- [Public Solana RPC endpoint](https://api.mainnet-beta.solana.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration values, SQL migrations, TypeScript route handlers, and a React component.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces integration instructions and project files for an agent to adapt to the target application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Payment verification or fulfillment errors can create real financial loss or incorrect account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the payment verifier before production use, validate token decimals per chain, and make fulfillment transactionally idempotent.
+
+Risk: The crypto wallet mnemonic is a single point of control for all derived deposit wallets.
+
+Mitigation: Generate the mnemonic offline, store it only in a trusted secret manager, keep a secure offline backup, and prevent it from entering source code, logs, or client bundles.
+
+Risk: The cron payment-check endpoint can be exposed if its authorization secret is weak or shared with an untrusted scheduler.
+
+Mitigation: Use a strong CRON_SECRET, keep scheduler configuration trusted, and avoid giving the secret to third-party schedulers when that would exceed the deployment's risk tolerance.
+
+Risk: External RPC and pricing calls introduce availability and data-integrity dependencies for payment confirmation.
+
+Mitigation: Review the configured endpoints, pin and monitor provider choices, and fail closed when exchange-rate or balance checks cannot be verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flacko2048/skills/self-hosted-crypto)
+- [Publisher profile](https://clawhub.ai/user/flacko2048)
+- [CoinGecko price API](https://api.coingecko.com/api/v3/simple/price)
+- [mempool.space address API](https://mempool.space/api/address)
+- [Etherscan](https://etherscan.io)
+- [cr8claw](https://cr8claw.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, SQL, JSON, environment variable, and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project-specific file-copy, configuration, migration, and integration guidance; it does not execute payments directly.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

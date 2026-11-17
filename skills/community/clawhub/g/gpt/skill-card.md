@@ -1,39 +1,54 @@
-## Description: <br>
-Generate GPT API request payloads for chat completions, embeddings, fine-tuning data, batch requests, format conversion, and cost estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate GPT API request payloads. Use when building chat completions, embeddings, fine-tuning data, or estimating API costs.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft OpenAI-compatible request payloads, prepare fine-tuning or batch input files, convert CSV and JSONL data, and estimate model usage costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cost estimator can run local shell commands if crafted token-count arguments are passed to vulnerable options. <br>
-Mitigation: Review before installing, and do not pass untrusted or free-form values to cost-estimation numeric arguments until the script validates numeric inputs and passes values to awk safely. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare GPT API payloads, embedding requests, fine-tuning JSONL, batch request files, format conversions, and rough API cost estimates.
 
-## Reference(s): <br>
-- [Gpt on ClawHub](https://clawhub.ai/xueyetianya/gpt) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, JSONL, CSV, shell command examples, and concise textual cost breakdowns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated payloads or converted data to files when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: server release metadata) <br>
+Risk: The cost estimator can execute local commands when unsafe numeric arguments are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass untrusted or agent-supplied values to the cost command until the AWK injection issue is fixed; review numeric arguments before running it.
+
+Risk: Generated embedding, batch, and fine-tuning files may be used for external API uploads.
+
+Mitigation: Exclude secrets, private records, and confidential datasets unless that use is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/gpt)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON, JSONL, CSV, and plain-text cost tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands write to stdout by default and can write generated artifacts to a file when an output option is supplied.]
+
+## Skill Version(s):
+
+3.4.1 (source: server release metadata; artifact frontmatter lists 3.4.0 and script header lists 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

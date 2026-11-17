@@ -1,41 +1,54 @@
-## Description: <br>
-Rkhunter reference tool. Use when working with rkhunter in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rkhunter reference tool. Use when working with rkhunter in sysops contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and system operators use this skill as a static reference helper for rkhunter-related sysops topics, including quick-start notes, command-oriented checklists, troubleshooting, and security considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic rkhunter guidance could be mistaken for authoritative security or rootkit-detection procedure. <br>
-Mitigation: Use the skill only as a lightweight reference and verify real rkhunter commands and procedures against official documentation before acting. <br>
-Risk: Static reference text may become outdated as rkhunter behavior, packaging, or operational practices change. <br>
-Mitigation: Review the referenced procedures against current operational documentation before production use. <br>
+## Use Case:
 
+Developers, sysops engineers, and administrators use this skill to get quick Markdown reference material and checklists for rkhunter-related tasks, troubleshooting, security considerations, migration, and performance topics.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/rkhunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown snippets and plain text printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no system inspection or modification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The rkhunter guidance is generic and may be mistaken for authoritative operational guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against real rkhunter documentation and local sysops policy before using them for production decisions.
+
+Risk: The skill emits reference text from shell commands that could be copied into operational workflows without review.
+
+Mitigation: Inspect the generated guidance first and have an appropriate sysops reviewer approve any production checklist or procedure derived from it.
+
+## Reference(s):
+
+- [Rkhunter skill page](https://clawhub.ai/bytesagain3/skills/rkhunter)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections include intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

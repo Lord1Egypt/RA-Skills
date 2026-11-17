@@ -1,51 +1,64 @@
-## Description: <br>
-Use APIDot for Happy Horse API workflows, including Alibaba Happy Horse video generation, text-to-video API, image-to-video API, reference-to-video API, video editing API, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Happy Horse API workflows, including Alibaba Happy Horse video generation, text-to-video API, image-to-video API, reference-to-video API, video editing API, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and external builders use this documentation-only skill to route APIDot Happy Horse integration questions to the right docs, examples, request modes, async task handling, polling, and webhook guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY exposure through browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Keep the key server-side in environment variables or a backend secret manager, and avoid echoing or logging it. <br>
-Risk: Stale or incorrect Happy Horse request fields, availability, limits, or commercial terms. <br>
-Mitigation: Verify live APIDot docs and model pages before preparing payloads or making product claims. <br>
-Risk: Private prompts, media URLs, callback URLs, or generated video URLs may be exposed during integration work. <br>
-Mitigation: Avoid logging sensitive request data and store final video URLs only after a terminal success state. <br>
-Risk: Async task handling can produce lost jobs, duplicate visible results, or unsafe retries. <br>
-Mitigation: Persist task_id and request state, validate source media URLs, make webhook handlers idempotent, and retry only transient failures with backoff. <br>
+## Use Case:
 
+Developers and engineers use this skill to route APIDot Happy Horse integration questions to the right docs, examples, request-planning notes, async task handling guidance, polling workflow, and webhook guidance.
 
-## Reference(s): <br>
-- [Local APIDot Happy Horse Reference](references/api.md) <br>
-- [APIDot Documentation](https://apidot.ai/docs) <br>
-- [APIDot Happy Horse Model Page](https://apidot.ai/models/happy-horse) <br>
-- [APIDot Happy Horse Docs](https://apidot.ai/docs/happy-horse) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Happy Horse Examples](https://github.com/APIDotAI/happy-horse-api) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no live API calls unless the user explicitly asks and provides a safe server-side environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: An APIDot API key could be exposed through browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY server-side in environment variables or a backend secret manager, and avoid logging or displaying it.
+
+Risk: Private prompts, media URLs, generated video URLs, or callback URLs could be exposed during integration work.
+
+Mitigation: Avoid logging private prompts or media URLs, and treat generated video and callback URLs as sensitive workflow data.
+
+Risk: Happy Horse request fields, model availability, limits, or commercial terms may change outside the local skill notes.
+
+Mitigation: Use the current APIDot docs and model pages as the source of truth before preparing payloads or making live calls.
+
+## Reference(s):
+
+- [APIDot docs](https://apidot.ai/docs)
+- [APIDot Happy Horse model page](https://apidot.ai/models/happy-horse)
+- [APIDot Happy Horse API docs](https://apidot.ai/docs/happy-horse)
+- [APIDot quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Happy Horse examples](https://github.com/APIDotAI/happy-horse-api)
+- [APIDot examples](https://github.com/APIDotAI/apidot-examples)
+- [APIDot Happy Horse Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with links and integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable automation, bundled API clients, network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

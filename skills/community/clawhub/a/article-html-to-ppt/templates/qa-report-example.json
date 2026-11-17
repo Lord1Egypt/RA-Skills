@@ -1,0 +1,49 @@
+{
+  "deprecated": "use schemas/qa-report.schema.json",
+  "schema_version": "2.1",
+  "generated_at": "2026-07-16T10:00:00+08:00",
+  "deck_id": "deck-001",
+  "pptx": "deck.pptx",
+  "ppt_ir_ref": ".ppt-work/contracts/ppt-ir.json",
+  "style_ref": ".ppt-work/contracts/style-contract.json",
+  "delivery_ref": ".ppt-work/contracts/delivery-plan.json",
+  "build_ref": ".ppt-work/contracts/build-manifest.json",
+  "profile": "standard",
+  "status": "warning",
+  "build_status_cap": "created",
+  "trusted_delivery_status": "created",
+  "render_required": false,
+  "compatibility": {
+    "severity_aliases": {"info": "review", "warning": "review", "error": "fail", "fatal": "blocked"},
+    "legacy_severities": ["review", "fail", "blocked"]
+  },
+  "inputs": {"inspection_report": "embedded", "render_report": "embedded"},
+  "evidence": {"structural_inspection": {}, "render_report": {"status": "unavailable"}},
+  "issues": [
+    {
+      "issue_id": null,
+      "issue_code": "RENDER_ENGINE_UNAVAILABLE",
+      "slide_id": null,
+      "object_id": null,
+      "ppt_shape_id": null,
+      "severity": "warning",
+      "compatibility_severity": "review",
+      "category": "render",
+      "detector": "verify-deck",
+      "evidence": {"renderer": "none"},
+      "message": "No renderer was available in this environment.",
+      "repair_action": {"type": "configure_renderer", "description": "Install or configure a real renderer before claiming visual QA."},
+      "repair_status": "not_applicable",
+      "recheck_status": "not_run",
+      "source_report": "verification"
+    }
+  ],
+  "metrics": {
+    "native_text_ratio": null,
+    "editable_core_ratio": null,
+    "rasterized_area_ratio": null,
+    "color_contract_compliance": null,
+    "qa_error_count": 0,
+    "qa_warning_count": 1
+  }
+}

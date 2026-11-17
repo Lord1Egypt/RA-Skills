@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a PSBC enterprise-bank direct-connection interface for balance queries, transaction-detail queries, and payment review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides China Postal Savings Bank enterprise banking direct-connection API guidance for balance inquiries, transaction history queries, and payment approval operations.
 
-## Publisher: <br>
-[hypersonal](https://clawhub.ai/user/hypersonal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hypersonal](https://clawhub.ai/user/hypersonal)
 
-## Use Case: <br>
-Developers and integration teams use this skill to work with PSBC enterprise banking API parameters and endpoint mappings for account balance, transaction history, and payment approval flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill targets banking account access and payment approval without defining credential safeguards or payment confirmation controls. <br>
-Mitigation: Use only with a verified banking integration, least-privilege test credentials, secure credential storage, explicit sandbox or transaction limits, and separate human review before any payment action. <br>
-Risk: The artifact provides endpoint and credential placeholders but little implementation detail, increasing integration ambiguity. <br>
-Mitigation: Review the banking API contract, fill configuration from trusted sources only, and test non-payment operations in a sandbox before enabling payment workflows. <br>
+## Use Case:
 
+Developers and banking-integration teams use this skill to prepare PSBC enterprise-bank direct connection parameters for account balance checks, historical transaction queries, and payment approval workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hypersonal/cpef-psbc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown or configuration/code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes operation names, account and currency parameters, date input, amount input, and endpoint placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill describes enterprise banking balance access and payment approval without clear authorization or confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a controlled PSBC enterprise banking workflow, require explicit user confirmation before payment operations, and verify the bank-side authorization and approval flow before deployment.
+
+Risk: Placeholder gateway and credential configuration is incomplete for a live banking integration.
+
+Mitigation: Have the responsible banking-integration owner review the configuration, keep credentials least-privileged, and restrict account access before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hypersonal/skills/cpef-psbc)
+- [ClawHub publisher profile](https://clawhub.ai/user/hypersonal)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code]
+
+**Output Format:** [Markdown with parameter descriptions and JavaScript configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operation names, account and currency parameters, date ranges, amount fields, and placeholder PSBC gateway credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

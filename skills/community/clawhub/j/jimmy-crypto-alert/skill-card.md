@@ -1,42 +1,58 @@
-## Description: <br>
-Monitor cryptocurrency prices and send alerts when configured thresholds are crossed, using public market-price APIs without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor cryptocurrency prices and send alerts when thresholds are crossed. No API key required - uses Binance public API. Supports BTC, ETH, SOL, and 10+ tokens.
 
-## Publisher: <br>
-[jimmyclanker](https://clawhub.ai/user/jimmyclanker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmyclanker](https://clawhub.ai/user/jimmyclanker)
 
-## Use Case: <br>
-External users and developers can use this skill to check supported cryptocurrency prices, configure local threshold alerts, and receive optional alert notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence flags this release as suspicious because the documentation is inconsistent and the alert-setting script can mishandle crafted input. <br>
-Mitigation: Review or patch the scripts before use; accept only simple token names, numeric thresholds, and non-sensitive alert messages. <br>
-Risk: Alert state is stored locally and optional notification setup may involve Telegram credentials. <br>
-Mitigation: Do not add Telegram credentials to this package as shipped, and remove ~/.crypto-alert-state.json to clear saved alerts. <br>
+## Use Case:
 
+External users and developers use this skill to check cryptocurrency prices, configure local threshold alerts, and optionally send alert notifications through Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimmyclanker/jimmy-crypto-alert) <br>
-- [Binance public API](https://api.binance.com/api/v3) <br>
-- [CoinGecko public API](https://api.coingecko.com/api/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Terminal text output and local JSON alert-state configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes alert state to ~/.crypto-alert-state.json when alerts are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The alert-setting workflow has a code-injection risk when untrusted alert text is passed into set-alert.sh.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and allow only trusted alert inputs until the heredoc and JSON construction are fixed.
+
+Risk: Service documentation is inconsistent because the skill uses both Binance and CoinGecko public APIs.
+
+Mitigation: Expect outbound requests to both Binance and CoinGecko, and review network access policies before deployment.
+
+Risk: Telegram bot tokens and chat IDs may be stored in local configuration.
+
+Mitigation: Protect Telegram credentials and exclude local configuration files from sharing or source control.
+
+## Reference(s):
+
+- [Binance Public API](https://api.binance.com/api/v3)
+- [CoinGecko Public API](https://api.coingecko.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local alert state in ~/.crypto-alert-state.json when the provided shell scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

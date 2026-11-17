@@ -1,37 +1,49 @@
-## Description: <br>
-Sharp, opinionated 'so what' analysis of AI/tech developments - strategic implications of new models, architectural shifts, competitive dynamics, and trend judgment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides opinionated, insight-dense analysis of AI and technology developments, focusing on technical essence, architecture, competitive dynamics, adjacent trends, and forward judgment.
 
-## Publisher: <br>
-[trip1ewhy](https://clawhub.ai/user/trip1ewhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trip1ewhy](https://clawhub.ai/user/trip1ewhy)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill when they need concise strategic analysis of AI and technology developments, including model releases, architectural shifts, competitive dynamics, and trend direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to provide opinionated forecasts and strategic judgments, which may be mistaken for facts or current market data. <br>
-Mitigation: Treat outputs as analysis, verify recent release details, benchmarks, and market claims when accuracy matters, and review judgments before relying on them for decisions. <br>
+## Use Case:
 
+External users, developers, and technical leaders use this skill to turn AI and technology developments into strategic analysis, architectural implications, competitive positioning, and forward-looking judgment.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analytical prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically produces essay-style analysis with a clear judgment, supporting reasoning, and actionable or thought-provoking closing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Confident strategic analysis may be mistaken, stale, or over-trusted when it discusses fast-moving AI and technology developments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify specific technical details, release dates, and benchmarks before relying on conclusions, especially for recent developments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/trip1ewhy/skills/ai-tech-deep-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically 800-1500 words, written in the user's language, with web search used only to verify recent details when needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

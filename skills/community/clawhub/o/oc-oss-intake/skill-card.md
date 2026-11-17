@@ -1,41 +1,56 @@
-## Description: <br>
-Turn a promising open-source repo into a defensible OpenClaw adoption decision before code, dependencies, or risk enter the workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a promising open-source repo into a defensible OpenClaw adoption decision before code, dependencies, or risk enter the workflow.
 
-## Publisher: <br>
-[jiepu110](https://clawhub.ai/user/jiepu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiepu110](https://clawhub.ai/user/jiepu110)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to evaluate open-source repositories before adoption, document license and dependency risk, and decide whether to reject, observe, adapt, or implement a candidate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: External repository review can expose the agent to unverified project claims, unsafe dependencies, or unclear license terms.
+
+Mitigation: Confirm the official repository URL, review license and dependency signals, and avoid importing code or installing dependencies without separate review.
+
+Risk: An adoption note could overstate readiness if repository activity, tests, or rollback criteria are weak.
+
+Mitigation: Require an explicit adoption class, validation commands, and rollback criteria before moving from intake to implementation.
+
+Risk: The skill includes visible voluntary links asking users to star ClawHub or a GitHub repository.
+
+Mitigation: Treat those links as manual user actions only; they are not required for the intake decision and are not evidence of provenance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to assess open-source repositories before adopting ideas, dependencies, or code into a workflow. It produces an intake decision with risks, license notes, validation criteria, and next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may over-trust an intake recommendation and adopt a dependency or local change without human review. <br>
-Mitigation: Review proposed dependency adoption, local code changes, validation commands, rollback criteria, and license notes before implementation. <br>
-Risk: The support request to star a linked project could be mistaken for a required workflow action. <br>
-Mitigation: Treat any request to star the linked project as an optional manual choice outside the intake workflow. <br>
+**Output Format:** [Markdown intake note]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiepu110/oc-oss-intake) <br>
-- [Linked GitHub repository](https://github.com/Star-Ring-Protocol/openclaw-gateway-guardian) <br>
+**Other Properties Related to Output:** [Includes project metadata, capability summary, adoption class, risks and license notes, proposed local candidate, and validation plan.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown intake note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes project metadata, capability summary, adoption class, risks and license notes, proposed local candidate, validation plan, and rollback criteria.] <br>
+1.0.1 (source: server evidence release.version)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

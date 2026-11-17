@@ -101,7 +101,7 @@ def main():
     parser.add_argument('--universes', nargs='*', default=None)
     args = parser.parse_args()
 
-    all_worlds = ['journey-to-west', 'xiaoao', 'lotr', 'game-of-thrones', 'harry-potter', 'warrior-cats', 'sengoku', 'yitian']
+    all_worlds = ['journey-to-west', 'ramayana', 'xuanzang', 'xiaoao', 'lotr', 'game-of-thrones', 'harry-potter', 'warrior-cats', 'sengoku', 'yitian']
     universes = args.universes or all_worlds
     report = []
     summary_lines = []

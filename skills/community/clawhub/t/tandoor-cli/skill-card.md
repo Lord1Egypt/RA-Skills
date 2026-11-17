@@ -1,46 +1,62 @@
-## Description: <br>
-Manage recipes, meal plans, and shopping lists on a Tandoor Recipe Manager instance via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage recipes, meal plans, and shopping lists on a Tandoor Recipe Manager instance via CLI.
 
-## Publisher: <br>
-[dcenatiempo](https://clawhub.ai/user/dcenatiempo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dcenatiempo](https://clawhub.ai/user/dcenatiempo)
 
-## Use Case: <br>
-External users and developers use this skill to manage recipes, meal plans, shopping lists, food categories, cook logs, and household administration through a configured Tandoor Recipe Manager CLI. It supports agent-assisted querying and user-approved changes to a user's own Tandoor instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive Tandoor credentials can expose private recipe, shopping, and household data or allow unwanted changes. <br>
-Mitigation: Start with a read-only, short-lived OAuth token, store it securely, rotate it regularly, and revoke it when the agent task is complete. <br>
-Risk: Write, destructive, bulk, and administrative commands can modify or delete Tandoor data. <br>
-Mitigation: Require explicit user approval before mutations, explain the affected data before destructive or bulk operations, and avoid --force unless the user explicitly requests it. <br>
-Risk: The skill depends on an external tandoor-cli npm package that runs with the permissions of the configured token. <br>
-Mitigation: Review the npm package and source repository before granting write access, pin the package version to the skill version, and avoid admin or space-owner tokens unless needed. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate tandoor-cli against a configured Tandoor Recipe Manager instance for recipe lookup, meal planning, shopping list management, cook logs, and approved write operations.
 
-## Reference(s): <br>
-- [Setup Guide](references/SETUP.md) <br>
-- [Security Guidelines](SECURITY.md) <br>
-- [tandoor-cli npm package](https://www.npmjs.com/package/tandoor-cli) <br>
-- [tandoor-cli source repository](https://github.com/dcenatiempo/tandoor-cli) <br>
-- [Tandoor Recipe Manager](https://tandoor.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands, configuration examples, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output may be text, slim JSON, or raw API JSON depending on the selected --format option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The CLI can modify or delete Tandoor data when granted write-capable credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only tokens for lookup workflows and require explicit user approval before write, destructive, bulk, household, or invite commands.
+
+Risk: An unpinned npm installation path could run a different tandoor-cli version than the reviewed skill release.
+
+Mitigation: Pin the CLI to version 1.5.0 before installing or running it, and review the package and repository before granting credentials.
+
+Risk: Admin or space-owner tokens can grant broader access than normal recipe and shopping-list tasks require.
+
+Mitigation: Use short-lived, least-privileged tokens and avoid admin or space-owner credentials unless the specific task requires them.
+
+## Reference(s):
+
+- [Tandoor Recipe CLI on ClawHub](https://clawhub.ai/dcenatiempo/skills/tandoor-cli)
+- [tandoor-cli repository](https://github.com/dcenatiempo/tandoor-cli)
+- [tandoor-cli npm package](https://www.npmjs.com/package/tandoor-cli)
+- [Tandoor Recipe Manager](https://tandoor.dev)
+- [Setup Guide](references/SETUP.md)
+- [Security Guidelines](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output may be text, slim JSON, or raw Tandoor API JSON depending on the selected format flag.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

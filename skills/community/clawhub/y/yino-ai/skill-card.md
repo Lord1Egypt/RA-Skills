@@ -1,44 +1,59 @@
-## Description: <br>
-Generate images and videos using yino.ai for Seedream image generation, Veo video generation, and related media generation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos using yino.ai for Seedream image generation, Veo video generation, and related media-generation tasks.
 
-## Publisher: <br>
-[HackerQED](https://clawhub.ai/user/HackerQED) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackerqed](https://clawhub.ai/user/hackerqed)
 
-## Use Case: <br>
-External users and developers use this skill to guide agents through yino.ai media generation workflows, including capability discovery, authenticated API calls, project organization, polling, and preview updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation includes a preflight command that can print the YINO_API_KEY. <br>
-Mitigation: Use a non-revealing presence check for the environment variable and never display API key values in logs or chat. <br>
-Risk: Prompts, uploaded media, generated outputs, and API usage may be sent to yino.ai. <br>
-Mitigation: Confirm that the user trusts yino.ai and the publisher before sending prompts or files, especially for private or sensitive media. <br>
-Risk: Broad activation rules may invoke the skill for general media generation requests. <br>
-Mitigation: Confirm the intended yino.ai workflow before making authenticated API calls or uploading files. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent discover yino.ai media-generation capabilities, submit authenticated image or video generation jobs, poll asynchronous results, upload source media, and organize multi-generation projects for preview.
 
-## Reference(s): <br>
-- [Yino.ai ClawHub release](https://clawhub.ai/HackerQED/yino-ai) <br>
-- [Yino.ai API key settings](https://yino.ai/settings) <br>
-- [Project & Preview Knowledge](references/project-preview.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YINO_API_KEY and may produce links to generated media, project previews, and status responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: API-key handling could expose YINO_API_KEY if the value is printed, logged, or pasted into chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the environment variable is set without revealing its value, avoid echoing the secret, and send it only in the Authorization header to trusted yino.ai endpoints.
+
+Risk: Changing YINO_API_BASE_URL away from the official HTTPS origin could send credentials and uploaded media to an untrusted endpoint.
+
+Mitigation: Keep YINO_API_BASE_URL on https://yino.ai for normal use and allow localhost only for deliberate local testing.
+
+Risk: Uploaded images or audio are shared with the yino.ai service for generation tasks.
+
+Mitigation: Confirm that source media is appropriate to share with the service before upload.
+
+## Reference(s):
+
+- [Project & Preview Knowledge](artifact/references/project-preview.md)
+- [ClawHub Skill Page](https://clawhub.ai/hackerqed/skills/yino-ai)
+- [yino.ai API Key Settings](https://yino.ai/settings)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, HTTP request examples, JSON examples, and user-facing result links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YINO_API_KEY; yino.ai generation endpoints return asynchronous task IDs that are polled until output URLs are available.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

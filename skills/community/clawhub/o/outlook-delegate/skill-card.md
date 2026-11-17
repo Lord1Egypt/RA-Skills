@@ -1,44 +1,63 @@
-## Description: <br>
-Read, search, and manage Outlook emails and calendar through Microsoft Graph API delegate access, including sending as self, as the mailbox owner, or on behalf of the owner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, send, and manage Outlook mail and calendar through Microsoft Graph API with delegate support for sending as self, as owner, or on behalf of owner.
 
-## Publisher: <br>
-[87Marc](https://clawhub.ai/user/87Marc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[87marc](https://clawhub.ai/user/87marc)
 
-## Use Case: <br>
-Developers and Microsoft 365 operators use this skill to let an assistant account manage another user's Outlook mailbox and calendar through delegated permissions. It supports reading, searching, drafting, sending, replying, forwarding, moving, archiving, deleting, and calendar event management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages as another user or on behalf of another user. <br>
-Mitigation: Prefer Send on Behalf when transparency matters, choose only one Exchange sending permission, and require human approval before sending messages. <br>
-Risk: The skill can modify or delete mailbox and calendar data. <br>
-Mitigation: Grant only the Microsoft 365 permissions needed for the workflow and require human approval before deleting, moving, or changing items. <br>
-Risk: OAuth access tokens can be exposed if token-printing commands are used carelessly. <br>
-Mitigation: Avoid the access-token print command unless explicitly needed, protect the local credential directory, and rotate or revoke credentials when access is no longer required. <br>
+## Use Case:
 
+Employees, administrators, and teams with Microsoft 365 delegate arrangements use this skill to let an agent operate a delegated Outlook mailbox and calendar. It is suited to assistant workflows where the mailbox owner has explicitly granted access and selected the intended sending mode.
 
-## Reference(s): <br>
-- [Delegate setup guide](references/setup.md) <br>
-- [Outlook Delegate ClawHub page](https://clawhub.ai/87Marc/outlook-delegate) <br>
-- [Original Outlook ClawHub skill](https://clawhub.ai/jotamed/outlook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may call Microsoft Graph and return mailbox, calendar, token, or status data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill requests and persists broad Microsoft Graph authority for delegated mail and calendar access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when delegated Outlook access is intended, reduce Graph scopes where possible, protect ~/.outlook-mcp from backups or sync, and revoke Microsoft 365 and Exchange permissions when access is no longer needed.
+
+Risk: The token-printing command can expose an access token in shell history, terminal logs, or automation logs.
+
+Mitigation: Do not run token-printing commands in logged environments and treat generated OAuth tokens as secrets.
+
+Risk: Mail and calendar commands can delete, move, update, or send items from a delegated mailbox.
+
+Mitigation: Verify item IDs carefully before delete, move, update, or send-draft actions and review destructive actions before execution.
+
+Risk: Granting both SendAs and SendOnBehalf can cause Exchange to use SendAs and hide the delegated sender indication.
+
+Mitigation: Choose exactly one sending mode and avoid granting both SendAs and SendOnBehalf permissions.
+
+## Reference(s):
+
+- [Delegate Setup Guide](references/setup.md)
+- [Outlook Delegate release page](https://clawhub.ai/87marc/skills/outlook-delegate)
+- [Original Outlook skill](https://clawhub.ai/jotamed/outlook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command invocations, JSON configuration examples, and script output from Microsoft Graph operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Microsoft 365 configuration, OAuth tokens, and Exchange delegate permissions.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact metadata/frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

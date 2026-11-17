@@ -1,44 +1,54 @@
-## Description: <br>
-Legal web scraping with robots.txt compliance, rate limiting, and GDPR/CCPA-aware data handling. Supports both direct HTTP scraping and managed scraping via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal web scraping with robots.txt compliance, rate limiting, and GDPR/CCPA-aware data handling, including direct HTTP scraping and managed scraping through SkillBoss API Hub.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and external users use this skill to plan and implement web scraping workflows that check robots.txt, terms of service, rate limits, and privacy obligations before collecting public web data. It also guides managed extraction through SkillBoss API Hub when users provide the required SkillBoss_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs and extracted content may be sent to the third-party SkillBoss API when managed scraping is used. <br>
-Mitigation: Use managed scraping only for public, authorized pages and avoid sending protected, personal, or sensitive data. <br>
-Risk: Anti-bot handling could be misused to bypass access controls or explicit scraping prohibitions. <br>
-Mitigation: Check robots.txt, site terms, authentication boundaries, and available APIs before scraping, and stop when permission is absent. <br>
-Risk: Scraping too aggressively can burden target services and increase legal exposure. <br>
-Mitigation: Apply conservative rate limits, honor 429 responses with backoff, reuse sessions, and keep an audit trail. <br>
+## Use Case:
 
+Developers and agents use this skill to plan and generate compliant web-scraping workflows for public web data, including robots.txt checks, rate limiting, data minimization, and optional managed extraction through SkillBoss.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis-web-scrape) <br>
-- [SkillBoss setup guide](https://SkillBoss.co/skill.md) <br>
-- [SkillBoss API Hub pilot endpoint](https://api.SkillBoss.co/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code and API call patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require SkillBoss_API_KEY for managed scraping through SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Managed scraping requests may expose target URLs, request context, and retrieved content to SkillBoss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, a role-based contact address, and send only data that is authorized for third-party processing.
+
+Risk: Scraping protected, personal, confidential, or regulated data can create legal, privacy, or contractual exposure.
+
+Mitigation: Follow robots.txt and site terms, prefer official APIs, avoid protected content, and collect personal or regulated data only with clear authorization.
+
+## Reference(s):
+
+- [SkillBoss setup guide](https://SkillBoss.co/skill.md)
+- [Alvis Web Scrape on ClawHub](https://clawhub.ai/alvisdunlop/skills/alvis-web-scrape)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, code patterns, and API usage instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference SkillBoss_API_KEY for managed scraping requests.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

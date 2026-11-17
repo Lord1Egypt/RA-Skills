@@ -1,0 +1,7 @@
+flowchart TD
+ A([Submit order request]) --> B{Check order completeness and approval eligibility}
+ B -->|Complete information| C[Review manually and record the decision]
+ B -->|More evidence needed| D[Add missing evidence and resubmit]
+ D -->|Review again| B
+ C -->|Approved| E[(Save approval and notify the applicant asynchronously)]
+ E -->|Notification sent| F([Completed])

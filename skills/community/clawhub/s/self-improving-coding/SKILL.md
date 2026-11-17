@@ -56,6 +56,8 @@ clawdhub install self-improving-coding
 git clone https://github.com/jose-compu/self-improving-coding.git ~/.openclaw/skills/self-improving-coding
 ```
 
+Manual clone is optional. Check out a reviewed tag or commit before use. Do not install an unpinned default branch into a shared environment.
+
 ### Workspace Structure
 
 OpenClaw injects these files into every session:
@@ -100,11 +102,11 @@ When coding learnings prove broadly applicable, promote them:
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Opt-in and workspace-local. Do not copy this hook to `~/.openclaw/hooks/` (that path is user-global). Skip it unless you want reminders in this workspace:
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-coding
-openclaw hooks enable self-improving-coding
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-coding
 ```
 
 See `references/openclaw-integration.md` for complete details.
@@ -389,8 +391,9 @@ When a learning is broadly applicable (not a one-off fix), promote it to permane
 ### How to Promote
 
 1. **Distill** the learning into a concise rule or code snippet
-2. **Add** to appropriate target (lint rule, style guide entry, snippet)
-3. **Update** original entry:
+2. **Prepare** a minimal patch for the appropriate target (lint rule, style guide entry, snippet)
+3. **Show a reviewed diff and apply only after explicit user approval**
+4. **Update** original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: style guide` (or `lint rule`, `snippet library`, `debug playbook`)
 
@@ -481,6 +484,8 @@ Targets: lint config, style guide entries, code snippets library, `CLAUDE.md` / 
 
 Enable automatic reminders through agent hooks. This is **opt-in**.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` in your project:
@@ -489,7 +494,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "fix|debug|error|lint|type|refactor|eslint|mypy|traceback",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-coding/scripts/activator.sh"
@@ -499,7 +504,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects a coding-focused learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects a coding-focused learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Error Detection)
 
@@ -507,17 +512,10 @@ This injects a coding-focused learning evaluation reminder after each prompt (~5
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "fix|debug|error|lint|type|refactor|eslint|mypy|traceback",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-coding/scripts/activator.sh"
-      }]
-    }],
-    "PostToolUse": [{
-      "matcher": "Bash",
-      "hooks": [{
-        "type": "command",
-        "command": "./skills/self-improving-coding/scripts/error-detector.sh"
       }]
     }]
   }
@@ -534,6 +532,8 @@ This injects a coding-focused learning evaluation reminder after each prompt (~5
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When a coding learning is valuable enough to become a reusable skill, extract it.
 
@@ -589,7 +589,7 @@ Use conversation signals ("This bug keeps happening", "Save this pattern as a sk
 ```
 
 **Track learnings in repo** (team-wide):
-Don't add to .gitignore — learnings become shared knowledge.
+Only track `.learnings/` after a human has reviewed entries for secrets, PII, and privileged content.
 
 **Hybrid** (track templates, ignore entries):
 ```gitignore
@@ -635,4 +635,8 @@ When guidance conflicts, apply:
 
 ### Ownership Rules
 - This skill writes only to `.learnings/coding/` in stackable mode.
-- It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Do not read other skill folders, their SKILL.md files, or their log entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

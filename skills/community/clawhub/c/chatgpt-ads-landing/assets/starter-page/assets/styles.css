@@ -1,0 +1,77 @@
+/* Starter styles. Brand colours live in :root — change those first.
+   Keep everything readable without JS: no content may depend on lp.js. */
+:root {
+  --brand: #0E2A54;        /* 填【主色】 */
+  --brand-deep: #08193A;
+  --accent: #E80A12;       /* 填【强调色】 */
+  --ink: #15213B;
+  --muted: #5A6478;
+  --line: #DCE3EE;
+  --bg-soft: #F3F6FB;
+  --white: #ffffff;
+  --radius: 10px;
+  --wrap: 1120px;
+  --shadow: 0 2px 12px rgba(14, 42, 84, 0.08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); line-height: 1.6; }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.1rem; }
+p { margin: 0 0 1em; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+.btn { display: inline-block; padding: 12px 28px; border-radius: 999px; font-weight: 600; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn--primary { background: var(--white); color: var(--brand); box-shadow: var(--shadow); }
+.btn--outline { border: 1.5px solid currentColor; padding: 9px 20px; color: var(--white); }
+
+.nav { position: sticky; top: 0; z-index: 10; background: var(--brand); color: var(--white); }
+.nav__inner { display: flex; align-items: center; gap: 24px; height: 64px; }
+.nav__logo { color: var(--white); font-weight: 800; letter-spacing: .04em; text-decoration: none; }
+.nav__links { margin-left: auto; display: flex; gap: 24px; }
+.nav__links a { color: rgba(255,255,255,.85); text-decoration: none; }
+
+/* Swap the gradient for the hero photo (assets/hero.jpg, < 800KB, relative path) once you have it. */
+.hero { background: linear-gradient(135deg, var(--brand-deep), var(--brand)); color: var(--white); }
+.hero__inner { padding: 88px 24px 72px; }
+.hero__eyebrow { letter-spacing: .2em; font-size: .8rem; opacity: .8; text-transform: uppercase; }
+.hero__title { font-size: 3rem; font-weight: 800; }
+.hero__subhead { font-size: 1.25rem; max-width: 48ch; }
+.hero__points { list-style: none; padding: 0; margin: 28px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 880px; }
+.hero__points li { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.25); border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; }
+.hero__points strong { font-size: 1.3rem; }
+.hero__note { font-size: .82rem; opacity: .75; margin-top: 20px; max-width: 70ch; }
+
+.section { padding: 72px 0; }
+.section--soft { background: var(--bg-soft); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+.steps { list-style: none; counter-reset: step; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.steps li { counter-increment: step; background: var(--white); border-radius: var(--radius); padding: 24px; }
+.steps li::before { content: counter(step); display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background: var(--accent); color: var(--white); font-weight: 700; margin-bottom: 12px; }
+
+.faq { max-width: 820px; display: grid; gap: 12px; }
+.faq__item { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; background: var(--white); }
+.faq__item summary { cursor: pointer; font-weight: 600; }
+.faq__a { color: var(--muted); padding-top: 10px; }
+
+.footer { background: var(--brand-deep); color: rgba(255,255,255,.82); padding: 32px 0 24px; }
+.footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: .78rem; color: rgba(255,255,255,.6); }
+.footer__legal { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.footer__legal a, .footer__consent { color: rgba(255,255,255,.78); text-decoration: none; }
+.footer__legal a:hover, .footer__consent:hover { color: var(--white); text-decoration: underline; }
+.footer__consent { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.footer__consent[hidden] { display: none; }
+
+@media (max-width: 920px) {
+  .hero__points, .steps { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  h2 { font-size: 1.5rem; }
+  .hero__title { font-size: 2.2rem; }
+  .nav__links { display: none; }
+}

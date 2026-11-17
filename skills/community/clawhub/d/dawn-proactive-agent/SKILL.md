@@ -1,162 +1,130 @@
 ---
 name: dawn-proactive-agent
-description: "从被动回复型AG升级为主动型的完整方案。基于OpenClaw Gateway Cron调度器实现时间线感知+决策回溯追踪+Proactive Surprise。含dawn_proactive.py引擎、决策注册表、Cron任务配置模板。"
+description: Dawn Agent v1.5 self-evolution proactive architecture. P0-P4 framework for autonomous ETF trading agent with self-reflection, state machine, audit trail, multi-dimension scoring, and safety guardrails.
 metadata:
-  tags: [proactive, cron, decision-tracking, automation, agent-evolution]
-  author: chen6896qqwee
-  requires:
-    bins: [openclaw]
+  openclaw:
+    requires:
+      bins: [python]
+    runtime: python
+    permissions:
+      - network: [api.zhangle.com, push2.eastmoney.com, quote.eastmoney.com, www.sina.com.cn]
+      - filesystem: [read/write workspace]
+      - exec: [python]
 ---
 
-# Dawn Proactive Agent v1.0
+# Dawn Proactive Agent v1.5
 
-## 一句话
+An autonomous, self-evolving ETF trading agent architecture designed for the A-share market.
 
-**让AG从「等人找」变成「自己动」** — 用OpenClaw Cron做定时触发器，用决策注册表做闭环回溯，用Proactive Surprise做自我进化。
-
----
-
-## 架构概览
+## Architecture Overview
 
 ```
-┌──────────────────────────────────────────────────┐
-│              Proactive Agent Engine              │
-│            scripts/dawn_proactive.py             │
-├──────────────────────────────────────────────────┤
-│                                                   │
-│  ┌──────────┐  ┌──────────┐  ┌───────────────┐  │
-│  │ 时间线引擎 │  │ 决策回溯  │  │ Proactive     │  │
-│  │ (Cron触发) │  │ (注册→验  │  │ Surprise      │  │
-│  │           │  │  证→学习) │  │ (自发现优化)   │  │
-│  └──────────┘  └──────────┘  └───────────────┘  │
-│                                                   │
-│  ┌──────────────────────────────────────────┐    │
-│  │          主动推送 (Feishu/其他渠道)        │    │
-│  └──────────────────────────────────────────┘    │
-├──────────────────────────────────────────────────┤
-│               OpenClaw Gateway Cron              │
-│               openclaw cron add ...              │
-└──────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────┐
+│              Dawn Proactive Agent v1.5              │
+├─────────────────────────────────────────────────────┤
+│  P0: dawn_reflect.py    Hermes-inspired reflection  │
+│  P1: dawn_state.py      LangGraph state machine     │
+│  P2: dawn_audit.py      RagaAI audit trail          │
+│  P3: dawn_analysis.py   ai-berkshire 4D scoring     │
+│  P4: dawn_guardrails.py OpenAI Agents safety        │
+├─────────────────────────────────────────────────────┤
+│       Active in: 华泰柏瑞杯ETF AI交易巅峰赛          │
+│       Period: 2026/6/11 - 2026/7/20                 │
+│       Portfolio: 8 ETFs, ~¥1M AUM                    │
+└─────────────────────────────────────────────────────┘
 ```
 
----
+## Components
 
-## 核心模块
+### P0 - Self-Reflection Engine (`dawn_reflect.py`)
+Hermes-inspired post-trade reflection. After every portfolio adjustment, automatically extracts lessons learned and loads them into the next decision cycle.
+- Trigger: post-trade callback
+- Output: structured learnings with recall scoring
+- Integrates with `.learnings/` structured log system
 
-### 1. 时间线引擎 (`dawn_proactive.py`)
+### P1 - State Machine (`dawn_state.py`)
+LangGraph-inspired workflow orchestration with checkpoint/resume.
+- States: IDLE → ANALYZE → DECIDE → EXECUTE → REFLECT → IDLE
+- Checkpoint recovery on timeout/crash
+- Timeout downgrade: auto-fallback to safest state
 
-通过 Gateway Cron 定时触发 Agent 执行任务。
+### P2 - Audit Trail (`dawn_audit.py`)
+RagaAI-inspired immutable decision logging.
+- Every decision recorded: timestamp, reasoning, data sources, signals, outcome
+- Queryable by date/strategy/symbol
+- Exports as structured JSON for backtesting
 
-```python
-# 自动识别 Cron 消息类型
-def classify_cron_message(message):
-    """morning_check | midday_check | afternoon_check |
-       evening_analysis | decision_backtrack | health_check |
-       memory_sync | surprise_scan | unknown"""
+### P3 - Multi-Dimension Scoring (`dawn_analysis.py`)
+ai-berkshire-inspired composite scoring for ETF selection.
+- Technical (30%): momentum, trend, volume
+- News Sentiment (25%): real-time financial news analysis
+- Capital Flow (25%): sector money flow tracking
+- Volume-Price (20%): volume-price divergence detection
 
-# 市场时间感知
-def get_market_hours_status():
-    """weekend | trading_morning | trading_afternoon |
-       lunch_break | post_market | pre_open | closed"""
-```
+### P4 - Safety Guardrails (`dawn_guardrails.py`)
+OpenAI Agents SDK-inspired transaction safety checks.
+- Blacklist: 科创板(688) and ST stocks blocked
+- Position limits: max 40% single ETF
+- Daily loss limit: max -5% stop-loss
+- Available cash check before execution
 
-### 2. 决策回溯 (`decision-registry.json`)
+## Usage
 
-注册→随访→验证闭环：
-
-```python
-# 注册一条决策
-register_decision(
-    name="曙光主动进化",
-    decision="从被动回复型升级为主动型",
-    expected_outcome="7天后Cron正常运行",
-    follow_up_days=7,
-    category="system"
-)
-# → DEC-20260701-001
-
-# 获取逾期未验证的决策
-get_overdue_decisions()
-
-# 验证决策结果
-verify_decision("DEC-20260701-001",
-    actual_outcome="所有Cron正常运行",
-    learned="...")
-```
-
-### 3. Proactive Surprise（待激活）
-主动扫描代码库发现优化机会的功能，需要在后续版本实现。
-
----
-
-## Cron 任务配置
-
-### 决策回溯（每日 20:30）
+### Daily Strategy Run (09:28)
 ```bash
-openclaw cron add --name "曙光决策回溯" --cron "30 20 * * *" --tz Asia/Shanghai --agent main --channel feishu --announce --message "【主动任务🔔】每日决策回溯检查。运行 python scripts/dawn_proactive.py 查看逾期决策。" --light-context --timeout-seconds 60 --session isolated
+python scripts/dawn_proactive.py --action morning
 ```
 
-### 健康扫描（每周日 06:00）
+### Post-Market Review (15:05)
 ```bash
-openclaw cron add --name "曙光技能健康扫描" --cron "0 6 * * 0" --tz Asia/Shanghai --agent main --channel feishu --announce --message "【每周自动任务🩺】健康扫描日。" --light-context --timeout-seconds 180 --session isolated
+python scripts/dawn_proactive.py --action afternoon
 ```
 
-### 上下文监控（每30分钟）
+### Midday Check (11:30)
 ```bash
-openclaw cron add --name "曙光上下文危险区监控" --cron "*/30 * * * *" --tz Asia/Shanghai --agent main --message "【上下文监控】检查当前会话上下文使用率。" --light-context --timeout-seconds 30 --session main
+python scripts/dawn_proactive.py --action midday
 ```
 
----
+### Manual Trade
+```bash
+python scripts/dawn_etf_rotator.py --execute
+```
 
-## 文件清单
+## Files
 
-本技能包含：
-- `SKILL.md` — 技能说明
-- `dawn_proactive.py` — Proactive Agent 引擎
-- `dawn_proactive.py` 部署后需要运行一次注册初始化：
-  ```bash
-  python -c "exec(open('scripts/dawn_proactive.py','r',encoding='utf-8').read()); log_proactive('部署','Proactive Agent初始化完成')"
-  ```
+| File | Purpose |
+|------|---------|
+| `scripts/dawn_proactive.py` | Main orchestrator |
+| `scripts/dawn_etf_rotator.py` | ETF rotation strategy |
+| `scripts/dawn_reflect.py` | P0: Self-reflection |
+| `scripts/dawn_state.py` | P1: State machine |
+| `scripts/dawn_audit.py` | P2: Audit trail |
+| `scripts/dawn_analysis.py` | P3: 4D scoring |
+| `scripts/dawn_guardrails.py` | P4: Safety guardrails |
+| `scripts/dawn_memory_sync.py` | L1↔L3 memory sync |
+| `scripts/dawn_collector.py` | Market data collection |
+| `scripts/dawn_selector.py` | ETF selection logic |
+| `scripts/dawn_monitor.py` | Real-time monitoring |
 
----
+## Results (2026-07-06)
 
-## 安装步骤
+- **Cron jobs**: 10 automated tasks running daily
+- **Portfolio**: 8 ETFs, 38.2%仓位, ¥1,003,751
+- **Key wins**: 科创板V反守住(+0.69% on 07-03), 全天候自动运行
+- **Self-healing**: 收盘复盘cron timeout自动修复 (agentTurn→command模式)
+- **Delivery**: 飞书推送自动修复 (delivery.to user:前缀)
 
-1. **安装依赖：**
-   ```bash
-   # 复制引擎到工作区
-   cp dawn_proactive.py scripts/
-   ```
+See `samples/proactive_demo.md` for a full session trace.
 
-2. **创建决策注册表：**
-   ```bash
-   python -c "import json; json.dump({'decisions':[],'last_check':None}, open('memory/decision-registry.json','w',encoding='utf-8'), ensure_ascii=False, indent=2)"
-   ```
+## Changelog
 
-3. **添加 Cron 任务：**
-   ```bash
-   # 替换 --channel 和 --to 为你的频道
-   openclaw cron add --name "决策回溯" --cron "30 20 * * *" --tz Asia/Shanghai --agent main --channel feishu --to "user:YOUR_OPEN_ID" --announce --message "【主动任务🔔】每日决策回溯检查。" --light-context --timeout-seconds 60 --session isolated
-   ```
+### v1.5 (2026-07-06)
+- P0-P4 framework complete
+- Cron self-healing: timeout 120s→300s, agentTurn→command mode
+- Delivery fix: feishu user: prefix
+- Git cleanup: 380K lines of old archive deleted
 
-4. **验证：**
-   ```bash
-   openclaw cron list
-   python -m py_compile scripts/dawn_proactive.py
-   ```
-
----
-
-## 关键技术点
-
-- **Cron 调度格式**：标准 5 字段 + 时区
-- **Delivery 路由**：`--channel feishu --to "user:OPEN_ID"` 指定飞书用户
-- **Light Context**：`--light-context` 减少 token 消耗
-- **Session Target**：后台任务用 `--session isolated`，不干扰主会话
-- **Timeout**：简单检查 60s，复杂扫描 180s
-
----
-
-**版本**: v1.0
-**作者**: 曙光 (chen6896qqwee)
-**一句话理念**: 真正的主动不是等人来找，是自己发现该干什么并直接干。
+### v1.0 (2026-06-24)
+- Initial dawn agent framework
+- LM Studio + DeepSeek-R1 local inference
+- Memory sync and knowledge injection

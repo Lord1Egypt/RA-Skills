@@ -1,40 +1,53 @@
-## Description: <br>
-提供9.9包邮频道商品查询工具，展示超值低价好货，仅筛选京东自营商品，已精选好评≥98%、销量≥2000的品质商品，支持按品类关键词、价格筛选和多种排序，结果不足时自动降级保证推荐数量。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries JD.com's 9.9 free-shipping shopping channel for JD self-operated products, with filters for category keywords, maximum price, review threshold, sorting, and pagination.
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External shoppers and shopping assistants use this skill to browse JD 9.9包邮 product recommendations by category keyword, price ceiling, quality threshold, sort order, and page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports broader JD affiliate search and promotion-link capabilities than the public description discloses. <br>
-Mitigation: Review before installing when strict JD self-operated-only filtering or tight affiliate API scope is required; validate proxy behavior and disclosed capabilities before use. <br>
-Risk: Product recommendations, prices, availability, images, and purchase links depend on live JD data and may change. <br>
-Mitigation: Treat results as shopping guidance only and verify price, seller, availability, and terms on JD before purchasing. <br>
+## Use Case:
 
+External shopping users use this skill to ask an agent for JD self-operated low-priced, free-shipping product recommendations and compare results by category, price, discount, and review threshold. The skill returns product details and purchase links but does not place orders, track prices, or send alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/jd-99-baoyou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [JSON string containing product records and a summary suitable for Markdown presentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paginated shopping results with product image URLs and purchase links; live results depend on JD API and proxy availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release evidence) <br>
+Risk: Every query goes through the publisher's Tencent Cloud proxy, and the package contains a reusable proxy token that should be treated as exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, avoid sending sensitive personal data in shopping queries, and require the publisher to rotate the shared proxy token and document proxy handling before trusted deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cn-shopping/skills/jd-99-baoyou)
+- [cn-shopping Publisher Profile](https://clawhub.ai/user/cn-shopping)
+- [京东自营秒杀](https://clawhub.ai/cn-shopping/jd-seckill)
+- [京东自营超级补贴](https://clawhub.ai/cn-shopping/jd-super-deals)
+- [购物比价助手](https://clawhub.ai/cn-shopping/best-price)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, guidance]
+
+**Output Format:** [JSON response containing a summary plus a JSON-encoded product list; agents may render image URLs as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product entries can include name, price, coupon price, discount percent, shop and brand names, tags, image URL, buy URL, categories, 30-day orders, review share, and score.]
+
+## Skill Version(s):
+
+0.4.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

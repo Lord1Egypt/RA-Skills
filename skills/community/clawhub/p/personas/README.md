@@ -11,12 +11,12 @@ Activate:
 
 List:
 - "List all personas"
-- `/persona list`
+- `/personas list`
 - `/personas`
 
 Exit:
 - "Exit persona mode"
-- `/persona exit`
+- `/personas exit`
 
 ## Included Personas (20)
 
@@ -51,6 +51,8 @@ What it does **not** do:
 
 ## Notes
 
+- In OpenClaw 2.0 the slash command is `/personas`, derived from the skill's `name` field; `/persona` does not work.
+- Trigger matching happens on the phrases in the skill's `description`. OpenClaw 2.0 has no `triggers:` or `categories:` frontmatter fields, and no separate trigger list registers commands.
 - Token-efficient: only one persona is active at a time.
 - You can switch personas mid-conversation.
 - Medical/legal personas are educational only, not professional advice.

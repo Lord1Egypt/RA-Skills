@@ -3,7 +3,7 @@ import { GuardDaemon } from '../../daemon/server';
 
 export const daemonCommand = new Command('daemon')
   .description('Start JEP Guard daemon')
-  .option('--mode <mode>', 'daemon mode', 'skill_os')
+  .option('--mode <mode>', 'daemon mode', 'full')
   .option('--port <port>', 'IPC port (default: unix socket)')
   .action(async (options) => {
     const daemon = new GuardDaemon(options.mode);
@@ -21,7 +21,7 @@ export const daemonCommand = new Command('daemon')
     });
 
     await daemon.start();
-    console.log(`🚀 JEP Guard v2.0.4 daemon running in ${options.mode} mode`);
+    console.log(`🚀 JEP Guard v3.0.0 daemon running in ${options.mode} mode`);
     console.log(`   IPC Socket: ${daemon.socketPath}`);
     console.log(`   PID: ${process.pid}`);
     console.log('\nPress Ctrl+C to stop\n');

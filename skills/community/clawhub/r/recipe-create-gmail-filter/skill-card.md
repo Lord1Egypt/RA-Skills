@@ -1,40 +1,48 @@
-## Description: <br>
-Create a Gmail filter to automatically label, star, or categorize incoming messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a Gmail filter to automatically label, star, or categorize incoming messages.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers can use this recipe to have an agent prepare Gmail label and filter commands for organizing incoming messages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A Gmail filter action could remove messages from the inbox or apply unintended labels if the criteria or action JSON is wrong.
+
+Mitigation: Review the proposed filter criteria and actions before running the create command, then verify the resulting filter list.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users managing Gmail with the Google Workspace CLI use this recipe to create a label, create a Gmail filter, and verify that incoming messages are labeled or removed from the inbox as intended. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Commands run against the Gmail account currently authenticated in gws. <br>
-Mitigation: Confirm gws is signed into the intended Gmail account before executing the recipe. <br>
-Risk: Using the sample sender, LABEL_ID, or inbox-removal action unchanged could mislabel or archive matching messages. <br>
-Mitigation: Replace sample values and confirm that removing matching messages from the inbox is the desired behavior. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-create-gmail-filter) <br>
+**Other Properties Related to Output:** [Uses the gws command-line tool and the gws-gmail skill to list labels, create labels, create filters, and verify filter settings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gws and the gws-gmail skill; sample sender and LABEL_ID values must be replaced before use.] <br>
+1.0.12 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release evidence; artifact metadata version 0.22.5) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

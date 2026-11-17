@@ -1,46 +1,60 @@
-## Description: <br>
-Converts web pages or provided text into TTS audio files and emits channel-specific markers for Feishu, WeChat, Telegram, and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web TTS Speaker turns webpage content or supplied text into text-to-speech audio files for Feishu, WeChat, Telegram, and Discord workflows.
 
-## Publisher: <br>
-[phentse](https://clawhub.ai/user/phentse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phentse](https://clawhub.ai/user/phentse)
 
-## Use Case: <br>
-Developers and agents use this skill to convert a URL or text snippet into voice-ready audio for chat channels. It is most useful when an assistant needs to read an article, summary, notice, or user-provided text aloud and return the generated voice file through the user's source channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private text, internal URLs, customer data, or confidential documents may be sent to external TTS or chat channels. <br>
-Mitigation: Require an explicit read-aloud request, disclose that content may leave the local environment, and avoid processing sensitive input. <br>
-Risk: Bare URLs can be fetched automatically and converted without enough user confirmation. <br>
-Mitigation: Ask for confirmation before fetching URLs, especially for private or unfamiliar links. <br>
-Risk: Generated audio files are written to local storage. <br>
-Mitigation: Write outputs to a controlled directory and clean up generated files after delivery when retention is not needed. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch article text or accept supplied text, synthesize speech, and prepare platform-specific audio attachments for supported messaging channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phentse/web-tts-speaker) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [OpenClaw Weixin voice issue](https://github.com/openclaw/openclaw/issues/61031) <br>
-- [FFmpeg builds](https://www.gyan.dev/ffmpeg/builds/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI output is text marker blocks that point to local MP3 or Opus audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The default auto mode creates channel-specific audio formats and prints markers for the agent to select the file for the inbound channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can fetch arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where public-web URL fetching is acceptable, avoid private or internal URLs, and add confirmation plus URL validation before deployment.
+
+Risk: Extracted webpage content or supplied text may be sent to an external TTS service.
+
+Mitigation: Do not process secrets or sensitive text without consent, and remove text snippets from shared logs or machine-readable output when needed.
+
+Risk: The security verdict recommends review before installation.
+
+Mitigation: Review the skill before installing, pin dependencies, and deploy only in an environment where its URL fetching and TTS behavior are permitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phentse/skills/web-tts-speaker)
+- [Publisher profile](https://clawhub.ai/user/phentse)
+- [OpenClaw WeChat voice message issue](https://github.com/openclaw/openclaw/issues/61031)
+- [FFmpeg Windows builds](https://www.gyan.dev/ffmpeg/builds/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and CLI stdout markers that point to generated MP3 or Opus audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8+, Python packages edge-tts, beautifulsoup4, and requests, plus FFmpeg for audio transcoding.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata, artifact skill.json, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

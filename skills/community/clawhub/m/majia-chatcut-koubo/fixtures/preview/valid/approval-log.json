@@ -1,0 +1,35 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/approval-log.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "events": [
+    {
+      "eventId": "event_preview_001",
+      "approvalId": "approval_preview_001",
+      "previewBundleId": "preview_bundle_4857bd70d77b",
+      "actorId": "actor_reviewer",
+      "decision": "approved",
+      "recordedAt": "2026-07-24T12:00:00Z",
+      "scope": {
+        "projectId": "proj_demo",
+        "runId": "run_demo",
+        "timelineId": "timeline_demo",
+        "timelineRevision": "rev_demo",
+        "planHash": "sha256:f6850dade638dfed44228323b690207bb2d1b5b770537e4890d44f3849948866",
+        "styleFingerprint": "sha256:5a7f8654f8c85a338d1ee517fa9286981042504b91324cf232dc4f95cf8c4c78",
+        "windowIds": [
+          "preview_opening",
+          "preview_complex",
+          "preview_privacy_001",
+          "preview_ending"
+        ]
+      },
+      "invalidatesOn": [
+        "planHash",
+        "previewBundleId",
+        "styleFingerprint",
+        "timelineRevision"
+      ]
+    }
+  ]
+}

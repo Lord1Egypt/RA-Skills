@@ -441,6 +441,31 @@ body {
 }
 .modal-close:active { background: #e0e0e8; }
 
+.modal-images-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  background: #fafafa;
+  border-bottom: 0.5px solid rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+.modal-images-bar[hidden] { display: none; }
+.modal-images-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.modal-images-actions button {
+  background: var(--pill-bg);
+  border: none;
+  border-radius: 12px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+}
+
 .modal-body-wrap {
   flex: 1;
   overflow: hidden;

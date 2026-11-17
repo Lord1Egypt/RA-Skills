@@ -1,40 +1,54 @@
-## Description: <br>
-You are a task dependency analysis and management specialist implementing DAG-based execution patterns from workflow orchestration systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a task dependency analysis and management specialist implementing DAG-based execution patterns from workflow orchestration systems.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, engineers, and project leads use this skill to analyze task dependencies, build dependency graphs, identify blockers and critical paths, and plan execution order for complex work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides planning guidance, and dependency analysis outputs may be incomplete or unsuitable for strict execution without review. <br>
-Mitigation: Review generated dependency graphs, blockers, and execution order before using them to coordinate work or automate downstream actions. <br>
-Risk: The release has limited publisher and source provenance for environments with strict supply-chain assurance requirements. <br>
-Mitigation: Validate the publisher profile, release hash, and artifact hash against internal approval requirements before deployment. <br>
+## Use Case:
 
+Developers, engineers, and project leads use this skill to analyze task dependencies, build execution graphs, identify blockers and critical paths, and choose an execution order for dependent work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-dependency-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown analysis with optional structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dependency graphs, execution waves, blocker summaries, critical path analysis, and planning recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad activation wording could cause the skill to be used for dependency planning when a narrower planning workflow would be sufficient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that dependency analysis, blocker management, or execution-wave planning is actually needed before invoking the skill.
+
+Risk: Incorrect task inputs, dependency assumptions, or duration estimates can produce misleading critical paths or execution waves.
+
+Mitigation: Validate the task list, dependency relationships, and estimates with project stakeholders before using the output to schedule or sequence work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-dependency-manager)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown analysis with tables, dependency diagrams, execution waves, and optional JSON blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output is required; recommendations depend on the supplied task list, dependencies, and estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

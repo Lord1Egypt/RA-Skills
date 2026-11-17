@@ -1,43 +1,57 @@
-## Description: <br>
-Automates the four highest-ROI tasks for local service businesses: review management, appointment follow-up, customer reactivation, and competitor monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the four highest-ROI tasks for local service businesses: review management, appointment follow-up, customer reactivation, and competitor monitoring.
 
-## Publisher: <br>
-[drew2operations](https://clawhub.ai/user/drew2operations) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drew2operations](https://clawhub.ai/user/drew2operations)
 
-## Use Case: <br>
-Local service businesses use this skill to draft review responses, appointment follow-up messages, customer reactivation campaigns, and competitor intelligence summaries for restaurants, salons, contractors, dental practices, medical practices, and similar providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated healthcare or marketing messages could include sensitive details or fail to honor consent and opt-out requirements. <br>
-Mitigation: For dental, medical, or other regulated businesses, use generic wording, avoid diagnosis or treatment details, send only through approved channels, verify recipients, and honor consent and opt-out requirements. <br>
-Risk: Review responses and competitor summaries may be misleading if based on incomplete or outdated business information. <br>
-Mitigation: Review generated messages and summaries against current public information and the business owner's own records before publishing or sending. <br>
+## Use Case:
 
+External local service business owners and operators use this skill to draft review responses, appointment follow-up messages, reactivation campaigns, and competitor intelligence reports for restaurants, salons, contractors, dental practices, and similar businesses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drew2operations/local-business-pack) <br>
-- [Appointment Follow-Up Templates](references/appointment-followup-templates.md) <br>
-- [Customer Reactivation Templates](references/reactivation-templates.md) <br>
-- [Review Response Templates](references/review-response-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown and plain-text business messages, sequences, and reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose saving generated content under a user-confirmed local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Healthcare and dental outreach can involve patient privacy, consent, and messaging-law requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review templates before use, avoid sensitive treatment details in SMS, and use approved patient communication channels.
+
+Risk: Public review responses may mishandle sensitive customer issues if copied without business review.
+
+Mitigation: Have a business owner or approved staff member review negative-review responses before posting and move detailed resolution discussions to private channels.
+
+## Reference(s):
+
+- [Local Business Pack on ClawHub](https://clawhub.ai/drew2operations/skills/local-business-pack)
+- [drew2operations ClawHub Profile](https://clawhub.ai/user/drew2operations)
+- [Appointment Follow-Up Templates by Business Type](references/appointment-followup-templates.md)
+- [Customer Reactivation Templates](references/reactivation-templates.md)
+- [Review Response Templates by Business Type](references/review-response-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with short-form message templates and structured reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce saved Markdown files for review responses, sequences, and reports after the user confirms the save location.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

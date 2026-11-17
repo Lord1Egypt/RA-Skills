@@ -1,43 +1,55 @@
-## Description: <br>
-Analyze Douban Movie workflows with JustOneAPI, including movie reviews, review details, subject details, comments, and recent hot movie or TV data across 6 GET operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Douban Movie workflows with JustOneAPI, including movie Reviews, review Details, and subject Details across 6 operations.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve exact Douban Movie data through JustOneAPI for review research, subject enrichment, sentiment sampling, catalog workflows, and movie or TV trend monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent in URL query parameters and may appear in copied URLs, logs, screenshots, or error traces. <br>
-Mitigation: Use a revocable or rotatable token, avoid sharing full request URLs or logs, and prefer a narrowly scoped token when the provider supports it. <br>
-Risk: The skill depends on an external JustOneAPI service and a local Node.js runtime. <br>
-Mitigation: Confirm node is available, keep JUST_ONE_API_TOKEN private, and handle backend errors by reviewing the operation ID and returned payload. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve Douban movie and TV subject details, reviews, comments, and recent hot title data through JustOneAPI for research, catalog enrichment, and sentiment workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douban) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown answer with selected JSON fields or raw JSON from JustOneAPI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; requests are GET calls with token, subject, review, sort, and page parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The JustOneAPI token is supplied through command-line arguments and added to API URL query parameters, which can expose it through shell history, process listings, logs, or captured request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token when available, avoid recording full commands or request URLs, keep logs private, and rotate the token if exposure is suspected.
+
+Risk: Douban subject IDs, review IDs, and query filters are sent to api.justoneapi.com with each request.
+
+Mitigation: Use the skill only when sending those identifiers to JustOneAPI is acceptable for the task and data-handling environment.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douban)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown answer with optional JSON API payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and Douban subject or review identifiers for most operations.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

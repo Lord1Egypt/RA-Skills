@@ -12,10 +12,14 @@ Checks the skill's structural contract:
 
 from __future__ import annotations
 
+import inspect
+import os
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 _HERE = Path(__file__).resolve().parent
 _SKILL_DIR = _HERE.parent
@@ -126,6 +130,11 @@ class TestSkillMd(unittest.TestCase):
             "SKILL.md hard rules must mention credit confirmation",
         )
 
+    def test_material_upload_uses_server_capability_limit(self):
+        self.assertIn("/api/file_server/accept_type", self.md)
+        self.assertIn("单文件最大 256 MiB", self.md)
+        self.assertNotIn("50MB", self.md)
+
     def test_stage2_uses_full_list_semantic_picking(self):
         """Stage 2 must use single-stage full-list + agent semantic picking,
         NOT the old keyword-search-variants approach. Empirically verified
@@ -182,6 +191,24 @@ class TestSkillMd(unittest.TestCase):
             "SKILL.md must forbid client-side rewrite reimplementation",
         )
 
+    def test_version_matches_root_readme(self):
+        """cue-research SKILL.md version must match the version advertised in
+        the root README.md Skills table — these have drifted before (SKILL.md
+        stuck at 0.3.0 while README reached 0.3.2)."""
+        m = re.search(r'^\s*version:\s*"([^"]+)"', self.md, re.M)
+        self.assertIsNotNone(m, "SKILL.md missing frontmatter version")
+        skill_ver = m.group(1)
+        readme_path = _REPO_ROOT / "README.md"
+        if not readme_path.exists():
+            self.skipTest("root README.md absent (standalone sibling-skills layout)")
+        readme = readme_path.read_text(encoding="utf-8")
+        row = re.search(r'cue-research.*?\| v(\d+\.\d+\.\d+) \|', readme)
+        self.assertIsNotNone(row, "root README.md missing cue-research version row")
+        self.assertEqual(
+            skill_ver, row.group(1),
+            f"version drift: SKILL.md={skill_ver} vs README.md=v{row.group(1)}",
+        )
+
 
 class TestSharedScriptImports(unittest.TestCase):
     def test_cue_api_search_templates_exists(self):
@@ -207,6 +234,21 @@ class TestSharedScriptImports(unittest.TestCase):
         for fn in ("upload_file", "get_accept_type"):
             self.assertTrue(hasattr(cue_api, fn), f"cue_api.{fn} missing")
             self.assertTrue(callable(getattr(cue_api, fn)))
+
+    def test_cue_api_has_material_upload_helper(self):
+        # 文档接地(素材) needs a file -> file_id SSE upload helper, distinct
+        # from upload_file (mimic file_hash). Posts to /file/upload_stream.
+        import cue_api
+        self.assertTrue(hasattr(cue_api, "upload_material"),
+                        "cue_api.upload_material missing — 素材接地 not applied?")
+        self.assertTrue(callable(cue_api.upload_material))
+        src = inspect.getsource(cue_api.upload_material)
+        self.assertIn("/file/upload_stream", src,
+                      "upload_material must POST to /file/upload_stream")
+        # must block until the terminal completed event, not the early file_id
+        self.assertIn("completed", src)
+        # form field is plural `files` (route takes List[UploadFile])
+        self.assertRegex(src, r'name="files"')
 
     def test_sse_report_helpers_exist(self):
         import sse_report
@@ -259,11 +301,122 @@ class TestSharedScriptImports(unittest.TestCase):
         )
 
 
+class TestUploadMaterialSSE(unittest.TestCase):
+    """Hermetic coverage of upload_material's SSE parsing — the riskiest new
+    logic. No network: a fake byte-line iterable stands in for the response."""
+
+    class _FakeResp:
+        def __init__(self, lines):
+            self._lines = lines
+            self.closed = False
+
+        def __iter__(self):
+            return iter(self._lines)
+
+        def close(self):
+            self.closed = True
+
+    def _call(self, frames):
+        import cue_api
+        self._last_resp = None
+
+        def fake_urlopen(req, timeout=None):
+            self._last_resp = self._FakeResp(frames)
+            return self._last_resp
+
+        with tempfile.NamedTemporaryFile(suffix=".txt", delete=False) as tf:
+            tf.write(b"hi")
+            tpath = tf.name
+        try:
+            with mock.patch.object(cue_api, "load_config",
+                                   lambda: ("sk", "https://x/api")), \
+                 mock.patch.object(cue_api, "get_accept_type", lambda: []), \
+                 mock.patch("cue_api.urllib.request.urlopen", fake_urlopen):
+                return cue_api.upload_material(tpath)
+        finally:
+            os.unlink(tpath)
+
+    def test_binds_on_completed_not_early_file_id(self):
+        # file_id present at `parsing` must be ignored; only `completed` binds.
+        frames = [
+            b'data: {"status":"parsing","file_id":"cf_EARLY"}\n',
+            b'data: {"status":"completed","progress":100,"file_id":"cf_DONE"}\n',
+            b"data: [DONE]\r\n",
+        ]
+        self.assertEqual(self._call(frames), "cf_DONE")
+        # the try/finally must close the response (success path)
+        self.assertTrue(self._last_resp.closed)
+
+    def test_done_marker_is_not_json_parsed(self):
+        # The bare [DONE] terminal frame must not crash the parse loop.
+        frames = [
+            b'data: {"status":"completed","file_id":"cf_X"}\n',
+            b"data: [DONE]\n",
+        ]
+        self.assertEqual(self._call(frames), "cf_X")
+
+    def test_no_completed_raises_non_network(self):
+        import cue_api
+        frames = [
+            b'data: {"status":"parsing","file_id":"cf_EARLY"}\n',
+            b"data: [DONE]\n",
+        ]
+        with self.assertRaises(cue_api.CueAPIError) as cm:
+            self._call(frames)
+        # must NOT be status 0 (which user_hint renders as "网络不可达").
+        self.assertNotEqual(cm.exception.status, 0)
+        self.assertNotIn("网络不可达", cm.exception.user_hint())
+        # the try/finally must close the response on the raise path too
+        self.assertTrue(self._last_resp.closed)
+
+    def test_failed_frame_surfaces_error_field(self):
+        # The route puts the failure reason under `error` (not `message`).
+        import cue_api
+        frames = [
+            b'data: {"status":"failed","error":"\xe6\x96\x87\xe4\xbb\xb6\xe5\xa4\xa7\xe5\xb0\x8f\xe8\xb6\x85\xe8\xbf\x87\xe9\x99\x90\xe5\x88\xb6 50MB"}\n',
+            b"data: [DONE]\n",
+        ]
+        with self.assertRaises(cue_api.CueAPIError) as cm:
+            self._call(frames)
+        self.assertIn("50MB", cm.exception.detail)
+        self.assertEqual(cm.exception.status, 422)
+        # 422 must render an actionable file-reject hint, not "未预期的错误".
+        hint = cm.exception.user_hint()
+        self.assertNotIn("网络不可达", hint)
+        self.assertNotIn("未预期的错误", hint)
+        self.assertIn("拒绝", hint)
+        self.assertTrue(self._last_resp.closed)
+
+
 class TestResearchRunner(unittest.TestCase):
     """research_run.py is the one runtime script — a thin composer over the
     shared cue-buddy primitives. SKILL.md routes Stage 4 through it (background
     + replay-as-primary + file output) instead of hand-writing the stream loop
     in prose, which was the original phantom-import / empty-report root cause."""
+
+    def setUp(self):
+        # main() now defaults its progress log to <root>/logs/cue-run.log via
+        # the paths resolver. Pin CUE_HOME to a temp dir + reset the resolver
+        # cache so tests never write logs/reports into the real ~/.cue, and
+        # snapshot stdout/stderr (main() tees them) to restore after each test.
+        import paths
+        import shutil
+        self._shutil = shutil
+        self._tmp = tempfile.mkdtemp()
+        self._prev_home = os.environ.get("CUE_HOME")
+        os.environ["CUE_HOME"] = self._tmp
+        paths._reset_cache()
+        self._prev_stdout, self._prev_stderr = sys.stdout, sys.stderr
+
+    def tearDown(self):
+        import paths
+        paths._reset_cache()
+        sys.stdout, sys.stderr = self._prev_stdout, self._prev_stderr
+        if self._prev_home is None:
+            os.environ.pop("CUE_HOME", None)
+        else:
+            os.environ["CUE_HOME"] = self._prev_home
+        self._shutil.rmtree(self._tmp, ignore_errors=True)
 
     def test_runner_exists_and_parses(self):
         import ast
@@ -296,6 +449,10 @@ class TestResearchRunner(unittest.TestCase):
         # background execution + file output are the borrowed patterns
         self.assertRegex(md, r"run_in_background", )
         self.assertRegex(md, r"--output|cue-reports")
+        # v0.3.4 path consolidation: single writable root via `cue_api.py root`,
+        # runner tees its own --log (no shell-redirect ./cue-run.log fragility).
+        self.assertRegex(md, r"cue_api\.py root")
+        self.assertIn("--log", md)
 
     def test_runner_exposes_mimic_flags(self):
         """Phase 1 + sample-document mimic: URL and local-file mimic flags,
@@ -307,6 +464,106 @@ class TestResearchRunner(unittest.TestCase):
         self.assertRegex(src, r'["\']url["\']\s*:')
         self.assertRegex(src, r'["\']file_hash["\']\s*:')
 
+    def test_report_finalized_breaks_live_loop(self):
+        """report_finalized must break the live SSE loop. The stream often
+        stays open after the report is done; without the break the run
+        holds until the 60min timeout and the agent stays stuck at
+        '已开跑' with the report already in the DB.
+
+        Pin the actual loop exit, not a source substring: monkeypatch
+        chat_stream to yield report_finalized followed by a poison event
+        whose consumption raises — run() must return the report without
+        iterating past report_finalized. (The old source-regex pin matched
+        _emit_progress's elif branch + the timeout break via re.S, so a
+        silent revert left the suite green.)"""
+        import json
+        from unittest.mock import patch
+        import research_run
+
+        def poison_stream(*a, **kw):
+            yield "tool_chunk", json.dumps({"chunk": {"0": {"type": "mcp", "data": {
+                "tool_name": "scan_x", "tool_title": "财报检索",
+                "input": {"query": "资产减值"},
+                "output": '{"rows":[{"source":{"pdf_url":"http://example.com/a.pdf"}}]}',
+            }}}})
+            yield "start_of_agent", json.dumps({"agent_name": "reporter"})
+            yield "message", json.dumps({"delta": {"content": "报告正文"}})
+            yield "report_finalized", json.dumps({"agent_name": "reporter"})
+            yield "POISON", "should-not-be-consumed"
+            raise AssertionError("stream iterated past report_finalized")
+
+        with patch.object(research_run, "chat_stream", poison_stream):
+            report, sources, conv_id = research_run.run(
+                query="q", template_id=None, conversation_id="c1", timeout=60.0
+            )
+        self.assertEqual(report, "报告正文",
+                         "run() should extract the report and return it")
+        self.assertEqual(conv_id, "c1")
+        self.assertEqual(len(sources), 1, "run() should return the tool_chunk source")
+        self.assertEqual(sources[0]["tool_name"], "scan_x")
+        self.assertEqual(sources[0]["rows"][0]["pdf_url"], "http://example.com/a.pdf")
+
+    def test_inline_citations(self):
+        """inline_citations: link text = domain short name (no long title,
+        no hover); mcp (no url) → tool_title plain text."""
+        import research_run
+        sources = [
+            {"index": 0, "tool_name": "search_tool",
+             "url": "https://www.21jingji.com/article/a.pdf",
+             "title": "来源A", "description": "来源A摘要", "rows": []},
+            {"index": 1, "tool_name": "scan_x", "url": "", "title": "",
+             "rows": [{"m": 0, "company": "002385", "title": "商誉减值",
+                       "pdf_url": "http://static.cninfo.com.cn/finalpage/b.pdf",
+                       "summary": "大北农...", "page_range": ""}]},
+            {"index": 2, "tool_name": "get_section", "tool_title": "A股财务摘要",
+             "url": "", "title": "", "rows": []},  # mcp, no url → tool_title
+        ]
+        report = "引用A【0-0】; 引用B【1-0】; 引用C【2-0】; 无来源【9-9】"
+        out = research_run.inline_citations(report, sources)
+        # search_snippet: link text = domain short (21jingji), no title attr
+        self.assertIn("[21jingji](<https://www.21jingji.com/article/a.pdf>)", out)
+        self.assertNotIn('"0-0', out)  # no hover title
+        # scan: link text = domain short (cninfo)
+        self.assertIn("[cninfo](<http://static.cninfo.com.cn/finalpage/b.pdf>)", out)
+        # mcp (no url): tool_title plain text (no link)
+        self.assertIn("A股财务摘要", out)
+        # unknown source: 【9-9】 kept as text
+        self.assertIn("【9-9】", out)
+        # no tail appendix
+        self.assertNotIn("## 数据来源详情", out)
+
+    def test_inline_citations_space_separated(self):
+        # consecutive citations must be space-separated at the marker level
+        # (before rendering), so urls/summaries with ) don't break the regex.
+        import research_run
+        sources = [
+            {"index": 0, "url": "http://en.wikipedia.org/wiki/Foo_(bar)",
+             "title": "", "description": "", "rows": []},
+            {"index": 1, "url": "http://b.com/y", "title": "", "description": "", "rows": []},
+        ]
+        out = research_run.inline_citations("ref【0-0】【1-0】end", sources)
+        self.assertIn(") [", out)  # space between consecutive links
+        self.assertNotIn(")[", out)  # no mashup even with ) in url
+
+    def test_inline_citations_url_with_paren(self):
+        # url containing ) (Wikipedia Foo_(bar)) must render as a working link
+        # — <...> wrapping keeps the destination intact under CommonMark.
+        import research_run
+        sources = [{"index": 0, "url": "http://en.wikipedia.org/wiki/Foo_(bar)",
+                    "title": "", "rows": []}]
+        out = research_run.inline_citations("ref【0-0】", sources)
+        self.assertIn("](<http://en.wikipedia.org/wiki/Foo_(bar)>)", out)
+
+    def test_inline_citations_no_truncate(self):
+        # scan class: high M rows all get links (no cap, positional).
+        import research_run
+        rows = [{"m": m, "company": f"c{m}", "title": "",
+                 "pdf_url": f"http://x{m}.com/{m}", "summary": "", "page_range": ""}
+                for m in range(32)]
+        sources = [{"index": 0, "url": "", "title": "", "rows": rows}]
+        out = research_run.inline_citations("ref【0-31】", sources)
+        self.assertIn("](<http://x31.com/31>)", out)
+
     def test_runner_mimic_is_freeform_only(self):
         """mimic must be refused alongside --template-id (backend lets
         template_id silently override mimic, so refuse rather than no-op)."""
@@ -316,11 +573,109 @@ class TestResearchRunner(unittest.TestCase):
             "runner must guard mimic-vs-template_id mutual exclusivity",
         )
 
+    def test_runner_exposes_material_flag(self):
+        """文档接地: --material (repeatable) uploads docs and threads their
+        file_ids into the payload as conversation_file_ids."""
+        src = (_HERE / "research_run.py").read_text(encoding="utf-8")
+        self.assertIn("--material", src)
+        self.assertIn("upload_material", src)
+        # threaded into the payload as the conversation_file_ids key
+        self.assertRegex(src, r'["\']conversation_file_ids["\']')
+
+    def test_runner_build_payload_includes_material_ids(self):
+        """build_payload must emit conversation_file_ids only when non-empty
+        (mirrors the `if mimic:` guard), and omit it otherwise."""
+        import research_run
+        with_ids = research_run.build_payload(
+            "q", None, "conv1", None, ["cf_a", "cf_b"]
+        )
+        self.assertEqual(with_ids.get("conversation_file_ids"), ["cf_a", "cf_b"])
+        without = research_run.build_payload("q", None, "conv1")
+        self.assertNotIn("conversation_file_ids", without)
+
+    def test_runner_allows_material_with_template(self):
+        """Behavioral: unlike mimic (which is refused with --template-id),
+        --material is orthogonal — main() must accept the combo (not return 2)
+        and pass BOTH template_id and the file_ids through to run().
+
+        (A source-regex 'no guard' check is unreliable here — single-line regex
+        misses a multi-line guard, and re.DOTALL over-matches — so assert the
+        actual behavior instead.)"""
+        import research_run
+
+        captured = {}
+
+        def fake_run(query, template_id, conv, timeout,
+                     mimic=None, conversation_file_ids=None):
+            captured["template_id"] = template_id
+            captured["cfids"] = conversation_file_ids
+            return "REPORT", [], conv
+
+        with tempfile.NamedTemporaryFile(suffix=".txt", delete=False) as tf:
+            tf.write(b"hi")
+            tpath = tf.name
+        out = tpath + ".out.md"
+        try:
+            with mock.patch.object(research_run, "load_config",
+                                   lambda: ("sk", "https://x/api")), \
+                 mock.patch.object(research_run, "upload_material",
+                                   lambda p: "cf_fake"), \
+                 mock.patch.object(research_run, "run", fake_run):
+                rc = research_run.main(
+                    ["--query", "q", "--template-id", "template_X",
+                     "--material", tpath, "--output", out]
+                )
+        finally:
+            os.unlink(tpath)
+            if os.path.exists(out):
+                os.unlink(out)
+        self.assertEqual(rc, 0, "material+template must be accepted, not refused")
+        self.assertEqual(captured.get("template_id"), "template_X")
+        self.assertEqual(captured.get("cfids"), ["cf_fake"])
+
+    def test_runner_material_upload_failure_aborts_before_chat(self):
+        """Fail-fast: a failed --material upload returns 1 and never reaches
+        chat_stream (don't burn a research run on missing grounding)."""
+        import cue_api
+        import research_run
+
+        chat = mock.Mock()
+
+        def boom(path):
+            raise cue_api.CueAPIError(422, "bad file", "/file/upload_stream")
+
+        with tempfile.NamedTemporaryFile(suffix=".txt", delete=False) as tf:
+            tf.write(b"hi")
+            tpath = tf.name
+        out = tpath + ".out.md"
+        try:
+            with mock.patch.object(research_run, "load_config",
+                                   lambda: ("sk", "https://x/api")), \
+                 mock.patch.object(research_run, "upload_material", boom), \
+                 mock.patch.object(research_run, "chat_stream", chat):
+                rc = research_run.main(
+                    ["--query", "q", "--material", tpath, "--output", out]
+                )
+        finally:
+            os.unlink(tpath)
+            if os.path.exists(out):
+                os.unlink(out)
+        self.assertEqual(rc, 1)
+        chat.assert_not_called()
+
     def test_skill_md_documents_mimic_option(self):
         md = (_SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
         self.assertRegex(md, r"仿写|mimic")
         self.assertIn("--mimic-url", md)
         self.assertIn("--mimic-file", md)
+
+    def test_skill_md_documents_material_option(self):
+        md = (_SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("--material", md)
+        self.assertRegex(md, r"素材|接地|file_retrieval")
+        # security rule must scope the "don't upload local files" default to
+        # explicitly-confirmed material uploads, not contradict it.
+        self.assertRegex(md, r"默认不上传本地材料|经用户确认后才上传")
 
 
 class TestNormalizeTemplateId(unittest.TestCase):
@@ -367,6 +722,109 @@ class TestReplayableEmptyKinds(unittest.TestCase):
         # Guard against regressing to a hard-coded single-kind check.
         src = (_HERE / "research_run.py").read_text(encoding="utf-8")
         self.assertIn("diag[\"kind\"] in REPLAYABLE_EMPTY_KINDS", src)
+
+
+class TestEmitProgress(unittest.TestCase):
+    """_emit_progress prints flushed, human+machine-readable progress lines
+    for key SSE events so the agent (and user reading backgrounded stdout)
+    can see research steps: agent phase + task_requirement, tool calls,
+    report finalization. Other events are ignored (too noisy / report
+    content). Lets the agent confirm startup, check progress mid-run, and
+    see completion — fixing the fire-and-retrieve black-box."""
+
+    def _emit(self, event, payload):
+        import contextlib
+        import io
+        import json
+        import research_run
+        data = json.dumps(payload) if payload is not None else ""
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            research_run._emit_progress(event, data)
+        return buf.getvalue()
+
+    def test_start_of_agent_with_task_requirement(self):
+        out = self._emit("start_of_agent", {
+            "agent_name": "researcher",
+            "task_requirement": "扫描年报资产减值",
+        })
+        self.assertIn("▶ agent=researcher task=扫描年报资产减值", out)
+
+    def test_start_of_agent_without_task_requirement(self):
+        out = self._emit("start_of_agent", {"agent_name": "coordinator"})
+        self.assertIn("▶ agent=coordinator", out)
+        self.assertNotIn("task=", out)
+
+    def test_tool_call_with_title(self):
+        out = self._emit("tool_call", {
+            "tool_name": "scan_financial_report_evidence",
+            "tool_title": "财报章节语义检索",
+        })
+        self.assertIn("🔧 tool=scan_financial_report_evidence (财报章节语义检索)", out)
+
+    def test_tool_call_without_title(self):
+        out = self._emit("tool_call", {"tool_name": "scan_x"})
+        self.assertIn("🔧 tool=scan_x", out)
+        self.assertNotIn("(", out)
+
+    def test_report_finalized(self):
+        out = self._emit("report_finalized", {"agent_name": "reporter"})
+        self.assertIn("✓ report finalized", out)
+
+    def test_message_event_ignored(self):
+        # message events carry report content delta — too noisy, must skip.
+        out = self._emit("message", {"delta": {"content": "报告正文..."}})
+        self.assertEqual("", out)
+
+    def test_empty_data_ignored(self):
+        out = self._emit("message", None)
+        self.assertEqual("", out)
+
+    def test_malformed_json_ignored(self):
+        import contextlib
+        import io
+        import research_run
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            research_run._emit_progress("start_of_agent", "{not json")
+        self.assertEqual("", buf.getvalue())
+
+    def test_non_dict_json_ignored(self):
+        # valid JSON but not a dict (null/list/string) — must not AttributeError
+        import contextlib
+        import io
+        import research_run
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            research_run._emit_progress("tool_call", "[1, 2, 3]")
+            research_run._emit_progress("start_of_agent", '"a string"')
+            research_run._emit_progress("tool_call", "null")
+        self.assertEqual("", buf.getvalue())
+
+    def test_tool_call_nested_live_shape(self):
+        # live chat_stream wraps payload in {"data": {...}}; replay is flat.
+        # _emit_progress must handle both (via _event_data) — flat-only access
+        # degrades to 🔧 tool=? on live streams, exactly where the feature matters.
+        out = self._emit("tool_call", {"data": {
+            "tool_name": "scan_financial_report_evidence",
+            "tool_title": "财报章节语义检索",
+        }})
+        self.assertIn("🔧 tool=scan_financial_report_evidence (财报章节语义检索)", out)
+
+    def test_start_of_agent_nested_live_shape(self):
+        out = self._emit("start_of_agent", {"data": {
+            "agent_name": "researcher",
+            "task_requirement": "扫描年报资产减值",
+        }})
+        self.assertIn("▶ agent=researcher task=扫描年报资产减值", out)
+
+    def test_nested_data_non_dict_no_crash(self):
+        # payload is a dict but payload["data"] is a truthy non-dict (str) —
+        # _agent_name used to do (payload.get("data") or {}).get(...) which
+        # raised AttributeError on the str, killing run() mid-stream. The
+        # isinstance(nested, dict) guard in _agent_name prevents this.
+        out = self._emit("start_of_agent", {"data": "oops"})
+        self.assertIn("▶ agent=?", out)  # degraded, not crashed
 
 
 if __name__ == "__main__":

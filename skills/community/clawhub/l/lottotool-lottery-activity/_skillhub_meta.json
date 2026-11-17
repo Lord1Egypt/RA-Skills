@@ -1,0 +1,26 @@
+{
+  "name": "抽奖工具 · 抽奖活动创建助手",
+  "source": "skillhub",
+  "skillId": "lottotool-lottery-activity",
+  "examples_zh": [
+    "我要做个万圣节抽奖，奖品是糖果礼盒和电影票，帮我想想怎么安排。",
+    "新店开业想送些小礼物给顾客，帮我设计一个抽奖活动。",
+    "想让群里的朋友带朋友一起来抽奖，奖品是咖啡杯，怎么做比较合适？"
+  ],
+  "examples_en": [
+    "I want to run a Halloween giveaway with candy gift boxes and movie tickets. How should I set it up?",
+    "I'm opening a new store and want to give customers some small gifts. Help me plan a giveaway.",
+    "I want people in my group to invite friends to a giveaway for coffee mugs. What would work well?"
+  ],
+  "description_zh": "把日常抽奖需求对应到开奖方式、参与条件、好友裂变和额外抽奖机会；用抽奖工具策划、预览、创建微信小程序活动，并查询和导出本人活动数据。",
+  "description_en": "Map everyday lottery needs to draw modes, entry conditions, invite rewards, and bonus chances; plan, create, query, and export LottoTool activities.",
+  "iconSource": "https://cdn.zhinizhushou.com/material/lib/2026-08-18/1f9de3589ae211f193435254007e44e8.png",
+  "iconDownloadedFrom": "https://cdn.zhinizhushou.com/material/lib/2026-08-18/1f9de3589ae211f193435254007e44e8.png",
+  "version": "1.2.7",
+  "mcp": {
+    "name": "抽奖工具 MCP",
+    "configPath": "connectors/default/mcp.json",
+    "url": "https://api.52choujiang.cn/lotto/mcp/v1",
+    "auth": "oauth"
+  }
+}

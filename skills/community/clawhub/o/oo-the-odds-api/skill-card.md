@@ -1,44 +1,55 @@
-## Description: <br>
-The Odds API (the-odds-api.com) skill helps agents search and read sports odds, scores, events, participants, and market data through the OOMOL `oo` CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use your OOMOL-connected account to search and read data from The Odds API.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to an OOMOL-connected The Odds API account for sports odds, scores, events, participants, and market lookup tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a connected OOMOL account for The Odds API access. <br>
-Mitigation: Install only if you trust OOMOL and want the agent to use that connected account. <br>
-Risk: Live odds queries may consume The Odds API account quota or credits. <br>
-Mitigation: Monitor API usage and stop retrying when billing or insufficient-credit errors occur. <br>
-Risk: First-time setup may require installing the oo CLI from an external install command. <br>
-Mitigation: Review the oo CLI installation command before running it. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve odds, scores, events, markets, participants, and supported sports through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [The Odds API homepage](https://the-odds-api.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-the-odds-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and a meta.executionId when actions run successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: artifact frontmatter and release evidence) <br>
+Risk: Setup can execute downloaded software without a clear approval step, and the installer contents and exact system changes are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, preferably using a pinned, verified release.
+
+Risk: API requests may consume account credits.
+
+Mitigation: Check expected request costs and available credits before running actions.
+
+## Reference(s):
+
+- [The Odds API](https://the-odds-api.com)
+- [The Odds API v4 documentation](https://the-odds-api.com/liveapi/guides/v4/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON API responses and shell commands with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only odds and sports data; action inputs are checked against the live connector schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

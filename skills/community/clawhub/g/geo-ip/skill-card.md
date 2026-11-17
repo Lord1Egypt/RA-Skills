@@ -1,38 +1,53 @@
-## Description: <br>
-Look up geographic location for any IP address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up geographic location for any IP address.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and users use this skill to query ipinfo.io for geographic details about a supplied IP address or their own public IP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried IP addresses are sent to ipinfo.io. <br>
-Mitigation: Avoid querying sensitive internal, customer, or confidential IP addresses unless that disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xejrax/geo-ip) <br>
-- [ipinfo.io](https://ipinfo.io) <br>
+## Use Case:
 
+External users and developers use this skill to look up city, region, country, coordinates, and ISP details for a public IP address.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and sends queried IP addresses to ipinfo.io.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Looking up sensitive internal, customer, or confidential IP addresses sends those addresses to ipinfo.io.
+
+Mitigation: Use the skill only for public IP lookups unless sharing the queried address with ipinfo.io is acceptable.
+
+Risk: The skill depends on curl and the availability of the public ipinfo.io API.
+
+Mitigation: Confirm curl is available and treat API failures or missing responses as lookup failures rather than authoritative location results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/geo-ip)
+- [ipinfo.io](https://ipinfo.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Text output from an IP geolocation lookup, with shell command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and uses the public ipinfo.io API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

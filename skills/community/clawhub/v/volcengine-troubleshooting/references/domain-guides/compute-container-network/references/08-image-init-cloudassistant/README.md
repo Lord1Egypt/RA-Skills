@@ -49,4 +49,3 @@ ve ecs DescribeInvocationResults --Region "<region>" --InvocationId "<invocation
 | cloud-init 卡住 | 用户数据、网络初始化、包源、磁盘挂载问题 |
 | 云助手离线 | 实例内 Agent 异常、网络不通、系统未正常启动 |
 | 控制台显示驱动缺失 | 镜像不适配当前规格或 GPU/网卡驱动问题 |
-

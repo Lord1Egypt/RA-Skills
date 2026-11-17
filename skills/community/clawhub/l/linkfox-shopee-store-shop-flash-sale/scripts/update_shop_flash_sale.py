@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — update_shop_flash_sale (v2.shop_flash_sale.update_shop_flash_sale)
+Shopee Store — update_shop_flash_sale
+
 官方: https://open.shopee.com/documents/v2/v2.shop_flash_sale.update_shop_flash_sale?module=123&type=1
+
+入参说明见 references/apis/update-shop-flash-sale.md。
 """
 
 from __future__ import annotations

@@ -1,0 +1,14 @@
+{
+  "source": "mock",
+  "keywords": ["熟龄肌抗老", "抗老面霜", "40+护肤"],
+  "sorts": ["综合", "最新", "最多点赞", "最多收藏", "最多评论"],
+  "limit_per_query": 20,
+  "output_dir": "output",
+  "credentials": {
+    "pgy_token": "",
+    "juguang_token": "",
+    "thirdparty_platform": "千瓜",
+    "thirdparty_base_url": "",
+    "thirdparty_token": ""
+  }
+}

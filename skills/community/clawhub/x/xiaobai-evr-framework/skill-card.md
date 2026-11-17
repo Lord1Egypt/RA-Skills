@@ -1,41 +1,52 @@
-## Description: <br>
-EVR Framework - Execute-Verify-Report. Force AI to actually do, then verify, then report so completion claims are backed by evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EVR Framework guides agents through Execute-Verify-Report so they perform requested actions, independently verify results, and report evidence before claiming completion.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aptratcn](https://clawhub.ai/user/aptratcn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to make assistants execute tasks, verify results with independent checks, and report concrete evidence before claiming completion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages agents to take real actions and persist evidence or behavioral rules, which can be risky without clear user consent.
+
+Mitigation: Require explicit user approval for destructive actions, external messages, scheduled jobs, credentialed operations, persistent memory updates, and WORK_RULES.md changes.
+
+Risk: Verification-focused reporting can still include incorrect or misleading guidance if command results are misunderstood.
+
+Mitigation: Review proposed actions and verification evidence before deployment, and scan the skill before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to require real execution, independent verification, and evidence-based reporting before an agent claims a task is complete. It is intended for workflows such as file changes, command execution, scheduled jobs, package installation, service checks, repository actions, and outgoing messages. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage agents to perform real local or external actions from broad completion and verification triggers. <br>
-Mitigation: Require explicit confirmation before commands, scheduled jobs, file changes, outgoing messages, or other actions with external effects. <br>
-Risk: The security review flagged the release for careful review because action boundaries are not clearly limited. <br>
-Mitigation: Review the skill text before installation and grant only the tool permissions needed for the intended workflow. <br>
+**Output Format:** [Markdown guidance with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub EVR Framework release page](https://clawhub.ai/aptratcn/xiaobai-evr-framework) <br>
-- [Skill source artifact](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [May include verification evidence and command output summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with verification checklists, examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the agent to report evidence from verification steps before claiming completion.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

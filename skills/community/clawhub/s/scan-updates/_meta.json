@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "scan-updates",
-  "version": "1.1.1",
-  "publishedAt": 1782308140376
+  "name": "scan_updates",
+  "version": "3.0.0",
+  "description": "Scan registered sources for changes and run incremental compilation.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "paper-kb-v3",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "SenderId",
+      "ChatType",
+      "GroupSubject",
+      "MessageSid",
+      "MessageThreadId",
+      "AccountId",
+      "CardActionValue",
+      "CardFormValues",
+      "WasMentioned"
+    ]
+  }
 }

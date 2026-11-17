@@ -1,41 +1,58 @@
-## Description: <br>
-Prevents AI agents from hitting 429 rate limits with local tier-based throttling, rolling-window usage tracking, and exponential backoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevents AI agents from hitting API rate limits by checking local usage tiers, recording requests, and backing off after 429 responses.
 
-## Publisher: <br>
-[kakaxiazai](https://clawhub.ai/user/kakaxiazai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kakaxiazai](https://clawhub.ai/user/kakaxiazai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a local gate around expensive agent work, record usage, and reduce or pause activity before and after rate-limit responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can pause or reduce agent activity when its local tier reaches throttled, critical, or paused states. <br>
-Mitigation: Review agent prompt, heartbeat, and cron integrations before enabling them, and tune the provider, plan, and estimated limit for the account. <br>
-Risk: Shared or lingering state and timer setup can affect future agent runs after configuration changes or uninstall. <br>
-Mitigation: Keep RATE_LIMIT_STATE in a known per-instance JSON path and remove any related timer or cron entry when disabling the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a local gate before expensive LLM operations, record request usage, and pause or downshift work before or after rate-limit errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kakaxiazai/api-agent-rate-limiter-1-3-1) <br>
-- [The Agent Wire](https://theagentwire.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON status/state output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local JSON state file and standard Python library behavior; no API keys or external services are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json reports upstream skill version 1.3.1) <br>
+Risk: The local state file may expose usage patterns or be altered when stored in a shared or world-writable location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private RATE_LIMIT_STATE path with restricted permissions and avoid shared directories.
+
+Risk: Resetting the limiter deletes prior rate-limit history, which can make near-term estimates less reliable.
+
+Mitigation: Run reset only when intentionally clearing history, then start with conservative limits until new usage data accumulates.
+
+Risk: Cron or prompt integrations can change when an agent pauses, resumes, or skips work.
+
+Mitigation: Review integrations before enabling them so throttling decisions remain under operator control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kakaxiazai/skills/api-agent-rate-limiter-1-3-1)
+- [The Agent Wire](https://theagentwire.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with bash examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local JSON state file and configurable environment variables; no external services or API keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata version 1.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

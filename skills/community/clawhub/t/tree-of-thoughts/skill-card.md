@@ -1,39 +1,53 @@
-## Description: <br>
-Multi-path reasoning for complex problems by exploring solution branches, evaluating each branch, and selecting an optimal path for decisions, creative problems, ambiguous situations, and optimization challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-path reasoning for complex problems that guides an agent to explore, evaluate, prune, backtrack, and select among solution branches.
 
-## Publisher: <br>
-[tobisamaa](https://clawhub.ai/user/tobisamaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobisamaa](https://clawhub.ai/user/tobisamaa)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to structure complex problem solving by generating multiple candidate approaches, scoring them, expanding promising branches, and selecting a final path. It is most useful when there are several plausible solutions and the cost of choosing poorly is high. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cached or logged problem statements may retain sensitive prompts, decisions, or outcomes. <br>
-Mitigation: Avoid confidential inputs unless caching and logging are disabled or the related memory files are actively managed. <br>
-Risk: The release includes planned implementation notes and a wrapper that may not load a complete runtime implementation. <br>
-Mitigation: Review and test the runtime files before relying on automated execution; use the documented reasoning method manually when runtime behavior is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobisamaa/tree-of-thoughts) <br>
+## Use Case:
 
+Developers, operators, and agents use this skill for complex decisions, creative problems, ambiguous situations, and optimization tasks where comparing multiple approaches is useful.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown reasoning plans with scored branches, examples, and command-style shortcuts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May document reasoning sessions and use caching or logging when enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local caching or session logs may retain sensitive prompts, problem statements, or decisions.
+
+Mitigation: Disable caching with --no-cache and avoid session logging for confidential business, personal, security, or incident-response prompts.
+
+Risk: Reasoning proposals can be incorrect or misleading when applied to high-cost or ambiguous decisions.
+
+Mitigation: Review generated branches, scores, and selected paths before acting on the recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobisamaa/skills/tree-of-thoughts)
+- [ClawHub publisher profile](https://clawhub.ai/user/tobisamaa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May document reasoning sessions and cache problem statements when those workflows are enabled.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

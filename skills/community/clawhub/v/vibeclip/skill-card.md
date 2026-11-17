@@ -1,41 +1,58 @@
-## Description: <br>
-Generates short AI-assisted music videos from melody audio, a photo, and a prompt using a local Node/Express app with Ollama scene descriptions and FFmpeg video rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short music-video clips from melody audio, a photo, and a prompt using a local Node/Express app with Ollama scene descriptions and FFmpeg video rendering.
 
-## Publisher: <br>
-[GBlockChainNetwork](https://clawhub.ai/user/GBlockChainNetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[gblockchainnetwork](https://clawhub.ai/user/gblockchainnetwork)
 
-## Use Case: <br>
-Developers and operators can use this skill to scaffold and run a local media-generation service that accepts audio, image, and prompt inputs and returns scene text plus an MP4 clip. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The app exposes an unauthenticated network upload endpoint that runs FFmpeg on user-supplied media. <br>
-Mitigation: Add authentication, upload type and size limits, rate limits, FFmpeg sandboxing, and cleanup for failed requests before VPS or network deployment. <br>
-Risk: The browser UI renders generated response content with innerHTML. <br>
-Mitigation: Use safe DOM rendering for generated scenes, links, and error messages before exposing the app to untrusted users. <br>
+## Use Case:
 
+Developers and creators use this skill to run a local video-generation web app that accepts audio, an image, and a prompt, then returns scene text and an MP4 output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBlockChainNetwork/vibeclip) <br>
-- [Publisher profile](https://clawhub.ai/user/GBlockChainNetwork) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell commands; the generated app returns JSON containing scene text and MP4 video links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, Ollama, and FFmpeg; the app uses local file uploads and generated media files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The local web server exposes unauthenticated media processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment until authentication, upload limits, and rate limiting are added.
+
+Risk: Submitted audio, images, prompts, and generated MP4 outputs may contain sensitive content.
+
+Mitigation: Treat inputs and outputs as sensitive local files and add safe cleanup or retention controls before broader deployment.
+
+Risk: Long-running generation jobs and downloads may need stronger operational controls.
+
+Mitigation: Add job timeouts, safe output cleanup, UUID validation on downloads, DOM-safe rendering, and patched or pinned dependencies before exposing the app.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gblockchainnetwork/skills/vibeclip)
+- [Publisher profile](https://clawhub.ai/user/gblockchainnetwork)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown and JSON responses with generated MP4 file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Node.js, Ollama, and FFmpeg; generated audio, image, prompt, and MP4 outputs should be treated as sensitive local content.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

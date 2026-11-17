@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "TickTick"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["ticktick"]
   icon: "https://static.oomol.com/logo/third-party/ticktick.svg"
 ---
@@ -37,6 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `batch_add_tasks` — Batch create multiple TickTick tasks in one request. [write]
 - `complete_task` — Mark a TickTick task as completed by project ID and task ID. [write]
 - `create_or_update_habit_checkin` — Create or update a TickTick habit check-in for a date stamp. [write]
 - `create_project` — Create a TickTick project with optional color, sort order, view mode, and kind. [write]
@@ -87,11 +88,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — TickTick is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=ticktick
+  https://console.oomol.com/connections/ticktick
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - TickTick homepage: https://ticktick.com
+- API documentation: https://developer.ticktick.com/docs/index.html

@@ -1,40 +1,53 @@
-## Description: <br>
-Performs competitive intelligence by researching competitors and analyzing their online presence using web search and site scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs competitive intelligence by researching competitors and analyzing their online presence using web search and site scraping.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, product, sales, and strategy teams use this skill to research direct and adjacent competitors, compare pricing and features, analyze messaging, and identify actionable gaps and opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External search and site scraping can expose sensitive competitive strategy or product-marketing context to configured research tools. <br>
-Mitigation: Review local product-marketing context before use and confirm that the referenced Exa and Firecrawl tools are trusted and configured appropriately. <br>
-Risk: Competitor pricing, feature, and positioning data can be stale, incomplete, or unavailable. <br>
-Mitigation: Cross-reference search results with targeted scraped pages and explicitly flag findings that could not be verified. <br>
+## Use Case:
 
+Marketing, product, sales, and strategy teams use this skill to research competitors, compare positioning, pricing, and features, and synthesize actionable competitive intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-competitive-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown competitive intelligence report with prose, bullet lists, and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses disclosed web search, targeted site scraping, and optional local product-marketing context; findings should flag information gaps rather than guessing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: User-provided competitor names or URLs could be inserted into shell command templates unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass search terms and URLs as structured tool arguments when available; otherwise validate and quote user-provided values before execution.
+
+Risk: Competitive intelligence findings can be misleading when search results or scraped pages are stale, incomplete, or unverifiable.
+
+Mitigation: Cross-reference search results with scraped source pages and explicitly flag pricing, feature, or company details that could not be verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-competitive-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes executive summary, competitor profiles, feature comparison matrix, messaging analysis, and gaps and opportunities; findings should flag information gaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

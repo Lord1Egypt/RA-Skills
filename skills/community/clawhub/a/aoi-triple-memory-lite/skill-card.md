@@ -1,45 +1,58 @@
-## Description: <br>
-AOI Triple Memory (Lite) provides file search and decision-note templates without plugins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AOI Triple Memory (Lite) provides local workspace file search and decision-note templates without plugins.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to search local project files, keep file-based memory, and create structured decision notes under a workspace context directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The search command can scan the entire selected workspace. <br>
-Mitigation: Run it only in workspaces where broad file search is acceptable, and avoid repositories containing secrets or private configuration unless access is restricted. <br>
-Risk: The note command writes Markdown files under ./context. <br>
-Mitigation: Review generated notes before committing or sharing them, especially when they may contain project decisions or sensitive context. <br>
-Risk: The skill depends on ripgrep even though the dependency is not declared. <br>
-Mitigation: Confirm rg is installed and available on PATH before relying on search behavior. <br>
-Risk: The security evidence reports a ripgrep option-injection risk. <br>
-Mitigation: Prefer a fixed version that passes the search pattern after an rg option delimiter such as --. <br>
+## Use Case:
 
+External developers and agents use this skill to search the current workspace with ripgrep and create structured decision notes under context/ for lightweight local memory.
 
-## Reference(s): <br>
-- [AOI Triple Memory (Lite) on ClawHub](https://clawhub.ai/edmonddantesj/aoi-triple-memory-lite) <br>
-- [AOI Skills Issues](https://github.com/edmonddantesj/aoi-skills/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [JSON command output and Markdown decision-note files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The search command emits JSON results, and the note command writes Markdown files under ./context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence, package.json, _meta.json) <br>
+Risk: The CLI can search the current workspace and may expose local file contents in search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in workspaces where local search is intended, and review results before sharing them outside the workspace.
+
+Risk: The CLI writes decision-note files into the local context/ directory.
+
+Mitigation: Treat saved notes as user data, review them before reuse, and do not treat note contents as authoritative agent instructions.
+
+Risk: Untrusted note titles or tags could carry misleading instructions into saved context notes.
+
+Mitigation: Avoid using untrusted or copied external instructions in note titles and tags.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edmonddantesj/skills/aoi-triple-memory-lite)
+- [Support issues](https://github.com/edmonddantesj/aoi-skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON search results and Markdown decision-note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output is limited by the requested result count; decision notes are written to the local workspace.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata, _meta.json, package.json; SKILL.md frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

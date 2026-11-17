@@ -1,44 +1,59 @@
-## Description: <br>
-Creates and deploys web applications to Cloudflare Pages, with safety checks for file overwrites, GitHub pushes, and deployment changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly creates and deploys web applications to Cloudflare Pages, with safeguards for file overwrites, Git pushes, and system-level changes.
 
-## Publisher: <br>
-[samueli](https://clawhub.ai/user/samueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samueli](https://clawhub.ai/user/samueli)
 
-## Use Case: <br>
-Developers and engineers use this skill to create a web project, optionally push it to GitHub, and deploy it to Cloudflare Pages. It is suited for agent-assisted deployment workflows where project naming, file overwrite, repository, and Cloudflare account actions need explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local project files, copy source directories, and overwrite existing paths. <br>
-Mitigation: Confirm the project name, source directory, and whether in-place deployment or overwrite behavior is authorized before running deployment commands. <br>
-Risk: The skill can use GitHub and Cloudflare accounts to create repositories, push code, or deploy pages. <br>
-Mitigation: Confirm whether to skip GitHub or Cloudflare deployment, and use a least-privilege Cloudflare API token scoped to the intended account. <br>
-Risk: Missing dependencies may lead to requests for global tool installation. <br>
-Mitigation: Ask for explicit permission before installing system-level or global dependencies such as GitHub CLI or Wrangler. <br>
+## Use Case:
 
+Developers and engineers use this skill to create simple web projects or deploy existing web app directories to GitHub and Cloudflare Pages. It is intended for agent-assisted deployment workflows that need explicit confirmation before file changes, repository pushes, or cloud publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samueli/dev-deploy) <br>
-- [Cloudflare API token management](https://dash.cloudflare.com/profile/api-tokens) <br>
-- [Cloudflare API token documentation](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local project files and deployment instructions based on the requested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad project contents may be committed, pushed, or deployed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected source directory and build output before execution; use --skip-github and --skip-deploy until publication is explicitly authorized.
+
+Risk: Existing files may be overwritten when a target directory exists or when source and in-place modes are used.
+
+Mitigation: Require explicit user approval for overwrite-prone modes and prefer a dedicated project directory or reviewed source path.
+
+Risk: Cloudflare and GitHub credentials can enable external publication of code or assets.
+
+Mitigation: Use scoped credentials, keep secrets out of project contents, and confirm the exact command before any GitHub or Cloudflare action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samueli/skills/dev-deploy)
+- [Cloudflare API token documentation](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+- [Cloudflare API token management](https://dash.cloudflare.com/profile/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local project files, Git commits, GitHub repository changes, and Cloudflare Pages deployments when authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter declares 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

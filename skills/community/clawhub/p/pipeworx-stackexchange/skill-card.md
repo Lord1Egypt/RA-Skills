@@ -1,41 +1,50 @@
-## Description: <br>
-Search and retrieve questions and answers from any StackExchange site, including StackOverflow, ServerFault, SuperUser, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve questions and answers from any StackExchange site, including StackOverflow, ServerFault, SuperUser, and more.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to search StackExchange sites and retrieve question or answer content for technical research, troubleshooting, and Q&A context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Pipeworx's gateway rather than directly to StackExchange. <br>
-Mitigation: Avoid sending private or sensitive queries through the service. <br>
-Risk: Returned Q&A HTML is untrusted reference content. <br>
-Mitigation: Review returned content before acting on it and verify important answers against the linked source posts. <br>
+## Use Case:
 
+Developers and technical agents use this skill to search StackExchange sites and retrieve question and answer content for implementation research, operations, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-stackexchange) <br>
-- [Pipeworx StackExchange MCP endpoint](https://gateway.pipeworx.io/stackexchange/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with StackExchange question and answer fields, plus optional MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returned question and answer bodies may include HTML and should be treated as untrusted reference content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: StackExchange queries and selected site names are sent to the Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for confidential queries unless the user trusts that gateway and its handling of request data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-stackexchange)
+- [Pipeworx StackExchange MCP gateway](https://gateway.pipeworx.io/stackexchange/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Structured text containing StackExchange question or answer content, links, tags, scores, and author metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Question and answer bodies may include HTML returned from StackExchange.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

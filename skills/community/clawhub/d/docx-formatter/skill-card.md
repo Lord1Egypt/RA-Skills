@@ -1,39 +1,53 @@
-## Description: <br>
-DOCX Formatter generates Chinese official-document .docx files with prescribed title, heading, body, page, and punctuation formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DOCX Formatter helps agents generate Chinese official-document Word files with standardized title, body, paragraph, page, and punctuation formatting.
 
-## Publisher: <br>
-[Rokami](https://clawhub.ai/user/Rokami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rokami](https://clawhub.ai/user/rokami)
 
-## Use Case: <br>
-Employees, external users, and document-preparation agents use this skill to create formal Chinese Word documents from Markdown or structured JSON while applying official-document typography and layout conventions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The python-docx dependency is unpinned, which can reduce reproducibility across installations. <br>
-Mitigation: Review and pin dependency versions before controlled or repeatable deployments. <br>
-Risk: The formatter writes .docx files to caller-selected output paths, which can overwrite existing files. <br>
-Mitigation: Choose output paths deliberately and review generated files before sharing or replacing documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub DOCX Formatter listing](https://clawhub.ai/Rokami/docx-formatter) <br>
+## Use Case:
 
+Developers and agent users use this skill to convert Markdown or structured JSON content into Chinese official-format Word documents for reports, summaries, plans, speeches, and related formal materials.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [DOCX files generated from Markdown or JSON, with Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes caller-selected .docx output paths; final typography depends on availability of the named Chinese fonts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install script adds the python-docx dependency before use.
+
+Mitigation: Install in an isolated environment and consider pinning python-docx before deployment.
+
+Risk: The skill is specialized for Chinese official-document formatting and can be triggered for broad document requests.
+
+Mitigation: Prefer explicit invocation for specific .docx formatting tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rokami/skills/docx-formatter)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Markdown, Code, Guidance]
+
+**Output Format:** [DOCX files generated from Markdown or JSON content, with optional Markdown guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local .docx output files and may install python-docx in a local virtual environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

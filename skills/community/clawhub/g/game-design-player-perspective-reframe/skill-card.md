@@ -1,40 +1,52 @@
-## Description: <br>
-Reframe a player's current situation to reveal new meaning, goals, roles, or playstyles without changing the underlying mechanics. Use when diagnosing stagnation, boredom, or mid/late-game disengagement; when designing re-engagement prompts, adaptive guidance, or dynamic missions; or when a player is technically able to continue but no longer sees the current state as interesting, valuable, or purposeful. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reframes a player's current situation to reveal new meaning, goals, roles, or playstyles without changing the underlying mechanics.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stanestane](https://clawhub.ai/user/stanestane)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, narrative designers, and gameplay analysts use this skill to reframe player stagnation into alternate goals, roles, challenges, and action hooks while judging whether reframing is appropriate or system fixes are needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A reframe could mask a structural game design problem such as unfairness, low agency, weak rewards, or exploitative friction.
+
+Mitigation: Use the skill's required use-case judgment to identify weak or partial fits and prioritize system fixes when the issue is structural.
+
+Risk: Prompt-style design guidance may not fit every game's player model, economy, or live-ops goals.
+
+Mitigation: Review generated reframes against the team's design process and player evidence before using them in production guidance or missions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers, writers, and product teams use this skill to analyze player stagnation and generate reframes that reveal alternate goals, roles, or action hooks. It also helps decide when reframing is inappropriate because the underlying system needs balance, UX, or economy fixes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Reframing could mask balance, UX, economy, or monetization problems that need structural fixes. <br>
-Mitigation: Use the skill's use-case judgment to identify structural causes and treat reframing as secondary when system fixes matter more. <br>
-Risk: Generated design advice may not match the needs or experiences of real players. <br>
-Mitigation: Review proposed reframes against player research, telemetry, and design intent before applying them to live player experiences. <br>
+**Output Format:** [Markdown with structured analysis sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-player-perspective-reframe) <br>
+**Other Properties Related to Output:** [Produces a current state summary, stagnation diagnosis, reframe options, chosen reframe, action hook, expected effect, and use-case judgment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured sections for current state summary, stagnation diagnosis, reframe options, chosen reframe, action hook, expected effect, and use-case judgment.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

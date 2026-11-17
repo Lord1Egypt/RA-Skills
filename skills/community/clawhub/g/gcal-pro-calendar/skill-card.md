@@ -1,43 +1,60 @@
-## Description: <br>
-Google Calendar integration for viewing, creating, and managing calendar events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+gcal-pro integrates Google Calendar so agents can view schedules, search calendars, find availability, and, with Pro access, create, update, delete events and generate morning briefs.
 
-## Publisher: <br>
-[bilalmohamed187-cpu](https://clawhub.ai/user/bilalmohamed187-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[bilalmohamed187-cpu](https://clawhub.ai/user/bilalmohamed187-cpu)
 
-## Use Case: <br>
-External users and agents use this skill to inspect Google Calendar schedules, search events, find free time, and, with Pro access, create, update, delete, or summarize events through natural-language calendar workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar write and delete operations can affect a user's live Google Calendar, and the security summary notes that confirmation relies too much on caller discipline. <br>
-Mitigation: Use read-only mode unless write access is needed, and require an explicit preview plus confirmation before create, update, quick-add, or delete actions. <br>
-Risk: The skill requires Google Calendar OAuth access and stores credentials under ~/.config/gcal-pro. <br>
-Mitigation: Install only when comfortable granting Calendar access, protect the config directory, and avoid sharing or printing credential files. <br>
+## Use Case:
 
+External ClawHub and Clawdbot users use this skill to let an agent inspect Google Calendar schedules, answer availability questions, and prepare calendar summaries. Users with Pro access can also ask the agent to create, update, or delete calendar events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bilalmohamed187-cpu/gcal-pro-calendar) <br>
-- [Google Cloud Project Setup Guide](docs/GOOGLE_CLOUD_SETUP.md) <br>
-- [Google Calendar API Quick Reference](references/api-quickref.md) <br>
-- [Google Calendar API](https://www.googleapis.com/calendar/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and calendar summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Google Calendar APIs through local Python scripts after OAuth setup and may require Pro access for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Pro write operations can change or delete Google Calendar events without reliable confirmation enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid create, update, and delete operations until confirmation handling is fixed and reviewed; require explicit user confirmation before any calendar mutation.
+
+Risk: The skill requires Google Calendar OAuth credentials and stores local access tokens.
+
+Mitigation: Keep client_secret.json and token.json private, do not print or share them, and store them only in the configured local directory with restrictive permissions.
+
+Risk: Installing dependencies without review can introduce supply-chain risk.
+
+Mitigation: Install dependencies in an isolated environment and use reviewed or pinned package versions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bilalmohamed187-cpu/skills/gcal-pro-calendar)
+- [Google Cloud Project Setup Guide](artifact/docs/GOOGLE_CLOUD_SETUP.md)
+- [Google Calendar API Quick Reference](artifact/references/api-quickref.md)
+- [Google Calendar API](https://www.googleapis.com/calendar/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured calendar summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Google OAuth credentials; Pro write actions can create, update, or delete calendar events.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

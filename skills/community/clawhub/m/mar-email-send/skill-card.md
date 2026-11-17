@@ -1,41 +1,59 @@
-## Description: <br>
-Send a quick email via SkillBoss API Hub without a local mail client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a quick email via SkillBoss API Hub without a local mail client.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and operators use this skill to compose outbound email requests through the SkillBoss API Hub, including recipient, CC, BCC, subject, and HTML body fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound email content, recipient addresses, and authentication credentials are handled through the SkillBoss API provider. <br>
-Mitigation: Install only when the provider is trusted, keep SKILLBOSS_API_KEY secret, and avoid regulated or highly sensitive email content unless the provider is approved by the organization. <br>
-Risk: Mistyped recipient, CC, or BCC fields can send email to unintended recipients. <br>
-Mitigation: Review recipient fields and message body before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to send email through SkillBoss/HeyBossAI from an agent workflow, including recipients, subject, HTML body, CC, and BCC fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-email-send) <br>
-- [SkillBoss API endpoint referenced by the skill](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends user-provided email data to the SkillBoss API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recipient lists, CC/BCC values, subject lines, and HTML body content are sent to SkillBoss/HeyBossAI's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with an organization-approved provider and avoid sensitive or regulated content unless that external processing is approved.
+
+Risk: The skill requires SKILLBOSS_API_KEY for authentication.
+
+Mitigation: Store the API key as a secret environment variable and avoid exposing it in prompts, logs, examples, or shared configuration.
+
+Risk: Incorrect recipient, CC, or BCC values can send email to unintended recipients.
+
+Mitigation: Review all recipient fields and generated payloads before executing the email API call.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-email-send)
+- [HeyBossAI API endpoint](https://api.heybossai.com/v1)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends email payloads to the SkillBoss/HeyBossAI API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

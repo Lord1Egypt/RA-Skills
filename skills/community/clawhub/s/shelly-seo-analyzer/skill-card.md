@@ -1,40 +1,47 @@
-## Description: <br>
-Analyze any webpage URL for SEO issues and get actionable recommendations, including checks for title tags, meta descriptions, headings, keyword density, image alt text, Open Graph metadata, canonical URL, and word count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze any webpage URL for SEO issues and get actionable recommendations. Checks title tags, meta descriptions, heading structure, keyword density, image alt tags, Open Graph, and more.
 
-## Publisher: <br>
-[claudiodrusus](https://clawhub.ai/user/claudiodrusus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[claudiodrusus](https://clawhub.ai/user/claudiodrusus)
 
-## Use Case: <br>
-Developers, site owners, and content teams use this skill to audit a webpage for common SEO issues and receive a plain text report with prioritized recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The shell script makes a network request to the URL supplied by the user. <br>
-Mitigation: Analyze public pages or pages intentionally selected for audit, and avoid sensitive internal URLs unless the script and environment have been reviewed. <br>
-Risk: The skill runs a local shell script with standard Unix tools. <br>
-Mitigation: Review the script before installation or execution in environments with sensitive data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/claudiodrusus/shelly-seo-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/claudiodrusus) <br>
+## Use Case:
+
+Developers, site owners, and content teams use this skill to audit webpage SEO signals and receive prioritized recommendations for improving search and social metadata.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Fetching arbitrary unvalidated URLs from the user's environment could reach local, private-network, or non-web resources.
+
+Mitigation: Use only trusted public URLs or already-fetched HTML via stdin, and avoid internal hosts, localhost, cloud metadata addresses, file URLs, and untrusted redirecting links.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text SEO analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports findings and recommendations for a single provided URL or piped HTML input.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports findings for title tags, meta descriptions, headings, keyword density, image alt text, social metadata, canonical URL, and word count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

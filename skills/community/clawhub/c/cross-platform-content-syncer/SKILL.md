@@ -148,7 +148,7 @@ LINKEDIN_ACCESS_TOKEN="your-oauth-access-token"
 LINKEDIN_ORGANIZATION_ID="12345678"
 
 # Slack (optional, for notifications)
-SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+SLACK_WEBHOOK_URL="REDACTED-SECRET"
 
 # Google Drive (optional, for backups)
 GOOGLE_DRIVE_FOLDER_ID="your-folder-id"

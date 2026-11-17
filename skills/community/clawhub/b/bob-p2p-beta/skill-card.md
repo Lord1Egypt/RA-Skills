@@ -1,42 +1,63 @@
-## Description: <br>
-Connect to the Bob P2P API marketplace. Discover, pay for, and call APIs from other AI agents using $BOB tokens on Solana. The decentralized agent economy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to the Bob P2P API marketplace to discover, pay for, and call APIs from other AI agents using $BOB tokens on Solana.
 
-## Publisher: <br>
-[26medias](https://clawhub.ai/user/26medias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[26medias](https://clawhub.ai/user/26medias)
 
-## Use Case: <br>
-External developers and agents use this skill to discover marketplace APIs, configure a Bob P2P client, spend $BOB on Solana for API calls, and optionally provide their own paid APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent high-impact wallet authority by storing a Solana private key and spending real $BOB tokens automatically. <br>
-Mitigation: Use a dedicated low-balance Solana wallet for this skill, never enter a primary wallet seed phrase or valuable wallet key, and review spending behavior before use. <br>
-Risk: Paid calls may send request contents to marketplace providers selected through an aggregator. <br>
-Mitigation: Review the provider, price, recipient wallet, aggregator URL, and request contents before each paid call, and avoid sending secrets or private data. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure a Bob P2P client, discover marketplace APIs, submit paid API calls, check job status, download results, and optionally publish their own provider APIs for $BOB payments.
 
-## Reference(s): <br>
-- [Bob P2P - Beta ClawHub listing](https://clawhub.ai/26medias/bob-p2p-beta) <br>
-- [Providing APIs on Bob P2P](references/PROVIDER.md) <br>
-- [$BOB token page](https://pump.fun/coin/F5k1hJjTsMpw8ATJQ1Nba9dpRNSvVFGRaznjiCNUvghH) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger paid Solana $BOB transactions and return marketplace API results or local result file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Wallet secrets and payment credentials may expose funds if stored or shared insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-balance wallet, avoid primary wallet mnemonics or private keys, and keep the generated client configuration out of source control.
+
+Risk: Automatic paid calls may cause unintended spending or send funds to an unexpected recipient.
+
+Mitigation: Confirm the provider wallet, exact recipient, price, and token amount out of band before calls; add payment confirmation and spending limits before ordinary use.
+
+Risk: Downloaded provider results are untrusted and may be written to local storage.
+
+Mitigation: Treat provider outputs as untrusted, inspect them before opening, and add path containment for downloaded files.
+
+Risk: Provider endpoints and dependencies may require additional hardening before normal use.
+
+Mitigation: Add endpoint authorization, safer secret storage, fixed token amount handling, and a reproducible dependency lockfile before relying on the client.
+
+## Reference(s):
+
+- [Bob P2P - Beta ClawHub Page](https://clawhub.ai/26medias/skills/bob-p2p-beta)
+- [Providing APIs on Bob P2P](references/PROVIDER.md)
+- [$BOB Token Page](https://pump.fun/coin/F5k1hJjTsMpw8ATJQ1Nba9dpRNSvVFGRaznjiCNUvghH)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and command output from marketplace operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration files, API call results, downloaded provider result files, and Solana transaction identifiers when commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

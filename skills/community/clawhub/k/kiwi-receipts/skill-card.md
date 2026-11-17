@@ -1,47 +1,68 @@
-## Description: <br>
-NZ tax assistant for sole traders. Process receipt photos into IRD-ready GST reports, track sales income for GST Box 5, calculate IR3 annual income tax, provisional tax, asset depreciation, and export to Xero CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NZ tax assistant for sole traders that processes receipt photos into IRD-ready GST reports, tracks sales income for GST Box 5, calculates IR3 annual income tax, provisional tax, asset depreciation, and exports to Xero CSV.
 
-## Publisher: <br>
-[maxazure](https://clawhub.ai/user/maxazure) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxazure](https://clawhub.ai/user/maxazure)
 
-## Use Case: <br>
-External users, especially New Zealand sole traders, builders, and contractors, use this skill to capture receipt and income records, prepare GST and IR3 summaries, calculate provisional tax and depreciation, and export files for filing or accounting review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-New Zealand <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive financial and tax records stored on the user's device. <br>
-Mitigation: Install only on a trusted device and protect ~/.openclaw/data/kiwi-receipts with restricted OS account access, disk encryption, careful backups, and deletion of records no longer needed. <br>
-Risk: Generated tax summaries, XLSX reports, and Xero CSV files may contain OCR, categorization, or calculation errors. <br>
-Mitigation: Review generated files before filing, importing to Xero, or sharing, and verify figures with IRD guidance or a qualified accountant. <br>
+## Use Case:
 
+External users, especially New Zealand sole traders, builders, and contractors, use this skill to capture receipts, track business income and assets, prepare GST and IR3 summaries, calculate provisional tax, and generate accountant- or filing-ready exports.
 
-## Reference(s): <br>
-- [Kiwi Receipts ClawHub listing](https://clawhub.ai/maxazure/kiwi-receipts) <br>
-- [NZ GST Compliance Reference for Receipt Processing](references/nz-gst-guide.md) <br>
-- [NZ Income Tax Reference -- Sole Traders](references/nz-income-tax-guide.md) <br>
-- [NZ IRD Depreciation Rates for Construction/Builder Assets](references/nz-depreciation-rates.md) <br>
-- [IRD GST guidance](https://www.ird.govt.nz/gst) <br>
-- [IRD individual tax rates](https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals) <br>
-- [IRD provisional tax standard option](https://www.ird.govt.nz/income-tax/provisional-tax/provisional-tax-options/standard-option) <br>
-- [IRD depreciation rate finder](https://www.ird.govt.nz/income-tax/income-tax-for-businesses-and-organisations/types-of-business-expenses/depreciation/claiming-depreciation/work-out-your-assets-rate-and-depreciation-value) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Chat-native Markdown plus JSON records, shell commands, XLSX reports, and Xero CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores records locally under ~/.openclaw/data/kiwi-receipts and requires openpyxl for XLSX report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Sensitive tax and business records are stored in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local plaintext storage is acceptable, review file permissions, and maintain backups for the ~/.openclaw/data/kiwi-receipts/ directory.
+
+Risk: Tax calculations or filing summaries may be incorrect or become stale as tax rules change.
+
+Mitigation: Validate GST, IR3, provisional tax, and depreciation outputs with an accountant or authoritative IRD guidance before filing.
+
+Risk: Generated XLSX and CSV exports have spreadsheet safety gaps until text sanitization is fixed.
+
+Mitigation: Use caution when opening generated spreadsheet files and review exported cell values before sharing or importing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxazure/skills/kiwi-receipts)
+- [NZ GST Compliance Reference for Receipt Processing](artifact/references/nz-gst-guide.md)
+- [NZ Income Tax Reference -- Sole Traders](artifact/references/nz-income-tax-guide.md)
+- [NZ IRD Depreciation Rates for Construction/Builder Assets](artifact/references/nz-depreciation-rates.md)
+- [IRD GST](https://www.ird.govt.nz/gst)
+- [IRD Taxable supply information for GST](https://www.ird.govt.nz/gst/tax-invoices-for-gst)
+- [IRD File your GST return](https://www.ird.govt.nz/gst/filing-and-paying-gst-and-refunds/filing-gst/file-your-gst-return)
+- [Income Tax Act 2007](https://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512301.html)
+- [IRD Tax rates for individuals](https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals)
+- [IRD Individual income tax return IR3](https://www.ird.govt.nz/income-tax/income-tax-for-individuals/what-happens-at-the-end-of-the-tax-year/individual-income-tax-return-ir3)
+- [IRD Provisional tax standard option](https://www.ird.govt.nz/income-tax/provisional-tax/provisional-tax-options/standard-option)
+- [IRD Depreciation rate finder](https://www.ird.govt.nz/income-tax/income-tax-for-businesses-and-organisations/types-of-business-expenses/depreciation/depreciation-rate-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Conversational Markdown plus local JSON records, XLSX reports, and Xero-compatible CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The XLSX/CSV report generator requires openpyxl and uses user-maintained local data files under ~/.openclaw/data/kiwi-receipts/.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

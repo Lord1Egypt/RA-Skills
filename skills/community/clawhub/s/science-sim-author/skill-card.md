@@ -1,46 +1,57 @@
-## Description: <br>
-Generates self-contained interactive science simulations as a single offline index.html from a SimSpec YAML or JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate self-contained interactive science simulations as a single index.html from a SimSpec YAML or JSON.
 
-## Publisher: <br>
-[dimgouso](https://clawhub.ai/user/dimgouso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dimgouso](https://clawhub.ai/user/dimgouso)
 
-## Use Case: <br>
-Educators, curriculum developers, and agents use this skill to turn STEM SimSpec YAML or JSON into offline browser simulations with controls, plots, and inquiry worksheets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated simulations intentionally include runnable browser JavaScript. <br>
-Mitigation: Review generated index.html before opening or sharing it, especially when the SimSpec came from someone else. <br>
-Risk: Generated HTML could become unsafe if external scripts, network calls, telemetry, secrets, or unexpected browser permissions are added. <br>
-Mitigation: Confirm the file remains self-contained and contains no external scripts, runtime network access, telemetry, secrets, or unexpected browser permissions. <br>
-Risk: A malformed or unclear SimSpec can produce misleading educational behavior or incorrect model equations. <br>
-Mitigation: Validate the SimSpec against the bundled schema and review the generated equations, plots, readouts, and worksheet before classroom use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dimgouso/science-sim-author) <br>
-- [SimSpec schema](artifact/templates/sim_spec_schema.json) <br>
-- [Single-file HTML template](artifact/templates/sim_single_file_html_template.html) <br>
-- [Validation checklist](artifact/rubrics/validation_checklist.md) <br>
-- [Security notes](artifact/rubrics/security_notes.md) <br>
-- [Pedagogy inquiry prompts](artifact/rubrics/pedagogy_inquiry_prompts.md) <br>
+## Use Case:
 
+Educators, curriculum authors, and developers use this skill to turn validated SimSpec YAML or JSON into offline classroom simulations with parameter sliders, plots, local exports, and inquiry worksheets.
 
-## Skill Output: <br>
-**Output Type(s):** [code, text, guidance] <br>
-**Output Format:** [Single self-contained HTML file with inline CSS and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external runtime dependencies; output is intended to run offline in a browser.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted SimSpec text may be embedded into generated HTML in a way that can run unintended JavaScript.
+
+Mitigation: Use trusted SimSpecs only, or fix the template to safely encode JSON for inline script contexts before accepting third-party or student-supplied specs.
+
+Risk: Generated simulations can contain inaccurate equations, parameters, or learning prompts if the input SimSpec is wrong or incomplete.
+
+Mitigation: Validate each SimSpec against the bundled schema and review the generated model equations, readouts, plots, and worksheet against the validation checklist before classroom or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dimgouso/skills/science-sim-author)
+- [Publisher profile](https://clawhub.ai/user/dimgouso)
+- [SimSpec schema](artifact/templates/sim_spec_schema.json)
+- [Single-file HTML template](artifact/templates/sim_single_file_html_template.html)
+- [Validation checklist](artifact/rubrics/validation_checklist.md)
+- [Security notes](artifact/rubrics/security_notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [A single self-contained index.html file with inline HTML, CSS, and JavaScript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs offline in a browser, uses local JSON and CSV export, and does not require external assets, package managers, or runtime network access.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Generates short-video scripts, hooks, titles, outlines, CTAs, storyboards, series plans, and performance review guidance for platforms such as 抖音, 快手, YouTube Shorts, and B站. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short-video scripts, hooks, titles, outlines, storyboards, calls to action, series plans, and performance review guidance for platforms such as Douyin, Kuaishou, YouTube Shorts, and Bilibili.
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to draft short-form video scripts and related planning assets with platform-specific hooks, shot guidance, titles, tags, CTAs, series plans, and performance review suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local history and saved drafts may retain sensitive topics or proprietary script drafts. <br>
-Mitigation: Avoid sensitive or proprietary content unless local retention is acceptable, and review local saved drafts and history before sharing the workspace. <br>
-Risk: Save/show management commands have under-scoped path behavior. <br>
-Mitigation: Use save/show commands only with simple filenames until path validation is fixed. <br>
+## Use Case:
 
+External creators, marketers, and agent users use this skill to draft platform-specific short-video scripts, opening hooks, titles, shot guidance, subtitles, music cues, and CTA copy. It also supports lightweight content planning and video performance review prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/admirobot/tvdr-video-script) <br>
-- [Publisher profile](https://clawhub.ai/user/admirobot) <br>
-- [Examples](examples.md) <br>
-- [Tips](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text and Markdown-style structured script sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by command, topic, platform, and duration; generated content can include scripts, hooks, titles, outlines, CTAs, storyboards, series plans, and review suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill frontmatter reports 2.0.0 and _meta.json reports 2.3.3) <br>
+Risk: A bundled script can read or overwrite Markdown files outside its storage folder when save or show names are untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted names for save and show operations, review generated paths before use, and add path validation before deployment.
+
+Risk: The skill can keep local history of script topics without clear disclosure.
+
+Mitigation: Avoid entering sensitive topics, disclose or disable local logging, and clear local history where required.
+
+Risk: Generated output may include unsolicited publisher branding.
+
+Mitigation: Review generated scripts before publication and remove branding that is not appropriate for the intended channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/admirobot/skills/tvdr-video-script)
+- [examples.md](artifact/examples.md)
+- [tips.md](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal text with script sections, hooks, outlines, storyboard cues, tags, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local template-based content; no external API key is required by the artifact evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

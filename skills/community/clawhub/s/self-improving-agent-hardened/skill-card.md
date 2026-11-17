@@ -1,45 +1,65 @@
-## Description: <br>
-Captures agent learnings, errors, corrections, and missing capabilities in local markdown logs with anti-loop guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests as local markdown records, with anti-loop guardrails that limit each trigger to one learning and prevent chained self-improvement actions.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record corrections, command failures, missing capabilities, and external tool issues so future agent sessions can learn from them. It is intended for opt-in local learning workflows with explicit limits on repeated logging and promotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs and promoted guidance can capture sensitive context or private operational details. <br>
-Mitigation: Redact secrets, tokens, paths, environment variables, raw command output, and private user details before anything is written. <br>
-Risk: Promotion into future agent guidance can change later agent behavior. <br>
-Mitigation: Review every promotion into AGENTS.md, SOUL.md, TOOLS.md, CLAUDE.md, or Copilot instructions and keep promotion user-initiated. <br>
-Risk: Broad hook configuration can inject reminders too often or in unintended workspaces. <br>
-Mitigation: Keep hooks project-local and opt-in, and avoid empty or global matchers unless the workspace owner has explicitly accepted that behavior. <br>
+## Use Case:
 
+Developers and agent users use this skill to record command failures, explicit user corrections, missing capabilities, and external tool issues for later review. It is intended for local learning workflows where entries are written to .learnings/ markdown files and promotion is deferred until a user-initiated review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/self-improving-agent-hardened) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Entry Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown entries with shell and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append local .learnings entries and provide reminder text when configured through opt-in hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Persistent learning records can influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each learning before promotion and keep promotion user-initiated.
+
+Risk: Optional prompt and tool hooks can apply broadly when configured globally.
+
+Mitigation: Prefer project-scoped hooks and minimal hook configuration; avoid global UserPromptSubmit setup unless the broader behavior is intended.
+
+Risk: Learning entries may capture sensitive context from failures, corrections, or tool output.
+
+Mitigation: Redact secrets, credentials, private data, and unnecessary user details before writing or promoting entries.
+
+Risk: The README replacement install example removes an existing skill directory.
+
+Mitigation: Use a backup or staged install flow pinned to a reviewed version instead of a direct removal command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/self-improving-agent-hardened)
+- [README](README.md)
+- [Entry Examples](references/examples.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file-entry templates, shell commands, and hook configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or scaffolds local markdown learning records when the agent follows the skill; optional hooks emit reminder text.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

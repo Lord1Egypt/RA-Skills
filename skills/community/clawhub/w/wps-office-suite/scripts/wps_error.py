@@ -11,6 +11,7 @@ WPS Office 全家桶 - 智能错误处理模块 v2.2
   - 解决步骤（分步骤）
   - 是否可自动修复（auto/manual）
 """
+import sys
 from typing import Dict, Optional
 
 # ==================== 错误ID映射表 ====================
@@ -288,7 +289,30 @@ def list_all_errors() -> list:
     ]
 
 
+def emit_json(ok, error_id=None, elapsed=None, data=None, exit_code=None):
+    """
+    统一机器可读输出出口（v5.3.0）。
+
+    固定四字段：
+      ok        (bool)   是否成功
+      error_id  (str)    错误ID，对齐 E001-E015 错误速查表；外部脚本非零退出用 E000
+      elapsed   (float)  耗时（秒）
+      data      (any)    业务数据（脚本原始输出；可解析 JSON 时自动反序列化）
+
+    exit_code 非 None 时调用 sys.exit(exit_code)。
+    """
+    import json as _json
+    payload = {
+        "ok": bool(ok),
+        "error_id": error_id,
+        "elapsed": elapsed,
+        "data": data,
+    }
+    print(_json.dumps(payload, ensure_ascii=False, default=str))
+    if exit_code is not None:
+        sys.exit(exit_code)
+
+
 if __name__ == "__main__":
-    import sys
     eid = sys.argv[1] if len(sys.argv) > 1 else "E001"
     print(wps_error(eid))

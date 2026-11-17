@@ -2,7 +2,7 @@
 name: siluzan-cso
 description: >-
   丝路赞内容运营平台（CSO）。**凡涉及以下任一类业务，必须先加载并使用本 skill**。
-  (1) **文案生成与改稿**：选题、爆款拆解、新写成稿（公众号、小红书、**视频口播/字幕/配音/分镜脚本**、博客、改稿润色、评论区回复等）须走 `three-lib-content-workflow/content-writer.workflow.md`；**禁止**直接成稿或聊天润色。
+  (1) **文案生成与改稿**：选题、爆款拆解、新写成稿（公众号、小红书、**视频口播/字幕/配音/分镜脚本**、博客、改稿润色、评论区回复等）须走 `three-lib-content-workflow/content-writer.workflow.md`；**热点/资讯生成选题**见 `topic-selection.md`；**单轨 / 多轨**（多轨默认 2 篇、可增减，可主动推断）见 `multi-track.md`；**禁止**直接成稿或聊天润色。
   **视频脚本 vs 发布 Caption**：口播/字幕/分镜走 content-writer；上传发布框 Caption 走 `overseas-b2b-social-post`。
   (2) **人设管理**：运营账号人设卡（styleGuide）；反推/查询/保存。
   (3) **发布与运营**（YouTube/TikTok/Instagram/LinkedIn/X/Facebook）：OAuth、**账号分组**、发布、任务/重试、upload、**extract-cover**、planning、报表。
@@ -20,7 +20,8 @@ metadata:
   platforms: YouTube,TikTok,Instagram,LinkedIn,X,Facebook
   domains: copywriting,persona,publish,account-ops,rag,planning,reporting
   trigger_keywords: >-
-    写文案,写稿,内容创作,出内容,脚本,口播,公众号,博客,外链,引流页,配文,标题,选题,爆款,改稿,润色,审稿,
+    写文案,写稿,内容创作,出内容,脚本,口播,公众号,博客,外链,引流页,配文,标题,选题,爆款,改稿,润色,
+    两版,双版本,多版,多轨,AB稿,对比稿,差异化,各出一版,几个方向,审稿,
     口语化,保留原意,太生硬,优化表达,帮我改改,优化这段,
     人设,styleGuide,人设卡,反推人设,persona,三库,
     发布,publish,上传,upload,封面,extract-cover,截取封面,任务,task,重试,失败,
@@ -42,6 +43,8 @@ compatibility: Requires siluzan-cso-cli installed and authenticated via `siluzan
 ---
 
 # siluzan-cso
+
+成稿语言跟用户本轮用语：用户用英文或明确要求英文时，文案、口播、Caption 用英文；否则中文。不另建一套英文 Skill。
 
 ## 一键安装
 
@@ -82,12 +85,14 @@ Windows 注意：部分 Agent 客户端通过 PowerShell / cmd 代执行命令�
 
 ## 能力范围
 
-| 业务流程       | 手段                                                    | 说明                                 |
-| -------------- | ------------------------------------------------------- | ------------------------------------ |
-| **发布与运营** | 下方 CLI 命令 + `references/*.md`                       | 上传、发布、任务、报表、账号、规划等 |
+| 业务流程       | 手段                                                    | 说明                                        |
+| -------------- | ------------------------------------------------------- | ------------------------------------------- |
+| **发布与运营** | 下方 CLI 命令 + `references/*.md`                       | 上传、发布、任务、报表、账号、规划等        |
 | **文案生产**   | `three-lib-content-workflow/content-writer.workflow.md` | 选题、三库、口播/视频脚本/公众号/成稿、改稿 |
 
 两类流程同属 CSO 业务。**海外 B2B 社媒贴文/Caption** 为独立 skill `overseas-b2b-social-post`，不在本包内。
+
+内容生成仍先进入 `three-lib-content-workflow/content-writer.workflow.md`。该工作流负责读取 `references/platforms/platform-rules.md` 并加载当前平台唯一对应的规则；平台规则与三库是两个独立输入，三库策略只能在平台规则边界内使用。
 
 ## 命令索引
 
@@ -115,23 +120,24 @@ Windows 注意：部分 Agent 客户端通过 PowerShell / cmd 代执行命令�
 
 ## 常见业务场景 → 阅读哪个文件
 
-| 用户在做什么                                                                  | 先阅读                                                  |
-| ----------------------------------------------------------------------------- | ------------------------------------------------------- |
-| 首次安装 / 登录 / 更新                                                        | `references/setup.md`                                   |
-| 发布视频或图文                                                                | `references/publish.md`                                 |
-| 上传素材                                                                      | `references/upload.md`                                  |
-| 截取视频封面                                                                  | `references/extract-cover.md`                           |
-| 文案写完落盘后校验字数 / 检查内部内容泄漏                                     | `references/validate-content.md`                        |
-| 查发布记录 / 处理失败                                                         | `references/task.md`                                    |
-| 查账号数据 / 运营报表                                                         | `references/report.md`                                  |
-| 查找账号 ID 或账号详情                                                        | `references/list-accounts.md`                           |
-| 账号 Token 失效 / 重新授权                                                    | `references/authorize.md`                               |
-| 管理账号分组                                                                  | `references/account-group.md`                           |
-| AI 内容规划                                                                   | `references/planning.md`                                |
-| 需要给用户提供后台页面链接                                                    | `references/web-pages.md`                               |
-| 拉取人设 / styleGuide（写稿前）/ 保存人设                                     | `references/persona.md`                                 |
-| 写稿时检索素材库 RAG 片段（三库拆素材等）                                     | `references/rag.md`                                     |
-| 选题 / 三库拆解 / 口播或视频脚本 / 公众号文章 / 改稿润色 / 人设卡 / 反推人设 / 审稿打分 | `three-lib-content-workflow/content-writer.workflow.md` |
+| 用户在做什么                                                                                                 | 先阅读                                                                             |
+| ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| 首次安装 / 登录 / 更新                                                                                       | `references/setup.md`                                                              |
+| 发布视频或图文                                                                                               | `references/publish.md`                                                            |
+| 上传素材                                                                                                     | `references/upload.md`                                                             |
+| 截取视频封面                                                                                                 | `references/extract-cover.md`                                                      |
+| 文案写完落盘后校验字数 / 检查内部内容泄漏                                                                    | `references/validate-content.md`                                                   |
+| 查发布记录 / 处理失败                                                                                        | `references/task.md`                                                               |
+| 查账号数据 / 运营报表                                                                                        | `references/report.md`                                                             |
+| 查找账号 ID 或账号详情                                                                                       | `references/list-accounts.md`                                                      |
+| 账号 Token 失效 / 重新授权                                                                                   | `references/authorize.md`                                                          |
+| 管理账号分组                                                                                                 | `references/account-group.md`                                                      |
+| AI 内容规划                                                                                                  | `references/planning.md`                                                           |
+| 需要给用户提供后台页面链接                                                                                   | `references/web-pages.md`                                                          |
+| 拉取人设 / styleGuide（写稿前）/ 保存人设                                                                    | `references/persona.md`                                                            |
+| 写稿时检索素材库 RAG 片段（三库拆素材等）                                                                    | `references/rag.md`                                                                |
+| 选题 / 三库拆解 / 口播或视频脚本 / 公众号文章 / **单轨或多轨成稿** / 改稿润色 / 人设卡 / 反推人设 / 审稿打分 | `three-lib-content-workflow/content-writer.workflow.md`（多轨 → `multi-track.md`） |
+| 写稿时识别并加载当前平台规则                                                                                 | `references/platforms/platform-rules.md`                                           |
 
 ---
 

@@ -1,41 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[shenjialin-cn](https://clawhub.ai/user/shenjialin-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenjialin-cn](https://clawhub.ai/user/shenjialin-cn)
 
-## Use Case: <br>
-Developers and agent users use this skill when working with Excel, XLSX, XLSM, XLS, CSV, or TSV files where formulas, formatting, dates, workbook structure, recalculation, or compatibility need careful handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated formulas, recalculated values, or preserved formatting may be incorrect in financial or business-critical workbooks. <br>
-Mitigation: Review formulas, recalculated values, and formatting before relying on edited workbooks. <br>
-Risk: Spreadsheet edits can damage workbook behavior if formulas, cached values, data types, or template structure are not preserved. <br>
-Mitigation: Use workbook-aware handling, preserve formulas and formatting where required, and visually review the result when layout matters. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill when an agent needs to create, inspect, or edit Excel and spreadsheet files while preserving formulas, formatting, workbook structure, dates, data types, and recalculation expectations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenjialin-cn/testskill1111) <br>
-- [Skill homepage](https://clawic.com/skills/excel-xlsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports spreadsheet-oriented workflows where formulas, formatting, data types, recalculation, and template preservation matter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Spreadsheet edits can unintentionally change formulas, formatting, workbook structure, or business-critical values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups, review formula changes, and confirm edits before applying them to important workbooks.
+
+Risk: Cached formula values or copied formulas can be stale or incorrect after workbook edits.
+
+Mitigation: Recalculate affected workbooks and inspect representative formulas, ranges, and error cells before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenjialin-cn/skills/testskill1111)
+- [Skill homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workbook-editing guidance, spreadsheet validation steps, formula recommendations, and implementation snippets.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

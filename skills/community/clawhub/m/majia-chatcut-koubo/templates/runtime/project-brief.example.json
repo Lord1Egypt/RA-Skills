@@ -1,0 +1,14 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/project-brief.schema.json",
+  "schemaVersion": "majia.koubo.brief.v1",
+  "mode": "stable",
+  "goal": "daily-publish",
+  "platform": "unspecified",
+  "targetDurationSec": null,
+  "pacing": "balanced",
+  "automationLevel": "assist",
+  "treatments": {"arollCleanup": true, "smoothAudio": true, "captions": true, "restructure": false, "broll": false, "motionGraphics": false, "music": false, "generatedMedia": false, "export": false},
+  "contentProtections": ["do-not-invent", "protect-numbers", "protect-proper-nouns", "protect-negation", "preserve-user-baseline"],
+  "intake": {"asked": false, "missingFields": []},
+  "createdAt": "2026-08-10T00:00:00Z"
+}

@@ -1,45 +1,63 @@
-## Description: <br>
-Searches clinical trial databases similar to ClinicalTrials.gov by parsing natural-language clinical-trial questions into structured query parameters and calling Noah's clinical-trial search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches clinical trial databases by turning natural language questions into structured queries and returning matching trial records from NoahAI clinical trial data.
 
-## Publisher: <br>
-[bombert](https://clawhub.ai/user/bombert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombert](https://clawhub.ai/user/bombert)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to search for clinical trials by NCT ID, sponsor, indication, target, drug, modality, phase, location, result availability, and related trial attributes. It returns matching trial records in a readable format or raw JSON when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical-trial search terms are sent to Noah's API service and may include sensitive health or research interests. <br>
-Mitigation: Use a revocable NOAH_API_TOKEN, avoid unnecessary personal medical details in queries, and confirm before running the skill on ambiguous health questions. <br>
-Risk: The skill can read query parameters from a file and write results to a chosen output path. <br>
-Mitigation: Use --params-file and --output only with files and paths intentionally selected by the user. <br>
-Risk: Clinical-trial results may be incomplete, stale, or require domain review before decisions are made. <br>
-Mitigation: Treat returned records as search results for review, narrow broad result sets, and verify important findings against authoritative trial sources. <br>
+## Use Case:
 
+External users and developers use this skill to search clinical trial records by NCT ID, sponsor, indication, phase, drug name, drug modality, target, location, and result availability, then review matching trial summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bombert/clinical-trial) <br>
-- [Noah API service](https://www.noah.bio/api/) <br>
-- [Noah clinical trial search API endpoint](https://www.noah.bio/api/skills/clinical_trial_search/) <br>
-- [Noah website](https://noah.bio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; runtime output is formatted text or raw JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, network access to Noah's HTTPS API, and a NOAH_API_TOKEN environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release evidence) <br>
+Risk: Clinical-trial search terms and the NOAH_API_TOKEN are sent to Noah's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated token, keep it in the environment, and install only where sending these search terms to Noah's API is acceptable.
+
+Risk: Queries could include personal health details.
+
+Mitigation: Avoid entering personal health information or other sensitive personal data in clinical-trial search queries.
+
+Risk: The optional output path can overwrite files accessible to the running user.
+
+Mitigation: Review the target path before using file output and run the skill from an isolated working directory when possible.
+
+Risk: Runtime behavior depends on a Python environment, the requests package, network access, and a valid Noah API token.
+
+Mitigation: Install dependencies in an isolated environment and verify NOAH_API_TOKEN is scoped appropriately before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bombert/skills/clinical-trial)
+- [NoahAI website](https://noah.bio)
+- [NoahAI clinical trial API endpoint](https://www.noah.bio/api/skills/clinical_trial_search/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text summaries, with optional raw JSON API responses and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOAH_API_TOKEN; optional output paths can write result text to files selected by the user.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

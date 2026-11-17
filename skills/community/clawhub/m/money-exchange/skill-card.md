@@ -1,46 +1,61 @@
-## Description: <br>
-Check exchange rates, currency tips, and money-saving strategies for international travel, including ATM fees, card acceptance, local payment methods, and related Fliggy-powered travel services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks exchange rates, currency tips, and money-saving strategies for international travel, with expanded travel-service lookup through FlyAI and Fliggy-backed CLI output.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and agents use this skill to answer currency exchange and travel money questions by checking live results through the flyai CLI. It is also framed to support adjacent travel commerce searches such as hotels, trains, attractions, insurance, and car rental when routed through the same provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install an unpinned global FlyAI CLI. <br>
-Mitigation: Review the package source and install it only in a controlled environment; pin and verify the CLI version when operational policy allows. <br>
-Risk: Currency and travel queries are sent to an external provider and may return commercial booking links. <br>
-Mitigation: Avoid sensitive personal data in queries and require explicit user confirmation before acting on booking or purchase links. <br>
-Risk: The artifact describes hidden local logging of raw user queries. <br>
-Mitigation: Disable or delete the local execution log behavior before use, and inspect `.flyai-execution-log.json` if the skill has already run. <br>
+## Use Case:
 
+External travelers and travel support agents use this skill to query exchange rates, exchange locations, and local payment methods through FlyAI CLI output. The skill can also route related travel lookups such as flights, hotels, trains, attractions, visas, insurance, car rentals, and itinerary planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/money-exchange) <br>
-- [Templates Reference](references/templates.md) <br>
-- [Playbooks Reference](references/playbooks.md) <br>
-- [Fallbacks Reference](references/fallbacks.md) <br>
-- [Runbook Reference](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, tips, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for factual results and includes provider booking links when results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks agents to install and trust a global third-party FlyAI CLI before producing results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation before use, and run the skill only in environments where that dependency is acceptable.
+
+Risk: The skill can persist raw user queries, which may contain travel, payment, or personal details.
+
+Mitigation: Avoid entering sensitive details and disable or review query logging where deployment controls allow it.
+
+Risk: Returned booking links and travel results come from an external CLI workflow.
+
+Mitigation: Validate booking or detail links before acting on them, and do not use results that lack the required detail link.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/money-exchange)
+- [Output Templates](references/templates.md)
+- [Currency Exchange Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, inline links, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output for user-facing results and expects booking or detail links for returned items.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Manage ebook collections, track reading progress, and export highlights using bash and Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ebook collections, track reading progress, and export highlights using bash and Python.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Readers, researchers, and developers can use this skill to catalog a local ebook library, log reading sessions, manage highlights and reviews, and export library data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and edits ~/.ebook/data.jsonl, which can contain reading history, highlights, and reviews. <br>
-Mitigation: Install only if local storage of this data is acceptable, and back up ~/.ebook/data.jsonl before delete, update, or bulk export workflows. <br>
-Risk: Export commands can write library, highlight, or review data to a user-provided file path. <br>
-Mitigation: Review the export path and destination permissions before running export commands. <br>
+## Use Case:
 
+Developers and ebook readers use this skill to maintain a local command-line ebook library, log reading sessions, capture highlights and reviews, view progress, and export library data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/ebook) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; command output may be JSON, tables, CSV, Markdown, or local files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local JSONL library at ~/.ebook/data.jsonl and can export selected library data to a user-provided path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill stores reading history, highlights, reviews, and notes in a local data file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the contents of ~/.ebook/data.jsonl before sharing or backing up the file, and remove sensitive entries when they are no longer needed.
+
+Risk: The delete command removes a book and related sessions, highlights, and reviews.
+
+Mitigation: Confirm the target book ID and keep a backup of ~/.ebook/data.jsonl before deleting records.
+
+Risk: The export command can overwrite the output path supplied by the user.
+
+Mitigation: Use a new or disposable output path for exports, especially when writing JSON, CSV, or Markdown files.
+
+## Reference(s):
+
+- [Ebook ClawHub Skill](https://clawhub.ai/ckchzh/skills/ebook)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files]
+
+**Output Format:** [Terminal text, JSON objects, formatted tables, and exported JSON, CSV, or Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores ebook records, sessions, highlights, and reviews locally in ~/.ebook/data.jsonl.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter and script report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

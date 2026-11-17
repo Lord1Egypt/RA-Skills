@@ -1,38 +1,47 @@
-## Description: <br>
-End-to-end release workflows for TestFlight and App Store using asc publish, builds, versions, and submit commands. Use when asked to upload a build, distribute to TestFlight, or submit to App Store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end release workflows for TestFlight and App Store using asc publish, builds, versions, and submit commands.
 
-## Publisher: <br>
-[rudrankriyam](https://clawhub.ai/user/rudrankriyam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rudrankriyam](https://clawhub.ai/user/rudrankriyam)
 
-## Use Case: <br>
-Developers and release engineers use this skill to plan and run TestFlight and App Store release workflows with asc CLI commands, including upload, distribution, build attachment, submission, status checks, and cancellation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real TestFlight or App Store release actions when used with Apple developer credentials. <br>
-Mitigation: Use trusted asc tooling, least-privilege App Store Connect credentials where possible, and verify the Apple account/team, app ID, IPA path, version, build ID, TestFlight groups, and any --confirm action before running commands. <br>
-Risk: Incorrect command flags or identifiers could upload, distribute, submit, cancel, or otherwise change the wrong app release. <br>
-Mitigation: Run command-specific --help, review generated commands, and confirm target app and submission identifiers before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and release engineers use this skill to guide TestFlight distribution and App Store submission workflows with asc CLI commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide commands that distribute TestFlight builds or submit real App Store releases when the user directs execution.
+
+Mitigation: Review the app ID, IPA path, TestFlight group, version, build, and any --confirm or --notify flags before running generated commands.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that require Apple developer credentials and explicit confirmation before execution.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command templates for TestFlight distribution, App Store submission, build lookup, submission status, and cancellation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Aerodrome Slipstream"
+  short_description: "Aerodrome Slipstream workflow and evidence"
+  default_prompt: "Use $aerodrome-slipstream for this protocol task and return concrete next steps with evidence."
+policy:
+  allow_implicit_invocation: true

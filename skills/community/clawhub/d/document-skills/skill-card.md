@@ -1,43 +1,50 @@
-## Description: <br>
-Write or update a skill (SKILL.md and supporting files) to match host structure and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write or update SKILL.md and supporting skill files to match host structure and best practices.
 
-## Publisher: <br>
-[ryanallen](https://clawhub.ai/user/ryanallen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanallen](https://clawhub.ai/user/ryanallen)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to create or revise SKILL.md files and supporting skill assets so they follow host structure, frontmatter, layout, and progressive-disclosure practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill edits can change future agent behavior. <br>
-Mitigation: Review generated diffs before publishing or relying on the updated skill. <br>
-Risk: Changes to scripts, hooks, coordinator references, or allowed-tools can affect execution scope. <br>
-Mitigation: Scan and review supporting files before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or revise agent skill definitions, including SKILL.md structure, frontmatter, references, examples, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanallen/document-skills) <br>
-- [Claude Skills documentation](https://code.claude.com/docs/en/skills.md) <br>
-- [Claude Skills frontmatter reference](https://code.claude.com/docs/en/skills.md#frontmatter-reference) <br>
-- [Complete Guide to Building Skills](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown skill files and supporting file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update SKILL.md and optional scripts, references, or assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Skill edits can change activation triggers, coordinator references, agent metadata, package metadata, or supporting references that affect future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes carefully before release, especially frontmatter, coordinator links, package metadata, references, and any generated supporting files.
+
+## Reference(s):
+
+- [Official skills reference](https://code.claude.com/docs/en/skills.md)
+- [Complete guide to building skills](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown file edits and guidance, often with code or shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update SKILL.md and optional supporting files such as references, scripts, or assets when needed.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

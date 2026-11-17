@@ -1,39 +1,52 @@
-## Description: <br>
-Designs minimal implementation plans aligned with an existing local codebase, including architecture, task breakdown, migration planning, complexity analysis, and risk assessment before coding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs minimal implementation plans that fit the existing local codebase for architecture planning, feature design, task breakdown, migration planning, complexity analysis, and risk assessment.
 
-## Publisher: <br>
-[sf0799](https://clawhub.ai/user/sf0799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sf0799](https://clawhub.ai/user/sf0799)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to plan codebase changes before implementation, including architecture, task breakdown, migration steps, risk analysis, execution order, and verification approach.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Architecture plans can be incorrect or incomplete when the available codebase context is incomplete.
+
+Mitigation: Review the plan against the actual codebase, confirm stated assumptions, and validate changes with focused tests before implementation.
+
+Risk: Planning guidance may recommend changes that are larger than needed for the user's immediate goal.
+
+Mitigation: Prefer the smallest deployable step, reuse existing abstractions and module boundaries, and defer broader refactors unless they are required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to plan a minimal, codebase-aligned implementation before coding, including likely files or modules, risks, execution order, and verification steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation plans may be incomplete or misleading when workspace context is incomplete. <br>
-Mitigation: Review the plan against the current codebase and confirm assumptions before implementing changes. <br>
-Risk: The skill guides an agent to read and reason about local codebase context. <br>
-Mitigation: Use it only in workspaces where that level of local context access is appropriate. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language planning sections covering the goal, implementation steps, affected files or modules, risks and constraints, recommended execution order, and verification plan.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown planning guidance with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

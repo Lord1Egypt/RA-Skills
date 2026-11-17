@@ -34,7 +34,7 @@ an OLDER MCP deployment that predates the visible-but-gated employer
 surface, or the session is stale. Reconnect to the latest deployment.
 This is a deployment/version issue, not a key issue — a current
 deployment lists all 28 tools anonymously (`request_access` + 9
-candidate + 18 employer).
+candidate + 19 employer).
 
 ## INVITE_BLOCKED: INVITE_NOT_ALLOWED
 

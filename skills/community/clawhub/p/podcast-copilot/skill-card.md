@@ -1,43 +1,52 @@
-## Description: <br>
-Podcast copilot workflows with the Podwise CLI for searching podcasts or episodes, checking followed-show updates, asking transcript-grounded questions, processing Podwise, YouTube, Xiaoyuzhou, and local media inputs, and retrieving transcripts, summaries, chapters, Q&A, mind maps, highlights, and keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Podwise CLI workflows for podcast discovery, transcript-grounded answers, media processing, and retrieval of transcripts, summaries, chapters, Q&A, mind maps, highlights, and keywords.
 
-## Publisher: <br>
-[skoowoo](https://clawhub.ai/user/skoowoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[skoowoo](https://clawhub.ai/user/skoowoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to choose Podwise CLI workflows for podcast discovery, transcript-grounded question answering, episode processing, and retrieval of summaries, transcripts, chapters, highlights, mind maps, Q&A, and keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Using the skill depends on the Podwise CLI and a configured API key.
+
+Mitigation: Check Podwise CLI availability and configuration before running workflows, and stop with setup guidance if either prerequisite is missing.
+
+Risk: Processing URLs or local audio and video can upload content to Podwise and consume quota or credits.
+
+Mitigation: Require explicit user confirmation before process commands unless the user already asked to proceed, and disclose quota and upload behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to operate the Podwise CLI for podcast discovery, transcript-grounded analysis, media processing, and retrieval of structured episode artifacts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run the local Podwise CLI with the user's configured account. <br>
-Mitigation: Install only when account-level Podwise CLI access is acceptable, and avoid sharing API-key or configuration output. <br>
-Risk: Processing URLs or local media can upload selected content to Podwise and may consume quota or credits. <br>
-Mitigation: Require explicit user confirmation before process commands and process only intended URLs or files. <br>
-Risk: Transcript and summary retrieval depends on Podwise CLI availability, configuration, processing completion, and artifact support. <br>
-Mitigation: Check the CLI environment first, wait for processing to finish, and mark unavailable artifacts explicitly. <br>
+**Output Format:** [Markdown with inline bash commands and scannable result summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/skoowoo/podcast-copilot) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/skoowoo) <br>
+**Other Properties Related to Output:** [May include Podwise episode URLs, processing status, transcript-derived answers, source excerpts when requested, and unavailable-artifact notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Podwise episode URLs, processing status, transcript-grounded answers, source excerpts when requested, and unavailable artifact notes.] <br>
+0.2.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

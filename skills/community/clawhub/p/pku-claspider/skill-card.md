@@ -1,40 +1,56 @@
-## Description: <br>
-PKU Claspider helps agents guide use of a PKU course-catalog scraping CLI that gathers and merges read-only course data from dean.pku.edu.cn, elective.pku.edu.cn, and onlineroomse.pku.edu.cn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PKU Claspider helps agents use a CLI scraper to collect and merge Peking University course catalog data from dean, elective, and Zhiyun sources into JSON exports.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-External PKU developers and course-data users use this skill when they need agent guidance for scraping full-semester course catalogs, filtering by department, teacher, keyword, or category, and merging dean, elective, and Zhiyun course data into JSON for offline lookup or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Zhiyun browser tokens are sensitive credentials and may be exposed through shared terminals, shell history, or logs. <br>
-Mitigation: Use authenticated modes only on trusted machines, avoid pasting real JWTs into shared contexts, and prefer safer local secret handling where the CLI supports it. <br>
-Risk: The skill guides execution of local claspider and elective CLI code. <br>
-Mitigation: Install and run the CLI only when the local code and package source are trusted. <br>
+## Use Case:
 
+Developers and PKU course-data users use this skill when they need an agent to run or explain claspider commands for bulk course catalog scraping, filtering, and merging. It is for read-only catalog data collection, not course enrollment changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjsoj/pku-claspider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-oriented workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include instructions for handling local CLI credentials and exporting course data as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Authenticated PKU sources may require reused login sessions or a browser JWT token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste real JWTs into chat, logs, shared terminals, or shell history; prefer safer credential mechanisms when available and treat reused session directories as sensitive account material.
+
+Risk: The skill is intended for read-only course information gathering, but authenticated source access still touches university account context.
+
+Mitigation: Review commands before execution and use the skill only for catalog scraping and merging, not course selection, dropping, or other account-changing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjsoj/skills/pku-claspider)
+- [PKU Dean course schedule source](https://dean.pku.edu.cn)
+- [PKU elective course source](https://elective.pku.edu.cn)
+- [PKU Zhiyun classroom source](https://onlineroomse.pku.edu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide JSON exports from the claspider CLI; authenticated sources require careful handling of session material and JWT tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

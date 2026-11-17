@@ -1,43 +1,61 @@
-## Description: <br>
-微信公众号内容创作与改写技能。用于公众号选题、标题优化、正文写作、重写润色、公众号排版、封面图提示词生成。适用于需要“更像真人写作”的场景：口语化表达、故事化结构、观点明确、可读性强；也适用于把已有素材整理为可发布的公众号文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号内容创作与改写技能。用于公众号选题、标题优化、正文写作、重写润色、公众号排版、封面图提示词生成。适用于需要“更像真人写作”的场景：口语化表达、故事化结构、观点明确、可读性强；也适用于把已有素材整理为可发布的公众号文章。
 
-## Publisher: <br>
-[dyc0616c-oss](https://clawhub.ai/user/dyc0616c-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dyc0616c-oss](https://clawhub.ai/user/dyc0616c-oss)
 
-## Use Case: <br>
-External content creators and social media operators use this skill to plan, draft, rewrite, polish, format, and title WeChat public-account articles, including cover-image prompts and publishing-ready versions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may include fixed ChainThink promotional text, an external ChainThink link, and a WeChat group call to action by default. <br>
-Mitigation: Review the publishing-ready article and remove or replace promotional text, the external link, and group-invitation language before publication unless they are intended. <br>
-Risk: Financial, crypto, or market commentary may be misleading if source facts, data, or claims are not checked. <br>
-Mitigation: Use user-provided or cited data, keep unsupported figures labeled as examples or estimates, and fact-check claims before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dyc0616c-oss/wechat-article-crayon) <br>
-- [banned-phrases.md](references/banned-phrases.md) <br>
-- [opening-ending-library.md](references/opening-ending-library.md) <br>
-- [style-fingerprint.md](references/style-fingerprint.md) <br>
-- [title-patterns.md](references/title-patterns.md) <br>
+## Use Case:
 
+External content creators and account operators use this skill to draft, rewrite, polish, format, and title WeChat public-account articles in a conversational Chinese style, including publishing-ready layout text and cover-image prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with HTML spans and optional bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces topic angles, title candidates, outlines, drafts, WeChat-ready formatted copy, cover-image prompts, summaries, and short social posts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated articles may include ChainThink branding, crypto-focused risk text, a WeChat group invitation, QR-code placement, and an external ChainThink link by default.
+
+Mitigation: Review and edit publishing-ready output before posting so branding, calls to action, QR placement, and external links match the account owner, audience, and publication policy.
+
+Risk: The security verdict is suspicious because promotional material can be inserted without clear user opt-in.
+
+Mitigation: Install and use the skill only when that promotion is intended; otherwise remove or override the fixed promotional sections before publication.
+
+Risk: The skill can produce opinionated market or crypto commentary that readers may interpret as advice.
+
+Mitigation: Fact-check claims, preserve appropriate risk disclaimers, avoid unsupported performance claims, and confirm that generated commentary reflects the publisher's editorial standards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dyc0616c-oss/skills/wechat-article-crayon)
+- [Style fingerprint](references/style-fingerprint.md)
+- [Title patterns](references/title-patterns.md)
+- [Opening and ending library](references/opening-ending-library.md)
+- [Banned phrases](references/banned-phrases.md)
+- [ChainThink news link referenced by the skill](https://www.chainthink.cn/news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with article drafts, formatted publishing text, cover-image prompts, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language article variants, title candidates, outlines, summaries, social snippets, calls to action, QR-code placement guidance, and externally linked promotional text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -186,7 +186,7 @@ Execute a shell command on a remote server via SSH.
   "url": "ssh://deploy@server.example.com:22",
   "content": "ls -la /var/log",
   "options": {
-    "private_key": "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----",
+    "private_key": "REDACTED-SECRET",
     "timeout": 60
   }
 }

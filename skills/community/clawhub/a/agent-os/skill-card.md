@@ -1,43 +1,60 @@
-## Description: <br>
-Persistent agent operating system for OpenClaw. Agents remember across sessions, learn from experience, coordinate on complex projects without duplicate work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent agent operating system for OpenClaw. Agents remember across sessions, learn from experience, coordinate on complex projects without duplicate work.
 
-## Publisher: <br>
-[cryptocana](https://clawhub.ai/user/cryptocana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cryptocana](https://clawhub.ai/user/cryptocana)
 
-## Use Case: <br>
-Developers and agent builders use Agent OS to coordinate multi-agent projects with persistent memory, task decomposition, agent routing, execution tracking, and restartable project state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Saved-state file paths are not safely contained when agent or project IDs are untrusted. <br>
-Mitigation: Use only simple trusted agent and project IDs, prefer a fixed storage directory, and validate IDs before production use. <br>
-Risk: Project history, goals, outputs, lessons, and errors may be retained in local state. <br>
-Mitigation: Avoid secrets or regulated data in persisted fields, and exclude or delete the data directory before sharing or publishing the package. <br>
+## Use Case:
 
+Developers and agent builders use Agent Os to create persistent multi-agent project workflows that decompose goals, assign tasks by capability, track execution, and preserve agent and project state across sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cryptocana/agent-os) <br>
-- [README](artifact/README.md) <br>
-- [Architecture](artifact/ARCHITECTURE.md) <br>
-- [Build Summary](artifact/BUILD_SUMMARY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON state descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime use can produce local JSON memory and project state files under data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version and artifact/package.json) <br>
+Risk: Agent and project state is stored locally and may include goals, outputs, blockers, errors, and lessons.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets, regulated data, or sensitive business data in persisted state; review and remove state files before sharing or deploying.
+
+Risk: Project IDs and agent IDs influence local file paths before path validation is added.
+
+Mitigation: Use trusted IDs only, run the skill in an isolated workspace, and add path validation before accepting user-controlled identifiers.
+
+Risk: The dashboard renders status data with innerHTML.
+
+Mitigation: Treat dashboard data as trusted-only until rendering is changed to escape or sanitize untrusted values.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cryptocana/skills/agent-os)
+- [README.md](artifact/README.md)
+- [ARCHITECTURE.md](artifact/ARCHITECTURE.md)
+- [BUILD_SUMMARY.md](artifact/BUILD_SUMMARY.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples, shell commands, and JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files under data/ for persisted agent and project state.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

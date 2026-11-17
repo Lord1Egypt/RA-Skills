@@ -1,38 +1,49 @@
-## Description: <br>
-Optimizes post-signup onboarding by defining activation, mapping user flows, identifying friction, redesigning steps, and measuring activation outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes post-signup onboarding by defining activation, mapping user flows, identifying friction, redesigning steps, and measuring activation rates.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Product, growth, and UX practitioners use this skill to redesign post-signup onboarding flows for faster user activation. It helps define activation metrics, streamline setup steps, improve empty states and checklists, and specify success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Onboarding recommendations may affect user experience and business metrics when applied to a live product. <br>
-Mitigation: Review proposed flow, copy, checklist, and metric changes with product and UX stakeholders before launch. <br>
+## Use Case:
 
+Growth, product, and lifecycle teams use this skill to redesign post-signup onboarding around a measurable activation event, shorter time to value, and lower first-session friction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amdf01-debug/sw-onboarding-cro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown text with screen-by-screen recommendations, checklist items, copy, activation metrics, and success criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden data flow indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated onboarding recommendations could be applied to a live product without enough product or analytics review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against product goals, activation data, and user research before changing a production onboarding flow.
+
+## Reference(s):
+
+- [Onboarding CRO on ClawHub](https://clawhub.ai/amdf01-debug/skills/sw-onboarding-cro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with screen-by-screen onboarding recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklist items, empty-state copy, activation metric definition, and success criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

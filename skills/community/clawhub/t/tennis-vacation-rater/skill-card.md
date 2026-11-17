@@ -1,45 +1,62 @@
-## Description: <br>
-Evaluate tennis vacation destinations with structured scoring across transportation, accommodation, weather, and court facilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate tennis vacation destinations with structured scoring across transportation, accommodation, weather, and court facilities.
 
-## Publisher: <br>
-[edam17](https://clawhub.ai/user/edam17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edam17](https://clawhub.ai/user/edam17)
 
-## Use Case: <br>
-External users and travel planners use this skill to compare tennis vacation destinations, court options, travel logistics, lodging, weather, and budget tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel and social links may be inaccessible or incomplete, which can lead to unsupported destination details. <br>
-Mitigation: Extract destination details from user-provided text first, treat links as supplementary, ask for pasted details when needed, and label missing information clearly. <br>
-Risk: Flight prices from web search or the optional flight-price CLI can be stale, one-time, or confused with ongoing monitoring. <br>
-Mitigation: Label flight-price sources, never invent prices, ask before using optional CLI checks, and state that the skill does not create automatic background monitoring. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to compare tennis vacation destinations, rate transportation, lodging, weather, and court facilities, and generate concise destination reports with source labels for prices and missing data.
 
-## Reference(s): <br>
-- [Tennis Vacation Rater on ClawHub](https://clawhub.ai/edam17/tennis-vacation-rater) <br>
-- [Tennis Destinations Database](references/destinations.md) <br>
-- [Scoring Dimension Details](references/dimension-details.md) <br>
-- [Price Monitoring Guide](references/price-monitoring-guide.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Link Handling Guide](references/link-handling-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown report with scores, source labels, budget estimates, and price-query advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses source labels for flight prices and marks unavailable travel data as needing follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: The skill may ask an agent to check or run an unverified local flyai command for flight prices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer web-search-only use unless the flyai CLI provenance and installed version are verified before execution.
+
+Risk: Travel links may be inaccessible, private, expired, or blocked by platforms, which can lead to unsupported destination assumptions.
+
+Mitigation: Use the stop-and-ask protocol: rely on text provided by the user, request the destination and departure city when access fails, and label missing data.
+
+Risk: Price-monitoring language may imply persistent automatic alerts that the artifact does not actually create.
+
+Mitigation: Present price checks as one-time, on-demand checks during the current conversation and avoid claiming background monitoring.
+
+## Reference(s):
+
+- [Tennis Vacation Rater on ClawHub](https://clawhub.ai/edam17/skills/tennis-vacation-rater)
+- [Dimension Details](references/dimension-details.md)
+- [Price Monitoring Guide](references/price-monitoring-guide.md)
+- [Report Templates](references/report-template.md)
+- [Link Handling Guide](references/link-handling-guide.md)
+- [Tennis Destinations Database](references/destinations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel-rating report with scoring tables, source labels, optional shell commands, and booking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should label flight, hotel, weather, and court data sources and mark unavailable facts instead of inventing them.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

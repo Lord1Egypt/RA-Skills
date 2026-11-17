@@ -1,44 +1,59 @@
-## Description: <br>
-Low-level Feishu document block operations via REST API for batch cell updates, precise positioned inserts, block tree traversal, table row and column manipulation, image replacement, and other direct block-level Feishu document controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides low-level Feishu cloud document block operations via REST API for batch cell updates, precise positioned inserts, block tree traversal, table manipulation, image replacement, and direct block-level control when built-in Feishu document actions are insufficient.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and automation engineers use this skill when Feishu document operations need direct block-level control beyond standard feishu_doc actions, including bulk table edits, positioned content insertion, block traversal, row or column changes, and in-place image replacement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local Feishu app credentials to obtain tenant access tokens. <br>
-Mitigation: Use a least-privilege Feishu app and confirm the local configuration file containing the app ID and secret before execution. <br>
-Risk: The skill includes block, row, and column deletion operations that can remove document or table content. <br>
-Mitigation: Require explicit user confirmation and, where practical, a backup or recovery plan before deletion operations. <br>
-Risk: The server security verdict is suspicious and recommends review before installation in important workspaces. <br>
-Mitigation: Review the skill before installing it in Feishu workspaces that contain important or sensitive content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deadblue22/feishu-block-ops) <br>
-- [Publisher profile](https://clawhub.ai/user/deadblue22) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu document blocks API](https://open.feishu.cn/open-apis/docx/v1/documents) <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent inspect and modify Feishu cloud document blocks directly when standard Feishu document actions do not cover the required table, image, traversal, insertion, or deletion operation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline Python and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Feishu REST endpoints, request shapes, rate limits, and operational patterns for document block changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to use Feishu app credentials from local OpenClaw configuration and mint tenant access tokens.
+
+Mitigation: Use scoped Feishu credentials or a limited pre-provided token where possible, and install only when the agent is permitted to access the targeted Feishu documents.
+
+Risk: Direct block update and delete operations can alter or remove Feishu document content.
+
+Mitigation: Review proposed write, replacement, and batch_delete requests before execution, especially index ranges and operations affecting many cells or blocks.
+
+Risk: Batch document edits can exceed Feishu per-app or per-document rate limits.
+
+Mitigation: Throttle write calls according to the documented 3 requests per second limits and avoid concurrent edits to the same document.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deadblue22/skills/feishu-block-ops)
+- [Feishu Tenant Access Token Endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Docx Documents API Base](https://open.feishu.cn/open-apis/docx/v1/documents)
+- [Feishu Batch Update Blocks Endpoint](https://open.feishu.cn/open-apis/docx/v1/documents/{doc}/blocks/batch_update)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python snippets, REST API endpoints, request bodies, and operational cautions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include direct Feishu read, write, and delete API instructions, rate-limit timing, and block-operation gotchas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

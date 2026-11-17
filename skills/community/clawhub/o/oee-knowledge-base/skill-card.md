@@ -1,42 +1,57 @@
-## Description: <br>
-Semantic knowledge base allowing ingest, search, and retrieval of saved texts, URLs, and files using embeddings and SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic knowledge base allowing agents to ingest, search, and retrieve saved text, URL, and file content using embeddings and SQLite.
 
-## Publisher: <br>
-[OdinBot33](https://clawhub.ai/user/OdinBot33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odinbot33](https://clawhub.ai/user/odinbot33)
 
-## Use Case: <br>
-Developers and agents use this skill to save notes, URLs, files, and text into a local semantic knowledge base and retrieve relevant context for questions or workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved content may persist locally and be processed by configured external AI providers. <br>
-Mitigation: Do not save secrets, credentials, regulated data, or confidential documents unless local persistence and provider processing are acceptable. <br>
-Risk: The security review notes a local PDF path code-execution issue. <br>
-Mitigation: Avoid ingesting untrusted local PDF paths and review the skill before installation or execution. <br>
-Risk: Sensitive local retrieval may expose more stored context than intended. <br>
-Mitigation: Use search-only mode for sensitive retrieval and review returned context before using it in an answer. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OEE Knowledge Base RAG on ClawHub](https://clawhub.ai/OdinBot33/oee-knowledge-base) <br>
-- [OdinBot33 publisher profile](https://clawhub.ai/user/OdinBot33) <br>
+## Use Case:
 
+Agents and developers use this skill to maintain a local personal knowledge base, ingest notes or web and file content, and retrieve semantically relevant context for follow-up questions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search-only mode can return retrieved context without generating an LLM answer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved content may be sent to remote AI providers for embeddings or answer generation.
+
+Mitigation: Avoid secrets, regulated data, private company documents, and other sensitive content unless remote processing is approved and clearly disclosed.
+
+Risk: URL ingestion can fetch external, internal, or untrusted destinations.
+
+Mitigation: Restrict allowed URL destinations and require confirmation before ingesting private or untrusted links.
+
+Risk: PDF and temporary-file handling require review before use with untrusted documents.
+
+Mitigation: Review and remediate PDF extraction and temporary-file behavior before ingesting untrusted PDFs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odinbot33/skills/oee-knowledge-base)
+- [ClawHub publisher profile](https://clawhub.ai/user/odinbot33)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [CLI text output with source citations and optional search-result snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local SQLite knowledge base and may call remote AI providers for embeddings and answers when API keys are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

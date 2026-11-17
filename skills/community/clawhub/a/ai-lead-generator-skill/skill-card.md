@@ -1,40 +1,54 @@
-## Description: <br>
-Generates sample B2B lead lists as CSV files from CLI targeting options such as industry, role, company size, and region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A CLI skill that generates CSV lead lists with company and contact-style fields; current evidence indicates it produces synthetic sample leads despite advertising Apollo.io and LinkedIn integration.
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Sales teams, consultants, and B2B marketers can use this skill to create sample lead-generation CSVs for prospecting workflow prototyping. Review the data-source, authorization, and compliance claims before using it with real contact data or external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Advertised Apollo.io, LinkedIn, email validation, and GDPR-compliance capabilities are broader than the artifact code supports. <br>
-Mitigation: Treat this release as a local sample-data generator and verify any future integrations, permissions, privacy controls, and compliance claims before operational use. <br>
-Risk: Lead-generation workflows can involve personal contact data and external account credentials. <br>
-Mitigation: Do not provide LinkedIn, Apollo, CRM, or other credentials unless a future version documents official authorization, scopes, privacy compliance, and user controls. <br>
+## Use Case:
 
+Sales teams, consultants, and B2B marketers can use the skill to create CSV lead-list drafts or sample prospecting datasets from industry, role, company-size, and region inputs. Users should not treat generated contacts as verified real leads without separate validation and compliance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Highlander89/ai-lead-generator-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, JSON] <br>
-**Output Format:** [CSV file with console text and a JSON preview object when invoked programmatically] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs generated sample lead records with company, contact, role, email, phone, company size, and pain-point fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release.version and artifact/package.json) <br>
+Risk: The release advertises real Apollo.io and LinkedIn lead collection, but the reviewed code appears to generate synthetic CSV leads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated records as sample data unless the implementation is independently reviewed and connected to lawful, approved data sources.
+
+Risk: The skill advertises personal-data collection and GDPR compliance with little privacy scoping in the evidence.
+
+Mitigation: Do not use it for real contact scraping or outreach unless a lawful basis, consent or compliance controls, and dependency review are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highlander89/skills/ai-lead-generator-skill)
+- [Publisher profile](https://clawhub.ai/user/highlander89)
+
+## Skill Output:
+
+**Output Type(s):** [text, CSV file, JSON preview]
+
+**Output Format:** [CLI console text, generated CSV file, and JavaScript object preview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output count, industry, role, company size, and region are controlled by CLI flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

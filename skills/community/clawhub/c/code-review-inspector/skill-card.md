@@ -1,45 +1,61 @@
-## Description: <br>
-Automated code review checking for bugs, security issues, best practices, performance problems, and code style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated code review checking for bugs, security issues, best practices, performance problems, and code style.
 
-## Publisher: <br>
-[michaelatamuk](https://clawhub.ai/user/michaelatamuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelatamuk](https://clawhub.ai/user/michaelatamuk)
 
-## Use Case: <br>
-Developers and engineers use this skill to review code changes, diffs, or selected files before commits and pull requests. It helps identify bugs, security issues, performance problems, best-practice gaps, style concerns, missing tests, and documentation issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect repository files or diffs that contain proprietary code, credentials, or other sensitive material. <br>
-Mitigation: Use it only on repositories and diffs the agent is allowed to inspect, and do not provide unrelated private files, payment access, or credentials. <br>
-Risk: Automated review findings can be incomplete, incorrect, or missing project-specific context. <br>
-Mitigation: Treat findings as suggestions and verify important issues with tests and human review before making release or merge decisions. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review code changes before commits, pull requests, or security-sensitive releases. It produces prioritized suggestions for bugs, security issues, performance problems, maintainability, test coverage, and documentation gaps.
 
-## Reference(s): <br>
-- [Code Review Checklist](CODE_REVIEW_CHECKLIST.md) <br>
-- [Code Review Inspector ClawHub page](https://clawhub.ai/michaelatamuk/code-review-inspector) <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
-- [Google Engineering Practices: Code Review](https://google.github.io/eng-practices/review/) <br>
-- [Refactoring Catalog](https://refactoring.com/catalog/) <br>
-- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review report with prioritized findings, explanations, and suggested fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are suggestions to verify with tests and human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The agent reads the code, diffs, or files the user asks it to review, which may include secrets or sensitive implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where code review access is appropriate; avoid supplying secrets, credentials, or unrelated sensitive files.
+
+Risk: Review findings are suggestions and may be incorrect, incomplete, or overconfident for critical security issues.
+
+Mitigation: Verify important findings with tests, scanner output, or human review before making release or security decisions.
+
+Risk: The artifact includes security-example material containing vulnerable code snippets for illustration.
+
+Mitigation: Treat examples as educational evidence, not executable behavior, and review any generated fixes before applying them.
+
+## Reference(s):
+
+- [Code Review Checklist](artifact/CODE_REVIEW_CHECKLIST.md)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [Google Engineering Practices: Code Review](https://google.github.io/eng-practices/review/)
+- [Refactoring Catalog](https://refactoring.com/catalog/)
+- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review report with prioritized findings, explanations, and suggested fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity labels, file or line references when provided, code snippets, and follow-up validation recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-AI agent incubator on Base L2 - apply with a business idea, get funded, build your MVP, share revenue on-chain, and graduate independent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent incubator on Base L2 that helps agents apply with a business idea, seek funding, build an MVP, share revenue on-chain, and graduate independently.
 
-## Publisher: <br>
-[blackeuler](https://clawhub.ai/user/blackeuler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blackeuler](https://clawhub.ai/user/blackeuler)
 
-## Use Case: <br>
-External builders and agents use this skill to prepare a SPAWN incubator proposal, check the current application fee, submit an on-chain application on Base L2, and understand milestone, heartbeat, and revenue-share obligations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The application process requires wallet transaction signing and a non-refundable on-chain entry fee. <br>
-Mitigation: Check the current fee through the documented API, verify contract addresses through trusted sources, and sign only transactions you understand. <br>
-Risk: Proposal URLs or IPFS content may expose sensitive business, personal, wallet, API key, or credential data. <br>
-Mitigation: Review proposal content before publishing and omit secrets, private wallet metadata, personal data, confidential business details, API keys, and credentials. <br>
-Risk: Accepted applicants take on weekly heartbeat obligations and a 12-month 20% on-chain revenue-share commitment after graduation. <br>
-Mitigation: Use the skill only when those incubator terms are acceptable and keep operational reminders for heartbeat deadlines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SPAWN homepage](https://www.spawn.fund) <br>
-- [SPAWN API base](https://spawn.fund) <br>
-- [SPAWN fee endpoint](https://spawn.fund/api/fee) <br>
-- [ClawHub skill page](https://clawhub.ai/blackeuler/spawn-incubator) <br>
+## Use Case:
 
+External developers and AI-agent operators use this skill to understand SPAWN's Base L2 incubator workflow, prepare an application proposal, and identify the API and contract actions involved in applying, maintaining heartbeat status, and graduating.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, code, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON proposal examples, API endpoint examples, and smart-contract call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no tools, API keys, or executable scripts are bundled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead users toward irreversible cryptocurrency payments using dynamically supplied contract addresses, fees, and calldata.
+
+Mitigation: Verify the Base chain ID, contract addresses, contract source or bytecode, fee amount, and full transaction calldata through trusted sources before any signing or submission.
+
+Risk: The entry fee and other value-bearing transactions may be permanently at risk.
+
+Mitigation: Require explicit human review of the exact destination, function call, and amount before allowing an agent to submit or sign any transaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blackeuler/skills/spawn-incubator)
+- [SPAWN Website](https://www.spawn.fund)
+- [SPAWN API Base URL](https://spawn.fund)
+- [SPAWN Fee API](https://spawn.fund/api/fee)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide value-bearing on-chain actions on Base L2; users should verify all transaction details before signing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

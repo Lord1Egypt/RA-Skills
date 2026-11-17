@@ -160,6 +160,7 @@ data.put("bill_type", req.getBillType());
 - 常规账单下载链接通常对应压缩文件，压缩包内多为 csv
 - `SETTLE_FUND_BILL` 模板文件为 `.xlsx`，不要把所有账单都按 csv 解析
 - 单个文件记录数超过 400,000 条时，会拆分为多个 csv
+- `download_url` 是短时预签名凭据，查询参数可能包含 `Signature`、`Expires`、`OSSAccessKeyId`。日志、错误、追踪和工单必须移除 query；下载端固定 HTTPS 和允许 host，禁用跨 host 重定向，限制响应大小、压缩后总大小、文件数量与路径穿越，只接受预期 zip/csv/xlsx 类型。
 
 ### 文件名规则
 

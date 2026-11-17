@@ -1,41 +1,52 @@
-## Description: <br>
-A minimal weather-query skill for major Chinese cities that returns simulated current weather information. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+极简的城市实时天气查询技能，支持国内主流城市。
 
-## Publisher: <br>
-[liaolei666](https://clawhub.ai/user/liaolei666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liaolei666](https://clawhub.ai/user/liaolei666)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Chinese-speaking users ask the agent for concise weather details for supported major Chinese cities. The skill is suitable for simple city weather lookups where simulated, non-live results are acceptable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill returns simulated weather data rather than live forecasts.
+
+Mitigation: Present results as simulated examples and verify real weather with an authoritative forecast source before operational use.
+
+Risk: Broad Chinese weather-related triggers may activate on ordinary weather questions.
+
+Mitigation: Confirm the user's target city and intent before relying on or presenting the response.
+
+## Reference(s):
 
 
-## Use Case: <br>
-People asking about weather in major Chinese cities can use this skill to receive a quick structured sample response with temperature, conditions, and wind. It is best suited for demonstration or placeholder workflows because the weather data is simulated. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global, with responses focused on major Chinese cities. <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns simulated weather rather than live conditions. <br>
-Mitigation: Verify real conditions with a trusted weather source before relying on the response. <br>
-Risk: Broad weather-related wording may activate the skill unintentionally. <br>
-Mitigation: Confirm the user's city and intent when the request is ambiguous. <br>
+**Output Format:** [Plain text or Markdown weather response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liaolei666/dsadsad) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/liaolei666) <br>
+**Other Properties Related to Output:** [Returns simulated weather details such as temperature, condition, and wind for recognized cities.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown weather summary with city, temperature, weather condition, and wind fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavior; no credentials, file access, persistence, or executable install behavior reported by security evidence.] <br>
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

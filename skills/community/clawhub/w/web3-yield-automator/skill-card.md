@@ -1,41 +1,58 @@
-## Description: <br>
-Web3 Yield Automator is a Node CLI skill that claims to configure automated DeFi yield farming across multiple chains, including auto-compounding, rebalancing, and APY threshold settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Node CLI for Web3 yield-farming setup that records wallet and strategy settings and prints automation status and marketing output.
 
-## Publisher: <br>
-[matthew00ita](https://clawhub.ai/user/matthew00ita) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-PROPRIETARY <br>
+## Publisher:
 
+[matthew00ita](https://clawhub.ai/user/matthew00ita)
 
-## Use Case: <br>
-External users interested in DeFi automation can use this skill to initialize wallet-address tracking, configure risk and APY thresholds, and start a CLI workflow that advertises yield-management automation. Reviewers should treat the current package as high-risk because the server security summary says the included code is a stub and does not clearly define wallet permissions, transaction risks, or safety controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+PROPRIETARY
 
-## Known Risks and Mitigations: <br>
-Risk: The package advertises paid automatic DeFi fund management while the included code is only a stub. <br>
-Mitigation: Do not rely on the automation claims until complete reviewed code and verified package provenance are available. <br>
-Risk: Wallet permissions, transaction risks, and safety controls are not clearly defined. <br>
-Mitigation: Do not connect wallets, grant token approvals, or provide seed phrases or private keys; require explicit wallet-permission documentation, dry-run behavior, per-transaction confirmations, spending limits, and revocation instructions before use. <br>
+## Use Case:
 
+External users and agents can use this skill to install and operate a Web3 yield automation CLI, including wallet address registration, risk settings, chain selection, and status output. Security evidence says to treat it as a local configuration and marketing-output stub, not as reviewed software for managing funds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matthew00ita/web3-yield-automator) <br>
-- [Publisher profile](https://clawhub.ai/user/matthew00ita) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and npm; stores wallet addresses, risk profile, minimum APY, and chain selections in a local JSON configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Paid DeFi automation claims are not supported by the shipped code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a local CLI stub until auditable automation logic, wallet-permission boundaries, safety controls, and dependency updates are provided.
+
+Risk: Users may assume the skill can safely manage funds across DeFi protocols.
+
+Mitigation: Do not use it to manage real assets or grant wallet permissions without independent code review, protocol-specific safety checks, and clear operational limits.
+
+Risk: Wallet addresses and strategy settings are stored locally by the CLI.
+
+Mitigation: Avoid entering sensitive operational data on shared systems and review local configuration files before distribution or support handoff.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/matthew00ita/skills/web3-yield-automator)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/matthew00ita)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm; writes local configuration data for wallet addresses, risk profile, APY threshold, and selected chains.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# fake cargo
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+case "$*" in
+  "install --list") cat "$DATA/cargo-list.txt" ;;
+  *) exit 64 ;;
+esac

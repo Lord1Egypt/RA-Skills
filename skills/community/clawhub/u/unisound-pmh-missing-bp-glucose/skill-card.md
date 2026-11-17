@@ -1,45 +1,58 @@
-## Description: <br>
-Checks outpatient medical records for missing blood pressure or blood glucose control information in the past medical history and returns a defect status with a reason when applicable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks outpatient medical-record history text for missing blood pressure or blood glucose control information and returns whether the record has no defect or has a defect with a reason.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical quality-control staff and developers use this skill to check whether outpatient records document blood pressure or blood glucose control status when relevant conditions appear in past medical history. The skill is an assistive quality-control tool and its findings should be reviewed by qualified medical personnel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outpatient record text is sent to a remote LLM endpoint and may contain sensitive medical information. <br>
-Mitigation: Use only de-identified input and deploy the skill only where the configured HiVoice MaaS or compatible endpoint is approved for that data. <br>
-Risk: The app key is required for model access and could be exposed if placed in source control or logs. <br>
-Mitigation: Provide the key at runtime through approved secret-handling practices and keep it out of repositories, command history, and logs. <br>
-Risk: Multi-format inputs depend on shared document preprocessing, and prepared text can be saved locally when requested. <br>
-Mitigation: Review the shared preprocessing dependency before use and enable --save-prepared only when local storage of record text is approved. <br>
-Risk: The quality-control result is assistive and may be incomplete or incorrect for clinical governance decisions. <br>
-Mitigation: Require review by qualified medical personnel before acting on a defect result or treating a no-defect result as final. <br>
+## Use Case:
 
+Clinical quality-control teams and developers can use this skill to review de-identified outpatient medical-record text for a specific past-medical-history rule: whether hypertension or diabetes history lacks blood pressure or blood glucose control details. Results are assistive and require clinician review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-pmh-missing-bp-glucose) <br>
-- [HiVoice MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands] <br>
-**Output Format:** [UTF-8 plain text: either 无缺陷, or 有缺陷 followed by a reason.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the quality-control result to an output text file and prints the same result to the console.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Clinical record text is sent to the configured remote MaaS provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified records and install only after organizational approval for sending medical-record text to that provider.
+
+Risk: Prepared medical-record text can be saved locally when the save-prepared option is used.
+
+Mitigation: Do not use save-prepared with real patient records unless the output directory is secured and retention is planned.
+
+Risk: Quality-control results may be incomplete or incorrect for clinical use.
+
+Mitigation: Treat results as assistive and require review by a qualified clinician.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-pmh-missing-bp-glucose)
+- [HiVoice MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [UTF-8 text result with no-defect or defect status and optional reason]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts UTF-8 outpatient record text directly or via prepared pdf, doc, docx, xls, xlsx, csv, txt, or json input; requires an appkey for the configured MaaS provider.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

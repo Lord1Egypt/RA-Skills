@@ -1,42 +1,59 @@
-## Description: <br>
-Capture photos, record video clips, list cameras, and live stream on Linux. Uses V4L2 and ffmpeg. Supports USB webcams and RTSP/IP cameras. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture photos, record video clips, list cameras, and live stream on Linux. Uses V4L2 and ffmpeg. Supports USB webcams and RTSP/IP cameras.
 
-## Publisher: <br>
-[johnnynunez](https://clawhub.ai/user/johnnynunez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnynunez](https://clawhub.ai/user/johnnynunez)
 
-## Use Case: <br>
-Developers and robotics users use this skill to capture images, record video, enumerate Linux camera devices, and stream camera feeds from USB webcams or RTSP/IP cameras. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Streaming mode can expose live camera video on the network without authentication. <br>
-Mitigation: Use streaming only on trusted networks, firewall the selected ports, avoid public or shared hosts, and prefer localhost binding if modifying the server. <br>
-Risk: RTSP input URLs can include credentials that may appear in command lines or logs. <br>
-Mitigation: Avoid placing sensitive RTSP credentials in shared shell history, command logs, or public examples. <br>
+## Use Case:
 
+Developers and robotics operators use this skill to inspect Linux camera devices, capture still images, record short clips, and expose a live camera stream from USB webcams or RTSP/IP cameras.
 
-## Reference(s): <br>
-- [linux-camera ClawHub page](https://clawhub.ai/johnnynunez/linux-camera) <br>
-- [Publisher profile](https://clawhub.ai/user/johnnynunez) <br>
-- [soarm-control Skill](https://clawhub.ai/yuyoujiang/soarm-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and script outputs; scripts produce JPEG images, MP4 video, JSON camera listings, MJPEG/HLS/RTSP streams, and status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux camera access plus ffmpeg and v4l-utils.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The streaming server can expose live camera feeds and local files to anyone who can reach the port.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on trusted machines and networks, bind viewing to localhost where possible, and add authentication before remote access.
+
+Risk: HLS streaming is called out by the security guidance as unsafe until a path traversal issue is fixed.
+
+Mitigation: Do not enable HLS in production or shared environments until the path traversal issue has been remediated and rescanned.
+
+Risk: Camera captures, clips, and live streams may contain sensitive visual data.
+
+Mitigation: Use the skill only with consent and store generated media in approved locations with appropriate access controls.
+
+## Reference(s):
+
+- [linux-camera ClawHub Skill](https://clawhub.ai/johnnynunez/skills/linux-camera)
+- [johnnynunez Publisher Profile](https://clawhub.ai/user/johnnynunez)
+- [soarm-control Skill](https://clawhub.ai/yuyoujiang/soarm-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; scripts can produce JSON device listings, JPEG images, MP4 clips, MJPEG streams, HLS streams, RTSP streams, and status JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Camera outputs may contain sensitive visual data and depend on local Linux device access, ffmpeg, and v4l-utils.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

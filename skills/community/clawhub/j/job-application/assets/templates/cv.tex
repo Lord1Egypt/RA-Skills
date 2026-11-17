@@ -1,0 +1,93 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=7.45cm,top=0.35cm,right=0.55cm,bottom=0.35cm,nohead,nofoot]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+\definecolor{mainblue}{HTML}{0E5484}
+\definecolor{sidegray}{HTML}{E7E7E7}
+\definecolor{bargray}{HTML}{B9B9B9}
+\definecolor{textgray}{HTML}{333333}
+\definecolor{sectiongray}{HTML}{B3B3B3}
+\color{textgray}
+
+\newcommand{\sideheading}[2]{%
+  \par\vspace{0.22cm}{\fontsize{20}{21}\selectfont #1}\hspace{0.12cm}%
+  \raisebox{0.55ex}{\textcolor{bargray}{\rule{#2}{0.8pt}}}\par\vspace{0.05cm}}
+\newcommand{\contactrow}[2]{%
+  \noindent\begin{tikzpicture}[baseline=(icon.base)]
+    \node[circle,fill=mainblue,text=white,minimum size=4.3mm,inner sep=0pt,font=\scriptsize] (icon) {#1};
+  \end{tikzpicture}\hspace{0.18cm}\parbox[t]{5.15cm}{#2}\par\vspace{0.05cm}}
+\newcommand{\contactlocationicon}{%
+  \faMapMarker}
+\newcommand{\contactphoneicon}{%
+  \faPhone}
+\newcommand{\contactemailicon}{%
+  \faEnvelope}
+\newcommand{\skillbar}[2]{%
+  \vspace{0.02cm}\noindent #1\par\vspace{0.02cm}%
+  \begin{tikzpicture}
+    \fill[bargray] (0,0) rectangle (5.7,0.35);
+    \fill[mainblue] (0,0) rectangle ({1.14*#2},0.35);
+    \foreach \x in {0.57,1.14,...,5.13}{\draw[white,line width=0.35pt] (\x,0)--(\x,0.12);}
+  \end{tikzpicture}\par}
+\newcommand{\cvsection}[2]{%
+  \vspace{0.08cm}\noindent\colorbox{#1}{\color{white}\fontsize{19}{20}\selectfont\strut #2}%
+  \par\vspace{0.28cm}}
+\newcommand{\cvitem}[4]{%
+  \noindent\begin{tabular}{@{}p{3.05cm}@{}p{10.25cm}@{}}
+    #1 & {\color{mainblue}#2}\hfill{\color{mainblue}\footnotesize #3}\\[-0.02cm]
+       & \parbox[t]{10.15cm}{\justifying #4}\vspace{0.16cm}
+  \end{tabular}\par}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[sidegray] (current page.north west) rectangle ([xshift=7.05cm]current page.south west);
+\end{tikzpicture}
+
+\begin{textblock}{6.25}(0.35,0.40)
+  \centering
+  __PHOTO_BLOCK__
+
+  \raggedright
+  {\fontsize{26}{25}\selectfont\color{mainblue} __NAME__\par}
+  \vspace{0.12cm}
+  {\fontsize{17}{18}\selectfont\color{textgray}\raggedleft __TITLE__\par}
+  \vspace{0.32cm}
+
+  \contactrow{\contactlocationicon}{__LOCATION__}
+  \contactrow{\contactphoneicon}{__PHONE__}
+  \contactrow{\contactemailicon}{\href{mailto:__EMAIL__}{__EMAIL__}}
+
+  \sideheading{About me}{2.7cm}
+  \begin{minipage}{5.85cm}\justifying __ABOUT__\end{minipage}
+
+  \sideheading{Skills}{3.8cm}
+  __SKILLS__
+
+  \vspace{0.06cm}{\scriptsize Scale: 0 (basic) to 5 (expert).\par}
+  \sideheading{Languages}{2.45cm}
+  __LANGUAGES__
+\end{textblock}
+
+\cvsection{mainblue}{Experience}
+__EXPERIENCE__
+
+\cvsection{sectiongray}{Education}
+__EDUCATION__
+
+\cvsection{mainblue}{Projects}
+__PROJECTS__
+\end{document}

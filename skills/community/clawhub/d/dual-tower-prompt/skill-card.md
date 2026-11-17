@@ -1,40 +1,54 @@
-## Description: <br>
-双塔足球预测 Prompt - 仅需比赛特征文本(fet_txt), 一次 LLM 调用完成基本面+市场双塔分析+融合决策, 输出 ranking_score 排名和 Top-K 推荐 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+双塔足球预测 Prompt — 仅需比赛特征文本(fet_txt), 一次 LLM 调用完成基本面+市场双塔分析+融合决策, 输出 ranking_score 排名和 Top-K 推荐
 
-## Publisher: <br>
-[kingvergil](https://clawhub.ai/user/kingvergil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingvergil](https://clawhub.ai/user/kingvergil)
 
-## Use Case: <br>
-External users provide football match feature text and use the prompt to produce a structured dual-tower match prediction, including fundamental analysis, market-signal analysis, fused recommendations, confidence, and ranking scores for comparing matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Football prediction outputs can be mistaken for verified outcomes or financial advice. <br>
-Mitigation: Review predictions critically, especially before using them for wagering or other financial decisions. <br>
-Risk: The prompt depends on user-provided match feature text, so incomplete or biased input can produce misleading recommendations. <br>
-Mitigation: Provide complete, current match features and compare the model output with independent domain judgment before acting on it. <br>
+## Use Case:
 
+External users and agents use this skill to turn supplied football match feature text into a two-tower football prediction analysis, final side recommendation, confidence score, and ranking score for comparing matches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingvergil/dual-tower-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Prompt guidance that requests strict JSON from the downstream LLM] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The downstream output includes tower_a, tower_b, and fusion objects with scores, recommendations, confidence, and ranking fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Pasted match feature text may contain untrusted or misleading content that steers the model output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted match data where possible, wrap fet_txt in explicit delimiters, and instruct the model to treat fet_txt as evidence rather than instructions.
+
+Risk: The skill produces prediction recommendations that may be mistaken for certain outcomes.
+
+Mitigation: Review the JSON output as decision support and pay attention to confidence, agreement, and ranking_score rather than treating any recommendation as guaranteed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingvergil/skills/dual-tower-prompt)
+- [prompt.md](artifact/prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Strict JSON object with tower_a, tower_b, and fusion prediction fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses supplied fet_txt match text only; no code execution, credentials, network access, or persistence are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

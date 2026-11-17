@@ -1,0 +1,13 @@
+{
+  "id": "timeline-demo-book",
+  "title": "霜雪长明",
+  "language": "zh",
+  "genre": "仙侠",
+  "status": "drafting",
+  "targetChapters": 200,
+  "chapterWordCount": 3000,
+  "createdAt": "2025-06-01T00:00:00Z",
+  "updatedAt": "2025-07-15T00:00:00Z",
+  "schemaVersion": "1.0.0",
+  "skillVersion": "1.0.0"
+}

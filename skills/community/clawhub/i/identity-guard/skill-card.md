@@ -1,45 +1,62 @@
-## Description: <br>
-Identity Guard blocks personal, sensitive, or security-critical requests unless the current sender_id matches a configured master or allowlist entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity Guard blocks sensitive OpenClaw requests unless the sender is authorized by sender_id rather than display name.
 
-## Publisher: <br>
-[ZhongxuYang](https://clawhub.ai/user/ZhongxuYang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhongxuyang](https://clawhub.ai/user/zhongxuyang)
 
-## Use Case: <br>
-Developers and operators of OpenClaw multi-user agents use this skill to gate sensitive answers, protected file edits, system operations, and allowlist management on sender_id-based authorization instead of display names or conversational claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change who is trusted through identities.json and allowlist updates. <br>
-Mitigation: Restrict who can run init.sh or add-user.sh, review identities.json changes, and initialize the master identity in a private, controlled session. <br>
-Risk: Authorization may be too broad when channel context is missing, because guard.sh can check whether a sender is authorized in any channel. <br>
-Mitigation: Always pass trusted channel metadata to guard.sh for channel-scoped checks and avoid global allowlists unless broad access is intentional. <br>
-Risk: Sender IDs and session logs are sensitive identifiers. <br>
-Mitigation: Use direct messages for sender ID discovery, keep identities.json private, and treat session logs containing sender_id values as private data. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to gate sensitive owner, memory, configuration, and host-operation requests on trusted sender_id metadata. It is intended for multi-user or group-chat environments where display names and self-claims are not reliable authorization signals.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/ZhongxuYang/identity-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/ZhongxuYang) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces allow, deny, setup, and refusal guidance based on sender_id authorization state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: Authorization controls are broad enough to affect sensitive owner information and broader agent actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the trigger scope before deployment so the guard applies only to clearly sensitive requests and security-critical actions.
+
+Risk: Shell, awk, and sed parsing can make authorization checks fragile.
+
+Mitigation: Replace text parsing with structured JSON parsing and exact equality checks for sender_id, channel, master_id, and allowlist values.
+
+Risk: Session logs are not strong proof of the current caller identity.
+
+Mitigation: Use trusted current-message metadata for sender_id and channel, and treat missing or untrusted metadata as unauthorized.
+
+Risk: Allowlist or master_id changes can expand access to protected information and actions.
+
+Mitigation: Restrict identity configuration changes to an explicit trusted administrator process and review identities.json after updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhongxuyang/skills/identity-guard)
+- [Publisher profile](https://clawhub.ai/user/zhongxuyang)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authorization decisions are represented by shell exit codes; helper scripts can create or update identities.json.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

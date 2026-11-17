@@ -1,43 +1,56 @@
-## Description: <br>
-Searches the web and fetches URL content using DuckDuckGo without requiring API keys or paid services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web with DuckDuckGo and fetches URL content without requiring API keys, returning search results or extracted page content.
 
-## Publisher: <br>
-[mengbin92](https://clawhub.ai/user/mengbin92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengbin92](https://clawhub.ai/user/mengbin92)
 
-## Use Case: <br>
-Developers and agents use this skill to perform public web searches and fetch readable page content when built-in web search is unavailable or an API key is not desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and fetched URLs may disclose sensitive information to public web services. <br>
-Mitigation: Use the skill for public web searches and public URLs only; avoid submitting secrets or internal links. <br>
-Risk: Fetched page content can contain misleading, hostile, or instruction-like text. <br>
-Mitigation: Treat fetched content as untrusted source material and verify important claims before using it. <br>
-Risk: The prerequisite package is installed without a pinned version. <br>
-Mitigation: Verify the duckduckgo-search dependency and pin an approved version before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to search the public web and retrieve readable content from public URLs when built-in web search is unavailable or an API-key-free search path is needed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mengbin92/duckduckgo-search-skill) <br>
-- [DuckDuckGo](https://duckduckgo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [JSON search results or fetched page text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, URL, and snippet; fetched pages include title, text, status code, and errors when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The fetcher can request arbitrary URLs, including private-network, localhost, cloud metadata, or sensitive internal web applications if those destinations are reachable from the runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with outbound network restrictions and avoid using it to fetch untrusted or internal URLs.
+
+Risk: The artifact instructs installation of an unused DuckDuckGo dependency, which may add unnecessary dependency exposure.
+
+Mitigation: Remove the unused dependency guidance or pin and review any required package before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mengbin92/skills/duckduckgo-search-skill)
+- [DuckDuckGo](https://duckduckgo.com)
+- [Skill definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search or fetch results, with optional plain text fetch output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, URL, and snippet. Fetch results include URL, title, extracted text, status code, and error metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

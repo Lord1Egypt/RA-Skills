@@ -1,41 +1,59 @@
-## Description: <br>
-Use when the user wants to inspect, repair, package, or troubleshoot an OpenClaw workspace doctor setup, especially for stale bootstrap state, missing daily memory notes, or codex-cli launch hazards in OpenClaw config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to inspect, repair, package, or troubleshoot an OpenClaw workspace doctor setup, especially for stale bootstrap state, missing daily memory notes, or codex-cli launch hazards in OpenClaw config.
 
-## Publisher: <br>
-[transparent-heart](https://clawhub.ai/user/transparent-heart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[transparent-heart](https://clawhub.ai/user/transparent-heart)
 
-## Use Case: <br>
-Developers and maintainers use this skill to diagnose OpenClaw workspace startup drift, repair safe workspace-local issues, package the doctor tool, and review companion fixes for codex-cli launch configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The live repair path can change global OpenClaw configuration using code that is not fully included in the reviewed artifacts. <br>
-Mitigation: Run diagnostic, --check, or --stdout modes first, review the exact proposed change and backup location, and avoid the live patch until the local workspace_doctor implementation has been inspected. <br>
-Risk: Workspace repair commands may modify local workspace files when run with fix options. <br>
-Mitigation: Use the diagnostic output before --fix, keep workspace-local changes reviewable, and clearly report any sandbox restriction that prevents an external configuration write. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose OpenClaw workspace startup drift, run workspace-local repairs, inspect missing daily memory notes, package the doctor tool, and handle known codex-cli launch hazards.
 
-## Reference(s): <br>
-- [Command Map and Fix Boundaries](references/commands.md) <br>
-- [Repository Layout](references/repo-layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic, fix, check, stdout, packaging, and validation commands for an OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Executable wrappers import Python code from a workspace package outside the released skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the external workspace_doctor package before running the wrappers.
+
+Risk: The external OpenClaw config fixer can modify persistent configuration at ~/.openclaw/openclaw.json.
+
+Mitigation: Run the check or stdout mode first, review the proposed output and backup behavior, and only allow the live write when appropriate.
+
+Risk: Sandbox restrictions may prevent writes outside the workspace.
+
+Mitigation: Report blocked writes clearly and do not claim the live OpenClaw configuration was fixed when the write did not occur.
+
+## Reference(s):
+
+- [Commands](references/commands.md)
+- [Repo Layout](references/repo-layout.md)
+- [ClawHub Skill Page](https://clawhub.ai/transparent-heart/skills/transparent-heart-openclaw-workspace-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workspace-local fix recommendations, validation commands, and config patch guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

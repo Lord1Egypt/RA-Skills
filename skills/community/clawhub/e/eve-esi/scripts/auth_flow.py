@@ -20,14 +20,18 @@ import urllib.parse
 import urllib.request
 
 from token_store import get_tokens_file, load_tokens, save_tokens_unlocked, token_file_lock
+from user_agent import USER_AGENT
 
 class AuthFlowError(Exception):
     """Raised when the OAuth authentication flow fails."""
 
 
-SCOPES = " ".join([
-    "esi-wallet.read_character_wallet.v1",
-    "esi-assets.read_assets.v1",
+# Scopes are granted once at login and persist until the token is revoked at
+# https://community.eveonline.com/support/third-party/ — so the default asks for
+# the narrow set needed to monitor planets, not for everything the API offers.
+# Widen deliberately with --scope-profile or --scopes.
+
+_BASIC = [
     "esi-skills.read_skills.v1",
     "esi-skills.read_skillqueue.v1",
     "esi-clones.read_clones.v1",
@@ -35,15 +39,39 @@ SCOPES = " ".join([
     "esi-location.read_location.v1",
     "esi-location.read_ship_type.v1",
     "esi-location.read_online.v1",
-    "esi-characters.read_notifications.v1",
-    "esi-industry.read_character_jobs.v1",
-    "esi-markets.read_character_orders.v1",
-    "esi-contracts.read_character_contracts.v1",
-    "esi-killmails.read_killmails.v1",
-    "esi-planets.manage_planets.v1",
-    "esi-characters.read_fatigue.v1",
-    "esi-mail.read_mail.v1",
-])
+]
+
+SCOPE_PROFILES = {
+    # Character basics: training, clones, where you are and in what.
+    "basic": _BASIC,
+    # Default. Planetary Interaction monitoring on top of the basics.
+    "pi": _BASIC + [
+        "esi-planets.manage_planets.v1",
+    ],
+    # Production and hauling: what you own, what you are building and selling.
+    "industry": _BASIC + [
+        "esi-assets.read_assets.v1",
+        "esi-industry.read_character_jobs.v1",
+        "esi-markets.read_character_orders.v1",
+        "esi-contracts.read_character_contracts.v1",
+    ],
+    # Everything this skill knows how to use — including wallet and mail.
+    # Only pick this if you actually want an agent reading your correspondence.
+    "full": _BASIC + [
+        "esi-planets.manage_planets.v1",
+        "esi-assets.read_assets.v1",
+        "esi-industry.read_character_jobs.v1",
+        "esi-markets.read_character_orders.v1",
+        "esi-contracts.read_character_contracts.v1",
+        "esi-wallet.read_character_wallet.v1",
+        "esi-characters.read_notifications.v1",
+        "esi-characters.read_fatigue.v1",
+        "esi-killmails.read_killmails.v1",
+        "esi-mail.read_mail.v1",
+    ],
+}
+
+DEFAULT_SCOPE_PROFILE = "pi"
 
 
 def pkce_pair():
@@ -64,7 +92,10 @@ def exchange_code(code, verifier, client_id, redirect_uri):
     req = urllib.request.Request(
         "https://login.eveonline.com/v2/oauth/token",
         data=data,
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": USER_AGENT,
+        },
         method="POST",
     )
     try:
@@ -78,9 +109,15 @@ def exchange_code(code, verifier, client_id, redirect_uri):
 
 
 def verify_token(access_token):
+    # /v2/oauth/verify is what the SSO metadata document at
+    # https://login.eveonline.com/.well-known/oauth-authorization-server names as
+    # the userinfo endpoint; the unversioned /oauth/verify is the older one.
     req = urllib.request.Request(
-        "https://login.eveonline.com/oauth/verify",
-        headers={"Authorization": f"Bearer {access_token}"},
+        "https://login.eveonline.com/v2/oauth/verify",
+        headers={
+            "Authorization": f"Bearer {access_token}",
+            "User-Agent": USER_AGENT,
+        },
     )
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
@@ -102,11 +139,54 @@ def main():
                         help="Local callback port (default: 8080)")
     parser.add_argument("--timeout", type=int, default=300,
                         help="Seconds to wait for browser callback (default: 300)")
+    parser.add_argument("--scope-profile", default=DEFAULT_SCOPE_PROFILE,
+                        choices=sorted(SCOPE_PROFILES),
+                        help=f"Which permissions to request (default: {DEFAULT_SCOPE_PROFILE}). "
+                             "'full' includes wallet and mail.")
+    parser.add_argument("--scopes",
+                        help="Explicit space-separated scope list, overrides --scope-profile")
+    parser.add_argument("--list-scope-profiles", action="store_true",
+                        help="Show what each profile requests, then exit")
     args = parser.parse_args()
+
+    if args.list_scope_profiles:
+        for name, scopes in SCOPE_PROFILES.items():
+            marker = "  (default)" if name == DEFAULT_SCOPE_PROFILE else ""
+            print(f"\n{name}{marker} — {len(scopes)} scopes")
+            for s in scopes:
+                print(f"    {s}")
+        return
+
+    if args.scopes:
+        scopes = args.scopes.split()
+    else:
+        scopes = SCOPE_PROFILES[args.scope_profile]
+    scope_string = " ".join(scopes)
+
+    # Say out loud what is about to be handed over — these persist until revoked.
+    source = "--scopes" if args.scopes else f"profile '{args.scope_profile}'"
+    print(f"Requesting {len(scopes)} scopes ({source}):")
+    for s in scopes:
+        print(f"  {s}")
+    print("\nThese remain granted until you revoke them at")
+    print("https://community.eveonline.com/support/third-party/")
+    if not args.scopes and args.scope_profile != "full":
+        others = [n for n in SCOPE_PROFILES if n != args.scope_profile]
+        print(f"Need more? --scope-profile {{{','.join(sorted(others))}}} "
+              "or --list-scope-profiles\n")
+    else:
+        print()
 
     verifier, challenge = pkce_pair()
     state = secrets.token_urlsafe(16)
-    redirect_uri = f"http://127.0.0.1:{args.port}/callback"
+    # Must be the literal host `localhost`, not 127.0.0.1: the EVE developer
+    # portal only accepts the http scheme for `localhost` and rejects an IP
+    # address outright, so a callback URL with 127.0.0.1 cannot be registered
+    # in the first place. SSO then matches this string exactly against what is
+    # registered. The callback server below still binds to 127.0.0.1 — that is
+    # the address the SSH tunnel forwards to, and is unrelated to the name the
+    # browser resolves.
+    redirect_uri = f"http://localhost:{args.port}/callback"
 
     auth_url = (
         "https://login.eveonline.com/v2/oauth/authorize/?"
@@ -114,7 +194,7 @@ def main():
             "response_type": "code",
             "redirect_uri": redirect_uri,
             "client_id": args.client_id,
-            "scope": SCOPES,
+            "scope": scope_string,
             "state": state,
             "code_challenge": challenge,
             "code_challenge_method": "S256",

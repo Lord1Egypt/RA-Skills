@@ -1,0 +1,40 @@
+{
+  "pkg": "tingyun-asset-disposal",
+  "kind": "agent",
+  "name_zh": "设备资产处置与折旧顾问",
+  "profession_zh": "设备资产处置路径与折旧评估顾问",
+  "desc_zh": "输入设备台账与账面净值，比对继续用、转租、转售、报废、拆卖路径与渠道回款速度，输出定价三线、权属证照抵押核查、交易文件风险转移节点、危废台账与清单。不代为定价签约，不构成法律税务专业意见，需人工复核。技术触发词「处置路径选择、折旧与残值评估、报废合规与台账」。口语触发词「门店要闭店，有八台展示冷柜和两台空调，打包卖还是拆开卖、这台设备还有银行抵押没结清，我还能卖吗」。输出可直接使用的清单、对照表与行动项。仅作规划与清单辅助，不构成法律/税务/医疗专业意见，需人工复核。",
+  "desc_en": "Equipment asset disposal and depreciation advisor for factories and retail stores. Decides the disposal route (keep in use, sublease, sell, scrap, sell for parts) by comparing carrying value against recoverable value and holding cost; benchmarks disposal channels (second-hand dealers, brand dealers, auction houses, online marketplaces, breakers) on cash-collection speed and net proceeds; and outputs a pricing strategy, a pre-disposal title and permit checklist, transaction document and risk-transfer clauses, a hazardous-waste and disposal-ledger compliance checklist, a tax and invoicing framework to be verified by a professional, and a reusable disposal inventory template. Planning and checklist support only; not legal or tax advice, human review required. Covers: 处置路径选择, 折旧与残值评估, 报废合规与台账.",
+  "tags": [
+    "处置路径选择",
+    "折旧与残值评估",
+    "报废合规与台账"
+  ],
+  "price_cny_tiers": [
+    19,
+    39,
+    99
+  ],
+  "suggested_price_cny": 39,
+  "suggested_price_usd": [
+    19,
+    39,
+    99
+  ],
+  "platforms": {
+    "workbuddy": {
+      "published": false,
+      "note": "观察期只能挂 1 个付费资产，发布后不可改付费"
+    },
+    "coze": {
+      "format": "SKILL.md 同源",
+      "note": "扣子编程侧用 SKILL.md；需个人版商户入驻 + 精选案例"
+    },
+    "claude_skills": {
+      "format": "SKILL.md 同源",
+      "note": "Agensi / KissMySkills / Gumroad 均收此格式"
+    }
+  },
+  "copyright": "原创方法论整理，不含受版权保护出版物内容",
+  "license": "单次购买单人授权使用，不可转售再分发"
+}

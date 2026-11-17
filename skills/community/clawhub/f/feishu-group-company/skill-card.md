@@ -1,41 +1,51 @@
-## Description: <br>
-Configure a Feishu multi-bot company group so a coordinator bot handles normal messages while specialist bots reply only when explicitly @mentioned. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures a Feishu multi-bot company group so one coordinator bot handles ordinary messages while specialist bots reply only when explicitly mentioned.
 
-## Publisher: <br>
-[alex-shen1121](https://clawhub.ai/user/alex-shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-Developers and operators use this skill to patch and verify OpenClaw Feishu routing for shared company groups with a default coordinator and mention-gated specialist bots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configuration patch changes local OpenClaw Feishu routing behavior for a group. <br>
-Mitigation: Run the script with --dry-run first, verify the group and account IDs, and use --backup before writing changes. <br>
-Risk: Incorrect group or account IDs can route messages to the wrong coordinator or specialist bots. <br>
-Mitigation: Confirm the target group chat ID and all Feishu account IDs before applying the patch, then reload Gateway and test plain and @mentioned messages. <br>
+## Use Case:
 
+Developers and administrators use this skill to configure or repair OpenClaw Feishu company groups where a default coordinator bot should answer normal group messages and specialist bots should answer only direct mentions.
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub skill page](https://clawhub.ai/alex-shen1121/feishu-group-company) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run and backup guidance for a Python script that updates local OpenClaw Feishu routing configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The included script can persistently set the target Feishu group policy to open in OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the policy change before use, run the script with --dry-run first, create a backup, and confirm that groupPolicy: open is intended for the target group.
+
+## Reference(s):
+
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/alex-shen1121/skills/feishu-group-company)
+- [Publisher profile](https://clawhub.ai/user/alex-shen1121)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with Python script usage and JSON configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a reusable script that can dry-run or persist changes to an OpenClaw configuration file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

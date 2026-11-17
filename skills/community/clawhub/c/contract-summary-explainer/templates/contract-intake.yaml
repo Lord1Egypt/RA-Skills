@@ -1,0 +1,30 @@
+# Contract Summary Explainer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+document_name: ""
+document_type: "master agreement, order form, sow or vendor agreement"
+counterparty_name: ""
+business_owner_role: ""
+procurement_owner_role: ""
+contract_value_usd: ""
+effective_date: ""
+term_type: "none, fixed term or auto-renewal"
+notice_deadlines:
+  - notice: ""
+    due_date: ""
+    owner_role: ""
+payment_terms_summary: ""
+governing_law_state: ""
+files_received:
+  - "main agreement"
+  - "exhibit, order form or sow"
+clause_types_to_check:
+  - "auto-renewal"
+  - "unilateral price change"
+  - "broad indemnity"
+  - "unlimited liability"
+  - "exclusivity"
+  - "ip assignment"
+  - "non-compete"
+  - "termination for convenience"
+key_concerns:
+  - ""

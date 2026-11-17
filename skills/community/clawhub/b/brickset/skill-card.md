@@ -1,42 +1,59 @@
-## Description: <br>
-Brickset provides human-friendly Brickset API v3 access for LEGO set lookup, catalog browsing, usage inspection, instructions, images, and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-friendly Brickset API v3 access for LEGO set lookup and Brickset automation. Use when you need to search LEGO sets, browse themes, years, or subthemes, validate a Brickset API key, fetch building instructions or additional images, inspect API usage, or build scripts and agents on top of Brickset web services.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Developers, builders, and agents use this skill to search LEGO sets, browse Brickset catalog metadata, fetch instructions or image links, inspect API usage, and automate Brickset API workflows with JSON or text output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Brickset API key and can use account-linked Brickset operations. <br>
-Mitigation: Install only when the agent is expected to use the Brickset API key, and keep the key scoped through environment or workspace configuration. <br>
-Risk: Raw API mode can invoke login, userHash, getCollection, or collection-management methods that may expose or change account-linked collection data. <br>
-Mitigation: Prefer the wrapped lookup commands, and review any raw call involving account or collection-management methods before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to query Brickset API v3 for LEGO set search, catalog metadata, instructions, additional images, API usage, and direct method calls.
 
-## Reference(s): <br>
-- [Brickset API v3 quick reference](references/api.md) <br>
-- [Brickset API v3 endpoint](https://brickset.com/api/v3.asmx) <br>
-- [ClawHub Brickset release page](https://clawhub.ai/stanestane/brickset) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON or plain text summaries from Brickset API calls, plus Markdown command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRICKSET_API_KEY or an explicit API key argument; raw API calls may include account-linked parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill requires a Brickset API key, and passing it on the command line or keeping broad secrets in workspace .env files can expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer BRICKSET_API_KEY in the environment, avoid placing unrelated secrets in workspace .env files, and do not share command histories or logs that contain keys.
+
+Risk: Raw mode can call arbitrary Brickset API methods and parameters, including collection-related methods.
+
+Mitigation: Use raw mode only when the intended Brickset method and parameters are known and reviewed.
+
+Risk: getSets calls consume Brickset API quota.
+
+Mitigation: Check usage statistics when needed and keep page sizes and repeated searches appropriate for the task.
+
+## Reference(s):
+
+- [Brickset API v3 quick reference](references/api.md)
+- [Brickset API v3 endpoint](https://brickset.com/api/v3.asmx)
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/brickset)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON by default, or readable text summaries when requested with --format text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs reflect Brickset API responses and may include catalog entries, usage statistics, instruction links, image URLs, or raw method result summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

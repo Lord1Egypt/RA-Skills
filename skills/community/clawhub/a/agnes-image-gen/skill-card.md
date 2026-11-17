@@ -1,45 +1,60 @@
-## Description: <br>
-Uses Agnes AI image-generation models to create images from text prompts and edit existing images, with guidance for custom API keys, prompt quality, natural-looking outputs, and clearer Chinese text rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agnes Image Gen helps agents generate and edit images with Agnes AI, supporting text-to-image and image-to-image prompts, size selection, endpoint failover, and local result saving.
 
-## Publisher: <br>
-[jiuwu2495](https://clawhub.ai/user/jiuwu2495) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuwu2495](https://clawhub.ai/user/jiuwu2495)
 
-## Use Case: <br>
-Developers and creative users use this skill to generate or edit images through Agnes AI models, including text-to-image prompts, image-to-image edits, style changes, and Chinese text layout refinement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles reusable API keys and may expose credentials if users paste keys into chat. <br>
-Mitigation: Prefer setting AGNES_API_KEY through the environment and avoid sharing long-lived keys directly in prompts. <br>
-Risk: Prompts and input images are sent to Agnes AI for generation or editing. <br>
-Mitigation: Avoid confidential images, proprietary prompts, personal data, or material that should not be processed by a third-party image service. <br>
-Risk: The documented one-command wrapper script is referenced, but the artifact evidence contains only SKILL.md. <br>
-Mitigation: Verify the wrapper script is present and reviewed before relying on the documented automated workflow. <br>
+## Use Case:
 
+External users and developers use this skill to request creative, marketing, product visualization, social media, and image transformation assets through Agnes text-to-image or image-to-image workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuwu2495/agnes-image-gen) <br>
-- [Agnes AI](https://agnes-ai.com) <br>
-- [Agnes image generations API](https://apihub.agnes-ai.com/v1/images/generations) <br>
-- [Agnes image edits API](https://apihub.agnes-ai.com/v1/images/edits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated image files or image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an AGNES_API_KEY and may send prompts or images to Agnes AI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill ships with and automatically uses a hardcoded Agnes API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded key, rotate it as compromised, and require a user-provided key through a secure environment variable or explicit per-run configuration.
+
+Risk: Prompts and selected local images are sent to Agnes servers for generation or editing.
+
+Mitigation: Warn users before use and avoid sending confidential prompts, private images, or regulated data unless the deployment has approved Agnes for that data.
+
+Risk: Generated outputs may be saved locally and returned image URLs may be time-limited.
+
+Mitigation: Disclose saved file locations, apply local file handling policy, and download required results promptly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiuwu2495/skills/agnes-image-gen)
+- [Agnes AI](https://agnes-ai.com)
+- [Agnes image generations endpoint](https://apihub.agnes-ai.com/v1/images/generations)
+- [Agnes image generations fallback endpoint](https://apihub.agnes-ai.cn/v1/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API responses, generated image URLs, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated PNG files locally and may return time-limited image URLs or base64 image data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Manage social media across 9 platforms, track App Store analytics, monitor ASO keywords, analyze competitors, and control subscription pricing through conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage social media across 9 platforms by drafting captions, hashtags, post ideas, and AI images, then scheduling, publishing, automating recurring posts, and triggering webhooks through MakePost.
 
-## Publisher: <br>
-[makepost](https://clawhub.ai/user/makepost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makepost](https://clawhub.ai/user/makepost)
 
-## Use Case: <br>
-External app developers and growth teams use this skill to publish and schedule social content, review App Store analytics and ASO data, monitor competitors, and manage subscription pricing from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, schedule, edit, or delete social media content across connected accounts. <br>
-Mitigation: Require explicit user confirmation before publishing live content, deleting scheduled content or drafts, or running bulk social operations. <br>
-Risk: The skill can push App Store subscription price changes that may take effect immediately. <br>
-Mitigation: Review staged prices with current territory pricing and require explicit confirmation before calling push_price_changes. <br>
-Risk: The MakePost API key grants access to connected MakePost, social, and App Store-related account data and actions. <br>
-Mitigation: Use a dedicated, revocable API key and avoid placing real keys in chats, source files, or shared logs. <br>
+## Use Case:
 
+External users and teams use this skill to manage MakePost-connected social accounts from an agent, including drafting content, uploading media, publishing or scheduling posts, setting recurring posting plans, and managing webhooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/makepost/makepost-com-app-growth) <br>
-- [MakePost OpenClaw integration guide](https://makepost.com/openclaw) <br>
-- [MakePost MCP documentation](https://makepost.com/mcp) <br>
-- [MakePost API documentation](https://api.makepost.com) <br>
-- [MakePost MCP endpoint](https://makepost.com/api/mcp/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown and agent-readable tool instructions with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAKEPOST_API_KEY and npx; actions use the MakePost MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and frontmatter) <br>
+Risk: The skill can publish, schedule, reschedule, cancel, or delete live social media content through connected MakePost accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited API key where available, test with non-production accounts first, and require explicit confirmation before publish, delete, cancel, or bulk actions.
+
+Risk: Recurring posting plans and webhooks can create persistent automation that continues after the initial agent conversation.
+
+Mitigation: Review plan schedules, target accounts, webhook URLs, subscribed events, and pause or remove automation that is no longer intended.
+
+Risk: The MCP configuration runs an unpinned npx package while passing the MakePost API key to the remote MCP endpoint.
+
+Mitigation: Prefer a pinned or locally verified mcp-remote runtime and keep MAKEPOST_API_KEY scoped, rotated, and stored only in the agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/makepost/skills/makepost-com-app-growth)
+- [MakePost OpenClaw integration guide](https://makepost.com/openclaw)
+- [MakePost MCP documentation](https://makepost.com/mcp)
+- [MakePost API documentation](https://api.makepost.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown, plain text, JSON-like tool results, and shell/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MakePost API key and npx-based MCP remote connection.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

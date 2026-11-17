@@ -1,41 +1,55 @@
-## Description: <br>
-Urban Daoist Navigator helps programmers, founders, traders, and students frame daily planning, routines, workspace habits, and mental focus through practical Daoist and Zen-inspired guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers when the user (programmers, founders, traders, students) asks for daily planning, a morning routine, "what's the vibe," or mental framing for the day.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users use this skill to receive a calm daily planning guide that translates personal context, work priorities, environment, social interactions, nutrition framing, and a closing koan into actionable reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use calendar, weather, or similar personal context when generating daily advice. <br>
-Mitigation: Review what context the agent can access and avoid sharing sensitive personal data unless it is needed for the planning task. <br>
-Risk: The skill frames trading and nutrition choices as daily guidance, but it is not professional financial or medical advice. <br>
-Mitigation: Use the guidance for reflection and planning only; consult qualified professionals for financial, medical, or dietary decisions. <br>
+## Use Case:
 
+External users such as programmers, founders, traders, and students use this skill for daily planning, morning routines, and mental framing. It produces practical daily guidance using Daoist and Zen concepts for work, environment, social interactions, nutrition, and reflective focus.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/urban-daoist-navigator) <br>
-- [Publisher homepage](https://iheaven.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown-style daily planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona; no code execution, credentials, persistence, or data changes requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: SKILL.md frontmatter and package.json; server release evidence agrees) <br>
+Risk: The skill may activate for broad daily-planning prompts and provide philosophy-framed routine advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when that framing is desired, and keep calendar, location, weather, or similar contextual access under user control.
+
+Risk: Advice may include productivity, wellness, or market-related framing that should not be treated as professional or financial advice.
+
+Mitigation: Treat responses as reflective planning guidance and review any consequential health, finance, work, or trading decisions independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/urban-daoist-navigator)
+- [Publisher profile](https://clawhub.ai/user/jkzfhq)
+- [Package homepage](https://iheaven.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text daily-planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no executable code, persistence, credential handling, or hidden data movement reported by security evidence.]
+
+## Skill Version(s):
+
+4.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

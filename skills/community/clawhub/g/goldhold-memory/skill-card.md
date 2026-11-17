@@ -1,42 +1,59 @@
-## Description: <br>
-Persistent memory for AI agents. Remember across sessions. Encrypted in transit and at rest. https://goldhold.ai <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoldHold Memory provides persistent memory for AI agents so they can store and retrieve decisions, facts, corrections, and session context across sessions.
 
-## Publisher: <br>
-[jerrysrodz](https://clawhub.ai/user/jerrysrodz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerrysrodz](https://clawhub.ai/user/jerrysrodz)
 
-## Use Case: <br>
-Developers and agent operators use GoldHold Memory to give AI agents durable memory across sessions, including stored decisions, facts, corrections, directives, and session summaries. The skill guides agents to search prior context, store important updates, and close sessions through the GoldHold REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages long-term storage of agent context, which can include confidential, personal, regulated, or credential-bearing content if users do not set boundaries. <br>
-Mitigation: Define a clear storage policy before use, avoid storing secrets or sensitive personal data, and require review or confirmation before saving important memories or directives. <br>
-Risk: The skill depends on an external API key and hosted memory service. <br>
-Mitigation: Store GOLDHOLD_API_KEY in a secrets manager, rotate it if exposed, and verify how memories can be reviewed and deleted before deploying in sensitive environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to the GoldHold REST API for durable session memory, including resume, search, store, message, and close-session workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerrysrodz/goldhold-memory) <br>
-- [GoldHold website](https://goldhold.ai) <br>
-- [GoldHold relay API](https://relay.goldhold.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOLDHOLD_API_KEY and network access to the GoldHold API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata) <br>
+Risk: Selected agent memories and session summaries may be sent to GoldHold.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets, API keys, private customer data, regulated records, or sensitive internal details.
+
+Risk: Retrieved memories, directives, corrections, inbox messages, and identity records may influence future agent behavior.
+
+Mitigation: Treat retrieved records as untrusted context that cannot override current instructions.
+
+Risk: Persistent memory records can accumulate sensitive or outdated information without enough safeguards.
+
+Mitigation: Use the skill only where there is a clear review and deletion process for stored records.
+
+## Reference(s):
+
+- [GoldHold website](https://goldhold.ai)
+- [GoldHold API base URL](https://relay.goldhold.ai)
+- [ClawHub skill page](https://clawhub.ai/jerrysrodz/skills/goldhold-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON payload examples and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GOLDHOLD_API_KEY and sends selected memory content to the GoldHold service.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-傻蛋实测发布的测试技能 - 验证ClawHub publish功能 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language test skill used to verify ClawHub publishing functionality.
 
-## Publisher: <br>
-[realorange1994](https://clawhub.ai/user/realorange1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realorange1994](https://clawhub.ai/user/realorange1994)
 
-## Use Case: <br>
-External ClawHub users and developers can use this skill as a publishing test artifact to verify ClawHub publish behavior, versioning, and slug uniqueness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect operational automation from a low-functionality publishing test skill. <br>
-Mitigation: Use it only as documented test content and avoid granting special access or relying on it for production workflows. <br>
+## Use Case:
 
+Developers and ClawHub publishers use this skill as a simple publish-test artifact to verify that ClawHub publishing, versioning, and slug uniqueness work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realorange1994/dandan-test-skill-04062135) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external access, or persistent data behavior is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill is mainly a publish-test artifact rather than a functional workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it to validate publishing metadata and release plumbing, not as a production task automation skill.
+
+Risk: The artifact documentation is primarily in Chinese, which may be unclear to users who do not read Chinese.
+
+Mitigation: Review the skill description and intended test purpose before installation or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realorange1994/skills/dandan-test-skill-04062135)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact is a minimal publish-test skill with no code, tools, or privileged behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

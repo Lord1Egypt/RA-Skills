@@ -2,6 +2,56 @@
 
 Release history for music-craft-minimax. Operating guidance lives in the
 topic references; this file is history only.
+# v1.7.1 — end of life
+
+- MiniMax music generation does not work for anyone: besides the closure to
+  new users on 2026-08-20, a paying Token Plan Plus account received HTTP
+  410 in September 2026. The notice now says the skill is end of life and
+  tells the agent not to attempt MiniMax generation at all.
+- No script changes.
+
+# v1.7.0 — deprecated
+
+- Marked the skill as deprecated. MiniMax closed its paid Music and Lyrics
+  Generation APIs to new users on 2026-08-20, is discontinuing the free
+  music models (`music-3.0-free`, `music-2.6-free`, `music-cover-free`),
+  and `mmx` 1.0.28 no longer has a `music` command.
+- Added a deprecation notice to `SKILL.md` and `README.md`, a pre-generation
+  check (`mmx music --help`), and a pointer to `music-craft` with local
+  ACE-Step. Local analysis and lint scripts are unchanged and still usable.
+- Removed maintainer-only references (private paths and a dev roadmap link)
+  from `references/quota-checking.md`.
+- No script changes.
+
+# v1.6.0
+
+- Reordered `SKILL.md` for discoverability: added hero sections
+  ("What is Music Craft — MiniMax?", "MiniMax-specific features",
+  "Why use this instead of music-craft?", "Quick Start") at the top
+  of the body. MiniMax-only features (cover, mashup, lyrics API,
+  emotion-driven prompting, `mmx` flag control, quota-aware batches)
+  are now the first thing a visitor reads.
+- Moved the licensing and commercial-use gate to the end of `SKILL.md`
+  (preserving all legal content verbatim, including the "Cloud duration
+  is approximate" routing warning); data / consent sits just above it.
+- Updated the frontmatter `description:` to anchor-keyword pack
+  (cover and style transfer, two-song mashup, lyrics generation API,
+  emotion-driven prompt engineering, mmx CLI, Extends music-craft)
+  for clearer ClawHub routing.
+- Removed the old "Quick Start with the Orchestrator" section; the
+  new hero "Quick Start" supersedes it.
+- No behaviour, no env vars, no bins — pure content reordering and
+  versioning.
+
+
+
+# v1.5.1
+
+- Added a licensing and commercial-use gate for MiniMax API/CLI workflows.
+- Clarified the difference between MiniMax Open Platform/API terms and
+  consumer app/web terms.
+- Required each operator to use their own account/API key and verify current
+  product-specific commercial-use terms before release.
 
 ## v1.5.0
 

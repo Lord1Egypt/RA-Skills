@@ -313,7 +313,7 @@ When user says **"generate API key"** or **"create token"**:
 ━━━━━━━━━━━━━━━━━━
 
 API Key (32 char):
-sk_live_Km9xPvL2nQ8wRt5bHj3cYf7eXp4
+REDACTED-SECRET
 
 Bearer Token (64 char):
 eyJhbGciOiJIUzI1NiJ9.Km9xPvL2nQ8wRt5bHj3cYf7eXp4nLaWf6hJtS9

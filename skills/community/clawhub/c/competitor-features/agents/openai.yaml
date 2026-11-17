@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品特性矩阵"
+  short_description: "按商品字段与评论证据整理竞品特性矩阵"
+  default_prompt: "使用 $amazon-competitor-feature-matrix 根据主 ASIN 与竞品证据整理商品特性对照矩阵。"

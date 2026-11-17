@@ -1,46 +1,69 @@
-## Description: <br>
-Posts text, media, quote posts, and Markdown-based articles to X through a real Chrome session using the selected browser-control workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts text, media, quote tweets, and long-form Markdown articles to X (Twitter) through Chrome-based workflows while keeping final publishing under user confirmation.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers, content operators, and agent users use this skill to prepare regular X posts, quote posts, video posts, and long-form X Articles from text, media, or Markdown. It guides browser-controlled composition while requiring review before public submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a real Chrome/X session and prepare externally visible posts. <br>
-Mitigation: Verify the active browser profile, target X account, draft content, and media before approving any Post or Publish action. <br>
-Risk: Clipboard writes and paste keystrokes can affect the wrong destination if browser focus is incorrect. <br>
-Mitigation: Confirm Chrome focus and the intended editor field before pasting, and avoid running the workflow while sensitive clipboard contents are active. <br>
-Risk: Automatic Chrome CDP cleanup guidance can terminate browser processes unexpectedly. <br>
-Mitigation: Confirm process cleanup with the user before terminating Chrome or Chromium sessions. <br>
+## Use Case:
 
+Social media operators, creators, and developer agents use this skill to prepare X posts, quote tweets, media posts, and long-form X Articles from user-provided content. The skill is suited for workflows where the agent drafts or stages content in Chrome and the user reviews before any public publishing action.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimliu/baoyu-post-to-x) <br>
-- [Source Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-x) <br>
-- [Regular Posts Reference](references/regular-posts.md) <br>
-- [X Articles Reference](references/articles.md) <br>
-- [Codex Chrome Extension File Upload Documentation](https://developers.openai.com/codex/app/chrome-extension#upload-files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and browser workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare content in a real Chrome/X session; final public posting requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.58.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can prepare externally visible X posts and articles in a real account session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every prepared post or article and require explicit final user confirmation before clicking Post, Publish, or using a submit path.
+
+Risk: The skill may control Chrome, clipboard contents, file picker actions, and paste keystrokes.
+
+Mitigation: Install and run it only in trusted environments where the user accepts those permissions and can observe the browser session.
+
+Risk: Markdown articles with remote images can introduce untrusted external content into the workflow.
+
+Mitigation: Avoid processing untrusted Markdown with remote images; review article content and image sources before staging in X.
+
+Risk: The npx fallback can execute runtime tooling that is not already installed locally.
+
+Mitigation: Prefer a preinstalled trusted Bun runtime and review dependency updates before use.
+
+Risk: Troubleshooting can include broad Chrome process-kill recovery for CDP sessions.
+
+Mitigation: Use caution before process recovery steps and preserve important browser work before allowing Chrome session cleanup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jimliu/skills/baoyu-post-to-x)
+- [Baoyu Skills Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-x)
+- [Regular Posts Guide](references/regular-posts.md)
+- [X Articles Guide](references/articles.md)
+- [Codex Chrome Extension File Upload Guidance](https://developers.openai.com/codex/app/chrome-extension#upload-files)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and prepared browser draft content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stage content in a real Chrome/X session; final public posting requires explicit user confirmation.]
+
+## Skill Version(s):
+
+1.58.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

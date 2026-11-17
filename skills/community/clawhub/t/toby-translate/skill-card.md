@@ -1,40 +1,48 @@
-## Description: <br>
-Translate text accurately - preserve formatting, handle plurals, and adapt tone per locale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text accurately — preserve formatting, handle plurals, and adapt tone per locale.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, developers, and content teams use this skill to translate text while preserving document structure, placeholders, code-adjacent content, terminology, tone, and locale-specific language conventions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Locale adaptation may change units, dates, currencies, or legal and technical wording when exact original values must be preserved.
+
+Mitigation: For documents requiring exact wording or values, instruct the agent to translate literally and not localize units, dates, currencies, values, or formatting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, developers, and localization reviewers use this skill to translate text while preserving markdown, code, placeholders, structured data, terminology, tone, and locale-specific conventions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or private source text could be exposed to the model or service performing the translation. <br>
-Mitigation: Avoid submitting secrets, private records, or sensitive personal data unless the processing environment is trusted. <br>
-Risk: Translations can alter meaning, formatting, terminology, tone, or locale-specific conventions. <br>
-Mitigation: Review the full translated output for accuracy, preserved placeholders and structure, consistent terminology, and natural target-language phrasing before use. <br>
+**Output Format:** [Natural-language translation guidance and translated text, preserving the input format where applicable]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-translate) <br>
+**Other Properties Related to Output:** [Preserves code blocks, markup, placeholders, URLs, identifiers, and structured document keys when translating surrounding prose.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural language translation guidance, usually returned as text or markdown that preserves the input structure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, installs, credentials, persistence, or unrelated system access are indicated by the security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

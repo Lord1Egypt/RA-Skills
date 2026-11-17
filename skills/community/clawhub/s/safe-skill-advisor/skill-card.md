@@ -1,45 +1,56 @@
-## Description: <br>
-Security Skill Advisor - Protect you from malicious skills on ClawHub. Provides security warnings, tool recommendations, and 30-second self-check checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Skill Advisor helps ClawHub users evaluate third-party skill risk with warnings, scanner recommendations, and a 30-second self-check checklist.
 
-## Publisher: <br>
-[crystaria](https://clawhub.ai/user/crystaria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystaria](https://clawhub.ai/user/crystaria)
 
-## Use Case: <br>
-External users and developers use this skill before installing ClawHub skills to review common red flags, choose scanner tools, and decide how to report or clean up suspicious skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language may cause the advisor to apply security guidance to conversations where the user's intent is unclear. <br>
-Mitigation: Use the skill as checklist guidance and ask clarifying questions before applying recommendations to a specific skill or install decision. <br>
-Risk: The skill recommends external scanner tools that users may install separately. <br>
-Mitigation: Verify the publisher, source repository, and package integrity for third-party tools before installing or running them. <br>
-Risk: Cleanup workflows can involve command history, process lists, or network output that may contain secrets. <br>
-Mitigation: Review and redact sensitive values before sharing diagnostic output with another person or service. <br>
+## Use Case:
 
+ClawHub users and agent operators use this skill before installing or troubleshooting skills to identify common risk patterns, choose scanning tools, and follow quick safety checks or reporting steps.
 
-## Reference(s): <br>
-- [Safe Skill Advisor on ClawHub](https://clawhub.ai/skills/safe-skill-advisor) <br>
-- [Safe Skill Advisor release page](https://clawhub.ai/crystaria/safe-skill-advisor) <br>
-- [Cisco AI Skill Scanner](https://github.com/cisco-ai-skill-scanner) <br>
-- [SecureClaw](https://github.com/adversa-ai/secureclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands, checklists, and short remediation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisor; it does not execute scans or modify files by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill uses mandatory assistant directives that may overreach into broad skill-installation conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review behavior before enabling and scope use to skill-security advice where proactive warnings are appropriate.
+
+Risk: The skill recommends installing a third-party scanner without pinning or verification.
+
+Mitigation: Install only pinned, verified scanner versions in an isolated environment before using them on local skills.
+
+## Reference(s):
+
+- [Safe Skill Advisor on ClawHub](https://clawhub.ai/skills/safe-skill-advisor)
+- [Safe Skill Advisor release page](https://clawhub.ai/crystaria/skills/safe-skill-advisor)
+- [Cisco AI Skill Scanner](https://github.com/cisco-ai-skill-scanner)
+- [SecureClaw](https://github.com/adversa-ai/secureclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides safety checklists, tool recommendations, reporting guidance, and remediation steps; no embedded executable payload is present in the release evidence.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

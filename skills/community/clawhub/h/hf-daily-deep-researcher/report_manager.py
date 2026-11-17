@@ -28,7 +28,8 @@ class ReportManager:
     
     def __init__(self, skill_dir: str = None):
         if skill_dir is None:
-            skill_dir = os.path.expanduser("~/.openclaw/workspace/skills/hf-daily-deep-researcher")
+            # 从脚本位置推导，适配任意安装路径
+            skill_dir = os.path.dirname(os.path.abspath(__file__))
         self.skill_dir = skill_dir
         
         # 加载配置
@@ -46,8 +47,8 @@ class ReportManager:
     
     def get_local_save_dir(self) -> str:
         """获取本地保存目录"""
-        raw_dir = self.output_cfg.get("local_save_dir", 
-            "~/.openclaw/workspace/skills/hf-daily-deep-researcher/reports")
+        raw_dir = self.output_cfg.get("local_save_dir",
+            "./reports")
         return self._expand_path(raw_dir)
     
     def generate_report_path(self, date: datetime = None, mode: str = "scan", days: int = None) -> Tuple[str, str]:

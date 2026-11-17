@@ -1,44 +1,56 @@
-## Description: <br>
-Structured deep research framework with explicit feedback loops and mental model evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured deep research framework with explicit feedback loops and mental model evolution.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Developers, analysts, and agent users can use this skill to structure deep research around explicit research questions, breadth and depth scanning, mental-model checkpoints, RAPID evaluation, and action-oriented verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow suggests optional autonomous actions such as installing tools, writing new skills, or updating MEMORY.md. <br>
-Mitigation: Require user approval before tool installation, skill creation, persistent memory updates, or other environment-changing actions. <br>
-Risk: The artifact is written primarily in Chinese, which may not match every user's preferred working language. <br>
-Mitigation: Ask the agent to respond and produce reports in the user's preferred language when needed. <br>
+## Use Case:
 
+External users, researchers, analysts, and developers use this skill to structure deep research around evolving mental models, scored findings, and verified follow-up actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdt328606/deep-research-framework) <br>
-- [sdt328606 publisher profile](https://clawhub.ai/user/sdt328606) <br>
-- [VeriTrace: Evolving Mental Models for Deep Research Agents](https://arxiv.org/abs/2605.26081) <br>
-- [From Model Scaling to System Scaling](https://arxiv.org/abs/2605.26112) <br>
-- [Claw-Anything: Benchmarking Always-On Personal Assistants](https://arxiv.org/abs/2605.26086) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown research report template with structured checkpoints and scoring tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces research questions, scan summaries, mental-model updates, RAPID scores, action items, and deviation records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The workflow can propose follow-up actions such as installing tools, creating skills, or updating memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation and review proposed changes before carrying out those actions.
+
+Risk: Research conclusions may be misleading if weak or stale sources are accepted during scanning and scoring.
+
+Mitigation: Review source quality, verify key findings against primary sources, and confirm that action items actually answer the research question.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdt328606/skills/deep-research-framework)
+- [VeriTrace: Evolving Mental Models for Deep Research Agents](https://arxiv.org/abs/2605.26081)
+- [From Model Scaling to System Scaling](https://arxiv.org/abs/2605.26112)
+- [Claw-Anything: Benchmarking Always-On Personal Assistants](https://arxiv.org/abs/2605.26086)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown research report with scoring tables and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include RAPID scores, mental model checkpoints, and follow-up action proposals.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

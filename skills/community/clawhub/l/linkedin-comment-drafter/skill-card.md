@@ -1,43 +1,55 @@
-## Description: <br>
-Drafts high-quality LinkedIn comment options from a post URL, selects a reaction type, and waits for user approval before optional posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft a LinkedIn comment on someone else's post from its URL, producing 1-3 user-voice variants with a suggested reaction and approval step before posting.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External users and operators use this skill to draft concise, voice-aware LinkedIn comments from post URLs, compare 1-3 variants, and approve a reaction/comment before publishing or copying manually. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved drafts and target LinkedIn URLs may be passed to Publora or a configured custom poster. <br>
-Mitigation: Use manual mode unless automated posting is intended, and configure only Publora credentials or custom poster commands that the user trusts. <br>
-Risk: Generated comments can affect a user's public LinkedIn reputation if they are inaccurate, off-brand, or posted to the wrong target. <br>
-Mitigation: Review the selected draft, target URL, reaction type, and posting mode before approval. <br>
+## Use Case:
 
+External users use this skill to draft top-level LinkedIn comments from post URLs, compare a few concise variants, and approve a selected comment before publishing. It is not intended for replying to existing comments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sergebulaev/linkedin-comment-drafter) <br>
-- [Publisher profile](https://clawhub.ai/user/sergebulaev) <br>
-- [Comment templates](references/comment-templates.md) <br>
-- [Voice rules](references/voice-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown approval prompt with draft comment variants, reaction suggestion, template labels, rationale, and optional posting result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft comments target 200-350 characters, use 1-2 short paragraphs, and require approval before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes guidance that can make automated LinkedIn engagement look human.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review and approval before posting, and remove or ignore timing guidance unless it complies with LinkedIn rules and the user's transparency standards.
+
+Risk: The skill includes sales-prospecting cadence guidance for commenting on target-account posts.
+
+Mitigation: Use the skill only for user-approved comments that comply with platform rules and organizational engagement standards; avoid prospecting cadence guidance unless explicitly permitted.
+
+## Reference(s):
+
+- [Comment Templates](references/comment-templates.md)
+- [Examples](references/examples.md)
+- [Voice Rules](references/voice-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown with draft comment variants, reaction suggestions, template labels, engagement rationale, and an approval prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft comments are constrained to 200-350 characters and 1-2 short paragraphs, with no hashtags and no em dashes.]
+
+## Skill Version(s):
+
+1.0.9 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

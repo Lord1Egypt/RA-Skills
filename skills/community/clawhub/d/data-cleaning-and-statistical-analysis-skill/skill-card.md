@@ -1,40 +1,49 @@
-## Description: <br>
-Provides data cleaning, quality checks, statistical test selection, analysis, and academic interpretation for quantitative behavioral and experimental datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides data cleaning, quality checks, statistical test selection, analysis, and academic interpretation for quantitative behavioral and experimental datasets.
 
-## Publisher: <br>
-[scc-nyy](https://clawhub.ai/user/scc-nyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scc-nyy](https://clawhub.ai/user/scc-nyy)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to inspect quantitative datasets, clean quality issues, choose statistical tests, and draft academic-style interpretations for behavioral, clinical, educational, questionnaire, and experimental studies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided datasets may contain identifiable participant, clinical, or confidential research data. <br>
-Mitigation: Share only data the user is authorized to process, de-identify sensitive fields where possible, and use an appropriate privacy workflow for regulated or confidential data. <br>
-Risk: Statistical conclusions may be misleading if the study design, variable coding, exclusions, or assumptions are described incorrectly. <br>
-Mitigation: Check the research design, coding rules, exclusions, assumptions, and reported effects before relying on generated analyses in a thesis, report, or publication. <br>
+## Use Case:
 
+Researchers, students, analysts, and developers use this skill to inspect quantitative datasets, clean common data quality issues, choose suitable statistical tests, and draft academic-style interpretations for behavioral, clinical, education, questionnaire, and experimental studies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scc-nyy/data-cleaning-and-statistical-analysis-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with written analysis and tables when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include data-quality summaries, cleaning decisions, test recommendations, descriptive statistics, warnings, and academic result interpretations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Datasets may contain identifiable clinical, participant, or study data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing identifiable data unless the current agent environment is approved for that data; prefer de-identified datasets when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scc-nyy/skills/data-cleaning-and-statistical-analysis-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with summaries, tables, statistical explanations, and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include data quality summaries, cleaning decisions, exclusion criteria, descriptive-statistics tables, statistical test recommendations, APA-style result writeups, and assumption warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

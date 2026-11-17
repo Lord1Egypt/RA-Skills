@@ -1,49 +1,64 @@
-## Description: <br>
-Onkos helps agents manage long-form fiction projects by retrieving story context, tracking facts and hooks, checking continuity, and updating project memory across chapters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onkos helps agents manage long-form fiction projects by retrieving story context, tracking facts and hooks, guiding chapter writing and revision workflows, and maintaining project memory.
 
-## Publisher: <br>
-[smallroya](https://clawhub.ai/user/smallroya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallroya](https://clawhub.ai/user/smallroya)
 
-## Use Case: <br>
-External authors and agents use Onkos to plan, write, revise, and audit long-form fiction while keeping character state, facts, foreshadowing, summaries, and narrative continuity available across chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read caller-supplied local files and import their contents into project memory. <br>
-Mitigation: Review import paths and setting files before use, and avoid pointing the skill at sensitive files. <br>
-Risk: The skill can delete, clear, update, or rewrite local novel-project data. <br>
-Mitigation: Keep backups and require explicit confirmation before destructive or replacement actions. <br>
-Risk: The skill can download an optional semantic-search model asset. <br>
-Mitigation: Require explicit confirmation before model downloads and verify the intended source. <br>
+## Use Case:
 
+External developers and writing agents use Onkos to support long-form fiction projects that need cross-chapter consistency, fact tracking, foreshadowing management, continuity checks, revision workflows, and style guidance.
 
-## Reference(s): <br>
-- [Onkos ClawHub release page](https://clawhub.ai/smallroya/onkos) <br>
-- [Command reference](references/command_reference.md) <br>
-- [Creation guide](references/creation_guide.md) <br>
-- [Agent roles](references/agent_roles.md) <br>
-- [Command index](references/command_index.md) <br>
-- [Settings format](references/settings_format.md) <br>
-- [Workflows](references/workflows.md) <br>
-- [text2vec-base-chinese model](https://huggingface.co/shibing624/text2vec-base-chinese) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local project memory, chapter summaries, facts, hooks, character profiles, settings imports, and optional semantic-search model assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill can persist chapter text and derived facts longer than a user may expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an isolated novel project and avoid one-off fiction prompts when persistent storage is not desired.
+
+Risk: Import, update, delete, and chapter revision workflows can overwrite or delete project data.
+
+Mitigation: Review those operations before execution and run the skill only against a dedicated project path.
+
+Risk: Mandatory activation and pipeline language can over-constrain agent behavior outside the intended fiction workflow.
+
+Mitigation: Activate it only for long-form fiction tasks and keep unrelated, short-form, or non-fiction requests outside the skill workflow.
+
+## Reference(s):
+
+- [Onkos ClawHub release page](https://clawhub.ai/smallroya/skills/onkos)
+- [Agent roles](references/agent_roles.md)
+- [Command index](references/command_index.md)
+- [Command reference](references/command_reference.md)
+- [Creation guide](references/creation_guide.md)
+- [Settings format](references/settings_format.md)
+- [Workflows](references/workflows.md)
+- [text2vec-base-chinese model](https://huggingface.co/shibing624/text2vec-base-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with command-oriented workflow guidance and generated fiction text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local project files, Markdown outlines, JSON configuration, and SQLite project memory through bundled scripts.]
+
+## Skill Version(s):
+
+1.6.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

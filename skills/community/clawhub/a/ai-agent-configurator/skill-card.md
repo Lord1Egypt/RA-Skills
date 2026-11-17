@@ -1,40 +1,49 @@
-## Description: <br>
-Implement AI Agent Configurator using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement AI Agent Configurator using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers and engineers use this skill to add an OrbCafe UI CustomizeAgent component to React or Next.js projects for AI agent configuration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags high-impact moderation and GitHub authority in the broader skill bundle context. <br>
-Mitigation: Install only in trusted maintainer or developer environments and keep GitHub and ClawHub tokens narrowly scoped. <br>
-Risk: The security review notes a review helper that can run nested Codex with full filesystem and command authority. <br>
-Mitigation: Prefer the autoreview helper's --no-yolo option unless full nested execution authority is intentionally required. <br>
+## Use Case:
 
+Developers use this skill to add an AI agent configuration interface to React or Next.js applications using OrbCafe UI's CustomizeAgent component.
 
-## Reference(s): <br>
-- [orbcafe-ui NPM Package](https://www.npmjs.com/package/orbcafe-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides installation commands, a React component example, and documentation pointers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The installation command uses an unpinned npm package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin orbcafe-ui to a reviewed version and run normal dependency review before using it in CI or sensitive environments.
+
+## Reference(s):
+
+- [orbcafe-ui NPM Package](https://www.npmjs.com/package/orbcafe-ui)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash and TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package installation guidance and a React component usage example.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

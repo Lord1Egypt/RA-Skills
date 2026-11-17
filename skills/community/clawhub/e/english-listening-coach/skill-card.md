@@ -1,44 +1,59 @@
-## Description: <br>
-This skill provides interactive English listening and dictation practice using real ESL content, personalized feedback, vocabulary teaching, and comprehension exercises. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive English listening and dictation practice using real ESL content, with personalized feedback, vocabulary teaching, and comprehension exercises.
 
-## Publisher: <br>
-[cngvc](https://clawhub.ai/user/cngvc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cngvc](https://clawhub.ai/user/cngvc)
 
-## Use Case: <br>
-External learners and educators use this skill to run structured English listening, dictation, vocabulary, pronunciation, and comprehension practice sessions from ESL source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata claims wallet and sensitive-credential capabilities that do not fit the English listening lesson workflow. <br>
-Mitigation: Install only if the platform does not request wallet access, passwords, tokens, browser sessions, or other sensitive credentials; decline any such prompt unless the publisher provides a clear, specific reason tied to English listening practice. <br>
+## Use Case:
 
+External learners use this skill to run guided English listening practice, including dictation, vocabulary, comprehension, pronunciation, and follow-up exercises based on ESL passages.
 
-## Reference(s): <br>
-- [English Listening Coach source library](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cngvc/english-listening-coach) <br>
-- [Listen A Minute](https://listenaminute.com) <br>
-- [Breaking News English dictation](https://breakingnewsenglish.com/dictation.html) <br>
-- [Daily Dictation](https://dailydictation.com) <br>
-- [English Club dictation](https://www.englishclub.com/listening/dictation.php) <br>
-- [ESL Fast](https://www.eslfast.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style lesson flow with prompts, source links, dictation gaps, feedback, vocabulary notes, comprehension questions, pronunciation tips, and session summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fetched third-party ESL passage excerpts or, when sources are unavailable, clearly labeled original practice passages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may fetch public ESL passages from external learning sites during a lesson.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the disclosed sources, review fetched passage content before relying on it, and switch sources or use the labeled fallback passage when a page fails or contains unsuitable material.
+
+Risk: Broad English-practice prompts may trigger a full interactive listening session.
+
+Mitigation: Install the skill only where structured English lessons are desired, and ask for a narrower response when a full session is not intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cngvc/skills/english-listening-coach)
+- [English Listening Coach source library](references/sources.md)
+- [Listen A Minute](https://listenaminute.com)
+- [Breaking News English dictation](https://breakingnewsenglish.com/dictation.html)
+- [Daily Dictation](https://dailydictation.com)
+- [English Club dictation](https://www.englishclub.com/listening/dictation.php)
+- [ESL Fast](https://www.eslfast.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation with lesson steps, dictation prompts, feedback, vocabulary, comprehension questions, and session summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external source URLs and adapted gap-fill exercises; no files are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,65 @@
-## Description: <br>
-[FINANCIAL EXECUTION] Create and launch meme coins and crypto tokens on launchpads (Pump.fun, FourMeme, Bonk, BAGS, Flap, Klik, Clanker, etc.) via bonding curve fair launch, or query token creation stats by launchpad via GMGN API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create and launch meme coins and crypto tokens on supported launchpads, or query launchpad creation statistics, through GMGN CLI/API workflows on Solana, BSC, and Base with explicit user confirmation.
 
-## Publisher: <br>
-[gmgnai](https://clawhub.ai/user/gmgnai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmgnai](https://clawhub.ai/user/gmgnai)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through GMGN CLI token-launch workflows, token creation statistics, credential setup, confirmation prompts, and post-launch order polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token launches are real, irreversible blockchain transactions that spend funds. <br>
-Mitigation: Require explicit user confirmation before every create command and confirm the chain, platform, wallet, token details, and buy amount in human-readable units. <br>
-Risk: The skill handles high-impact API and private key material for signed token creation. <br>
-Mitigation: Keep credentials out of chat where possible, prefer manual credential configuration, restrict local key files, and delete temporary key material after setup. <br>
-Risk: Persistent launch preferences or advanced fee settings can affect later transactions. <br>
-Mitigation: Save advanced launch preferences only when the user intends reuse, and reconfirm fee splits, auto-sell settings, and platform-specific options before execution. <br>
-Risk: Automated retrying can duplicate or worsen financial operations after rate limits or pending orders. <br>
-Mitigation: Do not auto-resubmit create commands; wait for the reset time or order status and ask for fresh confirmation before retrying. <br>
+## Use Case:
 
+External users and developers use this skill to prepare confirmed GMGN CLI commands for token launches on supported launchpads, including chain, launchpad, image, slippage, fee-share, buyback, and auto-sell settings. It can also query token creation statistics by launchpad.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmgnai/gmgn-cooking) <br>
-- [gmgn-swap related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-swap) <br>
-- [gmgn-token related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-token) <br>
-- [gmgn-market related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-market) <br>
-- [gmgn-track related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-track) <br>
-- [gmgn-portfolio related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-portfolio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit confirmation before token creation commands; may include command outputs or transaction receipt summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.6 (source: server release metadata) <br>
+Risk: Token creation spends real funds and can deploy irreversible on-chain contracts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before each create command, use a dedicated low-balance wallet, and reconfirm launch parameters before execution.
+
+Risk: GMGN API keys and private keys can authorize real financial actions if mishandled.
+
+Mitigation: Keep credentials in the GMGN user config, avoid project-level .env files that shadow or expose secrets, and never display or log secret values.
+
+Risk: Global installation of gmgn-cli may use an unexpected package or version.
+
+Mitigation: Review the gmgn-cli package and version before installing or updating it globally.
+
+Risk: Fee-share, buyback, and auto-sell settings can permanently route funds or trigger automated trades.
+
+Mitigation: Reconfirm every fee-share, buyback, and auto-sell option with the user before launch.
+
+## Reference(s):
+
+- [GMGN Skill Cooking on ClawHub](https://clawhub.ai/gmgnai/skills/gmgn-cooking)
+- [GMGN API key setup](https://gmgn.ai/ai)
+- [gmgn-swap related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-swap)
+- [gmgn-token related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-token)
+- [gmgn-market related skill](https://github.com/GMGNAI/gmgn-skills/tree/main/skills/gmgn-market)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can initiate real blockchain transactions only after explicit user confirmation; status polling may report order state, transaction hash, block explorer links, and output token address.]
+
+## Skill Version(s):
+
+1.4.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Guides Hermes Agent sessions through warmup, planning, building, recapping, wrapup, context loading, handoff verification, and project scaffolding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete project lifecycle methodology for Hermes Agent sessions, covering warmup, planning, build work, recaps, wrapup, context loading, handoff verification, and project scaffolding.
 
-## Publisher: <br>
-[adelvillar1](https://clawhub.ai/user/adelvillar1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adelvillar1](https://clawhub.ai/user/adelvillar1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep project sessions consistent from startup through handoff. It helps load project context, draft plans, track acceptance criteria, write session recaps, and verify wrapup state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad discovery steps can read more workspace context than needed. <br>
-Mitigation: Keep searches scoped to the current workspace and the user's current task. <br>
-Risk: The workflow references local credential files, direct database queries, API queries, and production operations. <br>
-Mitigation: Require explicit approval in the current turn before reading local credential files or running production, database, or API access. <br>
-Risk: Plan, recap, and project-memory updates can introduce incorrect handoff guidance if accepted without review. <br>
-Mitigation: Review proposed documentation writes and verify plan status against source files before saving. <br>
+## Use Case:
 
+Developers and project teams use this skill to run a repeatable agent session lifecycle: load project context, plan non-trivial work, implement against acceptance criteria, draft recaps, and verify handoff state before ending a session.
 
-## Reference(s): <br>
-- [Project Scaffold Reference](references/project-scaffold.md) <br>
-- [Stale Data Verification](references/stale-data-verification.md) <br>
-- [Publisher homepage](https://github.com/adelvillar1) <br>
-- [ClawHub skill page](https://clawhub.ai/adelvillar1/project-methodology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and reusable plan and recap templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose documentation writes for plans, recaps, and project memory after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The workflow may inspect or index files beyond the current project and invoke an existing local Hermes indexer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict discovery and indexing to the current repository unless the user explicitly approves named additional directories and the local indexer command.
+
+Risk: The workflow includes paths that can involve local environment files, direct database checks, API calls, or production operations.
+
+Mitigation: Require explicit approval in the current turn before reading CLAUDE.local.md, querying databases or APIs, using production systems, or running destructive operations.
+
+Risk: The workflow can write recap and plan files and update project memory or plan frontmatter.
+
+Mitigation: Review generated Markdown and frontmatter changes before accepting them, and do not auto-commit generated files.
+
+## Reference(s):
+
+- [Project Scaffold Reference](references/project-scaffold.md)
+- [Stale Data Verification](references/stale-data-verification.md)
+- [Project Methodology on ClawHub](https://clawhub.ai/adelvillar1/skills/project-methodology)
+- [Publisher GitHub Homepage](https://github.com/adelvillar1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project memory, plan, and recap Markdown files when the user approves file writes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

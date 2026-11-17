@@ -1,41 +1,56 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/get-kol-show-items-v2/v1 for Douyin Creator Marketplace (Xingtu) Showcase Items through JustOneAPI with kolId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/get-kol-show-items-v2/v1 for Douyin Creator Marketplace (Xingtu) Showcase Items through JustOneAPI with kolId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to call JustOneAPI for Douyin Creator Marketplace (Xingtu) showcase item data by KOL ID, then summarize creator metrics, trend signals, and performance indicators for evaluation, campaign planning, and marketplace research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens may be exposed through command lines, generated URLs, screenshots, or logs. <br>
-Mitigation: Use a scoped or disposable JUST_ONE_API_TOKEN where available, avoid sharing commands or logs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to fetch Douyin Creator Marketplace (Xingtu) showcase item data for a creator by KOL ID. The returned data supports creator evaluation, campaign planning, and marketplace research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-get-kol-show-items-v2) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_show_items_v2&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_show_items_v2&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; required endpoint input is kolId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The API token can be exposed through command arguments or URL query logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, revocable, least-privilege token; avoid shell tracing or command logging; rotate the token after use when process arguments or outbound URLs may be recorded.
+
+Risk: The skill sends requests to a third-party JustOneAPI service.
+
+Mitigation: Install and run it only when the user trusts JustOneAPI with the token and requested KOL lookup data.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_show_items_v2&utm_content=project_link)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_show_items_v2&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-get-kol-show-items-v2)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN; required lookup input is kolId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

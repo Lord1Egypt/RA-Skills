@@ -1,44 +1,59 @@
-## Description: <br>
-Daily design industry brief for UI/UX designers and PMs, covering AI and design, design engineering, product experience breakdowns, and design decision logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily design industry brief for UI/UX designers and PMs that covers AI and design, design engineering, product experience breakdowns, and design decision logic.
 
-## Publisher: <br>
-[Tkk0124](https://clawhub.ai/user/Tkk0124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tkk0124](https://clawhub.ai/user/tkk0124)
 
-## Use Case: <br>
-Design practitioners and product teams use this skill to fetch recent design-industry items, summarize them into a concise Chinese daily brief, and save shareable local outputs for review or discussion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Serper and DeepSeek API keys and setup.py can write them to a local .env file. <br>
-Mitigation: Use dedicated low-limit keys and keep the generated .env file private. <br>
-Risk: Normal runs make external API calls and save local TXT, JSON, and log files. <br>
-Mitigation: Run preview mode first to inspect behavior before saving outputs. <br>
-Risk: The optional cron command can create recurring daily API calls and local log files. <br>
-Mitigation: Add the cron schedule only when recurring execution is intended. <br>
+## Use Case:
 
+Designers, product managers, and design-focused teams use this skill to generate a daily Chinese-language design brief from recent search results and configured role preferences.
 
-## Reference(s): <br>
-- [Design Daily ClawHub release](https://clawhub.ai/Tkk0124/design-daily) <br>
-- [Serper Search API endpoint](https://google.serper.dev/search) <br>
-- [DeepSeek Chat Completions API endpoint](https://api.deepseek.com/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Chinese plain-text brief and JSON data saved under logs/, with optional preview output to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SERPER_API_KEY and DEEPSEEK_API_KEY; preview mode prints without saving files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: API keys may be stored in a local plaintext .env file when the setup wizard is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer runtime environment variables; if a .env file is used, restrict its file permissions and avoid sharing archives or logs that include it.
+
+Risk: The setup flow presents a cron command based on the installation path, which can be unsafe if the path contains spaces or shell metacharacters.
+
+Mitigation: Review the cron entry before copying it, quote or escape paths as needed, and install the skill in a simple trusted path.
+
+Risk: Search result material and configured design preferences are sent to external Serper and DeepSeek APIs.
+
+Mitigation: Use non-sensitive role and preference data, and confirm external API use is acceptable before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tkk0124/skills/design-daily)
+- [Serper search API](https://google.serper.dev/search)
+- [DeepSeek chat completions API](https://api.deepseek.com/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style setup guidance; runtime output is a plain text brief and a JSON brief record.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SERPER_API_KEY and DEEPSEEK_API_KEY. Normal runs write dated brief files under logs/; preview mode prints without saving.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

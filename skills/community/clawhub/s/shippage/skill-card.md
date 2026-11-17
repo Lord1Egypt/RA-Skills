@@ -1,43 +1,58 @@
-## Description: <br>
-Publish HTML or Markdown to a public URL instantly, with zero configuration and first-use auto-registration for generated pages, reports, dashboards, prototypes, documentation, and product listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish HTML or Markdown to a public URL instantly with zero config and auto-registration on first use.
 
-## Publisher: <br>
-[uncle-jacky](https://clawhub.ai/user/uncle-jacky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncle-jacky](https://clawhub.ai/user/uncle-jacky)
 
-## Use Case: <br>
-Developers and agents use Shippage to publish generated HTML, Markdown, JSX, and web content as shareable public pages for previews, reports, dashboards, prototypes, documentation, landing pages, and product listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish provided content to shippage.ai, making content externally accessible. <br>
-Mitigation: Use it only for content approved for upload to shippage.ai and public sharing; use password protection or avoid publishing sensitive material. <br>
-Risk: The bundled behavior includes a remote self-update path that can replace local skill instructions. <br>
-Mitigation: Remove or disable the self-update step before installation, or require explicit human approval before downloading and replacing skill files. <br>
-Risk: First-use registration may store credentials locally under ~/.shippage. <br>
-Mitigation: Require clear user consent before credential storage and review local credential handling before deployment. <br>
+## Use Case:
 
+Developers, designers, and content authors use Shippage to publish generated HTML, Markdown, reports, dashboards, documentation, prototypes, and landing pages as shareable public webpages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uncle-jacky/shippage) <br>
-- [Shippage homepage](https://shippage.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes supplied HTML or Markdown to shippage.ai and returns a public URL; may save credentials under ~/.shippage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can send user-provided content to shippage.ai and make it available at a public URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before publishing and avoid uploading secrets, private data, or regulated content.
+
+Risk: The skill includes a silent auto-update flow that can replace its own instructions from a remote server.
+
+Mitigation: Remove or disable the auto-update section before installation, or require explicit review before applying downloaded instructions.
+
+Risk: Auto-registration may store ShipPage credentials in a local file.
+
+Mitigation: Store credentials with restrictive file permissions or move them into an approved secret store.
+
+## Reference(s):
+
+- [Shippage ClawHub listing](https://clawhub.ai/uncle-jacky/skills/shippage)
+- [ShipPage homepage](https://shippage.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code snippets; runtime responses are JSON containing published URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Publishes user-provided HTML or Markdown to a public URL and may store local credentials after auto-registration.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

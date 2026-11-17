@@ -1,48 +1,62 @@
-## Description: <br>
-调用百度文档解析API解析文档，支持PDF、Word、Excel、PPT、图片等18+格式，并提取文本、表格、版面分析、OCR识别及RAG文档分块。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses PDFs, Office files, images, and other documents with Baidu's document parsing API to extract text, tables, layout structure, OCR output, and RAG-ready chunks.
 
-## Publisher: <br>
-[maglanyulan](https://clawhub.ai/user/maglanyulan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maglanyulan](https://clawhub.ai/user/maglanyulan)
 
-## Use Case: <br>
-External developers and document-processing teams use this skill to submit documents to Baidu's document parsing API for OCR, text and table extraction, layout analysis, Markdown conversion, and RAG-oriented chunking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Documents selected for parsing are sent to Baidu's document parsing service. <br>
-Mitigation: Use only with documents that policy permits Baidu to process; avoid confidential, regulated, or secret material unless approved. <br>
-Risk: The skill requires Baidu API credentials. <br>
-Mitigation: Use a dedicated limited-quota API key and keep BAIDU_DOC_AI_API_KEY and BAIDU_DOC_AI_SECRET_KEY out of source control. <br>
-Risk: Returned markdown_url and parse_result_url links may expose parsed document content during their 30-day lifetime. <br>
-Mitigation: Treat result links as private and avoid sharing or logging them in public channels. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to submit supported documents to Baidu's intelligent document analysis API, poll asynchronous parsing jobs, and retrieve structured JSON or Markdown results for extraction, OCR, layout analysis, table parsing, and RAG chunking workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maglanyulan/baidu-doc-pipeline-parser) <br>
-- [Baidu document parsing API documentation](https://ai.baidu.com/ai-doc/OCR/llxst5nn0) <br>
-- [Baidu Intelligent Document Analysis Platform](https://ai.baidu.com/solution/intelligent-document-analysis) <br>
-- [Baidu API key setup documentation](https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu#1-获取aksk) <br>
-- [API key configuration guide](references/apikey-fetch.md) <br>
-- [Parameter reference](references/parameters.md) <br>
-- [Error code reference](references/error_codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON API responses with optional downloaded parse-result JSON and Markdown result links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses asynchronous task submission and polling; returned markdown_url and parse_result_url links are documented as private and valid for 30 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Documents or document URLs submitted through the skill are sent to Baidu for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for third-party processing, and avoid confidential, regulated, or credential-containing files unless the deployment has explicit approval.
+
+Risk: Returned markdown_url and parse_result_url links remain sensitive while they are valid.
+
+Mitigation: Restrict access to result links, avoid posting them in shared channels, and delete or rotate stored outputs according to local retention rules.
+
+Risk: Baidu API keys can be exposed if committed to project settings or shared configuration files.
+
+Mitigation: Store BAIDU_DOC_AI_API_KEY and BAIDU_DOC_AI_SECRET_KEY in a secure secret store or local environment and keep them out of source control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maglanyulan/skills/baidu-doc-pipeline-parser)
+- [Baidu document parsing API documentation](https://ai.baidu.com/ai-doc/OCR/llxst5nn0)
+- [Baidu intelligent document analysis platform](https://ai.baidu.com/solution/intelligent-document-analysis)
+- [API key setup guide](references/apikey-fetch.md)
+- [API parameters and response structure](references/parameters.md)
+- [Error code reference](references/error_codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, markdown, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return parsed document JSON, Markdown result links, and downloaded parse results from Baidu's asynchronous API.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

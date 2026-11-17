@@ -1,45 +1,65 @@
-## Description: <br>
-Daily industry news tracking assistant that fetches recent technology media articles from RSS feeds, filters them by configurable keywords and sources, and produces a concise digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry News Agent fetches technology, finance, and science articles from configurable RSS feeds from the last 24 hours, filters them by keywords, and formats a concise news digest.
 
-## Publisher: <br>
-[dongrebeccahhh-boop](https://clawhub.ai/user/dongrebeccahhh-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongrebeccahhh-boop](https://clawhub.ai/user/dongrebeccahhh-boop)
 
-## Use Case: <br>
-Developers, operators, and news-monitoring users can use this skill to collect recent RSS articles from configured technology, finance, and science sources, filter them by include and exclude keywords, and review a dated digest with titles, summaries, source names, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional cron setup creates recurring background network activity against configured RSS sources. <br>
-Mitigation: Review the script, RSS sources, and delivery expectations before enabling the scheduled task; run the skill manually if background activity is not desired. <br>
-Risk: The digest depends on external RSS feeds and user-configured sources, so results may be incomplete, unavailable, or include source-provided errors. <br>
-Mitigation: Confirm the configured sources are expected and review article links and summaries before relying on the digest. <br>
+## Use Case:
 
+People tracking technology and industry developments use this skill to fetch recent articles from configured RSS feeds, filter by keywords, and produce a digest for manual review or scheduled delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongrebeccahhh-boop/industry-news-agent) <br>
-- [36Kr RSS feed](https://36kr.com/feed) <br>
-- [Huxiu RSS feed](https://www.huxiu.com/rss/0.xml) <br>
-- [Leiphone RSS feed](https://www.leiphone.com/feed) <br>
-- [ScienceDaily RSS feed](https://www.sciencedaily.com/rss/all.xml) <br>
-- [Nature RSS feed](https://www.nature.com/nature.rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown-formatted news digest printed to stdout, with optional shell commands and YAML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters RSS articles from configured sources by recency and keywords; result limits are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The documented cron command can create a persistent daily job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual execution unless scheduled delivery is intended, and inspect or remove the crontab entry when the skill is no longer needed.
+
+Risk: Configurable RSS sources allow broad outbound fetching.
+
+Mitigation: Keep RSS sources limited to trusted public feed URLs and review feed changes before running the skill.
+
+Risk: When keyword filtering finds no matches, the script may return recent articles that did not match the configured keywords.
+
+Mitigation: Review generated digests before sharing or acting on them, and tune include and exclude keywords for the intended topic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongrebeccahhh-boop/skills/industry-news-agent)
+- [36Kr RSS feed](https://36kr.com/feed)
+- [Huxiu RSS feed](https://www.huxiu.com/rss/0.xml)
+- [Leiphone RSS feed](https://www.leiphone.com/feed)
+- [SSPai RSS feed](https://sspai.com/feed)
+- [ifanr RSS feed](https://www.ifanr.com/feed)
+- [FT Chinese RSS feed](https://www.ftchinese.com/rss/news)
+- [ScienceDaily RSS feed](https://www.sciencedaily.com/rss/all.xml)
+- [Nature RSS feed](https://www.nature.com/nature.rss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown-style news digest with article titles, dates, sources, summaries, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable RSS sources, include and exclude keywords, per-source limits, and total result limit.]
+
+## Skill Version(s):
+
+3.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

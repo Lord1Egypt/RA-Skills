@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "烟波江湖",
+    "tone_family": "wuxia",
+    "tone_variant": "低魔武林",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_yanbo",
+      "name": "烟波洲",
+      "summary": "河湖纵横、码头驿道密布的武林世界：名门、大帮、药谷、镖局、杀手楼五方并立，武林大会在即，旧案与秘笈同时在暗处流动。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_luoyan",
+      "name": "落雁门",
+      "continent": "continent_yanbo",
+      "summary": "以'武林表率'自居的正道魁首剑派，执掌江湖公道，当年灭门血案的真凶恰在门内。",
+      "tension_seeds": [
+        "掌门楚雁回当年为门内声名压下了灭门血案，真凶恰是同门执法长老商寒衣",
+        "首徒骆冰弦暗中查案，已逼近掌门与长老的共犯关系，一旦公开落雁门将崩"
+      ]
+    },
+    {
+      "id": "nation_canglang",
+      "name": "沧浪帮",
+      "continent": "continent_yanbo",
+      "summary": "掌江湖商路命脉的天下第一大帮（漕运水寨），却最被名门轻视。",
+      "tension_seeds": [
+        "帮主屠啸江暗中与镖旗会分赃漕运私货，又把名门走私的证据卖给听雨楼",
+        "军师蒋三娘实为听雨楼安插多年的暗桩，帮中漕运底细早被卖光"
+      ]
+    },
+    {
+      "id": "nation_jingzhe",
+      "name": "惊蛰谷",
+      "continent": "continent_yanbo",
+      "summary": "救人亦杀人、亦正亦邪的药毒谷，谁都得求它，谁都不敢信它。",
+      "tension_seeds": [
+        "落雁门灭门案所用之毒出自惊蛰谷失窃的药方，谷主傅三针知情却装聋",
+        "制药弟子商小满把谷中毒方抄给听雨楼换盘缠，不知自己已卷入灭门案"
+      ]
+    },
+    {
+      "id": "nation_biaoqi",
+      "name": "镖旗会",
+      "continent": "continent_yanbo",
+      "summary": "走镖即物流即情报的镖局联盟，夹在各派之间两头收钱。",
+      "tension_seeds": [
+        "总镖头程万里替落雁门押送过一批见不得光的'镖'，手握其死穴",
+        "镖师韦长庚撞破沧浪帮私运军械被追杀，镖旗会却不敢保他"
+      ]
+    },
+    {
+      "id": "nation_tingyu",
+      "name": "听雨楼",
+      "continent": "continent_yanbo",
+      "summary": "明面卖消息、暗面卖人命的杀手与情报楼，握有所有人的把柄。",
+      "tension_seeds": [
+        "楼主萧夜阑是当年灭门案唯一活口，二十年来以听雨楼为网逼近落雁门复仇",
+        "消息先生白无算把同一桩灭门案的线索分卖三方，价高者得"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_bafang",
+    "name": "八方栈",
+    "continent": "continent_yanbo",
+    "summary": "通衢要道上的大客栈，八方来客皆可落脚；栈内禁斗是江湖共识，各派在此约战、递帖、交易。"
+  },
+  "faction_matrix": {
+    "nation_biaoqi|nation_canglang": { "relation": 52, "note": "镖旗会与沧浪帮共掌江湖商路、物流命脉上互相依存；裂缝在于镖旗会暗收名门的钱、也替他们押见不得光的私货。" },
+    "nation_biaoqi|nation_jingzhe": { "relation": 12, "note": "走镖常向惊蛰谷求解毒药，亦正亦邪，敬而远之、银货两讫。" },
+    "nation_biaoqi|nation_luoyan": { "relation": 30, "note": "镖旗会攀附正道魁首求庇，落雁门则视其为可用的市井手脚。" },
+    "nation_biaoqi|nation_tingyu": { "relation": -55, "note": "听雨楼劫镖卖路，镖旗会视之为命脉大敌，镖路上遇之必拼命。" },
+    "nation_biaoqi|port_bafang": { "relation": 25, "note": "八方栈是镖队歇脚与递镖的枢纽，栈内禁斗正好保镖。" },
+    "nation_canglang|nation_jingzhe": { "relation": 18, "note": "沧浪帮水路多疫病毒伤，常求惊蛰谷；谷中走药也需漕运，互利。" },
+    "nation_canglang|nation_luoyan": { "relation": -38, "note": "天下第一大帮最被名门轻视，落雁门斥其为'草莽'，沧浪帮记恨在心。" },
+    "nation_canglang|nation_tingyu": { "relation": -12, "note": "沧浪帮的漕运把柄被听雨楼握在手里，投鼠忌器、暗恨难言。" },
+    "nation_canglang|port_bafang": { "relation": 22, "note": "八方栈临水而设，沧浪帮是栈中常客，也是护栈的一股暗力。" },
+    "nation_jingzhe|nation_luoyan": { "relation": -46, "note": "药毒谷亦正亦邪，落雁门斥其'邪术'，谷中反讥正道伪善，积怨已深。" },
+    "nation_jingzhe|nation_tingyu": { "relation": 40, "note": "惊蛰谷的毒与听雨楼的杀互补，暗中有交易；裂缝在于听雨楼早想吞下谷中秘方。" },
+    "nation_jingzhe|port_bafang": { "relation": 6, "note": "谷中弟子常来栈中收药换物，淡淡往来、互不设防。" },
+    "nation_luoyan|nation_tingyu": { "relation": -62, "note": "正道魁首与杀手楼势不两立，落雁门悬赏听雨楼首级，听雨楼反掌其旧案把柄。" },
+    "nation_luoyan|port_bafang": { "relation": 34, "note": "落雁门在八方栈设帖约战、主持公道，是栈中最有分量的一方。" },
+    "nation_tingyu|port_bafang": { "relation": -8, "note": "听雨楼明面在栈中卖消息，栈主却防着它暗面卖人命、坏了栈规。" }
+  }
+}

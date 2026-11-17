@@ -144,7 +144,7 @@ export ANTHROPIC_API_KEY="your-claude-api-key"
 export GOOGLE_SERVICE_ACCOUNT_JSON="/path/to/service-account.json"
 
 # Optional: Slack notifications for alerts
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 ```
 
 ### Configuration Options

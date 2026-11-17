@@ -1,42 +1,58 @@
-## Description: <br>
-面向中文用户的 Sonos 音乐点播技能，支持通过 Sonos 侧搜索加队列起播的方式播放已绑定音乐服务，当前已验证兼容网易云音乐和 QQ音乐，并通过 SoCo 保留 Sonos App 中的标题、歌手、专辑和封面等 metadata。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language Sonos music playback skill for searching linked Sonos music services, queueing selected results, and starting playback while preserving Sonos App metadata.
 
-## Publisher: <br>
-[huacius](https://clawhub.ai/user/huacius) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huacius](https://clawhub.ai/user/huacius)
 
-## Use Case: <br>
-Chinese-speaking users and automation agents use this skill to set up and operate Sonos music playback through linked NetEase Cloud Music or QQ Music services while preserving Sonos queue metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Sonos and linked music-service regional availability. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local setup creates a Python virtual environment and installs soco from Python packaging sources. <br>
-Mitigation: Install only in trusted environments and review the bootstrap output before relying on the playback setup. <br>
-Risk: Playback depends on the local sonos CLI and separate workspace wrapper/Python files that this package checks for but does not include. <br>
-Mitigation: Trust and inspect the local sonos CLI plus sonos_netease_play and sonos_qq_play files before playback. <br>
-Risk: Playback can fail if Sonos devices are not reachable or the linked music-service authorization is stale or unavailable in the user's region. <br>
-Mitigation: Verify local network access and reauthorize the target music service in the Sonos App before troubleshooting the skill. <br>
+## Use Case:
 
+External users and developers use this skill to operate a reusable Sonos on-demand playback workflow for NetEase Cloud Music and QQ Music through linked Sonos services. It is most useful in local-network Sonos environments where the required CLI, virtual environment, and playback wrapper scripts are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huacius/sonos-music-playback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local sonos CLI, reachable Sonos devices, linked music services, and workspace playback wrappers for NetEase Cloud Music and QQ Music.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The bootstrap flow installs an unpinned Python dependency from pip, which may reduce reproducibility across environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency behavior before deployment and pin package versions when stronger reproducibility is required.
+
+Risk: The package relies on local workspace playback scripts that are referenced but not included in the release artifact.
+
+Mitigation: Review or supply the expected playback scripts before using the skill, and validate the environment with the included check script.
+
+Risk: The workflow accesses Sonos devices and linked music services on the local network.
+
+Mitigation: Install only in trusted local-network environments where this device and service access is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huacius/skills/sonos-music-playback)
+- [Publisher profile](https://clawhub.ai/user/huacius)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and environment configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Sonos network access, the sonos CLI, a Python virtual environment with soco, and workspace playback wrappers.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

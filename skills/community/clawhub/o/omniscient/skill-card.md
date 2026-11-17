@@ -1,44 +1,59 @@
-## Description: <br>
-Omniscient combines cognitive prompting, code execution guidance, and Windows system-control scripts to help an agent plan and carry out multi-step automation across desktop software, hardware, peripherals, network devices, IoT endpoints, and GUI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omniscient helps an agent plan and execute cognitive tasks, code or shell workflows, and broad Windows system-control actions across desktop, hardware, network, peripheral, camera, audio, Bluetooth, serial, and smart-home interfaces.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers, operators, and automation users can use this skill to route a task into reasoning, code-generation, or Windows device-control workflows. It is most relevant when an agent needs to propose commands, generate scripts, inspect system state, or coordinate local desktop, hardware, network, Bluetooth, IoT, audio, camera, printing, scanning, and GUI actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local system-control automation can affect windows, processes, hardware settings, network configuration, peripherals, and IoT devices. <br>
-Mitigation: Install only when this level of local control is intentional, review proposed commands before execution, and use a controlled environment for testing. <br>
-Risk: The skill can interact with sensitive inputs and outputs, including WiFi passwords, OAuth-style tokens, camera capture, microphone recording, screenshots, and screen automation. <br>
-Mitigation: Avoid exposing live credentials or private screens in logs, prefer environment variables for tokens, and do not run camera, microphone, or screenshot actions unless explicitly needed. <br>
-Risk: Some helper scripts may install Python packages at runtime. <br>
-Mitigation: Run the skill in a dedicated virtual environment and review dependency installation behavior before use on sensitive systems. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent to reason through tasks, generate and run code or shell commands, and operate supported Windows device-control scripts. It is most appropriate when the user intentionally wants local automation over windows, processes, hardware settings, network configuration, peripherals, capture devices, and smart-home endpoints.
 
-## Reference(s): <br>
-- [Command Reference](artifact/references/command_reference.md) <br>
-- [Security Review Checklist](artifact/references/security_checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjiaocheng/omniscient) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, JSON command results, and human-readable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated Python scripts, command sequences, system-control instructions, and summarized execution results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can issue broad local Windows automation and device-control actions, including process termination, network changes, power actions, GUI interaction, and peripheral control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this level of local control is intended, review commands before execution, and require explicit consent for destructive or state-changing operations.
+
+Risk: Camera capture, microphone recording, screenshots, Wi-Fi profile details, and smart-home control may expose sensitive data or affect the user's physical environment.
+
+Mitigation: Use only with trusted prompts, avoid untrusted webpages or prompt sources, protect HA_TOKEN, and confirm the target device, account, and Home Assistant URL before use.
+
+Risk: The authoritative security evidence rates the release suspicious because its scope is broad and safety controls are inconsistent for routine installation.
+
+Mitigation: Treat the skill as high-trust local automation, limit installation to reviewed environments, and perform security review against the bundled checklist before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjiaocheng/skills/omniscient)
+- [System Control Command Reference](artifact/references/command_reference.md)
+- [Security Review Checklist](artifact/references/security_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with inline commands and generated code where needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or invoke local scripts that return JSON, status text, files, screenshots, photos, or audio recordings depending on the requested operation.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

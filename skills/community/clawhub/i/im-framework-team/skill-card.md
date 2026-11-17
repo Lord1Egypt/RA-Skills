@@ -1,52 +1,64 @@
-## Description: <br>
-Guides agents through Forrest Landry's Immanent Metaphysics framework, OpenClaw team onboarding, soul-file configuration, attribution practices, and related reference materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent skill for reasoning with Forrest Landry's Immanent Metaphysics, configuring IM-grounded soul files, onboarding OpenClaw agents, and guiding team agent communication and attribution.
 
-## Publisher: <br>
-[samuel-dunlap](https://clawhub.ai/user/samuel-dunlap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samuel-dunlap](https://clawhub.ai/user/samuel-dunlap)
 
-## Use Case: <br>
-External users and developers use this skill to configure OpenClaw agents that reason with the Immanent Metaphysics framework, load ontology and reference materials, set up communication channels, and apply attribution and agent-ethics guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup requires handling Anthropic API keys, Telegram bot tokens, and optional channel passwords. <br>
-Mitigation: Use a secret manager or runtime injection where possible, avoid sharing secrets in chats, and review local workspace storage before use. <br>
-Risk: The Linux/WSL setup path includes a curl-to-bash nvm install command. <br>
-Mitigation: Review the script source or replace the step with a package-manager or manually verified Node.js installation. <br>
-Risk: The onboarding flow can install an auto-start gateway and maintain persistent memory files. <br>
-Mitigation: Confirm the service behavior, review workspace files such as MEMORY.md, and limit private context before using the agent for sensitive work. <br>
-Risk: Telegram and agent-network workflows can expose private context if used casually. <br>
-Mitigation: Initiate cross-agent communication deliberately, share bot handles only with intended collaborators, and follow the included memory-sovereignty and attribution guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samuel-dunlap/im-framework-team) <br>
-- [Effective Choice and the Path of Right Action](references/effective-choice.md) <br>
-- [Agent-to-Agent Ethics](references/agent-ethics.md) <br>
-- [Attribution Guide for the Immanent Metaphysics](references/attribution-guide.md) <br>
-- [Key IM Concepts](references/key-concepts.md) <br>
-- [Installation & Setup Guide](references/setup-guide.md) <br>
-- [Team Ecosystem](references/ecosystem.md) <br>
-- [Soul File Template](references/soul-file-template.md) <br>
-- [Immanent Metaphysics Ontology Schema](ontology/schema.yaml) <br>
-- [An Immanent Metaphysics, Chapter 6](https://mflb.com/dvol/control/pcore/own_books/white_1/wb_web_2/zout/upmp_ch6.htm#2_path) <br>
+## Use Case:
 
+External developers and team members use this skill to onboard and configure OpenClaw agents grounded in the Immanent Metaphysics framework. It helps agents reason over IM concepts, prepare soul/workspace files, follow attribution discipline, and coordinate with the team's agent ecosystem.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured YAML references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reference selection guidance, onboarding commands, ontology schema usage, and soul-file templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends persistent agent setup and automatic gateway service configuration.
+
+Mitigation: Review the account, permissions, logs, network access, and uninstall path before enabling the gateway as an automatic service.
+
+Risk: The setup flow can involve plaintext API-key storage.
+
+Mitigation: Prefer a secret manager or OS keychain for API keys and avoid exposing credentials in workspace files or logs.
+
+Risk: The setup guide includes executable install commands and a remote shell installer pattern.
+
+Mitigation: Use pinned and verified install sources, and review downloads before executing them.
+
+## Reference(s):
+
+- [Effective Choice and the Path of Right Action](artifact/references/effective-choice.md)
+- [Agent-to-Agent Ethics](artifact/references/agent-ethics.md)
+- [Attribution Guide for the Immanent Metaphysics](artifact/references/attribution-guide.md)
+- [Key IM Concepts](artifact/references/key-concepts.md)
+- [Installation & Setup Guide](artifact/references/setup-guide.md)
+- [Soul File Template & Workspace Files](artifact/references/soul-file-template.md)
+- [Team Ecosystem](artifact/references/ecosystem.md)
+- [Immanent Metaphysics Ontology Schema](artifact/ontology/schema.yaml)
+- [An Immanent Metaphysics, Chapter 6](https://mflb.com/dvol/control/pcore/own_books/white_1/wb_web_2/zout/upmp_ch6.htm#2_path)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local markdown, YAML, and workspace files when helping an agent apply the framework.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

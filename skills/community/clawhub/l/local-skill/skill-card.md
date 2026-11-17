@@ -1,43 +1,50 @@
-## Description: <br>
-Local-skill supports local skill repository inspection and release preparation with check, dry-run publish, and summary utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local skill repository for publish and pre-publish inspection that provides inspectSkill and summarizeSkill utilities.
 
-## Publisher: <br>
-[li-chi](https://clawhub.ai/user/li-chi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-chi](https://clawhub.ai/user/li-chi)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to inspect a local skill package and run pre-publish checks and dry-run publish workflows before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this third-party local helper for an official OpenClaw package. <br>
-Mitigation: Verify the publisher handle, package identity, and release intent before installing or running the release workflow. <br>
-Risk: The release workflow can publish the package when run without the dry-run flag. <br>
-Mitigation: Run the check script and dry-run publish command first, then review package metadata and release notes before publishing. <br>
-Risk: Server evidence marks the skill as low quality and quarantined for moderation review. <br>
-Mitigation: Complete moderation review and confirm the package is intended for release before listing or distributing it. <br>
+## Use Case:
 
+Developers and release maintainers use this skill to inspect a local skill package, summarize its metadata, and run pre-publish checks before publishing.
 
-## Reference(s): <br>
-- [Release Process](docs/release.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/li-chi/local-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external service calls or credential inputs are indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata, frontmatter, package.json) <br>
+Risk: Running release workflow scripts without checking the package metadata can target the wrong package or version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package metadata and scripts, then run the publish script from the repository root only after confirming the target package and version.
+
+## Reference(s):
+
+- [Release process](docs/release.md)
+- [ClawHub skill page](https://clawhub.ai/li-chi/skills/local-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local inspection summaries, package metadata checks, and dry-run publish guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

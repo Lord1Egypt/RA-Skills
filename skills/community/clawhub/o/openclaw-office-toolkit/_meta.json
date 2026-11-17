@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "s172yaxxd2drm0sc92554g9aq983hegj",
   "slug": "openclaw-office-toolkit",
   "version": "1.0.0",
-  "publishedAt": 1775039294136
+  "publishedAt": "2026-04-01T10:30:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [],
+  "primaryCredential": null,
+  "persistence": null,
+  "credentialSetup": {
+    "type": "none",
+    "description": "无凭证需求。"
+  },
+  "requires": {
+    "anyBinaries": [],
+    "os": ["windows", "macos", "linux"]
+  }
 }

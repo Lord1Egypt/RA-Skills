@@ -1,54 +1,66 @@
-## Description: <br>
-Use when designing, reviewing, or refactoring a CLI that must serve AI agents alongside humans, or when converting an API or SDK into an agent-usable CLI interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing, reviewing, or refactoring a CLI that must serve AI agents alongside humans, or when converting an API or SDK into an agent-usable CLI interface.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate, design, and refactor command-line interfaces so they are usable by humans, AI agents, and orchestration systems. It produces structured CLI design reviews, rubric scores, safety guidance, and prioritized refactor plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes authentication and credential-handling examples that could be misunderstood as permission for the agent to own secret retrieval or refresh. <br>
-Mitigation: Use the examples as design guidance only: humans or orchestrators should obtain credentials, inject scoped values through trusted environment or config channels, and avoid exposing raw secrets in prompts or logs. <br>
-Risk: CLI design recommendations may be applied to mutating or destructive commands without enough runtime safeguards. <br>
-Mitigation: Require dry-run previews, explicit safety tiers, stable structured errors, sandbox-aware failure behavior, and human review before implementing destructive actions. <br>
-Risk: The artifact includes a notify-only update workflow that can run git commands and pull changes only after user consent. <br>
-Mitigation: Prefer ClawHub or a pinned Git revision for installation, review upstream changes before approving any pull, and keep update consent with the human operator. <br>
-Risk: This is a third-party release, so trust depends on the publisher and repository rather than NVIDIA ownership. <br>
-Mitigation: Install only if the publisher is trusted, review the release evidence and security summary, and scan changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate, design, and refactor command-line interfaces for reliable use by humans, AI agents, and orchestration systems. It supports reviews of output contracts, schema introspection, dry-run behavior, safety boundaries, delegated authentication, and CLI-to-agent integration patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/agent-native-design) <br>
-- [Agent Native Design Documentation](https://agents365-ai.github.io/agent-native-design/) <br>
-- [Design Patterns](references/design-patterns.md) <br>
-- [Review Rubric](references/rubric.md) <br>
-- [Review Checklists](references/checklists.md) <br>
-- [Testing Guidance](references/testing.md) <br>
-- [Hybrid MCP and CLI Guidance](references/hybrid-mcp-cli.md) <br>
-- [Examples](references/examples.md) <br>
-- [Citations](references/citations.md) <br>
-- [OpenAI Codex Sidecar Metadata](agents/openai.yaml) <br>
-- [Release v1.3.3](https://github.com/Agents365-ai/agent-native-design/releases/tag/v1.3.3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, JSON examples, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rubric scores, seven-principle reviews, key risks, and prioritized P0/P1/P2 refactor plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Testing guidance includes eval-based shell harness examples that could execute command strings supplied by the CLI under review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the snippets as design guidance, replace eval loops with structured command manifests or argv arrays, and run CLI review tests in a sandbox with disposable credentials and non-production data.
+
+Risk: The security verdict is suspicious because unsafe shell examples appear in a reference file.
+
+Mitigation: Review generated or copied test harnesses before execution and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/skills/agent-native-design)
+- [Design Patterns](references/design-patterns.md)
+- [Rubric](references/rubric.md)
+- [Review Checklists](references/checklists.md)
+- [Examples and Non-Examples](references/examples.md)
+- [Testing an Agent-Native CLI](references/testing.md)
+- [When CLI vs MCP vs Both](references/hybrid-mcp-cli.md)
+- [Citations](references/citations.md)
+- [Anthropic: Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)
+- [Anthropic: Beyond permission prompts](https://www.anthropic.com/engineering/claude-code-sandboxing)
+- [Writing CLI Tools That AI Agents Actually Want to Use](https://dev.to/uenyioha/writing-cli-tools-that-ai-agents-actually-want-to-use-39no)
+- [Building a CLI That Works for Humans and Machines](https://www.openstatus.dev/blog/building-cli-for-human-and-agents)
+- [MCP vs CLI: Benchmarking Tools for Coding Agents](https://mariozechner.at/posts/2025-08-15-mcp-vs-cli/)
+- [CLI Tools vs MCP: Better AI Agents With Less Context](https://jannikreinhard.com/2026/02/22/why-cli-tools-are-beating-mcp-for-ai-agents/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured review sections, examples, and inline code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rubric scores, risk summaries, prioritized refactor plans, JSON contract examples, and CLI design checklists.]
+
+## Skill Version(s):
+
+1.3.5 (source: server release evidence and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

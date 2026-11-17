@@ -1,37 +1,53 @@
-## Description: <br>
-Number lines of text files, showing line numbers alongside content. Use for reference, indexing, and code line numbering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Number lines of text files, showing line numbers alongside content.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to add line numbers to text files for code review, document reference, indexing, and log analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled helper has a minor input-handling bug and may not support the documented command-line options. <br>
-Mitigation: Use it with an explicit file path, avoid piping untrusted text into it, and expect option behavior to require review or updates before relying on it. <br>
+## Use Case:
 
+Developers and engineers use this skill to number text files for code review, document reference, indexing, and log analysis.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and line-numbered text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file input; documented options may be unsupported by the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The bundled script has an undisclosed no-argument mode that can read a file path from stdin instead of numbering stdin text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only explicit intended filenames, and fix or document the no-argument behavior before relying on stdin workflows.
+
+Risk: Advertised command options may not match the bundled script behavior.
+
+Mitigation: Verify option support before operational use and update the script or documentation so expected line-numbering modes are accurate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/nl-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with line numbers and concise markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script emits a single numbered text stream.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

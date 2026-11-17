@@ -1,44 +1,57 @@
-## Description: <br>
-Create a private internet voice line between a user and an OpenClaw agent without Twilio or phone number rental, using local OpenClaw auth and Tailscale private access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a private phone line between a user and an OpenClaw agent, using local OpenClaw auth profiles and Tailscale instead of Twilio or rented phone numbers.
 
-## Publisher: <br>
-[mrbese](https://clawhub.ai/user/mrbese) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrbese](https://clawhub.ai/user/mrbese)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up a local private voice interface for an OpenClaw agent, configure authentication and remote access, and verify the privacy boundary before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation, dependency setup, remote access, and background service steps can change the user's machine. <br>
-Mitigation: Require explicit user confirmation before package installation, npm install, Tailscale Serve changes, persistence setup, or starting a long-running service. <br>
-Risk: OpenAI API keys or other sensitive credentials could be exposed if pasted into chat or stored outside the intended auth flow. <br>
-Mitigation: Use existing OpenClaw auth profiles first and keep OpenAI keys inside OpenClaw auth rather than pasting them into chat. <br>
-Risk: Binding the local voice app beyond localhost can expose it on a LAN or public network. <br>
-Mitigation: Use the default 127.0.0.1 binding unless the user intentionally confirms broader exposure. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up, configure, and verify a private internet voice line for one local OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrbese/call-my-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/mrbese) <br>
-- [Public app repository listed in artifact](https://github.com/mrbese/call-my-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup, service management, Tailscale access, teardown, verification, and privacy-check guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may install and run local code from a referenced package that was not included in the reviewed artifact or pinned immutably.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact ClawHub package version or commit before installation, review setup scripts, and approve package install commands before they run.
+
+Risk: Persistence files or Tailscale Serve routes can expose a long-running local service if enabled without review.
+
+Mitigation: Require explicit confirmation before enabling persistence or remote access, bind locally by default, and provide teardown commands for each enabled route or service.
+
+Risk: OpenAI API keys could be exposed if requested, printed, pasted, or stored outside the expected local auth flow.
+
+Mitigation: Use existing OpenClaw auth profiles first, never print or store keys in chat, and use OpenClaw's local auth flow if a new key is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrbese/skills/call-my-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command snippets, configuration steps, and verification results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes privacy checks and explicit confirmation gates for install, persistence, and remote access actions.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Review, refactor, and explain Java code using distilled Effective Java principles for API design, immutability, generics, enums, streams, exceptions, concurrency, and serialization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review, refactor, and explain Java code using distilled Effective Java principles for API design, immutability, generics, enums, streams, exceptions, concurrency, and serialization.
 
-## Publisher: <br>
-[linbingqiang](https://clawhub.ai/user/linbingqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbingqiang](https://clawhub.ai/user/linbingqiang)
 
-## Use Case: <br>
-Developers and engineers use this skill to review, refactor, and explain Java code through an Effective Java design lens, with emphasis on correctness, API safety, encapsulation, maintainability, and practical performance concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review or refactor suggestions may be incomplete, context-dependent, or unsuitable for a specific Java API contract. <br>
-Mitigation: Treat recommendations as advisory, review generated code changes before applying them, and validate behavior and compatibility with the project's tests. <br>
-Risk: Code submitted for analysis may include secrets or unrelated private data. <br>
-Mitigation: Avoid pasting secrets or unrelated private data into code provided for review. <br>
+## Use Case:
 
+Developers and engineers use this skill to review, refactor, and explain Java code through an Effective Java lens, prioritizing correctness, API safety, encapsulation, type safety, concurrency, and maintainability.
 
-## Reference(s): <br>
-- [Effective Java Review Checklist](references/review-checklist.md) <br>
-- [Effective Java Item Map](references/item-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with prioritized findings, explanations, and optional code edits or examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Treat recommendations as advisory and review generated code changes before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Refactoring guidance may lead an agent to change Java source in ways that affect public API compatibility or behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed patches and compatibility assumptions before applying them, especially for public APIs, concurrency guarantees, and serialization compatibility.
+
+Risk: Review recommendations may be incomplete when project context is missing.
+
+Mitigation: Provide relevant source files, API contracts, tests, and thread-safety or serialization expectations so findings can be grounded in the codebase.
+
+## Reference(s):
+
+- [Effective Java Review Checklist](references/review-checklist.md)
+- [Effective Java Item Map](references/item-map.md)
+- [ClawHub Skill Page](https://clawhub.ai/linbingqiang/skills/effective-java)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with prioritized findings, explanations, and optional code patches or examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include line-referenced review findings, compatibility assumptions, and validation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

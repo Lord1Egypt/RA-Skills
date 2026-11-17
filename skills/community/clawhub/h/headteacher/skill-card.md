@@ -1,46 +1,63 @@
-## Description: <br>
-Bootstrap and operate an AI-native headteacher workspace for backend selection, Feishu Base access routing, schema installation, class data operations, and Office artifact generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headteacher helps agents set up and operate a class-management workspace for student records, Feishu Base schema setup, data operations, and Office artifact generation.
 
-## Publisher: <br>
-[yzdame](https://clawhub.ai/user/yzdame) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzdame](https://clawhub.ai/user/yzdame)
 
-## Use Case: <br>
-External educators and agent users use this skill to initialize and operate a class-management workspace, record and query student data, inspect or migrate Feishu Bases, and generate working documents such as seat plans, duty schedules, and parent meeting slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive student records, contact details, local account metadata, and Feishu Base identifiers. <br>
-Mitigation: Use only authorized class data, start with test or redacted data, restrict generated Office files, and avoid sharing logs or transcripts containing Base tokens or student information. <br>
-Risk: Feishu workspace setup, bootstrap, import, export, or schema changes can affect cloud-hosted class data. <br>
-Mitigation: Review Feishu permissions, inspect existing Bases before migration, run dry-runs where available, and preview destructive or schema-changing operations before applying them. <br>
+## Use Case:
 
+Teachers, headteachers, and their agent operators use this skill to initialize and manage class data, import or update student records, inspect Feishu Base workspaces, and generate working documents such as seat plans, duty schedules, parent communication records, and parent meeting slides.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yzdame/headteacher) <br>
-- [Product requirements summary](docs/PRD.md) <br>
-- [Schema manifest](references/schema-manifest.md) <br>
-- [Backend contract](references/backend-contract.md) <br>
-- [Feishu model](references/feishu-model.md) <br>
-- [Artifact specification](references/artifact-spec.md) <br>
-- [Anthropic Office skills reference](https://github.com/anthropics/skills/tree/main/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration steps, and generated document or spreadsheet artifacts when dependencies are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or register local Office files and workspace manifests after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can create or modify remote Feishu Base workspaces and schemas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Feishu permissions, confirm the tenant and target Base, and preview schema-changing operations before using real student data.
+
+Risk: Local state, logs, or JSON output may expose Feishu Base identifiers or class workspace details.
+
+Mitigation: Keep .headteacher-skill files out of version control, redact shared outputs, and avoid publishing logs that include workspace identifiers.
+
+Risk: Student records may include sensitive contact, address, or identification fields.
+
+Mitigation: Start with test data, minimize displayed sensitive fields, and confirm before importing or syncing personally identifiable student information.
+
+## Reference(s):
+
+- [Schema Manifest](references/schema-manifest.md)
+- [Backend Contract](references/backend-contract.md)
+- [Feishu Model](references/feishu-model.md)
+- [Notion Model](references/notion-model.md)
+- [Obsidian Model](references/obsidian-model.md)
+- [Artifact Spec](references/artifact-spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/yzdame/skills/headteacher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, structured schema plans, JSON/state-file descriptions, and Office artifact generation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or register downstream .docx, .xlsx, and .pptx artifacts after structured class data is available.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

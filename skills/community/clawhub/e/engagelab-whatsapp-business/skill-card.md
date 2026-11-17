@@ -1,46 +1,65 @@
-## Description: <br>
-Call EngageLab WhatsApp Business REST APIs to send WhatsApp messages, manage WABA message templates, and handle callback webhooks for delivery status and user responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call EngageLab WhatsApp Business REST APIs to send WhatsApp messages, manage WABA message templates, and handle callback webhooks for delivery status and user responses.
 
-## Publisher: <br>
-[DevEngageLab](https://clawhub.ai/user/DevEngageLab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devengagelab](https://clawhub.ai/user/devengagelab)
 
-## Use Case: <br>
-Developers and operators use this skill to generate authenticated EngageLab WhatsApp Business API calls, code examples, template management requests, and webhook handling guidance for messaging integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help send real WhatsApp business messages. <br>
-Mitigation: Use least-privilege EngageLab credentials and require human confirmation of recipients, message content, and template names before sending. <br>
-Risk: The skill can help update or delete WABA templates. <br>
-Mitigation: Review target template IDs or names before mutation and prefer dry-run or approval workflows for destructive changes. <br>
-Risk: Artifact guidance notes that callback endpoints do not require authentication while callback security is pending. <br>
-Mitigation: Deploy webhooks with compensating controls such as shared-secret validation, allowlists, schema checks, rate limits, and reconciliation against authenticated API state. <br>
+## Use Case:
 
+Developers and operators use this skill to integrate EngageLab WhatsApp Business messaging into applications, including template messages, session messages, template lifecycle management, and callback handling for delivery and user-response events.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DevEngageLab/engagelab-whatsapp-business) <br>
-- [EngageLab Website](https://www.engagelab.com) <br>
-- [Callback API Reference](references/callback-api.md) <br>
-- [Template API Reference](references/template-api.md) <br>
-- [Error Codes Reference](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, JSON payloads, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request bodies, authentication placeholders, webhook recommendations, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles EngageLab credentials and can affect live WhatsApp messaging resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped credentials, avoid production keys while testing, and review generated API calls before execution.
+
+Risk: The bundled client permits overriding the API base URL.
+
+Mitigation: Override the base URL only in controlled test environments with non-production credentials.
+
+Risk: Template deletion and updates can affect approved business messaging workflows.
+
+Mitigation: Confirm exact template names, template IDs, languages, and intended operation before changing or deleting templates.
+
+Risk: Callback security is not complete in the artifact guidance.
+
+Mitigation: Add independent webhook protections such as a shared-secret gateway, schema validation, replay checks, and rate limiting before trusting callbacks.
+
+## Reference(s):
+
+- [EngageLab WhatsApp Business skill page](https://clawhub.ai/devengagelab/skills/engagelab-whatsapp-business)
+- [EngageLab console](https://www.engagelab.com)
+- [WhatsApp Callback API Reference](references/callback-api.md)
+- [EngageLab WhatsApp API Error Codes](references/error-codes.md)
+- [WhatsApp Template Management API Reference](references/template-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples, shell commands, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API request payloads, curl commands, Python client usage, webhook handling guidance, and template-management instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

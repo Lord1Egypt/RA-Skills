@@ -2,20 +2,22 @@
 jurisdiction: "Oklahoma"
 slug: oklahoma
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/oklahoma
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/oklahoma
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/oklahoma · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/oklahoma · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Oklahoma[^about]
 
@@ -35,7 +37,7 @@ Oklahoma voids employee non-compete agreements by statute and allows only narrow
 | **Restriction extended during a breach?** | Not addressed |
 | **Maximum length set by law** | No statutory limit on the ban; sale covenants limited to a county and contiguous counties |
 
-## Are employee non-compete agreements enforceable in Oklahoma? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Oklahoma? {#employee-non-compete-enforceability}
 
 **Short answer.** No. Oklahoma voids employee non-compete agreements by statute. A contract that restrains someone from exercising a lawful profession, trade, or business is void to that extent, except for the narrowly drawn covenants Oklahoma statutes specifically permit: sale-of-goodwill covenants (§ 218), partnership-dissolution covenants (§ 219), direct solicitation of established customers (§ 219A), and employee anti-raiding clauses (§ 219B) [^stat-217-general-void][^stat-219a-void-clause].
 
@@ -45,7 +47,7 @@ This makes Oklahoma one of the most employee-protective jurisdictions in the cou
 
 The U.S. Supreme Court later vacated that 2011 decision on arbitration-procedure grounds, so the void rule's firmest anchors are the statute itself and the Court of Civil Appeals' decision in *Autry v. Acosta, Inc.*, discussed below [^stat-217-general-void].
 
-What an Oklahoma employer *can* protect instead is a defined slice: direct solicitation of established customers, raiding of its workforce, the goodwill it buys when it acquires a business, and its trade secrets and confidential information. Each of those is addressed in its own question below.
+What an Oklahoma employer *can* protect instead is a defined slice: direct solicitation of established customers, raiding of its workforce, the goodwill it buys when it acquires a business, and its trade secrets and confidential information. Each of those is addressed in its own question below. For a clause-by-clause pass over a specific agreement against these rules, the [Oklahoma non-compete reviewer checklist](/checklists/non-compete/us/oklahoma) walks the surviving covenant suite item by item with each requirement's force level.
 
 > [!NOTE]
 > **Practice note.**
@@ -149,11 +151,11 @@ The enrolled bill would have rewritten the operative clause so that a covenant c
 
 "A person who makes an agreement with an employer, whether in writing or verbally, not to compete with the employer after the employment relationship has been terminated, shall be permitted to engage in the same business as that conducted by the former employer or in a similar business as that conducted by the former employer as long as the former employee does not directly solicit, directly or indirectly, actively or inactively, the sale of goods, services or a combination of goods and services from the established customers or independent contractors of the former employer."[^sb1543-enrolled]
 
-The veto left the strict § 219A regime — and the *Autry* prohibition on reaching indirect solicitation — fully in place. Employers should keep watching for similar bills in future sessions, but for now the narrow direct-solicitation-of-established-customers rule is unchanged [^mcafeetaft-sb1543-veto].
+The veto left the strict § 219A regime — and the *Autry* prohibition on reaching indirect solicitation — fully in place. Employers should keep watching for similar bills in future sessions, but for now the narrow direct-solicitation-of-established-customers rule is unchanged [^autry-indirect-recent][^mcafeetaft-sb1543-veto].
 
 "UPDATE: Oklahoma Governor Kevin Stitt vetoed this bill April 30, 2024, and the Legislature did not override the veto in the 2024 legislative session."[^mcafeetaft-sb1543-veto]
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Oklahoma. This article synthesizes Oklahoma primary law and is not legal advice from a Oklahoma-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Oklahoma. This article synthesizes Oklahoma primary law and is not legal advice from a Oklahoma-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Oklahoma*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/oklahoma.
 
 [^stat-217-general-void]: **15 O.S. § 217** — "Every contract by which any one is restrained from exercising a lawful profession, trade or business of any kind, otherwise than as provided by Sections 218 and 219 of this title, or otherwise than as provided by Section 2 of this act, is to that extent void." *Okla. Stat. tit. 15, § 217.* <https://oksenate.gov/sites/default/files/2022-05/os15.pdf>
 
@@ -194,3 +196,5 @@ The veto left the strict § 219A regime — and the *Autry* prohibition on reach
 [^sb1543-enrolled]: **Enrolled Senate Bill 1543 (2024)** — "A person who makes an agreement with an employer, whether in writing or verbally, not to compete with the employer after the employment relationship has been terminated, shall be permitted to engage in the same business as that conducted by the former employer or in a similar business as that conducted by the former employer as long as the former employee does not directly solicit, directly or indirectly, actively or inactively, the sale of goods, services or a combination of goods and services from the established customers or independent contractors of the former employer." *Enrolled S.B. 1543, 59th Leg., 2d Reg. Sess. (Okla. 2024) (vetoed).* <https://www.oklegislature.gov/cf_pdf/2023-24%20ENR/SB/SB1543%20ENR.PDF>
 
 [^mcafeetaft-sb1543-veto]: **McAfee & Taft — Oklahoma Legislature Passes Bill Broadening Scope of Permissible Non-Solicitation Agreements** — "UPDATE: Oklahoma Governor Kevin Stitt vetoed this bill April 30, 2024, and the Legislature did not override the veto in the 2024 legislative session." *McAfee & Taft, Oklahoma Legislature Passes Bill Broadening Scope of Permissible Non-Solicitation Agreements (Apr. 2024).* <https://www.mcafeetaft.com/oklahoma-legislature-passes-bill-broadening-scope-of-permissible-non-solicitation-agreements/>
+
+[^autry-indirect-recent]: **Autry v. Acosta, Inc.** — "We find that the remedy for this Non-Solicitation Agreement's shortcomings is not quite that simple and it cannot be made to comply with § 219A by merely deleting the word ‘indirectly.’" *Autry v. Acosta, Inc., 2018 OK CIV APP 8, 410 P.3d 1017.* <https://www.courtlistener.com/opinion/4520541/autry-v-acosta-inc/#:~:text=We%20find%20that%20the%20remedy,merely%20deleting%20the%20word%20%E2%80%9Cindirectly.%E2%80%9D>

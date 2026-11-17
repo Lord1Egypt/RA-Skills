@@ -1,37 +1,52 @@
-## Description: <br>
-Myers-Briggs Type Indicator test - 70 questions to determine your 4-letter personality type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Myers-Briggs Type Indicator test - 70 questions to determine your 4-letter personality type.
 
-## Publisher: <br>
-[Milbaxter](https://clawhub.ai/user/Milbaxter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[milbaxter](https://clawhub.ai/user/milbaxter)
 
-## Use Case: <br>
-External users use this skill to take a guided MBTI-style questionnaire, score their answers, and format a four-letter personality result for personal reflection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose personal preference or personality information while taking the assessment. <br>
-Mitigation: Share only information you are comfortable discussing with the agent, and avoid using the result as the sole basis for high-stakes decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Milbaxter/personality-test) <br>
+## Use Case:
 
+External users can use this skill to answer a 70-question MBTI-style self-assessment and have an agent calculate a four-letter personality type with dimension percentages. Treat the result as entertainment or self-reflection, not a clinical, employment, mental-health, or diagnostic assessment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown questionnaire with formatted text results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained questionnaire; evidence indicates no storage, transmission, code execution, or privileged access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat personality-test answers or results as more authoritative than artifact evidence supports.
+
+Mitigation: Present the result as entertainment or self-reflection and avoid using it for clinical, employment, mental-health, or diagnostic decisions.
+
+Risk: Users may disclose personal preference information while completing the questionnaire.
+
+Mitigation: Install and use only if comfortable answering personal preference questions in chat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/milbaxter/skills/personality-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown questionnaire and result summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a self-scored MBTI-style type, short type description, and dimension percentage breakdown.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

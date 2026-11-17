@@ -48,7 +48,7 @@ Follow the same rule as [standard HOLA](hola-agent-authentication.md#when-is-a-h
 
 Until full validation succeeds (by either path), do not grant trust, access, or elevated behavior. `POST /api/testhola` does not verify delegation authorization and must not be treated as full validation of another agent's subagent HOLA.
 
-Conceptual background: [`public/policies/why-identyclaw.md`](../public/policies/why-identyclaw.md) §8.1 and §11.
+Conceptual background: [`public/policies/why-identyclaw.md`](../policies/why-identyclaw.md) §8.1 and §11.
 
 ## When to Use
 
@@ -197,7 +197,7 @@ function canonicalizeAndHash(metadataJson) {
 
 ## Step 1: Generate NEAR Account
 
-Subagent generates their own NEAR account using the same mechanism as standard agents. Store the resulting JSON on **non-volatile storage** with other secrets (see [`references/enrollment.md#near-credentials-storage-required`](enrollment.md#near-credentials-storage-required)).
+Subagent generates their own NEAR account using the same mechanism as standard agents. Store the resulting JSON on **non-volatile storage** with other secrets (see [`public/references/enrollment.md#near-credentials-storage-required`](enrollment.md#near-credentials-storage-required)).
 
 ```javascript
 mkdir -p <credentials-dir> && chmod 700 <credentials-dir>;
@@ -390,10 +390,12 @@ The checksum is calculated on the **canonicalized (uppercase) message + signatur
 const canonicalMessage = message.toUpperCase();
 // Step 2: Add signature and trailing slash
 const checksumPrefix = `${canonicalMessage}${signatureB32}/`;
-// Step 3: Sum ASCII character codes
-const sum = 0;
-sum += checksumPrefix.charCodeAt(i);
-// Step 4: Modulo 16 and convert to hex
+// Step 3: Sum UTF-16 code units (JavaScript charCodeAt)
+let sum = 0;
+for (let i = 0; i < checksumPrefix.length; i++) {
+  sum += checksumPrefix.charCodeAt(i);
+}
+// Step 4: Modulo 23, index into HOLA checksum alphabet (23 chars; not hex)
 const holaChecksumAlphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ';
 const checksum = holaChecksumAlphabet[sum % 23];
 ```
@@ -415,13 +417,13 @@ Peer agent must verify both signatures to establish trust. **Local checksum or H
 
 ### Step 7.1: Verify HOLA Signature
 
-**Endpoint**: `POST /api/identity/verify` (requires JWT)
+**Endpoint**: `POST /api/identity/verify` (public; optional JWT for `RECIPIENT_MISMATCH`)
 
 ```bash
 curl -X POST https://api.identyclaw.com/api/identity/verify \
-  -H "Authorization: Bearer YOUR_JWT" \
   -H "Content-Type: application/json" \
-  "hola": "HOLA/MUNDO/ABCDEF.../BKBVEHBDCRGM/N3FZ5KQ8LH2BSM1XY.../2026-04-19T10:47:00.000Z/4F9A3C7E.../API.IDENTYCLAW.COM/MFRGG.../F"
+  -d '{"hola": "HOLA/MUNDO/ABCDEF.../BKBVEHBDCRGM/N3FZ5KQ8LH2BSM1XY.../2026-04-19T10:47:00.000Z/4F9A3C7E.../API.IDENTYCLAW.COM/MFRGG.../F"}'
+# Optional: -H "Authorization: Bearer YOUR_JWT"
 ```
 
 **Success Response Pattern**:
@@ -608,5 +610,5 @@ Different endpoints use different encodings:
 - [Standard Agent HOLA](hola-agent-authentication.md) - For non-delegated agent authentication
 - [Subagent HOLA guide](hola-subagent-authentication.md) and [holanonce API](holanonce-api.md) — delegation + nonce response
 - [API Login Authentication](login-authentication.md) - How to get JWT tokens
-- [Test with /api/testhola](https://api.identyclaw.com/docs) - Interactive API testing
+- [Test with /api/testhola](https://api.identyclaw.com/openapi.json) — OpenAPI contract (`POST /api/testhola`)
 - [Explore API endpoints](api-reference.md) - Complete API reference

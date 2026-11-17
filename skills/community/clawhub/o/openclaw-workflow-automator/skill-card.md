@@ -1,44 +1,62 @@
-## Description: <br>
-Automate repeatable workflows with WhatsApp/Telegram notifications, Excel/CSV processing, browser automation, and flexible scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate repeatable workflows with WhatsApp/Telegram notifications, Excel/CSV processing, browser automation, and flexible scheduling.
 
-## Publisher: <br>
-[qashsolutions](https://clawhub.ai/user/qashsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qashsolutions](https://clawhub.ai/user/qashsolutions)
 
-## Use Case: <br>
-External users and operators use this skill to turn plain-English recurring tasks into approved workflow plans that can process files, automate browser actions, call APIs, send notifications, and run on schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run approved shell, browser, messaging, and scheduled actions with persistent local data. <br>
-Mitigation: Review every workflow plan before approval, use restricted_mode and allowed_sites for higher-risk workflows, and set short approval TTLs and max-runs. <br>
-Risk: Command output, screenshots, browser sessions, schedules, and run logs may contain sensitive data. <br>
-Mitigation: Avoid banking, payment, admin, and other sensitive accounts; enable clear_session where appropriate; regularly purge sessions, screenshots, and run logs. <br>
-Risk: Autonomous scheduled runs may continue acting after the original approval context has changed. <br>
-Mitigation: Use plan approval expiry, run budgets, plan hash checks, and periodic schedule review before allowing continued autonomous execution. <br>
+## Use Case:
 
+Developers, operations teams, and business users use this skill to turn plain-English workflow requests into approved, scheduled automations for file processing, browser data extraction, API calls, and messaging reports.
 
-## Reference(s): <br>
-- [Browser Automation Guide](references/browser-guide.md) <br>
-- [Scheduling Guide](references/scheduling-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qashsolutions/openclaw-workflow-automator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown workflow plans, command previews, JSON-like schedule records, shell commands, execution summaries, and notification guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local workflow plans, schedules, run logs, audit entries, screenshots, and notification payloads through the OpenClaw runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: frontmatter and server release evidence) <br>
+Risk: Approved workflows can run shell commands and browser actions later without step-by-step supervision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted_mode with explicit allowed_commands, review every command and destination URL before approval, and keep sensitive workflows in approval mode.
+
+Risk: Browser automation may retain login sessions and create screenshots or logs containing private data.
+
+Mitigation: Avoid autonomous runs for sensitive sites or private data, use per-workflow browser isolation, clear sessions when possible, and purge screenshots, run logs, audit logs, and browser sessions periodically.
+
+Risk: Schedules may continue executing stale or changed workflow plans.
+
+Mitigation: Use plan hash checks, approval expiry, run budgets, and audit-log review so autonomous runs require periodic reapproval.
+
+Risk: Local workflow artifacts can accumulate across schedules, approvals, sessions, screenshots, and run logs.
+
+Mitigation: Use the data inventory and purge commands to review stored data and delete unneeded workflow records.
+
+## Reference(s):
+
+- [Browser Automation Guide](references/browser-guide.md)
+- [Scheduling Guide](references/scheduling-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown workflow plans with inline commands and JSON schedule, notification, and execution records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include approval prompts, browser action descriptions, execution summaries, and local audit or run-log paths.]
+
+## Skill Version(s):
+
+2.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

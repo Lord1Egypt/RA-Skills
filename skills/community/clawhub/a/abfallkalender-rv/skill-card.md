@@ -1,42 +1,56 @@
-## Description: <br>
-Lade den Abfallkalender fuer den Landkreis Ravensburg ueber die offizielle Athos-Webseite herunter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lade den Abfallkalender fuer den Landkreis Ravensburg ueber die offizielle Athos-Webseite herunter. Verwende diesen Skill, wenn du fuer Orte wie Ravensburg, Weingarten, Wangen im Allgaeu usw. anhand von Ort, Strasse und Hausnummer einen PDF- oder ICS-Abfallkalender holen sollst.
 
-## Publisher: <br>
-[wolf128058](https://clawhub.ai/user/wolf128058) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wolf128058](https://clawhub.ai/user/wolf128058)
 
-## Use Case: <br>
-External users and agents use this skill to download address-specific waste collection calendars for municipalities in the Ravensburg district. It supports structured ICS output for automation and PDF output when a visual calendar is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Germany (Ravensburg district) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The queried address is sent to the Ravensburg Athos portal during calendar lookup. <br>
-Mitigation: Use the skill only when sharing that address with the portal is acceptable. <br>
-Risk: Address-specific calendar files and cache metadata may be stored locally. <br>
-Mitigation: Use --no-cache for fresh downloads without cache reuse, or clear ~/.cache/abfallkalender-rv when local cache history should not be retained. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve address-specific waste collection calendars for the Ravensburg district in Germany as ICS or PDF files. Agents should prefer ICS output when they need structured calendar data for downstream scheduling or integration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wolf128058/abfallkalender-rv) <br>
-- [Ravensburg Athos Waste Management Portal](https://athos-onlinedienste.rv.de/) <br>
-- [OpenClaw](https://openclaw.com/) <br>
+### Deployment Geography for Use:
 
+Germany
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [ICS or PDF files with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers ICS for agent processing; PDF is available when a visual calendar is needed. Cache entries are address-specific and expire after 7 days by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The downloader may write to a server-provided filename when no explicit output path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with an explicit --output path in a dedicated directory and review the destination before use.
+
+Risk: Address-specific calendar data can be retained in the local cache.
+
+Mitigation: Use --no-cache when local retention is not desired, or set --cache-dir to a controlled location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wolf128058/skills/abfallkalender-rv)
+- [Publisher profile](https://clawhub.ai/user/wolf128058)
+- [Landkreis Ravensburg Athos online services](https://athos-onlinedienste.rv.de/)
+- [OpenClaw](https://openclaw.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; downloader output is an ICS or PDF file path plus status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads may use an address-bound local cache under ~/.cache/abfallkalender-rv unless --no-cache is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,68 @@
-## Description: <br>
-Query and analyze on-chain data via MCP tools and CLI commands across Solana, BSC, and Ethereum for token analytics, market ranking, wallet profiling, and WebSocket streaming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze on-chain token, market, wallet, and WebSocket data through ChainStream MCP, CLI, SDK, and API workflows across Solana, BSC, and Ethereum.
 
-## Publisher: <br>
-[harry5556](https://clawhub.ai/user/harry5556) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harry5556](https://clawhub.ai/user/harry5556)
 
-## Use Case: <br>
-Developers and agents use this skill to run live on-chain data queries, screen token risk signals, inspect wallet PnL and holdings, monitor market trends, and stream crypto trade data. It is intended for ChainStream MCP, CLI, SDK, and API workflows that may require authentication, quota checks, or user-approved payment steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide wallet creation, private-key import, payment, and transaction-signing workflows. <br>
-Mitigation: Require explicit user approval before wallet creation, private-key import, payment, or transaction-signing steps, and prefer read-only API-key or MCP access for analytics. <br>
-Risk: The skill connects to live third-party crypto services and may incur quota usage or purchases. <br>
-Mitigation: Check authentication and subscription status first, present available plans clearly, and never auto-select or auto-purchase a plan. <br>
+## Use Case:
 
+Developers, analysts, and AI agents use Chainstream Data to retrieve and interpret on-chain token, market, wallet, and streaming data, including token security checks, holder analysis, market discovery, wallet profiling, and subscription-aware access setup.
 
-## Reference(s): <br>
-- [ChainStream skill page](https://clawhub.ai/harry5556/chainstream-data) <br>
-- [ChainStream documentation](https://docs.chainstream.io) <br>
-- [ChainStream dashboard](https://app.chainstream.io) <br>
-- [ChainStream CLI README](https://github.com/chainstream-io/cli) <br>
-- [API endpoints](references/api-endpoints.md) <br>
-- [API schema](references/api-schema.md) <br>
-- [Market discovery](references/market-discovery.md) <br>
-- [Query examples](references/query-examples.md) <br>
-- [Token research](references/token-research.md) <br>
-- [Wallet profiling](references/wallet-profiling.md) <br>
-- [WebSocket streams](references/websocket-streams.md) <br>
-- [x402 wallet authentication](references/x402-auth.md) <br>
-- [Authentication](shared/authentication.md) <br>
-- [Payment protocols](shared/x402-payment.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live API, MCP, CLI, SDK, and WebSocket query patterns; payment, wallet, and private-key workflows require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.12 (source: server release metadata) <br>
+Risk: The skill combines read-oriented blockchain analytics with wallet setup, persistent authentication, private-key import paths, and real crypto payment flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer API-key or preconfigured MCP access for read-only analytics; avoid importing production private keys and use a low-balance wallet if payment flows are needed.
+
+Risk: CLI or protocol setup can involve unpinned command execution and external installers.
+
+Mitigation: Review commands before execution and independently verify installer sources before running shell installer pipelines.
+
+Risk: Wallet signing, subscription purchases, webhook changes, or transaction-related actions can alter external systems or spend funds.
+
+Mitigation: Require explicit user confirmation before signing, purchasing, modifying webhooks, or performing transaction-related actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harry5556/skills/chainstream-data)
+- [ChainStream MCP server](https://mcp.chainstream.io/mcp)
+- [ChainStream API base URL](https://api.chainstream.io)
+- [ChainStream dashboard](https://app.chainstream.io)
+- [API Schema Reference](artifact/references/api-schema.md)
+- [ChainStream Data API Endpoints](artifact/references/api-endpoints.md)
+- [Token Research Reference](artifact/references/token-research.md)
+- [Market Discovery Reference](artifact/references/market-discovery.md)
+- [Wallet Profiling Reference](artifact/references/wallet-profiling.md)
+- [WebSocket Streams Reference](artifact/references/websocket-streams.md)
+- [x402 Wallet Authentication](artifact/references/x402-auth.md)
+- [Payment Protocols](artifact/shared/x402-payment.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and API or MCP usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live data query guidance, machine-readable command output expectations, and safety checks before payment, signing, or webhook actions.]
+
+## Skill Version(s):
+
+3.1.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

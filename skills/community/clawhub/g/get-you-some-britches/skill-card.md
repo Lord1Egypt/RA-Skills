@@ -1,41 +1,55 @@
-## Description: <br>
-Use this skill any time I start complaining about my love life, or, if I indicate I need to find some pants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find and compare pants from supported public retail sites using size, budget, and style preferences.
 
-## Publisher: <br>
-[am-will](https://clawhub.ai/user/am-will) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[am-will](https://clawhub.ai/user/am-will)
 
-## Use Case: <br>
-External users use this skill to search for pants that match size, budget, and style preferences across supported retailers. It can also respond to joking relationship complaints by steering the agent toward pants shopping. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad humorous triggers and may activate from jokes or relationship complaints rather than an explicit clothing request. <br>
-Mitigation: Use it when the user clearly wants pants-shopping help, or confirm intent before starting a retailer search. <br>
-Risk: Retailer browsing steps may run browser automation, including JavaScript evaluation for filtering on supported store pages. <br>
-Mitigation: Review proposed browser actions and page targets before allowing automation to proceed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Store-Specific Navigation and Extraction Guide](references/stores.md) <br>
-- [Target men's pants collection](https://www.target.com/c/pants-men-s-clothing/-/N-5xu29) <br>
-- [Global Brands Store men's jeans collection](https://www.globalbrandsstore.com/en/c/men/clothing/jeans) <br>
+## Use Case:
 
+External users use this skill to search public retailer pages for pants, compare options by price, size, availability, and fit, and receive ranked shopping recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown-style shopping recommendations with retailer links; helper scripts can emit formatted text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser navigation steps, product prices, sizes, ranking reasons, and retailer URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Retail browsing can expose account-specific page state if the agent is run in logged-in retailer sessions or saves troubleshooting screenshots.
+
+Mitigation: Use the skill only for pants-shopping requests on public product pages, avoid logged-in retail sessions, and review or remove temporary screenshots after troubleshooting.
+
+Risk: Retail prices, availability, shipping details, and currency conversions can change or be approximate.
+
+Mitigation: Treat recommendations as shopping guidance and confirm final price, stock, shipping, and sizing details on the retailer page before purchase.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/am-will/skills/get-you-some-britches)
+- [Store-Specific Navigation and Extraction Guide](references/stores.md)
+- [Target Men's Pants Collection](https://www.target.com/c/pants-men-s-clothing/-/N-5xu29)
+- [Global Brands Store Men's Jeans](https://www.globalbrandsstore.com/en/c/men/clothing/jeans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown text with product rankings, prices, availability notes, links, and optional JSON or formatted text from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sizing conversions, currency conversion notes, retailer navigation steps, and product recommendation reasoning.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,84 +1,61 @@
 # openclaw-session-closeout
 
-A structured end-of-session closeout skill for [OpenClaw](https://github.com/openclaw/openclaw). Catches loose ends before your context resets.
+A read-only end-of-session audit skill for [OpenClaw](https://github.com/openclaw/openclaw).
+It catches loose ends before your context resets, and it writes nothing at all.
 
-## What It Does
+## What it does
 
-Runs a non-destructive checklist at the end of every work session:
+- **Task hygiene.** Reports whether `MASTER_TODO.md` is fresh, stale, or missing. Never rebuilds it.
+- **Repo hygiene.** Lists git repos with uncommitted changes. Never commits or discards. Reads status with the scanned repo's fsmonitor and hooks pinned off, so auditing a repo cannot run that repo's code.
+- **Project-doc hygiene** (optional). With `CLOSEOUT_PROJECTS="alpha|beta"`, warns when a project's `STATUS.md`, `DECISIONS.md`, `PROJECT.md`, or `BACKLOG.md` was not updated today. Slugs are validated as plain directory names.
+- **Automation hygiene.** Reports `not_verified` so you check cron health by hand.
 
-- **Repo hygiene** — Scans for dirty git repos with uncommitted changes. Reports them but never auto-commits.
-- **Task hygiene** — Refreshes your `MASTER_TODO.md` from project backlogs (if a builder script exists). Skips gracefully if not.
-- **Memory hygiene** — Appends a timestamped closeout block to your daily memory file (`memory/YYYY-MM-DD.md`) with outcomes, blockers, and next-start items.
-- **Automation hygiene** — Flags cron/automation health for manual review.
-- **Hooks** — Extensible via `scripts/closeout-hooks.sh` for project-specific checks.
+Recording the closeout is the caller's job. The script hands you the findings; you decide what to write down.
+
+## 1.1.1: read-only audit
+
+- **Removed every write.** No daily-memory append, no `mkdir`, no file creation. Earlier versions appended a closeout block to `memory/YYYY-MM-DD.md`; that recording step now belongs to whoever runs the audit.
+- **Removed the environment-controlled paths.** `OPENCLAW_WORKSPACE` and `CLOSEOUT_PROJECTS_DIR` no longer steer the script. The workspace root is the current directory, and projects live under `projects/`.
+- **Validated project slugs.** Separators, `..`, and absolute paths are rejected and reported instead of being looked up.
+- **Hardened the repo scan.** `core.fsmonitor` and `core.hooksPath` are pinned off and optional locks are left alone.
+- **Validated the stale threshold.** `CLOSEOUT_TODO_STALE_HOURS` must be digits; anything else falls back to 24.
+
+## 1.1.0: security-first refresh
+
+- Removed automatic execution of `scripts/build-master-todo.py` and sourcing of `scripts/closeout-hooks.sh`. The script no longer discovers and runs anything in your workspace.
+- Fixed the status bug: memory used to record `Status: ok` before checks were evaluated.
+- Trigger narrowed to explicit closeout requests.
+- Portable `stat` (GNU and BSD).
 
 ## Install
-
-### From ClawHub
 
 ```bash
 clawhub install session-closeout
 ```
 
-### Manual
-
-Copy `SKILL.md` and `scripts/` into your OpenClaw workspace `skills/session-closeout/` directory.
+Or copy `SKILL.md` and `scripts/` into `skills/session-closeout/` in your workspace.
 
 ## Usage
 
-Once installed, trigger it naturally in any OpenClaw session:
-
-- "Run closeout"
-- "Wrap up this session"
-- `/closeout` (if configured as a slash command)
-
-The agent reads the skill and runs the closeout script automatically.
-
-### Environment Variable Overrides
-
-Customize the closeout summary with pipe-delimited values:
-
 ```bash
-CLOSEOUT_OUTCOMES="Shipped auth flow|Fixed login bug" \
-CLOSEOUT_BLOCKERS="Waiting on DNS propagation" \
-CLOSEOUT_NEXT="Deploy to prod" \
-bash scripts/session-closeout.sh
+CLOSEOUT_PROJECTS="alpha|beta" \
+bash skills/session-closeout/scripts/session-closeout.sh
 ```
 
-## Output
-
-The script prints structured key-value pairs for the agent to summarize:
-
-| Key | Values | Description |
-|-----|--------|-------------|
-| `CLOSEOUT_STATUS` | `ok`, `warning`, `error` | Overall session health |
-| `DIRTY_REPO_COUNT` | `0`+ | Repos with uncommitted changes |
-| `MASTER_TODO_REFRESH` | `yes`, `no` | Whether the task list was refreshed |
-| `EXCEPTION_COUNT` | `0`+ | Total issues found |
+Output is `key=value` lines (`CLOSEOUT_STATUS`, `WORKSPACE_ROOT`, `MASTER_TODO_STATUS`, `DIRTY_REPO_COUNT`, `PROJECT_DOC_WARNINGS`, `REJECTED_SLUG_COUNT`, `EXCEPTION_n`). See `SKILL.md` for the full table.
 
 ## Configuration
 
-The script auto-detects your workspace. Override with the `OPENCLAW_WORKSPACE` environment variable.
-
-| Item | Default | Override |
-|------|---------|----------|
-| Workspace root | `$OPENCLAW_WORKSPACE` or cwd | Set env var |
-| Daily memory dir | `$ROOT/memory/` | — |
-| Master TODO | `$ROOT/MASTER_TODO.md` | — |
-| TODO builder | `$ROOT/scripts/build-master-todo.py` | Skip if missing |
-| Custom hooks | `$ROOT/scripts/closeout-hooks.sh` | Source if present |
-
-## Design Principles
-
-- **Non-destructive** — Never commits, deletes, or modifies your code. Read-only except for appending to the daily memory file.
-- **Graceful degradation** — Missing scripts, missing files, no git repos? It handles all of it without errors.
-- **Extensible** — Add a `closeout-hooks.sh` to plug in your own checks (dashboard pushes, status syncs, etc.).
+| Item | Value |
+|---|---|
+| Workspace root | the current directory, not configurable |
+| Master TODO | `./MASTER_TODO.md` |
+| Projects dir | `./projects` |
+| Stale threshold | 24 hours, or `CLOSEOUT_TODO_STALE_HOURS` if it is digits |
 
 ## Requirements
 
-- [OpenClaw](https://github.com/openclaw/openclaw)
-- Bash 4+
-- Git (for repo hygiene scanning)
+Bash 4+ and git.
 
 ## License
 

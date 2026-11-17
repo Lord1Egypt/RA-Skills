@@ -1,42 +1,58 @@
-## Description: <br>
-Ora地图拓客专家 helps agents search map-based business leads by city and keyword, retrieve contact-rich business listings, and present analysis from the returned JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ora地图拓客专家 helps agents search for localized business leads by city and product or industry keyword, returning commercial listings with company names, addresses, websites, phone numbers, emails, and social accounts when available.
 
-## Publisher: <br>
-[oraagent](https://clawhub.ai/user/oraagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oraagent](https://clawhub.ai/user/oraagent)
 
-## Use Case: <br>
-Sales, export, and business development users use this skill to run one city-and-keyword map lead search and review returned businesses, contacts, websites, emails, phone numbers, and social links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords, approximate city coordinates, and any OraAgent API key are sent to the provider API. <br>
-Mitigation: Install only when this provider data sharing is acceptable, and keep API keys scoped and protected. <br>
-Risk: Returned business contact data may be used for outreach that is subject to privacy, anti-spam, and local compliance rules. <br>
-Mitigation: Review and handle returned contact data responsibly before using it for sales or marketing activity. <br>
-Risk: The skill saves returned business results to local JSON files. <br>
-Mitigation: Store, share, and delete result files according to the sensitivity of the contact data they contain. <br>
+## Use Case:
 
+External users and business development teams use this skill to search for local business prospects by city and keyword, then review returned contact and web presence details for outreach planning. It is intended for one city and one keyword per search.
 
-## Reference(s): <br>
-- [Ora地图拓客专家 on ClawHub](https://clawhub.ai/oraagent/ora-map-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown narrative with shell command execution details and references to local JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs one provider API search per request, using a single city and keyword.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill sends search keywords, coordinates, and any local OraAgent.key credential to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the third-party API and credential handling are acceptable for the intended environment.
+
+Risk: Returned phone numbers, emails, social accounts, and business records may be regulated or sensitive contact data.
+
+Mitigation: Handle saved result files according to applicable privacy, retention, and outreach compliance requirements.
+
+Risk: A quota error directs users to a payment page.
+
+Mitigation: Verify the recharge page independently before entering payment or account information.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/oraagent/skills/ora-map-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/oraagent)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Markdown, Guidance]
+
+**Output Format:** [Markdown response summarizing JSON business-search results and saved raw data file details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One city and one keyword per request; results may include business names, addresses, websites, phone numbers, emails, and social accounts.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

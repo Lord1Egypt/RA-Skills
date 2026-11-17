@@ -1,44 +1,60 @@
-## Description: <br>
-Generates images and videos using MuleRouter or MuleRun multimodal APIs, including text-to-image, image-to-image, text-to-video, image-to-video, video editing, and keyframe interpolation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MuleRouter helps agents generate, edit, and transform images and videos through MuleRouter or MuleRun multimodal APIs.
 
-## Publisher: <br>
-[Misaka43fd](https://clawhub.ai/user/Misaka43fd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[misaka43fd](https://clawhub.ai/user/misaka43fd)
 
-## Use Case: <br>
-Developers and creative operators use this skill to configure MuleRouter or MuleRun API access, inspect available multimodal models, and run image or video generation and editing jobs from agent-driven shell commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media URLs, and selected local image files are sent to MuleRouter or MuleRun for processing. <br>
-Mitigation: Use the skill only for content that may be shared with the configured service endpoint, and review media inputs before execution. <br>
-Risk: A misconfigured MULEROUTER_BASE_URL can direct API credentials and content to an unintended endpoint. <br>
-Mitigation: Keep MULEROUTER_BASE_URL pointed at a trusted MuleRouter or MuleRun endpoint and verify configuration before running generation commands. <br>
-Risk: API keys may be exposed through insecure local handling. <br>
-Mitigation: Protect any .env file containing MULEROUTER_API_KEY and avoid passing API keys directly on shared command lines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MuleRouter ClawHub Skill Page](https://clawhub.ai/Misaka43fd/mulerouter) <br>
-- [MuleRouter API Reference](references/REFERENCE.md) <br>
-- [Model Reference](references/MODELS.md) <br>
-- [MuleRouter API Keys](https://www.mulerouter.ai/app/api-keys?utm_source=github_claude_plugin) <br>
+## Use Case:
 
+Developers and external users use this skill to configure MuleRouter or MuleRun access, inspect supported multimodal models, and run CLI workflows for AI image and video generation, editing, and transformation.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON task results containing generated media URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+, uv, MULEROUTER_API_KEY, and either MULEROUTER_BASE_URL or MULEROUTER_SITE; sends prompts, media URLs, and selected local image files to the configured MuleRouter or MuleRun endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The configured endpoint can receive the user's API key and uploaded media.
+
+Mitigation: Use MULEROUTER_SITE=mulerouter or MULEROUTER_SITE=mulerun, and avoid custom MULEROUTER_BASE_URL values unless the endpoint is fully trusted.
+
+Risk: Local image paths passed to model scripts may be uploaded as media inputs.
+
+Mitigation: Only pass local image files that are intended for upload, and review model parameters before execution.
+
+Risk: The security verdict is suspicious because host and HTTPS validation are not enforced for arbitrary custom base URLs.
+
+Mitigation: Review configuration before installing or running the skill, and restrict execution to trusted endpoints.
+
+## Reference(s):
+
+- [MuleRouter ClawHub skill page](https://clawhub.ai/misaka43fd/skills/mulerouter)
+- [misaka43fd publisher profile](https://clawhub.ai/user/misaka43fd)
+- [MuleRouter API key page](https://www.mulerouter.ai/app/api-keys?utm_source=github_claude_plugin)
+- [MuleRouter API Reference](artifact/references/REFERENCE.md)
+- [Model Reference](artifact/references/MODELS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; model scripts may return plain text or JSON containing generated image or video URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MULEROUTER_API_KEY and either MULEROUTER_BASE_URL or MULEROUTER_SITE; uses uv and Python 3.10+.]
+
+## Skill Version(s):
+
+0.1.10 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,7 +11,7 @@ from _output import print_output, print_error
 
 from capabilities.get_offer_data.service import get_offer_data
 
-COMMAND_NAME = "get_offer_data"
+COMMAND_NAME = "alibaba.1688.get.offer.data"
 COMMAND_DESC = "获取商品综合数据（基础/表现/货盘/搜推问题/购买因素/异常/广告/热搜词/热品）"
 
 
@@ -26,16 +26,25 @@ def _parse_args():
             "search_issues,purchase_factors,sycm_anomaly,ad_analysis,hotwords,hot_items,all"
         ),
     )
+    parser.add_argument(
+        "--NEWTON_SHOP_LOGIN_ID",
+        default=None,
+        help="店铺登录ID，指定查询的店铺",
+    )
     return parser.parse_args()
 
 
 def main():
     try:
         args = _parse_args()
-        result = get_offer_data(offer_id=args.offer_id, modules=args.modules)
-        print_output(True, "商品综合数据查询成功", {"data": result})
+
+        result = get_offer_data(
+            offer_id=args.offer_id,
+            modules=args.modules,
+            login_id=args.NEWTON_SHOP_LOGIN_ID,
+        )
+        print_output(True, "商品综合数据查询成功", result)
     except SystemExit:
-        # argparse 自身的 -h / 参数错误已经写过 stderr，这里直接抛回
         raise
     except Exception as e:
         print_error(e, {"data": {}})

@@ -1,43 +1,53 @@
-## Description: <br>
-Use when interpreting scientific graphs and charts, explaining data visualizations for research presentations, writing figure captions for publications, or analyzing trends in clinical research data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when interpreting scientific graphs and charts, explaining data visualizations for research presentations, writing figure captions for publications, or analyzing trends in clinical research data.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, clinicians, students, and academic communicators use this skill to interpret scientific figures, explain statistical results, and draft publication or presentation captions. It is intended for graph interpretation and communication support, not as a substitute for source-data verification or domain review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Graph interpretations can be misleading if the visible figure, source data, statistical tests, or clinical context are incomplete or incorrect. <br>
-Mitigation: Verify conclusions against the original data and methods, report uncertainty such as confidence intervals and p-values, and require qualified review before publication, clinical, or policy use. <br>
-Risk: The skill is granted local read, write, edit, and shell capability. <br>
-Mitigation: Install only in trusted workspaces and review proposed shell commands before running them. <br>
-Risk: Some documented examples may need adjustment because the referenced graph_interpreter.py file is not included in the artifact. <br>
-Mitigation: Confirm available files and adapt commands to the shipped script before relying on automated CLI workflows. <br>
+## Use Case:
 
+Developers, researchers, clinicians, and academic writers use this skill to interpret scientific graphs, summarize statistical findings, draft figure captions, and communicate visualization results for research and presentation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/graph-interpretation) <br>
-- [Graph Interpretation references](references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown explanations, figure captions, statistical summaries, code examples, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audience-specific explanations, critical appraisal notes, and structured examples for scientific graph interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may produce clinical or patient-facing interpretations that could be mistaken for diagnosis, treatment guidance, or clinical decision support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as drafts for research communication; require qualified professional review and source-data verification before clinical, patient-facing, or healthcare decisions.
+
+Risk: Graph explanations can overstate statistical or clinical significance if source data, axes, confidence intervals, or study context are incomplete.
+
+Mitigation: Check the original figure, underlying data, statistical methods, uncertainty intervals, and stated limitations before relying on the interpretation.
+
+## Reference(s):
+
+- [Graph Interpretation - References](artifact/references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks; generated descriptions may also be returned as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include graph interpretations, statistical summaries, audience-specific explanations, caption drafts, quality checklists, and critical appraisal notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and tile.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

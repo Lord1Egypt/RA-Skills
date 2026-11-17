@@ -1,42 +1,58 @@
-## Description: <br>
-Automates official website demand updates by writing requirements into a target project, backing up the demand file, updating a branch, committing and pushing selected changes, and sending a WeCom notification after a successful push. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Updates official website project code and synchronizes product requirements by writing demand documentation, backing up the prior demand file, changing and validating code, committing and pushing selected files, and sending a WeCom notification after a successful push.
 
-## Publisher: <br>
-[shidengyun](https://clawhub.ai/user/shidengyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shidengyun](https://clawhub.ai/user/shidengyun)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn website product requirements into a demand document, selected code changes, a git commit, a remote branch push, and a post-push WeCom notification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a specified repository, stage selected files, commit them, and push to a remote branch without a clear final approval step. <br>
-Mitigation: Use a safe feature branch, inspect diffs and staged files before commit or push, and require human approval for repository changes in sensitive projects. <br>
-Risk: The notification flow can send project path, branch, commit information, and change summaries to Enterprise WeChat. <br>
-Mitigation: Disable notifications for sensitive repositories or tightly configure them so only approved metadata is sent. <br>
-Risk: A default WeCom webhook URL is embedded in the artifact. <br>
-Mitigation: Replace it with an approved webhook through configuration, rotate any exposed webhook, and avoid using the bundled default for production work. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to implement official website demand changes, update product demand documentation, commit and push selected repository changes, and notify stakeholders after a successful push.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shidengyun/wacai-index-official-website-demand-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown requirements files, repository code changes, git command output, and notification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an hourly product demand backup when a prior demand file exists and sends a WeCom text notification after a successful push.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The workflow can automatically commit and push selected repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in repositories where automated commits and pushes are acceptable, review staged changes before execution, and add a confirmation step before push.
+
+Risk: A hardcoded WeCom webhook can receive repository metadata, commit details, project paths, and arbitrary summary-file contents.
+
+Mitigation: Replace the hardcoded webhook with a controlled secret or environment override, rotate exposed webhook credentials, and avoid including sensitive content in summaries.
+
+Risk: Untrusted project paths, summary files, or demand filenames can steer file writes or notification content.
+
+Mitigation: Validate project paths and filenames, use trusted summary inputs, and restrict execution to expected repository directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shidengyun/skills/wacai-index-official-website-demand-dev)
+- [Publisher profile](https://clawhub.ai/user/shidengyun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands, repository file updates, git commit metadata, and notification content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May commit and push selected repository files and send project path, branch, commit details, and change summaries to a WeCom webhook.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

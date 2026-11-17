@@ -1,40 +1,49 @@
-## Description: <br>
-根据用户提供的要点，自动生成正式或友好的英文或中文邮件草稿。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户提供的收件人、主题、要点和语气，生成正式或友好风格的中文或英文邮件正文。
 
-## Publisher: <br>
-[zhaofan2021](https://clawhub.ai/user/zhaofan2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaofan2021](https://clawhub.ai/user/zhaofan2021)
 
-## Use Case: <br>
-People drafting correspondence use this skill to turn recipients, optional subjects, key points, and tone preferences into editable Chinese or English email drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email drafts may contain unintended wording, omissions, or incorrect details. <br>
-Mitigation: Review and edit the draft before sending it. <br>
-Risk: Prompts for email drafting may include secrets or unnecessary personal data. <br>
-Mitigation: Avoid including secrets or unnecessary personal data in the prompt. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn key points into ready-to-edit Chinese or English email drafts with an appropriate greeting, body, subject, and closing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaofan2021/zf-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text email draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes subject and signature suggestions when useful; draft should be reviewed before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated email drafts may contain incomplete, inaccurate, or unsuitable wording for sensitive, legal, financial, or business-critical situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit each draft before sending, and apply the user's own approval process for sensitive communications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaofan2021/skills/zf-email)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text email draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes subject and signature suggestions when appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Complete competitive intelligence system for market mapping, product teardowns, pricing intel, win/loss analysis, battlecards, and strategic monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete competitive intelligence system - market mapping, product teardowns, pricing intel, win/loss analysis, battlecards, and strategic monitoring.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business, product, marketing, sales, and strategy teams use this skill to structure competitive intelligence work for market entry, pricing decisions, sales enablement, M&A diligence, investor preparation, and quarterly strategy reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Internal sales, customer, pricing, deal, or competitor data may be sensitive if shared with an agent. <br>
-Mitigation: Use only information authorized for agent processing, redact sensitive names and contract terms when appropriate, and review outputs before distribution. <br>
-Risk: Battlecards, investor materials, or strategic recommendations may be incorrect or misleading if based on incomplete inputs. <br>
-Mitigation: Review generated analysis against source data before sharing with sales teams, executives, investors, or customers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-competitive-intel) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business operators, founders, sales teams, and strategy teams use this skill to map competitors, compare products and pricing, prepare battlecards, analyze win/loss data, and monitor market signals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown, YAML templates, tables, and structured analysis prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution or hidden system access according to security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Competitive intelligence work may expose confidential customer records, private competitive material, or gated information obtained through deception.
+
+Mitigation: Use public competitor information and carefully scoped internal sales data; do not provide confidential customer records, private competitive material, or gated information obtained through deception.
+
+Risk: Strategic, pricing, and sales recommendations may be incomplete or misleading if source data is stale, anecdotal, or biased.
+
+Mitigation: Review outputs against current public sources, internal sales records, and appropriate legal or compliance guidance before using them for business decisions.
+
+## Reference(s):
+
+- [Competitive Intel ClawHub release](https://clawhub.ai/1kalin/skills/afrexai-competitive-intel)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML examples, tables, and structured research templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; outputs are research worksheets, strategic recommendations, and reusable templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

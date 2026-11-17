@@ -1,55 +1,72 @@
-## Description: <br>
-Next.js App Router best practices for Server Components, data fetching, caching, routing, middleware, metadata, error handling, streaming, Server Actions, and performance optimization for Next.js 14-16+. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Next.js App Router best practices - Server Components, data fetching, caching, routing, middleware, metadata, error handling, streaming, Server Actions, and performance optimization for Next.js 14-16+.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill when building, reviewing, migrating, or debugging Next.js App Router applications, especially work involving Server Components, routing, caching, metadata, performance, and deployment patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples involving cookies, session IDs, auth tokens, secrets, internal URLs, or private feature flags could expose sensitive information if copied directly into client-facing code. <br>
-Mitigation: Review examples before use and keep sensitive values on the server side; do not return secrets or private runtime data to clients. <br>
-Risk: The README includes an unpinned remote install command from GitHub. <br>
-Mitigation: Prefer the ClawHub install path from the server-resolved release or review remote commands before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/nextjs-guidelines) <br>
-- [Async Patterns](references/async-patterns.md) <br>
-- [Bundling](references/bundling.md) <br>
-- [Data Patterns](references/data-patterns.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [File Conventions](references/file-conventions.md) <br>
-- [Font Optimization](references/font-optimization.md) <br>
-- [Hydration Errors](references/hydration-errors.md) <br>
-- [Image Optimization](references/image-optimization.md) <br>
-- [Metadata](references/metadata.md) <br>
-- [Parallel Routes](references/parallel-routes.md) <br>
-- [Route Handlers](references/route-handlers.md) <br>
-- [RSC Boundaries](references/rsc-boundaries.md) <br>
-- [Scripts](references/scripts.md) <br>
-- [Self-Hosting](references/self-hosting.md) <br>
-- [Next.js Error Handling Documentation](https://nextjs.org/docs/app/getting-started/error-handling) <br>
-- [Next.js redirect Behavior](https://nextjs.org/docs/app/api-reference/functions/redirect#behavior) <br>
+## Use Case:
 
+Developers and engineers use this skill when building, reviewing, migrating, optimizing, or debugging Next.js App Router applications. It provides guidance for Server Components, data fetching, caching, routing, metadata, error handling, streaming, Server Actions, and performance patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, configuration, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for agent responses; no direct tool or API execution is defined by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples may lead an agent to expose session tokens, server-only environment values, or configuration data to clients.
+
+Mitigation: Review generated code for client/server boundaries, keep secrets in server-only code paths, and avoid returning cookie tokens or server-only environment values to client components or public APIs.
+
+Risk: Install and migration examples use mutable remote packages such as latest-tagged installer or codemod commands.
+
+Mitigation: Prefer pinned package versions for installer and codemod commands, and review diffs before applying generated migrations.
+
+Risk: Third-party scripts, analytics, maps, or embedded services can affect user privacy or consent obligations.
+
+Mitigation: Add privacy and consent checks before using analytics, tag-manager, maps, or embedded third-party scripts.
+
+## Reference(s):
+
+- [Skill Page](https://clawhub.ai/wpank/skills/nextjs-guidelines)
+- [Async Patterns](references/async-patterns.md)
+- [Bundling](references/bundling.md)
+- [Data Patterns](references/data-patterns.md)
+- [Error Handling](references/error-handling.md)
+- [File Conventions](references/file-conventions.md)
+- [Font Optimization](references/font-optimization.md)
+- [Hydration Errors](references/hydration-errors.md)
+- [Image Optimization](references/image-optimization.md)
+- [Metadata](references/metadata.md)
+- [Parallel Routes](references/parallel-routes.md)
+- [Route Handlers](references/route-handlers.md)
+- [RSC Boundaries](references/rsc-boundaries.md)
+- [Scripts](references/scripts.md)
+- [Self Hosting](references/self-hosting.md)
+- [Next.js Error Handling Documentation](https://nextjs.org/docs/app/getting-started/error-handling)
+- [Next.js Redirect Behavior Documentation](https://nextjs.org/docs/app/api-reference/functions/redirect#behavior)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Next.js implementation patterns, migration commands, configuration snippets, checklists, and debugging guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

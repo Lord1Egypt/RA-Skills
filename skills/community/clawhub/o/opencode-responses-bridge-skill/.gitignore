@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+dist/
+proxy-requests.log
+proxy-last-request.json
+proxy-last-upstream.json
+proxy-last-error.txt

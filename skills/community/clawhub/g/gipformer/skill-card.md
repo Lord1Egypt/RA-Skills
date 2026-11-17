@@ -1,44 +1,59 @@
-## Description: <br>
-Gipformer ASR transcribes Vietnamese audio using the g-group-ai-lab/gipformer-65M-rnnt model with server-side VAD chunking, batching, and WAV, FLAC, OGG, MP3, and M4A support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gipformer ASR transcribes Vietnamese speech from WAV, FLAC, OGG, MP3, and M4A audio using a 65M-parameter Zipformer-RNNT model with server-side VAD chunking and batching.
 
-## Publisher: <br>
-[ai-ggroup](https://clawhub.ai/user/ai-ggroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-ggroup](https://clawhub.ai/user/ai-ggroup)
 
-## Use Case: <br>
-Developers and teams use this skill to transcribe Vietnamese speech from local audio files or through a local HTTP service, receiving full transcripts with chunk timing metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio recordings and transcripts may contain private or sensitive information. <br>
-Mitigation: Run the server locally for private use, keep it bound to 127.0.0.1, and avoid sending audio to remote servers unless that environment is trusted and secured. <br>
-Risk: Model and dependency supply chain trust affects transcription privacy and reliability. <br>
-Mitigation: Install in a virtual environment and review the Python dependencies and Hugging Face model source before deployment. <br>
-Risk: Binding the service to 0.0.0.0 or using a remote server can expose audio submissions and transcripts beyond the local machine. <br>
-Mitigation: Use non-local binding only in a secured environment with appropriate access controls and transport protections. <br>
+## Use Case:
 
+Developers and external users use this skill to run a local Vietnamese speech-to-text service and transcribe audio files through a CLI or HTTP API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-ggroup/gipformer) <br>
-- [Gipformer ASR Server API Reference](references/api.md) <br>
-- [g-group-ai-lab/gipformer-65M-rnnt model](https://huggingface.co/g-group-ai-lab/gipformer-65M-rnnt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcripts or JSON objects with transcript, duration, processing time, and per-chunk timing fields; guidance may include Markdown with inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include per-chunk start and end timestamps. M4A support requires ffmpeg, and the server downloads ASR and VAD models on first run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local transcription service is unauthenticated and may be unsafe to expose beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it bound to 127.0.0.1 unless authentication, request-size limits, duration limits, and rate or concurrency controls are added.
+
+Risk: The skill downloads Python packages and remote model files before inference.
+
+Mitigation: Install only when the dependency and model sources are trusted and reviewed for the intended environment.
+
+Risk: Submitted audio is decoded and transcribed by the local server process.
+
+Mitigation: Avoid submitting sensitive audio unless the deployment environment and data-handling requirements have been reviewed.
+
+## Reference(s):
+
+- [Gipformer ASR Server API Reference](artifact/references/api.md)
+- [Gipformer ASR ClawHub Page](https://clawhub.ai/ai-ggroup/skills/gipformer)
+- [Gipformer 65M RNNT Hugging Face Model](https://huggingface.co/g-group-ai-lab/gipformer-65M-rnnt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce transcripts and per-chunk timing metadata when used with the included server and client scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

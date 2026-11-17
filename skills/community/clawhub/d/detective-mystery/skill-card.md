@@ -1,45 +1,59 @@
-## Description: <br>
-Runs an immersive Chinese detective mystery game where an LLM generates a case, suspects, clues, and the culprit, while players investigate through text or ASR input, optional TTS narration, evidence review, accusation, scoring, save/load support, and difficulty settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs an interactive Chinese detective mystery game where an agent generates a case, supports text or voice interrogation, tracks evidence, scores accusations, and can save or resume progress.
 
-## Publisher: <br>
-[Delong-liu-bupt](https://clawhub.ai/user/Delong-liu-bupt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[delong-liu-bupt](https://clawhub.ai/user/delong-liu-bupt)
 
-## Use Case: <br>
-External users and developers use this skill to play or run a Chinese-language voice-enabled detective game that generates a mystery case, supports suspect interrogation, location examination, evidence collection, accusation, and final scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Game prompts, typed responses, and selected audio files may be sent to configured model, ASR, and TTS providers. <br>
-Mitigation: Use dedicated API keys, avoid sensitive personal information, and run with --no-asr or --no-tts when voice services are not needed. <br>
-Risk: Saved game state, generated audio, and final reports may persist locally under the outputs directory. <br>
-Mitigation: Review and delete the outputs directory when saved game data, reports, or generated audio are no longer needed. <br>
+## Use Case:
 
+External users can run this skill to play a Chinese-language interactive mystery game with generated suspects, clues, interrogations, evidence review, and accusation scoring. Developers can configure text-only or voice-enabled play with LLM, ASR, and TTS service credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Delong-liu-bupt/detective-mystery) <br>
-- [Prompt templates reference](references/prompts_cn.md) <br>
-- [State schema reference](references/state_schema_cn.md) <br>
-- [LLM provider endpoint](https://models.audiozen.cn/v1) <br>
-- [ASR provider endpoint](https://api.senseaudio.cn/v1/audio/transcriptions) <br>
-- [TTS provider endpoint](https://api.senseaudio.cn/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, JSON, audio files, guidance] <br>
-**Output Format:** [Interactive terminal text with generated JSON game state, JSON case reports, optional MP3 TTS files, and Markdown documentation references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes saved game state and final case reports under an outputs directory; can run without ASR or TTS for reduced provider exposure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send API keys, player audio, and generated game dialogue to endpoints configured through environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review endpoint configuration before use, avoid custom endpoint overrides unless the host is trusted, and prefer --no-asr or --no-tts when audio or dialogue should not be sent to remote services.
+
+Risk: Local .env files can change which credentials and services are used at runtime.
+
+Mitigation: Inspect or remove local .env files before running the skill and install it only from a trusted directory.
+
+Risk: Runtime dependencies and remote model services affect execution behavior.
+
+Mitigation: Install in an isolated environment with reviewed dependency versions and re-review the skill before deployment.
+
+## Reference(s):
+
+- [Prompt Templates](references/prompts_cn.md)
+- [State Schema](references/state_schema_cn.md)
+- [ClawHub Skill Page](https://clawhub.ai/delong-liu-bupt/skills/detective-mystery)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Interactive console text with generated JSON case state, saved game files, optional MP3 audio, and a final case_report.json file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports easy, medium, and hard difficulty; optional text-only mode; optional custom suspects and voice configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

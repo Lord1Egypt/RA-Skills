@@ -1,40 +1,55 @@
-## Description: <br>
-This skill helps agents save external article content to Feishu Docs, summarize key points into a Feishu knowledge base, and periodically organize duplicate or outdated knowledge entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书知识管理工具：当用户发送外部文章链接时，获取内容、存入飞书文档，并将知识要点归纳到飞书知识库。
 
-## Publisher: <br>
-[subwukong](https://clawhub.ai/user/subwukong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[subwukong](https://clawhub.ai/user/subwukong)
 
-## Use Case: <br>
-Employees and knowledge workers use this skill to capture linked articles into Feishu, preserve source content, summarize key points, classify them by topic, and maintain a cleaner knowledge base. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can write article content and summaries into Feishu, which may affect shared documents or knowledge bases. <br>
-Mitigation: Use a limited-permission Feishu account, constrain the target folder or knowledge base, and require confirmation before saving or reorganizing content. <br>
-Risk: The daily cleanup task may reorganize or remove duplicate documents without enough user review. <br>
-Mitigation: Enable scheduled cleanup only with dry-run review, logs, rollback, and a simple disable path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/subwukong/feishu-knowledge-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/subwukong) <br>
+## Use Case:
+
+External users and teams with Feishu workspaces use this skill to save articles from supported link types into Feishu Docs and maintain categorized knowledge summaries in a Feishu knowledge base. It can also guide a daily organization task for duplicate removal and knowledge-base structure cleanup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad Feishu write access could store or modify documents outside the intended knowledge-base scope.
+
+Mitigation: Use a narrowly permissioned Feishu account or designated folder and confirm scope before storing links.
+
+Risk: External article links may contain sensitive, internal, or unsuitable content that should not be persisted.
+
+Mitigation: Confirm before storing sensitive or internal links and review generated summaries before adding them to the knowledge base.
+
+Risk: The daily cron task can repeatedly reorganize or remove documents without sufficient oversight.
+
+Mitigation: Enable scheduled cleanup only with clear scope, audit logs, rollback or version history, and a documented removal process.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Feishu document-update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu documents when the required Feishu tools and permissions are available.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and structured workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce instructions that call Feishu document tools, link-reading tools, and an optional OpenClaw cron command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

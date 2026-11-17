@@ -1,46 +1,66 @@
-## Description: <br>
-Route user tasks to the most relevant skills using a layered taxonomy, risk model, and minimum-necessary-loading strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route user tasks to the most relevant skills using a layered taxonomy, risk model, and minimum-necessary-loading strategy.
 
-## Publisher: <br>
-[wzk332266](https://clawhub.ai/user/wzk332266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzk332266](https://clawhub.ai/user/wzk332266)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose the most relevant skill for a task, classify new skills, manage routing policy, and apply risk-aware minimum-necessary-loading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can record local routing decisions and maintain a local skill index. <br>
-Mitigation: Install it only when local routing governance records are desired, and review generated reports before relying on them for routing priority. <br>
-Risk: The intake workflow can download external skills into a local inbox. <br>
-Mitigation: Use intake deliberately, review downloaded skills before loading or executing them, and avoid granting risky operations to newly downloaded skills without explicit approval. <br>
-Risk: The cleanup workflow can delete the local skills inbox. <br>
-Mitigation: Run cleanup only after the inbox has been reviewed and organized. <br>
+## Use Case:
 
+Developers, agent operators, and skill maintainers use this skill to choose relevant skills, classify newly installed skills, and maintain routing policy with risk and context-cost awareness. It is most useful in workspaces with many skills where routing decisions, overlap checks, and backlog review need consistent governance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzk332266/skill-taxonomy-router-pro) <br>
-- [Session layer](references/session-layer.md) <br>
-- [Skill classification schema](references/skill-classification-schema.md) <br>
-- [Risk/source review](references/risk-source-review.md) <br>
-- [Change log](references/change-log.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON-backed local reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local routing records, usage statistics, skill indexes, overlap reports, and inbox state when the bundled maintenance scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can keep persistent local history of routing choices and task metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what task details are logged before use, avoid sensitive prompt content in routing reasons, and disable or prune local routing logs when retention is not acceptable.
+
+Risk: Helper scripts can download skills into a local inbox.
+
+Mitigation: Review or disable intake automation before using the skill with untrusted skills, and keep newly downloaded skills blocked from risky actions until they are classified and approved.
+
+Risk: A cleanup helper can delete a hard-coded inbox folder after confirmation.
+
+Mitigation: Confirm the target inbox path before running cleanup and only run deletion after the skill import batch has been reviewed and preserved where needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzk332266/skills/skill-taxonomy-router-pro)
+- [Session Layer](references/session-layer.md)
+- [Skill Classification Schema](references/skill-classification-schema.md)
+- [Skill Index](references/skill-index.md)
+- [Backlog Priority Report](references/backlog-priority.md)
+- [New Skill Review](references/new-skill-review.md)
+- [Risk Source Review](references/risk-source-review.md)
+- [Skill Overlap Report](references/skill-overlap-report.md)
+- [Skill Fusion View](references/skill-fusion-view.md)
+- [Change Log](references/change-log.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with command examples and structured JSON or local file updates from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local skill indexes, usage counters, routing-decision logs, backlog reports, overlap reports, and intake state files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

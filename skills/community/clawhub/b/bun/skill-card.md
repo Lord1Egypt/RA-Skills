@@ -1,42 +1,56 @@
-## Description: <br>
-Build with Bun runtime avoiding Node.js compatibility traps, bundler pitfalls, and package manager gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build with Bun runtime avoiding Node.js compatibility traps, bundler pitfalls, and package manager gotchas.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for Bun runtime, bundler, package-manager, and Node.js migration guidance. It helps identify compatibility traps, choose safer build and install commands, and troubleshoot Bun-specific behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cleanup commands can delete local dependency files or lockfiles if run in the wrong project. <br>
-Mitigation: Confirm the working directory and commit or back up important dependency files before copying cleanup commands. <br>
-Risk: Regenerated Bun dependencies may differ from npm or yarn resolution. <br>
-Mitigation: Run the full test suite and review dependency diffs after `bun install` or lockfile regeneration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bun ClawHub Skill Page](https://clawhub.ai/ivangdavila/bun) <br>
-- [Bundler Traps](artifact/bundler.md) <br>
-- [Node.js Compatibility Traps](artifact/node-compat.md) <br>
-- [Package Manager Traps](artifact/packages.md) <br>
+## Use Case:
 
+Developers and engineers use this skill for Bun runtime, bundler, package manager, TypeScript, testing, and migration guidance when building or moving JavaScript and TypeScript projects.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Bun install, build, package-management, and cleanup commands that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The migration snippet removes local dependency artifacts and lockfiles when run.
+
+Mitigation: Confirm the intended project directory first, then commit or back up dependency state and lockfiles before running migration commands.
+
+Risk: Bun runtime, bundler, package manager, and test-runner behavior can differ from Node.js or npm workflows.
+
+Mitigation: Run the full project test suite, verify native dependencies and workspace links, and test production bundles in the target runtime before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/bun)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Bundler Traps](artifact/bundler.md)
+- [Node.js Compatibility Traps](artifact/node-compat.md)
+- [Package Manager Traps](artifact/packages.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no active code is executed by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

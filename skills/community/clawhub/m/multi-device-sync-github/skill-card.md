@@ -1,42 +1,58 @@
-## Description: <br>
-Synchronizes OpenClaw workspace data across multiple machines through a private GitHub repository, with setup guidance, file watching, periodic pulls, and conflict handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-device OpenClaw data synchronization using GitHub for managing workspace data sync across machines with automatic push on file changes, periodic pull, and conflict detection.
 
-## Publisher: <br>
-[RegulusZ](https://clawhub.ai/user/RegulusZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[regulusz](https://clawhub.ai/user/regulusz)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure and operate GitHub-backed synchronization of workspace files across Linux and macOS devices, including initialization, status checks, conflict resolution, and device onboarding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can continuously sync sensitive OpenClaw workspace files and behavior settings to GitHub. <br>
-Mitigation: Use a private, dedicated GitHub repository, verify exactly which files are selected for sync, and exclude SOUL.md, skills/, MEMORY.md, or memory/ unless that context is intended to be shared across devices. <br>
-Risk: The installer can be run as remote shell code. <br>
-Mitigation: Download or clone the installer, review it locally, and run it only after confirming the requested file access and GitHub repository target. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to synchronize workspace data across multiple devices, configure GitHub-backed sync, monitor sync status, and resolve sync conflicts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RegulusZ/multi-device-sync-github) <br>
-- [README](README.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that install dependencies, initialize sync repositories, manage the sync daemon, and resolve conflicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks users to run mutable remote shell code during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the clone-and-inspect installation path and review the scripts before execution.
+
+Risk: Default sync targets can include sensitive agent memory, instructions, and skills.
+
+Mitigation: Use a private repository with tightly controlled write access, and avoid syncing SOUL.md, MEMORY.md, memory/, or skills/ unless remote changes to those files are intentional.
+
+Risk: A persistent background process can automatically push and pull workspace changes.
+
+Mitigation: Do not start the daemon until the auto-push and auto-pull behavior is understood and configured for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/regulusz/skills/multi-device-sync-github)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides operational guidance for installing, configuring, running, checking, and resolving GitHub-backed OpenClaw sync.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

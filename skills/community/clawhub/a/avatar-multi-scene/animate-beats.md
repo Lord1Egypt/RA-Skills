@@ -1,6 +1,6 @@
 # Animate beats in multi-scene reels
 
-How **`p-video-animate`** fits into mixed **`avatar` + `animate`** pieces built with [multi-scene-avatar-video](./SKILL.md).
+How **`p-video-animate`** fits into mixed **`avatar` + `animate`** pieces built with `avatar-multi-scene`.
 
 ## What each model does
 
@@ -9,7 +9,7 @@ How **`p-video-animate`** fits into mixed **`avatar` + `animate`** pieces built 
 | **`p-image` / `p-image-edit`** | Reference stills — motion-source portrait and persona subjects |
 | **`p-video-avatar`** | Optional: generate a **motion template** (talking-head source video) when you don't have a licensed `.mp4` |
 | **`p-video-animate`** | Transfer motion from source video onto reference image |
-| **Slider render** | Optional comparison MP4 (motion template vs animated output) via [`generate_video_comparison.py`](../../../workflows/_shared/scripts/generate_video_comparison.py) |
+| **Slider render** | Optional comparison MP4 (motion template vs animated output) via `avatar-multi-scene` |
 
 **`p-video-animate`** takes:
 
@@ -21,10 +21,10 @@ Output keeps **motion from the video**, **appearance from the image**.
 ## Animate row pipeline
 
 ```text
-Hero anchor (p-image)
+Hero anchor (p-image-ideogram)
   → motion-source still (p-image-edit)
   → motion template (p-video-avatar OR upload .mp4)
-  → persona still(s) (p-image or p-image-edit)
+  → persona still(s) (p-image-ideogram or p-image-edit)
   → p-video-animate (one job per persona)
   → optional slider compare MP4
 ```
@@ -65,7 +65,7 @@ Repose before animate when close but not exact: *"Change only: match pose and ca
 Animate the reference subject using the exact motion, timing, and camera movement from the source video. Keep identity and outfit from the reference image.
 ```
 
-- **Style variety** (photoreal, premium anime, claymation, Disney/Pixar 3D, cyberpunk, blockbuster movie, AAA game cinematic) on one motion template shows range in slider demos — each style still needs reasonable pose/framing alignment **and** its own background, camera angle, and lighting. Record `visual_style_tag`, `setting_tag`, `camera_tag`, and `lighting_tag` per ref. See [visual-variety-bible.md](../../../../../references/shared/visual-variety-bible.md).
+- **Style variety** (photoreal, premium anime, claymation, Disney/Pixar 3D, cyberpunk, blockbuster movie, AAA game cinematic) on one motion template shows range in slider demos — each style still needs reasonable pose/framing alignment **and** its own background, camera angle, and lighting. Record `visual_style_tag`, `setting_tag`, `camera_tag`, and `lighting_tag` per ref. See generation-diversity.md#visual-variety (`generation-diversity`).
 
 ### API fields
 
@@ -87,9 +87,9 @@ When building eye-catching comparison reels, generate **3–4 persona stills per
 | 5 (optional) | Cyberpunk | rain-slick alley, magenta-cyan edge |
 | 6 (optional) | AAA game cinematic | alien canyon, volumetric sun shafts |
 
-Full prompt patterns: [visual-variety-bible.md](../../../../../references/shared/visual-variety-bible.md).
+Full prompt patterns: generation-diversity.md#visual-variety (`generation-diversity`).
 
-Run [p-video-animate-quality-checklist.md](../../../../../references/video/p-video-animate-quality-checklist.md) on inputs and outputs.
+Run `video-prompting` on inputs and outputs.
 
 ## Mixed reel structures
 
@@ -114,19 +114,17 @@ Avatar CTA rows use **`type: avatar`** → deliver `{id}_avatar.mp4`. Animate ro
 
 ## Slider comparison (optional)
 
-Requires `ffmpeg` + Pillow (`pip install -r catalog/workflows/_shared/scripts/requirements.txt`).
+Side-by-side before/after with ffmpeg (no extra Python deps):
 
 ```bash
-python3 catalog/workflows/_shared/scripts/generate_video_comparison.py \
-  --source path/to/motion-template.mp4 \
-  --output path/to/animated-output.mp4 \
-  --render path/to/scene_compare.mp4
+ffmpeg -y -i path/to/motion-template.mp4 -i path/to/animated-output.mp4 \
+  -filter_complex "[0:v][1:v]hstack=inputs=2[v]" -map "[v]" -an path/to/scene_compare.mp4
 ```
 
-Multi-sample mode: [`examples/workflows/launches/p-video-animate-comparison/`](../../../examples/workflows/launches/p-video-animate-comparison/)
+For several persona variations, repeat per sample and concat, or build a simple hstack grid in your editor.
 
 ## Assembly
 
 Concat clips in scene-table order — avatar MP4s and animate comparison MP4s interleaved as planned. Level audio in your editor or ffmpeg.
 
-Example plan schema: [examples/workflows/launches/p-video-animate-comparison/](../../../examples/workflows/launches/p-video-animate-comparison/).
+Batch config schema: [`batch.template.json`](./templates/batch.template.json) (`scenes[]` with `source`, `render`, and `samples[]` per row).

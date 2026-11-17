@@ -1,0 +1,16 @@
+{
+  "skill": "medical-device-qms-gmp",
+  "scores": {
+    "本地闭环": 5,
+    "零凭据": 5,
+    "去敏扫描": 5,
+    "版权三件套": 5,
+    "权属五件套": 5,
+    "文档一致性": 5,
+    "结构完整": 5,
+    "可重跑性": 5
+  },
+  "avg": 5.0,
+  "sensitive_hits": [],
+  "has_references": false
+}

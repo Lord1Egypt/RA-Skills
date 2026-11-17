@@ -1,41 +1,54 @@
-## Description: <br>
-A local Ebbinghaus forgetting-curve utility for memory decay calculations and simple spaced-repetition scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an independent Ebbinghaus forgetting curve module for memory decay calculation and spaced repetition scheduling.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add configurable memory-decay scoring, review-interval calculation, and batch decay processing to local memory or retrieval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation and roadmap claims do not fully agree with the implemented API surface. <br>
-Mitigation: Verify the exact functions and constructor signatures in forgetting_curve.py before depending on documented power-law decay or complete SRS behavior. <br>
-Risk: Memory decay scores can affect retrieval priority or review scheduling if integrated into another system. <br>
-Mitigation: Review configured half-life, threshold, and interval parameters against the target workflow before using the scores for automated decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to add memory decay calculations and spaced repetition scheduling to memory or learning workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/whoisme007/forgetting-curve) <br>
-- [Publisher profile](https://clawhub.ai/user/whoisme007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and API usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Python utility guidance; no external service calls are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact documentation is primarily Chinese-language, which may be unsuitable for teams that require English-only review materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the documentation language is acceptable before installation or provide a reviewed translation for internal users.
+
+Risk: The included Python file is a reusable local utility rather than a complete packaged project.
+
+Mitigation: Integrate it as a local module or add packaging, tests, and dependency metadata before distributing it as an installable package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/forgetting-curve)
+- [ClawHub publisher profile](https://clawhub.ai/user/whoisme007)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and a reusable Python module]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies; configurable half-life, strength thresholds, and scheduling factors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

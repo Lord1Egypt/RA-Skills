@@ -1,43 +1,53 @@
-## Description: <br>
-Marketing helps agents audit websites and funnels, draft marketing copy, plan campaigns, and generate client-ready marketing reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marketing helps entrepreneurs, agency builders, and solopreneurs create marketing audits, copywriting analysis, email sequences, social media calendars, ad campaigns, funnel reviews, SEO audits, launch playbooks, brand voice guidance, and client proposals.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-External users, founders, agency operators, and solopreneurs use this skill to produce marketing audits, copy suggestions, email sequences, social calendars, ad campaigns, CRO analyses, launch plans, SEO audits, brand voice guidance, and client proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ad plans, client proposals, email campaigns, budget recommendations, and compliance-sensitive claims may be inaccurate or unsuitable for a specific business. <br>
-Mitigation: Review outputs before sending, publishing, or spending money, and validate claims, budgets, and legal or platform-policy requirements with qualified reviewers. <br>
-Risk: Marketing benchmarks and scoring rubrics can be over-applied to contexts where the skill lacks current campaign data or business-specific constraints. <br>
-Mitigation: Treat benchmarks as planning aids and compare recommendations against the user's actual analytics, customer data, and campaign performance. <br>
+## Use Case:
 
+External users, entrepreneurs, agency builders, and solopreneurs use this skill to produce client-ready marketing analysis and execution assets across audits, campaigns, funnels, launches, SEO, brand voice, and proposals.
 
-## Reference(s): <br>
-- [Audit Frameworks & Scoring Rubrics](references/audit-frameworks.md) <br>
-- [Industry Benchmarks & Metrics](references/benchmarks.md) <br>
-- [Content Creation Knowledge Base](references/content-creation.md) <br>
-- [Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, calendars, playbooks, proposals, and campaign drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scores, prioritized recommendations, example copy, benchmark comparisons, budget guidance, and client-ready summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated email, ad, and outreach copy may be unsuitable for a user's jurisdiction, consent basis, sender identification duties, unsubscribe requirements, or brand standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outbound marketing assets for legal compliance and brand fit before use, including consent records, sender identification, unsubscribe handling, and jurisdiction-specific marketing rules.
+
+## Reference(s):
+
+- [Audit Frameworks & Scoring Rubrics](references/audit-frameworks.md)
+- [Industry Benchmarks & Metrics](references/benchmarks.md)
+- [Content Creation Knowledge Base](references/content-creation.md)
+- [Templates](references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/emersonbraun/skills/eb-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, calendars, sequences, campaign drafts, scoring tables, checklists, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Client-ready outputs may include scores, benchmarks, before-and-after copy examples, revenue impact estimates, and compliance reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

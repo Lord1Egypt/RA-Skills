@@ -1,44 +1,59 @@
-## Description: <br>
-Generates daily menu recommendations from available ingredients, taste preferences, diner count, and cooking time, then returns a complete meal plan with step-by-step cooking guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language daily menu recommendations and step-by-step cooking guidance from available ingredients, taste preferences, serving count, and cooking time.
 
-## Publisher: <br>
-[yequanzheng](https://clawhub.ai/user/yequanzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yequanzheng](https://clawhub.ai/user/yequanzheng)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn available food ingredients and preferences into practical home-cooking menu recommendations, preparation lists, and cooking timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask about dietary preferences, restrictions, or allergies to tailor menu recommendations. <br>
-Mitigation: Share only the dietary details needed for the recommendation, and review ingredient suggestions against known allergies before cooking. <br>
-Risk: The optional Python helper can write a local JSON output file when invoked with an output path. <br>
-Mitigation: Run the helper only when local menu generation is intended, and choose an output path that is appropriate for generated recipe data. <br>
+## Use Case:
 
+External users and agents use this skill to plan Chinese-language meals from ingredients on hand, including dish recommendations, preparation lists, cooking steps, and cooking timelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yequanzheng/self-improving-agen1) <br>
-- [Publisher profile](https://clawhub.ai/user/yequanzheng) <br>
-- [Ingredient database](artifact/references/ingredients.md) <br>
-- [Recipe database](artifact/references/recipes.md) <br>
-- [Evaluation scenarios](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown meal recommendations and optional JSON from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include dish recommendations, ingredient summaries, cooking steps, cooking timelines, allergy or dietary considerations, and optional local JSON files when the helper script is run with an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recipe and menu guidance may be unsuitable for allergies, dietary restrictions, or food-safety needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the user's restrictions and food-safety requirements before cooking.
+
+Risk: The optional helper script can save generated menu JSON to a user-specified path.
+
+Mitigation: Use only intended output paths and review the destination before running the helper with --output.
+
+Risk: The skill may activate on broad meal or menu-planning phrases.
+
+Mitigation: Use it when Chinese-language meal planning is intended and redirect unrelated cooking or nutrition requests as needed.
+
+## Reference(s):
+
+- [Ingredient database](references/ingredients.md)
+- [Recipe database](references/recipes.md)
+- [ClawHub skill page](https://clawhub.ai/yequanzheng/skills/self-improving-agen1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown menu plan with optional JSON output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dish recommendations, ingredient summaries, preparation guidance, cooking timelines, and follow-up prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

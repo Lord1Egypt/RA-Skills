@@ -1,47 +1,57 @@
-## Description: <br>
-AI-powered palm reading and analysis from palm images, with support for English, Tamil, Telugu, Kannada, and Hindi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered palm reading and analysis from palm images. Supports English, Tamil, Telugu, Kannada, and Hindi. Use when a user wants a palm reading, palmistry analysis, hand line interpretation, fortune reading from palm, or wants to know about their heart line, head line, life line, or fate line.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users and agents use this skill to submit a palm photo to ToolWeb for palmistry analysis, including heart line, head line, life line, fate line, mounts, and an overall reading in one of five supported languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Palm photos and request metadata are sent to ToolWeb for processing. <br>
-Mitigation: Use the skill only with consent from the person whose palm is uploaded, and avoid submitting images that should not be shared with ToolWeb. <br>
-Risk: Successful API calls may count against a paid ToolWeb quota or billing plan. <br>
-Mitigation: Use a dedicated or limited API key where possible and monitor quota, rate limits, and billing activity. <br>
-Risk: The skill requires a ToolWeb API key in the agent environment. <br>
-Mitigation: Store TOOLWEB_API_KEY as a secret, rotate it if exposed, and avoid placing it directly in shared configuration files. <br>
+## Use Case:
 
+External users and agent builders use this skill to request palmistry-style readings from user-provided palm images in English, Tamil, Telugu, Kannada, or Hindi. The skill calls the ToolWeb API and returns line-by-line palm reading sections plus an overall interpretation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/palmistry-ai-palm-reader) <br>
-- [ToolWeb API Portal](https://portal.toolweb.in) <br>
-- [ToolWeb Platform](https://toolweb.in) <br>
-- [ToolWeb Palmistry API Endpoint](https://portal.toolweb.in/apis/lifestyle/palmistry) <br>
-- [ToolWeb OpenClaw Skills](https://toolweb.in/openclaw/) <br>
-- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown palm-reading report with API request guidance and optional downloadable HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY, curl, and a user-provided palm image encoded as base64.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends users' palm photos and related request metadata to a third-party paid API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add a clear notice and affirmative consent step before API submission, and verify ToolWeb privacy, retention, deletion, and secondary-use terms before using the skill with real users.
+
+Risk: Successful API calls are tracked for billing and may affect the user's subscription quota or costs.
+
+Mitigation: Confirm API key ownership and expected cost or quota impact before enabling the skill in production.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/palmistry-ai-palm-reader)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb Palmistry API Endpoint](https://portal.toolweb.in/apis/lifestyle/palmistry)
+- [ToolWeb Platform](https://toolweb.in)
+- [ToolWeb OpenClaw Skills](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown palm reading response with curl-based API call guidance and optional downloadable HTML report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY, curl, and a user-provided palm image; successful API calls may consume paid quota.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

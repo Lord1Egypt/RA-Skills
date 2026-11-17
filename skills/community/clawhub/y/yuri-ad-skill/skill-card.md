@@ -1,42 +1,64 @@
-## Description: <br>
-YRI AdX helps agents manage Facebook advertising through the baiz.ai MCP API, including campaign creation, budget management, performance monitoring, audience targeting, ad copy, and creative assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YRI AdX helps agents manage Facebook advertising through the baiz.ai MCP API, including campaign creation, budget changes, audience targeting, creative management, and performance monitoring.
 
-## Publisher: <br>
-[yuriskills](https://clawhub.ai/user/yuriskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuriskills](https://clawhub.ai/user/yuriskills)
 
-## Use Case: <br>
-External advertisers, operators, and developers use this skill to prepare, launch, monitor, optimize, scale, and stop Facebook ad campaigns through baiz.ai using JSON-RPC calls and curl examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect real advertising campaigns through publishing, budget changes, start/stop actions, copying, and deletion. <br>
-Mitigation: Use least-privilege ad-account credentials, start with sandbox or low-budget test campaigns, and require explicit confirmation before any publish, budget, start/stop, copy, or delete action. <br>
-Risk: BAIZ_API_TOKEN is a sensitive credential used for authenticated baiz.ai requests. <br>
-Mitigation: Provide the token only through environment-variable injection, use a revocable minimal-permission test token first, and halt installation if registry metadata does not declare BAIZ_API_TOKEN. <br>
+## Use Case:
 
+External marketers, ad operators, and developers use this skill to prepare, launch, monitor, and adjust Facebook ad campaigns through baiz.ai using JSON-RPC curl commands.
 
-## Reference(s): <br>
-- [baiz.ai](https://baiz.ai) <br>
-- [baiz.ai MCP endpoint](https://baiz.ai/mcp) <br>
-- [ClawHub skill listing](https://clawhub.ai/yuriskills/yuri-ad-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a sensitive BAIZ_API_TOKEN environment variable for authenticated baiz.ai requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill can create, publish, stop, copy, or adjust Facebook ad campaigns in ways that may affect spend and delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each campaign or budget-changing action before sending it, test with sandbox or low-limit accounts first, and avoid autonomous use.
+
+Risk: BAIZ_API_TOKEN grants access through baiz.ai to connected advertising accounts.
+
+Mitigation: Use a revocable minimal-permission or read-only test token where possible, keep the token sensitive, and revoke it if metadata or endpoint behavior does not match the artifact.
+
+Risk: Users must trust baiz.ai with ad account access and billing impact.
+
+Mitigation: Review baiz.ai terms, privacy practices, token scopes, and dashboard behavior before connecting production advertising accounts.
+
+Risk: Marketplace or registry metadata that omits BAIZ_API_TOKEN could lead to unsafe credential handling.
+
+Mitigation: Halt installation and contact the publisher if the registry listing does not declare BAIZ_API_TOKEN as a required sensitive credential.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuriskills/skills/yuri-ad-skill)
+- [Publisher profile](https://clawhub.ai/user/yuriskills)
+- [baiz.ai](https://baiz.ai)
+- [baiz.ai MCP endpoint](https://baiz.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON-RPC curl examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIZ_API_TOKEN supplied as a sensitive environment variable; API calls are stateless HTTPS requests to baiz.ai.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

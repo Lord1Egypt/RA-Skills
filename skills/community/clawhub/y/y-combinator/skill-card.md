@@ -1,38 +1,53 @@
-## Description: <br>
-Understand Y Combinator's investment terms, batch process, startup philosophy, network benefits, and current focus areas for founders evaluating or preparing for the accelerator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents explain Y Combinator's accelerator model, investment structure, batch process, founder philosophy, network value, and recent startup trends.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Founders, startup operators, and advisors use this skill for concise guidance on YC's accelerator model, application path, program timeline, and founder operating principles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YC investment terms, application processes, and batch details may change over time. <br>
-Mitigation: Verify current YC terms and application process details from official YC sources before relying on the guidance. <br>
+## Use Case:
 
+Founders, startup teams, and operators use this skill to get concise guidance on how YC works, what the program emphasizes, and how to think about applications, interviews, batch participation, and Demo Day.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/y-combinator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with a table and illustrative Python code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational content only; no external actions, credentials, installation steps, or API calls are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: YC investment terms, application practices, and program details can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current YC terms and application guidance through official YC materials before making business, financial, or application decisions.
+
+Risk: The skill is educational and may be mistaken for personalized startup, legal, or investment advice.
+
+Mitigation: Treat the output as general orientation and consult qualified advisors for decisions involving equity, financing, or legal obligations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/y-combinator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with explanatory text, tables, and illustrative code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational guidance only; current YC terms should be independently verified before business or financial decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

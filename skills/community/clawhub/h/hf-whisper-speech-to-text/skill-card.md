@@ -1,40 +1,58 @@
-## Description: <br>
-Transcribe or translate audio files to text using a public Hugging Face Whisper Space over Gradio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe or translate audio files to text using a public Hugging Face Whisper Space over Gradio.
 
-## Publisher: <br>
-[shu-hari](https://clawhub.ai/user/shu-hari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shu-hari](https://clawhub.ai/user/shu-hari)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn local audio files such as voice notes, meetings, podcasts, and interviews into transcripts, rough captions, summaries, action items, or English translations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files and filenames are sent to a public Hugging Face/Gradio transcription service. <br>
-Mitigation: Use only for audio suitable for third-party processing; avoid confidential meetings, regulated data, or private recordings unless the user accepts public processing or configures a trusted private endpoint. <br>
-Risk: The public free endpoint may rate limit, queue requests, or be unavailable. <br>
-Mitigation: Tell the user when the backend is unavailable and offer alternatives such as a trusted private endpoint or another transcription path. <br>
+## Use Case:
 
+Employees, external users, developers, and support agents use this skill to convert local audio files such as voice notes, meeting clips, podcasts, and interviews into transcripts, rough captions, summaries, action items, bilingual output, or English translations.
 
-## Reference(s): <br>
-- [Default Hugging Face Whisper Space](https://hf-audio-whisper-large-v3-turbo.hf.space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript, optional JSON, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cleaned Chinese punctuation, raw model text, same-language transcription, or English translation depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Audio is uploaded to a public third-party Whisper/Gradio service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive recordings unless the user explicitly accepts public third-party processing.
+
+Risk: The helper can upload any readable local file to any supplied endpoint if misused.
+
+Mitigation: Verify the exact local file path and remote endpoint before running, and do not let untrusted text choose the input path or --space value.
+
+Risk: The public backend may be rate limited, queued, unavailable, or produce imperfect transcripts.
+
+Mitigation: Disclose that the transcript came from a public best-effort endpoint, note uncertainty for names, numbers, or jargon, and offer alternatives if the endpoint fails.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shu-hari/skills/hf-whisper-speech-to-text)
+- [Default Hugging Face Whisper Space](https://hf-audio-whisper-large-v3-turbo.hf.space)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text transcript by default; optional JSON from the helper script; agent responses may be Markdown with transcript cleanup, summaries, action items, or bilingual output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports same-language transcription or English translation, optional raw output, and lightweight Chinese punctuation cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

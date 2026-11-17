@@ -1,46 +1,67 @@
-## Description: <br>
-一站式徒步出行规划：生成含徒步路线、交通、住宿、人文和装备的完整行程计划，支持 GPX/KML 轨迹解析与地图渲染。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hike Planner helps agents create user-requested hiking trip plans with routes, transportation, lodging, local context, equipment lists, GPX/KML track analysis, and map links without booking, ordering, waitlisting, or paying.
 
-## Publisher: <br>
-[updatedb](https://clawhub.ai/user/updatedb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[updatedb](https://clawhub.ai/user/updatedb)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to plan hiking trips, compare routes, assemble transportation and lodging details, parse GPX/KML tracks, and maintain local itinerary state. It is designed for user-directed planning and does not book tickets, place orders, join waitlists, or make payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags under-scoped local file access and unsafe command execution paths. <br>
-Mitigation: Use a dedicated output directory, avoid providing paths to unrelated private files, and review local helper command behavior before installation or execution. <br>
-Risk: The skill can persist itinerary, order, media, and route data locally. <br>
-Mitigation: Store outputs in a location intended for travel planning data and review saved files before sharing or archiving them. <br>
-Risk: Generated map links and HTML can contain precise route coordinates or trip locations. <br>
-Mitigation: Treat generated maps and links as sensitive location data and share them only with intended recipients. <br>
-Risk: The skill uses a sensitive Amap credential for map and geocoding workflows. <br>
-Mitigation: Provide only the required AMAP_WEBSERVICE_KEY value and manage it outside shared itinerary outputs. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to plan hiking-oriented trips after the user provides dates, destination, and activity type. It can maintain local trip state, import GPX/KML tracks, generate itinerary Markdown, and update plans from user-provided travel details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/updatedb/hike-planner) <br>
-- [Hike Planner SOP](references/hike-planner-sop.md) <br>
-- [Plan Template](references/PLAN_TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown itinerary plans, JSON route statistics, HTML map files, and command/configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist itinerary state, generated plans, parsed route data, and map artifacts in the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.4 (source: server release metadata) <br>
+Risk: The skill stores detailed trip, order, media, and GPS data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private output directory with appropriate file permissions, especially on shared systems.
+
+Risk: Map and query workflows can send station names, destination details, or precise GPS coordinates to third-party services.
+
+Mitigation: Review map-generation requests before use and avoid importing or sharing tracks that reveal sensitive locations.
+
+Risk: Generated map HTML may expose embedded route coordinates if published or served broadly.
+
+Mitigation: Keep generated map files local or access-controlled and do not expose them on public web servers.
+
+Risk: Security evidence reports possible command execution or writes outside the intended trip folder in edge cases.
+
+Mitigation: Review before installing and fix shell-command and path-boundary issues before use in shared or high-trust environments.
+
+Risk: Optional helper skills and imported GPX/KML or media files can expand trust and input-handling risk.
+
+Mitigation: Install helper skills only from trusted publishers and versions, and avoid importing untrusted GPX/KML or media files.
+
+## Reference(s):
+
+- [Hike Planner SOP](references/hike-planner-sop.md)
+- [Plan Template](references/PLAN_TEMPLATE.md)
+- [ClawHub Skill Page](https://clawhub.ai/updatedb/skills/hike-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown itinerary plans, JSON trip state, generated HTML map files, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write trip plans, state files, imported media, GPX/KML copies, and track-map HTML under the configured output directory.]
+
+## Skill Version(s):
+
+3.3.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

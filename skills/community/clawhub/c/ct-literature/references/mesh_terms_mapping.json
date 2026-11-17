@@ -1,0 +1,208 @@
+{
+  "_meta": {
+    "description": "MeSH 术语本地索引（常用临床医学主题词）",
+    "source": "NLM MeSH Browser (https://meshb.nlm.nih.gov/)",
+    "updated": "2026-08-11",
+    "note": "精选高频术语，非完整 MeSH 词表。完整术语建议按需从 NLM 下载。"
+  },
+  "terms": {
+    "neoplasms": {
+      "mesh_id": "D009369",
+      "tree_numbers": ["C04.588"],
+      "entry_terms": ["cancer", "tumor", "neoplasm", "carcinoma", "malignancy"],
+      "zh": "肿瘤"
+    },
+    "breast neoplasms": {
+      "mesh_id": "D001943",
+      "tree_numbers": ["C04.588.180"],
+      "entry_terms": ["breast cancer", "breast tumor", "mammary carcinoma"],
+      "zh": "乳腺肿瘤"
+    },
+    "lung neoplasms": {
+      "mesh_id": "D008175",
+      "tree_numbers": ["C04.588.894", "C08.381"],
+      "entry_terms": ["lung cancer", "pulmonary neoplasm", "bronchogenic carcinoma"],
+      "zh": "肺肿瘤"
+    },
+    "non-small-cell lung carcinoma": {
+      "mesh_id": "D002289",
+      "tree_numbers": ["C04.588.894.797", "C08.381.540"],
+      "entry_terms": ["NSCLC", "non-small cell lung cancer", "non-small-cell lung carcinoma"],
+      "zh": "非小细胞肺癌"
+    },
+    "colorectal neoplasms": {
+      "mesh_id": "D015179",
+      "tree_numbers": ["C04.588.274", "C06.301"],
+      "entry_terms": ["colorectal cancer", "colon cancer", "rectal cancer", "CRC"],
+      "zh": "结直肠肿瘤"
+    },
+    "stomach neoplasms": {
+      "mesh_id": "D013274",
+      "tree_numbers": ["C04.588.274", "C06.301"],
+      "entry_terms": ["gastric cancer", "stomach cancer", "gastric carcinoma"],
+      "zh": "胃肿瘤"
+    },
+    "liver neoplasms": {
+      "mesh_id": "D008113",
+      "tree_numbers": ["C04.588.274", "C06.405"],
+      "entry_terms": ["liver cancer", "hepatocellular carcinoma", "HCC", "hepatic neoplasm"],
+      "zh": "肝肿瘤"
+    },
+    "diabetes mellitus": {
+      "mesh_id": "D003920",
+      "tree_numbers": ["C19.246"],
+      "entry_terms": ["diabetes", "diabetes mellitus", "DM"],
+      "zh": "糖尿病"
+    },
+    "diabetes mellitus, type 2": {
+      "mesh_id": "D003924",
+      "tree_numbers": ["C19.246.300"],
+      "entry_terms": ["type 2 diabetes", "T2DM", "type 2 diabetes mellitus", "NIDDM"],
+      "zh": "2型糖尿病"
+    },
+    "hypertension": {
+      "mesh_id": "D006973",
+      "tree_numbers": ["C14.907.489"],
+      "entry_terms": ["high blood pressure", "hypertension", "HTN"],
+      "zh": "高血压"
+    },
+    "cardiovascular diseases": {
+      "mesh_id": "D002318",
+      "tree_numbers": ["C14.280", "C14.907"],
+      "entry_terms": ["cardiovascular disease", "CVD", "heart disease"],
+      "zh": "心血管疾病"
+    },
+    "myocardial infarction": {
+      "mesh_id": "D009203",
+      "tree_numbers": ["C14.280.647", "C14.907.553"],
+      "entry_terms": ["myocardial infarction", "heart attack", "MI"],
+      "zh": "心肌梗死"
+    },
+    "stroke": {
+      "mesh_id": "D020521",
+      "tree_numbers": ["C14.907.253", "C10.228"],
+      "entry_terms": ["stroke", "cerebrovascular accident", "CVA", "cerebral infarction"],
+      "zh": "脑卒中"
+    },
+    "alzheimer disease": {
+      "mesh_id": "D000544",
+      "tree_numbers": ["C10.228.140", "F03.087"],
+      "entry_terms": ["alzheimer", "alzheimer's disease", "AD", "dementia"],
+      "zh": "阿尔茨海默病"
+    },
+    "parkinson disease": {
+      "mesh_id": "D010300",
+      "tree_numbers": ["C10.228.662", "C10.574"],
+      "entry_terms": ["parkinson", "parkinson's disease", "PD"],
+      "zh": "帕金森病"
+    },
+    "rheumatoid arthritis": {
+      "mesh_id": "D001172",
+      "tree_numbers": ["C05.550", "C17.300"],
+      "entry_terms": ["rheumatoid arthritis", "RA"],
+      "zh": "类风湿关节炎"
+    },
+    "asthma": {
+      "mesh_id": "D001249",
+      "tree_numbers": ["C08.381", "C20.543"],
+      "entry_terms": ["asthma", "bronchial asthma"],
+      "zh": "哮喘"
+    },
+    "chronic obstructive pulmonary disease": {
+      "mesh_id": "D029424",
+      "tree_numbers": ["C08.381"],
+      "entry_terms": ["COPD", "chronic obstructive pulmonary disease", "chronic bronchitis", "emphysema"],
+      "zh": "慢性阻塞性肺疾病"
+    },
+    "pneumonia": {
+      "mesh_id": "D011014",
+      "tree_numbers": ["C08.381", "C08.730"],
+      "entry_terms": ["pneumonia", "pulmonary inflammation"],
+      "zh": "肺炎"
+    },
+    "sepsis": {
+      "mesh_id": "D018805",
+      "tree_numbers": ["C01.539", "C23.550"],
+      "entry_terms": ["sepsis", "septicemia", "blood poisoning"],
+      "zh": "脓毒症"
+    },
+    "covid-19": {
+      "mesh_id": "D000086382",
+      "tree_numbers": ["C01.539", "C08.381"],
+      "entry_terms": ["covid-19", "covid", "coronavirus", "sars-cov-2", "COVID-19"],
+      "zh": "COVID-19"
+    },
+    "clinical trial": {
+      "mesh_id": "D016430",
+      "tree_numbers": ["E05.318"],
+      "entry_terms": ["clinical trial", "clinical study", "controlled trial", "RCT"],
+      "zh": "临床试验"
+    },
+    "randomized controlled trial": {
+      "mesh_id": "D016449",
+      "tree_numbers": ["E05.318.760"],
+      "entry_terms": ["randomized controlled trial", "RCT", "randomised controlled trial"],
+      "zh": "随机对照试验"
+    },
+    "meta-analysis": {
+      "mesh_id": "D015201",
+      "tree_numbers": ["E05.318"],
+      "entry_terms": ["meta-analysis", "meta analysis", "systematic review"],
+      "zh": "荟萃分析"
+    },
+    "survival analysis": {
+      "mesh_id": "D013209",
+      "tree_numbers": ["E05.318"],
+      "entry_terms": ["survival analysis", "overall survival", "progression-free survival", "PFS", "OS"],
+      "zh": "生存分析"
+    },
+    "biomarkers": {
+      "mesh_id": "D015415",
+      "tree_numbers": ["E05.091", "D23.101"],
+      "entry_terms": ["biomarker", "biological marker", "molecular marker"],
+      "zh": "生物标志物"
+    },
+    "immunotherapy": {
+      "mesh_id": "D007167",
+      "tree_numbers": ["E05.478"],
+      "entry_terms": ["immunotherapy", "immune therapy", "cancer immunotherapy"],
+      "zh": "免疫治疗"
+    },
+    "targeted therapy": {
+      "mesh_id": "D014057",
+      "tree_numbers": ["E05.318"],
+      "entry_terms": ["targeted therapy", "molecular targeted therapy", "targeted treatment"],
+      "zh": "靶向治疗"
+    },
+    "monoclonal antibodies": {
+      "mesh_id": "D008988",
+      "tree_numbers": ["D12.776", "D20.215"],
+      "entry_terms": ["monoclonal antibody", "mAb", "monoclonal antibodies"],
+      "zh": "单克隆抗体"
+    },
+    "pd-1 inhibitors": {
+      "mesh_id": "D000077258",
+      "tree_numbers": ["D20.215"],
+      "entry_terms": ["PD-1 inhibitor", "PD-L1 inhibitor", "immune checkpoint inhibitor", "nivolumab", "pembrolizumab"],
+      "zh": "PD-1抑制剂"
+    },
+    "protein kinase inhibitors": {
+      "mesh_id": "D000067716",
+      "tree_numbers": ["D12.776", "D20.215"],
+      "entry_terms": ["protein kinase inhibitor", "TKI", "tyrosine kinase inhibitor", "osimertinib", "gefitinib"],
+      "zh": "蛋白激酶抑制剂"
+    },
+    "antineoplastic agents": {
+      "mesh_id": "D000970",
+      "tree_numbers": ["D27.505"],
+      "entry_terms": ["antineoplastic agent", "chemotherapy", "anticancer drug", "cytotoxic drug"],
+      "zh": "抗肿瘤药"
+    },
+    "antibodies, monoclonal, humanized": {
+      "mesh_id": "D061067",
+      "tree_numbers": ["D12.776", "D20.215"],
+      "entry_terms": ["humanized monoclonal antibody", "trastuzumab", "bevacizumab"],
+      "zh": "人源化单克隆抗体"
+    }
+  }
+}

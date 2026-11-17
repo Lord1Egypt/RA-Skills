@@ -1,11 +1,11 @@
 ---
 name: oo-honeybadger
-description: "Honeybadger (honeybadger.io). Use this skill for ANY Honeybadger request — searching and reading data. Whenever a task involves Honeybadger, use this skill instead of calling the API directly."
+description: "Honeybadger (honeybadger.io). Use this skill for ANY Honeybadger request — reading, creating, and updating data. Whenever a task involves Honeybadger, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Honeybadger"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["honeybadger"]
   icon: "https://static.oomol.com/logo/third-party/Honeybadger.svg"
 ---
@@ -37,11 +37,11 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `report_check_in` — Report a Honeybadger check-in by id or slug.
-- `report_check_in_with_payload` — Report a Honeybadger check-in with payload data.
-- `report_deployment` — Report a deployment to Honeybadger.
-- `report_event` — Report one or more Honeybadger Insights events.
-- `report_exception` — Report an exception notice to Honeybadger.
+- `report_check_in` — Report a Honeybadger check-in by id or slug. [write]
+- `report_check_in_with_payload` — Report a Honeybadger check-in with payload data. [write]
+- `report_deployment` — Report a deployment to Honeybadger. [write]
+- `report_event` — Report one or more Honeybadger Insights events. [write]
+- `report_exception` — Report an exception notice to Honeybadger. [write]
 
 ## Safety
 
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Honeybadger is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=honeybadger
+  https://console.oomol.com/connections/honeybadger
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Honeybadger homepage: https://www.honeybadger.io
+- API documentation: https://docs.honeybadger.io/api/

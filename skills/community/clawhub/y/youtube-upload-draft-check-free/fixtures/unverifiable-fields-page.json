@@ -1,0 +1,13 @@
+{
+  "fixture_notice": "离线页面资料模拟；不是在线 Studio 采集结果。",
+  "owner_confirmed": true,
+  "logged_in": true,
+  "draft_selected": true,
+  "visible_fields": {
+    "title": {"value": "秋日咖啡馆短片", "source": "离线模拟页 > 标题"},
+    "thumbnail": {"value": "已显示自定义缩略图", "source": "离线模拟页 > 缩略图"},
+    "audience": {"value": "不是为儿童制作", "source": "离线模拟页 > 受众"},
+    "visibility": {"value": "私密", "source": "离线模拟页 > 可见性"},
+    "captions": {"value": "已有字幕，但未记录可见标签"}
+  }
+}

@@ -1,39 +1,54 @@
-## Description: <br>
-Guides an agent through creating, querying, updating, and deleting Feishu tasks and task lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, querying, updating, deleting, and organizing Feishu tasks and task lists.
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenfa188](https://clawhub.ai/user/chenfa188)
 
-## Use Case: <br>
-Employees and external users use this skill when they want an assistant to manage Feishu tasks and task lists, including creating tasks, listing unfinished work, updating due dates, completing or reopening tasks, and managing task-list membership. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad or ambiguous task-management requests can modify or delete the wrong Feishu task, assignee, or list membership. <br>
-Mitigation: Use specific task or list names and GUIDs, and confirm before deletes, assignee changes, or membership changes. <br>
-Risk: Created tasks may be hard to edit later if the requester is not included as a task member. <br>
-Mitigation: Provide current_user_id from message context when creating tasks so the requester is added as a follower when needed. <br>
+## Use Case:
 
+Employees and teams using Feishu use this skill to have an agent manage tasks, task lists, assignments, followers, due dates, completion state, and list membership.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes required Feishu task and task-list parameters, role guidance, time-format guidance, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The activation wording is broad and the skill can guide create, update, delete, completion, and membership actions for Feishu task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should be explicit when requesting task changes and review any write, completion, deletion, or membership action before it is sent to Feishu.
+
+Risk: A task creator may lose edit access if they create a task without including themselves as a member.
+
+Mitigation: When creating tasks, include the current user's Feishu open_id as current_user_id so the tool can add them as a follower.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenfa188/skills/openclaw-feishu-task)
+- [Publisher profile](https://clawhub.ai/user/chenfa188)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, JSON, configuration]
+
+**Output Format:** [Markdown guidance with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for Feishu task and task-list actions; users should review write actions before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

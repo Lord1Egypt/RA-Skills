@@ -1,0 +1,23 @@
+{
+  "schema": "openclaw.safe_update.baseline.v1",
+  "commit": "58f98a3c6a6448fb7e54124c030a18a47e1f7d1c",
+  "test_command": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+  "test_file": "tests/test_openclaw_safe_update.py",
+  "test_case_count": 13,
+  "test_cases": [
+    "test_archive_filename_traversal_blocks",
+    "test_coverage_rejects_required_surface_without_postcheck",
+    "test_fetch_pins_public_npm_registry",
+    "test_fetch_rejects_version_ranges",
+    "test_green_rehearsal_produces_hash_bound_evidence",
+    "test_incompatible_runtime_node_blocks",
+    "test_integrity_mismatch_blocks",
+    "test_inventory_writes_public_safe_draft_profiles",
+    "test_lifecycle_script_change_blocks",
+    "test_missing_coverage_profile_blocks",
+    "test_missing_customization_manifest_blocks_and_keeps_artifacts",
+    "test_public_product_surface_preserves_rehearsal_boundary",
+    "test_workflow_has_no_apply_or_external_write_surface"
+  ],
+  "note": "The frozen commit contains 13 discoverable tests; the issue's earlier count of 12 was corrected from executable evidence."
+}

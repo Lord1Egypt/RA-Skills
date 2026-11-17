@@ -1,40 +1,53 @@
-## Description: <br>
-Prepares briefing docs so you walk into every meeting ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepares briefing docs so you walk into every meeting ready
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Employees and customer-facing teams use this skill to prepare for upcoming meetings by researching attendees, company context, recent news, talking points, questions, objections, and next steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: People and company research can surface sensitive or irrelevant personal information from public profiles, prior notes, or CRM records. <br>
-Mitigation: Keep access scoped to work-authorized sources, avoid collecting sensitive personal details, and review the generated brief before sharing it. <br>
-Risk: Recent news, attendee details, and suggested talking points may be incomplete or outdated. <br>
-Mitigation: Verify high-impact facts and treat flagged unknowns as follow-up items before the meeting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/ai-meeting-prep) <br>
-- [Context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+External users and employees use this skill to prepare concise meeting briefs before sales, customer, partner, or internal meetings. It researches attendees and companies, summarizes recent news and relationship context, and proposes agenda items, talking points, questions, objections, and next steps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown meeting brief with scannable sections and bullet points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes attendee research, company intelligence, suggested talking points, questions, objections, and next steps; flags missing information instead of inventing it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may research people online and use prior notes or CRM records, which can surface personal or relationship context.
+
+Mitigation: Limit briefs to meeting-relevant public facts and approved internal records, and avoid unnecessary personal details.
+
+Risk: Briefing content can be incomplete or stale when recent news, profiles, or company information are unavailable.
+
+Mitigation: Flag unknowns clearly and verify important facts before relying on the brief in a meeting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/ai-meeting-prep)
+- [Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown one-page briefing with bullets and short sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public research findings, missing-information flags, agenda items, talking points, questions, objections, and recommended next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

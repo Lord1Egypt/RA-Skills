@@ -1,50 +1,65 @@
-## Description: <br>
-Phil Fisher's growth investing framework for applying scuttlebutt research, quality-focused business evaluation, and long-term holding discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phil Fisher's growth investing framework -- pioneer of growth investing, creator of the scuttlebutt method, author of Common Stocks and Uncommon Profits.
 
-## Publisher: <br>
-[talentedleo](https://clawhub.ai/user/talentedleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[talentedleo](https://clawhub.ai/user/talentedleo)
 
-## Use Case: <br>
-External users and agents use this skill to frame company research and portfolio questions through Phil Fisher's long-term growth investing methods. It supports educational analysis, due diligence prompts, and investment philosophy guidance rather than personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate from broad finance terms in ordinary investing discussions. <br>
-Mitigation: Invoke it deliberately and confirm that Phil Fisher-style growth investing guidance is relevant to the user's request. <br>
-Risk: Investing outputs may be mistaken for personalized financial advice or permission to trade. <br>
-Mitigation: Treat outputs as educational investment philosophy, verify facts independently, and use qualified financial advice for personal decisions. <br>
-Risk: The framework emphasizes concentration and long holding periods, which may not fit every risk profile. <br>
-Mitigation: Use it as one analytical lens and compare recommendations against diversification needs, liquidity needs, and current market evidence. <br>
+## Use Case:
 
+External users and developers use this skill to apply a Phil Fisher-style educational lens to growth investing questions, including scuttlebutt due diligence, quality-focused company evaluation, long holding periods, and concentration versus indexing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/talentedleo/phil-fisher-investing) <br>
-- [01-Writings](references/01-writings.md) <br>
-- [02-Conversations](references/02-conversations.md) <br>
-- [03-Expression-DNA](references/03-expression-dna.md) <br>
-- [04-External-Views](references/04-external-views.md) <br>
-- [05-Decisions](references/05-decisions.md) <br>
-- [06-Timeline](references/06-timeline.md) <br>
-- [Wikipedia - Philip Arthur Fisher](https://en.wikipedia.org/wiki/Philip_Arthur_Fisher) <br>
-- [Common Stocks and Uncommon Profits](https://www.amazon.com/Common-Stocks-Uncommon-Profits-Written/dp/0471648699) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text investing analysis and due diligence prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, credential access, persistence, or financial actions according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Users may treat Phil Fisher-style stock guidance as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational investing-framework guidance and require users to make independent decisions or consult qualified financial professionals.
+
+Risk: The skill emphasizes concentration and almost-never-sell framing, which may not fit a user's risk tolerance, time horizon, liquidity needs, or diversification requirements.
+
+Mitigation: Explicitly frame concentration and long holding periods as Fisher-style mental models, not universal recommendations.
+
+Risk: Broad triggers such as "Fisher", "growth investing", and "Motorola" may activate the skill during general finance discussions.
+
+Mitigation: Confirm the user wants a Phil Fisher-style lens before applying the framework in ambiguous conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/talentedleo/skills/phil-fisher-investing)
+- [Wikipedia - Philip Arthur Fisher](https://en.wikipedia.org/wiki/Philip_Arthur_Fisher)
+- [Common Stocks and Uncommon Profits](https://www.amazon.com/Common-Stocks-Uncommon-Profits-Written/dp/0471648699)
+- [01-Writings](references/01-writings.md)
+- [02-Conversations](references/02-conversations.md)
+- [03-Expression-DNA](references/03-expression-dna.md)
+- [04-External-Views](references/04-external-views.md)
+- [05-Decisions](references/05-decisions.md)
+- [06-Timeline](references/06-timeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text investing-framework guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational finance framing; no code execution or tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

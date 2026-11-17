@@ -1,43 +1,56 @@
-## Description: <br>
-Business data analysis and operating diagnosis skill that helps translate business questions into analysis plans, define metric logic, validate data quality, diagnose growth, conversion, retention, revenue, and efficiency changes, and produce actionable recommendations or experiment ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams define business metrics, assess data quality, diagnose performance changes, and turn findings into actionable recommendations.
 
-## Publisher: <br>
-[phoenixlucky](https://clawhub.ai/user/phoenixlucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phoenixlucky](https://clawhub.ai/user/phoenixlucky)
 
-## Use Case: <br>
-Business analysts, operators, managers, and decision-support teams use this skill to structure business analysis, check metric definitions and data quality, diagnose operating changes, and turn findings into prioritized actions. It supports growth, funnel, retention, revenue, efficiency, market research, strategy, competition, marketing, operations, and finance analysis scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to use web search or outside sources during market research or competitive analysis. <br>
-Mitigation: Avoid giving confidential internal business details unless external search is approved, and verify important conclusions against authoritative sources. <br>
+## Use Case:
 
+Business analysts and decision-makers use this skill to investigate growth, conversion, retention, revenue, operational efficiency, and market questions, then prepare evidence-based recommendations and reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phoenixlucky/business-data-analyst-skill) <br>
-- [README](README.md) <br>
-- [Examples reference](references/examples.md) <br>
-- [Market research reference](references/market-research.md) <br>
-- [Metric playbook](references/metric-playbook.md) <br>
-- [Router design](references/router-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured analysis sections and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Follows the user's language and marks known facts, inferences, assumptions, and risks when evidence is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter, CHANGELOG released 2026-06-12, package.json) <br>
+Risk: Market-research queries may be sent through host-provided search tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review queries and the host tool's data handling before searching.
+
+Risk: Confidential business data may be exposed in an unapproved host environment.
+
+Mitigation: Use only approved environments for sensitive data and avoid sharing unnecessary confidential details.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/phoenixlucky/skills/business-data-analyst-skill)
+- [Metric playbook](references/metric-playbook.md)
+- [Market research guidance](references/market-research.md)
+- [Business reporting guidance](references/business-reporting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis plans, reports, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not independently connect to business data or run web searches; external research depends on host-provided tools.]
+
+## Skill Version(s):
+
+1.7.0 (source: release metadata, frontmatter, CHANGELOG, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

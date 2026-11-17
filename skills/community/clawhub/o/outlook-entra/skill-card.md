@@ -1,45 +1,64 @@
-## Description: <br>
-Provides read-only Microsoft Outlook access through OAuth 2.0 device code flow and Microsoft Graph for mail, calendar events, contacts, profile data, and attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Outlook via OAuth 2.0 device code flow and Microsoft Graph API with read-only Mail.Read, Calendars.Read, and Contacts.Read access.
 
-## Publisher: <br>
-[fredguile](https://clawhub.ai/user/fredguile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredguile](https://clawhub.ai/user/fredguile)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an agent to authenticate to a Microsoft Entra application and read Outlook mail, calendar events, contacts, profile data, and attachments through Microsoft Graph. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can maintain durable access to Microsoft account data through refresh tokens. <br>
-Mitigation: Grant only the Graph scopes required for the intended workflow, monitor the Entra app consent, and revoke tokens when the skill is no longer needed. <br>
-Risk: OAuth tokens are stored locally and encryption depends on TOKEN_FILE_KEY being configured. <br>
-Mitigation: Set TOKEN_FILE_KEY, restrict permissions on the token file, and avoid enabling hourly cron refresh unless persistent access is required. <br>
-Risk: Downloaded Outlook attachments may introduce unsafe files into the local environment. <br>
-Mitigation: Download attachments only to a dedicated safe directory and inspect or scan files before opening or processing them. <br>
+## Use Case:
 
+Developers and employees use this skill to authenticate with Microsoft Entra and query Outlook mail, calendar events, contacts, attachments, search results, and profile data through Microsoft Graph.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fredguile/outlook-entra) <br>
-- [Microsoft OAuth 2.0 device code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code) <br>
-- [Microsoft Graph Mail API](https://learn.microsoft.com/en-us/graph/api/user-list-messages) <br>
-- [Microsoft Graph Calendar API](https://learn.microsoft.com/en-us/graph/api/user-list-events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return plain text or Markdown-formatted Outlook data and downloaded attachment files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Microsoft Entra app configuration and local OAuth token storage; read-only Graph scopes are documented for mail, calendar, and contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 2.0) <br>
+Risk: The skill stores and refreshes Microsoft account tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use strong token protection, restrict token file permissions, and install only when local token storage is acceptable.
+
+Risk: The documented hourly cron job can keep access refreshed in the background.
+
+Mitigation: Remove or avoid the cron job unless continuous refresh is truly needed.
+
+Risk: Custom OAuth or Microsoft Graph endpoint configuration can redirect authentication or data requests.
+
+Mitigation: Use only verified Microsoft OAuth and Graph URLs.
+
+Risk: Unpinned Python dependencies can change behavior after installation.
+
+Mitigation: Pin dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fredguile/skills/outlook-entra)
+- [Microsoft OAuth 2.0 device code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code)
+- [Microsoft Graph Mail API](https://learn.microsoft.com/en-us/graph/api/user-list-messages)
+- [Microsoft Graph Calendar API](https://learn.microsoft.com/en-us/graph/api/user-list-events)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime scripts print text or Markdown and can write downloaded attachment files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Microsoft Entra configuration and locally stored OAuth tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

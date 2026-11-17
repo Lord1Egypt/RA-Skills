@@ -1,41 +1,58 @@
-## Description: <br>
-Inspect an Appian package ZIP against the target environment to identify errors or warnings before deploying. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect an Appian package ZIP against the target environment to identify errors or warnings before deploying.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and release engineers use this skill before Appian deployment to inspect an exported package ZIP against the target Appian environment and review predicted errors, warnings, and object counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Appian environment credentials and uploads the selected package ZIP to the configured Appian environment. <br>
-Mitigation: Use a least-privilege APPIAN_API_KEY, confirm APPIAN_BASE_URL points to the intended environment, and pass only the ZIP and customization file intended for inspection. <br>
-Risk: If environment variables are not already set, credential loading may use a nearby appian.json file. <br>
-Mitigation: Run the skill from a controlled directory and avoid directory trees that contain unintended appian.json files. <br>
+## Use Case:
 
+Developers and release engineers use this skill to inspect Appian package ZIP files before deployment so they can review expected object counts, errors, and warnings against the target Appian environment.
 
-## Reference(s): <br>
-- [Appian Inspect Package API](https://docs.appian.com/suite/help/25.4/Inspect_Package_API.html) <br>
-- [Appian Inspectpkg on ClawHub](https://clawhub.ai/solarspiker/appian-inspectpkg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with inspection status, object counts, errors, and warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY and uploads the selected package ZIP to the configured Appian environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: An unintended or insecure Appian base URL could receive the Appian API key and package files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS Appian base URL and verify APPIAN_BASE_URL before running the skill.
+
+Risk: Local appian.json files in the current or parent directories could provide unexpected credentials or endpoints.
+
+Mitigation: Prefer injected environment variables, and check parent directories for unexpected appian.json files before running.
+
+Risk: An Appian API key may need remediation if it was used with an untrusted endpoint.
+
+Mitigation: Rotate the Appian API key if there is any chance it was sent to an untrusted endpoint.
+
+## Reference(s):
+
+- [Appian Inspect Package API](https://docs.appian.com/suite/help/25.4/Inspect_Package_API.html)
+- [ClawHub Skill Page](https://clawhub.ai/solarspiker/skills/appian-inspectpkg)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output with an inspection UUID, object counts, errors, and warnings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports Appian inspection results after polling the configured environment; no files are written by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

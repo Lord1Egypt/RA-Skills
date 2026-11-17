@@ -1,0 +1,24 @@
+# Design Spec
+
+状态：草稿。开始绘制 SVG 前填写下列内容。
+
+- 受众：
+- 使用场景：
+- 核心结论：
+- 页数与叙事顺序：
+- 视觉方向：{{VISUAL_STYLE}}
+- 字体与替代字体：{{FONT_FAMILY}}
+- 需要原生编辑的对象：
+- 图表、表格、公式和图片来源：
+- 允许的小字号角色：footnote、page_mark；正文仍需满足常规可读性阈值。
+
+## IX. Content Outline
+
+<!-- PPT Master quality gate requires this exact section title and one block per slide.
+     Each Slide block must contain an Audience move line. Replace NN with the real page count. -->
+
+### Slide 01
+- Audience move: [本页希望听众产生什么理解或情绪变化]
+
+### Slide NN
+- Audience move: [本页希望听众产生什么理解或情绪变化]

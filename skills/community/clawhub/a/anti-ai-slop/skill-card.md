@@ -1,49 +1,61 @@
-## Description: <br>
-Anti AI-Slop helps agents detect, revise, and score English and Chinese prose for formulaic AI-writing patterns such as filler phrases, passive voice, vague attribution, promotional language, and repetitive structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti AI-Slop detects, rewrites, and scores Chinese and English prose to remove AI writing patterns such as filler phrases, formulaic structures, passive voice, vague attribution, promotional language, and rhythm issues.
 
-## Publisher: <br>
-[pinky-le](https://clawhub.ai/user/pinky-le) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinky-le](https://clawhub.ai/user/pinky-le)
 
-## Use Case: <br>
-Writers, editors, reviewers, and agents use this skill to identify AI-like writing patterns, rewrite affected passages, summarize changes, and produce a 50-point quality score for English or Chinese prose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The style rules are opinionated and may over-edit tone, structure, adverbs, passive voice, or common phrases. <br>
-Mitigation: Use the skill intentionally for AI-pattern cleanup and have a human review revisions against the desired voice before publication. <br>
-Risk: The skill can remove nuance when the original text intentionally uses formulaic, promotional, or highly structured language. <br>
-Mitigation: Preserve source meaning as the primary requirement and apply suggested rewrites selectively when the original wording is intentional. <br>
+## Use Case:
 
+Writers, editors, and agents use this skill to review drafts, remove formulaic AI-style phrasing, rewrite problem passages, and score prose quality in English or Chinese.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pinky-le/anti-ai-slop) <br>
-- [English Phrases to Remove](references/phrases-en.md) <br>
-- [Chinese AI Phrase Blacklist](references/phrases-zh.md) <br>
-- [English Structural Patterns to Avoid](references/structures-en.md) <br>
-- [Chinese Structural Patterns](references/structures-zh.md) <br>
-- [English Before/After Examples](references/examples-en.md) <br>
-- [Chinese Before/After Examples](references/examples-zh.md) <br>
-- [stop-slop](https://github.com/hardikpandya/stop-slop) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [humanizer](https://github.com/blader/humanizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown or plain text containing rewritten prose, change summary, and quality score] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English and Chinese prose review with a five-dimension, 50-point scoring system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can over-normalize prose or erase a desired creative, formal, accessibility, or brand voice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it deliberately for anti-slop cleanup and review edits against the user's requested voice before accepting changes.
+
+Risk: Rigid style rules may conflict with user-specific writing constraints or the needs of sensitive text.
+
+Mitigation: Treat the skill's findings as editorial recommendations and preserve explicit user constraints when they conflict with a rule.
+
+## Reference(s):
+
+- [Anti AI-Slop on ClawHub](https://clawhub.ai/pinky-le/skills/anti-ai-slop)
+- [Publisher profile: pinky-le](https://clawhub.ai/user/pinky-le)
+- [English phrase rules](references/phrases-en.md)
+- [Chinese phrase rules](references/phrases-zh.md)
+- [English structural patterns](references/structures-en.md)
+- [Chinese structural patterns](references/structures-zh.md)
+- [English before/after examples](references/examples-en.md)
+- [Chinese before/after examples](references/examples-zh.md)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with rewritten prose, change summary, and 50-point score]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual English and Chinese editing notes when relevant]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

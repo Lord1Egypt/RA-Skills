@@ -1,110 +1,110 @@
-# 迁移执行与检查清单
+# Migration execution and checklist
 
-## 迁移前分析
+## Pre-migration analysis
 
-在动手迁移前，必须完成以下分析并输出**迁移分析报告**：
+Before starting the migration, the following analysis must be completed and a **migration analysis report** must be output:
 
-1. **存量盘点**
-   - 页面数量、功能模块数量
-   - 依赖的 jQuery 插件及替代方案（如 DataTables → TanStack Table）
-   - 现有 API 调用方式、是否有统一封装
-   - 是否有服务端模板（JSP/Thymeleaf/EJS 等）需要保留、局部替换或改为纯前端渲染
-   - 目标栈是 React/Vue/Next/Nuxt、现代 MPA，还是只做局部 TypeScript/构建/测试现代化
+1. **Inventory Count**
+   - Number of pages and number of functional modules
+   - Dependent jQuery plugins and alternatives (such as DataTables → TanStack Table)
+   - Existing API calling methods and whether there is unified encapsulation
+   - Are there any server-side templates (JSP/Thymeleaf/EJS, etc.) that need to be retained, partially replaced, or changed to pure front-end rendering?
+   - Is the target stack React/Vue/Next/Nuxt, modern MPA, or just partial TypeScript/build/test modernization?
 
-2. **依赖关系**
-   - 页面间共享的 JS/CSS 模块
-   - 跨页面复用的业务逻辑
-   - 与后端的接口契约（是否需调整）
+2. **Dependencies**
+   - JS/CSS modules shared between pages
+- Business logic reused across pages
+   - Interface contract with the backend (whether it needs to be adjusted)
 
-3. **迁移优先级**
-   - 按业务价值、复杂度、耦合度排序
-   - 优先迁移独立模块、低耦合页面
-   - 识别可复用的工具函数、常量、类型定义
+3. **Migration Priority**
+   - Sort by business value, complexity, coupling degree
+   - Prioritize migrating independent modules and low-coupling pages
+   - Identify reusable utility functions, constants, and type definitions
 
-## 分阶段迁移流程
+## Phased migration process
 
-### 阶段 0：准备
+### Phase 0: Preparation
 
-- 搭建或识别目标项目骨架：React/Vue/Next/Nuxt、现代 MPA，或现有项目内的渐进式 TypeScript/构建入口
-- 配置 ESLint、Prettier、测试框架
-- 建立 `services/request.ts` 统一请求层，与现有 API 兼容
-- 将遗留项目中的 `utils`、`constants` 逐步迁移并补充类型
+- Build or identify target project skeleton: React/Vue/Next/Nuxt, modern MPA, or progressive TypeScript/build entry within existing projects
+- Configure ESLint, Prettier, and test framework
+- Establish `services/request.ts` unified request layer, compatible with existing API
+- Gradually migrate `utils` and `constants` in legacy projects and add types
 
-### 阶段 1：基础层
+### Phase 1: Base Layer
 
-- 迁移并类型化 API 调用（`$.ajax` → `axios`/`fetch`）
-- 迁移工具函数（日期、格式化、校验等）
-- 迁移常量、枚举、类型定义
-- 建立目标导航/页面入口骨架；未迁移页面可继续走旧路由、重定向、iframe 或微前端嵌入
+- Migrate and type API calls (`$.ajax` → `axios`/`fetch`)
+- Migration tool functions (date, formatting, verification, etc.)
+- Migrate constants, enumerations, and type definitions
+- Establish target navigation/page entry skeleton; unmigrated pages can continue to use old routing, redirection, iframe or micro-front-end embedding
 
-### 阶段 2：按模块/页面迁移
+### Phase 2: Migration by module/page
 
-- 每次迁移一个完整功能或页面
-- 从简单到复杂：静态页 → 列表页 → 表单页 → 复杂交互页
-- 迁移时提取可复用组件，遵循目标 React 或 Vue 项目的目录结构
-- 每完成一个模块，补充单元测试和 E2E 关键路径
+- Migrate one complete feature or page at a time
+- From simple to complex: static page → list page → form page → complex interactive page
+- Extract reusable components during migration, following the directory structure of the target React or Vue project
+- Supplementary unit testing and E2E critical path for each completed module
 
-### 阶段 3：收尾
+### Phase 3: Closing
 
-- 按迁移策略移除或冻结旧代码入口；若保留 MPA，则收敛旧入口并完成现代化边界
-- 配置 404、错误边界、全局错误处理
-- 性能优化（懒加载、代码分割、缓存策略）
-- 文档更新、部署流程调整
+- Remove or freeze old code entries according to the migration strategy; if MPA is retained, the old entries will be converged and the modernization boundary will be completed
+- Configure 404, error boundaries, and global error handling
+- Performance optimization (lazy loading, code splitting, caching strategy)
+- Document updates and deployment process adjustments
 
-## 重构实施要求
+## Refactoring implementation requirements
 
-迁移时需遵循以下实施约束，确保视觉与交互一致、代码更简洁易维护。
+The following implementation constraints need to be followed when migrating to ensure consistent vision and interaction, and the code is simpler and easier to maintain.
 
-### 图片与图标
+### Pictures and Icons
 
-- 直接使用原项目的图片资源路径，不重新托管或替换
-- 可使用 SVG 图片（`<img src="*.svg" />` 或 CSS `background-image`）；图标组件或可访问交互确需内联 SVG 时，应遵循目标项目图标规范并说明理由。
-- 若原项目使用了 iconfont 或 IcoMoon 图标，重构时优先继续使用，保持图标体系一致；替换为其他图标方案前需评估视觉一致性、包体和维护成本。
-- 图标优先使用原项目已有的图标文件（iconfont / IcoMoon / 已有 SVG），必要时可引入 SVG 文件作为独立资源
+- Directly use the image resource path of the original project without rehosting or replacing it.
+- SVG images (`<img src="*.svg" />` or CSS `background-image`) can be used; when icon components or accessible interactions require inline SVG, the target project icon specifications should be followed and the reasons should be explained.
+- If the original project uses iconfont or IcoMoon icons, priority should be given to continuing to use them during reconstruction to keep the icon system consistent; visual consistency, packaging, and maintenance costs need to be evaluated before replacing with other icon schemes.
+- For icons, priority is given to using existing icon files in the original project (iconfont / IcoMoon / existing SVG). If necessary, SVG files can be introduced as independent resources
 
-### 国际化（i18n）
+### Internationalization (i18n)
 
-- 新栈代码（React / Vue 等）中的用户可见文案须走项目 i18n，不在新代码里硬编码中/英文案
-- 遗留 HTML/JS 中**不要新增**用户可见硬编码文案，除非纯静态且仓库尚无可用 i18n 接入点；改动文案前先查 locales 是否已有条目，并同步主要语言文件
-- key 按页面/模块/语义组织，复用既有 key；仅当旧 key 为对外契约时才做映射过渡，详见项目规则中的 **国际化 (i18n)**（`templates/shared/rules/fec-i18n.md` 内「遗留代码与迁移场景」）
+- User-visible copy in the new stack code (React/Vue, etc.) must follow the project i18n, and do not hardcode Chinese/English copy in the new code
+- **Do not add** user-visible hard-coded copy in legacy HTML/JS, unless it is purely static and the warehouse does not yet have an available i18n access point; before changing the copy, check whether locales already has an entry, and synchronize the main language files
+- Keys are organized by page/module/semantics, and existing keys are reused; mapping transition is only done when the old key is an external contract. For details, see **Internationalization (i18n)** in the project rules ("Legacy Code and Migration Scenarios" in `templates/shared/rules/fec-i18n.md`)
 
-### 样式
+### Style
 
-- 布局样式对齐原项目视觉效果，但**只参考原项目效果，不照搬其 CSS**
-- 优先使用 **flex 弹性布局**，避免 `float`、复杂 `position`、冗余嵌套
-- 避免不合理写法：如 `!important` 滥用、过深选择器、重复定义
-- 组件中优先避免内联样式（`style={{ ... }}` / `style="..."`）；确需使用运行时动态值、第三方组件 API 或 CSS 变量桥接时，应保持局部、可解释，并优先放入目标项目样式体系。
+- The layout style aligns with the visual effects of the original project, but **only refers to the original project effects and does not copy its CSS**
+- Prioritize the use of **flex elastic layout** to avoid `float`, complex `position`, and redundant nesting
+- Avoid unreasonable writing methods: such as `!important` abuse, excessively deep selectors, and repeated definitions
+- Prioritize to avoid inline styles (`style={{ ... }}` / `style="..."`) in components; when it is necessary to use runtime dynamic values, third-party component APIs or CSS variable bridging, they should be kept local and interpretable and put into the target project style system first.
 
-### 目标
+### Target
 
-- **视觉和交互**：与原项目一致，用户无感知差异
-- **代码质量**：更简洁、易维护，符合目标框架规范
-- **业务功能**：与原项目保持一致，**不得缺失功能**；迁移前后行为等价
+- **Visual and interactive**: consistent with the original project, no perceived difference by users
+- **Code Quality**: more concise, easier to maintain, and in line with the target framework specifications
+- **Business functions**: consistent with the original project, **no missing functions**; behaviors before and after migration are equivalent
 
-### 验证分层
+### Verification layering
 
-- 涉及页面、组件、路由、表单、弹窗、导航或关键用户流程的迁移，先建立重构前后的行为清单，再使用 Playwright 或同等真实浏览器验证方式对关键路径做对比验证。
-- 对视觉敏感页面，补充截图对比或人工截图验收；动态内容、动画、字体和环境差异需明确屏蔽、稳定化或说明。
-- 对纯逻辑、类型、构建或无 UI 的迁移，不强制 Playwright，应选择更贴近风险的验证层：type-check、unit test、component test、build 或 lint。
-- 验证目标不是像素级完全一致，而是确认业务功能无缺失、关键交互等价、主要视觉布局无非预期偏差，并且代码比旧实现更清晰、可维护。
+- If it involves the migration of pages, components, routing, forms, pop-ups, navigation or key user processes, first establish a list of behaviors before and after refactoring, and then use Playwright or an equivalent real browser verification method to compare and verify the critical paths.
+- For visually sensitive pages, supplement screenshot comparison or manual screenshot acceptance; dynamic content, animation, fonts and environmental differences need to be clearly blocked, stabilized or explained.
+- For pure logic, type, build or UI-less migrations, Playwright is not forced and a validation layer closer to risk should be chosen: type-check, unit test, component test, build or lint.
+- The verification goal is not to be completely consistent at the pixel level, but to confirm that there are no missing business functions, key interactions are equivalent, there are no unexpected deviations in the main visual layout, and the code is clearer and maintainable than the old implementation.
 
-## 迁移检查清单
+## Migration Checklist
 
-每个迁移单元完成后，确认：
+After each migration unit is completed, confirm:
 
-- [ ] 已建立重构前后的行为清单，覆盖公共 API、路由、表单、权限、错误状态、缓存、埋点和关键交互
-- [ ] 业务逻辑与旧实现一致，无功能遗漏，功能完整等价
-- [ ] 涉及 UI、交互或关键流程的迁移已使用 Playwright 或同等真实浏览器验证方式完成关键路径对比
-- [ ] 视觉敏感页面已完成截图对比或人工截图验收，并说明动态内容、动画、字体和环境差异处理方式
-- [ ] 纯逻辑、类型、构建或无 UI 迁移已选择更贴近风险的验证层，不强制套用 Playwright
-- [ ] 类型定义完整，无 `any` 滥用
-- [ ] API 调用使用统一 request 层，错误处理完整
-- [ ] 表单校验、loading、空状态、错误状态已实现
-- [ ] 可访问性：表单有 label、交互可键盘操作
-- [ ] 无 XSS 风险（用户输入已转义或使用安全 API）
-- [ ] 关键路径有测试覆盖
-- [ ] 符合目标栈的项目规范（React / Vue / Next / Nuxt / MPA 现代化等）
-- [ ] 图片使用原项目资源；图标体系优先沿用原项目或目标项目规范，例外已说明
-- [ ] 样式参考原项目效果但不照搬 CSS，优先使用目标项目样式体系，内联样式例外已说明
-- [ ] 视觉与交互与原项目一致，代码更简洁易维护
-- [ ] 新代码路径文案已 i18n；遗留层未扩大硬编码；locales 检索与多语言同步已完成（参见 i18n 规则迁移补充清单）
+- [ ] A behavioral list before and after refactoring has been established, covering public APIs, routing, forms, permissions, error status, cache, hidden points and key interactions
+- [ ] The business logic is consistent with the old implementation, no functions are missing, and the functions are completely equivalent.
+- [ ] Migration involving UI, interaction or critical processes has completed critical path comparison using Playwright or equivalent real browser verification
+- [ ] For visually sensitive pages, screenshot comparison or manual screenshot acceptance has been completed, and the method of handling differences in dynamic content, animation, fonts and environment has been explained.
+- [ ] Pure logic, type, build or no UI migrations have selected a validation layer that is closer to the risk and do not force the application of Playwright
+- [ ] Type definition is complete, no `any` abuse
+- [ ] API calls use a unified request layer, with complete error handling
+- [ ] Form verification, loading, empty state, and error state have been implemented
+- [ ] Accessibility: The form has a label and can be interacted with via the keyboard.
+- [ ] No XSS risk (user input is escaped or secure API is used)
+- [ ] Critical path has test coverage
+- [ ] Comply with the project specifications of the target stack (React / Vue / Next / Nuxt / MPA modernization, etc.)
+- [ ] Pictures use original project resources; icon systems give priority to the original project or target project specifications, exceptions have been explained
+- [ ] The style refers to the original project effect but does not copy the CSS. The target project style system is used first. The inline style exception has been explained.
+- [ ] The visual and interaction are consistent with the original project, and the code is simpler and easier to maintain.
+- [ ] The new code path copy has been i18n; the legacy layer has not been expanded and hardcoded; locales retrieval and multi-language synchronization have been completed (see i18n rule migration supplementary list)

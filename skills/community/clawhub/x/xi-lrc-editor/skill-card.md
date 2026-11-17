@@ -1,45 +1,58 @@
-## Description: <br>
-Local LRC Editor is a local Flask web tool for creating, importing, calibrating, and exporting LRC lyric files with waveform visualization, millisecond timestamp editing, realtime highlighting, and browser local autosave. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local visual LRC lyric editor for creating, importing, timing, previewing, and exporting synchronized lyric files from audio.
 
-## Publisher: <br>
-[xiyunnet](https://clawhub.ai/user/xiyunnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyunnet](https://clawhub.ai/user/xiyunnet)
 
-## Use Case: <br>
-Lyric creators and music workflow users use this skill to run a local browser editor for timing lyrics to audio, importing existing LRC files, adjusting timestamps, and exporting standard LRC output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Flask server binds broadly and exposes unauthenticated upload and shutdown actions. <br>
-Mitigation: Bind the server to 127.0.0.1, use it only in a trusted local environment, and stop the service when editing is complete. <br>
-Risk: The startup script installs Python packages at runtime. <br>
-Mitigation: Run the skill in a virtual environment and review the dependency list before installation. <br>
-Risk: Uploaded filenames are written to the temporary directory during waveform processing. <br>
-Mitigation: Use trusted local files and sanitize upload filenames before adapting this service for shared environments. <br>
-Risk: Lyrics and the current file name are saved in browser localStorage. <br>
-Mitigation: Clear browser storage after editing sensitive or unpublished lyrics. <br>
+## Use Case:
 
+External users and lyric creators use this skill to launch a local browser-based editor for making new LRC lyric files, correcting existing lyric timing, and exporting synchronized lyrics for media players.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiyunnet/xi-lrc-editor) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Local web UI and downloadable LRC text files, with Markdown setup guidance for the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Flask service on port 698 and stores working lyric data in browser localStorage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: The local network service is unauthenticated and may be reachable beyond the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted local environment and prefer binding the service to localhost before broader use.
+
+Risk: The upload path handling and shutdown route were flagged by security evidence as requiring review.
+
+Mitigation: Review and harden upload handling and service shutdown behavior before using shared or privileged accounts.
+
+Risk: Dependency pinning and resource limits were flagged as unresolved security concerns.
+
+Mitigation: Pin dependencies and set appropriate upload and processing limits before deploying beyond personal local use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiyunnet/skills/xi-lrc-editor)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and local browser workflow details; the launched app exports LRC text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local web app accepts audio and LRC inputs, stores edits in browser local storage, and exports standard .lrc files.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "peter-lynch-investing",
+  "name": "peter_lynch",
+  "display_name": "Peter Lynch",
+  "subtitle": "The Magellan Legend",
   "version": "1.0.0",
-  "publishedAt": 1776176282582
+  "description": "Legendary Fidelity Magellan Fund manager, author of One Up on Wall Street",
+  "author": "Celebrity Skills Team",
+  "created_date": "2026-04-14",
+  "last_updated": "2026-04-14",
+  "tags": ["growth_investing", "value_investing", "Fidelity", "magellan", "know_what_you_own"],
+  "related_skills": ["warren_buffett", "benjamin_graham", "aswath_damodaran"],
+  "source_type": "books_interviews_podcasts",
+  "confidence_level": "high",
+  "notes": "Includes 2025-2026 latest interviews from Compound, CNBC, Moneyweb"
 }

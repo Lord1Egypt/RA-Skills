@@ -1,39 +1,54 @@
-## Description: <br>
-Access U.S. Census Bureau housing data including ACS, building permits, housing starts, homeownership rates, and available census datasets by geography. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access U.S. Census Bureau housing data including ACS, building permits, housing starts, homeownership rates, and available census datasets by geography.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Analysts, developers, and agents use this skill to connect to Pipeworx Census MCP tools for housing-related Census lookups by geography, including ACS variables, building permits, housing starts, homeownership rates, and dataset discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests to the Census MCP endpoint leave the local agent environment and are handled by the Pipeworx gateway. <br>
-Mitigation: Avoid sending private or confidential context in tool calls unless the Pipeworx gateway is trusted for the intended use. <br>
+## Use Case:
 
+Developers and agents use this skill to query Census housing datasets through a Pipeworx MCP server for geography-specific ACS, permit, construction, homeownership, and dataset-discovery results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-census) <br>
-- [Pipeworx Census MCP endpoint](https://gateway.pipeworx.io/census/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, text] <br>
-**Output Format:** [Markdown with JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configures a remote MCP endpoint for Census housing-data lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Census-related queries are sent through the third-party gateway at gateway.pipeworx.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the gateway is acceptable for the intended use before installing or invoking the skill.
+
+Risk: Returned Census values may be incomplete, unavailable, or unsuitable for high-stakes decisions without verification.
+
+Mitigation: Verify important results against official Census sources when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-census)
+- [Pipeworx Census MCP gateway](https://gateway.pipeworx.io/census/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with Census query results and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on availability and behavior of the third-party Pipeworx gateway and underlying Census data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

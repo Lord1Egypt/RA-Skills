@@ -1,37 +1,60 @@
-## Description: <br>
-Automates browser-based access to a rural cloud platform for login, villager record lookup, result extraction, and logout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates authenticated browser access to a rural cloud platform to look up villager records, extract results, export data, and log out.
 
-## Publisher: <br>
-[rookcat](https://clawhub.ai/user/rookcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rookcat](https://clawhub.ai/user/rookcat)
 
-## Use Case: <br>
-Developers and authorized operators use this skill to guide browser automation against a rural cloud platform, including QR-code login, constrained record queries, result handling, and session cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates access to sensitive villager records, and the security evidence says authorization, external code, and local data handling are not clearly bounded. <br>
-Mitigation: Install and use only with explicit authorization; audit any external repository and scripts before execution; tightly control caching, logging, screenshots, exports, temporary files, and session data retention. <br>
+## Use Case:
 
+Developers or operators with explicit authorization use this skill to automate lookup and export of villager records from a rural cloud platform. Because it handles personal records through authenticated browser automation, it should be used only under approved access and data-handling controls.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON data] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce query results, logs, and exported records when used with authorized platform access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill automates authenticated lookup of personal villager records while its purpose and authorized-use boundaries are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require publisher clarification and use only with explicit permission for the target platform and data subjects or records covered by the workflow.
+
+Risk: The artifact describes caching, logging, screenshots, temporary storage, and data export behavior for sensitive records.
+
+Mitigation: Confirm the exact data lifecycle, cache and log contents, screenshot behavior, export location, retention period, and cleanup guarantees before installation.
+
+Risk: The skill depends on browser automation and unpinned or broad runtime dependencies.
+
+Mitigation: Run in a managed isolated environment, pin and review dependencies, and avoid shared machines until the dependency and cleanup posture is confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rookcat/skills/rural-cloud-platform)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact manifest](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe browser automation, authenticated queries, logging, temporary storage, and export behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

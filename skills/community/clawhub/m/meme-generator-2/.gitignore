@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+test_memes/
+memes/
+quotes_*/
+*.html
+!references/*.html
+.DS_Store

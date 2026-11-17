@@ -1,41 +1,55 @@
-## Description: <br>
-Oven tracks oven usage and cooking schedules for bake sessions, reminders, inventory, and usage statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track oven usage and cooking schedules. Use when logging bake sessions, setting cook reminders, checking inventory, reviewing stats.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and household maintainers use Oven to log oven activity, track inventory, schedule reminders, and review cooking or maintenance history from a local CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved oven notes and exports may contain sensitive household details because entries are stored locally in plaintext. <br>
-Mitigation: Avoid entering sensitive schedules, personal details, or security-related household information, and review or delete files under ~/.local/share/oven/ as needed. <br>
-Risk: Export commands can duplicate saved notes into JSON, CSV, or TXT files. <br>
-Mitigation: Treat generated exports as copies of the local log data and manage, share, or remove them according to the sensitivity of the entries. <br>
+## Use Case:
 
+External users and agents use Oven to log bake sessions, inventory, schedules, reminders, maintenance, usage, costs, and tips, then review, search, or export local oven history.
 
-## Reference(s): <br>
-- [Oven on ClawHub](https://clawhub.ai/bytesagain3/oven) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text CLI output with optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs and exports under ~/.local/share/oven/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence; artifact files report 2.0.0) <br>
+Risk: Logged oven entries and exports are saved locally in plaintext under ~/.local/share/oven.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal or confidential details, and review or delete local logs and exports before sharing the machine or backups.
+
+Risk: CSV exports may contain user-entered values that spreadsheet software can interpret as formulas.
+
+Mitigation: Review or sanitize CSV exports before opening them in spreadsheet software or sharing them with others.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/oven)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Files]
+
+**Output Format:** [Command-line text output and local JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local plaintext logs and exports under ~/.local/share/oven.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and target metadata; artifact frontmatter/script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

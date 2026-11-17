@@ -1,0 +1,41 @@
+{
+  "id": "urban-professional-male-25-34",
+  "label": "Urban Professional Male 25-34",
+  "emoji": "👨‍💼",
+  "demographics": {
+    "gender": "male",
+    "age_range": [25, 34],
+    "tier": "millennial"
+  },
+  "active_hours": {
+    "description": "Work hours + evening unwind",
+    "peak": [8, 12, 14, 17, 22, 0],
+    "off_peak_min": 6
+  },
+  "typing": {
+    "description": "Business speed, direct, to the point",
+    "wpm": { "min": 80, "max": 110 },
+    "profile": "natural",
+    "think_prob": 0.01,
+    "think_ms": [300, 1000],
+    "backspace_freq": 0.03
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Purpose-driven, scans then acts",
+    "speed_px_per_ms": { "min": 25, "max": 60 },
+    "pause_between_passes_ms": { "min": 400, "max": 1500 },
+    "depth_per_pass": { "min": 0.2, "max": 0.5 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 800, "max": 2500 },
+    "pre_click_pause_ms": { "min": 200, "max": 600 },
+    "inter_action_pause_ms": { "min": 250, "max": 900 }
+  },
+  "mouse": {
+    "speed": 1.0,
+    "curvature": 0.15,
+    "jitter": 0.3,
+    "description": "Smooth, moderate speed"
+  }
+}

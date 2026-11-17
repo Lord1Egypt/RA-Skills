@@ -1,42 +1,63 @@
-## Description: <br>
-Manages macOS Calendar events and calendars from the terminal with the ical CLI, including CRUD operations, natural language dates, recurrence rules, alerts, interactive mode, import/export, and multiple output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ical helps agents manage macOS Calendar events and calendars from the terminal using the ical CLI, including CRUD operations, natural-language dates, recurrence, alerts, import/export, and multiple output formats.
 
-## Publisher: <br>
-[BRO3886](https://clawhub.ai/user/BRO3886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bro3886](https://clawhub.ai/user/bro3886)
 
-## Use Case: <br>
-Developers, operators, and end users use this skill to manage Apple Calendar from an agent or terminal workflow, automate calendar tasks, and generate scripts around the macOS ical CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The ical CLI can read, create, update, import, export, and delete macOS Calendar data after Calendar access is granted. <br>
-Mitigation: Install only if the upstream CLI is trusted, scope agent actions to specific calendars and date ranges, and treat exported calendar files as sensitive data. <br>
-Risk: Deletes, imports, calendar deletion, --force, and skill install or uninstall commands can make broad or irreversible changes. <br>
-Mitigation: Require explicit user approval before these actions and use exact event IDs where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [Natural Language Date Reference](references/dates.md) <br>
-- [go-eventkit API](https://github.com/BRO3886/go-eventkit) <br>
-- [ClawHub Skill Page](https://clawhub.ai/BRO3886/ical-cli) <br>
+## Use Case:
 
+Developers, external users, and agent workflows on macOS use this skill to inspect, create, update, delete, import, and export Apple Calendar data through terminal commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calendar command suggestions, import/export guidance, and user-approval checkpoints for destructive calendar actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release metadata; artifact frontmatter lists 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide agents to read and modify local Apple Calendar data.
+
+Mitigation: Grant Calendar permissions only after reviewing the release and confirming that calendar access is intended.
+
+Risk: Delete, update, and import workflows can make calendar changes, and --force skips confirmation prompts.
+
+Mitigation: Require explicit approval of exact event IDs, calendars, date ranges, and files before allowing destructive or bulk commands.
+
+Risk: The ical skills install command writes skill files into supported agent skill directories.
+
+Mitigation: Treat skill installation as a local agent behavior change and review the installed files before use.
+
+Risk: Installing with @latest may pull an unpinned release.
+
+Mitigation: Use a pinned, trusted release version where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bro3886/skills/ical-cli)
+- [Complete Command Reference](references/commands.md)
+- [Natural Language Date Reference](references/dates.md)
+- [go-eventkit Docs](https://github.com/BRO3886/go-eventkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, command arguments, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON, CSV, or ICS command examples when guiding export/import workflows.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

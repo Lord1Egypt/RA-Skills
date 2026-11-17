@@ -1,43 +1,58 @@
-## Description: <br>
-Create, view, update, and delete calendar events using the Claw Calendar API with natural language commands for scheduling and managing personal calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, view, update, and delete calendar events using the Claw Calendar API with natural language commands for scheduling and managing personal calendars.
 
-## Publisher: <br>
-[5twang](https://clawhub.ai/user/5twang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[5twang](https://clawhub.ai/user/5twang)
 
-## Use Case: <br>
-External users and agents use this skill to manage personal calendar data through a configured Claw Calendar server, including creating, listing, updating, and deleting calendars and events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured API key can allow the agent to read or change calendar data. <br>
-Mitigation: Use a trusted HTTPS Claw Calendar server and a revocable API key with the least access available. <br>
-Risk: Natural language scheduling requests can be parsed into the wrong calendar, date, time, or event. <br>
-Mitigation: Confirm the target calendar, event title, date, and time before creating, updating, or deleting events. <br>
-Risk: Updates or deletes can remove or alter useful calendar records. <br>
-Mitigation: Ask for explicit confirmation before destructive changes and review the API response after the operation. <br>
+## Use Case:
 
+External users and assistants use this skill to manage personal calendar data through a configured Claw Calendar API, including creating, listing, updating, and deleting events from natural language scheduling requests.
 
-## Reference(s): <br>
-- [Claw Calendar API Reference](references/api_reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/5twang/claw-calendar-new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CALENDAR_API_BASE_URL and CALENDAR_API_KEY environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata) <br>
+Risk: The skill can give an assistant API-key access to create, update, and delete calendar data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted calendar service and a scoped or revocable API key when available.
+
+Risk: Destructive calendar actions could remove or change the wrong event if details are ambiguous.
+
+Mitigation: Require the assistant to show exact calendar and event details and obtain confirmation before any delete or update operation.
+
+Risk: Calendar events may contain private schedule, location, or contact information.
+
+Mitigation: Review event details before sending them to the API and avoid routing data to untrusted CALENDAR_API_BASE_URL values.
+
+## Reference(s):
+
+- [Claw Calendar API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/5twang/skills/claw-calendar-new)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CALENDAR_API_BASE_URL and CALENDAR_API_KEY environment variables for authenticated calendar operations.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

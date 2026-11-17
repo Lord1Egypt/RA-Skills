@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches public Huobi real-time market data and historical K-line data for major cryptocurrency spot trading pairs with selectable intervals and record counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time Huobi market data and historical K-line data for major cryptocurrency spot trading pairs with configurable intervals and record counts.
 
-## Publisher: <br>
-[u91win](https://clawhub.ai/user/u91win) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[u91win](https://clawhub.ai/user/u91win)
 
-## Use Case: <br>
-Developers and market-data users use this skill to query recent Huobi K-line candles and real-time market data for cryptocurrency pairs such as BTC, ETH, and SOL. The results support informational market review and agent workflows that need public price and volume history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script contacts Huobi's public API and depends on that service's availability and returned market data. <br>
-Mitigation: Use the results as informational data, handle request failures, and confirm important values against an authoritative market-data source before relying on them. <br>
-Risk: Cryptocurrency market data may be mistaken for trading guidance. <br>
-Mitigation: Present the output as market information only and avoid treating it as financial advice or an instruction to place trades. <br>
+## Use Case:
 
+Developers and market-data users can ask an agent to retrieve recent Huobi K-line records for cryptocurrency spot pairs such as btcusdt, ethusdt, or solusdt. The skill is useful for quick command-line checks of public OHLCV market data over common intervals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/u91win/crypto-kline-data) <br>
-- [Publisher profile](https://clawhub.ai/user/u91win) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Node.js script to request public Huobi market data; requested record count is capped at 2000.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The bundled Node script makes outbound HTTPS requests to Huobi for public market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where outbound access to Huobi is acceptable and review network policy before use.
+
+Risk: Symbol shorthand such as BTC may be rejected by the API even though examples mention major coins.
+
+Mitigation: Use full Huobi spot trading pair symbols such as btcusdt, ethusdt, or solusdt.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/u91win/skills/crypto-kline-data)
+- [Huobi public kline API endpoint](https://api.huobi.pro/market/history/kline)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text with tabular K-line data and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and outbound HTTPS access to Huobi's public API.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

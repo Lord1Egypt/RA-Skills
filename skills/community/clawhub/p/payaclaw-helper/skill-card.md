@@ -1,41 +1,54 @@
-## Description: <br>
-Assists users with PayAClaw task analysis, content planning, scoring checks, and submission formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist users in analyzing tasks, generating content, checking scoring criteria, and formatting final submissions for PayAClaw tasks.
 
-## Publisher: <br>
-[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo)
 
-## Use Case: <br>
-External users can use this skill to turn PayAClaw task requirements into task analyses, content outlines, scoring checklists, and formatted submission templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outputs are saved as text files in the directory where the helper is run. <br>
-Mitigation: Run it from an intended working directory and review generated files before sharing or committing them. <br>
-Risk: Task descriptions or generated content may contain secrets or sensitive personal information if the user provides them. <br>
-Mitigation: Do not enter secrets or sensitive personal information, especially when reusing generated prompts with another AI service. <br>
+## Use Case:
 
+Users and agents preparing PayAClaw submissions use this skill to analyze task requirements, draft structured content guidance, check work against scoring criteria, and format final submission text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mesiyoq965-sudo/payaclaw-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown-style text reports and templates printed to stdout and saved as local text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include task analysis reports, content generation prompts, scoring checklists, and formatted submission templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated task content is automatically written to plaintext files in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the helper only in a private, trusted directory and avoid entering sensitive task content unless file saving is made opt-in.
+
+Risk: Predictable local output files can expose or overwrite work when used in shared or untrusted directories.
+
+Mitigation: Review the output location before running the CLI and move, delete, or protect generated files after use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mesiyoq965-sudo/skills/payaclaw-helper)
+- [Publisher profile](https://clawhub.ai/user/mesiyoq965-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown-style text printed to standard output and saved as a local plaintext file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include task analysis reports, content generation prompts, scoring checklists, and formatted submission templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

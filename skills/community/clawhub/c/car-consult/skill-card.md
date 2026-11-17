@@ -1,44 +1,57 @@
-## Description: <br>
-Use this skill when the user asks about buying, comparing, recommending, or evaluating new or used new energy vehicles, including BEV, PHEV, and EREV models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Chinese-language questions about buying, comparing, recommending, and evaluating new or used new energy vehicles, including pricing, ownership costs, depreciation, insurance, financing, and Wuxi-specific considerations.
 
-## Publisher: <br>
-[zhangmengyang](https://clawhub.ai/user/zhangmengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangmengyang](https://clawhub.ai/user/zhangmengyang)
 
-## Use Case: <br>
-External users use this skill to compare new energy vehicles, estimate purchase and running costs, assess used-vehicle risks, and get Wuxi-oriented buying guidance. It supports budget, powertrain, usage, resale, insurance, financing, and policy questions with current market search when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle pricing, discounts, used-car listings, and local policy details can change quickly, which may make buying guidance or cost estimates stale. <br>
-Mitigation: Use current web search for market-sensitive claims, label sources, and mark estimates clearly when search is unavailable. <br>
-Risk: Broad car-cost, financing, or buying questions may activate the skill even when the user needs a different type of automotive help. <br>
-Mitigation: Confirm budget, new-versus-used status, use case, and powertrain before giving recommendations, and gracefully decline topics outside the skill scope. <br>
+## Use Case:
 
+External users and agents use this skill to structure practical car-buying advice for China's new energy vehicle market, especially for Wuxi users comparing models, prices, running costs, policy effects, financing, and used-car risks.
 
-## Reference(s): <br>
-- [Buying Guide](references/buying-guide.md) <br>
-- [Cost Calculation](references/cost-calculation.md) <br>
-- [Pitfalls Guide](references/pitfalls.md) <br>
-- [Wuxi Policy](references/wuxi-policy.md) <br>
-- [Brand Scores](data/brand-scores.md) <br>
+### Deployment Geography for Use:
 
+China, with Wuxi-specific local guidance
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown with tables, bullet lists, sourced claims, and cost estimates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web search for pricing, discounts, reviews, complaints, and used-car listings; falls back to clearly marked estimates when search is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Stored car preferences may be reused automatically, including budget, location, commute, parking, charging access, or prior deal-breakers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current budget, city, commute, charging access, powertrain preference, and deal-breakers with the user before applying remembered details.
+
+Risk: Vehicle pricing, incentives, insurance costs, reviews, and local policy details can become stale quickly.
+
+Mitigation: Use current sources for pricing, reviews, and policy-sensitive claims, and label estimates clearly when real-time data is unavailable.
+
+## Reference(s):
+
+- [Buying Guide](artifact/references/buying-guide.md)
+- [Cost Calculation](artifact/references/cost-calculation.md)
+- [Pitfalls Guide](artifact/references/pitfalls.md)
+- [Wuxi New Energy Vehicle Policy](artifact/references/wuxi-policy.md)
+- [Brand Scores](artifact/data/brand-scores.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with comparison tables, bullet lists, estimates, and sourced claims]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should confirm core requirements before recommending vehicles and should use current search results for prices, reviews, and policy-sensitive claims.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

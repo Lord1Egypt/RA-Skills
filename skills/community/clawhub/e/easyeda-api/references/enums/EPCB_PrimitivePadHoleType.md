@@ -1,11 +1,11 @@
 # EPCB\_PrimitivePadHoleType enum
 
-焊盘钻孔类型
+Pad drilling type
 
 ## Signature
 
 ```typescript
-declare enum EPCB_PrimitivePadHoleType 
+enum EPCB_PrimitivePadHoleType
 ```
 
 ## Enumeration Members
@@ -14,64 +14,46 @@ declare enum EPCB_PrimitivePadHoleType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 RECTANGLE
 
-
 </td><td>
 
-`"RECT"`
-
+`'RECT'`
 
 </td><td>
-
-矩形（暂未开发）
-
 
 </td></tr>
 <tr><td>
 
 ROUND
 
-
 </td><td>
 
-`"ROUND"`
-
+`'ROUND'`
 
 </td><td>
-
-圆形
-
 
 </td></tr>
 <tr><td>
 
 SLOT
 
-
 </td><td>
 
-`"SLOT"`
-
+`'SLOT'`
 
 </td><td>
-
-插槽
-
 
 </td></tr>
 </tbody></table>

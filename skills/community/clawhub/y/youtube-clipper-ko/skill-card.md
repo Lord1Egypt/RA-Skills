@@ -1,43 +1,62 @@
-## Description: <br>
-Splits Korean YouTube videos or local video files into short-form clips by transcribing audio, selecting viral candidate segments, adding Korean subtitles, and writing clip metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube Clipper KO helps agents turn Korean YouTube or local videos into short-form clips with Whisper transcripts, Claude Haiku segment selection, burned-in Korean subtitles, and JSON metadata.
 
-## Publisher: <br>
-[thedalbee](https://clawhub.ai/user/thedalbee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thedalbee](https://clawhub.ai/user/thedalbee)
 
-## Use Case: <br>
-Content creators and video workflow operators use this skill to turn Korean long-form videos into candidate Shorts, Reels, or TikTok clips with transcript-based segment analysis, subtitles, and reviewable metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal use sends extracted audio to OpenAI for transcription and transcript text to Anthropic for clip selection. <br>
-Mitigation: Do not process private, confidential, unreleased, or restricted media unless that external processing is approved for the content. <br>
-Risk: Generated media, transcripts, and metadata remain on disk after the run. <br>
-Mitigation: Review output directories after use and delete source media, transcripts, clips, and metadata that should not be retained. <br>
-Risk: The skill may be used on copyrighted or third-party media. <br>
-Mitigation: Confirm rights, permissions, and platform rules before downloading, editing, or publishing clips. <br>
+## Use Case:
 
+Developers, editors, and content creators use this skill to prepare Korean short-form clips from long-form YouTube or local video sources. It supports human review by producing segment scores, hooks, reasons, weaknesses, transcripts, and clip metadata alongside the generated media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thedalbee/youtube-clipper-ko) <br>
-- [Clawitzer optional integration](https://github.com/thedalbee/clawitzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated MP4 and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped output folders containing source media, transcript JSON, viral segment JSON, MP4 clips, and result metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Input media and transcript content are sent to OpenAI for transcription and Anthropic for transcript analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with media approved for cloud processing, and avoid confidential, regulated, or third-party content without appropriate permission.
+
+Risk: The install path relies on mutable dependencies and external command-line tools.
+
+Mitigation: Run the skill in an isolated environment, pin dependency versions where possible, and review tool versions before processing production media.
+
+Risk: Source media, extracted audio, transcripts, metadata, and generated clips may remain on disk after a run.
+
+Mitigation: Choose an appropriate output location, restrict local access, and delete generated artifacts when they are no longer needed.
+
+Risk: The current artifacts do not implement the advertised silence or breath removal behavior.
+
+Mitigation: Review generated clips manually before publication and disclose or correct this limitation in release notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thedalbee/skills/youtube-clipper-ko)
+- [Clawitzer Integration Reference](https://github.com/thedalbee/clawitzer)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON metadata, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated MP4 and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local output directories containing source media, transcripts, viral segment metadata, result metadata, and clips.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

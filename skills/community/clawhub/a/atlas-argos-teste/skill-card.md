@@ -1,46 +1,59 @@
-## Description: <br>
-Atlas Argos Teste guides an agent acting as the autonomous ATLAS manager for the ARGOS crypto trading bot, covering operations, user and payment administration, marketing, Python maintenance, and Telegram reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages the ARGOS crypto trading bot by monitoring operations, troubleshooting Python issues, handling users and payments, and supporting marketing and reporting workflows.
 
-## Publisher: <br>
-[felix1983](https://clawhub.ai/user/felix1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[felix1983](https://clawhub.ai/user/felix1983)
 
-## Use Case: <br>
-Operators of the ARGOS crypto trading bot use this skill to direct an agent through daily monitoring, incident response, user and payment administration, marketing activity, Python maintenance, and recurring owner reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to operate a live crypto trading bot with broad access to local files, processes, internet tools, and credentials. <br>
-Mitigation: Run the agent under a restricted project user or sandbox and require approval before code changes, process restarts, package installs, or credential-dependent actions. <br>
-Risk: The skill includes user and payment administration workflows that could affect access tiers, subscriptions, revenue records, or customer communications. <br>
-Mitigation: Require human review for user promotions, demotions, payment changes, webhook changes, and any updates to payment or subscription records. <br>
-Risk: The skill directs recurring Telegram reports and external messages that may expose user IDs, logs, revenue data, issue details, or operational status. <br>
-Mitigation: Redact or minimize personal data, logs, revenue figures, and incident details before sending reports to Telegram or external AI tools. <br>
-Risk: The skill includes public marketing and social posting workflows for Telegram, X, Reddit, YouTube, and TikTok. <br>
-Mitigation: Require approval for public posts and verify that trading results, win rates, losses, and performance claims are accurate before publication. <br>
-Risk: The skill contains restart, monitoring, cron, shell, and Python snippets that could change a production system if executed directly. <br>
-Mitigation: Review commands in context, test changes before deployment, and keep logs or changelogs for code edits, restarts, and scheduled task changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/felix1983/atlas-argos-teste) <br>
-- [Publisher profile](https://clawhub.ai/user/felix1983) <br>
+## Use Case:
+
+Operators of the ARGOS crypto trading bot use this skill to keep the bot running, manage user and premium-payment workflows, prepare marketing content, and report operational status.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks for operator-level control over the ARGOS machine.
+
+Mitigation: Restrict execution to a fixed ARGOS directory and require approval before code changes, payments, public posts, or service restarts.
+
+Risk: The skill includes credential discovery and .env sourcing patterns.
+
+Mitigation: Remove broad /home searches and provide required secrets explicitly through least-privilege secret provisioning.
+
+Risk: The skill describes cron and nohup background jobs for monitoring and reports.
+
+Mitigation: Use persistence only after separate review, document each scheduled job, and make every job easy to disable.
+
+Risk: The skill can automate Telegram reporting and social posting.
+
+Mitigation: Confirm recipients and channels before sending messages, and require approval for public posts and payment-related actions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, Python snippets, cron entries, tables, and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written in PT-PT and may include operational instructions for local files, processes, Telegram Bot API calls, payment administration, and public posting workflows.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Portuguese Markdown instructions with inline bash and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PT-PT operational guidance that may propose file edits, cron jobs, API calls, status reports, and administrative actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

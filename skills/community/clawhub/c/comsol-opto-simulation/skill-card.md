@@ -1,53 +1,71 @@
-## Description: <br>
-Automates topic-neutral COMSOL Multiphysics optical, semiconductor, thermal, and coupled optoelectronic simulations through Python/mph for environment discovery, project configuration, parameter sweeps, solver diagnostics, and post-processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates topic-neutral COMSOL Multiphysics optical, semiconductor, thermal, and coupled optoelectronic simulations through Python/mph for environment discovery, project configuration, parameter sweeps, solver diagnostics, and post-processing.
 
-## Publisher: <br>
-[leima-max](https://clawhub.ai/user/leima-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leima-max](https://clawhub.ai/user/leima-max)
 
-## Use Case: <br>
-Developers and simulation engineers use this skill to configure and run COMSOL optical, semiconductor, thermal, and coupled optoelectronic workflows, then inspect generated model artifacts, CSV outputs, JSON summaries, and solver diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic and repair scripts may overwrite COMSOL .mph models or solver state. <br>
-Mitigation: Run those scripts only on copied models or backed-up workspaces, and confirm the target model path before execution. <br>
-Risk: COMSOL automation can consume local COMSOL licenses and compute resources. <br>
-Mitigation: Use offline helpers first, then run license-consuming product checks or solves only after the user approves the environment and module requirements. <br>
-Risk: Template outputs and placeholder metric CSVs can be mistaken for validated simulation results. <br>
-Mitigation: Replace all placeholders with project-specific measured or literature-supported values and report assumptions, solver settings, convergence status, and validation gaps with results. <br>
-Risk: Dependency installation modifies a skill-local vendor directory. <br>
-Mitigation: Review dependency-install commands before running them and keep installed Python bridge packages isolated from project source files. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and run COMSOL optical, semiconductor, thermal, and coupled simulations, including sweeps, diagnostics, and post-processing. It is intended for user-supplied COMSOL installations and project-specific material, boundary-condition, and validation inputs.
 
-## Reference(s): <br>
-- [COMSOL Simulation ClawHub page](https://clawhub.ai/leima-max/comsol-opto-simulation) <br>
-- [COMSOL Skill Input Schema](references/input-schema.md) <br>
-- [COMSOL Script Map](references/script-map.md) <br>
-- [COMSOL API Patterns via MPh](references/comsol-api-patterns.md) <br>
-- [COMSOL Java API Cheat Sheet for MPh / Python Bridge](references/comsol-api-cheatsheet.md) <br>
-- [COMSOL Convergence Diagnostics](references/comsol-convergence-diagnostics.md) <br>
-- [Generic Material Parameter Template](references/material-database.md) <br>
-- [COMSOL API Introduction](https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/comsol_api_intro.46.01.html) <br>
-- [COMSOL Programming Reference Manual](https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/COMSOL_ProgrammingReferenceManual.pdf) <br>
-- [COMSOL Semiconductor Module User's Guide](https://doc.comsol.com/6.4/doc/com.comsol.help.semicond/SemiconductorModuleUsersGuide.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration guidance, and code-oriented script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of COMSOL model artifacts, CSV files, JSON summaries, and diagnostic logs under user-selected output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagnostic or repair scripts can rerun studies or overwrite simulation model files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a disposable workspace or on copied .mph files, and review diagnostic or repair scripts before allowing them to modify models.
+
+Risk: Dependency installation changes the local skill environment.
+
+Mitigation: Approve dependency installation deliberately and keep installed Python bridge packages scoped to the skill-local vendor directory.
+
+Risk: Unconfigured templates or missing material, boundary-condition, and validation data can produce misleading quantitative simulation results.
+
+Mitigation: Replace placeholders with project-specific values, record sources for parameters, and validate outputs against measured data or accepted criteria before relying on results.
+
+## Reference(s):
+
+- [COMSOL Skill Input Schema](references/input-schema.md)
+- [Generic Material Parameter Template](references/material-database.md)
+- [COMSOL API Patterns via MPh](references/comsol-api-patterns.md)
+- [COMSOL Documentation and Java API Playbook](references/comsol-docs-java-playbook.md)
+- [COMSOL Official Learning Roadmap](references/comsol-official-learning-roadmap.md)
+- [COMSOL Convergence Diagnostics](references/comsol-convergence-diagnostics.md)
+- [Official Photogeneration Coupling Template](references/comsol-official-photogeneration-template.md)
+- [Thermal And Multiphysics Coupling Guide](references/thermal-coupling-guide.md)
+- [Parameter Sweep Guide](references/parameter-sweep-guide.md)
+- [MPh documentation](https://mph.readthedocs.io)
+- [COMSOL API overview](https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/comsol_api_intro.46.01.html)
+- [COMSOL Programming Reference Manual](https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/COMSOL_ProgrammingReferenceManual.pdf)
+- [COMSOL Application Programming Guide](https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/ApplicationProgrammingGuide.pdf)
+- [COMSOL Java API package documentation](https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/api/com/comsol/model/package-summary.html)
+- [COMSOL Semiconductor Module User's Guide](https://doc.comsol.com/6.4/doc/com.comsol.help.semicond/SemiconductorModuleUsersGuide.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration templates, and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce COMSOL model artifacts, exported plots, CSV files, and JSON summaries when the referenced scripts are executed in a configured COMSOL environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

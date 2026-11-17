@@ -1,43 +1,51 @@
-## Description: <br>
-Comprehensive security assessment and hardening recommendations platform providing compliance framework guidance and critical control evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive security assessment and hardening recommendations platform providing compliance framework guidance and critical control evaluation.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security professionals, compliance officers, and system administrators use this skill to submit hardening checklist data to a third-party API and receive assessment reports with scoring, gap analysis, critical controls, and compliance-framework alignment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checklist contents, session identifiers, user identifiers, and security posture details may be sent to a third-party API. <br>
-Mitigation: Use pseudonymous session or user IDs where possible, avoid production-identifying details in checklist data, and verify the provider's privacy and retention terms before submitting real organizational security information. <br>
-Risk: Assessment reports may contain incomplete or misleading hardening recommendations if the submitted checklist data is inaccurate or incomplete. <br>
-Mitigation: Review generated findings against internal security standards and validate recommendations before using them for audits, compliance decisions, or production remediation. <br>
+## Use Case:
 
+Security teams, compliance managers, and system administrators use this skill to assess hardening checklist data, identify security control gaps, and receive compliance-oriented recommendations aligned to frameworks such as CIS, NIST, and ISO 27001.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-system-hardening-checklist) <br>
-- [System Hardening Checklist API Docs](https://api.mkkpro.com:8111/docs) <br>
-- [System Hardening Checklist API Route](https://api.mkkpro.com/hardening/system-checklist) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Analysis, Guidance] <br>
-**Output Format:** [JSON API responses and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assessment results may include scores, category summaries, critical gaps, recommendations, and compliance framework alignment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Checklist submissions may reveal sensitive security posture details and identifiers to a third-party API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session IDs where possible, omit userId unless needed, avoid submitting production details without approval, and review the provider's privacy, retention, and logging practices.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-system-hardening-checklist)
+- [System Hardening Checklist API Route](https://api.mkkpro.com/hardening/system-checklist)
+- [System Hardening Checklist API Docs](https://api.mkkpro.com:8111/docs)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise assessment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces hardening scores, category analysis, critical gap findings, framework alignment, and recommended controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

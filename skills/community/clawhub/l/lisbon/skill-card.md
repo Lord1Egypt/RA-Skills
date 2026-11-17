@@ -1,40 +1,57 @@
-## Description: <br>
-Navigate Lisbon as visitor, resident, digital nomad, tech worker, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Lisbon as visitor, resident, digital nomad, tech worker, or entrepreneur with neighborhoods, transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to get practical Lisbon and Portugal guidance for visiting, moving, working remotely, studying, or starting a business. The skill helps an agent route questions to topic-specific markdown guidance on neighborhoods, transport, costs, visas, local services, food, healthcare, education, safety, and lifestyle. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat informational travel, healthcare, safety, restaurant, or legal guidance as authoritative or current. <br>
-Mitigation: Use official emergency, healthcare, immigration, tax, and local government channels for urgent or consequential decisions, and treat restaurant and neighborhood recommendations as subjective guidance. <br>
-Risk: The guide includes time-sensitive local data such as costs, transit prices, visa thresholds, and housing conditions. <br>
-Mitigation: Confirm important figures against current official or primary sources before relying on them for travel, relocation, hiring, tax, or business planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ivangdavila/lisbon) <br>
-- [Skill homepage](https://clawic.com/skills/lisbon) <br>
+## Use Case:
 
+External users and agents use this skill to answer Lisbon and Portugal questions for travel, relocation, remote work, study, business setup, and everyday local planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill with no executable behavior detected in server security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes dated prices, visa thresholds, transport fares, healthcare costs, and business rules that may become stale.
+
+Mitigation: Verify current official or primary sources before making travel, housing, immigration, healthcare, tax, or business decisions.
+
+Risk: The skill can provide legal, immigration, healthcare, and safety guidance that users may treat as authoritative.
+
+Mitigation: Use the guidance as orientation only and consult qualified professionals or official agencies for high-impact personal decisions.
+
+Risk: The skill may activate broadly for Portugal-related questions beyond Lisbon-specific scope.
+
+Mitigation: Ask clarifying questions about location and user context before applying Lisbon-specific assumptions to wider Portugal scenarios.
+
+## Reference(s):
+
+- [ClawHub Lisbon skill page](https://clawhub.ai/ivangdavila/skills/lisbon)
+- [Lisbon skill homepage](https://clawic.com/skills/lisbon)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown narrative with tables and practical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill content; no required binaries or tool execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

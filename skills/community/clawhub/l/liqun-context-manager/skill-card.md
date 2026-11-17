@@ -1,37 +1,50 @@
-## Description: <br>
-管理对话上下文和记忆提取。根据关键词高效检索历史记忆。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages conversation context and memory extraction by searching historical memory for keywords.
 
-## Publisher: <br>
-[jaxint](https://clawhub.ai/user/jaxint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaxint](https://clawhub.ai/user/jaxint)
 
-## Use Case: <br>
-Developers and agent users can use this skill to search local memory files by keyword and retrieve recent memory entries for conversation context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper searches local Markdown and JSON files under both memory and skills directories, which can expose sensitive local context if those folders contain secrets. <br>
-Mitigation: Keep secrets out of searched folders or narrow SEARCH_DIRS to memory before use when only conversation-memory lookup is intended. <br>
+## Use Case:
 
+Developers and external agent users use this skill to search local memory files by keyword and retrieve recent memory entries for conversation context.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands] <br>
-**Output Format:** [Python function return values and plain text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches local Markdown and JSON files under configured memory and skills directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill searches installed skill files in addition to memory files, which is not disclosed in the user-facing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict use to a dedicated memory directory or clearly document and gate any search outside memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaxint/skills/liqun-context-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/jaxint)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Plain text paths, Python return values, and optional CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are limited by a count parameter, and recent memory retrieval returns filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

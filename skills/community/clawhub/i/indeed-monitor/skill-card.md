@@ -1,42 +1,56 @@
-## Description: <br>
-Monitor Indeed job postings for businesses hiring receptionists, customer service reps, or front desk staff in target areas and output an enriched lead list with company name, phone when available, location, and pain point summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Indeed job postings for businesses hiring receptionists, customer service representatives, or front desk staff in target areas and output enriched leads with company, location, salary and posting details when available, job URL, and pain point summary.
 
-## Publisher: <br>
-[JayJJimenez](https://clawhub.ai/user/JayJJimenez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayjjimenez](https://clawhub.ai/user/jayjjimenez)
 
-## Use Case: <br>
-Sales and operations users can use this skill to find local businesses with active front-desk, receptionist, customer service, and related hiring signals. It produces a lead list for follow-up research and outreach planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The browser-based path drives a local Chrome/OpenClaw browser profile against Indeed. <br>
-Mitigation: Use a dedicated browser profile where possible and confirm the browser relay is expected before running. <br>
-Risk: The fallback path invokes an external Scrapling helper. <br>
-Mitigation: Review and trust the external scraping helper before using the fallback workflow. <br>
-Risk: Running with --save appends results to a hard-coded local lead-list path. <br>
-Mitigation: Review or change the save path before running with --save. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JayJJimenez/indeed-monitor) <br>
-- [Indeed job search](https://www.indeed.com/jobs) <br>
+## Use Case:
 
+Sales and operations teams use this skill to identify businesses with active front-desk, receptionist, customer service, or office-manager hiring signals and produce enriched lead records for follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Console text with optional Markdown lead-list entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lead fields may include company, job title, location, salary when listed, post date, job URL, and pain point or signal summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a local Chrome profile through a browser relay.
+
+Mitigation: Run it with an isolated browser profile rather than a personal Chrome profile.
+
+Risk: Using --save can append scraped lead text to a hard-coded master lead file.
+
+Mitigation: Review and change the output path before saving, and inspect generated Markdown before sharing.
+
+Risk: Scraped job listing content may be untrusted or inaccurate.
+
+Mitigation: Treat saved leads as untrusted until verified against the source job posting and sanitize Markdown output before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jayjjimenez/skills/indeed-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown lead list with job posting fields and pain point summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append scraped leads to a hard-coded local Markdown file when run with --save; browser mode requires an active Chrome relay.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

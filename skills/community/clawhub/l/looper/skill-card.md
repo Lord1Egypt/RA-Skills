@@ -1,46 +1,60 @@
-## Description: <br>
-Looper helps agents configure and manage scheduled automation loops for content generation, code review, blog publishing, and social media posting through looper.bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looper automates content creation, code improvement, and social media posting through scheduled Looper API workflows.
 
-## Publisher: <br>
-[Builder-NC](https://clawhub.ai/user/Builder-NC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builder-nc](https://clawhub.ai/user/builder-nc)
 
-## Use Case: <br>
-Developers, content operators, and social media teams use Looper to create and manage scheduled AI automation loops for repositories, blogs, and social channels. The skill is useful when an agent needs API-based setup, monitoring, or control of recurring Looper workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Looper can create persistent workflows that change GitHub repositories, publish social posts, manage API keys, and run with broad delegated authority. <br>
-Mitigation: Prefer propose or notify mode, set explicit run limits, confirm create/update/delete/run actions, and review the first run before enabling unattended operation. <br>
-Risk: Credentials and third-party API keys may be exposed through prompts, environment variables, or social posting configuration. <br>
-Mitigation: Keep LOOPER_ADMIN_KEY and posting keys out of prompts where possible, store them as secrets, and rotate any exposed keys. <br>
-Risk: Automated generated content or code changes may be incorrect or misleading. <br>
-Mitigation: Review generated content, pull requests, and run output before publishing or merging. <br>
+## Use Case:
 
+External developers and content teams use this skill to create and manage Looper workflows for scheduled blog generation, code review, content creation, and multi-platform social posting. Agents can configure loops, connect GitHub targets, trigger runs, and inspect tenant-scoped loop status through the Looper API.
 
-## Reference(s): <br>
-- [Looper](https://looper.bot) <br>
-- [Looper API](https://api.looper.bot) <br>
-- [Looper API Reference](references/api-reference.md) <br>
-- [Looper source](https://github.com/dbhurley/looper) <br>
-- [ClawHub skill page](https://clawhub.ai/Builder-NC/looper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or manage persistent scheduled Looper workflows through authenticated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad authority to create accounts, store admin keys, and run persistent automations that may publish content or change repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts and repositories the operator is comfortable letting Looper manage, and confirm each GitHub connection and auto-publish loop before enabling scheduled runs.
+
+Risk: Prompts or environment setup may expose API keys, inline passwords, or other credentials.
+
+Mitigation: Store LOOPER_ADMIN_KEY and related service keys in a secret manager or protected environment variables, and avoid placing secrets directly in prompts or generated examples.
+
+Risk: Changing LOOPER_API_URL can redirect authenticated requests to an untrusted destination.
+
+Mitigation: Leave LOOPER_API_URL unset for the default Looper API unless the alternate endpoint is fully trusted.
+
+## Reference(s):
+
+- [Looper Skill Page](https://clawhub.ai/builder-nc/skills/looper)
+- [Looper Homepage](https://looper.bot)
+- [Looper API](https://api.looper.bot)
+- [Looper API Reference](references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated actions require LOOPER_ADMIN_KEY; LOOPER_API_URL is optional and should only be set to a trusted Looper API endpoint.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

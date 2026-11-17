@@ -1,40 +1,48 @@
-## Description: <br>
-Transforms git history into poetry, including sonnets from sprint logs, haiku from hotfixes, limericks from legacy code, and ballads from major rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms git history into poetry, including sonnets from sprint logs, haiku from hotfixes, limericks from legacy code, and epic ballads from major rewrites.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and teams use this skill to turn commit history, branches, file histories, incidents, and releases into poetic summaries for retrospectives, celebrations, and lighthearted review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private repository details such as commit messages, branch names, and file paths may be exposed in generated poems. <br>
-Mitigation: Review and sanitize source history before sharing generated output outside the intended audience. <br>
-Risk: Creative summaries may omit context or make project history sound more definitive than the underlying commits support. <br>
-Mitigation: Treat poems as informal retrospectives and verify important facts against the git history or release records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Commit Poetry on ClawHub](https://clawhub.ai/jcools1977/commit-poetry) <br>
-- [jcools1977 publisher profile](https://clawhub.ai/user/jcools1977) <br>
+## Use Case:
 
+Developers and software teams use this skill to turn commits, branches, incidents, release ranges, and file histories into humorous or reflective poetry for retrospectives, celebrations, and lightweight review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with generated poetry] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or dependencies are described; output may reflect private commit messages, branch names, and file paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated poems may reveal private commit messages, branch names, tags, or file-history context.
+
+Mitigation: Review poems before sharing them outside the intended team, and avoid using sensitive repository history when the output will be distributed externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/commit-poetry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown poetry and short prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses git history supplied by the user or current workspace; no external API calls are indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Pans Gpu Calculator estimates GPU memory needs, recommends H100, A100, L40S, or A10G configurations, and estimates training or inference costs for AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Gpu Calculator helps agents estimate GPU memory needs, recommend GPU configurations, and estimate costs for AI training and inference workloads.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Developers, AI infrastructure engineers, and sales engineers use this skill to estimate GPU counts, monthly costs, latency, throughput, and training time for model deployment planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GPU sizing, throughput, latency, and cost estimates use simplified formulas and hard-coded GPU price/performance assumptions. <br>
-Mitigation: Validate the formulas and replace price or performance assumptions with current provider data before making purchasing or deployment commitments. <br>
-Risk: The skill may lead an agent to run the bundled calculator script with user-provided parameters. <br>
-Mitigation: Review the command arguments and calculator output before applying the recommendation to production infrastructure. <br>
+## Use Case:
 
+Developers, engineers, and AI infrastructure sales teams use this skill to estimate GPU counts, memory needs, throughput, training time, and costs for model deployment planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-gpu-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and tabular or JSON calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports CLI arguments for model size, training or inference mode, GPU selection, batch size, latency target, token count, comparison mode, and JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Built-in prices and formulas may be rough planning assumptions rather than current procurement data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices, utilization assumptions, and capacity requirements with the target cloud or hardware provider before purchasing capacity.
+
+Risk: Broad GPU-related trigger phrases may activate the skill for general GPU sizing or cost questions.
+
+Mitigation: Use the calculator only when the task needs GPU deployment estimates, and treat unrelated GPU advice as outside the skill's scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-gpu-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown summaries, terminal tables, and optional JSON from the local calculator CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses built-in GPU price and performance assumptions; estimates should be verified before purchasing capacity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

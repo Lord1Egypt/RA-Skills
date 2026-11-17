@@ -1,43 +1,63 @@
-## Description: <br>
-Calls the Xiangyun Bank Card Recognition API (typeId=17) to extract card number, card type, card name, issuing bank, and bank code from bank card images supplied as local files or Base64. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the Xiangyun API (typeId=17) to perform structured bank card OCR from local files or Base64 image input, extracting card number, card type, card name, issuing bank, and bank code.
 
-## Publisher: <br>
-[liudengkui](https://clawhub.ai/user/liudengkui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liudengkui](https://clawhub.ai/user/liudengkui)
 
-## Use Case: <br>
-External users and developers use this skill to run bank card OCR through Xiangyun/netocr.com, configure API credentials, review structured recognition results, and export cached results when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank card images, OCR results, cached JSON files, CSV or Excel exports, terminal output, and config.json can contain sensitive card data or API credentials. <br>
-Mitigation: Process only images with appropriate consent and compliance review, treat generated files and logs as sensitive, prefer --no-save when persistence is unnecessary, delete cached results after use, and avoid sharing config files or output containing secrets. <br>
-Risk: The skill sends bank card images and OCR credentials to Xiangyun/netocr.com for recognition. <br>
-Mitigation: Install and use the skill only when that external processing is acceptable for the intended data, jurisdiction, and organization policy. <br>
+## Use Case:
 
+Developers and external users use this skill to recognize bank card details from images through the Xiangyun OCR service and optionally export recognized records for follow-up processing.
 
-## Reference(s): <br>
-- [Xiangyun Bank Card Recognition API Documentation](references/api_docs.md) <br>
-- [Xiangyun Bank Card OCR Product Page](https://www.netocr.com/bankCard.html) <br>
-- [Xiangyun Platform](https://www.netocr.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liudengkui/ocr-bankcard-xiangyun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON OCR results, human-readable tables, and optional CSV, Excel, or JSON export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recognition results may be cached as JSON beside source images unless --no-save is used; exports are generated only on explicit request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Bank-card images and OCR results may contain sensitive payment-card data and are sent to Xiangyun/netocr.com for recognition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where uploading those images to the OCR provider is approved; prefer test or non-production card images when validating behavior.
+
+Risk: OCR credentials are stored locally in config.json.
+
+Mitigation: Protect the skill directory, avoid committing config.json with live credentials, and reset or rotate credentials when access is no longer needed.
+
+Risk: Successful local-file recognition may save JSON results beside source images.
+
+Mitigation: Run recognition with --no-save when cached results are unnecessary, and protect or delete generated JSON files after use.
+
+Risk: Exported CSV or Excel files may contain sensitive OCR fields or spreadsheet formula-like values.
+
+Mitigation: Sanitize exported data before opening or sharing spreadsheets, and avoid opening exports from untrusted inputs.
+
+## Reference(s):
+
+- [Xiangyun Bank Card OCR API documentation](artifact/references/api_docs.md)
+- [Xiangyun bank card OCR product page](https://www.netocr.com/bankCard.html)
+- [Xiangyun platform](https://www.netocr.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands; recognition results as JSON or tables, with optional CSV, Excel, or JSON exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save per-image recognition JSON beside source images unless run with --no-save.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

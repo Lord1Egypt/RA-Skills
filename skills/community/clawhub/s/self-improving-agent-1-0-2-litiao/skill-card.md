@@ -1,46 +1,61 @@
-## Description: <br>
-Captures learnings, errors, corrections, and feature requests so agents can document recurring lessons and promote broadly useful knowledge into project memory or reusable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests so coding agents can preserve reusable project knowledge and promote important findings into project memory.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to record command failures, user corrections, missing capabilities, API/tool failures, knowledge gaps, and better recurring practices. The recorded entries can be reviewed, resolved, promoted into project memory, or extracted into reusable skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages durable logging and sharing of conversation, error, command, and session context that may include secrets, personal data, customer data, raw prompts, or sensitive command output. <br>
-Mitigation: Require redaction before writing logs or sharing entries; avoid recording secrets, tokens, personal data, customer data, raw prompts, and sensitive command output. <br>
-Risk: Global or broad prompt hooks can repeatedly inject reminders and capture context outside the intended project scope. <br>
-Mitigation: Prefer project-scoped hooks with narrow matchers and avoid global hook activation unless it is explicitly needed. <br>
-Risk: Reading or sharing other session transcripts may expose information beyond the active task. <br>
-Mitigation: Do not read or share other session transcripts without clear authorization. <br>
+## Use Case:
 
+Developers and agent users use this skill to record corrections, command failures, missing capabilities, and reusable lessons into structured markdown files. It also provides optional hook setup and extraction guidance for promoting valuable learnings into durable agent or project memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/self-improving-agent-1-0-2-litiao) <br>
-- [Hook setup guide](references/hooks-setup.md) <br>
-- [Clawdbot integration](references/clawdbot-integration.md) <br>
-- [Examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local learning logs, memory updates, hook configuration guidance, and skill scaffolding instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may persist and share learned conversation data without enough consent, scoping, or redaction controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent self-improvement memory is intentional, keep setup project-local where possible, and avoid logging secrets, personal data, full transcripts, credentials, or sensitive business context.
+
+Risk: Broad hook matchers can cause frequent learning reminders or collection prompts outside the intended scope.
+
+Mitigation: Prefer narrow hook matchers, use the minimal activator-only setup when appropriate, and review hook configuration before enabling it globally.
+
+Risk: Writing learnings into agent instruction files can preserve incorrect or misleading guidance.
+
+Mitigation: Review every proposed update to agent memory or instruction files before promotion and scan skill changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/self-improving-agent-1-0-2-litiao)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Clawdbot Integration Guide](references/clawdbot-integration.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for files such as .learnings/LEARNINGS.md, .learnings/ERRORS.md, .learnings/FEATURE_REQUESTS.md, CLAUDE.md, AGENTS.md, TOOLS.md, SOUL.md, and hook settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

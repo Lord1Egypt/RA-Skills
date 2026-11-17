@@ -1,42 +1,54 @@
-## Description: <br>
-Excel2Insights analyzes local Excel and CSV files, summarizes data quality and statistics, and generates Markdown reports and PNG charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Excel2Insights helps agents inspect structured spreadsheet data, run statistical analysis and data quality checks, generate charts, and produce insight reports.
 
-## Publisher: <br>
-[wwumit](https://clawhub.ai/user/wwumit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwumit](https://clawhub.ai/user/wwumit)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use Excel2Insights to inspect spreadsheet and CSV datasets locally, generate descriptive statistics and missing-value checks, and produce reports or charts for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation makes strong ClawHub security-rating claims that are not backed by the supplied registry evidence. <br>
-Mitigation: Review the registry security summary before installation and do not rely on the documentation's security-rating claims alone. <br>
-Risk: The tool processes spreadsheet contents and writes local reports and chart files that may contain sensitive data. <br>
-Mitigation: Run it in a virtual environment, install dependencies from trusted sources, and avoid sensitive spreadsheets unless the code and output location have been reviewed. <br>
+## Use Case:
 
+Developers, analysts, and agent users can use this skill to quickly profile CSV, XLSX, XLS, or TSV datasets, identify data quality issues, create visualizations, and generate structured Markdown or HTML reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwumit/excel2insights) <br>
-- [README](artifact/README.md) <br>
-- [Enhancements](artifact/ENHANCEMENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated artifacts may include Markdown reports and PNG charts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local spreadsheet files and writes reports or visualizations to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release.version and VERSION.txt) <br>
+Risk: Dataset-controlled column names can affect generated chart filenames and report HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted datasets until filenames are sanitized and report HTML is escaped.
+
+Risk: Generated reports and previews can expose sensitive source data.
+
+Mitigation: Review output locations and report contents before sharing or publishing generated files.
+
+## Reference(s):
+
+- [Demo walkthrough](references/demo-walkthrough.md)
+- [Demo report preview](references/demo-report-preview.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or HTML reports, JSON analysis summaries, PNG chart files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs may include source dataset values, chart image files, and report files written to a local output directory.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

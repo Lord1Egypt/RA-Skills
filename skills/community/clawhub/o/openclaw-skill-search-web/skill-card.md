@@ -1,42 +1,58 @@
-## Description: <br>
-Openclaw/Trae domestic web search option that uses the Volcengine web Q&A agent API to answer search questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Web - CN helps Openclaw and Trae users run web search and question answering through a Volcengine web Q&A agent API.
 
-## Publisher: <br>
-[alexjunanjing-2](https://clawhub.ai/user/alexjunanjing-2) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[alexjunanjing-2](https://clawhub.ai/user/alexjunanjing-2)
 
-## Use Case: <br>
-Developers and agents use this skill to run Chinese-language web search and question answering through a configured Volcengine agent. It returns answer text with references, suggested follow-up questions, usage details, and error details when calls fail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Search questions are sent to Volcengine/feedcoopapi using the user's configured API credentials. <br>
-Mitigation: Use a dedicated API key, monitor provider usage or billing, and avoid sending secrets, private source code, internal URLs, personal data, or regulated information unless external sharing is approved. <br>
-Risk: The skill depends on external web search results and generated answers that may be incomplete, stale, or inaccurate. <br>
-Mitigation: Review cited references and validate important answers before using them in operational or customer-facing decisions. <br>
+## Use Case:
 
+Developers and agent users can use this skill to ask current-information questions from Openclaw or Trae and receive a web-grounded answer with references, follow-up suggestions, and token usage details. It is positioned as a China-accessible alternative to Brave Search for Chinese-language search workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexjunanjing-2/openclaw-skill-search-web) <br>
-- [Publisher profile](https://clawhub.ai/user/alexjunanjing-2) <br>
-- [Volcengine web Q&A agent API documentation](https://www.volcengine.com/docs/85508/1510834?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with answer content, references, follow-up suggestions, token usage, and error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports non-streaming and streaming responses when the Volcengine API key and bot ID environment variables are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: User queries and bearer credentials are sent to an external API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with provider-approved data, and do not submit secrets, private source code, internal URLs, or regulated data unless the endpoint is approved for that data.
+
+Risk: The script can fall back from VOLCENGINE_SEARCH_API_KEY to a broader VOLCENGINE_ARK_API_KEY.
+
+Mitigation: Provide a dedicated, low-privilege VOLCENGINE_SEARCH_API_KEY for this skill and avoid exposing general-purpose Volcengine Ark credentials in the runtime environment.
+
+Risk: The server security review marked the release suspicious because the external query and credential handling are under-disclosed.
+
+Mitigation: Review the skill before installation or deployment and document the external API behavior for users who may send sensitive prompts.
+
+## Reference(s):
+
+- [Volcengine web Q&A agent API documentation](https://www.volcengine.com/docs/85508/1510834?lang=zh)
+- [ClawHub skill release page](https://clawhub.ai/alexjunanjing-2/skills/openclaw-skill-search-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Console text with answer content, reference listings, optional follow-up questions, token usage, and error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOLCENGINE_SEARCH_API_KEY and VOLCENGINE_SEARCH_BOT_ID; can stream responses when invoked with --stream.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

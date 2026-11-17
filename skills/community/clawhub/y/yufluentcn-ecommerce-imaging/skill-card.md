@@ -1,43 +1,61 @@
-## Description: <br>
-Generates cross-border e-commerce product images, including white-background shots, scene images, cutout-style product photos, multi-angle sets, and platform-sized outputs through Yufluent cloud image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yufluent Ecommerce Imaging generates white-background, lifestyle, cutout, multi-angle, and platform-sized ecommerce product images through the Yufluent cloud image-generation service.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External sellers, marketers, and agents use this skill to create product listing and marketing images for e-commerce platforms from product descriptions and optional source photos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Product prompts, source images, and the Yufluent API key are sent to the configured service. <br>
-Mitigation: Use approved product imagery, avoid confidential unreleased photos unless authorized, and strip image metadata before upload when appropriate. <br>
-Risk: Generated product images can misrepresent product details or fail marketplace image rules. <br>
-Mitigation: Review generated images for product accuracy, rights, prohibited content, and platform-specific listing requirements before publication. <br>
+## Use Case:
 
+External ecommerce sellers, marketplace operators, and agents use this skill to create product listing imagery for Amazon, Shopify, TikTok, Instagram, Facebook, Pinterest, and related storefront workflows. It supports white-background product shots, scene images, product photo background replacement, multi-angle packs, brand-tone variants, and platform-specific image sizing.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/metahuan/yufluentcn-ecommerce-imaging) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [Platform size reference](artifact/references/platform-sizes.md) <br>
-- [Prompt template reference](artifact/references/prompt-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Image URLs] <br>
-**Output Format:** [CLI text output by default, or structured JSON when requested, containing generated image results and run metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return one or more image results depending on scene and angle settings; source images can be provided as URLs or encoded local image data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release and SKILL.md frontmatter) <br>
+Risk: Local source images can be encoded and uploaded for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-confidential product images that are approved for upload, and verify each --source-image path before running the skill.
+
+Risk: API tokens may be sent to a configurable TOKENAPI_BASE_URL endpoint.
+
+Mitigation: Keep TOKENAPI_KEY secret, avoid custom TOKENAPI_BASE_URL values unless the endpoint is trusted, and prefer HTTPS production endpoints.
+
+Risk: Generated ecommerce images may misrepresent product appearance or platform compliance.
+
+Mitigation: Review generated images for product fidelity, marketplace rules, prohibited claims, and brand/IP compliance before publication.
+
+## Reference(s):
+
+- [Platform Size Reference](references/platform-sizes.md)
+- [Prompt Template Reference](references/prompt-templates.md)
+- [Yufluent Homepage](https://claw.changzhiai.com)
+- [OpenClaw Integration](https://claw.changzhiai.com/app/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/metahuan/skills/yufluentcn-ecommerce-imaging)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, image URLs]
+
+**Output Format:** [Markdown or JSON with generated image results, run metadata, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY and may upload approved source images to the configured Yufluent API endpoint for remote processing.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents generate MySQL queries and management commands for querying data, changing tables, backups, restores, and performance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MySQL database management skill for using natural language to query and manage MySQL databases, including SELECT, INSERT, UPDATE, DELETE, table management, backup, and restore workflows.
 
-## Publisher: <br>
-[ding-renew](https://clawhub.ai/user/ding-renew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ding-renew](https://clawhub.ai/user/ding-renew)
 
-## Use Case: <br>
-Developers, analysts, and database operators use this skill to turn natural-language requests into MySQL SQL, client commands, and configuration guidance for queries, schema changes, backups, restores, and performance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL may perform high-impact writes, deletes, schema changes, restores, or global setting changes. <br>
-Mitigation: Use a read-only or least-privilege database account by default, review the exact SQL, and require explicit confirmation before UPDATE, DELETE, ALTER, DROP, RESTORE, SET GLOBAL, or large data operations. <br>
-Risk: Database credentials or production privileges could be exposed or misused during MySQL operations. <br>
-Mitigation: Avoid production write or admin credentials, keep secrets out of command history and prompts, and use scoped environment or client configuration for the minimum required access. <br>
-Risk: Backup and restore commands can overwrite data or make recovery difficult if run against the wrong database. <br>
-Mitigation: Verify the target database, test restore procedures outside production first, and keep a rollback path before running restore or bulk data commands. <br>
+## Use Case:
 
+Developers, database administrators, and operators use this skill to draft MySQL queries, table changes, backup and restore commands, troubleshooting steps, and performance review guidance from natural-language requests.
 
-## Reference(s): <br>
-- [MySQL Documentation](https://dev.mysql.com/doc/) <br>
-- [MySQL Optimization Guide](https://dev.mysql.com/doc/refman/8.0/en/optimization.html) <br>
-- [MySQL Workbench](https://www.mysql.com/products/workbench/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ding-renew/mysql-skill-1-0-0-3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL, bash, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose high-impact SQL or shell commands that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, _meta.json) <br>
+Risk: The skill can propose destructive database changes such as UPDATE, DELETE, ALTER TABLE, and restore operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL before execution, require explicit confirmation for writes and restores, back up first, and use transactions where possible.
+
+Risk: Database credentials may be stored in local configuration or environment variables.
+
+Mitigation: Use least-privilege database accounts and store credentials with restrictive permissions or a safer secret mechanism.
+
+Risk: Unbounded or inefficient SQL may affect performance on large datasets.
+
+Mitigation: Review query plans, add LIMIT clauses where appropriate, and validate indexing before running expensive queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ding-renew/skills/mysql-skill-1-0-0-3)
+- [MySQL documentation](https://dev.mysql.com/doc/)
+- [MySQL optimization guide](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)
+- [MySQL Workbench](https://www.mysql.com/products/workbench/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL, shell, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before execution, especially writes, restores, and credential-related configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

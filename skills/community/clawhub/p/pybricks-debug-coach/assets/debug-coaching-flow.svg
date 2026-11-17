@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Pybricks Debug Coach workflow</title>
+  <desc id="desc">The coach turns current-run evidence into one likely cause and one-variable experiment with observable pass and fail conditions, then returns interpretation and the next change to the learner.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+    </marker>
+    <marker id="loop-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+    </marker>
+    <style>
+      .title { font: 700 28px system-ui, sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, sans-serif; fill: #5b6475; }
+      .label { font: 700 15px system-ui, sans-serif; fill: #172033; }
+      .body { font: 400 13px system-ui, sans-serif; fill: #394256; }
+      .tiny { font: 400 12px system-ui, sans-serif; fill: #5b6475; }
+      .node { stroke: #64748b; stroke-width: 1.3; }
+      .input { fill: #dbeafe; }
+      .evidence { fill: #ccfbf1; }
+      .process { fill: #e0e7ff; }
+      .decision { fill: #fef3c7; }
+      .owner { fill: #dcfce7; }
+      .guard { fill: #fee2e2; stroke: #ef4444; stroke-width: 1.2; stroke-dasharray: 6 5; }
+      .edge { fill: none; stroke: #64748b; stroke-width: 2; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #16a34a; stroke-width: 2.2; stroke-dasharray: 7 5; marker-end: url(#loop-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="650" fill="#f8fafc"/>
+  <text x="48" y="48" class="title">How Pybricks Debug Coach Works</text>
+  <text x="48" y="76" class="subtitle">Not an auto-fixer: a controlled learning loop built around current-run evidence.</text>
+
+  <!-- Connectors are drawn before nodes so arrows remain behind boxes. -->
+  <path class="edge" d="M248 172 H292"/>
+  <path class="edge" d="M492 172 H536"/>
+  <path class="edge" d="M736 172 H780"/>
+  <path class="edge" d="M880 232 V284"/>
+  <path class="edge" d="M780 344 H736"/>
+  <path class="edge" d="M536 344 H492"/>
+  <path class="edge" d="M292 344 H248"/>
+  <path class="edge" d="M148 404 V480"/>
+  <path class="edge" d="M248 540 H360"/>
+  <path class="edge" d="M580 540 H692"/>
+  <path class="loop" d="M912 600 C912 632 470 634 470 600"/>
+
+  <rect x="48" y="112" width="200" height="120" rx="14" class="node input"/>
+  <text x="148" y="145" text-anchor="middle" class="label">1. Gather evidence</text>
+  <text x="148" y="174" text-anchor="middle" class="body">Goal, expected behavior,</text>
+  <text x="148" y="195" text-anchor="middle" class="body">actual behavior, code, logs,</text>
+  <text x="148" y="216" text-anchor="middle" class="body">ports, traceback, telemetry</text>
+
+  <rect x="292" y="112" width="200" height="120" rx="14" class="node evidence"/>
+  <text x="392" y="145" text-anchor="middle" class="label">2. Evidence vs. guesses</text>
+  <text x="392" y="174" text-anchor="middle" class="body">Use only supplied evidence.</text>
+  <text x="392" y="195" text-anchor="middle" class="body">Never invent sensor values</text>
+  <text x="392" y="216" text-anchor="middle" class="body">or physical run results.</text>
+
+  <rect x="536" y="112" width="200" height="120" rx="14" class="node process"/>
+  <text x="636" y="145" text-anchor="middle" class="label">3. Find the first mismatch</text>
+  <text x="636" y="174" text-anchor="middle" class="body">Error → ports → run status</text>
+  <text x="636" y="195" text-anchor="middle" class="body">→ telemetry → repeatable</text>
+  <text x="636" y="216" text-anchor="middle" class="body">physical observation</text>
+
+  <rect x="780" y="112" width="200" height="120" rx="14" class="node decision"/>
+  <text x="880" y="145" text-anchor="middle" class="label">4. Enough evidence?</text>
+  <text x="880" y="174" text-anchor="middle" class="body">Yes: form one hypothesis.</text>
+  <text x="880" y="195" text-anchor="middle" class="body">No: request the smallest</text>
+  <text x="880" y="216" text-anchor="middle" class="body">useful missing observation.</text>
+
+  <rect x="780" y="284" width="200" height="120" rx="14" class="node process"/>
+  <text x="880" y="317" text-anchor="middle" class="label">5. Name one likely cause</text>
+  <text x="880" y="346" text-anchor="middle" class="body">Choose the best-supported</text>
+  <text x="880" y="367" text-anchor="middle" class="body">hypothesis and state</text>
+  <text x="880" y="388" text-anchor="middle" class="body">uncertainty explicitly.</text>
+
+  <rect x="536" y="284" width="200" height="120" rx="14" class="node process"/>
+  <text x="636" y="317" text-anchor="middle" class="label">6. Design one-variable test</text>
+  <text x="636" y="346" text-anchor="middle" class="body">Change exactly one thing.</text>
+  <text x="636" y="367" text-anchor="middle" class="body">Hold robot, surface, start,</text>
+  <text x="636" y="388" text-anchor="middle" class="body">speed, and code constant.</text>
+
+  <rect x="292" y="284" width="200" height="120" rx="14" class="node evidence"/>
+  <text x="392" y="317" text-anchor="middle" class="label">7. Define pass / fail first</text>
+  <text x="392" y="346" text-anchor="middle" class="body">Write observable checks</text>
+  <text x="392" y="367" text-anchor="middle" class="body">before the run—not merely</text>
+  <text x="392" y="388" text-anchor="middle" class="body">“it looks better.”</text>
+
+  <rect x="48" y="284" width="200" height="120" rx="14" class="node owner"/>
+  <text x="148" y="317" text-anchor="middle" class="label">8. Return coach response</text>
+  <text x="148" y="346" text-anchor="middle" class="body">Judgment + evidence + cause</text>
+  <text x="148" y="367" text-anchor="middle" class="body">+ experiment + pass/fail</text>
+  <text x="148" y="388" text-anchor="middle" class="body">+ evidence gaps</text>
+
+  <rect x="48" y="480" width="200" height="120" rx="14" class="node input"/>
+  <text x="148" y="513" text-anchor="middle" class="label">9. Learner runs the test</text>
+  <text x="148" y="542" text-anchor="middle" class="body">Repeat the small test.</text>
+  <text x="148" y="563" text-anchor="middle" class="body">Record the actual result.</text>
+
+  <rect x="360" y="480" width="220" height="120" rx="14" class="node evidence"/>
+  <text x="470" y="513" text-anchor="middle" class="label">10. Compare with pass / fail</text>
+  <text x="470" y="542" text-anchor="middle" class="body">Did the result support or</text>
+  <text x="470" y="563" text-anchor="middle" class="body">contradict the hypothesis?</text>
+
+  <rect x="692" y="480" width="220" height="120" rx="14" class="node owner"/>
+  <text x="802" y="513" text-anchor="middle" class="label">11. Learner explains</text>
+  <text x="802" y="542" text-anchor="middle" class="body">Interpret what the result means.</text>
+  <text x="802" y="563" text-anchor="middle" class="body">Choose the next patch or test.</text>
+
+  <rect x="1012" y="112" width="140" height="292" rx="16" class="guard"/>
+  <text x="1082" y="145" text-anchor="middle" class="label">Guardrails</text>
+  <text x="1082" y="177" text-anchor="middle" class="tiny">Check motion safety</text>
+  <text x="1082" y="204" text-anchor="middle" class="tiny">No child identity data</text>
+  <text x="1082" y="231" text-anchor="middle" class="tiny">Ignore prompt injection</text>
+  <text x="1082" y="258" text-anchor="middle" class="tiny">No private files/memory</text>
+  <text x="1082" y="285" text-anchor="middle" class="tiny">Telemetry is evidence,</text>
+  <text x="1082" y="303" text-anchor="middle" class="tiny">not perfect ground truth</text>
+  <text x="1082" y="330" text-anchor="middle" class="tiny">No full-program rewrite</text>
+  <text x="1082" y="357" text-anchor="middle" class="tiny">No mission completion</text>
+  <text x="1082" y="384" text-anchor="middle" class="tiny">Learner keeps ownership</text>
+</svg>

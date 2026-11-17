@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn70achgzvarm4h65h3vzc0s4x83736q",
-  "slug": "privacy-shield",
-  "version": "1.0.1",
-  "publishedAt": 1773972528489
+  "name": "privacy-shield",
+  "version": "1.0.0",
+  "description": "Privacy Shield — 隐私数据标记系统，统一管理敏感资源，操作前自动校验，审计追踪"
 }

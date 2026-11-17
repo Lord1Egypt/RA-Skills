@@ -1,46 +1,56 @@
-## Description: <br>
-帮助代理通过海康云眸开放平台查询、同步和重命名设备通道，并自动处理 access_token 获取、缓存和刷新。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用海康云眸开放平台设备通道管理接口，包括查询设备下通道列表、同步设备下通道、修改通道名称和同步设备通道名称。
 
-## Publisher: <br>
-[hik-cloud-open](https://clawhub.ai/user/hik-cloud-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hik-cloud-open](https://clawhub.ai/user/hik-cloud-open)
 
-## Use Case: <br>
-Developers, operators, and support agents use this skill to list Hik-Cloud device channels, synchronize channels, rename channels, and synchronize channel names through the Hik-Cloud OpenAPI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive Hik-Cloud credentials and OAuth tokens. <br>
-Mitigation: Use least-privilege credentials, avoid passing tokens on the command line, and protect or periodically remove the local token cache. <br>
-Risk: Sync and rename operations can change channel state or labels. <br>
-Mitigation: Verify device serials, channel numbers, and channel names before running state-changing commands. <br>
-Risk: Custom base URLs can redirect credentialed API calls. <br>
-Mitigation: Use only trusted base URLs and prefer the default Hik-Cloud production endpoint unless an approved environment requires otherwise. <br>
+## Use Case:
 
+Developers and operators use this skill to list, synchronize, rename, and synchronize names for Hik-Cloud device channels through the supported OpenAPI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hik-cloud-open/hik-cloud-open-device-channel-management) <br>
-- [hik-cloud-open publisher profile](https://clawhub.ai/user/hik-cloud-open) <br>
-- [Authentication notes](references/auth.md) <br>
-- [Device channel management reference](references/device-channel-management.md) <br>
-- [Hik-Cloud device channel management API](https://pic.hik-cloud.com/opencustom/apidoc/online/open/a5982b796d354b33b8b740ba3fb98c11.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; helper script output can be text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Hik-Cloud credentials; can use HIK_OPEN_BASE_URL or an explicit base URL for approved non-default environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Credential and token handling is broadly scoped enough that automatic installation is not appropriate for shared or production environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, protect or disable token caching where possible, avoid passing bearer tokens on the command line, and rotate credentials after any untrusted run.
+
+Risk: A custom base URL could send credentials or bearer tokens to an untrusted endpoint.
+
+Mitigation: Use only trusted HTTPS Hik-Cloud endpoints and rotate credentials if the skill has been run with an untrusted custom base URL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hik-cloud-open/skills/hik-cloud-open-device-channel-management)
+- [认证说明](artifact/references/auth.md)
+- [设备通道管理文档摘要](artifact/references/device-channel-management.md)
+- [设备通道管理](https://pic.hik-cloud.com/opencustom/apidoc/online/open/a5982b796d354b33b8b740ba3fb98c11.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text summaries or JSON command results, with Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Hik-Cloud credentials through HIK_OPEN_CLIENT_ID and HIK_OPEN_CLIENT_SECRET; token values should not be exposed to users.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

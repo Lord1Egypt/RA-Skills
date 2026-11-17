@@ -1,0 +1,27 @@
+{
+  "_comment": "移动端权限基线规范 —— 配合 scripts/check_permissions.py 使用。以 _ 开头的键都是注释，脚本会自动跳过，不会当成检查项。复制后按真实能力改写。",
+  "_usage": "python3 scripts/check_permissions.py --android AndroidManifest.xml --ios Info.plist --spec assets/permissions-spec.json",
+  "_note": "deny_android_permissions 列出本项目禁止申请的权限；ios_required_usage_descriptions 列出应用实际用到、必须在 Info.plist 声明的用途描述键。漏一项都会被脚本判 error，所以复制模板后请按真实用到的能力增删。",
+
+  "dangerous_android_permissions": [
+    "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.CAMERA",
+    "android.permission.READ_CONTACTS",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.READ_MEDIA_IMAGES"
+  ],
+  "deny_android_permissions": [
+    "android.permission.READ_SMS",
+    "android.permission.RECEIVE_SMS",
+    "android.permission.READ_CALL_LOG"
+  ],
+  "ios_required_usage_descriptions": [
+    "NSCameraUsageDescription",
+    "NSPhotoLibraryUsageDescription",
+    "NSLocationWhenInUseUsageDescription",
+    "NSMicrophoneUsageDescription",
+    "NSContactsUsageDescription"
+  ]
+}

@@ -1,44 +1,59 @@
-## Description: <br>
-Generate images, videos, and process media using the GenVR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images, videos, and process media using the GenVR API.
 
-## Publisher: <br>
-[genvrlabs](https://clawhub.ai/user/genvrlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[genvrlabs](https://clawhub.ai/user/genvrlabs)
 
-## Use Case: <br>
-Developers and agent users use this skill to list GenVR models, start media-generation jobs, check task status, and download generated outputs from the GenVR API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media URLs, and task details are sent to GenVR. <br>
-Mitigation: Avoid submitting private or regulated prompts or media unless GenVR handling is acceptable for the intended use case. <br>
-Risk: The skill requires sensitive GenVR credentials. <br>
-Mitigation: Use a dedicated GenVR API key and provide credentials through GENVR_API_KEY and GENVR_UID. <br>
-Risk: The CLI automatically loads a local .env file from the current working directory. <br>
-Mitigation: Check the local .env before running so unintended credentials or identifiers are not used. <br>
+## Use Case:
 
+Developers and external agents use this skill to list GenVR models, submit image or video generation jobs, poll task status, and retrieve generated media through the GenVR API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/genvrlabs/genvr-skills) <br>
-- [GenVR API](https://api.genvrresearch.com) <br>
-- [GenVR API Credentials](https://api.genvrresearch.com/obtain-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance, files] <br>
-**Output Format:** [CLI text and JSON responses, with downloaded generated media files when tasks complete] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GENVR_API_KEY and GENVR_UID; generation jobs may poll asynchronously unless --no-wait is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The CLI loads environment variables from a local .env file, which may expose unrelated secrets from the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill from a dedicated directory containing only the required GENVR_API_KEY and GENVR_UID values.
+
+Risk: Unpinned npx execution can run a mutable package version.
+
+Mitigation: Use a reviewed, pinned package version for production or sensitive workflows.
+
+Risk: The output filename option can overwrite writable files when pointed at important paths.
+
+Mitigation: Use generated default filenames or restrict --filename to a safe relative path in a scratch output directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/genvrlabs/skills/genvr-skills)
+- [GenVR API Access](https://api.genvrresearch.com/obtain-api)
+- [GenVR API](https://api.genvrresearch.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus generated media files or JSON status output from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GENVR_API_KEY and GENVR_UID for most operations; generation tasks may run asynchronously.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

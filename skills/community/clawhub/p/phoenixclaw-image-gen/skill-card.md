@@ -1,46 +1,59 @@
-## Description: <br>
-Image generation helper for OpenClaw that calls OpenRouter image models such as Seedream and supports prompt, model, size, aspect ratio, and output path configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate image files through OpenRouter image models with prompt, size, aspect ratio, model, and output-path configuration.
 
-## Publisher: <br>
-[goforu](https://clawhub.ai/user/goforu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[goforu](https://clawhub.ai/user/goforu)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate or transform images from prompts through OpenRouter-backed image models. It is intended for OpenClaw-style workflows that need configurable model selection, resolution tiers, aspect ratios, and local image output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload any readable local file path passed as --input-image to OpenRouter. <br>
-Mitigation: Use only intentional, non-confidential input images and avoid arbitrary local paths until file type, path, and size validation are added. <br>
-Risk: The skill requires an OpenRouter API key and may incur provider charges when generating images. <br>
-Mitigation: Use a dedicated OpenRouter key with spending limits and install only in environments that are trusted with that credential. <br>
+## Use Case:
 
+Developers and agents use this skill to generate local image files from text prompts, optionally with an input image, in OpenClaw-compatible workflows backed by OpenRouter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/goforu/phoenixclaw-image-gen) <br>
-- [OpenRouter Seedream 4.5 Model Page](https://openrouter.ai/bytedance-seed/seedream-4.5) <br>
-- [OpenRouter Image Generation Guide](https://openrouter.ai/docs/guides/overview/multimodal/image-generation) <br>
-- [CLI Contract](references/cli-contract.md) <br>
-- [Configuration Specification](references/configuration.md) <br>
-- [Resolution Guide](references/resolution-guide.md) <br>
-- [Extension Guide](references/extension-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [PNG image file with structured JSON success or error payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY; optional model, input image, size, aspect ratio, and output path parameters are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Image-to-image mode can upload any readable local file path selected through --input-image to OpenRouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide non-sensitive image files, avoid private documents or secret-bearing paths, and require explicit upload confirmation in shared or sensitive workspaces.
+
+Risk: The artifact does not show file type or size checks before reading an input image for upload.
+
+Mitigation: Add file type and size validation before using --input-image, and reject unexpected or oversized files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goforu/skills/phoenixclaw-image-gen)
+- [Configuration Specification](references/configuration.md)
+- [CLI Contract](references/cli-contract.md)
+- [OpenRouter Image Generation Resolution Guide](references/resolution-guide.md)
+- [Image Generation Extension Guide](references/extension-guide.md)
+- [OpenRouter image generation documentation](https://openrouter.ai/docs/guides/overview/multimodal/image-generation)
+- [OpenRouter Seedream 4.5 model page](https://openrouter.ai/bytedance-seed/seedream-4.5)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Configuration]
+
+**Output Format:** [PNG image file saved locally plus structured JSON success or error payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY; supports text-to-image and image-to-image, model selection, 1K/2K/4K size tiers, aspect ratio, and output path.]
+
+## Skill Version(s):
+
+0.2.1 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

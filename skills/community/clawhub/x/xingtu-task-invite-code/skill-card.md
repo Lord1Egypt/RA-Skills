@@ -1,45 +1,54 @@
-## Description: <br>
-This skill helps an agent batch download QR code invitation images from XingTu recruitment tasks by validating cookie authentication, fetching task lists through the XingTu API, opening each task detail page, and saving invitation QR images locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent batch download QR code invitation images from XingTu recruitment tasks by authenticating with cookies, fetching paginated task lists, opening each task detail page, and saving downloaded QR code images by task ID.
 
-## Publisher: <br>
-[juanjuan2538](https://clawhub.ai/user/juanjuan2538) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanjuan2538](https://clawhub.ai/user/juanjuan2538)
 
-## Use Case: <br>
-External users and operations teams use this skill to automate downloading QR code invitation images for active XingTu recruitment tasks. It is intended for authenticated XingTu account workflows where the user approves credential use, browser automation, and the local output location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow stores and reuses live XingTu login cookies in plain text. <br>
-Mitigation: Treat ~/.xingtuCookie.txt as password-equivalent, avoid pasting cookies into chat unless necessary, and delete or rotate the cookie after use. <br>
-Risk: The skill can run long browser automation and batch download work using an authenticated XingTu session. <br>
-Mitigation: Review and approve the batch run, task scope, and output directory before execution, and monitor progress for unexpected behavior. <br>
-Risk: Authentication failures, expired cookies, or zero-participant tasks can interrupt the workflow. <br>
-Mitigation: Validate cookies before API calls, resume from the JSON progress file, and skip tasks that cannot open the invitation modal. <br>
+## Use Case:
 
+External users and operators use this skill to automate downloading invitation QR code images for active XingTu recruitment tasks. It is intended for authenticated XingTu workflows where the user has access to the relevant task data.
 
-## Reference(s): <br>
-- [XingTu API Reference](references/api_spec.md) <br>
-- [XingTu task list API](https://www.xingtu.cn/gw/api/task/provider_get_task_order_list) <br>
-- [XingTu login](https://sso.oceanengine.com/xingtu/login?role=7) <br>
-- [ClawHub skill page](https://clawhub.ai/juanjuan2538/xingtu-task-invite-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with PowerShell, Python, browser automation commands, JSON progress data, and downloaded PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local cookie, task-cache, progress, download, and output paths during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill stores and reuses a XingTu session cookie in plaintext, which can create account-access risk if the file or chat transcript is exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a trusted local environment, avoid sharing cookies in prompts or logs, delete the plaintext cookie file when finished, and rotate or log out the XingTu session if exposure is possible.
+
+Risk: The skill performs live authenticated browser and API actions against XingTu and downloads task QR code images to local storage.
+
+Mitigation: Review the authenticated account, task filters, and output directory before execution, then monitor the first run and stop on unexpected task data or download behavior.
+
+## Reference(s):
+
+- [XingTu API Reference](references/api_spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/juanjuan2538/skills/xingtu-task-invite-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline PowerShell, Python, shell commands, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for live browser automation, API calls, progress tracking, and QR image downloads to local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

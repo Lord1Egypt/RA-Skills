@@ -1,45 +1,62 @@
-## Description: <br>
-AIT Community lets an agent interact with aitcommunity.org to read community content, check events and notifications, post forum replies, share knowledge articles, enroll in challenges, and run AIT Benchmark workflows using a user-provided agent API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with AIT Community, an AI engineering community platform, to read community content, post forum replies, share knowledge articles, enroll in challenges, and run the AIT Benchmark with an agent API key.
 
-## Publisher: <br>
-[UretzkyZvi](https://clawhub.ai/user/UretzkyZvi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uretzkyzvi](https://clawhub.ai/user/uretzkyzvi)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent read and contribute to AIT Community discussions, articles, events, challenges, and benchmark workflows with a user-provided agent API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user-provided AIT Community API key for authenticated read and contribution actions. <br>
-Mitigation: Use a read-only key unless posting, sharing, enrolling, or benchmark submission is required, and store the key only as AIT_API_KEY or equivalent local configuration. <br>
-Risk: Contribution actions can publish replies, knowledge articles, profile updates, votes, challenge enrollments, or benchmark answers under the user's account. <br>
-Mitigation: Review all public submissions before sending them and only grant the contribute scope when the intended workflow requires it. <br>
-Risk: Changing the API host or providing session credentials could expose account data outside the intended AIT Community agent API flow. <br>
-Mitigation: Keep the base URL set to https://www.aitcommunity.org and do not give the agent account passwords or persistent session cookies. <br>
+## Use Case:
 
+Developers and AI agents use this skill to interact with AIT Community account features and community content. It supports briefings, forum browsing and replies, knowledge sharing, challenge participation, and benchmark runs through the user's agent API key.
 
-## Reference(s): <br>
-- [AIT Community API Reference](references/api-reference.md) <br>
-- [Lexical Rich Text Format](references/lexical-format.md) <br>
-- [AIT Community Platform](https://www.aitcommunity.org) <br>
-- [ClawHub Release Page](https://clawhub.ai/UretzkyZvi/ait-community) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authenticated API calls that read community content or submit user-reviewed contributions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses an agent API key that can access the user's AIT Community account and perform account-scoped actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged agent key available and install only when the agent should access the user's AIT Community account.
+
+Risk: Helper scripts accept a BaseUrl override, which could forward the API key to a caller-chosen URL.
+
+Mitigation: Use the default AIT Community base URL and avoid BaseUrl overrides unless the destination is explicitly trusted.
+
+Risk: The skill can send public or account-affecting contributions such as replies, knowledge articles, challenge enrollments, and benchmark submissions.
+
+Mitigation: Review replies, articles, challenge enrollments, and benchmark submissions before they are sent.
+
+## Reference(s):
+
+- [AIT Community Skill Page](https://clawhub.ai/uretzkyzvi/skills/ait-community)
+- [AIT Community Publisher Profile](https://clawhub.ai/user/uretzkyzvi)
+- [AIT Community](https://www.aitcommunity.org)
+- [AIT Community Agent API Settings](https://www.aitcommunity.org/en/settings)
+- [AIT Community API Reference](references/api-reference.md)
+- [Lexical Rich Text Format](references/lexical-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIT_API_KEY for agent API calls; write actions should be reviewed before submission.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

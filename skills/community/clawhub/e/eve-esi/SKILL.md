@@ -1,11 +1,13 @@
 ---
 name: eve-esi
-description: "Query and manage EVE Online characters via the ESI (EVE Swagger Interface) REST API. Use when the user asks about EVE Online character data, wallet balance, ISK transactions, assets, skill queue, skill points, clone locations, implants, fittings, contracts, market orders, mail, industry jobs, killmails, planetary interaction, loyalty points, or any other EVE account management task."
+description: "Query and manage EVE Online characters via the ESI (EVE Swagger Interface) REST API. Performs OAuth2/PKCE browser login and stores plus auto-refreshes long-lived OAuth tokens locally in ~/.openclaw/eve-tokens.json. Read-only by default and can reach any ESI endpoint, including non-character public data; state-changing writes (mail, fittings, market orders, planetary interaction) happen only when explicitly invoked with --allow-write. Use when the user asks about EVE Online character data, wallet balance, ISK transactions, assets, skill queue, skill points, clone locations, implants, fittings, contracts, market orders, mail, industry jobs, killmails, planetary interaction, loyalty points, or any other EVE account management task."
 type: scripts
 includes:
   - scripts/auth_flow.py
   - scripts/get_token.py
   - scripts/esi_query.py
+  - scripts/token_store.py
+  - scripts/user_agent.py
   - scripts/validate_config.py
   - config/schema.json
   - config/example-config.json
@@ -16,7 +18,7 @@ auth:
   method: oauth2_pkce
   provider: EVE SSO (login.eveonline.com)
   credential_storage: "~/.openclaw/eve-tokens.json"
-  setup: "Run scripts/auth_flow.py once per character with a valid EVE Client ID. Tokens are stored locally and auto-refreshed by scripts/get_token.py."
+  setup: "Run scripts/auth_flow.py once per character with a valid EVE Client ID. Ask the user which scope profile they want first (basic|pi|industry|full, default pi) — do not pick for them. Tokens are stored locally and auto-refreshed by scripts/get_token.py."
   required_for: "All authenticated ESI endpoints (wallet, assets, skills, PI, industry, etc.). Public endpoints work without auth."
 env:
   - name: EVE_CLIENT_ID
@@ -47,23 +49,121 @@ env:
 
 # Data Handling
 
-This skill communicates with the following external services:
+This skill communicates with the following external services. Every outbound
+call is either a public/unauthenticated CCP endpoint, an OAuth2 flow against
+the official EVE SSO, or an optional, user-configured notification sink.
 
-- **EVE Online ESI API** (`esi.evetech.net`) — all character and universe data queries
-- **EVE SSO** (`login.eveonline.com`) — OAuth2 authentication and token refresh
-- **zKillboard API** (`zkillboard.com/api/`) — optional, for PVP threat assessment data (public, no auth required)
-- **Telegram Bot API** — optional, user-configured via `TELEGRAM_BOT_TOKEN` for alert notifications
-- **Discord Webhooks** — optional, user-configured via `DISCORD_WEBHOOK_URL` for alert notifications
+- **EVE Online ESI API** (`esi.evetech.net`) — official EVE Online REST API
+  (operated by CCP Games) for all character and universe data queries.
+  Includes bulk lookup endpoints such as `POST /characters/affiliation/`
+  and `POST /universe/names/`, which resolve public numeric IDs
+  (character/corp/alliance/type IDs) to public data. These POST bodies never
+  contain tokens, credentials, or private account data — only IDs that are
+  already public in-game. Authenticated endpoints (wallet, assets, skills,
+  etc.) send the OAuth2 bearer token only to this same host, per ESI's own
+  API contract.
+- **EVE SSO** (`login.eveonline.com`) — official OAuth2/PKCE authorization
+  server for EVE Online. Used only for the login/token-refresh flow described
+  in `references/authentication.md`.
+- **EVE Developer Portal** (`developers.eveonline.com/applications`) —
+  official CCP portal where the *user* registers their own EVE application
+  and obtains a Client ID. This skill never calls this URL programmatically;
+  it is referenced in documentation only, as the one-time manual step a user
+  performs before running `scripts/auth_flow.py --client-id <...>`.
+- **zKillboard API** (`zkillboard.com/api/`) — optional, public, unauthenticated.
+  Only used for PVP threat-assessment features; disabled unless threat/route
+  scripts are invoked.
+- **Telegram Bot API** — optional, only contacted if the user sets
+  `TELEGRAM_BOT_TOKEN` and configures alerts.
+- **Discord Webhooks** — optional, only contacted if the user sets
+  `DISCORD_WEBHOOK_URL` and configures alerts.
 
-No character data is sent to third-party servers beyond the above. Telegram/Discord only transmit alerts defined by the user.
+No character data, tokens, or credentials are sent to any third-party server
+beyond the above. Telegram/Discord only receive the specific alert text the
+user has configured — never raw account data or tokens.
+
+# What this skill can access, and what it will not do
+
+**Read-only by default.** GET requests and the documented bulk-lookup POST
+endpoints run normally. Any other POST, plus PUT and DELETE, is refused unless
+you pass `--allow-write` explicitly. Without that flag this skill cannot send
+mail, change contacts, alter contracts, open in-game windows, or modify your
+account in any way.
+
+**Sensitive data.** The scopes you grant during `auth_flow.py` decide what the
+skill can read. Several are genuinely private: wallet balance and full ISK
+transaction history, complete asset lists, mail contents, contracts, clone and
+implant locations, and current in-space location. Grant only the scopes your
+use case needs — the skill works fine with a narrow scope set, and public
+endpoints need no scopes at all.
+
+## Agent instruction: ask before you authenticate
+
+**Do not choose a scope profile on the user's behalf.** Scopes are granted once
+and stay granted until revoked, so this is the user's decision, not yours.
+
+Before running `auth_flow.py`, show the user the profiles and ask which one
+they want:
+
+| Profile | Scopes | Grants access to |
+|---|---|---|
+| `basic` | 7 | Skills, skill queue, clones, implants, location, ship, online status |
+| `pi` **(default)** | 8 | `basic` plus Planetary Interaction |
+| `industry` | 11 | `basic` plus assets, industry jobs, market orders, contracts |
+| `full` | 17 | Everything, **including wallet balance, ISK history and mail** |
+
+`python3 scripts/auth_flow.py --list-scope-profiles` prints the exact scope
+list for each. `--scopes "<space separated>"` takes an explicit set.
+
+If the user has not expressed a preference, use the default and say so — do not
+silently pick `full` because it is convenient. If a later query fails for lack
+of a scope, report which scope is missing and let the user decide whether to
+re-authenticate with a wider profile.
+
+The final gate is outside this skill: EVE SSO shows the user a consent screen
+listing every requested scope, and nothing is granted until they approve it in
+their browser.
+
+**Token handling.** Access tokens are bearer credentials: anyone holding one can
+read your account until it expires (~20 min). Refresh tokens are long-lived and
+rotate on each use.
+
+- Prefer `esi_query.py --char <name>`, which refreshes the token in-process. The
+  token never enters argv.
+- Avoid `--token "$TOKEN"` and `curl -H "Authorization: Bearer $TOKEN"`: command
+  lines are visible to any local user via `ps`, and land in your shell history.
+  Use `--token-stdin` when a token must come from outside.
+- Never paste a token into a config file, a bug report, a log, or a chat message.
+
+**Alert transmission.** If you configure Telegram or Discord, the alert text you
+define is sent to those services in plaintext over their APIs. Do not template
+raw wallet figures or asset inventories into alerts you would not want stored on
+a third-party server.
 
 # EVE Online ESI
 
 The ESI (EVE Swagger Interface) is the official REST API for EVE Online third-party development.
 
-- Base URL: `https://esi.evetech.net/latest`
-- Spec: `https://esi.evetech.net/latest/swagger.json`
-- API Explorer: <https://developers.eveonline.com/api-explorer>
+- **Base URL**: `https://esi.evetech.net` — no version segment.
+- **Versioning**: send `X-Compatibility-Date: 2026-08-04` on every request. CCP
+  has replaced the old `/latest`, `/legacy` and `/v5` URL prefixes with this
+  header ([dev blog](https://developers.eveonline.com/blog/changing-versions-v42-was-getting-out-of-hand)).
+  A request that omits it does not get the newest behaviour — it gets the
+  *oldest* one ESI still serves. `esi_query.py` sets the header itself; override
+  it with `--compatibility-date` or `EVE_ESI_COMPATIBILITY_DATE`.
+- **Spec**: `https://esi.evetech.net/meta/openapi.json` (OpenAPI 3.1) or
+  `https://esi.evetech.net/meta/openapi-3.0.json` (OpenAPI 3.0). The old
+  `swagger.json` is deprecated and no longer receives new routes
+  ([dev blog](https://developers.eveonline.com/blog/changing-specs-from-swagger-to-openapi)).
+- **Valid compatibility dates**: <https://esi.evetech.net/meta/compatibility-dates>
+- **Changelog**: <https://esi.evetech.net/meta/changelog> — check this before
+  bumping the compatibility date, and adjust for any `is_breaking` entry on an
+  endpoint this skill uses.
+- **API Explorer**: <https://developers.eveonline.com/api-explorer>
+- **User-Agent**: every request identifies the skill and links its source repo,
+  because CCP treats anonymous traffic as grounds for throttling. Set
+  `EVE_ESI_CONTACT` to an email, `discord:name` or `eve:charname` to add the
+  contact CCP would rather have.
 
 ## Skill Location
 
@@ -79,19 +179,40 @@ SKILL=~/.openclaw/workspace/skills/eve-esi
 Tokens are stored in `~/.openclaw/eve-tokens.json` (created by auth_flow.py, chmod 600).
 All scripts (`get_token.py`, `esi_query.py`) read from this file directly — **no env vars are required for normal operation.**
 
-**First-time setup** (once per character):
+**First-time setup** (once per character). The Client ID comes from the user's
+own application at <https://developers.eveonline.com/applications> — it is not
+stored anywhere by this skill, so ask the user for it rather than hunting for
+it. Ask which scope profile they want before running this; do not choose for
+them.
+
 ```bash
+# 0. In the EVE application, the Callback URL must be exactly
+#    http://localhost:8080/callback — the developer portal allows the http
+#    scheme only for the host `localhost` and rejects 127.0.0.1 on save.
 # 1. Set up SSH tunnel on your local PC:
 #    ssh -L 8080:127.0.0.1:8080 user@your-server -N
 # 2. Run auth flow on server (pass Client ID directly):
-python3 ~/.openclaw/workspace/skills/eve-esi/scripts/auth_flow.py --client-id <YOUR_CLIENT_ID> --char-name main
+python3 ~/.openclaw/workspace/skills/eve-esi/scripts/auth_flow.py \
+  --client-id <YOUR_CLIENT_ID> --char-name main --scope-profile <basic|pi|industry|full>
 # 3. Open the shown URL in browser, log in with EVE account
 ```
 
-**Get a fresh access token** (tokens expire after ~20min, refresh is automatic):
+**Preferred: let the query script handle the token.** `--char <name>` resolves and
+refreshes the token in-process, so it never appears on a command line, in shell
+history, or in your logs:
 ```bash
-TOKEN=$(python3 ~/.openclaw/workspace/skills/eve-esi/scripts/get_token.py --char main)
+python3 ~/.openclaw/workspace/skills/eve-esi/scripts/esi_query.py --char main \
+  --endpoint "/characters/<CHAR_ID>/wallet/" --pretty
 ```
+
+Only if you genuinely need the raw token elsewhere (it expires after ~20 min,
+refresh is automatic):
+```bash
+python3 ~/.openclaw/workspace/skills/eve-esi/scripts/get_token.py --char main
+```
+Do not capture it into a shell variable and pass it as `--token "$TOKEN"` —
+that exposes it via `ps` and shell history. Use `--token-stdin` if a token must
+be handed over.
 
 **List authenticated characters:**
 ```bash
@@ -100,109 +221,117 @@ python3 ~/.openclaw/workspace/skills/eve-esi/scripts/get_token.py --list
 
 For full OAuth2/PKCE details: see `references/authentication.md`.
 
+## Calling ESI directly
+
+The `curl` examples below are reference material for the raw API. Every one of
+them goes through this helper, which sets the two headers ESI expects: a
+compatibility date, so the response contract stays pinned, and a User-Agent, so
+CCP can see who is calling. `esi_query.py` sets both by itself — that is one
+reason it is the preferred path.
+
+```bash
+ESI="https://esi.evetech.net"
+COMPAT="2026-08-04"
+UA="OpenClaw-ESI-Skill/1.3.3 (+https://github.com/burnshall-ui/openclaw-eve-skill)"
+
+esi() { curl -s -H "X-Compatibility-Date: $COMPAT" -H "User-Agent: $UA" "$@"; }
+```
+
 ## Public endpoints (no auth)
 
 ```bash
 # Character public info
-curl -s "https://esi.evetech.net/latest/characters/2114794365/" | python -m json.tool
+esi "$ESI/characters/2114794365/" | python -m json.tool
 
 # Portrait URLs
-curl -s "https://esi.evetech.net/latest/characters/2114794365/portrait/"
+esi "$ESI/characters/2114794365/portrait/"
 
 # Corporation history
-curl -s "https://esi.evetech.net/latest/characters/2114794365/corporationhistory/"
+esi "$ESI/characters/2114794365/corporationhistory/"
 
 # Bulk affiliation lookup
-curl -s -X POST "https://esi.evetech.net/latest/characters/affiliation/" \
+esi -X POST "$ESI/characters/affiliation/" \
   -H "Content-Type: application/json" \
   -d '[2114794365, 95538921]'
 ```
 
 ## Character info (authenticated)
 
+> These put the token on a command line, where `ps` and shell history expose it.
+> For day-to-day use prefer `esi_query.py --char <name>` (see
+> [Using the query script](#using-the-query-script)).
+
 ```bash
 TOKEN="<your_access_token>"
 CHAR_ID="<your_character_id>"
 
 # Online status (scope: esi-location.read_online.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/online/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/online/"
 ```
 
 ## Wallet
 
 ```bash
 # Balance (scope: esi-wallet.read_character_wallet.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/wallet/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/wallet/"
 
 # Journal (paginated)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/wallet/journal/?page=1"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/wallet/journal/?page=1"
 
 # Transactions
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/wallet/transactions/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/wallet/transactions/"
 ```
 
 ## Assets
 
 ```bash
 # All assets (paginated; scope: esi-assets.read_assets.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/assets/?page=1"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/assets/?page=1"
 
 # Resolve item locations
-curl -s -X POST -H "Authorization: Bearer $TOKEN" \
+esi -X POST -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '[1234567890, 9876543210]' \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/assets/locations/"
+  "$ESI/characters/$CHAR_ID/assets/locations/"
 
 # Resolve item names
-curl -s -X POST -H "Authorization: Bearer $TOKEN" \
+esi -X POST -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '[1234567890]' \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/assets/names/"
+  "$ESI/characters/$CHAR_ID/assets/names/"
 ```
 
 ## Skills
 
 ```bash
 # All trained skills + total SP (scope: esi-skills.read_skills.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/skills/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/skills/"
 
 # Skill queue (scope: esi-skills.read_skillqueue.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/skillqueue/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/skillqueue/"
 
 # Attributes (intelligence, memory, etc.)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/attributes/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/attributes/"
 ```
 
 ## Location and ship
 
 ```bash
 # Current location (scope: esi-location.read_location.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/location/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/location/"
 
 # Current ship (scope: esi-location.read_ship_type.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/ship/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/ship/"
 ```
 
 ## Clones and implants
 
 ```bash
 # Jump clones + home station (scope: esi-clones.read_clones.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/clones/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/clones/"
 
 # Active implants (scope: esi-clones.read_implants.v1)
-curl -s -H "Authorization: Bearer $TOKEN" \
-  "https://esi.evetech.net/latest/characters/$CHAR_ID/implants/"
+esi -H "Authorization: Bearer $TOKEN" "$ESI/characters/$CHAR_ID/implants/"
 ```
 
 ## More endpoints
@@ -211,7 +340,12 @@ For contracts, fittings, mail, industry, killmails, market orders, mining, plane
 
 ## Dashboard Config
 
-The skill supports a modular dashboard config for alerts, reports, and market tracking. Each user defines what they need in a JSON config file.
+The skill defines and validates a config format for alerts, reports and market
+tracking. It does **not** execute any of it: there is no poller, no scheduler
+and no notification sender in this skill. Do not tell the user their alerts are
+running because a config exists — the config is a description that some other
+automation has to act on. `validate_config.py` checks that a config is well
+formed and that the stored token actually carries the scopes it references.
 
 - **Schema**: [config/schema.json](config/schema.json) — full JSON Schema with all fields, types, and defaults
 - **Example**: [config/example-config.json](config/example-config.json) — ready-to-use template
@@ -226,7 +360,18 @@ The skill supports a modular dashboard config for alerts, reports, and market tr
 
 ### Security
 
-Tokens should **not** be stored in plain text. Use environment variable references:
+Do **not** write tokens into the dashboard config file. There are two supported
+places for credentials, and they do not conflict:
+
+| Location | What lives there | Who writes it |
+|----------|------------------|---------------|
+| `~/.openclaw/eve-tokens.json` | The canonical token store: refresh tokens + client IDs, one entry per character. Created `chmod 600`, rewritten atomically, lock-protected. | `auth_flow.py` / `get_token.py` |
+| Dashboard config JSON | No secrets. Reference env vars if a value is unavoidable. | You |
+
+The scripts read the token store directly, so a normal setup needs **no**
+credentials in the config file and no env vars at all. Only use `$ENV:`
+references if you drive the dashboard from a system that cannot reach the
+token store:
 
 ```json
 {
@@ -251,33 +396,47 @@ python scripts/validate_config.py --schema
 
 ## Using the query script
 
+Pass `--char <name>` and the script refreshes the stored token itself. The token
+never appears on a command line, so `ps` and shell history cannot leak it.
+
 ```bash
 SKILL=~/.openclaw/workspace/skills/eve-esi
 # Replace 'main' with your --char-name if you authenticated under a different name.
-TOKEN=$(python3 $SKILL/scripts/get_token.py --char main)
-# get_token.py --char-id prints just the character ID for the named character.
-CHAR_ID=$(python3 $SKILL/scripts/get_token.py --char main --char-id 2>/dev/null) || \
-CHAR_ID=$(python3 -c "import json, os, pathlib; p = pathlib.Path(os.environ.get('OPENCLAW_STATE_DIR', os.path.expanduser('~/.openclaw'))) / 'eve-tokens.json'; d = json.loads(p.read_text(encoding='utf-8')); chars = d.get('characters', {}); char = chars.get('main') or next(iter(chars.values()), None); print(char['character_id'] if char else '')")
+CHAR_ID=$(python3 $SKILL/scripts/get_token.py --char main --char-id)
 
 # Simple query
-python3 $SKILL/scripts/esi_query.py --token "$TOKEN" --endpoint "/characters/$CHAR_ID/wallet/" --pretty
+python3 $SKILL/scripts/esi_query.py --char main --endpoint "/characters/$CHAR_ID/wallet/" --pretty
 
 # Fetch all pages of assets
-python3 $SKILL/scripts/esi_query.py --token "$TOKEN" --endpoint "/characters/$CHAR_ID/assets/" --pages --pretty
+python3 $SKILL/scripts/esi_query.py --char main --endpoint "/characters/$CHAR_ID/assets/" --pages --pretty
 
-# POST request (e.g. asset names)
-python3 $SKILL/scripts/esi_query.py --token "$TOKEN" --endpoint "/characters/$CHAR_ID/assets/names/" \
+# Bulk lookup POST (asset names) — a read-only lookup, no --allow-write needed
+python3 $SKILL/scripts/esi_query.py --char main --endpoint "/characters/$CHAR_ID/assets/names/" \
   --method POST --body '[1234567890]' --pretty
+```
+
+If you must supply a token from elsewhere, pipe it in rather than passing `--token`:
+
+```bash
+printf '%s\n' "$TOKEN" | python3 $SKILL/scripts/esi_query.py --token-stdin --endpoint /characters/$CHAR_ID/wallet/
 ```
 
 ## Best practices
 
 - **Caching**: respect the `Expires` header; do not poll before it expires.
-- **Error limits**: monitor `X-ESI-Error-Limit-Remain`; back off when low.
+  Polling around the cache is treated as circumventing it and can get you banned.
+- **Error limits**: monitor `X-ESI-Error-Limit-Remain`; back off when low. A 4xx
+  costs five times what a 2xx costs, so validate input before sending it.
+- **Rate limits**: routes under bucket limiting report `X-Ratelimit-Remaining`
+  and answer with `429` plus `Retry-After` once the bucket is empty.
+  `esi_query.py` honours both, and warns once a bucket drops below 20%.
 - **User-Agent**: always set a descriptive User-Agent with contact info.
-- **Rate limits**: some endpoints (mail, contracts) have internal rate limits returning HTTP 520.
 - **Pagination**: check the `X-Pages` response header; iterate with `?page=N`.
-- **Versioning**: use `/latest/` for current stable routes. `/dev/` may change without notice.
+- **Versioning**: do not use URL prefixes. `/latest/`, `/legacy/`, `/dev/` and
+  `/v5/` are deprecated — send the `X-Compatibility-Date` header instead, and
+  pin it to a date you have actually reviewed. `esi_query.py` strips a version
+  prefix if one reaches it anyway.
+- **Scheduling**: stagger periodic jobs rather than firing them all on `*/5`.
 
 ## Threat Assessment & Route Planning
 
@@ -302,8 +461,7 @@ python3 $SKILL/scripts/esi_query.py --action system_info --system-id 30002537 --
 python3 $SKILL/scripts/esi_query.py --action route_plan --origin 30000142 --destination 30002537 --route-flag secure --pretty
 
 # Character location (requires auth)
-TOKEN=$(python3 $SKILL/scripts/get_token.py --char main)
-python3 $SKILL/scripts/esi_query.py --action character_location --token "$TOKEN" --character-id $CHAR_ID --pretty
+python3 $SKILL/scripts/esi_query.py --action character_location --char main --character-id $CHAR_ID --pretty
 
 # Faction warfare systems
 python3 $SKILL/scripts/esi_query.py --action fw_systems --pretty
@@ -361,11 +519,12 @@ python3 ~/.openclaw/workspace/scripts/cache_threat_data.py --check
 ESI returns numeric type IDs (e.g. for ships, items, skills). Resolve names via:
 
 ```bash
+SKILL=~/.openclaw/workspace/skills/eve-esi
+
 # Single type
-curl -s "https://esi.evetech.net/latest/universe/types/587/"
+python3 $SKILL/scripts/esi_query.py --endpoint "/universe/types/587/" --pretty
 
 # Bulk names (up to 1000 IDs)
-curl -s -X POST "https://esi.evetech.net/latest/universe/names/" \
-  -H "Content-Type: application/json" \
-  -d '[587, 638, 11393]'
+python3 $SKILL/scripts/esi_query.py --endpoint "/universe/names/" \
+  --method POST --body '[587, 638, 11393]' --pretty
 ```

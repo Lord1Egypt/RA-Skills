@@ -1,0 +1,48 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械上市后监管",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:44:51.213860+00:00",
+  "timestamp_local": "2026-08-28T00:44:51.213868",
+  "package_fingerprint_sha256": "c095f6865cd53d902dd45ffe161c9fc27a80ccc688007d605e2a3715613d22d3",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "1ec5445ac3a5ed6fd97c44c2757a212407b0e40a8480b54526531ab235b501e7"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "61d0f521d46290eef1caaa139817f20b3d46eff8f00d1ebb84ee8356e969e588"
+    },
+    {
+      "path": "references/上市后监管知识库.md",
+      "sha256": "37df62717bcaa762f1c24be8577eaf772c71eb285cf4f1d822af06ca46ca5796"
+    },
+    {
+      "path": "tools/pms_toolkit.py",
+      "sha256": "4bace60875654ad6803f247dd65e27cdaf815ee47cfd7e1fe7f680fddd5a213a"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "05bc25fdfc1d24cd2dcf5b3d2ed972d822cd3b50617b64e13353e3c02f2e507f"
+    },
+    {
+      "path": "verify/pms_quality_test.py",
+      "sha256": "099136c48c8dda8db2762b30572143b367913f49b54e61f2dc2b36f2d93a836c"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "a6ce115b9d90ef5a40d27e44c6ae68766053ba280f5f0139e7c2b90e839196ba"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "09f1bfbc73974e10662186925b0494c4bb1519b011df041b564235b87427ffb9"
+    }
+  ]
+}

@@ -1,38 +1,48 @@
-## Description: <br>
-Expert Git workflow manager specializing in branching strategies, automation, and team collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Git workflow manager specializing in branching strategies, automation, team collaboration, merge conflict resolution, and repository management for efficient, clear, and scalable version control practices.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to assess Git practices, design branching and merge policies, configure workflow automation, and improve release and repository management.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can recommend or carry out broad repository-changing actions without clear approval, scope, or rollback safeguards.
+
+Mitigation: Require explicit confirmation before changing branch protections, hooks, auto-merge, release settings, access controls, or commit history, and document the intended scope and rollback path before applying changes in shared repositories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to assess Git practices, design branching and merge strategies, configure repository automation, and improve release and collaboration workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose broad repository automation, release, branch-protection, hook, and access-control changes without clear approval boundaries. <br>
-Mitigation: Require an exact repository and branch scope, a proposed plan, a diff or settings preview, and separate approval for branch protection, hooks, auto-merge, release or deployment automation, access control, and any history-changing operation. <br>
+**Output Format:** [Markdown with inline commands and configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-git-workflow-manager) <br>
+**Other Properties Related to Output:** [May propose repository policy, automation, hook, branch protection, release, and history-management changes for human review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository, branch protection, hook, CI/CD, release, and access-control changes that should be reviewed before execution.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

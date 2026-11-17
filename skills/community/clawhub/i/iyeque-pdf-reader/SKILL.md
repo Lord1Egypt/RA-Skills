@@ -1,98 +1,32 @@
 ---
 name: pdf-reader
-description: Extract text, search inside PDFs, and produce summaries.
-homepage: "https://pymupdf.readthedocs.io"
+description: "Fast, bounded PDF extraction, full-text search, and metadata inspection for agent workflows. Use when reading reports, searching PDFs for evidence, or preparing document summaries."
+license: MIT-0
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "📄",
-        "requires": { "bins": ["python3"], "pip": ["PyMuPDF"] },
-        "install":
-          [
-            {
-              "id": "pymupdf",
-              "kind": "pip",
-              "package": "PyMuPDF",
-              "label": "Install PyMuPDF",
-            },
-          ],
-        "version": "1.1.0",
-      },
-  }
+  openclaw:
+    emoji: "📄"
+    requires:
+      bins: ["python3"]
+      pip: ["PyMuPDF"]
+    version: "1.2.2"
 ---
 
-# PDF Reader Skill
+# Searchable PDF reader
 
-The `pdf-reader` skill provides functionality to extract text and retrieve metadata from PDF files using PyMuPDF (fitz).
+Use `reader.py` to extract text, find a query in a PDF, or inspect metadata. Extraction and search stop at 500 pages by default; pass `--max_pages` for a smaller bound. Results are structured JSON, files are opened read-only, documents are closed promptly, and page reads are bounded to 500 pages per request by default.
 
-## Tool API
-
-The skill provides two commands:
-
-### extract
-Extracts plain text from the specified PDF file.
-
-- **Parameters:**
-  - `file_path` (string, required): Path to the PDF file to extract text from.
-  - `--max_pages` (integer, optional): Maximum number of pages to extract.
-
-**Usage:**
-```bash
-python3 skills/pdf-reader/reader.py extract /path/to/document.pdf
-python3 skills/pdf-reader/reader.py extract /path/to/document.pdf --max_pages 5
-```
-
-**Output:** Plain text content from the PDF.
-
-### metadata
-Retrieve metadata about the document.
-
-- **Parameters:**
-  - `file_path` (string, required): Path to the PDF file.
-
-**Usage:**
-```bash
-python3 skills/pdf-reader/reader.py metadata /path/to/document.pdf
-```
-
-**Output:** JSON object with PDF metadata including:
-- `title`: Document title
-- `author`: Document author
-- `subject`: Document subject
-- `creator`: Application that created the PDF
-- `producer`: PDF producer
-- `creationDate`: Creation date
-- `modDate`: Modification date
-- `format`: PDF format version
-- `encryption`: Encryption info (if any)
-
-## Implementation Notes
-
-- Uses **PyMuPDF** (imported as `pymupdf`) for fast, reliable PDF processing
-- Supports encrypted PDFs (will return error if password required)
-- Handles large PDFs efficiently with `max_pages` option
-- Returns structured JSON for metadata command
-
-## Example
+## Quick start
 
 ```bash
-# Extract text from first 3 pages
-python3 skills/pdf-reader/reader.py extract report.pdf --max_pages 3
-
-# Get document metadata
-python3 skills/pdf-reader/reader.py metadata report.pdf
-# Output:
-# {
-#   "title": "Annual Report 2024",
-#   "author": "John Doe",
-#   "creationDate": "D:20240115120000",
-#   ...
-# }
+python3 reader.py extract report.pdf --max_pages 10
+python3 reader.py search report.pdf --query "revenue" --max_pages 50
+python3 reader.py metadata report.pdf
 ```
 
-## Error Handling
+`extract` returns the text and pages read. `search` returns matching page numbers, match counts, and bounded page context. `metadata` returns page count and PyMuPDF metadata. Encrypted PDFs that require a password return a clear error; do not place passwords in command arguments when shell history or logs could expose them.
 
-- Returns error message if file not found or not a valid PDF
-- Returns error if PDF is encrypted and requires password
-- Gracefully handles corrupted or malformed PDFs
+## Source and support
+
+Source: https://github.com/iyeque/openclaw-skills/tree/main/skills/pdf-reader
+
+Report bugs and security concerns through the repository issue guidance.

@@ -1,44 +1,60 @@
-## Description: <br>
-Psychoacoustics, clinical psychology, logotherapy, and existential philosophy applied to music production for altered states of consciousness, emotional journeys, and immersive experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies psychoacoustics, clinical psychology, logotherapy, and existential philosophy to help music producers design altered-state aesthetics, emotional arcs, and immersive listening experiences.
 
-## Publisher: <br>
-[Ssmokegt](https://clawhub.ai/user/Ssmokegt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssmokegt](https://clawhub.ai/user/ssmokegt)
 
-## Use Case: <br>
-External music producers, sound designers, and creative technologists use this skill to structure tracks and soundscapes using psychoacoustic, psychological, logotherapy, and existential-philosophy lenses. It provides genre-specific production guidance, reference mappings, and prompts for designing emotional arcs in psytrance, liquid drum and bass, wave, phonk, synthwave, and related genres. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains clinical-sounding claims about altered states, entrainment, vagal response, and emotional effects that may be overconfident if presented as medical or therapeutic outcomes. <br>
-Mitigation: Use it as artistic and educational inspiration, not as medical, therapeutic, or guaranteed psychological advice; avoid presenting tracks as clinically effective. <br>
-Risk: Intense, bass-heavy, trance, or altered-state sound design can be uncomfortable or overwhelming for some listeners. <br>
-Mitigation: Keep listening levels conservative, build rest points into sessions, and consider content warnings or consent for intense listening experiences. <br>
+## Use Case:
 
+External creators and music producers use this skill for production guidance on arranging, mixing, and sound-designing tracks with psychoacoustic concepts, emotional journey structure, and genre-specific references for psytrance, liquid drum and bass, wave, phonk, and synthwave.
 
-## Reference(s): <br>
-- [Sonic Consciousness Engineering release](https://clawhub.ai/Ssmokegt/sonic-consciousness) <br>
-- [Psychoacoustics Reference](references/psychoacoustics.md) <br>
-- [Clinical Psychology of Sound & Consciousness](references/clinical-psychology.md) <br>
-- [Logotherapy & Meaning in Music Production](references/logotherapy-music.md) <br>
-- [Existential Philosophy Applied to Sound](references/existential-philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and structured production prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; produces artistic and educational music-production guidance rather than executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill discusses altered states, brainwave entrainment, and nervous-system responses in ways that readers could overstate as reliable therapeutic or medical effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame the material as creative production guidance, avoid medical or therapeutic claims, and do not present tracks as reliably manipulating brainwaves or nervous-system states.
+
+Risk: Listeners with trauma, anxiety, dissociation, seizure risk, or other neurological or psychiatric vulnerabilities may be more sensitive to intense altered-state aesthetics.
+
+Mitigation: Use listener consent, moderate volume, breaks, and extra care when designing or sharing intense, trance-oriented, binaural, or high-stimulation listening experiences.
+
+Risk: Long sessions, loud playback, and harsh frequency emphasis can contribute to listener or producer fatigue.
+
+Mitigation: Keep levels moderate, include dynamic rest points, and build breaks into production and listening workflows.
+
+## Reference(s):
+
+- [Psychoacoustics Reference](references/psychoacoustics.md)
+- [Clinical Psychology of Sound & Consciousness](references/clinical-psychology.md)
+- [Logotherapy & Meaning in Music Production](references/logotherapy-music.md)
+- [Existential Philosophy Applied to Sound](references/existential-philosophy.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown prose, tables, and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only creative music-production guidance; no tool calls, code execution, or configuration files are produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

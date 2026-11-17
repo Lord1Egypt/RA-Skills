@@ -1,45 +1,64 @@
-## Description: <br>
-Automates end-to-end market research by coordinating crawl4ai-style collection, trend monitoring, structured product research, historical comparison, and report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates end-to-end market research by combining web crawling, trend monitoring, structured product analysis, and optional historical memory comparison.
 
-## Publisher: <br>
-[ling-qian](https://clawhub.ai/user/ling-qian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ling-qian](https://clawhub.ai/user/ling-qian)
 
-## Use Case: <br>
-Developers, operators, and market researchers use this skill to generate competitive, trend, product, and market scans from a topic and optional source URLs. It is intended to produce structured reports and supporting artifacts for recurring market intelligence workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-research topics, summaries, reports, and source-derived findings may be saved locally or in agentmemory. <br>
-Mitigation: Avoid confidential topics unless persistence is acceptable; disable or review memory writes and remove stored findings when retention is not desired. <br>
-Risk: Scheduled WeChat or channel delivery can disclose generated reports to an unintended destination. <br>
-Mitigation: Verify the delivery target and require human review before enabling scheduled or automatic external delivery. <br>
-Risk: Several advertised integrations are early-stage, simulated, or not fully implemented in the artifact. <br>
-Mitigation: Test the skill in a non-production workspace and inspect generated reports and artifacts before relying on results. <br>
+## Use Case:
 
+Developers and market research users can use this skill to gather source material, monitor trends, compare prior findings, and generate structured market research reports for competitive, industry, product launch, or investment analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ling-qian/chace-ai-market-research) <br>
-- [Declared homepage](https://github.com/yourusername/ai-market-research-skill) <br>
-- [README](artifact/README.md) <br>
-- [Requirements](artifact/Requirements.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with generated artifact files and optional JSON or HTML output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depth controls affect source count, runtime, and token usage; optional history comparison can read and write agentmemory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, SKILL.md frontmatter, CHANGELOG) <br>
+Risk: Generated reports may be written outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a constrained workspace or sandboxed OpenClaw process until report path handling is fixed and reviewed.
+
+Risk: Research topics, source URLs, summaries, and findings may be saved locally or to agentmemory.
+
+Mitigation: Avoid sensitive internal topics and sources unless local report storage and memory persistence have been approved for that data.
+
+Risk: Optional channel delivery and cron examples can distribute generated reports beyond the local workspace.
+
+Mitigation: Review delivery destinations and report contents before enabling scheduled or WeChat/channel delivery.
+
+Risk: The artifact behavior is currently mock/demo-like for crawl4ai, trendradar, and product-research integrations.
+
+Mitigation: Treat outputs as draft research guidance and verify claims against primary sources before using them for business decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ling-qian/skills/chace-ai-market-research)
+- [Publisher Profile](https://clawhub.ai/user/ling-qian)
+- [Declared Homepage](https://github.com/yourusername/ai-market-research-skill)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional JSON-style artifacts and setup or troubleshooting commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports quick, standard, and deep research depths; output may include local report files, crawl summaries, trend summaries, analysis results, and optional memory entries.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

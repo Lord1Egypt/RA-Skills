@@ -1,38 +1,54 @@
-## Description: <br>
-Provides a practical introduction and usage guide for Google Antigravity IDE, including its Agent-First workflow, multi-model support, Mission Control, and Skills system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an introduction and usage guide for Google Antigravity IDE, focusing on its Agent-First design, multi-model support, Mission Control, and Skills system.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and teams evaluating or using Google Antigravity IDE use this skill for a concise overview of Agent-First development, practical usage patterns, Skills setup, and common questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide mentions installing other community skills or repositories. <br>
-Mitigation: Review each separate third-party repository and its security posture before installing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand Google Antigravity concepts, workflows, and practical usage patterns before applying the IDE's Agent-First development model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/antigravity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with feature summaries, best practices, FAQ entries, and example dialogue.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational output only; no executable code or configuration is produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Product details are documentation-style guidance and may become stale as Antigravity changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important product behavior against current trusted product documentation before relying on it for operational decisions.
+
+Risk: Users may install third-party skill repositories from untrusted sources while following setup guidance.
+
+Mitigation: Clone or install third-party skills only from trusted sources and review them before deployment.
+
+## Reference(s):
+
+- [ClawHub Antigravity Skill](https://clawhub.ai/duanc-chao/skills/antigravity)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/duanc-chao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with bullets and sample dialogue]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational guidance only; no code execution or configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn732heane7psmqxq3by5a1cv582pedt",
-  "slug": "movie-coupon",
-  "version": "1.0.1",
-  "publishedAt": 1773659500199
+  "skill_name": "movie-coupon",
+  "version": "2.0.2",
+  "author": "moooai",
+  "description": "电影票优惠券 - 获取淘票票、猫眼等电影平台优惠",
+  "api_endpoint": "https://agskills.moontai.top/coupon/movie",
+  "homepage": "https://github.com/moooai/movie-coupon",
+  "license": "MIT",
+  "tags": [
+    "电影",
+    "优惠券",
+    "淘票票",
+    "猫眼",
+    "电影票"
+  ],
+  "created_at": "2025-03-16",
+  "updated_at": "2026-10-16"
 }

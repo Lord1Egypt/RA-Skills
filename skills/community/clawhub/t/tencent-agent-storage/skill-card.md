@@ -1,42 +1,63 @@
-## Description: <br>
-Cloud file storage, upload, backup, and file management tool for Tencent Agent Storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Agent Storage lets an agent upload, list, search, rename, move, and share files in a user's Tencent Agent Storage cloud drive.
 
-## Publisher: <br>
-[shawnminh](https://clawhub.ai/user/shawnminh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnminh](https://clawhub.ai/user/shawnminh)
 
-## Use Case: <br>
-External users and agents use this skill to manage a Tencent Agent Storage cloud drive, including uploading local files or folders, listing and searching stored files, creating folders, and generating download or preview links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files and whole folders to Tencent cloud storage with weak user-confirmation boundaries. <br>
-Mitigation: Require explicit user confirmation before uploading files or folders that were not specifically named, and review the selected paths before execution. <br>
-Risk: The skill relies on Tencent Agent Storage credentials that can authorize broad storage actions. <br>
-Mitigation: Use a dedicated least-privilege SMH token where possible and avoid placing unrelated secrets in the referenced configuration files. <br>
+## Use Case:
 
+External users and their agents use this skill to manage personal cloud-drive files, upload generated artifacts, and provide time-limited download or preview links across devices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawnminh/tencent-agent-storage) <br>
-- [Publisher profile](https://clawhub.ai/user/shawnminh) <br>
-- [Tencent Agent Storage API endpoint](https://api.tencentsmh.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return JSON to stdout and may produce signed download or preview URLs for uploaded files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: server release evidence) <br>
+Risk: Administrative Tencent storage tokens can be exposed or overused if shared broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Tencent storage token with the least privilege available, keep credential files private, and never display access-token based URLs to users.
+
+Risk: Broad activation language can lead to unintended uploads of local files or directories.
+
+Mitigation: Require the user to identify the exact file or directory before upload, and confirm before uploading sensitive or unexpected content.
+
+Risk: Setup guidance includes curl-to-sudo and global npm installation paths.
+
+Mitigation: Prefer reviewed local installation with pinned dependencies, and avoid piping remote setup scripts into privileged package installation.
+
+Risk: A modified endpoint could direct storage operations away from the intended Tencent service.
+
+Mitigation: Keep smh_basePath fixed to the legitimate Tencent endpoint unless the publisher and deployment owner explicitly approve a different endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawnminh/skills/tencent-agent-storage)
+- [Publisher profile](https://clawhub.ai/user/shawnminh)
+- [Tencent Agent Storage API endpoint](https://api.tencentsmh.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful uploads return complete, time-limited downloadUrl links; search is limited to filename matching.]
+
+## Skill Version(s):
+
+1.0.17 (source: server release metadata; artifact frontmatter says 1.0.11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

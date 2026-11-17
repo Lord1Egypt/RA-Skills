@@ -1,44 +1,59 @@
-## Description: <br>
-GroqCloud (groq.com) lets agents read, create, and update GroqCloud data through the OOMOL oo CLI connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to GroqCloud through OOMOL to list models, retrieve model details, create chat completions, and transcribe or translate audio.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate GroqCloud through an OOMOL-connected account, including model discovery, model metadata lookup, and non-streaming OpenAI-compatible chat completions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected GroqCloud account and may use sensitive account credentials managed by OOMOL. <br>
-Mitigation: Install and use it only when the agent is intended to access that connected GroqCloud account. <br>
-Risk: Chat-completion requests may send user-provided content to GroqCloud and consume account credits. <br>
-Mitigation: Review prompts and payloads before running chat-completion actions, especially for sensitive data or cost-sensitive accounts. <br>
-Risk: Optional oo CLI installation and login steps introduce trust and account-linking decisions. <br>
-Mitigation: Run install, login, or connection setup only after an auth or connection failure and only when the OOMOL oo CLI is trusted for the environment. <br>
+## Use Case:
 
+Developers using GroqCloud through an OOMOL-connected account can inspect connector schemas, retrieve model information, create chat completions, and transcribe or translate audio.
 
-## Reference(s): <br>
-- [ClawHub GroqCloud Skill](https://clawhub.ai/oomol/oo-groqcloud) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [GroqCloud Homepage](https://groq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger GroqCloud connector calls through the OOMOL oo CLI and return connector JSON responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The setup instructions run remote installer code that was not verified by the security review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the oo CLI separately from a verified source, review the installer, and require approval for installation changes.
+
+Risk: The documented automatic agent-skill synchronization may change local skills.
+
+Mitigation: Check the synchronization setting and disable it if it is not needed.
+
+Risk: Chat requests send selected content through OOMOL to GroqCloud and may incur usage charges.
+
+Mitigation: Review the content before sending and consider the account's usage and billing.
+
+## Reference(s):
+
+- [GroqCloud API documentation](https://console.groq.com/docs/overview)
+- [GroqCloud](https://groq.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Shell commands]
+
+**Output Format:** [JSON connector requests and responses, with shell commands for CLI invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chat prompts and supplied audio may be sent through OOMOL to GroqCloud; usage may incur charges.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

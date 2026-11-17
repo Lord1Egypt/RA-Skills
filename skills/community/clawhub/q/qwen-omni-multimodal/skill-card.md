@@ -1,46 +1,57 @@
-## Description: <br>
-Qwen Omni Multimodal calls Alibaba Cloud DashScope Qwen3.5-Omni models for text, image, audio, and video understanding with text or speech output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent use Alibaba Cloud DashScope Qwen3.5-Omni for text, image, audio, and video understanding, with optional text or speech output.
 
-## Publisher: <br>
-[zhouweico](https://clawhub.ai/user/zhouweico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouweico](https://clawhub.ai/user/zhouweico)
 
-## Use Case: <br>
-Developers and external agent users use this skill to send selected prompts, images, audio, and video to DashScope Qwen-Omni for multimodal question answering, transcription, summarization, and speech response generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected prompts, images, audio, and video are sent to Alibaba Cloud DashScope for processing. <br>
-Mitigation: Use this skill only when that external processing is acceptable for the data; verify the configured base URL before running requests. <br>
-Risk: API credentials may be exposed if stored in local configuration files. <br>
-Mitigation: Prefer DASHSCOPE_API_KEY from an environment variable or secret manager and keep any config.json private. <br>
-Risk: Saved sessions can retain private prompts or media-derived context on disk. <br>
-Mitigation: Use single-turn or dry-run mode for sensitive work, and clear saved sessions when they may contain private material. <br>
+## Use Case:
 
+Developers and agents use this skill to call Qwen Omni models for image analysis, audio transcription or summarization, video understanding, cross-modal question answering, and direct speech responses.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zhouweico/qwen-omni-multimodal) <br>
-- [Qwen-Omni API Notes](references/api.md) <br>
-- [Alibaba Cloud Qwen-Omni documentation](https://help.aliyun.com/zh/model-studio/qwen-omni) <br>
-- [Alibaba Cloud Qwen API calling guide](https://help.aliyun.com/zh/model-studio/developer-reference/use-qwen-by-calling-api) <br>
-- [Alibaba Cloud streaming documentation](https://help.aliyun.com/zh/model-studio/stream) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, audio files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime responses are streamed text and optional WAV audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or newer and DASHSCOPE_API_KEY; dry-run mode previews requests without calling the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: API credentials and private media can be sent to a user-configurable endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer DASHSCOPE_API_KEY from the environment or a secret manager, keep config files out of source control, and use the official DashScope HTTPS endpoints unless a custom endpoint is intentionally trusted.
+
+Risk: Sensitive prompts, media, and conversation context may be processed remotely and retained in local session files.
+
+Mitigation: Avoid sensitive inputs unless remote Alibaba Cloud processing and local session retention are acceptable, and use fresh or cleared sessions when context should not persist.
+
+## Reference(s):
+
+- [Qwen-Omni API Notes](references/api.md)
+- [Alibaba Cloud Model Studio Qwen-Omni documentation](https://help.aliyun.com/zh/model-studio/qwen-omni)
+- [Alibaba Cloud Model Studio Qwen API reference](https://help.aliyun.com/zh/model-studio/developer-reference/use-qwen-by-calling-api)
+- [Alibaba Cloud Model Studio streaming guide](https://help.aliyun.com/zh/model-studio/stream)
+- [ClawHub skill page](https://clawhub.ai/zhouweico/skills/qwen-omni-multimodal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Audio, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, text responses, optional WAV audio files, and configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses streaming API responses, optional local session history, and best-effort cost reminders when token usage is available.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

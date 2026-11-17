@@ -1,37 +1,53 @@
-## Description: <br>
-Reviews and shapes product and architecture decisions for a lightweight creative agent OS against the user's north-star principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review or shape product and architecture decisions for a lightweight creative agent OS. Use when comparing runtimes, cloud execution, agent system shape, coding-engine adapters, skills, or multimodal product direction against the user's north-star principles.
 
-## Publisher: <br>
-[kyoiii](https://clawhub.ai/user/kyoiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kyoiii](https://clawhub.ai/user/kyoiii)
 
-## Use Case: <br>
-Developers and product teams use this skill to review creative agent OS product and architecture proposals against a lightweight, cloud-oriented north-star frame. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may apply its product north-star lens to borderline product or design conversations where that framing is not intended. <br>
-Mitigation: Use it when creative agent OS product or architecture alignment is the goal, and review whether its north-star framing fits the decision being made. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [North Star](references/north-star.md) <br>
+## Use Case:
 
+Developers, product leads, and architecture reviewers use this skill to evaluate creative agent OS proposals against a lightweight, cloud-oriented north-star. It helps identify drift in runtime choices, coding-engine coupling, domain-agent extensibility, skill support, and multimodal product direction.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with ordered review points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reviews proposals by identifying alignment, drift, and the smallest correction back to the north star.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can bias architecture recommendations toward the included north-star criteria.
+
+Mitigation: Review the north-star criteria for product fit before relying on the skill's recommendations.
+
+Risk: The skill may call out proposal drift even when a local-only, engine-specific, or heavier framework choice is justified.
+
+Mitigation: Treat its output as review guidance and document exceptions when product constraints justify a different architecture direction.
+
+## Reference(s):
+
+- [North Star](references/north-star.md)
+- [ClawHub skill page](https://clawhub.ai/kyoiii/skills/creative-agent-os-north-star)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill shapes agent responses using north-star review criteria.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -45,7 +45,7 @@ Or manually in `openclaw.json`:
 
 ```bash
 # Set in shell profile
-export VOLCANO_ENGINE_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+export VOLCANO_ENGINE_API_KEY=REDACTED-SECRET
 
 # Reference in config
 "apiKey": "VOLCANO_ENGINE_API_KEY"
@@ -56,7 +56,7 @@ export VOLCANO_ENGINE_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Create `~/.openclaw/.env`:
 
 ```env
-VOLCANO_ENGINE_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VOLCANO_ENGINE_API_KEY=REDACTED-SECRET
 ```
 
 ## Complete Configuration Example
@@ -157,7 +157,7 @@ VOLCANO_ENGINE_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     }
   },
   "env": {
-    "VOLCANO_ENGINE_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "VOLCANO_ENGINE_API_KEY": "REDACTED-SECRET"
   }
 }
 ```

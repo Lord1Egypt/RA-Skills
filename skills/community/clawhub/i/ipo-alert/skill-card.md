@@ -1,43 +1,55 @@
-## Description: <br>
-한국 공모주 청약/신규상장 일정 알림. 38.co.kr에서 데이터 수집, D-1/당일 알림, 주간 요약 제공. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+한국 공모주 청약/신규상장 일정 알림. 38.co.kr에서 데이터 수집, D-1/당일 알림, 주간 요약 제공.
 
-## Publisher: <br>
-[garibong-labs](https://clawhub.ai/user/garibong-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[garibong-labs](https://clawhub.ai/user/garibong-labs)
 
-## Use Case: <br>
-External users and developers use this skill to monitor Korean IPO subscription and new-listing schedules, receive D-1 and day-of alerts, and generate a weekly summary from public 38.co.kr schedule pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled execution can create recurring requests to 38.co.kr. <br>
-Mitigation: Review cron or HEARTBEAT schedules and run the skill only as often as intended. <br>
-Risk: The skill writes a local notification state file under the user's home directory. <br>
-Mitigation: Install only if local state at ~/.config/ipo-alert/state.json is acceptable for the environment. <br>
+## Use Case:
 
+External users and agents use this skill to monitor Korean IPO subscription and new-listing schedules from 38.co.kr, generate D-1 and day-of alerts, and produce weekly summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/garibong-labs/ipo-alert) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/garibong-labs) <br>
-- [38.co.kr IPO subscription schedule](https://www.38.co.kr/html/fund/index.htm?o=k) <br>
-- [38.co.kr new listing schedule](https://www.38.co.kr/html/fund/index.htm?o=nw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown notifications and summaries with optional shell command/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3 and curl, requests public 38.co.kr schedule pages, and stores notification state at ~/.config/ipo-alert/state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: Alert content depends on data fetched from 38.co.kr and may become stale or reflect upstream website changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated alerts before acting on them and confirm important IPO dates against authoritative sources.
+
+Risk: Cron or HEARTBEAT automation can run the script repeatedly and store notification history in ~/.config/ipo-alert/state.json.
+
+Mitigation: Review any scheduled automation before enabling it and clear the state file when resetting notification history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/garibong-labs/skills/ipo-alert)
+- [38.co.kr IPO subscription schedule](https://www.38.co.kr/html/fund/index.htm?o=k)
+- [38.co.kr new listing schedule](https://www.38.co.kr/html/fund/index.htm?o=nw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown-style Korean alert text with inline links and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches fixed 38.co.kr schedule pages and keeps notification history in ~/.config/ipo-alert/state.json to reduce duplicate alerts.]
+
+## Skill Version(s):
+
+0.1.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

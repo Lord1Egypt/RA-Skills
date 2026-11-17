@@ -1,45 +1,65 @@
-## Description: <br>
-MAXIA Marketplace lets agents discover, buy, and sell AI services with USDC and access crypto swaps, GPU rentals, DeFi yield tracking, tokenized stocks, wallet analysis, and sentiment tools across supported blockchains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MAXIA Marketplace helps agents discover and call MAXIA services for AI-service marketplace tasks, crypto swaps and prices, DeFi yields, GPU rental, tokenized stocks, wallet analysis, sentiment, scraping, and image generation.
 
-## Publisher: <br>
-[majorelalexis-stack](https://clawhub.ai/user/majorelalexis-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[majorelalexis-stack](https://clawhub.ai/user/majorelalexis-stack)
 
-## Use Case: <br>
-External developers and agents use this skill to connect to MAXIA marketplace APIs for AI service discovery, paid service execution, crypto and tokenized-stock operations, DeFi yield tracking, GPU rental, wallet analysis, sentiment tools, scraping, and image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through paid, financial, and account-changing MAXIA actions. <br>
-Mitigation: Use a dedicated low-balance wallet and API key, and require manual confirmation before every paid or mutating request. <br>
-Risk: Prompts, scraping requests, wallet details, or transaction data may expose sensitive information to the external MAXIA service. <br>
-Mitigation: Avoid sending secrets or sensitive data through prompts, scraping requests, or marketplace service executions. <br>
-Risk: Marketplace, crypto, DeFi, GPU rental, and tokenized-stock results may affect real financial decisions. <br>
-Mitigation: Verify transaction details, pricing, service identity, and payment requirements independently before execution. <br>
+## Use Case:
 
+External developers and agents use this skill to discover MAXIA services, retrieve market and DeFi information, rent GPUs, and prepare calls to MAXIA marketplace and financial-operation APIs. Paid actions require user-managed API credentials and manual confirmation of payment details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/majorelalexis-stack/maxia-marketplace) <br>
-- [MAXIA homepage](https://maxiaworld.app) <br>
-- [MAXIA public API docs](https://maxiaworld.app/api/public/docs) <br>
-- [MAXIA MCP manifest](https://maxiaworld.app/mcp/manifest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with endpoint descriptions, tables, and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to https://maxiaworld.app and a MAXIA_API_KEY for authenticated operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide agents toward real financial actions through broad remote APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation for every paid action, trade, swap, stock transaction, or GPU rental before execution.
+
+Risk: Payment requests may involve incorrect treasury address, chain, amount, or fee details.
+
+Mitigation: Verify treasury address, blockchain, amount, fees, and transaction signature independently before submitting payment_tx.
+
+Risk: A remote MCP manifest or API surface can change after installation.
+
+Mitigation: Use tool allowlists, block unexpected schema changes, and prefer sandbox mode before enabling production operations.
+
+Risk: Shared credentials or wallets increase blast radius for financial operations.
+
+Mitigation: Use a dedicated wallet and dedicated MAXIA_API_KEY with limited funds and scope.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/majorelalexis-stack/skills/maxia-marketplace)
+- [Publisher Profile](https://clawhub.ai/user/majorelalexis-stack)
+- [MAXIA Homepage](https://maxiaworld.app)
+- [MAXIA API Documentation](https://maxiaworld.app/api/public/docs)
+- [MAXIA MCP Manifest](https://maxiaworld.app/mcp/manifest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to https://maxiaworld.app and a MAXIA_API_KEY for authenticated operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

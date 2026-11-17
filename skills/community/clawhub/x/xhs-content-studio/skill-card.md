@@ -1,47 +1,54 @@
-## Description: <br>
-Assists Xiaohongshu creators with AI image generation, platform-oriented copywriting guidance, and browser-assisted draft creation or publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书博主运营助手，集成 AI 生图智能路由、爆款文案创作及草稿自动发布功能，支持未登录二维码扫码登录。
 
-## Publisher: <br>
-[shichao666](https://clawhub.ai/user/shichao666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shichao666](https://clawhub.ai/user/shichao666)
 
-## Use Case: <br>
-Xiaohongshu creators, small merchants, and content operators use this skill to draft posts, generate supporting images, prepare hashtags and titles, and automate creation of Xiaohongshu drafts in an existing browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can act inside logged-in Xiaohongshu or Doubao sessions. <br>
-Mitigation: Use a separate OpenClaw or browser profile, keep the session low risk, and review drafts before confirming publication. <br>
-Risk: Generated images, upload copies, and login screenshots may be saved locally. <br>
-Mitigation: Avoid confidential prompts or post content and periodically clean generated_images plus temporary upload and screenshot directories. <br>
-Risk: Automated posting workflows may create account or platform-policy exposure. <br>
-Mitigation: Review Xiaohongshu content and images manually, publish only after explicit confirmation, and avoid high-volume or policy-sensitive use. <br>
+## Use Case:
 
+Content creators, Xiaohongshu bloggers, and social commerce operators use this skill to generate post imagery, draft Xiaohongshu-style titles and copy, and automate draft uploads for review or publishing.
 
-## Reference(s): <br>
-- [Xiaohongshu Content Studio listing](https://clawhub.ai/shichao666/xhs-content-studio) <br>
-- [MiniMax platform](https://platform.minimaxi.com/) <br>
-- [Xiaohongshu creator platform](https://creator.xiaohongshu.com) <br>
-- [Hashtags.md](references/Hashtags.md) <br>
-- [content-templates.md](references/content-templates.md) <br>
-- [title-formulas.md](references/title-formulas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated image files, and browser automation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated images and screenshots locally and may act in logged-in Xiaohongshu or Doubao browser sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill controls a logged-in Xiaohongshu creator session through a local OpenClaw browser and may handle MiniMax API configuration, generated images, temporary screenshots, and draft content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable with authenticated browser automation, keep MiniMax configuration pointed at the official API, avoid untrusted config or content files, review drafts before publishing, and clear generated images or temporary screenshots if they contain sensitive material.
+
+## Reference(s):
+
+- [小红书内容创作助手 README](README.md)
+- [热门话题标签库](references/Hashtags.md)
+- [小红书内容模板库](references/content-templates.md)
+- [爆款标题公式](references/title-formulas.md)
+- [MiniMax Platform](https://platform.minimaxi.com/)
+- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated image files, and Xiaohongshu draft content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create image files under generated_images and use local browser automation to upload draft content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Deep web research across 11 Chinese and international sources (Baidu, Bing, Sogou, Quark, ChinaSo, WeChat, Yandex, Zhihu, Bilibili, V2EX, GitHub). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep web research across 11 Chinese and international sources (Baidu, Bing, Sogou, Quark, ChinaSo, WeChat, Yandex, Zhihu, Bilibili, V2EX, GitHub).
 
-## Publisher: <br>
-[nb-clh](https://clawhub.ai/user/nb-clh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nb-clh](https://clawhub.ai/user/nb-clh)
 
-## Use Case: <br>
-Developers and researchers use this skill to run multi-source web research, especially for Chinese platforms such as Zhihu, Bilibili, and WeChat, and receive synthesized answers with evidence tables, sources, confidence, and contradiction notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research questions are sent to a local Agentic RAG-CN service on localhost:18888, whose logging, storage, and forwarding behavior is outside the skill artifact. <br>
-Mitigation: Install and use the skill only with a local service you run or trust, and avoid secrets, credentials, proprietary material, or regulated personal data unless that service's handling is understood. <br>
+## Use Case:
 
+Developers and research-capable agents use this skill to run multi-source deep web research, especially for Chinese platforms, through a local Agentic RAG-CN API and present answers with evidence, sources, confidence, and contradictions.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nb-clh/agentic-rag-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with evidence tables, source lists, contradiction notes, and optional shell/API commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local Agentic RAG-CN API on localhost:18888; falls back to built-in web search when unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search questions are sent to a local Agentic RAG-CN service that may store logs or contact external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive prompts unless you understand and accept that local service's logging and provider behavior.
+
+Risk: The skill depends on a trusted local service running on port 18888.
+
+Mitigation: Run the health check before use and install only when you intentionally operate or trust that local service.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/nb-clh/skills/agentic-rag-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with answer summaries, evidence tables, contradiction notes, and source lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores and source URLs returned by the local API.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

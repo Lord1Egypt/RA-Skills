@@ -1,43 +1,54 @@
-## Description: <br>
-Betting analysis for odds conversion, de-vigging, edge detection, Kelly criterion, arbitrage detection, parlay analysis, and line movement using odds from sportsbook or prediction-market sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Betting analysis for odds conversion, de-vigging, edge detection, Kelly criterion, arbitrage detection, parlay analysis, and line movement using odds from external sources.
 
-## Publisher: <br>
-[antonelli182](https://clawhub.ai/user/antonelli182) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonelli182](https://clawhub.ai/user/antonelli182)
 
-## Use Case: <br>
-Developers and external agents use this skill to analyze supplied sports betting odds or prediction-market probabilities for expected value, bet sizing, arbitrage, parlays, and line movement. It is intended for computation and interpretation after odds have been obtained from another source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect odds format or skipped de-vigging can produce misleading edge, expected-value, or Kelly outputs. <br>
-Mitigation: Verify the odds format before analysis and de-vig sportsbook odds before comparing them with prediction-market prices. <br>
-Risk: Kelly and edge analysis may influence gambling decisions. <br>
-Mitigation: Independently verify inputs, use conservative bet sizing such as half-Kelly or quarter-Kelly, and follow applicable laws and platform rules. <br>
-Risk: The skill does not fetch live odds, so stale or mismatched external prices can invalidate the analysis. <br>
-Mitigation: Supply current odds or probabilities from trusted sources and ensure all prices refer to the same market, outcome, and time window. <br>
+## Use Case:
 
+Agents and users use this skill to analyze already-supplied sportsbook or prediction-market odds for expected value, stake sizing, arbitrage, parlays, and line movement. It is computation-only and does not fetch live odds or market data.
 
-## Reference(s): <br>
-- [Betting Analysis API Reference](references/api-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/antonelli182/sports-skills-betting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and concise betting-analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analysis depends on user-supplied odds or probabilities; the skill does not fetch live data or place bets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bet sizing, edge, EV, arbitrage, and Kelly outputs may be mistaken for guaranteed profit or financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational, verify inputs independently, use conservative bankroll limits, and follow applicable gambling laws and responsible-gambling safeguards.
+
+Risk: Incorrect odds formats or skipped de-vigging can produce misleading edge calculations.
+
+Mitigation: Confirm the odds format before analysis and de-vig sportsbook odds before comparing against prediction-market probabilities.
+
+## Reference(s):
+
+- [Betting Analysis API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/antonelli182/skills/sports-skills-betting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with computed betting-analysis results and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No network fetching; outputs depend on user-supplied odds and probabilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata.version is 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -143,7 +143,7 @@ git -C ${REPO} push origin main --no-rebase 2>&1 || (git -C ${REPO} pull origin 
 - Send a reply to the sender:
     export AGENT_BUS_REPO=${REPO}
     cd ${REPO}
-    bash agent-bus.sh send <from> reply "<task-result-or-confirmation>"
+    bash agent-bus.sh send <from> reply "<taREDACTED-SECRET>"
 - Notify owner via message tool:
     channel: ${OWNER_NOTIFY_CHANNEL}
     target: ${OWNER_NOTIFY_TARGET}

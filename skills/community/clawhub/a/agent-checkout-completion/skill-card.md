@@ -1,42 +1,60 @@
-## Description: <br>
-Agent completes the checkout/payment step of a workflow using CAI wallet balances, user confirmation, transfer status, and on-chain proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent completes the checkout/payment step of a workflow using CAI wallet balances, user confirmation, and transfer with on-chain proof.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to let an agent finish checkout after a cart or quote is ready. The workflow checks CAI wallet balances, creates a deposit link if needed, asks the user to confirm payment details, and completes a transfer with status or activity proof. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real checkout or payment transfers using a CAI wallet and API key. <br>
-Mitigation: Install only when real checkout support is intended, keep CAI_API_KEY secret, and require personal verification of merchant or payee, amount, chain, token, and final line items before approving any transfer. <br>
-Risk: Arbitrary merchant card iframe checkout is outside the primary CAI payment path. <br>
-Mitigation: Prefer on-chain or custodial @cai.com payment paths and use marketplace-specific flows where the workflow requires them. <br>
+## Use Case:
 
+External users and agent developers use this skill when an agent has prepared an order, cart, or quote and needs help completing payment through CAI wallet balance checks, funding, confirmation, transfer, and proof lookup.
 
-## Reference(s): <br>
-- [CAI canonical skill](https://cai.com/skill.md) <br>
-- [CAI agent payment workflow](https://cai.com/skill-references/agent-payment-workflow.md) <br>
-- [CAI agent payment](https://cai.com/agent-payment.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with task steps, inline tool names, and a setup command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAI_API_KEY and user confirmation before transfers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and server evidence) <br>
+Risk: The skill can guide wallet-based checkout and transfer workflows involving financial value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of payee, amount, chain, and token before any transfer.
+
+Risk: A vague purchase request could route the user into CAI payment behavior unintentionally.
+
+Mitigation: Use the skill only when the user clearly wants CAI involved in the checkout or payment step.
+
+Risk: Merchant card iframe payment paths may not be supported by the CAI tools described in the artifact.
+
+Mitigation: Prefer the documented on-chain and custodial @cai.com payment paths, and handle marketplace-specific flows separately.
+
+## Reference(s):
+
+- [CAI Skill Reference](https://cai.com/skill.md)
+- [Agent Payment Workflow](https://cai.com/skill-references/agent-payment-workflow.md)
+- [CAI Agent Payment](https://cai.com/agent-payment.html)
+- [ClawHub skill page](https://clawhub.ai/bernardtai/skills/agent-checkout-completion)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and tool-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment confirmation details, funding setup guidance, transfer status checks, and on-chain proof references.]
+
+## Skill Version(s):
+
+1.0.15 (source: evidence metadata and release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

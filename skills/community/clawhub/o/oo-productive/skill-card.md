@@ -1,42 +1,55 @@
-## Description: <br>
-Productive enables agents to operate Productive through the OOMOL oo CLI for task and time-entry retrieval, creation, updates, and deletion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Productive to read and manage tasks and time entries through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage Productive tasks and time entries through an OOMOL-connected account while relying on live action schemas for accurate payload construction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording can lead an agent to use the integration for many Productive requests, including business-data operations. <br>
-Mitigation: Review the skill text before installation, use the narrowest Productive permissions available, and distinguish read-only requests from state-changing actions. <br>
-Risk: Task and time-entry create, update, or delete actions can change or remove Productive data. <br>
-Mitigation: Require explicit user confirmation of the target, payload, and expected effect before running write or destructive actions. <br>
+## Use Case:
 
+People managing work in Productive can use this skill to inspect tasks and time entries, and create, update, or delete records through their connected account.
 
-## Reference(s): <br>
-- [Productive homepage](https://productive.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Productive skill on ClawHub](https://clawhub.ai/oomol/skills/oo-productive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live action schema inspection before constructing Productive action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The first-time setup fallback executes remote installation code without a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, including any changes to installed agent skills, before running it.
+
+Risk: Create, update, and delete actions can change Productive data.
+
+Mitigation: Keep explicit approval controls for writes and deletions; confirm the exact payload and effect before a write and the target before a deletion.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Productive](https://productive.io)
+- [Productive API authorization guide](https://developer.productive.io/guides/authorization)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON request payloads and Productive results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas should be checked before requests; write and delete actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

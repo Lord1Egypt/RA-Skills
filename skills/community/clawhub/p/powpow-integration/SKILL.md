@@ -1,315 +1,454 @@
-# POWPOW Integration Skill v2.1.10
+---
+name: powpow-integration
+description: 向 PowPow 泡泡（global.powpow.online）发布帖子/游记，以及创建数字人并钉到公开地图。当用户想把「旅行」「照片」「游记」发布到 PowPow 时触发，例如"发一篇 PowPow 帖子""在泡泡发一条""把这次旅行的照片发到泡泡""发篇游记到 powpow""publish a PowPow post""post to PowPow feed"；当用户想创建/发布数字人到地图时触发，例如"创建一个数字人""把某某做成数字人放到地图上""发布数字人"。需要 PowPow 账号（尚无账号时先注册）。包含的辅助能力（均为上述发布/创建流程的组成部分）：账号登录与会话管理、运行环境自检、地点名称解析为坐标、数字人搜索与主题匹配、图片搜索与上传、帖子组装与发布、发布后验证、删除自己发布的帖子（仅清理测试帖，JWT 限定本人帖子）；以及面向平台维护者本人的万神殿（theotopia）神明批量发布与只读巡检（维护者提供自己的 Supabase 服务密钥，见正文专节）。不含其他社交平台发布，不含订阅/营销推广。
+version: 2.2.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
+    emoji: "\U0001FAD7"
+    homepage: https://global.powpow.online
+    envVars:
+      - name: POWPOW_STATE_DIR
+        required: false
+        description: 会话与配置的存放目录。默认 ~/.powpow。技能包本身保持只读，登录状态写在此处。
+      - name: POWPOW_PASSWORD
+        required: false
+        description: 可选。非交互登录时通过环境变量传密码（首次登录 node scripts/login.js <username> 会用到）。不设置则交互式输入，密码不会被持久化。
+      - name: UNSPLASH_ACCESS_KEY
+        required: false
+        description: 可选的 Unsplash Access Key，仅用于按关键词自动搜图。不填则改用本地图片或直链。
+      - name: SUPABASE_URL
+        required: false
+        description: 仅平台维护者巡检万神殿时需要（check-theotopia-gods.js）。普通发布/建数字人流程不使用。也可写进状态目录 theotopia.env。
+      - name: SUPABASE_SERVICE_ROLE_KEY
+        required: false
+        description: 仅平台维护者巡检万神殿时需要（只读 GET 查询）。高权限密钥，绝不入包、绝不经命令行参数传递、绝不打印。也可写进状态目录 theotopia.env。
+---
 
-## 基本信息
+# PowPow Integration（泡泡助手）
 
-- **Name**: powpow-integration
-- **Version**: 2.1.10
-- **Description**: POWPOW WebSocket Integration - Real-time bidirectional chat with POWPOW digital humans using WebSocket
-- **Author**: durenzidu
-- **License**: MIT
+把你的照片或素材写成一篇游记，并代你发布到 PowPow（泡泡）；或把一个人/角色做成能聊天的数字人，钉在公开地图上。
 
-## 功能
+**版本 2.2.0** · 2026-10-05（历史变更见 `references/changelog.md`；安全架构与接口清单见 `references/security.md`；文件结构见 `references/file-structure.md`；产品界面截图见 `references/screenshots.md`）
 
-此 Skill 允许 OpenClaw 用户通过 **WebSocket** 与 POWPOW 数字人进行**实时双向通信**：
+## 运行环境（OpenClaw）
 
-1. **实时消息收发** - WebSocket 连接，低延迟
-2. **自动重连** - 连接断开后自动恢复
-3. **消息队列** - 离线消息自动排队发送
-4. **多媒体支持** - 文本、语音、图片消息
-5. **连接状态监控** - 实时显示连接状态
+本技能是**指令型 skill**：SKILL.md 描述流程，`scripts/*.js` 是纯 Node 脚本（只用内置 `fetch`/`fs`，零第三方依赖）。
 
-## 命令
+- **需要 Node.js 18+**（脚本用全局 `fetch`）。先确认：`node -v`
+- **脚本位于本技能目录的 `scripts/` 下**。运行前先切到技能根目录，例如：
+  `cd <本技能目录> && node scripts/doctor.js`
+- **状态目录**：登录令牌写在 `POWPOW_STATE_DIR`（默认 `~/.powpow/session.json`）。技能包目录可能只读，所以**不要把任何文件写进技能目录**。用户想自定义位置时设置该环境变量即可。
+- **图片路径一律用绝对路径**传给 `--image`；相对路径会解析失败。
 
-### 连接管理
+## 产品界面截图（让用户"看见"泡泡）
 
-#### `connect`
-连接到 POWPOW WebSocket 服务器
+多数用户从没见过泡泡长什么样。语言描述不如一张图——需要时**直接把截图链接发给用户**（Markdown 图片或裸链接都行）。清单、说明与使用时机见 `references/screenshots.md`，常用对应：
 
-**参数**:
-- `digitalHumanId` (string, required): 数字人 ID
-- `wsUrl` (string, optional): WebSocket 地址，默认 `wss://global.powpow.online:8080`
+- 用户对产品没概念 / 开场讲"成品长什么样" → 地图页 + 帖子详情页
+- 用户问"数字人是什么样""怎么对话" → 数字人详情页
+- 用户问"徽章能干什么""我有什么" → 个人主页（数字资产）
+- 用户问"泡泡是什么玩法" → 地图页（泡泡在图上聚成一片）
 
-**示例**:
+规则：
+- 截图托管在公开仓库 `durenzidu/durenzidu` 的 `screenshots/` 下（`powpow-0N.jpg`），**不要**把图片下载进技能目录，也不要把本地路径当图片发。
+- 若 `raw.githubusercontent.com` 打不开，改用 jsdelivr 镜像（见 `references/screenshots.md`）。
+- 只发与当前话题相关的 1–3 张，别一次把六张全糊上去。
+- 没说清是哪张就别猜——对着 `references/screenshots.md` 的描述挑。
+
+## Trigger Conditions
+
+本 skill 在用户想发布旅行内容（游记/照片/出行）到 PowPow，或想创建数字人放到地图时触发。典型说法：
+
+- 游记/照片：「把这次旅行的照片发到泡泡」「发篇游记到 powpow」「把这几张照片发到 powpow」
+- 平台口令式：「发一篇 PowPow 帖子」「在泡泡发一条」「powpow 发帖」
+- 数字人：「创建一个数字人」「把某某做成数字人放到地图上」「发布数字人」
+- English: "publish a PowPow post", "post to PowPow feed", "create a digital human on PowPow"
+
+**共现规则（防误触发）**：单独提到 旅行/照片/游记 不够，用户还需表达发布意图（发/发布/上传/post/publish）或点名平台（PowPow/泡泡/powpow）。「这张照片真好看」不触发，「把照片发到泡泡」触发。
+
+不对通用社媒或其他平台发布触发。
+
+## Conversation UX（首次用户）
+
+很多用户从没通过聊天助手发过东西。把脚本跑对只是半件事——每一轮都要让用户知道**刚发生了什么、我需要他做什么、下一步是什么**。
+
+### Tone — 适用于每一轮，从第一句到最后一句
+
+这是面向普通用户的产品，是在**服务**用户，不是在**指导**用户。语气前后一致地温和、有敬意。
+
+| 不要这样说（说教/居高临下） | 要这样说（服务/并肩/邀请） |
+|---|---|
+| 先说清楚一件事：…… | 这里有一点想先说明：…… |
+| 提醒一句…… / 我不得不提醒你…… | 有一处想请你帮我确认一下 |
+| 有两件事我不能猜，得你亲口说 | 照片里的时间和地点我这边看不到，这两样要麻烦你告诉我 |
+| 我不替你定 / 这个你要知道 | 这个我不敢替你决定——它会被写进文章里，选得不搭就不自然了 |
+| 坐标要不要你操心？不用 | 坐标交给我就好，你只要认地名 |
+
+**永远这样做：**
+1. **用户是句子的主语。**「你可以……」优于「我需要你……」。
+2. **「我」是服务方，不是讲解员。** 该替用户做完的（坐标换算、格式组装、校验、重试、失败降级）直接做完再汇报，别把过程当知识点讲。
+3. **每一步带一个往前走的方向感。**「现在，我们开始第一步」比「请回答我的问题」更像在陪用户做事。
+
+**具体禁止**：不说教；不预告「我要提醒你」；不评价用户选择；不用「我不得不」；用户没问时不解释内部机制、限制或安全设计。
+
+**中性命名（硬规则）**：对用户**永远不提及具体地图服务商名称**（如高德）。需要指代时，用动作表达——「我帮你查一下地点」「地图里找到了几个同名地点，你挑一个」，**不要说"地图数据库"这类黑话**。接口路径属平台自有端点，不在限制范围。
+
+### Opening：先自我介绍，再问第一个问题
+
+首次触发（doctor 报无会话，或用户问你能做什么）时，先用一段简短开场（~120 字，别堆功能），**按用户意图分支**，然后问第一个问题：
+
+- **发帖意图** → 4 段式：
+  1. **我能做什么**：把你的照片或素材写成一篇游记，代你发布到 PowPow。
+  2. **成品长什么样**：帖子里可以带数字人标签（红色胶囊，点头像能跳去聊天）、地点标签（图钉+地名，点开看地图）、图片；带地点的帖子会作为一颗「气泡」出现在公开地图上，也会随时间慢慢淡出——这是泡泡的核心玩法。（想让他直接看到，可发界面截图，见「产品界面截图」）
+  3. **开始需要什么**：数字人、地点、发布都要连平台去取，所以第一步用你的 PowPow 账号登录一次。还没有账号就先注册：https://global.powpow.online/register （想先了解泡泡是什么，看这个——了解泡泡：https://www.bilibili.com/video/BV1Wu826UEVz/ ）
+  4. **流程（压成 3 拍）**：① 登录 → ② 你给素材、我写稿排版 → ③ 你确认我才发。全程可改，不确认不上线。
+- **创建数字人意图** → 精简开场：「你给我一个人名 + 人设 + 地点，我帮你做成能聊天的数字人，钉在公开地图上。要做这个会花 2 枚徽章、30 天后过期，你确认我就做。先登录一次：把你的 PowPow 用户名和密码给我（没有账号先注册：https://global.powpow.online/register）。」
+
+模板（起头用，按用户语言微调，别照抄成模板腔）：
+
+> 很荣幸为你服务，欢迎来到泡泡的世界。
+> 在这里，**你可以**把今天随手拍的照片变成一篇游记，**我将为你**把它写好、钉在地图上、替你发到泡泡里——别人在地图上点开，就能看到你那天走过的路。
+> 〔第 2 段：成品长什么样——胶囊、图片、地图气泡玩法（用上面那句标准话术）〕
+> 〔第 3 段：需要什么——登录一次；没有账号就附注册入口 + 了解泡泡视频〕
+> 〔第 4 段：3 拍流程，登录是第一步〕
+> 准备好了吗？**把今天想发的东西交给我，我们就开始第一步。**
+
+- 绝不在自我介绍前要密码——陌生人冷不丁「给我密码」就是钓鱼的样子。
+- 账号一次性、用一条消息 plainly 要，并附注册链接（可能没账号时再加「了解泡泡」视频）。别要完密码再要素材又冒出别的条件。
+- **不做密码安全说教**。plainly 要完就继续。可附一句中性不吓人的说明：「你的密码只用来换一个临时登录凭证，我不会保存它。」不展开。
+
+### Every turn：叙述 + 引导
+
+- **一次只做一个决定。** 紧密相关的追问（地点+时间）可同一条；别把素材、长度、地点选择捆一起。
+- **要事实时说明原因**：我们不读照片的 EXIF/位置（隐私考虑），所以地点和时间要你告诉我。
+- **绝不粘贴脚本原始输出。** 每跑完给用户一句人话总结：发生了什么、意味着什么、下一步。登录后例：「已经用你的账号登录好了。接下来把素材发给我：照片、一段文字、或者只是个想法都行。」
+- **预告阶段切换**：「素材齐了，下一步我来挑几个和主题相关的数字人供你选。」让用户始终知道在流程哪一步。
+- **每个选项给理由**（数字人、候选地点、长度）——光列编号很难选。
+- **发布前**用一句提醒帖子会出现在公开地图（作为玩法背景，不是退选项）。
+
+### 结尾「下一步」区块（每轮强制）
+
+长内容里用户抓不到重点——不是内容不对，是动作被埋了。所以**每轮回复最后一个区块**必须是固定的「下一步」区块：分隔线隔开、带箭头标记，让用户一眼看到此刻要做什么。
+
+固定格式：
 ```
-connect digitalHumanId=abc123
-connect digitalHumanId=abc123 wsUrl=wss://global.powpow.online:8080
+────────────────────
+👉 现在需要你做的：回 1 / 2 / 3，挑一个地点
+   （选完我就出稿，下一轮你就能看到带胶囊的预览）
 ```
+三条硬规则：
+1. **区块里只能有一个动作。** 两个待办就拆两轮，或把一个降级为纯告知。
+2. **所有选项都放进这个区块。** 别让用户回正文找「怎么选：回 1–6」。
+3. **区块内补一句"做完我会……"**，让用户知道动作通向哪。
 
-**返回**:
-- 连接状态
-- 客户端 ID
+发布结果也适用（见 Step 8）：链接与位置放整条回复最末，最靠近视线终点。
 
-#### `disconnect`
-断开 WebSocket 连接
+## Prerequisites
 
-**参数**: 无
+- **需安装 Node.js 18+**（脚本用全局 `fetch`）。
+- **需 PowPow 账号**：注册 https://global.powpow.online/register
 
-**示例**:
-```
-disconnect
-```
+### First-Time Setup（每用户）
 
-#### `status`
-查看连接状态
+0. 先跑自检，修掉它报的问题。它会**静默拿已存会话去服务端探活**——有效会话就跳过登录直接进 Workflow：
+   ```bash
+   node scripts/doctor.js
+   ```
+1. 若 doctor 报无有效会话且是首次接触，先给上面的 **Conversation UX 开场**，再用**一条 plain 消息**要凭据：
+   「下一步需要登录一次：请把你的 PowPow 用户名和密码给我。还没有账号就先注册：https://global.powpow.online/register 注册前想先了解泡泡，看这个——了解泡泡：https://www.bilibili.com/video/BV1Wu826UEVz/ 」
+   说完就停，别对凭据本身做安全说教（见 Tone）。最后两行是给可能没账号的人；同会话开场已带就省掉——一次提一次够。
+2. 跑登录：
+   ```bash
+   printf '%s' '<password>' | node scripts/login.js <username>
+   ```
+   - **只用 stdin，绝不用位置参数**——位置形式会留在 shell 历史与进程列表，是真实暴露。
+   - **Windows 环境**（PowerShell/cmd 无 `printf`）：可用
+     ```bash
+     node scripts/login.js <username>
+     ```
+     然后在提示符下输入密码（脚本以隐藏方式读取，不回显）。哪种方式都**不要把密码写进命令行参数**。
+   - 绝不回显密码、绝不写盘、绝不留 shell 变量。
+   - 登录令牌落在状态目录（`POWPOW_STATE_DIR`，默认 `~/.powpow/session.json`），不在技能目录内。
+   - 这是内部处理规则，别向用户解释。
+3. **若登录返回 403 `pending_payment`**——账号存在但未完成平台开通。停下、别重试，说：「你的账号还没完成开通，暂时发不了。请回泡泡，登录后按页面提示完成开通；弄好跟我说一声，我们接着来。」这不是瞬时错误也不是登录问题——别让用户重输凭据，也别继续攒素材。
 
-**参数**: 无
+### Configuration
 
-**示例**:
-```
-status
-```
-
-**返回**:
-- 连接状态 (connected/disconnected)
-- 数字人 ID
-- 连接时长
-
-### 消息发送
-
-#### `send`
-发送消息到 POWPOW
-
-**参数**:
-- `message` (string, required): 消息内容
-- `contentType` (string, optional): 消息类型 (text/voice/image)，默认 text
-
-**示例**:
-```
-send message="你好，PowPow！"
-send message="语音消息" contentType=voice
-```
-
-#### `reply`
-快捷回复
-
-**参数**:
-- `message` (string, required): 回复内容
-
-**示例**:
-```
-reply message="收到你的消息了！"
-```
-
-#### `sendVoice`
-发送语音消息
-
-**参数**:
-- `content` (string, required): 语音转文字内容
-- `mediaUrl` (string, required): 语音文件 URL
-- `duration` (number, required): 语音时长（秒）
-
-**示例**:
-```
-sendVoice content="你好" mediaUrl="https://example.com/voice.mp3" duration=5
-```
-
-#### `sendImage`
-发送图片消息
-
-**参数**:
-- `content` (string, required): 图片描述
-- `mediaUrl` (string, required): 图片文件 URL
-
-**示例**:
-```
-sendImage content="风景照" mediaUrl="https://example.com/image.jpg"
-```
-
-### 消息监听
-
-#### `listen`
-开始监听 POWPOW 消息
-
-**参数**:
-- `autoReply` (boolean, optional): 是否启用自动回复，默认 false
-
-**示例**:
-```
-listen
-listen autoReply=true
-```
-
-**说明**:
-- 启动后，收到消息会触发 OpenClaw 事件
-- 可以配合 `autoReply` 自动回复
-
-#### `stopListen`
-停止监听消息
-
-**参数**: 无
-
-**示例**:
-```
-stopListen
-```
-
-## 配置
-
-### 配置文件
+`config.json`（随包带默认值，无密钥；只读）：
 
 ```json
 {
-  "skills": {
-    "powpow-integration": {
-      "powpowBaseUrl": "https://global.powpow.online",
-      "wsUrl": "wss://global.powpow.online:8080",
-      "autoReconnect": true,
-      "reconnectInterval": 3000
-    }
-  }
+  "platformUrl": "https://global.powpow.online",
+  "unsplashAccessKey": "",
+  "sessionMaxAgeDays": 6
 }
 ```
+`unsplashAccessKey` 可选、用户自填；没有就跳过图片搜索（无图帖子完全支持），或用户给直链。
 
-### 配置项说明
+**在 OpenClaw 下覆盖配置**：不要改技能包里的 `config.json`（可能只读）。把同名 `config.json` 放到状态目录（`POWPOW_STATE_DIR`，默认 `~/.powpow/config.json`），它的值会覆盖包内默认值。或者设置环境变量 `UNSPLASH_ACCESS_KEY`。
 
-| 配置项 | 类型 | 必填 | 默认值 | 说明 |
-|--------|------|------|--------|------|
-| `powpowBaseUrl` | string | 否 | https://global.powpow.online | POWPOW API 基础 URL |
-| `wsUrl` | string | 否 | wss://global.powpow.online:8080 | WebSocket 服务器地址 |
-| `autoReconnect` | boolean | 否 | true | 是否自动重连 |
-| `reconnectInterval` | number | 否 | 3000 | 重连间隔（毫秒） |
+## Workflow
 
-## 依赖
+> **执行约定（OpenClaw）**：下面所有 `node scripts/...` 命令都假定当前目录是本技能根目录。若不确定，先用绝对路径执行 `node <技能目录>/scripts/xxx.js`。临时文件（草稿、预览、manifest）写到工作目录，不要写进技能目录。
 
-```json
-{
-  "@openclaw/core": ">=1.0.0",
-  "ws": "^8.16.0"
-}
+### Step 1: 内容采集（照片 → 游记）
+
+旗舰流程：用户发照片，你围绕照片写一篇第一人称游记。
+
+1. **看照片**（你能看图）。只取氛围：天气、季节、光、颜色、情绪、活动、物品——叙事素材，仅此。**绝不从像素猜地点或拍摄时间**——猜错就是第一人称帖子里的事实错误。
+2. **问用户你不该猜的事实**（EXIF 从不读，渠道也会剥掉）。先讲原因再问：
+   - 地点：「为了保护您的隐私，我不会读取照片里的位置信息，所以想问您：这是在什么地方拍的？」
+   - 时间：「大概是什么时候拍的？」
+3. **提供文风**（问长度前先给）。列 4–5 种，每种一句感觉，例：
+   「你想要什么文风？a. 文艺细腻——写光影和情绪，句子有呼吸感 b. 轻松日常——像跟朋友聊天 c. 幽默吐槽——自嘲段子，适合翻车 d. 深度人文——历史地理典故 e. 极简白描——短句留白」
+   **永远加模仿选项**（最强个性化）：「也可以随手复制一段你发过的微博或朋友圈给我，我照你自己的语气写（只学语气，不搬内容）。」用户贴样稿就分析句式节奏、用词、口头禅、emoji/标点习惯——模仿声音，绝不复用内容。样稿只在聊天里，不存任何地方。
+4. **给长度选项**：「你希望游记多长？150 字左右 / 300 字左右 / 2000 字左右 / 你说了算（平台上限 50000 字符，含图片）」
+5. **写游记**规则：
+   - **第一人称 = 用户**。用户是叙述者；数字人若出现是被提到的人，绝不是叙述者。
+   - **用所选文风**（或模仿声音）。用户既选文风又给样稿时，样稿优先——自己的声音压过菜单。
+   - 把时间织进措辞（清晨/傍晚/初雪之后），绝不写死时间戳。
+   - 只放真正相关的数字人，绝不硬塞。
+   - 语言跟用户偏好（中英文都行）。
+
+其他输入也行：**Mode A** 用户给成稿——跳过生成；**Mode C** 部分输入——你补。所有情况，地点和时间来自用户，不来自读图。
+
+### Step 2: 数字人匹配
+
+列出/建议健康数字人：
+```bash
+node scripts/match-digital-human.js "<topic>" --limit 3 --json   # 排序建议
+node scripts/list-digital-humans.js "<name>" --json              # 按名搜索
+```
+健康过滤内置：自动排除停用、测试名、乱码、占位头像的数字人。展示 top 匹配 + 描述，让用户选（用户说"你决定"就自动选）。
+若用户要的数字人不存在，给创建页：https://global.powpow.online
+
+### Step 3: 地点处理
+
+**地点强烈推荐，但可选。** 它决定帖子是否上公开地图（核心玩法）。
+
+- **用户给地名**（常态）：解析成坐标，再让用户从同名候选里挑：
+  ```bash
+  node scripts/geocode.js "潮白河大桥" --limit 5        # 加 --city 北京 收窄
+  ```
+  脚本查平台地点、本地把每个候选从 GCJ-02 转 WGS-84，对齐网页编辑器坐标系。
+  **对用户只说动作**：「我帮你查一下地点」「地图里找到了几个同名地点，你挑一个」——不提名地图服务商，也不说"地图数据库"。
+  展示候选（名/区/地址/坐标）每个带理由，让用户选；同名地点常见（潮白河大桥有 90 个命中）。用户挑**名字**；坐标是你的事，不是问题。
+  组装：`--loc <name> --lng <x> --lat <y>`。
+- **查不到，按此顺序降级——绝不让用户给经纬度：**
+  1. **换说法/收窄**：换词，或加 `--city <城市>`（区、地标、路名）。
+  2. **放宽帮认**：调高 `--limit`（如 10），每个候选带区+街道地址，让用户能认出对的那个。
+  3. **不带地点发布**——帖子仍有效（`isLocationExposed: false`）。用户留住文字、数字人、图片；只丢了地图气泡。直说这是结果，不是失败。
+  让普通用户给经纬度永远不是合法降级：他们没法获取，且找到的也多是 GCJ-02，会钉偏几百米——第一人称帖子里可见的事实错误。坐标是专家通道：用户主动给才用。
+- **素材和对话里都无地点**：别静默产出无地点帖。告诉用户帖子会出现在公开地图，问他钉在哪，再跑上面的解析确认流。这问题是本轮唯一动作——放进「下一步」区块。
+- **用户拒绝给地点，接受。** 不带地点发布（`isLocationExposed: false`）。绝不施压、绝不挡发布——是他的选择。
+- 用户直接给坐标：原样用。
+- 否则用所选数字人的地点（`locationName`, `lng`, `lat`）。
+
+**给到的地点一定上公开地图（`isLocationExposed: true`）——这是内部规则，不向用户提供"隐藏地图"选项。** 帖子在地图上参与气泡生命周期（随时间淡出），是预期玩法。
+
+地点组件格式：
+```html
+<span data-type="location" data-lng="116.316" data-lat="39.979" name="中关村">
+  <span class="location-name">中关村</span>
+</span>
 ```
 
-## 使用示例
+### Step 4: 图片处理（可选）
 
-### 完整流程示例
+三种附图方式：
+- **本地文件**（常态）：`--image @<local-path>`。**compose 时不传任何东西到服务端**——文件记进 `<out>.manifest.json`，本地用 `file://` 预览。上传只发生在 publish.js 发布时（`POST /api/upload/post-image`，JPEG/PNG/WebP/GIF/BMP/HEIC，非 SVG，单张 ≤10MB，服务端自动压缩）。改稿永远不碰服务端、不产生孤儿文件。
+- **直链**：先用 HEAD 校验再嵌入。也认 Unsplash 照片页链接（`unsplash.com/photos/...`，用户常从浏览器复制）——自动解析成 `images.unsplash.com` 直链。文件 ID 链接（`unsplash.com/photos/1507513319174-...`）本地无钥解析；slug/短 ID 链接需 Unsplash API key（站点 bot 防护挡住无钥抓取）。无钥时跳过 slug 形式并提示——让用户给直链，绝不把页链当图嵌（会裂图）。
+- **自动搜图**（仅配了 Unsplash key）：`--image search:<english keywords>`（或 `node scripts/search-image.js "<keywords>"`）
+- 无 key、无 URL、无文件 → 无图发布。绝不捆绑图片 API key。
 
-```
-# 1. 连接到数字人
-connect digitalHumanId=your-dh-id
+**无固定图片数上限。** 平台以 50000 字符为界（每张图标签 ≈100 字）；接近 200 张时提醒用户。展示：信息流网格显示前 9 张 +「+N」，全屏查看器显示全部。
 
-# 2. 开始监听消息
-listen autoReply=true
+### Step 5: 内容格式化（关键，仔细读）
 
-# 3. 发送消息
-send message="你好，我是 OpenClaw！"
+交互组件（数字人/地点）由网页前端从 `content` 里的**富 HTML** 渲染。光写 `<span data-type="digital-human">何泽慧</span>` 会渲染成纯文本——只有 span 带上 tiptap 编辑器的精确结构（Tailwind 类、内层头像 `<img>`、图钉图标、`.location-name`）才显示成可点胶囊。
 
-# 4. 收到消息后会自动触发回复（如果 autoReply=true）
+**强制：永远用 `scripts/compose.js` 组装帖子 HTML。绝不手寫组件 span，绝不自己写胶水代码绕开 html-formatter.js。**
 
-# 5. 停止监听
-stopListen
+```bash
+# 1. 把帖文存文件。段落用空行分隔。
+#    占位符（都可选；任何误用都是硬错误，绝不静默改）：
+#      {{dh}}  或 {{数字人}}   -> 数字人胶囊（需 --dh）
+#      {{loc}} 或 {{位置}}     -> 地点胶囊（需 --loc）
+#      {{img}} 或 {{图}}       -> 图片段落；必须独立成段，按序消耗 --image（每项需一个备用 --image，否则 compose 失败）
+#    未知/多余/内联占位符会让 compose.js 退出 1 且不写任何东西。改文本文件重跑——绝不删文本凑过。
 
-# 6. 断开连接
-disconnect
-```
-
-### 手动回复示例
-
-```
-# 连接并监听（不自动回复）
-connect digitalHumanId=your-dh-id
-listen
-
-# 当收到消息时，手动回复
-reply message="这是手动回复的内容"
+# 2. 一条命令组装（全本地，不联网）：
+node scripts/compose.js --text-file post.txt \
+  --dh name:岳飞 \                    # 或 --dh <id>，或 --dh auto --topic "..."
+  --loc dh \                          # 或 --loc <name> --lng 116.3 --lat 39.9
+  --image @./photos/west-lake.jpg \   # 本地文件（发布时上传）；或 <直链>，或 search:<关键词>
+  --out post-draft.html
 ```
 
-## 技术细节
+compose.js 强制规则：
+- 胶囊永远匹配编辑器精确结构（写前校验）。
+- **未知/多余/错位的占位符是硬失败**（退出 1，啥也不写）。旧版只删占位符 + 一行 stdout 警告，而原始脚本输出从不转发给用户，坏句子（「我们在坐了一下午」）可能悄无声息上架。
+- 给了 `--dh`/`--loc` 但文本无占位符，胶囊自动前置到首段 / 追加到末段。
+- 本地图片变 `powpow-local://N` 占位 + `post-draft.html.manifest.json`；publish.js 发布时上传。
+- compose.js 还写 `post-draft.html.preview.html`——一份**中文**预览，用户浏览器打开。它带横幅说明帖子是否上公开地图、若上则钉点位置，所以地图后果用户在真看的页上就可见（本地图用 `file://` 渲染）。
+- `publish.js` 重跑 `validateEditorFormat()` 并拒收其他任何东西。
+- 发布 payload **别发 `contentItems`**——前端有 `contentItems` 时偏好结构化渲染，列表不全会丢帖文。`publish.js` 已处理好。
+- 服务端自动取第一张 `<img>` 做卡片缩略图。
+- 注：无块级图片的帖子，服务端取数字人胶囊内层头像做缩略图（平台行为，外观级）。
 
-### 架构
+### Step 6: 发布前确认（强制）
+
+先展示下面四项明细，再用「下一步」区块结束本轮，其**唯一动作**是发布决定（发布 / 再改改 / 先不发）：
+
+1. **完整帖文**（标出胶囊位置）
+2. **组件清单**：数字人（名+头像）、**地点（名+坐标）**、图片数、以及**登录账号**（取自会话，非用户输入）
+3. **本地预览文件路径**（`<out>.preview.html`）——中文预览，也横幅是否上公开地图。一句话说明它是近似，不是像素级复制。
+4. 问「需要修改吗？确认无误请回复"发布"」，并用一句提醒帖子会出现在公开地图、作为一颗气泡（泡泡玩法，非副作用）。
+
+决定必须是最后区块，绝不埋在明细后。（为何严格：测试中用户读的就是这些内容，回的是「然后呢？」——信息都在，但动作没落在视线终点。）
+
+**改稿循环**：用户要改就改、重跑 compose.js——全本地，任意轮次零服务端接触、零孤儿上传。无迭代上限；只有用户明说 发布/publish/确认 才结束。在那之前绝不发布。
+
+### Step 7: 发布
+
+```bash
+node scripts/publish.js <html-file-path>
+```
+草稿含本地图时，这一刻才上传——逐张、发帖前。每张成功后进度持久化（HTML+manifest 重写真实 URL），所以失败重跑不用重传已成功的。
+帖子以登录用户身份创建——身份来自 JWT，无从指定他人。服务端做内容审核与限流。429 时脚本自动 honoring `Retry-After`。
+
+### Step 8: 发布后验证（强制）
+
+```bash
+node scripts/verify.js <post-id>
+```
+查帖子可访问性、作者、数字人/地点组件、图片数、字数。按此顺序报——**明细在前，结果最后**：
+
+1. **校验明细**：读回了什么、对上什么——作者、数字人胶囊、地点胶囊、图片数、字数。verify.js 的数字照实引（它真数图；3 图帖报 3）。
+2. 一句气泡生命周期（用标准话术）：「带地点的帖子会作为一颗『气泡』出现在公开地图上，也会随时间慢慢淡出——这是泡泡的核心玩法。」
+3. **结果区块，作为消息最后一句**——最靠近输入框，视线终点。必须带链接**和帖子位置**：
 
 ```
-OpenClaw Agent
-    │
-    ├── Skill 接收命令
-    │
-    └── WebSocket 连接
-            │
-            ▼
-    POWPOW WebSocket Server (wss://global.powpow.online:8080)
-            │
-    POWPOW 用户（浏览器/APP）
+────────────────────
+✅ 帖子已发布
+📍 帖子位置：燕郊行宫遗址（116.816667, 39.95）
+👉 请点开链接看一下：两个胶囊能不能点、图片顺序对不对
+   （命令行查不出这个，你的眼睛是最后一关）
+🔗 https://global.powpow.online/posts/<post-id>
 ```
 
-### 特点
+无地点就同句说明：「📍 未带地点，不会出现在公开地图上」。
 
-- **WebSocket 实时通信**: 比轮询更低延迟
-- **自动重连**: 网络不稳定时自动恢复连接
-- **消息队列**: 离线时消息不丢失
-- **双向通信**: OpenClaw ↔ POWPOW 双向实时
+交互渲染（胶囊点击、图片灯箱）CLI 验不了——用户的眼睛是最后一关。
 
-### WebSocket 消息类型
-
-| 类型 | 说明 |
-|------|------|
-| `chat_message` | 聊天消息 |
-| `chat_message_ack` | 消息确认 |
-| `connected` | 连接成功 |
-| `error` | 错误信息 |
-
-### 数据库存储
-
-消息存储在 POWPOW 的 `openclaw_messages` 表中：
-
-```sql
-- digital_human_id: 数字人ID
-- sender_type: 'user' | 'openclaw'
-- sender_id: 发送者ID
-- content: 消息内容
-- content_type: 'text' | 'voice' | 'image'
-- created_at: 创建时间
+测试帖清理：
+```bash
+node scripts/delete-post.js <post-id>
 ```
 
-## 故障排除
+## 创建数字人（发布数字人）
 
-### 连接失败
+与发帖独立的一条流：把一个人（历史人物、角色、用户自己的化身…）做成钉在公开地图、能聊天的数字人。触发：「创建一个数字人」「把某某做成数字人放到地图上」「发布数字人」。
 
-**Q: 无法连接 WebSocket**
-A: 
-1. 检查 `wsUrl` 配置是否正确
-2. 确认网络可以访问 `wss://global.powpow.online:8080`
-3. 检查防火墙设置
+**花费——像发布决定一样，跑前确认：**
+- **徽章是什么**：徽章是你在泡泡里发帖、打卡等活跃行为积累的虚拟资源（不是人民币，也不绑卡）。
+- **做一次要花**：**2 枚徽章**，且**花完不退**；做好的数字人**30 天后过期**。
+- 先做余额检查（脚本自动做，不足就中止），再把花费写进「下一步」区块，等用户明说确认。
 
-### 消息发送失败
+向用户收集：
+1. **名字 + 人设**（都必填）：是谁、怎么说话——2~4 句人设够；平台原生 LLM 负责聊。
+2. **地点**（必填）：对人物有意义的地方名——复用 Step 3 的解析流，展示候选让用户挑。绝不猜。
+3. **头像**，三选一（展示让用户选）：
+   - **AI 生成**（常态）：需一张参考图 URL（`--avatar-ref`）。平台从人设+参考图生成头像（8~30 秒）。本地参考照也行——先上传到 `/api/upload/post-image`，再把公开 URL 喂给 `--avatar-ref`。
+   - **本地上传**（`--avatar @<path>`）：直接用用户自己的图。
+   - **直链**（`--avatar <url>`）：直接图片 URL。
 
-**Q: 发送消息失败**
-A:
-1. 确认已执行 `connect` 命令
-2. 检查 `status` 确认连接状态
-3. 查看错误日志
+```bash
+node scripts/create-digital-human.js \
+  --name 史铁生 \
+  --desc-file persona.txt \            # 或 --desc "..."
+  --avatar-ref https://...jpg \        # 或 --avatar @./photo.jpg，或 --avatar <url>
+  --lng 116.408195 --lat 39.952372     # 来自用户挑的解析结果
+```
 
-### 收不到消息
+创建后，汇报数字人 ID、地点、**过期日（30 天）**和徽章余额，并链地图：https://global.powpow.online/map 。用户马上能在帖里 @ 它（`compose.js --dh <id>`），也变成 `match-digital-human.js` 的相关候选。
 
-**Q: 发送成功但收不到回复**
-A:
-1. 确认已执行 `listen` 命令
-2. 检查 POWPOW 前端是否在线
-3. 查看 WebSocket 网络面板
+查已有的：`node scripts/list-digital-humans.js --search "<name>"`。
 
-### 自动重连问题
+## 万神殿批量发布与巡检（平台维护者）
 
-**Q: 连接频繁断开**
-A:
-1. 检查网络稳定性
-2. 调整 `reconnectInterval` 配置
-3. 查看服务器日志
+**这一节只服务一个人：平台维护者本人**（要求批量上线神明/万神殿/文创 IP 数字人矩阵时触发，例如「把万神殿 220 位神明发上去」「巡检一下万神殿」）。普通用户的数字人需求走上一节的单发流——批量流需要宿主级数据库凭据，普通用户没有，也不该有。**确认对方是维护者之前不进入本节**；普通用户想批量建数字人时，解释单发流的花费（2 徽章/30 天）即可。
 
-## 更新日志
+### 与单发流的本质区别
 
-### v2.1.10 (2026-04-05)
+| | 单发流（上一节） | 批量流（本节） |
+|---|---|---|
+| 通道 | 平台公开 API | powpow 仓库内脚本直连生产库 |
+| 身份 | 登录用户 JWT | 维护者的 Supabase 服务密钥 |
+| 花费 | 2 徽章/个，30 天过期 | 无徽章消耗，永久有效 |
+| 适用 | 1 个角色 | 成建制 IP 矩阵（几十~几百个） |
 
-- ✅ **WebSocket 支持**: 全新 WebSocket 实时通信
-- ✅ **自动重连**: 智能重连机制
-- ✅ **消息队列**: 离线消息不丢失
-- ✅ **多媒体消息**: 支持语音、图片
-- ✅ **连接状态**: 实时监控连接状态
-- ✅ **双向通信**: OpenClaw ↔ POWPOW 实时双向
+### 批量发布（仓库内运行，不打包进本技能）
 
-### v2.1.0 (2026-03-27)
+批量脚本依赖 postgres-js / pinyin-pro / @supabase/supabase-js 与平台 embedding 接口，与本技能「零第三方依赖」的约束冲突，因此**不随技能分发**——它住在 powpow 仓库：`scripts/create-theotopia-gods.js`。维护者场景下直接在仓库里跑：
 
-- 轮询机制实现
-- 密码认证支持
-- AI 自动回复
+```bash
+cd <powpow-仓库>
+node scripts/create-theotopia-gods.js --dry-run          # 只解析资料包，不上传不写库
+node scripts/create-theotopia-gods.js --god mazu         # 单发试点（幂等键 model_config.theotopiaId）
+node scripts/create-theotopia-gods.js                    # 全量（幂等，可断点续跑）
+node scripts/create-theotopia-gods.js --force            # 删旧重建（慎用）
+```
 
-### v1.0.0 (2024-03-16)
+前置条件：资料包（结构化 md，一册一卷）、`.env`（NVIDIA embedding 等平台侧密钥）、`.env.temp`（`SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`）。流程纪律：**dry-run → 单发试点 → 目视确认 → 全量 → 抽检**，一步不跳。全量跑批较慢（头像逐个上传 + 向量逐批生成），长时间运行被中断后直接重跑同一命令即可——幂等键保证已完成的不会重复。
 
-- 初始版本
-- 基础 API 集成
+资料包已知瑕疵要先查：若 md 章节标题带双重序号（`### 1. 1. 元始天尊`），脚本会自动清洗 name 前缀；发布后仍要用下面的巡检脚本确认无 `N. ` 残留。
+
+### 巡检（本技能自带，零依赖）
+
+```bash
+node scripts/check-theotopia-gods.js                 # 总数/分册统计 + 完整性检查
+node scripts/check-theotopia-gods.js --sample 5      # 追加随机抽 5 个，头像 HEAD 探活
+node scripts/check-theotopia-gods.js --god theotopia-mazu   # 单查明细
+```
+
+凭据从环境变量（`SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`）或状态目录 `theotopia.env`（`KEY=VALUE` 每行）读取，**绝不走命令行参数**。脚本只发 GET 请求，只读，不写不删。检查项：总数与分册分布、`theotopiaId` 重复、name 序号前缀残留、空头像/空档案/坐标越界、persona 档案长度异常、头像可访问性。
+
+巡检结果无论好坏都要给维护者一句人话结论，例如「220 位全部就位，四册分布 25/118/31/46，抽检 5 位头像全通」；有问题列出是哪几位、什么问题、建议重跑哪个命令修。
+
+## Error Handling
+
+**硬规则：永远不要把脚本原文、node 命令、错误码（如 DEVICE_MISMATCH）抛给用户；任何错误先翻成一句人话 + 下一步动作。**
+
+- **401 / 会话过期（流程中）**：意思是"上次登录已过期"，不是"从未登录"——两者对用户完全不同，把过期当首次登录会让他以为要从头来。说「上次的登录已经过期了，再把账号给我一次就能接着来」，重跑 `login.js`，重试一次。**已做的全留着**：草稿、素材、选好的数字人和地点都在本地，从原处续上——绝不重跑早先步骤。
+- **429 限流**：服务端允许 10 帖/小时/用户。把等待时间告诉用户；别刷重试。
+- **400 CONTENT_BLOCKED**：内容没过审核。告诉用户，问怎么改。
+- **403 pending_payment**：账号没完成开通。这是每个需登录调用的硬闸（数字人、地理编码、图片上传、发布都拦），无降级模式，也可能登录成功后的流程中才冒出来。让用户登录后去平台完成开通（注册：https://global.powpow.online/register）；别重试、别当瞬时错误处理。
+- **423 账号锁定**：登录失败太多；等 30 分钟。
+- **登录凭据错（登录时 401）**：让用户重输凭据，或指向 https://global.powpow.online/login（5 次后锁 30 分钟）。
+- **发布时本地图丢了**：文件在组装后被移动/删了。publish.js 中止（啥也不发）；用有效路径重跑 compose.js。
+- **图片搜索不可用**：无图继续，或让用户给直链。
+- **徽章不足（建数字人）**（脚本在扣费前就中止）：把余额告诉用户；徽章靠平台活跃（发帖、打卡）赚。别在同一账号重试。
+
+## Support
+
+- 邮箱：dongtao@outlook.com
+- 平台：https://global.powpow.online
+- 注册：https://global.powpow.online/register
+- 了解泡泡（介绍视频）：https://www.bilibili.com/video/BV1Wu826UEVz/
+
+## Notes
+
+- 发布后务必验证帖子真上线；测试帖事后删。
+- 没用户明确确认绝不发布。
+- 绝不存/记用户密码，只本地缓存 JWT 会话。
+- **密码处理（内部规则，别向用户解释）**：用 stdin 管道——`printf '%s' '<password>' | node scripts/login.js <username>`。绝不用位置形式（`login.js <user> <password>`）：会留 shell 历史与进程列表。别回显、别写盘、别留 shell 变量。`login.js` 仍兼容位置形式——那不是让你用的许可。向用户要凭据应是一条 plain 消息、不带安全说教（见 Conversation UX → Tone）。
+- **路径规则**：只传用户明确给的 `--text-file`/`--image` 路径，或你在当前工作目录建的文件。绝不扫机器、绝不猜路径——错路径会发私有文件。
+- 绝不从照片猜地点/时间——问用户；猜错是第一人称帖子里的事实错误。
+- 给到的地点一定上公开地图（内部规则，无退选项；详见 Step 3）。
+- **绝不向用户提名地图服务商**——说「我帮你查一下地点」。适用于行文、选项列表、对脚本输出的任何改写（见 Conversation UX → 中性命名）。
+- **绝不向用户要坐标。** 降级：换说法 → 放宽候选 → 不带地点发布。
+- 本 skill 可安全分发：不含任何平台凭据，危险能力（身份、限流、审核）都由服务端强制。

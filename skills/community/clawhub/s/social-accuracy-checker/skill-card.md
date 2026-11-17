@@ -1,43 +1,56 @@
-## Description: <br>
-Fact-check and attribution-check social media content such as tweets, LinkedIn posts, and blog excerpts before publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fact-check and attribution-check social media content (tweets, LinkedIn posts, blog excerpts). Verifies claims, checks attribution, and flags inaccuracies before publishing.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nissan](https://clawhub.ai/user/nissan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content, marketing, and social teams use this skill before publication to check claims and attribution in tweets, LinkedIn posts, and short blog excerpts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated accuracy reports could still contain mistakes or uncertain findings that affect publication decisions.
+
+Mitigation: Review the generated report before publication and resolve inaccurate, unverifiable, or high-priority attribution items manually.
+
+Risk: The workflow is scoped to social content and short blog excerpts, not deep technical fact-checking.
+
+Mitigation: Use a deeper fact-checking workflow for long-form or highly technical content.
+
+Risk: The skill text includes internal role and approval-flow names that may not match every deployment.
+
+Mitigation: Adapt routing labels and approval handoffs to the deploying team's process before relying on them operationally.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Social media writers, reviewers, and approval agents use this skill to audit drafts for verifiable claims, attribution needs, inaccurate statements, and must-fix edits before content is sent for approval or published. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow expects web research and may expose confidential unpublished content to external search tools. <br>
-Mitigation: Use it only with drafts that are approved for external research, or remove sensitive details before checking. <br>
-Risk: Fact-checking results can still contain stale, incomplete, or misleading source interpretations. <br>
-Mitigation: Review cited sources and verdicts before relying on the report for publication approval. <br>
-Risk: The skill writes a local markdown report in the workspace. <br>
-Mitigation: Review the generated report path and contents before sharing or committing it. <br>
+**Output Format:** [Markdown report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/social-accuracy-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/nissan) <br>
+**Other Properties Related to Output:** [Produces a local accuracy report with claim checks, attribution flags, verdicts, and recommended edits.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown accuracy and attribution report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report includes a summary, claim checks, attribution flags, and recommended edits.] <br>
+1.0.3 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

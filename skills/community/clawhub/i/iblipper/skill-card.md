@@ -1,42 +1,55 @@
-## Description: <br>
-Generate kinetic typography animations for expressive agent-to-human communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate kinetic typography animations for expressive agent-to-human communication. Use when you want to communicate with visual flair - animated text for announcements, alerts, greetings, dramatic reveals, or any message that deserves more than plain text. Outputs shareable URLs or can display in canvas.
 
-## Publisher: <br>
-[andyed](https://clawhub.ai/user/andyed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyed](https://clawhub.ai/user/andyed)
 
-## Use Case: <br>
-External users and agents use this skill to create short animated typography links or GIF export URLs for greetings, announcements, celebrations, dramatic reveals, and other concise messages that benefit from visual emphasis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled URL helper can run local code if a specially crafted message is passed to scripts/iblipper.sh. <br>
-Mitigation: Avoid running scripts/iblipper.sh on untrusted or copied message text until the encoder passes text as an argument or via stdin. <br>
-Risk: Generated links send message text to an external GitHub Pages renderer. <br>
-Mitigation: Do not place sensitive text in generated links, and verify any downloaded GIF before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyed/iblipper) <br>
-- [iBlipper renderer](https://andyed.github.io/iblipper2025/) <br>
-- [iBlipper Examples](references/examples.md) <br>
-- [iBlipper Emotion Presets](references/emotions.md) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to turn short messages into iBlipper kinetic typography links or GIF export URLs for greetings, announcements, celebrations, dramatic reveals, and other expressive communications.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Shareable URLs, Markdown links, GIF export URLs, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated links load an external GitHub Pages renderer; GIF export requires a browser download workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can run unintended local code when given crafted message text.
+
+Mitigation: Prefer direct link generation or run the helper only with trusted message text until its encoder passes the message as data.
+
+Risk: Animated links can make important or urgent messages slower to understand.
+
+Mitigation: Use plain text for urgent safety alerts and reserve animation for concise, non-critical communication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyed/skills/iblipper)
+- [iBlipper web app](https://andyed.github.io/iblipper2025/)
+- [iBlipper Examples](references/examples.md)
+- [iBlipper Emotion Presets](references/emotions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown links, plain URLs, and concise workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [GIF export requires a browser session; generated links include message text in URL parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

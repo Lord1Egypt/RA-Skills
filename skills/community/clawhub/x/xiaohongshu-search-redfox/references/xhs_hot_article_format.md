@@ -46,7 +46,7 @@ python scripts/fetch_xhs_hot_articles.py --keyword <关键词> [选项]
 | `pageSize` | int | 每页条数，最大50 |
 | `startDate` | string | 开始日期，格式 yyyy-MM-dd |
 | `endDate` | string | 结束日期，格式 yyyy-MM-dd |
-| `source` | string | 固定值："小红书爆款笔记洞察-GitHub" |
+| `source` | string | 固定值："小红书爆款笔记洞察-ClawHub" |
 
 ### 响应格式
 

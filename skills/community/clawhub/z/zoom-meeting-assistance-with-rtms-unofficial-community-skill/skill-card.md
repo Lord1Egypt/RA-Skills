@@ -1,42 +1,63 @@
-## Description: <br>
-Zoom RTMS Meeting Assistant — start on-demand to capture meeting audio, video, transcript, screenshare, and chat via Zoom Real-Time Media Streams. Handles meeting.rtms_started and meeting.rtms_stopped webhook events. Provides AI-powered dialog suggestions, sentiment analysis, and live summaries with WhatsApp notifications. Use when a Zoom RTMS webhook fires or the user asks to record/analyze a meeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zoom RTMS Meeting Assistant starts on demand to capture Zoom meeting audio, video, transcripts, screenshare, and chat via Real-Time Media Streams, then provides AI-powered dialog suggestions, sentiment analysis, live summaries, and WhatsApp notifications.
 
-## Publisher: <br>
-[tanchunsiong](https://clawhub.ai/user/tanchunsiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tanchunsiong](https://clawhub.ai/user/tanchunsiong)
 
-## Use Case: <br>
-Developers and meeting operations teams use this skill to run a Zoom RTMS webhook service that captures meeting media and generates transcripts, summaries, dialog suggestions, and sentiment analysis. It is intended for environments where participants understand and consent to recording and AI analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive meeting recordings, transcripts, chat, summaries, and participant-derived analysis. <br>
-Mitigation: Use it only where all participants understand and consent to recording and AI analysis, and define retention, deletion, and access controls before real meetings are processed. <br>
-Risk: Webhook and notification-control endpoints can expose meeting data or controls if deployed broadly. <br>
-Mitigation: Place the webhook behind authentication or a trusted forwarding layer, verify Zoom webhook signatures, restrict the notification toggle endpoint, and avoid public exposure except where required and controlled. <br>
+## Use Case:
 
+Developers and meeting operators use this skill to receive Zoom RTMS webhooks, record meeting media and transcripts, and generate meeting summaries, sentiment analysis, and dialog suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanchunsiong/zoom-meeting-assistance-with-rtms-unofficial-community-skill) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ngrok unofficial webhook skill](https://github.com/tanchunsiong/ngrok-unofficial-webhook-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON analysis files, transcript files, media files, and generated meeting summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces meeting recordings, transcripts, chat logs, AI summaries, dialog suggestions, sentiment JSON, screenshare PDFs, and converted audio/video artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Risk: The skill captures sensitive Zoom meeting audio, video, transcripts, screenshares, and chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in controlled environments with clear participant consent, data-handling rules, and retention/deletion controls.
+
+Risk: The server security summary reports unauthenticated webhook and admin endpoint risks.
+
+Mitigation: Add Zoom webhook signature verification and authenticated admin endpoints before deployment.
+
+Risk: The server security guidance identifies TLS and RTMS URL validation risks.
+
+Mitigation: Require normal TLS verification and strict allowlists for RTMS URLs.
+
+Risk: The server security guidance identifies command-injection risk around media processing.
+
+Mitigation: Invoke ffmpeg safely without a shell and validate filenames and paths before processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanchunsiong/skills/zoom-meeting-assistance-with-rtms-unofficial-community-skill)
+- [OpenClaw dependency](https://github.com/openclaw/openclaw)
+- [ngrok unofficial webhook helper](https://github.com/tanchunsiong/ngrok-unofficial-webhook-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, plain text, VTT/SRT transcripts, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create meeting recordings, transcripts, chat logs, event logs, AI summaries, dialog suggestions, sentiment JSON, screenshare PDFs, and converted media files when configured.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

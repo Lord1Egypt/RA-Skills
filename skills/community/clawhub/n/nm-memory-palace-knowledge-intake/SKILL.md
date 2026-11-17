@@ -2,7 +2,7 @@
 name: knowledge-intake
 description: |
   Processes external resources into stored knowledge with quality scoring and routing
-version: 1.9.8
+version: 1.10.3
 triggers:
   - knowledge-management
   - intake
@@ -12,56 +12,12 @@ triggers:
   - ingesting articles
   - papers
   - or docs into a memory palace
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.memory-palace-architect", "night-market.digital-garden-cultivator", "night-market.leyline:evaluation-framework", "night-market.leyline:storage-templates", "night-market.leyline:document-conversion", "night-market.scribe:slop-detector"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.memory-palace-architect", "night-market.digital-garden-cultivator", "night-market.leyline:evaluation-framework", "night-market.leyline:decision-journal", "night-market.leyline:document-conversion", "night-market.scribe:slop-detector"]}}}
 source: claude-night-market
 source_plugin: memory-palace
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [What It Is](#what-it-is)
-- [The Intake Signal](#the-intake-signal)
-- [Quick Start](#quick-start)
-- [Evaluation Framework](#evaluation-framework)
-- [Importance Criteria](#importance-criteria)
-- [Scoring Guide](#scoring-guide)
-- [Application Routing](#application-routing)
-- [Local Codebase Application](#local-codebase-application)
-- [Meta-Infrastructure Application](#meta-infrastructure-application)
-- [Routing Decision Tree](#routing-decision-tree)
-- [Storage Locations](#storage-locations)
-- [The Tidying Imperative (KonMari-Inspired)](#the-tidying-imperative-konmari-inspired)
-- [The Master Curator](#the-master-curator)
-- [The Two Questions](#the-two-questions)
-- [Tidying Actions](#tidying-actions)
-- [Marginal Value Filtering (Anti-Pollution)](#marginal-value-filtering-anti-pollution)
-- [The Three-Step Filter](#the-three-step-filter)
-- [Using the Filter](#using-the-filter)
-- [Filter Output Example](#filter-output-example)
-- [Progressive Autonomy Integration](#progressive-autonomy-integration)
-- [RL-Based Quality Scoring](#rl-based-quality-scoring)
-- [Usage Signals](#usage-signals)
-- [Quality Decay Model](#quality-decay-model)
-- [Source Lineage Tracking](#source-lineage-tracking)
-- [Knowledge Orchestrator](#knowledge-orchestrator)
-- [RL Integration with Marginal Value Filter](#rl-integration-with-marginal-value-filter)
-- [Workflow Example](#workflow-example)
-- [Queue Processing](#queue-processing)
-- [Processing Queue Entries](#processing-queue-entries)
-- [Queue Integration](#queue-integration)
-- [Queue Status Workflow](#queue-status-workflow)
-- [Automation](#automation)
-- [Detailed Resources](#detailed-resources)
-- [Hook Integration](#hook-integration)
-- [Automatic Triggers](#automatic-triggers)
-- [Hook Signals](#hook-signals)
-- [Deduplication](#deduplication)
-- [Safety Checks](#safety-checks)
-- [Index Schema Alignment](#index-schema-alignment)
-- [Integration](#integration)
+> **Night Market Skill**: ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Knowledge Intake
@@ -171,7 +127,6 @@ Agent(scribe:doc-verifier) "Verify docs/knowledge-corpus/[entry-name].md"
 ```
 
 **DO NOT finalize entries with slop score > 2.5** - rewrite with concrete specifics.
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Step 7: Discussion Promotion (Score 80+ Only)
 
@@ -242,7 +197,6 @@ Apply when knowledge improves our plugin ecosystem:
 ### Routing Decision Tree
 
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 Is the knowledge...
 ├── About HOW we build things? → Meta-infrastructure
 │   ├── Skill patterns → Update abstract/memory-palace skills
@@ -254,7 +208,6 @@ Is the knowledge...
     ├── Implementation patterns → Update code/architecture
     └── Bug/issue solutions → Apply fix, document
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Storage Locations
 
@@ -269,7 +222,8 @@ Is the knowledge...
 
 > "A cluttered palace is a cluttered mind."
 
-New knowledge often displaces old—but **time is not the criterion**. Relevance and aspirational alignment are.
+New knowledge often displaces old, but **time is not the criterion**.
+Relevance and aspirational alignment are.
 
 ### The Master Curator
 The human in the loop defines what stays. Before major tidying:
@@ -291,227 +245,17 @@ For each piece of knowledge, both must be yes:
 | No longer aligned | Release with gratitude |
 | Complements | Create bidirectional links |
 
-**"I might need this someday"** is fear, not joy. Release it.
+**"I might need this someday"** is fear talking. Release it.
 
-## Marginal Value Filtering (Anti-Pollution)
+## Marginal Value Filtering and Quality Scoring
 
-> "If it can't teach something the existing corpus can't already teach → skip it."
-
-Before storing ANY knowledge, run the **marginal value filter** to prevent corpus pollution.
-
-### The Three-Step Filter
-
-**1. Redundancy Check**
-- Exact match → REJECT immediately
-- 80%+ overlap → REJECT as redundant
-- 40-80% overlap → Evaluate delta (Step 2)
-- <40% overlap → Likely novel, proceed to store
-
-**2. Delta Analysis** (for partial overlap only)
-- **Novel insight/pattern** → High value (0.7-0.9)
-- **Different framing only** → Low value (0.2-0.4)
-- **More examples** → Marginal value (0.4-0.6)
-- **Contradicts existing** → Investigate (0.6-0.8)
-
-**3. Integration Decision**
-- **Standalone**: Novel content, no significant overlap
-- **Merge**: Enhances existing entry with examples/details
-- **Replace**: Supersedes outdated knowledge
-- **Skip**: Insufficient marginal value
-
-### Using the Filter
-
-```python
-from memory_palace.corpus import MarginalValueFilter
-
-# Initialize filter with corpus and index directories
-filter = MarginalValueFilter(
-    corpus_dir="docs/knowledge-corpus",
-    index_dir="docs/knowledge-corpus/indexes"
-)
-
-# Evaluate new content
-redundancy, delta, integration = filter.evaluate_content(
-    content=article_text,
-    title="Structured Concurrency in Python",
-    tags=["async", "concurrency", "python"]
-)
-
-# Get human-readable explanation
-explanation = filter.explain_decision(redundancy, delta, integration)
-print(explanation)
-
-# Act on decision
-if integration.decision == IntegrationDecision.SKIP:
-    print(f"Skipping: {integration.rationale}")
-elif integration.decision == IntegrationDecision.STANDALONE:
-    # Store as new entry
-    store_knowledge(content, title)
-elif integration.decision == IntegrationDecision.MERGE:
-    # Enhance existing entry
-    enhance_entry(integration.target_entries[0], content)
-elif integration.decision == IntegrationDecision.REPLACE:
-    # Replace outdated entry
-    replace_entry(integration.target_entries[0], content)
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
-### Filter Output Example
-
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-=== Marginal Value Assessment ===
-
-Redundancy: partial
-Overlap: 65%
-Matches: async-patterns, python-concurrency
-  - Partial overlap (65%) with 2 entries
-
-Delta Type: novel_insight
-Value Score: 75%
-Teaching Delta: Introduces 8 new concepts
-Novel aspects:
-  + New concepts: structured, taskgroup, context-manager
-  + New topics: Error Propagation, Resource Cleanup
-
-Decision: STANDALONE
-Confidence: 80%
-Rationale: Novel insights justify standalone: Introduces 8 new concepts
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
-### Progressive Autonomy Integration
-
-The marginal value filter respects autonomy levels (see plan Phase 4):
-- **Level 0**: ALL decisions require human approval
-- **Level 1**: Auto-approve 85+ scores in known domains
-- **Level 2**: Auto-approve 70+ scores in known domains
-- **Level 3**: Auto-approve 60+, auto-reject obvious noise
-
-Current implementation: Level 0 (all human-in-the-loop).
-
-## RL-Based Quality Scoring
-
-The knowledge corpus uses reinforcement learning signals to dynamically score entry quality based on actual usage patterns.
-
-### Usage Signals
-
-| Signal | Weight | Description |
-|--------|--------|-------------|
-| `ACCESS` | +0.1 | Entry was accessed/read |
-| `CITATION` | +0.3 | Entry was cited in another context |
-| `POSITIVE_FEEDBACK` | +0.5 | User marked as helpful |
-| `NEGATIVE_FEEDBACK` | -0.3 | User marked as unhelpful |
-| `CORRECTION` | +0.2 | Entry was corrected/updated |
-| `STALE_FLAG` | -0.4 | Entry marked as potentially outdated |
-
-### Quality Decay Model
-
-Knowledge entries decay over time unless validated:
-
-| Maturity | Half-Life | Decay Curve |
-|----------|-----------|-------------|
-| Seedling | 14 days | Exponential |
-| Growing | 30 days | Exponential |
-| Evergreen | 90 days | Logarithmic |
-
-Entries are classified by decay status:
-- **Fresh**: >70% quality retained
-- **Stale**: 40-70% quality retained
-- **Critical**: 20-40% quality retained
-- **Archived**: <20% quality retained
-
-### Source Lineage Tracking
-
-Hybrid lineage tracking based on source importance:
-
-**Full Lineage** (for important sources):
-- Primary source with complete metadata
-- Derivation chain (what entries it was derived from)
-- Transformation history (summarization, extraction, etc.)
-- Validation chain (who validated and when)
-
-**Simple Lineage** (for standard sources):
-- Source type and URL
-- Retrieval timestamp
-
-Full lineage is used for:
-- Research papers
-- Documentation
-- Entries with importance score >= 0.7
-
-### Knowledge Orchestrator
-
-The `KnowledgeOrchestrator` coordinates all quality systems:
-
-```python
-from memory_palace.corpus import KnowledgeOrchestrator, UsageSignal
-
-# Initialize orchestrator
-orchestrator = KnowledgeOrchestrator(
-    corpus_dir="docs/knowledge-corpus",
-    index_dir="docs/knowledge-corpus/indexes"
-)
-
-# Record usage events
-orchestrator.record_usage("entry-1", UsageSignal.ACCESS)
-orchestrator.record_usage("entry-1", UsageSignal.POSITIVE_FEEDBACK)
-
-# Assess entry quality
-entry = {"id": "entry-1", "maturity": "growing"}
-assessment = orchestrator.assess_entry(entry)
-print(f"Quality: {assessment.overall_score:.0%}")
-print(f"Status: {assessment.status}")
-print(f"Recommendations: {assessment.recommendations}")
-
-# Get maintenance queue
-entries = [...]  # Your entry list
-queue = orchestrator.get_maintenance_queue(entries)
-for item in queue:
-    print(f"{item.entry_id}: {item.status} - {item.recommendations}")
-
-# Ingest new content with lineage
-from memory_palace.corpus import SourceReference, SourceType
-
-source = SourceReference(
-    source_id="src-1",
-    source_type=SourceType.DOCUMENTATION,
-    url="https://docs.example.com/api",
-    title="API Documentation"
-)
-entry_id, decision = orchestrator.ingest_with_lineage(
-    content="# API Reference\n...",
-    title="API Documentation",
-    source=source
-)
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
-### RL Integration with Marginal Value Filter
-
-The marginal value filter emits RL signals on integration decisions:
-
-```python
-from memory_palace.corpus import MarginalValueFilter
-
-filter = MarginalValueFilter(corpus_dir, index_dir)
-
-# Evaluate with RL signal emission
-redundancy, delta, integration, rl_signal = filter.evaluate_with_rl(
-    content=article_text,
-    title="New Article",
-    tags=["python", "async"]
-)
-
-# RL signal contains:
-# - signal_type: UsageSignal to emit
-# - weight: Signal weight for scoring
-# - action: What happened (new_entry_created, entry_enhanced, etc.)
-# - decision: Integration decision made
-# - confidence: Decision confidence
-print(f"RL Signal: {rl_signal['action']} (weight: {rl_signal['weight']})")
-```
-**Verification:** Run the command with `--help` flag to verify availability.
+Before storing anything, run the marginal value filter: an entry that
+cannot teach something the corpus does not already teach is skipped.
+After storage, RL usage signals, quality decay and the anchor-question
+clarity gate keep each entry's score current. Source lineage records
+provenance and does not change a score. The
+three-step filter, its API, the autonomy levels and the scoring model
+are in `modules/quality-scoring.md`.
 
 ## Workflow Example
 
@@ -567,7 +311,6 @@ pruning:
     - Existing error handling module
     - Async patterns documentation
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Queue Processing
 
@@ -587,7 +330,6 @@ cat docs/knowledge-corpus/queue/2025-12-31_topic.yaml
 # 2. Update queue entry status to 'processed'
 # 3. Archive or delete queue entry
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Queue Integration
 
@@ -596,17 +338,15 @@ The `research-queue-integration` hook automatically queues:
 - Research-focused sessions with substantial findings
 - Manual additions via queue entry creation
 
-**Queue entry format**: See `docs/knowledge-corpus/queue/README.md`
+**Queue entry format**: written by `hooks/research_queue.py`, one YAML file per entry
 
 ### Queue Status Workflow
 
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 pending_review → [Review] → approved/rejected
 approved → [Create Entry] → processed
 processed → [Archive] → queue/archive/
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Automation
 
@@ -626,69 +366,16 @@ processed → [Archive] → queue/archive/
   for evergreen entries (score 80+). Publishing is the
   default action.
   See `modules/discussion-promotion.md` for full workflow.
+- **Marginal Value Filter and RL Scoring**: See `modules/quality-scoring.md`
+- **Hook Integration**: See `modules/hook-integration.md`
 
 ## Hook Integration
 
-Memory-palace hooks automatically detect content that may need knowledge intake processing:
-
-### Automatic Triggers
-
-| Hook | Event | When Triggered |
-|------|-------|----------------|
-| `url_detector` | UserPromptSubmit | User message contains URLs |
-| `web_content_processor` | PostToolUse (WebFetch/WebSearch) | After fetching web content |
-| `local_doc_processor` | PostToolUse (Read) | Reading files in knowledge paths |
-| `research_queue_integration` | SessionEnd | Research sessions with 3+ WebSearch calls |
-
-### Hook Signals
-
-When hooks detect potential knowledge content, they add context messages:
-
-```
-**Verification:** Run `pytest -v` to verify tests pass.
-Memory Palace: New web content fetched from {url}.
-Consider running knowledge-intake to evaluate and store if valuable.
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-Memory Palace: Reading local knowledge doc '{path}'.
-This path is configured for knowledge tracking.
-Consider running knowledge-intake if this contains valuable reference material.
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
-### Deduplication
-
-Hooks check the `memory-palace-index.yaml` to avoid redundant processing:
-- **Known URLs**: "Content already indexed" - skip re-evaluation
-- **Changed content**: "Content has changed" - suggest update
-- **New content**: Full evaluation recommended
-
-### Safety Checks
-
-Before signaling intake, hooks validate content:
-- Size limits (default 500KB)
-- Secret detection (API keys, credentials)
-- Data bomb prevention (repetition, unicode bombs)
-- Prompt injection sanitization
-
-### Index Schema Alignment
-
-The deduplication index stores fields aligned with this skill's evaluation:
-
-```yaml
-entries:
-  "https://example.com/article":
-    content_hash: "xxh:abc123..."
-    stored_at: "docs/knowledge-corpus/article.md"
-    importance_score: 82           # From evaluation framework, in [0, 100]
-    maturity: "growing"            # seedling, growing, evergreen
-    routing_type: "both"           # local, meta, both
-    last_updated: "2025-12-06T..."
-```
-**Verification:** Run the command with `--help` flag to verify availability.
+Memory-palace hooks (`user_prompt`, `web_research_handler`,
+`local_doc_processor`, `research_queue`) add a context message when
+content may need intake. They deduplicate against
+`memory-palace-index.yaml` and run safety checks first. Triggers,
+signals and the index schema are in `modules/hook-integration.md`.
 
 ## Integration
 
@@ -696,3 +383,17 @@ entries:
 - `digital-garden-cultivator` - Manages knowledge lifecycle
 - `knowledge-locator` - Finds and retrieves stored knowledge
 - `skills-eval` (abstract) - Evaluates meta-infrastructure updates
+- `memory-clarity-probe` - Dual-probe gate for the clarity check in
+  `modules/quality-scoring.md`
+
+## Exit Criteria
+
+- [ ] A non-2xx fetch is dropped, not stored: an HTTP 404/429 body
+  produces no index entry (enforced by `web_research_handler`)
+- [ ] Every stored entry passed the anchor-question clarity gate: its
+  value probe names a concrete capability the knowledge enables
+- [ ] Each stored entry has an `importance_score` in `[0, 100]` and a
+  routing decision from the Application Routing tree
+- [ ] Entries scoring below 40 are captured as a quote or skipped, not
+  stored as full knowledge notes
+- [ ] The index round-trips through its loader after intake

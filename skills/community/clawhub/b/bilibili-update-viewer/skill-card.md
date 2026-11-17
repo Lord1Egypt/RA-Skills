@@ -1,45 +1,64 @@
-## Description: <br>
-Checks a Bilibili creator's latest videos and dynamic updates, including whether the creator posted a new video today. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a Bilibili uploader's latest videos and dynamics and reports whether the uploader posted a video today.
 
-## Publisher: <br>
-[Jianguo99](https://clawhub.ai/user/Jianguo99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jianguo99](https://clawhub.ai/user/jianguo99)
 
-## Use Case: <br>
-External users and agents use this skill to look up Bilibili creators by mid or username, retrieve recent videos or dynamic posts, and summarize whether there was a same-day video update. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires logged-in Bilibili cookies through the BILIBILI_COOKIES environment variable. <br>
-Mitigation: Use a temporary or low-privilege Bilibili session, avoid sharing cookies in prompts or logs, and rotate or clear the session after use. <br>
-Risk: Creator search results are cached locally in user_cache.json. <br>
-Mitigation: Delete user_cache.json when local creator-search history should not be retained. <br>
-Risk: Frequent API calls may hit Bilibili rate limits or fail when cookies expire. <br>
-Mitigation: Space requests apart, report rate-limit failures plainly, and refresh cookies only through the documented local environment variable workflow. <br>
+## Use Case:
 
+External users and agents use this skill to look up Bilibili uploaders by mid or username, list recent videos or dynamics, and answer whether a selected uploader updated today.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jianguo99/bilibili-update-viewer) <br>
-- [Bilibili website](https://www.bilibili.com) <br>
-- [Bilibili WBI signing reference](https://socialsisteryi.github.io/bilibili-API-collect/docs/misc/sign/wbi.html) <br>
-- [Related ClawHub Bilibili API wrapper](https://clawhub.ai/Jacobzwj/bilibili-hot-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and summarized command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Bilibili creator names, mids, video titles, publication times, links, dynamic post summaries, and local cache lookup results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires full Bilibili browser cookies even though it performs a read-only lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set BILIBILI_COOKIES only in the local shell, avoid sharing it in chats or logs, and clear or rotate the cookie after use.
+
+Risk: Searches create a local user_cache.json containing public uploader metadata.
+
+Mitigation: Review or delete the generated cache when local retention of searched uploader metadata is not desired.
+
+Risk: Dependency installation is not fully pinned.
+
+Mitigation: Install dependencies in an isolated environment and review the resolved requests package version before deployment.
+
+Risk: Bilibili API rate limits or API changes can interrupt lookups.
+
+Mitigation: Keep request volume low and report frequent-access or API-change failures plainly to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jianguo99/skills/bilibili-update-viewer)
+- [Bilibili](https://www.bilibili.com)
+- [Bilibili API WBI signature documentation](https://socialsisteryi.github.io/bilibili-API-collect/docs/misc/sign/wbi.html)
+- [bilibili-hot-monitor source inspiration](https://clawhub.ai/Jacobzwj/bilibili-hot-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with command output summaries and Bilibili video or dynamic links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, the requests package, and a local BILIBILI_COOKIES environment variable; declared OS support is darwin, linux, and win32.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

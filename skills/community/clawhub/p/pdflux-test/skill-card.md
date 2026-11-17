@@ -1,43 +1,58 @@
-## Description: <br>
-Convert unstructured documents into LLM-ready structured data. Supports PDF, Word, PPT, and images; extracts paragraphs, formulas, tables, charts, and other elements in one step; generates up to 8 levels of headings; and outputs Markdown organized in reading order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert unstructured documents into LLM-ready structured data, supporting PDF, Word, PPT, and images while extracting paragraphs, formulas, tables, charts, and other elements into Markdown organized in reading order.
 
-## Publisher: <br>
-[sube-py](https://clawhub.ai/user/sube-py) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sube-py](https://clawhub.ai/user/sube-py)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to convert local PDF, Word, PPT, image, or similar documents into Markdown through the PaodingAI/PDRouter PDFlux service. It is suitable when downstream work needs parsed document text, tables, or selected fields for summarization, comparison, validation, retrieval, or question answering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to PaodingAI/PDRouter for processing. <br>
-Mitigation: Use the skill only for documents whose sensitivity is acceptable under the provider's terms and your data-handling requirements. <br>
-Risk: The PD_ROUTER_API_KEY is required for authentication. <br>
-Mitigation: Keep the API key private, provide it through the environment, and avoid printing or committing it. <br>
-Risk: Supply-chain control depends on the installed release source. <br>
-Mitigation: Prefer a reviewed or pinned install source when deploying the skill in controlled environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to parse local documents into Markdown before extracting fields, tables, body text, or other structured content for downstream analysis and validation.
 
-## Reference(s): <br>
-- [PDFlux Test on ClawHub](https://clawhub.ai/sube-py/pdflux-test) <br>
-- [PDRouter Platform](https://platform.paodingai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, files, shell commands, guidance] <br>
-**Output Format:** [Markdown printed to stdout and optionally written to a user-provided Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and PD_ROUTER_API_KEY; optional PDFLUX_INCLUDE_IMAGES can include image data in Markdown output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill uploads a user-selected local document to PaodingAI/PDRouter for parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents approved for that service, and avoid confidential or regulated content unless the service is approved for the data.
+
+Risk: The workflow requires a PD_ROUTER_API_KEY for authentication.
+
+Mitigation: Provide the key through the environment, keep it out of prompts and saved outputs, and rotate it if exposure is suspected.
+
+Risk: Enabling image output can add base64 image data to Markdown and increase data volume.
+
+Mitigation: Leave PDFLUX_INCLUDE_IMAGES disabled unless embedded image data is explicitly needed.
+
+## Reference(s):
+
+- [PDFlux Test ClawHub listing](https://clawhub.ai/sube-py/skills/pdflux-test)
+- [PDRouter platform](https://platform.paodingai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text printed to stdout, with optional Markdown file output when an output path is provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and PD_ROUTER_API_KEY; image data is excluded unless PDFLUX_INCLUDE_IMAGES is enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

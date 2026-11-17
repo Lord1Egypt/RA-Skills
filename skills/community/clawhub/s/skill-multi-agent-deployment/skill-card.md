@@ -1,44 +1,65 @@
-## Description: <br>
-Deploy production-grade multi-agent fleets in OpenClaw with battle-tested scripts, cloud deployment templates, and shared memory infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys production-grade multi-agent fleets in OpenClaw using scripts, cloud deployment templates, routing configuration, shared memory infrastructure, and deployment health checks.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scaffold, configure, validate, and deploy OpenClaw multi-agent fleets with shared memory, routing rules, and cloud deployment templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes cloud deployment, routing, memory-server, and deletion capabilities without enough guardrails or warnings. <br>
-Mitigation: Review scripts before execution, run dry-run modes first, protect cloud credentials, narrow routing rules before production use, and back up shared memory and agent directories before reset procedures. <br>
-Risk: The shared-memory REST API can expose coordination data if bound beyond localhost without controls. <br>
-Mitigation: Keep the API on localhost unless authentication, authorization, and network controls are added. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to scaffold, configure, validate, and deploy OpenClaw multi-agent fleets across local and cloud environments. It is intended for teams moving from a single agent to coordinated agent deployments with shared memory and routing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abhinas90/skill-multi-agent-deployment) <br>
-- [Multi-Agent Architecture Patterns](references/architecture.md) <br>
-- [Structured Memory Schemas for Multi-Agent Systems](references/memory-schemas.md) <br>
-- [Troubleshooting Multi-Agent Deployment](references/troubleshooting.md) <br>
-- [Workflow DAG Templates for Multi-Agent Deployment](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command examples, Python scripts, shell scripts, JSON, and YAML configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment scaffolding, routing configuration, shared-memory operations, validation checks, and cloud deployment manifests for OpenClaw agent fleets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and artifact version history, released 2026-05-27) <br>
+Risk: Shared memory and cloud gateways may expose agent state too broadly if deployed without authentication or network controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the REST memory API bound to localhost unless authentication and network controls are added, and remove unauthenticated public cloud ingress before production use.
+
+Risk: Deployment, cleanup, and reset workflows can alter cloud resources or local agent state.
+
+Mitigation: Run deployment commands in dry-run mode first, review generated configuration, and back up state before reset or cleanup operations.
+
+Risk: Unpinned packages or container images can create supply-chain drift between review and deployment.
+
+Mitigation: Pin package and image versions before production deployment.
+
+Risk: Workflow execution with untrusted filenames can introduce unsafe behavior.
+
+Mitigation: Run workflow definitions and filenames only from trusted, reviewed sources.
+
+## Reference(s):
+
+- [Multi-Agent Architecture Patterns](references/architecture.md)
+- [Structured Memory Schemas for Multi-Agent Systems](references/memory-schemas.md)
+- [Troubleshooting Multi-Agent Deployment](references/troubleshooting.md)
+- [Workflow DAG Templates for Multi-Agent Deployment](references/workflows.md)
+- [ClawHub Release Page](https://clawhub.ai/abhinas90/skills/skill-multi-agent-deployment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus Python, shell, YAML, JSON, and Markdown artifact files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment templates for DigitalOcean, AWS, GCP, Azure, and Kubernetes, along with local scripts for setup, routing, memory synchronization, validation, and deployment.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

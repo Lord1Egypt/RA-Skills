@@ -1,42 +1,53 @@
-## Description: <br>
-Use Crawl4AI to fetch and convert complex webpages, including dynamic content, into Markdown for summarization, data extraction, or analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Crawl4AI to fetch complex webpages, including dynamically rendered content, and convert them into Markdown for summarization, extraction, or analysis.
 
-## Publisher: <br>
-[hanqiudeng](https://clawhub.ai/user/hanqiudeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanqiudeng](https://clawhub.ai/user/hanqiudeng)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public or explicitly authorized webpage content and convert it into Markdown for summarization, extraction, and analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch webpage content and may be misused against private, internal, logged-in, or unauthorized URLs. <br>
-Mitigation: Use it only for public or explicitly authorized URLs, and avoid localhost, internal, private, and authenticated pages. <br>
-Risk: Installing Crawl4AI and Playwright Chromium changes the local agent environment. <br>
-Mitigation: Install only in environments where adding these local dependencies is acceptable and review the setup commands before execution. <br>
-Risk: Redirecting crawler output to a file can overwrite or create files with unintended names. <br>
-Mitigation: Choose output filenames deliberately and review file paths before running commands that write Markdown output. <br>
+## Use Case:
 
+Developers and agents use this skill when a user provides a URL and asks to summarize, extract data from, or analyze webpage content by first converting it to Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanqiudeng/easy-crawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown content or Markdown files, with shell commands for Crawl4AI setup and execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Crawl4AI and Playwright Chromium installation; crawler output depends on the target webpage and access permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided URLs and filenames may be placed directly into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass URLs as separate process arguments, validate generated filenames, and restrict output files to a dedicated directory.
+
+Risk: Web crawling can reach localhost, private, internal, or login-protected content.
+
+Mitigation: Reject localhost, private, and internal URLs, avoid authenticated pages, and run the skill in an isolated environment with pinned and verified dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanqiudeng/skills/easy-crawl)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print Markdown to the console or redirect it to a Markdown file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

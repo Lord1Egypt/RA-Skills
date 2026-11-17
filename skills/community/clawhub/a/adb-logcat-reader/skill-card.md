@@ -1,39 +1,52 @@
-## Description: <br>
-Read Android device logs in real time via adb logcat using a C++ or Python backend with generator-style streaming output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Android device logs in real time via adb logcat using C++ or Python backends with generator-style streaming output.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to work with the pywayne.adb.logcat_reader module for real-time Android log monitoring, debugging, filtering, parsing, or storage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Captured Android logs can contain tokens, identifiers, crash details, or user data. <br>
-Mitigation: Inspect logs only from devices and apps you are authorized to debug, and redact sensitive values before sharing or storing output. <br>
-Risk: Reader stop or cleanup behavior may affect captured log output or the device log buffer. <br>
-Mitigation: Confirm the reader behavior in your environment before relying on it for evidence preservation or log retention workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/adb-logcat-reader) <br>
+## Use Case:
 
+Developers and Android engineers use this skill for guidance on reading live device logs from the pywayne.adb.logcat_reader module, including backend selection and streaming log handling.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with Python code examples and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents toward streaming Android log lines; raw logs should be handled as potentially sensitive.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Android logcat output may contain app identifiers, URLs, debug messages, stack traces, or secrets.
+
+Mitigation: Avoid unnecessary persistence, redact sensitive log lines before sharing, and review captured logs before using them outside the local debugging context.
+
+Risk: The artifact states that logs are cleared automatically when the reader stops, but server security guidance says not to rely on that behavior without verification.
+
+Mitigation: Verify the underlying library behavior before assuming logs are cleared, and handle stop and cleanup steps explicitly in operational guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/adb-logcat-reader)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands]
+
+**Output Format:** [Markdown with Python examples and adb-related command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generator-style streaming log lines; users may choose the C++ or Python backend.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

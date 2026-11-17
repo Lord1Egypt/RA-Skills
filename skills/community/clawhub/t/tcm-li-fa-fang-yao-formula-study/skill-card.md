@@ -1,40 +1,54 @@
-## Description: <br>
-用“理法方药”方法帮助学习者从病机、治法、性味归经、方药配伍到方歌记忆来拆解和背诵中医方剂。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用“理法方药”学习、拆解和背诵中医方剂的技能，会把方剂从病机出发，依次推导治法、性味归经、具体方药、配伍结构和记忆方歌，避免只机械背诵药物组成。
 
-## Publisher: <br>
-[boxertan](https://clawhub.ai/user/boxertan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boxertan](https://clawhub.ai/user/boxertan)
 
-## Use Case: <br>
-Learners, educators, and TCM study assistants use this skill to build educational formula notes, explain prescription structure, compare herb roles, and create understanding-first mnemonic verse. It is not for diagnosis, treatment decisions, prescriptions, dose changes, or real symptoms without a qualified clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical study output may be mistaken for diagnosis, treatment, prescription, or dosage guidance. <br>
-Mitigation: Use the skill only as an educational study aid and direct real symptoms, dose changes, and treatment decisions to a qualified clinician. <br>
-Risk: Formula details such as source text or original dosage may be incomplete in a user prompt. <br>
-Mitigation: Preserve user-provided dose information, do not invent missing doses, and clearly label analyses based on common textbook understanding when source details are missing. <br>
+## Use Case:
 
+Students, educators, and practitioners studying traditional Chinese medicine formulas use this skill to turn formula memorization into a structured reasoning path from pathomechanism to treatment method, herb properties, formula composition, compatibility, and verse-based recall.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boxertan/tcm-li-fa-fang-yao-formula-study) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown notes with explanatory prose, tables, and optional mnemonic verse] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational content only; not for diagnosis, treatment decisions, prescriptions, dose changes, or real symptoms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake educational TCM formula analysis for medical diagnosis, dosing, or treatment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as study guidance, verify formula details against trusted references, and direct real diagnosis, dosing, and treatment decisions to a qualified clinician.
+
+Risk: Formula details may vary across textbook editions or user-provided notes.
+
+Mitigation: State when analysis follows a common textbook version, preserve user-provided original dosages, and avoid inventing missing dosage information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boxertan/skills/tcm-li-fa-fang-yao-formula-study)
+- [ClawHub publisher profile](https://clawhub.ai/user/boxertan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown study notes with structured sections, optional tables, and formula-memory verse]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational TCM formula study guidance; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

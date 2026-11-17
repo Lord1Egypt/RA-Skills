@@ -1,39 +1,54 @@
-## Description: <br>
-One advanced English word every day - IPA pronunciation, etymology, 3 example sentences, and quiz mode for GRE, SAT, IELTS, and C2 vocabulary practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One advanced English word every day - IPA pronunciation, etymology, 3 example sentences, and quiz mode for GRE, SAT, IELTS, and C2 vocabulary practice.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External learners and educators use this skill to generate daily advanced English vocabulary study cards with pronunciation, bilingual definitions, etymology, examples, and quiz prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional push reminders schedule twice-daily messages and store user ID, channel, and preferred times in the skill's local data directory. <br>
-Mitigation: Enable reminders only when desired, choose an appropriate channel, and use the documented off command to disable reminders when they are no longer wanted. <br>
+## Use Case:
 
+External learners and language-learning users use this skill to generate a daily advanced English vocabulary card with pronunciation, etymology, bilingual definitions, examples, and quiz practice. Users can also configure optional daily push reminders for supported chat channels.
 
-## Reference(s): <br>
-- [ClawHub Daily Vocab](https://clawhub.ai/jiajiaoy/daily-vocab) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML file instructions and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a single-file HTML vocabulary card to /mnt/user-data/outputs/daily-vocab.html and can emit OpenClaw cron commands for reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Recurring push-notification scheduling can create repeated messages to external chat channels if push-toggle.js is run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run push-toggle.js only when recurring delivery is intended, and verify or remove cron entries after testing.
+
+Risk: Generated cards are expected to use web search, write an HTML file, include Chinese translations, and contain an empty ad-ready area plus ClawCode footer branding.
+
+Mitigation: Review generated HTML and vocabulary content before sharing or publishing, especially where branding, ads, or bilingual content need approval.
+
+## Reference(s):
+
+- [Daily Vocab on ClawHub](https://clawhub.ai/jiajiaoy/skills/daily-vocab)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with a generated single-file HTML vocabulary card and optional Node.js push-scheduling commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the vocabulary card to /mnt/user-data/outputs/daily-vocab.html when executed as described.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

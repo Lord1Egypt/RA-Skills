@@ -1,45 +1,59 @@
-## Description: <br>
-Discover, analyze, and filter Polymarket smart money wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, analyze, and filter Polymarket wallets to identify profitable traders, flag likely market makers or HFT bots, and assess copy-trading reliability.
 
-## Publisher: <br>
-[griffithkk3-del](https://clawhub.ai/user/griffithkk3-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[griffithkk3-del](https://clawhub.ai/user/griffithkk3-del)
 
-## Use Case: <br>
-External users and developers use this skill to discover profitable Polymarket wallets, screen out likely market makers or HFT behavior, and assess whether a wallet is suitable for copy trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to run a separate local Python project outside the reviewed package. <br>
-Mitigation: Review and trust the referenced PolyAnalysis project before running its commands. <br>
-Risk: Alchemy RPC credentials may be stored in a local .env file. <br>
-Mitigation: Protect the RPC key and avoid exposing it in prompts, logs, or shared outputs. <br>
-Risk: Local cache data may retain wallet-analysis information after use. <br>
-Mitigation: Clear the local cache when stored wallet-analysis data is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to find and evaluate Polymarket wallets for smart-money discovery, market-maker and HFT filtering, and copy-trading reliability assessment.
 
-## Reference(s): <br>
-- [Leaderboard Discovery Strategies](references/leaderboard-strategies.md) <br>
-- [MM Score Details](references/mm-score-details.md) <br>
-- [Polymarket Data API leaderboard endpoint](https://data-api.polymarket.com/v1/leaderboard) <br>
-- [ClawHub skill page](https://clawhub.ai/griffithkk3-del/polymarket-smart-money) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User-facing wallet analysis should emphasize copy reliability labels, MM/HFT indicators, copy trading score, and concise rationale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill directs agents to run code and activate a virtual environment in a neighboring PolyAnalysis directory that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only where that PolyAnalysis directory and virtual environment are controlled, reviewed, and trusted.
+
+Risk: A Polygon RPC key may be used through a local .env file for on-chain data access.
+
+Mitigation: Keep the RPC key least-privileged, rotate it if exposed, and avoid sharing logs or files that may reveal local secret values.
+
+Risk: Wallet rankings and copy-trading reliability labels can be mistaken for financial advice or guaranteed future performance.
+
+Mitigation: Present results as analytical signals, include the reliability rationale, and require user review before acting on trading decisions.
+
+## Reference(s):
+
+- [Leaderboard Discovery Strategies](references/leaderboard-strategies.md)
+- [MM Score Details](references/mm-score-details.md)
+- [Polymarket Leaderboard API](https://data-api.polymarket.com/v1/leaderboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output from the referenced analysis tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-facing output is expected to emphasize copy reliability labels, market-maker or HFT indicators, and copy trading score.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

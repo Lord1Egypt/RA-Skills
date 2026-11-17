@@ -1,44 +1,56 @@
-## Description: <br>
-Bugsnag lets an agent search and read Bugsnag organizations, projects, errors, releases, and events through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bugsnag (bugsnag.com). Use this skill for ANY Bugsnag request — searching and reading data. Whenever a task involves Bugsnag, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, support engineers, and incident responders use this skill to query Bugsnag data from an OOMOL-connected account without handling raw Bugsnag tokens directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup instructions include a remote installer run directly in a shell. <br>
-Mitigation: Review and trust the OOMOL install guide or use a verified package-manager path before running the installer. <br>
-Risk: The skill requires account access and sensitive credentials through an OOMOL-connected Bugsnag account. <br>
-Mitigation: Install only when the OOMOL publisher and connected account are trusted, and keep credential scope limited to the needed Bugsnag access. <br>
+## Use Case:
 
+Developers and support engineers use this skill to search and read Bugsnag organizations, projects, errors, events, and releases through their connected account.
 
-## Reference(s): <br>
-- [Bugsnag skill page](https://clawhub.ai/oomol/oo-bugsnag) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Bugsnag homepage](https://www.bugsnag.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs Bugsnag connector actions through the oo CLI and can return JSON responses from Bugsnag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The CLI setup path can execute downloaded code without a clear user approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI setup separately before installation, prefer a verified pinned release, and check whether setup installs or synchronizes additional agent skills.
+
+Risk: The connected service handles Bugsnag access and diagnostic data.
+
+Mitigation: Confirm that OOMOL is approved to handle the account's Bugsnag access and diagnostic data.
+
+## Reference(s):
+
+- [Bugsnag](https://www.bugsnag.com)
+- [Bugsnag API documentation](https://bugsnagapiv2.docs.apiary.io/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Bugsnag skill release](https://clawhub.ai/oomol/skills/oo-bugsnag)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Structured Bugsnag data and concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Bugsnag account's access.]
+
+## Skill Version(s):
+
+1.0.5 (source: skill frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

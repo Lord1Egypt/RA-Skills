@@ -1,46 +1,62 @@
-## Description: <br>
-Use PoYo AI Z-Image for prompt-based image generation through the PoYo generation API, with simple model, prompt, and size controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Z Image helps agents submit prompt-based image generation jobs to PoYo AI's Z-Image endpoint with simple model, prompt, and size parameters.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-External developers and agent users use this skill to prepare and submit PoYo Z-Image text-to-image requests, choose supported canvas sizes, and capture returned task IDs for status polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, payload contents, and callback URLs are sent to the external PoYo API. <br>
-Mitigation: Avoid sensitive data in prompts or callback URLs and review payloads before submission. <br>
-Risk: The POYO_API_KEY credential can be exposed if copied into prompts, command history, logs, or shared files. <br>
-Mitigation: Keep POYO_API_KEY in a trusted environment variable and avoid embedding the key directly in saved payloads or examples. <br>
-Risk: Submitting generation requests may consume PoYo credits. <br>
-Mitigation: Confirm the target model, prompt, size, and account context before making API calls. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prepare and submit PoYo Z-Image text-to-image jobs, including prompt, model, aspect ratio, authentication, and follow-up status handling.
 
-## Reference(s): <br>
-- [PoYo Z Image API Reference](references/api.md) <br>
-- [PoYo Z-Image documentation](https://docs.poyo.ai/api-manual/image-series/z-image) <br>
-- [PoYo task status documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [PoYo Z-Image OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/z-image.json) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/z-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell commands; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the chosen model id, parameter summary, returned task_id, and next-step polling or webhook guidance when a request is submitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image prompts and payload data are sent to PoYo's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only prompts and payload data appropriate for PoYo processing and the user's data-handling requirements.
+
+Risk: API keys can be exposed if passed directly on the command line or stored in unprotected files.
+
+Mitigation: Set POYO_API_KEY through a protected environment or secret manager and avoid passing real API keys as command-line arguments.
+
+Risk: Webhook callbacks can leak task results or metadata if pointed at an endpoint the user does not control.
+
+Mitigation: Use callback_url only with HTTPS endpoints controlled by the user, or rely on authenticated status polling instead.
+
+## Reference(s):
+
+- [PoYo Z Image API Reference](references/api.md)
+- [PoYo Z-Image Model Page](https://poyo.ai/models/z-image)
+- [PoYo Z-Image API Docs](https://docs.poyo.ai/api-manual/image-series/z-image)
+- [PoYo Z-Image OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/z-image.json)
+- [PoYo Task Status Docs](https://docs.poyo.ai/api-manual/task-management/status)
+- [PoYo API Key Dashboard](https://poyo.ai/dashboard/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the chosen model id, payload summary, reference-image status, returned task_id, and next polling or webhook step.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

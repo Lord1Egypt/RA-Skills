@@ -1,0 +1,263 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-10-23",
+  "verified_note": "所有条目于 2026-10-23 通过 GitHub API 实证：仓库存在、含 SKILL.md 实体（skill_path 已核实）、stars/description 为当时实测值。ManimCat 与 iart-ai/motion-skills 经核实无 SKILL.md，归入 engines 或不收录，不在 skill_packs 中。",
+  "categories": {
+    "commercial": "商业宣传类：产品演示、广告、电商带货、品牌宣传、发布会议片",
+    "education": "知识科普类：数学/科学讲解、课程、数据图表解说、公式推导",
+    "general": "其他类：Vlog、短片、口播、混剪、字幕配音、日常剪辑"
+  },
+  "skill_packs": [
+    {
+      "id": "motion-design-skill",
+      "name": "motion-design-skill",
+      "repo": "LottieFiles/motion-design-skill",
+      "url": "https://github.com/LottieFiles/motion-design-skill",
+      "category": "commercial",
+      "stars": 2441,
+      "skill_path": "skills/motion-design",
+      "multi_skill": false,
+      "what_it_does": "LottieFiles 官方动效设计技能：After Effects 导出规范、Lottie 播放调试、Web 与产品演示动画制作",
+      "tags": ["lottie", "motion-design", "web", "动效", "产品演示"]
+    },
+    {
+      "id": "video-talkcraft",
+      "name": "video-talkcraft",
+      "repo": "Vincentwei1021/video-talkcraft",
+      "url": "https://github.com/Vincentwei1021/video-talkcraft",
+      "category": "commercial",
+      "stars": 1713,
+      "skill_path": ".",
+      "multi_skill": false,
+      "what_it_does": "把 AI 编码代理变成动效设计工作室：Remotion/Motion 类宣传短片、产品演示视频一条龙",
+      "tags": ["remotion", "motion", "宣传片", "产品演示", "talkcraft"]
+    },
+    {
+      "id": "openmontage",
+      "name": "OpenMontage",
+      "repo": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "category": "commercial",
+      "stars": 70908,
+      "skill_path": ".agents/skills",
+      "multi_skill": true,
+      "known_skills": ["ai-video-gen", "3d-asset-generation", "acestep"],
+      "what_it_does": "开源 agentic 视频生产系统：AI 视频生成、3D 资产生成等 12+ 技能，按子目录选取安装",
+      "tags": ["agentic", "video-production", "ai-video", "3d"]
+    },
+    {
+      "id": "ad-video-skills",
+      "name": "ad-video-skills",
+      "repo": "iart-ai/ad-video-skills",
+      "url": "https://github.com/iart-ai/ad-video-skills",
+      "category": "commercial",
+      "stars": 18,
+      "skill_path": "skills",
+      "multi_skill": true,
+      "known_skills": ["ad-creative-video", "launch-video", "testimonial-video"],
+      "what_it_does": "广告视频技能集：创意广告/发布视频/证言三类模板，一个模板批量出 A/B 可测成片",
+      "tags": ["广告", "ad", "模板", "A/B测试", "电商"]
+    },
+    {
+      "id": "ai-shorts-generator",
+      "name": "ai-shorts-generator",
+      "repo": "hueanmy/ai-shorts-generator",
+      "url": "https://github.com/hueanmy/ai-shorts-generator",
+      "category": "commercial",
+      "stars": 28,
+      "skill_path": ".claude/skills",
+      "multi_skill": true,
+      "known_skills": ["news", "promo"],
+      "what_it_does": "科技资讯与促销短视频生成：news/promo 两个技能，含 ElevenLabs 配音链路",
+      "tags": ["shorts", "短视频", "促销", "资讯", "配音"]
+    },
+    {
+      "id": "awesome-motion-design-agent-skills",
+      "name": "awesome-motion-design-agent-skills",
+      "repo": "frankxai/awesome-motion-design-agent-skills",
+      "url": "https://github.com/frankxai/awesome-motion-design-agent-skills",
+      "category": "commercial",
+      "stars": 76,
+      "skill_path": "skills",
+      "multi_skill": true,
+      "known_skills": ["remotion-video-agent", "motion-director", "generative-media-director"],
+      "what_it_does": "动效 agent 技能精选清单：GSAP/Motion/Remotion/Lottie/Rive 技能收录，按需取用",
+      "tags": ["awesome", "精选", "gsap", "rive", "motion"]
+    },
+    {
+      "id": "manim-skill",
+      "name": "manim_skill",
+      "repo": "adithya-s-k/manim_skill",
+      "url": "https://github.com/adithya-s-k/manim_skill",
+      "category": "education",
+      "stars": 1201,
+      "skill_path": "skills",
+      "multi_skill": true,
+      "known_skills": ["manim-composer", "manimce-best-practices", "manimgl-best-practices"],
+      "what_it_does": "Manim 三技能包：manim-composer 创作编排 + CE/GL 双版本最佳实践，3Blue1Brown 风格数学动画",
+      "tags": ["manim", "数学动画", "3blue1brown", "科普", "公式"]
+    },
+    {
+      "id": "mathlens",
+      "name": "MathLens",
+      "repo": "shuyicc/MathLens",
+      "url": "https://github.com/shuyicc/MathLens",
+      "category": "education",
+      "stars": 362,
+      "skill_path": ".",
+      "multi_skill": false,
+      "what_it_does": "数学题视频讲解技能：粘贴题目（图片或文字）自动完成分析、可视化、讲解成片",
+      "tags": ["数学", "题目讲解", "教育", "可视化", "录题"]
+    },
+    {
+      "id": "herk-edit-kit",
+      "name": "herk-edit-kit",
+      "repo": "nateherkai/herk-edit-kit",
+      "url": "https://github.com/nateherkai/herk-edit-kit",
+      "category": "general",
+      "stars": 2017,
+      "skill_path": ".agents/skills",
+      "multi_skill": true,
+      "known_skills": ["edit-video", "cut-silences", "cut-mistakes"],
+      "what_it_does": "15 个视频编辑技能套装：转写驱动的剪口误、静音剪切、粗剪精剪全流程",
+      "tags": ["剪辑", "video-editing", "口播剪辑", "粗剪", "转写"]
+    },
+    {
+      "id": "openstoryline",
+      "name": "FireRed-OpenStoryline",
+      "repo": "FireRedTeam/FireRed-OpenStoryline",
+      "url": "https://github.com/FireRedTeam/FireRed-OpenStoryline",
+      "category": "general",
+      "stars": 3553,
+      "skill_path": ".claude/skills",
+      "multi_skill": true,
+      "known_skills": ["openstoryline-install", "openstoryline-use"],
+      "what_it_does": "AI 视频剪辑 agent：自然语言描述直接出片，附带转场、风格化等技能集",
+      "tags": ["ai剪辑", "video-agent", "文字出片", "转场", "风格化"]
+    },
+    {
+      "id": "baocut",
+      "name": "baocut",
+      "repo": "JimLiu/baocut",
+      "url": "https://github.com/JimLiu/baocut",
+      "category": "general",
+      "stars": 1208,
+      "skill_path": ".agents/skills/bcut-release",
+      "multi_skill": false,
+      "what_it_does": "AI 视频 agent：可编辑时间轴，转写、字幕、剪辑一体化工作流",
+      "tags": ["视频agent", "时间轴", "字幕", "剪辑", "bcut"]
+    }
+  ],
+  "engines": [
+    {
+      "id": "manimgl",
+      "name": "manim (ManimGL)",
+      "repo": "3b1b/manim",
+      "url": "https://github.com/3b1b/manim",
+      "category": "education",
+      "stars": 95528,
+      "what_it_does": "3b1b 原版数学动画引擎（ManimGL），解说视频行业标准",
+      "tags": ["manim", "数学动画", "引擎"]
+    },
+    {
+      "id": "manimce",
+      "name": "manim (ManimCE)",
+      "repo": "ManimCommunity/manim",
+      "url": "https://github.com/ManimCommunity/manim",
+      "category": "education",
+      "stars": 41786,
+      "what_it_does": "社区维护版 Manim 引擎，文档全、生态活跃",
+      "tags": ["manim", "数学动画", "引擎"]
+    },
+    {
+      "id": "manimcat",
+      "name": "ManimCat",
+      "repo": "Wing900/ManimCat",
+      "url": "https://github.com/Wing900/ManimCat",
+      "category": "education",
+      "stars": 476,
+      "what_it_does": "自然语言生成 Manim 数学动画的库（无 SKILL.md，不可直装，需包装）",
+      "tags": ["manim", "ai生成", "库"]
+    },
+    {
+      "id": "remotion",
+      "name": "Remotion",
+      "repo": "remotion-dev/remotion",
+      "url": "https://github.com/remotion-dev/remotion",
+      "category": "commercial",
+      "stars": 66390,
+      "what_it_does": "用 React 编程化制作视频，模板生态大（注意商业许可）",
+      "tags": ["remotion", "react", "视频引擎"]
+    },
+    {
+      "id": "vizzu",
+      "name": "Vizzu",
+      "repo": "vizzuhq/vizzu-lib",
+      "url": "https://github.com/vizzuhq/vizzu-lib",
+      "category": "education",
+      "stars": 2043,
+      "what_it_does": "动画数据可视化库，适合数据故事类科普视频",
+      "tags": ["数据可视化", "图表动画", "库"]
+    },
+    {
+      "id": "anichart",
+      "name": "anichart.js",
+      "repo": "Jannchie/anichart.js",
+      "url": "https://github.com/Jannchie/anichart.js",
+      "category": "education",
+      "stars": 1131,
+      "what_it_does": "动态排名类数据可视化动画（ bar chart race ）",
+      "tags": ["数据可视化", "排名动画", "库"]
+    },
+    {
+      "id": "lottie",
+      "name": "Lottie (lottie-web/android)",
+      "repo": "airbnb/lottie",
+      "url": "https://github.com/airbnb/lottie",
+      "category": "commercial",
+      "stars": 4959,
+      "what_it_does": "AE 动画跨平台渲染标准（web/android/ios 同仓）",
+      "tags": ["lottie", "渲染", "跨平台"]
+    },
+    {
+      "id": "yt-dlp",
+      "name": "yt-dlp",
+      "repo": "yt-dlp/yt-dlp",
+      "url": "https://github.com/yt-dlp/yt-dlp",
+      "category": "general",
+      "stars": 200470,
+      "what_it_does": "多平台视频/音频下载命令行工具，素材采集主力",
+      "tags": ["下载", "素材", "cli"]
+    },
+    {
+      "id": "whisper",
+      "name": "Whisper",
+      "repo": "openai/whisper",
+      "url": "https://github.com/openai/whisper",
+      "category": "general",
+      "stars": 111088,
+      "what_it_does": "OpenAI 语音识别，字幕与转写链路的事实标准",
+      "tags": ["语音识别", "字幕", "转写"]
+    },
+    {
+      "id": "pyjianyingdraft",
+      "name": "pyJianYingDraft",
+      "repo": "GuanYixuan/pyJianYingDraft",
+      "url": "https://github.com/GuanYixuan/pyJianYingDraft",
+      "category": "general",
+      "stars": 4642,
+      "what_it_does": "Python 剪映草稿生成与导出工具，全自动剪辑/混剪流水线（面向已装剪映的用户）",
+      "tags": ["剪映", "草稿", "自动化", "混剪"]
+    },
+    {
+      "id": "capcut-cli",
+      "name": "capcut-cli",
+      "repo": "renezander030/capcut-cli",
+      "url": "https://github.com/renezander030/capcut-cli",
+      "category": "general",
+      "stars": 936,
+      "what_it_does": "剪映/CapCut 非官方 CLI，程序化编辑项目（面向已装剪映的用户）",
+      "tags": ["剪映", "capcut", "cli"]
+    }
+  ]
+}

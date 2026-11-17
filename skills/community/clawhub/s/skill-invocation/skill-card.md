@@ -1,40 +1,54 @@
-## Description: <br>
-Choose the best OpenClaw skill by matching trigger keywords to the TOOLS.md index, then applying strict judgment rules (most specific first; if in doubt, use it). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Choose the best OpenClaw skill by matching trigger keywords to the TOOLS.md index, then applying strict judgment rules (most specific first; if in doubt, use it).
 
-## Publisher: <br>
-[xuchang9337-dev](https://clawhub.ai/user/xuchang9337-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuchang9337-dev](https://clawhub.ai/user/xuchang9337-dev)
 
-## Use Case: <br>
-Developers and agent orchestrators use this skill to select one or more OpenClaw skills for a user request by matching trigger keywords against a TOOLS.md index and applying the documented specificity rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The permissive fallback rule may lead an agent to select an unsuitable skill when the TOOLS.md index is incomplete or ambiguous. <br>
-Mitigation: Require clarification or human confirmation before invoking selected skills for high-impact actions such as editing files, publishing content, deploying code, or affecting accounts. <br>
-Risk: Skill selection depends on a TOOLS.md index whose trigger mappings may become stale. <br>
-Mitigation: Maintain the TOOLS.md index alongside installed skill changes and review selected skills before execution in sensitive workflows. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to choose an appropriate OpenClaw skill or skill combination from a TOOLS.md index, especially when multiple candidate skills match a request.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuchang9337-dev/skill-invocation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with recommended decision fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommended output includes selected skills, selection reason, and next action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill encourages invoking a candidate skill when the fit is unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an orchestrator policy that requires confirmation or a fail-closed path for ambiguous, sensitive, or side-effecting requests.
+
+Risk: A wrong TOOLS.md mapping can route the agent to an unsuitable skill.
+
+Mitigation: Review and maintain the skill index so trigger keywords, summaries, and callable skill identifiers remain accurate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuchang9337-dev/skills/skill-invocation)
+- [Publisher Profile](https://clawhub.ai/user/xuchang9337-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected skill identifiers, a short reason, and a recommended next action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

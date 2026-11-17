@@ -1,0 +1,31 @@
+name: shop-faq-pack-cn
+slug: shop-faq-pack-cn
+display_name: 店铺FAQ知识库
+description: 将商家已批准的运费、时效、售后和规格政策整理成中文分类 FAQ，交付可长期复用的标准问答、原始依据与需补充字段，适用于店铺商品页、客服知识库和创作者周边销售；关键信息缺失时明确标注，不编造承诺或自动回复顾客。
+version: 1.0.0
+repository: https://github.com/xxjrq/shop-faq-pack-cn
+icon: icon-512.png
+license: MIT-0
+tags:
+  - faq
+  - ecommerce
+  - customer-service
+  - chinese
+  - knowledge-base
+trigger_words:
+  - 店铺FAQ
+  - 运费售后问答
+  - 商品政策知识库
+triggers:
+  - 把店铺政策整理成FAQ
+  - 生成中文客服知识库
+  - 标注缺失的运费和售后字段
+interface:
+  display_name: "店铺FAQ知识库"
+  short_description: "将已批准店铺政策整理为可复用中文FAQ，并明确缺失字段"
+  default_prompt: "$shop-faq-pack-cn 请提供已批准的运费、配送时效、售后和商品规格政策；我将整理为分类FAQ，并标记无法依据资料回答的字段。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true
+self_test: python3 scripts/self_test.py

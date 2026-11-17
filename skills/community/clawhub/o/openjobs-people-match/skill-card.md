@@ -1,47 +1,59 @@
-## Description: <br>
-Evaluate candidate-job fit using OpenJobs AI. Grade a single CV against a job description or bulk-grade multiple candidates and rank them by match score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate candidate-job fit using OpenJobs AI. Grade a single CV against a job description or bulk-grade multiple candidates and rank them by match score.
 
-## Publisher: <br>
-[OpenJobsAI](https://clawhub.ai/user/OpenJobsAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openjobsai](https://clawhub.ai/user/openjobsai)
 
-## Use Case: <br>
-Recruiters, hiring teams, and recruiting workflow agents use this skill to score candidate CVs or LinkedIn profiles against a specific job description and present ranked match results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate CVs, LinkedIn URLs, job descriptions, and the Mira API key are sensitive. <br>
-Mitigation: Use the skill only when authorized to submit that data to OpenJobs AI/Mira, minimize unnecessary personal data, and avoid printing the full API key. <br>
-Risk: Fit scores and descriptions are AI-generated match assessments, not absolute candidate quality determinations. <br>
-Mitigation: Present scores as job-specific match signals and keep human review in the hiring decision process. <br>
-Risk: The skill depends on a third-party API and user-provided API credentials. <br>
-Mitigation: Install and run it only when the user trusts OpenJobs AI/Mira and has a valid Mira API key available in the environment. <br>
+## Use Case:
 
+Recruiters, hiring teams, and sourcing agents use this skill to evaluate how closely one or more candidates match a specific job description. It returns OpenJobs AI fit scores and concise ranked match explanations for review.
 
-## Reference(s): <br>
-- [Openjobs People Match on ClawHub](https://clawhub.ai/OpenJobsAI/openjobs-people-match) <br>
-- [OpenJobs AI](https://www.openjobs-ai.com/?utm_source=people_match_skill) <br>
-- [OpenJobs AI platform signup](https://platform.openjobs-ai.com/) <br>
-- [OpenJobs AI version endpoint](https://mira-api.openjobs-ai.com/v1/version) <br>
-- [OpenJobs AI people grade endpoint](https://mira-api.openjobs-ai.com/v1/people-grade) <br>
-- [OpenJobs AI people bulk grade endpoint](https://mira-api.openjobs-ai.com/v1/people-bulk-grade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include match scores from 0 to 100, concise match descriptions, ranked bulk output, and OpenJobs AI attribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Candidate CVs, LinkedIn URLs, and job descriptions may contain personal or sensitive hiring data sent to OpenJobs AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm data-sharing approval before use and send only candidate and job information that policy permits.
+
+Risk: The Mira API key may be exposed if pasted into chat, printed, or stored in logs.
+
+Mitigation: Configure MIRA_KEY through a protected secret mechanism, avoid printing it, and rotate the key if exposure is possible.
+
+Risk: AI-generated fit scores may be mistaken for absolute candidate quality assessments.
+
+Mitigation: Use scores only as job-description fit signals and keep human review in hiring decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openjobsai/skills/openjobs-people-match)
+- [OpenJobs AI](https://www.openjobs-ai.com/?utm_source=people_match_skill)
+- [OpenJobs AI Platform](https://platform.openjobs-ai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and compact ranked grading results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MIRA_KEY for OpenJobs AI API access; bulk grading accepts 1-20 LinkedIn URLs and returns ranked scores with brief explanations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

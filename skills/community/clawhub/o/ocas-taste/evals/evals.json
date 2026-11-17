@@ -1,0 +1,17 @@
+{
+  "skill": "ocas-taste",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-taste",
+  "evals": [
+    {
+      "input": "What restaurants does the user like?",
+      "expected_output": "Returns taste profile based on consumption signals from email/calendar",
+      "description": "Taste profiling"
+    },
+    {
+      "input": "Recommend a restaurant for a business dinner",
+      "expected_output": "Returns recommendations matching taste profile and context",
+      "description": "Restaurant recommendation"
+    }
+  ]
+}

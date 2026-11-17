@@ -1,43 +1,56 @@
-## Description: <br>
-Transforms text briefs or public HTTPS images into creamy pastel fairytale videos using WeryAI Seedance 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms text briefs or public HTTPS image URLs into pastel fairytale-style short videos using WeryAI Seedance 2.0.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and creative operators use this skill to expand a short idea or a single public image URL into a detailed, on-style prompt, submit it to WeryAI Seedance 2.0, and receive playable video links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and public image URLs are sent to WeryAI for processing. <br>
-Mitigation: Avoid submitting secrets, private media URLs, unreleased campaign assets, or regulated data unless third-party processing is approved. <br>
-Risk: The skill requires WERYAI_API_KEY and each wait run may consume paid credits. <br>
-Mitigation: Keep the API key out of files and logs, run in a short-lived environment when appropriate, and confirm parameters before submitting or rerunning jobs. <br>
-Risk: The documentation locks the skill to SEEDANCE_2_0, but the script requires the caller to pass the model value. <br>
-Mitigation: Review the confirmation table or dry-run JSON and ensure the request uses model SEEDANCE_2_0 before submission. <br>
+## Use Case:
 
+External users and creators use this skill through an agent to expand a short brief or public image URL into a confirmed WeryAI Seedance 2.0 video generation request and receive playable video links.
 
-## Reference(s): <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [ClawHub release page](https://clawhub.ai/zoucdr/fairytale-dream-transform-video-gen-seedance2-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with confirmation tables, JSON command payloads, and inline video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY and Node.js 18+; generation submits prompts and optional public image URLs to WeryAI and may consume paid credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill uses a paid WeryAI API key and sends prompts plus any referenced public image URLs to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and image URLs for private or confidential content, confirm the expected credit cost, and only run with a WERYAI_API_KEY you are comfortable using.
+
+Risk: The artifact documentation says the CLI does not enforce the package's SEEDANCE_2_0 model rule in code.
+
+Mitigation: Before generation, verify the confirmation table and JSON payload set model to SEEDANCE_2_0.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/fairytale-dream-transform-video-gen-seedance2-0)
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI models registry host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline video links and JSON-backed CLI/API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY; paid WeryAI requests may send prompts and public image URLs to WeryAI.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

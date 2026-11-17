@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "description-writer",
+  "workflow": "listing",
+  "focus": "description",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

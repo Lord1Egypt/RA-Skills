@@ -1,46 +1,56 @@
-## Description: <br>
-Beamer (getbeamer.com). Use this skill for Beamer requests that read, create, or update data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beamer (getbeamer.com). Use this skill for ANY Beamer request — reading, creating, and updating data. Whenever a task involves Beamer, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Beamer schemas, read Beamer posts and feed URLs, count unread posts, and create changelog posts through the oo CLI with an OOMOL-connected Beamer account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an OOMOL-connected Beamer account and requires sensitive credentials managed outside the prompt. <br>
-Mitigation: Install and use it only when the user intends to let an agent operate that connected Beamer account. <br>
-Risk: The create_post action can publish or change visible Beamer changelog content. <br>
-Mitigation: Review and confirm the exact create_post payload and expected effect before approving the action. <br>
-Risk: Optional oo CLI installer commands fetch and execute remote installer scripts. <br>
-Mitigation: Run those installers only when the CLI is needed and the user trusts OOMOL as the provider. <br>
+## Use Case:
 
+External users and developers use the skill to read Beamer posts and feeds, count unread posts, and create posts through a connected Beamer account.
 
-## Reference(s): <br>
-- [Beamer skill page](https://clawhub.ai/oomol/oo-beamer) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Beamer homepage](https://www.getbeamer.com) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live oo connector schema before running Beamer actions; command output may include JSON responses with execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill metadata) <br>
+Risk: The CLI dependency may change other agents’ installed skills without clear notice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve a specific CLI release and installer; set OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization.
+
+Risk: Creating a post changes content in the connected Beamer account.
+
+Mitigation: Keep the required confirmation before running create_post.
+
+## Reference(s):
+
+- [Beamer homepage](https://www.getbeamer.com)
+- [Beamer API documentation](https://help.userflow.com/beamer/docs/how-to-install-beamer-using-our-api)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [Beamer on ClawHub](https://clawhub.ai/oomol/skills/oo-beamer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands]
+
+**Output Format:** [Markdown with shell commands and JSON payloads or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creating a post changes Beamer data and requires confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

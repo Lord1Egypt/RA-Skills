@@ -1,49 +1,67 @@
-## Description: <br>
-Build, secure, and optimize production MCP servers with the TypeScript SDK, covering transports, tool and schema design, error handling, security and OAuth, performance, known SDK bugs, content and structuredContent delivery, v2 migration, MCP Apps, extensions, and the Registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, harden, and debug production MCP servers with the TypeScript SDK. Use when writing or reviewing an MCP server - transports, tool schemas, errors, OAuth, token bloat, SDK migrations, MCP Apps, Registry. Assumes a server already exists.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and engineers use this skill when building or reviewing production MCP servers and tools. It helps them choose transports, design schemas and tool outputs, handle errors, plan security and OAuth, and migrate across MCP TypeScript SDK versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example snippets are reference material and may be incomplete for production security needs. <br>
-Mitigation: Before using snippets in production, add explicit origin allowlists, authentication, per-tool authorization, user consent for sensitive actions, and careful credential handling. <br>
-Risk: The skill discusses paid services, OAuth tokens, sensitive credentials, and cryptographic behavior that can affect production MCP deployments. <br>
-Mitigation: Treat the guidance as design input and review credential scope, token audience, authorization boundaries, and deployment controls before release. <br>
+## Use Case:
 
+Developers building or reviewing an existing MCP server use this reference to make implementation decisions and improve its transports, tool schemas, authentication, error handling, and deployment security.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/mcp-best-practices) <br>
-- [MCP specification](https://spec.modelcontextprotocol.io) <br>
-- [MCP Registry](https://modelcontextprotocol.io/registry/about) <br>
-- [Transport Patterns](references/transport-patterns.md) <br>
-- [Tool Schema Guide](references/tool-schema-guide.md) <br>
-- [Security and Authorization](references/security-auth.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [V2 Migration Guide](references/v2-migration.md) <br>
-- [MCP Apps](references/mcp-apps.md) <br>
-- [Extensions and Registry](references/extensions-registry.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript examples, shell commands, tables, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; outputs are advisory text and examples for MCP server implementation and review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: Commands and package suggestions may introduce vulnerabilities or unintended changes when applied to a project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review packages before running commands, and inspect proposed codemod changes before applying them.
+
+Risk: An optional tunnel can expose a development MCP server beyond its intended audience.
+
+Mitigation: Expose only a protected test server through the tunnel.
+
+Risk: Payment examples may extend beyond the intended integration scope.
+
+Mitigation: Keep payment integration within the scope intended for the application.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/tenequm/skills/mcp-best-practices)
+- [Project homepage](https://github.com/tenequm/skills/tree/main/skills/mcp-best-practices)
+- [MCP specification](https://modelcontextprotocol.io/specification/latest)
+- [TypeScript SDK documentation](https://ts.sdk.modelcontextprotocol.io/)
+- [MCP Registry](https://modelcontextprotocol.io/registry/about)
+- [Transport patterns](references/transport-patterns.md)
+- [Tool schema guide](references/tool-schema-guide.md)
+- [Security and authentication](references/security-auth.md)
+- [Error handling](references/error-handling.md)
+- [MCP specification 2026-07-28](references/spec-2026-07-28.md)
+- [SDK v2 migration](references/v2-migration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks, decision tables, and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advice is version-sensitive and varies with the MCP specification revision, SDK version, transport, and client behavior.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

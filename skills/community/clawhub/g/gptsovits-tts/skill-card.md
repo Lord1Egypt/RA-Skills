@@ -1,41 +1,53 @@
-## Description: <br>
-High-quality Chinese TTS using GPT-SoVITS v2 Pro+ - convert text to natural-sounding speech with voice cloning support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-quality Chinese TTS using GPT-SoVITS v2 Pro+ to convert text to natural-sounding speech with voice cloning support.
 
-## Publisher: <br>
-[huizong-cpu](https://clawhub.ai/user/huizong-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huizong-cpu](https://clawhub.ai/user/huizong-cpu)
 
-## Use Case: <br>
-Developers and automation builders use this skill to synthesize Chinese speech from text through a local GPT-SoVITS API, including voice cloning with authorized reference audio. It is intended for voice response automation, content narration, and AI voice application workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MP3 conversion path has a command-injection risk when output paths are user-controlled. <br>
-Mitigation: Do not pass user-controlled output paths until the ffmpeg call is changed to a safer argument-array API such as execFile or spawn with path validation. <br>
-Risk: Voice cloning and TTS requests may expose reference audio or sensitive text to the configured GPT-SoVITS endpoint. <br>
-Mitigation: Use only reference audio you have permission to clone and avoid sensitive text unless you trust the configured GPT-SoVITS endpoint. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to synthesize Chinese voice responses, narration, and IVR-style audio from text through a local GPT-SoVITS API server.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huizong-cpu/gptsovits-tts) <br>
-- [Publisher profile](https://clawhub.ai/user/huizong-cpu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, API Calls] <br>
-**Output Format:** [MP3 audio file with returned output path string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configurable TTS sampling parameters and returns a generated MP3 path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configured GPT-SoVITS endpoint receives the input text, and reference voice recordings can be sensitive biometric data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted local endpoint, protect reference recordings, and synthesize only voices the operator has permission to clone.
+
+Risk: The security evidence reports that an untrusted output path can be abused to run local shell commands.
+
+Mitigation: Restrict callers and output paths to a dedicated directory, and replace shell command execution with execFileSync or spawnSync argument arrays before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huizong-cpu/skills/gptsovits-tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [MP3 audio file with the generated output path returned as a string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converts generated WAV audio to 128 kbps, 44100 Hz, mono MP3 output when ffmpeg succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Runs a fleet-wide Azure PostgreSQL Flexible Server health check across CPU, memory, storage, IOPS, disk bandwidth, connections, resource logs, and known issues using AMG MCP and Azure Monitor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a fleet-wide Azure PostgreSQL Flexible Server health check, scanning CPU, memory, storage, IOPS, disk bandwidth, and connection metrics before investigating abnormal servers with Azure Monitor metrics, PostgreSQL resource logs, and known-issue tracking.
 
-## Publisher: <br>
-[1w2w3y](https://clawhub.ai/user/1w2w3y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1w2w3y](https://clawhub.ai/user/1w2w3y)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to assess Azure PostgreSQL Flexible Server fleet health, investigate abnormal servers, correlate metrics with resource logs, and produce prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retains Azure PostgreSQL operational findings across sessions in memory/amg-check-pg-flex/report.md. <br>
-Mitigation: Decide before use whether persistent findings are needed, minimize retained details, and delete the report after each engagement when retention is not required. <br>
-Risk: Generated shell commands may process cloud diagnostic output. <br>
-Mitigation: Run generated commands only in trusted workspaces and inspect or sanitize diagnostic output before execution. <br>
-Risk: The skill requires Grafana service-account access and Azure Monitor queries that can expose fleet topology and operational logs. <br>
-Mitigation: Use least-privilege credentials, configure only the intended subscription IDs, and avoid sharing rendered reports outside the authorized operations context. <br>
+## Use Case:
 
+Cloud operators, SREs, and database engineers use this skill to run an on-demand health check across Azure PostgreSQL Flexible Server fleets. It helps triage fleet-level resource pressure, deep-dive abnormal servers, correlate logs and metrics, and maintain a persistent known-issues report.
 
-## Reference(s): <br>
-- [Analysis Patterns](reference/analysis-patterns.md) <br>
-- [Deep-Dive Queries](reference/deep-dive-queries.md) <br>
-- [Error Handling](reference/error-handling.md) <br>
-- [Output Format](reference/output-format.md) <br>
-- [Phase 3 Deep Metrics](reference/phase3-deep-dive.md) <br>
-- [Phase 4 Resource Logs](reference/phase4-resource-logs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown health-check report with tables, action items, inline shell commands, and persistent Markdown configuration/report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts optional time-range and subscription arguments; writes or updates memory/amg-check-pg-flex/config.md and memory/amg-check-pg-flex/report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A live Grafana bearer token can be exposed through shell history, logs, screenshots, or support transcripts if pasted directly into setup commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege dedicated Grafana service-account token, prefer secret management over inline command entry, and rotate the token if exposure is suspected.
+
+Risk: The skill accesses Azure Managed Grafana and PostgreSQL monitoring data during health checks.
+
+Mitigation: Install and run it only in environments where that monitoring-data access is approved, and scope credentials to the minimum required permissions.
+
+Risk: Large-result recovery may involve local parsing commands over saved telemetry files.
+
+Mitigation: Review the generated file path and contents before approving local parsing commands, and avoid broad command approval unless the result file is trusted.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/1w2w3y/skills/amg-check-pg-flex)
+- [Output Format](reference/output-format.md)
+- [Error Handling](reference/error-handling.md)
+- [Phase 3 Deep Metrics](reference/phase3-deep-dive.md)
+- [Phase 4 Resource Logs](reference/phase4-resource-logs.md)
+- [Analysis Patterns](reference/analysis-patterns.md)
+- [Deep-Dive Queries](reference/deep-dive-queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, action items, inline commands, and persistent known-issue updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces fleet inventory, pulse-check results, abnormal-server deep dives, resource-log findings, known-issue cross-reference, prioritized actions, and an updated memory report.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

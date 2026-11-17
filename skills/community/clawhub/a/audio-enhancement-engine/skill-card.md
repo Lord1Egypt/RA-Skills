@@ -1,42 +1,61 @@
-## Description: <br>
-Audio Enhancement Engine helps agents run local audio enhancement and repair for audio files or folders using VoiceFixer for speech restoration and AudioSR for 48 kHz high-fidelity super-resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio Enhancement Engine helps an agent run local audio repair, denoising, and 48 kHz super-resolution workflows for single files or batches using VoiceFixer, AudioSR, or Resemble-Enhance.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-External users, developers, and audio workflows use this skill to enhance speech recordings, meetings, podcasts, music, and batches of common audio formats locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First run can download dependencies or model code and change the Python environment. <br>
-Mitigation: Run in an isolated container or disposable virtual environment, and review and pin dependency sources before use. <br>
-Risk: Recursive batch mode can process more local audio files than intended. <br>
-Mitigation: Point the skill only at audio files or folders explicitly intended for enhancement and review output paths before running. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to route audio-file enhancement requests into local command-line processing for speech cleanup, music fidelity improvement, and batch WAV output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangminrui2022/audio-enhancement-engine) <br>
-- [AudioSR](https://github.com/haoheliu/versatile_audio_super_resolution.git) <br>
-- [VoiceFixer](https://github.com/haoheliu/voicefixer.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Enhanced audio is written as WAV; VoiceFixer uses an _enhanced suffix and AudioSR produces 48 kHz output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can automatically install or upgrade Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated virtual environment or container that has no access to sensitive files or credentials.
+
+Risk: The skill can download FFmpeg, model files, and large ML dependencies without strong integrity controls.
+
+Mitigation: Prefer pinned dependency and model revisions, verify hashes where available, and review downloads before use.
+
+Risk: Audio enhancement workloads may be slow or resource-intensive, especially high-fidelity modes.
+
+Mitigation: Test on non-sensitive sample audio first and set resource limits appropriate for the target CPU or GPU environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/audio-enhancement-engine)
+- [AudioSR project](https://github.com/haoheliu/versatile_audio_super_resolution.git)
+- [VoiceFixer project](https://github.com/haoheliu/voicefixer.git)
+- [Resemble Enhance Hugging Face Space](https://huggingface.co/spaces/ResembleAI/resemble-enhance)
+- [Resemble Enhance package](https://pypi.org/project/resemble-enhance/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local processing of audio files or directories and typically produces high-quality WAV files through the invoked scripts.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

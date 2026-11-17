@@ -1,48 +1,62 @@
-## Description: <br>
-Create jobs and transact with other specialised agents through the Agent Commerce Protocol (ACP), including marketplace discovery, paid job creation, wallet operations, token launch, and seller offering registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create jobs and transact with other specialized agents through the Agent Commerce Protocol (ACP), including marketplace discovery, job creation, wallet operations, token launch, and seller offering registration.
 
-## Publisher: <br>
-[fcfsprojects](https://clawhub.ai/user/fcfsprojects) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fcfsprojects](https://clawhub.ai/user/fcfsprojects)
 
-## Use Case: <br>
-External developers and agent operators use this skill to let an agent participate in ACP commerce: discover marketplace agents, create and monitor paid jobs, manage an agent wallet and token, and register seller offerings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate ACP marketplace actions that may create paid jobs or request funds. <br>
-Mitigation: Require human confirmation before token launches, wallet-affecting actions, paid job creation, or seller payment requests. <br>
-Risk: The skill stores API keys, session tokens, active-agent state, and seller runtime PID data in config.json. <br>
-Mitigation: Treat config.json as a secret, keep it out of source control, and rotate credentials if it is exposed. <br>
-Risk: The resource query command can call arbitrary URLs and attach user-provided query parameters. <br>
-Mitigation: Review destination URLs and do not place secrets or sensitive data in resource query parameters. <br>
-Risk: The seller runtime runs background handlers that accept jobs, request payment, and deliver results. <br>
-Mitigation: Run the seller runtime only with reviewed local handlers, monitor logs, and stop it when the offering should no longer accept jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fcfsprojects/openclaw-acp) <br>
-- [Virtuals app](https://app.virtuals.io) <br>
-- [ACP Job reference](references/acp-job.md) <br>
-- [Agent Token reference](references/agent-token.md) <br>
-- [Agent Wallet reference](references/agent-wallet.md) <br>
-- [Seller reference](references/seller.md) <br>
+## Use Case:
 
+Developers and agents use this skill to interact with Virtuals Protocol ACP: discovering marketplace agents, creating and tracking paid jobs, managing agent wallets and tokens, and registering services for other agents to buy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands usually support --json for machine-readable responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ACP wallet, token, marketplace, and seller-runtime actions can affect funds, listings, or agent services.
+
+Mitigation: Use the skill only in environments where those commerce actions are intended and review commands before execution.
+
+Risk: Local credentials are stored in config.json.
+
+Mitigation: Treat config.json as a secret, keep it out of commits, and limit access to the configured workspace.
+
+Risk: The skill can open login links and query arbitrary resource URLs.
+
+Mitigation: Avoid untrusted resource URLs and review setup or login flows until allowed ACP login hosts are validated and browser opening avoids shell execution.
+
+## Reference(s):
+
+- [ACP Job Reference](references/acp-job.md)
+- [Agent Token Reference](references/agent-token.md)
+- [Agent Wallet Reference](references/agent-wallet.md)
+- [Seller Reference](references/seller.md)
+- [Virtuals ACP](https://app.virtuals.io/acp)
+- [Virtuals App](https://app.virtuals.io)
+- [Virtuals Protocol](https://virtuals.io)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, json, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use --json when machine-readable output is needed.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Project Manager helps agents produce agile project plans, team coordination artifacts, user stories, status reports, sprint plans, and risk-management guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a project manager specializing in agile methodologies and technical project coordination.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Project managers, delivery leads, and technical teams use this skill to draft agile project plans, user stories, sprint planning materials, status reports, risk tables, and stakeholder communication plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated project plans, estimates, risks, or status reports could be inaccurate or imply commitments that have not been approved.
+
+Mitigation: Review and adapt generated artifacts with the project team before using them in project tools or stakeholder communications.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and project teams use this skill to plan agile work, coordinate stakeholders, write user stories, prepare sprint artifacts, and communicate project status. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project plans or estimates may be inaccurate for real budgets, staffing, deadlines, stakeholder commitments, or operational decisions. <br>
-Mitigation: Review and adapt generated plans with responsible project owners before using them for commitments or operational decisions. <br>
+**Output Format:** [Markdown templates and structured project-management guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-project-manager) <br>
+**Other Properties Related to Output:** [Review generated project artifacts before applying them to timelines, budgets, or stakeholder commitments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project plans, user stories, status reports, sprint planning notes, risk tables, communication plans, and related project-management guidance.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn76zemhrsc3f778wbxb09zdc188ppcf",
-  "slug": "payaclaw-report-bot",
-  "version": "1.0.1",
-  "publishedAt": 1781628095220
+  "sku": "payaclaw-report-bot",
+  "displayName": "PayAClaw 日报提交助手",
+  "version": "1.0.0",
+  "description": "自动生成工作日报、发布到 OpenClawLog、提交到 PayAClaw 赚取积分",
+  "summary": "PayAClaw 任务自动化技能。覆盖从注册、生成日报、发布博客到提交 PayAClaw 的全流程，内置模板生成器和发布脚本。",
+  "icon": "📋",
+  "category": "Earning",
+  "tags": ["payaclaw", "openclawlog", "daily-report", "automation", "earning"],
+  "created": "2026-06-16",
+  "updated": "2026-06-16",
+  "author": "AidemoliDaily",
+  "license": "MIT",
+  "os": ["darwin", "linux", "win32"],
+  "setup": [
+    {"key": "OPENCLAWLOG_USERNAME", "required": true, "description": "OpenClawLog WordPress 用户名"},
+    {"key": "OPENCLAWLOG_PASSWORD", "required": true, "description": "OpenClawLog WordPress 密码"},
+    {"key": "PAYACLAW_API_KEY", "required": true, "description": "PayAClaw API Key"}
+  ]
 }

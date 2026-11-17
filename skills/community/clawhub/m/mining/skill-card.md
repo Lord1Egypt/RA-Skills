@@ -1,43 +1,58 @@
-## Description: <br>
-Provides shell-command workflows for a Mining-branded local entry tracker that stores, lists, searches, removes, exports, and configures user-provided data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advertises mining analysis, but the artifact provides shell commands for maintaining local mining-labeled records.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers can use this skill when they intentionally need a local scratchpad-style CLI for recording, searching, deleting, exporting, and configuring entries. It should not be treated as a mining or blockchain analysis skill unless the publisher updates the release evidence to match that behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is labeled as mining analysis but behaves as a local data-management CLI, which could lead users to install it for the wrong purpose. <br>
-Mitigation: Review the behavior before installation and use it only when local scratchpad-style entry tracking is intended. <br>
-Risk: The skill stores user-provided entries and configuration locally and can export saved data to files. <br>
-Mitigation: Do not enter secrets or sensitive business data; set MINING_DIR deliberately and review exported files before sharing them. <br>
-Risk: The remove command deletes stored entries by number. <br>
-Mitigation: Back up data that must be retained and confirm the target entry before running remove. <br>
+## Use Case:
 
+Developers or operators can use this skill as a simple local CLI for adding, listing, searching, removing, exporting, and configuring mining-labeled records. It should not be relied on for blockchain mining analysis, protocol security evaluation, or on-chain research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/mining) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Plain text CLI output with local JSONL or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores data under ~/.mining by default, or under MINING_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The documentation overstates mining and blockchain analysis capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the artifact as a local record manager and independently verify any mining, protocol, or on-chain analysis before use.
+
+Risk: Unsafe shell handling can run unintended commands or corrupt local records when untrusted input is passed to config, add, or search.
+
+Mitigation: Review and patch serialization and shell interpolation before installation, use only trusted input, and run the script in a constrained environment.
+
+Risk: The script writes local data under the user's home directory by default and can export files into the working directory.
+
+Mitigation: Set MINING_DIR to an isolated directory and inspect generated JSON, CSV, and configuration files before sharing or reusing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/mining)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write JSONL records under MINING_DIR, defaulting to ~/.mining, and can export JSON or CSV files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

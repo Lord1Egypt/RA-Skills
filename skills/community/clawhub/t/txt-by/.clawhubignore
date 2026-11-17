@@ -1,0 +1,13 @@
+.github/
+tools/
+docs/
+README.md
+README.ru.md
+PUBLISHING.ru.md
+dist/
+*.zip
+*.bundle
+*.log
+.env
+.env.*
+__pycache__/

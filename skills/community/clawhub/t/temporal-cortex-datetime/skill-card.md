@@ -1,46 +1,58 @@
-## Description: <br>
-Convert timezones, resolve natural language times ("next Tuesday at 2pm"), compute durations, and adjust timestamps with DST awareness. No credentials needed; all tools run fully offline after one-time binary install. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert timezones, resolve natural language times, compute durations, and adjust timestamps with DST awareness after a one-time local MCP server install.
 
-## Publisher: <br>
-[billylui](https://clawhub.ai/user/billylui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billylui](https://clawhub.ai/user/billylui)
 
-## Use Case: <br>
-Developers and agents use this skill to resolve current temporal context, natural-language datetime expressions, timezone conversions, durations, and DST-aware timestamp adjustments without credentials or runtime network calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Initial installation uses an npm package that installs a native binary. <br>
-Mitigation: Inspect the npm package before installation and independently verify the release checksum before first use. <br>
-Risk: A misconfigured or stale local timezone setting can produce misleading datetime interpretations. <br>
-Mitigation: Call get_temporal_context before time-dependent work and confirm the configured timezone when results affect scheduling or deadlines. <br>
-Risk: Runtime containment depends on the chosen launch path. <br>
-Mitigation: Use the documented Docker mode with networking disabled when stronger isolation is required. <br>
+## Use Case:
 
+Developers and agent users use this skill to normalize ambiguous time expressions, convert dates across IANA timezones, compute durations, and make DST-aware timestamp adjustments before scheduling or time-sensitive work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billylui/temporal-cortex-datetime) <br>
-- [Temporal Cortex homepage](https://temporal-cortex.com) <br>
-- [Temporal Cortex skills repository](https://github.com/temporal-cortex/skills) <br>
-- [Temporal Cortex MCP package](https://www.npmjs.com/package/@temporal-cortex/cortex-mcp) <br>
-- [Datetime Tools Reference](references/DATETIME-TOOLS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with datetime tool results, configuration snippets, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Datetime outputs use RFC 3339 timestamps, IANA timezones, UTC offsets, and DST-aware local time fields where applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: server release evidence and frontmatter) <br>
+Risk: The skill installs and runs a third-party MCP binary during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the pinned package path, verify published checksums before first use, and avoid elevated privileges.
+
+Risk: Initial installation may contact external package and release hosts.
+
+Mitigation: Use the documented Docker containment with network isolation after setup when stronger isolation is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billylui/skills/temporal-cortex-datetime)
+- [Temporal Cortex homepage](https://temporal-cortex.com)
+- [Repository listed in metadata](https://github.com/temporal-cortex/skills)
+- [npm package](https://www.npmjs.com/package/@temporal-cortex/cortex-mcp)
+- [Release checksums](https://github.com/temporal-cortex/mcp/releases/download/mcp-v0.9.1/SHA256SUMS.txt)
+- [Datetime Tools Reference](references/DATETIME-TOOLS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Structured text and RFC 3339 timestamp values returned through MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only datetime computations; no credentials are required.]
+
+## Skill Version(s):
+
+0.9.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

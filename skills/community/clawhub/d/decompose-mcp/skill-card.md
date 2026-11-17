@@ -1,44 +1,57 @@
-## Description: <br>
-Decompose any text into classified semantic units: authority, risk, attention, and entities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decompose any text into classified semantic units -- authority, risk, attention, entities. No LLM. Deterministic.
 
-## Publisher: <br>
-[echology-io](https://clawhub.ai/user/echology-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[echology-io](https://clawhub.ai/user/echology-io)
 
-## Use Case: <br>
-Developers and document-analysis teams use this skill to classify text, specifications, contracts, policies, and regulations into structured semantic units before downstream review or agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The optional URL decomposition tool performs outbound HTTP requests to user-specified addresses. <br>
-Mitigation: Use local text decomposition when network access is not needed, and avoid passing URLs that the agent should not contact. <br>
-Risk: Sensitive environments may require stronger supply-chain controls for third-party packages. <br>
-Mitigation: Review the decompose-mcp package before deployment and pin the package version during installation. <br>
+## Use Case:
 
+Developers and agents use this skill to classify text or fetched URL content into structured semantic units for obligation, risk, attention, entity, date, and financial analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/echology-io/decompose-mcp) <br>
-- [Documentation](https://echology.io/decompose) <br>
-- [PyPI package](https://pypi.org/project/decompose-mcp/) <br>
-- [When Regex Beats an LLM](https://echology.io/blog/regex-beats-llm) <br>
-- [Why Your Agent Needs a Cognitive Primitive](https://echology.io/blog/cognitive-primitive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent tool output is structured JSON containing classified semantic units when the MCP tools are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: claw.json and server release metadata) <br>
+Risk: The release installs an unpinned external Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin decompose-mcp to a reviewed version before installation.
+
+Risk: URL decomposition can make outbound requests to user-specified URLs.
+
+Mitigation: Run the MCP server with only required network access and use decompose_text when local-only processing is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/echology-io/skills/decompose-mcp)
+- [Documentation](https://echology.io/decompose)
+- [PyPI Package](https://pypi.org/project/decompose-mcp/)
+- [When Regex Beats an LLM](https://echology.io/blog/regex-beats-llm)
+- [Why Your Agent Needs a Cognitive Primitive](https://echology.io/blog/cognitive-primitive)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON semantic-unit analysis, with optional agent-facing summaries or guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The text path is local-only; URL decomposition performs outbound requests to user-specified URLs when enabled.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release and artifact claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Generates structured JSON functional test cases for Agent Skills, covering activation, core capabilities, workflow, instruction clarity, and exception/security scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured SFT-level functional test cases for Agent Skills in JSON format.
 
-## Publisher: <br>
-[liyifm](https://clawhub.ai/user/liyifm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyifm](https://clawhub.ai/user/liyifm)
 
-## Use Case: <br>
-Developers and agent builders use this skill to generate traceable functional test cases for Agent Skills. It helps plan tests across routing, declared capabilities, multi-step behavior, instruction quality, and exception/security handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads every file under the selected skill folder or skill zip, which can expose secrets or unrelated private files if the target is too broad. <br>
-Mitigation: Point it only at the intended skill package, avoid folders that contain secrets, and review the generated JSON before sharing it. <br>
-Risk: Generated test cases may be incomplete or misleading if the target skill's instructions, scripts, or references are ambiguous. <br>
-Mitigation: Review the generated cases against the source files and run the included validation command before relying on the output. <br>
+## Use Case:
 
+Developers and agent evaluators use this skill to generate functional test cases for Agent Skills, including routing, workflow, instruction clarity, and exception or security scenarios.
 
-## Reference(s): <br>
-- [Skill Test Schema](references/test-schema.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [ClawHub Release Page](https://clawhub.ai/liyifm/skill-test-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON test case files with supporting Markdown-style guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validated JSON includes generated summary and verified fields after the bundled validation step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill reads all non-hidden files in a target skill directory or extracted ZIP while generating line-referenced tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted skill directories or ZIP files.
+
+Risk: The skill writes the generated JSON to a user-selected output path.
+
+Mitigation: Choose an output path that is safe for the agent to create or overwrite.
+
+## Reference(s):
+
+- [Skill Test Generate release](https://clawhub.ai/liyifm/skills/skill-test-generate)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Test schema reference](references/test-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Structured JSON test-case files with validation feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Validated outputs include generated summary counts and a verified flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Monitor DX clusters for rare station spots, track active DX expeditions, and get daily band activity digests for amateur radio operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor DX clusters for rare station spots, track active DX expeditions, and get daily band activity digests for amateur radio operators.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-External amateur radio operators use this skill to monitor public DX cluster spots, identify rare or workable stations, generate band activity digests, and configure local alerts for new DX activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor connects to public DX cluster servers and may use a real callsign. <br>
-Mitigation: Install only if public cluster connectivity is acceptable, and choose callsign/configuration values deliberately. <br>
-Risk: Station and QTH details can be stored locally when AI-enhanced setup is used. <br>
-Mitigation: Review dx-ai-config.json before use and avoid storing station details that should not be kept locally. <br>
-Risk: Automated monitoring examples use cron-style recurring execution. <br>
-Mitigation: Review any cron job before adding it and run the monitor as a normal, non-root user. <br>
-Risk: Monitor state is written to /tmp/dx-monitor-state.json. <br>
-Mitigation: Treat the state file as local runtime data and clean it up when disabling monitoring. <br>
+## Use Case:
 
+External amateur radio operators use this skill to monitor DX cluster spots, identify rare or needed DXCC stations, and generate live alerts or daily activity digests.
 
-## Reference(s): <br>
-- [NG3K Amateur Radio Contest/DX Page](https://www.ng3k.com/misc/adxo.html) <br>
-- [DX-World](https://www.dx-world.net/) <br>
-- [425 DX News](http://www.425dxn.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown digest sections, JSON when requested, and shell command/configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally produce JSON spot records from the watch command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: The security review reports unsafe shared temporary state storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill as a non-root user and move state to a private per-user directory before enabling recurring monitoring.
+
+Risk: Recurring cron automation can repeatedly contact external DX cluster servers.
+
+Mitigation: Review configuration and alert cadence before enabling cron, and keep automated runs scoped to the operator's intended callsign and cluster.
+
+Risk: Operator callsign and local station details may be exposed through DX cluster connections or local configuration files.
+
+Mitigation: Use only callsign and station details the operator is comfortable disclosing, and protect local configuration files that contain QTH or station information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/capt-marbles/skills/amateur-radio-dx)
+- [AI-enhanced DX monitor documentation](artifact/README-AI.md)
+- [Quick start documentation](artifact/README.md)
+- [NG3K Amateur Radio DX Calendar](https://www.ng3k.com/misc/adxo.html)
+- [DX World](https://www.dx-world.net/)
+- [425 DX News](http://www.425dxn.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DX station callsigns, band and mode details, priority alerts, digest summaries, and cron examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

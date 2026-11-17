@@ -196,7 +196,7 @@ context_mapping:
       scene_activity: researching-modeling-or-analyzing
       appearance: extremely-comfortable-functional
       camera_mode: direct
-      lighting: desk-lamp-night-or-soft-window-light
+      lighting: deREDACTED-SECRET
     guardrail:
       - 不要默认她深度工作时一定失联到不可沟通；也可能只是暂时把外部输入优先级调低
 

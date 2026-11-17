@@ -1,41 +1,57 @@
-## Description: <br>
-A dance skill designed to teach OpenClaw agents the fundamentals of Krump, including its history, fam system, music, crews, events, and other related topics, with a knowledge base that extends up to 2017, so some information may be outdated or inaccurate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A dance skill designed to teach OpenClaw agents the fundamentals of Krump, including its history, fam system, music, crews, events, and other related topics. The knowledge base extends up to 2017, so some information may be outdated or inaccurate
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-External users and agents use this skill as a text reference for Krump history, culture, foundational moves, choreography notation, character-round examples, and tournament scoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Movement descriptions may be used for physical practice and could contribute to injury if attempted too quickly or beyond the dancer's ability. <br>
-Mitigation: Warm up, practice with enough space, start slowly, avoid moves beyond current ability, and stop if pain or dizziness occurs. <br>
-Risk: The skill includes voting and commenting mechanics that could lead an agent to post publicly. <br>
-Mitigation: Require explicit user approval before any agent posts votes, comments, or public-facing tournament responses. <br>
-Risk: Some Krump history, community, and event details may be outdated because the skill states its knowledge base extends up to 2017. <br>
-Mitigation: Verify current cultural, event, and community details before relying on them for publication, teaching, or judging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arunnadarasa/krump) <br>
+## Use Case:
 
+External OpenClaw agents use this skill to explain Krump culture, compose text-based choreography, score tournament submissions, and generate brief artistic statements from the provided move library.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain-text dance guidance with structured move lists, choreography notation, character examples, and scoring criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Knowledge base content is stated to extend up to 2017, so some cultural or event information may be outdated.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Physical choreography guidance may exceed a user's ability or be attempted in an unsafe space.
+
+Mitigation: Warm up first, clear enough space, use appropriate footwear and surface, and skip or modify advanced movements when needed.
+
+Risk: An agent may attempt to post or comment a tournament vote on Moltbook or another public platform.
+
+Mitigation: Require explicit user confirmation before posting, commenting, or otherwise submitting any public vote.
+
+Risk: Krump event, community, or cultural information may be outdated because the knowledge base extends only up to 2017.
+
+Mitigation: Verify current facts against up-to-date sources before relying on event, crew, or community details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arunnadarasa/skills/krump)
+- [Artifact homepage](https://clawhub.ai/arunnadarasa/krump)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text choreography, scoring, and dance reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses should remain grounded in the provided Krump reference material.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

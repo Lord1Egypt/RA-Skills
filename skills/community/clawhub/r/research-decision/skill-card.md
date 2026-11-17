@@ -1,39 +1,51 @@
-## Description: <br>
-Research Decision helps agents perform bilingual web research, cross-check high-quality sources, and turn evidence into decisions, troubleshooting guidance, risk notes, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Decision helps agents investigate complex technical choices or troubleshooting questions online, compare high-quality Chinese and English sources, and return evidence-backed recommendations, risks, and next steps.
 
-## Publisher: <br>
-[Krishnna2725](https://clawhub.ai/user/Krishnna2725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnna2725](https://clawhub.ai/user/krishnna2725)
 
-## Use Case: <br>
-Developers, engineers, and technical decision makers use this skill when they need evidence-based recommendations for technology selection, upgrades, compatibility questions, production readiness, known issues, or difficult bug triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and read-only local checks may reveal sensitive project names, incident details, dependency versions, or software inventory. <br>
-Mitigation: Use generalized external search terms for confidential topics and ask before inspecting local environments that may contain sensitive context. <br>
+## Use Case:
 
+Developers, engineers, and technical decision makers use this skill to evaluate tools, upgrades, compatibility questions, architecture tradeoffs, community signals, and difficult bugs that require current web research and cross-source verification.
 
-## Reference(s): <br>
-- [Query Patterns](references/query-patterns.md) <br>
-- [Issue Triage](references/issue-triage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown research report with cited conclusions, risk notes, and actionable next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only environment or dependency check commands when they help verify a version, dependency, or troubleshooting claim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may perform web searches and local version or dependency checks, which can expose private logs, package names, repository details, or proprietary context if included in queries or inspection output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local inspection is acceptable, redact sensitive details before web searches, and avoid including private logs or proprietary context unless that disclosure is intended.
+
+## Reference(s):
+
+- [Query Patterns](references/query-patterns.md)
+- [Issue Triage](references/issue-triage.md)
+- [ClawHub skill page](https://clawhub.ai/krishnna2725/skills/research-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research report with cited conclusions and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links, risk notes, known issues, workarounds, and next-step recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

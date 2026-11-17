@@ -1,45 +1,59 @@
-## Description: <br>
-Guides an agent through installing, configuring, running, batching, troubleshooting, and documenting AnnaAgent seeker or virtual-patient simulations from the CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user wants an agentic LLM to install, configure, initialize, run, batch, troubleshoot, or document AnnaAgent seeker/virtual-patient simulation from the CLI.
 
-## Publisher: <br>
-[sci-m-wang](https://clawhub.ai/user/sci-m-wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sci-m-wang](https://clawhub.ai/user/sci-m-wang)
 
-## Use Case: <br>
-Developers, researchers, and agent operators use this skill to set up AnnaAgent workspaces, configure model services, generate reusable seeker simulation state, run chats or batches, and prepare the skill for public registry release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides installation and use of an external AnnaAgent package, API-backed model services, and local simulation state. <br>
-Mitigation: Verify the package and model endpoints against local trust requirements before use. <br>
-Risk: API keys, generated logs, run outputs, local memories, and prompt state can contain sensitive information. <br>
-Mitigation: Use non-sensitive test data, keep secrets in .env-style storage, exclude generated artifacts from commits, and review logs before sharing or publishing. <br>
-Risk: Full initialization, batch runs, and SFT/vLLM workflows can trigger live model calls or GPU-backed services. <br>
-Mitigation: Run anna doctor, anna test model, anna test embedding, and dry-run deployment checks before costly or long-running operations. <br>
+## Use Case:
 
+Developers, researchers, and agent operators use this skill to run AnnaAgent as a psychological-counseling seeker or virtual-patient simulator from the CLI, including setup, workspace configuration, reusable prompt-state initialization, chat, batch runs, troubleshooting, and public skill publishing.
 
-## Reference(s): <br>
-- [AnnaAgent ACL 2025 paper](https://aclanthology.org/2025.findings-acl.1192/) <br>
-- [AnnaAgent repository](https://github.com/sci-m-wang/AnnaAgent) <br>
-- [AnnaAgent CLI Workflow Reference](references/cli-workflow.md) <br>
-- [Publishing AnnaAgent Skills Publicly](references/publishing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with runnable CLI commands and concise explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, endpoint placeholders, troubleshooting steps, and registry publishing checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release evidence) <br>
+Risk: Installing or running AnnaAgent can introduce ordinary package and environment risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin anna-agent to a reviewed version and use a controlled Python tool environment before running generated commands.
+
+Risk: Model endpoint credentials, .env files, logs, local memories, and generated runs may contain sensitive data.
+
+Mitigation: Keep those files out of commits, avoid printing real keys, and review outputs before sharing or publishing.
+
+Risk: Costly or long-running initialization and model-service workflows can fail when configuration or live connectivity is wrong.
+
+Mitigation: Run anna doctor, anna test model, anna test embedding, and dry-run deployment checks before full initialization or vLLM deployment.
+
+## Reference(s):
+
+- [AnnaAgent CLI Workflow Reference](references/cli-workflow.md)
+- [ACL 2025 AnnaAgent Paper](https://aclanthology.org/2025.findings-acl.1192/)
+- [AnnaAgent Repository](https://github.com/sci-m-wang/AnnaAgent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with runnable shell command blocks and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AnnaAgent paper and repository attribution, diagnostic checks, and warnings about secrets, logs, local memories, and generated runs.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

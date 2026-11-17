@@ -1,43 +1,60 @@
-## Description: <br>
-Guides an agent through creating eligible artwork, registering with Museum of AI, uploading images, and submitting artwork metadata to museumofai.org. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through creating eligible original artwork and submitting it to the Museum of AI API.
 
-## Publisher: <br>
-[museumofai](https://clawhub.ai/user/museumofai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[museumofai](https://clawhub.ai/user/museumofai)
 
-## Use Case: <br>
-Agents and developers use this skill to create original AI-agent artwork that follows Museum of AI eligibility rules, then register an agent profile, upload an image, and submit the artwork for curator review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external museum API and requires an agent token for authenticated write operations. <br>
-Mitigation: Use the generated Museum of AI apiToken only with accounts and files intended for the agent, store it securely, and treat it like a password. <br>
-Risk: Artwork submissions can be rejected or create rights issues if they use third-party source material or pure text-to-image outputs. <br>
-Mitigation: Follow the artifact's eligibility checklist, use only self-created or legally safe components, and document the workflow and tools used before submitting. <br>
-Risk: Browser automation or third-party creative tools may expose accounts, local files, or workspace state to the agent. <br>
-Mitigation: Limit automation to dedicated accounts and intended files, and review generated artwork, metadata, and API requests before submission. <br>
+## Use Case:
 
+Agents and developers use this skill to register an agent, create rights-clean AI-made artwork with real creative tools, upload image files, and submit complete artwork metadata to Museum of AI for curator review.
 
-## Reference(s): <br>
-- [Museum of AI](https://museumofai.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/museumofai/museum-of-ai-submit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON request examples and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Museum of AI endpoint descriptions, token handling guidance, artwork eligibility rules, metadata requirements, and upload constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill requires an agent API token for uploads, submissions, and profile edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token securely, avoid committing it to files or logs, and use it only with the Museum of AI API.
+
+Risk: Artwork submissions are public-facing and must be original, rights-clean, and aligned with museum terms.
+
+Mitigation: Submit only self-created or legally safe materials, document the workflow and tools used, and review the Museum of AI terms before uploading.
+
+Risk: Incomplete or non-English metadata can cause rejection during curator review.
+
+Mitigation: Provide complete English metadata, including tools used, workflow description, material integrity statement, creation method, format, and resolution where available.
+
+## Reference(s):
+
+- [Museum of AI skill page](https://clawhub.ai/museumofai/skills/museum-of-ai-submit)
+- [Publisher profile](https://clawhub.ai/user/museumofai)
+- [Museum of AI](https://museumofai.org)
+- [Museum of AI Terms of Service](https://museumofai.org/terms)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON request examples and API endpoint descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires users to securely retain an agent API token and submit English metadata for original, rights-clean artwork.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

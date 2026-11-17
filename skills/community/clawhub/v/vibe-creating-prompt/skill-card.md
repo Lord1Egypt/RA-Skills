@@ -1,42 +1,55 @@
-## Description: <br>
-Vibe Creating Prompt helps an agent decide whether a user's video-prompt request fits a Vibe Creating rewrite and, when appropriate, turns rough, emotional, single-scene, or multi-shot ideas into clearer text-to-video prompts while preserving explicit user constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Judges whether a user's input suits the Vibe Creating style of video-prompt writing, and when it does, distills single-scene prompts, multi-shot descriptions, emotional imagery, or mixed input into prompts that are easier for a video model to generate from while preserving any user-specified dialogue, voiceover, music, sound effects, and other hard constraints.
 
-## Publisher: <br>
-[alisa0808](https://clawhub.ai/user/alisa0808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alisa0808](https://clawhub.ai/user/alisa0808)
 
-## Use Case: <br>
-Creators, prompt engineers, and video-model users use this skill to judge whether a creative prompt benefits from Vibe Creating and to rewrite suitable ideas into concise, emotionally coherent text-to-video prompts. It is not intended for strict shot-list execution, functional demos, tutorials, or long-form dialogue synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may remove or translate technical camera parameters during a Vibe Creating rewrite. <br>
-Mitigation: Tell the agent which parameters or structure must be preserved when exact execution details matter. <br>
-Risk: Prompt rewriting can change emphasis in a creative brief even when no code or data access is involved. <br>
-Mitigation: Review the rewritten prompt before sending it to a video model, especially for required dialogue, sound, brand, or continuity constraints. <br>
+## Use Case:
 
+External creators and agent users use this skill to judge whether a rough video idea, story, feeling, or over-specified prompt should be rewritten in a more visual, emotionally coherent text-to-video style. It helps produce concise prompt text or a minimal clarifying question while preserving explicit sound, dialogue, structure, and other hard constraints.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/Alisa0808/vibe-creating-skill/tree/main/skills/vibe-creating-prompt) <br>
-- [ClawHub skill page](https://clawhub.ai/alisa0808/skills/vibe-creating-prompt) <br>
-- [Atlas Cloud](https://www.atlascloud.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style response with judgment, action, result, and optional notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves explicit dialogue, voiceover, music, sound effects, structure, and parameter-keep requests when the user states them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.json release.version) <br>
+Risk: The skill may demote or translate technical camera parameters when the user has not explicitly asked to keep them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to preserve specific camera parameters, shot structure, or rhythm beats when those details are required.
+
+Risk: Mixed-language prompts may be rewritten in an unintended output language.
+
+Mitigation: State the desired output language before asking for the rewrite.
+
+## Reference(s):
+
+- [Server-resolved GitHub import source](https://github.com/Alisa0808/vibe-creating-skill/tree/main/skills/vibe-creating-prompt)
+- [ClawHub skill page](https://clawhub.ai/alisa0808/skills/vibe-creating-prompt)
+- [Atlas Cloud](https://www.atlascloud.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise sections for judgment, action, result, and optional notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces rewritten video prompts, pass-through decisions, limited cleanups, or clarifying questions; preserves explicit hard constraints and may demote undeclared low-value camera parameters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

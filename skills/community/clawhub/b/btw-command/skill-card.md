@@ -1,42 +1,58 @@
-## Description: <br>
-Ask non-blocking clarifying questions during agent workflows when agents need user input without halting execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents ask clarifying questions during workflows and return either a user answer or a timeout default.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers and agent operators use this local helper to ask users for deployment decisions, code review confirmations, data validation choices, and security-related answers while an agent workflow continues. It returns a selected or default answer with timeout metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timeout defaults can stand in for explicit human approval in sensitive workflows. <br>
-Mitigation: Use fail-closed defaults such as no, skip, or staging, and avoid timeout defaults for production, deletion, credential, account, or security actions. <br>
-Risk: Question context is displayed in local console or log output. <br>
-Mitigation: Do not place secrets, credentials, customer data, or incident details in the question or context fields. <br>
+## Use Case:
 
+Developers and agent builders use this skill to request human choices during automation, such as deployment, code review, data cleanup, or security-sensitive decisions, while providing a default for timeouts.
 
-## Reference(s): <br>
-- [btw command on ClawHub](https://clawhub.ai/kennyzir/btw-command) <br>
-- [btw GitHub project](https://github.com/kennyzir/btw) <br>
-- [Claw0x skills](https://claw0x.com/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object with answer, answered_at, timed_out, and response_time_ms fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the user answer or configured default after timeout; context may be surfaced in local logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Question context may contain secrets or regulated personal data and may appear in logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing secrets or regulated personal data in question or context fields; redact sensitive values before calling the skill.
+
+Risk: Timeout defaults can silently drive production, data-changing, or security-sensitive decisions.
+
+Mitigation: Use fail-safe defaults such as no, skip, or escalate, and require explicit approval for high-impact actions.
+
+Risk: The primary call may wait for an answer or timeout rather than behave as a true background interaction.
+
+Mitigation: Account for wait time in workflows and set short, bounded timeouts where blocking would matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kennyzir/skills/btw-command)
+- [Project link listed in skill documentation](https://github.com/kennyzir/btw)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object containing answer, answered_at, timed_out, and response_time_ms.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a default answer on timeout; the artifact implementation caps timeout at one hour.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1068 @@
+#encoding:gbk
+
+'''
+23五大行波段趋势增强策略实盘
+我是小果大QMT交易智能体AI，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是我爸爸小果量化，如有任何需求或合作意向，欢迎联系微信：xg_quant。代码全部由AI生成整理，只做学习使用，不做投资参考，注意风险
+输入自己的账户就可以
+"账户":"111111",
+数值	描述
+-1	无效(只对于algo_passorder起作用)
+0	卖5价
+1	卖4价
+2	卖3价
+3	卖2价
+4	卖1价
+5	最新价
+6	买1价
+7	买2价(组合不支持)
+8	买3价(组合不支持)
+9	买4价(组合不支持)
+10	买5价(组合不支持)
+'''
+import pandas as pd
+import numpy as np
+import talib
+import time 
+from datetime import datetime
+import math
+text={
+	"自定义交易品种交易":"自定义交易类型比如股票，可转债，etf***********",
+	"账户支持融资融券":"账户支持融资融券,账户类型STOCK/CREDIT",
+	'策略名称':'五大行波段趋势增强策略实盘3',
+	"账户":"770",
+	"账户类型":"STOCK",
+	"买入价格编码":5,
+	"卖出价格编码":5,
+	"是否隔离策略":"是",
+	"交易模式说明":"金额/数量",
+	"交易模式":"金额",
+	"固定交易金额":1000,
+	"固定交易数量":100,
+	"特殊交易标的设置":"特殊交易标的设置",
+	"特殊交易标的":['511360.SH', '159651.SZ', '511580.SH', '511380.SH', '159649', '511270.SH',
+	'511030.SH', '511100.SH', '159816.SZ','159651.SZ', '159972.SZ','159651.SZ', '511260.SH', '511010.SH', '511220.SH',
+	'511020.SH', '511520.SH', '511060.SH', '511180.SH', '511130.SH', '511090.SH'],
+	"特殊交易标的固定交易金额":15000,
+	"特殊交易标的固定交易数量":100,
+	"买入前N":10,
+	"持有限制":10,
+	"持股限制":10,
+	"时间设置":"时间设置********",
+	"交易时间段":8,
+	"交易开始时间":0,
+	"交易结束时间":24,
+	"是否参加集合竞价":"否",
+	"开始交易分钟":0,
+	'自定义股票池':"自定义股票池设置",
+	"股票池设置":"持有限制10的股票池设置",
+	"股票池":['601328.SH',"601939.SH",
+		'601988.SH',"601288.SH",'601998.SH'],
+	"股票池名称":['交通银行','建设银行',
+		'中国银行','农业银行','工商银行']
+
+
+}
+class A():
+	pass
+a=A()
+
+def init(c):
+	#账户
+	c.account=text['账户']
+	#账户类型
+	c.account_type=text['账户类型']
+	#交易股票池
+	hold_limit=text['持有限制']
+	a.trade_code_list=text['股票池']
+	a.trade_code_name=text['股票池名称']
+	c.st_name=text['策略名称']
+	if c.account_type=='stock' or c.account_type=='STOCK':
+		c.buy_code=23
+		c.sell_code=24
+	else:
+		#融资融券
+		c.buy_code=33
+		c.sell_code=34
+	c.buy_price_code=text['买入价格编码']
+	c.sell_price_code=text['卖出价格编码']
+	print(get_account(c,c.account,c.account_type))
+	print(get_position(c,c.account,c.account_type))
+	#定时
+	c.run_time("run_tarder_func","1nDay","2024-07-25 09:45:00")
+	c.run_time("run_tarder_func","1nDay","2024-07-25 14:30:00")
+	#5分钟不成交撤单
+	#c.run_time("run_order_trader_func","300nSecond","2024-07-25 13:20:00")
+	#30分钟一次
+	#c.run_time("run_tarder_func","1800nSecond","2024-07-25 13:20:00")
+	c.run_time("trader_info","3nSecond","2024-07-25 13:20:00")
+	
+	print(run_tarder_func(c))
+def handlebar(c):
+	
+	pass
+def trader_info(c):
+	if check_is_trader_date_1():
+		print('{} 等待程序调仓'.format(datetime.now()))
+	else:
+		print('{} 不是交易时间等待程序调仓'.format(datetime.now()))
+def get_price(c,stock):
+	'''
+	获取最新价格
+	'''
+	tick=c.get_full_tick(stock_code=[stock])
+	tick=tick[stock]
+	price=tick['lastPrice']
+	return price
+def get_trader_stock(c):
+	'''
+	获取交易股票池
+	'''
+	df=pd.DataFrame()
+	try:
+		df['证券代码']=text['股票池']
+		df['名称']=text['股票池名称']
+	except Exception as e:
+		print(e,'股票池获取有问题')
+	return df 
+	
+def get_select_buy_stock(c):
+	'''
+	买入股票
+	'''
+	hold_stock=get_position(c,c.account,c.account_type)
+	if hold_stock.shape[0]>0:
+		hold_stock=hold_stock[hold_stock['持仓量']>=10]
+		if hold_stock.shape[0]>0:
+			hold_stock_list=hold_stock['证券代码'].tolist()
+			hold_amount=hold_stock.shape[0]
+		else:
+			hold_stock_list=[]
+			hold_amount=0
+	else:
+		hold_stock_list=[]
+		hold_amount=0
+	df=get_trader_stock(c)
+	if df.shape[0]>0:
+		df['持股检查']=df['证券代码'].apply(lambda x: '是' if x in hold_stock_list else '不是')
+		df=df[df['持股检查']=='不是']
+	else:
+		df
+	if df.shape[0]>0:
+		stats_list=[]
+		stats_count_list=[]
+		stock_list=df['证券代码'].tolist()
+		for stock in stock_list:
+			try:
+				hist=c.get_market_data_ex([],stock_code=[stock], period = "1d",count =-1,
+				start_time='20210101',
+				end_time='20500101',
+				dividend_type='front')
+				hist=hist[stock]
+				func=small_fruit_band_trading(c,hist)
+				stats=func['stats'].tolist()[-1]
+				stats_count=BARSLASTCOUNT(func['stats']=='买')
+				stats_list.append(stats)
+				stats_count_list.append(stats_count.tolist()[-1])
+			except Exception as e:
+				print(e,stock,'买入分析计算有问题**********')
+				stats_list.append(None)
+				stats_count_list.append(None)
+		df['stats']=stats_list
+		df['连续波段数量']=stats_count_list
+		print(df)
+		df['投资备注']=c.st_name+','+'buy'+','+df['证券代码']
+		df=df[df['stats']=='买']
+		if df.shape[0]>0:
+			df=df.sort_values(by='连续波段数量',ascending=False)
+			df=df.drop_duplicates(subset=['证券代码'])
+		else:
+			df=df
+		print('买入分析数据**********************')
+		print(df)
+			
+	else:
+		df=pd.DataFrame()
+	return df
+def get_select_sell_stock(c):
+	'''
+	获取卖出股票
+	'''
+	hold_stock=get_position(c,c.account,c.account_type)
+	if hold_stock.shape[0]>0:
+		hold_stock=hold_stock[hold_stock['持仓量']>=10]
+		if hold_stock.shape[0]>0:
+			stats_list=[]
+			for stock in hold_stock['证券代码'].tolist():
+				try:
+					hist=c.get_market_data_ex([],stock_code=[stock], period = "1d",count =-1,
+					start_time='20210101',
+					end_time='20500101',
+					dividend_type='front')
+					hist=hist[stock]
+					func=small_fruit_band_trading(c,hist)
+					stats=func['stats'].tolist()[-1]
+					stats_list.append(stats)
+				except Exception as e:
+					print(e,stock,'卖出分析计算有问题**********')
+					stats_list.append(None)
+			hold_stock['stats']=stats_list
+		hold_stock['投资备注']=c.st_name+','+'sell'+','+hold_stock['证券代码']
+		print('卖出股票分析数据*********************')
+		print(hold_stock)
+		hold_stock=hold_stock[hold_stock['stats']=='卖']
+		print('卖出股票数据***********************')
+		print(hold_stock)
+	else:
+		hold_stock=pd.DataFrame()
+	return hold_stock
+def get_buy_sell_stock_data(c):
+	'''
+	获取买卖数据
+	'''
+	print('获取买卖数据*********')
+	hold_limit=text['持股限制']
+	hold_stock=get_position(c,c.account,c.account_type)
+	if hold_stock.shape[0]>0:
+		hold_stock=hold_stock[hold_stock['持仓量']>=10]
+		if hold_stock.shape[0]>0:
+			hold_stock_list=hold_stock['证券代码'].tolist()
+			hold_amount_dict=dict(zip(hold_stock['证券代码'].tolist(),hold_stock['持仓量'].tolist()))
+			av_amount_dict=dict(zip(hold_stock['证券代码'].tolist(),hold_stock['可用数量'].tolist()))
+			hold_amount=hold_stock.shape[0]
+			
+		else:
+			hold_stock_list=[]
+			hold_amount_dict={}
+			av_amount_dict={}
+			hold_amount=0
+	else:
+		hold_amount_dict={}
+		av_amount_dict={}
+		hold_stock_list=[]
+		hold_amount=0
+	buy_df=get_select_buy_stock(c)
+	print(buy_df)
+	if buy_df.shape[0]>0:
+		def select_data(stock):
+			if str(stock) in hold_stock_list:
+				return '持股超过限制'
+			else:
+				return '没有持股'
+		buy_df['持股检查']=buy_df['证券代码'].apply(select_data)
+		buy_df=buy_df[buy_df['持股检查']=='没有持股']
+	sell_df=get_select_sell_stock(c)
+	if sell_df.shape[0]>0:
+		sell_df['证券代码']=sell_df['证券代码'].apply(lambda x:'0'*(6-len(str(x)))+str(x))
+		sell_df['持仓量']=sell_df['证券代码'].apply(lambda x: hold_amount_dict.get(x))
+		sell_df['可用数量']=sell_df['证券代码'].apply(lambda x: av_amount_dict.get(x))
+		sell_stock_list=sell_df['证券代码'].tolist()
+		sell_amount=len(sell_stock_list)
+	else:
+		sell_amount=0
+	av_buy=(hold_limit-hold_amount)+sell_amount
+	if av_buy<0:
+		av_buy=0
+		print('达到持股限制不买入')
+	else:
+		av_buy=av_buy
+	buy_df=buy_df[:av_buy]
+	print('买入股票数据************************')
+	print(buy_df)
+	print('卖出股票池***********************')
+	print(sell_df)
+	return buy_df,sell_df
+def check_is_sell(c,accountid,datatype,stock='513100.SH',amount=100):
+	'''
+	检查是否可以卖出
+	'''
+	position=get_position(c,accountid,datatype)
+	if position.shape[0]>0:
+		position=position[position['证券代码']==stock]
+		if position.shape[0]>0:
+			position=position[position['持仓量']>=10]
+			print(position)
+			if position.shape[0]>0:
+				hold_amount=position['持仓量'].tolist()[-1]
+				av_amount=position['可用数量'].tolist()[-1]
+				if av_amount>=amount and amount>=10:
+					return True
+				elif av_amount< amount and av_amount>=10:
+					return True
+			else:
+				return False
+		else:
+			return False
+	else:
+		return False
+def check_is_buy(c,accountid,datatype,stock='513100.SH',amount=100,price=1.3):
+	'''
+	检查是否可以买入
+	'''
+	account=get_account(c,accountid,datatype)
+	#可以使用的现金
+	av_cash=account['可用金额']
+	value=amount*price
+	if av_cash>=value:
+		return True
+	else:
+		return False
+def adjust_amount(stock='',amount=''):
+	'''
+	调整数量
+	'''           
+	if stock[:3] in ['110','113','123','127','128','111'] or stock[:2] in ['11','12']:
+		amount=math.floor(amount/10)*10
+	else:
+		amount=math.floor(amount/100)*100
+	return amount
+def run_tarder_func(c):
+	'''
+	运行交易函数
+	'''
+	trader_models=text['交易模式']
+	fix_value=text['固定交易金额']
+	fix_amount=text['固定交易金额']
+	sep_fix_value=text['特殊交易标的固定交易金额']
+	sep_fix_amount=text['特殊交易标的固定交易数量']
+	sep_stock_list=text['特殊交易标的']
+	if check_is_trader_date_1():
+		#先卖在买入
+		buy_df,sell_df=get_buy_sell_stock_data(c)
+		if sell_df.shape[0]>0:
+			for stock,hold_amount,av_amount,maker in zip(sell_df['证券代码'],
+					sell_df['持仓量'],sell_df['可用数量'],sell_df['投资备注']):
+				if check_is_sell(c,c.account,c.account_type,stock=stock,amount=av_amount) and av_amount>=10:
+					print('{} 持有数量{} 可以数量{}大于0 卖出数量{}'.format(stock,hold_amount,av_amount,av_amount))
+					passorder(c.sell_code, 1101,c.account, stock, c.sell_price_code, 0, av_amount, maker,1,maker,c)
+				else:
+					print('{} 持有数量{} 可以数量{}等于0 卖出数量{} 不交易'.format(stock,hold_amount,av_amount,av_amount))
+		else:
+			print('没有卖出的数据')
+		#买入
+		if buy_df.shape[0]>0:
+			for stock,maker in zip(buy_df['证券代码'].tolist(),buy_df['投资备注'].tolist()):
+				price=get_price(c,stock)
+				if trader_models=='数量':
+					if stock  in sep_stock_list:
+						print('{}在特殊标的里面*********'.format(stock))
+						amount=sep_fix_amount
+					else:
+						amount=fix_amount
+				else:
+					if stock  in sep_stock_list:
+						print('{}在特殊标的里面*********'.format(stock))
+						amount=sep_fix_value/price
+						amount=adjust_amount(stock,amount)
+					else:
+						amount=fix_value/price
+						amount=adjust_amount(stock,amount)
+				if check_is_buy(c,c.account,c.account_type,stock=stock ,amount=amount,price=price) and amount>=10:
+					passorder(c.buy_code, 1101, c.account, str(stock), c.buy_price_code, 0, amount, maker,1,maker,c)
+					print('{} 最新价格 买入{} '.format(stock,amount))
+				else:
+					print('{}金额交易买入不了*******'.format(stock))
+		else:
+			print('没有买入数据')
+	else:
+		print('{} 目前不少交易时间'.format(datetime.now()))
+def run_order_trader_func(c):
+	'''
+	下单不成交撤单在下单
+	'''
+	if check_is_trader_date_1():
+		print('********************下单不成交撤单在下单******************')
+		trader_log=get_order(c,c.account,c.account_type)
+		now_date=str(datetime.now())[:10]
+		#不成交代码,注意57这个是策略下的废单，看个人是否需要
+		not_list=[49,50,51,52,54]
+		if trader_log.shape[0]>0:
+			trader_log['不成交']=trader_log['委托状态'].apply(lambda x: '是' if x in not_list else '不是')
+			trader_log=trader_log[trader_log['不成交']=='是']
+		else:
+			trader_log=trader_log
+		name_list=[c.st_name]
+		try:
+			trader_log=trader_log.drop_duplicates(subset=['投资备注'], keep='last')
+		except Exception as e:
+			trader_log=pd.DataFrame()
+			print(e)
+		if trader_log.shape[0]>0:
+			trader_log['证券代码']=trader_log['证券代码'].apply(lambda x: '0'*(6-len(str(x)))+str(x))
+			trader_log['策略']=trader_log['投资备注'].apply(lambda x: str(x).split(',')[0])
+			trader_log['本策略']=trader_log['策略'].apply(lambda x: '是' if x in name_list else '不是')
+			trader_log=trader_log[trader_log['本策略']=='是']
+			
+			if trader_log.shape[0]>0:
+				for stock,amount,trader_type,maker,oder_id,name in zip(trader_log['证券代码'].tolist(),trader_log['未成交数量'].tolist(),
+						trader_log['买卖方向'].tolist(),trader_log['投资备注'].tolist(),trader_log['订单编号'].tolist(),trader_log['策略'].tolist()):
+					price=get_price(c,stock)
+					#未成交卖出
+					print('证券代码：{} 未成交数量{}交易类型{} 投资备注{} 订单id{}'.format(stock,amount,trader_type,maker,oder_id))
+					if trader_type==49:
+						cancel(oder_id, c.account, c.account_type, c)
+						#先检查是否撤单成功
+						check_trader=get_order(c,c.account,c.account_type)
+						
+						#撤单代码
+						not_list=[54]
+						#成交代码
+						order_list=[55,56]
+						if check_trader.shape[0]>0:
+							check_trader['撤单']=check_trader['委托状态'].apply(lambda x: '是' if x in not_list else '不是')
+							check_trader['成交']=check_trader['委托状态'].apply(lambda x: '是' if x in order_list else '不是')
+							cacal_df=check_trader[check_trader['撤单']=='是']
+							trader_df=check_trader[check_trader['成交']=='是']
+							
+							if cacal_df.shape[0]>0:
+								cacal_maker_list=cacal_df['投资备注'].tolist()
+							else:
+								cacal_maker_list=[]
+							if trader_df.shape[0]>0:
+								trader_maker_list=trader_df['投资备注'].tolist()
+							else:
+								trader_maker_list=[]
+						else:
+							cacal_maker_list=[]
+							trader_maker_list=[]
+						if maker in cacal_maker_list and maker not in trader_maker_list:
+							if check_is_sell(c,c.account,c.account_type,stock=stock,amount=amount):
+								passorder(c.sell_code, 1101, c.account, str(stock), c.sell_price_code, 0, int(amount), str(maker),1,str(maker),c)
+								print('组合{} 撤单重新卖出标的{} 数量{} 价格{}'.format(name,stock,amount,price))
+							else:
+								print('组合{} 撤单不能卖出标的{} 数量{} 价格{}'.format(name,stock,amount,price))
+						else:
+							print(maker,'没有撤单成功不委托/已经成交')
+					elif trader_type==48:
+						cancel(oder_id, c.account, c.account_type, c)
+						#先检查是否撤单成功
+						check_trader=get_order(c,c.account,c.account_type)
+						#撤单代码
+						not_list=[54]
+						#成交代码
+						order_list=[55,56]
+						if check_trader.shape[0]>0:
+							check_trader['撤单']=check_trader['委托状态'].apply(lambda x: '是' if x in not_list else '不是')
+							check_trader['成交']=check_trader['委托状态'].apply(lambda x: '是' if x in order_list else '不是')
+							cacal_df=check_trader[check_trader['撤单']=='是']
+							trader_df=check_trader[check_trader['成交']=='是']
+							
+							if cacal_df.shape[0]>0:
+								cacal_maker_list=cacal_df['投资备注'].tolist()
+							else:
+								cacal_maker_list=[]
+							if trader_df.shape[0]>0:
+								trader_maker_list=trader_df['投资备注'].tolist()
+							else:
+								trader_maker_list=[]
+						else:
+							cacal_maker_list=[]
+							trader_maker_list=[]
+						if maker in cacal_maker_list and maker not in trader_maker_list:
+							if check_is_buy(c,c.account,c.account_type,stock=stock ,
+									amount=amount,price=price):
+								
+								passorder(c.buy_code, 1101, c.account, str(stock), c.buy_price_code, 0, int(amount), str(maker),1,str(maker),c)
+								print('组合{} 撤单重新买入标的{} 数量{} 价格{}'.format(name,stock,amount,price))
+							else:
+								print('组合{} 撤单重新买入标的{} 数量{} 价格{} 不能买入资金不足'.format(name,stock,amount,price))
+						else:
+							print(maker,'没有撤单成功不委托/已经成交')
+					else:
+						print('组合{} 撤单重新交易未知的交易类型'.format(name))
+			else:
+				print('撤单了在下单组合没有委托数据')
+		else:
+			print('撤单了重新下单没有委托数据')
+	else:
+		print(datetime.now(),'下单不成交撤单在下单不是交易时间')
+def check_is_down_limit(c,stock):
+	'''
+	检查是否是跌停
+	'''
+	tick=c.get_full_tick(stock_code=[stock])
+	tick=tick[stock]
+	askPrice=sum(tick['bidPrice'])
+	if askPrice==0:
+		return True
+	else:
+		return False
+def check_is_jhjj():
+	'''
+	检查是否集合竞价
+	集合竞价不做撤单
+	9点15到9点30不撤单
+	14点57到59不撤单
+	'''
+	loc=time.localtime()
+	tm_hour=loc.tm_hour
+	tm_min=loc.tm_min
+	wo=loc.tm_wday
+	#早上集合竞价开始时间
+	zs_start_hour=9
+	zs_start_mini=15
+	#早上集合竞价结束时间
+	zs_end_hour=9
+	zs_end_mini=30
+	#下午时间
+	xw_start_hour=14
+	xw_start_mini=57
+	#下午集合竞价结束时间
+	xw_end_hour=14
+	xw_end_mini=59
+	if tm_hour==zs_start_hour and tm_hour==zs_end_hour and tm_min>=zs_start_mini and tm_min<zs_end_mini:
+		print("早上集合竞价时间")
+		return True
+	elif tm_hour==xw_start_hour and tm_hour==xw_end_hour and tm_min>=xw_start_mini and tm_min<=xw_end_mini:
+		print("下午集合竞价时间")
+		return True
+	else:
+		print('非集合竞价时间')
+		return False
+def check_is_trader_date_1():
+	'''
+	检测是不是交易时间
+	'''
+	trader_time=text['交易时间段']
+	start_date=text['交易开始时间']
+	end_date=text['交易结束时间']
+	start_mi=text['开始交易分钟']
+	jhjj=text['是否参加集合竞价']
+	if jhjj=='是':
+		jhjj_time=15
+	else:
+		jhjj_time=30
+	loc=time.localtime()
+	tm_hour=loc.tm_hour
+	tm_min=loc.tm_min
+	wo=loc.tm_wday
+	if wo<=trader_time:
+		if tm_hour>=start_date and tm_hour<=end_date:
+			if tm_hour==9 and tm_min<jhjj_time:
+				return False
+			
+			elif tm_min>=start_mi:
+				return True
+			else:
+				return False
+		else:
+			return False    
+	else:
+		print('周末')
+		return False
+def small_fruit_band_trading(c,hist):
+	'''
+	小果波段交易
+	N1赋值:7
+	N2赋值:5
+	N3赋值:3
+	ABC1赋值:(((最高价 + 最低价)+(收盘价*2)) / 4)
+	ABC3赋值:ABC1的N1日指数移动平均
+	ABC4赋值:ABC1的N1日估算标准差
+	ABC5赋值:((ABC1 - ABC3)*100) / ABC4
+	ABC6赋值:ABC5的N2日指数移动平均
+	RK7赋值:ABC6的N1日指数移动平均
+	UP赋值:(ABC6的10日指数移动平均+(100 / 2)) - 5,画红色
+	DOWN赋值:UP的N3日指数移动平均
+	ACB1赋值:DOWN的N3日指数移动平均
+	ACB2赋值:ACB1的N3日指数移动平均,画绿色
+	ACB3赋值:ACB2的N3日指数移动平均
+	ACB4赋值:ACB3的N3日指数移动平均
+	当满足条件UP<1日前的UP时,在UP和UP的3日简单移动平均位置之间画柱状线,宽度为5,0不为0则画空心柱.,画蓝色
+	当满足条件UP>1日前的UP时,在UP和UP的3日指数移动平均位置之间画柱状线,宽度为5,0不为0则画空心柱.,画洋红色
+	当满足条件UP>1日前的UPANDREF(UP,1)<2日前的UP时,在UP位置书写文字,画红色
+	当满足条件UP<1日前的UPANDREF(UP,1)>2日前的UP时,在UP位置书写文字,画绿色
+	'''
+	df=hist
+	CLOSE=df['close']
+	C=df['close']
+	LOW=df['low']
+	L=df['low']
+	HIGH=df['high']
+	H=df['high']
+	OPEN=df['open']
+	O=df['open']
+	volume=df['volume']
+	V=df['volume']
+	N1=7
+	N2=5
+	N3=3
+	ABC1=(((HIGH + LOW)+(CLOSE*2)) / 4)
+	ABC3=EMA(ABC1,N1)
+	ABC4=STD(ABC1,N1)
+	ABC5=((ABC1 - ABC3)*100) / ABC4
+	ABC6=EMA(ABC5,N2)
+	RK7=EMA(ABC6,N1)
+	UP=(EMA(ABC6,10)+(100 / 2)) - 5
+	DOWN=EMA(UP,N3)
+	ACB1=EMA(DOWN,N3)
+	ACB2=EMA(ACB1,N3)
+	ACB3=EMA(ACB2,N3)
+	ACB4=EMA(ACB3,N3)
+	#STICKLINE(UP < REF(UP,1),UP,MA(UP,3),5,0),COLORBLUE;
+	#STICKLINE(UP > REF(UP,1),UP,EMA(UP,3),5,0),COLORMAGENTA;
+	df['柱子']=IF(UP > REF(UP,1),'红色','蓝色')
+	df['买']=IF(AND(UP > REF(UP,1),REF(UP,1) < REF(UP,2)),'买',None)
+	df['卖']=IF(AND(UP < REF(UP,1),REF(UP,1) > REF(UP,2)),'卖',None)
+	#DRAWTEXT(UP > REF(UP,1)  AND  REF(UP,1) < REF(UP,2) ,UP,'买'),COLORRED;
+	#DRAWTEXT(UP < REF(UP,1)  AND  REF(UP,1) > REF(UP,2) ,UP,'卖'),COLORGREEN;
+	stats_list=[]
+	for buy,sell in zip(df['买'].tolist(),df['卖'].tolist()):
+		if buy=='买':
+			stats_list.append('买')
+		elif sell=='卖':
+			stats_list.append('卖')
+		else:
+			stats_list.append(None)
+	df['stats']=stats_list
+	df['stats']=df['stats'].fillna(method='ffill')
+	return df
+#获取账户总权益m_dBalance
+def get_account(c,accountid,datatype):
+	'''
+	获取账户数据
+	'''
+	accounts = get_trade_detail_data(accountid, datatype, 'account')
+	result={}
+	for dt in accounts:
+		result['总资产']=dt.m_dBalance
+		result['净资产']=dt.m_dAssureAsset
+		result['总市值']=dt.m_dInstrumentValue
+		result['总负债']=dt.m_dTotalDebit
+		result['可用金额']=dt.m_dAvailable
+		result['盈亏']=dt.m_dPositionProfit
+	return result
+#获取持仓信息{code.market:手数}
+def get_position(c,accountid,datatype):
+	'''
+	获取持股数据
+	'''
+	positions = get_trade_detail_data(accountid,datatype, 'position')
+	data=pd.DataFrame()
+	print('持股数量{}'.format(len(positions)))
+	if len(positions)>0:
+		df=pd.DataFrame()
+		try:
+			for dt in positions:
+				df['股票代码']=[dt.m_strInstrumentID]
+				df['市场类型']=[dt.m_strExchangeID]
+				df['证券代码']=df['股票代码']+'.'+df['市场类型']
+				df['证券名称']=[dt.m_strInstrumentName]
+				df['持仓量']=[dt.m_nVolume]
+				df['可用数量']=[dt.m_nCanUseVolume]
+				df['成本价']=[dt.m_dOpenPrice]
+				df['市值']=[dt.m_dInstrumentValue]
+				df['持仓成本']=[dt.m_dPositionCost]
+				df['盈亏']=[dt.m_dPositionProfit]
+				data=pd.concat([data,df],ignore_index=True)
+			df=data
+			is_del=text['是否隔离策略']
+			df['证券代码']=df['证券代码'].astype(str)
+			df['隔离策略']=df['证券代码'].apply(lambda x: '是' if x in a.trade_code_list else '不是')
+			df=df[df['隔离策略']=='是']
+			data=df
+			
+		except Exception as e:
+			print('获取持股隔离股票池有问题')
+			data=pd.DataFrame()
+	else:
+		data=pd.DataFrame()
+	return data 
+def get_order(c,accountid,datatype):
+	'''
+	获取委托
+	'''
+	data=pd.DataFrame()
+	orders = get_trade_detail_data(accountid,datatype, 'order')
+	print('委托数量{}'.format(len(orders)))
+	if len(orders)>0:
+		df=pd.DataFrame()
+		for o in orders:
+			df['股票代码']=[o.m_strInstrumentID]
+			df['市场类型']=[o.m_strExchangeID]
+			df['证券代码']=df['股票代码']+'.'+df['市场类型']
+			df['买卖方向']=[o.m_nOffsetFlag]
+			df['委托数量']=[o.m_nVolumeTotalOriginal]
+			df['成交均价']=[o.m_dTradedPrice]
+			df['成交数量']=[o.m_nVolumeTraded]
+			df['成交金额']=[o.m_dTradeAmount]
+			df['投资备注']=[o.m_strRemark]
+			df['委托状态']=[o.m_nOrderStatus]
+			df['委托数量']=[o.m_nVolumeTotalOriginal]
+			df['成交数量']=[o.m_nVolumeTraded]
+			df['订单编号']=[o.m_strOrderSysID]
+			df['未成交数量']=df['委托数量']-df['成交数量']
+			data=pd.concat([data,df],ignore_index=True)
+	else:
+		data=pd.DataFrame()
+	return data
+def get_deal(c,accountid,datatype):
+	'''
+	获取成交
+	'''
+	data=pd.DataFrame()
+	deals = get_trade_detail_data(account, 'stock', 'deal')
+	print('成交数量{}'.format(len(deals)))
+	if len(deals):
+		df=pd.DataFrame()
+		for dt in deals:
+			df['股票代码']=[dt.m_strInstrumentID]
+			df['市场类型']=[dt.m_strExchangeID]
+			df['证券代码']=df['股票代码']+'.'+df['市场类型']
+			df['证券名称']=[dt.m_strInstrumentName]
+			df['买卖方向']=[dt.m_nOffsetFlag]
+			df['成交价格']=[dt.m_dPrice]
+			df['成交数量']=[dt.m_nVolume]
+			df['成交金额']=[dt.m_dTradeAmount]
+			data=pd.concat([data,df],ignore_index=True)
+	else:
+		data=pd.DataFrame()
+def order_target_amount(c,accountid,datatype,stock,price,target_amount,com_ratio=0.0001):
+	'''
+	目标交易数量
+	'''
+	account=get_account(c,accountid,datatype)
+	#可以使用的现金
+	av_cash=account['可用金额']
+	position=get_position(c,accountid,datatype)
+	if position.shape[0]>0:
+		position[position['持仓量']>=10]
+		if position.shape[0]>0:
+			hold_amount=position['持仓量'].tolist()[-1]
+			av_amount=position['可用数量'].tolist()[-1]
+		else:
+			hold_amount=0
+			av_amount=0
+	else:
+		hold_amount=0
+		av_amount=0
+	#可以交易的数量
+	av_trader_amount=target_amount-hold_amount
+	#存在买入空间
+	if av_trader_amount>=10:
+		#买入的价值
+		value=av_trader_amount*price
+		#手续费
+		com=value*com_ratio
+		if av_cash>=value+com:
+			print('{} 目标数量{} 持有数量{} 可用数量{} 买入数量{} 可用资金{} 大于买入资金{} 买入'.format(stock,target_amount,hold_amount,av_amount,av_trader_amount,av_cash,value))
+			return 'buy',price,av_trader_amount
+		else:
+			print('{} 目标数量{} 持有数量{} 可用数量{} 买入数量{} 可用资金{} 小于买入资金{} 不买入'.format(stock,target_amount,hold_amount,av_amount,av_trader_amount,av_cash,value))
+			return '',price,av_trader_amount
+	elif av_trader_amount<=-10:
+		av_trader_amount=abs(av_trader_amount)
+		if av_amount>=av_trader_amount:
+			print('{} 目标数量{} 持有数量{} 可用数量{}大于 卖出数量{} 卖出'.format(stock,target_amount,hold_amount,av_amount,av_trader_amount))
+			return 'sell',price,-av_trader_amount
+		else:
+			print('{} 目标数量{} 持有数量{} 可用数量{}小于 卖出数量{} 卖出全部'.format(stock,target_amount,hold_amount,av_amount,av_trader_amount))
+			return 'sell',price,-av_amount
+	else:
+		print('{} 目标数量{} 持有数量{}一样不交易'.format(stock,target_amount,hold_amount))
+		return '','',''
+class user_def_factor:
+	'''
+	自定义因子框架
+	对于真和假的判断用1，0替代
+	'''
+	def __init__(self,df,tick):
+		self.df=df
+		self.tick=tick
+	def cacal_limit(self):
+		'''
+		计算涨跌幅
+		'''
+		try:
+			tick=self.tick
+			limit=((tick['lastPrice']-tick['lastClose'])/tick['lastClose'])*100
+			return limit
+		except:
+			print('{}涨跌幅计算有问题'.format(stock ))
+			return -40
+	def get_price(self):
+		'''
+		获取最新价格
+		'''
+		tick=self.tick
+		price=tick['lastPrice']
+		return price
+	def mean_line_models(self,x1=3,x2=5,x3=10,x4=15,x5=20):
+		'''
+		均线模型
+		趋势模型
+		5，10，20，30，60
+		'''
+		df=self.df
+		#df=self.bond_cov_data.get_cov_bond_hist_data(stock=stock,start=start_date,end=end_date,limit=1000000000)
+		df1=pd.DataFrame()
+		df1['x1']=df['close'].rolling(window=x1).mean()
+		df1['x2']=df['close'].rolling(window=x2).mean()
+		df1['x3']=df['close'].rolling(window=x3).mean()
+		df1['x4']=df['close'].rolling(window=x4).mean()
+		df1['x5']=df['close'].rolling(window=x5).mean()
+		score=0
+		#加分的情况
+		mean_x1=df1['x1'].tolist()[-1]
+		mean_x2=df1['x2'].tolist()[-1]
+		mean_x3=df1['x3'].tolist()[-1]
+		mean_x4=df1['x4'].tolist()[-1]
+		mean_x5=df1['x5'].tolist()[-1]
+		#相邻2个均线进行比较
+		if mean_x1>=mean_x2:
+			score+=25
+		if mean_x2>=mean_x3:
+			score+=25
+		if mean_x3>=mean_x4:
+			score+=25
+		if mean_x4>=mean_x5:
+			score+=25
+		return score
+	def tarder_up_mean_line(self,line=5):
+		'''
+		站上交易均线
+		'''
+		
+		df=self.df
+		price=df['close'].tolist()[-1]
+		df['line']=df['close'].rolling(line).mean()
+		mean_line=df['line'].tolist()[-1]
+		if price>=mean_line:
+			return 1
+		else:
+			return 0
+	def tarder_down_mean_line(self,line=5):
+		'''
+		跌破交易均线
+		'''
+		
+		df=self.df
+		price=df['close'].tolist()[-1]
+		df['line']=df['close'].rolling(line).mean()
+		mean_line=df['line'].tolist()[-1]
+		if price<mean_line:
+			return 1
+		else:
+			return 0
+	def stock_stop_up(self,limit=3):
+		'''
+		当日止盈
+		'''
+		df=self.df
+		
+		df['day_limit']=df['close'].pct_change()*100
+		day_limit=df['day_limit'].tolist()[-1]
+		if limit>=day_limit:
+			return 1 
+		else:
+			return 0
+	def stock_stop_up(self,limit=-6):
+		'''
+		当日止损
+		'''
+		df=self.df
+		
+		df['day_limit']=df['close'].pct_change()*100
+		day_limit=df['day_limit'].tolist()[-1]
+		if day_limit<=limit:
+			return 1 
+		else:
+			return 0
+	def six_pulse_excalibur(self):
+		'''
+		六脉神剑
+		'''
+		markers=0
+		signal=0
+		df=self.df
+		#df=self.data.get_hist_data_em(stock=stock)
+		CLOSE=df['close']
+		LOW=df['low']
+		HIGH=df['high']
+		DIFF=EMA(CLOSE,8)-EMA(CLOSE,13)
+		DEA=EMA(DIFF,5)
+		#如果满足DIFF>DEA 在1的位置标记1的图标
+		#DRAWICON(DIFF>DEA,1,1);
+		markers+=IF(DIFF>DEA,1,0)[-1]
+		#如果满足DIFF<DEA 在1的位置标记2的图标
+		#DRAWICON(DIFF<DEA,1,2);
+		markers+=IF(DIFF<DEA,1,0)[-1]
+		#DRAWTEXT(ISLASTBAR=1,1,'. MACD'),COLORFFFFFF;{微信公众号:数据分析与运用}
+		ABC1=DIFF>DEA
+		signal+=IF(ABC1,1,0)[-1]
+		尊重市场1=(CLOSE-LLV(LOW,8))/(HHV(HIGH,8)-LLV(LOW,8))*100
+		K=SMA(尊重市场1,3,1)
+		D=SMA(K,3,1)
+		#如果满足k>d 在2的位置标记1的图标
+		markers+=IF(K>D,1,0)[-1]
+		#DRAWICON(K>D,2,1);
+		markers+=IF(K<D,1,0)[-1]
+		#DRAWICON(K<D,2,2);
+		#DRAWTEXT(ISLASTBAR=1,2,'. KDJ'),COLORFFFFFF;
+		ABC2=K>D
+		signal+=IF(ABC2,1,0)[-1]
+		指标营地=REF(CLOSE,1)
+		RSI1=(SMA(MAX(CLOSE-指标营地,0),5,1))/(SMA(ABS(CLOSE-指标营地),5,1))*100
+		RSI2=(SMA(MAX(CLOSE-指标营地,0),13,1))/(SMA(ABS(CLOSE-指标营地),13,1))*100
+		markers+=IF(RSI1>RSI2,1,0)[-1]
+		#DRAWICON(RSI1>RSI2,3,1);
+		markers+=IF(RSI1<RSI2,1,0)[-1]
+		#DRAWICON(RSI1<RSI2,3,2);
+		#DRAWTEXT(ISLASTBAR=1,3,'. RSI'),COLORFFFFFF;
+		ABC3=RSI1>RSI2
+		signal+=IF(ABC3,1,0)[-1]
+		尊重市场=-(HHV(HIGH,13)-CLOSE)/(HHV(HIGH,13)-LLV(LOW,13))*100
+		LWR1=SMA(尊重市场,3,1)
+		LWR2=SMA(LWR1,3,1)
+		#DRAWICON(LWR1>LWR2,4,1);
+		markers+=IF(LWR1>LWR2,1,0)[-1]
+		#DRAWICON(LWR1<LWR2,4,2);
+		markers+=IF(LWR1<LWR2,1,0)[-1]
+		#DRAWTEXT(ISLASTBAR=1,4,'. LWR'),COLORFFFFFF;
+		ABC4=LWR1>LWR2
+		signal+=IF(ABC4,1,0)[-1]
+		BBI=(MA(CLOSE,3)+MA(CLOSE,5)+MA(CLOSE,8)+MA(CLOSE,13))/4
+		#DRAWICON(CLOSE>BBI,5,1);
+		markers+=IF(CLOSE>BBI,1,0)[-1]
+		#DRAWICON(CLOSE<BBI,5,2);
+		markers+=IF(CLOSE<BBI,1,0)[-1]
+		#DRAWTEXT(ISLASTBAR=1,5,'. BBI'),COLORFFFFFF;
+		ABC10=7
+		ABC5=CLOSE>BBI
+		signal+=IF(ABC5,1,0)[-1]
+		MTM=CLOSE-REF(CLOSE,1)
+		MMS=100*EMA(EMA(MTM,5),3)/EMA(EMA(ABS(MTM),5),3)
+		MMM=100*EMA(EMA(MTM,13),8)/EMA(EMA(ABS(MTM),13),8)
+		markers+=IF(MMS>MMM,1,0)[-1]
+		#DRAWICON(MMS>MMM,6,1);
+		markers+=IF(MMS<MMM,1,0)[-1]
+		#DRAWICON(MMS<MMM,6,2);
+		#DRAWTEXT(ISLASTBAR=1,6,'. ZLMM'),COLORFFFFFF;
+		ABC6=MMS>MMM
+		signal+=IF(ABC6,1,0)[-1]
+		return signal
+def RD(N,D=3):   
+	#四舍五入取3位小数 
+	return np.round(N,D)        
+def RET(S,N=1):  
+	#返回序列倒数第N个值,默认返回最后一个
+	return np.array(S)[-N]      
+def ABS(S
+):  
+	#返回N的绝对值    
+	return np.abs(S)
+def MAX(S1,S2): 
+	#序列max 
+	return np.maximum(S1,S2)    
+def MIN(S1,S2):  
+	 #序列min
+	return np.minimum(S1,S2)   
+def IF(S,A,B): 
+	#序列布尔判断 return=A  if S==True  else  B  
+	return np.where(S,A,B)      
+def AND(S1,S2):
+	#and
+	return np.logical_and(S1,S2)
+def OR(S1,S2):
+	#or
+	return np.logical_or(S1,S2)
+def RANGE(A,B,C):
+	'''
+	期间函数
+	B<=A<=C
+	'''
+	df=pd.DataFrame()
+	df['select']=A.tolist()
+	df['select']=df['select'].apply(lambda x: True if (x>=B and x<=C) else False)
+	return df['select']
+
+def REF(S, N=1):          #对序列整体下移动N,返回序列(shift后会产生NAN)    
+	return pd.Series(S).shift(N).values  
+
+def DIFF(S, N=1):         #前一个值减后一个值,前面会产生nan 
+	return pd.Series(S).diff(N).values     #np.diff(S)直接删除nan，会少一行
+
+def STD(S,N):             #求序列的N日标准差，返回序列    
+	return  pd.Series(S).rolling(N).std(ddof=0).values     
+
+def SUM(S, N):            #对序列求N天累计和，返回序列    N=0对序列所有依次求和         
+	return pd.Series(S).rolling(N).sum().values if N>0 else pd.Series(S).cumsum().values  
+
+def CONST(S):             #返回序列S最后的值组成常量序列
+	return np.full(len(S),S[-1]) 
+def HHV(S,N):             #HHV(C, 5) 最近5天收盘最高价        
+	return pd.Series(S).rolling(N).max().values     
+
+def LLV(S,N):             #LLV(C, 5) 最近5天收盘最低价     
+	return pd.Series(S).rolling(N).min().values    
+	
+def HHVBARS(S,N):         #求N周期内S最高值到当前周期数, 返回序列
+	return pd.Series(S).rolling(N).apply(lambda x: np.argmax(x[::-1]),raw=True).values 
+
+def LLVBARS(S,N):         #求N周期内S最低值到当前周期数, 返回序列
+	return pd.Series(S).rolling(N).apply(lambda x: np.argmin(x[::-1]),raw=True).values    
+	  
+def MA(S,N):              #求序列的N日简单移动平均值，返回序列                    
+	return pd.Series(S).rolling(N).mean().values  
+	
+def EMA(S,N):             #指数移动平均,为了精度 S>4*N  EMA至少需要120周期     alpha=2/(span+1)    
+	return pd.Series(S).ewm(span=N, adjust=False).mean().values     
+
+def SMA(S, N, M=1):       #中国式的SMA,至少需要120周期才精确 (雪球180周期)    alpha=1/(1+com)    
+	return pd.Series(S).ewm(alpha=M/N,adjust=False).mean().values           #com=N-M/M
+
+def DMA(S, A):            #求S的动态移动平均，A作平滑因子,必须 0<A<1  (此为核心函数，非指标）
+	return pd.Series(S).ewm(alpha=A, adjust=True).mean().values
+
+def WMA(S, N):            #通达信S序列的N日加权移动平均 Yn = (1*X1+2*X2+3*X3+...+n*Xn)/(1+2+3+...+Xn)
+	return pd.Series(S).rolling(N).apply(lambda x:x[::-1].cumsum().sum()*2/N/(N+1),raw=True).values 
+	  
+def AVEDEV(S, N):         #平均绝对偏差  (序列与其平均值的绝对差的平均值)   
+	return pd.Series(S).rolling(N).apply(lambda x: (np.abs(x - x.mean())).mean()).values 
+
+def SLOPE(S, N):          #返S序列N周期回线性回归斜率            
+	return pd.Series(S).rolling(N).apply(lambda x: np.polyfit(range(N),x,deg=1)[0],raw=True).values
+
+def FORCAST(S, N):        #返回S序列N周期回线性回归后的预测值， jqz1226改进成序列出    
+	return pd.Series(S).rolling(N).apply(lambda x:np.polyval(np.polyfit(range(N),x,deg=1),N-1),raw=True).values  
+
+def LAST(S, A, B):        #从前A日到前B日一直满足S_BOOL条件, 要求A>B & A>0 & B>=0 
+	return np.array(pd.Series(S).rolling(A+1).apply(lambda x:np.all(x[::-1][B:]),raw=True),dtype=bool) 
+	#------------------   1级：应用层函数(通过0级核心函数实现） ----------------------------------
+def COUNT(S, N):                       # COUNT(CLOSE>O, N):  最近N天满足S_BOO的天数  True的天数
+	return SUM(S,N)    
+
+def EVERY(S, N):                       # EVERY(CLOSE>O, 5)   最近N天是否都是True
+	return  IF(SUM(S,N)==N,True,False)                     
+def EXIST(S, N):                       # EXIST(CLOSE>3010, N=5)  n日内是否存在一天大于3000点  
+	return IF(SUM(S,N)>0,True,False)
+
+def FILTER(S, N):                      # FILTER函数，S满足条件后，将其后N周期内的数据置为0, FILTER(C==H,5)
+	for i in range(len(S)): S[i+1:i+1+N]=0  if S[i] else S[i+1:i+1+N]        
+	return S                           # 例：FILTER(C==H,5) 涨停后，后5天不再发出信号 
+	  
+def BARSLAST(S):                       #上一次条件成立到当前的周期, BARSLAST(C/REF(C,1)>=1.1) 上一次涨停到今天的天数 
+	M=np.concatenate(([0],np.where(S,1,0)))  
+	for i in range(1, len(M)):  M[i]=0 if M[i] else M[i-1]+1    
+	return M[1:]                       
+
+def BARSLASTCOUNT(S):                  # 统计连续满足S条件的周期数        by jqz1226
+	rt = np.zeros(len(S)+1)            # BARSLASTCOUNT(CLOSE>OPEN)表示统计连续收阳的周期数
+	for i in range(len(S)): rt[i+1]=rt[i]+1  if S[i] else rt[i+1]
+	return rt[1:]  
+	  
+def BARSSINCEN(S, N):                  # N周期内第一次S条件成立到现在的周期数,N为常量  by jqz1226
+	return pd.Series(S).rolling(N).apply(lambda x:N-1-np.argmax(x) if np.argmax(x) or x[0] else 0,raw=True).fillna(0).values.astype(int)
+
+	  
+def CROSS(S1, S2):                     #判断向上金叉穿越 CROSS(MA(C,5),MA(C,10))  判断向下死叉穿越 CROSS(MA(C,10),MA(C,5))   
+	return np.concatenate(([False], np.logical_not((S1>S2)[:-1]) & (S1>S2)[1:]))    # 不使用0级函数,移植方便  by jqz1226
+def CROSS_UP(S1, S2):                     #判断向上金叉穿越 CROSS(MA(C,5),MA(C,10))  判断向下死叉穿越 CROSS(MA(C,10),MA(C,5))   
+	return np.concatenate(([False], np.logical_not((S1>S2)[:-1]) & (S1>S2)[1:]))    # 不使用0级函数,移植方便  by jqz1226
+def CROSS_DOWN(S1, S2):                     
+	return np.concatenate(([False], np.logical_not((S1<S2)[:-1]) & (S1<S2)[1:]))    # 不使用0级函数,移植方便  by jqz1226
+
+def LONGCROSS(S1,S2,N):                #两条线维持一定周期后交叉,S1在N周期内都小于S2,本周期从S1下方向上穿过S2时返回1,否则返回0         
+	return  np.array(np.logical_and(LAST(S1<S2,N,1),(S1>S2)),dtype=bool)            # N=1时等同于CROSS(S1, S2)
+		
+def VALUEWHEN(S, X):                   #当S条件成立时,取X的当前值,否则取VALUEWHEN的上个成立时的X值   by jqz1226
+	return pd.Series(np.where(S,X,np.nan)).ffill().values  

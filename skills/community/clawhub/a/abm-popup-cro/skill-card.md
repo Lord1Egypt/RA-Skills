@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users create and optimize conversion-focused popups, modals, overlays, slide-ins, banners, and related interrupt-style conversion elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create and optimize popups, modals, overlays, slide-ins, and banners for conversion while balancing timing, targeting, copy, accessibility, and user experience.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, growth, and conversion optimization users apply this skill to plan popup strategies, choose triggers, write popup copy, define targeting and frequency rules, and measure conversion outcomes while preserving usability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local product marketing context files for business context. <br>
-Mitigation: Review those context files before use and avoid storing secrets or sensitive customer data in them. <br>
-Risk: Popup recommendations can harm user experience, accessibility, privacy compliance, or SEO if applied aggressively. <br>
-Mitigation: Use the skill's guidance for frequency caps, easy dismissal, consent language, accessibility checks, mobile-safe formats, and measurement before deployment. <br>
+## Use Case:
 
+Marketing, ecommerce, SaaS, and content teams use this skill through an agent to design or improve conversion popups, banners, slide-ins, exit-intent offers, lead-capture modals, and related test plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-popup-cro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured recommendations, copy examples, test hypotheses, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local product marketing context files when available; no code, network calls, credential handling, or persistence are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter metadata reports 1.1.0) <br>
+Risk: The skill may use local product-marketing context files when present, which can expose confidential marketing context in generated recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive marketing material out of .agents/product-marketing-context.md and .claude/product-marketing-context.md unless it is intended for agent use.
+
+Risk: Popup recommendations can affect privacy, accessibility, SEO, and user experience if implemented without review.
+
+Mitigation: Review proposed consent language, dismiss behavior, keyboard and screen-reader support, mobile interstitial behavior, and frequency caps before deployment.
+
+## Reference(s):
+
+- [Popup Cro ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-popup-cro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with popup strategy, copy recommendations, trigger rules, targeting notes, and test hypotheses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation checklists for timing, frequency, mobile behavior, accessibility, privacy, analytics, and A/B testing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

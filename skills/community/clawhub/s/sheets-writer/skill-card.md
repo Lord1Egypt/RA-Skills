@@ -1,43 +1,58 @@
-## Description: <br>
-Google Sheets Data Writer. Use when the user wants to append rows, update cells, or automate spreadsheet data pipelines against a pre-configured target sheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Sheets Data Writer. Use when the user wants to append rows, update cells, or automate spreadsheet data pipelines against a pre-configured target sheet.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Developers and automation agents use this skill to configure a target Google Sheet, append rows, update specific cells, and verify spreadsheet data changes through the porteden CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet write operations can overwrite existing cell values or add incorrect data. <br>
-Mitigation: Prefer append for new rows, review any multi-cell write with the user before execution, and read the target range back after writing. <br>
-Risk: Drive-enabled credentials may allow access beyond the intended spreadsheet. <br>
-Mitigation: Use a dedicated Google account or porteden profile limited to the required sheets, and confirm the user trusts the porteden CLI before installation or authentication. <br>
-Risk: Untrusted input values can be interpreted as spreadsheet formulas. <br>
-Mitigation: Use --raw for values from users, agents, or external sources so formula-like strings are written as literals. <br>
+## Use Case:
 
+Developers and automation agents use this skill to configure PortEden authentication, identify a target Google Sheet, append new rows, update specific cells, and verify spreadsheet writes.
 
-## Reference(s): <br>
-- [Google Sheets File Automation on ClawHub](https://clawhub.ai/porteden/sheets-writer) <br>
-- [PortEden](https://porteden.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes compact JSON output, credential scoping, append-first writes, and read-back verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release evidence) <br>
+Risk: The PortEden CLI dependency and persisted credentials can access Google Drive resources available to the authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted or reviewed source, use a dedicated Google account or profile limited to the required spreadsheet workspace, and remove persisted credentials when finished.
+
+Risk: Cell write operations can overwrite existing spreadsheet data and cannot be undone from the CLI.
+
+Mitigation: Prefer append for new rows, read target ranges before multi-cell writes, and require explicit confirmation of the range and values before overwriting cells.
+
+Risk: Untrusted values may be interpreted as spreadsheet formulas when written to cells.
+
+Mitigation: Use raw-value writes for user, agent, or external inputs and read the range back after writing to verify the stored values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/sheets-writer)
+- [PortEden homepage](https://porteden.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash command examples and JSON or CSV value examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses compact JSON command output flags for read and info operations when appropriate.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

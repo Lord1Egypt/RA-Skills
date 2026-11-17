@@ -1,44 +1,50 @@
-## Description: <br>
-Call GET /api/v1/google/search for Google SERP Search through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/search for Google SERP Search through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and search analysts use this skill to call Just Serp API's Google SERP search endpoint for keyword tracking, SERP analysis, and localized result inspection. It requires a Just Serp API key and a search query, with optional localization and filtering parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, optional localization fields, and the Just Serp API key are sent to Just Serp API. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, keep the key in JUST_SERP_API_KEY, and avoid pasting key values into chat, screenshots, or logs. <br>
-Risk: Queries involving secrets, private investigations, regulated data, or precise locations may expose sensitive context to an external API. <br>
-Mitigation: Do not use the skill for those searches unless the disclosure has been approved; omit precise localization parameters when they are not needed. <br>
-Risk: The optional html parameter can request raw Google results HTML alongside structured data. <br>
-Mitigation: Prefer structured results unless raw HTML is required, and review or sanitize returned content before sharing it outside the intended workflow. <br>
+## Use Case:
 
+External developers and search analysis teams use this skill to retrieve Google SERP data from Just Serp API for keyword tracking, market checks, organic result review, ads, and knowledge panel analysis.
 
-## Reference(s): <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_search&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_search&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justserpapi/justserpapi-google-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON from the Just Serp API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses operation search on GET /api/v1/google/search; required query parameter plus optional localization, filtering, paging, and raw HTML controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The Just Serp API key is passed through a command-line argument, where it may be locally exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope API key if available, avoid sensitive searches or precise personal location parameters, and prefer a release that reads the key directly from the environment.
+
+## Reference(s):
+
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_search&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_search&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown summary with raw JSON API response when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a query parameter; optional localization, language, paging, SafeSearch, and advanced Google search parameters are supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

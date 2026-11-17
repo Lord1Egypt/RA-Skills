@@ -1,43 +1,60 @@
-## Description: <br>
-Transition from vibe coding to vibe clawing by trusting agents with full responsibilities, designing self-closing loops, and climbing the bottleneck ladder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transition from vibe coding to vibe clawing by trusting agents with full responsibilities, designing self-closing loops, and climbing the bottleneck ladder.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill as coaching guidance for shifting from task-by-task agent use to delegated responsibilities, self-closing loops, and bottleneck audits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local progress notes may contain sensitive personal, business, or client information if users add it. <br>
-Mitigation: Keep secrets, sensitive business details, and private client information out of ~/vibe-clawing notes. <br>
-Risk: Delegating more responsibility to agents can affect consequential or hard-to-reverse actions. <br>
-Mitigation: Require explicit approval for financial, legal, account, deletion, deployment, public-posting, or other hard-to-reverse actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vibe Clawing on ClawHub](https://clawhub.ai/ivangdavila/vibe-clawing) <br>
-- [The Bottleneck Framework](artifact/bottleneck.md) <br>
-- [Identifying and Closing Loops](artifact/loops.md) <br>
-- [Where the Value Moves](artifact/direction.md) <br>
-- [The Evolution: From Vibe Coding to Vibe Clawing](artifact/evolution.md) <br>
+## Use Case:
 
+External users and developers use this skill to coach agents toward autonomous workflow ownership: auditing loops, defining delegation boundaries, tracking bottlenecks, and escalating only when human judgment is needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and progress-note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local progress notes under ~/vibe-clawing when the agent follows the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages delegation of agent responsibilities, which may be inappropriate for high-cost, irreversible, credentialed, customer-facing, financial, or production actions.
+
+Mitigation: Review proposed automation before using it in those contexts and require human approval for consequential or hard-to-recover decisions.
+
+Risk: Local tracking files under ~/vibe-clawing/ may accumulate secrets or sensitive business details.
+
+Mitigation: Keep tracking files free of credentials, secrets, customer data, and sensitive business information.
+
+Risk: A loop may be delegated before success criteria, escalation triggers, and failure recovery paths are clear.
+
+Mitigation: Document decision criteria, define escalation triggers, test in parallel, monitor outcomes, and audit periodically before reducing human oversight.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ivangdavila/skills/vibe-clawing)
+- [Identifying and Closing Loops](artifact/loops.md)
+- [The Bottleneck Framework](artifact/bottleneck.md)
+- [Where the Value Moves](artifact/direction.md)
+- [The Evolution: From Vibe Coding to Vibe Clawing](artifact/evolution.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with local tracking-file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest creating or updating local tracking files under ~/vibe-clawing/.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

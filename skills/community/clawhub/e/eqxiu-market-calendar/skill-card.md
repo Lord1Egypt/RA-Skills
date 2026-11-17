@@ -1,46 +1,57 @@
-## Description: <br>
-Queries Eqxiu marketing calendar holidays and builds template mall search URLs via msearch-api.eqxiu.com for future promo events, marketing calendar planning, and Eqxiu festival templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Eqxiu marketing calendar holidays and builds template mall search URLs via msearch-api.eqxiu.com for future promotional planning.
 
-## Publisher: <br>
-[eqxiu](https://clawhub.ai/user/eqxiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eqxiu](https://clawhub.ai/user/eqxiu)
 
-## Use Case: <br>
-Marketing and operations users use this skill to query future Eqxiu marketing holidays, plan promotional topics, and generate Eqxiu template mall links from API-returned calendar data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Date and month queries are sent to msearch-api.eqxiu.com. <br>
-Mitigation: Use the skill only for public Eqxiu marketing-calendar lookups and avoid sending sensitive or personal calendar information. <br>
-Risk: The skill is not intended for legal holiday advice, personal calendars, historical lookups, or non-Eqxiu design tools. <br>
-Mitigation: Route those requests to another appropriate source and limit this skill to future Eqxiu marketing events and template links. <br>
-Risk: Marketing calendar answers can be wrong if the external API is unavailable or returns unexpected data. <br>
-Mitigation: Use the CLI-provided current date and holiday records, preserve API errors instead of fabricating events, and rely on the generated mall_url field for links. <br>
+## Use Case:
 
+Marketing and operations teams use this skill to find future Eqxiu marketing calendar events and prepare matching template search links for promotional planning. It is scoped to future marketing events and Eqxiu template discovery, not official public-holiday, legal, historical, or non-Eqxiu catalog lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eqxiu/eqxiu-market-calendar) <br>
-- [Eqxiu publisher profile](https://clawhub.ai/user/eqxiu) <br>
-- [API reference](references/API.md) <br>
-- [Eqxiu current-date API](https://msearch-api.eqxiu.com/yyyymm) <br>
-- [Eqxiu monthly holiday API](https://msearch-api.eqxiu.com/m/holiday/queryByMonth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with CLI-derived JSON calendar records and Eqxiu mall links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses future-only marketing calendar data and CLI-generated mall_url links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill depends on live HTTPS responses from msearch-api.eqxiu.com, so results may be unavailable or incomplete if the service is unreachable or changes behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the documented CLI commands and disclose API or network errors instead of filling gaps from memory.
+
+Risk: The skill is scoped to Eqxiu marketing events and is not an authoritative source for legal public holidays, historical dates, personal calendars, or non-Eqxiu template catalogs.
+
+Mitigation: Use it only for future Eqxiu marketing planning and route legal, historical, personal calendar, or unrelated design-tool requests to appropriate sources.
+
+## Reference(s):
+
+- [API reference](references/API.md)
+- [ClawHub skill page](https://clawhub.ai/eqxiu/skills/eqxiu-market-calendar)
+- [Eqxiu current-date API](https://msearch-api.eqxiu.com/yyyymm)
+- [Eqxiu monthly holiday API](https://msearch-api.eqxiu.com/m/holiday/queryByMonth)
+- [Eqxiu mall search](https://www.eqxiu.com/mall/search?keywords=)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with CLI-derived holiday dates, promotion start dates, priority levels, and Eqxiu mall search links; JSON is available from the helper CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should use the API-reported current date and CLI-provided mall_url values, with only future events returned.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

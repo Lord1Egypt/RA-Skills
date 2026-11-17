@@ -1,40 +1,61 @@
-## Description: <br>
-Configures an OpenClaw instance to use a local OpenAI-compatible text-to-speech backend with cloned voice mapping, test clip generation, troubleshooting, and LAN or Tailscale exposure guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure an OpenClaw instance to use a local OpenAI-compatible TTS backend with cloned voices, verify model and voice mapping, generate test clips, and troubleshoot LAN or Tailscale access.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and operators use this skill to wire OpenClaw speech synthesis to a local TTS backend, verify model and voice selection, generate test clips, troubleshoot delivery, and expose the backend only when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent OpenClaw TTS configuration changes can redirect speech synthesis to an unintended local backend. <br>
-Mitigation: Review OpenClaw config values before and after changes, and use the documented config set/get commands instead of editing config files directly. <br>
-Risk: Exposing the TTS service port to LAN or Tailscale can allow unintended network access. <br>
-Mitigation: Expose the port only when remote access is needed, confirm the listener binding, and restrict access with firewall rules or Tailscale ACLs. <br>
-Risk: Test audio sent through channel plugins can reach unintended recipients. <br>
-Mitigation: Confirm recipient and target IDs before sending generated clips through external channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw message TTS to a trusted local OpenAI-compatible speech backend, confirm cloned voice behavior, and expose the TTS service over LAN or Tailscale when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user-directed OpenClaw CLI configuration, direct API test commands, listener checks, and channel-delivery troubleshooting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OpenClaw configuration changes could route speech synthesis to an unintended backend, model, or cloned voice.
+
+Mitigation: Review proposed OpenClaw config changes before applying them and verify the active base URL, provider, model, and voice with `openclaw config get`.
+
+Risk: Exposing the TTS service beyond the local host could make the endpoint reachable by untrusted users.
+
+Mitigation: Avoid exposing the TTS port beyond trusted LAN or Tailscale users, confirm listener bindings, and restrict access with firewall rules or Tailscale ACLs.
+
+Risk: Docker inspection commands may require elevated local privileges.
+
+Mitigation: Run Docker commands with the least privilege available and inspect only the intended TTS backend container.
+
+Risk: Generated test clips written to shared temporary paths may be overwritten or exposed to other local users.
+
+Mitigation: Use a safer temporary output path for generated test clips when handling sensitive or private voice samples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lotfinity/skills/local-openedai-tts)
+- [Publisher profile](https://clawhub.ai/user/lotfinity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration keys]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenClaw configuration commands, direct API test requests, Docker inspection commands, reachability checks, and channel delivery troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Generate a video task from user-provided text and images, including image URLs or local file paths, and submit it to a remote video service using an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a video task based on user-provided text and images, including image URLs and local file paths, and submit it to a remote video service using an API key.
 
-## Publisher: <br>
-[zhangyuangao](https://clawhub.ai/user/zhangyuangao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyuangao](https://clawhub.ai/user/zhangyuangao)
 
-## Use Case: <br>
-Developers and agents use this skill to create image-to-video generation tasks from a text prompt and an image URL or local image file. The skill guides task creation, polling, and user-facing reporting of the final video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided prompts, image URLs, and local image files to a remote video-generation service. <br>
-Mitigation: Avoid confidential prompts, private local files, internal URLs, and sensitive images unless the user intentionally wants that content sent to the remote service. <br>
-Risk: The skill requires a MAGIC_API_KEY for the remote service. <br>
-Mitigation: Install and run the skill only when the Magiclight service is trusted with the API key and generated media inputs. <br>
+## Use Case:
 
+Developers and external users use this skill to turn a text prompt and a source image into a remote image-to-video generation task, then receive the created task ID and final video URL.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhangyuangao/magic-image2video) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangyuangao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON stdout parsing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAGIC_API_KEY; reports a generated task ID and final video URL when the remote service completes successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends selected image inputs to the MagicLight remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with images approved for remote processing, and avoid private documents, credential files, internal URLs, localhost URLs, and cloud metadata URLs.
+
+Risk: The client can fetch arbitrary image URLs or upload any readable local file path provided as image input.
+
+Mitigation: Prefer a known image file in a dedicated folder or a trusted public HTTPS image URL.
+
+Risk: Passing the API key on the command line may expose credentials through shell history or process listings.
+
+Mitigation: Provide MAGIC_API_KEY through a protected environment variable rather than the --api-key option.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyuangao/skills/magic-image2video)
+- [MagicLight remote service endpoint](https://open-test.magiclight.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and parsed JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAGIC_API_KEY and returns a task ID followed by a video URL when generation succeeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

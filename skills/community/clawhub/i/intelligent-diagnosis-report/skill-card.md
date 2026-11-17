@@ -1,41 +1,59 @@
-## Description: <br>
-Looks up merchant seller IDs from a parsed merchant name by using a local OpenClaw username and returning the merchant service response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill performs domain testing by resolving a parsed merchant name through an internal Kuaishou CRM lookup and returning the raw lookup result.
 
-## Publisher: <br>
-[jimadara](https://clawhub.ai/user/jimadara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimadara](https://clawhub.ai/user/jimadara)
 
-## Use Case: <br>
-Authorized internal users can ask the agent to parse a merchant name and query the merchant CRM seller search endpoint for matching seller IDs. The skill should be treated as a merchant lookup helper rather than a domain-testing or diagnosis-report generator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is presented as domain testing or diagnosis reporting, but the security review says it performs internal merchant lookup. <br>
-Mitigation: Review the skill purpose before installing and update the public name and description so users understand it queries merchant seller data. <br>
-Risk: The skill reads a local OpenClaw username and sends it with the merchant name to an internal merchant CRM endpoint. <br>
-Mitigation: Install only for users authorized to query that endpoint, and disclose the local username requirement before use. <br>
-Risk: The skill returns raw internal API responses, which may expose more operational detail than users need. <br>
-Mitigation: Review returned data before sharing it and prefer a constrained, user-confirmed output format for production use. <br>
+## Use Case:
 
+Employees or operators use this skill to test a merchant domain flow by extracting a seller name, using a local OpenClaw username, and returning merchant lookup results. It is not documented in the artifact as a diagnosis report generator despite the release display name.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Raw service response, typically JSON-like text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the HTTP interface result directly to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The skill may use a local OpenClaw username when calling an internal CRM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before using local identity and document the identity source before normal installation.
+
+Risk: The skill returns raw internal merchant lookup results.
+
+Mitigation: Filter or redact returned data before exposing results to users.
+
+Risk: The public release display name does not match the current domain-testing and merchant-lookup behavior.
+
+Mitigation: Rename and document the skill as an internal merchant lookup or domain-testing tool before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimadara/skills/intelligent-diagnosis-report)
+- [ClawHub publisher profile](https://clawhub.ai/user/jimadara)
+- [Kuaishou CRM merchant lookup endpoint](https://merchant-lego.corp.kuaishou.com/gateway/crm/seller/manager/querySellerSearchResult)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls]
+
+**Output Format:** [Raw text or JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the HTTP lookup result directly to the user without documented filtering.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

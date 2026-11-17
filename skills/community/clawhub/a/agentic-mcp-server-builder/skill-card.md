@@ -1,40 +1,48 @@
-## Description: <br>
-Scaffold MCP server projects and baseline tool contract checks for defining tool schemas, generating starter server layouts, and validating MCP-ready structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold MCP server projects, define tool schemas, generate starter layouts, and validate MCP-ready structure.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Developers and engineers use this skill to define MCP tool contracts and generate a minimal starter server layout before adding business logic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scaffold script can write generated files in the selected scaffold root. <br>
-Mitigation: Use a dedicated project directory, run with --dry-run first, and avoid --allow-outside-workspace unless intentionally needed. <br>
-Risk: Sensitive existing paths could receive generated output if selected as --output or scaffold_root. <br>
-Mitigation: Keep generated paths inside the workspace by default and do not set --output or scaffold_root to sensitive existing paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MCP Scaffold Guide](references/mcp-scaffold-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/0x-Professor/agentic-mcp-server-builder) <br>
+## Use Case:
 
+Developers and engineers use this skill to create minimal MCP server scaffolds from structured tool lists and review baseline tool contract checks before adding business logic.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [JSON, Markdown, or CSV artifacts plus starter scaffold files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode can report the planned file map without writing scaffold files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled scaffold script can overwrite user-chosen files or write outside the workspace if unsafe paths or options are used.
+
+Mitigation: Use trusted input paths, keep output and scaffold_root inside the project, avoid directories with attacker-controlled symlinks, and treat dry-run as skipping scaffold files rather than a complete no-write guarantee.
+
+## Reference(s):
+
+- [MCP Scaffold Guide](artifact/references/mcp-scaffold-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance plus JSON, Markdown, or CSV scaffold artifacts from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scaffold script supports dry-run mode and can materialize starter files when file writing is enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

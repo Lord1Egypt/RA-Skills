@@ -1,44 +1,63 @@
-## Description: <br>
-Self-healing watchdog for the OpenClaw gateway that backs up openclaw.json, checks gateway health, restarts failed processes, and rolls back to the last known good config on failure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-healing watchdog for OpenClaw gateway that backs up openclaw.json, health-checks the gateway process, and rolls back to the last known good config on failure.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to install and manage a local OpenClaw gateway watchdog that backs up configuration, restarts failed gateway processes, and rolls back bad configs after failed health checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The watchdog can restart the OpenClaw gateway and replace ~/.openclaw/openclaw.json from backup. <br>
-Mitigation: Review the setup script before installing, keep an independent config backup, and confirm the installed cron, launchd, or systemd entry after setup. <br>
-Risk: The systemd example runs the watchdog as root. <br>
-Mitigation: Avoid the root systemd example unless that privilege is required, and prefer the least-privileged service account that can manage the gateway. <br>
-Risk: Automatic rollback may replace a current config with an older backup after a failed health check. <br>
-Mitigation: Inspect watchdog logs and preserved broken config files before relying on rollback behavior for incident recovery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docker Self-Healing Setup](references/docker.md) <br>
-- [macOS LaunchDaemon](references/launchd.md) <br>
-- [Systemd Service](references/systemd.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/gw-self-heal) <br>
+## Use Case:
 
+Developers and operators use this skill to install and inspect a persistent OpenClaw gateway watchdog that backs up configuration, checks service health, restarts failed processes, and rolls back to a known-good config when recovery is needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup and status scripts for cron, launchd, systemd, or Docker watchdog flows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs persistent scheduled execution for an OpenClaw gateway watchdog.
+
+Mitigation: Install only when persistent self-healing behavior is intended, and review scheduled jobs before enabling them.
+
+Risk: The security guidance flags broad cron removal that could affect unrelated cron entries.
+
+Mitigation: Back up the current crontab and replace broad removal patterns with exact markers for this watchdog job.
+
+Risk: The security guidance flags root-service examples and permissive handling of watchdog scripts and config backups.
+
+Mitigation: Run the watchdog as an unprivileged user where possible and set restrictive permissions on the watchdog script and OpenClaw config backups.
+
+Risk: Repeated failures can trigger repeated config rollback or log growth.
+
+Mitigation: Add retry and retention limits so transient failures do not repeatedly roll back configuration or fill disk.
+
+## Reference(s):
+
+- [Docker Self-Healing Setup](references/docker.md)
+- [macOS LaunchDaemon](references/launchd.md)
+- [Systemd Service](references/systemd.md)
+- [ClawHub Skill Page](https://clawhub.ai/mupengi-bot/skills/gw-self-heal)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, Dockerfile, launchd plist, and systemd snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup and status scripts for persistent scheduled watchdog execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

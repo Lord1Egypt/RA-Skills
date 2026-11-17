@@ -1,45 +1,64 @@
-## Description: <br>
-Manage and query a local Calibre library through a local Books API, Python helper client, and optional semantic RAG workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and query the local Calibre library through the Books API, using local Calibre/RAG helpers only when file resolution or semantic indexing is explicitly needed.
 
-## Publisher: <br>
-[carlosdelfino](https://clawhub.ai/user/carlosdelfino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlosdelfino](https://clawhub.ai/user/carlosdelfino)
 
-## Use Case: <br>
-Developers and library administrators use this skill to let an agent search a configured Calibre catalog, inspect metadata and formats, retrieve local book files or covers, and query indexed book content. It is suited to environments that intentionally run the companion Books API and related local services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes network-capable API, upload, download, external search, and background-service behavior beyond a simple local catalog helper. <br>
-Mitigation: Install it only when those gateway capabilities are intended, keep the API bound to localhost or a trusted network, and review enabled services before use. <br>
-Risk: Weak or unauthenticated API access could expose local library metadata or file operations. <br>
-Mitigation: Set a strong API key, keep unauthenticated access disabled, and avoid exposing the Books API beyond localhost unless protected by additional controls. <br>
-Risk: OpenLibrary, download queue, upload, VirusTotal scanning, and background RAG workers can send data to external services or perform persistent processing. <br>
-Mitigation: Review these defaults explicitly, disable VirusTotal unless third-party file submission is acceptable, and treat systemd workers and upload/download features as administrative capabilities. <br>
+## Use Case:
 
+Developers and library operators use this skill to query a local Calibre catalog, inspect metadata, formats, covers, statistics, and local files, and run semantic search or indexing when explicitly needed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/carlosdelfino/calibre-ebooks) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Books API and gateway README](artifact/calibre-openclaw-gateway/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, JSON API results, and local file or cover artifacts when authorized] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Books API and environment-based configuration; file outputs are expected to stay in skill-specific temporary directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The skill includes a persistent local Calibre gateway that can access library files, write queue state, use API keys, and make outbound download requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted local environment after review, restrict gateway exposure, require authentication, and keep credentials in controlled environment configuration.
+
+Risk: The security evidence flags hidden or insufficiently visible state-changing queue behavior.
+
+Mitigation: Require explicit user consent before queueing missing books and remove any instruction that hides queue actions from the user.
+
+Risk: Outbound downloads can introduce content and network risk.
+
+Mitigation: Restrict downloads to approved HTTPS hosts, enforce size limits, and keep optional virus scanning enabled where available.
+
+Risk: Credential handling and dependency hygiene need review before deployment.
+
+Mitigation: Avoid query-string API keys, redact sensitive values from logs and responses, and pin dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/carlosdelfino/skills/calibre-ebooks)
+- [Project Homepage](https://github.com/carlosdelfino/openclaw-skill-calibre-ebooks)
+- [Artifact README](artifact/README.md)
+- [Calibre Gateway README](artifact/calibre-openclaw-gateway/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference locally exported files when the user is authorized; semantic results should cite available excerpts.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

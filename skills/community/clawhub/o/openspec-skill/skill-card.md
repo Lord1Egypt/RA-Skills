@@ -1,41 +1,58 @@
-## Description: <br>
-OpenSpec helps agents use @fission-ai/openspec for spec-driven development when implementing non-trivial changes in existing projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenSpec guides agents through spec-driven development for non-trivial project changes, including proposing, validating, implementing, and archiving change artifacts.
 
-## Publisher: <br>
-[juanclaw](https://clawhub.ai/user/juanclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanclaw](https://clawhub.ai/user/juanclaw)
 
-## Use Case: <br>
-Developers and engineers use this skill to have agents propose, validate, implement, and archive OpenSpec change folders for non-trivial repository changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or archived openspec/ planning files may steer implementation incorrectly if accepted without review. <br>
-Mitigation: Use the skill in version-controlled repositories, review generated or archived openspec/ files, and validate OpenSpec changes before implementation or archive. <br>
-Risk: Untrusted OpenSpec tool implementations could affect project-local planning files. <br>
-Mitigation: Expose OpenSpec tools only from trusted sources in the agent environment. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to scope and manage non-trivial changes with OpenSpec proposals, requirements, designs, task lists, validation, and archival workflows.
 
-## Reference(s): <br>
-- [OpenSpec workflow patterns](references/workflow.md) <br>
-- [OpenSpec ClawHub release](https://clawhub.ai/juanclaw/openspec-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with OpenSpec artifact examples and tool command names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or updates of project-local openspec/ proposal, design, spec, and task files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill may create or update planning and specification files under openspec/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed OpenSpec artifacts before committing them.
+
+Risk: The skill can archive completed changes, which moves change content into the archived OpenSpec structure.
+
+Mitigation: Confirm tasks are complete and run OpenSpec validation before archiving.
+
+Risk: Generated proposals, requirements, designs, or task lists may be incomplete or misaligned with the requested change.
+
+Mitigation: Review the OpenSpec documents for accuracy and scope before implementation.
+
+## Reference(s):
+
+- [OpenSpec workflow patterns](references/workflow.md)
+- [OpenSpec ClawHub release](https://clawhub.ai/juanclaw/skills/openspec-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool calls, shell commands, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update OpenSpec proposal, specification, design, task, and archive files under openspec/.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

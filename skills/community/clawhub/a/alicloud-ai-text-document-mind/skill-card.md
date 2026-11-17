@@ -1,40 +1,59 @@
-## Description: <br>
-Use Alibaba Cloud Document Mind through the Node.js SDK to submit document parsing jobs and poll for structured text, layout, and document results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Document Mind (DocMind) via Node.js SDK to submit document parsing jobs and poll results.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure Claude Code or Codex workflows that submit document URLs or uploads to Alibaba Cloud DocMind, poll asynchronous results, and capture evidence for document understanding tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud credentials could be exposed if they are pasted into chats, logs, or saved in shared output artifacts. <br>
-Mitigation: Use least-privilege, preferably short-lived Alibaba Cloud credentials and keep secrets out of prompts, logs, and evidence files. <br>
-Risk: Documents submitted to DocMind may leave the local environment and be handled by Alibaba Cloud. <br>
-Mitigation: Process only documents that are approved for Alibaba Cloud handling and choose the region explicitly when required by the task. <br>
+## Use Case:
 
+Developers and agent operators use this skill to submit documents to Alibaba Cloud DocMind, poll asynchronous parsing jobs, and incorporate document structure, text, and layout results into Claude Code or Codex workflows.
 
-## Reference(s): <br>
-- [Source list](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Alibaba Cloud credentials and a bounded polling loop; results depend on DocMind service responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Sensitive documents may be exposed when submitted through publicly accessible URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly controlled, short-lived document URLs, revoke access after processing, or use local file upload for sensitive documents when appropriate.
+
+Risk: Alibaba Cloud access keys can grant broader cloud access than the document parsing task requires.
+
+Mitigation: Use least-privileged Alibaba Cloud credentials and avoid printing, saving, or committing access keys.
+
+Risk: DocMind jobs are asynchronous and long polling can delay agent workflows or hide timeout failures.
+
+Mitigation: Set bounded polling intervals and maximum poll counts, then record job IDs, regions, and status summaries for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-ai-text-document-mind)
+- [cinience publisher profile](https://clawhub.ai/user/cinience)
+- [Artifact source list](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DocMind job identifiers, polling status, parsed document result summaries, and saved evidence paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

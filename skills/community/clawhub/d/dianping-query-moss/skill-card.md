@@ -1,42 +1,55 @@
-## Description: <br>
-Queries Dianping restaurant information, including restaurant ratings, average spend, addresses, cuisine or area search results, and nearby food recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Dianping restaurant information, including ratings, average spend, addresses, cuisine or area search results, and nearby food recommendations.
 
-## Publisher: <br>
-[MemoryF](https://clawhub.ai/user/MemoryF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memoryf](https://clawhub.ai/user/memoryf)
 
-## Use Case: <br>
-External users and agents use this skill to search Dianping for Hangzhou-focused restaurant recommendations or details such as ratings, prices, locations, dishes, and review summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags that the skill asks the agent to use a named Dianping account and may involve phone or SMS login. <br>
-Mitigation: Complete any login directly in Dianping's own UI, do not paste SMS codes or credentials into chat, and confirm the active account before browsing. <br>
-Risk: The security review flags a Hangzhou location workaround that can conflict with the account's Beijing location context. <br>
-Mitigation: Confirm the city context before relying on results and use the Hangzhou URL or city-scoped search terms when Hangzhou results are required. <br>
+## Use Case:
 
+External users and agents use this skill to search Dianping for restaurant names, cuisines, regions, and recommendations, then summarize key restaurant details from search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MemoryF/dianping-query-moss) <br>
-- [Dianping Hangzhou page](https://www.dianping.com/hangzhou) <br>
-- [Dianping AI search URL pattern](https://www.dianping.com/ai-search?keyword=...) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise text summaries of Dianping restaurant search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include restaurant names, ratings, average spend, addresses, cuisine notes, recommended dishes, review summaries, and city-scoped search guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill references a named Dianping login and possible phone/SMS verification flow without clear account ownership boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an account the operator owns or is explicitly authorized to use, and avoid giving SMS verification codes to an agent unless a secure platform flow is available.
+
+Risk: Restaurant search results and city targeting may be affected by account location, cookies, or Dianping page behavior.
+
+Mitigation: Prefer public browsing where possible, verify the city-specific URL or city parameter, and treat extracted restaurant details as results that may need user confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/memoryf/skills/dianping-query-moss)
+- [Dianping Hangzhou page](https://www.dianping.com/hangzhou)
+- [Dianping AI search URL pattern](https://www.dianping.com/ai-search?keyword=...)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries of restaurant search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries typically include restaurant name, rating, average spend, address or area, specialties, recommended dishes, and review highlights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-一方都市治愈小空间智能体，为用户提供隔绝喧嚣、静心放空的陪伴空间，适用于情绪抚慰、压力释放、慢生活陪伴、深夜倾诉和轻手作建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language calming companion skill for gentle emotional support, quiet reflection, breathing prompts, and simple mindful activities in urban stress or late-night decompression scenarios.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-External users use this skill for gentle relaxation, emotional decompression, quiet companionship, and low-pressure activity suggestions. It is intended for calming support and reflection, not clinical, crisis, psychiatric, or medical mental-health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat calming companionship as clinical, crisis, psychiatric, or medical mental-health support. <br>
-Mitigation: Present the skill as relaxation and companionship only, and direct severe distress, self-harm thoughts, abuse, or medical mental-health questions to qualified professional or emergency resources. <br>
+## Use Case:
 
+External users and agent developers can use this skill to provide a soft Chinese-language companionship experience for stress relief, emotional acknowledgement, quiet conversation, and low-pressure mindful activity suggestions. It should be treated as wellness support rather than professional mental-health care.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smallkeyboy/urban-healing-space) <br>
-- [治愈手作与静心活动参考](references/healing-activities.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only responses; no executable code, credentials, persistence, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake calming companionship and wellness prompts for professional mental-health care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as gentle relaxation support and direct acute distress, self-harm concerns, panic, or serious psychological distress to professional or emergency support.
+
+Risk: Breathing, candle, incense, or aromatherapy suggestions may be unsuitable for users with dizziness, respiratory sensitivity, or fire-safety constraints.
+
+Mitigation: Keep such suggestions optional, cautious, and easy to skip; prefer non-physical grounding or quiet conversation when safety constraints are present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/urban-healing-space)
+- [healing-activities.md](artifact/references/healing-activities.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational responses with short reflective prompts and activity suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or destructive behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-Plan and execute cross-border ecommerce fulfillment, including customs documentation, HS codes, duties estimation, and carrier selection for international orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and execute cross-border ecommerce fulfillment, including customs documentation, HS codes, duties estimation, and carrier selection for international orders.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce sellers and operators use this skill to plan international shipping programs, troubleshoot customs holds, compare DDP vs. DDU, estimate duties and taxes, and select carriers for destination markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence business-impacting customs, tax, carrier, and purchasing decisions. <br>
-Mitigation: Treat outputs as planning guidance and verify current HS classifications, tariff rates, thresholds, tax obligations, and carrier restrictions with official sources or a licensed customs broker before acting on high-value or regulated shipments. <br>
-Risk: Thresholds, rates, and carrier restrictions change over time and can vary by market and shipping channel. <br>
-Mitigation: Require outputs to label estimates, tag regulatory thresholds as verify current, and disclose assumptions before delivery. <br>
-Risk: Incorrect valuation, HS classification, or restricted-goods handling can lead to customs holds, penalties, or seizures. <br>
-Mitigation: Use the included quality checklist and documentation-pack guidance, and recommend professional review for ambiguous classifications or regulated products. <br>
+## Use Case:
 
+External ecommerce sellers and operators use this skill to plan international shipping launches, troubleshoot customs holds, estimate duties and taxes, choose DDP versus DDU or DAP, select carriers by lane, and prepare documentation packs.
 
-## Reference(s): <br>
-- [Cross-Border Guide skill page](https://clawhub.ai/leooooooow/cross-border-guide) <br>
-- [Output Templates](references/output-template.md) <br>
-- [HS Codes, Duties & Tax Math](references/hs-codes-and-duties.md) <br>
-- [Carrier Selection & Documentation Guide](references/carrier-selection-guide.md) <br>
-- [Cross-Border Quality Checklist](assets/cross-border-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown plans, troubleshooting reports, tables, checklists, and action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should mark estimates, cite source types for duty and tax figures, and include assumptions and broker-verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Customs, duty, tax, and regulatory guidance can become outdated or vary by destination, carrier channel, and product category.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rates, thresholds, HS classifications, registrations, and restricted-goods rules with official sources or a licensed customs broker before shipping or scaling.
+
+Risk: Incorrect HS classification, valuation, Incoterm selection, or documentation can lead to customs holds, penalties, seizure, or surprise customer charges.
+
+Mitigation: Use the included checklist and output templates to state assumptions, mark estimates, align invoices with transaction records, and require broker or professional verification for high-stakes figures.
+
+## Reference(s):
+
+- [Output Templates](references/output-template.md)
+- [HS Codes, Duties & Tax Math](references/hs-codes-and-duties.md)
+- [Carrier Selection & Documentation Guide](references/carrier-selection-guide.md)
+- [Cross-Border Quality Checklist](assets/cross-border-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown plans, tables, checklists, and troubleshooting reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumptions, verification notes, and broker or professional confirmation guidance for rates, thresholds, classifications, and compliance gates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

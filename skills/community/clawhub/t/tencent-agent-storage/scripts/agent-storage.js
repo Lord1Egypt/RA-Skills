@@ -7,7 +7,7 @@ const os = require('os');
 
 // ==================== 加载 smh-node-sdk ====================
 
-const REQUIRED_SDK_VERSION = '>=1.0.8';
+const REQUIRED_SDK_VERSION = '>=1.0.9';
 
 function checkSdkVersion(sdkPath) {
   try {
@@ -17,8 +17,8 @@ function checkSdkVersion(sdkPath) {
     if (version) {
       const parts = version.split('.').map(Number);
       const [major, minor, patch] = parts;
-      if (major < 1 || (major === 1 && minor === 0 && patch < 8)) {
-        process.stderr.write(`[警告] smh-node-sdk 版本 ${version} 过低，要求 ${REQUIRED_SDK_VERSION}，请升级：npm install -g smh-node-sdk@^1.0.8\n`);
+      if (major < 1 || (major === 1 && minor === 0 && patch < 9)) {
+        process.stderr.write(`[警告] smh-node-sdk 版本 ${version} 过低，要求 ${REQUIRED_SDK_VERSION}，请升级：npm install -g smh-node-sdk@^1.0.9\n`);
       }
     }
   } catch (e) { /* 版本检测失败不阻塞运行 */ }
@@ -47,9 +47,9 @@ function loadSMHClient() {
   }
   throw new Error(
     'smh-node-sdk 未安装，请先运行：\n' +
-    '  npm install -g smh-node-sdk@^1.0.8\n' +
+    '  npm install -g smh-node-sdk@^1.0.9\n' +
     '或：\n' +
-    '  npm install smh-node-sdk@^1.0.8'
+    '  npm install smh-node-sdk@^1.0.9'
   );
 }
 
@@ -179,6 +179,7 @@ async function cmdUpload(args) {
       filePath: cloudPath,
       localPath: absLocal,
       conflictResolutionStrategy: conflictStrategy,
+      autoCreateDir: true,
       onProgress: (state, progress) => {
         if (progress > 0 && progress < 100) {
           process.stderr.write(`[上传进度] ${fileName}: ${progress}%\n`);
@@ -487,6 +488,7 @@ async function cmdUploadDir(args) {
         filePath: cloudPath,
         localPath: filePath,
         conflictResolutionStrategy: conflictStrategy,
+        autoCreateDir: true,
         onProgress: (state, progress) => {
           if (progress > 0 && progress < 100) {
             process.stderr.write(`[上传进度] ${relativePath}: ${progress}%\n`);
@@ -521,13 +523,43 @@ async function cmdUploadDir(args) {
   });
 }
 
+async function cmdRename(args) {
+  const { fromPath, toPath, conflictStrategy = 'rename' } = args;
+  if (!fromPath) return out({ success: false, error: '缺少必填参数 fromPath（源文件/文件夹路径）' });
+  if (!toPath) return out({ success: false, error: '缺少必填参数 toPath（目标文件/文件夹路径）' });
+
+  const { host, libraryId, spaceId, accessToken } = await resolveCredentials();
+  const client = new SMHClient({ basePath: host });
+
+  const normalizedFrom = fromPath.replace(/^\//, '');
+  const normalizedTo = toPath.replace(/^\//, '');
+
+  try {
+    await client.file.moveFile({
+      libraryId,
+      spaceId,
+      filePath: normalizedTo,
+      moveFileRequest: { from: normalizedFrom },
+      conflictResolutionStrategy: conflictStrategy,
+      accessToken,
+    });
+  } catch (e) {
+    const status = e && e.response && e.response.status;
+    if (status === 404) return out({ success: false, error: `源文件不存在: ${normalizedFrom}` });
+    if (status === 409) return out({ success: false, conflict: true, error: `目标路径已存在同名文件: ${normalizedTo}` });
+    return out({ success: false, error: `重命名失败: ${e.message}` });
+  }
+
+  out({ success: true, from: normalizedFrom, to: normalizedTo, message: `"${normalizedFrom}" 已重命名为 "${normalizedTo}"` });
+}
+
 // ==================== 入口 ====================
 
 const [,, cmd, argsStr] = process.argv;
 let args = {};
 try { if (argsStr) args = JSON.parse(argsStr); } catch (e) { out({ success: false, error: `参数解析失败: ${e.message}` }); process.exit(1); }
 
-const cmds = { upload: cmdUpload, uploadDir: cmdUploadDir, info: cmdInfo, list: cmdList, search: cmdSearch, mkdir: cmdMkdir };
-if (!cmds[cmd]) { out({ success: false, error: `未知命令: ${cmd}，支持: upload / uploadDir / info / list / search / mkdir` }); process.exit(1); }
+const cmds = { upload: cmdUpload, uploadDir: cmdUploadDir, info: cmdInfo, list: cmdList, search: cmdSearch, mkdir: cmdMkdir, rename: cmdRename };
+if (!cmds[cmd]) { out({ success: false, error: `未知命令: ${cmd}，支持: upload / uploadDir / info / list / search / mkdir / rename` }); process.exit(1); }
 
 cmds[cmd](args).catch((e) => { out({ success: false, error: e.message }); process.exit(1); });

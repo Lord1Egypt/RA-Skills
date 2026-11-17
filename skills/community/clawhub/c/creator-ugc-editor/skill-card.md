@@ -1,41 +1,56 @@
-## Description: <br>
-Edit raw creator-style UGC footage into cleaner, more usable outputs for ads, TikTok Shop, storefronts, and creator content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit raw creator-style UGC footage into cleaner, more usable outputs for ads, TikTok Shop, storefronts, and creator content workflows.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creator, commerce, and marketing teams use this skill to turn rough UGC footage into clearer edits for ads, TikTok Shop, product detail pages, storefronts, creator posts, and review clips while preserving a native creator feel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may involve sharing creator footage or marketing context with an agent. <br>
-Mitigation: Review footage and campaign context before sharing, and avoid providing sensitive or unnecessary personal, brand, or commercial information. <br>
-Risk: Editing guidance can still produce weak or misleading recommendations when source footage lacks proof, clarity, or usable moments. <br>
-Mitigation: Review the recommended keep, cut, and weak-spot notes before final editing decisions, and request reshoots or support assets when the source material is inadequate. <br>
+## Use Case:
 
+Creators, commerce teams, and marketers use this skill to turn rough creator-style UGC footage into clearer editing strategy, keep/cut recommendations, tone guidance, and best-fit usage notes for ads, TikTok Shop, storefronts, PDPs, review clips, and creator posts.
 
-## Reference(s): <br>
-- [Creator UGC Editor Output Template](references/output-template.md) <br>
-- [Creator UGC Editor on ClawHub](https://clawhub.ai/Leooooooow/creator-ugc-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns an edit strategy, keep versus cut recommendations, tone guidance, best-fit final use case, and risks or weak spots in the source footage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake the skill's editing notes for automated editing, publishing, or ad-account management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning guidance and manually review, apply, export, upload, or publish any final media through the user's normal editing and account workflows.
+
+Risk: Weak or unusable source footage may not be recoverable through trimming and structure changes alone.
+
+Mitigation: Use the skill's weak-spot review to identify when reshoots, must-keep talking points, or support assets are needed before final delivery.
+
+## Reference(s):
+
+- [Creator UGC Editor Skill](artifact/SKILL.md)
+- [Creator UGC Editor Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/creator-ugc-editor)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown editing plan with input summary, keep/cut recommendations, structure notes, tone notes, best-output guidance, and source-footage risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides editing guidance only; evidence states it does not edit files, upload content, or manage ad accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

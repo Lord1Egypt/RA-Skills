@@ -1,40 +1,57 @@
-## Description: <br>
-JD.com product price-history assistance for checking real low prices and avoiding price-increase-before-discount promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query JD.com product price history, identify genuine low prices, analyze promotions, set price alerts, and recommend lower-priced similar items.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External shoppers and ecommerce sellers use this skill to review JD.com product price trends, compare discounts, set target-price alerts, and decide whether a current price is a good time to buy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Price-history analysis and shopping recommendations may be inaccurate, stale, or different from the live product page. <br>
-Mitigation: Verify prices, discounts, and product terms on JD.com before buying or relying on a recommendation. <br>
-Risk: Price alerts or paid monitoring may store watched products, target prices, or notification preferences. <br>
-Mitigation: Confirm where monitoring data is stored and how to disable alerts before using reminder or paid monitoring features. <br>
+## Use Case:
 
+External shoppers, ecommerce sellers, and shopping-assistant agents use this skill to review JD.com price history, compare current prices with historical lows, monitor price changes, and decide whether a promotion appears genuine.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/jd-price-history) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown text with price analysis, alert setup guidance, and shopping recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Price data is advisory and should be checked against the live JD.com product page before purchase decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Price histories, forecasts, or discount assessments may be stale or differ from the live JD.com product page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current price, seller, availability, and promotion terms on JD.com before purchasing or acting on a recommendation.
+
+Risk: Price alerts and monitoring can create ongoing shopping-assistant behavior that the user may not intend.
+
+Mitigation: Ask the user to confirm the exact product URL or SKU, target price, monitoring scope, and notification preference before setting alerts.
+
+Risk: The requests dependency is not pinned in the artifact metadata.
+
+Mitigation: Install in an isolated environment and pin or review dependencies before using the skill in managed or production agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/jd-price-history)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance, Configuration]
+
+**Output Format:** [Markdown or plain text price-history analysis with product prices, trend summaries, alert settings, and buying guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Price data is reference-only and should be checked against the current JD.com product page before purchase.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

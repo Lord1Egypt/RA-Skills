@@ -1,41 +1,54 @@
-## Description: <br>
-Provides a unified web search and information extraction entry point that routes across content-extraction, Jina Reader, Firecrawl, and web-access CDP to choose an economical toolchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Intel provides a unified entry point for web search and information extraction, routing requests across content-extraction handlers, Jina Reader, Firecrawl, and a local web-access CDP proxy based on task needs and mode.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and agents use this skill to perform routed web search, URL extraction, finance lookup, and competitor research with fast, standard, or deep collection modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deep mode can access pages through a logged-in browser session. <br>
-Mitigation: Use deep mode only for pages intentionally approved for logged-in access, and avoid private account pages, internal URLs, or token-bearing links. <br>
-Risk: Search queries and URLs may be sent to external extraction or search providers. <br>
-Mitigation: Avoid submitting confidential queries or sensitive URLs unless external processing has been explicitly approved. <br>
+## Use Case:
 
+Developers and agent builders use this skill to search the web, extract page content, and route finance, news, competitor-research, and direct-URL tasks to the appropriate retrieval path. It is intended as a reusable web intelligence layer for other skills and sub-agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/halfmoon82/web-intel) <br>
-- [Jina Reader endpoint](https://r.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON stdout with optional Markdown content fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes selected tool name, result snippets or extracted content, web-access availability, latency, and fallback notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Deep mode can use a logged-in Chrome session through the local CDP proxy to read arbitrary page text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid deep mode on private accounts, internal dashboards, localhost services, or URLs containing tokens unless explicit confirmation and destination allowlists are added.
+
+Risk: Requests may route URLs or queries to third-party extraction and search services.
+
+Mitigation: Review URLs before use and avoid sending confidential, access-controlled, or token-bearing content to external retrieval services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halfmoon82/skills/web-intel)
+- [Jina Reader endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON stdout for tool results, with Markdown and shell-command guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result payloads include query or URL, mode, task type, selected tool, result snippets or extracted content, web_access availability, latency, and optional notes; extracted content is truncated by mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

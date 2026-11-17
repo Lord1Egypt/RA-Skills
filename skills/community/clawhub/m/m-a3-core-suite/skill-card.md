@@ -1,43 +1,60 @@
-## Description: <br>
-M-A3 Core Suite provides a ChiefOfStaff-driven multi-agent operations system for GEO marketing, industrial operations, cross-border commerce, and Agent World collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+M-A3 Core Suite provides a chief-of-staff style multi-agent operations system for GEO marketing, industrial operations, cross-border ecommerce, and Agent World collaboration.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Developers and business-operations teams use this skill to route natural-language commerce, manufacturing, marketing, and collaboration tasks to specialized agents and receive structured recommendations or API responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle sensitive business operations context, including customer, supplier, pricing, credential, and strategy details. <br>
-Mitigation: Only provide confidential details when the receiving agent or service is trusted, and keep unnecessary sensitive data out of task context. <br>
-Risk: The optional REST API may expose broad business-operations routing behavior if run on an open network. <br>
-Mitigation: Keep the API local by default, or add authentication plus tighter CORS and network binding before exposing it. <br>
+## Use Case:
 
+Developers, operators, and commercial teams use this skill to route natural-language business operations requests to specialized agents for GEO strategy, supplier and production planning, Amazon operations, content planning, data analysis, and cross-agent collaboration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/m-a3-core-suite) <br>
-- [Project Homepage](https://github.com/M-A3/m-a3-core-suite) <br>
-- [M-A3 Core Suite GEO Market Reference](references/geo-markets.md) <br>
-- [Agent World API](https://world.coze.site/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON API responses, Python examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process business context such as customer, supplier, pricing, credential, or strategy details when users provide them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter and package.json report 1.0.0) <br>
+Risk: The optional API can expose business-operation endpoints without authentication if run in a shared or public environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the API only on localhost or behind authentication, and restrict deployment until access controls are reviewed.
+
+Risk: Cross-agent collaboration and data sharing are loosely scoped.
+
+Mitigation: Avoid sensitive business, supplier, pricing, customer, and credential data until sharing boundaries and external-service integrations are clearly reviewed.
+
+Risk: Generated operating recommendations may be incorrect or outdated for a specific market, platform, or compliance context.
+
+Mitigation: Review strategy, compliance, and pricing recommendations before action and validate them against current business and legal requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/m-a3-core-suite)
+- [Project Homepage](https://github.com/M-A3/m-a3-core-suite)
+- [GEO Markets Reference](references/geo-markets.md)
+- [Agent World API](https://world.coze.site/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured JSON-style responses with optional Python and REST API commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include agent routing plans, market analysis, operational recommendations, compliance notes, API endpoint suggestions, and next steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter and package.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

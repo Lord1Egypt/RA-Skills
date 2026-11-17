@@ -1,41 +1,58 @@
-## Description: <br>
-Publishes a local agent skill folder to ClawHub by guiding browser upload, license selection, and release steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将本地技能发布到 ClawHub。触发场景：发布技能、上传技能到ClawHub、发布skill、ClawHub发布。
 
-## Publisher: <br>
-[infiniteask](https://clawhub.ai/user/infiniteask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infiniteask](https://clawhub.ai/user/infiniteask)
 
-## Use Case: <br>
-Skill authors and developers use this skill to publish a local skill folder to ClawHub after confirming the folder contents, logged-in account, slug, display name, and license selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish a local folder publicly to ClawHub and accept the MIT-0 license choice. <br>
-Mitigation: Require explicit final approval after confirming folder contents, logged-in account, slug, display name, and license selection. <br>
-Risk: The workflow may delete SKILL.md.bak and overwrite the clipboard while controlling a Windows file picker. <br>
-Mitigation: Review the target folder before execution and warn users before local backup deletion or clipboard use. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to publish a local skill folder to ClawHub through a guided browser and desktop upload workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infiniteask/publish-agent-skill-infinite) <br>
-- [ClawHub publish skill page](https://clawhub.ai/publish-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with PowerShell and Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local skill folder path and interactive confirmation for the system file picker upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: The skill can delete local backup files before upload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target folder contents before running the cleanup step, or remove that step when backup files must be preserved.
+
+Risk: The workflow changes desktop input state and clipboard contents while interacting with a system file dialog.
+
+Mitigation: Run it only in an intended interactive desktop session and verify the selected folder before continuing.
+
+Risk: The workflow can publish a skill publicly under the MIT-0 license.
+
+Mitigation: Manually verify the account, license selection, uploaded files, and final publish action before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infiniteask/skills/publish-agent-skill-infinite)
+- [ClawHub publish skill page](https://clawhub.ai/publish-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with inline PowerShell and Python command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes manual confirmation steps for folder upload and final publishing.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

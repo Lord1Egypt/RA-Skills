@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents summarize public BOSS Zhipin job listings and company pages without login, applications, messaging, private APIs, or bulk scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents summarize public BOSS Zhipin job and company pages for lightweight analysis without login, applications, messaging, or bulk scraping.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect lightweight summaries of public BOSS Zhipin job listings, job details, and company pages for internal analysis and alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use outside the stated boundaries could violate platform rules or create unwanted automation. <br>
-Mitigation: Use only public pages; do not log in, apply to jobs, message users, call private APIs, or perform bulk scraping. <br>
-Risk: Dynamic rendering and human verification can make extracted listing details incomplete or stale. <br>
-Mitigation: Open pages manually when needed, summarize only visible public content, and include collection time in outputs. <br>
+## Use Case:
 
+External users and developers use this skill to summarize public BOSS Zhipin job listings, job details, and company pages for internal analysis and alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/boss-zhipin) <br>
-- [BOSS Zhipin homepage](https://www.zhipin.com/) <br>
-- [BOSS Zhipin job search](https://www.zhipin.com/job_detail/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries of public job and company information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source links and collection time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Users may try to use the skill for bulk scraping or activity that conflicts with BOSS Zhipin platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for light summaries of public pages, respect the site's rules, apply frequency control, and record the collection time.
+
+Risk: Users may try to automate account actions such as login, applications, chat, or messaging.
+
+Mitigation: Keep the workflow limited to public-page analysis and do not use it for login, applying to jobs, chat automation, or messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/boss-zhipin)
+- [BOSS Zhipin homepage](https://www.zhipin.com/)
+- [BOSS Zhipin job search](https://www.zhipin.com/job_detail/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public job fields, responsibilities, requirements, skill tags, benefits, company details, source links, and collection time.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

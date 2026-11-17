@@ -1,41 +1,58 @@
-## Description: <br>
-Deploy a scientific research team with four agents for literature review, hypothesis generation, experimentation, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a scientific research team with 4 agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and research teams use this skill to configure a four-agent Pilot Protocol workflow for collaborative scientific research, including literature synthesis, hypothesis ranking, experiment validation, and report preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The report role can publish research reports to external destinations. <br>
-Mitigation: Decide what research data may leave the environment, restrict destinations where possible, and manually review reports before external publication. <br>
-Risk: The setup depends on pilotctl, clawhub, and listed pilot-* skills that affect multi-agent communication. <br>
-Mitigation: Install only trusted versions of these tools and skills, then verify trust relationships before exchanging research data. <br>
+## Use Case:
 
+Developers and research teams use this skill to configure a four-agent scientific research pipeline for literature review, hypothesis generation, experiment execution, and report writing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-scientific-research-team-setup) <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON manifest examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilot-protocol skill, pilotctl binary, clawhub binary, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill configures broad setup, trust, and external publishing capabilities without enough scoping or safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, keep external publishing disabled until a human approves the content and destination, and limit deployment to reviewed environments.
+
+Risk: Unreviewed dependencies or mutable dependency versions could change the behavior of the deployed research-agent pipeline.
+
+Mitigation: Use reviewed and pinned dependency versions for required skills and binaries before deployment.
+
+Risk: An unsafe deployment prefix or unverified peer identity could create incorrect hostnames or unintended trust relationships.
+
+Mitigation: Validate the deployment prefix as a hostname-safe label and manually verify peer identities before handshakes.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-scientific-research-team-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

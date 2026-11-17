@@ -1,40 +1,59 @@
-## Description: <br>
-Run B2B lead research with lgf (Lead Gen Factory) to find leads, prospect companies, research ICPs, identify decision makers, and generate lead lists for B2B target profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run B2B lead research with lgf (Lead Gen Factory) when asked to find leads, prospect companies, research ICPs, find decision makers, or generate a lead list for any B2B target profile.
 
-## Publisher: <br>
-[Catafal](https://clawhub.ai/user/Catafal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catafal](https://clawhub.ai/user/catafal)
 
-## Use Case: <br>
-Sales, growth, and business development users can ask an agent to run lgf for a stated ICP and return scored B2B leads, decision-maker details, and source links for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles generated leads and contact details that may be personal or sensitive business data. <br>
-Mitigation: Review provider terms and ensure outreach, storage, and handling comply with applicable privacy laws, consent requirements, and platform rules. <br>
-Risk: Running lgf requires local installation and API credentials for external services. <br>
-Mitigation: Verify the Lead Gen Factory source before installing, use an isolated environment such as pipx, and use dedicated Tavily and OpenRouter API keys. <br>
+## Use Case:
 
+Developers and revenue teams use this skill to run a CLI-based B2B lead research pipeline from a free-text ICP and receive scored, deduplicated lead results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Catafal/lead-gen-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, CSV, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; lgf can return structured JSON and CSV lead outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.12+ and dedicated Tavily and OpenRouter API keys; generated leads may include personal or sensitive business contact data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install code from an unpinned GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and pin a trusted commit or release before installing or running the CLI.
+
+Risk: The workflow depends on Tavily and OpenRouter API keys.
+
+Mitigation: Use restricted keys, store them only in the documented local configuration, and rotate them if exposed.
+
+Risk: Generated lead records may include personal contact data such as email addresses, phone numbers, and LinkedIn URLs.
+
+Mitigation: Minimize retained lead data and handle outreach records under applicable privacy, consent, and marketing rules.
+
+## Reference(s):
+
+- [Lead Gen Factory GitHub repository referenced by the skill](https://github.com/Catafal/lead-gen-factory.git)
+- [ClawHub skill page](https://clawhub.ai/catafal/skills/lead-gen-factory)
+- [Publisher profile](https://clawhub.ai/user/catafal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI can emit structured JSON to stdout and CSV lead files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

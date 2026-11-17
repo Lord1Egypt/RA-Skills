@@ -1,41 +1,54 @@
-## Description: <br>
-Guides startups and scale-ups through SOC 2, ISO 27001, GDPR, HIPAA, PCI DSS, and SOX compliance planning so they can work toward audit readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides startups and scale-ups through SOC 2, ISO 27001, GDPR, HIPAA, PCI DSS, and SOX compliance planning and audit readiness.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, CTOs, CISOs, and security or compliance teams use this skill to select relevant frameworks, assess readiness, draft policies, map controls, organize audit evidence, and plan continuous compliance work. Its outputs are planning and drafting aids, not professional audit, legal, or regulatory sign-off. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Compliance, audit, legal, or regulatory recommendations may be incomplete or unsuitable for a company's exact facts, scope, jurisdiction, or auditor expectations. <br>
-Mitigation: Treat outputs as drafts and have qualified compliance, legal, security, or audit professionals review final policies, evidence packages, and audit conclusions. <br>
-Risk: Prompts may expose sensitive company details, security gaps, customer data, PHI, payment data, or legal facts. <br>
-Mitigation: Minimize, redact, or generalize sensitive inputs and avoid sharing unnecessary regulated or confidential data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-compliance-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Founders, security leaders, compliance teams, and operators use this skill to select applicable compliance frameworks, assess readiness, plan remediation, prepare audit evidence, and draft policy or checklist materials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, YAML templates, and policy templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft readiness assessments, framework plans, policies, evidence checklists, compliance dashboards, and scoring rubrics for human review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may paste secrets, regulated records, incident details, access lists, pentest findings, or contractual documents while seeking audit-readiness help.
+
+Mitigation: Keep sensitive records in approved secure repositories with least-privilege access, and provide only the minimum summarized context needed for planning.
+
+Risk: Compliance outputs may be mistaken for legal, audit, or certification advice.
+
+Mitigation: Treat outputs as planning support and have qualified legal, compliance, or audit professionals review decisions and evidence before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-compliance-engine)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, checklists, tables, YAML templates, and concise planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces informational compliance and audit-readiness planning support; users should review outputs with qualified legal, compliance, or audit professionals before relying on them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

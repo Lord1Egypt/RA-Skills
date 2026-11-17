@@ -1,41 +1,53 @@
-## Description: <br>
-Generates structured, high-coverage software test cases for functional, routing, page-transition, permission, boundary, exception, and cross-page interaction scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language test case design skill that produces standardized, high-coverage functional test cases for requirements, page navigation, route parameters, and linked multi-page workflows.
 
-## Publisher: <br>
-[cassianran](https://clawhub.ai/user/cassianran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cassianran](https://clawhub.ai/user/cassianran)
 
-## Use Case: <br>
-QA engineers, testers, and product development teams use this skill to turn requirements, designs, flows, route details, and related code excerpts into standardized test case sets. It helps cover main flows, abnormal paths, boundary values, permissions, page transitions, route parameters, and cross-page data synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated test cases can miss product-specific business rules or misstate expected behavior when requirements are incomplete. <br>
-Mitigation: Have a tester or product owner review the generated cases against current requirements before using them for execution or automation. <br>
-Risk: Inputs for test design may contain secrets, production personal data, or sensitive implementation details. <br>
-Mitigation: Provide only the minimum needed requirements, designs, and code excerpts, and redact secrets or production personal data before use. <br>
+## Use Case:
 
+QA engineers, test engineers, and product teams use this skill to convert requirements, UI flows, route behavior, and cross-page interactions into structured test cases with priorities, steps, expected results, coverage notes, and risk prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cassianran/test-case-design-senior) <br>
-- [Publisher profile](https://clawhub.ai/user/cassianran) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and structured prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes test case identifiers, priority levels, preconditions, steps, expected results, coverage notes, and risk prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The skill is Markdown-only and broadly activates on testing-related prompts, so generated content may not match a team's required language, test scope, or local quality process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated cases for language, scope, priority, and coverage before using them in a test plan or test management system.
+
+Risk: The skill generates test guidance from provided requirements, so incomplete or ambiguous input can leave gaps in expected behavior, permissions, route handling, or cross-page data consistency.
+
+Mitigation: Provide requirements, route details, business context, constraints, and related system information; then review the output against the source requirements and known risks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cassianran/skills/test-case-design-senior)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and structured test-case sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are primarily Chinese-language test case templates, coverage notes, and review guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

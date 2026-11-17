@@ -1,47 +1,60 @@
-## Description: <br>
-Plan, operate, and recover relational databases with schema governance, safe migrations, backup drills, and incident response playbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, operate, and recover relational databases with schema governance, safe migrations, backup drills, and incident response playbooks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, database operators, and on-call engineers use this skill to plan database changes, review query and migration risk, maintain backup readiness, and respond to data integrity or availability incidents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Database write, migration, DROP, TRUNCATE, bulk UPDATE, or broad DELETE operations can affect production data integrity or availability. <br>
-Mitigation: Confirm production targets, backups, row counts, rollback plans, and approvals before execution; use read-only validation and explicit user confirmation for destructive operations. <br>
-Risk: Local database operating notes may expose sensitive operational context if they include credentials or connection details. <br>
-Mitigation: Keep ~/database-manager/ private and do not store passwords, tokens, connection strings, or private keys in the skill memory files. <br>
-Risk: Backup status alone may create false confidence during recovery events. <br>
-Mitigation: Run restore drills, validate recovered row counts, record measured recovery time, and keep an audit trail for recovery evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/database-manager) <br>
-- [Skill homepage](https://clawic.com/skills/database-manager) <br>
-- [Setup guide](setup.md) <br>
-- [Query operations and change windows](query-operations.md) <br>
-- [Migration and release control](migration-and-release.md) <br>
-- [Backup and recovery](backup-and-recovery.md) <br>
-- [Incident playbook](incident-playbook.md) <br>
+## Use Case:
 
+Developers, database operators, and incident responders use this skill to plan safe schema and data changes, verify backup and restore readiness, and coordinate database incidents with documented rollback and validation steps.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with checklists, templates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local operational notes under ~/database-manager/ when the user approves.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent local database operations notes may capture sensitive database context if misused.
+
+Mitigation: Keep secrets, passwords, connection strings, and private keys out of ~/database-manager/ and store only durable operational context.
+
+Risk: Production database changes can affect reliability, latency, or data integrity when executed without review.
+
+Mitigation: Use preflight packets, explicit confirmation for destructive operations, documented rollback paths, and verification queries before approving changes.
+
+## Reference(s):
+
+- [Database Manager on ClawHub](https://clawhub.ai/ivangdavila/skills/database-manager)
+- [Database Manager Homepage](https://clawic.com/skills/database-manager)
+- [Setup](artifact/setup.md)
+- [Inventory and Governance](artifact/inventory-and-governance.md)
+- [Query Operations and Change Windows](artifact/query-operations.md)
+- [Migration and Release Control](artifact/migration-and-release.md)
+- [Backup and Recovery](artifact/backup-and-recovery.md)
+- [Incident Playbook](artifact/incident-playbook.md)
+- [Reusable Templates](artifact/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with checklists, templates, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local files under ~/database-manager/ when the user approves persistent database operations notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

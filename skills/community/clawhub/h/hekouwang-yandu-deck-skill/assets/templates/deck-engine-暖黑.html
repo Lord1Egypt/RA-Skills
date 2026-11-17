@@ -9,12 +9,13 @@
 <meta property="og:title" content="算力、Token，到底是什么？演示版（算力账本 EP01）">
 <meta property="og:description" content="算力=电、算力租赁=包租公、Token=出租车跳表。一屏一镜、带动画的演示版，像看 PPT 一样把 AI 底层概念讲清。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23161514'/%3E%3Cpath d='M13 5 6 18h6l-1 9 9-13h-6z' fill='none' stroke='%23e08a5f' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<!-- 字体自托管：本地预览用下方 @font-face；publish.py localize() 再注入 /fonts/ 思源子集。勿加第三方字体 CDN。 -->
 <style>
   @font-face{font-family:'Anthropic Sans';src:url('{{SKILL_DIR}}/assets/fonts/anthropicSans.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap;font-feature-settings:'dlig' 0}
   @font-face{font-family:'Anthropic Mono';src:url('{{SKILL_DIR}}/assets/fonts/anthropicMono.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+  @font-face{font-family:'Noto Sans SC';src:url('/fonts/NotoSansSC-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Noto Sans SC';src:url('/fonts/NotoSansSC-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Noto Serif SC';src:url('/fonts/NotoSerifSC.woff2') format('woff2');font-weight:600 900;font-style:normal;font-display:swap}
   :root{
     --bg:#161514;--surface:#221f1d;--surface2:#1b1917;--surfaceHi:#2a2623;
     --line:rgba(244,242,235,.09);--line2:rgba(244,242,235,.16);--line3:rgba(244,242,235,.26);
@@ -297,7 +298,7 @@
     </div>
   </section>
 
-  <!-- 03 §01 算力=电 -->
+  <!-- 03 第01节 算力=电 -->
   <section class="slide" data-g="01">
     <div class="stage">
       <div class="sec-label an" style="--i:0">第一块积木</div>
@@ -315,7 +316,7 @@
     </div>
   </section>
 
-  <!-- 04 §01 callout 引出租赁 -->
+  <!-- 04 第01节 callout 引出租赁 -->
   <section class="slide" data-g="01">
     <div class="stage">
       <div class="sec-label an" style="--i:0">承上启下</div>
@@ -326,7 +327,7 @@
     </div>
   </section>
 
-  <!-- 05 §02 算力租赁 -->
+  <!-- 05 第02节 算力租赁 -->
   <section class="slide" data-g="02">
     <div class="stage">
       <div class="sec-label an" style="--i:0">一种服务</div>
@@ -344,7 +345,7 @@
     </div>
   </section>
 
-  <!-- 06 §02 为什么租 + callout -->
+  <!-- 06 第02节 为什么租 + callout -->
   <section class="slide" data-g="02">
     <div class="stage">
       <div class="sec-label an" style="--i:0">为什么是“租”</div>
@@ -360,7 +361,7 @@
     </div>
   </section>
 
-  <!-- 07 §03 训练卡 vs 推理卡 FIG.01 -->
+  <!-- 07 第03节 训练卡 vs 推理卡 FIG.01 -->
   <section class="slide" data-g="03">
     <div class="stage">
       <div class="sec-label an" style="--i:0">硬件常识</div>
@@ -394,7 +395,7 @@
     </div>
   </section>
 
-  <!-- 08 §03 训练/推理 解释 + 稀缺 -->
+  <!-- 08 第03节 训练/推理 解释 + 稀缺 -->
   <section class="slide" data-g="03">
     <div class="stage">
       <div class="sec-label an" style="--i:0">两类卡，两个世界</div>
@@ -407,7 +408,7 @@
     </div>
   </section>
 
-  <!-- 09 §04 Token -->
+  <!-- 09 第04节 Token -->
   <section class="slide" data-g="04">
     <div class="stage">
       <div class="sec-label an" style="--i:0">第二块积木</div>
@@ -425,7 +426,7 @@
     </div>
   </section>
 
-  <!-- 10 §04 FIG.02 切分 -->
+  <!-- 10 第04节 FIG.02 切分 -->
   <section class="slide" data-g="04">
     <div class="stage">
       <div class="sec-label an" style="--i:0">分词器怎么切</div>
@@ -459,7 +460,7 @@
     </div>
   </section>
 
-  <!-- 11 §05 从算力到Token FIG.03 -->
+  <!-- 11 第05节 从算力到Token FIG.03 -->
   <section class="slide" data-g="05">
     <div class="stage">
       <div class="sec-label an" style="--i:0">核心链条</div>
@@ -509,7 +510,7 @@
     </div>
   </section>
 
-  <!-- 12 §05 金句 -->
+  <!-- 12 第05节 金句 -->
   <section class="slide" data-g="05">
     <div class="stage">
       <div class="sec-label an" style="--i:0">本期核心论点 · 01</div>
@@ -523,7 +524,7 @@
     </div>
   </section>
 
-  <!-- 13 §06 整租 vs 按量 -->
+  <!-- 13 第06节 整租 vs 按量 -->
   <section class="slide" data-g="06">
     <div class="stage">
       <div class="sec-label an" style="--i:0">两种用法</div>
@@ -541,7 +542,7 @@
     </div>
   </section>
 
-  <!-- 14 §07 串成一句话 -->
+  <!-- 14 第07节 串成一句话 -->
   <section class="slide" data-g="07">
     <div class="stage">
       <div class="sec-label an" style="--i:0">串起来</div>
@@ -558,7 +559,7 @@
     </div>
   </section>
 
-  <!-- 15 §08 别神化它 -->
+  <!-- 15 第08节 别神化它 -->
   <section class="slide" data-g="08">
     <div class="stage">
       <div class="sec-label an" style="--i:0">冷静一下</div>
@@ -575,7 +576,7 @@
     </div>
   </section>
 
-  <!-- 16 §09 速查 -->
+  <!-- 16 第09节 速查 -->
   <section class="slide" data-g="09">
     <div class="stage">
       <div class="sec-label an" style="--i:0">一页速查</div>
@@ -591,7 +592,7 @@
     </div>
   </section>
 
-  <!-- 17 §09 FAQ -->
+  <!-- 17 第09节 FAQ -->
   <section class="slide" data-g="09">
     <div class="stage">
       <div class="sec-label an" style="--i:0">三个最容易搞混的问题</div>
@@ -777,5 +778,151 @@
   go(start? start-1 : 0);
 })();
 </script>
+
+<!-- ════════ 放映 / 提词器模块 v2 · 演读 DECK（自包含，粘在引擎结束标签前）════════
+  按 S：开「讲者视图」。优先开**同一 deck 的独立窗口**（url + #speaker），主屏与讲者窗靠
+       BroadcastChannel 双向同步——主屏保持干净（投影/录屏），讲者窗显示计时器 + 当前镜逐字稿 + 下一镜。
+       讲者窗还能**反向遥控**主屏：在讲者窗按 ←/→ 翻镜、P 计时、R 归零、Esc/S 关。
+       弹窗被拦（或无 BroadcastChannel）时，自动回退为**页内全屏浮层**（单屏排练也能用）。
+  真·双屏用法：把 deck 在第二显示器再开一个窗口、手动在地址后加 #speaker 也能变讲者窗（免弹窗）。
+  逐字稿写进每张 slide 的 <div class="notes">…</div>（观众/录屏永不可见，强制 display:none）——
+       这份 notes 同时就是该镜的「配音 / 口播脚本」，录屏时主屏放干净 deck、讲者窗当提词器照念，或喂 TTS。
+  引擎依赖：#deck 容器、.slide（当前镜带 .active class）；遥控翻镜靠向引擎派发方向键事件，无需改引擎。
+  注意：本地 file:// 下 BroadcastChannel 跨窗不通——用 python3 -m http.server 预览；发布到 CF Pages 正常。 -->
+<style>
+.notes{display:none!important}
+#pmode{position:fixed;inset:0;z-index:99999;display:none;flex-direction:column;gap:18px;padding:30px 38px;background:#0c0d10;color:#ececf2;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans SC',system-ui,sans-serif}
+#pmode.on{display:flex}
+#pmode .pm-top{display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:16px}
+#pmode .pm-time{font-variant-numeric:tabular-nums;font-size:44px;font-weight:700}
+#pmode .pm-btn{cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#ececf2;border-radius:10px;padding:9px 15px;font-size:14px}
+#pmode .pm-count{margin-left:auto;font-size:17px;color:#9a9aac;font-variant-numeric:tabular-nums}
+#pmode .pm-hint{font-size:12px;color:#6c6c7e}
+#pmode .pm-body{flex:1;display:grid;grid-template-columns:1.7fr 1fr;gap:24px;min-height:0}
+#pmode .pm-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:24px 28px;overflow:auto}
+#pmode .pm-lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7c7c8e;margin-bottom:12px}
+#pmode .pm-now{font-size:29px;line-height:1.62;font-weight:500;white-space:pre-wrap}
+#pmode .pm-nt{font-size:21px;font-weight:700;margin-bottom:8px}
+#pmode .pm-ns{font-size:17px;line-height:1.6;color:#b6b6c6;white-space:pre-wrap}
+</style>
+<div id="pmode" aria-hidden="true">
+  <div class="pm-top">
+    <div class="pm-time" id="pmTime">00:00</div>
+    <button class="pm-btn" id="pmPlay">▶/⏸ 计时 (P)</button>
+    <button class="pm-btn" id="pmReset">↺ 归零 (R)</button>
+    <span class="pm-hint">S 开/关 · ←/→ 翻镜 · Esc 关</span>
+    <div class="pm-count" id="pmCount">1 / 1</div>
+  </div>
+  <div class="pm-body">
+    <div class="pm-card"><div class="pm-lbl">当前镜 · 逐字稿</div><div class="pm-now" id="pmNow"></div></div>
+    <div class="pm-card"><div class="pm-lbl">下一镜</div><div class="pm-nt" id="pmNextT"></div><div class="pm-ns" id="pmNextS"></div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var deck=document.getElementById('deck'); if(!deck) return;
+  var slides=[].slice.call(deck.querySelectorAll('.slide'));
+  /* 讲者信号用 window.name（window.open 设定，引擎动不了）+ ?speaker 查询串（引擎只改 hash 不改 search）；
+     不用 #speaker——引擎的深链 replaceState('#'+n) 会在本模块读取前把它冲掉。 */
+  var isSpeaker=(window.name==='pmodeWin')||/(?:^|[?&])speaker(?:=|&|$)/.test(location.search);
+  var bc=null; try{ bc=new BroadcastChannel('pmode:'+location.pathname); }catch(e){}
+  function E(id){ return document.getElementById(id); }
+  function notesOf(s){ var n=s&&s.querySelector('.notes'); return n?n.textContent.replace(/[ \t]+\n/g,'\n').trim():''; }
+  function titleOf(s){ var t=s&&s.querySelector('h1,h2,.t,.k,.lead,.eyebrow'); return t?t.textContent.trim().slice(0,80):'（无标题）'; }
+  function curIdx(){ for(var i=0;i<slides.length;i++) if(slides[i].classList.contains('active')) return i; return 0; }
+  function paint(st){
+    if(E('pmCount')) E('pmCount').textContent=(st.idx+1)+' / '+st.total;
+    if(E('pmNow'))   E('pmNow').textContent=st.now;
+    if(E('pmNextT')) E('pmNextT').textContent=st.nt;
+    if(E('pmNextS')) E('pmNextS').textContent=st.ns;
+  }
+  function setTime(txt){ var e=E('pmTime'); if(e) e.textContent=txt; }
+  function fmt(ms){ var s=Math.floor(ms/1000); return ('0'+Math.floor(s/60)).slice(-2)+':'+('0'+(s%60)).slice(-2); }
+
+  /* ===================== 讲者角色（独立窗口 / #speaker）===================== */
+  if(isSpeaker){
+    var pm=E('pmode'); pm.classList.add('on');
+    if(bc){
+      bc.onmessage=function(ev){ var m=ev.data||{}; if(m.t==='state') paint(m.st); else if(m.t==='time') setTime(m.text); };
+      bc.postMessage({t:'hello'});   /* 上线即请求当前态 */
+    } else {
+      if(E('pmNow')) E('pmNow').textContent='（此环境不支持 BroadcastChannel，讲者窗需 http(s) 或改用页内浮层）';
+    }
+    function send(cmd){ if(bc) bc.postMessage({t:'cmd',cmd:cmd}); }
+    document.addEventListener('keydown',function(e){
+      var k=e.key,cmd=null;
+      if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'||k==='Enter') cmd='next';
+      else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp') cmd='prev';
+      else if(k==='p'||k==='P') cmd='timer'; else if(k==='r'||k==='R') cmd='reset';
+      else if(k==='Escape'||k==='s'||k==='S') cmd='close';
+      if(cmd){ e.preventDefault(); send(cmd); if(cmd==='close') window.close(); }
+    });
+    E('pmPlay').addEventListener('click',function(){ send('timer'); });
+    E('pmReset').addEventListener('click',function(){ send('reset'); });
+    return;   /* 讲者角色不跑主屏逻辑 */
+  }
+
+  /* ===================== 主屏（presenter）角色 ===================== */
+  var pm=E('pmode'), win=null, local=false;
+  function isWin(){ return win && !win.closed; }
+  function shown(){ return isWin() || local; }
+  function state(){
+    var i=curIdx(), nx=slides[i+1];
+    return { idx:i, total:slides.length,
+      now: notesOf(slides[i])||('（本镜无逐字稿）\n— '+titleOf(slides[i])),
+      nt: nx?titleOf(nx):'—— 末镜 ——', ns: nx?(notesOf(nx)||'（无逐字稿）'):'' };
+  }
+  function pushState(){ var st=state(); if(bc) bc.postMessage({t:'state',st:st}); if(local) paint(st); }
+
+  var t0=null,acc=0,tick=null;
+  function timeText(){ return fmt(acc+(t0?Date.now()-t0:0)); }
+  function pushTime(){ var tx=timeText(); if(bc) bc.postMessage({t:'time',text:tx}); if(local) setTime(tx); }
+  function play(){ if(t0)return; t0=Date.now(); tick=setInterval(pushTime,250); pushTime(); }
+  function pause(){ if(!t0)return; acc+=Date.now()-t0; t0=null; clearInterval(tick); pushTime(); }
+  function reset(){ pause(); acc=0; pushTime(); }
+  function toggleTimer(){ t0?pause():play(); }
+  window.__pmode={ toggleTimer:toggleTimer, reset:reset };
+
+  var mo=new MutationObserver(function(){ pushState(); });
+  slides.forEach(function(s){ mo.observe(s,{attributes:true,attributeFilter:['class']}); });
+
+  function nav(dir){ document.dispatchEvent(new KeyboardEvent('keydown',{key:dir>0?'ArrowRight':'ArrowLeft',bubbles:true})); }
+
+  function openSpeaker(){
+    var q=location.search?location.search+'&speaker=1':'?speaker=1';
+    var url=location.pathname+q+location.hash;
+    win = bc ? window.open(url,'pmodeWin','width=840,height=960') : null;
+    if(!win){ local=true; pm.classList.add('on'); }   /* 弹窗被拦 / 无广播 → 页内浮层 */
+    if(!t0) play();
+    pushState(); pushTime();
+    setTimeout(function(){ pushState(); pushTime(); }, 400);   /* 等子窗加载完再补推一次 */
+  }
+  function closeSpeaker(){ if(isWin()) win.close(); win=null; local=false; pm.classList.remove('on'); }
+  function toggle(){ shown()?closeSpeaker():openSpeaker(); }
+
+  if(bc){ bc.onmessage=function(ev){ var m=ev.data||{};
+    if(m.t==='hello'){ pushState(); pushTime(); }
+    else if(m.t==='cmd'){
+      if(m.cmd==='next') nav(1);
+      else if(m.cmd==='prev') nav(-1);
+      else if(m.cmd==='timer') toggleTimer();
+      else if(m.cmd==='reset') reset();
+      else if(m.cmd==='close') closeSpeaker();
+    }
+  }; }
+
+  E('pmPlay').addEventListener('click',function(e){ e.stopPropagation(); toggleTimer(); });
+  E('pmReset').addEventListener('click',function(e){ e.stopPropagation(); reset(); });
+  document.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='s'||k==='S'){ e.preventDefault(); toggle(); }
+    else if(shown()&&(k==='p'||k==='P')){ e.preventDefault(); toggleTimer(); }
+    else if(shown()&&(k==='r'||k==='R')){ e.preventDefault(); reset(); }
+    else if(shown()&&k==='Escape'){ e.preventDefault(); closeSpeaker(); }
+  });
+  window.addEventListener('beforeunload',function(){ if(isWin()) win.close(); });
+})();
+</script>
+
 </body>
 </html>

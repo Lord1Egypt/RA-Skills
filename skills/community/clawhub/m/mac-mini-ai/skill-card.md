@@ -1,45 +1,62 @@
-## Description: <br>
-Mac Mini AI helps developers set up a Mac Mini or Mac Mini fleet to run local LLMs, image generation, speech-to-text, embeddings, and OpenAI-compatible APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mac Mini AI helps agents set up and use Mac Mini systems for local LLMs, image generation, speech-to-text, embeddings, and multi-node request routing on Apple Silicon.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Apple Silicon Mac Minis as local AI nodes or small fleets for chat, image generation, speech-to-text, embeddings, and OpenAI-compatible application integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local AI service or fleet discovery endpoints may be reachable from other devices on the LAN if bound broadly. <br>
-Mitigation: Run the service in an environment you control and confirm network binding, firewall, and LAN exposure before relying on it. <br>
-Risk: The skill points users to install and run the referenced Ollama Herd package. <br>
-Mitigation: Review the referenced package before installation and execute setup commands only after confirming they match the intended environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn one or more Mac Mini systems into a local AI service for chat, image generation, speech-to-text, embeddings, monitoring, and OpenAI-compatible tool integration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/twinsgeeks/mac-mini-ai) <br>
-- [Ollama Herd GitHub project](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Ollama Herd PyPI package](https://pypi.org/project/ollama-herd/) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
-- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with shell, Python, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service endpoints and setup commands for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Installing an unpinned PyPI package can expose users to package supply-chain changes after the release was reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin `ollama-herd` to a reviewed version before operational use.
+
+Risk: The local or LAN AI service may process prompts and uploaded files such as audio locally and expose endpoints to nearby systems.
+
+Mitigation: Run the service only on trusted machines and networks, and review local data-handling requirements before submitting sensitive prompts or files.
+
+Risk: The skill writes disclosed fleet-manager logs and configuration under `~/.fleet-manager/`.
+
+Mitigation: Review retention and access controls for `~/.fleet-manager/latency.db` and `~/.fleet-manager/logs/herd.jsonl`.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/mac-mini-ai)
+- [Ollama Herd Project](https://github.com/geeks-accelerator/ollama-herd)
+- [PyPI: ollama-herd](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, Python, JSON, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance targets macOS on Apple Silicon and local or LAN AI service operation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

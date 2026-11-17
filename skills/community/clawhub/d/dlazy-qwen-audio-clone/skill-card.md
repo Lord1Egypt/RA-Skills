@@ -1,47 +1,51 @@
-## Description: <br>
-Alibaba Bailian qwen3-tts voice cloning that uploads a clean voice sample to create a custom voice for later TTS use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Bailian qwen3-tts voice cloning. Upload a clean voice sample to clone a custom voice usable in subsequent TTS calls. 阿里云百炼 qwen3-tts 声音复刻，上传一段干净人声样本即可复刻自定义音色，可在后续 TTS 中使用。
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agents use this skill to call the dLazy CLI for Qwen audio voice cloning, providing a clean voice sample and metadata to create a reusable custom voice for TTS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice samples and related metadata are sent to dLazy hosted services. <br>
-Mitigation: Use only audio that the user is authorized to provide, and avoid sensitive voice samples unless the user accepts dLazy processing. <br>
-Risk: The skill requires a dLazy API key that may be stored in the local CLI configuration. <br>
-Mitigation: Prefer per-session credentials when appropriate, protect the local config file, and rotate or revoke the key from the dLazy dashboard if exposure is suspected. <br>
-Risk: The security summary notes documentation mismatches in the skill. <br>
-Mitigation: Verify `dlazy qwen-audio-clone -h` before automation and rely on current CLI help for required flags and output behavior. <br>
-Risk: A global CLI install increases persistence of third-party tooling on the host. <br>
-Mitigation: Prefer `npx @dlazy/cli@latest` or review the `@dlazy/cli` package before installing globally. <br>
+## Use Case:
 
+Developers and creators use this skill to create a custom Qwen3-TTS voice from a clean audio sample and use that voice in later text-to-speech calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-qwen-audio-clone) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, json, guidance] <br>
-**Output Format:** [Command-line invocation guidance and JSON result envelopes from the dLazy CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx and a dLazy API key; local audio paths may be uploaded to dLazy hosted services; async runs can return a generateId for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The supplied evidence does not explain how the login command supports the advertised voice-cloning task, and automated analysis was partial because some local references were unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI behavior and resolve the missing references before using credentials or uploading voice samples.
+
+## Reference(s):
+
+- [CLI source link in skill metadata](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands]
+
+**Output Format:** [JSON response and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a synchronous result or an asynchronous task status.]
+
+## Skill Version(s):
+
+1.3.40 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

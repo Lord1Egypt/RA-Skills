@@ -1,43 +1,53 @@
-## Description: <br>
-Monitor LibreNMS network devices and alerts via the LibreNMS REST API to get device status, health sensors, port statistics, and unresolved active alerts in read-only mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor LibreNMS network devices, health sensors, port statistics, and unresolved active alerts through read-only API calls.
 
-## Publisher: <br>
-[florianbeer](https://clawhub.ai/user/florianbeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[florianbeer](https://clawhub.ai/user/florianbeer)
 
-## Use Case: <br>
-Network operators, SREs, and infrastructure engineers use this skill to query LibreNMS for device availability, active alerts, health sensors, and interface statistics during monitoring and triage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a LibreNMS API token for authentication. <br>
-Mitigation: Use a least-privileged read-only LibreNMS token and keep the local config file permission-restricted. <br>
-Risk: The script disables TLS certificate verification by default for curl requests. <br>
-Mitigation: Prefer a valid HTTPS certificate and remove the curl -k behavior when strict TLS validation works in the target environment. <br>
-Risk: Monitoring output can expose infrastructure hostnames, IP addresses, device status, and alert details. <br>
-Mitigation: Use the skill only in authorized environments and avoid sharing generated monitoring output outside approved operational channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LibreNMS API Documentation](https://docs.librenms.org/API/) <br>
-- [ClawHub LibreNMS Skill Page](https://clawhub.ai/florianbeer/librenms) <br>
+## Use Case:
 
+Developers, infrastructure operators, and network administrators use this skill to ask an agent for LibreNMS status summaries, down-device triage, health checks, port statistics, and active alert reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and tabular terminal output with Markdown setup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only LibreNMS API queries using a configured base URL and API token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends the LibreNMS API token while TLS certificate verification is disabled by default.
+
+Mitigation: Remove curl's -k/-sk default, use a trusted CA or --cacert for self-signed LibreNMS certificates, and keep the token limited to minimum read-only server-side permissions.
+
+Risk: The API token or generated monitoring reports could be exposed if stored with broad permissions or written to shared temporary paths.
+
+Mitigation: Keep the config file private, restrict permissions on the credentials file, and avoid saving reports to shared /tmp paths.
+
+## Reference(s):
+
+- [LibreNMS API Documentation](https://docs.librenms.org/API/)
+- [ClawHub LibreNMS Skill Page](https://clawhub.ai/florianbeer/skills/librenms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only LibreNMS API responses are summarized for device status, alerts, health sensors, and port statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

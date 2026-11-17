@@ -1,42 +1,56 @@
-## Description: <br>
-AI assistant for creating, scheduling, and analyzing social media content tailored for Twitter, Instagram, LinkedIn, and Facebook platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI assistant for creating, scheduling, and analyzing social media content tailored for Twitter, Instagram, LinkedIn, and Facebook.
 
-## Publisher: <br>
-[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev)
 
-## Use Case: <br>
-Marketing teams, creators, and agents use this skill to draft platform-specific posts, generate hashtag sets, plan content calendars, and review engagement patterns before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts, hashtags, and analytics recommendations may contain inaccurate factual claims or outdated platform-specific advice. <br>
-Mitigation: Review generated content and recommendations before publishing, especially claims, timing advice, hashtag choices, and platform policy references. <br>
-Risk: Helper scripts can write generated content to a user-specified output path. <br>
-Mitigation: Use explicit non-sensitive output paths and avoid pointing output options at files that should not be overwritten. <br>
+## Use Case:
 
+Marketing teams, creators, and developers use this skill to draft platform-specific social media posts, generate hashtag ideas, plan content calendars, and review engagement-oriented optimization guidance.
 
-## Reference(s): <br>
-- [Platform Guidelines](references/platform_guidelines.md) <br>
-- [Platform Guide](references/platform_guide.md) <br>
-- [Social Media Best Practices](references/best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with optional JSON configuration examples and Python helper script outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated recommendations should be reviewed before publication; helper scripts may write output files when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata lists 2.0.0) <br>
+Risk: Generated social media posts or recommendations could be inaccurate, off-brand, or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated posts, hashtags, schedules, and analytics recommendations before publishing or operational use.
+
+Risk: Generated JSON files may overwrite an existing destination when helper scripts are run with an output path.
+
+Mitigation: Choose output paths deliberately and check for existing files before writing generated JSON.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hughtan93-dev/skills/hughtan93-social-media-manager)
+- [Platform Guidelines](references/platform_guidelines.md)
+- [Social Media Best Practices](references/best_practices.md)
+- [Platform Guide](references/platform_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts can print JSON to stdout or write JSON files when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

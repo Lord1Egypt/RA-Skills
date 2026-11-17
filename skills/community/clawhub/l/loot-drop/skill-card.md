@@ -1,37 +1,48 @@
-## Description: <br>
-RPG-style loot drops for completing real coding tasks, with randomized item rarity, stats, inventory flavor, and collectible developer loadouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Loot Drop turns completed coding milestones into randomized RPG-style rewards with rarities, item stats, flavor text, and an optional developer inventory.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers use this skill to turn commits, bug fixes, feature releases, reviews, and incident response work into playful RPG-style loot rewards and inventory summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commit, release, review, or incident details may be included in prompts or outputs when generating flavor text. <br>
-Mitigation: Avoid automatic use in sensitive repositories or real incident channels unless sharing that context with the agent is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/loot-drop) <br>
+## Use Case:
 
+Developers use this skill to add light gamification to coding work by receiving collectible RPG-style loot drops after commits, bug fixes, shipped features, reviews, releases, or incidents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text loot drop cards, item descriptions, and inventory summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or tool execution are evidenced; output is generated as fictional coding reward content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic activation during commits, releases, reviews, or incidents could distract users in workflows that require focused attention.
+
+Mitigation: Enable the skill only for workflows where playful milestone rewards are appropriate, and avoid automatic invocation during sensitive incident response unless the team explicitly wants it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/loot-drop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with RPG-style reward descriptions and inventory-style summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs, credentials, or runtime dependencies are evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

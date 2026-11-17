@@ -1,49 +1,61 @@
-## Description: <br>
-UxrObserver passively records OpenClaw usage, surveys users after tasks, and generates redacted UX research reports with charts under user-controlled sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+observerclaude is an embedded UX research observer for OpenClaw that logs interactions, surveys, friction and delight signals, token cost estimates, and daily research reports with charts.
 
-## Publisher: <br>
-[giulianomorse](https://clawhub.ai/user/giulianomorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[giulianomorse](https://clawhub.ai/user/giulianomorse)
 
-## Use Case: <br>
-OpenClaw users and product teams use this skill to capture local UX research observations, task outcomes, survey responses, and periodic reports about real usage patterns. It is suited for deliberate research logging where the user understands the retention and sharing posture. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill continuously records exact user activity and survey answers in local logs. <br>
-Mitigation: Install it only for deliberate UX research, pause or delete the study when logging is not desired, and avoid confidential or credential-related work while it is active. <br>
-Risk: Generated reports can be moved into Google Docs, Sheets, Drive, Gmail, or email. <br>
-Mitigation: Review and redact reports before any sharing action, and require explicit user confirmation before sending or updating last-sent state. <br>
-Risk: Research logs may retain personal, business, legal, medical, financial, or credential-related content if the user works on sensitive tasks. <br>
-Mitigation: Use the documented redaction rules, inspect raw data on request, and apply the pause and delete controls regularly for retention management. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/giulianomorse/observerclaude) <br>
-- [Publisher profile](https://clawhub.ai/user/giulianomorse) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Observation taxonomy](artifact/observation-taxonomy.md) <br>
-- [Redaction rules](artifact/redaction-rules.md) <br>
-- [Report template](artifact/report-template.md) <br>
-- [Survey instruments](artifact/survey-instruments.md) <br>
-- [Analysis framework](artifact/analysis-framework.md) <br>
-- [Chart generator](artifact/generate-charts.py) <br>
+## Use Case:
 
+OpenClaw users, product teams, and UX researchers use this skill to observe real assistant usage, collect structured interaction records and surveys, and produce periodic research reports. It is intended for environments where participants knowingly opt into broad local usage logging.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON and JSONL logs, chart image files, and user-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local study data under ~/.uxr-observer/ and produces reports only for user-controlled sharing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill continuously records and persists broad usage data, including verbatim user requests, which is too broad for default installation.
+
+Mitigation: Enable it only for an intentional UX research study, review the ~/.uxr-observer/ data directory and retention behavior, and narrow collection or add pre-storage redaction before using it around confidential work.
+
+Risk: Raw local logs and generated reports may contain sensitive work context before report redaction is applied.
+
+Mitigation: Inspect report contents and redaction logs before sharing, use the documented pause and delete controls when collection is not appropriate, and avoid collecting sensitive sessions unless additional controls are in place.
+
+Risk: Optional Google Docs or email delivery could disclose report contents outside the local environment.
+
+Mitigation: Review any Google or email integration before enabling it, require explicit user-selected recipients, and confirm delivery only after the user verifies the report was sent as intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/giulianomorse/skills/observerclaude)
+- [Publisher profile](https://clawhub.ai/user/giulianomorse)
+- [Observation taxonomy](artifact/observation-taxonomy.md)
+- [Observation record schema](artifact/observation.json)
+- [Redaction rules](artifact/redaction-rules.md)
+- [Report template](artifact/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON and JSONL records, PNG charts or text chart fallbacks, survey prompts, and local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local observations, surveys, aggregates, heartbeat status, reports, charts, and redaction logs under ~/.uxr-observer/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

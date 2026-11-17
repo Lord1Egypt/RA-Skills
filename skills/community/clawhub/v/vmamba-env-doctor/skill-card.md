@@ -1,40 +1,54 @@
-## Description: <br>
-Guide for setting up a stable VMamba environment and resolving common CUDA, PyTorch, MMCV, and compilation errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for setting up a stable VMamba environment and resolving common CUDA, PyTorch, MMCV, and compilation errors.
 
-## Publisher: <br>
-[jiangkaiqi2005](https://clawhub.ai/user/jiangkaiqi2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangkaiqi2005](https://clawhub.ai/user/jiangkaiqi2005)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure a VMamba Python environment and troubleshoot CUDA, PyTorch, MMCV, selective_scan compilation, NumPy, OpenCV, and dynamic library errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide asks users to install dependencies and compile native CUDA code. <br>
-Mitigation: Run the commands only in a dedicated conda environment inside a trusted VMamba checkout. <br>
-Risk: Pinned package versions may conflict with an existing Python environment. <br>
-Mitigation: Create a clean environment and review the dependency versions before installing. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a stable VMamba Python environment and troubleshoot CUDA, PyTorch, MMCV, selective_scan compilation, MKL, NumPy, and OpenCV setup failures.
 
-## Reference(s): <br>
-- [VMamba project](https://github.com/MzeroMiko/VMamba) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides pinned environment versions and troubleshooting steps; commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Package installation and build commands can alter the active Python environment or system state if run in the wrong context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a fresh VMamba conda environment, confirm the environment is active, and avoid root or sudo for pip and build steps.
+
+Risk: Compiling selective_scan runs native build steps from the local VMamba checkout.
+
+Mitigation: Build selective_scan only from a trusted VMamba repository checkout.
+
+## Reference(s):
+
+- [VMamba repository](https://github.com/MzeroMiko/VMamba)
+- [ClawHub skill page](https://clawhub.ai/jiangkaiqi2005/skills/vmamba-env-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides environment setup steps, version recommendations, and troubleshooting guidance for VMamba.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

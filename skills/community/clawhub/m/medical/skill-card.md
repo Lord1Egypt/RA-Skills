@@ -1,46 +1,61 @@
-## Description: <br>
-Local-first health record management with strict privacy boundaries for organizing medications, symptoms, vital signs, medical history, emergency summaries, and doctor-visit notes without diagnosis or treatment advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first health record management with strict privacy boundaries for organizing medications, symptoms, vital signs, medical history, emergency summaries, and doctor-visit notes without diagnosis or treatment advice.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users use this skill to keep local personal health records organized, generate emergency health summaries, and prepare concise information for clinician visits. It is not intended for diagnosis, treatment decisions, or replacement of professional medical care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on medication interaction checks or symptom warnings for medical decisions. <br>
-Mitigation: Treat built-in checks as reminders only and verify medication questions, symptoms, and care decisions with a doctor, pharmacist, or emergency services as appropriate. <br>
-Risk: Local health records and emergency cards may contain sensitive medical details. <br>
-Mitigation: Keep the device and backups private, control local retention and deletion, and review emergency-card contents before placing them on a lock screen or in a wallet. <br>
+## Use Case:
 
+External users use this skill to keep local personal health records, including medications, symptoms, vital signs, medical history, emergency summaries, and doctor-visit preparation. It is for organization and clinician-facing summaries, not diagnosis, treatment advice, medication changes, or emergency-care replacement.
 
-## Reference(s): <br>
-- [Medical on ClawHub](https://clawhub.ai/AGIstack/medical) <br>
-- [AGIstack ClawHub Profile](https://clawhub.ai/user/AGIstack) <br>
-- [Emergency Health Summary](references/emergency-card.md) <br>
-- [Personal Medical History](references/medical-history.md) <br>
-- [Medication Manager](references/medication-manager.md) <br>
-- [Symptom Tracker & Appointment Preparation](references/symptom-tracker.md) <br>
-- [Vital Signs & Chronic Condition Monitoring](references/vital-signs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Concise structured text, Markdown summaries, JSON records, and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores health records locally under ~/.openclaw/workspace/memory/health and can generate phone, wallet, or JSON emergency-card formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill stores highly sensitive medical information locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing with real health data, restrict filesystem access, and avoid storing details that are not needed for the intended personal record workflow.
+
+Risk: Emergency summaries may print or export protected health information into less-protected places.
+
+Mitigation: Review generated cards before sharing or saving, exclude unnecessary identifiers, and regenerate cards when medications, allergies, contacts, or conditions change.
+
+Risk: Medication interaction checks are limited and must not be treated as comprehensive medical advice.
+
+Mitigation: Verify medication questions with a doctor or pharmacist before starting, stopping, or changing any medication.
+
+## Reference(s):
+
+- [Emergency Health Summary](references/emergency-card.md)
+- [Personal Medical History](references/medical-history.md)
+- [Medication Manager](references/medication-manager.md)
+- [Symptom Tracker & Appointment Preparation](references/symptom-tracker.md)
+- [Vital Signs & Chronic Condition Monitoring](references/vital-signs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text summaries, local JSON record files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores health records locally under ~/.openclaw/workspace/memory/health and can export emergency summaries for phone, wallet, or JSON formats.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

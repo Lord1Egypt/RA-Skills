@@ -1,45 +1,59 @@
-## Description: <br>
-快导(KD) helps agents generate, validate, and manage batches of short-video scripts and copy-library entries across platforms such as Xiaohongshu, Douyin, and WeChat Channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快导(KD) helps agents generate and manage batches of short-video scripts for multiple platforms.
 
-## Publisher: <br>
-[gitgily](https://clawhub.ai/user/gitgily) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitgily](https://clawhub.ai/user/gitgily)
 
-## Use Case: <br>
-Content operators, creators, and agents use this skill to run a 10-step workflow that researches short-video trends, reads platform rules, generates differentiated scripts, validates the outputs, writes them to an Excel copy library, and produces a Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Feishu integration requests broad workspace permissions, including tenant-wide messaging, app management, chat, file, document, wiki, and spreadsheet scopes. <br>
-Mitigation: Review and reduce Feishu scopes before use, provide LARK_CLI_TOKEN only when upload features are required, and keep reporting local when wiki publishing is unnecessary. <br>
-Risk: Generated reports may include internal paths, configuration details, or generated content before optional publishing. <br>
-Mitigation: Inspect reports before publishing to Feishu and redact internal paths, configuration values, and sensitive generated content. <br>
-Risk: User-configured Excel copy-library and platform-rules paths could target unintended files or directories. <br>
-Mitigation: Configure copy_library_path and rules_path only to files and directories the user controls, and avoid system or shared directories. <br>
+## Use Case:
 
+External creators and operations teams use this skill to search trend inputs, apply platform rules, generate differentiated short-video scripts, write them to an Excel copy library, and produce execution reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitgily/kuaidao) <br>
-- [Skill README](artifact/README.md) <br>
-- [Runtime references guide](artifact/references/README.md) <br>
-- [Platform rules guide](artifact/references/platform_rules/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; executed workflows may update Excel workbooks and produce Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local configuration for platform keywords, copy-library paths, and optional Feishu reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Optional Feishu setup requests broad workspace permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only reports unless a tightly scoped Feishu app is required, and do not bulk-import the bundled permission set as-is.
+
+Risk: The workflow can modify Excel copy-library files and includes rollback/delete behavior after failed verification.
+
+Mitigation: Point configured paths only at files you control, keep backups, and confirm rollback or delete actions before running them.
+
+Risk: Generated spreadsheet content may contain formula-like cell values.
+
+Mitigation: Treat generated workbooks as untrusted until cell values are reviewed or sanitized before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitgily/skills/kuaidao)
+- [References directory overview](artifact/references/README.md)
+- [Platform rules index](artifact/references/platform_rules/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python commands, configuration snippets, generated script text, Excel workbook updates, and local report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and openpyxl; uses web search for trend collection and optional Feishu/Lark tooling for report workflows.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; packaged SKILL.md frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

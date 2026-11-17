@@ -1,39 +1,48 @@
-## Description: <br>
-Generate Xiaohongshu-style posts with emojis, line breaks, hashtags, and tone options for casual, professional, or storytelling formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Xiaohongshu-style posts with emojis, line breaks, hashtags, and tone options for casual, professional, or storytelling formats.
 
-## Publisher: <br>
-[adamxiao-eolab](https://clawhub.ai/user/adamxiao-eolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[adamxiao-eolab](https://clawhub.ai/user/adamxiao-eolab)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, marketers, and developers use this skill to draft Xiaohongshu-style posts from a topic, including emoji formatting, section breaks, tone options, and hashtags.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated social posts may have unsuitable tone, hashtags, claims, or language fit for the target audience.
+
+Mitigation: Review and edit generated text before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, marketers, and agents assisting them use this skill to draft Xiaohongshu posts from a topic with platform-style emoji formatting, short sections, hashtags, and selectable tones. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may be inaccurate, off-brand, or unsuitable for public posting. <br>
-Mitigation: Review and edit generated posts before using them publicly. <br>
-Risk: Prompts for content generation may include private or sensitive information. <br>
-Mitigation: Avoid entering private, confidential, or sensitive information when requesting posts. <br>
+**Output Format:** [Markdown-style social post text with emojis, line breaks, sections, and hashtags]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Posts should stay under 1000 characters and include 3-5 relevant hashtags when appropriate.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style social post text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft posts should stay under 1000 characters and include 3-5 relevant hashtags when appropriate.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

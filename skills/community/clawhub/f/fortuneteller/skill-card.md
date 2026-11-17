@@ -1,43 +1,61 @@
-## Description: <br>
-Provides a local Zhouyi/I Ching agent that casts coin or yarrow-style hexagrams, looks up canonical hexagram and line text, and routes broader divination-system questions with clear boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local Zhouyi/I Ching skill for casting coin or yarrow hexagrams, looking up canonical hexagram text, and explaining results with clear limits around high-risk decisions.
 
-## Publisher: <br>
-[yixiao1032-publish](https://clawhub.ai/user/yixiao1032-publish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yixiao1032-publish](https://clawhub.ai/user/yixiao1032-publish)
 
-## Use Case: <br>
-External users and agents use this skill to cast or inspect Zhouyi/I Ching hexagrams, retrieve original judgment and line text, and receive plain-language decision context without treating divination as a professional medical, legal, financial, or investment directive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questions entered in the browser UI may remain in local browser storage on the device. <br>
-Mitigation: Avoid entering highly sensitive personal details on shared devices and use the clear-records control when finished. <br>
-Risk: Divination output can be mistaken for deterministic or professional advice. <br>
-Mitigation: Treat results as decision context only; for medical, legal, financial, or investment matters, consult qualified professionals. <br>
+## Use Case:
 
+External users and agents use this skill to cast Zhouyi readings for reflection, retrieve the original text of the 64 hexagrams, and route questions across related metaphysical systems without presenting unverified systems as high-precision advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/yixiao1032-publish/fortuneteller) <br>
-- [Product and Validation Notes](references/README.md) <br>
-- [Chinese User Guide](references/user-guide-zh.md) <br>
-- [Zhouyi Source Text](references/zhouyi-benjing-source.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown or JSON, with optional shell commands for local CLI use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include original Zhouyi text, selected interpretation rules, plain-language explanation, lookup results, catalog routing, and local browser UI history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, SKILL.md frontmatter, package.json, _meta.json) <br>
+Risk: Users may treat divination output as professional medical, legal, financial, or relationship advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as reflective guidance only and preserve the documented boundary that high-risk questions require professional judgment.
+
+Risk: Recent questions entered in the browser UI can include sensitive personal details and are saved locally until cleared.
+
+Mitigation: Avoid entering highly sensitive details on shared browsers and use the built-in clear-history control when local records should be removed.
+
+Risk: Unverified metaphysical systems could be mistaken for fully implemented high-precision modules.
+
+Mitigation: Keep Zhouyi source text as the verified core and describe other systems as encyclopedia-style navigation unless separately validated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yixiao1032-publish/skills/fortuneteller)
+- [Publisher Profile](https://clawhub.ai/user/yixiao1032-publish)
+- [Product and Validation Notes](references/README.md)
+- [User Guide](references/user-guide-zh.md)
+- [Zhouyi Source Text](references/zhouyi-benjing-source.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance, optional JSON CLI output, and local browser interaction state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node for CLI commands; the browser UI stores recent questions locally until cleared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

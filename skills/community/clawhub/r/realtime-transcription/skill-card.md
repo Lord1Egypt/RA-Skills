@@ -1,44 +1,59 @@
-## Description: <br>
-Real-time audio transcription for system or microphone audio with automatic summarization and dated Markdown archival after manual stop or idle timeout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time transcription of system or microphone audio with automatic summary generation and date-based Markdown archival after stopping or idle timeout.
 
-## Publisher: <br>
-[leeleoo](https://clawhub.ai/user/leeleoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeleoo](https://clawhub.ai/user/leeleoo)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture local system or microphone audio, produce live transcripts, summarize sessions, and archive meeting or recording notes as dated Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Microphone or system audio may contain sensitive personal, business, or third-party information that is transcribed and saved locally. <br>
-Mitigation: Use the skill only with appropriate consent, store archives in protected locations, and delete transcripts that are no longer needed. <br>
-Risk: Transcript text may be sent to the configured LLM during summarization. <br>
-Mitigation: Use an approved LLM configuration for the data being processed, and avoid summarizing sensitive recordings unless policy allows it. <br>
-Risk: The skill installs and runs local Python dependencies and an ASR model. <br>
-Mitigation: Run it in a virtual environment, pin or review dependencies and the SenseVoice model, and keep permissions limited to the commands and triggers required for transcription. <br>
+## Use Case:
 
+Developers and end users use this skill to capture local microphone or macOS system audio, monitor the transcript, and turn completed recordings into summarized Markdown archives.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leeleoo/realtime-transcription) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Transcript text, Markdown archive files, and command-oriented agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Archives include generated title, summary, source, duration, and full transcript; summary prompts truncate transcript input at 4000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill records microphone or system audio and stores transcripts plus summaries locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where audio recording is appropriate and consented to; avoid sensitive meetings or private media and review retained transcript archives.
+
+Risk: The skill relies on unpinned executable dependencies and model code.
+
+Mitigation: Run it in a dedicated virtual environment with pinned dependencies and a pinned or verified model that does not require trust_remote_code.
+
+Risk: The skill uses broad local file and process operations to manage transcripts, archives, and the background recorder.
+
+Mitigation: Install it in a constrained workspace and review commands before running or automating the workflow.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/leeleoo/skills/realtime-transcription)
+- [Publisher profile](https://clawhub.ai/user/leeleoo)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Timestamped transcript text, Markdown archive files, and concise agent guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes live transcript text to .tmp/transcript.txt and stores summarized archives under archive/YYYY/MM/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

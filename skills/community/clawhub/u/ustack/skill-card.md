@@ -1,42 +1,55 @@
-## Description: <br>
-Universal agent workspace compatibility and update engine for importing upstream agent frameworks, analyzing changes, classifying portability, and generating adapted output for agent runtimes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+uStack tracks upstream agent frameworks, analyzes changes, classifies portability, and generates adapted output for agent runtimes across Claude Code, Codex, OpenClaw, Gemini CLI, Cursor, and more.
 
-## Publisher: <br>
-[aggie-security](https://clawhub.ai/user/aggie-security) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aggie-security](https://clawhub.ai/user/aggie-security)
 
-## Use Case: <br>
-Developers and engineers use uStack to track upstream agent-native repositories, analyze framework changes, classify portability, and publish update reports for local agent runtime compatibility work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: uStack clones arbitrary Git repositories provided by the user and writes analysis artifacts under .ustack. <br>
-Mitigation: Use trusted repository URLs, review generated .ustack artifacts before publishing them, and avoid untrusted repositories until git shell-interpolation hardening is complete. <br>
+## Use Case:
 
+Developers and engineering teams use uStack to monitor upstream agent-native frameworks, inspect changes, and produce portable update artifacts for their chosen agent runtime.
 
-## Reference(s): <br>
-- [uStack README](README.md) <br>
-- [uStack changelog](CHANGELOG.md) <br>
-- [uStack ClawHub release page](https://clawhub.ai/aggie-security/ustack) <br>
-- [gstack upstream repository](https://github.com/garrytan/gstack) <br>
-- [AGI.security](https://agi.security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON files with CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local .ustack manifests, analysis reports, and website-ready update pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json, CHANGELOG, server release metadata) <br>
+Risk: Crafted inputs or local manifests could cause writes outside the intended workspace or unintended shell command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use uStack only on trusted repositories, validate identifiers and manifests, and review shell-safe git invocation before installation or automation.
+
+Risk: Generated Markdown may be published with misleading or unsafe content if it is not reviewed.
+
+Mitigation: Review generated Markdown before publishing and avoid elevated-permission automated update jobs.
+
+## Reference(s):
+
+- [uStack ClawHub skill page](https://clawhub.ai/aggie-security/skills/ustack)
+- [gstack upstream framework](https://github.com/garrytan/gstack)
+- [AGI.security](https://agi.security)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [CLI output plus JSON and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .ustack manifests, analysis reports, and update pages in the local workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence, package.json, CHANGELOG, released 2026-04-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

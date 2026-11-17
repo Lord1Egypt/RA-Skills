@@ -1,47 +1,62 @@
-## Description: <br>
-Multi-stage multi-agent reasoning middleware that reduces LLM hallucination by 70%+. 9 specialized emergence engines for invention, creative, pharma, genomics, chemistry, ecology, law, recipe, and document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-stage multi-agent reasoning middleware that reduces LLM hallucination by 70%+. 9 specialized emergence engines for invention, creative, pharma, genomics, chemistry, ecology, law, recipe, and document generation.
 
-## Publisher: <br>
-[Cutechicken99](https://clawhub.ai/user/Cutechicken99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cutechicken99](https://clawhub.ai/user/cutechicken99)
 
-## Use Case: <br>
-Developers and agent builders use this skill to route OpenAI-compatible model calls through MARL's multi-stage reasoning middleware for more thoroughly checked responses. It supports domain modes for invention, creative work, pharma, genomics, chemistry, ecology, law, recipes, and document generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model prompts and responses are routed through third-party middleware. <br>
-Mitigation: Review the VIDRAFT Docker or PyPI package before use, pin the version, and deploy only in environments where that dependency is trusted. <br>
-Risk: Prompts may be sent to the configured LLM provider unless the backend is fully local. <br>
-Mitigation: Avoid sensitive data until data handling is clear, and use a local model backend when data must remain inside controlled infrastructure. <br>
-Risk: The artifact makes a broad claim that data never leaves local infrastructure. <br>
-Mitigation: Confirm the configured model endpoint and network path before relying on local-only privacy behavior. <br>
+## Use Case:
 
+Developers and agent builders use this skill to route OpenAI-format LLM calls through MARL's multi-stage reasoning middleware for verification, synthesis, and domain-specific reasoning modes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Cutechicken99/marl-middleware) <br>
-- [PyPI package](https://pypi.org/project/marl-middleware/) <br>
-- [GitHub repository](https://github.com/Vidraft/MARL) <br>
-- [Hugging Face demo](https://huggingface.co/spaces/VIDraft/MARL) <br>
-- [FINAL Bench leaderboard](https://huggingface.co/spaces/FINAL-Bench/Leaderboard) <br>
-- [VIDRAFT website](https://vidraft.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [OpenAI-compatible text responses with YAML or JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mode suffixes such as ::create or ::pharma select specialized reasoning engines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release asks users to route all configured LLM traffic through MARL and then to the selected backend provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that routing model is acceptable for the deployment and review which backend provider receives the traffic.
+
+Risk: The release uses an opaque, unpinned third-party executable.
+
+Mitigation: Prefer a pinned image digest or exact package version, run with minimal privileges, and avoid unnecessary secrets or mounts.
+
+Risk: The privacy claim may not apply when requests are forwarded to non-local model providers.
+
+Mitigation: Treat the privacy claim as applying only to fully local model deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cutechicken99/skills/marl-middleware)
+- [PyPI Package](https://pypi.org/project/marl-middleware/)
+- [GitHub Repository](https://github.com/Vidraft/MARL)
+- [Hugging Face Demo](https://huggingface.co/spaces/VIDraft/MARL)
+- [FINAL Bench Leaderboard](https://huggingface.co/spaces/FINAL-Bench/Leaderboard)
+- [VIDRAFT Website](https://vidraft.net)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Text]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides model configuration examples and mode-selection guidance for OpenAI-compatible LLM endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

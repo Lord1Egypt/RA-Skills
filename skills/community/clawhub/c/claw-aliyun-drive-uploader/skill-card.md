@@ -1,43 +1,62 @@
-## Description: <br>
-Uploads and manages Aliyun Drive files with refresh-token authentication, including folder creation, file search, share links, downloads, and deletion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads and manages Aliyun Drive files using refresh-token authentication, including large-file uploads, folder creation, file search, share links, deletion, download links, and user information lookup.
 
-## Publisher: <br>
-[wjcly](https://clawhub.ai/user/wjcly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjcly](https://clawhub.ai/user/wjcly)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Aliyun Drive files from local workflows, including uploads, folder creation, search, sharing, download-link retrieval, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Aliyun Drive files and includes a delete action. <br>
-Mitigation: Install only when this level of drive access is acceptable and confirm exact file IDs before any delete action. <br>
-Risk: The skill relies on an Aliyun Drive refresh token stored in a .env file and passed to the Python helper. <br>
-Mitigation: Treat the .env file as sensitive, do not commit it, restrict file permissions, and prefer versions that avoid passing refresh tokens through command-line arguments. <br>
-Risk: Delete and download behavior is under-disclosed in the public skill instructions. <br>
-Mitigation: Review the available actions before installing and prefer a version that clearly documents destructive and download-link behavior. <br>
+## Use Case:
 
+Developers and external users can use this skill to upload, list, search, share, delete, and retrieve download links for Aliyun Drive files through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjcly/claw-aliyun-drive-uploader) <br>
-- [Aliyun Drive token endpoint](https://auth.aliyundrive.com/v2/account/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON operation results plus Markdown usage instructions with shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Aliyun Drive refresh token and may return file IDs, file lists, share URLs, download URLs, or user account information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: ClawHub release metadata) <br>
+Risk: Unsafe command execution in the Aliyun Drive action path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix the execution path to use argument-vector subprocess execution before installation.
+
+Risk: Aliyun refresh token exposure through command-line handling or shared environment files.
+
+Mitigation: Do not pass the token on the command line; treat it like a password and avoid committing or sharing the .env file.
+
+Risk: Destructive delete actions can modify cloud storage.
+
+Mitigation: Require explicit user confirmation before running delete actions.
+
+Risk: Unpinned dependencies can change runtime behavior.
+
+Mitigation: Pin the required dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjcly/skills/claw-aliyun-drive-uploader)
+- [Aliyun Drive token endpoint](https://auth.aliyundrive.com/v2/account/token)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Files]
+
+**Output Format:** [JSON action result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Aliyun Drive refresh token and can modify cloud files, including creating folders, sharing files, and deleting files.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,76 @@
-{
-  "ownerId": "kn7drfv1fz35ynjhxckwaxw0an850xa5",
-  "slug": "anquan-weishi",
-  "version": "2.1.2",
-  "publishedAt": 1776416132875
+﻿{
+  "name": "安全卫士",
+  "version": "2.1",
+  "description": "OpenClaw安全防护系统 v2.1 - 智能威胁检测、权限控制、隐私保护。L1-L4四级安全等级，50种攻击模式自动识别，中央库驱动架构",
+  "author": "赢总 (OpenClaw Security Team / 陕西微旅游)",
+  "homepage": "https://github.com/openclaw-security",
+  "license": "MIT",
+  "copyright": "© 2026 赢总 & OpenClaw Security Team. All rights reserved.",
+  "repository": "https://github.com/openclaw-security/openclaw-security-guardian",
+  "features": [
+    "L1-L4四级安全等级体系（100%/60%/30%/0%）",
+    "来源识别+身份验证双保险",
+    "威胁关键词/域名/路径/IP黑名单",
+    "13种攻击模式自动识别",
+    "输出脱敏处理（路径/凭证/ID）",
+    "中央库驱动架构（guardian.py零硬编码）",
+    "群聊12条铁律规范回复内容",
+    "攻击日志可追溯审计",
+    "上下文权限矩阵精细控制",
+    "4条核心防御原则"
+  ],
+  "protection_layers": [
+    "L1: 关键词检测",
+    "L2: 路径检查+脱敏",
+    "L3: 语义分析+硬限制",
+    "L4: 完全静默+告警",
+    "L5: 攻击模式识别",
+    "L6: 脱敏处理",
+    "L7: 心跳检查"
+  ],
+  "commands": {
+    "check": {
+      "description": "检查文本安全性",
+      "script": "scripts/guardian.py",
+      "args": ["--check"]
+    },
+    "status": {
+      "description": "查看安全卫士状态",
+      "script": "scripts/guardian.py",
+      "args": ["--status"]
+    },
+    "heartbeat": {
+      "description": "执行心跳检查",
+      "script": "scripts/guardian.py",
+      "args": ["--heartbeat"]
+    }
+  },
+  "config_files": [
+    "config/security.json (主配置+等级规则+群聊铁律)",
+    "config/behavior_classification.json (中央库-行为分类+操作定义)",
+    "config/threat_patterns.json (中央库-威胁模式)",
+    "config/trust_sources.json (中央库-可信来源)",
+    "config/attack_cases.json (中央库-50种攻击案例)",
+    "config/sanitize_rules.json (中央库-脱敏规则)",
+    "config/context_matrix.json (中央库-上下文权限矩阵)",
+    "config/blacklist.json (引用threat_patterns)",
+    "config/whitelist.json (引用trust_sources)"
+  ],
+  "updated_at": "2026-04-17",
+  "v2_1_features": {
+    "date": "2026-04-17",
+    "version": "2.1",
+    "changes": [
+      "安全等级简化：L0/L1合并为L1（主人级）",
+      "4个等级：L1(100%)/L2(60%)/L3(30%)/L4(0%)",
+      "L2重新定义为确认模式（仅闲聊问答）",
+      "新增入口安检STEP -1（来源识别+危险来源阻断）",
+      "黑名单按等级差异化响应",
+      "攻击检测与安全等级解耦",
+      "中央库驱动架构（guardian.py零硬编码）",
+      "50种攻击模式自动识别",
+      "隐私保护绝对锁死",
+      "L4静默拒绝不加载任何模块"
+    ]
+  }
 }

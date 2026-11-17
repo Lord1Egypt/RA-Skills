@@ -1,43 +1,58 @@
-## Description: <br>
-SkillGuard Hardened audits OpenClaw skills with local rules and optional Zenmux AI review, then recommends pass, warn, block, or quarantine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security guard for OpenClaw skills, developed and maintained by rose北港（小红帽 / 猫猫帽帽）, that audits installed or incoming skills with local rules plus Zenmux AI intent review, then recommends pass, warn, block, or quarantine.
 
-## Publisher: <br>
-[2404589803](https://clawhub.ai/user/2404589803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2404589803](https://clawhub.ai/user/2404589803)
 
-## Use Case: <br>
-Developers, skill marketplace operators, and agent administrators use this skill to inspect installed or incoming OpenClaw skills before installation, update, or execution. It supports security review workflows that may quarantine, restore, or delete risky skills when explicitly configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run arbitrary commands, move skill directories, or delete skill directories. <br>
-Mitigation: Install only when a high-privilege security management tool is needed, prefer quarantine over delete, avoid bulk auto-delete, and require explicit confirmation before destructive actions. <br>
-Risk: Scanned skill content may be sent to a remote AI provider during AI auditing. <br>
-Mitigation: Use a dedicated Zenmux key and review or disable remote AI auditing when scanning private or sensitive skills. <br>
-Risk: Guarded execution and remote download flows can affect installation, update, and execution workflows. <br>
-Mitigation: Use the guarded execution wrapper only for intended skill commands and verify remote Moltbook downloads before relying on them. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw skills before install, update, execution, or routine maintenance. It combines local rules with optional Zenmux AI review to produce security recommendations and controlled remediation actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2404589803/skillguard-hardened) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/2404589803) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples; runtime reports are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include pass, warn, block, or quarantine recommendations; deletion requires explicit force and confirmation flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can scan source, run guarded commands, write reports, and move or delete skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration before use, run against trusted skill roots, prefer quarantine before deletion, and require explicit approval for destructive actions.
+
+Risk: Optional remote AI review can send selected skill contents to Zenmux when an API key is configured.
+
+Mitigation: Use local-only scanning for sensitive repositories or skills that may contain secrets, and configure Zenmux credentials only when remote review is acceptable.
+
+Risk: Guarded install and update flows execute package manager commands and fetch remote content from allowlisted domains.
+
+Mitigation: Sandbox guarded install or update operations for untrusted packages and manually review the resolved package or downloaded content before promotion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/2404589803/skills/skillguard-hardened)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/2404589803)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include pass, warn, block, or quarantine recommendations and remediation records.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

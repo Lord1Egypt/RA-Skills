@@ -1,0 +1,250 @@
+{
+  "schema_version": "1",
+  "capabilities": [
+    "公告采集",
+    "资质比对与匹配度评分",
+    "投标日历与开标倒计时",
+    "多维筛选",
+    "合规红线扫描",
+    "报价算式闸门",
+    "报告生成与导出",
+    "多通道推送",
+    "AI 速读与风险识别",
+    "PDF/Word 标书解析",
+    "深度法理审查与举证策略"
+  ],
+  "functional_degradations": [
+    {
+      "capability": "公告采集",
+      "trigger": "采集源不可达（网关拦截、DNS 失败、请求超时）或源站返回结构变更",
+      "fallback": "跳过失败源，用其余可用源继续采集，报告中明示缺失源与失败原因",
+      "user_input": "",
+      "limitations": "当日标讯可能遗漏，遗漏范围等于失败源覆盖范围，报告不做补齐",
+      "evidence_label": "部分验证",
+      "recovery": "网络或源站恢复后重跑采集命令",
+      "stop_condition": "全部采集源均不可达时停止出报告，只输出失败源清单与错误原因"
+    },
+    {
+      "capability": "资质比对与匹配度评分",
+      "trigger": "资质规则库仍为示例占位或字段为空",
+      "fallback": "照常列出标讯，可投性统一标为需确认，不给匹配度分值",
+      "user_input": "投标主体名称与能力关键词",
+      "limitations": "无法区分可投与不可投，需人工逐条判断",
+      "evidence_label": "推断",
+      "recovery": "运行 rules edit 或 init 填写资质后重跑比对",
+      "stop_condition": "用户要求自动判定可投性时停止，不得用默认规则代替真实资质"
+    },
+    {
+      "capability": "投标日历与开标倒计时",
+      "trigger": "公告未给出开标时间，或日期格式无法解析",
+      "fallback": "该条进入日历的时间待定分组，不参与倒计时排序",
+      "user_input": "",
+      "limitations": "无法对时间待定项做临近提醒，需人工核对公告原文",
+      "evidence_label": "推断",
+      "recovery": "补录开标时间后重新生成日历",
+      "stop_condition": "无可用开标时间且用户需要截止提醒时，停止排期，只给待人工确认清单"
+    },
+    {
+      "capability": "多维筛选",
+      "trigger": "公告缺少金额、地区或行业字段",
+      "fallback": "缺字段记录不被该维度过滤掉，归入字段缺失桶单独列出",
+      "user_input": "",
+      "limitations": "筛选结果可能含不匹配记录，需人工复核",
+      "evidence_label": "部分验证",
+      "recovery": "源站字段恢复或人工补录后重跑筛选",
+      "stop_condition": "所选维度字段全部缺失时，停止出筛选结论，改为输出未过滤完整列表"
+    },
+    {
+      "capability": "合规红线扫描",
+      "trigger": "命中需人工判断的红线，或标书为扫描件无文本层",
+      "fallback": "自动规则照常出结果，同时输出全部待人工确认项清单",
+      "user_input": "标书原文或可解析文本",
+      "limitations": "规则库多数条目需人工判断，引擎只提示不给出合规结论",
+      "evidence_label": "部分验证",
+      "recovery": "补足可解析文本后重跑扫描",
+      "stop_condition": "无文本层且用户不提供可读文本时，停止出具扫描结论"
+    },
+    {
+      "capability": "报价算式闸门",
+      "trigger": "缺少月最低工资、人数、月数、成本或历史同类规模等任一参数",
+      "fallback": "只输出闸门卡片与缺失参数清单，不输出结论金额",
+      "user_input": "项目人数、月数、成本、历史同类合同价与数据日期",
+      "limitations": "缺参数时不构成报价结论，任何金额一律不给出",
+      "evidence_label": "未验证",
+      "recovery": "补齐参数库与项目参数后重跑闸门",
+      "stop_condition": "任一算式卡不过即禁止输出结论金额，只允许交框架与待补清单"
+    },
+    {
+      "capability": "报告生成与导出",
+      "trigger": "目标目录不可写、模板缺失或导出格式不受支持",
+      "fallback": "把结构化结果直接打印到标准输出，并说明未生成目标文件",
+      "user_input": "可写目录",
+      "limitations": "无落盘文件，需人工另存",
+      "evidence_label": "部分验证",
+      "recovery": "换可写目录或补齐模板后重跑导出",
+      "stop_condition": "无法落盘且用户要求交付文件时，停止，改为输出结构化正文并注明未生成文件"
+    },
+    {
+      "capability": "多通道推送",
+      "trigger": "未配置推送通道，或写入前连通性测试未通过",
+      "fallback": "只生成本地报告文件，不推送，并打印未推送提示",
+      "user_input": "钉钉或企业微信群机器人 Webhook，或 SMTP 授权信息",
+      "limitations": "无即时提醒，需人工打开报告文件",
+      "evidence_label": "未验证",
+      "recovery": "运行配置向导并连通性测试通过后恢复推送",
+      "stop_condition": "用户以推送送达作为完成标志时，停止，不宣称已送达"
+    },
+    {
+      "capability": "AI 速读与风险识别",
+      "trigger": "AI 配置缺失、密钥为空、密钥失效或额度耗尽",
+      "fallback": "跳过 AI 环节，规则化抽取与关键词匹配照常运行",
+      "user_input": "自备模型服务密钥",
+      "limitations": "无标书速读摘要，无风险条款语义识别",
+      "evidence_label": "未验证",
+      "recovery": "补齐配置后重跑对应命令",
+      "stop_condition": "用户要求 AI 结论作为唯一依据时，停止，不用规则结果顶替"
+    },
+    {
+      "capability": "PDF/Word 标书解析",
+      "trigger": "解析依赖未安装或版本不兼容",
+      "fallback": "PDF 走正则抽取可用文本层，Word 尽力解析",
+      "user_input": "",
+      "limitations": "复杂排版可能漏字段，抽取完整度下降",
+      "evidence_label": "部分验证",
+      "recovery": "安装依赖后恢复原生解析",
+      "stop_condition": "文本层不可解析且用户不提供可读文本时，停止解析，不猜测缺失条款"
+    },
+    {
+      "capability": "深度法理审查与举证策略",
+      "trigger": "未安装任一可选姊妹 Skill",
+      "fallback": "使用内置红线规则库做快速筛查，输出待人工确认清单",
+      "user_input": "",
+      "limitations": "无逐条法理论证，无成本举证材料组织，无多主体隔离清单",
+      "evidence_label": "未验证",
+      "recovery": "安装对应姊妹 Skill 后自动联动，无需额外配置",
+      "stop_condition": "用户要求逐条法理论证或举证材料时，停止，不凭记忆补写法条依据"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "minimax-api",
+      "type": "api",
+      "required": false,
+      "auth_type": "api-key",
+      "capabilities": [
+        "AI 速读与风险识别"
+      ],
+      "checks": [
+        {
+          "id": "cfg-exists",
+          "type": "file",
+          "required": false,
+          "target": "~/.config/bidhunter/ai.json"
+        },
+        {
+          "id": "key-present",
+          "type": "json_field",
+          "required": false,
+          "target": "~/.config/bidhunter/ai.json",
+          "field": "api_key"
+        },
+        {
+          "id": "api-auth-probe",
+          "type": "auth_probe",
+          "required": true,
+          "target": "https://api.minimaxi.com/v1/chat/completions"
+        }
+      ],
+      "setup": {
+        "official_home_url": "https://www.minimaxi.com/",
+        "official_docs_url": "https://platform.minimaxi.com/document/guides/chat-model/V2",
+        "login_url": "https://platform.minimaxi.com/login",
+        "credential_url": "https://platform.minimaxi.com/user-center/basic-information/interface-key",
+        "console_path": [
+          "登录开放平台",
+          "账户管理",
+          "接口密钥",
+          "创建密钥",
+          "复制密钥（仅显示一次）"
+        ],
+        "scopes": [
+          "文本模型调用"
+        ],
+        "credential_storage": "写入本地文件 ~/.config/bidhunter/ai.json 的 api_key 字段，权限 600；不写入源码、不写入交付物、不在对话与日志中回显。",
+        "steps": [
+          "注册并登录开放平台账号",
+          "进入接口密钥页创建密钥，只申请文本模型调用所需权限",
+          "创建本地配置目录并写入 ai.json，填 api_key 字段，权限设为 600",
+          "确认 base_url 指向自备密钥对应的服务端点",
+          "执行最小验证命令确认可调用"
+        ],
+        "verify": "python3 -c \"from scripts.ai.minimax_client import MiniMaxClient; MiniMaxClient.from_config(); print('OK')\"",
+        "rotate_or_revoke": "在开放平台接口密钥页删除旧密钥并创建新密钥，随后更新本地 ai.json 的 api_key；撤销后 AI 功能自动降级，基础流程不受影响。",
+        "security": "最小权限，只申请文本模型调用所需密钥，不申请其他产品权限。密钥仅存本地文件权限 600，本 Skill 不代理、不中转、不向任何第三方发送密钥或标书内容，调用直连密钥对应端点。",
+        "verified_at": "2026-09-22",
+        "applies_to_version": "2.7.0"
+      },
+      "degradation": [
+        {
+          "capability": "AI 速读与风险识别",
+          "trigger": "密钥缺失、失效、权限不足或额度耗尽",
+          "fallback": "跳过 AI 环节，规则化抽取与关键词匹配照常运行",
+          "user_input": "自备模型服务密钥",
+          "limitations": "无速读摘要与风险条款语义识别，不猜测缺失内容",
+          "evidence_label": "未验证",
+          "recovery": "轮换密钥后重跑对应命令",
+          "stop_condition": "用户要求 AI 结论作为唯一依据时，停止，不用规则结果顶替"
+        }
+      ]
+    },
+    {
+      "id": "pdf-docx-runtime",
+      "type": "runtime",
+      "required": false,
+      "auth_type": "none",
+      "capabilities": [
+        "PDF/Word 标书解析"
+      ],
+      "checks": [
+        {
+          "id": "pypdf2",
+          "type": "python",
+          "required": false,
+          "target": "PyPDF2"
+        },
+        {
+          "id": "python-docx",
+          "type": "python",
+          "required": false,
+          "target": "docx"
+        }
+      ],
+      "setup": {
+        "official_home_url": "https://pypi.org/project/PyPDF2/",
+        "official_docs_url": "https://pypi.org/project/python-docx/",
+        "steps": [
+          "在 Skill 根目录执行依赖安装命令，安装 PDF 与 Word 两个解析库",
+          "安装后无需任何配置，解析能力自动启用",
+          "执行最小验证命令确认两个库均可导入"
+        ],
+        "verify": "python3 -c \"import PyPDF2, docx; print('OK')\"",
+        "rotate_or_revoke": "无凭据，无需轮换。回滚即卸载这两个本地库，解析自动降级为正则抽取。",
+        "security": "纯本地解析依赖，不联网、无凭据、无账号；解析在本地进程内完成，标书原文不出本机。",
+        "verified_at": "2026-09-22",
+        "applies_to_version": "2.7.0"
+      },
+      "degradation": [
+        {
+          "capability": "PDF/Word 标书解析",
+          "trigger": "解析依赖未安装或版本不兼容",
+          "fallback": "PDF 走正则抽取可用文本层，Word 尽力解析",
+          "user_input": "",
+          "limitations": "复杂排版可能漏字段，抽取完整度下降",
+          "evidence_label": "部分验证",
+          "recovery": "安装依赖后恢复原生解析",
+          "stop_condition": "文本层不可解析且用户不提供可读文本时，停止解析，不猜测缺失条款"
+        }
+      ]
+    }
+  ]
+}

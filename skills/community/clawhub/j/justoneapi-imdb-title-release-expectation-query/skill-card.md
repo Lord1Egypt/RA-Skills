@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/imdb/title-release-expectation-query/v1 for IMDb Release Expectation through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-release-expectation-query/v1 for IMDb Release Expectation through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's IMDb release expectation endpoint for a title ID and summarize production status, release dates, and anticipation signals for release monitoring or title research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token is sent as a URL query parameter and may be captured by command history, proxy logs, monitoring, screenshots, or full URL logging. <br>
-Mitigation: Use a scoped or disposable JustOneAPI token when available, keep token values out of chat and screenshots, avoid environments that log full URLs, and rotate the token if exposure is suspected. <br>
-Risk: The skill depends on the external JustOneAPI IMDb endpoint and a valid JUST_ONE_API_TOKEN. <br>
-Mitigation: Confirm the token is available in the runtime environment and handle backend errors by reporting the operation ID and returned payload without exposing the token. <br>
+## Use Case:
 
+External developers and agents use this skill to look up IMDb title release expectation data by IMDb ID, including production status, release dates, and anticipation signals for release monitoring or title research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-release-expectation-query) <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_release_expectation_query&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_release_expectation_query&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the titleReleaseExpectationQuery operation and requires a JUST_ONE_API_TOKEN value supplied outside chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill handles a JustOneAPI token that may be exposed through process listings or URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or revocable token, avoid running commands on shared machines, do not share logs containing request URLs, and rotate the token if exposure is suspected.
+
+Risk: A token with paid quota or broad account access can create account or cost exposure if misused.
+
+Mitigation: Review the skill before installation and use tokens with the minimum practical quota and permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-release-expectation-query)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_release_expectation_query&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_release_expectation_query&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the JUST_ONE_API_TOKEN environment variable and requires an IMDb title ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

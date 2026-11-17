@@ -1,52 +1,60 @@
-## Description: <br>
-Analyzes Than Cuu numerology from full names and birth dates, producing personality profiles across eight categories and relationship-comparison analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Than Cuu numerology from a person's full name and birth date, producing personality insights across eight categories and relationship comparisons between two people.
 
-## Publisher: <br>
-[Jaskies](https://clawhub.ai/user/Jaskies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaskies](https://clawhub.ai/user/jaskies)
 
-## Use Case: <br>
-External users can use this skill to generate Vietnamese Than Cuu numerology readings for one person or compare two people across the skill's eight personality categories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to provide full names and birth dates, which are personal data. <br>
-Mitigation: Provide only the minimum personal data needed for the analysis, avoid ID numbers, identity-document images, addresses, and third-party data without permission. <br>
-Risk: Generated analyses may be retained locally as Markdown files and index entries. <br>
-Mitigation: Review and delete saved files or index entries when the analysis should not be retained. <br>
-Risk: Numerology output can be mistaken for factual, medical, legal, or financial advice. <br>
-Mitigation: Use the output as reflective or entertainment-oriented guidance and do not rely on it for high-stakes decisions. <br>
+## Use Case:
 
+External users can use this skill to generate Than Cuu numerology personality reports from names and birth dates, or compare two people's profiles across the skill's eight analysis categories.
 
-## Reference(s): <br>
-- [GioiThieuThanCuu.md](references/GioiThieuThanCuu.md) <br>
-- [SoDuongDoi.md](references/SoDuongDoi.md) <br>
-- [SoVanMenh.md](references/SoVanMenh.md) <br>
-- [SoNoiTam.md](references/SoNoiTam.md) <br>
-- [SoNhanCach.md](references/SoNhanCach.md) <br>
-- [SoThaiDo.md](references/SoThaiDo.md) <br>
-- [SoNgaySinh.md](references/SoNgaySinh.md) <br>
-- [SoTenGoi.md](references/SoTenGoi.md) <br>
-- [SoCamXuc.md](references/SoCamXuc.md) <br>
-- [TuongQuanGiuaCacConSo.md](references/TuongQuanGiuaCacConSo.md) <br>
-- [TracNghiemThanCuu.md](references/TracNghiemThanCuu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown numerology analysis in Vietnamese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated analyses as local Markdown files and update a local knowledge index when the host agent permits file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can save identifiable personality and relationship reports to local knowledge files without clear opt-in, deletion, or privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum name and birth-date fields, get permission before analyzing another person, and disable or edit automatic storage unless persistent local records are intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaskies/skills/thancuu-vutran)
+- [Giới thiệu Thần Cửu](references/GioiThieuThanCuu.md)
+- [Số Đường Đời](references/SoDuongDoi.md)
+- [Số Vận Mệnh](references/SoVanMenh.md)
+- [Số Nội Tâm](references/SoNoiTam.md)
+- [Số Nhân Cách](references/SoNhanCach.md)
+- [Số Thái Độ](references/SoThaiDo.md)
+- [Số Ngày Sinh](references/SoNgaySinh.md)
+- [Số Tên Gọi](references/SoTenGoi.md)
+- [Số Cảm Xúc](references/SoCamXuc.md)
+- [Tương quan giữa các con số](references/TuongQuanGiuaCacConSo.md)
+- [Trắc nghiệm Thần Cửu](references/TracNghiemThanCuu.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown analysis and saved Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [As written, the skill saves analysis results as Markdown files and updates a local knowledge index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

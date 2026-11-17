@@ -1,53 +1,65 @@
-## Description: <br>
-Scenario-based skill for connecting Linux servers to Alibaba Cloud VPC via IPsec VPN using StrongSwan dual tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through connecting Linux servers to an Alibaba Cloud VPC over dual-tunnel IPsec VPN using Aliyun CLI and StrongSwan.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud network engineers use this skill to plan, create, verify, troubleshoot, and clean up a dual-tunnel IPsec VPN connection between a Linux server and an Alibaba Cloud VPC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create paid Alibaba Cloud VPN resources and modify VPC routes. <br>
-Mitigation: Confirm region, VPC, VSwitches, bandwidth, billing period, route tables, and cleanup commands before execution. <br>
-Risk: Server-side steps require root-level Linux networking and StrongSwan configuration changes. <br>
-Mitigation: Run pre-checks, back up existing StrongSwan configuration, validate swanctl configuration, and keep rollback commands available. <br>
-Risk: Credential and PSK handling can expose sensitive access or tunnel secrets. <br>
-Mitigation: Use least-privilege RAM credentials or short-lived roles, do not print AK/SK or PSK values, generate a fresh PSK, and avoid sharing credential-bearing output. <br>
-Risk: Disabling SSH host key verification can weaken server identity checks. <br>
-Mitigation: Keep SSH host key verification enabled unless a reviewed operational exception is required. <br>
+## Use Case:
 
+Developers and network engineers use this skill to collect parameters, create Alibaba Cloud VPN resources, configure StrongSwan on Linux, and verify dual-tunnel connectivity between a server network and a VPC.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-network-connect-with-ipsec-vpn) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Server-side Pre-check](references/server-precheck.md) <br>
-- [StrongSwan Configuration Reference](references/strongswan-config.md) <br>
-- [StrongSwan Quick Setup Guide](references/strongswan-config-templates/QUICKSTART.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [Related APIs and CLI Commands](references/related-apis.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guided workflow requires user confirmation before cloud, billing, route, firewall, credential, and deletion actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta.1 (source: server release evidence) <br>
+Risk: The security review reports unsafe SSH, credential, installation, and firewall guidance that should be reviewed before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and tighten operational steps before execution: remove StrictHostKeyChecking=no, verify CLI downloads, avoid exposing cloud secrets in flags or logs, and restrict firewall rules to confirmed VPN gateway peers.
+
+Risk: The workflow creates paid cloud networking resources and changes Linux networking configuration.
+
+Mitigation: Confirm all user-provided parameters and costs before creation, back up existing StrongSwan configuration, verify route and tunnel state after changes, and require explicit confirmation before cleanup or deletion commands.
+
+Risk: Weak or exposed pre-shared keys can compromise the VPN connection.
+
+Mitigation: Generate a unique strong PSK, avoid printing it in plain text, store it securely, and rotate it according to local security policy.
+
+## Reference(s):
+
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md)
+- [RAM Policies](references/ram-policies.md)
+- [Server-side Pre-check](references/server-precheck.md)
+- [StrongSwan Configuration Reference](references/strongswan-config.md)
+- [StrongSwan Quick Setup Guide (VICI/swanctl Method)](references/strongswan-config-templates/QUICKSTART.md)
+- [Verification Method](references/verification-method.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [Acceptance Criteria: alibabacloud-network-connect-using-ipsec](references/acceptance-criteria.md)
+- [Related APIs and CLI Commands](references/related-apis.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guided parameter collection, confirmation checkpoints, cloud resource commands, StrongSwan configuration steps, verification steps, troubleshooting guidance, and optional cleanup commands.]
+
+## Skill Version(s):
+
+0.0.1-beta.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

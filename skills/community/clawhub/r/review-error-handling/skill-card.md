@@ -1,42 +1,55 @@
-## Description: <br>
-Audit failure states, retries, validation, and idempotency in the code under review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit failure states, retries, validation, and idempotency in the code under review.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and engineers use this skill during code review to audit error paths, input validation, timeout and retry behavior, observability, and idempotency. It helps turn missing or weak failure handling into specific file-and-line review findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Ritual Cloud setup adds a separate external service and global CLI install beyond the standalone checklist. <br>
-Mitigation: Use local standalone mode unless broader workspace context is needed; review the setup and get user approval before installing or connecting Ritual Cloud. <br>
-Risk: Optional knowledge capture can write reusable OKF notes into the repository. <br>
-Mitigation: Create OKF files only after explicit user approval, keep them small, and cite the supporting files or observations. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to audit code for missing or weak error paths, boundary validation, timeout and retry behavior, observability, and idempotency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ritual/review-error-handling) <br>
-- [Ritual homepage](https://ritual.work) <br>
-- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose with optional inline shell commands and optional OKF markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review findings depend on the code and context provided to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Review guidance may be incomplete or misleading if the agent does not inspect the actual error paths, callers, and retry behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require findings to cite concrete evidence such as files, lines, confirmed checks, and explicit assumptions.
+
+Risk: The optional Ritual CLI path introduces external tooling risk if the user chooses to install it.
+
+Mitigation: Use local mode when sufficient; if installing the CLI, review the npm package, avoid administrator privileges, and prefer a pinned or sandboxed install.
+
+## Reference(s):
+
+- [Review Error Handling on ClawHub](https://clawhub.ai/ritual/skills/review-error-handling)
+- [Ritual homepage](https://ritual.work)
+- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text review findings with optional file and line references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concrete gaps, confirmed checks, assumptions, and optional reusable knowledge notes when approved by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

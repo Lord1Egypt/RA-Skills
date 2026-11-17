@@ -1,10 +1,12 @@
 ---
 name: tob-win-loss-review
+slug: tob-win-loss-review
+displayName: 丢单复盘助手
 version: 2.0.0
-description: ToB销售丢单复盘助手。输入行业/规模/阶段/竞品/关键事件，使用李宁原创销售经验规则引擎输出根因分析、风险信号和改进建议。
+description: ToB销售丢单复盘助手。输入行业/规模/阶段/竞品/关键事件，使用原创销售经验规则引擎输出根因分析、风险信号和改进建议。
 priority: high
-source: lining-experience-rules
-workers: Tech, Sales, Checker
+source: experience-backed
+workers: [tech, sales, checker]
 created: 2026-05-15
 tags: [tob, sales, win-loss, review, rules]
 ---
@@ -15,7 +17,7 @@ tags: [tob, sales, win-loss, review, rules]
 
 当用户需要复盘 ToB 销售丢单原因，并希望基于行业、销售阶段、关键事件快速得到可执行改进建议时使用。
 
-本技能为**纯规则引擎**，规则来自李宁多年 ToB 销售与解决方案实践经验；不读取、不打包任何客户商业资产。
+本技能为**纯规则引擎**，规则来自多年 ToB 销售与解决方案实践经验；不读取、不打包任何客户商业资产。
 
 ## 使用方式
 

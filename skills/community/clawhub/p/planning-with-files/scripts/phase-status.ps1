@@ -6,9 +6,11 @@
 .DESCRIPTION
     The ONLY sanctioned concurrent-safe writer of task_plan.md status lines. The
     orchestrator owns task_plan.md; workers NEVER edit it directly. The edit is
-    a read-modify-write under an exclusive lock on the <plan-dir>\.write_lock
-    sentinel, with an atomic temp-file + move swap so a torn write can never
-    leave a half-rewritten plan on disk (architecture C4).
+    a read-modify-write under the portable
+    <plan-dir>\.pwf-locks\phase-status.lock namespace. Ownership is granted by
+    atomically creating its .owner file, rather than trusting an external mkdir
+    exit status. The plan rewrite uses an atomic temp-file + move swap so a torn
+    write can never leave a half-rewritten plan on disk (architecture C4).
 
     Editing task_plan.md changes its SHA, so the orchestrator must re-attest at
     phase boundaries (see attest-plan.ps1).
@@ -41,15 +43,21 @@ $ErrorActionPreference = "Stop"
 function Resolve-PlanFile {
     $planRoot = Join-Path (Get-Location) ".planning"
 
+    # A set PLAN_ID is a BINDING, not a hint (issue #237). A selector that
+    # names no plan directory stops resolution instead of falling through to
+    # .active_plan and newest-by-mtime: this script reports phase state, and
+    # answering a mistyped pin with a DIFFERENT plan's phases is the same
+    # wrong-plan harm that let a typo attest the wrong file.
     if ($env:PLAN_ID) {
         $candidate = Join-Path $planRoot $env:PLAN_ID
         $planFile  = Join-Path $candidate "task_plan.md"
         if (Test-Path -LiteralPath $planFile) { return (Resolve-Path -LiteralPath $planFile).Path }
+        return $null
     }
 
     $activePointer = Join-Path $planRoot ".active_plan"
     if (Test-Path -LiteralPath $activePointer) {
-        $planId = (Get-Content -LiteralPath $activePointer -Raw).Trim()
+        $planId = "$(Get-Content -LiteralPath $activePointer -Raw -ErrorAction SilentlyContinue)".Trim()
         if ($planId) {
             $candidate = Join-Path $planRoot $planId
             $planFile  = Join-Path $candidate "task_plan.md"
@@ -76,6 +84,95 @@ function Resolve-PlanFile {
     return $null
 }
 
+function Enter-PwfDirectoryLock {
+    param(
+        [string] $LockRoot,
+        [string] $LockDir
+    )
+
+    try {
+        [void][System.IO.Directory]::CreateDirectory($LockRoot)
+    } catch {
+        Write-Error ("[phase-status] Cannot create lock root " + $LockRoot + ": " + $_.Exception.Message)
+        return $null
+    }
+
+    $token = "phase-status-" + $PID + "-" + [Guid]::NewGuid().ToString("N")
+    $ownerFile = Join-Path $LockDir ".owner"
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+
+    $wait = [Diagnostics.Stopwatch]::StartNew()
+    while ($wait.Elapsed.TotalSeconds -lt 5) {
+        try {
+            [void][System.IO.Directory]::CreateDirectory($LockDir)
+        } catch {
+            Start-Sleep -Milliseconds 100
+            continue
+        }
+
+        $stream = $null
+        $createdOwner = $false
+        $claimed = $false
+        try {
+            # FileMode.CreateNew is the cross-runtime ownership decision. It
+            # fails atomically when either the shell or PowerShell writer has
+            # already claimed .owner, even if both observed mkdir success.
+            $stream = [System.IO.File]::Open(
+                $ownerFile,
+                [System.IO.FileMode]::CreateNew,
+                [System.IO.FileAccess]::Write,
+                [System.IO.FileShare]::None
+            )
+            $createdOwner = $true
+            $bytes = $utf8NoBom.GetBytes($token + "`n")
+            $stream.Write($bytes, 0, $bytes.Length)
+            $stream.Flush()
+            $claimed = $true
+            return [PSCustomObject]@{
+                Directory = $LockDir
+                OwnerFile = $ownerFile
+                Token = $token
+            }
+        } catch {
+            # Existing ownership is the normal contention path. Other failures
+            # remain fail-closed and are retried only within the bounded wait.
+        } finally {
+            if ($stream) {
+                $stream.Dispose()
+            }
+            if ($createdOwner -and -not $claimed) {
+                try {
+                    if ([System.IO.File]::Exists($ownerFile)) {
+                        $ownerValue = [System.IO.File]::ReadAllText($ownerFile).Trim()
+                        if ([string]::Equals($ownerValue, $token, [StringComparison]::Ordinal)) {
+                            [System.IO.File]::Delete($ownerFile)
+                        }
+                    }
+                } catch {
+                    # Leave any owner file we cannot prove is still ours intact.
+                }
+            }
+        }
+        Start-Sleep -Milliseconds 100
+    }
+
+    return $null
+}
+
+function Exit-PwfDirectoryLock {
+    param($Lock)
+    if (-not $Lock) { return }
+    try {
+        if (-not [System.IO.File]::Exists($Lock.OwnerFile)) { return }
+        $ownerValue = [System.IO.File]::ReadAllText($Lock.OwnerFile).Trim()
+        if (-not [string]::Equals($ownerValue, $Lock.Token, [StringComparison]::Ordinal)) { return }
+        [System.IO.File]::Delete($Lock.OwnerFile)
+        [System.IO.Directory]::Delete($Lock.Directory, $false)
+    } catch {
+        # Cleanup is best-effort and never removes a lock with another owner.
+    }
+}
+
 # Validate phase number is a positive integer.
 if ($Phase -notmatch '^[0-9]+$') {
     Write-Error ("[phase-status] phase number must be a positive integer, got '" + $Phase + "'.")
@@ -91,23 +188,25 @@ if ($validStatus -notcontains $Status) {
 
 $planFile = Resolve-PlanFile
 if (-not $planFile) {
-    Write-Error "[phase-status] No task_plan.md found. Create a plan first."
+    if ($env:PLAN_ID) {
+        Write-Error "[phase-status] PLAN_ID names no plan directory under .planning; nothing was written and no other plan was substituted."
+    } else {
+        Write-Error "[phase-status] No task_plan.md found. Create a plan first."
+    }
     exit 1
 }
 
 $planDir  = Split-Path -Parent $planFile
-$lockFile = Join-Path $planDir ".write_lock"
+$lockRoot = Join-Path $planDir ".pwf-locks"
+$lockDir  = Join-Path $lockRoot "phase-status.lock"
 
-# Acquire an exclusive lock on the sentinel so concurrent writers serialize.
-$fs = $null
-$acquired = $false
-for ($i = 0; $i -lt 50 -and -not $acquired; $i++) {
-    try {
-        $fs = [System.IO.File]::Open($lockFile, [System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None)
-        $acquired = $true
-    } catch {
-        Start-Sleep -Milliseconds 100
-    }
+# Exclusive .owner creation is the common lock primitive used by both the sh
+# and PowerShell implementations. Failure to acquire within about five seconds
+# is fail-closed: no plan read/rewrite is attempted.
+$lock = Enter-PwfDirectoryLock -LockRoot $lockRoot -LockDir $lockDir
+if (-not $lock) {
+    Write-Error ("[phase-status] Timed out waiting for lock " + $lockDir + ". No plan changes were made.")
+    exit 75
 }
 
 $tmpFile = $planFile + ".tmp." + $PID
@@ -164,8 +263,7 @@ try {
     Write-Error ("[phase-status] " + $_.Exception.Message)
     $rc = 1
 } finally {
-    if ($fs) { $fs.Close(); $fs.Dispose() }
-    if (Test-Path -LiteralPath $lockFile) { Remove-Item -LiteralPath $lockFile -Force -ErrorAction SilentlyContinue }
+    Exit-PwfDirectoryLock -Lock $lock
     if (Test-Path -LiteralPath $tmpFile) { Remove-Item -LiteralPath $tmpFile -Force -ErrorAction SilentlyContinue }
 }
 

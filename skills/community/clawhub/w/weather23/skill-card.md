@@ -1,42 +1,54 @@
-## Description: <br>
-Get current weather and forecasts (no API key required). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts (no API key required).
 
-## Publisher: <br>
-[lei335](https://clawhub.ai/user/lei335) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lei335](https://clawhub.ai/user/lei335)
 
-## Use Case: <br>
-Developers, operators, and external users can use this skill to ask an agent for current weather or forecast command examples that query wttr.in, with Open-Meteo JSON as a programmatic fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups can disclose requested locations to third-party weather services. <br>
-Mitigation: Avoid querying sensitive private locations when that disclosure is not acceptable. <br>
-Risk: The skill suggests user-run curl requests to external services. <br>
-Mitigation: Review generated commands and URLs before execution. <br>
+## Use Case:
 
+Developers and external users can use this skill to get curl-based guidance for retrieving current weather and forecasts from public weather services without an API key.
 
-## Reference(s): <br>
-- [wttr.in Help](https://wttr.in/:help) <br>
-- [Open-Meteo Documentation](https://open-meteo.com/en/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lei335/weather23) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash curl examples and optional JSON weather API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples; weather requests are sent to wttr.in or Open-Meteo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Weather lookups can send requested locations or coordinates to third-party public weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid querying locations that are sensitive, and review generated curl commands before execution.
+
+Risk: Weather responses from public services may be unavailable, stale, or formatted differently than expected.
+
+Mitigation: Cross-check important weather decisions with an authoritative weather source and handle fallback JSON responses explicitly.
+
+## Reference(s):
+
+- [wttr.in Help](https://wttr.in/:help)
+- [Open-Meteo Forecast API Documentation](https://open-meteo.com/en/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; no API key is required by the documented services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Manages user schedules and task lists by adding, viewing, updating, deleting, and optionally setting reminders for tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages user schedules and task planning by adding, listing, updating, deleting, and setting reminders for local schedule entries.
 
-## Publisher: <br>
-[h3avysword](https://clawhub.ai/user/h3avysword) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h3avysword](https://clawhub.ai/user/h3avysword)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a local schedule, prioritize tasks, inspect upcoming work by date range, and confirm updates or deletions before changes are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Schedule details, notes, and deadlines are stored in a local workspace CSV file. <br>
-Mitigation: Install only when local workspace storage is acceptable, and avoid entering sensitive schedule content unless the workspace is trusted. <br>
-Risk: Update and delete operations can change or remove schedule entries. <br>
-Mitigation: Review task IDs and confirmation prompts carefully before applying updates or deletions. <br>
-Risk: Optional reminders depend on a separate reminder skill. <br>
-Mitigation: Enable reminders only when the separate reminder skill is trusted and appropriate for the workspace. <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to maintain a local task schedule, view time-bounded task lists, update priorities and deadlines, delete completed tasks, and optionally set reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/h3avysword/schedules-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text schedule summaries and confirmations, with local Python command invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores schedule details, deadlines, priorities, reminder flags, and notes in a workspace CSV file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Bash command templates can turn untrusted task names or notes into local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task names, notes, and generated commands before execution; prefer structured argument passing for deployments that accept untrusted input.
+
+Risk: Reminder setup can pass stored task text into a future agent action through another skill.
+
+Mitigation: Review reminder message content and the permissions of cron-mastery before enabling reminders.
+
+## Reference(s):
+
+- [Schedule Manager ClawHub listing](https://clawhub.ai/h3avysword/skills/schedules-manager)
+- [Reply templates](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses and Bash command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates a local schedules/schedule.csv file; reminder setup may hand task text to a separate reminder skill.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

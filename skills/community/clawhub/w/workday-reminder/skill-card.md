@@ -1,41 +1,54 @@
-## Description: <br>
-Workday Reminder helps users create weekday off-work reminders, check countdowns to a configured off-work time, and manage reminder schedules for QQ delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workday Reminder helps an agent set and manage weekday off-work reminders, answer countdown questions, and distinguish weekdays from weekends with a default 17:30 Asia/Shanghai schedule.
 
-## Publisher: <br>
-[artwebs](https://clawhub.ai/user/artwebs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artwebs](https://clawhub.ai/user/artwebs)
 
-## Use Case: <br>
-Employees and external users use this skill to schedule recurring weekday QQ reminders for off-work time, view countdowns, and list, cancel, or update existing reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring weekday reminders may continue after the user no longer needs them. <br>
-Mitigation: Cancel the cron job when reminders are no longer wanted. <br>
-Risk: A reminder could be scheduled for the wrong time or QQ recipient if configured incorrectly. <br>
-Mitigation: Check the scheduled time and recipient whenever creating or changing a reminder. <br>
+## Use Case:
 
+Employees and external users who use QQ reminders can ask an agent to create, check, update, or cancel weekday off-work reminders and receive countdown status for a configured end-of-work time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/artwebs/workday-reminder) <br>
-- [Publisher profile](https://clawhub.ai/user/artwebs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON cron job configuration and optional JSON countdown output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QQ bot channel configuration and recurring weekday cron schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Ambiguous off-work questions may lead the agent to create recurring QQ reminders when the user only wanted a countdown or the current off-work time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before creating recurring reminders, canceling reminders, or changing reminder times.
+
+Risk: The reminder behavior is tied to Asia/Shanghai time and QQ delivery, which may not match users outside that context.
+
+Mitigation: Confirm the intended timezone, delivery channel, and recipient before enabling the reminder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/artwebs/skills/workday-reminder)
+- [Publisher profile](https://clawhub.ai/user/artwebs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Natural-language reminder and countdown responses with JSON cron payloads and optional JSON countdown results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QQ bot channel configuration and Asia/Shanghai scheduling context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

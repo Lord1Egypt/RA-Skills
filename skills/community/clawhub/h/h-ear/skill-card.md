@@ -1,44 +1,58 @@
-## Description: <br>
-H-ear lets agents classify environmental audio, inspect jobs and usage, manage webhooks, and retrieve audio analysis artifacts through the H-ear API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+H-ear helps agents classify environmental audio from URLs, local files, and RTSP captures, then report sound events, supported classes, jobs, usage, and webhook activity.
 
-## Publisher: <br>
-[badajoz95](https://clawhub.ai/user/badajoz95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[badajoz95](https://clawhub.ai/user/badajoz95)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to classify audio from files or URLs, list supported sound classes, review H-ear jobs and usage, retrieve analysis artifacts, and manage webhook delivery for audio events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires H-ear credentials and may send selected audio, audio URLs, job metadata, and webhook callback data to the H-ear service. <br>
-Mitigation: Install only when that data sharing is acceptable, use least-privileged credentials, and avoid private or regulated audio unless H-ear data handling terms have been reviewed. <br>
-Risk: The security evidence reports an under-disclosed live RTSP capture command that can invoke ffmpeg and submit captured audio for classification. <br>
-Mitigation: Require explicit user approval before live capture or listen workflows, confirm the RTSP source and duration, and disable or block capture where continuous audio collection is not intended. <br>
-Risk: Webhook create, update, and delete actions can change callback delivery behavior, and webhook deletion is permanent. <br>
-Mitigation: Require explicit confirmation for webhook changes and retain webhook IDs and signing secrets according to the user's operational process. <br>
+## Use Case:
 
+Developers and external teams use this skill to add H-ear audio classification and monitoring workflows to agent channels such as WhatsApp, Telegram, Slack, Discord, and Teams. It supports class lookup, usage and job inspection, audio classification, webhook callbacks, reports, waveform links, and RTSP capture-assisted classification.
 
-## Reference(s): <br>
-- [H-ear World](https://h-ear.world) <br>
-- [ClawHub Skill Page](https://clawhub.ai/badajoz95/h-ear) <br>
-- [Publisher Profile](https://clawhub.ai/user/badajoz95) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text CLI responses with job metadata, sound classifications, tables, temporary URLs, and webhook results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires H-ear credentials and environment selection; some commands may return temporary audio/report URLs or one-time webhook signing secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release evidence) <br>
+Risk: RTSP capture/listen can record from a camera source and uploads captured audio for classification by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use capture/listen only with explicit operator intent, avoid credentials in RTSP URLs, and pass --no-classify when recording should not be uploaded.
+
+Risk: Webhook create, update, and delete commands change persistent enterprise integrations and may expose webhook URLs, delivery history, or a one-time signing secret.
+
+Mitigation: Limit webhook operations to authorized operators, confirm IDs and target URLs before changes, and handle signing secrets as sensitive values.
+
+Risk: Audio files, URLs, local recordings, location metadata, and webhook payloads may be sent to H-ear services.
+
+Mitigation: Confirm users are permitted to share those data types with H-ear before use.
+
+## Reference(s):
+
+- [H-ear World](https://h-ear.world)
+- [ClawHub skill page](https://clawhub.ai/badajoz95/skills/h-ear)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text returned by CLI/API-backed commands, with JSON available for tool introspection.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires H-ear credentials and may return SAS audio/report URLs or webhook metadata depending on command.]
+
+## Skill Version(s):
+
+1.1.8 (source: server release evidence, created 2026-04-30; artifact manifests report 1.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

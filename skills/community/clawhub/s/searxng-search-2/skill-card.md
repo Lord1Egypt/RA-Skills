@@ -1,40 +1,57 @@
-## Description: <br>
-Web search using SearXNG instance via MCP. Provides web search capability for agents with configurable SearXNG endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search using SearXNG instance via MCP. Provides web search capability for agents with configurable SearXNG endpoint.
 
-## Publisher: <br>
-[zfanmy](https://clawhub.ai/user/zfanmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zfanmy](https://clawhub.ai/user/zfanmy)
 
-## Use Case: <br>
-Developers and external agent users use this skill to add SearXNG-backed web search to agents through an MCP server or shell script with configurable result limits and text, JSON, or Markdown output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and result handling depend on the configured SearXNG endpoint, which may receive private or sensitive query text. <br>
-Mitigation: Use only trusted SearXNG endpoints, prefer HTTPS for remote servers, and avoid searching secrets or private project data. <br>
-Risk: Copying the included MCP configuration can overwrite or disturb an existing mcporter setup. <br>
-Mitigation: Merge or back up existing mcporter configuration before copying this package's config.json. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add web search through a configured SearXNG endpoint, either through an MCP server or the included shell script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zfanmy/searxng-search-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Search results returned as plain text, Markdown, or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured SEARXNG_URL endpoint and supports a result limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The MCP configuration uses a relative path to mcp-server.py, which can execute the wrong local script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change the MCP config to use an absolute path to the packaged mcp-server.py before installation.
+
+Risk: Copying config.json directly into the mcporter config path can overwrite existing MCP configuration.
+
+Mitigation: Merge the searxng server entry into the existing mcporter config instead of replacing the whole file.
+
+Risk: Search queries are sent to the configured SearXNG endpoint, which may be untrusted.
+
+Mitigation: Use a trusted SearXNG endpoint and avoid sensitive searches unless the endpoint is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zfanmy/skills/searxng-search-2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Text, Markdown, or JSON search results with configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured SEARXNG_URL endpoint; MCP tool calls accept a query and optional result limit.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

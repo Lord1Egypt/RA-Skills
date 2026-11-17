@@ -1,59 +1,64 @@
-## Description: <br>
-智能旅行规划助手，一个能够自主学习、持续成长的智能旅行规划助手，支持周末出游、家庭旅行、蜜月规划、拼假攻略等场景。能记住你的偏好，提供个性化推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能旅行规划助手，支持周末出游、家庭旅行、蜜月规划、拼假攻略等旅行场景，并可记住用户偏好以提供个性化推荐。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to turn open-ended trip ideas into personalized destination recommendations, itinerary drafts, and booking-oriented guidance. It supports profile-aware planning across weekend trips, family travel, honeymoons, vacation planning, flight, hotel, train, POI, and Marriott search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation normalizes disabling HTTPS certificate checks for FlyAI commands. <br>
-Mitigation: Review generated commands before execution and do not allow HTTPS verification to be disabled unless the operator explicitly accepts that network risk. <br>
-Risk: The workflow can install or globally upgrade the FlyAI CLI through npm. <br>
-Mitigation: Avoid sudo installs and unpinned global upgrades in managed environments; install reviewed versions through approved package-management channels. <br>
-Risk: The skill can persist travel preferences in Qoder Memory or a local profile file. <br>
-Mitigation: Ask before saving preferences and avoid storing sensitive family, budget, accessibility, or trip-history details unless they are necessary. <br>
+## Use Case:
 
+External users use this skill to explore destinations, compare travel options, plan itineraries, and receive personalized travel recommendations based on stated or saved preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-travel-chat) <br>
-- [Core workflow](reference/core-workflow.md) <br>
-- [Exploration framework](reference/exploration-framework.md) <br>
-- [Scenarios](reference/scenarios.md) <br>
-- [Personas](reference/personas.md) <br>
-- [Memory system](reference/memory-system.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
-- [Tools](reference/tools.md) <br>
-- [FlyAI commands](reference/flyai-commands.md) <br>
-- [AI search](reference/ai-search.md) <br>
-- [Keyword search](reference/keyword-search.md) <br>
-- [Flight search](reference/search-flight.md) <br>
-- [Hotel search](reference/search-hotel.md) <br>
-- [POI search](reference/search-poi.md) <br>
-- [Train search](reference/search-train.md) <br>
-- [Marriott hotel search](reference/search-marriott-hotel.md) <br>
-- [Marriott package search](reference/search-marriott-package.md) <br>
-- [Examples](reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown conversation responses with inline shell commands and structured travel-planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live-search results, travel preference prompts, itinerary tables, cost estimates, booking links, and profile-save suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill evidence identifies unsafe network and installation practices, including TLS-bypass commands, global @latest installs, and possible elevated installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before use, avoid TLS bypass and sudo, and prefer a pinned trusted FlyAI CLI installed without elevated privileges.
+
+Risk: The skill may persist detailed travel profiles with inconsistent consent controls.
+
+Mitigation: Save profile data only after explicit user confirmation, limit stored details to necessary preferences, and keep or delete the local profile deliberately.
+
+Risk: Travel recommendations can be incorrect, outdated, or incomplete when search results are empty or supplemented with general AI knowledge.
+
+Mitigation: Verify time-sensitive travel details such as prices, schedules, visa rules, and opening hours against authoritative sources before booking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hello-ahang/skills/flyai-travel-chat)
+- [Memory System](reference/memory-system.md)
+- [User Profile Storage](reference/user-profile-storage.md)
+- [Core Workflow](reference/core-workflow.md)
+- [Travel Scenarios](reference/scenarios.md)
+- [Exploration Framework](reference/exploration-framework.md)
+- [FlyAI Commands](reference/flyai-commands.md)
+- [Tools](reference/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Conversational Markdown with optional shell command blocks and structured itinerary sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include travel options, itinerary tables, estimated costs, booking links, follow-up questions, and profile-save prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

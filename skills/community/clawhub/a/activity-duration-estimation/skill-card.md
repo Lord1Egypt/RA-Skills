@@ -1,49 +1,70 @@
-## Description: <br>
-Activity Duration Estimation helps agents plan projects by creating WBS breakdowns, estimating durations with PERT and Monte Carlo methods, generating project documents, and producing economic and earned-value analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activity Duration Estimation helps agents plan project work breakdown structures, estimate activity duration with PERT and Monte Carlo methods, draft project documents, run economic analysis, perform earned value management, and generate self-contained HTML reports.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Project managers, analysts, and delivery teams use this skill to decompose project scope, estimate activity durations, generate planning documents, and evaluate financial or earned-value performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags broad local database access, including reading, importing, and exporting SQLite knowledge bases. <br>
-Mitigation: Use the skill only with project data and database paths you intend to expose, and review generated or imported knowledge-base content before relying on it. <br>
-Risk: The security review notes an unauthenticated settings server. <br>
-Mitigation: Run the settings server only in a trusted local environment and avoid exposing it on untrusted networks. <br>
-Risk: Generated economic and EVM HTML reports may load Chart.js from a CDN. <br>
-Mitigation: Treat generated reports as network-loading pages and review them before opening or sharing in restricted environments. <br>
+## Use Case:
 
+Developers, project managers, and agents use this skill to decompose project scope, estimate durations and dependencies, produce project-management documents, calculate economic metrics, and assess earned value for active projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/activity-duration-estimation) <br>
-- [Methods](references/methods.md) <br>
-- [WBS Methodology](references/wbs-methodology.md) <br>
-- [Project Docs Methodology](references/project-docs-methodology.md) <br>
-- [Economic Analysis Methodology](references/economic-analysis-methodology.md) <br>
-- [EVM Methodology](references/evm-methodology.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Permissions](references/permissions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, HTML, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with generated self-contained HTML reports and project document templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local SQLite knowledge bases and configurable settings for search, knowledge-base use, document mode, and report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.7 (source: frontmatter and release evidence) <br>
+Risk: The skill can persist project data and settings and read or import external databases when asked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project files and databases, review what will be imported, and avoid storing sensitive project data unless the skill data directory is acceptable for that data.
+
+Risk: The settings server exposes local network behavior that the security guidance flags as under-scoped.
+
+Mitigation: Run the settings server only in trusted local environments and avoid exposing it on untrusted networks.
+
+Risk: Generated reports should be treated as untrusted HTML until escaping and CDN integrity issues are fixed.
+
+Mitigation: Review generated HTML before sharing or publishing it, and open reports in a constrained browser context when working with untrusted inputs.
+
+Risk: Untrusted template or project names may affect generated reports or files.
+
+Mitigation: Use reviewed template names and project names, especially before generating or distributing reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/activity-duration-estimation)
+- [Activity duration estimation methods](references/methods.md)
+- [WBS methodology](references/wbs-methodology.md)
+- [Project documents methodology](references/project-docs-methodology.md)
+- [Economic analysis methodology](references/economic-analysis-methodology.md)
+- [Earned value management methodology](references/evm-methodology.md)
+- [Knowledge interface](references/knowledge-interface.md)
+- [Search integration](references/search-integration.md)
+- [Permissions and test summary](references/permissions.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Python and shell snippets, structured project data, and generated HTML report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist project data, settings, imported database content, and generated reports in the skill data directory.]
+
+## Skill Version(s):
+
+1.11.7 (source: server release evidence, SKILL.md frontmatter, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -68,7 +68,7 @@ watchlist:
     currency: USD
 
 alerts:
-  slack_webhook: "https://hooks.slack.com/services/xxx"
+  slack_webhook: "REDACTED-SECRET"
   cooldown_minutes: 30
   threshold_percent: 5.0
 

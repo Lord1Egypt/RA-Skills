@@ -1,10 +1,21 @@
 # camoufox-browse
 
-OpenClaw skill: drive real browser sessions via [Camoufox](https://camoufox.com), a privacy/anti-fingerprinting Firefox build for AI agents. Intended for legitimate access to fingerprint-sensitive sites you own or are authorized to automate.
+OpenClaw skill: OpenClaw skill for getting past bot-detection that breaks the normal browser — Cloudflare, Datadome, fingerprint bans. Drives [Camoufox](https://camoufox.com), a real anti-fingerprinting Firefox, for authorized access to sites that flag standard automation.
 
 > ⚠️ **Use responsibly.** This tool reduces bot-detection signals. Only use it where automated access is permitted by the site's terms and applicable law. It is not for evading bans, bypassing access controls, or impersonating users. You are responsible for compliance.
 
 > **Full usage docs live in [`SKILL.md`](./SKILL.md).** This README covers install, local development, and publishing.
+
+## What it's for
+
+Use Camoufox when the built-in browser gets blocked or fingerprinted and you're authorized to automate the site. Typical asks:
+
+- "Open a Cloudflare-protected site the built-in browser can't get past and extract the listing data."
+- "Keep a stable logged-in session across runs on a site that fingerprint-bans automation."
+- "Log into my own account on a site that flags standard tooling and pull my data."
+
+For anything a normal browser handles, use the built-in tool — this is for the hard, protected cases. Automated access must be permitted by the site's terms; that call is the human's, not the skill's.
+
 
 ## Install (end users)
 

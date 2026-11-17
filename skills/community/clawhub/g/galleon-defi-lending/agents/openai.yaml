@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Lending"
+  short_description: "Research credit markets and plan lending positions"
+  default_prompt: "Use $galleon-defi-lending to research the selected position and prepare a source-backed plan with explicit access, risk and settlement checks."

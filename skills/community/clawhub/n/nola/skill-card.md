@@ -1,44 +1,58 @@
-## Description: <br>
-Nola is an AI engineering squad lead that dispatches 14 specialist agents to build, test, review, document, and ship code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nola is an AI engineering squad lead that dispatches 14 specialist agents to build, test, review, document, and ship software work.
 
-## Publisher: <br>
-[flikq](https://clawhub.ai/user/flikq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flikq](https://clawhub.ai/user/flikq)
 
-## Use Case: <br>
-Developers and engineering teams use this skill in OpenClaw to coordinate software development work such as feature implementation, bug investigation, code review, testing, documentation, deployment planning, and release tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate subagents that modify repositories and prepare release actions. <br>
-Mitigation: Review diffs before release steps and explicitly require approval before commits, pushes, PRs, server startup, test execution, or scraping outputs. <br>
-Risk: Broad multi-agent delegation can perform more work than intended if the user prompt is vague. <br>
-Mitigation: Use narrow prompts with explicit scope, files, deliverables, and approval boundaries. <br>
+## Use Case:
 
+Developers and engineering teams use this skill in OpenClaw to coordinate multi-agent software work such as feature implementation, bug investigation, code review, testing, documentation, deployment planning, and release tasks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/flikq/nola) <br>
-- [Publisher profile](https://clawhub.ai/user/flikq) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status updates, delegated agent task prompts, code changes, shell commands, configuration snippets, and review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate multiple subagents and repository-modifying workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can coordinate agents that modify code, run project commands, start servers, push branches, or create pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted or isolated repositories and require explicit approval before command execution, server startup, branch pushes, or pull request creation.
+
+Risk: Broad repository access during delegated coding work could expose unrelated secrets or sensitive files.
+
+Mitigation: Run it in a scoped workspace, avoid mounting unrelated secrets, and review generated changes before release.
+
+Risk: Installer or test dependencies may change over time.
+
+Mitigation: Pin installer and test dependency versions where possible before using the skill in repeatable or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flikq/skills/nola)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with task briefs, code or configuration changes, shell command snippets, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate multiple specialist agents and produce repository changes depending on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

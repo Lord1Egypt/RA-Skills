@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7c8kq3vma64hymr633jztpn980k9mf",
+  "owner": "yujintang",
   "slug": "yoga-manage-skill",
+  "name": "yoga-manage-skill",
+  "displayName": "瑜伽学员课时管理 Yoga Student Manager",
+  "description": "瑜伽老师专用学员课时管理系统，支持学员管理、包年/包课时课程、自动扣课时并邮件记录。",
   "version": "1.0.0",
-  "publishedAt": 1778467280168
+  "author": "yujintang",
+  "license": "MIT",
+  "homepage": "https://github.com/yujintang/skills/tree/main/yoga_manage_skill",
+  "repository": "https://github.com/yujintang/skills.git"
 }

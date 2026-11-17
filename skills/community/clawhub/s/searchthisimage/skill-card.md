@@ -1,44 +1,55 @@
-## Description: <br>
-Reverse image search: find where an image appears on the web, visually similar images, and what the image contains from an image URL or uploaded image file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds where an image appears online, visually similar images, and likely content using SearchThisImage with image URLs or uploaded files.
 
-## Publisher: <br>
-[selvatuple](https://clawhub.ai/user/selvatuple) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[selvatuple](https://clawhub.ai/user/selvatuple)
 
-## Use Case: <br>
-External users and agents use this skill to search for an image's source, online matches, visually similar images, and related entities. It supports both direct image URLs and uploaded image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs or uploaded image files are sent to SearchThisImage for reverse image search processing. <br>
-Mitigation: Avoid private, regulated, or confidential images unless the provider's privacy terms meet the user's needs. <br>
-Risk: The skill requires an API key for SearchThisImage. <br>
-Mitigation: Use a dedicated API key and avoid exposing it in prompts, logs, or shared files. <br>
-Risk: Uploaded image searches may require a temporary local image file. <br>
-Mitigation: Delete temporary image files after the search completes. <br>
+## Use Case:
 
+External users and agents use this skill to perform reverse image searches from an image URL or uploaded image file and present concise, readable results. It is useful when a user wants to identify image origins, matching pages, visually similar images, or related entities.
 
-## Reference(s): <br>
-- [SearchThisImage API](https://api.searchthisimage.com) <br>
-- [SearchThisImage privacy policy](https://searchthisimage.com/privacy.html) <br>
-- [ClawHub skill page](https://clawhub.ai/selvatuple/searchthisimage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with links; API responses are JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and SEARCHTHISIMAGE_API_KEY; lists up to 5 matching pages and 3 visually similar image URLs when available] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Images or image URLs are sent to SearchThisImage for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images that are appropriate to share with SearchThisImage, and avoid private, confidential, or regulated images unless approved.
+
+Risk: Command examples could mishandle crafted user input and run local commands.
+
+Mitigation: Serialize JSON safely, validate HTTPS image URLs, create trusted temporary files, and avoid constructing shell commands directly from raw user input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/selvatuple/skills/searchthisimage)
+- [SearchThisImage API base URL](https://api.searchthisimage.com)
+- [SearchThisImage privacy policy](https://searchthisimage.com/privacy.html)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, API calls, shell commands, guidance]
+
+**Output Format:** [Markdown response with links and concise result sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl with SEARCHTHISIMAGE_API_KEY and returns up to five matching pages, up to three visually similar image URLs, and related entities when available.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

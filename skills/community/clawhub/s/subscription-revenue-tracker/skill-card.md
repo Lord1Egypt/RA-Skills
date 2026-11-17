@@ -1,41 +1,52 @@
-## Description: <br>
-SaaS and subscription business revenue intelligence for tracking MRR/ARR, churn, net revenue retention, LTV, cohort retention, payback periods, investor summaries, and deferred revenue journal entries from Stripe, Chargebee, or CSV exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SaaS and subscription business revenue intelligence for tracking MRR, ARR, churn, net revenue retention, lifetime value, cohort retention, payback periods, investor reporting, and deferred revenue journal entry preparation.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Finance operators, founders, and developers use this skill to calculate SaaS subscription metrics from Stripe, Chargebee, or CSV exports and prepare investor-facing summaries or deferred revenue schedules.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Examples show live Stripe secret key placeholders in shell and Python snippets, which could encourage unsafe credential handling if copied directly.
+
+Mitigation: Use environment variables or a secret manager, prefer test-mode or restricted read-only Stripe keys, and avoid pasting secrets directly into shell commands or source files.
+
+Risk: Subscription metrics and deferred revenue schedules can affect investor reporting and accounting decisions if calculations or integration scope are misunderstood.
+
+Mitigation: Independently review the metric formulas, accounting treatment, and claimed Chargebee or QuickBooks Online workflow before relying on outputs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Finance, SaaS operations, and accounting users can use this skill to calculate subscription KPIs, prepare investor updates, analyze cohort retention, and draft deferred revenue schedules or QBO-ready journal entries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may work with subscription billing API keys and customer revenue data. <br>
-Mitigation: Use restricted or read-only API keys where possible, keep secrets in environment variables or a secret manager, and redact customer exports before sharing them with an agent. <br>
-Risk: Generated deferred revenue or accounting entries could be incorrect if source data, dates, or revenue recognition assumptions are wrong. <br>
-Mitigation: Manually review generated accounting entries and revenue schedules before posting them to QuickBooks Online or any general ledger. <br>
+**Output Format:** [Markdown with inline bash, Python, JSON, and tabular examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/subscription-revenue-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+**Other Properties Related to Output:** [May reference Stripe, Chargebee, CSV, and QuickBooks Online workflows; users should verify financial calculations and credentials handling before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with metric tables, Python and shell code blocks, API examples, and structured accounting entry examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Stripe, Chargebee, QuickBooks Online, CSV exports, and local command-line tools when the user supplies appropriate data and credentials.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

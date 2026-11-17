@@ -1,44 +1,59 @@
-## Description: <br>
-Estimates a person's age from a facial image via the Didit standalone API, with passive liveness checking and configurable thresholds for age-gating workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimates a person's age from a facial image via the Didit standalone API for age gates, compliance checks, underage-user detection, and passive liveness checks.
 
-## Publisher: <br>
-[rosasalberto](https://clawhub.ai/user/rosasalberto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rosasalberto](https://clawhub.ai/user/rosasalberto)
 
-## Use Case: <br>
-Developers and compliance teams use this skill to add biometric age-estimation and liveness checks to age-gated flows, including over-18 or over-21 checks and fallback paths for borderline cases. <br>
-
-### Deployment Geography for Use: <br>
-Global, with per-country age restrictions configured by the implementing service. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Facial images are sent to Didit for biometric age estimation, which creates privacy, consent, and retention obligations. <br>
-Mitigation: Confirm user consent and legal basis before use, disclose Didit processing, and configure request saving or retention deliberately. <br>
-Risk: DIDIT_API_KEY exposure or personal identifiers in vendor_data could leak access or user information. <br>
-Mitigation: Store DIDIT_API_KEY in a secret manager, avoid logging it, and use non-identifying vendor_data values. <br>
-Risk: The sample CLI alone is not sufficient for regulated age-gating decisions. <br>
-Mitigation: Implement threshold, liveness, fallback, regional policy, and response-schema checks before relying on it in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Didit documentation](https://docs.didit.me) <br>
-- [Didit Age Estimation API reference](https://docs.didit.me/standalone-apis/age-estimation) <br>
-- [Didit Age Estimation feature guide](https://docs.didit.me/core-technology/age-estimation/overview) <br>
-- [ClawHub skill page](https://clawhub.ai/rosasalberto/didit-biometric-age-estimation) <br>
+## Use Case:
 
+Developers and compliance teams use this skill to integrate Didit face-image age estimation, age-threshold checks, passive liveness review, and escalation paths for borderline age-verification cases.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with API examples, shell commands, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DIDIT_API_KEY; CLI usage returns JSON API responses from user-selected facial images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes face images and age-estimation results, which can create privacy, consent, and legal-compliance risk.
+
+Mitigation: Use it only with informed consent and legal authorization, and review the workflow before using it with real users.
+
+Risk: API requests may retain face-image review data when save_api_request is enabled.
+
+Mitigation: Consider setting save_api_request=false by default unless retention is required and approved.
+
+Risk: Full API responses or vendor_data values may expose sensitive user information.
+
+Mitigation: Avoid logging full responses, minimize vendor_data, and use a limited Didit API key in an isolated environment with pinned dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rosasalberto/skills/didit-biometric-age-estimation)
+- [Didit documentation](https://docs.didit.me)
+- [Didit standalone age estimation API](https://docs.didit.me/standalone-apis/age-estimation)
+- [Didit age estimation feature guide](https://docs.didit.me/core-technology/age-estimation/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DIDIT_API_KEY and sends face images to the Didit age-estimation API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

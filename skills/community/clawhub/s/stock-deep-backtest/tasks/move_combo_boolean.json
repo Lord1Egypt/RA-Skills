@@ -1,0 +1,7 @@
+{
+    "tool_name": "move_by_code",
+    "name": "5因子组合筛选布尔",
+    "code": "lo = d['low'] * d['adj_factor']; vwap = d['amount'] / d['vol'].replace(0, np.nan)\nsum_price20 = (lo * 0.35 + vwap * 0.65).rolling(20).sum()\nsum_meanvol20 = d['vol'].rolling(40).mean().rolling(20).sum()\nr74 = row_rank(sum_price20.rolling(7).corr(sum_meanvol20)) + row_rank(row_rank(vwap).rolling(6).corr(row_rank(d['vol'])))\nr179 = row_rank(vwap.rolling(4).corr(d['vol'])) * row_rank(row_rank(lo).rolling(12).corr(row_rank(d['vol'].rolling(50).mean())))\nr70 = row_rank(d['amount'].rolling(6).std())\nr44 = row_rank(-1 * (d['high'] * d['adj_factor']).rolling(5).corr(row_rank(d['vol'])))\nac = d['close'] * d['adj_factor']; vwap2 = d['amount'] / d['vol'].replace(0, np.nan)\ncorr1 = row_rank(vwap2).rolling(4).corr(row_rank(d['vol']))\nrank1 = row_rank(rolling_decay_linear(corr1, 4))\ncorr2 = row_rank(ac).rolling(4).corr(row_rank(d['vol'].rolling(60).mean()))\nrank2 = row_rank(rolling_decay_linear(corr2.rolling(13).max(), 14))\nr64 = row_rank(-1 * np.maximum(rank1, rank2))\nout = ((1 - r74) > 0.7) & ((1 - r179) > 0.7) & ((1 - r70) > 0.7) & (r44 > 0.7) & (r64 > 0.7)",
+    "direction": "y",
+    "to_percentile": false
+}

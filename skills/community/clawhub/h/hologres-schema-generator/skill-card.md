@@ -1,42 +1,59 @@
-## Description: <br>
-Hologres Schema Generator helps design Hologres DDL, table storage formats, partitioning, data types, and table properties for query-pattern-aware schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hologres DDL schema design and table creation expert for generating CREATE TABLE statements, choosing storage formats, configuring table properties, designing partition tables, selecting data types, and optimizing schemas for query patterns.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Developers, data engineers, and database practitioners use this skill to generate and review optimized Hologres CREATE TABLE statements, storage choices, partitioning plans, and related schema guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or example CREATE, ALTER, DROP, and scheduled cleanup SQL can modify or permanently remove Hologres data. <br>
-Mitigation: Review all generated SQL before execution, especially partition drops and lifecycle cleanup statements. <br>
-Risk: The skill depends on hologres-cli executing against the configured Hologres account and database. <br>
-Mitigation: Install hologres-cli only from a trusted source and verify the target account and database before running commands. <br>
+## Use Case:
 
+Developers and data engineers use this skill to design Hologres table schemas, generate DDL, choose storage and indexing properties, and plan partitioning for expected query patterns.
 
-## Reference(s): <br>
-- [Hologres Data Types Reference](references/data-types.md) <br>
-- [Hologres Partition Table Guide](references/partition-guide.md) <br>
-- [Hologres Table Properties Reference](references/table-properties.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and shell command code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable database-changing SQL that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and VERSION) <br>
+Risk: Generated or copied Hologres commands can modify database state when run through hologres-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated environment first, pin and review hologres-cli, and review target connections and DDL before using write-capable commands.
+
+Risk: Partition lifecycle examples include DROP TABLE statements and automation that can delete data if applied to production targets.
+
+Mitigation: Confirm exact targets, retention policy, backups, and a dry-run review before running any partition-drop example or automation.
+
+Risk: Incorrect immutable table properties such as orientation, distribution key, clustering key, event time column, primary key, or partition column can require table recreation.
+
+Mitigation: Gather query patterns, key columns, main filters, joins, data volume, and retention needs before generating final DDL.
+
+## Reference(s):
+
+- [Hologres Data Types Reference](references/data-types.md)
+- [Hologres Partition Table Guide](references/partition-guide.md)
+- [Hologres Table Properties Reference](references/table-properties.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Hologres DDL, table property recommendations, partition lifecycle guidance, and assumptions that should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and VERSION; package.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

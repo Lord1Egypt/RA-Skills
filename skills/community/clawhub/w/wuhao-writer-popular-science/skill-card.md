@@ -1,43 +1,55 @@
-## Description: <br>
-基于吴昊（多年上市公司总监经验、AI培训专家）写作风格的公众号科普文创作技能。含HKR选题质检、6种结构模板、四层自检体系，消除AI味，帮你写出有温度、有干货的科普文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wuhao Writer - Popular Science helps agents draft, structure, and review Chinese popular science articles in a warm, conversational WeChat-publication style using HKR topic checks, six structure templates, and a four-layer self-review process.
 
-## Publisher: <br>
-[ericwuhaowr](https://clawhub.ai/user/ericwuhaowr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericwuhaowr](https://clawhub.ai/user/ericwuhaowr)
 
-## Use Case: <br>
-External content creators, technical bloggers, AI-focused public-account writers, training teams, and developers use this skill to plan, draft, rewrite, and review popular-science articles in a specific conversational Chinese style. The workflow helps evaluate topics, choose article structures, reduce generic AI-sounding prose, and produce revision guidance for human final review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact suggests an optional curl-to-bash installation path for a third-party helper. <br>
-Mitigation: Prefer the normal ClawHub or WorkBuddy install path, and inspect and trust any install script before running it. <br>
-Risk: The workflow can invoke external research skills and sync completed content to a knowledge base. <br>
-Mitigation: Require explicit approval before using external research tools or syncing content, and verify what content and destinations are involved. <br>
-Risk: The skill includes automatic maintenance guidance that may lead to local skill-file changes. <br>
-Mitigation: Review proposed edits before modifying local skill files and keep human approval in the loop. <br>
+## Use Case:
 
+External writers, content creators, technical bloggers, trainers, and teams use this skill to turn AI or technical source material into readable Chinese popular science articles and to review drafts for structure, tone, and perceived AI-generated style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericwuhaowr/wuhao-writer-popular-science) <br>
-- [Khazix open-source writing skills](https://github.com/KKKKhazix/khazix-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown prose with article outlines, draft text, revision notes, checklists, and occasional inline shell commands for optional tool installation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for human review and iteration before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.2 (source: ClawHub release evidence; artifact frontmatter and README state 1.6.0) <br>
+Risk: The security evidence flags a remote curl-to-bash installer and unnecessary external-skill installation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review external skills and avoid running the curl-to-bash installer as written; prefer reviewed registry installs, pinned versions, and explicit approval.
+
+Risk: The skill suggests using external tools and knowledge-base archiving as part of the writing workflow.
+
+Mitigation: Confirm data handling requirements before using aihot, hv-analysis, neat-freak maintenance flows, or any knowledge-base archiving with sensitive drafts or source material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericwuhaowr/skills/wuhao-writer-popular-science)
+- [ericwuhaowr ClawHub profile](https://clawhub.ai/user/ericwuhaowr)
+- [Khazix skills repository](https://github.com/KKKKhazix/khazix-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown and plain text with occasional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include article drafts, outlines, revision suggestions, self-review findings, and commands for optional external skill installation.]
+
+## Skill Version(s):
+
+1.6.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

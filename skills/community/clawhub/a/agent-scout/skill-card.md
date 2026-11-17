@@ -1,44 +1,60 @@
-## Description: <br>
-Create and configure Scout, a proactive research assistant agent with Telegram setup, OpenClaw agent configuration, skill provisioning, memory search, and inter-agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and configures Scout, a proactive research assistant agent with Telegram integration, research tools, memory search, inter-agent collaboration, and skill provisioning.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a Scout research assistant agent with Telegram access, web and memory tools, skill discovery, and inter-agent messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A persistent research agent connected to Telegram, memory, web tools, and inter-agent messaging can expose sensitive workspace or memory data if deployed without boundaries. <br>
-Mitigation: Use a low-sensitivity workspace, restrict Telegram allowlists, review memory and search provider exposure, and require approval before browser automation, memory-derived sharing, or inter-agent messaging. <br>
-Risk: Bot tokens and provider credentials can be exposed through shell history or tracked configuration files during setup. <br>
-Mitigation: Store bot tokens and API keys outside shell history and version control, using the host platform's secret-management mechanism where available. <br>
+## Use Case:
 
+Developers and external users use this skill to configure an OpenClaw research assistant agent with Telegram access, web research tools, memory search, skill discovery, and collaboration settings.
 
-## Reference(s): <br>
-- [Agent Scout on ClawHub](https://clawhub.ai/stefanferreira/agent-scout) <br>
-- [OpenClaw Agent Configuration](https://docs.openclaw.ai/concepts/agents) <br>
-- [Telegram Bot Setup](https://docs.openclaw.ai/channels/telegram) <br>
-- [Skill Discovery SOP](/skills/skill-discovery-sop) <br>
-- [Browser Automation Core](/skills/browser-automation-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, testing, maintenance, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Remote Telegram access can expose the agent to untrusted messages or unauthorized users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the Telegram allowlist with the installer's verified user ID and keep direct-message access allowlisted.
+
+Risk: Bot tokens and related credentials can leak through shell history or shared configuration.
+
+Mitigation: Use protected secret storage or environment injection for tokens, and avoid pasting bot tokens directly into shell commands.
+
+Risk: Broad workspace, memory, search, and session permissions can expose unrelated data or agent sessions.
+
+Mitigation: Use a Scout-specific workspace and memory namespace, enable only the tools Scout needs, and review session allowlists before deployment.
+
+## Reference(s):
+
+- [OpenClaw Agent Configuration](https://docs.openclaw.ai/concepts/agents)
+- [Telegram Bot Setup](https://docs.openclaw.ai/channels/telegram)
+- [Skill Discovery SOP](/skills/skill-discovery-sop)
+- [Browser Automation Core](/skills/browser-automation-core)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command blocks and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes placeholder secrets and allowlist values that users must replace before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

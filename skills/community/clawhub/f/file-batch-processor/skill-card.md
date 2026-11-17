@@ -1,41 +1,55 @@
-## Description: <br>
-Processes local files in batches by renaming files, compressing images, converting images or text files to PDF, and organizing files by type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Batch Processor helps an agent guide local batch workflows for renaming files, compressing images, converting images or text to PDF, and organizing files by type.
 
-## Publisher: <br>
-[lx19840614](https://clawhub.ai/user/lx19840614) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lx19840614](https://clawhub.ai/user/lx19840614)
 
-## Use Case: <br>
-External users such as professionals, students, and shop owners use this skill to run local batch file cleanup, image compression, PDF conversion, and file organization workflows on selected folders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local batch operations can rename, move, create, and overwrite many files in a selected folder. <br>
-Mitigation: Use --dry-run first, test on a copied folder, and back up important files before processing. <br>
-Risk: Bundled promotion material incentivizes positive 5-star reviews, which can reduce the reliability of public review signals. <br>
-Mitigation: Treat public reviews cautiously and evaluate the skill through direct testing and scan results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [File Renaming Patterns Guide](artifact/references/naming_patterns.md) <br>
-- [Image Compression Technical Guide](artifact/references/compression_guide.md) <br>
-- [File Type Identification Rules](artifact/references/file_types.md) <br>
+## Use Case:
 
+External users, students, shop owners, professionals, and developers use this skill to plan and run local file batch operations such as file renaming, image compression, PDF conversion, and file organization.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown with inline shell commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Python scripts; dry-run mode is available for preview.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact documentation lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can overwrite, move, or corrupt many local files without enough safeguards.
+
+Mitigation: Use copied folders or backed-up data, run dry-run previews first, and avoid using it on important originals.
+
+Risk: Some conversions or compression operations may not preserve GIF/BMP formats or existing PDFs as expected.
+
+Mitigation: Inspect sample outputs before large runs and prefer a version with safer default output folders, pinned dependencies, collision checks, and real backup or rollback support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lx19840614/skills/file-batch-processor)
+- [File Renaming Patterns Guide](references/naming_patterns.md)
+- [Image Compression Technical Guide](references/compression_guide.md)
+- [File Type Identification Rules](references/file_types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with command examples; local scripts may rename, move, compress, or convert files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally and supports preview modes for several operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

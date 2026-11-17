@@ -1,40 +1,48 @@
-## Description: <br>
-Stream editor for filtering and transforming text using scripts. Use for find-and-replace, text manipulation, and batch file editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stream editor for filtering and transforming text using scripts. Use for find-and-replace, text manipulation, and batch file editing.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to generate sed-style commands and guidance for filtering streams, replacing text, deleting lines, and editing files in batches.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: In-place or broad text replacements can unintentionally modify important files.
+
+Mitigation: Preview transformations before using in-place edits and keep backups when applying broad replacements across multiple files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to transform text streams and apply find-and-replace, deletion, insertion, and file-editing operations from an agent workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: In-place editing can overwrite or remove unintended file content. <br>
-Mitigation: Test substitutions without in-place mode first, confirm target paths, and keep backups for important files. <br>
-Risk: The command name may resolve to an unexpected executable in the user's environment. <br>
-Mitigation: Confirm what executable the sed-tool command runs before installing or using the skill. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/sed-tool) <br>
+**Other Properties Related to Output:** [May include file-editing commands; preview changes before applying in-place edits to important files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text-editing examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or describe in-place file edits; users should review target files before applying changes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

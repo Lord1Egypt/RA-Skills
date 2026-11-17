@@ -32,24 +32,6 @@ API_CONFIGS='[
     }
   },
   {
-    "Name": "tokens-revoke",
-    "Description": "Revoke a specified token",
-    "Method": "POST",
-    "Path": "tokens/revoke.json",
-    "RequiresTimezone": false,
-    "RequiredParams": ["tokenId"],
-    "OptionalParams": [],
-    "ParamTypes": {
-      "tokenId": "string"
-    },
-    "ParamDescriptions": {
-      "tokenId": "string (Token ID)"
-    },
-    "ResponseStructure": [
-      "boolean (Whether the token is revoked successfully)"
-    ]
-  },
-  {
     "Name": "accounts-list",
     "Description": "Retrieve all account information",
     "Method": "GET",
@@ -68,9 +50,10 @@ API_CONFIGS='[
       "    \"category\": \"integer (Account category, 1: Cash, 2: Checking Account, 3: Credit Card, 4: Virtual Account, 5: Debt Account, 6: Receivables, 7: Investment Account, 8: Savings Account, 9: Certificate of Deposit)\",",
       "    \"type\": \"integer (Account type, 1: Single Account, 2: Multiple Sub-accounts)\",",
       "    \"icon\": \"string (Account icon ID)\",",
+      "    \"iconType\": \"integer (Account icon type, 0: System icon, 1: User custom icon)\",",
       "    \"color\": \"string (Account icon color, hex color code RRGGBB)\",",
       "    \"currency\": \"string (Account currency code)\",",
-      "    \"balance\": \"integer (Account balance, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"')\",",
+      "    \"balance\": \"string (Account balance, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"')\",",
       "    \"comment\": \"string (Account description)\",",
       "    \"creditCardStatementDate\": \"integer (The statement date of the credit card account)\",",
       "    \"displayOrder\": \"integer (The display order of the account)\",",
@@ -93,16 +76,17 @@ API_CONFIGS='[
     "Method": "POST",
     "Path": "accounts/add.json",
     "RequiresTimezone": true,
-    "RequiredParams": ["name", "category", "type", "icon", "color", "currency"],
+    "RequiredParams": ["name", "category", "type", "icon", "iconType", "color", "currency"],
     "OptionalParams": ["balance", "balanceTime", "comment", "creditCardStatementDate"],
     "ParamTypes": {
       "name": "string",
       "category": "integer",
       "type": "integer",
       "icon": "string",
+      "iconType": "integer",
       "color": "string",
       "currency": "string",
-      "balance": "integer",
+      "balance": "string",
       "balanceTime": "integer",
       "comment": "string",
       "creditCardStatementDate": "integer"
@@ -112,9 +96,10 @@ API_CONFIGS='[
       "category": "integer (Account category, 1: Cash, 2: Checking Account, 3: Credit Card, 4: Virtual Account, 5: Debt Account, 6: Receivables, 7: Investment Account, 8: Savings Account, 9: Certificate of Deposit)",
       "type": "integer (Account type, 1: Single Account, 2: Multiple Sub-accounts)",
       "icon": "string (Account icon ID)",
+      "iconType": "integer (Account icon type, 0: System icon, 1: User custom icon)",
       "color": "string (Account icon color, hex color code RRGGBB)",
       "currency": "string (Account currency code, ISO 4217 code, '"'"'---'"'"' for the parent account)",
-      "balance": "integer (Account balance, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"'. Liability account should set to negative amount)",
+      "balance": "string (Account balance, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"'. Liability account should set to negative amount)",
       "balanceTime": "integer (The unix time when the account balance is the set value. This field is required when balance is set)",
       "comment": "string (Account description)",
       "creditCardStatementDate": "integer (The statement date of the credit card account)"
@@ -127,9 +112,10 @@ API_CONFIGS='[
       "  \"category\": \"integer (Account category)\",",
       "  \"type\": \"integer (Account type)\",",
       "  \"icon\": \"string (Account icon ID)\",",
+      "  \"iconType\": \"integer (Account icon type, 0: System icon, 1: User custom icon)\",",
       "  \"color\": \"string (Account icon color)\",",
       "  \"currency\": \"string (Account currency code)\",",
-      "  \"balance\": \"integer (Account balance)\",",
+      "  \"balance\": \"string (Account balance)\",",
       "  \"comment\": \"string (Account description)\",",
       "  \"creditCardStatementDate\": \"integer (The statement date of the credit card account)\",",
       "  \"displayOrder\": \"integer (The display order of the account)\",",
@@ -159,6 +145,7 @@ API_CONFIGS='[
       "      \"parentId\": \"string (Parent transaction category ID, 0 for primary category)\",",
       "      \"type\": \"integer (Transaction category type, 1: Income, 2: Expense, 3: Transfer)\",",
       "      \"icon\": \"string (Transaction category icon ID)\",",
+      "      \"iconType\": \"integer (Transaction category icon type, 0: System icon, 1: User custom icon)\",",
       "      \"color\": \"string (Transaction category icon color, hex color code RRGGBB)\",",
       "      \"comment\": \"string (Transaction category description)\",",
       "      \"displayOrder\": \"integer (The display order of the transaction category)\",",
@@ -180,13 +167,14 @@ API_CONFIGS='[
     "Method": "POST",
     "Path": "transaction/categories/add.json",
     "RequiresTimezone": false,
-    "RequiredParams": ["name", "type", "icon", "color"],
+    "RequiredParams": ["name", "type", "icon", "iconType", "color"],
     "OptionalParams": ["parentId", "comment"],
     "ParamTypes": {
       "name": "string",
       "type": "integer",
       "parentId": "string",
       "icon": "string",
+      "iconType": "integer",
       "color": "string",
       "comment": "string"
     },
@@ -195,6 +183,7 @@ API_CONFIGS='[
       "type": "integer (Transaction category type, 1: Income, 2: Expense, 3: Transfer)",
       "parentId": "string (Parent transaction category ID, 0 for primary category)",
       "icon": "string (Transaction category icon ID)",
+      "iconType": "integer (Transaction category icon type, 0: System icon, 1: User custom icon)",
       "color": "string (Transaction category icon color, hex color code RRGGBB)",
       "comment": "string (Transaction category description)"
     },
@@ -205,6 +194,7 @@ API_CONFIGS='[
       "  \"parentId\": \"string (Parent transaction category ID)\",",
       "  \"type\": \"integer (Transaction category type)\",",
       "  \"icon\": \"string (Transaction category icon ID)\",",
+      "  \"iconType\": \"integer (Transaction category icon type, 0: System icon, 1: User custom icon)\",",
       "  \"color\": \"string (Transaction category icon color)\",",
       "  \"comment\": \"string (Transaction category description)\",",
       "  \"displayOrder\": \"integer (The display order of the transaction category)\",",
@@ -447,9 +437,9 @@ API_CONFIGS='[
       "time": "integer (Transaction unix time)",
       "utcOffset": "integer (Transaction time zone offset minutes)",
       "sourceAccountId": "string (Source account ID, supports account without sub-accounts or sub-account)",
-      "sourceAmount": "integer (Source amount, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"')",
-      "destinationAccountId": "string (Destination account ID, supports account without sub-accounts or sub-account)",
-      "destinationAmount": "integer (Destination amount, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"')",
+      "sourceAmount": "integer (Source amount, supports up to two decimals. For example, for an expense transaction, '"'"'1234'"'"' represents an expense of '"'"'12.34'"'"')",
+      "destinationAccountId": "string (Destination account ID for transfer transactions, supports account without sub-accounts or sub-account)",
+      "destinationAmount": "integer (Destination amount for transfer transactions, supports up to two decimals. For example, a value of '"'"'1234'"'"' represents an amount of '"'"'12.34'"'"')",
       "hideAmount": "boolean (Whether to hide amount)",
       "tagIds": "string (Transaction tag IDs, separated by comma, e.g. '"'"'tagid1,tagid2'"'"')",
       "pictureIds": "string (Transaction picture IDs, separated by comma, e.g. '"'"'picid1,picid2'"'"')",

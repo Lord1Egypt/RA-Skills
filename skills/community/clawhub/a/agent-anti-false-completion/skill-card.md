@@ -1,40 +1,57 @@
-## Description: <br>
-用于减少 AI agent 假完成行为，通过任务约束、结果校验和执行规范，帮助复杂任务保持真实执行、明确验证与可信交付。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents reduce false completion claims by enforcing task constraints, verification checklists, escalation prompts, and end-to-end delivery habits across coding, debugging, research, writing, planning, operations, API integration, data analysis, and deployment tasks.
 
-## Publisher: <br>
-[initail](https://clawhub.ai/user/initail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[initail](https://clawhub.ai/user/initail)
 
-## Use Case: <br>
-Agents and developers use this skill to reduce false completion by encouraging tool-based investigation, validation before completion claims, and structured handoff when a task cannot be fully resolved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage aggressive tool use, scope expansion, and delayed user clarification. <br>
-Mitigation: Use it only where the agent must still respect user scope, explain what it checked, and ask before risky shell commands, network access, credential handling, or destructive operations. <br>
-Risk: The skill's pressure language may push agents to continue beyond appropriate boundaries. <br>
-Mitigation: Stop or escalate to the user when safety, legal, financial, medical, credential, or destructive-operation boundaries are involved. <br>
+## Use Case:
 
+Developers, operators, researchers, and other agent users use this skill to push an agent toward concrete investigation, verification, broader issue checking, and structured handoff instead of unsupported completion claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/initail/agent-anti-false-completion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with checklists, escalation labels, and suggested verification actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it may prompt agents to use available tools but does not bundle executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can pressure an agent to broaden investigations and use available tools before asking clarifying questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that aggressive coaching style is desired, and keep host-agent permission prompts enabled for actions outside the user's explicit scope.
+
+Risk: The skill may be inappropriate in production, private, costly, or sensitive environments because it encourages proactive tool use and scope expansion.
+
+Mitigation: Use it only in environments with strict permissions, scoped credentials, and user approval for sensitive or costly operations.
+
+Risk: The security verdict is suspicious because the prompt can alter response format and behavior across many task types.
+
+Mitigation: Review the generated plan and final answer for scope, tone, and requested format compliance before relying on the agent's output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/initail/skills/agent-anti-false-completion)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with checklists, escalation prompts, and task-handling instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language agent-coaching content that may direct an agent to use available tools, verify work, broaden investigation, and report risks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,34 @@
+part: GD32F303xx
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: GD32F3 (ARM Cortex-M4 mainstream MCU)
+main_page: https://www.gigadevice.com/product/mcu/main-stream-mcus/gd32f30x-series
+datasheet_path_expected: ../../embedded_dev/gigadevice/datasheet/GD32F303xx_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  cores: ARM Cortex-M4
+  clock_mhz_max: 120
+  flash: 3072 KB
+  ram: 96 KB
+  supply_voltage_v: 2.6-3.6 V
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 5 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- GD32 pin-compatible upgrade of STM32F103.
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 4/5 spec fields matched
+  (80%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:23:39+08:00'
+extraction_method: pdfplumber Key Features / General Description
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12

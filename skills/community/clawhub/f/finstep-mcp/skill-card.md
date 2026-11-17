@@ -1,42 +1,59 @@
-## Description: <br>
-finstep-mcp provides Finstep financial data lookups for market quotes, sectors, company information, macroeconomic indicators, research reports, news, announcements, and trading calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+财跃星辰金融数据服务。提供实时行情、板块数据、公司信息、宏观经济、研报新闻等全方位金融数据。触发条件：用户查询股票行情、板块涨跌、公司财务、宏观数据、研报公告等金融信息。
 
-## Publisher: <br>
-[fa1c0n4826](https://clawhub.ai/user/fa1c0n4826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fa1c0n4826](https://clawhub.ai/user/fa1c0n4826)
 
-## Use Case: <br>
-Developers and agents use this skill to run Finstep shell tools for financial market research, including stock quotes, sector rankings, company fundamentals, macroeconomic data, financial news, reports, and announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial lookup queries and the Finstep API signature are sent to Finstep services. <br>
-Mitigation: Install only if Finstep is trusted for those queries, keep FINSTEP_SIGNATURE in a secret store or environment variable, and rotate it if exposed. <br>
-Risk: Broad URL parsing and web search helpers could disclose confidential or internal content. <br>
-Mitigation: Avoid using those helpers with private URLs, internal documents, credentials, or confidential business data. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve financial-market data from FinStep, including stock quotes, sector information, company financials, macroeconomic indicators, research reports, announcements, and trading-calendar data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fa1c0n4826/finstep-mcp) <br>
-- [Finstep product site](https://product.finstep.cn/) <br>
-- [Finstep API base endpoint](https://fintool-mcp.finstep.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; scripts return JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSTEP_SIGNATURE and local bash, curl, jq, and date binaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: FinStep credentials are sent in URL query strings, which can expose secrets through logs, proxies, browser history, or telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited FinStep credential, rotate it regularly, and prefer an updated implementation that sends the signature outside query strings.
+
+Risk: Generic web search and URL parsing features can disclose full queries or URLs to FinStep.
+
+Mitigation: Avoid sending sensitive company, personal, or confidential information in search terms or URLs; gate these features where stronger data-control requirements apply.
+
+Risk: Financial data and API responses can be incomplete, rate-limited, unavailable, or affected by endpoint-specific issues.
+
+Mitigation: Review returned data before using it for analysis or decisions, handle API errors explicitly, and cross-check important results against authoritative sources.
+
+## Reference(s):
+
+- [FinStep product site](https://product.finstep.cn/)
+- [FinStep MCP API base endpoint](https://fintool-mcp.finstep.cn)
+- [ClawHub skill page](https://clawhub.ai/fa1c0n4826/skills/finstep-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the FINSTEP_SIGNATURE secret plus bash, curl, jq, and date; API responses may be subject to FinStep rate limits and endpoint behavior.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

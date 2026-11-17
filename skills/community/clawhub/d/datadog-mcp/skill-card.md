@@ -1,49 +1,67 @@
-## Description: <br>
-Datadog MCP connects agents to Datadog's official MCP Server to query logs, traces, metrics, monitors, incidents, dashboards, hosts, synthetics, and workflows using remote HTTP or local stdio transports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Datadog MCP helps agents query Datadog observability data through Datadog's MCP Server, including logs, traces, metrics, monitors, incidents, dashboards, hosts, synthetics, and workflows.
 
-## Publisher: <br>
-[bcwilsondotcom](https://clawhub.ai/user/bcwilsondotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bcwilsondotcom](https://clawhub.ai/user/bcwilsondotcom)
 
-## Use Case: <br>
-Developers, site reliability engineers, and incident responders use this skill to connect an agent to Datadog observability data, investigate production issues, correlate logs, traces, and metrics, check monitors, and review incident context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Datadog API and application keys can expose production observability data. <br>
-Mitigation: Install only for trusted agents and environments, and use a dedicated least-privilege Datadog application key. <br>
-Risk: Enabled workflow tooling may allow an agent to trigger Datadog automations. <br>
-Mitigation: Enable only the Datadog MCP toolsets needed for the deployment and avoid workflow execution unless that behavior is intended. <br>
-Risk: Returned logs, traces, host details, and incident data may contain sensitive operational information. <br>
-Mitigation: Treat Datadog MCP responses as sensitive and limit sharing, retention, and downstream use according to the deployment's data-handling policy. <br>
+## Use Case:
 
+Developers and operations teams use this skill to connect an agent to Datadog for incident triage, production troubleshooting, monitor review, metric analysis, dashboard lookup, and related observability workflows.
 
-## Reference(s): <br>
-- [ClawHub Datadog MCP Skill](https://clawhub.ai/bcwilsondotcom/datadog-mcp) <br>
-- [Datadog MCP Server Documentation](https://docs.datadoghq.com/bits_ai/mcp_server/) <br>
-- [Datadog MCP Server Endpoint](https://mcp.datadoghq.com/api/unstable/mcp-server/mcp) <br>
-- [Setup Guide](docs/setup.md) <br>
-- [Architecture](docs/architecture.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Incident Response Runbook](references/incident-response.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include Datadog query guidance, MCP setup commands, validation steps, and observability investigation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata) <br>
+Risk: Datadog API and application keys can expose sensitive observability data if used with broad permissions or mishandled configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege application keys, keep credentials in an approved secret store, and prefer read-only toolsets for normal troubleshooting.
+
+Risk: An unvalidated DD_SITE value can send credentials to an unintended Datadog endpoint.
+
+Mitigation: Use only documented Datadog site values and rotate keys if they may have been used with an untrusted site value.
+
+Risk: The local stdio transport runs an npm package through npx and can introduce package supply-chain risk.
+
+Mitigation: Prefer the Datadog-hosted remote MCP endpoint, or pin and review the npm package version before using local transport.
+
+Risk: Workflow execution can change Datadog state when workflow toolsets are enabled.
+
+Mitigation: Require explicit user approval before enabling or invoking workflow execution tools.
+
+## Reference(s):
+
+- [Datadog MCP Server documentation](https://docs.datadoghq.com/bits_ai/mcp_server/)
+- [Datadog MCP ClawHub listing](https://clawhub.ai/bcwilsondotcom/skills/datadog-mcp)
+- [Setup guide](artifact/docs/setup.md)
+- [Architecture guide](artifact/docs/architecture.md)
+- [API reference](artifact/references/api-reference.md)
+- [Incident response runbook](artifact/references/incident-response.md)
+- [Troubleshooting patterns](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DD_API_KEY and DD_APP_KEY; DD_SITE is optional for supported Datadog sites.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

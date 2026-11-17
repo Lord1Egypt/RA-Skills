@@ -1,42 +1,53 @@
-## Description: <br>
-A data science skill for statistical analysis, machine learning model development and evaluation, data visualization, experimental design, and feature engineering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a data scientist with expertise in statistical analysis, machine learning, data visualization, and experimental design.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, analysts, and data teams use this skill to plan and produce statistical analyses, machine learning workflows, visualizations, experiments, reproducible notebooks, and actionable recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated notebooks, analysis code, or recommendations may contain errors or be inappropriate for a particular dataset or decision context. <br>
-Mitigation: Review generated notebooks, statistical methods, model choices, and recommendations before using them for decisions. <br>
-Risk: Example code may require optional data science libraries from the user's environment. <br>
-Mitigation: Install dependencies from trusted sources and review package choices before running generated code. <br>
-Risk: Data science tasks can involve sensitive or regulated datasets. <br>
-Mitigation: Avoid sharing sensitive datasets with an agent unless the task requires it and the environment is approved for that data. <br>
+## Use Case:
 
+Developers, analysts, and data science teams use this skill to plan and produce statistical analyses, machine learning workflows, visualizations, experimental designs, and reproducible data science deliverables.
 
-## Reference(s): <br>
-- [Data Scientist Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with analysis narratives and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include statistical test interpretations, visualization guidance, notebook-style code, assumptions, limitations, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated analysis code may process local or sensitive datasets and may rely on third-party Python libraries in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated analysis code before running it, especially on sensitive data, and confirm dependencies and data handling practices fit the deployment environment.
+
+Risk: Statistical or machine learning guidance can be misapplied if assumptions, validation choices, or data quality issues are not checked.
+
+Mitigation: Validate datasets, methods, assumptions, and model results before using outputs for decisions.
+
+## Reference(s):
+
+- [Data Scientist Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with code examples and analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reproducible analysis code, statistical interpretations, visualizations, notebook-style explanations, assumptions, limitations, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

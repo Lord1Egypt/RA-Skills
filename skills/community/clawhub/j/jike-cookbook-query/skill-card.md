@@ -1,42 +1,55 @@
-## Description: <br>
-查询即刻数据菜谱接口，支持食材列表、菜谱搜索、菜谱详情和随机菜谱，并返回菜名、分类、耗时、口味、烹饪方式、主料辅料和做法步骤。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+菜谱查询。支持食材列表查询、菜谱搜索、菜谱详情和随机菜谱，返回菜名、分类、耗时、口味、烹饪方式、主料辅料和做法步骤。
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and agents use this skill to look up recipe ingredients, search recipes by name, fetch full recipe steps by ID, or request random recipe recommendations through JikeAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JikeAPI AppKey, and full request URLs include the AppKey. <br>
-Mitigation: Set the AppKey with the documented environment variable, avoid passing it on the command line, and treat request URLs as sensitive. <br>
-Risk: Overriding JIKE_API_BASE_URL can send requests to a different endpoint. <br>
-Mitigation: Do not override JIKE_API_BASE_URL unless you control and trust the endpoint. <br>
+## Use Case:
 
+External users and agents use this skill to look up ingredients, search recipes, retrieve full recipe steps by ID, or request random recipe suggestions from Jike cookbook APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-cookbook-query) <br>
-- [JikeAPI homepage](https://www.jikeapi.cn/) <br>
-- [JikeAPI cookbook search endpoint](https://api.jikeapi.cn/v1/cookbook/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text tables and recipe details, or JSON when --json is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JIKE_COOKBOOK_QUERY_KEY or JIKE_APPKEY; request URLs include the AppKey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Cookbook search terms, recipe IDs, and the Jike AppKey are sent to the configured API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this data sharing is acceptable, and keep the AppKey in environment variables rather than embedding it in prompts or shared files.
+
+Risk: The JIKE_API_BASE_URL override can redirect requests and the AppKey to a different server.
+
+Mitigation: Do not set JIKE_API_BASE_URL unless the destination is controlled and validated; prefer the default https://api.jikeapi.cn endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-cookbook-query)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Jike cookbook search endpoint](https://api.jikeapi.cn/v1/cookbook/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text tables or JSON from a Python command-line script, with agent-facing Markdown usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JIKE_COOKBOOK_QUERY_KEY or JIKE_APPKEY credential.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

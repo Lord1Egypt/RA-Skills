@@ -1,41 +1,54 @@
-## Description: <br>
-Simulates a Wang Wei/SF Express-style business perspective for logistics strategy, supply-chain management, enterprise management, and startup decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a disclosed, public-information-based Wang Wei-inspired business perspective for logistics strategy, supply-chain management, enterprise management, and startup decisions.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users can invoke this skill to frame logistics, supply-chain, enterprise management, and entrepreneurship decisions through a simulated Wang Wei/SF Express-style operating model. It is intended for decision framing and roleplay based on public information, not real-person advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the persona when the user did not intend roleplay. <br>
-Mitigation: Use the documented exit phrases such as "退出", "切回正常", or "不用扮演了" to return to normal responses. <br>
-Risk: Outputs may be mistaken for real Wang Wei advice or current SF Express internal guidance. <br>
-Mitigation: Treat responses as roleplay based on public information and use them only for decision framing. <br>
+## Use Case:
 
+External users and business practitioners use this skill to explore logistics, supply-chain, and management questions through a Wang Wei-inspired mental model. Outputs should be treated as role-play based on public information, not as Wang Wei's real views or professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/wang-wei-perspective-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only roleplay output; users can exit the persona with the stated exit phrases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake the role-play output for Wang Wei's real views or advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the simulation disclaimer visible and treat outputs as public-information-based perspective taking rather than authoritative personal or professional advice.
+
+Risk: Broad business and logistics triggers may activate the persona unexpectedly.
+
+Mitigation: Review activation behavior before use and exit the persona when a normal assistant response is desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/skills/wang-wei-perspective-v2)
+- [Publisher Profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-play responses based on public-information mental models; no code execution or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

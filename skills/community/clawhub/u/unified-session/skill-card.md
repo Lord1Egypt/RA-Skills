@@ -1,42 +1,55 @@
-## Description: <br>
-Helps a personal OpenClaw user configure direct-message session routing so multiple chat channels share one continuous agent conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unifies direct-message channels for a personal OpenClaw agent into one shared session so conversations can continue across devices without losing context.
 
-## Publisher: <br>
-[1052326311](https://clawhub.ai/user/1052326311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1052326311](https://clawhub.ai/user/1052326311)
 
-## Use Case: <br>
-External OpenClaw users and personal bot operators use this skill to diagnose, configure, restart, and verify a unified session setup across webchat and messaging channels. It is intended for single-user deployments where cross-device continuity is more important than per-channel session isolation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Merging direct-message context across channels can expose one user's conversation history to anyone else who can DM the same bot. <br>
-Mitigation: Use this skill only for a personal OpenClaw agent, confirm no other users can DM the bot, and keep or restore per-channel-peer isolation for shared or multi-user deployments. <br>
-Risk: Changing OpenClaw session routing may disrupt existing channel behavior until the gateway is restarted and verified. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before editing, restart the OpenClaw gateway after configuration changes, and verify the unified session from each enabled channel. <br>
+## Use Case:
 
+Developers and individual OpenClaw operators use this skill to diagnose and configure a single shared direct-message session for a personal agent across multiple chat channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1052326311/unified-session) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; proposes edits to OpenClaw configuration and gateway restart/verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Using a shared direct-message session for a bot that multiple people can DM can expose shared conversation context across users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for a personal or single-user OpenClaw agent; keep or revert dmScope to per-channel-peer for multi-user bots.
+
+Risk: Session configuration changes can route future direct messages into one shared context until changed back.
+
+Mitigation: Review the generated configuration before applying it, restart the gateway, verify session behavior, and use the documented rollback to restore isolated sessions when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1052326311/skills/unified-session)
+- [README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides diagnostic, setup, restart, verification, troubleshooting, and rollback guidance for OpenClaw session configuration.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

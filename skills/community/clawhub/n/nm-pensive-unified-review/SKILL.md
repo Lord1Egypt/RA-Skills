@@ -1,43 +1,20 @@
 ---
 name: unified-review
 description: Orchestrates multi-domain review (code, arch, tests, security) in a single pass
-version: 1.9.8
+version: 1.10.3
 triggers:
   - review
   - orchestration
   - code-quality
   - analysis
   - multi-domain
-  - comprehensive pre-release review is needed
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work", "night-market.imbue:structured-output"]}}}
+  - thorough pre-release review is needed
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Review Skill Selection Matrix](#review-skill-selection-matrix)
-- [Workflow](#workflow)
-- [1. Analyze Repository Context](#1-analyze-repository-context)
-- [2. Select Review Skills](#2-select-review-skills)
-- [3. Execute Reviews](#3-execute-reviews)
-- [4. Integrate Findings](#4-integrate-findings)
-- [Review Modes](#review-modes)
-- [Auto-Detect (default)](#auto-detect-(default))
-- [Focused Mode](#focused-mode)
-- [Full Review Mode](#full-review-mode)
-- [Quality Gates](#quality-gates)
-- [Deliverables](#deliverables)
-- [Executive Summary](#executive-summary)
-- [Domain-Specific Reports](#domain-specific-reports)
-- [Integrated Action Plan](#integrated-action-plan)
-- [Modular Architecture](#modular-architecture)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Unified Review Orchestration
@@ -84,7 +61,8 @@ Intelligently selects and executes appropriate review skills based on codebase a
 | Rust files (`*.rs`, `Cargo.toml`) | rust-review, bug-review, api-review | Rust project detected |
 | API changes (`openapi.yaml`, `routes/`) | api-review, architecture-review | Public API surfaces |
 | Test files (`test_*.py`, `*_test.go`) | test-review, bug-review | Test infrastructure |
-| Makefile/build system | makefile-review, architecture-review | Build complexity |
+| Makefile/build system | makefile-review module, architecture-review | Build complexity |
+| Shell scripts (`*.sh`, git hooks) | shell-review module | Shell changes |
 | Mathematical algorithms | math-review, bug-review | Numerical computation |
 | Architecture docs/ADRs | architecture-review, api-review | System design |
 | General code quality | bug-review, test-review | Default review |
@@ -108,7 +86,9 @@ if has_api_changes():
 if has_test_files():
     schedule_skill("test-review")
 if has_makefiles():
-    schedule_skill("makefile-review")
+    schedule_module("makefile-review")
+if has_shell_scripts():
+    schedule_module("shell-review")
 if has_math_code():
     schedule_skill("math-review")
 if has_architecture_changes():
@@ -132,24 +112,35 @@ Use this mapping to resolve skill names to agent types:
 | rust-review | `pensive:rust-auditor` | Rust-specific |
 | code-refinement | `pensive:code-refiner` | Duplication, quality |
 | math-review | `general-purpose` | Prompt: invoke `Skill(pensive:math-review)` |
-| makefile-review | `general-purpose` | Prompt: invoke `Skill(pensive:makefile-review)` |
-| shell-review | `general-purpose` | Prompt: invoke `Skill(pensive:shell-review)` |
+| makefile-review | `general-purpose` | Prompt: follow this skill's `modules/makefile-review.md` |
+| shell-review | `general-purpose` | Prompt: follow this skill's `modules/shell-review.md` |
 
-**Sub-agent isolation (required):**
+**Sub-agent isolation (required).** One lens must not color how the
+next is read. Two ways to get that, and the second only runs when the
+user asks for it:
 
-Dispatch ALL selected agents in a SINGLE parallel Agent tool
-call. Do not read or process any agent's output until ALL agents
-have returned their results. Reading the first result before the
-others are in anchors synthesis toward that perspective — each
-subsequent result gets evaluated against the first rather than
-independently. Collect all results, then synthesize once.
+| Path | How isolation holds |
+|------|---------------------|
+| Agent tool | Dispatch ALL selected agents in a SINGLE parallel call, and read no output until every agent has returned. Reading the first result anchors synthesis toward it: each later result gets judged against the first rather than independently. Collect all, then synthesize once |
+| `/pensive:unified-review` workflow (`workflows/unified-review.js`) | The script holds the results. It is not a reasoning entity, so it cannot be anchored by reading one stage before another, and findings pass between stages without entering anyone's context. Verification also starts per dimension instead of waiting for the slowest lens |
+
+Prefer the workflow when the dimension list is known before the work
+and each finding should face an adversarial check. Prefer the Agent
+tool when the roster has to adapt to what the first lens finds, or when
+no workflow was requested: a workflow never starts unasked.
+
+Its subagents take the session's permission mode, so in an accept-edits
+or auto session their edits land unreviewed. The shipped script scopes
+its prompts to reading. And it has
+no filesystem, so what it returns is a claim that survived refutation,
+not proof-of-work evidence. Reproduce before acting on a finding.
 
 **Rules:**
 - Never use skill names as agent types (e.g., `pensive:math-review` is NOT an agent)
 - When `pensive:code-reviewer` covers multiple domains, dispatch once with combined scope
 - For skills without dedicated agents, use `general-purpose` and instruct it to invoke the Skill tool
 - Maintain consistent evidence logging across all agents
-- Track progress via TodoWrite
+- Track progress items
 
 ### 4. Integrate Findings
 
@@ -188,6 +179,9 @@ Run specific review domains:
 - `/full-review architecture` → architecture-review only
 - `/full-review bugs` → bug-review only
 - `/full-review tests` → test-review only
+- `/full-review shell` → the shell-review module only (also `/shell-review`)
+- `/full-review makefile` → the makefile-review module only (also
+  `/makefile-review`)
 
 ### Full Review Mode
 Run all applicable review skills:
@@ -226,26 +220,33 @@ Each review must:
 
 All review skills use a hub-and-spoke architecture with progressive loading:
 
-- **`pensive:shared`**: Common workflow, output templates, quality checklists
 - **Each skill has `modules/`**: Domain-specific details loaded on demand
-- **Cross-plugin deps**: `imbue:proof-of-work`, `imbue:diff-analysis/modules/risk-assessment-framework`
+- **Cross-plugin deps**: `imbue:proof-of-work`, `imbue:diff-analysis/modules/riREDACTED-SECRET`
 
 This reduces token usage by 50-70% for focused reviews while maintaining full capabilities.
 
 ## Exit Criteria
 
-- All selected review skills executed
-- Findings consolidated and prioritized
-- Action plan created with ownership
-- Evidence logged per structured output format
+- [ ] All selected review skills executed
+- [ ] Findings consolidated and prioritized
+- [ ] Action plan created with ownership
+- [ ] Evidence logged per structured output format
 ## Supporting Modules
 
 - [Review workflow core](modules/review-workflow-core.md) - standard 5-step workflow pattern for all pensive reviews
 - [Output format templates](modules/output-format-templates.md) - finding entry, severity, action item templates
 - [Quality checklist patterns](modules/quality-checklist-patterns.md) - pre-review, analysis, evidence, deliverable checklists
+- [Shell review](modules/shell-review.md) - shell script audit, with its
+  exit-code, portability, safety and structure modules
+- [Makefile review](modules/makefile-review.md) - Makefile audit, with its
+  dependency-graph, deduplication, portability, best-practice and dogfood
+  modules
 
 ## Troubleshooting
 
 ### Common Issues
 
-If the auto-detection fails to identify the correct review skills, explicitly specify the mode (e.g., `/full-review rust` instead of just `/full-review`). If integration fails, check that `TodoWrite` logs are accessible and that evidence files were correctly written by the individual skills.
+If the auto-detection fails to identify the correct review skills, explicitly
+specify the mode (e.g., `/full-review rust` instead of just `/full-review`). If
+integration fails, check that the progress items were recorded and that evidence
+files were correctly written by the individual skills.

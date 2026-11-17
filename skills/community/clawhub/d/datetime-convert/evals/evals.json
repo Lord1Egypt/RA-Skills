@@ -1,0 +1,29 @@
+{
+  "skill_name": "datetime-convert",
+  "evals": [
+    {
+      "id": 0,
+      "name": "epoch-millis-to-beijing",
+      "prompt": "1735689600000 这个时间戳是什么时候？我要北京时间，顺便告诉我那天是周几。",
+      "expected_output": "2025-01-01 08:00:00 +0800 (Asia/Shanghai), Wednesday. Must recognize the value as milliseconds, not seconds.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 1,
+      "name": "string-to-utc-ms-and-duration",
+      "prompt": "把 2026-08-26 15:30（北京时间）转成 UTC 的 ISO8601 和毫秒时间戳，再算一下从那个时刻到 2026-12-31 00:00（北京时间）还有多少天。",
+      "expected_output": "2026-08-26T07:30:00Z, 1787729400000, 126.354 days (10,917,000 seconds).",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "mixed-column-to-tokyo",
+      "prompt": "日志里有三列时间值：1756207843、1756207843123、20260826。帮我都转成东京时间，格式 yyyy/MM/dd HH:mm:ss。",
+      "expected_output": "1756207843 -> 2025/08/26 20:30:43 (seconds), 1756207843123 -> 2025/08/26 20:30:43 (millis), 20260826 -> 2026/08/26 00:00:00 read as a compact calendar date (with the assumed input timezone stated).",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}

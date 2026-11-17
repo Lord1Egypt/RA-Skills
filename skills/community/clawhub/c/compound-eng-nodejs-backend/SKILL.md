@@ -3,25 +3,26 @@ name: ia-nodejs-backend
 class: language
 description: >-
   Node.js backend patterns: layered architecture, TypeScript, validation, error
-  handling, security, deployment. Use when building REST APIs, REST endpoints, middleware,
+  handling, security, observability, logging, metrics, deployment. Use when building REST APIs, REST endpoints, middleware,
   Express/Fastify/Hono/NestJS/Koa servers, tRPC procedures, Bun servers, or server-side TypeScript.
-paths: "**/*.ts,**/*.js,**/*.mjs,**/*.cjs"
+paths:
+  - "**/*.ts"
+  - "**/*.js"
+  - "**/*.mjs"
+  - "**/*.cjs"
 ---
 
 # Node.js Backend
 
-**Verify before implementing**: For framework-specific APIs (Express 5, Fastify 5, Node.js 22+ built-ins), look up current docs via Context7 (`query-docs`) before writing code. Training data may lag current releases.
+**Verify before implementing**: For framework-specific APIs (Express 5, Fastify 5, Node.js 22+ built-ins), look up current, version-matched official docs before writing code. Prefer Context7 (`query-docs`) when available. Otherwise use available web tools to read the framework's official documentation, or the [Node.js API docs](https://nodejs.org/api/) for Node.js built-ins. Training data may lag current releases.
 
-## Framework Selection
+## Working rules
 
-| Context | Choose | Why |
-|---------|--------|-----|
-| Edge/Serverless | Hono | Zero-dep, fastest cold starts |
-| Performance API | Fastify | Higher throughput than Express, built-in schema validation |
-| Enterprise/team | NestJS | DI, decorators, structured conventions |
-| Legacy/ecosystem | Express | Most middleware, widest adoption |
-
-Ask user: deployment target, cold start needs, team experience, existing codebase.
+- Validate request and third-party data before use; keep response serialization and error envelopes explicit.
+- Preserve caller-visible contracts and authorization when adding resilience or fallbacks.
+- Bound concurrency, set timeouts, and avoid blocking production request paths.
+- Verify actual resource identity before parsing or caching a reused client's result.
+- Exercise operational telemetry and failure paths, not successful return codes alone.
 
 ## Architecture
 
@@ -39,86 +40,28 @@ src/
 - Services never import Request/Response
 - Repositories never throw HTTP errors
 - Dependencies point inward only (Clean Architecture rule): routes -> services -> repositories. Never the reverse.
-- For scripts/prototypes: single file is fine -- ask "will this grow?"
+- For scripts/prototypes: single file is fine; ask "will this grow?"
+
 
 ## TypeScript Rules
 
-- Use `import type { }` for type-only imports -- eliminates runtime overhead
+- Use `import type { }` for type-only imports; eliminates runtime overhead
 - Prefer `interface` for object shapes (2-5x faster type resolution than intersections)
-- Prefer `unknown` over `any` -- forces explicit narrowing
-- Use `z.infer<typeof Schema>` as single source of truth -- never duplicate types and schemas
-- Minimize `as` assertions -- use type guards instead
+- Prefer `unknown` over `any`; forces explicit narrowing
+- Use `z.infer<typeof Schema>` as single source of truth; never duplicate types and schemas
+- Minimize `as` assertions; use type guards instead
 - Add explicit return types to exported functions (faster declaration emit)
 - Untyped package? `declare module 'pkg' { const v: unknown; export default v; }` in `types/ambient.d.ts`
 
-## Validation
-
-**Zod** (TypeScript inference) or **TypeBox** (Fastify native). Validate at boundaries only: request entry, before DB ops, env vars at startup. Use `.extend()`, `.pick()`, `.omit()`, `.partial()`, `.merge()` for DRY schemas.
-
-## Error Handling
-
-Custom error hierarchy: `AppError(message, statusCode, isOperational)` → `ValidationError(400)`, `NotFoundError(404)`, `UnauthorizedError(401)`, `ForbiddenError(403)`, `ConflictError(409)`
-
-Centralized handler middleware:
-- `AppError` → return `{ error: message }` with statusCode
-- Unknown → log full stack, return 500 + generic message in production
-- Async wrapper: `const asyncHandler = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);`
-
-Codes: 400 bad input | 401 no auth | 403 no permission | 404 missing | 409 conflict | 422 business rule | 429 rate limited | 500 server fault
-
-## API Design
-
-**Contract-first**: define route schemas (Zod schemas, Fastify JSON Schema, or OpenAPI spec) before writing handler logic. The schema is the contract -- implementation follows. Generate OpenAPI/Swagger docs from these schemas for interactive API documentation.
-
-- **Hyrum's Law awareness**: every observable response field, ordering, or timing becomes a dependency for callers. Use Zod schemas or Fastify response schemas to control exactly what's serialized -- never return raw ORM objects or untyped objects from handlers.
-- **Addition over modification**: add new optional fields rather than changing or removing existing ones. Removing a field from a response schema breaks callers silently. Deprecate first (mark in OpenAPI spec), remove in a later version.
-- **Consistent error envelope**: all errors -- validation, auth, not-found, application -- must produce the same `{ error: { code, message, details? } }` structure. Centralize in the error handler middleware. Callers build error handling once; inconsistent errors force per-endpoint special cases.
-- **Boundary validation**: validate at the middleware/route handler level (Zod `.parse()` on request body/params, Fastify schema validation). Services and repositories trust that input was validated at entry -- no redundant checks scattered through business logic.
-- **Third-party responses are untrusted data**: validate shape and content of external API responses before using them in logic, rendering, or decision-making. A compromised or misbehaving service can return unexpected types, malicious content, or missing fields. Parse through a Zod schema before use.
-- **Resources**: plural nouns (`/users`), max 2 nesting levels (`/users/:id/orders`)
-- **Methods**: GET read | POST create | PUT replace | PATCH partial | DELETE remove
-- **Versioning**: URL path `/api/v1/`
-- **Response**: `{ data, pagination?: { page, limit, total, totalPages } }`
-- **Queries**: `?page=1&limit=20&status=active&sort=createdAt,desc`
-- Return `Location` header on 201. Use 204 for successful DELETE with no body.
-
-## Async Patterns
-
-| Pattern | Use When |
-|---------|----------|
-| `async/await` | Sequential operations |
-| `Promise.all` | Parallel independent ops |
-| `Promise.allSettled` | Parallel, some may fail |
-| `Promise.race` | Timeout or first-wins |
-
-Never use readFileSync or other sync methods in production -- use `fs.promises` or stream equivalents. Offload CPU work to worker threads (Piscina). Stream large payloads.
-
-## Production Resilience
-
-- **Fail-fast env validation**: parse and validate all environment variables at startup with a Zod schema (`const env = envSchema.parse(process.env)`). If invalid, crash before serving traffic. Never discover a missing env var on the first request that needs it.
-- **Health endpoints**: expose both `/health` (shallow, always 200 if process is alive) and `/ready` (deep, verifies database, cache, and critical dependencies are reachable). Load balancers probe `/ready` for traffic routing; monitoring probes `/health` for process liveness. Don't conflate them.
-- **Caching**: Redis cache-aside for DB/API responses; in-memory LRU with TTL for hot paths. Always invalidate on writes.
-- **Load shedding**: `@fastify/under-pressure` (or equivalent) -- monitor event loop delay, heap, RSS; return 503 when thresholds exceeded.
-- **Response schemas**: In Fastify, always define response schemas -- enables `fast-json-stringify` for 2-3x faster serialization.
-- **Circuit breaker**: use `opossum` for outbound service calls. States: CLOSED (normal) -> OPEN (failing, return fallback) -> HALF_OPEN (probe). Prevents cascade failures when downstream services are down.
-
-## Observability
-
-- **Define "working" before instrumenting**: write the questions an on-call engineer will ask when this is broken at 3am ("which dependency is timing out?", "is it all users or one tenant?"), then add only the telemetry that answers them. Instrumentation with no question behind it is cost and noise.
-- **Pick the signal by the question it answers**: logs = "what happened in this one case?" (high-detail, structured, sampled under load); metrics = "how often / how fast / how saturated?" (cheap aggregates — keep label cardinality bounded, never user IDs or request IDs as labels); traces = "where did the time or the error go across services?".
-- **Structured logging**: `pino` with a stable set of event names and a correlation/request ID propagated through async context (`AsyncLocalStorage`). Never `console.log` in production paths.
-- **Metrics**: `prom-client` for RED per route — Rate (request count), Errors (error count), Duration (latency histogram). OpenTelemetry Node SDK for distributed traces across services.
-- **Initialize tracing before app imports, then verify it fires**: the OTel SDK must start before the modules it instruments are required, or auto-instrumentation silently no-ops. Before relying on any signal, force an error and send test traffic in staging and confirm the log/metric/trace actually lands — untested instrumentation fails silent.
-- **Alert on symptoms, not causes**: page on user-visible symptoms (error-rate spike, latency SLO burn, `/ready` flapping), not on causes (CPU high, heap growing). A cause with no symptom is a dashboard, not a page.
 
 ## Discipline
 
-- Simplicity first -- every change as simple as possible, impact minimal code
-- Only touch what's necessary -- avoid introducing unrelated changes
-- No hacky workarounds -- if a fix feels wrong, step back and implement the clean solution
+- Simplicity first: every change as simple as possible, impact minimal code
+- Only touch what's necessary; avoid introducing unrelated changes
+- No hacky workarounds: if a fix feels wrong, step back and implement the clean solution
 - Before adding a new abstraction, verify it appears in 3+ places. If not, inline it.
 - If a fix requires bypassing TypeScript (`as any`, non-null assertions on untrusted data, `// @ts-ignore`), treat it as a design smell and find the typed solution
-- Verify: `tsc --noEmit && npm test` pass with zero warnings before declaring done
+
 
 ## Verify
 
@@ -126,9 +69,20 @@ Never use readFileSync or other sync methods in production -- use `fs.promises` 
 - `npm test` passes with zero failures
 - No TypeScript bypasses (`as any`, `@ts-ignore`) in new code
 
+
 ## References
 
-- [TypeScript config](./references/typescript-config.md) -- tsconfig, ESM, branded types, compiler performance
-- [Security](./references/security.md) -- JWT, password hashing, rate limiting, OWASP
-- [API design patterns](./references/api-design.md) -- pagination, filtering, sorting, deprecation
-- [Database & production](./references/database-production.md) -- connection pooling, transactions, Docker, logging
+- [TypeScript config](./references/typescript-config.md): tsconfig, ESM, branded types, compiler performance
+- [Security](./references/security.md): JWT, password hashing, rate limiting, OWASP
+- [API design patterns](./references/api-design.md): pagination, filtering, sorting, deprecation, idempotency-key claim and retention
+- [Database & production](./references/database-production.md): connection pooling, transactions, Docker, logging
+
+## Task-specific references
+
+Read the relevant reference before implementing or reviewing the matching behavior:
+
+- For framework choice, input validation, API contracts, or errors: [api-boundaries.md](./references/api-boundaries.md).
+- For concurrency, networking, startup, caches, lifecycle cleanup, or telemetry: [async-and-production.md](./references/async-and-production.md).
+- For span kinds, HTTP-status-to-span-status rules, sampling placement, metric cardinality, or telemetry data governance: [observability-tracing.md](./references/observability-tracing.md).
+
+Existing specialized references, when the corresponding topic applies:

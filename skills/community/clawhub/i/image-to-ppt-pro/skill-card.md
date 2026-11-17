@@ -1,42 +1,58 @@
-## Description: <br>
-Replicates slide screenshots, slide photos, and design mockups into editable PPTX files by restoring layout, colors, text, and graphic elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Replicates PPT screenshots, slide photos, and design mockups as editable PPTX files by reconstructing layout, colors, text, and graphic elements.
 
-## Publisher: <br>
-[dami2010](https://clawhub.ai/user/dami2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dami2010](https://clawhub.ai/user/dami2010)
 
-## Use Case: <br>
-External users, designers, and developers use this skill to convert screenshots, slide photos, and mockups into editable PowerPoint decks while preserving the visible structure, text, colors, and shapes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The OCR helper can install system and Python packages during normal use. <br>
-Mitigation: Run the skill in a container or isolated environment, and preinstall and pin OCR dependencies before use when possible. <br>
-Risk: Input screenshots, previews, and generated outputs may contain confidential visual content. <br>
-Mitigation: Avoid processing confidential screenshots unless the execution environment and output storage locations are controlled. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to convert slide images, screenshots, photos, or design mockups into editable PowerPoint files. It guides image classification, extraction, PPTX code generation, preflight checks, and visual QA.
 
-## Reference(s): <br>
-- [Image To PPT Pro ClawHub Page](https://clawhub.ai/dami2010/image-to-ppt-pro) <br>
-- [PptxGenJS API Quick Reference](references/pptxgenjs-cheatsheet.md) <br>
-- [PPT Shape Recognition and Code Quick Reference](references/shapes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript, Python, and shell snippets, plus generated PPTX files when the workflow is executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use OCR and color extraction helpers, a coordinate preflight checker, and iterative visual QA before delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Normal use can modify the host environment through unpinned system, npm, or Python package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated disposable environment with dependencies pre-provisioned and pinned; require explicit approval before apt-get, global npm installs, or pip --break-system-packages on shared hosts.
+
+Risk: Generated output and preview cleanup commands can write to or remove workspace paths.
+
+Mitigation: Restrict outputs and preview cleanup to disposable workspace directories and review target paths before execution.
+
+Risk: OCR and geometric reconstruction can produce inaccurate text, layout, colors, or shapes when source images are complex or low quality.
+
+Mitigation: Use the bundled preflight checks and visual QA loop to verify boundaries, overlaps, text fit, and fidelity before delivering the PPTX.
+
+## Reference(s):
+
+- [PptxGenJS API Quick Reference](artifact/references/pptxgenjs-cheatsheet.md)
+- [PPT Shape Recognition and Code Quick Reference](artifact/references/shapes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, Python, and shell snippets, plus generated editable .pptx files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OCR, color sampling, shape reconstruction, preflight checks, and visual QA; output fidelity depends on source image quality and complexity.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

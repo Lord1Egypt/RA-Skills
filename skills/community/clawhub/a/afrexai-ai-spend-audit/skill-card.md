@@ -1,42 +1,55 @@
-## Description: <br>
-Audit and optimize a company's AI spending by identifying waste, measuring ROI, right-sizing tool tiers, and consolidating vendors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and optimize a company's AI spending by identifying waste, measuring ROI, right-sizing tool tiers, and consolidating vendors for cost savings.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business teams, finance leaders, operations leaders, and consultants use this skill to review AI tool spend, score each tool by usage and ROI, identify recoverable waste, and prepare a 90-day cost optimization plan. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The audit may require sensitive AI billing, usage, vendor, and business performance details. <br>
-Mitigation: Share only the information needed for the audit, avoid credentials, and confirm that the agent environment is trusted before providing confidential financial data. <br>
-Risk: The artifact links to external vendor-operated pages. <br>
-Mitigation: Review external links before using them and avoid submitting private company data to destinations you have not vetted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-ai-spend-audit) <br>
+## Use Case:
 
+Business teams, finance leads, and operations stakeholders use this skill to structure AI spend audits, score tool value, identify waste, and prepare cost-saving action plans.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with scoring tables, checklists, and an audit report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory analysis from user-provided billing, usage, vendor, and ROI information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AI spend audits can involve sensitive budget, vendor, contract, and usage information.
+
+Mitigation: Keep audit data in a trusted environment and limit access to stakeholders who are authorized to review financial and vendor information.
+
+Risk: Cancellation, downgrade, and consolidation thresholds may be mistaken for automatic approval to change subscriptions.
+
+Mitigation: Treat recommendations as decision support and review business impact, contract terms, and operational dependencies before making changes.
+
+## Reference(s):
+
+- [AI Spend Audit ClawHub release](https://clawhub.ai/1kalin/skills/afrexai-ai-spend-audit)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with scoring tables, checklists, and an audit report template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no shell commands, credential requests, or automated subscription changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

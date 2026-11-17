@@ -1,43 +1,61 @@
-## Description: <br>
-Calculate break-even points for e-commerce products and campaigns including fixed/variable cost analysis, contribution margin optimization, scenario modeling, and profitability timelines for informed pricing and launch decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate break-even points for e-commerce products and campaigns including fixed/variable cost analysis, contribution margin optimization, scenario modeling, and profitability timelines for informed pricing and launch decisions.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External operators, founders, and analysts use this skill to classify e-commerce costs, calculate contribution margin and break-even points, model scenarios, and produce pricing or launch recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Break-even guidance can be misleading when formulas, assumptions, or cost inputs are stale, incomplete, or inaccurate. <br>
-Mitigation: Verify formulas and assumptions against current business costs, supplier quotes, platform fees, and actual sales data before acting on recommendations. <br>
-Risk: Metadata capability tags are broader than the artifact's documentation-only behavior. <br>
-Mitigation: Treat the release as a planning and financial-analysis helper and review the skill contents and deployment metadata before installation. <br>
+## Use Case:
 
+E-commerce founders, operators, and marketing teams use this skill to classify fixed, variable, and step-fixed costs, calculate contribution margin and break-even units or revenue, compare weighted scenarios, and present a go/no-go recommendation.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Cost Classification Guide](references/cost-classification-guide.md) <br>
-- [Scenario Modeling Framework](references/scenario-modeling-framework.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown financial analysis reports, tables, formulas, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied cost, price, volume, and assumption data; outputs are planning estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Users may treat break-even outputs as professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a financial modeling aid and have qualified reviewers validate pricing, cost, demand, and launch decisions before relying on recommendations.
+
+Risk: Incomplete or inaccurate assumptions can produce misleading break-even units, revenue, or timelines.
+
+Mitigation: Provide only necessary business data, document source assumptions, and verify costs, fees, return rates, and demand projections before making a go/no-go decision.
+
+Risk: Single-scenario analysis can create false precision.
+
+Mitigation: Use pessimistic, base, and optimistic scenarios with sensitivity analysis for price, volume, COGS, fixed costs, and return rates.
+
+## Reference(s):
+
+- [Break-Even Analyzer ClawHub Listing](https://clawhub.ai/leooooooow/skills/break-even-analyzer)
+- [Output Template](references/output-template.md)
+- [Cost Classification Guide](references/cost-classification-guide.md)
+- [Scenario Modeling Framework](references/scenario-modeling-framework.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown break-even analysis with formulas, tables, scenario summaries, risk assessment, and recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided business assumptions and does not require code execution, external tools, or privileged access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

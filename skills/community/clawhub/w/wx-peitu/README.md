@@ -1,64 +1,89 @@
 # wx-peitu · 公众号长文配图生成器
 
-![GitHub stars](https://img.shields.io/github/stars/EdwardWason/wx-peitu?style=flat-square)
-![License](https://img.shields.io/github/license/EdwardWason/wx-peitu?style=flat-square)
-![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
-![WeChat](https://img.shields.io/badge/WeChat-Illustration-07C160?style=flat-square)
-![ClawHub](https://img.shields.io/badge/ClawHub-wx--peitu-FF6B35?style=flat-square)
-![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
+🌍 English version: [README.en.md](README.en.md)
 
-一个适配 TRAE / Claude Code 等 Agent 环境的公众号配图技能，用于从 MD 长文生成**公众号配图 PNG 包**，自动同步到**飞书云盘**。
+[![Stars](https://img.shields.io/github/stars/EdwardWason/wx-peitu?style=flat-square)](https://github.com/EdwardWason/wx-peitu)
+[![许可证](https://img.shields.io/badge/license-MIT--0-green?style=flat-square)](LICENSE)
+[![ClawHub](https://img.shields.io/badge/ClawHub-wx--peitu-orange?style=flat-square)](https://clawhub.ai/skills/wx-peitu)
+[![Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue?style=flat-square)](SKILL.md)
 
-内置两套视觉系统，共用一份配图工作流：
-- **电子杂志风（Editorial）**。衬线体 + 暖纸底 + 水墨氛围，适合深度观察、人文文化、人物访谈、读书笔记。
-- **瑞士国际主义（Swiss）**。无衬线 + 灰白底 + 单一 accent + 极致字号对比，适合科技产品、数据研究、职场干货、教程指南。
+[看效果](#效果) · [装上就能用](#30-秒开始) · [核心机制](#核心机制) · [已知限制](#已知限制) · [License](#license)
 
-> 核心交付物是 **PNG 图片**，不是代码。HTML 只是中间产物，Puppeteer 截图后直接出图。
+---
 
-## 30 秒开始
+_「说一句话，还你一套公众号配图。」_
 
-```bash
-clawhub install wx-peitu
-```
+---
 
-也可以直接把这段话发给有 shell 权限的 AI Agent：
+**wx-peitu** 不是又一个 Markdown 排版工具，是从内容到图片的完整配图系统。它不做全文排版——它从你的长文中提取可视化单元，生成一套**信息密度达标、风格统一、可直接发布**的 PNG 配图包，自动同步到飞书云盘，手机端下载即发。
 
-```text
-帮我安装 wx-peitu。请把 https://github.com/EdwardWason/wx-peitu 克隆到 ~/.claude/skills/wx-peitu，安装完成后检查 SKILL.md 和 references/ 是否存在。
-```
-
-安装后直接对 Agent 说：
-
-```text
-帮这篇文章做一套公众号配图
-```
-
-也可以试这些请求：
-
-```text
-大师推荐，直接来
-帮这篇科技文章做一套瑞士风配图，IKB 蓝
-这篇文章做5张配图，电子杂志风
-第3张颜色太深，帮我调一下
-```
+---
 
 ## 效果
 
 - 🎨 **双视觉系统**：Editorial 做氛围与叙事，Swiss 做事实与结构，两套共用同一份工作流
-- 📐 **5 个画板尺寸**：封面 900×383、正文 640×auto、金句 640×640、分隔 640×200、封底 900×383
+- 📐 **5 个画板尺寸**：封面 900×383、正文 640×auto、金句 640×272、分隔 640×200、封底 900×383
 - 🧩 **20 种配图类型**：封面/封底/金句图/数据图/逻辑链/流程管道/版本线/判断卡/认知纠偏/宣言卡/案例卡等
-- 🏗 **10 种版式骨架**：流程图/决策树/漏斗图/VS 对战/路径图/条形图/网格卡片/时间线/照片叠加/文字块，禁止连续 3 张同版式
+- 🏗 **24 种版式骨架**：E01-E14 Editorial + S01-S10 Swiss，禁止连续 3 张同版式
 - 🎯 **4-Purpose 框架**：每张配图标注 purpose（attention/readability/memorability/conversion），驱动设计参数
 - 🖼 **3 大图库接入**：Pexels / Unsplash / Wallhaven，用户图片始终优先
-- ✅ **密度门控**：3 维 15 分评分，≥9 分及格，8 类 48 条反模式 + AI 去污染
+- ✅ **密度门控**：3 维 15 分评分，≥9 分及格，8 类 53 条反模式 + AI 去污染
 - 📱 **飞书云盘同步**：截图后自动上传飞书云盘，手机端直接下载发布
 - 🔧 **微调模式**：只改指定配图，不重新生成全部
 
 ## 适合 / 不适合
 
-**✅ 合适**：公众号长文配图 / 文章封面封底 / 数据可视化卡片 / 金句图 / 逻辑流程图 / 知识卡片 / 对比图 / 漏斗图
+✅ **适合**
+- 公众号长文配图（封面 + 正文 + 金句 + 封底）
+- 数据可视化卡片、逻辑流程图、知识卡片
+- 文章封面封底设计
+- 对比图、漏斗图、决策树
+- 想做杂志级配图但不懂设计软件
 
-**❌ 不合适**：全文排版（用 md2wechat）/ 视频动效 / 纯图片修图 / 追星粉丝向 / 纯促销硬广 / 超过 15 张配图的文章
+❌ **不适合**
+- 全文排版（用 md2wechat-skill 或 Kami）
+- 视频/动效制作
+- 纯图片编辑（无内容提取或排版需求）
+- 追星粉丝向内容（视觉语言不匹配）
+- 纯促销硬广（违反内容优先设计哲学）
+- 超过 15 张配图的文章（考虑拆分文章）
+
+## ⚠️ 用户警告
+
+本技能运行时会自动执行以下操作：
+1. **自动写入飞书云盘**：生成的配图会自动上传到飞书云盘指定文件夹
+2. **自动保存到桌面**：PNG 配图会自动保存到 `C:\Users\<用户>\Desktop\<项目名>公众号配图\` 目录
+3. **自动调用外部 API**：会调用 Pexels/Pixabay API 搜索配图照片（需要 API Key）
+4. **自动打开文件管理器**：生成完成后可能调用 `explorer.exe` 打开输出目录
+
+如需禁用部分副作用，可在生成脚本中移除 `lark-cli` 上传步骤或 `explorer.exe` 调用。
+
+## 30 秒开始
+
+```bash
+# ClawHub 安装（推荐）
+clawhub install wx-peitu
+
+# 或 npx 安装
+npx skills add https://github.com/EdwardWason/wx-peitu --skill wx-peitu
+
+# 或手动安装
+git clone https://github.com/EdwardWason/wx-peitu.git ~/.claude/skills/wx-peitu
+```
+
+安装后直接对 Agent 说：
+
+```
+帮这篇文章做一套公众号配图
+```
+
+```
+大师推荐，直接来
+```
+
+```
+帮这篇科技文章做一套瑞士风配图，IKB 蓝
+```
 
 ## 10 个品类自动检测
 
@@ -77,16 +102,69 @@ clawhub install wx-peitu
 
 ## 常见使用场景
 
-| 任务 | 推荐方式 |
-|------|---------|
-| 长文章 → 公众号配图 | 抽核心观点，Editorial 走叙事节奏，Swiss 走数据拆条 |
-| 科技产品测评 | Swiss + IKB 蓝，漏斗图 / VS 对战 / 流程图 |
-| 深度商业分析 | Swiss + IKB 蓝，数据图 + KPI 大字报 |
-| 人文观察 / 人物故事 | Editorial + 墨水经典，金句图 + 照片叠加封面 |
-| 数据报告 | Swiss + IKB 蓝，条形图 / 网格卡片 |
-| 教程 / 方法论 | Swiss + Lemon Green，流程图 / 决策树 |
+| 场景 | 推荐方式 | 触发词 |
+|------|---------|--------|
+| 长文章 → 公众号配图 | Multi-Illustration | "帮这篇文章做一套公众号配图" |
+| 大师推荐全自动化 | Master Mode | "大师推荐，直接来" |
+| 科技产品测评 | Swiss + IKB 蓝 | "瑞士风配图，IKB 蓝" |
+| 人文观察 / 人物故事 | Editorial + 墨水经典 | "杂志风配图，墨水经典" |
+| 修改某一张配图 | 微调模式 | "第 3 张颜色太深，调一下" |
 
-## 为什么是 HTML → Puppeteer → PNG
+## 使用方法
+
+### 三种模式
+
+```
+用户输入
+    │
+    ├── 说"大师推荐"/"你定"/"直接来"?
+    │   → Master Mode（全自动化，零确认点）
+    │
+    ├── 包含"配图"/"文章配图"/"公众号"?
+    │   → Multi-Illustration Mode（6 步流程，2 个确认点）
+    │
+    └── "第 N 张..."?
+        → 微调模式（只改指定配图）
+```
+
+### 工作流
+
+```
+MD文章 → 解析 → 方案(确认1) → 风格(确认2) → 生成HTML → 使用指南 → 截图+云盘同步
+```
+
+1. **Step A 解析** — 从文章提取 20 种可视化单元，标注 Purpose
+2. **Step B 方案** — 展示配图方案（emoji + 一句话），用户确认
+3. **Step C 风格** — 3 个问题定风格 + 品类自动检测 + 视觉节奏规划
+4. **Step D 生成 HTML** — 每张配图独立 HTML 文件，版式多样性检查
+5. **Step E 使用指南** — 文章章节 ↔ 配图映射 + 快速修改指令
+6. **Step F 截图交付** — Puppeteer → PNG → 桌面文件夹 → 飞书云盘同步
+
+## 示例请求
+
+```
+用户: "帮这篇腾讯AI分析文章做一套公众号配图"
+
+Agent: 已解析出 8 个可视化单元，推荐方案：
+- 封面：Swiss IKB 蓝 — 科技感封面
+- 核心数据：数据大字报 — 3 个关键指标
+- 逻辑链：流程管道 — AI 战略三步走
+- 金句图：宣言卡 — 核心判断
+- 封底：Swiss IKB 蓝 — 总结收束
+确认生成？
+```
+
+```
+用户: "大师推荐，给这篇产品复盘文章生成全套配图"
+
+Agent: [自动解析 → 自动匹配 → 批量生成 → 截图 → 云盘同步]
+共生成 6 张配图：封面 + 3 张信息图 + 金句卡 + 封底
+已保存到桌面，已同步到飞书云盘
+```
+
+## 核心机制
+
+### 为什么是 HTML → Puppeteer → PNG
 
 - **Agent 友好**：HTML + CSS 是文本，Agent 能直接写、读、改、验证
 - **版式精确**：CSS Grid + 严格字号 / 留白 / 网格，远超 Markdown 排版能力
@@ -94,91 +172,106 @@ clawhub install wx-peitu
 - **交付简单**：PNG 直接发，不需要部署、不需要导出工具
 - **手机可达**：飞书云盘同步后，手机打开飞书 App 即可下载发布
 
-## 使用流程
+### 双风格体系
 
-Skill 本身是结构化工作流，Agent 会按 6 步走：
+| 维度 | 电子杂志风（Editorial） | 瑞士国际主义（Swiss） |
+|------|------------------------|---------------------|
+| **字体** | 衬线体，锁定 500 | 无衬线体 |
+| **配色** | 暖色体系，纸底 | 灰白 + 4 套锚点色 |
+| **排版** | 氛围感，杂志编排 | 网格系统，极简精确 |
+| **灰阶** | 7 级暖灰（禁冷蓝灰） | 5 级校准高级灰 |
 
-1. **Step A 解析** — 从文章提取 20 种可视化单元，标注 Purpose（attention/readability/memorability/conversion）
-2. **Step B 方案** — 展示配图方案（emoji + 一句话描述），密度评分内部计算，用户确认
-3. **Step C 风格** — 3 个问题定风格 + 品类自动检测 + 视觉节奏规划，"大师推荐"可跳过
-4. **Step D 生成 HTML** — 每张配图独立 HTML 文件（内联 CSS + `<img>` 标签 + 固定尺寸），版式多样性检查
-5. **Step E 使用指南** — 文章章节 ↔ 配图映射 + 快速修改指令
-6. **Step F 截图交付** — Puppeteer → PNG → 桌面文件夹 → 飞书云盘同步
+### 三大审美约束
 
-详细说明见 [`SKILL.md`](./SKILL.md)。深度细节去看对应 `references/*.md`。
+- **克制**：品牌色 ≤ 5% 面积，单一 accent 原则
+- **呼吸**：whisper shadow、0.5pt 边框、8pt 圆角
+- **温度**：暖灰色系全栈替代冷蓝灰，禁止纯白背景
 
-## 主题色预设
+### 密度门控
 
-### Editorial 5 套
+3 维 15 分评分体系，单张 ≥9/15 才及格：
 
-| 主题 | 色调 | 适合场景 |
+| 维度 | 满分 | 核心问题 |
 |------|------|---------|
-| 🖋 **墨水经典 Ink Classic** | `#141413` / `#f5f4ed` | 通用默认、商业话题、不知道选啥时最稳 |
-| 🌿 **森林墨 Forest Ink** | `#1a2e1f` / `#f5f1e8` | 自然、可持续、非虚构 |
-| 🍂 **牛皮纸 Kraft Paper** | `#2a1e13` / `#eedfc7` | 怀旧、人文、阅读、文学 |
-| 🌙 **沙丘 Dune** | `#1f1a14` / `#f0e6d2` | 艺术、设计、创意、时尚 |
-| 🏺 **莫兰迪 Morandi** | `#3D3529` / `#F5F0E8` | 优雅、克制、生活方式 |
-
-### Swiss 4 套
-
-| 主题 | 锚点色 | 适合场景 |
-|------|--------|---------|
-| 🔵 **克莱因蓝 IKB** | `#002FA7` | 通用默认、商业发布、AI 产品、方法论 |
-| 🟡 **柠檬黄 Lemon** | `#FFD500` | 年轻、运动、零售、消费品 |
-| 🟢 **柠檬绿 Lemon Green** | `#C5E803` | 生态、健康、Z 世代、绿色品牌 |
-| 🟠 **安全橙 Safety Orange** | `#FF6B35` | 警示、新闻、工业、活力主题 |
-
-## 触发方式
-
-装好后，Agent 会自动发现并调用这个 skill。触发关键词：
-
-- "公众号配图" / "文章配图" / "长文配图" / "公众号排版" → Multi-Illustration Mode
-- "大师推荐" / "你定" / "直接来" → Master Mode（全自动）
-- "第 N 张颜色太深" / "第 N 张换个版式" → 微调模式（Tweak Mode）
-
-## 安装
-
-### 方式一：ClawHub 安装（推荐）
-
-```bash
-clawhub install wx-peitu
-```
-
-### 方式二：一行命令安装
-
-```bash
-npx skills add https://github.com/EdwardWason/wx-peitu --skill wx-peitu
-```
-
-### 方式三：手动命令行
-
-```bash
-git clone https://github.com/EdwardWason/wx-peitu.git ~/.claude/skills/wx-peitu
-```
+| 信息密度 | 5 | 这张图传达了几个可操作的信息点？ |
+| 视觉层次 | 5 | 读者能在 3 秒内找到视觉起点吗？ |
+| 信息完整性 | 5 | 独立展示时能否被理解？ |
 
 ## 目录结构
 
 ```
 wx-peitu/
-├── SKILL.md                    ← Skill 主文件：6 步工作流 + 规则
-├── README.md                   ← 本文件
-├── LICENSE                     ← MIT-0
-├── CHANGELOG.md                ← 版本变更记录
-├── .gitignore
+├── SKILL.md                    # Agent 工作流定义（6 步 + 14 条规则）
+├── README.md                   # 中文文档
+├── README.en.md                # English docs
+├── CHANGELOG.md                # 版本记录（v4.0.0 → v7.0.0）
+├── LICENSE                     # MIT-0
 ├── .claude-plugin/
-│   └── plugin.json             ← Claude Code 插件元数据
-└── references/
-    ├── workflow.md             ← 6 步工作流 + 微调模式 + 截图交付 + 云盘同步
-    ├── design-system.md        ← 双风格 + 字号阶梯 + 色板 + 品牌 DNA
-    ├── quality-gates.md        ← 密度评分 + 48 条反模式 + AI 去污染
-    └── assets.md               ← 图库接入 + 图表系统 + HTML 模板骨架
+│   └── plugin.json             # Claude Code 元数据
+├── .github/                    # 社区模板
+│   └── ISSUE_TEMPLATE/         # Issue 模板
+└── references/                 # 参考文档
+    ├── workflow.md             # 6 步工作流 + 微调模式 + 截图交付 + 云盘同步
+    ├── design-system.md        # 双风格 + CSS 变量 + 字体三级分工 + 标题硬映射
+    ├── quality-gates.md        # 密度评分 + 53 条反模式 + AI 去污染
+    └── assets.md               # 24 种 Recipe + HTML 骨架 + 图库接入 + 图表系统
 ```
+
+## 主题色预设
+
+### Editorial 5 套
+
+| 主题 | 墨色 / 纸色 | 场景 |
+|------|-----------|------|
+| 🖋 墨水经典 | `#141413` / `#f5f4ed` | 通用默认、商业话题 |
+| 🌿 森林墨 | `#1a2e1f` / `#f5f1e8` | 自然、可持续、非虚构 |
+| 🍂 牛皮纸 | `#2a1e13` / `#eedfc7` | 怀旧、人文、阅读、文学 |
+| 🌙 沙丘 | `#1f1a14` / `#f0e6d2` | 艺术、设计、创意、时尚 |
+| 🏺 莫兰迪 | `#3D3529` / `#F5F0E8` | 优雅、克制、生活方式 |
+
+### Swiss 4 套
+
+| 锚点色 | 色值 | 场景 |
+|--------|------|------|
+| 🔵 克莱因蓝 IKB | `#002FA7` | 通用默认、商业发布、AI 产品 |
+| 🟡 柠檬黄 | `#FFD500` | 年轻、运动、零售、消费品 |
+| 🟢 柠檬绿 | `#C5E803` | 生态、健康、Z 世代 |
+| 🟠 安全橙 | `#FF6B35` | 警示、新闻、工业、活力 |
+
+## 字号阶梯
+
+### 正文配图（640px 画布）
+
+| Role | Size | Weight | 说明 |
+|------|------|--------|------|
+| Display / Hero | 36-44px | 300-400 | 自信，不压迫 |
+| Section Title | 24-32px | 400-500 | 层级锚点 |
+| Body | 14-16px | 400-500 | 手机舒适阅读 |
+| Captions / Meta | 10-12px | 500-600 | 小字重字重 |
+| Data Numbers | 28-36px | 300-400 | 数据卡片，大于正文小于标题 |
+
+### 封面/封底（900×383）
+
+| Role | Size | Weight | 说明 |
+|------|------|--------|------|
+| Cover Title | 44-52px | 300-400 | 缩略图 1 秒可读 |
+| Cover Subtitle | 15-18px | 400 | 辅助信息 |
+| Cover Meta | 11-13px | 500 | 来源 / 作者 / 日期 |
+
+## 已知限制
+
+- **需要 Agent 平台**：本 Skill 不带 GUI，需要在 TRAE / Claude Code / Codex 等 Agent 环境中运行
+- **Puppeteer 依赖系统 Chrome**：截图功能需要本地安装 Chrome 或 Chromium
+- **飞书云盘需要 lark-cli**：云盘同步功能需要预先安装并登录 lark-cli
+- **封面/封底必须有照片背景**：纯色封面在信息流里无法让读者停止滑动，这是设计决策而非限制
+- **不允许自定义颜色**：只允许从预设色板中选择，自由选色会破坏整体风格
+- **Windows 路径硬编码**：当前桌面保存路径和 `explorer.exe` 仅适配 Windows，macOS/Linux 需自行调整
 
 ## 核心设计原则
 
 1. **克制优于喊话** — 品牌色 ≤ 5% 面积，单一 accent 原则，信息流里克制反而最显眼
 2. **结构优于装饰** — 字号 + 字体对比 + 网格留白撑起信息层级，不靠阴影和卡片
-3. **版式优于自由** — 10 种版式骨架先选后改，不要发明不存在的页面
+3. **版式优于自由** — 24 种版式骨架先选后改，不要发明不存在的页面
 4. **越大越轻** — 44px+ 标题 weight ≤ 400，小字才用重字重，这是"高级感"的核心
 5. **温度优于冷感** — 所有灰色必须暖调（R ≈ G > B），禁止冷蓝灰，禁止纯白背景
 6. **内容驱动数量** — 配图数量由内容分析决定，不强制固定数量
@@ -191,26 +284,6 @@ wx-peitu/
 - Massimo Vignelli / Helvetica Forever / 瑞士国际主义网格系统
 - 小红书 / 公众号信息流里"克制反而吃香"的内容样本
 - 歸藏的图文卡片实践与"做杂志，不做网页"方法论
-
-## 字号阶梯
-
-### WeChat Card Type Scale（640px 画布）
-
-| Role | Size | Weight | 说明 |
-|------|------|--------|------|
-| Display / Hero | 36-44px | 300-400 | 自信，不压迫 |
-| Section Title | 24-32px | 400-500 | 层级锚点 |
-| Body | 14-16px | 400-500 | 手机舒适阅读 |
-| Captions / Meta | 10-12px | 500-600 | 小字重字重 |
-| Data Numbers | 28-36px | 300-400 | 数据卡片，大于正文小于标题 |
-
-### Cover Type Scale（900×383 封面/封底）
-
-| Role | Size | Weight | 说明 |
-|------|------|--------|------|
-| Cover Title | 44-52px | 300-400 | 缩略图 1 秒可读 |
-| Cover Subtitle | 15-18px | 400 | 辅助信息 |
-| Cover Meta | 11-13px | 500 | 来源 / 作者 / 日期 |
 
 ## FAQ
 
@@ -232,12 +305,8 @@ wx-peitu/
 **支持英文图文吗？**
 支持。字体系统同时覆盖中英文，版式骨架未做语言绑定。
 
-## 贡献
-
-Bug、排版问题、新版式需求 — 欢迎开 Issue 或 PR。
+---
 
 ## License
 
-MIT-0 © 2026 [EdwardWason](https://github.com/EdwardWason)
-
-本项目采用 **MIT-0** 协议，可自由使用、修改、分发，无需署名。
+MIT-0 © 2026

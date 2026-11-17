@@ -1,45 +1,58 @@
-## Description: <br>
-Run overnight skill health reviews, replay-case availability checks, feedback triage, and proposal-only maintenance reports for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run overnight skill health reviews, replay-case availability checks, feedback triage, and proposal-only maintenance reports for OpenClaw agents.
 
-## Publisher: <br>
-[sheepxux](https://clawhub.ai/user/sheepxux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheepxux](https://clawhub.ai/user/sheepxux)
 
-## Use Case: <br>
-Developers and maintainers use Somnia to schedule quiet-hour reviews of OpenClaw skills, summarize health findings, check feedback and replay-case availability, and create proposal artifacts before any update decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduler can create persistent local background runs. <br>
-Mitigation: Review the generated plist before using --apply and install only when a local nightly scheduler is intended. <br>
-Risk: A user-specified plist path can be removed when uninstall is applied. <br>
-Mitigation: Avoid custom --plist values unless you intend Somnia to manage that exact file. <br>
-Risk: Telegram reports may share skill names and health summaries outside the local machine. <br>
-Mitigation: Enable Telegram reporting only for chats where those summaries are acceptable to share. <br>
+## Use Case:
 
+Developers and maintainers use Somnia to schedule overnight OpenClaw skill reviews, generate health reports, and prepare proposal-only maintenance artifacts without automatically changing installed skills.
 
-## Reference(s): <br>
-- [Somnia Architecture](references/somnia-architecture.md) <br>
-- [Schedule And Policy](references/schedule-and-policy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sheepxux/somnia) <br>
-- [Publisher Profile](https://clawhub.ai/user/sheepxux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON reports, proposal files, scheduler configuration, and concise user-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local health reports and proposal artifacts; Telegram reporting is optional when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: server release evidence and SKILL.md overview) <br>
+Risk: Somnia can create a recurring local macOS scheduled job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default plan-only behavior and review any LaunchAgent --apply action before enabling a recurring schedule.
+
+Risk: Telegram reporting can send review metadata outside the local environment.
+
+Mitigation: Use Telegram reporting only when that disclosure is acceptable, and keep hidden tests, secrets, tokens, and unredacted feedback out of user-facing reports.
+
+Risk: Proposal output paths may write outside the intended proposals directory if skill names are not constrained.
+
+Mitigation: Constrain or sanitize proposal paths and review generated proposal artifacts before any install decision.
+
+## Reference(s):
+
+- [Somnia Architecture](references/somnia-architecture.md)
+- [Schedule And Policy](references/schedule-and-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with JSON report and proposal artifacts plus command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposal-only maintenance; hidden evaluation details and unredacted feedback are excluded from user-facing reports.]
+
+## Skill Version(s):
+
+0.4.3 (source: server release metadata and SKILL.md version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

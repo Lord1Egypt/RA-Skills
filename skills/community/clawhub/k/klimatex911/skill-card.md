@@ -1,38 +1,53 @@
-## Description: <br>
-Generate, review, and optimize Ansible automation artifacts such as playbooks, roles, inventories, Jinja2 templates, variable files, and CI/CD-ready project layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, review, and optimize Ansible automation artifacts, including playbooks, roles, inventories, Jinja2 templates, ansible.cfg files, Galaxy dependencies, AWX-related guidance, and YAML-based infrastructure automation.
 
-## Publisher: <br>
-[klima911](https://clawhub.ai/user/klima911) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[klima911](https://clawhub.ai/user/klima911)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to produce Ansible playbooks, role scaffolds, inventories, templates, variables, project structures, and validation commands for YAML-based configuration management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Ansible YAML and shell commands can change infrastructure if run without review. <br>
-Mitigation: Review generated artifacts before execution, run syntax checks, ansible-lint, and check mode first, and limit runs to the intended inventory or hosts. <br>
-Risk: Inventory, vault, and configuration examples may involve secrets or privileged host access. <br>
-Mitigation: Use ansible-vault for sensitive values, avoid committing plaintext passwords or vault password files, and keep host-key checking enabled unless there is a documented reason to disable it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, infrastructure engineers, and DevOps teams use this skill to draft, review, and organize Ansible automation for server configuration, application deployment, inventory management, reusable roles, templates, and validation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, INI, Jinja2, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes file paths, validation commands, idempotency notes, lint guidance, and vault handling reminders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Ansible defaults may weaken infrastructure security if used unchanged against real systems.
+
+Mitigation: Review and change security defaults before use: keep SSH host key checking enabled, avoid defaulting to ~/.ssh/id_rsa, require explicit approval for root become, pin dependencies to reviewed versions or commits, restrict fact cache storage, and encrypt or redact Vault values before committing them.
+
+Risk: Generated playbooks, roles, inventories, and templates can change managed hosts if run without review.
+
+Mitigation: Review generated artifacts before execution and run syntax checks, dry runs with --check --diff, and ansible-lint as applicable.
+
+## Reference(s):
+
+- [EZ Ansible Skill release page](https://clawhub.ai/klima911/skills/klimatex911)
+- [Publisher profile](https://clawhub.ai/user/klima911)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML, INI, Jinja2, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces generated Ansible artifacts with file paths, validation commands, run instructions, and security notes for human review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Dataify Google Shopping turns shopping search, product search, and price comparison requests into confirmed Dataify Scraper API calls for Google Shopping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Shopping for product discovery, offers, and price comparison.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to prepare, confirm, and run Google Shopping product searches through Dataify's Scraper API, including locale, price, shipping, sale, pagination, and output-format parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries, locale settings, and filters are sent to the Dataify Scraper API for Google Shopping requests. <br>
-Mitigation: Use the skill only when that integration is intended, avoid private purchase plans in queries, and review the confirmation table before approving a call. <br>
-Risk: Live calls require a Dataify API token or a user-provided token. <br>
-Mitigation: Provide tokens only through the expected token handling path, confirm the destination before use, and never display the token in parameter previews or final answers. <br>
+## Use Case:
 
+External users and developers use this skill to turn Google Shopping requests into Dataify API calls for product discovery, offer lookup, and price comparison.
 
-## Reference(s): <br>
-- [Dataify Google Shopping API Reference](references/google_shopping_api.md) <br>
-- [ClawHub release page](https://clawhub.ai/dataify-server/dataify-google-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown parameter tables, shell command invocations, and raw API response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before live API calls and masks tokens in previews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Shopping queries, filters, and optional location data are sent to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and avoid including sensitive personal information in shopping queries.
+
+Risk: The skill requires a Dataify API token and can accept it as a command argument.
+
+Mitigation: Prefer DATAIFY_API_TOKEN, never paste the token into chat, and do not print or expose credential values.
+
+Risk: Bulk scraping or multi-page collection can increase scope and cost.
+
+Mitigation: Review parameters, cost, and scope before high-volume or multi-page use.
+
+## Reference(s):
+
+- [Dataify Google Shopping API Reference](artifact/references/google_shopping_api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-google-shopping)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and compact shopping results; raw JSON or HTML when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the Dataify Scraper API and return product titles, links, prices, offer details, counts, or raw response bodies depending on the requested output mode.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

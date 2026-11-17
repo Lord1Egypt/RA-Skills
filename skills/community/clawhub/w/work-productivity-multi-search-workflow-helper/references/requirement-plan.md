@@ -2,7 +2,7 @@
 
 ## Live Requirement
 
-Validated demand: Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 4 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 ## Audience
 
@@ -20,12 +20,12 @@ Demand: 70/70
 
 Local feasibility: 30/30
 
-Evidence coverage: 10 signals across 4 source families.
+Evidence coverage: 12 signals across 3 source families.
 
 Scoring rationale:
 
-- Evidence count: 10; required minimum: 3.
-- Distinct source families: 4; sources: clawhub, github, hacker-news, v2ex.
+- Evidence count: 12; required minimum: 3.
+- Distinct source families: 3; sources: clawhub, hacker-news, segmentfault.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
@@ -33,16 +33,18 @@ Scoring rationale:
 
 ## Evidence
 
-- clawhub-popular-skill (2026-06-12T19:47:53.628000+00:00): [Popular Clawhub skill demand: self-improving agent has 463,096 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 190,095 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 154,000 downloads](https://clawhub.ai/skills/multi-search-engine)
-- hacker-news-ask-hn (2026-06-20T02:52:13+00:00): [Forked CozoDB to give agents cognitive primitives](https://news.ycombinator.com/item?id=48605896)
-- hacker-news-ask-hn (2026-06-20T13:05:31+00:00): [Changes that cut our LLM pipeline costs more than model-switching did](https://news.ycombinator.com/item?id=48608978)
-- v2ex-latest (2026-06-20T09:01:21+00:00): [Vibe Coding 了一个博客框架](https://www.v2ex.com/t/1221650)
-- github-issues (2026-06-20T13:09:00+00:00): [[idea] Cross-instance quickfix/jump bridge using the existing server-switcher socket discovery](https://github.com/stanfish06/nvim/issues/218)
-- github-issues (2026-06-20T13:08:29+00:00): [feat(shelves): align shelf Quanta/Arcana/Rectification with the Prominence economy](https://github.com/rfizzle/meridian/issues/84)
-- github-issues (2026-06-20T13:07:49+00:00): [Add optional macOS Finder integration for pipx installs](https://github.com/LiukDiihMieu/npyquick/issues/30)
-- github-issues (2026-06-20T13:07:25+00:00): [De-vendor mcp_common: consume the shared mcp-common package directly](https://github.com/poodle64/supacrawl/issues/141)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 201,215 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-05-11T07:53:37.068000+00:00): [Popular Clawhub skill demand: Multi Search Engine has 164,955 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 159,132 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill (2026-05-18T20:48:27.565000+00:00): [Popular Clawhub skill demand: Nano Banana Pro has 108,279 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- clawhub-popular-skill (2026-09-16T21:35:54.485000+00:00): [Popular Clawhub skill demand: Tavily Search has 109,833 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- hacker-news-ask-hn (2026-11-04T06:09:55+00:00): [Ask HN: Advice on local efficient analogical retrieval?](https://news.ycombinator.com/item?id=50361973)
+- segmentfault-search (2026-11-05T04:08:42.367502+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-05T04:08:42.367502+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-05T04:08:42.367502+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-05T04:08:42.368032+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-05T04:08:42.368032+00:00): [Yoast SEO Premium Setup: Build High-Ranking WordPress Sites](https://segmentfault.com/a/1190000048182795)
+- segmentfault-search (2026-11-05T04:08:42.368032+00:00): [问： 父元素用了伪类active的样式后，其子元素的点击事件onclick无法触发？](https://segmentfault.com/q/1010000040598886)
 
 ## How The Skill Meets The Requirement
 

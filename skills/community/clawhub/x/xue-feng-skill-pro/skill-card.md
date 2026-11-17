@@ -1,42 +1,53 @@
-## Description: <br>
-Helps users choose Chinese gaokao majors and plan later education and career paths using a structured framework distilled from Zhang Xuefeng and Wu Liang content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮你选择高考专业以及后续人生发展路线。基于张雪峰老师和武亮（峰学蔚来）的直播、连麦、采访等内容系统化提炼而成。
 
-## Publisher: <br>
-[ryan1125](https://clawhub.ai/user/ryan1125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan1125](https://clawhub.ai/user/ryan1125)
 
-## Use Case: <br>
-External students, families, and counselors use this skill to structure Chinese gaokao major-selection and career-planning conversations. It gathers user constraints such as score, province, subject track, family context, and location goals, then recommends paths while directing agents to verify current admissions, policy, salary, and job-market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outdated admissions, employment, salary, or industry-cycle information could mislead education and career decisions. <br>
-Mitigation: Verify current admissions policies, score cutoffs, employment data, salary data, and industry trends before giving specific recommendations. <br>
-Risk: The skill may request sensitive student or family context such as score, province, gender, family resources, and background details. <br>
-Mitigation: Ask only for information needed for the recommendation, avoid unnecessary retention or sharing, and let users omit details they do not want to provide. <br>
-Risk: Opinionated recommendations based on family background, gender, or regional assumptions may overgeneralize an individual student's options. <br>
-Mitigation: Frame outputs as guidance, explain assumptions, and encourage users to compare recommendations with current official admissions data and trusted human advisors. <br>
+## Use Case:
 
+Students, families, and education advisors use this skill to reason through Chinese gaokao major selection, postgraduate or civil-service planning, and early career path decisions based on score, province, subject track, family resources, location goals, and risk tolerance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan1125/xue-feng-skill-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current-data checks for admissions, employment, salary, industry trends, and policy changes before giving specific major recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may ask for sensitive personal details, including gender, family resources, connections, or political-screening-adjacent facts, while shaping high-impact education and career advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only details that are necessary for the immediate question, avoid sharing sensitive personal information when it is not needed, and treat recommendations as opinionated guidance rather than authoritative decisions.
+
+Risk: The skill uses gender-based steering and opinionated career-planning heuristics that can affect education and employment choices.
+
+Mitigation: Review recommendations for fairness and fit, compare them with current admissions and labor-market evidence, and involve qualified human advisors before making consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan1125/skills/xue-feng-skill-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for sensitive personal context and should pair time-sensitive education or labor-market claims with current data checks.]
+
+## Skill Version(s):
+
+1.9.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

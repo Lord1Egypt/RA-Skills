@@ -1,43 +1,60 @@
-## Description: <br>
-Identify and evaluate micro-influencers for ecommerce brand partnerships using engagement metrics, audience fit, and cost-effectiveness analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and evaluate micro-influencers for ecommerce brand partnerships using engagement metrics, audience fit, and cost-effectiveness analysis.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, ecommerce, and growth teams use this skill to discover, vet, price, contact, and track micro-influencer partnerships for brand campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with connected email, social, ecommerce, affiliate, analytics, or payment tools that can contact creators, create tracking assets, ship product, agree to terms, or commit spend. <br>
-Mitigation: Require explicit user approval before sending outreach, creating discount codes or tracking links, agreeing to contract terms, shipping product, or committing campaign spend. <br>
-Risk: Campaign budgets, creator rates, sales, and ROAS reports can expose private business data. <br>
-Mitigation: Treat campaign financials and performance reports as private business data and share them only with approved recipients and systems. <br>
+## Use Case:
 
+Marketing teams, ecommerce operators, and agency strategists use this skill to find, vet, price, contact, and track micro-influencer partnerships. It supports campaign planning across creator discovery, audience fit, engagement authenticity, outreach, contracts, and ROI analysis.
 
-## Reference(s): <br>
-- [Micro-Influencer Campaign Output Template](references/output-template.md) <br>
-- [Micro-Influencer Rate Benchmarks](references/rate-benchmarks-reference.md) <br>
-- [Influencer Outreach Templates and Contract Terms](references/outreach-templates.md) <br>
-- [Micro-Influencer Campaign Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown campaign plans, vetting tables, outreach drafts, budget models, tracking setup, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses brand, audience, platform, budget, creator, and campaign-performance inputs to produce planning and analysis outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Influencer evaluation can become intrusive or noncompliant if it relies on private, unlawfully collected, or platform-prohibited audience data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use lawful, platform-permitted, public, aggregated, or creator-provided analytics when assessing audiences.
+
+Risk: Planning outputs may be misused as automated outreach or profiling rather than reviewed campaign guidance.
+
+Mitigation: Use the skill as a planning aid, manually review creator shortlists and messages, personalize outreach, and keep disclosure and contract requirements explicit.
+
+Risk: Rate benchmarks and projected ROI may be stale or category-dependent.
+
+Mitigation: Validate rates, CPE, CPA, and ROAS assumptions against current creator quotes, platform performance, and campaign results before committing spend.
+
+## Reference(s):
+
+- [Micro-Influencer Campaign Output Template](references/output-template.md)
+- [Micro-Influencer Rate Benchmarks](references/rate-benchmarks-reference.md)
+- [Influencer Outreach Templates and Contract Terms](references/outreach-templates.md)
+- [Micro-Influencer Campaign Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown campaign plans, tables, outreach templates, checklists, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; outputs depend on user-provided brand, audience, budget, platform, and campaign context.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

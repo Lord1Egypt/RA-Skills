@@ -1,41 +1,51 @@
-## Description: <br>
-Jarvis TTS generates natural-sounding Chinese text-to-speech with Microsoft edge-tts and plays it locally with macOS afplay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jarvis TTS text-to-speech using Microsoft edge-tts with afplay playback.
 
-## Publisher: <br>
-[e421083458](https://clawhub.ai/user/e421083458) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[e421083458](https://clawhub.ai/user/e421083458)
 
-## Use Case: <br>
-Developers and AI assistant operators use this skill to convert Chinese text responses, notifications, reminders, or longer passages into spoken audio on macOS. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requested speech text is sent to Microsoft Edge TTS for audio generation. <br>
-Mitigation: Avoid using the skill with secrets, private messages, or confidential business text unless that data handling is acceptable. <br>
-Risk: Audio is played on the local macOS machine through afplay. <br>
-Mitigation: Run the skill only in environments where local audio playback is appropriate and expected. <br>
-Risk: The skill depends on network access, Python 3, edge-tts, and macOS afplay. <br>
-Mitigation: Confirm these dependencies and platform assumptions before relying on the skill in a workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/e421083458/jarvis-tts) <br>
+## Use Case:
+
+External users and developers use this skill to add Chinese text-to-speech playback to an agent workflow, including voice replies, audio responses, notifications, and audiobook-style reading on macOS.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Text submitted for speech synthesis may be sent to Microsoft's TTS service.
+
+Mitigation: Do not use the skill to read secrets, credentials, or confidential material aloud; review whether the text is appropriate for an external TTS service before use.
+
+Risk: The runtime depends on the pip-installed edge-tts package and macOS afplay.
+
+Mitigation: Install dependencies in an isolated environment, pin edge-tts when reproducibility matters, and confirm the target host provides afplay before relying on playback.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate and play temporary MP3 audio locally when the provided shell or Python script is executed.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, shell commands, audio]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [CLI text output with generated MP3 audio playback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts input text and an optional Chinese voice selection; requires macOS afplay, Python 3, edge-tts, and network access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

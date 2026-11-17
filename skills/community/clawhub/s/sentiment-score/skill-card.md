@@ -1,43 +1,54 @@
-## Description: <br>
-Analyze text sentiment on a scale from -1 (negative) to +1 (positive) using Expanso Edge pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze text sentiment on a scale from -1 (negative) to +1 (positive) using Expanso Edge pipelines.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and operators can use this skill to score submitted text for positive, negative, or neutral sentiment and receive a numeric sentiment score. It supports CLI-style text processing and an HTTP server mode for integration into agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Server mode exposes an unauthenticated network endpoint that can use the installer's OpenAI key. <br>
-Mitigation: Prefer CLI mode, or bind the server to localhost and place it behind authentication before making it reachable. <br>
-Risk: Submitted text may be sent to OpenAI and can create usage costs on the configured API key. <br>
-Mitigation: Use only with text that is appropriate for the configured OpenAI account, and monitor API usage and billing. <br>
-Risk: The deploy command references a remote Expanso deployment URL. <br>
-Mitigation: Verify the Expanso tooling and deployment URL before running remote deployment commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aronchick/sentiment-score) <br>
-- [Publisher profile](https://clawhub.ai/user/aronchick) <br>
-- [Expanso](https://expanso.io) <br>
+## Use Case:
 
+Developers and operators can use this skill to score submitted text as positive, negative, or neutral and receive a numeric sentiment score and confidence value.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON sentiment result with score, label, confidence, and metadata; Markdown usage guidance with shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores range from -1 to +1; labels are positive, negative, or neutral.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HTTP/MCP mode can expose an unauthenticated scoring endpoint that may spend the operator's OpenAI API quota.
+
+Mitigation: Use CLI mode for local-only use, or bind the HTTP server to localhost and place any remote deployment behind authentication, request-size limits, rate limits, and OpenAI spending controls.
+
+Risk: Submitted text may be sent to OpenAI when using the provided OpenAI-backed pipelines.
+
+Mitigation: Do not submit sensitive text unless the operator is comfortable sending it to OpenAI.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aronchick/skills/sentiment-score)
+- [Publisher Profile](https://clawhub.ai/user/aronchick)
+- [Expanso](https://expanso.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON sentiment output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The sentiment result includes score, label, confidence, and metadata fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

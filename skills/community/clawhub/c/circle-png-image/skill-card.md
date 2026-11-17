@@ -1,41 +1,58 @@
-## Description: <br>
-Convert PNG images into circular PNG avatars with transparent corners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PNG images into circular PNG avatars with transparent corners.
 
-## Publisher: <br>
-[charmingzuo](https://clawhub.ai/user/charmingzuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charmingzuo](https://clawhub.ai/user/charmingzuo)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to convert PNG images into circular avatar, profile, icon, or round image assets while preserving transparency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local PNG image paths supplied by the user. <br>
-Mitigation: Only provide image paths intended for processing. <br>
-Risk: The --force option can overwrite an existing output file. <br>
-Mitigation: Check the output path before using --force. <br>
+## Use Case:
 
+Developers and content creators use this skill to create circular PNG avatars, profile photos, icons, and other round image assets from user-selected PNG files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charmingzuo/circle-png-image) <br>
-- [Publisher profile](https://clawhub.ai/user/charmingzuo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [PNG image files with concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs PNG files with an alpha channel; optional flags control fit, output diameter, and overwrite behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence; artifact frontmatter is 1.0.0) <br>
+Risk: A missing or floating Pillow dependency can make results less reproducible across environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the dependency in a virtual environment and pin Pillow for sensitive or reproducible workflows.
+
+Risk: The helper script can overwrite an existing output file when overwrite behavior is explicitly enabled.
+
+Mitigation: Keep overwriting user-directed and review the output path before running with force behavior.
+
+Risk: The script processes local image paths supplied by the user.
+
+Mitigation: Provide only PNG image paths that are intended for processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charmingzuo/skills/circle-png-image)
+- [Publisher profile](https://clawhub.ai/user/charmingzuo)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG file output with Markdown or text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are PNG images with an alpha channel; optional fit, size, and overwrite settings affect the generated file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,55 @@
-## Description: <br>
-Daily Tech produces daily Chinese and English technology news digests focused on AI, large models, OpenClaw, robotics, GitHub Trending, and international technology market updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Tech helps an agent produce a concise daily technology digest focused on AI, large language models, OpenClaw, robotics, open source projects, and international technology news.
 
-## Publisher: <br>
-[foxxc](https://clawhub.ai/user/foxxc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxxc](https://clawhub.ai/user/foxxc)
 
-## Use Case: <br>
-External users and developers use this skill to request a concise daily technology and AI digest, or to set up a recurring Feishu delivery for the same digest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can set up recurring automated Feishu posts, which may send daily messages to an unintended channel or account. <br>
-Mitigation: Only enable the scheduled job intentionally, confirm the exact Feishu channel and account first, and verify how to disable the schedule. <br>
-Risk: The digest depends on live third-party web sources and may include stale, unavailable, or misleading source content. <br>
-Mitigation: Review source links before relying on a digest item for business, security, or publication decisions. <br>
+## Use Case:
 
+Agents and end users use this skill to request or schedule a daily technology and AI news roundup. It is intended for concise human-facing summaries from Chinese and English technology sources, with optional recurring delivery to Feishu.
 
-## Reference(s): <br>
-- [Daily Tech ClawHub listing](https://clawhub.ai/foxxc/daily-tech) <br>
-- [Juejin AI weekly hot list](https://tophub.today/n/rYqoXz8dOD) <br>
-- [QbitAI daily latest](https://tophub.today/n/MZd7azPorO) <br>
-- [Product Manager AI learning library](https://tophub.today/n/DOvnyGpoEB) <br>
-- [MIT Technology Review on TopHub](https://tophub.today/n/7GdabqLeQy) <br>
-- [36Kr 24-hour hot list](https://tophub.today/n/Q1Vd5Ko85R) <br>
-- [Zhihu Daily](https://tophub.today/n/KMZd7VOvrO) <br>
-- [The Verge RSS feed](https://www.theverge.com/rss/index.xml) <br>
-- [TechCrunch feed](https://techcrunch.com/feed/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown news digest with optional shell command for OpenClaw cron setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 5-10 concise digest items and may configure recurring Feishu delivery at 07:00 Asia/Shanghai when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Enabling scheduled delivery creates persistent recurring OpenClaw activity through a Feishu cron job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination channel before enabling the schedule, and ensure the operator knows how to list and remove the cron job if notifications are no longer wanted.
+
+## Reference(s):
+
+- [Daily Tech on ClawHub](https://clawhub.ai/foxxc/skills/daily-tech)
+- [TopHub Juejin AI Weekly Hot List](https://tophub.today/n/rYqoXz8dOD)
+- [TopHub QbitAI Daily Latest](https://tophub.today/n/MZd7azPorO)
+- [TopHub MIT Technology Review](https://tophub.today/n/7GdabqLeQy)
+- [TopHub 36Kr 24-Hour Hot List](https://tophub.today/n/Q1Vd5Ko85R)
+- [The Verge RSS Feed](https://www.theverge.com/rss/index.xml)
+- [TechCrunch RSS Feed](https://techcrunch.com/feed/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digest with concise categorized items and optional inline shell command for scheduling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The digest is normally 5-10 items and uses ====== as a separator.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

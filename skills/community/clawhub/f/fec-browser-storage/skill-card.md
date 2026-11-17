@@ -1,41 +1,55 @@
-## Description: <br>
-Helps agents choose, implement, and review browser storage approaches such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, and cleanup strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers choose, implement, and review browser storage for preferences, sessions, structured offline data, and cookies.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to select safe browser storage mechanisms and produce storage, cookie, or IndexedDB implementation guidance with namespaced keys, cleanup behavior, and security boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Browser storage guidance can lead to storing auth tokens, session data, or client-side secrets in storage readable by JavaScript. <br>
-Mitigation: Prefer httpOnly, Secure, SameSite cookies for authentication state and avoid storing plaintext tokens, passwords, payment data, or high-value private data in localStorage, sessionStorage, or IndexedDB. <br>
-Risk: The activation wording is broad, so the skill may be applied to storage decisions where privacy mode, quota, cookie behavior, or cross-browser differences matter. <br>
-Mitigation: Review generated storage choices against the target browser support matrix, data sensitivity, retention requirements, and cleanup strategy before use. <br>
+## Use Case:
 
+Developers use this skill to select browser persistence, implement storage and cookie helpers, and review retention and sensitive-data handling.
 
-## Reference(s): <br>
-- [Browser Storage Patterns](references/storage-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-browser-storage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and storage selection notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser storage selection rationale, wrapper code, cookie settings, IndexedDB examples, key namespacing, expiration, quota handling, and cleanup strategy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence and package.json) <br>
+Risk: Generated storage code could expose authentication tokens or sensitive data to JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review authentication and session handling; prefer server-set httpOnly cookies for tokens and avoid sensitive data in JavaScript-readable storage.
+
+Risk: Browser storage quotas and privacy-mode behavior can disrupt persistence.
+
+Mitigation: Review generated error handling, quota protection, cleanup, and cross-browser behavior before deployment.
+
+## Reference(s):
+
+- [Browser storage patterns](references/storage-patterns.md)
+- [Browser Storage on ClawHub](https://clawhub.ai/bovinphang/skills/fec-browser-storage)
+- [Project repository listed in package metadata](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Storage selection, namespaced keys, expiration or cleanup guidance, and sensitive-data boundaries.]
+
+## Skill Version(s):
+
+2.9.0 (source: server release evidence, README.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

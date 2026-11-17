@@ -1,41 +1,54 @@
-## Description: <br>
-Cryptocurrency prices, market cap rankings, and fiat currency conversion via CoinGecko <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptocurrency prices, market cap rankings, and fiat currency conversion via CoinGecko
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve live cryptocurrency prices, market-cap rankings, and fiat exchange-rate conversions for portfolio tracking, pricing calculations, and market overviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can return live cryptocurrency and exchange-rate data that may change quickly or be unavailable from upstream services. <br>
-Mitigation: Verify values against authoritative market or finance sources before using them for trading, accounting, or contractual decisions. <br>
-Risk: The documented setup and examples call external services through curl or an MCP remote command. <br>
-Mitigation: Install and run the configuration only when the external Pipeworx crypto service is intended, and review commands before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve live cryptocurrency prices, ranked market data, and fiat exchange-rate conversions for portfolio, pricing, and market-overview workflows.
 
-## Reference(s): <br>
-- [Pipeworx Crypto Pack](https://pipeworx.io/packs/crypto) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-crypto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market data, exchange-rate values, MCP configuration snippets, and curl examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP configuration runs mcp-remote from the mutable latest tag at startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned mcp-remote version and review dependency behavior before using the skill in sensitive environments.
+
+Risk: Crypto and currency lookup requests are sent to the Pipeworx gateway.
+
+Mitigation: Use the skill only when sharing those lookup requests with the remote service is acceptable, and avoid exposing nearby sensitive files or credentials.
+
+## Reference(s):
+
+- [Pipeworx crypto homepage](https://pipeworx.io/packs/crypto)
+- [Pipeworx crypto MCP endpoint](https://gateway.pipeworx.io/crypto/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Tool responses with Markdown guidance, JSON examples, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for direct examples and uses a remote MCP endpoint for live market and exchange-rate lookups.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

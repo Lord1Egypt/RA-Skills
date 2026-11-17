@@ -1,42 +1,58 @@
-## Description: <br>
-Archive MCP wraps the Internet Archive APIs without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archive MCP — wraps the Internet Archive APIs (free, no auth).
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to discover and call Internet Archive-related MCP tools through Pipeworx when a task needs archive lookup data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may send user-provided text to the Pipeworx gateway. <br>
-Mitigation: Avoid sending private or sensitive text unless the user trusts Pipeworx for that data. <br>
-Risk: The optional MCP client config uses npx mcp-remote@latest, which fetches code from npm at runtime. <br>
-Mitigation: Pin and review the remote package version before using that config in controlled environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they need to query Internet Archive information through the Pipeworx archive MCP gateway.
 
-## Reference(s): <br>
-- [Pipeworx archive pack](https://pipeworx.io/packs/archive) <br>
-- [Pipeworx Archive MCP gateway](https://gateway.pipeworx.io/archive/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-archive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns JSON-RPC 2.0 responses from the Pipeworx archive gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The MCP client configuration executes a mutable npm dependency and discovers tools from Pipeworx at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the resolved tool list before use and pin or review the MCP bridge package where possible.
+
+Risk: Archive queries are sent through the Pipeworx gateway.
+
+Mitigation: Do not send private URLs, credentials, unpublished identifiers, or sensitive query content through the gateway.
+
+Risk: Anonymous users are rate limited.
+
+Mitigation: Plan for rate limits or use the Pipeworx sign-up path for higher limits when appropriate.
+
+## Reference(s):
+
+- [Pipeworx Archive Pack](https://pipeworx.io/packs/archive)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-archive)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns JSON-RPC 2.0 responses from the Pipeworx archive MCP gateway; anonymous use is rate limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

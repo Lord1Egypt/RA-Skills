@@ -1,44 +1,55 @@
-## Description: <br>
-Google Docs Log Automation - Append log lines to auto-created daily documents in Google Drive by PortEden Secure Access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Docs Log Automation — Append log lines to auto-created daily documents in Google Drive by PortEden Secure Access.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Developers, operators, and AI agents use this skill to append structured run logs to daily Google Docs in a configured Google Drive folder. It helps preserve simple append-only activity records while using PortEden Secure Access for authentication and Drive access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive log contents may be stored in Google Docs. <br>
-Mitigation: Avoid logging secrets, credentials, customer data, internal URLs, or sensitive session details, and keep the PE_Logs folder private. <br>
-Risk: Logs may be written under the wrong PortEden or Google account. <br>
-Mitigation: Verify the active PortEden authentication profile, connected Google account, Drive access, and PE_LOG_FOLDER before logging. <br>
-Risk: Old daily log documents may retain operational details longer than needed. <br>
-Mitigation: Periodically review and delete old log documents that are no longer required. <br>
+## Use Case:
 
+Developers and agents use this skill to append structured run, audit, task, and error logs to daily Google Docs that are auto-created in Google Drive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/docs-logger) <br>
-- [PortEden](https://porteden.com) <br>
-- [Publisher profile](https://clawhub.ai/user/porteden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and compact JSON command output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces append-only Google Docs logging workflows using the porteden CLI, PE_API_KEY, and an optional PE_LOG_FOLDER environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Logged content may be stored in Google Drive and could expose secrets, personal data, customer data, or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid logging sensitive data unless the storage and retention model has been explicitly approved.
+
+Risk: The PortEden CLI token and connected Google Drive access are cloud-access sensitive.
+
+Mitigation: Verify the PortEden install source, use least-privilege Google access where possible, and restrict sharing on the log folder.
+
+## Reference(s):
+
+- [PortEden](https://porteden.com)
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/docs-logger)
+- [PortEden ClawHub publisher profile](https://clawhub.ai/user/porteden)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and compact JSON command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the porteden CLI, PE_API_KEY, and a configured PE_LOG_FOLDER for daily Google Docs logging.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Full-stack Web3 marketing and GTM brain for AI agents and bots that produces GTM launch plans, campaign calendars, community engagement scripts, and on-chain user acquisition and retention strategies from a project brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents turn a Web3 project brief into a go-to-market launch plan, four-week campaign calendar, Discord/Telegram/X community scripts, and on-chain retention strategy.
 
-## Publisher: <br>
-[luacantu](https://clawhub.ai/user/luacantu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luacantu](https://clawhub.ai/user/luacantu)
 
-## Use Case: <br>
-External users, marketers, founders, and agent operators use this skill to turn a Web3 project brief into execution-ready launch strategy, campaign scheduling, platform-native community copy, and retention planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-tracking and outreach templates could create privacy risk if wallet activity is linked to chat or social identities without consent. <br>
-Mitigation: Remove requests for public wallet-address posting, avoid identity linkage without clear consent, and add privacy notices, opt-out paths, and compliance review for targeted outreach. <br>
+## Use Case:
 
+External marketing, growth, and community teams use this skill to generate launch strategy, campaign planning, community copy, and retention loops for Web3 projects from a brief containing project name, chain, and product type.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luacantu/web3-marketing-gtm) <br>
-- [GTM Launch Plan Template](references/gtm-plan.md) <br>
-- [Campaign Calendar Template](references/campaign-calendar.md) <br>
-- [Community Engagement Scripts](references/community-scripts.md) <br>
-- [On-Chain Retention Strategy & User Segmentation](references/onchain-retention.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Structured Markdown document with launch plan sections, calendar tables, message templates, and retention strategy tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires project name, chain, and product type; may ask for missing required brief fields before producing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Outputs may include public wallet-address collection or direct outreach based on wallet activity without consent safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy before publication; remove public wallet collection, require opt-in consent before direct outreach, and include opt-out language.
+
+Risk: Default campaign timing may not match the target community's actual region or activity pattern.
+
+Mitigation: Adapt posting schedules, event times, and outreach cadence to the audience region before publishing.
+
+Risk: Generated marketing plans may include factual assumptions about chains, metrics, audiences, or product positioning that were not present in the brief.
+
+Mitigation: Confirm chain-specific details, performance targets, and positioning claims against the project brief and current project data before use.
+
+## Reference(s):
+
+- [GTM Launch Plan Template](references/gtm-plan.md)
+- [Campaign Calendar Template](references/campaign-calendar.md)
+- [Community Engagement Scripts](references/community-scripts.md)
+- [On-Chain Retention Strategy & User Segmentation](references/onchain-retention.md)
+- [ClawHub skill page](https://clawhub.ai/luacantu/skills/web3-marketing-gtm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with tables and platform-specific copy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a four-part output suite from a project brief; may include channel schedules, community messages, and on-chain retention segments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Provides prioritized MSBuild and dotnet command templates for .NET and ASP.NET restore, build, test, publish, pack, diagnostics, and CI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a prioritized reference of MSBuild and dotnet CLI command templates for restoring, building, testing, publishing, packaging, diagnosing, and hardening .NET and ASP.NET workflows.
 
-## Publisher: <br>
-[TheCyberCore](https://clawhub.ai/user/TheCyberCore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thecybercore](https://clawhub.ai/user/thecybercore)
 
-## Use Case: <br>
-Developers and build engineers use this skill to choose MSBuild and dotnet CLI command templates for routine .NET and ASP.NET build, test, packaging, publishing, diagnostics, and CI tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested build, clean, publish, restore, or package commands may affect project outputs, dependencies, or release artifacts if run without adapting paths and properties. <br>
-Mitigation: Review project paths, output directories, clean or publish actions, restore sources, runtime identifiers, and build properties before allowing an agent to run a suggested command. <br>
-Risk: Restore commands that use custom or private package feeds may trigger authentication prompts or access private dependency sources. <br>
-Mitigation: Confirm private-feed authentication behavior and feed URLs before execution, especially in shared or automated environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and build engineers use this skill to choose practical MSBuild and dotnet CLI commands for common .NET and ASP.NET tasks, including restore, build, test, publish, packaging, diagnostics, and CI workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command templates require project-specific paths, output directories, target frameworks, runtime identifiers, restore sources, and authentication settings to be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: MSBuild diagnostics such as binlogs, text logs, and preprocessed project files can expose local project structure, paths, feed URLs, or build metadata.
+
+Mitigation: Review generated diagnostics before sharing them and redact sensitive project or environment details.
+
+Risk: Command templates may include restore sources, private feed authentication, runtime identifiers, output paths, or publish options that are environment-specific.
+
+Mitigation: Treat commands as templates and adjust feed URLs, authentication settings, paths, and publish properties before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thecybercore/skills/msbuild)
+- [Publisher profile](https://clawhub.ai/user/thecybercore)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Suggests the top relevant command templates, key MSBuild properties, and a diagnostic binlog command for failures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

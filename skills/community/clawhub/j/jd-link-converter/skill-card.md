@@ -1,43 +1,60 @@
-## Description: <br>
-Converts JD.com mobile share links, short links, product URLs, or product IDs into clean desktop JD product links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts JD mobile share short links and mobile product links into clean desktop item.jd.com product links.
 
-## Publisher: <br>
-[mousounikki](https://clawhub.ai/user/mousounikki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mousounikki](https://clawhub.ai/user/mousounikki)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to normalize JD.com short links, mobile product links, parameterized desktop links, and product IDs into clean desktop product URLs. It is useful for single-link cleanup or batch conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Resolving 3.cn or u.jd.com short links contacts JD short-link hosts and may expose request metadata such as IP address, timing, and User-Agent. <br>
-Mitigation: Avoid using the skill for sensitive or private links when outbound request metadata matters; prefer direct item.jd.com, item.m.jd.com, or product ID inputs where possible. <br>
-Risk: Short links can expire, redirect unexpectedly, or fail under network restrictions. <br>
-Mitigation: Review converted URLs before use and provide a mobile JD product link or product ID when short-link resolution fails. <br>
+## Use Case:
 
+Developers, ecommerce operators, and agents use this skill to convert JD short links, mobile product URLs, PC URLs with tracking parameters, or product IDs into canonical desktop JD product URLs. Short-link conversion may make outbound requests to resolve redirects; direct product links and product IDs can be converted locally.
 
-## Reference(s): <br>
-- [JD URL formats](references/url_formats.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mousounikki/jd-link-converter) <br>
-- [JD short-link resolution reference](https://blog.csdn.net/Firewall5788/article/details/120301954) <br>
-- [OpenClaw skill reference](https://github.com/momozi1996/awesome-ai-persona-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown table or JSON conversion results containing original links, product IDs, resolved links when applicable, and clean JD desktop URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short-link resolution may perform outbound HTTP requests to JD short-link hosts; direct product links and product IDs can be converted without network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence, SKILL.md frontmatter, pyproject.toml) <br>
+Risk: Short-link resolution can follow redirects to unvalidated network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where outbound requests to resolve JD short links are acceptable; prefer direct item.jd.com or item.m.jd.com URLs or product IDs in sensitive environments.
+
+Risk: Short-link resolution may be unsuitable in environments where the agent can reach internal services.
+
+Mitigation: Avoid running the resolver with access to internal networks unless redirect validation or egress controls are added.
+
+Risk: Expired, blocked, or UA-sensitive short links may fail to resolve to a product page.
+
+Mitigation: Ask for a mobile product link, desktop product link, or product ID when short-link resolution times out or redirects to the JD homepage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mousounikki/skills/jd-link-converter)
+- [JD URL formats](references/url_formats.md)
+- [CSDN short-link reference](https://blog.csdn.net/Firewall5788/article/details/120301954)
+- [OpenClaw skill reference](https://github.com/momozi1996/awesome-ai-persona-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown table or JSON-style conversion results with canonical JD desktop URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include original URL, resolved URL, product ID, clean PC URL, and error text for failed conversions.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

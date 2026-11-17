@@ -1,43 +1,57 @@
-## Description: <br>
-Skill for the Meta Business CLI. Complete WhatsApp, Instagram, Facebook Pages, and Messenger automation via the Graph API. Supports messaging, media, templates, analytics, webhooks, and systemd service management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for the Meta Business CLI. Complete WhatsApp, Instagram, Facebook Pages, and Messenger automation via the Graph API. Supports messaging, media, templates, analytics, webhooks, and systemd service management.
 
-## Publisher: <br>
-[adolago](https://clawhub.ai/user/adolago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adolago](https://clawhub.ai/user/adolago)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents in configuring and running the Meta Business CLI for WhatsApp, Instagram, Facebook Pages, Messenger, webhooks, analytics, and service management tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables powerful Meta business account actions, including sends, posts, deletes, moderation actions, webhook forwarding, and service installation. <br>
-Mitigation: Use least-privilege Meta scopes and manually confirm sends, posts, deletes, moderation actions, webhook destinations, and service installation before execution. <br>
-Risk: Stored credentials and local configuration can expose Meta app secrets, access tokens, phone number IDs, and webhook settings. <br>
-Mitigation: Protect ~/.meta-cli/config.json, avoid unnecessary token sharing, and verify configuration before running automated workflows. <br>
-Risk: Webhook forwarding can send inbound message data to an unintended or untrusted endpoint. <br>
-Mitigation: Use HTTPS endpoints you control and verify webhook.forwardUrl destinations before enabling forwarding. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adolago/meta-business) <br>
-- [Publisher profile](https://clawhub.ai/user/adolago) <br>
-- [Meta CLI source repository](https://github.com/adolago/meta-cli.git) <br>
+## Use Case:
 
+Developers and operators use this skill to run Meta Business CLI workflows for Graph API automation across WhatsApp, Instagram, Facebook Pages, and Messenger. It helps agents configure credentials, send and manage messages and media, inspect analytics, handle webhooks, run diagnostics, and manage a systemd webhook service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages JSON output from CLI commands for scripting and agent use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs unaudited CLI code that can access Meta business assets.
+
+Mitigation: Install only when the publisher is trusted, and prefer a pinned, reviewed release or verified source commit.
+
+Risk: The CLI handles powerful Meta credentials and may expose secrets through shared terminals, logs, or weak local file permissions.
+
+Mitigation: Avoid entering production secrets in shared terminals or logs, and review permissions on `~/.meta-cli/config.json`.
+
+Risk: Webhook forwarding and systemd service use can process message data through a long-running service.
+
+Mitigation: Enable webhook forwarding or the service only after reviewing what data will be sent and how to stop or uninstall the service.
+
+## Reference(s):
+
+- [Meta Business CLI ClawHub skill](https://clawhub.ai/adolago/skills/meta-business)
+- [Meta CLI source repository from install metadata](https://github.com/adolago/meta-cli.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples, setup steps, configuration keys, and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill recommends structured JSON output from CLI commands when automating.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

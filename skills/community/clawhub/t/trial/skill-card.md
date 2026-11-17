@@ -1,48 +1,58 @@
-## Description: <br>
-Send and receive KAS cryptocurrency. Check balances, send payments, generate wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive KAS cryptocurrency. Check balances, send payments, generate wallets.
 
-## Publisher: <br>
-[Manyfestation](https://clawhub.ai/user/Manyfestation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manyfestation](https://clawhub.ai/user/manyfestation)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a Kaspa command-line wallet: install the Python dependency, configure wallet credentials, check balances and network status, estimate fees, generate payment URIs or mnemonics, and send KAS transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use wallet secrets to send funds immediately. <br>
-Mitigation: Review carefully before installation, start on testnet or with a low-balance wallet, and require explicit human confirmation before any send, max, or consolidation command. <br>
-Risk: Private keys or mnemonics are supplied through environment variables that may be exposed in shared shells or agent sessions. <br>
-Mitigation: Avoid using production wallet secrets in shared environments and clear sensitive environment variables after use. <br>
-Risk: The kaspa dependency is declared without a pinned version. <br>
-Mitigation: Review or pin the kaspa package version before use in production workflows. <br>
+## Use Case:
 
+Developers and external users can use this skill to operate a Kaspa command-line wallet, including balance checks, fee estimates, payment URI generation, wallet generation, and KAS transfers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Manyfestation/trial) <br>
-- [Publisher profile](https://clawhub.ai/user/Manyfestation) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [Kaspa Python package](https://pypi.org/project/kaspa/) <br>
-- [Kaspa mainnet explorer](https://explorer.kaspa.org/) <br>
-- [Kaspa testnet explorer](https://explorer-tn10.kaspa.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return structured JSON and use environment variables for wallet secrets, network selection, RPC URL, and timeout settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The wallet can move real KAS funds and the security verdict is suspicious due to weak safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation or real-funds use, start on testnet or with small balances, and require manual out-of-band confirmation for every send.
+
+Risk: Wallet mnemonics or private keys may be exposed through shell environments or agent-visible logs.
+
+Mitigation: Avoid production secrets in shell environment variables or logs, and rotate credentials if exposure is suspected.
+
+Risk: The wallet depends on an unpinned kaspa package and configurable RPC endpoints.
+
+Mitigation: Pin and review the kaspa dependency before handling valuable wallets, and use only trusted wss:// RPC endpoints.
+
+## Reference(s):
+
+- [Kaspa Mainnet Transaction Explorer](https://explorer.kaspa.org/txs/{txid})
+- [Kaspa Testnet Transaction Explorer](https://explorer-tn10.kaspa.org/txs/{txid})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return structured JSON and exit code 0 for success or 1 for errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

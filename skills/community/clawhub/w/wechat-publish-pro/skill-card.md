@@ -1,44 +1,67 @@
-## Description: <br>
-Converts Markdown articles into WeChat Official Account styled HTML and can publish them as WeChat draft articles with theme and cover-image support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown into WeChat Official Account styled HTML and publishes articles to WeChat draft storage with theme, image, and account-management support.
 
-## Publisher: <br>
-[yuesf](https://clawhub.ai/user/yuesf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuesf](https://clawhub.ai/user/yuesf)
 
-## Use Case: <br>
-Developers, content operators, and agent users can use this skill to prepare Markdown articles for WeChat Official Accounts and create draft posts after configuring WeChat credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WeChat Official Account credentials to create external draft articles. <br>
-Mitigation: Install only from a trusted publisher, provide credentials deliberately, and review drafts in the WeChat console before public release. <br>
-Risk: Credentials may be stored or loaded from local configuration and environment files. <br>
-Mitigation: Protect local config files, avoid sharing sensitive unpublished content, and prefer environment-specific secret handling where possible. <br>
-Risk: The helper script includes unsafe environment-file sourcing and eval-based command execution behavior identified by the security evidence. <br>
-Mitigation: Avoid scripts/publish.sh until the helper script is fixed; prefer explicit wechat-publish-pro CLI commands. <br>
+## Use Case:
 
+Developers, content teams, and agents use this skill to prepare Markdown articles for WeChat Official Accounts, generate styled HTML, manage publishing credentials, upload images, test connectivity, and create WeChat draft articles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuesf/wechat-publish-pro) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/) <br>
-- [WeChat developer platform](https://developers.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, HTML, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and generated WeChat-formatted HTML or draft creation actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local Markdown, HTML, image, and configuration files and may create WeChat draft content through the WeChat API when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: Unsafe shell execution paths may allow unintended command execution during publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove eval from scripts/publish.sh and pass validated command arguments directly before installing or running the skill.
+
+Risk: Loading ~/.openclaw/.env as shell code can execute more than the required WeChat credential variables.
+
+Mitigation: Load only the required WECHAT_APP_ID and WECHAT_APP_SECRET values with a safe parser instead of sourcing the file.
+
+Risk: WeChat AppSecret handling may expose publishing credentials if stored or shared without access controls.
+
+Mitigation: Store AppSecret with restrictive file permissions or in a secret store, and avoid using the skill with sensitive drafts until credential handling is reviewed.
+
+Risk: Remote image or CSS fetching can pull untrusted network content into the publishing flow.
+
+Mitigation: Restrict remote fetches to trusted sources and review article assets before uploading or publishing.
+
+Risk: Automated publish actions can create WeChat drafts without an explicit operator checkpoint.
+
+Mitigation: Require confirmation before publishing and pin the installation source for repeatable releases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuesf/skills/wechat-publish-pro)
+- [WeChat Developers Platform](https://developers.weixin.qq.com/)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated HTML files, and WeChat draft or media identifiers when publishing succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WeChat AppID and AppSecret credentials and a WeChat Official Account IP allowlist entry for publishing operations.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

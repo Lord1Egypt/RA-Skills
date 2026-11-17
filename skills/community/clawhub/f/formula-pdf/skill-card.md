@@ -1,44 +1,55 @@
-## Description: <br>
-Renders documents that contain mathematical formulas into PDFs by generating HTML, loading MathJax, and printing through Microsoft Edge in headless mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders content containing mathematical formulas into PDF documents using HTML, MathJax, and Microsoft Edge headless mode.
 
-## Publisher: <br>
-[nahida-robin](https://clawhub.ai/user/nahida-robin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nahida-robin](https://clawhub.ai/user/nahida-robin)
 
-## Use Case: <br>
-Developers and content authors use this skill to turn reports, notes, worksheets, and technical documents with LaTeX-style math into PDF files with rendered formulas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The enhanced conversion workflow can forcibly close all Microsoft Edge processes. <br>
-Mitigation: Avoid --kill-edge, taskkill, and Stop-Process workflows unless browser work is saved and the user explicitly wants all Edge windows closed. <br>
-Risk: The workflow uses headless Edge automation to print local HTML to PDF. <br>
-Mitigation: Review generated HTML, command arguments, and file paths before execution, especially when converting untrusted content. <br>
-Risk: Formula rendering depends on loading MathJax from an external CDN. <br>
-Mitigation: Use the skill only where external MathJax loading is acceptable, or replace the CDN dependency with a reviewed local MathJax copy for restricted environments. <br>
+## Use Case:
 
+Developers and agents use this skill to create reports, notes, course materials, technical documents, and other PDFs that need correctly rendered mathematical formulas. It is most relevant for Windows workflows that can use Microsoft Edge headless mode and MathJax.
 
-## Reference(s): <br>
-- [Formula-PDF Release Page](https://clawhub.ai/nahida-robin/formula-pdf) <br>
-- [Lessons Learned](references/lessons_learned.md) <br>
-- [MathJax tex-chtml.js CDN](https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [PDF documents generated from HTML with MathJax-rendered formulas, with Markdown guidance and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Microsoft Edge headless mode; optional PyMuPDF verification can check whether raw LaTeX remains in generated PDF text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The enhanced conversion script can terminate all Microsoft Edge processes during retry cleanup or when --kill-edge is used, which may close unrelated user browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the basic workflow that does not kill Edge processes, or modify cleanup to terminate only the headless browser process launched by the skill.
+
+Risk: The PDF workflow loads MathJax from a CDN, which may fail in restricted networks and may be unsuitable for sensitive or offline documents.
+
+Mitigation: Use a local MathJax copy for sensitive, offline, or network-restricted documents, and verify the generated PDF for unrendered LaTeX text.
+
+## Reference(s):
+
+- [Formula PDF lessons learned](references/lessons_learned.md)
+- [MathJax TeX CHTML component](https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js)
+- [ClawHub skill page](https://clawhub.ai/nahida-robin/skills/formula-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, PowerShell, Python, and PDF file workflow outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or guides creation of HTML source files and PDF documents; optional verification checks for unrendered LaTeX text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

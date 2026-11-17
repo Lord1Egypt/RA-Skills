@@ -1,41 +1,57 @@
-## Description: <br>
-Sirchmunk provides local file search through the Sirchmunk API for natural-language file and content queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local file search using sirchmunk API. Use when you need to search for files or content by asking natural language questions.
 
-## Publisher: <br>
-[wangxingjun778](https://clawhub.ai/user/wangxingjun778) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxingjun778](https://clawhub.ai/user/wangxingjun778)
 
-## Use Case: <br>
-Developers and other users use this skill to submit natural-language searches against a local Sirchmunk service for files or content in configured paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may include sensitive terms and are sent to the local Sirchmunk API. <br>
-Mitigation: Use only with an intentional Sirchmunk deployment, review indexed folders and logging behavior, and avoid sensitive workspaces unless approved. <br>
-Risk: Results can be incomplete when search paths are not configured or passed to the wrapper. <br>
-Mitigation: Confirm SIRCHMUNK_SEARCH_PATHS or pass explicit paths before relying on search results. <br>
+## Use Case:
 
+Developers and external users use this skill to issue natural-language searches against configured local files through Sirchmunk when they need relevant file or content matches without building an embedding database, index, or ETL pipeline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxingjun778/sirchmunk) <br>
-- [Sirchmunk project homepage](https://github.com/modelscope/sirchmunk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; runtime search results are formatted as JSON when the local API returns JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running local Sirchmunk service and configured search paths; search terms are sent to the localhost API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad local search paths or matched file contents could expose sensitive project files to the configured Sirchmunk backend or LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict SIRCHMUNK_SEARCH_PATHS and optional path arguments to approved project folders, and exclude secret, credential, and private data directories.
+
+Risk: The skill depends on a local Sirchmunk service, package installation, and a configured LLM endpoint that may not be equally trusted in every environment.
+
+Mitigation: Install only trusted and pinned Sirchmunk versions, run the service in an isolated environment, and use an approved LLM endpoint.
+
+Risk: Free-form query and path inputs can affect wrapper behavior and the contents sent to the search API.
+
+Mitigation: Use controlled query inputs for automated workflows and review path values before execution.
+
+## Reference(s):
+
+- [Sirchmunk homepage](https://github.com/modelscope/sirchmunk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text or formatted JSON from the local Sirchmunk search API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses one natural-language query with optional search paths; results depend on the configured local Sirchmunk server, approved search paths, and LLM endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

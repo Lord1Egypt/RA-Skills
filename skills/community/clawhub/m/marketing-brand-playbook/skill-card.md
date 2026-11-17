@@ -1,44 +1,55 @@
-## Description: <br>
-CMO-level marketing and brand strategy guidance for Codex and compatible agent runtimes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CMO-level marketing and brand strategy playbook for positioning, messaging, content, SEO/SEM, PR, market research, segmentation, campaigns, CRO, and go-to-market planning.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Marketing, growth, and communications teams use this skill to develop brand positioning, messaging, content strategy, campaign plans, SEO and paid media guidance, email programs, PR responses, customer research, segmentation, and go-to-market recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad activation wording for marketing, branding, growth, and go-to-market conversations, so it may be invoked in a wide range of business-planning contexts. <br>
-Mitigation: Confirm the marketing context is relevant before relying on the guidance, and treat outputs as proposals for human review rather than final business decisions. <br>
-Risk: The playbook includes market statistics, trend claims, and regulatory references that may become outdated or require jurisdiction-specific review. <br>
-Mitigation: Fact-check time-sensitive metrics, platform rules, accessibility requirements, advertising claims, and PR or crisis communications before publication or execution. <br>
-Risk: Global auto-confirm installation can skip prompts that would otherwise let an operator inspect the skill first. <br>
-Mitigation: Review the source before using the global auto-confirm install command, and remove --yes when install-time confirmation is preferred. <br>
+## Use Case:
 
+Marketing teams, founders, and growth operators use this skill to generate strategy frameworks, campaign plans, messaging, channel recommendations, and measurement guidance for brand and go-to-market work.
 
-## Reference(s): <br>
-- [Marketing Brand Playbook skill page](https://clawhub.ai/chilu18/marketing-brand-playbook) <br>
-- [Publisher profile](https://clawhub.ai/user/chilu18) <br>
-- [Extended playbook](references/extended-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text strategic guidance with frameworks, checklists, plans, and copy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory marketing content only; no code execution, credential access, hidden automation, or data-handling behavior is described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Release evidence reports suspicious security posture because documented install and scan commands rely on mutable unpinned remote execution and a global noninteractive install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin installer and scanner versions, install from a reviewed commit or signed release, avoid global noninteractive install unless intended, and run package-runner commands in a least-privileged or disposable environment.
+
+Risk: Marketing recommendations may contain unsupported statistics or advice that is stale for a specific market, jurisdiction, or campaign.
+
+Mitigation: Review strategy and claims against current market data, brand requirements, applicable law, and human approval before publication or campaign execution.
+
+## Reference(s):
+
+- [Extended Playbook](references/extended-playbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/chilu18/skills/marketing-brand-playbook)
+- [GitHub Repository](https://github.com/Hey-Salad/marketing-brand-playbook-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and plain-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing strategy, playbook-style frameworks, copy guidance, planning checklists, and measurement recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

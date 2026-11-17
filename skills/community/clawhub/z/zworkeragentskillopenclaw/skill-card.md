@@ -1,44 +1,59 @@
-## Description: <br>
-Controls a local zworker AI automation app over HTTP to list and run tasks, manage schedules, sync OpenClaw user routing information, and fetch notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a local zworker AI automation application through HTTP APIs for task management, schedule control, user information synchronization, and message notification forwarding.
 
-## Publisher: <br>
-[peterpan0630](https://clawhub.ai/user/peterpan0630) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterpan0630](https://clawhub.ai/user/peterpan0630)
 
-## Use Case: <br>
-OpenClaw users and automation operators use this skill to control a locally running zworker instance, including task execution, schedule control, notification retrieval, and user routing synchronization. It is intended for environments where the local zworker app and its automations are trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route notification content to channels and users. <br>
-Mitigation: Prefer explicit channel and userid routing, and avoid notification fallback behavior in shared or multi-user channels. <br>
-Risk: The skill can run tasks and enable schedules in the local zworker app. <br>
-Mitigation: Install only when the local zworker app is trusted, and periodically review enabled schedules and task behavior. <br>
-Risk: The skill depends on a local unauthenticated HTTP service. <br>
-Mitigation: Use it only in a trusted local environment and confirm the service listening on localhost:18803 is the intended zworker app. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and control zworker automations from an OpenClaw agent, including listing or running tasks, enabling or disabling schedules, syncing channel user identifiers, and forwarding zworker notifications.
 
-## Reference(s): <br>
-- [Zworker HTTP API endpoints](references/api_endpoints.md) <br>
-- [ClawHub skill page](https://clawhub.ai/peterpan0630/zworkeragentskillopenclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/peterpan0630) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-backed command output from local zworker HTTP operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local zworker service listening on localhost:18803.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and version.json) <br>
+Risk: The skill can trigger zworker automations and change schedules through a local API without an authentication layer shown in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the local zworker service is intentionally running and trusted, and review task or schedule identifiers before execution.
+
+Risk: Notification forwarding can send messages to a default or recent recipient when no user identifier is present.
+
+Mitigation: Review message-forwarding behavior and avoid ambiguous or default recipients for sensitive notifications.
+
+Risk: User synchronization sends channel and user identifiers to the local zworker service.
+
+Mitigation: Sync only the intended channels and user identifiers, and limit use to trusted local environments.
+
+## Reference(s):
+
+- [Zworker HTTP API endpoints](references/api_endpoints.md)
+- [ClawHub skill page](https://clawhub.ai/peterpan0630/skills/zworkeragentskillopenclaw)
+- [ClawHub publisher profile](https://clawhub.ai/user/peterpan0630)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON/text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include task and schedule lists, success or failure messages, notification content, and command guidance for local zworker API operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: artifact/version.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

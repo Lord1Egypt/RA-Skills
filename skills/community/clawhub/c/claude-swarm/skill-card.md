@@ -1,42 +1,58 @@
-## Description: <br>
-Claude Swarm orchestrates multiple Claude Code agents for parallel coding with git worktrees, tmux tracking, endorsement gates, auto-review chains, integration merging, and notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude-native multi-agent swarm orchestration for parallel coding with git worktrees, tmux tracking, endorsement gates, auto-review chains, integration merging, and webhook notifications.
 
-## Publisher: <br>
-[linkbag](https://clawhub.ai/user/linkbag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkbag](https://clawhub.ai/user/linkbag)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multiple Claude Code agents across parallel implementation, review, and integration tasks in a git repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run background Claude Code agents with broad permission settings that modify repository files, create commits, push branches, and open pull requests. <br>
-Mitigation: Run it only in repositories where autonomous code changes are intended; prefer forks or disposable branches, review all diffs before merging, and monitor or stop tmux sessions as needed. <br>
-Risk: Batch and watcher scripts can install dependencies and perform automated review or integration steps with active git, GitHub, and Claude credentials. <br>
-Mitigation: Verify credentials and configuration before use, disable auto-merge behavior unless explicitly wanted, and avoid unattended execution in sensitive repositories. <br>
-Risk: Optional webhook or Telegram notifications can send workflow status outside the local environment. <br>
-Mitigation: Leave notifications disabled unless needed, and only configure notification endpoints approved for the repository and team. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to split parallel coding work across multiple Claude Code agents, track each task in an isolated worktree, review branch output, and coordinate integration.
 
-## Reference(s): <br>
-- [Claude Swarm on ClawHub](https://clawhub.ai/linkbag/claude-swarm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and script-driven repository changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create worktrees, branches, commits, pull requests, logs, and notification messages through the bundled shell scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Unattended agents can run with broad repository authority, including permission bypass, commits, pushes, and default main-branch integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or tightly sandboxed repository with test-scoped credentials, disable auto-merge unless explicitly needed, and review every generated branch before pushing or merging.
+
+Risk: Notification and automation scripts can run long-lived watchers and send status externally when configured.
+
+Mitigation: Keep notifications disabled unless required, scope webhook or Telegram credentials narrowly, and verify the configured destination before running batch workflows.
+
+Risk: Cleanup and integration scripts can alter worktrees, branches, and remote repository state.
+
+Mitigation: Run cleanup and integration commands only in non-production repositories or after confirming branch names, remotes, and pending changes.
+
+## Reference(s):
+
+- [Claude Swarm on ClawHub](https://clawhub.ai/linkbag/skills/claude-swarm)
+- [linkbag publisher profile](https://clawhub.ai/user/linkbag)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON task definitions, shell script execution, git branches, pull requests, and notification messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repository changes through delegated Claude Code agents and may create worktrees, branches, commits, pull requests, logs, and notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

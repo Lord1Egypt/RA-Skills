@@ -1,44 +1,51 @@
-## Description: <br>
-Get 笔记 helps an agent operate a user's Get 笔记 account through OOMOL for reading, searching, creating, updating, sharing, tagging, and trashing notes and knowledge-base items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get Biji (biji.com). Use this skill for ANY Get Biji request — reading, creating, updating, and deleting data. Whenever a task involves Get Biji, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an agent to manage Get 笔记 notes and knowledge bases through their connected OOMOL account. It supports read workflows, semantic search, note creation and updates, sharing, tag management, and knowledge-base changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Get 笔记 account state, including creating or updating notes, sharing notes, changing tags, and modifying knowledge-base contents. <br>
-Mitigation: Review and approve exact payloads before any write or sharing action, including the intended target and user-visible effect. <br>
-Risk: Destructive actions can trash notes or remove tags and knowledge-base associations. <br>
-Mitigation: Require explicit user approval for the exact note, tag, or knowledge-base item before destructive actions. <br>
-Risk: First-time CLI installation, sign-in, or account connection steps grant tooling access to operate the user's Get 笔记 account. <br>
-Mitigation: Run setup or authentication steps only when needed for a failed command and only if the user trusts the OOMOL tooling. <br>
+## Use Case:
 
+People using an OOMOL-connected Get Biji account can ask an agent to find and read notes, save and organize content, manage knowledge bases, or update, share, and remove notes.
 
-## Reference(s): <br>
-- [Get 笔记 Skill Page](https://clawhub.ai/oomol/skills/oo-getnote) <br>
-- [Get 笔记 Homepage](https://www.biji.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects that include data and an execution id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill metadata) <br>
+Risk: Initial setup may execute remote installer code whose effects were unavailable for inspection, and CLI synchronization can introduce broader agent changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately, inspect its agent-skill synchronization settings, and approve any additional host changes before setup.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Get Biji](https://www.biji.com/)
+- [Get Biji API documentation](https://doc.biji.com/docs/WOxgwObNNiyMHWk1dl0cJqSxnEd/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads; Get Biji results returned as JSON and summarized in text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Link and image saves may return asynchronous task identifiers.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

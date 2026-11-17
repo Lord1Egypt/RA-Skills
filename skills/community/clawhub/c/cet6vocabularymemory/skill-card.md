@@ -1,44 +1,56 @@
-## Description: <br>
-基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统，支持新单词学习与测验、智能复习计划、定时任务提醒和学习进度追踪，适用于中国大学生备考CET-6。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统，支持新单词学习与测验、智能复习计划、定时任务提醒和学习进度追踪，适用于中国大学生备考CET-6。
 
-## Publisher: <br>
-[gangrammer](https://clawhub.ai/user/gangrammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangrammer](https://clawhub.ai/user/gangrammer)
 
-## Use Case: <br>
-External learners and agents use this skill to guide CET-6 vocabulary study with spaced repetition, quizzes, review scheduling, and progress tracking. It is aimed at Chinese university students preparing for the College English Test Band 6. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder setup can create persistent cron jobs and send automated messages. <br>
-Mitigation: Confirm the cron schedule, script path, OpenClaw account, and recipient target before enabling reminders. <br>
-Risk: The reminder behavior lacks complete cleanup and script provenance guidance. <br>
-Mitigation: Document how to remove installed cron entries and delete the schedule and progress CSV files before deployment. <br>
+## Use Case:
 
+Students preparing for China's CET-6 English exam use this skill to learn vocabulary, schedule spaced reviews, take spelling, choice, and translation quizzes, and track mastery over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gangrammer/cet6vocabularymemory) <br>
-- [CET-6 vocabulary list](references/cet6-vocabulary.md) <br>
-- [Memory algorithm and review plan](references/memory-algorithm.md) <br>
-- [Schedule configuration](references/schedule-config.md) <br>
-- [CSV schema](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown study prompts with quiz content, scheduling guidance, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to CSV files for user schedule and word memory status tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reminder setup may create persistent cron jobs that call an unaudited root-path CET-4 reminder script and send messages through a default account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before any cron change, verify or replace the referenced reminder script, and avoid root-owned paths and default messaging accounts.
+
+Risk: Schedule and progress CSV files can retain user identifiers, learning schedules, and memory state without clear lifecycle controls.
+
+Mitigation: Provide a clear way to list, disable, and delete stored schedule data, progress records, and reminders.
+
+## Reference(s):
+
+- [CET-6 vocabulary list](references/cet6-vocabulary.md)
+- [Memory algorithm and review plan](references/memory-algorithm.md)
+- [Schedule configuration](references/schedule-config.md)
+- [CSV schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversational guidance with vocabulary prompts, quiz items, CSV status updates, and optional cron shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent reminder configuration and local CSV updates for schedule and memory state.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

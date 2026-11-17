@@ -1,7 +1,7 @@
 ---
 name: "smyx-cage-cleanliness-detection-analysis"
 description: "AI-powered cage cleanliness detection via fixed cameras in boarding kennels/pet shops; analyzes floor images to detect feces/urine coverage area ratio, triggers cleaning alerts when exceeding preset threshold (e.g. 5%). Scenarios: pet boarding centers, pet shops, animal hospitals, breeding facilities. | 通过寄养中心或宠物店笼舍内的固定摄像头，定时分析地面图像，识别粪便、尿液等排泄物的覆盖面积占比，当超过预设阈值（如5%）时自动触发清洁提醒。该技能可帮助管理人员及时清理笼舍，维持环境卫生，预防疾病传播，并提升宠物福利。应用场景：宠物寄养中心、宠物店、动物医院住院部、宠物繁育基地。"
-version: "1.0.3"
+version: "1.0.22"
 license: "MIT-0"
 ---
 
@@ -156,7 +156,7 @@ python -m scripts.smyx_cage_cleanliness_detection_analysis --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅供环境卫生管理参考，不提供疾病诊断或治疗建议 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

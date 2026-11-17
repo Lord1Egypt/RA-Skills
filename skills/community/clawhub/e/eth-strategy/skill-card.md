@@ -1,39 +1,53 @@
-## Description: <br>
-Eth Strategy analyzes public ETH/USDT market data with technical indicators and outputs heuristic direction, entry, stop-loss, and staged take-profit levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eth Strategy analyzes ETH/USDT and other trading pairs using technical indicators, candlestick patterns, volume zones, and simplified sentiment signals to produce directional trading levels.
 
-## Publisher: <br>
-[samary-xia](https://clawhub.ai/user/samary-xia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samary-xia](https://clawhub.ai/user/samary-xia)
 
-## Use Case: <br>
-External users and developers use this skill to request heuristic crypto technical analysis and suggested signal levels for ETH/USDT or another supplied trading pair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic crypto trading signals may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only and review them before using them in trading decisions. <br>
-Risk: The skill contacts Binance for public market data. <br>
-Mitigation: Run it only in environments where outbound public market-data requests to Binance are allowed. <br>
+## Use Case:
 
+External users and developers use this skill to generate informational technical-analysis signals for cryptocurrency pairs, including direction, entry, stop-loss, and staged take-profit levels.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output an empty JSON object when no signal is generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server evidence) <br>
+Risk: Generated trading levels may be interpreted as financial advice and following them could cause financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational analysis only and require independent human review before any trading decision.
+
+Risk: Runtime behavior depends on third-party Python packages and public market-data access.
+
+Mitigation: Install in an isolated environment with pinned dependency versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samary-xia/skills/eth-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, analysis]
+
+**Output Format:** [JSON object printed as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints an empty JSON object when no clear signal is generated.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

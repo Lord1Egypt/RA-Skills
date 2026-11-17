@@ -1,43 +1,60 @@
-## Description: <br>
-Manage vector storage and similarity search using TOS Vectors service for embeddings, semantic search, RAG systems, and recommendation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage vector storage and similarity search using TOS Vectors service.
 
-## Publisher: <br>
-[jneless](https://clawhub.ai/user/jneless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jneless](https://clawhub.ai/user/jneless)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure TOS Vectors, manage vector buckets and indexes, insert embeddings, and query similar vectors for semantic search, RAG, recommendation, and image-search applications. <br>
-
-### Deployment Geography for Use: <br>
-China regions listed by the artifact: cn-beijing, cn-shanghai, and cn-guangzhou. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Volcengine credentials can grant access to vector buckets, indexes, and stored embeddings. <br>
-Mitigation: Use least-privilege credentials scoped to a dedicated project or test environment before applying the workflows to production data. <br>
-Risk: Delete operations can remove vectors, indexes, or buckets used by downstream search and RAG applications. <br>
-Mitigation: Review delete examples before execution and keep backups for important vector data. <br>
-Risk: RAG workflows may send retrieved content to external LLM providers. <br>
-Mitigation: Avoid sharing sensitive retrieved content with external providers unless that data sharing is approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TOS Vectors Agent Skill README](README.md) <br>
-- [TOS Vectors API Reference](REFERENCE.md) <br>
-- [TOS Vectors Workflows](WORKFLOWS.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure TOS Vectors, manage vector buckets and indexes, insert and retrieve vectors, and build semantic search, RAG, recommendation, or image-similarity workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes TOS VectorClient configuration patterns, workflow snippets, and example utility script usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credential-backed cloud operations can delete vector data, change bucket policies, or affect live TOS resources.
+
+Mitigation: Use least-privileged TOS credentials and require explicit confirmation before delete operations or policy changes.
+
+Risk: The artifact recommends installing the TOS SDK without a consistently pinned package command while noting that TOS Vectors uses a beta SDK version.
+
+Mitigation: Install in an isolated environment and pin and verify the intended TOS SDK version before use.
+
+Risk: Retrieved vector metadata may contain private, third-party, or otherwise untrusted content that could be passed into an LLM workflow.
+
+Mitigation: Review, filter, or redact retrieved metadata before including it in prompts or downstream outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jneless/skills/volcengine-tos-vectors-skills)
+- [TOS Vectors API Reference](REFERENCE.md)
+- [TOS Vectors Workflows](WORKFLOWS.md)
+- [TOS Vectors external endpoint](https://tosvectors-cn-beijing.volces.com)
+- [TOS Vectors internal endpoint](https://tosvectors-cn-beijing.ivolces.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include TOS SDK calls and environment variable configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

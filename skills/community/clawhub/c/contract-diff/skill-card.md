@@ -1,47 +1,56 @@
-## Description: <br>
-Compare contract templates with scanned stamped contracts, list all differences (additions, deletions, modifications), and output a Word report for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare contract templates with scanned stamped contracts, list all differences including additions, deletions, and modifications, and output a Word document for review.
 
-## Publisher: <br>
-[russell-yu](https://clawhub.ai/user/russell-yu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[russell-yu](https://clawhub.ai/user/russell-yu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and review teams use this skill to compare a contract template with a scanned signed contract and identify changed, added, or removed terms. It is suited for document review support, with human review required for key clauses because OCR can be inaccurate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive legal documents and may print detailed contract text to logs.
+
+Mitigation: Run it only in an isolated environment, avoid unnecessary logging, and remove sensitive source documents and generated reports after review.
+
+Risk: The helper script can silently install unpinned Python packages at runtime.
+
+Mitigation: Install reviewed, pinned dependencies yourself before use and avoid runtime dependency installation in managed or legal-document environments.
+
+Risk: OCR-based extraction and highlighting can miss or misplace important contract changes.
+
+Mitigation: Treat generated differences and highlights as review aids and have a qualified reviewer verify key clauses against the original documents.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, legal operations teams, and developers use this skill to compare a contract template against a scanned signed contract and identify additions, deletions, and modified text. It is intended to produce review artifacts, not replace human legal review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, code, shell commands, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently install Python packages during execution. <br>
-Mitigation: Run it in an isolated virtual environment or disposable workspace and review dependencies before use. <br>
-Risk: Helper scripts may overwrite fixed local filenames such as template.docx and scanned.pdf. <br>
-Mitigation: Keep backups of input contracts and run the skill in a separate working directory. <br>
-Risk: Contracts and generated reports may contain confidential information. <br>
-Mitigation: Use only approved storage and handling locations, and avoid highly confidential contracts unless outputs are secured. <br>
-Risk: OCR-based comparison can miss or misclassify contract changes. <br>
-Mitigation: Treat reports as review aids and manually verify critical clauses before acting on the results. <br>
+**Output Format:** [Word document or Markdown report with categorized differences, similarity scores, and optional highlighted image output.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/russell-yu/contract-diff) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Sample markdown report](artifact/output/report.md) <br>
-- [Detailed sample report](artifact/output/详细比对报告.md) <br>
+**Other Properties Related to Output:** [May produce report.docx, Markdown reports, highlighted.png, and console summaries; OCR-based results should be manually checked for important legal terms.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Word document report with optional Markdown report and highlighted image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compares Word or PDF templates with scanned PDF or image contracts using OCR; reported differences require human review because OCR and matching can be inaccurate.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,71 @@
-## Description: <br>
-Deploy smart contracts, bridge assets, trade tokens, place Myriad prediction market actions, check balances, transfer assets, and interact with Abstract mainnet using Abstract-focused scripts and references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy smart contracts, bridge assets, trade tokens, place Myriad predictions, check balances, transfer assets, and interact with Abstract mainnet on Abstract (ZK Stack L2).
 
-## Publisher: <br>
-[Masoncags-tech](https://clawhub.ai/user/Masoncags-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[masoncags-tech](https://clawhub.ai/user/masoncags-tech)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate on Abstract mainnet and testnet, including wallet setup, contract deployment, token transfers, bridging, DEX swaps, balance checks, event monitoring, and Myriad prediction market actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate blockchain transactions that move real funds. <br>
-Mitigation: Use a dedicated low-balance wallet and verify every recipient, spender, contract, route, chain, market, and amount before execution. <br>
-Risk: Private keys may be exposed if pasted into shared shells, command history, or logs. <br>
-Mitigation: Avoid using primary wallet keys and keep private keys out of shared terminals, logs, and transcripts. <br>
-Risk: Full-balance bridge or zero-minimum-output swap behavior can cause unintended losses. <br>
-Mitigation: Avoid those scripts with meaningful funds and set conservative amounts and minimum outputs before running transactions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prepare and run Abstract blockchain operations, including wallet setup, contract deployment, bridging, DEX swaps, prediction market trades, balance checks, and contract reads or writes.
 
-## Reference(s): <br>
-- [Abstract Contract Addresses](references/addresses.md) <br>
-- [Abstract Global Wallet Guide](references/agw.md) <br>
-- [Abstract DEX Reference](references/dex.md) <br>
-- [Myriad Prediction Markets on Abstract](references/myriad.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Hardhat Abstract Configuration](references/hardhat.config.js) <br>
-- [Abstract Docs](https://docs.abs.xyz) <br>
-- [Abstract Global Wallet Docs](https://docs.abs.xyz/abstract-global-wallet/overview) <br>
-- [Abstract Explorer](https://abscan.org) <br>
-- [Relay Abstract Bridge](https://relay.link/bridge/abstract) <br>
-- [Myriad API](https://api-v2.myriadprotocol.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction, contract, wallet, bridge, DEX, and prediction market parameters that require human verification before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: frontmatter and server-resolved release) <br>
+Risk: The skill can sign irreversible mainnet transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet first and manually verify every recipient, contract, chain, amount, and transaction before using real funds.
+
+Risk: Token approvals can persist after swaps or prediction-market trades.
+
+Mitigation: Verify each spender and allowance before approval, prefer limited approvals, and revoke allowances after use.
+
+Risk: Relay bridge flows and arbitrary contract-write commands can move funds or call unreviewed contracts.
+
+Mitigation: Avoid Relay and arbitrary contract-write paths unless reviewed; verify routers, spenders, ABI files, and destination addresses independently.
+
+Risk: Dependency or SDK version drift can change wallet or transaction behavior.
+
+Mitigation: Pin and audit dependencies, then verify derived wallet addresses and deployed bytecode before sending assets.
+
+## Reference(s):
+
+- [Abstract Contract Addresses](references/addresses.md)
+- [Abstract Global Wallet (AGW)](references/agw.md)
+- [Abstract DEX Reference](references/dex.md)
+- [Hardhat config for Abstract](references/hardhat.config.js)
+- [Myriad Prediction Markets on Abstract](references/myriad.md)
+- [Abstract/zkSync Troubleshooting Guide](references/troubleshooting.md)
+- [Abstract Docs](https://docs.abs.xyz)
+- [Abstract Global Wallet Docs](https://docs.abs.xyz/abstract-global-wallet/overview)
+- [Abstract Explorer](https://abscan.org)
+- [Relay Abstract Bridge](https://relay.link/bridge/abstract)
+- [Myriad API Docs](https://help.myriad.markets/developer-docs-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run commands that sign blockchain transactions when wallet credentials are configured.]
+
+## Skill Version(s):
+
+1.6.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -284,6 +284,20 @@ def main():
     p.add_argument("output", help="Output WAV path")
     args = p.parse_args()
 
+    # Validate the output path before any engine writes to it. ffmpeg runs with
+    # -y (overwrite), so an unexpected path could clobber a file in an agent
+    # environment. Require a .wav target and refuse to overwrite anything that
+    # is not a plain regular file (symlink, device, fifo, directory).
+    out_path = Path(args.output)
+    if "\x00" in args.output or out_path.suffix.lower() != ".wav":
+        log("Refusing: output path must be a plain .wav file")
+        sys.exit(2)
+    if out_path.is_symlink() or (out_path.exists() and not out_path.is_file()):
+        log("Refusing: output path is a symlink or non-regular file")
+        sys.exit(2)
+    # From here on, only this validated path is written to (ffmpeg runs with -y).
+    safe_output = str(out_path)
+
     config = load_config(args.config)
     if args.reference:
         config["VOICE_REFERENCE"] = args.reference
@@ -297,7 +311,7 @@ def main():
     segments = split_text_with_clips(args.text, word_clips)
 
     if len(segments) == 1 and segments[0][0] == "tts" and len(args.text) <= 400:
-        if synth_tts(args.text, args.output, config):
+        if synth_tts(args.text, safe_output, config):
             sys.exit(0)
         log("All TTS backends failed")
         sys.exit(1)
@@ -340,13 +354,14 @@ def main():
             for n in norm:
                 fh.write(f"file '{n}'\n")
 
+        # safe_output was validated above (.wav, not a symlink/non-regular file).
         subprocess.run(
             ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
              "-f", "concat", "-safe", "0", "-i", manifest,
-             "-ar", "24000", "-ac", "1", args.output],
+             "-ar", "24000", "-ac", "1", safe_output],
             check=True,
         )
-        log(f"OK spliced output: {args.output}")
+        log(f"OK spliced output: {safe_output}")
         sys.exit(0)
     finally:
         shutil.rmtree(tmpdir, ignore_errors=True)

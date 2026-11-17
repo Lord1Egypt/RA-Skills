@@ -1,39 +1,54 @@
-## Description: <br>
-Query remote databases through Pilot Protocol tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query remote databases through Pilot Protocol tunnels.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent builders use this skill to open Pilot Protocol tunnels to remote PostgreSQL, MySQL, MongoDB, and Redis databases when direct network access is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database tunnels can expose sensitive remote database access if mapped broadly or used with privileged credentials. <br>
-Mitigation: Use least-privilege or read-only database accounts, confirm mapped hosts before connecting, avoid broad production access, and stop the gateway when finished. <br>
+## Use Case:
 
+Developers and engineers use this skill to reach remote PostgreSQL, MySQL, MongoDB, or Redis databases through Pilot Protocol tunnels when direct network access is unavailable.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-database-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use pilotctl JSON mode and require the Pilot daemon, gateway, and relevant database clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill routes database access through Pilot Protocol and depends on the local pilotctl binary, Pilot daemon, and configured database endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when those components and endpoints are trusted for the target database environment.
+
+Risk: Gateway mappings can leave a path to sensitive database services available longer than intended.
+
+Mitigation: Stop the gateway when finished and handle database credentials and production access with normal operational controls.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-database-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, a running Pilot daemon, configured Pilot Protocol access, and the relevant database client.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Evernote Yinxiang helps agents create, read, search, delete, and organize Yinxiang/Evernote notes through the included CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evernote Yinxiang lets an agent create, read, search, and delete Yinxiang/Evernote notes and list notebooks or tags through a local CLI.
 
-## Publisher: <br>
-[vikingr2023](https://clawhub.ai/user/vikingr2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vikingr2023](https://clawhub.ai/user/vikingr2023)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage personal or team notes in Yinxiang/Evernote, including creating notes, searching notes, retrieving note content, listing notebooks and tags, and moving notes to trash. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a full-access Yinxiang/Evernote developer token. <br>
-Mitigation: Store the token only in the local environment or skill .env file, protect that file from sharing, and rotate or revoke the token if it may have been exposed. <br>
-Risk: Search and get operations can expose private note titles and content. <br>
-Mitigation: Review command output before sharing, logging, or pasting it into other tools. <br>
-Risk: Delete operations act on note GUIDs and can remove the wrong note if the GUID is mistaken. <br>
-Mitigation: Confirm the target GUID and note title before running delete commands. <br>
-Risk: The release documentation says the skill only depends on requests, while the included script imports Evernote, Thrift, and certificate-related Python modules. <br>
-Mitigation: Install and test the actual Python dependencies in a sandbox before relying on the skill in a production workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to operate a Yinxiang/Evernote account from scripted commands, including creating notes, searching existing notes, reading note contents, deleting notes, and listing notebooks or tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vikingr2023/evernote-yinxiang) <br>
-- [Publisher profile](https://clawhub.ai/user/vikingr2023) <br>
-- [Yinxiang developer token page](https://app.yinxiang.com/api/DeveloperToken.action) <br>
-- [Yinxiang REST API endpoint](https://app.yinxiang.com/third/third-party-note-service/restful/v1) <br>
-- [Evernote service](https://www.evernote.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI returns success/error JSON and may include note GUIDs, titles, URLs, timestamps, notebook or tag identifiers, and note content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a long-lived Yinxiang token that can access account notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token only in a restrictive-permission .env file or environment variable, rotate it if exposure is suspected, and install only for accounts where this access level is acceptable.
+
+Risk: The skill can delete notes without built-in confirmation.
+
+Mitigation: Manually confirm note GUIDs and intent before running delete commands.
+
+Risk: The documented dependency expectations may be incomplete.
+
+Mitigation: Review runtime dependencies before deployment and test the CLI in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vikingr2023/skills/evernote-yinxiang)
+- [Publisher profile](https://clawhub.ai/user/vikingr2023)
+- [Yinxiang developer token page](https://app.yinxiang.com/api/DeveloperToken.action)
+- [Yinxiang REST API base endpoint](https://app.yinxiang.com/third/third-party-note-service/restful/v1)
+- [Evernote international service](https://www.evernote.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require a Yinxiang token configured in a .env file or environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

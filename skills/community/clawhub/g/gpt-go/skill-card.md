@@ -1,40 +1,53 @@
-## Description: <br>
-GPT Go puts the assistant into a persistent, execution-first mode that minimizes routine confirmations and pauses at explicit high-risk boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enter GPT strong execution mode for the current conversation when explicitly invoked, such as with /gpt-go. Persist across the conversation. Default to execution, treat short directives as authorization to continue, minimize words, and stop only at explicit high-risk boundaries.
 
-## Publisher: <br>
-[C-Joey](https://clawhub.ai/user/C-Joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-joey](https://clawhub.ai/user/c-joey)
 
-## Use Case: <br>
-Developers and agent users invoke this skill when they want a conversation to move into a faster execution posture with fewer routine confirmations. It is intended for clear tasks where the assistant can inspect the environment directly while still pausing for destructive, sensitive, externally visible, production, or otherwise high-risk actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables a faster, lower-confirmation assistant mode that can be overused on sensitive or ambiguous work. <br>
-Mitigation: Invoke it only when this posture is desired; turn it off or ask for step-by-step collaboration before sensitive, ambiguous, production, privacy, credential, publishing, payment, or destructive work. <br>
-Risk: Short follow-up directives are treated as continued authorization for the current task. <br>
-Mitigation: Use explicit stop, pause, or clarification instructions when the task should not continue automatically, and rely on the documented pause boundaries for high-risk actions. <br>
+## Use Case:
 
+Developers and agent users invoke this skill when they want a conversation-scoped execution posture that moves directly through clear tasks, keeps replies short, and pauses at explicit high-risk boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/C-Joey/gpt-go) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown and plain text behavioral guidance for an agent conversation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistent for the current conversation until the user turns it off, asks for a different style, or higher-priority rules override it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks the assistant to move faster, ask fewer routine questions, and treat brief follow-ups as permission to continue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that execution posture is desired, and require explicit confirmations for sensitive, production, financial, privacy, permission-changing, or destructive work.
+
+Risk: Short continuation directives can reduce opportunities to catch ambiguity during a task.
+
+Mitigation: Turn off or override the skill when step-by-step review is needed, and give an explicit stop or decision request before high-risk work proceeds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c-joey/skills/gpt-go)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown and plain text behavioral guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversation-scoped behavior guidance; no separate output artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

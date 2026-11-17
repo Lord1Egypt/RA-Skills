@@ -2,7 +2,7 @@
 name: pr-prep
 description: |
   Prepares pull requests by running quality gates, drafting descriptions, and validating tests
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - pr
@@ -10,15 +10,20 @@ triggers:
   - quality-gates
   - testing
   - completing a feature and ready for review
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:shared", "night-market.sanctum:git-workspace-review", "night-market.imbue:proof-of-work", "night-market.imbue:justify", "night-market.imbue:structured-output", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:git-workspace-review", "night-market.imbue:proof-of-work", "night-market.imbue:justify", "night-market.imbue:structured-output", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Pull Request Preparation Workflow
+
+## When NOT To Use
+
+- Reviewing someone else's PR (use `sanctum:pr-review`)
+- Only the commit message is needed (use `sanctum:commit-messages`)
 
 ## Usage
 
@@ -26,7 +31,7 @@ Use this skill to stage changes and generate a PR summary. Run `Skill(sanctum:gi
 
 ## Required Progress Tracking
 
-Create `TodoWrite` items for these steps before starting:
+Create progress items for these steps before starting:
 1. `pr-prep:workspace-reviewed`
 2. `pr-prep:quality-gates`
 3. `pr-prep:self-reviewed`
@@ -43,7 +48,11 @@ Confirm that `Skill(sanctum:git-workspace-review)` is complete. If changes were 
 
 ## Step 2: Run Quality Gates (`quality-gates`)
 
-Execute formatting, linting, and tests using project-specific commands (e.g., `make fmt`, `make lint`, `make test`). Resolve all failures before proceeding. If a task cannot be executed locally, document the reason and the alternative validation performed. Language-specific commands and failure handling are detailed in `modules/quality-gates.md`.
+Execute formatting, linting, and tests using project-specific commands
+(e.g., `make lint`, `make test`). Resolve all failures before
+proceeding. If a task cannot be executed locally, document the reason
+and the alternative validation performed. Language-specific commands
+and failure handling are detailed in `modules/quality-gates.md`.
 
 ### Capabilities Reference Sync
 
@@ -72,9 +81,18 @@ git diff --cached --name-only | xargs grep -nE \
 git diff --cached | grep -c '^+.*//.*[a-zA-Z]' || true
 
 # Check for formatting-only commits mixed with feature work
-git log --oneline $(git merge-base HEAD origin/master)..HEAD | \
+base="$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+git log --oneline "$(git merge-base HEAD "$base")"..HEAD | \
   grep -iE '(fmt|format|lint|style|whitespace)' || true
 ```
+
+**Machine review:**
+
+Run a machine review of the diff before the PR opens. The human
+reviewer then spends their time on what a machine cannot judge. Use
+`Skill(pensive:unified-review)` for a change that spans several
+dimensions, or `/code-review` for a smaller one. Fix or answer each
+finding before posting.
 
 **Additive bias audit:**
 
@@ -85,28 +103,109 @@ proceeding. If RED or STOP, rethink the approach.
 
 **Manual verification:**
 
-- [ ] Read the full diff -- does every change serve the
+- [ ] Read the full diff: does every change serve the
       stated goal?
 - [ ] No debug statements or `TODO` markers left in
 - [ ] No commented-out code blocks
 - [ ] No formatting changes mixed with logic changes
 - [ ] No fixup commits that should be squashed
 - [ ] Additive bias score is GREEN or justified YELLOW
+- [ ] Each machine-review finding is fixed or answered
 - [ ] Iron Law compliance: PASS (no test tampering)
 
 If issues are found, fix them before proceeding.
 
 ## Step 3: Summarize Changes (`changes-summarized`)
 
-Use the notes from the workspace review and the output of `git diff --stat origin/main...HEAD` to understand the scope. Identify key points in the diffs and group them into 2-4 paragraphs highlighting the technical changes and their rationale. Note breaking changes, migrations, or documentation updates.
+Start from the analyzer rather than from a fresh reading of the diff:
+
+```bash
+base="$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/pr_prep_analyze.py" --base "${base}"
+```
+
+The base is the remote's default branch, because a repository may use
+`master`, `main` or another name. When `origin/HEAD` is not set, the
+first command fails. Run `git remote set-head origin --auto` once, or
+set `base` to the branch the PR targets.
+
+It reads the branch's changed files and commits, sorts the files into
+feature, test, docs and other, flags any `!` breaking-change marker in
+a commit subject, reports the quality gates it can decide from the
+changed-file list (tests touched, docs touched, changes described),
+recommends a merge strategy, and prints a description scaffold. Pass
+`--reviewer-map <json>` to map path prefixes to reviewers, or `--json`
+to consume it as data.
+
+A gate printed `unknown` (`null` in JSON) means the script evaluated
+nothing: it runs no test, lint or type check and makes no release
+decision, so `passes_checks` and `includes_breaking_changes` always
+read `unknown`. Treat `unknown` as "you must check this yourself",
+never as a pass. Step 2 is where `passes_checks` gets its answer.
+
+Then use the notes from the workspace review and the analyzer's
+categories to identify the key points in the diffs, and group them
+into 2-4 paragraphs on the technical changes and their rationale. Note breaking
+changes, migrations, or documentation updates.
 
 ## Step 4: Document Testing (`testing-documented`)
 
-List each test command executed and its result. Include manual verification steps where relevant. If tests were skipped, document the reason and the mitigation plan.
+List each test command executed and its result. If tests were skipped,
+document the reason and the mitigation plan.
+
+Attach a manual test plan when any of these hold:
+
+- The change has no automated coverage.
+- It touches a user-facing or CLI-facing flow.
+- It is a bug fix. Give reproduce, fix, and verify steps, where the
+  reproduce step fails on the parent commit.
+- It changes an external contract.
+
+Write it as numbered steps, each stating its expected result. A step
+without an expected result is a step the reviewer cannot fail. Format
+and examples are in `modules/pr-template.md`.
 
 ## Step 5: Draft the PR (`pr-drafted`)
 
-Populate the standard template with Summary, Changes, Testing, and Checklist sections. Include issue references, screenshots, or follow-up TODO items. Template structure and examples are available in `modules/pr-template.md`.
+Project template first: when the project's merged, human-edited
+descriptions share a shape, write that shape and apply the rules in
+the "Project template first" section of `modules/pr-template.md`.
+Otherwise populate the default.
+
+Before posting, check that every file the description names is in the
+diff. A description claiming changes the diff lacks merges far less
+often (arXiv 2601.04886):
+
+```bash
+base="$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/description_paths.py" --base "${base}" pr_description.md
+```
+
+It exits 1 on a named file that does not exist, and 2 when git cannot
+resolve the base.
+
+Find who should review the parts of the change outside the author's
+lane. The script reads each touched directory's history up to the
+base, honors CODEOWNERS first, and prints names for the Who row:
+
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/review_routing.py" --base "${base}"
+```
+
+Populate the template with the facts table (Who, Where, When), then
+the Why and What-and-how sections, then Test plan and Checklist. Write
+the title imperative and self-contained so it reads correctly in `git
+log` out of context.
+
+All three table rows are filled on every PR. A row that does not apply
+says so (`External: none`, `on merge`) rather than being deleted, so a
+reader can tell an omitted blast radius from a blast radius of none.
+
+Add issue references, screenshots, migration guides, or follow-up
+items as the change calls for them. Template structure, worked
+examples, and size variations are in `modules/pr-template.md`. The
+decision behind the structure, with its sources, is recorded in
+`docs/adr/0021-pr-descriptions-in-two-registers.md`.
 
 ## Step 6: Verify Content Quality (`content-verified`)
 
@@ -130,12 +229,47 @@ Write the final PR description to the specified path, then display the file path
 
 ## Notes
 
-Do not include tool or AI attribution in the PR text. If changes are required mid-process, re-run quality gates. This skill covers preparation; pushing changes and opening the PR occurs outside this workflow.
+Do not include tool or AI attribution in the PR text. If changes are
+required mid-process, re-run quality gates. This skill covers
+preparation. Pushing changes and opening the PR happen outside it.
 
 ## Supporting Modules
 
-- [TodoWrite patterns](modules/todowrite-patterns.md) - naming conventions for sanctum TodoWrite items
+- [Progress item patterns](modules/todowrite-patterns.md) - naming conventions
+  for sanctum progress items
 
 ## Troubleshooting
 
 If project-specific commands like `make` or `npm` are unavailable, verify the environment setup against the `README`. For permission errors, check write access to build directories. If a step fails without clear output, retry the command with verbose flags to inspect the logs.
+
+## Exit Criteria
+
+- [ ] All 7 progress items (`pr-prep:workspace-reviewed` through
+      `pr-prep:content-verified`) are marked complete before the
+      skill declares done
+- [ ] Quality gates (formatting, linting, tests) run and pass; any
+      failure is fixed before proceeding, not skipped
+- [ ] Every gate the analyzer printed as `unknown` has been decided by
+      hand, because `unknown` means nothing evaluated it: the script
+      runs no test, lint or type check, so `passes_checks` and
+      `includes_breaking_changes` always arrive that way
+- [ ] PR description file written to the specified path and its
+      contents displayed for confirmation
+- [ ] Facts table present with all three rows (Who, Where, When)
+      filled, including the `External:` half of Where, or the
+      project's own shape used instead (Project template first)
+- [ ] `review_routing.py` ran, and each directory it reports as
+      outside the author's lane names its suggested reviewer in the
+      Who row, or the description says why none is needed
+- [ ] `description_paths.py` ran on the description file. Each
+      `phantom` line is fixed, or is a device or build path outside
+      git. Each `not in diff` line names a file the description means
+      to mention unchanged
+- [ ] Why section grounded in an issue, a number, or an incident
+      rather than a general claim
+- [ ] Manual test plan attached whenever one of the four triggers in
+      Step 4 fires, with an expected result on every step
+- [ ] Additive bias score from `imbue:justify` is GREEN, or YELLOW
+      with each flagged signal explicitly justified
+- [ ] PR description contains none of the tier-1 slop words (delve,
+      comprehensive, leverage, robust, seamless, etc.)

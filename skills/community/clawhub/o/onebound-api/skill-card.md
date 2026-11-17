@@ -1,44 +1,55 @@
-## Description: <br>
-Search Taobao and 1688 products, and fetch product details, through the Onebound platform gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Taobao and 1688 products, and fetch product details, through the Onebound platform gateway.
 
-## Publisher: <br>
-[jeff2011eng](https://clawhub.ai/user/jeff2011eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeff2011eng](https://clawhub.ai/user/jeff2011eng)
 
-## Use Case: <br>
-External users, developers, and commerce agents use this skill to search Taobao, Tmall, and 1688 product listings and retrieve item details through the Onebound gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API calls can consume billable Onebound balance when searches or item lookups are run. <br>
-Mitigation: Review returned cost and balance fields and avoid large searches unless the account balance and intended spend are understood. <br>
-Risk: ONEBOUND_API_KEY is required for requests and could be exposed if handled carelessly. <br>
-Mitigation: Keep ONEBOUND_API_KEY private, avoid printing it in logs or outputs, and only use trusted gateway base URLs. <br>
-Risk: Changing ONEBOUND_BASE_URL can redirect authenticated requests to a different service. <br>
-Mitigation: Use the default Onebound gateway or another trusted ONEBOUND_BASE_URL before executing the scripts. <br>
+## Use Case:
 
+Developers and external users use this skill to search Taobao, Tmall, and 1688 product listings and fetch item detail data through a Onebound platform API key.
 
-## Reference(s): <br>
-- [Onebound Platform Gateway Reference](references/api-docs.md) <br>
-- [Onebound platform gateway](https://onebound.vercel.app) <br>
-- [Onebound OpenAPI proxy base](https://onebound.vercel.app/api/v1/proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown containing formatted JSON API responses and error guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and ONEBOUND_API_KEY; API responses may include cost and balance fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Changing the gateway configuration can send ONEBOUND_API_KEY to an unintended server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default gateway unless another HTTPS gateway is intentionally trusted, and rotate ONEBOUND_API_KEY if it may have been sent to an unexpected host.
+
+Risk: Shared environment files or agent launchers can alter the gateway setting before the skill runs.
+
+Mitigation: Review environment configuration before installing or running the skill, especially in shared agent environments.
+
+## Reference(s):
+
+- [Onebound Platform Gateway Reference](artifact/references/api-docs.md)
+- [Onebound Platform Gateway](https://onebound.vercel.app)
+- [ClawHub Skill Page](https://clawhub.ai/jeff2011eng/skills/onebound-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown containing formatted JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ONEBOUND_API_KEY; uses curl and jq; do not expose the API key in output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

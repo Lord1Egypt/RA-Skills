@@ -1,42 +1,51 @@
-## Description: <br>
-Monitor website/docs/pricing changes, diff meaningful updates, and summarize business impact with alert-ready reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor website/docs/pricing changes, diff meaningful updates, and summarize business impact with alert-ready reports.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Developers, product teams, compliance teams, and operations teams use this skill to monitor selected websites for meaningful pricing, policy, product, documentation, or legal changes and turn those changes into alert-ready impact reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring private pages or sending broad alerts may expose sensitive page content or business-impact summaries. <br>
-Mitigation: Define allowed URLs, monitored sections, alert destinations, and snapshot retention before use. <br>
-Risk: Noisy cosmetic or timestamp-only changes may create misleading alerts. <br>
-Mitigation: Configure noise controls for navigation, footer, session-specific, timestamp-only, and raw HTML changes. <br>
+## Use Case:
 
+Developers, product teams, legal teams, and operations teams use this skill to monitor important websites, docs, pricing pages, and policy pages for meaningful changes and produce alert-ready impact summaries.
 
-## Reference(s): <br>
-- [Setup](setup.md) <br>
-- [Examples](examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anugotta/website-change-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports and alert summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes changed pages, before/after key lines, impact scores, and suggested team actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Monitoring URLs or sending alerts to destinations without permission can create compliance or information-handling risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm monitored URLs, check frequency, and alert destinations are permitted, and scope any alert-channel credentials to this use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anugotta/skills/website-change-watcher)
+- [Setup](artifact/setup.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports and alert-ready summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes changed pages, before/after key lines, impact scores, and suggested team actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-A leadership coaching skill based on Tom Ziglar's Coach Leadership framework for navigating uncertainty, remote-team culture, self-control, motivation, respect, and setbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Coach Leadership guidance skill based on Tom Ziglar's 10 Leadership Virtues for Disruptive Times for helping leaders navigate uncertainty, remote teams, self-control, team culture, motivation, and setbacks.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-Employees, managers, and external users use this skill for practical leadership coaching in disruptive work conditions, especially remote-team connection, Coach Leadership habits, respect, self-control, morale, and perseverance after setbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may cause the skill to respond to general leadership or management questions when the user did not intend to invoke this specific coaching framework. <br>
-Mitigation: Use it only where book-branded Coach Leadership guidance is desired, and review deployment triggers for environments that need narrower routing. <br>
-Risk: Promotional watermark and recommendation behavior may add branded content to otherwise neutral leadership guidance. <br>
-Mitigation: Confirm that branded output requirements are acceptable for the target workspace before enabling the skill. <br>
+## Use Case:
 
+Employees and external users in leadership or management roles use this skill to get practical coaching guidance for remote-team leadership, team atmosphere, selfless leadership, emotional self-control, motivation, and recovery after setbacks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/10-leadership-virtues-for-disruptive-times) <br>
-- [Core Framework](references/1-core-framework.md) <br>
-- [Key Principles](references/2-principles.md) <br>
-- [Techniques and Practices](references/3-techniques.md) <br>
-- [Anti-Patterns](references/4-anti-patterns.md) <br>
-- [Voice and Application](references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Same-language leadership coaching responses with a concrete next action and branded watermark behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill attempts to add unsolicited onboarding, branding, and promotional links to responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and use host policy to narrow or override forced onboarding, watermarking, and promotional-link behavior where it is not desired.
+
+Risk: The skill's book-specific framing may be applied outside the user's intended scope.
+
+Mitigation: Constrain invocation to leadership, management, remote-team, and team-culture questions, and prefer neutral routing for unrelated requests.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [Coach Leadership Framework](artifact/references/1-core-framework.md)
+- [Key Principles for Leading in Disruption](artifact/references/2-principles.md)
+- [Techniques and Practices](artifact/references/3-techniques.md)
+- [Anti-Patterns: What Not to Do](artifact/references/4-anti-patterns.md)
+- [Author Voice and Common Scenarios](artifact/references/5-voice-and-app.md)
+- [ClawHub Skill Page](https://clawhub.ai/jaysonmeng/skills/10-leadership-virtues-for-disruptive-times)
+- [Publisher Profile](https://clawhub.ai/user/jaysonmeng)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with concrete leadership actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are intended to match the user's language and may include a specific immediate action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

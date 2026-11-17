@@ -1,40 +1,54 @@
-## Description: <br>
-Create and publish styled blog posts to GitHub Pages by generating HTML posts, updating the blog index, and committing and pushing changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and publishes styled GitHub Pages blog posts by generating HTML posts, updating the blog index, and committing and pushing changes.
 
-## Publisher: <br>
-[t3mr0i](https://clawhub.ai/user/t3mr0i) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t3mr0i](https://clawhub.ai/user/t3mr0i)
 
-## Use Case: <br>
-Agents and developers use this skill to draft and publish GitHub Pages blog posts, update the blog index, and push the resulting site changes to a configured repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to commit and publicly publish GitHub Pages content without a clear confirmation step. <br>
-Mitigation: Confirm the remote, branch, GitHub identity, generated content, and diff before pushing; stage only the intended files. <br>
-Risk: The referenced clank-blog-post command may resolve to an unreviewed local binary. <br>
-Mitigation: Verify the installed command path and trustworthiness before execution, or run it only in a controlled environment. <br>
+## Use Case:
 
+Developers, publishing agents, and blog maintainers use this skill to draft styled HTML posts, add index entries, and publish updates to a GitHub Pages blog with git.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/t3mr0i/clank-blog-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git and may produce public repository changes; review generated content, target remote, branch, identity, and diff before pushing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish generated content to a hardcoded GitHub Pages repository on broad blog-post prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before execution, require review of the exact changed files, destination repository, branch, commit, and public URL; prefer a review branch or pull request instead of direct pushes to master.
+
+Risk: The default repository, branch, domain, branding, and locale may not match the user's intended blog.
+
+Mitigation: Install or run the skill only for the Clankr0i/clank-blog setup, or first customize the repository, branch, domain, branding, and locale values.
+
+## Reference(s):
+
+- [Clank Blog Post on ClawHub](https://clawhub.ai/t3mr0i/skills/clank-blog-post)
+- [Clank Blog GitHub Pages URL template](https://clankr0i.github.io/clank-blog/{slug}.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git; defaults to the Clankr0i/clank-blog repository, master branch, GitHub Pages deployment, and German-localized blog templates unless customized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

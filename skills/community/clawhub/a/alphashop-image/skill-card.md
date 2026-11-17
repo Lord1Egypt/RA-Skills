@@ -1,45 +1,64 @@
-## Description: <br>
-AlphaShop Image helps agents call AlphaShop image-processing APIs for image translation, upscaling, object extraction, element detection and removal, cropping, virtual try-on, and model replacement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AlphaShop Image helps agents call AlphaShop image-processing APIs for image translation, upscaling, object extraction, element detection and removal, cropping, virtual try-on, and model replacement.
 
-## Publisher: <br>
-[1688AiInfra](https://clawhub.ai/user/1688AiInfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Developers and commerce operators use this skill to prepare product imagery through AlphaShop services, including translation, enhancement, background or element editing, cropping, virtual try-on, and model-change workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends configured AlphaShop API credentials and submitted image URLs to AlphaShop's external service. <br>
-Mitigation: Store keys in untracked secret configuration, monitor account usage, and submit only image URLs the user is authorized to share. <br>
-Risk: Image-processing requests may include personal photos, OCR text, copyrighted material, watermarks, or other sensitive content. <br>
-Mitigation: Confirm user authorization before submitting images, especially for personal, copyrighted, OCR, watermark-removal, or brand-related content. <br>
-Risk: AlphaShop calls can fail when the account has insufficient balance or credits. <br>
-Mitigation: Stop the workflow on balance or arrears errors and direct the user to replenish credits before continuing. <br>
+## Use Case:
 
+Developers and agents use this skill to submit product and model image URLs to AlphaShop for ecommerce image translation, enhancement, cleanup, cropping, virtual try-on, and model replacement workflows.
 
-## Reference(s): <br>
-- [AlphaShop image API docs](references/api-docs.md) <br>
-- [AlphaShop API key management](https://www.alphashop.cn/seller-center/apikey-management) <br>
-- [AlphaShop API list and credits](https://www.alphashop.cn/seller-center/home/api-list) <br>
-- [ClawHub skill page](https://clawhub.ai/1688AiInfra/alphashop-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALPHASHOP_ACCESS_KEY and ALPHASHOP_SECRET_KEY; asynchronous workflows return task IDs that must be queried later.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill sends image URLs and related processing parameters to AlphaShop's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images approved for sharing with AlphaShop, avoid sensitive or regulated image content unless your organization has approved that use, and prefer short-lived public URLs.
+
+Risk: AlphaShop API credentials are required for all calls.
+
+Mitigation: Store access and secret keys in the agent configuration or secret manager, avoid logging them, and rotate or revoke them if exposed.
+
+Risk: The Python runtime depends on external packages for HTTP requests and JWT signing.
+
+Mitigation: Pin, audit, and update the Python dependencies before production deployment.
+
+Risk: Calls can fail when the AlphaShop account has insufficient credits.
+
+Mitigation: Stop the workflow on insufficient-balance errors and ask the user to replenish AlphaShop credits before retrying.
+
+## Reference(s):
+
+- [AlphaShop image-processing API reference](references/api-docs.md)
+- [AlphaShop API key management](https://www.alphashop.cn/seller-center/apikey-management)
+- [AlphaShop API usage and credits](https://www.alphashop.cn/seller-center/home/api-list)
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/alphashop-image)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AlphaShop access and secret keys; asynchronous try-on and model replacement tasks return task IDs that must be queried separately.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release version and SKILL.md metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

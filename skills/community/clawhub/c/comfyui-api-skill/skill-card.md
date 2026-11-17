@@ -1,43 +1,58 @@
-## Description: <br>
-ComfyUI执行器 connects an agent to a ComfyUI server over HTTP to run image, video, or audio workflows, upload files, inspect capabilities, and manage queues and memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ComfyUI执行器 interacts with ComfyUI over HTTP APIs to submit and execute workflows, manage queues, upload files, probe capabilities, and summarize generated image, video, audio, and file outputs.
 
-## Publisher: <br>
-[chsengni](https://clawhub.ai/user/chsengni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chsengni](https://clawhub.ai/user/chsengni)
 
-## Use Case: <br>
-Developers and agent operators use this skill to automate ComfyUI workflows, upload workflow inputs, inspect available models and nodes, retrieve generated outputs, and manage service queues or memory during local or trusted-server generation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete workflow files, interrupt running jobs, clear ComfyUI history, and request memory-management operations. <br>
-Mitigation: Review commands before execution and require explicit user confirmation before delete, interrupt, clear-history, free-memory, or unload-model actions. <br>
-Risk: Downloaded output filenames and output directories may be influenced by the ComfyUI server response or runtime arguments. <br>
-Mitigation: Use only trusted ComfyUI servers, constrain output directories to expected locations, and validate downloaded filenames before writing files. <br>
-Risk: The skill can connect to configurable ComfyUI server URLs and optionally use API keys. <br>
-Mitigation: Avoid untrusted servers, avoid sensitive API keys unless required, and keep API keys out of committed configuration files and public logs. <br>
+## Use Case:
 
+Developers and AI workflow operators use this skill to run ComfyUI image, video, audio, and other generation workflows, upload inputs, inspect server capabilities, and manage queue or memory state.
 
-## Reference(s): <br>
-- [ComfyUI API Specification](references/api-specification.md) <br>
-- [ComfyUI Workflow Format](references/workflow-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with inline shell commands, JSON workflow guidance, configuration notes, and file paths for generated outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference local output files downloaded from ComfyUI, including images, video, audio, model files, or other generated artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unsafe path or filename handling could overwrite, read, or delete local files when interacting with a malicious server or bad argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only ComfyUI servers you control, patch filename and path validation before important workspaces, and review workflow show or delete targets before execution.
+
+Risk: API keys may be exposed if sent over non-local HTTP endpoints or printed during use.
+
+Mitigation: Prefer localhost or trusted HTTPS endpoints, avoid sending API keys over non-local HTTP, and stop printing API keys before using the skill on important workspaces.
+
+Risk: Queue interrupt, history clearing, and delete actions can disrupt or remove work.
+
+Mitigation: Require explicit confirmation before running delete, history, or interrupt actions.
+
+## Reference(s):
+
+- [ComfyUI API Specification](references/api-specification.md)
+- [ComfyUI Workflow Format](references/workflow-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON workflow snippets, and concise execution summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports task IDs, queue status, uploaded file paths, and downloaded output file paths when commands are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

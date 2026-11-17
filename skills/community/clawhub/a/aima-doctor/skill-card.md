@@ -1,42 +1,55 @@
-## Description: <br>
-Diagnose and repair OpenClaw when your agent is stuck, confused, or failing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and repair OpenClaw when your agent is stuck, confused, or failing. One-command rescue for process health, config breakage, and device registration.
 
-## Publisher: <br>
-[skyguan92](https://clawhub.ai/user/skyguan92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyguan92](https://clawhub.ai/user/skyguan92)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to diagnose process health, repair configuration issues, and recover AIMA device registration or token state when normal agent workflows are degraded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run an external local repair helper with broad authority over OpenClaw configuration and recovery state. <br>
-Mitigation: Install only when the publisher is trusted, verify the published checksum before execution, and review the helper scripts where practical. <br>
-Risk: Repair workflows may touch sensitive device registration, token recovery, or local configuration state. <br>
-Mitigation: Run in a constrained or disposable environment for sensitive installations and avoid sharing tokens or recovery codes in chat. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose degraded or failed OpenClaw sessions, repair process and configuration problems, recover AIMA device registration, and run guided local repairs.
 
-## Reference(s): <br>
-- [AIMA Doctor homepage](https://aimaservice.ai/doctor) <br>
-- [AIMA OpenClaw repository](https://github.com/Approaching-AI/aima-openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/skyguan92/aima-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May relay questions or results from the local AIMA Doctor helper and should avoid exposing sensitive tokens or recovery codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.7 (source: server release metadata) <br>
+Risk: The skill installs and runs a separate AIMA Doctor runtime that is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or explicitly trust the separate runtime before use, verify the documented SHA256 checksum, and prefer running it in a restricted environment.
+
+Risk: The helper may run with the user's account access to OpenClaw files, processes, and recovery material.
+
+Mitigation: Avoid sharing sensitive tokens or recovery codes unless the repair specifically requires them, and keep sensitive material out of normal chat.
+
+## Reference(s):
+
+- [AIMA Doctor homepage](https://aimaservice.ai/doctor)
+- [AIMA OpenClaw repository](https://github.com/Approaching-AI/aima-openclaw)
+- [AIMA OpenClaw releases](https://github.com/Approaching-AI/aima-openclaw/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download and invoke a separate local AIMA Doctor runtime after checksum verification.]
+
+## Skill Version(s):
+
+0.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

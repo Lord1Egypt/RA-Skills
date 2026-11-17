@@ -1,40 +1,53 @@
-## Description: <br>
-AI-powered advisor that helps developers compare multi-agent frameworks, design orchestration architectures, and generate Python starter code for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams compare multi-agent frameworks, design architectures, and prepare starter code and evaluation plans.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, AI engineers, data scientists, and product managers use this skill to select an agent orchestration framework, plan multi-agent architectures, and draft implementation scaffolds for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Framework, benchmark, and cost claims may become stale in a rapidly changing agent ecosystem. <br>
-Mitigation: Verify recommendations and numeric claims against current official framework and provider documentation before making architecture or spending decisions. <br>
-Risk: Broad agent-framework discussions may trigger the advisor even when the user has not provided enough constraints for a reliable recommendation. <br>
-Mitigation: Confirm the use case, hosting constraints, state requirements, team experience, and review gates before applying generated architecture or code. <br>
+## Use Case:
 
+Developers, data scientists, and product teams use the skill to select a multi-agent framework and prepare architecture, starter-code, evaluation, and cost-planning materials for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/ai-agent-orchestration-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, architecture recommendations, checklists, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include framework trade-off analysis, starter code, production checklist items, and human review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: A CrewAI example may run a workflow that uses external search, beyond architecture advice and scaffolds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workflow code and approve any external search access before running it.
+
+Risk: The security scan is partial because a local reference was unresolved.
+
+Mitigation: Resolve and review the referenced material before relying on the clean scan verdict.
+
+## Reference(s):
+
+- [AI Agent Orchestration Advisor on ClawHub](https://clawhub.ai/gechengling/skills/ai-agent-orchestration-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with comparison tables, architecture descriptions, Python starter code, and evaluation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Framework recommendations and ecosystem details may become outdated; review against current official documentation.]
+
+## Skill Version(s):
+
+3.0.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

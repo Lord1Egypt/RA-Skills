@@ -1,44 +1,59 @@
-## Description: <br>
-User-configurable multi-slot news aggregation and push system that fetches from Twitter, Hacker News, and Tavily, then filters, summarizes, stores, and delivers digest updates based on user-defined schedules and topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+User-configurable multi-slot news aggregation and push system. Schedule, topics, and keywords are defined by the user via config.json. Aggregates from Twitter, Hacker News, Tavily, filters by influence, summarizes, stores locally, supports feedback iteration.
 
-## Publisher: <br>
-[Hzlvv](https://clawhub.ai/user/Hzlvv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hzlvv](https://clawhub.ai/user/hzlvv)
 
-## Use Case: <br>
-External users and developers use this skill to configure recurring news digest slots, gather relevant items from supported news and social sources, summarize them, and send manual or scheduled updates through OpenClaw-supported messaging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled agent runs may execute automatically after cron is enabled. <br>
-Mitigation: Review cron entries before enabling them and install only where scheduled OpenClaw sessions are expected. <br>
-Risk: The scheduled runner loads .env files before starting OpenClaw, which can expose broader environment configuration than intended. <br>
-Mitigation: Use a dedicated .env containing only TAVILY_API_KEY and XPOZ_API_KEY, and avoid relying on ~/.env for this workflow. <br>
-Risk: Resetting configuration can overwrite the saved news schedule. <br>
-Mitigation: Confirm schedule reset intent before running manage-config.mjs reset and keep a copy of important slot settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/Hzlvv/openclaw-new-digest) <br>
-- [Publisher Profile](https://clawhub.ai/user/Hzlvv) <br>
-- [Tavily](https://tavily.com) <br>
+## Use Case:
 
+OpenClaw users use this skill to configure recurring topic-based news pushes, fetch current items from selected sources, summarize them, deliver digests, and store feedback and usage history for later refinement.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown digest messages with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include source URLs, summaries, usage counts, stored push records, and feedback-aware configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scheduled runs and the bootstrap hook can trigger recurring agent activity after installation.
+
+Mitigation: Review the skill before installing, test cron with dry-run mode, and enable cron or the hook only after the intended schedule and sources are confirmed.
+
+Risk: Secrets and configuration handling require care during scheduled execution.
+
+Mitigation: Use a dedicated skill-specific secrets file, avoid broad home-directory .env fallbacks, and never paste .env contents into chats or logs.
+
+Risk: Stored feedback and configuration values may influence future filtering and summaries.
+
+Mitigation: Treat stored config, push, and feedback data as untrusted; review changes before reuse and keep the data directory scoped to this skill.
+
+## Reference(s):
+
+- [News Digest Setup Guide](references/setup-guide.md)
+- [Tavily](https://tavily.com)
+- [ClawHub Skill Page](https://clawhub.ai/hzlvv/skills/openclaw-new-digest)
+- [Publisher Profile](https://clawhub.ai/user/hzlvv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digests and command-oriented guidance, with local JSON records for configuration, pushes, feedback, and usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and uses TAVILY_API_KEY for Tavily search and extract; XPOZ_API_KEY enables Twitter/X source coverage when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

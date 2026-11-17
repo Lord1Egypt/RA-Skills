@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Refiner"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["refiner"]
   icon: "https://static.oomol.com/logo/third-party/Refiner.svg"
 ---
@@ -41,14 +41,14 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_account_info` — Retrieve the current Refiner account, project, and subscription information.
 - `get_contact` — Retrieve a single Refiner contact by id, email, or uuid.
 - `get_reporting` — Retrieve Refiner reporting metrics for forms, segments, and questions.
-- `identify_user` — Create or update a Refiner contact using the official identify-user endpoint.
+- `identify_user` — Create or update a Refiner contact using the official identify-user endpoint. [write]
 - `list_contacts` — List contacts available in the connected Refiner workspace.
 - `list_forms` — List forms in the connected Refiner workspace.
 - `list_responses` — List survey responses collected in Refiner.
 - `list_segments` — List segments in the connected Refiner workspace.
 - `remove_contact_from_segment` — Remove a Refiner contact from a manual segment. [destructive]
-- `tag_response` — Apply a tag to a Refiner response.
-- `track_event` — Track a product event for a Refiner contact.
+- `tag_response` — Apply a tag to a Refiner response. [write]
+- `track_event` — Track a product event for a Refiner contact. [write]
 
 ## Safety
 
@@ -79,11 +79,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Refiner is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=refiner
+  https://console.oomol.com/connections/refiner
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Refiner homepage: https://refiner.io
+- API documentation: https://refiner.io/docs/api/

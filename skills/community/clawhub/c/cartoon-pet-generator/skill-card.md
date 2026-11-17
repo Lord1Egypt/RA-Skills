@@ -1,36 +1,48 @@
-## Description: <br>
-Generate cute cartoon-style pet images (dogs, cats, etc.) using code. Use when user asks for cartoon pet drawings, cute animal illustrations, or simple pet avatars. No AI image API required - generates SVG and converts to PNG using Node.js and rsvg-convert. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cute cartoon-style pet images such as dogs, cats, rabbits, and bears using local SVG generation and PNG conversion without an AI image API.
 
-## Publisher: <br>
-[juliantsaiii](https://clawhub.ai/user/juliantsaiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juliantsaiii](https://clawhub.ai/user/juliantsaiii)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate simple cartoon pet avatars or illustrations as SVG-derived PNG files without calling an external image generation API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted output filename could cause the script to run unintended shell commands. <br>
-Mitigation: Review before installing, use only fixed and trusted output filenames in a safe directory such as /tmp, and prefer a patched version that validates paths and uses execFileSync or spawn with argument arrays instead of shell strings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to create simple cartoon pet avatars or animal illustrations by running a local Node.js script and returning the generated image path.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with shell commands that produce SVG and PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dog, cat, rabbit, and bear pet types with color and size options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A user-controlled output filename can lead to shell command execution during image conversion.
+
+Mitigation: Use only trusted, fixed output paths until the conversion command uses shell-free argument arrays and validates output filenames.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juliantsaiii/skills/cartoon-pet-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated PNG/SVG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated file path may be returned to the user or embedded by the host agent as an image attachment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

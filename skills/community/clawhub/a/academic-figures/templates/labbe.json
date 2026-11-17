@@ -1,0 +1,78 @@
+{
+  "_chart_type": "labbe",
+  "_command": "python3 scripts/gen_figure.py -t labbe -d templates/labbe.json -o labbe.png --cjk",
+  "_note": "场景：L'Abbé 图（Meta 分析处理组 vs 对照组事件率散点，Meta 四件套收官：forest/funnel/galbraith/labbe）。对角线 y=x=无效应（RR=1），合并 RR 参考线（DL 随机效应）在其下方=保护效应；点面积 ∝ 研究权重；点在对角线上方=有害、下方=有益，骑线/夹缝点自动带引线标注。数据=每研究 2×2 四格表（events_t/n_t/events_c/n_c）。本例为演示用构造数据（realworld 有 Fleiss 1993 真实版）。",
+  "est_measure": "RR",
+  "studies": [
+    {
+      "name": "Smith 2019",
+      "events_t": 49,
+      "n_t": 615,
+      "events_c": 67,
+      "n_c": 624
+    },
+    {
+      "name": "Lee 2020",
+      "events_t": 44,
+      "n_t": 758,
+      "events_c": 64,
+      "n_c": 771
+    },
+    {
+      "name": "Garcia 2021",
+      "events_t": 102,
+      "n_t": 832,
+      "events_c": 126,
+      "n_c": 850
+    },
+    {
+      "name": "陈 2022",
+      "events_t": 32,
+      "n_t": 317,
+      "events_c": 38,
+      "n_c": 309
+    },
+    {
+      "name": "Kim 2023",
+      "events_t": 85,
+      "n_t": 810,
+      "events_c": 52,
+      "n_c": 406
+    },
+    {
+      "name": "Rossi 2023",
+      "events_t": 60,
+      "n_t": 520,
+      "events_c": 55,
+      "n_c": 518
+    },
+    {
+      "name": "Nakamura 2024",
+      "events_t": 246,
+      "n_t": 2267,
+      "events_c": 219,
+      "n_c": 2257
+    },
+    {
+      "name": "李 2024",
+      "events_t": 78,
+      "n_t": 640,
+      "events_c": 96,
+      "n_c": 655
+    },
+    {
+      "name": "Dubois 2024",
+      "events_t": 96,
+      "n_t": 500,
+      "events_c": 70,
+      "n_c": 495
+    },
+    {
+      "name": "Wang 2025",
+      "events_t": 31,
+      "n_t": 290,
+      "events_c": 41,
+      "n_c": 295
+    }
+  ]
+}

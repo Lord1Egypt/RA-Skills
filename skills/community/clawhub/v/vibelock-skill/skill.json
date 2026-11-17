@@ -1,0 +1,10 @@
+{
+  "name": "vibelock",
+  "version": "2.5.4",
+  "description": "VibeLock - AI 开发者安全商业化 Skill。支持全语言全架构的代码加密、混淆、打包、授权、反编译防护、攻防测试引导，以及 VibeLock 平台协同（授权 API 激活/心跳、Ed25519 签名验签、防篡改存储、到期提醒续费、遥测上报、Open API 自动化维护）。4 级方案（A/B/C/D），全部免费工具优先。方案 D 为极致保护（加密Loader+7层反调试，全开源免费，AI自动生成C代码）。纯对话引导，零本地依赖。触发词（中英）：加密、上锁、打包、授权、安全检测、反编译、安装包制作、保护代码、代码混淆、软件授权、vibelock、防破解、安全加固；license、activation、code protection、obfuscation、anti-debug、packaging、software licensing、trial、drm",
+  "prompt": "prompt.md",
+  "author": "Pandlee（抖音@熊黎 | PandLeeAI）",
+  "homepage": "https://lock.pandlee.cn/",
+  "license": "Proprietary",
+  "platforms": ["Trae", "Cursor", "Claude Code", "GitHub Copilot", "Windsurf", "Coze"]
+}

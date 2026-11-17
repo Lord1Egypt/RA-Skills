@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify MCP"
+  short_description: "Configure and route Dataify MCP tools safely"
+  default_prompt: "Configure the smallest Dataify MCP tool set needed for my client."

@@ -1,41 +1,58 @@
-## Description: <br>
-Fill PDF forms programmatically with text values and checkboxes while preserving appearance states for PDF viewer rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fill PDF forms programmatically with text values and checkboxes.
 
-## Publisher: <br>
-[RaulSimpetru](https://clawhub.ai/user/RaulSimpetru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[raulsimpetru](https://clawhub.ai/user/raulsimpetru)
 
-## Use Case: <br>
-Developers and other users use this skill to populate fillable PDF forms, such as applications, government forms, and surveys, with text values and checkbox states. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Filled PDFs may contain personal or business data, and incorrect field mappings can change submitted form content. <br>
-Mitigation: Use copies of important PDFs and review the filled PDF before submitting or sharing it. <br>
-Risk: Dependency or environment changes could affect PDF form rendering. <br>
-Mitigation: Install dependencies from trusted package sources and consider pinning pdfrw for sensitive environments. <br>
+## Use Case:
 
+Developers and operators use this skill to discover fields in fillable PDFs and generate completed PDF files from supplied text and checkbox data.
 
-## Reference(s): <br>
-- [PDF Form Filler Examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/RaulSimpetru/pdf-form-filler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and CLI commands; filled PDF files when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local PDF input, field-value data, Python 3.7+, and pdfrw>=0.4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill writes PDF output files and may overwrite an existing destination path if the caller chooses one.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Write outputs to new filenames or a dedicated output directory, as recommended by the security guidance.
+
+Risk: The skill processes local PDF and data files supplied by the user.
+
+Mitigation: Use it only on PDFs and data files the user intends to process.
+
+Risk: The skill depends on pdfrw for PDF parsing and writing.
+
+Mitigation: Review or pin the pdfrw dependency before installing in sensitive environments.
+
+## Reference(s):
+
+- [PDF Form Filler Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/raulsimpetru/skills/pdf-form-filler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and generated PDF files when executed by the user or agent environment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill reads user-specified PDF and JSON inputs and writes filled PDF outputs.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter, package metadata, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

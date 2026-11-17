@@ -1,40 +1,53 @@
-## Description: <br>
-Clean up old OpenClaw session files and keep only active sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean up old OpenClaw session files and keep only active sessions.
 
-## Publisher: <br>
-[ccc-3po](https://clawhub.ai/user/ccc-3po) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccc-3po](https://clawhub.ai/user/ccc-3po)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to remove local .jsonl session files older than three days from the main-agent sessions directory and report how many session files remain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete local OpenClaw session .jsonl files through a broad trigger and without confirmation. <br>
-Mitigation: Review the command before use; add a dry-run or confirmation step and make the trigger more specific before installing it in shared or sensitive environments. <br>
-Risk: The cleanup command targets a hardcoded main-agent sessions directory and may remove session history that users intended to keep. <br>
-Mitigation: Confirm the target path and back up any needed session logs before running the cleanup. <br>
+## Use Case:
 
+Developers and OpenClaw users can invoke this skill to remove .jsonl session files older than three days from the main agent sessions directory and report the remaining session count.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccc-3po/c3po-session-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text] <br>
-**Output Format:** [Markdown with a bash code block and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deletes matching .jsonl files older than three days from the configured OpenClaw sessions directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The skill permanently deletes local session files without preview or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the files matched for deletion before execution, require explicit confirmation, and consider archiving or quarantining files before permanent removal.
+
+Risk: Unsafe path handling could delete files from an unintended location if the target sessions directory is missing or the directory change fails.
+
+Mitigation: Check that changing into the intended sessions directory succeeds before running deletion commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccc-3po/skills/c3po-session-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text]
+
+**Output Format:** [Markdown with an inline bash command block and brief status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deletes matching local .jsonl session files older than three days.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

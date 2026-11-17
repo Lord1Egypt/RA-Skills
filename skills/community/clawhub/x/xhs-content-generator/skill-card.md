@@ -1,40 +1,54 @@
-## Description: <br>
-Generates Xiaohongshu content prompts for attention-grabbing titles, content frameworks, tags, and interaction copy based on a topic and hot keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language Xiaohongshu content prompts with headline options, content frameworks, hashtags, and engagement copy from a selected topic and hot keyword.
 
-## Publisher: <br>
-[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo)
 
-## Use Case: <br>
-Creators, social media marketers, and agent users can use this skill to prepare Xiaohongshu post ideas from a selected theme and trending keyword. It is intended to produce prompt text and structured content guidance that can be reviewed before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Xiaohongshu marketing content may include income, results, or promotional claims that need review before posting. <br>
-Mitigation: Review and edit generated claims for accuracy, compliance, and platform suitability before publishing. <br>
-Risk: Output files and prompts may contain sensitive or unsuitable topic and keyword text supplied by the user. <br>
-Mitigation: Avoid entering confidential information and inspect saved output files before sharing them. <br>
+## Use Case:
 
+Content creators and marketing teams use this skill to draft Xiaohongshu post ideas around topics such as AI side hustles, AI tools, and earning methods. It produces a reusable prompt for a downstream AI assistant rather than final validated marketing copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mesiyoq965-sudo/xhs-content-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style Chinese prompt output, optionally saved to a text file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a topic and optional hot keyword; local script output may include user-provided topic or keyword text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The script can create local text files, including at a user-supplied output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an intended workspace and review the output path before execution.
+
+Risk: Final content depends on a downstream AI assistant and may contain inaccurate or overstated marketing claims if used without review.
+
+Mitigation: Review generated content for accuracy, platform policy, and the prompt's restrictions against exaggerated earnings claims, prohibited content, and copying others.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mesiyoq965-sudo/skills/xhs-content-generator)
+- [Publisher profile](https://clawhub.ai/user/mesiyoq965-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Chinese Markdown-style prompt text, printed to stdout or written as a .txt file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a topic, hot keyword, and optional output path; otherwise writes a timestamped local text file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

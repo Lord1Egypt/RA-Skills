@@ -1,38 +1,58 @@
-## Description: <br>
-Operate devopsellence solo/shared deployments, nodes, secrets, logs, diagnostics, lifecycle hooks, and rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate devopsellence solo/shared deployments, nodes, secrets, logs, diagnostics, lifecycle hooks, and rollback.
 
-## Publisher: <br>
-[elvinefendi](https://clawhub.ai/user/elvinefendi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elvinefendi](https://clawhub.ai/user/elvinefendi)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy applications with devopsellence, choose solo or shared workspace modes, manage secrets and nodes, inspect logs and diagnostics, and handle lifecycle-hook configuration and rollback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Node cleanup and management actions can detach, uninstall, or remove deployment infrastructure. <br>
-Mitigation: Require the agent to show the target node, environment, and likely impact, then get explicit confirmation before detach, uninstall, remove, --yes, provider-token, SSH-key, or production-secret actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate devopsellence deployments, including solo or shared workspace setup, deployment checks, secrets, node management, diagnostics, lifecycle hooks, rollback, and cleanup guidance.
 
-## Reference(s): <br>
-- [devopsellence homepage](https://www.devopsellence.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses structured CLI output where available and advises keeping secrets out of logs and chat output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Provider tokens and application secrets can be exposed if passed directly on the command line or repeated in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer stdin-based secret and provider-token examples, keep secret values out of logs and chat output, and avoid the --token form for real secrets.
+
+Risk: Deploy, detach, remove, uninstall, and cleanup commands can affect live infrastructure.
+
+Mitigation: Verify the selected mode, target node, and environment before deployment or removal actions, and run cleanup commands only when the user intends to detach, uninstall, and remove that node.
+
+Risk: Unsupported or missing CLI schema versions can make structured command output unreliable for high-risk decisions.
+
+Mitigation: Check schema_version when present; if unsupported, summarize the structured output and ask for updated docs or guidance before making high-risk changes.
+
+## Reference(s):
+
+- [devopsellence homepage](https://www.devopsellence.com)
+- [ClawHub skill page](https://clawhub.ai/elvinefendi/skills/devopsellence)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks agents to treat devopsellence CLI stdout as structured JSON or newline-delimited JSON when available and to keep secret values out of logs and chat output.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

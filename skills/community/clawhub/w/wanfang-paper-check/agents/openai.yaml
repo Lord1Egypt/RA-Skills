@@ -1,0 +1,4 @@
+interface:
+  display_name: "万方查重与报告验真"
+  short_description: "万方产品选型、上传下单、报告与验真"
+  default_prompt: "使用 $wanfang-paper-check 识别万方本科、硕博、高职高专、期刊、职称、新文献、专著、课程作业和文本 AIGC 产品，读取 wanfang.cqccjy.cn 实时目录，按公共 /pwf 流程上传、创建/查询订单、交接支付、下载报告并指导官方验真；不自动付款、不提交验证码。"

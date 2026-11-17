@@ -1,48 +1,55 @@
-## Description: <br>
-Analyzes A-share stocks using volume-price behavior, capital flow, chip structure, margin financing, catalysts, and technical signals to generate stock-picking reports and risk notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language A-share stock screening guidance that uses volume-price behavior, capital flows, chip structure, margin financing changes, technical patterns, and valuation re-rating signals to identify candidate stocks for analysis.
 
-## Publisher: <br>
-[mosqu1to3zz](https://clawhub.ai/user/mosqu1to3zz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mosqu1to3zz](https://clawhub.ai/user/mosqu1to3zz)
 
-## Use Case: <br>
-External users and agents use this skill to structure A-share stock screening, compare candidate equities, and produce pre-market recommendation-style analysis with caveats about uncertainty and non-advisory use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-picking analysis can be wrong, incomplete, or mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only, verify market data independently, and require user or professional review before trading decisions. <br>
-Risk: Automated daily runs can repeat stale assumptions or generate recommendations without fresh context. <br>
-Mitigation: Review each generated report before use and confirm current market, financing, catalyst, and sentiment data from the referenced sources. <br>
-Risk: Generated shell commands or scheduling suggestions may not match the user's environment. <br>
-Mitigation: Review commands before execution and run them only in an intended, permissioned environment. <br>
+## Use Case:
 
+External users and agents use this skill to produce Chinese-language A-share screening reports, candidate stock recommendations, stock-specific trading-logic analysis, and chip-structure diagnostics. Outputs should be treated as informational financial analysis, not personalized investment advice.
 
-## Reference(s): <br>
-- [Datang Power Case Study](references/case-study-datang.md) <br>
-- [Ganfeng Lithium Case Study](references/case-study-ganfeng.md) <br>
-- [Stock Screening Reference](references/stock-screening.md) <br>
-- [Tonghuashun Stock Page Data Source](https://stockpage.10jqka.com.cn/{code}/) <br>
-- [Eastmoney Quote Data Source](https://quote.eastmoney.com/sh{code}.html) <br>
-- [Xueqiu Stock Page Data Source](https://xueqiu.com/S/SH{code}) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mosqu1to3zz/trader-stock-picks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown analysis reports with tables and optional shell command prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock candidate rankings, scenario analysis, reference operation notes, and explicit risk reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce stock picks or trading-oriented analysis that users may mistake for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only, verify market data independently, and apply qualified human review before making trading decisions.
+
+Risk: Screening quality depends on current market data and the skill's framework can be wrong when market conditions invalidate its assumptions.
+
+Mitigation: Use current, reliable data sources and require the agent to surface uncertainty, conflicting signals, and risk notes in recommendations.
+
+## Reference(s):
+
+- [Datang Power case study](references/case-study-datang.md)
+- [Ganfeng Lithium case study](references/case-study-ganfeng.md)
+- [Stock screening reference](references/stock-screening.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown reports with scored tables, narrative analysis, risk notes, and optional shell command prompts for scheduled screening.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language financial screening content focused on A-share market candidates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

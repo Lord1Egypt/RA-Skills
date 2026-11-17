@@ -1,43 +1,63 @@
-## Description: <br>
-Fetch cryptocurrency OHLCV candle data and judge whether the market is in a one-way bullish or bearish trend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch cryptocurrency OHLCV candle data and judge whether the market is in a one-way bullish or bearish trend.
 
-## Publisher: <br>
-[xiaoxin06666](https://clawhub.ai/user/xiaoxin06666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxin06666](https://clawhub.ai/user/xiaoxin06666)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to fetch public cryptocurrency candles and classify whether the sampled market structure is a bullish one-way trend, bearish one-way trend, weak trend, or range/chop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public Binance-compatible market-data requests. <br>
-Mitigation: Use it only where outbound requests to the selected exchange endpoint are acceptable, and review any custom --base-url before execution. <br>
-Risk: The skill can write candle data to a CSV path when requested. <br>
-Mitigation: Choose an intended output path and review generated files before sharing or reusing them. <br>
-Risk: Trend classification can be mistaken for trading advice. <br>
-Mitigation: Present results as sampled market-structure analysis, include uncertainty and invalidation notes, and avoid trade instructions. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to fetch public crypto candle data and summarize whether a selected symbol and timeframe shows a bullish one-way trend, bearish one-way trend, weak trend, or range/chop structure. The output is market-structure analysis and not trading advice.
 
-## Reference(s): <br>
-- [Methodology](references/methodology.md) <br>
-- [Binance US API endpoint](https://api.binance.us) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with optional JSON or CSV output from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports symbol, exchange source, interval, candle count, time span, classification, confidence, directional metrics, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Public Binance-compatible API requests can fail, be blocked by region, or return unavailable data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the target endpoint is accessible before relying on a result, and use the configurable base URL only when the user provides or approves an accessible compatible endpoint.
+
+Risk: Candle-only market-structure analysis can become stale during sudden crypto regime shifts or news events.
+
+Mitigation: Present confidence and invalidation conditions, avoid certainty, and make clear that the result describes only the sampled interval.
+
+Risk: Optional CSV export writes candle data to a local path selected at runtime.
+
+Mitigation: Use explicit output paths and review generated CSV files before sharing or reusing them.
+
+Risk: Users may mistake trend classification for live trading advice.
+
+Mitigation: Frame outputs as market-structure analysis, not trade instructions, and mention liquidity, news, and contract-basis limitations for live trading contexts.
+
+## Reference(s):
+
+- [Methodology](references/methodology.md)
+- [ClawHub skill page](https://clawhub.ai/xiaoxin06666/skills/crypto-one-way-market)
+- [Binance US API endpoint](https://api.binance.us)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV files, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional JSON payload and optional CSV candle export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes symbol, exchange source, interval, candle count, time span, classification, confidence, directional return, trend efficiency, ADX, ATR-normalized move, max pullback, moving-average agreement, and invalidation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

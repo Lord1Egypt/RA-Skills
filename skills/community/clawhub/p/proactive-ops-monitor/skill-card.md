@@ -1,42 +1,53 @@
-## Description: <br>
-Proactive operations monitoring for OpenClaw agents that tracks token utilization, memory layer health, alerts, and next-step suggestions to help prevent context overflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Ops Monitor helps OpenClaw agents track token utilization, memory-layer health, alerts, and open-loop suggestions to reduce context-overflow risk.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neroagent](https://clawhub.ai/user/neroagent)
 
-## Use Case: <br>
-Developers and operators using OpenClaw agents use this skill to inspect workspace memory health, estimate token utilization, emit local alerts, and generate next-step suggestions before context problems block ongoing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw memory files that may contain sensitive operational context. <br>
-Mitigation: Install only in workspaces where local memory files can be read, and review memory/wal.jsonl and memory/working-buffer.md before use in shared or sensitive environments. <br>
-Risk: Alerts, suggestions, and configuration changes are written to local workspace files and may reveal operational context. <br>
-Mitigation: Review memory/ops-alerts.jsonl and proactive-ops-config.json, and limit access to generated workspace outputs. <br>
-Risk: Token utilization is estimated from local buffer content and may be approximate. <br>
-Mitigation: Treat dashboard utilization values as advisory and confirm context pressure before taking disruptive action. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor workspace health, estimate context-token pressure, review alerts, and get suggested next steps from recent memory signals.
 
-## Reference(s): <br>
-- [Proactive Ops Monitor ClawHub page](https://clawhub.ai/neroagent/proactive-ops-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [Plain text dashboard or JSON objects, with local JSON configuration updates for alert settings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads workspace memory files and writes local alert/configuration files when alerts or configuration changes occur.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can surface recent agent-memory content, including selected draft, decision, or correction content, in dashboards or suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where this level of memory visibility is acceptable, and review generated dashboards or suggestions before sharing them.
+
+Risk: Alert and configuration behavior can persist operational details in workspace files.
+
+Mitigation: Review and remove workspace alert or configuration files when they contain operational details that should not be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neroagent/skills/proactive-ops-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [Plain text dashboards and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist alert and configuration files in the workspace when alerting or configuration features are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

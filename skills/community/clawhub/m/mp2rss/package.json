@@ -1,16 +1,17 @@
 {
   "name": "mp2rss",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "Mp2rss CLI Skill —— 微信公众号 / X（Twitter）账号转 RSS 订阅与内容管理。订阅 / 列出 / 搜索 / 取消订阅公众号，查询公众号历史文章；列出已订阅 X 账号，拉取 X 推文 / 长文流（X 写类操作仅 Web 控制台）；管理 Feed Key 登录态。",
   "license": "MIT-0",
   "author": "areyoubugcoder",
   "homepage": "https://mp2rss.bugcode.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/areyoubugcoder/mp2rss-openclaw.git"
+    "url": "https://github.com/areyoubugcoder/mp2rss-cli.git",
+    "directory": "openclaw/mp2rss"
   },
   "bugs": {
-    "url": "https://github.com/areyoubugcoder/mp2rss-openclaw/issues"
+    "url": "https://github.com/areyoubugcoder/mp2rss-cli/issues"
   },
   "keywords": [
     "mp2rss",

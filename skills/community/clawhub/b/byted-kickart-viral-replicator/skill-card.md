@@ -1,52 +1,68 @@
-## Description: <br>
-Automates viral short-video replication workflows for Douyin and other short-video platforms by analyzing product or media inputs, uploading reference assets, and generating similarly styled video outputs through VolcEngine Kickart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Douyin and short-video variations by copying the structure, copy, and style of popular reference videos into similar marketing content.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-External users and marketing or content teams use this skill to create short-form promotional videos that follow a provided popular video's structure and style. The workflow covers VolcEngine/Kickart authentication, plan checks, material upload, product and creative analysis, reference video handling, optional digital avatar assets, task polling, and generated video result delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires VolcEngine/Kickart credentials and can access external account capabilities. <br>
-Mitigation: Use scoped, temporary credentials or a platform secret store, and do not paste long-lived cloud secrets into chat. <br>
-Risk: The workflow uploads and processes media assets that may be private, copyrighted, or business-sensitive. <br>
-Mitigation: Review the publisher, media-retention behavior, local logs, and rights to the source material before using sensitive assets. <br>
-Risk: The skill performs external plan, package, task submission, update, and polling actions. <br>
-Mitigation: Confirm the account plan, package-registration or update steps, and background polling behavior before installation or production use. <br>
-Risk: Generated video outputs may need compliance, rights, and sensitivity review before publication. <br>
-Mitigation: Review generated outputs and follow the referenced Kickart compliance prompts before distributing the resulting content. <br>
+## Use Case:
 
+Marketing, ecommerce, and content teams use this skill through an agent to collect product materials and a reference video, run Volcengine Kickart workflows, and generate short-form marketing videos with a similar structure and style.
 
-## Reference(s): <br>
-- [Authentication guide](references/火山鉴权指南.md) <br>
-- [Plan activation guide](references/套餐开通指南.md) <br>
-- [Material upload guide](references/素材上传指南.md) <br>
-- [Material analysis guide](references/素材分析指南.md) <br>
-- [Creative analysis guide](references/创意分析指南.md) <br>
-- [Viral replication guide](references/爆款裂变指南.md) <br>
-- [Reference video guide](references/视频参考指南.md) <br>
-- [Digital avatar guide](references/数字形象指南.md) <br>
-- [Task query guide](references/任务查询指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON result files, media asset identifiers, task identifiers, and generated video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VolcEngine/Kickart credentials and a valid plan; outputs may include local JSON paths, remote media IDs, task status messages, and generated video download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Credential handling is under-scoped and may expose Volcengine access credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privilege credentials; do not paste long-lived AK/SK secrets into chat; rotate any credentials that may have been exposed.
+
+Risk: Existing logs may contain sensitive Authorization data.
+
+Mitigation: Review and remove sensitive logs under /tmp/openclaw/byted-kickart-viral-replicator/logs before reuse or sharing.
+
+Risk: The dynamic update command, detached polling process, and broad local media cache need review before normal use.
+
+Mitigation: Review update commands and background polling behavior before installation, and clear or restrict local media cache locations after each workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-kickart-viral-replicator)
+- [Viral replication guide](references/爆款裂变指南.md)
+- [Volcengine authentication guide](references/火山鉴权指南.md)
+- [Kickart plan and quota guide](references/套餐开通指南.md)
+- [Material upload guide](references/素材上传指南.md)
+- [Material analysis guide](references/素材分析指南.md)
+- [Creative analysis guide](references/创意分析指南.md)
+- [Video reference guide](references/视频参考指南.md)
+- [Digital avatar guide](references/数字形象指南.md)
+- [Task query guide](references/任务查询指南.md)
+- [Volcengine virtual avatar compliance commitment](https://www.volcengine.com/docs/6664/2369812?lang=zh)
+- [Volcengine compliance commitment](https://www.volcengine.com/docs/6664/2369383?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON task results, status messages, and generated video links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Volcengine credentials, valid Kickart quota, uploaded media, and asynchronous task polling.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

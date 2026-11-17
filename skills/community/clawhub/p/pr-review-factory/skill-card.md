@@ -1,42 +1,60 @@
-## Description: <br>
-Automates GitHub pull request review workflows from structured review through issue tracking, CI validation, and merge-readiness reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a GitHub pull request review workflow from structured code review through issue tracking, fix verification, merge gating, and summary reporting.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review GitHub pull requests, convert blocking findings into GitHub issues, configure CI quality gates, and summarize whether a PR is ready to merge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change GitHub repositories and influence merge flow when broad credentials are granted. <br>
-Mitigation: Use a fine-grained GitHub token limited to selected repositories and require explicit confirmation before creating issues, changing workflows, assigning users, or enabling merge-related behavior. <br>
-Risk: Automated review findings or quality-gate decisions may be incomplete or incorrect. <br>
-Mitigation: Keep branch protection and human review in place for high-impact changes, and treat generated review results as decision support rather than sole approval authority. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate GitHub pull request reviews, create Issues for blocking findings, generate CI quality gates, and report whether a PR is ready to merge.
 
-## Reference(s): <br>
-- [PR Review Factory README](artifact/README.md) <br>
-- [PR Review Factory workflow definition](artifact/workflow.json) <br>
-- [PR Review Factory on ClawHub](https://clawhub.ai/zlszhonglongshen/pr-review-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON-like summaries, YAML workflow snippets, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or suggest GitHub issues, PR comments, CI workflow files, quality-gate checks, and merge-readiness summaries when granted repository access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can create persistent GitHub Issues, comments, workflow files, or other repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege GitHub tokens and require explicit approval before any write operation.
+
+Risk: The skill can participate in merge-related decisions without clear confirmation gates.
+
+Mitigation: Require branch protection, passing CI, and human confirmation before merge-related actions are applied.
+
+Risk: Automated review findings may be incomplete or inaccurate for large or complex pull requests.
+
+Mitigation: Treat generated review output as decision support and require maintainers to review blocking findings and suggested fixes.
+
+## Reference(s):
+
+- [PR Review Factory Skill Page](https://clawhub.ai/zlszhonglongshen/skills/pr-review-factory)
+- [Skill README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Workflow Definition](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON summaries, YAML workflow configuration, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce GitHub Issue content, pull request review summaries, and CI workflow configuration for repository write operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, workflow.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

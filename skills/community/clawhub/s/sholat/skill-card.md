@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches Indonesian prayer schedules for city or regency locations from api.myquran.com, including today's schedule, a specific date, a full month, or location ID search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mengambil jadwal sholat untuk kota atau kabupaten di Indonesia dari api.myquran.com, termasuk imsak, subuh, dzuhur, ashar, maghrib, isya, dan pencarian ID lokasi.
 
-## Publisher: <br>
-[banghasan](https://clawhub.ai/user/banghasan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[banghasan](https://clawhub.ai/user/banghasan)
 
-## Use Case: <br>
-External users and developers use this skill to find Indonesian city or regency IDs and retrieve prayer times for today, a selected date, or a one-month period. <br>
-
-### Deployment Geography for Use: <br>
-Global; schedule data is focused on cities and regencies in Indonesia. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends the requested location and date or month to api.myquran.com. <br>
-Mitigation: Review requests before execution and avoid sending sensitive or unnecessary location details. <br>
-Risk: The artifact does not include a strict manifest declaring the network domain it uses. <br>
-Mitigation: Run it in an environment that only permits the disclosed api.myquran.com network access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banghasan/sholat) <br>
-- [api.myquran.com v3 API base](https://api.myquran.com/v3) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Indonesian prayer times for today, a specific date, or a monthly period by city/regency keyword or location ID.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text schedule output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; output may include imsak, subuh, terbit, dhuha, dzuhur, ashar, maghrib, and isya times when returned by the API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global; functional coverage is limited to Indonesian cities and regencies supported by api.myquran.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Location keywords, location IDs, requested dates/months, and timezone values are sent to api.myquran.com.
+
+Mitigation: Use the skill only when sharing those request details with api.myquran.com is acceptable.
+
+Risk: Monthly requests in the helper script currently show a 7-day preview rather than a full month.
+
+Mitigation: Treat monthly helper output as a preview and use the underlying API response or additional calls when a complete month is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banghasan/skills/sholat)
+- [api.myquran.com v3 API](https://api.myquran.com/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with optional shell commands and concise prayer-time lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Indonesian location and prayer-time output; the helper script prints only the first 7 days for monthly requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

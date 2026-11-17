@@ -1,40 +1,54 @@
-## Description: <br>
-Pre-install plugin security scanner for OpenClaw plugins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-install plugin security scanner for OpenClaw plugins.
 
-## Publisher: <br>
-[wow-leeroy-jenkins05](https://clawhub.ai/user/wow-leeroy-jenkins05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wow-leeroy-jenkins05](https://clawhub.ai/user/wow-leeroy-jenkins05)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan OpenClaw plugin directories before installation for credentials, obfuscated code, unusual network calls, sensitive path access, and risky exec patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact is instruction-only, but use depends on a separate shoofly-plugin-scan executable. <br>
-Mitigation: Install or run that executable only from a trusted source before scanning plugin directories. <br>
-Risk: Plugin scans may inspect sensitive local directories if pointed at the wrong path. <br>
-Mitigation: Run scans only against plugin directories intentionally selected for review. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan OpenClaw plugin directories for security issues before installation, including credential patterns, obfuscated code, unusual network calls, sensitive path access, and risky exec patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wow-leeroy-jenkins05/shoofly-plugin-scan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and concise scan-result guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the separate shoofly-plugin-scan executable to come from a trusted source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may run the scanner on a plugin directory they did not intend to review or on a release from an untrusted source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the skill comes from a trusted source and point it only at plugin directories intended for pre-install review.
+
+Risk: Scan findings and clean results are pre-install review signals and may still require human judgment.
+
+Mitigation: Review reported findings before installation and treat a clean scan as one input in the plugin review process.
+
+## Reference(s):
+
+- [Shoofly Plugin Scan on ClawHub](https://clawhub.ai/wow-leeroy-jenkins05/skills/shoofly-plugin-scan)
+- [Publisher profile: wow-leeroy-jenkins05](https://clawhub.ai/user/wow-leeroy-jenkins05)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples and scan result guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes indicate clean results, findings that require review, or scan errors.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Archive local files or directories into tar or tar.gz archives and upload them to a WebDAV endpoint, with optional notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives local files or directories into tar or tar.gz files and uploads them to a configured WebDAV endpoint with optional notifications.
 
-## Publisher: <br>
-[xyanmi](https://clawhub.ai/user/xyanmi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyanmi](https://clawhub.ai/user/xyanmi)
 
-## Use Case: <br>
-Developers and operators use this skill to configure repeatable backups of selected local files or directories to a WebDAV server, including archive naming, exclusions, remote paths, wrapper scripts, scheduled jobs, and optional notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill archives user-selected local paths and uploads them to a configured WebDAV destination, which can disclose unintended files if the source scope or exclusions are wrong. <br>
-Mitigation: Review source paths, remote subdirectories, and explicit exclude patterns before running or scheduling the upload; use a dedicated low-privilege WebDAV account. <br>
-Risk: WebDAV credentials are required for upload operations. <br>
-Mitigation: Protect the env file, avoid printing credentials, and use a temporary credential file with 0600 permissions instead of passing secrets as command-line arguments. <br>
-Risk: Scheduled wrapper jobs can continue uploading after backup scope or operational needs change. <br>
-Mitigation: Keep wrapper and cron entries explicit and easy to disable, and update both when changing sync scope. <br>
+## Use Case:
 
+Developers and operators use this skill to create repeatable WebDAV backups, configure exclusion rules, and wire the sync command into wrappers or scheduled jobs.
 
-## Reference(s): <br>
-- [WebDAV Sync Operations](references/operations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xyanmi/webdav-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and script arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides archive creation and WebDAV uploads that require curl, openclaw, and WEBDAV_SITE, WEBDAV_USERID, and WEBDAV_PWD environment values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Local archive contents are uploaded to the configured WebDAV destination, so an overly broad source path or missing exclude rule can send unintended files off-host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source paths and exclude rules before running or scheduling the skill, and use narrow paths for backup jobs.
+
+Risk: The release evidence notes that HTTPS is not enforced for WEBDAV_SITE, which could expose uploaded data or credentials if an insecure endpoint is configured.
+
+Mitigation: Configure WEBDAV_SITE with an HTTPS URL and use the skill only with trusted WebDAV destinations.
+
+## Reference(s):
+
+- [WebDAV Sync Operations](references/operations.md)
+- [ClawHub skill page](https://clawhub.ai/xyanmi/skills/webdav-sync)
+- [Publisher profile](https://clawhub.ai/user/xyanmi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for archive creation, WebDAV upload configuration, wrapper usage, scheduling, and exclusion rules.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

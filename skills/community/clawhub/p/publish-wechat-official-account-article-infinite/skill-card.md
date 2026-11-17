@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent through publishing articles for the "无限" author in WeChat Official Accounts, including article formatting, cover image generation, originality and reward settings, draft saving, preview, and publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专门用于"无限"作者发表公众号文章的技能，包含完整的文章发布流程、格式要求和操作规范。
 
-## Publisher: <br>
-[infiniteask](https://clawhub.ai/user/infiniteask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infiniteask](https://clawhub.ai/user/infiniteask)
 
-## Use Case: <br>
-External creators or delegated operators use this skill to help an agent prepare and publish an article in a logged-in WeChat Official Account session for the "无限" author. It is intended for guided browser operation covering title, author, body formatting, cover image, summary, originality declaration, reward settings, collection selection, draft saving, preview, and final publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to publish publicly from a logged-in WeChat Official Account without a clear final approval checkpoint. <br>
-Mitigation: Require the agent to stop before final publication, display the active account, title, author, collection, originality setting, reward setting, and planned publish action, then wait for explicit user approval. <br>
-Risk: The workflow may encounter login, password, MFA, scan, or phone verification steps during preview or publishing. <br>
-Mitigation: Do not enter passwords, MFA codes, or scan confirmations into chat; the account owner should complete authentication directly in the browser. <br>
+## Use Case:
 
+External users use this skill to guide an agent through publishing an "无限" article to a WeChat Official Account, including formatting, cover image selection, original-content declaration, reward settings, collection selection, draft saving, preview, and publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infiniteask/publish-wechat-official-account-article-infinite) <br>
-- [WeChat Official Account platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown procedural guidance for browser-based publishing workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide actions that save drafts, preview content, and publish publicly from an authenticated WeChat Official Account session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.8.0.0) <br>
+Risk: The skill can guide an agent to publish publicly from an authenticated WeChat Official Account and enable rewards without a clear final approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval of the final article content, target collection, original declaration, reward setting, and publish action before enabling rewards or clicking publish.
+
+Risk: The workflow depends on the agent interpreting WeChat page state correctly, including checkbox state, browser tabs, draft save status, and confirmation dialogs.
+
+Mitigation: Verify visible page text and status messages before continuing, save a draft before preview or publication, and pause for user verification when the UI state is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infiniteask/skills/publish-wechat-official-account-article-infinite)
+- [ClawHub publisher profile](https://clawhub.ai/user/infiniteask)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides browser-based WeChat Official Account publishing and asks the user to authenticate or verify when required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

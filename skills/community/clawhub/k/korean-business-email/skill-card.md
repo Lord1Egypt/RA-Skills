@@ -1,40 +1,52 @@
-## Description: <br>
-Writes professional Korean business emails for inquiries, proposals, reports, thanks, and apologies using tone and formatting suited to Korean corporate culture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+한국 기업 문화에 맞게 전문적이고 공손한 어투로 신규 문의, 제안서, 보고서, 감사·사과 이메일을 작성합니다.
 
-## Publisher: <br>
-[jochoonhwan](https://clawhub.ai/user/jochoonhwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jochoonhwan](https://clawhub.ai/user/jochoonhwan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees or agents writing to clients, partners, and coworkers use this skill to draft professional Korean business emails for inquiries, proposals, reports, thanks, and apologies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad activation wording may cause Korean business conventions to be applied when a non-Korean or multilingual email is needed.
+
+Mitigation: Tell the agent the desired language, audience, tone, and recipient context before drafting.
+
+Risk: Static templates may not fully match a specific recipient hierarchy, company norm, or communication context.
+
+Mitigation: Review the final draft for recipient role, honorific level, call to action, and business context before sending.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external collaborators, and business users use this skill to draft concise, polite Korean business emails for common workplace situations such as first inquiries, client proposals, status reports, and thank-you or apology messages. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated emails may include mixed-language or rough template text. <br>
-Mitigation: Review and edit drafts for tone, grammar, and business context before sending. <br>
-Risk: Email drafting can expose confidential business details to the agent. <br>
-Mitigation: Avoid including confidential information unless the user intends the agent to process it. <br>
+**Output Format:** [Markdown or plain text email drafts and templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Korean Business Email on ClawHub](https://clawhub.ai/jochoonhwan/korean-business-email) <br>
+**Other Properties Related to Output:** [May include Korean business etiquette guidance and scenario-specific email structure.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Korean email templates and writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-reviewed business email drafts; no code, network activity, credential access, or persistence is described.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

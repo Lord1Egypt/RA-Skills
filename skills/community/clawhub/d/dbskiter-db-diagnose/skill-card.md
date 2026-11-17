@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents use dbskiter to diagnose SQL, slow queries, index opportunities, performance snapshots, and bottlenecks for MySQL, Oracle, and PostgreSQL databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据库诊断与优化 helps agents run dbskiter diagnostics for SQL issues, slow queries, index recommendations, performance snapshots, locks, and bottleneck analysis across MySQL, Oracle, and PostgreSQL.
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Developers, database administrators, and operations engineers use this skill to triage database performance issues, inspect slow SQL, review lock and session conditions, and collect optimization recommendations through dbskiter commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database diagnostics can expose sensitive SQL literals, schema names, usernames, session details, and lock information. <br>
-Mitigation: Use read-only or least-privileged database accounts and redact sensitive values before sharing diagnostic output. <br>
-Risk: Broad diagnostics may inspect the wrong database or produce recommendations for the wrong environment. <br>
-Mitigation: Confirm the target database and scope before running performance snapshots, reports, or index recommendation commands. <br>
+## Use Case:
 
+Developers and database operators use this skill to select dbskiter diagnostic commands, inspect slow queries and locks, collect performance snapshots, identify bottlenecks, and obtain SQL or index optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicczc/dbskiter-db-diagnose) <br>
-- [Publisher profile](https://clawhub.ai/user/magicczc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize JSON diagnostic output from dbskiter and should treat database details as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can trigger database inspections too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit database targets and operator approval before running diagnostics against real databases.
+
+Risk: Command templates include database names and SQL values that could be unsafe if interpolated into a shell command.
+
+Mitigation: Use read-only database credentials and pass database names and SQL as structured arguments through a trusted runner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicczc/skills/dbskiter-db-diagnose)
+- [Publisher profile](https://clawhub.ai/user/magicczc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database diagnostic summaries, ranked findings, command suggestions, and optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

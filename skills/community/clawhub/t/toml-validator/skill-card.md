@@ -1,37 +1,53 @@
-## Description: <br>
-Validate, lint, diff, and inspect TOML configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, lint, diff, and inspect TOML configuration files, including pyproject.toml, Cargo.toml, and other TOML configs.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate TOML syntax, lint TOML configuration files, compare TOML configs, inspect structure, and extract keys from files such as pyproject.toml and Cargo.toml. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The show and diff commands may expose tokens, passwords, private endpoints, or other sensitive configuration values from TOML files in the agent conversation. <br>
-Mitigation: Use the skill only on specific TOML files you intend to inspect, and avoid showing or diffing sensitive configuration files unless those values are safe to reveal. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate TOML syntax, run lint checks, inspect configuration structure, extract keys, and compare TOML files before changing or sharing project configuration.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or text with inline shell commands and optional JSON or Markdown command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-specified TOML files and can display validation results, lint findings, parsed structure, extracted values, or diffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Show and diff operations can print TOML configuration contents, including sensitive values if present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on files intended for inspection and review outputs before sharing them.
+
+Risk: Python versions before 3.11 require installing the optional TOML parser dependency.
+
+Mitigation: Prefer Python 3.11 or newer so TOML parsing uses the standard-library parser.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/toml-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script results can be text, JSON, or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local TOML files selected by the user; show and diff operations can print configuration values.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

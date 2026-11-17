@@ -1,41 +1,49 @@
-## Description: <br>
-Agent Reflective Memory is an AI-oriented local memory helper that stores, reflects on, searches, and summarizes past agent experiences for long-running autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered memory system that compresses, reflects on, and retrieves past agent actions to improve long-term autonomous decision-making.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers building persistent AI agents use this skill to keep a local log of agent experiences, generate delayed reflections over older entries, query prior outcomes, and view memory statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive prompts, credentials, customer data, or regulated data stored as experiences can persist locally in memory_store.json and appear in later searches. <br>
-Mitigation: Only store information suitable for local persistence, avoid secrets and confidential data, and delete memory_store.json when the memory log must be cleared. <br>
+## Use Case:
 
+Developers building persistent autonomous agents use this skill to store experiences, generate delayed reflections, query prior outcomes, and inspect memory statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/agent-reflective-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/albionaiinc-del) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Reflective memory CLI source](artifact/tool.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [CLI text output, JSON query and stats output, and a local JSON memory file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-provided experiences and generated reflections in memory_store.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agent experiences are saved in plaintext local storage and may contain sensitive context, results, or user details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a private project directory, avoid storing secrets or regulated data, and delete memory_store.json when retained history is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/agent-reflective-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included CLI stores and retrieves local memory entries in a plaintext JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

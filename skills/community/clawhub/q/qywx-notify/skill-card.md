@@ -1,39 +1,57 @@
-## Description: <br>
-A skill for sending notifications via WeChat Work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for sending notifications via WeChat Work.
 
-## Publisher: <br>
-[yc-weichao](https://clawhub.ai/user/yc-weichao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yc-weichao](https://clawhub.ai/user/yc-weichao)
 
-## Use Case: <br>
-Developers and automation agents use this skill to send text, Markdown, and image-linked notifications to WeCom group chats through a robot webhook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs and notification contents may appear in local logs or command responses. <br>
-Mitigation: Treat the webhook URL like a password, avoid shared logs containing skill output, and rotate the webhook if it may have been exposed. <br>
-Risk: Sensitive notification content may be sent to WeCom group chats. <br>
-Mitigation: Avoid sending sensitive messages through this version and review message recipients before use. <br>
+## Use Case:
 
+Developers and operators use this skill to send text, image-linked, and Markdown notifications to WeChat Work group chats from agent workflows or OpenClaw CLI commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Markdown, JSON] <br>
-**Output Format:** [JSON command results plus WeCom text or Markdown notification payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include image URLs and @all or user mentions; failed sends are retried.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Webhook URLs can expose sensitive credentials if logs or command outputs are visible to other users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secret-managed or placeholder webhook values, avoid sharing command logs, and rotate any webhook that may already have appeared in logs.
+
+Risk: Caller-supplied webhook URLs can make the skill act as a general network request proxy from the host.
+
+Mitigation: Restrict allowed webhook hosts or configure a fixed trusted webhook before use outside a trusted, single-user context.
+
+Risk: The skill depends on the package manager resolving an unpinned axios version range.
+
+Mitigation: Pin dependencies before deployment and review dependency updates as part of release intake.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yc-weichao/skills/qywx-notify)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Text]
+
+**Output Format:** [JSON status objects and WeChat Work text or Markdown message payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include masked webhook values; user-supplied content can be sent to configured webhook endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, and index.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

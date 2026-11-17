@@ -22,22 +22,22 @@
 
 #### 查询当前账号下的所有子应用
 ```bash
-python scripts/vod_describe_sub_app_ids.py
+python3 scripts/vod_describe_sub_app_ids.py
 ```
 
 #### 按名称过滤
 ```bash
-python scripts/vod_describe_sub_app_ids.py --name "MyAppName"
+python3 scripts/vod_describe_sub_app_ids.py --name "MyAppName"
 ```
 
 #### JSON 格式输出
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json
+python3 scripts/vod_describe_sub_app_ids.py --json
 ```
 
 #### dry-run 预览请求参数
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --name "MyAppName" \
     --tag env=prod \
     --dry-run
@@ -45,26 +45,26 @@ python scripts/vod_describe_sub_app_ids.py \
 
 #### 按单个标签过滤
 ```bash
-python scripts/vod_describe_sub_app_ids.py --tag env=prod
+python3 scripts/vod_describe_sub_app_ids.py --tag env=prod
 ```
 
 #### 按多个标签联合过滤（AND 关系）
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --tag env=prod \
     --tag team=media
 ```
 
 #### 分页查询前 20 条记录
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --offset 0 \
     --limit 20
 ```
 
 #### 组合名称、标签和分页条件查询
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --name "MyAppName" \
     --tag env=prod \
     --tag owner=video-team \
@@ -74,23 +74,23 @@ python scripts/vod_describe_sub_app_ids.py \
 
 #### 将结果保存为 JSON 文件
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json > sub_apps.json
+python3 scripts/vod_describe_sub_app_ids.py --json > sub_apps.json
 ```
 
 #### 使用 jq 提取子应用 ID 列表
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json | jq -r '.SubAppIdInfoSet[].SubAppId'
+python3 scripts/vod_describe_sub_app_ids.py --json | jq -r '.SubAppIdInfoSet[].SubAppId'
 ```
 
 #### 使用 jq 提取启用状态的子应用名称
 ```bash
-python scripts/vod_describe_sub_app_ids.py --json | \
+python3 scripts/vod_describe_sub_app_ids.py --json | \
     jq -r '.SubAppIdInfoSet[] | select(.Status == "On") | .SubAppIdName'
 ```
 
 #### 查询绑定指定标签的所有子应用并提取地域信息
 ```bash
-python scripts/vod_describe_sub_app_ids.py \
+python3 scripts/vod_describe_sub_app_ids.py \
     --tag env=prod \
     --json | jq -r '.SubAppIdInfoSet[] | {name: .SubAppIdName, regions: .StorageRegions}'
 ```

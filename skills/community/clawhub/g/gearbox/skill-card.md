@@ -1,38 +1,53 @@
-## Description: <br>
-Assesses wind turbine gearbox health from multi-sensor and inspection data, classifies damage severity, identifies likely root cause, and recommends shutdown or monitoring actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses wind turbine gearbox health from multi-sensor and inspection data, classifies damage severity from 1 to 5, identifies likely root cause, and recommends shutdown or monitoring actions.
 
-## Publisher: <br>
-[Sertug17](https://clawhub.ai/user/Sertug17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sertug17](https://clawhub.ai/user/sertug17)
 
-## Use Case: <br>
-Maintenance engineers and wind operations teams use this skill to interpret gearbox inspection, oil, temperature, vibration, and acoustic observations and produce a structured maintenance decision report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend turbine shutdown or monitoring changes based on user-provided inspection and sensor data. <br>
-Mitigation: Treat reports as decision support and validate recommendations with qualified maintenance personnel and reliable site data before acting. <br>
+## Use Case:
 
+Maintenance engineers and wind operations teams use this skill to turn gearbox inspection, oil, temperature, vibration, and acoustic observations into a structured maintenance report with severity, root cause, monitoring, escalation, and shutdown guidance.
 
-## Reference(s): <br>
-- [Gearbox Skill Page](https://clawhub.ai/Sertug17/gearbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown-style maintenance report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes root cause, severity, shutdown recommendation, monitoring strategy, and escalation triggers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Shutdown and monitoring recommendations may be incorrect or incomplete if treated as authoritative operational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report as an advisory checklist and confirm Severity 4-5 results, shutdown decisions, and thresholds with qualified maintenance engineers, OEM documentation, site safety procedures, and historical trend data.
+
+Risk: The skill depends on field observations and sensor inputs that may be subjective, missing, or affected by site conditions.
+
+Mitigation: Cross-check multiple evidence sources before assigning the highest severity and ask for baseline-normalized values and additional trend data when available.
+
+## Reference(s):
+
+- [ClawHub Gearbox Skill Page](https://clawhub.ai/sertug17/skills/gearbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured markdown maintenance report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes root cause, severity, shutdown recommendation, monitoring strategy, and escalation triggers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

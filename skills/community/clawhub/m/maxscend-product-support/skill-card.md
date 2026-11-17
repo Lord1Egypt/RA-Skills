@@ -1,39 +1,50 @@
-## Description: <br>
-提供卓胜微(Maxscend)射频产品线技术支持。当用户询问卓胜微射频开关、LNA、滤波器、射频模组等产品选型、应用设计、调试问题时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供卓胜微(Maxscend)射频产品线技术支持。当用户询问卓胜微射频开关、LNA、滤波器、射频模组等产品选型、应用设计、调试问题时调用。
 
-## Publisher: <br>
-[mssnzxm](https://clawhub.ai/user/mssnzxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mssnzxm](https://clawhub.ai/user/mssnzxm)
 
-## Use Case: <br>
-External developers and RF engineers use this skill to get product selection guidance, design-in support, application-circuit advice, datasheet interpretation, and troubleshooting steps for Maxscend RF switches, LNAs, filters, RF modules, and power amplifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes RF product tables and technical values that may be incomplete, stale, or unsuitable for a specific design. <br>
-Mitigation: Verify important RF specifications, limits, and application guidance against official Maxscend datasheets and current application notes before design or procurement decisions. <br>
+## Use Case:
 
+RF engineers, product-support engineers, and developers use this skill to answer selection, application-design, datasheet-interpretation, and troubleshooting questions for Maxscend RF switches, LNAs, filters, RF modules, and power amplifiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mssnzxm/maxscend-product-support) <br>
-- [Publisher profile](https://clawhub.ai/user/mssnzxm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with product tables, checklists, troubleshooting steps, and application guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code, install scripts, credential access, or system authority are described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Product parameters or application recommendations may be outdated or incomplete for engineering decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify RF specifications, limits, and design recommendations against current official datasheets before use in hardware designs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mssnzxm/skills/maxscend-product-support)
+- [Publisher profile](https://clawhub.ai/user/mssnzxm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and plain-text technical guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product-selection tables, application notes, design checklists, circuit examples, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

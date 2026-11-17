@@ -1,43 +1,55 @@
-## Description: <br>
-支持查找圆周率指定位置开始的数字，也支持查找指定数字在圆周率中的位置。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports querying digits of pi starting at a specified position and finding where a given digit sequence appears in pi, using the Jike API.
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and agent developers use this skill to look up digits of pi from a starting position or find where a digit sequence appears in pi through Jike's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to an external Jike API and requires an API key. <br>
-Mitigation: Install only when Jike API access is intended, keep the key in environment variables, and avoid exposing command output that includes credentials. <br>
-Risk: The JIKE_API_BASE_URL override can redirect requests to a different endpoint. <br>
-Mitigation: Leave JIKE_API_BASE_URL unset unless the endpoint is trusted and explicitly approved. <br>
+## Use Case:
 
+Developers and agent users use this skill to answer pi digit lookup requests, including retrieving digits from a position and locating short digit sequences in pi.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-pi-query) <br>
-- [Publisher profile](https://clawhub.ai/user/jikeapi-cn) <br>
-- [Jike API homepage](https://www.jikeapi.cn/) <br>
-- [Pi lookup API endpoint](https://api.jikeapi.cn/v1/pi/find_number) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON returned by a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JIKE_PI_QUERY_KEY or JIKE_APPKEY credential; optional JSON output is available with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The configured Jike AppKey can be sent to an unexpected endpoint if JIKE_API_BASE_URL is controlled by an untrusted user or wrapper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in environments where untrusted users cannot set JIKE_API_BASE_URL, and rotate the key if it may have been used with an unexpected API base URL.
+
+Risk: Pi lookup requests and the configured AppKey are sent to the Jike API.
+
+Mitigation: Install and use the skill only when sending those requests and credentials to Jike is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-pi-query)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Pi query API endpoint](https://api.jikeapi.cn/v1/pi/find_number)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON returned by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Jike AppKey via JIKE_PI_QUERY_KEY or JIKE_APPKEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

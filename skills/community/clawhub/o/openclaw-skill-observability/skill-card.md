@@ -1,42 +1,55 @@
-## Description: <br>
-Provides OpenClaw observability tools that report recent errors and estimate API usage costs over the last 24 hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides observability tools for OpenClaw by reporting recent errors and estimating API usage costs over the last 24 hours.
 
-## Publisher: <br>
-[erain](https://clawhub.ai/user/erain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[erain](https://clawhub.ai/user/erain)
 
-## Use Case: <br>
-OpenClaw bot owners, operators, and developers use this skill to view recent failures and approximate API usage costs without opening a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recent error reports can expose local OpenClaw operational telemetry such as paths, stack traces, session titles, identifiers, usage amounts, and status details. <br>
-Mitigation: Install only where callers are trusted to view local telemetry, and review output before forwarding it. <br>
-Risk: Cost reports are estimates based on recent session data and a hardcoded pricing table, so totals can be incomplete or stale. <br>
-Mitigation: Treat cost output as an operational estimate and verify pricing-sensitive decisions against provider billing records. <br>
+## Use Case:
 
+Bot owners, developers, and operators use this skill to inspect OpenClaw session costs and recent failures without opening a terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erain/openclaw-skill-observability) <br>
-- [Skill README](artifact/README.md) <br>
-- [MVP product requirements](artifact/docs/PRD_MVP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text] <br>
-**Output Format:** [Markdown reports and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost reports are estimates over recent sessions; error reports may include session IDs, statuses, titles, and filtered local log lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; package.json declares 1.1.0) <br>
+Risk: The skill can expose raw OpenClaw gateway log lines and session details through chat, including potentially sensitive prompts, identifiers, file paths, URLs, or tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit installation and use to trusted operators; redact log output, omit or truncate session identifiers and titles, and document journal access before broader deployment.
+
+Risk: Cost reports are estimates based on recent session metadata and a hardcoded pricing table, so totals may be incomplete or stale.
+
+Mitigation: Use the report for operational awareness and verify billing-sensitive totals against provider billing records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/erain/skills/openclaw-skill-observability)
+- [Publisher Profile](https://clawhub.ai/user/erain)
+- [Product Requirements Document](docs/PRD_MVP.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text returned by agent tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost estimates depend on a hardcoded pricing table and recent OpenClaw session metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

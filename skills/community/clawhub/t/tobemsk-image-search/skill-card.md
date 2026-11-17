@@ -1,41 +1,60 @@
-## Description: <br>
-本地图片语义搜索 helps users build a local Chinese-CLIP image index and search their own pictures with Chinese or English natural-language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches local images with Chinese or English natural-language queries by building and querying a local Chinese-CLIP and FAISS image index.
 
-## Publisher: <br>
-[tobemsk](https://clawhub.ai/user/tobemsk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobemsk](https://clawhub.ai/user/tobemsk)
 
-## Use Case: <br>
-External users and developers use this skill to install dependencies, scan selected local image folders, create or update a FAISS image index, and run semantic searches for local pictures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a local searchable index of personal images. <br>
-Mitigation: Set SCAN_ROOTS to only the folders intended for indexing and treat the image_db directory as private data. <br>
-Risk: Exported search result files may reveal search terms and local file paths. <br>
-Mitigation: Review, store, share, or delete Desktop result files according to the sensitivity of the indexed images. <br>
+## Use Case:
 
+External users and developers use this skill to set up local semantic image search, scan configured image locations, update the image index, and retrieve matching image paths from natural-language queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobemsk/tobemsk-image-search) <br>
-- [Hugging Face mirror endpoint](https://hf-mirror.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search workflows create a local image_db index and may export Desktop text files containing queries, local paths, and similarity scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The default behavior can scan broad local image locations and store image paths and feature data in image_db.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow SCAN_ROOTS before scanning, exclude sensitive directories, and handle the generated index as local private data.
+
+Risk: The skill downloads model files through hf-mirror.com and relies on unpinned Python dependency ranges.
+
+Mitigation: Install in an isolated Python environment, pin and review dependencies, and use trusted or pre-vetted model sources for production use.
+
+Risk: The image path list is stored with pickle, which is unsafe to load from untrusted sources.
+
+Mitigation: Only load indexes created locally in a trusted environment, or replace the pickle-based path list with a safer serialization format before broader deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobemsk/skills/tobemsk-image-search)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Hugging Face mirror endpoint](https://hf-mirror.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Python configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on installing dependencies, configuring scan roots, building or updating the local index, and running searches that save text results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

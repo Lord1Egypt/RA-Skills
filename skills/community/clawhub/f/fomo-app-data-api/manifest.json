@@ -1,0 +1,12 @@
+{
+  "mode": "readonly",
+  "name": "fomo-app-data-api",
+  "operation_count": 16,
+  "payment_modes": [
+    "prepaid_credit"
+  ],
+  "platform": "fomo",
+  "source_of_truth": "services/replynodes-fetcher/internal/billing/catalog.go and the live Fomo capability catalog",
+  "title": "Fomo App Public Data",
+  "version": "2.0.1"
+}

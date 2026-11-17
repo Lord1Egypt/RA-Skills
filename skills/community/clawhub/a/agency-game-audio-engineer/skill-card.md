@@ -1,41 +1,54 @@
-## Description: <br>
-Game audio agent for designing and implementing interactive SFX, music, voice, and spatial audio systems with FMOD, Wwise, or native engine audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in game audio engineering for interactive audio systems, adaptive music, spatial audio, and middleware integration.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Game developers, audio engineers, and technical sound designers use this skill to plan interactive audio architecture, middleware event structures, adaptive music behavior, spatial audio rigs, and performance budgets for game projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code or middleware configuration advice could be incorrect for a specific game project. <br>
-Mitigation: Treat generated code and settings as advisory, review them before adding them to a project, and test them in the target engine and audio middleware. <br>
-Risk: Audio budget recommendations may not match the constraints of every target platform. <br>
-Mitigation: Profile voice count, memory, CPU, streaming, and spatial audio behavior on the lowest target hardware before shipping. <br>
+## Use Case:
 
+Developers and game audio engineers use this skill for guidance on interactive audio architecture, adaptive music, spatial audio, FMOD/Wwise integration, and performance budgets across Unity, Unreal, and Godot projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-game-audio-engineer) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with prose, tables, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include game audio architecture recommendations, FMOD/Wwise event structures, Unity/FMOD code snippets, spatial audio settings, and performance budget guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Advisory audio engineering output could be incomplete or incorrect for a specific engine, middleware version, platform, or hardware target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations with project audio and engineering owners, then test proposed code, routing, budgets, and middleware settings in the target engine and on the lowest supported hardware.
+
+Risk: Generated implementation examples may be mistaken for ready-to-ship production changes.
+
+Mitigation: Treat responses as design and implementation guidance only; require normal code review, profiling, and middleware validation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-game-audio-engineer)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with optional code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory responses may include FMOD/Wwise event structures, Unity/FMOD code snippets, audio budget tables, spatial audio settings, and implementation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

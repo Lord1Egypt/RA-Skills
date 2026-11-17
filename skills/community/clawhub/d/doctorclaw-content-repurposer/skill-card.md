@@ -1,40 +1,58 @@
-## Description: <br>
-Content repurposer - turn one blog post, video, or podcast into social posts, email newsletters, and threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content repurposer: turn one blog post, video, or podcast into social posts, email newsletters, and threads on demand.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-External content teams, founders, and marketers use this skill to turn long-form source material into platform-ready draft posts, threads, newsletter snippets, quote blocks, and summary bullets for review and publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched URLs or supplied source material may include untrusted, private, or sensitive content. <br>
-Mitigation: Prefer pasting private content directly, treat fetched material as untrusted, and review extracted content before reusing it. <br>
-Risk: Optional publishing or scheduling integrations could post drafts before the user has approved them. <br>
-Mitigation: Connect publishing or social accounts only when scheduling is intended, and require user approval before posting. <br>
+## Use Case:
 
+External marketers, founders, and content teams use this skill to convert long-form content into platform-ready social posts, email snippets, quote pull-outs, and summary bullets. It supports review and refinement before optional scheduling or publication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ceobotson-bot/doctorclaw-content-repurposer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown content package with platform-specific draft copy and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include LinkedIn posts, X/Twitter threads, Instagram captions, Facebook posts, email snippets, quote blocks, and summary bullets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Private drafts, local file paths, or authenticated URLs may expose sensitive source content to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only content approved for processing, and avoid private or logged-in URLs unless the agent environment is trusted.
+
+Risk: Generated marketing copy may be inaccurate, off-brand, or misleading if published without review.
+
+Mitigation: Review and approve generated posts, threads, captions, and email snippets before scheduling or publication.
+
+Risk: Connected posting or calendar tools could schedule or publish content after approval.
+
+Mitigation: Limit integration permissions and require explicit user approval before posting or scheduling any generated content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-content-repurposer)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with platform-specific content sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces multiple reviewed marketing assets from one source input.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

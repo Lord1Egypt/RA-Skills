@@ -1,38 +1,50 @@
-## Description: <br>
-Mainline Anchor is a workflow skill for keeping multi-agent tasks aligned with the main objective after branch explorations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mainline Anchor provides a Chinese-language workflow prompt for keeping multi-agent work aligned with the main task after branch exploration.
 
-## Publisher: <br>
-[liucg3712](https://clawhub.ai/user/liucg3712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liucg3712](https://clawhub.ai/user/liucg3712)
 
-## Use Case: <br>
-Developers and multi-agent teams use this skill to classify mainline, branch, and background work, report current progress, and return exploratory work to the primary task plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow expects agents to update HEARTBEAT.md for status tracking, which may affect shared repository handoff records. <br>
-Mitigation: Agree on the status-file convention before deployment, or require agents to show proposed HEARTBEAT.md entries for review before writing them. <br>
+## Use Case:
 
+Agent users and multi-agent teams use this skill to request a quick mainline-alignment status, classify active work as mainline, branch, or background, and steer branch exploration back to the main task.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liucg3712/skills/mainline-anchor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown response template and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask agents to propose or update HEARTBEAT.md status entries for session handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The workflow asks agents to update HEARTBEAT.md at session exit, which could create unexpected workspace note changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide before use whether automatic HEARTBEAT.md updates are allowed; otherwise require agents to present the proposed status text and wait for approval before writing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liucg3712/skills/mainline-anchor)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/liucg3712)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown-formatted workflow status, task classification, next-step recommendations, and session handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language response template with a 30-minute branch-task check-in convention]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

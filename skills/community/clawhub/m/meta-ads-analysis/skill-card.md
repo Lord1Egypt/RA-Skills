@@ -1,44 +1,54 @@
-## Description: <br>
-[Didoo AI] Analyzes Meta Ads campaign performance in depth, including metrics, funnel health, trends, and anomalies, and outputs structured analysis without recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Analyzes Meta Ads campaign performance in depth: metrics, funnel, trends, and anomalies, producing structured analysis without recommendations.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-External marketers, growth teams, and agents use this skill to analyze Meta Ads campaign performance for a selected account, campaign level, time range, and attribution window. It helps identify funnel weak points, metric trends, anomalies, and data quality caveats before any separate recommendation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth credentials and an ad account identifier that let the agent read Meta Ads account data. <br>
-Mitigation: Use a least-privilege ads_read token, provide only the intended ad account ID, and revoke or rotate the token when the analysis is complete. <br>
-Risk: Broad trigger phrases such as analyze, diagnose, or full audit could activate the skill when the user intended another analytics domain. <br>
-Mitigation: Confirm the user means Meta Ads and verify the account, campaign, date range, and attribution window before making API calls. <br>
-Risk: Campaign metrics can be unstable for short time ranges, low impression counts, or recently edited campaigns. <br>
-Mitigation: Call out data-quality limits in the output and avoid strong conclusions when the artifact's stated thresholds are not met. <br>
+## Use Case:
 
+External marketers, growth operators, and agents use this skill to diagnose Meta Ads campaign performance, identify weak funnel points, trends, anomalies, and data caveats, and prepare structured analysis before any recommendation workflow.
 
-## Reference(s): <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
-- [ClawHub skill page](https://clawhub.ai/elias-didoo/meta-ads-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/elias-didoo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Structured Markdown analysis with campaign context, summary metrics, funnel analysis, trend analysis, key issues, and data notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads Meta Ads data through required META_ACCESS_TOKEN and META_AD_ACCOUNT_ID credentials; stores session context keys for downstream analysis and recommendation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill requires a Meta Marketing API access token and ad account ID to analyze account performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only token limited to the ads_read scope and provide credentials only when Meta Ads analysis is intended.
+
+Risk: Generic trigger words such as analyze or diagnose may activate the skill when a Meta Ads workflow was not intended.
+
+Mitigation: Confirm the user wants Meta Ads campaign analysis before requesting credentials or making API calls.
+
+## Reference(s):
+
+- [Didoo AI Blog](https://didoo.ai/blog)
+- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/skills/meta-ads-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis only; stores campaign context, funnel weak points, trend signals, anomalies, data quality notes, and general landing-page diagnosis in session context.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

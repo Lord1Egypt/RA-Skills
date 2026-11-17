@@ -1,0 +1,7 @@
+interface:
+  display_name: "USA Business Migration Planner"
+  short_description: "Helps with People repeatedly need a practical, repeatable way..."
+  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle 全球 CDN 除了 CF 还有哪家好呢(月费 1000r 左右都可以)， CF 有 120 秒超时，不符合需求."
+
+policy:
+  allow_implicit_invocation: true

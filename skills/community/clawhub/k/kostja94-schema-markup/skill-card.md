@@ -1,47 +1,63 @@
-## Description: <br>
-Guides agents in adding or optimizing Schema.org structured data and JSON-LD for rich results and AI search visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides implementation and optimization of Schema.org structured data and JSON-LD for rich results, enhanced search visibility, and Generative Engine Optimization.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, marketers, and SEO practitioners use this skill to choose page-appropriate Schema.org types, draft JSON-LD, and validate structured data for rich results and AI search visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad schema-related wording and may provide guidance outside the user's intended scope. <br>
-Mitigation: Use it for structured data and JSON-LD tasks, then review recommendations against the visible page content and current search-engine documentation. <br>
-Risk: The skill may ask the agent to read project-context files for site details. <br>
-Mitigation: Keep secrets and credentials out of project-context files or redact them before using the skill. <br>
-Risk: Incorrect or misleading structured data can create validation errors or search-result eligibility issues. <br>
-Mitigation: Validate generated JSON-LD with the Rich Results Test or Schema Markup Validator and ensure the markup matches visible page content. <br>
+## Use Case:
 
+Developers, SEO practitioners, and content teams use this skill to select appropriate Schema.org types, draft JSON-LD markup, map page types to rich-result opportunities, and plan validation steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kostja94/kostja94-schema-markup) <br>
-- [Schema.org](https://schema.org/) <br>
-- [Google Structured Data Documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) <br>
-- [Google Search Gallery](https://developers.google.com/search/docs/guides/search-gallery) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
-- [Bing Structured Data Markup](https://www.bing.com/webmasters/help/marking-up-your-site-with-structured-data-3a93e731) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with JSON-LD code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include page-level schema mappings, JSON-LD snippets, validation steps, and reference links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: Broad schema-related activation wording may cause the skill to engage in loosely related SEO tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for structured data, JSON-LD, rich results, or schema validation before applying recommendations.
+
+Risk: The skill may read local project-context files when present to tailor recommendations.
+
+Mitigation: Review project-context contents for sensitive information before use in shared or external workflows.
+
+Risk: Structured-data recommendations can become misleading if markup does not match visible page content or current search engine eligibility rules.
+
+Mitigation: Validate generated markup with Rich Results Test and Schema Markup Validator, and verify that each property reflects visible page content.
+
+## Reference(s):
+
+- [Schema.org](https://schema.org/)
+- [Google Search Gallery](https://developers.google.com/search/docs/guides/search-gallery)
+- [Google Structured Data Documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Bing Structured Data Markup](https://www.bing.com/webmasters/help/marking-up-your-site-with-structured-data-3a93e731)
+- [Schema Markup Validator](https://validator.schema.org/)
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/kostja94-schema-markup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with JSON-LD code examples and validation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations by reading local project-context files when present.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

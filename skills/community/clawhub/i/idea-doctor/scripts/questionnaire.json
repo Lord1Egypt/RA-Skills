@@ -1,0 +1,23 @@
+{
+  "_desc": "商业点子体检官问卷模板（壳包 v0.2.4）。复制本文件为 my_questionnaire.json 后填 _input；ideas 数组 1-10 条：1 条 ¥4.9，2-10 条 ¥9.9，>10 拒单（服务端 400 BATCH_TOO_LARGE：一次最多 10 个点子，更多请分批购买）。壳不猜值：缺项/非法在提交时原样退回（QUESTIONNAIRE_* 错误码、不发单），请补齐后重试。",
+  "_fields": {
+    "ideas": "array，必填，1-10 条；每条为一个对象 {idea, econ, scores(选填), competitors(选填)}",
+    "idea": "string，必填（每条）：点子一句话描述，含目标人群与变现方式；至少 10 字（服务端硬校验，超 2000 字截断）",
+    "econ": "object，必填（每条）：算账四字段 price 客单价元 / pay_rate 转化率 0-1 / reach 月触达人次 / fixed_monthly 月固定成本元；四数值必填（0 可以）",
+    "competitors": "array，选填（每条）：[{name 必填, price, billing_model, source, checked_at, note}]；缺数据时引擎只出审计框架（中位价/价格带/溢价率须有真实数据，引擎不代填市场数字）；顶层 competitors 数组可作为各条共用默认"
+  },
+  "_optional": {
+    "scores": "object，选填（每条）：preset_scores {pain, moat, willingness, delivery, acquisition}，只收 0-10 数值；缺省该维按默认 3 分口径（报告标注「默认3分」）；null 字段由提交脚本剔除不上送",
+    "填分参考（本地，不上送）": "pain_evidence 需求真伪证据 / channel_note 渠道获客 / compliance_note 合规门槛 / market_size_note 市场规模——请在本地据此填 scores 与 econ；生产契约只消费 idea/scores/econ/competitors 四类字段，备注类字段不进请求体；预填见第 0.5 步"
+  },
+  "_input": {
+    "ideas": [
+      {
+        "idea": "",
+        "econ": { "price": null, "pay_rate": null, "reach": null, "fixed_monthly": null },
+        "scores": { "pain": null, "moat": null, "willingness": null, "delivery": null, "acquisition": null },
+        "competitors": []
+      }
+    ]
+  }
+}

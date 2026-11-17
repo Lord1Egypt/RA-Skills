@@ -1,40 +1,53 @@
-## Description: <br>
-用轻松幽默的中文表达解读学术论文，帮助用户理解研究背景、实验设计、结果、图表、结论和局限。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用轻松幽默的中文讲解方式，将学术论文拆解为面向外行和专业汇报两种口吻的结构化解读。
 
-## Publisher: <br>
-[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel)
 
-## Use Case: <br>
-Students, researchers, and readers use this skill to turn dense academic papers into structured Chinese explanations with both plain-language and professional sections. It is useful for literature review, paper presentations, and understanding figures or tables from a provided paper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read and temporarily copy user-provided paper images while analyzing figures. <br>
-Mitigation: Use a trusted runtime for sensitive or unpublished figures and delete temporary copies after the analysis. <br>
-Risk: Humorous simplification can omit nuance from methods, statistics, or limitations. <br>
-Mitigation: Check formal summaries and reported results against the original paper before using them in academic or professional decisions. <br>
+## Use Case:
 
+External users, students, researchers, and presentation authors use this skill to turn academic papers into structured Chinese explanations that cover background, research questions, experiments, results, conclusions, limitations, terminology, and paper figures or tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/paper-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Chinese Markdown with sectioned plain-language and professional explanations, tables, image links, and figure descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include temporary image-copying shell commands for user-provided paper figures; otherwise produces structured explanatory text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill may trigger on broad requests such as help understanding a paper or document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit paper-analysis prompts and confirm the target paper or folder before applying the skill.
+
+Risk: Image analysis may copy paper images into a temporary folder.
+
+Mitigation: Use only user-provided folders and images intended to be shared with the agent, and remove temporary copies after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/skills/paper-buddy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Structured Chinese Markdown with section headings, tables, terminology explanations, and optional image references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PowerShell file-copy commands and paths when processing user-provided paper images.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

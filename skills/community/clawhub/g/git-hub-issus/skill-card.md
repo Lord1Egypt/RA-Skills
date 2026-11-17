@@ -1,40 +1,52 @@
-## Description: <br>
-Provides local Git workflow guidance for branching, syncing, committing, pushing, and preparing pull or merge requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local git operations for project management, including branch creation, commits, pushes, pulls, diffs, logs, and preparation for pull requests or merge requests.
 
-## Publisher: <br>
-[zhulaoqi](https://clawhub.ai/user/zhulaoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhulaoqi](https://clawhub.ai/user/zhulaoqi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to guide local Git workflows for feature branches, issue-based branch naming, commits, synchronization, branch management, and PR/MR preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide commits, pushes, rebases, branch deletion, and PR/MR creation, which may alter repository history or publish changes.
+
+Mitigation: Review proposed Git commands before execution, especially destructive operations, pushes, rebases, branch deletion, and PR/MR creation.
+
+Risk: The artifact includes example project paths and repository conventions that may not fit the user's project.
+
+Mitigation: Confirm repository path, branch naming, remotes, and project conventions before applying the workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and project maintainers use this skill to plan and execute routine local Git workflows, including creating issue branches, reviewing status and diffs, committing changes, syncing from main, and preparing pull or merge requests. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose branch, commit, pull, rebase, branch-switch, or push operations that change the local repository or remote history. <br>
-Mitigation: Check the current branch, remote, and diff first, and require explicit confirmation before running repository-changing Git commands. <br>
-Risk: Git workflow advice can be incorrect for a repository's branch policy or merge process. <br>
-Mitigation: Review proposed commands against the project's contribution rules before execution. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhulaoqi/git-hub-issus) <br>
+**Other Properties Related to Output:** [May propose repository-changing Git commands that should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository-changing Git commands that should be reviewed before execution.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

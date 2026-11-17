@@ -1,43 +1,55 @@
-## Description: <br>
-Generate, queue, or schedule AI music on an Android phone through the StepAce Experimental app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI music on your Android phone via the StepAce Experimental app.
 
-## Publisher: <br>
-[ckadirt](https://clawhub.ai/user/ckadirt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckadirt](https://clawhub.ai/user/ckadirt)
 
-## Use Case: <br>
-External users and music creators use this skill to turn natural-language music requests into immediate or scheduled StepAce generation jobs, including optional lyrics, tempo, key, duration, language, and time signature settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pairing token can queue music on the user's phone if exposed. <br>
-Mitigation: Treat STEPACE_TOKEN like a password, avoid sharing it, and regenerate it in the StepAce Experimental app if it is exposed. <br>
-Risk: The skill sends outbound requests to a disclosed third-party bridge endpoint. <br>
-Mitigation: Install only if the user trusts StepAce Experimental and the disclosed bridge endpoint, and review casual or scheduled music requests before sending them. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent queue or schedule AI-generated music through the StepAce Experimental Android app, including prompts with optional lyrics, BPM, key, duration, vocal language, and time signature.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckadirt/stepace-experimental) <br>
-- [Publisher profile](https://clawhub.ai/user/ckadirt) <br>
-- [StepAce homepage](https://cronicaia.com) <br>
-- [OpenClaw bridge queue endpoint](https://openclaw-bridge.torrico-villanueva-cesar-kadir.workers.dev/openclaw/queue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses STEPACE_TOKEN for pairing, supports immediate and scheduled generation, and produces user-facing queue status details when the bridge accepts a job.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill sends the user's music prompt and StepAce pairing token to an external bridge endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the StepAce Experimental bridge operator, and avoid sending sensitive lyrics or private text in prompts.
+
+Risk: Ambiguous music or scheduling requests could queue unwanted generation on the user's phone.
+
+Mitigation: Confirm ambiguous requests before queuing music, especially scheduled requests that depend on a date, time, or timezone.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckadirt/skills/stepace-experimental)
+- [StepAce Homepage](https://cronicaia.com)
+- [OpenClaw Bridge Queue Endpoint](https://openclaw-bridge.torrico-villanueva-cesar-kadir.workers.dev/openclaw/queue)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance]
+
+**Output Format:** [Markdown or plain text with JSON payloads and curl shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a STEPACE_TOKEN pairing token and may include a scheduledAt timestamp in Unix milliseconds.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

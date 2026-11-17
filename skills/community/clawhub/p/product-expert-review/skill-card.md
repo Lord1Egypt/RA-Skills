@@ -1,40 +1,53 @@
-## Description: <br>
-Generates deep product experience reviews for AI tools, agent products, SaaS products, or consumer-facing software from website URLs, screenshots, or both. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates deep, evidence-driven product experience reviews for AI tools, agent products, SaaS products, and consumer software from URLs, screenshots, or both.
 
-## Publisher: <br>
-[jelly6661](https://clawhub.ai/user/jelly6661) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jelly6661](https://clawhub.ai/user/jelly6661)
 
-## Use Case: <br>
-Product teams, founders, designers, and operators use this skill to evaluate product user experience from a live website, screenshots, or both. It produces evidence-driven findings, scored UX dimensions, competitor context when available, and practical improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential screenshots, internal product URLs, or proprietary product analysis may be exposed during browsing, screenshot analysis, or external research. <br>
-Mitigation: Use public or approved materials unless the reviewer is comfortable with the agent researching them; avoid confidential inputs when that exposure is not acceptable. <br>
-Risk: Optional Feishu document delivery can share the final review outside the chat context. <br>
-Mitigation: Use Feishu delivery only when external sharing of the report is acceptable; otherwise keep the report in chat or another approved internal channel. <br>
+## Use Case:
 
+External users, product teams, and developers use this skill to evaluate product experience, UX readiness, trust signals, competitive positioning, and practical improvement opportunities from public product pages and screenshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jelly6661/product-expert-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Long-form Markdown report, written in Chinese by default unless the user requests another language.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scored UX dimensions, evidence notes, competitor comparison when supported, prioritized risks, and practical recommendations; may include a Feishu document link when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may browse product websites, search public sources, inspect screenshots, and optionally create a Feishu document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the input material and only request Feishu document creation when sharing the generated report through that integration is acceptable.
+
+Risk: Product reviews can introduce incorrect or misleading recommendations if source material is incomplete.
+
+Mitigation: Use the skill's evidence-limited analysis posture and review the final report before acting on its recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jelly6661/skills/product-expert-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report, usually written in Chinese by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally create a Feishu document when the user requests shareable delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

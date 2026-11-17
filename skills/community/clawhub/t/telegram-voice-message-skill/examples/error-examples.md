@@ -425,7 +425,7 @@ check_dependencies() {
 #!/bin/bash
 TELEGRAM_BOT_TOKEN="1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh"
 TELEGRAM_CHAT_ID="987654321"
-ALIYUN_TTS_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+ALIYUN_TTS_API_KEY="REDACTED-SECRET"
 
 # 直接使用硬编码的值
 curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendVoice" \

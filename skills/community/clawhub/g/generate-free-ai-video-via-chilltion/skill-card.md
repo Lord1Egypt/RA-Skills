@@ -1,44 +1,59 @@
-## Description: <br>
-Uses the Chilltion API to create AI videos from text prompts and to check Chilltion sessions, credits, costs, balances, and API responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short AI videos from text prompts through the Chilltion API and helps agents manage Chilltion sessions, streaming status, credits, costs, and account balance.
 
-## Publisher: <br>
-[dragondean](https://clawhub.ai/user/dragondean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dragondean](https://clawhub.ai/user/dragondean)
 
-## Use Case: <br>
-External users and developers use this skill to create short AI videos from a single Chilltion prompt, monitor generation progress, and inspect session, credit, balance, and cost information through the Chilltion API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Chilltion API key and may expose account, session, or credit information through API calls. <br>
-Mitigation: Provide credentials only when you intend to use Chilltion, keep the key private, and review returned session or account data before sharing it. <br>
-Risk: Creating video sessions or calling unlisted API endpoints may consume Chilltion credits. <br>
-Mitigation: Confirm the user wants to start a session or endpoint call, and check balance or session cost when credit usage matters. <br>
-Risk: Changing CHILLTION_BASE_URL can send credentials and prompts to a non-official service. <br>
-Mitigation: Keep CHILLTION_BASE_URL set to https://chilltion.com unless the alternative endpoint is controlled and trusted. <br>
+## Use Case:
 
+External users and developers use this skill to create Chilltion video-generation sessions from concise text prompts, monitor progress, retrieve video or chat URLs, and review account credit usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dragondean/generate-free-ai-video-via-chilltion) <br>
-- [Publisher profile](https://clawhub.ai/user/dragondean) <br>
-- [Chilltion service](https://chilltion.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Chilltion session identifiers, video URLs, chat URLs, SSE event data, credit balances, and cost records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authenticated Chilltion API calls could be redirected if CHILLTION_BASE_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep CHILLTION_BASE_URL set to https://chilltion.com for normal use and use only isolated development credentials when testing any alternate endpoint.
+
+Risk: Prompts and messages sent through the skill leave the local machine and may consume account credits.
+
+Mitigation: Avoid sending sensitive content, confirm user intent before generation, and check balance or session cost when credit use matters.
+
+Risk: Untrusted prompts, wrappers, or automation could steer script arguments or account-level API operations.
+
+Mitigation: Do not allow untrusted input to set environment variables or script arguments, and limit calls to the user-authorized Chilltion task.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dragondean/skills/generate-free-ai-video-via-chilltion)
+- [Chilltion service](https://chilltion.com)
+- [Publisher profile](https://clawhub.ai/user/dragondean)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and raw JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHILLTION_API_KEY; responses can include session IDs, SSE progress events, credit data, chat URLs, and video URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-05-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

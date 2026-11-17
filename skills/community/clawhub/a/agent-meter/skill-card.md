@@ -1,42 +1,62 @@
-## Description: <br>
-Track API spend with intent-level attribution. Shows where your tokens go by project and purpose. Invoke with /meter for spend summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track API spend with intent-level attribution. Shows where your tokens go by project and purpose. Invoke with /meter for spend summary.
 
-## Publisher: <br>
-[oztenbot](https://clawhub.ai/user/oztenbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oztenbot](https://clawhub.ai/user/oztenbot)
 
-## Use Case: <br>
-Developers and engineers use AgentMeter to summarize Claude Code token usage and estimated API spend by project, model, and session. It can also install a local Stop hook for future session tracking and optionally sync usage summaries to the AgentMeter dashboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make local project changes by copying a Stop hook into .claude/hooks and updating .claude/settings.json. <br>
-Mitigation: Review the hook and settings changes before relying on automatic tracking, and remove the Stop hook if persistent session tracking is not desired. <br>
-Risk: Backfill scans historical Claude Code transcript metadata under ~/.claude/projects and stores usage summaries locally. <br>
-Mitigation: Run the skill only in environments where local transcript metadata can be analyzed for spend tracking, and review ~/.agent-meter/spend.jsonl for stored fields. <br>
-Risk: Optional dashboard sync uploads usage summaries and stores an API key locally. <br>
-Mitigation: Use sync only with a trusted AgentMeter endpoint, protect ~/.agent-meter/sync.json, and use --dry-run or --status before sending records when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub AgentMeter release page](https://clawhub.ai/oztenbot/agent-meter) <br>
-- [AgentMeter dashboard](https://dashboard.agentmeter.io) <br>
+## Use Case:
 
+Developers and engineers use AgentMeter to install a Claude Code Stop hook, backfill local Claude Code session transcripts, estimate token spend, and view spend by day, project, and model. Users can optionally sync local spend summaries to the AgentMeter dashboard.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown spend summaries with shell commands and local JSONL session summary records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local spend records to ~/.agent-meter/spend.jsonl and may update .claude/settings.json when installing the Stop hook.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.4 (source: ClawHub release metadata; artifact frontmatter lists 0.6.3) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes lasting project configuration changes by installing a Stop hook and updating Claude settings.
+
+Mitigation: Review the generated .claude/settings.json and .claude/hooks/meter-session-end.sh changes before continuing to use the hook.
+
+Risk: The skill reads Claude Code transcript metadata and stores spend history locally.
+
+Mitigation: Install only in projects where local transcript-derived spend records in ~/.agent-meter/spend.jsonl are acceptable.
+
+Risk: Dashboard sync sends local spend summaries to an external service and uses an API key.
+
+Mitigation: Use sync only with the default HTTPS endpoint, store a revocable API key, and run dry-run or status checks before syncing when reviewing behavior.
+
+Risk: Unsafe argument handling may affect commands when untrusted text is passed to /meter.
+
+Mitigation: Avoid passing untrusted /meter arguments until argument validation is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oztenbot/skills/agent-meter)
+- [AgentMeter dashboard](https://dashboard.agentmeter.io)
+- [AgentMeter API endpoint](https://api.agentmeter.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with shell command execution and local JSONL spend records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes session_summary records to ~/.agent-meter/spend.jsonl and may update .claude/settings.json and .claude/hooks/ during setup.]
+
+## Skill Version(s):
+
+0.6.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

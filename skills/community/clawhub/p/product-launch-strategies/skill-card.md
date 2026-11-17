@@ -1,39 +1,54 @@
-## Description: <br>
-Guides product launch execution across channels, timelines, checklists, and cross-functional coordination for new products or major features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to plan a product launch, execute launch channels, or create a launch checklist.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to plan launches for new products, major features, or market expansion by choosing launch channels, building timelines and checklists, assigning owners, and aligning GTM dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain sensitive information that could be read to tailor launch planning. <br>
-Mitigation: Review and redact sensitive content from .claude/project-context.md or .cursor/project-context.md before using the skill. <br>
-Risk: Launch guidance could encourage scaling before product-market fit is validated. <br>
-Mitigation: Validate product-market fit and GTM alignment before using launch plans to scale acquisition. <br>
+## Use Case:
 
+External teams, founders, product marketers, and operators use this skill to plan product or major feature launches, including timelines, channel actions, checklists, and cross-functional owners.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown launch plans, channel actions, checklists, and cross-references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: The skill may tailor launch advice from local project context files when available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when use of local project context for planning guidance is acceptable; review generated launch plans before acting on them.
+
+Risk: Launch recommendations can affect messaging, channel spend, and operational priorities.
+
+Mitigation: Have responsible product, marketing, or business owners review the plan before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/product-launch-strategies)
+- [ClawHub publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local project context files when present to tailor launch planning advice.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter metadata, server release metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

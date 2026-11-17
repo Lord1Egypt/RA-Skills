@@ -5,7 +5,7 @@ description: Manage Instagram Business and Creator accounts via the Instagram Gr
 
 # Instagram
 
-![Instagram](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/brand-logos/instagram.svg)
+![Instagram](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/instagram.png)
 
 Manage an Instagram Business or Creator account via the Instagram Graph API. Publish posts and carousels, retrieve media and insights, moderate comments, send direct messages, and monitor story content.
 
@@ -15,8 +15,23 @@ This skill uses [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=
 
 | Step 1: Install | Step 2: Pair Account | Step 3: Connect Instagram |
 |:---:|:---:|:---:|
-| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/pairing/initialstep_1.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/approve_process.gif) | ![Connect](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/instagram.gif) |
+| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-install.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-pair.gif) | *Connect Instagram from the ClawLink dashboard* |
 | Run the install command in OpenClaw | Sign in and approve the device | Open the dashboard and connect Instagram |
+
+## No Account Needed: Public Instagram Data
+
+Read any public Instagram profile, post, reel or hashtag, see followers and comments, and get transcripts of reels, without connecting an Instagram account. These tools work as soon as the plugin is paired: there is nothing to connect, and each call is paid from ClawLink credit (most cost a fraction of a cent; new accounts get $0.50 free).
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `instagramdata_user_profile` | Public Instagram profile by username: follower, following and post counts, bio, category, verified flag | $0.00282 |
+| `instagramdata_user_posts` | Recent public posts of an Instagram account with likes, comments and captions | $0.00282 |
+| `instagramdata_user_reels` | Recent public reels of an Instagram account with play counts | $0.00282 |
+| `instagramdata_post_comments` | Comments on an Instagram post or reel | $0.003 |
+| `instagramdata_hashtag_posts` | Public posts under an Instagram hashtag | $0.00282 |
+| `instagramdata_transcript` | Spoken-word transcript of an Instagram reel or video post | $0.00282 |
+
+Use the connected-account tools above for the user's own Instagram; use these for anyone else's public content. More: [Creator Scout](https://clawhub.ai/hith3sh/skills/creator-scout), [Transcribe Any Video](https://clawhub.ai/hith3sh/skills/transcribe-any-video).
 
 ## How It Works
 
@@ -105,7 +120,8 @@ If Instagram tools are missing or the connection shows an error:
 
 ## Security & Permissions
 
-- Access is scoped to the connected Instagram Business or Creator account only.
+- Connected-account tools are scoped to the connected Instagram Business or Creator account.
+- The public-data tools under "No Account Needed" read other people's public Instagram content (profiles, posts, comments) without any connected account. They are read-only, never post or change anything, and each call is paid from the user's ClawLink credit.
 - A Business or Creator account is required — personal Instagram accounts are not supported by the Instagram Graph API.
 - **All write operations require explicit user confirmation.** Before executing any publish, comment, or DM action, confirm the target resource and intended effect with the user.
 - Destructive actions (delete comment, delete message) are marked as high-impact and must be confirmed.
@@ -301,6 +317,8 @@ clawlink_call_tool --tool "instagram_send_text_message" \
 
 ## Related Skills
 
+- [Creator Scout](https://clawhub.ai/hith3sh/skills/creator-scout)
+- [Transcribe Any Video](https://clawhub.ai/hith3sh/skills/transcribe-any-video)
 - [LinkedIn Social](https://clawhub.ai/hith3sh/linkedin-social) — For LinkedIn page and post management
 - [Twitter](https://clawhub.ai/hith3sh/twitter) — For Twitter/X post management and analytics
 - [Facebook Pages](https://clawhub.ai/hith3sh/facebook-pages) — For Facebook Page management
@@ -309,4 +327,4 @@ clawlink_call_tool --tool "instagram_send_text_message" \
 
 **Powered by [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=instagram-posts)** — an integration hub for OpenClaw
 
-![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/logo/link_logo_black_small.png)
+![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/clawlink.png)

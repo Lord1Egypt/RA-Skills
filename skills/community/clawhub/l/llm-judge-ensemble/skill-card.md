@@ -1,41 +1,58 @@
-## Description: <br>
-Build a cost-efficient LLM evaluation ensemble with sampling, tiebreakers, and deterministic validators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a cost-efficient LLM evaluation ensemble with sampling, tiebreakers, and deterministic validators.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to design repeatable, cost-controlled LLM-as-judge evaluations for comparing generative model outputs, shadow-testing models, and setting promotion gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sampled evaluation data may be sent to selected LLM providers during judge calls. <br>
-Mitigation: Use the skill only with provider accounts and data-handling terms that are acceptable for the evaluated content; avoid confidential data unless those terms and logging practices are approved. <br>
-Risk: Judge calls can incur provider API costs, especially when sampling is increased or promotion gates force full coverage. <br>
-Mitigation: Use scoped or budget-limited API keys and configure sampling and promotion-gate behavior deliberately before running evaluations. <br>
+## Use Case:
 
+Developers and evaluation engineers use this skill to design reproducible LLM-as-judge workflows for comparing generative AI outputs at scale, including model shadow tests and promotion gates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/llm-judge-ensemble) <br>
-- [Project homepage](https://github.com/reddinft/skill-llm-as-judge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples and configuration patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces evaluation architecture guidance, rubric design patterns, sampling advice, and example judge-ensemble code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Sampled evaluation data may be sent to external LLM providers using the user's API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with providers and datasets approved for the deployment context, and review provider data policies before evaluating sensitive data.
+
+Risk: Provider API usage can create cost exposure on high-volume evaluation runs.
+
+Mitigation: Estimate judge sampling costs before large runs and monitor API usage under the user's provider accounts.
+
+Risk: Sampled LLM judging may miss quality issues when used as a promotion gate.
+
+Mitigation: Use full judge coverage for final promotion batches, as described by the artifact guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/llm-judge-ensemble)
+- [Project homepage declared in artifact](https://github.com/reddinft/skill-llm-as-judge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes evaluation rubric structure, scoring guidance, cost notes, and operational caveats.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

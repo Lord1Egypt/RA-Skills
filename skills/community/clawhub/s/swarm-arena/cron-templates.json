@@ -1,0 +1,33 @@
+{
+  "_readme": "swarmArena cron schedule templates. register_crons.py replaces every /ABSOLUTE/PATH/TO/swarm-arena placeholder with the real skill root and writes register_crons.json plus ready-to-paste crontab lines. Times are in the system local timezone of the host crontab; daily_summary is intended for 00:00 UTC — set TZ=UTC in crontab or adjust the schedule.",
+  "jobs": [
+    {
+      "name": "scan",
+      "description": "Main trading cycle: validate config, honor halt/circuit-breaker, reset daily counters, reconcile positions, run trade_loop for each allowed symbol, trail stops, persist state, run review every 5 new trades.",
+      "schedule": "*/2 * * * *",
+      "command": "/usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/autonomous_runner.py /ABSOLUTE/PATH/TO/swarm-arena/config.json >> /ABSOLUTE/PATH/TO/swarm-arena/logs/scan.log 2>&1",
+      "alternate_schedules": {
+        "paper": "*/5 * * * *",
+        "_comment": "Paper mode is read-only; a 5-minute cadence is plenty and kinder to the public API."
+      }
+    },
+    {
+      "name": "review",
+      "description": "Learning loop: resolve open trade outcomes, recompute stats, apply bounded adaptations to state.metrics.",
+      "schedule": "*/30 * * * *",
+      "command": "/usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/fetch_trade_outcomes.py /ABSOLUTE/PATH/TO/swarm-arena/config.json >> /ABSOLUTE/PATH/TO/swarm-arena/logs/review.log 2>&1 && /usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/review_trades.py /ABSOLUTE/PATH/TO/swarm-arena/config.json >> /ABSOLUTE/PATH/TO/swarm-arena/logs/review.log 2>&1 && /usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/update_metrics.py /ABSOLUTE/PATH/TO/swarm-arena/config.json >> /ABSOLUTE/PATH/TO/swarm-arena/logs/review.log 2>&1"
+    },
+    {
+      "name": "daily-summary",
+      "description": "Midnight UTC digest: full status plus 24h review summary.",
+      "schedule": "0 0 * * *",
+      "command": "/usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/status.py /ABSOLUTE/PATH/TO/swarm-arena/config.json >> /ABSOLUTE/PATH/TO/swarm-arena/logs/daily.log 2>&1 && /usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/review_trades.py /ABSOLUTE/PATH/TO/swarm-arena/config.json --hours 24 >> /ABSOLUTE/PATH/TO/swarm-arena/logs/daily.log 2>&1"
+    },
+    {
+      "name": "halt-check",
+      "description": "Watchdog: alerts (exit 1) when halted, circuit breaker tripped, 3+ consecutive errors, or daily loss >= 80% of the limit.",
+      "schedule": "*/15 * * * *",
+      "command": "/usr/bin/env python3 /ABSOLUTE/PATH/TO/swarm-arena/scripts/status.py /ABSOLUTE/PATH/TO/swarm-arena/config.json --json | /usr/bin/env python3 -c \"import sys,json; s=json.load(sys.stdin); bad = s.get('halt') or s.get('circuit_breaker') or s.get('consecutive_errors',0) >= 3 or (s.get('limits',{}).get('max_daily_loss',0) > 0 and s.get('daily_loss',0) >= 0.8 * s['limits']['max_daily_loss']); print('ALERT' if bad else 'OK', json.dumps({'halt': s.get('halt'), 'circuit_breaker': s.get('circuit_breaker'), 'consecutive_errors': s.get('consecutive_errors'), 'daily_loss': s.get('daily_loss')})); sys.exit(1 if bad else 0)\" >> /ABSOLUTE/PATH/TO/swarm-arena/logs/watchdog.log 2>&1"
+    }
+  ]
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Xianyu Team Optimizer helps agents parse Xianyu King guild roster lists, calculate high-value five-person challenge teams from player star scores, and suggest external recruits for tier upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill that parses Xianyu King guild challenge rosters and optimizes five-player teams for reward tiers.
 
-## Publisher: <br>
-[goodman333](https://clawhub.ai/user/goodman333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goodman333](https://clawhub.ai/user/goodman333)
 
-## Use Case: <br>
-External community managers and game guild coordinators use this skill to turn pasted roster or relay-list data into optimized five-person teams, reward-tier summaries, unassigned-player lists, and recruiting suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roster or group-chat content may include private or unrelated personal information. <br>
-Mitigation: Paste only the roster data needed for grouping and avoid unrelated private chat logs. <br>
-Risk: Broad trigger wording could cause the skill to process roster information when that was not intended. <br>
-Mitigation: Invoke the skill explicitly when team roster optimization is desired. <br>
-Risk: Computed groupings and recruiting suggestions may be based on stale or incorrectly parsed star scores. <br>
-Mitigation: Review the parsed player list before generating or acting on final team assignments. <br>
+## Use Case:
 
+External users and guild coordinators use this skill to parse player rosters, compute reward-tier-maximizing five-person teams, compare alternative grouping plans, and review recruiting suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goodman333/xianyu-team-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with tables, plus JSON optimizer results from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes multiple team plans, tier-value summaries, unassigned players, and external recruiting options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Unusually large or pathological roster inputs can make the local optimizer slow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use normal roster-sized inputs and avoid untrusted or extremely large JSON lists.
+
+Risk: Roster parsing from informal chat text can misread player names, completion status, or star counts.
+
+Mitigation: Have the agent present parsed players for user confirmation before running the optimizer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goodman333/skills/xianyu-team-optimizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/goodman333)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON inputs and JSON optimizer output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommended and alternative team plans, unassigned-player summaries, and upgrade or recruiting hints.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

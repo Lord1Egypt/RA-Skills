@@ -1,44 +1,57 @@
-## Description: <br>
-Parses Dedao note share links to extract cleaned article text and optionally download article images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses shared Dedao note links to extract article text and download article images.
 
-## Publisher: <br>
-[ymsha88](https://clawhub.ai/user/ymsha88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ymsha88](https://clawhub.ai/user/ymsha88)
 
-## Use Case: <br>
-Agents assisting users with Dedao note links use this skill to open a supplied dedao.cn share URL, extract the note title and body text, and optionally save referenced images for local Markdown notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can browse arbitrary supplied URLs and fetch remote images. <br>
-Mitigation: Restrict accepted input to trusted Dedao share links before execution. <br>
-Risk: The runner writes scraped content and images to a fixed local folder by default. <br>
-Mitigation: Change the output directory to a user-approved workspace path and add overwrite protection before use. <br>
-Risk: Chromium is launched with sandboxing disabled. <br>
-Mitigation: Avoid running it on a normal desktop environment unless the scripts have been reviewed and sandbox settings are appropriate. <br>
-Risk: Image downloads may consume unexpected local storage. <br>
-Mitigation: Add image size and count limits before processing unreviewed links. <br>
+## Use Case:
 
+Developers and agent users use this skill to process Dedao share links, extract readable note content, and save related images for local note-taking workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ymsha88/parse-deodao-shared-link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files] <br>
-**Output Format:** [Markdown notes and JavaScript result objects containing extracted title, content, image metadata, and saved image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write scraped content and downloaded images to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can open arbitrary web pages in an unsandboxed Chromium browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted Dedao links or add a strict dedao.cn allowlist, and run browser activity in an isolated container or with Chromium sandboxing restored.
+
+Risk: The skill can contact third-party image hosts and save page content or images locally.
+
+Mitigation: Review target links before use and make the output directory explicit and configurable before deployment.
+
+Risk: The included runner writes to a fixed local notes folder.
+
+Mitigation: Configure an approved output path for the deployment environment and review written files before sharing or importing them into other systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ymsha88/skills/parse-deodao-shared-link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown files with extracted text and local image references; JavaScript helpers may also return structured parse results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save downloaded images to local storage when image saving is enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

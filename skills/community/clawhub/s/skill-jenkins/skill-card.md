@@ -1,41 +1,57 @@
-## Description: <br>
-Enables an agent to interact with Jenkins CI/CD via REST API to trigger builds, list configured projects, and check build results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when needing to interact with Jenkins CI/CD via REST API - triggering builds, listing projects, or checking build results.
 
-## Publisher: <br>
-[lentiancn](https://clawhub.ai/user/lentiancn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lentiancn](https://clawhub.ai/user/lentiancn)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure project-to-Jenkins job mappings, inspect Jenkins job status, and trigger builds after an explicit confirmation step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Jenkins API credentials can be used to inspect jobs and trigger builds. <br>
-Mitigation: Install only where JENKINS_USER and JENKINS_API_TOKEN are intended for agent use, and scope the token to the minimum Jenkins permissions needed. <br>
-Risk: Stored project and Jenkins URLs could point the agent to the wrong job or repository. <br>
-Mitigation: Review PROJECTS.md before use and confirm the selected project carefully before allowing a build trigger. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to manage Jenkins project configuration, trigger builds, and check build results through guided REST API workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lentiancn/skills/skill-jenkins) <br>
-- [PROJECTS.md](artifact/PROJECTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON question tool payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local project configuration and Jenkins credentials to inspect jobs, request confirmation, trigger builds, and summarize build status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can send Jenkins credentials to project-configured URLs without validating or clearly confirming the destination first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted PROJECTS.md entries, HTTPS-only Jenkins URLs, a host allowlist or explicit host confirmation, and least-privileged Jenkins API tokens.
+
+Risk: Broad auto-invocation for generic words such as build can trigger Jenkins workflows in the wrong project context.
+
+Mitigation: Require explicit project and destination confirmation before authenticated Jenkins requests or build triggers.
+
+Risk: PROJECTS.md changes can alter where authenticated Jenkins requests are sent.
+
+Mitigation: Treat PROJECTS.md edits as security-sensitive configuration changes and review them before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lentiancn/skills/skill-jenkins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Jenkins credentials in JENKINS_USER and JENKINS_API_TOKEN, with Jenkins URLs configured per project in PROJECTS.md.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

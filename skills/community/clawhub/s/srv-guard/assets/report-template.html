@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服务器安全报告 — {{TARGET}} — {{TIMESTAMP}}</title>
+<style>
+  :root { --crit:#b91c1c; --high:#c2410c; --med:#a16207; --low:#475569; --info:#1e40af; --ok:#15803d; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; margin:0; padding:2rem; color:#1f2937; background:#f8fafc; line-height:1.6; }
+  h1 { margin-top:0; }
+  .meta { color:#64748b; font-size:.9rem; margin-bottom:1.5rem; }
+  .summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; margin:1.5rem 0; }
+  .card { background:#fff; border:1px solid #e2e8f0; border-radius:.5rem; padding:1rem; }
+  .card .n { font-size:1.8rem; font-weight:700; }
+  .card .l { color:#64748b; font-size:.85rem; }
+  .sev-CRITICAL { color:var(--crit); } .sev-HIGH { color:var(--high); } .sev-MEDIUM { color:var(--med); } .sev-LOW { color:var(--low); } .sev-INFO { color:var(--info); }
+  section { background:#fff; border:1px solid #e2e8f0; border-radius:.5rem; padding:1.25rem; margin:1.25rem 0; }
+  section h2 { margin-top:0; border-bottom:2px solid #e2e8f0; padding-bottom:.5rem; }
+  table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  th,td { text-align:left; padding:.5rem .6rem; border-bottom:1px solid #f1f5f9; vertical-align:top; }
+  th { background:#f8fafc; font-weight:600; }
+  .badge { display:inline-block; padding:.15rem .5rem; border-radius:.25rem; font-size:.75rem; font-weight:600; color:#fff; }
+  .badge.CRITICAL { background:var(--crit); } .badge.HIGH { background:var(--high); } .badge.MEDIUM { background:var(--med); } .badge.LOW { background:var(--low); } .badge.INFO { background:var(--info); }
+  .ev { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.8rem; color:#475569; white-space:pre-wrap; word-break:break-all; }
+  .ok { color:var(--ok); font-weight:600; } .warn { color:var(--med); }
+  .footer { color:#94a3b8; font-size:.8rem; margin-top:2rem; border-top:1px solid #e2e8f0; padding-top:1rem; }
+  .empty { color:#94a3b8; font-style:italic; }
+</style>
+</head>
+<body>
+<h1>服务器安全报告</h1>
+<div class="meta">目标: <strong>{{TARGET}}</strong> &nbsp;|&nbsp; 生成时间: {{TIMESTAMP}} &nbsp;|&nbsp; 生成者: server-security-guard</div>
+
+<div class="summary">
+  <div class="card"><div class="n sev-CRITICAL">{{SUM_CRITICAL}}</div><div class="l">Critical</div></div>
+  <div class="card"><div class="n sev-HIGH">{{SUM_HIGH}}</div><div class="l">High</div></div>
+  <div class="card"><div class="n sev-MEDIUM">{{SUM_MEDIUM}}</div><div class="l">Medium</div></div>
+  <div class="card"><div class="n sev-LOW">{{SUM_LOW}}</div><div class="l">Low</div></div>
+  <div class="card"><div class="n sev-INFO">{{SUM_INFO}}</div><div class="l">Info</div></div>
+</div>
+
+<section>
+  <h2>漏洞扫描结果</h2>
+  {{SCAN_TABLE}}
+</section>
+
+<section>
+  <h2>漏洞修复结果</h2>
+  {{FIX_TABLE}}
+</section>
+
+<section>
+  <h2>攻击感知事件</h2>
+  {{MONITOR_TABLE}}
+</section>
+
+<section>
+  <h2>攻击防御操作</h2>
+  {{DEFEND_TABLE}}
+</section>
+
+<div class="footer">
+  本报告由 server-security-guard Skill 自动生成。修复与防御操作默认 dry-run，实际变更需人工确认后 --apply 执行。
+  所有发现均含证据字段，请人工复核后再决定处置策略。
+</div>
+</body>
+</html>

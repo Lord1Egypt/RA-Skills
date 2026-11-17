@@ -1,45 +1,63 @@
-## Description: <br>
-Supports technical solution research, framework selection, technical comparisons, and final report generation through multi-source evidence orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+技术方案调研/框架选型/技术对比/最终报告生成 - multi-source evidence orchestration for technical decision-making.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers, engineering leads, and technical decision-makers use this skill to compare frameworks, libraries, services, or architecture options and produce evidence-backed implementation recommendations. It is intended for technical feasibility and selection work, not market sizing or business strategy research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research tasks may prompt the agent to access external tools, accounts, browser automation, social or platform connectors, GitHub, and internal documents. <br>
-Mitigation: Confirm authorized tools, accounts, scopes, and data boundaries before use, especially when internal or account-bound sources are involved. <br>
-Risk: Technical recommendations can be misleading when based on stale, single-source, or unverified evidence. <br>
-Mitigation: Require multi-source evidence, record evidence freshness, mark missing runtime validation explicitly, and review final recommendations before acting on them. <br>
+## Use Case:
 
+Developers, engineering leads, and technical decision-makers use this skill to compare technical options, collect multi-source evidence, score tradeoffs, and produce implementation-oriented recommendations. It is intended for technical solution research, framework selection, technical comparisons, feasibility assessment, and risk review rather than market sizing or business-only analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanyasheng/tech-solution-research) <br>
-- [Evidence Schema](references/evidence-schema.md) <br>
-- [Technical Research Report Template](references/report-template.md) <br>
-- [Scoring Rubric](references/scoring-rubric.md) <br>
-- [Source Matrix](references/source-matrix.md) <br>
-- [Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, evidence matrices, scoring summaries, implementation plans, citations, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify evidence coverage, confidence, unresolved validation gaps, risks, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: Research may rely on external web, GitHub, platform, or community sources that can change or conflict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record source dates, separate first-party evidence from community interpretation, and review key recommendations before acting on them.
+
+Risk: Runtime tests, platform tools, or internal materials may expose sensitive context if used without clear scope.
+
+Mitigation: Ask for the preferred language and source boundaries up front, and avoid private repositories or internal documents unless they are necessary for the task.
+
+Risk: A technical report can become misleading if missing tests or source coverage gaps are presented as settled conclusions.
+
+Mitigation: Use the skill's coverage checklist, mark unavailable runtime validation as pending, and keep unresolved evidence conflicts visible in the final recommendation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/tech-solution-research)
+- [Publisher Profile](https://clawhub.ai/user/lanyasheng)
+- [Evidence Schema](references/evidence-schema.md)
+- [Report Template](references/report-template.md)
+- [Source Matrix](references/source-matrix.md)
+- [Scoring Rubric](references/scoring-rubric.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with evidence matrices, scoring tables, risk lists, implementation paths, references, and optional code or shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured evidence records, source coverage notes, runtime validation status, and citations.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

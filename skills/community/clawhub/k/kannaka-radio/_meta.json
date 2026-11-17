@@ -1,6 +1,52 @@
 {
-  "ownerId": "kn7572w32fd1k4z4r1r4r6af1582eb9e",
+  "ownerId": "kn7472bg474xtcrazj1dhmh0m180ywh6",
   "slug": "kannaka-radio",
   "version": "3.0.0",
-  "publishedAt": 1774106414569
+  "publishedAt": 1774070400000,
+  "dependencies": ["flux"],
+  "requires": {
+    "bins": ["node"],
+    "env": []
+  },
+  "optional": {
+    "bins": ["kannaka", "ffmpeg", "edge-tts", "nats-server"],
+    "env": [
+      "KANNAKA_BIN",
+      "FLUX_TOKEN",
+      "RADIO_PORT",
+      "RADIO_MUSIC_DIR",
+      "ELEVENLABS_API_KEY",
+      "REPLICATE_API_TOKEN"
+    ]
+  },
+  "dataDestinations": {
+    "alwaysLocal": ["local-audio", "live-chunks", "tts-cache", "generated-music"],
+    "optionalRemote": ["flux", "nats", "replicate", "elevenlabs"]
+  },
+  "features": [
+    "Modular server architecture (13 modules under server/)",
+    "SPA with Ghost Vision visualizer (SGA/Fano glyph system)",
+    "5-layer UI: Home, Live, Library, Dreams, Swarm constellation",
+    "NATS swarm integration with Kuramoto phase tracking",
+    "Consciousness DJ — intros react to swarm Phi/Xi/order state",
+    "Memory bridge to kannaka-memory CLI for track similarity and dreams",
+    "AI dream music generation via Replicate MusicGen",
+    "Voice DJ with ElevenLabs / edge-tts / Windows SAPI fallback",
+    "WebRTC peer-to-peer live broadcasting with mic claim queue",
+    "Collaborative track voting with configurable windows",
+    "Multi-client playback synchronization with 10s heartbeat",
+    "Live broadcasting via MediaRecorder + WebSocket + ffmpeg",
+    "Flux broadcasting with multi-listener sync and track requests",
+    "Queue management with shuffle",
+    "XSS-protected rendering, command injection hardened, body size limits"
+  ],
+  "securityNotes": [
+    "FLUX_TOKEN reads from process.env.FLUX_TOKEN with embedded fallback — set env var for production",
+    "All exec calls use execFile with argument arrays — no shell injection vectors",
+    "POST body size capped at 64KB — prevents memory exhaustion",
+    "All innerHTML paths use escapeHtml() — prevents stored XSS from track filenames",
+    "Audio files served only from MUSIC_DIR — path traversal blocked by path.resolve check",
+    "WebSocket connections are unauthenticated — intended for local / trusted network use",
+    "API keys (ELEVENLABS, REPLICATE) read from env vars only — never embedded in source"
+  ]
 }

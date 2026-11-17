@@ -1,40 +1,53 @@
-## Description: <br>
-观势专家集群的数据分析专家，用于数据清洗、统计推断、财务建模、可视化和情景模拟，将原始数据转化为可支撑决策的量化洞察。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+观势 — 数据分析专家 helps agents clean structured and semi-structured data, run statistical and financial analysis, create visualizations, and produce decision-ready quantitative insights.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Data analysts, strategists, and agent workflows use this skill to clean structured or semi-structured datasets, run statistical tests, build financial models, visualize results, and produce decision-ready analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python packages into the current environment when required data-analysis libraries are missing. <br>
-Mitigation: Run it in an isolated environment and approve dependency installation before use. <br>
-Risk: The skill reads local datasets and writes analysis outputs, which can expose sensitive data to the active agent session. <br>
-Mitigation: Limit file access to the datasets needed for the task and use sanitized data where possible. <br>
+## Use Case:
 
+External users and agent developers use this skill when a GuanShi Chief-style workflow needs data cleaning, trend and hypothesis testing, ROI or NPV modeling, sensitivity analysis, chart generation, or scenario simulation from already gathered data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/guanshi-data-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown reports with tables, statistical annotations, chart file references, and optional Python-generated PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce intermediate temp files and final analysis artifacts such as charts or Markdown reports in the workspace output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may automatically install unpinned Python packages into the active Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable virtual environment, or preinstall reviewed and pinned versions of pandas, numpy, scipy, and matplotlib before enabling the skill.
+
+Risk: Generated labels and reports may assume Chinese-first formatting or localized terminology.
+
+Mitigation: Review outputs when English labels or source-preserved naming are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/guanshi-data-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, statistical notes, code snippets, shell commands, and chart file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PNG chart files in an output directory and intermediate working files in a temp directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

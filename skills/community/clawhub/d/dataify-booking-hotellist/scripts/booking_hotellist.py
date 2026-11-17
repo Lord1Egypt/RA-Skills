@@ -12,6 +12,11 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task, extract_task_id
 from typing import Any
 
 
@@ -21,7 +26,7 @@ SPIDER_ID = "booking_hotellist_by-url"
 DEFAULT_BOOKING_URL = "https://www.booking.com/hotel/gb/westlands-of-pitlochry.en-gb.html#tab-main"
 TOKEN_MISSING_MESSAGE = (
     "Missing Dataify API token. Provide a token, or log in/register at "
-    "https://dashboard.dataify.com/login?utm_source=skill. If you already have one, open "
+    "https://dashboard.dataify.com/login?utm_source=skill. New accounts receive 50 free credits. If you already have one, open "
     "https://dashboard.dataify.com?utm_source=skill and copy the API TOKEN from the top-right area."
 )
 
@@ -44,6 +49,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--token", help="Dataify API token. Bearer prefix is optional.")
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--dry-run", action="store_true", help="Print normalized form data without calling the API.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     return parser.parse_args()
 
 
@@ -88,11 +95,11 @@ def clean_value(value: Any) -> str | None:
 def build_parameter_sets(args: argparse.Namespace) -> list[dict[str, str]]:
     provided_sets = load_parameter_sets(args.parameters_json)
     if provided_sets is None:
-        provided_sets = [{"url": clean_value(args.url) or DEFAULT_BOOKING_URL}]
+        provided_sets = [{"url": clean_value(args.url)}]
 
     normalized_sets: list[dict[str, str]] = []
     for item in provided_sets:
-        url = clean_value(item.get("url")) or DEFAULT_BOOKING_URL
+        url = clean_value(item.get("url"))
         if not url:
             raise SystemExit("Missing required field: url")
         normalized_sets.append({"url": url})
@@ -151,7 +158,21 @@ def main() -> int:
         print(json.dumps(form, ensure_ascii=False, indent=2))
         return 0
     token = normalize_token(args.token)
-    print(call_api(form, token, args.timeout))
+    response_text = call_api(form, token, args.timeout)
+    if args.no_wait:
+        print(response_text)
+        return 0
+    task_id = extract_task_id(response_text)
+    if not task_id:
+        print("Builder response did not contain a task_id; cannot wait for a final result.", file=sys.stderr)
+        print(response_text)
+        return 1
+    try:
+        final_result = complete_task(task_id, token, args.wait_timeout, args.timeout)
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(json.dumps(final_result, ensure_ascii=False, indent=2))
     return 0
 
 

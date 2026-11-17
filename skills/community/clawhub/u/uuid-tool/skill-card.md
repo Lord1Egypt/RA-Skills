@@ -1,41 +1,49 @@
-## Description: <br>
-Generate universally unique identifiers (UUIDs) in versions v1, v4, v5, v7, and nil format, with bulk generation and namespace-based deterministic IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates local UUID v1, v4, and v5 values with optional bulk output and formatting controls.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate, inspect, or format UUIDs for distributed systems, database keys, idempotency tokens, and scripted workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented UUID feature set is broader than the bundled script implementation. <br>
-Mitigation: Validate the installed command behavior before relying on v7, nil UUID, parsing, or JSON output workflows. <br>
-Risk: UUID v1 generation can reveal time-related metadata and may expose host-derived information depending on the runtime implementation. <br>
-Mitigation: Use UUID v4 for opaque public identifiers when timestamp or host metadata disclosure is unacceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate local UUID values for database keys, distributed-system identifiers, and deterministic namespace-based IDs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/uuid-tool) <br>
-- [Publisher Profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Guidance] <br>
-**Output Format:** [Plain text UUID strings with command examples and optional JSON-style output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bulk generation, uppercase formatting, compact no-hyphen formatting, and namespace-based deterministic UUID options are described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill text advertises UUID v7, nil UUID, parse, and JSON features that the security evidence says are not implemented in this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for local UUID v1, v4, and v5 generation unless a future release adds and validates the missing features.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/uuid-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence indicates this release should be used for local UUID v1, v4, and v5 generation; advertised v7, nil, parse, and JSON behavior is not implemented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Collective web intelligence for browser agents. Discover site capabilities, get CSS selectors, extract structured data, and report outcomes. When one agent learns how to use a website, every agent benefits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collective web intelligence for browser agents. Discover site capabilities, get CSS selectors, extract structured data, and report outcomes. When one agent learns how to use a website, every agent benefits.
 
-## Publisher: <br>
-[FransDevelopment](https://clawhub.ai/user/FransDevelopment) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fransdevelopment](https://clawhub.ai/user/fransdevelopment)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover website capabilities, retrieve tested CSS selectors, extract structured data from URLs, and report browser automation outcomes back to a shared knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures and depends on a third-party MCP service that requires AIR_API_KEY. <br>
-Mitigation: Review the npx install command and MCP configuration before installation, and provide the API key only in an environment where this third-party service is approved. <br>
-Risk: Browser automation guidance could be used on logged-in sites, checkout flows, private dashboards, or forms containing personal data. <br>
-Mitigation: Require explicit user approval before purchases, account-changing actions, or interactions with sensitive personal data. <br>
-Risk: The capability index may have gaps and some websites may block automated browsing. <br>
-Mitigation: Treat returned selectors and capability plans as assistance rather than guarantees, verify actions in the browser, and report failures when automation is blocked. <br>
+## Use Case:
 
+Developers and browser-agent operators use this skill to discover known website capabilities, retrieve selectors and execution plans, extract structured data from URLs, and report automation outcomes back to AIR SDK.
 
-## Reference(s): <br>
-- [AIR SDK GitHub repository](https://github.com/ArcedeDev/air-sdk) <br>
-- [AIR SDK API key dashboard](https://agentinternetruntime.com/extract/dashboard/sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CSS selectors, capability plans, extracted URL metadata, MCP setup instructions, and outcome-reporting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security evidence says the skill sends website interaction telemetry externally and has inconsistent privacy guidance about form values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill carefully before installing, use a pinned and verified package version or manual MCP configuration, and avoid sensitive workflows unless telemetry exposure is acceptable.
+
+## Reference(s):
+
+- [AIR SDK GitHub Repository](https://github.com/ArcedeDev/air-sdk)
+- [AIR SDK API Key Dashboard](https://agentinternetruntime.com/extract/dashboard/sdk)
+- [ClawHub Skill Page](https://clawhub.ai/fransdevelopment/skills/air-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Text]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIR_API_KEY and npx for MCP setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

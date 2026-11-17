@@ -1,43 +1,63 @@
-## Description: <br>
-EvoAgentX Workflow helps agents install, check, scaffold, and use EvoAgentX patterns for self-evolving OpenClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EvoAgentX Workflow helps agents provide EvoAgentX setup guidance, status checks, examples, and starter workflow templates for self-evolving agent workflows.
 
-## Publisher: <br>
-[KyleChen26](https://clawhub.ai/user/KyleChen26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kylechen26](https://clawhub.ai/user/kylechen26)
 
-## Use Case: <br>
-Developers and agent builders use this skill to scaffold EvoAgentX workflow templates, inspect installation status, and get examples for evolving multi-agent workflows in OpenClaw. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs or depends on the external EvoAgentX package without pinning a version. <br>
-Mitigation: Install EvoAgentX in a virtual environment and pin or review the package version for important projects. <br>
-Risk: Generated workflow templates may contain incomplete or unsuitable logic for the user's project. <br>
-Mitigation: Review generated Python files before running them or integrating them into an agent workflow. <br>
-Risk: The skill is a lightweight installer and scaffolder, not a complete production workflow optimization layer. <br>
-Mitigation: Treat its output as setup guidance and examples, then validate EvoAgentX behavior and OpenClaw integration in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [EvoAgentX GitHub](https://github.com/EvoAgentX/EvoAgentX) <br>
-- [EvoAgentX Documentation](https://evoagentx.github.io/EvoAgentX/) <br>
-- [EvoAgentX arXiv Paper](https://arxiv.org/abs/2507.03616) <br>
+## Use Case:
 
+Developers and engineers use this skill to check EvoAgentX availability, get installation guidance, view example workflow patterns, and create editable Python workflow templates for multi-agent systems.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style guidance, inline shell commands, and generated Python files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The create-workflow command can write a Python workflow template in the current directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can generate Python workflow files that may overwrite existing files in the current working directory.
+
+Mitigation: Run it in a dedicated or disposable directory and review generated files before importing or executing them.
+
+Risk: Workflow names and descriptions are inserted into generated Python code.
+
+Mitigation: Avoid untrusted workflow names or descriptions and inspect generated code for syntax or injection issues before use.
+
+Risk: The skill depends on the external EvoAgentX package.
+
+Mitigation: Pin and verify the EvoAgentX dependency through the organization's normal dependency review process before installation.
+
+Risk: The artifact claims broad EvoAgentX/OpenClaw integration capabilities that may exceed the provided CLI behavior.
+
+Mitigation: Treat the skill as setup guidance and template generation unless additional reviewed integration code is supplied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kylechen26/skills/evoagentx-workflow)
+- [EvoAgentX GitHub](https://github.com/EvoAgentX/EvoAgentX)
+- [EvoAgentX documentation](https://evoagentx.github.io/EvoAgentX/)
+- [EvoAgentX arXiv paper](https://arxiv.org/abs/2507.03616)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with inline shell commands and generated Python code templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a Python workflow template file in the current working directory when the create-workflow command is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

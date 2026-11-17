@@ -1,11 +1,11 @@
 # ELIB\_PreviewType enum
 
-预览视图类型
+Preview view type
 
 ## Signature
 
 ```typescript
-declare enum ELIB_PreviewType 
+enum ELIB_PreviewType
 ```
 
 ## Enumeration Members
@@ -14,80 +14,57 @@ declare enum ELIB_PreviewType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 FOOTPRINT
 
-
 </td><td>
 
-`"F"`
-
+`'F'`
 
 </td><td>
-
-封装预览
-
 
 </td></tr>
 <tr><td>
 
 MODEL\_3D
 
-
 </td><td>
 
-`"3D"`
-
+`'3D'`
 
 </td><td>
-
-3D 预览
-
 
 </td></tr>
 <tr><td>
 
 PRODUCT
 
-
 </td><td>
 
-`"P"`
-
+`'P'`
 
 </td><td>
-
-产品实物预览
-
 
 </td></tr>
 <tr><td>
 
 SYMBOL
 
-
 </td><td>
 
-`"S"`
-
+`'S'`
 
 </td><td>
-
-符号预览
-
 
 </td></tr>
 </tbody></table>

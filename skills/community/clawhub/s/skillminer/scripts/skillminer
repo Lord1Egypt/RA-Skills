@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export CLAWD_DIR="${CLAWD_DIR:-$HOME/clawd}"
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+STATE_DIR="$SKILL_DIR/state"
+STATE_FILE="$STATE_DIR/state.json"
+LAST_SCAN_FILE="$STATE_DIR/.last-success"
+LAST_WRITE_FILE="$STATE_DIR/.last-write"
+
+# shellcheck source=/dev/null
+source "$SKILL_DIR/scripts/lib/atomic-write.sh"
+
+usage() {
+  cat <<EOF
+skillminer manual runner
+
+Usage:
+  skillminer scan     Run the nightly scan wrapper
+  skillminer write    Run the morning write wrapper
+  skillminer full     Run scan, then write
+  skillminer status   Show last scan/write timestamps and pending count
+  skillminer help     Show this help
+EOF
+}
+
+show_status() {
+  local last_scan="missing"
+  local last_write="missing"
+  local pending_count="0"
+
+  if [ -f "$LAST_SCAN_FILE" ]; then
+    last_scan="$(cat "$LAST_SCAN_FILE")"
+  fi
+
+  if [ -f "$LAST_WRITE_FILE" ]; then
+    last_write="$(cat "$LAST_WRITE_FILE")"
+  fi
+
+  if [ -f "$STATE_FILE" ]; then
+    pending_count="$(jq '[.candidates[] | select(.status == "pending")] | length' "$STATE_FILE")"
+  fi
+
+  cat <<EOF
+skillminer status
+- CLAWD_DIR: $CLAWD_DIR
+- last_scan: $last_scan
+- last_write: $last_write
+- pending_candidates: $pending_count
+EOF
+}
+
+run_scan() {
+  local rc=0
+  SKILLMINER_LOCK_HELD=1 bash "$SKILL_DIR/scripts/run-nightly-scan.sh" || rc=$?
+  return "$rc"
+}
+
+run_write() {
+  local rc=0
+  SKILLMINER_LOCK_HELD=1 bash "$SKILL_DIR/scripts/run-morning-write.sh" || rc=$?
+  return "$rc"
+}
+
+cmd="${1:-help}"
+
+case "$cmd" in
+  scan)
+    if ! acquire_skillminer_lock; then
+      exit 3
+    fi
+    run_scan
+    ;;
+  write)
+    if ! acquire_skillminer_lock; then
+      exit 3
+    fi
+    run_write
+    ;;
+  full)
+    if ! acquire_skillminer_lock; then
+      exit 3
+    fi
+    run_scan
+    run_write
+    ;;
+  status)
+    show_status
+    ;;
+  help|-h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+esac

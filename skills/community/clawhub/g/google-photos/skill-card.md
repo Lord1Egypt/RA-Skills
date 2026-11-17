@@ -1,40 +1,59 @@
-## Description: <br>
-Manage Google Photos library. Upload photos, create albums, and list library content. Use when the user wants to backup, organize, or share images via Google Photos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Photos library content by listing albums, creating albums, and uploading photos through the Google Photos Library API.
 
-## Publisher: <br>
-[jorgermp](https://clawhub.ai/user/jorgermp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jorgermp](https://clawhub.ai/user/jorgermp)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent upload photos, create albums, and list album information in Google Photos using their own Google OAuth credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Google OAuth access to a user's Google Photos account. <br>
-Mitigation: Use personal Google OAuth credentials, review the consent scopes before authorizing, keep credentials.json and token.pickle private, and revoke access when the skill is no longer needed. <br>
-Risk: The upload action can send selected local image files to Google Photos or a specified album. <br>
-Mitigation: Review the photo path and album ID before running upload commands, and upload only files intended for the target Google Photos library. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jorgermp/google-photos) <br>
-- [Google Photos Library API service](https://photoslibrary.googleapis.com) <br>
+## Use Case:
 
+External users and developers use this skill to automate Google Photos album inspection, album creation, and photo uploads from an OpenClaw agent using their own Google OAuth credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied Google OAuth credentials and a local token file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OAuth credentials and token files may be exposed or misused if stored insecurely or accepted from another source.
+
+Mitigation: Use a dedicated Google OAuth client, keep credentials.json and token files in a private directory, and never use token files supplied by someone else.
+
+Risk: The skill requests broader Google Photos authority than its listed commands need.
+
+Mitigation: Prefer a version that removes the unused sharing scope and uses the narrowest Google Photos scopes required for list, create, and upload actions.
+
+Risk: Pickle token storage can create unnecessary local token-handling risk.
+
+Mitigation: Prefer a version that replaces pickle token storage with Google credential JSON and owner-only file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jorgermp/skills/google-photos)
+- [Google Photos Library API albums endpoint](https://photoslibrary.googleapis.com/v1/albums)
+- [Google Photos Library API uploads endpoint](https://photoslibrary.googleapis.com/v1/uploads)
+- [Google Photos Library API batchCreate endpoint](https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Google OAuth client credentials and local token storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

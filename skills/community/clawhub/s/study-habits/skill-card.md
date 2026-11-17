@@ -1,38 +1,53 @@
-## Description: <br>
-Build effective study habits with spaced repetition, active recall, and session tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build effective study habits with spaced repetition, active recall, and session tracking.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-Students and independent learners use this skill to plan study sessions, choose evidence-based study techniques, track topic confidence, and schedule reviews before exams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Study history, topic confidence ratings, and exam schedules may be retained locally when the host supports memory or local storage. <br>
-Mitigation: Avoid entering sensitive academic or personal details and periodically review or clear retained study data in the host environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhillin8/study-habits) <br>
-- [Publisher profile](https://clawhub.ai/user/jhillin8) <br>
+## Use Case:
 
+Students and other learners use this skill to plan study sessions, track confidence and progress, schedule spaced reviews, and prepare for exams.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with study plans, reminders, progress summaries, and technique recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include locally retained study topics, session durations, confidence ratings, and exam schedules when supported by the host agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may provide sensitive study notes, exam details, or performance history while using local study tracking.
+
+Mitigation: Review what information is recorded, avoid entering unnecessary sensitive details, and manage or delete local study records according to the agent environment.
+
+Risk: Study plans or review timing may be imperfect for a learner's course requirements or constraints.
+
+Mitigation: Treat schedules and technique suggestions as planning aids, and adjust them against official course materials, deadlines, and learner needs.
+
+## Reference(s):
+
+- [Study Habits ClawHub skill page](https://clawhub.ai/jhillin8/skills/study-habits)
+- [jhillin8 publisher profile](https://clawhub.ai/user/jhillin8)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text study plans, review schedules, session summaries, and progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally retained study history, topic confidence ratings, and review timing when the agent environment supports persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

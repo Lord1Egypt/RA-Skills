@@ -1,47 +1,66 @@
-## Description: <br>
-专为中国CEO打造的AI决策协作体系。主脑+子代理架构，支持飞书通知，定时简报，记忆系统，决策分级管理。5分钟安装，开箱即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language OpenClaw skill that configures a CEO decision assistant with delegated agents, Feishu notifications, scheduled briefings, persistent memory, and P0-P3 decision tracking.
 
-## Publisher: <br>
-[james6548](https://clawhub.ai/user/james6548) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james6548](https://clawhub.ai/user/james6548)
 
-## Use Case: <br>
-Executives and operators use this skill to coordinate CEO decision support across market monitoring, work tracking, project management, decision archiving, scheduled Feishu briefings, and persistent memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses permanent memory for sensitive CEO conversations. <br>
-Mitigation: Confirm stored memories can be inspected and deleted, and avoid placing confidential secrets in chat history. <br>
-Risk: Scheduled autonomous Feishu reports may send executive or market information to unintended recipients. <br>
-Mitigation: Restrict Feishu recipients with allowlists, review scheduled jobs before enabling them, and disable unnecessary reports. <br>
-Risk: Feishu document, wiki, drive, and bot access may be broader than required. <br>
-Mitigation: Use a least-privilege Feishu app, limit document/wiki/drive scopes, and keep App Secret out of chats and repositories. <br>
+## Use Case:
 
+Chinese-speaking CEOs and executive operators use this skill to organize decision support, delegate monitoring work to specialized agents, and receive scheduled Feishu briefings for market, project, and operational follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/james6548/ceo-ai-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/james6548) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [README.md](artifact/README.md) <br>
-- [CEO决策协作体系v2.8.md](artifact/CEO决策协作体系v2.8.md) <br>
+### Deployment Geography for Use:
 
+Global; optimized for China-based CEO workflows and Asia/Shanghai schedules.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduled briefing prompts, agent-role guidance, decision-priority guidance, and OpenClaw configuration templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.8.0) <br>
+Risk: Scheduled Feishu sharing may expose sensitive executive briefings or decisions beyond the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Feishu credentials, restrict recipients with allowlists, and review notification routing before enabling scheduled delivery.
+
+Risk: Persistent memory and automatic knowledge-base updates may retain sensitive executive conversations without sufficient review, retention, deletion, or redaction controls.
+
+Mitigation: Disable automatic knowledge-base updates until retention, deletion, redaction, and human review controls are explicitly approved.
+
+Risk: Session-history access can broaden exposure of prior conversations used for sensitive executive work.
+
+Mitigation: Disable or narrow session-log access and review what historical data the skill can read before deployment.
+
+Risk: Installer or dependency changes could alter the behavior of a skill that handles executive workflows.
+
+Mitigation: Pin the installer and dependencies, then review and scan the exact release before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james6548/skills/ceo-ai-assistant)
+- [Publisher profile](https://clawhub.ai/user/james6548)
+- [ClawHub homepage](https://clawhub.ai)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [CEO decision collaboration framework](artifact/CEO决策协作体系v2.8.md)
+- [Installation guide](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration templates, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scheduled briefing prompts, Feishu announcement delivery, and persistent memory update behavior when installed and configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 2.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

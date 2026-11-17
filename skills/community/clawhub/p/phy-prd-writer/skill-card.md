@@ -1,42 +1,55 @@
-## Description: <br>
-Multi-turn PRD (Product Requirements Document) creation assistant that asks focused clarifying questions and generates a complete, professional PRD for a new feature, product, or project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-turn PRD (Product Requirements Document) creation assistant that asks clarifying questions one at a time to gather requirements, then generates a complete, professional PRD.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External users, product managers, founders, and development teams use this skill to gather requirements one question at a time and produce a structured PRD for a new feature, product, or project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move from drafting into saving, committing, design, task creation, and implementation planning. <br>
-Mitigation: Keep the workflow read-only until the user explicitly approves saving a file, committing to git, or starting downstream design, architecture, task, or implementation work. <br>
-Risk: A generated PRD may contain incomplete, incorrect, or misleading requirements if the gathered inputs are vague. <br>
-Mitigation: Review the generated PRD with stakeholders before using it as a source of truth for delivery decisions. <br>
+## Use Case:
 
+Product managers, founders, and development teams use this skill to gather requirements through a guided question flow and produce a structured PRD for a new feature, product, or project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-prd-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown PRD document with structured sections, tables, checklists, and follow-on guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive multi-turn questioning before final document generation] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad trigger phrases may start the PRD workflow when the user's intent is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocations such as /prd, write a PRD, or create a PRD before using the skill.
+
+Risk: The skill may propose saving files, creating git commits, handing off to other agents, or searching local transcripts after drafting a PRD.
+
+Mitigation: Review and approve each proposed path, commit, handoff, and local search scope before allowing the action to proceed.
+
+## Reference(s):
+
+- [Phy Prd Writer ClawHub skill page](https://clawhub.ai/phy041/skills/phy-prd-writer)
+- [Publisher profile: phy041](https://clawhub.ai/user/phy041)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown PRD document with guided follow-up prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose save locations, git commits, agent handoffs, and local transcript searches after the PRD is generated.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

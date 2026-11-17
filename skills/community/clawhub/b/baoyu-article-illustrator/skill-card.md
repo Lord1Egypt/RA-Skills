@@ -1,46 +1,65 @@
-## Description: <br>
-Analyzes article structure, identifies where visual aids are useful, and generates article illustrations using a Type, Style, and Palette workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type x Style x Palette three-dimension approach.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Writers, editors, and developers use this skill to analyze articles, choose illustration positions, create saved image prompts, generate raster illustrations, and insert Markdown image references into the article. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill contains a prompt telling the agent not to refuse sensitive or copyrighted-figure requests. <br>
-Mitigation: Review requests before generation, enforce your own content and copyright policy, or remove that prompt line before installation. <br>
-Risk: The workflow stores prompts, references, generated images, backups, and preferences in local or project directories. <br>
-Mitigation: Run it in an appropriate workspace, review saved files before sharing, and avoid putting sensitive article content in prompts or reference files. <br>
-Risk: The evidence marks the skill as requiring sensitive credentials for image-generation backends. <br>
-Mitigation: Provide credentials only through trusted environment or configuration mechanisms, scope keys narrowly, and rotate them if exposed. <br>
+## Use Case:
 
+Developers, writers, and content teams use this skill to analyze Markdown articles, choose appropriate visual placements, generate illustration prompts and raster images, and insert image links back into the article.
 
-## Reference(s): <br>
-- [Baoyu Article Illustrator homepage](https://github.com/JimLiu/baoyu-skills#baoyu-article-illustrator) <br>
-- [Usage Guide](references/usage.md) <br>
-- [Workflow Guide](references/workflow.md) <br>
-- [Prompt Construction](references/prompt-construction.md) <br>
-- [Style Presets](references/style-presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Image files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with saved prompt files, outline files, generated raster images, and optional article image links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output directories containing outline.md, prompts, generated images, reference copies, backups, and optional EXTEND.md preferences; can use external image-generation backends that require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill writes illustration assets and may edit article files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts, image paths, and article changes before accepting them.
+
+Risk: The codex-imagegen fallback can run an unpinned package from npm.
+
+Mitigation: Use a pinned or trusted local Bun installation and avoid the npx -y bun fallback.
+
+Risk: A bundled prompt line attempts to avoid refusals for sensitive or copyrighted figure requests.
+
+Mitigation: Remove or revise that prompt line and follow the active image backend's safety and copyright policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimliu/skills/baoyu-article-illustrator)
+- [OpenClaw homepage](https://github.com/JimLiu/baoyu-skills#baoyu-article-illustrator)
+- [Workflow](references/workflow.md)
+- [Usage](references/usage.md)
+- [Styles](references/styles.md)
+- [Style Presets](references/style-presets.md)
+- [Prompt Construction](references/prompt-construction.md)
+- [Codex Imagegen](references/codex-imagegen.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, image files]
+
+**Output Format:** [Markdown guidance with saved prompt files, outline files, raster image assets, and Markdown image links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before generation unless explicitly skipped; writes prompts before invoking an image backend.]
+
+## Skill Version(s):
+
+1.117.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

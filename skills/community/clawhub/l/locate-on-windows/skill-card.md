@@ -1,40 +1,50 @@
-## Description: <br>
-Geolocates the current Windows machine with the native WinRT Location API through PowerShell 5.1, producing latitude, longitude, accuracy, and timestamp JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geolocates the current Windows machine using the native WinRT Location API through PowerShell 5.1 and returns latitude, longitude, accuracy, and timestamp as JSON.
 
-## Publisher: <br>
-[cute-omega](https://clawhub.ai/user/cute-omega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cute-omega](https://clawhub.ai/user/cute-omega)
 
-## Use Case: <br>
-Windows users and support or developer agents use this skill when a user explicitly asks for device-based geolocation on Windows. It helps return local coordinates and accuracy without an external API key or browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Device latitude and longitude are sensitive personal data. <br>
-Mitigation: Run the skill only after the user clearly asks for device geolocation, avoid sharing exact coordinates unnecessarily, and reduce precision before pasting results into chats, logs, tickets, or third-party services. <br>
-Risk: The PowerShell script accesses Windows location services and may fail or return coarse results when permission, hardware, WiFi, or policy support is unavailable. <br>
-Mitigation: Use it on Windows 10 or later with Windows PowerShell 5.1, confirm Location is enabled, and treat low-accuracy or error JSON as a signal to troubleshoot rather than as a precise location. <br>
+## Use Case:
 
+Developers and end users can use this skill when they want an agent to provide a Windows-native way to find the current device location without external API keys or browser access.
 
-## Reference(s): <br>
-- [BigDataCloud reverse geocode client](https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=35.6762&longitude=139.6503) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with PowerShell, bash, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns latitude, longitude, accuracy in meters, timestamp, and structured error fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The output can disclose a sensitive physical location through latitude, longitude, accuracy, and timestamp values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when device location access is intended, keep coordinates private, and share them with reverse-geocoding services only when that disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cute-omega/skills/locate-on-windows)
+- [BigDataCloud reverse geocode client](https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=35.6762&longitude=139.6503)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with PowerShell, JSON, and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local device coordinates and accuracy values that should be treated as sensitive location data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

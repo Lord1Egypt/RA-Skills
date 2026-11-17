@@ -1,44 +1,63 @@
-## Description: <br>
-蜂兵虾将 is a multi-agent workflow skill for cross-industry hotspot monitoring, content strategy, trend and status analysis, and reusable workflow recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+蜂兵虾将 is a multi-agent workflow skill for monitoring cross-industry hotspots, drafting content strategies, analyzing trends and user state, and recording reusable workflows.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External users, creators, analysts, and operators use this skill to coordinate agents that scan public information, score and route topics, produce content plans, analyze trends or personal status, and capture reusable workflow assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses user history, workflow data, and personal profile inferences more broadly than its safeguards explain. <br>
-Mitigation: Review before installing with confidential business data, healthcare or financial topics, personal goals, or workflow records; constrain persistent memory and shared sync where possible. <br>
-Risk: Adaptive confirmations and background preparation can reduce user review before the workflow continues. <br>
-Mitigation: Keep user confirmation enabled, disable or constrain confirmation-skipping and background preparation where possible, and review generated reports, recommendations, and templates before acting on them. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to coordinate multi-agent workflows that collect timely industry information, turn it into content plans, analyze trend or personal-state signals, and preserve reusable workflow memory.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Agent Prompts V1.4](AGENT_PROMPTS.md) <br>
-- [Complete AI Collaboration Operating System Guide](docs/AI协作操作系统_完整使用说明书.md) <br>
-- [Workflow Design](references/workflow-design.md) <br>
-- [Data Flow](references/data-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, structured JSON-like data, and executable JavaScript or shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retain and reuse user profile, goal, workflow, and memory data when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata) <br>
+Risk: The skill stores interaction history, preferences, goals, workflow records, and reports in local JSON and Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep memory directories private and avoid storing secrets, regulated personal data, or other sensitive information in the skill memory.
+
+Risk: Local memory reset or cleanup behavior can remove useful history.
+
+Mitigation: Back up memory directories before using documented reset or cleanup commands.
+
+Risk: Generated hotspot analysis, trend forecasts, content plans, and recommendations may be incomplete or misleading.
+
+Mitigation: Review source evidence and generated reports before using them for business, publishing, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/e2e5g/skills/bing-bing-xia-jiang)
+- [README](README.md)
+- [Complete Workflow Design](references/workflow-design.md)
+- [Module Data Flow](references/data-flow.md)
+- [AI Collaboration Operating System Manual](docs/AI协作操作系统_完整使用说明书.md)
+- [Complete User Manual](docs/完整使用手册.md)
+- [Centralized Deployment Guide](docs/集中部署指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and guidance with JSON-like structures, TypeScript or JavaScript examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent prompts, reports, content plans, workflow templates, and local-memory records; no token cap is stated.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence; artifact package.json declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

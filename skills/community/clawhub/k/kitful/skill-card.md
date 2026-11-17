@@ -1,42 +1,53 @@
-## Description: <br>
-Generate full SEO articles using Kitful.ai. Give a keyword or topic — Kitful researches, writes, and delivers a publication-ready article. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate full SEO articles using Kitful.ai from a keyword or topic, with Kitful researching, writing, and delivering a publication-ready article.
 
-## Publisher: <br>
-[eashish93](https://clawhub.ai/user/eashish93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eashish93](https://clawhub.ai/user/eashish93)
 
-## Use Case: <br>
-External users and content teams use this skill to request SEO-oriented long-form articles from Kitful.ai, including topic research, structure, writing, optional language and promotion settings, and download or dashboard handoff. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends article prompts and optional brand or workspace details to Kitful.ai. <br>
-Mitigation: Use it only for content you are comfortable sharing with Kitful.ai, and avoid submitting secrets, regulated data, or sensitive customer information. <br>
-Risk: The skill requires a Kitful API key stored in local OpenClaw configuration. <br>
-Mitigation: Use a dedicated or revocable API key where possible and keep the configuration file private. <br>
-Risk: Batch article generation and generated images can consume Kitful credits. <br>
-Mitigation: Review batch requests before running them and monitor credits in Kitful settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kitful homepage](https://kitful.ai) <br>
-- [ClawHub skill listing](https://clawhub.ai/eashish93/kitful) <br>
+## Use Case:
 
+External users and content teams use this skill to generate SEO-ready long-form articles from keywords, topics, audience notes, language preferences, and promotion settings. Developers can also use it for sequential batch article generation through the Kitful.ai API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill returns status updates, plain-text error messages, dashboard links, and a curl command for downloading completed article exports.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Article prompts, context, brand URLs, and workspace identifiers are sent to Kitful.ai for processing.
+
+Mitigation: Use the skill only with content you intend Kitful.ai to process, and avoid sending secrets, private client details, or unpublished business information in prompts.
+
+Risk: The skill requires a Kitful API key for article generation and export commands.
+
+Mitigation: Keep the API key private, store it in the configured credential location or environment, and avoid pasting live keys into shared transcripts or files.
+
+## Reference(s):
+
+- [Kitful.ai](https://kitful.ai)
+- [Kitful SEO Article Writer on ClawHub](https://clawhub.ai/eashish93/skills/kitful)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown status messages and shell commands for exporting generated articles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces article generation progress updates, dashboard links, and export commands; generated articles are downloaded as Markdown and HTML zip files.]
+
+## Skill Version(s):
+
+1.0.4 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

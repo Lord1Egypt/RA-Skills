@@ -1,42 +1,56 @@
-## Description: <br>
-Queries Zeecu electric vehicle lists, live status, location, battery and mileage data, and recent trip history using a user-provided API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Zeecu electric vehicle information, including bound vehicle lists, real-time vehicle status, and historical riding tracks.
 
-## Publisher: <br>
-[antgroup](https://clawhub.ai/user/antgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antgroup](https://clawhub.ai/user/antgroup)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve a user's bound Zeecu electric vehicles, live status, location, battery and mileage data, and recent trip history after the user supplies an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles precise vehicle location, trip history, and identifying vehicle details. <br>
-Mitigation: Install only if you are comfortable granting access to that data, and run it only in contexts where the returned vehicle information is appropriate to share. <br>
-Risk: The query script may save the API key to a local plaintext config.json file. <br>
-Mitigation: Prefer a temporary API_KEY environment variable, inspect or delete config.json after use, and rotate the API key if it may have been stored or exposed unintentionally. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve a user's Zeecu electric vehicle list, current status, precise location, battery and mileage details, and recent riding history from the provider API.
 
-## Reference(s): <br>
-- [API specification](references/api-spec.md) <br>
-- [Usage guide](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/antgroup/skills/zeecu-device-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; query script returns JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY; trip queries default to 7 days and support up to 30 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill can expose exact vehicle location, street addresses, VIN or frame identifiers, and recent trip patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted workspace and share returned vehicle or trip data only with users who are authorized to see it.
+
+Risk: The query script can save a live API key to config.json in plaintext after resolving credentials.
+
+Mitigation: Prefer the API_KEY environment variable, avoid command-line key arguments, protect or delete config.json after use, and rotate the key if it may have been saved or synced unintentionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antgroup/skills/zeecu-device-skill)
+- [Publisher profile](https://clawhub.ai/user/antgroup)
+- [API specification](artifact/references/api-spec.md)
+- [Zeecu mPaaS API endpoint](https://cn-hangzhou-mgs-gw.cloud.alipay.com/mgw.htm)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses with Markdown setup and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include vehicle identifiers, precise location, addresses, real-time status, battery and mileage data, trip records, or device-selection prompts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Book dance-lessons services through Lokuli MCP. Use when user needs to find and book dance-lessons. Triggers on requests like "book a dance-lessons", "find dance-lessons near me", or any dance-lessons service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book dance-lesson services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for dance-lesson providers, check availability, and create bookings through Lokuli's MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bookings may send customer contact details to an external service. <br>
-Mitigation: Confirm the provider, service, time, and contact details before creating a booking, and share only the information needed for the reservation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-dance-lessons) <br>
+## Use Case:
 
+External users can ask an agent to search for dance-lesson services, check provider availability, and create a booking through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [JSON-RPC MCP tool calls and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider search results, availability checks, and booking details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Creating a booking may send the user's name, email, phone number, requested time, and selected provider or service to Lokuli's external MCP service.
+
+Mitigation: Confirm the booking details and user intent before calling create_booking, especially when the user is only researching lessons.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-dance-lessons)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, JSON-RPC requests, guidance]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit customer contact details and selected booking details to Lokuli when creating a booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

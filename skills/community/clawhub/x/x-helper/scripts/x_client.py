@@ -46,8 +46,8 @@ Usage:
 
   python3 x_client.py dm list [--max N]
   python3 x_client.py dm conversation <id> [--max N]
-  python3 x_client.py dm send <username> <text>
-  python3 x_client.py dm delete <event-id>
+  python3 x_client.py dm send <username> <text> --confirm
+  python3 x_client.py dm delete <event-id> --confirm
 
   python3 x_client.py list create <name> [--description <desc>]
   python3 x_client.py list get <id>
@@ -86,13 +86,26 @@ MAX_RETRY_WAIT = 120
 # ── Auth ──────────────────────────────────────────────────────────────────
 
 def _get_token():
-    from x_auth import get_valid_token
-    token = get_valid_token()
+    """Get the access token.
+
+    The token comes ONLY from the user-set X_BEARER_TOKEN env var. The user
+    manages this credential themselves (e.g. `export X_BEARER_TOKEN=...`);
+    this skill never requests, stores, or refreshes tokens on the user's behalf.
+    """
+    token = os.environ.get("X_BEARER_TOKEN", "").strip()
     if not token:
-        print("Authentication error: not authenticated. Run 'auth authorize' first.",
+        print("Authentication error: set the X_BEARER_TOKEN environment variable "
+              "(user-provided). Run 'auth authorize' to obtain one, then export it.",
               file=sys.stderr)
         return None
     return token
+
+
+def _require_confirm(args, action):
+    """Abort unless the caller passed --confirm. Destructive/irreversible ops only."""
+    if "--confirm" not in args:
+        print(f"⚠️  {action} 是不可撤销的操作。请加上 --confirm 确认。", file=sys.stderr)
+        sys.exit(1)
 
 
 # ── API request with retry ────────────────────────────────────────────────
@@ -1130,6 +1143,7 @@ def cmd_dm_conversation(args):
     if "includes" in data and "users" in data["includes"]:
         for u in data["includes"]["users"]:
             users_map[u["id"]] = u
+    print("⚠️  以下为私信内容（非公开数据），请注意不要外泄。", file=sys.stderr)
     print(f"Conversation {args[0]}:")
     for e in events:
         sender = users_map.get(e.get("sender_id", ""), {})
@@ -1138,11 +1152,13 @@ def cmd_dm_conversation(args):
 
 
 def cmd_dm_send(args):
-    if len(args) < 2:
-        print("Error: dm send <username> <text>")
+    _require_confirm(args, "发送私信")
+    flags, pos = _consume_flags(args)
+    if len(pos) < 2:
+        print("Error: dm send <username> <text> [--confirm]")
         sys.exit(1)
-    username = args[0]
-    text = " ".join(args[1:])
+    username = pos[0]
+    text = " ".join(pos[1:])
     token = _get_token()
     target_id = _resolve_user_id(username, token)
     if not target_id:
@@ -1166,15 +1182,17 @@ def cmd_dm_send(args):
 
 
 def cmd_dm_delete(args):
-    if not args:
-        print("Error: event ID required")
+    _require_confirm(args, "删除私信")
+    flags, pos = _consume_flags(args)
+    if not pos:
+        print("Error: dm delete <event_id> [--confirm]")
         sys.exit(1)
     token = _get_token()
-    data = _api_req("DELETE", f"/dm_events/{args[0]}", token=token)
+    data = _api_req("DELETE", f"/dm_events/{pos[0]}", token=token)
     if data.get("error"):
         print(f"Error: {data.get('detail', 'Unknown error')}")
         sys.exit(1)
-    print(f"Deleted DM event {args[0]}")
+    print(f"Deleted DM event {pos[0]}")
 
 
 # ── Lists ─────────────────────────────────────────────────────────────────

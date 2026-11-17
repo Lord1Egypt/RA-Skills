@@ -1,43 +1,56 @@
-## Description: <br>
-Decide the AI-native development mode, quality target, task granularity, and refactor policy based on project state and user intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decide the AI-native development mode, quality target, task granularity, and refactor policy based on project state and user intent.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Game developers and agents use this skill to choose an appropriate development mode, quality target, task size, and refactor posture for game-development work. It is especially useful when deciding how aggressively to build or preserve behavior based on project state and live-product risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated planning documents can influence project scope, refactor posture, and shipped-game change strategy. <br>
-Mitigation: Review generated markdown before committing, especially for shipped, sensitive, or highly integrated game projects. <br>
+## Use Case:
 
+Developers and agents use this skill to choose an evidence-based game build mode, quality target, task size, and refactor policy for greenfield, product-facing, or live-risk game projects.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike007jd/game-build-strategy) <br>
-- [Publisher Profile](https://clawhub.ai/user/mike007jd) <br>
-- [Development Modes](artifact/shared/reference/development-modes.md) <br>
-- [Quality Targets](artifact/shared/reference/quality-targets.md) <br>
-- [Build Strategy Template](artifact/shared/templates/build-strategy.md) <br>
-- [Quality Target Template](artifact/shared/templates/quality-target.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown planning documents and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected files are docs/game-studio/build-strategy.md and docs/game-studio/quality-target.md when file access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated planning documents could steer broad changes in shipped or live-risk game projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review docs/game-studio/build-strategy.md and docs/game-studio/quality-target.md before acting on them, especially when the selected mode is surgical-live or the project is already shipped.
+
+Risk: The skill writes project planning files as part of normal use.
+
+Mitigation: Confirm generated documentation changes before committing or applying the resulting strategy to implementation work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike007jd/skills/game-build-strategy)
+- [Publisher Profile](https://clawhub.ai/user/mike007jd)
+- [Development Modes](artifact/shared/reference/development-modes.md)
+- [Quality Targets](artifact/shared/reference/quality-targets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown planning documents and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update docs/game-studio/build-strategy.md and docs/game-studio/quality-target.md in the user's project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

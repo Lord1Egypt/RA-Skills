@@ -1,41 +1,49 @@
-## Description: <br>
-Use markdown.new URLs to fetch readable web pages and convert them into static, structured Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use markdown.new URLs like `https://markdown.new/{target_url}` to fetch and convert pages into static Markdown.
 
-## Publisher: <br>
-[ctxinf](https://clawhub.ai/user/ctxinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctxinf](https://clawhub.ai/user/ctxinf)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public web pages, documentation, READMEs, blog posts, changelogs, and similar readable pages as Markdown for summarization, extraction, and downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private intranet URLs, authenticated pages, signed links, or URLs containing tokens may expose confidential content or credentials to markdown.new. <br>
-Mitigation: Use this skill for public pages unless the user accepts sending the URL and reachable content to markdown.new; remove tokens, secrets, and confidential query parameters before use. <br>
-Risk: HTTP errors, timeouts, blocked content, or heavily dynamic pages can produce failed or incomplete Markdown retrieval. <br>
-Mitigation: Check for conversion failures and fall back to another access method when markdown.new does not return usable Markdown. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to retrieve readable public web pages as static Markdown for summarization, extraction, and downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ctxinf/markdown-new-skill) <br>
-- [markdown.new URL pattern](https://markdown.new/{target_url}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The markdown.new service returns static, structured Markdown for readable public pages; agents should fall back to another retrieval method if conversion fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: User-supplied URLs may be routed through a third-party service, including private, authenticated, tokenized, or confidential links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public web pages only; avoid internal sites, signed download links, authenticated documents, tokenized URLs, and confidential customer or business resources unless confirmation and sensitivity checks are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ctxinf/skills/markdown-new-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static structured Markdown from readable public web pages when markdown.new can fetch the target URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

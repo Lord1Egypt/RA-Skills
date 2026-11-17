@@ -1,43 +1,57 @@
-## Description: <br>
-Generate, repair, or audit publish-ready native OpenClaw/ClawHub plugin packages from rough, partial, or inconsistent requirements while keeping the plugin zip separate from a critique file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, repair, or audit publish-ready native OpenClaw/ClawHub plugin packages from rough, partial, or inconsistent requirements while keeping the plugin zip separate from a critique file.
 
-## Publisher: <br>
-[neomagnetar](https://clawhub.ai/user/neomagnetar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neomagnetar](https://clawhub.ai/user/neomagnetar)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn rough notes, partial plugin requirements, existing plugin files, or manifest drafts into native OpenClaw/ClawHub plugin packages. It can also audit or repair existing plugin drafts and produce a separate critique record for assumptions, risks, and publishability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated provider or channel plugins may introduce API keys, webhooks, network listeners, or other side effects. <br>
-Mitigation: Review generated plugin files, manifests, configuration schemas, and critique records before publishing or running them. <br>
-Risk: Generated plugin behavior may rely on inferred requirements when the user's source material is incomplete. <br>
-Mitigation: Use the separate critique record to check assumptions, repairs, simplifications, and publishability before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate, repair, or audit native OpenClaw/ClawHub plugin packages from rough requirements, partial specs, existing plugin folders, manifests, code fragments, or README drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neomagnetar/clawhub-plugin-packager) <br>
-- [README](artifact/README.md) <br>
-- [Plugin spec template](artifact/PLUGIN-SPEC-TEMPLATE.yaml) <br>
-- [Portability notes](artifact/PORTABILITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Native plugin package files plus a separate plain-text critique record] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated plugin packages are expected to keep release files separate from critique and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter and changelog report 1.1.0) <br>
+Risk: Generated provider or channel plugins may introduce credentials, network access, or side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plugins before publishing and verify any credential, network, or side-effect behavior against the intended plugin requirements.
+
+Risk: Generated plugin packages are based on user-provided or inferred requirements, so publishability depends on the accuracy of those inputs and inferences.
+
+Mitigation: Use the separate critique file and review checklist to confirm assumptions, repairs, simplifications, and remaining follow-up items before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neomagnetar/skills/clawhub-plugin-packager)
+- [Publisher Profile](https://clawhub.ai/user/neomagnetar)
+- [README](artifact/README.md)
+- [Portability Notes](artifact/PORTABILITY.md)
+- [Plugin Spec Template](artifact/PLUGIN-SPEC-TEMPLATE.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown and plain-text guidance with generated plugin package files such as TypeScript, JSON, YAML, and README content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For generation jobs, the skill produces a plugin package zip and a separate critique file; audit-only mode produces review guidance without a package unless explicitly requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and changelog report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

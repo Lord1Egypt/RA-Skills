@@ -1,11 +1,11 @@
 ---
 name: oo-clickhouse
-description: "ClickHouse (clickhouse.com). Use this skill for ANY ClickHouse request — searching and reading data. Whenever a task involves ClickHouse, use this skill instead of calling the API directly."
+description: "ClickHouse (clickhouse.com). Use this skill for ANY ClickHouse request — reading, creating, updating, and deleting data. Whenever a task involves ClickHouse, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "ClickHouse"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["clickhouse"]
   icon: "https://static.oomol.com/logo/third-party/clickhouse.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `execute_query` — Execute a SQL query against a ClickHouse instance and return JSON rows.
+- `execute_query` — Execute a SQL query against a ClickHouse instance and return JSON rows. [destructive]
 - `get_database_schema` — Get an overview of one ClickHouse database with tables and optional column name lists.
 - `get_table_schema` — Get column metadata for one ClickHouse table.
 - `list_databases` — List databases available in the connected ClickHouse instance.
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — ClickHouse is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=clickhouse
+  https://console.oomol.com/connections/clickhouse
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - ClickHouse homepage: https://clickhouse.com
+- API documentation: https://clickhouse.com/docs/interfaces/http
